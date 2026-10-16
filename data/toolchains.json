@@ -1,0 +1,26 @@
+{
+  "10.0.0": {
+    "sha256": "893f8a12506f8ad29ca464d868fb432fdadd782786a10655b86575fc7fc1a562",
+    "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-10.0.0/LLVM-10.0.0-win64.exe"
+  },
+  "11.1.0": {
+    "sha256": "b5770bbfac712d273938cd155e232afaa85c2e8d865c7ca504a104a838568516",
+    "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-11.1.0/LLVM-11.1.0-win64.exe"
+  },
+  "12.0.1": {
+    "sha256": "fcbabc9a170208bb344f7bba8366cca57ff103d72a316781bbb77d634b9e9433",
+    "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-12.0.1/LLVM-12.0.1-win64.exe"
+  },
+  "4.0.1": {
+    "sha256": "139ba95f9f88199cdc419a674f0a85df3568367623486336843207a4982e36e9",
+    "url": "https://releases.llvm.org/4.0.1/LLVM-4.0.1-win64.exe"
+  },
+  "8.0.1": {
+    "sha256": "e3af139c2f93075c13dcbc4091c1311f66fc6e4e8705649fcaf9bef8b3368f41",
+    "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-8.0.1/LLVM-8.0.1-win64.exe"
+  },
+  "9.0.1": {
+    "sha256": "ea59a771d1f1a1948b7fabe74d6da87095296ebabb2ae78cb2075ec44eb57c80",
+    "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-9.0.1/LLVM-9.0.1-win64.exe"
+  }
+}
