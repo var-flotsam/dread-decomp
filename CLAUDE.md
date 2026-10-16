@@ -44,7 +44,30 @@ python tools/setup.py --version <ver> --confirm   # after checking printed hashe
 python tools/setup.py --version <ver> --verify-only
 ```
 
-Target version: **TBD** (the user has not confirmed it yet).
+Target version: **2.1.0** (update v327680). The `main` NSO build ID is
+`646761F643AFEBB379EDD5E6A5151AF2CEF93DC1`. Title ID is `010093801237C000`.
+
+Remote: https://github.com/var-flotsam/MPT-Decomp (public, MIT). Never push without
+the user's go-ahead.
+
+## Local environment (Windows 11)
+
+The user supplies these. Don't copy anything from them into the repo.
+
+| What | Where |
+|---|---|
+| ExeFS/RomFS dump (2.1.0, from Eden) | (machine-specific: `CLAUDE.local.md`) |
+| Keys | (machine-specific: `CLAUDE.local.md`; never read into tracked files or printed) |
+| Game files (base + 2.1.0 update) | (machine-specific: `CLAUDE.local.md`) |
+| Emulator (Eden, a yuzu fork) | (machine-specific: `CLAUDE.local.md`) |
+
+Toolchain:
+- Python 3.12, with packages in the repo venv `.venv` (`.venv/Scripts/python`).
+  Python deps are `lz4` and `mercury-engine-data-structures`.
+- JDK 21 (Temurin), with Ghidra 12.1.4 at `%LOCALAPPDATA%\Programs\ghidra_12.1.4_PUBLIC`
+  (headless: `support\analyzeHeadless.bat`).
+- CMake 4.4, Ninja 1.13, LLVM/Clang + lld 23.1.3 (`C:\Program Files\LLVM\bin`).
+- Shells opened before the install may need PATH refreshed from the registry.
 
 ## Conventions
 
@@ -63,7 +86,6 @@ Target version: **TBD** (the user has not confirmed it yet).
 
 ## Status
 
-- Phase 1: layout, hook, setup.py done. setup.py has not been run yet (needs the
-  user's dump and a Python install).
-- Phases 2-3 are blocked on inputs. See the open questions in the session notes or
-  ask the user.
+- Phase 1: done. The 2.1.0 dump has been imported. `data/hashes.json` is recorded but
+  **unconfirmed** until the user checks it (`--confirm`).
+- Phase 2 (recon) and Phase 3 (compiler ID) are next.

@@ -1,0 +1,20 @@
+{
+  "2.1.0": {
+    "confirmed": false,
+    "exefs": {
+      "files": {
+        "main": "06872d2061f2529d7cefb7508be2fdaa50b027bad16e238a6414180eae8d3489",
+        "main.npdm": "7daae595e783773b93215da46680def6d06e80be65b6701c93d7427103eb11a6",
+        "rtld": "bc175ad9865adb48f9cbe9d7993ddb3367d3771bc06642c87d16ccf4f4dc9ff4",
+        "sdk": "1c9f198a91c0bcfee5cf8f5b53fb941895e91334dfb766ce79fc68576797f017",
+        "subsdk0": "67a38fcf89cd13e040a021eb3d157072f38ebf6680a907874c35c7b231b5d4e2"
+      },
+      "main_build_id": "646761f643afebb379edd5e6a5151af2cef93dc1000000000000000000000000"
+    },
+    "romfs": {
+      "file_count": 9774,
+      "manifest_sha256": "a1534b6f347317c500da777b998f08d26098e102a6abf652f674fab4f85ec8bc",
+      "total_bytes": 5299172528
+    }
+  }
+}
