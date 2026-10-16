@@ -501,8 +501,9 @@
 ** ===================================================================
 */
 
-#define LUA_NUMBER_DOUBLE
-#define LUA_NUMBER	double
+/* dread-decomp: Metroid Dread builds Lua with a float lua_Number (math.abs compiles to
+** `fabs s0`, math.acos calls acosf). Upstream: LUA_NUMBER_DOUBLE / double. */
+#define LUA_NUMBER	float
 
 /*
 @@ LUAI_UACNUMBER is the result of an 'usual argument conversion'
@@ -518,11 +519,13 @@
 @@ LUAI_MAXNUMBER2STR is maximum size of previous conversion.
 @@ lua_str2number converts a string to a number.
 */
-#define LUA_NUMBER_SCAN		"%lf"
-#define LUA_NUMBER_FMT		"%.14g"
+/* dread-decomp: float formats (upstream "%lf" / "%.14g"). */
+#define LUA_NUMBER_SCAN		"%f"
+#define LUA_NUMBER_FMT		"%.7g"
 #define lua_number2str(s,n)	sprintf((s), LUA_NUMBER_FMT, (n))
 #define LUAI_MAXNUMBER2STR	32 /* 16 digits, sign, point, and \0 */
-#define lua_str2number(s,p)	strtod((s), (p))
+/* dread-decomp: strtof for float (upstream strtod). */
+#define lua_str2number(s,p)	strtof((s), (p))
 
 
 /*
@@ -603,7 +606,9 @@ union luai_Cast { double l_d; long l_l; };
 ** compiling as C++ code, with _longjmp/_setjmp when asked to use them,
 ** and with longjmp/setjmp otherwise.
 */
-#if defined(__cplusplus)
+/* dread-decomp: the game is built as C++ without exceptions and imports setjmp/longjmp,
+** so the C++ branch is disabled (upstream: #if defined(__cplusplus)). */
+#if 0
 /* C++ exceptions */
 #define LUAI_THROW(L,c)	throw(c)
 #define LUAI_TRY(L,c,a)	try { a } catch(...) \
