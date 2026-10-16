@@ -48,6 +48,10 @@ ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "src" / "reflection"
 DESCRIPTOR_SIZE = 0x138
 REFERENCE_GETTER = 0x7100227448  # CActor::refl_GetClass, the common code shape
+ROOT_GETTER = 0x7100023464       # base::core::CBaseObject::refl_GetClass: no parent
+# CActivationPerceptionRuleSet::refl_GetClass: the parent's getter is in the same TU, so Clang
+# uses the parent descriptor's (constant) address instead of the call's result.
+LOCAL_PARENT_GETTER = 0x71002D0420
 
 
 @dataclass
@@ -60,6 +64,8 @@ class Getter:
     fn_0x70: int | None = None             # x3: adds class attributes (CType+0x70)
     fn_0xe0: int | None = None             # x4: registers member fields (CClass+0xe0)
     shape_ok: bool = False
+    root: bool = False                    # root class: the common shape with a null parent
+    local_parent: bool = False            # the shape of a getter whose parent is in the same TU
     init: int | None = None               # descriptor constructor (T::refl_InitClass)
     traits: dict[int, int] | None = None  # CClass offset -> function address it stores
     abstract: bool = False                # constructor sets flag bit 0 (orr #1 after the and #~3)
@@ -157,11 +163,14 @@ def init_stores(orig: asmdiff.Original, addr: int) -> dict[int, int]:
 
 
 def analyse(orig: asmdiff.Original, g: Getter, getters: set[int], ref_sig: str,
-            inits: set[int] | None = None) -> None:
+            inits: set[int] | None = None, root_sig: str | None = None,
+            local_sig: str | None = None) -> None:
     cs = capstone.Cs(capstone.CS_ARCH_ARM64, capstone.CS_MODE_ARM)
     cs.detail = True
     code = orig.function(g.address)
     g.shape_ok = shape(code) == ref_sig
+    g.root = root_sig is not None and shape(code) == root_sig
+    g.local_parent = local_sig is not None and shape(code) == local_sig
     adrp: dict[str, int] = {}
     for i, x in enumerate(cs.disasm(code, g.address)):
         ops = x.operands
@@ -198,6 +207,15 @@ def analyse(orig: asmdiff.Original, g: Getter, getters: set[int], ref_sig: str,
         g.abstract = j is not None and any(s.startswith("orr w") and s.endswith("#1") for s in ins[j:j + 10])
 
 
+def getter_ok(g: Getter, block: list[Getter]) -> bool:
+    """The getter has a shape the macros reproduce, given the other types in its TU."""
+    if g.root and not g.parent:
+        return True
+    if g.local_parent and g.parent:
+        return any(o.address == g.parent for o in block)
+    return g.shape_ok and bool(g.parent)
+
+
 def file_name(type_name: str, taken: set[str]) -> str:
     base = re.sub(r"[^A-Za-z0-9]+", "_", type_name.replace("::", "__")).strip("_")[:80] or "unnamed"
     name = base
@@ -224,9 +242,11 @@ def main() -> int:
         with f.open(newline="", encoding="utf-8") as fh:
             inits |= {int(r["address"], 16) for r in csv.DictReader(fh) if r["name"].endswith("::refl_InitClass")}
     ref_sig = shape(orig.function(REFERENCE_GETTER))
+    root_sig = shape(orig.function(ROOT_GETTER))
+    local_sig = shape(orig.function(LOCAL_PARENT_GETTER))
     all_g = [Getter(r["type"], int(r["getter"], 16)) for r in rows]
     for g in all_g:
-        analyse(orig, g, getters, ref_sig, inits)
+        analyse(orig, g, getters, ref_sig, inits, root_sig, local_sig)
 
     located = sorted((g for g in all_g if g.guard and g.descriptor), key=lambda g: g.guard)
     blocks: list[list[Getter]] = []
@@ -238,7 +258,7 @@ def main() -> int:
 
     clean = [b for b in blocks
              if [g.descriptor for g in b] == [b[0].guard + 8 * len(b) + DESCRIPTOR_SIZE * i for i in range(len(b))]
-             and all(g.shape_ok and g.parent and g.fn_0x70 and g.fn_0xe0 and g.init and g.traits for g in b)]
+             and all(getter_ok(g, b) and g.fn_0x70 and g.fn_0xe0 and g.init and g.traits for g in b)]
     candidates = {}
     for g in (g for b in clean for g in b):
         for a in (g.fn_0x70, g.fn_0xe0):
@@ -260,7 +280,7 @@ def main() -> int:
         n = len(block)
         expected = [block[0].guard + 8 * n + DESCRIPTOR_SIZE * i for i in range(n)]
         layout_ok = [g.descriptor for g in block] == expected
-        shape_ok = all(g.shape_ok and g.parent and g.fn_0x70 and g.fn_0xe0 and g.init and g.traits
+        shape_ok = all(getter_ok(g, block) and g.fn_0x70 and g.fn_0xe0 and g.init and g.traits
                        and all(k in g.traits for k in (0x58, 0x60, 0x68)) and g.address in sizes
                        for g in block)
         if not layout_ok:
@@ -314,8 +334,12 @@ def main() -> int:
                 value = f"&fn_{g.traits[slot]:x}" if slot in g.traits else "nullptr"
                 lines.append(f"    static constexpr {SLOT_TYPES[slot][0]} fn_{slot:#x} = {value};")
             lines.append("};")
-            lines.append(f'DREAD_REFL_CLASS_GETTER({g.address:x}, {g.init:x}, "{g.type}", {g.parent:x}, '
-                         f'{g.fn_0x70:x}, {g.fn_0xe0:x});')
+            if g.parent:
+                lines.append(f'DREAD_REFL_CLASS_GETTER({g.address:x}, {g.init:x}, "{g.type}", {g.parent:x}, '
+                             f'{g.fn_0x70:x}, {g.fn_0xe0:x});')
+            else:
+                lines.append(f'DREAD_REFL_ROOT_CLASS_GETTER({g.address:x}, {g.init:x}, "{g.type}", '
+                             f'{g.fn_0x70:x}, {g.fn_0xe0:x});')
             lines.append("")
         (OUT / f"{name}.cpp").write_text(chr(10).join(lines), encoding="utf-8", newline=chr(10))
         generated += n

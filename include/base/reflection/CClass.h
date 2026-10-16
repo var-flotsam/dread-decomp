@@ -191,3 +191,18 @@ static_assert(sizeof(CClass) == 0x138, "descriptor stride observed in .bss");
                                               const base::reflection::CClass*,                     \
                                               base::reflection::UnkFn_0x70,                        \
                                               base::reflection::UnkFn_0x70, UnkRefl_fn_##INIT*)
+
+// The same for a root class (no parent descriptor).
+#define DREAD_REFL_ROOT_CLASS_GETTER(ADDR, INIT, NAME, FN_0x70, FN_0xE0)                        \
+    void fn_##FN_0x70(base::reflection::CClass*);                                                  \
+    void fn_##FN_0xE0(base::reflection::CClass*);                                                  \
+    const base::reflection::CClass* fn_##ADDR() {                                                  \
+        static base::reflection::CClass s_class(base::global::CStrId(NAME, true),                  \
+                                                nullptr, &fn_##FN_0x70, &fn_##FN_0xE0,             \
+                                                static_cast<UnkRefl_fn_##INIT*>(nullptr));         \
+        return &s_class;                                                                           \
+    }                                                                                              \
+    template base::reflection::CClass::CClass(const base::global::CStrId&,                         \
+                                              const base::reflection::CClass*,                     \
+                                              base::reflection::UnkFn_0x70,                        \
+                                              base::reflection::UnkFn_0x70, UnkRefl_fn_##INIT*)
