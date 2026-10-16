@@ -209,7 +209,7 @@ def main() -> int:
         w = csv.writer(f, lineterminator="\n")
         w.writerow(["type", "kind", "parent", "size", "getter"])
         for t in sorted(types.values(), key=lambda t: t.name):
-            w.writerow([t.name, t.kind or "", t.parent or "", f"{t.size:#x}" if t.size else "", f"{t.getter:#x}"])
+            w.writerow([t.name, t.kind or "", (t.parent or "") if t.kind == "class" else "", f"{t.size:#x}" if t.size else "", f"{t.getter:#x}"])
 
     total = len(ordered)
     by_src: dict[str, int] = {}
