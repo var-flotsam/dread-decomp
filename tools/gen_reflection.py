@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """Generate src/reflection/: one source per original translation unit of class getters.
 
-Every reflected class T has a getter (T::refl_GetClass) built from one pattern, expressed by
-DREAD_REFL_CLASS_GETTER in include/base/reflection/CClass.h. This tool reads each getter in
-main and extracts the parent getter it calls and the two type-specific functions it passes
-(loaded through the GOT into x3/x4). It then groups getters back into their original
-translation units.
+Every reflected class T has a getter (T::refl_GetClass) and a descriptor constructor
+(T::refl_InitClass, an instantiation of CClass's constructor template), both expressed in
+include/base/reflection/CClass.h. This tool reads each getter in main (the parent getter it
+calls, the type-specific create/destroy functions it passes in x3/x4, the constructor it calls)
+and each constructor (sizeof(T) and the type-specific functions it stores), emits a traits
+specialisation per type, and groups types back into their original translation units.
 
 TU grouping: within a TU, Clang lays out all guard variables first, then the descriptors
 (0x138 bytes each), in definition order. A run of getter guards 8 bytes apart, whose
@@ -52,6 +53,9 @@ class Getter:
     create: int | None = None
     destroy: int | None = None
     shape_ok: bool = False
+    init: int | None = None               # descriptor constructor (T::refl_InitClass)
+    traits: dict[int, int] | None = None  # CClass offset -> function address it stores
+    abstract: bool = False                # constructor sets flag bit 0 (orr #1 after the and #~3)
 
 
 def shape(code: bytes) -> str:
@@ -66,7 +70,37 @@ def shape(code: bytes) -> str:
     return sigmatch.signature(bytes(words))
 
 
-def analyse(orig: asmdiff.Original, g: Getter, getters: set[int], ref_sig: str) -> None:
+TRAIT_SLOTS = [0x58, 0x60, 0x68, 0x28, 0x30, 0x38, 0x40, 0x48, 0x50]
+
+
+def init_stores(orig: asmdiff.Original, addr: int) -> dict[int, int]:
+    """CClass offset -> function address, for GOT-loaded values a descriptor constructor
+    stores to [x19 + offset] (x19 = the descriptor)."""
+    cs = capstone.Cs(capstone.CS_ARCH_ARM64, capstone.CS_MODE_ARM)
+    cs.detail = True
+    regs: dict[int, int] = {}
+    adrp: dict[int, int] = {}
+    out: dict[int, int] = {}
+    for x in cs.disasm(orig.function(addr), addr):
+        o, m = x.operands, x.mnemonic
+        if m == "adrp":
+            adrp[o[0].reg] = o[1].imm
+            regs.pop(o[0].reg, None)
+        elif m == "ldr" and len(o) == 2 and o[1].type == capstone.arm64.ARM64_OP_MEM and o[1].mem.base in adrp:
+            target = orig.img.pointer(adrp[o[1].mem.base] + o[1].mem.disp - BASE)
+            if target is not None:
+                regs[o[0].reg] = BASE + target
+        elif m in ("str", "stp") and o[-1].type == capstone.arm64.ARM64_OP_MEM                 and cs.reg_name(o[-1].mem.base) == "x19":
+            for i, r in enumerate(o[:-1]):
+                if r.reg in regs:
+                    out[o[-1].mem.disp + 8 * i] = regs[r.reg]
+        elif m == "bl":
+            regs.clear()
+    return {k: v for k, v in out.items() if k in TRAIT_SLOTS}
+
+
+def analyse(orig: asmdiff.Original, g: Getter, getters: set[int], ref_sig: str,
+            inits: set[int] | None = None) -> None:
     cs = capstone.Cs(capstone.CS_ARCH_ARM64, capstone.CS_MODE_ARM)
     cs.detail = True
     code = orig.function(g.address)
@@ -98,6 +132,13 @@ def analyse(orig: asmdiff.Original, g: Getter, getters: set[int], ref_sig: str) 
             t = ops[0].imm
             if t in getters and t != g.address:
                 g.parent = t
+            elif inits and t in inits:
+                g.init = t
+    if g.init is not None:
+        g.traits = init_stores(orig, g.init)
+        ins = [f"{x.mnemonic} {x.op_str}" for x in cs.disasm(orig.function(g.init), g.init)]
+        j = next((i for i, s in enumerate(ins) if s.startswith("and w") and s.endswith("#0xfffffffc")), None)
+        g.abstract = j is not None and any(s.startswith("orr w") and s.endswith("#1") for s in ins[j:j + 10])
 
 
 def file_name(type_name: str, taken: set[str]) -> str:
@@ -120,10 +161,15 @@ def main() -> int:
     with (ROOT / "data" / "reflection_types.csv").open(newline="", encoding="utf-8") as f:
         rows = [r for r in csv.DictReader(f) if r["kind"] == "class"]
     getters = {int(r["getter"], 16) for r in rows}
+    sizes = {int(r["getter"], 16): int(r["size"], 16) for r in rows if r["size"]}
+    inits = set()
+    for f in (ROOT / "data" / "functions").glob("main_*.csv"):
+        with f.open(newline="", encoding="utf-8") as fh:
+            inits |= {int(r["address"], 16) for r in csv.DictReader(fh) if r["name"].endswith("::refl_InitClass")}
     ref_sig = shape(orig.function(REFERENCE_GETTER))
     all_g = [Getter(r["type"], int(r["getter"], 16)) for r in rows]
     for g in all_g:
-        analyse(orig, g, getters, ref_sig)
+        analyse(orig, g, getters, ref_sig, inits)
 
     located = sorted((g for g in all_g if g.guard and g.descriptor), key=lambda g: g.guard)
     blocks: list[list[Getter]] = []
@@ -143,7 +189,9 @@ def main() -> int:
         n = len(block)
         expected = [block[0].guard + 8 * n + DESCRIPTOR_SIZE * i for i in range(n)]
         layout_ok = [g.descriptor for g in block] == expected
-        shape_ok = all(g.shape_ok and g.parent and g.create and g.destroy for g in block)
+        shape_ok = all(g.shape_ok and g.parent and g.create and g.destroy and g.init and g.traits
+                       and all(k in g.traits for k in (0x58, 0x60, 0x68)) and g.address in sizes
+                       for g in block)
         if not layout_ok:
             skipped_layout += n
             report.append({"tu": [g.type for g in block], "reason": "other statics in the TU"})
@@ -155,15 +203,31 @@ def main() -> int:
         name = file_name(block[0].type, taken)
         lines = [
             "// Generated by tools/gen_reflection.py from main; regenerate rather than edit.",
-            f"// Reflection class getters for one original translation unit ({n} type{'s' if n > 1 else ''}).",
+            f"// Reflection descriptors for one original translation unit ({n} type{'s' if n > 1 else ''}):",
+            "// for each type, its getter (T::refl_GetClass) and, through the traits below, its",
+            "// descriptor constructor (T::refl_InitClass).",
             '#include "base/reflection/CClass.h"',
             "",
         ]
+        declared: set[int] = set()
         for g in block:
-            lines.append(f"// {g.type}::refl_GetClass")
-            lines.append(f'DREAD_REFL_CLASS_GETTER({g.address:x}, "{g.type}", {g.parent:x}, {g.create:x}, '
-                         f'{g.destroy:x})')
-        (OUT / f"{name}.cpp").write_text("\n".join(lines) + "\n", encoding="utf-8")
+            lines.append(f"// {g.type}")
+            lines.append(f"DREAD_REFL_TAG({g.init:x});")
+            fns = sorted(set(g.traits.values()) - declared)
+            declared |= set(fns)
+            lines += [f"void fn_{a:x}();" for a in fns]
+            lines.append("template <>")
+            lines.append(f"struct base::reflection::UnkReflClassTraits<UnkRefl_fn_{g.init:x}> {{")
+            lines.append(f"    static constexpr u64 size = {sizes[g.address]:#x};")
+            lines.append(f"    static constexpr bool abstract = {'true' if g.abstract else 'false'};")
+            for slot in TRAIT_SLOTS:
+                value = f"&fn_{g.traits[slot]:x}" if slot in g.traits else "nullptr"
+                lines.append(f"    static constexpr UnkFn fn_{slot:#x} = {value};")
+            lines.append("};")
+            lines.append(f'DREAD_REFL_CLASS_GETTER({g.address:x}, {g.init:x}, "{g.type}", {g.parent:x}, '
+                         f'{g.create:x}, {g.destroy:x});')
+            lines.append("")
+        (OUT / f"{name}.cpp").write_text(chr(10).join(lines), encoding="utf-8", newline=chr(10))
         generated += n
 
     (ROOT / "build" / "reflection_tus.json").write_text(json.dumps(report, indent=1), encoding="utf-8")

@@ -34,7 +34,7 @@ address,size,name,name_source,subsystem,status
 0x7101201cfc,4,fn_7101201cfc,unknown,gui?,U
 0x7101201d00,244,GUI::CMenuEntryDataSet::refl_GetClass,reflection,gui,O
 0x7101201df4,4,fn_7101201df4,unknown,gui?,U
-0x7101201df8,388,GUI::CMenuEntryDataSet::refl_InitClass,reflection,gui,U
+0x7101201df8,388,GUI::CMenuEntryDataSet::refl_InitClass,reflection,gui,O
 0x7101201f7c,160,fn_7101201f7c,unknown,unknown,U
 0x710120201c,116,fn_710120201c,unknown,unknown,U
 0x7101202090,28,fn_7101202090,unknown,unknown,U
@@ -100,7 +100,7 @@ address,size,name,name_source,subsystem,status
 0x710120391c,232,fn_710120391c,unknown,unknown,U
 0x7101203a04,244,CharClassRechargePlayerAmmo::refl_GetClass,reflection,unknown,O
 0x7101203af8,288,fn_7101203af8,unknown,unknown,U
-0x7101203c18,388,CharClassRechargePlayerAmmo::refl_InitClass,reflection,unknown,U
+0x7101203c18,388,CharClassRechargePlayerAmmo::refl_InitClass,reflection,unknown,O
 0x7101203d9c,4,fn_7101203d9c,unknown,unknown,U
 0x7101203da0,36,fn_7101203da0,unknown,unknown,U
 0x7101203dc4,64,fn_7101203dc4,unknown,unknown,U
@@ -118,7 +118,7 @@ address,size,name,name_source,subsystem,status
 0x7101203fe0,232,fn_7101203fe0,unknown,unknown,U
 0x71012040c8,244,CharClassRechargePlayerLife::refl_GetClass,reflection,unknown,O
 0x71012041bc,288,fn_71012041bc,unknown,unknown,U
-0x71012042dc,388,CharClassRechargePlayerLife::refl_InitClass,reflection,unknown,U
+0x71012042dc,388,CharClassRechargePlayerLife::refl_InitClass,reflection,unknown,O
 0x7101204460,4,fn_7101204460,unknown,unknown,U
 0x7101204464,36,fn_7101204464,unknown,unknown,U
 0x7101204488,84,fn_7101204488,unknown,unknown,U

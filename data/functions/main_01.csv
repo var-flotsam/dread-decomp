@@ -1154,7 +1154,7 @@ address,size,name,name_source,subsystem,status
 0x7100135a90,4,fn_7100135a90,unknown,unknown,U
 0x7100135a94,244,base::tunable::CTunable::refl_GetClass,reflection,engine/base,O
 0x7100135b88,148,fn_7100135b88,unknown,engine/base?,U
-0x7100135c1c,388,base::tunable::CTunable::refl_InitClass,reflection,engine/base,U
+0x7100135c1c,388,base::tunable::CTunable::refl_InitClass,reflection,engine/base,O
 0x7100135da0,220,base::reflection::refl_GetType<base::tunable::CTunable*>,reflection,engine/reflection,U
 0x7100135e7c,220,fn_7100135e7c,unknown,engine/reflection?,U
 0x7100135f58,220,fn_7100135f58,unknown,engine/reflection?,U
@@ -2100,7 +2100,7 @@ address,size,name,name_source,subsystem,status
 0x710014b5ac,4,fn_710014b5ac,unknown,unknown,U
 0x710014b5b0,244,engine::render::anim::CSkeletalAnimTree::refl_GetClass,reflection,engine,O
 0x710014b6a4,4,fn_710014b6a4,unknown,engine?,U
-0x710014b6a8,352,engine::render::anim::CSkeletalAnimTree::refl_InitClass,reflection,engine,U
+0x710014b6a8,352,engine::render::anim::CSkeletalAnimTree::refl_InitClass,reflection,engine,O
 0x710014b808,4,fn_710014b808,unknown,unknown,U
 0x710014b80c,4,fn_710014b80c,unknown,unknown,U
 0x710014b810,540,fn_710014b810,unknown,unknown,U

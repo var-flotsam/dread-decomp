@@ -1,10 +1,13 @@
 #pragma once
 
-// Mercury Engine reflection: class descriptors and the per-type getter pattern.
+// Mercury Engine reflection: type descriptors (CType / CClass) and the per-type getter
+// and descriptor-constructor patterns.
 //
-// Names: `base::reflection::CClass` is the engine's own name (the descriptor constructor
-// passes that string). UnkReflName is the temporary name string the getter builds; it is a
-// reference-counted pooled string (likely one of base::global's string types, unconfirmed).
+// Names: `base::reflection::CClass` and `CType` are the engine's own names (CClass's
+// constructor hashes the string "base::reflection::CClass"; "base::reflection::CType" is a
+// reflected type). UnkReflName is the pooled, reference-counted name string the getter
+// passes in (likely one of base::global's string types, unconfirmed). Members that aren't
+// understood yet keep offset-based names.
 
 #include "types.h"
 
@@ -22,16 +25,26 @@ struct UnkStringPool {
 
 }  // namespace base::reflection
 
-// The global string pool. Accessed through the GOT in the original.
+// The global string pool (reached through the GOT).
 extern base::reflection::UnkStringPool* g_unk_7101d47108;
 void fn_71000803a4(base::reflection::UnkStringPool* pool, base::reflection::UnkStringData* data);
+// Hash of a type-kind name ("base::reflection::CClass", length 0x18).
+u64 fn_7100001570(const char* str, u64 length);
+// Returns the allocator each reflection container is created with.
+void* fn_7100083990();
 
 namespace base::reflection {
+
+using UnkFn = void (*)();
 
 struct UnkReflName {
     UnkStringData* data;
 
     UnkReflName(const char* str, bool flag);
+    UnkReflName(const UnkReflName& other) : data(other.data) {
+        if (&g_unk_7101d47108->empty != data)
+            ++data->ref_count;
+    }
     ~UnkReflName() {
         if (UnkStringPool* pool = g_unk_7101d47108) {
             if (data && data != &pool->empty) {
@@ -45,32 +58,135 @@ struct UnkReflName {
     }
 };
 
-class CClass {
+// Container at CType+0x90 (0x28 bytes).
+struct UnkReflArrayA {
+    void* begin = nullptr;
+    void* end = nullptr;
+    u32 field_0x10 = 10;
+    bool field_0x14 = true;
+    u32 field_0x18 = 0x3e;
+    void* allocator = fn_7100083990();
+};
+
+// Container used at CType+0xb8 and CClass+0xe8/+0x110 (0x28 bytes).
+struct UnkReflArray {
+    void* begin = nullptr;
+    void* end = nullptr;
+    void* capacity = nullptr;
+    u32 field_0x18;
+    u32 field_0x1c;
+    void* allocator = fn_7100083990();
+
+    UnkReflArray(u32 a, u32 b) : field_0x18(a), field_0x1c(b) {}
+};
+
+class CType {
+public:
+    // Type-specific functions installed by the constructor body; absent ones stay null.
+    struct UnkFnSet {
+        UnkFn fn_0x28, fn_0x30, fn_0x38, fn_0x40, fn_0x48, fn_0x50;
+    };
+
+    CType(u64 kind, const UnkReflName& name, u64 size, UnkFn fn_0x58, UnkFn fn_0x60, UnkFn fn_0x68,
+          void* create, const CType* parent, const UnkFnSet& fns, bool abstract)
+        : m_name(name), m_kind(kind), m_size(size), m_flags(0), field_0x24(-1), m_fn_0x58(fn_0x58),
+          m_fn_0x60(fn_0x60), m_fn_0x68(fn_0x68), m_create(create), m_parent(parent),
+          m_array_0xb8(10, 0x3e) {
+        if (fns.fn_0x28)
+            m_fn_0x28 = fns.fn_0x28;
+        if (fns.fn_0x30)
+            m_fn_0x30 = fns.fn_0x30;
+        if (fns.fn_0x38)
+            m_fn_0x38 = fns.fn_0x38;
+        if (fns.fn_0x40)
+            m_fn_0x40 = fns.fn_0x40;
+        if (fns.fn_0x48)
+            m_fn_0x48 = fns.fn_0x48;
+        if (fns.fn_0x50)
+            m_fn_0x50 = fns.fn_0x50;
+        m_flags &= ~3u;
+        if (abstract)
+            m_flags |= 1;  // set for interfaces/abstract classes (e.g. ISkeletalPoseProvider)
+    }
+    virtual ~CType();
+
+    UnkReflName m_name;
+    u64 m_kind;
+    u64 m_size;
+    u32 m_flags;
+    s32 field_0x24;
+    UnkFn m_fn_0x28 = nullptr;
+    UnkFn m_fn_0x30 = nullptr;
+    UnkFn m_fn_0x38 = nullptr;
+    UnkFn m_fn_0x40 = nullptr;
+    UnkFn m_fn_0x48 = nullptr;
+    UnkFn m_fn_0x50 = nullptr;
+    UnkFn m_fn_0x58;
+    UnkFn m_fn_0x60;
+    UnkFn m_fn_0x68;
+    void* m_create;
+    const CType* m_parent;
+    void* field_0x80 = nullptr;
+    void* field_0x88 = nullptr;
+    UnkReflArrayA m_array_0x90;
+    UnkReflArray m_array_0xb8;
+};
+
+// Per-type facts for CClass's constructor, specialised for each reflected class (generated
+// into src/reflection/). Members: size, abstract, fn_0x58/0x60/0x68, and fn_0x28..fn_0x50 (null when the
+// type lacks that function).
+template <class T>
+struct UnkReflClassTraits;
+
+class CClass : public CType {
 public:
     // One instantiation per reflected type (data/functions: T::refl_InitClass).
-    template <class Create, class Destroy>
-    CClass(const UnkReflName& name, const CClass* parent, Create create, Destroy destroy, void* extra);
-    ~CClass();
+    // Defined out of the class body: the original calls it rather than inlining it.
+    template <class T, class Destroy>
+    CClass(const UnkReflName& name, const CClass* parent, T* (*create)(), Destroy destroy, void* extra);
+    ~CClass() override;
 
-private:
-    u8 unk_0x0[0x138];
+    void* m_destroy;
+    UnkReflArray m_array_0xe8;
+    UnkReflArray m_array_0x110;
 };
+
+template <class T, class Destroy>
+CClass::CClass(const UnkReflName& name, const CClass* parent, T* (*create)(), Destroy destroy, void* extra)
+    : CType(fn_7100001570("base::reflection::CClass", 0x18), name, UnkReflClassTraits<T>::size,
+            UnkReflClassTraits<T>::fn_0x58, UnkReflClassTraits<T>::fn_0x60, UnkReflClassTraits<T>::fn_0x68,
+            reinterpret_cast<void*>(create), parent,
+            {UnkReflClassTraits<T>::fn_0x28, UnkReflClassTraits<T>::fn_0x30, UnkReflClassTraits<T>::fn_0x38,
+             UnkReflClassTraits<T>::fn_0x40, UnkReflClassTraits<T>::fn_0x48, UnkReflClassTraits<T>::fn_0x50},
+            UnkReflClassTraits<T>::abstract),
+      m_destroy(reinterpret_cast<void*>(destroy)), m_array_0xe8(10, 0xe), m_array_0x110(10, 0xe) {}
 
 static_assert(sizeof(CClass) == 0x138, "descriptor stride observed in .bss");
 
 }  // namespace base::reflection
 
-// Defines the class getter for one reflected type (data/functions: T::refl_GetClass):
-// a guarded static descriptor built from the type name, the parent's descriptor and two
-// type-specific functions. ADDR/PARENT/CREATE/DESTROY are bare hex addresses (no 0x).
-#define DREAD_REFL_CLASS_GETTER(ADDR, NAME, PARENT, CREATE, DESTROY)                              \
-    struct UnkReflType_##ADDR;                                                                    \
-    UnkReflType_##ADDR* fn_##CREATE();                                                            \
-    void fn_##DESTROY(UnkReflType_##ADDR*);                                                       \
+// Declares the tag type for one reflected class. INIT is the address of its descriptor
+// constructor instantiation (T::refl_InitClass), so that instantiation's symbol carries it.
+#define DREAD_REFL_TAG(INIT) struct UnkRefl_fn_##INIT
+
+// Defines the class getter for one reflected type (data/functions: T::refl_GetClass): a
+// guarded static descriptor built from the type name, the parent's descriptor and the
+// type's create/destroy functions. Arguments are bare hex addresses (no 0x).
+// It also explicitly instantiates the type's descriptor constructor. The original keeps that
+// constructor out of line (implicit instantiation would inline it into the getter). Whether
+// it did so with an explicit instantiation or a noinline attribute is unknown; both produce
+// the same code.
+#define DREAD_REFL_CLASS_GETTER(ADDR, INIT, NAME, PARENT, CREATE, DESTROY)                       \
+    UnkRefl_fn_##INIT* fn_##CREATE();                                                             \
+    void fn_##DESTROY(UnkRefl_fn_##INIT*);                                                        \
     const base::reflection::CClass* fn_##PARENT();                                                \
     const base::reflection::CClass* fn_##ADDR() {                                                 \
         static base::reflection::CClass s_class(base::reflection::UnkReflName(NAME, true),       \
                                                 fn_##PARENT(), &fn_##CREATE, &fn_##DESTROY,      \
                                                 nullptr);                                         \
         return &s_class;                                                                          \
-    }
+    }                                                                                             \
+    template base::reflection::CClass::CClass(const base::reflection::UnkReflName&,               \
+                                              const base::reflection::CClass*,                    \
+                                              UnkRefl_fn_##INIT* (*)(),                           \
+                                              void (*)(UnkRefl_fn_##INIT*), void*)
