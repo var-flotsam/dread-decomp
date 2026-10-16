@@ -132,7 +132,7 @@ Toolchain:
   reference hashes for this dump; No-Intro search and the web turned up nothing.
 - Phase 2: done. See `docs/recon.md`.
 - Phase 3: done, including the non-leaf and library flag pass. See `docs/compiler.md`.
-- Phase 4: in progress (owner-approved). 4.1 headers, 4.2 Lua and 4.3 reflection getters and
-  descriptor constructors are done; current state and next steps are in `docs/HANDOFF.md`.
+- Phase 4: in progress (owner-approved). 4.1 headers, 4.2 Lua and 4.3 reflection getters,
+  descriptor constructors and uniform per-type helpers are done; current state and next steps are in `docs/HANDOFF.md`.
 - Generated sources (`src/reflection/`) are outputs of `tools/gen_reflection.py`: regenerate,
   never hand-edit.
