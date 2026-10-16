@@ -2,102 +2,88 @@
 
 ## Summary
 
-**Best match: upstream Clang/LLVM 9.0.1, `-O2` (or `-O3`), `-mcpu=cortex-a57`, no fast-math.**
-It reproduces 7 of 10 test functions byte-for-byte, and 88.8% of instructions across all
-10. It is the only candidate that matches all three functions that discriminate between versions.
+**Game code: upstream Clang/LLVM 9.0.x with**
 
 ```sh
-clang++ --target=aarch64-none-elf -mcpu=cortex-a57 -O2 -std=c++17 \
-        -fno-rtti -fno-exceptions -ffunction-sections -c foo.cpp
+clang++ --target=aarch64-none-elf -mcpu=cortex-a57 -O3 -fPIC \
+        -fasynchronous-unwind-tables -mno-implicit-float \
+        -std=c++17 -fno-rtti -fno-exceptions -ffunction-sections -c foo.cpp
 ```
 
-Nintendo's own SDK compiler is not public, and these rules forbid obtaining it. Like the
-BotW decomp, this project uses an upstream release. NintendoSDK 11.4.3's Clang is most likely
-based on LLVM 9. The remaining differences (below) may come from Nintendo patches or from
-source idioms not yet reproduced.
+| Sample | Size | Exact matches | Instructions matching |
+|---|---|---|---|
+| Leaf functions (`src/compiler_id/`) | 10 | 7 | 88.8% |
+| Non-leaf game functions (`src/flag_id/`) | 20 | **18** | **99.2%** |
+| `nn::atk` virtual functions (`src/atk_id/`) | 6 | 5 | 96.1% |
+| **Upstream Lua 5.1.4** library functions, built from unmodified source with these flags | 82 | **81** | 98.8% |
 
-## Evidence from the binary
+The only Lua mismatch is `luaB_print`, which MercurySteam replaced. Nintendo's SDK compiler is
+not public, and this project's rules forbid obtaining it. Like the BotW decomp, we use an upstream
+release. 9.0.0 and 9.0.1 produce identical code on every sample; `tools/check.py` uses 9.0.1.
+`-ffunction-sections` is ours (it keeps one function per section for diffing); the original's
+section layout is not observable after linking.
 
-- **SDK version 11.4.3** (`SDK MW+Nintendo+NintendoSdk_nnSdk-11_4_3-Release` and matching NVN,
-  libz, Atk and movie markers). See `docs/recon.md`.
-- There is no `.comment` section or Clang version string; NSOs don't carry one.
-- **No RTTI in game code** (only precompiled `nn::atk` has `type_info`): `-fno-rtti`.
-- **No exception runtime imports** (`__cxa_throw`, personality routines): `-fno-exceptions`.
-  `.eh_frame` is still present for every function, which is consistent with Clang's default
-  AArch64 unwind tables.
-- Leaf functions don't set up a frame record. Non-leaf frame-pointer use hasn't been tested yet.
+## Evidence for each flag
+
+| Flag | Evidence |
+|---|---|
+| Clang 9.0.x | Only 9.0.x matches all version-discriminating functions. With the final flags on the non-leaf set: 9.0.x 18/20, 8.0.1 11, 4.0.1 5, 10.0.0 and 11.1.0 2, 12.0.1 0 |
+| `-mcpu=cortex-a57` | Changes scheduling and instruction selection; without it the leaf set drops from 7/10 to 4/10 |
+| `-O3` | `-O3`'s aggressive tail duplication copies the epilogue into each return path (as in the original); `-O2` branches to one epilogue. Non-leaf 18 vs 16, Lua 81 vs 66 |
+| `-fPIC` (`-fPIE` is equivalent here) | 29,098 `adrp`+`ldr` loads go through 10,660 GOT slots; vtables and global objects are reached via the GOT. Non-leaf 3/20 to 7/20 with PIC alone; 12/20 to 17/20 alongside unwind tables and no vectorisation |
+| `-fasynchronous-unwind-tables` | Every function has `.eh_frame`. The CFI directives keep frame setup together at the start of each function, as in the original (non-leaf 7 to 15 with PIC; Lua 16 to 81). `aarch64-none-elf` doesn't emit them by default |
+| `-mno-implicit-float` | Game code has no vector FP arithmetic, no `q`-register struct copies and no `movi` zeroing in 13 MB. This flag stops all three (both vectorisers refuse to run under it). `-fno-vectorize -fno-slp-vectorize` alone leaves `q`-register copies. `-mstrict-align` alone still zeroes with `movi`+`stp q`. Non-leaf 17 to 18 |
+| `-fno-rtti`, `-fno-exceptions` | No `type_info` for game classes; no exception-runtime imports |
+| Frame pointer kept | 39,285 of 42,106 non-leaf functions set `x29`; `-fomit-frame-pointer` drops the non-leaf set to 2/20 |
+| No `-fdata-sections` | Statics are addressed relative to each other (reflection getter: descriptor at guard + 0x18) |
+| `-fmath-errno` (default) | `sqrtf` is inlined as `fsqrt` with a fallback call when the result is NaN |
+| C++ for Lua | Lua compiled as C++ matches 81/82; as C 63/82 (the `float` overloads of `<cmath>` matter) |
+
+## Libraries
+
+- **`nn::atk`** (NintendoWare 11.4.3, shipped precompiled by Nintendo) is consistent with the same
+  toolchain. 9.0.x and 10.0.0 both reach 5/6; 4.0.1–8.0.1 reach 3/6. The one non-match is a
+  10-byte struct copy whose order no tested compiler reproduces.
+- **Lua 5.1.4** with `lua_Number = float` (patched `luaconf.h`), compiled as C++ with the game
+  flags: 81 of 82 standard-library functions are byte-identical to upstream. Earlier 5.1.x releases
+  match fewer (5.1.5: 80, 5.1.3: 77, 5.1.2: 73, 5.1 and 5.1.1: 70). `luaB_print` was replaced by the
+  game. Run `tools/libcheck_lua.py`.
+- **Dear ImGui:** only one 1,232-byte function at `0x7100001fb8` (it references `imgui.ini`,
+  `imgui_log.txt` and `##Overlay`) and a few neighbours survive linking. The version is not
+  identified; low priority.
 
 ## Method
 
-1. `tools/fetch_toolchains.py` downloads the upstream LLVM Windows releases 4.0.1, 8.0.1,
-   9.0.1, 10.0.0, 11.1.0 and 12.0.1 and pins their SHA-256 in `data/toolchains.json`. These
-   span the period around SDK 11, with 4.0.1 as the BotW reference.
-2. Ten small **leaf** functions (40–84 bytes, no calls or global accesses) were picked from game
-   code (`0x7100100000`–`0x7100f00000`, before Lua and `nn::atk`), chosen to cover loops,
-   conditional selects, float compares, bitfields, multiplies, and struct return through `x8`.
-   Each is reconstructed as C++ in `src/compiler_id/fn_<addr>.cpp`.
-3. `tools/compiler_matrix.py` compiles every source with 6 compilers × {`-O1`, `-O2`, `-O3`, `-Os`}
-   × {plain, `-ffast-math`, `-mcpu=cortex-a57`, both} (96 configurations), and
-   `tools/asmdiff.py` compares each function instruction by instruction against `main`, with
-   relocated fields masked.
+1. `tools/fetch_toolchains.py` downloads upstream LLVM 4.0.1, 6.0.1, 7.0.1, 8.0.1, 9.0.0, 9.0.1,
+   10.0.0, 11.1.0 and 12.0.1 (SHA-256 pinned in `data/toolchains.json`).
+2. Our own C++ reconstructions in `src/compiler_id/` (10 leaf), `src/flag_id/` (20 calling
+   functions: constructors, deleting-destructor shape, copy assignment, virtual calls, loops with
+   calls, GOT globals, string literals, the `sqrtf` errno path, struct return through `x8`, and the
+   `CActor` reflection getter) and `src/atk_id/` (6 `nn::atk` functions).
+3. `tools/compiler_matrix.py --set leaf|nonleaf|atk` compiles each set under every compiler and
+   flag combination and scores it with `tools/asmdiff.py` (relocated fields masked).
+4. The binary itself was checked for each candidate flag's fingerprint (GOT use, frame records,
+   vector instructions, zeroing idioms) before adopting it.
 
-## Results
+Full matrices: `build/compiler_matrix/2.1.0/<set>/results.json`, `build/libcheck/lua/2.1.0/results.json`.
 
-Instruction match per function. **M** means an exact byte match.
+## Remaining differences (final flags)
 
-| Config | `71001106cc` | `7100124344` | `71001243ac` | `7100162300` | `7100273218` | `710061a210` | `7100798840` | `710083ecf8` | `710086c89c` | `7100b170bc` | Matched | Mean |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| **clang-9.0.1 -O2 a57** | **M** | **M** | 50% | **M** | **M** | **M** | **M** | 88% | 50% | **M** | **7/10** | **88.8%** |
-| clang-12.0.1 -O2 a57 | **M** | **M** | 50% | **M** | **M** | 57% | **M** | 88% | 19% | **M** | 6/10 | 81.3% |
-| clang-10.0.0 -O2 a57 | 9% | **M** | 50% | **M** | **M** | **M** | **M** | 88% | 50% | **M** | 6/10 | 79.7% |
-| clang-11.1.0 -O2 a57 | 9% | **M** | 50% | **M** | **M** | **M** | **M** | 88% | 50% | **M** | 6/10 | 79.7% |
-| clang-4.0.1 -O2 a57 | **M** | **M** | 50% | **M** | **M** | 9% | 0% | 88% | 56% | **M** | 5/10 | 70.2% |
-| clang-8.0.1 -O2 a57 | **M** | **M** | 50% | **M** | **M** | 9% | 0% | 88% | 28% | **M** | 5/10 | 67.4% |
-| clang-9.0.1 -O2 a57 + fast-math | 18% | **M** | 50% | **M** | **M** | **M** | **M** | 88% | 50% | **M** | 6/10 | 80.6% |
-| clang-9.0.1 -Os a57 | **M** | **M** | 50% | **M** | **M** | **M** | 0% | 88% | 50% | **M** | 6/10 | 78.8% |
-| clang-9.0.1 -O1 a57 | 9% | **M** | 50% | **M** | **M** | **M** | **M** | 6% | 0% | **M** | 6/10 | 66.5% |
-| clang-9.0.1 -O2 (generic CPU) | 45% | **M** | 20% | 0% | **M** | **M** | 20% | 50% | 44% | **M** | 4/10 | 57.9% |
-
-The full matrix (96 configurations) is regenerated into `build/compiler_matrix/2.1.0/results.json`.
-
-### What discriminates
-
-| Function | What it tests | Matches with |
+| Function | Status | Difference |
 |---|---|---|
-| `7100798840` | float compare against constant, NaN-sensitive branch | Clang ≥ 9 (4.0.1 and 8.0.1 fail) |
-| `71001106cc` | 2×2 transform returning a non-trivially-copyable vec2 through `x8` | 4.0.1, 8.0.1, 9.0.1, 12.0.1 (10 and 11 schedule it differently) |
-| `710061a210` | element-wise compare loop | 9.0.1, 10.0.0, 11.1.0 (12.0.1 and older fail) |
+| `710083ecf8` | `M` | original uses `fmin` and a NaN-inclusive `b.lt`; Clang emits `fminnm` and `b.mi` (differs only for NaN) |
+| `71001243ac`, `710086c89c` | `m` | same instructions; scheduling and register assignment |
+| `710011ec5c` | `m` | one temporary in `w8` instead of `w9` |
+| `7100227448` (`CActor` reflection getter) | `m` | descriptor at guard + 0x8 instead of + 0x18; depends on the other statics in the real translation unit, which Phase 4 must reproduce |
+| `7101215464` (`nn::atk`) | `m` | 10-byte struct copy order |
 
-Only **9.0.1** passes all three. Other conclusions:
+Several sources were adjusted after seeing the original, to restore source shape (an unsigned
+index, a 64-bit down-counter, operand order, a 16-byte sub-struct, a forwarded argument, a
+truncating cast). Those changes were checked against all candidate compilers, and the version
+ranking didn't change.
 
-- **`-mcpu=cortex-a57` is required.** The Cortex-A57 scheduling model and instruction selection
-  change `7100162300`, `7100798840` and `71001106cc` (generic CPU: 4/10).
-- **No `-ffast-math`.** It breaks `71001106cc` (FMA contraction and reassociation) without fixing
-  anything else.
-- **`-O2` and `-O3` produce identical code for all 10 leaf functions**, so leaf functions can't
-  distinguish them. `-O1` and `-Os` are worse. Deciding between `-O2` and `-O3` needs functions where
-  inlining or unrolling decisions differ.
+## History
 
-## Remaining differences (with 9.0.1 -O2 a57)
-
-| Function | Score | Difference | Likely cause |
-|---|---|---|---|
-| `71001243ac` | 50% | same instructions, different order and register assignment | source shape (e.g. inlined accessor or handle type) not yet reproduced; identical under every compiler |
-| `710086c89c` | 50% | same instructions; pointer increment ordered before the counter decrement, registers swapped | loop shape; identical under 9, 10 and 11 |
-| `710083ecf8` | 88% | original uses `fmin` (NaN-propagating) and a NaN-inclusive `b.lt`; every upstream candidate emits `fminnm` and `b.mi` | a min helper or idiom not yet found, or a Nintendo compiler patch. No tested flag reproduces both instructions together |
-
-Three functions only matched after the source was adjusted, all while testing against 9.0.1:
-an unsigned index (`7100b170bc`), a 64-bit down-counter that loads `b` before `a`
-(`710061a210`), and the branch structure (`710083ecf8`). This could bias the comparison toward
-9.0.1. However, the two strongest discriminators (`7100798840` and `71001106cc`) were never
-changed, and the first version of `710061a210` already separated 9–11 (79%) from 12 (21%).
-
-## Caveats and next steps
-
-- Ten leaf functions is a small sample. The next check should be 20–30 non-leaf functions
-  (calls, frame setup, inlining) to settle `-O2` versus `-O3`, frame-pointer policy, `-fPIC` and
-  global-access codegen, and whether 9.0.0 differs from 9.0.1.
-- If `fmin` keeps appearing where upstream emits `fminnm`, look for a common source helper
-  (e.g. a `base::math` min) before assuming a compiler patch.
-- Libraries compiled separately by Nintendo (`nn::atk`) may use a different toolchain. Lua and
-  ImGui are presumably built with the game's flags but haven't been checked.
+The first pass (10 leaf functions only) chose `-O2` and no PIC, because leaf functions can't
+tell `-O2` from `-O3` and never touch the GOT. The non-leaf pass corrected that. Treat flags inferred
+from leaf functions alone as provisional.

@@ -7,7 +7,7 @@ Function status codes follow zeldaret/botw (nx-decomp-tools); see docs/reference
   M  non-matching (major)     source annotated `// NON_MATCHING(major): <reason>`
   W  work in progress         compiled, does not match, not annotated
   U  not decompiled           (set by tools/gen_functions_csv.py)
-  L  library                  (set by tools/gen_functions_csv.py)
+  L  library                  (set by tools/gen_functions_csv.py; --update never changes it)
 
 An annotation applies to the next function definition after it (a line starting
 at column 0 with `name(`). A compiled symbol maps to an original function by
@@ -79,6 +79,34 @@ def demangle(names: list[str]) -> dict[str, str]:
     return {n: o.split("(")[0] for n, o in zip(names, out)}
 
 
+def object_path(version: str, src: Path) -> Path:
+    return ROOT / "build" / "check" / version / src.relative_to(ROOT / "src").with_suffix(".o")
+
+
+def build(version: str, src: Path) -> Path | None:
+    """Compile one source with the project toolchain. Returns the object, or None on failure."""
+    obj = object_path(version, src)
+    obj.parent.mkdir(parents=True, exist_ok=True)
+    clang = fetch_toolchains.clang_path(COMPILER)
+    r = subprocess.run([str(clang), *CFLAGS, str(src), "-o", str(obj)], capture_output=True, text=True)
+    if r.returncode != 0:
+        print(f"BUILD FAILED {src.relative_to(ROOT)}\n{r.stderr}")
+        return None
+    return obj
+
+
+def resolver(by_name: dict[str, list[int]], names: dict[str, str]):
+    """Map an object symbol to an original address through a unique demangled CSV name."""
+    def resolve(sym: str) -> int | None:
+        hits = by_name.get(names.get(sym, sym), [])
+        return hits[0] if len(hits) == 1 else None
+    return resolve
+
+
+def sources() -> list[Path]:
+    return sorted((ROOT / "src").rglob("*.cpp"))
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--version", required=True)
@@ -90,26 +118,16 @@ def main() -> int:
     for r in rows.values():
         by_name.setdefault(r["name"], []).append(int(r["address"], 16))
     original = asmdiff.Original(args.version)
-    clang = fetch_toolchains.clang_path(COMPILER)
-    objdir = ROOT / "build" / "check" / args.version
-    objdir.mkdir(parents=True, exist_ok=True)
 
     results = {}  # address -> (status, symbol, score)
     failed = False
-    for src in sorted((ROOT / "src").rglob("*.cpp")):
-        obj = objdir / src.relative_to(ROOT / "src").with_suffix(".o")
-        obj.parent.mkdir(parents=True, exist_ok=True)
-        r = subprocess.run([str(clang), *CFLAGS, str(src), "-o", str(obj)], capture_output=True, text=True)
-        if r.returncode != 0:
-            print(f"BUILD FAILED {src.relative_to(ROOT)}\n{r.stderr}")
+    for src in sources():
+        obj = build(args.version, src)
+        if obj is None:
             failed = True
             continue
         names = demangle([n for n, _, _ in asmdiff.object_functions(obj)])
-
-        def resolve(sym: str) -> int | None:
-            hits = by_name.get(names.get(sym, sym), [])
-            return hits[0] if len(hits) == 1 else None
-
+        resolve = resolver(by_name, names)
         notes = annotations(src)
         for res in asmdiff.diff_object(obj, original, resolve):
             short = names.get(res.symbol, res.symbol).split("::")[-1]
@@ -131,7 +149,8 @@ def main() -> int:
         for name, frows in files.items():
             changed = False
             for r in frows:
-                if r["address"] in results and r["status"] != results[r["address"]][0]:
+                # Library functions keep L (excluded from progress) even when they match.
+                if r["address"] in results and r["status"] != "L" and r["status"] != results[r["address"]][0]:
                     r["status"] = results[r["address"]][0]
                     changed = True
             if changed:

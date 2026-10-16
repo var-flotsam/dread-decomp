@@ -15,6 +15,14 @@
     "sha256": "139ba95f9f88199cdc419a674f0a85df3568367623486336843207a4982e36e9",
     "url": "https://releases.llvm.org/4.0.1/LLVM-4.0.1-win64.exe"
   },
+  "6.0.1": {
+    "sha256": "780276221635aa08120187ffc2c72ff7873dee37f5609455ee7bba6fcdd91d79",
+    "url": "https://releases.llvm.org/6.0.1/LLVM-6.0.1-win64.exe"
+  },
+  "7.0.1": {
+    "sha256": "672e4c420d6543a8a9f8ec5f1e5f283d88ac2155ef4c57232a399160a02bff57",
+    "url": "https://releases.llvm.org/7.0.1/LLVM-7.0.1-win64.exe"
+  },
   "8.0.1": {
     "sha256": "e3af139c2f93075c13dcbc4091c1311f66fc6e4e8705649fcaf9bef8b3368f41",
     "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-8.0.1/LLVM-8.0.1-win64.exe"
@@ -26,5 +34,13 @@
   "9.0.1": {
     "sha256": "ea59a771d1f1a1948b7fabe74d6da87095296ebabb2ae78cb2075ec44eb57c80",
     "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-9.0.1/LLVM-9.0.1-win64.exe"
+  },
+  "objdiff-3.8.2": {
+    "sha256": "ce9d877a8cd6f133a962fb86d66f0348b9b88d735cea0fd52ae61bb9ad4d6691",
+    "url": "https://github.com/encounter/objdiff/releases/download/v3.8.2/objdiff-windows-x86_64.exe"
+  },
+  "objdiff-cli-3.8.2": {
+    "sha256": "36d229ac6ce74a26b47f42cf86ea8e808d8cd834a54aa62d7ed3f47b765d971b",
+    "url": "https://github.com/encounter/objdiff/releases/download/v3.8.2/objdiff-cli-windows-x86_64.exe"
   }
 }

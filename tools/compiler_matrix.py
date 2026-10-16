@@ -6,6 +6,7 @@ Sets:
   leaf     src/compiler_id/  10 leaf functions; axes: -O1/-O2/-O3/-Os x fast-math x cortex-a57
   nonleaf  src/flag_id/      20 calling functions; axes: -O2/-O3 x PIC model x unwind tables
                              x vectorisation / implicit float x frame pointer
+  atk      src/atk_id/       6 nn::atk virtual functions; same axes as nonleaf
                              (all with -mcpu=cortex-a57, settled by the leaf set)
 
 Usage: python tools/compiler_matrix.py --version 2.1.0 [--set leaf|nonleaf] [--only 9.0.1,10.0.0]
@@ -67,6 +68,8 @@ SETS = {
         },
     },
 }
+# nn::atk (NintendoWare, shipped precompiled): same axes as the non-leaf set.
+SETS["atk"] = {**SETS["nonleaf"], "sources": "atk_id"}
 
 
 def run_config(version: str, set_name: str, compiler: str, opt: str, extra: str, original) -> dict:

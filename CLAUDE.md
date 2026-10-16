@@ -50,8 +50,13 @@ python tools/nso2elf.py orig/<ver>/exefs/main orig/<ver>/main.elf
 python tools/recon/run.py --version <ver>        # Python-only recon -> build/recon/<ver>/
 python tools/ghidra/analyze.py --version <ver>   # Ghidra import/analysis/export (~8 min)
 python tools/gen_functions_csv.py --version <ver>
-python tools/fetch_toolchains.py                 # candidate upstream LLVM releases
-python tools/compiler_matrix.py --version <ver>  # compile src/compiler_id/ with every candidate
+python tools/fetch_toolchains.py                 # candidate upstream LLVM releases + objdiff
+python tools/fetch_sources.py                    # upstream Lua 5.1.x sources
+python tools/compiler_matrix.py --version <ver> --set leaf|nonleaf|atk
+python tools/libcheck_lua.py --version <ver>     # upstream Lua vs the embedded copy
+python tools/check.py --version <ver> [--update] # build src/, derive statuses, catch regressions
+python tools/objdiff_gen.py --version <ver>      # objdiff targets + objdiff.json
+python tools/progress.py                         # whole-binary progress (excludes L)
 python tools/asmdiff.py --version <ver> <obj> -v # diff one object against the original
 ```
 
@@ -79,7 +84,12 @@ Toolchain:
   `pyghidra` (installed from Ghidra's bundled wheels, without network access).
 - JDK 21 (Temurin), with Ghidra 12.1.4 at `%LOCALAPPDATA%\Programs\ghidra_12.1.4_PUBLIC`
   (headless: `support\analyzeHeadless.bat`).
-- CMake 4.4, Ninja 1.13, LLVM/Clang + lld 23.1.3 (`C:\Program Files\LLVM\bin`).
+- CMake 4.4, Ninja 1.13, LLVM/Clang + lld 23.1.3 (`C:\Program Files\LLVM\bin`) for inspection.
+- Project compiler: upstream Clang 9.0.1 from `tools/fetch_toolchains.py`
+  (`%LOCALAPPDATA%\dread-decomp\toolchains\llvm-9.0.1`). Flags live in `tools/check.py`:
+  `-O3 -mcpu=cortex-a57 -fPIC -fasynchronous-unwind-tables -mno-implicit-float -fno-rtti
+  -fno-exceptions` (evidence in `docs/compiler.md`).
+- objdiff 3.8.2 GUI and CLI in `%LOCALAPPDATA%\dread-decomp\tools\`.
 - Shells opened before the install may need PATH refreshed from the registry.
 
 ## Conventions
@@ -120,5 +130,5 @@ Toolchain:
   9774 RomFS files plus 62206 pack entries match files.toc sizes). There are no public
   reference hashes for this dump; No-Intro search and the web turned up nothing.
 - Phase 2: done. See `docs/recon.md`.
-- Phase 3: done for leaf functions. See `docs/compiler.md`. Phases 4-5 wait on the owner's go-ahead
+- Phase 3: done, including the non-leaf and library flag pass. See `docs/compiler.md`. Phases 4-5 wait on the owner's go-ahead
   (see the open questions in `docs/HANDOFF.md`).

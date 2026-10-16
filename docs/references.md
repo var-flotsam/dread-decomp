@@ -24,7 +24,7 @@ before vendoring anything.
 | [open-ead/sead](https://github.com/open-ead/sead), [open-ead/agl](https://github.com/open-ead/agl), [open-ead/EventFlow](https://github.com/open-ead/EventFlow) | Decompiled Nintendo EPD engine libraries | Not used by Dread (Mercury Engine is MercurySteam's), but the pattern of a shared library decomp repo fits `lib/mercury/` if Samus Returns is ever decompiled. |
 | [open-ead/botw-lib-musl](https://github.com/open-ead/botw-lib-musl) | musl libc fork used as BotW's C library headers | Possible source of libc headers for building `src/`. |
 | [AxioDL/musyx](https://github.com/AxioDL/musyx) (CC0-1.0) | Decompiled MusyX audio middleware, used by PrimeDecomp and Metaforce | Precedent for decompiling audio middleware as its own project (cf. `nn::atk`). |
-| [encounter/objdiff](https://github.com/encounter/objdiff) (Apache-2.0), [encounter/decomp-toolkit](https://github.com/encounter/decomp-toolkit) (Apache-2.0) | Diff GUI and progress reports; GameCube/Wii project tooling | objdiff is planned for progress reporting. decomp-toolkit targets GameCube/Wii DOL/REL files, so it isn't applicable to NSO. |
+| [encounter/decomp-toolkit](https://github.com/encounter/decomp-toolkit) (Apache-2.0) | GameCube/Wii project tooling used by PrimeDecomp | Not applicable to NSO executables. |
 
 ## Tools and libraries we use
 
@@ -34,19 +34,21 @@ before vendoring anything.
 | [NationalSecurityAgency/ghidra](https://github.com/NationalSecurityAgency/ghidra) | 12.1.4 (release zip, SHA-256 checked) | Headless auto-analysis and exports | Apache-2.0 |
 | PyGhidra | 3.1.0 (wheel bundled with Ghidra, installed offline) | Driving Ghidra from Python | Apache-2.0 |
 | [llvm/llvm-project](https://github.com/llvm/llvm-project) | 23.1.3 (winget; `llvm-readobj`, `llvm-objdump`, `llvm-cxxfilt`) | Inspection and demangling | Apache-2.0 with LLVM exception |
-| LLVM releases 8.0.1, 9.0.1, 10.0.0, 11.1.0, 12.0.1 ([GitHub releases](https://github.com/llvm/llvm-project/releases)) and 4.0.1 ([releases.llvm.org](https://releases.llvm.org/)) | pinned in `data/toolchains.json` | Compiler candidates; **9.0.1 is the project toolchain** | Apache-2.0 with LLVM exception (4.0.1: UIUC) |
+| LLVM releases 7.1.0+ ([GitHub releases](https://github.com/llvm/llvm-project/releases)) and 4.0.1, 6.0.1, 7.0.1, 9.0.0 ([releases.llvm.org](https://releases.llvm.org/)): 4.0.1, 6.0.1, 7.0.1, 8.0.1, 9.0.0, 9.0.1, 10.0.0, 11.1.0, 12.0.1 | pinned in `data/toolchains.json` | Compiler candidates; **9.0.1 is the project toolchain** (9.0.0 is identical) | Apache-2.0 with LLVM exception (4.0.1–7.0.1: UIUC) |
+| [encounter/objdiff](https://github.com/encounter/objdiff) | 3.8.2 (GUI + CLI, SHA-256 checked against GitHub's published digests) | Per-unit diff GUI and progress reports (`tools/objdiff_gen.py` writes target objects and `objdiff.json`) | Apache-2.0 |
+| [Lua 5.1.x sources](https://www.lua.org/ftp/) | 5.1, 5.1.1–5.1.5 (pinned in `data/sources.json`, kept outside the repo) | Identifying the embedded Lua: **5.1.4**, float `lua_Number`, built as C++ (`tools/libcheck_lua.py`) | MIT |
 | [capstone-engine/capstone](https://github.com/capstone-engine/capstone) | 5.0.9 (PyPI) | AArch64 disassembly in tools | BSD |
 | [eliben/pyelftools](https://github.com/eliben/pyelftools) | 0.33 | Reading compiled objects | Public domain |
 | [python-lz4/python-lz4](https://github.com/python-lz4/python-lz4) | 4.4.5 | NSO segment decompression | BSD |
 | Python 3.12, Temurin JDK 21, CMake 4.4, Ninja 1.13, 7-Zip | winget | Toolchain | various |
 | Eden (yuzu fork) | 0.2.1, supplied by the user | Dumping ExeFS/RomFS; boot log confirmed the 2.1.0 build ID | GPL-3.0 (not distributed here) |
 
-## Planned (approved, not yet vendored)
+## Planned (approved, not yet vendored into the repo)
 
 | Project | Why | License |
 |---|---|---|
-| [Lua 5.1.x](https://www.lua.org/ftp/) | `main` embeds Lua 5.1. Use upstream source for those functions (status `L`) after identifying the exact 5.1 patch release by diffing | MIT |
-| [ocornut/imgui](https://github.com/ocornut/imgui) | Dear ImGui is linked into `main`. Use upstream source after identifying the version | MIT |
+| [Lua 5.1.4](https://www.lua.org/ftp/lua-5.1.4.tar.gz) | Identified: 81 of 82 standard-library functions match upstream 5.1.4 built with the game flags. Vendor it (with the `float` `luaconf.h` change) and mark its functions `L` | MIT |
+| [ocornut/imgui](https://github.com/ocornut/imgui) | Only about 1.2 KB of Dear ImGui survives linking (`0x7100001fb8`). Version not identified; low priority | MIT |
 
 ## Tried and unavailable
 
