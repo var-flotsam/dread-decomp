@@ -5,10 +5,124 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassScorpiusAIComponent::CTunableCharClassScorpiusAIComponent
 DREAD_REFL_TAG(710068f1fc);
 void fn_710068e00c(base::reflection::CClass*) {}
+extern bool g_unk_7172703ee8;
+extern base::reflection::CType g_unk_7172703d20;
+const base::reflection::UnkReflAttrKey& fn_7100093390();
+const base::reflection::UnkReflAttrKey& fn_710000bf80();
+extern base::reflection::CType g_unk_7101d679f0;
+const base::reflection::UnkReflAttrKey& fn_71000923a0();
+extern base::reflection::CType g_unk_7101d55008;
+const base::reflection::UnkReflAttrKey& fn_7100090a20();
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100093170();
+const base::reflection::UnkReflAttrKey& fn_7100093280();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+const base::reflection::UnkReflAttrKey& fn_7100091080();
+const base::reflection::UnkReflAttrKey& fn_7100091190();
+const base::reflection::UnkReflAttrKey& fn_7100324af0();
+const base::reflection::UnkReflAttrKey& fn_7100324c00();
+const base::reflection::UnkReflAttrKey& fn_71003ba540();
+extern UnkTunableRegistry* g_unk_7101d47350;
+extern UnkTunable g_unk_7172703e88;
+void fn_710068f380(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+void fn_710068e104(CClass* cls) {
+    if (g_unk_7172703ee8)
+        return;
+    g_unk_7172703ee8 = true;
+    if (!cls)
+        return;
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("eForceOpticCamouflageDisabledMode", true), &g_unk_7172703d20, 0xffffffff, -1, -1);
+    field0->attrs.Add<bool>(fn_7100093390(), true);
+    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
+    field0->attrs.Add<bool>(fn_7100090a20(), false);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("iInitialStage", true), fn_7100014768(), 0x24, -1, -1);
+    field1->attrs.Add<s32>(fn_7100075240(), 0);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fMaskLife", true), fn_710000abbc(), 0x28, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 1000.0f);
+    field2->attrs.Add<bool>(fn_7100093170(), true);
+    field2->attrs.Add<bool>(fn_7100093280(), true);
+    field2->attrs.Add<const char*>(fn_7100007e80(), "Scorpius mask life");
+    field2->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    field2->attrs.Add<f32>(fn_7100091190(), 100000.0f);
+    field2->attrs.Add<f32>(fn_7100324af0(), 10.0f);
+    field2->attrs.Add<const char*>(fn_7100324c00(), "Bosses");
+    field2->attrs.Add<const char*>(fn_71003ba540(), "Bosses|Scorpius");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fHeadPosInterpolationSpeed", true), fn_710000abbc(), 0x2c, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 2.0f);
+    field3->attrs.Add<bool>(fn_7100093280(), true);
+    field3->attrs.Add<const char*>(fn_7100007e80(), "Scorpius head pos interpolation speed");
+    field3->attrs.Add<f32>(fn_7100091080(), 0.1f);
+    field3->attrs.Add<f32>(fn_7100091190(), 10.0f);
+    field3->attrs.Add<f32>(fn_7100324af0(), 0.1f);
+    field3->attrs.Add<const char*>(fn_71003ba540(), "Bosses|Scorpius");
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fHeadPosChangeMinTime", true), fn_710000abbc(), 0x30, -1, -1);
+    field4->attrs.Add<f32>(fn_7100075240(), 1.5f);
+    field4->attrs.Add<bool>(fn_7100093280(), true);
+    field4->attrs.Add<const char*>(fn_7100007e80(), "Scorpius head pos change min time");
+    field4->attrs.Add<f32>(fn_7100091080(), 0.1f);
+    field4->attrs.Add<f32>(fn_7100091190(), 20.0f);
+    field4->attrs.Add<f32>(fn_7100324af0(), 0.1f);
+    field4->attrs.Add<const char*>(fn_71003ba540(), "Bosses|Scorpius");
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("fHeadPosChangeMaxTime", true), fn_710000abbc(), 0x34, -1, -1);
+    field5->attrs.Add<f32>(fn_7100075240(), 3.0f);
+    field5->attrs.Add<bool>(fn_7100093280(), true);
+    field5->attrs.Add<const char*>(fn_7100007e80(), "Scorpius head pos change max time");
+    field5->attrs.Add<f32>(fn_7100091080(), 0.1f);
+    field5->attrs.Add<f32>(fn_7100091190(), 20.0f);
+    field5->attrs.Add<f32>(fn_7100324af0(), 0.1f);
+    field5->attrs.Add<const char*>(fn_71003ba540(), "Bosses|Scorpius");
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("fStartRegenerationWallDistance", true), fn_710000abbc(), 0x38, -1, -1);
+    field6->attrs.Add<f32>(fn_7100075240(), 850.0f);
+    field6->attrs.Add<bool>(fn_7100093280(), true);
+    field6->attrs.Add<const char*>(fn_7100007e80(), "Scorpius start regeneration wall distance");
+    field6->attrs.Add<f32>(fn_7100091080(), 300.0f);
+    field6->attrs.Add<f32>(fn_7100091190(), 1500.0f);
+    field6->attrs.Add<f32>(fn_7100324af0(), 50.0f);
+    field6->attrs.Add<const char*>(fn_71003ba540(), "Bosses|Scorpius");
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("fRegenerationTime", true), fn_710000abbc(), 0x3c, -1, -1);
+    field7->attrs.Add<f32>(fn_7100075240(), 6.0f);
+    field7->attrs.Add<bool>(fn_7100093280(), true);
+    field7->attrs.Add<const char*>(fn_7100007e80(), "Scorpius regeneration time");
+    field7->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    field7->attrs.Add<f32>(fn_7100091190(), 20.0f);
+    field7->attrs.Add<f32>(fn_7100324af0(), 0.1f);
+    field7->attrs.Add<const char*>(fn_71003ba540(), "Bosses|Scorpius");
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("iForceOpticCamouflageDisabledMode", true), fn_7100014768(), 0x5c, -1, -1);
+    field8->attrs.Add<s32>(fn_7100075240(), 0);
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("fDamageToChangeHeadPos", true), fn_710000abbc(), 0x40, -1, -1);
+    field9->attrs.Add<f32>(fn_7100075240(), 200.0f);
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("fChaseMinDistance", true), fn_710000abbc(), 0x44, -1, -1);
+    field10->attrs.Add<f32>(fn_7100075240(), 1200.0f);
+    UnkReflField* field11 = fn_7100096524(cls, CStrId("fChaseMaxDistance", true), fn_710000abbc(), 0x48, -1, -1);
+    field11->attrs.Add<f32>(fn_7100075240(), 1400.0f);
+    UnkReflField* field12 = fn_7100096524(cls, CStrId("fFrontMaxDistance", true), fn_710000abbc(), 0x4c, -1, -1);
+    field12->attrs.Add<f32>(fn_7100075240(), 1000.0f);
+    UnkReflField* field13 = fn_7100096524(cls, CStrId("fBackMaxDistance", true), fn_710000abbc(), 0x50, -1, -1);
+    field13->attrs.Add<f32>(fn_7100075240(), 1000.0f);
+    UnkReflField* field14 = fn_7100096524(cls, CStrId("fDamageMultiplayerInPhase2", true), fn_710000abbc(), 0x54, -1, -1);
+    field14->attrs.Add<f32>(fn_7100075240(), 0.5f);
+    UnkReflField* field15 = fn_7100096524(cls, CStrId("fTailDamageToActivateCamouflage", true), fn_710000abbc(), 0x58, -1, -1);
+    field15->attrs.Add<f32>(fn_7100075240(), 300.0f);
+    UnkTunableRegistry* registry = g_unk_7101d47350;
+    if (!registry) {
+        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
+        fn_710013ac14(registry);
+        g_unk_7101d47350 = registry;
+    }
+    fn_710068f380(registry, &g_unk_7172703e88, "Scorpius");
+}
 bool fn_7100690890(const void*, const void*) { return false; }
 s32 fn_7100690898() { return -1; }
 const base::reflection::CType& fn_71006908a0(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

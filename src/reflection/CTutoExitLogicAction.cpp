@@ -5,10 +5,35 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CTutoExitLogicAction
 DREAD_REFL_TAG(7100a594a4);
 void fn_7100a591c0(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100093390();
+const base::reflection::UnkReflAttrKey& fn_710000bf80();
+extern base::reflection::CType g_unk_7101d679f0;
+const base::reflection::UnkReflAttrKey& fn_71000923a0();
+extern base::reflection::CType g_unk_7101d55008;
+const base::reflection::UnkReflAttrKey& fn_7100090a20();
+extern base::reflection::CType g_unk_71727b6270;
+const base::reflection::UnkReflAttrKey& fn_710025daa0();
+extern base::reflection::CType g_unk_71727bc110;
+void fn_7100a592b8(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sMissionLogTutoId", true), fn_7100009658(), 0xffffffff, -1, -1);
+    field0->attrs.Add<bool>(fn_7100093390(), true);
+    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
+    field0->attrs.Add<bool>(fn_7100090a20(), false);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("wpTriggerToDisable", true), &g_unk_71727b6270, 0x10, -1, -1);
+    field1->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 1);
+}
 bool fn_7100a598a8(const void* a, const void* b) { return a == b; }
 s32 fn_7100a598b4() { return -1; }
 const base::reflection::CType& fn_7100a598bc(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

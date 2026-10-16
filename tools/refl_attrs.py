@@ -34,13 +34,15 @@ from image import BASE  # noqa: E402
 GET_ATTRS = 0x710009DD6C
 ADD_ATTR = 0x71000934B8
 ADD_FIELD = 0x7100096524
+ADD_FUNCTION = 0x7100097550
 CSTRID_CTOR = 0x71000003D4
 CSTRID_RELEASE = 0x71000803A4  # inlined ~CStrId
 GLOBAL_CSTRID = 0x7101D470E0   # g_unk_7101d470e0
 ALLOC = 0x71000839A0           # allocation (size, flags)
 TUNABLE_REGISTRY_CTOR = 0x710013AC14
 # Calls that are never attribute keys; any other call in key position is one.
-NOT_KEYS = {GET_ATTRS, ADD_ATTR, ADD_FIELD, CSTRID_CTOR, CSTRID_RELEASE, ALLOC, TUNABLE_REGISTRY_CTOR}
+NOT_KEYS = {GET_ATTRS, ADD_ATTR, ADD_FIELD, ADD_FUNCTION, CSTRID_CTOR, CSTRID_RELEASE, ALLOC,
+            TUNABLE_REGISTRY_CTOR}
 # Value type getter -> C++ type, as in UnkReflTypeOf.
 VALUE_TYPES = {0x7100005178: "u32", 0x7100014768: "s32", 0x71000081E8: "const char*", 0x7100009658: "base::global::CStrId",
                0x710000ABBC: "f32", 0x710000D228: "bool"}
@@ -50,6 +52,7 @@ PRELUDE = [
     "using base::global::CStrId;",
     "using base::reflection::CClass;",
     "using base::reflection::UnkReflField;",
+    "using base::reflection::UnkReflFunction;",
     "using base::reflection::UnkTunable;",
     "using base::reflection::UnkTunableRegistry;",
 ]
@@ -105,7 +108,8 @@ def events(orig: asmdiff.Original, addr: int) -> list[Event] | None:
     cs = capstone.Cs(capstone.CS_ARCH_ARM64, capstone.CS_MODE_ARM)
     cs.detail = True
     page: dict[str, int] = {}
-    facts: dict[str, tuple] = {"zr": ("imm", 0)}  # register -> ("imm", n) | ("str", s) | ("ptr", a) | ("global", a)
+    # register -> ("imm", n) | ("str", s) | ("ptr", a) | ("global", a) | ("cls", 0) | ("count", delta)
+    facts: dict[str, tuple] = {"zr": ("imm", 0), "0": ("cls", 0)}
     out: list[Event] = []
     for x in cs.disasm(orig.function(addr), addr):
         m, o = x.mnemonic, x.operands
@@ -118,20 +122,24 @@ def events(orig: asmdiff.Original, addr: int) -> list[Event] | None:
             s = orig.img.cstring(a - BASE)
             new[_key(cs, o[0].reg)] = ("str", s) if s is not None else ("addr", a)
         elif m in ("add", "sub") and len(o) == 3 and o[2].type == capstone.arm64.ARM64_OP_IMM \
-                and facts.get(_key(cs, o[1].reg), ("",))[0] == "imm" and not o[2].shift.type:
-            v = facts[_key(cs, o[1].reg)][1]
-            new[_key(cs, o[0].reg)] = ("imm", (v + o[2].imm if m == "add" else v - o[2].imm) & (2**64 - 1))
+                and facts.get(_key(cs, o[1].reg), ("",))[0] in ("imm", "count") and not o[2].shift.type:
+            kind, v = facts[_key(cs, o[1].reg)]
+            v = v + o[2].imm if m == "add" else v - o[2].imm
+            new[_key(cs, o[0].reg)] = (kind, v & (2**64 - 1) if kind == "imm" else v)
         elif m == "ldr" and len(o) == 2 and o[1].type == capstone.arm64.ARM64_OP_MEM:
             base = _key(cs, o[1].mem.base)
             if base in page:
                 target = orig.img.pointer(page[base] + o[1].mem.disp - BASE)
                 if target is not None:
                     new[_key(cs, o[0].reg)] = ("ptr", BASE + target)
+            elif facts.get(base) == ("cls", 0) and o[1].mem.disp == 0x120 and cs.reg_name(o[0].reg)[0] == "w":
+                new[_key(cs, o[0].reg)] = ("count", 0)
             elif facts.get(base, ("",))[0] == "ptr" and o[1].mem.disp == 0:
                 new[_key(cs, o[0].reg)] = ("global", facts[base][1])
         elif m in ("mov", "movz", "orr") and o[-1].type == capstone.arm64.ARM64_OP_IMM \
                 and (m != "orr" or _key(cs, o[1].reg) == "zr"):
-            new[_key(cs, o[0].reg)] = ("imm", o[-1].imm & 0xFFFFFFFFFFFFFFFF)
+            mask = 0xFFFFFFFF if cs.reg_name(o[0].reg)[0] == "w" else 0xFFFFFFFFFFFFFFFF
+            new[_key(cs, o[0].reg)] = ("imm", o[-1].imm & mask)
         elif m == "mov" and len(o) == 2 and o[1].type == capstone.arm64.ARM64_OP_REG:
             src = facts.get(_key(cs, o[1].reg))
             if src:
@@ -151,7 +159,8 @@ def events(orig: asmdiff.Original, addr: int) -> list[Event] | None:
                 if width is None:
                     width = 8 if cs.reg_name(o[0].reg)[0] in "xd" else 4
                 out.append(Event("value", value=(fact[0], fact[1], width)))
-        elif m in ("ldrb", "strb") and o[1].type == capstone.arm64.ARM64_OP_MEM and o[1].mem.disp == 0                 and facts.get(_key(cs, o[1].mem.base), ("",))[0] == "ptr":
+        elif m in ("ldrb", "strb") and o[1].type == capstone.arm64.ARM64_OP_MEM and o[1].mem.disp == 0 \
+                and facts.get(_key(cs, o[1].mem.base), ("",))[0] == "ptr":
             # Run-once flag (a global bool): test, then set to 1.
             g = facts[_key(cs, o[1].mem.base)][1]
             if m == "ldrb":
@@ -160,6 +169,14 @@ def events(orig: asmdiff.Original, addr: int) -> list[Event] | None:
                 out.append(Event("value", value=("flagset", g, 1)))
         elif m == "cbz" and cs.reg_name(o[0].reg) == "x0" and not any(e.kind == "bl" for e in out):
             out.append(Event("value", value=("nullcheck", 0, 8)))
+        elif m == "str" and o[1].type == capstone.arm64.ARM64_OP_MEM \
+                and cs.reg_name(o[1].mem.base) not in ("sp", "x29", "fp") \
+                and facts.get(_key(cs, o[0].reg), ("",))[0] == "ptr":
+            out.append(Event("value", value=("ptrstore", (o[1].mem.disp, facts[_key(cs, o[0].reg)][1]), 8)))
+        elif m == "stp" and o[2].type == capstone.arm64.ARM64_OP_MEM \
+                and cs.reg_name(o[2].mem.base) not in ("sp", "x29", "fp") \
+                and facts.get(_key(cs, o[0].reg), ("",))[0] == "ptr":
+            out.append(Event("value", value=("ptrstore", (o[2].mem.disp, facts[_key(cs, o[0].reg)][1]), 8)))
         elif m == "stp" and cs.reg_name(o[2].mem.base) in ("sp", "x29", "fp"):
             # The type half of a value ref, when it is a global descriptor.
             fact = facts.get(_key(cs, o[0].reg))
@@ -186,6 +203,15 @@ def events(orig: asmdiff.Original, addr: int) -> list[Event] | None:
 def signed(v: int, width: int) -> int:
     v &= (1 << (8 * width)) - 1
     return v - (1 << (8 * width)) if v >> (8 * width - 1) else v
+
+
+def index_expr(fact: tuple | None) -> str | None:
+    """An AddField function index: -1 or a position relative to the class's function count."""
+    if fact == ("imm", 2**64 - 1):
+        return "-1"
+    if fact and fact[0] == "count" and fact[1] < 0:
+        return f"cls->m_array_0x110.size() - {-fact[1]}"
+    return None
 
 
 def value_expr(type_name: str, vals: list[tuple]) -> str | None:
@@ -293,6 +319,62 @@ def parse(orig: asmdiff.Original, addr: int, class_getters: set[int]) -> tuple[l
             j += 1
         return j
 
+    def function(j: int) -> tuple[int, list[str]] | None:
+        """fn = fn_7100097550(cls, CStrId(name)); then an inline or an out-of-line initialiser."""
+        s = evs[j].regs.get("1")
+        if not s or s[0] != "str" or evs[j].regs.get("2") != ("imm", 1):
+            return None
+        name = c_string(s[1])
+        j, vals = next_bl(j + 1)
+        if vals or evs[j].target != ADD_FUNCTION:
+            return None
+        k, vals = next_bl(skip_release(j + 1))
+        if vals or k >= n:
+            return None
+        head = f"    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId({name}, true)))"
+        if evs[k].target == CSTRID_CTOR:
+            # Inline initialiser (getters): name, return type, invoker.
+            if evs[k].regs.get("1") != s or evs[k].regs.get("2") != ("imm", 1):
+                return None
+            k, vals = next_bl(skip_release(k + 1))
+            # The moved-from temporary is left as &pool->empty (0x10 when there is no pool).
+            stores = [v for v in vals if v != ("imm", 0x10, 8)]
+            ret_global = [v[1][1] for v in stores if v[0] == "ptrstore" and v[1][0] == 0x38]
+            if ret_global:
+                # Return type from a global descriptor (e.g. void): no getter call.
+                decls.append(f"extern base::reflection::CType g_unk_{ret_global[0]:x};")
+                ret_expr = f"&g_unk_{ret_global[0]:x}"
+                stores = [v for v in stores if v[0] != "ptrstore" or v[1][0] != 0x38]
+            else:
+                if stores or k >= n or evs[k].target in NOT_KEYS:
+                    return None
+                ret_getter = evs[k].target
+                if ret_getter not in VALUE_TYPES:
+                    ret = "base::reflection::CClass" if ret_getter in class_getters else "base::reflection::CType"
+                    decls.append(f"const {ret}* fn_{ret_getter:x}();")
+                ret_expr = f"fn_{ret_getter:x}()"
+                k += 1
+                while k < n and evs[k].kind == "value":
+                    stores.append(evs[k].value)
+                    k += 1
+            invoker = [v[1][1] for v in stores if v[0] == "ptrstore" and v[1][0] == 0x48]
+            if len(invoker) != 1 or len(stores) != 1:
+                return None
+            decls.append(f"void fn_{invoker[0]:x}();")
+            return k, [head + " {",
+                       f"        fn->name = CStrId({name}, true);",
+                       f"        fn->return_type = {ret_expr};",
+                       "        fn->field_0xb2 = 0;",
+                       "        fn->field_0x40 = nullptr;",
+                       f"        fn->invoker = reinterpret_cast<void*>(&fn_{invoker[0]:x});",
+                       "    }"]
+        # Out-of-line initialiser (setters): init(fn, name).
+        if evs[k].regs.get("1") != s or evs[k].target in NOT_KEYS:
+            return None
+        init = evs[k].target
+        decls.append(f"void fn_{init:x}(UnkReflFunction* fn, const char* name);")
+        return k + 1, [head, f"        fn_{init:x}(fn, {name});"]
+
     fields = 0
     # Optional run-once prologue: if (flag) return; flag = true; if (!cls) return;
     head = [e.value for e in evs[:3] if e.kind == "value"]
@@ -319,6 +401,12 @@ def parse(orig: asmdiff.Original, addr: int, class_getters: set[int]) -> tuple[l
                 return None
             i, line = r
             body.append(line)
+        elif evs[j].target == CSTRID_CTOR and (lambda k: k < n and evs[k].target == ADD_FUNCTION)(next_bl(j + 1)[0]):
+            r = function(j)
+            if r is None:
+                return None
+            i, lines = r
+            body += lines
         elif evs[j].target == CSTRID_CTOR:
             s = evs[j].regs.get("1")
             if not s or s[0] != "str" or evs[j].regs.get("2") != ("imm", 1):
@@ -345,12 +433,13 @@ def parse(orig: asmdiff.Original, addr: int, class_getters: set[int]) -> tuple[l
                     return None
             regs = evs[j].regs
             off = regs.get("3")
-            if not off or off[0] != "imm" or regs.get("4") != ("imm", 2**64 - 1) or regs.get("5") != ("imm", 2**64 - 1):
+            index = [index_expr(regs.get(r)) for r in ("4", "5")]
+            if not off or off[0] != "imm" or None in index:
                 return None
             var = f"field{fields}"
             fields += 1
             body.append(f"    UnkReflField* {var} = fn_7100096524(cls, CStrId({c_string(s[1])}, true), "
-                        f"{type_expr}, {off[1]:#x}, -1, -1);")
+                        f"{type_expr}, {off[1]:#x}, {index[0]}, {index[1]});")
             i = j + 1
             while True:
                 k = skip_release(i)

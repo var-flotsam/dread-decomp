@@ -3880,7 +3880,7 @@ address,size,name,name_source,subsystem,status
 0x7100c5eae0,160,fn_7100c5eae0,unknown,game/characters?,U
 0x7100c5eb80,4,fn_7100c5eb80,unknown,game/characters?,O
 0x7100c5eb84,244,CCharClassTweakPlayRateTrack::CTunableCharClassTweakPlayRateTrack::refl_GetClass,reflection,game/characters,O
-0x7100c5ec78,9152,fn_7100c5ec78,unknown,game/characters?,U
+0x7100c5ec78,9152,fn_7100c5ec78,unknown,game/characters?,O
 0x7100c61038,388,CCharClassTweakPlayRateTrack::CTunableCharClassTweakPlayRateTrack::refl_InitClass,reflection,game/characters,O
 0x7100c611bc,696,fn_7100c611bc,unknown,game/characters?,U
 0x7100c61474,232,fn_7100c61474,unknown,game/characters?,U

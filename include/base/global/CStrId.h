@@ -36,6 +36,19 @@ public:
         if (&g_unk_7101d47108->empty != data)
             ++data->ref_count;
     }
+    // Not yet matched where it is inlined (see docs/HANDOFF.md: getter initialisers).
+    CStrId& operator=(CStrId&& other) {
+        if (UnkStringPool* pool = g_unk_7101d47108) {
+            if (data && data != &pool->empty) {
+                --data->ref_count;
+                if (data->ref_count == 0)
+                    fn_71000803a4(pool, data);
+            }
+        }
+        data = other.data;
+        other.data = &g_unk_7101d47108->empty;
+        return *this;
+    }
     ~CStrId() {
         if (UnkStringPool* pool = g_unk_7101d47108) {
             if (data && data != &pool->empty) {

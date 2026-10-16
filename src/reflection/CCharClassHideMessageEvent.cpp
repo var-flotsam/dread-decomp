@@ -9,6 +9,7 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 
@@ -19,6 +20,19 @@ const base::reflection::UnkReflAttrKey& fn_7100090d50();
 void fn_7100bb6eb0(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Hide Tutorial Message");
     fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("GUI", true));
+}
+const base::reflection::UnkReflAttrKey& fn_7100093390();
+const base::reflection::UnkReflAttrKey& fn_710000bf80();
+extern base::reflection::CType g_unk_7101d679f0;
+const base::reflection::UnkReflAttrKey& fn_71000923a0();
+extern base::reflection::CType g_unk_7101d55008;
+const base::reflection::UnkReflAttrKey& fn_7100090a20();
+void fn_7100bb708c(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sMissionLogTutoId", true), fn_7100009658(), 0xffffffff, -1, -1);
+    field0->attrs.Add<bool>(fn_7100093390(), true);
+    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
+    field0->attrs.Add<bool>(fn_7100090a20(), false);
 }
 bool fn_7100bb73bc(const void* a, const void* b) { return a == b; }
 s32 fn_7100bb73c8() { return -1; }

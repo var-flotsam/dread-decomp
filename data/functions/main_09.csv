@@ -879,7 +879,7 @@ address,size,name,name_source,subsystem,status
 0x710091b730,160,fn_710091b730,unknown,game/characters?,U
 0x710091b7d0,4,fn_710091b7d0,unknown,game/characters?,O
 0x710091b7d4,244,CCharClassHydrogigaZiplineComponent::refl_GetClass,reflection,game/characters,O
-0x710091b8c8,1092,fn_710091b8c8,unknown,game/characters?,U
+0x710091b8c8,1092,fn_710091b8c8,unknown,game/characters?,O
 0x710091bd0c,388,CCharClassHydrogigaZiplineComponent::refl_InitClass,reflection,game/characters,O
 0x710091be90,4,fn_710091be90,unknown,unknown,U
 0x710091be94,36,fn_710091be94,unknown,unknown,U
