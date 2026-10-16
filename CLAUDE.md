@@ -42,12 +42,13 @@ git config core.hooksPath tools/hooks          # once per clone
 python tools/setup.py --version <ver> --exefs <dir> --romfs <dir>
 python tools/setup.py --version <ver> --confirm   # after checking printed hashes
 python tools/setup.py --version <ver> --verify-only
+python tools/verify_dump.py --version <ver>   # NSO segment hashes, title ID, RomFS vs files.toc
 ```
 
 Target version: **2.1.0** (update v327680). The `main` NSO build ID is
 `646761F643AFEBB379EDD5E6A5151AF2CEF93DC1`. Title ID is `010093801237C000`.
 
-Remote: https://github.com/var-flotsam/dread-decomp (private, no license chosen yet).
+Remote: https://github.com/var-flotsam/dread-decomp (private, MIT license).
 Ask the user before pushing. (var-flotsam/MPT-Decomp is a separate project, a Metroid
 Prime Trilogy recomp. Never push this repo there.)
 
@@ -87,6 +88,8 @@ Toolchain:
 
 ## Status
 
-- Phase 1: done. The 2.1.0 dump has been imported. `data/hashes.json` is recorded but
-  **unconfirmed** until the user checks it (`--confirm`).
+- Phase 1: done. The 2.1.0 dump has been imported. Its hashes are confirmed:
+  `tools/verify_dump.py` passed (all NSO segment hashes match their headers, and all
+  9774 RomFS files plus 62206 pack entries match files.toc sizes). There are no public
+  reference hashes for this dump; No-Intro search and the web turned up nothing.
 - Phase 2 (recon) and Phase 3 (compiler ID) are next.

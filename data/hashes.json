@@ -1,6 +1,6 @@
 {
   "2.1.0": {
-    "confirmed": false,
+    "confirmed": true,
     "exefs": {
       "files": {
         "main": "06872d2061f2529d7cefb7508be2fdaa50b027bad16e238a6414180eae8d3489",
