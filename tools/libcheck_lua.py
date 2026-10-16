@@ -24,6 +24,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import asmdiff  # noqa: E402
+import buildcfg  # noqa: E402
 import check  # noqa: E402
 import fetch_sources  # noqa: E402
 import fetch_toolchains  # noqa: E402
@@ -42,15 +43,13 @@ FLOAT_PATCH = [
     ("#define lua_str2number(s,p)\tstrtod((s), (p))", "#define lua_str2number(s,p)\tstrtof((s), (p))"),
 ]
 
-GAME_FLAGS = [f for f in check.CFLAGS if f not in ("-I", str(ROOT / "include"), "-c", "-std=c++1z",
-                                                    "-fno-rtti", "-fno-exceptions")]
+GAME = [*buildcfg.CODEGEN, *buildcfg.system_includes()]
 CONFIGS = {
-    "c++ game-flags": ["-x", "c++", "-std=c++1z", "-fno-rtti", "-fno-exceptions", *GAME_FLAGS],
-    "c game-flags": ["-x", "c", "-std=gnu99", *GAME_FLAGS],
-    "c++ game-flags -O2": ["-x", "c++", "-std=c++1z", "-fno-rtti", "-fno-exceptions",
-                           *[("-O2" if f == "-O3" else f) for f in GAME_FLAGS]],
-    "c++ game-flags no-unwind": ["-x", "c++", "-std=c++1z", "-fno-rtti", "-fno-exceptions",
-                                 *[f for f in GAME_FLAGS if f != "-fasynchronous-unwind-tables"]],
+    "c++ game-flags": ["-x", "c++", *buildcfg.CXX, *GAME],
+    "c game-flags": ["-x", "c", "-std=gnu99", *GAME],
+    "c++ game-flags -O2": ["-x", "c++", *buildcfg.CXX, *[("-O2" if f == "-O3" else f) for f in GAME]],
+    "c++ game-flags no-unwind": ["-x", "c++", *buildcfg.CXX,
+                                 *[f for f in GAME if f != "-fasynchronous-unwind-tables"]],
 }
 
 
@@ -92,7 +91,7 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--version", required=True)
     ap.add_argument("--lua", default="5.1,5.1.1,5.1.2,5.1.3,5.1.4,5.1.5")
-    ap.add_argument("--compiler", default=check.COMPILER)
+    ap.add_argument("--compiler", default=buildcfg.COMPILER)
     args = ap.parse_args()
 
     original = asmdiff.Original(args.version)
@@ -109,8 +108,7 @@ def main() -> int:
         funcs = {}
         for lib in LIBS:
             obj = objdir / lib.replace(".c", ".o")
-            cmd = [str(clang), *flags, "-I", str(src), "-I", str(ROOT / "include" / "libc"),
-                   "-DLUA_LIB", "-c", str(src / lib), "-o", str(obj)]
+            cmd = [str(clang), *flags, "-I", str(src), "-DLUA_LIB", "-c", str(src / lib), "-o", str(obj)]
             r = subprocess.run(cmd, capture_output=True, text=True)
             if r.returncode != 0:
                 raise SystemExit(f"lua-{ver} {cfg} {lib}: build failed\n{r.stderr[-2000:]}")

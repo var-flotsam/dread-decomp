@@ -104,7 +104,7 @@ def load_hashes() -> dict:
 
 def save_hashes(db: dict) -> None:
     HASHES.parent.mkdir(parents=True, exist_ok=True)
-    HASHES.write_text(json.dumps(db, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    HASHES.write_text(json.dumps(db, indent=2, sort_keys=True) + "\n", encoding="utf-8", newline="\n")
 
 
 def which_version(db: dict, build_id: str) -> str | None:

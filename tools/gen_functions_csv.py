@@ -10,7 +10,8 @@ each file stays under the 1 MB pre-commit limit. Columns: address,size,name,name
   address      absolute (image base 0x7100000000)
   size         bytes; from .eh_frame when available, else Ghidra's body extent
   name         best guess, demangled; fn_<addr> when unknown
-  name_source  symbol | rtti | reflection | string | unknown
+  name_source  symbol | library | rtti | reflection | string | unknown
+               (library = matched against vendored upstream code, data/library_symbols.csv)
   subsystem    guess (see SUBSYSTEM_RULES); "?"-suffixed when inferred from neighbours
   status       BotW / nx-decomp-tools codes (see docs/references.md):
                  O matching, m non-matching (minor), M non-matching (major), W work in progress,
@@ -71,7 +72,7 @@ SUBSYSTEM_RULES = [
 # Code we don't decompile as game code: vendored upstream (Lua), Nintendo
 # middleware/SDK (nn::atk, nn::), and the C/C++ runtime. Marked L, like BotW's
 # "library function" status, and excluded from progress.
-LIBRARY_SUBSYSTEMS = {"middleware/nn-atk", "sdk", "runtime", "lua/stdlib"}
+LIBRARY_SUBSYSTEMS = {"middleware/nn-atk", "sdk", "runtime", "lua/stdlib", "lua"}
 # Statuses that come from src/ (tools/check.py) and must survive regeneration.
 DECOMP_STATUSES = {"O", "m", "M", "W"}
 
@@ -121,6 +122,16 @@ def main() -> int:
     gnames = [(a, f["name"]) for a, f in ghidra.items() if not GENERIC_NAME.match(f["name"])]
     for (a, raw), n in zip(gnames, demangle([g for _, g in gnames])):
         put(a, n, "symbol")
+
+    # 1b. Library code identified by matching vendored upstream sources (tools/sigmatch.py).
+    library_subsystem: dict[int, str] = {}
+    lib_csv = ROOT / "data" / "library_symbols.csv"
+    if lib_csv.is_file():
+        with lib_csv.open(newline="", encoding="utf-8") as f:
+            for r in csv.DictReader(f):
+                a = int(r["address"], 16)
+                put(a, r["name"], "library")
+                library_subsystem[a] = r["library"]
 
     # 2. RTTI: virtual functions of nn::atk classes, owned by the base-most class using them.
     rtti = json.loads((recon / "main_rtti.json").read_text())
@@ -184,7 +195,9 @@ def main() -> int:
     ordered = sorted(funcs)
     sub: dict[int, str] = {}
     for a in ordered:
-        if a in names:
+        if a in library_subsystem:
+            sub[a] = library_subsystem[a]
+        elif a in names:
             owner = names[a][0]
             s = subsystem_for(owner)
             if s:

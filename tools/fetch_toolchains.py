@@ -113,7 +113,7 @@ def main() -> int:
             else:
                 fetch(v, pins)
     finally:
-        PINS.write_text(json.dumps(pins, indent=2, sort_keys=True) + "\n")
+        PINS.write_text(json.dumps(pins, indent=2, sort_keys=True) + "\n", newline="\n")
     return 0
 
 

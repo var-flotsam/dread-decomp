@@ -30,17 +30,11 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import asmdiff  # noqa: E402
-import fetch_toolchains  # noqa: E402
+import buildcfg  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 CXXFILT = r"C:\Program Files\LLVM\bin\llvm-cxxfilt.exe"
-
-# Project toolchain, from docs/compiler.md.
-COMPILER = "9.0.1"
-CFLAGS = ["--target=aarch64-none-elf", "-mcpu=cortex-a57", "-O3", "-fPIC",
-          "-fasynchronous-unwind-tables", "-mno-implicit-float",
-          "-std=c++1z", "-fno-rtti", "-fno-exceptions", "-ffunction-sections",
-          "-I", str(ROOT / "include"), "-c"]
+COMPILER = buildcfg.COMPILER  # project toolchain and flags: tools/buildcfg.py
 
 ANNOTATION = re.compile(r"//\s*NON_MATCHING\((minor|major)\)")
 DEFINITION = re.compile(r"^[A-Za-z_][\w:<>,\*& ]*?\b([A-Za-z_][\w:]*)\s*\(")
@@ -87,8 +81,7 @@ def build(version: str, src: Path) -> Path | None:
     """Compile one source with the project toolchain. Returns the object, or None on failure."""
     obj = object_path(version, src)
     obj.parent.mkdir(parents=True, exist_ok=True)
-    clang = fetch_toolchains.clang_path(COMPILER)
-    r = subprocess.run([str(clang), *CFLAGS, str(src), "-o", str(obj)], capture_output=True, text=True)
+    r = subprocess.run(buildcfg.cxx_command(src, obj), capture_output=True, text=True)
     if r.returncode != 0:
         print(f"BUILD FAILED {src.relative_to(ROOT)}\n{r.stderr}")
         return None
@@ -111,6 +104,7 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--version", required=True)
     ap.add_argument("--update", action="store_true", help="write statuses into data/functions/")
+    ap.add_argument("-j", "--jobs", type=int, default=8, help="parallel compiles")
     args = ap.parse_args()
 
     rows, files = load_csv()
@@ -120,11 +114,13 @@ def main() -> int:
     original = asmdiff.Original(args.version)
 
     results = {}  # address -> (status, symbol, score)
-    failed = False
-    for src in sources():
-        obj = build(args.version, src)
+    srcs = sources()
+    from concurrent.futures import ThreadPoolExecutor
+    with ThreadPoolExecutor(args.jobs) as pool:
+        objects = list(pool.map(lambda s: build(args.version, s), srcs))
+    failed = any(o is None for o in objects)
+    for src, obj in zip(srcs, objects):
         if obj is None:
-            failed = True
             continue
         names = demangle([n for n, _, _ in asmdiff.object_functions(obj)])
         resolve = resolver(by_name, names)

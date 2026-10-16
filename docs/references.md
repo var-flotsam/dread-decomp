@@ -18,11 +18,11 @@ before vendoring anything.
 
 | Project | Contents | Status for us |
 |---|---|---|
-| [open-ead/nnheaders](https://github.com/open-ead/nnheaders) | User-written NintendoSDK headers (from reverse engineering and games shipped with symbols) | Candidate for our `nn::` declarations. **Mid-migration** to nnsdk/nnware per its README; no PRs during migration. |
-| [open-ead/nnsdk](https://github.com/open-ead/nnsdk) | NintendoSDK headers, plus decompiled SDK modules that some games link statically | Says "usage … outside of matching decompilation is not supported". Fine for the decomp; check before using in the port. |
+| [open-ead/nnsdk](https://github.com/open-ead/nnsdk) | **Used: git submodule at `lib/nnsdk`.** NintendoSDK declaration headers (user-written from reverse engineering and games shipped with symbols), plus decompiled SDK modules some games link statically | The repo declares **no license**, so we reference it as a submodule and never copy it. Its README says use outside matching decomp is unsupported: don't make the port depend on it without asking the maintainers. Successor of nnheaders |
+| [open-ead/botw-lib-musl](https://github.com/open-ead/botw-lib-musl) | **Used: git submodule at `lib/musl`.** Prebuilt musl 1.2.2 for AArch64; we use its headers | musl is MIT (`COPYRIGHT`) |
+| [open-ead/nnheaders](https://github.com/open-ead/nnheaders) | Original community NintendoSDK headers | Frozen mid-migration (no new PRs); superseded by nnsdk/nnware. Not used. |
 | [open-ead/nnware](https://github.com/open-ead/nnware) | Decompiled NintendoWare modules: `atk`, `font`, `g3d`, `ui2d`, `vfx` | Has `lib/atk`, but it is very early (12 files, 1 `.cpp`). **The repo declares no license**, so treat it as reference only and don't copy from it. Our `nn::atk` is 11.4.3. |
 | [open-ead/sead](https://github.com/open-ead/sead), [open-ead/agl](https://github.com/open-ead/agl), [open-ead/EventFlow](https://github.com/open-ead/EventFlow) | Decompiled Nintendo EPD engine libraries | Not used by Dread (Mercury Engine is MercurySteam's), but the pattern of a shared library decomp repo fits `lib/mercury/` if Samus Returns is ever decompiled. |
-| [open-ead/botw-lib-musl](https://github.com/open-ead/botw-lib-musl) | musl libc fork used as BotW's C library headers | Possible source of libc headers for building `src/`. |
 | [AxioDL/musyx](https://github.com/AxioDL/musyx) (CC0-1.0) | Decompiled MusyX audio middleware, used by PrimeDecomp and Metaforce | Precedent for decompiling audio middleware as its own project (cf. `nn::atk`). |
 | [encounter/decomp-toolkit](https://github.com/encounter/decomp-toolkit) (Apache-2.0) | GameCube/Wii project tooling used by PrimeDecomp | Not applicable to NSO executables. |
 
@@ -37,6 +37,7 @@ before vendoring anything.
 | LLVM releases 7.1.0+ ([GitHub releases](https://github.com/llvm/llvm-project/releases)) and 4.0.1, 6.0.1, 7.0.1, 9.0.0 ([releases.llvm.org](https://releases.llvm.org/)): 4.0.1, 6.0.1, 7.0.1, 8.0.1, 9.0.0, 9.0.1, 10.0.0, 11.1.0, 12.0.1 | pinned in `data/toolchains.json` | Compiler candidates; **9.0.1 is the project toolchain** (9.0.0 is identical) | Apache-2.0 with LLVM exception (4.0.1–7.0.1: UIUC) |
 | [encounter/objdiff](https://github.com/encounter/objdiff) | 3.8.2 (GUI + CLI, SHA-256 checked against GitHub's published digests) | Per-unit diff GUI and progress reports (`tools/objdiff_gen.py` writes target objects and `objdiff.json`) | Apache-2.0 |
 | [Lua 5.1.x sources](https://www.lua.org/ftp/) | 5.1, 5.1.1–5.1.5 (pinned in `data/sources.json`, kept outside the repo) | Identifying the embedded Lua: **5.1.4**, float `lua_Number`, built as C++ (`tools/libcheck_lua.py`) | MIT |
+| [libc++ 9.0.1 headers](https://github.com/llvm/llvm-project/releases/tag/llvmorg-9.0.1) (`libcxx-9.0.1.src`) | pinned in `data/sources.json`, kept outside the repo | C++ standard library headers for the build (Nintendo's SDK also ships libc++) | Apache-2.0 with LLVM exception |
 | [capstone-engine/capstone](https://github.com/capstone-engine/capstone) | 5.0.9 (PyPI) | AArch64 disassembly in tools | BSD |
 | [eliben/pyelftools](https://github.com/eliben/pyelftools) | 0.33 | Reading compiled objects | Public domain |
 | [python-lz4/python-lz4](https://github.com/python-lz4/python-lz4) | 4.4.5 | NSO segment decompression | BSD |
