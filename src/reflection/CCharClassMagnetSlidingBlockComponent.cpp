@@ -2,12 +2,32 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassMagnetSlidingBlockComponent
 DREAD_REFL_TAG(710091b498);
 void fn_710091b100(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+void fn_710091b1f8(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("bFreezeOnFinish", true), fn_710000d228(), 0x5c, -1, -1);
+    field0->attrs.Add<bool>(fn_7100075240(), false);
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Is movement allowed after movement is completed?");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("bActiveRailCameraOnFinish", true), fn_710000d228(), 0x5d, -1, -1);
+    field1->attrs.Add<bool>(fn_7100075240(), false);
+    field1->attrs.Add<const char*>(fn_7100007e80(), "Activate rail camera when block has been used");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fMinMovementPercentToForceContinueMovingOnStopHang", true), fn_710000abbc(), 0x58, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    field2->attrs.Add<const char*>(fn_7100007e80(), "For those instances that shouldn't continue moving on stop hang, if they surpass this movement percent they will continue moving as well");
+}
 bool fn_710091b69c(const void*, const void*) { return false; }
 s32 fn_710091b6a4() { return -1; }
 const base::reflection::CType& fn_710091b6ac(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

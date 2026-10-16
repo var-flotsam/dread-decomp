@@ -2,12 +2,23 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CEmmyWakeUpComponent
 DREAD_REFL_TAG(71007d6e10);
 void fn_71007d6c84(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_717269bb48;
+void fn_71007d6d7c(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("wpCentralUnit", true), &g_unk_717269bb48, 0x80, -1, -1);
+}
 bool fn_71007d76f8(const void*, const void*) { return false; }
 s32 fn_71007d7700() { return -1; }
 const base::reflection::CType& fn_71007d7708(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

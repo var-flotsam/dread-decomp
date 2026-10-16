@@ -2,12 +2,32 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassChozoCommanderZeroLaserGroundedAttack
 DREAD_REFL_TAG(7100424530);
 void fn_71004240d0(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_71004241c8(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fAimingTime", true), fn_710000abbc(), 0xfc, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 2.0f);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fChargingTime", true), fn_710000abbc(), 0x100, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fFiringTime", true), fn_710000abbc(), 0x104, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 2.0f);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fAimAngleInterpSpeedMin", true), fn_710000abbc(), 0x108, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 1.5707964f);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fAimAngleInterpSpeedMax", true), fn_710000abbc(), 0x10c, -1, -1);
+    field4->attrs.Add<f32>(fn_7100075240(), 1.5707964f);
+}
 bool fn_7100424718(const void* a, const void* b) { return a == b; }
 s32 fn_7100424724() { return -1; }
 const base::reflection::CType& fn_710042472c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

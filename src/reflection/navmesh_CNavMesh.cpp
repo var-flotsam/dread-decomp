@@ -2,11 +2,22 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // navmesh::CNavMesh
 DREAD_REFL_TAG(7100274698);
+const base::reflection::UnkReflAttrKey& fn_7100005070();
+void fn_7100274548(CClass* cls) {
+    fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x20003u);
+}
 void fn_7100274694(base::reflection::CClass*) {}
 bool fn_710027e430(const void*, const void*) { return false; }
 s32 fn_710027e438() { return -1; }

@@ -2,12 +2,24 @@
 // Reflection descriptors for one original translation unit (2 types):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassRockDiverAIComponent
 DREAD_REFL_TAG(710066266c);
 void fn_71006624a4(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_710066259c(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fCloseWingsStartDistance", true), fn_710000abbc(), 0x50c, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 150.0f);
+}
 bool fn_7100662ecc(const void*, const void*) { return false; }
 s32 fn_7100662ed4() { return -1; }
 const base::reflection::CType& fn_7100662edc(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
@@ -32,6 +44,26 @@ DREAD_REFL_CLASS_GETTER(71006624a8, 710066266c, "CCharClassRockDiverAIComponent"
 // CCharClassRockDiverAIComponent::CTunableCharClassRockDiverAIComponent
 DREAD_REFL_TAG(71006629ec);
 void fn_71006627cc(base::reflection::CClass*) {}
+extern bool g_unk_71726fd538;
+extern UnkTunableRegistry* g_unk_7101d47350;
+extern UnkTunable g_unk_71726fd510;
+void fn_7100662b70(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+void fn_71006628c4(CClass* cls) {
+    if (g_unk_71726fd538)
+        return;
+    g_unk_71726fd538 = true;
+    if (!cls)
+        return;
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fMotionSpeed", true), fn_710000abbc(), 0x24, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    UnkTunableRegistry* registry = g_unk_7101d47350;
+    if (!registry) {
+        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
+        fn_710013ac14(registry);
+        g_unk_7101d47350 = registry;
+    }
+    fn_7100662b70(registry, &g_unk_71726fd510, "RockDiver");
+}
 bool fn_7100662f38(const void*, const void*) { return false; }
 s32 fn_7100662f40() { return -1; }
 const base::reflection::CType& fn_7100662f48(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

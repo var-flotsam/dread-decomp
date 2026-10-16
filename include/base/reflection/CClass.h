@@ -5,29 +5,11 @@
 //
 // Names: `base::reflection::CClass` and `CType` are the engine's own names (CClass's
 // constructor hashes the string "base::reflection::CClass"; "base::reflection::CType" is a
-// reflected type). UnkReflName is the pooled, reference-counted name string the getter
-// passes in (likely one of base::global's string types, unconfirmed). Members that aren't
-// understood yet keep offset-based names.
+// reflected type). Members that aren't understood yet keep offset-based names.
 
+#include "base/global/CStrId.h"
 #include "types.h"
 
-namespace base::reflection {
-
-struct UnkStringData {
-    u8 unk_0x0[0x8];
-    s32 ref_count;
-};
-
-struct UnkStringPool {
-    u8 unk_0x0[0x10];
-    UnkStringData empty;
-};
-
-}  // namespace base::reflection
-
-// The global string pool (reached through the GOT).
-extern base::reflection::UnkStringPool* g_unk_7101d47108;
-void fn_71000803a4(base::reflection::UnkStringPool* pool, base::reflection::UnkStringData* data);
 // Hash of a type-kind name ("base::reflection::CClass", length 0x18).
 u64 fn_7100001570(const char* str, u64 length);
 // Returns the allocator each reflection container is created with.
@@ -67,27 +49,6 @@ struct UnkReflObjectB {
     virtual const CClass* vf_0x18() const;
 };
 
-struct UnkReflName {
-    UnkStringData* data;
-
-    UnkReflName(const char* str, bool flag);
-    UnkReflName(const UnkReflName& other) : data(other.data) {
-        if (&g_unk_7101d47108->empty != data)
-            ++data->ref_count;
-    }
-    ~UnkReflName() {
-        if (UnkStringPool* pool = g_unk_7101d47108) {
-            if (data && data != &pool->empty) {
-                if (--data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
-
 // Container at CType+0x90 (0x28 bytes).
 struct UnkReflArrayA {
     void* begin = nullptr;
@@ -120,7 +81,7 @@ public:
         UnkFn_0x48 fn_0x48, fn_0x50;
     };
 
-    CType(u64 kind, const UnkReflName& name, u64 size, UnkFn_0x58 fn_0x58, UnkFn_0x60 fn_0x60,
+    CType(u64 kind, const base::global::CStrId& name, u64 size, UnkFn_0x58 fn_0x58, UnkFn_0x60 fn_0x60,
           UnkFn_0x68 fn_0x68,
           UnkFn_0x70 fn_0x70, const CType* parent, const UnkFnSet& fns, bool abstract)
         : m_name(name), m_kind(kind), m_size(size), m_flags(0), field_0x24(-1), m_fn_0x58(fn_0x58),
@@ -144,7 +105,7 @@ public:
     }
     virtual ~CType();
 
-    UnkReflName m_name;
+    base::global::CStrId m_name;
     u64 m_kind;
     u64 m_size;
     u32 m_flags;
@@ -178,7 +139,7 @@ public:
     // Defined out of the class body: the original calls it rather than inlining it.
     // `extra` is always null and unused; typing it T* is our device for deducing T.
     template <class T>
-    CClass(const UnkReflName& name, const CClass* parent, UnkFn_0x70 fn_0x70, UnkFn_0x70 fn_0xe0, T* extra);
+    CClass(const base::global::CStrId& name, const CClass* parent, UnkFn_0x70 fn_0x70, UnkFn_0x70 fn_0xe0, T* extra);
     ~CClass() override;
 
     UnkFn_0x70 m_fn_0xe0;
@@ -187,7 +148,7 @@ public:
 };
 
 template <class T>
-CClass::CClass(const UnkReflName& name, const CClass* parent, UnkFn_0x70 fn_0x70, UnkFn_0x70 fn_0xe0, T* extra)
+CClass::CClass(const base::global::CStrId& name, const CClass* parent, UnkFn_0x70 fn_0x70, UnkFn_0x70 fn_0xe0, T* extra)
     : CType(fn_7100001570("base::reflection::CClass", 0x18), name, UnkReflClassTraits<T>::size,
             UnkReflClassTraits<T>::fn_0x58, UnkReflClassTraits<T>::fn_0x60, UnkReflClassTraits<T>::fn_0x68,
             fn_0x70, parent,
@@ -212,17 +173,17 @@ static_assert(sizeof(CClass) == 0x138, "descriptor stride observed in .bss");
 // constructor out of line (implicit instantiation would inline it into the getter). Whether
 // it did so with an explicit instantiation or a noinline attribute is unknown; both produce
 // the same code.
-#define DREAD_REFL_CLASS_GETTER(ADDR, INIT, NAME, PARENT, FN_0x70, FN_0xE0)                      \
-    void fn_##FN_0x70(base::reflection::CClass*);                                                 \
-    void fn_##FN_0xE0(base::reflection::CClass*);                                                 \
-    const base::reflection::CClass* fn_##PARENT();                                                \
-    const base::reflection::CClass* fn_##ADDR() {                                                 \
-        static base::reflection::CClass s_class(base::reflection::UnkReflName(NAME, true),       \
-                                                fn_##PARENT(), &fn_##FN_0x70, &fn_##FN_0xE0,     \
-                                                static_cast<UnkRefl_fn_##INIT*>(nullptr));        \
-        return &s_class;                                                                          \
-    }                                                                                             \
-    template base::reflection::CClass::CClass(const base::reflection::UnkReflName&,               \
-                                              const base::reflection::CClass*,                    \
-                                              base::reflection::UnkFn_0x70,                       \
+#define DREAD_REFL_CLASS_GETTER(ADDR, INIT, NAME, PARENT, FN_0x70, FN_0xE0)                        \
+    void fn_##FN_0x70(base::reflection::CClass*);                                                  \
+    void fn_##FN_0xE0(base::reflection::CClass*);                                                  \
+    const base::reflection::CClass* fn_##PARENT();                                                 \
+    const base::reflection::CClass* fn_##ADDR() {                                                  \
+        static base::reflection::CClass s_class(base::global::CStrId(NAME, true),                  \
+                                                fn_##PARENT(), &fn_##FN_0x70, &fn_##FN_0xE0,       \
+                                                static_cast<UnkRefl_fn_##INIT*>(nullptr));         \
+        return &s_class;                                                                           \
+    }                                                                                              \
+    template base::reflection::CClass::CClass(const base::global::CStrId&,                         \
+                                              const base::reflection::CClass*,                     \
+                                              base::reflection::UnkFn_0x70,                        \
                                               base::reflection::UnkFn_0x70, UnkRefl_fn_##INIT*)

@@ -2,12 +2,61 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // behaviortree::CSwitchBetweenAIModesAction
 DREAD_REFL_TAG(710036b3f4);
 void fn_710036a940(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+extern base::reflection::CType g_unk_717270dfd0;
+extern base::reflection::CType g_unk_71726bc130;
+void fn_710036aa38(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sAnim", true), fn_7100009658(), 0x30, -1, -1);
+    field0->attrs.Add<const char*>(fn_7100075240(), "");
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Animation to set");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("sAnimProp", true), fn_7100009658(), 0x40, -1, -1);
+    field1->attrs.Add<const char*>(fn_7100075240(), "");
+    field1->attrs.Add<const char*>(fn_7100007e80(), "Animation to set (from blackboard)");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("sTurnAnim", true), fn_7100009658(), 0x38, -1, -1);
+    field2->attrs.Add<const char*>(fn_7100075240(), "");
+    field2->attrs.Add<const char*>(fn_7100007e80(), "Animation to set in case of turn to player is needed");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("ePrefixToAdd", true), &g_unk_717270dfd0, 0x48, -1, -1);
+    field3->attrs.Add<s32>(fn_7100075240(), &g_unk_717270dfd0, 0);
+    field3->attrs.Add<const char*>(fn_7100007e80(), "Animation prefix to add");
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("ePrefixToRemove", true), &g_unk_717270dfd0, 0x4c, -1, -1);
+    field4->attrs.Add<s32>(fn_7100075240(), &g_unk_717270dfd0, 0);
+    field4->attrs.Add<const char*>(fn_7100007e80(), "Animation prefix to remove");
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("bWaitUntilActionEnds", true), fn_710000d228(), 0x6b, -1, -1);
+    field5->attrs.Add<bool>(fn_7100075240(), true);
+    field5->attrs.Add<const char*>(fn_7100007e80(), "Keep running this node until action ends");
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("eStatusIfCantSetAction", true), &g_unk_71726bc130, 0x50, -1, -1);
+    field6->attrs.Add<s32>(fn_7100075240(), &g_unk_71726bc130, 6);
+    field6->attrs.Add<const char*>(fn_7100007e80(), "Status to return if action can't be set");
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("sTimelineStart", true), fn_7100009658(), 0x58, -1, -1);
+    field7->attrs.Add<const char*>(fn_7100075240(), "");
+    field7->attrs.Add<const char*>(fn_7100007e80(), "Timeline to start");
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("sTimelineEnd", true), fn_7100009658(), 0x60, -1, -1);
+    field8->attrs.Add<const char*>(fn_7100075240(), "");
+    field8->attrs.Add<const char*>(fn_7100007e80(), "Timeline to end");
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("bCheckIfSmartLink", true), fn_710000d228(), 0x6c, -1, -1);
+    field9->attrs.Add<bool>(fn_7100075240(), false);
+    field9->attrs.Add<const char*>(fn_7100007e80(), "Check if is in smart link to switch modes");
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("bSetAction", true), fn_710000d228(), 0x78, -1, -1);
+    field10->attrs.Add<bool>(fn_7100075240(), true);
+    field10->attrs.Add<const char*>(fn_7100007e80(), "Replace current action with new prefix");
+    UnkReflField* field11 = fn_7100096524(cls, CStrId("bMaintainFrame", true), fn_710000d228(), 0x79, -1, -1);
+    field11->attrs.Add<bool>(fn_7100075240(), false);
+    field11->attrs.Add<const char*>(fn_7100007e80(), "Maintain frame in new action");
+}
 bool fn_710036c1d4(const void*, const void*) { return false; }
 s32 fn_710036c1dc() { return -1; }
 const base::reflection::CType& fn_710036c1e4(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

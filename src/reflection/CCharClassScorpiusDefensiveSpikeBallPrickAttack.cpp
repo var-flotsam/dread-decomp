@@ -2,8 +2,15 @@
 // Reflection descriptors for one original translation unit (2 types):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassScorpiusDefensiveSpikeBallPrickAttack
 DREAD_REFL_TAG(710067e3ac);
@@ -33,6 +40,31 @@ DREAD_REFL_CLASS_GETTER(710067e2b4, 710067e3ac, "CCharClassScorpiusDefensiveSpik
 // CCharClassScorpiusDefensiveSpikeBallPrickAttack::CTunableCharClassScorpiusDefensiveSpikeBallPrickAttack
 DREAD_REFL_TAG(710067e884);
 void fn_710067e50c(base::reflection::CClass*) {}
+extern bool g_unk_71727017d8;
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+extern UnkTunableRegistry* g_unk_7101d47350;
+extern UnkTunable g_unk_71727017a8;
+void fn_710067ea08(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+void fn_710067e604(CClass* cls) {
+    if (g_unk_71727017d8)
+        return;
+    g_unk_71727017d8 = true;
+    if (!cls)
+        return;
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("bEnabled", true), fn_710000d228(), 0x21, -1, -1);
+    field0->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fMinAttackDistance", true), fn_710000abbc(), 0x24, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fMaxAttackDistance", true), fn_710000abbc(), 0x28, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 300.0f);
+    UnkTunableRegistry* registry = g_unk_7101d47350;
+    if (!registry) {
+        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
+        fn_710013ac14(registry);
+        g_unk_7101d47350 = registry;
+    }
+    fn_710067ea08(registry, &g_unk_71727017a8, "Scorpius");
+}
 bool fn_710067ee20(const void*, const void*) { return false; }
 s32 fn_710067ee28() { return -1; }
 const base::reflection::CType& fn_710067ee30(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

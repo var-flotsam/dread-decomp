@@ -2,12 +2,41 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassMorphBallLauncherComponent
 DREAD_REFL_TAG(7100885038);
 void fn_71008849e0(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+void fn_7100884ad8(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fTimeShootSequence", true), fn_710000abbc(), 0x58, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Time it takes from bomb placement until shot is performed");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fTimeRepositioningEntities", true), fn_710000abbc(), 0x5c, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field1->attrs.Add<const char*>(fn_7100007e80(), "Time it takes to re-position MorphBall and bomb during the shoot sequence");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fTimeToAccelerateCannon", true), fn_710000abbc(), 0x60, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field2->attrs.Add<const char*>(fn_7100007e80(), "Time it takes for the cannon to reach its maximum rotation speed");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fMinCannonActionPlayRate", true), fn_710000abbc(), 0x64, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field3->attrs.Add<const char*>(fn_7100007e80(), "Minimum play rate for cannon's layer");
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fMaxCannonActionPlayRate", true), fn_710000abbc(), 0x68, -1, -1);
+    field4->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field4->attrs.Add<const char*>(fn_7100007e80(), "Maximum play rate for cannon's layer");
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("sCannonActionPlayRateEasingFunction", true), fn_7100009658(), 0x70, -1, -1);
+    field5->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    field5->attrs.Add<const char*>(fn_7100007e80(), "Easing function to apply when transitioning from minimum to maximum play rate on cannon's layer");
+}
 bool fn_71008852d8(const void*, const void*) { return false; }
 s32 fn_71008852e0() { return -1; }
 const base::reflection::CType& fn_71008852e8(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

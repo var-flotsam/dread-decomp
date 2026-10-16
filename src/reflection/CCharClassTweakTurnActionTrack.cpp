@@ -2,11 +2,30 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassTweakTurnActionTrack
 DREAD_REFL_TAG(7100d34a5c);
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+const base::reflection::UnkReflAttrKey& fn_7100090e60();
+void fn_7100d34780(CClass* cls) {
+    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Tweak Turn Action");
+    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090e60(), CStrId("Tweak", true));
+}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_7100d3495c(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("bKeepViewDir", true), fn_710000d228(), 0x34, -1, -1);
+    field0->attrs.Add<bool>(fn_7100075240(), false);
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Whether to keep pre-turn ViewDir. Useful when tweaked turn action isn't a turn itself");
+}
 bool fn_7100d34c10(const void* a, const void* b) { return a == b; }
 s32 fn_7100d34c1c() { return -1; }
 const base::reflection::CType& fn_7100d34c24(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

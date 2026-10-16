@@ -2,12 +2,42 @@
 // Reflection descriptors for one original translation unit (2 types):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassChozoRobotSoldierUppercutAttack::CTunableCharClassChozoRobotSoldierUppercutAttack
 DREAD_REFL_TAG(710046384c);
 void fn_7100463578(base::reflection::CClass*) {}
+extern bool g_unk_71726cb710;
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+extern UnkTunableRegistry* g_unk_7101d47350;
+extern UnkTunable g_unk_71726cb6e0;
+void fn_71004639d0(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+void fn_7100463670(CClass* cls) {
+    if (g_unk_71726cb710)
+        return;
+    g_unk_71726cb710 = true;
+    if (!cls)
+        return;
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fMinAttackDistance", true), fn_710000abbc(), 0x24, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fMaxAttackDistance", true), fn_710000abbc(), 0x28, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 300.0f);
+    UnkTunableRegistry* registry = g_unk_7101d47350;
+    if (!registry) {
+        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
+        fn_710013ac14(registry);
+        g_unk_7101d47350 = registry;
+    }
+    fn_71004639d0(registry, &g_unk_71726cb6e0, "ChozoRobotSoldier");
+}
 bool fn_7100464324(const void*, const void*) { return false; }
 s32 fn_710046432c() { return -1; }
 const base::reflection::CType& fn_7100464334(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
@@ -36,6 +66,18 @@ DREAD_REFL_CLASS_GETTER(710046357c, 710046384c, "CCharClassChozoRobotSoldierUppe
 // CCharClassChozoRobotSoldierUppercutAttack
 DREAD_REFL_TAG(71004640ec);
 void fn_7100463c88(base::reflection::CClass*) {}
+void fn_7100463d80(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fTraveledMaxDistanceToAddToMaxDistance", true), fn_710000abbc(), 0xec, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 100.0f);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fDistanceToReachableTarget", true), fn_710000abbc(), 0xf0, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 400.0f);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fDistanceToReachableTargetMB", true), fn_710000abbc(), 0xf4, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 335.0f);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fDistanceToNonReachableTarget", true), fn_710000abbc(), 0xf8, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 150.0f);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fDistanceToLaunchEnd4m", true), fn_710000abbc(), 0xfc, -1, -1);
+    field4->attrs.Add<f32>(fn_7100075240(), 250.0f);
+}
 bool fn_71004643b4(const void* a, const void* b) { return a == b; }
 s32 fn_71004643c0() { return -1; }
 const base::reflection::CType& fn_71004643c8(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

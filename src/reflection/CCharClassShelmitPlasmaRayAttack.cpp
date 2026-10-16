@@ -2,12 +2,34 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassShelmitPlasmaRayAttack
 DREAD_REFL_TAG(71006b2c14);
 void fn_71006b2718(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_71006b2810(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fDistanceToInitShooting", true), fn_710000abbc(), 0xec, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 400.0f);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fDistanceToInitShootingWithGrapple", true), fn_710000abbc(), 0xf0, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 400.0f);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fMinYAimForGrappleShootDistance", true), fn_710000abbc(), 0xf4, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 0.5f);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fMaxTimeShooting", true), fn_710000abbc(), 0xf8, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 3.0f);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fMaxTrackedDistance2ReleaseTurn", true), fn_710000abbc(), 0xfc, -1, -1);
+    field4->attrs.Add<f32>(fn_7100075240(), 200.0f);
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("fMaxLaunchedTime2ReleaseTurn", true), fn_710000abbc(), 0x100, -1, -1);
+    field5->attrs.Add<f32>(fn_7100075240(), 1.0f);
+}
 bool fn_71006b2e04(const void* a, const void* b) { return a == b; }
 s32 fn_71006b2e10() { return -1; }
 const base::reflection::CType& fn_71006b2e18(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

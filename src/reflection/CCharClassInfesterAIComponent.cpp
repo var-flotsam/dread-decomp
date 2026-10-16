@@ -2,12 +2,33 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassInfesterAIComponent
 DREAD_REFL_TAG(71005ca048);
 void fn_71005c9c4c(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::CClass* fn_71005c4db4();
+const base::reflection::CClass* fn_71005c49d4();
+extern base::reflection::CType g_unk_71726ec150;
+void fn_71005c9d44(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fTimeToReloadBeam", true), fn_710000abbc(), 0x50c, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 20.0f);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("sProjectileModelName", true), fn_7100009658(), 0x510, -1, -1);
+    field1->attrs.Add<const char*>(fn_7100075240(), "MESH_Projectile");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("oInfesterShootAttackDef", true), fn_71005c4db4(), 0x520, -1, -1);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("oInfesterReloadAttackDef", true), fn_71005c49d4(), 0x610, -1, -1);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("eSubspecies", true), &g_unk_71726ec150, 0x518, -1, -1);
+    field4->attrs.Add<s32>(fn_7100075240(), &g_unk_71726ec150, 2147483647);
+}
 bool fn_71005ca450(const void*, const void*) { return false; }
 s32 fn_71005ca458() { return -1; }
 const base::reflection::CType& fn_71005ca460(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

@@ -2,12 +2,26 @@
 // Reflection descriptors for one original translation unit (2 types):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassMagnetSurfaceHuskComponent
 DREAD_REFL_TAG(71009234cc);
 void fn_71009231c0(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_71009232b8(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sHuskName", true), fn_7100009658(), 0x58, -1, -1);
+    field0->attrs.Add<CStrId>(fn_7100075240(), CStrId("cover_magnet_cv_002_HUSK", true));
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("sBrokenHuskName", true), fn_7100009658(), 0x60, -1, -1);
+    field1->attrs.Add<CStrId>(fn_7100075240(), CStrId("cover_magnet_cv_002", true));
+}
 bool fn_7100924000(const void*, const void*) { return false; }
 s32 fn_7100924008() { return -1; }
 const base::reflection::CType& fn_7100924010(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
@@ -36,6 +50,28 @@ DREAD_REFL_CLASS_GETTER(71009231c4, 71009234cc, "CCharClassMagnetSurfaceHuskComp
 // CCharClassMagnetSurfaceHuskComponent::CTunableCharClassMagnetSurfaceHuskComponent
 DREAD_REFL_TAG(7100923924);
 void fn_7100923650(base::reflection::CClass*) {}
+extern bool g_unk_7172737a30;
+extern UnkTunableRegistry* g_unk_7101d47350;
+extern UnkTunable g_unk_7172737a00;
+void fn_7100923aa8(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+void fn_7100923748(CClass* cls) {
+    if (g_unk_7172737a30)
+        return;
+    g_unk_7172737a30 = true;
+    if (!cls)
+        return;
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fTimeToRespawn", true), fn_710000abbc(), 0x24, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 5.0f);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fTimeToRespawnAfterMagnet", true), fn_710000abbc(), 0x28, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 0.5f);
+    UnkTunableRegistry* registry = g_unk_7101d47350;
+    if (!registry) {
+        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
+        fn_710013ac14(registry);
+        g_unk_7101d47350 = registry;
+    }
+    fn_7100923aa8(registry, &g_unk_7172737a00, "MagnetSurfaceHusk");
+}
 bool fn_710092407c(const void*, const void*) { return false; }
 s32 fn_7100924084() { return -1; }
 const base::reflection::CType& fn_710092408c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

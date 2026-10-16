@@ -2,12 +2,58 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // behaviortree::CInPathPatrolAction
 DREAD_REFL_TAG(710038b2ec);
 void fn_710038a810(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+void fn_710038a908(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fReachedDistance", true), fn_710000abbc(), 0x64, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 10.0f);
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Reach distance");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("sGrazeInitAction", true), fn_7100009658(), 0x68, -1, -1);
+    field1->attrs.Add<const char*>(fn_7100075240(), "");
+    field1->attrs.Add<const char*>(fn_7100007e80(), "Name of the action to init grazing");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("sGrazeEndAction", true), fn_7100009658(), 0x70, -1, -1);
+    field2->attrs.Add<const char*>(fn_7100075240(), "");
+    field2->attrs.Add<const char*>(fn_7100007e80(), "Name of the action to end grazing");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("sMinTimeBetweenGrazings", true), fn_7100009658(), 0x78, -1, -1);
+    field3->attrs.Add<const char*>(fn_7100075240(), "");
+    field3->attrs.Add<const char*>(fn_7100007e80(), "(Variable) Min random time (s) between grazings");
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("sMaxTimeBetweenGrazings", true), fn_7100009658(), 0x80, -1, -1);
+    field4->attrs.Add<const char*>(fn_7100075240(), "");
+    field4->attrs.Add<const char*>(fn_7100007e80(), "(Variable) Max random time (s) between grazings");
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("sMinTimeGrazing", true), fn_7100009658(), 0x88, -1, -1);
+    field5->attrs.Add<const char*>(fn_7100075240(), "");
+    field5->attrs.Add<const char*>(fn_7100007e80(), "(Variable) Min random time (s) grazing");
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("sMaxTimeGrazing", true), fn_7100009658(), 0x90, -1, -1);
+    field6->attrs.Add<const char*>(fn_7100075240(), "");
+    field6->attrs.Add<const char*>(fn_7100007e80(), "(Variable) Max random time (s) grazing");
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("bStopInAbort", true), fn_710000d228(), 0x98, -1, -1);
+    field7->attrs.Add<bool>(fn_7100075240(), false);
+    field7->attrs.Add<const char*>(fn_7100007e80(), "Stop movement in abort");
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("bWantsModifyPathIfTargetNear", true), fn_710000d228(), 0x99, -1, -1);
+    field8->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("bCheckDirToMove", true), fn_710000d228(), 0xc8, -1, -1);
+    field9->attrs.Add<bool>(fn_7100075240(), false);
+    field9->attrs.Add<const char*>(fn_7100007e80(), "Check dir to init movement");
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("bAlwaysInDir", true), fn_710000d228(), 0xc9, -1, -1);
+    field10->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field11 = fn_7100096524(cls, CStrId("fMaxDistToModifyPath", true), fn_710000abbc(), 0xcc, -1, -1);
+    field11->attrs.Add<f32>(fn_7100075240(), 250.0f);
+    UnkReflField* field12 = fn_7100096524(cls, CStrId("fMinDist2GoAway", true), fn_710000abbc(), 0xd0, -1, -1);
+    field12->attrs.Add<f32>(fn_7100075240(), 300.0f);
+}
 bool fn_710038d3d8(const void*, const void*) { return false; }
 s32 fn_710038d3e0() { return -1; }
 const base::reflection::CType& fn_710038d3e8(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

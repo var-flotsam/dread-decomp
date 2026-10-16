@@ -2,12 +2,30 @@
 // Reflection descriptors for one original translation unit (2 types):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassRodotukAIComponent
 DREAD_REFL_TAG(710066d0c8);
 void fn_710066cd70(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+extern base::reflection::CType g_unk_71726ff368;
+const base::reflection::CClass* fn_71006695e4();
+void fn_710066ce68(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fBiteAnticipationDistance", true), fn_710000abbc(), 0x50c, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 400.0f);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fBombForceExplosionDistance", true), fn_710000abbc(), 0x510, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 50.0f);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("vAbsorbConfigs", true), &g_unk_71726ff368, 0x518, -1, -1);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("oRodotukSuckAttackDef", true), fn_71006695e4(), 0x540, -1, -1);
+}
 bool fn_71006707bc(const void*, const void*) { return false; }
 s32 fn_71006707c4() { return -1; }
 const base::reflection::CType& fn_71006707cc(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
@@ -32,6 +50,44 @@ DREAD_REFL_CLASS_GETTER(710066cd74, 710066d0c8, "CCharClassRodotukAIComponent", 
 // CCharClassRodotukAIComponent::CTunableCharClassRodotukAIComponent
 DREAD_REFL_TAG(710066da0c);
 void fn_710066d228(base::reflection::CClass*) {}
+extern bool g_unk_71726fee40;
+extern UnkTunableRegistry* g_unk_7101d47350;
+extern UnkTunable g_unk_71726fedf0;
+void fn_710066db90(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+void fn_710066d320(CClass* cls) {
+    if (g_unk_71726fee40)
+        return;
+    g_unk_71726fee40 = true;
+    if (!cls)
+        return;
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fBaseAbsorbDistance", true), fn_710000abbc(), 0x28, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 800.0f);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fAngryAbsorbDistance", true), fn_710000abbc(), 0x3c, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 1000.0f);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fMaxAbsorbAngle", true), fn_710000abbc(), 0x24, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 45.0f);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fAbsorbBaseSpeed", true), fn_710000abbc(), 0x2c, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 500.0f);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fAbsorbMaxSpeed", true), fn_710000abbc(), 0x30, -1, -1);
+    field4->attrs.Add<f32>(fn_7100075240(), 5000.0f);
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("fAbsorbTimeToLoseControl", true), fn_710000abbc(), 0x34, -1, -1);
+    field5->attrs.Add<f32>(fn_7100075240(), 2.0f);
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("fAbsorbAcceleration", true), fn_710000abbc(), 0x38, -1, -1);
+    field6->attrs.Add<f32>(fn_7100075240(), 400.0f);
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("fBombAbsorbBaseSpeed", true), fn_710000abbc(), 0x40, -1, -1);
+    field7->attrs.Add<f32>(fn_7100075240(), 1000.0f);
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("fBombAbsorbAcceleration", true), fn_710000abbc(), 0x44, -1, -1);
+    field8->attrs.Add<f32>(fn_7100075240(), 800.0f);
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("fBiteAnticipationDistance", true), fn_710000abbc(), 0x48, -1, -1);
+    field9->attrs.Add<f32>(fn_7100075240(), 400.0f);
+    UnkTunableRegistry* registry = g_unk_7101d47350;
+    if (!registry) {
+        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
+        fn_710013ac14(registry);
+        g_unk_7101d47350 = registry;
+    }
+    fn_710066db90(registry, &g_unk_71726fedf0, "Rodotuk");
+}
 bool fn_7100670860(const void*, const void*) { return false; }
 s32 fn_7100670868() { return -1; }
 const base::reflection::CType& fn_7100670870(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

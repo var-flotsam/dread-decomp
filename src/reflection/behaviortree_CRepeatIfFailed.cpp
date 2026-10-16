@@ -2,12 +2,26 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // behaviortree::CRepeatIfFailed
 DREAD_REFL_TAG(71003a5c58);
 void fn_71003a5a60(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+void fn_71003a5b58(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("bWait", true), fn_710000d228(), 0x38, -1, -1);
+    field0->attrs.Add<bool>(fn_7100075240(), false);
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Wait one tick after child finished");
+}
 bool fn_71003a5f38(const void*, const void*) { return false; }
 s32 fn_71003a5f40() { return -1; }
 const base::reflection::CType& fn_71003a5f48(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

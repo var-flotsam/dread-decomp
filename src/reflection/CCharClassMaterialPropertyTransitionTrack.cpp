@@ -2,11 +2,67 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassMaterialPropertyTransitionTrack
 DREAD_REFL_TAG(7100d1850c);
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+const base::reflection::UnkReflAttrKey& fn_7100090e60();
+void fn_7100d17470(CClass* cls) {
+    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Material Property Transition");
+    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090e60(), CStrId("Material", true));
+}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_7100d1764c(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fColorR1", true), fn_710000abbc(), 0x18, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fColorG1", true), fn_710000abbc(), 0x1c, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fColorB1", true), fn_710000abbc(), 0x20, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fAlpha1", true), fn_710000abbc(), 0x24, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("sName1", true), fn_7100009658(), 0x28, -1, -1);
+    field4->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("sProperty1", true), fn_7100009658(), 0x30, -1, -1);
+    field5->attrs.Add<CStrId>(fn_7100075240(), CStrId("Constant0Color", true));
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("fColorR2", true), fn_710000abbc(), 0x38, -1, -1);
+    field6->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("fColorG2", true), fn_710000abbc(), 0x3c, -1, -1);
+    field7->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("fColorB2", true), fn_710000abbc(), 0x40, -1, -1);
+    field8->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("fAlpha2", true), fn_710000abbc(), 0x44, -1, -1);
+    field9->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("sName2", true), fn_7100009658(), 0x48, -1, -1);
+    field10->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    UnkReflField* field11 = fn_7100096524(cls, CStrId("sProperty2", true), fn_7100009658(), 0x50, -1, -1);
+    field11->attrs.Add<CStrId>(fn_7100075240(), CStrId("Constant0Color", true));
+    UnkReflField* field12 = fn_7100096524(cls, CStrId("fColorR3", true), fn_710000abbc(), 0x58, -1, -1);
+    field12->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    UnkReflField* field13 = fn_7100096524(cls, CStrId("fColorG3", true), fn_710000abbc(), 0x5c, -1, -1);
+    field13->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    UnkReflField* field14 = fn_7100096524(cls, CStrId("fColorB3", true), fn_710000abbc(), 0x60, -1, -1);
+    field14->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    UnkReflField* field15 = fn_7100096524(cls, CStrId("fAlpha3", true), fn_710000abbc(), 0x64, -1, -1);
+    field15->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    UnkReflField* field16 = fn_7100096524(cls, CStrId("sName3", true), fn_7100009658(), 0x68, -1, -1);
+    field16->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    UnkReflField* field17 = fn_7100096524(cls, CStrId("sProperty3", true), fn_7100009658(), 0x70, -1, -1);
+    field17->attrs.Add<CStrId>(fn_7100075240(), CStrId("Constant0Color", true));
+    UnkReflField* field18 = fn_7100096524(cls, CStrId("fIn", true), fn_710000abbc(), 0x78, -1, -1);
+    field18->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    UnkReflField* field19 = fn_7100096524(cls, CStrId("fOut", true), fn_710000abbc(), 0x7c, -1, -1);
+    field19->attrs.Add<f32>(fn_7100075240(), 0.0f);
+}
 bool fn_7100d1896c(const void* a, const void* b) { return a == b; }
 s32 fn_7100d18978() { return -1; }
 const base::reflection::CType& fn_7100d18980(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

@@ -2,12 +2,52 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassInfesterBallAIComponent
 DREAD_REFL_TAG(71005cddb0);
 void fn_71005cd2fc(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_71005cd3f4(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fLifeTime", true), fn_710000abbc(), 0x50c, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 5.0f);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fExplosionRadius", true), fn_710000abbc(), 0x510, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 100.0f);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fTimeToExplosion", true), fn_710000abbc(), 0x514, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 0.1f);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fTimeAtMaxRadiusExplosion", true), fn_710000abbc(), 0x518, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 0.2f);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fDamageInfesterBallExplosion", true), fn_710000abbc(), 0x51c, -1, -1);
+    field4->attrs.Add<f32>(fn_7100075240(), 20.0f);
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("bChangeDirOnLand", true), fn_710000d228(), 0x520, -1, -1);
+    field5->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("fXImpulseInWallSpawn", true), fn_710000abbc(), 0x524, -1, -1);
+    field6->attrs.Add<f32>(fn_7100075240(), 100.0f);
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("bNotExplodeInWallCollision", true), fn_710000d228(), 0x528, -1, -1);
+    field7->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("iNumCollisionsToExplode", true), fn_7100014768(), 0x52c, -1, -1);
+    field8->attrs.Add<s32>(fn_7100075240(), 3);
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("iNumWallCollisions", true), fn_7100014768(), 0x530, -1, -1);
+    field9->attrs.Add<s32>(fn_7100075240(), 2);
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("bExplodeInVerticalTunnelCollision", true), fn_710000d228(), 0x529, -1, -1);
+    field10->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field11 = fn_7100096524(cls, CStrId("fTunnelImpulseFactor", true), fn_710000abbc(), 0x534, -1, -1);
+    field11->attrs.Add<f32>(fn_7100075240(), 0.5f);
+    UnkReflField* field12 = fn_7100096524(cls, CStrId("fReboundInWallFactor", true), fn_710000abbc(), 0x538, -1, -1);
+    field12->attrs.Add<f32>(fn_7100075240(), 0.5f);
+    UnkReflField* field13 = fn_7100096524(cls, CStrId("fReboundInGroundFactor", true), fn_710000abbc(), 0x53c, -1, -1);
+    field13->attrs.Add<f32>(fn_7100075240(), 0.5f);
+    UnkReflField* field14 = fn_7100096524(cls, CStrId("fReboundInSlopeFactor", true), fn_710000abbc(), 0x540, -1, -1);
+    field14->attrs.Add<f32>(fn_7100075240(), 0.5f);
+}
 bool fn_71005cdf64(const void*, const void*) { return false; }
 s32 fn_71005cdf6c() { return -1; }
 const base::reflection::CType& fn_71005cdf74(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

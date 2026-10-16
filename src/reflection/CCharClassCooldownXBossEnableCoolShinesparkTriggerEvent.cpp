@@ -2,11 +2,29 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassCooldownXBossEnableCoolShinesparkTriggerEvent
 DREAD_REFL_TAG(7100ba3dc8);
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+const base::reflection::UnkReflAttrKey& fn_7100090d50();
+void fn_7100ba3b60(CClass* cls) {
+    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "CooldownXBoss Enable Cool Shinespark Trigger");
+    fn_710009dd6c(cls)->Add<const char*>(fn_7100090d50(), "Enemy own actions");
+}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_7100ba3cf0(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("bEnable", true), fn_710000d228(), 0xc, -1, -1);
+    field0->attrs.Add<bool>(fn_7100075240(), true);
+}
 bool fn_7100ba4000(const void* a, const void* b) { return a == b; }
 s32 fn_7100ba400c() { return -1; }
 const base::reflection::CType& fn_7100ba4014(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

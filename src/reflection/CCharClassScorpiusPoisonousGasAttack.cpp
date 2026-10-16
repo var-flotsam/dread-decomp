@@ -2,12 +2,26 @@
 // Reflection descriptors for one original translation unit (2 types):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassScorpiusPoisonousGasAttack
 DREAD_REFL_TAG(7100680e30);
 void fn_7100680bb8(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_7100680cb0(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sChargeAttackAnim", true), fn_7100009658(), 0xf8, -1, -1);
+    field0->attrs.Add<const char*>(fn_7100075240(), "");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("sAfterChargeAttackAnim", true), fn_7100009658(), 0x100, -1, -1);
+    field1->attrs.Add<const char*>(fn_7100075240(), "");
+}
 bool fn_7100681dd8(const void* a, const void* b) { return a == b; }
 s32 fn_7100681de4() { return -1; }
 const base::reflection::CType& fn_7100681dec(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
@@ -32,6 +46,40 @@ DREAD_REFL_CLASS_GETTER(7100680bbc, 7100680e30, "CCharClassScorpiusPoisonousGasA
 // CCharClassScorpiusPoisonousGasAttack::CTunableCharClassScorpiusPoisonousGasAttack
 DREAD_REFL_TAG(7100681630);
 void fn_7100680f90(base::reflection::CClass*) {}
+extern bool g_unk_7172702070;
+extern UnkTunableRegistry* g_unk_7101d47350;
+extern UnkTunable g_unk_7172702030;
+void fn_71006817b4(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+void fn_7100681088(CClass* cls) {
+    if (g_unk_7172702070)
+        return;
+    g_unk_7172702070 = true;
+    if (!cls)
+        return;
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("bEnabled", true), fn_710000d228(), 0x21, -1, -1);
+    field0->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fMinAttackDistance", true), fn_710000abbc(), 0x24, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fMaxAttackDistance", true), fn_710000abbc(), 0x28, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 500.0f);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fAttackTime", true), fn_710000abbc(), 0x2c, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 5.0f);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fShockWaveLength", true), fn_710000abbc(), 0x30, -1, -1);
+    field4->attrs.Add<f32>(fn_7100075240(), 900.0f);
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("fShockWaveTimeGrowing", true), fn_710000abbc(), 0x34, -1, -1);
+    field5->attrs.Add<f32>(fn_7100075240(), 0.5f);
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("fShockWaveTimeAtMaxRadius", true), fn_710000abbc(), 0x38, -1, -1);
+    field6->attrs.Add<f32>(fn_7100075240(), 6.0f);
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("fMinChargingTime", true), fn_710000abbc(), 0x3c, -1, -1);
+    field7->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    UnkTunableRegistry* registry = g_unk_7101d47350;
+    if (!registry) {
+        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
+        fn_710013ac14(registry);
+        g_unk_7101d47350 = registry;
+    }
+    fn_71006817b4(registry, &g_unk_7172702030, "Scorpius");
+}
 bool fn_7100681e18(const void*, const void*) { return false; }
 s32 fn_7100681e20() { return -1; }
 const base::reflection::CType& fn_7100681e28(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

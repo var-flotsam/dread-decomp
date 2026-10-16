@@ -2,11 +2,33 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassKraidSetOpenMouthFactorEvent
 DREAD_REFL_TAG(7100bba2dc);
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+const base::reflection::UnkReflAttrKey& fn_7100090d50();
+void fn_7100bb9fe0(CClass* cls) {
+    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Set Open Mouth Factor");
+    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("Kraid", true));
+}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100091080();
+const base::reflection::UnkReflAttrKey& fn_7100091190();
+void fn_7100bba1bc(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fFactor", true), fn_710000abbc(), 0xc, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field0->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    field0->attrs.Add<f32>(fn_7100091190(), 1.0f);
+}
 bool fn_7100bba514(const void* a, const void* b) { return a == b; }
 s32 fn_7100bba520() { return -1; }
 const base::reflection::CType& fn_7100bba528(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

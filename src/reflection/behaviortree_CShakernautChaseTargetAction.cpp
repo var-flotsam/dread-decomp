@@ -2,12 +2,50 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // behaviortree::CShakernautChaseTargetAction
 DREAD_REFL_TAG(71006aa85c);
 void fn_71006aa000(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+void fn_71006aa0f8(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("bMaintainViewDirOnReached", true), fn_710000d228(), 0x48, -1, -1);
+    field0->attrs.Add<bool>(fn_7100075240(), false);
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Maintain View Dir On Reached");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("bIgnoreTargetAccesible", true), fn_710000d228(), 0x49, -1, -1);
+    field1->attrs.Add<bool>(fn_7100075240(), false);
+    field1->attrs.Add<const char*>(fn_7100007e80(), "Ignore target accesible");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("bGotoMovingIfNotInFrustum", true), fn_710000d228(), 0x4a, -1, -1);
+    field2->attrs.Add<bool>(fn_7100075240(), false);
+    field2->attrs.Add<const char*>(fn_7100007e80(), "Goto Moving If Not In Frustum");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("bAllowTargetToJumpOver", true), fn_710000d228(), 0x60, -1, -1);
+    field3->attrs.Add<bool>(fn_7100075240(), true);
+    field3->attrs.Add<const char*>(fn_7100007e80(), "Allow Target To Jump Over");
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fMovingToIdleLimitsOffset", true), fn_710000abbc(), 0x64, -1, -1);
+    field4->attrs.Add<f32>(fn_7100075240(), 100.0f);
+    field4->attrs.Add<const char*>(fn_7100007e80(), "Moving to Idle limits offset");
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("bIgnoreNextAttackTimeOnIdle", true), fn_710000d228(), 0x68, -1, -1);
+    field5->attrs.Add<bool>(fn_7100075240(), false);
+    field5->attrs.Add<const char*>(fn_7100007e80(), "Reset Next Attack Time On Idle");
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("fMinDist", true), fn_710000abbc(), 0x6c, -1, -1);
+    field6->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    field6->attrs.Add<const char*>(fn_7100007e80(), "Chase min dist");
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("fMaxDist", true), fn_710000abbc(), 0x70, -1, -1);
+    field7->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    field7->attrs.Add<const char*>(fn_7100007e80(), "Chase max dist");
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("fCenterDistance", true), fn_710000abbc(), 0x74, -1, -1);
+    field8->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    field8->attrs.Add<const char*>(fn_7100007e80(), "Chase center dist");
+}
 bool fn_71006ab9e8(const void*, const void*) { return false; }
 s32 fn_71006ab9f0() { return -1; }
 const base::reflection::CType& fn_71006ab9f8(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

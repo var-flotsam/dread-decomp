@@ -2,12 +2,24 @@
 // Reflection descriptors for one original translation unit (2 types):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassScorpiusSpikeBallPrickAttack
 DREAD_REFL_TAG(71006834a4);
 void fn_71006832d8(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_71006833d0(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sMagnetAttackAnim", true), fn_7100009658(), 0xf8, -1, -1);
+    field0->attrs.Add<const char*>(fn_7100075240(), "");
+}
 bool fn_71006843d4(const void* a, const void* b) { return a == b; }
 s32 fn_71006843e0() { return -1; }
 const base::reflection::CType& fn_71006843e8(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
@@ -32,6 +44,55 @@ DREAD_REFL_CLASS_GETTER(71006832dc, 71006834a4, "CCharClassScorpiusSpikeBallPric
 // CCharClassScorpiusSpikeBallPrickAttack::CTunableCharClassScorpiusSpikeBallPrickAttack
 DREAD_REFL_TAG(7100683d14);
 void fn_7100683604(base::reflection::CClass*) {}
+extern bool g_unk_7172702640;
+const base::reflection::UnkReflAttrKey& fn_7100093280();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+const base::reflection::UnkReflAttrKey& fn_71003ba540();
+const base::reflection::UnkReflAttrKey& fn_7100091080();
+const base::reflection::UnkReflAttrKey& fn_7100091190();
+const base::reflection::UnkReflAttrKey& fn_7100324af0();
+extern UnkTunableRegistry* g_unk_7101d47350;
+extern UnkTunable g_unk_7172702608;
+void fn_7100683e98(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+void fn_71006836fc(CClass* cls) {
+    if (g_unk_7172702640)
+        return;
+    g_unk_7172702640 = true;
+    if (!cls)
+        return;
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("bEnabled", true), fn_710000d228(), 0x21, -1, -1);
+    field0->attrs.Add<bool>(fn_7100075240(), true);
+    field0->attrs.Add<bool>(fn_7100093280(), true);
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Enabled");
+    field0->attrs.Add<const char*>(fn_71003ba540(), "Bosses|Scorpius|SpikeBall");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fMinAttackDistance", true), fn_710000abbc(), 0x24, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    field1->attrs.Add<bool>(fn_7100093280(), true);
+    field1->attrs.Add<const char*>(fn_7100007e80(), "Min distance");
+    field1->attrs.Add<f32>(fn_7100091080(), -1.0f);
+    field1->attrs.Add<f32>(fn_7100091190(), 2000.0f);
+    field1->attrs.Add<f32>(fn_7100324af0(), 50.0f);
+    field1->attrs.Add<const char*>(fn_71003ba540(), "Bosses|Scorpius|SpikeBall");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fMaxAttackDistance", true), fn_710000abbc(), 0x28, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 500.0f);
+    field2->attrs.Add<bool>(fn_7100093280(), true);
+    field2->attrs.Add<const char*>(fn_7100007e80(), "Max distance");
+    field2->attrs.Add<f32>(fn_7100091080(), -1.0f);
+    field2->attrs.Add<f32>(fn_7100091190(), 2000.0f);
+    field2->attrs.Add<f32>(fn_7100324af0(), 50.0f);
+    field2->attrs.Add<const char*>(fn_71003ba540(), "Bosses|Scorpius|SpikeBall");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fTimeToDisableAttackAfterMeleeSuccess", true), fn_710000abbc(), 0x2c, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 50.0f);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fFrameToReleaseTail", true), fn_710000abbc(), 0x30, -1, -1);
+    field4->attrs.Add<f32>(fn_7100075240(), 136.0f);
+    UnkTunableRegistry* registry = g_unk_7101d47350;
+    if (!registry) {
+        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
+        fn_710013ac14(registry);
+        g_unk_7101d47350 = registry;
+    }
+    fn_7100683e98(registry, &g_unk_7172702608, "Scorpius");
+}
 bool fn_7100684414(const void*, const void*) { return false; }
 s32 fn_710068441c() { return -1; }
 const base::reflection::CType& fn_7100684424(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

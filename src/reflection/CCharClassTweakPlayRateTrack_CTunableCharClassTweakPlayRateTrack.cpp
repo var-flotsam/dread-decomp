@@ -2,8 +2,15 @@
 // Reflection descriptors for one original translation unit (2 types):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassTweakPlayRateTrack::CTunableCharClassTweakPlayRateTrack
 DREAD_REFL_TAG(7100c61038);
@@ -35,6 +42,18 @@ DREAD_REFL_CLASS_GETTER(7100c5eb84, 7100c61038, "CCharClassTweakPlayRateTrack::C
 
 // CCharClassTweakPlayRateTrack
 DREAD_REFL_TAG(7100c6189c);
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+const base::reflection::UnkReflAttrKey& fn_7100090e60();
+void fn_7100c6155c(CClass* cls) {
+    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Use Tunable Play Rate");
+    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090e60(), CStrId("Animation", true));
+}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_7100c61738(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sTunableId", true), fn_7100009658(), 0x18, -1, -1);
+    field0->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Tunable within CTunableCharClassTweakPlayRateTrack to use when modifying play rate. Uses default tunable when not found");
+}
 bool fn_7100c61c18(const void* a, const void* b) { return a == b; }
 s32 fn_7100c61c24() { return -1; }
 const base::reflection::CType& fn_7100c61c2c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

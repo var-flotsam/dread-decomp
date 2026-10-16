@@ -4,7 +4,7 @@ For the next developer, human or AI, picking up this project. Read this, then `C
 (rules and conventions), `docs/recon.md` (what's in the binary), `docs/compiler.md`
 (toolchain), and `docs/references.md` (outside projects).
 
-Snapshot as of 2026-10-16 (second Phase 4 session; last commit `Phase 4.3: match the uniform per-type reflection helpers`). Target: **Metroid Dread 2.1.0**, `main` build ID
+Snapshot as of 2026-10-16 (second Phase 4 session; last commit `Phase 4.3: match reflection attribute and member-field functions`). Target: **Metroid Dread 2.1.0**, `main` build ID
 `646761F643AFEBB379EDD5E6A5151AF2CEF93DC1`.
 
 ## Where things stand
@@ -17,13 +17,13 @@ Snapshot as of 2026-10-16 (second Phase 4 session; last commit `Phase 4.3: match
 | Tooling for Phase 4 | **Done.** `tools/check.py` (build + status), objdiff (`tools/objdiff_gen.py`), whole-binary progress (`tools/progress.py`) |
 | 4.1 System headers | **Done.** `lib/nnsdk` + `lib/musl` submodules, libc++ 9.0.1 headers, `tools/buildcfg.py` |
 | 4.2 Lua | **Done.** Upstream 5.1.4 vendored in `lib/lua/` (2 marked config changes); 286 Lua functions located in `main` by `tools/sigmatch.py` (status `L`) |
-| 4.3 Reflection | **In progress.** 1,809 of 2,346 class getters, their 1,809 descriptor constructors and 11,497 per-type helpers generated and byte-identical (`src/reflection/`, `tools/gen_reflection.py`). Next: the non-uniform helpers (below) |
+| 4.3 Reflection | **In progress.** 1,809 of 2,346 class getters, their 1,809 descriptor constructors, 11,497 per-type helpers and 1,367 of 1,574 attribute/member-field functions generated and byte-identical (`src/reflection/`, `tools/gen_reflection.py`, `tools/refl_attrs.py`). Next: property functions and the remaining helpers (below) |
 | 4.4+ Boot to title screen | Not started; plan below |
 | Port | Not started (`port/` is empty) |
 
-Function status (BotW codes): `O` 15,136, `m` 4, `M` 1, `L` 1,614, `U` 87,262.
-**Game-code progress: 6.64% of bytes (1.25 MB) matching** (`tools/progress.py`; library code
-excluded). `tools/check.py` reports 15,145 `O` in `src/` because the matching `nn::atk`
+Function status (BotW codes): `O` 16,503, `m` 4, `M` 1, `L` 1,614, `U` 85,895.
+**Game-code progress: 10.38% of bytes (1.95 MB) matching** (`tools/progress.py`; library code
+excluded). `tools/check.py` reports 16,512 `O` in `src/` because the matching `nn::atk`
 functions and a few others keep `L`.
 
 ## Hard rules (summary; full text in CLAUDE.md)
@@ -61,6 +61,9 @@ include/base/reflection/CClass.h   CType/CClass layout, getter macro, descriptor
 lib/lua/                  vendored upstream Lua 5.1.4 (MIT) + README listing the game's changes
 tools/sigmatch.py         names vendored-library functions in main -> data/library_symbols.csv
 tools/gen_reflection.py   regenerates src/reflection/ from main (skipped TUs: build/reflection_tus.json)
+tools/refl_attrs.py       reconstructs attribute/member-field functions; keeps only byte-identical ones
+include/base/global/CStrId.h            base::global::CStrId (pooled, refcounted string id)
+include/base/reflection/UnkReflAttributes.h   attribute keys/values, AddField, tunable registry
 lib/nnsdk/                open-ead/nnsdk submodule: community NintendoSDK declarations (no license; referenced, not copied)
 lib/musl/                 open-ead/botw-lib-musl submodule: musl 1.2.2 C headers (MIT)
 tools/buildcfg.py         the one place that defines compiler, flags and include paths
@@ -126,7 +129,17 @@ The output of `gen_functions_csv.py` is reproducible (only `status` is carried o
 - **The getter's x3/x4 functions are not create/destroy** (as first assumed): both receive the
   descriptor. x3 (`CType+0x70`) adds class attributes to the lazily created container at
   `CType+0x80` (`fn_710009dd6c`); x4 (`CClass+0xe0`) registers member fields
-  (`fn_7100096524`: name, type getter, offset). Most are empty.
+  (`fn_7100096524`: name, type, offset, -1, -1; returns the field, whose attributes are at +0x38).
+  Most are empty. An attribute is `attrs->Add<T>(KEY(), value)`: the key getters are guarded statics
+  named by their strings ("Description", "DefaultValue", "MinValue", ...), the value goes to
+  `fn_71000934b8` as {type descriptor, pointer}. Enum values are typed by a global descriptor or an
+  enum type getter. Matching facts: `AddField` takes the name `CStrId` **by value** (Clang 9 gives
+  indirect by-value argument temporaries no lifetime markers, so the slot isn't shared); `Add` takes
+  the value by const reference and passes the {type, ptr} pair as a temporary. The CTunable* classes'
+  field functions start with a run-once global flag and end by registering with a lazily created
+  global registry (`fn_71000839a0(0x58, 0x3f)` + `fn_710013ac14`).
+- **`UnkReflName` is `base::global::CStrId`**: `fn_71000003d4` builds the values that
+  `refl_GetType<base::global::CStrId>` (`fn_7100009658`) describes.
 - **Memory:** 1.82 GB `.bss`. The engine reserves its memory statically.
 - **Internal codename:** "cazadora" (from a leftover Perforce build path).
 
@@ -155,14 +168,16 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
 
 ## Next steps
 
-1. **Non-uniform reflection helpers.** Done: every helper with a uniform shape is generated
-   (`HELPER_SHAPES` in `tools/gen_reflection.py`: 0x58, 0x60, 0x68, 0x40, the empty 0x30/0x38,
-   the null 0x48/0x50, and the empty x3/x4 functions), 11,497 functions, all `O`. Remaining in
-   the generated TUs, in rough order of payoff:
-   - x3 attribute functions: 636 share one 232-byte shape (two attributes: a type getter
-     `fn_7100007e80`/`fn_7100090e60`, a name, insert `fn_71000934b8`); 61 a 39-instruction one.
-     Needs the attribute container, `CStrId` and the primitive type getters (step 4).
-   - x4 member-field functions (845, many shapes): `fn_7100096524` + per-field attributes.
+1. **Remaining reflection helpers.** Done: the uniform helpers (`HELPER_SHAPES` in
+   `tools/gen_reflection.py`, 11,497) and 1,367 of the 1,574 non-empty x3/x4 functions
+   (`tools/refl_attrs.py`: parses each function into statements, compiles all candidates in one
+   scratch TU, keeps only byte-identical ones; objdiff confirms every call target). Remaining, in
+   rough order of payoff:
+   - **Property functions** (95 x4 functions, 267 KB): `fn_7100097550(cls, CStrId)` returns a
+     property object whose name (+0x30, inline CStrId move-assign), type (+0x38), function
+     pointers (+0x40/+0x48) and flags (+0xb2) are set inline. Model that object first.
+   - x3/x4 using `CRntString` (18), `CFilePathStrId`/`CName` (23), vector/colour values (16): need
+     those types' constructors/layouts. 23 contain an indirect branch; 19 others.
    - `0x30`/`0x38`/`0x48`/`0x50` with bodies: inlined copy/assign of each type's fields; need the
      types' layouts. `0x28` (1,765, most 13–19 instructions): constructs, then calls a virtual.
    - Odd ones: CClass/CEnumType/CFlagsetType/CPointerType helpers, a slot-2 destructor
@@ -200,6 +215,10 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
 - Subsystems ending in `?` are guesses, and some `L` markings depend on them.
 - `fn_710083ecf8` needs `fmin` + `b.lt` where Clang emits `fminnm` + `b.mi`. Watch for the pattern;
   it may be a shared math helper.
+- `tools/gen_reflection.py` now needs the project compiler (it verifies attribute-function
+  candidates by compiling them); its output is still deterministic.
+- Generated sources contain the string literals the original code uses (field names, editor
+  descriptions), as the getters already contain type names.
 - **Leftovers for the owner to delete by hand:** `C:\Program Files\Git\tmp_bak.cpp` (a stray
   386-byte copy of `src/compiler_id/fn_7100162300.cpp`, blocked from automatic removal) and the
   empty folder `a folder named dread next to this repository` (locked by a running shell).

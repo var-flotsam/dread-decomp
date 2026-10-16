@@ -2,12 +2,26 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CTrainUsableComponentCutScene
 DREAD_REFL_TAG(7100a9a9d4);
 void fn_7100a9a804(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_71727b6270;
+const base::reflection::UnkReflAttrKey& fn_710025daa0();
+extern base::reflection::CType g_unk_71727bc110;
+void fn_7100a9a8fc(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("wpCutScenePlayer", true), &g_unk_71727b6270, 0x570, -1, -1);
+    field0->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 1);
+}
 bool fn_7100a9b2dc(const void*, const void*) { return false; }
 s32 fn_7100a9b2e4() { return -1; }
 const base::reflection::CType& fn_7100a9b2ec(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

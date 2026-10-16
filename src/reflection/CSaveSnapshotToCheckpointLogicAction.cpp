@@ -2,12 +2,33 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CSaveSnapshotToCheckpointLogicAction
 DREAD_REFL_TAG(7100a426a0);
 void fn_7100a42230(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+extern base::reflection::CType g_unk_717269bb48;
+const base::reflection::UnkReflAttrKey& fn_710025daa0();
+extern base::reflection::CType g_unk_71727bc110;
+void fn_7100a42328(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sSnapshotId", true), fn_7100009658(), 0x10, -1, -1);
+    field0->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("sCheckpointKey", true), fn_7100009658(), 0x18, -1, -1);
+    field1->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("wpStartPoint", true), &g_unk_717269bb48, 0x20, -1, -1);
+    field2->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 0);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("bForce", true), fn_710000d228(), 0x60, -1, -1);
+    field3->attrs.Add<bool>(fn_7100075240(), false);
+}
 bool fn_7100a42c88(const void* a, const void* b) { return a == b; }
 s32 fn_7100a42c94() { return -1; }
 const base::reflection::CType& fn_7100a42c9c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

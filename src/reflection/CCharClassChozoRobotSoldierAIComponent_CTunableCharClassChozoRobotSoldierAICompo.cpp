@@ -2,12 +2,64 @@
 // Reflection descriptors for one original translation unit (2 types):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassChozoRobotSoldierAIComponent::CTunableCharClassChozoRobotSoldierAIComponent
 DREAD_REFL_TAG(710046d5a0);
 void fn_710046cbd0(base::reflection::CClass*) {}
+extern bool g_unk_71726cc730;
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+extern UnkTunableRegistry* g_unk_7101d47350;
+extern UnkTunable g_unk_71726cc6d8;
+void fn_710046d724(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+void fn_710046ccc8(CClass* cls) {
+    if (g_unk_71726cc730)
+        return;
+    g_unk_71726cc730 = true;
+    if (!cls)
+        return;
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fMinTimeToStartChargeBeam", true), fn_710000abbc(), 0x24, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 10.0f);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fMaxTimeToStartChargeBeam", true), fn_710000abbc(), 0x28, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 13.0f);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fTimeToChargeBeam", true), fn_710000abbc(), 0x2c, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 0.5f);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fExplosionRadius", true), fn_710000abbc(), 0x30, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 500.0f);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fExplosionTimeToReachRadius", true), fn_710000abbc(), 0x34, -1, -1);
+    field4->attrs.Add<f32>(fn_7100075240(), 0.1f);
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("fExplosionTimeAtMaxRadius", true), fn_710000abbc(), 0x38, -1, -1);
+    field5->attrs.Add<f32>(fn_7100075240(), 0.2f);
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("fCoreDamageFactor", true), fn_710000abbc(), 0x3c, -1, -1);
+    field6->attrs.Add<f32>(fn_7100075240(), 2.0f);
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("fTimeBetweenAttackGoingToShootingPosition", true), fn_710000abbc(), 0x40, -1, -1);
+    field7->attrs.Add<f32>(fn_7100075240(), 4.0f);
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("fTimeBetweenAttackInShootingPosition", true), fn_710000abbc(), 0x44, -1, -1);
+    field8->attrs.Add<f32>(fn_7100075240(), 2.0f);
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("fRangedAttackAfterMeleeAttackProbability", true), fn_710000abbc(), 0x48, -1, -1);
+    field9->attrs.Add<f32>(fn_7100075240(), 0.5f);
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("fMeleeAttackAfterRangedAttackProbability", true), fn_710000abbc(), 0x4c, -1, -1);
+    field10->attrs.Add<f32>(fn_7100075240(), 0.5f);
+    UnkReflField* field11 = fn_7100096524(cls, CStrId("fChangeToRangedAttackOnSamePlatformProbability", true), fn_710000abbc(), 0x50, -1, -1);
+    field11->attrs.Add<f32>(fn_7100075240(), 0.2f);
+    UnkReflField* field12 = fn_7100096524(cls, CStrId("bAllCanUseChargeBeam", true), fn_710000d228(), 0x54, -1, -1);
+    field12->attrs.Add<bool>(fn_7100075240(), false);
+    UnkTunableRegistry* registry = g_unk_7101d47350;
+    if (!registry) {
+        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
+        fn_710013ac14(registry);
+        g_unk_7101d47350 = registry;
+    }
+    fn_710046d724(registry, &g_unk_71726cc6d8, "ChozoRobotSoldier");
+}
 bool fn_710046e7ec(const void*, const void*) { return false; }
 s32 fn_710046e7f4() { return -1; }
 const base::reflection::CType& fn_710046e7fc(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
@@ -36,6 +88,26 @@ DREAD_REFL_CLASS_GETTER(710046cbd4, 710046d5a0, "CCharClassChozoRobotSoldierAICo
 // CCharClassChozoRobotSoldierAIComponent
 DREAD_REFL_TAG(710046dfd0);
 void fn_710046d9dc(base::reflection::CClass*) {}
+const base::reflection::CClass* fn_710045eb2c();
+const base::reflection::CClass* fn_7100461944();
+const base::reflection::CClass* fn_71004626bc();
+const base::reflection::CClass* fn_7100463c8c();
+const base::reflection::CClass* fn_7100968078();
+const base::reflection::CClass* fn_71002c6910();
+const base::reflection::CClass* fn_71008c1b4c();
+void fn_710046dad4(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("oChozoRobotSoldierCannonShotAttackDef", true), fn_710045eb2c(), 0x528, -1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("oChozoRobotSoldierDashSlashAttackDef", true), fn_7100461944(), 0x640, -1, -1);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("oChozoRobotSoldierDisruptionFieldAttackDef", true), fn_71004626bc(), 0x730, -1, -1);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("oChozoRobotSoldierUppercutAttackDef", true), fn_7100463c8c(), 0x820, -1, -1);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("oRunningAnims", true), fn_7100968078(), 0x920, -1, -1);
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("oShootingPositionQuerySystemDef", true), fn_71002c6910(), 0x960, -1, -1);
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("oSelectedShootingPositionQuerySystemDef", true), fn_71002c6910(), 0x9b8, -1, -1);
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("oNoPathFoundShootingPositionQuerySystemDef", true), fn_71002c6910(), 0xa10, -1, -1);
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("oDamageSourceFactorElite", true), fn_71008c1b4c(), 0xa68, -1, -1);
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("oDamageSourceFactorCrazy", true), fn_71008c1b4c(), 0xad8, -1, -1);
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("oDamageSourceFactorCrazyElite", true), fn_71008c1b4c(), 0xb48, -1, -1);
+}
 bool fn_710046e888(const void*, const void*) { return false; }
 s32 fn_710046e890() { return -1; }
 const base::reflection::CType& fn_710046e898(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

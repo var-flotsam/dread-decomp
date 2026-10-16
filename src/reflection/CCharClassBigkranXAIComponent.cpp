@@ -2,12 +2,44 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassBigkranXAIComponent
 DREAD_REFL_TAG(71003f5ddc);
 void fn_71003f5600(base::reflection::CClass*) {}
+const base::reflection::CClass* fn_71003ef1a4();
+const base::reflection::CClass* fn_71003ef9b4();
+extern base::reflection::CType g_unk_71726a7b48;
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_71003f56f8(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("oBigkranXMagmaRainAttackDef", true), fn_71003ef1a4(), 0x628, -1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("oBigkranXSpitAttackDef", true), fn_71003ef9b4(), 0x730, -1, -1);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("sLaunchConfig", true), &g_unk_71726a7b48, 0x530, -1, -1);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("sLaunchConfig2", true), &g_unk_71726a7b48, 0x578, -1, -1);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("sLaunchConfig3", true), &g_unk_71726a7b48, 0x5c0, -1, -1);
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("fMaxDistance1", true), fn_710000abbc(), 0x608, -1, -1);
+    field5->attrs.Add<f32>(fn_7100075240(), 550.0f);
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("fMaxDistance2", true), fn_710000abbc(), 0x60c, -1, -1);
+    field6->attrs.Add<f32>(fn_7100075240(), 700.0f);
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("sMagmaBallCharClass", true), fn_7100009658(), 0x610, -1, -1);
+    field7->attrs.Add<const char*>(fn_7100075240(), "vulkranmagmaball");
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("fShotHeightOffset", true), fn_710000abbc(), 0x618, -1, -1);
+    field8->attrs.Add<f32>(fn_7100075240(), 45.0f);
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("fReachableHeightBeforeAttack", true), fn_710000abbc(), 0x61c, -1, -1);
+    field9->attrs.Add<f32>(fn_7100075240(), 600.0f);
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("fReachableHeightOnAttack", true), fn_710000abbc(), 0x620, -1, -1);
+    field10->attrs.Add<f32>(fn_7100075240(), 900.0f);
+    UnkReflField* field11 = fn_7100096524(cls, CStrId("fTimeBeforeWarningAttack", true), fn_710000abbc(), 0x624, -1, -1);
+    field11->attrs.Add<f32>(fn_7100075240(), 2.5f);
+}
 bool fn_71003f637c(const void*, const void*) { return false; }
 s32 fn_71003f6384() { return -1; }
 const base::reflection::CType& fn_71003f638c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

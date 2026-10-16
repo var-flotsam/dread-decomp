@@ -2,12 +2,133 @@
 // Reflection descriptors for one original translation unit (2 types):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassGooplotAIComponent::CTunableCharClassGooplotAIComponent
 DREAD_REFL_TAG(7100598594);
 void fn_71005972b8(base::reflection::CClass*) {}
+extern bool g_unk_71726e7310;
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100093280();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+const base::reflection::UnkReflAttrKey& fn_7100091080();
+const base::reflection::UnkReflAttrKey& fn_7100091190();
+const base::reflection::UnkReflAttrKey& fn_7100324af0();
+const base::reflection::UnkReflAttrKey& fn_71003ba540();
+const base::reflection::UnkReflAttrKey& fn_71000916e0();
+const base::reflection::UnkReflAttrKey& fn_71000917f0();
+const base::reflection::UnkReflAttrKey& fn_7100324d10();
+extern UnkTunableRegistry* g_unk_7101d47350;
+extern UnkTunable g_unk_71726e72b8;
+void fn_7100598718(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+void fn_71005973b0(CClass* cls) {
+    if (g_unk_71726e7310)
+        return;
+    g_unk_71726e7310 = true;
+    if (!cls)
+        return;
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fAwareTime", true), fn_710000abbc(), 0x24, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 1.5f);
+    field0->attrs.Add<bool>(fn_7100093280(), true);
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Detection time");
+    field0->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    field0->attrs.Add<f32>(fn_7100091190(), 10.0f);
+    field0->attrs.Add<f32>(fn_7100324af0(), 0.1f);
+    field0->attrs.Add<const char*>(fn_71003ba540(), "RegularEnemies|Gooplot");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fAttackRecoveryTime", true), fn_710000abbc(), 0x28, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 0.5f);
+    field1->attrs.Add<bool>(fn_7100093280(), true);
+    field1->attrs.Add<const char*>(fn_7100007e80(), "Time between attacks");
+    field1->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    field1->attrs.Add<f32>(fn_7100091190(), 10.0f);
+    field1->attrs.Add<f32>(fn_7100324af0(), 0.1f);
+    field1->attrs.Add<const char*>(fn_71003ba540(), "RegularEnemies|Gooplot");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("iMaxJumps", true), fn_7100014768(), 0x2c, -1, -1);
+    field2->attrs.Add<s32>(fn_7100075240(), 5);
+    field2->attrs.Add<bool>(fn_7100093280(), true);
+    field2->attrs.Add<const char*>(fn_7100007e80(), "Max jumps");
+    field2->attrs.Add<s32>(fn_71000916e0(), 0);
+    field2->attrs.Add<s32>(fn_71000917f0(), 10);
+    field2->attrs.Add<s32>(fn_7100324d10(), 1);
+    field2->attrs.Add<const char*>(fn_71003ba540(), "RegularEnemies|Gooplot");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fMaxSingleJumpTime", true), fn_710000abbc(), 0x30, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 2.5f);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("iStaminaLossPerParry", true), fn_7100014768(), 0x48, -1, -1);
+    field4->attrs.Add<s32>(fn_7100075240(), 2);
+    field4->attrs.Add<bool>(fn_7100093280(), true);
+    field4->attrs.Add<const char*>(fn_7100007e80(), "Parry stamina damage");
+    field4->attrs.Add<s32>(fn_71000916e0(), 0);
+    field4->attrs.Add<s32>(fn_71000917f0(), 10);
+    field4->attrs.Add<s32>(fn_7100324d10(), 1);
+    field4->attrs.Add<const char*>(fn_71003ba540(), "RegularEnemies|Gooplot");
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("fAttackTrackingTime", true), fn_710000abbc(), 0x34, -1, -1);
+    field5->attrs.Add<f32>(fn_7100075240(), 1.5f);
+    field5->attrs.Add<bool>(fn_7100093280(), true);
+    field5->attrs.Add<const char*>(fn_7100007e80(), "Attack tracking time");
+    field5->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    field5->attrs.Add<f32>(fn_7100091190(), 10.0f);
+    field5->attrs.Add<f32>(fn_7100324af0(), 0.1f);
+    field5->attrs.Add<const char*>(fn_71003ba540(), "RegularEnemies|Gooplot");
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("fAttackAirSpeed", true), fn_710000abbc(), 0x38, -1, -1);
+    field6->attrs.Add<f32>(fn_7100075240(), 100.0f);
+    field6->attrs.Add<bool>(fn_7100093280(), true);
+    field6->attrs.Add<const char*>(fn_7100007e80(), "Attack air speed");
+    field6->attrs.Add<f32>(fn_7100091080(), 100.0f);
+    field6->attrs.Add<f32>(fn_7100091190(), 4000.0f);
+    field6->attrs.Add<f32>(fn_7100324af0(), 100.0f);
+    field6->attrs.Add<const char*>(fn_71003ba540(), "RegularEnemies|Gooplot");
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("fExplosionRadius", true), fn_710000abbc(), 0x3c, -1, -1);
+    field7->attrs.Add<f32>(fn_7100075240(), 250.0f);
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("fExplosionDamage", true), fn_710000abbc(), 0x40, -1, -1);
+    field8->attrs.Add<f32>(fn_7100075240(), 10.0f);
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("fExplosionTime", true), fn_710000abbc(), 0x44, -1, -1);
+    field9->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    field9->attrs.Add<bool>(fn_7100093280(), true);
+    field9->attrs.Add<const char*>(fn_7100007e80(), "Exhaust explosion duration");
+    field9->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    field9->attrs.Add<f32>(fn_7100091190(), 2000.0f);
+    field9->attrs.Add<f32>(fn_7100324af0(), 0.1f);
+    field9->attrs.Add<const char*>(fn_71003ba540(), "RegularEnemies|Gooplot");
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("fJumpTargetYOffset1", true), fn_710000abbc(), 0x4c, -1, -1);
+    field10->attrs.Add<f32>(fn_7100075240(), 70.0f);
+    field10->attrs.Add<bool>(fn_7100093280(), true);
+    field10->attrs.Add<const char*>(fn_7100007e80(), "Aiming Y offset 1");
+    field10->attrs.Add<f32>(fn_7100091080(), -200.0f);
+    field10->attrs.Add<f32>(fn_7100091190(), 200.0f);
+    field10->attrs.Add<f32>(fn_7100324af0(), 5.0f);
+    field10->attrs.Add<const char*>(fn_71003ba540(), "RegularEnemies|Gooplot");
+    UnkReflField* field11 = fn_7100096524(cls, CStrId("fJumpTargetYOffset2", true), fn_710000abbc(), 0x50, -1, -1);
+    field11->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field11->attrs.Add<bool>(fn_7100093280(), true);
+    field11->attrs.Add<const char*>(fn_7100007e80(), "Aiming Y offset 2");
+    field11->attrs.Add<f32>(fn_7100091080(), -200.0f);
+    field11->attrs.Add<f32>(fn_7100091190(), 200.0f);
+    field11->attrs.Add<f32>(fn_7100324af0(), 5.0f);
+    field11->attrs.Add<const char*>(fn_71003ba540(), "RegularEnemies|Gooplot");
+    UnkReflField* field12 = fn_7100096524(cls, CStrId("fJumpTargetYOffset3", true), fn_710000abbc(), 0x54, -1, -1);
+    field12->attrs.Add<f32>(fn_7100075240(), -70.0f);
+    field12->attrs.Add<bool>(fn_7100093280(), true);
+    field12->attrs.Add<const char*>(fn_7100007e80(), "Aiming Y offset 3");
+    field12->attrs.Add<f32>(fn_7100091080(), -200.0f);
+    field12->attrs.Add<f32>(fn_7100091190(), 200.0f);
+    field12->attrs.Add<f32>(fn_7100324af0(), 5.0f);
+    field12->attrs.Add<const char*>(fn_71003ba540(), "RegularEnemies|Gooplot");
+    UnkTunableRegistry* registry = g_unk_7101d47350;
+    if (!registry) {
+        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
+        fn_710013ac14(registry);
+        g_unk_7101d47350 = registry;
+    }
+    fn_7100598718(registry, &g_unk_71726e72b8, "Gooplot");
+}
 bool fn_71005992f8(const void*, const void*) { return false; }
 s32 fn_7100599300() { return -1; }
 const base::reflection::CType& fn_7100599308(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
@@ -36,6 +157,17 @@ DREAD_REFL_CLASS_GETTER(71005972bc, 7100598594, "CCharClassGooplotAIComponent::C
 // CCharClassGooplotAIComponent
 DREAD_REFL_TAG(7100598ff0);
 void fn_7100598c9c(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_71726e7318;
+const base::reflection::CClass* fn_7100592874();
+const base::reflection::CClass* fn_710059347c();
+void fn_7100598d94(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("eSubspecies", true), &g_unk_71726e7318, 0x6f0, -1, -1);
+    field0->attrs.Add<s32>(fn_7100075240(), &g_unk_71726e7318, 2147483647);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fExplosionTime", true), fn_710000abbc(), 0x6f4, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 0.5f);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("oGooplotJumpAttackDef", true), fn_7100592874(), 0x510, -1, -1);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("oGooplotUndoJumpAttackDef", true), fn_710059347c(), 0x600, -1, -1);
+}
 bool fn_7100599408(const void*, const void*) { return false; }
 s32 fn_7100599410() { return -1; }
 const base::reflection::CType& fn_7100599418(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

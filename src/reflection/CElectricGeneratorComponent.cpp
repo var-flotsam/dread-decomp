@@ -2,12 +2,29 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CElectricGeneratorComponent
 DREAD_REFL_TAG(7100a7c300);
 void fn_7100a7bfc0(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_7172750038;
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+extern base::reflection::CType g_unk_7101d5c998;
+void fn_7100a7c0b8(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("eBlackOutZone", true), &g_unk_7172750038, 0x578, -1, -1);
+    field0->attrs.Add<s32>(fn_7100075240(), &g_unk_7172750038, 2);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("sOnEnterUseLuaCallback", true), fn_7100009658(), 0x570, -1, -1);
+    field1->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("vAffectedSubAreas", true), &g_unk_7101d5c998, 0x540, -1, -1);
+}
 bool fn_7100a7dbfc(const void*, const void*) { return false; }
 s32 fn_7100a7dc04() { return -1; }
 const base::reflection::CType& fn_7100a7dc0c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

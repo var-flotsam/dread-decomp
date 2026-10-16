@@ -2,12 +2,45 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // behaviortree::CStopWatchAction
 DREAD_REFL_TAG(7100392394);
 void fn_7100391cc0(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+extern base::reflection::CType g_unk_71726bc130;
+void fn_7100391db8(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sElapsedTime", true), fn_7100009658(), 0x30, -1, -1);
+    field0->attrs.Add<const char*>(fn_7100075240(), "");
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Elapsed time to store in blackboard");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fMinTime", true), fn_710000abbc(), 0x3c, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    field1->attrs.Add<const char*>(fn_7100007e80(), "Min time to wait");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fMaxTime", true), fn_710000abbc(), 0x40, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    field2->attrs.Add<const char*>(fn_7100007e80(), "Max time to wait");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("sMinTime", true), fn_7100009658(), 0x48, -1, -1);
+    field3->attrs.Add<const char*>(fn_7100075240(), "");
+    field3->attrs.Add<const char*>(fn_7100007e80(), "Min time to wait (property)");
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("sMaxTime", true), fn_7100009658(), 0x50, -1, -1);
+    field4->attrs.Add<const char*>(fn_7100075240(), "");
+    field4->attrs.Add<const char*>(fn_7100007e80(), "Max time to wait (property)");
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("bResetElapsedTimeOnSuccess", true), fn_710000d228(), 0x38, -1, -1);
+    field5->attrs.Add<bool>(fn_7100075240(), true);
+    field5->attrs.Add<const char*>(fn_7100007e80(), "Reset elapsed time on success");
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("eReturnStatusFailed", true), &g_unk_71726bc130, 0x58, -1, -1);
+    field6->attrs.Add<s32>(fn_7100075240(), &g_unk_71726bc130, 2);
+    field6->attrs.Add<const char*>(fn_7100007e80(), "Status to return on condition true");
+}
 bool fn_71003927bc(const void*, const void*) { return false; }
 s32 fn_71003927c4() { return -1; }
 const base::reflection::CType& fn_71003927cc(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

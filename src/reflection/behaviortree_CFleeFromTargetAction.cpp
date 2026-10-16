@@ -2,12 +2,50 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // behaviortree::CFleeFromTargetAction
 DREAD_REFL_TAG(710038388c);
 void fn_7100383060(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+extern base::reflection::CType g_unk_7172a057e0;
+void fn_7100383158(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fReachedDistance", true), fn_710000abbc(), 0x40, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 5.0f);
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Reach distance");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("bSuccessOnFinish", true), fn_710000d228(), 0x44, -1, -1);
+    field1->attrs.Add<bool>(fn_7100075240(), false);
+    field1->attrs.Add<const char*>(fn_7100007e80(), "Launch success on finish");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("bForceGotoSide", true), fn_710000d228(), 0x45, -1, -1);
+    field2->attrs.Add<bool>(fn_7100075240(), false);
+    field2->attrs.Add<const char*>(fn_7100007e80(), "Force GotoSide navigation");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("ePathLimitMode", true), &g_unk_7172a057e0, 0x48, -1, -1);
+    field3->attrs.Add<s32>(fn_7100075240(), &g_unk_7172a057e0, 0);
+    field3->attrs.Add<const char*>(fn_7100007e80(), "How to select GotoSide target to flee");
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("eAlternativePathLimitMode", true), &g_unk_7172a057e0, 0x4c, -1, -1);
+    field4->attrs.Add<s32>(fn_7100075240(), &g_unk_7172a057e0, 2147483647);
+    field4->attrs.Add<const char*>(fn_7100007e80(), "How to select GotoSide target when m_ePathLimitMode fails");
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("bLookAtDir", true), fn_710000d228(), 0x50, -1, -1);
+    field5->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("fMinDistance2NewFleePoint", true), fn_710000abbc(), 0x54, -1, -1);
+    field6->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    field6->attrs.Add<const char*>(fn_7100007e80(), "Min distance to desired flee point to start fleeing");
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("bForceUseNavmeshPath", true), fn_710000d228(), 0x58, -1, -1);
+    field7->attrs.Add<bool>(fn_7100075240(), false);
+    field7->attrs.Add<const char*>(fn_7100007e80(), "Force use of Navmesh path even if it's given a path");
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("sEndAnim", true), fn_7100009658(), 0x80, -1, -1);
+    field8->attrs.Add<const char*>(fn_7100075240(), "");
+    field8->attrs.Add<const char*>(fn_7100007e80(), "Animation to set on finish");
+}
 bool fn_7100384f3c(const void*, const void*) { return false; }
 s32 fn_7100384f44() { return -1; }
 const base::reflection::CType& fn_7100384f4c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

@@ -2,8 +2,15 @@
 // Reflection descriptors for one original translation unit (2 types):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassChozoCommanderAirChargeAttack
 DREAD_REFL_TAG(710041ba8c);
@@ -33,6 +40,33 @@ DREAD_REFL_CLASS_GETTER(710041b994, 710041ba8c, "CCharClassChozoCommanderAirChar
 // CCharClassChozoCommanderAirChargeAttack::CTunableCharClassChozoCommanderAirAttack
 DREAD_REFL_TAG(710041c004);
 void fn_710041bbec(base::reflection::CClass*) {}
+extern bool g_unk_71726c5180;
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+extern UnkTunableRegistry* g_unk_7101d47350;
+extern UnkTunable g_unk_71726c5150;
+void fn_710041c188(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+void fn_710041bce4(CClass* cls) {
+    if (g_unk_71726c5180)
+        return;
+    g_unk_71726c5180 = true;
+    if (!cls)
+        return;
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("bEnabled", true), fn_710000d228(), 0x21, -1, -1);
+    field0->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fMinDistanceBetweenPlayerAndWall", true), fn_710000abbc(), 0x24, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 700.0f);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fMaxDistanceToDashBack", true), fn_710000abbc(), 0x28, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 600.0f);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fDistanceToEndCharge", true), fn_710000abbc(), 0x2c, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 200.0f);
+    UnkTunableRegistry* registry = g_unk_7101d47350;
+    if (!registry) {
+        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
+        fn_710013ac14(registry);
+        g_unk_7101d47350 = registry;
+    }
+    fn_710041c188(registry, &g_unk_71726c5150, "ChozoCommander");
+}
 bool fn_710041c634(const void*, const void*) { return false; }
 s32 fn_710041c63c() { return -1; }
 const base::reflection::CType& fn_710041c644(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

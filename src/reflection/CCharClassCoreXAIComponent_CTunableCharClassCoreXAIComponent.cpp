@@ -2,8 +2,15 @@
 // Reflection descriptors for one original translation unit (2 types):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassCoreXAIComponent::CTunableCharClassCoreXAIComponent
 DREAD_REFL_TAG(71004d8054);
@@ -36,6 +43,35 @@ DREAD_REFL_CLASS_GETTER(71004d7ee4, 71004d8054, "CCharClassCoreXAIComponent::CTu
 // CCharClassCoreXAIComponent
 DREAD_REFL_TAG(71004d8eb4);
 void fn_71004d8490(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_71004d8588(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fAcceleration", true), fn_710000abbc(), 0x524, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 1000.0f);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fTurningAcceleration", true), fn_710000abbc(), 0x528, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 1300.0f);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fMaxTurningAngle", true), fn_710000abbc(), 0x52c, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 110.0f);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fBrakeDistance", true), fn_710000abbc(), 0x530, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 200.0f);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fMinBrakeSpeed", true), fn_710000abbc(), 0x534, -1, -1);
+    field4->attrs.Add<f32>(fn_7100075240(), 150.0f);
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("sBrakeCurve", true), fn_7100009658(), 0x538, -1, -1);
+    field5->attrs.Add<CStrId>(fn_7100075240(), CStrId("22", true));
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("fImpactSpeed", true), fn_710000abbc(), 0x540, -1, -1);
+    field6->attrs.Add<f32>(fn_7100075240(), 900.0f);
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("fImpactTime", true), fn_710000abbc(), 0x544, -1, -1);
+    field7->attrs.Add<f32>(fn_7100075240(), 0.4f);
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("fImpactInvulnerableTime", true), fn_710000abbc(), 0x548, -1, -1);
+    field8->attrs.Add<f32>(fn_7100075240(), 2.2f);
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("fXParasiteDropCooldownTime", true), fn_710000abbc(), 0x54c, -1, -1);
+    field9->attrs.Add<f32>(fn_7100075240(), 1.5f);
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("iXParasiteMinDrop", true), fn_7100014768(), 0x550, -1, -1);
+    field10->attrs.Add<s32>(fn_7100075240(), 3);
+    UnkReflField* field11 = fn_7100096524(cls, CStrId("iXParasiteMaxDrop", true), fn_7100014768(), 0x554, -1, -1);
+    field11->attrs.Add<s32>(fn_7100075240(), 5);
+    UnkReflField* field12 = fn_7100096524(cls, CStrId("sInventoryItemOnBigXAbsorbed", true), fn_7100009658(), 0x558, -1, -1);
+    field12->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+}
 bool fn_71004d9374(const void*, const void*) { return false; }
 s32 fn_71004d937c() { return -1; }
 const base::reflection::CType& fn_71004d9384(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

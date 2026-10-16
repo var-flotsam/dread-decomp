@@ -2,12 +2,43 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCaterzillaSpawnPointComponent
 DREAD_REFL_TAG(7100a16010);
 void fn_7100a15a0c(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_7172744838;
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+extern base::reflection::CType g_unk_7172744998;
+extern base::reflection::CType g_unk_717269bb48;
+const base::reflection::UnkReflAttrKey& fn_710025daa0();
+extern base::reflection::CType g_unk_71727bc110;
+extern base::reflection::CType g_unk_717269bf08;
+void fn_7100a15b04(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("eSpawnDir", true), &g_unk_7172744838, 0x3b8, -1, -1);
+    field0->attrs.Add<s32>(fn_7100075240(), &g_unk_7172744838, 0);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("eSpawnOrder", true), &g_unk_7172744998, 0x3bc, -1, -1);
+    field1->attrs.Add<s32>(fn_7100075240(), &g_unk_7172744998, 2);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("NumCaterzillas", true), fn_7100005178(), 0x3c8, -1, -1);
+    field2->attrs.Add<s32>(fn_7100075240(), 5);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fTimeToGenerateNextWave", true), fn_710000abbc(), 0x3d4, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 10.0f);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("wpSpawnPointLinked", true), &g_unk_717269bb48, 0x3e0, -1, -1);
+    field4->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 3);
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("fTimeToRespawnAllCaterzillas", true), fn_710000abbc(), 0x428, -1, -1);
+    field5->attrs.Add<f32>(fn_7100075240(), 30.0f);
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("aHomeLandmarks", true), &g_unk_717269bf08, 0x438, -1, -1);
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("bInOutSpawnPoint", true), fn_710000d228(), 0x3d1, -1, -1);
+    field7->attrs.Add<bool>(fn_7100075240(), false);
+}
 bool fn_7100a17a40(const void*, const void*) { return false; }
 s32 fn_7100a17a48() { return -1; }
 const base::reflection::CType& fn_7100a17a50(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

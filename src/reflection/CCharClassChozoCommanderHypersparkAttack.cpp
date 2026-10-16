@@ -2,12 +2,28 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassChozoCommanderHypersparkAttack
 DREAD_REFL_TAG(710041f9f0);
 void fn_710041f6d0(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_710041f7c8(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fPreparationTime", true), fn_710000abbc(), 0xfc, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fVerticalPreparationTime", true), fn_710000abbc(), 0x100, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 0.2f);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fChangeDirProb", true), fn_710000abbc(), 0x104, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 0.5f);
+}
 bool fn_710041fbdc(const void* a, const void* b) { return a == b; }
 s32 fn_710041fbe8() { return -1; }
 const base::reflection::CType& fn_710041fbf0(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

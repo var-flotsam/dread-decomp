@@ -2,8 +2,15 @@
 // Reflection descriptors for one original translation unit (2 types):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassScorpiusWhiplashAttack
 DREAD_REFL_TAG(7100685424);
@@ -33,6 +40,52 @@ DREAD_REFL_CLASS_GETTER(710068532c, 7100685424, "CCharClassScorpiusWhiplashAttac
 // CCharClassScorpiusWhiplashAttack::CTunableCharClassScorpiusWhiplashAttack
 DREAD_REFL_TAG(7100685b54);
 void fn_7100685584(base::reflection::CClass*) {}
+extern bool g_unk_7172702bf0;
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100093280();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+const base::reflection::UnkReflAttrKey& fn_71003ba540();
+const base::reflection::UnkReflAttrKey& fn_7100091080();
+const base::reflection::UnkReflAttrKey& fn_7100091190();
+const base::reflection::UnkReflAttrKey& fn_7100324af0();
+extern UnkTunableRegistry* g_unk_7101d47350;
+extern UnkTunable g_unk_7172702bc0;
+void fn_7100685cd8(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+void fn_710068567c(CClass* cls) {
+    if (g_unk_7172702bf0)
+        return;
+    g_unk_7172702bf0 = true;
+    if (!cls)
+        return;
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("bEnabled", true), fn_710000d228(), 0x21, -1, -1);
+    field0->attrs.Add<bool>(fn_7100075240(), true);
+    field0->attrs.Add<bool>(fn_7100093280(), true);
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Enabled");
+    field0->attrs.Add<const char*>(fn_71003ba540(), "Bosses|Scorpius|Whiplash");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fMinAttackDistance", true), fn_710000abbc(), 0x24, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    field1->attrs.Add<bool>(fn_7100093280(), true);
+    field1->attrs.Add<const char*>(fn_7100007e80(), "Min distance");
+    field1->attrs.Add<f32>(fn_7100091080(), -1.0f);
+    field1->attrs.Add<f32>(fn_7100091190(), 2000.0f);
+    field1->attrs.Add<f32>(fn_7100324af0(), 50.0f);
+    field1->attrs.Add<const char*>(fn_71003ba540(), "Bosses|Scorpius|Whiplash");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fMaxAttackDistance", true), fn_710000abbc(), 0x28, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 1200.0f);
+    field2->attrs.Add<bool>(fn_7100093280(), true);
+    field2->attrs.Add<const char*>(fn_7100007e80(), "Max distance");
+    field2->attrs.Add<f32>(fn_7100091080(), -1.0f);
+    field2->attrs.Add<f32>(fn_7100091190(), 2000.0f);
+    field2->attrs.Add<f32>(fn_7100324af0(), 50.0f);
+    field2->attrs.Add<const char*>(fn_71003ba540(), "Bosses|Scorpius|Whiplash");
+    UnkTunableRegistry* registry = g_unk_7101d47350;
+    if (!registry) {
+        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
+        fn_710013ac14(registry);
+        g_unk_7101d47350 = registry;
+    }
+    fn_7100685cd8(registry, &g_unk_7172702bc0, "Scorpius");
+}
 bool fn_7100686114(const void*, const void*) { return false; }
 s32 fn_710068611c() { return -1; }
 const base::reflection::CType& fn_7100686124(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

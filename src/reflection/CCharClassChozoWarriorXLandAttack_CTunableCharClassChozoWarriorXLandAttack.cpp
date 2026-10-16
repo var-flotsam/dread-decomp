@@ -2,12 +2,56 @@
 // Reflection descriptors for one original translation unit (2 types):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassChozoWarriorXLandAttack::CTunableCharClassChozoWarriorXLandAttack
 DREAD_REFL_TAG(710047d11c);
 void fn_710047c978(base::reflection::CClass*) {}
+extern bool g_unk_71726ce250;
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+extern UnkTunableRegistry* g_unk_7101d47350;
+extern UnkTunable g_unk_71726ce200;
+void fn_710047d31c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+void fn_710047ca70(CClass* cls) {
+    if (g_unk_71726ce250)
+        return;
+    g_unk_71726ce250 = true;
+    if (!cls)
+        return;
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fMinAttackDistance", true), fn_710000abbc(), 0x24, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fMaxAttackDistance", true), fn_710000abbc(), 0x28, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fWaveSpeed", true), fn_710000abbc(), 0x2c, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 700.0f);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fWaveProjectileRadius", true), fn_710000abbc(), 0x30, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 150.0f);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fWaveHeight", true), fn_710000abbc(), 0x34, -1, -1);
+    field4->attrs.Add<f32>(fn_7100075240(), 100.0f);
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("fWaveInitialOffset", true), fn_710000abbc(), 0x38, -1, -1);
+    field5->attrs.Add<f32>(fn_7100075240(), -50.0f);
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("fWaveOffset", true), fn_710000abbc(), 0x3c, -1, -1);
+    field6->attrs.Add<f32>(fn_7100075240(), 550.0f);
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("fWaveParticlesOffset", true), fn_710000abbc(), 0x40, -1, -1);
+    field7->attrs.Add<f32>(fn_7100075240(), 80.0f);
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("sWaveOffsetFactorizerFunction", true), fn_7100009658(), 0x48, -1, -1);
+    field8->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    UnkTunableRegistry* registry = g_unk_7101d47350;
+    if (!registry) {
+        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
+        fn_710013ac14(registry);
+        g_unk_7101d47350 = registry;
+    }
+    fn_710047d31c(registry, &g_unk_71726ce200, "ChozoWarriorXLandAttack");
+}
 bool fn_710047d964(const void*, const void*) { return false; }
 s32 fn_710047d96c() { return -1; }
 const base::reflection::CType& fn_710047d974(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

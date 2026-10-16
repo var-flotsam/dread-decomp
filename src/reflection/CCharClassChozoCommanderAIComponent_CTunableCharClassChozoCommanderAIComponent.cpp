@@ -2,12 +2,82 @@
 // Reflection descriptors for one original translation unit (2 types):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassChozoCommanderAIComponent::CTunableCharClassChozoCommanderAIComponent
 DREAD_REFL_TAG(710044cc80);
 void fn_710044bd20(base::reflection::CClass*) {}
+extern bool g_unk_71726c9218;
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+extern UnkTunableRegistry* g_unk_7101d47350;
+extern UnkTunable g_unk_71726c91d0;
+void fn_710044ce04(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+void fn_710044be18(CClass* cls) {
+    if (g_unk_71726c9218)
+        return;
+    g_unk_71726c9218 = true;
+    if (!cls)
+        return;
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fMotionSpeed", true), fn_710000abbc(), 0x24, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 800.0f);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("bKiCounterDeactivateAura", true), fn_710000d228(), 0x28, -1, -1);
+    field1->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("bKiCounterShowMeleableFX", true), fn_710000d228(), 0x29, -1, -1);
+    field2->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("bKiCounterUseZoomCamera", true), fn_710000d228(), 0x2a, -1, -1);
+    field3->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("iInitialStage", true), fn_7100014768(), 0x2c, -1, -1);
+    field4->attrs.Add<s32>(fn_7100075240(), 0);
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("fSentenceSphereSpeed", true), fn_710000abbc(), 0x30, -1, -1);
+    field5->attrs.Add<f32>(fn_7100075240(), 440.0f);
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("TRI_COMBO", true), fn_710000d228(), 0x34, -1, -1);
+    field6->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("KI_STRIKE", true), fn_710000d228(), 0x35, -1, -1);
+    field7->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("SENTENCE_SPHERE", true), fn_710000d228(), 0x36, -1, -1);
+    field8->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("POWER_PULSE", true), fn_710000d228(), 0x37, -1, -1);
+    field9->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("AURA_SCRATCH", true), fn_710000d228(), 0x38, -1, -1);
+    field10->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field11 = fn_7100096524(cls, CStrId("KI_COUNTER", true), fn_710000d228(), 0x39, -1, -1);
+    field11->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field12 = fn_7100096524(cls, CStrId("LANDING_SLAM", true), fn_710000d228(), 0x3a, -1, -1);
+    field12->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field13 = fn_7100096524(cls, CStrId("AIR_CHARGE", true), fn_710000d228(), 0x3b, -1, -1);
+    field13->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field14 = fn_7100096524(cls, CStrId("ZERO_LASER", true), fn_710000d228(), 0x3c, -1, -1);
+    field14->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field15 = fn_7100096524(cls, CStrId("BEAM_BURST", true), fn_710000d228(), 0x3d, -1, -1);
+    field15->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field16 = fn_7100096524(cls, CStrId("HYPER_SPARK", true), fn_710000d228(), 0x3e, -1, -1);
+    field16->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field17 = fn_7100096524(cls, CStrId("ENERGY_SHARDS", true), fn_710000d228(), 0x3f, -1, -1);
+    field17->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field18 = fn_7100096524(cls, CStrId("ZERO_LASER_GROUNDED", true), fn_710000d228(), 0x40, -1, -1);
+    field18->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field19 = fn_7100096524(cls, CStrId("HYPER_DASH", true), fn_710000d228(), 0x41, -1, -1);
+    field19->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field20 = fn_7100096524(cls, CStrId("ULTIMATE_GRAB", true), fn_710000d228(), 0x42, -1, -1);
+    field20->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field21 = fn_7100096524(cls, CStrId("KI_GRAB", true), fn_710000d228(), 0x43, -1, -1);
+    field21->attrs.Add<bool>(fn_7100075240(), true);
+    UnkTunableRegistry* registry = g_unk_7101d47350;
+    if (!registry) {
+        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
+        fn_710013ac14(registry);
+        g_unk_7101d47350 = registry;
+    }
+    fn_710044ce04(registry, &g_unk_71726c91d0, "ChozoCommander");
+}
 bool fn_710044e46c(const void*, const void*) { return false; }
 s32 fn_710044e474() { return -1; }
 const base::reflection::CType& fn_710044e47c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
@@ -36,6 +106,59 @@ DREAD_REFL_CLASS_GETTER(710044bd24, 710044cc80, "CCharClassChozoCommanderAICompo
 // CCharClassChozoCommanderAIComponent
 DREAD_REFL_TAG(710044dee8);
 void fn_710044d0bc(base::reflection::CClass*) {}
+const base::reflection::CClass* fn_7100422b24();
+const base::reflection::CClass* fn_7100420884();
+const base::reflection::CClass* fn_71004225d4();
+const base::reflection::CClass* fn_7100421904();
+const base::reflection::CClass* fn_710041ce24();
+const base::reflection::CClass* fn_710041fd04();
+const base::reflection::CClass* fn_7100421184();
+const base::reflection::CClass* fn_710041b994();
+const base::reflection::CClass* fn_71004232e4();
+const base::reflection::CClass* fn_710041d204();
+const base::reflection::CClass* fn_710041f6d4();
+const base::reflection::CClass* fn_710041e5bc();
+const base::reflection::CClass* fn_71004240d4();
+const base::reflection::CClass* fn_710041f164();
+const base::reflection::CClass* fn_7100422f04();
+const base::reflection::CClass* fn_71004204a4();
+const base::reflection::CClass* fn_71008c1b4c();
+void fn_710044d1b4(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("oChozoCommanderTriComboAttackDef", true), fn_7100422b24(), 0x528, -1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("oChozoCommanderKiStrikeAttackDef", true), fn_7100420884(), 0x628, -1, -1);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("oChozoCommanderSentenceSphereAttackDef", true), fn_71004225d4(), 0x770, -1, -1);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("oChozoCommanderPowerPulseAttackDef", true), fn_7100421904(), 0x870, -1, -1);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("oChozoCommanderAuraScratchAttackDef", true), fn_710041ce24(), 0x988, -1, -1);
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("oChozoCommanderKiCounterAttackDef", true), fn_710041fd04(), 0xa88, -1, -1);
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("oChozoCommanderLandingSlamAttackDef", true), fn_7100421184(), 0xb98, -1, -1);
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("oChozoCommanderAirChargeAttackDef", true), fn_710041b994(), 0xca0, -1, -1);
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("oChozoCommanderZeroLaserAttackDef", true), fn_71004232e4(), 0xd90, -1, -1);
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("oChozoCommanderBeamBurstAttackDef", true), fn_710041d204(), 0xea8, -1, -1);
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("oChozoCommanderHypersparkAttackDef", true), fn_710041f6d4(), 0xf98, -1, -1);
+    UnkReflField* field11 = fn_7100096524(cls, CStrId("oChozoCommanderEnergyShardsAttackDef", true), fn_710041e5bc(), 0x10a0, -1, -1);
+    UnkReflField* field12 = fn_7100096524(cls, CStrId("oChozoCommanderZeroLaserGroundedAttackDef", true), fn_71004240d4(), 0x11a8, -1, -1);
+    UnkReflField* field13 = fn_7100096524(cls, CStrId("oChozoCommanderHyperDashAttackDef", true), fn_710041f164(), 0x12b8, -1, -1);
+    UnkReflField* field14 = fn_7100096524(cls, CStrId("oChozoCommanderUltimateGrabAttackDef", true), fn_7100422f04(), 0x13c0, -1, -1);
+    UnkReflField* field15 = fn_7100096524(cls, CStrId("oChozoCommanderKiGrabAttackDef", true), fn_71004204a4(), 0x14b0, -1, -1);
+    UnkReflField* field16 = fn_7100096524(cls, CStrId("fAuraLife", true), fn_710000abbc(), 0x15a0, -1, -1);
+    field16->attrs.Add<f32>(fn_7100075240(), 1000.0f);
+    UnkReflField* field17 = fn_7100096524(cls, CStrId("fLifeToRecoverAfterUltimateGrabStage1", true), fn_710000abbc(), 0x15a4, -1, -1);
+    field17->attrs.Add<f32>(fn_7100075240(), 500.0f);
+    UnkReflField* field18 = fn_7100096524(cls, CStrId("fLifeToRecoverAfterUltimateGrabStage3", true), fn_710000abbc(), 0x15a8, -1, -1);
+    field18->attrs.Add<f32>(fn_7100075240(), 1000.0f);
+    UnkReflField* field19 = fn_7100096524(cls, CStrId("fUltimateGrabDamage", true), fn_710000abbc(), 0x15ac, -1, -1);
+    field19->attrs.Add<f32>(fn_7100075240(), 100.0f);
+    UnkReflField* field20 = fn_7100096524(cls, CStrId("fTimeBetweenKiStrikeAttacks", true), fn_710000abbc(), 0x15b0, -1, -1);
+    field20->attrs.Add<f32>(fn_7100075240(), 20.0f);
+    UnkReflField* field21 = fn_7100096524(cls, CStrId("fAttackWaitTimeBetweenPhases", true), fn_710000abbc(), 0x15b4, -1, -1);
+    field21->attrs.Add<f32>(fn_7100075240(), 0.6f);
+    UnkReflField* field22 = fn_7100096524(cls, CStrId("fMinDistToHyperDash", true), fn_710000abbc(), 0x15b8, -1, -1);
+    field22->attrs.Add<f32>(fn_7100075240(), 250.0f);
+    UnkReflField* field23 = fn_7100096524(cls, CStrId("fMaxVerticalDiffToAboveHyperDash", true), fn_710000abbc(), 0x15bc, -1, -1);
+    field23->attrs.Add<f32>(fn_7100075240(), 200.0f);
+    UnkReflField* field24 = fn_7100096524(cls, CStrId("oDamageSourceFactorShortShootingGrab", true), fn_71008c1b4c(), 0x15c0, -1, -1);
+    UnkReflField* field25 = fn_7100096524(cls, CStrId("oDamageSourceFactorLongShootingGrab", true), fn_71008c1b4c(), 0x1630, -1, -1);
+}
 bool fn_710044e504(const void*, const void*) { return false; }
 s32 fn_710044e50c() { return -1; }
 const base::reflection::CType& fn_710044e514(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

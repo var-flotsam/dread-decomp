@@ -2,12 +2,24 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CThermalRoomConnectionFX
 DREAD_REFL_TAG(710087a650);
 void fn_710087a44c(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_717269bb48;
+void fn_710087a544(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("vTargetToLink", true), &g_unk_717269bb48, 0x80, -1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("vHidderLink", true), &g_unk_717269bb48, 0xc0, -1, -1);
+}
 bool fn_710087b9b0(const void*, const void*) { return false; }
 s32 fn_710087b9b8() { return -1; }
 const base::reflection::CType& fn_710087b9c0(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

@@ -2,12 +2,55 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassProjectileMovement
 DREAD_REFL_TAG(7100ac1374);
 void fn_7100ac072c(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+extern base::reflection::CType g_unk_7172755268;
+void fn_7100ac0824(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sCameraFXPresetOnImpact", true), fn_7100009658(), 0xf0, -1, -1);
+    field0->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("bUseCheckBeforeCast", true), fn_710000d228(), 0xf8, -1, -1);
+    field1->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fGravity", true), fn_710000abbc(), 0xfc, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("bApplyGravityOnInitialSpeed", true), fn_710000d228(), 0x100, -1, -1);
+    field3->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("sColliderToCheckCollisions", true), fn_7100009658(), 0x108, -1, -1);
+    field4->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("sColliderToCheckDamage", true), fn_7100009658(), 0x110, -1, -1);
+    field5->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("bDeleteAfterCollisionProcessed", true), fn_710000d228(), 0x118, -1, -1);
+    field6->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("bAddOwnerVelocityOnBeginPlay", true), fn_710000d228(), 0x11a, -1, -1);
+    field7->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("fOwnerVelocityFactor", true), fn_710000abbc(), 0x11c, -1, -1);
+    field8->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("fVelocityHorizontalFriction", true), fn_710000abbc(), 0x120, -1, -1);
+    field9->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("fVelocityVerticalFriction", true), fn_710000abbc(), 0x124, -1, -1);
+    field10->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    UnkReflField* field11 = fn_7100096524(cls, CStrId("bDestroyOnImpactSpeedBooster", true), fn_710000d228(), 0x119, -1, -1);
+    field11->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field12 = fn_7100096524(cls, CStrId("bIgnoreInvulnerableEntities", true), fn_710000d228(), 0x128, -1, -1);
+    field12->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field13 = fn_7100096524(cls, CStrId("eDefaultProjectileMeleeHitReaction", true), &g_unk_7172755268, 0x12c, -1, -1);
+    field13->attrs.Add<s32>(fn_7100075240(), &g_unk_7172755268, 2);
+    UnkReflField* field14 = fn_7100096524(cls, CStrId("bAutoCalculateSpeedForParabola", true), fn_710000d228(), 0x130, -1, -1);
+    field14->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field15 = fn_7100096524(cls, CStrId("bIgnoreMovementOnCollision", true), fn_710000d228(), 0x131, -1, -1);
+    field15->attrs.Add<bool>(fn_7100075240(), false);
+}
 bool fn_7100ac18d0(const void*, const void*) { return false; }
 s32 fn_7100ac18d8() { return -1; }
 const base::reflection::CType& fn_7100ac18e0(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

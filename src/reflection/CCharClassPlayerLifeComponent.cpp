@@ -2,12 +2,29 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassPlayerLifeComponent
 DREAD_REFL_TAG(7100793d00);
 void fn_7100793a30(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+void fn_7100793b28(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fImpactInvulnerableTime", true), fn_710000abbc(), 0xa4, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 1.5f);
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Time invulnerable after impact");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fMinImpactInvulnerableTime", true), fn_710000abbc(), 0xa8, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 0.5f);
+    field1->attrs.Add<const char*>(fn_7100007e80(), "Min time invulnerable after impact beeing invulnerable");
+}
 bool fn_7100793ec8(const void*, const void*) { return false; }
 s32 fn_7100793ed0() { return -1; }
 const base::reflection::CType& fn_7100793ed8(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

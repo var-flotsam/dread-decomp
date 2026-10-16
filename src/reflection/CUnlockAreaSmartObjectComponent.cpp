@@ -2,8 +2,15 @@
 // Reflection descriptors for one original translation unit (2 types):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CUnlockAreaSmartObjectComponent
 DREAD_REFL_TAG(7100a069ac);
@@ -37,6 +44,33 @@ DREAD_REFL_CLASS_GETTER(7100a068b4, 7100a069ac, "CUnlockAreaSmartObjectComponent
 // CUnlockAreaSmartObjectComponent::CTunableUnlockAreaSmartObjectComponent
 DREAD_REFL_TAG(7100a06e64);
 void fn_7100a06b30(base::reflection::CClass*) {}
+extern bool g_unk_71727430d0;
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+const base::reflection::CType* fn_7100007f84();
+extern UnkTunableRegistry* g_unk_7101d47350;
+extern UnkTunable g_unk_7172743078;
+void fn_7100a0701c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+void fn_7100a06c28(CClass* cls) {
+    if (g_unk_71727430d0)
+        return;
+    g_unk_71727430d0 = true;
+    if (!cls)
+        return;
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fIgnoreInputTime", true), fn_710000abbc(), 0x24, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 0.333f);
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Time input is ignored when action is aborted");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("sDialogID", true), fn_7100007f84(), 0x28, -1, -1);
+    field1->attrs.Add<const char*>(fn_7100075240(), "");
+    field1->attrs.Add<const char*>(fn_7100007e80(), "Message asking whether player wants to travel to the next area");
+    UnkTunableRegistry* registry = g_unk_7101d47350;
+    if (!registry) {
+        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
+        fn_710013ac14(registry);
+        g_unk_7101d47350 = registry;
+    }
+    fn_7100a0701c(registry, &g_unk_7172743078, "UnlockArea");
+}
 bool fn_7100a07d2c(const void*, const void*) { return false; }
 s32 fn_7100a07d34() { return -1; }
 const base::reflection::CType& fn_7100a07d3c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

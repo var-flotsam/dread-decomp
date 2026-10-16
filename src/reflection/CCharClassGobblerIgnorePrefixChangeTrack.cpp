@@ -2,11 +2,24 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassGobblerIgnorePrefixChangeTrack
 DREAD_REFL_TAG(7100c20e50);
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+const base::reflection::UnkReflAttrKey& fn_7100090e60();
+void fn_7100c20c70(CClass* cls) {
+    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Gobbler Ignore Prefix Change");
+    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090e60(), CStrId("AI/State", true));
+}
 void fn_7100c20e4c(base::reflection::CClass*) {}
 bool fn_7100c21004(const void* a, const void* b) { return a == b; }
 s32 fn_7100c21010() { return -1; }

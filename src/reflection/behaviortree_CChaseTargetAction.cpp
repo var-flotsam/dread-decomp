@@ -2,12 +2,56 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // behaviortree::CChaseTargetAction
 DREAD_REFL_TAG(710037a28c);
 void fn_71003798a0(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+void fn_7100379998(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("bMaintainViewDirOnReached", true), fn_710000d228(), 0x48, -1, -1);
+    field0->attrs.Add<bool>(fn_7100075240(), false);
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Maintain View Dir On Reached");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("bIgnoreTargetAccesible", true), fn_710000d228(), 0x49, -1, -1);
+    field1->attrs.Add<bool>(fn_7100075240(), false);
+    field1->attrs.Add<const char*>(fn_7100007e80(), "Ignore target accessible");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("bAccessibleIfReachable", true), fn_710000d228(), 0x4a, -1, -1);
+    field2->attrs.Add<bool>(fn_7100075240(), true);
+    field2->attrs.Add<const char*>(fn_7100007e80(), "Target is considered accessible if she's reachable");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("bCheckTargetAccesibleStandingAbovePath", true), fn_710000d228(), 0x50, -1, -1);
+    field3->attrs.Add<bool>(fn_7100075240(), false);
+    field3->attrs.Add<const char*>(fn_7100007e80(), "");
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fTargetAccesibleMaxHeight", true), fn_710000abbc(), 0x4c, -1, -1);
+    field4->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    field4->attrs.Add<const char*>(fn_7100007e80(), "Max target heigth over navigable path to be accesible (-1 for infinity)");
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("bGotoMovingIfNotInFrustum", true), fn_710000d228(), 0x51, -1, -1);
+    field5->attrs.Add<bool>(fn_7100075240(), false);
+    field5->attrs.Add<const char*>(fn_7100007e80(), "Goto Moving If Not In Frustum");
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("bAllowTargetToJumpOver", true), fn_710000d228(), 0x52, -1, -1);
+    field6->attrs.Add<bool>(fn_7100075240(), true);
+    field6->attrs.Add<const char*>(fn_7100007e80(), "Allow Target To Jump Over");
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("fMovingToIdleLimitsOffset", true), fn_710000abbc(), 0x54, -1, -1);
+    field7->attrs.Add<f32>(fn_7100075240(), 100.0f);
+    field7->attrs.Add<const char*>(fn_7100007e80(), "Moving to Idle limits offset");
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("bIgnoreNextAttackTimeOnIdle", true), fn_710000d228(), 0x58, -1, -1);
+    field8->attrs.Add<bool>(fn_7100075240(), false);
+    field8->attrs.Add<const char*>(fn_7100007e80(), "Reset Next Attack Time On Idle");
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("bFaceObstacleFreeTargetSide", true), fn_710000d228(), 0x59, -1, -1);
+    field9->attrs.Add<bool>(fn_7100075240(), false);
+    field9->attrs.Add<const char*>(fn_7100007e80(), "Face target's side free of obstacles (e.g. to launch projectiles)");
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("bUseRandomCenter", true), fn_710000d228(), 0x5a, -1, -1);
+    field10->attrs.Add<bool>(fn_7100075240(), false);
+    field10->attrs.Add<const char*>(fn_7100007e80(), "");
+}
 bool fn_710037ca58(const void*, const void*) { return false; }
 s32 fn_710037ca60() { return -1; }
 const base::reflection::CType& fn_710037ca68(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

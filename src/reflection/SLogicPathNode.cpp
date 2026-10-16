@@ -2,8 +2,15 @@
 // Reflection descriptors for one original translation unit (3 types):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // SLogicPathNode
 DREAD_REFL_TAG(710105498c);
@@ -64,6 +71,10 @@ DREAD_REFL_CLASS_GETTER(7101054c90, 71010559b0, "SLogicSubPath", 7100da43d4, 710
 // SLogicPath
 DREAD_REFL_TAG(7101056078);
 void fn_7101055eec(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_71729fe930;
+void fn_7101055fe4(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("tSubPaths", true), &g_unk_71729fe930, 0x10, -1, -1);
+}
 bool fn_710105d5d0(const void* a, const void* b) { return a == b; }
 s32 fn_710105d5dc() { return -1; }
 const base::reflection::CType& fn_710105d5e4(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

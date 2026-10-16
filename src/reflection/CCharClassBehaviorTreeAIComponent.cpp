@@ -2,12 +2,29 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassBehaviorTreeAIComponent
 DREAD_REFL_TAG(7100416c58);
 void fn_71004169b0(base::reflection::CClass*) {}
+const base::reflection::CType* fn_710000ad9c();
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+void fn_7100416aa8(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sBehaviorTreePath", true), fn_710000ad9c(), 0x500, -1, -1);
+    field0->attrs.Add<const char*>(fn_7100075240(), "");
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Behavior tree that is loaded into this class");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fMaxCrazyTime", true), fn_710000abbc(), 0x508, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 1.0f);
+}
 bool fn_71004170e0(const void*, const void*) { return false; }
 s32 fn_71004170e8() { return -1; }
 const base::reflection::CType& fn_71004170f0(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

@@ -2,12 +2,49 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassNailongThornsAttack
 DREAD_REFL_TAG(710060a3a4);
 void fn_7100609a34(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+extern base::reflection::CType g_unk_71726f48e0;
+void fn_7100609b2c(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("bAttackInIntervals", true), fn_710000d228(), 0xec, -1, -1);
+    field0->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fIntervalMin", true), fn_710000abbc(), 0xf0, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fIntervalMax", true), fn_710000abbc(), 0xf4, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 3.0f);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fRepeatAttackTimer", true), fn_710000abbc(), 0xf8, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 2.0f);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fTimeToChargeAttack", true), fn_710000abbc(), 0xfc, -1, -1);
+    field4->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("sProjectile", true), fn_7100009658(), 0x100, -1, -1);
+    field5->attrs.Add<const char*>(fn_7100075240(), "nailongthorn");
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("fBallGravity", true), fn_710000abbc(), 0x108, -1, -1);
+    field6->attrs.Add<f32>(fn_7100075240(), 4000.0f);
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("fBallInitialSpeed", true), fn_710000abbc(), 0x10c, -1, -1);
+    field7->attrs.Add<f32>(fn_7100075240(), 1000.0f);
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("eDepthornAttackType", true), &g_unk_71726f48e0, 0x110, -1, -1);
+    field8->attrs.Add<s32>(fn_7100075240(), &g_unk_71726f48e0, 2147483647);
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("fTimeBetweenThornsMin", true), fn_710000abbc(), 0x114, -1, -1);
+    field9->attrs.Add<f32>(fn_7100075240(), 0.03f);
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("fTimeBetweenThornsMax", true), fn_710000abbc(), 0x118, -1, -1);
+    field10->attrs.Add<f32>(fn_7100075240(), 0.08f);
+    UnkReflField* field11 = fn_7100096524(cls, CStrId("bUseSineWavesInSequenceShoot", true), fn_710000d228(), 0x11c, -1, -1);
+    field11->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field12 = fn_7100096524(cls, CStrId("uNumSequences", true), fn_7100005178(), 0x120, -1, -1);
+    field12->attrs.Add<s32>(fn_7100075240(), 1);
+}
 bool fn_710060a770(const void* a, const void* b) { return a == b; }
 s32 fn_710060a77c() { return -1; }
 const base::reflection::CType& fn_710060a784(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

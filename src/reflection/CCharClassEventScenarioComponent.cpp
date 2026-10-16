@@ -2,8 +2,15 @@
 // Reflection descriptors for one original translation unit (2 types):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassEventScenarioComponent
 DREAD_REFL_TAG(71007e0084);
@@ -37,6 +44,35 @@ DREAD_REFL_CLASS_GETTER(71007dff8c, 71007e0084, "CCharClassEventScenarioComponen
 // CEventScenarioComponent
 DREAD_REFL_TAG(71007e0c00);
 void fn_71007e0208(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_717269bf08;
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100091080();
+void fn_71007e0300(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("vEventActors", true), &g_unk_717269bf08, 0x108, -1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("sIdleAction", true), fn_7100009658(), 0xd8, -1, -1);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("sReactionAction", true), fn_7100009658(), 0xe0, -1, -1);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("sFinishedAction", true), fn_7100009658(), 0xe8, -1, -1);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("sRecoveryAction", true), fn_7100009658(), 0xf0, -1, -1);
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("bPersistent", true), fn_710000d228(), 0x1e4, -1, -1);
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("bDisableOnXParasite", true), fn_710000d228(), 0x1e5, -1, -1);
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("bDisableOnCoolDown", true), fn_710000d228(), 0x1e6, -1, -1);
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("bReactOnFireOnly", true), fn_710000d228(), 0x1e9, -1, -1);
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("bReactOnEnemies", true), fn_710000d228(), 0x1ea, -1, -1);
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("bReactToSamus", true), fn_710000d228(), 0x1e7, -1, -1);
+    field10->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field11 = fn_7100096524(cls, CStrId("bIgnoreSamusWithOC", true), fn_710000d228(), 0x1e8, -1, -1);
+    field11->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field12 = fn_7100096524(cls, CStrId("bReactToSamusFiring", true), fn_710000d228(), 0x1eb, -1, -1);
+    field12->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field13 = fn_7100096524(cls, CStrId("bReactToFireImpact", true), fn_710000d228(), 0x1ec, -1, -1);
+    field13->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field14 = fn_7100096524(cls, CStrId("fTimeForRecoveryOnStay", true), fn_710000abbc(), 0x1d0, -1, -1);
+    field14->attrs.Add<f32>(fn_7100091080(), -1.0f);
+    UnkReflField* field15 = fn_7100096524(cls, CStrId("fTimeForRecoveryOnExit", true), fn_710000abbc(), 0x1d4, -1, -1);
+    field15->attrs.Add<f32>(fn_7100091080(), -1.0f);
+    UnkReflField* field16 = fn_7100096524(cls, CStrId("fInitRelaxFrame", true), fn_710000abbc(), 0x1e0, -1, -1);
+    field16->attrs.Add<f32>(fn_7100091080(), 0.0f);
+}
 bool fn_71007e5608(const void*, const void*) { return false; }
 s32 fn_71007e5610() { return -1; }
 const base::reflection::CType& fn_71007e5618(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

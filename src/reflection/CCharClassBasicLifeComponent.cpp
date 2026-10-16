@@ -2,12 +2,30 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassBasicLifeComponent
 DREAD_REFL_TAG(71008adb9c);
 void fn_71008ad810(base::reflection::CClass*) {}
+const base::reflection::CClass* fn_71008c1b4c();
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_71008ad908(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("oDamageSourceFactor", true), fn_71008c1b4c(), 0xa8, -1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("bDestroyOnDead", true), fn_710000d228(), 0x118, -1, -1);
+    field1->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fInitialDamageFactor", true), fn_710000abbc(), 0x11c, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fInitialDamageFactorTime", true), fn_710000abbc(), 0x120, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), -1.0f);
+}
 bool fn_71008addec(const void*, const void*) { return false; }
 s32 fn_71008addf4() { return -1; }
 const base::reflection::CType& fn_71008addfc(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

@@ -2,12 +2,83 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // behaviortree::CSetAnimDependsOnDirAction
 DREAD_REFL_TAG(710036f4f4);
 void fn_710036e390(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+void fn_710036e488(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sInDirAnim", true), fn_7100009658(), 0x30, -1, -1);
+    field0->attrs.Add<const char*>(fn_7100075240(), "");
+    field0->attrs.Add<const char*>(fn_7100007e80(), "In dir animation to set");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("sInDirAnimProp", true), fn_7100009658(), 0x38, -1, -1);
+    field1->attrs.Add<const char*>(fn_7100075240(), "");
+    field1->attrs.Add<const char*>(fn_7100007e80(), "In dir animation to set (from blackboard)");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("sNotInDirAnim", true), fn_7100009658(), 0x40, -1, -1);
+    field2->attrs.Add<const char*>(fn_7100075240(), "");
+    field2->attrs.Add<const char*>(fn_7100007e80(), "Not in dir animation to set");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("sNotInDirAnimProp", true), fn_7100009658(), 0x48, -1, -1);
+    field3->attrs.Add<const char*>(fn_7100075240(), "");
+    field3->attrs.Add<const char*>(fn_7100007e80(), "not in dir animation to set (from blackboard)");
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("sInDirIdleAnim", true), fn_7100009658(), 0x50, -1, -1);
+    field4->attrs.Add<const char*>(fn_7100075240(), "");
+    field4->attrs.Add<const char*>(fn_7100007e80(), "In dir animation in place to set");
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("sInDirIdleAnimProp", true), fn_7100009658(), 0x58, -1, -1);
+    field5->attrs.Add<const char*>(fn_7100075240(), "");
+    field5->attrs.Add<const char*>(fn_7100007e80(), "In dir animationin place to set (from blackboard)");
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("sTargetPos", true), fn_7100009658(), 0x60, -1, -1);
+    field6->attrs.Add<const char*>(fn_7100075240(), "");
+    field6->attrs.Add<const char*>(fn_7100007e80(), "Target pos");
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("bForceViewDir", true), fn_710000d228(), 0x74, -1, -1);
+    field7->attrs.Add<bool>(fn_7100075240(), false);
+    field7->attrs.Add<const char*>(fn_7100007e80(), "Force view dir");
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("bInvertViewDir", true), fn_710000d228(), 0x75, -1, -1);
+    field8->attrs.Add<bool>(fn_7100075240(), false);
+    field8->attrs.Add<const char*>(fn_7100007e80(), "Force view dir");
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("bForce", true), fn_710000d228(), 0x76, -1, -1);
+    field9->attrs.Add<bool>(fn_7100075240(), false);
+    field9->attrs.Add<const char*>(fn_7100007e80(), "Force set anim");
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("bUpdateModel", true), fn_710000d228(), 0x77, -1, -1);
+    field10->attrs.Add<bool>(fn_7100075240(), false);
+    field10->attrs.Add<const char*>(fn_7100007e80(), "Force update model");
+    UnkReflField* field11 = fn_7100096524(cls, CStrId("bWaitAnimEnd", true), fn_710000d228(), 0x78, -1, -1);
+    field11->attrs.Add<bool>(fn_7100075240(), false);
+    field11->attrs.Add<const char*>(fn_7100007e80(), "Wait for animation end");
+    UnkReflField* field12 = fn_7100096524(cls, CStrId("bWaitIfFrozen", true), fn_710000d228(), 0x79, -1, -1);
+    field12->attrs.Add<bool>(fn_7100075240(), true);
+    field12->attrs.Add<const char*>(fn_7100007e80(), "Wait if frozen");
+    UnkReflField* field13 = fn_7100096524(cls, CStrId("bSyncWithCurrent", true), fn_710000d228(), 0x89, -1, -1);
+    field13->attrs.Add<bool>(fn_7100075240(), false);
+    field13->attrs.Add<const char*>(fn_7100007e80(), "Sync target animation with current [false]");
+    UnkReflField* field14 = fn_7100096524(cls, CStrId("iMinRandSuffix", true), fn_7100014768(), 0x7c, -1, -1);
+    field14->attrs.Add<s32>(fn_7100075240(), -1);
+    field14->attrs.Add<const char*>(fn_7100007e80(), "Minimum suffix value. -1 means not to use suffix [-1]");
+    UnkReflField* field15 = fn_7100096524(cls, CStrId("iMaxRandSuffix", true), fn_7100014768(), 0x80, -1, -1);
+    field15->attrs.Add<s32>(fn_7100075240(), -1);
+    field15->attrs.Add<const char*>(fn_7100007e80(), "Maximum suffix value. -1 means not to use suffix [-1]");
+    UnkReflField* field16 = fn_7100096524(cls, CStrId("bCheckInSmartlink", true), fn_710000d228(), 0x8a, -1, -1);
+    field16->attrs.Add<bool>(fn_7100075240(), false);
+    field16->attrs.Add<const char*>(fn_7100007e80(), "Abort when is in smartlink");
+    UnkReflField* field17 = fn_7100096524(cls, CStrId("bCheckInTurn", true), fn_710000d228(), 0x8c, -1, -1);
+    field17->attrs.Add<bool>(fn_7100075240(), false);
+    field17->attrs.Add<const char*>(fn_7100007e80(), "Abort when is in turn");
+    UnkReflField* field18 = fn_7100096524(cls, CStrId("sReturnActionDisp", true), fn_7100009658(), 0x90, -1, -1);
+    field18->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    field18->attrs.Add<const char*>(fn_7100007e80(), "Action launched");
+    UnkReflField* field19 = fn_7100096524(cls, CStrId("bFailIfSmartlink", true), fn_710000d228(), 0x8b, -1, -1);
+    field19->attrs.Add<bool>(fn_7100075240(), false);
+    field19->attrs.Add<const char*>(fn_7100007e80(), "Abort when is in turn");
+}
 bool fn_7100370bfc(const void*, const void*) { return false; }
 s32 fn_7100370c04() { return -1; }
 const base::reflection::CType& fn_7100370c0c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

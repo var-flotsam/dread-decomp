@@ -2,12 +2,40 @@
 // Reflection descriptors for one original translation unit (2 types):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassQuetzoaAIComponent::CTunableCharClassQuetzoaAIComponent
 DREAD_REFL_TAG(71006485d4);
 void fn_71006483b0(base::reflection::CClass*) {}
+extern bool g_unk_71726fbc18;
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+extern UnkTunableRegistry* g_unk_7101d47350;
+extern UnkTunable g_unk_71726fbbf0;
+void fn_7100648758(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+void fn_71006484a8(CClass* cls) {
+    if (g_unk_71726fbc18)
+        return;
+    g_unk_71726fbc18 = true;
+    if (!cls)
+        return;
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fDodgeTimeThreshold", true), fn_710000abbc(), 0x24, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 2.0f);
+    UnkTunableRegistry* registry = g_unk_7101d47350;
+    if (!registry) {
+        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
+        fn_710013ac14(registry);
+        g_unk_7101d47350 = registry;
+    }
+    fn_7100648758(registry, &g_unk_71726fbbf0, "Quetzoa");
+}
 bool fn_710064928c(const void*, const void*) { return false; }
 s32 fn_7100649294() { return -1; }
 const base::reflection::CType& fn_710064929c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
@@ -36,6 +64,15 @@ DREAD_REFL_CLASS_GETTER(71006483b4, 71006485d4, "CCharClassQuetzoaAIComponent::C
 // CCharClassQuetzoaAIComponent
 DREAD_REFL_TAG(7100648f88);
 void fn_7100648cdc(base::reflection::CClass*) {}
+const base::reflection::CClass* fn_7100642a78();
+const base::reflection::CClass* fn_7100643728();
+extern base::reflection::CType g_unk_71726fbc20;
+void fn_7100648dd4(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("oQuetzoaChargeAttackDef", true), fn_7100642a78(), 0x528, -1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("oQuetzoaEnergyWaveAttackDef", true), fn_7100643728(), 0x618, -1, -1);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("eSubspecies", true), &g_unk_71726fbc20, 0x708, -1, -1);
+    field2->attrs.Add<s32>(fn_7100075240(), &g_unk_71726fbc20, 2147483647);
+}
 bool fn_7100649390(const void*, const void*) { return false; }
 s32 fn_7100649398() { return -1; }
 const base::reflection::CType& fn_71006493a0(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

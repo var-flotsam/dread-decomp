@@ -2,12 +2,32 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // behaviortree::CTunableBoolCondition
 DREAD_REFL_TAG(71003a433c);
 void fn_71003a3fa0(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+void fn_71003a4098(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("bValue", true), fn_710000d228(), 0x38, -1, -1);
+    field0->attrs.Add<bool>(fn_7100075240(), false);
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Value");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("sCategory", true), fn_7100009658(), 0x40, -1, -1);
+    field1->attrs.Add<const char*>(fn_7100075240(), "");
+    field1->attrs.Add<const char*>(fn_7100007e80(), "Tunable category");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("sVariable", true), fn_7100009658(), 0x48, -1, -1);
+    field2->attrs.Add<const char*>(fn_7100075240(), "");
+    field2->attrs.Add<const char*>(fn_7100007e80(), "Tunable variable");
+}
 bool fn_71003a486c(const void*, const void*) { return false; }
 s32 fn_71003a4874() { return -1; }
 const base::reflection::CType& fn_71003a487c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

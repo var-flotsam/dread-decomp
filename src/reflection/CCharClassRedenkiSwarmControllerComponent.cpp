@@ -2,12 +2,83 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassRedenkiSwarmControllerComponent
 DREAD_REFL_TAG(710064e510);
 void fn_710064d100(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::CType* fn_7100007f84();
+void fn_710064d1f8(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fDistToStartCharge", true), fn_710000abbc(), 0x47c, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 700.0f);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fDistToEndRecovery", true), fn_710000abbc(), 0x478, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 200.0f);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("bAlwaysForceRailMovement", true), fn_710000d228(), 0x49c, -1, -1);
+    field2->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fPathRecalculationTime", true), fn_710000abbc(), 0x480, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fAttackPathLength", true), fn_710000abbc(), 0x484, -1, -1);
+    field4->attrs.Add<f32>(fn_7100075240(), 1600.0f);
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("fDistToForceAttack", true), fn_710000abbc(), 0x490, -1, -1);
+    field5->attrs.Add<f32>(fn_7100075240(), 50.0f);
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("fMinChaos", true), fn_710000abbc(), 0x488, -1, -1);
+    field6->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("fMaxChaos", true), fn_710000abbc(), 0x48c, -1, -1);
+    field7->attrs.Add<f32>(fn_7100075240(), 2.5f);
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("fMinMovementAnimSpeed", true), fn_710000abbc(), 0x494, -1, -1);
+    field8->attrs.Add<f32>(fn_7100075240(), 0.5f);
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("fMaxMovementAnimSpeed", true), fn_710000abbc(), 0x498, -1, -1);
+    field9->attrs.Add<f32>(fn_7100075240(), 4.0f);
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("fWallChargeStunDuration", true), fn_710000abbc(), 0x4a0, -1, -1);
+    field10->attrs.Add<f32>(fn_7100075240(), 0.6f);
+    UnkReflField* field11 = fn_7100096524(cls, CStrId("sCombatSoundSmallGroup", true), fn_7100007f84(), 0x4c8, -1, -1);
+    field11->attrs.Add<const char*>(fn_7100075240(), "");
+    UnkReflField* field12 = fn_7100096524(cls, CStrId("sCombatSoundMediumGroup", true), fn_7100007f84(), 0x4f8, -1, -1);
+    field12->attrs.Add<const char*>(fn_7100075240(), "");
+    UnkReflField* field13 = fn_7100096524(cls, CStrId("sCombatSoundLargeGroup", true), fn_7100007f84(), 0x528, -1, -1);
+    field13->attrs.Add<const char*>(fn_7100075240(), "");
+    UnkReflField* field14 = fn_7100096524(cls, CStrId("sPreparationSoundSmallGroup", true), fn_7100007f84(), 0x558, -1, -1);
+    field14->attrs.Add<const char*>(fn_7100075240(), "");
+    UnkReflField* field15 = fn_7100096524(cls, CStrId("sPreparationSoundMediumGroup", true), fn_7100007f84(), 0x588, -1, -1);
+    field15->attrs.Add<const char*>(fn_7100075240(), "");
+    UnkReflField* field16 = fn_7100096524(cls, CStrId("sPreparationSoundLargeGroup", true), fn_7100007f84(), 0x5b8, -1, -1);
+    field16->attrs.Add<const char*>(fn_7100075240(), "");
+    UnkReflField* field17 = fn_7100096524(cls, CStrId("sStartChargeSoundSmallGroup", true), fn_7100007f84(), 0x5e8, -1, -1);
+    field17->attrs.Add<const char*>(fn_7100075240(), "");
+    UnkReflField* field18 = fn_7100096524(cls, CStrId("sStartChargeSoundMediumGroup", true), fn_7100007f84(), 0x618, -1, -1);
+    field18->attrs.Add<const char*>(fn_7100075240(), "");
+    UnkReflField* field19 = fn_7100096524(cls, CStrId("sStartChargeSoundLargeGroup", true), fn_7100007f84(), 0x648, -1, -1);
+    field19->attrs.Add<const char*>(fn_7100075240(), "");
+    UnkReflField* field20 = fn_7100096524(cls, CStrId("sCollisionWithWallSoundSmallGroup", true), fn_7100007f84(), 0x678, -1, -1);
+    field20->attrs.Add<const char*>(fn_7100075240(), "");
+    UnkReflField* field21 = fn_7100096524(cls, CStrId("sCollisionWithWallSoundMediumGroup", true), fn_7100007f84(), 0x6a8, -1, -1);
+    field21->attrs.Add<const char*>(fn_7100075240(), "");
+    UnkReflField* field22 = fn_7100096524(cls, CStrId("sCollisionWithWallSoundLargeGroup", true), fn_7100007f84(), 0x6d8, -1, -1);
+    field22->attrs.Add<const char*>(fn_7100075240(), "");
+    UnkReflField* field23 = fn_7100096524(cls, CStrId("bPreparationBackAllowed", true), fn_710000d228(), 0x4a4, -1, -1);
+    field23->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field24 = fn_7100096524(cls, CStrId("fMinPreparationTime", true), fn_710000abbc(), 0x4a8, -1, -1);
+    field24->attrs.Add<f32>(fn_7100075240(), 0.5f);
+    UnkReflField* field25 = fn_7100096524(cls, CStrId("fBackDistanceLength", true), fn_710000abbc(), 0x4ac, -1, -1);
+    field25->attrs.Add<f32>(fn_7100075240(), 0.35f);
+    UnkReflField* field26 = fn_7100096524(cls, CStrId("fBackDistanceWidth", true), fn_710000abbc(), 0x4b0, -1, -1);
+    field26->attrs.Add<f32>(fn_7100075240(), 1.2f);
+    UnkReflField* field27 = fn_7100096524(cls, CStrId("fAttackCooldown", true), fn_710000abbc(), 0x4b4, -1, -1);
+    field27->attrs.Add<f32>(fn_7100075240(), 1.5f);
+    UnkReflField* field28 = fn_7100096524(cls, CStrId("fAngleLimitDeg", true), fn_710000abbc(), 0x4b8, -1, -1);
+    field28->attrs.Add<f32>(fn_7100075240(), 20.0f);
+    UnkReflField* field29 = fn_7100096524(cls, CStrId("fMinDistForAngleLimit", true), fn_710000abbc(), 0x4c0, -1, -1);
+    field29->attrs.Add<f32>(fn_7100075240(), 100.0f);
+}
 bool fn_710064ec7c(const void*, const void*) { return false; }
 s32 fn_710064ec84() { return -1; }
 const base::reflection::CType& fn_710064ec8c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

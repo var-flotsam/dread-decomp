@@ -2,11 +2,47 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassBaseFadeInEvent
 DREAD_REFL_TAG(7100b9cadc);
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+const base::reflection::UnkReflAttrKey& fn_7100090d50();
+void fn_7100b9c470(CClass* cls) {
+    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Fade In");
+    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("Fade", true));
+}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100091080();
+const base::reflection::UnkReflAttrKey& fn_7100091190();
+void fn_7100b9c64c(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fTime", true), fn_710000abbc(), 0xc, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 0.3f);
+    field0->attrs.Add<f32>(fn_7100091080(), 0.1f);
+    field0->attrs.Add<f32>(fn_7100091190(), 20.0f);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fDelay", true), fn_710000abbc(), 0x10, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 0.1f);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fR", true), fn_710000abbc(), 0x14, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field2->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    field2->attrs.Add<f32>(fn_7100091190(), 1.0f);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fG", true), fn_710000abbc(), 0x18, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field3->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    field3->attrs.Add<f32>(fn_7100091190(), 1.0f);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fB", true), fn_710000abbc(), 0x1c, -1, -1);
+    field4->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field4->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    field4->attrs.Add<f32>(fn_7100091190(), 1.0f);
+}
 bool fn_7100b9cd3c(const void* a, const void* b) { return a == b; }
 s32 fn_7100b9cd48() { return -1; }
 const base::reflection::CType& fn_7100b9cd50(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

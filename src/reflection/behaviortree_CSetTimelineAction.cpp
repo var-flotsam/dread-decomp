@@ -2,12 +2,29 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // behaviortree::CSetTimelineAction
 DREAD_REFL_TAG(7100379374);
 void fn_71003790a0(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+void fn_7100379198(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sTimeline", true), fn_7100009658(), 0x30, -1, -1);
+    field0->attrs.Add<const char*>(fn_7100075240(), "");
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Timeline to set");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("bSet", true), fn_710000d228(), 0x38, -1, -1);
+    field1->attrs.Add<bool>(fn_7100075240(), true);
+    field1->attrs.Add<const char*>(fn_7100007e80(), "Set or remove Timeline");
+}
 bool fn_7100379758(const void*, const void*) { return false; }
 s32 fn_7100379760() { return -1; }
 const base::reflection::CType& fn_7100379768(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

@@ -2,12 +2,40 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassKraidSpikeMovablePlatformComponent
 DREAD_REFL_TAG(71006040c0);
 void fn_71006039e0(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_7100603ad8(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fInitialMotionSpeed", true), fn_710000abbc(), 0x74, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 400.0f);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fMotionSpeed", true), fn_710000abbc(), 0x78, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fInitialDisplacement", true), fn_710000abbc(), 0x7c, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 200.0f);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fPreparationTime", true), fn_710000abbc(), 0x80, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fShakeDisplacementX", true), fn_710000abbc(), 0x84, -1, -1);
+    field4->attrs.Add<f32>(fn_7100075240(), 3.0f);
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("fShakeSpeedX", true), fn_710000abbc(), 0x88, -1, -1);
+    field5->attrs.Add<f32>(fn_7100075240(), 400.0f);
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("fShakeDisplacementY", true), fn_710000abbc(), 0x8c, -1, -1);
+    field6->attrs.Add<f32>(fn_7100075240(), 3.0f);
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("fShakeSpeedY", true), fn_710000abbc(), 0x90, -1, -1);
+    field7->attrs.Add<f32>(fn_7100075240(), 400.0f);
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("fFlyingSpikeStickedWallTime", true), fn_710000abbc(), 0x94, -1, -1);
+    field8->attrs.Add<f32>(fn_7100075240(), -1.0f);
+}
 bool fn_7100604288(const void*, const void*) { return false; }
 s32 fn_7100604290() { return -1; }
 const base::reflection::CType& fn_7100604298(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

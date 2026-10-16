@@ -2,12 +2,30 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassNailuggerAcidBallsAttack
 DREAD_REFL_TAG(7100624034);
 void fn_7100623c78(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_7100623d70(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fIntervalMin", true), fn_710000abbc(), 0xec, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fIntervalMax", true), fn_710000abbc(), 0xf0, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 3.0f);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fRepeatAttackTimer", true), fn_710000abbc(), 0xf4, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 2.0f);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fTimeToChargeAttack", true), fn_710000abbc(), 0xf8, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 1.0f);
+}
 bool fn_7100624208(const void* a, const void* b) { return a == b; }
 s32 fn_7100624214() { return -1; }
 const base::reflection::CType& fn_710062421c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

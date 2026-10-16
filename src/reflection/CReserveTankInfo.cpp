@@ -2,8 +2,15 @@
 // Reflection descriptors for one original translation unit (2 types):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CReserveTankInfo
 DREAD_REFL_TAG(7100f0feb4);
@@ -37,6 +44,35 @@ DREAD_REFL_CLASS_GETTER(7100f0fdbc, 7100f0feb4, "CReserveTankInfo", 7101043688, 
 // CReserveTankInfo::CTunableReserveTanks
 DREAD_REFL_TAG(7100f10434);
 void fn_7100f10038(base::reflection::CClass*) {}
+extern bool g_unk_71729dbbf0;
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+extern UnkTunableRegistry* g_unk_7101d47350;
+extern UnkTunable g_unk_71729dbbc0;
+void fn_7100f105b8(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+void fn_7100f10130(CClass* cls) {
+    if (g_unk_71729dbbf0)
+        return;
+    g_unk_71729dbbf0 = true;
+    if (!cls)
+        return;
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fLifeTankSize", true), fn_710000abbc(), 0x24, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 99.0f);
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Size of the life tank");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fSETankSize", true), fn_710000abbc(), 0x28, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 500.0f);
+    field1->attrs.Add<const char*>(fn_7100007e80(), "Size of the special energy tank");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fMissileTankSize", true), fn_710000abbc(), 0x2c, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 30.0f);
+    field2->attrs.Add<const char*>(fn_7100007e80(), "Size of the missile tank");
+    UnkTunableRegistry* registry = g_unk_7101d47350;
+    if (!registry) {
+        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
+        fn_710013ac14(registry);
+        g_unk_7101d47350 = registry;
+    }
+    fn_7100f105b8(registry, &g_unk_71729dbbc0, "Amiibo");
+}
 bool fn_7100f11594(const void*, const void*) { return false; }
 s32 fn_7100f1159c() { return -1; }
 const base::reflection::CType& fn_7100f115a4(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
