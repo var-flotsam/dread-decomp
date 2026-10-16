@@ -1,0 +1,6 @@
+[submodule "lib/nnsdk"]
+	path = lib/nnsdk
+	url = https://github.com/open-ead/nnsdk
+[submodule "lib/musl"]
+	path = lib/musl
+	url = https://github.com/open-ead/botw-lib-musl

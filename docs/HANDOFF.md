@@ -51,7 +51,9 @@ tools/progress.py         whole-binary progress from data/functions/ (excludes L
 tools/hooks/pre-commit    rejects >1 MB files, console formats/keys, orig/ and build/
 src/compiler_id/          10 leaf functions;  src/flag_id/  20 calling functions;  src/atk_id/  6 nn::atk
 include/types.h           u8..f64 without a standard library
-include/libc/             minimal C headers (declarations only) for building library code such as Lua
+lib/nnsdk/                open-ead/nnsdk submodule: community NintendoSDK declarations (no license; referenced, not copied)
+lib/musl/                 open-ead/botw-lib-musl submodule: musl 1.2.2 C headers (MIT)
+tools/buildcfg.py         the one place that defines compiler, flags and include paths
 data/                     functions/ CSVs, reflection_types.csv, hashes.json, toolchains.json, sources.json
 docs/                     recon.md, compiler.md, references.md, this file
 ```
@@ -125,7 +127,7 @@ The output of `gen_functions_csv.py` is reproducible (only `status` is carried o
 
 ## Proposed next steps (Phase 4–5)
 
-1. **Vendor Lua 5.1.4** into `lib/lua/` (with the `float` `luaconf.h` change and `include/libc/`),
+1. **Vendor Lua 5.1.4** into `lib/lua/` (with the `float` `luaconf.h` change),
    and add it to `check.py`/objdiff. Then signature-match the rest of Lua (VM, parser, GC: roughly
    400 functions) against `main` to name them and mark them `L`. `tools/libcheck_lua.py` already
    builds and maps the standard libraries.
@@ -152,8 +154,8 @@ The output of `gen_functions_csv.py` is reproducible (only `status` is carried o
 - objdiff targets: call targets are verified against the original, but data references
   (GOT/ADRP) are mirrored from our object without verification. String-literal relocations
   point at an undefined `.rodata.str1.1` symbol in the target.
-- `include/libc/stdio.h` sets `BUFSIZ` to 1024 as a guess. It affects `luaL_Buffer` layout; confirm
-  it before matching Lua's string-buffer code.
+- C/C++ headers are musl 1.2.2 (`lib/musl`) and libc++ 9.0.1 (fetched). musl's `BUFSIZ` (1024) sets
+  Lua's `luaL_Buffer` size; confirm it against Lua's string-buffer code.
 - `CRodomithonXSuckAttack`'s recovered `sizeof` (0x40) is smaller than its parent's (0x190); treat it
   as unreliable. 42 reflected types have no identified descriptor kind.
 - Subsystems ending in `?` are guesses, and some `L` markings depend on them.

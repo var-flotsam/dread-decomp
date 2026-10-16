@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Download upstream third-party sources used to identify and build library code
-linked into the game (open source only; see docs/references.md).
+linked into the game, and the libc++ headers the build uses (open source only; see docs/references.md).
 
 Each archive is downloaded once and extracted to
 %LOCALAPPDATA%\\dread-decomp\\sources\\<name>\\. SHA-256 is pinned in data/sources.json:
@@ -28,6 +28,9 @@ DEST = Path(os.environ.get("LOCALAPPDATA", Path.home())) / "dread-decomp" / "sou
 SOURCES = {f"lua-5.1.{n}": f"https://www.lua.org/ftp/lua-5.1.{n}.tar.gz" for n in range(0, 6)}
 SOURCES["lua-5.1"] = "https://www.lua.org/ftp/lua-5.1.tar.gz"
 del SOURCES["lua-5.1.0"]
+# libc++ headers matching the project compiler (Apache-2.0 with LLVM exception).
+SOURCES["libcxx-9.0.1.src"] = ("https://github.com/llvm/llvm-project/releases/download/llvmorg-9.0.1/"
+                               "libcxx-9.0.1.src.tar.xz")
 
 
 def source_dir(name: str) -> Path:
@@ -48,7 +51,7 @@ def fetch(name: str, pins: dict) -> None:
         raise SystemExit(f"{name}: sha256 {digest} does not match pinned {pinned}")
     pins[name] = {"url": url, "sha256": digest}
     DEST.mkdir(parents=True, exist_ok=True)
-    with tarfile.open(fileobj=io.BytesIO(data), mode="r:gz") as tar:
+    with tarfile.open(fileobj=io.BytesIO(data), mode="r:*") as tar:
         tar.extractall(DEST, filter="data")
     if not target.is_dir():
         raise SystemExit(f"{name}: expected {target} after extraction")
