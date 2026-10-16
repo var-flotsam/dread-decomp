@@ -12,7 +12,11 @@ each file stays under the 1 MB pre-commit limit. Columns: address,size,name,name
   name         best guess, demangled; fn_<addr> when unknown
   name_source  symbol | rtti | reflection | string | unknown
   subsystem    guess (see SUBSYSTEM_RULES); "?"-suffixed when inferred from neighbours
-  status       none | nonmatching | matching (preserved across regeneration)
+  status       BotW / nx-decomp-tools codes (see docs/references.md):
+                 O matching, m non-matching (minor), M non-matching (major), W work in progress,
+                 U not decompiled, L library (excluded from progress).
+               O/m/M/W are set by tools/check.py from src/ and preserved here; every other
+               function is L if its subsystem is a library, else U.
 
 Usage: python tools/gen_functions_csv.py --version 2.1.0
 """
@@ -63,6 +67,13 @@ SUBSYSTEM_RULES = [
     (r"^C[A-Z]\w*", "game"),
     (r"^S[A-Z]\w*", "game"),
 ]
+
+# Code we don't decompile as game code: vendored upstream (Lua), Nintendo
+# middleware/SDK (nn::atk, nn::), and the C/C++ runtime. Marked L, like BotW's
+# "library function" status, and excluded from progress.
+LIBRARY_SUBSYSTEMS = {"middleware/nn-atk", "sdk", "runtime", "lua/stdlib"}
+# Statuses that come from src/ (tools/check.py) and must survive regeneration.
+DECOMP_STATUSES = {"O", "m", "M", "W"}
 
 # Lua 5.1 standard-library tables are recognised by their first entry.
 LUA_STDLIB_FIRST = {"assert", "abs", "byte", "concat", "create", "close", "clock", "loadlib", "debug"}
@@ -202,7 +213,11 @@ def main() -> int:
             for a in addrs:
                 name, source = names.get(a, (f"fn_{a:x}", "unknown"))
                 addr = f"{a:#x}"
-                w.writerow([addr, funcs[a], name, source, sub.get(a, "unknown"), old_status.get(addr, "none")])
+                subsystem = sub.get(a, "unknown")
+                status = old_status.get(addr)
+                if status not in DECOMP_STATUSES:
+                    status = "L" if subsystem.rstrip("?") in LIBRARY_SUBSYSTEMS else "U"
+                w.writerow([addr, funcs[a], name, source, subsystem, status])
 
     rt = ROOT / "data" / "reflection_types.csv"
     with rt.open("w", newline="", encoding="utf-8") as f:

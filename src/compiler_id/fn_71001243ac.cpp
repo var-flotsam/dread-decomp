@@ -1,6 +1,5 @@
 // Two-level handle lookup: bits 16..30 select a 0x48-byte slot, the low 16 bits
 // select a 12-byte entry in that slot's array; returns the entry's third word.
-// Not matching: same instructions, different scheduling/register assignment.
 #include "types.h"
 
 struct UnkStruct_0xc {
@@ -19,6 +18,7 @@ struct UnkPool_0x48 {
     u32 count;
 };
 
+// NON_MATCHING(minor): same instructions, different scheduling and register assignment.
 u32 fn_71001243ac(UnkPool_0x48* pool, u32 handle) {
     u32 slot = (handle >> 16) & 0x7fff;
     u32 entry = handle & 0xffff;

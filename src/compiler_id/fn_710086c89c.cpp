@@ -1,5 +1,4 @@
 // True when every 0xd0-byte element has field_0xa1 == 1 (vacuously true when empty).
-// Not matching: same instructions, different register assignment and increment order.
 #include "types.h"
 
 struct UnkStruct_0xd0 {
@@ -15,6 +14,7 @@ struct UnkStruct_0x58 {
     u32 count;
 };
 
+// NON_MATCHING(minor): same instructions, different register assignment and increment order.
 bool fn_710086c89c(const UnkStruct_0x58* self) {
     for (const UnkStruct_0xd0* it = self->data; it != self->data + self->count; ++it) {
         if (it->field_0xa1 != 1)

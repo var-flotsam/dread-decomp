@@ -108,13 +108,17 @@ def object_functions(path: Path) -> list[tuple[str, bytes, dict[int, int]]]:
     return out
 
 
-def diff_object(obj: Path, original: Original) -> list[FunctionResult]:
+def diff_object(obj: Path, original: Original, resolve=None) -> list[FunctionResult]:
+    """Diff every function in obj that maps to an original address.
+
+    A symbol maps through fn_<addr> in its name, or through resolve(symbol) -> address|None.
+    """
     results = []
     for name, code, rel in object_functions(obj):
         m = NAME_RE.search(name)
-        if not m:
+        addr = int(m.group(1), 16) if m else (resolve(name) if resolve else None)
+        if addr is None:
             continue
-        addr = int(m.group(1), 16)
         if addr not in original.sizes:
             raise SystemExit(f"{name}: {addr:#x} is not a known function start")
         orig = original.function(addr)
