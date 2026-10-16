@@ -104,6 +104,7 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--version", required=True)
     ap.add_argument("--update", action="store_true", help="write statuses into data/functions/")
+    ap.add_argument("-j", "--jobs", type=int, default=8, help="parallel compiles")
     args = ap.parse_args()
 
     rows, files = load_csv()
@@ -113,11 +114,13 @@ def main() -> int:
     original = asmdiff.Original(args.version)
 
     results = {}  # address -> (status, symbol, score)
-    failed = False
-    for src in sources():
-        obj = build(args.version, src)
+    srcs = sources()
+    from concurrent.futures import ThreadPoolExecutor
+    with ThreadPoolExecutor(args.jobs) as pool:
+        objects = list(pool.map(lambda s: build(args.version, s), srcs))
+    failed = any(o is None for o in objects)
+    for src, obj in zip(srcs, objects):
         if obj is None:
-            failed = True
             continue
         names = demangle([n for n, _, _ in asmdiff.object_functions(obj)])
         resolve = resolver(by_name, names)

@@ -875,7 +875,7 @@ address,size,name,name_source,subsystem,status
 0x7101132a20,372,fn_7101132a20,unknown,unknown,U
 0x7101132ba0,2832,base::reflection::refl_GetType<CGameLink<CSpawnPointComponent>>,reflection,engine/reflection,U
 0x71011336b0,4,fn_71011336b0,unknown,unknown,U
-0x71011336b4,244,CAIAttackComponent::refl_GetClass,reflection,game/ai,U
+0x71011336b4,244,CAIAttackComponent::refl_GetClass,reflection,game/ai,O
 0x71011337a8,4,fn_71011337a8,unknown,game/ai?,U
 0x71011337ac,352,CAIAttackComponent::refl_InitClass,reflection,game/ai,U
 0x710113390c,388,fn_710113390c,unknown,unknown,U
@@ -919,7 +919,7 @@ address,size,name,name_source,subsystem,status
 0x7101135974,64,fn_7101135974,unknown,unknown,U
 0x71011359c0,160,fn_71011359c0,unknown,unknown,U
 0x7101135a60,4,fn_7101135a60,unknown,unknown,U
-0x7101135a64,244,CAttackComponent::refl_GetClass,reflection,game/components,U
+0x7101135a64,244,CAttackComponent::refl_GetClass,reflection,game/components,O
 0x7101135b58,552,fn_7101135b58,unknown,game/components?,U
 0x7101135d80,388,CAttackComponent::refl_InitClass,reflection,game/components,U
 0x7101135f04,236,fn_7101135f04,unknown,game/components?,U
@@ -970,7 +970,7 @@ address,size,name,name_source,subsystem,status
 0x7101138630,608,fn_7101138630,unknown,game/components?,U
 0x7101138890,160,fn_7101138890,unknown,game/components?,U
 0x7101138930,4,fn_7101138930,unknown,game/components?,U
-0x7101138934,244,CFactionComponent::refl_GetClass,reflection,game/components,U
+0x7101138934,244,CFactionComponent::refl_GetClass,reflection,game/components,O
 0x7101138a28,4,fn_7101138a28,unknown,game/components?,U
 0x7101138a2c,388,CFactionComponent::refl_InitClass,reflection,game/components,U
 0x7101138bb0,280,fn_7101138bb0,unknown,game/components?,U
@@ -999,7 +999,7 @@ address,size,name,name_source,subsystem,status
 0x7101139890,84,fn_7101139890,unknown,game/components?,U
 0x71011398f0,364,fn_71011398f0,unknown,game/components?,U
 0x7101139a5c,4,fn_7101139a5c,unknown,game/components?,U
-0x7101139a60,244,CScriptComponent::refl_GetClass,reflection,game/components,U
+0x7101139a60,244,CScriptComponent::refl_GetClass,reflection,game/components,O
 0x7101139b54,4,fn_7101139b54,unknown,game/components?,U
 0x7101139b58,388,CScriptComponent::refl_InitClass,reflection,game/components,U
 0x7101139cdc,192,fn_7101139cdc,unknown,game/components?,U
@@ -1094,7 +1094,7 @@ address,size,name,name_source,subsystem,status
 0x710113f728,4,fn_710113f728,unknown,unknown,U
 0x710113f730,584,fn_710113f730,unknown,unknown,U
 0x710113f978,4,fn_710113f978,unknown,unknown,U
-0x710113f97c,244,CInventoryComponent::CTunableInventoryComponent::refl_GetClass,reflection,game/components,U
+0x710113f97c,244,CInventoryComponent::CTunableInventoryComponent::refl_GetClass,reflection,game/components,O
 0x710113fa70,904,fn_710113fa70,unknown,game/components?,U
 0x710113fdf8,388,CInventoryComponent::CTunableInventoryComponent::refl_InitClass,reflection,game/components,U
 0x710113ff7c,380,fn_710113ff7c,unknown,game/components?,U
@@ -1103,7 +1103,7 @@ address,size,name,name_source,subsystem,status
 0x71011406b4,24,fn_71011406b4,unknown,game/components?,U
 0x71011406cc,500,fn_71011406cc,unknown,game/components?,U
 0x71011408c0,4,fn_71011408c0,unknown,game/components?,U
-0x71011408c4,244,CInventoryComponent::refl_GetClass,reflection,game/components,U
+0x71011408c4,244,CInventoryComponent::refl_GetClass,reflection,game/components,O
 0x71011409b8,620,fn_71011409b8,unknown,game/components?,U
 0x7101140c24,352,CInventoryComponent::refl_InitClass,reflection,game/components,U
 0x7101140d84,380,fn_7101140d84,unknown,game/components?,U
@@ -1323,7 +1323,7 @@ address,size,name,name_source,subsystem,status
 0x71011581a4,192,fn_71011581a4,unknown,unknown,U
 0x7101158270,416,fn_7101158270,unknown,unknown,U
 0x7101158410,4,fn_7101158410,unknown,unknown,U
-0x7101158414,244,CCharacterLifeComponent::refl_GetClass,reflection,game/characters,U
+0x7101158414,244,CCharacterLifeComponent::refl_GetClass,reflection,game/characters,O
 0x7101158508,1084,fn_7101158508,unknown,game/characters?,U
 0x7101158944,344,CCharacterLifeComponent::refl_InitClass,reflection,game/characters,U
 0x7101158a9c,380,fn_7101158a9c,unknown,unknown,U
@@ -1409,7 +1409,7 @@ address,size,name,name_source,subsystem,status
 0x710115dbc4,8,fn_710115dbc4,unknown,game/components?,U
 0x710115dbd0,484,fn_710115dbd0,unknown,game/components?,U
 0x710115ddb4,4,fn_710115ddb4,unknown,game/components?,U
-0x710115ddb8,244,CLifeComponent::refl_GetClass,reflection,game/components,U
+0x710115ddb8,244,CLifeComponent::refl_GetClass,reflection,game/components,O
 0x710115deac,4212,fn_710115deac,unknown,game/components?,U
 0x710115ef20,344,CLifeComponent::refl_InitClass,reflection,game/components,U
 0x710115f078,180,fn_710115f078,unknown,unknown,U
@@ -1556,11 +1556,11 @@ address,size,name,name_source,subsystem,status
 0x710116a6d4,336,fn_710116a6d4,unknown,unknown,U
 0x710116a830,620,fn_710116a830,unknown,unknown,U
 0x710116aa9c,4,fn_710116aa9c,unknown,unknown,U
-0x710116aaa0,244,CCharClassStartPointComponent::refl_GetClass,reflection,game/characters,U
+0x710116aaa0,244,CCharClassStartPointComponent::refl_GetClass,reflection,game/characters,O
 0x710116ab94,204,fn_710116ab94,unknown,game/characters?,U
 0x710116ac60,388,CCharClassStartPointComponent::refl_InitClass,reflection,game/characters,U
 0x710116ade4,4,fn_710116ade4,unknown,unknown,U
-0x710116ade8,244,CStartPointComponent::refl_GetClass,reflection,game/components,U
+0x710116ade8,244,CStartPointComponent::refl_GetClass,reflection,game/components,O
 0x710116aedc,1428,fn_710116aedc,unknown,game/components?,U
 0x710116b470,388,CStartPointComponent::refl_InitClass,reflection,game/components,U
 0x710116b5f4,380,fn_710116b5f4,unknown,game/components?,U
@@ -1609,7 +1609,7 @@ address,size,name,name_source,subsystem,status
 0x710116d0bc,100,fn_710116d0bc,unknown,game/components?,U
 0x710116d120,532,fn_710116d120,unknown,game/components?,U
 0x710116d334,4,fn_710116d334,unknown,game/components?,U
-0x710116d338,244,CInterpolationComponent::refl_GetClass,reflection,game/components,U
+0x710116d338,244,CInterpolationComponent::refl_GetClass,reflection,game/components,O
 0x710116d42c,4,fn_710116d42c,unknown,game/components?,U
 0x710116d430,388,CInterpolationComponent::refl_InitClass,reflection,game/components,U
 0x710116d5b4,428,fn_710116d5b4,unknown,game/components?,U
@@ -1662,7 +1662,7 @@ address,size,name,name_source,subsystem,status
 0x710116ed2c,2280,fn_710116ed2c,unknown,game/components?,U
 0x710116f614,644,fn_710116f614,unknown,game/components?,U
 0x710116f898,4,fn_710116f898,unknown,game/components?,U
-0x710116f89c,244,CModelUpdaterComponent::refl_GetClass,reflection,game/components,U
+0x710116f89c,244,CModelUpdaterComponent::refl_GetClass,reflection,game/components,O
 0x710116f990,2464,fn_710116f990,unknown,game/components?,U
 0x7101170330,388,CModelUpdaterComponent::refl_InitClass,reflection,game/components,U
 0x71011704b4,380,fn_71011704b4,unknown,unknown,U
@@ -1750,7 +1750,7 @@ address,size,name,name_source,subsystem,status
 0x7101174a64,192,fn_7101174a64,unknown,unknown,U
 0x7101174b30,160,fn_7101174b30,unknown,unknown,U
 0x7101174bd0,4,fn_7101174bd0,unknown,unknown,U
-0x7101174bd4,244,CAnimationComponent::refl_GetClass,reflection,game/components,U
+0x7101174bd4,244,CAnimationComponent::refl_GetClass,reflection,game/components,O
 0x7101174cc8,1428,fn_7101174cc8,unknown,game/components?,U
 0x710117525c,352,CAnimationComponent::refl_InitClass,reflection,game/components,U
 0x71011753bc,180,fn_71011753bc,unknown,unknown,U
@@ -1925,7 +1925,7 @@ address,size,name,name_source,subsystem,status
 0x71011818dc,8,fn_71011818dc,unknown,game/components?,U
 0x71011818f0,160,fn_71011818f0,unknown,game/components?,U
 0x7101181990,4,fn_7101181990,unknown,game/components?,U
-0x7101181994,244,CTargetComponent::refl_GetClass,reflection,game/components,U
+0x7101181994,244,CTargetComponent::refl_GetClass,reflection,game/components,O
 0x7101181a88,4,fn_7101181a88,unknown,game/components?,U
 0x7101181a8c,388,CTargetComponent::refl_InitClass,reflection,game/components,U
 0x7101181c10,100,fn_7101181c10,unknown,game/components?,U
@@ -1950,7 +1950,7 @@ address,size,name,name_source,subsystem,status
 0x7101181ffc,8,fn_7101181ffc,unknown,game/components?,U
 0x7101182010,160,fn_7101182010,unknown,game/components?,U
 0x71011820b0,4,fn_71011820b0,unknown,game/components?,U
-0x71011820b4,244,CTimerComponent::refl_GetClass,reflection,game/components,U
+0x71011820b4,244,CTimerComponent::refl_GetClass,reflection,game/components,O
 0x71011821a8,4,fn_71011821a8,unknown,game/components?,U
 0x71011821ac,388,CTimerComponent::refl_InitClass,reflection,game/components,U
 0x7101182330,52,fn_7101182330,unknown,unknown,U
@@ -2358,7 +2358,7 @@ address,size,name,name_source,subsystem,status
 0x71011a5e10,84,fn_71011a5e10,unknown,unknown,U
 0x71011a5e70,140,fn_71011a5e70,unknown,unknown,U
 0x71011a5efc,4,fn_71011a5efc,unknown,unknown,U
-0x71011a5f00,244,CTeamManager::CTunableTeamManager::refl_GetClass,reflection,game,U
+0x71011a5f00,244,CTeamManager::CTunableTeamManager::refl_GetClass,reflection,game,O
 0x71011a5ff4,540,fn_71011a5ff4,unknown,game?,U
 0x71011a6210,388,CTeamManager::CTunableTeamManager::refl_InitClass,reflection,game,U
 0x71011a6394,696,fn_71011a6394,unknown,unknown,U
@@ -2471,7 +2471,7 @@ address,size,name,name_source,subsystem,status
 0x71011ac8e8,252,fn_71011ac8e8,unknown,game/characters?,U
 0x71011ac9f0,160,fn_71011ac9f0,unknown,game/characters?,U
 0x71011aca90,4,fn_71011aca90,unknown,game/characters?,U
-0x71011aca94,244,CCharClassComponent::refl_GetClass,reflection,game/characters,U
+0x71011aca94,244,CCharClassComponent::refl_GetClass,reflection,game/characters,O
 0x71011acb88,4,fn_71011acb88,unknown,game/characters?,U
 0x71011acb8c,388,CCharClassComponent::refl_InitClass,reflection,game/characters,U
 0x71011acd10,100,fn_71011acd10,unknown,unknown,U
@@ -2795,7 +2795,7 @@ address,size,name,name_source,subsystem,status
 0x71011c35a0,220,fn_71011c35a0,unknown,unknown,U
 0x71011c367c,488,fn_71011c367c,unknown,unknown,U
 0x71011c3864,4,fn_71011c3864,unknown,unknown,U
-0x71011c3868,244,GUI::CDisplayObject::refl_GetClass,reflection,gui,U
+0x71011c3868,244,GUI::CDisplayObject::refl_GetClass,reflection,gui,O
 0x71011c395c,19788,fn_71011c395c,unknown,gui?,U
 0x71011c86a8,352,GUI::CDisplayObject::refl_InitClass,reflection,gui,U
 0x71011c8808,380,fn_71011c8808,unknown,unknown,U
@@ -3264,7 +3264,7 @@ address,size,name,name_source,subsystem,status
 0x71011d7860,220,fn_71011d7860,unknown,unknown,U
 0x71011d793c,496,fn_71011d793c,unknown,unknown,U
 0x71011d7b2c,88,fn_71011d7b2c,unknown,unknown,U
-0x71011d7b84,244,GUI::CDisplayObjectContainer::refl_GetClass,reflection,gui,U
+0x71011d7b84,244,GUI::CDisplayObjectContainer::refl_GetClass,reflection,gui,O
 0x71011d7c78,2232,fn_71011d7c78,unknown,gui?,U
 0x71011d8530,352,GUI::CDisplayObjectContainer::refl_InitClass,reflection,gui,U
 0x71011d8690,376,fn_71011d8690,unknown,unknown,U
@@ -3733,7 +3733,7 @@ address,size,name,name_source,subsystem,status
 0x71011e8720,436,fn_71011e8720,unknown,unknown,U
 0x71011e88e0,1304,fn_71011e88e0,unknown,unknown,U
 0x71011e8df8,4,fn_71011e8df8,unknown,unknown,U
-0x71011e8dfc,244,GUI::CLabel::refl_GetClass,reflection,gui,U
+0x71011e8dfc,244,GUI::CLabel::refl_GetClass,reflection,gui,O
 0x71011e8ef0,6680,fn_71011e8ef0,unknown,gui?,U
 0x71011ea908,352,GUI::CLabel::refl_InitClass,reflection,gui,U
 0x71011eaa68,380,fn_71011eaa68,unknown,unknown,U
@@ -3917,7 +3917,7 @@ address,size,name,name_source,subsystem,status
 0x71011f6624,472,fn_71011f6624,unknown,unknown,U
 0x71011f6800,140,fn_71011f6800,unknown,unknown,U
 0x71011f688c,4,fn_71011f688c,unknown,unknown,U
-0x71011f6890,244,GUI::CSprite::refl_GetClass,reflection,gui,U
+0x71011f6890,244,GUI::CSprite::refl_GetClass,reflection,gui,O
 0x71011f6984,4236,fn_71011f6984,unknown,gui?,U
 0x71011f7a10,352,GUI::CSprite::refl_InitClass,reflection,gui,U
 0x71011f7b70,380,fn_71011f7b70,unknown,gui?,U
@@ -3976,7 +3976,7 @@ address,size,name,name_source,subsystem,status
 0x71011faedc,300,fn_71011faedc,unknown,gui?,U
 0x71011fb010,160,fn_71011fb010,unknown,gui?,U
 0x71011fb0b0,4,fn_71011fb0b0,unknown,gui?,U
-0x71011fb0b4,244,GUI::CSpriteGrid::refl_GetClass,reflection,gui,U
+0x71011fb0b4,244,GUI::CSpriteGrid::refl_GetClass,reflection,gui,O
 0x71011fb1a8,3332,fn_71011fb1a8,unknown,gui?,U
 0x71011fbeac,352,GUI::CSpriteGrid::refl_InitClass,reflection,gui,U
 0x71011fc00c,380,fn_71011fc00c,unknown,gui?,U
@@ -4024,7 +4024,7 @@ address,size,name,name_source,subsystem,status
 0x71011fe48c,152,fn_71011fe48c,unknown,gui?,U
 0x71011fe530,160,fn_71011fe530,unknown,gui?,U
 0x71011fe5d0,4,fn_71011fe5d0,unknown,gui?,U
-0x71011fe5d4,244,GUI::CItemRenderer::refl_GetClass,reflection,gui,U
+0x71011fe5d4,244,GUI::CItemRenderer::refl_GetClass,reflection,gui,O
 0x71011fe6c8,4,fn_71011fe6c8,unknown,gui?,U
 0x71011fe6cc,344,GUI::CItemRenderer::refl_InitClass,reflection,gui,U
 0x71011fe824,8,fn_71011fe824,unknown,gui?,U
