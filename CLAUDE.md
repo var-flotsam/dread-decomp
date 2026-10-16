@@ -101,6 +101,11 @@ Toolchain:
 - Mark a non-matching function with `// NON_MATCHING(minor): <reason>` or
   `// NON_MATCHING(major): <reason>` on the line(s) directly above its definition. Use minor only
   when the behaviour is identical.
+- Matching standard: aim for `O` on every function, but time-box each one to about 30-60
+  minutes. If it still differs, keep the closest version and annotate it with
+  `NON_MATCHING(minor)` (same behaviour; usable by the port) or `NON_MATCHING(major)`, with the
+  remaining difference spelled out. Exception: reflection boilerplate (`refl_GetClass`,
+  `refl_InitClass`) must reach `O`, through a shared template or macro.
 - Build and check: `python tools/check.py --version <ver>` (Clang 9.0.1, `-O2 -mcpu=cortex-a57`,
   see `docs/compiler.md`). It must pass before committing `src/` changes. Subsystems ending in `?` were inferred from neighbours.
 - Inferred-role names use a `refl_` prefix (e.g. `CActor::refl_GetClass`) or `vf_<slot>` for

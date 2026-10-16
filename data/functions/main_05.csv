@@ -2872,7 +2872,7 @@ address,size,name,name_source,subsystem,status
 0x71005a2964,244,CCharClassBaseGroundShockerAIComponent::refl_GetClass,reflection,game/characters,U
 0x71005a2a58,544,fn_71005a2a58,unknown,game/characters?,U
 0x71005a2c78,352,CCharClassBaseGroundShockerAIComponent::refl_InitClass,reflection,game/characters,U
-0x71005a2dd8,48,fn_71005a2dd8,unknown,game/characters?,U
+0x71005a2dd8,48,fn_71005a2dd8,unknown,game/characters?,O
 0x71005a2e08,4,fn_71005a2e08,unknown,game/characters?,U
 0x71005a2e0c,36,fn_71005a2e0c,unknown,game/characters?,U
 0x71005a2e30,96,fn_71005a2e30,unknown,game/characters?,U
@@ -3049,7 +3049,7 @@ address,size,name,name_source,subsystem,status
 0x71005a96c4,556,fn_71005a96c4,unknown,unknown,U
 0x71005a98f0,36,fn_71005a98f0,unknown,unknown,U
 0x71005a9914,120,fn_71005a9914,unknown,unknown,U
-0x71005a998c,120,fn_71005a998c,unknown,unknown,U
+0x71005a998c,120,fn_71005a998c,unknown,unknown,O
 0x71005a9a04,1192,fn_71005a9a04,unknown,unknown,U
 0x71005a9eac,300,fn_71005a9eac,unknown,unknown,U
 0x71005a9fd8,268,fn_71005a9fd8,unknown,unknown,U
@@ -3466,7 +3466,7 @@ address,size,name,name_source,subsystem,status
 0x71005b73a8,348,fn_71005b73a8,unknown,game/ai?,U
 0x71005b7504,12,fn_71005b7504,unknown,game/ai?,U
 0x71005b7510,88,fn_71005b7510,unknown,game/ai?,U
-0x71005b7568,88,fn_71005b7568,unknown,game/ai?,U
+0x71005b7568,88,fn_71005b7568,unknown,game/ai?,O
 0x71005b75c0,160,fn_71005b75c0,unknown,game/ai?,U
 0x71005b7660,4,fn_71005b7660,unknown,game/ai?,U
 0x71005b7664,244,CHydrogigaTongueSwirlAttack::refl_GetClass,reflection,game/ai,U
@@ -4275,7 +4275,7 @@ address,size,name,name_source,subsystem,status
 0x71005d9eec,128,fn_71005d9eec,unknown,unknown,U
 0x71005d9f6c,168,fn_71005d9f6c,unknown,unknown,U
 0x71005da014,8,fn_71005da014,unknown,unknown,U
-0x71005da01c,48,fn_71005da01c,unknown,unknown,U
+0x71005da01c,48,fn_71005da01c,unknown,unknown,O
 0x71005da04c,472,fn_71005da04c,unknown,unknown,U
 0x71005da224,80,fn_71005da224,unknown,unknown,U
 0x71005da274,56,fn_71005da274,unknown,unknown,U

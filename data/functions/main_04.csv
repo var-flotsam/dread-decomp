@@ -3125,7 +3125,7 @@ address,size,name,name_source,subsystem,status
 0x710048dc3c,356,CChozoWarriorXAIComponent::refl_InitClass,reflection,game/ai,U
 0x710048dda0,184,fn_710048dda0,unknown,unknown,U
 0x710048de58,616,fn_710048de58,unknown,unknown,U
-0x710048e0c0,36,fn_710048e0c0,unknown,unknown,U
+0x710048e0c0,36,fn_710048e0c0,unknown,unknown,O
 0x710048e0e4,368,fn_710048e0e4,unknown,unknown,U
 0x710048e254,312,fn_710048e254,unknown,unknown,U
 0x710048e38c,88,fn_710048e38c,unknown,unknown,U
@@ -5295,7 +5295,7 @@ address,size,name,name_source,subsystem,status
 0x71004dd0e4,244,behaviortree::CDaivoBackToPositionAction::refl_GetClass,reflection,ai/behaviortree,U
 0x71004dd1d8,4,fn_71004dd1d8,unknown,ai/behaviortree?,U
 0x71004dd1dc,388,behaviortree::CDaivoBackToPositionAction::refl_InitClass,reflection,ai/behaviortree,U
-0x71004dd360,120,fn_71004dd360,unknown,ai/behaviortree?,U
+0x71004dd360,120,fn_71004dd360,unknown,ai/behaviortree?,O
 0x71004dd3d8,596,fn_71004dd3d8,unknown,ai/behaviortree?,U
 0x71004dd62c,36,fn_71004dd62c,unknown,ai/behaviortree?,U
 0x71004dd650,8,fn_71004dd650,unknown,ai/behaviortree?,U

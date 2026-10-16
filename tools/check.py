@@ -37,8 +37,10 @@ CXXFILT = r"C:\Program Files\LLVM\bin\llvm-cxxfilt.exe"
 
 # Project toolchain, from docs/compiler.md.
 COMPILER = "9.0.1"
-CFLAGS = ["--target=aarch64-none-elf", "-mcpu=cortex-a57", "-O2", "-std=c++1z", "-fno-rtti",
-          "-fno-exceptions", "-ffunction-sections", "-I", str(ROOT / "include"), "-c"]
+CFLAGS = ["--target=aarch64-none-elf", "-mcpu=cortex-a57", "-O3", "-fPIC",
+          "-fasynchronous-unwind-tables", "-mno-implicit-float",
+          "-std=c++1z", "-fno-rtti", "-fno-exceptions", "-ffunction-sections",
+          "-I", str(ROOT / "include"), "-c"]
 
 ANNOTATION = re.compile(r"//\s*NON_MATCHING\((minor|major)\)")
 DEFINITION = re.compile(r"^[A-Za-z_][\w:<>,\*& ]*?\b([A-Za-z_][\w:]*)\s*\(")

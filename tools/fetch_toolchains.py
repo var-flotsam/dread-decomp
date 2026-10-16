@@ -29,6 +29,7 @@ SEVEN_ZIP = r"C:\Program Files\7-Zip\7z.exe"
 CANDIDATES = {
     "4.0.1": "https://releases.llvm.org/4.0.1/LLVM-4.0.1-win64.exe",
     "8.0.1": "https://github.com/llvm/llvm-project/releases/download/llvmorg-8.0.1/LLVM-8.0.1-win64.exe",
+    "9.0.0": "https://releases.llvm.org/9.0.0/LLVM-9.0.0-win64.exe",
     "9.0.1": "https://github.com/llvm/llvm-project/releases/download/llvmorg-9.0.1/LLVM-9.0.1-win64.exe",
     "10.0.0": "https://github.com/llvm/llvm-project/releases/download/llvmorg-10.0.0/LLVM-10.0.0-win64.exe",
     "11.1.0": "https://github.com/llvm/llvm-project/releases/download/llvmorg-11.1.0/LLVM-11.1.0-win64.exe",

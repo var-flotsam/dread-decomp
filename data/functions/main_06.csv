@@ -4117,7 +4117,7 @@ address,size,name,name_source,subsystem,status
 0x71006a2dd4,244,CCharClassShakernautPiercingLaserAttack::refl_GetClass,reflection,game/characters,U
 0x71006a2ec8,872,fn_71006a2ec8,unknown,game/characters?,U
 0x71006a3230,352,CCharClassShakernautPiercingLaserAttack::refl_InitClass,reflection,game/characters,U
-0x71006a3390,52,fn_71006a3390,unknown,unknown,U
+0x71006a3390,52,fn_71006a3390,unknown,unknown,O
 0x71006a33c4,4,fn_71006a33c4,unknown,unknown,U
 0x71006a33c8,36,fn_71006a33c8,unknown,unknown,U
 0x71006a33ec,28,fn_71006a33ec,unknown,unknown,U
@@ -5391,7 +5391,7 @@ address,size,name,name_source,subsystem,status
 0x71006de228,300,fn_71006de228,unknown,game?,U
 0x71006de354,388,CVulkranAttackManager::CTunableVulkranAttackManager::refl_InitClass,reflection,game,U
 0x71006de4d8,696,fn_71006de4d8,unknown,unknown,U
-0x71006de790,52,fn_71006de790,unknown,unknown,U
+0x71006de790,52,fn_71006de790,unknown,unknown,O
 0x71006de7c4,92,fn_71006de7c4,unknown,unknown,U
 0x71006de820,104,fn_71006de820,unknown,unknown,U
 0x71006de888,180,fn_71006de888,unknown,unknown,U
