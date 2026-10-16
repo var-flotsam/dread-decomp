@@ -2,12 +2,51 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // behaviortree::CFloatCondition
 DREAD_REFL_TAG(710039bce8);
 void fn_710039b490(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+extern base::reflection::CType g_unk_71726bc290;
+void fn_710039b588(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fValueA", true), fn_710000abbc(), 0x38, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Value A");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("sValueA", true), fn_7100009658(), 0x40, -1, -1);
+    field1->attrs.Add<const char*>(fn_7100075240(), "");
+    field1->attrs.Add<const char*>(fn_7100007e80(), "Value A (blackboard)");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("sTunableA", true), fn_7100009658(), 0x48, -1, -1);
+    field2->attrs.Add<const char*>(fn_7100075240(), "");
+    field2->attrs.Add<const char*>(fn_7100007e80(), "Value A (tunable class)");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("sTunableVarA", true), fn_7100009658(), 0x50, -1, -1);
+    field3->attrs.Add<const char*>(fn_7100075240(), "");
+    field3->attrs.Add<const char*>(fn_7100007e80(), "Value A (tunable var)");
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fValueB", true), fn_710000abbc(), 0x58, -1, -1);
+    field4->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field4->attrs.Add<const char*>(fn_7100007e80(), "Value B");
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("sValueB", true), fn_7100009658(), 0x60, -1, -1);
+    field5->attrs.Add<const char*>(fn_7100075240(), "");
+    field5->attrs.Add<const char*>(fn_7100007e80(), "Value B (blackboard)");
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("sTunableB", true), fn_7100009658(), 0x68, -1, -1);
+    field6->attrs.Add<const char*>(fn_7100075240(), "");
+    field6->attrs.Add<const char*>(fn_7100007e80(), "Value B (tunable class)");
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("sTunableVarB", true), fn_7100009658(), 0x70, -1, -1);
+    field7->attrs.Add<const char*>(fn_7100075240(), "");
+    field7->attrs.Add<const char*>(fn_7100007e80(), "Value B (tunable var)");
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("eCompareOperator", true), &g_unk_71726bc290, 0x78, -1, -1);
+    field8->attrs.Add<s32>(fn_7100075240(), &g_unk_71726bc290, 2);
+    field8->attrs.Add<const char*>(fn_7100007e80(), "Compare operator (LESS, LESSEQUAL, EQUAL, GREATEREQUAL or GREATER)");
+}
 bool fn_710039c3e8(const void*, const void*) { return false; }
 s32 fn_710039c3f0() { return -1; }
 const base::reflection::CType& fn_710039c3f8(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

@@ -2,12 +2,28 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassAutsniperAIComponent
 DREAD_REFL_TAG(71003dbbc0);
 void fn_71003db8d8(base::reflection::CClass*) {}
+const base::reflection::CClass* fn_71003d8d48();
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_71003db9d0(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("oAutsniperShootAttackDef", true), fn_71003d8d48(), 0x528, -1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fTimeToChangeLayer", true), fn_710000abbc(), 0x520, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 0.5f);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fMovementFactor", true), fn_710000abbc(), 0x524, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 1.0f);
+}
 bool fn_71003dbe00(const void*, const void*) { return false; }
 s32 fn_71003dbe08() { return -1; }
 const base::reflection::CType& fn_71003dbe10(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

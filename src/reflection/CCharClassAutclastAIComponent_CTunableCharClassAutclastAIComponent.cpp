@@ -2,12 +2,101 @@
 // Reflection descriptors for one original translation unit (2 types):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassAutclastAIComponent::CTunableCharClassAutclastAIComponent
 DREAD_REFL_TAG(71003b9bc8);
 void fn_71003b8d08(base::reflection::CClass*) {}
+extern bool g_unk_71726bd328;
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100093280();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+const base::reflection::UnkReflAttrKey& fn_71000916e0();
+const base::reflection::UnkReflAttrKey& fn_71000917f0();
+const base::reflection::UnkReflAttrKey& fn_7100324d10();
+const base::reflection::UnkReflAttrKey& fn_71003ba540();
+const base::reflection::UnkReflAttrKey& fn_7100091080();
+const base::reflection::UnkReflAttrKey& fn_7100091190();
+const base::reflection::UnkReflAttrKey& fn_7100324af0();
+extern UnkTunableRegistry* g_unk_7101d47350;
+extern UnkTunable g_unk_71726bd2c8;
+void fn_71003b9d4c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+void fn_71003b8e00(CClass* cls) {
+    if (g_unk_71726bd328)
+        return;
+    g_unk_71726bd328 = true;
+    if (!cls)
+        return;
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("iMaxExplosions", true), fn_7100014768(), 0x24, -1, -1);
+    field0->attrs.Add<s32>(fn_7100075240(), 10);
+    field0->attrs.Add<bool>(fn_7100093280(), true);
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Max explosions");
+    field0->attrs.Add<s32>(fn_71000916e0(), 0);
+    field0->attrs.Add<s32>(fn_71000917f0(), 100);
+    field0->attrs.Add<s32>(fn_7100324d10(), 1);
+    field0->attrs.Add<const char*>(fn_71003ba540(), "RegularEnemies|Autclast");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fTimeBetweenExplosions", true), fn_710000abbc(), 0x28, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 0.15f);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fExplosionWidth", true), fn_710000abbc(), 0x2c, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 100.0f);
+    field2->attrs.Add<bool>(fn_7100093280(), true);
+    field2->attrs.Add<const char*>(fn_7100007e80(), "Explosion width");
+    field2->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    field2->attrs.Add<f32>(fn_7100091190(), 1000.0f);
+    field2->attrs.Add<f32>(fn_7100324af0(), 100.0f);
+    field2->attrs.Add<const char*>(fn_71003ba540(), "RegularEnemies|Autclast");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fMaxExplosionHeightOnGround", true), fn_710000abbc(), 0x30, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 500.0f);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fMaxExplosionHeightOnWall", true), fn_710000abbc(), 0x34, -1, -1);
+    field4->attrs.Add<f32>(fn_7100075240(), 500.0f);
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("fMaxExplosionHeightOnCeilling", true), fn_710000abbc(), 0x38, -1, -1);
+    field5->attrs.Add<f32>(fn_7100075240(), 500.0f);
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("fExplosionHeightStartAttackOffset", true), fn_710000abbc(), 0x40, -1, -1);
+    field6->attrs.Add<f32>(fn_7100075240(), 100.0f);
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("fMinExplosionHeight", true), fn_710000abbc(), 0x3c, -1, -1);
+    field7->attrs.Add<f32>(fn_7100075240(), 200.0f);
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("fAttackRecoveryTime", true), fn_710000abbc(), 0x4c, -1, -1);
+    field8->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("fExplosionDamage", true), fn_710000abbc(), 0x44, -1, -1);
+    field9->attrs.Add<f32>(fn_7100075240(), 25.0f);
+    field9->attrs.Add<bool>(fn_7100093280(), true);
+    field9->attrs.Add<const char*>(fn_7100007e80(), "Explosion damage");
+    field9->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    field9->attrs.Add<f32>(fn_7100091190(), 100.0f);
+    field9->attrs.Add<f32>(fn_7100324af0(), 5.0f);
+    field9->attrs.Add<const char*>(fn_71003ba540(), "RegularEnemies|Autclast");
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("fExplosionDuration", true), fn_710000abbc(), 0x48, -1, -1);
+    field10->attrs.Add<f32>(fn_7100075240(), 0.25f);
+    UnkReflField* field11 = fn_7100096524(cls, CStrId("fMaxDistToAttack", true), fn_710000abbc(), 0x50, -1, -1);
+    field11->attrs.Add<f32>(fn_7100075240(), 500.0f);
+    field11->attrs.Add<bool>(fn_7100093280(), true);
+    field11->attrs.Add<const char*>(fn_7100007e80(), "Max dist to target to start attack");
+    field11->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    field11->attrs.Add<f32>(fn_7100091190(), 10000.0f);
+    field11->attrs.Add<f32>(fn_7100324af0(), 100.0f);
+    field11->attrs.Add<const char*>(fn_71003ba540(), "RegularEnemies|Autclast");
+    UnkReflField* field12 = fn_7100096524(cls, CStrId("fMaxPropagationHeight", true), fn_710000abbc(), 0x54, -1, -1);
+    field12->attrs.Add<f32>(fn_7100075240(), 210.0f);
+    UnkReflField* field13 = fn_7100096524(cls, CStrId("fMinDistToSlope", true), fn_710000abbc(), 0x58, -1, -1);
+    field13->attrs.Add<f32>(fn_7100075240(), 150.0f);
+    UnkReflField* field14 = fn_7100096524(cls, CStrId("fBaseRotationEffectFactor", true), fn_710000abbc(), 0x5c, -1, -1);
+    field14->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    UnkTunableRegistry* registry = g_unk_7101d47350;
+    if (!registry) {
+        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
+        fn_710013ac14(registry);
+        g_unk_7101d47350 = registry;
+    }
+    fn_71003b9d4c(registry, &g_unk_71726bd2c8, "Autclast");
+}
 bool fn_71003ba644(const void*, const void*) { return false; }
 s32 fn_71003ba64c() { return -1; }
 const base::reflection::CType& fn_71003ba654(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
@@ -36,6 +125,10 @@ DREAD_REFL_CLASS_GETTER(71003b8d0c, 71003b9bc8, "CCharClassAutclastAIComponent::
 // CCharClassAutclastAIComponent
 DREAD_REFL_TAG(71003ba190);
 void fn_71003ba004(base::reflection::CClass*) {}
+const base::reflection::CClass* fn_71003b815c();
+void fn_71003ba0fc(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("oAutclastChargeAttackDef", true), fn_71003b815c(), 0x520, -1, -1);
+}
 bool fn_71003ba6e0(const void*, const void*) { return false; }
 s32 fn_71003ba6e8() { return -1; }
 const base::reflection::CType& fn_71003ba6f0(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

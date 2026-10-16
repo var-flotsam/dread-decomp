@@ -2,11 +2,61 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassThrowWeaponEvent
 DREAD_REFL_TAG(7100ce73ec);
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+const base::reflection::UnkReflAttrKey& fn_7100090d50();
+void fn_7100ce6730(CClass* cls) {
+    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Throw Weapon");
+    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("NOT IMPLEMENTED", true));
+}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_7100ce690c(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fTimeToLive", true), fn_710000abbc(), 0xc, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fThrowingAngle", true), fn_710000abbc(), 0x10, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 0.78f);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("bRotateToDirection", true), fn_710000d228(), 0x14, -1, -1);
+    field2->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fSpinFactorX", true), fn_710000abbc(), 0x18, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fSpinFactorY", true), fn_710000abbc(), 0x1c, -1, -1);
+    field4->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("fSpinFactorZ", true), fn_710000abbc(), 0x20, -1, -1);
+    field5->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("bRepositionOnEnd", true), fn_710000d228(), 0x24, -1, -1);
+    field6->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("fMass", true), fn_710000abbc(), 0x28, -1, -1);
+    field7->attrs.Add<f32>(fn_7100075240(), 50.0f);
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("bReboundEnabled", true), fn_710000d228(), 0x2c, -1, -1);
+    field8->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("iReboundMaxNumber", true), fn_7100014768(), 0x30, -1, -1);
+    field9->attrs.Add<s32>(fn_7100075240(), 5);
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("fReboundRestitution", true), fn_710000abbc(), 0x34, -1, -1);
+    field10->attrs.Add<f32>(fn_7100075240(), 0.5f);
+    UnkReflField* field11 = fn_7100096524(cls, CStrId("fDestinationOffsetX", true), fn_710000abbc(), 0x38, -1, -1);
+    field11->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    UnkReflField* field12 = fn_7100096524(cls, CStrId("bDestinationOnFloor", true), fn_710000d228(), 0x3c, -1, -1);
+    field12->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field13 = fn_7100096524(cls, CStrId("fDamage", true), fn_710000abbc(), 0x40, -1, -1);
+    field13->attrs.Add<f32>(fn_7100075240(), 15.0f);
+    UnkReflField* field14 = fn_7100096524(cls, CStrId("iEntitiesToDamage", true), fn_7100014768(), 0x44, -1, -1);
+    field14->attrs.Add<s32>(fn_7100075240(), 1);
+    UnkReflField* field15 = fn_7100096524(cls, CStrId("bIgnoreCollisionWithEntities", true), fn_710000d228(), 0x48, -1, -1);
+    field15->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field16 = fn_7100096524(cls, CStrId("bDamageWithBox", true), fn_710000d228(), 0x49, -1, -1);
+    field16->attrs.Add<bool>(fn_7100075240(), false);
+}
 bool fn_7100ce75b8(const void* a, const void* b) { return a == b; }
 s32 fn_7100ce75c4() { return -1; }
 const base::reflection::CType& fn_7100ce75cc(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

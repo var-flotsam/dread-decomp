@@ -2,12 +2,24 @@
 // Reflection descriptors for one original translation unit (2 types):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassGoliathAttack
 DREAD_REFL_TAG(710058cccc);
 void fn_710058cb00(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_710058cbf8(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fPostAttackLoopDuration", true), fn_710000abbc(), 0xec, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 0.8f);
+}
 bool fn_710058db48(const void* a, const void* b) { return a == b; }
 s32 fn_710058db54() { return -1; }
 const base::reflection::CType& fn_710058db5c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
@@ -32,6 +44,43 @@ DREAD_REFL_CLASS_GETTER(710058cb04, 710058cccc, "CCharClassGoliathAttack", 71003
 // CCharClassGoliathAttack::CTunableCharClassGoliathAttack
 DREAD_REFL_TAG(710058d524);
 void fn_710058ce2c(base::reflection::CClass*) {}
+extern bool g_unk_71726e5eb8;
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+extern UnkTunableRegistry* g_unk_7101d47350;
+extern UnkTunable g_unk_71726e5e70;
+void fn_710058d6a8(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+void fn_710058cf24(CClass* cls) {
+    if (g_unk_71726e5eb8)
+        return;
+    g_unk_71726e5eb8 = true;
+    if (!cls)
+        return;
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fMinAttackDistance", true), fn_710000abbc(), 0x24, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fMaxAttackDistance", true), fn_710000abbc(), 0x28, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 540.0f);
+    field1->attrs.Add<const char*>(fn_7100007e80(), "Desired max distance to start attack");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fMaxAttackDistanceWShockwave", true), fn_710000abbc(), 0x2c, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 900.0f);
+    field2->attrs.Add<const char*>(fn_7100007e80(), "Desired max distance to start attack when shockwave is preferred");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fFrontSpaceToForbidAttack", true), fn_710000abbc(), 0x30, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fShockWaveLength", true), fn_710000abbc(), 0x34, -1, -1);
+    field4->attrs.Add<f32>(fn_7100075240(), 900.0f);
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("fShockWaveTimeGrowing", true), fn_710000abbc(), 0x38, -1, -1);
+    field5->attrs.Add<f32>(fn_7100075240(), 0.4f);
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("fShockWaveTimeAtMaxRadius", true), fn_710000abbc(), 0x3c, -1, -1);
+    field6->attrs.Add<f32>(fn_7100075240(), 0.6f);
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("fShockWaveAttackHeight", true), fn_710000abbc(), 0x40, -1, -1);
+    field7->attrs.Add<f32>(fn_7100075240(), 110.0f);
+    UnkTunableRegistry* registry = g_unk_7101d47350;
+    if (!registry) {
+        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
+        fn_710013ac14(registry);
+        g_unk_7101d47350 = registry;
+    }
+    fn_710058d6a8(registry, &g_unk_71726e5e70, "Goliath");
+}
 bool fn_710058dbb4(const void*, const void*) { return false; }
 s32 fn_710058dbbc() { return -1; }
 const base::reflection::CType& fn_710058dbc4(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

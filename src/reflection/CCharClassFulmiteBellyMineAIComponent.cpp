@@ -2,12 +2,74 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassFulmiteBellyMineAIComponent
 DREAD_REFL_TAG(710057b688);
 void fn_710057a4cc(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_710057a5c4(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fLifeTime", true), fn_710000abbc(), 0x50c, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 5.0f);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fExplosionRadius", true), fn_710000abbc(), 0x510, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 100.0f);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fTimeToExplosion", true), fn_710000abbc(), 0x514, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 0.1f);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fTimeAtMaxRadiusExplosion", true), fn_710000abbc(), 0x518, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 0.2f);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fDamageFulmiteBellyMineExplosion", true), fn_710000abbc(), 0x51c, -1, -1);
+    field4->attrs.Add<f32>(fn_7100075240(), 50.0f);
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("fNormalXFactor", true), fn_710000abbc(), 0x520, -1, -1);
+    field5->attrs.Add<f32>(fn_7100075240(), 1.2f);
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("fNormalYFactor", true), fn_710000abbc(), 0x524, -1, -1);
+    field6->attrs.Add<f32>(fn_7100075240(), 0.3f);
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("fUpsideDownXFactor", true), fn_710000abbc(), 0x528, -1, -1);
+    field7->attrs.Add<f32>(fn_7100075240(), 100.0f);
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("fUpsideDownYFactor", true), fn_710000abbc(), 0x52c, -1, -1);
+    field8->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("fInWallXFactor", true), fn_710000abbc(), 0x530, -1, -1);
+    field9->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("fInWallYFactor", true), fn_710000abbc(), 0x534, -1, -1);
+    field10->attrs.Add<f32>(fn_7100075240(), 0.1f);
+    UnkReflField* field11 = fn_7100096524(cls, CStrId("uGroundRebounds", true), fn_7100005178(), 0x538, -1, -1);
+    field11->attrs.Add<s32>(fn_7100075240(), 1);
+    UnkReflField* field12 = fn_7100096524(cls, CStrId("fWallImpulseXFactor", true), fn_710000abbc(), 0x53c, -1, -1);
+    field12->attrs.Add<f32>(fn_7100075240(), 0.25f);
+    UnkReflField* field13 = fn_7100096524(cls, CStrId("fWallImpulseYFactor", true), fn_710000abbc(), 0x540, -1, -1);
+    field13->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    UnkReflField* field14 = fn_7100096524(cls, CStrId("fGroundImpulseXFactor", true), fn_710000abbc(), 0x544, -1, -1);
+    field14->attrs.Add<f32>(fn_7100075240(), 0.5f);
+    UnkReflField* field15 = fn_7100096524(cls, CStrId("fGroundImpulseYFactor", true), fn_710000abbc(), 0x548, -1, -1);
+    field15->attrs.Add<f32>(fn_7100075240(), 0.25f);
+    UnkReflField* field16 = fn_7100096524(cls, CStrId("bPlayReboundActions", true), fn_710000d228(), 0x54c, -1, -1);
+    field16->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field17 = fn_7100096524(cls, CStrId("fImpulseVelocityXLimit", true), fn_710000abbc(), 0x550, -1, -1);
+    field17->attrs.Add<f32>(fn_7100075240(), 300.0f);
+    UnkReflField* field18 = fn_7100096524(cls, CStrId("fImpulseVelocityYLimit", true), fn_710000abbc(), 0x554, -1, -1);
+    field18->attrs.Add<f32>(fn_7100075240(), 300.0f);
+    UnkReflField* field19 = fn_7100096524(cls, CStrId("fTimeToShowBeforeExplosionFX", true), fn_710000abbc(), 0x558, -1, -1);
+    field19->attrs.Add<f32>(fn_7100075240(), 0.8f);
+    UnkReflField* field20 = fn_7100096524(cls, CStrId("fMinTimeBetweenBeeps", true), fn_710000abbc(), 0x55c, -1, -1);
+    field20->attrs.Add<f32>(fn_7100075240(), 0.4f);
+    UnkReflField* field21 = fn_7100096524(cls, CStrId("fMaxTimeBetweenBeeps", true), fn_710000abbc(), 0x560, -1, -1);
+    field21->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    UnkReflField* field22 = fn_7100096524(cls, CStrId("fMinBeepVolume", true), fn_710000abbc(), 0x564, -1, -1);
+    field22->attrs.Add<f32>(fn_7100075240(), 0.3f);
+    UnkReflField* field23 = fn_7100096524(cls, CStrId("fMaxBeepVolume", true), fn_710000abbc(), 0x568, -1, -1);
+    field23->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    UnkReflField* field24 = fn_7100096524(cls, CStrId("fMinBeepPitch", true), fn_710000abbc(), 0x56c, -1, -1);
+    field24->attrs.Add<f32>(fn_7100075240(), 0.6f);
+    UnkReflField* field25 = fn_7100096524(cls, CStrId("fMaxBeepPitch", true), fn_710000abbc(), 0x570, -1, -1);
+    field25->attrs.Add<f32>(fn_7100075240(), 1.0f);
+}
 bool fn_710057b83c(const void*, const void*) { return false; }
 s32 fn_710057b844() { return -1; }
 const base::reflection::CType& fn_710057b84c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

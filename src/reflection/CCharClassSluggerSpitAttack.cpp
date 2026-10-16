@@ -2,12 +2,56 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassSluggerSpitAttack
 DREAD_REFL_TAG(71006bfee4);
 void fn_71006bf2f0(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_71006bf3e8(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fBallGravity", true), fn_710000abbc(), 0xfc, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 2300.0f);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fMaxHitVerticalSpeed", true), fn_710000abbc(), 0x100, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 200.0f);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fTrajectorySampleTimeInterval", true), fn_710000abbc(), 0x104, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 0.1f);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fTimeOutOfFrustumToAbortAttack", true), fn_710000abbc(), 0x12c, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 0.5f);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fBallDefaultLaunchAngleDegs", true), fn_710000abbc(), 0xf0, -1, -1);
+    field4->attrs.Add<f32>(fn_7100075240(), 15.0f);
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("fBallLaunchSpeed", true), fn_710000abbc(), 0xec, -1, -1);
+    field5->attrs.Add<f32>(fn_7100075240(), 1800.0f);
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("fBallMinLaunchAngleDegs", true), fn_710000abbc(), 0xf4, -1, -1);
+    field6->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("fBallMaxLaunchAngleDegs", true), fn_710000abbc(), 0xf8, -1, -1);
+    field7->attrs.Add<f32>(fn_7100075240(), 70.0f);
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("fHighLaunchFixedAngleDegs", true), fn_710000abbc(), 0x108, -1, -1);
+    field8->attrs.Add<f32>(fn_7100075240(), 70.0f);
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("fHighLaunchMinSpeed", true), fn_710000abbc(), 0x10c, -1, -1);
+    field9->attrs.Add<f32>(fn_7100075240(), 1600.0f);
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("fHighLaunchMaxSpeed", true), fn_710000abbc(), 0x110, -1, -1);
+    field10->attrs.Add<f32>(fn_7100075240(), 2700.0f);
+    UnkReflField* field11 = fn_7100096524(cls, CStrId("fMediumLaunchFixedAngleDegs", true), fn_710000abbc(), 0x114, -1, -1);
+    field11->attrs.Add<f32>(fn_7100075240(), 30.0f);
+    UnkReflField* field12 = fn_7100096524(cls, CStrId("fMediumLaunchMinSpeed", true), fn_710000abbc(), 0x118, -1, -1);
+    field12->attrs.Add<f32>(fn_7100075240(), 1600.0f);
+    UnkReflField* field13 = fn_7100096524(cls, CStrId("fMediumLaunchMaxSpeed", true), fn_710000abbc(), 0x11c, -1, -1);
+    field13->attrs.Add<f32>(fn_7100075240(), 2700.0f);
+    UnkReflField* field14 = fn_7100096524(cls, CStrId("fLowLaunchFixedAngleDegs", true), fn_710000abbc(), 0x120, -1, -1);
+    field14->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    UnkReflField* field15 = fn_7100096524(cls, CStrId("fLowLaunchMinSpeed", true), fn_710000abbc(), 0x124, -1, -1);
+    field15->attrs.Add<f32>(fn_7100075240(), 900.0f);
+    UnkReflField* field16 = fn_7100096524(cls, CStrId("fLowLaunchMaxSpeed", true), fn_710000abbc(), 0x128, -1, -1);
+    field16->attrs.Add<f32>(fn_7100075240(), 1800.0f);
+}
 bool fn_71006c00b8(const void* a, const void* b) { return a == b; }
 s32 fn_71006c00c4() { return -1; }
 const base::reflection::CType& fn_71006c00cc(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

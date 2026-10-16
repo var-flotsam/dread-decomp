@@ -2,11 +2,60 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassFXLinkEvent
 DREAD_REFL_TAG(7100bb2710);
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+const base::reflection::UnkReflAttrKey& fn_7100090d50();
+void fn_7100bb1cd0(CClass* cls) {
+    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "FX Link");
+    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("FX", true));
+}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+extern base::reflection::CType g_unk_71727b8ef8;
+const base::reflection::UnkReflAttrKey& fn_7100091080();
+const base::reflection::UnkReflAttrKey& fn_7100091190();
+void fn_7100bb1eac(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sName", true), fn_7100009658(), 0x10, -1, -1);
+    field0->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("eLinkType", true), &g_unk_71727b8ef8, 0x18, -1, -1);
+    field1->attrs.Add<s32>(fn_7100075240(), &g_unk_71727b8ef8, 4);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fPositionOffsetX", true), fn_710000abbc(), 0x28, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field2->attrs.Add<f32>(fn_7100091080(), -3.4028235e+38f);
+    field2->attrs.Add<f32>(fn_7100091190(), 3.4028235e+38f);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fPositionOffsetY", true), fn_710000abbc(), 0x2c, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field3->attrs.Add<f32>(fn_7100091080(), -3.4028235e+38f);
+    field3->attrs.Add<f32>(fn_7100091190(), 3.4028235e+38f);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fPositionOffsetZ", true), fn_710000abbc(), 0x30, -1, -1);
+    field4->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field4->attrs.Add<f32>(fn_7100091080(), -3.4028235e+38f);
+    field4->attrs.Add<f32>(fn_7100091190(), 3.4028235e+38f);
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("fAngleOffsetX", true), fn_710000abbc(), 0x34, -1, -1);
+    field5->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field5->attrs.Add<f32>(fn_7100091080(), -3.14f);
+    field5->attrs.Add<f32>(fn_7100091190(), 3.14f);
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("fAngleOffsetY", true), fn_710000abbc(), 0x38, -1, -1);
+    field6->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field6->attrs.Add<f32>(fn_7100091080(), -3.14f);
+    field6->attrs.Add<f32>(fn_7100091190(), 3.14f);
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("fAngleOffsetZ", true), fn_710000abbc(), 0x3c, -1, -1);
+    field7->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field7->attrs.Add<f32>(fn_7100091080(), -3.14f);
+    field7->attrs.Add<f32>(fn_7100091190(), 3.14f);
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("sAdditional", true), fn_7100009658(), 0x40, -1, -1);
+    field8->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+}
 bool fn_7100bb2c24(const void* a, const void* b) { return a == b; }
 s32 fn_7100bb2c30() { return -1; }
 const base::reflection::CType& fn_7100bb2c38(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

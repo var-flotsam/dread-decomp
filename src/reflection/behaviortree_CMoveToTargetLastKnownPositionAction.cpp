@@ -2,12 +2,32 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // behaviortree::CMoveToTargetLastKnownPositionAction
 DREAD_REFL_TAG(710038e940);
 void fn_710038e5a0(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+void fn_710038e698(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fReachedDistance", true), fn_710000abbc(), 0x38, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 10.0f);
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Reach distance");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fRefreshRate", true), fn_710000abbc(), 0x3c, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    field1->attrs.Add<const char*>(fn_7100007e80(), "Refresh rate");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("bShouldLookAtDir", true), fn_710000d228(), 0x44, -1, -1);
+    field2->attrs.Add<bool>(fn_7100075240(), true);
+    field2->attrs.Add<const char*>(fn_7100007e80(), "Character should look at movement direction");
+}
 bool fn_710038ef38(const void*, const void*) { return false; }
 s32 fn_710038ef40() { return -1; }
 const base::reflection::CType& fn_710038ef48(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

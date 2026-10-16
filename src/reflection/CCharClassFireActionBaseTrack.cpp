@@ -2,12 +2,32 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassFireActionBaseTrack
 DREAD_REFL_TAG(7100cf678c);
 void fn_7100cf61c0(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_7100cf62b8(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("bWantsRecoil", true), fn_710000d228(), 0x58, -1, -1);
+    field0->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("sActionForward", true), fn_7100009658(), 0x38, -1, -1);
+    field1->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("sActionForwardShort", true), fn_7100009658(), 0x40, -1, -1);
+    field2->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("sActionBackward", true), fn_7100009658(), 0x48, -1, -1);
+    field3->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("sActionBackwardShort", true), fn_7100009658(), 0x50, -1, -1);
+    field4->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+}
 bool fn_7100cf6b38(const void* a, const void* b) { return a == b; }
 s32 fn_7100cf6b44() { return -1; }
 const base::reflection::CType& fn_7100cf6b4c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

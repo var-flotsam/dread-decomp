@@ -2,12 +2,41 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CForbiddenEdgesLogicAction
 DREAD_REFL_TAG(7100a4eea8);
 void fn_7100a4eab8(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_717274b898;
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_710000bf80();
+extern base::reflection::CType g_unk_7101d679f0;
+const base::reflection::UnkReflAttrKey& fn_7100090a20();
+extern base::reflection::CType g_unk_71727b6270;
+const base::reflection::UnkReflAttrKey& fn_710025daa0();
+extern base::reflection::CType g_unk_71727bc110;
+extern base::reflection::CType g_unk_717269bb48;
+extern base::reflection::CType g_unk_717274b9f8;
+void fn_7100a4ebb0(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("eNavMeshGroup", true), &g_unk_717274b898, 0x94, -1, -1);
+    field0->attrs.Add<s32>(fn_7100075240(), &g_unk_717274b898, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<bool>(fn_7100090a20(), false);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("wpSpawnPoint", true), &g_unk_71727b6270, 0x10, -1, -1);
+    field1->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 1);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("wpLogicShape", true), &g_unk_717269bb48, 0x50, -1, -1);
+    field2->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 4);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("eState", true), &g_unk_717274b9f8, 0x90, -1, -1);
+    field3->attrs.Add<s32>(fn_7100075240(), &g_unk_717274b9f8, 1);
+}
 bool fn_7100a4f5d4(const void* a, const void* b) { return a == b; }
 s32 fn_7100a4f5e0() { return -1; }
 const base::reflection::CType& fn_7100a4f5e8(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

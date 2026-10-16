@@ -2,8 +2,15 @@
 // Reflection descriptors for one original translation unit (3 types):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassLavaPumpComponent
 DREAD_REFL_TAG(7100879128);
@@ -66,6 +73,32 @@ DREAD_REFL_CLASS_GETTER(71008792b0, 71008793a8, "CLavaPumpComponent", 7100877e8c
 // CLavaPumpComponent::CTunableLavaPumpComponent
 DREAD_REFL_TAG(710087985c);
 void fn_710087952c(base::reflection::CClass*) {}
+extern bool g_unk_717272a758;
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+extern UnkTunableRegistry* g_unk_7101d47350;
+extern UnkTunable g_unk_717272a728;
+void fn_71008799e0(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+void fn_7100879624(CClass* cls) {
+    if (g_unk_717272a758)
+        return;
+    g_unk_717272a758 = true;
+    if (!cls)
+        return;
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fInitialPlayRate", true), fn_710000abbc(), 0x24, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 0.4f);
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Inital min play rate in animation");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fActivationTime", true), fn_710000abbc(), 0x28, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 2.0f);
+    field1->attrs.Add<const char*>(fn_7100007e80(), "Activation Time");
+    UnkTunableRegistry* registry = g_unk_7101d47350;
+    if (!registry) {
+        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
+        fn_710013ac14(registry);
+        g_unk_7101d47350 = registry;
+    }
+    fn_71008799e0(registry, &g_unk_717272a728, "LavaPumpComponent");
+}
 bool fn_710087a2c0(const void*, const void*) { return false; }
 s32 fn_710087a2c8() { return -1; }
 const base::reflection::CType& fn_710087a2d0(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

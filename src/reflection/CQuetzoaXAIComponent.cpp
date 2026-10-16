@@ -2,12 +2,26 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CQuetzoaXAIComponent
 DREAD_REFL_TAG(710063f1ac);
 void fn_710063efe0(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_717269bb48;
+const base::reflection::UnkReflAttrKey& fn_710025daa0();
+extern base::reflection::CType g_unk_71727bc110;
+void fn_710063f0d8(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("wpCoreXSpawnPoint", true), &g_unk_717269bb48, 0x14b88, -1, -1);
+    field0->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 3);
+}
 bool fn_71006408ec(const void*, const void*) { return false; }
 s32 fn_71006408f4() { return -1; }
 const base::reflection::CType& fn_71006408fc(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

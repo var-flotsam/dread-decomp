@@ -2,12 +2,54 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassAutsniperShootAttack
 DREAD_REFL_TAG(71003d98a0);
 void fn_71003d8d44(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_71003d8e3c(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fTimeToReload", true), fn_710000abbc(), 0xec, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fTimeToChargeRay", true), fn_710000abbc(), 0xf0, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 4.0f);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fTimeToUnchargeRay", true), fn_710000abbc(), 0xf4, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 4.0f);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fTimeToRelocateCannon", true), fn_710000abbc(), 0xf8, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 2.0f);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fTimeBeforeShoot", true), fn_710000abbc(), 0xfc, -1, -1);
+    field4->attrs.Add<f32>(fn_7100075240(), 0.3f);
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("fTimeAfterShoot", true), fn_710000abbc(), 0x100, -1, -1);
+    field5->attrs.Add<f32>(fn_7100075240(), 0.3f);
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("fMaxPitch", true), fn_710000abbc(), 0x104, -1, -1);
+    field6->attrs.Add<f32>(fn_7100075240(), 1.4f);
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("fMinPitch", true), fn_710000abbc(), 0x108, -1, -1);
+    field7->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("fMaxVolume", true), fn_710000abbc(), 0x10c, -1, -1);
+    field8->attrs.Add<f32>(fn_7100075240(), 0.6f);
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("fMinVolume", true), fn_710000abbc(), 0x110, -1, -1);
+    field9->attrs.Add<f32>(fn_7100075240(), 0.1f);
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("fTimeCannonLocked", true), fn_710000abbc(), 0x114, -1, -1);
+    field10->attrs.Add<f32>(fn_7100075240(), 0.25f);
+    UnkReflField* field11 = fn_7100096524(cls, CStrId("fTimeToGoPatrol", true), fn_710000abbc(), 0x118, -1, -1);
+    field11->attrs.Add<f32>(fn_7100075240(), 0.5f);
+    UnkReflField* field12 = fn_7100096524(cls, CStrId("fTimeToLoseTarget", true), fn_710000abbc(), 0x11c, -1, -1);
+    field12->attrs.Add<f32>(fn_7100075240(), 0.5f);
+    UnkReflField* field13 = fn_7100096524(cls, CStrId("fDistToStopCloseToTarget", true), fn_710000abbc(), 0x120, -1, -1);
+    field13->attrs.Add<f32>(fn_7100075240(), 200.0f);
+    UnkReflField* field14 = fn_7100096524(cls, CStrId("fTimeBeforeBlockeableWarning", true), fn_710000abbc(), 0x124, -1, -1);
+    field14->attrs.Add<f32>(fn_7100075240(), 0.2f);
+    UnkReflField* field15 = fn_7100096524(cls, CStrId("fTimeAfterBlockeableWarning", true), fn_710000abbc(), 0x128, -1, -1);
+    field15->attrs.Add<f32>(fn_7100075240(), 0.8f);
+}
 bool fn_71003d9a74(const void* a, const void* b) { return a == b; }
 s32 fn_71003d9a80() { return -1; }
 const base::reflection::CType& fn_71003d9a88(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

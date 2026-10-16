@@ -2,12 +2,29 @@
 // Reflection descriptors for one original translation unit (2 types):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassSabotoruAIComponent
 DREAD_REFL_TAG(7100676aac);
 void fn_71006767cc(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_71727006c0;
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::CClass* fn_71006727b4();
+void fn_71006768c4(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("eSubspecies", true), &g_unk_71727006c0, 0x600, -1, -1);
+    field0->attrs.Add<s32>(fn_7100075240(), &g_unk_71727006c0, 2147483647);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("oSabotoruTurnInDoorAttackDef", true), fn_71006727b4(), 0x510, -1, -1);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fDoorPlayRate", true), fn_710000abbc(), 0x604, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 2.0f);
+}
 bool fn_7100677564(const void*, const void*) { return false; }
 s32 fn_710067756c() { return -1; }
 const base::reflection::CType& fn_7100677574(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
@@ -32,6 +49,28 @@ DREAD_REFL_CLASS_GETTER(71006767d0, 7100676aac, "CCharClassSabotoruAIComponent",
 // CCharClassSabotoruAIComponent::CTunableCharClassSabotoruAIComponent
 DREAD_REFL_TAG(7100676ee4);
 void fn_7100676c0c(base::reflection::CClass*) {}
+extern bool g_unk_7172700858;
+extern UnkTunableRegistry* g_unk_7101d47350;
+extern UnkTunable g_unk_7172700828;
+void fn_7100677068(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+void fn_7100676d04(CClass* cls) {
+    if (g_unk_7172700858)
+        return;
+    g_unk_7172700858 = true;
+    if (!cls)
+        return;
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fDoorLife", true), fn_710000abbc(), 0x24, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 2500.0f);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fTimeToStopPanic", true), fn_710000abbc(), 0x28, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 10.0f);
+    UnkTunableRegistry* registry = g_unk_7101d47350;
+    if (!registry) {
+        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
+        fn_710013ac14(registry);
+        g_unk_7101d47350 = registry;
+    }
+    fn_7100677068(registry, &g_unk_7172700828, "Sabotoru");
+}
 bool fn_71006775e0(const void*, const void*) { return false; }
 s32 fn_71006775e8() { return -1; }
 const base::reflection::CType& fn_71006775f0(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

@@ -2,12 +2,46 @@
 // Reflection descriptors for one original translation unit (2 types):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassCentralUnitAIComponent::CTunableCharClassCentralUnitAIComponent
 DREAD_REFL_TAG(7100407df8);
 void fn_7100407b50(base::reflection::CClass*) {}
+extern bool g_unk_71726c42c8;
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100093280();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+const base::reflection::UnkReflAttrKey& fn_71003ba540();
+extern UnkTunableRegistry* g_unk_7101d47350;
+extern UnkTunable g_unk_71726c42a0;
+void fn_7100407f7c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+void fn_7100407c48(CClass* cls) {
+    if (g_unk_71726c42c8)
+        return;
+    g_unk_71726c42c8 = true;
+    if (!cls)
+        return;
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("bAllowSimultaneousRinkas", true), fn_710000d228(), 0x21, -1, -1);
+    field0->attrs.Add<bool>(fn_7100075240(), false);
+    field0->attrs.Add<bool>(fn_7100093280(), true);
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Allow simultaneous Rinkas");
+    field0->attrs.Add<const char*>(fn_71003ba540(), "MidBosses");
+    UnkTunableRegistry* registry = g_unk_7101d47350;
+    if (!registry) {
+        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
+        fn_710013ac14(registry);
+        g_unk_7101d47350 = registry;
+    }
+    fn_7100407f7c(registry, &g_unk_71726c42a0, "CentralUnit");
+}
 bool fn_71004088f8(const void*, const void*) { return false; }
 s32 fn_7100408900() { return -1; }
 const base::reflection::CType& fn_7100408908(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
@@ -36,6 +70,12 @@ DREAD_REFL_CLASS_GETTER(7100407b54, 7100407df8, "CCharClassCentralUnitAIComponen
 // CCharClassCentralUnitAIComponent
 DREAD_REFL_TAG(7100408504);
 void fn_7100408234(base::reflection::CClass*) {}
+void fn_710040832c(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("bPlaceholder", true), fn_710000d228(), 0x50c, -1, -1);
+    field0->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("sArmorLifeTunableId", true), fn_7100009658(), 0x510, -1, -1);
+    field1->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+}
 bool fn_7100408988(const void*, const void*) { return false; }
 s32 fn_7100408990() { return -1; }
 const base::reflection::CType& fn_7100408998(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

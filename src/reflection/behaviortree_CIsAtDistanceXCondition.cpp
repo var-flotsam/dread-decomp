@@ -2,12 +2,35 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // behaviortree::CIsAtDistanceXCondition
 DREAD_REFL_TAG(710039d29c);
 void fn_710039ce40(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+void fn_710039cf38(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sFirstPos", true), fn_7100009658(), 0x38, -1, -1);
+    field0->attrs.Add<const char*>(fn_7100075240(), "");
+    field0->attrs.Add<const char*>(fn_7100007e80(), "First pos");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("sSecondPos", true), fn_7100009658(), 0x50, -1, -1);
+    field1->attrs.Add<const char*>(fn_7100075240(), "");
+    field1->attrs.Add<const char*>(fn_7100007e80(), "Second pos");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fDistance", true), fn_710000abbc(), 0x64, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field2->attrs.Add<const char*>(fn_7100007e80(), "Distance");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fHightDistance", true), fn_710000abbc(), 0x68, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field3->attrs.Add<const char*>(fn_7100007e80(), "Distance");
+}
 bool fn_710039d870(const void*, const void*) { return false; }
 s32 fn_710039d878() { return -1; }
 const base::reflection::CType& fn_710039d880(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

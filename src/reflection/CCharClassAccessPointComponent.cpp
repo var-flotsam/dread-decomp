@@ -2,12 +2,53 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassAccessPointComponent
 DREAD_REFL_TAG(7100a76800);
 void fn_7100a75ee0(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+void fn_7100a75fd8(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sUsePrepareLeftAPNoUsedAction", true), fn_7100009658(), 0x1b8, -1, -1);
+    field0->attrs.Add<const char*>(fn_7100075240(), "");
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Left prepare use animation when the Acces Point has not been used");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("sUsePrepareRightAPNoUsedAction", true), fn_7100009658(), 0x1c0, -1, -1);
+    field1->attrs.Add<const char*>(fn_7100075240(), "");
+    field1->attrs.Add<const char*>(fn_7100007e80(), "Right prepare use animation When the Acces Point has not been used");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("sUseInitAPUsedAction", true), fn_7100009658(), 0x1c8, -1, -1);
+    field2->attrs.Add<const char*>(fn_7100075240(), "");
+    field2->attrs.Add<const char*>(fn_7100007e80(), "Init Use animation when the Acces Point has been used");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("sUseAPUsedAction", true), fn_7100009658(), 0x1d0, -1, -1);
+    field3->attrs.Add<const char*>(fn_7100075240(), "");
+    field3->attrs.Add<const char*>(fn_7100007e80(), "Use animation When the Acces Point has been used");
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("sUsableInitAPUsedAction", true), fn_7100009658(), 0x1d8, -1, -1);
+    field4->attrs.Add<const char*>(fn_7100075240(), "");
+    field4->attrs.Add<const char*>(fn_7100007e80(), "Init Usable animation When the Acces Point has been used");
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("sSaveRingsOpenAction", true), fn_7100009658(), 0x1e0, -1, -1);
+    field5->attrs.Add<const char*>(fn_7100075240(), "");
+    field5->attrs.Add<const char*>(fn_7100007e80(), "Usable rings save animation begin saving");
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("sSaveRingsCloseAction", true), fn_7100009658(), 0x1e8, -1, -1);
+    field6->attrs.Add<const char*>(fn_7100075240(), "");
+    field6->attrs.Add<const char*>(fn_7100007e80(), "Usable rings save animation saving");
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("sSaveRingLoopAction", true), fn_7100009658(), 0x1f0, -1, -1);
+    field7->attrs.Add<const char*>(fn_7100075240(), "");
+    field7->attrs.Add<const char*>(fn_7100007e80(), "Usable rings save animation end saving");
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("sUsePrepareLeftAfterDiscoverNoDialogueAction", true), fn_7100009658(), 0x1f8, -1, -1);
+    field8->attrs.Add<const char*>(fn_7100075240(), "");
+    field8->attrs.Add<const char*>(fn_7100007e80(), "Left prepare use animation after discover no dialogue");
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("sUsePrepareRightAfterDiscoverNoDialogueAction", true), fn_7100009658(), 0x200, -1, -1);
+    field9->attrs.Add<const char*>(fn_7100075240(), "");
+    field9->attrs.Add<const char*>(fn_7100007e80(), "Right prepare use animation after discover no dialogue");
+}
 bool fn_7100a76d9c(const void*, const void*) { return false; }
 s32 fn_7100a76da4() { return -1; }
 const base::reflection::CType& fn_7100a76dac(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

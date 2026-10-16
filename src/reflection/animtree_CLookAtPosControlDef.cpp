@@ -2,11 +2,41 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // animtree::CLookAtPosControlDef
 DREAD_REFL_TAG(71002e7294);
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+void fn_71002e6d20(CClass* cls) {
+    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Look at Pos Control Definition");
+}
+extern base::reflection::CType g_unk_7101d58a60;
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_71002e6e6c(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("eLookAxis", true), &g_unk_7101d58a60, 0x34, -1, -1);
+    field0->attrs.Add<s32>(fn_7100075240(), &g_unk_7101d58a60, 1);
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Look Axis");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("eUpAxis", true), &g_unk_7101d58a60, 0x38, -1, -1);
+    field1->attrs.Add<s32>(fn_7100075240(), &g_unk_7101d58a60, 2);
+    field1->attrs.Add<const char*>(fn_7100007e80(), "Up Axis");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fMinAttAngle", true), fn_710000abbc(), 0x28, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field2->attrs.Add<const char*>(fn_7100007e80(), "Min attenuation angle");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fMaxAttAngle", true), fn_710000abbc(), 0x2c, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field3->attrs.Add<const char*>(fn_7100007e80(), "Max attenuation angle");
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fWorldOffsetAngZ", true), fn_710000abbc(), 0x30, -1, -1);
+    field4->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field4->attrs.Add<const char*>(fn_7100007e80(), "World Offset Angle Z");
+}
 bool fn_71002e750c(const void* a, const void* b) { return a == b; }
 s32 fn_71002e7518() { return -1; }
 const base::reflection::CType& fn_71002e7520(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

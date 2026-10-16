@@ -2,12 +2,44 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassElectrifyingAreaComponent
 DREAD_REFL_TAG(71007d0ec4);
 void fn_71007d0770(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+void fn_71007d0868(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("bShouldUpdateAreaOnStart", true), fn_710000d228(), 0x58, -1, -1);
+    field0->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("bShouldCoverPlatformsCompletely", true), fn_710000d228(), 0x59, -1, -1);
+    field1->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fMinValidYNormal", true), fn_710000abbc(), 0x5c, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fClockwiseDistance", true), fn_710000abbc(), 0x60, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fCounterClockwiseDistance", true), fn_710000abbc(), 0x64, -1, -1);
+    field4->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("fTriggerHeight", true), fn_710000abbc(), 0x68, -1, -1);
+    field5->attrs.Add<f32>(fn_7100075240(), 5.0f);
+    field5->attrs.Add<const char*>(fn_7100007e80(), "Height of the damage collider's poly over (world's Up) each point of the calculated navmesh path");
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("fTriggerDownwardHeight", true), fn_710000abbc(), 0x6c, -1, -1);
+    field6->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    field6->attrs.Add<const char*>(fn_7100007e80(), "Height of the damage collider's poly over (world's Down) each point of the calculated navmesh path. If negative m_fTriggerHeight is used");
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("fFXHeight", true), fn_710000abbc(), 0x70, -1, -1);
+    field7->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    field7->attrs.Add<const char*>(fn_7100007e80(), "Height of the FX poly over the calculated navmesh path. If negative m_fTriggerHeight is used");
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("fHeightTolerance", true), fn_710000abbc(), 0x74, -1, -1);
+    field8->attrs.Add<f32>(fn_7100075240(), 20.0f);
+}
 bool fn_71007d108c(const void*, const void*) { return false; }
 s32 fn_71007d1094() { return -1; }
 const base::reflection::CType& fn_71007d109c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

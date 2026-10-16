@@ -2,12 +2,57 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassMorphBallMovement
 DREAD_REFL_TAG(710079304c);
 void fn_7100792630(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+const base::reflection::CType* fn_710000ad9c();
+void fn_7100792728(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fSlopeExitFrictionFactorTime", true), fn_710000abbc(), 0x9c, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 0.3f);
+    field0->attrs.Add<const char*>(fn_7100007e80(), "When moving out of a slope, time while we alter friction");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fSlopeExitFrictionFactor", true), fn_710000abbc(), 0xa0, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 3.0f);
+    field1->attrs.Add<const char*>(fn_7100007e80(), "When moving out of a slope, altered friction we apply");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("sSlopeAccelerationFunction", true), fn_7100009658(), 0xa8, -1, -1);
+    field2->attrs.Add<const char*>(fn_7100075240(), "");
+    field2->attrs.Add<const char*>(fn_7100007e80(), "Function to use when accelerating through the slope");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fSlopeTimeToAccelerate", true), fn_710000abbc(), 0xb0, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    field3->attrs.Add<const char*>(fn_7100007e80(), "Time it takes to fully accelerate through the slope");
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fSlopeMinImpulse", true), fn_710000abbc(), 0xb4, -1, -1);
+    field4->attrs.Add<f32>(fn_7100075240(), 5000.0f);
+    field4->attrs.Add<const char*>(fn_7100007e80(), "Minimum impulse when on a slope");
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("fSlopeMaxImpulse", true), fn_710000abbc(), 0xb8, -1, -1);
+    field5->attrs.Add<f32>(fn_7100075240(), 10000.0f);
+    field5->attrs.Add<const char*>(fn_7100007e80(), "Maximum impulse when on a slope");
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("sMovementAudioPreset", true), fn_710000ad9c(), 0xc0, -1, -1);
+    field6->attrs.Add<const char*>(fn_7100075240(), "");
+    field6->attrs.Add<const char*>(fn_7100007e80(), "Movement Audio Preset");
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("fInitialSpeedDiffDecrease", true), fn_710000abbc(), 0xc8, -1, -1);
+    field7->attrs.Add<f32>(fn_7100075240(), 200.0f);
+    field7->attrs.Add<const char*>(fn_7100007e80(), "Initial Speed Decrease per Second");
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("fMaxInitialSpeedDiff", true), fn_710000abbc(), 0xcc, -1, -1);
+    field8->attrs.Add<f32>(fn_7100075240(), 400.0f);
+    field8->attrs.Add<const char*>(fn_7100007e80(), "Max allowed Initial Speed. Higher values are clamped.");
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("fOnAirImpulseFactor", true), fn_710000abbc(), 0xd0, -1, -1);
+    field9->attrs.Add<f32>(fn_7100075240(), 0.75f);
+    field9->attrs.Add<const char*>(fn_7100007e80(), "Factor to apply as Drag to the previous Impulse when on air");
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("fXImpulseStrenght", true), fn_710000abbc(), 0xd4, -1, -1);
+    field10->attrs.Add<f32>(fn_7100075240(), 2000.0f);
+    field10->attrs.Add<const char*>(fn_7100007e80(), "Strength of the X impulse on Input.");
+}
 bool fn_71007932d8(const void*, const void*) { return false; }
 s32 fn_71007932e0() { return -1; }
 const base::reflection::CType& fn_71007932e8(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

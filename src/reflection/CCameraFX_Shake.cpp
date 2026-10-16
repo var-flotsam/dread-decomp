@@ -2,12 +2,38 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCameraFX_Shake
 DREAD_REFL_TAG(71010f3b9c);
 void fn_71010f3610(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+void fn_71010f3708(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fTime", true), fn_710000abbc(), 0x34, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Time");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fAttMinRange", true), fn_710000abbc(), 0x38, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field1->attrs.Add<const char*>(fn_7100007e80(), "When the distance to the source is under this value, no attenuation gets applied");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fAttMaxRange", true), fn_710000abbc(), 0x3c, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field2->attrs.Add<const char*>(fn_7100007e80(), "When the distance to the source is over this value, use the max attenuation value");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fAttRange", true), fn_710000abbc(), 0x40, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field3->attrs.Add<const char*>(fn_7100007e80(), "Attenuation gets calculated between no attenuation and this number");
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("sAttRangeFunction", true), fn_7100009658(), 0x48, -1, -1);
+    field4->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    field4->attrs.Add<const char*>(fn_7100007e80(), "Attenuation curve to apply between [min,max]. Its value gets multiplied by m_fAttRange");
+}
 bool fn_71010f4024(const void*, const void*) { return false; }
 s32 fn_71010f402c() { return -1; }
 const base::reflection::CType& fn_71010f4034(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

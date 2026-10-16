@@ -2,12 +2,32 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // behaviortree::CScourgeComputeAttackPositionAction
 DREAD_REFL_TAG(710069d4e4);
 void fn_710069d030(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+void fn_710069d128(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sPos", true), fn_7100009658(), 0x30, -1, -1);
+    field0->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Property name for calculated position");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("sClockwise", true), fn_7100009658(), 0x38, -1, -1);
+    field1->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    field1->attrs.Add<const char*>(fn_7100007e80(), "Property name for calculated clockwise");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("sUsePos", true), fn_7100009658(), 0x40, -1, -1);
+    field2->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    field2->attrs.Add<const char*>(fn_7100007e80(), "Property name to use position rather than clockwise");
+}
 bool fn_710069dcfc(const void*, const void*) { return false; }
 s32 fn_710069dd04() { return -1; }
 const base::reflection::CType& fn_710069dd0c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

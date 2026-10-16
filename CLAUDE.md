@@ -133,6 +133,6 @@ Toolchain:
 - Phase 2: done. See `docs/recon.md`.
 - Phase 3: done, including the non-leaf and library flag pass. See `docs/compiler.md`.
 - Phase 4: in progress (owner-approved). 4.1 headers, 4.2 Lua and 4.3 reflection getters,
-  descriptor constructors and uniform per-type helpers are done; current state and next steps are in `docs/HANDOFF.md`.
+  descriptor constructors, uniform per-type helpers and most attribute/member-field functions are done; current state and next steps are in `docs/HANDOFF.md`.
 - Generated sources (`src/reflection/`) are outputs of `tools/gen_reflection.py`: regenerate,
   never hand-edit.

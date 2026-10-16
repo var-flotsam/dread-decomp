@@ -2,12 +2,30 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassWarLotusAIComponent
 DREAD_REFL_TAG(71006e01f0);
 void fn_71006dfe3c(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_71006dff34(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fImpactToRelaxTime", true), fn_710000abbc(), 0x50c, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 0.1f);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fBumpToRelaxTime", true), fn_710000abbc(), 0x510, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 0.1f);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fImpactTime", true), fn_710000abbc(), 0x514, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 0.1f);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fBumpTime", true), fn_710000abbc(), 0x518, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 0.1f);
+}
 bool fn_71006e0398(const void*, const void*) { return false; }
 s32 fn_71006e03a0() { return -1; }
 const base::reflection::CType& fn_71006e03a8(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

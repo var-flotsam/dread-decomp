@@ -11,6 +11,8 @@ specialisation per type, and groups types back into their original translation u
 Helpers: the per-type functions a descriptor points to (CType+0x28..+0x68) and the two
 functions the getter passes in (x3/x4). Those with a known uniform code shape (HELPER_SHAPES)
 are defined under their own fn_<addr> names; the rest are declared with their slot's type.
+The x3/x4 functions (class attributes, member fields) are reconstructed by tools/refl_attrs.py
+and kept only when a scratch build of them is byte-identical (build/reflection_attrs/).
 
 TU grouping: within a TU, Clang lays out all guard variables first, then the descriptors
 (0x138 bytes each), in definition order. A run of getter guards 8 bytes apart, whose
@@ -38,6 +40,7 @@ import capstone
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 sys.path.insert(0, str(Path(__file__).resolve().parent / "recon"))
 import asmdiff  # noqa: E402
+import refl_attrs  # noqa: E402
 import sigmatch  # noqa: E402
 from image import BASE  # noqa: E402
 
@@ -233,11 +236,25 @@ def main() -> int:
         else:
             blocks.append([g])
 
+    clean = [b for b in blocks
+             if [g.descriptor for g in b] == [b[0].guard + 8 * len(b) + DESCRIPTOR_SIZE * i for i in range(len(b))]
+             and all(g.shape_ok and g.parent and g.fn_0x70 and g.fn_0xe0 and g.init and g.traits for g in b)]
+    candidates = {}
+    for g in (g for b in clean for g in b):
+        for a in (g.fn_0x70, g.fn_0xe0):
+            if a not in candidates and len(orig.function(a)) > 4:
+                parsed = refl_attrs.parse(orig, a, getters)
+                if parsed:
+                    candidates[a] = parsed
+    attr_ok = refl_attrs.verify(args.version, candidates, ROOT / "build" / "reflection_attrs")
+    attr_total = sum(1 for g in (g for b in clean for g in b) for a in (g.fn_0x70, g.fn_0xe0)
+                     if len(orig.function(a)) > 4)
+
     if OUT.exists():
         shutil.rmtree(OUT)
     OUT.mkdir(parents=True)
     taken: set[str] = set()
-    generated = skipped_shape = skipped_layout = helpers_defined = 0
+    generated = skipped_shape = skipped_layout = helpers_defined = attrs_defined = 0
     report = []
     for block in blocks:
         n = len(block)
@@ -260,11 +277,15 @@ def main() -> int:
             f"// Reflection descriptors for one original translation unit ({n} type{'s' if n > 1 else ''}):",
             "// for each type, its getter (T::refl_GetClass) and, through the traits below, its",
             "// descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to",
-            "// that have a known uniform shape.",
+            "// that have a known uniform shape and the attribute/member-field functions that",
+            "// tools/refl_attrs.py reconstructs byte-identically.",
             '#include "base/reflection/CClass.h"',
-            "",
         ]
+        if any(a in attr_ok for g in block for a in (g.fn_0x70, g.fn_0xe0)):
+            lines += refl_attrs.PRELUDE
+        lines.append("")
         declared: set[int] = set()
+        decl_lines: set[str] = set()
         for g in block:
             lines.append(f"// {g.type}")
             lines.append(f"DREAD_REFL_TAG({g.init:x});")
@@ -275,6 +296,11 @@ def main() -> int:
                     continue
                 declared.add(a)
                 src = helper_definition(orig, slot, a)
+                if a in attr_ok:
+                    extra, src = candidates[a]
+                    lines += [d for d in extra if d not in decl_lines]
+                    decl_lines |= set(extra)
+                    attrs_defined += 1
                 if src:
                     lines.append(src)
                     helpers_defined += 1
@@ -296,7 +322,7 @@ def main() -> int:
 
     (ROOT / "build" / "reflection_tus.json").write_text(json.dumps(report, indent=1), encoding="utf-8")
     print(f"{len(rows)} class getters; {len(located)} located; {len(blocks)} TUs. Generated {generated} getters "
-          f"and {helpers_defined} helpers in {len(list(OUT.glob('*.cpp')))} files; skipped {skipped_layout} (other statics) and "
+          f"and {helpers_defined} helpers ({attrs_defined} of {attr_total} non-empty attribute/field functions) in {len(list(OUT.glob('*.cpp')))} files; skipped {skipped_layout} (other statics) and "
           f"{skipped_shape} (different code shape). Skipped TUs: build/reflection_tus.json")
     return 0
 

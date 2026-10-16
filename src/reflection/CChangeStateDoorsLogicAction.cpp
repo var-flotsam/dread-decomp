@@ -2,12 +2,26 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CChangeStateDoorsLogicAction
 DREAD_REFL_TAG(7100a390f8);
 void fn_7100a38ec4(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_7172748d20;
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_7100a38fbc(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("vDoorStateInfo", true), &g_unk_7172748d20, 0x10, -1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("bEnabled", true), fn_710000d228(), 0x38, -1, -1);
+    field1->attrs.Add<bool>(fn_7100075240(), false);
+}
 bool fn_7100a3c70c(const void* a, const void* b) { return a == b; }
 s32 fn_7100a3c718() { return -1; }
 const base::reflection::CType& fn_7100a3c720(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

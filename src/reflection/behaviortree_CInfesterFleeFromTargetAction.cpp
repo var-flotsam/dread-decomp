@@ -2,12 +2,35 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // behaviortree::CInfesterFleeFromTargetAction
 DREAD_REFL_TAG(71005c7ec8);
 void fn_71005c7a68(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+void fn_71005c7b60(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fReachedDistance", true), fn_710000abbc(), 0x54, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 5.0f);
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Reach distance");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("bCalculateFleePointFromTargetPos", true), fn_710000d228(), 0x58, -1, -1);
+    field1->attrs.Add<bool>(fn_7100075240(), false);
+    field1->attrs.Add<const char*>(fn_7100007e80(), "Flee to farthest point from target");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("bSuccessOnFinish", true), fn_710000d228(), 0x5c, -1, -1);
+    field2->attrs.Add<bool>(fn_7100075240(), false);
+    field2->attrs.Add<const char*>(fn_7100007e80(), "Return success on finish");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("bInFury", true), fn_710000d228(), 0x5d, -1, -1);
+    field3->attrs.Add<bool>(fn_7100075240(), false);
+    field3->attrs.Add<const char*>(fn_7100007e80(), "Go to player");
+}
 bool fn_71005c8ed0(const void*, const void*) { return false; }
 s32 fn_71005c8ed8() { return -1; }
 const base::reflection::CType& fn_71005c8ee0(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

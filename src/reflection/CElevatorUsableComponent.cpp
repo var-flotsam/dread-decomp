@@ -2,12 +2,37 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CElevatorUsableComponent
 DREAD_REFL_TAG(7100a81828);
 void fn_7100a811ec(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_7172750790;
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+extern base::reflection::CType g_unk_71727c0710;
+void fn_7100a812e4(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("eDirection", true), &g_unk_7172750790, 0x54c, -1, -1);
+    field0->attrs.Add<s32>(fn_7100075240(), &g_unk_7172750790, 0);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("eLoadingScreen", true), &g_unk_71727c0710, 0x550, -1, -1);
+    field1->attrs.Add<s32>(fn_7100075240(), &g_unk_71727c0710, 0);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("sLevelName", true), fn_7100009658(), 0x558, -1, -1);
+    field2->attrs.Add<CStrId>(fn_7100075240(), CStrId("c10_samus", true));
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("sScenarioName", true), fn_7100009658(), 0x560, -1, -1);
+    field3->attrs.Add<CStrId>(fn_7100075240(), CStrId("", true));
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("sTargetSpawnPoint", true), fn_7100009658(), 0x568, -1, -1);
+    field4->attrs.Add<CStrId>(fn_7100075240(), CStrId("", true));
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("sMapConnectionId", true), fn_7100009658(), 0x540, -1, -1);
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("fMinTimeLoad", true), fn_710000abbc(), 0x570, -1, -1);
+    field6->attrs.Add<f32>(fn_7100075240(), 0.0f);
+}
 bool fn_7100a82838(const void*, const void*) { return false; }
 s32 fn_7100a82840() { return -1; }
 const base::reflection::CType& fn_7100a82848(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

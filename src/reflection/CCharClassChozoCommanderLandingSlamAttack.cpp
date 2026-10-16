@@ -2,12 +2,32 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassChozoCommanderLandingSlamAttack
 DREAD_REFL_TAG(71004215e0);
 void fn_7100421180(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_7100421278(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fHeightToSamus", true), fn_710000abbc(), 0xf0, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 900.0f);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fTimeTracking", true), fn_710000abbc(), 0xf4, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 2.5f);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fMinSpeed", true), fn_710000abbc(), 0xf8, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 2.0f);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fMaxSpeed", true), fn_710000abbc(), 0xfc, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 3.0f);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fDistToClampMaxSpeed", true), fn_710000abbc(), 0x100, -1, -1);
+    field4->attrs.Add<f32>(fn_7100075240(), 1000.0f);
+}
 bool fn_71004217d4(const void* a, const void* b) { return a == b; }
 s32 fn_71004217e0() { return -1; }
 const base::reflection::CType& fn_71004217e8(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

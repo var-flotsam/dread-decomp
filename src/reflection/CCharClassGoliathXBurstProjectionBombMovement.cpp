@@ -2,12 +2,36 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassGoliathXBurstProjectionBombMovement
 DREAD_REFL_TAG(7100589960);
 void fn_71005893b4(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_71005894ac(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fExplosionRadius", true), fn_710000abbc(), 0xf0, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 50.0f);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fExplosionGrowthTime", true), fn_710000abbc(), 0xf4, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 0.35f);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fExplosionLifeTime", true), fn_710000abbc(), 0xf8, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 3.0f);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fSubExplosionLifeTime", true), fn_710000abbc(), 0xfc, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 0.4f);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fSubExplosionStepTime", true), fn_710000abbc(), 0x100, -1, -1);
+    field4->attrs.Add<f32>(fn_7100075240(), 0.05f);
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("fClosestAxisSpeedMultiplier", true), fn_710000abbc(), 0x104, -1, -1);
+    field5->attrs.Add<f32>(fn_7100075240(), 2.0f);
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("fDetonationTime", true), fn_710000abbc(), 0x108, -1, -1);
+    field6->attrs.Add<f32>(fn_7100075240(), 2.0f);
+}
 bool fn_7100589ae4(const void*, const void*) { return false; }
 s32 fn_7100589aec() { return -1; }
 const base::reflection::CType& fn_7100589af4(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

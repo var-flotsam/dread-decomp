@@ -2,12 +2,26 @@
 // Reflection descriptors for one original translation unit (2 types):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassGoliathAIComponent
 DREAD_REFL_TAG(710058fb00);
 void fn_710058f8c8(base::reflection::CClass*) {}
+const base::reflection::CClass* fn_710058cb04();
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_710058f9c0(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("oGoliathAttackDef", true), fn_710058cb04(), 0x530, -1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fAnimSpeedMultiplier", true), fn_710000abbc(), 0x620, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 1.0f);
+}
 bool fn_71005906b4(const void*, const void*) { return false; }
 s32 fn_71005906bc() { return -1; }
 const base::reflection::CType& fn_71005906c4(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
@@ -32,6 +46,30 @@ DREAD_REFL_CLASS_GETTER(710058f8cc, 710058fb00, "CCharClassGoliathAIComponent", 
 // CCharClassGoliathAIComponent::CTunableCharClassGoliathAIComponent
 DREAD_REFL_TAG(710058ffd8);
 void fn_710058fc60(base::reflection::CClass*) {}
+extern bool g_unk_71726e6468;
+extern UnkTunableRegistry* g_unk_7101d47350;
+extern UnkTunable g_unk_71726e6438;
+void fn_710059015c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+void fn_710058fd58(CClass* cls) {
+    if (g_unk_71726e6468)
+        return;
+    g_unk_71726e6468 = true;
+    if (!cls)
+        return;
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fFleeTimeToReturnToPatrol", true), fn_710000abbc(), 0x24, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 5.0f);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fChaseMinDistance", true), fn_710000abbc(), 0x28, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 550.0f);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fChaseMaxDistance", true), fn_710000abbc(), 0x2c, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 550.0f);
+    UnkTunableRegistry* registry = g_unk_7101d47350;
+    if (!registry) {
+        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
+        fn_710013ac14(registry);
+        g_unk_7101d47350 = registry;
+    }
+    fn_710059015c(registry, &g_unk_71726e6438, "Goliath");
+}
 bool fn_7100590730(const void*, const void*) { return false; }
 s32 fn_7100590738() { return -1; }
 const base::reflection::CType& fn_7100590740(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

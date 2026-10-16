@@ -2,12 +2,41 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassActionSwitcherOnPullGrapplePointComponent
 DREAD_REFL_TAG(7100827150);
 void fn_7100826978(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+void fn_7100826a70(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sGrappleCollider", true), fn_7100009658(), 0x78, -1, -1);
+    field0->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Name of the Collider to use as a grapple point");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fGrappleMinAlignmentX", true), fn_710000abbc(), 0xa0, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 0.98f);
+    field1->attrs.Add<const char*>(fn_7100007e80(), "Minimum grapple hit dot X-axis to allow grappling");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("sActionOnGrappleAttach", true), fn_7100009658(), 0x80, -1, -1);
+    field2->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    field2->attrs.Add<const char*>(fn_7100007e80(), "Action to play when grapple beam attaches");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("sActionOnPullStart", true), fn_7100009658(), 0x88, -1, -1);
+    field3->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    field3->attrs.Add<const char*>(fn_7100007e80(), "Action to play when player starts pulling");
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("sActionOnPullAbort", true), fn_7100009658(), 0x90, -1, -1);
+    field4->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    field4->attrs.Add<const char*>(fn_7100007e80(), "Action to play when player stops pulling");
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("sActionOnGrappleDetach", true), fn_7100009658(), 0x98, -1, -1);
+    field5->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    field5->attrs.Add<const char*>(fn_7100007e80(), "Action to play when grapple beam detaches without performing the pull");
+}
 bool fn_71008274b0(const void*, const void*) { return false; }
 s32 fn_71008274b8() { return -1; }
 const base::reflection::CType& fn_71008274c0(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

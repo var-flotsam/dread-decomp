@@ -2,8 +2,15 @@
 // Reflection descriptors for one original translation unit (2 types):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CPowerBeamGun
 DREAD_REFL_TAG(7100852a20);
@@ -37,6 +44,42 @@ DREAD_REFL_CLASS_GETTER(7100852928, 7100852a20, "CPowerBeamGun", 710082f814, 710
 // CPowerBeamGun::CTunablePowerBeam
 DREAD_REFL_TAG(71008531a8);
 void fn_7100852ba4(base::reflection::CClass*) {}
+extern bool g_unk_7172727a38;
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+extern UnkTunableRegistry* g_unk_7101d47350;
+extern UnkTunable g_unk_71727279f8;
+void fn_710085332c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+void fn_7100852c9c(CClass* cls) {
+    if (g_unk_7172727a38)
+        return;
+    g_unk_7172727a38 = true;
+    if (!cls)
+        return;
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fDamageAmount", true), fn_710000abbc(), 0x24, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Single shot damage amount");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fChargeDamageMult", true), fn_710000abbc(), 0x28, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field1->attrs.Add<const char*>(fn_7100007e80(), "Single charged shot damage multiplier");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fMaximumHeat", true), fn_710000abbc(), 0x2c, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 0.75f);
+    field2->attrs.Add<const char*>(fn_7100007e80(), "Maximun damage to the shield");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fFractionOfHeatAddedPerShot", true), fn_710000abbc(), 0x30, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field3->attrs.Add<const char*>(fn_7100007e80(), "fraction of heat incremented per shot");
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fDiffusionRadius", true), fn_710000abbc(), 0x34, -1, -1);
+    field4->attrs.Add<f32>(fn_7100075240(), 200.0f);
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("fWideTime", true), fn_710000abbc(), 0x38, -1, -1);
+    field5->attrs.Add<f32>(fn_7100075240(), 0.1f);
+    UnkTunableRegistry* registry = g_unk_7101d47350;
+    if (!registry) {
+        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
+        fn_710013ac14(registry);
+        g_unk_7101d47350 = registry;
+    }
+    fn_710085332c(registry, &g_unk_71727279f8, "");
+}
 bool fn_71008551e0(const void*, const void*) { return false; }
 s32 fn_71008551e8() { return -1; }
 const base::reflection::CType& fn_71008551f0(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

@@ -2,12 +2,28 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassBaseGroundShockerAIComponent
 DREAD_REFL_TAG(71005a2c78);
 void fn_71005a2960(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_71005a2a58(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fDefaultMotionSpeed", true), fn_710000abbc(), 0x50c, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 200.0f);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fCombatMotionSpeed", true), fn_710000abbc(), 0x510, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 300.0f);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fFleeMotionSpeed", true), fn_710000abbc(), 0x514, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 300.0f);
+}
 bool fn_71005a2eac(const void*, const void*) { return false; }
 s32 fn_71005a2eb4() { return -1; }
 const base::reflection::CType& fn_71005a2ebc(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

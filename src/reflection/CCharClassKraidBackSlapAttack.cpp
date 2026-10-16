@@ -2,8 +2,15 @@
 // Reflection descriptors for one original translation unit (2 types):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassKraidBackSlapAttack
 DREAD_REFL_TAG(71005dc15c);
@@ -33,6 +40,27 @@ DREAD_REFL_CLASS_GETTER(71005dc064, 71005dc15c, "CCharClassKraidBackSlapAttack",
 // CCharClassKraidBackSlapAttack::CTunableCharClassKraidBackSlapAttack
 DREAD_REFL_TAG(71005dc4e8);
 void fn_71005dc2bc(base::reflection::CClass*) {}
+extern bool g_unk_71726ee930;
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+extern UnkTunableRegistry* g_unk_7101d47350;
+extern UnkTunable g_unk_71726ee908;
+void fn_71005dc66c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+void fn_71005dc3b4(CClass* cls) {
+    if (g_unk_71726ee930)
+        return;
+    g_unk_71726ee930 = true;
+    if (!cls)
+        return;
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("bEnabled", true), fn_710000d228(), 0x21, -1, -1);
+    field0->attrs.Add<bool>(fn_7100075240(), true);
+    UnkTunableRegistry* registry = g_unk_7101d47350;
+    if (!registry) {
+        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
+        fn_710013ac14(registry);
+        g_unk_7101d47350 = registry;
+    }
+    fn_71005dc66c(registry, &g_unk_71726ee908, "Kraid");
+}
 bool fn_71005dca44(const void*, const void*) { return false; }
 s32 fn_71005dca4c() { return -1; }
 const base::reflection::CType& fn_71005dca54(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

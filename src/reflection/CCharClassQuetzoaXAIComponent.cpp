@@ -2,12 +2,26 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassQuetzoaXAIComponent
 DREAD_REFL_TAG(710063ebb8);
 void fn_710063e980(base::reflection::CClass*) {}
+const base::reflection::CClass* fn_710063ce30();
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_710063ea78(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("oQuetzoaXMultiTargetAttackDef", true), fn_710063ce30(), 0x710, -1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fVulnerabilityTime", true), fn_710000abbc(), 0x808, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 5.0f);
+}
 bool fn_710063eeb0(const void*, const void*) { return false; }
 s32 fn_710063eeb8() { return -1; }
 const base::reflection::CType& fn_710063eec0(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

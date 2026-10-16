@@ -2,12 +2,42 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // behaviortree::CFlyingFollowPathAction
 DREAD_REFL_TAG(7100386c24);
 void fn_71003864a0(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_7100386598(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fAcceleration", true), fn_710000abbc(), 0x3c, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 9999.0f);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fSpeedMultiplier", true), fn_710000abbc(), 0x40, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fHareDistance", true), fn_710000abbc(), 0x44, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 50.0f);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("bLookAtMoveDir", true), fn_710000d228(), 0x48, -1, -1);
+    field3->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("bIgnoreCollisionInPath", true), fn_710000d228(), 0x51, -1, -1);
+    field4->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("sPatrolAnim", true), fn_7100009658(), 0x58, -1, -1);
+    field5->attrs.Add<const char*>(fn_7100075240(), "patrol");
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("bShouldSetPatrolAnim", true), fn_710000d228(), 0x71, -1, -1);
+    field6->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("bUseSteering", true), fn_710000d228(), 0x72, -1, -1);
+    field7->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("bRestartnOnPush", true), fn_710000d228(), 0x73, -1, -1);
+    field8->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("bUseDesiredViewDirAsInitialDir", true), fn_710000d228(), 0x74, -1, -1);
+    field9->attrs.Add<bool>(fn_7100075240(), false);
+}
 bool fn_7100387f0c(const void*, const void*) { return false; }
 s32 fn_7100387f14() { return -1; }
 const base::reflection::CType& fn_7100387f1c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

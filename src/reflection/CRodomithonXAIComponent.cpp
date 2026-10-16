@@ -2,12 +2,25 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CRodomithonXAIComponent
 DREAD_REFL_TAG(7100668cf0);
 void fn_7100668b20(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_71726fdc20;
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_7100668c18(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("eFirePillarType", true), &g_unk_71726fdc20, 0x148b0, -1, -1);
+    field0->attrs.Add<s32>(fn_7100075240(), &g_unk_71726fdc20, 2);
+}
 bool fn_71006694bc(const void*, const void*) { return false; }
 s32 fn_71006694c4() { return -1; }
 const base::reflection::CType& fn_71006694cc(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

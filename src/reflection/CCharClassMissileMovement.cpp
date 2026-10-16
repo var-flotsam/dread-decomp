@@ -2,12 +2,28 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassMissileMovement
 DREAD_REFL_TAG(7100ab40a4);
 void fn_7100ab3d80(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_7100ab3e78(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fInitialSpeed", true), fn_710000abbc(), 0x134, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 1000.0f);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fTimeInInitialSpeed", true), fn_710000abbc(), 0x138, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 0.2f);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fTimeToReachSpeed", true), fn_710000abbc(), 0x13c, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 0.4f);
+}
 bool fn_7100ab42bc(const void*, const void*) { return false; }
 s32 fn_7100ab42c4() { return -1; }
 const base::reflection::CType& fn_7100ab42cc(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

@@ -2,12 +2,80 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassFlockingSwarmControllerComponent
 DREAD_REFL_TAG(71007326b0);
 void fn_710073166c(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+extern base::reflection::CType g_unk_7172710398;
+void fn_7100731764(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fContaimentDist", true), fn_710000abbc(), 0x430, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 190.0f);
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Defeated Enemy class");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("eRotationMode", true), &g_unk_7172710398, 0x434, -1, -1);
+    field1->attrs.Add<s32>(fn_7100075240(), &g_unk_7172710398, 1);
+    field1->attrs.Add<const char*>(fn_7100007e80(), "Rotation mode");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fMaxAngularSpeed", true), fn_710000abbc(), 0x438, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 9.424778f);
+    field2->attrs.Add<const char*>(fn_7100007e80(), "Maximum angular speed in radians/s");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fCohesion", true), fn_710000abbc(), 0x43c, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    field3->attrs.Add<const char*>(fn_7100007e80(), "Cohesion");
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fSeparationFactor", true), fn_710000abbc(), 0x444, -1, -1);
+    field4->attrs.Add<f32>(fn_7100075240(), 0.5f);
+    field4->attrs.Add<const char*>(fn_7100007e80(), "Separation factor");
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("fSeparation", true), fn_710000abbc(), 0x440, -1, -1);
+    field5->attrs.Add<f32>(fn_7100075240(), 2.0f);
+    field5->attrs.Add<const char*>(fn_7100007e80(), "Separation");
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("fToTarget", true), fn_710000abbc(), 0x448, -1, -1);
+    field6->attrs.Add<f32>(fn_7100075240(), 1.5f);
+    field6->attrs.Add<const char*>(fn_7100007e80(), "To target");
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("fContainment", true), fn_710000abbc(), 0x44c, -1, -1);
+    field7->attrs.Add<f32>(fn_7100075240(), 2.0f);
+    field7->attrs.Add<const char*>(fn_7100007e80(), "Containment");
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("bAllowSharpTurns", true), fn_710000d228(), 0x450, -1, -1);
+    field8->attrs.Add<bool>(fn_7100075240(), false);
+    field8->attrs.Add<const char*>(fn_7100007e80(), "Allow sharp turns");
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("bCanFollowTarget", true), fn_710000d228(), 0x451, -1, -1);
+    field9->attrs.Add<bool>(fn_7100075240(), false);
+    field9->attrs.Add<const char*>(fn_7100007e80(), "Can follow target");
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("fPreferredRadius", true), fn_710000abbc(), 0x454, -1, -1);
+    field10->attrs.Add<f32>(fn_7100075240(), 100.0f);
+    field10->attrs.Add<const char*>(fn_7100007e80(), "Preferred radius when pursuing target");
+    UnkReflField* field11 = fn_7100096524(cls, CStrId("fMinRadius", true), fn_710000abbc(), 0x458, -1, -1);
+    field11->attrs.Add<f32>(fn_7100075240(), 49.0f);
+    field11->attrs.Add<const char*>(fn_7100007e80(), "Min radius allowed to generate path towards target");
+    UnkReflField* field12 = fn_7100096524(cls, CStrId("fPursuitSpeed", true), fn_710000abbc(), 0x45c, -1, -1);
+    field12->attrs.Add<f32>(fn_7100075240(), 400.0f);
+    field12->attrs.Add<const char*>(fn_7100007e80(), "Speed while chasing the target");
+    UnkReflField* field13 = fn_7100096524(cls, CStrId("fRecoverySpeed", true), fn_710000abbc(), 0x464, -1, -1);
+    field13->attrs.Add<f32>(fn_7100075240(), 150.0f);
+    field13->attrs.Add<const char*>(fn_7100007e80(), "Speed while chasing the target");
+    UnkReflField* field14 = fn_7100096524(cls, CStrId("fAttackSpeed", true), fn_710000abbc(), 0x460, -1, -1);
+    field14->attrs.Add<f32>(fn_7100075240(), 1500.0f);
+    field14->attrs.Add<const char*>(fn_7100007e80(), "Speed while charging the target");
+    UnkReflField* field15 = fn_7100096524(cls, CStrId("fBillboardScale", true), fn_710000abbc(), 0x468, -1, -1);
+    field15->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    field15->attrs.Add<const char*>(fn_7100007e80(), "Individual billboard scale");
+    UnkReflField* field16 = fn_7100096524(cls, CStrId("bForceAllowTurn", true), fn_710000d228(), 0x470, -1, -1);
+    field16->attrs.Add<bool>(fn_7100075240(), false);
+    field16->attrs.Add<const char*>(fn_7100007e80(), "Should turn even while attacking");
+    UnkReflField* field17 = fn_7100096524(cls, CStrId("fHareDistance", true), fn_710000abbc(), 0x46c, -1, -1);
+    field17->attrs.Add<f32>(fn_7100075240(), 200.0f);
+    UnkReflField* field18 = fn_7100096524(cls, CStrId("fMaxQueueSize", true), fn_710000abbc(), 0x474, -1, -1);
+    field18->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    field18->attrs.Add<const char*>(fn_7100007e80(), "Max length of the queue of swarms at the initial placement. Use a negative value to ignore this limitation");
+}
 bool fn_710073298c(const void*, const void*) { return false; }
 s32 fn_7100732994() { return -1; }
 const base::reflection::CType& fn_710073299c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

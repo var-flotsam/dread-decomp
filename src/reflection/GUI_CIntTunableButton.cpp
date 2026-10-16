@@ -2,12 +2,32 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // GUI::CIntTunableButton
 DREAD_REFL_TAG(7100b320d0);
 void fn_7100b31c74(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_7100b31d6c(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("iTunableValue", true), fn_7100014768(), 0x2b0, -1, -1);
+    field0->attrs.Add<s32>(fn_7100075240(), 0);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("iTunableIncrement", true), fn_7100014768(), 0x2c0, -1, -1);
+    field1->attrs.Add<s32>(fn_7100075240(), 1);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("iTunableMin", true), fn_7100014768(), 0x2c4, -1, -1);
+    field2->attrs.Add<s32>(fn_7100075240(), 0);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("iTunableMax", true), fn_7100014768(), 0x2c8, -1, -1);
+    field3->attrs.Add<s32>(fn_7100075240(), 1);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("sTunableCallback", true), fn_7100009658(), 0x2e0, -1, -1);
+    field4->attrs.Add<const char*>(fn_7100075240(), "");
+}
 bool fn_7100b32948(const void*, const void*) { return false; }
 s32 fn_7100b32950() { return -1; }
 const base::reflection::CType& fn_7100b32958(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

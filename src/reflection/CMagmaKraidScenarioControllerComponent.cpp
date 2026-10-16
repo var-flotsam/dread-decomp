@@ -2,12 +2,28 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CMagmaKraidScenarioControllerComponent
 DREAD_REFL_TAG(71009175d4);
 void fn_7100917364(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_71727b6270;
+const base::reflection::UnkReflAttrKey& fn_710025daa0();
+extern base::reflection::CType g_unk_71727bc110;
+void fn_710091745c(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("wpBackGorundPipesEntity", true), &g_unk_71727b6270, 0x40, -1, -1);
+    field0->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 1);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("wpPistonEntity", true), &g_unk_71727b6270, 0x80, -1, -1);
+    field1->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 1);
+}
 bool fn_7100917da0(const void*, const void*) { return false; }
 s32 fn_7100917da8() { return -1; }
 const base::reflection::CType& fn_7100917db0(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

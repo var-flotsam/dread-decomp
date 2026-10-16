@@ -2,12 +2,29 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassDredhedAIComponent
 DREAD_REFL_TAG(71004e6a4c);
 void fn_71004e676c(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_71726da478;
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::CClass* fn_71004e3d14();
+void fn_71004e6864(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("eSubspecies", true), &g_unk_71726da478, 0x600, -1, -1);
+    field0->attrs.Add<s32>(fn_7100075240(), &g_unk_71726da478, 2147483647);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fTimeBetweenCharges", true), fn_710000abbc(), 0x604, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("oDredhedDiveAttackDef", true), fn_71004e3d14(), 0x510, -1, -1);
+}
 bool fn_71004e6d34(const void*, const void*) { return false; }
 s32 fn_71004e6d3c() { return -1; }
 const base::reflection::CType& fn_71004e6d44(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

@@ -2,12 +2,41 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // behaviortree::CWaitAction
 DREAD_REFL_TAG(710039304c);
 void fn_7100392940(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+void fn_7100392a38(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fTime", true), fn_710000abbc(), 0x2c, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Time to wait");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("sTime", true), fn_7100009658(), 0x30, -1, -1);
+    field1->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    field1->attrs.Add<const char*>(fn_7100007e80(), "Time to wait (blackboard)");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("sTunable", true), fn_7100009658(), 0x38, -1, -1);
+    field2->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    field2->attrs.Add<const char*>(fn_7100007e80(), "Time to wait (blackboard)");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("sTunableVar", true), fn_7100009658(), 0x40, -1, -1);
+    field3->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    field3->attrs.Add<const char*>(fn_7100007e80(), "Time to wait (blackboard)");
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("bWaitTick", true), fn_710000d228(), 0x50, -1, -1);
+    field4->attrs.Add<bool>(fn_7100075240(), false);
+    field4->attrs.Add<const char*>(fn_7100007e80(), "Wait at least 1 tick [false]");
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("bShouldHaveLOS", true), fn_710000d228(), 0x52, -1, -1);
+    field5->attrs.Add<bool>(fn_7100075240(), false);
+    field5->attrs.Add<const char*>(fn_7100007e80(), "Counter will reset if there's no LOS");
+}
 bool fn_710039352c(const void*, const void*) { return false; }
 s32 fn_7100393534() { return -1; }
 const base::reflection::CType& fn_710039353c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

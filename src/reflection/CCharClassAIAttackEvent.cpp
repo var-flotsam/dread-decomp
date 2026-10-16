@@ -2,11 +2,57 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassAIAttackEvent
 DREAD_REFL_TAG(7100cac5c0);
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+const base::reflection::UnkReflAttrKey& fn_7100090d50();
+void fn_7100cab9f0(CClass* cls) {
+    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "AI Attack");
+    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("AI", true));
+}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_7100cabbcc(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sAction", true), fn_7100009658(), 0x10, -1, -1);
+    field0->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fProbability", true), fn_710000abbc(), 0x18, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 0.5f);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("bPlayerOnViewDir", true), fn_710000d228(), 0x1c, -1, -1);
+    field2->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("bCheckPlayerNotInvulnerable", true), fn_710000d228(), 0x1d, -1, -1);
+    field3->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("bCheckPlayerInvulnerable", true), fn_710000d228(), 0x1e, -1, -1);
+    field4->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("fCheckPlayerMaxDistance", true), fn_710000abbc(), 0x20, -1, -1);
+    field5->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("fCheckPlayerMinDistance", true), fn_710000abbc(), 0x24, -1, -1);
+    field6->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("fCheckPlayerMinUpDistance", true), fn_710000abbc(), 0x28, -1, -1);
+    field7->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("fCheckPlayerMaxUpDistance", true), fn_710000abbc(), 0x2c, -1, -1);
+    field8->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("fCheckNavPathMaxDistance", true), fn_710000abbc(), 0x30, -1, -1);
+    field9->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("fCheckNavPathMinDistance", true), fn_710000abbc(), 0x34, -1, -1);
+    field10->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    UnkReflField* field11 = fn_7100096524(cls, CStrId("iFrame", true), fn_7100014768(), 0x38, -1, -1);
+    field11->attrs.Add<s32>(fn_7100075240(), -1);
+    UnkReflField* field12 = fn_7100096524(cls, CStrId("iBehaviorPresetMin", true), fn_7100014768(), 0x3c, -1, -1);
+    field12->attrs.Add<s32>(fn_7100075240(), -1);
+    UnkReflField* field13 = fn_7100096524(cls, CStrId("iBehaviorPresetMax", true), fn_7100014768(), 0x40, -1, -1);
+    field13->attrs.Add<s32>(fn_7100075240(), -1);
+    UnkReflField* field14 = fn_7100096524(cls, CStrId("bCheckInCombat", true), fn_710000d228(), 0x44, -1, -1);
+    field14->attrs.Add<bool>(fn_7100075240(), false);
+}
 bool fn_7100cac880(const void* a, const void* b) { return a == b; }
 s32 fn_7100cac88c() { return -1; }
 const base::reflection::CType& fn_7100cac894(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

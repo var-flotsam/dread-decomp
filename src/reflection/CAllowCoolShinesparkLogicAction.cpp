@@ -2,12 +2,38 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CAllowCoolShinesparkLogicAction
 DREAD_REFL_TAG(7100a31218);
 void fn_7100a30cd0(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_7172747758;
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+extern base::reflection::CType g_unk_7172747b50;
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_7100a30dc8(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("lstAllowedDirections", true), &g_unk_7172747758, 0x10, -1, -1);
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Allow Cool Shinespark when travelling towards these directions");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("lstAllowedSituations", true), &g_unk_7172747b50, 0x38, -1, -1);
+    field1->attrs.Add<const char*>(fn_7100007e80(), "These are the situations we're in");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("sCoolShinesparkId", true), fn_7100009658(), 0x60, -1, -1);
+    field2->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    field2->attrs.Add<const char*>(fn_7100007e80(), "Identifier of this Cool Shinespark situation, used to disable it when successfully completed");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("bAllow", true), fn_710000d228(), 0x68, -1, -1);
+    field3->attrs.Add<bool>(fn_7100075240(), true);
+    field3->attrs.Add<const char*>(fn_7100007e80(), "Whether Cool Shinespark is allowed");
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("bForce", true), fn_710000d228(), 0x69, -1, -1);
+    field4->attrs.Add<bool>(fn_7100075240(), false);
+    field4->attrs.Add<const char*>(fn_7100007e80(), "Force allow/forbid Cool Shinespark");
+}
 bool fn_7100a34c3c(const void* a, const void* b) { return a == b; }
 s32 fn_7100a34c48() { return -1; }
 const base::reflection::CType& fn_7100a34c50(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

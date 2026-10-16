@@ -2,12 +2,35 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassToStateTrack
 DREAD_REFL_TAG(7100d2a6dc);
 void fn_7100d2a18c(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+extern base::reflection::CType g_unk_71727adf10;
+void fn_7100d2a284(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sAction", true), fn_7100009658(), 0x18, -1, -1);
+    field0->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("bMaintainFrame", true), fn_710000d228(), 0x20, -1, -1);
+    field1->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("eMaintainFrameMode", true), &g_unk_71727adf10, 0x24, -1, -1);
+    field2->attrs.Add<s32>(fn_7100075240(), &g_unk_71727adf10, 0);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("iFrame", true), fn_7100014768(), 0x28, -1, -1);
+    field3->attrs.Add<s32>(fn_7100075240(), 0);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("bForce", true), fn_710000d228(), 0x2c, -1, -1);
+    field4->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("fBlendTime", true), fn_710000abbc(), 0x30, -1, -1);
+    field5->attrs.Add<f32>(fn_7100075240(), -1.0f);
+}
 bool fn_7100d2aaf4(const void* a, const void* b) { return a == b; }
 s32 fn_7100d2ab00() { return -1; }
 const base::reflection::CType& fn_7100d2ab08(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

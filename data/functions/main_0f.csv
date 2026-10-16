@@ -252,7 +252,7 @@ address,size,name,name_source,subsystem,status
 0x7100f0feb4,388,CReserveTankInfo::refl_InitClass,reflection,game,O
 0x7100f10038,4,fn_7100f10038,unknown,game?,O
 0x7100f1003c,244,CReserveTankInfo::CTunableReserveTanks::refl_GetClass,reflection,game,O
-0x7100f10130,772,fn_7100f10130,unknown,game?,U
+0x7100f10130,772,fn_7100f10130,unknown,game?,O
 0x7100f10434,388,CReserveTankInfo::CTunableReserveTanks::refl_InitClass,reflection,game,O
 0x7100f105b8,696,fn_7100f105b8,unknown,unknown,U
 0x7100f10870,204,fn_7100f10870,unknown,unknown,U
@@ -419,7 +419,7 @@ address,size,name,name_source,subsystem,status
 0x7100f17b70,580,fn_7100f17b70,unknown,unknown,U
 0x7100f17db4,4,fn_7100f17db4,unknown,unknown,O
 0x7100f17db8,244,CStartCentralUnitCombatLogicAction::refl_GetClass,reflection,game/ai,O
-0x7100f17eac,204,fn_7100f17eac,unknown,game/ai?,U
+0x7100f17eac,204,fn_7100f17eac,unknown,game/ai?,O
 0x7100f17f78,352,CStartCentralUnitCombatLogicAction::refl_InitClass,reflection,game/ai,O
 0x7100f180d8,244,fn_7100f180d8,unknown,unknown,U
 0x7100f181cc,252,fn_7100f181cc,unknown,unknown,U

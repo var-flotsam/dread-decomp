@@ -2,12 +2,26 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // behaviortree::CDoNothingAction
 DREAD_REFL_TAG(7100377b94);
 void fn_7100377920(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_7100377a18(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("bWait", true), fn_710000d228(), 0x2c, -1, -1);
+    field0->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("bWaitForever", true), fn_710000d228(), 0x2d, -1, -1);
+    field1->attrs.Add<bool>(fn_7100075240(), false);
+}
 bool fn_7100377da8(const void*, const void*) { return false; }
 s32 fn_7100377db0() { return -1; }
 const base::reflection::CType& fn_7100377db8(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

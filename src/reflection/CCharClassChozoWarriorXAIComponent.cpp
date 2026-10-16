@@ -2,12 +2,33 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassChozoWarriorXAIComponent
 DREAD_REFL_TAG(710048d754);
 void fn_710048d390(base::reflection::CClass*) {}
+const base::reflection::CClass* fn_710047c45c();
+const base::reflection::CClass* fn_710047febc();
+const base::reflection::CClass* fn_710047d5d8();
+const base::reflection::CClass* fn_710047b830();
+const base::reflection::CClass* fn_710047e440();
+const base::reflection::CClass* fn_710047f1b0();
+void fn_710048d488(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("oChozoWarriorXGlaiveSpinAttackDef", true), fn_710047c45c(), 0x808, -1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("oChozoWarriorXWallClimbAttackDef", true), fn_710047febc(), 0x8f8, -1, -1);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("oChozoWarriorXLandAttackDef", true), fn_710047d5d8(), 0x9e8, -1, -1);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("oChozoWarriorXChangeWallAttackDef", true), fn_710047b830(), 0xad8, -1, -1);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("oChozoWarriorXSpitAttackDef", true), fn_710047e440(), 0xbc8, -1, -1);
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("oChozoWarriorXUltimateGrabAttackDef", true), fn_710047f1b0(), 0xcb8, -1, -1);
+}
 bool fn_710048d9f4(const void*, const void*) { return false; }
 s32 fn_710048d9fc() { return -1; }
 const base::reflection::CType& fn_710048da04(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

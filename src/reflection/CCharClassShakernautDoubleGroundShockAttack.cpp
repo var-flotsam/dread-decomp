@@ -2,12 +2,30 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassShakernautDoubleGroundShockAttack
 DREAD_REFL_TAG(71006a2aec);
 void fn_71006a272c(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_71006a2824(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fTimeToChargeDoubleGroundShock", true), fn_710000abbc(), 0xec, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 0.6f);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("uNumShocks", true), fn_7100005178(), 0xf0, -1, -1);
+    field1->attrs.Add<s32>(fn_7100075240(), 12);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fTimeBetweenShockwaves", true), fn_710000abbc(), 0xf4, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 0.08f);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fTimeToEndShockwaves", true), fn_710000abbc(), 0xf8, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 0.6f);
+}
 bool fn_71006a2cc0(const void* a, const void* b) { return a == b; }
 s32 fn_71006a2ccc() { return -1; }
 const base::reflection::CType& fn_71006a2cd4(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

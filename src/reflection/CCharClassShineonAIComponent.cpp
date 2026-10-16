@@ -2,12 +2,32 @@
 // Reflection descriptors for one original translation unit (2 types):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassShineonAIComponent
 DREAD_REFL_TAG(71006be228);
 void fn_71006bddd0(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_71006bdec8(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fSteeringAcceleration", true), fn_710000abbc(), 0x50c, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fSteeringSpeed", true), fn_710000abbc(), 0x510, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fMaxTargetDistanceToAccelerateCloseToTarget", true), fn_710000abbc(), 0x514, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 100.0f);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fCloseToTargetAcceleration", true), fn_710000abbc(), 0x518, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fMaxDistanceToTurn", true), fn_710000abbc(), 0x51c, -1, -1);
+    field4->attrs.Add<f32>(fn_7100075240(), 100.0f);
+}
 bool fn_71006bea8c(const void*, const void*) { return false; }
 s32 fn_71006bea94() { return -1; }
 const base::reflection::CType& fn_71006bea9c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
@@ -32,6 +52,26 @@ DREAD_REFL_CLASS_GETTER(71006bddd4, 71006be228, "CCharClassShineonAIComponent", 
 // CCharClassShineonAIComponent::CTunableCharClassShineonAIComponent
 DREAD_REFL_TAG(71006be5ac);
 void fn_71006be388(base::reflection::CClass*) {}
+extern bool g_unk_71727074c8;
+extern UnkTunableRegistry* g_unk_7101d47350;
+extern UnkTunable g_unk_71727074a0;
+void fn_71006be730(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+void fn_71006be480(CClass* cls) {
+    if (g_unk_71727074c8)
+        return;
+    g_unk_71727074c8 = true;
+    if (!cls)
+        return;
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fMotionSpeed", true), fn_710000abbc(), 0x24, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 400.0f);
+    UnkTunableRegistry* registry = g_unk_7101d47350;
+    if (!registry) {
+        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
+        fn_710013ac14(registry);
+        g_unk_7101d47350 = registry;
+    }
+    fn_71006be730(registry, &g_unk_71727074a0, "Shineon");
+}
 bool fn_71006beaf8(const void*, const void*) { return false; }
 s32 fn_71006beb00() { return -1; }
 const base::reflection::CType& fn_71006beb08(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

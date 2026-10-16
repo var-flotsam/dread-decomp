@@ -2,12 +2,26 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CStartCentralUnitCombatLogicAction
 DREAD_REFL_TAG(7100f17f78);
 void fn_7100f17db4(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_717269bb48;
+const base::reflection::UnkReflAttrKey& fn_710025daa0();
+extern base::reflection::CType g_unk_71727bc110;
+void fn_7100f17eac(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("wpCentralUnit", true), &g_unk_717269bb48, 0x10, -1, -1);
+    field0->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 0);
+}
 bool fn_7100f18374(const void* a, const void* b) { return a == b; }
 s32 fn_7100f18380() { return -1; }
 const base::reflection::CType& fn_7100f18388(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

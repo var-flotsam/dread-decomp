@@ -2494,7 +2494,7 @@ address,size,name,name_source,subsystem,status
 0x71002547e0,220,fn_71002547e0,unknown,game?,U
 0x71002548c0,356,fn_71002548c0,unknown,game?,U
 0x7100254a30,140,fn_7100254a30,unknown,game?,U
-0x7100254abc,88,fn_7100254abc,unknown,game?,U
+0x7100254abc,88,fn_7100254abc,unknown,game?,O
 0x7100254b14,244,CActorDef::refl_GetClass,reflection,game,O
 0x7100254c08,4,fn_7100254c08,unknown,game?,O
 0x7100254c0c,352,CActorDef::refl_InitClass,reflection,game,O
@@ -3218,7 +3218,7 @@ address,size,name,name_source,subsystem,status
 0x710026c624,168,fn_710026c624,unknown,unknown,U
 0x710026c6cc,176,fn_710026c6cc,unknown,unknown,U
 0x710026c780,768,fn_710026c780,unknown,unknown,U
-0x710026ca80,88,fn_710026ca80,unknown,unknown,U
+0x710026ca80,88,fn_710026ca80,unknown,unknown,O
 0x710026cad8,244,navmesh::CDynamicSmartLinkRules::refl_GetClass,reflection,ai/navmesh,O
 0x710026cbcc,4,fn_710026cbcc,unknown,ai/navmesh?,O
 0x710026cbd0,352,navmesh::CDynamicSmartLinkRules::refl_InitClass,reflection,ai/navmesh,O
@@ -3398,7 +3398,7 @@ address,size,name,name_source,subsystem,status
 0x7100273fec,4,fn_7100273fec,unknown,unknown,U
 0x7100273ff0,228,fn_7100273ff0,unknown,unknown,U
 0x71002740e0,1128,fn_71002740e0,unknown,unknown,U
-0x7100274548,88,fn_7100274548,unknown,unknown,U
+0x7100274548,88,fn_7100274548,unknown,unknown,O
 0x71002745a0,244,navmesh::CNavMesh::refl_GetClass,reflection,ai/navmesh,O
 0x7100274694,4,fn_7100274694,unknown,ai/navmesh?,O
 0x7100274698,352,navmesh::CNavMesh::refl_InitClass,reflection,ai/navmesh,O
@@ -4117,7 +4117,7 @@ address,size,name,name_source,subsystem,status
 0x71002bd0a0,160,fn_71002bd0a0,unknown,ai/querysystem?,U
 0x71002bd140,4,fn_71002bd140,unknown,ai/querysystem?,O
 0x71002bd144,244,querysystem::CFilterToEvaluator::refl_GetClass,reflection,ai/querysystem,O
-0x71002bd238,320,fn_71002bd238,unknown,ai/querysystem?,U
+0x71002bd238,320,fn_71002bd238,unknown,ai/querysystem?,O
 0x71002bd378,352,querysystem::CFilterToEvaluator::refl_InitClass,reflection,ai/querysystem,O
 0x71002bd4d8,220,base::reflection::refl_GetType<std::unique_ptr<querysystem::CFilter>>,reflection,engine/reflection,U
 0x71002bd5b4,72,fn_71002bd5b4,unknown,engine/reflection?,U
@@ -4334,7 +4334,7 @@ address,size,name,name_source,subsystem,status
 0x71002c2b30,160,fn_71002c2b30,unknown,ai/querysystem?,U
 0x71002c2bd0,4,fn_71002c2bd0,unknown,ai/querysystem?,O
 0x71002c2bd4,244,querysystem::CMaxDistanceFilter::refl_GetClass,reflection,ai/querysystem,O
-0x71002c2cc8,204,fn_71002c2cc8,unknown,ai/querysystem?,U
+0x71002c2cc8,204,fn_71002c2cc8,unknown,ai/querysystem?,O
 0x71002c2d94,388,querysystem::CMaxDistanceFilter::refl_InitClass,reflection,ai/querysystem,O
 0x71002c2f18,4,fn_71002c2f18,unknown,ai/querysystem?,U
 0x71002c2f1c,36,fn_71002c2f1c,unknown,ai/querysystem?,U
@@ -4352,7 +4352,7 @@ address,size,name,name_source,subsystem,status
 0x71002c32c0,160,fn_71002c32c0,unknown,ai/querysystem?,U
 0x71002c3360,4,fn_71002c3360,unknown,ai/querysystem?,O
 0x71002c3364,244,querysystem::CMaxTargetDistanceFilter::refl_GetClass,reflection,ai/querysystem,O
-0x71002c3458,204,fn_71002c3458,unknown,ai/querysystem?,U
+0x71002c3458,204,fn_71002c3458,unknown,ai/querysystem?,O
 0x71002c3524,388,querysystem::CMaxTargetDistanceFilter::refl_InitClass,reflection,ai/querysystem,O
 0x71002c36a8,4,fn_71002c36a8,unknown,ai/querysystem?,U
 0x71002c36ac,36,fn_71002c36ac,unknown,ai/querysystem?,U
@@ -4370,7 +4370,7 @@ address,size,name,name_source,subsystem,status
 0x71002c3a80,160,fn_71002c3a80,unknown,ai/querysystem?,U
 0x71002c3b20,4,fn_71002c3b20,unknown,ai/querysystem?,O
 0x71002c3b24,244,querysystem::CMinDistanceFilter::refl_GetClass,reflection,ai/querysystem,O
-0x71002c3c18,204,fn_71002c3c18,unknown,ai/querysystem?,U
+0x71002c3c18,204,fn_71002c3c18,unknown,ai/querysystem?,O
 0x71002c3ce4,388,querysystem::CMinDistanceFilter::refl_InitClass,reflection,ai/querysystem,O
 0x71002c3e68,4,fn_71002c3e68,unknown,ai/querysystem?,U
 0x71002c3e6c,36,fn_71002c3e6c,unknown,ai/querysystem?,U
@@ -4388,7 +4388,7 @@ address,size,name,name_source,subsystem,status
 0x71002c4210,160,fn_71002c4210,unknown,ai/querysystem?,U
 0x71002c42b0,4,fn_71002c42b0,unknown,ai/querysystem?,O
 0x71002c42b4,244,querysystem::CMinTargetDistanceFilter::refl_GetClass,reflection,ai/querysystem,O
-0x71002c43a8,204,fn_71002c43a8,unknown,ai/querysystem?,U
+0x71002c43a8,204,fn_71002c43a8,unknown,ai/querysystem?,O
 0x71002c4474,388,querysystem::CMinTargetDistanceFilter::refl_InitClass,reflection,ai/querysystem,O
 0x71002c45f8,180,fn_71002c45f8,unknown,ai/querysystem?,U
 0x71002c46ac,4,fn_71002c46ac,unknown,ai/querysystem?,U
@@ -4800,9 +4800,9 @@ address,size,name,name_source,subsystem,status
 0x71002d31e0,12,fn_71002d31e0,unknown,animation?,O
 0x71002d31ec,8,fn_71002d31ec,unknown,animation?,O
 0x71002d3200,160,fn_71002d3200,unknown,animation?,U
-0x71002d32a0,88,fn_71002d32a0,unknown,animation?,U
+0x71002d32a0,88,fn_71002d32a0,unknown,animation?,O
 0x71002d32f8,244,animtree::CAnimatedNodeDef::refl_GetClass,reflection,animation,O
-0x71002d33ec,1204,fn_71002d33ec,unknown,animation?,U
+0x71002d33ec,1204,fn_71002d33ec,unknown,animation?,O
 0x71002d38a0,388,animtree::CAnimatedNodeDef::refl_InitClass,reflection,animation,O
 0x71002d3a24,332,fn_71002d3a24,unknown,animation?,U
 0x71002d3b70,384,fn_71002d3b70,unknown,animation?,U
@@ -5264,7 +5264,7 @@ address,size,name,name_source,subsystem,status
 0x71002e0a2c,8,fn_71002e0a2c,unknown,animation?,O
 0x71002e0a34,8,fn_71002e0a34,unknown,animation?,O
 0x71002e0a40,160,fn_71002e0a40,unknown,animation?,U
-0x71002e0ae0,88,fn_71002e0ae0,unknown,animation?,U
+0x71002e0ae0,88,fn_71002e0ae0,unknown,animation?,O
 0x71002e0b38,244,animtree::CBlendNodeDef::refl_GetClass,reflection,animation,O
 0x71002e0c2c,4,fn_71002e0c2c,unknown,animation?,O
 0x71002e0c30,388,animtree::CBlendNodeDef::refl_InitClass,reflection,animation,O
@@ -5281,9 +5281,9 @@ address,size,name,name_source,subsystem,status
 0x71002e0f88,136,fn_71002e0f88,unknown,animation?,U
 0x71002e1010,136,fn_71002e1010,unknown,animation?,U
 0x71002e10a0,160,fn_71002e10a0,unknown,animation?,U
-0x71002e1140,88,fn_71002e1140,unknown,animation?,U
+0x71002e1140,88,fn_71002e1140,unknown,animation?,O
 0x71002e1198,244,animtree::CBoneControlDef::refl_GetClass,reflection,animation,O
-0x71002e128c,1236,fn_71002e128c,unknown,animation?,U
+0x71002e128c,1236,fn_71002e128c,unknown,animation?,O
 0x71002e1760,388,animtree::CBoneControlDef::refl_InitClass,reflection,animation,O
 0x71002e18e4,4,fn_71002e18e4,unknown,animation?,U
 0x71002e18e8,28,fn_71002e18e8,unknown,animation?,U
@@ -5338,9 +5338,9 @@ address,size,name,name_source,subsystem,status
 0x71002e2a5c,8,fn_71002e2a5c,unknown,animation?,O
 0x71002e2a64,8,fn_71002e2a64,unknown,animation?,O
 0x71002e2a70,160,fn_71002e2a70,unknown,animation?,U
-0x71002e2b10,88,fn_71002e2b10,unknown,animation?,U
+0x71002e2b10,88,fn_71002e2b10,unknown,animation?,O
 0x71002e2b68,244,animtree::CBoneFilterNodeDef::refl_GetClass,reflection,animation,O
-0x71002e2c5c,392,fn_71002e2c5c,unknown,animation?,U
+0x71002e2c5c,392,fn_71002e2c5c,unknown,animation?,O
 0x71002e2de4,388,animtree::CBoneFilterNodeDef::refl_InitClass,reflection,animation,O
 0x71002e2f68,4,fn_71002e2f68,unknown,animation?,U
 0x71002e2f6c,28,fn_71002e2f6c,unknown,animation?,U
@@ -5374,7 +5374,7 @@ address,size,name,name_source,subsystem,status
 0x71002e3c6c,8,fn_71002e3c6c,unknown,animation?,O
 0x71002e3c74,32,fn_71002e3c74,unknown,animation?,U
 0x71002e3ca0,160,fn_71002e3ca0,unknown,animation?,U
-0x71002e3d40,88,fn_71002e3d40,unknown,animation?,U
+0x71002e3d40,88,fn_71002e3d40,unknown,animation?,O
 0x71002e3d98,244,animtree::CCallbackBoneControlDef::refl_GetClass,reflection,animation,O
 0x71002e3e8c,4,fn_71002e3e8c,unknown,animation?,O
 0x71002e3e90,388,animtree::CCallbackBoneControlDef::refl_InitClass,reflection,animation,O
@@ -5412,9 +5412,9 @@ address,size,name,name_source,subsystem,status
 0x71002e497c,8,fn_71002e497c,unknown,animation?,O
 0x71002e4984,8,fn_71002e4984,unknown,animation?,O
 0x71002e4990,160,fn_71002e4990,unknown,animation?,U
-0x71002e4a30,88,fn_71002e4a30,unknown,animation?,U
+0x71002e4a30,88,fn_71002e4a30,unknown,animation?,O
 0x71002e4a88,244,animtree::CLayerNodeDef::refl_GetClass,reflection,animation,O
-0x71002e4b7c,256,fn_71002e4b7c,unknown,animation?,U
+0x71002e4b7c,256,fn_71002e4b7c,unknown,animation?,O
 0x71002e4c7c,388,animtree::CLayerNodeDef::refl_InitClass,reflection,animation,O
 0x71002e4e00,4,fn_71002e4e00,unknown,animation?,U
 0x71002e4e04,28,fn_71002e4e04,unknown,animation?,U
@@ -5445,9 +5445,9 @@ address,size,name,name_source,subsystem,status
 0x71002e5744,8,fn_71002e5744,unknown,animation?,O
 0x71002e574c,8,fn_71002e574c,unknown,animation?,O
 0x71002e5760,160,fn_71002e5760,unknown,animation?,U
-0x71002e5800,88,fn_71002e5800,unknown,animation?,U
+0x71002e5800,88,fn_71002e5800,unknown,animation?,O
 0x71002e5858,244,animtree::CLookAtEntityControlDef::refl_GetClass,reflection,animation,O
-0x71002e594c,212,fn_71002e594c,unknown,animation?,U
+0x71002e594c,212,fn_71002e594c,unknown,animation?,O
 0x71002e5a20,388,animtree::CLookAtEntityControlDef::refl_InitClass,reflection,animation,O
 0x71002e5ba4,4,fn_71002e5ba4,unknown,animation?,U
 0x71002e5ba8,28,fn_71002e5ba8,unknown,animation?,U
@@ -5485,9 +5485,9 @@ address,size,name,name_source,subsystem,status
 0x71002e6c6c,8,fn_71002e6c6c,unknown,animation?,O
 0x71002e6c74,8,fn_71002e6c74,unknown,animation?,O
 0x71002e6c80,160,fn_71002e6c80,unknown,animation?,U
-0x71002e6d20,88,fn_71002e6d20,unknown,animation?,U
+0x71002e6d20,88,fn_71002e6d20,unknown,animation?,O
 0x71002e6d78,244,animtree::CLookAtPosControlDef::refl_GetClass,reflection,animation,O
-0x71002e6e6c,1064,fn_71002e6e6c,unknown,animation?,U
+0x71002e6e6c,1064,fn_71002e6e6c,unknown,animation?,O
 0x71002e7294,388,animtree::CLookAtPosControlDef::refl_InitClass,reflection,animation,O
 0x71002e7418,4,fn_71002e7418,unknown,animation?,U
 0x71002e741c,28,fn_71002e741c,unknown,animation?,U
@@ -5502,7 +5502,7 @@ address,size,name,name_source,subsystem,status
 0x71002e7788,260,fn_71002e7788,unknown,animation?,U
 0x71002e788c,256,fn_71002e788c,unknown,animation?,U
 0x71002e7990,160,fn_71002e7990,unknown,animation?,U
-0x71002e7a30,88,fn_71002e7a30,unknown,animation?,U
+0x71002e7a30,88,fn_71002e7a30,unknown,animation?,O
 0x71002e7a88,244,animtree::CPoseNodeDef::refl_GetClass,reflection,animation,O
 0x71002e7b7c,4,fn_71002e7b7c,unknown,animation?,O
 0x71002e7b80,388,animtree::CPoseNodeDef::refl_InitClass,reflection,animation,O
@@ -5553,9 +5553,9 @@ address,size,name,name_source,subsystem,status
 0x71002e8a14,8,fn_71002e8a14,unknown,animation?,O
 0x71002e8a1c,8,fn_71002e8a1c,unknown,animation?,O
 0x71002e8a30,160,fn_71002e8a30,unknown,animation?,U
-0x71002e8ad0,88,fn_71002e8ad0,unknown,animation?,U
+0x71002e8ad0,88,fn_71002e8ad0,unknown,animation?,O
 0x71002e8b28,244,animtree::CSamusLegsBoneControlDef::refl_GetClass,reflection,animation,O
-0x71002e8c1c,1176,fn_71002e8c1c,unknown,animation?,U
+0x71002e8c1c,1176,fn_71002e8c1c,unknown,animation?,O
 0x71002e90b4,388,animtree::CSamusLegsBoneControlDef::refl_InitClass,reflection,animation,O
 0x71002e9238,4,fn_71002e9238,unknown,unknown,U
 0x71002e923c,28,fn_71002e923c,unknown,unknown,U

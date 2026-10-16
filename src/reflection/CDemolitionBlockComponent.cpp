@@ -2,12 +2,28 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CDemolitionBlockComponent
 DREAD_REFL_TAG(71007afd48);
 void fn_71007afad8(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_71727b6630;
+const base::reflection::UnkReflAttrKey& fn_710025daa0();
+extern base::reflection::CType g_unk_71727bc110;
+void fn_71007afbd0(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("vObjsToEnable", true), &g_unk_71727b6630, 0xe0, -1, -1);
+    field0->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 1);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("vObjsToDisable", true), &g_unk_71727b6630, 0x108, -1, -1);
+    field1->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 1);
+}
 bool fn_71007b181c(const void*, const void*) { return false; }
 s32 fn_71007b1824() { return -1; }
 const base::reflection::CType& fn_71007b182c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

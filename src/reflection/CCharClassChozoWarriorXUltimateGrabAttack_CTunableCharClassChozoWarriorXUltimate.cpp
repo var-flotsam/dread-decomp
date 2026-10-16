@@ -2,12 +2,46 @@
 // Reflection descriptors for one original translation unit (2 types):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassChozoWarriorXUltimateGrabAttack::CTunableCharClassChozoWarriorXUltimateGrabAttack
 DREAD_REFL_TAG(710047ed70);
 void fn_710047e958(base::reflection::CClass*) {}
+extern bool g_unk_71726ce808;
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+extern UnkTunableRegistry* g_unk_7101d47350;
+extern UnkTunable g_unk_71726ce7d0;
+void fn_710047eef4(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+void fn_710047ea50(CClass* cls) {
+    if (g_unk_71726ce808)
+        return;
+    g_unk_71726ce808 = true;
+    if (!cls)
+        return;
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fMinAttackDistance", true), fn_710000abbc(), 0x24, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 200.0f);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fMaxAttackDistance", true), fn_710000abbc(), 0x28, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 2000.0f);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fLifeRecoveredOnGrab", true), fn_710000abbc(), 0x2c, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 100.0f);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fDistanceFromWallToGrab", true), fn_710000abbc(), 0x30, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 700.0f);
+    UnkTunableRegistry* registry = g_unk_7101d47350;
+    if (!registry) {
+        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
+        fn_710013ac14(registry);
+        g_unk_7101d47350 = registry;
+    }
+    fn_710047eef4(registry, &g_unk_71726ce7d0, "ChozoWarriorXUltimateGrabAttack");
+}
 bool fn_710047f5b0(const void*, const void*) { return false; }
 s32 fn_710047f5b8() { return -1; }
 const base::reflection::CType& fn_710047f5c0(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
@@ -36,6 +70,10 @@ DREAD_REFL_CLASS_GETTER(710047e95c, 710047ed70, "CCharClassChozoWarriorXUltimate
 // CCharClassChozoWarriorXUltimateGrabAttack
 DREAD_REFL_TAG(710047f374);
 void fn_710047f1ac(base::reflection::CClass*) {}
+void fn_710047f2a4(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fUltimateGrabDamage", true), fn_710000abbc(), 0xec, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 100.0f);
+}
 bool fn_710047f644(const void* a, const void* b) { return a == b; }
 s32 fn_710047f650() { return -1; }
 const base::reflection::CType& fn_710047f658(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

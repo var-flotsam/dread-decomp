@@ -2,12 +2,32 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassHangableGrappleSurfaceComponent
 DREAD_REFL_TAG(7100823ca4);
 void fn_71008238a0(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+void fn_7100823998(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fMagnetSurfaceMaxIntensityOnGrappleNotAllowed", true), fn_710000abbc(), 0x68, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 0.5f);
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Magnet surface's material max alpha value when grapple isn't allowed");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("sGrappleHelperColliderId", true), fn_7100009658(), 0x70, -1, -1);
+    field1->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    field1->attrs.Add<const char*>(fn_7100007e80(), "Collider ID to use as grapple helper (reposition grapple point on hit)");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fGrappleHelperMaxSegmentLengthToUseCenter", true), fn_710000abbc(), 0x78, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 100.0f);
+    field2->attrs.Add<const char*>(fn_7100007e80(), "When selecting grapple point on hit, segments smaller than this value will use their center as grapple point");
+}
 bool fn_7100823fb8(const void*, const void*) { return false; }
 s32 fn_7100823fc0() { return -1; }
 const base::reflection::CType& fn_7100823fc8(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

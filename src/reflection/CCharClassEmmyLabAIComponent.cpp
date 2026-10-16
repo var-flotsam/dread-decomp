@@ -2,8 +2,15 @@
 // Reflection descriptors for one original translation unit (2 types):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassEmmyLabAIComponent
 DREAD_REFL_TAG(71004f41f4);
@@ -33,6 +40,204 @@ DREAD_REFL_CLASS_GETTER(71004f40fc, 71004f41f4, "CCharClassEmmyLabAIComponent", 
 // CCharClassEmmyLabAIComponent::CTunableEmmyLabAIComponent
 DREAD_REFL_TAG(71004f66f4);
 void fn_71004f4354(base::reflection::CClass*) {}
+extern bool g_unk_71726dc228;
+const base::reflection::CClass* fn_710056b20c();
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100093170();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+const base::reflection::UnkReflAttrKey& fn_7100091080();
+const base::reflection::UnkReflAttrKey& fn_7100091190();
+const base::reflection::UnkReflAttrKey& fn_7100324af0();
+const base::reflection::UnkReflAttrKey& fn_7100324c00();
+extern UnkTunableRegistry* g_unk_7101d47350;
+extern UnkTunable g_unk_71726dbfa0;
+void fn_71004f687c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+void fn_71004f444c(CClass* cls) {
+    if (g_unk_71726dc228)
+        return;
+    g_unk_71726dc228 = true;
+    if (!cls)
+        return;
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("rConfig", true), fn_710056b20c(), 0x28, -1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fHeadHeatIncrementFactor", true), fn_710000abbc(), 0x228, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fTimeToStartHeatRecover", true), fn_710000abbc(), 0x22c, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 0.2f);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fHeadHeatRecoveredPerSecond", true), fn_710000abbc(), 0x230, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 0.2f);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fSpeedBoosterPhase1PatrolSpeed", true), fn_710000abbc(), 0x234, -1, -1);
+    field4->attrs.Add<f32>(fn_7100075240(), 0.8f);
+    field4->attrs.Add<bool>(fn_7100093170(), true);
+    field4->attrs.Add<const char*>(fn_7100007e80(), "Speed booster phase 1 patrol speed");
+    field4->attrs.Add<f32>(fn_7100091080(), 0.05f);
+    field4->attrs.Add<f32>(fn_7100091190(), 4.0f);
+    field4->attrs.Add<f32>(fn_7100324af0(), 0.05f);
+    field4->attrs.Add<const char*>(fn_7100324c00(), "Emmy|EmmyLab|SpeedBoost");
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("fSpeedBoosterPhase1PatrolSearchSpeed", true), fn_710000abbc(), 0x238, -1, -1);
+    field5->attrs.Add<f32>(fn_7100075240(), 2.1f);
+    field5->attrs.Add<bool>(fn_7100093170(), true);
+    field5->attrs.Add<const char*>(fn_7100007e80(), "Speed booster phase 1 patrol search speed");
+    field5->attrs.Add<f32>(fn_7100091080(), 0.05f);
+    field5->attrs.Add<f32>(fn_7100091190(), 4.0f);
+    field5->attrs.Add<f32>(fn_7100324af0(), 0.05f);
+    field5->attrs.Add<const char*>(fn_7100324c00(), "Emmy|EmmyLab|SpeedBoost");
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("fSpeedBoosterPhase1PatrolSearch2Speed", true), fn_710000abbc(), 0x258, -1, -1);
+    field6->attrs.Add<f32>(fn_7100075240(), 2.1f);
+    field6->attrs.Add<bool>(fn_7100093170(), true);
+    field6->attrs.Add<const char*>(fn_7100007e80(), "Speed booster phase 1 patrol search 2 speed");
+    field6->attrs.Add<f32>(fn_7100091080(), 0.05f);
+    field6->attrs.Add<f32>(fn_7100091190(), 4.0f);
+    field6->attrs.Add<f32>(fn_7100324af0(), 0.05f);
+    field6->attrs.Add<const char*>(fn_7100324c00(), "Emmy|EmmyLab|SpeedBoost");
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("fSpeedBoosterPhase1SearchSpeed", true), fn_710000abbc(), 0x23c, -1, -1);
+    field7->attrs.Add<f32>(fn_7100075240(), 2.1f);
+    field7->attrs.Add<bool>(fn_7100093170(), true);
+    field7->attrs.Add<const char*>(fn_7100007e80(), "Speed booster phase 1 search speed");
+    field7->attrs.Add<f32>(fn_7100091080(), 0.05f);
+    field7->attrs.Add<f32>(fn_7100091190(), 4.0f);
+    field7->attrs.Add<f32>(fn_7100324af0(), 0.05f);
+    field7->attrs.Add<const char*>(fn_7100324c00(), "Emmy|EmmyLab|SpeedBoost");
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("bSpeedBoosterPhase1ChaseSpeedModulation", true), fn_710000d228(), 0x240, -1, -1);
+    field8->attrs.Add<bool>(fn_7100075240(), false);
+    field8->attrs.Add<bool>(fn_7100093170(), true);
+    field8->attrs.Add<const char*>(fn_7100007e80(), "Speed booster phase 1 chase speed modulation");
+    field8->attrs.Add<const char*>(fn_7100324c00(), "Emmy|EmmyLab|SpeedBoost");
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("fSpeedBoosterPhase1ChaseSpeed", true), fn_710000abbc(), 0x244, -1, -1);
+    field9->attrs.Add<f32>(fn_7100075240(), 2.1f);
+    field9->attrs.Add<bool>(fn_7100093170(), true);
+    field9->attrs.Add<const char*>(fn_7100007e80(), "Speed booster phase 1 chase speed");
+    field9->attrs.Add<f32>(fn_7100091080(), 0.05f);
+    field9->attrs.Add<f32>(fn_7100091190(), 4.0f);
+    field9->attrs.Add<f32>(fn_7100324af0(), 0.05f);
+    field9->attrs.Add<const char*>(fn_7100324c00(), "Emmy|EmmyLab|SpeedBoost");
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("fSpeedBoosterPhase1CloseChaseSpeed", true), fn_710000abbc(), 0x248, -1, -1);
+    field10->attrs.Add<f32>(fn_7100075240(), 1.8f);
+    field10->attrs.Add<bool>(fn_7100093170(), true);
+    field10->attrs.Add<const char*>(fn_7100007e80(), "Speed booster phase 1 close chase speed");
+    field10->attrs.Add<f32>(fn_7100091080(), 0.05f);
+    field10->attrs.Add<f32>(fn_7100091190(), 4.0f);
+    field10->attrs.Add<f32>(fn_7100324af0(), 0.05f);
+    field10->attrs.Add<const char*>(fn_7100324c00(), "Emmy|EmmyLab|SpeedBoost");
+    UnkReflField* field11 = fn_7100096524(cls, CStrId("fSpeedBoosterPhase1FarDistChaseSpeed", true), fn_710000abbc(), 0x24c, -1, -1);
+    field11->attrs.Add<f32>(fn_7100075240(), 850.0f);
+    field11->attrs.Add<bool>(fn_7100093170(), true);
+    field11->attrs.Add<const char*>(fn_7100007e80(), "Speed booster phase 1 far dist chase speed");
+    field11->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    field11->attrs.Add<f32>(fn_7100091190(), 10000.0f);
+    field11->attrs.Add<f32>(fn_7100324af0(), 50.0f);
+    field11->attrs.Add<const char*>(fn_7100324c00(), "Emmy|EmmyLab|SpeedBoost");
+    UnkReflField* field12 = fn_7100096524(cls, CStrId("fSpeedBoosterPhase1CloseDistChaseSpeed", true), fn_710000abbc(), 0x250, -1, -1);
+    field12->attrs.Add<f32>(fn_7100075240(), 300.0f);
+    field12->attrs.Add<bool>(fn_7100093170(), true);
+    field12->attrs.Add<const char*>(fn_7100007e80(), "Speed booster phase 1 close dist chase speed");
+    field12->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    field12->attrs.Add<f32>(fn_7100091190(), 10000.0f);
+    field12->attrs.Add<f32>(fn_7100324af0(), 50.0f);
+    field12->attrs.Add<const char*>(fn_7100324c00(), "Emmy|EmmyLab|SpeedBoost");
+    UnkReflField* field13 = fn_7100096524(cls, CStrId("fSpeedBoosterPhase1OutOfCameraSpeed", true), fn_710000abbc(), 0x254, -1, -1);
+    field13->attrs.Add<f32>(fn_7100075240(), 3.0f);
+    field13->attrs.Add<bool>(fn_7100093170(), true);
+    field13->attrs.Add<const char*>(fn_7100007e80(), "Speed booster phase 1 out of camera speed");
+    field13->attrs.Add<f32>(fn_7100091080(), 0.05f);
+    field13->attrs.Add<f32>(fn_7100091190(), 4.0f);
+    field13->attrs.Add<f32>(fn_7100324af0(), 0.05f);
+    field13->attrs.Add<const char*>(fn_7100324c00(), "Emmy|EmmyLab|SpeedBoost");
+    UnkReflField* field14 = fn_7100096524(cls, CStrId("fSpeedBoosterPhase1Search2Speed", true), fn_710000abbc(), 0x25c, -1, -1);
+    field14->attrs.Add<f32>(fn_7100075240(), 2.1f);
+    field14->attrs.Add<bool>(fn_7100093170(), true);
+    field14->attrs.Add<const char*>(fn_7100007e80(), "Speed booster phase 1 search 2 speed");
+    field14->attrs.Add<f32>(fn_7100091080(), 0.05f);
+    field14->attrs.Add<f32>(fn_7100091190(), 4.0f);
+    field14->attrs.Add<f32>(fn_7100324af0(), 0.05f);
+    field14->attrs.Add<const char*>(fn_7100324c00(), "Emmy|EmmyLab|SpeedBoost");
+    UnkReflField* field15 = fn_7100096524(cls, CStrId("fSpeedBoosterPhase2ProtectorOnChaseSpeed", true), fn_710000abbc(), 0x260, -1, -1);
+    field15->attrs.Add<f32>(fn_7100075240(), 0.8f);
+    field15->attrs.Add<bool>(fn_7100093170(), true);
+    field15->attrs.Add<const char*>(fn_7100007e80(), "Speed booster phase 2 protector on chase speed");
+    field15->attrs.Add<f32>(fn_7100091080(), 0.05f);
+    field15->attrs.Add<f32>(fn_7100091190(), 4.0f);
+    field15->attrs.Add<f32>(fn_7100324af0(), 0.05f);
+    field15->attrs.Add<const char*>(fn_7100324c00(), "Emmy|EmmyLab|SpeedBoost");
+    UnkReflField* field16 = fn_7100096524(cls, CStrId("fSpeedBoosterPhase2ProtectorOnOutOfCameraSpeed", true), fn_710000abbc(), 0x264, -1, -1);
+    field16->attrs.Add<f32>(fn_7100075240(), 3.0f);
+    field16->attrs.Add<bool>(fn_7100093170(), true);
+    field16->attrs.Add<const char*>(fn_7100007e80(), "Speed booster phase 2 protector on out of camera speed");
+    field16->attrs.Add<f32>(fn_7100091080(), 0.05f);
+    field16->attrs.Add<f32>(fn_7100091190(), 4.0f);
+    field16->attrs.Add<f32>(fn_7100324af0(), 0.05f);
+    field16->attrs.Add<const char*>(fn_7100324c00(), "Emmy|EmmyLab|SpeedBoost");
+    UnkReflField* field17 = fn_7100096524(cls, CStrId("fSpeedBoosterPhase2ProtectorDestroyedChaseFarSpeed", true), fn_710000abbc(), 0x268, -1, -1);
+    field17->attrs.Add<f32>(fn_7100075240(), 0.8f);
+    field17->attrs.Add<bool>(fn_7100093170(), true);
+    field17->attrs.Add<const char*>(fn_7100007e80(), "Speed booster phase 2 protector destroyed chase far speed");
+    field17->attrs.Add<f32>(fn_7100091080(), 0.05f);
+    field17->attrs.Add<f32>(fn_7100091190(), 4.0f);
+    field17->attrs.Add<f32>(fn_7100324af0(), 0.05f);
+    field17->attrs.Add<const char*>(fn_7100324c00(), "Emmy|EmmyLab|SpeedBoost");
+    UnkReflField* field18 = fn_7100096524(cls, CStrId("fSpeedBoosterPhase2ProtectorDestroyedChaseCloseSpeed", true), fn_710000abbc(), 0x26c, -1, -1);
+    field18->attrs.Add<f32>(fn_7100075240(), 0.8f);
+    field18->attrs.Add<bool>(fn_7100093170(), true);
+    field18->attrs.Add<const char*>(fn_7100007e80(), "Speed booster phase 2 protector destroyed chase close speed");
+    field18->attrs.Add<f32>(fn_7100091080(), 0.05f);
+    field18->attrs.Add<f32>(fn_7100091190(), 4.0f);
+    field18->attrs.Add<f32>(fn_7100324af0(), 0.05f);
+    field18->attrs.Add<const char*>(fn_7100324c00(), "Emmy|EmmyLab|SpeedBoost");
+    UnkReflField* field19 = fn_7100096524(cls, CStrId("fSpeedBoosterPhase2ProtectorDestroyedChase2FeetFarSpeed", true), fn_710000abbc(), 0x270, -1, -1);
+    field19->attrs.Add<f32>(fn_7100075240(), 0.9f);
+    field19->attrs.Add<bool>(fn_7100093170(), true);
+    field19->attrs.Add<const char*>(fn_7100007e80(), "Speed booster phase 2 protector destroyed chase 2 feet far speed");
+    field19->attrs.Add<f32>(fn_7100091080(), 0.05f);
+    field19->attrs.Add<f32>(fn_7100091190(), 4.0f);
+    field19->attrs.Add<f32>(fn_7100324af0(), 0.05f);
+    field19->attrs.Add<const char*>(fn_7100324c00(), "Emmy|EmmyLab|SpeedBoost");
+    UnkReflField* field20 = fn_7100096524(cls, CStrId("fSpeedBoosterPhase2ProtectorDestroyedChase2FeetCloseSpeed", true), fn_710000abbc(), 0x274, -1, -1);
+    field20->attrs.Add<f32>(fn_7100075240(), 0.3f);
+    field20->attrs.Add<bool>(fn_7100093170(), true);
+    field20->attrs.Add<const char*>(fn_7100007e80(), "Speed booster phase 2 protector destroyed chase 2 feet close speed");
+    field20->attrs.Add<f32>(fn_7100091080(), 0.05f);
+    field20->attrs.Add<f32>(fn_7100091190(), 4.0f);
+    field20->attrs.Add<f32>(fn_7100324af0(), 0.05f);
+    field20->attrs.Add<const char*>(fn_7100324c00(), "Emmy|EmmyLab|SpeedBoost");
+    UnkReflField* field21 = fn_7100096524(cls, CStrId("fSpeedBoosterPhase2ProtectorDestroyedOutOfCameraFarSpeed", true), fn_710000abbc(), 0x278, -1, -1);
+    field21->attrs.Add<f32>(fn_7100075240(), 4.0f);
+    field21->attrs.Add<bool>(fn_7100093170(), true);
+    field21->attrs.Add<const char*>(fn_7100007e80(), "Speed booster phase 2 protector destroyed out of cmaera far speed");
+    field21->attrs.Add<f32>(fn_7100091080(), 0.05f);
+    field21->attrs.Add<f32>(fn_7100091190(), 4.0f);
+    field21->attrs.Add<f32>(fn_7100324af0(), 0.05f);
+    field21->attrs.Add<const char*>(fn_7100324c00(), "Emmy|EmmyLab|SpeedBoost");
+    UnkReflField* field22 = fn_7100096524(cls, CStrId("fSpeedBoosterPhase2ProtectorDestroyedOutOfCameraCloseSpeed", true), fn_710000abbc(), 0x27c, -1, -1);
+    field22->attrs.Add<f32>(fn_7100075240(), 3.0f);
+    field22->attrs.Add<bool>(fn_7100093170(), true);
+    field22->attrs.Add<const char*>(fn_7100007e80(), "Speed booster phase 2 protector destroyed out of cmaera close speed");
+    field22->attrs.Add<f32>(fn_7100091080(), 0.05f);
+    field22->attrs.Add<f32>(fn_7100091190(), 4.0f);
+    field22->attrs.Add<f32>(fn_7100324af0(), 0.05f);
+    field22->attrs.Add<const char*>(fn_7100324c00(), "Emmy|EmmyLab|SpeedBoost");
+    UnkReflField* field23 = fn_7100096524(cls, CStrId("fSpeedBoosterPhase2ProtectionHeadImpactedSpeedFactor", true), fn_710000abbc(), 0x280, -1, -1);
+    field23->attrs.Add<f32>(fn_7100075240(), 0.5f);
+    field23->attrs.Add<bool>(fn_7100093170(), true);
+    field23->attrs.Add<const char*>(fn_7100007e80(), "Speed booster phase 2 protection head impacted speed factor");
+    field23->attrs.Add<f32>(fn_7100091080(), 0.05f);
+    field23->attrs.Add<f32>(fn_7100091190(), 4.0f);
+    field23->attrs.Add<f32>(fn_7100324af0(), 0.05f);
+    field23->attrs.Add<const char*>(fn_7100324c00(), "Emmy|EmmyLab|SpeedBoost");
+    UnkReflField* field24 = fn_7100096524(cls, CStrId("fSpeedBoosterAudioVolumeIncrease", true), fn_710000abbc(), 0x284, -1, -1);
+    field24->attrs.Add<f32>(fn_7100075240(), 1.5f);
+    field24->attrs.Add<bool>(fn_7100093170(), true);
+    field24->attrs.Add<const char*>(fn_7100007e80(), "Speed booster VolumeIncrease");
+    field24->attrs.Add<f32>(fn_7100091080(), 1.0f);
+    field24->attrs.Add<f32>(fn_7100091190(), 2.0f);
+    field24->attrs.Add<f32>(fn_7100324af0(), 0.05f);
+    field24->attrs.Add<const char*>(fn_7100324c00(), "Emmy|EmmyLab|SpeedBoost");
+    UnkTunableRegistry* registry = g_unk_7101d47350;
+    if (!registry) {
+        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
+        fn_710013ac14(registry);
+        g_unk_7101d47350 = registry;
+    }
+    fn_71004f687c(registry, &g_unk_71726dbfa0, "Emmy");
+}
 bool fn_71004f6c34(const void*, const void*) { return false; }
 s32 fn_71004f6c3c() { return -1; }
 const base::reflection::CType& fn_71004f6c44(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

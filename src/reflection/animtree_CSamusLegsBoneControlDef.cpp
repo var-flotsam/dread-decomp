@@ -2,11 +2,41 @@
 // Reflection descriptors for one original translation unit (1 type):
 // for each type, its getter (T::refl_GetClass) and, through the traits below, its
 // descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to
-// that have a known uniform shape.
+// that have a known uniform shape and the attribute/member-field functions that
+// tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // animtree::CSamusLegsBoneControlDef
 DREAD_REFL_TAG(71002e90b4);
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+void fn_71002e8ad0(CClass* cls) {
+    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Samus Legs Control");
+}
+const base::reflection::CType* fn_710000fd7c();
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_71002e8c1c(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sThigh", true), fn_710000fd7c(), 0x10, -1, -1);
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Tight Bone");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("sCalf", true), fn_710000fd7c(), 0x18, -1, -1);
+    field1->attrs.Add<const char*>(fn_7100007e80(), "Calf Bone");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("sFoot", true), fn_710000fd7c(), 0x20, -1, -1);
+    field2->attrs.Add<const char*>(fn_7100007e80(), "Foot, Bone");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fMaxRotationFootUp", true), fn_710000abbc(), 0x28, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 0.45f);
+    field3->attrs.Add<const char*>(fn_7100007e80(), "Foot Max Up Rotation ");
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fMaxRotationFootDown", true), fn_710000abbc(), 0x2c, -1, -1);
+    field4->attrs.Add<f32>(fn_7100075240(), 0.45f);
+    field4->attrs.Add<const char*>(fn_7100007e80(), "Foot Max Down Rotation");
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("sMaxFootCorrectionDist", true), fn_710000abbc(), 0x30, -1, -1);
+    field5->attrs.Add<f32>(fn_7100075240(), 80.0f);
+    field5->attrs.Add<const char*>(fn_7100007e80(), "Foot Max Dist Correcion");
+}
 bool fn_71002e92d8(const void* a, const void* b) { return a == b; }
 s32 fn_71002e92e4() { return -1; }
 const base::reflection::CType& fn_71002e92ec(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
