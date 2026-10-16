@@ -47,8 +47,9 @@ python tools/setup.py --version <ver> --verify-only
 Target version: **2.1.0** (update v327680). The `main` NSO build ID is
 `646761F643AFEBB379EDD5E6A5151AF2CEF93DC1`. Title ID is `010093801237C000`.
 
-Remote: https://github.com/var-flotsam/MPT-Decomp (public, MIT). Never push without
-the user's go-ahead.
+Remote: https://github.com/var-flotsam/dread-decomp (private, no license chosen yet).
+Ask the user before pushing. (var-flotsam/MPT-Decomp is a separate project, a Metroid
+Prime Trilogy recomp. Never push this repo there.)
 
 ## Local environment (Windows 11)
 
