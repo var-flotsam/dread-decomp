@@ -4,9 +4,13 @@
 Every reflected class T has a getter (T::refl_GetClass) and a descriptor constructor
 (T::refl_InitClass, an instantiation of CClass's constructor template), both expressed in
 include/base/reflection/CClass.h. This tool reads each getter in main (the parent getter it
-calls, the type-specific create/destroy functions it passes in x3/x4, the constructor it calls)
+calls, the type-specific attribute and member-field functions it passes in x3/x4, the constructor it calls)
 and each constructor (sizeof(T) and the type-specific functions it stores), emits a traits
 specialisation per type, and groups types back into their original translation units.
+
+Helpers: the per-type functions a descriptor points to (CType+0x28..+0x68) and the two
+functions the getter passes in (x3/x4). Those with a known uniform code shape (HELPER_SHAPES)
+are defined under their own fn_<addr> names; the rest are declared with their slot's type.
 
 TU grouping: within a TU, Clang lays out all guard variables first, then the descriptors
 (0x138 bytes each), in definition order. A run of getter guards 8 bytes apart, whose
@@ -50,8 +54,8 @@ class Getter:
     guard: int | None = None
     descriptor: int | None = None
     parent: int | None = None
-    create: int | None = None
-    destroy: int | None = None
+    fn_0x70: int | None = None             # x3: adds class attributes (CType+0x70)
+    fn_0xe0: int | None = None             # x4: registers member fields (CClass+0xe0)
     shape_ok: bool = False
     init: int | None = None               # descriptor constructor (T::refl_InitClass)
     traits: dict[int, int] | None = None  # CClass offset -> function address it stores
@@ -71,6 +75,56 @@ def shape(code: bytes) -> str:
 
 
 TRAIT_SLOTS = [0x58, 0x60, 0x68, 0x28, 0x30, 0x38, 0x40, 0x48, 0x50]
+
+# Slot -> (CClass.h type alias, declaration format). {name} is fn_<addr>.
+SLOT_TYPES = {
+    0x28: ("UnkFn", "void {name}();"),
+    0x30: ("UnkFn_0x30", "void {name}(void* dst, const void* src);"),
+    0x38: ("UnkFn_0x30", "void {name}(void* dst, const void* src);"),
+    0x40: ("UnkFn_0x40", "void {name}(void* obj);"),
+    0x48: ("UnkFn_0x48", "void* {name}(void* dst, const void* src);"),
+    0x50: ("UnkFn_0x48", "void* {name}(void* dst, const void* src);"),
+    0x58: ("UnkFn_0x58", "bool {name}(const void* a, const void* b);"),
+    0x60: ("UnkFn_0x60", "s32 {name}();"),
+    0x68: ("UnkFn_0x68", "const base::reflection::CType& {name}(const void* obj);"),
+}
+OBJ = "base::reflection::UnkReflObject"
+OBJ_B = "base::reflection::UnkReflObjectB"
+# (slot, instructions) -> definition. Slots 0x70 and 0xe0 are the getter's x3/x4 functions
+# (attributes and member fields). Instruction text is relocation-free for all of these.
+HELPER_SHAPES = {
+    (0x58, "cmp x0, x1; cset w0, eq; ret"):
+        "bool {name}(const void* a, const void* b) {{ return a == b; }}",
+    (0x58, "mov w0, wzr; ret"):
+        "bool {name}(const void*, const void*) {{ return false; }}",
+    (0x60, "mov w0, #-1; ret"):
+        "s32 {name}() {{ return -1; }}",
+    # Non-tail call: the virtual returns a pointer, the helper a reference.
+    (0x68, "stp x29, x30, [sp, #-0x10]!; mov x29, sp; ldr x8, [x0]; ldr x8, [x8]; blr x8; "
+           "ldp x29, x30, [sp], #0x10; ret"):
+        f"const base::reflection::CType& {{name}}(const void* obj) {{{{ return *static_cast<const {OBJ}*>(obj)->vf_0x0(); }}}}",
+    (0x68, "stp x29, x30, [sp, #-0x10]!; mov x29, sp; ldr x8, [x0]; ldr x8, [x8, #0x18]; blr x8; "
+           "ldp x29, x30, [sp], #0x10; ret"):
+        f"const base::reflection::CType& {{name}}(const void* obj) {{{{ return *static_cast<const {OBJ_B}*>(obj)->vf_0x18(); }}}}",
+    (0x40, "ldr x8, [x0]; ldr x1, [x8, #8]; br x1"):
+        f"void {{name}}(void* obj) {{{{ static_cast<{OBJ}*>(obj)->~UnkReflObject(); }}}}",
+    (0x40, "ldr x8, [x0]; ldr x1, [x8]; br x1"):
+        f"void {{name}}(void* obj) {{{{ static_cast<{OBJ_B}*>(obj)->~UnkReflObjectB(); }}}}",
+    (0x30, "ret"): "void {name}(void*, const void*) {{}}",
+    (0x38, "ret"): "void {name}(void*, const void*) {{}}",
+    (0x48, "mov x0, xzr; ret"): "void* {name}(void*, const void*) {{ return nullptr; }}",
+    (0x50, "mov x0, xzr; ret"): "void* {name}(void*, const void*) {{ return nullptr; }}",
+    (0x70, "ret"): "void {name}(base::reflection::CClass*) {{}}",
+    (0xe0, "ret"): "void {name}(base::reflection::CClass*) {{}}",
+}
+
+
+def helper_definition(orig: asmdiff.Original, slot: int, addr: int) -> str | None:
+    """Source for a helper with a known shape, or None."""
+    cs = capstone.Cs(capstone.CS_ARCH_ARM64, capstone.CS_MODE_ARM)
+    text = "; ".join(f"{x.mnemonic} {x.op_str}".strip() for x in cs.disasm(orig.function(addr), addr))
+    shape_src = HELPER_SHAPES.get((slot, text))
+    return shape_src.format(name=f"fn_{addr:x}") if shape_src else None
 
 
 def init_stores(orig: asmdiff.Original, addr: int) -> dict[int, int]:
@@ -125,9 +179,9 @@ def analyse(orig: asmdiff.Original, g: Getter, getters: set[int], ref_sig: str,
                 target = orig.img.pointer(slot)
                 if target is not None:
                     if dst == "x3":
-                        g.create = BASE + target
+                        g.fn_0x70 = BASE + target
                     else:
-                        g.destroy = BASE + target
+                        g.fn_0xe0 = BASE + target
         elif x.mnemonic == "bl":
             t = ops[0].imm
             if t in getters and t != g.address:
@@ -183,13 +237,13 @@ def main() -> int:
         shutil.rmtree(OUT)
     OUT.mkdir(parents=True)
     taken: set[str] = set()
-    generated = skipped_shape = skipped_layout = 0
+    generated = skipped_shape = skipped_layout = helpers_defined = 0
     report = []
     for block in blocks:
         n = len(block)
         expected = [block[0].guard + 8 * n + DESCRIPTOR_SIZE * i for i in range(n)]
         layout_ok = [g.descriptor for g in block] == expected
-        shape_ok = all(g.shape_ok and g.parent and g.create and g.destroy and g.init and g.traits
+        shape_ok = all(g.shape_ok and g.parent and g.fn_0x70 and g.fn_0xe0 and g.init and g.traits
                        and all(k in g.traits for k in (0x58, 0x60, 0x68)) and g.address in sizes
                        for g in block)
         if not layout_ok:
@@ -205,7 +259,8 @@ def main() -> int:
             "// Generated by tools/gen_reflection.py from main; regenerate rather than edit.",
             f"// Reflection descriptors for one original translation unit ({n} type{'s' if n > 1 else ''}):",
             "// for each type, its getter (T::refl_GetClass) and, through the traits below, its",
-            "// descriptor constructor (T::refl_InitClass).",
+            "// descriptor constructor (T::refl_InitClass), plus the per-type helpers it points to",
+            "// that have a known uniform shape.",
             '#include "base/reflection/CClass.h"',
             "",
         ]
@@ -213,26 +268,35 @@ def main() -> int:
         for g in block:
             lines.append(f"// {g.type}")
             lines.append(f"DREAD_REFL_TAG({g.init:x});")
-            fns = sorted(set(g.traits.values()) - declared)
-            declared |= set(fns)
-            lines += [f"void fn_{a:x}();" for a in fns]
+            helpers = sorted([(a, slot) for slot, a in g.traits.items()]
+                             + [(g.fn_0x70, 0x70), (g.fn_0xe0, 0xe0)], key=lambda h: h[0])
+            for a, slot in helpers:
+                if a in declared:
+                    continue
+                declared.add(a)
+                src = helper_definition(orig, slot, a)
+                if src:
+                    lines.append(src)
+                    helpers_defined += 1
+                elif slot in SLOT_TYPES:
+                    lines.append(SLOT_TYPES[slot][1].format(name=f"fn_{a:x}"))
             lines.append("template <>")
             lines.append(f"struct base::reflection::UnkReflClassTraits<UnkRefl_fn_{g.init:x}> {{")
             lines.append(f"    static constexpr u64 size = {sizes[g.address]:#x};")
             lines.append(f"    static constexpr bool abstract = {'true' if g.abstract else 'false'};")
             for slot in TRAIT_SLOTS:
                 value = f"&fn_{g.traits[slot]:x}" if slot in g.traits else "nullptr"
-                lines.append(f"    static constexpr UnkFn fn_{slot:#x} = {value};")
+                lines.append(f"    static constexpr {SLOT_TYPES[slot][0]} fn_{slot:#x} = {value};")
             lines.append("};")
             lines.append(f'DREAD_REFL_CLASS_GETTER({g.address:x}, {g.init:x}, "{g.type}", {g.parent:x}, '
-                         f'{g.create:x}, {g.destroy:x});')
+                         f'{g.fn_0x70:x}, {g.fn_0xe0:x});')
             lines.append("")
         (OUT / f"{name}.cpp").write_text(chr(10).join(lines), encoding="utf-8", newline=chr(10))
         generated += n
 
     (ROOT / "build" / "reflection_tus.json").write_text(json.dumps(report, indent=1), encoding="utf-8")
     print(f"{len(rows)} class getters; {len(located)} located; {len(blocks)} TUs. Generated {generated} getters "
-          f"in {len(list(OUT.glob('*.cpp')))} files; skipped {skipped_layout} (other statics) and "
+          f"and {helpers_defined} helpers in {len(list(OUT.glob('*.cpp')))} files; skipped {skipped_layout} (other statics) and "
           f"{skipped_shape} (different code shape). Skipped TUs: build/reflection_tus.json")
     return 0
 

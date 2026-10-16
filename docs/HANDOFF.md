@@ -4,7 +4,7 @@ For the next developer, human or AI, picking up this project. Read this, then `C
 (rules and conventions), `docs/recon.md` (what's in the binary), `docs/compiler.md`
 (toolchain), and `docs/references.md` (outside projects).
 
-Snapshot as of 2026-10-16 (end of the first Phase 4 session; last commit `Phase 4.3: match reflection descriptor constructors`). Target: **Metroid Dread 2.1.0**, `main` build ID
+Snapshot as of 2026-10-16 (second Phase 4 session; last commit `Phase 4.3: match the uniform per-type reflection helpers`). Target: **Metroid Dread 2.1.0**, `main` build ID
 `646761F643AFEBB379EDD5E6A5151AF2CEF93DC1`.
 
 ## Where things stand
@@ -17,14 +17,14 @@ Snapshot as of 2026-10-16 (end of the first Phase 4 session; last commit `Phase 
 | Tooling for Phase 4 | **Done.** `tools/check.py` (build + status), objdiff (`tools/objdiff_gen.py`), whole-binary progress (`tools/progress.py`) |
 | 4.1 System headers | **Done.** `lib/nnsdk` + `lib/musl` submodules, libc++ 9.0.1 headers, `tools/buildcfg.py` |
 | 4.2 Lua | **Done.** Upstream 5.1.4 vendored in `lib/lua/` (2 marked config changes); 286 Lua functions located in `main` by `tools/sigmatch.py` (status `L`) |
-| 4.3 Reflection | **In progress.** 1,809 of 2,346 class getters and their 1,809 descriptor constructors generated and byte-identical (`src/reflection/`, `tools/gen_reflection.py`). Next: the per-type helper functions (below) |
+| 4.3 Reflection | **In progress.** 1,809 of 2,346 class getters, their 1,809 descriptor constructors and 11,497 per-type helpers generated and byte-identical (`src/reflection/`, `tools/gen_reflection.py`). Next: the non-uniform helpers (below) |
 | 4.4+ Boot to title screen | Not started; plan below |
 | Port | Not started (`port/` is empty) |
 
-Function status (BotW codes): `O` 3,643, `m` 4, `M` 1, `L` 1,614, `U` 98,755.
-**Game-code progress: 5.97% of bytes (1.12 MB) matching** (`tools/progress.py`; library code
-excluded). `tools/check.py` reports 3,648 `O` in `src/` because the five matching `nn::atk`
-functions keep `L`.
+Function status (BotW codes): `O` 15,136, `m` 4, `M` 1, `L` 1,614, `U` 87,262.
+**Game-code progress: 6.64% of bytes (1.25 MB) matching** (`tools/progress.py`; library code
+excluded). `tools/check.py` reports 15,145 `O` in `src/` because the matching `nn::atk`
+functions and a few others keep `L`.
 
 ## Hard rules (summary; full text in CLAUDE.md)
 
@@ -115,10 +115,18 @@ The output of `gen_functions_csv.py` is reproducible (only `status` is carried o
   hash, size, flags (bit 0 = abstract), nine function slots, create, parent, two containers) and
   `CClass` (+ destroy, two containers; 0x138 bytes). Within a TU, Clang lays out all guards first,
   then all descriptors; that is how original TUs are recovered.
-- **Per-type reflection helpers** (the functions the descriptor points to): 17,281 functions,
-  1.6 MB. Uniform slots: `fn_0x60` returns -1 (1 shape); `fn_0x58` is `a == b` or `false`;
-  `fn_0x68` calls vtable slot 0 (non-tail); `fn_0x40` tail-calls vtable slot 1 (deleting dtor,
-  `delete &obj`). `create`/`destroy` and `fn_0x28..0x50` vary per type (inlined T code).
+- **Per-type reflection helpers** (the functions the descriptor points to; typed in
+  `CClass.h` as `UnkFn_0x..`, roles inferred from code shape): `0x28` unknown (varies);
+  `0x30`/`0x38` copy/move-construct `(dst, src)`; `0x40` destroy in place (complete dtor);
+  `0x48`/`0x50` copy/move-assign, returning `dst` or null; `0x58` compare (`a == b` or `false`);
+  `0x60` returns -1; `0x68` the object's dynamic class. A reflected object's vtable has its
+  class getter in slot 0 and its destructors after it (8 types, CAIAction and relatives, have
+  the destructor first and the getter in slot 3). The `0x68` call is not a tail call because
+  the virtual returns a pointer and the helper a reference.
+- **The getter's x3/x4 functions are not create/destroy** (as first assumed): both receive the
+  descriptor. x3 (`CType+0x70`) adds class attributes to the lazily created container at
+  `CType+0x80` (`fn_710009dd6c`); x4 (`CClass+0xe0`) registers member fields
+  (`fn_7100096524`: name, type getter, offset). Most are empty.
 - **Memory:** 1.82 GB `.bss`. The engine reserves its memory statically.
 - **Internal codename:** "cazadora" (from a leftover Perforce build path).
 
@@ -147,16 +155,18 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
 
 ## Next steps
 
-1. **Per-type reflection helpers** (in progress when the session ended). Generate the uniform
-   slots first, as named, typed functions in each `src/reflection/` TU (they must be defined
-   under their own `fn_<addr>` names: template instantiations would carry the descriptor's
-   address in their symbol and map to the wrong function):
-   - `fn_0x60`: `s32 f() { return -1; }` (1,809)
-   - `fn_0x58`: `bool f(const void* a, const void* b) { return a == b; }` (984) or `return false` (825)
-   - `fn_0x40`: `void f(Obj& o) { delete &o; }` via vtable slot 1, no null check (1,776)
-   - `fn_0x68`: call of vtable slot 0 that is *not* a tail call (1,790); find the source shape
-   This means typing the corresponding `CType` slots and updating the traits declarations.
-   Then `create` (two dominant shapes: 4 and 232 bytes) and `destroy` (964 are a bare `ret`).
+1. **Non-uniform reflection helpers.** Done: every helper with a uniform shape is generated
+   (`HELPER_SHAPES` in `tools/gen_reflection.py`: 0x58, 0x60, 0x68, 0x40, the empty 0x30/0x38,
+   the null 0x48/0x50, and the empty x3/x4 functions), 11,497 functions, all `O`. Remaining in
+   the generated TUs, in rough order of payoff:
+   - x3 attribute functions: 636 share one 232-byte shape (two attributes: a type getter
+     `fn_7100007e80`/`fn_7100090e60`, a name, insert `fn_71000934b8`); 61 a 39-instruction one.
+     Needs the attribute container, `CStrId` and the primitive type getters (step 4).
+   - x4 member-field functions (845, many shapes): `fn_7100096524` + per-field attributes.
+   - `0x30`/`0x38`/`0x48`/`0x50` with bodies: inlined copy/assign of each type's fields; need the
+     types' layouts. `0x28` (1,765, most 13–19 instructions): constructs, then calls a virtual.
+   - Odd ones: CClass/CEnumType/CFlagsetType/CPointerType helpers, a slot-2 destructor
+     (CHearingSensor).
 2. **Remaining getters:** 452 in TUs with other statics (probably getters of pointer/enum/collection
    types and unlisted templates: identify them so the layout can be reproduced honestly, no
    dummy statics) and 84 with a different code shape (`build/reflection_tus.json`). Also the
