@@ -1,0 +1,31 @@
+#!/bin/sh
+# Rejects commits that would add game data, keys, or large files.
+# Installed via: git config core.hooksPath tools/hooks
+# Written in POSIX sh so it runs under Git for Windows without Python.
+
+max_bytes=1048576
+fail=0
+
+# Staged added/copied/modified/renamed paths, NUL-separated to survive odd names.
+git diff --cached --name-only --diff-filter=ACMR -z |
+{
+    while IFS= read -r -d '' path; do
+        case "$path" in
+            orig/*|build/*)
+                echo "pre-commit: refusing '$path' (orig/ and build/ are local-only)" >&2
+                fail=1 ;;
+        esac
+        lower=$(printf '%s' "$path" | tr '[:upper:]' '[:lower:]')
+        case "$lower" in
+            *.nso|*.nro|*.nca|*.nsp|*.xci|*.nsz|*.xcz|*.keys|*.elf)
+                echo "pre-commit: refusing '$path' (console binary or key file)" >&2
+                fail=1 ;;
+        esac
+        size=$(git cat-file -s ":$path" 2>/dev/null || echo 0)
+        if [ "$size" -gt "$max_bytes" ]; then
+            echo "pre-commit: refusing '$path' ($size bytes > 1 MB limit)" >&2
+            fail=1
+        fi
+    done
+    exit $fail
+}

@@ -66,3 +66,43 @@ vcpkg_installed/
 # test output & cache
 Testing/
 .cache/
+
+# --- dread-decomp: game data and console formats never leave this machine ---
+# Game data and derived artifacts never leave the local machine.
+/orig/
+
+# Console formats and key material, anywhere in the tree.
+*.nso
+*.nro
+*.nca
+*.nsp
+*.xci
+*.nsz
+*.xcz
+*.keys
+*.elf
+*.bin
+*.pak
+*.bmsad
+*.bmscc
+*.bcmdl
+*.bctex
+
+# Ghidra projects and analysis output
+*.gpr
+*.rep/
+*.lock
+*.lock~
+
+# Python / tooling
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+/build/
