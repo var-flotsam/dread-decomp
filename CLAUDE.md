@@ -19,7 +19,8 @@ native PC port later. It is modelled on PrimeDecomp and zeldaret/botw.
 - **Ask, don't guess.** If a step needs an input the user hasn't provided (paths,
   versions, tools), stop and ask.
 - Short excerpts (a few instructions or one function) may be shown in conversation
-  to discuss a match. Never write them into tracked files.
+  to discuss a match. Never write them into tracked files. That includes the output of
+  `tools/ghidra/decompile.py`, which is for reading only.
 
 The pre-commit hook (`tools/hooks/pre-commit`) enforces part of this. It rejects
 files over 1 MB, `.nso/.nro/.nca/.nsp/.xci/.nsz/.xcz/.keys/.elf`, and anything under
@@ -58,6 +59,8 @@ python tools/check.py --version <ver> [--update] # build src/, derive statuses, 
 python tools/objdiff_gen.py --version <ver>      # objdiff targets + objdiff.json
 python tools/progress.py                         # whole-binary progress (excludes L)
 python tools/asmdiff.py --version <ver> <obj> -v # diff one object against the original
+python tools/trymatch.py --version <ver> <file.cpp> [-v] [-- flags]  # build + diff one source
+python tools/ghidra/decompile.py --version <ver> <addr|name>...    # read Ghidra's pseudocode (never commit it)
 ```
 
 Target version: **2.1.0** (update v327680). The `main` NSO build ID is
