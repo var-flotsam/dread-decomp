@@ -5,10 +5,40 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassMovementComponent
 DREAD_REFL_TAG(710097af50);
 void fn_710097aa78(base::reflection::CClass*) {}
+void fn_710097b370();
+void fn_710097b0d4(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+void fn_710097ab70(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fPhysicsVelocityFriction_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_fPhysicsVelocityFriction_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_710097b370);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fPhysicsVelocityFriction_SetterFunction", true)))
+        fn_710097b0d4(fn, "_m_fPhysicsVelocityFriction_SetterFunction");
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fPhysicsVelocityFriction", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field0->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Physics Velocity Friction");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fGravityScalar", true), fn_710000abbc(), 0x60, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 2200.0f);
+    field1->attrs.Add<const char*>(fn_7100007e80(), "Gravity Scalar");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("bWantsCheckViewDirInComputeKinematicRotationDelta", true), fn_710000d228(), 0x58, -1, -1);
+    field2->attrs.Add<bool>(fn_7100075240(), true);
+}
 bool fn_710097b2d8(const void*, const void*) { return false; }
 s32 fn_710097b2e0() { return -1; }
 const base::reflection::CType& fn_710097b2e8(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

@@ -5,6 +5,13 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassFanCoolDownComponent
 DREAD_REFL_TAG(71008800b0);
@@ -38,6 +45,33 @@ DREAD_REFL_CLASS_GETTER(710087ffb8, 71008800b0, "CCharClassFanCoolDownComponent"
 // CFanCoolDownComponent
 DREAD_REFL_TAG(7100880620);
 void fn_7100880234(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_7101d5af48;
+void fn_7100880ea4();
+void fn_7100880ed8();
+void fn_7100880f0c();
+void fn_710088032c(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("StartFan", true))) {
+        fn->name = base::global::UnkStrId("StartFan", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100880ea4);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("BlockFan", true))) {
+        fn->name = base::global::UnkStrId("BlockFan", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100880ed8);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("StopFan", true))) {
+        fn->name = base::global::UnkStrId("StopFan", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100880f0c);
+    }
+}
 bool fn_7100880e20(const void*, const void*) { return false; }
 s32 fn_7100880e28() { return -1; }
 const base::reflection::CType& fn_7100880e30(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

@@ -5,10 +5,33 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CMovementComponent
 DREAD_REFL_TAG(71010d05d0);
 void fn_71010d02f0(base::reflection::CClass*) {}
+void fn_71010d499c();
+const base::reflection::UnkReflAttrKey& fn_710000bf80();
+extern base::reflection::CType g_unk_7101d679f0;
+const base::reflection::UnkReflAttrKey& fn_7100090a20();
+void fn_71010d03e8(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bIsFlying_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_bIsFlying_GetterFunction", true);
+        fn->return_type = fn_710000d228();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71010d499c);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("bIsFlying", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<bool>(fn_7100090a20(), false);
+}
 bool fn_71010d4800(const void*, const void*) { return false; }
 s32 fn_71010d4808() { return -1; }
 const base::reflection::CType& fn_71010d4810(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

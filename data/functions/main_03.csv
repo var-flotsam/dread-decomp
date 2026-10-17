@@ -1100,7 +1100,7 @@ address,size,name,name_source,subsystem,status
 0x7100359b10,412,fn_7100359b10,unknown,unknown,U
 0x7100359cac,4,fn_7100359cac,unknown,unknown,O
 0x7100359cb0,244,CCharClassAimComponent::refl_GetClass,reflection,game/characters,O
-0x7100359da4,5472,fn_7100359da4,unknown,game/characters?,U
+0x7100359da4,5472,fn_7100359da4,unknown,game/characters?,O
 0x710035b304,388,CCharClassAimComponent::refl_InitClass,reflection,game/characters,O
 0x710035b488,380,fn_710035b488,unknown,unknown,U
 0x710035b604,380,fn_710035b604,unknown,unknown,U

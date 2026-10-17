@@ -5,10 +5,34 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CShelmitAIComponent
 DREAD_REFL_TAG(71006b9bec);
 void fn_71006b98bc(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_7172707020;
+void fn_71006bcb7c();
+void fn_71006b9d50(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_71006b99b4(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_eShellState_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_eShellState_GetterFunction", true);
+        fn->return_type = &g_unk_7172707020;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71006bcb7c);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_eShellState_SetterFunction", true)))
+        fn_71006b9d50(fn, "_m_eShellState_SetterFunction");
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("eShellState", true), &g_unk_7172707020, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field0->attrs.Add<s32>(fn_7100075240(), &g_unk_7172707020, 0);
+}
 bool fn_71006bcae0(const void*, const void*) { return false; }
 s32 fn_71006bcae8() { return -1; }
 const base::reflection::CType& fn_71006bcaf0(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

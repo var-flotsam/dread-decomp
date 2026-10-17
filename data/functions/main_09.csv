@@ -1238,7 +1238,7 @@ address,size,name,name_source,subsystem,status
 0x7100927ac0,160,fn_7100927ac0,unknown,unknown,U
 0x7100927b60,4,fn_7100927b60,unknown,unknown,O
 0x7100927b64,244,CCharClassMeleeComponent::refl_GetClass,reflection,game/characters,O
-0x7100927c58,912,fn_7100927c58,unknown,game/characters?,U
+0x7100927c58,912,fn_7100927c58,unknown,game/characters?,O
 0x7100927fe8,388,CCharClassMeleeComponent::refl_InitClass,reflection,game/characters,O
 0x710092816c,380,fn_710092816c,unknown,unknown,U
 0x71009282e8,196,fn_71009282e8,unknown,unknown,U
@@ -2301,7 +2301,7 @@ address,size,name,name_source,subsystem,status
 0x710097a990,232,fn_710097a990,unknown,unknown,U
 0x710097aa78,4,fn_710097aa78,unknown,unknown,O
 0x710097aa7c,244,CCharClassMovementComponent::refl_GetClass,reflection,game/characters,O
-0x710097ab70,992,fn_710097ab70,unknown,game/characters?,U
+0x710097ab70,992,fn_710097ab70,unknown,game/characters?,O
 0x710097af50,388,CCharClassMovementComponent::refl_InitClass,reflection,game/characters,O
 0x710097b0d4,380,fn_710097b0d4,unknown,unknown,U
 0x710097b250,68,fn_710097b250,unknown,unknown,U
@@ -3397,7 +3397,7 @@ address,size,name,name_source,subsystem,status
 0x71009b95b0,160,fn_71009b95b0,unknown,unknown,U
 0x71009b9650,4,fn_71009b9650,unknown,unknown,O
 0x71009b9654,244,CChangeStageNavMeshItemComponent::refl_GetClass,reflection,game/components,O
-0x71009b9748,284,fn_71009b9748,unknown,game/components?,U
+0x71009b9748,284,fn_71009b9748,unknown,game/components?,O
 0x71009b9864,388,CChangeStageNavMeshItemComponent::refl_InitClass,reflection,game/components,O
 0x71009b99e8,108,fn_71009b99e8,unknown,unknown,U
 0x71009b9a54,116,fn_71009b9a54,unknown,unknown,U

@@ -4,7 +4,7 @@ For the next developer, human or AI, picking up this project. Read this, then `C
 (rules and conventions), `docs/recon.md` (what's in the binary), `docs/compiler.md`
 (toolchain), and `docs/references.md` (outside projects).
 
-Snapshot as of 2026-10-16 (second Phase 4 session; last commit `Phase 4.3: root-class and same-TU-parent getters`). Target: **Metroid Dread 2.1.0**, `main` build ID
+Snapshot as of 2026-10-17 (third Phase 4 session; last commit `Phase 4.4: string ids, UnkVector and reflected-function initialisers`). Target: **Metroid Dread 2.1.0**, `main` build ID
 `646761F643AFEBB379EDD5E6A5151AF2CEF93DC1`.
 
 ## Where things stand
@@ -17,13 +17,14 @@ Snapshot as of 2026-10-16 (second Phase 4 session; last commit `Phase 4.3: root-
 | Tooling for Phase 4 | **Done.** `tools/check.py` (build + status), objdiff (`tools/objdiff_gen.py`), whole-binary progress (`tools/progress.py`) |
 | 4.1 System headers | **Done.** `lib/nnsdk` + `lib/musl` submodules, libc++ 9.0.1 headers, `tools/buildcfg.py` |
 | 4.2 Lua | **Done.** Upstream 5.1.4 vendored in `lib/lua/` (2 marked config changes); 286 Lua functions located in `main` by `tools/sigmatch.py` (status `L`) |
-| 4.3 Reflection | **In progress.** 1,878 of 2,346 class getters with their descriptor constructors, per-type helpers and 1,409 of 1,627 attribute/member-field functions generated and byte-identical (`src/reflection/`, `tools/gen_reflection.py`, `tools/refl_attrs.py`). Next: property functions and the remaining helpers (below) |
-| 4.4+ Boot to title screen | Not started; plan below |
+| 4.3 Reflection | **In progress.** 1,878 of 2,346 class getters with their descriptor constructors, per-type helpers and 1,447 of 1,627 attribute/member-field functions generated and byte-identical (`src/reflection/`, `tools/gen_reflection.py`, `tools/refl_attrs.py`). Next: property functions and the remaining helpers (below) |
+| 4.4 Core engine types | **In progress.** String ids (`CStrId`, `UnkStrId`), the growable array `base::UnkVector` and its allocator interface; reflected-function initialisers now match (below) |
+| 4.5+ Boot to title screen | Not started; plan below |
 | Port | Not started (`port/` is empty) |
 
-Function status (BotW codes): `O` 17,057, `m` 4, `M` 1, `L` 1,614, `U` 85,341.
-**Game-code progress: 10.99% of bytes (2.06 MB) matching** (`tools/progress.py`; library code
-excluded). `tools/check.py` reports 17,066 `O` in `src/` because the matching `nn::atk`
+Function status (BotW codes): `O` 17,096, `m` 4, `M` 1, `L` 1,614, `U` 85,302.
+**Game-code progress: 11.36% of bytes (2.13 MB) matching** (`tools/progress.py`; library code
+excluded). `tools/check.py` reports 17,105 `O` in `src/` because the matching `nn::atk`
 functions and a few others keep `L`.
 
 ## Hard rules (summary; full text in CLAUDE.md)
@@ -64,7 +65,9 @@ lib/lua/                  vendored upstream Lua 5.1.4 (MIT) + README listing the
 tools/sigmatch.py         names vendored-library functions in main -> data/library_symbols.csv
 tools/gen_reflection.py   regenerates src/reflection/ from main (skipped TUs: build/reflection_tus.json)
 tools/refl_attrs.py       reconstructs attribute/member-field functions; keeps only byte-identical ones
-include/base/global/CStrId.h            base::global::CStrId (pooled, refcounted string id)
+include/base/global/CStrId.h            base::global::CStrId and UnkStrId (pooled, refcounted string ids)
+include/base/UnkVector.h                base::UnkVector<T> (growable array) and base::UnkAllocator
+src/base/reflection/      hand-written reflection code (out-of-line function initialisers)
 include/base/reflection/UnkReflAttributes.h   attribute keys/values, AddField, tunable registry
 lib/nnsdk/                open-ead/nnsdk submodule: community NintendoSDK declarations (no license; referenced, not copied)
 lib/musl/                 open-ead/botw-lib-musl submodule: musl 1.2.2 C headers (MIT)
@@ -142,6 +145,17 @@ The output of `gen_functions_csv.py` is reproducible (only `status` is carried o
   global registry (`fn_71000839a0(0x58, 0x3f)` + `fn_710013ac14`).
 - **`UnkReflName` is `base::global::CStrId`**: `fn_71000003d4` builds the values that
   `refl_GetType<base::global::CStrId>` (`fn_7100009658`) describes.
+- **Two string-id types share that constructor.** A reflected function's name
+  (`UnkReflFunction+0x30`) is destroyed differently from the `CStrId` passed to `fn_7100097550`
+  or `AddField`, in the same function (`fn_71004f01a8`). This is modelled as `UnkStrIdBase`
+  (pointer + constructor, trivial destructor) with `CStrId` and `UnkStrId` on top, each with its
+  own destructor. Both move-assignments are the same inline code (`UnkStrIdBase::MoveFrom`),
+  and the refcount is a union member so that the decrement reloads `data` and the count. Which
+  of the two is the engine's real `CStrId` is unknown.
+- **`UnkVector<T>`** (0x28 bytes: data, count, capacity, growth step, a bool, allocation flags,
+  allocator) is the container at `CType+0x90` and a reflected function's parameter-type list
+  (`+0x8`). It grows to the next multiple of the step through allocator slots `0x40`/`0x48`, and
+  copies elements bitwise (the original reloads `count` after the store).
 - **Memory:** 1.82 GB `.bss`. The engine reserves its memory statically.
 - **Internal codename:** "cazadora" (from a leftover Perforce build path).
 
@@ -183,17 +197,14 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
      CStrId(name)` (move-assign), return type at +0x38 (a getter call or a global descriptor
      such as void), null at +0x40, the invoker at +0x48, a zeroed u16 at +0xb2. Then
      `AddField(cls, CStrId(field), type, 0xffffffff, count - 2, count - 1)` refers to the two
-     functions by index (`count` = `CClass+0x120`). **Open problem:** the inlined move-assign.
-     The original releases the old name with `--rc;` and a *reloaded* `if (data->ref_count == 0)`
-     (it reloads both `data` and `rc` after the decrement), keeps the release call on the
-     fall-through, and folds the moved-from temporary's destructor completely. Our builds either
-     don't reload or keep a residual `if (pool)` from the destructor, and come out 16–32 bytes
-     longer per getter (smallest case: `fn_71004f01a8`, 284 bytes). Tried: nested/flat
-     conditions, carrying `pool`, unions on `data` or `ref_count` (Clang treats union members as
-     may-alias), the pool pointer inside a global struct, `__builtin_expect`, and
-     `-fno-strict-aliasing` (rejected, see `docs/compiler.md`). Untried: a different
-     `UnkStringPool`/`empty` layout, `CStrId` as a base class or wrapper, and how the original's
-     temporary destructor gets folded.
+     functions by index (`count` = `CClass+0x120`). **Solved** (see Key facts: two string-id
+     types): 39 of these x4 functions now match, and so does the out-of-line setter initialiser
+     `fn_7100a19530` (`src/base/reflection/UnkReflFunction.cpp`). The other ~55 fail for
+     reasons not yet examined. How it was found: `-mllvm -print-after-all` showed that CStrId's
+     destructor leaves a phi on the pool it reloads after a release, so the moved-from
+     temporary's store survives SimplifyCFG and jump threading. A destructor without that reload
+     folds completely but breaks the 3,199 `AddField` matches, so the two temporaries have
+     different destructors.
    - x3/x4 using `CRntString` (18), `CFilePathStrId`/`CName` (23), vector/colour values (16): need
      those types' constructors/layouts. 23 contain an indirect branch; 19 others.
    - `0x30`/`0x38`/`0x48`/`0x50` with bodies: inlined copy/assign of each type's fields; need the
@@ -216,9 +227,11 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
      constructors and member initialisers.
 3. **Lua leftovers:** 23 ambiguous and the `lapi`/`lcode`/`ltable` mismatches (`ltable` number
    hashing may need another `luaconf` change).
-4. Core engine types the slice depends on: `base::global` strings (refcounted, global pool; see
-   `UnkReflName`), `CStrId`, containers (`UnkReflArray` is one), CRC64 (`fn_7100001570`), the
-   allocator getter (`fn_7100083990`), allocators over the static arena.
+4. Core engine types the slice depends on. Done: the inline code of `CStrId`/`UnkStrId` (copy,
+   move-assign, destructors) and `UnkVector` with the allocator interface. Left: the string pool
+   itself (the `fn_71000003d4` constructor and `fn_71000803a4` release), `UnkReflArray` (the
+   keyed container at `CClass+0x110`, grown by `fn_7100097550`), CRC64 (`fn_7100001570`), the
+   allocator getter (`fn_7100083990`) and the allocators over the static arena.
 5. Boot to title screen: startup, memory, file system / `files.toc` / `.pkg`, resource manager,
    Lua + GUI bindings, GUI, render front end, input, localisation, save probe. Estimated
    6,000–9,000 functions (static floor: 4,394 reachable from `nnMain`).

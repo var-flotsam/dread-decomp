@@ -5,10 +5,31 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CProfessorDoorComponent
 DREAD_REFL_TAG(71007dd678);
 void fn_71007dd3f0(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_7101d5af48;
+void fn_71007dde04();
+void fn_71007dd7fc(UnkReflFunction* fn, const char* name);
+void fn_71007dd4e8(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("TryLaunchEvent", true))) {
+        fn->name = base::global::UnkStrId("TryLaunchEvent", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71007dde04);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("ChangeNavMeshStage", true)))
+        fn_71007dd7fc(fn, "ChangeNavMeshStage");
+}
 bool fn_71007ddd60(const void*, const void*) { return false; }
 s32 fn_71007ddd68() { return -1; }
 const base::reflection::CType& fn_71007ddd70(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

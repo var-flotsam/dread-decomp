@@ -5,10 +5,53 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // media::CMoviePlayer
 DREAD_REFL_TAG(710021dd84);
 void fn_710021d8ac(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_716e599948;
+void fn_710021e50c();
+extern base::reflection::CType g_unk_7101d5af48;
+void fn_710021e558();
+void fn_710021e58c();
+void fn_710021e5d8();
+void fn_710021d9a0(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("Start", true))) {
+        fn->name = base::global::UnkStrId("Start", true);
+        fn->return_type = &g_unk_716e599948;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_710021e50c);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("Stop", true))) {
+        fn->name = base::global::UnkStrId("Stop", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_710021e558);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("Pause", true))) {
+        fn->name = base::global::UnkStrId("Pause", true);
+        fn->return_type = &g_unk_716e599948;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_710021e58c);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("Resume", true))) {
+        fn->name = base::global::UnkStrId("Resume", true);
+        fn->return_type = &g_unk_716e599948;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_710021e5d8);
+    }
+}
 bool fn_710021e474(const void* a, const void* b) { return a == b; }
 s32 fn_710021e480() { return -1; }
 const base::reflection::CType& fn_710021e488(const void* obj) { return *static_cast<const base::reflection::UnkReflObjectB*>(obj)->vf_0x18(); }

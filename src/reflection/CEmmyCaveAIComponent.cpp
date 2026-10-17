@@ -5,10 +5,28 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CEmmyCaveAIComponent
 DREAD_REFL_TAG(71004f02c4);
 void fn_71004f00b0(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_7101d5af48;
+void fn_71004f1524();
+void fn_71004f01a8(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("OnPresentationCutsceneEnd", true))) {
+        fn->name = base::global::UnkStrId("OnPresentationCutsceneEnd", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71004f1524);
+    }
+}
 bool fn_71004f1494(const void*, const void*) { return false; }
 s32 fn_71004f149c() { return -1; }
 const base::reflection::CType& fn_71004f14a4(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

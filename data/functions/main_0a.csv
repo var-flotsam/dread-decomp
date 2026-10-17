@@ -431,7 +431,7 @@ address,size,name,name_source,subsystem,status
 0x7100a11ec8,384,fn_7100a11ec8,unknown,game/components?,U
 0x7100a12048,4,fn_7100a12048,unknown,game/components?,O
 0x7100a1204c,244,CSwifterSpawnGroupComponent::refl_GetClass,reflection,game/components,O
-0x7100a12140,900,fn_7100a12140,unknown,game/components?,U
+0x7100a12140,900,fn_7100a12140,unknown,game/components?,O
 0x7100a124c4,388,CSwifterSpawnGroupComponent::refl_InitClass,reflection,game/components,O
 0x7100a12648,372,fn_7100a12648,unknown,game/components?,U
 0x7100a127bc,4,fn_7100a127bc,unknown,game/components?,U
@@ -619,7 +619,7 @@ address,size,name,name_source,subsystem,status
 0x7100a1923c,244,CEmmySpawnPointComponent::refl_GetClass,reflection,game/components,O
 0x7100a19330,160,fn_7100a19330,unknown,game/components?,O
 0x7100a193d0,352,CEmmySpawnPointComponent::refl_InitClass,reflection,game/components,O
-0x7100a19530,380,fn_7100a19530,unknown,game/components?,U
+0x7100a19530,380,fn_7100a19530,unknown,game/components?,O
 0x7100a196ac,216,fn_7100a196ac,unknown,game/components?,U
 0x7100a19784,224,fn_7100a19784,unknown,game/components?,U
 0x7100a19864,28,fn_7100a19864,unknown,game/components?,U

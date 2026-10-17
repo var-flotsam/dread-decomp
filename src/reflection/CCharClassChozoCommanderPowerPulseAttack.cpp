@@ -5,10 +5,41 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassChozoCommanderPowerPulseAttack
 DREAD_REFL_TAG(7100421f24);
 void fn_7100421900(base::reflection::CClass*) {}
+void fn_7100422470();
+void fn_7100422084(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_71004219f8(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fFinalAngleDeg_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_fFinalAngleDeg_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100422470);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fFinalAngleDeg_SetterFunction", true)))
+        fn_7100422084(fn, "_fFinalAngleDeg_SetterFunction");
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fFinalAngleDeg", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field0->attrs.Add<f32>(fn_7100075240(), 55.0f);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fTimeAtFinalAngle", true), fn_710000abbc(), 0x104, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 0.5f);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fTimeToReachFinalAngle", true), fn_710000abbc(), 0x108, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fMinDistToWall", true), fn_710000abbc(), 0x10c, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 800.0f);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("sAngleIncrementCurve", true), fn_7100009658(), 0x110, -1, -1);
+    field4->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+}
 bool fn_71004223a8(const void* a, const void* b) { return a == b; }
 s32 fn_71004223b4() { return -1; }
 const base::reflection::CType& fn_71004223bc(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

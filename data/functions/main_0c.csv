@@ -2727,7 +2727,7 @@ address,size,name,name_source,subsystem,status
 0x7100c425b0,160,fn_7100c425b0,unknown,game/characters?,U
 0x7100c42650,232,fn_7100c42650,unknown,game/characters?,O
 0x7100c42738,244,CCharClassOverrideAnalogAimInvalidAnglesTrack::refl_GetClass,reflection,game/characters,O
-0x7100c4282c,1084,fn_7100c4282c,unknown,game/characters?,U
+0x7100c4282c,1084,fn_7100c4282c,unknown,game/characters?,O
 0x7100c42c68,368,CCharClassOverrideAnalogAimInvalidAnglesTrack::refl_InitClass,reflection,game/characters,O
 0x7100c42dd8,380,fn_7100c42dd8,unknown,game/characters?,U
 0x7100c42f54,380,fn_7100c42f54,unknown,game/characters?,U

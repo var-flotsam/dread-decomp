@@ -5,10 +5,135 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassAimComponent
 DREAD_REFL_TAG(710035b304);
 void fn_7100359cac(base::reflection::CClass*) {}
+void fn_710035c020();
+void fn_710035b488(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_710035c0b0();
+void fn_710035b604(UnkReflFunction* fn, const char* name);
+void fn_710035c140();
+void fn_710035b780(UnkReflFunction* fn, const char* name);
+void fn_710035c1d0();
+void fn_710035b8fc(UnkReflFunction* fn, const char* name);
+void fn_710035c260();
+void fn_710035ba78(UnkReflFunction* fn, const char* name);
+void fn_710035c2f0();
+void fn_710035bbf4(UnkReflFunction* fn, const char* name);
+void fn_710035c380();
+void fn_710035bd70(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+void fn_7100359da4(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fAutoAimWidth_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_fAutoAimWidth_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_710035c020);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fAutoAimWidth_SetterFunction", true)))
+        fn_710035b488(fn, "_m_fAutoAimWidth_SetterFunction");
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fAutoAimWidth", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field0->attrs.Add<f32>(fn_7100075240(), 50.0f);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fAutoAimLength_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_fAutoAimLength_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_710035c0b0);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fAutoAimLength_SetterFunction", true)))
+        fn_710035b604(fn, "_m_fAutoAimLength_SetterFunction");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fAutoAimLength", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field1->attrs.Add<f32>(fn_7100075240(), 2500.0f);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fAutoAimConeLength_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_fAutoAimConeLength_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_710035c140);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fAutoAimConeLength_SetterFunction", true)))
+        fn_710035b780(fn, "_m_fAutoAimConeLength_SetterFunction");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fAutoAimConeLength", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field2->attrs.Add<f32>(fn_7100075240(), 210.0f);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fAutoAimInterp_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_fAutoAimInterp_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_710035c1d0);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fAutoAimInterp_SetterFunction", true)))
+        fn_710035b8fc(fn, "_m_fAutoAimInterp_SetterFunction");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fAutoAimInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field3->attrs.Add<f32>(fn_7100075240(), 0.6f);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fAutoAimLockOnInterp_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_fAutoAimLockOnInterp_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_710035c260);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fAutoAimLockOnInterp_SetterFunction", true)))
+        fn_710035ba78(fn, "_m_fAutoAimLockOnInterp_SetterFunction");
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fAutoAimLockOnInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field4->attrs.Add<f32>(fn_7100075240(), 6.0f);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fAutoAimLockOnPredictionTime_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_fAutoAimLockOnPredictionTime_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_710035c2f0);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fAutoAimLockOnPredictionTime_SetterFunction", true)))
+        fn_710035bbf4(fn, "_m_fAutoAimLockOnPredictionTime_SetterFunction");
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("fAutoAimLockOnPredictionTime", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field5->attrs.Add<f32>(fn_7100075240(), 0.2f);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fAutoAimLockAfterDeadTime_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_fAutoAimLockAfterDeadTime_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_710035c380);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fAutoAimLockAfterDeadTime_SetterFunction", true)))
+        fn_710035bd70(fn, "_m_fAutoAimLockAfterDeadTime_SetterFunction");
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("fAutoAimLockAfterDeadTime", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field6->attrs.Add<f32>(fn_7100075240(), 0.5f);
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("fMaxTimeMaintainingFront", true), fn_710000abbc(), 0x74, -1, -1);
+    field7->attrs.Add<f32>(fn_7100075240(), 0.66f);
+    field7->attrs.Add<const char*>(fn_7100007e80(), "Max Time Maintaining Front");
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("fLaserDeactivationTime", true), fn_710000abbc(), 0x78, -1, -1);
+    field8->attrs.Add<f32>(fn_7100075240(), 0.4f);
+    field8->attrs.Add<const char*>(fn_7100007e80(), "Laser deactivation time");
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("fAnalogModeDefaultInterp", true), fn_710000abbc(), 0x7c, -1, -1);
+    field9->attrs.Add<f32>(fn_7100075240(), 15.707964f);
+    field9->attrs.Add<const char*>(fn_7100007e80(), "Aim Analog mode default inter");
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("fForcedFrontTimeAfterFire", true), fn_710000abbc(), 0x80, -1, -1);
+    field10->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    UnkReflField* field11 = fn_7100096524(cls, CStrId("fForcedFrontTimeAfterFireOnAir", true), fn_710000abbc(), 0x84, -1, -1);
+    field11->attrs.Add<f32>(fn_7100075240(), 2.0f);
+    UnkReflField* field12 = fn_7100096524(cls, CStrId("fForcedFrontTimeAfterDiagonal", true), fn_710000abbc(), 0x88, -1, -1);
+    field12->attrs.Add<f32>(fn_7100075240(), 0.9f);
+    UnkReflField* field13 = fn_7100096524(cls, CStrId("fForcedFrontTimeAfterSecondaryWeapon", true), fn_710000abbc(), 0x8c, -1, -1);
+    field13->attrs.Add<f32>(fn_7100075240(), 0.45f);
+    UnkReflField* field14 = fn_7100096524(cls, CStrId("fForcedFrontTimeAfterStealthRun", true), fn_710000abbc(), 0x90, -1, -1);
+    field14->attrs.Add<f32>(fn_7100075240(), 0.45f);
+    UnkReflField* field15 = fn_7100096524(cls, CStrId("fForcedFrontTimeAfterParkour", true), fn_710000abbc(), 0x94, -1, -1);
+    field15->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    UnkReflField* field16 = fn_7100096524(cls, CStrId("fForcedFrontTimeAfterFloorSlide45End", true), fn_710000abbc(), 0x98, -1, -1);
+    field16->attrs.Add<f32>(fn_7100075240(), 0.0f);
+}
 bool fn_710035bf30(const void*, const void*) { return false; }
 s32 fn_710035bf38() { return -1; }
 const base::reflection::CType& fn_710035bf40(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

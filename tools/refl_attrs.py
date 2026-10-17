@@ -362,7 +362,7 @@ def parse(orig: asmdiff.Original, addr: int, class_getters: set[int]) -> tuple[l
                 return None
             decls.append(f"void fn_{invoker[0]:x}();")
             return k, [head + " {",
-                       f"        fn->name = CStrId({name}, true);",
+                       f"        fn->name = base::global::UnkStrId({name}, true);",
                        f"        fn->return_type = {ret_expr};",
                        "        fn->field_0xb2 = 0;",
                        "        fn->field_0x40 = nullptr;",

@@ -5,10 +5,105 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassAINavigationComponent
 DREAD_REFL_TAG(71006f6e84);
 void fn_71006f5fb8(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_717270c900;
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+void fn_71006f7b0c();
+void fn_71006f7008(UnkReflFunction* fn, const char* name);
+void fn_71006f7b9c();
+void fn_71006f7184(UnkReflFunction* fn, const char* name);
+void fn_71006f7c2c();
+void fn_71006f7300(UnkReflFunction* fn, const char* name);
+void fn_71006f7cbc();
+void fn_71006f747c(UnkReflFunction* fn, const char* name);
+void fn_71006f7d4c();
+void fn_71006f75f8(UnkReflFunction* fn, const char* name);
+void fn_71006f7ddc();
+void fn_71006f7774(UnkReflFunction* fn, const char* name);
+void fn_71006f60b0(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("eFollowPathRotationMode", true), &g_unk_717270c900, 0x58, -1, -1);
+    field0->attrs.Add<s32>(fn_7100075240(), &g_unk_717270c900, 0);
+    field0->attrs.Add<const char*>(fn_7100007e80(), "None, VerticalRotationToMovement, InvertVerticalRotationToMovement, PositiveVerticalRotationToMovement or NegativeVerticalRotationToMovement");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fFollowPathVerticalRotationDist_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_fFollowPathVerticalRotationDist_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71006f7b0c);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fFollowPathVerticalRotationDist_SetterFunction", true)))
+        fn_71006f7008(fn, "_m_fFollowPathVerticalRotationDist_SetterFunction");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fFollowPathVerticalRotationDist", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field1->attrs.Add<f32>(fn_7100075240(), 150.0f);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fFollowPathVerticalRotationFactor_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_fFollowPathVerticalRotationFactor_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71006f7b9c);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fFollowPathVerticalRotationFactor_SetterFunction", true)))
+        fn_71006f7184(fn, "_m_fFollowPathVerticalRotationFactor_SetterFunction");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fFollowPathVerticalRotationFactor", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field2->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fFollowPathTargetReachedDistance_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_fFollowPathTargetReachedDistance_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71006f7c2c);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fFollowPathTargetReachedDistance_SetterFunction", true)))
+        fn_71006f7300(fn, "_m_fFollowPathTargetReachedDistance_SetterFunction");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fFollowPathTargetReachedDistance", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field3->attrs.Add<f32>(fn_7100075240(), 25.0f);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fFollowPathLookAhead_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_fFollowPathLookAhead_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71006f7cbc);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fFollowPathLookAhead_SetterFunction", true)))
+        fn_71006f747c(fn, "_m_fFollowPathLookAhead_SetterFunction");
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fFollowPathLookAhead", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field4->attrs.Add<f32>(fn_7100075240(), 120.0f);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bFollowPathUpdateDirWhenNotLookingAtDesiredViewDir_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_bFollowPathUpdateDirWhenNotLookingAtDesiredViewDir_GetterFunction", true);
+        fn->return_type = fn_710000d228();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71006f7d4c);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bFollowPathUpdateDirWhenNotLookingAtDesiredViewDir_SetterFunction", true)))
+        fn_71006f75f8(fn, "_m_bFollowPathUpdateDirWhenNotLookingAtDesiredViewDir_SetterFunction");
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("bFollowPathUpdateDirWhenNotLookingAtDesiredViewDir", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field5->attrs.Add<bool>(fn_7100075240(), true);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fGotoPointReachedDistance_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_fGotoPointReachedDistance_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71006f7ddc);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fGotoPointReachedDistance_SetterFunction", true)))
+        fn_71006f7774(fn, "_m_fGotoPointReachedDistance_SetterFunction");
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("fGotoPointReachedDistance", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field6->attrs.Add<f32>(fn_7100075240(), 10.0f);
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("fTurnWeightPenalization", true), fn_710000abbc(), 0x7c, -1, -1);
+    field7->attrs.Add<f32>(fn_7100075240(), 400.0f);
+}
 bool fn_71006f7a4c(const void*, const void*) { return false; }
 s32 fn_71006f7a54() { return -1; }
 const base::reflection::CType& fn_71006f7a5c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

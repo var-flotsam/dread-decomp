@@ -21,8 +21,9 @@ struct UnkReflField;    // a member field descriptor; its attributes are at +0x3
 // A reflected function (0xb8 bytes, in CClass+0x110). Getter/setter-backed fields register
 // one getter and one setter function and then a field that refers to them by index.
 struct UnkReflFunction {
-    u8 unk_0x0[0x30];
-    base::global::CStrId name;
+    u8 unk_0x0[0x8];
+    base::UnkVector<const CType*> params;  // parameter types (fn_7100a19530 adds one)
+    base::global::UnkStrId name;
     const CType* return_type;
     void* field_0x40;
     void* invoker;  // the function that calls the accessor

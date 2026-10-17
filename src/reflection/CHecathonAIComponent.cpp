@@ -5,10 +5,125 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CHecathonAIComponent
 DREAD_REFL_TAG(71005a90ec);
 void fn_71005a7e70(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_717269bb48;
+const base::reflection::UnkReflAttrKey& fn_710025daa0();
+extern base::reflection::CType g_unk_71727bc110;
+extern base::reflection::CType g_unk_71727bb8e8;
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_71005abe98();
+void fn_71005a9250(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_710000bf80();
+extern base::reflection::CType g_unk_7101d679f0;
+const base::reflection::UnkReflAttrKey& fn_7100090a20();
+void fn_71005abef0();
+void fn_71005a93cc(UnkReflFunction* fn, const char* name);
+void fn_71005abf48();
+void fn_71005a9548(UnkReflFunction* fn, const char* name);
+void fn_71005a7f68(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("wpPatrolPath", true), &g_unk_717269bb48, 0x146d8, -1, -1);
+    field0->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 0);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("ePatrolPathType", true), &g_unk_71727bb8e8, 0x14718, -1, -1);
+    field1->attrs.Add<s32>(fn_7100075240(), &g_unk_71727bb8e8, 3);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("wpHarassPath", true), &g_unk_717269bb48, 0x14720, -1, -1);
+    field2->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 0);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("eHarassPathType", true), &g_unk_71727bb8e8, 0x14760, -1, -1);
+    field3->attrs.Add<s32>(fn_7100075240(), &g_unk_71727bb8e8, 3);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fTimeToGoPatrol_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_fTimeToGoPatrol_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71005abe98);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fTimeToGoPatrol_SetterFunction", true)))
+        fn_71005a9250(fn, "_fTimeToGoPatrol_SetterFunction");
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fTimeToGoPatrol", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field4->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field4->attrs.Add<bool>(fn_7100090a20(), false);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fSpeed_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_fSpeed_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71005abe98);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fSpeed_SetterFunction", true)))
+        fn_71005a9250(fn, "_fSpeed_SetterFunction");
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("fSpeed", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field5->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field5->attrs.Add<bool>(fn_7100090a20(), false);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bIsEating_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_bIsEating_GetterFunction", true);
+        fn->return_type = fn_710000d228();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71005abef0);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bIsEating_SetterFunction", true)))
+        fn_71005a93cc(fn, "_bIsEating_SetterFunction");
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("bIsEating", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field6->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field6->attrs.Add<bool>(fn_7100090a20(), false);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bCanEat_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_bCanEat_GetterFunction", true);
+        fn->return_type = fn_710000d228();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71005abef0);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bCanEat_SetterFunction", true)))
+        fn_71005a93cc(fn, "_bCanEat_SetterFunction");
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("bCanEat", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field7->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field7->attrs.Add<bool>(fn_7100090a20(), false);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fPatrolEatDuration_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_fPatrolEatDuration_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71005abe98);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fPatrolEatDuration_SetterFunction", true)))
+        fn_71005a9250(fn, "_fPatrolEatDuration_SetterFunction");
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("fPatrolEatDuration", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field8->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field8->attrs.Add<bool>(fn_7100090a20(), false);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fPatrolEatCooldown_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_fPatrolEatCooldown_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71005abe98);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fPatrolEatCooldown_SetterFunction", true)))
+        fn_71005a9250(fn, "_fPatrolEatCooldown_SetterFunction");
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("fPatrolEatCooldown", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field9->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field9->attrs.Add<bool>(fn_7100090a20(), false);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_uMask_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_uMask_GetterFunction", true);
+        fn->return_type = fn_7100005178();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71005abf48);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_uMask_SetterFunction", true)))
+        fn_71005a9548(fn, "_uMask_SetterFunction");
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("uMask", true), fn_7100005178(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field10->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field10->attrs.Add<bool>(fn_7100090a20(), false);
+}
 bool fn_71005abd50(const void*, const void*) { return false; }
 s32 fn_71005abd58() { return -1; }
 const base::reflection::CType& fn_71005abd60(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

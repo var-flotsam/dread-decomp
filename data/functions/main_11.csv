@@ -1095,7 +1095,7 @@ address,size,name,name_source,subsystem,status
 0x710113f730,584,fn_710113f730,unknown,unknown,U
 0x710113f978,4,fn_710113f978,unknown,unknown,O
 0x710113f97c,244,CInventoryComponent::CTunableInventoryComponent::refl_GetClass,reflection,game/components,O
-0x710113fa70,904,fn_710113fa70,unknown,game/components?,U
+0x710113fa70,904,fn_710113fa70,unknown,game/components?,O
 0x710113fdf8,388,CInventoryComponent::CTunableInventoryComponent::refl_InitClass,reflection,game/components,O
 0x710113ff7c,380,fn_710113ff7c,unknown,game/components?,U
 0x71011400f8,696,fn_71011400f8,unknown,game/components?,U
@@ -3918,7 +3918,7 @@ address,size,name,name_source,subsystem,status
 0x71011f6800,140,fn_71011f6800,unknown,unknown,U
 0x71011f688c,4,fn_71011f688c,unknown,unknown,O
 0x71011f6890,244,GUI::CSprite::refl_GetClass,reflection,gui,O
-0x71011f6984,4236,fn_71011f6984,unknown,gui?,U
+0x71011f6984,4236,fn_71011f6984,unknown,gui?,O
 0x71011f7a10,352,GUI::CSprite::refl_InitClass,reflection,gui,O
 0x71011f7b70,380,fn_71011f7b70,unknown,gui?,U
 0x71011f7cec,380,fn_71011f7cec,unknown,gui?,U

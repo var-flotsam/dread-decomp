@@ -21,6 +21,35 @@ void fn_7100c42650(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Override Analog Aim Invalid Angles");
     fn_710009dd6c(cls)->Add<CStrId>(fn_7100090e60(), CStrId("Analog", true));
 }
+void fn_7100c431fc();
+void fn_7100c42dd8(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_7100c432bc();
+void fn_7100c42f54(UnkReflFunction* fn, const char* name);
+void fn_7100c4282c(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fMinInvaligAngle_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_fMinInvaligAngle_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100c431fc);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fMinInvaligAngle_SetterFunction", true)))
+        fn_7100c42dd8(fn, "_fMinInvaligAngle_SetterFunction");
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fMinInvaligAngle", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field0->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fMaxInvaligAngle_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_fMaxInvaligAngle_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100c432bc);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fMaxInvaligAngle_SetterFunction", true)))
+        fn_7100c42f54(fn, "_fMaxInvaligAngle_SetterFunction");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fMaxInvaligAngle", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field1->attrs.Add<f32>(fn_7100075240(), 0.0f);
+}
 bool fn_7100c43114(const void* a, const void* b) { return a == b; }
 s32 fn_7100c43120() { return -1; }
 const base::reflection::CType& fn_7100c43128(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

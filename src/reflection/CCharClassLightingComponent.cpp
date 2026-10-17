@@ -5,10 +5,35 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassLightingComponent
 DREAD_REFL_TAG(71008e6f70);
 void fn_71008e6bcc(base::reflection::CClass*) {}
+const base::reflection::CType* fn_710000ad9c();
+void fn_71008e8694();
+void fn_71008e70f4(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_71008e6cc4(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sLightsDefPath", true), fn_710000ad9c(), 0x58, -1, -1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bOverrideDisableInEditor_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_bOverrideDisableInEditor_GetterFunction", true);
+        fn->return_type = fn_710000d228();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71008e8694);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bOverrideDisableInEditor_SetterFunction", true)))
+        fn_71008e70f4(fn, "_bOverrideDisableInEditor_SetterFunction");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("bOverrideDisableInEditor", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field1->attrs.Add<bool>(fn_7100075240(), true);
+}
 bool fn_71008e8440(const void*, const void*) { return false; }
 s32 fn_71008e8448() { return -1; }
 const base::reflection::CType& fn_71008e8450(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
