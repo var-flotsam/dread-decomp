@@ -22,7 +22,6 @@ extern base::reflection::CType g_unk_7101d679f0;
 const base::reflection::UnkReflAttrKey& fn_71000923a0();
 extern base::reflection::CType g_unk_7101d55008;
 const base::reflection::UnkReflAttrKey& fn_7100090a20();
-const base::reflection::CType* fn_71000246e4();
 const base::reflection::UnkReflAttrKey& fn_71000914c0();
 const base::reflection::UnkReflAttrKey& fn_71000913b0();
 void fn_710105096c(CClass* cls) {

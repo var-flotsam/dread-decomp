@@ -5,10 +5,196 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassBillboardComponent
 DREAD_REFL_TAG(710072dfcc);
 void fn_710072be30(base::reflection::CClass*) {}
+void fn_7100730cc0();
+void fn_710072e150(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_7100730d50();
+void fn_710072e2cc(UnkReflFunction* fn, const char* name);
+const base::reflection::CType* fn_710000ad9c();
+void fn_7100730de0();
+void fn_710072e448(UnkReflFunction* fn, const char* name);
+void fn_7100730e70();
+void fn_710072e5c4(UnkReflFunction* fn, const char* name);
+void fn_7100730f00();
+void fn_710072e740(UnkReflFunction* fn, const char* name);
+void fn_7100730f98();
+void fn_710072e8bc(UnkReflFunction* fn, const char* name);
+void fn_7100731028();
+void fn_710072ea38(UnkReflFunction* fn, const char* name);
+void fn_71007310c0();
+void fn_710072ebb4(UnkReflFunction* fn, const char* name);
+void fn_7100731150();
+void fn_710072ed30(UnkReflFunction* fn, const char* name);
+void fn_71007311e0();
+void fn_710072eeac(UnkReflFunction* fn, const char* name);
+void fn_7100731270();
+void fn_710072f028(UnkReflFunction* fn, const char* name);
+void fn_710072bf28(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fGroupRadius_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_fGroupRadius_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100730cc0);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fGroupRadius_SetterFunction", true)))
+        fn_710072e150(fn, "_m_fGroupRadius_SetterFunction");
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fGroupRadius", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field0->attrs.Add<f32>(fn_7100075240(), 10.0f);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fBillboardRadius_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_fBillboardRadius_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100730d50);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fBillboardRadius_SetterFunction", true)))
+        fn_710072e2cc(fn, "_m_fBillboardRadius_SetterFunction");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fBillboardRadius", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field1->attrs.Add<f32>(fn_7100075240(), 10.0f);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("sPath", true), fn_710000ad9c(), 0x68, -1, -1);
+    field2->attrs.Add<const char*>(fn_7100075240(), "");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("sBgPath", true), fn_710000ad9c(), 0x70, -1, -1);
+    field3->attrs.Add<const char*>(fn_7100075240(), "");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_iTextureWidth_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_iTextureWidth_GetterFunction", true);
+        fn->return_type = fn_7100014768();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100730de0);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_iTextureWidth_SetterFunction", true)))
+        fn_710072e448(fn, "_m_iTextureWidth_SetterFunction");
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("iTextureWidth", true), fn_7100014768(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field4->attrs.Add<s32>(fn_7100075240(), 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_iTextureHeight_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_iTextureHeight_GetterFunction", true);
+        fn->return_type = fn_7100014768();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100730e70);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_iTextureHeight_SetterFunction", true)))
+        fn_710072e5c4(fn, "_m_iTextureHeight_SetterFunction");
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("iTextureHeight", true), fn_7100014768(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field5->attrs.Add<s32>(fn_7100075240(), 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_vInitialColor_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_vInitialColor_GetterFunction", true);
+        fn->return_type = fn_71000246e4();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100730f00);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_vInitialColor_SetterFunction", true)))
+        fn_710072e740(fn, "_m_vInitialColor_SetterFunction");
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("vInitialColor", true), fn_71000246e4(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field6->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{1.0f, 1.0f, 1.0f});
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fUniformColorOffset_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_fUniformColorOffset_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100730f98);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fUniformColorOffset_SetterFunction", true)))
+        fn_710072e8bc(fn, "_m_fUniformColorOffset_SetterFunction");
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("fUniformColorOffset", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field7->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_vColorOffset_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_vColorOffset_GetterFunction", true);
+        fn->return_type = fn_71000246e4();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100731028);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_vColorOffset_SetterFunction", true)))
+        fn_710072ea38(fn, "_m_vColorOffset_SetterFunction");
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("vColorOffset", true), fn_71000246e4(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field8->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{0.0f, 0.0f, 0.0f});
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fInitialAlpha_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_fInitialAlpha_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71007310c0);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fInitialAlpha_SetterFunction", true)))
+        fn_710072ebb4(fn, "_m_fInitialAlpha_SetterFunction");
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("fInitialAlpha", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field9->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fAlphaOffset_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_fAlphaOffset_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100731150);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fAlphaOffset_SetterFunction", true)))
+        fn_710072ed30(fn, "_m_fAlphaOffset_SetterFunction");
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("fAlphaOffset", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field10->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    UnkReflField* field11 = fn_7100096524(cls, CStrId("sBillboardDefaultLoop", true), fn_7100009658(), 0xa8, -1, -1);
+    field11->attrs.Add<const char*>(fn_7100075240(), "relax");
+    UnkReflField* field12 = fn_7100096524(cls, CStrId("sBillboardMotionDefaultLoop", true), fn_7100009658(), 0xb0, -1, -1);
+    field12->attrs.Add<const char*>(fn_7100075240(), "");
+    UnkReflField* field13 = fn_7100096524(cls, CStrId("sGroupMotionDefaultLoop", true), fn_7100009658(), 0xc0, -1, -1);
+    field13->attrs.Add<const char*>(fn_7100075240(), "");
+    UnkReflField* field14 = fn_7100096524(cls, CStrId("bUseRotation", true), fn_710000d228(), 0xcc, -1, -1);
+    field14->attrs.Add<bool>(fn_7100075240(), false);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fBillboardMotionDefaultScale_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_fBillboardMotionDefaultScale_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71007311e0);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fBillboardMotionDefaultScale_SetterFunction", true)))
+        fn_710072eeac(fn, "_m_fBillboardMotionDefaultScale_SetterFunction");
+    UnkReflField* field15 = fn_7100096524(cls, CStrId("fBillboardMotionDefaultScale", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field15->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fGroupMotionDefaultScale_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_fGroupMotionDefaultScale_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100731270);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fGroupMotionDefaultScale_SetterFunction", true)))
+        fn_710072f028(fn, "_m_fGroupMotionDefaultScale_SetterFunction");
+    UnkReflField* field16 = fn_7100096524(cls, CStrId("fGroupMotionDefaultScale", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field16->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    UnkReflField* field17 = fn_7100096524(cls, CStrId("sSoundLoopLot", true), fn_7100009658(), 0x130, -1, -1);
+    field17->attrs.Add<const char*>(fn_7100075240(), "");
+    UnkReflField* field18 = fn_7100096524(cls, CStrId("sSoundLoopLit", true), fn_710000ad9c(), 0x140, -1, -1);
+    field18->attrs.Add<const char*>(fn_7100075240(), "");
+    UnkReflField* field19 = fn_7100096524(cls, CStrId("fSoundLoopLotAmountPct", true), fn_710000abbc(), 0x138, -1, -1);
+    field19->attrs.Add<f32>(fn_7100075240(), 0.2f);
+    UnkReflField* field20 = fn_7100096524(cls, CStrId("fSoundLoopAttMinDist", true), fn_710000abbc(), 0x148, -1, -1);
+    field20->attrs.Add<f32>(fn_7100075240(), 500.0f);
+    UnkReflField* field21 = fn_7100096524(cls, CStrId("fSoundLoopAttMaxDist", true), fn_710000abbc(), 0x14c, -1, -1);
+    field21->attrs.Add<f32>(fn_7100075240(), 1500.0f);
+    UnkReflField* field22 = fn_7100096524(cls, CStrId("sSoundImpactBase", true), fn_7100009658(), 0x150, -1, -1);
+    field22->attrs.Add<const char*>(fn_7100075240(), "");
+    UnkReflField* field23 = fn_7100096524(cls, CStrId("iSoundImpactCount", true), fn_7100014768(), 0x158, -1, -1);
+    field23->attrs.Add<s32>(fn_7100075240(), 4);
+    UnkReflField* field24 = fn_7100096524(cls, CStrId("fSoundImpactRadiusMinAtt", true), fn_710000abbc(), 0x15c, -1, -1);
+    field24->attrs.Add<f32>(fn_7100075240(), 500.0f);
+    UnkReflField* field25 = fn_7100096524(cls, CStrId("fSoundImpactRadiusMaxAtt", true), fn_710000abbc(), 0x160, -1, -1);
+    field25->attrs.Add<f32>(fn_7100075240(), 2000.0f);
+    UnkReflField* field26 = fn_7100096524(cls, CStrId("iPoolSize", true), fn_7100005178(), 0x58, -1, -1);
+    field26->attrs.Add<s32>(fn_7100075240(), 0);
+}
 bool fn_7100730c44(const void*, const void*) { return false; }
 s32 fn_7100730c4c() { return -1; }
 const base::reflection::CType& fn_7100730c54(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

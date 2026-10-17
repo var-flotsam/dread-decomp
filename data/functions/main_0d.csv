@@ -1176,7 +1176,7 @@ address,size,name,name_source,subsystem,status
 0x7100d1bac0,160,fn_7100d1bac0,unknown,game/characters?,U
 0x7100d1bb60,4,fn_7100d1bb60,unknown,game/characters?,O
 0x7100d1bb64,244,CCharClassModifyColliderStateBaseTrack::refl_GetClass,reflection,game/characters,O
-0x7100d1bc58,7940,fn_7100d1bc58,unknown,game/characters?,U
+0x7100d1bc58,7940,fn_7100d1bc58,unknown,game/characters?,O
 0x7100d1db5c,360,CCharClassModifyColliderStateBaseTrack::refl_InitClass,reflection,game/characters,O
 0x7100d1dcc4,380,fn_7100d1dcc4,unknown,game/characters?,U
 0x7100d1de40,380,fn_7100d1de40,unknown,game/characters?,U
@@ -1250,7 +1250,7 @@ address,size,name,name_source,subsystem,status
 0x7100d21650,160,fn_7100d21650,unknown,game/characters?,U
 0x7100d216f0,232,fn_7100d216f0,unknown,game/characters?,O
 0x7100d217d8,244,CCharClassModifyDamageTrack::refl_GetClass,reflection,game/characters,O
-0x7100d218cc,1088,fn_7100d218cc,unknown,game/characters?,U
+0x7100d218cc,1088,fn_7100d218cc,unknown,game/characters?,O
 0x7100d21d0c,368,CCharClassModifyDamageTrack::refl_InitClass,reflection,game/characters,O
 0x7100d21e7c,380,fn_7100d21e7c,unknown,game/characters?,U
 0x7100d21ff8,344,fn_7100d21ff8,unknown,game/characters?,U
@@ -3132,7 +3132,7 @@ address,size,name,name_source,subsystem,status
 0x7100d69600,140,fn_7100d69600,unknown,unknown,U
 0x7100d6968c,4,fn_7100d6968c,unknown,unknown,O
 0x7100d69690,240,game::logic::collision::CShape::refl_GetClass,reflection,game,O
-0x7100d69780,1144,fn_7100d69780,unknown,game?,U
+0x7100d69780,1144,fn_7100d69780,unknown,game?,O
 0x7100d69bf8,364,game::logic::collision::CShape::refl_InitClass,reflection,game,O
 0x7100d69d64,380,fn_7100d69d64,unknown,unknown,U
 0x7100d69ee0,380,fn_7100d69ee0,unknown,unknown,U

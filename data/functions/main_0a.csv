@@ -633,7 +633,7 @@ address,size,name,name_source,subsystem,status
 0x7100a19aa0,160,fn_7100a19aa0,unknown,game/components?,U
 0x7100a19b40,4,fn_7100a19b40,unknown,game/components?,O
 0x7100a19b44,244,CGobblerSpawnPointComponent::refl_GetClass,reflection,game/components,O
-0x7100a19c38,1104,fn_7100a19c38,unknown,game/components?,U
+0x7100a19c38,1104,fn_7100a19c38,unknown,game/components?,O
 0x7100a1a088,352,CGobblerSpawnPointComponent::refl_InitClass,reflection,game/components,O
 0x7100a1a1e8,372,fn_7100a1a1e8,unknown,game/components?,U
 0x7100a1a35c,372,fn_7100a1a35c,unknown,game/components?,U
@@ -677,7 +677,7 @@ address,size,name,name_source,subsystem,status
 0x7100a1b710,160,fn_7100a1b710,unknown,game/components?,U
 0x7100a1b7b0,4,fn_7100a1b7b0,unknown,game/components?,O
 0x7100a1b7b4,244,CSabotoruSpawnPointComponent::refl_GetClass,reflection,game/components,O
-0x7100a1b8a8,1264,fn_7100a1b8a8,unknown,game/components?,U
+0x7100a1b8a8,1264,fn_7100a1b8a8,unknown,game/components?,O
 0x7100a1bd98,352,CSabotoruSpawnPointComponent::refl_InitClass,reflection,game/components,O
 0x7100a1bef8,372,fn_7100a1bef8,unknown,game/components?,U
 0x7100a1c06c,372,fn_7100a1c06c,unknown,game/components?,U
@@ -4134,7 +4134,7 @@ address,size,name,name_source,subsystem,status
 0x7100aa7050,348,fn_7100aa7050,unknown,game/components?,U
 0x7100aa71ac,4,fn_7100aa71ac,unknown,game/components?,O
 0x7100aa71b0,244,CVideoManagerComponent::refl_GetClass,reflection,game/components,O
-0x7100aa72a4,2008,fn_7100aa72a4,unknown,game/components?,U
+0x7100aa72a4,2008,fn_7100aa72a4,unknown,game/components?,O
 0x7100aa7a7c,388,CVideoManagerComponent::refl_InitClass,reflection,game/components,O
 0x7100aa7c00,380,fn_7100aa7c00,unknown,unknown,U
 0x7100aa7d7c,380,fn_7100aa7d7c,unknown,unknown,U
@@ -5524,7 +5524,7 @@ address,size,name,name_source,subsystem,status
 0x7100ae9d7c,252,fn_7100ae9d7c,unknown,unknown,U
 0x7100ae9e78,4,fn_7100ae9e78,unknown,unknown,O
 0x7100ae9e7c,244,CGameBlackboard::refl_GetClass,reflection,game/core,O
-0x7100ae9f70,412,fn_7100ae9f70,unknown,game/core?,U
+0x7100ae9f70,412,fn_7100ae9f70,unknown,game/core?,O
 0x7100aea10c,352,CGameBlackboard::refl_InitClass,reflection,game/core,O
 0x7100aea26c,220,fn_7100aea26c,unknown,unknown,U
 0x7100aea348,220,fn_7100aea348,unknown,unknown,U

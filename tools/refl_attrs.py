@@ -45,7 +45,8 @@ NOT_KEYS = {GET_ATTRS, ADD_ATTR, ADD_FIELD, ADD_FUNCTION, CSTRID_CTOR, CSTRID_RE
             TUNABLE_REGISTRY_CTOR}
 # Value type getter -> C++ type, as in UnkReflTypeOf.
 VALUE_TYPES = {0x7100005178: "u32", 0x7100014768: "s32", 0x71000081E8: "const char*", 0x7100009658: "base::global::CStrId",
-               0x710000ABBC: "f32", 0x710000D228: "bool"}
+               0x710000ABBC: "f32", 0x710000D228: "bool",
+               0x7100024504: "base::math::CVector2D", 0x71000246E4: "base::math::CVector3D"}
 
 PRELUDE = [
     '#include "base/reflection/UnkReflAttributes.h"',
@@ -169,6 +170,11 @@ def events(orig: asmdiff.Original, addr: int) -> list[Event] | None:
                 out.append(Event("value", value=("flagset", g, 1)))
         elif m == "cbz" and cs.reg_name(o[0].reg) == "x0" and not any(e.kind == "bl" for e in out):
             out.append(Event("value", value=("nullcheck", 0, 8)))
+        elif m == "strh" and o[1].type == capstone.arm64.ARM64_OP_MEM and o[1].mem.disp == 0xb2 \
+                and cs.reg_name(o[1].mem.base) not in ("sp", "x29", "fp") \
+                and facts.get(_key(cs, o[0].reg), ("",))[0] == "imm":
+            # A reflected function's u16 at +0xb2 (0, or 0x101 for container accessors).
+            out.append(Event("value", value=("u16store", (0xb2, facts[_key(cs, o[0].reg)][1] & 0xFFFF), 2)))
         elif m == "str" and o[1].type == capstone.arm64.ARM64_OP_MEM \
                 and cs.reg_name(o[1].mem.base) not in ("sp", "x29", "fp") \
                 and facts.get(_key(cs, o[0].reg), ("",))[0] == "ptr":
@@ -216,6 +222,18 @@ def index_expr(fact: tuple | None) -> str | None:
 
 def value_expr(type_name: str, vals: list[tuple]) -> str | None:
     """C++ expression for a stored attribute value, or None."""
+    if type_name in ("base::math::CVector2D", "base::math::CVector3D"):
+        # Components stored as immediates: x and y as one 8-byte store, z as a 4-byte one.
+        wide = [v[1] for v in vals if v[0] == "imm" and v[2] == 8]
+        narrow = [v[1] for v in vals if v[0] == "imm" and v[2] == 4]
+        if len(wide) != 1 or len(vals) != 1 + (type_name.endswith("3D")) \
+                or len(narrow) != (1 if type_name.endswith("3D") else 0):
+            return None
+        bits = [wide[0] & 0xFFFFFFFF, wide[0] >> 32] + [n & 0xFFFFFFFF for n in narrow]
+        parts = [f32_literal(b) for b in bits]
+        if None in parts:
+            return None
+        return f"{type_name}{{{', '.join(parts)}}}"
     stores = [v for v in vals if v[0] in ("imm", "str", "global", "fimm")]
     if len(stores) != 1:
         return None
@@ -336,9 +354,18 @@ def parse(orig: asmdiff.Original, addr: int, class_getters: set[int]) -> tuple[l
             # Inline initialiser (getters): name, return type, invoker.
             if evs[k].regs.get("1") != s or evs[k].regs.get("2") != ("imm", 1):
                 return None
-            k, vals = next_bl(skip_release(k + 1))
+            def take_values(k: int) -> int:
+                # The initialiser's stores, up to the next call or to a global CStrId load, which
+                # starts the next statement (a field named by a global id).
+                while k < n and evs[k].kind == "value" and evs[k].value[0] != "global":
+                    stores.append(evs[k].value)
+                    k += 1
+                return k
+
+            stores: list[tuple] = []
+            k = take_values(skip_release(k + 1))
             # The moved-from temporary is left as &pool->empty (0x10 when there is no pool).
-            stores = [v for v in vals if v != ("imm", 0x10, 8)]
+            stores = [v for v in stores if v != ("imm", 0x10, 8)]
             ret_global = [v[1][1] for v in stores if v[0] == "ptrstore" and v[1][0] == 0x38]
             if ret_global:
                 # Return type from a global descriptor (e.g. void): no getter call.
@@ -346,25 +373,24 @@ def parse(orig: asmdiff.Original, addr: int, class_getters: set[int]) -> tuple[l
                 ret_expr = f"&g_unk_{ret_global[0]:x}"
                 stores = [v for v in stores if v[0] != "ptrstore" or v[1][0] != 0x38]
             else:
-                if stores or k >= n or evs[k].target in NOT_KEYS:
+                if stores or k >= n or evs[k].kind != "bl" or evs[k].target in NOT_KEYS:
                     return None
                 ret_getter = evs[k].target
                 if ret_getter not in VALUE_TYPES:
                     ret = "base::reflection::CClass" if ret_getter in class_getters else "base::reflection::CType"
                     decls.append(f"const {ret}* fn_{ret_getter:x}();")
                 ret_expr = f"fn_{ret_getter:x}()"
-                k += 1
-                while k < n and evs[k].kind == "value":
-                    stores.append(evs[k].value)
-                    k += 1
+                k = take_values(k + 1)
+            flags = [v[1][1] for v in stores if v[0] == "u16store"]
+            stores = [v for v in stores if v[0] != "u16store"]
             invoker = [v[1][1] for v in stores if v[0] == "ptrstore" and v[1][0] == 0x48]
-            if len(invoker) != 1 or len(stores) != 1:
+            if len(invoker) != 1 or len(stores) != 1 or len(flags) > 1:
                 return None
             decls.append(f"void fn_{invoker[0]:x}();")
             return k, [head + " {",
                        f"        fn->name = base::global::UnkStrId({name}, true);",
                        f"        fn->return_type = {ret_expr};",
-                       "        fn->field_0xb2 = 0;",
+                       f"        fn->field_0xb2 = {hex(flags[0]) if flags and flags[0] else 0};",
                        "        fn->field_0x40 = nullptr;",
                        f"        fn->invoker = reinterpret_cast<void*>(&fn_{invoker[0]:x});",
                        "    }"]
@@ -374,6 +400,47 @@ def parse(orig: asmdiff.Original, addr: int, class_getters: set[int]) -> tuple[l
         init = evs[k].target
         decls.append(f"void fn_{init:x}(UnkReflFunction* fn, const char* name);")
         return k + 1, [head, f"        fn_{init:x}(fn, {name});"]
+
+    def field(j: int, name_expr: str) -> int | None:
+        """AddField at j (or the field's type getter, then AddField) and the field's attributes."""
+        nonlocal fields
+        if evs[j].target == ADD_FIELD:
+            t = evs[j].regs.get("2")
+            if not t or t[0] != "ptr":
+                return None
+            decls.append(f"extern base::reflection::CType g_unk_{t[1]:x};")
+            type_expr = f"&g_unk_{t[1]:x}"
+        else:
+            type_getter = evs[j].target
+            if type_getter in NOT_KEYS:
+                return None
+            if type_getter not in VALUE_TYPES:
+                ret = "base::reflection::CClass" if type_getter in class_getters else "base::reflection::CType"
+                decls.append(f"const {ret}* fn_{type_getter:x}();")
+            type_expr = f"fn_{type_getter:x}()"
+            j, vals = next_bl(j + 1)
+            if j >= n or vals or evs[j].target != ADD_FIELD:
+                return None
+        regs = evs[j].regs
+        off = regs.get("3")
+        index = [index_expr(regs.get(r)) for r in ("4", "5")]
+        if not off or off[0] != "imm" or None in index:
+            return None
+        var = f"field{fields}"
+        fields += 1
+        body.append(f"    UnkReflField* {var} = fn_7100096524(cls, {name_expr}, "
+                    f"{type_expr}, {off[1]:#x}, {index[0]}, {index[1]});")
+        i = j + 1
+        while True:
+            k = skip_release(i)
+            kb, kvals = next_bl(k)
+            if kvals or not is_key(kb):
+                return k
+            r = attribute(k, f"{var}->attrs.")
+            if r is None:
+                return None
+            i, line = r
+            body.append(line)
 
     fields = 0
     # Optional run-once prologue: if (flag) return; flag = true; if (!cls) return;
@@ -393,9 +460,20 @@ def parse(orig: asmdiff.Original, addr: int, class_getters: set[int]) -> tuple[l
         j, vals = next_bl(i)
         if j >= n:
             return None
+        # A field named by a global CStrId (copied into AddField's argument) starts with the load
+        # of that global; anything else must start with a call.
+        global_name = None
         if vals:
-            return None
-        if evs[j].target == GET_ATTRS:
+            if len(vals) != 1 or vals[0][0] != "global" or vals[0][2] != 8 or evs[j].target == CSTRID_CTOR:
+                return None
+            global_name = vals[0][1]
+        if global_name is not None:
+            decls.append(f"extern base::global::CStrId g_unk_{global_name:x};")
+            r = field(j, f"g_unk_{global_name:x}")
+            if r is None:
+                return None
+            i = r
+        elif evs[j].target == GET_ATTRS:
             r = attribute(j + 1, "fn_710009dd6c(cls)->")
             if r is None:
                 return None
@@ -414,44 +492,10 @@ def parse(orig: asmdiff.Original, addr: int, class_getters: set[int]) -> tuple[l
             j, vals = next_bl(j + 1)
             if j >= n or vals or evs[j].target == CSTRID_CTOR:
                 return None
-            field_type = None
-            if evs[j].target == ADD_FIELD:
-                t = evs[j].regs.get("2")
-                if not t or t[0] != "ptr":
-                    return None
-                field_type = t[1]
-                decls.append(f"extern base::reflection::CType g_unk_{field_type:x};")
-                type_expr = f"&g_unk_{field_type:x}"
-            else:
-                type_getter = evs[j].target
-                if type_getter not in VALUE_TYPES:
-                    ret = "base::reflection::CClass" if type_getter in class_getters else "base::reflection::CType"
-                    decls.append(f"const {ret}* fn_{type_getter:x}();")
-                type_expr = f"fn_{type_getter:x}()"
-                j, vals = next_bl(j + 1)
-                if j >= n or vals or evs[j].target != ADD_FIELD:
-                    return None
-            regs = evs[j].regs
-            off = regs.get("3")
-            index = [index_expr(regs.get(r)) for r in ("4", "5")]
-            if not off or off[0] != "imm" or None in index:
+            r = field(j, f"CStrId({c_string(s[1])}, true)")
+            if r is None:
                 return None
-            var = f"field{fields}"
-            fields += 1
-            body.append(f"    UnkReflField* {var} = fn_7100096524(cls, CStrId({c_string(s[1])}, true), "
-                        f"{type_expr}, {off[1]:#x}, {index[0]}, {index[1]});")
-            i = j + 1
-            while True:
-                k = skip_release(i)
-                kb, kvals = next_bl(k)
-                if kvals or not is_key(kb):
-                    i = k
-                    break
-                r = attribute(k, f"{var}->attrs.")
-                if r is None:
-                    return None
-                i, line = r
-                body.append(line)
+            i = r
         elif evs[j].target == ALLOC:
             # Tunable registration: create the global registry on first use, then register.
             regs = evs[j].regs

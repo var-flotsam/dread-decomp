@@ -4280,7 +4280,7 @@ address,size,name,name_source,subsystem,status
 0x71002c0f70,844,fn_71002c0f70,unknown,unknown,U
 0x71002c12bc,4,fn_71002c12bc,unknown,unknown,O
 0x71002c12c0,244,querysystem::CIsInFrustumFilter::refl_GetClass,reflection,ai/querysystem,O
-0x71002c13b4,208,fn_71002c13b4,unknown,ai/querysystem?,U
+0x71002c13b4,208,fn_71002c13b4,unknown,ai/querysystem?,O
 0x71002c1484,388,querysystem::CIsInFrustumFilter::refl_InitClass,reflection,ai/querysystem,O
 0x71002c1608,4,fn_71002c1608,unknown,ai/querysystem?,U
 0x71002c160c,36,fn_71002c160c,unknown,ai/querysystem?,U
@@ -4298,7 +4298,7 @@ address,size,name,name_source,subsystem,status
 0x71002c1a70,160,fn_71002c1a70,unknown,ai/querysystem?,U
 0x71002c1b10,4,fn_71002c1b10,unknown,ai/querysystem?,O
 0x71002c1b14,244,querysystem::CIsInNavigablePathFilter::refl_GetClass,reflection,ai/querysystem,O
-0x71002c1c08,208,fn_71002c1c08,unknown,ai/querysystem?,U
+0x71002c1c08,208,fn_71002c1c08,unknown,ai/querysystem?,O
 0x71002c1cd8,388,querysystem::CIsInNavigablePathFilter::refl_InitClass,reflection,ai/querysystem,O
 0x71002c1e5c,4,fn_71002c1e5c,unknown,ai/querysystem?,U
 0x71002c1e60,36,fn_71002c1e60,unknown,ai/querysystem?,U
@@ -4316,7 +4316,7 @@ address,size,name,name_source,subsystem,status
 0x71002c2320,160,fn_71002c2320,unknown,ai/querysystem?,U
 0x71002c23c0,4,fn_71002c23c0,unknown,ai/querysystem?,O
 0x71002c23c4,244,querysystem::CLookAtTargetFilter::refl_GetClass,reflection,ai/querysystem,O
-0x71002c24b8,208,fn_71002c24b8,unknown,ai/querysystem?,U
+0x71002c24b8,208,fn_71002c24b8,unknown,ai/querysystem?,O
 0x71002c2588,388,querysystem::CLookAtTargetFilter::refl_InitClass,reflection,ai/querysystem,O
 0x71002c270c,4,fn_71002c270c,unknown,ai/querysystem?,U
 0x71002c2710,36,fn_71002c2710,unknown,ai/querysystem?,U
@@ -4407,7 +4407,7 @@ address,size,name,name_source,subsystem,status
 0x71002c4a80,160,fn_71002c4a80,unknown,ai/querysystem?,U
 0x71002c4b20,4,fn_71002c4b20,unknown,ai/querysystem?,O
 0x71002c4b24,244,querysystem::CSameEntitySideFilter::refl_GetClass,reflection,ai/querysystem,O
-0x71002c4c18,208,fn_71002c4c18,unknown,ai/querysystem?,U
+0x71002c4c18,208,fn_71002c4c18,unknown,ai/querysystem?,O
 0x71002c4ce8,388,querysystem::CSameEntitySideFilter::refl_InitClass,reflection,ai/querysystem,O
 0x71002c4e6c,4,fn_71002c4e6c,unknown,ai/querysystem?,U
 0x71002c4e70,36,fn_71002c4e70,unknown,ai/querysystem?,U

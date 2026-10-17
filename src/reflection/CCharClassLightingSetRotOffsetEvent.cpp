@@ -21,6 +21,15 @@ void fn_7100bbf0d0(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "SetRotOffset");
     fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("Lighting", true));
 }
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_7100bbf2ac(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sName", true), fn_7100009658(), 0x10, -1, -1);
+    field0->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("vRotOffset", true), fn_71000246e4(), 0x18, -1, -1);
+    field1->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{0.0f, 0.0f, 0.0f});
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fInterpolationTime", true), fn_710000abbc(), 0x24, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 0.2f);
+}
 bool fn_7100bbf838(const void* a, const void* b) { return a == b; }
 s32 fn_7100bbf844() { return -1; }
 const base::reflection::CType& fn_7100bbf84c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

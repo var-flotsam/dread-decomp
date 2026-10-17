@@ -5,10 +5,22 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // querysystem::CIsInNavigablePathFilter
 DREAD_REFL_TAG(71002c1cd8);
 void fn_71002c1b10(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_71002c1c08(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("vOffset", true), fn_71000246e4(), 0x14, -1, -1);
+    field0->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{0.0f, 0.0f, 0.0f});
+}
 bool fn_71002c1fe4(const void* a, const void* b) { return a == b; }
 s32 fn_71002c1ff0() { return -1; }
 const base::reflection::CType& fn_71002c1ff8(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

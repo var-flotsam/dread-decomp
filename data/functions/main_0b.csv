@@ -2740,7 +2740,7 @@ address,size,name,name_source,subsystem,status
 0x7100b854d0,200,fn_7100b854d0,unknown,gui?,U
 0x7100b85598,4,fn_7100b85598,unknown,gui?,O
 0x7100b8559c,244,GUI::CText::refl_GetClass,reflection,gui,O
-0x7100b85690,1928,fn_7100b85690,unknown,gui?,U
+0x7100b85690,1928,fn_7100b85690,unknown,gui?,O
 0x7100b85e18,352,GUI::CText::refl_InitClass,reflection,gui,O
 0x7100b85f78,380,fn_7100b85f78,unknown,gui?,U
 0x7100b860f4,380,fn_7100b860f4,unknown,gui?,U
@@ -4528,7 +4528,7 @@ address,size,name,name_source,subsystem,status
 0x7100bbe500,160,fn_7100bbe500,unknown,game/characters?,U
 0x7100bbe5a0,232,fn_7100bbe5a0,unknown,game/characters?,O
 0x7100bbe688,244,CCharClassLightingSetPosOffsetEvent::refl_GetClass,reflection,game/characters,O
-0x7100bbe77c,648,fn_7100bbe77c,unknown,game/characters?,U
+0x7100bbe77c,648,fn_7100bbe77c,unknown,game/characters?,O
 0x7100bbea04,388,CCharClassLightingSetPosOffsetEvent::refl_InitClass,reflection,game/characters,O
 0x7100bbeb88,124,fn_7100bbeb88,unknown,game/characters?,U
 0x7100bbec04,132,fn_7100bbec04,unknown,game/characters?,U
@@ -4546,7 +4546,7 @@ address,size,name,name_source,subsystem,status
 0x7100bbf030,160,fn_7100bbf030,unknown,game/characters?,U
 0x7100bbf0d0,232,fn_7100bbf0d0,unknown,game/characters?,O
 0x7100bbf1b8,244,CCharClassLightingSetRotOffsetEvent::refl_GetClass,reflection,game/characters,O
-0x7100bbf2ac,648,fn_7100bbf2ac,unknown,game/characters?,U
+0x7100bbf2ac,648,fn_7100bbf2ac,unknown,game/characters?,O
 0x7100bbf534,388,CCharClassLightingSetRotOffsetEvent::refl_InitClass,reflection,game/characters,O
 0x7100bbf6b8,124,fn_7100bbf6b8,unknown,game/characters?,U
 0x7100bbf734,132,fn_7100bbf734,unknown,game/characters?,U
@@ -5204,7 +5204,7 @@ address,size,name,name_source,subsystem,status
 0x7100bd54a0,160,fn_7100bd54a0,unknown,game/characters?,U
 0x7100bd5540,232,fn_7100bd5540,unknown,game/characters?,O
 0x7100bd5628,244,CCharClassSetEntityAngEvent::refl_GetClass,reflection,game/characters,O
-0x7100bd571c,384,fn_7100bd571c,unknown,game/characters?,U
+0x7100bd571c,384,fn_7100bd571c,unknown,game/characters?,O
 0x7100bd589c,388,CCharClassSetEntityAngEvent::refl_InitClass,reflection,game/characters,O
 0x7100bd5a20,4,fn_7100bd5a20,unknown,game/characters?,U
 0x7100bd5a24,36,fn_7100bd5a24,unknown,game/characters?,U

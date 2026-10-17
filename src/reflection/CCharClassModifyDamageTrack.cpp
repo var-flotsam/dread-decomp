@@ -21,6 +21,27 @@ void fn_7100d216f0(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Modify Damage");
     fn_710009dd6c(cls)->Add<CStrId>(fn_7100090e60(), CStrId("Damage", true));
 }
+void fn_7100d2279c();
+void fn_7100d21e7c(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+extern base::reflection::CType g_unk_7172730858;
+void fn_7100d218cc(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sColliders_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_sColliders_GetterFunction", true);
+        fn->return_type = fn_7100009658();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100d2279c);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sColliders_SetterFunction", true)))
+        fn_7100d21e7c(fn, "_sColliders_SetterFunction");
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sColliders", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field0->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("sDamageID", true), fn_7100009658(), 0x48, -1, -1);
+    field1->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("eDamageStrength", true), &g_unk_7172730858, 0x50, -1, -1);
+    field2->attrs.Add<s32>(fn_7100075240(), &g_unk_7172730858, 0);
+}
 bool fn_7100d223c0(const void* a, const void* b) { return a == b; }
 s32 fn_7100d223cc() { return -1; }
 const base::reflection::CType& fn_7100d223d4(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

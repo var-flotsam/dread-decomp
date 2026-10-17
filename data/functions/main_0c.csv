@@ -649,7 +649,7 @@ address,size,name,name_source,subsystem,status
 0x7100c120b0,160,fn_7100c120b0,unknown,game/characters?,U
 0x7100c12150,232,fn_7100c12150,unknown,game/characters?,O
 0x7100c12238,244,CCharClassCooldownXBossDamageShapesTrack::refl_GetClass,reflection,game/characters,O
-0x7100c1232c,1132,fn_7100c1232c,unknown,game/characters?,U
+0x7100c1232c,1132,fn_7100c1232c,unknown,game/characters?,O
 0x7100c12798,368,CCharClassCooldownXBossDamageShapesTrack::refl_InitClass,reflection,game/characters,O
 0x7100c12908,380,fn_7100c12908,unknown,game/characters?,U
 0x7100c12a84,344,fn_7100c12a84,unknown,game/characters?,U
@@ -1105,7 +1105,7 @@ address,size,name,name_source,subsystem,status
 0x7100c1d330,160,fn_7100c1d330,unknown,game/characters?,U
 0x7100c1d3d0,232,fn_7100c1d3d0,unknown,game/characters?,O
 0x7100c1d4b8,244,CCharClassForceBumpFXTrack::refl_GetClass,reflection,game/characters,O
-0x7100c1d5ac,672,fn_7100c1d5ac,unknown,game/characters?,U
+0x7100c1d5ac,672,fn_7100c1d5ac,unknown,game/characters?,O
 0x7100c1d84c,368,CCharClassForceBumpFXTrack::refl_InitClass,reflection,game/characters,O
 0x7100c1d9bc,380,fn_7100c1d9bc,unknown,game/characters?,U
 0x7100c1db38,284,fn_7100c1db38,unknown,game/characters?,U
@@ -1500,7 +1500,7 @@ address,size,name,name_source,subsystem,status
 0x7100c26ce0,160,fn_7100c26ce0,unknown,game/characters?,U
 0x7100c26d80,232,fn_7100c26d80,unknown,game/characters?,O
 0x7100c26e68,244,CCharClassIgnoreBumpFXTrack::refl_GetClass,reflection,game/characters,O
-0x7100c26f5c,672,fn_7100c26f5c,unknown,game/characters?,U
+0x7100c26f5c,672,fn_7100c26f5c,unknown,game/characters?,O
 0x7100c271fc,368,CCharClassIgnoreBumpFXTrack::refl_InitClass,reflection,game/characters,O
 0x7100c2736c,380,fn_7100c2736c,unknown,game/characters?,U
 0x7100c274e8,284,fn_7100c274e8,unknown,game/characters?,U
@@ -1579,7 +1579,7 @@ address,size,name,name_source,subsystem,status
 0x7100c29070,160,fn_7100c29070,unknown,game/characters?,U
 0x7100c29110,232,fn_7100c29110,unknown,game/characters?,O
 0x7100c291f8,244,CCharClassIgnoreCollisionMaskTrack::refl_GetClass,reflection,game/characters,O
-0x7100c292ec,1380,fn_7100c292ec,unknown,game/characters?,U
+0x7100c292ec,1380,fn_7100c292ec,unknown,game/characters?,O
 0x7100c29850,368,CCharClassIgnoreCollisionMaskTrack::refl_InitClass,reflection,game/characters,O
 0x7100c299c0,380,fn_7100c299c0,unknown,game/characters?,U
 0x7100c29b3c,380,fn_7100c29b3c,unknown,game/characters?,U
@@ -5516,7 +5516,7 @@ address,size,name,name_source,subsystem,status
 0x7100cb5fc0,160,fn_7100cb5fc0,unknown,game/characters?,U
 0x7100cb6060,156,fn_7100cb6060,unknown,game/characters?,O
 0x7100cb60fc,244,CCharClassDropItemOverwriteProbabilitiesEvent::refl_GetClass,reflection,game/characters,O
-0x7100cb61f0,5776,fn_7100cb61f0,unknown,game/characters?,U
+0x7100cb61f0,5776,fn_7100cb61f0,unknown,game/characters?,O
 0x7100cb7880,388,CCharClassDropItemOverwriteProbabilitiesEvent::refl_InitClass,reflection,game/characters,O
 0x7100cb7a04,380,fn_7100cb7a04,unknown,game/characters?,U
 0x7100cb7b80,428,fn_7100cb7b80,unknown,game/characters?,U
@@ -7733,7 +7733,7 @@ address,size,name,name_source,subsystem,status
 0x7100cfbbb0,160,fn_7100cfbbb0,unknown,game/characters?,U
 0x7100cfbc50,232,fn_7100cfbc50,unknown,game/characters?,O
 0x7100cfbd38,244,CCharClassFXControlTrack::refl_GetClass,reflection,game/characters,O
-0x7100cfbe2c,1380,fn_7100cfbe2c,unknown,game/characters?,U
+0x7100cfbe2c,1380,fn_7100cfbe2c,unknown,game/characters?,O
 0x7100cfc390,368,CCharClassFXControlTrack::refl_InitClass,reflection,game/characters,O
 0x7100cfc500,380,fn_7100cfc500,unknown,game/characters?,U
 0x7100cfc67c,380,fn_7100cfc67c,unknown,game/characters?,U

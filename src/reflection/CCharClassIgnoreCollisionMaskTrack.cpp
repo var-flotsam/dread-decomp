@@ -21,6 +21,37 @@ void fn_7100c29110(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Ignore Collision Mask");
     fn_710009dd6c(cls)->Add<CStrId>(fn_7100090e60(), CStrId("Collision", true));
 }
+void fn_7100c29f5c();
+void fn_7100c299c0(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_7100c2a0d0();
+void fn_7100c29b3c(UnkReflFunction* fn, const char* name);
+void fn_7100c292ec(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sMasksToIgnore_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_sMasksToIgnore_GetterFunction", true);
+        fn->return_type = fn_7100009658();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100c29f5c);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sMasksToIgnore_SetterFunction", true)))
+        fn_7100c299c0(fn, "_m_sMasksToIgnore_SetterFunction");
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sMasksToIgnore", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field0->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Mask to Ignore");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sMasksToEnforce_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_sMasksToEnforce_GetterFunction", true);
+        fn->return_type = fn_7100009658();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100c2a0d0);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sMasksToEnforce_SetterFunction", true)))
+        fn_7100c29b3c(fn, "_m_sMasksToEnforce_SetterFunction");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("sMasksToEnforce", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field1->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    field1->attrs.Add<const char*>(fn_7100007e80(), "Mask to Enforce");
+}
 bool fn_7100c29dbc(const void* a, const void* b) { return a == b; }
 s32 fn_7100c29dc8() { return -1; }
 const base::reflection::CType& fn_7100c29dd0(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

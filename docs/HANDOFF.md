@@ -4,7 +4,7 @@ For the next developer, human or AI, picking up this project. Read this, then `C
 (rules and conventions), `docs/recon.md` (what's in the binary), `docs/compiler.md`
 (toolchain), and `docs/references.md` (outside projects).
 
-Snapshot as of 2026-10-17 (third Phase 4 session; last commit `Phase 4.4: string ids, UnkVector and reflected-function initialisers`). Target: **Metroid Dread 2.1.0**, `main` build ID
+Snapshot as of 2026-10-17 (third Phase 4 session; last commit `Phase 4.3: container accessors, global-id fields and vector values`). Target: **Metroid Dread 2.1.0**, `main` build ID
 `646761F643AFEBB379EDD5E6A5151AF2CEF93DC1`.
 
 ## Where things stand
@@ -17,14 +17,14 @@ Snapshot as of 2026-10-17 (third Phase 4 session; last commit `Phase 4.4: string
 | Tooling for Phase 4 | **Done.** `tools/check.py` (build + status), objdiff (`tools/objdiff_gen.py`), whole-binary progress (`tools/progress.py`) |
 | 4.1 System headers | **Done.** `lib/nnsdk` + `lib/musl` submodules, libc++ 9.0.1 headers, `tools/buildcfg.py` |
 | 4.2 Lua | **Done.** Upstream 5.1.4 vendored in `lib/lua/` (2 marked config changes); 286 Lua functions located in `main` by `tools/sigmatch.py` (status `L`) |
-| 4.3 Reflection | **In progress.** 1,878 of 2,346 class getters with their descriptor constructors, per-type helpers and 1,447 of 1,627 attribute/member-field functions generated and byte-identical (`src/reflection/`, `tools/gen_reflection.py`, `tools/refl_attrs.py`). Next: property functions and the remaining helpers (below) |
+| 4.3 Reflection | **In progress.** 1,878 of 2,346 class getters with their descriptor constructors, per-type helpers and 1,485 of 1,627 attribute/member-field functions generated and byte-identical (`src/reflection/`, `tools/gen_reflection.py`, `tools/refl_attrs.py`). Next: property functions and the remaining helpers (below) |
 | 4.4 Core engine types | **In progress.** String ids (`CStrId`, `UnkStrId`), the growable array `base::UnkVector` and its allocator interface; reflected-function initialisers now match (below) |
 | 4.5+ Boot to title screen | Not started; plan below |
 | Port | Not started (`port/` is empty) |
 
-Function status (BotW codes): `O` 17,096, `m` 4, `M` 1, `L` 1,614, `U` 85,302.
-**Game-code progress: 11.36% of bytes (2.13 MB) matching** (`tools/progress.py`; library code
-excluded). `tools/check.py` reports 17,105 `O` in `src/` because the matching `nn::atk`
+Function status (BotW codes): `O` 17,134, `m` 4, `M` 1, `L` 1,614, `U` 85,264.
+**Game-code progress: 11.78% of bytes (2.21 MB) matching** (`tools/progress.py`; library code
+excluded). `tools/check.py` reports 17,143 `O` in `src/` because the matching `nn::atk`
 functions and a few others keep `L`.
 
 ## Hard rules (summary; full text in CLAUDE.md)
@@ -198,15 +198,33 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
      such as void), null at +0x40, the invoker at +0x48, a zeroed u16 at +0xb2. Then
      `AddField(cls, CStrId(field), type, 0xffffffff, count - 2, count - 1)` refers to the two
      functions by index (`count` = `CClass+0x120`). **Solved** (see Key facts: two string-id
-     types): 39 of these x4 functions now match, and so does the out-of-line setter initialiser
-     `fn_7100a19530` (`src/base/reflection/UnkReflFunction.cpp`). The other ~55 fail for
-     reasons not yet examined. How it was found: `-mllvm -print-after-all` showed that CStrId's
-     destructor leaves a phi on the pool it reloads after a release, so the moved-from
-     temporary's store survives SimplifyCFG and jump threading. A destructor without that reload
-     folds completely but breaks the 3,199 `AddField` matches, so the two temporaries have
-     different destructors.
-   - x3/x4 using `CRntString` (18), `CFilePathStrId`/`CName` (23), vector/colour values (16): need
-     those types' constructors/layouts. 23 contain an indirect branch; 19 others.
+     types). So does the out-of-line setter initialiser `fn_7100a19530`
+     (`src/base/reflection/UnkReflFunction.cpp`). How it was found: `-mllvm -print-after-all`
+     showed that CStrId's destructor leaves a phi on the pool it reloads after a release, so the
+     moved-from temporary's store survives SimplifyCFG and jump threading. A destructor without
+     that reload folds completely but breaks the 3,199 `AddField` matches, so the two
+     temporaries have different destructors. Also parsed now: container accessors
+     (`_key_GetterFunction`/`_element_GetterFunction`: u16 `0x101`/`0x1` at +0xb2, then a field
+     named by a copied global `CStrId` with indices `count - 1, -1`), and `CVector2D`/`CVector3D`
+     attribute values (`include/base/math/CVector.h`).
+     **Status (triage of all 706 callers of `fn_7100097550`):** 66 of the 131 in generated
+     TUs match. A further ~400 would verify but sit in TUs skipped for other statics (item 2),
+     so they will come once those TUs are generated. The 65 left in generated TUs, by cause:
+     - 26 contain an indirect call through allocator slot `0x48` (free) after a constructor:
+       default values of heap-backed types (`CRntString`, containers). Needs those types.
+     - 17 have attribute values of other types: `CRntString` (`fn_7100007f84`), `CVector4D`
+       (`fn_71000248c4`), `CFilePathStrId` (`fn_710000ad9c`) and the unnamed getters
+       `fn_710025daa0`, `fn_710025d990`, `fn_71000923a0`.
+     - 15 parse but don't match. Ten (`fn_7100f1d844` and relatives, 632/1100 bytes, ~90%) have
+       the first field's by-value name temporary and the shared temporary slot swapped (`sp+8`
+       vs `sp+0x18`): alloca order, not yet understood. `fn_71002d6558` adds attributes to a
+       second container at field+0x70 (the parser assumes +0x38). The rest are huge (7–37 KB).
+     - 6 contain a statement shape the parser doesn't know; 1 has an odd value store.
+     Outside generated TUs, 54 container-accessor functions (912 bytes, 74%) need the element
+     type's getter in the same TU: the original uses its descriptor's address in place of the
+     call's result. Those are non-class getters, which aren't generated yet (item 2).
+   - x3/x4 using `CRntString`, `CFilePathStrId`/`CName` or `CVector4D` values: need those types'
+     constructors/layouts (see the triage above).
    - `0x30`/`0x38`/`0x48`/`0x50` with bodies: inlined copy/assign of each type's fields; need the
      types' layouts. `0x28` (1,765, most 13–19 instructions): constructs, then calls a virtual.
    - Odd ones: CClass/CEnumType/CFlagsetType/CPointerType helpers, a slot-2 destructor

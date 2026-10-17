@@ -5,10 +5,192 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // GUI::CLabel
 DREAD_REFL_TAG(71011ea908);
 void fn_71011e8df8(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100093390();
+const base::reflection::UnkReflAttrKey& fn_710000bf80();
+extern base::reflection::CType g_unk_7101d679f0;
+const base::reflection::UnkReflAttrKey& fn_71000923a0();
+extern base::reflection::CType g_unk_7101d55008;
+const base::reflection::UnkReflAttrKey& fn_7100090a20();
+void fn_71011ef99c();
+void fn_71011eaa68(UnkReflFunction* fn, const char* name);
+void fn_71011efa60();
+void fn_71011eabe4(UnkReflFunction* fn, const char* name);
+void fn_71011efb14();
+void fn_71011ead60(UnkReflFunction* fn, const char* name);
+void fn_71011efc28();
+void fn_71011eaedc(UnkReflFunction* fn, const char* name);
+const base::reflection::CType* fn_7100007f84();
+void fn_71011efd60();
+void fn_71011eb058(UnkReflFunction* fn, const char* name);
+void fn_71011efe68();
+void fn_71011eb1d4(UnkReflFunction* fn, const char* name);
+void fn_71011effbc();
+void fn_71011eb350(UnkReflFunction* fn, const char* name);
+void fn_71011f0110();
+void fn_71011eb4cc(UnkReflFunction* fn, const char* name);
+void fn_71011f01c4();
+void fn_71011eb648(UnkReflFunction* fn, const char* name);
+void fn_71011f0278();
+void fn_71011eb7c4(UnkReflFunction* fn, const char* name);
+void fn_71011f0364();
+void fn_71011eb940(UnkReflFunction* fn, const char* name);
+void fn_71011f0418();
+void fn_71011ebabc(UnkReflFunction* fn, const char* name);
+void fn_71011f04cc();
+void fn_71011ebc38(UnkReflFunction* fn, const char* name);
+void fn_71011e8ef0(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("bApplyVerticalAlignment", true), fn_710000d228(), 0xffffffff, -1, -1);
+    field0->attrs.Add<bool>(fn_7100093390(), true);
+    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
+    field0->attrs.Add<bool>(fn_7100090a20(), false);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("bSequentialTyping", true), fn_710000d228(), 0xffffffff, -1, -1);
+    field1->attrs.Add<bool>(fn_7100093390(), true);
+    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
+    field1->attrs.Add<bool>(fn_7100090a20(), false);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_Outline_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_Outline_GetterFunction", true);
+        fn->return_type = fn_710000d228();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71011ef99c);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_Outline_SetterFunction", true)))
+        fn_71011eaa68(fn, "_Outline_SetterFunction");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("Outline", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_IgnoreTextWidthAutosize_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_IgnoreTextWidthAutosize_GetterFunction", true);
+        fn->return_type = fn_710000d228();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71011efa60);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_IgnoreTextWidthAutosize_SetterFunction", true)))
+        fn_71011eabe4(fn, "_IgnoreTextWidthAutosize_SetterFunction");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("IgnoreTextWidthAutosize", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_Font_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_Font_GetterFunction", true);
+        fn->return_type = fn_7100009658();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71011efb14);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_Font_SetterFunction", true)))
+        fn_71011ead60(fn, "_Font_SetterFunction");
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("Font", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_EmbeddedSpritesSuffix_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_EmbeddedSpritesSuffix_GetterFunction", true);
+        fn->return_type = fn_7100009658();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71011efc28);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_EmbeddedSpritesSuffix_SetterFunction", true)))
+        fn_71011eaedc(fn, "_EmbeddedSpritesSuffix_SetterFunction");
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("EmbeddedSpritesSuffix", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_Text_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_Text_GetterFunction", true);
+        fn->return_type = fn_7100007f84();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71011efd60);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_Text_SetterFunction", true)))
+        fn_71011eb058(fn, "_Text_SetterFunction");
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("Text", true), fn_7100007f84(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_TextAlignment_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_TextAlignment_GetterFunction", true);
+        fn->return_type = fn_7100009658();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71011efe68);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_TextAlignment_SetterFunction", true)))
+        fn_71011eb1d4(fn, "_TextAlignment_SetterFunction");
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("TextAlignment", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_TextVerticalAlignment_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_TextVerticalAlignment_GetterFunction", true);
+        fn->return_type = fn_7100009658();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71011effbc);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_TextVerticalAlignment_SetterFunction", true)))
+        fn_71011eb350(fn, "_TextVerticalAlignment_SetterFunction");
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("TextVerticalAlignment", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_MaxTextWidth_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_MaxTextWidth_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71011f0110);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_MaxTextWidth_SetterFunction", true)))
+        fn_71011eb4cc(fn, "_MaxTextWidth_SetterFunction");
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("MaxTextWidth", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_MinCharWidth_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_MinCharWidth_GetterFunction", true);
+        fn->return_type = fn_7100014768();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71011f01c4);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_MinCharWidth_SetterFunction", true)))
+        fn_71011eb648(fn, "_MinCharWidth_SetterFunction");
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("MinCharWidth", true), fn_7100014768(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_CurrentPage_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_CurrentPage_GetterFunction", true);
+        fn->return_type = fn_7100014768();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71011f0278);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_CurrentPage_SetterFunction", true)))
+        fn_71011eb7c4(fn, "_CurrentPage_SetterFunction");
+    UnkReflField* field11 = fn_7100096524(cls, CStrId("CurrentPage", true), fn_7100014768(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_MaxVisibleLines_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_MaxVisibleLines_GetterFunction", true);
+        fn->return_type = fn_7100014768();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71011f0364);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_MaxVisibleLines_SetterFunction", true)))
+        fn_71011eb940(fn, "_MaxVisibleLines_SetterFunction");
+    UnkReflField* field12 = fn_7100096524(cls, CStrId("MaxVisibleLines", true), fn_7100014768(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_MaxLinesPerPage_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_MaxLinesPerPage_GetterFunction", true);
+        fn->return_type = fn_7100014768();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71011f0418);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_MaxLinesPerPage_SetterFunction", true)))
+        fn_71011ebabc(fn, "_MaxLinesPerPage_SetterFunction");
+    UnkReflField* field13 = fn_7100096524(cls, CStrId("MaxLinesPerPage", true), fn_7100014768(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_LineHeightOverride_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_LineHeightOverride_GetterFunction", true);
+        fn->return_type = fn_7100014768();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71011f04cc);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_LineHeightOverride_SetterFunction", true)))
+        fn_71011ebc38(fn, "_LineHeightOverride_SetterFunction");
+    UnkReflField* field14 = fn_7100096524(cls, CStrId("LineHeightOverride", true), fn_7100014768(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+}
 bool fn_71011ef938(const void*, const void*) { return false; }
 s32 fn_71011ef940() { return -1; }
 const base::reflection::CType& fn_71011ef948(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

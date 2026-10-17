@@ -5,6 +5,13 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CAutofocusAimCameraCtrl
 DREAD_REFL_TAG(710072055c);
@@ -34,6 +41,114 @@ DREAD_REFL_CLASS_GETTER(7100720464, 710072055c, "CAutofocusAimCameraCtrl", 71010
 // CAutofocusAimCameraCtrl::CTunableAutofocusAimCameraCtrl
 DREAD_REFL_TAG(71007219f0);
 void fn_71007206bc(base::reflection::CClass*) {}
+extern bool g_unk_717270f988;
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+const base::reflection::UnkReflAttrKey& fn_7100093170();
+const base::reflection::UnkReflAttrKey& fn_7100091080();
+const base::reflection::UnkReflAttrKey& fn_7100091190();
+const base::reflection::UnkReflAttrKey& fn_7100324af0();
+const base::reflection::UnkReflAttrKey& fn_7100324c00();
+void fn_71007236e4();
+void fn_7100721b74(UnkReflFunction* fn, const char* name);
+void fn_710072378c();
+void fn_7100721cf0(UnkReflFunction* fn, const char* name);
+extern UnkTunableRegistry* g_unk_7101d47350;
+extern UnkTunable g_unk_717270f910;
+void fn_7100721e6c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+void fn_71007207b4(CClass* cls) {
+    if (g_unk_717270f988)
+        return;
+    g_unk_717270f988 = true;
+    if (!cls)
+        return;
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("bForceActivation", true), fn_710000d228(), 0x21, -1, -1);
+    field0->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fInterpolationSpeed", true), fn_710000abbc(), 0x24, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 0.5f);
+    field1->attrs.Add<const char*>(fn_7100007e80(), "Interpolation speed");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fInterpolationAccel", true), fn_710000abbc(), 0x28, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 0.7f);
+    field2->attrs.Add<const char*>(fn_7100007e80(), "Interpolation accel");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fInterpolationInterruptFactor", true), fn_710000abbc(), 0x2c, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 0.7f);
+    field3->attrs.Add<const char*>(fn_7100007e80(), "Pct to can interupt exit interpolation");
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("v3TargetOffset", true), fn_71000246e4(), 0x30, -1, -1);
+    field4->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{50.0f, 50.0f, 0.0f});
+    field4->attrs.Add<const char*>(fn_7100007e80(), "Offset added to the camera target to check when the target is in close range (ie: is inside of the projection of the delegate camera)");
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("v3TargetPadding", true), fn_71000246e4(), 0x3c, -1, -1);
+    field5->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{150.0f, 50.0f, 0.0f});
+    field5->attrs.Add<const char*>(fn_7100007e80(), "Padding added to the offset to make sure that the target stays inside camera when in mid and long range");
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("fEmmyAlarmVolume", true), fn_710000abbc(), 0x48, -1, -1);
+    field6->attrs.Add<f32>(fn_7100075240(), 0.5f);
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("fAimNewCameraDistance", true), fn_710000abbc(), 0x68, -1, -1);
+    field7->attrs.Add<f32>(fn_7100075240(), 600.0f);
+    field7->attrs.Add<bool>(fn_7100093170(), true);
+    field7->attrs.Add<const char*>(fn_7100007e80(), "Distance");
+    field7->attrs.Add<f32>(fn_7100091080(), 500.0f);
+    field7->attrs.Add<f32>(fn_7100091190(), 5000.0f);
+    field7->attrs.Add<f32>(fn_7100324af0(), 10.0f);
+    field7->attrs.Add<const char*>(fn_7100324c00(), "Camera|Aim");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAimNewCameraAng_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_fAimNewCameraAng_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71007236e4);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAimNewCameraAng_SetterFunction", true)))
+        fn_7100721b74(fn, "_fAimNewCameraAng_SetterFunction");
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("fAimNewCameraAng", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field8->attrs.Add<f32>(fn_7100075240(), 60.0f);
+    field8->attrs.Add<bool>(fn_7100093170(), true);
+    field8->attrs.Add<const char*>(fn_7100007e80(), "Angle");
+    field8->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    field8->attrs.Add<f32>(fn_7100091190(), 90.0f);
+    field8->attrs.Add<f32>(fn_7100324af0(), 1.0f);
+    field8->attrs.Add<const char*>(fn_7100324c00(), "Camera|Aim");
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("fAimNewCameraOffsetY", true), fn_710000abbc(), 0x6c, -1, -1);
+    field9->attrs.Add<f32>(fn_7100075240(), 70.0f);
+    field9->attrs.Add<bool>(fn_7100093170(), true);
+    field9->attrs.Add<const char*>(fn_7100007e80(), "Offset Y");
+    field9->attrs.Add<f32>(fn_7100091080(), -200.0f);
+    field9->attrs.Add<f32>(fn_7100091190(), 200.0f);
+    field9->attrs.Add<f32>(fn_7100324af0(), 10.0f);
+    field9->attrs.Add<const char*>(fn_7100324c00(), "Camera|Aim");
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("bAimNewCameraAvoidWallOcclusion", true), fn_710000d228(), 0x54, -1, -1);
+    field10->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field11 = fn_7100096524(cls, CStrId("fAimNewCameraChaseAutoAimMinInterpolationDist", true), fn_710000abbc(), 0x58, -1, -1);
+    field11->attrs.Add<f32>(fn_7100075240(), 600.0f);
+    UnkReflField* field12 = fn_7100096524(cls, CStrId("fAimNewCameraChaseAutoAimMaxInterpolationDist", true), fn_710000abbc(), 0x5c, -1, -1);
+    field12->attrs.Add<f32>(fn_7100075240(), 1500.0f);
+    UnkReflField* field13 = fn_7100096524(cls, CStrId("bAimNewCameraChaseAutoAimForceEmmyMaxYInsideCamera", true), fn_710000d228(), 0x60, -1, -1);
+    field13->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field14 = fn_7100096524(cls, CStrId("fAimNewCameraFreeAimInterpolationSpeed", true), fn_710000abbc(), 0x64, -1, -1);
+    field14->attrs.Add<f32>(fn_7100075240(), 100.0f);
+    field14->attrs.Add<bool>(fn_7100093170(), true);
+    field14->attrs.Add<const char*>(fn_7100007e80(), "Free aim interpolation speed");
+    field14->attrs.Add<f32>(fn_7100091080(), 1.0f);
+    field14->attrs.Add<f32>(fn_7100091190(), 10000.0f);
+    field14->attrs.Add<f32>(fn_7100324af0(), 1.0f);
+    field14->attrs.Add<const char*>(fn_7100324c00(), "Camera|Aim");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_iAimNewCameraInputMode_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_iAimNewCameraInputMode_GetterFunction", true);
+        fn->return_type = fn_7100014768();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_710072378c);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_iAimNewCameraInputMode_SetterFunction", true)))
+        fn_7100721cf0(fn, "_iAimNewCameraInputMode_SetterFunction");
+    UnkReflField* field15 = fn_7100096524(cls, CStrId("iAimNewCameraInputMode", true), fn_7100014768(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field15->attrs.Add<s32>(fn_7100075240(), 1);
+    UnkTunableRegistry* registry = g_unk_7101d47350;
+    if (!registry) {
+        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
+        fn_710013ac14(registry);
+        g_unk_7101d47350 = registry;
+    }
+    fn_7100721e6c(registry, &g_unk_717270f910, "AutofocusAimCameraCtrl");
+}
 bool fn_7100723638(const void*, const void*) { return false; }
 s32 fn_7100723640() { return -1; }
 const base::reflection::CType& fn_7100723648(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

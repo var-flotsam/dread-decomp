@@ -5,6 +5,13 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassFanComponent
 DREAD_REFL_TAG(710087c4d4);
@@ -37,6 +44,86 @@ DREAD_REFL_CLASS_GETTER(710087c1c4, 710087c4d4, "CCharClassFanComponent", 7100a4
 // CFanComponent
 DREAD_REFL_TAG(710087d33c);
 void fn_710087c658(base::reflection::CClass*) {}
+void fn_710087f868();
+void fn_710087d4b0(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100091080();
+const base::reflection::UnkReflAttrKey& fn_7100091190();
+void fn_710087f914();
+void fn_710087d62c(UnkReflFunction* fn, const char* name);
+void fn_710087f9a4();
+void fn_710087d7a8(UnkReflFunction* fn, const char* name);
+void fn_710087fa34();
+void fn_710087d924(UnkReflFunction* fn, const char* name);
+void fn_710087fae0();
+void fn_710087daa0(UnkReflFunction* fn, const char* name);
+void fn_710087c750(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fWindLength_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_fWindLength_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_710087f868);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fWindLength_SetterFunction", true)))
+        fn_710087d4b0(fn, "_m_fWindLength_SetterFunction");
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fWindLength", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field0->attrs.Add<f32>(fn_7100075240(), 1200.0f);
+    field0->attrs.Add<f32>(fn_7100091080(), 800.0f);
+    field0->attrs.Add<f32>(fn_7100091190(), 1200.0f);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fHurricaneLength_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_fHurricaneLength_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_710087f914);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fHurricaneLength_SetterFunction", true)))
+        fn_710087d62c(fn, "_m_fHurricaneLength_SetterFunction");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fHurricaneLength", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field1->attrs.Add<f32>(fn_7100075240(), 800.0f);
+    field1->attrs.Add<f32>(fn_7100091080(), 600.0f);
+    field1->attrs.Add<f32>(fn_7100091190(), 800.0f);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fBarrierLength_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_fBarrierLength_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_710087f9a4);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fBarrierLength_SetterFunction", true)))
+        fn_710087d7a8(fn, "_m_fBarrierLength_SetterFunction");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fBarrierLength", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field2->attrs.Add<f32>(fn_7100075240(), 200.0f);
+    field2->attrs.Add<f32>(fn_7100091080(), 100.0f);
+    field2->attrs.Add<f32>(fn_7100091190(), 400.0f);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fWidth_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_fWidth_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_710087fa34);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fWidth_SetterFunction", true)))
+        fn_710087d924(fn, "_m_fWidth_SetterFunction");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fWidth", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field3->attrs.Add<f32>(fn_7100075240(), 400.0f);
+    field3->attrs.Add<f32>(fn_7100091080(), 400.0f);
+    field3->attrs.Add<f32>(fn_7100091190(), 400.0f);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fParticleScale_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_fParticleScale_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_710087fae0);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fParticleScale_SetterFunction", true)))
+        fn_710087daa0(fn, "_m_fParticleScale_SetterFunction");
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fParticleScale", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field4->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    field4->attrs.Add<f32>(fn_7100091080(), 0.1f);
+    field4->attrs.Add<f32>(fn_7100091190(), 2.0f);
+}
 bool fn_710087f784(const void*, const void*) { return false; }
 s32 fn_710087f78c() { return -1; }
 const base::reflection::CType& fn_710087f794(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

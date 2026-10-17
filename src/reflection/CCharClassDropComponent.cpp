@@ -5,10 +5,47 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassDropComponent
 DREAD_REFL_TAG(71007bed20);
 void fn_71007be340(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::CClass* fn_71007c6784();
+void fn_71007be438(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("bDropOnDeath", true), fn_710000d228(), 0x58, -1, -1);
+    field0->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("bDropItemOnDeath", true), fn_710000d228(), 0x59, -1, -1);
+    field1->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("bDropItemOnDeathByMelee", true), fn_710000d228(), 0x5a, -1, -1);
+    field2->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("bRestrictFloorSectors", true), fn_710000d228(), 0x5b, -1, -1);
+    field3->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("vDropOffset", true), fn_71000246e4(), 0x5c, -1, -1);
+    field4->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{0.0f, 0.0f, 0.0f});
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("bCanDropXParasite", true), fn_710000d228(), 0x68, -1, -1);
+    field5->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("fXCellDropInitialSpeed", true), fn_710000abbc(), 0x6c, -1, -1);
+    field6->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("fXCellDropEndSpeed", true), fn_710000abbc(), 0x70, -1, -1);
+    field7->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("fXCellDropTime", true), fn_710000abbc(), 0x74, -1, -1);
+    field8->attrs.Add<f32>(fn_7100075240(), 0.1f);
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("fXCellDropRotationAngSpeed", true), fn_710000abbc(), 0x78, -1, -1);
+    field9->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("sXParasiteTypeMask", true), fn_7100009658(), 0x80, -1, -1);
+    field10->attrs.Add<CStrId>(fn_7100075240(), CStrId("ALL", true));
+    UnkReflField* field11 = fn_7100096524(cls, CStrId("oDropProbabilities", true), fn_71007c6784(), 0x88, -1, -1);
+    UnkReflField* field12 = fn_7100096524(cls, CStrId("oMeleeChargeShotDropProbabilities", true), fn_71007c6784(), 0x118, -1, -1);
+    UnkReflField* field13 = fn_7100096524(cls, CStrId("bSkipUsefulItemsRule", true), fn_710000d228(), 0x1a8, -1, -1);
+    field13->attrs.Add<bool>(fn_7100075240(), false);
+}
 bool fn_71007beff0(const void*, const void*) { return false; }
 s32 fn_71007beff8() { return -1; }
 const base::reflection::CType& fn_71007bf000(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
