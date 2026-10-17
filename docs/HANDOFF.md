@@ -50,6 +50,8 @@ tools/fetch_sources.py       upstream Lua 5.1.x sources, hash-pinned (data/sourc
 tools/compiler_matrix.py     compiler x flag matrix: --set leaf | nonleaf | atk
 tools/libcheck_lua.py        build upstream Lua with the game flags and diff it against main
 tools/asmdiff.py          per-function instruction diff vs the original (relocations masked)
+tools/trymatch.py         build one source (src/ or scratch) with the project flags and diff it
+tools/ghidra/decompile.py print Ghidra's decompilation of functions, to read (never commit it)
 tools/check.py            build src/ with the project toolchain; derive O/m/M/W; catch regressions
 tools/objdiff_gen.py      objdiff target objects + objdiff.json (gitignored) for every src/ unit
 tools/progress.py         whole-binary progress from data/functions/ (excludes L)
