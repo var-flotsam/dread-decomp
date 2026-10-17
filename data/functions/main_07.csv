@@ -739,7 +739,7 @@ address,size,name,name_source,subsystem,status
 0x710072055c,352,CAutofocusAimCameraCtrl::refl_InitClass,reflection,game,O
 0x71007206bc,4,fn_71007206bc,unknown,game?,O
 0x71007206c0,244,CAutofocusAimCameraCtrl::CTunableAutofocusAimCameraCtrl::refl_GetClass,reflection,game,O
-0x71007207b4,4668,fn_71007207b4,unknown,game?,U
+0x71007207b4,4668,fn_71007207b4,unknown,game?,O
 0x71007219f0,388,CAutofocusAimCameraCtrl::CTunableAutofocusAimCameraCtrl::refl_InitClass,reflection,game,O
 0x7100721b74,380,fn_7100721b74,unknown,unknown,U
 0x7100721cf0,380,fn_7100721cf0,unknown,unknown,U
@@ -906,7 +906,7 @@ address,size,name,name_source,subsystem,status
 0x710072bd90,160,fn_710072bd90,unknown,unknown,U
 0x710072be30,4,fn_710072be30,unknown,unknown,O
 0x710072be34,244,CCharClassBillboardComponent::refl_GetClass,reflection,game/characters,O
-0x710072bf28,8356,fn_710072bf28,unknown,game/characters?,U
+0x710072bf28,8356,fn_710072bf28,unknown,game/characters?,O
 0x710072dfcc,388,CCharClassBillboardComponent::refl_InitClass,reflection,game/characters,O
 0x710072e150,380,fn_710072e150,unknown,game/characters?,U
 0x710072e2cc,380,fn_710072e2cc,unknown,game/characters?,U
@@ -2729,7 +2729,7 @@ address,size,name,name_source,subsystem,status
 0x7100791ab0,160,fn_7100791ab0,unknown,game/characters?,U
 0x7100791b50,4,fn_7100791b50,unknown,game/characters?,O
 0x7100791b54,244,CCharClassModelUpdaterComponent::refl_GetClass,reflection,game/characters,O
-0x7100791c48,1204,fn_7100791c48,unknown,game/characters?,U
+0x7100791c48,1204,fn_7100791c48,unknown,game/characters?,O
 0x71007920fc,388,CCharClassModelUpdaterComponent::refl_InitClass,reflection,game/characters,O
 0x7100792280,380,fn_7100792280,unknown,game/characters?,U
 0x71007923fc,76,fn_71007923fc,unknown,game/characters?,U
@@ -3794,7 +3794,7 @@ address,size,name,name_source,subsystem,status
 0x71007bbb50,160,fn_71007bbb50,unknown,game/components?,U
 0x71007bbbf0,4,fn_71007bbbf0,unknown,game/components?,O
 0x71007bbbf4,244,CDroppableMissileComponent::refl_GetClass,reflection,game/components,O
-0x71007bbce8,1196,fn_71007bbce8,unknown,game/components?,U
+0x71007bbce8,1196,fn_71007bbce8,unknown,game/components?,O
 0x71007bc194,388,CDroppableMissileComponent::refl_InitClass,reflection,game/components,O
 0x71007bc318,380,fn_71007bc318,unknown,game/components?,U
 0x71007bc494,380,fn_71007bc494,unknown,game/components?,U
@@ -3823,7 +3823,7 @@ address,size,name,name_source,subsystem,status
 0x71007bcc20,160,fn_71007bcc20,unknown,game/components?,U
 0x71007bccc0,4,fn_71007bccc0,unknown,game/components?,O
 0x71007bccc4,244,CDroppablePowerBombComponent::refl_GetClass,reflection,game/components,O
-0x71007bcdb8,1196,fn_71007bcdb8,unknown,game/components?,U
+0x71007bcdb8,1196,fn_71007bcdb8,unknown,game/components?,O
 0x71007bd264,388,CDroppablePowerBombComponent::refl_InitClass,reflection,game/components,O
 0x71007bd3e8,380,fn_71007bd3e8,unknown,game/components?,U
 0x71007bd564,380,fn_71007bd564,unknown,game/components?,U
@@ -3872,7 +3872,7 @@ address,size,name,name_source,subsystem,status
 0x71007be2a0,160,fn_71007be2a0,unknown,unknown,U
 0x71007be340,4,fn_71007be340,unknown,unknown,O
 0x71007be344,244,CCharClassDropComponent::refl_GetClass,reflection,game/characters,O
-0x71007be438,2280,fn_71007be438,unknown,game/characters?,U
+0x71007be438,2280,fn_71007be438,unknown,game/characters?,O
 0x71007bed20,388,CCharClassDropComponent::refl_InitClass,reflection,game/characters,O
 0x71007beea4,268,fn_71007beea4,unknown,unknown,U
 0x71007befb0,36,fn_71007befb0,unknown,unknown,U
@@ -3987,7 +3987,7 @@ address,size,name,name_source,subsystem,status
 0x71007c6600,384,fn_71007c6600,unknown,unknown,U
 0x71007c6780,4,fn_71007c6780,unknown,unknown,O
 0x71007c6784,240,SDropProbabilities::refl_GetClass,reflection,game,O
-0x71007c6874,5092,fn_71007c6874,unknown,game?,U
+0x71007c6874,5092,fn_71007c6874,unknown,game?,O
 0x71007c7c58,388,SDropProbabilities::refl_InitClass,reflection,game,O
 0x71007c7ddc,112,fn_71007c7ddc,unknown,unknown,U
 0x71007c7e4c,36,fn_71007c7e4c,unknown,unknown,U

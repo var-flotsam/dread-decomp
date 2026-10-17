@@ -5,10 +5,48 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // game::logic::collision::CShape
 DREAD_REFL_TAG(7100d69bf8);
 void fn_7100d6968c(base::reflection::CClass*) {}
+void fn_7100d6e0d4();
+void fn_7100d69d64(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+void fn_7100d6e19c();
+void fn_7100d69ee0(UnkReflFunction* fn, const char* name);
+void fn_7100d69780(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vPos_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_vPos_GetterFunction", true);
+        fn->return_type = fn_71000246e4();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100d6e0d4);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vPos_SetterFunction", true)))
+        fn_7100d69d64(fn, "_vPos_SetterFunction");
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("vPos", true), fn_71000246e4(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field0->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{0.0f, 0.0f, 0.0f});
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Position");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bIsSolid_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_bIsSolid_GetterFunction", true);
+        fn->return_type = fn_710000d228();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100d6e19c);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bIsSolid_SetterFunction", true)))
+        fn_7100d69ee0(fn, "_m_bIsSolid_SetterFunction");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("bIsSolid", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field1->attrs.Add<bool>(fn_7100075240(), true);
+}
 bool fn_7100d6df18(const void* a, const void* b) { return a == b; }
 s32 fn_7100d6df24() { return -1; }
 const base::reflection::CType& fn_7100d6df2c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

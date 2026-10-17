@@ -5,10 +5,29 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CGameBlackboard
 DREAD_REFL_TAG(7100aea10c);
 void fn_7100ae9e78(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_717275b988;
+void fn_7100aed380();
+void fn_7100ae9f70(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_dctDeltaValues_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_dctDeltaValues_GetterFunction", true);
+        fn->return_type = &g_unk_717275b988;
+        fn->field_0xb2 = 0x1;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100aed380);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("dctDeltaValues", true), &g_unk_717275b988, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+}
 bool fn_7100aed2d4(const void* a, const void* b) { return a == b; }
 s32 fn_7100aed2e0() { return -1; }
 const base::reflection::CType& fn_7100aed2e8(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

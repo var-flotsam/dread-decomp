@@ -5,10 +5,42 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassEnemyLifeComponent
 DREAD_REFL_TAG(71008b43c0);
 void fn_71008b3b00(base::reflection::CClass*) {}
+const base::reflection::CClass* fn_71008c1b4c();
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_71008b3bf8(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("oDamageSourceFactor", true), fn_71008c1b4c(), 0xa8, -1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("bShouldDieWithPowerBomb", true), fn_710000d228(), 0x118, -1, -1);
+    field1->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fDamageFXTime", true), fn_710000abbc(), 0x11c, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 0.15f);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fMinTimeBetweenDamageSoundCallback", true), fn_710000abbc(), 0x130, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 0.1f);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fMaxTimeBetweenDamageSoundCallback", true), fn_710000abbc(), 0x134, -1, -1);
+    field4->attrs.Add<f32>(fn_7100075240(), 0.2f);
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("bIgnoreRotateToInstigator", true), fn_710000d228(), 0x138, -1, -1);
+    field5->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("bShowLifeBar", true), fn_710000d228(), 0x139, -1, -1);
+    field6->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("vLifeBarOffset", true), fn_71000246e4(), 0x13c, -1, -1);
+    field7->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{0.0f, 0.0f, 0.0f});
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("sDamageTimeline", true), fn_7100009658(), 0x120, -1, -1);
+    field8->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("sDamageSFXTimeline", true), fn_7100009658(), 0x128, -1, -1);
+    field9->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("bDashMeleeAppliesNonLethalDamage", true), fn_710000d228(), 0x148, -1, -1);
+    field10->attrs.Add<bool>(fn_7100075240(), true);
+}
 bool fn_71008b47d8(const void*, const void*) { return false; }
 s32 fn_71008b47e0() { return -1; }
 const base::reflection::CType& fn_71008b47e8(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

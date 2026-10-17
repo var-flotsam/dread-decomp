@@ -390,7 +390,7 @@ address,size,name,name_source,subsystem,status
 0x710090de40,1456,fn_710090de40,unknown,unknown,U
 0x710090e3f0,4,fn_710090e3f0,unknown,unknown,O
 0x710090e3f4,244,CSoundListenerComponent::refl_GetClass,reflection,audio,O
-0x710090e4e8,696,fn_710090e4e8,unknown,audio?,U
+0x710090e4e8,696,fn_710090e4e8,unknown,audio?,O
 0x710090e7a0,388,CSoundListenerComponent::refl_InitClass,reflection,audio,O
 0x710090e924,380,fn_710090e924,unknown,unknown,U
 0x710090eaa0,20,fn_710090eaa0,unknown,unknown,U
@@ -3837,7 +3837,7 @@ address,size,name,name_source,subsystem,status
 0x71009c8840,160,fn_71009c8840,unknown,unknown,U
 0x71009c88e0,4,fn_71009c88e0,unknown,unknown,O
 0x71009c88e4,244,CCharClassPersistenceComponent::refl_GetClass,reflection,game/characters,O
-0x71009c89d8,2000,fn_71009c89d8,unknown,game/characters?,U
+0x71009c89d8,2000,fn_71009c89d8,unknown,game/characters?,O
 0x71009c91a8,388,CCharClassPersistenceComponent::refl_InitClass,reflection,game/characters,O
 0x71009c932c,372,fn_71009c932c,unknown,unknown,U
 0x71009c94a0,372,fn_71009c94a0,unknown,unknown,U

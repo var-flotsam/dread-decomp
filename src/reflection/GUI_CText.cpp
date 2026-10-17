@@ -5,10 +5,67 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // GUI::CText
 DREAD_REFL_TAG(7100b85e18);
 void fn_7100b85598(base::reflection::CClass*) {}
+void fn_7100b8708c();
+void fn_7100b85f78(UnkReflFunction* fn, const char* name);
+void fn_7100b8719c();
+void fn_7100b860f4(UnkReflFunction* fn, const char* name);
+void fn_7100b87318();
+void fn_7100b86270(UnkReflFunction* fn, const char* name);
+void fn_7100b87488();
+void fn_7100b863ec(UnkReflFunction* fn, const char* name);
+void fn_7100b85690(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_Font_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_Font_GetterFunction", true);
+        fn->return_type = fn_7100009658();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100b8708c);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_Font_SetterFunction", true)))
+        fn_7100b85f78(fn, "_Font_SetterFunction");
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("Font", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_TextString_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_TextString_GetterFunction", true);
+        fn->return_type = fn_7100009658();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100b8719c);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_TextString_SetterFunction", true)))
+        fn_7100b860f4(fn, "_TextString_SetterFunction");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("TextString", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_TextAlignment_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_TextAlignment_GetterFunction", true);
+        fn->return_type = fn_7100009658();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100b87318);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_TextAlignment_SetterFunction", true)))
+        fn_7100b86270(fn, "_TextAlignment_SetterFunction");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("TextAlignment", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_Text_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_Text_GetterFunction", true);
+        fn->return_type = fn_7100014768();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100b87488);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_Text_SetterFunction", true)))
+        fn_7100b863ec(fn, "_Text_SetterFunction");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("Text", true), fn_7100014768(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+}
 bool fn_7100b87028(const void*, const void*) { return false; }
 s32 fn_7100b87030() { return -1; }
 const base::reflection::CType& fn_7100b87038(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

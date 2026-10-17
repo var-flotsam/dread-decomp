@@ -5,10 +5,39 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CMorphBallLauncherExitComponent
 DREAD_REFL_TAG(7100889a3c);
 void fn_7100889444(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+void fn_710088953c(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("vExpelDirection", true), fn_7100024504(), 0x48, -1, -1);
+    field0->attrs.Add<base::math::CVector2D>(fn_7100075240(), base::math::CVector2D{0.0f, 0.0f});
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Direction in which the MorphBall will be expelled when finishing the sequence");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fExpelImpulseSize", true), fn_710000abbc(), 0x50, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field1->attrs.Add<const char*>(fn_7100007e80(), "Impulse force to apply when expelling MorphBall through exit");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fInputIgnoreTimeAfterExpelling", true), fn_710000abbc(), 0x54, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field2->attrs.Add<const char*>(fn_7100007e80(), "Time after expelling during which the input is ignored (so impulse is kept for a bit");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fFrictionIgnoreTimeAfterExpelling", true), fn_710000abbc(), 0x58, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field3->attrs.Add<const char*>(fn_7100007e80(), "Time after expelling during which MorphBall's friction is ignored (so impulse is kept for a bit longer)");
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("bWantsRelocationAndExpelImpulse", true), fn_710000d228(), 0x5c, -1, -1);
+    field4->attrs.Add<bool>(fn_7100075240(), true);
+    field4->attrs.Add<const char*>(fn_7100007e80(), "Whether the morph wants relocation and expel impulse");
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("bWantsAutomaticOpenOnStartLaunchProcess", true), fn_710000d228(), 0x5d, -1, -1);
+    field5->attrs.Add<bool>(fn_7100075240(), true);
+    field5->attrs.Add<const char*>(fn_7100007e80(), "Whether to play open/opened action as soon as launch process starts");
+}
 bool fn_7100889f54(const void*, const void*) { return false; }
 s32 fn_7100889f5c() { return -1; }
 const base::reflection::CType& fn_7100889f64(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

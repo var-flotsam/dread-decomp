@@ -2690,7 +2690,7 @@ address,size,name,name_source,subsystem,status
 0x710087c4d4,388,CCharClassFanComponent::refl_InitClass,reflection,game/characters,O
 0x710087c658,4,fn_710087c658,unknown,unknown,O
 0x710087c65c,244,CFanComponent::refl_GetClass,reflection,game/components,O
-0x710087c750,3052,fn_710087c750,unknown,game/components?,U
+0x710087c750,3052,fn_710087c750,unknown,game/components?,O
 0x710087d33c,372,CFanComponent::refl_InitClass,reflection,game/components,O
 0x710087d4b0,380,fn_710087d4b0,unknown,unknown,U
 0x710087d62c,380,fn_710087d62c,unknown,unknown,U
@@ -3023,7 +3023,7 @@ address,size,name,name_source,subsystem,status
 0x7100889300,324,fn_7100889300,unknown,unknown,U
 0x7100889444,4,fn_7100889444,unknown,unknown,O
 0x7100889448,244,CMorphBallLauncherExitComponent::refl_GetClass,reflection,game/components,O
-0x710088953c,1280,fn_710088953c,unknown,game/components?,U
+0x710088953c,1280,fn_710088953c,unknown,game/components?,O
 0x7100889a3c,388,CMorphBallLauncherExitComponent::refl_InitClass,reflection,game/components,O
 0x7100889bc0,4,fn_7100889bc0,unknown,unknown,U
 0x7100889bc4,36,fn_7100889bc4,unknown,unknown,U
@@ -4014,7 +4014,7 @@ address,size,name,name_source,subsystem,status
 0x71008b3a60,160,fn_71008b3a60,unknown,game/characters?,U
 0x71008b3b00,4,fn_71008b3b00,unknown,game/characters?,O
 0x71008b3b04,244,CCharClassEnemyLifeComponent::refl_GetClass,reflection,game/characters,O
-0x71008b3bf8,1992,fn_71008b3bf8,unknown,game/characters?,U
+0x71008b3bf8,1992,fn_71008b3bf8,unknown,game/characters?,O
 0x71008b43c0,388,CCharClassEnemyLifeComponent::refl_InitClass,reflection,game/characters,O
 0x71008b4544,392,fn_71008b4544,unknown,game/characters?,U
 0x71008b46cc,204,fn_71008b46cc,unknown,game/characters?,U
@@ -4861,7 +4861,7 @@ address,size,name,name_source,subsystem,status
 0x71008ea240,140,fn_71008ea240,unknown,unknown,U
 0x71008ea2cc,4,fn_71008ea2cc,unknown,unknown,O
 0x71008ea2d0,244,CDirLightComponent::refl_GetClass,reflection,game/components,O
-0x71008ea3c4,1640,fn_71008ea3c4,unknown,game/components?,U
+0x71008ea3c4,1640,fn_71008ea3c4,unknown,game/components?,O
 0x71008eaa2c,388,CDirLightComponent::refl_InitClass,reflection,game/components,O
 0x71008eabb0,380,fn_71008eabb0,unknown,game/components?,U
 0x71008ead2c,380,fn_71008ead2c,unknown,game/components?,U
@@ -5051,7 +5051,7 @@ address,size,name,name_source,subsystem,status
 0x71008f25e0,160,fn_71008f25e0,unknown,unknown,U
 0x71008f2680,4,fn_71008f2680,unknown,unknown,O
 0x71008f2684,244,CSegmentLightComponent::refl_GetClass,reflection,game/components,O
-0x71008f2778,3512,fn_71008f2778,unknown,game/components?,U
+0x71008f2778,3512,fn_71008f2778,unknown,game/components?,O
 0x71008f3530,388,CSegmentLightComponent::refl_InitClass,reflection,game/components,O
 0x71008f36b4,380,fn_71008f36b4,unknown,unknown,U
 0x71008f3830,380,fn_71008f3830,unknown,unknown,U

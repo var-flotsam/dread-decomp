@@ -5,10 +5,41 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CSoundListenerComponent
 DREAD_REFL_TAG(710090e7a0);
 void fn_710090e3f0(base::reflection::CClass*) {}
+void fn_710090ee6c();
+void fn_710090e924(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_71000923a0();
+extern base::reflection::CType g_unk_7101d55008;
+const base::reflection::UnkReflAttrKey& fn_71000925c0();
+const base::reflection::UnkReflAttrKey& fn_710000bf80();
+extern base::reflection::CType g_unk_7101d679f0;
+void fn_710090e4e8(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vLookAt_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_vLookAt_GetterFunction", true);
+        fn->return_type = fn_71000246e4();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_710090ee6c);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vLookAt_SetterFunction", true)))
+        fn_710090e924(fn, "_vLookAt_SetterFunction");
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("vLookAt", true), fn_71000246e4(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field0->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{1.0f, 0.0f, 0.0f});
+    field0->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 3);
+    field0->attrs.Add<bool>(fn_71000925c0(), true);
+    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+}
 bool fn_710090edac(const void*, const void*) { return false; }
 s32 fn_710090edb4() { return -1; }
 const base::reflection::CType& fn_710090edbc(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

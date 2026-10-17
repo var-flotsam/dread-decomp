@@ -5,10 +5,70 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassPersistenceComponent
 DREAD_REFL_TAG(71009c91a8);
 void fn_71009c88e0(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_717275b580;
+void fn_71009c9bec();
+void fn_71009c932c(UnkReflFunction* fn, const char* name);
+void fn_71009c9cd8();
+void fn_71009c94a0(UnkReflFunction* fn, const char* name);
+void fn_71009c9dc4();
+void fn_71009c9614(UnkReflFunction* fn, const char* name);
+void fn_71009c9eb0();
+void fn_71009c9788(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_71009c89d8(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sBoolProperty_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_sBoolProperty_GetterFunction", true);
+        fn->return_type = &g_unk_717275b580;
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71009c9bec);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sBoolProperty_SetterFunction", true)))
+        fn_71009c932c(fn, "_sBoolProperty_SetterFunction");
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sBoolProperty", true), &g_unk_717275b580, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sIntProperty_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_sIntProperty_GetterFunction", true);
+        fn->return_type = &g_unk_717275b580;
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71009c9cd8);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sIntProperty_SetterFunction", true)))
+        fn_71009c94a0(fn, "_sIntProperty_SetterFunction");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("sIntProperty", true), &g_unk_717275b580, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sFloatProperty_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_sFloatProperty_GetterFunction", true);
+        fn->return_type = &g_unk_717275b580;
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71009c9dc4);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sFloatProperty_SetterFunction", true)))
+        fn_71009c9614(fn, "_sFloatProperty_SetterFunction");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("sFloatProperty", true), &g_unk_717275b580, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sSection_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_sSection_GetterFunction", true);
+        fn->return_type = fn_7100009658();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71009c9eb0);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sSection_SetterFunction", true)))
+        fn_71009c9788(fn, "_sSection_SetterFunction");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("sSection", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field3->attrs.Add<const char*>(fn_7100075240(), "");
+}
 bool fn_71009c9b70(const void*, const void*) { return false; }
 s32 fn_71009c9b78() { return -1; }
 const base::reflection::CType& fn_71009c9b80(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

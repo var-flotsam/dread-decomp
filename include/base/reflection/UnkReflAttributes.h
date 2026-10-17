@@ -10,6 +10,7 @@
 // placeholder names.
 
 #include "base/global/CStrId.h"
+#include "base/math/CVector.h"
 #include "base/reflection/CClass.h"
 #include "types.h"
 
@@ -82,6 +83,8 @@ const base::reflection::CType* fn_7100009658();  // "base::global::CStrId"
 const base::reflection::CType* fn_7100014768();  // "int"
 const base::reflection::CType* fn_710000abbc();  // "float"
 const base::reflection::CType* fn_710000d228();  // "bool"
+const base::reflection::CType* fn_7100024504();  // "base::math::CVector2D"
+const base::reflection::CType* fn_71000246e4();  // "base::math::CVector3D"
 
 namespace base::reflection {
 
@@ -111,6 +114,14 @@ struct UnkReflTypeOf<f32> {
 template <>
 struct UnkReflTypeOf<bool> {
     static const CType* Get() { return fn_710000d228(); }
+};
+template <>
+struct UnkReflTypeOf<math::CVector2D> {
+    static const CType* Get() { return fn_7100024504(); }
+};
+template <>
+struct UnkReflTypeOf<math::CVector3D> {
+    static const CType* Get() { return fn_71000246e4(); }
 };
 
 struct UnkReflAttrs {

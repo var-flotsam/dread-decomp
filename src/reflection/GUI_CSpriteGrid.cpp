@@ -5,10 +5,104 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // GUI::CSpriteGrid
 DREAD_REFL_TAG(71011fbeac);
 void fn_71011fb0b0(base::reflection::CClass*) {}
+const base::reflection::CType* fn_710000ad9c();
+void fn_71011fde04();
+void fn_71011fc00c(UnkReflFunction* fn, const char* name);
+void fn_71011fdf34();
+void fn_71011fc188(UnkReflFunction* fn, const char* name);
+void fn_71011fe028();
+void fn_71011fc304(UnkReflFunction* fn, const char* name);
+void fn_71011fe114();
+void fn_71011fc480(UnkReflFunction* fn, const char* name);
+void fn_71011fe200();
+void fn_71011fc5fc(UnkReflFunction* fn, const char* name);
+void fn_71011fe2ec();
+void fn_71011fc778(UnkReflFunction* fn, const char* name);
+void fn_71011fe3d8();
+void fn_71011fc8f4(UnkReflFunction* fn, const char* name);
+void fn_71011fb1a8(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_Image_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_Image_GetterFunction", true);
+        fn->return_type = fn_710000ad9c();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71011fde04);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_Image_SetterFunction", true)))
+        fn_71011fc00c(fn, "_Image_SetterFunction");
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("Image", true), fn_710000ad9c(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_CellDefaultSpriteSheetItem_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_CellDefaultSpriteSheetItem_GetterFunction", true);
+        fn->return_type = fn_7100009658();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71011fdf34);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_CellDefaultSpriteSheetItem_SetterFunction", true)))
+        fn_71011fc188(fn, "_CellDefaultSpriteSheetItem_SetterFunction");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("CellDefaultSpriteSheetItem", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_GridSizeX_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_GridSizeX_GetterFunction", true);
+        fn->return_type = fn_7100014768();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71011fe028);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_GridSizeX_SetterFunction", true)))
+        fn_71011fc304(fn, "_GridSizeX_SetterFunction");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("GridSizeX", true), fn_7100014768(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_GridSizeY_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_GridSizeY_GetterFunction", true);
+        fn->return_type = fn_7100014768();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71011fe114);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_GridSizeY_SetterFunction", true)))
+        fn_71011fc480(fn, "_GridSizeY_SetterFunction");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("GridSizeY", true), fn_7100014768(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_CellSizeX_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_CellSizeX_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71011fe200);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_CellSizeX_SetterFunction", true)))
+        fn_71011fc5fc(fn, "_CellSizeX_SetterFunction");
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("CellSizeX", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_CellSizeY_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_CellSizeY_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71011fe2ec);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_CellSizeY_SetterFunction", true)))
+        fn_71011fc778(fn, "_CellSizeY_SetterFunction");
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("CellSizeY", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_BlendMode_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_BlendMode_GetterFunction", true);
+        fn->return_type = fn_7100009658();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71011fe3d8);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_BlendMode_SetterFunction", true)))
+        fn_71011fc8f4(fn, "_BlendMode_SetterFunction");
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("BlendMode", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+}
 bool fn_71011fdda0(const void*, const void*) { return false; }
 s32 fn_71011fdda8() { return -1; }
 const base::reflection::CType& fn_71011fddb0(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
