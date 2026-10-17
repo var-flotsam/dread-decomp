@@ -1125,7 +1125,7 @@ address,size,name,name_source,subsystem,status
 0x7100b2347c,4,fn_7100b2347c,unknown,gui?,U
 0x7100b23480,352,GUI::CGlobalMapComposition::refl_InitClass,reflection,gui,U
 0x7100b235e0,812,fn_7100b235e0,unknown,unknown,U
-0x7100b2390c,384,fn_7100b2390c,unknown,unknown,U
+0x7100b2390c,384,fn_7100b2390c,unknown,unknown,O
 0x7100b23a8c,1892,fn_7100b23a8c,unknown,unknown,U
 0x7100b241f0,976,fn_7100b241f0,unknown,unknown,U
 0x7100b245c0,1272,fn_7100b245c0,unknown,unknown,U
@@ -1452,7 +1452,7 @@ address,size,name,name_source,subsystem,status
 0x7100b37524,4,fn_7100b37524,unknown,gui?,U
 0x7100b37528,352,GUI::CMapMenuController::refl_InitClass,reflection,gui,U
 0x7100b37688,620,fn_7100b37688,unknown,unknown,U
-0x7100b378f4,384,base::reflection::refl_InitType<GUI::CMapMenuController::SState>,reflection,engine/reflection,U
+0x7100b378f4,384,base::reflection::refl_InitType<GUI::CMapMenuController::SState>,reflection,engine/reflection,O
 0x7100b37a80,256,fn_7100b37a80,unknown,unknown,U
 0x7100b37b80,272,fn_7100b37b80,unknown,unknown,U
 0x7100b37c90,2432,fn_7100b37c90,unknown,unknown,U
@@ -2865,15 +2865,15 @@ address,size,name,name_source,subsystem,status
 0x7100b8c714,12,fn_7100b8c714,unknown,unknown,O
 0x7100b8c720,160,fn_7100b8c720,unknown,unknown,U
 0x7100b8c7c0,812,fn_7100b8c7c0,unknown,unknown,U
-0x7100b8caec,384,fn_7100b8caec,unknown,unknown,U
+0x7100b8caec,384,fn_7100b8caec,unknown,unknown,O
 0x7100b8cc6c,332,fn_7100b8cc6c,unknown,unknown,U
-0x7100b8cdb8,384,fn_7100b8cdb8,unknown,unknown,U
+0x7100b8cdb8,384,fn_7100b8cdb8,unknown,unknown,O
 0x7100b8cf38,524,fn_7100b8cf38,unknown,unknown,U
-0x7100b8d144,384,fn_7100b8d144,unknown,unknown,U
+0x7100b8d144,384,fn_7100b8d144,unknown,unknown,O
 0x7100b8d2c4,428,fn_7100b8d2c4,unknown,unknown,U
-0x7100b8d470,384,fn_7100b8d470,unknown,unknown,U
+0x7100b8d470,384,fn_7100b8d470,unknown,unknown,O
 0x7100b8d5f0,1580,fn_7100b8d5f0,unknown,unknown,U
-0x7100b8dc1c,384,fn_7100b8dc1c,unknown,unknown,U
+0x7100b8dc1c,384,fn_7100b8dc1c,unknown,unknown,O
 0x7100b8dd9c,336,fn_7100b8dd9c,unknown,unknown,U
 0x7100b8deec,260,fn_7100b8deec,unknown,unknown,U
 0x7100b8dff0,236,fn_7100b8dff0,unknown,unknown,U
@@ -4971,7 +4971,7 @@ address,size,name,name_source,subsystem,status
 0x7100bcdc70,20,fn_7100bcdc70,unknown,game/characters?,U
 0x7100bcdc90,160,fn_7100bcdc90,unknown,game/characters?,U
 0x7100bcdd30,332,fn_7100bcdd30,unknown,game/characters?,U
-0x7100bcde7c,384,fn_7100bcde7c,unknown,game/characters?,U
+0x7100bcde7c,384,fn_7100bcde7c,unknown,game/characters?,O
 0x7100bcdffc,232,fn_7100bcdffc,unknown,game/characters?,O
 0x7100bce0e4,244,CharClassSakaiModifyShieldEvent::refl_GetClass,reflection,game/characters?,O
 0x7100bce1d8,212,fn_7100bce1d8,unknown,game/characters?,O

@@ -639,9 +639,9 @@ address,size,name,name_source,subsystem,status
 0x7100216f44,76,fn_7100216f44,unknown,unknown,U
 0x7100216f90,140,fn_7100216f90,unknown,unknown,U
 0x710021701c,1196,fn_710021701c,unknown,unknown,U
-0x71002174c8,384,fn_71002174c8,unknown,unknown,U
+0x71002174c8,384,fn_71002174c8,unknown,unknown,O
 0x7100217648,716,fn_7100217648,unknown,unknown,U
-0x7100217914,384,fn_7100217914,unknown,unknown,U
+0x7100217914,384,fn_7100217914,unknown,unknown,O
 0x7100217a94,12,fn_7100217a94,unknown,unknown,U
 0x7100217aa0,12,fn_7100217aa0,unknown,unknown,U
 0x7100217aac,12,fn_7100217aac,unknown,unknown,U
@@ -850,7 +850,7 @@ address,size,name,name_source,subsystem,status
 0x710021bd70,68,fn_710021bd70,unknown,unknown,U
 0x710021bdc0,140,fn_710021bdc0,unknown,unknown,U
 0x710021be4c,716,fn_710021be4c,unknown,unknown,U
-0x710021c118,384,fn_710021c118,unknown,unknown,U
+0x710021c118,384,fn_710021c118,unknown,unknown,O
 0x710021c298,12,fn_710021c298,unknown,unknown,U
 0x710021c2a4,12,fn_710021c2a4,unknown,unknown,U
 0x710021c2b0,20,fn_710021c2b0,unknown,unknown,U
@@ -2555,7 +2555,7 @@ address,size,name,name_source,subsystem,status
 0x710025a70c,220,fn_710025a70c,unknown,unknown,O
 0x710025a7e8,504,fn_710025a7e8,unknown,unknown,U
 0x710025a9e0,428,fn_710025a9e0,unknown,unknown,U
-0x710025ab8c,384,fn_710025ab8c,unknown,unknown,U
+0x710025ab8c,384,fn_710025ab8c,unknown,unknown,O
 0x710025ad0c,824,fn_710025ad0c,unknown,unknown,U
 0x710025b044,36,fn_710025b044,unknown,unknown,U
 0x710025b068,528,fn_710025b068,unknown,unknown,U
@@ -4805,7 +4805,7 @@ address,size,name,name_source,subsystem,status
 0x71002d33ec,1204,fn_71002d33ec,unknown,animation?,O
 0x71002d38a0,388,animtree::CAnimatedNodeDef::refl_InitClass,reflection,animation,O
 0x71002d3a24,332,fn_71002d3a24,unknown,animation?,U
-0x71002d3b70,384,fn_71002d3b70,unknown,animation?,U
+0x71002d3b70,384,fn_71002d3b70,unknown,animation?,O
 0x71002d3cf0,4,fn_71002d3cf0,unknown,animation?,U
 0x71002d3cf4,28,fn_71002d3cf4,unknown,animation?,U
 0x71002d3d10,448,fn_71002d3d10,unknown,animation?,U

@@ -1171,9 +1171,9 @@ address,size,name,name_source,subsystem,status
 0x7100832128,4,fn_7100832128,unknown,game?,O
 0x710083212c,388,CGrappleBeamGun::refl_InitClass,reflection,game,O
 0x71008322b0,620,fn_71008322b0,unknown,game?,U
-0x710083251c,384,fn_710083251c,unknown,game?,U
+0x710083251c,384,fn_710083251c,unknown,game?,O
 0x710083269c,428,fn_710083269c,unknown,game?,U
-0x7100832848,384,fn_7100832848,unknown,game?,U
+0x7100832848,384,fn_7100832848,unknown,game?,O
 0x71008329c8,4,fn_71008329c8,unknown,game?,O
 0x71008329cc,244,CGrappleBeamGun::CTunableGrappleBeamGun::refl_GetClass,reflection,game,O
 0x7100832ac0,1356,fn_7100832ac0,unknown,game?,O
@@ -2426,9 +2426,9 @@ address,size,name,name_source,subsystem,status
 0x7100874678,336,fn_7100874678,unknown,unknown,U
 0x71008747d0,232,fn_71008747d0,unknown,unknown,U
 0x71008748b8,2348,fn_71008748b8,unknown,unknown,U
-0x71008751e4,384,fn_71008751e4,unknown,unknown,U
+0x71008751e4,384,fn_71008751e4,unknown,unknown,O
 0x7100875364,524,fn_7100875364,unknown,unknown,U
-0x7100875570,384,fn_7100875570,unknown,unknown,U
+0x7100875570,384,fn_7100875570,unknown,unknown,O
 0x71008756f0,12,fn_71008756f0,unknown,unknown,U
 0x71008756fc,12,fn_71008756fc,unknown,unknown,U
 0x7100875708,20,fn_7100875708,unknown,unknown,U
@@ -4127,9 +4127,9 @@ address,size,name,name_source,subsystem,status
 0x71008c0268,4,fn_71008c0268,unknown,unknown,U
 0x71008c0270,652,fn_71008c0270,unknown,unknown,U
 0x71008c04fc,716,fn_71008c04fc,unknown,unknown,U
-0x71008c07c8,384,fn_71008c07c8,unknown,unknown,U
+0x71008c07c8,384,fn_71008c07c8,unknown,unknown,O
 0x71008c0948,428,fn_71008c0948,unknown,unknown,U
-0x71008c0af4,384,fn_71008c0af4,unknown,unknown,U
+0x71008c0af4,384,fn_71008c0af4,unknown,unknown,O
 0x71008c0c74,444,fn_71008c0c74,unknown,unknown,U
 0x71008c0e30,608,fn_71008c0e30,unknown,unknown,U
 0x71008c1090,1192,fn_71008c1090,unknown,unknown,U
@@ -4180,7 +4180,7 @@ address,size,name,name_source,subsystem,status
 0x71008c30c8,76,fn_71008c30c8,unknown,unknown,U
 0x71008c3120,160,fn_71008c3120,unknown,unknown,U
 0x71008c31c0,716,fn_71008c31c0,unknown,unknown,U
-0x71008c348c,384,fn_71008c348c,unknown,unknown,U
+0x71008c348c,384,fn_71008c348c,unknown,unknown,O
 0x71008c360c,12,fn_71008c360c,unknown,unknown,U
 0x71008c3618,12,fn_71008c3618,unknown,unknown,U
 0x71008c3624,20,fn_71008c3624,unknown,unknown,U
@@ -4211,7 +4211,7 @@ address,size,name,name_source,subsystem,status
 0x71008c4168,12,fn_71008c4168,unknown,game/components?,O
 0x71008c4180,160,fn_71008c4180,unknown,game/components?,U
 0x71008c4220,620,fn_71008c4220,unknown,game/components?,U
-0x71008c448c,384,fn_71008c448c,unknown,game/components?,U
+0x71008c448c,384,fn_71008c448c,unknown,game/components?,O
 0x71008c460c,120,fn_71008c460c,unknown,game/components?,U
 0x71008c4684,4,fn_71008c4684,unknown,game/components?,U
 0x71008c4688,244,CDemolitionBlockLifeComponent::refl_GetClass,reflection,game/components,U
@@ -4308,7 +4308,7 @@ address,size,name,name_source,subsystem,status
 0x71008cab80,240,fn_71008cab80,unknown,unknown,U
 0x71008cac70,120,fn_71008cac70,unknown,unknown,U
 0x71008cace8,524,fn_71008cace8,unknown,unknown,U
-0x71008caef4,384,base::reflection::refl_InitType<CDoorLifeComponent::SState>,reflection,engine/reflection,U
+0x71008caef4,384,base::reflection::refl_InitType<CDoorLifeComponent::SState>,reflection,engine/reflection,O
 0x71008cb074,4,fn_71008cb074,unknown,unknown,U
 0x71008cb078,244,CDoorLifeComponent::refl_GetClass,reflection,game/components,U
 0x71008cb16c,5944,fn_71008cb16c,unknown,game/components?,U
@@ -4518,9 +4518,9 @@ address,size,name,name_source,subsystem,status
 0x71008dd1d0,436,fn_71008dd1d0,unknown,unknown,U
 0x71008dd384,400,fn_71008dd384,unknown,unknown,U
 0x71008dd514,524,fn_71008dd514,unknown,unknown,U
-0x71008dd720,384,fn_71008dd720,unknown,unknown,U
+0x71008dd720,384,fn_71008dd720,unknown,unknown,O
 0x71008dd8a0,716,fn_71008dd8a0,unknown,unknown,U
-0x71008ddb6c,384,fn_71008ddb6c,unknown,unknown,U
+0x71008ddb6c,384,fn_71008ddb6c,unknown,unknown,O
 0x71008ddcec,4,fn_71008ddcec,unknown,unknown,U
 0x71008ddcf0,244,CDoorShieldLifeComponent::refl_GetClass,reflection,game/components,U
 0x71008ddde4,952,fn_71008ddde4,unknown,game/components?,U
@@ -5327,4 +5327,4 @@ address,size,name,name_source,subsystem,status
 0x71008ffa5c,220,fn_71008ffa5c,unknown,unknown,O
 0x71008ffb38,504,fn_71008ffb38,unknown,unknown,U
 0x71008ffd30,524,fn_71008ffd30,unknown,unknown,U
-0x71008fff3c,384,fn_71008fff3c,unknown,unknown,U
+0x71008fff3c,384,fn_71008fff3c,unknown,unknown,O

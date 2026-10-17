@@ -4835,11 +4835,11 @@ address,size,name,name_source,subsystem,status
 0x71010f41a0,1808,fn_71010f41a0,unknown,unknown,U
 0x71010f48b0,852,fn_71010f48b0,unknown,unknown,U
 0x71010f4c04,524,fn_71010f4c04,unknown,unknown,U
-0x71010f4e10,384,fn_71010f4e10,unknown,unknown,U
+0x71010f4e10,384,fn_71010f4e10,unknown,unknown,O
 0x71010f4f90,908,fn_71010f4f90,unknown,unknown,U
-0x71010f531c,384,fn_71010f531c,unknown,unknown,U
+0x71010f531c,384,fn_71010f531c,unknown,unknown,O
 0x71010f549c,812,fn_71010f549c,unknown,unknown,U
-0x71010f57c8,384,fn_71010f57c8,unknown,unknown,U
+0x71010f57c8,384,fn_71010f57c8,unknown,unknown,O
 0x71010f5948,220,fn_71010f5948,unknown,unknown,O
 0x71010f5a24,220,fn_71010f5a24,unknown,unknown,O
 0x71010f5b00,900,fn_71010f5b00,unknown,unknown,U

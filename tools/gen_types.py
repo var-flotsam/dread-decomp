@@ -1,19 +1,21 @@
 #!/usr/bin/env python3
-"""Generate src/reflection_types/: getters and descriptor constructors of non-class types.
+"""Generate src/reflection_types/: descriptors of non-class types.
 
-Non-class type getters (refl_GetType<T>) share one code shape: a guarded static descriptor
-built from the type name by the type's descriptor constructor, with its destructor registered
-at exit. This generator handles the pointer types (CPointerType, include/base/reflection/
-CPointerType.h):
+Pointer types (CPointerType, include/base/reflection/CPointerType.h): getters
+(refl_GetType<T>) share one code shape, a guarded static descriptor built from the type name
+by the type's descriptor constructor, with its destructor registered at exit.
+Enums (CEnumType, include/base/reflection/CEnumType.h): only the descriptor constructors;
+the descriptors themselves are globals built by each TU's static initialiser.
 
   1. Candidates are the functions whose instruction sequence (mnemonics only) equals that of a
-     verified reference: the getter REF_GETTER, the constructors REF_POINTER_CALL (pointee
-     from its getter) and REF_POINTER_GLOBAL (pointee is a global descriptor). The reference
-     shapes are read from the binary at run time; nothing derived from code is stored here.
-  2. Each constructor's stores are emulated to recover the type-specific function pointers
-     and the pointee; the getter gives the type name and its constructor.
-  3. All candidates are compiled in one scratch translation unit; only getter/constructor
-     pairs that are both byte-identical are written out.
+     verified reference: the getter REF_GETTER and the enum constructor REF_ENUM (pointer
+     constructors are taken from the getters). Reference shapes are read from the binary at
+     run time; nothing derived from code is stored here.
+  2. Each constructor's stores are emulated to recover the kind, size, the type-specific
+     function pointers and the kind's own fields; the getter gives the type name and its
+     constructor.
+  3. All candidates are compiled in one scratch translation unit; only byte-identical
+     functions are written out (for pointer types, only pairs where both match).
 
 Usage: python tools/gen_types.py --version 2.1.0
 Outputs are deterministic. Regenerate, never edit them.
@@ -23,6 +25,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import re
 import shutil
 import subprocess
 import sys
@@ -39,11 +42,11 @@ ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "src" / "reflection_types"
 BASE = 0x7100000000
 REF_GETTER = 0x71000081E8          # refl_GetType<char const*>
-REF_POINTER_CALL = 0x71000082C4    # its CPointerType constructor (pointee from a getter call)
-REF_POINTER_GLOBAL = 0x710000C088  # a CPointerType constructor whose pointee is a global
 KIND_HASH = 0x7100001570
 CSTRID_CTOR = 0x71000003D4
 POINTER_KIND = "base::reflection::CPointerType"
+ENUM_KIND = "base::reflection::CEnumType"
+REF_ENUM = 0x71000145E8         # a CEnumType constructor
 CHUNK = 200  # getter/constructor pairs per generated file
 
 # CType/CPointerType slots filled by the constructor: offset -> traits member.
@@ -69,12 +72,17 @@ def reg(x, op) -> str:
     return "x" + name[1:] if name[0] == "w" else name
 
 
-def emulate(orig: asmdiff.Original, addr: int) -> dict | None:
-    """Stores of a descriptor constructor to [x19, #off]: off -> ('fn'|'data'|'call'|'imm', value)."""
+def emulate(orig: asmdiff.Original, addr: int) -> tuple[str | None, dict, int | None]:
+    """A descriptor constructor's kind string, its stores to the object and its tail call.
+
+    Stores are keyed by offset from the object (x19, including pre-index writebacks):
+    off -> ('fn'|'data'|'call'|'imm'|'arg', value).
+    """
     page: dict[str, int] = {}
-    val: dict[str, tuple] = {"xzr": ("imm", 0), "wzr": ("imm", 0)}
+    val: dict[str, tuple] = {"xzr": ("imm", 0), "x1": ("arg", 1), "x2": ("arg", 2), "x3": ("arg", 3)}
     stores: dict[int, tuple] = {}
-    kind = None
+    kind = tail = None
+    delta = 0  # x19 - object, after pre-index writebacks
     for x in disasm(orig, addr):
         m, o = x.mnemonic, x.operands
         if m == "adrp":
@@ -95,6 +103,13 @@ def emulate(orig: asmdiff.Original, addr: int) -> dict | None:
         if m in ("mov", "movz") and len(o) == 2 and o[1].type == capstone.arm64.ARM64_OP_IMM:
             val[reg(x, o[0])] = ("imm", o[1].imm & (2**64 - 1))
             continue
+        if m == "mov" and len(o) == 2 and o[1].type == capstone.arm64.ARM64_OP_REG and reg(x, o[0]) != "x19":
+            src = val.get(reg(x, o[1]))
+            if src:
+                val[reg(x, o[0])] = src
+            else:
+                val.pop(reg(x, o[0]), None)
+            continue
         if m == "bl":
             if o[0].imm == KIND_HASH:
                 kind = val.get("x0", ("", None))[1]
@@ -102,20 +117,23 @@ def emulate(orig: asmdiff.Original, addr: int) -> dict | None:
             for r in [f"x{i}" for i in range(1, 19)]:
                 val.pop(r, None)
             continue
+        if m == "b" and o[0].imm not in range(addr, addr + orig.sizes[addr]):
+            tail = o[0].imm
+            continue
         if m in ("str", "stp") and CS.reg_name(o[-1].mem.base) == "x19":
             regs = [reg(x, op) for op in o[:-1]]
             raw = CS.reg_name(o[0].reg)
             size = 8 if raw[0] in "xd" else 4
             for k, r in enumerate(regs):
-                stores[o[-1].mem.disp + k * size] = val.get(r, ("?", r))
+                stores[delta + o[-1].mem.disp + k * size] = val.get(r, ("?", r))
+            if x.writeback:
+                delta += o[-1].mem.disp
             continue
         for r in [CS.reg_name(r) for r in x.regs_access()[1]]:
             r = "x" + r[1:] if r[0] == "w" else r
             val.pop(r, None)
             page.pop(r, None)
-    if kind != POINTER_KIND:
-        return None
-    return stores
+    return kind, stores, tail
 
 
 def getter_facts(orig: asmdiff.Original, addr: int) -> tuple[str, int] | None:
@@ -141,8 +159,8 @@ def getter_facts(orig: asmdiff.Original, addr: int) -> tuple[str, int] | None:
 
 
 def traits(orig: asmdiff.Original, init: int, decls: set[str]) -> list[str] | None:
-    st = emulate(orig, init)
-    if st is None:
+    kind, st, _ = emulate(orig, init)
+    if kind != POINTER_KIND:
         return None
     size = st.get(0x18)
     if not size or size[0] != "imm":
@@ -187,9 +205,55 @@ def emit(getter: int, name: str, init: int, body: list[str]) -> list[str]:
             f"base::reflection::refl_GetPointerType<UnkRefl_fn_{getter:x}>();"]
 
 
-PRELUDE = ['#include "base/reflection/CPointerType.h"',
+def enum_traits(orig: asmdiff.Original, init: int, decls: set[str]) -> list[str] | None:
+    kind, st, tail = emulate(orig, init)
+    if kind != ENUM_KIND or tail is None or st.get(0xE8) != ("arg", 2):
+        return None
+    size, under = st.get(0x18), st.get(0xE0)
+    if not size or size[0] != "imm" or not under or under[0] != "call":
+        return None
+    lines = [f"    static constexpr u64 size = {size[1]:#x};"]
+    for off in (0x28, 0x30, 0x38, 0x40, 0x48, 0x50, 0x58, 0x60, 0x68):
+        v = st.get(off)
+        if v == ("imm", 0):
+            lines.append(f"    static constexpr UnkFn {SLOTS[off]} = nullptr;")
+        elif v and v[0] == "fn":
+            decls.add(f"void fn_{v[1]:x}();")
+            lines.append(f"    static constexpr UnkFn {SLOTS[off]} = &fn_{v[1]:x};")
+        else:
+            return None
+    decls.add(f"const base::reflection::CType* fn_{under[1]:x}();")
+    decls.add(f"void fn_{tail:x}(void* values, u32 count);")
+    lines += [f"    static const CType* underlying() {{ return fn_{under[1]:x}(); }}",
+              f"    static void reserve(void* values, u32 count) {{ fn_{tail:x}(values, count); }}"]
+    return lines
+
+
+def emit_enum(init: int, body: list[str]) -> list[str]:
+    return [f"struct UnkRefl_fn_{init:x};",
+            "template <>",
+            f"struct base::reflection::UnkReflEnumTraits<UnkRefl_fn_{init:x}> {{",
+            *body,
+            "};",
+            f"template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, "
+            f"UnkRefl_fn_{init:x}*);"]
+
+
+PRELUDE = ['#include "base/reflection/CEnumType.h"',
+           '#include "base/reflection/CPointerType.h"',
            "using base::reflection::CType;",
            "using base::reflection::UnkFn;"]
+NAME_RE = re.compile(r"\b(?:fn|g_unk)_[0-9a-f]{10}\b")
+
+
+def write_chunks(prefix: str, blocks: list[list[str]], decls: set[str], header: list[str]) -> None:
+    by_name = {NAME_RE.search(d.split("(")[0]).group(0): d for d in decls}
+    for k in range(0, len(blocks), CHUNK):
+        body = [line for b in blocks[k:k + CHUNK] for line in b]
+        names = {n for line in body for n in NAME_RE.findall(line)}
+        used = sorted(d for n, d in by_name.items() if n in names)
+        (OUT / f"{prefix}_{k // CHUNK:02d}.cpp").write_text("\n".join(header + PRELUDE + used + body) + "\n",
+                                                           encoding="utf-8")
 
 
 def main() -> int:
@@ -203,19 +267,26 @@ def main() -> int:
         with f.open(newline="", encoding="utf-8") as fh:
             rows += [int(r["address"], 16) for r in csv.DictReader(fh) if r["status"] in ("U", "O")]
     getter_shape = shape(orig, REF_GETTER)
-    ctor_shapes = [shape(orig, REF_POINTER_CALL), shape(orig, REF_POINTER_GLOBAL)]
+    enum_shape = shape(orig, REF_ENUM)
     n = len(getter_shape) * 4
 
     pairs = []  # (getter, name, init, traits lines)
+    enums = []  # (init, traits lines)
     decls: set[str] = set()
     for a in rows:
-        if orig.sizes.get(a) != n or shape(orig, a) != getter_shape:
+        size = orig.sizes.get(a)
+        if size == len(enum_shape) * 4 and shape(orig, a) == enum_shape:
+            body = enum_traits(orig, a, decls)
+            if body:
+                enums.append((a, body))
+            continue
+        if size != n or shape(orig, a) != getter_shape:
             continue
         facts = getter_facts(orig, a)
         if not facts:
             continue
         name, init = facts
-        if init not in orig.sizes or shape(orig, init) not in ctor_shapes:
+        if init not in orig.sizes:
             continue
         body = traits(orig, init, decls)
         if body:
@@ -227,30 +298,27 @@ def main() -> int:
     work = ROOT / "build" / "gen_types"
     work.mkdir(parents=True, exist_ok=True)
     src, obj = work / "candidates.cpp", work / "candidates.o"
-    text = PRELUDE + sorted(decls) + [line for g, nm, i, b in pairs for line in emit(g, nm, i, b)]
+    text = (PRELUDE + sorted(decls) + [line for g, nm, i, b in pairs for line in emit(g, nm, i, b)]
+            + [line for i, b in enums for line in emit_enum(i, b)])
     src.write_text("\n".join(text) + "\n", encoding="utf-8")
     r = subprocess.run(buildcfg.cxx_command(src, obj), capture_output=True, text=True)
     if r.returncode != 0:
         raise SystemExit(f"candidates failed to compile:\n{r.stderr[:4000]}")
     ok = {res.address for res in asmdiff.diff_object(obj, orig) if res.matching}
     good = [p for p in pairs if p[0] in ok and p[2] in ok]
+    good_enums = [e for e in enums if e[0] in ok]
 
     if OUT.exists():
         shutil.rmtree(OUT)
     OUT.mkdir(parents=True)
-    header = ["// Generated by tools/gen_types.py from main; regenerate rather than edit.",
-              "// Getters (refl_GetType<T>) and descriptor constructors (refl_InitType<T>) of pointer",
-              "// types, byte-identical to the original."]
-    for k in range(0, len(good), CHUNK):
-        chunk = good[k:k + CHUNK]
-        used = sorted({d for d in decls if any(d.split("(")[0].split()[-1].lstrip("&") in line
-                                                for g, nm, i, b in chunk for line in b)})
-        lines = header + PRELUDE + used
-        for g, nm, i, b in chunk:
-            lines += emit(g, nm, i, b)
-        (OUT / f"pointer_types_{k // CHUNK:02d}.cpp").write_text("\n".join(lines) + "\n", encoding="utf-8")
-    print(f"{len(pairs)} pointer-type getter/constructor candidates; {len(good)} pairs byte-identical; "
-          f"{len(ok & {p[0] for p in pairs})} getters, {len(ok & {p[2] for p in pairs})} constructors matched")
+    note = "// Generated by tools/gen_types.py from main; regenerate rather than edit."
+    write_chunks("pointer_types", [emit(*p) for p in good], decls,
+                 [note, "// Getters (refl_GetType<T>) and descriptor constructors (refl_InitType<T>) of pointer",
+                  "// types, byte-identical to the original."])
+    write_chunks("enum_types", [emit_enum(*e) for e in good_enums], decls,
+                 [note, "// Descriptor constructors (refl_InitType<E>) of enums, byte-identical to the original."])
+    print(f"pointer types: {len(pairs)} getter/constructor candidates, {len(good)} pairs byte-identical; "
+          f"enums: {len(enums)} constructor candidates, {len(good_enums)} byte-identical")
     return 0
 
 

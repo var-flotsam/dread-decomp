@@ -4,7 +4,7 @@ For the next developer, human or AI, picking up this project. Read this, then `C
 (rules and conventions), `docs/recon.md` (what's in the binary), `docs/compiler.md`
 (toolchain), and `docs/references.md` (outside projects).
 
-Snapshot as of 2026-10-17 (third Phase 4 session; last commit `Phase 4.3: pointer-type getters and descriptor constructors`). Target: **Metroid Dread 2.1.0**, `main` build ID
+Snapshot as of 2026-10-17 (third Phase 4 session; last commit `Phase 4.3: enum descriptor constructors`). Target: **Metroid Dread 2.1.0**, `main` build ID
 `646761F643AFEBB379EDD5E6A5151AF2CEF93DC1`.
 
 ## Where things stand
@@ -17,14 +17,14 @@ Snapshot as of 2026-10-17 (third Phase 4 session; last commit `Phase 4.3: pointe
 | Tooling for Phase 4 | **Done.** `tools/check.py` (build + status), objdiff (`tools/objdiff_gen.py`), whole-binary progress (`tools/progress.py`) |
 | 4.1 System headers | **Done.** `lib/nnsdk` + `lib/musl` submodules, libc++ 9.0.1 headers, `tools/buildcfg.py` |
 | 4.2 Lua | **Done.** Upstream 5.1.4 vendored in `lib/lua/` (2 marked config changes); 286 Lua functions located in `main` by `tools/sigmatch.py` (status `L`) |
-| 4.3 Reflection | **In progress.** 1,878 of 2,346 class getters with their descriptor constructors, per-type helpers and 1,485 of 1,627 attribute/member-field functions generated and byte-identical (`src/reflection/`, `tools/gen_reflection.py`, `tools/refl_attrs.py`). Pointer types: 988 getters and their 988 `CPointerType` constructors (`src/reflection_types/`, `tools/gen_types.py`). Next: other non-class kinds, property functions and the remaining helpers (below) |
+| 4.3 Reflection | **In progress.** 1,878 of 2,346 class getters with their descriptor constructors, per-type helpers and 1,485 of 1,627 attribute/member-field functions generated and byte-identical (`src/reflection/`, `tools/gen_reflection.py`, `tools/refl_attrs.py`). Pointer types: 988 getters and their 988 `CPointerType` constructors; all 238 `CEnumType` constructors (`src/reflection_types/`, `tools/gen_types.py`). Next: other non-class kinds, property functions and the remaining helpers (below) |
 | 4.4 Core engine types | **In progress.** String ids (`CStrId`, `UnkStrId`), the growable array `base::UnkVector` and its allocator interface; reflected-function initialisers now match (below) |
 | 4.5+ Boot to title screen | Not started; plan below |
 | Port | Not started (`port/` is empty) |
 
-Function status (BotW codes): `O` 19,110, `m` 4, `M` 1, `L` 1,614, `U` 83,288.
-**Game-code progress: 14.85% of bytes (2.79 MB) matching** (`tools/progress.py`; library code
-excluded). `tools/check.py` reports 19,119 `O` in `src/` because the matching `nn::atk`
+Function status (BotW codes): `O` 19,348, `m` 4, `M` 1, `L` 1,614, `U` 83,050.
+**Game-code progress: 15.34% of bytes (2.88 MB) matching** (`tools/progress.py`; library code
+excluded). `tools/check.py` reports 19,357 `O` in `src/` because the matching `nn::atk`
 functions and a few others keep `L`.
 
 ## Hard rules (summary; full text in CLAUDE.md)
@@ -66,6 +66,7 @@ tools/sigmatch.py         names vendored-library functions in main -> data/libra
 tools/gen_reflection.py   regenerates src/reflection/ from main (skipped TUs: build/reflection_tus.json)
 tools/gen_types.py        regenerates src/reflection_types/: non-class type getters + descriptor constructors
 include/base/reflection/CPointerType.h  CPointerType, its constructor template and refl_GetPointerType<G>
+include/base/reflection/CEnumType.h     CEnumType and its constructor template
 tools/refl_attrs.py       reconstructs attribute/member-field functions; keeps only byte-identical ones
 include/base/global/CStrId.h            base::global::CStrId and UnkStrId (pooled, refcounted string ids)
 include/base/UnkVector.h                base::UnkVector<T> (growable array) and base::UnkAllocator
@@ -248,8 +249,13 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
      matches them by shape against a verified reference, emulates the descriptor constructor's
      stores and keeps only byte-identical pairs. Done: all 988 pointer types (`CPointerType`:
      CType + bool + pointee + three functions; the pointee comes from a getter call or is a
-     global descriptor; the size is usually 8, 0x38 for some iterator types). Left: the other
-     kinds behind the same getter shape (enums, 238 × 384-byte constructors, and others),
+     global descriptor; the size is usually 8, 0x38 for some iterator types) and all 238 enum
+     constructors (`CEnumType`: CType + underlying type + a constructor argument + a value
+     list reserved for 16 through an out-of-line call). Enum descriptors are globals built by
+     each TU's static initialiser (which also registers the values), not by lazy getters; those
+     initialisers are still `U`. Left: 159 pointer types whose pointee getter (a collection-type
+     getter such as `fn_710000a7cc`) is in the same TU, so the original uses the returned
+     address as a constant (they parse but need that getter generated alongside),
      the primitive-type getters (e.g. `fn_7100008500`, 476 bytes), and each pointer type's
      small helpers (`0x28`–`0x68`, `0xf0`–`0x100`; 4–60 bytes each, still `U`). Container
      accessors whose element getter sits in the same TU (54 × 912 bytes) still need that
