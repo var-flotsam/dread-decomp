@@ -5,10 +5,33 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassAreaSoundComponent
 DREAD_REFL_TAG(710077f174);
 void fn_710077ee40(base::reflection::CClass*) {}
+void fn_710077f56c();
+void fn_710077f2f8(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_710077ef38(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bOverrideDisableInEditor_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_bOverrideDisableInEditor_GetterFunction", true);
+        fn->return_type = fn_710000d228();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_710077f56c);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bOverrideDisableInEditor_SetterFunction", true)))
+        fn_710077f2f8(fn, "_bOverrideDisableInEditor_SetterFunction");
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("bOverrideDisableInEditor", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field0->attrs.Add<bool>(fn_7100075240(), true);
+}
 bool fn_710077f4b8(const void*, const void*) { return false; }
 s32 fn_710077f4c0() { return -1; }
 const base::reflection::CType& fn_710077f4c8(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

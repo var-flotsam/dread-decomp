@@ -5,10 +5,46 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // querysystem::CDistanceToTargetEvaluator
 DREAD_REFL_TAG(71002bc5f0);
 void fn_71002bc0b0(base::reflection::CClass*) {}
+void fn_71002bcf74();
+void fn_71002bc774(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_71002bd004();
+void fn_71002bc8f0(UnkReflFunction* fn, const char* name);
+void fn_71002bc1a8(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fMinDistance_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_fMinDistance_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71002bcf74);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fMinDistance_SetterFunction", true)))
+        fn_71002bc774(fn, "_fMinDistance_SetterFunction");
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fMinDistance", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field0->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fMaxDistance_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_fMaxDistance_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71002bd004);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fMaxDistance_SetterFunction", true)))
+        fn_71002bc8f0(fn, "_fMaxDistance_SetterFunction");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fMaxDistance", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field1->attrs.Add<f32>(fn_7100075240(), -1.0f);
+}
 bool fn_71002bcb8c(const void* a, const void* b) { return a == b; }
 s32 fn_71002bcb98() { return -1; }
 const base::reflection::CType& fn_71002bcba0(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

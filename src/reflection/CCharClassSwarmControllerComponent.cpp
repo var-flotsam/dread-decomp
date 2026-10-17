@@ -5,10 +5,214 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassSwarmControllerComponent
 DREAD_REFL_TAG(710073627c);
 void fn_7100733460(base::reflection::CClass*) {}
+void fn_7100737778();
+void fn_7100736400(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+void fn_7100737808();
+void fn_710073657c(UnkReflFunction* fn, const char* name);
+void fn_7100737898();
+void fn_71007366f8(UnkReflFunction* fn, const char* name);
+void fn_7100737928();
+void fn_7100736874(UnkReflFunction* fn, const char* name);
+void fn_71007379b8();
+void fn_71007369f0(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100093390();
+const base::reflection::UnkReflAttrKey& fn_710000bf80();
+extern base::reflection::CType g_unk_7101d679f0;
+const base::reflection::UnkReflAttrKey& fn_71000923a0();
+extern base::reflection::CType g_unk_7101d55008;
+const base::reflection::UnkReflAttrKey& fn_7100090a20();
+const base::reflection::CType* fn_7100007f84();
+const base::reflection::CClass* fn_71008c1b4c();
+void fn_7100733558(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fMinTimeInNode_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_fMinTimeInNode_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100737778);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fMinTimeInNode_SetterFunction", true)))
+        fn_7100736400(fn, "_m_fMinTimeInNode_SetterFunction");
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fMinTimeInNode", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field0->attrs.Add<f32>(fn_7100075240(), 2.0f);
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Minimum time waiting in a node [2]");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fTimeInNodeRandomness_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_fTimeInNodeRandomness_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100737808);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fTimeInNodeRandomness_SetterFunction", true)))
+        fn_710073657c(fn, "_m_fTimeInNodeRandomness_SetterFunction");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fTimeInNodeRandomness", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field1->attrs.Add<f32>(fn_7100075240(), 2.0f);
+    field1->attrs.Add<const char*>(fn_7100007e80(), "Minimum time waiting in a node [2]");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fTargetChangeProbability_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_fTargetChangeProbability_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100737898);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fTargetChangeProbability_SetterFunction", true)))
+        fn_71007366f8(fn, "_m_fTargetChangeProbability_SetterFunction");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fTargetChangeProbability", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field2->attrs.Add<f32>(fn_7100075240(), 0.01f);
+    field2->attrs.Add<const char*>(fn_7100007e80(), "Probability of traveling to another node [.01]");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("sIndividualLife", true), fn_7100009658(), 0x70, -1, -1);
+    field3->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    field3->attrs.Add<const char*>(fn_7100007e80(), "Life of each individual of groups [1]");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fAttackPathOffset_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_fAttackPathOffset_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100737928);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fAttackPathOffset_SetterFunction", true)))
+        fn_7100736874(fn, "_m_fAttackPathOffset_SetterFunction");
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fAttackPathOffset", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field4->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    field4->attrs.Add<const char*>(fn_7100007e80(), "Offset used to check if Samus is above the attack path [0]");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_iMaxChangingTargetSimul_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_iMaxChangingTargetSimul_GetterFunction", true);
+        fn->return_type = fn_7100014768();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71007379b8);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_iMaxChangingTargetSimul_SetterFunction", true)))
+        fn_71007369f0(fn, "_m_iMaxChangingTargetSimul_SetterFunction");
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("iMaxChangingTargetSimul", true), fn_7100014768(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field5->attrs.Add<s32>(fn_7100075240(), 3);
+    field5->attrs.Add<const char*>(fn_7100007e80(), "Max number of groups traveling to another node simultaneously [3]");
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("bWantsSpiraling", true), fn_710000d228(), 0xffffffff, -1, -1);
+    field6->attrs.Add<bool>(fn_7100093390(), true);
+    field6->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field6->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
+    field6->attrs.Add<bool>(fn_7100090a20(), false);
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("bWantsJellyfishMovement", true), fn_710000d228(), 0xffffffff, -1, -1);
+    field7->attrs.Add<bool>(fn_7100093390(), true);
+    field7->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field7->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
+    field7->attrs.Add<bool>(fn_7100090a20(), false);
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("bWantsFishMovement", true), fn_710000d228(), 0xffffffff, -1, -1);
+    field8->attrs.Add<bool>(fn_7100093390(), true);
+    field8->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field8->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
+    field8->attrs.Add<bool>(fn_7100090a20(), false);
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("bWantsInternalFlocking", true), fn_710000d228(), 0xffffffff, -1, -1);
+    field9->attrs.Add<bool>(fn_7100093390(), true);
+    field9->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field9->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
+    field9->attrs.Add<bool>(fn_7100090a20(), false);
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("bWantsMigration", true), fn_710000d228(), 0xd4, -1, -1);
+    field10->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field11 = fn_7100096524(cls, CStrId("fMaxDistToMigrate", true), fn_710000abbc(), 0xd8, -1, -1);
+    field11->attrs.Add<f32>(fn_7100075240(), 200.0f);
+    UnkReflField* field12 = fn_7100096524(cls, CStrId("bWantsBumpReaction", true), fn_710000d228(), 0xec, -1, -1);
+    field12->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field13 = fn_7100096524(cls, CStrId("iTotalDrops", true), fn_7100014768(), 0x330, -1, -1);
+    field13->attrs.Add<s32>(fn_7100075240(), 1);
+    field13->attrs.Add<const char*>(fn_7100007e80(), "Number of drops when the whole group is destroyed [1]");
+    UnkReflField* field14 = fn_7100096524(cls, CStrId("fShakeAmplitude", true), fn_710000abbc(), 0x7c, -1, -1);
+    field14->attrs.Add<f32>(fn_7100075240(), 2.5f);
+    field14->attrs.Add<const char*>(fn_7100007e80(), "Shake Amplitude");
+    UnkReflField* field15 = fn_7100096524(cls, CStrId("fShakeSpeed", true), fn_710000abbc(), 0x80, -1, -1);
+    field15->attrs.Add<f32>(fn_7100075240(), 50.0f);
+    field15->attrs.Add<const char*>(fn_7100007e80(), "Shake speed multiplier");
+    UnkReflField* field16 = fn_7100096524(cls, CStrId("iMinHitsForMediumImpact", true), fn_7100014768(), 0x88, -1, -1);
+    field16->attrs.Add<s32>(fn_7100075240(), 2);
+    UnkReflField* field17 = fn_7100096524(cls, CStrId("iMinHitsForLargeImpact", true), fn_7100014768(), 0x84, -1, -1);
+    field17->attrs.Add<s32>(fn_7100075240(), 25);
+    UnkReflField* field18 = fn_7100096524(cls, CStrId("sImpactSoundSmallGroup", true), fn_7100007f84(), 0x180, -1, -1);
+    field18->attrs.Add<const char*>(fn_7100075240(), "");
+    UnkReflField* field19 = fn_7100096524(cls, CStrId("sImpactSoundMediumGroup", true), fn_7100007f84(), 0x1b0, -1, -1);
+    field19->attrs.Add<const char*>(fn_7100075240(), "");
+    UnkReflField* field20 = fn_7100096524(cls, CStrId("sImpactSoundLargeGroup", true), fn_7100007f84(), 0x1e0, -1, -1);
+    field20->attrs.Add<const char*>(fn_7100075240(), "");
+    UnkReflField* field21 = fn_7100096524(cls, CStrId("sMoveSoundSmallGroup", true), fn_7100007f84(), 0x210, -1, -1);
+    field21->attrs.Add<const char*>(fn_7100075240(), "");
+    UnkReflField* field22 = fn_7100096524(cls, CStrId("sMoveSoundMediumGroup", true), fn_7100007f84(), 0x240, -1, -1);
+    field22->attrs.Add<const char*>(fn_7100075240(), "");
+    UnkReflField* field23 = fn_7100096524(cls, CStrId("sMoveSoundLargeGroup", true), fn_7100007f84(), 0x270, -1, -1);
+    field23->attrs.Add<const char*>(fn_7100075240(), "");
+    UnkReflField* field24 = fn_7100096524(cls, CStrId("iMaxPopulationForSmallGroup", true), fn_7100005178(), 0x8c, -1, -1);
+    field24->attrs.Add<s32>(fn_7100075240(), 4);
+    UnkReflField* field25 = fn_7100096524(cls, CStrId("iMaxPopulationForMediumGroup", true), fn_7100005178(), 0x90, -1, -1);
+    field25->attrs.Add<s32>(fn_7100075240(), 12);
+    UnkReflField* field26 = fn_7100096524(cls, CStrId("fMaxTimeAlive", true), fn_710000abbc(), 0xf0, -1, -1);
+    field26->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    UnkReflField* field27 = fn_7100096524(cls, CStrId("fMinTimeAlive", true), fn_710000abbc(), 0xf4, -1, -1);
+    field27->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    UnkReflField* field28 = fn_7100096524(cls, CStrId("fMaxDistToLinkNodes", true), fn_710000abbc(), 0x94, -1, -1);
+    field28->attrs.Add<f32>(fn_7100075240(), 110.0f);
+    UnkReflField* field29 = fn_7100096524(cls, CStrId("fMeleeRepelRadius", true), fn_710000abbc(), 0x98, -1, -1);
+    field29->attrs.Add<f32>(fn_7100075240(), 200.0f);
+    UnkReflField* field30 = fn_7100096524(cls, CStrId("fMeleeKillRatio", true), fn_710000abbc(), 0x9c, -1, -1);
+    field30->attrs.Add<f32>(fn_7100075240(), 2.0f);
+    UnkReflField* field31 = fn_7100096524(cls, CStrId("iMeleeMinKills", true), fn_7100014768(), 0xa0, -1, -1);
+    field31->attrs.Add<s32>(fn_7100075240(), 10);
+    UnkReflField* field32 = fn_7100096524(cls, CStrId("iMeleeMaxKills", true), fn_7100014768(), 0xa4, -1, -1);
+    field32->attrs.Add<s32>(fn_7100075240(), -1);
+    UnkReflField* field33 = fn_7100096524(cls, CStrId("fMeleeMinRepelDistance", true), fn_710000abbc(), 0xa8, -1, -1);
+    field33->attrs.Add<f32>(fn_7100075240(), 650.0f);
+    UnkReflField* field34 = fn_7100096524(cls, CStrId("fMeleeMaxRepelDistance", true), fn_710000abbc(), 0xac, -1, -1);
+    field34->attrs.Add<f32>(fn_7100075240(), 850.0f);
+    UnkReflField* field35 = fn_7100096524(cls, CStrId("fMissileRepelRadius", true), fn_710000abbc(), 0xb0, -1, -1);
+    field35->attrs.Add<f32>(fn_7100075240(), 250.0f);
+    UnkReflField* field36 = fn_7100096524(cls, CStrId("fMissileKillRatio", true), fn_710000abbc(), 0xb4, -1, -1);
+    field36->attrs.Add<f32>(fn_7100075240(), 0.2f);
+    UnkReflField* field37 = fn_7100096524(cls, CStrId("iMissileMinKills", true), fn_7100014768(), 0xb8, -1, -1);
+    field37->attrs.Add<s32>(fn_7100075240(), 15);
+    UnkReflField* field38 = fn_7100096524(cls, CStrId("iMissileMaxKills", true), fn_7100014768(), 0xbc, -1, -1);
+    field38->attrs.Add<s32>(fn_7100075240(), 150);
+    UnkReflField* field39 = fn_7100096524(cls, CStrId("fMissileMinRepelDistance", true), fn_710000abbc(), 0xc0, -1, -1);
+    field39->attrs.Add<f32>(fn_7100075240(), 850.0f);
+    UnkReflField* field40 = fn_7100096524(cls, CStrId("fMissileMaxRepelDistance", true), fn_710000abbc(), 0xc4, -1, -1);
+    field40->attrs.Add<f32>(fn_7100075240(), 1000.0f);
+    UnkReflField* field41 = fn_7100096524(cls, CStrId("fMigrationCheckMinTime", true), fn_710000abbc(), 0xe0, -1, -1);
+    field41->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    UnkReflField* field42 = fn_7100096524(cls, CStrId("fMigrationCheckMaxTime", true), fn_710000abbc(), 0xe4, -1, -1);
+    field42->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    UnkReflField* field43 = fn_7100096524(cls, CStrId("fDefaultDiversionTimer", true), fn_710000abbc(), 0xe8, -1, -1);
+    field43->attrs.Add<f32>(fn_7100075240(), 5.0f);
+    UnkReflField* field44 = fn_7100096524(cls, CStrId("fMinStunTime", true), fn_710000abbc(), 0xc8, -1, -1);
+    field44->attrs.Add<f32>(fn_7100075240(), 0.3f);
+    UnkReflField* field45 = fn_7100096524(cls, CStrId("fMaxStunTime", true), fn_710000abbc(), 0xcc, -1, -1);
+    field45->attrs.Add<f32>(fn_7100075240(), 0.5f);
+    UnkReflField* field46 = fn_7100096524(cls, CStrId("fDefaultBeamsRadiusIncrement", true), fn_710000abbc(), 0x104, -1, -1);
+    field46->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    UnkReflField* field47 = fn_7100096524(cls, CStrId("fWideBeamRadiusIncrement", true), fn_710000abbc(), 0x108, -1, -1);
+    field47->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    UnkReflField* field48 = fn_7100096524(cls, CStrId("fPlasmaBeamRadiusIncrement", true), fn_710000abbc(), 0x10c, -1, -1);
+    field48->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    UnkReflField* field49 = fn_7100096524(cls, CStrId("oDamageSourceFactor", true), fn_71008c1b4c(), 0x110, -1, -1);
+    UnkReflField* field50 = fn_7100096524(cls, CStrId("bDiesOfLoneliness", true), fn_710000d228(), 0xf8, -1, -1);
+    field50->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field51 = fn_7100096524(cls, CStrId("iLonelinessGroupSize", true), fn_7100014768(), 0xfc, -1, -1);
+    field51->attrs.Add<s32>(fn_7100075240(), 2);
+    UnkReflField* field52 = fn_7100096524(cls, CStrId("bApplyLonelinessToEachGroup", true), fn_710000d228(), 0x100, -1, -1);
+    field52->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field53 = fn_7100096524(cls, CStrId("bWeakToSpinAttack", true), fn_710000d228(), 0x101, -1, -1);
+    field53->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field54 = fn_7100096524(cls, CStrId("bIsWater", true), fn_710000d228(), 0x58, -1, -1);
+    field54->attrs.Add<bool>(fn_7100075240(), false);
+}
 bool fn_71007376fc(const void*, const void*) { return false; }
 s32 fn_7100737704() { return -1; }
 const base::reflection::CType& fn_710073770c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

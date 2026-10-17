@@ -5,10 +5,117 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassBossAIComponent
 DREAD_REFL_TAG(71004198cc);
 void fn_71004186e8(base::reflection::CClass*) {}
+void fn_710041a4e0();
+void fn_7100419a2c(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+void fn_710041a570();
+void fn_7100419ba8(UnkReflFunction* fn, const char* name);
+void fn_710041a600();
+void fn_7100419d24(UnkReflFunction* fn, const char* name);
+void fn_710041a690();
+void fn_7100419ea0(UnkReflFunction* fn, const char* name);
+void fn_710041a720();
+void fn_710041a01c(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100093390();
+const base::reflection::UnkReflAttrKey& fn_710000bf80();
+extern base::reflection::CType g_unk_7101d679f0;
+const base::reflection::UnkReflAttrKey& fn_71000923a0();
+extern base::reflection::CType g_unk_7101d55008;
+const base::reflection::UnkReflAttrKey& fn_7100090a20();
+void fn_71004187e0(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bUseIsInFrustumForBossCamera_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_bUseIsInFrustumForBossCamera_GetterFunction", true);
+        fn->return_type = fn_710000d228();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_710041a4e0);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bUseIsInFrustumForBossCamera_SetterFunction", true)))
+        fn_7100419a2c(fn, "_m_bUseIsInFrustumForBossCamera_SetterFunction");
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("bUseIsInFrustumForBossCamera", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field0->attrs.Add<bool>(fn_7100075240(), true);
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Use Is In Frustum For Boss Camera");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bUseAngry_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_bUseAngry_GetterFunction", true);
+        fn->return_type = fn_710000d228();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_710041a570);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bUseAngry_SetterFunction", true)))
+        fn_7100419ba8(fn, "_m_bUseAngry_SetterFunction");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("bUseAngry", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field1->attrs.Add<bool>(fn_7100075240(), false);
+    field1->attrs.Add<const char*>(fn_7100007e80(), "Use angry?");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("bManuallyRemoveFromTeamManager", true), fn_710000d228(), 0x50f, -1, -1);
+    field2->attrs.Add<bool>(fn_7100075240(), false);
+    field2->attrs.Add<const char*>(fn_7100007e80(), "Manually remove from team manager?");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bWantsLifeFeedback_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_bWantsLifeFeedback_GetterFunction", true);
+        fn->return_type = fn_710000d228();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_710041a600);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bWantsLifeFeedback_SetterFunction", true)))
+        fn_7100419d24(fn, "_m_bWantsLifeFeedback_SetterFunction");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("bWantsLifeFeedback", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field3->attrs.Add<bool>(fn_7100075240(), false);
+    field3->attrs.Add<const char*>(fn_7100007e80(), "Wants Life Feedback?");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bRemovePlayerInputOnDeath_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_bRemovePlayerInputOnDeath_GetterFunction", true);
+        fn->return_type = fn_710000d228();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_710041a690);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bRemovePlayerInputOnDeath_SetterFunction", true)))
+        fn_7100419ea0(fn, "_m_bRemovePlayerInputOnDeath_SetterFunction");
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("bRemovePlayerInputOnDeath", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field4->attrs.Add<bool>(fn_7100075240(), true);
+    field4->attrs.Add<const char*>(fn_7100007e80(), "Remove player input on death?");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bSetPlayerInvulnerableWithReactionOnDeath_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_bSetPlayerInvulnerableWithReactionOnDeath_GetterFunction", true);
+        fn->return_type = fn_710000d228();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_710041a720);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bSetPlayerInvulnerableWithReactionOnDeath_SetterFunction", true)))
+        fn_710041a01c(fn, "_m_bSetPlayerInvulnerableWithReactionOnDeath_SetterFunction");
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("bSetPlayerInvulnerableWithReactionOnDeath", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field5->attrs.Add<bool>(fn_7100075240(), true);
+    field5->attrs.Add<const char*>(fn_7100007e80(), "Set Samus invulnerable with reaction on death?");
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("bOpenDoorWhenDie", true), fn_710000d228(), 0x513, -1, -1);
+    field6->attrs.Add<bool>(fn_7100075240(), true);
+    field6->attrs.Add<const char*>(fn_7100007e80(), "Opens door after death?");
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("sBossBattleLabel", true), fn_7100009658(), 0xffffffff, -1, -1);
+    field7->attrs.Add<bool>(fn_7100093390(), true);
+    field7->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field7->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
+    field7->attrs.Add<bool>(fn_7100090a20(), false);
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("sInventoryItemOnKilled", true), fn_7100009658(), 0x518, -1, -1);
+    field8->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("bCheckOrientationInGrab", true), fn_710000d228(), 0x520, -1, -1);
+    field9->attrs.Add<bool>(fn_7100075240(), true);
+    field9->attrs.Add<const char*>(fn_7100007e80(), "Check orientation in grab?");
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("bPersistenBossDefeatedPushSetup", true), fn_710000d228(), 0x521, -1, -1);
+    field10->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field11 = fn_7100096524(cls, CStrId("bGiveInventoryItemOnDead", true), fn_710000d228(), 0x522, -1, -1);
+    field11->attrs.Add<bool>(fn_7100075240(), true);
+}
 bool fn_710041a404(const void*, const void*) { return false; }
 s32 fn_710041a40c() { return -1; }
 const base::reflection::CType& fn_710041a414(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

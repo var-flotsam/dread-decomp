@@ -883,7 +883,7 @@ address,size,name,name_source,subsystem,status
 0x710021d820,140,fn_710021d820,unknown,unknown,U
 0x710021d8ac,4,fn_710021d8ac,unknown,unknown,O
 0x710021d8b0,240,media::CMoviePlayer::refl_GetClass,reflection,media,O
-0x710021d9a0,996,fn_710021d9a0,unknown,media?,U
+0x710021d9a0,996,fn_710021d9a0,unknown,media?,O
 0x710021dd84,352,media::CMoviePlayer::refl_InitClass,reflection,media,O
 0x710021dee4,220,fn_710021dee4,unknown,media?,U
 0x710021dfc0,368,fn_710021dfc0,unknown,media?,U
@@ -4069,7 +4069,7 @@ address,size,name,name_source,subsystem,status
 0x71002bafb0,160,fn_71002bafb0,unknown,ai/querysystem?,U
 0x71002bb050,4,fn_71002bb050,unknown,ai/querysystem?,O
 0x71002bb054,244,querysystem::CDistanceEvaluator::refl_GetClass,reflection,ai/querysystem,O
-0x71002bb148,1096,fn_71002bb148,unknown,ai/querysystem?,U
+0x71002bb148,1096,fn_71002bb148,unknown,ai/querysystem?,O
 0x71002bb590,388,querysystem::CDistanceEvaluator::refl_InitClass,reflection,ai/querysystem,O
 0x71002bb714,380,fn_71002bb714,unknown,ai/querysystem?,U
 0x71002bb890,380,fn_71002bb890,unknown,ai/querysystem?,U
@@ -4093,7 +4093,7 @@ address,size,name,name_source,subsystem,status
 0x71002bc010,160,fn_71002bc010,unknown,ai/querysystem?,U
 0x71002bc0b0,4,fn_71002bc0b0,unknown,ai/querysystem?,O
 0x71002bc0b4,244,querysystem::CDistanceToTargetEvaluator::refl_GetClass,reflection,ai/querysystem,O
-0x71002bc1a8,1096,fn_71002bc1a8,unknown,ai/querysystem?,U
+0x71002bc1a8,1096,fn_71002bc1a8,unknown,ai/querysystem?,O
 0x71002bc5f0,388,querysystem::CDistanceToTargetEvaluator::refl_InitClass,reflection,ai/querysystem,O
 0x71002bc774,380,fn_71002bc774,unknown,ai/querysystem?,U
 0x71002bc8f0,380,fn_71002bc8f0,unknown,ai/querysystem?,U

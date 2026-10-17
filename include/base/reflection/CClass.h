@@ -7,13 +7,12 @@
 // constructor hashes the string "base::reflection::CClass"; "base::reflection::CType" is a
 // reflected type). Members that aren't understood yet keep offset-based names.
 
+#include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
 // Hash of a type-kind name ("base::reflection::CClass", length 0x18).
 u64 fn_7100001570(const char* str, u64 length);
-// Returns the allocator each reflection container is created with.
-void* fn_7100083990();
 
 namespace base::reflection {
 
@@ -49,16 +48,6 @@ struct UnkReflObjectB {
     virtual const CClass* vf_0x18() const;
 };
 
-// Container at CType+0x90 (0x28 bytes).
-struct UnkReflArrayA {
-    void* begin = nullptr;
-    void* end = nullptr;
-    u32 field_0x10 = 10;
-    bool field_0x14 = true;
-    u32 field_0x18 = 0x3e;
-    void* allocator = fn_7100083990();
-};
-
 // Container used at CType+0xb8 and CClass+0xe8/+0x110 (0x28 bytes).
 // At CClass+0x110 it holds the class's functions (0xb8 bytes each) and a parallel array of
 // their names (CStrId).
@@ -69,7 +58,7 @@ struct UnkReflArray {
     u32 capacity = 0;
     u32 field_0x18;  // growth step (fn_7100097550 grows by it)
     u32 field_0x1c;
-    void* allocator = fn_7100083990();
+    base::UnkAllocator* allocator = fn_7100083990();
 
     UnkReflArray(u32 a, u32 b) : field_0x18(a), field_0x1c(b) {}
     u64 size() const { return count; }
@@ -127,7 +116,7 @@ public:
     const CType* m_parent;
     void* field_0x80 = nullptr;  // attribute container, created on first use (fn_710009dd6c)
     void* field_0x88 = nullptr;
-    UnkReflArrayA m_array_0x90;
+    base::UnkVector<void*> m_array_0x90;
     UnkReflArray m_array_0xb8;
 };
 

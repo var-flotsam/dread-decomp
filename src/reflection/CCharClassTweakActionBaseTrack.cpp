@@ -21,6 +21,44 @@ void fn_7100d2b7d0(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Tweak Jump Ground Action");
     fn_710009dd6c(cls)->Add<const char*>(fn_7100090e60(), "Tweak");
 }
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_7100d2c7f0();
+void fn_7100d2c1e8(UnkReflFunction* fn, const char* name);
+void fn_7100d2c880();
+void fn_7100d2c364(UnkReflFunction* fn, const char* name);
+extern base::reflection::CType g_unk_71727695f8;
+void fn_7100d2b960(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sAction", true), fn_7100009658(), 0x18, -1, -1);
+    field0->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bMaintainFrame_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_bMaintainFrame_GetterFunction", true);
+        fn->return_type = fn_710000d228();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100d2c7f0);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bMaintainFrame_SetterFunction", true)))
+        fn_7100d2c1e8(fn, "_bMaintainFrame_SetterFunction");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("bMaintainFrame", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field1->attrs.Add<bool>(fn_7100075240(), false);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bMaintainFrameUsePercentage_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_bMaintainFrameUsePercentage_GetterFunction", true);
+        fn->return_type = fn_710000d228();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100d2c880);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bMaintainFrameUsePercentage_SetterFunction", true)))
+        fn_7100d2c364(fn, "_bMaintainFrameUsePercentage_SetterFunction");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("bMaintainFrameUsePercentage", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field2->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fToFrame", true), fn_710000abbc(), 0x28, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fBlendTime", true), fn_710000abbc(), 0x2c, -1, -1);
+    field4->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("oAditionalActionInsertFlags", true), &g_unk_71727695f8, 0x30, -1, -1);
+    field5->attrs.Add<s32>(fn_7100075240(), &g_unk_71727695f8, 0);
+}
 bool fn_7100d2c6e4(const void* a, const void* b) { return a == b; }
 s32 fn_7100d2c6f0() { return -1; }
 const base::reflection::CType& fn_7100d2c6f8(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

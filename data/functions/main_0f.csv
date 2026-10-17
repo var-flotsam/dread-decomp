@@ -462,7 +462,7 @@ address,size,name,name_source,subsystem,status
 0x7100f1acb4,220,fn_7100f1acb4,unknown,unknown,U
 0x7100f1ad90,4,fn_7100f1ad90,unknown,unknown,O
 0x7100f1ad94,244,CEnvironmentData::SFogTransition::refl_GetClass,reflection,game,O
-0x7100f1ae88,1768,fn_7100f1ae88,unknown,game?,U
+0x7100f1ae88,1768,fn_7100f1ae88,unknown,game?,O
 0x7100f1b570,388,CEnvironmentData::SFogTransition::refl_InitClass,reflection,game,O
 0x7100f1b6f4,380,fn_7100f1b6f4,unknown,unknown,U
 0x7100f1b870,380,fn_7100f1b870,unknown,unknown,U
@@ -648,7 +648,7 @@ address,size,name,name_source,subsystem,status
 0x7100f30de8,220,fn_7100f30de8,unknown,unknown,U
 0x7100f30ec4,4,fn_7100f30ec4,unknown,unknown,O
 0x7100f30ec8,244,CEnvironmentData::SVerticalFogTransition::refl_GetClass,reflection,game,O
-0x7100f30fbc,2704,fn_7100f30fbc,unknown,game?,U
+0x7100f30fbc,2704,fn_7100f30fbc,unknown,game?,O
 0x7100f31a4c,388,CEnvironmentData::SVerticalFogTransition::refl_InitClass,reflection,game,O
 0x7100f31bd0,380,fn_7100f31bd0,unknown,unknown,U
 0x7100f31d4c,380,fn_7100f31d4c,unknown,unknown,U

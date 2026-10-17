@@ -5,6 +5,13 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassActivatableComponent
 DREAD_REFL_TAG(7100877d04);
@@ -38,6 +45,25 @@ DREAD_REFL_CLASS_GETTER(7100877c0c, 7100877d04, "CCharClassActivatableComponent"
 // CActivatableComponent
 DREAD_REFL_TAG(710087818c);
 void fn_7100877e88(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_7101d5af48;
+void fn_7100878d94();
+void fn_7100878dd4();
+void fn_7100877f80(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("Activate", true))) {
+        fn->name = base::global::UnkStrId("Activate", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100878d94);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("Deactivate", true))) {
+        fn->name = base::global::UnkStrId("Deactivate", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100878dd4);
+    }
+}
 bool fn_7100878cf8(const void*, const void*) { return false; }
 s32 fn_7100878d00() { return -1; }
 const base::reflection::CType& fn_7100878d08(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

@@ -5,10 +5,43 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassChozoCommanderSentenceSphereMovementComponent
 DREAD_REFL_TAG(7100458f60);
 void fn_7100458900(base::reflection::CClass*) {}
+void fn_7100459370();
+void fn_71004590e4(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_71004589f8(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fRotationSpeedDeg_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_fRotationSpeedDeg_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100459370);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fRotationSpeedDeg_SetterFunction", true)))
+        fn_71004590e4(fn, "_m_fRotationSpeedDeg_SetterFunction");
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fRotationSpeedDeg", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field0->attrs.Add<f32>(fn_7100075240(), 90.0f);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fInitialRadius", true), fn_710000abbc(), 0x13c, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 30.0f);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fMinRadius", true), fn_710000abbc(), 0x140, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 90.0f);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fMaxRadius", true), fn_710000abbc(), 0x144, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 200.0f);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fTimeToReachMinRadius", true), fn_710000abbc(), 0x148, -1, -1);
+    field4->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("fTimeToReachMaxRadius", true), fn_710000abbc(), 0x14c, -1, -1);
+    field5->attrs.Add<f32>(fn_7100075240(), 4.0f);
+}
 bool fn_7100459260(const void*, const void*) { return false; }
 s32 fn_7100459268() { return -1; }
 const base::reflection::CType& fn_7100459270(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

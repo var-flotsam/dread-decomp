@@ -1643,7 +1643,7 @@ address,size,name,name_source,subsystem,status
 0x7100d2b730,160,fn_7100d2b730,unknown,game/characters?,U
 0x7100d2b7d0,156,fn_7100d2b7d0,unknown,game/characters?,O
 0x7100d2b86c,244,CCharClassTweakActionBaseTrack::refl_GetClass,reflection,game/characters,O
-0x7100d2b960,1824,fn_7100d2b960,unknown,game/characters?,U
+0x7100d2b960,1824,fn_7100d2b960,unknown,game/characters?,O
 0x7100d2c080,360,CCharClassTweakActionBaseTrack::refl_InitClass,reflection,game/characters,O
 0x7100d2c1e8,380,fn_7100d2c1e8,unknown,game/characters?,U
 0x7100d2c364,380,fn_7100d2c364,unknown,game/characters?,U
@@ -1710,7 +1710,7 @@ address,size,name,name_source,subsystem,status
 0x7100d2df30,160,fn_7100d2df30,unknown,game/characters?,U
 0x7100d2dfd0,232,fn_7100d2dfd0,unknown,game/characters?,O
 0x7100d2e0b8,244,CCharClassTweakConvertToMorphBallVelocityTrack::refl_GetClass,reflection,game/characters,O
-0x7100d2e1ac,1084,fn_7100d2e1ac,unknown,game/characters?,U
+0x7100d2e1ac,1084,fn_7100d2e1ac,unknown,game/characters?,O
 0x7100d2e5e8,368,CCharClassTweakConvertToMorphBallVelocityTrack::refl_InitClass,reflection,game/characters,O
 0x7100d2e758,380,fn_7100d2e758,unknown,game/characters?,U
 0x7100d2e8d4,380,fn_7100d2e8d4,unknown,game/characters?,U

@@ -427,7 +427,7 @@ address,size,name,name_source,subsystem,status
 0x7100816350,160,fn_7100816350,unknown,game/characters?,U
 0x71008163f0,4,fn_71008163f0,unknown,game/characters?,O
 0x71008163f4,244,CCharClassGrapplePointComponent::refl_GetClass,reflection,game/characters,O
-0x71008164e8,832,fn_71008164e8,unknown,game/characters?,U
+0x71008164e8,832,fn_71008164e8,unknown,game/characters?,O
 0x7100816828,388,CCharClassGrapplePointComponent::refl_InitClass,reflection,game/characters,O
 0x71008169ac,380,fn_71008169ac,unknown,unknown,U
 0x7100816b28,72,fn_7100816b28,unknown,unknown,U
@@ -2542,7 +2542,7 @@ address,size,name,name_source,subsystem,status
 0x7100877d04,388,CCharClassActivatableComponent::refl_InitClass,reflection,game/characters,O
 0x7100877e88,4,fn_7100877e88,unknown,unknown,O
 0x7100877e8c,244,CActivatableComponent::refl_GetClass,reflection,game/components,O
-0x7100877f80,524,fn_7100877f80,unknown,game/components?,U
+0x7100877f80,524,fn_7100877f80,unknown,game/components?,O
 0x710087818c,388,CActivatableComponent::refl_InitClass,reflection,game/components,O
 0x7100878310,152,fn_7100878310,unknown,unknown,U
 0x71008783a8,456,fn_71008783a8,unknown,unknown,U
@@ -2765,7 +2765,7 @@ address,size,name,name_source,subsystem,status
 0x71008800b0,388,CCharClassFanCoolDownComponent::refl_InitClass,reflection,game/characters,O
 0x7100880234,4,fn_7100880234,unknown,unknown,O
 0x7100880238,244,CFanCoolDownComponent::refl_GetClass,reflection,game/components,O
-0x710088032c,756,fn_710088032c,unknown,game/components?,U
+0x710088032c,756,fn_710088032c,unknown,game/components?,O
 0x7100880620,388,CFanCoolDownComponent::refl_InitClass,reflection,game/components,O
 0x71008807a4,4,fn_71008807a4,unknown,unknown,U
 0x71008807a8,36,fn_71008807a8,unknown,unknown,U
@@ -4743,7 +4743,7 @@ address,size,name,name_source,subsystem,status
 0x71008e6b40,140,fn_71008e6b40,unknown,unknown,U
 0x71008e6bcc,4,fn_71008e6bcc,unknown,unknown,O
 0x71008e6bd0,244,CCharClassLightingComponent::refl_GetClass,reflection,game/characters,O
-0x71008e6cc4,684,fn_71008e6cc4,unknown,game/characters?,U
+0x71008e6cc4,684,fn_71008e6cc4,unknown,game/characters?,O
 0x71008e6f70,388,CCharClassLightingComponent::refl_InitClass,reflection,game/characters,O
 0x71008e70f4,380,fn_71008e70f4,unknown,unknown,U
 0x71008e7270,4,fn_71008e7270,unknown,unknown,O
@@ -4979,7 +4979,7 @@ address,size,name,name_source,subsystem,status
 0x71008efb00,160,fn_71008efb00,unknown,game/components?,U
 0x71008efba0,4,fn_71008efba0,unknown,game/components?,O
 0x71008efba4,244,COmniLightComponent::refl_GetClass,reflection,game/components,O
-0x71008efc98,3964,fn_71008efc98,unknown,game/components?,U
+0x71008efc98,3964,fn_71008efc98,unknown,game/components?,O
 0x71008f0c14,388,COmniLightComponent::refl_InitClass,reflection,game/components,O
 0x71008f0d98,380,fn_71008f0d98,unknown,unknown,U
 0x71008f0f14,380,fn_71008f0f14,unknown,unknown,U

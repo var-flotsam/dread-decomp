@@ -503,7 +503,7 @@ address,size,name,name_source,subsystem,status
 0x710051df40,204,fn_710051df40,unknown,unknown,U
 0x710051e00c,4,fn_710051e00c,unknown,unknown,O
 0x710051e010,244,CCharClassEmmyAIComponent::refl_GetClass,reflection,game/characters,O
-0x710051e104,1356,fn_710051e104,unknown,game/characters?,U
+0x710051e104,1356,fn_710051e104,unknown,game/characters?,O
 0x710051e650,344,CCharClassEmmyAIComponent::refl_InitClass,reflection,game/characters,O
 0x710051e7a8,380,fn_710051e7a8,unknown,game/characters?,U
 0x710051e924,380,fn_710051e924,unknown,game/characters?,U
@@ -3041,7 +3041,7 @@ address,size,name,name_source,subsystem,status
 0x71005a7dd0,160,fn_71005a7dd0,unknown,unknown,U
 0x71005a7e70,4,fn_71005a7e70,unknown,unknown,O
 0x71005a7e74,244,CHecathonAIComponent::refl_GetClass,reflection,game/ai,O
-0x71005a7f68,4484,fn_71005a7f68,unknown,game/ai?,U
+0x71005a7f68,4484,fn_71005a7f68,unknown,game/ai?,O
 0x71005a90ec,356,CHecathonAIComponent::refl_InitClass,reflection,game/ai,O
 0x71005a9250,380,fn_71005a9250,unknown,unknown,U
 0x71005a93cc,380,fn_71005a93cc,unknown,unknown,U
@@ -5334,7 +5334,7 @@ address,size,name,name_source,subsystem,status
 0x71005f9478,696,fn_71005f9478,unknown,game/characters?,U
 0x71005f9730,4,fn_71005f9730,unknown,game/characters?,O
 0x71005f9734,244,CCharClassKraidAIComponent::refl_GetClass,reflection,game/characters,O
-0x71005f9828,3164,fn_71005f9828,unknown,game/characters?,U
+0x71005f9828,3164,fn_71005f9828,unknown,game/characters?,O
 0x71005fa484,352,CCharClassKraidAIComponent::refl_InitClass,reflection,game/characters,O
 0x71005fa5e4,380,fn_71005fa5e4,unknown,unknown,U
 0x71005fa760,148,fn_71005fa760,unknown,unknown,U

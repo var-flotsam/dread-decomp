@@ -4243,7 +4243,7 @@ address,size,name,name_source,subsystem,status
 0x71010d0250,160,fn_71010d0250,unknown,unknown,U
 0x71010d02f0,4,fn_71010d02f0,unknown,unknown,O
 0x71010d02f4,244,CMovementComponent::refl_GetClass,reflection,game/components,O
-0x71010d03e8,488,fn_71010d03e8,unknown,game/components?,U
+0x71010d03e8,488,fn_71010d03e8,unknown,game/components?,O
 0x71010d05d0,388,CMovementComponent::refl_InitClass,reflection,game/components,O
 0x71010d0754,384,fn_71010d0754,unknown,unknown,U
 0x71010d08d4,88,fn_71010d08d4,unknown,unknown,U

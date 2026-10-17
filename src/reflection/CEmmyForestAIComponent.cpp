@@ -5,10 +5,36 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CEmmyForestAIComponent
 DREAD_REFL_TAG(71004f2a5c);
 void fn_71004f2758(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_7101d5af48;
+void fn_71004f337c();
+void fn_71004f33b0();
+void fn_71004f2850(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("StartWeightedEdges", true))) {
+        fn->name = base::global::UnkStrId("StartWeightedEdges", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71004f337c);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("StopWeightedEdges", true))) {
+        fn->name = base::global::UnkStrId("StopWeightedEdges", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71004f33b0);
+    }
+}
 bool fn_71004f32fc(const void*, const void*) { return false; }
 s32 fn_71004f3304() { return -1; }
 const base::reflection::CType& fn_71004f330c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

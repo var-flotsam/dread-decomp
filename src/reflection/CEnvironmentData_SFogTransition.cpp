@@ -5,10 +5,61 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CEnvironmentData::SFogTransition
 DREAD_REFL_TAG(7100f1b570);
 void fn_7100f1ad90(base::reflection::CClass*) {}
+void fn_7100f5c7ac();
+void fn_7100f1b6f4(UnkReflFunction* fn, const char* name);
+void fn_7100f5c88c();
+void fn_7100f1b870(UnkReflFunction* fn, const char* name);
+void fn_7100f5c96c();
+void fn_7100f1b9ec(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100091080();
+void fn_7100f1ae88(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sPreset", true), fn_7100009658(), 0x8, -1, -1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fColorInterp_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_fColorInterp_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f5c7ac);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fColorInterp_SetterFunction", true)))
+        fn_7100f1b6f4(fn, "_fColorInterp_SetterFunction");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fColorInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fScaleInterp_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_fScaleInterp_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f5c88c);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fScaleInterp_SetterFunction", true)))
+        fn_7100f1b870(fn, "_fScaleInterp_SetterFunction");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fScaleInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fRangeInterp_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_fRangeInterp_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f5c96c);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fRangeInterp_SetterFunction", true)))
+        fn_7100f1b9ec(fn, "_fRangeInterp_SetterFunction");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fRangeInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fWaveInterp", true), fn_710000abbc(), 0x1c, -1, -1);
+    field4->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    field4->attrs.Add<f32>(fn_7100091080(), 0.0f);
+}
 bool fn_7100f5c420(const void* a, const void* b) { return a == b; }
 s32 fn_7100f5c42c() { return -1; }
 const base::reflection::CType& fn_7100f5c434(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
@@ -205,6 +256,72 @@ DREAD_REFL_CLASS_GETTER(7100f2c09c, 7100f2c408, "CEnvironmentData::SBloomTransit
 // CEnvironmentData::SVerticalFogTransition
 DREAD_REFL_TAG(7100f31a4c);
 void fn_7100f30ec4(base::reflection::CClass*) {}
+void fn_7100f6d1dc();
+void fn_7100f31bd0(UnkReflFunction* fn, const char* name);
+void fn_7100f6d2bc();
+void fn_7100f31d4c(UnkReflFunction* fn, const char* name);
+void fn_7100f6d39c();
+void fn_7100f31ec8(UnkReflFunction* fn, const char* name);
+void fn_7100f6d47c();
+void fn_7100f32044(UnkReflFunction* fn, const char* name);
+void fn_7100f6d55c();
+void fn_7100f321c0(UnkReflFunction* fn, const char* name);
+void fn_7100f30fbc(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sPreset", true), fn_7100009658(), 0x8, -1, -1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fColorInterp_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_fColorInterp_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f6d1dc);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fColorInterp_SetterFunction", true)))
+        fn_7100f31bd0(fn, "_fColorInterp_SetterFunction");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fColorInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBaseInterp_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_fBaseInterp_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f6d2bc);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBaseInterp_SetterFunction", true)))
+        fn_7100f31d4c(fn, "_fBaseInterp_SetterFunction");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fBaseInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fNearInterp_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_fNearInterp_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f6d39c);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fNearInterp_SetterFunction", true)))
+        fn_7100f31ec8(fn, "_fNearInterp_SetterFunction");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fNearInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fFarInterp_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_fFarInterp_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f6d47c);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fFarInterp_SetterFunction", true)))
+        fn_7100f32044(fn, "_fFarInterp_SetterFunction");
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fFarInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttInterp_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_fAttInterp_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f6d55c);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttInterp_SetterFunction", true)))
+        fn_7100f321c0(fn, "_fAttInterp_SetterFunction");
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("fAttInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("fWaveInterp", true), fn_710000abbc(), 0x1c, -1, -1);
+    field6->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    field6->attrs.Add<f32>(fn_7100091080(), 0.0f);
+}
 bool fn_7100f6ce2c(const void* a, const void* b) { return a == b; }
 s32 fn_7100f6ce38() { return -1; }
 const base::reflection::CType& fn_7100f6ce40(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
