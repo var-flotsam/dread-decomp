@@ -4,7 +4,7 @@ For the next developer, human or AI, picking up this project. Read this, then `C
 (rules and conventions), `docs/recon.md` (what's in the binary), `docs/compiler.md`
 (toolchain), and `docs/references.md` (outside projects).
 
-Snapshot as of 2026-10-17 (third Phase 4 session; last commit `Phase 4.3: container accessors, global-id fields and vector values`). Target: **Metroid Dread 2.1.0**, `main` build ID
+Snapshot as of 2026-10-17 (third Phase 4 session; last commit `Phase 4.3: pointer-type getters and descriptor constructors`). Target: **Metroid Dread 2.1.0**, `main` build ID
 `646761F643AFEBB379EDD5E6A5151AF2CEF93DC1`.
 
 ## Where things stand
@@ -17,14 +17,14 @@ Snapshot as of 2026-10-17 (third Phase 4 session; last commit `Phase 4.3: contai
 | Tooling for Phase 4 | **Done.** `tools/check.py` (build + status), objdiff (`tools/objdiff_gen.py`), whole-binary progress (`tools/progress.py`) |
 | 4.1 System headers | **Done.** `lib/nnsdk` + `lib/musl` submodules, libc++ 9.0.1 headers, `tools/buildcfg.py` |
 | 4.2 Lua | **Done.** Upstream 5.1.4 vendored in `lib/lua/` (2 marked config changes); 286 Lua functions located in `main` by `tools/sigmatch.py` (status `L`) |
-| 4.3 Reflection | **In progress.** 1,878 of 2,346 class getters with their descriptor constructors, per-type helpers and 1,485 of 1,627 attribute/member-field functions generated and byte-identical (`src/reflection/`, `tools/gen_reflection.py`, `tools/refl_attrs.py`). Next: property functions and the remaining helpers (below) |
+| 4.3 Reflection | **In progress.** 1,878 of 2,346 class getters with their descriptor constructors, per-type helpers and 1,485 of 1,627 attribute/member-field functions generated and byte-identical (`src/reflection/`, `tools/gen_reflection.py`, `tools/refl_attrs.py`). Pointer types: 988 getters and their 988 `CPointerType` constructors (`src/reflection_types/`, `tools/gen_types.py`). Next: other non-class kinds, property functions and the remaining helpers (below) |
 | 4.4 Core engine types | **In progress.** String ids (`CStrId`, `UnkStrId`), the growable array `base::UnkVector` and its allocator interface; reflected-function initialisers now match (below) |
 | 4.5+ Boot to title screen | Not started; plan below |
 | Port | Not started (`port/` is empty) |
 
-Function status (BotW codes): `O` 17,134, `m` 4, `M` 1, `L` 1,614, `U` 85,264.
-**Game-code progress: 11.78% of bytes (2.21 MB) matching** (`tools/progress.py`; library code
-excluded). `tools/check.py` reports 17,143 `O` in `src/` because the matching `nn::atk`
+Function status (BotW codes): `O` 19,110, `m` 4, `M` 1, `L` 1,614, `U` 83,288.
+**Game-code progress: 14.85% of bytes (2.79 MB) matching** (`tools/progress.py`; library code
+excluded). `tools/check.py` reports 19,119 `O` in `src/` because the matching `nn::atk`
 functions and a few others keep `L`.
 
 ## Hard rules (summary; full text in CLAUDE.md)
@@ -64,6 +64,8 @@ include/base/reflection/CClass.h   CType/CClass layout, getter macro, descriptor
 lib/lua/                  vendored upstream Lua 5.1.4 (MIT) + README listing the game's changes
 tools/sigmatch.py         names vendored-library functions in main -> data/library_symbols.csv
 tools/gen_reflection.py   regenerates src/reflection/ from main (skipped TUs: build/reflection_tus.json)
+tools/gen_types.py        regenerates src/reflection_types/: non-class type getters + descriptor constructors
+include/base/reflection/CPointerType.h  CPointerType, its constructor template and refl_GetPointerType<G>
 tools/refl_attrs.py       reconstructs attribute/member-field functions; keeps only byte-identical ones
 include/base/global/CStrId.h            base::global::CStrId and UnkStrId (pooled, refcounted string ids)
 include/base/UnkVector.h                base::UnkVector<T> (growable array) and base::UnkAllocator
@@ -98,6 +100,7 @@ py -3.12 -m venv .venv
 git submodule update --init                                       # lib/nnsdk, lib/musl
 .venv/Scripts/python tools/sigmatch.py --version 2.1.0             # then rerun gen_functions_csv.py
 .venv/Scripts/python tools/gen_reflection.py --version 2.1.0
+.venv/Scripts/python tools/gen_types.py --version 2.1.0            # ~20 s
 .venv/Scripts/python tools/check.py --version 2.1.0 --update       # ~35 s, parallel
 .venv/Scripts/python tools/objdiff_gen.py --version 2.1.0          # then open the repo in objdiff
 .venv/Scripts/python tools/progress.py
@@ -238,7 +241,19 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
      getter encodes the guard-to-descriptor distance, so these wait until those functions are
      decompiled (no dummy statics).
    - 15 with rarer shapes (448/444-byte getters, e.g. `base::file::nx::CDeviceNX`,
-     `ISkeletalPoseProvider`) and the getters of non-class kinds (85 pointer, 10 enum, 42 unknown).
+     `ISkeletalPoseProvider`).
+   - **Non-class type getters** (`refl_GetType<T>`, 1,147 functions of one 220-byte shape) are
+     templates in the original: guard and static are weak, so they are reached through the
+     GOT, and the static's destructor is registered with `__cxa_atexit`. `tools/gen_types.py`
+     matches them by shape against a verified reference, emulates the descriptor constructor's
+     stores and keeps only byte-identical pairs. Done: all 988 pointer types (`CPointerType`:
+     CType + bool + pointee + three functions; the pointee comes from a getter call or is a
+     global descriptor; the size is usually 8, 0x38 for some iterator types). Left: the other
+     kinds behind the same getter shape (enums, 238 × 384-byte constructors, and others),
+     the primitive-type getters (e.g. `fn_7100008500`, 476 bytes), and each pointer type's
+     small helpers (`0x28`–`0x68`, `0xf0`–`0x100`; 4–60 bytes each, still `U`). Container
+     accessors whose element getter sits in the same TU (54 × 912 bytes) still need that
+     getter generated into their TU.
    - Slots `0x28` (1,763, 135 KB: inlined default constructors, then `fn_7100023854`, which
      applies reflected defaults), `0x30`/`0x38` (copy/move constructors, 135 KB) and
      `0x48`/`0x50` (assignment, 71 KB) need each class's layout: they inline the class's own
