@@ -4260,7 +4260,7 @@ address,size,name,name_source,subsystem,status
 0x7100bb6e10,160,fn_7100bb6e10,unknown,game/characters?,U
 0x7100bb6eb0,232,fn_7100bb6eb0,unknown,game/characters?,O
 0x7100bb6f98,244,CCharClassHideMessageEvent::refl_GetClass,reflection,game/characters,O
-0x7100bb708c,324,fn_7100bb708c,unknown,game/characters?,U
+0x7100bb708c,324,fn_7100bb708c,unknown,game/characters?,O
 0x7100bb71d0,388,CCharClassHideMessageEvent::refl_InitClass,reflection,game/characters,O
 0x7100bb7354,40,fn_7100bb7354,unknown,game/characters?,U
 0x7100bb737c,28,fn_7100bb737c,unknown,game/characters?,U

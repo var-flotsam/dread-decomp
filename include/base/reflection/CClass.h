@@ -60,15 +60,19 @@ struct UnkReflArrayA {
 };
 
 // Container used at CType+0xb8 and CClass+0xe8/+0x110 (0x28 bytes).
+// At CClass+0x110 it holds the class's functions (0xb8 bytes each) and a parallel array of
+// their names (CStrId).
 struct UnkReflArray {
-    void* begin = nullptr;
-    void* end = nullptr;
-    void* capacity = nullptr;
-    u32 field_0x18;
+    void* data = nullptr;
+    void* keys = nullptr;
+    u32 count = 0;
+    u32 capacity = 0;
+    u32 field_0x18;  // growth step (fn_7100097550 grows by it)
     u32 field_0x1c;
     void* allocator = fn_7100083990();
 
     UnkReflArray(u32 a, u32 b) : field_0x18(a), field_0x1c(b) {}
+    u64 size() const { return count; }
 };
 
 class CType {

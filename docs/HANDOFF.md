@@ -4,7 +4,7 @@ For the next developer, human or AI, picking up this project. Read this, then `C
 (rules and conventions), `docs/recon.md` (what's in the binary), `docs/compiler.md`
 (toolchain), and `docs/references.md` (outside projects).
 
-Snapshot as of 2026-10-16 (second Phase 4 session; last commit `Phase 4.3: match reflection attribute and member-field functions`). Target: **Metroid Dread 2.1.0**, `main` build ID
+Snapshot as of 2026-10-16 (second Phase 4 session; last commit `Phase 4.3: reflection functions with out-of-line initialisers`). Target: **Metroid Dread 2.1.0**, `main` build ID
 `646761F643AFEBB379EDD5E6A5151AF2CEF93DC1`.
 
 ## Where things stand
@@ -17,13 +17,13 @@ Snapshot as of 2026-10-16 (second Phase 4 session; last commit `Phase 4.3: match
 | Tooling for Phase 4 | **Done.** `tools/check.py` (build + status), objdiff (`tools/objdiff_gen.py`), whole-binary progress (`tools/progress.py`) |
 | 4.1 System headers | **Done.** `lib/nnsdk` + `lib/musl` submodules, libc++ 9.0.1 headers, `tools/buildcfg.py` |
 | 4.2 Lua | **Done.** Upstream 5.1.4 vendored in `lib/lua/` (2 marked config changes); 286 Lua functions located in `main` by `tools/sigmatch.py` (status `L`) |
-| 4.3 Reflection | **In progress.** 1,809 of 2,346 class getters, their 1,809 descriptor constructors, 11,497 per-type helpers and 1,367 of 1,574 attribute/member-field functions generated and byte-identical (`src/reflection/`, `tools/gen_reflection.py`, `tools/refl_attrs.py`). Next: property functions and the remaining helpers (below) |
+| 4.3 Reflection | **In progress.** 1,809 of 2,346 class getters, their 1,809 descriptor constructors, 11,497 per-type helpers and 1,374 of 1,574 attribute/member-field functions generated and byte-identical (`src/reflection/`, `tools/gen_reflection.py`, `tools/refl_attrs.py`). Next: property functions and the remaining helpers (below) |
 | 4.4+ Boot to title screen | Not started; plan below |
 | Port | Not started (`port/` is empty) |
 
-Function status (BotW codes): `O` 16,503, `m` 4, `M` 1, `L` 1,614, `U` 85,895.
-**Game-code progress: 10.38% of bytes (1.95 MB) matching** (`tools/progress.py`; library code
-excluded). `tools/check.py` reports 16,512 `O` in `src/` because the matching `nn::atk`
+Function status (BotW codes): `O` 16,510, `m` 4, `M` 1, `L` 1,614, `U` 85,888.
+**Game-code progress: 10.47% of bytes (1.97 MB) matching** (`tools/progress.py`; library code
+excluded). `tools/check.py` reports 16,519 `O` in `src/` because the matching `nn::atk`
 functions and a few others keep `L`.
 
 ## Hard rules (summary; full text in CLAUDE.md)
@@ -173,9 +173,25 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
    (`tools/refl_attrs.py`: parses each function into statements, compiles all candidates in one
    scratch TU, keeps only byte-identical ones; objdiff confirms every call target). Remaining, in
    rough order of payoff:
-   - **Property functions** (95 x4 functions, 267 KB): `fn_7100097550(cls, CStrId)` returns a
-     property object whose name (+0x30, inline CStrId move-assign), type (+0x38), function
-     pointers (+0x40/+0x48) and flags (+0xb2) are set inline. Model that object first.
+   - **Reflected functions / accessor-backed fields** (~94 x4 functions, 267 KB). Decoded and
+     parsed (`tools/refl_attrs.py`, `UnkReflFunction` in `UnkReflAttributes.h`):
+     `fn_7100097550(cls, CStrId(name))` appends a 0xb8-byte function to `CClass+0x110` (null if
+     the name exists). Setters (and other functions) are then initialised out of line,
+     `fn_X(fn, "name")`; these match. Getters are initialised **inline**: `fn->name =
+     CStrId(name)` (move-assign), return type at +0x38 (a getter call or a global descriptor
+     such as void), null at +0x40, the invoker at +0x48, a zeroed u16 at +0xb2. Then
+     `AddField(cls, CStrId(field), type, 0xffffffff, count - 2, count - 1)` refers to the two
+     functions by index (`count` = `CClass+0x120`). **Open problem:** the inlined move-assign.
+     The original releases the old name with `--rc;` and a *reloaded* `if (data->ref_count == 0)`
+     (it reloads both `data` and `rc` after the decrement), keeps the release call on the
+     fall-through, and folds the moved-from temporary's destructor completely. Our builds either
+     don't reload or keep a residual `if (pool)` from the destructor, and come out 16–32 bytes
+     longer per getter (smallest case: `fn_71004f01a8`, 284 bytes). Tried: nested/flat
+     conditions, carrying `pool`, unions on `data` or `ref_count` (Clang treats union members as
+     may-alias), the pool pointer inside a global struct, `__builtin_expect`, and
+     `-fno-strict-aliasing` (rejected, see `docs/compiler.md`). Untried: a different
+     `UnkStringPool`/`empty` layout, `CStrId` as a base class or wrapper, and how the original's
+     temporary destructor gets folded.
    - x3/x4 using `CRntString` (18), `CFilePathStrId`/`CName` (23), vector/colour values (16): need
      those types' constructors/layouts. 23 contain an indirect branch; 19 others.
    - `0x30`/`0x38`/`0x48`/`0x50` with bodies: inlined copy/assign of each type's fields; need the

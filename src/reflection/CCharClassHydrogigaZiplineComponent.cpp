@@ -5,10 +5,42 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassHydrogigaZiplineComponent
 DREAD_REFL_TAG(710091bd0c);
 void fn_710091b7d0(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100093390();
+const base::reflection::UnkReflAttrKey& fn_710000bf80();
+extern base::reflection::CType g_unk_7101d679f0;
+const base::reflection::UnkReflAttrKey& fn_71000923a0();
+extern base::reflection::CType g_unk_7101d55008;
+const base::reflection::UnkReflAttrKey& fn_7100090a20();
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_710091b8c8(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fMovementMultiplierUnderwater", true), fn_710000abbc(), 0xffffffff, -1, -1);
+    field0->attrs.Add<bool>(fn_7100093390(), true);
+    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
+    field0->attrs.Add<bool>(fn_7100090a20(), false);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fWaterLevelToSlowDownBeforeUnderwater", true), fn_710000abbc(), 0x60, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 0.8f);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fWaterLevelToConsiderUnderwater", true), fn_710000abbc(), 0x64, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 0.9f);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fTimeToMatchMovementMultiplierGoingBackToStartUnderwater", true), fn_710000abbc(), 0x68, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 0.01f);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fTimeToMatchMovementMultiplierSlowingDown", true), fn_710000abbc(), 0xffffffff, -1, -1);
+    field4->attrs.Add<bool>(fn_7100093390(), true);
+    field4->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field4->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
+    field4->attrs.Add<bool>(fn_7100090a20(), false);
+}
 bool fn_710091bed4(const void*, const void*) { return false; }
 s32 fn_710091bedc() { return -1; }
 const base::reflection::CType& fn_710091bee4(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

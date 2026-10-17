@@ -1815,7 +1815,7 @@ address,size,name,name_source,subsystem,status
 0x7101050570,772,fn_7101050570,unknown,unknown,U
 0x7101050874,4,fn_7101050874,unknown,unknown,O
 0x7101050878,244,CLogicCamera::refl_GetClass,reflection,game,O
-0x710105096c,1476,fn_710105096c,unknown,game?,U
+0x710105096c,1476,fn_710105096c,unknown,game?,O
 0x7101050f30,388,CLogicCamera::refl_InitClass,reflection,game,O
 0x71010510b4,220,fn_71010510b4,unknown,unknown,U
 0x7101051190,160,fn_7101051190,unknown,unknown,U

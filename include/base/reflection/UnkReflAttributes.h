@@ -18,6 +18,20 @@ namespace base::reflection {
 struct UnkReflAttrKey;  // 0x18 bytes: name (CStrId), u64, u32 (0xf), u16
 struct UnkReflAttrs;    // 0x38 bytes, created on first use
 struct UnkReflField;    // a member field descriptor; its attributes are at +0x38
+// A reflected function (0xb8 bytes, in CClass+0x110). Getter/setter-backed fields register
+// one getter and one setter function and then a field that refers to them by index.
+struct UnkReflFunction {
+    u8 unk_0x0[0x30];
+    base::global::CStrId name;
+    const CType* return_type;
+    void* field_0x40;
+    void* invoker;  // the function that calls the accessor
+    u8 unk_0x50[0x62];
+    u16 field_0xb2;
+    u8 unk_0xb4[0x4];
+};
+static_assert(sizeof(UnkReflFunction) == 0xb8, "function array stride");
+
 struct UnkTunableRegistry;  // 0x58 bytes, created on first use by the CTunable* field functions
 struct UnkTunable;          // the global a CTunable* class registers
 
@@ -38,6 +52,9 @@ void fn_71000934b8(base::reflection::UnkReflAttrs* attrs, const base::reflection
 base::reflection::UnkReflField* fn_7100096524(base::reflection::CClass* cls, base::global::CStrId name,
                                               const base::reflection::CType* type, u64 offset, s64 unk_4,
                                               s64 unk_5);
+
+// Add a function named `name` to a class; null if the class already has one by that name.
+base::reflection::UnkReflFunction* fn_7100097550(base::reflection::CClass* cls, const base::global::CStrId& name);
 
 // Allocation (size, flags; the flags are 0x3f for the tunable registry), and the registry's
 // constructor.

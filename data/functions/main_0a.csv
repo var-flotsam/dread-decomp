@@ -617,7 +617,7 @@ address,size,name,name_source,subsystem,status
 0x7100a19140,248,fn_7100a19140,unknown,game/components?,U
 0x7100a19238,4,fn_7100a19238,unknown,game/components?,O
 0x7100a1923c,244,CEmmySpawnPointComponent::refl_GetClass,reflection,game/components,O
-0x7100a19330,160,fn_7100a19330,unknown,game/components?,U
+0x7100a19330,160,fn_7100a19330,unknown,game/components?,O
 0x7100a193d0,352,CEmmySpawnPointComponent::refl_InitClass,reflection,game/components,O
 0x7100a19530,380,fn_7100a19530,unknown,game/components?,U
 0x7100a196ac,216,fn_7100a196ac,unknown,game/components?,U
@@ -2388,7 +2388,7 @@ address,size,name,name_source,subsystem,status
 0x7100a59120,160,fn_7100a59120,unknown,game/ai?,U
 0x7100a591c0,4,fn_7100a591c0,unknown,game/ai?,O
 0x7100a591c4,244,CTutoExitLogicAction::refl_GetClass,reflection,game/ai,O
-0x7100a592b8,492,fn_7100a592b8,unknown,game/ai?,U
+0x7100a592b8,492,fn_7100a592b8,unknown,game/ai?,O
 0x7100a594a4,352,CTutoExitLogicAction::refl_InitClass,reflection,game/ai,O
 0x7100a59604,244,fn_7100a59604,unknown,unknown,U
 0x7100a596f8,252,fn_7100a596f8,unknown,unknown,U

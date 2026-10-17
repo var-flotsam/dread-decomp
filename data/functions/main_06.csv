@@ -3740,7 +3740,7 @@ address,size,name,name_source,subsystem,status
 0x710068de8c,384,fn_710068de8c,unknown,unknown,U
 0x710068e00c,4,fn_710068e00c,unknown,unknown,O
 0x710068e010,244,CCharClassScorpiusAIComponent::CTunableCharClassScorpiusAIComponent::refl_GetClass,reflection,game/characters,O
-0x710068e104,4344,fn_710068e104,unknown,game/characters?,U
+0x710068e104,4344,fn_710068e104,unknown,game/characters?,O
 0x710068f1fc,388,CCharClassScorpiusAIComponent::CTunableCharClassScorpiusAIComponent::refl_InitClass,reflection,game/characters,O
 0x710068f380,696,fn_710068f380,unknown,game/characters?,U
 0x710068f638,4,fn_710068f638,unknown,game/characters?,O
