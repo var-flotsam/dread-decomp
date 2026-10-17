@@ -44,8 +44,11 @@ import refl_attrs  # noqa: E402
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "src" / "lifted"
 BASE = 0x7100000000
-MAX_SIZE = 128
+MAX_SIZE = 512
 CHUNK = 1000  # functions per generated file
+# Functions per scratch TU: with -ffunction-sections, more than ~65k sections overflow the ELF
+# section index (SHN_XINDEX), which the object reader doesn't follow.
+SCRATCH_CHUNK = 8000
 NAME_RE = re.compile(r"^[A-Za-z_][\w:<>,*& ]*\bfn_([0-9a-f]{10})\(")  # a declaration or definition
 # (extra call arguments beyond those written, return x0 if set): tried in this order.
 VARIANTS = [(0, True), (0, False), (1, True), (1, False), (2, True), (2, False)]
@@ -96,27 +99,55 @@ def fkey(r: str) -> int | None:
     return int(r[1:]) if r[0] in "sd" and r[1:].isdigit() else None
 
 
+def is_int(t: str) -> bool:
+    return t in ("u64", "u32", "u16", "u8", "bool", "char*")
+
+
+class State:
+    """Register knowledge on one path. Keys: n for x<n>/w<n>, 100 + n for s<n>/d<n>."""
+
+    def __init__(self):
+        self.vals: dict[int, tuple[str, str]] = {}  # key -> (expression, C type)
+        self.pages: dict[int, int] = {}            # key -> adrp page
+        self.consts: dict[int, int] = {}
+        self.poison: set[int] = set()              # differs between merged paths
+        self.called = False
+        self.written: set[int] = set()             # argument registers written since the last call
+        self.cmp: tuple | None = None
+
+    def copy(self) -> "State":
+        s = State()
+        s.vals, s.pages, s.consts = dict(self.vals), dict(self.pages), dict(self.consts)
+        s.poison, s.called, s.written, s.cmp = set(self.poison), self.called, set(self.written), self.cmp
+        return s
+
+
+class Block:
+    """An open `if` (kind "if") or its `else` (kind "else")."""
+
+    def __init__(self, end: int, before: State, if_line: int):
+        self.end, self.before, self.if_line = end, before, if_line
+        self.kind = "if"
+        self.then: State | None = None  # state at the end of the then-part (kind "else")
+        self.then_live = False
+        self.else_line = -1
+
+
 class Lifter:
     def __init__(self, orig: asmdiff.Original, addr: int, extra: int, returns: bool):
         self.orig, self.addr, self.extra, self.returns = orig, addr, extra, returns
-        # Register -> (expression, C type). Keys: n for x<n>/w<n>, 100 + n for s<n>/d<n>.
-        self.vals: dict[int, tuple[str, str]] = {}
-        self.consts: dict[int, int] = {}
+        self.s = State()
+        self.live = True
         self.params: dict[int, str] = {}  # key -> C type
-        self.written: set[int] = set()  # argument registers written since the last call
-        self.called = False
         self.body: list[str] = []
         self.decls: set[str] = set()
-        self.closes: list[int] = []  # open `if` blocks: address where each ends
-        self.snaps: list[tuple] = []
-        self.poison: set[int] = set()
-        self.cmp: tuple | None = None
-        self.ret: tuple[str, str, int] | None = None  # (expression, type, depth when set)
-        self.pages: dict[int, int] = {}
+        self.blocks: list[Block] = []
+        self.rets: list[tuple[int, str, tuple | None]] = []  # (line, "value"|"tail", payload)
+        self.phis = 0
 
     @property
     def depth(self) -> int:
-        return len(self.closes)
+        return len(self.blocks)
 
     def line(self, s: str) -> None:
         self.body.append("    " * (self.depth + 1) + s)
@@ -136,15 +167,20 @@ class Lifter:
         if r in ("xzr", "wzr"):
             return "0", width_type(r)
         n = self.key(r)
-        if n in self.pages or n in self.poison:
+        s = self.s
+        if n in s.pages or n in s.poison:
             raise Unsupported("unknown value")
-        if n not in self.vals:
-            if self.called or (n > 7 and not 100 <= n <= 107):
+        if n not in s.vals:
+            if s.called or (n > 7 and not 100 <= n <= 107):
                 raise Unsupported(r)
             t = "char*" if n < 100 else ("f32" if r[0] == "s" else "f64")
             self.params[n] = t
-            self.vals[n] = (f"p{n}" if n < 100 else f"f{n - 100}", t)
-        e, t = self.vals[n]
+            v = (f"p{n}" if n < 100 else f"f{n - 100}", t)
+            # A parameter holds on every path that hasn't made a call.
+            for st in [s] + [b.before for b in self.blocks] + [b.then for b in self.blocks if b.then]:
+                if not st.called and n not in st.vals and n not in st.poison:
+                    st.vals[n] = v
+        e, t = s.vals[n]
         if r[0] == "w" and t != "u32":
             return f"(u32)(u64)({e})", "u32"
         if r[0] in "sd" and t != ("f32" if r[0] == "s" else "f64"):
@@ -157,39 +193,102 @@ class Lifter:
             return
         var = f"r{len(self.body)}_{n}"
         self.line(f"{t} {var} = {e};")
-        self.vals[n] = (var, t)
-        self.pages.pop(n, None)
-        self.poison.discard(n)
+        s = self.s
+        s.vals[n] = (var, t)
+        s.pages.pop(n, None)
+        s.poison.discard(n)
         if const is None:
-            self.consts.pop(n, None)
+            s.consts.pop(n, None)
         else:
-            self.consts[n] = const
+            s.consts[n] = const
         if n <= 7 or 100 <= n <= 107:
-            self.written.add(n)
-        if n in (0, 100):
-            self.ret = (var, t, self.depth)
+            s.written.add(n)
+
+    # -- control flow -------------------------------------------------------------------------
 
     def open_if(self, cond: str, target: int) -> None:
-        if self.closes and target > self.closes[-1]:
+        if self.blocks and target > self.blocks[-1].end:
             raise Unsupported("crossing branches")
         self.line(f"if ({cond}) {{")
-        self.closes.append(target)
-        self.snaps.append((dict(self.vals), dict(self.pages), set(self.poison), self.called))
+        self.blocks.append(Block(target, self.s.copy(), len(self.body) - 1))
+
+    def to_else(self, target: int) -> None:
+        """`b target` ending a then-part whose skip target is the next instruction."""
+        b = self.blocks[-1]
+        if b.kind != "if" or (len(self.blocks) > 1 and target > self.blocks[-2].end):
+            raise Unsupported("else")
+        b.kind, b.then, b.then_live = "else", self.s, self.live
+        b.end = target
+        self.body.append("    " * self.depth + "} else {")
+        b.else_line = len(self.body) - 1
+        self.s, self.live = b.before.copy(), True
 
     def close_to(self, address: int) -> None:
-        while self.closes and self.closes[-1] <= address:
-            self.closes.pop()
-            vals, pages, poison, called = self.snaps.pop()
+        while self.blocks and self.blocks[-1].end <= address:
+            if self.blocks[-1].end < address:
+                raise Unsupported("branch into an instruction")
+            b = self.blocks.pop()
+            if b.kind == "if":
+                a, a_live, c, c_live = self.s, self.live, b.before, True
+            else:
+                a, a_live, c, c_live = b.then, b.then_live, self.s, self.live
+            if a_live and c_live:
+                merged = self.merge(b, a, c)
+            else:
+                merged = a if a_live else c
             self.body.append("    " * (self.depth + 1) + "}")
-            # Registers changed in the block hold different values on the two paths.
-            changed = {n for n in set(vals) | set(self.vals) if vals.get(n) != self.vals.get(n)}
-            if self.called and not called:
-                changed |= set(range(19)) | set(range(100, 132))
-            changed |= {n for n in set(pages) | set(self.pages) if pages.get(n) != self.pages.get(n)}
-            self.vals = {n: v for n, v in vals.items() if n not in changed}
-            self.pages = {n: v for n, v in pages.items() if n not in changed}
-            self.poison = poison | changed
-            self.consts = {n: v for n, v in self.consts.items() if n not in changed}
+            self.s, self.live = merged, a_live or c_live
+
+    def merge(self, b: Block, a: State, c: State) -> State:
+        """Join two live paths: a (end of the then-part) and c (skip path or else-part)."""
+        m = a.copy()
+        m.called = a.called or c.called
+        m.written = a.written | c.written
+        m.cmp = None
+        m.poison = a.poison | c.poison
+        m.pages = {n: p for n, p in a.pages.items() if c.pages.get(n) == p}
+        m.poison |= (set(a.pages) | set(c.pages)) - set(m.pages)
+        m.consts = {n: v for n, v in a.consts.items() if c.consts.get(n) == v}
+        m.vals = {}
+        decls, then_end, else_end = [], [], []
+        for n in sorted(set(a.vals) | set(c.vals)):
+            va, vc = a.vals.get(n), c.vals.get(n)
+            if va == vc:
+                m.vals[n] = va
+                continue
+            if va is None or vc is None or va[1] != vc[1] or n in m.poison:
+                m.poison.add(n)
+                continue
+            var, t = f"m{self.phis}", va[1]
+            self.phis += 1
+            if b.kind == "if":
+                decls.append(f"{t} {var} = {vc[0]};")   # c is the state before the if
+                then_end.append(f"{var} = {va[0]};")
+            else:
+                decls.append(f"{t} {var};")
+                then_end.append(f"{var} = {va[0]};")
+                else_end.append(f"{var} = {vc[0]};")
+            m.vals[n] = (var, t)
+        ind = "    " * (self.depth + 2)
+        if b.kind == "if":
+            self.body += [ind + s for s in then_end]
+        else:
+            self.body += [ind + s for s in else_end]
+            self.body[b.else_line:b.else_line] = [ind + s for s in then_end]
+        outer = "    " * (self.depth + 1)
+        self.body[b.if_line:b.if_line] = [outer + s for s in decls]
+        # Lines were inserted before later positions: shift recorded return lines.
+        shift_if, shift_else = len(decls), len(then_end) if b.kind == "else" else 0
+        self.rets = [(ln + (shift_if if ln >= b.if_line else 0) + (shift_else if b.kind == "else" and ln >= b.else_line else 0), k, p)
+                     for ln, k, p in self.rets]
+        return m
+
+    def terminate(self, kind: str, payload) -> None:
+        self.rets.append((len(self.body), kind, payload))
+        self.line("@RET@")
+        self.live = False
+
+    # -- operands -----------------------------------------------------------------------------
 
     def global_ref(self, a: int, through_got: bool) -> str:
         """Address of the object or function at a, as char*."""
@@ -203,17 +302,27 @@ class Lifter:
         self.decls.add(f"namespace h {{ extern HIDDEN char g_unk_{a:x}[]; }}")
         return f"(char*)h::g_unk_{a:x}"
 
-    def address(self, op) -> str:
+    def address(self, x, op) -> str:
+        """The memory operand's address; applies pre/post-index writeback to the base."""
         if op.mem.index or op.shift.type:
             raise Unsupported("indexed")
-        n = self.key(regname(op.mem.base))
-        if n in self.pages:
-            a = self.pages[n] + op.mem.disp
+        base_reg = regname(op.mem.base)
+        n = self.key(base_reg)
+        if n in self.s.pages:
+            if x.writeback:
+                raise Unsupported("page writeback")
+            a = self.s.pages[n] + op.mem.disp
             if self.orig.img.relocs.get(a - BASE) is not None:
                 raise Unsupported("GOT slot as data")
             return self.global_ref(a, False)
-        base, _ = self.read(regname(op.mem.base))
-        return f"((char*)({base}) + {op.mem.disp})"
+        base, t = self.read(base_reg)
+        if not x.writeback:
+            return f"((char*)({base}) + {op.mem.disp})"
+        post = [o for o in x.operands if o.type == arm64.ARM64_OP_IMM]
+        step = post[-1].imm if post else op.mem.disp
+        addr = f"((char*)({base}) + {0 if post else op.mem.disp})"
+        self.write(base_reg, f"(char*)({base}) + {step}", "char*")
+        return addr
 
     def operand(self, op, like: str) -> tuple[str, str]:
         if op.type == arm64.ARM64_OP_IMM:
@@ -227,10 +336,10 @@ class Lifter:
         raise Unsupported("operand")
 
     def cond(self, cc: int, negate: bool) -> str:
-        if cc not in CONDS or not self.cmp:
+        if cc not in CONDS or not self.s.cmp:
             raise Unsupported("condition")
         opr, signed = CONDS[cc]
-        c = self.cmp
+        c = self.s.cmp
         if c[2] == "f":
             expr = f"({c[3]})({c[0]}) {opr} ({c[3]})({c[1]})"
             return f"!({expr})" if negate else expr
@@ -238,12 +347,13 @@ class Lifter:
         return f"({t})(u64)({c[0]}) {NEGATE[opr] if negate else opr} ({t})({c[1]})"
 
     def args(self) -> list[tuple[str, str]]:
-        n = max([k for k in self.written if k < 100], default=-1) + 1
+        w = self.s.written
+        n = max([k for k in w if k < 100], default=-1) + 1
         n = max(n, self.extra)
-        fl = max([k - 100 for k in self.written if k >= 100], default=-1) + 1
+        fl = max([k - 100 for k in w if k >= 100], default=-1) + 1
         floats = []
         for i in range(fl):
-            t = self.vals.get(100 + i, ("", "f32"))[1]
+            t = self.s.vals.get(100 + i, ("", "f32"))[1]
             floats.append(self.read(("s" if t == "f32" else "d") + str(i)))
         return [self.read(f"x{i}") for i in range(n)] + floats
 
@@ -258,16 +368,18 @@ class Lifter:
         return f"callee::{fn}({values})"
 
     def clobber(self) -> None:
-        for n in list(self.vals):
+        s = self.s
+        for n in list(s.vals):
             if n <= 18 or 100 <= n <= 107 or n >= 116:
-                del self.vals[n]
-        for n in list(self.pages):
-            if n <= 18:
-                del self.pages[n]
-        self.consts = {n: v for n, v in self.consts.items() if n > 18}
-        self.written = set()
-        self.called = True
-        self.cmp = None
+                del s.vals[n]
+        s.pages = {n: p for n, p in s.pages.items() if n > 18}
+        s.consts = {n: v for n, v in s.consts.items() if n > 18}
+        s.poison = {n for n in s.poison if 18 < n < 100 or 108 <= n < 116}
+        s.written = set()
+        s.called = True
+        s.cmp = None
+
+    # -- driver -------------------------------------------------------------------------------
 
     def lift(self) -> tuple[str, set[str]] | None:
         orig, addr = self.orig, self.addr
@@ -275,67 +387,94 @@ class Lifter:
         ins = list(CS.disasm(code, addr))
         if not ins or len(ins) * 4 != len(code):
             return None
-        last = ins[-1]
-        tail = last.mnemonic in ("b", "br")
-        if last.mnemonic not in ("ret", "b", "br") or any(x.mnemonic == "ret" for x in ins[:-1]):
-            return None
-        if last.mnemonic == "b" and addr <= last.operands[0].imm < addr + len(code):
-            return None
+        end = addr + len(code)
+        last = ins[-1].address
         try:
-            for x in ins[:-1]:
+            for x in ins:
                 self.close_to(x.address)
+                if not self.live:
+                    return None  # unreachable code (or a jump-around we don't model)
                 if is_frame(x):
                     continue
-                if not self.step(x, last.address):
+                m, o = x.mnemonic, x.operands
+                if m == "ret":
+                    v = None
+                    if 0 in self.s.vals and 0 not in self.s.poison:
+                        v = self.s.vals[0]
+                    elif 100 in self.s.vals and 100 not in self.s.poison:
+                        v = self.s.vals[100]
+                    self.terminate("value", v)
+                elif m == "b" and not addr <= o[0].imm < end:
+                    self.terminate("tail", self.call(f"fn_{o[0].imm:x}"))
+                elif m == "br":
+                    ptr, _ = self.read(regname(o[0].reg))
+                    self.terminate("tail", self.call("", ptr))
+                elif m == "b":
+                    t = o[0].imm
+                    if not (x.address < t <= last and self.blocks and self.blocks[-1].end == x.address + 4):
+                        return None
+                    self.to_else(t)
+                elif not self.step(x, last):
                     return None
-            self.close_to(last.address)
-            if self.depth:
+            if self.blocks or self.live:
                 return None
-            if tail:
-                if last.mnemonic == "b":
-                    call = self.call(f"fn_{last.operands[0].imm:x}")
-                else:
-                    ptr, _ = self.read(regname(last.operands[0].reg))
-                    call = self.call("", ptr)
-                self.line(f"return {call};")
-                rtype = "char*"
-            else:
-                rtype = "void"
-                if self.ret is not None and self.returns:
-                    if self.ret[2] or (self.ret[0], self.ret[1]) not in self.vals.values():
-                        return None  # a value set under a condition: not modelled
-                    rtype = self.ret[1]
-                    self.body.append(f"    return {self.ret[0]};")
         except Unsupported:
             return None
+        return self.finish()
+
+    def finish(self) -> tuple[str, set[str]] | None:
+        tails = any(k == "tail" for _, k, _ in self.rets)
+        if self.returns:
+            if any(k == "value" and p is None for _, k, p in self.rets):
+                return None
+            types = [p[1] for _, k, p in self.rets if k == "value"]
+            rtype = "char*" if tails else types[0]
+            if any((t[0] == "f") != (rtype[0] == "f") for t in types) or \
+                    (rtype[0] == "f" and any(t != rtype for t in types)):
+                return None
+        else:
+            rtype = "void"
+        for ln, k, p in self.rets:
+            ind = self.body[ln][:len(self.body[ln]) - len(self.body[ln].lstrip())]
+            if k == "tail":
+                s = f"return {p};" if rtype != "void" else f"{p};\n{ind}return;"
+            elif rtype == "void":
+                s = "return;"
+            elif p[1] == rtype:
+                s = f"return {p[0]};"
+            else:
+                s = f"return ({rtype})(u64)({p[0]});"
+            self.body[ln] = ind + s
         ints = [f"char* p{n}" for n in range(max([k for k in self.params if k < 100], default=-1) + 1)]
         floats = [f"{self.params.get(100 + n, 'f32')} f{n}"
                   for n in range(max([k - 100 for k in self.params if k >= 100], default=-1) + 1)]
-        return "\n".join([f"{rtype} fn_{addr:x}({', '.join(ints + floats)}) {{", *self.body, "}"]), self.decls
+        return "\n".join([f"{rtype} fn_{self.addr:x}({', '.join(ints + floats)}) {{", *self.body, "}"]), self.decls
 
     def step(self, x, last: int) -> bool:
         m, o = x.mnemonic, x.operands
-        if x.writeback:
-            return False
         if any(op.type == arm64.ARM64_OP_REG and regname(op.reg) == "sp" for op in o) or \
                 any(op.type == arm64.ARM64_OP_MEM and regname(op.mem.base) in ("sp", "x29") for op in o):
             return False
+        mem = [op for op in o if op.type == arm64.ARM64_OP_MEM]
+        if x.writeback and not (mem and m in tuple(LOADS) + tuple(STORES) + ("stp", "ldp")):
+            return False
+        s = self.s
         if m == "adrp":
             n = self.key(regname(o[0].reg))
-            self.pages[n] = o[1].imm
-            self.vals.pop(n, None)
-            self.poison.discard(n)
+            s.pages[n] = o[1].imm
+            s.vals.pop(n, None)
+            s.poison.discard(n)
         elif m == "add" and len(o) == 3 and o[2].type == arm64.ARM64_OP_IMM \
-                and self.key(regname(o[1].reg)) in self.pages:
-            a = self.pages[self.key(regname(o[1].reg))] + o[2].imm
-            s = self.orig.img.cstring(a - BASE)
-            if s is not None and a not in self.orig.sizes:
-                self.write(regname(o[0].reg), f"(char*){refl_attrs.c_string(s)}", "char*")
+                and self.key(regname(o[1].reg)) in s.pages:
+            a = s.pages[self.key(regname(o[1].reg))] + o[2].imm
+            text = self.orig.img.cstring(a - BASE)
+            if text is not None and a not in self.orig.sizes:
+                self.write(regname(o[0].reg), f"(char*){refl_attrs.c_string(text)}", "char*")
             else:
                 self.write(regname(o[0].reg), self.global_ref(a, False), "char*")
         elif m == "ldr" and len(o) == 2 and o[1].type == arm64.ARM64_OP_MEM \
-                and self.key(regname(o[1].mem.base)) in self.pages:
-            slot = self.pages[self.key(regname(o[1].mem.base))] + o[1].mem.disp
+                and self.key(regname(o[1].mem.base)) in s.pages:
+            slot = s.pages[self.key(regname(o[1].mem.base))] + o[1].mem.disp
             r = self.orig.img.relocs.get(slot - BASE)
             rt = regname(o[0].reg)
             if r is not None:
@@ -348,45 +487,46 @@ class Lifter:
                 if t is None:
                     return False
                 self.write(rt, f"*({t}*){self.global_ref(slot, False)}", t)
-        elif m in LOADS and len(o) == 2:
+        elif m in LOADS and mem:
             rt = regname(o[0].reg)
             if rt[0] in "sd" and m in ("ldr", "ldur"):
                 t = "f32" if rt[0] == "s" else "f64"
-                self.write(rt, f"*({t}*){self.address(o[1])}", t)
+                self.write(rt, f"*({t}*){self.address(x, mem[0])}", t)
                 return True
             t = LOADS[m] or width_type(rt)
             if rt[0] not in "xw":
                 return False
             dest_t = width_type(rt) if t[0] == "s" else (t if LOADS[m] else width_type(rt))
-            self.write(rt, f"({dest_t})*({t}*){self.address(o[1])}", dest_t)
-        elif m in STORES and len(o) == 2:
+            a = self.address(x, mem[0])
+            self.write(rt, f"({dest_t})*({t}*){a}", dest_t)
+        elif m in STORES and mem:
             rt = regname(o[0].reg)
             if rt[0] in "sd" and m in ("str", "stur"):
                 v, t = self.read(rt)
-                self.line(f"*({t}*){self.address(o[1])} = {v};")
+                self.line(f"*({t}*){self.address(x, mem[0])} = {v};")
                 return True
             if rt[0] not in "xw":
                 return False
             t = STORES[m] or width_type(rt)
             v, _ = self.read(rt)
-            self.line(f"*({t}*){self.address(o[1])} = ({t})(u64)({v});")
-        elif m == "stp" and len(o) == 3:
+            self.line(f"*({t}*){self.address(x, mem[0])} = ({t})(u64)({v});")
+        elif m == "stp" and mem:
+            rts = [regname(o[k].reg) for k in range(2)]
+            if any(r[0] not in "xw" for r in rts):
+                return False
+            vals = [self.read(r)[0] for r in rts]
+            a = self.address(x, mem[0])
+            for k, (rt, v) in enumerate(zip(rts, vals)):
+                t = width_type(rt)
+                self.line(f"*({t}*)({a} + {k * (8 if t == 'u64' else 4)}) = ({t})(u64)({v});")
+        elif m == "ldp" and mem and regname(o[0].reg)[0] in "xw":
+            a = self.address(x, mem[0])
+            tmp = f"a{len(self.body)}"
+            self.line(f"char* {tmp} = {a};")
             for k in range(2):
                 rt = regname(o[k].reg)
-                if rt[0] not in "xw":
-                    return False
                 t = width_type(rt)
-                v, _ = self.read(rt)
-                base, _ = self.read(regname(o[2].mem.base))
-                off = o[2].mem.disp + k * (8 if t == "u64" else 4)
-                self.line(f"*({t}*)((char*)({base}) + {off}) = ({t})(u64)({v});")
-        elif m == "ldp" and len(o) == 3 and regname(o[0].reg)[0] in "xw":
-            base, _ = self.read(regname(o[2].mem.base))
-            for k in range(2):
-                rt = regname(o[k].reg)
-                t = width_type(rt)
-                off = o[2].mem.disp + k * (8 if t == "u64" else 4)
-                self.write(rt, f"*({t}*)((char*)({base}) + {off})", t)
+                self.write(rt, f"*({t}*)({tmp} + {k * (8 if t == 'u64' else 4)})", t)
         elif m in ("mov", "movz") and len(o) == 2:
             rd = regname(o[0].reg)
             if o[1].type == arm64.ARM64_OP_IMM:
@@ -401,10 +541,10 @@ class Lifter:
         elif m == "movk" and len(o) == 2:
             rd = regname(o[0].reg)
             n = self.key(rd)
-            if n not in self.consts:
+            if n not in s.consts:
                 return False
             shift = o[1].shift.value if o[1].shift.type else 0
-            v = (self.consts[n] & ~(0xFFFF << shift)) | (o[1].imm << shift)
+            v = (s.consts[n] & ~(0xFFFF << shift)) | (o[1].imm << shift)
             self.write(rd, f"{v:#x}", width_type(rd), v)
         elif m == "fmov" and len(o) == 2:
             rd = regname(o[0].reg)
@@ -441,11 +581,11 @@ class Lifter:
         elif m == "cmp" and len(o) == 2:
             a, _ = self.read(regname(o[0].reg))
             b, _ = self.operand(o[1], regname(o[0].reg))
-            self.cmp = (a, b, regname(o[0].reg)[0])
+            s.cmp = (a, b, regname(o[0].reg)[0])
         elif m == "fcmp" and len(o) == 2:
             a, t = self.read(regname(o[0].reg))
             b = "0.0" if o[1].type == arm64.ARM64_OP_FP else self.read(regname(o[1].reg))[0]
-            self.cmp = (a, b, "f", t)
+            s.cmp = (a, b, "f", t)
         elif m == "cset" and len(o) == 1:
             self.write(regname(o[0].reg), self.cond(x.cc, False), "bool")
         elif m.startswith("b.") and x.address < o[0].imm <= last:
@@ -461,13 +601,13 @@ class Lifter:
             call = self.call(f"fn_{o[0].imm:x}")
             self.clobber()
             self.write("x0", call, "char*")
-            self.written = set()
+            self.s.written = set()
         elif m == "blr":
             ptr, _ = self.read(regname(o[0].reg))
             call = self.call("", ptr)
             self.clobber()
             self.write("x0", call, "char*")
-            self.written = set()
+            self.s.written = set()
         else:
             return False
         return True
@@ -510,9 +650,11 @@ def main() -> int:
                 defs[a] = r
         lifted.append(defs)
 
-    def build(k: int) -> set[int]:
-        defs = lifted[k]
-        src, obj = work / f"variant_{k}.cpp", work / f"variant_{k}.o"
+    def build(job: tuple[int, int]) -> set[int]:
+        k, part = job
+        addrs = sorted(lifted[k])[part * SCRATCH_CHUNK:(part + 1) * SCRATCH_CHUNK]
+        defs = {a: lifted[k][a] for a in addrs}
+        src, obj = work / f"variant_{k}_{part}.cpp", work / f"variant_{k}_{part}.o"
         for _ in range(5):
             decls = sorted({d for _, ds in defs.values() for d in ds})
             lines = HEADER + decls
@@ -537,12 +679,16 @@ def main() -> int:
             defs = {a: d for a, d in defs.items() if a not in bad}
         raise SystemExit(f"variant {k} still fails to compile")
 
+    jobs = [(k, part) for k in range(len(VARIANTS))
+            for part in range((len(lifted[k]) + SCRATCH_CHUNK - 1) // SCRATCH_CHUNK)]
     with ThreadPoolExecutor() as pool:
-        matched = list(pool.map(build, range(len(VARIANTS))))
+        matched = list(pool.map(build, jobs))
     chosen: dict[int, tuple[str, set[str]]] = {}
-    for k, ok in enumerate(matched):
-        for a in ok:
-            chosen.setdefault(a, lifted[k][a])
+    for k in range(len(VARIANTS)):  # variant order decides
+        for (kk, _), ok in zip(jobs, matched):
+            if kk == k:
+                for a in sorted(ok):
+                    chosen.setdefault(a, lifted[k][a])
 
     if OUT.exists():
         shutil.rmtree(OUT)
