@@ -533,6 +533,118 @@ def parse(orig: asmdiff.Original, addr: int, class_getters: set[int]) -> tuple[l
     return list(dict.fromkeys(decls)), src
 
 
+MEMCPY = 0x7101238E00
+
+
+def parse_initialiser(orig: asmdiff.Original, addr: int, class_getters: set[int]) -> tuple[list[str], str] | None:
+    """(declarations, definition) of an out-of-line reflected-function initialiser, or None.
+
+    fn_X(fn, name): name (move-assigned UnkStrId), return type (a global descriptor or a getter
+    call), invoker, the u16 at +0xb2, then zero or more parameter types pushed onto fn->params.
+    """
+    cs = capstone.Cs(capstone.CS_ARCH_ARM64, capstone.CS_MODE_ARM)
+    cs.detail = True
+    page: dict[str, int] = {}
+    facts: dict[str, tuple] = {"zr": ("imm", 0), "0": ("fn", 0), "1": ("name", 0)}
+    calls: list[int] = []
+    tail: list[int] = []  # calls taking fn itself, after the initialisation
+    pushes: list[tuple | None] = []
+    stores: dict[int, tuple] = {}
+    flag = None
+    first = True
+    for x in cs.disasm(orig.function(addr), addr):
+        m, o = x.mnemonic, x.operands
+        written = {_key(cs, r) for r in x.regs_access()[1]}
+        new: dict[str, tuple] = {}
+        if m == "adrp":
+            page[_key(cs, o[0].reg)] = o[1].imm
+        elif m == "ldr" and len(o) == 2 and o[1].type == capstone.arm64.ARM64_OP_MEM and _key(cs, o[1].mem.base) in page:
+            target = orig.img.pointer(page[_key(cs, o[1].mem.base)] + o[1].mem.disp - BASE)
+            if target is not None:
+                new[_key(cs, o[0].reg)] = ("ptr", BASE + target)
+        elif m in ("mov", "movz") and len(o) == 2 and o[1].type == capstone.arm64.ARM64_OP_IMM:
+            new[_key(cs, o[0].reg)] = ("imm", o[1].imm & 0xFFFFFFFFFFFFFFFF)
+        elif m == "mov" and len(o) == 2 and o[1].type == capstone.arm64.ARM64_OP_REG:
+            if _key(cs, o[1].reg) in facts:
+                new[_key(cs, o[0].reg)] = facts[_key(cs, o[1].reg)]
+        elif m == "str" and o[1].type == capstone.arm64.ARM64_OP_MEM and o[1].mem.index:
+            # PushBack's element store: data[count] = value.
+            pushes.append(facts.get(_key(cs, o[0].reg)))
+        elif m in ("str", "stp", "strh") and o[-1].type == capstone.arm64.ARM64_OP_MEM                 and cs.reg_name(o[-1].mem.base) == "x19" and not x.writeback:
+            for k, r in enumerate(o[:-1]):
+                fact = facts.get(_key(cs, r.reg))
+                off = o[-1].mem.disp + 8 * k
+                if m == "strh" and off == 0xB2 and fact and fact[0] == "imm":
+                    flag = fact[1] & 0xFFFF
+                elif m != "strh" and off in (0x38, 0x40, 0x48) and fact:
+                    stores[off] = fact
+        elif m == "bl":
+            t = o[0].imm
+            if first:
+                if t != CSTRID_CTOR or facts.get("1") != ("name", 0) or facts.get("2") != ("imm", 1):
+                    return None
+                first = False
+            elif t not in (CSTRID_RELEASE, MEMCPY, CSTRID_CTOR) and facts.get("0") == ("fn", 0):
+                tail.append(t)
+            elif t not in (CSTRID_RELEASE, MEMCPY, CSTRID_CTOR):
+                if tail:
+                    return None
+                calls.append(t)
+            elif t == CSTRID_CTOR:
+                return None
+            for r in [str(i) for i in range(19)]:
+                facts.pop(r, None)
+                page.pop(r, None)
+            if t not in (CSTRID_RELEASE, MEMCPY):
+                facts["0"] = ("call", t)
+            continue
+        for r in written:
+            facts.pop(r, None)
+            if m != "adrp":
+                page.pop(r, None)
+        facts.update(new)
+        facts["zr"] = ("imm", 0)
+    ret, inv = stores.get(0x38), stores.get(0x48)
+    if first or flag is None or stores.get(0x40) != ("imm", 0) or not inv or inv[0] != "ptr"             or inv[1] not in orig.sizes or not ret:
+        return None
+    decls: list[str] = []
+
+    def getter_expr(t: int) -> str:
+        if t not in VALUE_TYPES:
+            kind = "base::reflection::CClass" if t in class_getters else "base::reflection::CType"
+            decls.append(f"const {kind}* fn_{t:x}();")
+        return f"fn_{t:x}()"
+
+    def type_expr(fact: tuple | None) -> str | None:
+        if fact and fact[0] == "ptr" and fact[1] not in orig.sizes:
+            decls.append(f"extern base::reflection::CType g_unk_{fact[1]:x};")
+            return f"&g_unk_{fact[1]:x}"
+        if fact and fact[0] == "call":
+            return getter_expr(fact[1])
+        return None
+
+    # Every call is a type getter whose result is the return type or a parameter, in order.
+    used = [f[1] for f in [ret] + pushes if f and f[0] == "call"]
+    if used != calls:
+        return None
+    ret_expr = type_expr(ret)
+    params = [type_expr(f) for f in pushes]
+    if ret_expr is None or None in params:
+        return None
+    decls.append(f"void fn_{inv[1]:x}();")
+    body = [f"void fn_{addr:x}(UnkReflFunction* fn, const char* name) {{",
+            "    fn->name = base::global::UnkStrId(name, true);",
+            f"    fn->return_type = {ret_expr};",
+            f"    fn->field_0xb2 = {flag:#x};",
+            "    fn->field_0x40 = nullptr;",
+            f"    fn->invoker = reinterpret_cast<void*>(&fn_{inv[1]:x});"]
+    body += [f"    fn->params.PushBack({e});" for e in params]
+    for t in tail:
+        decls.append(f"void fn_{t:x}(UnkReflFunction* fn);")
+        body.append(f"    fn_{t:x}(fn);")
+    return list(dict.fromkeys(decls)), "\n".join(body + ["}"])
+
+
 def verify(version: str, candidates: dict[int, tuple[list[str], str]], workdir: Path) -> set[int]:
     """Compile all candidates in one translation unit; return the addresses that match."""
     if not candidates:

@@ -4320,7 +4320,7 @@ address,size,name,name_source,subsystem,status
 0x71006ad0a4,244,CShakernautAIComponent::refl_GetClass,reflection,game/ai,U
 0x71006ad198,160,fn_71006ad198,unknown,game/ai?,O
 0x71006ad238,356,CShakernautAIComponent::refl_InitClass,reflection,game/ai,U
-0x71006ad39c,380,fn_71006ad39c,unknown,unknown,U
+0x71006ad39c,380,fn_71006ad39c,unknown,unknown,O
 0x71006ad518,544,fn_71006ad518,unknown,unknown,U
 0x71006ad738,36,fn_71006ad738,unknown,unknown,U
 0x71006ad75c,208,fn_71006ad75c,unknown,unknown,U
@@ -4517,7 +4517,7 @@ address,size,name,name_source,subsystem,status
 0x71006b98c0,244,CShelmitAIComponent::refl_GetClass,reflection,game/ai,O
 0x71006b99b4,568,fn_71006b99b4,unknown,game/ai?,O
 0x71006b9bec,356,CShelmitAIComponent::refl_InitClass,reflection,game/ai,O
-0x71006b9d50,372,fn_71006b9d50,unknown,unknown,U
+0x71006b9d50,372,fn_71006b9d50,unknown,unknown,O
 0x71006b9ec4,208,fn_71006b9ec4,unknown,unknown,U
 0x71006b9f94,216,fn_71006b9f94,unknown,unknown,U
 0x71006ba06c,172,fn_71006ba06c,unknown,unknown,U
@@ -5933,12 +5933,12 @@ address,size,name,name_source,subsystem,status
 0x71006f5fbc,244,CCharClassAINavigationComponent::refl_GetClass,reflection,game/characters,O
 0x71006f60b0,3540,fn_71006f60b0,unknown,game/characters?,O
 0x71006f6e84,388,CCharClassAINavigationComponent::refl_InitClass,reflection,game/characters,O
-0x71006f7008,380,fn_71006f7008,unknown,unknown,U
-0x71006f7184,380,fn_71006f7184,unknown,unknown,U
-0x71006f7300,380,fn_71006f7300,unknown,unknown,U
-0x71006f747c,380,fn_71006f747c,unknown,unknown,U
-0x71006f75f8,380,fn_71006f75f8,unknown,unknown,U
-0x71006f7774,380,fn_71006f7774,unknown,unknown,U
+0x71006f7008,380,fn_71006f7008,unknown,unknown,O
+0x71006f7184,380,fn_71006f7184,unknown,unknown,O
+0x71006f7300,380,fn_71006f7300,unknown,unknown,O
+0x71006f747c,380,fn_71006f747c,unknown,unknown,O
+0x71006f75f8,380,fn_71006f75f8,unknown,unknown,O
+0x71006f7774,380,fn_71006f7774,unknown,unknown,O
 0x71006f78f0,4,fn_71006f78f0,unknown,unknown,U
 0x71006f78f4,36,fn_71006f78f4,unknown,unknown,U
 0x71006f7918,28,fn_71006f7918,unknown,unknown,U
