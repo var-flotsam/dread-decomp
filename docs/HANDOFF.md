@@ -4,7 +4,7 @@ For the next developer, human or AI, picking up this project. Read this, then `C
 (rules and conventions), `docs/recon.md` (what's in the binary), `docs/compiler.md`
 (toolchain), and `docs/references.md` (outside projects).
 
-Snapshot as of 2026-10-16 (second Phase 4 session; last commit `Phase 4.3: reflection functions with out-of-line initialisers`). Target: **Metroid Dread 2.1.0**, `main` build ID
+Snapshot as of 2026-10-16 (second Phase 4 session; last commit `Phase 4.3: root-class and same-TU-parent getters`). Target: **Metroid Dread 2.1.0**, `main` build ID
 `646761F643AFEBB379EDD5E6A5151AF2CEF93DC1`.
 
 ## Where things stand
@@ -17,13 +17,13 @@ Snapshot as of 2026-10-16 (second Phase 4 session; last commit `Phase 4.3: refle
 | Tooling for Phase 4 | **Done.** `tools/check.py` (build + status), objdiff (`tools/objdiff_gen.py`), whole-binary progress (`tools/progress.py`) |
 | 4.1 System headers | **Done.** `lib/nnsdk` + `lib/musl` submodules, libc++ 9.0.1 headers, `tools/buildcfg.py` |
 | 4.2 Lua | **Done.** Upstream 5.1.4 vendored in `lib/lua/` (2 marked config changes); 286 Lua functions located in `main` by `tools/sigmatch.py` (status `L`) |
-| 4.3 Reflection | **In progress.** 1,809 of 2,346 class getters, their 1,809 descriptor constructors, 11,497 per-type helpers and 1,374 of 1,574 attribute/member-field functions generated and byte-identical (`src/reflection/`, `tools/gen_reflection.py`, `tools/refl_attrs.py`). Next: property functions and the remaining helpers (below) |
+| 4.3 Reflection | **In progress.** 1,878 of 2,346 class getters with their descriptor constructors, per-type helpers and 1,409 of 1,627 attribute/member-field functions generated and byte-identical (`src/reflection/`, `tools/gen_reflection.py`, `tools/refl_attrs.py`). Next: property functions and the remaining helpers (below) |
 | 4.4+ Boot to title screen | Not started; plan below |
 | Port | Not started (`port/` is empty) |
 
-Function status (BotW codes): `O` 16,510, `m` 4, `M` 1, `L` 1,614, `U` 85,888.
-**Game-code progress: 10.47% of bytes (1.97 MB) matching** (`tools/progress.py`; library code
-excluded). `tools/check.py` reports 16,519 `O` in `src/` because the matching `nn::atk`
+Function status (BotW codes): `O` 17,057, `m` 4, `M` 1, `L` 1,614, `U` 85,341.
+**Game-code progress: 10.99% of bytes (2.06 MB) matching** (`tools/progress.py`; library code
+excluded). `tools/check.py` reports 17,066 `O` in `src/` because the matching `nn::atk`
 functions and a few others keep `L`.
 
 ## Hard rules (summary; full text in CLAUDE.md)
@@ -198,10 +198,20 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
      types' layouts. `0x28` (1,765, most 13–19 instructions): constructs, then calls a virtual.
    - Odd ones: CClass/CEnumType/CFlagsetType/CPointerType helpers, a slot-2 destructor
      (CHearingSensor).
-2. **Remaining getters:** 452 in TUs with other statics (probably getters of pointer/enum/collection
-   types and unlisted templates: identify them so the layout can be reproduced honestly, no
-   dummy statics) and 84 with a different code shape (`build/reflection_tus.json`). Also the
-   getters of non-class kinds (85 pointer, 10 enum, 42 unknown).
+2. **Remaining getters.** Done: root classes (null parent, `DREAD_REFL_ROOT_CLASS_GETTER`) and
+   getters whose parent is in the same TU (Clang replaces the parent call's result by the
+   parent descriptor's constant address; reproduced by generating both together). Left:
+   - 452 types in TUs with **other statics** between the guards and the descriptors. The extra
+     slots are referenced by the classes' own game functions in the same file (function-local
+     statics in AI/attack code, `fn_710009deb0` for `CType`, ...), not by reflection code. The
+     getter encodes the guard-to-descriptor distance, so these wait until those functions are
+     decompiled (no dummy statics).
+   - 15 with rarer shapes (448/444-byte getters, e.g. `base::file::nx::CDeviceNX`,
+     `ISkeletalPoseProvider`) and the getters of non-class kinds (85 pointer, 10 enum, 42 unknown).
+   - Slots `0x28` (1,763, 135 KB: inlined default constructors, then `fn_7100023854`, which
+     applies reflected defaults), `0x30`/`0x38` (copy/move constructors, 135 KB) and
+     `0x48`/`0x50` (assignment, 71 KB) need each class's layout: they inline the class's own
+     constructors and member initialisers.
 3. **Lua leftovers:** 23 ambiguous and the `lapi`/`lcode`/`ltable` mismatches (`ltable` number
    hashing may need another `luaconf` change).
 4. Core engine types the slice depends on: `base::global` strings (refcounted, global pool; see
