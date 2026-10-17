@@ -20,6 +20,11 @@ descriptors follow immediately and in order, is one TU. Only "clean" TUs are gen
 every getter uses the common code shape and the TU holds nothing but getter statics. Other
 TUs need extra statics that aren't known yet, and are reported instead.
 
+Pointer types whose pointee is one of a TU's classes (tools/gen_types.py, local pairs) are
+generated in that TU: their constructor uses the class descriptor's constant address in place
+of the getter call's result. Each such file is compiled and only byte-identical pointer
+getter/constructor pairs are kept.
+
 Usage: python tools/gen_reflection.py --version 2.1.0
 Generated files are outputs: regenerate, don't edit.
 """
@@ -31,7 +36,9 @@ import csv
 import json
 import re
 import shutil
+import subprocess
 import sys
+from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -40,6 +47,8 @@ import capstone
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 sys.path.insert(0, str(Path(__file__).resolve().parent / "recon"))
 import asmdiff  # noqa: E402
+import buildcfg  # noqa: E402
+import gen_types  # noqa: E402
 import refl_attrs  # noqa: E402
 import sigmatch  # noqa: E402
 from image import BASE  # noqa: E402
@@ -270,9 +279,15 @@ def main() -> int:
     attr_total = sum(1 for g in (g for b in clean for g in b) for a in (g.fn_0x70, g.fn_0xe0)
                      if len(orig.function(a)) > 4)
 
+    _, local_ptrs, _, ptr_decls = gen_types.scan(orig)
+    ptrs_by_pointee: dict[int, list] = {}
+    for p in local_ptrs:
+        ptrs_by_pointee.setdefault(p[4], []).append(p)
+
     if OUT.exists():
         shutil.rmtree(OUT)
     OUT.mkdir(parents=True)
+    files: dict[str, tuple[list[str], list]] = {}  # name -> (lines, local pointer pairs)
     taken: set[str] = set()
     generated = skipped_shape = skipped_layout = helpers_defined = attrs_defined = 0
     report = []
@@ -341,13 +356,53 @@ def main() -> int:
                 lines.append(f'DREAD_REFL_ROOT_CLASS_GETTER({g.address:x}, {g.init:x}, "{g.type}", '
                              f'{g.fn_0x70:x}, {g.fn_0xe0:x});')
             lines.append("")
-        (OUT / f"{name}.cpp").write_text(chr(10).join(lines), encoding="utf-8", newline=chr(10))
+        ptrs = [p for g in block for p in ptrs_by_pointee.get(g.address, [])]
+        files[name] = (lines, ptrs)
         generated += n
+
+    def text(lines: list[str], ptrs: list) -> str:
+        if not ptrs:
+            return chr(10).join(lines)
+        body = [line for p in ptrs for line in gen_types.emit(*p[:4])]
+        pointees = {f"fn_{p[4]:x}" for p in ptrs}
+        decls = [d for d in gen_types.used_decls(body, ptr_decls)
+                 if gen_types.NAME_RE.search(d.split("(")[0]).group(0) not in pointees]
+        return chr(10).join(lines[:1] + ['#include "base/reflection/CPointerType.h"'] + lines[1:]
+                            + decls + body) + chr(10)
+
+    # Pointer types: drop those that would redeclare a name the file already uses, then keep
+    # only the byte-identical ones.
+    for name, (lines, ptrs) in files.items():
+        names = set(gen_types.NAME_RE.findall(chr(10).join(lines)))
+        files[name] = (lines, [p for p in ptrs if not any(
+            gen_types.NAME_RE.search(d.split("(")[0]).group(0) in names - {f"fn_{p[4]:x}"}
+            for d in gen_types.used_decls(gen_types.emit(*p[:4]), ptr_decls))])
+    work = ROOT / "build" / "reflection_ptrs"
+    work.mkdir(parents=True, exist_ok=True)
+
+    def check_file(name: str) -> set[int]:
+        src, obj = work / f"{name}.cpp", work / f"{name}.o"
+        src.write_text(text(*files[name]), encoding="utf-8")
+        r = subprocess.run(buildcfg.cxx_command(src, obj), capture_output=True, text=True)
+        if r.returncode != 0:
+            return set()
+        return {res.address for res in asmdiff.diff_object(obj, orig) if res.matching}
+
+    with_ptrs = [n for n, (_, ptrs) in files.items() if ptrs]
+    with ThreadPoolExecutor() as pool:
+        matched = dict(zip(with_ptrs, pool.map(check_file, with_ptrs)))
+    ptrs_generated = 0
+    for name, (lines, ptrs) in files.items():
+        ok = matched.get(name, set())
+        ptrs = [p for p in ptrs if p[0] in ok and p[2] in ok]
+        ptrs_generated += len(ptrs)
+        (OUT / f"{name}.cpp").write_text(text(lines, ptrs), encoding="utf-8", newline=chr(10))
 
     (ROOT / "build" / "reflection_tus.json").write_text(json.dumps(report, indent=1), encoding="utf-8")
     print(f"{len(rows)} class getters; {len(located)} located; {len(blocks)} TUs. Generated {generated} getters "
           f"and {helpers_defined} helpers ({attrs_defined} of {attr_total} non-empty attribute/field functions) in {len(list(OUT.glob('*.cpp')))} files; skipped {skipped_layout} (other statics) and "
-          f"{skipped_shape} (different code shape). Skipped TUs: build/reflection_tus.json")
+          f"{skipped_shape} (different code shape); {ptrs_generated} of {len(local_ptrs)} pointer types with a "
+          f"local pointee. Skipped TUs: build/reflection_tus.json")
     return 0
 
 

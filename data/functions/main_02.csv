@@ -885,8 +885,8 @@ address,size,name,name_source,subsystem,status
 0x710021d8b0,240,media::CMoviePlayer::refl_GetClass,reflection,media,O
 0x710021d9a0,996,fn_710021d9a0,unknown,media?,O
 0x710021dd84,352,media::CMoviePlayer::refl_InitClass,reflection,media,O
-0x710021dee4,220,fn_710021dee4,unknown,media?,U
-0x710021dfc0,368,fn_710021dfc0,unknown,media?,U
+0x710021dee4,220,fn_710021dee4,unknown,media?,O
+0x710021dfc0,368,fn_710021dfc0,unknown,media?,O
 0x710021e130,104,fn_710021e130,unknown,media?,U
 0x710021e198,120,fn_710021e198,unknown,media?,U
 0x710021e210,4,fn_710021e210,unknown,media?,U
@@ -3085,7 +3085,7 @@ address,size,name,name_source,subsystem,status
 0x71002696e4,244,navmesh::CDynamicSmartLinkRule::refl_GetClass,reflection,ai/navmesh,O
 0x71002697d8,4,fn_71002697d8,unknown,ai/navmesh?,O
 0x71002697dc,364,navmesh::CDynamicSmartLinkRule::refl_InitClass,reflection,ai/navmesh,O
-0x7100269948,220,fn_7100269948,unknown,unknown,U
+0x7100269948,220,fn_7100269948,unknown,unknown,O
 0x7100269a24,220,fn_7100269a24,unknown,unknown,O
 0x7100269b00,220,fn_7100269b00,unknown,unknown,O
 0x7100269bdc,900,fn_7100269bdc,unknown,unknown,U
@@ -3099,7 +3099,7 @@ address,size,name,name_source,subsystem,status
 0x710026a9fc,124,fn_710026a9fc,unknown,unknown,U
 0x710026aa78,4,fn_710026aa78,unknown,unknown,U
 0x710026aa7c,28,fn_710026aa7c,unknown,unknown,U
-0x710026aa98,368,fn_710026aa98,unknown,unknown,U
+0x710026aa98,368,fn_710026aa98,unknown,unknown,O
 0x710026ac08,104,fn_710026ac08,unknown,unknown,U
 0x710026ac70,12,fn_710026ac70,unknown,unknown,U
 0x710026ac7c,16,fn_710026ac7c,unknown,unknown,U
@@ -3900,8 +3900,8 @@ address,size,name,name_source,subsystem,status
 0x71002b6920,64,fn_71002b6920,unknown,unknown,U
 0x71002b6960,108,fn_71002b6960,unknown,unknown,U
 0x71002b69d0,140,fn_71002b69d0,unknown,unknown,U
-0x71002b6a5c,220,fn_71002b6a5c,unknown,unknown,U
-0x71002b6b38,220,base::reflection::refl_GetType<std::unique_ptr<querysystem::CEvaluator>>,reflection,engine/reflection,U
+0x71002b6a5c,220,fn_71002b6a5c,unknown,unknown,O
+0x71002b6b38,220,base::reflection::refl_GetType<std::unique_ptr<querysystem::CEvaluator>>,reflection,engine/reflection,O
 0x71002b6c14,220,fn_71002b6c14,unknown,unknown,O
 0x71002b6cf0,220,fn_71002b6cf0,unknown,unknown,O
 0x71002b6dcc,900,fn_71002b6dcc,unknown,unknown,U
@@ -3921,7 +3921,7 @@ address,size,name,name_source,subsystem,status
 0x71002b80ec,116,fn_71002b80ec,unknown,unknown,U
 0x71002b8160,28,fn_71002b8160,unknown,unknown,U
 0x71002b817c,8,fn_71002b817c,unknown,unknown,U
-0x71002b8184,368,fn_71002b8184,unknown,unknown,U
+0x71002b8184,368,fn_71002b8184,unknown,unknown,O
 0x71002b82f4,104,fn_71002b82f4,unknown,unknown,U
 0x71002b835c,12,fn_71002b835c,unknown,unknown,U
 0x71002b8368,16,fn_71002b8368,unknown,unknown,U
@@ -3934,7 +3934,7 @@ address,size,name,name_source,subsystem,status
 0x71002b83c8,4,fn_71002b83c8,unknown,unknown,U
 0x71002b83cc,20,fn_71002b83cc,unknown,unknown,U
 0x71002b83e0,20,fn_71002b83e0,unknown,unknown,U
-0x71002b83f4,352,base::reflection::refl_InitType<std::unique_ptr<querysystem::CEvaluator>>,reflection,engine/reflection,U
+0x71002b83f4,352,base::reflection::refl_InitType<std::unique_ptr<querysystem::CEvaluator>>,reflection,engine/reflection,O
 0x71002b8554,104,fn_71002b8554,unknown,unknown,U
 0x71002b85bc,36,fn_71002b85bc,unknown,unknown,U
 0x71002b85e0,4,fn_71002b85e0,unknown,unknown,U
@@ -4119,13 +4119,13 @@ address,size,name,name_source,subsystem,status
 0x71002bd144,244,querysystem::CFilterToEvaluator::refl_GetClass,reflection,ai/querysystem,O
 0x71002bd238,320,fn_71002bd238,unknown,ai/querysystem?,O
 0x71002bd378,352,querysystem::CFilterToEvaluator::refl_InitClass,reflection,ai/querysystem,O
-0x71002bd4d8,220,base::reflection::refl_GetType<std::unique_ptr<querysystem::CFilter>>,reflection,engine/reflection,U
+0x71002bd4d8,220,base::reflection::refl_GetType<std::unique_ptr<querysystem::CFilter>>,reflection,engine/reflection,O
 0x71002bd5b4,72,fn_71002bd5b4,unknown,engine/reflection?,U
 0x71002bd5fc,80,fn_71002bd5fc,unknown,engine/reflection?,U
 0x71002bd64c,24,fn_71002bd64c,unknown,engine/reflection?,U
 0x71002bd664,64,fn_71002bd664,unknown,engine/reflection?,U
 0x71002bd6a4,28,fn_71002bd6a4,unknown,engine/reflection?,U
-0x71002bd6c0,344,base::reflection::refl_InitType<std::unique_ptr<querysystem::CFilter>>,reflection,engine/reflection,U
+0x71002bd6c0,344,base::reflection::refl_InitType<std::unique_ptr<querysystem::CFilter>>,reflection,engine/reflection,O
 0x71002bd818,88,fn_71002bd818,unknown,unknown,U
 0x71002bd870,36,fn_71002bd870,unknown,unknown,U
 0x71002bd894,4,fn_71002bd894,unknown,unknown,U
@@ -4142,7 +4142,7 @@ address,size,name,name_source,subsystem,status
 0x71002bd978,60,fn_71002bd978,unknown,unknown,U
 0x71002bd9b4,12,fn_71002bd9b4,unknown,unknown,O
 0x71002bd9c0,160,fn_71002bd9c0,unknown,unknown,U
-0x71002bda60,220,fn_71002bda60,unknown,unknown,U
+0x71002bda60,220,fn_71002bda60,unknown,unknown,O
 0x71002bdb3c,220,fn_71002bdb3c,unknown,unknown,O
 0x71002bdc18,220,fn_71002bdc18,unknown,unknown,O
 0x71002bdcf4,900,fn_71002bdcf4,unknown,unknown,U
@@ -4161,7 +4161,7 @@ address,size,name,name_source,subsystem,status
 0x71002bee80,4,fn_71002bee80,unknown,unknown,U
 0x71002bee84,60,fn_71002bee84,unknown,unknown,U
 0x71002beec0,28,fn_71002beec0,unknown,unknown,U
-0x71002beedc,368,fn_71002beedc,unknown,unknown,U
+0x71002beedc,368,fn_71002beedc,unknown,unknown,O
 0x71002bf04c,104,fn_71002bf04c,unknown,unknown,U
 0x71002bf0b4,12,fn_71002bf0b4,unknown,unknown,U
 0x71002bf0c0,16,fn_71002bf0c0,unknown,unknown,U
@@ -4899,8 +4899,8 @@ address,size,name,name_source,subsystem,status
 0x71002d6558,748,fn_71002d6558,unknown,animation?,U
 0x71002d6844,352,animtree::CAnimTreeDef::refl_InitClass,reflection,animation,O
 0x71002d69a4,380,fn_71002d69a4,unknown,animation?,U
-0x71002d6b20,220,fn_71002d6b20,unknown,animation?,U
-0x71002d6bfc,220,fn_71002d6bfc,unknown,animation?,U
+0x71002d6b20,220,fn_71002d6b20,unknown,animation?,O
+0x71002d6bfc,220,fn_71002d6bfc,unknown,animation?,O
 0x71002d6cd8,912,fn_71002d6cd8,unknown,animation?,U
 0x71002d7068,388,fn_71002d7068,unknown,animation?,U
 0x71002d71ec,220,fn_71002d71ec,unknown,animation?,O
@@ -4919,7 +4919,7 @@ address,size,name,name_source,subsystem,status
 0x71002d82b4,64,fn_71002d82b4,unknown,unknown,U
 0x71002d82f4,60,fn_71002d82f4,unknown,unknown,U
 0x71002d8330,28,fn_71002d8330,unknown,unknown,U
-0x71002d834c,368,fn_71002d834c,unknown,unknown,U
+0x71002d834c,368,fn_71002d834c,unknown,unknown,O
 0x71002d84bc,104,fn_71002d84bc,unknown,unknown,U
 0x71002d8524,12,fn_71002d8524,unknown,unknown,U
 0x71002d8530,16,fn_71002d8530,unknown,unknown,U
@@ -4932,7 +4932,7 @@ address,size,name,name_source,subsystem,status
 0x71002d8590,4,fn_71002d8590,unknown,unknown,U
 0x71002d8594,20,fn_71002d8594,unknown,unknown,U
 0x71002d85a8,20,fn_71002d85a8,unknown,unknown,U
-0x71002d85bc,368,fn_71002d85bc,unknown,unknown,U
+0x71002d85bc,368,fn_71002d85bc,unknown,unknown,O
 0x71002d872c,104,fn_71002d872c,unknown,unknown,U
 0x71002d8794,12,fn_71002d8794,unknown,unknown,U
 0x71002d87a0,16,fn_71002d87a0,unknown,unknown,U
@@ -5079,7 +5079,7 @@ address,size,name,name_source,subsystem,status
 0x71002dbcf4,240,animtree::CAnimTreeElementDef::refl_GetClass,reflection,animation,O
 0x71002dbde4,148,fn_71002dbde4,unknown,animation?,O
 0x71002dbe78,388,animtree::CAnimTreeElementDef::refl_InitClass,reflection,animation,O
-0x71002dbffc,220,base::reflection::refl_GetType<std::unique_ptr<animtree::CAnimTreeElementDef>>,reflection,engine/reflection,U
+0x71002dbffc,220,base::reflection::refl_GetType<std::unique_ptr<animtree::CAnimTreeElementDef>>,reflection,engine/reflection,O
 0x71002dc0d8,220,fn_71002dc0d8,unknown,engine/reflection?,O
 0x71002dc1b4,220,fn_71002dc1b4,unknown,engine/reflection?,O
 0x71002dc290,900,fn_71002dc290,unknown,engine/reflection?,U
@@ -5089,7 +5089,7 @@ address,size,name,name_source,subsystem,status
 0x71002dcbf8,388,fn_71002dcbf8,unknown,engine/reflection?,U
 0x71002dcd7c,220,fn_71002dcd7c,unknown,engine/reflection?,O
 0x71002dce58,480,fn_71002dce58,unknown,engine/reflection?,U
-0x71002dd038,352,base::reflection::refl_InitType<std::unique_ptr<animtree::CAnimTreeElementDef>>,reflection,engine/reflection,U
+0x71002dd038,352,base::reflection::refl_InitType<std::unique_ptr<animtree::CAnimTreeElementDef>>,reflection,engine/reflection,O
 0x71002dd198,104,fn_71002dd198,unknown,unknown,U
 0x71002dd200,36,fn_71002dd200,unknown,unknown,U
 0x71002dd224,4,fn_71002dd224,unknown,unknown,U

@@ -46,7 +46,7 @@ CPointerType::CPointerType(const base::global::CStrId& name, T*, void*)
              reinterpret_cast<UnkFn_0x48>(UnkReflPointerTraits<T>::fn_0x48),
              reinterpret_cast<UnkFn_0x48>(UnkReflPointerTraits<T>::fn_0x50)},
             false),
-      field_0xe0(false), m_pointee(UnkReflPointerTraits<T>::pointee()),
+      field_0xe0(UnkReflPointerTraits<T>::field_0xe0), m_pointee(UnkReflPointerTraits<T>::pointee()),
       field_0xf0(UnkReflPointerTraits<T>::fn_0xf0), field_0xf8(UnkReflPointerTraits<T>::fn_0xf8),
       field_0x100(UnkReflPointerTraits<T>::fn_0x100) {}
 

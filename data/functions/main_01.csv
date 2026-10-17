@@ -1155,7 +1155,7 @@ address,size,name,name_source,subsystem,status
 0x7100135a94,244,base::tunable::CTunable::refl_GetClass,reflection,engine/base,O
 0x7100135b88,148,fn_7100135b88,unknown,engine/base?,O
 0x7100135c1c,388,base::tunable::CTunable::refl_InitClass,reflection,engine/base,O
-0x7100135da0,220,base::reflection::refl_GetType<base::tunable::CTunable*>,reflection,engine/reflection,U
+0x7100135da0,220,base::reflection::refl_GetType<base::tunable::CTunable*>,reflection,engine/reflection,O
 0x7100135e7c,220,fn_7100135e7c,unknown,engine/reflection?,O
 0x7100135f58,220,fn_7100135f58,unknown,engine/reflection?,O
 0x7100136034,900,fn_7100136034,unknown,engine/reflection?,U
@@ -1168,7 +1168,7 @@ address,size,name,name_source,subsystem,status
 0x7100136df0,220,fn_7100136df0,unknown,engine/reflection?,O
 0x7100136ecc,108,fn_7100136ecc,unknown,engine/reflection?,U
 0x7100136f38,352,fn_7100136f38,unknown,engine/reflection?,U
-0x7100137098,368,base::reflection::refl_InitType<base::tunable::CTunable*>,reflection,engine/reflection,U
+0x7100137098,368,base::reflection::refl_InitType<base::tunable::CTunable*>,reflection,engine/reflection,O
 0x7100137208,104,fn_7100137208,unknown,unknown,U
 0x7100137270,12,fn_7100137270,unknown,unknown,U
 0x710013727c,16,fn_710013727c,unknown,unknown,U

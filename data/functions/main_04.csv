@@ -3981,8 +3981,8 @@ address,size,name,name_source,subsystem,status
 0x71004ab998,388,CCooldownXBossLavaDropsDef::refl_InitClass,reflection,game,O
 0x71004abb1c,172,fn_71004abb1c,unknown,unknown,U
 0x71004abbc8,172,fn_71004abbc8,unknown,unknown,U
-0x71004abc74,220,fn_71004abc74,unknown,unknown,U
-0x71004abd50,220,base::reflection::refl_GetType<std::unique_ptr<CCooldownXBossLavaDropsDef>>,reflection,engine/reflection,U
+0x71004abc74,220,fn_71004abc74,unknown,unknown,O
+0x71004abd50,220,base::reflection::refl_GetType<std::unique_ptr<CCooldownXBossLavaDropsDef>>,reflection,engine/reflection,O
 0x71004abe2c,220,fn_71004abe2c,unknown,unknown,O
 0x71004abf08,220,fn_71004abf08,unknown,unknown,O
 0x71004abfe4,900,fn_71004abfe4,unknown,unknown,U
@@ -3992,8 +3992,8 @@ address,size,name,name_source,subsystem,status
 0x71004ac94c,388,fn_71004ac94c,unknown,unknown,U
 0x71004acad0,220,fn_71004acad0,unknown,unknown,O
 0x71004acbac,480,fn_71004acbac,unknown,unknown,U
-0x71004acd8c,220,fn_71004acd8c,unknown,unknown,U
-0x71004ace68,220,fn_71004ace68,unknown,unknown,U
+0x71004acd8c,220,fn_71004acd8c,unknown,unknown,O
+0x71004ace68,220,fn_71004ace68,unknown,unknown,O
 0x71004acf44,912,fn_71004acf44,unknown,unknown,U
 0x71004ad2d4,388,fn_71004ad2d4,unknown,unknown,U
 0x71004ad458,220,fn_71004ad458,unknown,unknown,O
@@ -4018,7 +4018,7 @@ address,size,name,name_source,subsystem,status
 0x71004ae9d8,12,fn_71004ae9d8,unknown,unknown,U
 0x71004ae9e4,12,fn_71004ae9e4,unknown,unknown,U
 0x71004ae9f0,12,fn_71004ae9f0,unknown,unknown,U
-0x71004ae9fc,368,fn_71004ae9fc,unknown,unknown,U
+0x71004ae9fc,368,fn_71004ae9fc,unknown,unknown,O
 0x71004aeb6c,104,fn_71004aeb6c,unknown,unknown,U
 0x71004aebd4,12,fn_71004aebd4,unknown,unknown,U
 0x71004aebe0,16,fn_71004aebe0,unknown,unknown,U
@@ -4031,7 +4031,7 @@ address,size,name,name_source,subsystem,status
 0x71004aec40,4,fn_71004aec40,unknown,unknown,U
 0x71004aec44,20,fn_71004aec44,unknown,unknown,U
 0x71004aec58,20,fn_71004aec58,unknown,unknown,U
-0x71004aec6c,352,base::reflection::refl_InitType<std::unique_ptr<CCooldownXBossLavaDropsDef>>,reflection,engine/reflection,U
+0x71004aec6c,352,base::reflection::refl_InitType<std::unique_ptr<CCooldownXBossLavaDropsDef>>,reflection,engine/reflection,O
 0x71004aedcc,104,fn_71004aedcc,unknown,unknown,U
 0x71004aee34,36,fn_71004aee34,unknown,unknown,U
 0x71004aee58,4,fn_71004aee58,unknown,unknown,U
@@ -4095,7 +4095,7 @@ address,size,name,name_source,subsystem,status
 0x71004afb0c,176,fn_71004afb0c,unknown,unknown,U
 0x71004afbbc,176,fn_71004afbbc,unknown,unknown,U
 0x71004afc6c,12,fn_71004afc6c,unknown,unknown,U
-0x71004afc78,368,fn_71004afc78,unknown,unknown,U
+0x71004afc78,368,fn_71004afc78,unknown,unknown,O
 0x71004afde8,104,fn_71004afde8,unknown,unknown,U
 0x71004afe50,12,fn_71004afe50,unknown,unknown,U
 0x71004afe5c,16,fn_71004afe5c,unknown,unknown,U
@@ -4108,7 +4108,7 @@ address,size,name,name_source,subsystem,status
 0x71004afebc,4,fn_71004afebc,unknown,unknown,U
 0x71004afec0,20,fn_71004afec0,unknown,unknown,U
 0x71004afed4,20,fn_71004afed4,unknown,unknown,U
-0x71004afee8,368,fn_71004afee8,unknown,unknown,U
+0x71004afee8,368,fn_71004afee8,unknown,unknown,O
 0x71004b0058,104,fn_71004b0058,unknown,unknown,U
 0x71004b00c0,12,fn_71004b00c0,unknown,unknown,U
 0x71004b00cc,16,fn_71004b00cc,unknown,unknown,U
@@ -4363,8 +4363,8 @@ address,size,name,name_source,subsystem,status
 0x71004b5ae4,388,CCooldownXBossFireWallDef::refl_InitClass,reflection,game,O
 0x71004b5c68,172,fn_71004b5c68,unknown,unknown,U
 0x71004b5d14,172,fn_71004b5d14,unknown,unknown,U
-0x71004b5dc0,220,fn_71004b5dc0,unknown,unknown,U
-0x71004b5e9c,220,base::reflection::refl_GetType<std::unique_ptr<CCooldownXBossFireWallDef>>,reflection,engine/reflection,U
+0x71004b5dc0,220,fn_71004b5dc0,unknown,unknown,O
+0x71004b5e9c,220,base::reflection::refl_GetType<std::unique_ptr<CCooldownXBossFireWallDef>>,reflection,engine/reflection,O
 0x71004b5f78,220,fn_71004b5f78,unknown,unknown,O
 0x71004b6054,220,fn_71004b6054,unknown,unknown,O
 0x71004b6130,900,fn_71004b6130,unknown,unknown,U
@@ -4383,8 +4383,8 @@ address,size,name,name_source,subsystem,status
 0x71004b79f8,388,fn_71004b79f8,unknown,unknown,U
 0x71004b7b7c,220,fn_71004b7b7c,unknown,unknown,O
 0x71004b7c58,484,fn_71004b7c58,unknown,unknown,U
-0x71004b7e3c,220,fn_71004b7e3c,unknown,unknown,U
-0x71004b7f18,220,fn_71004b7f18,unknown,unknown,U
+0x71004b7e3c,220,fn_71004b7e3c,unknown,unknown,O
+0x71004b7f18,220,fn_71004b7f18,unknown,unknown,O
 0x71004b7ff4,912,fn_71004b7ff4,unknown,unknown,U
 0x71004b8384,388,fn_71004b8384,unknown,unknown,U
 0x71004b8508,220,fn_71004b8508,unknown,unknown,O
@@ -4410,7 +4410,7 @@ address,size,name,name_source,subsystem,status
 0x71004ba398,28,fn_71004ba398,unknown,unknown,U
 0x71004ba3b4,28,fn_71004ba3b4,unknown,unknown,U
 0x71004ba3d0,28,fn_71004ba3d0,unknown,unknown,U
-0x71004ba3ec,368,fn_71004ba3ec,unknown,unknown,U
+0x71004ba3ec,368,fn_71004ba3ec,unknown,unknown,O
 0x71004ba55c,104,fn_71004ba55c,unknown,unknown,U
 0x71004ba5c4,12,fn_71004ba5c4,unknown,unknown,U
 0x71004ba5d0,16,fn_71004ba5d0,unknown,unknown,U
@@ -4423,7 +4423,7 @@ address,size,name,name_source,subsystem,status
 0x71004ba630,4,fn_71004ba630,unknown,unknown,U
 0x71004ba634,20,fn_71004ba634,unknown,unknown,U
 0x71004ba648,20,fn_71004ba648,unknown,unknown,U
-0x71004ba65c,352,base::reflection::refl_InitType<std::unique_ptr<CCooldownXBossFireWallDef>>,reflection,engine/reflection,U
+0x71004ba65c,352,base::reflection::refl_InitType<std::unique_ptr<CCooldownXBossFireWallDef>>,reflection,engine/reflection,O
 0x71004ba7bc,104,fn_71004ba7bc,unknown,unknown,U
 0x71004ba824,36,fn_71004ba824,unknown,unknown,U
 0x71004ba848,4,fn_71004ba848,unknown,unknown,U
@@ -4541,7 +4541,7 @@ address,size,name,name_source,subsystem,status
 0x71004bc304,64,fn_71004bc304,unknown,unknown,U
 0x71004bc344,352,fn_71004bc344,unknown,unknown,U
 0x71004bc4a4,12,fn_71004bc4a4,unknown,unknown,U
-0x71004bc4b0,368,fn_71004bc4b0,unknown,unknown,U
+0x71004bc4b0,368,fn_71004bc4b0,unknown,unknown,O
 0x71004bc620,104,fn_71004bc620,unknown,unknown,U
 0x71004bc688,12,fn_71004bc688,unknown,unknown,U
 0x71004bc694,16,fn_71004bc694,unknown,unknown,U
@@ -4554,7 +4554,7 @@ address,size,name,name_source,subsystem,status
 0x71004bc6f4,4,fn_71004bc6f4,unknown,unknown,U
 0x71004bc6f8,20,fn_71004bc6f8,unknown,unknown,U
 0x71004bc70c,20,fn_71004bc70c,unknown,unknown,U
-0x71004bc720,368,fn_71004bc720,unknown,unknown,U
+0x71004bc720,368,fn_71004bc720,unknown,unknown,O
 0x71004bc890,104,fn_71004bc890,unknown,unknown,U
 0x71004bc8f8,12,fn_71004bc8f8,unknown,unknown,U
 0x71004bc904,16,fn_71004bc904,unknown,unknown,U

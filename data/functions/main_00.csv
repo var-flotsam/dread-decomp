@@ -2738,7 +2738,7 @@ address,size,name,name_source,subsystem,status
 0x710009d6d0,144,fn_710009d6d0,unknown,engine/reflection?,U
 0x710009d760,72,fn_710009d760,unknown,engine/reflection?,U
 0x710009d7a8,220,fn_710009d7a8,unknown,engine/reflection?,U
-0x710009d884,220,base::reflection::refl_GetType<base::reflection::CTypedValue>,reflection,engine/reflection,U
+0x710009d884,220,base::reflection::refl_GetType<base::reflection::CTypedValue>,reflection,engine/reflection,O
 0x710009d960,224,fn_710009d960,unknown,engine/reflection?,U
 0x710009da40,328,fn_710009da40,unknown,engine/reflection?,U
 0x710009db88,24,fn_710009db88,unknown,engine/reflection?,U
@@ -2755,7 +2755,7 @@ address,size,name,name_source,subsystem,status
 0x710009ebfc,4,fn_710009ebfc,unknown,engine/reflection?,U
 0x710009ec00,184,fn_710009ec00,unknown,engine/reflection?,U
 0x710009ecb8,28,fn_710009ecb8,unknown,engine/reflection?,U
-0x710009ecd4,364,base::reflection::refl_InitType<base::reflection::CTypedValue>,reflection,engine/reflection,U
+0x710009ecd4,364,base::reflection::refl_InitType<base::reflection::CTypedValue>,reflection,engine/reflection,O
 0x710009ee40,128,fn_710009ee40,unknown,engine/reflection?,U
 0x710009eec0,4,fn_710009eec0,unknown,engine/reflection?,U
 0x710009eec4,4,fn_710009eec4,unknown,engine/reflection?,U
