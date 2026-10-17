@@ -25,11 +25,11 @@ address,size,name,name_source,subsystem,status
 0x71012019a4,204,fn_71012019a4,unknown,gui?,U
 0x7101201a70,140,fn_7101201a70,unknown,gui?,U
 0x7101201afc,28,fn_7101201afc,unknown,gui?,U
-0x7101201b18,8,fn_7101201b18,unknown,gui?,U
-0x7101201b20,8,fn_7101201b20,unknown,gui?,U
-0x7101201b28,28,fn_7101201b28,unknown,gui?,U
+0x7101201b18,8,fn_7101201b18,unknown,gui?,O
+0x7101201b20,8,fn_7101201b20,unknown,gui?,O
+0x7101201b28,28,fn_7101201b28,unknown,gui?,O
 0x7101201b44,152,fn_7101201b44,unknown,gui?,U
-0x7101201bdc,12,fn_7101201bdc,unknown,gui?,U
+0x7101201bdc,12,fn_7101201bdc,unknown,gui?,O
 0x7101201bf0,268,fn_7101201bf0,unknown,gui?,U
 0x7101201cfc,4,fn_7101201cfc,unknown,gui?,O
 0x7101201d00,244,GUI::CMenuEntryDataSet::refl_GetClass,reflection,gui,O
