@@ -261,6 +261,54 @@ def initialiser_candidates(orig: asmdiff.Original) -> list[int]:
     return out
 
 
+CLASS_KIND = "base::reflection::CClass"
+
+
+def is_abstract(orig: asmdiff.Original, init: int) -> bool:
+    """The constructor sets flag bit 0 (orr #1 after the and #~3)."""
+    cs = capstone.Cs(capstone.CS_ARCH_ARM64, capstone.CS_MODE_ARM)
+    ins = [f"{x.mnemonic} {x.op_str}" for x in cs.disasm(orig.function(init), init)]
+    j = next((i for i, s in enumerate(ins) if s.startswith("and w") and s.endswith("#0xfffffffc")), None)
+    return j is not None and any(s.startswith("orr w") and s.endswith("#1") for s in ins[j:j + 10])
+
+
+def class_constructors(orig: asmdiff.Original) -> dict[int, tuple[int, bool, dict[int, int]]]:
+    """Every CClass descriptor constructor: init -> (size, abstract, traits)."""
+    out = {}
+    for a, size in sorted(orig.sizes.items()):
+        code = orig.function(a)
+        for i in range(0, len(code) - 3, 4):
+            w = struct.unpack_from("<I", code, i)[0]
+            if w >> 26 == 0x25:
+                imm = w & 0x3FFFFFF
+                if a + i + 4 * (imm - (1 << 26) if imm & (1 << 25) else imm) == gen_types.KIND_HASH:
+                    break
+        else:
+            continue
+        kind, stores, _ = gen_types.emulate(orig, a)
+        sz = stores.get(0x18)
+        traits = init_stores(orig, a)
+        if kind == CLASS_KIND and sz and sz[0] == "imm" and all(k in traits for k in (0x58, 0x60, 0x68)):
+            out[a] = (sz[1], is_abstract(orig, a), traits)
+    return out
+
+
+def constructor_lines(init: int, size: int, abstract: bool, traits: dict[int, int]) -> list[str]:
+    """Traits and the explicit instantiation of one descriptor constructor (helpers declared
+    separately)."""
+    lines = ["template <>",
+             f"struct base::reflection::UnkReflClassTraits<UnkRefl_fn_{init:x}> {{",
+             f"    static constexpr u64 size = {size:#x};",
+             f"    static constexpr bool abstract = {'true' if abstract else 'false'};"]
+    for slot in TRAIT_SLOTS:
+        value = f"&fn_{traits[slot]:x}" if slot in traits else "nullptr"
+        lines.append(f"    static constexpr {SLOT_TYPES[slot][0]} fn_{slot:#x} = {value};")
+    return lines + ["};",
+                    "template base::reflection::CClass::CClass(const base::global::CStrId&, "
+                    "const base::reflection::CClass*, base::reflection::UnkFn_0x70, "
+                    f"base::reflection::UnkFn_0x70, UnkRefl_fn_{init:x}*);"]
+
+
 def write_chunks(prefix: str, header: list[str], defs: dict[int, tuple[list[str], str]]) -> None:
     addrs = sorted(defs)
     for k in range(0, len(addrs), REGISTRATION_CHUNK):
@@ -338,6 +386,30 @@ def main() -> int:
         if parsed:
             inits[a] = parsed
     inits_ok = refl_attrs.verify(args.version, inits, ROOT / "build" / "reflection_inits") & set(inits)
+    # Descriptor constructors outside generated getter TUs depend only on their traits.
+    def block_ok(block: list[Getter]) -> bool:
+        n = len(block)
+        return [g.descriptor for g in block] == [block[0].guard + 8 * n + DESCRIPTOR_SIZE * i for i in range(n)]             and all(getter_ok(g, block) and g.fn_0x70 and g.fn_0xe0 and g.init and g.traits
+                    and all(k in g.traits for k in (0x58, 0x60, 0x68)) and g.address in sizes for g in block)
+    clean_inits = {g.init for b in blocks if block_ok(b) for g in b}
+    ctors = {a: v for a, v in class_constructors(orig).items() if a not in clean_inits}
+    helper_types: dict[int, str] = {}
+    scratch = ["// Scratch: descriptor constructors outside generated getter TUs.", '#include "base/reflection/CClass.h"']
+    for a, (size, abstract, traits) in ctors.items():
+        if any(helper_types.setdefault(h, SLOT_TYPES[slot][0]) != SLOT_TYPES[slot][0] for slot, h in traits.items()):
+            continue
+        scratch += [f"DREAD_REFL_TAG({a:x});",
+                    *(SLOT_TYPES[slot][1].format(name=f"fn_{h:x}") for slot, h in traits.items()),
+                    *constructor_lines(a, size, abstract, traits)]
+    work = ROOT / "build" / "reflection_ctors"
+    work.mkdir(parents=True, exist_ok=True)
+    (work / "candidates.cpp").write_text(chr(10).join(scratch) + chr(10), encoding="utf-8")
+    r = subprocess.run(buildcfg.cxx_command(work / "candidates.cpp", work / "candidates.o"), capture_output=True, text=True)
+    if r.returncode != 0:
+        raise SystemExit(f"descriptor constructor candidates failed to compile:\n{r.stderr[:4000]}")
+    ctor_ok = {res.address for res in asmdiff.diff_object(work / "candidates.o", orig) if res.matching} & set(ctors)
+    attached_inits = {g.init for b in blocks for g in b if g.init}
+
     attr_total = len({a for b in blocks for g in b for a in (g.fn_0x70, g.fn_0xe0)
                       if a and len(orig.function(a)) > 4})
 
@@ -351,7 +423,7 @@ def main() -> int:
     OUT.mkdir(parents=True)
     files: dict[str, tuple[list[str], list]] = {}  # name -> (lines, local pointer pairs)
     taken: set[str] = set()
-    generated = skipped_shape = skipped_layout = helpers_defined = attrs_defined = 0
+    generated = skipped_shape = skipped_layout = helpers_defined = attrs_defined = ctors_generated = 0
     report = []
     for block in blocks:
         n = len(block)
@@ -373,8 +445,8 @@ def main() -> int:
                 "// Generated by tools/gen_reflection.py from main; regenerate rather than edit.",
                 f"// Part of one original translation unit ({n} type{'s' if n > 1 else ''}) whose getters aren't",
                 "// generated yet (see build/reflection_tus.json): the per-type helpers with a known uniform",
-                "// shape and the attribute/member-field functions that tools/refl_attrs.py reconstructs",
-                "// byte-identically.",
+                "// shape, the attribute/member-field functions that tools/refl_attrs.py reconstructs",
+                "// byte-identically and the descriptor constructors (T::refl_InitClass) that match.",
                 '#include "base/reflection/CClass.h"',
             ]
             if any(a in attr_ok for g in block for a in (g.fn_0x70, g.fn_0xe0)):
@@ -402,6 +474,11 @@ def main() -> int:
                         helpers_defined += 1
                     if src:
                         defs.append(src)
+                    elif slot in SLOT_TYPES and g.init in ctor_ok:
+                        defs.append(SLOT_TYPES[slot][1].format(name=f"fn_{a:x}"))
+                if g.init in ctor_ok:
+                    defs += [f"DREAD_REFL_TAG({g.init:x});", *constructor_lines(g.init, *ctors[g.init])]
+                    ctors_generated += 1
                 if defs:
                     lines += [f"// {g.type}"] + defs + [""]
                     body += 1
@@ -501,6 +578,25 @@ def main() -> int:
         ptrs_generated += len(ptrs)
         (OUT / f"{name}.cpp").write_text(text(lines, ptrs), encoding="utf-8", newline=chr(10))
 
+    loose = sorted(a for a in ctor_ok if a not in attached_inits)
+    for k in range(0, len(loose), REGISTRATION_CHUNK):
+        lines = ["// Generated by tools/gen_reflection.py from main; regenerate rather than edit.",
+                 "// Descriptor constructors (CClass) of types without a located class getter (most are",
+                 "// built by static initialisers), with the per-type helpers of a known uniform shape;",
+                 "// byte-identical to the original.",
+                 '#include "base/reflection/CClass.h"', ""]
+        declared: set[int] = set()
+        for a in loose[k:k + REGISTRATION_CHUNK]:
+            size, abstract, traits = ctors[a]
+            lines.append(f"DREAD_REFL_TAG({a:x});")
+            for slot, h in sorted(traits.items(), key=lambda t: t[1]):
+                if h not in declared:
+                    declared.add(h)
+                    lines.append(helper_definition(orig, slot, h) or SLOT_TYPES[slot][1].format(name=f"fn_{h:x}"))
+            lines += constructor_lines(a, size, abstract, traits) + [""]
+            ctors_generated += 1
+        (OUT / f"class_descriptors_{k // REGISTRATION_CHUNK:02d}.cpp").write_text(chr(10).join(lines), encoding="utf-8",
+                                                                                newline=chr(10))
     write_chunks("registration", ["// Attribute/member-field registration functions not reached from a class getter",
                                   "// (tools/refl_attrs.py), byte-identical to the original."],
                  {a: others[a] for a in others_ok})
@@ -513,7 +609,8 @@ def main() -> int:
           f"and {helpers_defined} helpers ({attrs_defined} of {attr_total} non-empty attribute/field functions) in {len(list(OUT.glob('*.cpp')))} files; skipped {skipped_layout} (other statics) and "
           f"{skipped_shape} (different code shape); {ptrs_generated} of {len(local_ptrs)} pointer types with a "
           f"local pointee; {len(others_ok)} of {len(others)} other registration functions; "
-          f"{len(inits_ok)} of {len(inits)} function initialisers. Skipped TUs: build/reflection_tus.json")
+          f"{len(inits_ok)} of {len(inits)} function initialisers; "
+          f"{ctors_generated} of {len(ctors)} descriptor constructors outside generated getter TUs. Skipped TUs: build/reflection_tus.json")
     return 0
 
 
