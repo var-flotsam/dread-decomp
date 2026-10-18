@@ -5067,7 +5067,7 @@ address,size,name,name_source,subsystem,status
 0x7100ca9004,340,fn_7100ca9004,unknown,unknown,U
 0x7100ca9158,552,fn_7100ca9158,unknown,unknown,U
 0x7100ca9380,388,fn_7100ca9380,unknown,unknown,U
-0x7100ca9504,348,fn_7100ca9504,unknown,unknown,U
+0x7100ca9504,348,fn_7100ca9504,unknown,unknown,O
 0x7100ca9660,12,fn_7100ca9660,unknown,unknown,O
 0x7100ca966c,8,fn_7100ca966c,unknown,unknown,O
 0x7100ca9674,12,fn_7100ca9674,unknown,unknown,O

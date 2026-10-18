@@ -41,6 +41,9 @@ struct UnkVector {
     u32 flags = 0x3e;  // passed to the allocator
     UnkAllocator* allocator = fn_7100083990();
 
+    UnkVector() = default;
+    explicit UnkVector(u32 flags) : flags(flags) {}
+
     // Inlined in fn_7100a19530. A capacity that doesn't grow past the count (no step) hangs
     // in an empty loop, as in the original. Elements are copied bitwise: the original reloads
     // `count` after storing the element, which a typed store wouldn't force.

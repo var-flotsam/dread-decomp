@@ -5170,7 +5170,7 @@ address,size,name,name_source,subsystem,status
 0x7100dcf88c,4,operator.delete,symbol,unknown,O
 0x7100dcf890,240,fn_7100dcf890,unknown,unknown,U
 0x7100dcf980,492,fn_7100dcf980,unknown,unknown,O
-0x7100dcfb6c,348,fn_7100dcfb6c,unknown,unknown,U
+0x7100dcfb6c,348,fn_7100dcfb6c,unknown,unknown,O
 0x7100dcfcc8,12,fn_7100dcfcc8,unknown,unknown,O
 0x7100dcfcd4,8,fn_7100dcfcd4,unknown,unknown,O
 0x7100dcfcdc,12,fn_7100dcfcdc,unknown,unknown,O
