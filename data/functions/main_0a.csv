@@ -4231,7 +4231,7 @@ address,size,name,name_source,subsystem,status
 0x7100aad240,388,CLineBombMovement::CTunableLineBombMovement::refl_InitClass,reflection,game,O
 0x7100aad3c4,696,fn_7100aad3c4,unknown,game?,U
 0x7100aad680,932,fn_7100aad680,unknown,game?,U
-0x7100aada30,572,fn_7100aada30,unknown,game?,U
+0x7100aada30,572,fn_7100aada30,unknown,game?,O
 0x7100aadc6c,80,fn_7100aadc6c,unknown,game?,O
 0x7100aadcbc,88,fn_7100aadcbc,unknown,game?,O
 0x7100aadd14,76,fn_7100aadd14,unknown,game?,U
@@ -4407,7 +4407,7 @@ address,size,name,name_source,subsystem,status
 0x7100ab6a60,344,fn_7100ab6a60,unknown,unknown,U
 0x7100ab6bb8,276,fn_7100ab6bb8,unknown,unknown,U
 0x7100ab6ccc,828,fn_7100ab6ccc,unknown,unknown,U
-0x7100ab7008,556,fn_7100ab7008,unknown,unknown,U
+0x7100ab7008,556,fn_7100ab7008,unknown,unknown,O
 0x7100ab7234,396,fn_7100ab7234,unknown,unknown,U
 0x7100ab73c0,884,fn_7100ab73c0,unknown,unknown,U
 0x7100ab7734,64,fn_7100ab7734,unknown,unknown,U
@@ -5886,7 +5886,7 @@ address,size,name,name_source,subsystem,status
 0x7100afa110,4,fn_7100afa110,unknown,gui?,O
 0x7100afa114,376,fn_7100afa114,unknown,gui?,U
 0x7100afa28c,564,fn_7100afa28c,unknown,gui?,U
-0x7100afa4c0,556,fn_7100afa4c0,unknown,gui?,U
+0x7100afa4c0,556,fn_7100afa4c0,unknown,gui?,O
 0x7100afa6ec,1220,fn_7100afa6ec,unknown,gui?,U
 0x7100afabb0,108,fn_7100afabb0,unknown,gui?,O
 0x7100afac1c,28,fn_7100afac1c,unknown,gui?,O
@@ -5971,7 +5971,7 @@ address,size,name,name_source,subsystem,status
 0x7100afe318,4,fn_7100afe318,unknown,gui?,O
 0x7100afe31c,100,fn_7100afe31c,unknown,gui?,O
 0x7100afe380,4,fn_7100afe380,unknown,gui?,O
-0x7100afe390,916,fn_7100afe390,unknown,gui?,U
+0x7100afe390,916,fn_7100afe390,unknown,gui?,O
 0x7100afe724,4,fn_7100afe724,unknown,gui?,O
 0x7100afe728,244,GUI::IDataSet::refl_GetClass,reflection,gui,O
 0x7100afe81c,4,fn_7100afe81c,unknown,gui?,O

@@ -4907,7 +4907,7 @@ address,size,name,name_source,subsystem,status
 0x71002d72c8,912,fn_71002d72c8,unknown,animation?,U
 0x71002d7658,388,fn_71002d7658,unknown,animation?,O
 0x71002d77dc,220,fn_71002d77dc,unknown,animation?,O
-0x71002d78b8,504,fn_71002d78b8,unknown,animation?,U
+0x71002d78b8,504,fn_71002d78b8,unknown,animation?,O
 0x71002d7ab0,4,fn_71002d7ab0,unknown,animation?,O
 0x71002d7ab4,240,animtree::CAnimTreeDef::TAnimTreeLinkDef::refl_GetClass,reflection,animation,O
 0x71002d7ba4,268,fn_71002d7ba4,unknown,animation?,O

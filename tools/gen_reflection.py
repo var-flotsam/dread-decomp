@@ -413,10 +413,15 @@ def main() -> int:
     attr_total = len({a for b in blocks for g in b for a in (g.fn_0x70, g.fn_0xe0)
                       if a and len(orig.function(a)) > 4})
 
+    # Types whose descriptor constructor uses a class of this TU (pointer types to it,
+    # collections of it): (lines, addresses that must match, the class getter).
     _, local_ptrs, _, ptr_decls = gen_types.scan(orig)
-    ptrs_by_pointee: dict[int, list] = {}
+    _, local_colls = gen_types.scan_collections(orig, ptr_decls)
+    items_by_getter: dict[int, list] = {}
     for p in local_ptrs:
-        ptrs_by_pointee.setdefault(p[4], []).append(p)
+        items_by_getter.setdefault(p[4], []).append((gen_types.emit(*p[:4]), (p[0], p[2]), p[4]))
+    for c in local_colls:
+        items_by_getter.setdefault(c[2], []).append((gen_types.emit_collection(c[0], c[1]), (c[0],), c[2]))
 
     if OUT.exists():
         shutil.rmtree(OUT)
@@ -536,18 +541,19 @@ def main() -> int:
                 lines.append(f'DREAD_REFL_ROOT_CLASS_GETTER({g.address:x}, {g.init:x}, "{g.type}", '
                              f'{g.fn_0x70:x}, {g.fn_0xe0:x});')
             lines.append("")
-        ptrs = [p for g in block for p in ptrs_by_pointee.get(g.address, [])]
+        ptrs = [p for g in block for p in items_by_getter.get(g.address, [])]
         files[name] = (lines, ptrs)
         generated += n
 
     def text(lines: list[str], ptrs: list) -> str:
         if not ptrs:
             return chr(10).join(lines)
-        body = [line for p in ptrs for line in gen_types.emit(*p[:4])]
-        pointees = {f"fn_{p[4]:x}" for p in ptrs}
+        body = [line for p in ptrs for line in p[0]]
+        pointees = {f"fn_{p[2]:x}" for p in ptrs}
         decls = [d for d in gen_types.used_decls(body, ptr_decls)
                  if gen_types.NAME_RE.search(d.split("(")[0]).group(0) not in pointees]
-        return chr(10).join(lines[:1] + ['#include "base/reflection/CPointerType.h"'] + lines[1:]
+        return chr(10).join(lines[:1] + ['#include "base/reflection/CCollectionType.h"',
+                                         '#include "base/reflection/CPointerType.h"'] + lines[1:]
                             + decls + body) + chr(10)
 
     # Pointer types: drop those that would redeclare a name the file already uses, then keep
@@ -555,8 +561,8 @@ def main() -> int:
     for name, (lines, ptrs) in files.items():
         names = set(gen_types.NAME_RE.findall(chr(10).join(lines)))
         files[name] = (lines, [p for p in ptrs if not any(
-            gen_types.NAME_RE.search(d.split("(")[0]).group(0) in names - {f"fn_{p[4]:x}"}
-            for d in gen_types.used_decls(gen_types.emit(*p[:4]), ptr_decls))])
+            gen_types.NAME_RE.search(d.split("(")[0]).group(0) in names - {f"fn_{p[2]:x}"}
+            for d in gen_types.used_decls(p[0], ptr_decls))])
     work = ROOT / "build" / "reflection_ptrs"
     work.mkdir(parents=True, exist_ok=True)
 
@@ -574,7 +580,7 @@ def main() -> int:
     ptrs_generated = 0
     for name, (lines, ptrs) in files.items():
         ok = matched.get(name, set())
-        ptrs = [p for p in ptrs if p[0] in ok and p[2] in ok]
+        ptrs = [p for p in ptrs if all(a in ok for a in p[1])]
         ptrs_generated += len(ptrs)
         (OUT / f"{name}.cpp").write_text(text(lines, ptrs), encoding="utf-8", newline=chr(10))
 
@@ -607,8 +613,8 @@ def main() -> int:
     (ROOT / "build" / "reflection_tus.json").write_text(json.dumps(report, indent=1), encoding="utf-8")
     print(f"{len(rows)} class getters; {len(located)} located; {len(blocks)} TUs. Generated {generated} getters "
           f"and {helpers_defined} helpers ({attrs_defined} of {attr_total} non-empty attribute/field functions) in {len(list(OUT.glob('*.cpp')))} files; skipped {skipped_layout} (other statics) and "
-          f"{skipped_shape} (different code shape); {ptrs_generated} of {len(local_ptrs)} pointer types with a "
-          f"local pointee; {len(others_ok)} of {len(others)} other registration functions; "
+          f"{skipped_shape} (different code shape); {ptrs_generated} of {len(local_ptrs) + len(local_colls)} pointer/collection "
+          f"types of a local class; {len(others_ok)} of {len(others)} other registration functions; "
           f"{len(inits_ok)} of {len(inits)} function initialisers; "
           f"{ctors_generated} of {len(ctors)} descriptor constructors outside generated getter TUs. Skipped TUs: build/reflection_tus.json")
     return 0

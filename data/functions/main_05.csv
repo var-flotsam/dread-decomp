@@ -3524,7 +3524,7 @@ address,size,name,name_source,subsystem,status
 0x71005b9c68,12,fn_71005b9c68,unknown,unknown,O
 0x71005b9c80,232,fn_71005b9c80,unknown,unknown,O
 0x71005b9d70,128,fn_71005b9d70,unknown,unknown,U
-0x71005b9df0,676,fn_71005b9df0,unknown,unknown,U
+0x71005b9df0,676,fn_71005b9df0,unknown,unknown,O
 0x71005ba094,4,fn_71005ba094,unknown,unknown,O
 0x71005ba098,244,CHydrogigaAIComponent::refl_GetClass,reflection,game/ai,U
 0x71005ba18c,384,fn_71005ba18c,unknown,game/ai?,O

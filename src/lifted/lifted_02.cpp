@@ -216,6 +216,11 @@ namespace callee { char* fn_7101238e00(char*, u64, u64); }
 namespace callee { char* fn_7101238e00(u64, u64, u32); }
 namespace callee { char* fn_7101238e00(u64, u64, u64); }
 
+char* fn_71000c1fa4(char* p0) {
+    *(u64*)((char*)(p0) + 0) = (u64)(u64)(0);
+    return p0;
+}
+
 char* fn_71000c1fac(char* p0, char* p1) {
     u64 r0_8 = (u64)*(u64*)((char*)(p1) + 0);
     *(u64*)((char*)(p0) + 0) = (u64)(u64)(r0_8);
@@ -9900,9 +9905,5 @@ void fn_71000e5fb8() {
 }
 
 void fn_71000e5fbc() {
-    return;
-}
-
-void fn_71000e5fc0() {
     return;
 }

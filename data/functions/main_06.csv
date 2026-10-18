@@ -30,7 +30,7 @@ address,size,name,name_source,subsystem,status
 0x7100602140,24,fn_7100602140,unknown,unknown,O
 0x7100602158,12,fn_7100602158,unknown,unknown,O
 0x7100602164,4,fn_7100602164,unknown,unknown,O
-0x7100602170,588,fn_7100602170,unknown,unknown,U
+0x7100602170,588,fn_7100602170,unknown,unknown,O
 0x71006023bc,4,fn_71006023bc,unknown,unknown,O
 0x71006023c0,244,CCharClassKraidAcidBlobsMovementComponent::refl_GetClass,reflection,game/characters,O
 0x71006024b4,208,fn_71006024b4,unknown,game/characters?,O
@@ -3856,7 +3856,7 @@ address,size,name,name_source,subsystem,status
 0x71006986f4,4,fn_71006986f4,unknown,unknown,O
 0x71006986f8,4,fn_71006986f8,unknown,unknown,O
 0x71006986fc,4,fn_71006986fc,unknown,unknown,O
-0x7100698700,644,fn_7100698700,unknown,unknown,U
+0x7100698700,644,fn_7100698700,unknown,unknown,O
 0x7100698984,4,fn_7100698984,unknown,unknown,O
 0x7100698988,244,CCharClassScorpiusPoisonousSpitMovementComponent::refl_GetClass,reflection,game/characters,O
 0x7100698a7c,4,fn_7100698a7c,unknown,game/characters?,O
@@ -4368,7 +4368,7 @@ address,size,name,name_source,subsystem,status
 0x71006b2298,12,fn_71006b2298,unknown,unknown,O
 0x71006b22a4,116,fn_71006b22a4,unknown,unknown,U
 0x71006b2318,340,fn_71006b2318,unknown,unknown,U
-0x71006b2470,680,fn_71006b2470,unknown,unknown,U
+0x71006b2470,680,fn_71006b2470,unknown,unknown,O
 0x71006b2718,4,fn_71006b2718,unknown,unknown,O
 0x71006b271c,244,CCharClassShelmitPlasmaRayAttack::refl_GetClass,reflection,game/characters,O
 0x71006b2810,1028,fn_71006b2810,unknown,game/characters?,O
@@ -5217,7 +5217,7 @@ address,size,name,name_source,subsystem,status
 0x71006d62a0,28,fn_71006d62a0,unknown,unknown,O
 0x71006d62bc,112,fn_71006d62bc,unknown,unknown,O
 0x71006d632c,12,fn_71006d632c,unknown,unknown,O
-0x71006d6340,1320,fn_71006d6340,unknown,unknown,U
+0x71006d6340,1320,fn_71006d6340,unknown,unknown,O
 0x71006d6868,4,fn_71006d6868,unknown,unknown,O
 0x71006d686c,244,behaviortree::CIsVulkranFrenziedCondition::refl_GetClass,reflection,ai/behaviortree,O
 0x71006d6960,4,fn_71006d6960,unknown,ai/behaviortree?,O

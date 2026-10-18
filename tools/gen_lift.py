@@ -44,7 +44,7 @@ import refl_attrs  # noqa: E402
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "src" / "lifted"
 BASE = 0x7100000000
-MAX_SIZE = 512
+MAX_SIZE = 2048
 CHUNK = 1000  # functions per generated file
 # Functions per scratch TU: with -ffunction-sections, more than ~65k sections overflow the ELF
 # section index (SHN_XINDEX), which the object reader doesn't follow.

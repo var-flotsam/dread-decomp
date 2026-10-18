@@ -1678,7 +1678,7 @@ address,size,name,name_source,subsystem,status
 0x710104cd40,912,fn_710104cd40,unknown,game?,U
 0x710104d0d0,388,fn_710104d0d0,unknown,game?,O
 0x710104d254,220,fn_710104d254,unknown,game?,O
-0x710104d330,504,fn_710104d330,unknown,game?,U
+0x710104d330,504,fn_710104d330,unknown,game?,O
 0x710104d528,4,fn_710104d528,unknown,game?,O
 0x710104d52c,240,CFXPool::CDefinition::refl_GetClass,reflection,game,O
 0x710104d61c,644,fn_710104d61c,unknown,game?,U
@@ -1909,7 +1909,7 @@ address,size,name,name_source,subsystem,status
 0x71010569a4,912,fn_71010569a4,unknown,unknown,U
 0x7101056d34,388,fn_7101056d34,unknown,unknown,O
 0x7101056eb8,220,fn_7101056eb8,unknown,unknown,O
-0x7101056f94,504,fn_7101056f94,unknown,unknown,U
+0x7101056f94,504,fn_7101056f94,unknown,unknown,O
 0x710105718c,220,fn_710105718c,unknown,unknown,O
 0x7101057268,220,fn_7101057268,unknown,unknown,O
 0x7101057344,912,fn_7101057344,unknown,unknown,U
@@ -1918,7 +1918,7 @@ address,size,name,name_source,subsystem,status
 0x7101057934,912,fn_7101057934,unknown,unknown,U
 0x7101057cc4,388,fn_7101057cc4,unknown,unknown,O
 0x7101057e48,220,fn_7101057e48,unknown,unknown,O
-0x7101057f24,504,fn_7101057f24,unknown,unknown,U
+0x7101057f24,504,fn_7101057f24,unknown,unknown,O
 0x710105811c,220,fn_710105811c,unknown,unknown,O
 0x71010581f8,220,fn_71010581f8,unknown,unknown,O
 0x71010582d4,900,fn_71010582d4,unknown,unknown,O
@@ -3349,7 +3349,7 @@ address,size,name,name_source,subsystem,status
 0x71010976c0,292,fn_71010976c0,unknown,script/bindings?,O
 0x71010977e4,724,fn_71010977e4,unknown,script/bindings?,U
 0x7101097ab8,376,fn_7101097ab8,unknown,script/bindings?,U
-0x7101097c30,528,fn_7101097c30,unknown,script/bindings?,U
+0x7101097c30,528,fn_7101097c30,unknown,script/bindings?,O
 0x7101097e40,24,fn_7101097e40,unknown,script/bindings?,O
 0x7101097e60,60,lua_bind::GetDisplayObject,string,script/bindings,U
 0x7101097ea0,52,lua_bind::DestroyDisplayObject,string,script/bindings,O
@@ -4432,7 +4432,7 @@ address,size,name,name_source,subsystem,status
 0x71010de270,756,fn_71010de270,unknown,unknown,U
 0x71010de570,984,fn_71010de570,unknown,unknown,U
 0x71010de950,960,fn_71010de950,unknown,unknown,U
-0x71010ded10,568,fn_71010ded10,unknown,unknown,U
+0x71010ded10,568,fn_71010ded10,unknown,unknown,O
 0x71010def48,4,fn_71010def48,unknown,unknown,O
 0x71010def4c,244,CSteeringMovement::refl_GetClass,reflection,game,O
 0x71010df040,4,fn_71010df040,unknown,game?,O

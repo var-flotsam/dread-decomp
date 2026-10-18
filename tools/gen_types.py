@@ -264,9 +264,22 @@ def emit_enum(init: int, body: list[str]) -> list[str]:
 COLLECTION_KIND = "base::reflection::CCollectionType"
 
 
-def collection_traits(orig: asmdiff.Original, init: int, decls: set[str]) -> list[str] | None:
-    """Traits of a CCollectionType constructor whose key, element and iterator types all come
-    from getter calls (no type defined in the same TU)."""
+def local_element(orig: asmdiff.Original, init: int) -> int | None:
+    """The element class getter of a collection constructor that calls it but stores a constant
+    address (the getter is defined in the same TU, as for local_pointee)."""
+    kind, st, _ = emulate(orig, init)
+    e = st.get(0xF0)
+    if kind != COLLECTION_KIND or not e or e[0] != "data":
+        return None
+    calls = [x.operands[0].imm for x in disasm(orig, init) if x.mnemonic == "bl"]
+    calls = [c for c in calls if c not in (KIND_HASH, ALLOCATOR_GETTER)]
+    return calls[1] if len(calls) > 1 else None
+
+
+def collection_traits(orig: asmdiff.Original, init: int, decls: set[str],
+                      local: int | None = None) -> list[str] | None:
+    """Traits of a CCollectionType constructor whose key, element and iterator types come from
+    getter calls; with `local`, the element is that class getter, defined in the same TU."""
     kind, st, _ = emulate(orig, init)
     if kind != COLLECTION_KIND:
         return None
@@ -292,6 +305,9 @@ def collection_traits(orig: asmdiff.Original, init: int, decls: set[str]) -> lis
         lines.append(f"    static constexpr UnkFn {SLOTS[off]} = {f};")
     for off, member in ((0xE8, "key"), (0xF0, "element"), (0xF8, "iterator"), (0x100, "const_iterator")):
         v = st.get(off)
+        if off == 0xF0 and local is not None:
+            lines.append(f"    static const CType* element() {{ return fn_{local:x}(); }}")
+            continue
         if not v or v[0] != "call":
             return None
         decls.add(f"const base::reflection::CType* fn_{v[1]:x}();")
@@ -314,22 +330,27 @@ def emit_collection(init: int, body: list[str]) -> list[str]:
             f"UnkRefl_fn_{init:x}*, void*);"]
 
 
-def scan_collections(orig: asmdiff.Original, decls: set[str]) -> list:
+def scan_collections(orig: asmdiff.Original, decls: set[str]) -> tuple[list, list]:
     """CCollectionType constructors (the descriptors are globals built by static initialisers):
-    (init, traits lines). Candidates are the functions that call the kind hash."""
+    (init, traits lines), and those with a local element class as (init, traits lines, element
+    getter), which tools/gen_reflection.py generates in that class's file. Candidates are the
+    functions that call the kind hash."""
     rows = []
     for f in sorted((ROOT / "data" / "functions").glob("main_*.csv")):
         with f.open(newline="", encoding="utf-8") as fh:
             rows += [int(r["address"], 16) for r in csv.DictReader(fh) if r["status"] in ("U", "O")]
-    out = []
+    out, local = [], []
     for a in rows:
         if a not in orig.sizes or not any(x.mnemonic == "bl" and x.operands[0].imm == KIND_HASH
                                           for x in disasm(orig, a)[:16]):
             continue
-        body = collection_traits(orig, a, decls)
-        if body:
+        element = local_element(orig, a)
+        body = collection_traits(orig, a, decls, element)
+        if body and element is not None:
+            local.append((a, body, element))
+        elif body:
             out.append((a, body))
-    return out
+    return out, local
 
 
 PRELUDE = ['#include "base/reflection/CCollectionType.h"',
@@ -407,7 +428,7 @@ def main() -> int:
     orig = asmdiff.Original(args.version)
 
     pairs, _, enums, decls = scan(orig)
-    colls = scan_collections(orig, decls)
+    colls, _ = scan_collections(orig, decls)
 
     work = ROOT / "build" / "gen_types"
     work.mkdir(parents=True, exist_ok=True)

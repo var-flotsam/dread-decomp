@@ -13,7 +13,7 @@ address,size,name,name_source,subsystem,status
 0x7100c01184,912,fn_7100c01184,unknown,unknown,U
 0x7100c01514,388,fn_7100c01514,unknown,unknown,O
 0x7100c01698,220,fn_7100c01698,unknown,unknown,O
-0x7100c01774,504,fn_7100c01774,unknown,unknown,U
+0x7100c01774,504,fn_7100c01774,unknown,unknown,O
 0x7100c0196c,220,fn_7100c0196c,unknown,unknown,O
 0x7100c01a48,220,fn_7100c01a48,unknown,unknown,O
 0x7100c01b24,912,fn_7100c01b24,unknown,unknown,U
@@ -22,7 +22,7 @@ address,size,name,name_source,subsystem,status
 0x7100c02114,912,fn_7100c02114,unknown,unknown,U
 0x7100c024a4,388,fn_7100c024a4,unknown,unknown,O
 0x7100c02628,220,fn_7100c02628,unknown,unknown,O
-0x7100c02704,488,fn_7100c02704,unknown,unknown,U
+0x7100c02704,488,fn_7100c02704,unknown,unknown,O
 0x7100c028ec,220,fn_7100c028ec,unknown,unknown,O
 0x7100c029c8,220,fn_7100c029c8,unknown,unknown,O
 0x7100c02aa4,900,fn_7100c02aa4,unknown,unknown,O
@@ -4238,7 +4238,7 @@ address,size,name,name_source,subsystem,status
 0x7100c83f7c,912,fn_7100c83f7c,unknown,game/cutscene?,U
 0x7100c8430c,388,fn_7100c8430c,unknown,game/cutscene?,O
 0x7100c84490,220,fn_7100c84490,unknown,game/cutscene?,O
-0x7100c8456c,504,fn_7100c8456c,unknown,game/cutscene?,U
+0x7100c8456c,504,fn_7100c8456c,unknown,game/cutscene?,O
 0x7100c84764,4,fn_7100c84764,unknown,game/cutscene?,O
 0x7100c84768,240,CCutSceneDef::CAnimationLayerDef::refl_GetClass,reflection,game/cutscene,O
 0x7100c84858,968,fn_7100c84858,unknown,game/cutscene?,U
@@ -4264,7 +4264,7 @@ address,size,name,name_source,subsystem,status
 0x7100c87094,912,fn_7100c87094,unknown,unknown,U
 0x7100c87424,388,fn_7100c87424,unknown,unknown,O
 0x7100c875a8,220,fn_7100c875a8,unknown,unknown,O
-0x7100c87684,504,fn_7100c87684,unknown,unknown,U
+0x7100c87684,504,fn_7100c87684,unknown,unknown,O
 0x7100c8787c,220,fn_7100c8787c,unknown,unknown,O
 0x7100c87958,548,fn_7100c87958,unknown,unknown,U
 0x7100c87b7c,620,fn_7100c87b7c,unknown,unknown,U
