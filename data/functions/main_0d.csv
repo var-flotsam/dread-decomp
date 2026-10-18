@@ -3476,13 +3476,13 @@ address,size,name,name_source,subsystem,status
 0x7100d7820c,32,fn_7100d7820c,unknown,unknown,O
 0x7100d7822c,332,fn_7100d7822c,unknown,unknown,U
 0x7100d78378,180,fn_7100d78378,unknown,unknown,U
-0x7100d7842c,220,fn_7100d7842c,unknown,unknown,U
-0x7100d78508,220,fn_7100d78508,unknown,unknown,U
-0x7100d785e4,220,fn_7100d785e4,unknown,unknown,U
-0x7100d786c0,220,fn_7100d786c0,unknown,unknown,U
-0x7100d7879c,220,fn_7100d7879c,unknown,unknown,U
-0x7100d78878,220,fn_7100d78878,unknown,unknown,U
-0x7100d78954,220,fn_7100d78954,unknown,unknown,U
+0x7100d7842c,220,fn_7100d7842c,unknown,unknown,O
+0x7100d78508,220,fn_7100d78508,unknown,unknown,O
+0x7100d785e4,220,fn_7100d785e4,unknown,unknown,O
+0x7100d786c0,220,fn_7100d786c0,unknown,unknown,O
+0x7100d7879c,220,fn_7100d7879c,unknown,unknown,O
+0x7100d78878,220,fn_7100d78878,unknown,unknown,O
+0x7100d78954,220,fn_7100d78954,unknown,unknown,O
 0x7100d78a30,7296,fn_7100d78a30,unknown,unknown,U
 0x7100d7a6b0,1176,fn_7100d7a6b0,unknown,unknown,U
 0x7100d7ab48,104,fn_7100d7ab48,unknown,unknown,U
@@ -3518,7 +3518,7 @@ address,size,name,name_source,subsystem,status
 0x7100d7be34,24,fn_7100d7be34,unknown,unknown,U
 0x7100d7be4c,84,fn_7100d7be4c,unknown,unknown,O
 0x7100d7bea0,884,fn_7100d7bea0,unknown,unknown,U
-0x7100d7c214,220,fn_7100d7c214,unknown,unknown,U
+0x7100d7c214,220,fn_7100d7c214,unknown,unknown,O
 0x7100d7c2f0,132,fn_7100d7c2f0,unknown,unknown,U
 0x7100d7c374,60,fn_7100d7c374,unknown,unknown,U
 0x7100d7c3b0,124,fn_7100d7c3b0,unknown,unknown,U
@@ -4687,7 +4687,7 @@ address,size,name,name_source,subsystem,status
 0x7100da3120,560,fn_7100da3120,unknown,unknown,U
 0x7100da3350,36,fn_7100da3350,unknown,unknown,O
 0x7100da3374,700,fn_7100da3374,unknown,unknown,U
-0x7100da3630,220,fn_7100da3630,unknown,unknown,U
+0x7100da3630,220,fn_7100da3630,unknown,unknown,O
 0x7100da370c,28,fn_7100da370c,unknown,unknown,O
 0x7100da3728,12,fn_7100da3728,unknown,unknown,O
 0x7100da3734,8,fn_7100da3734,unknown,unknown,O
@@ -5051,7 +5051,7 @@ address,size,name,name_source,subsystem,status
 0x7100dce144,212,fn_7100dce144,unknown,unknown,U
 0x7100dce218,8,fn_7100dce218,unknown,unknown,O
 0x7100dce220,8,fn_7100dce220,unknown,unknown,O
-0x7100dce228,172,fn_7100dce228,unknown,unknown,U
+0x7100dce228,172,fn_7100dce228,unknown,unknown,O
 0x7100dce2d4,8,fn_7100dce2d4,unknown,unknown,O
 0x7100dce2dc,8,fn_7100dce2dc,unknown,unknown,O
 0x7100dce2e4,8,fn_7100dce2e4,unknown,unknown,O
