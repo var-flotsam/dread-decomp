@@ -30,7 +30,7 @@ address,size,name,name_source,subsystem,status
 0x7100602140,24,fn_7100602140,unknown,unknown,O
 0x7100602158,12,fn_7100602158,unknown,unknown,O
 0x7100602164,4,fn_7100602164,unknown,unknown,O
-0x7100602170,588,fn_7100602170,unknown,unknown,U
+0x7100602170,588,fn_7100602170,unknown,unknown,O
 0x71006023bc,4,fn_71006023bc,unknown,unknown,O
 0x71006023c0,244,CCharClassKraidAcidBlobsMovementComponent::refl_GetClass,reflection,game/characters,O
 0x71006024b4,208,fn_71006024b4,unknown,game/characters?,O
@@ -389,7 +389,7 @@ address,size,name,name_source,subsystem,status
 0x710060f9b4,900,fn_710060f9b4,unknown,unknown,O
 0x710060fd38,388,fn_710060fd38,unknown,unknown,O
 0x710060febc,220,fn_710060febc,unknown,unknown,O
-0x710060ff98,480,fn_710060ff98,unknown,unknown,U
+0x710060ff98,480,fn_710060ff98,unknown,unknown,O
 0x7100610178,4,fn_7100610178,unknown,unknown,O
 0x710061017c,240,COffset::refl_GetClass,reflection,game,U
 0x710061026c,972,fn_710061026c,unknown,game?,O
@@ -407,7 +407,7 @@ address,size,name,name_source,subsystem,status
 0x71006112c4,900,fn_71006112c4,unknown,game?,O
 0x7100611648,388,fn_7100611648,unknown,game?,O
 0x71006117cc,220,fn_71006117cc,unknown,game?,O
-0x71006118a8,480,fn_71006118a8,unknown,game?,U
+0x71006118a8,480,fn_71006118a8,unknown,game?,O
 0x7100611a88,220,fn_7100611a88,unknown,game?,U
 0x7100611b64,220,fn_7100611b64,unknown,game?,U
 0x7100611c40,912,fn_7100611c40,unknown,game?,U
@@ -434,7 +434,7 @@ address,size,name,name_source,subsystem,status
 0x71006139bc,900,fn_71006139bc,unknown,unknown,O
 0x7100613d40,388,fn_7100613d40,unknown,unknown,O
 0x7100613ec4,220,fn_7100613ec4,unknown,unknown,O
-0x7100613fa0,480,fn_7100613fa0,unknown,unknown,U
+0x7100613fa0,480,fn_7100613fa0,unknown,unknown,O
 0x7100614180,4,fn_7100614180,unknown,unknown,O
 0x7100614184,244,CCharClassNailongAIComponent::refl_GetClass,reflection,game/characters,U
 0x7100614278,2868,fn_7100614278,unknown,game/characters?,U
@@ -3856,7 +3856,7 @@ address,size,name,name_source,subsystem,status
 0x71006986f4,4,fn_71006986f4,unknown,unknown,O
 0x71006986f8,4,fn_71006986f8,unknown,unknown,O
 0x71006986fc,4,fn_71006986fc,unknown,unknown,O
-0x7100698700,644,fn_7100698700,unknown,unknown,U
+0x7100698700,644,fn_7100698700,unknown,unknown,O
 0x7100698984,4,fn_7100698984,unknown,unknown,O
 0x7100698988,244,CCharClassScorpiusPoisonousSpitMovementComponent::refl_GetClass,reflection,game/characters,O
 0x7100698a7c,4,fn_7100698a7c,unknown,game/characters?,O
@@ -4368,7 +4368,7 @@ address,size,name,name_source,subsystem,status
 0x71006b2298,12,fn_71006b2298,unknown,unknown,O
 0x71006b22a4,116,fn_71006b22a4,unknown,unknown,U
 0x71006b2318,340,fn_71006b2318,unknown,unknown,U
-0x71006b2470,680,fn_71006b2470,unknown,unknown,U
+0x71006b2470,680,fn_71006b2470,unknown,unknown,O
 0x71006b2718,4,fn_71006b2718,unknown,unknown,O
 0x71006b271c,244,CCharClassShelmitPlasmaRayAttack::refl_GetClass,reflection,game/characters,O
 0x71006b2810,1028,fn_71006b2810,unknown,game/characters?,O
@@ -5217,7 +5217,7 @@ address,size,name,name_source,subsystem,status
 0x71006d62a0,28,fn_71006d62a0,unknown,unknown,O
 0x71006d62bc,112,fn_71006d62bc,unknown,unknown,O
 0x71006d632c,12,fn_71006d632c,unknown,unknown,O
-0x71006d6340,1320,fn_71006d6340,unknown,unknown,U
+0x71006d6340,1320,fn_71006d6340,unknown,unknown,O
 0x71006d6868,4,fn_71006d6868,unknown,unknown,O
 0x71006d686c,244,behaviortree::CIsVulkranFrenziedCondition::refl_GetClass,reflection,ai/behaviortree,O
 0x71006d6960,4,fn_71006d6960,unknown,ai/behaviortree?,O

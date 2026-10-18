@@ -261,7 +261,100 @@ def emit_enum(init: int, body: list[str]) -> list[str]:
             f"UnkRefl_fn_{init:x}*);"]
 
 
-PRELUDE = ['#include "base/reflection/CEnumType.h"',
+COLLECTION_KIND = "base::reflection::CCollectionType"
+
+
+def local_element(orig: asmdiff.Original, init: int) -> int | None:
+    """The element class getter of a collection constructor that calls it but stores a constant
+    address (the getter is defined in the same TU, as for local_pointee)."""
+    kind, st, _ = emulate(orig, init)
+    e = st.get(0xF0)
+    if kind != COLLECTION_KIND or not e or e[0] != "data":
+        return None
+    calls = [x.operands[0].imm for x in disasm(orig, init) if x.mnemonic == "bl"]
+    calls = [c for c in calls if c not in (KIND_HASH, ALLOCATOR_GETTER)]
+    return calls[1] if len(calls) > 1 else None
+
+
+def collection_traits(orig: asmdiff.Original, init: int, decls: set[str],
+                      local: int | None = None) -> list[str] | None:
+    """Traits of a CCollectionType constructor whose key, element and iterator types come from
+    getter calls; with `local`, the element is that class getter, defined in the same TU."""
+    kind, st, _ = emulate(orig, init)
+    if kind != COLLECTION_KIND:
+        return None
+    size, flag = st.get(0x18), st.get(0xE0)
+    if not size or size[0] != "imm" or not flag or flag[0] != "imm":
+        return None
+    lines = [f"    static constexpr u64 size = {size[1]:#x};",
+             f"    static constexpr u32 field_0xe0 = {flag[1]:#x};"]
+
+    def fn(off: int) -> str | None:
+        v = st.get(off)
+        if v == ("imm", 0):
+            return "nullptr"
+        if v and v[0] == "fn":
+            decls.add(f"void fn_{v[1]:x}();")
+            return f"&fn_{v[1]:x}"
+        return None
+
+    for off in (0x28, 0x30, 0x38, 0x40, 0x48, 0x50, 0x58, 0x60, 0x68):
+        f = fn(off)
+        if f is None:
+            return None
+        lines.append(f"    static constexpr UnkFn {SLOTS[off]} = {f};")
+    for off, member in ((0xE8, "key"), (0xF0, "element"), (0xF8, "iterator"), (0x100, "const_iterator")):
+        v = st.get(off)
+        if off == 0xF0 and local is not None:
+            lines.append(f"    static const CType* element() {{ return fn_{local:x}(); }}")
+            continue
+        if not v or v[0] != "call":
+            return None
+        decls.add(f"const base::reflection::CType* fn_{v[1]:x}();")
+        lines.append(f"    static const CType* {member}() {{ return fn_{v[1]:x}(); }}")
+    for off in range(0x108, 0x170, 8):
+        f = fn(off)
+        if f is None:
+            return None
+        lines.append(f"    static constexpr UnkFn fn_{off:#x} = {f};")
+    return lines
+
+
+def emit_collection(init: int, body: list[str]) -> list[str]:
+    return [f"struct UnkRefl_fn_{init:x};",
+            "template <>",
+            f"struct base::reflection::UnkReflCollectionTraits<UnkRefl_fn_{init:x}> {{",
+            *body,
+            "};",
+            f"template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, "
+            f"UnkRefl_fn_{init:x}*, void*);"]
+
+
+def scan_collections(orig: asmdiff.Original, decls: set[str]) -> tuple[list, list]:
+    """CCollectionType constructors (the descriptors are globals built by static initialisers):
+    (init, traits lines), and those with a local element class as (init, traits lines, element
+    getter), which tools/gen_reflection.py generates in that class's file. Candidates are the
+    functions that call the kind hash."""
+    rows = []
+    for f in sorted((ROOT / "data" / "functions").glob("main_*.csv")):
+        with f.open(newline="", encoding="utf-8") as fh:
+            rows += [int(r["address"], 16) for r in csv.DictReader(fh) if r["status"] in ("U", "O")]
+    out, local = [], []
+    for a in rows:
+        if a not in orig.sizes or not any(x.mnemonic == "bl" and x.operands[0].imm == KIND_HASH
+                                          for x in disasm(orig, a)[:16]):
+            continue
+        element = local_element(orig, a)
+        body = collection_traits(orig, a, decls, element)
+        if body and element is not None:
+            local.append((a, body, element))
+        elif body:
+            out.append((a, body))
+    return out, local
+
+
+PRELUDE = ['#include "base/reflection/CCollectionType.h"',
+           '#include "base/reflection/CEnumType.h"',
            '#include "base/reflection/CPointerType.h"',
            "using base::reflection::CType;",
            "using base::reflection::UnkFn;"]
@@ -335,12 +428,14 @@ def main() -> int:
     orig = asmdiff.Original(args.version)
 
     pairs, _, enums, decls = scan(orig)
+    colls, _ = scan_collections(orig, decls)
 
     work = ROOT / "build" / "gen_types"
     work.mkdir(parents=True, exist_ok=True)
     src, obj = work / "candidates.cpp", work / "candidates.o"
     text = (PRELUDE + sorted(decls) + [line for g, nm, i, b in pairs for line in emit(g, nm, i, b)]
-            + [line for i, b in enums for line in emit_enum(i, b)])
+            + [line for i, b in enums for line in emit_enum(i, b)]
+            + [line for i, b in colls for line in emit_collection(i, b)])
     src.write_text("\n".join(text) + "\n", encoding="utf-8")
     r = subprocess.run(buildcfg.cxx_command(src, obj), capture_output=True, text=True)
     if r.returncode != 0:
@@ -348,6 +443,7 @@ def main() -> int:
     ok = {res.address for res in asmdiff.diff_object(obj, orig) if res.matching}
     good = [p for p in pairs if p[0] in ok and p[2] in ok]
     good_enums = [e for e in enums if e[0] in ok]
+    good_colls = [c for c in colls if c[0] in ok]
 
     if OUT.exists():
         shutil.rmtree(OUT)
@@ -358,8 +454,12 @@ def main() -> int:
                   "// types, byte-identical to the original."])
     write_chunks("enum_types", [emit_enum(*e) for e in good_enums], decls,
                  [note, "// Descriptor constructors (refl_InitType<E>) of enums, byte-identical to the original."])
+    write_chunks("collection_types", [emit_collection(*c) for c in good_colls], decls,
+                 [note, "// Descriptor constructors of collection types (globals built by static initialisers),",
+                  "// byte-identical to the original."])
     print(f"pointer types: {len(pairs)} getter/constructor candidates, {len(good)} pairs byte-identical; "
-          f"enums: {len(enums)} constructor candidates, {len(good_enums)} byte-identical")
+          f"enums: {len(enums)} constructor candidates, {len(good_enums)} byte-identical; "
+          f"collections: {len(colls)} constructor candidates, {len(good_colls)} byte-identical")
     return 0
 
 

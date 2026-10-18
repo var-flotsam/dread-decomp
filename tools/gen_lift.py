@@ -44,12 +44,13 @@ import refl_attrs  # noqa: E402
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "src" / "lifted"
 BASE = 0x7100000000
-MAX_SIZE = 512
+MAX_SIZE = 2048
 CHUNK = 1000  # functions per generated file
 # Functions per scratch TU: with -ffunction-sections, more than ~65k sections overflow the ELF
 # section index (SHN_XINDEX), which the object reader doesn't follow.
 SCRATCH_CHUNK = 8000
 NAME_RE = re.compile(r"^[A-Za-z_][\w:<>,*& ]*\bfn_([0-9a-f]{10})\(")  # a declaration or definition
+TAG_RE = re.compile(r"(?:UnkRefl_fn_|DREAD_REFL_\w*GETTER\()([0-9a-f]{10})\b")  # tagged definitions
 # (minimum call arguments, return mode): tried in this order. Return modes: "value" returns x0
 # (or s0) as set, "void" returns nothing, "ref" returns a pointer as a reference (Clang 9 then
 # doesn't turn a final call into a tail call, as in the original's `bl; ret`).
@@ -1017,10 +1018,13 @@ def candidates(orig: asmdiff.Original) -> list[int]:
     skip = set()
     for f in (ROOT / "src").rglob("*.cpp"):
         if OUT not in f.parents:
-            for line in f.read_text(encoding="utf-8").splitlines():
+            text = f.read_text(encoding="utf-8")
+            for line in text.splitlines():
                 m = NAME_RE.match(line)
                 if m and ("{" in line or not line.rstrip().endswith(";")):
                     skip.add(int(m.group(1), 16))
+            # Template instantiations and macro-defined getters, named by their tags.
+            skip |= {int(a, 16) for a in TAG_RE.findall(text)}
     rows = []
     for f in sorted((ROOT / "data" / "functions").glob("main_*.csv")):
         with f.open(newline="", encoding="utf-8") as fh:

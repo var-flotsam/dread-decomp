@@ -284,6 +284,27 @@ namespace h { extern HIDDEN char g_unk_7101d5ae10[]; }
 namespace h { extern HIDDEN char g_unk_7101d5b5e8[]; }
 namespace hf { HIDDEN void fn_7100094db8(); }
 
+char* fn_71000830f0(char* p0, u32 p1, u32 p2) {
+    char* r0_19 = (p0) + 56;
+    char* r1_22 = p0;
+    char* r2_0 = r0_19;
+    u32 r3_20 = (u32)(u64)(p2);
+    u32 r4_21 = (u32)(u64)(p1);
+    char* r5_0 = callee::fn_710006691c(r2_0);
+    char* m0 = r5_0;
+    if ((u32)(u64)(r4_21) <= (u32)(3)) {
+        char* r7_8 = (r1_22) + (u64)((u64)(u32)(u64)(r4_21) << 3);
+        u64 r8_0 = (u64)*(u64*)((char*)(r7_8) + 8);
+        u64 r9_8 = (u64)*(u64*)((char*)(r8_0) + 0);
+        u64 r10_8 = (u64)*(u64*)((char*)(r9_8) + 32);
+        u32 r11_1 = (u32)(u64)(r3_20) & (u32)(1);
+        char* r12_0 = ((char* (*)(u64, u32))(r10_8))(r8_0, r11_1);
+        m0 = r12_0;
+    }
+    char* r16_0 = r0_19;
+    return callee::fn_7100066920(r16_0);
+}
+
 char* fn_710008314c(char* p0, u32 p1, char* p2) {
     char* r0_19 = (p0) + 56;
     char* r1_22 = p0;
@@ -9787,9 +9808,4 @@ u32 fn_71000c1f88() {
 char& fn_71000c1f90() {
     char* r0_0 = callee::fn_71000afa98();
     return *r0_0;
-}
-
-char* fn_71000c1fa4(char* p0) {
-    *(u64*)((char*)(p0) + 0) = (u64)(u64)(0);
-    return p0;
 }

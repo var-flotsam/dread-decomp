@@ -562,7 +562,7 @@ address,size,name,name_source,subsystem,status
 0x7100913a58,900,fn_7100913a58,unknown,engine/reflection?,O
 0x7100913ddc,388,fn_7100913ddc,unknown,engine/reflection?,O
 0x7100913f60,220,fn_7100913f60,unknown,engine/reflection?,O
-0x710091403c,500,fn_710091403c,unknown,engine/reflection?,U
+0x710091403c,500,fn_710091403c,unknown,engine/reflection?,O
 0x7100914230,24,fn_7100914230,unknown,engine/reflection?,O
 0x7100914248,56,fn_7100914248,unknown,engine/reflection?,U
 0x7100914280,4,fn_7100914280,unknown,engine/reflection?,O
@@ -748,7 +748,7 @@ address,size,name,name_source,subsystem,status
 0x7100918370,608,fn_7100918370,unknown,game/components?,U
 0x71009185d0,32,fn_71009185d0,unknown,game/components?,O
 0x71009185f0,604,fn_71009185f0,unknown,game/components?,U
-0x710091884c,556,fn_710091884c,unknown,game/components?,U
+0x710091884c,556,fn_710091884c,unknown,game/components?,O
 0x7100918a78,260,fn_7100918a78,unknown,game/components?,U
 0x7100918b7c,284,fn_7100918b7c,unknown,game/components?,U
 0x7100918c98,292,fn_7100918c98,unknown,game/components?,U
@@ -1681,7 +1681,7 @@ address,size,name,name_source,subsystem,status
 0x7100950048,144,fn_7100950048,unknown,unknown,U
 0x71009500d8,388,fn_71009500d8,unknown,unknown,U
 0x710095025c,328,fn_710095025c,unknown,unknown,U
-0x71009503b0,768,fn_71009503b0,unknown,unknown,U
+0x71009503b0,768,fn_71009503b0,unknown,unknown,O
 0x71009506b0,4,fn_71009506b0,unknown,unknown,O
 0x71009506b4,244,CCharClassMovablePlatformComponent::refl_GetClass,reflection,game/characters,O
 0x71009507a8,472,fn_71009507a8,unknown,game/characters?,O
@@ -4630,7 +4630,7 @@ address,size,name,name_source,subsystem,status
 0x71009fb35c,900,fn_71009fb35c,unknown,engine/reflection?,O
 0x71009fb6e0,388,fn_71009fb6e0,unknown,engine/reflection?,O
 0x71009fb864,220,fn_71009fb864,unknown,engine/reflection?,O
-0x71009fb940,480,fn_71009fb940,unknown,engine/reflection?,U
+0x71009fb940,480,fn_71009fb940,unknown,engine/reflection?,O
 0x71009fbb20,28,fn_71009fbb20,unknown,engine/reflection?,O
 0x71009fbb3c,368,fn_71009fbb3c,unknown,engine/reflection?,O
 0x71009fbcac,104,fn_71009fbcac,unknown,engine/reflection?,U
