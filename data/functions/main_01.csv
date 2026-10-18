@@ -440,7 +440,7 @@ address,size,name,name_source,subsystem,status
 0x71001156b8,900,fn_71001156b8,unknown,unknown,O
 0x7100115a3c,388,fn_7100115a3c,unknown,unknown,O
 0x7100115bc0,220,fn_7100115bc0,unknown,unknown,O
-0x7100115c9c,464,fn_7100115c9c,unknown,unknown,U
+0x7100115c9c,464,fn_7100115c9c,unknown,unknown,O
 0x7100115e6c,220,fn_7100115e6c,unknown,unknown,O
 0x7100115f48,220,fn_7100115f48,unknown,unknown,O
 0x7100116024,900,fn_7100116024,unknown,unknown,O
@@ -1164,7 +1164,7 @@ address,size,name,name_source,subsystem,status
 0x7100136618,900,fn_7100136618,unknown,engine/reflection?,O
 0x710013699c,388,fn_710013699c,unknown,engine/reflection?,O
 0x7100136b20,220,fn_7100136b20,unknown,engine/reflection?,O
-0x7100136bfc,500,fn_7100136bfc,unknown,engine/reflection?,U
+0x7100136bfc,500,fn_7100136bfc,unknown,engine/reflection?,O
 0x7100136df0,220,fn_7100136df0,unknown,engine/reflection?,O
 0x7100136ecc,108,fn_7100136ecc,unknown,engine/reflection?,U
 0x7100136f38,352,fn_7100136f38,unknown,engine/reflection?,U
@@ -1313,7 +1313,7 @@ address,size,name,name_source,subsystem,status
 0x710013a054,900,fn_710013a054,unknown,unknown,O
 0x710013a3d8,388,fn_710013a3d8,unknown,unknown,O
 0x710013a55c,220,fn_710013a55c,unknown,unknown,O
-0x710013a638,496,fn_710013a638,unknown,unknown,U
+0x710013a638,496,fn_710013a638,unknown,unknown,O
 0x710013a828,812,fn_710013a828,unknown,unknown,U
 0x710013ab54,192,fn_710013ab54,unknown,unknown,U
 0x710013ac14,88,fn_710013ac14,unknown,unknown,O
@@ -4304,7 +4304,7 @@ address,size,name,name_source,subsystem,status
 0x71001ed35c,900,fn_71001ed35c,unknown,engine/reflection?,O
 0x71001ed6e0,388,fn_71001ed6e0,unknown,engine/reflection?,O
 0x71001ed864,220,fn_71001ed864,unknown,engine/reflection?,O
-0x71001ed940,464,fn_71001ed940,unknown,engine/reflection?,U
+0x71001ed940,464,fn_71001ed940,unknown,engine/reflection?,O
 0x71001edb10,220,fn_71001edb10,unknown,engine/reflection?,O
 0x71001edbec,220,fn_71001edbec,unknown,engine/reflection?,O
 0x71001edcc8,312,fn_71001edcc8,unknown,engine/reflection?,O
@@ -4839,7 +4839,7 @@ address,size,name,name_source,subsystem,status
 0x71001ff288,900,fn_71001ff288,unknown,unknown,O
 0x71001ff60c,388,fn_71001ff60c,unknown,unknown,O
 0x71001ff790,220,fn_71001ff790,unknown,unknown,O
-0x71001ff86c,496,fn_71001ff86c,unknown,unknown,U
+0x71001ff86c,496,fn_71001ff86c,unknown,unknown,O
 0x71001ffa5c,220,fn_71001ffa5c,unknown,unknown,O
 0x71001ffb38,544,fn_71001ffb38,unknown,unknown,U
 0x71001ffd58,176,fn_71001ffd58,unknown,unknown,U

@@ -1835,7 +1835,7 @@ address,size,name,name_source,subsystem,status
 0x710045db14,900,fn_710045db14,unknown,unknown,O
 0x710045de98,388,fn_710045de98,unknown,unknown,O
 0x710045e01c,220,fn_710045e01c,unknown,unknown,O
-0x710045e0f8,480,fn_710045e0f8,unknown,unknown,U
+0x710045e0f8,480,fn_710045e0f8,unknown,unknown,O
 0x710045e2d8,4,fn_710045e2d8,unknown,unknown,O
 0x710045e2dc,244,CCharClassChozoRobotSoldierCannonShotAttack::CTunableCharClassChozoRobotSoldierCannonShotAttack::refl_GetClass,reflection,game/characters,U
 0x710045e3d0,796,fn_710045e3d0,unknown,game/characters?,O
@@ -3680,7 +3680,7 @@ address,size,name,name_source,subsystem,status
 0x71004a3488,900,fn_71004a3488,unknown,unknown,O
 0x71004a380c,388,fn_71004a380c,unknown,unknown,O
 0x71004a3990,220,fn_71004a3990,unknown,unknown,O
-0x71004a3a6c,480,fn_71004a3a6c,unknown,unknown,U
+0x71004a3a6c,480,fn_71004a3a6c,unknown,unknown,O
 0x71004a3c4c,220,fn_71004a3c4c,unknown,unknown,O
 0x71004a3d28,220,fn_71004a3d28,unknown,unknown,O
 0x71004a3e04,900,fn_71004a3e04,unknown,unknown,O
@@ -3991,7 +3991,7 @@ address,size,name,name_source,subsystem,status
 0x71004ac5c8,900,fn_71004ac5c8,unknown,unknown,O
 0x71004ac94c,388,fn_71004ac94c,unknown,unknown,O
 0x71004acad0,220,fn_71004acad0,unknown,unknown,O
-0x71004acbac,480,fn_71004acbac,unknown,unknown,U
+0x71004acbac,480,fn_71004acbac,unknown,unknown,O
 0x71004acd8c,220,fn_71004acd8c,unknown,unknown,O
 0x71004ace68,220,fn_71004ace68,unknown,unknown,O
 0x71004acf44,912,fn_71004acf44,unknown,unknown,U
@@ -4373,7 +4373,7 @@ address,size,name,name_source,subsystem,status
 0x71004b6714,900,fn_71004b6714,unknown,unknown,O
 0x71004b6a98,388,fn_71004b6a98,unknown,unknown,O
 0x71004b6c1c,220,fn_71004b6c1c,unknown,unknown,O
-0x71004b6cf8,480,fn_71004b6cf8,unknown,unknown,U
+0x71004b6cf8,480,fn_71004b6cf8,unknown,unknown,O
 0x71004b6ed8,220,fn_71004b6ed8,unknown,unknown,O
 0x71004b6fb4,220,fn_71004b6fb4,unknown,unknown,O
 0x71004b7090,900,fn_71004b7090,unknown,unknown,O

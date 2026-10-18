@@ -1314,7 +1314,7 @@ address,size,name,name_source,subsystem,status
 0x7100365174,900,fn_7100365174,unknown,unknown,O
 0x71003654f8,388,fn_71003654f8,unknown,unknown,O
 0x710036567c,220,fn_710036567c,unknown,unknown,O
-0x7100365758,480,fn_7100365758,unknown,unknown,U
+0x7100365758,480,fn_7100365758,unknown,unknown,O
 0x7100365938,4,fn_7100365938,unknown,unknown,O
 0x710036593c,240,CAttackPreset::refl_GetClass,reflection,game,O
 0x7100365a2c,3032,fn_7100365a2c,unknown,game?,O

@@ -536,7 +536,7 @@ address,size,name,name_source,subsystem,status
 0x71010224b4,900,fn_71010224b4,unknown,engine/reflection?,O
 0x7101022838,388,fn_7101022838,unknown,engine/reflection?,O
 0x71010229bc,220,fn_71010229bc,unknown,engine/reflection?,O
-0x7101022a98,480,fn_7101022a98,unknown,engine/reflection?,U
+0x7101022a98,480,fn_7101022a98,unknown,engine/reflection?,O
 0x7101022c78,220,fn_7101022c78,unknown,engine/reflection?,U
 0x7101022d54,464,fn_7101022d54,unknown,engine/reflection?,U
 0x7101022f24,120,fn_7101022f24,unknown,engine/reflection?,U
@@ -1275,7 +1275,7 @@ address,size,name,name_source,subsystem,status
 0x710103e454,900,fn_710103e454,unknown,unknown,O
 0x710103e7d8,388,fn_710103e7d8,unknown,unknown,O
 0x710103e95c,220,fn_710103e95c,unknown,unknown,O
-0x710103ea38,464,fn_710103ea38,unknown,unknown,U
+0x710103ea38,464,fn_710103ea38,unknown,unknown,O
 0x710103ec08,220,fn_710103ec08,unknown,unknown,O
 0x710103ece4,220,fn_710103ece4,unknown,unknown,O
 0x710103edc0,896,fn_710103edc0,unknown,unknown,U
@@ -1482,7 +1482,7 @@ address,size,name,name_source,subsystem,status
 0x7101045f34,900,fn_7101045f34,unknown,unknown,O
 0x71010462b8,388,fn_71010462b8,unknown,unknown,O
 0x710104643c,220,fn_710104643c,unknown,unknown,O
-0x7101046518,500,fn_7101046518,unknown,unknown,U
+0x7101046518,500,fn_7101046518,unknown,unknown,O
 0x710104670c,220,fn_710104670c,unknown,unknown,O
 0x71010467e8,396,fn_71010467e8,unknown,unknown,U
 0x7101046974,332,fn_7101046974,unknown,unknown,U
@@ -2355,7 +2355,7 @@ address,size,name,name_source,subsystem,status
 0x7101063e00,900,fn_7101063e00,unknown,unknown,O
 0x7101064184,388,fn_7101064184,unknown,unknown,O
 0x7101064308,220,fn_7101064308,unknown,unknown,O
-0x71010643e4,496,fn_71010643e4,unknown,unknown,U
+0x71010643e4,496,fn_71010643e4,unknown,unknown,O
 0x71010645d4,4,fn_71010645d4,unknown,unknown,O
 0x71010645d8,244,CCutscene::CTunableCutscene::refl_GetClass,reflection,game/cutscene,U
 0x71010646cc,352,fn_71010646cc,unknown,game/cutscene?,O
@@ -3940,7 +3940,7 @@ address,size,name,name_source,subsystem,status
 0x71010c3894,900,fn_71010c3894,unknown,unknown,O
 0x71010c3c18,388,fn_71010c3c18,unknown,unknown,O
 0x71010c3d9c,220,fn_71010c3d9c,unknown,unknown,O
-0x71010c3e78,500,fn_71010c3e78,unknown,unknown,U
+0x71010c3e78,500,fn_71010c3e78,unknown,unknown,O
 0x71010c406c,220,fn_71010c406c,unknown,unknown,O
 0x71010c4148,76,fn_71010c4148,unknown,unknown,U
 0x71010c4194,4,fn_71010c4194,unknown,unknown,O

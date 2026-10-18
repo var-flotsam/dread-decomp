@@ -182,7 +182,7 @@ address,size,name,name_source,subsystem,status
 0x71007094c8,900,fn_71007094c8,unknown,engine/reflection?,O
 0x710070984c,388,fn_710070984c,unknown,engine/reflection?,O
 0x71007099d0,220,fn_71007099d0,unknown,engine/reflection?,O
-0x7100709aac,480,fn_7100709aac,unknown,engine/reflection?,U
+0x7100709aac,480,fn_7100709aac,unknown,engine/reflection?,O
 0x7100709c8c,528,fn_7100709c8c,unknown,engine/reflection?,U
 0x7100709e9c,32,fn_7100709e9c,unknown,engine/reflection?,O
 0x7100709ebc,100,fn_7100709ebc,unknown,engine/reflection?,O
@@ -1996,7 +1996,7 @@ address,size,name,name_source,subsystem,status
 0x710076b124,900,fn_710076b124,unknown,unknown,O
 0x710076b4a8,388,fn_710076b4a8,unknown,unknown,O
 0x710076b62c,220,fn_710076b62c,unknown,unknown,O
-0x710076b708,480,fn_710076b708,unknown,unknown,U
+0x710076b708,480,fn_710076b708,unknown,unknown,O
 0x710076b8e8,120,fn_710076b8e8,unknown,unknown,U
 0x710076b960,524,fn_710076b960,unknown,unknown,U
 0x710076bb6c,384,fn_710076bb6c,unknown,unknown,O
@@ -4054,7 +4054,7 @@ address,size,name,name_source,subsystem,status
 0x71007c9a58,900,fn_71007c9a58,unknown,engine/reflection?,O
 0x71007c9ddc,388,fn_71007c9ddc,unknown,engine/reflection?,O
 0x71007c9f60,220,fn_71007c9f60,unknown,engine/reflection?,O
-0x71007ca03c,480,fn_71007ca03c,unknown,engine/reflection?,U
+0x71007ca03c,480,fn_71007ca03c,unknown,engine/reflection?,O
 0x71007ca21c,368,fn_71007ca21c,unknown,engine/reflection?,O
 0x71007ca38c,104,fn_71007ca38c,unknown,engine/reflection?,U
 0x71007ca3f4,12,fn_71007ca3f4,unknown,engine/reflection?,O
@@ -5081,7 +5081,7 @@ address,size,name,name_source,subsystem,status
 0x71007efa90,900,fn_71007efa90,unknown,unknown,O
 0x71007efe14,388,fn_71007efe14,unknown,unknown,O
 0x71007eff98,220,fn_71007eff98,unknown,unknown,O
-0x71007f0074,480,fn_71007f0074,unknown,unknown,U
+0x71007f0074,480,fn_71007f0074,unknown,unknown,O
 0x71007f0254,4,fn_71007f0254,unknown,unknown,O
 0x71007f0258,244,CCharClassFrozenAsFrostbiteComponent::refl_GetClass,reflection,game/characters,O
 0x71007f034c,1408,fn_71007f034c,unknown,game/characters?,O
