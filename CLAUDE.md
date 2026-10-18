@@ -61,7 +61,7 @@ python tools/sigmatch.py --version <ver> [--library lua]  # name vendored-librar
 python tools/gen_reflection.py --version <ver>   # regenerate src/reflection/ (uses tools/refl_attrs.py)
 python tools/gen_types.py --version <ver>        # regenerate src/reflection_types/ (non-class type getters)
 python tools/gen_statics.py --version <ver>      # regenerate src/reflection_statics/ (guarded function-local statics)
-python tools/gen_lift.py --version <ver>         # regenerate src/lifted/ (small functions; run after the other generators, ~5 min)
+python tools/gen_lift.py --version <ver>         # regenerate src/lifted/ (small functions; run after the other generators, ~15 min)
 python tools/check.py --version <ver> [--update] # build src/, derive statuses, catch regressions
 python tools/objdiff_gen.py --version <ver>      # objdiff targets + objdiff.json
 python tools/progress.py                         # whole-binary progress (excludes L)
