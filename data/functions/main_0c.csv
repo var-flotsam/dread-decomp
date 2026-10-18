@@ -589,7 +589,7 @@ address,size,name,name_source,subsystem,status
 0x7100c10c00,44,fn_7100c10c00,unknown,game/characters?,O
 0x7100c10c2c,12,fn_7100c10c2c,unknown,game/characters?,O
 0x7100c10c40,160,fn_7100c10c40,unknown,game/characters?,O
-0x7100c10ce0,332,fn_7100c10ce0,unknown,game/characters?,U
+0x7100c10ce0,332,fn_7100c10ce0,unknown,game/characters?,O
 0x7100c10e2c,384,fn_7100c10e2c,unknown,game/characters?,O
 0x7100c10fac,232,fn_7100c10fac,unknown,game/characters?,O
 0x7100c11094,244,CCharClassCommanderWingsTrack::refl_GetClass,reflection,game/characters,O
@@ -4076,7 +4076,7 @@ address,size,name,name_source,subsystem,status
 0x7100c65eb8,12,fn_7100c65eb8,unknown,unknown,O
 0x7100c65ed0,160,fn_7100c65ed0,unknown,unknown,O
 0x7100c65f70,140,fn_7100c65f70,unknown,unknown,O
-0x7100c65ffc,1676,fn_7100c65ffc,unknown,unknown,U
+0x7100c65ffc,1676,fn_7100c65ffc,unknown,unknown,O
 0x7100c66688,384,fn_7100c66688,unknown,unknown,O
 0x7100c66808,12,fn_7100c66808,unknown,unknown,O
 0x7100c66814,12,fn_7100c66814,unknown,unknown,O
@@ -4143,7 +4143,7 @@ address,size,name,name_source,subsystem,status
 0x7100c7904c,44,fn_7100c7904c,unknown,unknown,O
 0x7100c79078,12,fn_7100c79078,unknown,unknown,O
 0x7100c79090,160,fn_7100c79090,unknown,unknown,O
-0x7100c79130,1676,fn_7100c79130,unknown,unknown,U
+0x7100c79130,1676,fn_7100c79130,unknown,unknown,O
 0x7100c797bc,384,fn_7100c797bc,unknown,unknown,O
 0x7100c79940,4,fn_7100c79940,unknown,unknown,O
 0x7100c79950,20,fn_7100c79950,unknown,unknown,O
@@ -4644,9 +4644,9 @@ address,size,name,name_source,subsystem,status
 0x7100c92950,216,fn_7100c92950,unknown,unknown,U
 0x7100c92a28,224,fn_7100c92a28,unknown,unknown,U
 0x7100c92b10,1972,fn_7100c92b10,unknown,unknown,U
-0x7100c932c4,428,fn_7100c932c4,unknown,unknown,U
+0x7100c932c4,428,fn_7100c932c4,unknown,unknown,O
 0x7100c93470,384,fn_7100c93470,unknown,unknown,O
-0x7100c935f0,620,fn_7100c935f0,unknown,unknown,U
+0x7100c935f0,620,fn_7100c935f0,unknown,unknown,O
 0x7100c9385c,384,fn_7100c9385c,unknown,unknown,O
 0x7100c939dc,272,fn_7100c939dc,unknown,unknown,U
 0x7100c93aec,272,fn_7100c93aec,unknown,unknown,U
@@ -4676,7 +4676,7 @@ address,size,name,name_source,subsystem,status
 0x7100c93d60,664,fn_7100c93d60,unknown,unknown,U
 0x7100c93ff8,400,fn_7100c93ff8,unknown,unknown,U
 0x7100c94190,180,fn_7100c94190,unknown,unknown,O
-0x7100c94244,716,fn_7100c94244,unknown,unknown,U
+0x7100c94244,716,fn_7100c94244,unknown,unknown,O
 0x7100c94510,384,fn_7100c94510,unknown,unknown,O
 0x7100c94690,12,fn_7100c94690,unknown,unknown,O
 0x7100c9469c,12,fn_7100c9469c,unknown,unknown,O
@@ -4826,7 +4826,7 @@ address,size,name,name_source,subsystem,status
 0x7100c9bfc4,80,fn_7100c9bfc4,unknown,unknown,U
 0x7100c9c014,188,fn_7100c9c014,unknown,unknown,U
 0x7100c9c0d0,180,fn_7100c9c0d0,unknown,unknown,O
-0x7100c9c184,1100,fn_7100c9c184,unknown,unknown,U
+0x7100c9c184,1100,fn_7100c9c184,unknown,unknown,O
 0x7100c9c5d0,384,base::reflection::refl_InitType<EBreakableTileType>,reflection,engine/reflection,O
 0x7100c9c750,248,fn_7100c9c750,unknown,engine/reflection?,U
 0x7100c9c850,248,fn_7100c9c850,unknown,engine/reflection?,U
@@ -6278,7 +6278,7 @@ address,size,name,name_source,subsystem,status
 0x7100cd12b8,244,CCharClassSetCameraNearEvent::refl_GetClass,reflection,game/characters,O
 0x7100cd13ac,632,fn_7100cd13ac,unknown,game/characters?,O
 0x7100cd1624,388,CCharClassSetCameraNearEvent::refl_InitClass,reflection,game/characters,O
-0x7100cd17a8,428,fn_7100cd17a8,unknown,game/characters?,U
+0x7100cd17a8,428,fn_7100cd17a8,unknown,game/characters?,O
 0x7100cd1954,384,fn_7100cd1954,unknown,game/characters?,O
 0x7100cd1ad4,124,fn_7100cd1ad4,unknown,game/characters?,O
 0x7100cd1b50,132,fn_7100cd1b50,unknown,game/characters?,O
@@ -7032,7 +7032,7 @@ address,size,name,name_source,subsystem,status
 0x7100ceadf8,244,CCharClassAnalogAimTrack::refl_GetClass,reflection,game/characters,O
 0x7100ceaeec,256,fn_7100ceaeec,unknown,game/characters?,O
 0x7100ceafec,368,CCharClassAnalogAimTrack::refl_InitClass,reflection,game/characters,O
-0x7100ceb15c,428,fn_7100ceb15c,unknown,game/characters?,U
+0x7100ceb15c,428,fn_7100ceb15c,unknown,game/characters?,O
 0x7100ceb308,384,fn_7100ceb308,unknown,game/characters?,O
 0x7100ceb488,4,fn_7100ceb488,unknown,game/characters?,O
 0x7100ceb48c,36,fn_7100ceb48c,unknown,game/characters?,O

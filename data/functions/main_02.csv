@@ -638,9 +638,9 @@ address,size,name,name_source,subsystem,status
 0x7100216ef8,76,fn_7100216ef8,unknown,unknown,O
 0x7100216f44,76,fn_7100216f44,unknown,unknown,O
 0x7100216f90,140,fn_7100216f90,unknown,unknown,O
-0x710021701c,1196,fn_710021701c,unknown,unknown,U
+0x710021701c,1196,fn_710021701c,unknown,unknown,O
 0x71002174c8,384,fn_71002174c8,unknown,unknown,O
-0x7100217648,716,fn_7100217648,unknown,unknown,U
+0x7100217648,716,fn_7100217648,unknown,unknown,O
 0x7100217914,384,fn_7100217914,unknown,unknown,O
 0x7100217a94,12,fn_7100217a94,unknown,unknown,O
 0x7100217aa0,12,fn_7100217aa0,unknown,unknown,O
@@ -849,7 +849,7 @@ address,size,name,name_source,subsystem,status
 0x710021bd20,68,fn_710021bd20,unknown,unknown,O
 0x710021bd70,68,fn_710021bd70,unknown,unknown,O
 0x710021bdc0,140,fn_710021bdc0,unknown,unknown,O
-0x710021be4c,716,fn_710021be4c,unknown,unknown,U
+0x710021be4c,716,fn_710021be4c,unknown,unknown,O
 0x710021c118,384,fn_710021c118,unknown,unknown,O
 0x710021c298,12,fn_710021c298,unknown,unknown,O
 0x710021c2a4,12,fn_710021c2a4,unknown,unknown,O
@@ -2554,7 +2554,7 @@ address,size,name,name_source,subsystem,status
 0x710025a588,388,fn_710025a588,unknown,unknown,O
 0x710025a70c,220,fn_710025a70c,unknown,unknown,O
 0x710025a7e8,504,fn_710025a7e8,unknown,unknown,O
-0x710025a9e0,428,fn_710025a9e0,unknown,unknown,U
+0x710025a9e0,428,fn_710025a9e0,unknown,unknown,O
 0x710025ab8c,384,fn_710025ab8c,unknown,unknown,O
 0x710025ad0c,824,fn_710025ad0c,unknown,unknown,U
 0x710025b044,36,fn_710025b044,unknown,unknown,O
@@ -4804,7 +4804,7 @@ address,size,name,name_source,subsystem,status
 0x71002d32f8,244,animtree::CAnimatedNodeDef::refl_GetClass,reflection,animation,O
 0x71002d33ec,1204,fn_71002d33ec,unknown,animation?,O
 0x71002d38a0,388,animtree::CAnimatedNodeDef::refl_InitClass,reflection,animation,O
-0x71002d3a24,332,fn_71002d3a24,unknown,animation?,U
+0x71002d3a24,332,fn_71002d3a24,unknown,animation?,O
 0x71002d3b70,384,fn_71002d3b70,unknown,animation?,O
 0x71002d3cf0,4,fn_71002d3cf0,unknown,animation?,O
 0x71002d3cf4,28,fn_71002d3cf4,unknown,animation?,O
@@ -5686,7 +5686,7 @@ address,size,name,name_source,subsystem,status
 0x71002edfc4,44,fn_71002edfc4,unknown,unknown,O
 0x71002edff0,12,fn_71002edff0,unknown,unknown,O
 0x71002edffc,68,fn_71002edffc,unknown,unknown,O
-0x71002ee040,188,fn_71002ee040,unknown,unknown,U
+0x71002ee040,188,fn_71002ee040,unknown,unknown,O
 0x71002ee0fc,40,fn_71002ee0fc,unknown,unknown,O
 0x71002ee124,40,fn_71002ee124,unknown,unknown,O
 0x71002ee14c,144,fn_71002ee14c,unknown,unknown,U

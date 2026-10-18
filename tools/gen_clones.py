@@ -202,8 +202,70 @@ def field_value(orig: asmdiff.Original, addr: int, tag: str, insns: Insns) -> st
                       f"{off:#x}>(void*, char*);"])
 
 
+def field_set_strid(orig: asmdiff.Original, addr: int, tag: str, insns: Insns) -> str | None:
+    """A string-id property write (UnkReflValue.h): the field offset, from the accesses through
+    the register loaded from [x1, #8]."""
+    if len(insns) > 60 or any(m in ("bl", "blr") and o != f"#{RELEASE:#x}" for m, o in insns):
+        return None
+    base = next((o.split(",")[0] for m, o in insns if m == "ldr" and o.endswith(", [x1, #8]")), None)
+    if base is None:
+        return None
+    offs = {int(h.group(1) or "0", 0) for _, o in insns
+            if (h := re.search(rf"\[{base}(?:, #(0x[0-9a-f]+|\d+))?\]", o))}
+    if len(offs) != 1 or not any(o == "x8, #2" or o.startswith("x8, #0x100000002") for m, o in insns if m == "mov"):
+        return None
+    return (f"template base::reflection::UnkReflValue base::reflection::refl_SetFieldStrId<{tag}, {offs.pop():#x}>("
+            "void*, char*, base::reflection::UnkReflValue* const*);")
+
+
+CSTRID_CTOR = 0x71000003D4
+
+
+def enum_values(orig: asmdiff.Original, addr: int, tag: str, insns: Insns) -> str | None:
+    """Registers named values with one callee: CStrId(name) then callee(x0, id, value) per value
+    (enum value lists such as fn_7100028ed8). Emitted as a plain function."""
+    import refl_attrs  # noqa: E402
+    page: dict[str, int] = {}
+    pending: str | None = None
+    name: str | None = None
+    w2: int | None = None
+    values: list[tuple[str, int]] = []
+    callee = None
+    for m, o in insns:
+        ops = [x.strip() for x in o.split(",")]
+        if m == "adrp":
+            page[ops[0]] = int(ops[1][1:], 16)
+        elif m == "add" and ops[0] == "x1" and ops[1] in page and ops[2].startswith("#"):
+            pending = orig.img.cstring(page[ops[1]] + int(ops[2][1:], 16) - BASE)
+        elif m == "mov" and ops[0] == "w2":
+            w2 = 0 if ops[1] == "wzr" else int(ops[1][1:], 0) if ops[1].startswith("#") else None
+        elif m == "bl":
+            t = int(ops[0][1:], 16)
+            if t == CSTRID_CTOR:
+                if pending is None or name is not None:
+                    return None
+                name, pending = pending, None
+            elif t == RELEASE:
+                continue
+            else:
+                if name is None or w2 is None or (callee is not None and t != callee):
+                    return None
+                callee = t
+                values.append((name, w2 & 0xFFFFFFFF))
+                name = w2 = None
+        elif m in ("blr", "br"):
+            return None
+    if callee is None or len(values) < 2 or name is not None:
+        return None
+    body = [f"    fn_{callee:x}(e, base::global::CStrId({refl_attrs.c_string(n)}, true), {v:#x});" for n, v in values]
+    return "\n".join([f"void fn_{callee:x}(void* e, const base::global::CStrId& name, u32 value);",
+                      f"void fn_{addr:x}(void* e) {{", *body, "}"])
+
+
 KINDS = {
     "dtor": Kind(None, "base/UnkDestructors.h", lambda tag, _: None, scan=destructor),
+    "enum_values": Kind(None, "base/global/CStrId.h", lambda tag, _: None, scan=enum_values),
+    "field_set_strid": Kind(None, "base/reflection/UnkReflValue.h", lambda tag, _: None, scan=field_set_strid),
     "field_value": Kind(None, "base/reflection/UnkReflValue.h", lambda tag, _: None, scan=field_value),
     "register_named": Kind(0x7100072940, "base/UnkNamedRegistry.h", lambda tag, _: (
         f"template base::UnkNamedObject* base::refl_RegisterNamed<{tag}>("
