@@ -4,7 +4,7 @@ For the next developer, human or AI, picking up this project. Read this, then `C
 (rules and conventions), `docs/recon.md` (what's in the binary), `docs/compiler.md`
 (toolchain), and `docs/references.md` (outside projects).
 
-Snapshot as of 2026-10-18 (fifth Phase 4 session; branch `phase-4-4-clones`, not pushed; earlier work merged in var-flotsam/dread-decomp#13–#17). Target: **Metroid Dread 2.1.0**, `main` build ID
+Snapshot as of 2026-10-18 (fifth Phase 4 session; branches `phase-4-4-clones` (var-flotsam/dread-decomp#18, open) and `phase-4-4-skipped-getters` on top of it (not pushed); earlier work merged in var-flotsam/dread-decomp#13–#17). Target: **Metroid Dread 2.1.0**, `main` build ID
 `646761F643AFEBB379EDD5E6A5151AF2CEF93DC1`.
 
 ## Where things stand
@@ -17,16 +17,16 @@ Snapshot as of 2026-10-18 (fifth Phase 4 session; branch `phase-4-4-clones`, not
 | Tooling for Phase 4 | **Done.** `tools/check.py` (build + status), objdiff (`tools/objdiff_gen.py`), whole-binary progress (`tools/progress.py`) |
 | 4.1 System headers | **Done.** `lib/nnsdk` + `lib/musl` submodules, libc++ 9.0.1 headers, `tools/buildcfg.py` |
 | 4.2 Lua | **Done.** Upstream 5.1.4 vendored in `lib/lua/` (2 marked config changes); 286 Lua functions located in `main` by `tools/sigmatch.py` (status `L`) |
-| 4.3 Reflection | **In progress.** 1,878 of 2,346 class getters; all 1,010 other `CClass` descriptor constructors (skipped TUs and getter-less types); 1,745 of 1,956 class attribute/member-field functions, 478 other registration functions and all 1,006 out-of-line reflected-function initialisers (`src/reflection/`, `tools/gen_reflection.py`, `tools/refl_attrs.py`). Pointer types: 993 standalone getter/constructor pairs plus 108 generated in their pointee's TU; all 238 `CEnumType` constructors; 88 standalone `CCollectionType` constructors plus 23 in their element class's TU (`src/reflection_types/`, `tools/gen_types.py`) |
+| 4.3 Reflection | **In progress.** 2,322 of 2,346 class getters (444 in TUs with other statics, through padding); all 1,010 other `CClass` descriptor constructors (skipped TUs and getter-less types); 1,745 of 1,956 class attribute/member-field functions, 478 other registration functions plus 54 in their class getter's TU, and all 1,006 out-of-line reflected-function initialisers (`src/reflection/`, `tools/gen_reflection.py`, `tools/refl_attrs.py`). Pointer types: 993 standalone getter/constructor pairs plus 108 generated in their pointee's TU; all 238 `CEnumType` constructors; 178 standalone `CCollectionType` constructors plus those in their element class's TU (`src/reflection_types/`, `tools/gen_types.py`) |
 | Small functions | **In progress.** `tools/gen_lift.py` lifts functions of up to 512 bytes from their instructions and keeps byte-identical ones: 44,549 functions up to 2 KB, 1.78 MB (`src/lifted/`; sret functions, stack locals, a goto-based flat mode for crossing branches and loops) |
 | Guarded statics | **In progress.** `tools/gen_statics.py`: attribute keys, static string ids, typed lookups and registries built on weak function-local statics (`include/base/reflection/UnkReflStatics.h`): 756 functions, 139 KB (`src/reflection_statics/`) |
-| Repeated templates | **In progress.** `tools/gen_clones.py`: hand-matched templates instantiated once per copy (`UnkClone_fn_<addr>` tags): the named registry, `UnkVector` methods per element kind, the reflection collection iterator, a deferred set, destructors of string-id/refcounted members (scan kind): 1,556 functions, 423 KB (`src/clones/`) |
+| Repeated templates | **In progress.** `tools/gen_clones.py`: hand-matched templates instantiated once per copy (`UnkClone_fn_<addr>` tags): the named registry, `UnkVector` methods per element kind, the reflection collection iterator, a deferred set, and scan kinds (facts per candidate): destructors of string-id/refcounted members, property reads and string-id writes, enum value lists: 2,300 functions, 628 KB (`src/clones/`) |
 | 4.4 Core engine types | **In progress.** String ids (`CStrId` incl. copy-assignment, `UnkStrId`), the growable array `base::UnkVector` (push, grow-at, insert, remove, clear/free, move) and its allocator interface; reflected-function initialisers now match (below) |
 | 4.5+ Boot to title screen | Not started; plan below |
 | Port | Not started (`port/` is empty) |
 
-Function status (BotW codes): `O` 74,164, `m` 4, `M` 1, `L` 1,614, `U` 28,234.
-**Game-code progress: 36.71% of bytes (6.89 MB) matching** (`tools/progress.py`; library code
+Function status (BotW codes): `O` 75,621, `m` 3, `M` 1, `L` 1,614, `U` 26,778.
+**Game-code progress: 39.09% of bytes (7.34 MB) matching** (`tools/progress.py`; library code
 excluded; 34.46% at the start of this session). `tools/check.py` counts `src/` definitions,
 which differ slightly (matching `nn::atk` functions keep `L`; constructor aliases).
 
@@ -201,6 +201,7 @@ The output of `gen_functions_csv.py` is reproducible (only `status` is carried o
 | Repo private, MIT licensed | Owner's choice |
 | Generate TU-independent functions outside their TU's getters (skipped-TU files, `registration_NN`, `function_inits_NN`, `class_descriptors_NN`, `src/lifted/`) | Their bytes don't depend on the TU's statics; only the getters do. They can move into their TU's file once it is generated |
 | Lifted functions use `char*` parameters and casts, not real types | Byte-identical and usable as a reference; real signatures come when the subsystem is decompiled by hand |
+| **Padding statics** for TUs with unreconstructed statics (owner-approved; replaces "no dummy statics") | LLVM's AArch64 GlobalMerge packs a TU's internal statics into one block sorted by size, and getters address descriptors from their guards, so the other statics shift the descriptors. The pad is internal `char` arrays of the same total size (pieces under a descriptor's size) plus an anchor used with them, in a small unmapped function. Each padded file is verified; it falls back to the skipped-TU form otherwise |
 | Repeated functions are instantiations of one template with a tag type per address (`gen_clones.py`) | The original has many identical, unfolded instantiations; one hand-matched template covers them all and keeps the address in the symbol name. Element types are placeholders chosen for identical code generation (`UnkClone.h`) |
 
 ## Open questions for the owner
@@ -224,7 +225,7 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
    - Left: `UnkVector::EraseAt` (fn_71002b9908, 28 × 192 B: loop counter and source offset in
      separate registers), ~400 destructors with other member kinds (vectors, nested objects),
      the CStrId-valued iterator family (fn_71000c936c, fn_71000cea70) and a long tail of
-     families under 8 KB each (~960 KB in 5,600 functions). The remaining call-free vtable
+     families under 8 KB each (re-run the census for current numbers). The remaining call-free vtable
      functions (509) are varied virtual dispatchers, not one template.
 1. **Extend the lifter (`tools/gen_lift.py`), largest payoff first.** It lifts 47,431 of 75,661
    candidates (<= 512 B) and 39,598 of those match. Rejection reasons (count / bytes, at 128 B;
@@ -245,10 +246,10 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
      limit. Further gains need real types per subsystem (hand decompilation), not variants. Remaining unlifted (~4.6 MB): guarded statics (`ldarb`, 1.2 MB),
      `ccmp`, float arithmetic, early returns of values set on only one path.
    - **`CCollectionType`** (`include/base/reflection/CCollectionType.h`): the descriptors are
-     globals built by static initialisers, so only constructors are generated: 88 standalone
-     (`gen_types.py`) and 23 in their element class's TU (`gen_reflection.py`, "local items").
-     The other ~90 have their element class in a skipped TU (blocked like its getter), as do
-     the 46 iterator pointer getters (`fn_7100009838` and relatives). The static initialisers
+     globals built by static initialisers, so only constructors are generated: 178 standalone
+     (`gen_types.py`; an element descriptor loaded through the GOT is a global, not a local
+     class) and the rest in their element class's TU (`gen_reflection.py`, "local items"; 175 of
+     181 local pointer/collection types match). The static initialisers
      that build the descriptors (e.g. `fn_71000e2800`, 14 KB) are still `U`.
    - sret (`x8` read first) and crossing branches/loops are handled (UnkResult built in place;
      `FlatLifter` with gotos), but only ~25% of flat-mode lifts match; the rest differ in
@@ -268,10 +269,11 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
    constructors of skipped TUs (no getters, no dummy statics), registration functions outside
    class getters (mostly container accessors passed by static initialisers) and every
    out-of-line reflected-function initialiser (`refl_attrs.parse_initialiser`). Left:
-   - 452 class getters in TUs with **other statics** (decision: no dummy statics) and 15 with
-     rarer shapes; 46 pointer types whose pointee getter is in such a TU.
-   - The 54 container accessors (912 B) that need a collection-type getter in the same TU, and
-     the collection/primitive type getters themselves (e.g. `fn_7100008500`).
+   - Done (sixth session): class getters in TUs with **other statics**, through padding (see
+     Decisions; `layout_gap`/`padding_lines` in `gen_reflection.py`); the 54 container accessors
+     (912 B), generated in their element class getter's TU. Left: 2 TUs whose descriptors aren't
+     contiguous, 21 getters with rarer shapes, 59 other registration functions, and the
+     collection/primitive type getters themselves (e.g. `fn_7100008500`, `refl_GetType<float>`).
    - Enum static initialisers and the other per-TU static initialisers (1,430 × 160 B: a
      global `{int, CStrId, CStrId}` constructed and registered with `__cxa_atexit`). These define
      globals, so they need the TU's data definitions.
