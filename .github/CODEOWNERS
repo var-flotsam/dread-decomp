@@ -1,0 +1,8 @@
+# The maintainer reviews everything; these paths define the project's rules and safety checks.
+*                     @var-flotsam
+/tools/hooks/         @var-flotsam
+/.github/             @var-flotsam
+/LICENSE              @var-flotsam
+/CONTRIBUTING.md      @var-flotsam
+/CLAUDE.md            @var-flotsam
+/.gitignore           @var-flotsam

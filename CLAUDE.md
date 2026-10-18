@@ -1,6 +1,7 @@
 # dread-decomp
 
-Start with `docs/HANDOFF.md` for current state and next steps. Outside projects are listed in
+Start with `docs/HANDOFF.md` for current state and next steps. Contributors working from a fork: `CONTRIBUTING.md`;
+the maintainer: `docs/maintaining.md` (publication, branch rules, merging). Outside projects are listed in
 `docs/references.md`. Add any newly used or referenced project there.
 
 A clean-room-style decompilation of Metroid Dread (Nintendo Switch), aiming for a
@@ -69,25 +70,22 @@ python tools/progress.py                         # whole-binary progress (exclud
 python tools/asmdiff.py --version <ver> <obj> -v # diff one object against the original
 python tools/trymatch.py --version <ver> <file.cpp> [-v] [-- flags]  # build + diff one source
 python tools/ghidra/decompile.py --version <ver> <addr|name>...    # read Ghidra's pseudocode (never commit it)
+python tools/policy_check.py [--base <ref>]      # content rules (also run by CI on every PR)
 ```
 
 Target version: **2.1.0** (update v327680). The `main` NSO build ID is
 `646761F643AFEBB379EDD5E6A5151AF2CEF93DC1`. Title ID is `010093801237C000`.
 
-Remote: https://github.com/var-flotsam/dread-decomp (private, MIT license).
-Ask the user before pushing. (var-flotsam/MPT-Decomp is a separate project, a Metroid
+Remote: https://github.com/var-flotsam/dread-decomp (public, MIT license). The pre-2026-10-18
+history, with the original PRs, is kept in the private var-flotsam/dread-decomp-archive (rollback
+only; don't push there). Ask the user before pushing. (var-flotsam/MPT-Decomp is a separate project, a Metroid
 Prime Trilogy recomp. Never push this repo there.)
 
-## Local environment (Windows 11)
+## Local environment
 
-The user supplies these. Don't copy anything from them into the repo.
-
-| What | Where |
-|---|---|
-| ExeFS/RomFS dump (2.1.0, from Eden) | (machine-specific: `CLAUDE.local.md`) |
-| Keys | (machine-specific: `CLAUDE.local.md`; never read into tracked files or printed) |
-| Game files (base + 2.1.0 update) | (machine-specific: `CLAUDE.local.md`) |
-| Emulator (Eden, a yuzu fork) | (machine-specific: `CLAUDE.local.md`) |
+Each contributor supplies their own dump, keys and tools. Machine-specific paths (where the
+dump, keys and emulator live) go in `CLAUDE.local.md`, which is gitignored and read by Claude
+Code alongside this file. Never copy anything from those locations into the repo.
 
 Toolchain:
 - Python 3.12, with packages in the repo venv `.venv` (`.venv/Scripts/python`).

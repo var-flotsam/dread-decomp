@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Found game data or keys in the repository?
+    url: https://github.com/var-flotsam/dread-decomp/blob/main/CONTRIBUTING.md#reporting-a-problem
+    about: Don't quote it. Report only the path and commit, as described here.

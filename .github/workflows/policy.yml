@@ -1,0 +1,32 @@
+# Content policy (CONTRIBUTING.md, "Rules") on every pull request and push to main.
+# Runs without game data, so it can't build or match code: that is checked locally with
+# tools/check.py. Read-only token; no secrets are used.
+name: checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  policy:
+    name: policy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Content policy (whole tree)
+        run: python tools/policy_check.py
+      - name: Content policy (changed files)
+        if: github.event_name == 'pull_request'
+        run: python tools/policy_check.py --base "origin/${{ github.base_ref }}"
+      - name: Python tools compile
+        run: python -m compileall -q tools

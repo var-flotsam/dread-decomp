@@ -1,0 +1,39 @@
+# dread-decomp
+
+A matching decompilation of **Metroid Dread** (Nintendo Switch, version 2.1.0), aiming for a
+native PC port later. It is modelled on [PrimeDecomp](https://github.com/PrimeDecomp/prime) and
+[zeldaret/botw](https://github.com/zeldaret/botw): C++ that compiles, with the original compiler
+and flags, to the same bytes as the game's `main` executable, function by function.
+
+**This repository contains no game data.** No executables, assets, keys, firmware or assembly
+listings are stored here, and none will be accepted. To build and check anything you need your
+own copy of the game, dumped from a console you own. The tools verify that your dump is the
+expected version (`data/hashes.json`) before using it.
+
+## Status
+
+Progress is measured over the game's own code (libraries excluded) by `tools/progress.py`.
+Current numbers, what each part of the tree is and what to work on next are in
+[`docs/HANDOFF.md`](docs/HANDOFF.md).
+
+Much of the matching code so far is **generated** from the binary by the tools in `tools/`
+(reflection boilerplate, descriptor constructors, small functions lifted from their
+instructions, repeated template instantiations) and verified byte for byte. Generated
+directories (`src/reflection/`, `src/reflection_types/`, `src/reflection_statics/`,
+`src/clones/`, `src/lifted/`) are regenerated, never edited by hand.
+
+## Getting started
+
+See [`CONTRIBUTING.md`](CONTRIBUTING.md): how to fork, set up the toolchain and your dump, check
+your changes and open a pull request. The full list of commands is in [`CLAUDE.md`](CLAUDE.md)
+(the project's working rules, written for both humans and AI assistants).
+
+## Legal
+
+This is an independent project, not affiliated with or endorsed by Nintendo or MercurySteam.
+"Metroid" is a trademark of Nintendo. The code here is our own reconstruction, released under
+the [MIT License](LICENSE). Vendored and referenced third-party code keeps its own license
+(see [`docs/references.md`](docs/references.md)).
+
+If you are a rights holder and have a concern about this repository, please open an issue or
+contact the maintainer through GitHub.
