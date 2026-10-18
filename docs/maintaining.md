@@ -6,7 +6,7 @@ what to do when something goes wrong.
 
 ## History and the archive
 
-The repository was published on 2026-10-18 with a cleaned history: every commit's author email
+On 2026-10-18 the repository was recreated with a cleaned history, ready to publish: every commit's author email
 was replaced by the GitHub noreply address, and local paths (a user name, where the
 maintainer's dump, keys and game files live) were removed from every version of `CLAUDE.md`
 and `docs/HANDOFF.md` (`git filter-repo --mailmap --replace-text`). An audit of every blob found
@@ -23,6 +23,11 @@ Keep personal data out from now on:
 - Machine-specific paths go in the gitignored `CLAUDE.local.md`.
 - `tools/policy_check.py` (and CI) rejects home-directory paths with a user name and personal
   email addresses.
+
+**Current state: private until the owner decides to publish.** It was briefly public on
+2026-10-18 (no forks were made). To publish: make it public, then check that the `main` ruleset
+is still there (`gh api repos/var-flotsam/dread-decomp/rulesets`) and re-create it if not
+(below). The settings in the next section are already applied.
 
 ## Repository settings
 
