@@ -99,7 +99,8 @@ def emulate(orig: asmdiff.Original, addr: int) -> tuple[str | None, dict, int | 
             target = orig.img.pointer(page[CS.reg_name(o[1].mem.base)] + o[1].mem.disp - BASE)
             if target is not None:
                 t = BASE + target
-                val[reg(x, o[0])] = ("fn", t) if t in orig.sizes else ("data", t)
+                # Loaded through the GOT: marked, since a TU's own statics are addressed directly.
+                val[reg(x, o[0])] = ("fn", t) if t in orig.sizes else ("data", t, "got")
             continue
         if m in ("mov", "movz") and len(o) == 2 and o[1].type == capstone.arm64.ARM64_OP_IMM:
             val[reg(x, o[0])] = ("imm", o[1].imm & (2**64 - 1))
@@ -269,7 +270,7 @@ def local_element(orig: asmdiff.Original, init: int) -> int | None:
     address (the getter is defined in the same TU, as for local_pointee)."""
     kind, st, _ = emulate(orig, init)
     e = st.get(0xF0)
-    if kind != COLLECTION_KIND or not e or e[0] != "data":
+    if kind != COLLECTION_KIND or not e or e[0] != "data" or len(e) > 2:
         return None
     calls = [x.operands[0].imm for x in disasm(orig, init) if x.mnemonic == "bl"]
     calls = [c for c in calls if c not in (KIND_HASH, ALLOCATOR_GETTER)]
@@ -307,6 +308,10 @@ def collection_traits(orig: asmdiff.Original, init: int, decls: set[str],
         v = st.get(off)
         if off == 0xF0 and local is not None:
             lines.append(f"    static const CType* element() {{ return fn_{local:x}(); }}")
+            continue
+        if v and v[0] == "data" and len(v) > 2:  # a global descriptor, through the GOT
+            decls.add(f"extern base::reflection::CType g_unk_{v[1]:x};")
+            lines.append(f"    static const CType* {member}() {{ return &g_unk_{v[1]:x}; }}")
             continue
         if not v or v[0] != "call":
             return None

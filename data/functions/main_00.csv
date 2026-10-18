@@ -246,21 +246,21 @@ address,size,name,name_source,subsystem,status
 0x7100009188,4,operator.delete,symbol,unknown,O
 0x7100009190,252,fn_7100009190,unknown,unknown,O
 0x710000928c,88,fn_710000928c,unknown,unknown,O
-0x71000092e4,244,base::animation::CBlendSpaceResource::refl_GetClass,reflection,engine/base,U
+0x71000092e4,244,base::animation::CBlendSpaceResource::refl_GetClass,reflection,engine/base,O
 0x71000093d8,268,fn_71000093d8,unknown,engine/base?,O
 0x71000094e4,372,base::animation::CBlendSpaceResource::refl_InitClass,reflection,engine/base,O
 0x7100009658,480,base::reflection::refl_GetType<base::global::CStrId>,reflection,engine/reflection,U
-0x7100009838,220,fn_7100009838,unknown,unknown,U
-0x7100009914,220,fn_7100009914,unknown,unknown,U
+0x7100009838,220,fn_7100009838,unknown,unknown,O
+0x7100009914,220,fn_7100009914,unknown,unknown,O
 0x71000099f0,912,fn_71000099f0,unknown,unknown,U
 0x7100009d80,388,fn_7100009d80,unknown,unknown,O
 0x7100009f04,220,fn_7100009f04,unknown,unknown,O
 0x7100009fe0,912,fn_7100009fe0,unknown,unknown,U
 0x710000a370,388,fn_710000a370,unknown,unknown,O
 0x710000a4f4,220,fn_710000a4f4,unknown,unknown,O
-0x710000a5d0,504,fn_710000a5d0,unknown,unknown,U
+0x710000a5d0,504,fn_710000a5d0,unknown,unknown,O
 0x710000a7c8,4,fn_710000a7c8,unknown,unknown,O
-0x710000a7cc,240,base::animation::CBlendSpaceResource::SBlendTarget::refl_GetClass,reflection,engine/base,U
+0x710000a7cc,240,base::animation::CBlendSpaceResource::SBlendTarget::refl_GetClass,reflection,engine/base,O
 0x710000a8bc,380,fn_710000a8bc,unknown,engine/base?,O
 0x710000aa38,388,base::animation::CBlendSpaceResource::SBlendTarget::refl_InitClass,reflection,engine/base,O
 0x710000abbc,480,base::reflection::refl_GetType<float>,reflection,engine/reflection,U
@@ -281,7 +281,7 @@ address,size,name,name_source,subsystem,status
 0x710000b91c,104,fn_710000b91c,unknown,unknown,U
 0x710000b984,136,fn_710000b984,unknown,unknown,U
 0x710000ba0c,148,fn_710000ba0c,unknown,unknown,U
-0x710000baa0,368,fn_710000baa0,unknown,unknown,U
+0x710000baa0,368,fn_710000baa0,unknown,unknown,O
 0x710000bc10,104,fn_710000bc10,unknown,unknown,U
 0x710000bc78,12,fn_710000bc78,unknown,unknown,O
 0x710000bc84,16,fn_710000bc84,unknown,unknown,O
@@ -294,7 +294,7 @@ address,size,name,name_source,subsystem,status
 0x710000bce4,4,fn_710000bce4,unknown,unknown,O
 0x710000bce8,20,fn_710000bce8,unknown,unknown,O
 0x710000bcfc,20,fn_710000bcfc,unknown,unknown,O
-0x710000bd10,368,fn_710000bd10,unknown,unknown,U
+0x710000bd10,368,fn_710000bd10,unknown,unknown,O
 0x710000be80,104,fn_710000be80,unknown,unknown,U
 0x710000bee8,12,fn_710000bee8,unknown,unknown,O
 0x710000bef4,16,fn_710000bef4,unknown,unknown,O
@@ -677,7 +677,7 @@ address,size,name,name_source,subsystem,status
 0x71000197e8,900,fn_71000197e8,unknown,unknown,O
 0x7100019b6c,388,fn_7100019b6c,unknown,unknown,O
 0x7100019cf0,220,fn_7100019cf0,unknown,unknown,O
-0x7100019dcc,500,fn_7100019dcc,unknown,unknown,U
+0x7100019dcc,500,fn_7100019dcc,unknown,unknown,O
 0x7100019fc0,236,fn_7100019fc0,unknown,unknown,U
 0x710001a0ac,452,fn_710001a0ac,unknown,unknown,U
 0x710001a270,300,fn_710001a270,unknown,unknown,U
@@ -1665,7 +1665,7 @@ address,size,name,name_source,subsystem,status
 0x7100072484,64,fn_7100072484,unknown,unknown,O
 0x71000724d0,148,fn_71000724d0,unknown,unknown,O
 0x7100072564,4,fn_7100072564,unknown,unknown,O
-0x7100072568,244,base::input::CRumbleManager::CTunableRumbleManager::refl_GetClass,reflection,engine/base,U
+0x7100072568,244,base::input::CRumbleManager::CTunableRumbleManager::refl_GetClass,reflection,engine/base,O
 0x710007265c,352,fn_710007265c,unknown,engine/base?,O
 0x71000727bc,388,base::input::CRumbleManager::CTunableRumbleManager::refl_InitClass,reflection,engine/base,O
 0x7100072940,696,fn_7100072940,unknown,unknown,O
@@ -2720,7 +2720,7 @@ address,size,name,name_source,subsystem,status
 0x710009c714,4,fn_710009c714,unknown,engine/reflection?,O
 0x710009c720,148,fn_710009c720,unknown,engine/reflection?,O
 0x710009c7b4,4,fn_710009c7b4,unknown,engine/reflection?,O
-0x710009c7b8,240,base::reflection::CType::refl_GetClass,reflection,engine/reflection,U
+0x710009c7b8,240,base::reflection::CType::refl_GetClass,reflection,engine/reflection,O
 0x710009c8a8,520,fn_710009c8a8,unknown,engine/reflection?,U
 0x710009cab0,340,base::reflection::CType::refl_InitClass,reflection,engine/reflection,O
 0x710009cc04,488,fn_710009cc04,unknown,engine/reflection?,U
@@ -3229,7 +3229,7 @@ address,size,name,name_source,subsystem,status
 0x71000b51e4,900,fn_71000b51e4,unknown,unknown,O
 0x71000b5568,388,fn_71000b5568,unknown,unknown,O
 0x71000b56ec,220,fn_71000b56ec,unknown,unknown,O
-0x71000b57c8,504,fn_71000b57c8,unknown,unknown,U
+0x71000b57c8,504,fn_71000b57c8,unknown,unknown,O
 0x71000b59c0,220,fn_71000b59c0,unknown,unknown,O
 0x71000b5a9c,220,fn_71000b5a9c,unknown,unknown,O
 0x71000b5b78,900,fn_71000b5b78,unknown,unknown,O
@@ -3238,7 +3238,7 @@ address,size,name,name_source,subsystem,status
 0x71000b615c,900,fn_71000b615c,unknown,unknown,O
 0x71000b64e0,388,fn_71000b64e0,unknown,unknown,O
 0x71000b6664,220,fn_71000b6664,unknown,unknown,O
-0x71000b6740,504,fn_71000b6740,unknown,unknown,U
+0x71000b6740,504,fn_71000b6740,unknown,unknown,O
 0x71000b6938,220,fn_71000b6938,unknown,unknown,O
 0x71000b6a14,220,fn_71000b6a14,unknown,unknown,O
 0x71000b6af0,900,fn_71000b6af0,unknown,unknown,O
@@ -5512,7 +5512,7 @@ address,size,name,name_source,subsystem,status
 0x71000e88bc,4,fn_71000e88bc,unknown,engine/reflection?,O
 0x71000e88c0,408,base::reflection::CVariable::refl_GetClass,reflection,engine/reflection,U
 0x71000e8a58,4,fn_71000e8a58,unknown,unknown,O
-0x71000e8a5c,244,base::res::CRes::refl_GetClass,reflection,engine/base,U
+0x71000e8a5c,244,base::res::CRes::refl_GetClass,reflection,engine/base,O
 0x71000e8b50,4,fn_71000e8b50,unknown,engine/base?,O
 0x71000e8b54,340,base::res::CRes::refl_InitClass,reflection,engine/base,O
 0x71000e8ca8,64,fn_71000e8ca8,unknown,unknown,U
@@ -5743,7 +5743,7 @@ address,size,name,name_source,subsystem,status
 0x71000f5680,84,fn_71000f5680,unknown,unknown,O
 0x71000f56d4,356,fn_71000f56d4,unknown,unknown,U
 0x71000f5838,4,fn_71000f5838,unknown,unknown,O
-0x71000f583c,244,base::snd::CSoundSystemATK::CTunableSoundSystemATK::refl_GetClass,reflection,engine/base,U
+0x71000f583c,244,base::snd::CSoundSystemATK::CTunableSoundSystemATK::refl_GetClass,reflection,engine/base,O
 0x71000f5930,1584,fn_71000f5930,unknown,engine/base?,O
 0x71000f5f60,388,base::snd::CSoundSystemATK::CTunableSoundSystemATK::refl_InitClass,reflection,engine/base,O
 0x71000f60e4,696,fn_71000f60e4,unknown,unknown,O

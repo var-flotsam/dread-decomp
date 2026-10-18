@@ -503,18 +503,18 @@ address,size,name,name_source,subsystem,status
 0x710101fa38,8,fn_710101fa38,unknown,unknown,O
 0x710101fa40,140,fn_710101fa40,unknown,unknown,O
 0x710101facc,88,fn_710101facc,unknown,unknown,O
-0x710101fb24,244,sound::CSoundEventsDef::refl_GetClass,reflection,audio,U
+0x710101fb24,244,sound::CSoundEventsDef::refl_GetClass,reflection,audio,O
 0x710101fc18,712,fn_710101fc18,unknown,audio?,O
 0x710101fee0,372,sound::CSoundEventsDef::refl_InitClass,reflection,audio,O
 0x7101020054,4,fn_7101020054,unknown,audio?,O
-0x7101020058,240,sound::CSoundEventsDef::SSoundEventsSelector::refl_GetClass,reflection,audio,U
+0x7101020058,240,sound::CSoundEventsDef::SSoundEventsSelector::refl_GetClass,reflection,audio,O
 0x7101020148,148,fn_7101020148,unknown,audio?,O
 0x71010201dc,388,sound::CSoundEventsDef::SSoundEventsSelector::refl_InitClass,reflection,audio,O
 0x7101020360,268,fn_7101020360,unknown,unknown,O
 0x710102046c,372,fn_710102046c,unknown,unknown,O
-0x71010205e0,220,base::reflection::refl_GetType<std::unique_ptr<sound::CSoundEventsDef::SSoundEventsSelector>>,reflection,engine/reflection,U
+0x71010205e0,220,base::reflection::refl_GetType<std::unique_ptr<sound::CSoundEventsDef::SSoundEventsSelector>>,reflection,engine/reflection,O
 0x71010206bc,4,fn_71010206bc,unknown,unknown,O
-0x71010206c0,240,sound::CSoundManager::refl_GetClass,reflection,audio,U
+0x71010206c0,240,sound::CSoundManager::refl_GetClass,reflection,audio,O
 0x71010207b0,456,fn_71010207b0,unknown,audio?,O
 0x7101020978,328,sound::CSoundManager::refl_InitClass,reflection,audio,O
 0x7101020ac0,220,base::reflection::refl_GetType<sound::CAudioPresets*>,reflection,engine/reflection,O
@@ -526,7 +526,7 @@ address,size,name,name_source,subsystem,status
 0x7101021338,900,fn_7101021338,unknown,engine/reflection?,O
 0x71010216bc,388,fn_71010216bc,unknown,engine/reflection?,O
 0x7101021840,220,fn_7101021840,unknown,engine/reflection?,O
-0x710102191c,504,fn_710102191c,unknown,engine/reflection?,U
+0x710102191c,504,fn_710102191c,unknown,engine/reflection?,O
 0x7101021b14,220,fn_7101021b14,unknown,engine/reflection?,O
 0x7101021bf0,220,fn_7101021bf0,unknown,engine/reflection?,O
 0x7101021ccc,900,fn_7101021ccc,unknown,engine/reflection?,O
@@ -537,7 +537,7 @@ address,size,name,name_source,subsystem,status
 0x7101022838,388,fn_7101022838,unknown,engine/reflection?,O
 0x71010229bc,220,fn_71010229bc,unknown,engine/reflection?,O
 0x7101022a98,480,fn_7101022a98,unknown,engine/reflection?,O
-0x7101022c78,220,fn_7101022c78,unknown,engine/reflection?,U
+0x7101022c78,220,fn_7101022c78,unknown,engine/reflection?,O
 0x7101022d54,464,fn_7101022d54,unknown,engine/reflection?,U
 0x7101022f24,120,fn_7101022f24,unknown,engine/reflection?,U
 0x7101022f9c,816,fn_7101022f9c,unknown,engine/reflection?,U
@@ -582,7 +582,7 @@ address,size,name,name_source,subsystem,status
 0x7101025f14,56,fn_7101025f14,unknown,engine/reflection?,O
 0x7101025f4c,140,fn_7101025f4c,unknown,engine/reflection?,U
 0x7101025fd8,388,fn_7101025fd8,unknown,engine/reflection?,U
-0x710102615c,352,base::reflection::refl_InitType<std::unique_ptr<sound::CSoundEventsDef::SSoundEventsSelector>>,reflection,engine/reflection,U
+0x710102615c,352,base::reflection::refl_InitType<std::unique_ptr<sound::CSoundEventsDef::SSoundEventsSelector>>,reflection,engine/reflection,O
 0x71010262bc,104,fn_71010262bc,unknown,engine/reflection?,U
 0x7101026324,36,fn_7101026324,unknown,engine/reflection?,O
 0x7101026348,4,fn_7101026348,unknown,engine/reflection?,O
@@ -723,7 +723,7 @@ address,size,name,name_source,subsystem,status
 0x71010280f4,64,fn_71010280f4,unknown,unknown,O
 0x7101028134,64,fn_7101028134,unknown,unknown,O
 0x7101028174,176,fn_7101028174,unknown,unknown,U
-0x7101028224,368,fn_7101028224,unknown,unknown,U
+0x7101028224,368,fn_7101028224,unknown,unknown,O
 0x7101028394,104,fn_7101028394,unknown,unknown,U
 0x71010283fc,12,fn_71010283fc,unknown,unknown,O
 0x7101028408,16,fn_7101028408,unknown,unknown,O
@@ -892,7 +892,7 @@ address,size,name,name_source,subsystem,status
 0x710102dd5c,220,fn_710102dd5c,unknown,unknown,O
 0x710102de38,220,fn_710102de38,unknown,unknown,O
 0x710102df14,4,fn_710102df14,unknown,unknown,O
-0x710102df18,244,sound::CAudioPreset::refl_GetClass,reflection,audio,U
+0x710102df18,244,sound::CAudioPreset::refl_GetClass,reflection,audio,O
 0x710102e00c,17108,fn_710102e00c,unknown,audio?,O
 0x71010322e0,388,sound::CAudioPreset::refl_InitClass,reflection,audio,O
 0x7101032464,380,fn_7101032464,unknown,unknown,O
@@ -927,8 +927,8 @@ address,size,name,name_source,subsystem,status
 0x7101034f48,380,fn_7101034f48,unknown,unknown,O
 0x71010350c4,380,fn_71010350c4,unknown,unknown,O
 0x7101035240,380,fn_7101035240,unknown,unknown,O
-0x71010353bc,220,fn_71010353bc,unknown,unknown,U
-0x7101035498,220,fn_7101035498,unknown,unknown,U
+0x71010353bc,220,fn_71010353bc,unknown,unknown,O
+0x7101035498,220,fn_7101035498,unknown,unknown,O
 0x7101035574,220,fn_7101035574,unknown,unknown,O
 0x7101035650,220,fn_7101035650,unknown,unknown,O
 0x710103572c,900,fn_710103572c,unknown,unknown,O
@@ -937,7 +937,7 @@ address,size,name,name_source,subsystem,status
 0x7101035d10,900,fn_7101035d10,unknown,unknown,O
 0x7101036094,388,fn_7101036094,unknown,unknown,O
 0x7101036218,220,fn_7101036218,unknown,unknown,O
-0x71010362f4,504,fn_71010362f4,unknown,unknown,U
+0x71010362f4,504,fn_71010362f4,unknown,unknown,O
 0x71010364ec,220,fn_71010364ec,unknown,unknown,O
 0x71010365c8,220,fn_71010365c8,unknown,unknown,O
 0x71010366a4,664,fn_71010366a4,unknown,unknown,U
@@ -1009,7 +1009,7 @@ address,size,name,name_source,subsystem,status
 0x71010388e8,4,fn_71010388e8,unknown,unknown,O
 0x71010388ec,20,fn_71010388ec,unknown,unknown,O
 0x7101038900,20,fn_7101038900,unknown,unknown,O
-0x7101038914,368,fn_7101038914,unknown,unknown,U
+0x7101038914,368,fn_7101038914,unknown,unknown,O
 0x7101038a84,104,fn_7101038a84,unknown,unknown,U
 0x7101038aec,12,fn_7101038aec,unknown,unknown,O
 0x7101038af8,16,fn_7101038af8,unknown,unknown,O
@@ -1022,7 +1022,7 @@ address,size,name,name_source,subsystem,status
 0x7101038b58,4,fn_7101038b58,unknown,unknown,O
 0x7101038b5c,20,fn_7101038b5c,unknown,unknown,O
 0x7101038b70,20,fn_7101038b70,unknown,unknown,O
-0x7101038b84,368,fn_7101038b84,unknown,unknown,U
+0x7101038b84,368,fn_7101038b84,unknown,unknown,O
 0x7101038cf4,104,fn_7101038cf4,unknown,unknown,U
 0x7101038d5c,12,fn_7101038d5c,unknown,unknown,O
 0x7101038d68,16,fn_7101038d68,unknown,unknown,O
@@ -1469,7 +1469,7 @@ address,size,name,name_source,subsystem,status
 0x7101044aac,464,fn_7101044aac,unknown,game/core?,O
 0x7101044c7c,360,fn_7101044c7c,unknown,game/core?,O
 0x7101044de4,88,fn_7101044de4,unknown,game/core?,O
-0x7101044e3c,240,CBlackboard::refl_GetClass,reflection,game/core,U
+0x7101044e3c,240,CBlackboard::refl_GetClass,reflection,game/core,O
 0x7101044f2c,1208,fn_7101044f2c,unknown,game/core?,U
 0x71010453e4,352,CBlackboard::refl_InitClass,reflection,game/core,O
 0x7101045544,376,fn_7101045544,unknown,unknown,O
@@ -1927,7 +1927,7 @@ address,size,name,name_source,subsystem,status
 0x71010588b8,900,fn_71010588b8,unknown,unknown,O
 0x7101058c3c,388,fn_7101058c3c,unknown,unknown,O
 0x7101058dc0,220,fn_7101058dc0,unknown,unknown,O
-0x7101058e9c,500,fn_7101058e9c,unknown,unknown,U
+0x7101058e9c,500,fn_7101058e9c,unknown,unknown,O
 0x7101059090,8,fn_7101059090,unknown,unknown,O
 0x7101059098,40,fn_7101059098,unknown,unknown,U
 0x71010590c0,28,fn_71010590c0,unknown,unknown,O
@@ -2346,7 +2346,7 @@ address,size,name,name_source,subsystem,status
 0x7101062e8c,900,fn_7101062e8c,unknown,unknown,O
 0x7101063210,388,fn_7101063210,unknown,unknown,O
 0x7101063394,220,fn_7101063394,unknown,unknown,O
-0x7101063470,500,fn_7101063470,unknown,unknown,U
+0x7101063470,500,fn_7101063470,unknown,unknown,O
 0x7101063664,220,fn_7101063664,unknown,unknown,O
 0x7101063740,220,fn_7101063740,unknown,unknown,O
 0x710106381c,900,fn_710106381c,unknown,unknown,O
@@ -2357,7 +2357,7 @@ address,size,name,name_source,subsystem,status
 0x7101064308,220,fn_7101064308,unknown,unknown,O
 0x71010643e4,496,fn_71010643e4,unknown,unknown,O
 0x71010645d4,4,fn_71010645d4,unknown,unknown,O
-0x71010645d8,244,CCutscene::CTunableCutscene::refl_GetClass,reflection,game/cutscene,U
+0x71010645d8,244,CCutscene::CTunableCutscene::refl_GetClass,reflection,game/cutscene,O
 0x71010646cc,352,fn_71010646cc,unknown,game/cutscene?,O
 0x710106482c,388,CCutscene::CTunableCutscene::refl_InitClass,reflection,game/cutscene,O
 0x71010649b0,696,fn_71010649b0,unknown,unknown,O
@@ -4317,7 +4317,7 @@ address,size,name,name_source,subsystem,status
 0x71010d499c,128,fn_71010d499c,unknown,unknown,U
 0x71010d4a20,160,fn_71010d4a20,unknown,unknown,O
 0x71010d4ac0,4,fn_71010d4ac0,unknown,unknown,O
-0x71010d4ac4,244,CPlayerMovement::CTunablePlayerMovement::refl_GetClass,reflection,game/player,U
+0x71010d4ac4,244,CPlayerMovement::CTunablePlayerMovement::refl_GetClass,reflection,game/player,O
 0x71010d4bb8,5864,fn_71010d4bb8,unknown,game/player?,O
 0x71010d62a0,388,CPlayerMovement::CTunablePlayerMovement::refl_InitClass,reflection,game/player,O
 0x71010d6424,380,fn_71010d6424,unknown,game/player?,O
@@ -4326,7 +4326,7 @@ address,size,name,name_source,subsystem,status
 0x71010d6868,16,fn_71010d6868,unknown,game/player?,O
 0x71010d6878,64,fn_71010d6878,unknown,game/player?,U
 0x71010d68b8,4,fn_71010d68b8,unknown,game/player?,O
-0x71010d68bc,244,CPlayerMovement::refl_GetClass,reflection,game/player,U
+0x71010d68bc,244,CPlayerMovement::refl_GetClass,reflection,game/player,O
 0x71010d69b0,2484,fn_71010d69b0,unknown,game/player?,U
 0x71010d7364,344,CPlayerMovement::refl_InitClass,reflection,game/player,O
 0x71010d74bc,180,fn_71010d74bc,unknown,unknown,O
@@ -4848,13 +4848,13 @@ address,size,name,name_source,subsystem,status
 0x71010f60e4,900,fn_71010f60e4,unknown,unknown,O
 0x71010f6468,388,fn_71010f6468,unknown,unknown,O
 0x71010f65ec,220,fn_71010f65ec,unknown,unknown,O
-0x71010f66c8,500,fn_71010f66c8,unknown,unknown,U
+0x71010f66c8,500,fn_71010f66c8,unknown,unknown,O
 0x71010f68bc,268,fn_71010f68bc,unknown,unknown,O
 0x71010f69c8,388,fn_71010f69c8,unknown,unknown,O
 0x71010f6b4c,4,fn_71010f6b4c,unknown,unknown,O
-0x71010f6b50,244,CAIComponent::refl_GetClass,reflection,game/ai,U
+0x71010f6b50,244,CAIComponent::refl_GetClass,reflection,game/ai,O
 0x71010f6c44,4072,fn_71010f6c44,unknown,game/ai?,U
-0x71010f7c2c,356,CAIComponent::refl_InitClass,reflection,game/ai,U
+0x71010f7c2c,356,CAIComponent::refl_InitClass,reflection,game/ai,O
 0x71010f7d90,380,fn_71010f7d90,unknown,unknown,O
 0x71010f7f0c,180,fn_71010f7f0c,unknown,unknown,O
 0x71010f7fc0,380,fn_71010f7fc0,unknown,unknown,O

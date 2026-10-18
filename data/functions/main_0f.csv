@@ -149,7 +149,7 @@ address,size,name,name_source,subsystem,status
 0x7100f0654c,8,fn_7100f0654c,unknown,unknown,O
 0x7100f06560,200,fn_7100f06560,unknown,unknown,O
 0x7100f06628,4,fn_7100f06628,unknown,unknown,O
-0x7100f0662c,244,CPlayerInfo::refl_GetClass,reflection,game/player,U
+0x7100f0662c,244,CPlayerInfo::refl_GetClass,reflection,game/player,O
 0x7100f06720,5232,fn_7100f06720,unknown,game/player?,U
 0x7100f07b90,352,CPlayerInfo::refl_InitClass,reflection,game/player,O
 0x7100f07cf0,180,fn_7100f07cf0,unknown,unknown,O
@@ -778,7 +778,7 @@ address,size,name,name_source,subsystem,status
 0x7100f41f10,900,fn_7100f41f10,unknown,engine/reflection?,O
 0x7100f42294,388,fn_7100f42294,unknown,engine/reflection?,O
 0x7100f42418,220,fn_7100f42418,unknown,engine/reflection?,O
-0x7100f424f4,468,fn_7100f424f4,unknown,engine/reflection?,U
+0x7100f424f4,468,fn_7100f424f4,unknown,engine/reflection?,O
 0x7100f426c8,220,fn_7100f426c8,unknown,engine/reflection?,O
 0x7100f427a4,220,fn_7100f427a4,unknown,engine/reflection?,O
 0x7100f42880,964,fn_7100f42880,unknown,engine/reflection?,U
@@ -3300,7 +3300,7 @@ address,size,name,name_source,subsystem,status
 0x7100f7ebe0,900,fn_7100f7ebe0,unknown,unknown,O
 0x7100f7ef64,388,fn_7100f7ef64,unknown,unknown,O
 0x7100f7f0e8,220,fn_7100f7f0e8,unknown,unknown,O
-0x7100f7f1c4,500,fn_7100f7f1c4,unknown,unknown,U
+0x7100f7f1c4,500,fn_7100f7f1c4,unknown,unknown,O
 0x7100f7f3b8,220,fn_7100f7f3b8,unknown,unknown,O
 0x7100f7f494,220,fn_7100f7f494,unknown,unknown,O
 0x7100f7f570,1604,fn_7100f7f570,unknown,unknown,O
@@ -3316,7 +3316,7 @@ address,size,name,name_source,subsystem,status
 0x7100f80808,900,fn_7100f80808,unknown,unknown,O
 0x7100f80b8c,388,fn_7100f80b8c,unknown,unknown,O
 0x7100f80d10,220,fn_7100f80d10,unknown,unknown,O
-0x7100f80dec,468,fn_7100f80dec,unknown,unknown,U
+0x7100f80dec,468,fn_7100f80dec,unknown,unknown,O
 0x7100f80fc0,364,fn_7100f80fc0,unknown,unknown,O
 0x7100f8112c,96,fn_7100f8112c,unknown,unknown,O
 0x7100f8118c,12,fn_7100f8118c,unknown,unknown,O
@@ -3696,7 +3696,7 @@ address,size,name,name_source,subsystem,status
 0x7100f8d0dc,900,fn_7100f8d0dc,unknown,unknown,O
 0x7100f8d460,388,fn_7100f8d460,unknown,unknown,O
 0x7100f8d5e4,220,fn_7100f8d5e4,unknown,unknown,O
-0x7100f8d6c0,468,fn_7100f8d6c0,unknown,unknown,U
+0x7100f8d6c0,468,fn_7100f8d6c0,unknown,unknown,O
 0x7100f8d894,220,fn_7100f8d894,unknown,unknown,O
 0x7100f8d970,220,fn_7100f8d970,unknown,unknown,O
 0x7100f8da4c,312,fn_7100f8da4c,unknown,unknown,U
@@ -3911,7 +3911,7 @@ address,size,name,name_source,subsystem,status
 0x7100f93e40,900,fn_7100f93e40,unknown,unknown,O
 0x7100f941c4,388,fn_7100f941c4,unknown,unknown,O
 0x7100f94348,220,fn_7100f94348,unknown,unknown,O
-0x7100f94424,468,fn_7100f94424,unknown,unknown,U
+0x7100f94424,468,fn_7100f94424,unknown,unknown,O
 0x7100f945f8,220,fn_7100f945f8,unknown,unknown,O
 0x7100f946d4,220,fn_7100f946d4,unknown,unknown,O
 0x7100f947b0,504,fn_7100f947b0,unknown,unknown,U
@@ -4540,7 +4540,7 @@ address,size,name,name_source,subsystem,status
 0x7100faee40,900,fn_7100faee40,unknown,unknown,O
 0x7100faf1c4,388,fn_7100faf1c4,unknown,unknown,O
 0x7100faf348,220,fn_7100faf348,unknown,unknown,O
-0x7100faf424,500,fn_7100faf424,unknown,unknown,U
+0x7100faf424,500,fn_7100faf424,unknown,unknown,O
 0x7100faf618,220,fn_7100faf618,unknown,unknown,O
 0x7100faf6f4,220,fn_7100faf6f4,unknown,unknown,O
 0x7100faf7d0,32,fn_7100faf7d0,unknown,unknown,O
@@ -5072,7 +5072,7 @@ address,size,name,name_source,subsystem,status
 0x7100fc8730,4,operator.delete,symbol,unknown,O
 0x7100fc8740,172,fn_7100fc8740,unknown,unknown,O
 0x7100fc87ec,4,fn_7100fc87ec,unknown,unknown,O
-0x7100fc87f0,244,sound::SGUISoundEventsSelector::refl_GetClass,reflection,audio,U
+0x7100fc87f0,244,sound::SGUISoundEventsSelector::refl_GetClass,reflection,audio,O
 0x7100fc88e4,520,fn_7100fc88e4,unknown,audio?,O
 0x7100fc8aec,388,sound::SGUISoundEventsSelector::refl_InitClass,reflection,audio,O
 0x7100fc8c70,380,fn_7100fc8c70,unknown,unknown,O
@@ -5246,7 +5246,7 @@ address,size,name,name_source,subsystem,status
 0x7100fd2e90,384,fn_7100fd2e90,unknown,unknown,O
 0x7100fd3010,376,fn_7100fd3010,unknown,unknown,O
 0x7100fd3188,4,fn_7100fd3188,unknown,unknown,O
-0x7100fd318c,244,sound::CMusicManager::CTunableMusicManager::refl_GetClass,reflection,audio,U
+0x7100fd318c,244,sound::CMusicManager::CTunableMusicManager::refl_GetClass,reflection,audio,O
 0x7100fd3280,296,fn_7100fd3280,unknown,audio?,O
 0x7100fd33a8,388,sound::CMusicManager::CTunableMusicManager::refl_InitClass,reflection,audio,O
 0x7100fd352c,696,fn_7100fd352c,unknown,unknown,O
@@ -5460,7 +5460,7 @@ address,size,name,name_source,subsystem,status
 0x7100fe1e60,900,fn_7100fe1e60,unknown,unknown,O
 0x7100fe21e4,388,fn_7100fe21e4,unknown,unknown,O
 0x7100fe2368,220,fn_7100fe2368,unknown,unknown,O
-0x7100fe2444,500,fn_7100fe2444,unknown,unknown,U
+0x7100fe2444,500,fn_7100fe2444,unknown,unknown,O
 0x7100fe2638,220,fn_7100fe2638,unknown,unknown,O
 0x7100fe2714,220,fn_7100fe2714,unknown,unknown,O
 0x7100fe27f0,1164,fn_7100fe27f0,unknown,unknown,O
@@ -5475,7 +5475,7 @@ address,size,name,name_source,subsystem,status
 0x7100fe3754,900,fn_7100fe3754,unknown,unknown,O
 0x7100fe3ad8,388,fn_7100fe3ad8,unknown,unknown,O
 0x7100fe3c5c,220,fn_7100fe3c5c,unknown,unknown,O
-0x7100fe3d38,500,fn_7100fe3d38,unknown,unknown,U
+0x7100fe3d38,500,fn_7100fe3d38,unknown,unknown,O
 0x7100fe3f2c,220,fn_7100fe3f2c,unknown,unknown,O
 0x7100fe4008,220,fn_7100fe4008,unknown,unknown,O
 0x7100fe40e4,268,fn_7100fe40e4,unknown,unknown,O
@@ -5490,7 +5490,7 @@ address,size,name,name_source,subsystem,status
 0x7100fe4cc8,900,fn_7100fe4cc8,unknown,unknown,O
 0x7100fe504c,388,fn_7100fe504c,unknown,unknown,O
 0x7100fe51d0,220,fn_7100fe51d0,unknown,unknown,O
-0x7100fe52ac,500,fn_7100fe52ac,unknown,unknown,U
+0x7100fe52ac,500,fn_7100fe52ac,unknown,unknown,O
 0x7100fe54a0,220,fn_7100fe54a0,unknown,unknown,O
 0x7100fe557c,220,fn_7100fe557c,unknown,unknown,O
 0x7100fe5658,636,fn_7100fe5658,unknown,unknown,O
@@ -5506,7 +5506,7 @@ address,size,name,name_source,subsystem,status
 0x7100fe6528,900,fn_7100fe6528,unknown,unknown,O
 0x7100fe68ac,388,fn_7100fe68ac,unknown,unknown,O
 0x7100fe6a30,220,fn_7100fe6a30,unknown,unknown,O
-0x7100fe6b0c,468,fn_7100fe6b0c,unknown,unknown,U
+0x7100fe6b0c,468,fn_7100fe6b0c,unknown,unknown,O
 0x7100fe6ce0,220,fn_7100fe6ce0,unknown,unknown,O
 0x7100fe6dbc,220,fn_7100fe6dbc,unknown,unknown,O
 0x7100fe6e98,268,fn_7100fe6e98,unknown,unknown,O
@@ -5521,7 +5521,7 @@ address,size,name,name_source,subsystem,status
 0x7100fe7a7c,900,fn_7100fe7a7c,unknown,unknown,O
 0x7100fe7e00,388,fn_7100fe7e00,unknown,unknown,O
 0x7100fe7f84,220,fn_7100fe7f84,unknown,unknown,O
-0x7100fe8060,500,fn_7100fe8060,unknown,unknown,U
+0x7100fe8060,500,fn_7100fe8060,unknown,unknown,O
 0x7100fe8254,220,fn_7100fe8254,unknown,unknown,O
 0x7100fe8330,220,fn_7100fe8330,unknown,unknown,O
 0x7100fe840c,268,fn_7100fe840c,unknown,unknown,O
@@ -5536,7 +5536,7 @@ address,size,name,name_source,subsystem,status
 0x7100fe8ff0,900,fn_7100fe8ff0,unknown,unknown,O
 0x7100fe9374,388,fn_7100fe9374,unknown,unknown,O
 0x7100fe94f8,220,fn_7100fe94f8,unknown,unknown,O
-0x7100fe95d4,468,fn_7100fe95d4,unknown,unknown,U
+0x7100fe95d4,468,fn_7100fe95d4,unknown,unknown,O
 0x7100fe97a8,220,fn_7100fe97a8,unknown,unknown,O
 0x7100fe9884,220,fn_7100fe9884,unknown,unknown,O
 0x7100fe9960,1844,fn_7100fe9960,unknown,unknown,U
@@ -5553,7 +5553,7 @@ address,size,name,name_source,subsystem,status
 0x7100feae64,900,fn_7100feae64,unknown,unknown,O
 0x7100feb1e8,388,fn_7100feb1e8,unknown,unknown,O
 0x7100feb36c,220,fn_7100feb36c,unknown,unknown,O
-0x7100feb448,468,fn_7100feb448,unknown,unknown,U
+0x7100feb448,468,fn_7100feb448,unknown,unknown,O
 0x7100feb61c,220,fn_7100feb61c,unknown,unknown,O
 0x7100feb6f8,220,fn_7100feb6f8,unknown,unknown,O
 0x7100feb7d4,1844,fn_7100feb7d4,unknown,unknown,U
@@ -5570,7 +5570,7 @@ address,size,name,name_source,subsystem,status
 0x7100feccd8,900,fn_7100feccd8,unknown,unknown,O
 0x7100fed05c,388,fn_7100fed05c,unknown,unknown,O
 0x7100fed1e0,220,fn_7100fed1e0,unknown,unknown,O
-0x7100fed2bc,468,fn_7100fed2bc,unknown,unknown,U
+0x7100fed2bc,468,fn_7100fed2bc,unknown,unknown,O
 0x7100fed490,220,fn_7100fed490,unknown,unknown,O
 0x7100fed56c,220,fn_7100fed56c,unknown,unknown,O
 0x7100fed648,8,fn_7100fed648,unknown,unknown,O
