@@ -41,7 +41,7 @@ address,size,name,name_source,subsystem,status
 0x71012020ac,84,fn_71012020ac,unknown,unknown,O
 0x7101202100,92,fn_7101202100,unknown,unknown,O
 0x710120215c,8,fn_710120215c,unknown,unknown,O
-0x7101202164,44,fn_7101202164,unknown,unknown,U
+0x7101202164,44,fn_7101202164,unknown,unknown,O
 0x7101202190,32,fn_7101202190,unknown,unknown,O
 0x71012021b0,8,fn_71012021b0,unknown,unknown,O
 0x71012021b8,8,fn_71012021b8,unknown,unknown,O

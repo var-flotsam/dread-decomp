@@ -442,10 +442,13 @@ class Lifter:
     def finish(self) -> tuple[str, set[str]] | None:
         tails = any(k == "tail" for _, k, _ in self.rets)
         if self.sret:
-            if tails or self.returns != "value":
+            if self.returns != "value":
                 return None
-            for ln, _, _ in self.rets:
-                self.body[ln] = self.body[ln].replace("@RET@", "return ret;")
+            for ln, k, p in self.rets:
+                ind = self.body[ln][:len(self.body[ln]) - len(self.body[ln].lstrip())]
+                # A final call (e.g. an initialiser given &ret) stays a tail call: ret is
+                # built in place, so nothing is left to do after it.
+                self.body[ln] = ind + (f"{p};\n{ind}return ret;" if k == "tail" else "return ret;")
             return self.signature("UnkResult", ["    UnkResult ret;"] + self.body), self.decls
         if self.returns != "void":
             if any(k == "value" and p is None for _, k, p in self.rets):
