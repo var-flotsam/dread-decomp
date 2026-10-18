@@ -14,7 +14,7 @@ lifts each one into C++ over `char*` parameters and keeps only the byte-identica
      names never clash with the functions being defined; globals are `g_unk_<addr>` (reached
      through the GOT) or hidden `h::g_unk_<addr>` (addressed directly).
   3. The number of arguments a call passes and whether a value is returned are not visible
-     in the code. Each function is lifted in a few VARIANTS; every variant is compiled in one
+     in the code. Each function is lifted in several VARIANTS; every variant is compiled in one
      scratch translation unit, and the first byte-identical variant of each function is kept.
 
 Usage: python tools/gen_lift.py --version 2.1.0
@@ -50,8 +50,10 @@ CHUNK = 1000  # functions per generated file
 # section index (SHN_XINDEX), which the object reader doesn't follow.
 SCRATCH_CHUNK = 8000
 NAME_RE = re.compile(r"^[A-Za-z_][\w:<>,*& ]*\bfn_([0-9a-f]{10})\(")  # a declaration or definition
-# (extra call arguments beyond those written, return x0 if set): tried in this order.
-VARIANTS = [(0, True), (0, False), (1, True), (1, False), (2, True), (2, False)]
+# (minimum call arguments, return mode): tried in this order. Return modes: "value" returns x0
+# (or s0) as set, "void" returns nothing, "ref" returns a pointer as a reference (Clang 9 then
+# doesn't turn a final call into a tail call, as in the original's `bl; ret`).
+VARIANTS = [(n, mode) for n in range(3) for mode in ("value", "void", "ref")]
 
 CS = capstone.Cs(capstone.CS_ARCH_ARM64, capstone.CS_MODE_ARM)
 CS.detail = True
@@ -424,11 +426,15 @@ class Lifter:
 
     def finish(self) -> tuple[str, set[str]] | None:
         tails = any(k == "tail" for _, k, _ in self.rets)
-        if self.returns:
+        if self.returns != "void":
             if any(k == "value" and p is None for _, k, p in self.rets):
                 return None
             types = [p[1] for _, k, p in self.rets if k == "value"]
             rtype = "char*" if tails else types[0]
+            if self.returns == "ref":
+                if rtype != "char*" or tails:
+                    return None
+                rtype = "char&"
             if any((t[0] == "f") != (rtype[0] == "f") for t in types) or \
                     (rtype[0] == "f" and any(t != rtype for t in types)):
                 return None
@@ -437,9 +443,14 @@ class Lifter:
         for ln, k, p in self.rets:
             ind = self.body[ln][:len(self.body[ln]) - len(self.body[ln].lstrip())]
             if k == "tail":
-                s = f"return {p};" if rtype != "void" else f"{p};\n{ind}return;"
+                s = f"{p};\n{ind}return;" if rtype == "void" else \
+                    f"return {p};"
             elif rtype == "void":
                 s = "return;"
+            elif rtype == "char&":
+                if p[1] != "char*":
+                    return None
+                s = f"return *{p[0]};"
             elif p[1] == rtype:
                 s = f"return {p[0]};"
             else:
