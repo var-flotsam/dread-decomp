@@ -2082,3 +2082,819 @@ struct base::reflection::UnkReflCollectionTraits<UnkRefl_fn_7100f3eb14> {
     static constexpr UnkFn fn_0x168 = &fn_7100f78294;
 };
 template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100f3eb14*, void*);
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
+void fn_7100f5ced0();
+extern base::global::CStrId g_unk_7101d5a450;
+const base::reflection::UnkReflAttrKey& fn_710000bf80();
+extern base::reflection::CType g_unk_7101d679f0;
+const base::reflection::CClass* fn_7100f1ad94();
+void fn_7100f5cf20();
+extern base::global::CStrId g_unk_7101d5a458;
+void fn_7100f1bd20(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_key_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_key_GetterFunction", true);
+        fn->return_type = fn_7100005178();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f5ced0);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, g_unk_7101d5a450, fn_7100005178(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_element_GetterFunction", true);
+        fn->return_type = fn_7100f1ad94();
+        fn->field_0xb2 = 0x1;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f5cf20);
+    }
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7100f1ad94(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+}
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
+void fn_7100f5d138();
+extern base::global::CStrId g_unk_7101d5a450;
+const base::reflection::UnkReflAttrKey& fn_710000bf80();
+extern base::reflection::CType g_unk_7101d679f0;
+const base::reflection::CClass* fn_7100f1ad94();
+void fn_7100f5d188();
+extern base::global::CStrId g_unk_7101d5a458;
+void fn_7100f1c310(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_key_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_key_GetterFunction", true);
+        fn->return_type = fn_7100005178();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f5d138);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, g_unk_7101d5a450, fn_7100005178(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_element_GetterFunction", true);
+        fn->return_type = fn_7100f1ad94();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f5d188);
+    }
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7100f1ad94(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+}
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
+void fn_7100f5f20c();
+extern base::global::CStrId g_unk_7101d5a450;
+const base::reflection::UnkReflAttrKey& fn_710000bf80();
+extern base::reflection::CType g_unk_7101d679f0;
+const base::reflection::CClass* fn_7100f1d750();
+void fn_7100f5f25c();
+extern base::global::CStrId g_unk_7101d5a458;
+void fn_7100f1df74(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_key_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_key_GetterFunction", true);
+        fn->return_type = fn_7100005178();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f5f20c);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, g_unk_7101d5a450, fn_7100005178(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_element_GetterFunction", true);
+        fn->return_type = fn_7100f1d750();
+        fn->field_0xb2 = 0x1;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f5f25c);
+    }
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7100f1d750(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+}
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
+void fn_7100f5f474();
+extern base::global::CStrId g_unk_7101d5a450;
+const base::reflection::UnkReflAttrKey& fn_710000bf80();
+extern base::reflection::CType g_unk_7101d679f0;
+const base::reflection::CClass* fn_7100f1d750();
+void fn_7100f5f4c4();
+extern base::global::CStrId g_unk_7101d5a458;
+void fn_7100f1e564(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_key_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_key_GetterFunction", true);
+        fn->return_type = fn_7100005178();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f5f474);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, g_unk_7101d5a450, fn_7100005178(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_element_GetterFunction", true);
+        fn->return_type = fn_7100f1d750();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f5f4c4);
+    }
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7100f1d750(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+}
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
+void fn_7100f618e8();
+extern base::global::CStrId g_unk_7101d5a450;
+const base::reflection::UnkReflAttrKey& fn_710000bf80();
+extern base::reflection::CType g_unk_7101d679f0;
+const base::reflection::CClass* fn_7100f210a8();
+void fn_7100f61938();
+extern base::global::CStrId g_unk_7101d5a458;
+void fn_7100f218cc(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_key_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_key_GetterFunction", true);
+        fn->return_type = fn_7100005178();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f618e8);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, g_unk_7101d5a450, fn_7100005178(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_element_GetterFunction", true);
+        fn->return_type = fn_7100f210a8();
+        fn->field_0xb2 = 0x1;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f61938);
+    }
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7100f210a8(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+}
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
+void fn_7100f61b50();
+extern base::global::CStrId g_unk_7101d5a450;
+const base::reflection::UnkReflAttrKey& fn_710000bf80();
+extern base::reflection::CType g_unk_7101d679f0;
+const base::reflection::CClass* fn_7100f210a8();
+void fn_7100f61ba0();
+extern base::global::CStrId g_unk_7101d5a458;
+void fn_7100f21ebc(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_key_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_key_GetterFunction", true);
+        fn->return_type = fn_7100005178();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f61b50);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, g_unk_7101d5a450, fn_7100005178(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_element_GetterFunction", true);
+        fn->return_type = fn_7100f210a8();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f61ba0);
+    }
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7100f210a8(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+}
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
+void fn_7100f63d20();
+extern base::global::CStrId g_unk_7101d5a450;
+const base::reflection::UnkReflAttrKey& fn_710000bf80();
+extern base::reflection::CType g_unk_7101d679f0;
+const base::reflection::CClass* fn_7100f23a2c();
+void fn_7100f63d70();
+extern base::global::CStrId g_unk_7101d5a458;
+void fn_7100f245a0(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_key_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_key_GetterFunction", true);
+        fn->return_type = fn_7100005178();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f63d20);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, g_unk_7101d5a450, fn_7100005178(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_element_GetterFunction", true);
+        fn->return_type = fn_7100f23a2c();
+        fn->field_0xb2 = 0x1;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f63d70);
+    }
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7100f23a2c(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+}
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
+void fn_7100f63f88();
+extern base::global::CStrId g_unk_7101d5a450;
+const base::reflection::UnkReflAttrKey& fn_710000bf80();
+extern base::reflection::CType g_unk_7101d679f0;
+const base::reflection::CClass* fn_7100f23a2c();
+void fn_7100f63fd8();
+extern base::global::CStrId g_unk_7101d5a458;
+void fn_7100f24b90(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_key_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_key_GetterFunction", true);
+        fn->return_type = fn_7100005178();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f63f88);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, g_unk_7101d5a450, fn_7100005178(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_element_GetterFunction", true);
+        fn->return_type = fn_7100f23a2c();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f63fd8);
+    }
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7100f23a2c(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+}
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
+void fn_7100f6645c();
+extern base::global::CStrId g_unk_7101d5a450;
+const base::reflection::UnkReflAttrKey& fn_710000bf80();
+extern base::reflection::CType g_unk_7101d679f0;
+const base::reflection::CClass* fn_7100f26e08();
+void fn_7100f664ac();
+extern base::global::CStrId g_unk_7101d5a458;
+void fn_7100f2797c(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_key_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_key_GetterFunction", true);
+        fn->return_type = fn_7100005178();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f6645c);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, g_unk_7101d5a450, fn_7100005178(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_element_GetterFunction", true);
+        fn->return_type = fn_7100f26e08();
+        fn->field_0xb2 = 0x1;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f664ac);
+    }
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7100f26e08(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+}
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
+void fn_7100f666c4();
+extern base::global::CStrId g_unk_7101d5a450;
+const base::reflection::UnkReflAttrKey& fn_710000bf80();
+extern base::reflection::CType g_unk_7101d679f0;
+const base::reflection::CClass* fn_7100f26e08();
+void fn_7100f66714();
+extern base::global::CStrId g_unk_7101d5a458;
+void fn_7100f27f6c(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_key_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_key_GetterFunction", true);
+        fn->return_type = fn_7100005178();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f666c4);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, g_unk_7101d5a450, fn_7100005178(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_element_GetterFunction", true);
+        fn->return_type = fn_7100f26e08();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f66714);
+    }
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7100f26e08(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+}
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
+void fn_7100f688dc();
+extern base::global::CStrId g_unk_7101d5a450;
+const base::reflection::UnkReflAttrKey& fn_710000bf80();
+extern base::reflection::CType g_unk_7101d679f0;
+const base::reflection::CClass* fn_7100f29ae0();
+void fn_7100f6892c();
+extern base::global::CStrId g_unk_7101d5a458;
+void fn_7100f2a654(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_key_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_key_GetterFunction", true);
+        fn->return_type = fn_7100005178();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f688dc);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, g_unk_7101d5a450, fn_7100005178(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_element_GetterFunction", true);
+        fn->return_type = fn_7100f29ae0();
+        fn->field_0xb2 = 0x1;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f6892c);
+    }
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7100f29ae0(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+}
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
+void fn_7100f68b44();
+extern base::global::CStrId g_unk_7101d5a450;
+const base::reflection::UnkReflAttrKey& fn_710000bf80();
+extern base::reflection::CType g_unk_7101d679f0;
+const base::reflection::CClass* fn_7100f29ae0();
+void fn_7100f68b94();
+extern base::global::CStrId g_unk_7101d5a458;
+void fn_7100f2ac44(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_key_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_key_GetterFunction", true);
+        fn->return_type = fn_7100005178();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f68b44);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, g_unk_7101d5a450, fn_7100005178(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_element_GetterFunction", true);
+        fn->return_type = fn_7100f29ae0();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f68b94);
+    }
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7100f29ae0(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+}
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
+void fn_7100f6a9b0();
+extern base::global::CStrId g_unk_7101d5a450;
+const base::reflection::UnkReflAttrKey& fn_710000bf80();
+extern base::reflection::CType g_unk_7101d679f0;
+const base::reflection::CClass* fn_7100f2c09c();
+void fn_7100f6aa00();
+extern base::global::CStrId g_unk_7101d5a458;
+void fn_7100f2c8c0(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_key_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_key_GetterFunction", true);
+        fn->return_type = fn_7100005178();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f6a9b0);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, g_unk_7101d5a450, fn_7100005178(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_element_GetterFunction", true);
+        fn->return_type = fn_7100f2c09c();
+        fn->field_0xb2 = 0x1;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f6aa00);
+    }
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7100f2c09c(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+}
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
+void fn_7100f6ac18();
+extern base::global::CStrId g_unk_7101d5a450;
+const base::reflection::UnkReflAttrKey& fn_710000bf80();
+extern base::reflection::CType g_unk_7101d679f0;
+const base::reflection::CClass* fn_7100f2c09c();
+void fn_7100f6ac68();
+extern base::global::CStrId g_unk_7101d5a458;
+void fn_7100f2ceb0(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_key_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_key_GetterFunction", true);
+        fn->return_type = fn_7100005178();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f6ac18);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, g_unk_7101d5a450, fn_7100005178(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_element_GetterFunction", true);
+        fn->return_type = fn_7100f2c09c();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f6ac68);
+    }
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7100f2c09c(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+}
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
+void fn_7100f6dae0();
+extern base::global::CStrId g_unk_7101d5a450;
+const base::reflection::UnkReflAttrKey& fn_710000bf80();
+extern base::reflection::CType g_unk_7101d679f0;
+const base::reflection::CClass* fn_7100f30ec8();
+void fn_7100f6db30();
+extern base::global::CStrId g_unk_7101d5a458;
+void fn_7100f324f4(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_key_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_key_GetterFunction", true);
+        fn->return_type = fn_7100005178();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f6dae0);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, g_unk_7101d5a450, fn_7100005178(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_element_GetterFunction", true);
+        fn->return_type = fn_7100f30ec8();
+        fn->field_0xb2 = 0x1;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f6db30);
+    }
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7100f30ec8(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+}
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
+void fn_7100f6dd58();
+extern base::global::CStrId g_unk_7101d5a450;
+const base::reflection::UnkReflAttrKey& fn_710000bf80();
+extern base::reflection::CType g_unk_7101d679f0;
+const base::reflection::CClass* fn_7100f30ec8();
+void fn_7100f6dda8();
+extern base::global::CStrId g_unk_7101d5a458;
+void fn_7100f32ae4(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_key_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_key_GetterFunction", true);
+        fn->return_type = fn_7100005178();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f6dd58);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, g_unk_7101d5a450, fn_7100005178(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_element_GetterFunction", true);
+        fn->return_type = fn_7100f30ec8();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f6dda8);
+    }
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7100f30ec8(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+}
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
+void fn_7100f7029c();
+extern base::global::CStrId g_unk_7101d5a450;
+const base::reflection::UnkReflAttrKey& fn_710000bf80();
+extern base::reflection::CType g_unk_7101d679f0;
+const base::reflection::CClass* fn_7100f34384();
+void fn_7100f702ec();
+extern base::global::CStrId g_unk_7101d5a458;
+void fn_7100f34ba8(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_key_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_key_GetterFunction", true);
+        fn->return_type = fn_7100005178();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f7029c);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, g_unk_7101d5a450, fn_7100005178(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_element_GetterFunction", true);
+        fn->return_type = fn_7100f34384();
+        fn->field_0xb2 = 0x1;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f702ec);
+    }
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7100f34384(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+}
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
+void fn_7100f70504();
+extern base::global::CStrId g_unk_7101d5a450;
+const base::reflection::UnkReflAttrKey& fn_710000bf80();
+extern base::reflection::CType g_unk_7101d679f0;
+const base::reflection::CClass* fn_7100f34384();
+void fn_7100f70554();
+extern base::global::CStrId g_unk_7101d5a458;
+void fn_7100f35198(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_key_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_key_GetterFunction", true);
+        fn->return_type = fn_7100005178();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f70504);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, g_unk_7101d5a450, fn_7100005178(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_element_GetterFunction", true);
+        fn->return_type = fn_7100f34384();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f70554);
+    }
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7100f34384(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+}
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
+void fn_7100f72408();
+extern base::global::CStrId g_unk_7101d5a450;
+const base::reflection::UnkReflAttrKey& fn_710000bf80();
+extern base::reflection::CType g_unk_7101d679f0;
+const base::reflection::CClass* fn_7100f37030();
+void fn_7100f72458();
+extern base::global::CStrId g_unk_7101d5a458;
+void fn_7100f37854(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_key_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_key_GetterFunction", true);
+        fn->return_type = fn_7100005178();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f72408);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, g_unk_7101d5a450, fn_7100005178(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_element_GetterFunction", true);
+        fn->return_type = fn_7100f37030();
+        fn->field_0xb2 = 0x1;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f72458);
+    }
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7100f37030(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+}
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
+void fn_7100f72670();
+extern base::global::CStrId g_unk_7101d5a450;
+const base::reflection::UnkReflAttrKey& fn_710000bf80();
+extern base::reflection::CType g_unk_7101d679f0;
+const base::reflection::CClass* fn_7100f37030();
+void fn_7100f726c0();
+extern base::global::CStrId g_unk_7101d5a458;
+void fn_7100f37e44(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_key_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_key_GetterFunction", true);
+        fn->return_type = fn_7100005178();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f72670);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, g_unk_7101d5a450, fn_7100005178(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_element_GetterFunction", true);
+        fn->return_type = fn_7100f37030();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f726c0);
+    }
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7100f37030(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+}
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
+void fn_7100f74bc8();
+extern base::global::CStrId g_unk_7101d5a450;
+const base::reflection::UnkReflAttrKey& fn_710000bf80();
+extern base::reflection::CType g_unk_7101d679f0;
+const base::reflection::CClass* fn_7100f3acfc();
+void fn_7100f74c18();
+extern base::global::CStrId g_unk_7101d5a458;
+void fn_7100f3b520(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_key_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_key_GetterFunction", true);
+        fn->return_type = fn_7100005178();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f74bc8);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, g_unk_7101d5a450, fn_7100005178(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_element_GetterFunction", true);
+        fn->return_type = fn_7100f3acfc();
+        fn->field_0xb2 = 0x1;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f74c18);
+    }
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7100f3acfc(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+}
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
+void fn_7100f74e30();
+extern base::global::CStrId g_unk_7101d5a450;
+const base::reflection::UnkReflAttrKey& fn_710000bf80();
+extern base::reflection::CType g_unk_7101d679f0;
+const base::reflection::CClass* fn_7100f3acfc();
+void fn_7100f74e80();
+extern base::global::CStrId g_unk_7101d5a458;
+void fn_7100f3bb10(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_key_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_key_GetterFunction", true);
+        fn->return_type = fn_7100005178();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f74e30);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, g_unk_7101d5a450, fn_7100005178(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_element_GetterFunction", true);
+        fn->return_type = fn_7100f3acfc();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f74e80);
+    }
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7100f3acfc(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+}
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
+void fn_7100f76de8();
+extern base::global::CStrId g_unk_7101d5a450;
+const base::reflection::UnkReflAttrKey& fn_710000bf80();
+extern base::reflection::CType g_unk_7101d679f0;
+const base::reflection::CClass* fn_7100f3d710();
+void fn_7100f76e38();
+extern base::global::CStrId g_unk_7101d5a458;
+void fn_7100f3df34(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_key_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_key_GetterFunction", true);
+        fn->return_type = fn_7100005178();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f76de8);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, g_unk_7101d5a450, fn_7100005178(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_element_GetterFunction", true);
+        fn->return_type = fn_7100f3d710();
+        fn->field_0xb2 = 0x1;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f76e38);
+    }
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7100f3d710(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+}
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
+void fn_7100f77050();
+extern base::global::CStrId g_unk_7101d5a450;
+const base::reflection::UnkReflAttrKey& fn_710000bf80();
+extern base::reflection::CType g_unk_7101d679f0;
+const base::reflection::CClass* fn_7100f3d710();
+void fn_7100f770a0();
+extern base::global::CStrId g_unk_7101d5a458;
+void fn_7100f3e524(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_key_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_key_GetterFunction", true);
+        fn->return_type = fn_7100005178();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f77050);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, g_unk_7101d5a450, fn_7100005178(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_element_GetterFunction", true);
+        fn->return_type = fn_7100f3d710();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f770a0);
+    }
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7100f3d710(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+}

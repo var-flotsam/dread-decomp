@@ -227,6 +227,35 @@ def getter_ok(g: Getter, block: list[Getter]) -> bool:
     return g.shape_ok and bool(g.parent)
 
 
+def layout_gap(block: list[Getter]) -> int | None:
+    """Bytes of other statics between the TU's getter guards and its descriptors, when the
+    descriptors are contiguous (None otherwise). LLVM's GlobalMerge packs a TU's internal
+    statics into one block sorted by size, so statics sized between a guard (8) and a
+    descriptor (0x138) land between them; the getters address descriptors from their guards."""
+    n = len(block)
+    gap = block[0].descriptor - (block[0].guard + 8 * n)
+    expected = [block[0].guard + 8 * n + gap + DESCRIPTOR_SIZE * i for i in range(n)]
+    return gap if gap >= 0 and gap % 8 == 0 and [g.descriptor for g in block] == expected else None
+
+
+def padding_lines(block: list[Getter], gap: int) -> list[str]:
+    """Internal statics standing in for the TU's unreconstructed ones: pieces of at most 0x130
+    bytes (so they sort before the descriptors) and a 1-byte anchor (sorts first), used
+    together so that GlobalMerge keeps them in the TU's block."""
+    k = -(-gap // 0x130)
+    units = [gap // 8 // k + (1 if i < gap // 8 % k else 0) for i in range(k)]
+    names = [f"unk_statics_{i}" for i in range(k)]
+    tag = f"{block[0].address:x}"
+    return (["// Statics of this TU that aren't reconstructed: padding that puts the descriptors at",
+             "// their original offsets in the TU's merged globals (see layout_gap in gen_reflection.py).",
+             "namespace {"]
+            + [f"alignas(8) char {nm}[{8 * u:#x}];" for nm, u in zip(names, units)]
+            + ["char unk_statics_anchor;", "}  // namespace",
+               f"void refl_UnkStaticsUse_{tag}(void** out) {{"]
+            + [f"    out[{i}] = {nm};" for i, nm in enumerate(names)]
+            + [f"    out[{k}] = &unk_statics_anchor;", "}", ""])
+
+
 def registration_functions(orig: asmdiff.Original) -> list[int]:
     """Functions that call AddField, AddFunction or the class-attribute getter (refl_attrs)."""
     targets = {refl_attrs.GET_ATTRS, refl_attrs.ADD_FIELD, refl_attrs.ADD_FUNCTION}
@@ -387,9 +416,10 @@ def main() -> int:
             inits[a] = parsed
     inits_ok = refl_attrs.verify(args.version, inits, ROOT / "build" / "reflection_inits") & set(inits)
     # Descriptor constructors outside generated getter TUs depend only on their traits.
+    # Padded TUs (layout_gap > 0) keep their constructors here too: their file falls back to the
+    # skipped-TU form when the padding doesn't reproduce the layout.
     def block_ok(block: list[Getter]) -> bool:
-        n = len(block)
-        return [g.descriptor for g in block] == [block[0].guard + 8 * n + DESCRIPTOR_SIZE * i for i in range(n)]             and all(getter_ok(g, block) and g.fn_0x70 and g.fn_0xe0 and g.init and g.traits
+        return layout_gap(block) == 0 and all(getter_ok(g, block) and g.fn_0x70 and g.fn_0xe0 and g.init and g.traits
                     and all(k in g.traits for k in (0x58, 0x60, 0x68)) and g.address in sizes for g in block)
     clean_inits = {g.init for b in blocks if block_ok(b) for g in b}
     ctors = {a: v for a, v in class_constructors(orig).items() if a not in clean_inits}
@@ -423,6 +453,29 @@ def main() -> int:
     for c in local_colls:
         items_by_getter.setdefault(c[2], []).append((gen_types.emit_collection(c[0], c[1]), (c[0],), c[2]))
 
+    # Registration functions that call a class getter of a generated TU and use its descriptor's
+    # address as a constant (Clang folds the call's result when the getter is in the same TU):
+    # generated in that TU's file, as items checked like the local pointer types.
+    descriptor_of = {g.address: g.descriptor for b in blocks for g in b}
+    local_others: dict[int, list] = {}
+    cs = capstone.Cs(capstone.CS_ARCH_ARM64, capstone.CS_MODE_ARM)
+    for a in sorted(set(others) - set(others_ok)):
+        page: dict[str, int] = {}
+        consts, calls = set(), []
+        for _, _, m, o in cs.disasm_lite(orig.function(a), a):
+            ops = [x.strip() for x in o.split(",")]
+            if m == "adrp":
+                page[ops[0]] = int(ops[1][1:], 16)
+            elif m == "add" and len(ops) == 3 and ops[1] in page and ops[2].startswith("#"):
+                consts.add(page[ops[1]] + int(ops[2][1:], 16))
+            elif m == "bl":
+                calls.append(int(ops[0][1:], 16))
+        for t in calls:
+            if t in descriptor_of and descriptor_of[t] in consts:
+                extra, src = others[a]
+                local_others.setdefault(t, []).append((refl_attrs.PRELUDE + extra + [src], (a,), t, "other"))
+                break
+
     if OUT.exists():
         shutil.rmtree(OUT)
     OUT.mkdir(parents=True)
@@ -430,68 +483,76 @@ def main() -> int:
     taken: set[str] = set()
     generated = skipped_shape = skipped_layout = helpers_defined = attrs_defined = ctors_generated = 0
     report = []
+    padded: dict[str, tuple[list[Getter], list[str] | None]] = {}  # name -> (block, fallback lines)
+
+    def partial(block: list[Getter]) -> list[str] | None:
+        """A skipped TU's file: the getters wait, but the TU's helpers and attribute/field
+        functions don't depend on its statics, so those known to match are generated."""
+        nonlocal helpers_defined, attrs_defined, ctors_generated
+        n = len(block)
+        lines = [
+            "// Generated by tools/gen_reflection.py from main; regenerate rather than edit.",
+            f"// Part of one original translation unit ({n} type{'s' if n > 1 else ''}) whose getters aren't",
+            "// generated yet (see build/reflection_tus.json): the per-type helpers with a known uniform",
+            "// shape, the attribute/member-field functions that tools/refl_attrs.py reconstructs",
+            "// byte-identically and the descriptor constructors (T::refl_InitClass) that match.",
+            '#include "base/reflection/CClass.h"',
+        ]
+        if any(a in attr_ok for g in block for a in (g.fn_0x70, g.fn_0xe0)):
+            lines += refl_attrs.PRELUDE
+        lines.append("")
+        declared = set()
+        decl_lines = set()
+        body = 0
+        for g in block:
+            helpers = sorted([(a, slot) for slot, a in (g.traits or {}).items()]
+                             + [(a, slot) for a, slot in ((g.fn_0x70, 0x70), (g.fn_0xe0, 0xe0)) if a],
+                             key=lambda h: h[0])
+            defs = []
+            for a, slot in helpers:
+                if a in declared:
+                    continue
+                declared.add(a)
+                src = helper_definition(orig, slot, a)
+                if a in attr_ok:
+                    extra, src = candidates[a]
+                    defs += [d for d in extra if d not in decl_lines]
+                    decl_lines |= set(extra)
+                    attrs_defined += 1
+                elif src:
+                    helpers_defined += 1
+                if src:
+                    defs.append(src)
+                elif slot in SLOT_TYPES and g.init in ctor_ok:
+                    defs.append(SLOT_TYPES[slot][1].format(name=f"fn_{a:x}"))
+            if g.init in ctor_ok:
+                defs += [f"DREAD_REFL_TAG({g.init:x});", *constructor_lines(g.init, *ctors[g.init])]
+                ctors_generated += 1
+            if defs:
+                lines += [f"// {g.type}"] + defs + [""]
+                body += 1
+        return lines if body else None
+
     for block in blocks:
         n = len(block)
-        expected = [block[0].guard + 8 * n + DESCRIPTOR_SIZE * i for i in range(n)]
-        layout_ok = [g.descriptor for g in block] == expected
+        gap = layout_gap(block)
         shape_ok = all(getter_ok(g, block) and g.fn_0x70 and g.fn_0xe0 and g.init and g.traits
                        and all(k in g.traits for k in (0x58, 0x60, 0x68)) and g.address in sizes
                        for g in block)
-        if not layout_ok or not shape_ok:
-            if not layout_ok:
+        if gap is None or not shape_ok:
+            if gap is None:
                 skipped_layout += n
                 report.append({"tu": [g.type for g in block], "reason": "other statics in the TU"})
             else:
                 skipped_shape += n
                 report.append({"tu": [g.type for g in block], "reason": "getter code differs from the common shape"})
-            # The getters wait, but the TU's helpers and attribute/field functions don't depend on
-            # its statics: generate those that are known to match.
-            lines = [
-                "// Generated by tools/gen_reflection.py from main; regenerate rather than edit.",
-                f"// Part of one original translation unit ({n} type{'s' if n > 1 else ''}) whose getters aren't",
-                "// generated yet (see build/reflection_tus.json): the per-type helpers with a known uniform",
-                "// shape, the attribute/member-field functions that tools/refl_attrs.py reconstructs",
-                "// byte-identically and the descriptor constructors (T::refl_InitClass) that match.",
-                '#include "base/reflection/CClass.h"',
-            ]
-            if any(a in attr_ok for g in block for a in (g.fn_0x70, g.fn_0xe0)):
-                lines += refl_attrs.PRELUDE
-            lines.append("")
-            declared = set()
-            decl_lines = set()
-            body = 0
-            for g in block:
-                helpers = sorted([(a, slot) for slot, a in (g.traits or {}).items()]
-                                 + [(a, slot) for a, slot in ((g.fn_0x70, 0x70), (g.fn_0xe0, 0xe0)) if a],
-                                 key=lambda h: h[0])
-                defs = []
-                for a, slot in helpers:
-                    if a in declared:
-                        continue
-                    declared.add(a)
-                    src = helper_definition(orig, slot, a)
-                    if a in attr_ok:
-                        extra, src = candidates[a]
-                        defs += [d for d in extra if d not in decl_lines]
-                        decl_lines |= set(extra)
-                        attrs_defined += 1
-                    elif src:
-                        helpers_defined += 1
-                    if src:
-                        defs.append(src)
-                    elif slot in SLOT_TYPES and g.init in ctor_ok:
-                        defs.append(SLOT_TYPES[slot][1].format(name=f"fn_{a:x}"))
-                if g.init in ctor_ok:
-                    defs += [f"DREAD_REFL_TAG({g.init:x});", *constructor_lines(g.init, *ctors[g.init])]
-                    ctors_generated += 1
-                if defs:
-                    lines += [f"// {g.type}"] + defs + [""]
-                    body += 1
-            if body:
-                name = file_name(block[0].type, taken)
-                files[name] = (lines, [])
+            lines = partial(block)
+            if lines:
+                files[file_name(block[0].type, taken)] = (lines, [])
             continue
         name = file_name(block[0].type, taken)
+        if gap:
+            padded[name] = (block, None)
         lines = [
             "// Generated by tools/gen_reflection.py from main; regenerate rather than edit.",
             f"// Reflection descriptors for one original translation unit ({n} type{'s' if n > 1 else ''}):",
@@ -541,26 +602,29 @@ def main() -> int:
                 lines.append(f'DREAD_REFL_ROOT_CLASS_GETTER({g.address:x}, {g.init:x}, "{g.type}", '
                              f'{g.fn_0x70:x}, {g.fn_0xe0:x});')
             lines.append("")
-        ptrs = [p for g in block for p in items_by_getter.get(g.address, [])]
+        if gap:
+            lines += padding_lines(block, gap)
+        ptrs = [p for g in block for p in items_by_getter.get(g.address, []) + local_others.get(g.address, [])]
         files[name] = (lines, ptrs)
         generated += n
 
     def text(lines: list[str], ptrs: list) -> str:
         if not ptrs:
             return chr(10).join(lines)
-        body = [line for p in ptrs for line in p[0]]
-        pointees = {f"fn_{p[2]:x}" for p in ptrs}
+        types = [p for p in ptrs if len(p) == 3]
+        body = [line for p in types for line in p[0]]
+        pointees = {f"fn_{p[2]:x}" for p in types}
         decls = [d for d in gen_types.used_decls(body, ptr_decls)
                  if gen_types.NAME_RE.search(d.split("(")[0]).group(0) not in pointees]
         return chr(10).join(lines[:1] + ['#include "base/reflection/CCollectionType.h"',
                                          '#include "base/reflection/CPointerType.h"'] + lines[1:]
-                            + decls + body) + chr(10)
+                            + decls + body + [line for p in ptrs if len(p) > 3 for line in p[0]]) + chr(10)
 
     # Pointer types: drop those that would redeclare a name the file already uses, then keep
     # only the byte-identical ones.
     for name, (lines, ptrs) in files.items():
         names = set(gen_types.NAME_RE.findall(chr(10).join(lines)))
-        files[name] = (lines, [p for p in ptrs if not any(
+        files[name] = (lines, [p for p in ptrs if len(p) > 3 or not any(
             gen_types.NAME_RE.search(d.split("(")[0]).group(0) in names - {f"fn_{p[2]:x}"}
             for d in gen_types.used_decls(p[0], ptr_decls))])
     work = ROOT / "build" / "reflection_ptrs"
@@ -570,18 +634,39 @@ def main() -> int:
         src, obj = work / f"{name}.cpp", work / f"{name}.o"
         src.write_text(text(*files[name]), encoding="utf-8")
         r = subprocess.run(buildcfg.cxx_command(src, obj), capture_output=True, text=True)
+        if r.returncode != 0 and any(len(p) > 3 for p in files[name][1]):
+            # Retry without the registration functions (their declarations may clash).
+            files[name] = (files[name][0], [p for p in files[name][1] if len(p) == 3])
+            src.write_text(text(*files[name]), encoding="utf-8")
+            r = subprocess.run(buildcfg.cxx_command(src, obj), capture_output=True, text=True)
         if r.returncode != 0:
             return set()
         return {res.address for res in asmdiff.diff_object(obj, orig) if res.matching}
 
-    with_ptrs = [n for n, (_, ptrs) in files.items() if ptrs]
+    with_ptrs = [n for n, (_, ptrs) in files.items() if ptrs or n in padded]
     with ThreadPoolExecutor() as pool:
         matched = dict(zip(with_ptrs, pool.map(check_file, with_ptrs)))
-    ptrs_generated = 0
+    # Padded TUs whose getters or constructors don't all match fall back to the skipped-TU form.
+    padded_ok = 0
+    for name, (block, _) in padded.items():
+        if all(g.address in matched[name] and g.init in matched[name] for g in block):
+            padded_ok += len(block)
+            continue
+        generated -= len(block)
+        skipped_layout += len(block)
+        report.append({"tu": [g.type for g in block], "reason": "other statics in the TU (padding didn't match)"})
+        lines = partial(block)
+        if lines:
+            files[name] = (lines, [])
+            matched[name] = set()
+        else:
+            del files[name]
+    ptrs_generated = others_local = 0
     for name, (lines, ptrs) in files.items():
         ok = matched.get(name, set())
         ptrs = [p for p in ptrs if all(a in ok for a in p[1])]
-        ptrs_generated += len(ptrs)
+        ptrs_generated += sum(1 for p in ptrs if len(p) == 3)
+        others_local += sum(1 for p in ptrs if len(p) > 3)
         (OUT / f"{name}.cpp").write_text(text(lines, ptrs), encoding="utf-8", newline=chr(10))
 
     loose = sorted(a for a in ctor_ok if a not in attached_inits)
@@ -612,9 +697,9 @@ def main() -> int:
 
     (ROOT / "build" / "reflection_tus.json").write_text(json.dumps(report, indent=1), encoding="utf-8")
     print(f"{len(rows)} class getters; {len(located)} located; {len(blocks)} TUs. Generated {generated} getters "
-          f"and {helpers_defined} helpers ({attrs_defined} of {attr_total} non-empty attribute/field functions) in {len(list(OUT.glob('*.cpp')))} files; skipped {skipped_layout} (other statics) and "
+          f"and {helpers_defined} helpers ({attrs_defined} of {attr_total} non-empty attribute/field functions) in {len(list(OUT.glob('*.cpp')))} files; {padded_ok} of the getters in padded TUs; skipped {skipped_layout} (other statics) and "
           f"{skipped_shape} (different code shape); {ptrs_generated} of {len(local_ptrs) + len(local_colls)} pointer/collection "
-          f"types of a local class; {len(others_ok)} of {len(others)} other registration functions; "
+          f"types of a local class; {len(others_ok)} of {len(others)} other registration functions (and {others_local} in their getter's TU); "
           f"{len(inits_ok)} of {len(inits)} function initialisers; "
           f"{ctors_generated} of {len(ctors)} descriptor constructors outside generated getter TUs. Skipped TUs: build/reflection_tus.json")
     return 0
