@@ -73,6 +73,23 @@ public:
         MoveFrom(other);
         return *this;
     }
+    // Matched in refl_RegisterNamed (fn_7100072940): `data` is read before `other.data`, and the
+    // released id is reloaded for the release call (ref_count is a union member).
+    CStrId& operator=(const CStrId& other) {
+        if (data != other.data) {
+            UnkStringData* d = other.data;
+            UnkStringPool* pool = g_unk_7101d47108;
+            if (d != &pool->empty)
+                ++d->ref_count;
+            if (data != &pool->empty) {
+                --data->ref_count;
+                if (data->ref_count == 0)
+                    fn_71000803a4(pool, data);
+            }
+            data = d;
+        }
+        return *this;
+    }
     ~CStrId() {
         if (UnkStringPool* pool = g_unk_7101d47108) {
             if (data && data != &pool->empty) {
