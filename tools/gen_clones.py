@@ -177,8 +177,34 @@ def destructor(orig: asmdiff.Original, addr: int, tag: str, insns: Insns) -> str
     return "\n".join(lines)
 
 
+MAKE_VALUE = 0x71000A18D4  # builds a reflected value from a type and a pointer
+LOAD_TYPES = {("ldr", "w"): "u32", ("ldr", "x"): "u64", ("ldrb", "w"): "u8", ("ldrh", "w"): "u16",
+              ("ldr", "s"): "f32", ("ldr", "d"): "f64"}
+
+
+def field_value(orig: asmdiff.Original, addr: int, tag: str, insns: Insns) -> str | None:
+    """A property read (UnkReflValue.h): the loaded type and offset and the type getter."""
+    if len(insns) > 24 or ("mov", "x19, x8") not in insns[:6] or ("ldr", "x8, [x1, #8]") not in insns[:8]:
+        return None
+    calls = [int(o[1:], 16) for m, o in insns if m == "bl"]
+    if len(calls) != 2 or calls[1] != MAKE_VALUE:
+        return None
+    for m, o in insns:
+        if (hit := re.fullmatch(r"([wxsd])\d+, \[x8(?:, #(0x[0-9a-f]+|\d+))?\]", o)) and (m, hit.group(1)) in LOAD_TYPES:
+            t, off = LOAD_TYPES[(m, hit.group(1))], int(hit.group(2) or "0", 0)
+            break
+    else:
+        return None
+    return "\n".join([f"const base::reflection::CType* fn_{calls[0]:x}();",
+                      f"template <> struct base::reflection::UnkFieldTraits<{tag}> {{",
+                      f"    static const CType* type() {{ return fn_{calls[0]:x}(); }}", "};",
+                      f"template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<{tag}, {t}, "
+                      f"{off:#x}>(void*, char*);"])
+
+
 KINDS = {
     "dtor": Kind(None, "base/UnkDestructors.h", lambda tag, _: None, scan=destructor),
+    "field_value": Kind(None, "base/reflection/UnkReflValue.h", lambda tag, _: None, scan=field_value),
     "register_named": Kind(0x7100072940, "base/UnkNamedRegistry.h", lambda tag, _: (
         f"template base::UnkNamedObject* base::refl_RegisterNamed<{tag}>("
         "base::UnkNamedRegistry*, base::UnkNamedObject*, const char*);")),

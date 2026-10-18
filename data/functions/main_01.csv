@@ -728,7 +728,7 @@ address,size,name,name_source,subsystem,status
 0x710011d848,108,fn_710011d848,unknown,unknown,O
 0x710011d8b4,524,fn_710011d8b4,unknown,unknown,U
 0x710011dac0,516,fn_710011dac0,unknown,unknown,U
-0x710011dcc4,76,fn_710011dcc4,unknown,unknown,U
+0x710011dcc4,76,fn_710011dcc4,unknown,unknown,O
 0x710011dd10,136,fn_710011dd10,unknown,unknown,U
 0x710011dd98,20,fn_710011dd98,unknown,unknown,U
 0x710011ddac,20,fn_710011ddac,unknown,unknown,U

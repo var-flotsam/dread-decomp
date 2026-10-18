@@ -2741,9 +2741,9 @@ address,size,name,name_source,subsystem,status
 0x7100c43188,52,fn_7100c43188,unknown,game/characters?,O
 0x7100c431bc,52,fn_7100c431bc,unknown,game/characters?,O
 0x7100c431f0,12,fn_7100c431f0,unknown,game/characters?,O
-0x7100c431fc,76,fn_7100c431fc,unknown,game/characters?,U
+0x7100c431fc,76,fn_7100c431fc,unknown,game/characters?,O
 0x7100c43248,116,fn_7100c43248,unknown,game/characters?,U
-0x7100c432bc,76,fn_7100c432bc,unknown,game/characters?,U
+0x7100c432bc,76,fn_7100c432bc,unknown,game/characters?,O
 0x7100c43308,116,fn_7100c43308,unknown,game/characters?,U
 0x7100c43380,160,fn_7100c43380,unknown,game/characters?,O
 0x7100c43420,232,fn_7100c43420,unknown,game/characters?,O

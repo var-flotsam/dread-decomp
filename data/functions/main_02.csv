@@ -1873,7 +1873,7 @@ address,size,name,name_source,subsystem,status
 0x710023e7cc,232,fn_710023e7cc,unknown,unknown,U
 0x710023e8b4,60,fn_710023e8b4,unknown,unknown,O
 0x710023e8f0,168,fn_710023e8f0,unknown,unknown,U
-0x710023e998,76,fn_710023e998,unknown,unknown,U
+0x710023e998,76,fn_710023e998,unknown,unknown,O
 0x710023e9e4,196,fn_710023e9e4,unknown,unknown,U
 0x710023eaa8,176,fn_710023eaa8,unknown,unknown,U
 0x710023eb58,8,fn_710023eb58,unknown,unknown,O
@@ -2483,7 +2483,7 @@ address,size,name,name_source,subsystem,status
 0x7100254624,12,fn_7100254624,unknown,game?,O
 0x7100254630,8,fn_7100254630,unknown,game?,O
 0x7100254638,8,fn_7100254638,unknown,game?,O
-0x7100254640,76,fn_7100254640,unknown,game?,U
+0x7100254640,76,fn_7100254640,unknown,game?,O
 0x710025468c,68,fn_710025468c,unknown,game?,U
 0x71002546d0,68,fn_71002546d0,unknown,game?,U
 0x7100254714,20,fn_7100254714,unknown,game?,U
@@ -4086,9 +4086,9 @@ address,size,name,name_source,subsystem,status
 0x71002bbce4,12,fn_71002bbce4,unknown,ai/querysystem?,O
 0x71002bbcf0,252,fn_71002bbcf0,unknown,ai/querysystem?,U
 0x71002bbdec,252,fn_71002bbdec,unknown,ai/querysystem?,U
-0x71002bbee8,76,fn_71002bbee8,unknown,ai/querysystem?,U
+0x71002bbee8,76,fn_71002bbee8,unknown,ai/querysystem?,O
 0x71002bbf34,68,fn_71002bbf34,unknown,ai/querysystem?,U
-0x71002bbf78,76,fn_71002bbf78,unknown,ai/querysystem?,U
+0x71002bbf78,76,fn_71002bbf78,unknown,ai/querysystem?,O
 0x71002bbfc4,68,fn_71002bbfc4,unknown,ai/querysystem?,U
 0x71002bc010,160,fn_71002bc010,unknown,ai/querysystem?,O
 0x71002bc0b0,4,fn_71002bc0b0,unknown,ai/querysystem?,O
@@ -4110,9 +4110,9 @@ address,size,name,name_source,subsystem,status
 0x71002bcd70,12,fn_71002bcd70,unknown,ai/querysystem?,O
 0x71002bcd7c,252,fn_71002bcd7c,unknown,ai/querysystem?,U
 0x71002bce78,252,fn_71002bce78,unknown,ai/querysystem?,U
-0x71002bcf74,76,fn_71002bcf74,unknown,ai/querysystem?,U
+0x71002bcf74,76,fn_71002bcf74,unknown,ai/querysystem?,O
 0x71002bcfc0,68,fn_71002bcfc0,unknown,ai/querysystem?,U
-0x71002bd004,76,fn_71002bd004,unknown,ai/querysystem?,U
+0x71002bd004,76,fn_71002bd004,unknown,ai/querysystem?,O
 0x71002bd050,68,fn_71002bd050,unknown,ai/querysystem?,U
 0x71002bd0a0,160,fn_71002bd0a0,unknown,ai/querysystem?,O
 0x71002bd140,4,fn_71002bd140,unknown,ai/querysystem?,O
