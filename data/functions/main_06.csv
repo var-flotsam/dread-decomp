@@ -410,10 +410,10 @@ address,size,name,name_source,subsystem,status
 0x71006118a8,480,fn_71006118a8,unknown,game?,O
 0x7100611a88,220,fn_7100611a88,unknown,game?,O
 0x7100611b64,220,fn_7100611b64,unknown,game?,O
-0x7100611c40,912,fn_7100611c40,unknown,game?,U
+0x7100611c40,912,fn_7100611c40,unknown,game?,O
 0x7100611fd0,388,fn_7100611fd0,unknown,game?,O
 0x7100612154,220,fn_7100612154,unknown,game?,O
-0x7100612230,912,fn_7100612230,unknown,game?,U
+0x7100612230,912,fn_7100612230,unknown,game?,O
 0x71006125c0,388,fn_71006125c0,unknown,game?,O
 0x7100612744,220,fn_7100612744,unknown,game?,O
 0x7100612820,504,fn_7100612820,unknown,game?,O

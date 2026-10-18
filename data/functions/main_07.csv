@@ -3171,10 +3171,10 @@ address,size,name,name_source,subsystem,status
 0x71007a10c0,300,fn_71007a10c0,unknown,unknown,U
 0x71007a11ec,220,fn_71007a11ec,unknown,unknown,O
 0x71007a12c8,220,fn_71007a12c8,unknown,unknown,O
-0x71007a13a4,912,fn_71007a13a4,unknown,unknown,U
+0x71007a13a4,912,fn_71007a13a4,unknown,unknown,O
 0x71007a1734,388,fn_71007a1734,unknown,unknown,O
 0x71007a18b8,220,fn_71007a18b8,unknown,unknown,O
-0x71007a1994,912,fn_71007a1994,unknown,unknown,U
+0x71007a1994,912,fn_71007a1994,unknown,unknown,O
 0x71007a1d24,388,fn_71007a1d24,unknown,unknown,O
 0x71007a1ea8,220,fn_71007a1ea8,unknown,unknown,O
 0x71007a1f84,504,fn_71007a1f84,unknown,unknown,O

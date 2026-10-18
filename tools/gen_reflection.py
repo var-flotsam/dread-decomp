@@ -453,6 +453,29 @@ def main() -> int:
     for c in local_colls:
         items_by_getter.setdefault(c[2], []).append((gen_types.emit_collection(c[0], c[1]), (c[0],), c[2]))
 
+    # Registration functions that call a class getter of a generated TU and use its descriptor's
+    # address as a constant (Clang folds the call's result when the getter is in the same TU):
+    # generated in that TU's file, as items checked like the local pointer types.
+    descriptor_of = {g.address: g.descriptor for b in blocks for g in b}
+    local_others: dict[int, list] = {}
+    cs = capstone.Cs(capstone.CS_ARCH_ARM64, capstone.CS_MODE_ARM)
+    for a in sorted(set(others) - set(others_ok)):
+        page: dict[str, int] = {}
+        consts, calls = set(), []
+        for _, _, m, o in cs.disasm_lite(orig.function(a), a):
+            ops = [x.strip() for x in o.split(",")]
+            if m == "adrp":
+                page[ops[0]] = int(ops[1][1:], 16)
+            elif m == "add" and len(ops) == 3 and ops[1] in page and ops[2].startswith("#"):
+                consts.add(page[ops[1]] + int(ops[2][1:], 16))
+            elif m == "bl":
+                calls.append(int(ops[0][1:], 16))
+        for t in calls:
+            if t in descriptor_of and descriptor_of[t] in consts:
+                extra, src = others[a]
+                local_others.setdefault(t, []).append((refl_attrs.PRELUDE + extra + [src], (a,), t, "other"))
+                break
+
     if OUT.exists():
         shutil.rmtree(OUT)
     OUT.mkdir(parents=True)
@@ -581,26 +604,27 @@ def main() -> int:
             lines.append("")
         if gap:
             lines += padding_lines(block, gap)
-        ptrs = [p for g in block for p in items_by_getter.get(g.address, [])]
+        ptrs = [p for g in block for p in items_by_getter.get(g.address, []) + local_others.get(g.address, [])]
         files[name] = (lines, ptrs)
         generated += n
 
     def text(lines: list[str], ptrs: list) -> str:
         if not ptrs:
             return chr(10).join(lines)
-        body = [line for p in ptrs for line in p[0]]
-        pointees = {f"fn_{p[2]:x}" for p in ptrs}
+        types = [p for p in ptrs if len(p) == 3]
+        body = [line for p in types for line in p[0]]
+        pointees = {f"fn_{p[2]:x}" for p in types}
         decls = [d for d in gen_types.used_decls(body, ptr_decls)
                  if gen_types.NAME_RE.search(d.split("(")[0]).group(0) not in pointees]
         return chr(10).join(lines[:1] + ['#include "base/reflection/CCollectionType.h"',
                                          '#include "base/reflection/CPointerType.h"'] + lines[1:]
-                            + decls + body) + chr(10)
+                            + decls + body + [line for p in ptrs if len(p) > 3 for line in p[0]]) + chr(10)
 
     # Pointer types: drop those that would redeclare a name the file already uses, then keep
     # only the byte-identical ones.
     for name, (lines, ptrs) in files.items():
         names = set(gen_types.NAME_RE.findall(chr(10).join(lines)))
-        files[name] = (lines, [p for p in ptrs if not any(
+        files[name] = (lines, [p for p in ptrs if len(p) > 3 or not any(
             gen_types.NAME_RE.search(d.split("(")[0]).group(0) in names - {f"fn_{p[2]:x}"}
             for d in gen_types.used_decls(p[0], ptr_decls))])
     work = ROOT / "build" / "reflection_ptrs"
@@ -610,6 +634,11 @@ def main() -> int:
         src, obj = work / f"{name}.cpp", work / f"{name}.o"
         src.write_text(text(*files[name]), encoding="utf-8")
         r = subprocess.run(buildcfg.cxx_command(src, obj), capture_output=True, text=True)
+        if r.returncode != 0 and any(len(p) > 3 for p in files[name][1]):
+            # Retry without the registration functions (their declarations may clash).
+            files[name] = (files[name][0], [p for p in files[name][1] if len(p) == 3])
+            src.write_text(text(*files[name]), encoding="utf-8")
+            r = subprocess.run(buildcfg.cxx_command(src, obj), capture_output=True, text=True)
         if r.returncode != 0:
             return set()
         return {res.address for res in asmdiff.diff_object(obj, orig) if res.matching}
@@ -632,11 +661,12 @@ def main() -> int:
             matched[name] = set()
         else:
             del files[name]
-    ptrs_generated = 0
+    ptrs_generated = others_local = 0
     for name, (lines, ptrs) in files.items():
         ok = matched.get(name, set())
         ptrs = [p for p in ptrs if all(a in ok for a in p[1])]
-        ptrs_generated += len(ptrs)
+        ptrs_generated += sum(1 for p in ptrs if len(p) == 3)
+        others_local += sum(1 for p in ptrs if len(p) > 3)
         (OUT / f"{name}.cpp").write_text(text(lines, ptrs), encoding="utf-8", newline=chr(10))
 
     loose = sorted(a for a in ctor_ok if a not in attached_inits)
@@ -669,7 +699,7 @@ def main() -> int:
     print(f"{len(rows)} class getters; {len(located)} located; {len(blocks)} TUs. Generated {generated} getters "
           f"and {helpers_defined} helpers ({attrs_defined} of {attr_total} non-empty attribute/field functions) in {len(list(OUT.glob('*.cpp')))} files; {padded_ok} of the getters in padded TUs; skipped {skipped_layout} (other statics) and "
           f"{skipped_shape} (different code shape); {ptrs_generated} of {len(local_ptrs) + len(local_colls)} pointer/collection "
-          f"types of a local class; {len(others_ok)} of {len(others)} other registration functions; "
+          f"types of a local class; {len(others_ok)} of {len(others)} other registration functions (and {others_local} in their getter's TU); "
           f"{len(inits_ok)} of {len(inits)} function initialisers; "
           f"{ctors_generated} of {len(ctors)} descriptor constructors outside generated getter TUs. Skipped TUs: build/reflection_tus.json")
     return 0

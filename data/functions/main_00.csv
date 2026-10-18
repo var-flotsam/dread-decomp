@@ -252,10 +252,10 @@ address,size,name,name_source,subsystem,status
 0x7100009658,480,base::reflection::refl_GetType<base::global::CStrId>,reflection,engine/reflection,U
 0x7100009838,220,fn_7100009838,unknown,unknown,O
 0x7100009914,220,fn_7100009914,unknown,unknown,O
-0x71000099f0,912,fn_71000099f0,unknown,unknown,U
+0x71000099f0,912,fn_71000099f0,unknown,unknown,O
 0x7100009d80,388,fn_7100009d80,unknown,unknown,O
 0x7100009f04,220,fn_7100009f04,unknown,unknown,O
-0x7100009fe0,912,fn_7100009fe0,unknown,unknown,U
+0x7100009fe0,912,fn_7100009fe0,unknown,unknown,O
 0x710000a370,388,fn_710000a370,unknown,unknown,O
 0x710000a4f4,220,fn_710000a4f4,unknown,unknown,O
 0x710000a5d0,504,fn_710000a5d0,unknown,unknown,O
