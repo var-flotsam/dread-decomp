@@ -325,7 +325,7 @@ address,size,name,name_source,subsystem,status
 0x7101017bd0,380,fn_7101017bd0,unknown,unknown,O
 0x7101017d4c,380,fn_7101017d4c,unknown,unknown,O
 0x7101017ec8,380,fn_7101017ec8,unknown,unknown,O
-0x7101018044,696,fn_7101018044,unknown,unknown,U
+0x7101018044,696,fn_7101018044,unknown,unknown,O
 0x71010182fc,3676,fn_71010182fc,unknown,unknown,U
 0x7101019158,4548,fn_7101019158,unknown,unknown,U
 0x710101a31c,28,fn_710101a31c,unknown,unknown,O
@@ -875,7 +875,7 @@ address,size,name,name_source,subsystem,status
 0x710102bb48,432,fn_710102bb48,unknown,unknown,U
 0x710102bcf8,268,fn_710102bcf8,unknown,unknown,U
 0x710102be04,264,fn_710102be04,unknown,unknown,U
-0x710102bf0c,476,fn_710102bf0c,unknown,unknown,U
+0x710102bf0c,476,fn_710102bf0c,unknown,unknown,O
 0x710102c0e8,432,fn_710102c0e8,unknown,unknown,U
 0x710102c298,248,fn_710102c298,unknown,unknown,U
 0x710102c390,384,fn_710102c390,unknown,unknown,U
@@ -2360,7 +2360,7 @@ address,size,name,name_source,subsystem,status
 0x71010645d8,244,CCutscene::CTunableCutscene::refl_GetClass,reflection,game/cutscene,U
 0x71010646cc,352,fn_71010646cc,unknown,game/cutscene?,O
 0x710106482c,388,CCutscene::CTunableCutscene::refl_InitClass,reflection,game/cutscene,O
-0x71010649b0,696,fn_71010649b0,unknown,unknown,U
+0x71010649b0,696,fn_71010649b0,unknown,unknown,O
 0x7101064c68,4,fn_7101064c68,unknown,unknown,O
 0x7101064c6c,388,fn_7101064c6c,unknown,unknown,O
 0x7101064df0,880,fn_7101064df0,unknown,unknown,O
@@ -2608,9 +2608,9 @@ address,size,name,name_source,subsystem,status
 0x71010708b0,60,fn_71010708b0,unknown,unknown,O
 0x71010708ec,192,fn_71010708ec,unknown,unknown,O
 0x71010709ac,76,fn_71010709ac,unknown,unknown,O
-0x71010709f8,432,fn_71010709f8,unknown,unknown,U
-0x7101070ba8,432,fn_7101070ba8,unknown,unknown,U
-0x7101070d58,336,fn_7101070d58,unknown,unknown,U
+0x71010709f8,432,fn_71010709f8,unknown,unknown,O
+0x7101070ba8,432,fn_7101070ba8,unknown,unknown,O
+0x7101070d58,336,fn_7101070d58,unknown,unknown,O
 0x7101070ea8,12,fn_7101070ea8,unknown,unknown,O
 0x7101070eb4,20,fn_7101070eb4,unknown,unknown,O
 0x7101070ec8,168,fn_7101070ec8,unknown,unknown,U
@@ -3423,7 +3423,7 @@ address,size,name,name_source,subsystem,status
 0x710109c388,56,fn_710109c388,unknown,unknown,U
 0x710109c3c0,100,fn_710109c3c0,unknown,unknown,U
 0x710109c424,32,fn_710109c424,unknown,unknown,O
-0x710109c444,336,fn_710109c444,unknown,unknown,U
+0x710109c444,336,fn_710109c444,unknown,unknown,O
 0x710109c594,40,fn_710109c594,unknown,unknown,O
 0x710109c5c0,140,fn_710109c5c0,unknown,unknown,O
 0x710109c64c,132,fn_710109c64c,unknown,unknown,U
@@ -4211,7 +4211,7 @@ address,size,name,name_source,subsystem,status
 0x71010ce780,24,fn_71010ce780,unknown,unknown,O
 0x71010ce798,404,fn_71010ce798,unknown,unknown,U
 0x71010ce92c,452,fn_71010ce92c,unknown,unknown,U
-0x71010ceaf0,336,fn_71010ceaf0,unknown,unknown,U
+0x71010ceaf0,336,fn_71010ceaf0,unknown,unknown,O
 0x71010cec40,608,fn_71010cec40,unknown,unknown,U
 0x71010ceea0,200,fn_71010ceea0,unknown,unknown,O
 0x71010cef68,4,fn_71010cef68,unknown,unknown,O
@@ -4321,7 +4321,7 @@ address,size,name,name_source,subsystem,status
 0x71010d4bb8,5864,fn_71010d4bb8,unknown,game/player?,O
 0x71010d62a0,388,CPlayerMovement::CTunablePlayerMovement::refl_InitClass,reflection,game/player,O
 0x71010d6424,380,fn_71010d6424,unknown,game/player?,O
-0x71010d65a0,696,fn_71010d65a0,unknown,game/player?,U
+0x71010d65a0,696,fn_71010d65a0,unknown,game/player?,O
 0x71010d6858,16,fn_71010d6858,unknown,game/player?,O
 0x71010d6868,16,fn_71010d6868,unknown,game/player?,O
 0x71010d6878,64,fn_71010d6878,unknown,game/player?,U
@@ -4663,7 +4663,7 @@ address,size,name,name_source,subsystem,status
 0x71010eea4c,44,fn_71010eea4c,unknown,game?,O
 0x71010eea78,12,fn_71010eea78,unknown,game?,O
 0x71010eea84,536,fn_71010eea84,unknown,game?,U
-0x71010eec9c,336,fn_71010eec9c,unknown,game?,U
+0x71010eec9c,336,fn_71010eec9c,unknown,game?,O
 0x71010eedf0,160,fn_71010eedf0,unknown,game?,O
 0x71010eee90,4,fn_71010eee90,unknown,game?,O
 0x71010eee94,244,CFreeCameraCtrl::refl_GetClass,reflection,game,O

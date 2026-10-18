@@ -1093,7 +1093,7 @@ address,size,name,name_source,subsystem,status
 0x7100923654,244,CCharClassMagnetSurfaceHuskComponent::CTunableCharClassMagnetSurfaceHuskComponent::refl_GetClass,reflection,game/characters,O
 0x7100923748,476,fn_7100923748,unknown,game/characters?,O
 0x7100923924,388,CCharClassMagnetSurfaceHuskComponent::CTunableCharClassMagnetSurfaceHuskComponent::refl_InitClass,reflection,game/characters,O
-0x7100923aa8,696,fn_7100923aa8,unknown,unknown,U
+0x7100923aa8,696,fn_7100923aa8,unknown,unknown,O
 0x7100923d60,348,fn_7100923d60,unknown,unknown,U
 0x7100923ebc,196,fn_7100923ebc,unknown,unknown,U
 0x7100923f80,36,fn_7100923f80,unknown,unknown,O
@@ -1374,7 +1374,7 @@ address,size,name,name_source,subsystem,status
 0x7100933200,244,CMetroidCameraCtrl::CTunableMetroidCameraCtrl::refl_GetClass,reflection,game,O
 0x71009332f4,4084,fn_71009332f4,unknown,game?,O
 0x71009342e8,388,CMetroidCameraCtrl::CTunableMetroidCameraCtrl::refl_InitClass,reflection,game,O
-0x710093446c,696,fn_710093446c,unknown,unknown,U
+0x710093446c,696,fn_710093446c,unknown,unknown,O
 0x7100934724,176,fn_7100934724,unknown,unknown,U
 0x71009347d4,56,fn_71009347d4,unknown,unknown,O
 0x710093480c,64,fn_710093480c,unknown,unknown,O
@@ -1529,7 +1529,7 @@ address,size,name,name_source,subsystem,status
 0x710093c928,3104,fn_710093c928,unknown,game?,O
 0x710093d548,388,CMorphBallMovement::CTunableMorphBallMovement::refl_InitClass,reflection,game,O
 0x710093d6cc,380,fn_710093d6cc,unknown,unknown,O
-0x710093d848,696,fn_710093d848,unknown,unknown,U
+0x710093d848,696,fn_710093d848,unknown,unknown,O
 0x710093db00,2684,fn_710093db00,unknown,unknown,U
 0x710093e57c,1256,fn_710093e57c,unknown,unknown,U
 0x710093ea64,36,fn_710093ea64,unknown,unknown,O
@@ -2202,7 +2202,7 @@ address,size,name,name_source,subsystem,status
 0x71009754a8,244,CCharacterMovement::CTunableCharacterMovement::refl_GetClass,reflection,game/characters,O
 0x710097559c,352,fn_710097559c,unknown,game/characters?,O
 0x71009756fc,388,CCharacterMovement::CTunableCharacterMovement::refl_InitClass,reflection,game/characters,O
-0x7100975880,696,fn_7100975880,unknown,game/characters?,U
+0x7100975880,696,fn_7100975880,unknown,game/characters?,O
 0x7100975b38,4,fn_7100975b38,unknown,game/characters?,O
 0x7100975b3c,244,CCharacterMovement::refl_GetClass,reflection,game/characters,O
 0x7100975c30,4,fn_7100975c30,unknown,game/characters?,O
@@ -2587,7 +2587,7 @@ address,size,name,name_source,subsystem,status
 0x71009885d0,244,CSamusAirMovementState::CTunableSamusAirMovementState::refl_GetClass,reflection,game/player,U
 0x71009886c4,632,fn_71009886c4,unknown,game/player?,O
 0x710098893c,388,CSamusAirMovementState::CTunableSamusAirMovementState::refl_InitClass,reflection,game/player,O
-0x7100988ac0,696,fn_7100988ac0,unknown,unknown,U
+0x7100988ac0,696,fn_7100988ac0,unknown,unknown,O
 0x7100988d78,132,fn_7100988d78,unknown,unknown,U
 0x7100988dfc,144,fn_7100988dfc,unknown,unknown,U
 0x7100988e8c,140,fn_7100988e8c,unknown,unknown,U
@@ -2811,7 +2811,7 @@ address,size,name,name_source,subsystem,status
 0x710099711c,4,operator.delete,symbol,game/player?,O
 0x7100997120,8,fn_7100997120,unknown,game/player?,O
 0x7100997128,536,fn_7100997128,unknown,game/player?,U
-0x7100997340,336,fn_7100997340,unknown,game/player?,U
+0x7100997340,336,fn_7100997340,unknown,game/player?,O
 0x7100997490,360,fn_7100997490,unknown,game/player?,O
 0x71009975f8,4,fn_71009975f8,unknown,game/player?,O
 0x71009975fc,244,CSamusGrabMovementState::CParams::refl_GetClass,reflection,game/player,O
@@ -2840,7 +2840,7 @@ address,size,name,name_source,subsystem,status
 0x7100997c84,244,CSamusGrappleMovementState::CTunableSamusGrappleMovementState::refl_GetClass,reflection,game/player,U
 0x7100997d78,6696,fn_7100997d78,unknown,game/player?,O
 0x71009997a0,388,CSamusGrappleMovementState::CTunableSamusGrappleMovementState::refl_InitClass,reflection,game/player,O
-0x7100999924,696,fn_7100999924,unknown,game/player?,U
+0x7100999924,696,fn_7100999924,unknown,game/player?,O
 0x7100999bdc,4,fn_7100999bdc,unknown,game/player?,O
 0x7100999be0,244,CSamusGrappleMovementState::CParams::refl_GetClass,reflection,game/player,U
 0x7100999cd4,4,fn_7100999cd4,unknown,game/player?,O
@@ -2952,7 +2952,7 @@ address,size,name,name_source,subsystem,status
 0x710099f814,244,CSamusHangMovementState::CTunableSamusHangMovementState::refl_GetClass,reflection,game/player,O
 0x710099f908,724,fn_710099f908,unknown,game/player?,O
 0x710099fbdc,388,CSamusHangMovementState::CTunableSamusHangMovementState::refl_InitClass,reflection,game/player,O
-0x710099fd60,696,fn_710099fd60,unknown,game/player?,U
+0x710099fd60,696,fn_710099fd60,unknown,game/player?,O
 0x71009a0018,108,fn_71009a0018,unknown,game/player?,U
 0x71009a0084,128,fn_71009a0084,unknown,game/player?,O
 0x71009a0104,496,fn_71009a0104,unknown,game/player?,U
@@ -3056,7 +3056,7 @@ address,size,name,name_source,subsystem,status
 0x71009a4d20,244,CSamusMagnetGloveMovementState::CTunableSamusMagnetGloveMovementState::refl_GetClass,reflection,game/player,U
 0x71009a4e14,3660,fn_71009a4e14,unknown,game/player?,O
 0x71009a5c60,388,CSamusMagnetGloveMovementState::CTunableSamusMagnetGloveMovementState::refl_InitClass,reflection,game/player,O
-0x71009a5de4,696,fn_71009a5de4,unknown,unknown,U
+0x71009a5de4,696,fn_71009a5de4,unknown,unknown,O
 0x71009a609c,96,fn_71009a609c,unknown,unknown,U
 0x71009a60fc,8,fn_71009a60fc,unknown,unknown,O
 0x71009a6104,8,fn_71009a6104,unknown,unknown,O
@@ -3586,7 +3586,7 @@ address,size,name,name_source,subsystem,status
 0x71009c0b8c,24,fn_71009c0b8c,unknown,unknown,O
 0x71009c0ba4,24,fn_71009c0ba4,unknown,unknown,O
 0x71009c0bbc,52,fn_71009c0bbc,unknown,unknown,O
-0x71009c0bf0,564,fn_71009c0bf0,unknown,unknown,U
+0x71009c0bf0,564,fn_71009c0bf0,unknown,unknown,O
 0x71009c0e24,140,fn_71009c0e24,unknown,unknown,O
 0x71009c0eb0,108,fn_71009c0eb0,unknown,unknown,O
 0x71009c0f1c,172,fn_71009c0f1c,unknown,unknown,O
@@ -3729,7 +3729,7 @@ address,size,name,name_source,subsystem,status
 0x71009c4920,184,fn_71009c4920,unknown,unknown,U
 0x71009c49d8,200,fn_71009c49d8,unknown,unknown,U
 0x71009c4aa0,536,fn_71009c4aa0,unknown,unknown,U
-0x71009c4cb8,336,fn_71009c4cb8,unknown,unknown,U
+0x71009c4cb8,336,fn_71009c4cb8,unknown,unknown,O
 0x71009c4e10,1500,fn_71009c4e10,unknown,unknown,U
 0x71009c53ec,4,fn_71009c53ec,unknown,unknown,O
 0x71009c53f0,240,CNavMeshItemStage::refl_GetClass,reflection,game,O
@@ -3896,7 +3896,7 @@ address,size,name,name_source,subsystem,status
 0x71009caffc,96,fn_71009caffc,unknown,unknown,O
 0x71009cb05c,516,fn_71009cb05c,unknown,unknown,U
 0x71009cb260,384,fn_71009cb260,unknown,unknown,U
-0x71009cb3e0,336,fn_71009cb3e0,unknown,unknown,U
+0x71009cb3e0,336,fn_71009cb3e0,unknown,unknown,O
 0x71009cb530,468,fn_71009cb530,unknown,unknown,U
 0x71009cb704,52,fn_71009cb704,unknown,unknown,O
 0x71009cb738,8,fn_71009cb738,unknown,unknown,O
@@ -4037,7 +4037,7 @@ address,size,name,name_source,subsystem,status
 0x71009d4418,436,fn_71009d4418,unknown,unknown,U
 0x71009d45cc,12,fn_71009d45cc,unknown,unknown,O
 0x71009d45d8,536,fn_71009d45d8,unknown,unknown,U
-0x71009d47f0,336,fn_71009d47f0,unknown,unknown,U
+0x71009d47f0,336,fn_71009d47f0,unknown,unknown,O
 0x71009d4940,208,fn_71009d4940,unknown,unknown,U
 0x71009d4a10,368,fn_71009d4a10,unknown,unknown,U
 0x71009d4b80,24,fn_71009d4b80,unknown,unknown,O
@@ -4222,7 +4222,7 @@ address,size,name,name_source,subsystem,status
 0x71009dc3c0,244,CSamusMovement::CTunableSamusMovement::refl_GetClass,reflection,game/player,U
 0x71009dc4b4,4392,fn_71009dc4b4,unknown,game/player?,O
 0x71009dd5dc,388,CSamusMovement::CTunableSamusMovement::refl_InitClass,reflection,game/player,O
-0x71009dd760,696,fn_71009dd760,unknown,game/player?,U
+0x71009dd760,696,fn_71009dd760,unknown,game/player?,O
 0x71009dda18,4,fn_71009dda18,unknown,game/player?,O
 0x71009dda1c,244,CSamusMovement::refl_GetClass,reflection,game/player,U
 0x71009ddb10,5308,fn_71009ddb10,unknown,game/player?,U
@@ -4769,8 +4769,8 @@ address,size,name,name_source,subsystem,status
 0x71009fd7d4,64,fn_71009fd7d4,unknown,unknown,O
 0x71009fd814,144,fn_71009fd814,unknown,unknown,U
 0x71009fd8a4,184,fn_71009fd8a4,unknown,unknown,U
-0x71009fd95c,612,fn_71009fd95c,unknown,unknown,U
-0x71009fdbc0,564,fn_71009fdbc0,unknown,unknown,U
+0x71009fd95c,612,fn_71009fd95c,unknown,unknown,O
+0x71009fdbc0,564,fn_71009fdbc0,unknown,unknown,O
 0x71009fddf4,12,fn_71009fddf4,unknown,unknown,O
 0x71009fde00,20,fn_71009fde00,unknown,unknown,O
 0x71009fde14,260,fn_71009fde14,unknown,unknown,U

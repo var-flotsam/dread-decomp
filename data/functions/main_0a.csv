@@ -128,7 +128,7 @@ address,size,name,name_source,subsystem,status
 0x7100a06c28,572,fn_7100a06c28,unknown,game/components?,O
 0x7100a06e64,388,CUnlockAreaSmartObjectComponent::CTunableUnlockAreaSmartObjectComponent::refl_InitClass,reflection,game/components,O
 0x7100a06fe8,52,fn_7100a06fe8,unknown,unknown,O
-0x7100a0701c,696,fn_7100a0701c,unknown,unknown,U
+0x7100a0701c,696,fn_7100a0701c,unknown,unknown,O
 0x7100a072d4,124,fn_7100a072d4,unknown,unknown,U
 0x7100a07350,132,fn_7100a07350,unknown,unknown,U
 0x7100a073d4,4,fn_7100a073d4,unknown,unknown,O
@@ -311,7 +311,7 @@ address,size,name,name_source,subsystem,status
 0x7100a0e694,8,fn_7100a0e694,unknown,game/components?,O
 0x7100a0e69c,128,fn_7100a0e69c,unknown,game/components?,O
 0x7100a0e71c,128,fn_7100a0e71c,unknown,game/components?,O
-0x7100a0e79c,336,fn_7100a0e79c,unknown,game/components?,U
+0x7100a0e79c,336,fn_7100a0e79c,unknown,game/components?,O
 0x7100a0e8f0,288,fn_7100a0e8f0,unknown,game/components?,O
 0x7100a0ea10,60,fn_7100a0ea10,unknown,game/components?,O
 0x7100a0ea4c,4,fn_7100a0ea4c,unknown,game/components?,O
@@ -751,7 +751,7 @@ address,size,name,name_source,subsystem,status
 0x7100a1db44,244,CSpecialEnergyComponent::CTunableSpecialEnergyComponent::refl_GetClass,reflection,game/components,U
 0x7100a1dc38,1120,fn_7100a1dc38,unknown,game/components?,O
 0x7100a1e098,388,CSpecialEnergyComponent::CTunableSpecialEnergyComponent::refl_InitClass,reflection,game/components,O
-0x7100a1e21c,696,fn_7100a1e21c,unknown,game/components?,U
+0x7100a1e21c,696,fn_7100a1e21c,unknown,game/components?,O
 0x7100a1e4d4,4,fn_7100a1e4d4,unknown,game/components?,O
 0x7100a1e4d8,244,CSpecialEnergyComponent::refl_GetClass,reflection,game/components,U
 0x7100a1e5cc,2252,fn_7100a1e5cc,unknown,game/components?,U
@@ -799,7 +799,7 @@ address,size,name,name_source,subsystem,status
 0x7100a203a8,76,fn_7100a203a8,unknown,unknown,U
 0x7100a203f4,68,fn_7100a203f4,unknown,unknown,U
 0x7100a20438,540,fn_7100a20438,unknown,unknown,U
-0x7100a20654,336,fn_7100a20654,unknown,unknown,U
+0x7100a20654,336,fn_7100a20654,unknown,unknown,O
 0x7100a207b0,260,fn_7100a207b0,unknown,unknown,O
 0x7100a208b4,4,fn_7100a208b4,unknown,unknown,O
 0x7100a208b8,244,CSynchronizedBlockCameraCtrl::refl_GetClass,reflection,game,O
@@ -1112,11 +1112,11 @@ address,size,name,name_source,subsystem,status
 0x7100a2e124,4,fn_7100a2e124,unknown,unknown,O
 0x7100a2e128,4,operator.delete,symbol,unknown,O
 0x7100a2e12c,124,fn_7100a2e12c,unknown,unknown,O
-0x7100a2e1a8,336,fn_7100a2e1a8,unknown,unknown,U
+0x7100a2e1a8,336,fn_7100a2e1a8,unknown,unknown,O
 0x7100a2e300,12,fn_7100a2e300,unknown,unknown,U
 0x7100a2e30c,404,fn_7100a2e30c,unknown,unknown,U
 0x7100a2e4a0,452,fn_7100a2e4a0,unknown,unknown,U
-0x7100a2e664,336,fn_7100a2e664,unknown,unknown,U
+0x7100a2e664,336,fn_7100a2e664,unknown,unknown,O
 0x7100a2e7b4,608,fn_7100a2e7b4,unknown,unknown,U
 0x7100a2ea20,552,fn_7100a2ea20,unknown,unknown,U
 0x7100a2ec48,4,fn_7100a2ec48,unknown,unknown,O
@@ -1352,9 +1352,9 @@ address,size,name,name_source,subsystem,status
 0x7100a35494,60,fn_7100a35494,unknown,unknown,O
 0x7100a354d0,192,fn_7100a354d0,unknown,unknown,O
 0x7100a35590,76,fn_7100a35590,unknown,unknown,O
-0x7100a355dc,432,fn_7100a355dc,unknown,unknown,U
-0x7100a3578c,432,fn_7100a3578c,unknown,unknown,U
-0x7100a3593c,336,fn_7100a3593c,unknown,unknown,U
+0x7100a355dc,432,fn_7100a355dc,unknown,unknown,O
+0x7100a3578c,432,fn_7100a3578c,unknown,unknown,O
+0x7100a3593c,336,fn_7100a3593c,unknown,unknown,O
 0x7100a35a8c,12,fn_7100a35a8c,unknown,unknown,O
 0x7100a35a98,20,fn_7100a35a98,unknown,unknown,O
 0x7100a35aac,168,fn_7100a35aac,unknown,unknown,U
@@ -1399,9 +1399,9 @@ address,size,name,name_source,subsystem,status
 0x7100a36374,60,fn_7100a36374,unknown,unknown,O
 0x7100a363b0,192,fn_7100a363b0,unknown,unknown,O
 0x7100a36470,76,fn_7100a36470,unknown,unknown,O
-0x7100a364bc,432,fn_7100a364bc,unknown,unknown,U
-0x7100a3666c,432,fn_7100a3666c,unknown,unknown,U
-0x7100a3681c,336,fn_7100a3681c,unknown,unknown,U
+0x7100a364bc,432,fn_7100a364bc,unknown,unknown,O
+0x7100a3666c,432,fn_7100a3666c,unknown,unknown,O
+0x7100a3681c,336,fn_7100a3681c,unknown,unknown,O
 0x7100a3696c,12,fn_7100a3696c,unknown,unknown,O
 0x7100a36978,20,fn_7100a36978,unknown,unknown,O
 0x7100a3698c,168,fn_7100a3698c,unknown,unknown,U
@@ -2361,7 +2361,7 @@ address,size,name,name_source,subsystem,status
 0x7100a574d4,64,fn_7100a574d4,unknown,unknown,O
 0x7100a57514,144,fn_7100a57514,unknown,unknown,U
 0x7100a575a4,184,fn_7100a575a4,unknown,unknown,U
-0x7100a5765c,612,fn_7100a5765c,unknown,unknown,U
+0x7100a5765c,612,fn_7100a5765c,unknown,unknown,O
 0x7100a578c0,12,fn_7100a578c0,unknown,unknown,O
 0x7100a578cc,20,fn_7100a578cc,unknown,unknown,O
 0x7100a578e0,260,fn_7100a578e0,unknown,unknown,U
@@ -2430,7 +2430,7 @@ address,size,name,name_source,subsystem,status
 0x7100a5d274,244,CTriggerComponent::CTunableTriggerComponent::refl_GetClass,reflection,game/components,U
 0x7100a5d368,796,fn_7100a5d368,unknown,game/components?,O
 0x7100a5d684,388,CTriggerComponent::CTunableTriggerComponent::refl_InitClass,reflection,game/components,O
-0x7100a5d808,696,fn_7100a5d808,unknown,unknown,U
+0x7100a5d808,696,fn_7100a5d808,unknown,unknown,O
 0x7100a5dac0,792,fn_7100a5dac0,unknown,unknown,U
 0x7100a5ddd8,1000,fn_7100a5ddd8,unknown,unknown,U
 0x7100a5e1c0,4,fn_7100a5e1c0,unknown,unknown,U
@@ -2744,7 +2744,7 @@ address,size,name,name_source,subsystem,status
 0x7100a6bcfc,244,CAccessPointComponent::CTunableAccessPointComponent::refl_GetClass,reflection,game/components,U
 0x7100a6bdf0,1992,fn_7100a6bdf0,unknown,game/components?,O
 0x7100a6c5b8,388,CAccessPointComponent::CTunableAccessPointComponent::refl_InitClass,reflection,game/components,O
-0x7100a6c73c,696,fn_7100a6c73c,unknown,unknown,U
+0x7100a6c73c,696,fn_7100a6c73c,unknown,unknown,O
 0x7100a6c9f4,1108,fn_7100a6c9f4,unknown,unknown,U
 0x7100a6ce48,1380,fn_7100a6ce48,unknown,unknown,U
 0x7100a6d3ac,44,fn_7100a6d3ac,unknown,unknown,U
@@ -3435,7 +3435,7 @@ address,size,name,name_source,subsystem,status
 0x7100a89034,244,CSaveStationUsableComponent::CTunableSaveStationUsableComponent::refl_GetClass,reflection,game/components,U
 0x7100a89128,352,fn_7100a89128,unknown,game/components?,O
 0x7100a89288,388,CSaveStationUsableComponent::CTunableSaveStationUsableComponent::refl_InitClass,reflection,game/components,O
-0x7100a8940c,696,fn_7100a8940c,unknown,game/components?,U
+0x7100a8940c,696,fn_7100a8940c,unknown,game/components?,O
 0x7100a896c4,4,fn_7100a896c4,unknown,game/components?,O
 0x7100a896c8,244,CSaveStationUsableComponent::refl_GetClass,reflection,game/components,U
 0x7100a897bc,4,fn_7100a897bc,unknown,game/components?,O
@@ -3922,7 +3922,7 @@ address,size,name,name_source,subsystem,status
 0x7100a9d224,388,CUsableComponent::CTunableUsableComponent::refl_InitClass,reflection,game/components,O
 0x7100a9d3a8,872,fn_7100a9d3a8,unknown,unknown,U
 0x7100a9d710,484,fn_7100a9d710,unknown,unknown,U
-0x7100a9d8f4,696,fn_7100a9d8f4,unknown,unknown,U
+0x7100a9d8f4,696,fn_7100a9d8f4,unknown,unknown,O
 0x7100a9dbac,460,fn_7100a9dbac,unknown,unknown,U
 0x7100a9dd78,1228,fn_7100a9dd78,unknown,unknown,U
 0x7100a9e244,1144,fn_7100a9e244,unknown,unknown,U
@@ -4174,7 +4174,7 @@ address,size,name,name_source,subsystem,status
 0x7100aa94f8,244,CBombMovement::CTunableBombMovement::refl_GetClass,reflection,game,U
 0x7100aa95ec,1188,fn_7100aa95ec,unknown,game?,O
 0x7100aa9a90,388,CBombMovement::CTunableBombMovement::refl_InitClass,reflection,game,O
-0x7100aa9c14,696,fn_7100aa9c14,unknown,game?,U
+0x7100aa9c14,696,fn_7100aa9c14,unknown,game?,O
 0x7100aa9ecc,24,fn_7100aa9ecc,unknown,game?,O
 0x7100aa9ee4,88,fn_7100aa9ee4,unknown,game?,U
 0x7100aa9f3c,196,fn_7100aa9f3c,unknown,game?,U
@@ -4229,7 +4229,7 @@ address,size,name,name_source,subsystem,status
 0x7100aacb4c,244,CLineBombMovement::CTunableLineBombMovement::refl_GetClass,reflection,game,U
 0x7100aacc40,1536,fn_7100aacc40,unknown,game?,O
 0x7100aad240,388,CLineBombMovement::CTunableLineBombMovement::refl_InitClass,reflection,game,O
-0x7100aad3c4,696,fn_7100aad3c4,unknown,game?,U
+0x7100aad3c4,696,fn_7100aad3c4,unknown,game?,O
 0x7100aad680,932,fn_7100aad680,unknown,game?,U
 0x7100aada30,572,fn_7100aada30,unknown,game?,O
 0x7100aadc6c,80,fn_7100aadc6c,unknown,game?,O
@@ -4272,7 +4272,7 @@ address,size,name,name_source,subsystem,status
 0x7100aafa14,244,CPowerBombMovement::CTunablePowerBombMovement::refl_GetClass,reflection,game,U
 0x7100aafb08,976,fn_7100aafb08,unknown,game?,O
 0x7100aafed8,388,CPowerBombMovement::CTunablePowerBombMovement::refl_InitClass,reflection,game,O
-0x7100ab005c,696,fn_7100ab005c,unknown,game?,U
+0x7100ab005c,696,fn_7100ab005c,unknown,game?,O
 0x7100ab0314,4,fn_7100ab0314,unknown,game?,O
 0x7100ab0318,244,CPowerBombMovement::refl_GetClass,reflection,game,U
 0x7100ab040c,260,fn_7100ab040c,unknown,game?,O
@@ -4389,7 +4389,7 @@ address,size,name,name_source,subsystem,status
 0x7100ab4e40,244,CLockOnMissileMovement::CTunableLockOnMissileMovement::refl_GetClass,reflection,game,U
 0x7100ab4f34,2572,fn_7100ab4f34,unknown,game?,O
 0x7100ab5940,388,CLockOnMissileMovement::CTunableLockOnMissileMovement::refl_InitClass,reflection,game,O
-0x7100ab5ac4,696,fn_7100ab5ac4,unknown,game?,U
+0x7100ab5ac4,696,fn_7100ab5ac4,unknown,game?,O
 0x7100ab5d7c,4,fn_7100ab5d7c,unknown,game?,O
 0x7100ab5d80,244,CLockOnMissileMovement::refl_GetClass,reflection,game,U
 0x7100ab5e74,4,fn_7100ab5e74,unknown,game?,O
@@ -5308,9 +5308,9 @@ address,size,name,name_source,subsystem,status
 0x7100adb484,60,fn_7100adb484,unknown,unknown,O
 0x7100adb4c0,192,fn_7100adb4c0,unknown,unknown,O
 0x7100adb580,76,fn_7100adb580,unknown,unknown,O
-0x7100adb5cc,432,fn_7100adb5cc,unknown,unknown,U
-0x7100adb77c,432,fn_7100adb77c,unknown,unknown,U
-0x7100adb92c,336,fn_7100adb92c,unknown,unknown,U
+0x7100adb5cc,432,fn_7100adb5cc,unknown,unknown,O
+0x7100adb77c,432,fn_7100adb77c,unknown,unknown,O
+0x7100adb92c,336,fn_7100adb92c,unknown,unknown,O
 0x7100adba7c,12,fn_7100adba7c,unknown,unknown,O
 0x7100adba88,20,fn_7100adba88,unknown,unknown,O
 0x7100adba9c,168,fn_7100adba9c,unknown,unknown,U
@@ -5764,7 +5764,7 @@ address,size,name,name_source,subsystem,status
 0x7100af3340,4,operator.delete,symbol,gui?,O
 0x7100af3344,32,fn_7100af3344,unknown,gui?,O
 0x7100af3364,536,fn_7100af3364,unknown,gui?,U
-0x7100af357c,336,fn_7100af357c,unknown,gui?,U
+0x7100af357c,336,fn_7100af357c,unknown,gui?,O
 0x7100af36d0,228,fn_7100af36d0,unknown,gui?,O
 0x7100af37b4,4,fn_7100af37b4,unknown,gui?,O
 0x7100af37b8,244,GUI::CBoolTunableButton::refl_GetClass,reflection,gui,O
@@ -5998,7 +5998,7 @@ address,size,name,name_source,subsystem,status
 0x7100affbb0,80,fn_7100affbb0,unknown,gui?,O
 0x7100affc00,80,fn_7100affc00,unknown,gui?,O
 0x7100affc50,28,fn_7100affc50,unknown,gui?,O
-0x7100affc6c,336,fn_7100affc6c,unknown,gui?,U
+0x7100affc6c,336,fn_7100affc6c,unknown,gui?,O
 0x7100affdbc,8,fn_7100affdbc,unknown,gui?,O
 0x7100affdc4,8,fn_7100affdc4,unknown,gui?,O
 0x7100affdcc,28,fn_7100affdcc,unknown,gui?,O

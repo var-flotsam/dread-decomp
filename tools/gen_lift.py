@@ -50,7 +50,7 @@ CHUNK = 1000  # functions per generated file
 # section index (SHN_XINDEX), which the object reader doesn't follow.
 SCRATCH_CHUNK = 8000
 NAME_RE = re.compile(r"^[A-Za-z_][\w:<>,*& ]*\bfn_([0-9a-f]{10})\(")  # a declaration or definition
-TAG_RE = re.compile(r"(?:UnkRefl_fn_|DREAD_REFL_\w*GETTER\()([0-9a-f]{10})\b")  # tagged definitions
+TAG_RE = re.compile(r"(?:UnkRefl_fn_|UnkClone_fn_|DREAD_REFL_\w*GETTER\()([0-9a-f]{10})\b")  # tagged definitions
 # (minimum call arguments, return mode): tried in this order. Return modes: "value" returns x0
 # (or s0) as set, "void" returns nothing, "ref" returns a pointer as a reference (Clang 9 then
 # doesn't turn a final call into a tail call, as in the original's `bl; ret`).

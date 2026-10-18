@@ -3882,7 +3882,7 @@ address,size,name,name_source,subsystem,status
 0x7100c5eb84,244,CCharClassTweakPlayRateTrack::CTunableCharClassTweakPlayRateTrack::refl_GetClass,reflection,game/characters,O
 0x7100c5ec78,9152,fn_7100c5ec78,unknown,game/characters?,O
 0x7100c61038,388,CCharClassTweakPlayRateTrack::CTunableCharClassTweakPlayRateTrack::refl_InitClass,reflection,game/characters,O
-0x7100c611bc,696,fn_7100c611bc,unknown,game/characters?,U
+0x7100c611bc,696,fn_7100c611bc,unknown,game/characters?,O
 0x7100c61474,232,fn_7100c61474,unknown,game/characters?,U
 0x7100c6155c,232,fn_7100c6155c,unknown,game/characters?,O
 0x7100c61644,244,CCharClassTweakPlayRateTrack::refl_GetClass,reflection,game/characters,O
@@ -4872,7 +4872,7 @@ address,size,name,name_source,subsystem,status
 0x7100ca00f0,20,fn_7100ca00f0,unknown,unknown,O
 0x7100ca0104,20,fn_7100ca0104,unknown,unknown,O
 0x7100ca0118,536,fn_7100ca0118,unknown,unknown,U
-0x7100ca0330,336,fn_7100ca0330,unknown,unknown,U
+0x7100ca0330,336,fn_7100ca0330,unknown,unknown,O
 0x7100ca0480,4,fn_7100ca0480,unknown,unknown,O
 0x7100ca0484,244,CBreakableTileGroup::refl_GetClass,reflection,game,U
 0x7100ca0578,4,fn_7100ca0578,unknown,game?,O
@@ -4940,7 +4940,7 @@ address,size,name,name_source,subsystem,status
 0x7100ca42f4,244,CBreakableTileManager::CTunableBreakableTileManager::refl_GetClass,reflection,game,O
 0x7100ca43e8,1760,fn_7100ca43e8,unknown,game?,O
 0x7100ca4ac8,388,CBreakableTileManager::CTunableBreakableTileManager::refl_InitClass,reflection,game,O
-0x7100ca4c4c,696,fn_7100ca4c4c,unknown,unknown,U
+0x7100ca4c4c,696,fn_7100ca4c4c,unknown,unknown,O
 0x7100ca4f04,220,fn_7100ca4f04,unknown,unknown,O
 0x7100ca4fe0,220,fn_7100ca4fe0,unknown,unknown,O
 0x7100ca50bc,900,fn_7100ca50bc,unknown,unknown,O

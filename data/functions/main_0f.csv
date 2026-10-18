@@ -254,7 +254,7 @@ address,size,name,name_source,subsystem,status
 0x7100f1003c,244,CReserveTankInfo::CTunableReserveTanks::refl_GetClass,reflection,game,O
 0x7100f10130,772,fn_7100f10130,unknown,game?,O
 0x7100f10434,388,CReserveTankInfo::CTunableReserveTanks::refl_InitClass,reflection,game,O
-0x7100f105b8,696,fn_7100f105b8,unknown,unknown,U
+0x7100f105b8,696,fn_7100f105b8,unknown,unknown,O
 0x7100f10870,204,fn_7100f10870,unknown,unknown,U
 0x7100f1093c,36,fn_7100f1093c,unknown,unknown,O
 0x7100f10960,204,fn_7100f10960,unknown,unknown,U
@@ -4495,8 +4495,8 @@ address,size,name,name_source,subsystem,status
 0x7100fa8d80,64,fn_7100fa8d80,unknown,unknown,O
 0x7100fa8dc0,144,fn_7100fa8dc0,unknown,unknown,U
 0x7100fa8e50,184,fn_7100fa8e50,unknown,unknown,U
-0x7100fa8f08,612,fn_7100fa8f08,unknown,unknown,U
-0x7100fa916c,564,fn_7100fa916c,unknown,unknown,U
+0x7100fa8f08,612,fn_7100fa8f08,unknown,unknown,O
+0x7100fa916c,564,fn_7100fa916c,unknown,unknown,O
 0x7100fa93a0,12,fn_7100fa93a0,unknown,unknown,O
 0x7100fa93ac,20,fn_7100fa93ac,unknown,unknown,O
 0x7100fa93c0,260,fn_7100fa93c0,unknown,unknown,U
@@ -5249,7 +5249,7 @@ address,size,name,name_source,subsystem,status
 0x7100fd318c,244,sound::CMusicManager::CTunableMusicManager::refl_GetClass,reflection,audio,U
 0x7100fd3280,296,fn_7100fd3280,unknown,audio?,O
 0x7100fd33a8,388,sound::CMusicManager::CTunableMusicManager::refl_InitClass,reflection,audio,O
-0x7100fd352c,696,fn_7100fd352c,unknown,unknown,U
+0x7100fd352c,696,fn_7100fd352c,unknown,unknown,O
 0x7100fd37f0,20,fn_7100fd37f0,unknown,unknown,O
 0x7100fd3804,1900,fn_7100fd3804,unknown,unknown,U
 0x7100fd3f70,700,fn_7100fd3f70,unknown,unknown,U
@@ -6601,9 +6601,9 @@ address,size,name,name_source,subsystem,status
 0x7100ffe628,60,fn_7100ffe628,unknown,unknown,O
 0x7100ffe664,192,fn_7100ffe664,unknown,unknown,O
 0x7100ffe724,76,fn_7100ffe724,unknown,unknown,O
-0x7100ffe770,432,fn_7100ffe770,unknown,unknown,U
-0x7100ffe920,432,fn_7100ffe920,unknown,unknown,U
-0x7100ffead0,336,fn_7100ffead0,unknown,unknown,U
+0x7100ffe770,432,fn_7100ffe770,unknown,unknown,O
+0x7100ffe920,432,fn_7100ffe920,unknown,unknown,O
+0x7100ffead0,336,fn_7100ffead0,unknown,unknown,O
 0x7100ffec20,12,fn_7100ffec20,unknown,unknown,O
 0x7100ffec2c,20,fn_7100ffec2c,unknown,unknown,O
 0x7100ffec40,168,fn_7100ffec40,unknown,unknown,U
