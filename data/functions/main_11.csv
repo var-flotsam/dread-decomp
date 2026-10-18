@@ -1328,7 +1328,7 @@ address,size,name,name_source,subsystem,status
 0x7101158944,344,CCharacterLifeComponent::refl_InitClass,reflection,game/characters,O
 0x7101158a9c,380,fn_7101158a9c,unknown,unknown,O
 0x7101158c18,52,fn_7101158c18,unknown,unknown,O
-0x7101158c4c,100,fn_7101158c4c,unknown,unknown,U
+0x7101158c4c,100,fn_7101158c4c,unknown,unknown,O
 0x7101158cb0,4,fn_7101158cb0,unknown,unknown,U
 0x7101158cb4,4,fn_7101158cb4,unknown,unknown,O
 0x7101158cb8,124,fn_7101158cb8,unknown,unknown,U
@@ -1928,7 +1928,7 @@ address,size,name,name_source,subsystem,status
 0x7101181994,244,CTargetComponent::refl_GetClass,reflection,game/components,O
 0x7101181a88,4,fn_7101181a88,unknown,game/components?,O
 0x7101181a8c,388,CTargetComponent::refl_InitClass,reflection,game/components,O
-0x7101181c10,100,fn_7101181c10,unknown,game/components?,U
+0x7101181c10,100,fn_7101181c10,unknown,game/components?,O
 0x7101181c74,92,fn_7101181c74,unknown,game/components?,O
 0x7101181cd0,8,fn_7101181cd0,unknown,game/components?,O
 0x7101181cd8,148,fn_7101181cd8,unknown,game/components?,U
@@ -3932,7 +3932,7 @@ address,size,name,name_source,subsystem,status
 0x71011f8800,232,fn_71011f8800,unknown,gui?,U
 0x71011f88e8,36,fn_71011f88e8,unknown,gui?,O
 0x71011f890c,256,fn_71011f890c,unknown,gui?,U
-0x71011f8a0c,196,fn_71011f8a0c,unknown,gui?,U
+0x71011f8a0c,196,fn_71011f8a0c,unknown,gui?,O
 0x71011f8ad0,36,fn_71011f8ad0,unknown,gui?,O
 0x71011f8af4,232,fn_71011f8af4,unknown,gui?,U
 0x71011f8bdc,932,fn_71011f8bdc,unknown,gui?,U
@@ -3987,8 +3987,8 @@ address,size,name,name_source,subsystem,status
 0x71011fc778,380,fn_71011fc778,unknown,gui?,O
 0x71011fc8f4,380,fn_71011fc8f4,unknown,gui?,O
 0x71011fca70,228,fn_71011fca70,unknown,gui?,U
-0x71011fcb54,124,fn_71011fcb54,unknown,gui?,U
-0x71011fcbd0,132,fn_71011fcbd0,unknown,gui?,U
+0x71011fcb54,124,fn_71011fcb54,unknown,gui?,O
+0x71011fcbd0,132,fn_71011fcbd0,unknown,gui?,O
 0x71011fcc54,172,fn_71011fcc54,unknown,gui?,U
 0x71011fcd00,1120,fn_71011fcd00,unknown,gui?,U
 0x71011fd160,212,fn_71011fd160,unknown,gui?,U
@@ -4037,8 +4037,8 @@ address,size,name,name_source,subsystem,status
 0x71011fe9f8,2332,fn_71011fe9f8,unknown,gui?,O
 0x71011ff314,352,GUI::CList::refl_InitClass,reflection,gui,O
 0x71011ff474,140,fn_71011ff474,unknown,gui?,O
-0x71011ff500,124,fn_71011ff500,unknown,gui?,U
-0x71011ff57c,132,fn_71011ff57c,unknown,gui?,U
+0x71011ff500,124,fn_71011ff500,unknown,gui?,O
+0x71011ff57c,132,fn_71011ff57c,unknown,gui?,O
 0x71011ff600,76,fn_71011ff600,unknown,gui?,O
 0x71011ff64c,336,fn_71011ff64c,unknown,gui?,U
 0x71011ff79c,480,fn_71011ff79c,unknown,gui?,U

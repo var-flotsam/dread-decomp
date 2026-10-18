@@ -60,6 +60,9 @@ class Kind:
     # The explicit instantiation for one candidate, given its tag and instructions (None to skip).
     instantiate: Callable[[str, Insns], str | None]
     exact: bool = True  # match whole instructions (else mnemonics only)
+    # A scan kind (ref None) tries every candidate: scan(orig, addr, tag, instructions) returns
+    # the declarations and instantiation, or None when the function doesn't fit.
+    scan: Callable[[asmdiff.Original, int, str, Insns], str | None] | None = None
 
 
 def elem_size(insns: Insns) -> int | None:
@@ -117,7 +120,65 @@ def collection(fmt: str, element: str) -> Callable[[str, Insns], str | None]:
     return build
 
 
+BASE = 0x7100000000
+RELEASE = 0x71000803A4  # string pool release
+OPERATOR_DELETE = 0x7100083C00
+VTABLE_RE = re.compile(r"x(\d+), \[x\1, #(0x[0-9a-f]+)\]")
+
+
+def destructor(orig: asmdiff.Original, addr: int, tag: str, insns: Insns) -> str | None:
+    """A destructor that stores a vtable, releases string-id members and calls its base
+    (UnkDestructors.h). Facts: the vtable (through the GOT), the member offsets in release
+    order, the base destructor and, for the deleting form, the free function."""
+    if not any(m == "str" and o.endswith(", [x0]") for m, o in insns[:10]):
+        return None
+    pages: dict[str, int] = {}
+    vtable = None
+    members: list[str] = []
+    calls: list[int] = []
+    for i, (m, o) in enumerate(insns[:-1]):
+        regs = [r.strip() for r in o.split(",")]
+        if m == "adrp":
+            pages[regs[0]] = int(regs[1][1:], 16)
+        elif m == "ldr" and vtable is None and (hit := VTABLE_RE.fullmatch(o)) and f"x{hit.group(1)}" in pages:
+            got = pages[f"x{hit.group(1)}"] + int(hit.group(2), 16)
+            nxt = insns[i + 1]
+            if nxt == ("add", f"x{hit.group(1)}, x{hit.group(1)}, #0x10"):
+                target = orig.img.pointer(got - BASE)
+                if target is None:
+                    return None
+                vtable = BASE + target
+        elif m == "ldr" and (hit := re.fullmatch(r"(x\d+), \[x(?:0|19), #(0x[0-9a-f]+)\]", o)) \
+                and any(x == ("cbz", f"{hit.group(1)}, {t}") for x in insns[i + 1:i + 3]
+                        for t in [x[1].split(", ")[-1]]):
+            # A refcounted pointer's count is decremented with subs; a string id's with sub
+            # (after a compare with the pool's empty string).
+            after = [x[0] for x in insns[i + 1:i + 7]]
+            kind = "UnkRefPtrAt" if "subs" in after and "sub" not in after else "UnkStrIdAt"
+            members.append(f"base::{kind}<{int(hit.group(2), 16):#x}>")
+        elif m in ("bl", "b") and o.startswith("#0x"):
+            t = int(o[1:], 16)
+            if t != RELEASE and t not in calls:
+                calls.append(t)
+    m, o = insns[-1]
+    if m == "b" and o.startswith("#0x") and int(o[1:], 16) not in calls:
+        calls.append(int(o[1:], 16))
+    deleting = OPERATOR_DELETE in calls
+    bases = [c for c in calls if c != OPERATOR_DELETE]
+    if vtable is None or len(bases) > 1 or not (bases or deleting) or len(set(members)) != len(members):
+        return None
+    lines = [f"extern char g_unk_{vtable:x}[];"] + [f"void fn_{c:x}(char*);" for c in bases]
+    lines += [f"template <> struct base::UnkDtorTraits<{tag}> {{",
+              f"    static char* vtable() {{ return g_unk_{vtable:x}; }}"]
+    if bases:
+        lines.append(f"    static void base(char* p) {{ fn_{bases[0]:x}(p); }}")
+    fn = "refl_Dtor" if not deleting else "refl_DeletingDtor" if bases else "refl_DeletingDtorNoBase"
+    lines += ["};", f"template void base::{fn}<{tag}{''.join(', ' + x for x in members)}>(char*);"]
+    return "\n".join(lines)
+
+
 KINDS = {
+    "dtor": Kind(None, "base/UnkDestructors.h", lambda tag, _: None, scan=destructor),
     "register_named": Kind(0x7100072940, "base/UnkNamedRegistry.h", lambda tag, _: (
         f"template base::UnkNamedObject* base::refl_RegisterNamed<{tag}>("
         "base::UnkNamedRegistry*, base::UnkNamedObject*, const char*);")),
@@ -174,7 +235,7 @@ WORK = ROOT / "build" / "gen_clones"
 
 def probe_shapes() -> dict[str, tuple[int, list[str]]]:
     """Size and mnemonics of each probe kind's instantiation, compiled with the project flags."""
-    probes = {name: k for name, k in KINDS.items() if k.ref is None}
+    probes = {name: k for name, k in KINDS.items() if k.ref is None and not k.scan}
     if not probes:
         return {}
     lines = PRELUDE + [f'#include "{h}"' for h in sorted({k.header for k in probes.values()})]
@@ -228,6 +289,12 @@ def main() -> int:
                 if line:
                     found[a] = (name, f"struct {tag};\n{line}")
                 break
+        if a not in found:
+            ins = ins or instructions(orig, a)
+            for name, k in KINDS.items():
+                if k.scan and (block := k.scan(orig, a, f"UnkClone_fn_{a:x}", ins)):
+                    found[a] = (name, f"struct UnkClone_fn_{a:x};\n{block}")
+                    break
 
     def includes(addrs: list[int]) -> list[str]:
         return PRELUDE + [f'#include "{h}"' for h in sorted({KINDS[found[a][0]].header for a in addrs})]

@@ -3096,7 +3096,7 @@ address,size,name,name_source,subsystem,status
 0x710026a6c8,220,fn_710026a6c8,unknown,unknown,O
 0x710026a7a4,496,fn_710026a7a4,unknown,unknown,O
 0x710026a994,104,fn_710026a994,unknown,unknown,O
-0x710026a9fc,124,fn_710026a9fc,unknown,unknown,U
+0x710026a9fc,124,fn_710026a9fc,unknown,unknown,O
 0x710026aa78,4,fn_710026aa78,unknown,unknown,U
 0x710026aa7c,28,fn_710026aa7c,unknown,unknown,O
 0x710026aa98,368,fn_710026aa98,unknown,unknown,O
@@ -5434,8 +5434,8 @@ address,size,name,name_source,subsystem,status
 0x71002e52b8,4,fn_71002e52b8,unknown,animation?,O
 0x71002e52bc,360,animtree::CLookAtEntityControl::refl_InitClass,reflection,animation,O
 0x71002e5424,196,fn_71002e5424,unknown,animation?,U
-0x71002e54e8,124,fn_71002e54e8,unknown,animation?,U
-0x71002e5564,132,fn_71002e5564,unknown,animation?,U
+0x71002e54e8,124,fn_71002e54e8,unknown,animation?,O
+0x71002e5564,132,fn_71002e5564,unknown,animation?,O
 0x71002e55e8,232,fn_71002e55e8,unknown,animation?,U
 0x71002e56d0,28,fn_71002e56d0,unknown,animation?,O
 0x71002e56ec,8,fn_71002e56ec,unknown,animation?,O
@@ -5451,7 +5451,7 @@ address,size,name,name_source,subsystem,status
 0x71002e5a20,388,animtree::CLookAtEntityControlDef::refl_InitClass,reflection,animation,O
 0x71002e5ba4,4,fn_71002e5ba4,unknown,animation?,O
 0x71002e5ba8,28,fn_71002e5ba8,unknown,animation?,O
-0x71002e5bc4,124,fn_71002e5bc4,unknown,animation?,U
+0x71002e5bc4,124,fn_71002e5bc4,unknown,animation?,O
 0x71002e5c40,296,fn_71002e5c40,unknown,animation?,U
 0x71002e5d68,12,fn_71002e5d68,unknown,animation?,O
 0x71002e5d74,8,fn_71002e5d74,unknown,animation?,O
@@ -5543,8 +5543,8 @@ address,size,name,name_source,subsystem,status
 0x71002e85e4,244,animtree::CSamusLegsBoneControl::refl_GetClass,reflection,animation,O
 0x71002e86d8,4,fn_71002e86d8,unknown,animation?,O
 0x71002e86dc,360,animtree::CSamusLegsBoneControl::refl_InitClass,reflection,animation,O
-0x71002e8844,144,fn_71002e8844,unknown,animation?,U
-0x71002e88d4,140,fn_71002e88d4,unknown,animation?,U
+0x71002e8844,144,fn_71002e8844,unknown,animation?,O
+0x71002e88d4,140,fn_71002e88d4,unknown,animation?,O
 0x71002e8960,28,fn_71002e8960,unknown,animation?,O
 0x71002e897c,8,fn_71002e897c,unknown,animation?,O
 0x71002e8984,8,fn_71002e8984,unknown,animation?,O

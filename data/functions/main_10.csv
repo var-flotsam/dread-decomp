@@ -4247,8 +4247,8 @@ address,size,name,name_source,subsystem,status
 0x71010d05d0,388,CMovementComponent::refl_InitClass,reflection,game/components,O
 0x71010d0754,384,fn_71010d0754,unknown,unknown,U
 0x71010d08d4,88,fn_71010d08d4,unknown,unknown,U
-0x71010d092c,236,fn_71010d092c,unknown,unknown,U
-0x71010d0a18,232,fn_71010d0a18,unknown,unknown,U
+0x71010d092c,236,fn_71010d092c,unknown,unknown,O
+0x71010d0a18,232,fn_71010d0a18,unknown,unknown,O
 0x71010d0b00,120,fn_71010d0b00,unknown,unknown,U
 0x71010d0b78,48,fn_71010d0b78,unknown,unknown,O
 0x71010d0ba8,88,fn_71010d0ba8,unknown,unknown,O
@@ -4717,8 +4717,8 @@ address,size,name,name_source,subsystem,status
 0x71010f0b78,264,fn_71010f0b78,unknown,game?,O
 0x71010f0c80,388,CCameraFX::refl_InitClass,reflection,game,O
 0x71010f0e04,80,fn_71010f0e04,unknown,game?,U
-0x71010f0e54,124,fn_71010f0e54,unknown,game?,U
-0x71010f0ed0,132,fn_71010f0ed0,unknown,game?,U
+0x71010f0e54,124,fn_71010f0e54,unknown,game?,O
+0x71010f0ed0,132,fn_71010f0ed0,unknown,game?,O
 0x71010f0f54,28,fn_71010f0f54,unknown,game?,O
 0x71010f0f70,4,fn_71010f0f70,unknown,game?,O
 0x71010f0f74,8,fn_71010f0f74,unknown,game?,O
@@ -4755,8 +4755,8 @@ address,size,name,name_source,subsystem,status
 0x71010f18d4,244,CCameraFX_MotionShake::refl_GetClass,reflection,game,O
 0x71010f19c8,472,fn_71010f19c8,unknown,game?,O
 0x71010f1ba0,388,CCameraFX_MotionShake::refl_InitClass,reflection,game,O
-0x71010f1d24,124,fn_71010f1d24,unknown,game?,U
-0x71010f1da0,132,fn_71010f1da0,unknown,game?,U
+0x71010f1d24,124,fn_71010f1d24,unknown,game?,O
+0x71010f1da0,132,fn_71010f1da0,unknown,game?,O
 0x71010f1e24,520,fn_71010f1e24,unknown,game?,U
 0x71010f202c,8,fn_71010f202c,unknown,game?,O
 0x71010f2034,28,fn_71010f2034,unknown,game?,O
@@ -4774,8 +4774,8 @@ address,size,name,name_source,subsystem,status
 0x71010f21a4,244,CCameraFX_RandShake::refl_GetClass,reflection,game,O
 0x71010f2298,676,fn_71010f2298,unknown,game?,O
 0x71010f253c,388,CCameraFX_RandShake::refl_InitClass,reflection,game,O
-0x71010f26c0,124,fn_71010f26c0,unknown,game?,U
-0x71010f273c,132,fn_71010f273c,unknown,game?,U
+0x71010f26c0,124,fn_71010f26c0,unknown,game?,O
+0x71010f273c,132,fn_71010f273c,unknown,game?,O
 0x71010f27c0,344,fn_71010f27c0,unknown,game?,U
 0x71010f2918,512,fn_71010f2918,unknown,game?,U
 0x71010f2b18,8,fn_71010f2b18,unknown,game?,O
@@ -4814,8 +4814,8 @@ address,size,name,name_source,subsystem,status
 0x71010f3708,1172,fn_71010f3708,unknown,game?,O
 0x71010f3b9c,388,CCameraFX_Shake::refl_InitClass,reflection,game,O
 0x71010f3d20,116,fn_71010f3d20,unknown,unknown,U
-0x71010f3d94,124,fn_71010f3d94,unknown,unknown,U
-0x71010f3e10,132,fn_71010f3e10,unknown,unknown,U
+0x71010f3d94,124,fn_71010f3d94,unknown,unknown,O
+0x71010f3e10,132,fn_71010f3e10,unknown,unknown,O
 0x71010f3e94,12,fn_71010f3e94,unknown,unknown,O
 0x71010f3ea0,16,fn_71010f3ea0,unknown,unknown,O
 0x71010f3eb0,104,fn_71010f3eb0,unknown,unknown,U

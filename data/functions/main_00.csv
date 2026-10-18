@@ -983,7 +983,7 @@ address,size,name,name_source,subsystem,status
 0x7100025158,232,fn_7100025158,unknown,engine/base?,U
 0x7100025240,344,base::core::CDefinition::refl_InitClass,reflection,engine/base,O
 0x7100025398,196,fn_7100025398,unknown,unknown,U
-0x710002545c,124,fn_710002545c,unknown,unknown,U
+0x710002545c,124,fn_710002545c,unknown,unknown,O
 0x71000254d8,4,fn_71000254d8,unknown,unknown,U
 0x71000254dc,28,fn_71000254dc,unknown,unknown,O
 0x71000254f8,8,fn_71000254f8,unknown,unknown,O

@@ -118,7 +118,7 @@ address,size,name,name_source,subsystem,status
 0x7100f05704,4,fn_7100f05704,unknown,game?,O
 0x7100f05708,388,CPickable::refl_InitClass,reflection,game,O
 0x7100f0588c,216,fn_7100f0588c,unknown,unknown,U
-0x7100f05964,212,fn_7100f05964,unknown,unknown,U
+0x7100f05964,212,fn_7100f05964,unknown,unknown,O
 0x7100f05a38,36,fn_7100f05a38,unknown,unknown,O
 0x7100f05a5c,444,fn_7100f05a5c,unknown,unknown,U
 0x7100f05c18,176,fn_7100f05c18,unknown,unknown,O
@@ -273,7 +273,7 @@ address,size,name,name_source,subsystem,status
 0x7100f1106c,16,fn_7100f1106c,unknown,unknown,O
 0x7100f1107c,36,fn_7100f1107c,unknown,unknown,O
 0x7100f110a0,16,fn_7100f110a0,unknown,unknown,O
-0x7100f110b0,196,fn_7100f110b0,unknown,unknown,U
+0x7100f110b0,196,fn_7100f110b0,unknown,unknown,O
 0x7100f11174,36,fn_7100f11174,unknown,unknown,O
 0x7100f11198,16,fn_7100f11198,unknown,unknown,O
 0x7100f111a8,28,fn_7100f111a8,unknown,unknown,O

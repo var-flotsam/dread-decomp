@@ -1715,7 +1715,7 @@ address,size,name,name_source,subsystem,status
 0x7100576258,240,CEnemyPreset::refl_GetClass,reflection,game,O
 0x7100576348,988,fn_7100576348,unknown,game?,O
 0x7100576724,388,CEnemyPreset::refl_InitClass,reflection,game,O
-0x71005768a8,268,fn_71005768a8,unknown,unknown,U
+0x71005768a8,268,fn_71005768a8,unknown,unknown,O
 0x71005769b4,36,fn_71005769b4,unknown,unknown,O
 0x71005769d8,180,fn_71005769d8,unknown,unknown,U
 0x7100576a8c,4,fn_7100576a8c,unknown,unknown,O
