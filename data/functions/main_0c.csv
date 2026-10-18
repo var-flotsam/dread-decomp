@@ -4847,14 +4847,14 @@ address,size,name,name_source,subsystem,status
 0x7100c9e6ac,692,fn_7100c9e6ac,unknown,unknown,U
 0x7100c9e960,8,fn_7100c9e960,unknown,unknown,O
 0x7100c9e968,160,fn_7100c9e968,unknown,unknown,U
-0x7100c9ea08,36,fn_7100c9ea08,unknown,unknown,U
+0x7100c9ea08,36,fn_7100c9ea08,unknown,unknown,O
 0x7100c9ea2c,220,fn_7100c9ea2c,unknown,unknown,U
 0x7100c9eb08,3572,fn_7100c9eb08,unknown,unknown,U
 0x7100c9f8fc,8,fn_7100c9f8fc,unknown,unknown,O
 0x7100c9f904,184,fn_7100c9f904,unknown,unknown,U
 0x7100c9f9bc,588,fn_7100c9f9bc,unknown,unknown,U
 0x7100c9fc08,128,fn_7100c9fc08,unknown,unknown,O
-0x7100c9fc88,336,fn_7100c9fc88,unknown,unknown,U
+0x7100c9fc88,336,fn_7100c9fc88,unknown,unknown,O
 0x7100c9fdd8,40,fn_7100c9fdd8,unknown,unknown,O
 0x7100c9fe00,172,fn_7100c9fe00,unknown,unknown,U
 0x7100c9feac,176,fn_7100c9feac,unknown,unknown,U

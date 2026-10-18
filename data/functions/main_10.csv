@@ -4648,7 +4648,7 @@ address,size,name,name_source,subsystem,status
 0x71010edd64,304,fn_71010edd64,unknown,game?,U
 0x71010ede94,32,fn_71010ede94,unknown,game?,U
 0x71010edeb4,316,fn_71010edeb4,unknown,game?,U
-0x71010edff0,88,fn_71010edff0,unknown,game?,U
+0x71010edff0,88,fn_71010edff0,unknown,game?,O
 0x71010ee048,176,fn_71010ee048,unknown,game?,U
 0x71010ee0f8,132,fn_71010ee0f8,unknown,game?,U
 0x71010ee17c,4,fn_71010ee17c,unknown,game?,O

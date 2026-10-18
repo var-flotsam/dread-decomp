@@ -5315,7 +5315,7 @@ address,size,name,name_source,subsystem,status
 0x7100adba88,20,fn_7100adba88,unknown,unknown,O
 0x7100adba9c,168,fn_7100adba9c,unknown,unknown,U
 0x7100adbb44,176,fn_7100adbb44,unknown,unknown,U
-0x7100adbbf4,36,fn_7100adbbf4,unknown,unknown,U
+0x7100adbbf4,36,fn_7100adbbf4,unknown,unknown,O
 0x7100adbc20,1464,fn_7100adbc20,unknown,unknown,U
 0x7100adc1d8,220,base::reflection::refl_GetType<gameeditor::TPropertyId>,reflection,engine/reflection,O
 0x7100adc2b4,220,fn_7100adc2b4,unknown,engine/reflection?,O

@@ -393,12 +393,20 @@ class Lifter:
         return e
 
     def cond(self, cc: int, negate: bool) -> str:
-        if cc not in CONDS or not self.s.cmp:
+        if not self.s.cmp or (cc not in CONDS and self.s.cmp[2] != "f"):
             raise Unsupported("condition")
-        opr, signed = CONDS[cc]
+        opr, signed = CONDS.get(cc, ("", False))
         c = self.s.cmp
         if c[2] == "f":
-            expr = f"({c[3]})({c[0]}) {opr} ({c[3]})({c[1]})"
+            # After fcmp each condition is ordered (false if either is NaN) or unordered.
+            a, b = f"({c[3]})({c[0]})", f"({c[3]})({c[1]})"
+            expr = {arm64.ARM64_CC_EQ: f"{a} == {b}", arm64.ARM64_CC_NE: f"!({a} == {b})",
+                    arm64.ARM64_CC_MI: f"{a} < {b}", arm64.ARM64_CC_LS: f"{a} <= {b}",
+                    arm64.ARM64_CC_GT: f"{a} > {b}", arm64.ARM64_CC_GE: f"{a} >= {b}",
+                    arm64.ARM64_CC_LT: f"!({a} >= {b})", arm64.ARM64_CC_LE: f"!({a} > {b})",
+                    arm64.ARM64_CC_HI: f"!({a} <= {b})", arm64.ARM64_CC_PL: f"!({a} < {b})"}.get(cc)
+            if expr is None:
+                raise Unsupported("float condition")
             return f"!({expr})" if negate else expr
         t = ("s64" if c[2] == "x" else "s32") if signed else ("u64" if c[2] == "x" else "u32")
         return f"({t})(u64)({c[0]}) {NEGATE[opr] if negate else opr} ({t})({c[1]})"
@@ -467,6 +475,7 @@ class Lifter:
                     self.terminate("tail", self.call(f"fn_{o[0].imm:x}"))
                 elif m == "br":
                     ptr, _ = self.read(regname(o[0].reg))
+                    self.s.written.discard(self.key(regname(o[0].reg)))  # the target isn't an argument
                     self.terminate("tail", self.call("", ptr))
                 elif m == "b":
                     t = o[0].imm
@@ -510,7 +519,7 @@ class Lifter:
             ind = self.body[ln][:len(self.body[ln]) - len(self.body[ln].lstrip())]
             if k == "tail":
                 s = f"{p};\n{ind}return;" if rtype == "void" else \
-                    f"return {p};"
+                    f"return {p};" if rtype == "char*" else f"return ({rtype})(u64)({p});"
             elif rtype == "void":
                 s = "return;"
             elif rtype == "char&":
@@ -860,6 +869,7 @@ class Lifter:
             self.s.written = set()
         elif m == "blr":
             ptr, _ = self.read(regname(o[0].reg))
+            self.s.written.discard(self.key(regname(o[0].reg)))  # the target isn't an argument
             call = self.call("", ptr)
             self.clobber()
             self.write("x0", call, "char*")
@@ -989,6 +999,7 @@ class FlatLifter(Lifter):
                     self.terminate("tail", self.call(f"fn_{o[0].imm:x}"))
                 elif m == "br":
                     ptr, _ = self.read(regname(o[0].reg))
+                    self.s.written.discard(self.key(regname(o[0].reg)))  # the target isn't an argument
                     self.terminate("tail", self.call("", ptr))
                 elif m == "b":
                     self.line(f"goto L_{o[0].imm:x};")

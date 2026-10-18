@@ -4538,12 +4538,12 @@ address,size,name,name_source,subsystem,status
 0x71008de6b8,100,fn_71008de6b8,unknown,game/components?,U
 0x71008de71c,240,fn_71008de71c,unknown,game/components?,U
 0x71008de80c,44,fn_71008de80c,unknown,game/components?,O
-0x71008de838,184,fn_71008de838,unknown,game/components?,U
+0x71008de838,184,fn_71008de838,unknown,game/components?,O
 0x71008de8f0,4,fn_71008de8f0,unknown,game/components?,O
 0x71008de8f4,224,fn_71008de8f4,unknown,game/components?,U
 0x71008de9d4,276,fn_71008de9d4,unknown,game/components?,U
 0x71008deae8,32,fn_71008deae8,unknown,game/components?,U
-0x71008deb08,168,fn_71008deb08,unknown,game/components?,U
+0x71008deb08,168,fn_71008deb08,unknown,game/components?,O
 0x71008debb0,432,fn_71008debb0,unknown,game/components?,U
 0x71008ded60,248,fn_71008ded60,unknown,game/components?,U
 0x71008dee60,780,fn_71008dee60,unknown,game/components?,U
