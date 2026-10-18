@@ -4,7 +4,7 @@ For the next developer, human or AI, picking up this project. Read this, then `C
 (rules and conventions), `docs/recon.md` (what's in the binary), `docs/compiler.md`
 (toolchain), and `docs/references.md` (outside projects).
 
-Snapshot as of 2026-10-17 (fourth Phase 4 session; last commit `Phase 4.3: lifter tail calls in sret functions`, branch `phase-4-3-static-getters`, stacked on `phase-4-3-pointee-getters` (var-flotsam/dread-decomp#13)). Target: **Metroid Dread 2.1.0**, `main` build ID
+Snapshot as of 2026-10-17 (fourth Phase 4 session; last commit `Phase 4.3: HANDOFF for lifter stack locals and instruction coverage`, branch `phase-4-3-lifter-stack`; earlier work merged in var-flotsam/dread-decomp#13 and #14). Target: **Metroid Dread 2.1.0**, `main` build ID
 `646761F643AFEBB379EDD5E6A5151AF2CEF93DC1`.
 
 ## Where things stand
@@ -18,14 +18,14 @@ Snapshot as of 2026-10-17 (fourth Phase 4 session; last commit `Phase 4.3: lifte
 | 4.1 System headers | **Done.** `lib/nnsdk` + `lib/musl` submodules, libc++ 9.0.1 headers, `tools/buildcfg.py` |
 | 4.2 Lua | **Done.** Upstream 5.1.4 vendored in `lib/lua/` (2 marked config changes); 286 Lua functions located in `main` by `tools/sigmatch.py` (status `L`) |
 | 4.3 Reflection | **In progress.** 1,878 of 2,346 class getters; all 1,010 other `CClass` descriptor constructors (skipped TUs and getter-less types); 1,745 of 1,956 class attribute/member-field functions, 478 other registration functions and all 1,006 out-of-line reflected-function initialisers (`src/reflection/`, `tools/gen_reflection.py`, `tools/refl_attrs.py`). Pointer types: 993 standalone getter/constructor pairs plus 108 generated in their pointee's TU; all 238 `CEnumType` constructors (`src/reflection_types/`, `tools/gen_types.py`) |
-| Small functions | **In progress.** `tools/gen_lift.py` lifts functions of up to 512 bytes from their instructions and keeps byte-identical ones: 42,599 functions, 1.59 MB (`src/lifted/`; sret functions; a goto-based flat mode for crossing branches and loops) |
+| Small functions | **In progress.** `tools/gen_lift.py` lifts functions of up to 512 bytes from their instructions and keeps byte-identical ones: 44,485 functions, 1.74 MB (`src/lifted/`; sret functions, stack locals, a goto-based flat mode for crossing branches and loops) |
 | Guarded statics | **In progress.** `tools/gen_statics.py`: attribute keys, static string ids, typed lookups and registries built on weak function-local statics (`include/base/reflection/UnkReflStatics.h`): 756 functions, 139 KB (`src/reflection_statics/`) |
 | 4.4 Core engine types | **In progress.** String ids (`CStrId`, `UnkStrId`), the growable array `base::UnkVector` and its allocator interface; reflected-function initialisers now match (below) |
 | 4.5+ Boot to title screen | Not started; plan below |
 | Port | Not started (`port/` is empty) |
 
-Function status (BotW codes): `O` 70,510, `m` 4, `M` 1, `L` 1,614, `U` 31,888.
-**Game-code progress: 33.10% of bytes (6.21 MB) matching** (`tools/progress.py`; library code
+Function status (BotW codes): `O` 72,402, `m` 4, `M` 1, `L` 1,614, `U` 29,996.
+**Game-code progress: 33.93% of bytes (6.37 MB) matching** (`tools/progress.py`; library code
 excluded; 15.34% at the start of this session). `tools/check.py` counts `src/` definitions,
 which differ slightly (matching `nn::atk` functions keep `L`; constructor aliases).
 
@@ -111,7 +111,7 @@ git submodule update --init                                       # lib/nnsdk, l
 .venv/Scripts/python tools/gen_reflection.py --version 2.1.0
 .venv/Scripts/python tools/gen_types.py --version 2.1.0            # ~20 s
 .venv/Scripts/python tools/gen_statics.py --version 2.1.0          # ~20 s
-.venv/Scripts/python tools/gen_lift.py --version 2.1.0             # ~5 min; run after the other generators
+.venv/Scripts/python tools/gen_lift.py --version 2.1.0             # ~15 min; run after the other generators
 .venv/Scripts/python tools/check.py --version 2.1.0 --update       # ~35 s, parallel
 .venv/Scripts/python tools/objdiff_gen.py --version 2.1.0          # then open the repo in objdiff
 .venv/Scripts/python tools/progress.py
@@ -210,9 +210,19 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
      `CType` constructor whose kind hash and name share one string), 55 × 356 B serialisers,
      37 × 456 B and 46 pointer getters whose pointee is in a skipped TU. Add a kind: a template
      in `UnkReflStatics.h`, a reference address in `REFERENCES`, its constants in `facts()`.
-   - **Stack locals** (`add x0, sp, #8`, `sub x2, x29, #4`) are the most common lifter blocker
-     left (CStrId temporaries, values passed by reference). Clang's frame layout would have to
-     be reproduced; try a local array at a guessed offset as variants.
+   - Stack locals are handled (one `char` array over the gap between save slots, or over the
+     bytes accessed; `STACK_LAYOUTS`), but only ~22% of those functions match. Parameters first
+     read as `w<n>` are `u32` (this fixed many `mov w2, w1` vs `mov x2, x1` mismatches).
+   - Mismatches now dominate (~64,000 lifted, 44,485 match). Largest causes: callee-saved
+     register choice (`mov x21, x3` vs `mov x22, x3`) and store scheduling in large
+     constructors. Remaining unlifted (~4.6 MB): guarded statics (`ldarb`, 1.2 MB),
+     `ccmp`, float arithmetic, early returns of values set on only one path.
+   - **`CCollectionType` constructors** (205, 101 KB): `CType` + u32 at `+0xe0`, key type
+     (`+0xe8`), element type (`+0xf0`: the element class's descriptor address, so its getter is
+     in the same TU), iterator and const-iterator pointer types (`+0xf8`, `+0x100`: the 46
+     unmatched pointer getters such as `fn_7100009838`), then ~13 function pointers. A template
+     like `CPointerType`'s, generated into the element class's TU file, would cover them and
+     their getters.
    - sret (`x8` read first) and crossing branches/loops are handled (UnkResult built in place;
      `FlatLifter` with gotos), but only ~25% of flat-mode lifts match; the rest differ in
      register allocation or block layout.

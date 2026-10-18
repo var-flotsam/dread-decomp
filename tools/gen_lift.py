@@ -55,6 +55,8 @@ NAME_RE = re.compile(r"^[A-Za-z_][\w:<>,*& ]*\bfn_([0-9a-f]{10})\(")  # a declar
 # doesn't turn a final call into a tail call, as in the original's `bl; ret`).
 VARIANTS = [(n, mode) for n in range(3) for mode in ("value", "void", "ref")]
 # The same, through FlatLifter, for functions no structured variant can lift.
+# Layouts of the stack-locals array, (span, alignment), for functions with locals.
+STACK_LAYOUTS = [("gap", 16), ("gap", 8), ("tight", 8)]
 
 CS = capstone.Cs(capstone.CS_ARCH_ARM64, capstone.CS_MODE_ARM)
 CS.detail = True
@@ -91,7 +93,7 @@ def is_frame(x) -> bool:
     if m in ("stp", "str", "ldp", "ldr") and mem and regname(mem[0].mem.base) == "sp":
         regs = [regname(op.reg) for op in o if op.type == arm64.ARM64_OP_REG]
         return all(r in ("x29", "x30") or (r[0] == "x" and r[1:].isdigit() and 19 <= int(r[1:]) <= 28)
-                   for r in regs)
+                   or (r[0] == "d" and r[1:].isdigit() and 8 <= int(r[1:]) <= 15) for r in regs)
     if m in ("add", "sub") and len(o) == 3 and o[2].type == arm64.ARM64_OP_IMM:
         return (regname(o[0].reg), regname(o[1].reg)) in (("x29", "sp"), ("sp", "sp"))
     return m == "mov" and len(o) == 2 and regname(o[0].reg) == "x29" and regname(o[1].reg) == "sp"
@@ -137,8 +139,11 @@ class Block:
 
 
 class Lifter:
-    def __init__(self, orig: asmdiff.Original, addr: int, extra: int, returns: bool):
+    def __init__(self, orig: asmdiff.Original, addr: int, extra: int, returns: bool,
+                 stack: tuple[str, int] | None = None):
         self.orig, self.addr, self.extra, self.returns = orig, addr, extra, returns
+        self.stack = stack            # (layout, alignment) of the locals array; None: no locals
+        self.frame: dict | None = None
         self.s = State()
         self.live = True
         self.params: dict[int, str] = {}  # key -> C type
@@ -177,7 +182,7 @@ class Lifter:
         if n not in s.vals:
             if s.called or (n > 8 and not 100 <= n <= 107):
                 raise Unsupported(r)
-            t = "char*" if n < 100 else ("f32" if r[0] == "s" else "f64")
+            t = ("u32" if r[0] == "w" else "char*") if n < 100 else ("f32" if r[0] == "s" else "f64")
             if n == 8:
                 # The indirect result register: the function returns a struct built in place.
                 self.sret = True
@@ -321,9 +326,21 @@ class Lifter:
 
     def address(self, x, op) -> str:
         """The memory operand's address; applies pre/post-index writeback to the base."""
-        if op.mem.index or op.shift.type:
-            raise Unsupported("indexed")
         base_reg = regname(op.mem.base)
+        if op.mem.index:
+            # Register offset: base + extend(index) << shift.
+            if x.writeback or base_reg in ("sp", "x29") or self.key(base_reg) in self.s.pages:
+                raise Unsupported("indexed")
+            idx, _ = self.read(regname(op.mem.index))
+            base, _ = self.read(base_reg)
+            return f"((char*)({base}) + {self.extend(idx, op, 'u64')})"
+        if op.shift.type:
+            raise Unsupported("indexed")
+        if base_reg in ("sp", "x29"):
+            if x.writeback or not self.frame:
+                raise Unsupported("stack writeback")
+            base = self.frame["sp"] if base_reg == "sp" else self.frame["fp"]
+            return self.local(base + op.mem.disp)
         n = self.key(base_reg)
         if n in self.s.pages:
             if x.writeback:
@@ -343,14 +360,36 @@ class Lifter:
 
     def operand(self, op, like: str) -> tuple[str, str]:
         if op.type == arm64.ARM64_OP_IMM:
-            if op.shift.type:
+            if op.shift.type and op.shift.type != arm64.ARM64_SFT_LSL:
                 raise Unsupported("shifted imm")
-            return str(op.imm), width_type(like)
+            return str(op.imm << (op.shift.value if op.shift.type else 0)), width_type(like)
         if op.type == arm64.ARM64_OP_REG:
-            if op.shift.type or op.ext:
-                raise Unsupported("shifted reg")
-            return self.read(regname(op.reg))
+            v, t = self.read(regname(op.reg))
+            if not op.shift.type and not op.ext:
+                return v, t
+            return self.extend(v, op, width_type(like)), width_type(like)
         raise Unsupported("operand")
+
+    def extend(self, v: str, op, t: str) -> str:
+        """A register operand's extension (uxtw, sxtb, ...) and shift, as an expression of type t."""
+        ext = {arm64.ARM64_EXT_UXTB: "u8", arm64.ARM64_EXT_UXTH: "u16", arm64.ARM64_EXT_UXTW: "u32",
+               arm64.ARM64_EXT_UXTX: "u64", arm64.ARM64_EXT_SXTB: "s8", arm64.ARM64_EXT_SXTH: "s16",
+               arm64.ARM64_EXT_SXTW: "s32", arm64.ARM64_EXT_SXTX: "s64", 0: None}.get(op.ext, "?")
+        if ext == "?":
+            raise Unsupported("extension")
+        e = f"({t})({ext})(u64)({v})" if ext else f"({t})(u64)({v})"
+        if op.shift.type:
+            k = op.shift.value
+            if op.shift.type == arm64.ARM64_SFT_LSL:
+                e = f"({t})({e} << {k})"
+            elif op.shift.type == arm64.ARM64_SFT_LSR:
+                e = f"({t})({e} >> {k})"
+            elif op.shift.type == arm64.ARM64_SFT_ASR:
+                st = "s64" if t == "u64" else "s32"
+                e = f"({t})(({st})({e}) >> {k})"
+            else:
+                raise Unsupported("shift")
+        return e
 
     def cond(self, cc: int, negate: bool) -> str:
         if cc not in CONDS or not self.s.cmp:
@@ -406,6 +445,8 @@ class Lifter:
             return None
         end = addr + len(code)
         last = ins[-1].address
+        if not self.setup_frame(ins):
+            return None
         try:
             for x in ins:
                 self.close_to(x.address)
@@ -483,15 +524,94 @@ class Lifter:
         return self.signature(rtype, self.body), self.decls
 
     def signature(self, rtype: str, body: list[str]) -> str:
-        ints = [f"char* p{n}" for n in range(max([k for k in self.params if k < 100], default=-1) + 1)]
+        # A parameter first read as w<n> is 32-bit (u32), otherwise a pointer.
+        ints = [f"{self.params.get(n, 'char*')} p{n}"
+                for n in range(max([k for k in self.params if k < 100], default=-1) + 1)]
         floats = [f"{self.params.get(100 + n, 'f32')} f{n}"
                   for n in range(max([k - 100 for k in self.params if k >= 100], default=-1) + 1)]
+        if self.frame:
+            f = self.frame
+            body = [f"    alignas({f['align']}) char stk[{f['size']:#x}];"] + body
         return "\n".join([f"{rtype} fn_{self.addr:x}({', '.join(ints + floats)}) {{", *body, "}"])
+
+    def setup_frame(self, ins) -> bool:
+        """Stack locals: the prologue gives sp and fp (offsets from sp at entry) and the save
+        slots; the locals become one char array over the gap between save slots that holds the
+        lowest local ("gap"), or over just the bytes accessed ("tight")."""
+        delta, fp, saves = 0, None, []
+        k = 0
+        while k < len(ins) and is_frame(ins[k]):
+            x = ins[k]
+            m, o = x.mnemonic, x.operands
+            if m == "sub" and regname(o[0].reg) == "sp":
+                delta -= o[2].imm
+            elif m == "add" and regname(o[0].reg) == "x29":
+                fp = delta + o[2].imm
+            elif m == "mov" and regname(o[0].reg) == "x29":
+                fp = delta
+            elif m in ("stp", "str"):
+                mem = [op for op in o if op.type == arm64.ARM64_OP_MEM][0]
+                if x.writeback:
+                    delta += mem.mem.disp
+                    at = delta
+                else:
+                    at = delta + mem.mem.disp
+                n = len([op for op in o if op.type == arm64.ARM64_OP_REG])
+                saves.append((at, at + 8 * n))
+            k += 1
+        refs = []  # (offset from sp at entry, size)
+        for x in ins[k:]:
+            if is_frame(x):
+                continue
+            o = x.operands
+            for op in o:
+                if op.type == arm64.ARM64_OP_MEM and regname(op.mem.base) in ("sp", "x29"):
+                    base = delta if regname(op.mem.base) == "sp" else fp
+                    if base is None or x.writeback:
+                        return False
+                    regs = [r for r in o if r.type == arm64.ARM64_OP_REG]
+                    w = {"b": 1, "h": 2}.get(x.mnemonic[-1], 8 if regname(regs[0].reg)[0] in "xd" else 4)
+                    refs.append((base + op.mem.disp, w * len(regs)))
+            if x.mnemonic in ("add", "sub", "mov") and len(o) >= 2 and o[1].type == arm64.ARM64_OP_REG \
+                    and regname(o[1].reg) in ("sp", "x29") and regname(o[0].reg) not in ("sp", "x29"):
+                base = delta if regname(o[1].reg) == "sp" else fp
+                if base is None or (len(o) == 3 and o[2].type != arm64.ARM64_OP_IMM):
+                    return False
+                imm = o[2].imm if len(o) == 3 else 0
+                refs.append((base + (-imm if x.mnemonic == "sub" else imm), 1))
+        if not refs:
+            self.frame = None
+            return True
+        if self.stack is None:
+            return False
+        lo = min(r[0] for r in refs)
+        hi = max(r[0] + r[1] for r in refs)
+        layout, align = self.stack
+        if layout == "gap":
+            start = max([e for s, e in saves if e <= lo] + [delta])
+            end = min([s for s, e in saves if s > lo] + [max(hi, 0)])
+        else:
+            start, end = lo, lo + ((hi - lo + 7) & ~7)
+        if not (start <= lo and hi <= end):
+            return False
+        self.frame = {"sp": delta, "fp": fp, "start": start, "size": end - start, "align": align}
+        return True
+
+    def local(self, offset: int) -> str:
+        """The address of the stack location `offset` bytes from sp at entry."""
+        return f"(stk + {offset - self.frame['start']:#x})"
 
     def step(self, x, last: int) -> bool:
         m, o = x.mnemonic, x.operands
+        if self.frame and m in ("add", "sub", "mov") and len(o) >= 2 and o[1].type == arm64.ARM64_OP_REG \
+                and regname(o[1].reg) in ("sp", "x29") and regname(o[0].reg) not in ("sp", "x29"):
+            base = self.frame["sp"] if regname(o[1].reg) == "sp" else self.frame["fp"]
+            imm = o[2].imm if len(o) == 3 else 0
+            self.write(regname(o[0].reg), self.local(base + (-imm if m == "sub" else imm)), "char*")
+            return True
         if any(op.type == arm64.ARM64_OP_REG and regname(op.reg) == "sp" for op in o) or \
-                any(op.type == arm64.ARM64_OP_MEM and regname(op.mem.base) in ("sp", "x29") for op in o):
+                (not self.frame and any(op.type == arm64.ARM64_OP_MEM and regname(op.mem.base) in ("sp", "x29")
+                                        for op in o)):
             return False
         mem = [op for op in o if op.type == arm64.ARM64_OP_MEM]
         if x.writeback and not (mem and m in tuple(LOADS) + tuple(STORES) + ("stp", "ldp")):
@@ -564,6 +684,15 @@ class Lifter:
                 rt = regname(o[k].reg)
                 t = width_type(rt)
                 self.write(rt, f"*({t}*)({tmp} + {k * (8 if t == 'u64' else 4)})", t)
+        elif m == "mov" and len(o) == 2 and regname(o[0].reg)[0] == "v" and o[1].type == arm64.ARM64_OP_REG \
+                and regname(o[1].reg)[0] == "v":
+            # A whole-register float copy (mov vD.16b, vS.16b): keep the source's width.
+            src = 100 + int(regname(o[1].reg)[1:])
+            t = self.s.vals.get(src, ("", self.params.get(src, "f32")))[1] if src in self.s.vals \
+                else getattr(self, "types", {}).get(src, "f32")
+            letter = "s" if t == "f32" else "d"
+            v, _ = self.read(f"{letter}{src - 100}")
+            self.write(f"{letter}{regname(o[0].reg)[1:]}", v, t)
         elif m in ("mov", "movz") and len(o) == 2:
             rd = regname(o[0].reg)
             if o[1].type == arm64.ARM64_OP_IMM:
@@ -615,6 +744,95 @@ class Lifter:
             t = width_type(rd)
             st = t if m != "asr" else ("s64" if t == "u64" else "s32")
             self.write(rd, f"({t})(({st})(u64)({a}) {'<<' if m == 'lsl' else '>>'} {o[2].imm})", t)
+        elif m in ("subs", "adds", "ands") and len(o) == 3:
+            # The operation, then flags: subs compares its operands; adds/ands compare the
+            # result with zero (enough for eq/ne and the signed conditions).
+            rd = regname(o[0].reg)
+            if rd[0] not in "xw" and rd not in ("xzr", "wzr"):
+                return False
+            t = width_type(rd)
+            a, _ = self.read(regname(o[1].reg))
+            b, _ = self.operand(o[2], rd)
+            op = {"subs": "-", "adds": "+", "ands": "&"}[m]
+            res = f"({t})(u64)({a}) {op} ({t})({b})"
+            if m == "subs":
+                s.cmp = (a, b, rd[0])
+                self.write(rd, res, t)
+            else:
+                self.write(rd, res, t)
+                s.cmp = (self.read(rd)[0] if rd not in ("xzr", "wzr") else f"({res})", "0", rd[0])
+        elif m in ("cmn", "tst") and len(o) == 2:
+            a, _ = self.read(regname(o[0].reg))
+            b, _ = self.operand(o[1], regname(o[0].reg))
+            t = width_type(regname(o[0].reg))
+            s.cmp = (f"({t})(({t})(u64)({a}) {'+' if m == 'cmn' else '&'} ({t})({b}))", "0", regname(o[0].reg)[0])
+        elif m in ("csel", "csinc", "csneg", "csinv") and len(o) == 3:
+            rd = regname(o[0].reg)
+            if rd[0] not in "xw":
+                return False
+            t = width_type(rd)
+            a, _ = self.read(regname(o[1].reg))
+            b, _ = self.read(regname(o[2].reg))
+            b = {"csel": f"({t})(u64)({b})", "csinc": f"({t})(u64)({b}) + 1",
+                 "csneg": f"-({t})(u64)({b})", "csinv": f"~({t})(u64)({b})"}[m]
+            self.write(rd, f"({self.cond(x.cc, False)}) ? ({t})(u64)({a}) : ({t})({b})", t)
+        elif m in ("mul", "udiv", "sdiv", "lslv", "lsrv", "asrv") or \
+                (m in ("lsl", "lsr", "asr") and len(o) == 3 and o[2].type == arm64.ARM64_OP_REG):
+            rd = regname(o[0].reg)
+            if rd[0] not in "xw":
+                return False
+            t = width_type(rd)
+            st = "s64" if t == "u64" else "s32"
+            a, _ = self.read(regname(o[1].reg))
+            b, _ = self.read(regname(o[2].reg))
+            m2 = m[:-1] if m in ("lslv", "lsrv", "asrv") else m
+            if m2 in ("sdiv", "asr"):
+                op = "/" if m2 == "sdiv" else ">>"
+                self.write(rd, f"({t})(({st})(u64)({a}) {op} ({st})(u64)({b}))", t)
+            else:
+                op = {"mul": "*", "udiv": "/", "lsl": "<<", "lsr": ">>"}[m2]
+                self.write(rd, f"({t})(u64)({a}) {op} ({t})(u64)({b})", t)
+        elif m in ("madd", "msub") and len(o) == 4:
+            rd = regname(o[0].reg)
+            if rd[0] not in "xw":
+                return False
+            t = width_type(rd)
+            a, _ = self.read(regname(o[1].reg))
+            b, _ = self.read(regname(o[2].reg))
+            c, _ = self.read(regname(o[3].reg))
+            self.write(rd, f"({t})(u64)({c}) {'+' if m == 'madd' else '-'} ({t})(u64)({a}) * ({t})(u64)({b})", t)
+        elif m in ("umull", "smull", "umaddl", "smaddl") and len(o) >= 3:
+            rd = regname(o[0].reg)
+            w = "u32" if m[0] == "u" else "s32"
+            a, _ = self.read(regname(o[1].reg))
+            b, _ = self.read(regname(o[2].reg))
+            prod = f"(u64)({w})(u64)({a}) * (u64)({w})(u64)({b})"
+            if len(o) == 4:
+                c, _ = self.read(regname(o[3].reg))
+                prod = f"(u64)({c}) + {prod}"
+            self.write(rd, prod, "u64")
+        elif m in ("mvn", "neg") and len(o) == 2:
+            rd = regname(o[0].reg)
+            if rd[0] not in "xw":
+                return False
+            t = width_type(rd)
+            b, _ = self.operand(o[1], rd)
+            self.write(rd, f"{'~' if m == 'mvn' else '-'}({t})(u64)({b})", t)
+        elif m in ("ubfx", "sbfx", "ubfiz", "sbfiz") and len(o) == 4:
+            rd = regname(o[0].reg)
+            t = width_type(rd)
+            st = "s64" if t == "u64" else "s32"
+            bits = 64 if t == "u64" else 32
+            a, _ = self.read(regname(o[1].reg))
+            lsb, width = o[2].imm, o[3].imm
+            if m in ("ubfx", "ubfiz"):
+                field = f"(({t})(u64)({a}) >> {lsb} & ({t}){(1 << width) - 1:#x})" if m == "ubfx" \
+                    else f"(({t})(u64)({a}) & ({t}){(1 << width) - 1:#x})"
+            else:
+                src = f"({st})(({t})(u64)({a}) << {bits - width - (lsb if m == 'sbfx' else 0)})" if m == "sbfx" \
+                    else f"({st})(({t})(u64)({a}) << {bits - width})"
+                field = f"(({src}) >> {bits - width})"
+            self.write(rd, f"({t})({field}){f' << {lsb}' if m.endswith('iz') else ''}", t)
         elif m == "cmp" and len(o) == 2:
             a, _ = self.read(regname(o[0].reg))
             b, _ = self.operand(o[1], regname(o[0].reg))
@@ -655,8 +873,9 @@ class FlatLifter(Lifter):
     is a mutable local (integers as u64), branches are gotos to labels. mem2reg rebuilds the
     same SSA form, so the code usually comes out the same."""
 
-    def __init__(self, orig: asmdiff.Original, addr: int, extra: int, returns: str):
-        super().__init__(orig, addr, extra, returns)
+    def __init__(self, orig: asmdiff.Original, addr: int, extra: int, returns: str,
+                 stack: tuple[str, int] | None = None):
+        super().__init__(orig, addr, extra, returns, stack)
         self.types: dict[int, str] = {}  # register key -> C type of its current value (linear)
         self.temps = 0
 
@@ -686,7 +905,7 @@ class FlatLifter(Lifter):
                 self.sret = True
                 self.types[8] = "char*"
             else:
-                t = "char*" if n < 100 else ("f32" if r[0] == "s" else "f64")
+                t = ("u32" if r[0] == "w" else "char*") if n < 100 else ("f32" if r[0] == "s" else "f64")
                 self.params[n] = t
                 self.types[n] = t
         t = self.types[n]
@@ -741,6 +960,8 @@ class FlatLifter(Lifter):
             return None
         end = addr + len(code)
         last = ins[-1].address
+        if not self.setup_frame(ins):
+            return None
         targets = set()
         for x in ins:
             for op in x.operands:
@@ -838,6 +1059,17 @@ def main() -> int:
             if r:
                 defs[a] = r
         lifted.append(defs)
+    # Functions with stack locals: each layout of the locals array, structured then flat.
+    rest = [a for a in rest if not any(a in d for d in lifted)]
+    for stack in STACK_LAYOUTS:
+        for cls in (Lifter, FlatLifter):
+            for extra, returns in VARIANTS:
+                defs = {}
+                for a in rest:
+                    r = cls(orig, a, extra, returns, stack).lift()
+                    if r:
+                        defs[a] = r
+                lifted.append(defs)
 
     def build(job: tuple[int, int]) -> set[int]:
         k, part = job
