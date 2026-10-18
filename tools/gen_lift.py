@@ -146,6 +146,7 @@ class Lifter:
         self.blocks: list[Block] = []
         self.rets: list[tuple[int, str, tuple | None]] = []  # (line, "value"|"tail", payload)
         self.phis = 0
+        self.sret = False
 
     @property
     def depth(self) -> int:
@@ -173,11 +174,16 @@ class Lifter:
         if n in s.pages or n in s.poison:
             raise Unsupported("unknown value")
         if n not in s.vals:
-            if s.called or (n > 7 and not 100 <= n <= 107):
+            if s.called or (n > 8 and not 100 <= n <= 107):
                 raise Unsupported(r)
             t = "char*" if n < 100 else ("f32" if r[0] == "s" else "f64")
-            self.params[n] = t
-            v = (f"p{n}" if n < 100 else f"f{n - 100}", t)
+            if n == 8:
+                # The indirect result register: the function returns a struct built in place.
+                self.sret = True
+                v = ("(char*)&ret", t)
+            else:
+                self.params[n] = t
+                v = (f"p{n}" if n < 100 else f"f{n - 100}", t)
             # A parameter holds on every path that hasn't made a call.
             for st in [s] + [b.before for b in self.blocks] + [b.then for b in self.blocks if b.then]:
                 if not st.called and n not in st.vals and n not in st.poison:
@@ -426,6 +432,12 @@ class Lifter:
 
     def finish(self) -> tuple[str, set[str]] | None:
         tails = any(k == "tail" for _, k, _ in self.rets)
+        if self.sret:
+            if tails or self.returns != "value":
+                return None
+            for ln, _, _ in self.rets:
+                self.body[ln] = self.body[ln].replace("@RET@", "return ret;")
+            return self.signature("UnkResult", ["    UnkResult ret;"] + self.body), self.decls
         if self.returns != "void":
             if any(k == "value" and p is None for _, k, p in self.rets):
                 return None
@@ -456,10 +468,13 @@ class Lifter:
             else:
                 s = f"return ({rtype})(u64)({p[0]});"
             self.body[ln] = ind + s
+        return self.signature(rtype, self.body), self.decls
+
+    def signature(self, rtype: str, body: list[str]) -> str:
         ints = [f"char* p{n}" for n in range(max([k for k in self.params if k < 100], default=-1) + 1)]
         floats = [f"{self.params.get(100 + n, 'f32')} f{n}"
                   for n in range(max([k - 100 for k in self.params if k >= 100], default=-1) + 1)]
-        return "\n".join([f"{rtype} fn_{self.addr:x}({', '.join(ints + floats)}) {{", *self.body, "}"]), self.decls
+        return "\n".join([f"{rtype} fn_{self.addr:x}({', '.join(ints + floats)}) {{", *body, "}"])
 
     def step(self, x, last: int) -> bool:
         m, o = x.mnemonic, x.operands
@@ -640,7 +655,9 @@ def candidates(orig: asmdiff.Original) -> list[int]:
     return [a for a in rows if a not in skip and orig.sizes.get(a, MAX_SIZE + 1) <= MAX_SIZE]
 
 
-HEADER = ['#include "types.h"', '#define HIDDEN __attribute__((visibility("hidden")))', ""]
+HEADER = ['#include "types.h"', '#define HIDDEN __attribute__((visibility("hidden")))',
+          "// Returned in memory through x8 (built in place); the real size is unknown.",
+          "struct UnkResult { char data[0x100]; };", ""]
 
 
 def main() -> int:
