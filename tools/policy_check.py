@@ -6,7 +6,9 @@ Rejects (as tools/hooks/pre-commit does for staged files, plus content checks):
   - console binaries, containers and key files by extension;
   - files over 1 MB;
   - text that looks like an assembly listing (several consecutive address + AArch64
-    instruction lines) or a key file (`name = <32+ hex digits>` lines).
+    instruction lines) or a key file (`name = <32+ hex digits>` lines);
+  - personal data: a home directory path with a user name in it, or an email address other
+    than a GitHub noreply address.
 
 Usage:
   python tools/policy_check.py                 # every tracked file
@@ -30,6 +32,17 @@ FORBIDDEN_EXT = {".nso", ".nro", ".nca", ".nsp", ".xci", ".nsz", ".xcz", ".keys"
 INSN = r"(?:ldr|ldp|str|stp|adrp|add|sub|mov|bl|blr|br|b|cbz|cbnz|ret|cmp|tbz|tbnz|fmov|ldarb)"
 LISTING = re.compile(rf"(?:^[ \t]*(?:0x)?71[0-9a-f]{{8}}:?[ \t]+{INSN}\b[^\n]*\n){{4,}}", re.M | re.I)
 KEYS = re.compile(r"(?:^[ \t]*[a-z_0-9]+[ \t]*=[ \t]*[0-9a-f]{32,}[ \t]*\n){2,}", re.M | re.I)
+# A personal home directory: C:\Users\<name>\..., /c/Users/<name>/..., /home/<name>/..., /Users/<name>/...
+# (environment-variable forms like %USERPROFILE% and $HOME, and <placeholders>, are fine).
+HOME_PATH = re.compile(r"(?:\b[A-Za-z]:[\\/]+Users[\\/]+|/[a-z]/Users/|(?<![\w.])/home/|(?<![\w.])/Users/)"
+                       r"(?!Public\b|Default\b|<|%|\$|\{)[\w.-]+[\\/]", re.I)
+# A personal email address (GitHub noreply addresses and placeholder domains are fine).
+EMAIL = re.compile(r"\b[\w.+-]+@(?!users\.noreply\.github\.com\b|anthropic\.com\b|example\.(?:com|org)\b)"
+                   r"[\w-]+(?:\.[\w-]+)*\.[a-z]{2,}\b", re.I)
+
+# Files that legitimately contain addresses (licenses and vendored code credit their authors).
+EMAIL_ALLOWED_PREFIXES = ("lib/",)
+EMAIL_ALLOWED: set[str] = {"LICENSE"}
 
 
 def tracked(base: str | None) -> list[str]:
@@ -62,6 +75,12 @@ def problems(path: str) -> list[str]:
         out.append("looks like an assembly listing")
     if KEYS.search(text):
         out.append("looks like a key file")
+    m = HOME_PATH.search(text)
+    if m:
+        out.append(f"contains a personal home path ({m.group(0)!r}); use %USERPROFILE%, $HOME or a placeholder")
+    m = EMAIL.search(text)
+    if m and path not in EMAIL_ALLOWED and not path.startswith(EMAIL_ALLOWED_PREFIXES):
+        out.append(f"contains an email address ({m.group(0)!r})")
     return out
 
 
