@@ -177,7 +177,7 @@ address,size,name,name_source,subsystem,status
 0x7100606404,240,fn_7100606404,unknown,game/components?,U
 0x71006064f4,40,fn_71006064f4,unknown,game/components?,O
 0x710060651c,4,fn_710060651c,unknown,game/components?,O
-0x7100606520,108,fn_7100606520,unknown,game/components?,U
+0x7100606520,108,fn_7100606520,unknown,game/components?,O
 0x710060658c,220,fn_710060658c,unknown,game/components?,O
 0x7100606668,72,fn_7100606668,unknown,game/components?,O
 0x71006066b0,4,fn_71006066b0,unknown,game/components?,O
@@ -199,7 +199,7 @@ address,size,name,name_source,subsystem,status
 0x7100606b7c,28,fn_7100606b7c,unknown,game/components?,O
 0x7100606b98,64,fn_7100606b98,unknown,game/components?,O
 0x7100606bd8,4,fn_7100606bd8,unknown,game/components?,O
-0x7100606bdc,84,fn_7100606bdc,unknown,game/components?,U
+0x7100606bdc,84,fn_7100606bdc,unknown,game/components?,O
 0x7100606c30,392,fn_7100606c30,unknown,game/components?,U
 0x7100606db8,4,fn_7100606db8,unknown,game/components?,O
 0x7100606dbc,244,CKraidShockerSplashMovementComponent::refl_GetClass,reflection,game/components,O
@@ -1665,7 +1665,7 @@ address,size,name,name_source,subsystem,status
 0x710063f310,456,fn_710063f310,unknown,unknown,U
 0x710063f4d8,36,fn_710063f4d8,unknown,unknown,O
 0x710063f4fc,172,fn_710063f4fc,unknown,unknown,U
-0x710063f5a8,128,fn_710063f5a8,unknown,unknown,U
+0x710063f5a8,128,fn_710063f5a8,unknown,unknown,O
 0x710063f628,60,fn_710063f628,unknown,unknown,U
 0x710063f664,132,fn_710063f664,unknown,unknown,O
 0x710063f6e8,604,fn_710063f6e8,unknown,unknown,U
@@ -2647,7 +2647,7 @@ address,size,name,name_source,subsystem,status
 0x710066a4b0,180,fn_710066a4b0,unknown,unknown,U
 0x710066a564,96,fn_710066a564,unknown,unknown,U
 0x710066a5c4,4,fn_710066a5c4,unknown,unknown,O
-0x710066a5c8,92,fn_710066a5c8,unknown,unknown,U
+0x710066a5c8,92,fn_710066a5c8,unknown,unknown,O
 0x710066a624,316,fn_710066a624,unknown,unknown,U
 0x710066a760,640,fn_710066a760,unknown,unknown,U
 0x710066a9e0,392,fn_710066a9e0,unknown,unknown,U
@@ -3933,7 +3933,7 @@ address,size,name,name_source,subsystem,status
 0x710069b8a0,380,fn_710069b8a0,unknown,unknown,U
 0x710069ba1c,24,fn_710069ba1c,unknown,unknown,O
 0x710069ba34,536,fn_710069ba34,unknown,unknown,U
-0x710069bc4c,68,fn_710069bc4c,unknown,unknown,U
+0x710069bc4c,68,fn_710069bc4c,unknown,unknown,O
 0x710069bc90,856,fn_710069bc90,unknown,unknown,U
 0x710069bfe8,1528,fn_710069bfe8,unknown,unknown,U
 0x710069c5e0,184,fn_710069c5e0,unknown,unknown,U
@@ -4595,7 +4595,7 @@ address,size,name,name_source,subsystem,status
 0x71006bd8bc,688,fn_71006bd8bc,unknown,unknown,U
 0x71006bdb6c,4,fn_71006bdb6c,unknown,unknown,O
 0x71006bdb70,148,fn_71006bdb70,unknown,unknown,O
-0x71006bdc04,104,fn_71006bdc04,unknown,unknown,U
+0x71006bdc04,104,fn_71006bdc04,unknown,unknown,O
 0x71006bdc6c,28,fn_71006bdc6c,unknown,unknown,O
 0x71006bdc88,36,fn_71006bdc88,unknown,unknown,O
 0x71006bdcac,8,fn_71006bdcac,unknown,unknown,O
@@ -4648,7 +4648,7 @@ address,size,name,name_source,subsystem,status
 0x71006beedc,36,fn_71006beedc,unknown,unknown,O
 0x71006bef00,120,fn_71006bef00,unknown,unknown,U
 0x71006bef78,320,fn_71006bef78,unknown,unknown,U
-0x71006bf0b8,128,fn_71006bf0b8,unknown,unknown,U
+0x71006bf0b8,128,fn_71006bf0b8,unknown,unknown,O
 0x71006bf138,28,fn_71006bf138,unknown,unknown,O
 0x71006bf154,132,fn_71006bf154,unknown,unknown,O
 0x71006bf1d8,8,fn_71006bf1d8,unknown,unknown,O
@@ -4743,7 +4743,7 @@ address,size,name,name_source,subsystem,status
 0x71006c4ca0,12,fn_71006c4ca0,unknown,unknown,O
 0x71006c4cac,8,fn_71006c4cac,unknown,unknown,O
 0x71006c4cb4,8,fn_71006c4cb4,unknown,unknown,O
-0x71006c4cbc,132,fn_71006c4cbc,unknown,unknown,U
+0x71006c4cbc,132,fn_71006c4cbc,unknown,unknown,O
 0x71006c4d40,160,fn_71006c4d40,unknown,unknown,O
 0x71006c4de0,4,fn_71006c4de0,unknown,unknown,O
 0x71006c4de4,244,CCharClassSluggerAIComponent::refl_GetClass,reflection,game/characters,U
@@ -5282,7 +5282,7 @@ address,size,name,name_source,subsystem,status
 0x71006d846c,8,fn_71006d846c,unknown,unknown,O
 0x71006d8474,8,fn_71006d8474,unknown,unknown,O
 0x71006d847c,24,fn_71006d847c,unknown,unknown,O
-0x71006d8494,116,fn_71006d8494,unknown,unknown,U
+0x71006d8494,116,fn_71006d8494,unknown,unknown,O
 0x71006d8510,160,fn_71006d8510,unknown,unknown,O
 0x71006d85b0,4,fn_71006d85b0,unknown,unknown,O
 0x71006d85b4,244,CCharClassVulkranAIComponent::refl_GetClass,reflection,game/characters,U
@@ -6000,7 +6000,7 @@ address,size,name,name_source,subsystem,status
 0x71006f9318,8,fn_71006f9318,unknown,unknown,O
 0x71006f9320,72,fn_71006f9320,unknown,unknown,U
 0x71006f9368,424,fn_71006f9368,unknown,unknown,U
-0x71006f9510,20,fn_71006f9510,unknown,unknown,U
+0x71006f9510,20,fn_71006f9510,unknown,unknown,O
 0x71006f9524,1116,fn_71006f9524,unknown,unknown,U
 0x71006f9980,456,fn_71006f9980,unknown,unknown,U
 0x71006f9b48,336,fn_71006f9b48,unknown,unknown,U

@@ -55,6 +55,8 @@ NAME_RE = re.compile(r"^[A-Za-z_][\w:<>,*& ]*\bfn_([0-9a-f]{10})\(")  # a declar
 # doesn't turn a final call into a tail call, as in the original's `bl; ret`).
 VARIANTS = [(n, mode) for n in range(3) for mode in ("value", "void", "ref")]
 # The same, through FlatLifter, for functions no structured variant can lift.
+# Layouts of the stack-locals array, (span, alignment), for functions with locals.
+STACK_LAYOUTS = [("gap", 16), ("gap", 8), ("tight", 8)]
 
 CS = capstone.Cs(capstone.CS_ARCH_ARM64, capstone.CS_MODE_ARM)
 CS.detail = True
@@ -137,8 +139,11 @@ class Block:
 
 
 class Lifter:
-    def __init__(self, orig: asmdiff.Original, addr: int, extra: int, returns: bool):
+    def __init__(self, orig: asmdiff.Original, addr: int, extra: int, returns: bool,
+                 stack: tuple[str, int] | None = None):
         self.orig, self.addr, self.extra, self.returns = orig, addr, extra, returns
+        self.stack = stack            # (layout, alignment) of the locals array; None: no locals
+        self.frame: dict | None = None
         self.s = State()
         self.live = True
         self.params: dict[int, str] = {}  # key -> C type
@@ -177,7 +182,7 @@ class Lifter:
         if n not in s.vals:
             if s.called or (n > 8 and not 100 <= n <= 107):
                 raise Unsupported(r)
-            t = "char*" if n < 100 else ("f32" if r[0] == "s" else "f64")
+            t = ("u32" if r[0] == "w" else "char*") if n < 100 else ("f32" if r[0] == "s" else "f64")
             if n == 8:
                 # The indirect result register: the function returns a struct built in place.
                 self.sret = True
@@ -324,6 +329,11 @@ class Lifter:
         if op.mem.index or op.shift.type:
             raise Unsupported("indexed")
         base_reg = regname(op.mem.base)
+        if base_reg in ("sp", "x29"):
+            if x.writeback or not self.frame:
+                raise Unsupported("stack writeback")
+            base = self.frame["sp"] if base_reg == "sp" else self.frame["fp"]
+            return self.local(base + op.mem.disp)
         n = self.key(base_reg)
         if n in self.s.pages:
             if x.writeback:
@@ -406,6 +416,8 @@ class Lifter:
             return None
         end = addr + len(code)
         last = ins[-1].address
+        if not self.setup_frame(ins):
+            return None
         try:
             for x in ins:
                 self.close_to(x.address)
@@ -483,15 +495,94 @@ class Lifter:
         return self.signature(rtype, self.body), self.decls
 
     def signature(self, rtype: str, body: list[str]) -> str:
-        ints = [f"char* p{n}" for n in range(max([k for k in self.params if k < 100], default=-1) + 1)]
+        # A parameter first read as w<n> is 32-bit (u32), otherwise a pointer.
+        ints = [f"{self.params.get(n, 'char*')} p{n}"
+                for n in range(max([k for k in self.params if k < 100], default=-1) + 1)]
         floats = [f"{self.params.get(100 + n, 'f32')} f{n}"
                   for n in range(max([k - 100 for k in self.params if k >= 100], default=-1) + 1)]
+        if self.frame:
+            f = self.frame
+            body = [f"    alignas({f['align']}) char stk[{f['size']:#x}];"] + body
         return "\n".join([f"{rtype} fn_{self.addr:x}({', '.join(ints + floats)}) {{", *body, "}"])
+
+    def setup_frame(self, ins) -> bool:
+        """Stack locals: the prologue gives sp and fp (offsets from sp at entry) and the save
+        slots; the locals become one char array over the gap between save slots that holds the
+        lowest local ("gap"), or over just the bytes accessed ("tight")."""
+        delta, fp, saves = 0, None, []
+        k = 0
+        while k < len(ins) and is_frame(ins[k]):
+            x = ins[k]
+            m, o = x.mnemonic, x.operands
+            if m == "sub" and regname(o[0].reg) == "sp":
+                delta -= o[2].imm
+            elif m == "add" and regname(o[0].reg) == "x29":
+                fp = delta + o[2].imm
+            elif m == "mov" and regname(o[0].reg) == "x29":
+                fp = delta
+            elif m in ("stp", "str"):
+                mem = [op for op in o if op.type == arm64.ARM64_OP_MEM][0]
+                if x.writeback:
+                    delta += mem.mem.disp
+                    at = delta
+                else:
+                    at = delta + mem.mem.disp
+                n = len([op for op in o if op.type == arm64.ARM64_OP_REG])
+                saves.append((at, at + 8 * n))
+            k += 1
+        refs = []  # (offset from sp at entry, size)
+        for x in ins[k:]:
+            if is_frame(x):
+                continue
+            o = x.operands
+            for op in o:
+                if op.type == arm64.ARM64_OP_MEM and regname(op.mem.base) in ("sp", "x29"):
+                    base = delta if regname(op.mem.base) == "sp" else fp
+                    if base is None or x.writeback:
+                        return False
+                    regs = [r for r in o if r.type == arm64.ARM64_OP_REG]
+                    w = {"b": 1, "h": 2}.get(x.mnemonic[-1], 8 if regname(regs[0].reg)[0] in "xd" else 4)
+                    refs.append((base + op.mem.disp, w * len(regs)))
+            if x.mnemonic in ("add", "sub", "mov") and len(o) >= 2 and o[1].type == arm64.ARM64_OP_REG \
+                    and regname(o[1].reg) in ("sp", "x29") and regname(o[0].reg) not in ("sp", "x29"):
+                base = delta if regname(o[1].reg) == "sp" else fp
+                if base is None or (len(o) == 3 and o[2].type != arm64.ARM64_OP_IMM):
+                    return False
+                imm = o[2].imm if len(o) == 3 else 0
+                refs.append((base + (-imm if x.mnemonic == "sub" else imm), 1))
+        if not refs:
+            self.frame = None
+            return True
+        if self.stack is None:
+            return False
+        lo = min(r[0] for r in refs)
+        hi = max(r[0] + r[1] for r in refs)
+        layout, align = self.stack
+        if layout == "gap":
+            start = max([e for s, e in saves if e <= lo] + [delta])
+            end = min([s for s, e in saves if s > lo] + [max(hi, 0)])
+        else:
+            start, end = lo, lo + ((hi - lo + 7) & ~7)
+        if not (start <= lo and hi <= end):
+            return False
+        self.frame = {"sp": delta, "fp": fp, "start": start, "size": end - start, "align": align}
+        return True
+
+    def local(self, offset: int) -> str:
+        """The address of the stack location `offset` bytes from sp at entry."""
+        return f"(stk + {offset - self.frame['start']:#x})"
 
     def step(self, x, last: int) -> bool:
         m, o = x.mnemonic, x.operands
+        if self.frame and m in ("add", "sub", "mov") and len(o) >= 2 and o[1].type == arm64.ARM64_OP_REG \
+                and regname(o[1].reg) in ("sp", "x29") and regname(o[0].reg) not in ("sp", "x29"):
+            base = self.frame["sp"] if regname(o[1].reg) == "sp" else self.frame["fp"]
+            imm = o[2].imm if len(o) == 3 else 0
+            self.write(regname(o[0].reg), self.local(base + (-imm if m == "sub" else imm)), "char*")
+            return True
         if any(op.type == arm64.ARM64_OP_REG and regname(op.reg) == "sp" for op in o) or \
-                any(op.type == arm64.ARM64_OP_MEM and regname(op.mem.base) in ("sp", "x29") for op in o):
+                (not self.frame and any(op.type == arm64.ARM64_OP_MEM and regname(op.mem.base) in ("sp", "x29")
+                                        for op in o)):
             return False
         mem = [op for op in o if op.type == arm64.ARM64_OP_MEM]
         if x.writeback and not (mem and m in tuple(LOADS) + tuple(STORES) + ("stp", "ldp")):
@@ -655,8 +746,9 @@ class FlatLifter(Lifter):
     is a mutable local (integers as u64), branches are gotos to labels. mem2reg rebuilds the
     same SSA form, so the code usually comes out the same."""
 
-    def __init__(self, orig: asmdiff.Original, addr: int, extra: int, returns: str):
-        super().__init__(orig, addr, extra, returns)
+    def __init__(self, orig: asmdiff.Original, addr: int, extra: int, returns: str,
+                 stack: tuple[str, int] | None = None):
+        super().__init__(orig, addr, extra, returns, stack)
         self.types: dict[int, str] = {}  # register key -> C type of its current value (linear)
         self.temps = 0
 
@@ -686,7 +778,7 @@ class FlatLifter(Lifter):
                 self.sret = True
                 self.types[8] = "char*"
             else:
-                t = "char*" if n < 100 else ("f32" if r[0] == "s" else "f64")
+                t = ("u32" if r[0] == "w" else "char*") if n < 100 else ("f32" if r[0] == "s" else "f64")
                 self.params[n] = t
                 self.types[n] = t
         t = self.types[n]
@@ -741,6 +833,8 @@ class FlatLifter(Lifter):
             return None
         end = addr + len(code)
         last = ins[-1].address
+        if not self.setup_frame(ins):
+            return None
         targets = set()
         for x in ins:
             for op in x.operands:
@@ -838,6 +932,17 @@ def main() -> int:
             if r:
                 defs[a] = r
         lifted.append(defs)
+    # Functions with stack locals: each layout of the locals array, structured then flat.
+    rest = [a for a in rest if not any(a in d for d in lifted)]
+    for stack in STACK_LAYOUTS:
+        for cls in (Lifter, FlatLifter):
+            for extra, returns in VARIANTS:
+                defs = {}
+                for a in rest:
+                    r = cls(orig, a, extra, returns, stack).lift()
+                    if r:
+                        defs[a] = r
+                lifted.append(defs)
 
     def build(job: tuple[int, int]) -> set[int]:
         k, part = job
