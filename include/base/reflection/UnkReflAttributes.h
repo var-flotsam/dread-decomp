@@ -16,7 +16,19 @@
 
 namespace base::reflection {
 
-struct UnkReflAttrKey;  // 0x18 bytes: name (CStrId), u64, u32 (0xf), u16
+// An attribute key: a guarded static built by its getter (refl_GetAttrKey<G>, UnkReflStatics.h)
+// from its name and its value type's descriptor. The destructor is out of line.
+struct UnkReflAttrKey {
+    base::global::CStrId name;
+    const CType* type;  // the value type
+    u32 field_0x10;     // 0xf in all keys seen
+    u16 field_0x14;
+
+    UnkReflAttrKey(const base::global::CStrId& name, const CType* type, u32 unk)
+        : name(name), type(type), field_0x10(unk), field_0x14(0) {}
+    ~UnkReflAttrKey();
+};
+static_assert(sizeof(UnkReflAttrKey) == 0x18, "UnkReflAttrKey layout");
 struct UnkReflAttrs;    // 0x38 bytes, created on first use
 struct UnkReflField;    // a member field descriptor; its attributes are at +0x38
 // A reflected function (0xb8 bytes, in CClass+0x110). Getter/setter-backed fields register
