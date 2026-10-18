@@ -4,7 +4,7 @@ For the next developer, human or AI, picking up this project. Read this, then `C
 (rules and conventions), `docs/recon.md` (what's in the binary), `docs/compiler.md`
 (toolchain), and `docs/references.md` (outside projects).
 
-Snapshot as of 2026-10-17 (fourth Phase 4 session; last commit `Phase 4.3: HANDOFF for collection types`, branch `phase-4-3-collection-types`; earlier work merged in var-flotsam/dread-decomp#13, #14 and #15). Target: **Metroid Dread 2.1.0**, `main` build ID
+Snapshot as of 2026-10-17 (fourth Phase 4 session; last commit `Phase 4.3: HANDOFF after the lifter mismatch pass`, branch `phase-4-3-lifter-regalloc`; earlier work merged in var-flotsam/dread-decomp#13–#16). Target: **Metroid Dread 2.1.0**, `main` build ID
 `646761F643AFEBB379EDD5E6A5151AF2CEF93DC1`.
 
 ## Where things stand
@@ -18,14 +18,14 @@ Snapshot as of 2026-10-17 (fourth Phase 4 session; last commit `Phase 4.3: HANDO
 | 4.1 System headers | **Done.** `lib/nnsdk` + `lib/musl` submodules, libc++ 9.0.1 headers, `tools/buildcfg.py` |
 | 4.2 Lua | **Done.** Upstream 5.1.4 vendored in `lib/lua/` (2 marked config changes); 286 Lua functions located in `main` by `tools/sigmatch.py` (status `L`) |
 | 4.3 Reflection | **In progress.** 1,878 of 2,346 class getters; all 1,010 other `CClass` descriptor constructors (skipped TUs and getter-less types); 1,745 of 1,956 class attribute/member-field functions, 478 other registration functions and all 1,006 out-of-line reflected-function initialisers (`src/reflection/`, `tools/gen_reflection.py`, `tools/refl_attrs.py`). Pointer types: 993 standalone getter/constructor pairs plus 108 generated in their pointee's TU; all 238 `CEnumType` constructors; 88 standalone `CCollectionType` constructors plus 23 in their element class's TU (`src/reflection_types/`, `tools/gen_types.py`) |
-| Small functions | **In progress.** `tools/gen_lift.py` lifts functions of up to 512 bytes from their instructions and keeps byte-identical ones: 44,541 functions up to 2 KB, 1.78 MB (`src/lifted/`; sret functions, stack locals, a goto-based flat mode for crossing branches and loops) |
+| Small functions | **In progress.** `tools/gen_lift.py` lifts functions of up to 512 bytes from their instructions and keeps byte-identical ones: 44,549 functions up to 2 KB, 1.78 MB (`src/lifted/`; sret functions, stack locals, a goto-based flat mode for crossing branches and loops) |
 | Guarded statics | **In progress.** `tools/gen_statics.py`: attribute keys, static string ids, typed lookups and registries built on weak function-local statics (`include/base/reflection/UnkReflStatics.h`): 756 functions, 139 KB (`src/reflection_statics/`) |
 | 4.4 Core engine types | **In progress.** String ids (`CStrId`, `UnkStrId`), the growable array `base::UnkVector` and its allocator interface; reflected-function initialisers now match (below) |
 | 4.5+ Boot to title screen | Not started; plan below |
 | Port | Not started (`port/` is empty) |
 
-Function status (BotW codes): `O` 72,569, `m` 4, `M` 1, `L` 1,614, `U` 29,829.
-**Game-code progress: 34.43% of bytes (6.46 MB) matching** (`tools/progress.py`; library code
+Function status (BotW codes): `O` 72,608, `m` 4, `M` 1, `L` 1,614, `U` 29,790.
+**Game-code progress: 34.46% of bytes (6.47 MB) matching** (`tools/progress.py`; library code
 excluded; 15.34% at the start of this session). `tools/check.py` counts `src/` definitions,
 which differ slightly (matching `nn::atk` functions keep `L`; constructor aliases).
 
@@ -213,9 +213,10 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
    - Stack locals are handled (one `char` array over the gap between save slots, or over the
      bytes accessed; `STACK_LAYOUTS`), but only ~22% of those functions match. Parameters first
      read as `w<n>` are `u32` (this fixed many `mov w2, w1` vs `mov x2, x1` mismatches).
-   - Mismatches now dominate (~64,000 lifted, 44,485 match). Largest causes: callee-saved
-     register choice (`mov x21, x3` vs `mov x22, x3`) and store scheduling in large
-     constructors. Remaining unlifted (~4.6 MB): guarded statics (`ldarb`, 1.2 MB),
+   - Mismatches now dominate (~60,700 lifted, 44,549 match). Only ~1,600 (165 KB) differ in
+     register names alone; most differ in instruction selection or scheduling (typed struct
+     accesses in the original vs our `char*` arithmetic), so the generic lifter is near its
+     limit. Further gains need real types per subsystem (hand decompilation), not variants. Remaining unlifted (~4.6 MB): guarded statics (`ldarb`, 1.2 MB),
      `ccmp`, float arithmetic, early returns of values set on only one path.
    - **`CCollectionType`** (`include/base/reflection/CCollectionType.h`): the descriptors are
      globals built by static initialisers, so only constructors are generated: 88 standalone

@@ -2789,7 +2789,7 @@ address,size,name,name_source,subsystem,status
 0x7100995690,1432,fn_7100995690,unknown,game/player?,U
 0x7100995c28,2476,fn_7100995c28,unknown,game/player?,U
 0x71009965d4,360,fn_71009965d4,unknown,game/player?,U
-0x710099673c,16,fn_710099673c,unknown,game/player?,U
+0x710099673c,16,fn_710099673c,unknown,game/player?,O
 0x710099674c,292,fn_710099674c,unknown,game/player?,U
 0x7100996870,124,fn_7100996870,unknown,game/player?,U
 0x71009968ec,728,fn_71009968ec,unknown,game/player?,U

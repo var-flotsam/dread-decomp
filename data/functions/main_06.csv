@@ -1483,7 +1483,7 @@ address,size,name,name_source,subsystem,status
 0x7100636438,388,behaviortree::CIsZoneReachableCondition::refl_InitClass,reflection,ai/behaviortree,O
 0x71006365bc,4,fn_71006365bc,unknown,unknown,O
 0x71006365c0,36,fn_71006365c0,unknown,unknown,O
-0x71006365e4,144,fn_71006365e4,unknown,unknown,U
+0x71006365e4,144,fn_71006365e4,unknown,unknown,O
 0x7100636674,28,fn_7100636674,unknown,unknown,O
 0x7100636690,8,fn_7100636690,unknown,unknown,O
 0x7100636698,8,fn_7100636698,unknown,unknown,O
@@ -4535,7 +4535,7 @@ address,size,name,name_source,subsystem,status
 0x71006badf4,412,fn_71006badf4,unknown,unknown,U
 0x71006baf90,384,fn_71006baf90,unknown,unknown,U
 0x71006bb110,376,fn_71006bb110,unknown,unknown,U
-0x71006bb288,60,fn_71006bb288,unknown,unknown,U
+0x71006bb288,60,fn_71006bb288,unknown,unknown,O
 0x71006bb2c4,804,fn_71006bb2c4,unknown,unknown,U
 0x71006bb5e8,128,fn_71006bb5e8,unknown,unknown,U
 0x71006bb668,248,fn_71006bb668,unknown,unknown,U
