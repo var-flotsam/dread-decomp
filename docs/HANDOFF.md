@@ -4,7 +4,7 @@ For the next developer, human or AI, picking up this project. Read this, then `C
 (rules and conventions), `docs/recon.md` (what's in the binary), `docs/compiler.md`
 (toolchain), and `docs/references.md` (outside projects).
 
-Snapshot as of 2026-10-17 (fourth Phase 4 session; last commit `Phase 4.3: lifter reference-return variant`, branch `phase-4-3-pointee-getters`). Target: **Metroid Dread 2.1.0**, `main` build ID
+Snapshot as of 2026-10-17 (fourth Phase 4 session; last commit `Phase 4.3: lifter flat mode (gotos) for unstructured functions`, branch `phase-4-3-pointee-getters`). Target: **Metroid Dread 2.1.0**, `main` build ID
 `646761F643AFEBB379EDD5E6A5151AF2CEF93DC1`.
 
 ## Where things stand
@@ -18,13 +18,13 @@ Snapshot as of 2026-10-17 (fourth Phase 4 session; last commit `Phase 4.3: lifte
 | 4.1 System headers | **Done.** `lib/nnsdk` + `lib/musl` submodules, libc++ 9.0.1 headers, `tools/buildcfg.py` |
 | 4.2 Lua | **Done.** Upstream 5.1.4 vendored in `lib/lua/` (2 marked config changes); 286 Lua functions located in `main` by `tools/sigmatch.py` (status `L`) |
 | 4.3 Reflection | **In progress.** 1,878 of 2,346 class getters; all 1,010 other `CClass` descriptor constructors (skipped TUs and getter-less types); 1,745 of 1,956 class attribute/member-field functions, 478 other registration functions and all 1,006 out-of-line reflected-function initialisers (`src/reflection/`, `tools/gen_reflection.py`, `tools/refl_attrs.py`). Pointer types: 993 standalone getter/constructor pairs plus 108 generated in their pointee's TU; all 238 `CEnumType` constructors (`src/reflection_types/`, `tools/gen_types.py`) |
-| Small functions | **In progress.** `tools/gen_lift.py` lifts functions of up to 512 bytes from their instructions and keeps byte-identical ones: 39,598 functions, 1.32 MB (`src/lifted/`) |
+| Small functions | **In progress.** `tools/gen_lift.py` lifts functions of up to 512 bytes from their instructions and keeps byte-identical ones: 41,818 functions, 1.53 MB (`src/lifted/`; sret functions; a goto-based flat mode for crossing branches and loops) |
 | 4.4 Core engine types | **In progress.** String ids (`CStrId`, `UnkStrId`), the growable array `base::UnkVector` and its allocator interface; reflected-function initialisers now match (below) |
 | 4.5+ Boot to title screen | Not started; plan below |
 | Port | Not started (`port/` is empty) |
 
-Function status (BotW codes): `O` 66,814, `m` 4, `M` 1, `L` 1,614, `U` 35,584.
-**Game-code progress: 30.99% of bytes (5.82 MB) matching** (`tools/progress.py`; library code
+Function status (BotW codes): `O` 68,973, `m` 4, `M` 1, `L` 1,614, `U` 33,425.
+**Game-code progress: 32.06% of bytes (6.02 MB) matching** (`tools/progress.py`; library code
 excluded; 15.34% at the start of this session). `tools/check.py` counts `src/` definitions,
 which differ slightly (matching `nn::atk` functions keep `L`; constructor aliases).
 
@@ -199,12 +199,13 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
 1. **Extend the lifter (`tools/gen_lift.py`), largest payoff first.** It lifts 47,431 of 75,661
    candidates (<= 512 B) and 39,598 of those match. Rejection reasons (count / bytes, at 128 B;
    rerun `build/scratch`-style tallies by subclassing `Lifter` and recording why `step` fails):
-   - **sret functions** (~3,300 / 260 KB at <= 128 B): `x8` (the indirect result pointer) read
-     before any call. Model as a function returning a large struct built in place (NRVO), or a
-     `char*` parameter in `x8` some other way; calls made while `x8` still holds it pass it on.
-   - **Crossing branches** (~1,700): forward branches that don't nest (`b.cond` past the end of
-     an open `if`). Needs a more general structuring (gotos to labels would also do: Clang
-     doesn't care how the source is structured).
+   - **Guarded function-local statics** (`ldarb` on a guard, ~4,900 / 1.16 MB at <= 512 B): type
+     getters of all kinds (`refl_GetClass` in skipped TUs, collection and primitive type getters).
+     Need stack locals (`add x0, sp, #8`: a CStrId temporary) and the static's real definition;
+     probably a template family of its own, like gen_types.py.
+   - sret (`x8` read first) and crossing branches/loops are handled (UnkResult built in place;
+     `FlatLifter` with gotos), but only ~25% of flat-mode lifts match; the rest differ in
+     register allocation or block layout.
    - Missing instructions: `tst`, `subs`, `csel`, `madd`, `udiv`, `mvn`, shifted/extended
      register operands (`add x0, x1, x2, lsl #3`), register-indexed addressing, loops
      (backward branches), float arithmetic.

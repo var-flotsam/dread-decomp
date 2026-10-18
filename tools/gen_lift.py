@@ -54,6 +54,7 @@ NAME_RE = re.compile(r"^[A-Za-z_][\w:<>,*& ]*\bfn_([0-9a-f]{10})\(")  # a declar
 # (or s0) as set, "void" returns nothing, "ref" returns a pointer as a reference (Clang 9 then
 # doesn't turn a final call into a tail call, as in the original's `bl; ret`).
 VARIANTS = [(n, mode) for n in range(3) for mode in ("value", "void", "ref")]
+# The same, through FlatLifter, for functions no structured variant can lift.
 
 CS = capstone.Cs(capstone.CS_ARCH_ARM64, capstone.CS_MODE_ARM)
 CS.detail = True
@@ -290,6 +291,14 @@ class Lifter:
         self.rets = [(ln + (shift_if if ln >= b.if_line else 0) + (shift_else if b.kind == "else" and ln >= b.else_line else 0), k, p)
                      for ln, k, p in self.rets]
         return m
+
+    def branch_ok(self, src: int, target: int, last: int) -> bool:
+        return src < target <= last
+
+    def temp_ptr(self, e: str) -> str:
+        var = f"a{len(self.body)}"
+        self.line(f"char* {var} = {e};")
+        return var
 
     def terminate(self, kind: str, payload) -> None:
         self.rets.append((len(self.body), kind, payload))
@@ -547,8 +556,7 @@ class Lifter:
                 self.line(f"*({t}*)({a} + {k * (8 if t == 'u64' else 4)}) = ({t})(u64)({v});")
         elif m == "ldp" and mem and regname(o[0].reg)[0] in "xw":
             a = self.address(x, mem[0])
-            tmp = f"a{len(self.body)}"
-            self.line(f"char* {tmp} = {a};")
+            tmp = self.temp_ptr(a)
             for k in range(2):
                 rt = regname(o[k].reg)
                 t = width_type(rt)
@@ -614,13 +622,13 @@ class Lifter:
             s.cmp = (a, b, "f", t)
         elif m == "cset" and len(o) == 1:
             self.write(regname(o[0].reg), self.cond(x.cc, False), "bool")
-        elif m.startswith("b.") and x.address < o[0].imm <= last:
+        elif m.startswith("b.") and self.branch_ok(x.address, o[0].imm, last):
             self.open_if(self.cond(x.cc, True), o[0].imm)
-        elif m in ("cbz", "cbnz") and x.address < o[1].imm <= last:
+        elif m in ("cbz", "cbnz") and self.branch_ok(x.address, o[1].imm, last):
             v, _ = self.read(regname(o[0].reg))
             t = width_type(regname(o[0].reg))
             self.open_if(f"({t})(u64)({v}) {'!=' if m == 'cbz' else '=='} 0", o[1].imm)
-        elif m in ("tbz", "tbnz") and x.address < o[2].imm <= last:
+        elif m in ("tbz", "tbnz") and self.branch_ok(x.address, o[2].imm, last):
             v, _ = self.read(regname(o[0].reg))
             self.open_if(f"((u64)({v}) >> {o[1].imm} & 1) {'!=' if m == 'tbz' else '=='} 0", o[2].imm)
         elif m == "bl":
@@ -637,6 +645,147 @@ class Lifter:
         else:
             return False
         return True
+
+
+class FlatLifter(Lifter):
+    """For functions the structured lifter rejects (crossing branches, loops): every register
+    is a mutable local (integers as u64), branches are gotos to labels. mem2reg rebuilds the
+    same SSA form, so the code usually comes out the same."""
+
+    def __init__(self, orig: asmdiff.Original, addr: int, extra: int, returns: str):
+        super().__init__(orig, addr, extra, returns)
+        self.types: dict[int, str] = {}  # register key -> C type of its current value (linear)
+        self.temps = 0
+
+    @property
+    def depth(self) -> int:
+        return 0
+
+    def branch_ok(self, src: int, target: int, last: int) -> bool:
+        return self.addr <= target <= last
+
+    def storage(self, n: int, t: str) -> str:
+        if n < 100:
+            return f"X{n}"
+        return f"{'S' if t == 'f32' else 'D'}{n - 100}"
+
+    def read(self, r: str) -> tuple[str, str]:
+        if r in ("xzr", "wzr"):
+            return "0", width_type(r)
+        n = self.key(r)
+        s = self.s
+        if n in s.pages:
+            raise Unsupported("bare page")
+        if n not in self.types:
+            if s.called or (n > 8 and not 100 <= n <= 107):
+                raise Unsupported(r)
+            if n == 8:
+                self.sret = True
+                self.types[8] = "char*"
+            else:
+                t = "char*" if n < 100 else ("f32" if r[0] == "s" else "f64")
+                self.params[n] = t
+                self.types[n] = t
+        t = self.types[n]
+        if n >= 100:
+            if t != ("f32" if r[0] == "s" else "f64"):
+                raise Unsupported("float width")
+            return self.storage(n, t), t
+        if r[0] == "w":
+            return f"(u32)X{n}", "u32"
+        return (f"X{n}" if t == "u64" else f"(({t})X{n})"), t
+
+    def write(self, r: str, e: str, t: str, const: int | None = None) -> None:
+        n = self.key(r)
+        if n < 0:
+            return
+        if n >= 100:
+            self.line(f"{self.storage(n, t)} = {e};")
+        else:
+            self.line(f"X{n} = (u64)({e});")
+        self.types[n] = t
+        s = self.s
+        s.pages.pop(n, None)
+        if const is None:
+            s.consts.pop(n, None)
+        else:
+            s.consts[n] = const
+        if n <= 7 or 100 <= n <= 107:
+            s.written.add(n)
+
+    def temp_ptr(self, e: str) -> str:
+        var = f"t{self.temps}"
+        self.temps += 1
+        self.line(f"{var} = {e};")
+        return var
+
+    def open_if(self, cond: str, target: int) -> None:
+        self.line(f"if (!({cond})) goto L_{target:x};")
+
+    def clobber(self) -> None:
+        s = self.s
+        s.pages = {n: p for n, p in s.pages.items() if n > 18}
+        s.consts = {n: v for n, v in s.consts.items() if n > 18}
+        s.written = set()
+        s.called = True
+        s.cmp = None
+
+    def lift(self) -> tuple[str, set[str]] | None:
+        orig, addr = self.orig, self.addr
+        code = orig.function(addr)
+        ins = list(CS.disasm(code, addr))
+        if not ins or len(ins) * 4 != len(code):
+            return None
+        end = addr + len(code)
+        last = ins[-1].address
+        targets = set()
+        for x in ins:
+            for op in x.operands:
+                if op.type == arm64.ARM64_OP_IMM and (x.mnemonic in ("b", "cbz", "cbnz", "tbz", "tbnz")
+                                                      or x.mnemonic.startswith("b.")) \
+                        and addr <= op.imm < end:
+                    targets.add(op.imm)
+        try:
+            for x in ins:
+                if x.address in targets:
+                    self.body.append(f"L_{x.address:x}:;")
+                    self.s.cmp = None if x.address != addr else self.s.cmp
+                if is_frame(x):
+                    continue
+                m, o = x.mnemonic, x.operands
+                if m == "ret":
+                    v = None
+                    if 0 in self.types:
+                        v = self.read("x0")
+                    elif 100 in self.types:
+                        v = self.read("s0" if self.types[100] == "f32" else "d0")
+                    self.terminate("value", v)
+                elif m == "b" and not addr <= o[0].imm < end:
+                    self.terminate("tail", self.call(f"fn_{o[0].imm:x}"))
+                elif m == "br":
+                    ptr, _ = self.read(regname(o[0].reg))
+                    self.terminate("tail", self.call("", ptr))
+                elif m == "b":
+                    self.line(f"goto L_{o[0].imm:x};")
+                elif not self.step(x, last):
+                    return None
+        except Unsupported:
+            return None
+        if ins[-1].mnemonic not in ("ret", "b", "br"):
+            return None
+        # Declarations go first: gotos must not jump over initialisations.
+        pre = []
+        for n in sorted(k for k in self.types if k < 100):
+            init = f" = (u64)p{n}" if n in self.params else (" = (u64)&ret" if n == 8 and self.sret else "")
+            pre.append(f"    u64 X{n}{init};")
+        for n in sorted(k for k in self.types if k >= 100):
+            t = self.types[n]
+            init = f" = f{n - 100}" if n in self.params else ""
+            pre.append(f"    {t} {self.storage(n, t)}{init};")
+        pre += [f"    char* t{i};" for i in range(self.temps)]
+        self.body = pre + self.body
+        self.rets = [(ln + len(pre), k, p) for ln, k, p in self.rets]
+        return self.finish()
 
 
 def candidates(orig: asmdiff.Original) -> list[int]:
@@ -677,6 +826,15 @@ def main() -> int:
             if r:
                 defs[a] = r
         lifted.append(defs)
+    structured = set().union(*lifted)
+    rest = [a for a in cands if a not in structured]
+    for extra, returns in VARIANTS:
+        defs = {}
+        for a in rest:
+            r = FlatLifter(orig, a, extra, returns).lift()
+            if r:
+                defs[a] = r
+        lifted.append(defs)
 
     def build(job: tuple[int, int]) -> set[int]:
         k, part = job
@@ -707,12 +865,12 @@ def main() -> int:
             defs = {a: d for a, d in defs.items() if a not in bad}
         raise SystemExit(f"variant {k} still fails to compile")
 
-    jobs = [(k, part) for k in range(len(VARIANTS))
+    jobs = [(k, part) for k in range(len(lifted))
             for part in range((len(lifted[k]) + SCRATCH_CHUNK - 1) // SCRATCH_CHUNK)]
     with ThreadPoolExecutor() as pool:
         matched = list(pool.map(build, jobs))
     chosen: dict[int, tuple[str, set[str]]] = {}
-    for k in range(len(VARIANTS)):  # variant order decides
+    for k in range(len(lifted)):  # variant order decides
         for (kk, _), ok in zip(jobs, matched):
             if kk == k:
                 for a in sorted(ok):
