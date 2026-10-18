@@ -60,6 +60,7 @@ python tools/libcheck_lua.py --version <ver>     # upstream Lua vs the embedded 
 python tools/sigmatch.py --version <ver> [--library lua]  # name vendored-library functions -> data/library_symbols.csv; then rerun gen_functions_csv.py
 python tools/gen_reflection.py --version <ver>   # regenerate src/reflection/ (uses tools/refl_attrs.py)
 python tools/gen_types.py --version <ver>        # regenerate src/reflection_types/ (non-class type getters)
+python tools/gen_lift.py --version <ver>         # regenerate src/lifted/ (small functions; run after the other generators, ~4 min)
 python tools/check.py --version <ver> [--update] # build src/, derive statuses, catch regressions
 python tools/objdiff_gen.py --version <ver>      # objdiff targets + objdiff.json
 python tools/progress.py                         # whole-binary progress (excludes L)
@@ -141,5 +142,5 @@ Toolchain:
 - Phase 2: done. See `docs/recon.md`.
 - Phase 3: done, including the non-leaf and library flag pass. See `docs/compiler.md`.
 - Phase 4: in progress (owner-approved). Current state, numbers and next steps: `docs/HANDOFF.md`.
-- Generated sources (`src/reflection/`, `src/reflection_types/`) are outputs of
-  `tools/gen_reflection.py` and `tools/gen_types.py`: regenerate, never hand-edit.
+- Generated sources (`src/reflection/`, `src/reflection_types/`, `src/lifted/`) are outputs of
+  `tools/gen_reflection.py`, `tools/gen_types.py` and `tools/gen_lift.py`: regenerate, never hand-edit.

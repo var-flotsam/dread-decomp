@@ -8,6 +8,7 @@ using base::reflection::UnkFn;
 const base::reflection::CType* fn_7100269948();
 const base::reflection::CType* fn_71002b6b38();
 const base::reflection::CType* fn_71002bd4d8();
+const base::reflection::CType* fn_71002beaa0();
 const base::reflection::CType* fn_71002dbcf4();
 const base::reflection::CType* fn_71002dbffc();
 const base::reflection::CType* fn_71002ea7d8();
@@ -34,6 +35,7 @@ const base::reflection::CType* fn_710076a8ac();
 const base::reflection::CType* fn_71007c91e0();
 const base::reflection::CType* fn_71007ef218();
 const base::reflection::CType* fn_7100d70c20();
+extern base::reflection::CType g_unk_71726a0a20;
 extern base::reflection::CType g_unk_71726a1cd8;
 extern base::reflection::CType g_unk_71726a21d0;
 extern base::reflection::CType g_unk_71726a2310;
@@ -155,10 +157,20 @@ extern base::reflection::CType g_unk_717272c488;
 extern base::reflection::CType g_unk_717272c5c8;
 extern base::reflection::CType g_unk_717272c708;
 extern base::reflection::CType g_unk_717272e190;
-extern base::reflection::CType g_unk_717272e2d0;
-extern base::reflection::CType g_unk_717272e410;
 extern base::reflection::CType g_unk_7172791c90;
 extern base::reflection::CType g_unk_7172a00ad0;
+void fn_710025ecb0();
+void fn_710025ecec();
+void fn_710025ecf0();
+void fn_710025ed48();
+void fn_710025ed5c();
+void fn_710025ed64();
+void fn_710025ed78();
+void fn_710025ed84();
+void fn_710025edac();
+void fn_710025edd4();
+void fn_710025ee10();
+void fn_710025eea0();
 void fn_7100263994();
 void fn_71002639f4();
 void fn_7100263a00();
@@ -351,6 +363,16 @@ void fn_71002b9220();
 void fn_71002b9248();
 void fn_71002b9294();
 void fn_71002b9344();
+void fn_71002bd818();
+void fn_71002bd870();
+void fn_71002bd894();
+void fn_71002bd898();
+void fn_71002bd8ac();
+void fn_71002bd8b4();
+void fn_71002bd8c8();
+void fn_71002bd8d0();
+void fn_71002bd8e0();
+void fn_71002bd900();
 void fn_71002bf2b4();
 void fn_71002bf30c();
 void fn_71002bf318();
@@ -2535,35 +2557,39 @@ void fn_71008a8f74();
 void fn_71008a8f80();
 void fn_71008a8f84();
 void fn_71008a8f98();
-void fn_71008a9118();
-void fn_71008a9154();
-void fn_71008a9158();
-void fn_71008a91b8();
-void fn_71008a91cc();
-void fn_71008a91d4();
-void fn_71008a91e8();
-void fn_71008a91f8();
-void fn_71008a9220();
-void fn_71008a9248();
-void fn_71008a9284();
-void fn_71008a9310();
-void fn_71008a9634();
-void fn_71008a9670();
-void fn_71008a9674();
-void fn_71008a96d4();
-void fn_71008a96e8();
-void fn_71008a96f0();
-void fn_71008a9704();
-void fn_71008a9714();
-void fn_71008a973c();
-void fn_71008a9764();
-void fn_71008a97a0();
-void fn_71008a982c();
+struct UnkRefl_fn_710025eb44;
+struct UnkRefl_fn_710025a70c;
+template <>
+struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710025eb44> {
+    static constexpr u64 size = 0xe8;
+    static constexpr bool field_0xe0 = false;
+    static constexpr UnkFn fn_0x28 = &fn_710025ed78;
+    static constexpr UnkFn fn_0x30 = &fn_710025ed84;
+    static constexpr UnkFn fn_0x38 = &fn_710025edac;
+    static constexpr UnkFn fn_0x40 = &fn_710025edd4;
+    static constexpr UnkFn fn_0x48 = &fn_710025ee10;
+    static constexpr UnkFn fn_0x50 = &fn_710025eea0;
+    static constexpr UnkFn fn_0x58 = &fn_710025ed48;
+    static constexpr UnkFn fn_0x60 = &fn_710025ed5c;
+    static constexpr UnkFn fn_0x68 = &fn_710025ed64;
+    static constexpr UnkFn fn_0xf0 = &fn_710025ecb0;
+    static constexpr UnkFn fn_0xf8 = &fn_710025ecec;
+    static constexpr UnkFn fn_0x100 = &fn_710025ecf0;
+    static const CType* pointee() { return &g_unk_71726a0a20; }
+};
+template <>
+struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_710025a70c> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CArray<CActorLayer, EnumClass<EActorLayer>::Count, EActorLayer>>::TKeyElementConstIterator";
+    using Init = UnkRefl_fn_710025eb44;
+};
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_710025eb44*, void*);
+template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_710025a70c>();
 struct UnkRefl_fn_7100263828;
 struct UnkRefl_fn_7100262878;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100263828> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_7100263a40;
     static constexpr UnkFn fn_0x30 = &fn_7100263a48;
     static constexpr UnkFn fn_0x38 = &fn_7100263a54;
@@ -2590,6 +2616,7 @@ struct UnkRefl_fn_7100262954;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100263a8c> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_7100263ca4;
     static constexpr UnkFn fn_0x30 = &fn_7100263cac;
     static constexpr UnkFn fn_0x38 = &fn_7100263cb8;
@@ -2616,6 +2643,7 @@ struct UnkRefl_fn_7100265254;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71002668f0> {
     static constexpr u64 size = 0x30;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_7100266ae8;
     static constexpr UnkFn fn_0x30 = &fn_7100266af8;
     static constexpr UnkFn fn_0x38 = &fn_7100266b10;
@@ -2642,6 +2670,7 @@ struct UnkRefl_fn_7100265844;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100266d8c> {
     static constexpr u64 size = 0x30;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_7100266f84;
     static constexpr UnkFn fn_0x30 = &fn_7100266f94;
     static constexpr UnkFn fn_0x38 = &fn_7100266fac;
@@ -2668,6 +2697,7 @@ struct UnkRefl_fn_7100269a24;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710026ad08> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_710026af14;
     static constexpr UnkFn fn_0x30 = &fn_710026af1c;
     static constexpr UnkFn fn_0x38 = &fn_710026af28;
@@ -2694,6 +2724,7 @@ struct UnkRefl_fn_7100269b00;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710026af60> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_710026b16c;
     static constexpr UnkFn fn_0x30 = &fn_710026b174;
     static constexpr UnkFn fn_0x38 = &fn_710026b180;
@@ -2720,6 +2751,7 @@ struct UnkRefl_fn_710026a0e4;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710026b1b8> {
     static constexpr u64 size = 0x28;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_710026b3d0;
     static constexpr UnkFn fn_0x30 = &fn_710026b3e0;
     static constexpr UnkFn fn_0x38 = &fn_710026b408;
@@ -2746,6 +2778,7 @@ struct UnkRefl_fn_710026a6c8;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710026b4f8> {
     static constexpr u64 size = 0x28;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_710026b710;
     static constexpr UnkFn fn_0x30 = &fn_710026b720;
     static constexpr UnkFn fn_0x38 = &fn_710026b748;
@@ -2772,6 +2805,7 @@ struct UnkRefl_fn_710026dad8;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100271690> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71002718a8;
     static constexpr UnkFn fn_0x30 = &fn_71002718b0;
     static constexpr UnkFn fn_0x38 = &fn_71002718bc;
@@ -2798,6 +2832,7 @@ struct UnkRefl_fn_710026dbb4;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71002718f4> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_7100271b0c;
     static constexpr UnkFn fn_0x30 = &fn_7100271b14;
     static constexpr UnkFn fn_0x38 = &fn_7100271b20;
@@ -2824,6 +2859,7 @@ struct UnkRefl_fn_710026e198;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100271b58> {
     static constexpr u64 size = 0x70;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_7100271d94;
     static constexpr UnkFn fn_0x30 = &fn_7100271da4;
     static constexpr UnkFn fn_0x38 = &fn_7100271dcc;
@@ -2850,6 +2886,7 @@ struct UnkRefl_fn_710026e77c;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100271f50> {
     static constexpr u64 size = 0x70;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_710027218c;
     static constexpr UnkFn fn_0x30 = &fn_710027219c;
     static constexpr UnkFn fn_0x38 = &fn_71002721c4;
@@ -2876,6 +2913,7 @@ struct UnkRefl_fn_71002b6c14;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71002b8694> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71002b88a0;
     static constexpr UnkFn fn_0x30 = &fn_71002b88a8;
     static constexpr UnkFn fn_0x38 = &fn_71002b88b4;
@@ -2902,6 +2940,7 @@ struct UnkRefl_fn_71002b6cf0;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71002b88ec> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71002b8af8;
     static constexpr UnkFn fn_0x30 = &fn_71002b8b00;
     static constexpr UnkFn fn_0x38 = &fn_71002b8b0c;
@@ -2928,6 +2967,7 @@ struct UnkRefl_fn_71002b72d4;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71002b8b44> {
     static constexpr u64 size = 0x28;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71002b8d90;
     static constexpr UnkFn fn_0x30 = &fn_71002b8da0;
     static constexpr UnkFn fn_0x38 = &fn_71002b8dc8;
@@ -2954,6 +2994,7 @@ struct UnkRefl_fn_71002b78b8;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71002b8f9c> {
     static constexpr u64 size = 0x28;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71002b91e8;
     static constexpr UnkFn fn_0x30 = &fn_71002b91f8;
     static constexpr UnkFn fn_0x38 = &fn_71002b9220;
@@ -2975,11 +3016,39 @@ struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_71002b78b8> {
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71002b8f9c*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71002b78b8>();
+struct UnkRefl_fn_71002bd6c0;
+struct UnkRefl_fn_71002bd4d8;
+template <>
+struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71002bd6c0> {
+    static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = true;
+    static constexpr UnkFn fn_0x28 = &fn_71002bd8c8;
+    static constexpr UnkFn fn_0x30 = nullptr;
+    static constexpr UnkFn fn_0x38 = &fn_71002bd8d0;
+    static constexpr UnkFn fn_0x40 = &fn_71002bd8e0;
+    static constexpr UnkFn fn_0x48 = nullptr;
+    static constexpr UnkFn fn_0x50 = &fn_71002bd900;
+    static constexpr UnkFn fn_0x58 = &fn_71002bd898;
+    static constexpr UnkFn fn_0x60 = &fn_71002bd8ac;
+    static constexpr UnkFn fn_0x68 = &fn_71002bd8b4;
+    static constexpr UnkFn fn_0xf0 = &fn_71002bd818;
+    static constexpr UnkFn fn_0xf8 = &fn_71002bd870;
+    static constexpr UnkFn fn_0x100 = &fn_71002bd894;
+    static const CType* pointee() { return fn_71002beaa0(); }
+};
+template <>
+struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_71002bd4d8> {
+    static constexpr const char* name = "std::unique_ptr<querysystem::CFilter>";
+    using Init = UnkRefl_fn_71002bd6c0;
+};
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71002bd6c0*, void*);
+template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71002bd4d8>();
 struct UnkRefl_fn_71002bf14c;
 struct UnkRefl_fn_71002bdb3c;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71002bf14c> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71002bf358;
     static constexpr UnkFn fn_0x30 = &fn_71002bf360;
     static constexpr UnkFn fn_0x38 = &fn_71002bf36c;
@@ -3006,6 +3075,7 @@ struct UnkRefl_fn_71002bdc18;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71002bf3a4> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71002bf5b0;
     static constexpr UnkFn fn_0x30 = &fn_71002bf5b8;
     static constexpr UnkFn fn_0x38 = &fn_71002bf5c4;
@@ -3032,6 +3102,7 @@ struct UnkRefl_fn_71002be1fc;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71002bf5fc> {
     static constexpr u64 size = 0x28;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71002bf848;
     static constexpr UnkFn fn_0x30 = &fn_71002bf858;
     static constexpr UnkFn fn_0x38 = &fn_71002bf880;
@@ -3058,6 +3129,7 @@ struct UnkRefl_fn_71002be7e0;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71002bfa54> {
     static constexpr u64 size = 0x28;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71002bfca0;
     static constexpr UnkFn fn_0x30 = &fn_71002bfcb0;
     static constexpr UnkFn fn_0x38 = &fn_71002bfcd8;
@@ -3084,6 +3156,7 @@ struct UnkRefl_fn_71002c7664;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71002c9c44> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71002c9e5c;
     static constexpr UnkFn fn_0x30 = &fn_71002c9e64;
     static constexpr UnkFn fn_0x38 = &fn_71002c9e70;
@@ -3110,6 +3183,7 @@ struct UnkRefl_fn_71002c7740;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71002c9ea8> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71002ca0c0;
     static constexpr UnkFn fn_0x30 = &fn_71002ca0c8;
     static constexpr UnkFn fn_0x38 = &fn_71002ca0d4;
@@ -3136,6 +3210,7 @@ struct UnkRefl_fn_71002c7d24;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71002ca10c> {
     static constexpr u64 size = 0x30;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71002ca324;
     static constexpr UnkFn fn_0x30 = &fn_71002ca334;
     static constexpr UnkFn fn_0x38 = &fn_71002ca35c;
@@ -3162,6 +3237,7 @@ struct UnkRefl_fn_71002c8308;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71002ca44c> {
     static constexpr u64 size = 0x30;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71002ca664;
     static constexpr UnkFn fn_0x30 = &fn_71002ca674;
     static constexpr UnkFn fn_0x38 = &fn_71002ca69c;
@@ -3188,6 +3264,7 @@ struct UnkRefl_fn_71002c8cd0;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71002ca78c> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71002ca9a4;
     static constexpr UnkFn fn_0x30 = &fn_71002ca9ac;
     static constexpr UnkFn fn_0x38 = &fn_71002ca9b8;
@@ -3214,6 +3291,7 @@ struct UnkRefl_fn_71002c8dac;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71002ca9f0> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71002cac08;
     static constexpr UnkFn fn_0x30 = &fn_71002cac10;
     static constexpr UnkFn fn_0x38 = &fn_71002cac1c;
@@ -3240,6 +3318,7 @@ struct UnkRefl_fn_71002c9390;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71002cac54> {
     static constexpr u64 size = 0x68;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71002cae4c;
     static constexpr UnkFn fn_0x30 = &fn_71002cae5c;
     static constexpr UnkFn fn_0x38 = &fn_71002cae74;
@@ -3266,6 +3345,7 @@ struct UnkRefl_fn_71002c9974;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71002cb0fc> {
     static constexpr u64 size = 0x68;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71002cb2f4;
     static constexpr UnkFn fn_0x30 = &fn_71002cb304;
     static constexpr UnkFn fn_0x38 = &fn_71002cb31c;
@@ -3292,6 +3372,7 @@ struct UnkRefl_fn_71002d71ec;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71002d882c> {
     static constexpr u64 size = 0x30;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71002d8a24;
     static constexpr UnkFn fn_0x30 = &fn_71002d8a34;
     static constexpr UnkFn fn_0x38 = &fn_71002d8a4c;
@@ -3318,6 +3399,7 @@ struct UnkRefl_fn_71002d77dc;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71002d8d4c> {
     static constexpr u64 size = 0x30;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71002d8f44;
     static constexpr UnkFn fn_0x30 = &fn_71002d8f54;
     static constexpr UnkFn fn_0x38 = &fn_71002d8f6c;
@@ -3344,6 +3426,7 @@ struct UnkRefl_fn_71002d9344;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71002d9420> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71002d962c;
     static constexpr UnkFn fn_0x30 = &fn_71002d9634;
     static constexpr UnkFn fn_0x38 = &fn_71002d9640;
@@ -3370,6 +3453,7 @@ struct UnkRefl_fn_71002dc0d8;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71002dd2d8> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71002dd4e4;
     static constexpr UnkFn fn_0x30 = &fn_71002dd4ec;
     static constexpr UnkFn fn_0x38 = &fn_71002dd4f8;
@@ -3396,6 +3480,7 @@ struct UnkRefl_fn_71002dc1b4;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71002dd530> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71002dd73c;
     static constexpr UnkFn fn_0x30 = &fn_71002dd744;
     static constexpr UnkFn fn_0x38 = &fn_71002dd750;
@@ -3422,6 +3507,7 @@ struct UnkRefl_fn_71002dc798;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71002dd788> {
     static constexpr u64 size = 0x28;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71002dd9d4;
     static constexpr UnkFn fn_0x30 = &fn_71002dd9e4;
     static constexpr UnkFn fn_0x38 = &fn_71002dda0c;
@@ -3448,6 +3534,7 @@ struct UnkRefl_fn_71002dcd7c;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71002ddbe0> {
     static constexpr u64 size = 0x28;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71002dde2c;
     static constexpr UnkFn fn_0x30 = &fn_71002dde3c;
     static constexpr UnkFn fn_0x38 = &fn_71002dde64;
@@ -3474,6 +3561,7 @@ struct UnkRefl_fn_71002eaab8;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71002ed2f8> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71002ed504;
     static constexpr UnkFn fn_0x30 = &fn_71002ed50c;
     static constexpr UnkFn fn_0x38 = &fn_71002ed518;
@@ -3500,6 +3588,7 @@ struct UnkRefl_fn_71002eab94;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71002ed550> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71002ed75c;
     static constexpr UnkFn fn_0x30 = &fn_71002ed764;
     static constexpr UnkFn fn_0x38 = &fn_71002ed770;
@@ -3526,6 +3615,7 @@ struct UnkRefl_fn_71002eb178;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71002ed7a8> {
     static constexpr u64 size = 0x18;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71002ed99c;
     static constexpr UnkFn fn_0x30 = &fn_71002ed9a4;
     static constexpr UnkFn fn_0x38 = &fn_71002ed9bc;
@@ -3552,6 +3642,7 @@ struct UnkRefl_fn_71002eb75c;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71002edba0> {
     static constexpr u64 size = 0x18;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71002edd94;
     static constexpr UnkFn fn_0x30 = &fn_71002edd9c;
     static constexpr UnkFn fn_0x38 = &fn_71002eddb4;
@@ -3578,6 +3669,7 @@ struct UnkRefl_fn_71002ee1dc;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71002ee2b8> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71002ee4c4;
     static constexpr UnkFn fn_0x30 = &fn_71002ee4cc;
     static constexpr UnkFn fn_0x38 = &fn_71002ee4d8;
@@ -3604,6 +3696,7 @@ struct UnkRefl_fn_71002f1284;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71002f2edc> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71002f30e8;
     static constexpr UnkFn fn_0x30 = &fn_71002f30f0;
     static constexpr UnkFn fn_0x38 = &fn_71002f30fc;
@@ -3630,6 +3723,7 @@ struct UnkRefl_fn_71002f1360;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71002f3134> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71002f3340;
     static constexpr UnkFn fn_0x30 = &fn_71002f3348;
     static constexpr UnkFn fn_0x38 = &fn_71002f3354;
@@ -3656,6 +3750,7 @@ struct UnkRefl_fn_71002f1a20;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71002f362c> {
     static constexpr u64 size = 0x28;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71002f3878;
     static constexpr UnkFn fn_0x30 = &fn_71002f3888;
     static constexpr UnkFn fn_0x38 = &fn_71002f38b0;
@@ -3682,6 +3777,7 @@ struct UnkRefl_fn_71002f2004;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71002f3a84> {
     static constexpr u64 size = 0x28;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71002f3cd0;
     static constexpr UnkFn fn_0x30 = &fn_71002f3ce0;
     static constexpr UnkFn fn_0x38 = &fn_71002f3d08;
@@ -3708,6 +3804,7 @@ struct UnkRefl_fn_71003649d8;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100367018> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_7100367224;
     static constexpr UnkFn fn_0x30 = &fn_710036722c;
     static constexpr UnkFn fn_0x38 = &fn_7100367238;
@@ -3734,6 +3831,7 @@ struct UnkRefl_fn_7100364ab4;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100367270> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_710036747c;
     static constexpr UnkFn fn_0x30 = &fn_7100367484;
     static constexpr UnkFn fn_0x38 = &fn_7100367490;
@@ -3760,6 +3858,7 @@ struct UnkRefl_fn_7100365098;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71003674c8> {
     static constexpr u64 size = 0x28;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_7100367714;
     static constexpr UnkFn fn_0x30 = &fn_7100367724;
     static constexpr UnkFn fn_0x38 = &fn_710036774c;
@@ -3786,6 +3885,7 @@ struct UnkRefl_fn_710036567c;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100367920> {
     static constexpr u64 size = 0x28;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_7100367b6c;
     static constexpr UnkFn fn_0x30 = &fn_7100367b7c;
     static constexpr UnkFn fn_0x38 = &fn_7100367ba4;
@@ -3812,6 +3912,7 @@ struct UnkRefl_fn_71003eb9e8;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71003ecc88> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71003ecea0;
     static constexpr UnkFn fn_0x30 = &fn_71003ecea8;
     static constexpr UnkFn fn_0x38 = &fn_71003eceb4;
@@ -3838,6 +3939,7 @@ struct UnkRefl_fn_71003ebac4;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71003eceec> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71003ed104;
     static constexpr UnkFn fn_0x30 = &fn_71003ed10c;
     static constexpr UnkFn fn_0x38 = &fn_71003ed118;
@@ -3864,6 +3966,7 @@ struct UnkRefl_fn_71003ec0a8;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71003ed150> {
     static constexpr u64 size = 0x28;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71003ed368;
     static constexpr UnkFn fn_0x30 = &fn_71003ed378;
     static constexpr UnkFn fn_0x38 = &fn_71003ed3a0;
@@ -3890,6 +3993,7 @@ struct UnkRefl_fn_71003ec68c;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71003ed490> {
     static constexpr u64 size = 0x28;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71003ed6a8;
     static constexpr UnkFn fn_0x30 = &fn_71003ed6b8;
     static constexpr UnkFn fn_0x38 = &fn_71003ed6e0;
@@ -3916,6 +4020,7 @@ struct UnkRefl_fn_7100407170;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710040724c> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_7100407570;
     static constexpr UnkFn fn_0x30 = &fn_7100407578;
     static constexpr UnkFn fn_0x38 = &fn_71004075d4;
@@ -3942,6 +4047,7 @@ struct UnkRefl_fn_710045d378;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710045f690> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_710045f89c;
     static constexpr UnkFn fn_0x30 = &fn_710045f8a4;
     static constexpr UnkFn fn_0x38 = &fn_710045f8b0;
@@ -3968,6 +4074,7 @@ struct UnkRefl_fn_710045d454;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710045f8e8> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_710045faf4;
     static constexpr UnkFn fn_0x30 = &fn_710045fafc;
     static constexpr UnkFn fn_0x38 = &fn_710045fb08;
@@ -3994,6 +4101,7 @@ struct UnkRefl_fn_710045da38;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710045fb40> {
     static constexpr u64 size = 0x28;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_710045fd8c;
     static constexpr UnkFn fn_0x30 = &fn_710045fd9c;
     static constexpr UnkFn fn_0x38 = &fn_710045fdc4;
@@ -4020,6 +4128,7 @@ struct UnkRefl_fn_710045e01c;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710045ff98> {
     static constexpr u64 size = 0x28;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71004601e4;
     static constexpr UnkFn fn_0x30 = &fn_71004601f4;
     static constexpr UnkFn fn_0x38 = &fn_710046021c;
@@ -4046,6 +4155,7 @@ struct UnkRefl_fn_71004a2cec;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71004a57ec> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71004a59f8;
     static constexpr UnkFn fn_0x30 = &fn_71004a5a00;
     static constexpr UnkFn fn_0x38 = &fn_71004a5a0c;
@@ -4072,6 +4182,7 @@ struct UnkRefl_fn_71004a2dc8;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71004a5a44> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71004a5c50;
     static constexpr UnkFn fn_0x30 = &fn_71004a5c58;
     static constexpr UnkFn fn_0x38 = &fn_71004a5c64;
@@ -4098,6 +4209,7 @@ struct UnkRefl_fn_71004a33ac;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71004a5c9c> {
     static constexpr u64 size = 0x28;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71004a5ee8;
     static constexpr UnkFn fn_0x30 = &fn_71004a5ef8;
     static constexpr UnkFn fn_0x38 = &fn_71004a5f20;
@@ -4124,6 +4236,7 @@ struct UnkRefl_fn_71004a3990;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71004a60f4> {
     static constexpr u64 size = 0x28;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71004a6340;
     static constexpr UnkFn fn_0x30 = &fn_71004a6350;
     static constexpr UnkFn fn_0x38 = &fn_71004a6378;
@@ -4150,6 +4263,7 @@ struct UnkRefl_fn_71004a3c4c;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71004a654c> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71004a6764;
     static constexpr UnkFn fn_0x30 = &fn_71004a676c;
     static constexpr UnkFn fn_0x38 = &fn_71004a6778;
@@ -4176,6 +4290,7 @@ struct UnkRefl_fn_71004a3d28;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71004a67b0> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71004a69c8;
     static constexpr UnkFn fn_0x30 = &fn_71004a69d0;
     static constexpr UnkFn fn_0x38 = &fn_71004a69dc;
@@ -4202,6 +4317,7 @@ struct UnkRefl_fn_71004a430c;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71004a6a14> {
     static constexpr u64 size = 0x48;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71004a6c0c;
     static constexpr UnkFn fn_0x30 = &fn_71004a6c1c;
     static constexpr UnkFn fn_0x38 = &fn_71004a6c34;
@@ -4228,6 +4344,7 @@ struct UnkRefl_fn_71004a48f0;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71004a6ed4> {
     static constexpr u64 size = 0x48;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71004a70cc;
     static constexpr UnkFn fn_0x30 = &fn_71004a70dc;
     static constexpr UnkFn fn_0x38 = &fn_71004a70f4;
@@ -4254,6 +4371,7 @@ struct UnkRefl_fn_71004abe2c;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71004aef0c> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71004af118;
     static constexpr UnkFn fn_0x30 = &fn_71004af120;
     static constexpr UnkFn fn_0x38 = &fn_71004af12c;
@@ -4280,6 +4398,7 @@ struct UnkRefl_fn_71004abf08;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71004af164> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71004af370;
     static constexpr UnkFn fn_0x30 = &fn_71004af378;
     static constexpr UnkFn fn_0x38 = &fn_71004af384;
@@ -4306,6 +4425,7 @@ struct UnkRefl_fn_71004ac4ec;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71004af3bc> {
     static constexpr u64 size = 0x28;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71004af608;
     static constexpr UnkFn fn_0x30 = &fn_71004af618;
     static constexpr UnkFn fn_0x38 = &fn_71004af640;
@@ -4332,6 +4452,7 @@ struct UnkRefl_fn_71004acad0;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71004af814> {
     static constexpr u64 size = 0x28;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71004afa60;
     static constexpr UnkFn fn_0x30 = &fn_71004afa70;
     static constexpr UnkFn fn_0x38 = &fn_71004afa98;
@@ -4358,6 +4479,7 @@ struct UnkRefl_fn_71004ad458;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71004b0158> {
     static constexpr u64 size = 0x38;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71004b0370;
     static constexpr UnkFn fn_0x30 = &fn_71004b0380;
     static constexpr UnkFn fn_0x38 = &fn_71004b03a8;
@@ -4384,6 +4506,7 @@ struct UnkRefl_fn_71004ada48;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71004b0498> {
     static constexpr u64 size = 0x38;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71004b06b0;
     static constexpr UnkFn fn_0x30 = &fn_71004b06c0;
     static constexpr UnkFn fn_0x38 = &fn_71004b06e8;
@@ -4410,6 +4533,7 @@ struct UnkRefl_fn_71004b5f78;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71004ba8fc> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71004bab08;
     static constexpr UnkFn fn_0x30 = &fn_71004bab10;
     static constexpr UnkFn fn_0x38 = &fn_71004bab1c;
@@ -4436,6 +4560,7 @@ struct UnkRefl_fn_71004b6054;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71004bab54> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71004bad60;
     static constexpr UnkFn fn_0x30 = &fn_71004bad68;
     static constexpr UnkFn fn_0x38 = &fn_71004bad74;
@@ -4462,6 +4587,7 @@ struct UnkRefl_fn_71004b6638;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71004badac> {
     static constexpr u64 size = 0x28;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71004baff8;
     static constexpr UnkFn fn_0x30 = &fn_71004bb008;
     static constexpr UnkFn fn_0x38 = &fn_71004bb030;
@@ -4488,6 +4614,7 @@ struct UnkRefl_fn_71004b6c1c;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71004bb204> {
     static constexpr u64 size = 0x28;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71004bb450;
     static constexpr UnkFn fn_0x30 = &fn_71004bb460;
     static constexpr UnkFn fn_0x38 = &fn_71004bb488;
@@ -4514,6 +4641,7 @@ struct UnkRefl_fn_71004b6ed8;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71004bb65c> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71004bb874;
     static constexpr UnkFn fn_0x30 = &fn_71004bb87c;
     static constexpr UnkFn fn_0x38 = &fn_71004bb888;
@@ -4540,6 +4668,7 @@ struct UnkRefl_fn_71004b6fb4;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71004bb8c0> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71004bbad8;
     static constexpr UnkFn fn_0x30 = &fn_71004bbae0;
     static constexpr UnkFn fn_0x38 = &fn_71004bbaec;
@@ -4566,6 +4695,7 @@ struct UnkRefl_fn_71004b7598;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71004bbb24> {
     static constexpr u64 size = 0x48;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71004bbd1c;
     static constexpr UnkFn fn_0x30 = &fn_71004bbd2c;
     static constexpr UnkFn fn_0x38 = &fn_71004bbd44;
@@ -4592,6 +4722,7 @@ struct UnkRefl_fn_71004b7b7c;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71004bbfe4> {
     static constexpr u64 size = 0x48;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71004bc1dc;
     static constexpr UnkFn fn_0x30 = &fn_71004bc1ec;
     static constexpr UnkFn fn_0x38 = &fn_71004bc204;
@@ -4618,6 +4749,7 @@ struct UnkRefl_fn_71004b8508;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71004bc990> {
     static constexpr u64 size = 0x38;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71004bcba8;
     static constexpr UnkFn fn_0x30 = &fn_71004bcbb8;
     static constexpr UnkFn fn_0x38 = &fn_71004bcbe0;
@@ -4644,6 +4776,7 @@ struct UnkRefl_fn_71004b8af8;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71004bccd0> {
     static constexpr u64 size = 0x38;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71004bcee8;
     static constexpr UnkFn fn_0x30 = &fn_71004bcef8;
     static constexpr UnkFn fn_0x38 = &fn_71004bcf20;
@@ -4670,6 +4803,7 @@ struct UnkRefl_fn_7100532390;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710055c930> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_710055cb3c;
     static constexpr UnkFn fn_0x30 = &fn_710055cb44;
     static constexpr UnkFn fn_0x38 = &fn_710055cb50;
@@ -4696,6 +4830,7 @@ struct UnkRefl_fn_710053246c;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710055cb88> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_710055cd94;
     static constexpr UnkFn fn_0x30 = &fn_710055cd9c;
     static constexpr UnkFn fn_0x38 = &fn_710055cda8;
@@ -4722,6 +4857,7 @@ struct UnkRefl_fn_7100532a50;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710055cde0> {
     static constexpr u64 size = 0x28;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_710055d02c;
     static constexpr UnkFn fn_0x30 = &fn_710055d03c;
     static constexpr UnkFn fn_0x38 = &fn_710055d064;
@@ -4748,6 +4884,7 @@ struct UnkRefl_fn_7100533034;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710055d238> {
     static constexpr u64 size = 0x28;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_710055d484;
     static constexpr UnkFn fn_0x30 = &fn_710055d494;
     static constexpr UnkFn fn_0x38 = &fn_710055d4bc;
@@ -4774,6 +4911,7 @@ struct UnkRefl_fn_7100533c90;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710055dbac> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_710055ddb8;
     static constexpr UnkFn fn_0x30 = &fn_710055ddc0;
     static constexpr UnkFn fn_0x38 = &fn_710055ddcc;
@@ -4800,6 +4938,7 @@ struct UnkRefl_fn_7100533d6c;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710055de04> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_710055e010;
     static constexpr UnkFn fn_0x30 = &fn_710055e018;
     static constexpr UnkFn fn_0x38 = &fn_710055e024;
@@ -4826,6 +4965,7 @@ struct UnkRefl_fn_7100534350;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710055e05c> {
     static constexpr u64 size = 0x28;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_710055e2a8;
     static constexpr UnkFn fn_0x30 = &fn_710055e2b8;
     static constexpr UnkFn fn_0x38 = &fn_710055e2e0;
@@ -4852,6 +4992,7 @@ struct UnkRefl_fn_7100534934;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710055e4b4> {
     static constexpr u64 size = 0x28;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_710055e700;
     static constexpr UnkFn fn_0x30 = &fn_710055e710;
     static constexpr UnkFn fn_0x38 = &fn_710055e738;
@@ -4878,6 +5019,7 @@ struct UnkRefl_fn_71005354ec;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710055ee28> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_710055f034;
     static constexpr UnkFn fn_0x30 = &fn_710055f03c;
     static constexpr UnkFn fn_0x38 = &fn_710055f048;
@@ -4904,6 +5046,7 @@ struct UnkRefl_fn_71005355c8;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710055f080> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_710055f28c;
     static constexpr UnkFn fn_0x30 = &fn_710055f294;
     static constexpr UnkFn fn_0x38 = &fn_710055f2a0;
@@ -4930,6 +5073,7 @@ struct UnkRefl_fn_7100535bac;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710055f2d8> {
     static constexpr u64 size = 0x28;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_710055f524;
     static constexpr UnkFn fn_0x30 = &fn_710055f534;
     static constexpr UnkFn fn_0x38 = &fn_710055f55c;
@@ -4956,6 +5100,7 @@ struct UnkRefl_fn_7100536190;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710055f730> {
     static constexpr u64 size = 0x28;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_710055f97c;
     static constexpr UnkFn fn_0x30 = &fn_710055f98c;
     static constexpr UnkFn fn_0x38 = &fn_710055f9b4;
@@ -4982,6 +5127,7 @@ struct UnkRefl_fn_71005752f4;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71005770f0> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71005772fc;
     static constexpr UnkFn fn_0x30 = &fn_7100577304;
     static constexpr UnkFn fn_0x38 = &fn_7100577310;
@@ -5008,6 +5154,7 @@ struct UnkRefl_fn_71005753d0;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100577348> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_7100577554;
     static constexpr UnkFn fn_0x30 = &fn_710057755c;
     static constexpr UnkFn fn_0x38 = &fn_7100577568;
@@ -5034,6 +5181,7 @@ struct UnkRefl_fn_71005759b4;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71005775a0> {
     static constexpr u64 size = 0x28;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71005777ec;
     static constexpr UnkFn fn_0x30 = &fn_71005777fc;
     static constexpr UnkFn fn_0x38 = &fn_7100577824;
@@ -5060,6 +5208,7 @@ struct UnkRefl_fn_7100575f98;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71005779f8> {
     static constexpr u64 size = 0x28;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_7100577c44;
     static constexpr UnkFn fn_0x30 = &fn_7100577c54;
     static constexpr UnkFn fn_0x38 = &fn_7100577c7c;
@@ -5086,6 +5235,7 @@ struct UnkRefl_fn_71005ae0d8;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71005affa8> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71005b01b4;
     static constexpr UnkFn fn_0x30 = &fn_71005b01bc;
     static constexpr UnkFn fn_0x38 = &fn_71005b01c8;
@@ -5112,6 +5262,7 @@ struct UnkRefl_fn_71005ae1b4;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71005b0200> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71005b040c;
     static constexpr UnkFn fn_0x30 = &fn_71005b0414;
     static constexpr UnkFn fn_0x38 = &fn_71005b0420;
@@ -5138,6 +5289,7 @@ struct UnkRefl_fn_71005ae798;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71005b0458> {
     static constexpr u64 size = 0x28;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71005b06a4;
     static constexpr UnkFn fn_0x30 = &fn_71005b06b4;
     static constexpr UnkFn fn_0x38 = &fn_71005b06dc;
@@ -5164,6 +5316,7 @@ struct UnkRefl_fn_71005aed7c;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71005b08b0> {
     static constexpr u64 size = 0x28;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71005b0afc;
     static constexpr UnkFn fn_0x30 = &fn_71005b0b0c;
     static constexpr UnkFn fn_0x38 = &fn_71005b0b34;
@@ -5190,6 +5343,7 @@ struct UnkRefl_fn_71005d3d58;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71005d740c> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71005d7618;
     static constexpr UnkFn fn_0x30 = &fn_71005d7620;
     static constexpr UnkFn fn_0x38 = &fn_71005d762c;
@@ -5216,6 +5370,7 @@ struct UnkRefl_fn_71005d3e34;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71005d7664> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71005d7870;
     static constexpr UnkFn fn_0x30 = &fn_71005d7878;
     static constexpr UnkFn fn_0x38 = &fn_71005d7884;
@@ -5242,6 +5397,7 @@ struct UnkRefl_fn_71005d4418;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71005d78bc> {
     static constexpr u64 size = 0x28;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71005d7b08;
     static constexpr UnkFn fn_0x30 = &fn_71005d7b18;
     static constexpr UnkFn fn_0x38 = &fn_71005d7b40;
@@ -5268,6 +5424,7 @@ struct UnkRefl_fn_71005d49fc;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71005d7d14> {
     static constexpr u64 size = 0x28;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71005d7f60;
     static constexpr UnkFn fn_0x30 = &fn_71005d7f70;
     static constexpr UnkFn fn_0x38 = &fn_71005d7f98;
@@ -5294,6 +5451,7 @@ struct UnkRefl_fn_71005d4cb8;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71005d816c> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71005d8384;
     static constexpr UnkFn fn_0x30 = &fn_71005d838c;
     static constexpr UnkFn fn_0x38 = &fn_71005d8398;
@@ -5320,6 +5478,7 @@ struct UnkRefl_fn_71005d4d94;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71005d83d0> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71005d85e8;
     static constexpr UnkFn fn_0x30 = &fn_71005d85f0;
     static constexpr UnkFn fn_0x38 = &fn_71005d85fc;
@@ -5346,6 +5505,7 @@ struct UnkRefl_fn_71005d5378;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71005d8634> {
     static constexpr u64 size = 0x48;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71005d882c;
     static constexpr UnkFn fn_0x30 = &fn_71005d883c;
     static constexpr UnkFn fn_0x38 = &fn_71005d8854;
@@ -5372,6 +5532,7 @@ struct UnkRefl_fn_71005d595c;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71005d8af4> {
     static constexpr u64 size = 0x48;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71005d8cec;
     static constexpr UnkFn fn_0x30 = &fn_71005d8cfc;
     static constexpr UnkFn fn_0x38 = &fn_71005d8d14;
@@ -5398,6 +5559,7 @@ struct UnkRefl_fn_71005dd2bc;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71005e048c> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71005e0698;
     static constexpr UnkFn fn_0x30 = &fn_71005e06a0;
     static constexpr UnkFn fn_0x38 = &fn_71005e06ac;
@@ -5424,6 +5586,7 @@ struct UnkRefl_fn_71005dd398;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71005e06e4> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71005e08f0;
     static constexpr UnkFn fn_0x30 = &fn_71005e08f8;
     static constexpr UnkFn fn_0x38 = &fn_71005e0904;
@@ -5450,6 +5613,7 @@ struct UnkRefl_fn_71005dd97c;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71005e093c> {
     static constexpr u64 size = 0x28;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71005e0b88;
     static constexpr UnkFn fn_0x30 = &fn_71005e0b98;
     static constexpr UnkFn fn_0x38 = &fn_71005e0bc0;
@@ -5476,6 +5640,7 @@ struct UnkRefl_fn_71005ddf60;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71005e0d94> {
     static constexpr u64 size = 0x28;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71005e0fe0;
     static constexpr UnkFn fn_0x30 = &fn_71005e0ff0;
     static constexpr UnkFn fn_0x38 = &fn_71005e1018;
@@ -5502,6 +5667,7 @@ struct UnkRefl_fn_71005de21c;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71005e11ec> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71005e1404;
     static constexpr UnkFn fn_0x30 = &fn_71005e140c;
     static constexpr UnkFn fn_0x38 = &fn_71005e1418;
@@ -5528,6 +5694,7 @@ struct UnkRefl_fn_71005de2f8;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71005e1450> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71005e1668;
     static constexpr UnkFn fn_0x30 = &fn_71005e1670;
     static constexpr UnkFn fn_0x38 = &fn_71005e167c;
@@ -5554,6 +5721,7 @@ struct UnkRefl_fn_71005de8dc;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71005e16b4> {
     static constexpr u64 size = 0x48;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71005e18ac;
     static constexpr UnkFn fn_0x30 = &fn_71005e18bc;
     static constexpr UnkFn fn_0x38 = &fn_71005e18d4;
@@ -5580,6 +5748,7 @@ struct UnkRefl_fn_71005deec0;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71005e1b74> {
     static constexpr u64 size = 0x48;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71005e1d6c;
     static constexpr UnkFn fn_0x30 = &fn_71005e1d7c;
     static constexpr UnkFn fn_0x38 = &fn_71005e1d94;
@@ -5606,6 +5775,7 @@ struct UnkRefl_fn_71005e88d4;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71005eb358> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71005eb564;
     static constexpr UnkFn fn_0x30 = &fn_71005eb56c;
     static constexpr UnkFn fn_0x38 = &fn_71005eb578;
@@ -5632,6 +5802,7 @@ struct UnkRefl_fn_71005e89b0;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71005eb5b0> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71005eb7bc;
     static constexpr UnkFn fn_0x30 = &fn_71005eb7c4;
     static constexpr UnkFn fn_0x38 = &fn_71005eb7d0;
@@ -5658,6 +5829,7 @@ struct UnkRefl_fn_71005e8f94;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71005eb808> {
     static constexpr u64 size = 0x28;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71005eba54;
     static constexpr UnkFn fn_0x30 = &fn_71005eba64;
     static constexpr UnkFn fn_0x38 = &fn_71005eba8c;
@@ -5684,6 +5856,7 @@ struct UnkRefl_fn_71005e9578;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71005ebc60> {
     static constexpr u64 size = 0x28;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71005ebeac;
     static constexpr UnkFn fn_0x30 = &fn_71005ebebc;
     static constexpr UnkFn fn_0x38 = &fn_71005ebee4;
@@ -5710,6 +5883,7 @@ struct UnkRefl_fn_71005e9834;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71005ec0b8> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71005ec2d0;
     static constexpr UnkFn fn_0x30 = &fn_71005ec2d8;
     static constexpr UnkFn fn_0x38 = &fn_71005ec2e4;
@@ -5736,6 +5910,7 @@ struct UnkRefl_fn_71005e9910;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71005ec31c> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71005ec534;
     static constexpr UnkFn fn_0x30 = &fn_71005ec53c;
     static constexpr UnkFn fn_0x38 = &fn_71005ec548;
@@ -5762,6 +5937,7 @@ struct UnkRefl_fn_71005e9ef4;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71005ec580> {
     static constexpr u64 size = 0x48;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71005ec778;
     static constexpr UnkFn fn_0x30 = &fn_71005ec788;
     static constexpr UnkFn fn_0x38 = &fn_71005ec7a0;
@@ -5788,6 +5964,7 @@ struct UnkRefl_fn_71005ea4d8;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71005eca40> {
     static constexpr u64 size = 0x48;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71005ecc38;
     static constexpr UnkFn fn_0x30 = &fn_71005ecc48;
     static constexpr UnkFn fn_0x38 = &fn_71005ecc60;
@@ -5814,6 +5991,7 @@ struct UnkRefl_fn_710060f218;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100615710> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_710061591c;
     static constexpr UnkFn fn_0x30 = &fn_7100615924;
     static constexpr UnkFn fn_0x38 = &fn_7100615930;
@@ -5840,6 +6018,7 @@ struct UnkRefl_fn_710060f2f4;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100615968> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_7100615b74;
     static constexpr UnkFn fn_0x30 = &fn_7100615b7c;
     static constexpr UnkFn fn_0x38 = &fn_7100615b88;
@@ -5866,6 +6045,7 @@ struct UnkRefl_fn_710060f8d8;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100615bc0> {
     static constexpr u64 size = 0x28;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_7100615e0c;
     static constexpr UnkFn fn_0x30 = &fn_7100615e1c;
     static constexpr UnkFn fn_0x38 = &fn_7100615e44;
@@ -5892,6 +6072,7 @@ struct UnkRefl_fn_710060febc;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100616018> {
     static constexpr u64 size = 0x28;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_7100616264;
     static constexpr UnkFn fn_0x30 = &fn_7100616274;
     static constexpr UnkFn fn_0x38 = &fn_710061629c;
@@ -5918,6 +6099,7 @@ struct UnkRefl_fn_7100610b28;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710061698c> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_7100616b98;
     static constexpr UnkFn fn_0x30 = &fn_7100616ba0;
     static constexpr UnkFn fn_0x38 = &fn_7100616bac;
@@ -5944,6 +6126,7 @@ struct UnkRefl_fn_7100610c04;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100616be4> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_7100616df0;
     static constexpr UnkFn fn_0x30 = &fn_7100616df8;
     static constexpr UnkFn fn_0x38 = &fn_7100616e04;
@@ -5970,6 +6153,7 @@ struct UnkRefl_fn_71006111e8;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100616e3c> {
     static constexpr u64 size = 0x28;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_7100617088;
     static constexpr UnkFn fn_0x30 = &fn_7100617098;
     static constexpr UnkFn fn_0x38 = &fn_71006170c0;
@@ -5996,6 +6180,7 @@ struct UnkRefl_fn_71006117cc;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100617294> {
     static constexpr u64 size = 0x28;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71006174e0;
     static constexpr UnkFn fn_0x30 = &fn_71006174f0;
     static constexpr UnkFn fn_0x38 = &fn_7100617518;
@@ -6022,6 +6207,7 @@ struct UnkRefl_fn_7100612154;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100617bd8> {
     static constexpr u64 size = 0x40;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_7100617dd0;
     static constexpr UnkFn fn_0x30 = &fn_7100617de0;
     static constexpr UnkFn fn_0x38 = &fn_7100617df8;
@@ -6048,6 +6234,7 @@ struct UnkRefl_fn_7100612744;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100618050> {
     static constexpr u64 size = 0x40;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_7100618248;
     static constexpr UnkFn fn_0x30 = &fn_7100618258;
     static constexpr UnkFn fn_0x38 = &fn_7100618270;
@@ -6074,6 +6261,7 @@ struct UnkRefl_fn_7100613220;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71006189d8> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_7100618be4;
     static constexpr UnkFn fn_0x30 = &fn_7100618bec;
     static constexpr UnkFn fn_0x38 = &fn_7100618bf8;
@@ -6100,6 +6288,7 @@ struct UnkRefl_fn_71006132fc;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100618c30> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_7100618e3c;
     static constexpr UnkFn fn_0x30 = &fn_7100618e44;
     static constexpr UnkFn fn_0x38 = &fn_7100618e50;
@@ -6126,6 +6315,7 @@ struct UnkRefl_fn_71006138e0;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100618e88> {
     static constexpr u64 size = 0x28;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71006190d4;
     static constexpr UnkFn fn_0x30 = &fn_71006190e4;
     static constexpr UnkFn fn_0x38 = &fn_710061910c;
@@ -6152,6 +6342,7 @@ struct UnkRefl_fn_7100613ec4;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71006192e0> {
     static constexpr u64 size = 0x28;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_710061952c;
     static constexpr UnkFn fn_0x30 = &fn_710061953c;
     static constexpr UnkFn fn_0x38 = &fn_7100619564;
@@ -6178,6 +6369,7 @@ struct UnkRefl_fn_7100665b08;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100666be8> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_7100666e00;
     static constexpr UnkFn fn_0x30 = &fn_7100666e08;
     static constexpr UnkFn fn_0x38 = &fn_7100666e14;
@@ -6204,6 +6396,7 @@ struct UnkRefl_fn_7100665be4;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100666e4c> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_7100667064;
     static constexpr UnkFn fn_0x30 = &fn_710066706c;
     static constexpr UnkFn fn_0x38 = &fn_7100667078;
@@ -6230,6 +6423,7 @@ struct UnkRefl_fn_71006661c8;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71006670b0> {
     static constexpr u64 size = 0x30;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71006672c8;
     static constexpr UnkFn fn_0x30 = &fn_71006672d8;
     static constexpr UnkFn fn_0x38 = &fn_7100667300;
@@ -6256,6 +6450,7 @@ struct UnkRefl_fn_71006667ac;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71006673f0> {
     static constexpr u64 size = 0x30;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_7100667608;
     static constexpr UnkFn fn_0x30 = &fn_7100667618;
     static constexpr UnkFn fn_0x38 = &fn_7100667640;
@@ -6282,6 +6477,7 @@ struct UnkRefl_fn_710066eb34;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710066fc74> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_710066fe8c;
     static constexpr UnkFn fn_0x30 = &fn_710066fe94;
     static constexpr UnkFn fn_0x38 = &fn_710066fea0;
@@ -6308,6 +6504,7 @@ struct UnkRefl_fn_710066ec10;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710066fed8> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71006700f0;
     static constexpr UnkFn fn_0x30 = &fn_71006700f8;
     static constexpr UnkFn fn_0x38 = &fn_7100670104;
@@ -6334,6 +6531,7 @@ struct UnkRefl_fn_710066f1f4;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710067013c> {
     static constexpr u64 size = 0x50;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_7100670354;
     static constexpr UnkFn fn_0x30 = &fn_7100670364;
     static constexpr UnkFn fn_0x38 = &fn_710067038c;
@@ -6360,6 +6558,7 @@ struct UnkRefl_fn_710066f7d8;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710067047c> {
     static constexpr u64 size = 0x50;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_7100670694;
     static constexpr UnkFn fn_0x30 = &fn_71006706a4;
     static constexpr UnkFn fn_0x38 = &fn_71006706cc;
@@ -6386,6 +6585,7 @@ struct UnkRefl_fn_7100708d2c;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710070acc0> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_710070aecc;
     static constexpr UnkFn fn_0x30 = &fn_710070aed4;
     static constexpr UnkFn fn_0x38 = &fn_710070aee0;
@@ -6412,6 +6612,7 @@ struct UnkRefl_fn_7100708e08;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710070af18> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_710070b124;
     static constexpr UnkFn fn_0x30 = &fn_710070b12c;
     static constexpr UnkFn fn_0x38 = &fn_710070b138;
@@ -6438,6 +6639,7 @@ struct UnkRefl_fn_71007093ec;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710070b170> {
     static constexpr u64 size = 0x28;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_710070b3bc;
     static constexpr UnkFn fn_0x30 = &fn_710070b3cc;
     static constexpr UnkFn fn_0x38 = &fn_710070b3f4;
@@ -6464,6 +6666,7 @@ struct UnkRefl_fn_71007099d0;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710070b5c8> {
     static constexpr u64 size = 0x28;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_710070b814;
     static constexpr UnkFn fn_0x30 = &fn_710070b824;
     static constexpr UnkFn fn_0x38 = &fn_710070b84c;
@@ -6490,6 +6693,7 @@ struct UnkRefl_fn_7100755378;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710075a4fc> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_710075a714;
     static constexpr UnkFn fn_0x30 = &fn_710075a71c;
     static constexpr UnkFn fn_0x38 = &fn_710075a728;
@@ -6516,6 +6720,7 @@ struct UnkRefl_fn_7100755454;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710075a760> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_710075a978;
     static constexpr UnkFn fn_0x30 = &fn_710075a980;
     static constexpr UnkFn fn_0x38 = &fn_710075a98c;
@@ -6542,6 +6747,7 @@ struct UnkRefl_fn_7100755a38;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710075a9c4> {
     static constexpr u64 size = 0x68;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_710075abbc;
     static constexpr UnkFn fn_0x30 = &fn_710075abcc;
     static constexpr UnkFn fn_0x38 = &fn_710075abe4;
@@ -6568,6 +6774,7 @@ struct UnkRefl_fn_710075601c;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710075af7c> {
     static constexpr u64 size = 0x68;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_710075b174;
     static constexpr UnkFn fn_0x30 = &fn_710075b184;
     static constexpr UnkFn fn_0x38 = &fn_710075b19c;
@@ -6594,6 +6801,7 @@ struct UnkRefl_fn_71007562dc;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710075b534> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_710075b74c;
     static constexpr UnkFn fn_0x30 = &fn_710075b754;
     static constexpr UnkFn fn_0x38 = &fn_710075b760;
@@ -6620,6 +6828,7 @@ struct UnkRefl_fn_71007563b8;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710075b798> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_710075b9b0;
     static constexpr UnkFn fn_0x30 = &fn_710075b9b8;
     static constexpr UnkFn fn_0x38 = &fn_710075b9c4;
@@ -6646,6 +6855,7 @@ struct UnkRefl_fn_7100756494;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710075b9fc> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_710075bc14;
     static constexpr UnkFn fn_0x30 = &fn_710075bc1c;
     static constexpr UnkFn fn_0x38 = &fn_710075bc28;
@@ -6672,6 +6882,7 @@ struct UnkRefl_fn_7100756a78;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710075bc60> {
     static constexpr u64 size = 0x30;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_710075be78;
     static constexpr UnkFn fn_0x30 = &fn_710075be88;
     static constexpr UnkFn fn_0x38 = &fn_710075beb0;
@@ -6698,6 +6909,7 @@ struct UnkRefl_fn_710075705c;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710075bfa0> {
     static constexpr u64 size = 0x30;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_710075c1b8;
     static constexpr UnkFn fn_0x30 = &fn_710075c1c8;
     static constexpr UnkFn fn_0x38 = &fn_710075c1f0;
@@ -6724,6 +6936,7 @@ struct UnkRefl_fn_710075732c;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710075c2e0> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_710075c4f8;
     static constexpr UnkFn fn_0x30 = &fn_710075c500;
     static constexpr UnkFn fn_0x38 = &fn_710075c50c;
@@ -6750,6 +6963,7 @@ struct UnkRefl_fn_7100757408;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710075c544> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_710075c75c;
     static constexpr UnkFn fn_0x30 = &fn_710075c764;
     static constexpr UnkFn fn_0x38 = &fn_710075c770;
@@ -6776,6 +6990,7 @@ struct UnkRefl_fn_71007579ec;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710075c7a8> {
     static constexpr u64 size = 0x38;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_710075c99c;
     static constexpr UnkFn fn_0x30 = &fn_710075c9a4;
     static constexpr UnkFn fn_0x38 = &fn_710075c9bc;
@@ -6802,6 +7017,7 @@ struct UnkRefl_fn_7100757fd0;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710075cc00> {
     static constexpr u64 size = 0x38;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_710075cdf4;
     static constexpr UnkFn fn_0x30 = &fn_710075cdfc;
     static constexpr UnkFn fn_0x38 = &fn_710075ce14;
@@ -6828,6 +7044,7 @@ struct UnkRefl_fn_710076a988;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710077692c> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_7100776b38;
     static constexpr UnkFn fn_0x30 = &fn_7100776b40;
     static constexpr UnkFn fn_0x38 = &fn_7100776b4c;
@@ -6854,6 +7071,7 @@ struct UnkRefl_fn_710076aa64;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100776b84> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_7100776d90;
     static constexpr UnkFn fn_0x30 = &fn_7100776d98;
     static constexpr UnkFn fn_0x38 = &fn_7100776da4;
@@ -6880,6 +7098,7 @@ struct UnkRefl_fn_710076b048;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100776ddc> {
     static constexpr u64 size = 0x28;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_7100777028;
     static constexpr UnkFn fn_0x30 = &fn_7100777038;
     static constexpr UnkFn fn_0x38 = &fn_7100777060;
@@ -6906,6 +7125,7 @@ struct UnkRefl_fn_710076b62c;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100777234> {
     static constexpr u64 size = 0x28;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_7100777480;
     static constexpr UnkFn fn_0x30 = &fn_7100777490;
     static constexpr UnkFn fn_0x38 = &fn_71007774b8;
@@ -6932,6 +7152,7 @@ struct UnkRefl_fn_710076bcec;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100777968> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_7100777b80;
     static constexpr UnkFn fn_0x30 = &fn_7100777b88;
     static constexpr UnkFn fn_0x38 = &fn_7100777b94;
@@ -6958,6 +7179,7 @@ struct UnkRefl_fn_710076bdc8;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100777bcc> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_7100777de4;
     static constexpr UnkFn fn_0x30 = &fn_7100777dec;
     static constexpr UnkFn fn_0x38 = &fn_7100777df8;
@@ -6984,6 +7206,7 @@ struct UnkRefl_fn_710076c3ac;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100777e30> {
     static constexpr u64 size = 0xa0;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_710077806c;
     static constexpr UnkFn fn_0x30 = &fn_710077807c;
     static constexpr UnkFn fn_0x38 = &fn_71007780a4;
@@ -7010,6 +7233,7 @@ struct UnkRefl_fn_710076c990;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71007783d0> {
     static constexpr u64 size = 0xa0;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_710077860c;
     static constexpr UnkFn fn_0x30 = &fn_710077861c;
     static constexpr UnkFn fn_0x38 = &fn_7100778644;
@@ -7036,6 +7260,7 @@ struct UnkRefl_fn_71007991c0;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710079aa28> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_710079ac40;
     static constexpr UnkFn fn_0x30 = &fn_710079ac48;
     static constexpr UnkFn fn_0x38 = &fn_710079ac54;
@@ -7062,6 +7287,7 @@ struct UnkRefl_fn_710079929c;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710079ac8c> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_710079aea4;
     static constexpr UnkFn fn_0x30 = &fn_710079aeac;
     static constexpr UnkFn fn_0x38 = &fn_710079aeb8;
@@ -7088,6 +7314,7 @@ struct UnkRefl_fn_7100799880;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710079aef0> {
     static constexpr u64 size = 0x18;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_710079b0e4;
     static constexpr UnkFn fn_0x30 = &fn_710079b0ec;
     static constexpr UnkFn fn_0x38 = &fn_710079b104;
@@ -7114,6 +7341,7 @@ struct UnkRefl_fn_7100799e64;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710079b2e8> {
     static constexpr u64 size = 0x18;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_710079b4dc;
     static constexpr UnkFn fn_0x30 = &fn_710079b4e4;
     static constexpr UnkFn fn_0x38 = &fn_710079b4fc;
@@ -7140,6 +7368,7 @@ struct UnkRefl_fn_710079a138;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710079b6e0> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_710079b8f8;
     static constexpr UnkFn fn_0x30 = &fn_710079b900;
     static constexpr UnkFn fn_0x38 = &fn_710079b90c;
@@ -7166,6 +7395,7 @@ struct UnkRefl_fn_71007a18b8;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71007aad78> {
     static constexpr u64 size = 0xa8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71007aafb4;
     static constexpr UnkFn fn_0x30 = &fn_71007aafc4;
     static constexpr UnkFn fn_0x38 = &fn_71007aafec;
@@ -7192,6 +7422,7 @@ struct UnkRefl_fn_71007a1ea8;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71007ab170> {
     static constexpr u64 size = 0xa8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71007ab3ac;
     static constexpr UnkFn fn_0x30 = &fn_71007ab3bc;
     static constexpr UnkFn fn_0x38 = &fn_71007ab3e4;
@@ -7218,6 +7449,7 @@ struct UnkRefl_fn_71007adf30;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71007ae00c> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71007ae224;
     static constexpr UnkFn fn_0x30 = &fn_71007ae22c;
     static constexpr UnkFn fn_0x38 = &fn_71007ae238;
@@ -7244,6 +7476,7 @@ struct UnkRefl_fn_71007c92bc;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71007ca72c> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71007ca938;
     static constexpr UnkFn fn_0x30 = &fn_71007ca940;
     static constexpr UnkFn fn_0x38 = &fn_71007ca94c;
@@ -7270,6 +7503,7 @@ struct UnkRefl_fn_71007c9398;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71007ca984> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71007cab90;
     static constexpr UnkFn fn_0x30 = &fn_71007cab98;
     static constexpr UnkFn fn_0x38 = &fn_71007caba4;
@@ -7296,6 +7530,7 @@ struct UnkRefl_fn_71007c997c;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71007cabdc> {
     static constexpr u64 size = 0x28;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71007cae28;
     static constexpr UnkFn fn_0x30 = &fn_71007cae38;
     static constexpr UnkFn fn_0x38 = &fn_71007cae60;
@@ -7322,6 +7557,7 @@ struct UnkRefl_fn_71007c9f60;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71007cb034> {
     static constexpr u64 size = 0x28;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71007cb280;
     static constexpr UnkFn fn_0x30 = &fn_71007cb290;
     static constexpr UnkFn fn_0x38 = &fn_71007cb2b8;
@@ -7348,6 +7584,7 @@ struct UnkRefl_fn_71007ef2f4;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71007f10d0> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71007f12dc;
     static constexpr UnkFn fn_0x30 = &fn_71007f12e4;
     static constexpr UnkFn fn_0x38 = &fn_71007f12f0;
@@ -7374,6 +7611,7 @@ struct UnkRefl_fn_71007ef3d0;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71007f1328> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71007f1534;
     static constexpr UnkFn fn_0x30 = &fn_71007f153c;
     static constexpr UnkFn fn_0x38 = &fn_71007f1548;
@@ -7400,6 +7638,7 @@ struct UnkRefl_fn_71007ef9b4;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71007f1580> {
     static constexpr u64 size = 0x28;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71007f17cc;
     static constexpr UnkFn fn_0x30 = &fn_71007f17dc;
     static constexpr UnkFn fn_0x38 = &fn_71007f1804;
@@ -7426,6 +7665,7 @@ struct UnkRefl_fn_71007eff98;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71007f19d8> {
     static constexpr u64 size = 0x28;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71007f1c24;
     static constexpr UnkFn fn_0x30 = &fn_71007f1c34;
     static constexpr UnkFn fn_0x38 = &fn_71007f1c5c;
@@ -7452,6 +7692,7 @@ struct UnkRefl_fn_710080fedc;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71008135e8> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_7100813800;
     static constexpr UnkFn fn_0x30 = &fn_7100813808;
     static constexpr UnkFn fn_0x38 = &fn_7100813814;
@@ -7478,6 +7719,7 @@ struct UnkRefl_fn_710080ffb8;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_710081384c> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_7100813a64;
     static constexpr UnkFn fn_0x30 = &fn_7100813a6c;
     static constexpr UnkFn fn_0x38 = &fn_7100813a78;
@@ -7504,6 +7746,7 @@ struct UnkRefl_fn_710081059c;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100813ab0> {
     static constexpr u64 size = 0x60;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_7100813cec;
     static constexpr UnkFn fn_0x30 = &fn_7100813cfc;
     static constexpr UnkFn fn_0x38 = &fn_7100813d24;
@@ -7530,6 +7773,7 @@ struct UnkRefl_fn_7100810b80;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100813ea8> {
     static constexpr u64 size = 0x60;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71008140e4;
     static constexpr UnkFn fn_0x30 = &fn_71008140f4;
     static constexpr UnkFn fn_0x38 = &fn_710081411c;
@@ -7556,6 +7800,7 @@ struct UnkRefl_fn_710088e20c;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100892b1c> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_7100892d34;
     static constexpr UnkFn fn_0x30 = &fn_7100892d3c;
     static constexpr UnkFn fn_0x38 = &fn_7100892d48;
@@ -7582,6 +7827,7 @@ struct UnkRefl_fn_710088e2e8;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100892d80> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_7100892f98;
     static constexpr UnkFn fn_0x30 = &fn_7100892fa0;
     static constexpr UnkFn fn_0x38 = &fn_7100892fac;
@@ -7608,6 +7854,7 @@ struct UnkRefl_fn_710088e8cc;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100892fe4> {
     static constexpr u64 size = 0x68;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_7100893220;
     static constexpr UnkFn fn_0x30 = &fn_7100893230;
     static constexpr UnkFn fn_0x38 = &fn_7100893258;
@@ -7634,6 +7881,7 @@ struct UnkRefl_fn_710088eeb0;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_7100893500> {
     static constexpr u64 size = 0x68;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_710089373c;
     static constexpr UnkFn fn_0x30 = &fn_710089374c;
     static constexpr UnkFn fn_0x38 = &fn_7100893774;
@@ -7660,6 +7908,7 @@ struct UnkRefl_fn_71008a4b24;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71008a8ae4> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71008a8cfc;
     static constexpr UnkFn fn_0x30 = &fn_71008a8d04;
     static constexpr UnkFn fn_0x38 = &fn_71008a8d10;
@@ -7686,6 +7935,7 @@ struct UnkRefl_fn_71008a4c00;
 template <>
 struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71008a8d48> {
     static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = false;
     static constexpr UnkFn fn_0x28 = &fn_71008a8f60;
     static constexpr UnkFn fn_0x30 = &fn_71008a8f68;
     static constexpr UnkFn fn_0x38 = &fn_71008a8f74;
@@ -7707,55 +7957,3 @@ struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_71008a4c00> {
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71008a8d48*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71008a4c00>();
-struct UnkRefl_fn_71008a8fac;
-struct UnkRefl_fn_71008a51e4;
-template <>
-struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71008a8fac> {
-    static constexpr u64 size = 0x68;
-    static constexpr UnkFn fn_0x28 = &fn_71008a91e8;
-    static constexpr UnkFn fn_0x30 = &fn_71008a91f8;
-    static constexpr UnkFn fn_0x38 = &fn_71008a9220;
-    static constexpr UnkFn fn_0x40 = &fn_71008a9248;
-    static constexpr UnkFn fn_0x48 = &fn_71008a9284;
-    static constexpr UnkFn fn_0x50 = &fn_71008a9310;
-    static constexpr UnkFn fn_0x58 = &fn_71008a91b8;
-    static constexpr UnkFn fn_0x60 = &fn_71008a91cc;
-    static constexpr UnkFn fn_0x68 = &fn_71008a91d4;
-    static constexpr UnkFn fn_0xf0 = &fn_71008a9118;
-    static constexpr UnkFn fn_0xf8 = &fn_71008a9154;
-    static constexpr UnkFn fn_0x100 = &fn_71008a9158;
-    static const CType* pointee() { return &g_unk_717272e2d0; }
-};
-template <>
-struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_71008a51e4> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<SBeamBoxActivatable>>::TKeyElementIterator";
-    using Init = UnkRefl_fn_71008a8fac;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71008a8fac*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71008a51e4>();
-struct UnkRefl_fn_71008a94c8;
-struct UnkRefl_fn_71008a57c8;
-template <>
-struct base::reflection::UnkReflPointerTraits<UnkRefl_fn_71008a94c8> {
-    static constexpr u64 size = 0x68;
-    static constexpr UnkFn fn_0x28 = &fn_71008a9704;
-    static constexpr UnkFn fn_0x30 = &fn_71008a9714;
-    static constexpr UnkFn fn_0x38 = &fn_71008a973c;
-    static constexpr UnkFn fn_0x40 = &fn_71008a9764;
-    static constexpr UnkFn fn_0x48 = &fn_71008a97a0;
-    static constexpr UnkFn fn_0x50 = &fn_71008a982c;
-    static constexpr UnkFn fn_0x58 = &fn_71008a96d4;
-    static constexpr UnkFn fn_0x60 = &fn_71008a96e8;
-    static constexpr UnkFn fn_0x68 = &fn_71008a96f0;
-    static constexpr UnkFn fn_0xf0 = &fn_71008a9634;
-    static constexpr UnkFn fn_0xf8 = &fn_71008a9670;
-    static constexpr UnkFn fn_0x100 = &fn_71008a9674;
-    static const CType* pointee() { return &g_unk_717272e410; }
-};
-template <>
-struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_71008a57c8> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<SBeamBoxActivatable>>::TKeyElementConstIterator";
-    using Init = UnkRefl_fn_71008a94c8;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71008a94c8*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71008a57c8>();

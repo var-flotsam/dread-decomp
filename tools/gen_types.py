@@ -44,6 +44,7 @@ BASE = 0x7100000000
 REF_GETTER = 0x71000081E8          # refl_GetType<char const*>
 KIND_HASH = 0x7100001570
 CSTRID_CTOR = 0x71000003D4
+ALLOCATOR_GETTER = 0x7100083990
 POINTER_KIND = "base::reflection::CPointerType"
 ENUM_KIND = "base::reflection::CEnumType"
 REF_ENUM = 0x71000145E8         # a CEnumType constructor
@@ -120,7 +121,7 @@ def emulate(orig: asmdiff.Original, addr: int) -> tuple[str | None, dict, int | 
         if m == "b" and o[0].imm not in range(addr, addr + orig.sizes[addr]):
             tail = o[0].imm
             continue
-        if m in ("str", "stp") and CS.reg_name(o[-1].mem.base) == "x19":
+        if m in ("str", "stp", "strb") and CS.reg_name(o[-1].mem.base) == "x19":
             regs = [reg(x, op) for op in o[:-1]]
             raw = CS.reg_name(o[0].reg)
             size = 8 if raw[0] in "xd" else 4
@@ -158,14 +159,33 @@ def getter_facts(orig: asmdiff.Original, addr: int) -> tuple[str, int] | None:
     return (name, ctor) if name and ctor else None
 
 
-def traits(orig: asmdiff.Original, init: int, decls: set[str]) -> list[str] | None:
+def local_pointee(orig: asmdiff.Original, init: int) -> int | None:
+    """The pointee getter of a constructor that calls it but stores a constant address.
+
+    When the pointee's getter is defined in the same TU, Clang replaces the call's result by
+    the address of the getter's static descriptor; the call stays for its side effect."""
+    kind, st, _ = emulate(orig, init)
+    p = st.get(0xE8)
+    if kind != POINTER_KIND or not p or p[0] != "data":
+        return None
+    calls = [x.operands[0].imm for x in disasm(orig, init) if x.mnemonic == "bl"]
+    calls = [c for c in calls if c not in (KIND_HASH, ALLOCATOR_GETTER)]
+    return calls[-1] if calls else None
+
+
+def traits(orig: asmdiff.Original, init: int, decls: set[str], local: int | None = None) -> list[str] | None:
+    """Traits lines; with `local`, the pointee is that getter, defined in the same TU."""
     kind, st, _ = emulate(orig, init)
     if kind != POINTER_KIND:
         return None
     size = st.get(0x18)
     if not size or size[0] != "imm":
         return None
-    lines = [f"    static constexpr u64 size = {size[1]:#x};"]
+    flag = st.get(0xE0)
+    if not flag or flag[0] != "imm" or flag[1] not in (0, 1):
+        return None
+    lines = [f"    static constexpr u64 size = {size[1]:#x};",
+             f"    static constexpr bool field_0xe0 = {'true' if flag[1] else 'false'};"]
     for off, member in SLOTS.items():
         v = st.get(off)
         if v == ("imm", 0):
@@ -176,7 +196,9 @@ def traits(orig: asmdiff.Original, init: int, decls: set[str]) -> list[str] | No
         else:
             return None
     p = st.get(0xE8)
-    if p and p[0] == "call":
+    if local is not None:
+        lines.append(f"    static const CType* pointee() {{ return fn_{local:x}(); }}")
+    elif p and p[0] == "call":
         decls.add(f"const base::reflection::CType* fn_{p[1]:x}();")
         lines.append(f"    static const CType* pointee() {{ return fn_{p[1]:x}(); }}")
     elif p and p[0] == "data":
@@ -247,21 +269,18 @@ NAME_RE = re.compile(r"\b(?:fn|g_unk)_[0-9a-f]{10}\b")
 
 
 def write_chunks(prefix: str, blocks: list[list[str]], decls: set[str], header: list[str]) -> None:
-    by_name = {NAME_RE.search(d.split("(")[0]).group(0): d for d in decls}
     for k in range(0, len(blocks), CHUNK):
         body = [line for b in blocks[k:k + CHUNK] for line in b]
-        names = {n for line in body for n in NAME_RE.findall(line)}
-        used = sorted(d for n, d in by_name.items() if n in names)
+        used = used_decls(body, decls)
         (OUT / f"{prefix}_{k // CHUNK:02d}.cpp").write_text("\n".join(header + PRELUDE + used + body) + "\n",
                                                            encoding="utf-8")
 
 
-def main() -> int:
-    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--version", required=True)
-    args = ap.parse_args()
-    orig = asmdiff.Original(args.version)
+def scan(orig: asmdiff.Original) -> tuple[list, list, list, set[str]]:
+    """Candidates: (pointer pairs, pointer pairs with a local pointee, enums, declarations).
 
+    A pair is (getter, name, init, traits lines); a local pair adds its pointee getter, which
+    tools/gen_reflection.py generates in the same file."""
     rows = []
     for f in sorted((ROOT / "data" / "functions").glob("main_*.csv")):
         with f.open(newline="", encoding="utf-8") as fh:
@@ -271,6 +290,7 @@ def main() -> int:
     n = len(getter_shape) * 4
 
     pairs = []  # (getter, name, init, traits lines)
+    local = []  # (getter, name, init, traits lines, pointee getter)
     enums = []  # (init, traits lines)
     decls: set[str] = set()
     for a in rows:
@@ -288,12 +308,33 @@ def main() -> int:
         name, init = facts
         if init not in orig.sizes:
             continue
-        body = traits(orig, init, decls)
-        if body:
+        pointee = local_pointee(orig, init)
+        body = traits(orig, init, decls, pointee)
+        if body and pointee is not None:
+            local.append((a, name, init, body, pointee))
+        elif body:
             pairs.append((a, name, init, body))
     # One constructor may serve several getters; emit it once (first getter wins).
     seen: set[int] = set()
     pairs = [p for p in pairs if not (p[2] in seen or seen.add(p[2]))]
+    local = [p for p in local if not (p[2] in seen or seen.add(p[2]))]
+    return pairs, local, enums, decls
+
+
+def used_decls(lines: list[str], decls: set[str]) -> list[str]:
+    """The declarations of decls that lines refer to."""
+    by_name = {NAME_RE.search(d.split("(")[0]).group(0): d for d in decls}
+    names = {n for line in lines for n in NAME_RE.findall(line)}
+    return sorted(d for n, d in by_name.items() if n in names)
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--version", required=True)
+    args = ap.parse_args()
+    orig = asmdiff.Original(args.version)
+
+    pairs, _, enums, decls = scan(orig)
 
     work = ROOT / "build" / "gen_types"
     work.mkdir(parents=True, exist_ok=True)
