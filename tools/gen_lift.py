@@ -93,7 +93,7 @@ def is_frame(x) -> bool:
     if m in ("stp", "str", "ldp", "ldr") and mem and regname(mem[0].mem.base) == "sp":
         regs = [regname(op.reg) for op in o if op.type == arm64.ARM64_OP_REG]
         return all(r in ("x29", "x30") or (r[0] == "x" and r[1:].isdigit() and 19 <= int(r[1:]) <= 28)
-                   for r in regs)
+                   or (r[0] == "d" and r[1:].isdigit() and 8 <= int(r[1:]) <= 15) for r in regs)
     if m in ("add", "sub") and len(o) == 3 and o[2].type == arm64.ARM64_OP_IMM:
         return (regname(o[0].reg), regname(o[1].reg)) in (("x29", "sp"), ("sp", "sp"))
     return m == "mov" and len(o) == 2 and regname(o[0].reg) == "x29" and regname(o[1].reg) == "sp"
@@ -326,9 +326,16 @@ class Lifter:
 
     def address(self, x, op) -> str:
         """The memory operand's address; applies pre/post-index writeback to the base."""
-        if op.mem.index or op.shift.type:
-            raise Unsupported("indexed")
         base_reg = regname(op.mem.base)
+        if op.mem.index:
+            # Register offset: base + extend(index) << shift.
+            if x.writeback or base_reg in ("sp", "x29") or self.key(base_reg) in self.s.pages:
+                raise Unsupported("indexed")
+            idx, _ = self.read(regname(op.mem.index))
+            base, _ = self.read(base_reg)
+            return f"((char*)({base}) + {self.extend(idx, op, 'u64')})"
+        if op.shift.type:
+            raise Unsupported("indexed")
         if base_reg in ("sp", "x29"):
             if x.writeback or not self.frame:
                 raise Unsupported("stack writeback")
@@ -353,14 +360,36 @@ class Lifter:
 
     def operand(self, op, like: str) -> tuple[str, str]:
         if op.type == arm64.ARM64_OP_IMM:
-            if op.shift.type:
+            if op.shift.type and op.shift.type != arm64.ARM64_SFT_LSL:
                 raise Unsupported("shifted imm")
-            return str(op.imm), width_type(like)
+            return str(op.imm << (op.shift.value if op.shift.type else 0)), width_type(like)
         if op.type == arm64.ARM64_OP_REG:
-            if op.shift.type or op.ext:
-                raise Unsupported("shifted reg")
-            return self.read(regname(op.reg))
+            v, t = self.read(regname(op.reg))
+            if not op.shift.type and not op.ext:
+                return v, t
+            return self.extend(v, op, width_type(like)), width_type(like)
         raise Unsupported("operand")
+
+    def extend(self, v: str, op, t: str) -> str:
+        """A register operand's extension (uxtw, sxtb, ...) and shift, as an expression of type t."""
+        ext = {arm64.ARM64_EXT_UXTB: "u8", arm64.ARM64_EXT_UXTH: "u16", arm64.ARM64_EXT_UXTW: "u32",
+               arm64.ARM64_EXT_UXTX: "u64", arm64.ARM64_EXT_SXTB: "s8", arm64.ARM64_EXT_SXTH: "s16",
+               arm64.ARM64_EXT_SXTW: "s32", arm64.ARM64_EXT_SXTX: "s64", 0: None}.get(op.ext, "?")
+        if ext == "?":
+            raise Unsupported("extension")
+        e = f"({t})({ext})(u64)({v})" if ext else f"({t})(u64)({v})"
+        if op.shift.type:
+            k = op.shift.value
+            if op.shift.type == arm64.ARM64_SFT_LSL:
+                e = f"({t})({e} << {k})"
+            elif op.shift.type == arm64.ARM64_SFT_LSR:
+                e = f"({t})({e} >> {k})"
+            elif op.shift.type == arm64.ARM64_SFT_ASR:
+                st = "s64" if t == "u64" else "s32"
+                e = f"({t})(({st})({e}) >> {k})"
+            else:
+                raise Unsupported("shift")
+        return e
 
     def cond(self, cc: int, negate: bool) -> str:
         if cc not in CONDS or not self.s.cmp:
@@ -655,6 +684,15 @@ class Lifter:
                 rt = regname(o[k].reg)
                 t = width_type(rt)
                 self.write(rt, f"*({t}*)({tmp} + {k * (8 if t == 'u64' else 4)})", t)
+        elif m == "mov" and len(o) == 2 and regname(o[0].reg)[0] == "v" and o[1].type == arm64.ARM64_OP_REG \
+                and regname(o[1].reg)[0] == "v":
+            # A whole-register float copy (mov vD.16b, vS.16b): keep the source's width.
+            src = 100 + int(regname(o[1].reg)[1:])
+            t = self.s.vals.get(src, ("", self.params.get(src, "f32")))[1] if src in self.s.vals \
+                else getattr(self, "types", {}).get(src, "f32")
+            letter = "s" if t == "f32" else "d"
+            v, _ = self.read(f"{letter}{src - 100}")
+            self.write(f"{letter}{regname(o[0].reg)[1:]}", v, t)
         elif m in ("mov", "movz") and len(o) == 2:
             rd = regname(o[0].reg)
             if o[1].type == arm64.ARM64_OP_IMM:
@@ -706,6 +744,95 @@ class Lifter:
             t = width_type(rd)
             st = t if m != "asr" else ("s64" if t == "u64" else "s32")
             self.write(rd, f"({t})(({st})(u64)({a}) {'<<' if m == 'lsl' else '>>'} {o[2].imm})", t)
+        elif m in ("subs", "adds", "ands") and len(o) == 3:
+            # The operation, then flags: subs compares its operands; adds/ands compare the
+            # result with zero (enough for eq/ne and the signed conditions).
+            rd = regname(o[0].reg)
+            if rd[0] not in "xw" and rd not in ("xzr", "wzr"):
+                return False
+            t = width_type(rd)
+            a, _ = self.read(regname(o[1].reg))
+            b, _ = self.operand(o[2], rd)
+            op = {"subs": "-", "adds": "+", "ands": "&"}[m]
+            res = f"({t})(u64)({a}) {op} ({t})({b})"
+            if m == "subs":
+                s.cmp = (a, b, rd[0])
+                self.write(rd, res, t)
+            else:
+                self.write(rd, res, t)
+                s.cmp = (self.read(rd)[0] if rd not in ("xzr", "wzr") else f"({res})", "0", rd[0])
+        elif m in ("cmn", "tst") and len(o) == 2:
+            a, _ = self.read(regname(o[0].reg))
+            b, _ = self.operand(o[1], regname(o[0].reg))
+            t = width_type(regname(o[0].reg))
+            s.cmp = (f"({t})(({t})(u64)({a}) {'+' if m == 'cmn' else '&'} ({t})({b}))", "0", regname(o[0].reg)[0])
+        elif m in ("csel", "csinc", "csneg", "csinv") and len(o) == 3:
+            rd = regname(o[0].reg)
+            if rd[0] not in "xw":
+                return False
+            t = width_type(rd)
+            a, _ = self.read(regname(o[1].reg))
+            b, _ = self.read(regname(o[2].reg))
+            b = {"csel": f"({t})(u64)({b})", "csinc": f"({t})(u64)({b}) + 1",
+                 "csneg": f"-({t})(u64)({b})", "csinv": f"~({t})(u64)({b})"}[m]
+            self.write(rd, f"({self.cond(x.cc, False)}) ? ({t})(u64)({a}) : ({t})({b})", t)
+        elif m in ("mul", "udiv", "sdiv", "lslv", "lsrv", "asrv") or \
+                (m in ("lsl", "lsr", "asr") and len(o) == 3 and o[2].type == arm64.ARM64_OP_REG):
+            rd = regname(o[0].reg)
+            if rd[0] not in "xw":
+                return False
+            t = width_type(rd)
+            st = "s64" if t == "u64" else "s32"
+            a, _ = self.read(regname(o[1].reg))
+            b, _ = self.read(regname(o[2].reg))
+            m2 = m[:-1] if m in ("lslv", "lsrv", "asrv") else m
+            if m2 in ("sdiv", "asr"):
+                op = "/" if m2 == "sdiv" else ">>"
+                self.write(rd, f"({t})(({st})(u64)({a}) {op} ({st})(u64)({b}))", t)
+            else:
+                op = {"mul": "*", "udiv": "/", "lsl": "<<", "lsr": ">>"}[m2]
+                self.write(rd, f"({t})(u64)({a}) {op} ({t})(u64)({b})", t)
+        elif m in ("madd", "msub") and len(o) == 4:
+            rd = regname(o[0].reg)
+            if rd[0] not in "xw":
+                return False
+            t = width_type(rd)
+            a, _ = self.read(regname(o[1].reg))
+            b, _ = self.read(regname(o[2].reg))
+            c, _ = self.read(regname(o[3].reg))
+            self.write(rd, f"({t})(u64)({c}) {'+' if m == 'madd' else '-'} ({t})(u64)({a}) * ({t})(u64)({b})", t)
+        elif m in ("umull", "smull", "umaddl", "smaddl") and len(o) >= 3:
+            rd = regname(o[0].reg)
+            w = "u32" if m[0] == "u" else "s32"
+            a, _ = self.read(regname(o[1].reg))
+            b, _ = self.read(regname(o[2].reg))
+            prod = f"(u64)({w})(u64)({a}) * (u64)({w})(u64)({b})"
+            if len(o) == 4:
+                c, _ = self.read(regname(o[3].reg))
+                prod = f"(u64)({c}) + {prod}"
+            self.write(rd, prod, "u64")
+        elif m in ("mvn", "neg") and len(o) == 2:
+            rd = regname(o[0].reg)
+            if rd[0] not in "xw":
+                return False
+            t = width_type(rd)
+            b, _ = self.operand(o[1], rd)
+            self.write(rd, f"{'~' if m == 'mvn' else '-'}({t})(u64)({b})", t)
+        elif m in ("ubfx", "sbfx", "ubfiz", "sbfiz") and len(o) == 4:
+            rd = regname(o[0].reg)
+            t = width_type(rd)
+            st = "s64" if t == "u64" else "s32"
+            bits = 64 if t == "u64" else 32
+            a, _ = self.read(regname(o[1].reg))
+            lsb, width = o[2].imm, o[3].imm
+            if m in ("ubfx", "ubfiz"):
+                field = f"(({t})(u64)({a}) >> {lsb} & ({t}){(1 << width) - 1:#x})" if m == "ubfx" \
+                    else f"(({t})(u64)({a}) & ({t}){(1 << width) - 1:#x})"
+            else:
+                src = f"({st})(({t})(u64)({a}) << {bits - width - (lsb if m == 'sbfx' else 0)})" if m == "sbfx" \
+                    else f"({st})(({t})(u64)({a}) << {bits - width})"
+                field = f"(({src}) >> {bits - width})"
+            self.write(rd, f"({t})({field}){f' << {lsb}' if m.endswith('iz') else ''}", t)
         elif m == "cmp" and len(o) == 2:
             a, _ = self.read(regname(o[0].reg))
             b, _ = self.operand(o[1], regname(o[0].reg))
