@@ -52,7 +52,10 @@ Insns = list[tuple[str, str]]  # (mnemonic, operands)
 
 @dataclass
 class Kind:
-    ref: int     # verified reference address
+    # Verified reference address, or None for a probe kind: its shape (mnemonics) comes from
+    # compiling the instantiation with the tag UnkProbe_<kind>, so templates matched for one
+    # element type can find their instances for another.
+    ref: int | None
     header: str  # where the template is defined
     # The explicit instantiation for one candidate, given its tag and instructions (None to skip).
     instantiate: Callable[[str, Insns], str | None]
@@ -68,19 +71,49 @@ def elem_size(insns: Insns) -> int | None:
     return None
 
 
-def vector(method: str, element: str) -> Callable[[str, Insns], str | None]:
-    """UnkVector<element>::method for one candidate. `element` is "elem" (trivially copyable,
-    sized from the code), "owner" or "handle" (pointer-sized; see UnkClone.h)."""
-    signature = {"GrowAt": ("{t}&", "(u32)"), "Insert": ("void", "({t}&&, u32)")}[method]
+# Element types for collection templates (see UnkClone.h): a pointer, trivially copyable bytes
+# (sized from the code), an owning pointer and a copyable handle.
+ELEMENTS = {"ptr": "{tag}*", "elem": "UnkCloneElem<{tag}, {size}>", "owner": "UnkCloneOwner<{tag}>",
+            "handle": "UnkCloneHandle<{tag}>"}
 
+# Collection templates: header, explicit instantiation ({T} is the element type), verified
+# reference per element type, and whether the element size is read from the code ("elem" only).
+# Element types without a reference become probe kinds.
+COLLECTIONS = {
+    "vector_grow_at": ("base/UnkVector.h", "template {T}& base::UnkVector<{T}>::GrowAt(u32);",
+                       {"elem": 0x71000305D8, "owner": 0x71002B9ED8, "handle": 0x7100020CD0}),
+    "vector_insert": ("base/UnkVector.h", "template void base::UnkVector<{T}>::Insert({T}&&, u32);",
+                      {"elem": 0x71000D37D8, "owner": 0x71002B9C74}),
+    "vector_free": ("base/UnkVector.h", "template void base::UnkVector<{T}>::Free();", {"owner": 0x71002B9B2C}),
+    "vector_move": ("base/UnkVector.h",
+                    "template base::UnkVector<{T}>& base::UnkVector<{T}>::operator=(base::UnkVector<{T}>&&);",
+                    {"owner": 0x71002B9BBC}),
+    "iter_assign": ("base/UnkCollectionIter.h",
+                    "template base::UnkCollectionIter<{T}>& base::UnkCollectionIter<{T}>::operator=("
+                    "const base::UnkCollectionIter<{T}>&);", {"ptr": 0x71000BC1B0, "owner": 0x71002B8E3C}),
+    "iter_value_equal": ("base/UnkCollectionIter.h",
+                         "template bool base::operator==(const base::UnkIterValue<{T}>&, "
+                         "const base::UnkIterValue<{T}>&);", {"ptr": 0x71000CD4CC}),
+    "iter_value_move": ("base/UnkCollectionIter.h",
+                        "template base::UnkIterValue<{T}>& base::UnkIterValue<{T}>::operator=("
+                        "base::UnkIterValue<{T}>&&);", {"owner": 0x71002B954C}),
+    "iter_begin": ("base/UnkCollectionIter.h",
+                   "template void base::refl_Begin(const base::UnkVector<{T}>*, base::UnkCollectionIter<{T}>*);",
+                   {"ptr": 0x71000CC564, "owner": 0x71002BA12C}),
+    "iter_end": ("base/UnkCollectionIter.h",
+                 "template void base::refl_End(const base::UnkVector<{T}>*, base::UnkCollectionIter<{T}>*);",
+                 {"owner": 0x71002BA230}),
+}
+
+
+def collection(fmt: str, element: str) -> Callable[[str, Insns], str | None]:
     def build(tag: str, insns: Insns) -> str | None:
-        size = elem_size(insns)
-        if size is None or (element != "elem" and size != 8):
-            return None
-        t = {"elem": f"UnkCloneElem<{tag}, {size}>", "owner": f"UnkCloneOwner<{tag}>",
-             "handle": f"UnkCloneHandle<{tag}>"}[element]
-        ret, params = signature
-        return f"template {ret.format(t=t)} base::UnkVector<{t}>::{method}{params.format(t=t)};"
+        size = 8
+        if element == "elem":
+            size = elem_size(insns)
+            if size is None:
+                return None
+        return fmt.format(T=ELEMENTS[element].format(tag=tag, size=size))
     return build
 
 
@@ -88,12 +121,21 @@ KINDS = {
     "register_named": Kind(0x7100072940, "base/UnkNamedRegistry.h", lambda tag, _: (
         f"template base::UnkNamedObject* base::refl_RegisterNamed<{tag}>("
         "base::UnkNamedRegistry*, base::UnkNamedObject*, const char*);")),
-    "vector_grow_at": Kind(0x71000305D8, "base/UnkVector.h", vector("GrowAt", "elem"), exact=False),
-    "vector_grow_at_owner": Kind(0x71002B9ED8, "base/UnkVector.h", vector("GrowAt", "owner"), exact=False),
-    "vector_grow_at_handle": Kind(0x7100020CD0, "base/UnkVector.h", vector("GrowAt", "handle"), exact=False),
-    "vector_insert": Kind(0x71000D37D8, "base/UnkVector.h", vector("Insert", "elem"), exact=False),
-    "vector_insert_owner": Kind(0x71002B9C74, "base/UnkVector.h", vector("Insert", "owner"), exact=False),
+    "deferred_add": Kind(0x71002AEEBC, "base/UnkDeferredSet.h", lambda tag, _: (
+        f"template void base::UnkDeferredSet<{tag}>::Add({tag}*);")),
+    "deferred_remove": Kind(0x71002AE87C, "base/UnkDeferredSet.h", lambda tag, _: (
+        f"template void base::UnkDeferredSet<{tag}>::Remove({tag}*);")),
 }
+# Verified kinds first, so that a function matching both a reference and a probe takes the
+# reference's instantiation.
+for _name, (_header, _fmt, _refs) in COLLECTIONS.items():
+    for _el, _ref in _refs.items():
+        KINDS[f"{_name}_{_el}"] = Kind(_ref, _header, collection(_fmt, _el), exact=_el != "elem")
+for _name, (_header, _fmt, _refs) in COLLECTIONS.items():
+    trivial = "ptr" in _refs or "elem" in _refs
+    for _el in ("owner", "handle") + (() if trivial else ("ptr",)):
+        if _el not in _refs:
+            KINDS[f"{_name}_{_el}"] = Kind(None, _header, collection(_fmt, _el), exact=False)
 
 
 def instructions(orig: asmdiff.Original, addr: int) -> Insns:
@@ -127,6 +169,29 @@ def defined_in_src() -> set[int]:
 
 
 PRELUDE = ['#include "UnkClone.h"']
+WORK = ROOT / "build" / "gen_clones"
+
+
+def probe_shapes() -> dict[str, tuple[int, list[str]]]:
+    """Size and mnemonics of each probe kind's instantiation, compiled with the project flags."""
+    probes = {name: k for name, k in KINDS.items() if k.ref is None}
+    if not probes:
+        return {}
+    lines = PRELUDE + [f'#include "{h}"' for h in sorted({k.header for k in probes.values()})]
+    for name, k in probes.items():
+        lines += [f"struct UnkProbe_{name};", k.instantiate(f"UnkProbe_{name}", [("lsl", "x1, x8, #3")])]
+    WORK.mkdir(parents=True, exist_ok=True)
+    src, obj = WORK / "probes.cpp", WORK / "probes.o"
+    src.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    r = subprocess.run(buildcfg.cxx_command(src, obj), capture_output=True, text=True)
+    if r.returncode != 0:
+        raise SystemExit(f"probes failed to compile:\n{r.stderr[:4000]}")
+    out = {}
+    for sym, code, _ in asmdiff.object_functions(obj):
+        for name in probes:
+            if f"UnkProbe_{name}" in sym and (name not in out or len(code) > out[name][0]):
+                out[name] = (len(code), [m for _, _, m, _ in CS.disasm_lite(code, 0)])
+    return out
 
 
 def main() -> int:
@@ -140,10 +205,14 @@ def main() -> int:
         with f.open(newline="", encoding="utf-8") as fh:
             rows += [int(r["address"], 16) for r in csv.DictReader(fh) if r["status"] in ("U", "O")]
     taken = defined_in_src()
-    refs = {}
+    probes = probe_shapes()
+    refs = {}  # in KINDS order: verified kinds before probes
     for name, k in KINDS.items():
-        ins = instructions(orig, k.ref)
-        refs[name] = (orig.sizes[k.ref], ins if k.exact else [m for m, _ in ins])
+        if k.ref is not None:
+            ins = instructions(orig, k.ref)
+            refs[name] = (orig.sizes[k.ref], ins if k.exact else [m for m, _ in ins])
+        elif name in probes:
+            refs[name] = probes[name]
     found: dict[int, tuple[str, str]] = {}  # address -> (kind, instantiation)
     for a in rows:
         if a in taken or a not in orig.sizes:
@@ -153,7 +222,7 @@ def main() -> int:
             if orig.sizes[a] != size:
                 continue
             ins = ins or instructions(orig, a)
-            if (ins if KINDS[name].exact else [m for m, _ in ins]) == code:
+            if (ins if KINDS[name].exact and KINDS[name].ref is not None else [m for m, _ in ins]) == code:
                 tag = f"UnkClone_fn_{a:x}"
                 line = KINDS[name].instantiate(tag, ins)
                 if line:
@@ -163,9 +232,8 @@ def main() -> int:
     def includes(addrs: list[int]) -> list[str]:
         return PRELUDE + [f'#include "{h}"' for h in sorted({KINDS[found[a][0]].header for a in addrs})]
 
-    work = ROOT / "build" / "gen_clones"
-    work.mkdir(parents=True, exist_ok=True)
-    src, obj = work / "candidates.cpp", work / "candidates.o"
+    WORK.mkdir(parents=True, exist_ok=True)
+    src, obj = WORK / "candidates.cpp", WORK / "candidates.o"
     src.write_text("\n".join(includes(list(found)) + [found[a][1] for a in sorted(found)]) + "\n",
                    encoding="utf-8")
     r = subprocess.run(buildcfg.cxx_command(src, obj), capture_output=True, text=True)

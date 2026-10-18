@@ -75,6 +75,67 @@ struct UnkVector {
         ++count;
     }
 
+    // Destroys the elements and frees the array (fn_71002b9b2c and its copies).
+    void Free() {
+        if (data) {
+            Clear();
+            allocator->vf_0x48(data);
+            capacity = 0;
+        }
+    }
+
+    // Destroys the elements, keeping the array.
+    void Clear() {
+        for (u32 i = 0; i < count; ++i)
+            data[i].~T();
+        count = 0;
+    }
+
+    // Takes over other's array after destroying the elements (the old array is not freed;
+    // fn_71002b9bbc and its copies).
+    UnkVector& operator=(UnkVector&& other) {
+        if (this != &other) {
+            Clear();
+            allocator = other.allocator;
+            flags = other.flags;
+            step = other.step;
+            field_0x14 = other.field_0x14;
+            count = other.count;
+            capacity = other.capacity;
+            data = other.data;
+            other.data = nullptr;
+            other.count = 0;
+            other.capacity = 0;
+        }
+        return *this;
+    }
+
+    // Destroys the element at `index` and moves the later ones down. Unverified: fn_71002b9908
+    // keeps the loop counter and the source offset in separate registers.
+    void EraseAt(u32 index) {
+        if (index < count) {
+            data[index].~T();
+            for (u32 i = index; i < count - 1; ++i) {
+                new (&data[i]) T(static_cast<T&&>(data[i + 1]));
+                data[i + 1].~T();
+            }
+            count = count - 1;
+        }
+    }
+
+    // Removes the first element equal to `value`, shifting the rest down bitwise
+    // (fn_71002ae87c inlines it).
+    void Remove(const T& value) {
+        u32 n = count;
+        for (u32 i = 0; i < n; ++i) {
+            if (data[i] == value) {
+                __builtin_memcpy(&data[i], &data[i + 1], (u64)(n - i - 1) * sizeof(T));
+                --count;
+                return;
+            }
+        }
+    }
+
     // The element at `index`. When field_0x14 is set, an index past the end first grows the
     // array to the next multiple of the step and then to exactly index + 1 elements,
     // value-initialising the new ones (fn_71000305d8, fn_71002b9ed8 and their copies). The

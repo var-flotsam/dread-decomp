@@ -33,6 +33,16 @@ struct UnkCloneOwner {
         other.ptr = nullptr;
         ptr = p;
     }
+    UnkCloneOwner& operator=(UnkCloneOwner&& other) {
+        UnkCloneObject* p = other.ptr;
+        other.ptr = nullptr;
+        UnkCloneObject* old = ptr;
+        ptr = p;
+        if (old)
+            delete old;
+        return *this;
+    }
+    bool operator==(const UnkCloneOwner& other) const { return ptr == other.ptr; }
     ~UnkCloneOwner() {
         UnkCloneObject* p = ptr;
         ptr = nullptr;
@@ -51,4 +61,5 @@ struct UnkCloneHandle {
 
     UnkCloneHandle() : ptr(nullptr) {}
     UnkCloneHandle(const UnkCloneHandle& other) : ptr(other.ptr) {}
+    bool operator==(const UnkCloneHandle& other) const { return ptr == other.ptr; }
 };
