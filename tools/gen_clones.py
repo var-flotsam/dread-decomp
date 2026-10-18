@@ -182,6 +182,8 @@ KINDS = {
     "register_named": Kind(0x7100072940, "base/UnkNamedRegistry.h", lambda tag, _: (
         f"template base::UnkNamedObject* base::refl_RegisterNamed<{tag}>("
         "base::UnkNamedRegistry*, base::UnkNamedObject*, const char*);")),
+    "id_pair_assign": Kind(0x7100B96DEC, "base/UnkIdPair.h", lambda tag, _: (
+        f"template base::UnkIdPair<{tag}>& base::UnkIdPair<{tag}>::operator=(const base::UnkIdPair<{tag}>&);")),
     "deferred_add": Kind(0x71002AEEBC, "base/UnkDeferredSet.h", lambda tag, _: (
         f"template void base::UnkDeferredSet<{tag}>::Add({tag}*);")),
     "deferred_remove": Kind(0x71002AE87C, "base/UnkDeferredSet.h", lambda tag, _: (
