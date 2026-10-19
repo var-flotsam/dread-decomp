@@ -30,8 +30,8 @@ Snapshot as of 2026-10-18 (fifth Phase 4 session; branches `phase-4-4-clones` (v
 | 4.5+ Boot to title screen | Not started; plan below |
 | Port | Not started (`port/` is empty) |
 
-Function status (BotW codes): `O` 76,122, `m` 3, `M` 1, `L` 1,614, `U` 26,277.
-**Game-code progress: 41.91% of bytes (7.87 MB) matching** (`tools/progress.py`; library code
+Function status (BotW codes): `O` 76,500, `m` 3, `M` 1, `L` 1,614, `U` 25,899.
+**Game-code progress: 42.11% of bytes (7.90 MB) matching** (`tools/progress.py`; library code
 excluded; 39.09% at the start of this session). `tools/check.py` counts `src/` definitions,
 which differ slightly (matching `nn::atk` functions keep `L`; constructor aliases).
 
@@ -303,6 +303,13 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
      `UnkDtorElem`). Left: keyed move/copy-assign (written in `UnkStrIdMemberOf`, differ in
      scheduling), elements with vectors or out-of-line destructors, and an element destroy keyed by
      a string id that compiles to a 4-byte thunk when it shares a file with an identical one.
+   - Done (eighth session): two `gen_clones` scan kinds. `pointee_typed` covers the reflected
+     pointer helper that returns the pointee with its dynamic type (`UnkReflTypedPtr.h`, 328
+     functions). Its getter is called once per branch, which only matches when the null branch
+     calls a second, linker-folded copy of the getter (`folded::fn_<addr>`). `iter_value_destroy_dtor`
+     covers iterator-value destroys whose element has an out-of-line destructor (50). The
+     helper-slot census (`class_constructors` traits whose status is `U`) now gives 2,355
+     functions, 374 KB, in small families (the largest is 5 KB).
    - Enum static initialisers and the other per-TU static initialisers. These define
      globals, so they need the TU's data definitions (the 160 B ones are mostly lifted already).
    - Slot `0x28`/`0x30`/`0x38`/`0x48`/`0x50` helpers of other classes (need class layouts):

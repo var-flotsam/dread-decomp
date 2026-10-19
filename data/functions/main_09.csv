@@ -488,7 +488,7 @@ address,size,name,name_source,subsystem,status
 0x71009112a4,8,fn_71009112a4,unknown,unknown,O
 0x71009112ac,220,fn_71009112ac,unknown,unknown,O
 0x7100911388,360,fn_7100911388,unknown,unknown,O
-0x71009114f0,88,fn_71009114f0,unknown,unknown,U
+0x71009114f0,88,fn_71009114f0,unknown,unknown,O
 0x7100911548,12,fn_7100911548,unknown,unknown,O
 0x7100911554,16,fn_7100911554,unknown,unknown,O
 0x7100911564,20,fn_7100911564,unknown,unknown,O
@@ -578,7 +578,7 @@ address,size,name,name_source,subsystem,status
 0x7100914564,80,fn_7100914564,unknown,engine/reflection?,O
 0x71009145b4,132,fn_71009145b4,unknown,engine/reflection?,O
 0x7100914638,344,base::reflection::refl_InitType<std::unique_ptr<game::logic::collision::CShape>>,reflection,engine/reflection,O
-0x7100914790,88,fn_7100914790,unknown,unknown,U
+0x7100914790,88,fn_7100914790,unknown,unknown,O
 0x71009147e8,36,fn_71009147e8,unknown,unknown,O
 0x710091480c,4,fn_710091480c,unknown,unknown,O
 0x7100914810,20,fn_7100914810,unknown,unknown,O
@@ -649,7 +649,7 @@ address,size,name,name_source,subsystem,status
 0x71009155a0,8,fn_71009155a0,unknown,unknown,O
 0x71009155a8,220,base::reflection::refl_GetType<game::logic::collision::CShape*>,reflection,engine/reflection,O
 0x7100915684,360,base::reflection::refl_InitType<game::logic::collision::CShape*>,reflection,engine/reflection,O
-0x71009157ec,88,fn_71009157ec,unknown,unknown,U
+0x71009157ec,88,fn_71009157ec,unknown,unknown,O
 0x7100915844,12,fn_7100915844,unknown,unknown,O
 0x7100915850,16,fn_7100915850,unknown,unknown,O
 0x7100915860,20,fn_7100915860,unknown,unknown,O
@@ -4633,7 +4633,7 @@ address,size,name,name_source,subsystem,status
 0x71009fb940,480,fn_71009fb940,unknown,engine/reflection?,O
 0x71009fbb20,28,fn_71009fbb20,unknown,engine/reflection?,O
 0x71009fbb3c,368,fn_71009fbb3c,unknown,engine/reflection?,O
-0x71009fbcac,104,fn_71009fbcac,unknown,engine/reflection?,U
+0x71009fbcac,104,fn_71009fbcac,unknown,engine/reflection?,O
 0x71009fbd14,12,fn_71009fbd14,unknown,engine/reflection?,O
 0x71009fbd20,16,fn_71009fbd20,unknown,engine/reflection?,O
 0x71009fbd30,20,fn_71009fbd30,unknown,engine/reflection?,O
@@ -4646,7 +4646,7 @@ address,size,name,name_source,subsystem,status
 0x71009fbd84,20,fn_71009fbd84,unknown,engine/reflection?,O
 0x71009fbd98,20,fn_71009fbd98,unknown,engine/reflection?,O
 0x71009fbdac,368,fn_71009fbdac,unknown,engine/reflection?,O
-0x71009fbf1c,104,fn_71009fbf1c,unknown,engine/reflection?,U
+0x71009fbf1c,104,fn_71009fbf1c,unknown,engine/reflection?,O
 0x71009fbf84,12,fn_71009fbf84,unknown,engine/reflection?,O
 0x71009fbf90,16,fn_71009fbf90,unknown,engine/reflection?,O
 0x71009fbfa0,20,fn_71009fbfa0,unknown,engine/reflection?,O
@@ -4659,7 +4659,7 @@ address,size,name,name_source,subsystem,status
 0x71009fbff4,20,fn_71009fbff4,unknown,engine/reflection?,O
 0x71009fc008,20,fn_71009fc008,unknown,engine/reflection?,O
 0x71009fc01c,352,base::reflection::refl_InitType<std::unique_ptr<CShotLaunchConfig>>,reflection,engine/reflection,O
-0x71009fc17c,104,fn_71009fc17c,unknown,unknown,U
+0x71009fc17c,104,fn_71009fc17c,unknown,unknown,O
 0x71009fc1e4,36,fn_71009fc1e4,unknown,unknown,O
 0x71009fc208,4,fn_71009fc208,unknown,unknown,O
 0x71009fc20c,20,fn_71009fc20c,unknown,unknown,O
@@ -4670,7 +4670,7 @@ address,size,name,name_source,subsystem,status
 0x71009fc254,32,fn_71009fc254,unknown,unknown,O
 0x71009fc274,72,fn_71009fc274,unknown,unknown,O
 0x71009fc2bc,360,fn_71009fc2bc,unknown,unknown,O
-0x71009fc424,88,fn_71009fc424,unknown,unknown,U
+0x71009fc424,88,fn_71009fc424,unknown,unknown,O
 0x71009fc47c,12,fn_71009fc47c,unknown,unknown,O
 0x71009fc488,16,fn_71009fc488,unknown,unknown,O
 0x71009fc498,20,fn_71009fc498,unknown,unknown,O
@@ -4683,7 +4683,7 @@ address,size,name,name_source,subsystem,status
 0x71009fc4ec,20,fn_71009fc4ec,unknown,unknown,O
 0x71009fc500,20,fn_71009fc500,unknown,unknown,O
 0x71009fc514,360,fn_71009fc514,unknown,unknown,O
-0x71009fc67c,88,fn_71009fc67c,unknown,unknown,U
+0x71009fc67c,88,fn_71009fc67c,unknown,unknown,O
 0x71009fc6d4,12,fn_71009fc6d4,unknown,unknown,O
 0x71009fc6e0,16,fn_71009fc6e0,unknown,unknown,O
 0x71009fc6f0,20,fn_71009fc6f0,unknown,unknown,O
