@@ -196,4 +196,63 @@ void refl_LinkedDeletingDtor(char* self) {
     __builtin_operator_delete(self);
 }
 
+// The deleting destructor of a class holding an inline array of `Stride`-byte records at
+// `First`, counted at +8, each with two refcounted pointers (at Lo and Hi, released high first;
+// fn_7100331b48 and its copies). The records' pointers are only 4-aligned.
+template <class Tag, u32 First, u32 Stride, u32 Lo, u32 Hi>
+void refl_RefPairArrayDeletingDtor(char* self) {
+    *reinterpret_cast<char**>(self) = UnkDtorTraits<Tag>::vtable() + 0x10;
+    for (u64 i = 0; i < *reinterpret_cast<u32*>(self + 8); ++i) {
+        char* e = self + First + i * Stride;
+        reinterpret_cast<UnkRefPtrMember*>(e + Hi)->~UnkRefPtrMember();
+        reinterpret_cast<UnkRefPtrMember*>(e + Lo)->~UnkRefPtrMember();
+    }
+    __builtin_operator_delete(self);
+}
+
+}  // namespace base
+
+void fn_71000837f4(char*);
+
+namespace base {
+
+// vtable(), base_vtable(): the class's and its base's; member_vtable(): the member at +0x30.
+template <class Tag>
+struct UnkListOwnerTraits;
+
+// Frees the nodes of refl_ListDtor's list (allocator at +0x20, link at `Next`).
+template <class Tag, u32 Next>
+inline void refl_FreeListNodes(char* self) {
+    char* n = *reinterpret_cast<char**>(self + 0x10);
+    while (n) {
+        char* next = *reinterpret_cast<char**>(n + Next);
+        (*reinterpret_cast<UnkAllocator**>(self + 0x20))->vf_0x48(n);
+        n = next;
+    }
+}
+
+// The deleting destructor of a class derived from such a list: it sets the flag at +0x6c, clears
+// the list, destroys the member at +0x30 (a block at +0x60 freed through its allocator at +0x38)
+// and runs the base's destructor, whose stores are dropped (fn_71000ebfec and its copies).
+template <class Tag, u32 Next>
+void refl_ListOwnerDeletingDtor(char* self) {
+    using Traits = UnkListOwnerTraits<Tag>;
+    *reinterpret_cast<char**>(self) = Traits::vtable() + 0x10;
+    *reinterpret_cast<bool*>(self + 0x6c) = true;
+    refl_FreeListNodes<Tag, Next>(self);
+    *reinterpret_cast<u32*>(self + 8) = 0;
+    *reinterpret_cast<char**>(self + 0x10) = nullptr;
+    *reinterpret_cast<char**>(self + 0x18) = nullptr;
+    *reinterpret_cast<char**>(self + 0x20) = nullptr;
+    *reinterpret_cast<char**>(self + 0x30) = Traits::member_vtable() + 0x10;
+    if (char* p = *reinterpret_cast<char**>(self + 0x60)) {
+        fn_71000837f4(self + 0x40);
+        (*reinterpret_cast<UnkAllocator**>(self + 0x38))->vf_0x48(p);
+        *reinterpret_cast<char**>(self + 0x38) = nullptr;
+    }
+    *reinterpret_cast<char**>(self) = Traits::base_vtable() + 0x10;
+    refl_FreeListNodes<Tag, Next>(self);
+    __builtin_operator_delete(self);
+}
+
 }  // namespace base

@@ -30,8 +30,8 @@ Snapshot as of 2026-10-18 (fifth Phase 4 session; branches `phase-4-4-clones` (v
 | 4.5+ Boot to title screen | Not started; plan below |
 | Port | Not started (`port/` is empty) |
 
-Function status (BotW codes): `O` 78,397, `m` 3, `M` 1, `L` 1,614, `U` 24,002.
-**Game-code progress: 43.51% of bytes (8.17 MB) matching** (`tools/progress.py`; library code
+Function status (BotW codes): `O` 78,990, `m` 3, `M` 1, `L` 1,614, `U` 23,409.
+**Game-code progress: 44.36% of bytes (8.33 MB) matching** (`tools/progress.py`; library code
 excluded; 39.09% at the start of this session). `tools/check.py` counts `src/` definitions,
 which differ slightly (matching `nn::atk` functions keep `L`; constructor aliases).
 
@@ -343,6 +343,14 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
      kinds in `UnkCloneHelpers.h` (~280 functions). `gen_clones.py` now also retries `W` candidates.
      Left: 0x710013208c, 0x71004a84c8 (96%, an inverted branch pair), 0x71001f3a64, 0x71000cbef4,
      0x710035480c (the state-machine shape again), 0x7100020898, 0x7100085930.
+   - Done (eighth session, round 3): 32 scan kinds over shape families (593 functions), among them
+     `derived_copy_ctor` (68), `hash_key_fields` (55), `callback_base_dtor` (34),
+     `callback_list_destroy` (28), `vector_free_poly` (26), the string-id value vector
+     (`UnkStrIdValueVec.h`), pool lists, per-TU type initialisers (`type_static_init`), cast-and-register
+     and owner destructors. Templates are in `UnkCloneHelpers.h`, `UnkStrIdValueVec.h`, `UnkCache.h`,
+     `UnkDestructors.h` and `UnkHashMap.h`. Left: 0x710088af9c (a state machine's update, 15%),
+     0x7100020eb0 (string-id hash erase, 44%: block layout), 0x71004f0648 and 0x71000d6310 (block
+     layout), and the large per-TU static initialisers 0x71003a8a80, 0x71002d4770, 0x710021c330.
    - Enum static initialisers and the other per-TU static initialisers. These define
      globals, so they need the TU's data definitions (the 160 B ones are mostly lifted already).
    - Slot `0x28`/`0x30`/`0x38`/`0x48`/`0x50` helpers of other classes (need class layouts):
