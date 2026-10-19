@@ -94,4 +94,55 @@ UnkReflValue refl_SetFieldValue(void*, char* obj, UnkReflValue* const* args) {
     return r;
 }
 
+// The value of a setter's argument: inline when it fits in 8 bytes, else through field_0x0.
+template <class T>
+inline const T* refl_ArgValue(UnkReflValue* arg) {
+    return arg->field_0x14 == 1 || *reinterpret_cast<const u64*>(arg->type + 0x18) > 8
+               ? static_cast<const T*>(arg->field_0x0)
+               : reinterpret_cast<const T*>(arg);
+}
+
+// The empty value a setter returns.
+inline UnkReflValue refl_EmptyValue() {
+    UnkReflValue r;
+    r.field_0x0 = nullptr;
+    r.type = nullptr;
+    r.kind = 2;
+    r.field_0x14 = 1;
+    return r;
+}
+
+// target(): the object notified; apply(): the follow-up call (setters below).
+template <class Tag>
+struct UnkSetterTraits;
+
+}  // namespace base::reflection
+
+void fn_7100fdd2b4(char* target, const u64* id);
+
+namespace base::reflection {
+
+// Writes the f32 at `Offset`, raised to at least 0.0001, then passes the property's id (a
+// 64-bit hash) to the target object if there is one (fn_710101a504 and its copies).
+template <class Tag, u32 Offset, u64 Id>
+UnkReflValue refl_SetFieldMinNotify(void*, char* obj, UnkReflValue* const* args) {
+    char* target = *reinterpret_cast<char**>(obj + 8);
+    f32 v = *refl_ArgValue<f32>(args[0]);
+    *reinterpret_cast<f32*>(target + Offset) = v < 0.0001f ? 0.0001f : v;
+    if (char* s = UnkSetterTraits<Tag>::target()) {
+        u64 id = Id;
+        fn_7100fdd2b4(s, &id);
+    }
+    return refl_EmptyValue();
+}
+
+// Writes the T at `Offset`, then calls apply() (fn_7100f5bd64 and its copies).
+template <class Tag, class T, u32 Offset>
+UnkReflValue refl_SetFieldApply(void*, char* obj, UnkReflValue* const* args) {
+    char* target = *reinterpret_cast<char**>(obj + 8);
+    *reinterpret_cast<T*>(target + Offset) = *refl_ArgValue<T>(args[0]);
+    UnkSetterTraits<Tag>::apply();
+    return refl_EmptyValue();
+}
+
 }  // namespace base::reflection

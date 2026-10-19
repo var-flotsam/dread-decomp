@@ -3852,8 +3852,8 @@ address,size,name,name_source,subsystem,status
 0x71000c223c,40,fn_71000c223c,unknown,unknown,O
 0x71000c2264,40,fn_71000c2264,unknown,unknown,O
 0x71000c228c,60,fn_71000c228c,unknown,unknown,O
-0x71000c22c8,144,fn_71000c22c8,unknown,unknown,U
-0x71000c2358,144,fn_71000c2358,unknown,unknown,U
+0x71000c22c8,144,fn_71000c22c8,unknown,unknown,O
+0x71000c2358,144,fn_71000c2358,unknown,unknown,O
 0x71000c23e8,364,fn_71000c23e8,unknown,unknown,O
 0x71000c2554,60,fn_71000c2554,unknown,unknown,O
 0x71000c2590,4,fn_71000c2590,unknown,unknown,O
@@ -3865,8 +3865,8 @@ address,size,name,name_source,subsystem,status
 0x71000c2634,40,fn_71000c2634,unknown,unknown,O
 0x71000c265c,40,fn_71000c265c,unknown,unknown,O
 0x71000c2684,60,fn_71000c2684,unknown,unknown,O
-0x71000c26c0,144,fn_71000c26c0,unknown,unknown,U
-0x71000c2750,144,fn_71000c2750,unknown,unknown,U
+0x71000c26c0,144,fn_71000c26c0,unknown,unknown,O
+0x71000c2750,144,fn_71000c2750,unknown,unknown,O
 0x71000c27e0,360,fn_71000c27e0,unknown,unknown,O
 0x71000c2948,60,fn_71000c2948,unknown,unknown,O
 0x71000c2984,4,fn_71000c2984,unknown,unknown,O
@@ -4374,8 +4374,8 @@ address,size,name,name_source,subsystem,status
 0x71000ca02c,40,fn_71000ca02c,unknown,unknown,O
 0x71000ca054,40,fn_71000ca054,unknown,unknown,O
 0x71000ca07c,60,fn_71000ca07c,unknown,unknown,O
-0x71000ca0b8,144,fn_71000ca0b8,unknown,unknown,U
-0x71000ca148,144,fn_71000ca148,unknown,unknown,U
+0x71000ca0b8,144,fn_71000ca0b8,unknown,unknown,O
+0x71000ca148,144,fn_71000ca148,unknown,unknown,O
 0x71000ca1d8,364,fn_71000ca1d8,unknown,unknown,O
 0x71000ca344,60,fn_71000ca344,unknown,unknown,O
 0x71000ca380,4,fn_71000ca380,unknown,unknown,O
@@ -4387,8 +4387,8 @@ address,size,name,name_source,subsystem,status
 0x71000ca424,40,fn_71000ca424,unknown,unknown,O
 0x71000ca44c,40,fn_71000ca44c,unknown,unknown,O
 0x71000ca474,60,fn_71000ca474,unknown,unknown,O
-0x71000ca4b0,144,fn_71000ca4b0,unknown,unknown,U
-0x71000ca540,144,fn_71000ca540,unknown,unknown,U
+0x71000ca4b0,144,fn_71000ca4b0,unknown,unknown,O
+0x71000ca540,144,fn_71000ca540,unknown,unknown,O
 0x71000ca5d0,360,fn_71000ca5d0,unknown,unknown,O
 0x71000ca738,60,fn_71000ca738,unknown,unknown,O
 0x71000ca774,12,fn_71000ca774,unknown,unknown,O

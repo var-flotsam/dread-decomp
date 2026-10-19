@@ -88,6 +88,8 @@ template <class Tag>
 struct UnkDtorTraits;  // vtable(), and base(char*) unless the class has no base destructor
 
 // Members are released in the order given (the reverse of their declaration order).
+// The deleting forms free through __builtin_operator_delete, as a compiler-generated deleting
+// destructor does, so dead stores to the object before the free are dropped.
 template <class Tag, class... Members>
 void refl_Dtor(char* self) {
     using Traits = UnkDtorTraits<Tag>;
@@ -102,7 +104,7 @@ void refl_DeletingDtor(char* self) {
     *reinterpret_cast<char**>(self) = Traits::vtable() + 0x10;
     (Members::Release(self), ...);
     Traits::base(self);
-    ::operator delete(self);
+    __builtin_operator_delete(self);
 }
 
 // The deleting destructor of a class without a base destructor call.
@@ -111,7 +113,7 @@ void refl_DeletingDtorNoBase(char* self) {
     using Traits = UnkDtorTraits<Tag>;
     *reinterpret_cast<char**>(self) = Traits::vtable() + 0x10;
     (Members::Release(self), ...);
-    ::operator delete(self);
+    __builtin_operator_delete(self);
 }
 
 // An element of unknown type whose destructor stores its vtable and releases members (no base
