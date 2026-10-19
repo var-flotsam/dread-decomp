@@ -15,22 +15,26 @@ namespace base {
 
 // A string id released in two steps (the original reloads the id and the count after the
 // decrement, and the pool after a release), unlike CStrId. Which engine type it is is unknown.
-struct UnkStrIdMember {
+// Pool is the global pool pointer: most use g_unk_7101d47108; some keyed collections use
+// another one (g_unk_7101d47200).
+template <global::UnkStringPool*& Pool>
+struct UnkStrIdMemberOf {
     global::UnkStringData* data;
 
-    ~UnkStrIdMember() {
-        if (global::UnkStringPool* pool = g_unk_7101d47108) {
+    ~UnkStrIdMemberOf() {
+        if (global::UnkStringPool* pool = Pool) {
             if (data && data != &pool->empty) {
                 --data->ref_count;
                 if (data->ref_count == 0) {
                     fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
+                    pool = Pool;
                 }
             }
             data = &pool->empty;
         }
     }
 };
+using UnkStrIdMember = UnkStrIdMemberOf<g_unk_7101d47108>;
 
 // An intrusively refcounted object (count at +8), deleted through its vtable.
 struct UnkRefCounted {

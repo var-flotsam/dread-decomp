@@ -69,8 +69,14 @@ struct UnkCloneHandle {
 template <class Tag>
 struct UnkCloneWord {
     u64 value;
+
+    bool operator==(const UnkCloneWord& other) const { return value == other.value; }
 };
 
 // A string id released in two steps (base::UnkStrIdMember).
 template <class Tag>
 struct UnkCloneStrId : base::UnkStrIdMember {};
+
+// The same, from the second pool.
+template <class Tag>
+struct UnkCloneStrIdB : base::UnkStrIdMemberOf<g_unk_7101d47200> {};
