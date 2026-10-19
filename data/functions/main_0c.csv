@@ -2913,7 +2913,7 @@ address,size,name,name_source,subsystem,status
 0x7100c47e24,52,fn_7100c47e24,unknown,game/characters?,U
 0x7100c47e58,12,fn_7100c47e58,unknown,game/characters?,O
 0x7100c47e64,68,fn_7100c47e64,unknown,game/characters?,O
-0x7100c47ea8,68,fn_7100c47ea8,unknown,game/characters?,U
+0x7100c47ea8,68,fn_7100c47ea8,unknown,game/characters?,O
 0x7100c47ef0,160,fn_7100c47ef0,unknown,game/characters?,O
 0x7100c47f90,88,fn_7100c47f90,unknown,game/characters?,O
 0x7100c47fe8,244,CCharClassRevertMeleeDamageTrack::refl_GetClass,reflection,game/characters,O
@@ -5104,7 +5104,7 @@ address,size,name,name_source,subsystem,status
 0x7100ca9c0c,444,fn_7100ca9c0c,unknown,unknown,U
 0x7100ca9dc8,536,fn_7100ca9dc8,unknown,unknown,U
 0x7100ca9fe0,80,fn_7100ca9fe0,unknown,unknown,O
-0x7100caa030,56,fn_7100caa030,unknown,unknown,U
+0x7100caa030,56,fn_7100caa030,unknown,unknown,O
 0x7100caa068,12,fn_7100caa068,unknown,unknown,O
 0x7100caa074,8,fn_7100caa074,unknown,unknown,O
 0x7100caa07c,12,fn_7100caa07c,unknown,unknown,O
@@ -5116,7 +5116,7 @@ address,size,name,name_source,subsystem,status
 0x7100caa144,8,fn_7100caa144,unknown,unknown,O
 0x7100caa14c,456,fn_7100caa14c,unknown,unknown,U
 0x7100caa314,80,fn_7100caa314,unknown,unknown,O
-0x7100caa364,56,fn_7100caa364,unknown,unknown,U
+0x7100caa364,56,fn_7100caa364,unknown,unknown,O
 0x7100caa39c,8,fn_7100caa39c,unknown,unknown,O
 0x7100caa3a4,4,fn_7100caa3a4,unknown,unknown,O
 0x7100caa3a8,4,fn_7100caa3a8,unknown,unknown,O

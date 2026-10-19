@@ -45,6 +45,7 @@ OUT = ROOT / "src" / "clones"
 CHUNK = 1000  # instantiations per generated file
 BRANCHES = {"b", "bl", "cbz", "cbnz", "tbz", "tbnz", "adr"}
 TARGET_RE = re.compile(r"#0x[0-9a-f]{6,}")
+R_AARCH64_RELATIVE = 1027
 
 CS = capstone.Cs(capstone.CS_ARCH_ARM64, capstone.CS_MODE_ARM)
 Insns = list[tuple[str, str]]  # (mnemonic, operands)
@@ -240,22 +241,40 @@ def iter_value_destroy_vt(orig: asmdiff.Original, addr: int, tag: str, insns: In
 
 def iter_element_value(orig: asmdiff.Original, addr: int, tag: str, insns: Insns) -> str | None:
     """Returns an iterator value's element as a reflected value (refl_GetIterElementValue).
-    Facts: the state offset (= 8 + the element size) and the element's type getter."""
-    if len(insns) != 21 or insns[3:6] != [("mov", "x19, x8"), ("ldr", "x8, [x1, #8]"), ("add", "x20, x8, #8")] \
-            or insns[7] != ("cmp", "w9, #2") or insns[9] != ("ldr", "x20, [x20]") \
-            or insns[-1] != ("b", f"#{MAKE_VALUE:#x}") or ("mov", "w3, #1") not in insns:
+    Facts: the state offset (= 8 + the element size) and the element's type: a getter call, or
+    (leaf copies) a descriptor loaded through the GOT."""
+    if not insns or insns[-1] != ("b", f"#{MAKE_VALUE:#x}") or ("mov", "w3, #1") not in insns:
         return None
-    hit = re.fullmatch(r"w9, \[x8, #(0x[0-9a-f]+)\]", insns[6][1])
-    m, o = insns[10]
-    if insns[6][0] != "ldr" or not hit or m != "bl" or not o.startswith("#0x"):
+    if len(insns) == 21 and insns[3:6] == [("mov", "x19, x8"), ("ldr", "x8, [x1, #8]"), ("add", "x20, x8, #8")] \
+            and insns[7] == ("cmp", "w9, #2") and insns[9] == ("ldr", "x20, [x20]"):
+        state_insn, m, o = insns[6], *insns[10]
+        if m != "bl" or not o.startswith("#0x"):
+            return None
+        getter = int(o[1:], 16)
+        decl, expr = f"const base::reflection::CType* fn_{getter:x}();", f"fn_{getter:x}()"
+    elif len(insns) == 14 and insns[:3] == [("mov", "x0, x8"), ("ldr", "x8, [x1, #8]"), ("add", "x2, x8, #8")] \
+            and insns[4] == ("cmp", "w9, #2") and insns[6] == ("ldr", "x2, [x2]") \
+            and insns[7][0] == "adrp" and insns[7][1].startswith("x1, #0x") and insns[8][0] == "ldr":
+        state_insn = insns[3]
+        hit = re.fullmatch(r"x1, \[x1, #(0x[0-9a-f]+)\]", insns[8][1])
+        if not hit:
+            return None
+        reloc = orig.img.relocs.get(int(insns[7][1][5:], 16) + int(hit.group(1), 16) - BASE)
+        if reloc is None or reloc.type != R_AARCH64_RELATIVE:
+            return None
+        desc = BASE + reloc.addend
+        decl, expr = f"extern char g_unk_{desc:x}[];", f"reinterpret_cast<const CType*>(g_unk_{desc:x})"
+    else:
+        return None
+    hit = re.fullmatch(r"w9, \[x8, #(0x[0-9a-f]+)\]", state_insn[1])
+    if state_insn[0] != "ldr" or not hit:
         return None
     state = int(hit.group(1), 16)
     if state % 8 or state < 0x10:
         return None
-    getter = int(o[1:], 16)
-    return "\n".join([f"const base::reflection::CType* fn_{getter:x}();",
+    return "\n".join([decl,
                       f"template <> struct base::reflection::UnkFieldTraits<{tag}> {{",
-                      f"    static const CType* type() {{ return fn_{getter:x}(); }}", "};",
+                      f"    static const CType* type() {{ return {expr}; }}", "};",
                       f"template base::reflection::UnkReflValue base::reflection::refl_GetIterElementValue<"
                       f"{tag}, UnkCloneBlock<{tag}, {state - 8:#x}>>(void*, char*);"])
 
@@ -378,6 +397,82 @@ def field_set_strid(orig: asmdiff.Original, addr: int, tag: str, insns: Insns) -
             "void*, char*, base::reflection::UnkReflValue* const*);")
 
 
+STORE_LOADS = {"str": "ldr", "strb": "ldrb", "strh": "ldrh"}
+
+
+def field_set_value(orig: asmdiff.Original, addr: int, tag: str, insns: Insns) -> str | None:
+    """A scalar property write (refl_SetFieldValue, UnkReflValue.h): the stored type and the field
+    offset, from the store through the register loaded from [x1, #8]."""
+    if not 12 <= len(insns) <= 24 or insns[-1][0] != "ret" or any(m in ("bl", "blr", "b") for m, _ in insns) \
+            or not re.fullmatch(r"x\d+, \[x2\]", insns[0][1]):
+        return None
+    base = next((o.split(",")[0] for m, o in insns if m == "ldr" and o.endswith(", [x1, #8]")), None)
+    if base is None:
+        return None
+    found = None
+    for i, (m, o) in enumerate(insns[1:], 1):
+        hit = re.fullmatch(rf"([wxsd])\d+, \[{base}(?:, #(0x[0-9a-f]+|\d+))?\]", o)
+        if hit and m in STORE_LOADS:
+            if found is not None:
+                return None
+            lm, lo = insns[i - 1]
+            t = LOAD_TYPES.get((lm, hit.group(1)))
+            if lm != STORE_LOADS[m] or t is None or not lo.startswith(o.split(",")[0] + ", ["):
+                return None
+            found = (t, int(hit.group(2) or "0", 0))
+    if found is None or not any(m == "movk" and o.endswith("#1, lsl #32") for m, o in insns):
+        return None
+    t, off = found
+    return (f"template base::reflection::UnkReflValue base::reflection::refl_SetFieldValue<{tag}, {t}, {off:#x}>("
+            "void*, char*, base::reflection::UnkReflValue* const*);")
+
+
+IS_KIND_OF = 0x710009D50C  # fn_710009d50c(type, class): an is-kind-of test (UnkReflCast.h)
+
+
+def cast_calls(insns: Insns) -> tuple[int, int] | None:
+    """The base method and type getter of an override that caches a cast pointer."""
+    calls = [o for m, o in insns if m in ("bl", "b") and o.startswith("#0x")]
+    if len(calls) != 3 or calls[2] != f"#{IS_KIND_OF:#x}" or sum(m == "blr" for m, _ in insns) != 1:
+        return None
+    return int(calls[0][1:], 16), int(calls[1][1:], 16)
+
+
+def cast_traits(tag: str, calls: tuple[int, int], ret: str, params: str, args: str) -> list[str]:
+    base, getter = calls
+    return [f"const base::reflection::CType* fn_{getter:x}();",
+            f"{ret} fn_{base:x}({params});",
+            f"template <> struct base::reflection::UnkCastTraits<{tag}> {{",
+            f"    static const CType* type() {{ return fn_{getter:x}(); }}",
+            f"    static {ret} base({params}) {{ {'return ' if ret != 'void' else ''}fn_{base:x}({args}); }}", "};"]
+
+
+def call_and_cast_arg(orig: asmdiff.Original, addr: int, tag: str, insns: Insns) -> str | None:
+    """refl_CallAndCastArg (UnkReflCast.h): the base method, type getter and cache offset."""
+    if len(insns) > 32 or ("mov", "x20, x1") not in insns[:8] or ("mov", "x19, x0") not in insns[:8] \
+            or not any(m == "cbz" and o.startswith("x20,") for m, o in insns) or not (calls := cast_calls(insns)):
+        return None
+    offs = [int(h.group(1), 16) for m, o in insns if m == "str" and (h := re.fullmatch(r"x8, \[x19, #(0x[0-9a-f]+)\]", o))]
+    if len(offs) != 1:
+        return None
+    return "\n".join(cast_traits(tag, calls, "void", "char* s, base::reflection::UnkReflObject* a", "s, a") +
+                     [f"template void base::reflection::refl_CallAndCastArg<{tag}, {offs[0]:#x}>("
+                      "char*, base::reflection::UnkReflObject*);"])
+
+
+def call_and_cast_field(orig: asmdiff.Original, addr: int, tag: str, insns: Insns) -> str | None:
+    """refl_CallAndCastField (UnkReflCast.h): the base method, type getter and both offsets."""
+    if len(insns) > 32 or ("mov", "x19, x0") not in insns[:8] or ("and", "w0, w20, #1") not in insns \
+            or not (calls := cast_calls(insns)):
+        return None
+    srcs = [int(h.group(1), 16) for m, o in insns if m == "ldr" and (h := re.fullmatch(r"x21, \[x19, #(0x[0-9a-f]+)\]", o))]
+    dsts = [int(h.group(1), 16) for m, o in insns if m == "str" and (h := re.fullmatch(r"x8, \[x19, #(0x[0-9a-f]+)\]", o))]
+    if len(srcs) != 1 or len(dsts) != 1:
+        return None
+    return "\n".join(cast_traits(tag, calls, "bool", "char* s", "s") +
+                     [f"template bool base::reflection::refl_CallAndCastField<{tag}, {srcs[0]:#x}, {dsts[0]:#x}>(char*);"])
+
+
 CSTRID_CTOR = 0x71000003D4
 
 
@@ -429,6 +524,9 @@ KINDS = {
     "pointee_typed": Kind(None, "base/reflection/UnkReflTypedPtr.h", lambda tag, _: None, scan=pointee_typed),
     "iter_value_destroy_dtor": Kind(None, "base/UnkCollectionIter.h", lambda tag, _: None, scan=iter_value_destroy_dtor),
     "enum_values": Kind(None, "base/global/CStrId.h", lambda tag, _: None, scan=enum_values),
+    "call_and_cast_arg": Kind(None, "base/reflection/UnkReflCast.h", lambda tag, _: None, scan=call_and_cast_arg),
+    "call_and_cast_field": Kind(None, "base/reflection/UnkReflCast.h", lambda tag, _: None, scan=call_and_cast_field),
+    "field_set_value": Kind(None, "base/reflection/UnkReflValue.h", lambda tag, _: None, scan=field_set_value),
     "field_set_strid": Kind(None, "base/reflection/UnkReflValue.h", lambda tag, _: None, scan=field_set_strid),
     "field_value": Kind(None, "base/reflection/UnkReflValue.h", lambda tag, _: None, scan=field_value),
     "register_named": Kind(0x7100072940, "base/UnkNamedRegistry.h", lambda tag, _: (

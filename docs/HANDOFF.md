@@ -30,8 +30,8 @@ Snapshot as of 2026-10-18 (fifth Phase 4 session; branches `phase-4-4-clones` (v
 | 4.5+ Boot to title screen | Not started; plan below |
 | Port | Not started (`port/` is empty) |
 
-Function status (BotW codes): `O` 76,662, `m` 3, `M` 1, `L` 1,614, `U` 25,737.
-**Game-code progress: 42.18% of bytes (7.92 MB) matching** (`tools/progress.py`; library code
+Function status (BotW codes): `O` 77,155, `m` 3, `M` 1, `L` 1,614, `U` 25,244.
+**Game-code progress: 42.38% of bytes (7.96 MB) matching** (`tools/progress.py`; library code
 excluded; 39.09% at the start of this session). `tools/check.py` counts `src/` definitions,
 which differ slightly (matching `nn::atk` functions keep `L`; constructor aliases).
 
@@ -314,6 +314,11 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
      element returned as a reflected value (`refl_GetIterElementValue`, `UnkReflValue.h`). The
      element stands in as `UnkCloneBlock` (u64 words; a byte array of the same size forms the
      element address differently and doesn't match).
+     Leaf copies load the element type's descriptor through the GOT (143 more).
+   - Done (eighth session): scan kinds `field_set_value` (scalar property writes,
+     `refl_SetFieldValue`, 187), and `call_and_cast_arg` / `call_and_cast_field` (overrides that
+     call their base, then cache a pointer cast to a class with the is-kind-of test
+     `fn_710009d50c`, `UnkReflCast.h`, 163).
    - Enum static initialisers and the other per-TU static initialisers. These define
      globals, so they need the TU's data definitions (the 160 B ones are mostly lifted already).
    - Slot `0x28`/`0x30`/`0x38`/`0x48`/`0x50` helpers of other classes (need class layouts):

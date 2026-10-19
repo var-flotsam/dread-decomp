@@ -77,4 +77,21 @@ UnkReflValue refl_SetFieldStrId(void*, char* obj, UnkReflValue* const* args) {
     return r;
 }
 
+// The same for a trivially copyable T (fn_71002bbf34 and its copies).
+template <class Tag, class T, u32 Offset>
+UnkReflValue refl_SetFieldValue(void*, char* obj, UnkReflValue* const* args) {
+    char* target = *reinterpret_cast<char**>(obj + 8);
+    UnkReflValue* arg = args[0];
+    const T* value = arg->field_0x14 == 1 || *reinterpret_cast<const u64*>(arg->type + 0x18) > 8
+                         ? static_cast<const T*>(arg->field_0x0)
+                         : reinterpret_cast<const T*>(arg);
+    *reinterpret_cast<T*>(target + Offset) = *value;
+    UnkReflValue r;
+    r.field_0x0 = nullptr;
+    r.type = nullptr;
+    r.kind = 2;
+    r.field_0x14 = 1;
+    return r;
+}
+
 }  // namespace base::reflection
