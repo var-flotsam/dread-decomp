@@ -4,12 +4,9 @@ For the next developer, human or AI, picking up this project. Read this, then `C
 (rules and conventions), `docs/recon.md` (what's in the binary), `docs/compiler.md`
 (toolchain), and `docs/references.md` (outside projects).
 
-**Handover (2026-10-19, seventh session, branch `phase-4-3-remaining-reflection`):** the
-regeneration on this branch is partial. `gen_functions_csv`, `gen_reflection`, `gen_types`,
-`gen_statics` and `gen_clones` ran; `gen_lift.py` and `check.py --update` did not, so
-`data/functions/*.csv` statuses and the numbers below are stale. `check.py` (without `--update`)
-passes: 76,000 functions in `src/`, `O` 75,995 (75,523 before this session). Next: run
-`gen_lift.py`, then `check.py --update` and `progress.py`, and update the numbers here. What was
+**Seventh session (2026-10-19, branch `phase-4-3-remaining-reflection`):** the full regeneration
+ran (the last steps, `gen_lift.py` and `check.py --update`, in a Linux cloud session with upstream
+Clang 9.0.1, which reproduced the Windows results exactly). Numbers below are current. What was
 done: Next steps, item 2.
 
 Snapshot as of 2026-10-18 (fifth Phase 4 session; branches `phase-4-4-clones` (var-flotsam/dread-decomp#18, open) and `phase-4-4-skipped-getters` on top of it (not pushed); earlier work merged in var-flotsam/dread-decomp#13–#17). Target: **Metroid Dread 2.1.0**, `main` build ID
@@ -25,17 +22,17 @@ Snapshot as of 2026-10-18 (fifth Phase 4 session; branches `phase-4-4-clones` (v
 | Tooling for Phase 4 | **Done.** `tools/check.py` (build + status), objdiff (`tools/objdiff_gen.py`), whole-binary progress (`tools/progress.py`) |
 | 4.1 System headers | **Done.** `lib/nnsdk` + `lib/musl` submodules, libc++ 9.0.1 headers, `tools/buildcfg.py` |
 | 4.2 Lua | **Done.** Upstream 5.1.4 vendored in `lib/lua/` (2 marked config changes); 286 Lua functions located in `main` by `tools/sigmatch.py` (status `L`) |
-| 4.3 Reflection | **In progress.** 2,322 of 2,346 class getters (444 in TUs with other statics, through padding); all 1,010 other `CClass` descriptor constructors (skipped TUs and getter-less types); 1,745 of 1,956 class attribute/member-field functions, 478 other registration functions plus 54 in their class getter's TU, and all 1,006 out-of-line reflected-function initialisers (`src/reflection/`, `tools/gen_reflection.py`, `tools/refl_attrs.py`). Pointer types: 993 standalone getter/constructor pairs plus 108 generated in their pointee's TU; all 238 `CEnumType` constructors; 178 standalone `CCollectionType` constructors plus those in their element class's TU (`src/reflection_types/`, `tools/gen_types.py`) |
-| Small functions | **In progress.** `tools/gen_lift.py` lifts functions of up to 512 bytes from their instructions and keeps byte-identical ones: 44,549 functions up to 2 KB, 1.78 MB (`src/lifted/`; sret functions, stack locals, a goto-based flat mode for crossing branches and loops) |
+| 4.3 Reflection | **In progress.** all 2,354 located class getters (444 in TUs with other statics, through padding); all 1,010 other `CClass` descriptor constructors (skipped TUs and getter-less types); 1,911 of 1,957 class attribute/member-field functions, 478 other registration functions plus 54 in their class getter's TU, and all 1,006 out-of-line reflected-function initialisers (`src/reflection/`, `tools/gen_reflection.py`, `tools/refl_attrs.py`). Pointer types: 993 standalone getter/constructor pairs plus 108 generated in their pointee's TU; all 238 `CEnumType` constructors; 178 standalone `CCollectionType` constructors plus those in their element class's TU (`src/reflection_types/`, `tools/gen_types.py`) |
+| Small functions | **In progress.** `tools/gen_lift.py` lifts functions of up to 512 bytes from their instructions and keeps byte-identical ones: 44,529 functions up to 2 KB, 1.78 MB (`src/lifted/`; sret functions, stack locals, a goto-based flat mode for crossing branches and loops) |
 | Guarded statics | **In progress.** `tools/gen_statics.py`: attribute keys, static string ids, typed lookups and registries built on weak function-local statics (`include/base/reflection/UnkReflStatics.h`): 756 functions, 139 KB (`src/reflection_statics/`) |
 | Repeated templates | **In progress.** `tools/gen_clones.py`: hand-matched templates instantiated once per copy (`UnkClone_fn_<addr>` tags): the named registry, `UnkVector` methods per element kind, the reflection collection iterator, a deferred set, and scan kinds (facts per candidate): destructors of string-id/refcounted members, property reads and string-id writes, enum value lists: 2,300 functions, 628 KB (`src/clones/`) |
 | 4.4 Core engine types | **In progress.** String ids (`CStrId` incl. copy-assignment, `UnkStrId`), the growable array `base::UnkVector` (push, grow-at, insert, remove, clear/free, move) and its allocator interface; reflected-function initialisers now match (below) |
 | 4.5+ Boot to title screen | Not started; plan below |
 | Port | Not started (`port/` is empty) |
 
-Function status (BotW codes): `O` 75,621, `m` 3, `M` 1, `L` 1,614, `U` 26,778.
-**Game-code progress: 39.09% of bytes (7.34 MB) matching** (`tools/progress.py`; library code
-excluded; 34.46% at the start of this session). `tools/check.py` counts `src/` definitions,
+Function status (BotW codes): `O` 76,122, `m` 3, `M` 1, `L` 1,614, `U` 26,277.
+**Game-code progress: 41.91% of bytes (7.87 MB) matching** (`tools/progress.py`; library code
+excluded; 39.09% at the start of this session). `tools/check.py` counts `src/` definitions,
 which differ slightly (matching `nn::atk` functions keep `L`; constructor aliases).
 
 ## Hard rules (summary; full text in CLAUDE.md)
