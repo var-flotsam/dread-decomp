@@ -6,6 +6,7 @@
 
 #include "base/UnkCollectionIter.h"
 #include "base/global/CStrId.h"
+#include "base/reflection/CClass.h"
 #include "types.h"
 
 namespace base::reflection {
@@ -51,6 +52,21 @@ UnkReflValue refl_GetIterElementValue(void*, char* obj) {
     auto* v = *reinterpret_cast<UnkIterValue<T>**>(obj + 8);
     T* element = &v->Element();
     const CType* type = UnkFieldTraits<Tag>::type();
+    UnkReflValue r;
+    r.field_0x0 = nullptr;
+    r.type = nullptr;
+    r.kind = 2;
+    fn_71000a18d4(&r, type, element, true);
+    return r;
+}
+
+// The same for a polymorphic element, described by its dynamic class (fn_71004b21f8 and its
+// copies).
+template <class Tag, class T>
+UnkReflValue refl_GetIterElementDynValue(void*, char* obj) {
+    auto* v = *reinterpret_cast<UnkIterValue<T>**>(obj + 8);
+    T* element = &v->Element();
+    const CType* type = reinterpret_cast<UnkReflObject*>(element)->vf_0x0();
     UnkReflValue r;
     r.field_0x0 = nullptr;
     r.type = nullptr;

@@ -1,22 +1,13 @@
 #pragma once
 
-// Checked casts of reflected objects: the object's type (vtable slot 0) is tested against a
-// class descriptor with fn_710009d50c (an is-kind-of test). Overrides that call their base and
+// Checked casts of reflected objects (UnkReflObject, CClass.h): the object's class (vtable
+// slot 0) is tested against a class descriptor with fn_710009d50c (an is-kind-of test). Overrides that call their base and
 // then cache a cast pointer are instantiated per copy by tools/gen_clones.py. Names are
 // placeholders inferred from the code.
 
+#include "base/reflection/CClass.h"
 #include "base/reflection/UnkReflValue.h"
 #include "types.h"
-
-namespace base::reflection {
-
-class CType;
-
-struct UnkReflObject {
-    virtual const CType* vf_0x0();  // the object's dynamic type
-};
-
-}  // namespace base::reflection
 
 bool fn_710009d50c(const base::reflection::CType* type, const base::reflection::CType* base);
 bool fn_710009d52c(const base::reflection::CType* type, const base::reflection::CType* current);

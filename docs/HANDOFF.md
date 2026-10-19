@@ -30,8 +30,8 @@ Snapshot as of 2026-10-18 (fifth Phase 4 session; branches `phase-4-4-clones` (v
 | 4.5+ Boot to title screen | Not started; plan below |
 | Port | Not started (`port/` is empty) |
 
-Function status (BotW codes): `O` 77,637, `m` 3, `M` 1, `L` 1,614, `U` 24,762.
-**Game-code progress: 42.74% of bytes (8.02 MB) matching** (`tools/progress.py`; library code
+Function status (BotW codes): `O` 78,020, `m` 3, `M` 1, `L` 1,614, `U` 24,379.
+**Game-code progress: 43.12% of bytes (8.09 MB) matching** (`tools/progress.py`; library code
 excluded; 39.09% at the start of this session). `tools/check.py` counts `src/` definitions,
 which differ slightly (matching `nn::atk` functions keep `L`; constructor aliases).
 
@@ -330,6 +330,13 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
      57), and classes with a secondary base linked into a refcounted owner's list (`linked_dtor`,
      87); `refl_SetDynamicValue` (`UnkReflCast.h`, 49 identical copies, a reference kind).
      Capstone prints immediates below 10 in decimal, so operand regexes need `(0x...|\d)`.
+   - Done (eighth session): `hash_map_clear` (`UnkHashMap.h`, 44), `list_deleting_dtor` (57),
+     `iter_element_dyn_value` (44), `iter_value_destroy_strid_elem` (34), and 14 reference kinds for
+     families of identical copies (`UnkCloneHelpers.h`, `UnkSharedRecord.h`, `refl_IterSync`; 188).
+     Census of identical-copy families (`U`, same normalised instructions): ~0.8 MB in 1,345
+     families. Tried and left: the state machine at 0x71002fab10 (44 copies; the original keeps
+     `next` in two registers), keyed-array Reserve 0x71001358e0, 0x71002b9908, 0x71000204d4 and
+     0x7100287de8 (98%, one swapped pair), 0x71000df388, 0x7100241b30, 0x7100122160, 0x71001f3be4.
    - Enum static initialisers and the other per-TU static initialisers. These define
      globals, so they need the TU's data definitions (the 160 B ones are mostly lifted already).
    - Slot `0x28`/`0x30`/`0x38`/`0x48`/`0x50` helpers of other classes (need class layouts):

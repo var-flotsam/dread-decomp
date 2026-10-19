@@ -153,6 +153,16 @@ struct UnkCollectionIter {
     }
 };
 
+// Re-points an iterator's current value at its index and element, or resets it when there is no
+// element (fn_7100f4af08, fn_71004a6d74 and their identical copies).
+template <class T, class K>
+void refl_IterSync(UnkCollectionIter<T, K>* it) {
+    if (it->element)
+        it->current.SetRef(&it->index, it->element);
+    else
+        it->current.Reset();
+}
+
 // Type-erased helpers of an iterator value's reflected class (CType+0x38, +0x40, +0x48).
 template <class T, class K = u32>
 void refl_IterValueMove(void* dst, const void* src) {
