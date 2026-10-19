@@ -3,7 +3,9 @@
 // types, byte-identical to the original.
 #include "base/reflection/CCollectionType.h"
 #include "base/reflection/CEnumType.h"
+#include "base/reflection/CFlagsetType.h"
 #include "base/reflection/CPointerType.h"
+#include "base/reflection/UnkReflPrimitiveType.h"
 using base::reflection::CType;
 using base::reflection::UnkFn;
 const base::reflection::CType* fn_7100009658();
@@ -25,6 +27,12 @@ const base::reflection::CType* fn_71011d6a04();
 const base::reflection::CType* fn_71011d7b84();
 const base::reflection::CType* fn_71011ddda8();
 extern base::reflection::CType g_unk_7101d4ec50;
+extern base::reflection::CType g_unk_716e597b18;
+extern base::reflection::CType g_unk_71726a1cd8;
+extern base::reflection::CType g_unk_71726ac878;
+extern base::reflection::CType g_unk_717274d718;
+extern base::reflection::CType g_unk_717275de80;
+extern base::reflection::CType g_unk_7172768990;
 extern base::reflection::CType g_unk_71729ea500;
 extern base::reflection::CType g_unk_71729ea640;
 extern base::reflection::CType g_unk_71729ea780;
@@ -35,6 +43,7 @@ extern base::reflection::CType g_unk_71729eb660;
 extern base::reflection::CType g_unk_71729eb7a0;
 extern base::reflection::CType g_unk_71729eb8e0;
 extern base::reflection::CType g_unk_71729ec3e8;
+extern base::reflection::CType g_unk_71729ec6e0;
 extern base::reflection::CType g_unk_71729ec820;
 extern base::reflection::CType g_unk_71729ec960;
 extern base::reflection::CType g_unk_71729ecaa0;
@@ -131,6 +140,66 @@ extern base::reflection::CType g_unk_7172a0e6a8;
 extern base::reflection::CType g_unk_7172a0e7e8;
 extern base::reflection::CType g_unk_7172a0f298;
 extern base::reflection::CType g_unk_7172a0f3d8;
+void fn_71001f9f60();
+void fn_71001f9fc0();
+void fn_71001f9fe4();
+void fn_71001f9fe8();
+void fn_71001f9ffc();
+void fn_71001fa004();
+void fn_71001fa018();
+void fn_71001fa020();
+void fn_71001fa030();
+void fn_71001fa050();
+void fn_7100263cf0();
+void fn_7100263d50();
+void fn_7100263d74();
+void fn_7100263d78();
+void fn_7100263d8c();
+void fn_7100263d94();
+void fn_7100263da8();
+void fn_7100263db0();
+void fn_7100263dc0();
+void fn_7100263de0();
+void fn_71002ecc60();
+void fn_71002eccc0();
+void fn_71002ecd60();
+void fn_71002ecd64();
+void fn_71002ecd78();
+void fn_71002ecd80();
+void fn_71002ecd94();
+void fn_71002ecd9c();
+void fn_71002ecdac();
+void fn_71002ece48();
+void fn_7100a61ed8();
+void fn_7100a61f38();
+void fn_7100a61f78();
+void fn_7100a61f7c();
+void fn_7100a61f90();
+void fn_7100a61f98();
+void fn_7100a61fac();
+void fn_7100a61fb4();
+void fn_7100a61fc4();
+void fn_7100a62000();
+void fn_7100b0453c();
+void fn_7100b0459c();
+void fn_7100b045dc();
+void fn_7100b045e0();
+void fn_7100b045f4();
+void fn_7100b045fc();
+void fn_7100b04610();
+void fn_7100b04618();
+void fn_7100b04628();
+void fn_7100b04664();
+void fn_7100b046b0();
+void fn_7100b04710();
+void fn_7100b0476c();
+void fn_7100b04770();
+void fn_7100b04784();
+void fn_7100b0478c();
+void fn_7100b047a0();
+void fn_7100b047a8();
+void fn_7100b047b8();
+void fn_7100b04810();
 void fn_7100f8f5e0();
 void fn_7100f8f640();
 void fn_7100f8f64c();
@@ -311,6 +380,16 @@ void fn_7100f9c6dc();
 void fn_7100f9c6e8();
 void fn_7100f9c6ec();
 void fn_7100f9c700();
+void fn_7100f9eca4();
+void fn_7100f9ed04();
+void fn_7100f9ed44();
+void fn_7100f9ed48();
+void fn_7100f9ed5c();
+void fn_7100f9ed64();
+void fn_7100f9ed78();
+void fn_7100f9ed80();
+void fn_7100f9ed90();
+void fn_7100f9edcc();
 void fn_7100f9ef80();
 void fn_7100f9efd8();
 void fn_7100f9efe4();
@@ -7656,3 +7735,185 @@ struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_71011deb28> {
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71011e640c*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71011deb28>();
+struct UnkReflInline_71001f98e0;
+struct UnkRefl_fn_71001f98e0;
+template <>
+struct base::reflection::UnkReflPointerTraits<UnkReflInline_71001f98e0> {
+    static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = true;
+    static constexpr UnkFn fn_0x28 = &fn_71001fa018;
+    static constexpr UnkFn fn_0x30 = nullptr;
+    static constexpr UnkFn fn_0x38 = &fn_71001fa020;
+    static constexpr UnkFn fn_0x40 = &fn_71001fa030;
+    static constexpr UnkFn fn_0x48 = nullptr;
+    static constexpr UnkFn fn_0x50 = &fn_71001fa050;
+    static constexpr UnkFn fn_0x58 = &fn_71001f9fe8;
+    static constexpr UnkFn fn_0x60 = &fn_71001f9ffc;
+    static constexpr UnkFn fn_0x68 = &fn_71001fa004;
+    static constexpr UnkFn fn_0xf0 = &fn_71001f9f60;
+    static constexpr UnkFn fn_0xf8 = &fn_71001f9fc0;
+    static constexpr UnkFn fn_0x100 = &fn_71001f9fe4;
+    static const CType* pointee() { return &g_unk_716e597b18; }
+};
+template <>
+struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_71001f98e0> {
+    static constexpr const char* name = "std::unique_ptr<engine::scene::sceneItems::CSceneGroup>";
+    using Init = UnkReflInline_71001f98e0;
+};
+template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71001f98e0>();
+struct UnkReflInline_7100262a30;
+struct UnkRefl_fn_7100262a30;
+template <>
+struct base::reflection::UnkReflPointerTraits<UnkReflInline_7100262a30> {
+    static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = true;
+    static constexpr UnkFn fn_0x28 = &fn_7100263da8;
+    static constexpr UnkFn fn_0x30 = nullptr;
+    static constexpr UnkFn fn_0x38 = &fn_7100263db0;
+    static constexpr UnkFn fn_0x40 = &fn_7100263dc0;
+    static constexpr UnkFn fn_0x48 = nullptr;
+    static constexpr UnkFn fn_0x50 = &fn_7100263de0;
+    static constexpr UnkFn fn_0x58 = &fn_7100263d78;
+    static constexpr UnkFn fn_0x60 = &fn_7100263d8c;
+    static constexpr UnkFn fn_0x68 = &fn_7100263d94;
+    static constexpr UnkFn fn_0xf0 = &fn_7100263cf0;
+    static constexpr UnkFn fn_0xf8 = &fn_7100263d50;
+    static constexpr UnkFn fn_0x100 = &fn_7100263d74;
+    static const CType* pointee() { return &g_unk_71726a1cd8; }
+};
+template <>
+struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100262a30> {
+    static constexpr const char* name = "std::unique_ptr<CActorSublayer>";
+    using Init = UnkReflInline_7100262a30;
+};
+template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_7100262a30>();
+struct UnkReflInline_71002ea7d8;
+struct UnkRefl_fn_71002ea7d8;
+template <>
+struct base::reflection::UnkReflPointerTraits<UnkReflInline_71002ea7d8> {
+    static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = true;
+    static constexpr UnkFn fn_0x28 = &fn_71002ecd94;
+    static constexpr UnkFn fn_0x30 = nullptr;
+    static constexpr UnkFn fn_0x38 = &fn_71002ecd9c;
+    static constexpr UnkFn fn_0x40 = &fn_71002ecdac;
+    static constexpr UnkFn fn_0x48 = nullptr;
+    static constexpr UnkFn fn_0x50 = &fn_71002ece48;
+    static constexpr UnkFn fn_0x58 = &fn_71002ecd64;
+    static constexpr UnkFn fn_0x60 = &fn_71002ecd78;
+    static constexpr UnkFn fn_0x68 = &fn_71002ecd80;
+    static constexpr UnkFn fn_0xf0 = &fn_71002ecc60;
+    static constexpr UnkFn fn_0xf8 = &fn_71002eccc0;
+    static constexpr UnkFn fn_0x100 = &fn_71002ecd60;
+    static const CType* pointee() { return &g_unk_71726ac878; }
+};
+template <>
+struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_71002ea7d8> {
+    static constexpr const char* name = "std::unique_ptr<CPlaythrough::SCheckpointData>";
+    using Init = UnkReflInline_71002ea7d8;
+};
+template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71002ea7d8>();
+struct UnkReflInline_7100a5a3c0;
+struct UnkRefl_fn_7100a5a3c0;
+template <>
+struct base::reflection::UnkReflPointerTraits<UnkReflInline_7100a5a3c0> {
+    static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = true;
+    static constexpr UnkFn fn_0x28 = &fn_7100a61fac;
+    static constexpr UnkFn fn_0x30 = nullptr;
+    static constexpr UnkFn fn_0x38 = &fn_7100a61fb4;
+    static constexpr UnkFn fn_0x40 = &fn_7100a61fc4;
+    static constexpr UnkFn fn_0x48 = nullptr;
+    static constexpr UnkFn fn_0x50 = &fn_7100a62000;
+    static constexpr UnkFn fn_0x58 = &fn_7100a61f7c;
+    static constexpr UnkFn fn_0x60 = &fn_7100a61f90;
+    static constexpr UnkFn fn_0x68 = &fn_7100a61f98;
+    static constexpr UnkFn fn_0xf0 = &fn_7100a61ed8;
+    static constexpr UnkFn fn_0xf8 = &fn_7100a61f38;
+    static constexpr UnkFn fn_0x100 = &fn_7100a61f78;
+    static const CType* pointee() { return &g_unk_717274d718; }
+};
+template <>
+struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100a5a3c0> {
+    static constexpr const char* name = "std::unique_ptr<CTriggerComponent::SActivationCondition>";
+    using Init = UnkReflInline_7100a5a3c0;
+};
+template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_7100a5a3c0>();
+struct UnkReflInline_7100b040c0;
+struct UnkRefl_fn_7100b040c0;
+template <>
+struct base::reflection::UnkReflPointerTraits<UnkReflInline_7100b040c0> {
+    static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = true;
+    static constexpr UnkFn fn_0x28 = &fn_7100b04610;
+    static constexpr UnkFn fn_0x30 = nullptr;
+    static constexpr UnkFn fn_0x38 = &fn_7100b04618;
+    static constexpr UnkFn fn_0x40 = &fn_7100b04628;
+    static constexpr UnkFn fn_0x48 = nullptr;
+    static constexpr UnkFn fn_0x50 = &fn_7100b04664;
+    static constexpr UnkFn fn_0x58 = &fn_7100b045e0;
+    static constexpr UnkFn fn_0x60 = &fn_7100b045f4;
+    static constexpr UnkFn fn_0x68 = &fn_7100b045fc;
+    static constexpr UnkFn fn_0xf0 = &fn_7100b0453c;
+    static constexpr UnkFn fn_0xf8 = &fn_7100b0459c;
+    static constexpr UnkFn fn_0x100 = &fn_7100b045dc;
+    static const CType* pointee() { return &g_unk_7172768990; }
+};
+template <>
+struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100b040c0> {
+    static constexpr const char* name = "std::unique_ptr<GUI::CTrackSet>";
+    using Init = UnkReflInline_7100b040c0;
+};
+template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_7100b040c0>();
+struct UnkReflInline_7100b042c4;
+struct UnkRefl_fn_7100b042c4;
+template <>
+struct base::reflection::UnkReflPointerTraits<UnkReflInline_7100b042c4> {
+    static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = true;
+    static constexpr UnkFn fn_0x28 = &fn_7100b047a0;
+    static constexpr UnkFn fn_0x30 = nullptr;
+    static constexpr UnkFn fn_0x38 = &fn_7100b047a8;
+    static constexpr UnkFn fn_0x40 = &fn_7100b047b8;
+    static constexpr UnkFn fn_0x48 = nullptr;
+    static constexpr UnkFn fn_0x50 = &fn_7100b04810;
+    static constexpr UnkFn fn_0x58 = &fn_7100b04770;
+    static constexpr UnkFn fn_0x60 = &fn_7100b04784;
+    static constexpr UnkFn fn_0x68 = &fn_7100b0478c;
+    static constexpr UnkFn fn_0xf0 = &fn_7100b046b0;
+    static constexpr UnkFn fn_0xf8 = &fn_7100b04710;
+    static constexpr UnkFn fn_0x100 = &fn_7100b0476c;
+    static const CType* pointee() { return &g_unk_717275de80; }
+};
+template <>
+struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100b042c4> {
+    static constexpr const char* name = "std::unique_ptr<GUI::CDisplayObjectAnimationDef>";
+    using Init = UnkReflInline_7100b042c4;
+};
+template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_7100b042c4>();
+struct UnkReflInline_7100f9d5bc;
+struct UnkRefl_fn_7100f9d5bc;
+template <>
+struct base::reflection::UnkReflPointerTraits<UnkReflInline_7100f9d5bc> {
+    static constexpr u64 size = 0x8;
+    static constexpr bool field_0xe0 = true;
+    static constexpr UnkFn fn_0x28 = &fn_7100f9ed78;
+    static constexpr UnkFn fn_0x30 = nullptr;
+    static constexpr UnkFn fn_0x38 = &fn_7100f9ed80;
+    static constexpr UnkFn fn_0x40 = &fn_7100f9ed90;
+    static constexpr UnkFn fn_0x48 = nullptr;
+    static constexpr UnkFn fn_0x50 = &fn_7100f9edcc;
+    static constexpr UnkFn fn_0x58 = &fn_7100f9ed48;
+    static constexpr UnkFn fn_0x60 = &fn_7100f9ed5c;
+    static constexpr UnkFn fn_0x68 = &fn_7100f9ed64;
+    static constexpr UnkFn fn_0xf0 = &fn_7100f9eca4;
+    static constexpr UnkFn fn_0xf8 = &fn_7100f9ed04;
+    static constexpr UnkFn fn_0x100 = &fn_7100f9ed44;
+    static const CType* pointee() { return &g_unk_71729ec6e0; }
+};
+template <>
+struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100f9d5bc> {
+    static constexpr const char* name = "std::unique_ptr<CSubareaCharclassGroup>";
+    using Init = UnkReflInline_7100f9d5bc;
+};
+template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_7100f9d5bc>();
