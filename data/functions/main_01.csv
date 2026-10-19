@@ -1062,7 +1062,7 @@ address,size,name,name_source,subsystem,status
 0x7100131e48,256,fn_7100131e48,unknown,unknown,U
 0x7100131f48,324,fn_7100131f48,unknown,unknown,U
 0x710013208c,336,fn_710013208c,unknown,unknown,U
-0x71001321dc,100,fn_71001321dc,unknown,unknown,U
+0x71001321dc,100,fn_71001321dc,unknown,unknown,O
 0x7100132240,8,fn_7100132240,unknown,unknown,O
 0x7100132248,4,fn_7100132248,unknown,unknown,O
 0x710013224c,84,fn_710013224c,unknown,unknown,U

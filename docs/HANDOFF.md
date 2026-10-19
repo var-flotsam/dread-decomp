@@ -30,8 +30,8 @@ Snapshot as of 2026-10-18 (fifth Phase 4 session; branches `phase-4-4-clones` (v
 | 4.5+ Boot to title screen | Not started; plan below |
 | Port | Not started (`port/` is empty) |
 
-Function status (BotW codes): `O` 77,395, `m` 3, `M` 1, `L` 1,614, `U` 25,004.
-**Game-code progress: 42.57% of bytes (7.99 MB) matching** (`tools/progress.py`; library code
+Function status (BotW codes): `O` 77,637, `m` 3, `M` 1, `L` 1,614, `U` 24,762.
+**Game-code progress: 42.74% of bytes (8.02 MB) matching** (`tools/progress.py`; library code
 excluded; 39.09% at the start of this session). `tools/check.py` counts `src/` definitions,
 which differ slightly (matching `nn::atk` functions keep `L`; constructor aliases).
 
@@ -325,6 +325,11 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
      52; `UnkCollectionIter` now takes the index type). Deleting destructors free through
      `__builtin_operator_delete` like compiler-generated ones, so stores before the free are
      dropped (40 more `dtor` matches).
+   - Done (eighth session): more destructor shapes in `UnkDestructors.h`: no base call
+     (`refl_DtorNoBase`, 49 more `dtor`), linked lists freed through their allocator (`list_dtor`,
+     57), and classes with a secondary base linked into a refcounted owner's list (`linked_dtor`,
+     87); `refl_SetDynamicValue` (`UnkReflCast.h`, 49 identical copies, a reference kind).
+     Capstone prints immediates below 10 in decimal, so operand regexes need `(0x...|\d)`.
    - Enum static initialisers and the other per-TU static initialisers. These define
      globals, so they need the TU's data definitions (the 160 B ones are mostly lifted already).
    - Slot `0x28`/`0x30`/`0x38`/`0x48`/`0x50` helpers of other classes (need class layouts):
