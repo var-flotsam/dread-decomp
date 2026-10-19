@@ -36,4 +36,32 @@ void refl_HashMapClear(char* self) {
     }
 }
 
+// A chained hash set whose bucket array (an UnkVector at +0) is read through an out-of-line
+// accessor; the node count is at +0x44, the nodes' allocator at +0x38 and a count of freed nodes
+// at +0x48. Clearing destroys each node's key (at 0; the link at `Next`) and frees the node, then
+// zeroes the buckets (fn_7100021128 and its copies).
+template <class Tag>
+struct UnkChainedSetTraits;  // bucket(self, i): the address of bucket i
+
+template <class Tag, class Key, u32 Next>
+void refl_ChainedSetClear(char* self) {
+    if (*reinterpret_cast<u32*>(self + 0x44)) {
+        u32 n = *reinterpret_cast<u32*>(self + 8);
+        for (u32 i = 0; i < n; ++i) {
+            char* node = *UnkChainedSetTraits<Tag>::bucket(self, i);
+            while (node) {
+                char* next = *reinterpret_cast<char**>(node + Next);
+                reinterpret_cast<Key*>(node)->~Key();
+                (*reinterpret_cast<UnkAllocator**>(self + 0x38))->vf_0x48(node);
+                ++*reinterpret_cast<u32*>(self + 0x48);
+                node = next;
+            }
+        }
+        memset(*reinterpret_cast<void**>(self), 0, *reinterpret_cast<u32*>(self + 0xc) * 8ul);
+        *reinterpret_cast<u32*>(self + 0x44) = 0;
+        *reinterpret_cast<char**>(self + 0x30) = nullptr;
+        *reinterpret_cast<s32*>(self + 0x28) = -1;
+    }
+}
+
 }  // namespace base

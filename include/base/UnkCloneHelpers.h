@@ -8,9 +8,11 @@
 
 #include "UnkClone.h"
 #include "base/UnkCollectionIter.h"
+#include "base/UnkDeferredSet.h"
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "base/reflection/UnkReflCast.h"
 #include "types.h"
 
 void* fn_71000839a0(u64 size, u32 flags);
@@ -816,5 +818,744 @@ struct UnkStrIdU16Record {
         return *this;
     }
 };
+
+}  // namespace base
+
+// A copy constructor of a class derived from a polymorphic base of two words: the base's vtable,
+// the base's copy, the class's vtable and the copy of the T at 0x18. Both copies are bitwise, so
+// the vtable stores stay (fn_7100bf86b4 and its copies).
+namespace base {
+template <class Tag>
+struct UnkCopyCtorTraits;  // base_vtable(), vtable()
+
+template <class Tag, class T>
+void refl_DerivedCopyCtor(char* self, const char* other) {
+    *reinterpret_cast<char**>(self) = UnkCopyCtorTraits<Tag>::base_vtable() + 0x10;
+    __builtin_memcpy(self + 8, other + 8, 16);
+    *reinterpret_cast<char**>(self) = UnkCopyCtorTraits<Tag>::vtable() + 0x10;
+    __builtin_memcpy(self + 0x18, other + 0x18, sizeof(T));
+}
+
+// UnkCallbackList without its last field (0x40 bytes; refl_IterSync, fn_710023ac4c and its
+// copies).
+template <class Tag>
+struct UnkCallbackListShort : UnkCallbackListBase<Tag> {
+    u64 field_0x30;
+    UnkRefPtrMember owner;
+    ~UnkCallbackListShort() { this->vtable = UnkCallbackTraits<Tag>::vtable() + 0x10; }
+};
+}  // namespace base
+
+// A hasher fed with values and finished into a u32 (fn_71004f0fc8 and its copies).
+struct UnkHashBuilder {
+    u64 words[3];
+    void* field_0x18;
+    u64 words2[3];
+};
+
+void fn_710007be8c(UnkHashBuilder* h, u32 seed, void* p);
+void fn_710007c3f0(UnkHashBuilder* h, const void* data, u64 size);
+u64 fn_710007c1a4(UnkHashBuilder* h);
+u32 fn_710007b750(void* table, u64 value, s32 flags);
+void fn_710007c0e4(UnkHashBuilder* h);
+
+struct UnkHashKeySource {
+    virtual void vf_0x0();
+    virtual void vf_0x8();
+    virtual void vf_0x10();
+    virtual void vf_0x18();
+    virtual void vf_0x20();
+    virtual void vf_0x28();
+    virtual void vf_0x30();
+    virtual u32 vf_0x38();
+};
+
+template <class Tag>
+struct UnkHashKeyTraits;  // source(): the string id the static is copied from
+
+// The hash of a static string id's hash, a string id's hash at Off, a u32 from the object at
+// Off + 8 and the u32 at Off + 0x10.
+template <class Tag, u32 Off>
+u32 refl_HashKeyFields(char* obj) {
+    UnkHashBuilder h;
+    fn_710007be8c(&h, 0x16, nullptr);
+    static base::global::CStrId s_id(UnkHashKeyTraits<Tag>::source());
+    u64 v = *reinterpret_cast<u64*>(reinterpret_cast<char*>(s_id.data) + 0x30);
+    fn_710007c3f0(&h, &v, 8);
+    v = *reinterpret_cast<u64*>(*reinterpret_cast<char**>(obj + Off) + 0x30);
+    fn_710007c3f0(&h, &v, 8);
+    *reinterpret_cast<u32*>(&v) = (*reinterpret_cast<UnkHashKeySource**>(obj + Off + 8))->vf_0x38();
+    fn_710007c3f0(&h, &v, 4);
+    fn_710007c3f0(&h, obj + Off + 0x10, 4);
+    void* t = h.field_0x18;
+    u32 r = fn_710007b750(t, fn_710007c1a4(&h), -1);
+    fn_710007c0e4(&h);
+    return r;
+}
+
+// Appends two values to the array at +8 of an object (fn_710007e34c and its copies): the
+// results of UnkPushPairTraits<Tag>::first() and second(), typically type getters.
+namespace base {
+template <class Tag>
+struct UnkPushPairTraits;
+
+template <class Tag>
+void refl_PushPair(char* self) {
+    auto* v = reinterpret_cast<UnkVector<void*>*>(self + 8);
+    v->PushBack(UnkPushPairTraits<Tag>::first());
+    v->PushBack(UnkPushPairTraits<Tag>::second());
+}
+}  // namespace base
+
+// Calls each callback in a deferred set with a value, last first, dropping those that return
+// non-zero; then applies the pending removals and additions (fn_710003152c and its copies).
+namespace base {
+template <class Arg>
+struct UnkDeferredCallback {
+    void* field_0x0;  // cleared when the callback is dropped
+    void* context;
+    u32 (*fn)(void* context, Arg value);
+};
+
+template <class Tag>
+struct UnkDeferredInvokeTraits;  // at(items, index): the slot of an item (out of line)
+
+template <class Tag, class Callback, class Call>
+__attribute__((always_inline)) inline void refl_DeferredInvokeWith(UnkDeferredSet<Callback>* s, Call call) {
+    s->locked = true;
+    for (u32 i = s->items.count - 1; (s32)i >= 0; --i) {
+        Callback* cb = *UnkDeferredInvokeTraits<Tag>::at(&s->items, i);
+        if (call(cb)) {
+            cb->field_0x0 = nullptr;
+            u32 n = s->items.count;
+            if (n > i) {
+                u32 last = n - 1;
+                if (last > i)
+                    s->items.data[i] = s->items.data[last];
+                s->items.count = last;
+            }
+        }
+    }
+    s->locked = false;
+    for (Callback **it = s->pending_remove.data, **end = it + s->pending_remove.count; it != end; ++it) {
+        u32 n = s->items.count;
+        for (u32 j = 0; j < n; ++j) {
+            if (s->items.data[j] == *it) {
+                u32 last = n - 1;
+                if (j < last)
+                    s->items.data[j] = s->items.data[last];
+                s->items.count = last;
+                break;
+            }
+        }
+    }
+    s->pending_remove.count = 0;
+    for (Callback **it = s->pending_add.data, **end = it + s->pending_add.count; it != end; ++it) {
+        Callback* p = *it;
+        s->items.PushBack(p);
+    }
+    s->pending_add.count = 0;
+}
+
+// The value is read from `arg` for each call.
+template <class Tag, class Arg>
+void refl_DeferredInvoke(UnkDeferredSet<UnkDeferredCallback<Arg>>* s, const Arg* arg) {
+    refl_DeferredInvokeWith<Tag>(s, [arg](UnkDeferredCallback<Arg>* cb) {
+        Arg value = *arg;
+        return cb->fn(cb->context, value);
+    });
+}
+
+// The same passing `arg` itself (fn_710006ca34 and its copies).
+template <class Tag>
+void refl_DeferredInvokePtr(UnkDeferredSet<UnkDeferredCallback<const void*>>* s, const void* arg) {
+    refl_DeferredInvokeWith<Tag>(s, [arg](UnkDeferredCallback<const void*>* cb) { return cb->fn(cb->context, arg); });
+}
+}  // namespace base
+
+// A polymorphic element of a string id and a T, copied through a base and a derived class
+// (vtables from UnkPolyStrIdTraits<Tag>; iterator values, fn_7100f5ee20 and its copies).
+namespace base {
+template <class Tag>
+struct UnkPolyStrIdTraits;  // vtable(), base_vtable()
+
+template <class Tag, class T>
+struct UnkPolyStrIdElem {
+    char* vtable;
+    global::UnkStringData* id;
+    T field_0x10;
+
+    UnkPolyStrIdElem(const UnkPolyStrIdElem& other) {
+        vtable = UnkPolyStrIdTraits<Tag>::base_vtable() + 0x10;
+        id = other.id;
+        if (&g_unk_7101d47108->empty != id)
+            ++id->ref_count;
+        vtable = UnkPolyStrIdTraits<Tag>::vtable() + 0x10;
+        field_0x10 = other.field_0x10;
+    }
+};
+}  // namespace base
+
+// Erases the node an iterator points to from a chained hash map keyed by string ids, keeping
+// the map's cached first bucket and node current (fn_7100020fa8 and its copies). The bucket
+// getter is out of line (UnkChainMapTraits<Tag>::at). Names and fields are placeholders.
+namespace base {
+template <class Tag, class Id>
+struct UnkChainMapNode {
+    Id key;
+    u64 field_0x8;
+    UnkChainMapNode* next;
+};
+
+template <class Tag, class Id>
+struct UnkChainMap {
+    u64 field_0x0;
+    u32 bucket_count;
+    u8 unk_0xc[0x1c];
+    u32 first_bucket;
+    UnkChainMapNode<Tag, Id>* first_node;
+    UnkAllocator* allocator;
+    u32 field_0x40;
+    u32 count;
+    u32 version;
+};
+
+template <class Tag, class Id>
+struct UnkChainMapIter {
+    UnkChainMapNode<Tag, Id>* node;
+    UnkChainMapNode<Tag, Id>* prev;
+    UnkChainMap<Tag, Id>* map;
+    u32 bucket;
+    u32 version;
+};
+
+template <class Tag>
+struct UnkChainMapTraits;  // at(map, bucket): the bucket's head slot
+
+template <class Tag, class Id>
+void refl_ChainMapErase(UnkChainMap<Tag, Id>* m, UnkChainMapIter<Tag, Id>* it) {
+    using Node = UnkChainMapNode<Tag, Id>;
+    u32 bucket;
+    if (it->map && it->map->version == it->version) {
+        bucket = it->bucket;
+    } else {
+        bucket = -1;
+        it->prev = nullptr;
+        it->map = nullptr;
+        it->node = nullptr;
+        it->bucket = -1;
+    }
+    Node** slot = UnkChainMapTraits<Tag>::at(m, bucket);
+    Node* n = it->node;
+    if (!n)
+        return;
+    Node* prev = it->prev;
+    if (*slot == n) {
+        *slot = n->next;
+        if (bucket == m->first_bucket) {
+            while (bucket < m->bucket_count && !*UnkChainMapTraits<Tag>::at(m, bucket))
+                bucket = ++m->first_bucket;
+            if (n == m->first_node) {
+                u32 b = m->first_bucket;
+                m->first_node = b < m->bucket_count ? *UnkChainMapTraits<Tag>::at(m, b) : nullptr;
+            }
+        }
+    }
+    if (prev)
+        prev->next = n->next;
+    --m->count;
+    n->key.~Id();
+    m->allocator->vf_0x48(n);
+    ++m->version;
+}
+}  // namespace base
+
+
+
+// Destructors of a class with a callback list (base::UnkCallbackList) as a secondary base at
+// `Sub`: store the class's vtable, destroy the list, call the primary base's destructor
+// (fn_7100768410, fn_7100768504 and their shape copies). UnkDtorTraits<Tag> names the class's
+// vtable and base; UnkCallbackTraits<Tag> the list's two vtables.
+
+
+namespace base {
+template <class Tag, u32 Sub>
+void refl_CallbackBaseDtor(char* self) {
+    *reinterpret_cast<char**>(self) = UnkDtorTraits<Tag>::vtable() + 0x10;
+    reinterpret_cast<UnkCallbackList<Tag>*>(self + Sub)->~UnkCallbackList();
+    UnkDtorTraits<Tag>::base(self);
+}
+
+template <class Tag, u32 Sub>
+void refl_CallbackBaseDeletingDtor(char* self) {
+    refl_CallbackBaseDtor<Tag, Sub>(self);
+    __builtin_operator_delete(self);
+}
+}  // namespace base
+
+
+// A linked list whose nodes come from an embedded fixed-size block pool (fn_71000e9f00, the
+// constructor, and fn_71000ebef4, the destructor, with their shape copies). The list's base
+// class holds the count, head, tail, allocator and allocation flags; the derived class adds the
+// pool and makes it the list's allocator. Layouts and names are placeholders.
+
+
+// The block pool's free list (callee names unknown): constructor, reset, and init over a buffer
+// of `size` bytes cut into `elem`-byte blocks.
+void fn_710008377c(void* self);
+void fn_71000837f4(void* self);
+void fn_710008378c(void* self, void* buffer, u64 size, u64 elem);
+extern char g_unk_7101a1a4c8[];  // the pool's vtable
+
+namespace base {
+// vtable(): the list's; base_vtable(): its base's.
+template <class Tag>
+struct UnkPoolListTraits;
+
+struct UnkBlockFreeList {
+    u64 size;
+    u64 elem;
+    u64 field_0x10;
+    u64 count;
+    void* buffer;
+};
+
+// An allocator handing out blocks of a buffer taken from `parent`.
+struct UnkBlockPool {
+    char* vtable;
+    UnkAllocator* parent;
+    UnkBlockFreeList blocks;
+    u32 field_0x38;
+    bool field_0x3c;
+
+    void Init() {
+        vtable = g_unk_7101a1a4c8 + 0x10;
+        parent = nullptr;
+        fn_710008377c(&blocks);
+    }
+    ~UnkBlockPool() {
+        vtable = g_unk_7101a1a4c8 + 0x10;
+        Release();
+    }
+    void Release() {
+        if (void* b = blocks.buffer) {
+            fn_71000837f4(&blocks);
+            parent->vf_0x48(b);
+            parent = nullptr;
+        }
+    }
+};
+
+template <class Tag, u32 Next>
+struct UnkPoolListBase {
+    char* vtable;
+    u32 count;
+    char* head;
+    char* tail;
+    UnkAllocator* allocator;
+    u32 flags;
+
+    __attribute__((always_inline)) void Init(u32 flags, UnkAllocator* a) {
+        vtable = UnkPoolListTraits<Tag>::base_vtable() + 0x10;
+        count = 0;
+        head = nullptr;
+        tail = nullptr;
+        if (!a)
+            a = fn_7100083990();
+        allocator = a;
+        this->flags = flags;
+    }
+    ~UnkPoolListBase() {
+        vtable = UnkPoolListTraits<Tag>::base_vtable() + 0x10;
+        FreeNodes();
+        count = 0;
+        head = nullptr;
+        tail = nullptr;
+    }
+    void FreeNodes() {
+        for (char* n = head; n;) {
+            char* next = *reinterpret_cast<char**>(n + Next);
+            allocator->vf_0x48(n);
+            n = next;
+        }
+    }
+};
+
+template <class Tag, u32 Next, u32 Elem>
+struct UnkPoolList : UnkPoolListBase<Tag, Next> {
+    UnkBlockPool pool;
+
+    // The constructor, as a function: the class's vtable is stored before the pool is set up.
+    __attribute__((always_inline)) void Init(u32 n, u32 flags, UnkAllocator* a) {
+        UnkPoolListBase<Tag, Next>::Init(flags, a);
+        this->vtable = UnkPoolListTraits<Tag>::vtable() + 0x10;
+        pool.Init();
+        UnkAllocator* parent = this->allocator;
+        pool.field_0x38 = 0;
+        pool.field_0x3c = false;
+        u32 f = this->flags;
+        pool.Release();
+        if (n) {
+            if (!parent)
+                parent = fn_7100083990();
+            pool.parent = parent;
+            u64 size = (u64)n * Elem;
+            fn_710008378c(&pool.blocks, parent->vf_0x40(size, 8, f), size, Elem);
+        }
+        // The pool's address, formed as an integer: the original recomputes it here rather than
+        // keeping &pool live across the calls.
+        this->allocator = reinterpret_cast<UnkAllocator*>(reinterpret_cast<u64>(this) + 0x30);
+    }
+    ~UnkPoolList() {
+        this->vtable = UnkPoolListTraits<Tag>::vtable() + 0x10;
+        pool.field_0x3c = true;
+        this->FreeNodes();
+        this->count = 0;
+        this->head = nullptr;
+        this->tail = nullptr;
+        this->allocator = nullptr;
+    }
+};
+
+static_assert(sizeof(UnkPoolList<void, 0, 0>) == 0x70);
+
+// The constructor doesn't use Next (its instantiations pass 0).
+template <class Tag, u32 Next, u32 Elem>
+void refl_PoolListCtor(UnkPoolList<Tag, Next, Elem>* self, u32 n, u32, u32 flags, UnkAllocator* a) {
+    self->Init(n, flags, a);
+}
+
+template <class Tag, u32 Next, u32 Elem>
+void refl_PoolListDtor(UnkPoolList<Tag, Next, Elem>* self) {
+    self->~UnkPoolList();
+}
+}  // namespace base
+
+
+// A translation unit's static initialiser that builds a reflected type (fn_71001aab70 and its
+// shape copies). Every such unit has its own copy of two header-defined string ids (after a u32,
+// 6) and builds one type object from its name, registering each destructor with __cxa_atexit
+// and then adding the type to a list. Names and layouts are placeholders.
+
+
+
+extern "C" int __cxa_atexit(void (*dtor)(void*), void* obj, void* dso);
+extern char g_unk_7101a19000[] __attribute__((visibility("hidden")));  // the module's DSO handle
+extern const char g_unk_7101618faa[] __attribute__((visibility("hidden")));  // the ids' strings
+extern const char g_unk_71015ba597[] __attribute__((visibility("hidden")));
+void fn_710000051c(void* id);   // a string id's destructor, as registered
+void fn_7100096604(void* type); // the type object's destructor, as registered
+void fn_710009ec00(char* list, char* type);
+
+namespace base {
+// ids(): this unit's copy of the header statics (hidden); type(): the type object; name(): its
+// name; list(): what it is added to; init(type, name, 0, 0, factory, 0) builds it.
+template <class Tag>
+struct UnkTypeInitTraits;
+
+struct UnkTypeInitIds {
+    u32 field_0x0;
+    global::UnkStrIdBase field_0x8;
+    global::UnkStrIdBase field_0x10;
+};
+
+template <class Tag>
+void refl_TypeStaticInit() {
+    using Traits = UnkTypeInitTraits<Tag>;
+    UnkTypeInitIds* ids = Traits::ids();
+    ids->field_0x0 = 6;
+    new (&ids->field_0x8) global::UnkStrIdBase(g_unk_7101618faa, true);
+    __cxa_atexit(fn_710000051c, &ids->field_0x8, g_unk_7101a19000);
+    new (&ids->field_0x10) global::UnkStrIdBase(g_unk_71015ba597, true);
+    __cxa_atexit(fn_710000051c, &ids->field_0x10, g_unk_7101a19000);
+    {
+        global::CStrId name(Traits::name(), true);
+        Traits::init(Traits::type(), name);
+    }
+    __cxa_atexit(fn_7100096604, Traits::type(), g_unk_7101a19000);
+    fn_710009ec00(Traits::list(), Traits::type());
+}
+}  // namespace base
+
+
+// Arrays of 0x18-byte polymorphic {vtable, string id, value} elements (fn_7100f5fbb8, a
+// push_back, and its shape copies). An element's copy constructor stores its base's vtable
+// (constant), copies the id, then stores its own class's vtable and copies the value; it is
+// destroyed through its vtable (slot 1). Names and layouts are placeholders.
+
+
+
+extern char g_unk_7101cab1f8[];  // the elements' base vtable
+
+namespace base {
+// vtable(): the element class's vtable; push_back(v, e) (refl_IdValueAssign only): the array's
+// refl_IdValuePushBack, called out of line.
+template <class Tag>
+struct UnkIdValueTraits;
+
+// V is UnkCloneElem<Tag, 4 or 8>: copied as bytes (no type-based alias info), so the array's
+// count is reloaded after the value is stored, as in the original.
+template <class Tag, class V>
+struct UnkIdValueElem {
+    char* vtable;
+    global::CStrId id;
+    V value;
+
+    UnkIdValueElem(const UnkIdValueElem& other) : vtable(g_unk_7101cab1f8 + 0x10), id(other.id) {
+        vtable = UnkIdValueTraits<Tag>::vtable() + 0x10;
+        value = other.value;
+    }
+    // The virtual destructor (slot 1).
+    void Destroy() { reinterpret_cast<void (**)(UnkIdValueElem*)>(vtable)[1](this); }
+};
+
+template <class Tag, class V>
+inline void refl_IdValueMoveTo(UnkVector<UnkIdValueElem<Tag, V>>* v, u32 new_capacity) {
+    using T = UnkIdValueElem<Tag, V>;
+    T* p = static_cast<T*>(v->allocator->vf_0x40((u64)new_capacity * sizeof(T), 8, v->flags));
+    if (v->data) {
+        T* src = v->data;
+        T* dst = p;
+        for (u32 i = 0; i < v->count; ++i, ++src, ++dst) {
+            new (dst) T(*src);
+            src->Destroy();
+        }
+        v->allocator->vf_0x48(v->data);
+    }
+    v->data = p;
+    v->capacity = new_capacity;
+}
+
+// UnkVector::PushBack for elements copied one by one: the growth (and hang) of PushBack, the
+// old elements copied over and destroyed through their vtables.
+template <class Tag, class V>
+void refl_IdValuePushBack(UnkVector<UnkIdValueElem<Tag, V>>* v, const UnkIdValueElem<Tag, V>& value) {
+    using T = UnkIdValueElem<Tag, V>;
+    u32 n = v->count;
+    u32 old_capacity = v->capacity;
+    u32 new_capacity = old_capacity;
+    if (old_capacity <= n && v->step != 0)
+        new_capacity = (n / v->step + 1) * v->step;
+    if ((s32)n >= (s32)new_capacity)
+        for (;;) {
+        }
+    if (old_capacity < new_capacity) {
+        refl_IdValueMoveTo(v, new_capacity);
+        n = v->count;
+    }
+    new (&v->data[n]) T(value);
+    ++v->count;
+}
+
+// The array's copy-assignment (fn_7100f5fd88 and its shape copies): destroys the elements,
+// grows to the other's capacity and pushes a copy of each of its elements.
+template <class Tag, class V>
+UnkVector<UnkIdValueElem<Tag, V>>* refl_IdValueAssign(UnkVector<UnkIdValueElem<Tag, V>>* v,
+                                                      const UnkVector<UnkIdValueElem<Tag, V>>* other) {
+    using T = UnkIdValueElem<Tag, V>;
+    if (v != other) {
+        for (u64 i = 0; i < v->count; ++i)
+            v->data[i].Destroy();
+        v->count = 0;
+        u32 cap = other->capacity;
+        if (v->capacity < cap)
+            refl_IdValueMoveTo(v, cap);
+        for (const T *p = other->data, *end = p + other->count; p != end; ++p)
+            UnkIdValueTraits<Tag>::push_back(v, *p);
+    }
+    return v;
+}
+}  // namespace base
+
+// refl_CallAndCastField followed by a registration: the object at +Sub is appended to a list of
+// 8-byte entries (u32 count at +0x1618, entries from +0x161c), then handed to a callee together
+// with the cached object's member at +Off (fn_71003b8880 and its copies). Names and roles are
+// placeholders inferred from the code.
+
+namespace base::reflection {
+
+// call(sub, member): the callee the registered object is handed to.
+template <class Tag>
+struct UnkCastRegisterTraits;
+
+// A count followed by 4-byte-aligned pointer entries (the original stores them at +4).
+struct UnkCastRegisterList {
+    u32 count;
+    struct __attribute__((packed, aligned(4))) Entry {
+        char* p;
+    } items[1];
+
+    void Push(char* p) {
+        u32 n = count;
+        items[n].p = p;
+        count = n + 1;
+    }
+};
+
+template <class Tag, u32 Src, u32 Dst, u32 Sub, u32 Off>
+bool refl_CallAndCastFieldRegister(char* self) {
+    bool r = UnkCastTraits<Tag>::base(self);
+    UnkReflObject* o = *reinterpret_cast<UnkReflObject**>(self + Src);
+    *reinterpret_cast<UnkReflObject**>(self + Dst) = o ? refl_CastTo<Tag>(o) : nullptr;
+    char* sub = self + Sub;
+    reinterpret_cast<UnkCastRegisterList*>(self + 0x1618)->Push(sub);
+    // Loaded after the push: the store may alias the cached pointer.
+    char* cached = *reinterpret_cast<char**>(self + Dst);
+    UnkCastRegisterTraits<Tag>::call(sub, cached + Off);
+    return r;
+}
+
+}  // namespace base::reflection
+
+// UnkIterValue::operator=(UnkIterValue&&) (UnkCollectionIter.h) with a u32 or u64 index and an
+// element whose copy-assignment is out of line (UnkCloneAssignElem, UnkClone.h; it has no
+// move-assignment, so the element is copy-assigned; fn_71000d4f1c and its copies).
+
+// A 64-bit index stored bytewise: the original reloads the state after storing it, which a
+// typed u64 store wouldn't force.
+template <class Tag>
+struct UnkCloneIndexU64 {
+    u64 value;
+
+    // By value, so the other's index is read before the destination is chosen.
+    UnkCloneIndexU64& operator=(UnkCloneIndexU64 other) {
+        __builtin_memcpy(&value, &other.value, sizeof(value));
+        return *this;
+    }
+};
+
+// The destructor of a class that owns one object at +0x108 (freed with its out-of-line
+// destructor and operator delete), with its base's destructor inlined: the base marks itself
+// dead (0xdeaddead at +0x100), destroys the object at +0x80, releases a counted object at +0x78
+// (count at +0x54, freed by fn_710001737c) and a string id at +0x10 (fn_71001f2ae4 and its
+// copies). Names and roles are placeholders inferred from the code.
+
+void fn_7100216934(char* p);
+void fn_710001737c(char* p);
+
+namespace base {
+
+// vtable(), base_vtable(), and destroy(p): the owned object's destructor.
+template <class Tag>
+struct UnkOwnerDtorTraits;
+
+template <class Tag>
+void refl_OwnerDtor(char* self) {
+    using Traits = UnkOwnerDtorTraits<Tag>;
+    *reinterpret_cast<char**>(self) = Traits::vtable() + 0x10;
+    char* owned = *reinterpret_cast<char**>(self + 0x108);
+    *reinterpret_cast<char**>(self + 0x108) = nullptr;
+    if (owned) {
+        Traits::destroy(owned);
+        __builtin_operator_delete(owned);
+    }
+    *reinterpret_cast<char**>(self) = Traits::base_vtable() + 0x10;
+    *reinterpret_cast<u32*>(self + 0x100) = 0xdeaddead;
+    fn_7100216934(self + 0x80);
+    if (char* counted = *reinterpret_cast<char**>(self + 0x78)) {
+        if (--*reinterpret_cast<s32*>(counted + 0x54) == 0)
+            fn_710001737c(counted);
+    }
+    reinterpret_cast<UnkStrIdMember*>(self + 0x10)->~UnkStrIdMember();
+}
+
+}  // namespace base
+
+// Appends the type a type getter returns (e.g. fn_7100009658, CStrId's) to the array at +8, then tail-calls the next step with
+// the same object (fn_7100302b38 and its copies). Names and roles are placeholders inferred
+// from the code.
+
+namespace base::reflection {
+struct CType;
+}
+
+namespace base {
+
+// get(): the type appended; next(self): the function called afterwards.
+template <class Tag>
+struct UnkPushNextTraits;
+
+template <class Tag>
+void refl_PushThenNext(char* self) {
+    using Traits = UnkPushNextTraits<Tag>;
+    reinterpret_cast<UnkVector<const reflection::CType*>*>(self + 8)->PushBack(Traits::get());
+    Traits::next(self);
+}
+
+}  // namespace base
+
+// Sets up a chained hash map's storage (UnkHashMap.h layout; fn_7100075958 and its copies):
+// releases the node pool's old block, carves a new block of `nodes` nodes of NodeSize bytes
+// (from the map's allocator, or the default one) into the pool at +0x58, makes the pool at +0x48
+// the map's allocator, then resizes the bucket array at +0x10 to `buckets`, zero-filling new
+// buckets. Names and roles are placeholders inferred from the code.
+
+void fn_71000837f4(char* pool);
+void fn_710008378c(char* pool, void* block, u64 size, u64 node_size);
+
+namespace base {
+
+template <class Tag, u64 NodeSize>
+void refl_HashMapInit(char* self, u32 buckets, u32 nodes) {
+    u32 flags = *reinterpret_cast<u32*>(self + 8);
+    UnkAllocator* a = *reinterpret_cast<UnkAllocator**>(self);
+    UnkAllocator*& pool_alloc = *reinterpret_cast<UnkAllocator**>(self + 0x50);
+    if (void* block = *reinterpret_cast<void**>(self + 0x78)) {
+        fn_71000837f4(self + 0x58);
+        pool_alloc->vf_0x48(block);
+        pool_alloc = nullptr;
+    }
+    if (nodes) {
+        if (!a)
+            a = fn_7100083990();
+        pool_alloc = a;
+        u64 size = (u64)nodes * NodeSize;
+        void* block = a->vf_0x40(size, 8, flags);
+        fn_710008378c(self + 0x58, block, size, NodeSize);
+    }
+    *reinterpret_cast<char**>(self) = self + 0x48;
+    UnkVector<void*>* v = reinterpret_cast<UnkVector<void*>*>(self + 0x10);
+    u32 count = v->count;
+    if (count < buckets) {
+        if (v->capacity < buckets) {
+            void** p = static_cast<void**>(v->allocator->vf_0x40((u64)buckets * 8, 8, v->flags));
+            if (v->data) {
+                __builtin_memcpy(p, v->data, (u64)v->count * 8);
+                v->allocator->vf_0x48(v->data);
+            }
+            count = v->count;
+            v->data = p;
+            v->capacity = buckets;
+        }
+        __builtin_memset(v->data + count, 0, (u64)(buckets - count) * 8);
+        v->count = buckets;
+    } else if (count > buckets) {
+        v->count = buckets;
+    }
+}
+
+}  // namespace base
+
+// Appends two types to the array at +8: a type object named through the GOT, then the one a
+// type getter returns (fn_7100601f24 and its copies). Names and roles are placeholders inferred
+// from the code.
+
+namespace base::reflection {
+struct CType;
+}
+
+namespace base {
+
+// first(): the type object's address; get(): the getter.
+template <class Tag>
+struct UnkPushTwoTraits;
+
+template <class Tag>
+void refl_PushTwoTypes(char* self) {
+    using Traits = UnkPushTwoTraits<Tag>;
+    UnkVector<const reflection::CType*>* v = reinterpret_cast<UnkVector<const reflection::CType*>*>(self + 8);
+    v->PushBack(Traits::first());
+    v->PushBack(Traits::get());
+}
 
 }  // namespace base
