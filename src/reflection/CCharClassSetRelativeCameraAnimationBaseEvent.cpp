@@ -21,6 +21,66 @@ void fn_7100bd9110(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Set Relative Camera Animation");
     fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("Camera", true));
 }
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100091900();
+extern CStrId* g_unk_716e454178[];
+const base::reflection::UnkReflAttrKey& fn_7100091080();
+const base::reflection::UnkReflAttrKey& fn_7100091190();
+void fn_7100bd92ec(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sAnimationPath", true), fn_710000ad9c(), 0x10, -1, -1);
+    field0->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId(g_unk_7101d470e8));
+    field0->attrs.Add<CStrId>(fn_7100091900(), CStrId(*g_unk_716e454178[6]));
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("bRawChange", true), fn_710000d228(), 0x18, -1, -1);
+    field1->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fInitInterpTime", true), fn_710000abbc(), 0x1c, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fExitInterpTime", true), fn_710000abbc(), 0x20, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("sExitInterpCurve", true), fn_7100009658(), 0x28, -1, -1);
+    field4->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("bExitInterpStoringValues", true), fn_710000d228(), 0x30, -1, -1);
+    field5->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("sStartCallback", true), fn_7100009658(), 0x38, -1, -1);
+    field6->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("sEndCallback", true), fn_7100009658(), 0x40, -1, -1);
+    field7->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("bHideGUI", true), fn_710000d228(), 0x48, -1, -1);
+    field8->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("bInitialInterp", true), fn_710000d228(), 0x49, -1, -1);
+    field9->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("bInvertSide", true), fn_710000d228(), 0x4a, -1, -1);
+    field10->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field11 = fn_7100096524(cls, CStrId("bInvertAng", true), fn_710000d228(), 0x4b, -1, -1);
+    field11->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field12 = fn_7100096524(cls, CStrId("iIniFrame", true), fn_7100014768(), 0x4c, -1, -1);
+    field12->attrs.Add<s32>(fn_7100075240(), 0);
+    field12->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    field12->attrs.Add<f32>(fn_7100091190(), 10000.0f);
+    UnkReflField* field13 = fn_7100096524(cls, CStrId("fInitInterpFactor", true), fn_710000abbc(), 0x50, -1, -1);
+    field13->attrs.Add<f32>(fn_7100075240(), 5.0f);
+    field13->attrs.Add<f32>(fn_7100091080(), 0.1f);
+    field13->attrs.Add<f32>(fn_7100091190(), 20.0f);
+    UnkReflField* field14 = fn_7100096524(cls, CStrId("bExitWantsToForceEntitiesInFOV", true), fn_710000d228(), 0x54, -1, -1);
+    field14->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field15 = fn_7100096524(cls, CStrId("bResetInterpOnPossess", true), fn_710000d228(), 0x55, -1, -1);
+    field15->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field16 = fn_7100096524(cls, CStrId("fDuration", true), fn_710000abbc(), 0x58, -1, -1);
+    field16->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    field16->attrs.Add<f32>(fn_7100091080(), -1.0f);
+    field16->attrs.Add<f32>(fn_7100091190(), 100000.0f);
+    UnkReflField* field17 = fn_7100096524(cls, CStrId("bReplaceCurrentCameraAnimation", true), fn_710000d228(), 0x5c, -1, -1);
+    field17->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field18 = fn_7100096524(cls, CStrId("sAnimID", true), fn_7100009658(), 0x60, -1, -1);
+    field18->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    UnkReflField* field19 = fn_7100096524(cls, CStrId("bUpdateGoalParamsOnExitInterpolation", true), fn_710000d228(), 0x68, -1, -1);
+    field19->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field20 = fn_7100096524(cls, CStrId("bLoopAnim", true), fn_710000d228(), 0x69, -1, -1);
+    field20->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field21 = fn_7100096524(cls, CStrId("bUseRelativeAnimTime", true), fn_710000d228(), 0x6a, -1, -1);
+    field21->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field22 = fn_7100096524(cls, CStrId("bUseBoundaries", true), fn_710000d228(), 0x6b, -1, -1);
+    field22->attrs.Add<bool>(fn_7100075240(), false);
+}
 bool fn_7100bdb384(const void* a, const void* b) { return a == b; }
 s32 fn_7100bdb390() { return -1; }
 const base::reflection::CType& fn_7100bdb398(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

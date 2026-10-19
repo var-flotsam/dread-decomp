@@ -21,6 +21,23 @@ void fn_7100bdd310(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Set Relative Camera Animation with direction");
     fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("Camera", true));
 }
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100091900();
+extern CStrId* g_unk_716e454178[];
+void fn_7100bdd4ec(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sAnimationPathLookingRight", true), fn_710000ad9c(), 0x70, -1, -1);
+    field0->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId(g_unk_7101d470e8));
+    field0->attrs.Add<CStrId>(fn_7100091900(), CStrId(*g_unk_716e454178[6]));
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("sAnimationPathLookingLeft", true), fn_710000ad9c(), 0x78, -1, -1);
+    field1->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId(g_unk_7101d470e8));
+    field1->attrs.Add<CStrId>(fn_7100091900(), CStrId(*g_unk_716e454178[6]));
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("sAnimationPathLookingUp", true), fn_710000ad9c(), 0x80, -1, -1);
+    field2->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId(g_unk_7101d470e8));
+    field2->attrs.Add<CStrId>(fn_7100091900(), CStrId(*g_unk_716e454178[6]));
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("sAnimationPathLookingDown", true), fn_710000ad9c(), 0x88, -1, -1);
+    field3->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId(g_unk_7101d470e8));
+    field3->attrs.Add<CStrId>(fn_7100091900(), CStrId(*g_unk_716e454178[6]));
+}
 bool fn_7100bddfc8(const void* a, const void* b) { return a == b; }
 s32 fn_7100bddfd4() { return -1; }
 const base::reflection::CType& fn_7100bddfdc(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

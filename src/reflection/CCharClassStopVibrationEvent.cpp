@@ -21,6 +21,14 @@ void fn_7100ce4a90(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Stop Vibration");
     fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("Vibration", true));
 }
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100091900();
+extern CStrId* g_unk_7101d676d8[];
+void fn_7100ce4c6c(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sPath", true), fn_710000ad9c(), 0x10, -1, -1);
+    field0->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId(g_unk_7101d470e8));
+    field0->attrs.Add<CStrId>(fn_7100091900(), CStrId(*g_unk_7101d676d8[6]));
+}
 bool fn_7100ce5110(const void* a, const void* b) { return a == b; }
 s32 fn_7100ce511c() { return -1; }
 const base::reflection::CType& fn_7100ce5124(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

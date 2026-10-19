@@ -174,6 +174,12 @@ def events(orig: asmdiff.Original, addr: int) -> list[Event] | None:
                 new[_key(cs, o[0].reg)] = ("count", 0)
             elif facts.get(base, ("",))[0] == "ptr" and o[1].mem.disp == 0:
                 new[_key(cs, o[0].reg)] = ("global", facts[base][1])
+            elif facts.get(base, ("",))[0] == "ptr" and o[1].mem.disp > 0 and o[1].mem.disp % 8 == 0 \
+                    and cs.reg_name(o[0].reg)[0] == "x":
+                # A pointer member of a global object.
+                new[_key(cs, o[0].reg)] = ("pfield", (facts[base][1], o[1].mem.disp))
+            elif facts.get(base, ("",))[0] == "pfield" and o[1].mem.disp == 0:
+                new[_key(cs, o[0].reg)] = ("gfield", facts[base][1])
         elif m in ("mov", "movz", "orr") and o[-1].type == capstone.arm64.ARM64_OP_IMM \
                 and (m != "orr" or _key(cs, o[1].reg) == "zr"):
             mask = 0xFFFFFFFF if cs.reg_name(o[0].reg)[0] == "w" else 0xFFFFFFFFFFFFFFFF
@@ -299,7 +305,7 @@ def value_expr(type_name: str, vals: list[tuple]) -> str | None:
         if None in parts:
             return None
         return f"{type_name}{{{', '.join(parts)}}}"
-    stores = [v for v in vals if v[0] in ("imm", "str", "global", "fimm")]
+    stores = [v for v in vals if v[0] in ("imm", "str", "global", "fimm", "gfield")]
     if len(stores) != 1:
         return None
     kind, payload, width = stores[0]
@@ -307,6 +313,9 @@ def value_expr(type_name: str, vals: list[tuple]) -> str | None:
         return c_string(payload)
     if type_name == "base::global::CStrId" and kind == "global" and payload == GLOBAL_CSTRID and width == 8:
         return "CStrId(g_unk_7101d470e0)"
+    if type_name == "base::global::CStrId" and kind == "gfield" and width == 8:
+        # A CStrId that a global object points to (its pointer array, indexed by offset).
+        return f"CStrId(*g_unk_{payload[0]:x}[{payload[1] // 8}])"
     if type_name == "bool" and kind == "imm" and width == 1 and payload in (0, 1):
         return "true" if payload else "false"
     if type_name == "u32" and kind == "imm" and width == 4:
@@ -390,6 +399,8 @@ def parse(orig: asmdiff.Original, addr: int, class_getters: set[int]) -> tuple[l
         else:
             type_name = VALUE_TYPES.get(evs[j].target)
             expr = value_expr(type_name, vals) if type_name else None
+            if expr and "[" in expr:
+                decls.extend([f"extern CStrId* g_unk_{v[1][0]:x}[];" for v in vals if v[0] == "gfield"])
         if expr is None:
             return None
         j, vals = next_bl(j + 1)
