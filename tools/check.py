@@ -24,6 +24,7 @@ from __future__ import annotations
 import argparse
 import csv
 import re
+import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -33,7 +34,8 @@ import asmdiff  # noqa: E402
 import buildcfg  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
-CXXFILT = r"C:\Program Files\LLVM\bin\llvm-cxxfilt.exe"
+_WIN_CXXFILT = r"C:\Program Files\LLVM\bin\llvm-cxxfilt.exe"
+CXXFILT = _WIN_CXXFILT if Path(_WIN_CXXFILT).is_file() else (shutil.which("llvm-cxxfilt") or _WIN_CXXFILT)
 COMPILER = buildcfg.COMPILER  # project toolchain and flags: tools/buildcfg.py
 
 ANNOTATION = re.compile(r"//\s*NON_MATCHING\((minor|major)\)")

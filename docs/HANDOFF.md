@@ -325,6 +325,7 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
 
 ## Known issues and gotchas
 
+- **Linux:** the tools also run on Linux with upstream clang+llvm 9.0.1 (the Linux release tarball, with a `bin/clang++.exe` symlink to `clang++` at the path `fetch_toolchains.clang_path` expects) and `llvm-cxxfilt` on PATH. Results are identical to Windows.
 - **Windows PATH:** shells started before the toolchain install may not see `cmake`/`ninja`. Use
   `.venv/Scripts/python` and absolute tool paths, as the scripts do.
 - **Ghidra project lock:** only one process can open `build/ghidra/<ver>/dread.gpr` at a time.
