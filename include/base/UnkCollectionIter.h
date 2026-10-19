@@ -5,6 +5,8 @@
 // (index, element) pair in a holder that is empty, owns a copy, or refers to the iterator's
 // own index and element. Names and roles are placeholders inferred from the code.
 
+#include <new>
+
 #include "base/UnkVector.h"
 #include "types.h"
 
@@ -31,6 +33,28 @@ struct UnkIterValue {
 
     UnkIterValue() : state(0) {}
     ~UnkIterValue() { Reset(); }
+
+    // Takes over an owned pair, or moves out the pair a reference points to (fn_71000ceb44,
+    // fn_71002433a0 and their copies). The reference is read whole before the stores.
+    UnkIterValue(UnkIterValue&& other) : state(0) {
+        if (other.state == 1) {
+            state = 1;
+            new (&value) Value(static_cast<Value&&>(other.value));
+        } else if (other.state == 2) {
+            state = 1;
+            Ref r = other.ref;
+            new (&value) Value{*r.index, static_cast<T&&>(*r.element)};
+        }
+    }
+
+    // Copy-assigns the pair an iterator refers to (fn_71000ceba4 and its copies).
+    UnkIterValue& operator=(const UnkIterValue& other) {
+        if (this != &other) {
+            Index() = other.Index();
+            Element() = other.Element();
+        }
+        return *this;
+    }
 
     // Trivially destructible elements take a switch, which the original lowers as a range
     // check where the reset is followed by SetRef (fn_71000bc1b0).
@@ -115,6 +139,22 @@ struct UnkCollectionIter {
         return *this;
     }
 };
+
+// Type-erased helpers of an iterator value's reflected class (CType+0x38, +0x40, +0x48).
+template <class T>
+void refl_IterValueMove(void* dst, const void* src) {
+    new (dst) UnkIterValue<T>(static_cast<UnkIterValue<T>&&>(*static_cast<UnkIterValue<T>*>(const_cast<void*>(src))));
+}
+
+template <class T>
+void refl_IterValueDestroy(void* obj) {
+    static_cast<UnkIterValue<T>*>(obj)->~UnkIterValue();
+}
+
+template <class T>
+void* refl_IterValueCopy(void* dst, const void* src) {
+    return &(*static_cast<UnkIterValue<T>*>(dst) = *static_cast<const UnkIterValue<T>*>(src));
+}
 
 // The collection functions a reflected array type points to.
 template <class T>

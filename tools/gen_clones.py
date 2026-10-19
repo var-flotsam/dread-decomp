@@ -77,7 +77,7 @@ def elem_size(insns: Insns) -> int | None:
 # Element types for collection templates (see UnkClone.h): a pointer, trivially copyable bytes
 # (sized from the code), an owning pointer and a copyable handle.
 ELEMENTS = {"ptr": "{tag}*", "elem": "UnkCloneElem<{tag}, {size}>", "owner": "UnkCloneOwner<{tag}>",
-            "handle": "UnkCloneHandle<{tag}>"}
+            "handle": "UnkCloneHandle<{tag}>", "word": "UnkCloneWord<{tag}>", "strid": "UnkCloneStrId<{tag}>"}
 
 # Collection templates: header, explicit instantiation ({T} is the element type), verified
 # reference per element type, and whether the element size is read from the code ("elem" only).
@@ -100,6 +100,13 @@ COLLECTIONS = {
     "iter_value_move": ("base/UnkCollectionIter.h",
                         "template base::UnkIterValue<{T}>& base::UnkIterValue<{T}>::operator=("
                         "base::UnkIterValue<{T}>&&);", {"owner": 0x71002B954C}),
+    "iter_value_move_construct": ("base/UnkCollectionIter.h",
+                                  "template void base::refl_IterValueMove<{T}>(void*, const void*);",
+                                  {"word": 0x71000CEB44, "owner": 0x71002433A0}),
+    "iter_value_destroy": ("base/UnkCollectionIter.h", "template void base::refl_IterValueDestroy<{T}>(void*);",
+                           {"strid": 0x71000CD5D8}),
+    "iter_value_copy": ("base/UnkCollectionIter.h",
+                        "template void* base::refl_IterValueCopy<{T}>(void*, const void*);", {"word": 0x71000CEBA4}),
     "iter_begin": ("base/UnkCollectionIter.h",
                    "template void base::refl_Begin(const base::UnkVector<{T}>*, base::UnkCollectionIter<{T}>*);",
                    {"ptr": 0x71000CC564, "owner": 0x71002BA12C}),
@@ -282,10 +289,11 @@ KINDS = {
 for _name, (_header, _fmt, _refs) in COLLECTIONS.items():
     for _el, _ref in _refs.items():
         KINDS[f"{_name}_{_el}"] = Kind(_ref, _header, collection(_fmt, _el), exact=_el != "elem")
+NO_PROBE = {("iter_value_copy", "owner")}  # an owning element isn't copy-assignable
 for _name, (_header, _fmt, _refs) in COLLECTIONS.items():
-    trivial = "ptr" in _refs or "elem" in _refs
+    trivial = "ptr" in _refs or "elem" in _refs or "word" in _refs
     for _el in ("owner", "handle") + (() if trivial else ("ptr",)):
-        if _el not in _refs:
+        if _el not in _refs and (_name, _el) not in NO_PROBE:
             KINDS[f"{_name}_{_el}"] = Kind(None, _header, collection(_fmt, _el), exact=False)
 
 
