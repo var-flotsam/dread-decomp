@@ -25,6 +25,13 @@ struct UnkCloneDtorElem {
     ~UnkCloneDtorElem() { UnkCloneDtorTraits<Tag>::destroy(data); }
 };
 
+// A block of unknown, trivially copyable contents and the given size (a multiple of 8). Held as
+// words: a byte array changes how the element address is formed.
+template <class Tag, u64 Size>
+struct UnkCloneBlock {
+    u64 words[Size / 8];
+};
+
 // A polymorphic object deleted through its vtable (deleting destructor in slot 0x10).
 struct UnkCloneObject {
     virtual void vf_0x0();

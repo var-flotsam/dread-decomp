@@ -238,6 +238,28 @@ def iter_value_destroy_vt(orig: asmdiff.Original, addr: int, tag: str, insns: In
                       f"template void base::refl_IterValueDestroy<{elem}>(void*);"])
 
 
+def iter_element_value(orig: asmdiff.Original, addr: int, tag: str, insns: Insns) -> str | None:
+    """Returns an iterator value's element as a reflected value (refl_GetIterElementValue).
+    Facts: the state offset (= 8 + the element size) and the element's type getter."""
+    if len(insns) != 21 or insns[3:6] != [("mov", "x19, x8"), ("ldr", "x8, [x1, #8]"), ("add", "x20, x8, #8")] \
+            or insns[7] != ("cmp", "w9, #2") or insns[9] != ("ldr", "x20, [x20]") \
+            or insns[-1] != ("b", f"#{MAKE_VALUE:#x}") or ("mov", "w3, #1") not in insns:
+        return None
+    hit = re.fullmatch(r"w9, \[x8, #(0x[0-9a-f]+)\]", insns[6][1])
+    m, o = insns[10]
+    if insns[6][0] != "ldr" or not hit or m != "bl" or not o.startswith("#0x"):
+        return None
+    state = int(hit.group(1), 16)
+    if state % 8 or state < 0x10:
+        return None
+    getter = int(o[1:], 16)
+    return "\n".join([f"const base::reflection::CType* fn_{getter:x}();",
+                      f"template <> struct base::reflection::UnkFieldTraits<{tag}> {{",
+                      f"    static const CType* type() {{ return fn_{getter:x}(); }}", "};",
+                      f"template base::reflection::UnkReflValue base::reflection::refl_GetIterElementValue<"
+                      f"{tag}, UnkCloneBlock<{tag}, {state - 8:#x}>>(void*, char*);"])
+
+
 FILE_PATH_POOL = 0x7101D47200  # CFilePathStrId's string pool (UnkCloneStrIdB)
 
 
@@ -403,6 +425,7 @@ def enum_values(orig: asmdiff.Original, addr: int, tag: str, insns: Insns) -> st
 KINDS = {
     "dtor": Kind(None, "base/UnkDestructors.h", lambda tag, _: None, scan=destructor),
     "iter_value_destroy_vt": Kind(None, "base/UnkCollectionIter.h", lambda tag, _: None, scan=iter_value_destroy_vt),
+    "iter_element_value": Kind(None, "base/reflection/UnkReflValue.h", lambda tag, _: None, scan=iter_element_value),
     "pointee_typed": Kind(None, "base/reflection/UnkReflTypedPtr.h", lambda tag, _: None, scan=pointee_typed),
     "iter_value_destroy_dtor": Kind(None, "base/UnkCollectionIter.h", lambda tag, _: None, scan=iter_value_destroy_dtor),
     "enum_values": Kind(None, "base/global/CStrId.h", lambda tag, _: None, scan=enum_values),
