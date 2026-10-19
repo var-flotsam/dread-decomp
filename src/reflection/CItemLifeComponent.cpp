@@ -5,10 +5,27 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CItemLifeComponent
 DREAD_REFL_TAG(71008e01c8);
 void fn_71008dff98(base::reflection::CClass*) {}
+void fn_71008e0328(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+const base::reflection::UnkReflAttrKey& fn_71000904d0();
+void fn_71008e0090(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AddDamageSource", true))) {
+        fn_71008e0328(fn, "AddDamageSource");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Add Damage source (POWER_BEAM, CHARGE_BEAM, ...)"));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+}
 bool fn_71008e2894(const void*, const void*) { return false; }
 s32 fn_71008e289c() { return -1; }
 const base::reflection::CType& fn_71008e28a4(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

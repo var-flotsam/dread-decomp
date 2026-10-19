@@ -93,6 +93,67 @@ DREAD_REFL_CLASS_GETTER(71002facc4, 71002fb6b8, "CAbilityComponent::CTunableAbil
 // CAbilityComponent
 DREAD_REFL_TAG(71002fc43c);
 void fn_71002fbaf4(base::reflection::CClass*) {}
+void fn_7100302530();
+void fn_71002fc5c0(UnkReflFunction* fn, const char* name);
+extern base::reflection::CType g_unk_7101d5af48;
+void fn_71003028f0();
+void fn_71003025c0(UnkReflFunction* fn);
+void fn_71002fc73c(UnkReflFunction* fn, const char* name);
+void fn_7100302aa4();
+void fn_71002fc8b4(UnkReflFunction* fn, const char* name);
+void fn_7100302eb0();
+void fn_7100302d14(UnkReflFunction* fn);
+void fn_71002fbbec(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bAccurateAiming_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_bAccurateAiming_GetterFunction", true);
+        fn->return_type = fn_710000d228();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100302530);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bAccurateAiming_SetterFunction", true)))
+        fn_71002fc5c0(fn, "_m_bAccurateAiming_SetterFunction");
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("bAccurateAiming", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field0->attrs.Add<bool>(fn_7100075240(), false);
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Accurate aiming of the energy wave");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetAbilityUnlocked", true))) {
+        fn->name = base::global::UnkStrId("SetAbilityUnlocked", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71003028f0);
+        fn_71003025c0(fn);
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Set Ability Unlocked");
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("IsAbilityActive", true))) {
+        fn_71002fc73c(fn, "IsAbilityActive");
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Is Ability Active");
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("IsAnyAbilityUnlocked", true))) {
+        fn->name = base::global::UnkStrId("IsAnyAbilityUnlocked", true);
+        fn->return_type = fn_710000d228();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100302aa4);
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Is Any Ability Active");
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("TrySetSelectedAbility", true))) {
+        fn_71002fc8b4(fn, "TrySetSelectedAbility");
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Try to set an ability");
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("DeactivateAllAbilities", true))) {
+        fn->name = base::global::UnkStrId("DeactivateAllAbilities", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100302eb0);
+        fn_7100302d14(fn);
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "deactivate all abilities");
+    }
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("sBlockSyncFX", true), fn_7100009658(), 0xf8, -1, -1);
+    field1->attrs.Add<const char*>(fn_7100075240(), "blocksync");
+    field1->attrs.Add<const char*>(fn_7100007e80(), "Synch block fx id");
+}
 bool fn_71003023f8(const void*, const void*) { return false; }
 s32 fn_7100302400() { return -1; }
 const base::reflection::CType& fn_7100302408(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

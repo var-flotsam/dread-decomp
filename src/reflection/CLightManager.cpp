@@ -21,6 +21,32 @@ const base::reflection::UnkReflAttrKey& fn_7100005070();
 void fn_7100e07b60(CClass* cls) {
     fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x10200u);
 }
+extern base::reflection::CType g_unk_71727bfc38;
+const base::reflection::UnkReflAttrKey& fn_71000901a0();
+const base::reflection::UnkReflAttrKey& fn_710008fd60();
+const base::reflection::UnkReflAttrKey& fn_710008fb40();
+void fn_7100e082bc(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+const base::reflection::UnkReflAttrKey& fn_710008f920();
+void fn_7100e08438(UnkReflFunction* fn, const char* name);
+void fn_7100e07ca8(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("dicLightDefs", true), &g_unk_71727bfc38, 0x148, -1, -1);
+    field0->attrs.Add<CStrId>(fn_71000901a0(), CStrId("sPath", true));
+    field0->attrs.Add<CStrId>(fn_710008fd60(), CStrId("CreateElement", true));
+    field0->attrs.Add<CStrId>(fn_710008fb40(), CStrId("DeleteElement", true));
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("CreateElement", true))) {
+        fn_7100e082bc(fn, "CreateElement");
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Create LightDef");
+        fn_710009ae5c(fn, fn->params.count);
+        fn->ParamAttrs(0)->Add<base::global::CFilePathStrId>(fn_710008f920(), base::global::CFilePathStrId("sPath", true));
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("DeleteElement", true))) {
+        fn_7100e08438(fn, "DeleteElement");
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Delete LightDef");
+        fn_710009ae5c(fn, fn->params.count);
+        fn->ParamAttrs(0)->Add<base::global::CFilePathStrId>(fn_710008f920(), base::global::CFilePathStrId("sPath", true));
+    }
+}
 bool fn_7100e0db34(const void* a, const void* b) { return a == b; }
 s32 fn_7100e0db40() { return -1; }
 const base::reflection::CType& fn_7100e0db48(const void* obj);

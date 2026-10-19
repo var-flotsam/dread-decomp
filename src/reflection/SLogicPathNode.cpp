@@ -46,6 +46,80 @@ DREAD_REFL_CLASS_GETTER(7101054330, 710105498c, "SLogicPathNode", 7100da4088, 71
 // SLogicSubPath
 DREAD_REFL_TAG(71010559b0);
 void fn_7101054c8c(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_7101d5af48;
+void fn_710105d0a8();
+void fn_710105d0bc();
+void fn_7101055b34(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+const base::reflection::UnkReflAttrKey& fn_710008f920();
+const base::reflection::UnkReflAttrKey& fn_71000903c0();
+void fn_710105d328();
+void fn_710105d188(UnkReflFunction* fn);
+void fn_7101055bf4(UnkReflFunction* fn, const char* name);
+void fn_7101055d70(UnkReflFunction* fn, const char* name);
+extern base::reflection::CType g_unk_71729fe538;
+const base::reflection::UnkReflAttrKey& fn_7100090a20();
+const base::reflection::UnkReflAttrKey& fn_710008fd60();
+const base::reflection::UnkReflAttrKey& fn_710008fe70();
+const base::reflection::UnkReflAttrKey& fn_710008fc50();
+const base::reflection::UnkReflAttrKey& fn_710008fb40();
+const base::reflection::UnkReflAttrKey& fn_710008ff80();
+void fn_7101054d84(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AfterNodesDeserialization", true))) {
+        fn->name = base::global::UnkStrId("AfterNodesDeserialization", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_710105d0a8);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AfterSegmentDeserialization", true))) {
+        fn->name = base::global::UnkStrId("AfterSegmentDeserialization", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_710105d0bc);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("CreateElement", true))) {
+        fn_7101055b34(fn, "CreateElement");
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Create Node At Index");
+        fn_710009ae5c(fn, fn->params.count);
+        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("uIdx", true));
+        fn->ParamAttrs(0)->Add<bool>(fn_71000903c0(), true);
+        fn->ParamAttrs(1)->Add<CStrId>(fn_710008f920(), CStrId("vPos", true));
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("InsertElement", true))) {
+        fn->name = base::global::UnkStrId("InsertElement", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_710105d328);
+        fn_710105d188(fn);
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Insert Node At Index");
+        fn_710009ae5c(fn, fn->params.count);
+        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("uIdx", true));
+        fn->ParamAttrs(1)->Add<CStrId>(fn_710008f920(), CStrId("rData", true));
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("EraseElement", true))) {
+        fn_7101055bf4(fn, "EraseElement");
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Erase Node At Index");
+        fn_710009ae5c(fn, fn->params.count);
+        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("uIdx", true));
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("DeleteElement", true))) {
+        fn_7101055d70(fn, "DeleteElement");
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Delete Node At Index");
+        fn_710009ae5c(fn, fn->params.count);
+        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("uIdx", true));
+    }
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("tNodes", true), &g_unk_71729fe538, 0x8, -1, -1);
+    field0->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("LogicPathNode"));
+    field0->attrs.Add<bool>(fn_7100090a20(), false);
+    field0->attrs.Add<CStrId>(fn_710008fd60(), CStrId("CreateElement", true));
+    field0->attrs.Add<CStrId>(fn_710008fe70(), CStrId("InsertElement", true));
+    field0->attrs.Add<CStrId>(fn_710008fc50(), CStrId("EraseElement", true));
+    field0->attrs.Add<CStrId>(fn_710008fb40(), CStrId("DeleteElement", true));
+    field0->attrs.Add<CStrId>(fn_710008ff80(), CStrId("AfterNodesDeserialization", true));
+}
 bool fn_710105ce58(const void* a, const void* b) { return a == b; }
 s32 fn_710105ce64() { return -1; }
 const base::reflection::CType& fn_710105ce6c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

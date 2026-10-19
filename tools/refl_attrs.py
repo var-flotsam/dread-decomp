@@ -48,9 +48,14 @@ CRNT_DTOR = 0x710007ECD4
 CFP_CTOR = 0x71000166C8
 GLOBAL_CFP = 0x7101D470E8      # g_unk_7101d470e8, a global CFilePathStrId
 HASH = 0x7100001570
+RESIZE_PARAM_ATTRS = 0x710009AE5C  # fn_710009ae5c(fn, fn->params.count)
+# Virtual calls on a reflected function, as negative call targets: its attributes and a
+# parameter's attributes (UnkReflFunctionVtbl).
+VCALL_ATTRS = -0x48
+VCALL_PARAM_ATTRS = -0x58
 # Calls that are never attribute keys; any other call in key position is one.
 NOT_KEYS = {GET_ATTRS, ADD_ATTR, ADD_FIELD, ADD_FUNCTION, CSTRID_CTOR, CSTRID_RELEASE, ALLOC,
-            TUNABLE_REGISTRY_CTOR, CRNT_CTOR, CRNT_COPY, CRNT_DTOR, CFP_CTOR, HASH}
+            TUNABLE_REGISTRY_CTOR, CRNT_CTOR, CRNT_COPY, CRNT_DTOR, CFP_CTOR, HASH, RESIZE_PARAM_ATTRS}
 # Value type getter -> C++ type, as in UnkReflTypeOf.
 VALUE_TYPES = {0x7100005178: "u32", 0x7100014768: "s32", 0x71000081E8: "const char*", 0x7100009658: "base::global::CStrId",
                0x710000ABBC: "f32", 0x710000D228: "bool",
@@ -121,11 +126,23 @@ def events(orig: asmdiff.Original, addr: int) -> list[Event] | None:
     page: dict[str, int] = {}
     # register -> ("imm", n) | ("str", s) | ("ptr", a) | ("global", a) | ("cls", 0) | ("count", delta)
     facts: dict[str, tuple] = {"zr": ("imm", 0), "0": ("cls", 0)}
+    slot: dict[str, int] = {}  # register -> the offset it was loaded from (a virtual table slot)
+    ret: dict[str, int] = {}   # register -> the call whose result it holds
     out: list[Event] = []
     for x in cs.disasm(orig.function(addr), addr):
         m, o = x.mnemonic, x.operands
         written = {_key(cs, r) for r in x.regs_access()[1]}
         new: dict[str, tuple] = {}
+        if m == "ldr" and len(o) == 2 and o[1].type == capstone.arm64.ARM64_OP_MEM and not o[1].mem.index:
+            slot[_key(cs, o[0].reg)] = o[1].mem.disp
+        elif m != "blr":
+            for r in written:
+                slot.pop(r, None)
+        if m == "mov" and len(o) == 2 and o[1].type == capstone.arm64.ARM64_OP_REG and _key(cs, o[1].reg) in ret:
+            ret[_key(cs, o[0].reg)] = ret[_key(cs, o[1].reg)]
+        elif m not in ("bl", "blr"):
+            for r in written:
+                ret.pop(r, None)
         if m == "adrp":
             page[_key(cs, o[0].reg)] = o[1].imm
         elif m == "add" and len(o) == 3 and _key(cs, o[1].reg) in page and o[2].type == capstone.arm64.ARM64_OP_IMM:
@@ -203,11 +220,18 @@ def events(orig: asmdiff.Original, addr: int) -> list[Event] | None:
                 width = 8 if cs.reg_name(o[0].reg)[0] == "x" else 4
                 for r in o[:2]:
                     out.append(Event("value", value=("imm", facts[_key(cs, r.reg)][1], width)))
-        elif m == "bl":
-            out.append(Event("bl", target=o[0].imm, regs=dict(facts)))
+        elif m == "bl" or (m == "blr" and slot.get(_key(cs, o[0].reg)) in (0x48, 0x58)):
+            target = o[0].imm if m == "bl" else -slot[_key(cs, o[0].reg)]
+            regs = dict(facts)
+            if "0" in ret:
+                regs["ret0"] = ("ret", ret["0"])  # x0 holds the result of an earlier call
+            out.append(Event("bl", target=target, regs=regs))
             for r in [str(i) for i in range(19)] + ["s0", "d0"]:
                 facts.pop(r, None)
                 page.pop(r, None)
+                slot.pop(r, None)
+                ret.pop(r, None)
+            ret["0"] = target
             continue
         elif m in ("b", "br", "blr"):
             if m != "b":
@@ -303,7 +327,7 @@ def parse(orig: asmdiff.Original, addr: int, class_getters: set[int]) -> tuple[l
         return j, vals
 
     def is_key(j: int) -> bool:
-        return j < n and evs[j].kind == "bl" and evs[j].target not in NOT_KEYS \
+        return j < n and evs[j].kind == "bl" and evs[j].target > 0 and evs[j].target not in NOT_KEYS \
             and evs[j].target not in VALUE_TYPES and evs[j].target not in class_getters
 
     def attribute(j: int, target: str) -> tuple[int, str] | None:
@@ -399,6 +423,33 @@ def parse(orig: asmdiff.Original, addr: int, class_getters: set[int]) -> tuple[l
             j += 1
         return j
 
+    def function_attrs(k: int) -> tuple[int, list[str]] | None:
+        """Attributes of a reflected function and of its parameters, after its initialiser."""
+        lines: list[str] = []
+        while True:
+            j = skip_release(k)
+            jb, vals = next_bl(j)
+            if jb >= n or vals:
+                return k, lines
+            t = evs[jb].target
+            if t == VCALL_ATTRS:
+                r = attribute(jb + 1, "fn->Attrs()->")
+            elif t == VCALL_PARAM_ATTRS and evs[jb].regs.get("1", ("",))[0] == "imm":
+                r = attribute(jb + 1, f"fn->ParamAttrs({evs[jb].regs['1'][1]})->")
+            elif t == RESIZE_PARAM_ATTRS:
+                r = jb + 1, "    fn_710009ae5c(fn, fn->params.count);"
+            elif t > 0 and evs[jb].regs.get("ret0") == ("ret", ADD_FUNCTION) and t not in NOT_KEYS \
+                    and t not in VALUE_TYPES and t not in class_getters:
+                # A call that takes the function (e.g. one that adds a parameter type).
+                decls.append(f"void fn_{t:x}(UnkReflFunction* fn);")
+                r = jb + 1, f"    fn_{t:x}(fn);"
+            else:
+                return k, lines
+            if r is None:
+                return None
+            k, line = r
+            lines.append("    " + line)
+
     def function(j: int) -> tuple[int, list[str]] | None:
         """fn = fn_7100097550(cls, CStrId(name)); then an inline or an out-of-line initialiser."""
         s = evs[j].regs.get("1")
@@ -449,19 +500,30 @@ def parse(orig: asmdiff.Original, addr: int, class_getters: set[int]) -> tuple[l
             if len(invoker) != 1 or len(stores) != 1 or len(flags) > 1:
                 return None
             decls.append(f"void fn_{invoker[0]:x}();")
+            r = function_attrs(k)
+            if r is None:
+                return None
+            k, extra = r
             return k, [head + " {",
                        f"        fn->name = base::global::UnkStrId({name}, true);",
                        f"        fn->return_type = {ret_expr};",
                        f"        fn->field_0xb2 = {hex(flags[0]) if flags and flags[0] else 0};",
                        "        fn->field_0x40 = nullptr;",
                        f"        fn->invoker = reinterpret_cast<void*>(&fn_{invoker[0]:x});",
+                       *extra,
                        "    }"]
         # Out-of-line initialiser (setters): init(fn, name).
         if evs[k].regs.get("1") != s or evs[k].target in NOT_KEYS:
             return None
         init = evs[k].target
         decls.append(f"void fn_{init:x}(UnkReflFunction* fn, const char* name);")
-        return k + 1, [head, f"        fn_{init:x}(fn, {name});"]
+        r = function_attrs(k + 1)
+        if r is None:
+            return None
+        k, extra = r
+        if not extra:
+            return k, [head, f"        fn_{init:x}(fn, {name});"]
+        return k, [head + " {", f"        fn_{init:x}(fn, {name});", *extra, "    }"]
 
     def field(j: int, name_expr: str) -> int | None:
         """AddField at j (or the field's type getter, then AddField) and the field's attributes."""

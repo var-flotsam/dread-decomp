@@ -5,10 +5,33 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CLogicPathNavMeshItemComponent
 DREAD_REFL_TAG(71009bcaf0);
 void fn_71009bc860(base::reflection::CClass*) {}
+void fn_71009bcc50(UnkReflFunction* fn, const char* name);
+extern base::reflection::CType g_unk_7101d5af48;
+void fn_71009bd120();
+void fn_7100500260(UnkReflFunction* fn);
+void fn_71009bc958(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("CreateLogicPathStage", true)))
+        fn_71009bcc50(fn, "CreateLogicPathStage");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AddStageColliderWithOffSet", true))) {
+        fn->name = base::global::UnkStrId("AddStageColliderWithOffSet", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71009bd120);
+        fn_7100500260(fn);
+    }
+}
 bool fn_71009bd044(const void*, const void*) { return false; }
 s32 fn_71009bd04c() { return -1; }
 const base::reflection::CType& fn_71009bd054(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

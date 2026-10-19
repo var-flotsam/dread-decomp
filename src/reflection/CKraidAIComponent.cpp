@@ -5,10 +5,41 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CKraidAIComponent
 DREAD_REFL_TAG(71005fb1bc);
 void fn_71005fac70(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_717269bb48;
+const base::reflection::UnkReflAttrKey& fn_710025daa0();
+extern base::reflection::CType g_unk_71727bc110;
+void fn_71005fb320(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+const base::reflection::UnkReflAttrKey& fn_71000904d0();
+extern base::reflection::CType g_unk_71727b6270;
+void fn_71005fad68(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("wpStage1ArenaShape", true), &g_unk_717269bb48, 0x14ca0, -1, -1);
+    field0->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 4);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("wpStage2ArenaShape", true), &g_unk_717269bb48, 0x14cf0, -1, -1);
+    field1->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 4);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("ChangeKraidAnimToStage2", true))) {
+        fn_71005fb320(fn, "ChangeKraidAnimToStage2");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Change Anim Kraid to Stage2"));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("wpPhase2CutScenePlayer", true), &g_unk_71727b6270, 0x14d40, -1, -1);
+    field2->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 1);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("wpDeadCutScenePlayer", true), &g_unk_71727b6270, 0x14d80, -1, -1);
+    field3->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 1);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("wpDeadFromZiplineOrMBCutscenePlayer", true), &g_unk_71727b6270, 0x14dc0, -1, -1);
+    field4->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 1);
+}
 bool fn_7100601ec0(const void*, const void*) { return false; }
 s32 fn_7100601ec8() { return -1; }
 const base::reflection::CType& fn_7100601ed0(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

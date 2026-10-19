@@ -5,10 +5,27 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCollisionComponent
 DREAD_REFL_TAG(710085fe70);
 void fn_710085fc40(base::reflection::CClass*) {}
+void fn_710085fff4(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+const base::reflection::UnkReflAttrKey& fn_71000904d0();
+void fn_710085fd38(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("CreateCollider", true))) {
+        fn_710085fff4(fn, "CreateCollider");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Create Collider"));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+}
 bool fn_71008667d0(const void*, const void*) { return false; }
 s32 fn_71008667d8() { return -1; }
 const base::reflection::CType& fn_71008667e0(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

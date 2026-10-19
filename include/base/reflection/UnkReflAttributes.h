@@ -37,8 +37,16 @@ struct UnkReflAttrs;    // 0x38 bytes, created on first use
 struct UnkReflField;    // a member field descriptor; its attributes are at +0x38
 // A reflected function (0xb8 bytes, in CClass+0x110). Getter/setter-backed fields register
 // one getter and one setter function and then a field that refers to them by index.
+struct UnkReflFunction;
+// The reflected function's virtual table, as far as the registration functions use it.
+struct UnkReflFunctionVtbl {
+    void* unk_0x0[9];
+    UnkReflAttrs* (*vf_0x48)(UnkReflFunction* self);  // the function's attributes
+    void* unk_0x50;
+    UnkReflAttrs* (*vf_0x58)(UnkReflFunction* self, u32 index);  // a parameter's attributes
+};
 struct UnkReflFunction {
-    u8 unk_0x0[0x8];
+    const UnkReflFunctionVtbl* vtbl;
     base::UnkVector<const CType*> params;  // parameter types (fn_7100a19530 adds one)
     base::global::UnkStrId name;
     const CType* return_type;
@@ -47,6 +55,9 @@ struct UnkReflFunction {
     u8 unk_0x50[0x62];
     u16 field_0xb2;
     u8 unk_0xb4[0x4];
+
+    UnkReflAttrs* Attrs() { return vtbl->vf_0x48(this); }
+    UnkReflAttrs* ParamAttrs(u32 index) { return vtbl->vf_0x58(this, index); }
 };
 static_assert(sizeof(UnkReflFunction) == 0xb8, "function array stride");
 
@@ -73,6 +84,9 @@ base::reflection::UnkReflField* fn_7100096524(base::reflection::CClass* cls, bas
 
 // Add a function named `name` to a class; null if the class already has one by that name.
 base::reflection::UnkReflFunction* fn_7100097550(base::reflection::CClass* cls, const base::global::CStrId& name);
+
+// Resize a function's parameter attribute containers (0x38 bytes each, at +0x88) to `count`.
+void fn_710009ae5c(base::reflection::UnkReflFunction* fn, u32 count);
 
 // Allocation (size, flags; the flags are 0x3f for the tunable registry), and the registry's
 // constructor.

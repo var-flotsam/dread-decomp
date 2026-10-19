@@ -16,6 +16,38 @@ using base::reflection::UnkTunableRegistry;
 // CUsableComponent
 DREAD_REFL_TAG(7100a9c2d4);
 void fn_7100a9bce8(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_7100a9c458(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+const base::reflection::UnkReflAttrKey& fn_71000904d0();
+void fn_7100a9c50c(UnkReflFunction* fn, const char* name);
+void fn_7100a9c5c0(UnkReflFunction* fn, const char* name);
+void fn_7100a9c674(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_710008f920();
+void fn_7100a9bde0(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("bFadeInActived", true), fn_710000d228(), 0xfd, -1, -1);
+    field0->attrs.Add<bool>(fn_7100075240(), false);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("OnCanNotUseAccepted", true))) {
+        fn_7100a9c458(fn, "OnCanNotUseAccepted");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("On Can Not Use Accepted"));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("OnUseSuccessAccepted", true))) {
+        fn_7100a9c50c(fn, "OnUseSuccessAccepted");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("On Dialog Continued"));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("Activate", true))) {
+        fn_7100a9c5c0(fn, "Activate");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Activates the statue"));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("Discover", true))) {
+        fn_7100a9c674(fn, "Discover");
+        fn_710009ae5c(fn, fn->params.count);
+        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("_bTransition", true));
+    }
+}
 bool fn_7100aa3fc4(const void*, const void*) { return false; }
 s32 fn_7100aa3fcc() { return -1; }
 const base::reflection::CType& fn_7100aa3fd4(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
@@ -45,8 +77,6 @@ DREAD_REFL_CLASS_GETTER(7100a9bcec, 7100a9c2d4, "CUsableComponent", 71010c23d0, 
 DREAD_REFL_TAG(7100a9d224);
 void fn_7100a9c7f0(base::reflection::CClass*) {}
 extern bool g_unk_7172753258;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71727531f0;
 void fn_7100a9d8f4(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);

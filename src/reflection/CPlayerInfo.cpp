@@ -5,10 +5,150 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CPlayerInfo
 DREAD_REFL_TAG(7100f07b90);
 void fn_7100f06628(base::reflection::CClass*) {}
+void fn_7100f0ed90();
+const base::reflection::UnkReflAttrKey& fn_710000bf80();
+extern base::reflection::CType g_unk_7101d679f0;
+void fn_7100f07cf0(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+const base::reflection::UnkReflAttrKey& fn_71000904d0();
+void fn_7100f07da4(UnkReflFunction* fn, const char* name);
+void fn_7100f0ef94();
+void fn_7100f07e58(UnkReflFunction* fn, const char* name);
+void fn_7100f07f0c(UnkReflFunction* fn, const char* name);
+void fn_7100f07fc0(UnkReflFunction* fn, const char* name);
+void fn_7100f0f0e0();
+void fn_7100f08074(UnkReflFunction* fn, const char* name);
+void fn_7100f08128(UnkReflFunction* fn, const char* name);
+void fn_7100f081dc(UnkReflFunction* fn, const char* name);
+void fn_7100f08290(UnkReflFunction* fn, const char* name);
+void fn_7100f08344(UnkReflFunction* fn, const char* name);
+void fn_7100f083f8(UnkReflFunction* fn, const char* name);
+void fn_7100f084ac(UnkReflFunction* fn, const char* name);
+void fn_7100f08560(UnkReflFunction* fn, const char* name);
+void fn_7100f08614(UnkReflFunction* fn, const char* name);
+extern base::reflection::CType g_unk_7101d5af48;
+void fn_7100f0f428();
+void fn_71003540d8(UnkReflFunction* fn);
+void fn_7100f06720(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sInputPreset_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_sInputPreset_GetterFunction", true);
+        fn->return_type = fn_7100009658();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f0ed90);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sInputPreset", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetInputPreset", true))) {
+        fn_7100f07cf0(fn, "SetInputPreset");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Input preset"));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SwitchInputPreset", true))) {
+        fn_7100f07da4(fn, "SwitchInputPreset");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("SwitchiInput preset"));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_iHazardousCount_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_iHazardousCount_GetterFunction", true);
+        fn->return_type = fn_7100014768();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f0ef94);
+    }
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("iHazardousCount", true), fn_7100014768(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field1->attrs.Add<const char*>(fn_7100007e80(), "Number of hazardous triggers active");
+    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("IncrementHazardousCount", true))) {
+        fn_7100f07e58(fn, "IncrementHazardousCount");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Increment the number of hazardous triggers active"));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("DecrementHazardousCount", true))) {
+        fn_7100f07f0c(fn, "DecrementHazardousCount");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Decrement the number of hazardous triggers active"));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("ResetHazardousCount", true))) {
+        fn_7100f07fc0(fn, "ResetHazardousCount");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Reset the number of hazardous triggers active"));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_iHeatZoneCount_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_iHeatZoneCount_GetterFunction", true);
+        fn->return_type = fn_7100014768();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f0f0e0);
+    }
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("iHeatZoneCount", true), fn_7100014768(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field2->attrs.Add<const char*>(fn_7100007e80(), "Number of heat zone triggers active");
+    field2->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("IncrementHeatZoneCount", true))) {
+        fn_7100f08074(fn, "IncrementHeatZoneCount");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Increment the number of heat zone triggers active"));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("DecrementHeatZoneCount", true))) {
+        fn_7100f08128(fn, "DecrementHeatZoneCount");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Decrement the number of heat zone triggers active"));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("ResetHeatZoneCount", true))) {
+        fn_7100f081dc(fn, "ResetHeatZoneCount");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Reset the number of heat zone triggers active"));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("IncrementNumberOfNonReachableTriggers", true))) {
+        fn_7100f08290(fn, "IncrementNumberOfNonReachableTriggers");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString(""));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("DecrementNumberOfNonReachableTriggers", true))) {
+        fn_7100f08344(fn, "DecrementNumberOfNonReachableTriggers");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString(""));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("ResetNumberOfNonReachableTriggers", true))) {
+        fn_7100f083f8(fn, "ResetNumberOfNonReachableTriggers");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString(""));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("FillLifeReserveTank", true))) {
+        fn_7100f084ac(fn, "FillLifeReserveTank");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Fills the life reserve tank"));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("FillSpecialEnergyReserveTank", true))) {
+        fn_7100f08560(fn, "FillSpecialEnergyReserveTank");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Fills the special energy reserve tank"));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("FillMissileReserveTank", true))) {
+        fn_7100f08614(fn, "FillMissileReserveTank");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Fills the missile reserve tank"));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("IgnoreHang", true))) {
+        fn->name = base::global::UnkStrId("IgnoreHang", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f0f428);
+        fn_71003540d8(fn);
+    }
+}
 bool fn_7100f0ed2c(const void*, const void*) { return false; }
 s32 fn_7100f0ed34() { return -1; }
 const base::reflection::CType& fn_7100f0ed3c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

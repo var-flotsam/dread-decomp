@@ -5,10 +5,107 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CAIComponent
 DREAD_REFL_TAG(71010f7c2c);
 void fn_71010f6b4c(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_7101d5af48;
+void fn_7101115758();
+void fn_71011155bc(UnkReflFunction* fn);
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+void fn_71010f7d90(UnkReflFunction* fn, const char* name);
+void fn_71010f7f0c(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_710000bf80();
+extern base::reflection::CType g_unk_7101d679f0;
+const base::reflection::UnkReflAttrKey& fn_7100090a20();
+extern base::reflection::CType g_unk_717269bb48;
+const base::reflection::UnkReflAttrKey& fn_710025daa0();
+extern base::reflection::CType g_unk_71727bc110;
+extern base::reflection::CType g_unk_7172a05bc8;
+extern base::reflection::CType g_unk_71727bb8e8;
+void fn_7101115c1c();
+void fn_71010f7fc0(UnkReflFunction* fn, const char* name);
+void fn_71010f6c44(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AddPresetLogicPath", true))) {
+        fn->name = base::global::UnkStrId("AddPresetLogicPath", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7101115758);
+        fn_71011155bc(fn);
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Add Preset Navigation Path");
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AddIdleLogicPath", true))) {
+        fn_71010f7d90(fn, "AddIdleLogicPath");
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Add Idle Navigation Path");
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AddBlackboardParam", true))) {
+        fn_71010f7f0c(fn, "AddBlackboardParam");
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Add Blackboard Param");
+    }
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sForcedAttack", true), fn_7100009658(), 0x1780, -1, -1);
+    field0->attrs.Add<const char*>(fn_7100075240(), "");
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Forced attack");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("iForcedAttackPreset", true), fn_7100014768(), 0x1788, -1, -1);
+    field1->attrs.Add<s32>(fn_7100075240(), 0);
+    field1->attrs.Add<const char*>(fn_7100007e80(), "Forced attack preset");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fTimeSinceTargetLastSeen", true), fn_710000abbc(), 0x14fc, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 100000000.0f);
+    field2->attrs.Add<const char*>(fn_7100007e80(), "Time since target was seen for the last time");
+    field2->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field2->attrs.Add<bool>(fn_7100090a20(), false);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fTimeSinceLastDamage", true), fn_710000abbc(), 0x1128, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    field3->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field3->attrs.Add<bool>(fn_7100090a20(), false);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fTimeSinceLastFrozen", true), fn_710000abbc(), 0x113c, -1, -1);
+    field4->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    field4->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field4->attrs.Add<bool>(fn_7100090a20(), false);
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("fPathLeftCut", true), fn_710000abbc(), 0x13c0, -1, -1);
+    field5->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field5->attrs.Add<const char*>(fn_7100007e80(), "Desired left cut distance for this ground enemy's (patrol) path");
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("fPathRightCut", true), fn_710000abbc(), 0x13c4, -1, -1);
+    field6->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field6->attrs.Add<const char*>(fn_7100007e80(), "Desired right cut distance for this ground enemy's (patrol) path");
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("fCutDistanceClockwise", true), fn_710000abbc(), 0x13c8, -1, -1);
+    field7->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    field7->attrs.Add<const char*>(fn_7100007e80(), "Desired navigable path cut distance [0,inf) for this ground enemy's only clockwise limit");
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("fCutDistanceCounterClockwise", true), fn_710000abbc(), 0x13cc, -1, -1);
+    field8->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    field8->attrs.Add<const char*>(fn_7100007e80(), "Desired navigable path cut distance [0,inf) for this ground enemy's only counter clockwise limit");
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("wpPathToFollow", true), &g_unk_717269bb48, 0x1350, -1, -1);
+    field9->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 0);
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("tFallbackPaths", true), &g_unk_7172a05bc8, 0x1390, -1, -1);
+    UnkReflField* field11 = fn_7100096524(cls, CStrId("ePathType", true), &g_unk_71727bb8e8, 0x13b8, -1, -1);
+    field11->attrs.Add<s32>(fn_7100075240(), &g_unk_71727bb8e8, 2);
+    UnkReflField* field12 = fn_7100096524(cls, CStrId("bIndividualRequiresActivationPerception", true), fn_710000d228(), 0x121c, -1, -1);
+    field12->attrs.Add<bool>(fn_7100075240(), false);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bIgnoreAttack_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_bIgnoreAttack_GetterFunction", true);
+        fn->return_type = fn_710000d228();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7101115c1c);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bIgnoreAttack_SetterFunction", true)))
+        fn_71010f7fc0(fn, "_m_bIgnoreAttack_SetterFunction");
+    UnkReflField* field13 = fn_7100096524(cls, CStrId("bIgnoreAttack", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field13->attrs.Add<bool>(fn_7100075240(), false);
+    field13->attrs.Add<const char*>(fn_7100007e80(), "Ignore Attack?");
+    UnkReflField* field14 = fn_7100096524(cls, CStrId("bInBlindAttack", true), fn_710000d228(), 0x14699, -1, -1);
+    field14->attrs.Add<bool>(fn_7100075240(), false);
+    field14->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field14->attrs.Add<bool>(fn_7100090a20(), false);
+}
 bool fn_7101115558(const void*, const void*) { return false; }
 s32 fn_7101115560() { return -1; }
 const base::reflection::CType& fn_7101115568(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
