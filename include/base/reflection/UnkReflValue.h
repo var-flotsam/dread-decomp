@@ -4,6 +4,7 @@
 // descriptor and a pointer to the value (tools/gen_clones.py, kind "field_value"). The layout
 // beyond the three fields set here is unknown; names are placeholders.
 
+#include "base/UnkCollectionIter.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
@@ -40,6 +41,21 @@ UnkReflValue refl_GetFieldValue(void*, char* obj) {
     r.field_0x0 = nullptr;
     r.type = nullptr;
     fn_71000a18d4(&r, type, &value, false);
+    return r;
+}
+
+// Returns the element of the iterator value `obj` points to at +8 as a reflected value, by
+// reference (fn_71000cd908 and its copies; the first parameter is unused).
+template <class Tag, class T>
+UnkReflValue refl_GetIterElementValue(void*, char* obj) {
+    auto* v = *reinterpret_cast<UnkIterValue<T>**>(obj + 8);
+    T* element = &v->Element();
+    const CType* type = UnkFieldTraits<Tag>::type();
+    UnkReflValue r;
+    r.field_0x0 = nullptr;
+    r.type = nullptr;
+    r.kind = 2;
+    fn_71000a18d4(&r, type, element, true);
     return r;
 }
 

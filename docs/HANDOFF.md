@@ -30,8 +30,8 @@ Snapshot as of 2026-10-18 (fifth Phase 4 session; branches `phase-4-4-clones` (v
 | 4.5+ Boot to title screen | Not started; plan below |
 | Port | Not started (`port/` is empty) |
 
-Function status (BotW codes): `O` 76,500, `m` 3, `M` 1, `L` 1,614, `U` 25,899.
-**Game-code progress: 42.11% of bytes (7.90 MB) matching** (`tools/progress.py`; library code
+Function status (BotW codes): `O` 76,662, `m` 3, `M` 1, `L` 1,614, `U` 25,737.
+**Game-code progress: 42.18% of bytes (7.92 MB) matching** (`tools/progress.py`; library code
 excluded; 39.09% at the start of this session). `tools/check.py` counts `src/` definitions,
 which differ slightly (matching `nn::atk` functions keep `L`; constructor aliases).
 
@@ -310,6 +310,10 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
      covers iterator-value destroys whose element has an out-of-line destructor (50). The
      helper-slot census (`class_constructors` traits whose status is `U`) now gives 2,355
      functions, 374 KB, in small families (the largest is 5 KB).
+   - Done (eighth session): scan kind `iter_element_value` (162 functions): an iterator value's
+     element returned as a reflected value (`refl_GetIterElementValue`, `UnkReflValue.h`). The
+     element stands in as `UnkCloneBlock` (u64 words; a byte array of the same size forms the
+     element address differently and doesn't match).
    - Enum static initialisers and the other per-TU static initialisers. These define
      globals, so they need the TU's data definitions (the 160 B ones are mostly lifted already).
    - Slot `0x28`/`0x30`/`0x38`/`0x48`/`0x50` helpers of other classes (need class layouts):
