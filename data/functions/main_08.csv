@@ -1251,12 +1251,12 @@ address,size,name,name_source,subsystem,status
 0x7100834640,244,CGun::CTunableGun::refl_GetClass,reflection,game,O
 0x7100834734,1392,fn_7100834734,unknown,game?,O
 0x7100834ca4,388,CGun::CTunableGun::refl_InitClass,reflection,game,O
-0x7100834e28,696,fn_7100834e28,unknown,unknown,O
-0x71008350e0,200,fn_71008350e0,unknown,unknown,U
-0x71008351a8,4,fn_71008351a8,unknown,unknown,O
-0x71008351ac,244,fn_71008351ac,unknown,unknown,U
-0x71008352a0,4,fn_71008352a0,unknown,unknown,O
-0x71008352a4,364,fn_71008352a4,unknown,unknown,O
+0x7100834e28,696,fn_7100834e28,unknown,game?,O
+0x71008350e0,200,fn_71008350e0,unknown,game?,U
+0x71008351a8,4,fn_71008351a8,unknown,game?,O
+0x71008351ac,244,CGun::refl_GetClass,reflection,game,O
+0x71008352a0,4,fn_71008352a0,unknown,game?,O
+0x71008352a4,364,CGun::refl_InitClass,reflection,game,O
 0x7100835410,428,fn_7100835410,unknown,unknown,U
 0x71008355bc,640,fn_71008355bc,unknown,unknown,U
 0x710083583c,4,fn_710083583c,unknown,unknown,U
@@ -1878,7 +1878,7 @@ address,size,name,name_source,subsystem,status
 0x7100856f28,128,fn_7100856f28,unknown,game?,O
 0x7100856fb0,240,fn_7100856fb0,unknown,game?,O
 0x71008570a0,4,fn_71008570a0,unknown,game?,O
-0x71008570a4,244,CPrimaryGun::refl_GetClass,reflection,game,U
+0x71008570a4,244,CPrimaryGun::refl_GetClass,reflection,game,O
 0x7100857198,4,fn_7100857198,unknown,game?,O
 0x710085719c,364,CPrimaryGun::refl_InitClass,reflection,game,O
 0x7100857308,52,fn_7100857308,unknown,unknown,O
@@ -1962,7 +1962,7 @@ address,size,name,name_source,subsystem,status
 0x710085c338,320,fn_710085c338,unknown,unknown,U
 0x710085c480,232,fn_710085c480,unknown,unknown,O
 0x710085c568,4,fn_710085c568,unknown,unknown,O
-0x710085c56c,244,CSecondaryGun::refl_GetClass,reflection,game,U
+0x710085c56c,244,CSecondaryGun::refl_GetClass,reflection,game,O
 0x710085c660,4,fn_710085c660,unknown,game?,O
 0x710085c664,364,CSecondaryGun::refl_InitClass,reflection,game,O
 0x710085c7d0,68,fn_710085c7d0,unknown,game?,O

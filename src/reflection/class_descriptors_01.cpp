@@ -1014,29 +1014,6 @@ struct base::reflection::UnkReflClassTraits<UnkRefl_fn_71008116b4> {
 };
 template base::reflection::CClass::CClass(const base::global::CStrId&, const base::reflection::CClass*, base::reflection::UnkFn_0x70, base::reflection::UnkFn_0x70, UnkRefl_fn_71008116b4*);
 
-DREAD_REFL_TAG(71008352a4);
-bool fn_7100836ca0(const void*, const void*) { return false; }
-s32 fn_7100836ca8() { return -1; }
-const base::reflection::CType& fn_7100836cb0(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_7100836ccc(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-void* fn_7100836cd8(void*, const void*) { return nullptr; }
-void* fn_7100836ce0(void*, const void*) { return nullptr; }
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_71008352a4> {
-    static constexpr u64 size = 0x1880;
-    static constexpr bool abstract = true;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_7100836ca0;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_7100836ca8;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_7100836cb0;
-    static constexpr UnkFn fn_0x28 = nullptr;
-    static constexpr UnkFn_0x30 fn_0x30 = nullptr;
-    static constexpr UnkFn_0x30 fn_0x38 = nullptr;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_7100836ccc;
-    static constexpr UnkFn_0x48 fn_0x48 = &fn_7100836cd8;
-    static constexpr UnkFn_0x48 fn_0x50 = &fn_7100836ce0;
-};
-template base::reflection::CClass::CClass(const base::global::CStrId&, const base::reflection::CClass*, base::reflection::UnkFn_0x70, base::reflection::UnkFn_0x70, UnkRefl_fn_71008352a4*);
-
 DREAD_REFL_TAG(710088e088);
 bool fn_7100893da8(const void* a, const void* b) { return a == b; }
 s32 fn_7100893db4() { return -1; }
@@ -2384,28 +2361,6 @@ struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100aefd08> {
 };
 template base::reflection::CClass::CClass(const base::global::CStrId&, const base::reflection::CClass*, base::reflection::UnkFn_0x70, base::reflection::UnkFn_0x70, UnkRefl_fn_7100aefd08*);
 
-DREAD_REFL_TAG(7100af444c);
-bool fn_7100af61b8(const void*, const void*) { return false; }
-s32 fn_7100af61c0() { return -1; }
-const base::reflection::CType& fn_7100af61c8(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_7100af61e4();
-void fn_7100af6250(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100af444c> {
-    static constexpr u64 size = 0x288;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_7100af61b8;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_7100af61c0;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_7100af61c8;
-    static constexpr UnkFn fn_0x28 = &fn_7100af61e4;
-    static constexpr UnkFn_0x30 fn_0x30 = nullptr;
-    static constexpr UnkFn_0x30 fn_0x38 = nullptr;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_7100af6250;
-    static constexpr UnkFn_0x48 fn_0x48 = nullptr;
-    static constexpr UnkFn_0x48 fn_0x50 = nullptr;
-};
-template base::reflection::CClass::CClass(const base::global::CStrId&, const base::reflection::CClass*, base::reflection::UnkFn_0x70, base::reflection::UnkFn_0x70, UnkRefl_fn_7100af444c*);
-
 DREAD_REFL_TAG(7100b03f60);
 bool fn_7100b04880(const void* a, const void* b) { return a == b; }
 s32 fn_7100b0488c() { return -1; }
@@ -2891,28 +2846,6 @@ struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100b55788> {
     static constexpr UnkFn_0x48 fn_0x50 = &fn_7100b5b5a0;
 };
 template base::reflection::CClass::CClass(const base::global::CStrId&, const base::reflection::CClass*, base::reflection::UnkFn_0x70, base::reflection::UnkFn_0x70, UnkRefl_fn_7100b55788*);
-
-DREAD_REFL_TAG(7100b60e50);
-bool fn_7100b61dd0(const void*, const void*) { return false; }
-s32 fn_7100b61dd8() { return -1; }
-const base::reflection::CType& fn_7100b61de0(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_7100b61dfc();
-void fn_7100b61e28(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100b60e50> {
-    static constexpr u64 size = 0x3e0;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_7100b61dd0;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_7100b61dd8;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_7100b61de0;
-    static constexpr UnkFn fn_0x28 = &fn_7100b61dfc;
-    static constexpr UnkFn_0x30 fn_0x30 = nullptr;
-    static constexpr UnkFn_0x30 fn_0x38 = nullptr;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_7100b61e28;
-    static constexpr UnkFn_0x48 fn_0x48 = nullptr;
-    static constexpr UnkFn_0x48 fn_0x50 = nullptr;
-};
-template base::reflection::CClass::CClass(const base::global::CStrId&, const base::reflection::CClass*, base::reflection::UnkFn_0x70, base::reflection::UnkFn_0x70, UnkRefl_fn_7100b60e50*);
 
 DREAD_REFL_TAG(7100b7612c);
 bool fn_7100b78358(const void* a, const void* b) { return a == b; }
@@ -4562,32 +4495,6 @@ struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100db5688> {
 };
 template base::reflection::CClass::CClass(const base::global::CStrId&, const base::reflection::CClass*, base::reflection::UnkFn_0x70, base::reflection::UnkFn_0x70, UnkRefl_fn_7100db5688*);
 
-DREAD_REFL_TAG(7100db672c);
-bool fn_7100dd0e24(const void* a, const void* b) { return a == b; }
-s32 fn_7100dd0e30() { return -1; }
-const base::reflection::CType& fn_7100dd0e38(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
-void fn_7100dd0e54();
-void fn_7100dd0e68(void* dst, const void* src);
-void fn_7100dd0e8c(void* dst, const void* src);
-void fn_7100dd0eb0(void* obj) { static_cast<base::reflection::UnkReflObject*>(obj)->~UnkReflObject(); }
-void* fn_7100dd0ebc(void* dst, const void* src);
-void* fn_7100dd0ed8(void* dst, const void* src);
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100db672c> {
-    static constexpr u64 size = 0x18;
-    static constexpr bool abstract = false;
-    static constexpr UnkFn_0x58 fn_0x58 = &fn_7100dd0e24;
-    static constexpr UnkFn_0x60 fn_0x60 = &fn_7100dd0e30;
-    static constexpr UnkFn_0x68 fn_0x68 = &fn_7100dd0e38;
-    static constexpr UnkFn fn_0x28 = &fn_7100dd0e54;
-    static constexpr UnkFn_0x30 fn_0x30 = &fn_7100dd0e68;
-    static constexpr UnkFn_0x30 fn_0x38 = &fn_7100dd0e8c;
-    static constexpr UnkFn_0x40 fn_0x40 = &fn_7100dd0eb0;
-    static constexpr UnkFn_0x48 fn_0x48 = &fn_7100dd0ebc;
-    static constexpr UnkFn_0x48 fn_0x50 = &fn_7100dd0ed8;
-};
-template base::reflection::CClass::CClass(const base::global::CStrId&, const base::reflection::CClass*, base::reflection::UnkFn_0x70, base::reflection::UnkFn_0x70, UnkRefl_fn_7100db672c*);
-
 DREAD_REFL_TAG(7100e07250);
 bool fn_7100e07460(const void* a, const void* b) { return a == b; }
 s32 fn_7100e0746c() { return -1; }
@@ -5159,3 +5066,107 @@ struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100e38460> {
     static constexpr UnkFn_0x48 fn_0x50 = &fn_7100e5b270;
 };
 template base::reflection::CClass::CClass(const base::global::CStrId&, const base::reflection::CClass*, base::reflection::UnkFn_0x70, base::reflection::UnkFn_0x70, UnkRefl_fn_7100e38460*);
+
+DREAD_REFL_TAG(7100e38df4);
+bool fn_7100e5c63c(const void* a, const void* b);
+s32 fn_7100e5c71c() { return -1; }
+const base::reflection::CType& fn_7100e5c724(const void* obj);
+void fn_7100e5c730();
+void fn_7100e5c738(void* dst, const void* src);
+void fn_7100e5c740(void* dst, const void* src);
+void fn_7100e5c81c(void* obj);
+void* fn_7100e5c858(void* dst, const void* src);
+void* fn_7100e5c960(void* dst, const void* src);
+template <>
+struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100e38df4> {
+    static constexpr u64 size = 0x38;
+    static constexpr bool abstract = false;
+    static constexpr UnkFn_0x58 fn_0x58 = &fn_7100e5c63c;
+    static constexpr UnkFn_0x60 fn_0x60 = &fn_7100e5c71c;
+    static constexpr UnkFn_0x68 fn_0x68 = &fn_7100e5c724;
+    static constexpr UnkFn fn_0x28 = &fn_7100e5c730;
+    static constexpr UnkFn_0x30 fn_0x30 = &fn_7100e5c738;
+    static constexpr UnkFn_0x30 fn_0x38 = &fn_7100e5c740;
+    static constexpr UnkFn_0x40 fn_0x40 = &fn_7100e5c81c;
+    static constexpr UnkFn_0x48 fn_0x48 = &fn_7100e5c858;
+    static constexpr UnkFn_0x48 fn_0x50 = &fn_7100e5c960;
+};
+template base::reflection::CClass::CClass(const base::global::CStrId&, const base::reflection::CClass*, base::reflection::UnkFn_0x70, base::reflection::UnkFn_0x70, UnkRefl_fn_7100e38df4*);
+
+DREAD_REFL_TAG(7100e393d8);
+bool fn_7100e5cd28(const void* a, const void* b);
+s32 fn_7100e5ce08() { return -1; }
+const base::reflection::CType& fn_7100e5ce10(const void* obj);
+void fn_7100e5ce1c();
+void fn_7100e5ce24(void* dst, const void* src);
+void fn_7100e5ce2c(void* dst, const void* src);
+void fn_7100e5ce64(void* obj);
+void* fn_7100e5cea0(void*, const void*) { return nullptr; }
+void* fn_7100e5cea8(void*, const void*) { return nullptr; }
+template <>
+struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100e393d8> {
+    static constexpr u64 size = 0x38;
+    static constexpr bool abstract = false;
+    static constexpr UnkFn_0x58 fn_0x58 = &fn_7100e5cd28;
+    static constexpr UnkFn_0x60 fn_0x60 = &fn_7100e5ce08;
+    static constexpr UnkFn_0x68 fn_0x68 = &fn_7100e5ce10;
+    static constexpr UnkFn fn_0x28 = &fn_7100e5ce1c;
+    static constexpr UnkFn_0x30 fn_0x30 = &fn_7100e5ce24;
+    static constexpr UnkFn_0x30 fn_0x38 = &fn_7100e5ce2c;
+    static constexpr UnkFn_0x40 fn_0x40 = &fn_7100e5ce64;
+    static constexpr UnkFn_0x48 fn_0x48 = &fn_7100e5cea0;
+    static constexpr UnkFn_0x48 fn_0x50 = &fn_7100e5cea8;
+};
+template base::reflection::CClass::CClass(const base::global::CStrId&, const base::reflection::CClass*, base::reflection::UnkFn_0x70, base::reflection::UnkFn_0x70, UnkRefl_fn_7100e393d8*);
+
+DREAD_REFL_TAG(7100e39d6c);
+bool fn_7100e5e2b8(const void* a, const void* b) { return a == b; }
+s32 fn_7100e5e2c4() { return -1; }
+const base::reflection::CType& fn_7100e5e2cc(const void* obj);
+void fn_7100e5e2d8();
+void fn_7100e5e2e0(void* dst, const void* src);
+void fn_7100e5e2e8(void* dst, const void* src);
+void fn_7100e5e550(void* obj);
+void* fn_7100e5e58c(void* dst, const void* src);
+void* fn_7100e5e5bc(void* dst, const void* src);
+template <>
+struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100e39d6c> {
+    static constexpr u64 size = 0xb8;
+    static constexpr bool abstract = false;
+    static constexpr UnkFn_0x58 fn_0x58 = &fn_7100e5e2b8;
+    static constexpr UnkFn_0x60 fn_0x60 = &fn_7100e5e2c4;
+    static constexpr UnkFn_0x68 fn_0x68 = &fn_7100e5e2cc;
+    static constexpr UnkFn fn_0x28 = &fn_7100e5e2d8;
+    static constexpr UnkFn_0x30 fn_0x30 = &fn_7100e5e2e0;
+    static constexpr UnkFn_0x30 fn_0x38 = &fn_7100e5e2e8;
+    static constexpr UnkFn_0x40 fn_0x40 = &fn_7100e5e550;
+    static constexpr UnkFn_0x48 fn_0x48 = &fn_7100e5e58c;
+    static constexpr UnkFn_0x48 fn_0x50 = &fn_7100e5e5bc;
+};
+template base::reflection::CClass::CClass(const base::global::CStrId&, const base::reflection::CClass*, base::reflection::UnkFn_0x70, base::reflection::UnkFn_0x70, UnkRefl_fn_7100e39d6c*);
+
+DREAD_REFL_TAG(7100e3a350);
+bool fn_7100e5eb50(const void* a, const void* b) { return a == b; }
+s32 fn_7100e5eb5c() { return -1; }
+const base::reflection::CType& fn_7100e5eb64(const void* obj);
+void fn_7100e5eb70();
+void fn_7100e5eb78(void* dst, const void* src);
+void fn_7100e5eb80(void* dst, const void* src);
+void fn_7100e5ebec(void* obj);
+void* fn_7100e5ec28(void*, const void*) { return nullptr; }
+void* fn_7100e5ec30(void*, const void*) { return nullptr; }
+template <>
+struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100e3a350> {
+    static constexpr u64 size = 0xb8;
+    static constexpr bool abstract = false;
+    static constexpr UnkFn_0x58 fn_0x58 = &fn_7100e5eb50;
+    static constexpr UnkFn_0x60 fn_0x60 = &fn_7100e5eb5c;
+    static constexpr UnkFn_0x68 fn_0x68 = &fn_7100e5eb64;
+    static constexpr UnkFn fn_0x28 = &fn_7100e5eb70;
+    static constexpr UnkFn_0x30 fn_0x30 = &fn_7100e5eb78;
+    static constexpr UnkFn_0x30 fn_0x38 = &fn_7100e5eb80;
+    static constexpr UnkFn_0x40 fn_0x40 = &fn_7100e5ebec;
+    static constexpr UnkFn_0x48 fn_0x48 = &fn_7100e5ec28;
+    static constexpr UnkFn_0x48 fn_0x50 = &fn_7100e5ec30;
+};
+template base::reflection::CClass::CClass(const base::global::CStrId&, const base::reflection::CClass*, base::reflection::UnkFn_0x70, base::reflection::UnkFn_0x70, UnkRefl_fn_7100e3a350*);

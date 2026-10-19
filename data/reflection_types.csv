@@ -110,6 +110,7 @@ CBoneToConstantComponent,class,CSceneComponent,0x60,0x7100803c44
 CBossAIComponent,class,CBehaviorTreeAIComponent,0x149a0,0x71003ab524
 CBossCameraCtrl,class,CCameraBoundaryCtrl,0x358,0x710074eca8
 CBossLifeComponent,class,CEnemyLifeComponent,0x278,0x71008ad3d4
+CBossRushDebugTime,class,,0x18,0x7100db6424
 CBossRushManager::CTunableBossRushManager,class,base::tunable::CTunable,0x1e8,0x7100db68b4
 CBossRushSurvivalConfiguration,class,,0x20,0x7100db5c98
 CBossSpawnGroupComponent,class,CSpawnGroupComponent,0x428,0x7100a10ab8
@@ -1577,6 +1578,7 @@ CGrappleBeamGun::CTunableGrappleBeamGun,class,base::tunable::CTunable,0x38,0x710
 CGrapplePointComponent,class,CComponent,0x88,0x7100821fbc
 CGroundShockerAIComponent,class,CBaseGroundShockerAIComponent,0x14750,0x71005a4004
 CGroundShockerAttack,class,CAttack,0x60,0x71005a020c
+CGun,class,CGameObject,0x1880,0x71008351ac
 CGun::CTunableGun,class,base::tunable::CTunable,0x40,0x7100834640
 CGunComponent,class,CComponent,0x328,0x7100838154
 CGunComponent::CTunableGunComponent,class,base::tunable::CTunable,0x48,0x7100837520
@@ -1763,7 +1765,7 @@ CPowerBombMovement,class,CBombMovement,0x538,0x7100ab0318
 CPowerBombMovement::CTunablePowerBombMovement,class,base::tunable::CTunable,0x38,0x7100aafa14
 CPowerGeneratorComponent,class,CActivatableComponent,0x160,0x7100a7dfac
 CPowerUpLifeComponent,class,CItemLifeComponent,0x3e0,0x71008e45d0
-CPrimaryGun,class,,0x1880,0x71008570a4
+CPrimaryGun,class,CGun,0x1880,0x71008570a4
 CProfessorDoorComponent,class,CEventPropComponent,0x80,0x71007dd3f4
 CProgressStatsManager::CTunableProgressStatManager,class,base::tunable::CTunable,0x38,0x7100ec5a30
 CProjectileMovement,class,CWeaponMovement,0x5d0,0x7100ac2434
@@ -1866,7 +1868,7 @@ CScourgeAIComponent,class,CBehaviorTreeAIComponent,0x14778,0x710069ef44
 CScourgeLifeComponent,class,CEnemyLifeComponent,0x280,0x71006a1890
 CScourgeTongueSlashAttack,class,CAttack,0x70,0x7100699fd4
 CScriptComponent,class,CComponent,0xc8,0x7101139a60
-CSecondaryGun,class,,0x18a0,0x710085c56c
+CSecondaryGun,class,CGun,0x18a0,0x710085c56c
 CSegmentLightComponent,class,CBaseLightComponent,0x60,0x71008f2684
 CSensor,class,,0x18,0x7100f048e0
 CSensorDoorComponent,class,CComponent,0x1f0,0x71007b78f4
@@ -2004,6 +2006,7 @@ GUI::CAmiiboButton,class,GUI::CChangeMenuStateButton,0x2a8,0x7100af0378
 GUI::CAmiiboComposition,class,GUI::CDisplayObjectContainer,0x240,0x7100af0954
 GUI::CArchivesInspectorComposition,class,GUI::CDisplayObjectContainer,0x310,0x7100af1f50
 GUI::CBoolTunableButton,class,GUI::CButton,0x2d0,0x7100af37b8
+GUI::CBossRushReport,class,GUI::CDisplayObjectContainer,0x288,0x7100af4354
 GUI::CButton,class,GUI::CDisplayObjectContainer,0x2a8,0x71011be400
 GUI::CChangeMenuStateButton,class,GUI::CButton,0x2a8,0x7100af6260
 GUI::CChozoArchivesComposition,class,GUI::CChozoGalleryBase,0x2e0,0x7100af6844
@@ -2055,6 +2058,7 @@ GUI::CMissionLog,class,GUI::CDisplayObjectContainer,0x320,0x7100b54a10
 GUI::CModel3D,class,GUI::CDisplayObject,0x278,0x71011f0814
 GUI::CNewGameButton,class,GUI::CButton,0x2c0,0x7100b5d744
 GUI::CPopUpComposition,class,GUI::CDisplayObjectContainer,0x3a8,0x7100b5e368
+GUI::CPopUpGeneric,class,GUI::CDisplayObjectContainer,0x3e0,0x7100b60d58
 GUI::CPowerDescriptionButton,class,GUI::CButton,0x330,0x7100b61fc8
 GUI::CPowerDescriptionComposition,class,GUI::CDisplayObjectContainer,0x330,0x7100b6343c
 GUI::CProfileButton,class,GUI::CChangeMenuStateButton,0x2b0,0x7100b646a0
@@ -2085,6 +2089,7 @@ ICharClassPlayAudioPresetEvent,class,base::global::timeline::CEvent,0x40,0x7100b
 IPath,class,,0x8,0x7100da3ba0
 IPathNode,class,,0x8,0x7100da4088
 ISubPath,class,,0x8,0x7100da43d4
+RntFilePackedParams,class,CComponent,,0x7100233a38
 SCameraRail,class,IPath,0x60,0x7100c00318
 SCameraRailNode,class,IPathNode,0x58,0x7100bfe80c
 SCameraSubRail,class,ISubPath,0x50,0x7100bff09c

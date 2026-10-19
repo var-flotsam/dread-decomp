@@ -5785,9 +5785,9 @@ address,size,name,name_source,subsystem,status
 0x7100af429c,12,fn_7100af429c,unknown,gui?,O
 0x7100af42b0,160,fn_7100af42b0,unknown,gui?,O
 0x7100af4350,4,fn_7100af4350,unknown,gui?,O
-0x7100af4354,244,fn_7100af4354,unknown,gui?,U
+0x7100af4354,244,GUI::CBossRushReport::refl_GetClass,reflection,gui,O
 0x7100af4448,4,fn_7100af4448,unknown,gui?,O
-0x7100af444c,352,fn_7100af444c,unknown,gui?,O
+0x7100af444c,352,GUI::CBossRushReport::refl_InitClass,reflection,gui,O
 0x7100af45b0,160,fn_7100af45b0,unknown,gui?,U
 0x7100af4650,748,fn_7100af4650,unknown,gui?,U
 0x7100af4940,932,fn_7100af4940,unknown,gui?,U

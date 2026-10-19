@@ -84,12 +84,14 @@ class Getter:
 
 def shape(code: bytes) -> str:
     """Position-independent signature that also ignores `add xN, x19, #imm`: the descriptor's
-    offset from its guard (x19), which depends on the TU's layout, not on the code shape."""
+    offset from its guard (x19), which depends on the TU's layout, not on the code shape. The
+    same for `add xN, x2, #imm`: with the parent in the same TU, the descriptor's offset from
+    the parent's."""
     import struct
     words = bytearray(code)
     for i in range(len(code) // 4):
         w = struct.unpack_from("<I", code, 4 * i)[0]
-        if w & 0xFF800000 == 0x91000000 and (w >> 5) & 0x1F == 19:  # ADD Xd, X19, #imm
+        if w & 0xFF800000 == 0x91000000 and (w >> 5) & 0x1F in (19, 2):  # ADD Xd, X19|X2, #imm
             struct.pack_into("<I", words, 4 * i, w & ~(0xFFF << 10) & 0xFFFFFFFF)
     return sigmatch.signature(bytes(words))
 

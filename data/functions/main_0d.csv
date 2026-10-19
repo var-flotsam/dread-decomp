@@ -4989,12 +4989,12 @@ address,size,name,name_source,subsystem,status
 0x7100db5c98,240,CBossRushSurvivalConfiguration::refl_GetClass,reflection,game,O
 0x7100db5d88,860,fn_7100db5d88,unknown,game?,O
 0x7100db60e4,388,CBossRushSurvivalConfiguration::refl_InitClass,reflection,game,O
-0x7100db6268,220,fn_7100db6268,unknown,game?,U
-0x7100db6344,220,fn_7100db6344,unknown,game?,U
+0x7100db6268,220,fn_7100db6268,unknown,game?,O
+0x7100db6344,220,fn_7100db6344,unknown,game?,O
 0x7100db6420,4,fn_7100db6420,unknown,game?,O
-0x7100db6424,240,fn_7100db6424,unknown,game?,U
+0x7100db6424,240,CBossRushDebugTime::refl_GetClass,reflection,game,O
 0x7100db6514,536,fn_7100db6514,unknown,game?,O
-0x7100db672c,388,fn_7100db672c,unknown,game?,O
+0x7100db672c,388,CBossRushDebugTime::refl_InitClass,reflection,game,O
 0x7100db68b0,4,fn_7100db68b0,unknown,game?,O
 0x7100db68b4,244,CBossRushManager::CTunableBossRushManager::refl_GetClass,reflection,game,O
 0x7100db69a8,3460,fn_7100db69a8,unknown,game?,U
@@ -5134,7 +5134,7 @@ address,size,name,name_source,subsystem,status
 0x7100dcf2fc,4,fn_7100dcf2fc,unknown,unknown,O
 0x7100dcf300,20,fn_7100dcf300,unknown,unknown,O
 0x7100dcf314,20,fn_7100dcf314,unknown,unknown,O
-0x7100dcf328,368,fn_7100dcf328,unknown,unknown,U
+0x7100dcf328,368,fn_7100dcf328,unknown,unknown,O
 0x7100dcf498,104,fn_7100dcf498,unknown,unknown,U
 0x7100dcf500,12,fn_7100dcf500,unknown,unknown,O
 0x7100dcf50c,16,fn_7100dcf50c,unknown,unknown,O
@@ -5147,7 +5147,7 @@ address,size,name,name_source,subsystem,status
 0x7100dcf56c,4,fn_7100dcf56c,unknown,unknown,O
 0x7100dcf570,20,fn_7100dcf570,unknown,unknown,O
 0x7100dcf584,20,fn_7100dcf584,unknown,unknown,O
-0x7100dcf598,368,fn_7100dcf598,unknown,unknown,U
+0x7100dcf598,368,fn_7100dcf598,unknown,unknown,O
 0x7100dcf708,104,fn_7100dcf708,unknown,unknown,U
 0x7100dcf770,12,fn_7100dcf770,unknown,unknown,O
 0x7100dcf77c,16,fn_7100dcf77c,unknown,unknown,O

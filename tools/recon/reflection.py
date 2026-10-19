@@ -95,6 +95,22 @@ def class_size(img: Image, helper: int, size: int) -> int | None:
     return None
 
 
+def getter_name(img: Image, getter: int, size: int) -> str | None:
+    """The type name a getter builds: the string it loads into x1 (adrp + add) for the name's
+    constructor."""
+    page = None
+    off = getter - BASE
+    for ins in _CS.disasm(img.data[off:off + size], getter):
+        ops = ins.operands
+        if ins.mnemonic == "adrp" and _CS.reg_name(ops[0].reg) == "x1":
+            page = ops[1].imm
+        elif ins.mnemonic == "add" and page is not None and _CS.reg_name(ops[0].reg) == "x1" \
+                and _CS.reg_name(ops[1].reg) == "x1" and ops[2].type == capstone.arm64.ARM64_OP_IMM:
+            s = img.cstring(page + ops[2].imm - BASE)
+            return s if s and s.isprintable() else None
+    return None
+
+
 def recover(img: Image, export_dir: Path, meds_types: dict) -> dict[str, ReflectedType]:
     funcs, strings = load_export(export_dir)
     by_value: dict[str, list[int]] = {}
@@ -113,6 +129,18 @@ def recover(img: Image, export_dir: Path, meds_types: dict) -> dict[str, Reflect
             if calls & guard:
                 types[name] = ReflectedType(name, a)
                 break
+    # Class and enum getters whose type MEDS doesn't know (e.g. CGun, the parent of CPrimaryGun):
+    # guarded, calling exactly one descriptor constructor; named by the string they pass to the
+    # name's constructor (Ghidra doesn't always define it as a string).
+    known = {t.getter for t in types.values()}
+    for a, f in sorted(funcs.items()):
+        calls = {int(c, 16) for c in f["calls"]}
+        kinds = {helper_kind[c] for c in calls if c in helper_kind}
+        if a in known or not calls & guard or len(calls & set(helper_kind)) != 1 or kinds - {"class", "enum"}:
+            continue
+        name = getter_name(img, a, f["bytes"])
+        if name and name not in types:
+            types[name] = ReflectedType(name, a)
     getter_to_type = {t.getter: t.name for t in types.values()}
 
     for t in types.values():

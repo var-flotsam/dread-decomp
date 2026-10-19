@@ -571,6 +571,9 @@ extern base::reflection::CType g_unk_71729ea500;
 void fn_7100f91c1c();
 void fn_7100f91e2c();
 void fn_7100f91e7c();
+void fn_7100f96ba8();
+extern base::reflection::CType g_unk_71729ea640;
+void fn_7100f96bf8();
 
 void fn_710076cc60(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("wpStartPoint", true), &g_unk_717269bb48, 0x0, -1, -1);
@@ -2890,15 +2893,6 @@ void fn_7100db5304(CClass* cls) {
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
 }
 
-void fn_7100db6514(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("iDebugTimeHours", true), fn_7100014768(), 0x8, -1, -1);
-    field0->attrs.Add<s32>(fn_7100075240(), 0);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("iDebugTimeMinutes", true), fn_7100014768(), 0xc, -1, -1);
-    field1->attrs.Add<s32>(fn_7100075240(), 0);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("iDebugTimeSeconds", true), fn_7100014768(), 0x10, -1, -1);
-    field2->attrs.Add<s32>(fn_7100075240(), 0);
-}
-
 void fn_7100e0700c(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("eEntryType", true), &g_unk_71727bf6f8, 0x0, -1, -1);
     field0->attrs.Add<s32>(fn_7100075240(), &g_unk_71727bf6f8, 0);
@@ -4812,5 +4806,26 @@ void fn_7100f8d0dc(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100f91e7c);
     }
     UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, &g_unk_71729ea500, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+}
+
+void fn_7100f9385c(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_key_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_key_GetterFunction", true);
+        fn->return_type = fn_7100009658();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f96ba8);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, g_unk_7101d5a450, fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_element_GetterFunction", true);
+        fn->return_type = &g_unk_71729ea640;
+        fn->field_0xb2 = 0x1;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f96bf8);
+    }
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, &g_unk_71729ea640, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
 }
