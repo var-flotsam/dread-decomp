@@ -794,7 +794,7 @@ address,size,name,name_source,subsystem,status
 0x7100827db4,244,CCharClassAIGrapplePointComponent::refl_GetClass,reflection,game/characters,O
 0x7100827ea8,264,fn_7100827ea8,unknown,game/characters?,O
 0x7100827fb0,388,CCharClassAIGrapplePointComponent::refl_InitClass,reflection,game/characters,O
-0x7100828134,196,fn_7100828134,unknown,game/characters?,U
+0x7100828134,196,fn_7100828134,unknown,game/characters?,O
 0x71008281f8,124,fn_71008281f8,unknown,game/characters?,O
 0x7100828274,132,fn_7100828274,unknown,game/characters?,O
 0x71008282f8,28,fn_71008282f8,unknown,game/characters?,O
@@ -918,7 +918,7 @@ address,size,name,name_source,subsystem,status
 0x710082b2c0,244,CCharClassPlatformTrapGrapplePointComponent::refl_GetClass,reflection,game/characters,O
 0x710082b3b4,356,fn_710082b3b4,unknown,game/characters?,O
 0x710082b518,388,CCharClassPlatformTrapGrapplePointComponent::refl_InitClass,reflection,game/characters,O
-0x710082b69c,196,fn_710082b69c,unknown,unknown,U
+0x710082b69c,196,fn_710082b69c,unknown,unknown,O
 0x710082b760,124,fn_710082b760,unknown,unknown,O
 0x710082b7dc,132,fn_710082b7dc,unknown,unknown,O
 0x710082b860,28,fn_710082b860,unknown,unknown,O
@@ -1441,8 +1441,8 @@ address,size,name,name_source,subsystem,status
 0x7100841424,436,fn_7100841424,unknown,unknown,O
 0x71008415d8,608,fn_71008415d8,unknown,unknown,O
 0x7100841838,404,fn_7100841838,unknown,unknown,U
-0x71008419cc,320,fn_71008419cc,unknown,unknown,U
-0x7100841b0c,320,fn_7100841b0c,unknown,unknown,U
+0x71008419cc,320,fn_71008419cc,unknown,unknown,O
+0x7100841b0c,320,fn_7100841b0c,unknown,unknown,O
 0x7100841c4c,452,fn_7100841c4c,unknown,unknown,U
 0x7100841e10,336,fn_7100841e10,unknown,unknown,O
 0x7100841f60,796,fn_7100841f60,unknown,unknown,U

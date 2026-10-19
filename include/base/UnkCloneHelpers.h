@@ -308,3 +308,513 @@ UnkStrIdHashNode<Tag>* refl_StrIdHashErase(UnkStrIdHashMap<Tag>* m, const UnkStr
 }
 
 }  // namespace base
+
+// A record with a u32 at +8, a string id (Id, from UnkClone.h) at +0x10 and a T at +0x18, copy-
+// assigned past its first word (fn_7100b96394 and its copies).
+template <class Tag, class Id, class T>
+struct UnkCloneIdRecord {
+    void* field_0x0;
+    u32 field_0x8;
+    Id id;
+    T field_0x18;
+
+    UnkCloneIdRecord& operator=(const UnkCloneIdRecord& o) {
+        if (this != &o) {
+            field_0x8 = o.field_0x8;
+            id = o.id;
+            field_0x18 = o.field_0x18;
+        }
+        return *this;
+    }
+};
+
+namespace base {
+
+template <class Tag>
+struct UnkCtorTraits;  // vtable(), base(char*): the class's vtable and base constructor
+
+// A constructor that calls its base, stores its vtable and default-constructs a string id at
+// `Off` (fn_7100025398 and its copies).
+template <class Tag, u32 Off>
+void refl_StrIdMemberCtor(char* self) {
+    UnkCtorTraits<Tag>::base(self);
+    auto* id = reinterpret_cast<global::UnkStringData**>(self + Off);
+    *id = nullptr;
+    *reinterpret_cast<char**>(self) = UnkCtorTraits<Tag>::vtable() + 0x10;
+    if (!g_unk_7101d47108)
+        global::UnkEnsureStringPool();
+    *id = &g_unk_7101d47108->empty;
+}
+
+}  // namespace base
+
+// Destroys an array's elements with a 64-bit index, keeping the array (fn_71002b9890 and its
+// identical copies; owning-pointer elements).
+namespace base {
+template <class T>
+void refl_ClearWide(UnkVector<T>* v) {
+    for (u64 i = 0; i < v->count; ++i)
+        v->data[i].~T();
+    v->count = 0;
+}
+}  // namespace base
+
+// Destroys a collection iterator (its cached pair) (fn_7100f4adf8 and its identical copies).
+namespace base {
+template <class T, class K>
+void refl_IterDestroy(UnkCollectionIter<T, K>* it) {
+    it->~UnkCollectionIter();
+}
+}  // namespace base
+
+// A record with a u32, a string id and a byte, copy-assigned past its first word
+// (fn_7100bbc1d0 and its identical copies).
+namespace base {
+template <class Tag>
+struct UnkStrIdRecord {
+    u64 field_0x0;
+    u32 field_0x8;
+    UnkStrIdMember id;
+    u8 field_0x18;
+
+    UnkStrIdRecord& operator=(const UnkStrIdRecord& other) {
+        if (this != &other) {
+            field_0x8 = other.field_0x8;
+            id = other.id;
+            field_0x18 = other.field_0x18;
+        }
+        return *this;
+    }
+};
+}  // namespace base
+
+// An iterator over a keyed map's nodes ({key, value}) with its cached pair; Sync re-points the
+// pair at the current node or resets it (fn_710011c448 and its identical copies).
+namespace base {
+template <class T, class K>
+struct UnkMapIter {
+    struct Node {
+        K key;
+        T value;
+    };
+    Node* node;
+    UnkIterValue<T, K> current;
+};
+
+template <class T, class K>
+void refl_MapIterSync(UnkMapIter<T, K>* it) {
+    if (it->node)
+        it->current.SetRef(&it->node->key, &it->node->value);
+    else
+        it->current.Reset();
+}
+}  // namespace base
+
+// A list of type-erased callables with a refcounted owner, behind two vtables; held by
+// collection iterators (refl_IterSync, fn_710090b1c8 and its identical copies).
+namespace base {
+// vtable(): the list's vtable; base_vtable(): its base's.
+template <class Tag>
+struct UnkCallbackTraits;
+// A type-erased callable: storage and an operations table whose +0x40 entry destroys it.
+struct UnkCallable {
+    struct Ops {
+        void* field_0x0[8];
+        void (*destroy)(UnkCallable* self);
+    };
+    u64 storage;
+    const Ops* ops;
+    ~UnkCallable() {
+        if (ops) {
+            ops->destroy(this);
+            ops = nullptr;
+        }
+    }
+};
+template <class Tag>
+struct UnkCallbackListBase {
+    char* vtable;
+    UnkVector<UnkCallable> callables;
+    ~UnkCallbackListBase() {
+        vtable = UnkCallbackTraits<Tag>::base_vtable() + 0x10;
+        if (callables.data) {
+            for (u64 i = 0; i < callables.count; ++i)
+                callables.data[i].~UnkCallable();
+            callables.count = 0;
+            callables.allocator->vf_0x48(callables.data);
+            callables.capacity = 0;
+        }
+    }
+};
+template <class Tag>
+struct UnkCallbackList : UnkCallbackListBase<Tag> {
+    u64 field_0x30;
+    UnkRefPtrMember owner;
+    u64 field_0x40;
+    ~UnkCallbackList() { this->vtable = UnkCallbackTraits<Tag>::vtable() + 0x10; }
+};
+}  // namespace base
+
+// A record of an 8-byte field, a string id and a u32, copy-assigned past its first field
+// (fn_71002e4fe8 and its identical copies).
+namespace base {
+template <class Tag>
+struct UnkStrIdRecordB {
+    u64 field_0x0;
+    global::CStrId id;
+    u32 field_0x10;
+
+    UnkStrIdRecordB& operator=(const UnkStrIdRecordB& other) {
+        if (this != &other) {
+            id = other.id;
+            field_0x10 = other.field_0x10;
+        }
+        return *this;
+    }
+};
+}  // namespace base
+
+// A polymorphic record of plain fields, copy-assigned field by field past its vtable; the u32 at
+// +0x34 is not copied (fn_710098e188 and its identical copies).
+namespace base {
+template <class Tag>
+struct UnkPlainRecord {
+    virtual ~UnkPlainRecord();
+    u64 field_0x8;
+    struct Block28 {
+        u32 words[7];
+    } field_0x10;
+    u32 field_0x2c;
+    u32 field_0x30;
+    u32 field_0x34;
+    u32 field_0x38;
+    u32 field_0x3c;
+    u32 field_0x40;
+    u32 field_0x44;
+
+    UnkPlainRecord& operator=(const UnkPlainRecord& other) {
+        if (this != &other) {
+            field_0x8 = other.field_0x8;
+            field_0x10 = other.field_0x10;
+            field_0x2c = other.field_0x2c;
+            field_0x30 = other.field_0x30;
+            field_0x38 = other.field_0x38;
+            field_0x3c = other.field_0x3c;
+            field_0x40 = other.field_0x40;
+            field_0x44 = other.field_0x44;
+        }
+        return *this;
+    }
+};
+}  // namespace base
+
+// Copy-assigns an iterator value keyed by a string id, reading the source element before
+// locating the destination (fn_7100120848 and its identical copies; 8-byte elements).
+namespace base {
+template <class T, class K>
+UnkIterValue<T, K>& refl_IterValueCopyAssign(UnkIterValue<T, K>* self, const UnkIterValue<T, K>* other) {
+    if (self != other) {
+        self->Index() = other->Index();
+        T v = other->Element();
+        self->Element() = v;
+    }
+    return *self;
+}
+}  // namespace base
+
+// Inserts a node with a copy of `key` and an 8-byte value at the head of its bucket chain and
+// the tail of the node list of an UnkStrIdHashMap (fn_7100120f0c and its identical copies). The
+// node is built with placement new's null check; the links are stored after it either way.
+namespace base {
+template <class Tag>
+void refl_StrIdHashInsert(UnkStrIdHashMap<Tag>* m, const global::CStrId* key, const u64* value) {
+    using Node = UnkStrIdHashNode<Tag>;
+    Node** slot = nullptr;
+    if (m->field_0x18) {
+        const char* raw = reinterpret_cast<const char*>(key->data);
+        u32 h = *reinterpret_cast<const u32*>(raw + 0x30) ^ *reinterpret_cast<const u32*>(raw + 0x34);
+        u32 i = h % m->bucket_count;
+        slot = m->buckets + i;
+    }
+    Node* chain = *slot;
+    Node* n = static_cast<Node*>(m->allocator->vf_0x40(0x28, 8, m->field_0x8));
+    if (n) {
+        new (&n->key) global::CStrId(*key);
+        *reinterpret_cast<u64*>(n->unk_0x8) = *value;
+        n->next = nullptr;
+        n->prev = nullptr;
+        n->chain = nullptr;
+    }
+    n->chain = chain;
+    *slot = n;
+    if (!m->head) {
+        m->head = n;
+    } else if (m->tail) {
+        n->prev = m->tail;
+        m->tail->next = n;
+    }
+    m->tail = n;
+    ++m->count;
+}
+}  // namespace base
+
+// A refcounted pointer as a collection element (fn_7100237158: UnkCollectionIter's
+// copy-assignment over it, and its identical copies).
+template <class Tag>
+struct UnkCloneRefPtr : base::UnkRefPtrMember {};
+
+// An array as an element of another array, moved field by field (fn_710065b1b0).
+namespace base {
+template <class Tag>
+struct UnkCloneSubVec {
+    void* data;
+    u32 count;
+    u32 capacity;
+    u32 step;
+    bool field_0x14;
+    u32 flags;
+    UnkAllocator* allocator;
+};
+
+// Resizes an array of arrays to `n`: reallocates when the capacity is short (moving the
+// elements and clearing the moved-from ones with memset, so the count is reloaded each step),
+// then default-constructs the new elements (flags 0xf) (fn_710065b1b0 and its identical copies).
+template <class Tag>
+void refl_ResizeSubVecs(UnkVector<UnkCloneSubVec<Tag>>* v, u32 n) {
+    using E = UnkCloneSubVec<Tag>;
+    if (v->capacity < n) {
+        E* d = static_cast<E*>(v->allocator->vf_0x40((u64)n * sizeof(E), 8, v->flags));
+        if (E* s = v->data) {
+            E* o = d;
+            for (u32 i = 0; i < v->count; ++i, ++s, ++o) {
+                o->data = s->data;
+                o->count = s->count;
+                o->capacity = s->capacity;
+                o->step = s->step;
+                o->field_0x14 = s->field_0x14;
+                o->flags = s->flags;
+                o->allocator = s->allocator;
+                __builtin_memset(s, 0, 16);
+            }
+            v->allocator->vf_0x48(v->data);
+        }
+        v->data = d;
+        v->capacity = n;
+    }
+    for (u32 i = v->count; i < n; ++i) {
+        E* e = v->data + i;
+        e->step = 10;
+        e->data = nullptr;
+        e->count = 0;
+        e->capacity = 0;
+        e->field_0x14 = true;
+        e->flags = 0xf;
+        e->allocator = fn_7100083990();
+    }
+    v->count = n;
+}
+}  // namespace base
+
+// An array of string ids with the data pointer at +8 and the count at +0x10; its move-assignment
+// is fn_71000df128 and its identical copies.
+namespace base {
+template <class Tag>
+struct UnkStrIdArray {
+    u64 field_0x0;
+    UnkStrIdMember* data;
+    u32 count;
+    u32 field_0x14;
+    u32 field_0x18;
+    u32 field_0x1c;
+    u64 field_0x20;
+
+    UnkStrIdArray& operator=(UnkStrIdArray&& other) {
+        if (this != &other) {
+            if (data) {
+                for (u32 i = 0; i < count; ++i)
+                    data[i].~UnkStrIdMember();
+            }
+            count = 0;
+            field_0x20 = other.field_0x20;
+            data = other.data;
+            field_0x0 = other.field_0x0;
+            field_0x14 = other.field_0x14;
+            count = other.count;
+            field_0x1c = other.field_0x1c;
+            field_0x18 = other.field_0x18;
+            other.count = 0;
+            other.field_0x0 = 0;
+            other.data = nullptr;
+        }
+        return *this;
+    }
+};
+}  // namespace base
+
+// A 0x28-byte array header moved field by field; UnkVector::EmplaceBack over it is fn_71004a940c
+// and its identical copies.
+template <class Tag>
+struct UnkCloneVecHandle {
+    void* data;
+    u32 count;
+    u32 capacity;
+    u32 step;
+    bool field_0x14;
+    u32 flags;
+    base::UnkAllocator* allocator;
+
+    UnkCloneVecHandle(UnkCloneVecHandle&& other)
+        : data(other.data), count(other.count), capacity(other.capacity), step(other.step),
+          field_0x14(other.field_0x14), flags(other.flags), allocator(other.allocator) {
+        other.data = nullptr;
+        other.count = 0;
+        other.capacity = 0;
+    }
+};
+
+// An iterator over keyed nodes (key at +0, value at +8) whose current pair refers into the node;
+// refl_KeyedIterSync re-points or resets it (fn_710023c550 and its identical copies; values are
+// arrays of 0x40-byte polymorphic elements).
+template <class Tag>
+struct UnkClonePoly64 {
+    virtual ~UnkClonePoly64();
+    u64 field_0x8[7];
+};
+template <class Tag>
+struct UnkClonePolyVec {
+    base::UnkVector<UnkClonePoly64<Tag>> v;
+    ~UnkClonePolyVec() { v.Free(); }
+};
+namespace base {
+template <class T, class K>
+struct UnkKeyedNode {
+    K key;
+    T value;
+};
+template <class T, class K>
+struct UnkKeyedIter {
+    UnkKeyedNode<T, K>* node;
+    UnkIterValue<T, K> current;
+};
+template <class T, class K>
+void refl_KeyedIterSync(UnkKeyedIter<T, K>* it) {
+    if (it->node)
+        it->current.SetRef(&it->node->key, &it->node->value);
+    else
+        it->current.Reset();
+}
+}  // namespace base
+
+// Iterator values keyed by a string id with 8-byte elements (fn_71000c9490, fn_71000c93ec and
+// their identical copies).
+namespace base {
+
+template <class Tag>
+using UnkStrKeyWordValue = UnkIterValue<UnkCloneWord<Tag>, UnkCloneStrId<Tag>>;
+
+// Resets this value, then copies the other's state and its pair or reference bitwise
+// (fn_71000c9490).
+template <class Tag>
+UnkStrKeyWordValue<Tag>* refl_IterValueAssignRaw(UnkStrKeyWordValue<Tag>* self, const UnkStrKeyWordValue<Tag>* other) {
+    if (self != other) {
+        self->Reset();
+        self->state = other->state;
+        struct Raw {
+            u64 a, b;
+        };
+        *reinterpret_cast<Raw*>(&self->ref) = *reinterpret_cast<const Raw*>(&other->ref);
+    }
+    return self;
+}
+
+// Makes this value refer to the (index, element) a reference holds (fn_71000c93ec).
+template <class Tag>
+UnkStrKeyWordValue<Tag>* refl_IterValueAssignRef(UnkStrKeyWordValue<Tag>* self,
+                                                 const typename UnkStrKeyWordValue<Tag>::Ref* r) {
+    if (r != static_cast<const void*>(self))
+        self->SetRef(r->index, r->element);
+    return self;
+}
+
+}  // namespace base
+
+// Copy-assigns the pair an iterator value refers to, copying the element out first
+// (fn_71000d3038 and its identical copies; 8-byte elements).
+namespace base {
+
+template <class T, class K>
+void refl_IterValueAssign(UnkIterValue<T, K>* self, const UnkIterValue<T, K>* other) {
+    if (self != other) {
+        self->Index() = other->Index();
+        T v = other->Element();
+        self->Element() = v;
+    }
+}
+
+}  // namespace base
+
+// Assigns the handle the source at +8 of `holder` hands out, created on first use with the
+// traits' vtable, or null (fn_7100234ccc and its identical copies; see refl_AssignHandle).
+namespace base {
+
+template <class Tag>
+void refl_AssignHandleFromSource(UnkRefHandle* self, const char* holder) {
+    UnkRefCounted* h = nullptr;
+    if (UnkRefSource* src = *reinterpret_cast<UnkRefSource* const*>(holder + 8)) {
+        if (UnkRefHandle* slot = src->vf_0x28()) {
+            h = slot->ptr;
+            if (!h) {
+                char* n = static_cast<char*>(fn_71000839a0(0x18, 0x3e));
+                *reinterpret_cast<char**>(n) = UnkRefSlotTraits<Tag>::vtable() + 0x10;
+                *reinterpret_cast<s32*>(n + 8) = 0;
+                *reinterpret_cast<UnkRefSource**>(n + 0x10) = src;
+                h = reinterpret_cast<UnkRefCounted*>(n);
+                slot->Set(h);
+            }
+        }
+    }
+    self->Set(h);
+}
+
+}  // namespace base
+
+// Move-assigns the pair an iterator value owns or refers to, without a self check
+// (fn_71004a8728 and its identical copies; elements are arrays of owning pointers).
+namespace base {
+
+template <class T, class K>
+UnkIterValue<T, K>& refl_IterValueMoveFrom(UnkIterValue<T, K>* self, UnkIterValue<T, K>* other) {
+    if (other->state == 1) {
+        self->Index() = other->value.index;
+        self->Element() = static_cast<T&&>(other->value.element);
+    } else if (other->state == 2) {
+        self->Index() = *other->ref.index;
+        self->Element() = static_cast<T&&>(*other->ref.element);
+    }
+    return *self;
+}
+
+}  // namespace base
+
+// A record with a u32, a string id and a u16, copy-assigned past its first word (fn_7100ba33cc
+// and its identical copies).
+namespace base {
+
+template <class Tag>
+struct UnkStrIdU16Record {
+    void* field_0x0;
+    u32 field_0x8;
+    UnkStrIdMember id;
+    u16 field_0x18;
+
+    UnkStrIdU16Record& operator=(const UnkStrIdU16Record& other) {
+        if (this != &other) {
+            field_0x8 = other.field_0x8;
+            id = other.id;
+            field_0x18 = other.field_0x18;
+        }
+        return *this;
+    }
+};
+
+}  // namespace base

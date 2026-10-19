@@ -1426,7 +1426,7 @@ address,size,name,name_source,subsystem,status
 0x7100368168,80,fn_7100368168,unknown,unknown,O
 0x71003681b8,84,fn_71003681b8,unknown,unknown,O
 0x710036820c,8,fn_710036820c,unknown,unknown,O
-0x7100368214,100,fn_7100368214,unknown,unknown,U
+0x7100368214,100,fn_7100368214,unknown,unknown,O
 0x7100368278,4,fn_7100368278,unknown,unknown,O
 0x710036827c,16,fn_710036827c,unknown,unknown,O
 0x710036828c,192,fn_710036828c,unknown,unknown,U
@@ -2112,7 +2112,7 @@ address,size,name,name_source,subsystem,status
 0x710037d754,244,behaviortree::CComputeTargetPositionAction::refl_GetClass,reflection,ai/behaviortree,O
 0x710037d848,264,fn_710037d848,unknown,ai/behaviortree?,O
 0x710037d950,388,behaviortree::CComputeTargetPositionAction::refl_InitClass,reflection,ai/behaviortree,O
-0x710037dad4,196,fn_710037dad4,unknown,ai/behaviortree?,U
+0x710037dad4,196,fn_710037dad4,unknown,ai/behaviortree?,O
 0x710037db98,48,fn_710037db98,unknown,ai/behaviortree?,O
 0x710037dbc8,1048,fn_710037dbc8,unknown,ai/behaviortree?,U
 0x710037dfe0,4,fn_710037dfe0,unknown,ai/behaviortree?,O
@@ -2135,7 +2135,7 @@ address,size,name,name_source,subsystem,status
 0x710037e244,244,behaviortree::CComputeTargetPositionInPathAction::refl_GetClass,reflection,ai/behaviortree,O
 0x710037e338,264,fn_710037e338,unknown,ai/behaviortree?,O
 0x710037e440,388,behaviortree::CComputeTargetPositionInPathAction::refl_InitClass,reflection,ai/behaviortree,O
-0x710037e5c4,196,fn_710037e5c4,unknown,ai/behaviortree?,U
+0x710037e5c4,196,fn_710037e5c4,unknown,ai/behaviortree?,O
 0x710037e688,4,fn_710037e688,unknown,ai/behaviortree?,O
 0x710037e68c,4,fn_710037e68c,unknown,ai/behaviortree?,O
 0x710037e690,988,fn_710037e690,unknown,ai/behaviortree?,U
@@ -3376,7 +3376,7 @@ address,size,name,name_source,subsystem,status
 0x71003a2eb0,12,fn_71003a2eb0,unknown,ai/behaviortree?,O
 0x71003a2ebc,8,fn_71003a2ebc,unknown,ai/behaviortree?,O
 0x71003a2ec4,8,fn_71003a2ec4,unknown,ai/behaviortree?,O
-0x71003a2ecc,196,fn_71003a2ecc,unknown,ai/behaviortree?,U
+0x71003a2ecc,196,fn_71003a2ecc,unknown,ai/behaviortree?,O
 0x71003a2f90,160,fn_71003a2f90,unknown,ai/behaviortree?,O
 0x71003a3030,4,fn_71003a3030,unknown,ai/behaviortree?,O
 0x71003a3034,244,behaviortree::CWasImpacted::refl_GetClass,reflection,ai/behaviortree,O
