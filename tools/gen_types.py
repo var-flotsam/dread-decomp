@@ -174,9 +174,11 @@ def local_pointee(orig: asmdiff.Original, init: int) -> int | None:
     return calls[-1] if calls else None
 
 
-def traits(orig: asmdiff.Original, init: int, decls: set[str], local: int | None = None) -> list[str] | None:
-    """Traits lines; with `local`, the pointee is that getter, defined in the same TU."""
-    kind, st, _ = emulate(orig, init)
+def traits(orig: asmdiff.Original, init: int, decls: set[str], local: int | None = None,
+           base: str = "x19") -> list[str] | None:
+    """Traits lines; with `local`, the pointee is that getter, defined in the same TU. `base` is
+    the object's register (another one when the constructor is inlined into its getter)."""
+    kind, st, _ = emulate(orig, init, base)
     if kind != POINTER_KIND:
         return None
     size = st.get(0x18)
@@ -335,20 +337,77 @@ def emit_collection(init: int, body: list[str]) -> list[str]:
             f"UnkRefl_fn_{init:x}*, void*);"]
 
 
+_KIND_CALLERS: dict[int, list[int]] = {}
+
+
+def kind_hash_callers(orig: asmdiff.Original) -> list[int]:
+    """`U`/`O` functions that call the kind hash within their first 16 instructions (cached)."""
+    if id(orig) not in _KIND_CALLERS:
+        rows = []
+        for f in sorted((ROOT / "data" / "functions").glob("main_*.csv")):
+            with f.open(newline="", encoding="utf-8") as fh:
+                rows += [int(r["address"], 16) for r in csv.DictReader(fh) if r["status"] in ("U", "O")]
+        _KIND_CALLERS[id(orig)] = [a for a in rows if a in orig.sizes and any(
+            x.mnemonic == "bl" and x.operands[0].imm == KIND_HASH for x in disasm(orig, a)[:16])]
+    return _KIND_CALLERS[id(orig)]
+
+
+FLAGSET_KIND = "base::reflection::CFlagsetType"
+
+
+def flagset_traits(orig: asmdiff.Original, init: int, decls: set[str]) -> list[str] | None:
+    kind, st, tail = emulate(orig, init)
+    if kind != FLAGSET_KIND or tail is not None:
+        return None
+    size, under, second = st.get(0x18), st.get(0xE0), st.get(0xE8)
+    if not size or size[0] != "imm" or not under or under[0] != "call":
+        return None
+    if not second or second[0] != "data" or len(second) < 3:
+        return None
+    lines = [f"    static constexpr u64 size = {size[1]:#x};"]
+    for off in (0x28, 0x30, 0x38, 0x40, 0x48, 0x50, 0x58, 0x60, 0x68):
+        v = st.get(off)
+        if v == ("imm", 0):
+            lines.append(f"    static constexpr UnkFn {SLOTS[off]} = nullptr;")
+        elif v and v[0] == "fn":
+            decls.add(f"void fn_{v[1]:x}();")
+            lines.append(f"    static constexpr UnkFn {SLOTS[off]} = &fn_{v[1]:x};")
+        else:
+            return None
+    decls.add(f"const base::reflection::CType* fn_{under[1]:x}();")
+    decls.add(f"extern base::reflection::CType g_unk_{second[1]:x};")
+    lines += [f"    static const CType* underlying() {{ return fn_{under[1]:x}(); }}",
+              f"    static const CType* field_0xe8() {{ return &g_unk_{second[1]:x}; }}"]
+    return lines
+
+
+def emit_flagset(init: int, body: list[str]) -> list[str]:
+    return [f"struct UnkRefl_fn_{init:x};",
+            "template <>",
+            f"struct base::reflection::UnkReflFlagsetTraits<UnkRefl_fn_{init:x}> {{",
+            *body,
+            "};",
+            f"template base::reflection::CFlagsetType::CFlagsetType(const base::global::CStrId&, "
+            f"UnkRefl_fn_{init:x}*);"]
+
+
+def scan_flagsets(orig: asmdiff.Original, decls: set[str]) -> list:
+    """CFlagsetType constructors: (init, traits lines)."""
+    out = []
+    for a in kind_hash_callers(orig):
+        body = flagset_traits(orig, a, decls)
+        if body:
+            out.append((a, body))
+    return out
+
+
 def scan_collections(orig: asmdiff.Original, decls: set[str]) -> tuple[list, list]:
     """CCollectionType constructors (the descriptors are globals built by static initialisers):
     (init, traits lines), and those with a local element class as (init, traits lines, element
     getter), which tools/gen_reflection.py generates in that class's file. Candidates are the
     functions that call the kind hash."""
-    rows = []
-    for f in sorted((ROOT / "data" / "functions").glob("main_*.csv")):
-        with f.open(newline="", encoding="utf-8") as fh:
-            rows += [int(r["address"], 16) for r in csv.DictReader(fh) if r["status"] in ("U", "O")]
     out, local = [], []
-    for a in rows:
-        if a not in orig.sizes or not any(x.mnemonic == "bl" and x.operands[0].imm == KIND_HASH
-                                          for x in disasm(orig, a)[:16]):
-            continue
+    for a in kind_hash_callers(orig):
         element = local_element(orig, a)
         body = collection_traits(orig, a, decls, element)
         if body and element is not None:
@@ -358,9 +417,10 @@ def scan_collections(orig: asmdiff.Original, decls: set[str]) -> tuple[list, lis
     return out, local
 
 
-def primitive_traits(orig: asmdiff.Original, addr: int, decls: set[str]) -> list[str] | None:
-    """Traits of a plain CType getter (refl_GetPrimitiveType): a guarded static whose descriptor
-    is built inline, named by the string that is also hashed as its kind."""
+def inline_getter(orig: asmdiff.Original, addr: int) -> tuple[str, str, int, str] | None:
+    """(object register, type name, kind length, kind string) of a guarded getter whose descriptor
+    constructor is inlined: a guard, the name's string id, the kind hash, the object's stores,
+    the name's release, __cxa_atexit and the guard release."""
     insns = disasm(orig, addr)
     if not any(x.mnemonic == "ldarb" for x in insns[:12]):
         return None
@@ -377,7 +437,7 @@ def primitive_traits(orig: asmdiff.Original, addr: int, decls: set[str]) -> list
         return None
     page: dict[str, int] = {}
     val: dict[str, tuple] = {}
-    name = length = None
+    name = length = kind = None
     calls = []
     for x in insns:
         m, o = x.mnemonic, x.operands
@@ -395,15 +455,26 @@ def primitive_traits(orig: asmdiff.Original, addr: int, decls: set[str]) -> list
             if t == CSTRID_CTOR and name is None:
                 name = val.get("x1", ("?", None))[1]
             elif t == KIND_HASH and length is None:
-                if val.get("x0", ("?", None))[1] != name or val.get("x1", ("?",))[0] != "imm":
+                kind = val.get("x0", ("?", None))[1]
+                if not isinstance(kind, str) or val.get("x1", ("?",))[0] != "imm":
                     return None
                 length = val["x1"][1]
-    if not name or length != len(name.encode("utf-8")):
+    if not name or not kind or length != len(kind.encode("utf-8")):
         return None
-    if calls[:2] != [0x7101238DA0, CSTRID_CTOR] or calls[2] != KIND_HASH:
+    if calls[:3] != [0x7101238DA0, CSTRID_CTOR, KIND_HASH]:
         return None
     if [c for c in calls[3:] if c != ALLOCATOR_GETTER] != [0x71000803A4, 0x7100000250, 0x7101238DB0]:
         return None
+    return base, name, length, kind
+
+
+def primitive_traits(orig: asmdiff.Original, addr: int, decls: set[str]) -> list[str] | None:
+    """Traits of a plain CType getter (refl_GetPrimitiveType): a guarded static whose descriptor
+    is built inline, named by the string that is also hashed as its kind."""
+    g = inline_getter(orig, addr)
+    if not g or g[1] != g[3]:
+        return None
+    base, name, length, _ = g
     _, st, _ = emulate(orig, addr, base)
     size = st.get(0x18)
     if not size or size[0] != "imm" or st.get(0x78) != ("imm", 0):
@@ -433,24 +504,52 @@ def emit_primitive(getter: int, body: list[str]) -> list[str]:
             f"base::reflection::refl_GetPrimitiveType<UnkRefl_fn_{getter:x}>();"]
 
 
-def scan_primitives(orig: asmdiff.Original, decls: set[str]) -> list:
-    """Plain CType getters: (getter, traits lines). Candidates call the string-id constructor
-    and the kind hash."""
-    out = []
+def emit_inline_pointer(getter: int, name: str, body: list[str]) -> list[str]:
+    """A pointer type getter with its constructor inlined: the constructor isn't instantiated
+    explicitly, and its tag carries no address (nothing out of line to match)."""
+    return [f"struct UnkReflInline_{getter:x};",
+            f"struct UnkRefl_fn_{getter:x};",
+            "template <>",
+            f"struct base::reflection::UnkReflPointerTraits<UnkReflInline_{getter:x}> {{",
+            *body,
+            "};",
+            "template <>",
+            f"struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_{getter:x}> {{",
+            f"    static constexpr const char* name = {refl_attrs.c_string(name)};",
+            f"    using Init = UnkReflInline_{getter:x};",
+            "};",
+            f"template const base::reflection::CType* "
+            f"base::reflection::refl_GetPointerType<UnkRefl_fn_{getter:x}>();"]
+
+
+def scan_primitives(orig: asmdiff.Original, decls: set[str]) -> tuple[list, list]:
+    """Getters with an inlined descriptor constructor: plain CType getters as (getter, traits
+    lines) and pointer type getters as (getter, name, traits lines). Candidates call the
+    string-id constructor and the kind hash."""
+    out, ptrs = [], []
     for f in sorted((ROOT / "data" / "functions").glob("main_*.csv")):
         with f.open(newline="", encoding="utf-8") as fh:
             for r in csv.DictReader(fh):
                 a = int(r["address"], 16)
                 if r["status"] not in ("U", "O") or a not in orig.sizes or orig.sizes[a] > 1024:
                     continue
-                body = primitive_traits(orig, a, decls)
-                if body:
-                    out.append((a, body))
-    return out
+                g = inline_getter(orig, a)
+                if not g:
+                    continue
+                if g[1] == g[3]:
+                    body = primitive_traits(orig, a, decls)
+                    if body:
+                        out.append((a, body))
+                elif g[3] == POINTER_KIND:
+                    body = traits(orig, a, decls, base=g[0])
+                    if body:
+                        ptrs.append((a, g[1], body))
+    return out, ptrs
 
 
 PRELUDE = ['#include "base/reflection/CCollectionType.h"',
            '#include "base/reflection/CEnumType.h"',
+           '#include "base/reflection/CFlagsetType.h"',
            '#include "base/reflection/CPointerType.h"',
            '#include "base/reflection/UnkReflPrimitiveType.h"',
            "using base::reflection::CType;",
@@ -526,7 +625,8 @@ def main() -> int:
 
     pairs, _, enums, decls = scan(orig)
     colls, _ = scan_collections(orig, decls)
-    prims = scan_primitives(orig, decls)
+    prims, inline_ptrs = scan_primitives(orig, decls)
+    flagsets = scan_flagsets(orig, decls)
 
     work = ROOT / "build" / "gen_types"
     work.mkdir(parents=True, exist_ok=True)
@@ -534,7 +634,9 @@ def main() -> int:
     text = (PRELUDE + sorted(decls) + [line for g, nm, i, b in pairs for line in emit(g, nm, i, b)]
             + [line for i, b in enums for line in emit_enum(i, b)]
             + [line for i, b in colls for line in emit_collection(i, b)]
-            + [line for g, b in prims for line in emit_primitive(g, b)])
+            + [line for g, b in prims for line in emit_primitive(g, b)]
+            + [line for p in inline_ptrs for line in emit_inline_pointer(*p)]
+            + [line for i, b in flagsets for line in emit_flagset(i, b)])
     src.write_text("\n".join(text) + "\n", encoding="utf-8")
     r = subprocess.run(buildcfg.cxx_command(src, obj), capture_output=True, text=True)
     if r.returncode != 0:
@@ -544,12 +646,14 @@ def main() -> int:
     good_enums = [e for e in enums if e[0] in ok]
     good_colls = [c for c in colls if c[0] in ok]
     good_prims = [p for p in prims if p[0] in ok]
+    good_inline = [p for p in inline_ptrs if p[0] in ok]
+    good_flagsets = [f for f in flagsets if f[0] in ok]
 
     if OUT.exists():
         shutil.rmtree(OUT)
     OUT.mkdir(parents=True)
     note = "// Generated by tools/gen_types.py from main; regenerate rather than edit."
-    write_chunks("pointer_types", [emit(*p) for p in good], decls,
+    write_chunks("pointer_types", [emit(*p) for p in good] + [emit_inline_pointer(*p) for p in good_inline], decls,
                  [note, "// Getters (refl_GetType<T>) and descriptor constructors (refl_InitType<T>) of pointer",
                   "// types, byte-identical to the original."])
     write_chunks("enum_types", [emit_enum(*e) for e in good_enums], decls,
@@ -557,12 +661,17 @@ def main() -> int:
     write_chunks("collection_types", [emit_collection(*c) for c in good_colls], decls,
                  [note, "// Descriptor constructors of collection types (globals built by static initialisers),",
                   "// byte-identical to the original."])
+    write_chunks("flagset_types", [emit_flagset(*f) for f in good_flagsets], decls,
+                 [note, "// Descriptor constructors of flag sets, byte-identical to the original."])
     write_chunks("primitive_types", [emit_primitive(*p) for p in good_prims], decls,
                  [note, "// Getters (refl_GetType<T>) of plain CType descriptors, byte-identical to the original."])
     print(f"pointer types: {len(pairs)} getter/constructor candidates, {len(good)} pairs byte-identical; "
           f"enums: {len(enums)} constructor candidates, {len(good_enums)} byte-identical; "
           f"collections: {len(colls)} constructor candidates, {len(good_colls)} byte-identical; "
-          f"plain types: {len(prims)} getter candidates, {len(good_prims)} byte-identical")
+          f"plain types: {len(prims)} getter candidates, {len(good_prims)} byte-identical; "
+          f"pointer types with an inlined constructor: {len(inline_ptrs)} getter candidates, "
+          f"{len(good_inline)} byte-identical; "
+          f"flag sets: {len(flagsets)} constructor candidates, {len(good_flagsets)} byte-identical")
     return 0
 
 

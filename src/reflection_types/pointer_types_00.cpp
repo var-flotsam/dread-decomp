@@ -3,6 +3,7 @@
 // types, byte-identical to the original.
 #include "base/reflection/CCollectionType.h"
 #include "base/reflection/CEnumType.h"
+#include "base/reflection/CFlagsetType.h"
 #include "base/reflection/CPointerType.h"
 #include "base/reflection/UnkReflPrimitiveType.h"
 using base::reflection::CType;
