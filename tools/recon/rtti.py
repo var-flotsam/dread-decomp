@@ -8,8 +8,10 @@ RELATIVE relocation to a known type_info.
 
 from __future__ import annotations
 
+import shutil
 import subprocess
 from dataclasses import dataclass, field
+from pathlib import Path
 
 from image import R_AARCH64_RELATIVE, Image
 
@@ -18,7 +20,8 @@ KINDS = {
     "_ZTVN10__cxxabiv120__si_class_type_infoE": "si",
     "_ZTVN10__cxxabiv121__vmi_class_type_infoE": "vmi",
 }
-CXXFILT = r"C:\Program Files\LLVM\bin\llvm-cxxfilt.exe"
+_WIN_CXXFILT = r"C:\Program Files\LLVM\bin\llvm-cxxfilt.exe"
+CXXFILT = _WIN_CXXFILT if Path(_WIN_CXXFILT).is_file() else (shutil.which("llvm-cxxfilt") or _WIN_CXXFILT)
 
 
 @dataclass

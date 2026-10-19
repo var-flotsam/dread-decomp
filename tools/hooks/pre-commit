@@ -6,10 +6,18 @@
 max_bytes=1048576
 fail=0
 
-# Staged added/copied/modified/renamed paths, NUL-separated to survive odd names.
-git diff --cached --name-only --diff-filter=ACMR -z |
+# Staged added/copied/modified/renamed paths, one per line (`read -d` isn't POSIX, and dash, the
+# Linux /bin/sh, rejects it). Git still quotes names containing newlines or control characters;
+# those are refused below rather than checked under a mangled name.
+git -c core.quotePath=false diff --cached --name-only --diff-filter=ACMR |
 {
-    while IFS= read -r -d '' path; do
+    while IFS= read -r path; do
+        case "$path" in
+            \"*)
+                echo "pre-commit: refusing $path (unusual characters in the file name)" >&2
+                fail=1
+                continue ;;
+        esac
         case "$path" in
             orig/*|build/*)
                 echo "pre-commit: refusing '$path' (orig/ and build/ are local-only)" >&2
