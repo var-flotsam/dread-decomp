@@ -114,4 +114,16 @@ void refl_DeletingDtorNoBase(char* self) {
     ::operator delete(self);
 }
 
+// An element of unknown type whose destructor stores its vtable and releases members (no base
+// destructor call), as held by some collection iterator values.
+template <class Tag, u64 Size, class... Members>
+struct UnkDtorElem {
+    alignas(8) char data[Size];
+
+    ~UnkDtorElem() {
+        *reinterpret_cast<char**>(data) = UnkDtorTraits<Tag>::vtable() + 0x10;
+        (Members::Release(data), ...);
+    }
+};
+
 }  // namespace base

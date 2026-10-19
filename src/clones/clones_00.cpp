@@ -3201,6 +3201,18 @@ struct UnkClone_fn_710061ba34;
 template void base::refl_Begin(const base::UnkVector<UnkCloneOwner<UnkClone_fn_710061ba34>>*, base::UnkCollectionIter<UnkCloneOwner<UnkClone_fn_710061ba34>>*);
 struct UnkClone_fn_710061bb38;
 template void base::refl_End(const base::UnkVector<UnkCloneOwner<UnkClone_fn_710061bb38>>*, base::UnkCollectionIter<UnkCloneOwner<UnkClone_fn_710061bb38>>*);
+struct UnkClone_fn_710061bd3c;
+extern char g_unk_7101a56178[];
+template <> struct base::UnkDtorTraits<UnkClone_fn_710061bd3c> {
+    static char* vtable() { return g_unk_7101a56178; }
+};
+template void base::refl_IterValueDestroy<base::UnkDtorElem<UnkClone_fn_710061bd3c, 0x20, base::UnkStrIdAt<0x8>>>(void*);
+struct UnkClone_fn_710061c250;
+extern char g_unk_7101a56178[];
+template <> struct base::UnkDtorTraits<UnkClone_fn_710061c250> {
+    static char* vtable() { return g_unk_7101a56178; }
+};
+template void base::refl_IterValueDestroy<base::UnkDtorElem<UnkClone_fn_710061c250, 0x20, base::UnkStrIdAt<0x8>>>(void*);
 struct UnkClone_fn_710061d934;
 template bool base::operator==(const base::UnkIterValue<UnkClone_fn_710061d934*>&, const base::UnkIterValue<UnkClone_fn_710061d934*>&);
 struct UnkClone_fn_710061d9e4;
@@ -3928,11 +3940,3 @@ struct UnkClone_fn_7100747540;
 template base::UnkNamedObject* base::refl_RegisterNamed<UnkClone_fn_7100747540>(base::UnkNamedRegistry*, base::UnkNamedObject*, const char*);
 struct UnkClone_fn_7100752ba8;
 template void base::UnkDeferredSet<UnkClone_fn_7100752ba8>::Remove(UnkClone_fn_7100752ba8*);
-struct UnkClone_fn_7100752d38;
-template void base::UnkDeferredSet<UnkClone_fn_7100752d38>::Add(UnkClone_fn_7100752d38*);
-struct UnkClone_fn_710075d2e4;
-const base::reflection::CType* fn_7100005178();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_710075d2e4> {
-    static const CType* type() { return fn_7100005178(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_710075d2e4, u32, 0x48>(void*, char*);

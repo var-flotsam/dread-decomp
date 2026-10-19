@@ -10,6 +10,14 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflValue.h"
+struct UnkClone_fn_7100752d38;
+template void base::UnkDeferredSet<UnkClone_fn_7100752d38>::Add(UnkClone_fn_7100752d38*);
+struct UnkClone_fn_710075d2e4;
+const base::reflection::CType* fn_7100005178();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_710075d2e4> {
+    static const CType* type() { return fn_7100005178(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_710075d2e4, u32, 0x48>(void*, char*);
 struct UnkClone_fn_710075f420;
 template UnkCloneElem<UnkClone_fn_710075f420, 16>& base::UnkVector<UnkCloneElem<UnkClone_fn_710075f420, 16>>::GrowAt(u32);
 struct UnkClone_fn_7100763934;
@@ -5249,13 +5257,3 @@ void fn_7100de459c(void* e) {
 }
 struct UnkClone_fn_7100e06438;
 template UnkCloneElem<UnkClone_fn_7100e06438, 8>& base::UnkVector<UnkCloneElem<UnkClone_fn_7100e06438, 8>>::GrowAt(u32);
-struct UnkClone_fn_7100e06ce0;
-void fn_7100014948(void* e, const base::global::CStrId& name, u32 value);
-void fn_7100e06ce0(void* e) {
-    fn_7100014948(e, base::global::CStrId("ML_INFO_ENTRY", true), 0x0);
-    fn_7100014948(e, base::global::CStrId("ML_DIALOGUE_ENTRY", true), 0x1);
-    fn_7100014948(e, base::global::CStrId("ML_TUTO_ENTRY", true), 0x2);
-    fn_7100014948(e, base::global::CStrId("Invalid", true), 0x7fffffff);
-}
-struct UnkClone_fn_7100e0a49c;
-template UnkCloneElem<UnkClone_fn_7100e0a49c, 8>& base::UnkVector<UnkCloneElem<UnkClone_fn_7100e0a49c, 8>>::GrowAt(u32);

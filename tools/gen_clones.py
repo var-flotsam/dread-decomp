@@ -189,6 +189,55 @@ def destructor(orig: asmdiff.Original, addr: int, tag: str, insns: Insns) -> str
     return "\n".join(lines)
 
 
+STATE_RE = re.compile(r"w8, \[x0, #(0x[0-9a-f]+)\]")
+
+
+def iter_value_destroy_vt(orig: asmdiff.Original, addr: int, tag: str, insns: Insns) -> str | None:
+    """An iterator value's destroy helper (refl_IterValueDestroy) whose element (at +8, after a
+    u32 index) stores a vtable and releases string-id or refcounted members. Facts: the state
+    offset (= 8 + the element size), the vtable and the members' offsets in the element."""
+    head = [m for m, _ in insns[:9]]
+    if head[:3] != ["stp", "stp", "add"] or "ldr" not in head:
+        return None
+    state = next((int(h.group(1), 16) for m, o in insns[:6] if m == "ldr" and (h := STATE_RE.fullmatch(o))), None)
+    if state is None or state % 8 or state < 0x10 or ("cmp", "w8, #2") not in insns[4:8]:
+        return None
+    pages: dict[str, int] = {}
+    vtable = None
+    members: list[str] = []
+    for i, (m, o) in enumerate(insns[:-1]):
+        regs = [r.strip() for r in o.split(",")]
+        if m == "adrp":
+            pages[regs[0]] = int(regs[1][1:], 16)
+        elif m == "ldr" and vtable is None and (hit := VTABLE_RE.fullmatch(o)) and f"x{hit.group(1)}" in pages:
+            got = pages[f"x{hit.group(1)}"] + int(hit.group(2), 16)
+            if insns[i + 1] == ("add", f"x{hit.group(1)}, x{hit.group(1)}, #0x10") \
+                    and insns[i + 2] == ("str", f"x{hit.group(1)}, [x19, #8]"):
+                target = orig.img.pointer(got - BASE)
+                if target is None:
+                    return None
+                vtable = BASE + target
+        elif m == "ldr" and (hit := re.fullmatch(r"(x\d+), \[x19, #(0x[0-9a-f]+)\]", o)) \
+                and any(x == ("cbz", f"{hit.group(1)}, {t}") for x in insns[i + 1:i + 3]
+                        for t in [x[1].split(", ")[-1]]):
+            after = [x[0] for x in insns[i + 1:i + 7]]
+            kind = "UnkRefPtrAt" if "subs" in after and "sub" not in after else "UnkStrIdAt"
+            off = int(hit.group(2), 16) - 8
+            if off <= 0:
+                return None
+            members.append(f"base::{kind}<{off:#x}>")
+        elif m in ("bl", "b") and o.startswith("#0x") and int(o[1:], 16) not in (RELEASE,) \
+                and not addr <= int(o[1:], 16) < addr + orig.sizes[addr]:
+            return None
+    if vtable is None or not members or len(set(members)) != len(members):
+        return None
+    elem = f"base::UnkDtorElem<{tag}, {state - 8:#x}{''.join(', ' + x for x in members)}>"
+    return "\n".join([f"extern char g_unk_{vtable:x}[];",
+                      f"template <> struct base::UnkDtorTraits<{tag}> {{",
+                      f"    static char* vtable() {{ return g_unk_{vtable:x}; }}", "};",
+                      f"template void base::refl_IterValueDestroy<{elem}>(void*);"])
+
+
 MAKE_VALUE = 0x71000A18D4  # builds a reflected value from a type and a pointer
 LOAD_TYPES = {("ldr", "w"): "u32", ("ldr", "x"): "u64", ("ldrb", "w"): "u8", ("ldrh", "w"): "u16",
               ("ldr", "s"): "f32", ("ldr", "d"): "f64"}
@@ -276,6 +325,7 @@ def enum_values(orig: asmdiff.Original, addr: int, tag: str, insns: Insns) -> st
 
 KINDS = {
     "dtor": Kind(None, "base/UnkDestructors.h", lambda tag, _: None, scan=destructor),
+    "iter_value_destroy_vt": Kind(None, "base/UnkCollectionIter.h", lambda tag, _: None, scan=iter_value_destroy_vt),
     "enum_values": Kind(None, "base/global/CStrId.h", lambda tag, _: None, scan=enum_values),
     "field_set_strid": Kind(None, "base/reflection/UnkReflValue.h", lambda tag, _: None, scan=field_set_strid),
     "field_value": Kind(None, "base/reflection/UnkReflValue.h", lambda tag, _: None, scan=field_value),
