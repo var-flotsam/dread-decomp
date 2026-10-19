@@ -73,6 +73,14 @@ struct UnkCloneWord {
     bool operator==(const UnkCloneWord& other) const { return value == other.value; }
 };
 
+// A 4-byte trivially copyable element.
+template <class Tag>
+struct UnkCloneU32 {
+    u32 value;
+
+    bool operator==(const UnkCloneU32& other) const { return value == other.value; }
+};
+
 // A string id released in two steps (base::UnkStrIdMember).
 template <class Tag>
 struct UnkCloneStrId : base::UnkStrIdMember {};

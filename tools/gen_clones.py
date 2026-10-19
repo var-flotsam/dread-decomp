@@ -101,7 +101,7 @@ COLLECTIONS = {
                          "const base::UnkIterValue<{T}>&);", {"ptr": 0x71000CD4CC}),
     "iter_value_equal_by_value": ("base/UnkCollectionIter.h",
                                   "template bool base::refl_IterValueEqualByValue(const base::UnkIterValue<{T}>&, "
-                                  "const base::UnkIterValue<{T}>&);", {"word": 0x71000CEA70}),
+                                  "const base::UnkIterValue<{T}>&);", {"word": 0x71000CEA70, "word_strkey": 0x7100120684}),
     "iter_value_move": ("base/UnkCollectionIter.h",
                         "template base::UnkIterValue<{T}>& base::UnkIterValue<{T}>::operator=("
                         "base::UnkIterValue<{T}>&&);", {"owner": 0x71002B954C}),
@@ -109,7 +109,7 @@ COLLECTIONS = {
                                   "template void base::refl_IterValueMove<{T}>(void*, const void*);",
                                   {"word": 0x71000CEB44, "owner": 0x71002433A0}),
     "iter_value_destroy": ("base/UnkCollectionIter.h", "template void base::refl_IterValueDestroy<{T}>(void*);",
-                           {"strid": 0x71000CD5D8, "strid_b": 0x71000CFD94}),
+                           {"strid": 0x71000CD5D8, "strid_b": 0x71000CFD94, "word_strkey": 0x71000DE4F4}),
     "iter_value_copy": ("base/UnkCollectionIter.h",
                         "template void* base::refl_IterValueCopy<{T}>(void*, const void*);", {"word": 0x71000CEBA4}),
     "iter_begin": ("base/UnkCollectionIter.h",

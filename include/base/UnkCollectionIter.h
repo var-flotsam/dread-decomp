@@ -44,7 +44,7 @@ struct UnkIterValue {
         } else if (other.state == 2) {
             state = 1;
             Ref r = other.ref;
-            new (&value) Value{*r.index, static_cast<T&&>(*r.element)};
+            new (&value) Value{static_cast<K&&>(*const_cast<K*>(r.index)), static_cast<T&&>(*r.element)};
         }
     }
 

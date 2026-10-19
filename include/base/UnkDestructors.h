@@ -21,6 +21,28 @@ template <global::UnkStringPool*& Pool>
 struct UnkStrIdMemberOf {
     global::UnkStringData* data;
 
+    // Moves take the id and leave the pool's empty string; copy-assignment retains the new id
+    // first. Inferred from fn_71000de484/fn_71000de574, which these don't match yet (scheduling).
+    UnkStrIdMemberOf(UnkStrIdMemberOf&& other) : data(other.data) { other.data = &Pool->empty; }
+    UnkStrIdMemberOf& operator=(const UnkStrIdMemberOf& other) {
+        if (data != other.data) {
+            global::UnkStringData* d = other.data;
+            global::UnkStringPool* pool = Pool;
+            if (d != &pool->empty)
+                ++d->ref_count;
+            if (data != &pool->empty) {
+                --data->ref_count;
+                if (data->ref_count == 0)
+                    fn_71000803a4(pool, data);
+            }
+            data = d;
+        }
+        return *this;
+    }
+
+    bool operator==(const UnkStrIdMemberOf& other) const { return data == other.data; }
+    bool operator!=(const UnkStrIdMemberOf& other) const { return data != other.data; }
+
     ~UnkStrIdMemberOf() {
         if (global::UnkStringPool* pool = Pool) {
             if (data && data != &pool->empty) {
