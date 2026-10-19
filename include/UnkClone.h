@@ -116,3 +116,45 @@ struct UnkCloneStrIdElem {
 
     ~UnkCloneStrIdElem() { reinterpret_cast<Id*>(reinterpret_cast<char*>(words) + Off)->~Id(); }
 };
+
+// Polymorphic elements of the given size destroyed through their vtable: the destructor in slot
+// 0 (UnkClonePolyA) or slot 1 (UnkClonePolyB).
+struct UnkClonePolyA {
+    virtual ~UnkClonePolyA();
+};
+
+struct UnkClonePolyB {
+    virtual void vf_0x0();
+    virtual ~UnkClonePolyB();
+};
+
+template <class Tag, class Base, u64 Size>
+struct UnkClonePolyElem : Base {
+    u64 words[(Size - 8) / 8];
+};
+
+// The same with two string ids, at Lo and Hi (destroyed in reverse order).
+template <class Tag, u64 Lo, u64 Hi, u64 Size, class Id>
+struct UnkCloneStrIdElem2 {
+    u64 words[Size / 8];
+
+    ~UnkCloneStrIdElem2() {
+        reinterpret_cast<Id*>(reinterpret_cast<char*>(words) + Hi)->~Id();
+        reinterpret_cast<Id*>(reinterpret_cast<char*>(words) + Lo)->~Id();
+    }
+};
+
+// An element of the given size whose copy-assignment is out of line, called through
+// UnkCloneAssignTraits<Tag>::assign (one specialisation per clone).
+template <class Tag>
+struct UnkCloneAssignTraits;
+
+template <class Tag, u64 Size>
+struct UnkCloneAssignElem {
+    u64 words[Size / 8];
+
+    UnkCloneAssignElem& operator=(const UnkCloneAssignElem& other) {
+        UnkCloneAssignTraits<Tag>::assign(this, &other);
+        return *this;
+    }
+};

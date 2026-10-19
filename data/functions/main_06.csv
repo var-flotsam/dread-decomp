@@ -287,7 +287,7 @@ address,size,name,name_source,subsystem,status
 0x7100609a38,244,CCharClassNailongThornsAttack::refl_GetClass,reflection,game/characters,O
 0x7100609b2c,2168,fn_7100609b2c,unknown,game/characters?,O
 0x710060a3a4,352,CCharClassNailongThornsAttack::refl_InitClass,reflection,game/characters,O
-0x710060a504,196,fn_710060a504,unknown,unknown,U
+0x710060a504,196,fn_710060a504,unknown,unknown,O
 0x710060a5c8,124,fn_710060a5c8,unknown,unknown,O
 0x710060a644,132,fn_710060a644,unknown,unknown,O
 0x710060a6c8,28,fn_710060a6c8,unknown,unknown,O
@@ -767,7 +767,7 @@ address,size,name,name_source,subsystem,status
 0x7100619fa8,80,fn_7100619fa8,unknown,unknown,O
 0x7100619ff8,84,fn_7100619ff8,unknown,unknown,O
 0x710061a04c,8,fn_710061a04c,unknown,unknown,O
-0x710061a054,100,fn_710061a054,unknown,unknown,U
+0x710061a054,100,fn_710061a054,unknown,unknown,O
 0x710061a0b8,4,fn_710061a0b8,unknown,unknown,O
 0x710061a0bc,16,fn_710061a0bc,unknown,unknown,O
 0x710061a0cc,192,fn_710061a0cc,unknown,unknown,U
@@ -820,7 +820,7 @@ address,size,name,name_source,subsystem,status
 0x710061b0ec,80,fn_710061b0ec,unknown,unknown,O
 0x710061b13c,84,fn_710061b13c,unknown,unknown,O
 0x710061b190,8,fn_710061b190,unknown,unknown,O
-0x710061b198,100,fn_710061b198,unknown,unknown,U
+0x710061b198,100,fn_710061b198,unknown,unknown,O
 0x710061b1fc,4,fn_710061b1fc,unknown,unknown,O
 0x710061b200,16,fn_710061b200,unknown,unknown,O
 0x710061b210,192,fn_710061b210,unknown,unknown,U
@@ -881,7 +881,7 @@ address,size,name,name_source,subsystem,status
 0x710061c6e0,64,fn_710061c6e0,unknown,unknown,O
 0x710061c720,156,fn_710061c720,unknown,unknown,U
 0x710061c7bc,48,fn_710061c7bc,unknown,unknown,O
-0x710061c7ec,172,fn_710061c7ec,unknown,unknown,U
+0x710061c7ec,172,fn_710061c7ec,unknown,unknown,O
 0x710061c898,340,fn_710061c898,unknown,unknown,U
 0x710061c9ec,408,fn_710061c9ec,unknown,unknown,U
 0x710061cb84,392,fn_710061cb84,unknown,unknown,U
@@ -924,7 +924,7 @@ address,size,name,name_source,subsystem,status
 0x710061dd18,80,fn_710061dd18,unknown,unknown,O
 0x710061dd68,84,fn_710061dd68,unknown,unknown,O
 0x710061ddbc,8,fn_710061ddbc,unknown,unknown,O
-0x710061ddc4,100,fn_710061ddc4,unknown,unknown,U
+0x710061ddc4,100,fn_710061ddc4,unknown,unknown,O
 0x710061de28,4,fn_710061de28,unknown,unknown,O
 0x710061de2c,16,fn_710061de2c,unknown,unknown,O
 0x710061de3c,192,fn_710061de3c,unknown,unknown,U
@@ -2137,13 +2137,13 @@ address,size,name,name_source,subsystem,status
 0x710065b074,28,fn_710065b074,unknown,unknown,O
 0x710065b090,276,fn_710065b090,unknown,unknown,U
 0x710065b1a4,12,fn_710065b1a4,unknown,unknown,O
-0x710065b1b0,320,fn_710065b1b0,unknown,unknown,U
-0x710065b2f0,320,fn_710065b2f0,unknown,unknown,U
+0x710065b1b0,320,fn_710065b1b0,unknown,unknown,O
+0x710065b2f0,320,fn_710065b2f0,unknown,unknown,O
 0x710065b430,328,fn_710065b430,unknown,unknown,U
 0x710065b578,340,fn_710065b578,unknown,unknown,U
 0x710065b6cc,4,operator.delete,symbol,unknown,O
 0x710065b6d0,292,fn_710065b6d0,unknown,unknown,U
-0x710065b7f4,320,fn_710065b7f4,unknown,unknown,U
+0x710065b7f4,320,fn_710065b7f4,unknown,unknown,O
 0x710065b940,180,fn_710065b940,unknown,unknown,O
 0x710065b9f4,4,fn_710065b9f4,unknown,unknown,O
 0x710065b9f8,244,CCharClassRinkaAIComponent::CTunableCharClassRinkaAIComponent::refl_GetClass,reflection,game/characters,O
@@ -2928,7 +2928,7 @@ address,size,name,name_source,subsystem,status
 0x71006743b8,244,behaviortree::CAgitateInNervousnessAction::refl_GetClass,reflection,ai/behaviortree,O
 0x71006744ac,636,fn_71006744ac,unknown,ai/behaviortree?,O
 0x7100674728,388,behaviortree::CAgitateInNervousnessAction::refl_InitClass,reflection,ai/behaviortree,O
-0x71006748ac,196,fn_71006748ac,unknown,ai/behaviortree?,U
+0x71006748ac,196,fn_71006748ac,unknown,ai/behaviortree?,O
 0x7100674970,76,fn_7100674970,unknown,ai/behaviortree?,O
 0x71006749bc,360,fn_71006749bc,unknown,ai/behaviortree?,U
 0x7100674b24,4,fn_7100674b24,unknown,ai/behaviortree?,O
@@ -3393,7 +3393,7 @@ address,size,name,name_source,subsystem,status
 0x71006836fc,1560,fn_71006836fc,unknown,game/characters?,O
 0x7100683d14,388,CCharClassScorpiusSpikeBallPrickAttack::CTunableCharClassScorpiusSpikeBallPrickAttack::refl_InitClass,reflection,game/characters,O
 0x7100683e98,696,fn_7100683e98,unknown,game/characters?,O
-0x7100684150,196,fn_7100684150,unknown,game/characters?,U
+0x7100684150,196,fn_7100684150,unknown,game/characters?,O
 0x7100684214,124,fn_7100684214,unknown,game/characters?,O
 0x7100684290,132,fn_7100684290,unknown,game/characters?,O
 0x7100684314,52,fn_7100684314,unknown,game/characters?,U
@@ -5561,7 +5561,7 @@ address,size,name,name_source,subsystem,status
 0x71006e3b94,244,behaviortree::CXParasiteTransformAction::refl_GetClass,reflection,ai/behaviortree,O
 0x71006e3c88,264,fn_71006e3c88,unknown,ai/behaviortree?,O
 0x71006e3d90,388,behaviortree::CXParasiteTransformAction::refl_InitClass,reflection,ai/behaviortree,O
-0x71006e3f14,196,fn_71006e3f14,unknown,ai/behaviortree?,U
+0x71006e3f14,196,fn_71006e3f14,unknown,ai/behaviortree?,O
 0x71006e3fd8,332,fn_71006e3fd8,unknown,ai/behaviortree?,U
 0x71006e4124,4,fn_71006e4124,unknown,ai/behaviortree?,O
 0x71006e4128,8,fn_71006e4128,unknown,ai/behaviortree?,O

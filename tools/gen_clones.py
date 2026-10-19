@@ -423,6 +423,103 @@ def iter_value_destroy_strid_elem(orig: asmdiff.Original, addr: int, tag: str, i
     return f"template void base::refl_IterValueDestroy<{pair}>(void*);"
 
 
+STRID_POOL = 0x7101D47108  # the string-id pool pointer (UnkCloneStrId)
+
+
+def vector_move_poly(orig: asmdiff.Original, addr: int, tag: str, insns: Insns) -> str | None:
+    """UnkVector<T>::operator=(&&) for polymorphic elements (UnkClonePolyElem): the destructor's
+    vtable slot and the element size."""
+    if len(insns) != 43 or insns[4:6] != [("mov", "x19, x0"), ("cmp", "x0, x1")] \
+            or insns[12:15] != [("ldr", "x8, [x19]"), ("add", "x0, x8, x21"), ("ldr", "x8, [x0]")] \
+            or insns[16] != ("blr", "x8") or insns[37] != ("stp", "xzr, xzr, [x20]"):
+        return None
+    base = {("ldr", "x8, [x8]"): "UnkClonePolyA", ("ldr", "x8, [x8, #8]"): "UnkClonePolyB"}.get(insns[15])
+    size = re.fullmatch(r"x21, x21, #(0x[0-9a-f]+)", insns[19][1])
+    if base is None or insns[19][0] != "add" or not size or int(size.group(1), 16) % 8:
+        return None
+    v = f"base::UnkVector<UnkClonePolyElem<{tag}, {base}, {int(size.group(1), 16):#x}>>"
+    return f"template {v}& {v}::operator=({v}&&);"
+
+
+def id_record_assign(orig: asmdiff.Original, addr: int, tag: str, insns: Insns) -> str | None:
+    """UnkCloneIdRecord::operator= (UnkCloneHelpers.h): the id's pool and the last field's width."""
+    if len(insns) != 41 or insns[4:6] != [("mov", "x19, x0"), ("cmp", "x0, x1")] \
+            or insns[7:11] != [("ldr", "w8, [x1, #8]"), ("str", "w8, [x19, #8]"), ("ldr", "x8, [x19, #0x10]"),
+                               ("ldr", "x21, [x1, #0x10]")] or insns[32] != ("bl", f"#{RELEASE:#x}"):
+        return None
+    t = {("ldr", "w8, [x20, #0x18]"): "u32", ("ldr", "x8, [x20, #0x18]"): "u64"}.get(insns[34])
+    pool = got_target(orig, insns, 14)
+    if t is None or pool not in (STRID_POOL, FILE_PATH_POOL):
+        return None
+    ident = f"UnkCloneStrIdB<{tag}>" if pool == FILE_PATH_POOL else f"UnkCloneStrId<{tag}>"
+    rec = f"UnkCloneIdRecord<{tag}, {ident}, {t}>"
+    return f"template {rec}& {rec}::operator=(const {rec}&);"
+
+
+def strid_member_ctor(orig: asmdiff.Original, addr: int, tag: str, insns: Insns) -> str | None:
+    """refl_StrIdMemberCtor (UnkCloneHelpers.h): the base constructor, the vtable (through the
+    GOT) and the string id's offset."""
+    if len(insns) != 49 or insns[3] != ("mov", "x19, x0") or insns[4][0] != "bl" or insns[8:10] != [
+            ("add", "x8, x8, #0x10"), ("str", "x8, [x19]")]:
+        return None
+    off = re.fullmatch(r"xzr, \[x19, #(0x[0-9a-f]+|\d)\]", insns[7][1])
+    vtable, pool = got_target(orig, insns, 5), got_target(orig, insns, 10)
+    if insns[7][0] != "str" or not off or vtable is None or pool != STRID_POOL:
+        return None
+    base = int(insns[4][1][1:], 16)
+    return "\n".join([f"extern char g_unk_{vtable:x}[];", f"void fn_{base:x}(char*);",
+                      f"template <> struct base::UnkCtorTraits<{tag}> {{",
+                      f"    static char* vtable() {{ return g_unk_{vtable:x}; }}",
+                      f"    static void base(char* p) {{ fn_{base:x}(p); }}", "};",
+                      f"template void base::refl_StrIdMemberCtor<{tag}, {int(off.group(1), 16):#x}>(char*);"])
+
+
+def iter_value_destroy_strid2(orig: asmdiff.Original, addr: int, tag: str, insns: Insns) -> str | None:
+    """refl_IterValueDestroy for a pair whose non-trivial parts are two string ids (the key and an
+    element member, or two element members). Facts: the state offset, both offsets and the pool."""
+    if len(insns) != 50 or insns[4:9] != [("mov", "x19, x0"), ("cmp", "w8, #2"), ("b.eq", "@+a0"), ("cmp", "w8, #1"),
+                                          ("b.ne", "@+a4")] or insns[36] != ("bl", f"#{RELEASE:#x}"):
+        return None
+    state = re.fullmatch(r"w8, \[x0, #(0x[0-9a-f]+)\]", insns[3][1])
+    hi = re.fullmatch(r"x9, \[x19(?:, #(0x[0-9a-f]+|\d))?\]", insns[13][1])
+    lo = re.fullmatch(r"x8, \[x19(?:, #(0x[0-9a-f]+|\d))?\]", insns[25][1])
+    pool = got_target(orig, insns, 9)
+    if insns[3][0] != "ldr" or not state or not hi or not lo or pool not in (STRID_POOL, FILE_PATH_POOL):
+        return None
+    state, hi, lo = int(state.group(1), 16), int(hi.group(1) or "0", 16), int(lo.group(1) or "0", 16)
+    if state % 8 or hi % 8 or lo % 8 or not lo < hi < state:
+        return None
+    ident = f"UnkCloneStrIdB<{tag}>" if pool == FILE_PATH_POOL else f"UnkCloneStrId<{tag}>"
+    if lo == 0:
+        pair = f"UnkCloneStrIdElem<{tag}, {hi - 8:#x}, {state - 8:#x}, {ident}>, {ident}"
+    else:
+        pair = f"UnkCloneStrIdElem2<{tag}, {lo - 8:#x}, {hi - 8:#x}, {state - 8:#x}, {ident}>"
+    # Too large to inline into refl_IterValueDestroy: the original's destroy is Reset itself.
+    return f"template void base::UnkIterValue<{pair}>::Reset();"
+
+
+def iter_value_copy_assign_elem(orig: asmdiff.Original, addr: int, tag: str, insns: Insns) -> str | None:
+    """refl_IterValueCopy keyed by a string id, for an element with an out-of-line copy-assignment
+    (UnkCloneAssignElem). Facts: the state offset, the key's pool and the element's assignment."""
+    if len(insns) != 66 or insns[4:6] != [("mov", "x19, x0"), ("cmp", "x0, x1")] or insns[48] != ("bl", f"#{RELEASE:#x}") \
+            or insns[60][0] != "bl":
+        return None
+    state = re.fullmatch(r"w8, \[x1, #(0x[0-9a-f]+)\]", insns[7][1])
+    pool = got_target(orig, insns, 30)
+    if insns[7][0] != "ldr" or not state or pool not in (STRID_POOL, FILE_PATH_POOL):
+        return None
+    state = int(state.group(1), 16)
+    if state % 8 or state < 0x10:
+        return None
+    assign = int(insns[60][1][1:], 16)
+    ident = f"UnkCloneStrIdB<{tag}>" if pool == FILE_PATH_POOL else f"UnkCloneStrId<{tag}>"
+    return "\n".join([f"void fn_{assign:x}(void*, const void*);",
+                      f"template <> struct UnkCloneAssignTraits<{tag}> {{",
+                      f"    static void assign(void* dst, const void* src) {{ fn_{assign:x}(dst, src); }}", "};",
+                      f"template void* base::refl_IterValueCopy<UnkCloneAssignElem<{tag}, {state - 8:#x}>, {ident}>("
+                      "void*, const void*);"])
+
+
 FILE_PATH_POOL = 0x7101D47200  # CFilePathStrId's string pool (UnkCloneStrIdB)
 
 
@@ -764,8 +861,13 @@ KINDS = {
     "linked_dtor": Kind(None, "base/UnkDestructors.h", lambda tag, _: None, scan=linked_dtor),
     "list_deleting_dtor": Kind(None, "base/UnkDestructors.h", lambda tag, _: None, scan=list_deleting_dtor),
     "list_dtor": Kind(None, "base/UnkDestructors.h", lambda tag, _: None, scan=list_dtor),
+    "vector_move_poly": Kind(None, "base/UnkVector.h", lambda tag, _: None, scan=vector_move_poly),
+    "id_record_assign": Kind(None, "base/UnkCloneHelpers.h", lambda tag, _: None, scan=id_record_assign),
+    "strid_member_ctor": Kind(None, "base/UnkCloneHelpers.h", lambda tag, _: None, scan=strid_member_ctor),
     "hash_map_clear": Kind(None, "base/UnkHashMap.h", lambda tag, _: None, scan=hash_map_clear),
     "iter_assign_dtor": Kind(None, "base/UnkCollectionIter.h", lambda tag, _: None, scan=iter_assign_dtor),
+    "iter_value_copy_assign_elem": Kind(None, "base/UnkCollectionIter.h", lambda tag, _: None, scan=iter_value_copy_assign_elem),
+    "iter_value_destroy_strid2": Kind(None, "base/UnkCollectionIter.h", lambda tag, _: None, scan=iter_value_destroy_strid2),
     "iter_value_destroy_strid_elem": Kind(None, "base/UnkCollectionIter.h", lambda tag, _: None, scan=iter_value_destroy_strid_elem),
     "iter_value_destroy_dtor": Kind(None, "base/UnkCollectionIter.h", lambda tag, _: None, scan=iter_value_destroy_dtor),
     "enum_values": Kind(None, "base/global/CStrId.h", lambda tag, _: None, scan=enum_values),
@@ -818,8 +920,72 @@ KINDS = {
         "const base::UnkStrIdMember*);")),
     "shared_record_assign": Kind(0x7100B8F094, "base/UnkSharedRecord.h", lambda tag, _: (
         f"template UnkSharedRecord<{tag}>& UnkSharedRecord<{tag}>::operator=(const UnkSharedRecord<{tag}>&);")),
+    "vector_clear_wide_owner": Kind(0x71002B9890, "base/UnkCloneHelpers.h", lambda tag, _: (
+        f"template void base::refl_ClearWide(base::UnkVector<UnkCloneOwner<{tag}>>*);")),
+    "iter_destroy_vt": Kind(0x7100F4ADF8, "base/UnkCloneHelpers.h", lambda tag, _: (
+        "extern char g_unk_7101cab1f8[];\n"
+        f"template <> struct base::UnkDtorTraits<{tag}> {{\n"
+        "    static char* vtable() { return g_unk_7101cab1f8; }\n};\n"
+        f"template void base::refl_IterDestroy(base::UnkCollectionIter<base::UnkDtorElem<{tag}, 0x18, "
+        "base::UnkStrIdAt<8>>, u32>*);")),
+    "strid_record_assign": Kind(0x7100BBC1D0, "base/UnkCloneHelpers.h", lambda tag, _: (
+        f"template base::UnkStrIdRecord<{tag}>& base::UnkStrIdRecord<{tag}>::operator=("
+        f"const base::UnkStrIdRecord<{tag}>&);")),
+    "map_iter_sync_strkey": Kind(0x710011C448, "base/UnkCloneHelpers.h", lambda tag, _: (
+        f"template void base::refl_MapIterSync(base::UnkMapIter<UnkCloneWord<{tag}>, UnkCloneStrId<{tag}>>*);")),
+    "iter_sync_callbacks": Kind(0x710090B1C8, "base/UnkCloneHelpers.h", lambda tag, _: (
+        "extern char g_unk_7101a33fa0[];\nextern char g_unk_7101a20998[];\n"
+        f"template <> struct base::UnkCallbackTraits<{tag}> {{\n"
+        "    static char* vtable() { return g_unk_7101a33fa0; }\n"
+        "    static char* base_vtable() { return g_unk_7101a20998; }\n};\n"
+        f"template void base::refl_IterSync(base::UnkCollectionIter<base::UnkCallbackList<{tag}>, u32>*);")),
+    "strid_record_b_assign": Kind(0x71002E4FE8, "base/UnkCloneHelpers.h", lambda tag, _: (
+        f"template base::UnkStrIdRecordB<{tag}>& base::UnkStrIdRecordB<{tag}>::operator=("
+        f"const base::UnkStrIdRecordB<{tag}>&);")),
+    "plain_record_assign": Kind(0x710098E188, "base/UnkCloneHelpers.h", lambda tag, _: (
+        f"template base::UnkPlainRecord<{tag}>& base::UnkPlainRecord<{tag}>::operator=("
+        f"const base::UnkPlainRecord<{tag}>&);")),
+    "iter_value_copy_assign_strkey": Kind(0x7100120848, "base/UnkCloneHelpers.h", lambda tag, _: (
+        f"template base::UnkIterValue<UnkCloneWord<{tag}>, base::global::CStrId>& base::refl_IterValueCopyAssign("
+        f"base::UnkIterValue<UnkCloneWord<{tag}>, base::global::CStrId>*, "
+        f"const base::UnkIterValue<UnkCloneWord<{tag}>, base::global::CStrId>*);")),
+    "strid_hash_insert": Kind(0x7100120F0C, "base/UnkCloneHelpers.h", lambda tag, _: (
+        f"template void base::refl_StrIdHashInsert(base::UnkStrIdHashMap<{tag}>*, const base::global::CStrId*, "
+        "const u64*);")),
+    "iter_assign_refptr": Kind(0x7100237158, "base/UnkCloneHelpers.h", lambda tag, _: (
+        f"template base::UnkCollectionIter<UnkCloneRefPtr<{tag}>>& base::UnkCollectionIter<UnkCloneRefPtr<{tag}>>::"
+        f"operator=(const base::UnkCollectionIter<UnkCloneRefPtr<{tag}>>&);")),
+    "resize_sub_vecs": Kind(0x710065B1B0, "base/UnkCloneHelpers.h", lambda tag, _: (
+        f"template void base::refl_ResizeSubVecs(base::UnkVector<base::UnkCloneSubVec<{tag}>>*, u32);")),
+    "iter_value_assign_raw_strkey": Kind(0x71000C9490, "base/UnkCloneHelpers.h", lambda tag, _: (
+        f"template base::UnkStrKeyWordValue<{tag}>* base::refl_IterValueAssignRaw(base::UnkStrKeyWordValue<{tag}>*, "
+        f"const base::UnkStrKeyWordValue<{tag}>*);")),
+    "iter_value_assign_ref_strkey": Kind(0x71000C93EC, "base/UnkCloneHelpers.h", lambda tag, _: (
+        f"template base::UnkStrKeyWordValue<{tag}>* base::refl_IterValueAssignRef(base::UnkStrKeyWordValue<{tag}>*, "
+        f"const base::UnkStrKeyWordValue<{tag}>::Ref*);")),
+    "iter_value_assign_word": Kind(0x71000D3038, "base/UnkCloneHelpers.h", lambda tag, _: (
+        f"template void base::refl_IterValueAssign(base::UnkIterValue<UnkCloneWord<{tag}>, u32>*, "
+        f"const base::UnkIterValue<UnkCloneWord<{tag}>, u32>*);")),
+    "strid_u16_record_assign": Kind(0x7100BA33CC, "base/UnkCloneHelpers.h", lambda tag, _: (
+        f"template base::UnkStrIdU16Record<{tag}>& base::UnkStrIdU16Record<{tag}>::operator=("
+        f"const base::UnkStrIdU16Record<{tag}>&);")),
+    "assign_handle_from_source": Kind(0x7100234CCC, "base/UnkCloneHelpers.h", lambda tag, _: (
+        "extern char g_unk_7101a209e0[];\n"
+        f"template <> struct base::UnkRefSlotTraits<{tag}> {{\n"
+        "    static char* vtable() { return g_unk_7101a209e0; }\n};\n"
+        f"template void base::refl_AssignHandleFromSource<{tag}>(base::UnkRefHandle*, const char*);")),
+    "iter_value_move_from_owner_vec": Kind(0x71004A8728, "base/UnkCloneHelpers.h", lambda tag, _: (
+        f"template base::UnkIterValue<base::UnkVector<UnkCloneOwner<{tag}>>, u32>& base::refl_IterValueMoveFrom("
+        f"base::UnkIterValue<base::UnkVector<UnkCloneOwner<{tag}>>, u32>*, "
+        f"base::UnkIterValue<base::UnkVector<UnkCloneOwner<{tag}>>, u32>*);")),
     "deferred_remove": Kind(0x71002AE87C, "base/UnkDeferredSet.h", lambda tag, _: (
         f"template void base::UnkDeferredSet<{tag}>::Remove({tag}*);")),
+    "strid_array_move": Kind(0x71000DF128, "base/UnkCloneHelpers.h", lambda tag, _: (
+        f"template base::UnkStrIdArray<{tag}>& base::UnkStrIdArray<{tag}>::operator=(base::UnkStrIdArray<{tag}>&&);")),
+    "vector_emplace_vec_handle": Kind(0x71004A940C, "base/UnkCloneHelpers.h", lambda tag, _: (
+        f"template void base::UnkVector<UnkCloneVecHandle<{tag}>>::EmplaceBack(UnkCloneVecHandle<{tag}>&&);")),
+    "keyed_iter_sync_poly_vec": Kind(0x710023C550, "base/UnkCloneHelpers.h", lambda tag, _: (
+        f"template void base::refl_KeyedIterSync(base::UnkKeyedIter<UnkClonePolyVec<{tag}>, UnkCloneStrId<{tag}>>*);")),
 }
 # Verified kinds first, so that a function matching both a reference and a probe takes the
 # reference's instantiation.
@@ -899,7 +1065,7 @@ def main() -> int:
     rows = []
     for f in sorted((ROOT / "data" / "functions").glob("main_*.csv")):
         with f.open(newline="", encoding="utf-8") as fh:
-            rows += [int(r["address"], 16) for r in csv.DictReader(fh) if r["status"] in ("U", "O")]
+            rows += [int(r["address"], 16) for r in csv.DictReader(fh) if r["status"] in ("U", "O", "W")]
     taken = defined_in_src()
     probes = probe_shapes()
     refs = {}  # in KINDS order: verified kinds before probes
