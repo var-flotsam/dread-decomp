@@ -279,6 +279,27 @@ def iter_element_value(orig: asmdiff.Original, addr: int, tag: str, insns: Insns
                       f"{tag}, UnkCloneBlock<{tag}, {state - 8:#x}>>(void*, char*);"])
 
 
+def iter_assign_dtor(orig: asmdiff.Original, addr: int, tag: str, insns: Insns) -> str | None:
+    """UnkCollectionIter's copy-assignment whose element has an out-of-line destructor. Facts: the
+    index width, the state offset (= 0x18 + the element size) and the element's destructor."""
+    if len(insns) > 48 or insns[3:5] != [("mov", "x19, x0"), ("cmp", "x0, x1")] or ("add", "x0, x19, #0x18") not in insns:
+        return None
+    key = {("ldr", "w8, [x1]"): "u32", ("ldr", "x8, [x1]"): "u64"}.get(insns[6])
+    hit = re.fullmatch(r"w8, \[x19, #(0x[0-9a-f]+)\]", insns[8][1])
+    calls = {o for m, o in insns if m == "bl"}
+    if key is None or insns[8][0] != "ldr" or not hit or len(calls) != 1:
+        return None
+    state = int(hit.group(1), 16)
+    if state % 8 or state <= 0x18:
+        return None
+    dtor = int(calls.pop()[1:], 16)
+    it = f"base::UnkCollectionIter<UnkCloneDtorElem<{tag}, {state - 0x18:#x}>{', u64' if key == 'u64' else ''}>"
+    return "\n".join([f"void fn_{dtor:x}(char*);",
+                      f"template <> struct UnkCloneDtorTraits<{tag}> {{",
+                      f"    static void destroy(char* p) {{ fn_{dtor:x}(p); }}", "};",
+                      f"template {it}& {it}::operator=(const {it}&);"])
+
+
 FILE_PATH_POOL = 0x7101D47200  # CFilePathStrId's string pool (UnkCloneStrIdB)
 
 
@@ -473,6 +494,87 @@ def call_and_cast_field(orig: asmdiff.Original, addr: int, tag: str, insns: Insn
                      [f"template bool base::reflection::refl_CallAndCastField<{tag}, {srcs[0]:#x}, {dsts[0]:#x}>(char*);"])
 
 
+def got_target(orig: asmdiff.Original, insns: Insns, i: int) -> int | None:
+    """The address a GOT entry points to, for an adrp at insns[i] and the ldr after it."""
+    (m, o), (m2, o2) = insns[i], insns[i + 1]
+    page = re.fullmatch(r"(x\d+), #(0x[0-9a-f]+)", o)
+    hit = re.fullmatch(r"(x\d+), \[(x\d+), #(0x[0-9a-f]+)\]", o2)
+    if m != "adrp" or m2 != "ldr" or not page or not hit or hit.group(2) != page.group(1):
+        return None
+    reloc = orig.img.relocs.get(int(page.group(2), 16) + int(hit.group(3), 16) - BASE)
+    return None if reloc is None or reloc.type != R_AARCH64_RELATIVE else BASE + reloc.addend
+
+
+def wide_constant(insns: Insns, reg: str) -> int | None:
+    """A 64-bit constant built in `reg` by mov + movk."""
+    value = None
+    for m, o in insns:
+        if m == "mov" and (h := re.fullmatch(rf"{reg}, #(0x[0-9a-f]+|\d+)", o)):
+            value = int(h.group(1), 0)
+        elif m == "movk" and value is not None and (h := re.fullmatch(rf"{reg}, #(0x[0-9a-f]+|\d+), lsl #(\d+)", o)):
+            shift = int(h.group(2))
+            value = (value & ~(0xFFFF << shift)) | (int(h.group(1), 0) << shift)
+            if shift == 48:
+                return value
+    return None
+
+
+SET_NOTIFY = 0x7100FDD2B4  # fn_7100fdd2b4(target, &id) (refl_SetFieldMinNotify)
+
+
+def field_set_min_notify(orig: asmdiff.Original, addr: int, tag: str, insns: Insns) -> str | None:
+    """refl_SetFieldMinNotify (UnkReflValue.h): the field offset, the target global and the id."""
+    if len(insns) > 48 or ("fmax", "s0, s0, s1") not in insns or ("bl", f"#{SET_NOTIFY:#x}") not in insns:
+        return None
+    offs = [int(h.group(1) or "0", 0) for m, o in insns if m == "str" and (h := re.fullmatch(r"s0, \[x8(?:, #(0x[0-9a-f]+))?\]", o))]
+    adrps = [i for i, (m, _) in enumerate(insns) if m == "adrp"]
+    if len(offs) != 1 or len(adrps) != 1 or (target := got_target(orig, insns, adrps[0])) is None \
+            or (ident := wide_constant(insns, "x8")) is None:
+        return None
+    return "\n".join([f"extern char* g_unk_{target:x};",
+                      f"template <> struct base::reflection::UnkSetterTraits<{tag}> {{",
+                      f"    static char* target() {{ return g_unk_{target:x}; }}", "};",
+                      f"template base::reflection::UnkReflValue base::reflection::refl_SetFieldMinNotify<{tag}, "
+                      f"{offs[0]:#x}, {ident:#x}>(void*, char*, base::reflection::UnkReflValue* const*);"])
+
+
+ALLOC = 0x71000839A0  # fn_71000839a0(size, flags)
+
+
+def field_set_apply(orig: asmdiff.Original, addr: int, tag: str, insns: Insns) -> str | None:
+    """refl_SetFieldApply (UnkReflValue.h) on a lazily created singleton: the stored type and
+    offset, the singleton global, its size and constructor, and the call made on it."""
+    if not 8 <= len(insns) <= 48 or not re.fullmatch(r"x\d+, \[x2\]", insns[4][1]):
+        return None
+    calls = [int(o[1:], 16) for m, o in insns if m == "bl"]
+    if len(calls) != 3 or calls[0] != ALLOC or ("mov", "w1, #3") not in insns:
+        return None
+    size = next((int(h.group(1), 0) for m, o in insns if m == "mov" and (h := re.fullmatch(r"w0, #(0x[0-9a-f]+|\d+)", o))), None)
+    stores = [(i, m, h) for i, (m, o) in enumerate(insns)
+              if m in STORE_LOADS and (h := re.fullmatch(r"([wxsd])\d+, \[x8(?:, #(0x[0-9a-f]+|\d+))?\]", o))]
+    adrps = [i for i, (m, _) in enumerate(insns) if m == "adrp"]
+    if size is None or len(stores) != 1 or len(adrps) != 1 or (target := got_target(orig, insns, adrps[0])) is None:
+        return None
+    i, m, h = stores[0]
+    t = LOAD_TYPES.get((STORE_LOADS[m], h.group(1)))
+    if t is None or insns[i - 1][0] != STORE_LOADS[m]:
+        return None
+    _, ctor, apply = calls
+    return "\n".join([f"extern char* g_unk_{target:x};", f"void fn_{ctor:x}(char*);", f"void fn_{apply:x}(char*);",
+                      "void* fn_71000839a0(u64 size, u32 flags);",
+                      f"template <> struct base::reflection::UnkSetterTraits<{tag}> {{",
+                      "    static void apply() {",
+                      f"        char* s = g_unk_{target:x};",
+                      "        if (!s) {",
+                      f"            s = static_cast<char*>(fn_71000839a0({size:#x}, 3));",
+                      f"            fn_{ctor:x}(s);",
+                      f"            g_unk_{target:x} = s;",
+                      "        }",
+                      f"        fn_{apply:x}(s);", "    }", "};",
+                      f"template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<{tag}, {t}, "
+                      f"{int(h.group(2) or '0', 0):#x}>(void*, char*, base::reflection::UnkReflValue* const*);"])
+
+
 CSTRID_CTOR = 0x71000003D4
 
 
@@ -522,10 +624,13 @@ KINDS = {
     "iter_value_destroy_vt": Kind(None, "base/UnkCollectionIter.h", lambda tag, _: None, scan=iter_value_destroy_vt),
     "iter_element_value": Kind(None, "base/reflection/UnkReflValue.h", lambda tag, _: None, scan=iter_element_value),
     "pointee_typed": Kind(None, "base/reflection/UnkReflTypedPtr.h", lambda tag, _: None, scan=pointee_typed),
+    "iter_assign_dtor": Kind(None, "base/UnkCollectionIter.h", lambda tag, _: None, scan=iter_assign_dtor),
     "iter_value_destroy_dtor": Kind(None, "base/UnkCollectionIter.h", lambda tag, _: None, scan=iter_value_destroy_dtor),
     "enum_values": Kind(None, "base/global/CStrId.h", lambda tag, _: None, scan=enum_values),
     "call_and_cast_arg": Kind(None, "base/reflection/UnkReflCast.h", lambda tag, _: None, scan=call_and_cast_arg),
     "call_and_cast_field": Kind(None, "base/reflection/UnkReflCast.h", lambda tag, _: None, scan=call_and_cast_field),
+    "field_set_min_notify": Kind(None, "base/reflection/UnkReflValue.h", lambda tag, _: None, scan=field_set_min_notify),
+    "field_set_apply": Kind(None, "base/reflection/UnkReflValue.h", lambda tag, _: None, scan=field_set_apply),
     "field_set_value": Kind(None, "base/reflection/UnkReflValue.h", lambda tag, _: None, scan=field_set_value),
     "field_set_strid": Kind(None, "base/reflection/UnkReflValue.h", lambda tag, _: None, scan=field_set_strid),
     "field_value": Kind(None, "base/reflection/UnkReflValue.h", lambda tag, _: None, scan=field_value),

@@ -30,8 +30,8 @@ Snapshot as of 2026-10-18 (fifth Phase 4 session; branches `phase-4-4-clones` (v
 | 4.5+ Boot to title screen | Not started; plan below |
 | Port | Not started (`port/` is empty) |
 
-Function status (BotW codes): `O` 77,155, `m` 3, `M` 1, `L` 1,614, `U` 25,244.
-**Game-code progress: 42.38% of bytes (7.96 MB) matching** (`tools/progress.py`; library code
+Function status (BotW codes): `O` 77,395, `m` 3, `M` 1, `L` 1,614, `U` 25,004.
+**Game-code progress: 42.57% of bytes (7.99 MB) matching** (`tools/progress.py`; library code
 excluded; 39.09% at the start of this session). `tools/check.py` counts `src/` definitions,
 which differ slightly (matching `nn::atk` functions keep `L`; constructor aliases).
 
@@ -319,6 +319,12 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
      `refl_SetFieldValue`, 187), and `call_and_cast_arg` / `call_and_cast_field` (overrides that
      call their base, then cache a pointer cast to a class with the is-kind-of test
      `fn_710009d50c`, `UnkReflCast.h`, 163).
+   - Done (eighth session): setters that clamp an f32 and notify a target by a 64-bit id
+     (`refl_SetFieldMinNotify`, 73) or update a lazily created singleton (`refl_SetFieldApply`, 75);
+     collection-iterator copy-assignment with out-of-line element destructors (`iter_assign_dtor`,
+     52; `UnkCollectionIter` now takes the index type). Deleting destructors free through
+     `__builtin_operator_delete` like compiler-generated ones, so stores before the free are
+     dropped (40 more `dtor` matches).
    - Enum static initialisers and the other per-TU static initialisers. These define
      globals, so they need the TU's data definitions (the 160 B ones are mostly lifted already).
    - Slot `0x28`/`0x30`/`0x38`/`0x48`/`0x50` helpers of other classes (need class layouts):
