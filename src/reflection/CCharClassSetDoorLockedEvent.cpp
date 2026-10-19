@@ -21,6 +21,13 @@ void fn_7100bd32f0(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Set Door Locked or Unloked");
     fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("Door", true));
 }
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_7100bd34cc(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sEntityName", true), fn_710000fd7c(), 0x10, -1, -1);
+    field0->attrs.Add<base::global::CName>(fn_7100075240(), base::global::CName(""));
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("bLocked", true), fn_710000d228(), 0x18, -1, -1);
+    field1->attrs.Add<bool>(fn_7100075240(), true);
+}
 bool fn_7100bd38f4(const void* a, const void* b) { return a == b; }
 s32 fn_7100bd3900() { return -1; }
 const base::reflection::CType& fn_7100bd3908(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

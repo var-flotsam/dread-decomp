@@ -16,6 +16,13 @@ using base::reflection::UnkTunableRegistry;
 // CCharClassFanComponent
 DREAD_REFL_TAG(710087c4d4);
 void fn_710087c1c0(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_710087c2b8(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sFX_wind", true), fn_710000ad9c(), 0x60, -1, -1);
+    field0->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId("", true));
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("sFX_hurricane", true), fn_710000ad9c(), 0x68, -1, -1);
+    field1->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId("", true));
+}
 bool fn_710087f3dc(const void*, const void*) { return false; }
 s32 fn_710087f3e4() { return -1; }
 const base::reflection::CType& fn_710087f3ec(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
@@ -46,7 +53,6 @@ DREAD_REFL_TAG(710087d33c);
 void fn_710087c658(base::reflection::CClass*) {}
 void fn_710087f868();
 void fn_710087d4b0(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 const base::reflection::UnkReflAttrKey& fn_7100091080();
 const base::reflection::UnkReflAttrKey& fn_7100091190();
 void fn_710087f914();

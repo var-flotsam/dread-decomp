@@ -5,10 +5,27 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CEnemyMovement
 DREAD_REFL_TAG(71010c770c);
 void fn_71010c74dc(base::reflection::CClass*) {}
+void fn_71010c786c(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+const base::reflection::UnkReflAttrKey& fn_71000904d0();
+void fn_71010c75d4(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetAnimationState", true))) {
+        fn_71010c786c(fn, "SetAnimationState");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Set ai animation state"));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+}
 bool fn_71010ce5e8(const void*, const void*) { return false; }
 s32 fn_71010ce5f0() { return -1; }
 const base::reflection::CType& fn_71010ce5f8(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

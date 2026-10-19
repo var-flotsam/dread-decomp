@@ -17,6 +17,7 @@ scratch translation unit and keeps those that are byte-identical to the original
 
 from __future__ import annotations
 
+import re
 import struct
 import subprocess
 import sys
@@ -40,13 +41,28 @@ CSTRID_RELEASE = 0x71000803A4  # inlined ~CStrId
 GLOBAL_CSTRID = 0x7101D470E0   # g_unk_7101d470e0
 ALLOC = 0x71000839A0           # allocation (size, flags)
 TUNABLE_REGISTRY_CTOR = 0x710013AC14
+# Out-of-line parts of value types (include/base/global/): CRntString's constructors and
+# destructor, CFilePathStrId's constructor, and the hash a CName is built from.
+CRNT_CTOR = 0x710007E704
+CRNT_COPY = 0x710007EA60
+CRNT_DTOR = 0x710007ECD4
+CFP_CTOR = 0x71000166C8
+GLOBAL_CFP = 0x7101D470E8      # g_unk_7101d470e8, a global CFilePathStrId
+HASH = 0x7100001570
+RESIZE_PARAM_ATTRS = 0x710009AE5C  # fn_710009ae5c(fn, fn->params.count)
+# Virtual calls on a reflected function, as negative call targets: its attributes and a
+# parameter's attributes (UnkReflFunctionVtbl).
+VCALL_ATTRS = -0x48
+VCALL_PARAM_ATTRS = -0x58
 # Calls that are never attribute keys; any other call in key position is one.
 NOT_KEYS = {GET_ATTRS, ADD_ATTR, ADD_FIELD, ADD_FUNCTION, CSTRID_CTOR, CSTRID_RELEASE, ALLOC,
-            TUNABLE_REGISTRY_CTOR}
+            TUNABLE_REGISTRY_CTOR, CRNT_CTOR, CRNT_COPY, CRNT_DTOR, CFP_CTOR, HASH, RESIZE_PARAM_ATTRS}
 # Value type getter -> C++ type, as in UnkReflTypeOf.
 VALUE_TYPES = {0x7100005178: "u32", 0x7100014768: "s32", 0x71000081E8: "const char*", 0x7100009658: "base::global::CStrId",
                0x710000ABBC: "f32", 0x710000D228: "bool",
-               0x7100024504: "base::math::CVector2D", 0x71000246E4: "base::math::CVector3D"}
+               0x7100024504: "base::math::CVector2D", 0x71000246E4: "base::math::CVector3D",
+               0x71000248C4: "base::math::CVector4D", 0x7100007F84: "base::global::CRntString",
+               0x710000AD9C: "base::global::CFilePathStrId", 0x710000FD7C: "base::global::CName"}
 
 PRELUDE = [
     '#include "base/reflection/UnkReflAttributes.h"',
@@ -111,11 +127,32 @@ def events(orig: asmdiff.Original, addr: int) -> list[Event] | None:
     page: dict[str, int] = {}
     # register -> ("imm", n) | ("str", s) | ("ptr", a) | ("global", a) | ("cls", 0) | ("count", delta)
     facts: dict[str, tuple] = {"zr": ("imm", 0), "0": ("cls", 0)}
+    slot: dict[str, int] = {}  # register -> the offset it was loaded from (a virtual table slot)
+    ret: dict[str, int] = {}   # register -> the call whose result it holds
+    fattr: dict[str, int] = {}  # register -> offset of an attribute container in a new field
     out: list[Event] = []
     for x in cs.disasm(orig.function(addr), addr):
         m, o = x.mnemonic, x.operands
         written = {_key(cs, r) for r in x.regs_access()[1]}
         new: dict[str, tuple] = {}
+        if m == "ldr" and len(o) == 2 and o[1].type == capstone.arm64.ARM64_OP_MEM and not o[1].mem.index:
+            slot[_key(cs, o[0].reg)] = o[1].mem.disp
+        elif m != "blr":
+            for r in written:
+                slot.pop(r, None)
+        if m == "add" and len(o) == 3 and o[2].type == capstone.arm64.ARM64_OP_IMM \
+                and ret.get(_key(cs, o[1].reg)) == ADD_FIELD:
+            fattr[_key(cs, o[0].reg)] = o[2].imm
+        elif m == "mov" and len(o) == 2 and o[1].type == capstone.arm64.ARM64_OP_REG and _key(cs, o[1].reg) in fattr:
+            fattr[_key(cs, o[0].reg)] = fattr[_key(cs, o[1].reg)]
+        elif m not in ("bl", "blr"):
+            for r in written:
+                fattr.pop(r, None)
+        if m == "mov" and len(o) == 2 and o[1].type == capstone.arm64.ARM64_OP_REG and _key(cs, o[1].reg) in ret:
+            ret[_key(cs, o[0].reg)] = ret[_key(cs, o[1].reg)]
+        elif m not in ("bl", "blr"):
+            for r in written:
+                ret.pop(r, None)
         if m == "adrp":
             page[_key(cs, o[0].reg)] = o[1].imm
         elif m == "add" and len(o) == 3 and _key(cs, o[1].reg) in page and o[2].type == capstone.arm64.ARM64_OP_IMM:
@@ -137,6 +174,12 @@ def events(orig: asmdiff.Original, addr: int) -> list[Event] | None:
                 new[_key(cs, o[0].reg)] = ("count", 0)
             elif facts.get(base, ("",))[0] == "ptr" and o[1].mem.disp == 0:
                 new[_key(cs, o[0].reg)] = ("global", facts[base][1])
+            elif facts.get(base, ("",))[0] == "ptr" and o[1].mem.disp > 0 and o[1].mem.disp % 8 == 0 \
+                    and cs.reg_name(o[0].reg)[0] == "x":
+                # A pointer member of a global object.
+                new[_key(cs, o[0].reg)] = ("pfield", (facts[base][1], o[1].mem.disp))
+            elif facts.get(base, ("",))[0] == "pfield" and o[1].mem.disp == 0:
+                new[_key(cs, o[0].reg)] = ("gfield", facts[base][1])
         elif m in ("mov", "movz", "orr") and o[-1].type == capstone.arm64.ARM64_OP_IMM \
                 and (m != "orr" or _key(cs, o[1].reg) == "zr"):
             mask = 0xFFFFFFFF if cs.reg_name(o[0].reg)[0] == "w" else 0xFFFFFFFFFFFFFFFF
@@ -188,11 +231,26 @@ def events(orig: asmdiff.Original, addr: int) -> list[Event] | None:
             fact = facts.get(_key(cs, o[0].reg))
             if fact and fact[0] == "ptr":
                 out.append(Event("value", value=("reftype", fact[1], 8)))
-        elif m == "bl":
-            out.append(Event("bl", target=o[0].imm, regs=dict(facts)))
+            elif fact and fact[0] == "imm" and facts.get(_key(cs, o[1].reg), ("",))[0] == "imm":
+                # A 16-byte value stored as two immediates (CVector4D).
+                width = 8 if cs.reg_name(o[0].reg)[0] == "x" else 4
+                for r in o[:2]:
+                    out.append(Event("value", value=("imm", facts[_key(cs, r.reg)][1], width)))
+        elif m == "bl" or (m == "blr" and slot.get(_key(cs, o[0].reg)) in (0x48, 0x58)):
+            target = o[0].imm if m == "bl" else -slot[_key(cs, o[0].reg)]
+            regs = dict(facts)
+            if "0" in ret:
+                regs["ret0"] = ("ret", ret["0"])  # x0 holds the result of an earlier call
+            if "0" in fattr:
+                regs["attroff"] = ("off", fattr["0"])  # x0 points into a new field
+            out.append(Event("bl", target=target, regs=regs))
             for r in [str(i) for i in range(19)] + ["s0", "d0"]:
                 facts.pop(r, None)
                 page.pop(r, None)
+                slot.pop(r, None)
+                ret.pop(r, None)
+                fattr.pop(r, None)
+            ret["0"] = target
             continue
         elif m in ("b", "br", "blr"):
             if m != "b":
@@ -222,6 +280,19 @@ def index_expr(fact: tuple | None) -> str | None:
 
 def value_expr(type_name: str, vals: list[tuple]) -> str | None:
     """C++ expression for a stored attribute value, or None."""
+    if type_name == "base::math::CVector4D":
+        # Two 8-byte stores (x and y, z and w).
+        if len(vals) != 2 or any(v[0] != "imm" or v[2] != 8 for v in vals):
+            return None
+        bits = [b for v in vals for b in (v[1] & 0xFFFFFFFF, v[1] >> 32)]
+        parts = [f32_literal(b) for b in bits]
+        if None in parts:
+            return None
+        return f"{type_name}{{{', '.join(parts)}}}"
+    if type_name == "base::global::CFilePathStrId":
+        if vals == [("global", GLOBAL_CFP, 8)]:
+            return "base::global::CFilePathStrId(g_unk_7101d470e8)"
+        return None
     if type_name in ("base::math::CVector2D", "base::math::CVector3D"):
         # Components stored as immediates: x and y as one 8-byte store, z as a 4-byte one.
         wide = [v[1] for v in vals if v[0] == "imm" and v[2] == 8]
@@ -234,7 +305,7 @@ def value_expr(type_name: str, vals: list[tuple]) -> str | None:
         if None in parts:
             return None
         return f"{type_name}{{{', '.join(parts)}}}"
-    stores = [v for v in vals if v[0] in ("imm", "str", "global", "fimm")]
+    stores = [v for v in vals if v[0] in ("imm", "str", "global", "fimm", "gfield")]
     if len(stores) != 1:
         return None
     kind, payload, width = stores[0]
@@ -242,6 +313,9 @@ def value_expr(type_name: str, vals: list[tuple]) -> str | None:
         return c_string(payload)
     if type_name == "base::global::CStrId" and kind == "global" and payload == GLOBAL_CSTRID and width == 8:
         return "CStrId(g_unk_7101d470e0)"
+    if type_name == "base::global::CStrId" and kind == "gfield" and width == 8:
+        # A CStrId that a global object points to (its pointer array, indexed by offset).
+        return f"CStrId(*g_unk_{payload[0]:x}[{payload[1] // 8}])"
     if type_name == "bool" and kind == "imm" and width == 1 and payload in (0, 1):
         return "true" if payload else "false"
     if type_name == "u32" and kind == "imm" and width == 4:
@@ -275,7 +349,7 @@ def parse(orig: asmdiff.Original, addr: int, class_getters: set[int]) -> tuple[l
         return j, vals
 
     def is_key(j: int) -> bool:
-        return j < n and evs[j].kind == "bl" and evs[j].target not in NOT_KEYS \
+        return j < n and evs[j].kind == "bl" and evs[j].target > 0 and evs[j].target not in NOT_KEYS \
             and evs[j].target not in VALUE_TYPES and evs[j].target not in class_getters
 
     def attribute(j: int, target: str) -> tuple[int, str] | None:
@@ -298,6 +372,8 @@ def parse(orig: asmdiff.Original, addr: int, class_getters: set[int]) -> tuple[l
             decls.append(f"extern base::reflection::CType g_unk_{types[0]:x};")
             return j + 1, (f"    {target}Add<{INT_TYPES[width]}>(fn_{key:x}(), &g_unk_{types[0]:x}, "
                            f"{signed(stores[0][1], width)});")
+        if evs[j].target in (CRNT_CTOR, CRNT_COPY, CFP_CTOR, HASH):
+            return object_value(j, vals, key, target)
         if evs[j].target not in VALUE_TYPES and evs[j].target not in NOT_KEYS \
                 and evs[j].target not in class_getters:
             # Integer (enum) value typed by its own type getter.
@@ -323,6 +399,8 @@ def parse(orig: asmdiff.Original, addr: int, class_getters: set[int]) -> tuple[l
         else:
             type_name = VALUE_TYPES.get(evs[j].target)
             expr = value_expr(type_name, vals) if type_name else None
+            if expr and "[" in expr:
+                decls.extend([f"extern CStrId* g_unk_{v[1][0]:x}[];" for v in vals if v[0] == "gfield"])
         if expr is None:
             return None
         j, vals = next_bl(j + 1)
@@ -331,11 +409,70 @@ def parse(orig: asmdiff.Original, addr: int, class_getters: set[int]) -> tuple[l
         type_arg = "CStrId" if type_name == "base::global::CStrId" else type_name
         return j + 1, f"    {target}Add<{type_arg}>(fn_{key:x}(), {expr});"
 
+    def object_value(j: int, vals: list[tuple], key: int, target: str) -> tuple[int, str] | None:
+        """A value built by an out-of-line call at j (CRntString, CFilePathStrId, CName)."""
+        t, regs = evs[j].target, evs[j].regs
+        if vals:
+            return None
+        s = regs.get("1")
+        if t == CRNT_CTOR and s and s[0] == "str":
+            type_name, expr = "base::global::CRntString", f"base::global::CRntString({c_string(s[1])})"
+        elif t == CRNT_COPY and s and s[0] == "ptr":
+            decls.append(f"extern base::global::CRntString g_unk_{s[1]:x};")
+            type_name, expr = "base::global::CRntString", f"base::global::CRntString(g_unk_{s[1]:x})"
+        elif t == CFP_CTOR and s and s[0] == "str" and regs.get("2") == ("imm", 1):
+            type_name, expr = "base::global::CFilePathStrId", f"base::global::CFilePathStrId({c_string(s[1])}, true)"
+        elif t == HASH and regs.get("0", ("",))[0] == "str" \
+                and regs.get("1") == ("imm", len(regs["0"][1].encode("utf-8"))):
+            type_name, expr = "base::global::CName", f"base::global::CName({c_string(regs['0'][1])})"
+        else:
+            return None
+        getter = [g for g, nm in VALUE_TYPES.items() if nm == type_name][0]
+        j, vals = next_bl(j + 1)
+        if j >= n or vals or evs[j].target != getter:
+            return None
+        j, vals = next_bl(j + 1)
+        if j >= n or vals or evs[j].target != ADD_ATTR:
+            return None
+        j += 1
+        if type_name == "base::global::CRntString":
+            if j >= n or evs[j].kind != "bl" or evs[j].target != CRNT_DTOR:
+                return None
+            j += 1
+        return j, f"    {target}Add<{type_name}>(fn_{key:x}(), {expr});"
+
     def skip_release(j: int) -> int:
         """Skip the release calls of inlined ~CStrId (and nothing else)."""
         while j < n and evs[j].kind == "bl" and evs[j].target == CSTRID_RELEASE:
             j += 1
         return j
+
+    def function_attrs(k: int) -> tuple[int, list[str]] | None:
+        """Attributes of a reflected function and of its parameters, after its initialiser."""
+        lines: list[str] = []
+        while True:
+            j = skip_release(k)
+            jb, vals = next_bl(j)
+            if jb >= n or vals:
+                return k, lines
+            t = evs[jb].target
+            if t == VCALL_ATTRS:
+                r = attribute(jb + 1, "fn->Attrs()->")
+            elif t == VCALL_PARAM_ATTRS and evs[jb].regs.get("1", ("",))[0] == "imm":
+                r = attribute(jb + 1, f"fn->ParamAttrs({evs[jb].regs['1'][1]})->")
+            elif t == RESIZE_PARAM_ATTRS:
+                r = jb + 1, "    fn_710009ae5c(fn, fn->params.count);"
+            elif t > 0 and evs[jb].regs.get("ret0") == ("ret", ADD_FUNCTION) and t not in NOT_KEYS \
+                    and t not in VALUE_TYPES and t not in class_getters:
+                # A call that takes the function (e.g. one that adds a parameter type).
+                decls.append(f"void fn_{t:x}(UnkReflFunction* fn);")
+                r = jb + 1, f"    fn_{t:x}(fn);"
+            else:
+                return k, lines
+            if r is None:
+                return None
+            k, line = r
+            lines.append("    " + line)
 
     def function(j: int) -> tuple[int, list[str]] | None:
         """fn = fn_7100097550(cls, CStrId(name)); then an inline or an out-of-line initialiser."""
@@ -387,19 +524,30 @@ def parse(orig: asmdiff.Original, addr: int, class_getters: set[int]) -> tuple[l
             if len(invoker) != 1 or len(stores) != 1 or len(flags) > 1:
                 return None
             decls.append(f"void fn_{invoker[0]:x}();")
+            r = function_attrs(k)
+            if r is None:
+                return None
+            k, extra = r
             return k, [head + " {",
                        f"        fn->name = base::global::UnkStrId({name}, true);",
                        f"        fn->return_type = {ret_expr};",
                        f"        fn->field_0xb2 = {hex(flags[0]) if flags and flags[0] else 0};",
                        "        fn->field_0x40 = nullptr;",
                        f"        fn->invoker = reinterpret_cast<void*>(&fn_{invoker[0]:x});",
+                       *extra,
                        "    }"]
         # Out-of-line initialiser (setters): init(fn, name).
         if evs[k].regs.get("1") != s or evs[k].target in NOT_KEYS:
             return None
         init = evs[k].target
         decls.append(f"void fn_{init:x}(UnkReflFunction* fn, const char* name);")
-        return k + 1, [head, f"        fn_{init:x}(fn, {name});"]
+        r = function_attrs(k + 1)
+        if r is None:
+            return None
+        k, extra = r
+        if not extra:
+            return k, [head, f"        fn_{init:x}(fn, {name});"]
+        return k, [head + " {", f"        fn_{init:x}(fn, {name});", *extra, "    }"]
 
     def field(j: int, name_expr: str) -> int | None:
         """AddField at j (or the field's type getter, then AddField) and the field's attributes."""
@@ -440,6 +588,12 @@ def parse(orig: asmdiff.Original, addr: int, class_getters: set[int]) -> tuple[l
             if r is None:
                 return None
             i, line = r
+            # The field's second attribute container (+0x70) instead of its first (+0x38).
+            off = [e.regs.get("attroff") for e in evs[k:i] if e.kind == "bl" and e.target == ADD_ATTR]
+            if off == [("off", 0x70)]:
+                line = line.replace(f"{var}->attrs.", f"{var}->attrs_0x70.", 1)
+            elif off not in ([("off", 0x38)], [None]):
+                return None
             body.append(line)
 
     fields = 0
@@ -645,13 +799,74 @@ def parse_initialiser(orig: asmdiff.Original, addr: int, class_getters: set[int]
     return list(dict.fromkeys(decls)), "\n".join(body + ["}"])
 
 
-def verify(version: str, candidates: dict[int, tuple[list[str], str]], workdir: Path) -> set[int]:
-    """Compile all candidates in one translation unit; return the addresses that match."""
-    if not candidates:
-        return set()
-    workdir.mkdir(parents=True, exist_ok=True)
-    src = workdir / "candidates.cpp"
-    obj = workdir / "candidates.o"
+def statements(src: str) -> list[list[str]]:
+    """The top-level statements of a generated definition (between its first and last line)."""
+    out: list[list[str]] = []
+    for line in src.split("\n")[1:-1]:
+        if out and (line.startswith("        ") or line == "    }"):
+            out[-1].append(line)
+        else:
+            out.append([line])
+    return out
+
+
+def is_function_statement(stmt: list[str]) -> bool:
+    return stmt[0].startswith("    if (UnkReflFunction* fn = fn_7100097550(")
+
+
+TYPED_ADD = re.compile(r"Add<(\w+)>\((fn_\w+\(\)), (fn_\w+)\(\), ")
+
+
+def alternatives(src: str) -> list[str]:
+    """Other forms of a definition that compile differently; candidates for verify().
+
+    - Typed enum values: Add<T, &GETTER>(key, value) calls the type getter after the value
+      is stored (Add<T>(key, GETTER(), value) calls it first).
+    - The original registers a field's getter and setter functions through a helper that is
+      inlined: its temporaries are allocated before the caller's (the inliner moves them to
+      the start of the entry block), which changes the stack offsets. A lambda called in
+      place reproduces that: each run of function statements in one lambda, or each function
+      statement in its own.
+    """
+    typed = TYPED_ADD.sub(r"AddTyped<\1, &\3>(\2, ", src)
+    out = [] if typed == src else [typed]
+    for form in [src] + out:
+        out += _lambda_forms(form)
+    return [a for a in dict.fromkeys(out) if a != src]
+
+
+def _lambda_forms(src: str) -> list[str]:
+    stmts = statements(src)
+    if not any(is_function_statement(st) for st in stmts):
+        return []
+    head, tail = src.split("\n")[0], src.split("\n")[-1]
+
+    def wrap(group: list[list[str]]) -> list[str]:
+        return ["    [&] {"] + ["    " + line for st in group for line in st] + ["    }();"]
+
+    out = []
+    for per_statement in (False, True):
+        lines: list[str] = []
+        run: list[list[str]] = []
+        for st in stmts + [None]:
+            if st is not None and is_function_statement(st):
+                if per_statement:
+                    lines += wrap([st])
+                else:
+                    run.append(st)
+                continue
+            if run:
+                lines += wrap(run)
+                run = []
+            if st is not None:
+                lines += st
+        out.append("\n".join([head] + lines + [tail]))
+    return out
+
+
+def _compile(version: str, candidates: dict[int, tuple[list[str], str]], workdir: Path, name: str) -> set[int]:
+    src = workdir / f"{name}.cpp"
+    obj = workdir / f"{name}.o"
     decls: list[str] = []
     seen: set[str] = set()
     for d, _ in candidates.values():
@@ -666,3 +881,28 @@ def verify(version: str, candidates: dict[int, tuple[list[str], str]], workdir: 
         raise SystemExit(f"candidate attribute functions failed to compile:\n{r.stderr[:4000]}")
     orig = asmdiff.Original(version)
     return {res.address for res in asmdiff.diff_object(obj, orig) if res.matching}
+
+
+def verify(version: str, candidates: dict[int, tuple[list[str], str]], workdir: Path) -> set[int]:
+    """Compile all candidates in one translation unit; return the addresses that match.
+
+    Candidates that don't match are retried in their alternative forms (alternatives()); a
+    form that matches replaces the candidate in `candidates`.
+    """
+    if not candidates:
+        return set()
+    workdir.mkdir(parents=True, exist_ok=True)
+    ok = _compile(version, candidates, workdir, "candidates")
+    for k in range(6):
+        retry = {}
+        for a in sorted(set(candidates) - ok):
+            alts = alternatives(candidates[a][1])
+            if k < len(alts):
+                retry[a] = (candidates[a][0], alts[k])
+        if not retry:
+            break
+        good = _compile(version, retry, workdir, f"alternatives_{k}") & set(retry)
+        for a in good:
+            candidates[a] = retry[a]
+        ok |= good
+    return ok

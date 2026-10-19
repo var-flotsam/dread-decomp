@@ -5,10 +5,27 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // behaviortree::CLogAction
 DREAD_REFL_TAG(7100382ca0);
 void fn_71003829b0(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+void fn_7100382aa8(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("iCount", true), fn_7100014768(), 0x2c, -1, -1);
+    field0->attrs.Add<s32>(fn_7100075240(), -1);
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Num logs");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("sText", true), fn_7100007f84(), 0x30, -1, -1);
+    field1->attrs.Add<base::global::CRntString>(fn_7100075240(), base::global::CRntString("Default log"));
+    field1->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Text to print"));
+}
 bool fn_7100382f1c(const void*, const void*) { return false; }
 s32 fn_7100382f24() { return -1; }
 const base::reflection::CType& fn_7100382f2c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

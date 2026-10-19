@@ -19,6 +19,43 @@ const base::reflection::UnkReflAttrKey& fn_7100005070();
 void fn_7101044de4(CClass* cls) {
     fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x30001u);
 }
+extern base::reflection::CType g_unk_71729fc870;
+void fn_7101049fa8();
+const base::reflection::UnkReflAttrKey& fn_710000bf80();
+extern base::reflection::CType g_unk_7101d679f0;
+const base::reflection::UnkReflAttrKey& fn_710008fd60();
+const base::reflection::UnkReflAttrKey& fn_710008ff80();
+void fn_7101045544(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_710008f920();
+const base::reflection::UnkReflAttrKey& fn_71000903c0();
+extern base::reflection::CType g_unk_7101d5af48;
+void fn_710104a108();
+void fn_7101044f2c(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_hashSections_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_hashSections_GetterFunction", true);
+        fn->return_type = &g_unk_71729fc870;
+        fn->field_0xb2 = 0x1;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7101049fa8);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("hashSections", true), &g_unk_71729fc870, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
+    field0->attrs.Add<const char*>(fn_710008fd60(), "CreateSection");
+    field0->attrs.Add<CStrId>(fn_710008ff80(), CStrId("AfterSectionsDeserialization", true));
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("CreateSection", true))) {
+        fn_7101045544(fn, "CreateSection");
+        fn_710009ae5c(fn, fn->params.count);
+        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("sKey", true));
+        fn->ParamAttrs(0)->Add<bool>(fn_71000903c0(), true);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AfterSectionsDeserialization", true))) {
+        fn->name = base::global::UnkStrId("AfterSectionsDeserialization", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_710104a108);
+    }
+}
 bool fn_7101049f68(const void* a, const void* b) { return a == b; }
 s32 fn_7101049f74() { return -1; }
 const base::reflection::CType& fn_7101049f7c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

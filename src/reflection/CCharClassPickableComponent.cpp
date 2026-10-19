@@ -16,7 +16,6 @@ using base::reflection::UnkTunableRegistry;
 // CCharClassPickableComponent
 DREAD_REFL_TAG(71009cc548);
 void fn_71009cbfb8(base::reflection::CClass*) {}
-const base::reflection::CType* fn_710000ad9c();
 const base::reflection::UnkReflAttrKey& fn_7100075240();
 void fn_71009cc0b0(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("sOnPickFX", true), fn_710000ad9c(), 0x58, -1, -1);

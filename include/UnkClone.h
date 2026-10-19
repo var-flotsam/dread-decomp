@@ -85,6 +85,6 @@ struct UnkCloneU32 {
 template <class Tag>
 struct UnkCloneStrId : base::UnkStrIdMember {};
 
-// The same, from the second pool.
+// The same, from CFilePathStrId's pool.
 template <class Tag>
 struct UnkCloneStrIdB : base::UnkStrIdMemberOf<g_unk_7101d47200> {};

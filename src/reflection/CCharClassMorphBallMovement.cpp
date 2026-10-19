@@ -18,7 +18,6 @@ DREAD_REFL_TAG(710079304c);
 void fn_7100792630(base::reflection::CClass*) {}
 const base::reflection::UnkReflAttrKey& fn_7100075240();
 const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::CType* fn_710000ad9c();
 void fn_7100792728(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("fSlopeExitFrictionFactorTime", true), fn_710000abbc(), 0x9c, -1, -1);
     field0->attrs.Add<f32>(fn_7100075240(), 0.3f);

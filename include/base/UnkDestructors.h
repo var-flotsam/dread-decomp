@@ -16,7 +16,7 @@ namespace base {
 // A string id released in two steps (the original reloads the id and the count after the
 // decrement, and the pool after a release), unlike CStrId. Which engine type it is is unknown.
 // Pool is the global pool pointer: most use g_unk_7101d47108; some keyed collections use
-// another one (g_unk_7101d47200).
+// CFilePathStrId's (g_unk_7101d47200).
 template <global::UnkStringPool*& Pool>
 struct UnkStrIdMemberOf {
     global::UnkStringData* data;

@@ -5,10 +5,32 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CChozoRobotSoldierAIComponent
 DREAD_REFL_TAG(710046ed80);
 void fn_710046ea28(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+extern base::reflection::CType g_unk_717269bb48;
+const base::reflection::UnkReflAttrKey& fn_710025daa0();
+extern base::reflection::CType g_unk_71727bc110;
+extern base::reflection::CType g_unk_717269bf08;
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+void fn_710046eb20(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("bAlternativeSkin", true), fn_710000d228(), 0x27790, -1, -1);
+    field0->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("wpPatrolPath", true), &g_unk_717269bb48, 0x14ad8, -1, -1);
+    field1->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 0);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("tShootingPositions", true), &g_unk_717269bf08, 0x14b28, -1, -1);
+    field2->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Shooting positions"));
+    field2->attrs_0x70.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 6);
+}
 bool fn_7100474ec0(const void*, const void*) { return false; }
 s32 fn_7100474ec8() { return -1; }
 const base::reflection::CType& fn_7100474ed0(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

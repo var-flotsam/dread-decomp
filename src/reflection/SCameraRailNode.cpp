@@ -46,6 +46,82 @@ DREAD_REFL_CLASS_GETTER(7100bfe80c, 7100bfed98, "SCameraRailNode", 7100da4088, 7
 // SCameraSubRail
 DREAD_REFL_TAG(7100bffde8);
 void fn_7100bff098(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_7101d5af48;
+void fn_7100c07c30();
+void fn_7100c07c44();
+void fn_7100bfff5c(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+const base::reflection::UnkReflAttrKey& fn_710008f920();
+const base::reflection::UnkReflAttrKey& fn_71000903c0();
+void fn_7100c07eb0();
+void fn_7100c07d10(UnkReflFunction* fn);
+void fn_7100c0001c(UnkReflFunction* fn, const char* name);
+void fn_7100c00198(UnkReflFunction* fn, const char* name);
+extern base::reflection::CType g_unk_717277b510;
+const base::reflection::UnkReflAttrKey& fn_7100092b10();
+const base::reflection::UnkReflAttrKey& fn_7100090a20();
+const base::reflection::UnkReflAttrKey& fn_710008fd60();
+const base::reflection::UnkReflAttrKey& fn_710008fe70();
+const base::reflection::UnkReflAttrKey& fn_710008fc50();
+const base::reflection::UnkReflAttrKey& fn_710008fb40();
+const base::reflection::UnkReflAttrKey& fn_710008ff80();
+void fn_7100bff190(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AfterNodesDeserialization", true))) {
+        fn->name = base::global::UnkStrId("AfterNodesDeserialization", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100c07c30);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AfterSegmentDeserialization", true))) {
+        fn->name = base::global::UnkStrId("AfterSegmentDeserialization", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100c07c44);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("CreateElement", true))) {
+        fn_7100bfff5c(fn, "CreateElement");
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Create Node At Index");
+        fn_710009ae5c(fn, fn->params.count);
+        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("uIdx", true));
+        fn->ParamAttrs(0)->Add<bool>(fn_71000903c0(), true);
+        fn->ParamAttrs(1)->Add<CStrId>(fn_710008f920(), CStrId("vPos", true));
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("InsertElement", true))) {
+        fn->name = base::global::UnkStrId("InsertElement", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100c07eb0);
+        fn_7100c07d10(fn);
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Insert Node At Index");
+        fn_710009ae5c(fn, fn->params.count);
+        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("uIdx", true));
+        fn->ParamAttrs(1)->Add<CStrId>(fn_710008f920(), CStrId("rData", true));
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("EraseElement", true))) {
+        fn_7100c0001c(fn, "EraseElement");
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Erase Node At Index");
+        fn_710009ae5c(fn, fn->params.count);
+        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("uIdx", true));
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("DeleteElement", true))) {
+        fn_7100c00198(fn, "DeleteElement");
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Delete Node At Index");
+        fn_710009ae5c(fn, fn->params.count);
+        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("uIdx", true));
+    }
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("tNodes", true), &g_unk_717277b510, 0x8, -1, -1);
+    field0->attrs.Add<bool>(fn_7100092b10(), true);
+    field0->attrs.Add<bool>(fn_7100090a20(), true);
+    field0->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("CameraRailNode"));
+    field0->attrs.Add<CStrId>(fn_710008fd60(), CStrId("CreateElement", true));
+    field0->attrs.Add<CStrId>(fn_710008fe70(), CStrId("InsertElement", true));
+    field0->attrs.Add<CStrId>(fn_710008fc50(), CStrId("EraseElement", true));
+    field0->attrs.Add<CStrId>(fn_710008fb40(), CStrId("DeleteElement", true));
+    field0->attrs.Add<CStrId>(fn_710008ff80(), CStrId("AfterNodesDeserialization", true));
+}
 bool fn_7100c07a70(const void* a, const void* b) { return a == b; }
 s32 fn_7100c07a7c() { return -1; }
 const base::reflection::CType& fn_7100c07a84(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
@@ -74,7 +150,6 @@ DREAD_REFL_TAG(7100c0087c);
 void fn_7100c00314(base::reflection::CClass*) {}
 extern base::reflection::CType g_unk_717277b908;
 const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 const base::reflection::UnkReflAttrKey& fn_7100091c30();
 void fn_7100c0040c(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("tSubRails", true), &g_unk_717277b908, 0x10, -1, -1);

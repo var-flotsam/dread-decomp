@@ -16,7 +16,6 @@ using base::reflection::UnkTunableRegistry;
 // GUI::CSpriteGrid
 DREAD_REFL_TAG(71011fbeac);
 void fn_71011fb0b0(base::reflection::CClass*) {}
-const base::reflection::CType* fn_710000ad9c();
 void fn_71011fde04();
 void fn_71011fc00c(UnkReflFunction* fn, const char* name);
 void fn_71011fdf34();

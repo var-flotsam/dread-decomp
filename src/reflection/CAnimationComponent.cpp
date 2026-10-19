@@ -5,10 +5,57 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CAnimationComponent
 DREAD_REFL_TAG(710117525c);
 void fn_7101174bd0(base::reflection::CClass*) {}
+void fn_71011753bc(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+const base::reflection::UnkReflAttrKey& fn_71000904d0();
+void fn_7101175470(UnkReflFunction* fn, const char* name);
+void fn_7101175524(UnkReflFunction* fn, const char* name);
+void fn_71011755d8(UnkReflFunction* fn, const char* name);
+void fn_710117568c(UnkReflFunction* fn, const char* name);
+extern base::reflection::CType g_unk_7101d5af48;
+void fn_710117c12c();
+void fn_7101175740(UnkReflFunction* fn, const char* name);
+void fn_7101174cc8(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetAction", true))) {
+        fn_71011753bc(fn, "SetAction");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString(""));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetDefaultLoop", true))) {
+        fn_7101175470(fn, "SetDefaultLoop");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString(""));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("HasTrack", true))) {
+        fn_7101175524(fn, "HasTrack");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString(""));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("IsPlayingAnim", true)))
+        fn_71011755d8(fn, "IsPlayingAnim");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("IsPlayingAnimLike", true)))
+        fn_710117568c(fn, "IsPlayingAnimLike");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("ClearActions", true))) {
+        fn->name = base::global::UnkStrId("ClearActions", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_710117c12c);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetActionFromEditor", true)))
+        fn_7101175740(fn, "SetActionFromEditor");
+}
 bool fn_710117bb3c(const void*, const void*) { return false; }
 s32 fn_710117bb44() { return -1; }
 const base::reflection::CType& fn_710117bb4c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

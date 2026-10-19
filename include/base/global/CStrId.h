@@ -29,7 +29,7 @@ struct UnkStringPool {
 
 // The global string pool (reached through the GOT).
 extern base::global::UnkStringPool* g_unk_7101d47108;
-extern base::global::UnkStringPool* g_unk_7101d47200;  // a second pool (see UnkStrIdMemberOf)
+extern base::global::UnkStringPool* g_unk_7101d47200;  // CFilePathStrId's pool (base/global/CFilePathStrId.h)
 void fn_71000803a4(base::global::UnkStringPool* pool, base::global::UnkStringData* data);
 u64 fn_7100001570(const char* str, u64 length);  // CRC64 of a string
 base::global::UnkStringData* fn_71000804f8(base::global::UnkStringPool* pool, u64 hash);  // lookup

@@ -21,6 +21,15 @@ void fn_7100ce3d50(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Stop Music");
     fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("Sound", true));
 }
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_7100ce3f2c(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sPath", true), fn_710000ad9c(), 0x10, -1, -1);
+    field0->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId(g_unk_7101d470e8));
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fFadeOut", true), fn_710000abbc(), 0x18, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 0.2f);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("bClearStack", true), fn_710000d228(), 0x1c, -1, -1);
+    field2->attrs.Add<bool>(fn_7100075240(), false);
+}
 bool fn_7100ce476c(const void* a, const void* b) { return a == b; }
 s32 fn_7100ce4778() { return -1; }
 const base::reflection::CType& fn_7100ce4780(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

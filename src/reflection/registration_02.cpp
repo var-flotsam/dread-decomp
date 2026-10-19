@@ -10,15 +10,242 @@ using base::reflection::UnkReflFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 
-void fn_7100fa040c();
-extern base::global::CStrId g_unk_7101d5a450;
+void fn_7100f6c1c0();
+void fn_7100f2f844(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_7100f6c2a0();
+void fn_7100f2f9c0(UnkReflFunction* fn, const char* name);
+void fn_7100f6c3a4();
+void fn_7100f2fb3c(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100091080();
+void fn_7100f6c484();
+void fn_7100f2fcb8(UnkReflFunction* fn, const char* name);
+void fn_7100f6c564();
+void fn_7100f2fe34(UnkReflFunction* fn, const char* name);
+void fn_7100f6c644();
+void fn_7100f2ffb0(UnkReflFunction* fn, const char* name);
+void fn_7100f6c72c();
+void fn_7100f3012c(UnkReflFunction* fn, const char* name);
+void fn_7100f6c80c();
+void fn_7100f302a8(UnkReflFunction* fn, const char* name);
+void fn_7100f6c8ec();
+void fn_7100f30424(UnkReflFunction* fn, const char* name);
+void fn_7100f6c9cc();
+void fn_7100f305a0(UnkReflFunction* fn, const char* name);
+void fn_7100f6caac();
+void fn_7100f3071c(UnkReflFunction* fn, const char* name);
+void fn_7100f6cb8c();
+void fn_7100f30898(UnkReflFunction* fn, const char* name);
+void fn_7100f6cc6c();
+void fn_7100f30a14(UnkReflFunction* fn, const char* name);
+void fn_7100f6cd4c();
+void fn_7100f30b90(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100093390();
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
+const base::reflection::UnkReflAttrKey& fn_71000923a0();
+extern base::reflection::CType g_unk_7101d55008;
+const base::reflection::UnkReflAttrKey& fn_7100090a20();
+void fn_7100f718d8();
+void fn_7100f36a00(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100091190();
+void fn_7100f719b8();
+void fn_7100f36b7c(UnkReflFunction* fn, const char* name);
+void fn_7100f71a98();
+void fn_7100f36cf8(UnkReflFunction* fn, const char* name);
+void fn_7100f73b34();
+void fn_7100f39de4(UnkReflFunction* fn, const char* name);
+void fn_7100f73c14();
+void fn_7100f39f60(UnkReflFunction* fn, const char* name);
+void fn_7100f73cf4();
+void fn_7100f3a0dc(UnkReflFunction* fn, const char* name);
+void fn_7100f73dd4();
+void fn_7100f3a258(UnkReflFunction* fn, const char* name);
+void fn_7100f73eb4();
+void fn_7100f3a3d4(UnkReflFunction* fn, const char* name);
+void fn_7100f73f94();
+void fn_7100f3a550(UnkReflFunction* fn, const char* name);
+void fn_7100f74074();
+void fn_7100f3a6cc(UnkReflFunction* fn, const char* name);
+void fn_7100f74178();
+void fn_7100f3a848(UnkReflFunction* fn, const char* name);
+void fn_7100f74258();
+void fn_7100f3a9c4(UnkReflFunction* fn, const char* name);
+void fn_7100f761d8();
+void fn_7100f3cf64(UnkReflFunction* fn, const char* name);
+void fn_7100f762b8();
+void fn_7100f3d0e0(UnkReflFunction* fn, const char* name);
+void fn_7100f76398();
+void fn_7100f3d25c(UnkReflFunction* fn, const char* name);
+void fn_7100f76478();
+void fn_7100f3d3d8(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_710008fa30();
+void fn_7100f783f0();
+void fn_7100f41440(UnkReflFunction* fn, const char* name);
+const base::reflection::CType* fn_7100f1abd8();
+void fn_7100f784f0();
+const base::reflection::UnkReflAttrKey& fn_7100091c30();
+const base::reflection::CType* fn_7100f30d0c();
+void fn_7100f78538();
+const base::reflection::CType* fn_7100f1caf8();
+void fn_7100f78584();
+const base::reflection::CType* fn_7100f1d594();
+void fn_7100f785d0();
+const base::reflection::CType* fn_7100f1ed4c();
+void fn_7100f7861c();
+const base::reflection::CType* fn_7100f20eec();
+void fn_7100f78668();
+const base::reflection::CType* fn_7100f226a4();
+void fn_7100f786b4();
+const base::reflection::CType* fn_7100f23870();
+void fn_7100f78700();
+const base::reflection::CType* fn_7100f25378();
+void fn_7100f7874c();
+const base::reflection::CType* fn_7100f26c4c();
+void fn_7100f78798();
+const base::reflection::CType* fn_7100f28754();
+void fn_7100f787e4();
+const base::reflection::CType* fn_7100f29924();
+void fn_7100f78830();
+const base::reflection::CType* fn_7100f2b42c();
+void fn_7100f7887c();
+const base::reflection::CType* fn_7100f2bee0();
+void fn_7100f788c8();
+const base::reflection::CType* fn_7100f2d698();
+void fn_7100f78914();
+const base::reflection::CType* fn_7100f332cc();
+void fn_7100f78960();
+const base::reflection::CType* fn_7100f341c8();
+void fn_7100f789ac();
+const base::reflection::CType* fn_7100f35980();
+void fn_7100f789f8();
+const base::reflection::CType* fn_7100f36e74();
+void fn_7100f78a44();
+const base::reflection::CType* fn_7100f3862c();
+void fn_7100f78a90();
+const base::reflection::CType* fn_7100f3ab40();
+void fn_7100f78adc();
+const base::reflection::CType* fn_7100f3c2f8();
+void fn_7100f78b28();
+const base::reflection::CType* fn_7100f3d554();
+void fn_7100f78b74();
+const base::reflection::CType* fn_7100f3ed0c();
+void fn_7100f78bc0();
+void fn_7100f78ffc();
+extern base::global::CStrId g_unk_7101d5a450;
+extern base::reflection::CType g_unk_71729e0568;
+void fn_7100f7904c();
+extern base::global::CStrId g_unk_7101d5a458;
+void fn_7100f791b8();
+void fn_7100f79208();
+extern base::reflection::CType g_unk_71729f1018;
+extern base::reflection::CType g_unk_71729f0a98;
+void fn_7100f84098();
+extern base::reflection::CType g_unk_71729e8888;
+void fn_7100f840e8();
+void fn_7100f842d8();
+void fn_7100f84328();
+void fn_7100f86510();
+void fn_7100f7fd38(UnkReflFunction* fn, const char* name);
+extern base::reflection::CType g_unk_71729f22c0;
+void fn_7100f86650();
+void fn_7100f86678();
+extern base::reflection::CType g_unk_71729e8c48;
+void fn_7100f866a0();
+void fn_7100f86bcc();
+extern base::reflection::CType g_unk_71729e8dc0;
+void fn_7100f86c1c();
+void fn_7100f86e90();
+void fn_7100f86ee0();
+const base::reflection::UnkReflAttrKey& fn_7100005070();
+extern base::reflection::CType g_unk_71729e9180;
+void fn_7100f8a428();
+const base::reflection::UnkReflAttrKey& fn_710008fd60();
+const base::reflection::UnkReflAttrKey& fn_710008fb40();
+const base::reflection::UnkReflAttrKey& fn_71000901a0();
+const base::reflection::UnkReflAttrKey& fn_7100092b10();
+const base::reflection::UnkReflAttrKey& fn_710008ff80();
+void fn_7100f88d84(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+const base::reflection::UnkReflAttrKey& fn_710008f920();
+void fn_7100f88f04(UnkReflFunction* fn, const char* name);
+extern base::reflection::CType g_unk_7101d5af48;
+void fn_7100f8a77c();
+void fn_7100f8a5e0(UnkReflFunction* fn);
+extern base::reflection::CType g_unk_71729f3b60;
+void fn_7100f8a87c();
+void fn_7100f8907c(UnkReflFunction* fn, const char* name);
+void fn_7100f891fc(UnkReflFunction* fn, const char* name);
+void fn_7100f8abd8();
+void fn_7100f8aa3c(UnkReflFunction* fn);
+extern base::reflection::CType g_unk_7108b6cc88;
+void fn_7100f91014();
+void fn_7100f8c274(UnkReflFunction* fn, const char* name);
+void fn_7100f91154();
+void fn_7100f8c3f0(UnkReflFunction* fn, const char* name);
+extern base::reflection::CType g_unk_71729ea500;
+void fn_7100f91298();
+extern base::reflection::CType g_unk_71729eaa00;
+void fn_7100f912c0();
+void fn_7100f8c56c(UnkReflFunction* fn, const char* name);
+void fn_7100f8c6ec(UnkReflFunction* fn, const char* name);
+void fn_7100f915d4();
+void fn_7100f91438(UnkReflFunction* fn);
+void fn_7100f91bcc();
+void fn_7100f91c1c();
+void fn_7100f91e2c();
+void fn_7100f91e7c();
+extern base::reflection::CType g_unk_71729eb8e0;
+void fn_7100f96498();
+void fn_7100f932d0(UnkReflFunction* fn, const char* name);
+void fn_7100f93450(UnkReflFunction* fn, const char* name);
+void fn_7100f967a4();
+void fn_7100f96608(UnkReflFunction* fn);
+void fn_7100f96ba8();
+extern base::reflection::CType g_unk_71729ea640;
+void fn_7100f96bf8();
+void fn_7100f96d64();
+void fn_7100f96db4();
+extern base::reflection::CType g_unk_71729e0928;
+void fn_7100f9c91c();
+void fn_7100f9bbb8(UnkReflFunction* fn, const char* name);
+void fn_7100f9bd38(UnkReflFunction* fn, const char* name);
+void fn_7100f9cc28();
+void fn_7100f9ca8c(UnkReflFunction* fn);
+void fn_7100fa006c();
+void fn_7100f9d440(UnkReflFunction* fn, const char* name);
+extern base::reflection::CType g_unk_7101d5c998;
+const base::reflection::UnkReflAttrKey& fn_7100f9e870();
+const base::reflection::UnkReflAttrKey& fn_7100f9e980();
+const base::reflection::UnkReflAttrKey& fn_7100f9ea90();
+const base::reflection::UnkReflAttrKey& fn_7100ed8b60();
+const base::reflection::UnkReflAttrKey& fn_7100f9eba0();
+void fn_7100fa040c();
 const base::reflection::CType* fn_7100f9d5bc();
 void fn_7100fa045c();
-extern base::global::CStrId g_unk_7101d5a458;
 void fn_7100fa05c4();
 void fn_7100fa0614();
+void fn_7100fa8114();
+void fn_7100fa2824(UnkReflFunction* fn, const char* name);
+void fn_7100fa8214();
+void fn_7100fa29a0(UnkReflFunction* fn, const char* name);
+void fn_7100fa8314();
+void fn_7100fa8358();
+void fn_7100fa2b1c(UnkReflFunction* fn, const char* name);
+void fn_7100fa83e8();
+void fn_7100fa2c98(UnkReflFunction* fn, const char* name);
+void fn_7100fa8478();
+void fn_7100fa2e14(UnkReflFunction* fn, const char* name);
+void fn_7100fa8508();
+void fn_7100fa2f90(UnkReflFunction* fn, const char* name);
+extern base::reflection::CType g_unk_71729ee670;
+void fn_7100fa8608();
+void fn_7100fa8630();
+const base::reflection::UnkReflAttrKey& fn_7100091f60();
+const base::reflection::UnkReflAttrKey& fn_7100092070();
+extern base::reflection::CType g_unk_7101d5d188;
+void fn_7100fa8658();
+void fn_7100fa310c(UnkReflFunction* fn, const char* name);
 void fn_7100fa88c4();
 const base::reflection::CType* fn_7100fa3364();
 void fn_7100fa8914();
@@ -29,19 +256,33 @@ void fn_7100fb0e78();
 void fn_7100fb0ec8();
 void fn_7100fb10d0();
 void fn_7100fb1120();
+void fn_7100fb6524();
+void fn_7100fb33e8(UnkReflFunction* fn, const char* name);
+extern base::reflection::CType g_unk_71729ed6f8;
+void fn_7100fb6624();
+void fn_7100fb3564(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_71000903c0();
+void fn_7100fb3618(UnkReflFunction* fn, const char* name);
+void fn_7100fb3790(UnkReflFunction* fn, const char* name);
 void fn_7100fb69a8();
 const base::reflection::CType* fn_7100fb390c();
 void fn_7100fb69f8();
 void fn_7100fb6b5c();
 void fn_7100fb6bac();
-const base::reflection::CType* fn_710000ad9c();
+void fn_7100fdd6b0();
+void fn_7100fd2b98(UnkReflFunction* fn, const char* name);
+void fn_7100fd2d18(UnkReflFunction* fn, const char* name);
+void fn_7100fdd870();
+void fn_7100fdd970();
+void fn_7100fd2e90(UnkReflFunction* fn, const char* name);
+void fn_7100fd3010(UnkReflFunction* fn, const char* name);
+void fn_7100fddb30();
 void fn_7100ffb338();
 extern base::reflection::CType g_unk_71729f1318;
 void fn_7100ffb388();
 void fn_7100ffb538();
 void fn_7100ffb588();
 extern base::reflection::CType g_unk_71729f16d8;
-extern base::reflection::CType g_unk_71729f1018;
 void fn_7100ffcd40();
 extern base::reflection::CType g_unk_71729f1850;
 void fn_7100ffcd90();
@@ -57,7 +298,6 @@ void fn_7100fff068();
 void fn_7100fe5a58(UnkReflFunction* fn, const char* name);
 extern base::reflection::CType g_unk_71729f1c10;
 void fn_7100fff758();
-extern base::reflection::CType g_unk_71729f22c0;
 void fn_7100fff7a8();
 void fn_7100fff928();
 void fn_7100fff978();
@@ -73,11 +313,23 @@ extern base::reflection::CType g_unk_71729f2d30;
 void fn_7101003254();
 void fn_71010034a0();
 void fn_71010034f0();
+extern base::reflection::CType g_unk_71729f30f0;
+void fn_7101003b58();
+void fn_7100fea218(UnkReflFunction* fn, const char* name);
+void fn_7100fea398(UnkReflFunction* fn, const char* name);
+void fn_7101003e6c();
+void fn_7101003cd0(UnkReflFunction* fn);
 void fn_7101004388();
 extern base::reflection::CType g_unk_71729f3268;
 void fn_71010043d8();
 void fn_7101004544();
 void fn_7101004594();
+extern base::reflection::CType g_unk_71729f3628;
+void fn_7101004e40();
+void fn_7100fec08c(UnkReflFunction* fn, const char* name);
+void fn_7100fec20c(UnkReflFunction* fn, const char* name);
+void fn_7101005154();
+void fn_7101004fb8(UnkReflFunction* fn);
 void fn_7101005558();
 extern base::reflection::CType g_unk_71729f37a0;
 void fn_71010055a8();
@@ -95,11 +347,12 @@ const base::reflection::CType* fn_71010221d4();
 void fn_710102af14();
 void fn_710102b07c();
 void fn_710102b0cc();
+void fn_710103a5d4();
+void fn_710102d0d0(UnkReflFunction* fn, const char* name);
+void fn_710103a7f8();
+void fn_710103a65c(UnkReflFunction* fn);
 void fn_710103a8a8();
 void fn_710102da64(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100091080();
-const base::reflection::UnkReflAttrKey& fn_7100091190();
 void fn_710103a938();
 void fn_710102dbe0(UnkReflFunction* fn, const char* name);
 void fn_710103c01c();
@@ -107,6 +360,12 @@ extern base::reflection::CType g_unk_71729f9fe8;
 void fn_710103c06c();
 void fn_710103c164();
 void fn_710103c1b4();
+extern base::reflection::CType g_unk_71729fb848;
+void fn_7101041844();
+void fn_710103d8e8(UnkReflFunction* fn, const char* name);
+void fn_710103da64(UnkReflFunction* fn, const char* name);
+void fn_7101041b04();
+void fn_7101041968(UnkReflFunction* fn);
 void fn_7101042028();
 const base::reflection::CClass* fn_710102df18();
 void fn_7101042078();
@@ -127,7 +386,6 @@ extern base::reflection::CType g_unk_71729fe178;
 void fn_710106007c();
 void fn_7101060244();
 void fn_7101060294();
-const base::reflection::UnkReflAttrKey& fn_7100005070();
 void fn_710106ecb0();
 extern base::reflection::CType g_unk_7172a00990;
 void fn_710106ed00();
@@ -169,10 +427,15 @@ void fn_7101130fb0();
 void fn_710113145c();
 void fn_71011314ac();
 const base::reflection::CType* fn_710009ffd4();
+extern base::reflection::CType g_unk_71727673c0;
+void fn_71011b07a0(UnkReflFunction* fn, const char* name);
 extern base::reflection::CType g_unk_71727664f0;
-const base::reflection::UnkReflAttrKey& fn_710008fd60();
 const base::reflection::CType* fn_7100b762b0();
 void fn_71011bb528();
+extern base::reflection::CType g_unk_7108b6e5e0;
+void fn_71011b14b4(UnkReflFunction* fn, const char* name);
+void fn_71011b162c(UnkReflFunction* fn, const char* name);
+void fn_71011b17a8(UnkReflFunction* fn, const char* name);
 void fn_71011d1a34();
 const base::reflection::CType* fn_7100fc036c();
 void fn_71011d1a84();
@@ -192,6 +455,1115 @@ const base::reflection::CType* fn_71011ddda8();
 void fn_71011e6f68();
 void fn_71011e70cc();
 void fn_71011e711c();
+
+void fn_7100f2d850(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bEnabled_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_bEnabled_GetterFunction", true);
+        fn->return_type = fn_710000d228();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f6c1c0);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bEnabled_SetterFunction", true)))
+        fn_7100f2f844(fn, "_bEnabled_SetterFunction");
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("bEnabled", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field0->attrs.Add<bool>(fn_7100075240(), false);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_tColor_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_tColor_GetterFunction", true);
+        fn->return_type = fn_71000248c4();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f6c2a0);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_tColor_SetterFunction", true)))
+        fn_7100f2f9c0(fn, "_tColor_SetterFunction");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("tColor", true), fn_71000248c4(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field1->attrs.Add<base::math::CVector4D>(fn_7100075240(), base::math::CVector4D{0.0f, 0.0f, 0.0f, 1.0f});
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fColorInterp_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_fColorInterp_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f6c3a4);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fColorInterp_SetterFunction", true)))
+        fn_7100f2fb3c(fn, "_fColorInterp_SetterFunction");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fColorInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field2->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    field2->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBase_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_fBase_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f6c484);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBase_SetterFunction", true)))
+        fn_7100f2fcb8(fn, "_fBase_SetterFunction");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fBase", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field3->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBaseInterp_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_fBaseInterp_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f6c564);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBaseInterp_SetterFunction", true)))
+        fn_7100f2fe34(fn, "_fBaseInterp_SetterFunction");
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fBaseInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field4->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    field4->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_tAttenuation_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_tAttenuation_GetterFunction", true);
+        fn->return_type = fn_7100024504();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f6c644);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_tAttenuation_SetterFunction", true)))
+        fn_7100f2ffb0(fn, "_tAttenuation_SetterFunction");
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("tAttenuation", true), fn_7100024504(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field5->attrs.Add<base::math::CVector2D>(fn_7100075240(), base::math::CVector2D{0.0f, 0.0f});
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttInterp_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_fAttInterp_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f6c72c);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttInterp_SetterFunction", true)))
+        fn_7100f3012c(fn, "_fAttInterp_SetterFunction");
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("fAttInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field6->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    field6->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fNear_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_fNear_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f6c80c);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fNear_SetterFunction", true)))
+        fn_7100f302a8(fn, "_fNear_SetterFunction");
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("fNear", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field7->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fNearInterp_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_fNearInterp_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f6c8ec);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fNearInterp_SetterFunction", true)))
+        fn_7100f30424(fn, "_fNearInterp_SetterFunction");
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("fNearInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field8->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    field8->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fFar_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_fFar_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f6c9cc);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fFar_SetterFunction", true)))
+        fn_7100f305a0(fn, "_fFar_SetterFunction");
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("fFar", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field9->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fFarInterp_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_fFarInterp_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f6caac);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fFarInterp_SetterFunction", true)))
+        fn_7100f3071c(fn, "_fFarInterp_SetterFunction");
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("fFarInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field10->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    field10->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fWaveFreq_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_fWaveFreq_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f6cb8c);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fWaveFreq_SetterFunction", true)))
+        fn_7100f30898(fn, "_fWaveFreq_SetterFunction");
+    UnkReflField* field11 = fn_7100096524(cls, CStrId("fWaveFreq", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field11->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field11->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fWaveAmp_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_fWaveAmp_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f6cc6c);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fWaveAmp_SetterFunction", true)))
+        fn_7100f30a14(fn, "_fWaveAmp_SetterFunction");
+    UnkReflField* field12 = fn_7100096524(cls, CStrId("fWaveAmp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field12->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field12->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fWaveVelocity_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_fWaveVelocity_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f6cd4c);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fWaveVelocity_SetterFunction", true)))
+        fn_7100f30b90(fn, "_fWaveVelocity_SetterFunction");
+    UnkReflField* field13 = fn_7100096524(cls, CStrId("fWaveVelocity", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field13->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field13->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    UnkReflField* field14 = fn_7100096524(cls, CStrId("fWaveInterp", true), fn_710000abbc(), 0x3c, -1, -1);
+    field14->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    field14->attrs.Add<f32>(fn_7100091080(), 0.0f);
+}
+
+void fn_7100f35b38(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fFallOff", true), fn_710000abbc(), 0xffffffff, -1, -1);
+    field0->attrs.Add<bool>(fn_7100093390(), true);
+    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
+    field0->attrs.Add<bool>(fn_7100090a20(), false);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fIntensity", true), fn_710000abbc(), 0xffffffff, -1, -1);
+    field1->attrs.Add<bool>(fn_7100093390(), true);
+    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
+    field1->attrs.Add<bool>(fn_7100090a20(), false);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fBias", true), fn_710000abbc(), 0xffffffff, -1, -1);
+    field2->attrs.Add<bool>(fn_7100093390(), true);
+    field2->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field2->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
+    field2->attrs.Add<bool>(fn_7100090a20(), false);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fRadius", true), fn_710000abbc(), 0xffffffff, -1, -1);
+    field3->attrs.Add<bool>(fn_7100093390(), true);
+    field3->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field3->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
+    field3->attrs.Add<bool>(fn_7100090a20(), false);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fDepthFct", true), fn_710000abbc(), 0xffffffff, -1, -1);
+    field4->attrs.Add<bool>(fn_7100093390(), true);
+    field4->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field4->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
+    field4->attrs.Add<bool>(fn_7100090a20(), false);
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("bEnabled", true), fn_710000d228(), 0xffffffff, -1, -1);
+    field5->attrs.Add<bool>(fn_7100093390(), true);
+    field5->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field5->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
+    field5->attrs.Add<bool>(fn_7100090a20(), false);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fInterp_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_fInterp_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f718d8);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fInterp_SetterFunction", true)))
+        fn_7100f36a00(fn, "_fInterp_SetterFunction");
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("fInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field6->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    field6->attrs.Add<f32>(fn_7100091080(), 0.001f);
+    field6->attrs.Add<f32>(fn_7100091190(), 10.0f);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fIntensityFactor_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_fIntensityFactor_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f719b8);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fIntensityFactor_SetterFunction", true)))
+        fn_7100f36b7c(fn, "_fIntensityFactor_SetterFunction");
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("fIntensityFactor", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field7->attrs.Add<f32>(fn_7100075240(), 0.5f);
+    field7->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    field7->attrs.Add<f32>(fn_7100091190(), 1.0f);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fFogFactor_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_fFogFactor_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f71a98);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fFogFactor_SetterFunction", true)))
+        fn_7100f36cf8(fn, "_fFogFactor_SetterFunction");
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("fFogFactor", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field8->attrs.Add<f32>(fn_7100075240(), 0.5f);
+    field8->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    field8->attrs.Add<f32>(fn_7100091190(), 1.0f);
+}
+
+void fn_7100f387e4(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fInterp_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_fInterp_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f73b34);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fInterp_SetterFunction", true)))
+        fn_7100f39de4(fn, "_fInterp_SetterFunction");
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field0->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    field0->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    field0->attrs.Add<f32>(fn_7100091190(), 10.0f);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fExposure_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_fExposure_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f73c14);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fExposure_SetterFunction", true)))
+        fn_7100f39f60(fn, "_fExposure_SetterFunction");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fExposure", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field1->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field1->attrs.Add<f32>(fn_7100091080(), -20.0f);
+    field1->attrs.Add<f32>(fn_7100091190(), 20.0f);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fGamma_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_fGamma_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f73cf4);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fGamma_SetterFunction", true)))
+        fn_7100f3a0dc(fn, "_fGamma_SetterFunction");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fGamma", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field2->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    field2->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    field2->attrs.Add<f32>(fn_7100091190(), 5.0f);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fSaturationColor_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_fSaturationColor_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f73dd4);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fSaturationColor_SetterFunction", true)))
+        fn_7100f3a258(fn, "_fSaturationColor_SetterFunction");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fSaturationColor", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field3->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    field3->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    field3->attrs.Add<f32>(fn_7100091190(), 10.0f);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fContrast_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_fContrast_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f73eb4);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fContrast_SetterFunction", true)))
+        fn_7100f3a3d4(fn, "_fContrast_SetterFunction");
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fContrast", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field4->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    field4->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    field4->attrs.Add<f32>(fn_7100091190(), 10.0f);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBrightness_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_fBrightness_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f73f94);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBrightness_SetterFunction", true)))
+        fn_7100f3a550(fn, "_fBrightness_SetterFunction");
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("fBrightness", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field5->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    field5->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    field5->attrs.Add<f32>(fn_7100091190(), 10.0f);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vColorTint_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_vColorTint_GetterFunction", true);
+        fn->return_type = fn_71000248c4();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f74074);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vColorTint_SetterFunction", true)))
+        fn_7100f3a6cc(fn, "_vColorTint_SetterFunction");
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("vColorTint", true), fn_71000248c4(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field6->attrs.Add<base::math::CVector4D>(fn_7100075240(), base::math::CVector4D{0.0f, 0.0f, 0.0f, 0.0f});
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fColorVibrance_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_fColorVibrance_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f74178);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fColorVibrance_SetterFunction", true)))
+        fn_7100f3a848(fn, "_fColorVibrance_SetterFunction");
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("fColorVibrance", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field7->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field7->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    field7->attrs.Add<f32>(fn_7100091190(), 10.0f);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bEnabled_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_bEnabled_GetterFunction", true);
+        fn->return_type = fn_710000d228();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f74258);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bEnabled_SetterFunction", true)))
+        fn_7100f3a9c4(fn, "_bEnabled_SetterFunction");
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("bEnabled", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field8->attrs.Add<bool>(fn_7100075240(), false);
+}
+
+void fn_7100f3c4b0(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fInterp_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_fInterp_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f761d8);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fInterp_SetterFunction", true)))
+        fn_7100f3cf64(fn, "_fInterp_SetterFunction");
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field0->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    field0->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    field0->attrs.Add<f32>(fn_7100091190(), 10.0f);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fCubeAttFactor_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_fCubeAttFactor_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f762b8);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fCubeAttFactor_SetterFunction", true)))
+        fn_7100f3d0e0(fn, "_fCubeAttFactor_SetterFunction");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fCubeAttFactor", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field1->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    field1->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    field1->attrs.Add<f32>(fn_7100091190(), 1.0f);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fZDistance_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_fZDistance_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f76398);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fZDistance_SetterFunction", true)))
+        fn_7100f3d25c(fn, "_fZDistance_SetterFunction");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fZDistance", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field2->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field2->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fGradientSize_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_fGradientSize_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f76478);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fGradientSize_SetterFunction", true)))
+        fn_7100f3d3d8(fn, "_fGradientSize_SetterFunction");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fGradientSize", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field3->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field3->attrs.Add<f32>(fn_7100091080(), 0.0f);
+}
+
+void fn_7100f3eec4(CClass* cls) {
+    fn_710009dd6c(cls)->Add<CStrId>(fn_710008fa30(), CStrId("sID", true));
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sID_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_sID_GetterFunction", true);
+        fn->return_type = fn_7100009658();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f783f0);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sID_SetterFunction", true)))
+        fn_7100f41440(fn, "_sID_SetterFunction");
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sID", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field0->attrs.Add<bool>(fn_7100090a20(), false);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_tFog_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_tFog_GetterFunction", true);
+        fn->return_type = fn_7100f1abd8();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f784f0);
+    }
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("tFog", true), fn_7100f1abd8(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field1->attrs.Add<const char*>(fn_7100091c30(), "Fog");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_tVerticalFog_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_tVerticalFog_GetterFunction", true);
+        fn->return_type = fn_7100f30d0c();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f78538);
+    }
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("tVerticalFog", true), fn_7100f30d0c(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_tFogTransitions_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_tFogTransitions_GetterFunction", true);
+        fn->return_type = fn_7100f1caf8();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f78584);
+    }
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("tFogTransitions", true), fn_7100f1caf8(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_tAmbient_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_tAmbient_GetterFunction", true);
+        fn->return_type = fn_7100f1d594();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f785d0);
+    }
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("tAmbient", true), fn_7100f1d594(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_tAmbientTransitions_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_tAmbientTransitions_GetterFunction", true);
+        fn->return_type = fn_7100f1ed4c();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f7861c);
+    }
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("tAmbientTransitions", true), fn_7100f1ed4c(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_tDepthTint_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_tDepthTint_GetterFunction", true);
+        fn->return_type = fn_7100f20eec();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f78668);
+    }
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("tDepthTint", true), fn_7100f20eec(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_tDepthTintTransitions_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_tDepthTintTransitions_GetterFunction", true);
+        fn->return_type = fn_7100f226a4();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f786b4);
+    }
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("tDepthTintTransitions", true), fn_7100f226a4(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_tMaterialTint_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_tMaterialTint_GetterFunction", true);
+        fn->return_type = fn_7100f23870();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f78700);
+    }
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("tMaterialTint", true), fn_7100f23870(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_tMaterialTintTransitions_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_tMaterialTintTransitions_GetterFunction", true);
+        fn->return_type = fn_7100f25378();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f7874c);
+    }
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("tMaterialTintTransitions", true), fn_7100f25378(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_tPlayerLight_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_tPlayerLight_GetterFunction", true);
+        fn->return_type = fn_7100f26c4c();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f78798);
+    }
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("tPlayerLight", true), fn_7100f26c4c(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_tPlayerLightTransitions_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_tPlayerLightTransitions_GetterFunction", true);
+        fn->return_type = fn_7100f28754();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f787e4);
+    }
+    UnkReflField* field11 = fn_7100096524(cls, CStrId("tPlayerLightTransitions", true), fn_7100f28754(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_tHemisphericalLight_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_tHemisphericalLight_GetterFunction", true);
+        fn->return_type = fn_7100f29924();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f78830);
+    }
+    UnkReflField* field12 = fn_7100096524(cls, CStrId("tHemisphericalLight", true), fn_7100f29924(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_tHemisphericalLightTransitions_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_tHemisphericalLightTransitions_GetterFunction", true);
+        fn->return_type = fn_7100f2b42c();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f7887c);
+    }
+    UnkReflField* field13 = fn_7100096524(cls, CStrId("tHemisphericalLightTransitions", true), fn_7100f2b42c(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_tBloom_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_tBloom_GetterFunction", true);
+        fn->return_type = fn_7100f2bee0();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f788c8);
+    }
+    UnkReflField* field14 = fn_7100096524(cls, CStrId("tBloom", true), fn_7100f2bee0(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_tBloomTransitions_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_tBloomTransitions_GetterFunction", true);
+        fn->return_type = fn_7100f2d698();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f78914);
+    }
+    UnkReflField* field15 = fn_7100096524(cls, CStrId("tBloomTransitions", true), fn_7100f2d698(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_tVerticalFogTransitions_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_tVerticalFogTransitions_GetterFunction", true);
+        fn->return_type = fn_7100f332cc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f78960);
+    }
+    UnkReflField* field16 = fn_7100096524(cls, CStrId("tVerticalFogTransitions", true), fn_7100f332cc(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_tCubeMap_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_tCubeMap_GetterFunction", true);
+        fn->return_type = fn_7100f341c8();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f789ac);
+    }
+    UnkReflField* field17 = fn_7100096524(cls, CStrId("tCubeMap", true), fn_7100f341c8(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_tCubeMapTransitions_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_tCubeMapTransitions_GetterFunction", true);
+        fn->return_type = fn_7100f35980();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f789f8);
+    }
+    UnkReflField* field18 = fn_7100096524(cls, CStrId("tCubeMapTransitions", true), fn_7100f35980(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_tSSAO_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_tSSAO_GetterFunction", true);
+        fn->return_type = fn_7100f36e74();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f78a44);
+    }
+    UnkReflField* field19 = fn_7100096524(cls, CStrId("tSSAO", true), fn_7100f36e74(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_tSSAOTransitions_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_tSSAOTransitions_GetterFunction", true);
+        fn->return_type = fn_7100f3862c();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f78a90);
+    }
+    UnkReflField* field20 = fn_7100096524(cls, CStrId("tSSAOTransitions", true), fn_7100f3862c(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_tToneMapping_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_tToneMapping_GetterFunction", true);
+        fn->return_type = fn_7100f3ab40();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f78adc);
+    }
+    UnkReflField* field21 = fn_7100096524(cls, CStrId("tToneMapping", true), fn_7100f3ab40(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_tToneMappingTransitions_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_tToneMappingTransitions_GetterFunction", true);
+        fn->return_type = fn_7100f3c2f8();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f78b28);
+    }
+    UnkReflField* field22 = fn_7100096524(cls, CStrId("tToneMappingTransitions", true), fn_7100f3c2f8(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_tIBLAttenuation_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_tIBLAttenuation_GetterFunction", true);
+        fn->return_type = fn_7100f3d554();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f78b74);
+    }
+    UnkReflField* field23 = fn_7100096524(cls, CStrId("tIBLAttenuation", true), fn_7100f3d554(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_tIBLAttenuationTransitions_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_tIBLAttenuationTransitions_GetterFunction", true);
+        fn->return_type = fn_7100f3ed0c();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f78bc0);
+    }
+    UnkReflField* field24 = fn_7100096524(cls, CStrId("tIBLAttenuationTransitions", true), fn_7100f3ed0c(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+}
+
+void fn_7100f4192c(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_key_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_key_GetterFunction", true);
+        fn->return_type = fn_7100009658();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f78ffc);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, g_unk_7101d5a450, fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_element_GetterFunction", true);
+        fn->return_type = &g_unk_71729e0568;
+        fn->field_0xb2 = 0x1;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f7904c);
+    }
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, &g_unk_71729e0568, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+}
+
+void fn_7100f41f10(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_key_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_key_GetterFunction", true);
+        fn->return_type = fn_7100009658();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f791b8);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, g_unk_7101d5a450, fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_element_GetterFunction", true);
+        fn->return_type = &g_unk_71729e0568;
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f79208);
+    }
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, &g_unk_71729e0568, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+}
+
+void fn_7100f7deac(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sPreset", true), fn_7100009658(), 0x8, -1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fFadeIn", true), fn_710000abbc(), 0x10, -1, -1);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fFadeOut", true), fn_710000abbc(), 0x14, -1, -1);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("eFadeType", true), &g_unk_71729f1018, 0x18, -1, -1);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("ePlayFlag", true), &g_unk_71729f0a98, 0x1c, -1, -1);
+}
+
+void fn_7100f7e5fc(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_key_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_key_GetterFunction", true);
+        fn->return_type = fn_7100005178();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f84098);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, g_unk_7101d5a450, fn_7100005178(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_element_GetterFunction", true);
+        fn->return_type = &g_unk_71729e8888;
+        fn->field_0xb2 = 0x1;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f840e8);
+    }
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, &g_unk_71729e8888, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+}
+
+void fn_7100f7ebe0(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_key_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_key_GetterFunction", true);
+        fn->return_type = fn_7100005178();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f842d8);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, g_unk_7101d5a450, fn_7100005178(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_element_GetterFunction", true);
+        fn->return_type = &g_unk_71729e8888;
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f84328);
+    }
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, &g_unk_71729e8888, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+}
+
+void fn_7100f7f570(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sID_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_sID_GetterFunction", true);
+        fn->return_type = fn_7100009658();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f86510);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sID_SetterFunction", true)))
+        fn_7100f7fd38(fn, "_m_sID_SetterFunction");
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sID", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_tPreset_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_tPreset_GetterFunction", true);
+        fn->return_type = &g_unk_71729f22c0;
+        fn->field_0xb2 = 0x1;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f86650);
+    }
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("tPreset", true), &g_unk_71729f22c0, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_ePlayFlag_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_ePlayFlag_GetterFunction", true);
+        fn->return_type = &g_unk_71729f0a98;
+        fn->field_0xb2 = 0x1;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f86678);
+    }
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("ePlayFlag", true), &g_unk_71729f0a98, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_tMusicTransitions_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_tMusicTransitions_GetterFunction", true);
+        fn->return_type = &g_unk_71729e8c48;
+        fn->field_0xb2 = 0x1;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f866a0);
+    }
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("tMusicTransitions", true), &g_unk_71729e8c48, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+}
+
+void fn_7100f80224(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_key_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_key_GetterFunction", true);
+        fn->return_type = fn_7100009658();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f86bcc);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, g_unk_7101d5a450, fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_element_GetterFunction", true);
+        fn->return_type = &g_unk_71729e8dc0;
+        fn->field_0xb2 = 0x1;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f86c1c);
+    }
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, &g_unk_71729e8dc0, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+}
+
+void fn_7100f80808(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_key_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_key_GetterFunction", true);
+        fn->return_type = fn_7100009658();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f86e90);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, g_unk_7101d5a450, fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_element_GetterFunction", true);
+        fn->return_type = &g_unk_71729e8dc0;
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f86ee0);
+    }
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, &g_unk_71729e8dc0, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+}
+
+void fn_7100f87e50(CClass* cls) {
+    fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x40200u);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_dicPresets_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_dicPresets_GetterFunction", true);
+        fn->return_type = &g_unk_71729e9180;
+        fn->field_0xb2 = 0x1;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f8a428);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("dicPresets", true), &g_unk_71729e9180, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field0->attrs.Add<CStrId>(fn_710008fd60(), CStrId("CreateNewPreset", true));
+    field0->attrs.Add<CStrId>(fn_710008fb40(), CStrId("DeletePresetByName", true));
+    field0->attrs.Add<CStrId>(fn_71000901a0(), CStrId("sID", true));
+    field0->attrs.Add<bool>(fn_7100092b10(), true);
+    field0->attrs_0x70.Add<const char*>(fn_710008ff80(), "AfterPresetDeserialization");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("CreateNewPreset", true))) {
+        fn_7100f88d84(fn, "CreateNewPreset");
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Create Preset");
+        fn_710009ae5c(fn, fn->params.count);
+        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("sID", true));
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("DeletePresetByName", true))) {
+        fn_7100f88f04(fn, "DeletePresetByName");
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Delete Preset");
+        fn_710009ae5c(fn, fn->params.count);
+        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("sID", true));
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AfterPresetDeserialization", true))) {
+        fn->name = base::global::UnkStrId("AfterPresetDeserialization", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f8a77c);
+        fn_7100f8a5e0(fn);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_dicBossPresets_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_dicBossPresets_GetterFunction", true);
+        fn->return_type = &g_unk_71729f3b60;
+        fn->field_0xb2 = 0x1;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f8a87c);
+    }
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("dicBossPresets", true), &g_unk_71729f3b60, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field1->attrs.Add<CStrId>(fn_710008fd60(), CStrId("CreateNewBossMusicPreset", true));
+    field1->attrs.Add<CStrId>(fn_710008fb40(), CStrId("DeleteBossMusicPresetByName", true));
+    field1->attrs.Add<CStrId>(fn_71000901a0(), CStrId("sBoss", true));
+    field1->attrs.Add<bool>(fn_7100092b10(), true);
+    field1->attrs_0x70.Add<const char*>(fn_710008ff80(), "AfterBossMusicPresetDeserialization");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("CreateNewBossMusicPreset", true))) {
+        fn_7100f8907c(fn, "CreateNewBossMusicPreset");
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Create Boss Preset");
+        fn_710009ae5c(fn, fn->params.count);
+        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("sBoss", true));
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("DeleteBossMusicPresetByName", true))) {
+        fn_7100f891fc(fn, "DeleteBossMusicPresetByName");
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Delete Boss Preset");
+        fn_710009ae5c(fn, fn->params.count);
+        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("sBoss", true));
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AfterBossMusicPresetDeserialization", true))) {
+        fn->name = base::global::UnkStrId("AfterBossMusicPresetDeserialization", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f8abd8);
+        fn_7100f8aa3c(fn);
+    }
+}
+
+void fn_7100f8af0c(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sToPreset", true), fn_7100009658(), 0x0, -1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fVolume", true), fn_710000abbc(), 0x14, -1, -1);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fFadeIn", true), fn_710000abbc(), 0x8, -1, -1);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fFadeOut", true), fn_710000abbc(), 0xc, -1, -1);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fFadeInDelay", true), fn_710000abbc(), 0x10, -1, -1);
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("eReverb", true), &g_unk_7108b6cc88, 0x18, -1, -1);
+}
+
+void fn_7100f8b514(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sID_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_sID_GetterFunction", true);
+        fn->return_type = fn_7100009658();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f91014);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sID_SetterFunction", true)))
+        fn_7100f8c274(fn, "_sID_SetterFunction");
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sID", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sSoundID_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_sSoundID_GetterFunction", true);
+        fn->return_type = fn_710000ad9c();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f91154);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sSoundID_SetterFunction", true)))
+        fn_7100f8c3f0(fn, "_sSoundID_SetterFunction");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("sSoundID", true), fn_710000ad9c(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_tSound_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_tSound_GetterFunction", true);
+        fn->return_type = &g_unk_71729ea500;
+        fn->field_0xb2 = 0x1;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f91298);
+    }
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("tSound", true), &g_unk_71729ea500, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_dctTransitions_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_dctTransitions_GetterFunction", true);
+        fn->return_type = &g_unk_71729eaa00;
+        fn->field_0xb2 = 0x1;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f912c0);
+    }
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("dctTransitions", true), &g_unk_71729eaa00, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field3->attrs.Add<CStrId>(fn_710008fd60(), CStrId("CreateTransition", true));
+    field3->attrs.Add<CStrId>(fn_710008fb40(), CStrId("DeleteTransitionByName", true));
+    field3->attrs.Add<CStrId>(fn_71000901a0(), CStrId("sToPreset", true));
+    field3->attrs_0x70.Add<const char*>(fn_710008ff80(), "AfterTransitionDeserialization");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("CreateTransition", true))) {
+        fn_7100f8c56c(fn, "CreateTransition");
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Create Transition");
+        fn_710009ae5c(fn, fn->params.count);
+        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("sToPreset", true));
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("DeleteTransitionByName", true))) {
+        fn_7100f8c6ec(fn, "DeleteTransitionByName");
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Delete Transition");
+        fn_710009ae5c(fn, fn->params.count);
+        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("sToPreset", true));
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AfterTransitionDeserialization", true))) {
+        fn->name = base::global::UnkStrId("AfterTransitionDeserialization", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f915d4);
+        fn_7100f91438(fn);
+    }
+}
+
+void fn_7100f8caf8(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_key_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_key_GetterFunction", true);
+        fn->return_type = fn_7100009658();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f91bcc);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, g_unk_7101d5a450, fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_element_GetterFunction", true);
+        fn->return_type = &g_unk_71729ea500;
+        fn->field_0xb2 = 0x1;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f91c1c);
+    }
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, &g_unk_71729ea500, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+}
+
+void fn_7100f8d0dc(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_key_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_key_GetterFunction", true);
+        fn->return_type = fn_7100009658();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f91e2c);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, g_unk_7101d5a450, fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_element_GetterFunction", true);
+        fn->return_type = &g_unk_71729ea500;
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f91e7c);
+    }
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, &g_unk_71729ea500, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+}
+
+void fn_7100f92a44(CClass* cls) {
+    fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x10202u);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_dicPresets_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_dicPresets_GetterFunction", true);
+        fn->return_type = &g_unk_71729eb8e0;
+        fn->field_0xb2 = 0x1;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f96498);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("dicPresets", true), &g_unk_71729eb8e0, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field0->attrs.Add<CStrId>(fn_710008fd60(), CStrId("CreateNewPreset", true));
+    field0->attrs.Add<CStrId>(fn_710008fb40(), CStrId("DeletePresetByName", true));
+    field0->attrs.Add<CStrId>(fn_71000901a0(), CStrId("sID", true));
+    field0->attrs.Add<bool>(fn_7100092b10(), true);
+    field0->attrs_0x70.Add<const char*>(fn_710008ff80(), "AfterPresetDeserialization");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("CreateNewPreset", true))) {
+        fn_7100f932d0(fn, "CreateNewPreset");
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Create Preset");
+        fn_710009ae5c(fn, fn->params.count);
+        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("sID", true));
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("DeletePresetByName", true))) {
+        fn_7100f93450(fn, "DeletePresetByName");
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Delete Preset");
+        fn_710009ae5c(fn, fn->params.count);
+        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("sID", true));
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AfterPresetDeserialization", true))) {
+        fn->name = base::global::UnkStrId("AfterPresetDeserialization", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f967a4);
+        fn_7100f96608(fn);
+    }
+}
+
+void fn_7100f9385c(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_key_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_key_GetterFunction", true);
+        fn->return_type = fn_7100009658();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f96ba8);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, g_unk_7101d5a450, fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_element_GetterFunction", true);
+        fn->return_type = &g_unk_71729ea640;
+        fn->field_0xb2 = 0x1;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f96bf8);
+    }
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, &g_unk_71729ea640, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+}
+
+void fn_7100f93e40(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_key_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_key_GetterFunction", true);
+        fn->return_type = fn_7100009658();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f96d64);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, g_unk_7101d5a450, fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_element_GetterFunction", true);
+        fn->return_type = &g_unk_71729ea640;
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f96db4);
+    }
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, &g_unk_71729ea640, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+}
+
+void fn_7100f9b32c(CClass* cls) {
+    fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x40202u);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_dicPresets_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_dicPresets_GetterFunction", true);
+        fn->return_type = &g_unk_71729e0928;
+        fn->field_0xb2 = 0x1;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f9c91c);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("dicPresets", true), &g_unk_71729e0928, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field0->attrs.Add<CStrId>(fn_710008fd60(), CStrId("CreateNewPreset", true));
+    field0->attrs.Add<CStrId>(fn_710008fb40(), CStrId("DeletePresetByName", true));
+    field0->attrs.Add<CStrId>(fn_71000901a0(), CStrId("sID", true));
+    field0->attrs.Add<bool>(fn_7100092b10(), true);
+    field0->attrs_0x70.Add<const char*>(fn_710008ff80(), "AfterPresetDeserialization");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("CreateNewPreset", true))) {
+        fn_7100f9bbb8(fn, "CreateNewPreset");
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Create Preset");
+        fn_710009ae5c(fn, fn->params.count);
+        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("sID", true));
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("DeletePresetByName", true))) {
+        fn_7100f9bd38(fn, "DeletePresetByName");
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Delete Preset");
+        fn_710009ae5c(fn, fn->params.count);
+        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("sID", true));
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AfterPresetDeserialization", true))) {
+        fn->name = base::global::UnkStrId("AfterPresetDeserialization", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f9cc28);
+        fn_7100f9ca8c(fn);
+    }
+}
+
+void fn_7100f9cde8(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sId_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_sId_GetterFunction", true);
+        fn->return_type = fn_7100009658();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100fa006c);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sId_SetterFunction", true)))
+        fn_7100f9d440(fn, "_sId_SetterFunction");
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sId", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field0->attrs.Add<bool>(fn_7100090a20(), false);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("vsCharClassesIds", true), &g_unk_7101d5c998, 0x8, -1, -1);
+    field1->attrs.Add<const char*>(fn_7100007e80(), "Charclasses");
+    field1->attrs_0x70.Add<CStrId>(fn_7100f9e870(), CStrId("actordef", true));
+    field1->attrs_0x70.Add<CStrId>(fn_7100f9e980(), CStrId("actors", true));
+    field1->attrs_0x70.Add<CStrId>(fn_7100f9ea90(), CStrId("characters", true));
+    field1->attrs_0x70.Add<CStrId>(fn_7100ed8b60(), CStrId("morphball|samus|samusrewards|samusshipcredits|samuszerolow|samuszerorewards", true));
+    field1->attrs_0x70.Add<bool>(fn_7100f9eba0(), true);
+}
 
 void fn_7100f9d978(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_key_GetterFunction", true))) {
@@ -233,6 +1605,112 @@ void fn_7100f9df5c(CClass* cls) {
     }
     UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7100f9d5bc(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+}
+
+void fn_7100fa1254(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sId_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_sId_GetterFunction", true);
+        fn->return_type = fn_7100009658();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100fa8114);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sId_SetterFunction", true)))
+        fn_7100fa2824(fn, "_m_sId_SetterFunction");
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sId", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sSetupId_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_sSetupId_GetterFunction", true);
+        fn->return_type = fn_7100009658();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100fa8214);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sSetupId_SetterFunction", true)))
+        fn_7100fa29a0(fn, "_m_sSetupId_SetterFunction");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("sSetupId", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sPackSetId_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_sPackSetId_GetterFunction", true);
+        fn->return_type = fn_710000ad9c();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100fa8314);
+    }
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("sPackSetId", true), fn_710000ad9c(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bDisableSubArea_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_bDisableSubArea_GetterFunction", true);
+        fn->return_type = fn_710000d228();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100fa8358);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bDisableSubArea_SetterFunction", true)))
+        fn_7100fa2b1c(fn, "_m_bDisableSubArea_SetterFunction");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("bDisableSubArea", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fCameraZDistance_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_fCameraZDistance_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100fa83e8);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fCameraZDistance_SetterFunction", true)))
+        fn_7100fa2c98(fn, "_m_fCameraZDistance_SetterFunction");
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fCameraZDistance", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bIgnoreMetroidCameraOffsets_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_bIgnoreMetroidCameraOffsets_GetterFunction", true);
+        fn->return_type = fn_710000d228();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100fa8478);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bIgnoreMetroidCameraOffsets_SetterFunction", true)))
+        fn_7100fa2e14(fn, "_m_bIgnoreMetroidCameraOffsets_SetterFunction");
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("bIgnoreMetroidCameraOffsets", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sCharclassGroupId_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_sCharclassGroupId_GetterFunction", true);
+        fn->return_type = fn_7100009658();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100fa8508);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sCharclassGroupId_SetterFunction", true)))
+        fn_7100fa2f90(fn, "_m_sCharclassGroupId_SetterFunction");
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("sCharclassGroupId", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_asItemsIds_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_asItemsIds_GetterFunction", true);
+        fn->return_type = &g_unk_71729ee670;
+        fn->field_0xb2 = 0x1;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100fa8608);
+    }
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("asItemsIds", true), &g_unk_71729ee670, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_vsCameraCollisionsIds_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_vsCameraCollisionsIds_GetterFunction", true);
+        fn->return_type = &g_unk_7101d5c998;
+        fn->field_0xb2 = 0x1;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100fa8630);
+    }
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("vsCameraCollisionsIds", true), &g_unk_7101d5c998, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field8->attrs.Add<bool>(fn_7100091f60(), true);
+    field8->attrs.Add<bool>(fn_7100092070(), true);
+    field8->attrs_0x70.Add<CStrId>(fn_710008ff80(), CStrId("AfterCollisionCameraDeserialization", true));
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_vsCutscenesIds_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_vsCutscenesIds_GetterFunction", true);
+        fn->return_type = &g_unk_7101d5d188;
+        fn->field_0xb2 = 0x1;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100fa8658);
+    }
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("vsCutscenesIds", true), &g_unk_7101d5d188, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field9->attrs.Add<const char*>(fn_7100007e80(), "CutScenes");
+    field9->attrs_0x70.Add<CStrId>(fn_7100f9e870(), CStrId("cut_take", true));
+    field9->attrs_0x70.Add<CStrId>(fn_7100f9e980(), CStrId("", true));
+    field9->attrs_0x70.Add<CStrId>(fn_7100f9ea90(), CStrId("", true));
+    field9->attrs_0x70.Add<CStrId>(fn_7100ed8b60(), CStrId("CutScenes (*.bmscu)", true));
+    field9->attrs_0x70.Add<bool>(fn_7100f9eba0(), false);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AfterCollisionCameraDeserialization", true)))
+        fn_7100fa310c(fn, "AfterCollisionCameraDeserialization");
 }
 
 void fn_7100fa3720(CClass* cls) {
@@ -319,6 +1797,47 @@ void fn_7100faee40(CClass* cls) {
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
 }
 
+void fn_7100fb2988(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sId_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_sId_GetterFunction", true);
+        fn->return_type = fn_7100009658();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100fb6524);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sId_SetterFunction", true)))
+        fn_7100fb33e8(fn, "_sId_SetterFunction");
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sId", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field0->attrs.Add<bool>(fn_7100090a20(), false);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vSubareaConfigs_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_vSubareaConfigs_GetterFunction", true);
+        fn->return_type = &g_unk_71729ed6f8;
+        fn->field_0xb2 = 0x1;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100fb6624);
+    }
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("vSubareaConfigs", true), &g_unk_71729ed6f8, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field1->attrs.Add<CStrId>(fn_710008fd60(), CStrId("CreateElement", true));
+    field1->attrs.Add<CStrId>(fn_710008fb40(), CStrId("DeleteElement", true));
+    field1->attrs_0x70.Add<CStrId>(fn_710008ff80(), CStrId("AfterSubareaInfoDeserialization", true));
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("CreateElement", true))) {
+        fn_7100fb3564(fn, "CreateElement");
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Create Subarea");
+        fn_710009ae5c(fn, fn->params.count);
+        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("uIdx", true));
+        fn->ParamAttrs(0)->Add<bool>(fn_71000903c0(), true);
+        fn->ParamAttrs(1)->Add<CStrId>(fn_710008f920(), CStrId("sId", true));
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("DeleteElement", true))) {
+        fn_7100fb3618(fn, "DeleteElement");
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Delete Subarea");
+        fn_710009ae5c(fn, fn->params.count);
+        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("uIdx", true));
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AfterSubareaInfoDeserialization", true)))
+        fn_7100fb3790(fn, "AfterSubareaInfoDeserialization");
+}
+
 void fn_7100fb3cc8(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_key_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_key_GetterFunction", true);
@@ -359,6 +1878,76 @@ void fn_7100fb42ac(CClass* cls) {
     }
     UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, fn_7100fb390c(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+}
+
+void fn_7100fd1c7c(CClass* cls) {
+    fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x40200u);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_dicGlobalMusicPresets_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_dicGlobalMusicPresets_GetterFunction", true);
+        fn->return_type = &g_unk_71729e9180;
+        fn->field_0xb2 = 0x1;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100fdd6b0);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("dicGlobalMusicPresets", true), &g_unk_71729e9180, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field0->attrs.Add<CStrId>(fn_710008fd60(), CStrId("CreateNewPreset", true));
+    field0->attrs.Add<CStrId>(fn_710008fb40(), CStrId("DeletePresetByName", true));
+    field0->attrs.Add<CStrId>(fn_71000901a0(), CStrId("sID", true));
+    field0->attrs.Add<bool>(fn_7100092b10(), true);
+    field0->attrs_0x70.Add<const char*>(fn_710008ff80(), "AfterPresetDeserialization");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("CreateNewPreset", true))) {
+        fn_7100fd2b98(fn, "CreateNewPreset");
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Create Preset");
+        fn_710009ae5c(fn, fn->params.count);
+        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("sID", true));
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("DeletePresetByName", true))) {
+        fn_7100fd2d18(fn, "DeletePresetByName");
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Delete Preset");
+        fn_710009ae5c(fn, fn->params.count);
+        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("sID", true));
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AfterPresetDeserialization", true))) {
+        fn->name = base::global::UnkStrId("AfterPresetDeserialization", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100fdd870);
+        fn_7100f8a5e0(fn);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_dicGlobalBossMusicPresets_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_dicGlobalBossMusicPresets_GetterFunction", true);
+        fn->return_type = &g_unk_71729f3b60;
+        fn->field_0xb2 = 0x1;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100fdd970);
+    }
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("dicGlobalBossMusicPresets", true), &g_unk_71729f3b60, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field1->attrs.Add<CStrId>(fn_710008fd60(), CStrId("CreateNewBossMusicPreset", true));
+    field1->attrs.Add<CStrId>(fn_710008fb40(), CStrId("DeleteBossMusicPresetByName", true));
+    field1->attrs.Add<CStrId>(fn_71000901a0(), CStrId("sBoss", true));
+    field1->attrs.Add<bool>(fn_7100092b10(), true);
+    field1->attrs_0x70.Add<const char*>(fn_710008ff80(), "AfterBossMusicPresetDeserialization");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("CreateNewBossMusicPreset", true))) {
+        fn_7100fd2e90(fn, "CreateNewBossMusicPreset");
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Create Boss Preset");
+        fn_710009ae5c(fn, fn->params.count);
+        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("sBoss", true));
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("DeleteBossMusicPresetByName", true))) {
+        fn_7100fd3010(fn, "DeleteBossMusicPresetByName");
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Delete Boss Preset");
+        fn_710009ae5c(fn, fn->params.count);
+        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("sBoss", true));
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AfterBossMusicPresetDeserialization", true))) {
+        fn->name = base::global::UnkStrId("AfterBossMusicPresetDeserialization", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100fddb30);
+        fn_7100f8aa3c(fn);
+    }
 }
 
 void fn_7100fe119c(CClass* cls) {
@@ -662,6 +2251,42 @@ void fn_7100fe8ff0(CClass* cls) {
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
 }
 
+void fn_7100fe9960(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sSpawnGroup", true), fn_7100009658(), 0x0, -1, -1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_dicSubStatePresets_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_dicSubStatePresets_GetterFunction", true);
+        fn->return_type = &g_unk_71729f30f0;
+        fn->field_0xb2 = 0x1;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7101003b58);
+    }
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("dicSubStatePresets", true), &g_unk_71729f30f0, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field1->attrs.Add<CStrId>(fn_710008fd60(), CStrId("CreateConfig", true));
+    field1->attrs.Add<CStrId>(fn_710008fb40(), CStrId("DeleteConfigByName", true));
+    field1->attrs.Add<CStrId>(fn_71000901a0(), CStrId("eState", true));
+    field1->attrs_0x70.Add<const char*>(fn_710008ff80(), "AfterPresetDeserialization");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("CreateConfig", true))) {
+        fn_7100fea218(fn, "CreateConfig");
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Create SubState Preset");
+        fn_710009ae5c(fn, fn->params.count);
+        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("eState", true));
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("DeleteConfigByName", true))) {
+        fn_7100fea398(fn, "DeleteConfigByName");
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Delete SubState Preset");
+        fn_710009ae5c(fn, fn->params.count);
+        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("eState", true));
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AfterPresetDeserialization", true))) {
+        fn->name = base::global::UnkStrId("AfterPresetDeserialization", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7101003e6c);
+        fn_7101003cd0(fn);
+    }
+}
+
 void fn_7100fea880(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_key_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_key_GetterFunction", true);
@@ -702,6 +2327,42 @@ void fn_7100feae64(CClass* cls) {
     }
     UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, &g_unk_71729f3268, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+}
+
+void fn_7100feb7d4(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sBoss", true), fn_7100009658(), 0x0, -1, -1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_dicSpawnGroupConfigs_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_dicSpawnGroupConfigs_GetterFunction", true);
+        fn->return_type = &g_unk_71729f3628;
+        fn->field_0xb2 = 0x1;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7101004e40);
+    }
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("dicSpawnGroupConfigs", true), &g_unk_71729f3628, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field1->attrs.Add<CStrId>(fn_710008fd60(), CStrId("CreateConfig", true));
+    field1->attrs.Add<CStrId>(fn_710008fb40(), CStrId("DeleteConfigByName", true));
+    field1->attrs.Add<CStrId>(fn_71000901a0(), CStrId("sSpawnGroup", true));
+    field1->attrs_0x70.Add<const char*>(fn_710008ff80(), "AfterPresetDeserialization");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("CreateConfig", true))) {
+        fn_7100fec08c(fn, "CreateConfig");
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Create SpawnGroup Preset");
+        fn_710009ae5c(fn, fn->params.count);
+        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("sSpawnGroup", true));
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("DeleteConfigByName", true))) {
+        fn_7100fec20c(fn, "DeleteConfigByName");
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Delete SpawnGroup Preset");
+        fn_710009ae5c(fn, fn->params.count);
+        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("sSpawnGroup", true));
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AfterPresetDeserialization", true))) {
+        fn->name = base::global::UnkStrId("AfterPresetDeserialization", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7101005154);
+        fn_7101004fb8(fn);
+    }
 }
 
 void fn_7100fec6f4(CClass* cls) {
@@ -835,6 +2496,30 @@ void fn_71010224b4(CClass* cls) {
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
 }
 
+void fn_710102cba4(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vFiles_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_vFiles_GetterFunction", true);
+        fn->return_type = &g_unk_7101d5d188;
+        fn->field_0xb2 = 0x1;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_710103a5d4);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("vFiles", true), &g_unk_7101d5d188, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Sources");
+    field0->attrs.Add<const char*>(fn_710008ff80(), "AfterDeserialization");
+    field0->attrs_0x70.Add<const char*>(fn_710008ff80(), "AfterFileDeserialization");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AfterDeserialization", true)))
+        fn_710102d0d0(fn, "AfterDeserialization");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AfterFileDeserialization", true))) {
+        fn->name = base::global::UnkStrId("AfterFileDeserialization", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_710103a7f8);
+        fn_710103a65c(fn);
+    }
+}
+
 void fn_710102d3fc(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fVolume_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fVolume_GetterFunction", true);
@@ -904,6 +2589,43 @@ void fn_7101035d10(CClass* cls) {
     }
     UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, &g_unk_71729f9fe8, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+}
+
+void fn_710103d05c(CClass* cls) {
+    fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x20203u);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_dicPresets_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_dicPresets_GetterFunction", true);
+        fn->return_type = &g_unk_71729fb848;
+        fn->field_0xb2 = 0x1;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7101041844);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("dicPresets", true), &g_unk_71729fb848, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field0->attrs.Add<CStrId>(fn_710008fd60(), CStrId("CreateNewPreset", true));
+    field0->attrs.Add<CStrId>(fn_710008fb40(), CStrId("DeletePresetByName", true));
+    field0->attrs.Add<CStrId>(fn_71000901a0(), CStrId("sUniqueId", true));
+    field0->attrs.Add<bool>(fn_7100092b10(), true);
+    field0->attrs_0x70.Add<const char*>(fn_710008ff80(), "AfterPresetDeserialization");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("CreateNewPreset", true))) {
+        fn_710103d8e8(fn, "CreateNewPreset");
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Create Preset");
+        fn_710009ae5c(fn, fn->params.count);
+        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("sUniqueId", true));
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("DeletePresetByName", true))) {
+        fn_710103da64(fn, "DeletePresetByName");
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Delete Preset");
+        fn_710009ae5c(fn, fn->params.count);
+        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("sUniqueId", true));
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AfterPresetDeserialization", true))) {
+        fn->name = base::global::UnkStrId("AfterPresetDeserialization", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7101041b04);
+        fn_7101041968(fn);
+    }
 }
 
 void fn_710103de70(CClass* cls) {
@@ -1368,6 +3090,19 @@ void fn_710119bc0c(CClass* cls) {
     fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x1000au);
 }
 
+void fn_71011b0358(CClass* cls) {
+    fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x10202u);
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("mapSpriteSheets", true), &g_unk_71727673c0, 0x0, -1, -1);
+    field0->attrs.Add<CStrId>(fn_710008fd60(), CStrId("AddNewSpriteSheet", true));
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AddNewSpriteSheet", true))) {
+        fn_71011b07a0(fn, "AddNewSpriteSheet");
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Create SpriteSheet With ID");
+        fn_710009ae5c(fn, fn->params.count);
+        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("sKey", true));
+        fn->ParamAttrs(0)->Add<bool>(fn_71000903c0(), true);
+    }
+}
+
 void fn_71011b0918(CClass* cls) {
     fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x10202u);
     UnkReflField* field0 = fn_7100096524(cls, CStrId("vecSkins", true), &g_unk_71727664f0, 0x0, -1, -1);
@@ -1378,6 +3113,33 @@ void fn_71011b0918(CClass* cls) {
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71011bb528);
+    }
+}
+
+void fn_71011b0ce4(CClass* cls) {
+    fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x10202u);
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("mapShapes", true), &g_unk_7108b6e5e0, 0x0, -1, -1);
+    field0->attrs.Add<CStrId>(fn_710008fd60(), CStrId("AddNewShape", true));
+    field0->attrs.Add<CStrId>(fn_710008fb40(), CStrId("DeleteShape", true));
+    field0->attrs_0x70.Add<CStrId>(fn_710008ff80(), CStrId("AfterShapeDeserialization", true));
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AddNewShape", true))) {
+        fn_71011b14b4(fn, "AddNewShape");
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Create Shape With ID");
+        fn_710009ae5c(fn, fn->params.count);
+        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("sKey", true));
+        fn->ParamAttrs(0)->Add<bool>(fn_71000903c0(), true);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("DeleteShape", true))) {
+        fn_71011b162c(fn, "DeleteShape");
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Delete Shape With ID");
+        fn_710009ae5c(fn, fn->params.count);
+        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("sKey", true));
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AfterShapeDeserialization", true))) {
+        fn_71011b17a8(fn, "AfterShapeDeserialization");
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Initialize Shape");
+        fn_710009ae5c(fn, fn->params.count);
+        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("oPoly", true));
     }
 }
 

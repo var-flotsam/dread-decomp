@@ -151,6 +151,50 @@ DREAD_REFL_CLASS_GETTER(710068e010, 710068f1fc, "CCharClassScorpiusAIComponent::
 // CCharClassScorpiusAIComponent
 DREAD_REFL_TAG(7100690338);
 void fn_710068f638(base::reflection::CClass*) {}
+const base::reflection::CClass* fn_710068532c();
+const base::reflection::CClass* fn_71006832dc();
+const base::reflection::CClass* fn_7100681f9c();
+const base::reflection::CClass* fn_710067e2b4();
+const base::reflection::CClass* fn_710068459c();
+const base::reflection::CClass* fn_7100680bbc();
+const base::reflection::CClass* fn_710067fd4c();
+const base::reflection::CClass* fn_710067ef9c();
+const base::reflection::CClass* fn_71008c1b4c();
+void fn_710068f730(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("oWhiplashAttackDef", true), fn_710068532c(), 0x628, -1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("oSpikeBallPrickAttackDef", true), fn_71006832dc(), 0x720, -1, -1);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("oPoisonousSpitAttackDef", true), fn_7100681f9c(), 0x820, -1, -1);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("oDefensiveSpikeBallPrickAttackDef", true), fn_710067e2b4(), 0x918, -1, -1);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("oTailSmashAttackDef", true), fn_710068459c(), 0xa10, -1, -1);
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("oPoisonousGasAttackDef", true), fn_7100680bbc(), 0xb08, -1, -1);
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("oMovingPoisonousGasAttackDef", true), fn_710067fd4c(), 0xc10, -1, -1);
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("oDraggedBallPrickAttackDef", true), fn_710067ef9c(), 0xd18, -1, -1);
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("sHeadMovementFunction", true), fn_7100007f84(), 0x528, -1, -1);
+    field8->attrs.Add<base::global::CRntString>(fn_7100075240(), base::global::CRntString("22si"));
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("sTailMovementFunction", true), fn_7100007f84(), 0x558, -1, -1);
+    field9->attrs.Add<base::global::CRntString>(fn_7100075240(), base::global::CRntString("22si"));
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("fTailMinTimeToChange", true), fn_710000abbc(), 0x588, -1, -1);
+    field10->attrs.Add<f32>(fn_7100075240(), 3.0f);
+    UnkReflField* field11 = fn_7100096524(cls, CStrId("fTailMaxTimeToChange", true), fn_710000abbc(), 0x58c, -1, -1);
+    field11->attrs.Add<f32>(fn_7100075240(), 5.0f);
+    UnkReflField* field12 = fn_7100096524(cls, CStrId("fRegenTailMaxAnimSpeed", true), fn_710000abbc(), 0x590, -1, -1);
+    field12->attrs.Add<f32>(fn_7100075240(), 5.0f);
+    UnkReflField* field13 = fn_7100096524(cls, CStrId("sRegenTailAnimSpeedFunc", true), fn_7100009658(), 0x598, -1, -1);
+    field13->attrs.Add<base::global::CRntString>(fn_7100075240(), base::global::CRntString(""));
+    UnkReflField* field14 = fn_7100096524(cls, CStrId("fTimeRegenTailSlowMovement", true), fn_710000abbc(), 0x5a0, -1, -1);
+    field14->attrs.Add<f32>(fn_7100075240(), 1.7f);
+    UnkReflField* field15 = fn_7100096524(cls, CStrId("fTimeRegenTailFastMovement", true), fn_710000abbc(), 0x5a4, -1, -1);
+    field15->attrs.Add<f32>(fn_7100075240(), 0.8f);
+    UnkReflField* field16 = fn_7100096524(cls, CStrId("fTimeRegenTailMovementTransitionFactor", true), fn_710000abbc(), 0x5a8, -1, -1);
+    field16->attrs.Add<f32>(fn_7100075240(), 2.0f);
+    UnkReflField* field17 = fn_7100096524(cls, CStrId("fTailHeightInterpolationSpeed", true), fn_710000abbc(), 0x5ac, -1, -1);
+    field17->attrs.Add<f32>(fn_7100075240(), 0.5f);
+    UnkReflField* field18 = fn_7100096524(cls, CStrId("oGrabDamageSourceFactor", true), fn_71008c1b4c(), 0x5b8, -1, -1);
+    UnkReflField* field19 = fn_7100096524(cls, CStrId("fHeadMaxSpeed", true), fn_710000abbc(), 0x5b0, -1, -1);
+    field19->attrs.Add<f32>(fn_7100075240(), 1.2f);
+    UnkReflField* field20 = fn_7100096524(cls, CStrId("fHeadMinSpeed", true), fn_710000abbc(), 0x5b4, -1, -1);
+    field20->attrs.Add<f32>(fn_7100075240(), 0.8f);
+}
 bool fn_710069092c(const void*, const void*) { return false; }
 s32 fn_7100690934() { return -1; }
 const base::reflection::CType& fn_710069093c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

@@ -21,6 +21,57 @@ const base::reflection::UnkReflAttrKey& fn_7100005070();
 void fn_71011d7b2c(CClass* cls) {
     fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x10202u);
 }
+void fn_71011d8690(UnkReflFunction* fn, const char* name);
+void fn_71011d8808(UnkReflFunction* fn, const char* name);
+void fn_71011d8980(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+extern base::reflection::CType g_unk_7172a0db28;
+const base::reflection::UnkReflAttrKey& fn_710008fd60();
+const base::reflection::UnkReflAttrKey& fn_710008fb40();
+const base::reflection::UnkReflAttrKey& fn_710008ff80();
+extern base::reflection::CType g_unk_7101d5af48;
+void fn_71011dc5bc();
+void fn_71011d8af8(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+const base::reflection::UnkReflAttrKey& fn_710008f920();
+const base::reflection::UnkReflAttrKey& fn_71000903c0();
+void fn_71011d8bac(UnkReflFunction* fn, const char* name);
+void fn_71011d7c78(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AddChild", true)))
+        fn_71011d8690(fn, "AddChild");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("FindChild", true)))
+        fn_71011d8808(fn, "FindChild");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("FindDescendant", true)))
+        fn_71011d8980(fn, "FindDescendant");
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sChildToFocus", true), fn_7100007f84(), 0x190, -1, -1);
+    field0->attrs.Add<base::global::CRntString>(fn_7100075240(), base::global::CRntString("ListComposition"));
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("lstChildren", true), &g_unk_7172a0db28, 0x1c0, -1, -1);
+    field1->attrs.Add<CStrId>(fn_710008fd60(), CStrId("AddDisplayObj", true));
+    field1->attrs.Add<CStrId>(fn_710008fb40(), CStrId("DeleteDO", true));
+    field1->attrs.Add<CStrId>(fn_710008ff80(), CStrId("AfterChildrenListDeserialization", true));
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AfterChildrenListDeserialization", true))) {
+        fn->name = base::global::UnkStrId("AfterChildrenListDeserialization", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71011dc5bc);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AddDisplayObj", true))) {
+        fn_71011d8af8(fn, "AddDisplayObj");
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Create DO At Index");
+        fn_710009ae5c(fn, fn->params.count);
+        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("uIdx", true));
+        fn->ParamAttrs(0)->Add<bool>(fn_71000903c0(), true);
+        fn->ParamAttrs(1)->Add<CStrId>(fn_710008f920(), CStrId("oType", true));
+        fn->ParamAttrs(1)->Add<bool>(fn_71000903c0(), true);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("DeleteDO", true))) {
+        fn_71011d8bac(fn, "DeleteDO");
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Delete DO At Index");
+        fn_710009ae5c(fn, fn->params.count);
+        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("uIdx", true));
+    }
+}
 bool fn_71011dc380(const void*, const void*) { return false; }
 s32 fn_71011dc388() { return -1; }
 const base::reflection::CType& fn_71011dc390(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

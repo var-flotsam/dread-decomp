@@ -5,10 +5,31 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // behaviortree::CHyperDashAttackAction
 DREAD_REFL_TAG(7100449424);
 void fn_7100449060(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+extern base::global::CRntString g_unk_7101d58d10;
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+void fn_7100449158(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sAttack", true), fn_7100007f84(), 0x30, -1, -1);
+    field0->attrs.Add<base::global::CRntString>(fn_7100075240(), base::global::CRntString(g_unk_7101d58d10));
+    field0->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Selected attack"));
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("sAttackBlc", true), fn_7100009658(), 0x60, -1, -1);
+    field1->attrs.Add<const char*>(fn_7100075240(), "");
+    field1->attrs.Add<const char*>(fn_7100007e80(), "Selected attack (from blackboard)");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("bWaitOnAbort", true), fn_710000d228(), 0x68, -1, -1);
+    field2->attrs.Add<bool>(fn_7100075240(), true);
+    field2->attrs.Add<const char*>(fn_7100007e80(), "Waits for the end of the attack before aborting the action");
+}
 bool fn_710044b5c4(const void*, const void*) { return false; }
 s32 fn_710044b5cc() { return -1; }
 const base::reflection::CType& fn_710044b5d4(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

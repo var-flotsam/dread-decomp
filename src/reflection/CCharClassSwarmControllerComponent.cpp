@@ -34,7 +34,6 @@ extern base::reflection::CType g_unk_7101d679f0;
 const base::reflection::UnkReflAttrKey& fn_71000923a0();
 extern base::reflection::CType g_unk_7101d55008;
 const base::reflection::UnkReflAttrKey& fn_7100090a20();
-const base::reflection::CType* fn_7100007f84();
 const base::reflection::CClass* fn_71008c1b4c();
 void fn_7100733558(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fMinTimeInNode_GetterFunction", true))) {

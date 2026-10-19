@@ -16,7 +16,6 @@ using base::reflection::UnkTunableRegistry;
 // CPickableComponent
 DREAD_REFL_TAG(71009ccdf8);
 void fn_71009ccb00(base::reflection::CClass*) {}
-const base::reflection::CType* fn_710000ad9c();
 const base::reflection::UnkReflAttrKey& fn_7100075240();
 const base::reflection::UnkReflAttrKey& fn_7100007e80();
 extern base::reflection::CType g_unk_7101d5af48;

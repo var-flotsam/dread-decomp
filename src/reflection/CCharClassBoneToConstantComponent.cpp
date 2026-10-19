@@ -5,10 +5,30 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassBoneToConstantComponent
 DREAD_REFL_TAG(71008051e4);
 void fn_7100804e20(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+extern base::reflection::CType g_unk_716e599140;
+extern base::reflection::CType g_unk_716e34af70;
+void fn_7100804f18(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sNode", true), fn_710000fd7c(), 0x58, -1, -1);
+    field0->attrs.Add<base::global::CName>(fn_7100075240(), base::global::CName(""));
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("sMaterialName", true), fn_710000fd7c(), 0x60, -1, -1);
+    field1->attrs.Add<base::global::CName>(fn_7100075240(), base::global::CName(""));
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("ePropertyName", true), &g_unk_716e599140, 0x68, -1, -1);
+    field2->attrs.Add<s32>(fn_7100075240(), &g_unk_716e599140, 0);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("eStage", true), &g_unk_716e34af70, 0x6c, -1, -1);
+    field3->attrs.Add<s32>(fn_7100075240(), &g_unk_716e34af70, 0);
+}
 bool fn_71008053ac(const void*, const void*) { return false; }
 s32 fn_71008053b4() { return -1; }
 const base::reflection::CType& fn_71008053bc(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

@@ -9,8 +9,12 @@
 // Only the calls are known. The container, the keys and the insert function keep
 // placeholder names.
 
+#include "base/global/CFilePathStrId.h"
+#include "base/global/CName.h"
+#include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
+#include "base/math/CVector4D.h"
 #include "base/reflection/CClass.h"
 #include "types.h"
 
@@ -33,8 +37,16 @@ struct UnkReflAttrs;    // 0x38 bytes, created on first use
 struct UnkReflField;    // a member field descriptor; its attributes are at +0x38
 // A reflected function (0xb8 bytes, in CClass+0x110). Getter/setter-backed fields register
 // one getter and one setter function and then a field that refers to them by index.
+struct UnkReflFunction;
+// The reflected function's virtual table, as far as the registration functions use it.
+struct UnkReflFunctionVtbl {
+    void* unk_0x0[9];
+    UnkReflAttrs* (*vf_0x48)(UnkReflFunction* self);  // the function's attributes
+    void* unk_0x50;
+    UnkReflAttrs* (*vf_0x58)(UnkReflFunction* self, u32 index);  // a parameter's attributes
+};
 struct UnkReflFunction {
-    u8 unk_0x0[0x8];
+    const UnkReflFunctionVtbl* vtbl;
     base::UnkVector<const CType*> params;  // parameter types (fn_7100a19530 adds one)
     base::global::UnkStrId name;
     const CType* return_type;
@@ -43,6 +55,9 @@ struct UnkReflFunction {
     u8 unk_0x50[0x62];
     u16 field_0xb2;
     u8 unk_0xb4[0x4];
+
+    UnkReflAttrs* Attrs() { return vtbl->vf_0x48(this); }
+    UnkReflAttrs* ParamAttrs(u32 index) { return vtbl->vf_0x58(this, index); }
 };
 static_assert(sizeof(UnkReflFunction) == 0xb8, "function array stride");
 
@@ -69,6 +84,9 @@ base::reflection::UnkReflField* fn_7100096524(base::reflection::CClass* cls, bas
 
 // Add a function named `name` to a class; null if the class already has one by that name.
 base::reflection::UnkReflFunction* fn_7100097550(base::reflection::CClass* cls, const base::global::CStrId& name);
+
+// Resize a function's parameter attribute containers (0x38 bytes each, at +0x88) to `count`.
+void fn_710009ae5c(base::reflection::UnkReflFunction* fn, u32 count);
 
 // Allocation (size, flags; the flags are 0x3f for the tunable registry), and the registry's
 // constructor.
@@ -97,6 +115,10 @@ const base::reflection::CType* fn_710000abbc();  // "float"
 const base::reflection::CType* fn_710000d228();  // "bool"
 const base::reflection::CType* fn_7100024504();  // "base::math::CVector2D"
 const base::reflection::CType* fn_71000246e4();  // "base::math::CVector3D"
+const base::reflection::CType* fn_71000248c4();  // "base::math::CVector4D"
+const base::reflection::CType* fn_7100007f84();  // "base::global::CRntString"
+const base::reflection::CType* fn_710000ad9c();  // "base::global::CFilePathStrId"
+const base::reflection::CType* fn_710000fd7c();  // "base::global::CName"
 
 namespace base::reflection {
 
@@ -135,6 +157,22 @@ template <>
 struct UnkReflTypeOf<math::CVector3D> {
     static const CType* Get() { return fn_71000246e4(); }
 };
+template <>
+struct UnkReflTypeOf<math::CVector4D> {
+    static const CType* Get() { return fn_71000248c4(); }
+};
+template <>
+struct UnkReflTypeOf<global::CRntString> {
+    static const CType* Get() { return fn_7100007f84(); }
+};
+template <>
+struct UnkReflTypeOf<global::CFilePathStrId> {
+    static const CType* Get() { return fn_710000ad9c(); }
+};
+template <>
+struct UnkReflTypeOf<global::CName> {
+    static const CType* Get() { return fn_710000fd7c(); }
+};
 
 struct UnkReflAttrs {
     u8 unk_0x0[0x38];
@@ -148,11 +186,17 @@ struct UnkReflAttrs {
     void Add(const UnkReflAttrKey& key, const CType* type, const T& value) {
         fn_71000934b8(this, key, UnkReflValueRef{type, &value});
     }
+    // The same with the type getter called after the value is stored.
+    template <class T, auto Get>
+    void AddTyped(const UnkReflAttrKey& key, const T& value) {
+        fn_71000934b8(this, key, UnkReflValueRef{Get(), &value});
+    }
 };
 
 struct UnkReflField {
     u8 unk_0x0[0x38];
     UnkReflAttrs attrs;
+    UnkReflAttrs attrs_0x70;  // a second container (e.g. "TypeSelectionEnabled" on vector fields)
 };
 
 }  // namespace base::reflection

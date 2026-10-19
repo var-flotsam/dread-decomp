@@ -31,7 +31,6 @@ void fn_71007a0b28();
 void fn_710079ee54(UnkReflFunction* fn, const char* name);
 void fn_71007a0bdc();
 void fn_710079efd0(UnkReflFunction* fn, const char* name);
-const base::reflection::CType* fn_710000ad9c();
 void fn_71007a0cac();
 void fn_710079f14c(UnkReflFunction* fn, const char* name);
 void fn_71007a0d58();

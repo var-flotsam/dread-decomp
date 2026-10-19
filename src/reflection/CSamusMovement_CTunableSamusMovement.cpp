@@ -125,6 +125,87 @@ DREAD_REFL_CLASS_GETTER(71009dc3c0, 71009dd5dc, "CSamusMovement::CTunableSamusMo
 // CSamusMovement
 DREAD_REFL_TAG(71009defcc);
 void fn_71009dda18(base::reflection::CClass*) {}
+void fn_71009f0f38();
+void fn_71009f0f7c();
+void fn_71009df12c(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_71000904d0();
+void fn_71009ddb10(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bIsMorphBall_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_bIsMorphBall_GetterFunction", true);
+        fn->return_type = fn_710000d228();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71009f0f38);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("bIsMorphBall", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bIsSamus_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_bIsSamus_GetterFunction", true);
+        fn->return_type = fn_710000d228();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71009f0f7c);
+    }
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("bIsSamus", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("ForceDetachGrapple", true))) {
+        fn_71009df12c(fn, "ForceDetachGrapple");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Force detach grapple"));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fFixedModelOffsetYGoingUp", true), fn_710000abbc(), 0x54f8, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 30.0f);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fFixedModelOffsetYGoingDown", true), fn_710000abbc(), 0x54fc, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 25.0f);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fFixedRightLegSwivelAngleOffsetGoingUp", true), fn_710000abbc(), 0x54d8, -1, -1);
+    field4->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("fFixedLeftLegSwivelAngleOffsetGoingUp", true), fn_710000abbc(), 0x54dc, -1, -1);
+    field5->attrs.Add<f32>(fn_7100075240(), 0.523599f);
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("fFixedRightLegSwivelAngleOffsetGoingDown", true), fn_710000abbc(), 0x54e0, -1, -1);
+    field6->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("fFixedLeftLegSwivelAngleOffsetGoingDown", true), fn_710000abbc(), 0x54e4, -1, -1);
+    field7->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("fFixedRightLegOffsetGoingUp", true), fn_71000246e4(), 0x5478, -1, -1);
+    field8->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{0.0f, 0.0f, 0.0f});
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("fFixedLeftLegOffsetGoingUp", true), fn_71000246e4(), 0x5484, -1, -1);
+    field9->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{0.0f, 0.0f, -20.0f});
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("fFixedRightLegOffsetGoingDown", true), fn_71000246e4(), 0x5490, -1, -1);
+    field10->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{0.0f, 0.0f, 0.0f});
+    UnkReflField* field11 = fn_7100096524(cls, CStrId("fFixedLeftLegOffsetGoingDown", true), fn_71000246e4(), 0x549c, -1, -1);
+    field11->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{0.0f, 0.0f, 0.0f});
+    UnkReflField* field12 = fn_7100096524(cls, CStrId("fModelOffsetYGoingUp", true), fn_710000abbc(), 0x5500, -1, -1);
+    field12->attrs.Add<f32>(fn_7100075240(), 8.5f);
+    UnkReflField* field13 = fn_7100096524(cls, CStrId("fModelOffsetYGoingDown", true), fn_710000abbc(), 0x5504, -1, -1);
+    field13->attrs.Add<f32>(fn_7100075240(), 5.0f);
+    UnkReflField* field14 = fn_7100096524(cls, CStrId("fRightLegSwivelAngleOffsetGoingUp", true), fn_710000abbc(), 0x54e8, -1, -1);
+    field14->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    UnkReflField* field15 = fn_7100096524(cls, CStrId("fLeftLegSwivelAngleOffsetGoingUp", true), fn_710000abbc(), 0x54ec, -1, -1);
+    field15->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    UnkReflField* field16 = fn_7100096524(cls, CStrId("fRightLegSwivelAngleOffsetGoingDown", true), fn_710000abbc(), 0x54f0, -1, -1);
+    field16->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    UnkReflField* field17 = fn_7100096524(cls, CStrId("fLeftLegSwivelAngleOffsetGoingDown", true), fn_710000abbc(), 0x54f4, -1, -1);
+    field17->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    UnkReflField* field18 = fn_7100096524(cls, CStrId("fRightLegOffsetGoingUp", true), fn_71000246e4(), 0x54a8, -1, -1);
+    field18->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{7.0f, 0.0f, 0.0f});
+    UnkReflField* field19 = fn_7100096524(cls, CStrId("fLeftLegOffsetGoingUp", true), fn_71000246e4(), 0x54b4, -1, -1);
+    field19->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{0.0f, 0.0f, 0.0f});
+    UnkReflField* field20 = fn_7100096524(cls, CStrId("fRightLegOffsetGoingDown", true), fn_71000246e4(), 0x54c0, -1, -1);
+    field20->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{0.0f, 0.0f, 0.0f});
+    UnkReflField* field21 = fn_7100096524(cls, CStrId("fLeftLegOffsetGoingDown", true), fn_71000246e4(), 0x54cc, -1, -1);
+    field21->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{-10.0f, 0.0f, 0.0f});
+    UnkReflField* field22 = fn_7100096524(cls, CStrId("s_fModelOffsetRunningYGoingUp", true), fn_710000abbc(), 0x5508, -1, -1);
+    field22->attrs.Add<f32>(fn_7100075240(), 25.0f);
+    UnkReflField* field23 = fn_7100096524(cls, CStrId("s_fModelOffsetRunningYGoingDown", true), fn_710000abbc(), 0x550c, -1, -1);
+    field23->attrs.Add<f32>(fn_7100075240(), -25.0f);
+    UnkReflField* field24 = fn_7100096524(cls, CStrId("s_fModelOffsetRunningYOCGoingUp", true), fn_710000abbc(), 0x5510, -1, -1);
+    field24->attrs.Add<f32>(fn_7100075240(), 15.0f);
+    UnkReflField* field25 = fn_7100096524(cls, CStrId("s_fModelOffsetRunningYOCGoingDown", true), fn_710000abbc(), 0x5514, -1, -1);
+    field25->attrs.Add<f32>(fn_7100075240(), -15.0f);
+    UnkReflField* field26 = fn_7100096524(cls, CStrId("s_fModelOffsetRunningYSlowDownGoingUp", true), fn_710000abbc(), 0x5518, -1, -1);
+    field26->attrs.Add<f32>(fn_7100075240(), 15.0f);
+    UnkReflField* field27 = fn_7100096524(cls, CStrId("s_fModelOffsetRunningYSlowDownGoingDown", true), fn_710000abbc(), 0x551c, -1, -1);
+    field27->attrs.Add<f32>(fn_7100075240(), -15.0f);
+}
 bool fn_71009f0ed4(const void*, const void*) { return false; }
 s32 fn_71009f0edc() { return -1; }
 const base::reflection::CType& fn_71009f0ee4(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

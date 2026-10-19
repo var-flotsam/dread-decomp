@@ -5,10 +5,39 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCameraFX_SteadyCamera
 DREAD_REFL_TAG(7100769214);
 void fn_7100768c00(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+void fn_7100768cf8(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fMinAngleXAxis", true), fn_710000abbc(), 0x34, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Min angle in X axis");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fMaxAngleXAxis", true), fn_710000abbc(), 0x3c, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field1->attrs.Add<const char*>(fn_7100007e80(), "Max angle in X axis");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fMinAngleYAxis", true), fn_710000abbc(), 0x38, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field2->attrs.Add<const char*>(fn_7100007e80(), "Min angle in Y axis");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fMaxAngleYAxis", true), fn_710000abbc(), 0x40, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field3->attrs.Add<const char*>(fn_7100007e80(), "Max angle in Y axis");
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("sFunction", true), fn_7100007f84(), 0x48, -1, -1);
+    field4->attrs.Add<base::global::CRntString>(fn_7100075240(), base::global::CRntString("SqooooooszI"));
+    field4->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Function (p.ej: SqooooooszI)"));
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("bCentered", true), fn_710000d228(), 0x78, -1, -1);
+    field5->attrs.Add<bool>(fn_7100075240(), false);
+    field5->attrs.Add<const char*>(fn_7100007e80(), "Centered in player path");
+}
 bool fn_7100769704(const void*, const void*) { return false; }
 s32 fn_710076970c() { return -1; }
 const base::reflection::CType& fn_7100769714(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

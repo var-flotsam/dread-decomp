@@ -18,6 +18,15 @@ using base::reflection::UnkTunableRegistry;
 // CShootDCBones
 DREAD_REFL_TAG(710060eda0);
 void fn_710060ead0(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+extern base::reflection::CType g_unk_7101d5c998;
+const base::reflection::UnkReflAttrKey& fn_7100091d40();
+void fn_710060ebc4(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sName", true), fn_7100009658(), 0x8, -1, -1);
+    field0->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("tBoneNames", true), &g_unk_7101d5c998, 0x10, -1, -1);
+    field1->attrs_0x70.Add<bool>(fn_7100091d40(), true);
+}
 bool fn_7100619744(const void* a, const void* b) { return a == b; }
 s32 fn_7100619750() { return -1; }
 const base::reflection::CType& fn_7100619758(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
@@ -46,7 +55,6 @@ DREAD_REFL_ROOT_CLASS_GETTER(710060ead4, 710060eda0, "CShootDCBones", 710060ead0
 // COffset
 DREAD_REFL_TAG(7100610638);
 void fn_7100610178(base::reflection::CClass*) {}
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 void fn_710061026c(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("fOffset", true), fn_710000abbc(), 0x10, -1, -1);
     field0->attrs.Add<f32>(fn_7100075240(), 0.0f);
@@ -87,6 +95,13 @@ DREAD_REFL_ROOT_CLASS_GETTER(710061017c, 7100610638, "COffset", 7100610178, 7100
 // CPattern
 DREAD_REFL_TAG(7100612ce8);
 void fn_7100612a18(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_71726f5ac0;
+void fn_7100612b0c(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sPatternName", true), fn_7100009658(), 0x8, -1, -1);
+    field0->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("tOffsets", true), &g_unk_71726f5ac0, 0x10, -1, -1);
+    field1->attrs_0x70.Add<bool>(fn_7100091d40(), true);
+}
 bool fn_710061d724(const void* a, const void* b) { return a == b; }
 s32 fn_710061d730() { return -1; }
 const base::reflection::CType& fn_710061d738(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
@@ -115,6 +130,46 @@ DREAD_REFL_ROOT_CLASS_GETTER(7100612a1c, 7100612ce8, "CPattern", 7100612a18, 710
 // CCharClassNailongAIComponent
 DREAD_REFL_TAG(7100614dac);
 void fn_7100614180(base::reflection::CClass*) {}
+const base::reflection::CClass* fn_7100609a38();
+const base::reflection::CClass* fn_7100623c7c();
+extern base::reflection::CType g_unk_71726f5280;
+extern base::reflection::CType g_unk_71726f5eb8;
+void fn_7100614278(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("oNailongThornsAttackDef", true), fn_7100609a38(), 0x510, -1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("oNailuggerAcidBallsAttackDef", true), fn_7100623c7c(), 0x638, -1, -1);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fTimeBetweenThornsAttack", true), fn_710000abbc(), 0x738, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 2.0f);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fSteeringTargetReachDistance", true), fn_710000abbc(), 0x73c, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 200.0f);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fSteeringCloseToTargetAccel", true), fn_710000abbc(), 0x740, -1, -1);
+    field4->attrs.Add<f32>(fn_7100075240(), 2.0f);
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("fSteeringMaxDistToTurn", true), fn_710000abbc(), 0x744, -1, -1);
+    field5->attrs.Add<f32>(fn_7100075240(), 450.0f);
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("fSteeringLookAheadDistance", true), fn_710000abbc(), 0x748, -1, -1);
+    field6->attrs.Add<f32>(fn_7100075240(), 350.0f);
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("fSteeringAcceleration", true), fn_710000abbc(), 0x74c, -1, -1);
+    field7->attrs.Add<f32>(fn_7100075240(), 2.5f);
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("fMaxTargetDistanceToAccelerateCloseToTarget", true), fn_710000abbc(), 0x750, -1, -1);
+    field8->attrs.Add<f32>(fn_7100075240(), 200.0f);
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("fSlowSteeringTargetReachDistance", true), fn_710000abbc(), 0x754, -1, -1);
+    field9->attrs.Add<f32>(fn_7100075240(), 200.0f);
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("fSlowSteeringCloseToTargetAccel", true), fn_710000abbc(), 0x758, -1, -1);
+    field10->attrs.Add<f32>(fn_7100075240(), 2.0f);
+    UnkReflField* field11 = fn_7100096524(cls, CStrId("fSlowSteeringMaxDistToTurn", true), fn_710000abbc(), 0x75c, -1, -1);
+    field11->attrs.Add<f32>(fn_7100075240(), 450.0f);
+    UnkReflField* field12 = fn_7100096524(cls, CStrId("fSlowSteeringLookAheadDistance", true), fn_710000abbc(), 0x760, -1, -1);
+    field12->attrs.Add<f32>(fn_7100075240(), 350.0f);
+    UnkReflField* field13 = fn_7100096524(cls, CStrId("fSlowSteeringAcceleration", true), fn_710000abbc(), 0x764, -1, -1);
+    field13->attrs.Add<f32>(fn_7100075240(), 2.5f);
+    UnkReflField* field14 = fn_7100096524(cls, CStrId("fSlowMaxTargetDistanceToAccelerateCloseToTarget", true), fn_710000abbc(), 0x768, -1, -1);
+    field14->attrs.Add<f32>(fn_7100075240(), 200.0f);
+    UnkReflField* field15 = fn_7100096524(cls, CStrId("fSlowMotionSpeed", true), fn_710000abbc(), 0x76c, -1, -1);
+    field15->attrs.Add<f32>(fn_7100075240(), 250.0f);
+    UnkReflField* field16 = fn_7100096524(cls, CStrId("tShootDCBones", true), &g_unk_71726f5280, 0x770, -1, -1);
+    field16->attrs_0x70.Add<bool>(fn_7100091d40(), true);
+    UnkReflField* field17 = fn_7100096524(cls, CStrId("tLaunchConfig", true), &g_unk_71726f5eb8, 0x798, -1, -1);
+    field17->attrs_0x70.Add<bool>(fn_7100091d40(), true);
+}
 bool fn_710061e870(const void*, const void*) { return false; }
 s32 fn_710061e878() { return -1; }
 const base::reflection::CType& fn_710061e880(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

@@ -5,10 +5,34 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CSpbSprActivator
 DREAD_REFL_TAG(7100898cf0);
 void fn_71008988f8(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_71727b6270;
+const base::reflection::UnkReflAttrKey& fn_710025daa0();
+extern base::reflection::CType g_unk_71727bc110;
+extern base::reflection::CType g_unk_717269bf08;
+const base::reflection::UnkReflAttrKey& fn_7100090090();
+void fn_71008989f0(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("wpSpbSprpPlatform", true), &g_unk_71727b6270, 0xf8, -1, -1);
+    field0->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 1);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("vTargetsToActivate", true), &g_unk_717269bf08, 0x40, -1, -1);
+    field1->attrs.Add<bool>(fn_7100090090(), false);
+    field1->attrs_0x70.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 10);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("vTargetsToDeactivate", true), &g_unk_717269bf08, 0x68, -1, -1);
+    field2->attrs.Add<bool>(fn_7100090090(), false);
+    field2->attrs_0x70.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 10);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("wpPoolPlatform", true), &g_unk_71727b6270, 0x138, -1, -1);
+    field3->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 1);
+}
 bool fn_710089afc0(const void*, const void*) { return false; }
 s32 fn_710089afc8() { return -1; }
 const base::reflection::CType& fn_710089afd0(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

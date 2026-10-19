@@ -5,10 +5,28 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassHeatableShieldEnhanceWeakSpotComponent
 DREAD_REFL_TAG(71007d46fc);
 void fn_71007d4310(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_71007d4408(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sOnWeakSpotAimedWithMask", true), fn_710000fd7c(), 0x68, -1, -1);
+    field0->attrs.Add<base::global::CName>(fn_7100075240(), base::global::CName("protblueon"));
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("sOnWeakSpotAimedWithoutMask", true), fn_710000fd7c(), 0x70, -1, -1);
+    field1->attrs.Add<base::global::CName>(fn_7100075240(), base::global::CName("eyeblueon"));
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("sOnWeakSpotNotAimedWithMask", true), fn_710000fd7c(), 0x78, -1, -1);
+    field2->attrs.Add<base::global::CName>(fn_7100075240(), base::global::CName("protblueoff"));
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("sOnWeakSpotNotAimedWithoutMask", true), fn_710000fd7c(), 0x80, -1, -1);
+    field3->attrs.Add<base::global::CName>(fn_7100075240(), base::global::CName("eyeblueoff"));
+}
 bool fn_71007d4880(const void*, const void*) { return false; }
 s32 fn_71007d4888() { return -1; }
 const base::reflection::CType& fn_71007d4890(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

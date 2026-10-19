@@ -5,10 +5,115 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CSpawnGroupComponent
 DREAD_REFL_TAG(7101118bd8);
 void fn_7101117474(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_7101d5af48;
+void fn_710111fc58();
+void fn_710111fcf8();
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+extern base::global::CRntString g_unk_7101d58d10;
+extern base::reflection::CType g_unk_717269bb48;
+const base::reflection::UnkReflAttrKey& fn_710025daa0();
+extern base::reflection::CType g_unk_71727bc110;
+void fn_710111fd34();
+const base::reflection::UnkReflAttrKey& fn_710000bf80();
+extern base::reflection::CType g_unk_7101d679f0;
+extern base::reflection::CType g_unk_7172a07250;
+const base::reflection::UnkReflAttrKey& fn_7100092c20();
+const base::reflection::UnkReflAttrKey& fn_710025dbb0();
+const base::reflection::UnkReflAttrKey& fn_71010434d0();
+void fn_710111756c(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("EnableSpawnGroup", true))) {
+        fn->name = base::global::UnkStrId("EnableSpawnGroup", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_710111fc58);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("DisableSpawnGroup", true))) {
+        fn->name = base::global::UnkStrId("DisableSpawnGroup", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_710111fcf8);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("bIsGenerator", true), fn_710000d228(), 0x13a, -1, -1);
+    field0->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("bIsInfinite", true), fn_710000d228(), 0x13b, -1, -1);
+    field1->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("iMaxToGenerate", true), fn_7100014768(), 0x18c, -1, -1);
+    field2->attrs.Add<s32>(fn_7100075240(), 0);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("iMaxSimultaneous", true), fn_7100014768(), 0x190, -1, -1);
+    field3->attrs.Add<s32>(fn_7100075240(), 0);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fGenerateEvery", true), fn_710000abbc(), 0x180, -1, -1);
+    field4->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("sOnBeforeGenerateEntity", true), fn_7100007f84(), 0x258, -1, -1);
+    field5->attrs.Add<base::global::CRntString>(fn_7100075240(), base::global::CRntString(g_unk_7101d58d10));
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("sOnEntityGenerated", true), fn_7100007f84(), 0x228, -1, -1);
+    field6->attrs.Add<base::global::CRntString>(fn_7100075240(), base::global::CRntString(g_unk_7101d58d10));
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("sOnEnable", true), fn_7100007f84(), 0x1c8, -1, -1);
+    field7->attrs.Add<base::global::CRntString>(fn_7100075240(), base::global::CRntString(g_unk_7101d58d10));
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("sOnDisable", true), fn_7100007f84(), 0x1f8, -1, -1);
+    field8->attrs.Add<base::global::CRntString>(fn_7100075240(), base::global::CRntString(g_unk_7101d58d10));
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("sOnMaxSimultaneous", true), fn_7100007f84(), 0x288, -1, -1);
+    field9->attrs.Add<base::global::CRntString>(fn_7100075240(), base::global::CRntString(g_unk_7101d58d10));
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("sOnMaxGenerated", true), fn_7100007f84(), 0x2b8, -1, -1);
+    field10->attrs.Add<base::global::CRntString>(fn_7100075240(), base::global::CRntString(g_unk_7101d58d10));
+    UnkReflField* field11 = fn_7100096524(cls, CStrId("sOnEntityDead", true), fn_7100007f84(), 0x2e8, -1, -1);
+    field11->attrs.Add<base::global::CRntString>(fn_7100075240(), base::global::CRntString(g_unk_7101d58d10));
+    UnkReflField* field12 = fn_7100096524(cls, CStrId("sOnEntityDamaged", true), fn_7100007f84(), 0x318, -1, -1);
+    field12->attrs.Add<base::global::CRntString>(fn_7100075240(), base::global::CRntString(g_unk_7101d58d10));
+    UnkReflField* field13 = fn_7100096524(cls, CStrId("sOnAllEntitiesDead", true), fn_7100007f84(), 0x348, -1, -1);
+    field13->attrs.Add<base::global::CRntString>(fn_7100075240(), base::global::CRntString(g_unk_7101d58d10));
+    UnkReflField* field14 = fn_7100096524(cls, CStrId("bAutomanaged", true), fn_710000d228(), 0x13c, -1, -1);
+    field14->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field15 = fn_7100096524(cls, CStrId("bDisableOnAllDead", true), fn_710000d228(), 0x13d, -1, -1);
+    field15->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field16 = fn_7100096524(cls, CStrId("bAutoenabled", true), fn_710000d228(), 0x13e, -1, -1);
+    field16->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field17 = fn_7100096524(cls, CStrId("bSpawnPointsNotInFrustrum", true), fn_710000d228(), 0x141, -1, -1);
+    field17->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field18 = fn_7100096524(cls, CStrId("bGenerateEntitiesByOrder", true), fn_710000d228(), 0x142, -1, -1);
+    field18->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field19 = fn_7100096524(cls, CStrId("sLogicCollisionShapeID", true), fn_7100009658(), 0x418, -1, -1);
+    field19->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    UnkReflField* field20 = fn_7100096524(cls, CStrId("wpAreaOfInterest", true), &g_unk_717269bb48, 0xb8, -1, -1);
+    field20->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 4);
+    UnkReflField* field21 = fn_7100096524(cls, CStrId("wpAreaOfInterestEnd", true), &g_unk_717269bb48, 0xf8, -1, -1);
+    field21->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 4);
+    UnkReflField* field22 = fn_7100096524(cls, CStrId("fDropAmmoProb", true), fn_710000abbc(), 0x3d8, -1, -1);
+    field22->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    UnkReflField* field23 = fn_7100096524(cls, CStrId("iInitToGenerate", true), fn_7100014768(), 0x188, -1, -1);
+    field23->attrs.Add<s32>(fn_7100075240(), 0);
+    UnkReflField* field24 = fn_7100096524(cls, CStrId("sArenaId", true), fn_7100009658(), 0x1c0, -1, -1);
+    field24->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    UnkReflField* field25 = fn_7100096524(cls, CStrId("bCheckActiveDrops", true), fn_710000d228(), 0x1a0, -1, -1);
+    field25->attrs.Add<bool>(fn_7100075240(), false);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_iNumDeaths_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_iNumDeaths_GetterFunction", true);
+        fn->return_type = fn_7100014768();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_710111fd34);
+    }
+    UnkReflField* field26 = fn_7100096524(cls, CStrId("iNumDeaths", true), fn_7100014768(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field26->attrs.Add<s32>(fn_7100075240(), 0);
+    field26->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    UnkReflField* field27 = fn_7100096524(cls, CStrId("vectSpawnPoints", true), &g_unk_7172a07250, 0x68, -1, -1);
+    field27->attrs.Add<bool>(fn_7100092c20(), true);
+    field27->attrs_0x70.Add<bool>(fn_710025dbb0(), true);
+    field27->attrs_0x70.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 3);
+    field27->attrs_0x70.Add<const char*>(fn_71010434d0(), "SPAWNPOINT");
+}
 bool fn_710111fbdc(const void*, const void*) { return false; }
 s32 fn_710111fbe4() { return -1; }
 const base::reflection::CType& fn_710111fbec(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

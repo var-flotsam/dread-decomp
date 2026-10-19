@@ -5,10 +5,24 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassEnhanceWeakSpotComponent
 DREAD_REFL_TAG(71007d3aa0);
 void fn_71007d3810(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_71007d3908(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sOnWeakSpotAimed", true), fn_710000fd7c(), 0x58, -1, -1);
+    field0->attrs.Add<base::global::CName>(fn_7100075240(), base::global::CName("onweakspotaimed"));
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("sOnWeakSpotNotAimed", true), fn_710000fd7c(), 0x60, -1, -1);
+    field1->attrs.Add<base::global::CName>(fn_7100075240(), base::global::CName("onweakspotnotaimed"));
+}
 bool fn_71007d3c24(const void*, const void*) { return false; }
 s32 fn_71007d3c2c() { return -1; }
 const base::reflection::CType& fn_71007d3c34(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

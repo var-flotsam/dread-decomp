@@ -7,10 +7,50 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // GUI::CDisplayObjectDef
 DREAD_REFL_TAG(7100b05094);
 void fn_7100b04a58(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_717275f310;
+const base::reflection::UnkReflAttrKey& fn_710008fd60();
+const base::reflection::UnkReflAttrKey& fn_710008ff80();
+const base::reflection::CType* fn_7100b08378();
+void fn_7100b086b8();
+void fn_7100b05218(UnkReflFunction* fn, const char* name);
+extern base::reflection::CType g_unk_717275e480;
+const base::reflection::CType* fn_7100b05394();
+void fn_7100b087d4();
+void fn_7100b04b50(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sID", true), fn_7100007f84(), 0x8, -1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("lstpStates", true), &g_unk_717275f310, 0x38, -1, -1);
+    field1->attrs.Add<CStrId>(fn_710008fd60(), CStrId("AddNewDOStateDef", true));
+    field1->attrs_0x70.Add<CStrId>(fn_710008ff80(), CStrId("AfterStateDeserialization", true));
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AddNewDOStateDef", true))) {
+        fn->name = base::global::UnkStrId("AddNewDOStateDef", true);
+        fn->return_type = fn_7100b08378();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100b086b8);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AfterStateDeserialization", true)))
+        fn_7100b05218(fn, "AfterStateDeserialization");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("lstpChildren", true), &g_unk_717275e480, 0x60, -1, -1);
+    field2->attrs.Add<CStrId>(fn_710008fd60(), CStrId("AddNewChild", true));
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AddNewChild", true))) {
+        fn->name = base::global::UnkStrId("AddNewChild", true);
+        fn->return_type = fn_7100b05394();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100b087d4);
+    }
+}
 bool fn_7100b082fc(const void*, const void*) { return false; }
 s32 fn_7100b08304() { return -1; }
 const base::reflection::CType& fn_7100b0830c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

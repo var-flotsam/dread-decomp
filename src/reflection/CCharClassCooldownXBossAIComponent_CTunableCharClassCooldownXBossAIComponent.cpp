@@ -95,6 +95,32 @@ DREAD_REFL_CLASS_GETTER(71004cce04, 71004cd9c0, "CCharClassCooldownXBossAICompon
 // CCharClassCooldownXBossAIComponent
 DREAD_REFL_TAG(71004ce4cc);
 void fn_71004cddfc(base::reflection::CClass*) {}
+const base::reflection::CClass* fn_71004a4bb4();
+const base::reflection::CClass* fn_71004add20();
+const base::reflection::CClass* fn_71004b4060();
+const base::reflection::CClass* fn_71004b4bc4();
+const base::reflection::CClass* fn_71004b9584();
+const base::reflection::CClass* fn_71004a13bc();
+extern base::reflection::CType g_unk_717270d668;
+const base::reflection::UnkReflAttrKey& fn_7100091d40();
+const base::reflection::CClass* fn_71008c1b4c();
+void fn_71004cdef4(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("oCooldownXBossLavaCarpetAttackDef", true), fn_71004a4bb4(), 0x528, -1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("oCooldownXBossLavaDropsAttackDef", true), fn_71004add20(), 0x658, -1, -1);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("oCooldownXBossReaperAttackDef", true), fn_71004b4060(), 0x7e8, -1, -1);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("oCooldownXBossStrongWhipAttackDef", true), fn_71004b4bc4(), 0x8e8, -1, -1);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("oCooldownXBossWindTunnelAttackDef", true), fn_71004b9584(), 0x9f0, -1, -1);
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("oCooldownXBossLaserBiteAttackDef", true), fn_71004a13bc(), 0xb38, -1, -1);
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("tTentacles", true), &g_unk_717270d668, 0xc40, -1, -1);
+    field6->attrs_0x70.Add<bool>(fn_7100091d40(), true);
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("fMinTimeToRelaxAction", true), fn_710000abbc(), 0xc68, -1, -1);
+    field7->attrs.Add<f32>(fn_7100075240(), 30.0f);
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("fMaxTimeToRelaxAction", true), fn_710000abbc(), 0xc6c, -1, -1);
+    field8->attrs.Add<f32>(fn_7100075240(), 50.0f);
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("fTimeToGoToPhase3After4WPDestroyed", true), fn_710000abbc(), 0xc70, -1, -1);
+    field9->attrs.Add<f32>(fn_7100075240(), 1.3f);
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("oGrabDamageSourceFactor", true), fn_71008c1b4c(), 0xc78, -1, -1);
+}
 bool fn_71004ce82c(const void*, const void*) { return false; }
 s32 fn_71004ce834() { return -1; }
 const base::reflection::CType& fn_71004ce83c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

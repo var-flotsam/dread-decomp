@@ -16,7 +16,6 @@ using base::reflection::UnkTunableRegistry;
 // CAbilityMultiLockon
 DREAD_REFL_TAG(7100316870);
 void fn_7100316634(base::reflection::CClass*) {}
-const base::reflection::CType* fn_710000ad9c();
 const base::reflection::UnkReflAttrKey& fn_7100093390();
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;

@@ -88,6 +88,23 @@ DREAD_REFL_CLASS_GETTER(710113f97c, 710113fdf8, "CInventoryComponent::CTunableIn
 // CInventoryComponent
 DREAD_REFL_TAG(7101140c24);
 void fn_71011408c0(base::reflection::CClass*) {}
+void fn_7101140d84(UnkReflFunction* fn, const char* name);
+void fn_7101140f00(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_71000904d0();
+void fn_7101140fb4(UnkReflFunction* fn, const char* name);
+void fn_71011409b8(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("BindToGameBlackboard", true))) {
+        fn_7101140d84(fn, "BindToGameBlackboard");
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Bind an inventory component to a blackboard section");
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetItemAmount", true))) {
+        fn_7101140f00(fn, "SetItemAmount");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Set Item Amount"));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("GetItemAmount", true)))
+        fn_7101140fb4(fn, "GetItemAmount");
+}
 bool fn_71011492f0(const void*, const void*) { return false; }
 s32 fn_71011492f8() { return -1; }
 const base::reflection::CType& fn_7101149300(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

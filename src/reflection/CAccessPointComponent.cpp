@@ -16,6 +16,28 @@ using base::reflection::UnkTunableRegistry;
 // CAccessPointComponent
 DREAD_REFL_TAG(7100a6bae4);
 void fn_7100a6b62c(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_71727b6630;
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+extern base::reflection::CType g_unk_717274ef10;
+extern base::reflection::CType g_unk_71727b6270;
+const base::reflection::UnkReflAttrKey& fn_710025daa0();
+extern base::reflection::CType g_unk_71727bc110;
+void fn_7100a6bc44(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+const base::reflection::UnkReflAttrKey& fn_71000904d0();
+void fn_7100a6b724(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("vDoorsToChange", true), &g_unk_71727b6630, 0x898, -1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("sInteractionLiteralID", true), fn_7100009658(), 0x588, -1, -1);
+    field1->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("tCaptionList", true), &g_unk_717274ef10, 0x5a0, -1, -1);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("wpThermalDevice", true), &g_unk_71727b6270, 0x540, -1, -1);
+    field3->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("ActiveDialogue", true))) {
+        fn_7100a6bc44(fn, "ActiveDialogue");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Active Dialogue in Access Point"));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+}
 bool fn_7100a73af8(const void*, const void*) { return false; }
 s32 fn_7100a73b00() { return -1; }
 const base::reflection::CType& fn_7100a73b08(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
@@ -41,8 +63,6 @@ DREAD_REFL_CLASS_GETTER(7100a6b630, 7100a6bae4, "CAccessPointComponent", 7100a9b
 DREAD_REFL_TAG(7100a6c5b8);
 void fn_7100a6bcf8(base::reflection::CClass*) {}
 extern bool g_unk_717274ec88;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_717274ec40;
 void fn_7100a6c73c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);

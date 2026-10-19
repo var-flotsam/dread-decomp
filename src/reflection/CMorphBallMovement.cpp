@@ -22,7 +22,6 @@ extern base::reflection::CType g_unk_7101d679f0;
 void fn_710094feb8();
 const base::reflection::UnkReflAttrKey& fn_7100075240();
 const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::CType* fn_710000ad9c();
 void fn_710093b2f8(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bIsMorphBall_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bIsMorphBall_GetterFunction", true);

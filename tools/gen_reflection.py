@@ -631,12 +631,16 @@ def main() -> int:
                                          '#include "base/reflection/CPointerType.h"'] + lines[1:]
                             + decls + body + [line for p in ptrs if len(p) > 3 for line in p[0]]) + chr(10)
 
-    # Pointer types: drop those that would redeclare a name the file already uses, then keep
-    # only the byte-identical ones.
+    # Pointer types: drop those that would redeclare a name the file already uses (unless the
+    # declaration is the same text as one in the file or a header), then keep only the
+    # byte-identical ones.
+    header_text = chr(10).join(h.read_text(encoding="utf-8") for h in (ROOT / "include").rglob("*.h"))
     for name, (lines, ptrs) in files.items():
-        names = set(gen_types.NAME_RE.findall(chr(10).join(lines)))
+        text_ = chr(10).join(lines)
+        names = set(gen_types.NAME_RE.findall(text_))
         files[name] = (lines, [p for p in ptrs if len(p) > 3 or not any(
             gen_types.NAME_RE.search(d.split("(")[0]).group(0) in names - {f"fn_{p[2]:x}"}
+            and d not in text_ and d not in header_text
             for d in gen_types.used_decls(p[0], ptr_decls))])
     work = ROOT / "build" / "reflection_ptrs"
     work.mkdir(parents=True, exist_ok=True)

@@ -5,9 +5,22 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassEmmyFloorSlideAllowedTrack
 DREAD_REFL_TAG(7100cf4f60);
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+const base::reflection::UnkReflAttrKey& fn_7100090e60();
+void fn_7100cf4d70(CClass* cls) {
+    fn_710009dd6c(cls)->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Emmy Floor Slide Allowed"));
+    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090e60(), CStrId("State", true));
+}
 void fn_7100cf4f5c(base::reflection::CClass*) {}
 bool fn_7100cf5114(const void* a, const void* b) { return a == b; }
 s32 fn_7100cf5120() { return -1; }

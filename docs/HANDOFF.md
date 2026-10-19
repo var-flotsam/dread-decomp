@@ -4,6 +4,14 @@ For the next developer, human or AI, picking up this project. Read this, then `C
 (rules and conventions), `docs/recon.md` (what's in the binary), `docs/compiler.md`
 (toolchain), and `docs/references.md` (outside projects).
 
+**Handover (2026-10-19, seventh session, branch `phase-4-3-remaining-reflection`):** the
+regeneration on this branch is partial. `gen_functions_csv`, `gen_reflection`, `gen_types`,
+`gen_statics` and `gen_clones` ran; `gen_lift.py` and `check.py --update` did not, so
+`data/functions/*.csv` statuses and the numbers below are stale. `check.py` (without `--update`)
+passes: 76,000 functions in `src/`, `O` 75,995 (75,523 before this session). Next: run
+`gen_lift.py`, then `check.py --update` and `progress.py`, and update the numbers here. What was
+done: Next steps, item 2.
+
 Snapshot as of 2026-10-18 (fifth Phase 4 session; branches `phase-4-4-clones` (var-flotsam/dread-decomp#18, open) and `phase-4-4-skipped-getters` on top of it (not pushed); earlier work merged in var-flotsam/dread-decomp#13–#17). Target: **Metroid Dread 2.1.0**, `main` build ID
 `646761F643AFEBB379EDD5E6A5151AF2CEF93DC1`.
 
@@ -274,14 +282,35 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
    out-of-line reflected-function initialiser (`refl_attrs.parse_initialiser`). Left:
    - Done (sixth session): class getters in TUs with **other statics**, through padding (see
      Decisions; `layout_gap`/`padding_lines` in `gen_reflection.py`); the 54 container accessors
-     (912 B), generated in their element class getter's TU. Left: 2 TUs whose descriptors aren't
-     contiguous, 21 getters with rarer shapes, 59 other registration functions, and the
-     collection/primitive type getters themselves (e.g. `fn_7100008500`, `refl_GetType<float>`).
-   - Enum static initialisers and the other per-TU static initialisers (1,430 × 160 B: a
-     global `{int, CStrId, CStrId}` constructed and registered with `__cxa_atexit`). These define
-     globals, so they need the TU's data definitions.
-   - Slot `0x28`/`0x30`/`0x38`/`0x48`/`0x50` helpers with bodies (need class layouts) and
-     attribute functions with `CRntString`/`CVector4D`/`CFilePathStrId` values (see Key facts).
+     (912 B), generated in their element class getter's TU.
+   - Done (seventh session): **every located class getter** (2,354 of 2,355). The shape check
+     ignores the descriptor's offset from a same-TU parent's (`add xN, x2, #imm`); six base library
+     getters inline the name's constructor (`CStrId(UnkStrIdInline{}, ...)` in `CStrId.h`, the
+     same body as `fn_71000003d4`, which matches out of line but is marked `L` by neighbour
+     inference) and are verified by compiling them, like padded TUs. `tools/recon/reflection.py`
+     names class/enum getters MEDS doesn't list (`CGun`, `GUI::CBossRushReport`, ...) and ignores
+     functions over 640 B: those have a getter inlined (the "2 non-contiguous TUs",
+     `CSubAreaManager`, were such a misdetection; seven `CAbility*` types had shared one wrong
+     getter). Primitive `CType` getters (`refl_GetType<float>`, `fn_7100008500`;
+     `UnkReflPrimitiveType.h`), pointer getters with the constructor inlined and `CFlagsetType`
+     constructors (`gen_types.py`). Registration functions: `CRntString`, `CFilePathStrId`, `CName`
+     and `CVector4D` values, function/parameter attributes through `UnkReflFunctionVtbl`, the field
+     attribute container at `+0x70`, and a lambda-wrapped form for the stack-slot order
+     (`refl_attrs.verify` retries alternatives): 1,911 of 1,957 attribute/field functions, 508 of
+     562 others. Left there (~45, one-offs): an inlined `CFilePathStrId` constructor (8; and
+     `fn_7100408c20`, 33 KB, for `CStrId`), `CRntString` copied from a live object, other
+     attribute builders (`fn_7100228ca0`), field lookups by name hash, guarded statics.
+   - Descriptor helpers of **collection iterator values** (`UnkIterValue<T, K>`, K = index or key):
+     move-construct, destroy, copy-assign and compare as `gen_clones` kinds (word, owner,
+     string-id and keyed elements; a scan kind for elements with a vtable and string-id members,
+     `UnkDtorElem`). Left: keyed move/copy-assign (written in `UnkStrIdMemberOf`, differ in
+     scheduling), elements with vectors or out-of-line destructors, and an element destroy keyed by
+     a string id that compiles to a 4-byte thunk when it shares a file with an identical one.
+   - Enum static initialisers and the other per-TU static initialisers. These define
+     globals, so they need the TU's data definitions (the 160 B ones are mostly lifted already).
+   - Slot `0x28`/`0x30`/`0x38`/`0x48`/`0x50` helpers of other classes (need class layouts):
+     ~2,400 functions, ~390 KB; a census of `U` helpers by slot and mnemonics (see
+     `class_constructors` in `gen_reflection.py`) picks the next families.
    - A shape census (mnemonic sequence per U function, grouped) was the fastest way to pick
      templates this session: the top families were reflected-function initialisers (839 × 380 B)
      and `CClass` constructors (777 × 388 B).

@@ -5,10 +5,30 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // base::core::CBaseObject
 DREAD_REFL_TAG(71000236b4);
 void fn_7100023460(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_7101d5af48;
+void fn_7100024edc();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+void fn_7100023554(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("PrintTypeLists", true))) {
+        fn->name = base::global::UnkStrId("PrintTypeLists", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100024edc);
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Print type vars");
+    }
+}
 bool fn_7100024e0c(const void*, const void*) { return false; }
 s32 fn_7100024e14() { return -1; }
 const base::reflection::CType& fn_7100024e1c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

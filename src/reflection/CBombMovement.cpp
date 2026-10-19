@@ -16,7 +16,6 @@ using base::reflection::UnkTunableRegistry;
 // CBombMovement
 DREAD_REFL_TAG(7100aa9370);
 void fn_7100aa9170(base::reflection::CClass*) {}
-const base::reflection::CType* fn_710000ad9c();
 const base::reflection::UnkReflAttrKey& fn_7100075240();
 const base::reflection::UnkReflAttrKey& fn_7100007e80();
 void fn_7100aa9268(CClass* cls) {

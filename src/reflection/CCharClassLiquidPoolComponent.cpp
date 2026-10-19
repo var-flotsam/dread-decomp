@@ -5,10 +5,28 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassLiquidPoolComponent
 DREAD_REFL_TAG(71008fe4a4);
 void fn_71008fdfb8(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_71008fe0b0(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sLiquidMaterial0", true), fn_710000ad9c(), 0x60, -1, -1);
+    field0->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId("", true));
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("sLiquidMaterial1", true), fn_710000ad9c(), 0x68, -1, -1);
+    field1->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId("", true));
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("sSolidMaterial0", true), fn_710000ad9c(), 0x70, -1, -1);
+    field2->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId("", true));
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("sSolidMaterial1", true), fn_710000ad9c(), 0x78, -1, -1);
+    field3->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId("", true));
+}
 bool fn_7100903860(const void*, const void*) { return false; }
 s32 fn_7100903868() { return -1; }
 const base::reflection::CType& fn_7100903870(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
@@ -37,6 +55,27 @@ DREAD_REFL_CLASS_GETTER(71008fdfbc, 71008fe4a4, "CCharClassLiquidPoolComponent",
 // CLiquidPoolBaseComponent
 DREAD_REFL_TAG(71008feaf0);
 void fn_71008fe628(base::reflection::CClass*) {}
+void fn_7100903928();
+void fn_71008fec3c(UnkReflFunction* fn, const char* name);
+extern base::reflection::CType g_unk_7108b6cde8;
+extern base::reflection::CType g_unk_7108b6cc88;
+void fn_71008fe720(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sModelPath_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_sModelPath_GetterFunction", true);
+        fn->return_type = fn_710000ad9c();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100903928);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sModelPath_SetterFunction", true)))
+        fn_71008fec3c(fn, "_m_sModelPath_SetterFunction");
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sModelPath", true), fn_710000ad9c(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field0->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId("", true));
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("eLowPassFilter", true), &g_unk_7108b6cde8, 0xc08, -1, -1);
+    field1->attrs.Add<s32>(fn_7100075240(), &g_unk_7108b6cde8, 14);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("eReverb", true), &g_unk_7108b6cc88, 0xc0c, -1, -1);
+    field2->attrs.Add<s32>(fn_7100075240(), &g_unk_7108b6cc88, 0);
+}
 bool fn_71009038fc(const void*, const void*) { return false; }
 s32 fn_7100903904() { return -1; }
 const base::reflection::CType& fn_710090390c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

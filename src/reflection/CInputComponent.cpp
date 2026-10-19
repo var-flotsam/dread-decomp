@@ -16,6 +16,39 @@ using base::reflection::UnkTunableRegistry;
 // CInputComponent
 DREAD_REFL_TAG(71008708fc);
 void fn_710087043c(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_7101d5af48;
+void fn_710087412c();
+void fn_7100874050(UnkReflFunction* fn);
+void fn_7100870a5c(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+const base::reflection::UnkReflAttrKey& fn_71000904d0();
+void fn_7100874290();
+const base::reflection::UnkReflAttrKey& fn_710000bf80();
+extern base::reflection::CType g_unk_7101d679f0;
+void fn_7100870534(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("IgnoreInput", true))) {
+        fn->name = base::global::UnkStrId("IgnoreInput", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_710087412c);
+        fn_7100874050(fn);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("IgnoreInputFor", true))) {
+        fn_7100870a5c(fn, "IgnoreInputFor");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Ignore input for"));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bInputIgnored_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_bInputIgnored_GetterFunction", true);
+        fn->return_type = fn_710000d228();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100874290);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("bInputIgnored", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+}
 bool fn_7100873fec(const void*, const void*) { return false; }
 s32 fn_7100873ff4() { return -1; }
 const base::reflection::CType& fn_7100873ffc(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

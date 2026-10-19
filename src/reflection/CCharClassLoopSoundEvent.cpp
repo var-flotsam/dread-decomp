@@ -21,6 +21,53 @@ void fn_7100cc69c0(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Loop Sound");
     fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("Sound", true));
 }
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100091080();
+const base::reflection::UnkReflAttrKey& fn_7100091190();
+void fn_7100cc6b9c(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sSoundID", true), fn_710000ad9c(), 0x10, -1, -1);
+    field0->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId(" ", true));
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("sNode", true), fn_7100009658(), 0x18, -1, -1);
+    field1->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fVolume", true), fn_710000abbc(), 0x20, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    field2->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    field2->attrs.Add<f32>(fn_7100091190(), 2.0f);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fRadiusMinAttenuation", true), fn_710000abbc(), 0x24, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 500.0f);
+    field3->attrs.Add<f32>(fn_7100091080(), 100.0f);
+    field3->attrs.Add<f32>(fn_7100091190(), 50000.0f);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fRadiusMaxAttenuation", true), fn_710000abbc(), 0x28, -1, -1);
+    field4->attrs.Add<f32>(fn_7100075240(), 3000.0f);
+    field4->attrs.Add<f32>(fn_7100091080(), 500.0f);
+    field4->attrs.Add<f32>(fn_7100091190(), 50000.0f);
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("fPitch", true), fn_710000abbc(), 0x2c, -1, -1);
+    field5->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    field5->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    field5->attrs.Add<f32>(fn_7100091190(), 2.0f);
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("bStopOnChangeAnim", true), fn_710000d228(), 0x30, -1, -1);
+    field6->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("bStopOnEntityDead", true), fn_710000d228(), 0x31, -1, -1);
+    field7->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("fFadeInTime", true), fn_710000abbc(), 0x34, -1, -1);
+    field8->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field8->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    field8->attrs.Add<f32>(fn_7100091190(), 10.0f);
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("fFadeOutTime", true), fn_710000abbc(), 0x38, -1, -1);
+    field9->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field9->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    field9->attrs.Add<f32>(fn_7100091190(), 10.0f);
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("fStopInTime", true), fn_710000abbc(), 0x3c, -1, -1);
+    field10->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    field10->attrs.Add<f32>(fn_7100091080(), -1.0f);
+    field10->attrs.Add<f32>(fn_7100091190(), 30.0f);
+    UnkReflField* field11 = fn_7100096524(cls, CStrId("sType", true), fn_7100009658(), 0x48, -1, -1);
+    field11->attrs.Add<CStrId>(fn_7100075240(), CStrId("N", true));
+    UnkReflField* field12 = fn_7100096524(cls, CStrId("bRumbleSync", true), fn_710000d228(), 0x44, -1, -1);
+    field12->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field13 = fn_7100096524(cls, CStrId("fRumbleGainOverride", true), fn_710000abbc(), 0x40, -1, -1);
+    field13->attrs.Add<f32>(fn_7100075240(), -1.0f);
+}
 bool fn_7100cc7b30(const void* a, const void* b) { return a == b; }
 s32 fn_7100cc7b3c() { return -1; }
 const base::reflection::CType& fn_7100cc7b44(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

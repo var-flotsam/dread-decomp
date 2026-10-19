@@ -49,6 +49,22 @@ DREAD_REFL_CLASS_GETTER(7100a42d74, 7100a42f34, "CCharClassTunnelTrapMorphballCo
 // CTunnelTrapMorphballComponent
 DREAD_REFL_TAG(7100a433b4);
 void fn_7100a430b8(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_717269bf08;
+extern base::reflection::CType g_unk_7101d5af48;
+void fn_7100a44fc0();
+void fn_7100a431b0(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("aVignettes", true), &g_unk_717269bf08, 0xa8, -1, -1);
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetOpenState", true))) {
+            fn->name = base::global::UnkStrId("SetOpenState", true);
+            fn->return_type = &g_unk_7101d5af48;
+            fn->field_0xb2 = 0;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_7100a44fc0);
+        }
+    }();
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("bDisableCloseTrapSensor", true), fn_710000d228(), 0xd8, -1, -1);
+}
 bool fn_7100a44ee4(const void*, const void*) { return false; }
 s32 fn_7100a44eec() { return -1; }
 const base::reflection::CType& fn_7100a44ef4(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

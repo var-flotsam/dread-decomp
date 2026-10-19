@@ -5,10 +5,53 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CStandaloneFXComponent
 DREAD_REFL_TAG(7100812700);
 void fn_71008120c4(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_71727227b0;
+const base::reflection::UnkReflAttrKey& fn_7100234780();
+const base::reflection::UnkReflAttrKey& fn_7100092b10();
+const base::reflection::UnkReflAttrKey& fn_710008fd60();
+void fn_7100812860(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_710008f920();
+const base::reflection::UnkReflAttrKey& fn_71000903c0();
+const base::reflection::UnkReflAttrKey& fn_7100093390();
+const base::reflection::UnkReflAttrKey& fn_710000bf80();
+extern base::reflection::CType g_unk_7101d679f0;
+const base::reflection::UnkReflAttrKey& fn_71000923a0();
+extern base::reflection::CType g_unk_7101d55008;
+const base::reflection::UnkReflAttrKey& fn_7100090a20();
+void fn_71008121bc(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("vctFXInstances", true), &g_unk_71727227b0, 0x50, -1, -1);
+    field0->attrs.Add<bool>(fn_7100234780(), true);
+    field0->attrs.Add<bool>(fn_7100092b10(), false);
+    field0->attrs.Add<CStrId>(fn_710008fd60(), CStrId("AddNewFXInstance", true));
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AddNewFXInstance", true))) {
+        fn_7100812860(fn, "AddNewFXInstance");
+        fn_710009ae5c(fn, fn->params.count);
+        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("uIdx", true));
+        fn->ParamAttrs(0)->Add<bool>(fn_71000903c0(), true);
+    }
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("uPoolSize", true), fn_7100005178(), 0x48, -1, -1);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("vScale", true), fn_71000246e4(), 0xffffffff, -1, -1);
+    field2->attrs.Add<bool>(fn_7100093390(), true);
+    field2->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field2->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
+    field2->attrs.Add<bool>(fn_7100090a20(), false);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("sFXPath", true), fn_710000ad9c(), 0xffffffff, -1, -1);
+    field3->attrs.Add<bool>(fn_7100093390(), true);
+    field3->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field3->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
+    field3->attrs.Add<bool>(fn_7100090a20(), false);
+}
 bool fn_7100815650(const void*, const void*) { return false; }
 s32 fn_7100815658() { return -1; }
 const base::reflection::CType& fn_7100815660(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
