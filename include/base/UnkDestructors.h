@@ -8,6 +8,7 @@
 
 #include <new>
 
+#include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
@@ -98,6 +99,13 @@ void refl_Dtor(char* self) {
     Traits::base(self);
 }
 
+// A class without a base destructor call (fn_7100256184 and its copies).
+template <class Tag, class... Members>
+void refl_DtorNoBase(char* self) {
+    *reinterpret_cast<char**>(self) = UnkDtorTraits<Tag>::vtable() + 0x10;
+    (Members::Release(self), ...);
+}
+
 template <class Tag, class... Members>
 void refl_DeletingDtor(char* self) {
     using Traits = UnkDtorTraits<Tag>;
@@ -127,5 +135,58 @@ struct UnkDtorElem {
         (Members::Release(data), ...);
     }
 };
+
+// The destructor of a singly linked list (count at +8, head and tail at +0x10/+0x18) that
+// frees each node through the allocator at `Alloc`; `Next` is the node's link (fn_7100084838
+// and its copies).
+template <class Tag, u32 Alloc, u32 Next>
+void refl_ListDtor(char* self) {
+    *reinterpret_cast<char**>(self) = UnkDtorTraits<Tag>::vtable() + 0x10;
+    char* n = *reinterpret_cast<char**>(self + 0x10);
+    while (n) {
+        char* next = *reinterpret_cast<char**>(n + Next);
+        (*reinterpret_cast<UnkAllocator**>(self + Alloc))->vf_0x48(n);
+        n = next;
+    }
+    *reinterpret_cast<u32*>(self + 8) = 0;
+    *reinterpret_cast<char**>(self + 0x10) = nullptr;
+    *reinterpret_cast<char**>(self + 0x18) = nullptr;
+}
+
+// A secondary base at `Sub` that is linked into a list owned by a refcounted object (held at
+// Sub+0x18; the list at +0x10 of the owner). Its destructor, inlined into the class's, unlinks it
+// and releases the owner. link_vtable(): the secondary base's vtable; unlink(list, link).
+template <class Tag>
+struct UnkLinkTraits;
+
+template <class Tag, u32 Sub>
+inline void refl_ReleaseLink(char* self) {
+    using Traits = UnkLinkTraits<Tag>;
+    char* link = self + Sub;
+    *reinterpret_cast<char**>(link) = Traits::link_vtable() + 0x10;
+    UnkRefPtrMember* owner = reinterpret_cast<UnkRefPtrMember*>(link + 0x18);
+    if (owner->ptr) {
+        if (char* list = *reinterpret_cast<char**>(reinterpret_cast<char*>(owner->ptr) + 0x10))
+            Traits::unlink(list, link);
+    }
+    owner->~UnkRefPtrMember();
+}
+
+// fn_7100390618 and its copies.
+template <class Tag, u32 Sub>
+void refl_LinkedDtor(char* self) {
+    *reinterpret_cast<char**>(self) = UnkDtorTraits<Tag>::vtable() + 0x10;
+    refl_ReleaseLink<Tag, Sub>(self);
+    UnkDtorTraits<Tag>::base(self);
+}
+
+// fn_71003906a8 and its copies.
+template <class Tag, u32 Sub>
+void refl_LinkedDeletingDtor(char* self) {
+    *reinterpret_cast<char**>(self) = UnkDtorTraits<Tag>::vtable() + 0x10;
+    refl_ReleaseLink<Tag, Sub>(self);
+    UnkDtorTraits<Tag>::base(self);
+    __builtin_operator_delete(self);
+}
 
 }  // namespace base

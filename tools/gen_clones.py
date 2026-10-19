@@ -178,16 +178,67 @@ def destructor(orig: asmdiff.Original, addr: int, tag: str, insns: Insns) -> str
         calls.append(int(o[1:], 16))
     deleting = OPERATOR_DELETE in calls
     bases = [c for c in calls if c != OPERATOR_DELETE]
-    if vtable is None or len(bases) > 1 or not (bases or deleting) or len(set(members)) != len(members):
+    if vtable is None or len(bases) > 1 or not (bases or deleting or members) or len(set(members)) != len(members):
         return None
     lines = [f"extern char g_unk_{vtable:x}[];"] + [f"void fn_{c:x}(char*);" for c in bases]
     lines += [f"template <> struct base::UnkDtorTraits<{tag}> {{",
               f"    static char* vtable() {{ return g_unk_{vtable:x}; }}"]
     if bases:
         lines.append(f"    static void base(char* p) {{ fn_{bases[0]:x}(p); }}")
-    fn = "refl_Dtor" if not deleting else "refl_DeletingDtor" if bases else "refl_DeletingDtorNoBase"
+    fn = ("refl_Dtor" if bases else "refl_DtorNoBase") if not deleting else \
+        "refl_DeletingDtor" if bases else "refl_DeletingDtorNoBase"
     lines += ["};", f"template void base::{fn}<{tag}{''.join(', ' + x for x in members)}>(char*);"]
     return "\n".join(lines)
+
+
+def list_dtor(orig: asmdiff.Original, addr: int, tag: str, insns: Insns) -> str | None:
+    """refl_ListDtor (UnkDestructors.h): the vtable (through the GOT), the allocator's offset and
+    the node link's offset."""
+    if len(insns) != 25 or insns[6:8] != [("add", "x8, x8, #0x10"), ("str", "x8, [x0]")] \
+            or insns[10] != ("ldr", "x1, [x20, #0x10]!") or insns[14] != ("ldr", "x8, [x8, #0x48]") \
+            or insns[16] != ("blr", "x8") or insns[19:21] != [("str", "wzr, [x19, #8]"), ("stp", "xzr, xzr, [x20]")]:
+        return None
+    alloc = re.fullmatch(r"x0, \[x19, #(0x[0-9a-f]+|\d)\]", insns[12][1])
+    link = re.fullmatch(r"x21, \[x1(?:, #(0x[0-9a-f]+|\d))?\]", insns[15][1])
+    vtable = got_target(orig, insns, 4)
+    if not alloc or not link or vtable is None:
+        return None
+    return "\n".join([f"extern char g_unk_{vtable:x}[];",
+                      f"template <> struct base::UnkDtorTraits<{tag}> {{",
+                      f"    static char* vtable() {{ return g_unk_{vtable:x}; }}", "};",
+                      f"template void base::refl_ListDtor<{tag}, {int(alloc.group(1), 16):#x}, "
+                      f"{int(link.group(1) or '0', 16):#x}>(char*);"])
+
+
+def linked_dtor(orig: asmdiff.Original, addr: int, tag: str, insns: Insns) -> str | None:
+    """refl_LinkedDtor / refl_LinkedDeletingDtor (UnkDestructors.h): both vtables (through the
+    GOT), the secondary base's offset, the unlink function and the base destructor."""
+    if not 30 <= len(insns) <= 40 or insns[7:12] != [("add", "x8, x8, #0x10"), ("str", "x8, [x0]"), ("add", "x8, x9, #0x10"),
+                                                      ("mov", "x1, x0"), ("mov", "x19, x0")]:
+        return None
+    sub = re.fullmatch(r"x8, \[x1, #(0x[0-9a-f]+)\]!", insns[12][1])
+    if insns[12][0] != "str" or not sub or insns[13] != ("ldr", f"x0, [x0, #{int(sub.group(1), 16) + 0x18:#x}]"):
+        return None
+    vtable, link_vtable = got_target(orig, insns, 3), got_target(orig, insns, 5)
+    calls = [int(o[1:], 16) for m, o in insns if m in ("bl", "b") and o.startswith("#0x")]
+    if vtable is None or link_vtable is None or insns[18][0] != "bl":
+        return None
+    unlink = int(insns[18][1][1:], 16)
+    deleting = calls[-1] == OPERATOR_DELETE
+    bases = {c for c in calls if c not in (unlink, OPERATOR_DELETE)}
+    if len(bases) != 1:
+        return None
+    base = bases.pop()
+    fn = "refl_LinkedDeletingDtor" if deleting else "refl_LinkedDtor"
+    return "\n".join([f"extern char g_unk_{vtable:x}[];", f"extern char g_unk_{link_vtable:x}[];",
+                      f"void fn_{base:x}(char*);", f"void fn_{unlink:x}(char*, char*);",
+                      f"template <> struct base::UnkDtorTraits<{tag}> {{",
+                      f"    static char* vtable() {{ return g_unk_{vtable:x}; }}",
+                      f"    static void base(char* p) {{ fn_{base:x}(p); }}", "};",
+                      f"template <> struct base::UnkLinkTraits<{tag}> {{",
+                      f"    static char* link_vtable() {{ return g_unk_{link_vtable:x}; }}",
+                      f"    static void unlink(char* list, char* link) {{ fn_{unlink:x}(list, link); }}", "};",
+                      f"template void base::{fn}<{tag}, {int(sub.group(1), 16):#x}>(char*);"])
 
 
 STATE_RE = re.compile(r"w8, \[x0, #(0x[0-9a-f]+)\]")
@@ -285,7 +336,7 @@ def iter_assign_dtor(orig: asmdiff.Original, addr: int, tag: str, insns: Insns) 
     if len(insns) > 48 or insns[3:5] != [("mov", "x19, x0"), ("cmp", "x0, x1")] or ("add", "x0, x19, #0x18") not in insns:
         return None
     key = {("ldr", "w8, [x1]"): "u32", ("ldr", "x8, [x1]"): "u64"}.get(insns[6])
-    hit = re.fullmatch(r"w8, \[x19, #(0x[0-9a-f]+)\]", insns[8][1])
+    hit = re.fullmatch(r"w8, \[x19, #(0x[0-9a-f]+|\d)\]", insns[8][1])
     calls = {o for m, o in insns if m == "bl"}
     if key is None or insns[8][0] != "ldr" or not hit or len(calls) != 1:
         return None
@@ -473,7 +524,7 @@ def call_and_cast_arg(orig: asmdiff.Original, addr: int, tag: str, insns: Insns)
     if len(insns) > 32 or ("mov", "x20, x1") not in insns[:8] or ("mov", "x19, x0") not in insns[:8] \
             or not any(m == "cbz" and o.startswith("x20,") for m, o in insns) or not (calls := cast_calls(insns)):
         return None
-    offs = [int(h.group(1), 16) for m, o in insns if m == "str" and (h := re.fullmatch(r"x8, \[x19, #(0x[0-9a-f]+)\]", o))]
+    offs = [int(h.group(1), 16) for m, o in insns if m == "str" and (h := re.fullmatch(r"x8, \[x19, #(0x[0-9a-f]+|\d)\]", o))]
     if len(offs) != 1:
         return None
     return "\n".join(cast_traits(tag, calls, "void", "char* s, base::reflection::UnkReflObject* a", "s, a") +
@@ -486,8 +537,8 @@ def call_and_cast_field(orig: asmdiff.Original, addr: int, tag: str, insns: Insn
     if len(insns) > 32 or ("mov", "x19, x0") not in insns[:8] or ("and", "w0, w20, #1") not in insns \
             or not (calls := cast_calls(insns)):
         return None
-    srcs = [int(h.group(1), 16) for m, o in insns if m == "ldr" and (h := re.fullmatch(r"x21, \[x19, #(0x[0-9a-f]+)\]", o))]
-    dsts = [int(h.group(1), 16) for m, o in insns if m == "str" and (h := re.fullmatch(r"x8, \[x19, #(0x[0-9a-f]+)\]", o))]
+    srcs = [int(h.group(1), 16) for m, o in insns if m == "ldr" and (h := re.fullmatch(r"x21, \[x19, #(0x[0-9a-f]+|\d)\]", o))]
+    dsts = [int(h.group(1), 16) for m, o in insns if m == "str" and (h := re.fullmatch(r"x8, \[x19, #(0x[0-9a-f]+|\d)\]", o))]
     if len(srcs) != 1 or len(dsts) != 1:
         return None
     return "\n".join(cast_traits(tag, calls, "bool", "char* s", "s") +
@@ -497,8 +548,8 @@ def call_and_cast_field(orig: asmdiff.Original, addr: int, tag: str, insns: Insn
 def got_target(orig: asmdiff.Original, insns: Insns, i: int) -> int | None:
     """The address a GOT entry points to, for an adrp at insns[i] and the ldr after it."""
     (m, o), (m2, o2) = insns[i], insns[i + 1]
-    page = re.fullmatch(r"(x\d+), #(0x[0-9a-f]+)", o)
-    hit = re.fullmatch(r"(x\d+), \[(x\d+), #(0x[0-9a-f]+)\]", o2)
+    page = re.fullmatch(r"(x\d+), #(0x[0-9a-f]+|\d)", o)
+    hit = re.fullmatch(r"(x\d+), \[(x\d+), #(0x[0-9a-f]+|\d)\]", o2)
     if m != "adrp" or m2 != "ldr" or not page or not hit or hit.group(2) != page.group(1):
         return None
     reloc = orig.img.relocs.get(int(page.group(2), 16) + int(hit.group(3), 16) - BASE)
@@ -526,7 +577,7 @@ def field_set_min_notify(orig: asmdiff.Original, addr: int, tag: str, insns: Ins
     """refl_SetFieldMinNotify (UnkReflValue.h): the field offset, the target global and the id."""
     if len(insns) > 48 or ("fmax", "s0, s0, s1") not in insns or ("bl", f"#{SET_NOTIFY:#x}") not in insns:
         return None
-    offs = [int(h.group(1) or "0", 0) for m, o in insns if m == "str" and (h := re.fullmatch(r"s0, \[x8(?:, #(0x[0-9a-f]+))?\]", o))]
+    offs = [int(h.group(1) or "0", 0) for m, o in insns if m == "str" and (h := re.fullmatch(r"s0, \[x8(?:, #(0x[0-9a-f]+|\d))?\]", o))]
     adrps = [i for i, (m, _) in enumerate(insns) if m == "adrp"]
     if len(offs) != 1 or len(adrps) != 1 or (target := got_target(orig, insns, adrps[0])) is None \
             or (ident := wide_constant(insns, "x8")) is None:
@@ -624,6 +675,8 @@ KINDS = {
     "iter_value_destroy_vt": Kind(None, "base/UnkCollectionIter.h", lambda tag, _: None, scan=iter_value_destroy_vt),
     "iter_element_value": Kind(None, "base/reflection/UnkReflValue.h", lambda tag, _: None, scan=iter_element_value),
     "pointee_typed": Kind(None, "base/reflection/UnkReflTypedPtr.h", lambda tag, _: None, scan=pointee_typed),
+    "linked_dtor": Kind(None, "base/UnkDestructors.h", lambda tag, _: None, scan=linked_dtor),
+    "list_dtor": Kind(None, "base/UnkDestructors.h", lambda tag, _: None, scan=list_dtor),
     "iter_assign_dtor": Kind(None, "base/UnkCollectionIter.h", lambda tag, _: None, scan=iter_assign_dtor),
     "iter_value_destroy_dtor": Kind(None, "base/UnkCollectionIter.h", lambda tag, _: None, scan=iter_value_destroy_dtor),
     "enum_values": Kind(None, "base/global/CStrId.h", lambda tag, _: None, scan=enum_values),
@@ -641,6 +694,8 @@ KINDS = {
         f"template base::UnkIdPair<{tag}>& base::UnkIdPair<{tag}>::operator=(const base::UnkIdPair<{tag}>&);")),
     "deferred_add": Kind(0x71002AEEBC, "base/UnkDeferredSet.h", lambda tag, _: (
         f"template void base::UnkDeferredSet<{tag}>::Add({tag}*);")),
+    "set_dynamic_value": Kind(0x71002FA764, "base/reflection/UnkReflCast.h", lambda tag, _: (
+        f"template void base::reflection::refl_SetDynamicValue<{tag}>(char*, base::reflection::UnkReflObject*);")),
     "deferred_remove": Kind(0x71002AE87C, "base/UnkDeferredSet.h", lambda tag, _: (
         f"template void base::UnkDeferredSet<{tag}>::Remove({tag}*);")),
 }

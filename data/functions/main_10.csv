@@ -3414,7 +3414,7 @@ address,size,name,name_source,subsystem,status
 0x710109b3c0,968,lua_bind::AddDialogMissionLogEntry,string,script/bindings,U
 0x710109b790,212,lua_bind::SetSamusMenuCompositionLuaCallbackOnClosed,string,script/bindings,U
 0x710109b870,188,fn_710109b870,unknown,unknown,U
-0x710109b92c,100,fn_710109b92c,unknown,unknown,U
+0x710109b92c,100,fn_710109b92c,unknown,unknown,O
 0x710109b990,84,fn_710109b990,unknown,unknown,U
 0x710109b9f0,1184,fn_710109b9f0,unknown,unknown,U
 0x710109be90,276,fn_710109be90,unknown,unknown,U
@@ -4474,9 +4474,9 @@ address,size,name,name_source,subsystem,status
 0x71010e1b40,56,fn_71010e1b40,unknown,unknown,U
 0x71010e1b78,60,fn_71010e1b78,unknown,unknown,U
 0x71010e1bb4,344,fn_71010e1bb4,unknown,unknown,U
-0x71010e1d0c,100,fn_71010e1d0c,unknown,unknown,U
+0x71010e1d0c,100,fn_71010e1d0c,unknown,unknown,O
 0x71010e1d70,252,fn_71010e1d70,unknown,unknown,U
-0x71010e1e6c,100,fn_71010e1e6c,unknown,unknown,U
+0x71010e1e6c,100,fn_71010e1e6c,unknown,unknown,O
 0x71010e1ed0,36,fn_71010e1ed0,unknown,unknown,O
 0x71010e1ef4,396,fn_71010e1ef4,unknown,unknown,U
 0x71010e2080,24,fn_71010e2080,unknown,unknown,O

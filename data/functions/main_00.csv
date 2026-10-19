@@ -2131,7 +2131,7 @@ address,size,name,name_source,subsystem,status
 0x710008457c,380,base::file::CDeviceQueue::refl_InitClass,reflection,engine/base,O
 0x71000846f8,128,fn_71000846f8,unknown,engine/base?,U
 0x7100084778,192,fn_7100084778,unknown,engine/base?,U
-0x7100084838,100,fn_7100084838,unknown,engine/base?,U
+0x7100084838,100,fn_7100084838,unknown,engine/base?,O
 0x710008489c,184,fn_710008489c,unknown,engine/base?,U
 0x7100084954,120,fn_7100084954,unknown,engine/base?,U
 0x71000849cc,56,fn_71000849cc,unknown,engine/base?,O
@@ -5562,7 +5562,7 @@ address,size,name,name_source,subsystem,status
 0x71000ebed0,36,fn_71000ebed0,unknown,unknown,O
 0x71000ebef4,248,fn_71000ebef4,unknown,unknown,U
 0x71000ebfec,224,fn_71000ebfec,unknown,unknown,U
-0x71000ec0cc,100,fn_71000ec0cc,unknown,unknown,U
+0x71000ec0cc,100,fn_71000ec0cc,unknown,unknown,O
 0x71000ec130,84,fn_71000ec130,unknown,unknown,U
 0x71000ec184,460,fn_71000ec184,unknown,unknown,U
 0x71000ec350,476,fn_71000ec350,unknown,unknown,O

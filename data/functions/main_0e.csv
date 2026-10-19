@@ -391,7 +391,7 @@ address,size,name,name_source,subsystem,status
 0x7100e13abc,328,fn_7100e13abc,unknown,unknown,U
 0x7100e13c10,760,fn_7100e13c10,unknown,unknown,U
 0x7100e13f10,432,fn_7100e13f10,unknown,unknown,U
-0x7100e140c0,120,fn_7100e140c0,unknown,unknown,U
+0x7100e140c0,120,fn_7100e140c0,unknown,unknown,O
 0x7100e14138,4,fn_7100e14138,unknown,unknown,O
 0x7100e1413c,244,CArenaManager::CTunableArenaManager::refl_GetClass,reflection,game,O
 0x7100e14230,352,fn_7100e14230,unknown,game?,O
