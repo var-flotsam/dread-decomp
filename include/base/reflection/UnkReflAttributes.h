@@ -186,11 +186,17 @@ struct UnkReflAttrs {
     void Add(const UnkReflAttrKey& key, const CType* type, const T& value) {
         fn_71000934b8(this, key, UnkReflValueRef{type, &value});
     }
+    // The same with the type getter called after the value is stored.
+    template <class T, auto Get>
+    void AddTyped(const UnkReflAttrKey& key, const T& value) {
+        fn_71000934b8(this, key, UnkReflValueRef{Get(), &value});
+    }
 };
 
 struct UnkReflField {
     u8 unk_0x0[0x38];
     UnkReflAttrs attrs;
+    UnkReflAttrs attrs_0x70;  // a second container (e.g. "TypeSelectionEnabled" on vector fields)
 };
 
 }  // namespace base::reflection

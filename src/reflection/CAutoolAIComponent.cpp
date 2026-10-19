@@ -5,10 +5,26 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CAutoolAIComponent
 DREAD_REFL_TAG(71003c2c8c);
 void fn_71003c2a90(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_717269bf08;
+const base::reflection::UnkReflAttrKey& fn_7100090090();
+const base::reflection::UnkReflAttrKey& fn_710025daa0();
+extern base::reflection::CType g_unk_71727bc110;
+void fn_71003c2b88(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("vAISmartObjects", true), &g_unk_717269bf08, 0x146d8, -1, -1);
+    field0->attrs.Add<bool>(fn_7100090090(), false);
+    field0->attrs_0x70.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 7);
+}
 bool fn_71003c6dd0(const void*, const void*) { return false; }
 s32 fn_71003c6dd8() { return -1; }
 const base::reflection::CType& fn_71003c6de0(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

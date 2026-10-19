@@ -5,10 +5,32 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CLogicCameraComponent
 DREAD_REFL_TAG(710091059c);
 void fn_710091031c(base::reflection::CClass*) {}
+const base::reflection::CType* fn_7100910720();
+const base::reflection::CType* fn_71009112ac();
+void fn_71009115e0();
+void fn_7100910414(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("rLogicCamera", true), fn_7100910720(), 0x30, -1, -1);
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("GetLogicCamera", true))) {
+            fn->name = base::global::UnkStrId("GetLogicCamera", true);
+            fn->return_type = fn_71009112ac();
+            fn->field_0xb2 = 0;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_71009115e0);
+        }
+    }();
+}
 bool fn_710091120c(const void*, const void*) { return false; }
 s32 fn_7100911214() { return -1; }
 const base::reflection::CType& fn_710091121c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

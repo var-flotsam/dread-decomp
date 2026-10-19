@@ -16,6 +16,79 @@ using base::reflection::UnkTunableRegistry;
 // CTriggerComponent
 DREAD_REFL_TAG(7100a5ca74);
 void fn_7100a5baac(base::reflection::CClass*) {}
+void fn_7100a5cbcc(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+const base::reflection::UnkReflAttrKey& fn_71000904d0();
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_7100a6463c();
+void fn_7100a5cc80(UnkReflFunction* fn, const char* name);
+void fn_7100a646ec();
+void fn_7100a5cdfc(UnkReflFunction* fn, const char* name);
+void fn_7100a64790();
+void fn_7100a5cf78(UnkReflFunction* fn, const char* name);
+extern base::reflection::CType g_unk_717274dad8;
+const base::reflection::UnkReflAttrKey& fn_710008ff80();
+void fn_7100a5d0f4(UnkReflFunction* fn, const char* name);
+void fn_7100a5bba4(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("IsPlayerInside", true))) {
+        fn_7100a5cbcc(fn, "IsPlayerInside");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString(""));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("bCallEntityLuaCallback", true), fn_710000d228(), 0x3d, -1, -1);
+    field0->attrs.Add<bool>(fn_7100075240(), false);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_iReverb_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_iReverb_GetterFunction", true);
+        fn->return_type = fn_7100014768();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100a6463c);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_iReverb_SetterFunction", true)))
+        fn_7100a5cc80(fn, "_m_iReverb_SetterFunction");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("iReverb", true), fn_7100014768(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field1->attrs.Add<s32>(fn_7100075240(), -1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_iLowPassFilter_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_iLowPassFilter_GetterFunction", true);
+        fn->return_type = fn_7100014768();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100a646ec);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_iLowPassFilter_SetterFunction", true)))
+        fn_7100a5cdfc(fn, "_m_iLowPassFilter_SetterFunction");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("iLowPassFilter", true), fn_7100014768(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field2->attrs.Add<s32>(fn_7100075240(), -1);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("sOnEnable", true), fn_7100009658(), 0x1f0, -1, -1);
+    field3->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("sOnDisable", true), fn_7100009658(), 0x1f8, -1, -1);
+    field4->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("bOnEnableAlways", true), fn_710000d228(), 0x200, -1, -1);
+    field5->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("bOnDisableAlways", true), fn_710000d228(), 0x201, -1, -1);
+    field6->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("bStartEnabled", true), fn_710000d228(), 0x418, -1, -1);
+    field7->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("bCheckAllEntities", true), fn_710000d228(), 0x204, -1, -1);
+    field8->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("bPersistentState", true), fn_710000d228(), 0x278, -1, -1);
+    field9->attrs.Add<bool>(fn_7100075240(), false);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sSfxType_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_sSfxType_GetterFunction", true);
+        fn->return_type = fn_7100009658();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100a64790);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sSfxType_SetterFunction", true)))
+        fn_7100a5cf78(fn, "_sSfxType_SetterFunction");
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("sSfxType", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field10->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    UnkReflField* field11 = fn_7100096524(cls, CStrId("lstActivationConditions", true), &g_unk_717274dad8, 0x250, -1, -1);
+    field11->attrs_0x70.Add<CStrId>(fn_710008ff80(), CStrId("AfterActivationConditionDeserialization", true));
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AfterActivationConditionDeserialization", true)))
+        fn_7100a5d0f4(fn, "AfterActivationConditionDeserialization");
+}
 bool fn_7100a644f4(const void*, const void*) { return false; }
 s32 fn_7100a644fc() { return -1; }
 const base::reflection::CType& fn_7100a64504(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
@@ -40,7 +113,6 @@ DREAD_REFL_CLASS_GETTER(7100a5bab0, 7100a5ca74, "CTriggerComponent", 71010c23d0,
 DREAD_REFL_TAG(7100a5d684);
 void fn_7100a5d270(base::reflection::CClass*) {}
 extern bool g_unk_717274de10;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_717274ddd8;
 void fn_7100a5d808(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);

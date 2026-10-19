@@ -90,6 +90,23 @@ DREAD_REFL_CLASS_GETTER(7100f1ad94, 7100f1b570, "CEnvironmentData::SFogTransitio
 // CEnvironmentData::SAmbientTransition
 DREAD_REFL_TAG(7100f1dabc);
 void fn_7100f1d74c(base::reflection::CClass*) {}
+void fn_7100f5ed10();
+void fn_7100f1dc40(UnkReflFunction* fn, const char* name);
+void fn_7100f1d844(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sPreset", true), fn_7100009658(), 0x8, -1, -1);
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fColorInterp_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_fColorInterp_GetterFunction", true);
+            fn->return_type = fn_710000abbc();
+            fn->field_0xb2 = 0;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_7100f5ed10);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fColorInterp_SetterFunction", true)))
+            fn_7100f1dc40(fn, "_fColorInterp_SetterFunction");
+    }();
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fColorInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+}
 bool fn_7100f5e984(const void* a, const void* b) { return a == b; }
 s32 fn_7100f5e990() { return -1; }
 const base::reflection::CType& fn_7100f5e998(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
@@ -118,6 +135,23 @@ DREAD_REFL_CLASS_GETTER(7100f1d750, 7100f1dabc, "CEnvironmentData::SAmbientTrans
 // CEnvironmentData::SDepthTintTransition
 DREAD_REFL_TAG(7100f21414);
 void fn_7100f210a4(base::reflection::CClass*) {}
+void fn_7100f613ec();
+void fn_7100f21598(UnkReflFunction* fn, const char* name);
+void fn_7100f2119c(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sPreset", true), fn_7100009658(), 0x8, -1, -1);
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fTintInterp_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_fTintInterp_GetterFunction", true);
+            fn->return_type = fn_710000abbc();
+            fn->field_0xb2 = 0;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_7100f613ec);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fTintInterp_SetterFunction", true)))
+            fn_7100f21598(fn, "_fTintInterp_SetterFunction");
+    }();
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fTintInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+}
 bool fn_7100f61060(const void* a, const void* b) { return a == b; }
 s32 fn_7100f6106c() { return -1; }
 const base::reflection::CType& fn_7100f61074(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
@@ -146,6 +180,37 @@ DREAD_REFL_CLASS_GETTER(7100f210a8, 7100f21414, "CEnvironmentData::SDepthTintTra
 // CEnvironmentData::SMaterialTintTransition
 DREAD_REFL_TAG(7100f23f6c);
 void fn_7100f23a28(base::reflection::CClass*) {}
+void fn_7100f636dc();
+void fn_7100f240f0(UnkReflFunction* fn, const char* name);
+void fn_7100f637bc();
+void fn_7100f2426c(UnkReflFunction* fn, const char* name);
+void fn_7100f23b20(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sPreset", true), fn_7100009658(), 0x8, -1, -1);
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fColorInterp_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_fColorInterp_GetterFunction", true);
+            fn->return_type = fn_710000abbc();
+            fn->field_0xb2 = 0;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_7100f636dc);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fColorInterp_SetterFunction", true)))
+            fn_7100f240f0(fn, "_fColorInterp_SetterFunction");
+    }();
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fColorInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBlendInterp_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_fBlendInterp_GetterFunction", true);
+            fn->return_type = fn_710000abbc();
+            fn->field_0xb2 = 0;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_7100f637bc);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBlendInterp_SetterFunction", true)))
+            fn_7100f2426c(fn, "_fBlendInterp_SetterFunction");
+    }();
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fBlendInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+}
 bool fn_7100f63350(const void* a, const void* b) { return a == b; }
 s32 fn_7100f6335c() { return -1; }
 const base::reflection::CType& fn_7100f63364(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
@@ -174,6 +239,37 @@ DREAD_REFL_CLASS_GETTER(7100f23a2c, 7100f23f6c, "CEnvironmentData::SMaterialTint
 // CEnvironmentData::SPlayerLightTransition
 DREAD_REFL_TAG(7100f27348);
 void fn_7100f26e04(base::reflection::CClass*) {}
+void fn_7100f65e18();
+void fn_7100f274cc(UnkReflFunction* fn, const char* name);
+void fn_7100f65ef8();
+void fn_7100f27648(UnkReflFunction* fn, const char* name);
+void fn_7100f26efc(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sPreset", true), fn_7100009658(), 0x8, -1, -1);
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fColorInterp_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_fColorInterp_GetterFunction", true);
+            fn->return_type = fn_710000abbc();
+            fn->field_0xb2 = 0;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_7100f65e18);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fColorInterp_SetterFunction", true)))
+            fn_7100f274cc(fn, "_fColorInterp_SetterFunction");
+    }();
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fColorInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttenuationInterp_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_fAttenuationInterp_GetterFunction", true);
+            fn->return_type = fn_710000abbc();
+            fn->field_0xb2 = 0;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_7100f65ef8);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttenuationInterp_SetterFunction", true)))
+            fn_7100f27648(fn, "_fAttenuationInterp_SetterFunction");
+    }();
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fAttenuationInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+}
 bool fn_7100f65a8c(const void* a, const void* b) { return a == b; }
 s32 fn_7100f65a98() { return -1; }
 const base::reflection::CType& fn_7100f65aa0(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
@@ -202,6 +298,37 @@ DREAD_REFL_CLASS_GETTER(7100f26e08, 7100f27348, "CEnvironmentData::SPlayerLightT
 // CEnvironmentData::SHemisphericalLightTransition
 DREAD_REFL_TAG(7100f2a020);
 void fn_7100f29adc(base::reflection::CClass*) {}
+void fn_7100f68298();
+void fn_7100f2a1a4(UnkReflFunction* fn, const char* name);
+void fn_7100f68378();
+void fn_7100f2a320(UnkReflFunction* fn, const char* name);
+void fn_7100f29bd4(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sPreset", true), fn_7100009658(), 0x8, -1, -1);
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fColorUpInterp_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_fColorUpInterp_GetterFunction", true);
+            fn->return_type = fn_710000abbc();
+            fn->field_0xb2 = 0;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_7100f68298);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fColorUpInterp_SetterFunction", true)))
+            fn_7100f2a1a4(fn, "_fColorUpInterp_SetterFunction");
+    }();
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fColorUpInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fColorDownInterp_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_fColorDownInterp_GetterFunction", true);
+            fn->return_type = fn_710000abbc();
+            fn->field_0xb2 = 0;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_7100f68378);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fColorDownInterp_SetterFunction", true)))
+            fn_7100f2a320(fn, "_fColorDownInterp_SetterFunction");
+    }();
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fColorDownInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+}
 bool fn_7100f67f0c(const void* a, const void* b) { return a == b; }
 s32 fn_7100f67f18() { return -1; }
 const base::reflection::CType& fn_7100f67f20(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
@@ -230,6 +357,23 @@ DREAD_REFL_CLASS_GETTER(7100f29ae0, 7100f2a020, "CEnvironmentData::SHemispherica
 // CEnvironmentData::SBloomTransition
 DREAD_REFL_TAG(7100f2c408);
 void fn_7100f2c098(base::reflection::CClass*) {}
+void fn_7100f6a4b4();
+void fn_7100f2c58c(UnkReflFunction* fn, const char* name);
+void fn_7100f2c190(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sPreset", true), fn_7100009658(), 0x8, -1, -1);
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBloomInterp_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_fBloomInterp_GetterFunction", true);
+            fn->return_type = fn_710000abbc();
+            fn->field_0xb2 = 0;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_7100f6a4b4);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBloomInterp_SetterFunction", true)))
+            fn_7100f2c58c(fn, "_fBloomInterp_SetterFunction");
+    }();
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fBloomInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+}
 bool fn_7100f6a128(const void* a, const void* b) { return a == b; }
 s32 fn_7100f6a134() { return -1; }
 const base::reflection::CType& fn_7100f6a13c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
@@ -352,6 +496,23 @@ DREAD_REFL_CLASS_GETTER(7100f30ec8, 7100f31a4c, "CEnvironmentData::SVerticalFogT
 // CEnvironmentData::SCubeMapTransition
 DREAD_REFL_TAG(7100f346f0);
 void fn_7100f34380(base::reflection::CClass*) {}
+void fn_7100f6fda0();
+void fn_7100f34874(UnkReflFunction* fn, const char* name);
+void fn_7100f34478(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sPreset", true), fn_7100009658(), 0x8, -1, -1);
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fCubeMapInterp_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_fCubeMapInterp_GetterFunction", true);
+            fn->return_type = fn_710000abbc();
+            fn->field_0xb2 = 0;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_7100f6fda0);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fCubeMapInterp_SetterFunction", true)))
+            fn_7100f34874(fn, "_fCubeMapInterp_SetterFunction");
+    }();
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fCubeMapInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+}
 bool fn_7100f6fa14(const void* a, const void* b) { return a == b; }
 s32 fn_7100f6fa20() { return -1; }
 const base::reflection::CType& fn_7100f6fa28(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
@@ -380,6 +541,23 @@ DREAD_REFL_CLASS_GETTER(7100f34384, 7100f346f0, "CEnvironmentData::SCubeMapTrans
 // CEnvironmentData::SSSAOTransition
 DREAD_REFL_TAG(7100f3739c);
 void fn_7100f3702c(base::reflection::CClass*) {}
+void fn_7100f71f0c();
+void fn_7100f37520(UnkReflFunction* fn, const char* name);
+void fn_7100f37124(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sPreset", true), fn_7100009658(), 0x8, -1, -1);
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fInterp_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_fInterp_GetterFunction", true);
+            fn->return_type = fn_710000abbc();
+            fn->field_0xb2 = 0;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_7100f71f0c);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fInterp_SetterFunction", true)))
+            fn_7100f37520(fn, "_fInterp_SetterFunction");
+    }();
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+}
 bool fn_7100f71b78(const void* a, const void* b) { return a == b; }
 s32 fn_7100f71b84() { return -1; }
 const base::reflection::CType& fn_7100f71b8c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
@@ -408,6 +586,23 @@ DREAD_REFL_CLASS_GETTER(7100f37030, 7100f3739c, "CEnvironmentData::SSSAOTransiti
 // CEnvironmentData::SToneMappingTransition
 DREAD_REFL_TAG(7100f3b068);
 void fn_7100f3acf8(base::reflection::CClass*) {}
+void fn_7100f746cc();
+void fn_7100f3b1ec(UnkReflFunction* fn, const char* name);
+void fn_7100f3adf0(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sPreset", true), fn_7100009658(), 0x8, -1, -1);
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fInterp_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_fInterp_GetterFunction", true);
+            fn->return_type = fn_710000abbc();
+            fn->field_0xb2 = 0;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_7100f746cc);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fInterp_SetterFunction", true)))
+            fn_7100f3b1ec(fn, "_fInterp_SetterFunction");
+    }();
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+}
 bool fn_7100f74338(const void* a, const void* b) { return a == b; }
 s32 fn_7100f74344() { return -1; }
 const base::reflection::CType& fn_7100f7434c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
@@ -436,6 +631,23 @@ DREAD_REFL_CLASS_GETTER(7100f3acfc, 7100f3b068, "CEnvironmentData::SToneMappingT
 // CEnvironmentData::SIBLAttenuationTransition
 DREAD_REFL_TAG(7100f3da7c);
 void fn_7100f3d70c(base::reflection::CClass*) {}
+void fn_7100f768ec();
+void fn_7100f3dc00(UnkReflFunction* fn, const char* name);
+void fn_7100f3d804(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sPreset", true), fn_7100009658(), 0x8, -1, -1);
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fInterp_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_fInterp_GetterFunction", true);
+            fn->return_type = fn_710000abbc();
+            fn->field_0xb2 = 0;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_7100f768ec);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fInterp_SetterFunction", true)))
+            fn_7100f3dc00(fn, "_fInterp_SetterFunction");
+    }();
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+}
 bool fn_7100f76558(const void* a, const void* b) { return a == b; }
 s32 fn_7100f76564() { return -1; }
 const base::reflection::CType& fn_7100f7656c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

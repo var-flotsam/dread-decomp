@@ -5,10 +5,46 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CLogicShapeComponent
 DREAD_REFL_TAG(7100912ef4);
 void fn_7100912a34(base::reflection::CClass*) {}
+const base::reflection::CType* fn_7100913068();
+const base::reflection::UnkReflAttrKey& fn_7100234780();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+const base::reflection::UnkReflAttrKey& fn_7100091d40();
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::CType* fn_71009155a8();
+const base::reflection::UnkReflAttrKey& fn_710008ff80();
+extern base::reflection::CType g_unk_7101d5af48;
+void fn_71009158dc();
+void fn_7100913144(UnkReflFunction* fn, const char* name);
+void fn_7100912b2c(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("pLogicShape", true), fn_7100913068(), 0x30, -1, -1);
+    field0->attrs.Add<bool>(fn_7100234780(), true);
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Shape");
+    field0->attrs.Add<bool>(fn_7100091d40(), true);
+    field0->attrs.AddTyped<s64, &fn_71009155a8>(fn_7100075240(), 0);
+    field0->attrs.Add<CStrId>(fn_710008ff80(), CStrId("AfterShapeDeserialization", true));
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("bWantsToGenerateNavMeshEdges", true), fn_710000d228(), 0x38, -1, -1);
+    field1->attrs.Add<bool>(fn_7100075240(), false);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AfterShapeDeserialization", true))) {
+        fn->name = base::global::UnkStrId("AfterShapeDeserialization", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71009158dc);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("IsActorInside", true)))
+        fn_7100913144(fn, "IsActorInside");
+}
 bool fn_7100915528(const void*, const void*) { return false; }
 s32 fn_7100915530() { return -1; }
 const base::reflection::CType& fn_7100915538(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

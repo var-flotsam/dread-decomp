@@ -5,10 +5,23 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CLogicActionTriggerComponent
 DREAD_REFL_TAG(710090f1f8);
 void fn_710090f028(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_717274caa0;
+const base::reflection::UnkReflAttrKey& fn_7100091d40();
+void fn_710090f120(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("vLogicActions", true), &g_unk_717274caa0, 0x40, -1, -1);
+    field0->attrs_0x70.Add<bool>(fn_7100091d40(), true);
+}
 bool fn_7100910110(const void*, const void*) { return false; }
 s32 fn_7100910118() { return -1; }
 const base::reflection::CType& fn_7100910120(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

@@ -5,6 +5,13 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassSoundProofTriggerComponent
 DREAD_REFL_TAG(7100a2f61c);
@@ -38,6 +45,27 @@ DREAD_REFL_CLASS_GETTER(7100a2f524, 7100a2f61c, "CCharClassSoundProofTriggerComp
 // CSoundProofTriggerComponent
 DREAD_REFL_TAG(7100a2fcb8);
 void fn_7100a2f7a0(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_7108b6cde8;
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+extern base::reflection::CType g_unk_717269bf08;
+const base::reflection::UnkReflAttrKey& fn_7100090090();
+const base::reflection::UnkReflAttrKey& fn_710025daa0();
+extern base::reflection::CType g_unk_71727bc110;
+void fn_7100a2f898(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("eLowPassFilterToApply", true), &g_unk_7108b6cde8, 0xae8, -1, -1);
+    field0->attrs.Add<s32>(fn_7100075240(), &g_unk_7108b6cde8, 9);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fFadeInTime", true), fn_710000abbc(), 0xaec, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fFadeOutTime", true), fn_710000abbc(), 0xaf0, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("bMuteActors", true), fn_710000d228(), 0xaf6, -1, -1);
+    field3->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("bFilterSpecificActors", true), fn_710000d228(), 0xaf5, -1, -1);
+    field4->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("vActorsToIgnore", true), &g_unk_717269bf08, 0xac0, -1, -1);
+    field5->attrs.Add<bool>(fn_7100090090(), false);
+    field5->attrs_0x70.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 13);
+}
 bool fn_7100a30884(const void*, const void*) { return false; }
 s32 fn_7100a3088c() { return -1; }
 const base::reflection::CType& fn_7100a30894(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

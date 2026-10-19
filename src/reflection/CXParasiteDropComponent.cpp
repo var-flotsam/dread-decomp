@@ -5,10 +5,23 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CXParasiteDropComponent
 DREAD_REFL_TAG(71007cea90);
 void fn_71007ce8c0(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_717271c1a0;
+const base::reflection::UnkReflAttrKey& fn_7100091d40();
+void fn_71007ce9b8(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("vectBehaviors", true), &g_unk_717271c1a0, 0x48, -1, -1);
+    field0->attrs_0x70.Add<bool>(fn_7100091d40(), true);
+}
 bool fn_71007cee50(const void*, const void*) { return false; }
 s32 fn_71007cee58() { return -1; }
 const base::reflection::CType& fn_71007cee60(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

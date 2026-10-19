@@ -5,10 +5,35 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCentralUnitAIComponent
 DREAD_REFL_TAG(71004034d0);
 void fn_71004030f0(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_717269bf08;
+const base::reflection::UnkReflAttrKey& fn_7100090090();
+const base::reflection::UnkReflAttrKey& fn_710025daa0();
+extern base::reflection::CType g_unk_71727bc110;
+extern base::reflection::CType g_unk_71726fcf90;
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+extern base::reflection::CType g_unk_71727b6270;
+void fn_71004031e8(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("vSpawnPointActors", true), &g_unk_717269bf08, 0x146d0, -1, -1);
+    field0->attrs.Add<bool>(fn_7100090090(), false);
+    field0->attrs_0x70.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 3);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("eType", true), &g_unk_71726fcf90, 0x14730, -1, -1);
+    field1->attrs.Add<s32>(fn_7100075240(), &g_unk_71726fcf90, 2147483647);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("wpDoorCentralUnit", true), &g_unk_71727b6270, 0x14790, -1, -1);
+    field2->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 1);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("wpDeadCutScenePlayer", true), &g_unk_71727b6270, 0x14750, -1, -1);
+    field3->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 1);
+}
 bool fn_71004076b8(const void*, const void*) { return false; }
 s32 fn_71004076c0() { return -1; }
 const base::reflection::CType& fn_71004076c8(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

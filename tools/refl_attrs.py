@@ -17,6 +17,7 @@ scratch translation unit and keeps those that are byte-identical to the original
 
 from __future__ import annotations
 
+import re
 import struct
 import subprocess
 import sys
@@ -128,6 +129,7 @@ def events(orig: asmdiff.Original, addr: int) -> list[Event] | None:
     facts: dict[str, tuple] = {"zr": ("imm", 0), "0": ("cls", 0)}
     slot: dict[str, int] = {}  # register -> the offset it was loaded from (a virtual table slot)
     ret: dict[str, int] = {}   # register -> the call whose result it holds
+    fattr: dict[str, int] = {}  # register -> offset of an attribute container in a new field
     out: list[Event] = []
     for x in cs.disasm(orig.function(addr), addr):
         m, o = x.mnemonic, x.operands
@@ -138,6 +140,14 @@ def events(orig: asmdiff.Original, addr: int) -> list[Event] | None:
         elif m != "blr":
             for r in written:
                 slot.pop(r, None)
+        if m == "add" and len(o) == 3 and o[2].type == capstone.arm64.ARM64_OP_IMM \
+                and ret.get(_key(cs, o[1].reg)) == ADD_FIELD:
+            fattr[_key(cs, o[0].reg)] = o[2].imm
+        elif m == "mov" and len(o) == 2 and o[1].type == capstone.arm64.ARM64_OP_REG and _key(cs, o[1].reg) in fattr:
+            fattr[_key(cs, o[0].reg)] = fattr[_key(cs, o[1].reg)]
+        elif m not in ("bl", "blr"):
+            for r in written:
+                fattr.pop(r, None)
         if m == "mov" and len(o) == 2 and o[1].type == capstone.arm64.ARM64_OP_REG and _key(cs, o[1].reg) in ret:
             ret[_key(cs, o[0].reg)] = ret[_key(cs, o[1].reg)]
         elif m not in ("bl", "blr"):
@@ -225,12 +235,15 @@ def events(orig: asmdiff.Original, addr: int) -> list[Event] | None:
             regs = dict(facts)
             if "0" in ret:
                 regs["ret0"] = ("ret", ret["0"])  # x0 holds the result of an earlier call
+            if "0" in fattr:
+                regs["attroff"] = ("off", fattr["0"])  # x0 points into a new field
             out.append(Event("bl", target=target, regs=regs))
             for r in [str(i) for i in range(19)] + ["s0", "d0"]:
                 facts.pop(r, None)
                 page.pop(r, None)
                 slot.pop(r, None)
                 ret.pop(r, None)
+                fattr.pop(r, None)
             ret["0"] = target
             continue
         elif m in ("b", "br", "blr"):
@@ -564,6 +577,12 @@ def parse(orig: asmdiff.Original, addr: int, class_getters: set[int]) -> tuple[l
             if r is None:
                 return None
             i, line = r
+            # The field's second attribute container (+0x70) instead of its first (+0x38).
+            off = [e.regs.get("attroff") for e in evs[k:i] if e.kind == "bl" and e.target == ADD_ATTR]
+            if off == [("off", 0x70)]:
+                line = line.replace(f"{var}->attrs.", f"{var}->attrs_0x70.", 1)
+            elif off not in ([("off", 0x38)], [None]):
+                return None
             body.append(line)
 
     fields = 0
@@ -769,13 +788,74 @@ def parse_initialiser(orig: asmdiff.Original, addr: int, class_getters: set[int]
     return list(dict.fromkeys(decls)), "\n".join(body + ["}"])
 
 
-def verify(version: str, candidates: dict[int, tuple[list[str], str]], workdir: Path) -> set[int]:
-    """Compile all candidates in one translation unit; return the addresses that match."""
-    if not candidates:
-        return set()
-    workdir.mkdir(parents=True, exist_ok=True)
-    src = workdir / "candidates.cpp"
-    obj = workdir / "candidates.o"
+def statements(src: str) -> list[list[str]]:
+    """The top-level statements of a generated definition (between its first and last line)."""
+    out: list[list[str]] = []
+    for line in src.split("\n")[1:-1]:
+        if out and (line.startswith("        ") or line == "    }"):
+            out[-1].append(line)
+        else:
+            out.append([line])
+    return out
+
+
+def is_function_statement(stmt: list[str]) -> bool:
+    return stmt[0].startswith("    if (UnkReflFunction* fn = fn_7100097550(")
+
+
+TYPED_ADD = re.compile(r"Add<(\w+)>\((fn_\w+\(\)), (fn_\w+)\(\), ")
+
+
+def alternatives(src: str) -> list[str]:
+    """Other forms of a definition that compile differently; candidates for verify().
+
+    - Typed enum values: Add<T, &GETTER>(key, value) calls the type getter after the value
+      is stored (Add<T>(key, GETTER(), value) calls it first).
+    - The original registers a field's getter and setter functions through a helper that is
+      inlined: its temporaries are allocated before the caller's (the inliner moves them to
+      the start of the entry block), which changes the stack offsets. A lambda called in
+      place reproduces that: each run of function statements in one lambda, or each function
+      statement in its own.
+    """
+    typed = TYPED_ADD.sub(r"AddTyped<\1, &\3>(\2, ", src)
+    out = [] if typed == src else [typed]
+    for form in [src] + out:
+        out += _lambda_forms(form)
+    return [a for a in dict.fromkeys(out) if a != src]
+
+
+def _lambda_forms(src: str) -> list[str]:
+    stmts = statements(src)
+    if not any(is_function_statement(st) for st in stmts):
+        return []
+    head, tail = src.split("\n")[0], src.split("\n")[-1]
+
+    def wrap(group: list[list[str]]) -> list[str]:
+        return ["    [&] {"] + ["    " + line for st in group for line in st] + ["    }();"]
+
+    out = []
+    for per_statement in (False, True):
+        lines: list[str] = []
+        run: list[list[str]] = []
+        for st in stmts + [None]:
+            if st is not None and is_function_statement(st):
+                if per_statement:
+                    lines += wrap([st])
+                else:
+                    run.append(st)
+                continue
+            if run:
+                lines += wrap(run)
+                run = []
+            if st is not None:
+                lines += st
+        out.append("\n".join([head] + lines + [tail]))
+    return out
+
+
+def _compile(version: str, candidates: dict[int, tuple[list[str], str]], workdir: Path, name: str) -> set[int]:
+    src = workdir / f"{name}.cpp"
+    obj = workdir / f"{name}.o"
     decls: list[str] = []
     seen: set[str] = set()
     for d, _ in candidates.values():
@@ -790,3 +870,28 @@ def verify(version: str, candidates: dict[int, tuple[list[str], str]], workdir: 
         raise SystemExit(f"candidate attribute functions failed to compile:\n{r.stderr[:4000]}")
     orig = asmdiff.Original(version)
     return {res.address for res in asmdiff.diff_object(obj, orig) if res.matching}
+
+
+def verify(version: str, candidates: dict[int, tuple[list[str], str]], workdir: Path) -> set[int]:
+    """Compile all candidates in one translation unit; return the addresses that match.
+
+    Candidates that don't match are retried in their alternative forms (alternatives()); a
+    form that matches replaces the candidate in `candidates`.
+    """
+    if not candidates:
+        return set()
+    workdir.mkdir(parents=True, exist_ok=True)
+    ok = _compile(version, candidates, workdir, "candidates")
+    for k in range(6):
+        retry = {}
+        for a in sorted(set(candidates) - ok):
+            alts = alternatives(candidates[a][1])
+            if k < len(alts):
+                retry[a] = (candidates[a][0], alts[k])
+        if not retry:
+            break
+        good = _compile(version, retry, workdir, f"alternatives_{k}") & set(retry)
+        for a in good:
+            candidates[a] = retry[a]
+        ok |= good
+    return ok

@@ -283,6 +283,15 @@ DREAD_REFL_TAG(71001a3d48);
 void fn_71001a39d4(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Constant");
 }
+const base::reflection::CType* fn_7100008500();
+void fn_71001a3b20(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sId", true), fn_7100009658(), 0x8, -1, -1);
+    field0->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("cType", true), fn_7100008500(), 0x10, -1, -1);
+    field1->attrs.AddTyped<u8, &fn_7100008500>(fn_7100075240(), 102);
+    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
+}
 bool fn_71001a9780(const void*, const void*) { return false; }
 s32 fn_71001a9788() { return -1; }
 const base::reflection::CType& fn_71001a9790(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

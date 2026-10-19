@@ -7,10 +7,30 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CTentacle
 DREAD_REFL_TAG(7100708824);
 void fn_710070840c(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+extern base::reflection::CType g_unk_7101d5c998;
+const base::reflection::UnkReflAttrKey& fn_7100091d40();
+void fn_7100708500(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sName", true), fn_7100009658(), 0x8, -1, -1);
+    field0->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fExtraNodeLengthFactor", true), fn_710000abbc(), 0x38, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("tTentacleNodes", true), &g_unk_7101d5c998, 0x10, -1, -1);
+    field2->attrs_0x70.Add<bool>(fn_7100091d40(), true);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("bAllowTrail", true), fn_710000d228(), 0x3c, -1, -1);
+    field3->attrs.Add<bool>(fn_7100075240(), false);
+}
 bool fn_710070ba2c(const void* a, const void* b) { return a == b; }
 s32 fn_710070ba38() { return -1; }
 const base::reflection::CType& fn_710070ba40(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
