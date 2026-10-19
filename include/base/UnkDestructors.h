@@ -153,6 +153,13 @@ void refl_ListDtor(char* self) {
     *reinterpret_cast<char**>(self + 0x18) = nullptr;
 }
 
+// The deleting form (fn_7100085188 and its copies): the stores before the free are dropped.
+template <class Tag, u32 Alloc, u32 Next>
+void refl_ListDeletingDtor(char* self) {
+    refl_ListDtor<Tag, Alloc, Next>(self);
+    __builtin_operator_delete(self);
+}
+
 // A secondary base at `Sub` that is linked into a list owned by a refcounted object (held at
 // Sub+0x18; the list at +0x10 of the owner). Its destructor, inlined into the class's, unlinks it
 // and releases the owner. link_vtable(): the secondary base's vtable; unlink(list, link).

@@ -107,3 +107,12 @@ struct UnkCloneStrId : base::UnkStrIdMember {};
 // The same, from CFilePathStrId's pool.
 template <class Tag>
 struct UnkCloneStrIdB : base::UnkStrIdMemberOf<g_unk_7101d47200> {};
+
+// An element of the given size whose only non-trivial member is a string id (Id, one of the
+// above) at Off.
+template <class Tag, u64 Off, u64 Size, class Id>
+struct UnkCloneStrIdElem {
+    u64 words[Size / 8];
+
+    ~UnkCloneStrIdElem() { reinterpret_cast<Id*>(reinterpret_cast<char*>(words) + Off)->~Id(); }
+};
