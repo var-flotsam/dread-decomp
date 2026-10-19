@@ -171,7 +171,7 @@ address,size,name,name_source,subsystem,status
 0x7100e07920,576,fn_7100e07920,unknown,unknown,U
 0x7100e07b60,88,fn_7100e07b60,unknown,unknown,O
 0x7100e07bb8,240,CLightManager::refl_GetClass,reflection,game,O
-0x7100e07ca8,1204,fn_7100e07ca8,unknown,game?,U
+0x7100e07ca8,1204,fn_7100e07ca8,unknown,game?,O
 0x7100e0815c,352,CLightManager::refl_InitClass,reflection,game,O
 0x7100e082bc,380,fn_7100e082bc,unknown,unknown,O
 0x7100e08438,376,fn_7100e08438,unknown,unknown,O
@@ -436,7 +436,7 @@ address,size,name,name_source,subsystem,status
 0x7100e16af0,880,fn_7100e16af0,unknown,unknown,U
 0x7100e16e60,2060,fn_7100e16e60,unknown,unknown,O
 0x7100e1766c,384,fn_7100e1766c,unknown,unknown,O
-0x7100e177ec,336,fn_7100e177ec,unknown,unknown,U
+0x7100e177ec,336,fn_7100e177ec,unknown,unknown,O
 0x7100e1793c,524,fn_7100e1793c,unknown,unknown,O
 0x7100e17b48,384,fn_7100e17b48,unknown,unknown,O
 0x7100e17cc8,72,fn_7100e17cc8,unknown,unknown,O
@@ -2191,7 +2191,7 @@ address,size,name,name_source,subsystem,status
 0x7100e775b8,388,fn_7100e775b8,unknown,unknown,O
 0x7100e7773c,220,fn_7100e7773c,unknown,unknown,O
 0x7100e77818,500,fn_7100e77818,unknown,unknown,O
-0x7100e77a0c,860,fn_7100e77a0c,unknown,unknown,U
+0x7100e77a0c,860,fn_7100e77a0c,unknown,unknown,O
 0x7100e77d68,388,fn_7100e77d68,unknown,unknown,O
 0x7100e77eec,372,fn_7100e77eec,unknown,unknown,O
 0x7100e78060,288,fn_7100e78060,unknown,unknown,U
@@ -3392,7 +3392,7 @@ address,size,name,name_source,subsystem,status
 0x7100ed1594,500,fn_7100ed1594,unknown,unknown,O
 0x7100ed1788,220,fn_7100ed1788,unknown,unknown,O
 0x7100ed1864,220,fn_7100ed1864,unknown,unknown,O
-0x7100ed1940,264,fn_7100ed1940,unknown,unknown,U
+0x7100ed1940,264,fn_7100ed1940,unknown,unknown,O
 0x7100ed1a48,388,fn_7100ed1a48,unknown,unknown,O
 0x7100ed1bcc,220,fn_7100ed1bcc,unknown,unknown,O
 0x7100ed1ca8,220,fn_7100ed1ca8,unknown,unknown,O
@@ -3670,7 +3670,7 @@ address,size,name,name_source,subsystem,status
 0x7100edac84,8,fn_7100edac84,unknown,unknown,O
 0x7100edac8c,8,fn_7100edac8c,unknown,unknown,O
 0x7100edac94,88,fn_7100edac94,unknown,unknown,U
-0x7100edacec,128,fn_7100edacec,unknown,unknown,U
+0x7100edacec,128,fn_7100edacec,unknown,unknown,O
 0x7100edad6c,288,fn_7100edad6c,unknown,unknown,U
 0x7100edae8c,48,fn_7100edae8c,unknown,unknown,O
 0x7100edaebc,272,fn_7100edaebc,unknown,unknown,U
@@ -3682,7 +3682,7 @@ address,size,name,name_source,subsystem,status
 0x7100edb114,8,fn_7100edb114,unknown,unknown,O
 0x7100edb11c,8,fn_7100edb11c,unknown,unknown,O
 0x7100edb124,112,fn_7100edb124,unknown,unknown,U
-0x7100edb194,128,fn_7100edb194,unknown,unknown,U
+0x7100edb194,128,fn_7100edb194,unknown,unknown,O
 0x7100edb214,8,fn_7100edb214,unknown,unknown,O
 0x7100edb21c,8,fn_7100edb21c,unknown,unknown,O
 0x7100edb224,80,fn_7100edb224,unknown,unknown,O
@@ -3814,7 +3814,7 @@ address,size,name,name_source,subsystem,status
 0x7100edfad8,776,fn_7100edfad8,unknown,game?,O
 0x7100edfde0,388,CSubAreaManager::CTunableSubAreaManager::refl_InitClass,reflection,game,O
 0x7100edff64,696,fn_7100edff64,unknown,unknown,O
-0x7100ee021c,3028,fn_7100ee021c,unknown,unknown,U
+0x7100ee021c,3028,fn_7100ee021c,unknown,unknown,O
 0x7100ee0df0,328,fn_7100ee0df0,unknown,unknown,O
 0x7100ee0f38,220,base::reflection::refl_GetType<base::global::CRntVector<std::unique_ptr<CSubareaSetup>>const*>,reflection,engine/reflection,O
 0x7100ee1014,220,base::reflection::refl_GetType<base::global::CRntVector<std::unique_ptr<CSubareaCharclassGroup>>const*>,reflection,engine/reflection,O
@@ -4018,8 +4018,8 @@ address,size,name,name_source,subsystem,status
 0x7100ef1f24,624,fn_7100ef1f24,unknown,unknown,U
 0x7100ef2194,508,fn_7100ef2194,unknown,unknown,U
 0x7100ef2390,996,fn_7100ef2390,unknown,unknown,U
-0x7100ef2780,3348,CSubAreaManager::refl_GetClass,reflection,game,U
-0x7100ef3494,440,fn_7100ef3494,unknown,game?,U
-0x7100ef364c,160,fn_7100ef364c,unknown,game?,U
-0x7100ef36ec,160,fn_7100ef36ec,unknown,game?,U
-0x7100ef378c,52316,fn_7100ef378c,unknown,game?,U
+0x7100ef2780,3348,fn_7100ef2780,unknown,unknown,U
+0x7100ef3494,440,fn_7100ef3494,unknown,unknown,U
+0x7100ef364c,160,fn_7100ef364c,unknown,unknown,U
+0x7100ef36ec,160,fn_7100ef36ec,unknown,unknown,U
+0x7100ef378c,52316,fn_7100ef378c,unknown,unknown,U

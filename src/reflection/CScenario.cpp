@@ -19,6 +19,64 @@ const base::reflection::UnkReflAttrKey& fn_7100005070();
 void fn_710119ea2c(CClass* cls) {
     fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x310200u);
 }
+extern base::reflection::CType g_unk_71727b06e8;
+const base::reflection::UnkReflAttrKey& fn_710000bf80();
+extern base::reflection::CType g_unk_7101d679f0;
+const base::reflection::UnkReflAttrKey& fn_71000923a0();
+extern base::reflection::CType g_unk_7101d55008;
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+extern base::reflection::CType g_unk_71726a07a0;
+void fn_71011a4a54();
+const base::reflection::UnkReflAttrKey& fn_710025d990();
+extern base::reflection::CType g_unk_7172756f90;
+const base::reflection::UnkReflAttrKey& fn_7100263720();
+void fn_71011a4a7c();
+void fn_71011a4aa4();
+extern base::reflection::CType g_unk_7101d5c998;
+void fn_710119eb78(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("awpScenarioColliders", true), &g_unk_71727b06e8, 0x828, -1, -1);
+    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("sLevelID", true), fn_7100009658(), 0x10, -1, -1);
+    field1->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Level_Id"));
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("sScenarioID", true), fn_7100009658(), 0x18, -1, -1);
+    field2->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Scenario_Id"));
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_rEntitiesLayer_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_rEntitiesLayer_GetterFunction", true);
+        fn->return_type = &g_unk_71726a07a0;
+        fn->field_0xb2 = 0x1;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71011a4a54);
+    }
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("rEntitiesLayer", true), &g_unk_71726a07a0, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field3->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Entities"));
+    field3->attrs.Add<s32>(fn_710025d990(), &g_unk_7172756f90, 1);
+    field3->attrs.Add<s32>(fn_7100263720(), &g_unk_7172756f90, 0);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_rSoundsLayer_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_rSoundsLayer_GetterFunction", true);
+        fn->return_type = &g_unk_71726a07a0;
+        fn->field_0xb2 = 0x1;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71011a4a7c);
+    }
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("rSoundsLayer", true), &g_unk_71726a07a0, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field4->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Sounds"));
+    field4->attrs.Add<s32>(fn_710025d990(), &g_unk_7172756f90, 1);
+    field4->attrs.Add<s32>(fn_7100263720(), &g_unk_7172756f90, 0);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_rLightsLayer_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_rLightsLayer_GetterFunction", true);
+        fn->return_type = &g_unk_71726a07a0;
+        fn->field_0xb2 = 0x1;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71011a4aa4);
+    }
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("rLightsLayer", true), &g_unk_71726a07a0, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field5->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Lights"));
+    field5->attrs.Add<s32>(fn_710025d990(), &g_unk_7172756f90, 1);
+    field5->attrs.Add<s32>(fn_7100263720(), &g_unk_7172756f90, 0);
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("vLayerFiles", true), &g_unk_7101d5c998, 0x278, -1, -1);
+    field6->attrs.Add<s32>(fn_710025d990(), &g_unk_7172756f90, 0);
+}
 bool fn_71011a49c0(const void*, const void*) { return false; }
 s32 fn_71011a49c8() { return -1; }
 const base::reflection::CType& fn_71011a49d0(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

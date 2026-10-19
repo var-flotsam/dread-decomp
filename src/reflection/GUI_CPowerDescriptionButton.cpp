@@ -18,7 +18,6 @@ DREAD_REFL_TAG(7100b62414);
 void fn_7100b61fc4(base::reflection::CClass*) {}
 void fn_7100b631e8();
 void fn_7100b62574(UnkReflFunction* fn, const char* name);
-const base::reflection::CType* fn_7100007f84();
 void fn_7100b620bc(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sLabelName_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_sLabelName_GetterFunction", true);

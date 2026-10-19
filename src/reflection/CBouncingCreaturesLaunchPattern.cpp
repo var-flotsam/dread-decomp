@@ -107,6 +107,14 @@ DREAD_REFL_CLASS_GETTER(71005df184, 71005df454, "CCharClassKraidBouncingCreature
 // CCharClassKraidBouncingCreaturesAttack
 DREAD_REFL_TAG(71005dfb64);
 void fn_71005df890(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_71726ef250;
+const base::reflection::UnkReflAttrKey& fn_7100091d40();
+void fn_71005df988(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sEndAttackAnim", true), fn_7100009658(), 0xf0, -1, -1);
+    field0->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("tPatterns", true), &g_unk_71726ef250, 0xf8, -1, -1);
+    field1->attrs_0x70.Add<bool>(fn_7100091d40(), true);
+}
 bool fn_71005e47d0(const void* a, const void* b) { return a == b; }
 s32 fn_71005e47dc() { return -1; }
 const base::reflection::CType& fn_71005e47e4(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

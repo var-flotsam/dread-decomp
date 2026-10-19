@@ -23,7 +23,6 @@ void fn_7100e2f79c();
 void fn_7100e20c1c(UnkReflFunction* fn, const char* name);
 void fn_7100e2f894();
 void fn_7100e20d98(UnkReflFunction* fn, const char* name);
-const base::reflection::CType* fn_7100007f84();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71727c10c8;
 void fn_7100e20f14(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);

@@ -23,6 +23,17 @@ void fn_7100c65840(CClass* cls) {
     fn_710009dd6c(cls)->Add<bool>(fn_71000912a0(), true);
     fn_710009dd6c(cls)->Add<CStrId>(fn_7100090e60(), CStrId("Screen Effects", true));
 }
+const base::reflection::CType* fn_71000a87a4();
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::CType* fn_71000a41b4();
+void fn_7100c65a50(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("vColorStart", true), fn_71000a87a4(), 0x18, -1, -1);
+    field0->attrs.AddTyped<s32, &fn_71000a41b4>(fn_7100075240(), 0);
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Color Start");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("vColorEnd", true), fn_71000a87a4(), 0x1c, -1, -1);
+    field1->attrs.AddTyped<s32, &fn_71000a41b4>(fn_7100075240(), -16777216);
+    field1->attrs.Add<const char*>(fn_7100007e80(), "Color End");
+}
 bool fn_7100c65dd8(const void* a, const void* b) { return a == b; }
 s32 fn_7100c65de4() { return -1; }
 const base::reflection::CType& fn_7100c65dec(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

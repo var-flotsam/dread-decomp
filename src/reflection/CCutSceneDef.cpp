@@ -23,6 +23,76 @@ void fn_7100c8137c(CClass* cls) {
     fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x80203u);
     fn_710009dd6c(cls)->Add<const char*>(fn_710008ff80(), "OnDeserialize");
 }
+extern base::reflection::CType g_unk_7101d5af48;
+void fn_7100c8d374();
+extern base::reflection::CType g_unk_7172795110;
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+extern base::reflection::CType g_unk_7172793b40;
+extern base::reflection::CType g_unk_7172793350;
+extern base::reflection::CType g_unk_7101d5d188;
+const base::reflection::UnkReflAttrKey& fn_7100090c40();
+const base::reflection::CClass* fn_710104c290();
+void fn_7100c81508(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("OnDeserialize", true))) {
+        fn->name = base::global::UnkStrId("OnDeserialize", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100c8d374);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("eDevelopmentState", true), &g_unk_7172795110, 0x0, -1, -1);
+    field0->attrs.Add<s32>(fn_7100075240(), &g_unk_7172795110, 1);
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Development State");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("sId", true), fn_7100009658(), 0x8, -1, -1);
+    field1->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    field1->attrs.Add<const char*>(fn_7100007e80(), "Id");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("sActionSet", true), fn_710000ad9c(), 0x10, -1, -1);
+    field2->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId(g_unk_7101d470e8));
+    field2->attrs.Add<const char*>(fn_7100007e80(), "ActionSet File");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("vWorldOffset", true), fn_71000246e4(), 0x18, -1, -1);
+    field3->attrs.Add<const char*>(fn_7100007e80(), "CutScene world position");
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("sOnLoaded", true), fn_7100009658(), 0x28, -1, -1);
+    field4->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    field4->attrs.Add<const char*>(fn_7100007e80(), "On Cutscene Loaded LUA Function");
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("sOnBeforeStart", true), fn_7100009658(), 0x30, -1, -1);
+    field5->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    field5->attrs.Add<const char*>(fn_7100007e80(), "On Before Starting Cutscene LUA Function");
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("sOnStart", true), fn_7100009658(), 0x38, -1, -1);
+    field6->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    field6->attrs.Add<const char*>(fn_7100007e80(), "On Start LUA Function");
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("sOnFinished", true), fn_7100009658(), 0x40, -1, -1);
+    field7->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    field7->attrs.Add<const char*>(fn_7100007e80(), "On Finished LUA Function");
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("sOnEnd", true), fn_7100009658(), 0x48, -1, -1);
+    field8->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    field8->attrs.Add<const char*>(fn_7100007e80(), "On End LUA Function");
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("sOnSkip", true), fn_7100009658(), 0x50, -1, -1);
+    field9->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    field9->attrs.Add<const char*>(fn_7100007e80(), "On Skip LUA Function");
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("fCamInitInterpTime", true), fn_710000abbc(), 0x60, -1, -1);
+    field10->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    field10->attrs.Add<const char*>(fn_7100007e80(), "Camera Init Interpolation Time");
+    UnkReflField* field11 = fn_7100096524(cls, CStrId("fCamExitInterpTime", true), fn_710000abbc(), 0x5c, -1, -1);
+    field11->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    field11->attrs.Add<const char*>(fn_7100007e80(), "Camera Exit Interpolation Time");
+    UnkReflField* field12 = fn_7100096524(cls, CStrId("fFps", true), fn_7100014768(), 0x58, -1, -1);
+    field12->attrs.Add<s32>(fn_7100075240(), 30);
+    field12->attrs.Add<const char*>(fn_7100007e80(), "Frames per Second");
+    UnkReflField* field13 = fn_7100096524(cls, CStrId("bSkippable", true), fn_710000d228(), 0x64, -1, -1);
+    field13->attrs.Add<bool>(fn_7100075240(), true);
+    field13->attrs.Add<const char*>(fn_7100007e80(), "Can be skipped?");
+    UnkReflField* field14 = fn_7100096524(cls, CStrId("aTakes", true), &g_unk_7172793b40, 0x68, -1, -1);
+    field14->attrs.Add<const char*>(fn_7100007e80(), "Takes");
+    UnkReflField* field15 = fn_7100096524(cls, CStrId("aActors", true), &g_unk_7172793350, 0x90, -1, -1);
+    field15->attrs.Add<const char*>(fn_7100007e80(), "Actors");
+    UnkReflField* field16 = fn_7100096524(cls, CStrId("aSounds", true), &g_unk_7101d5d188, 0xb8, -1, -1);
+    field16->attrs.Add<const char*>(fn_7100007e80(), "Sounds");
+    field16->attrs.Add<bool>(fn_7100090c40(), false);
+    UnkReflField* field17 = fn_7100096524(cls, CStrId("oPoolDefinitions", true), fn_710104c290(), 0xe0, -1, -1);
+    field17->attrs.Add<const char*>(fn_7100007e80(), "FX Pools");
+    field17->attrs.Add<bool>(fn_7100090c40(), false);
+}
 bool fn_7100c8ac8c(const void* a, const void* b) { return a == b; }
 s32 fn_7100c8ac98() { return -1; }
 const base::reflection::CType& fn_7100c8aca0(const void* obj);
@@ -107,9 +177,6 @@ DREAD_REFL_ROOT_CLASS_GETTER(7100c84768, 7100c84c20, "CCutSceneDef::CAnimationLa
 // CCutSceneDef::CTakeDef
 DREAD_REFL_TAG(7100c86768);
 void fn_7100c85d38(base::reflection::CClass*) {}
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::CType* fn_710000ad9c();
 void fn_7100c85e2c(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("sId", true), fn_7100009658(), 0x0, -1, -1);
     field0->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
@@ -165,8 +232,11 @@ struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100c86768> {
 DREAD_REFL_ROOT_CLASS_GETTER(7100c85d3c, 7100c86768, "CCutSceneDef::CTakeDef", 7100c85d38, 7100c85e2c);
 
 const base::reflection::CType* fn_7100005178();
+const base::reflection::CType* fn_7100009658();
 const base::reflection::CType* fn_7100c837d4();
 const base::reflection::CType* fn_7100c83ea0();
+const base::reflection::CType* fn_7100c84da4();
+const base::reflection::CType* fn_7100c85470();
 const base::reflection::CType* fn_7100c868ec();
 const base::reflection::CType* fn_7100c86fb8();
 void fn_7100c87f58();
@@ -275,6 +345,28 @@ void fn_7100c8f520();
 void fn_7100c8f52c();
 void fn_7100c8f544();
 void fn_7100c8f61c();
+void fn_7100c904a0();
+void fn_7100c904a8();
+void fn_7100c904ac();
+void fn_7100c9059c();
+void fn_7100c90664();
+void fn_7100c906e0();
+void fn_7100c906f4();
+void fn_7100c90760();
+void fn_7100c908c8();
+void fn_7100c90a20();
+void fn_7100c90a2c();
+void fn_7100c90a34();
+void fn_7100c90a40();
+void fn_7100c90a74();
+void fn_7100c90a78();
+void fn_7100c90abc();
+void fn_7100c90b14();
+void fn_7100c90b44();
+void fn_7100c90e70();
+void fn_7100c90e7c();
+void fn_7100c90e94();
+void fn_7100c90ef8();
 void fn_7100c91ec8();
 void fn_7100c91ed0();
 void fn_7100c91f28();
@@ -465,6 +557,39 @@ struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100c84e80> {
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_7100c89110*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_7100c84e80>();
+struct UnkRefl_fn_7100c85b3c;
+template <>
+struct base::reflection::UnkReflCollectionTraits<UnkRefl_fn_7100c85b3c> {
+    static constexpr u64 size = 0x28;
+    static constexpr u32 field_0xe0 = 0x2;
+    static constexpr UnkFn fn_0x28 = &fn_7100c90a40;
+    static constexpr UnkFn fn_0x30 = &fn_7100c90a74;
+    static constexpr UnkFn fn_0x38 = &fn_7100c90a78;
+    static constexpr UnkFn fn_0x40 = &fn_7100c90abc;
+    static constexpr UnkFn fn_0x48 = &fn_7100c90b14;
+    static constexpr UnkFn fn_0x50 = &fn_7100c90b44;
+    static constexpr UnkFn fn_0x58 = &fn_7100c90a20;
+    static constexpr UnkFn fn_0x60 = &fn_7100c90a2c;
+    static constexpr UnkFn fn_0x68 = &fn_7100c90a34;
+    static const CType* key() { return fn_7100009658(); }
+    static const CType* element() { return fn_7100c84768(); }
+    static const CType* iterator() { return fn_7100c84da4(); }
+    static const CType* const_iterator() { return fn_7100c85470(); }
+    static constexpr UnkFn fn_0x108 = &fn_7100c904a0;
+    static constexpr UnkFn fn_0x110 = &fn_7100c904a8;
+    static constexpr UnkFn fn_0x118 = &fn_7100c904ac;
+    static constexpr UnkFn fn_0x120 = &fn_7100c9059c;
+    static constexpr UnkFn fn_0x128 = &fn_7100c90664;
+    static constexpr UnkFn fn_0x130 = &fn_7100c906e0;
+    static constexpr UnkFn fn_0x138 = &fn_7100c906f4;
+    static constexpr UnkFn fn_0x140 = &fn_7100c90760;
+    static constexpr UnkFn fn_0x148 = &fn_7100c908c8;
+    static constexpr UnkFn fn_0x150 = &fn_7100c90e70;
+    static constexpr UnkFn fn_0x158 = &fn_7100c90e7c;
+    static constexpr UnkFn fn_0x160 = &fn_7100c90e94;
+    static constexpr UnkFn fn_0x168 = &fn_7100c90ef8;
+};
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100c85b3c*, void*);
 struct UnkRefl_fn_7100c89bb8;
 struct UnkRefl_fn_7100c868ec;
 template <>

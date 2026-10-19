@@ -5,10 +5,27 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CDamageComponent
 DREAD_REFL_TAG(71007aeb34);
 void fn_71007ae904(base::reflection::CClass*) {}
+void fn_71007aecb8(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+const base::reflection::UnkReflAttrKey& fn_71000904d0();
+void fn_71007ae9fc(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("DamageValues", true))) {
+        fn_71007aecb8(fn, "DamageValues");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Initialize From File"));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+}
 bool fn_71007af174(const void*, const void*) { return false; }
 s32 fn_71007af17c() { return -1; }
 const base::reflection::CType& fn_71007af184(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

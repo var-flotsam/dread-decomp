@@ -16,6 +16,30 @@ using base::reflection::UnkTunableRegistry;
 // CCharClassSteamJetComponent
 DREAD_REFL_TAG(710089b98c);
 void fn_710089b044(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+void fn_710089b13c(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fDefaultDamage", true), fn_710000abbc(), 0x5c, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Default damage");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("sFX_init", true), fn_710000ad9c(), 0x60, -1, -1);
+    field1->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId("actors/props/steamjet/fx/steamjet_init.bcptl", true));
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("sFX_end", true), fn_710000ad9c(), 0x68, -1, -1);
+    field2->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId("actors/props/steamjet/fx/steamjet_end.bcptl", true));
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("sFX_1_1", true), fn_710000ad9c(), 0x70, -1, -1);
+    field3->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId("actors/props/steamjet/fx/steamjet1x1.bcptl", true));
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("sFX_1_2", true), fn_710000ad9c(), 0x78, -1, -1);
+    field4->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId("actors/props/steamjet/fx/steamjet1x2.bcptl", true));
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("sFX_1_3", true), fn_710000ad9c(), 0x80, -1, -1);
+    field5->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId("actors/props/steamjet/fx/steamjet1x3.bcptl", true));
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("sFX_1_4", true), fn_710000ad9c(), 0x88, -1, -1);
+    field6->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId("actors/props/steamjet/fx/steamjet1x4.bcptl", true));
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("sFX_1_5", true), fn_710000ad9c(), 0x90, -1, -1);
+    field7->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId("actors/props/steamjet/fx/steamjet1x5.bcptl", true));
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("bSteamOnly", true), fn_710000d228(), 0x98, -1, -1);
+    field8->attrs.Add<bool>(fn_7100075240(), false);
+    field8->attrs.Add<const char*>(fn_7100007e80(), "Steam or Fire");
+}
 bool fn_710089fbc4(const void*, const void*) { return false; }
 s32 fn_710089fbcc() { return -1; }
 const base::reflection::CType& fn_710089fbd4(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
@@ -44,7 +68,6 @@ DREAD_REFL_CLASS_GETTER(710089b048, 710089b98c, "CCharClassSteamJetComponent", 7
 // CSteamJetComponent
 DREAD_REFL_TAG(710089d008);
 void fn_710089bb10(base::reflection::CClass*) {}
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 const base::reflection::UnkReflAttrKey& fn_7100091080();
 const base::reflection::UnkReflAttrKey& fn_7100091190();
 void fn_710089fcb4();

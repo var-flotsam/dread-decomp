@@ -18,7 +18,6 @@ DREAD_REFL_TAG(71008de19c);
 void fn_71008ddcec(base::reflection::CClass*) {}
 const base::reflection::UnkReflAttrKey& fn_7100075240();
 const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::CType* fn_7100007f84();
 extern base::reflection::CType g_unk_7172731d68;
 const base::reflection::UnkReflAttrKey& fn_7100093390();
 const base::reflection::UnkReflAttrKey& fn_710000bf80();

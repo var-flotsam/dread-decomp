@@ -5,6 +5,13 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CPowerBombGun
 DREAD_REFL_TAG(71008557f4);
@@ -38,6 +45,47 @@ DREAD_REFL_CLASS_GETTER(71008556fc, 71008557f4, "CPowerBombGun", 710085c56c, 710
 // CPowerBombGun::CTunablePowerBomb
 DREAD_REFL_TAG(7100855efc);
 void fn_7100855978(base::reflection::CClass*) {}
+extern bool g_unk_7172727d48;
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+void fn_7100856ee4();
+void fn_71008560b4(UnkReflFunction* fn, const char* name);
+extern base::global::CRntString g_unk_7101d58d10;
+extern UnkTunableRegistry* g_unk_7101d47350;
+extern UnkTunable g_unk_7172727ce0;
+void fn_7100856230(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
+void fn_7100855a70(CClass* cls) {
+    if (g_unk_7172727d48)
+        return;
+    g_unk_7172727d48 = true;
+    if (!cls)
+        return;
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fDamageAmount", true), fn_710000abbc(), 0x24, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Single shot damage amount");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sDamageSource_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_sDamageSource_GetterFunction", true);
+        fn->return_type = fn_7100007f84();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100856ee4);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sDamageSource_SetterFunction", true)))
+        fn_71008560b4(fn, "_sDamageSource_SetterFunction");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("sDamageSource", true), fn_7100007f84(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field1->attrs.Add<base::global::CRntString>(fn_7100075240(), base::global::CRntString(g_unk_7101d58d10));
+    field1->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Source of the damage to be dealt"));
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fHeat", true), fn_710000abbc(), 0x60, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 0.7f);
+    field2->attrs.Add<const char*>(fn_7100007e80(), "Maximun damage to the shield");
+    UnkTunableRegistry* registry = g_unk_7101d47350;
+    if (!registry) {
+        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
+        fn_710013ac14(registry);
+        g_unk_7101d47350 = registry;
+    }
+    fn_7100856230(registry, &g_unk_7172727ce0, "");
+}
 bool fn_7100856e30(const void*, const void*) { return false; }
 s32 fn_7100856e38() { return -1; }
 const base::reflection::CType& fn_7100856e40(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

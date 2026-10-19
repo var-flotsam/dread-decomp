@@ -45,7 +45,6 @@ DREAD_REFL_CLASS_GETTER(7100a45418, 7100a45510, "CCharClassBaseDamageTriggerComp
 // CBaseDamageTriggerComponent
 DREAD_REFL_TAG(7100a458d0);
 void fn_7100a45694(base::reflection::CClass*) {}
-const base::reflection::CType* fn_710000ad9c();
 const base::reflection::UnkReflAttrKey& fn_7100093390();
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;

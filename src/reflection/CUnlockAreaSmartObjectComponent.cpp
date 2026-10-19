@@ -48,7 +48,6 @@ void fn_7100a06b30(base::reflection::CClass*) {}
 extern bool g_unk_71727430d0;
 const base::reflection::UnkReflAttrKey& fn_7100075240();
 const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::CType* fn_7100007f84();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_7172743078;
 void fn_7100a0701c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);

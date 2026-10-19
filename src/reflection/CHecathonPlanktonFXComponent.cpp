@@ -5,10 +5,22 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CHecathonPlanktonFXComponent
 DREAD_REFL_TAG(71008080b0);
 void fn_7100807e90(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_7100807f88(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sModelResPath", true), fn_710000ad9c(), 0x48, -1, -1);
+    field0->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId("", true));
+}
 bool fn_710080ed10(const void*, const void*) { return false; }
 s32 fn_710080ed18() { return -1; }
 const base::reflection::CType& fn_710080ed20(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

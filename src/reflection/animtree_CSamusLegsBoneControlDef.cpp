@@ -19,7 +19,6 @@ const base::reflection::UnkReflAttrKey& fn_7100007e80();
 void fn_71002e8ad0(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Samus Legs Control");
 }
-const base::reflection::CType* fn_710000fd7c();
 const base::reflection::UnkReflAttrKey& fn_7100075240();
 void fn_71002e8c1c(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("sThigh", true), fn_710000fd7c(), 0x10, -1, -1);

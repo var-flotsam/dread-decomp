@@ -7,10 +7,44 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CLightsDef
 DREAD_REFL_TAG(7100d9d4fc);
 void fn_7100d9cf1c(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_71727bac20;
+const base::reflection::UnkReflAttrKey& fn_710008fd60();
+const base::reflection::UnkReflAttrKey& fn_710008fb40();
+void fn_7100d9d680(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+const base::reflection::UnkReflAttrKey& fn_710008f920();
+const base::reflection::UnkReflAttrKey& fn_71000903c0();
+void fn_7100d9d800(UnkReflFunction* fn, const char* name);
+void fn_7100d9d014(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sPath", true), fn_710000ad9c(), 0x58, -1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("vLights", true), &g_unk_71727bac20, 0x60, -1, -1);
+    field1->attrs.Add<CStrId>(fn_710008fd60(), CStrId("CreateElement", true));
+    field1->attrs.Add<CStrId>(fn_710008fb40(), CStrId("DeleteElement", true));
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("CreateElement", true))) {
+        fn_7100d9d680(fn, "CreateElement");
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Create LightInfo");
+        fn_710009ae5c(fn, fn->params.count);
+        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("uIdx", true));
+        fn->ParamAttrs(0)->Add<bool>(fn_71000903c0(), true);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("DeleteElement", true))) {
+        fn_7100d9d800(fn, "DeleteElement");
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Delete LightInfo");
+        fn_710009ae5c(fn, fn->params.count);
+        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("uIdx", true));
+    }
+}
 bool fn_7100da097c(const void*, const void*) { return false; }
 s32 fn_7100da0984() { return -1; }
 const base::reflection::CType& fn_7100da098c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

@@ -16,7 +16,6 @@ using base::reflection::UnkTunableRegistry;
 // CCharClassRobotAIComponent
 DREAD_REFL_TAG(710041afb8);
 void fn_710041ace0(base::reflection::CClass*) {}
-const base::reflection::CType* fn_710000ad9c();
 const base::reflection::UnkReflAttrKey& fn_7100075240();
 const base::reflection::UnkReflAttrKey& fn_7100007e80();
 void fn_710041add8(CClass* cls) {

@@ -14,19 +14,19 @@ CAISmartObjectComponent,class,CComponent,0x60,0x710035fa10
 CAbility,class,CGameObject,0x390,0x71002f8198
 CAbilityComponent,class,CComponent,0x108,0x71002fbaf8
 CAbilityComponent::CTunableAbilityComponent,class,base::tunable::CTunable,0x58,0x71002facc4
-CAbilityEnergyWave,,,,0x71002fc970
+CAbilityEnergyWave,class,CAbility,0x590,0x7100303134
 CAbilityEnergyWave::CTunableAbilityEnergyWave,class,base::tunable::CTunable,0x40,0x7100303390
-CAbilityGhostAura,,,,0x71002fc970
+CAbilityGhostAura,class,CAbility,0x4a8,0x7100306914
 CAbilityGhostAura::CTunableAbilityGhostAura,class,base::tunable::CTunable,0xb0,0x7100306b70
-CAbilityMultiLockon,,,,0x71002fc970
+CAbilityMultiLockon,class,CAbility,0x730,0x7100316638
 CAbilityMultiLockon::CTunableAbilityMultiLockon,class,base::tunable::CTunable,0x70,0x71003169f8
-CAbilityOpticCamouflage,,,,0x71002fc970
+CAbilityOpticCamouflage,class,CAbility,0x3c0,0x7100320270
 CAbilityOpticCamouflage::CTunableAbilityOpticCamouflage,class,base::tunable::CTunable,0x90,0x7100320a88
-CAbilityShinespark,,,,0x71002fc970
+CAbilityShinespark,class,CAbility,0x758,0x71003255a4
 CAbilityShinespark::CTunableAbilityShinespark,class,base::tunable::CTunable,0x90,0x7100325824
-CAbilitySonar,,,,0x71002fc970
+CAbilitySonar,class,CAbility,0x7b0,0x71003335fc
 CAbilitySonar::CTunableAbilitySonar,class,base::tunable::CTunable,0x88,0x710033387c
-CAbilitySpeedBooster,,,,0x71002fc970
+CAbilitySpeedBooster,class,CAbility,0x658,0x710033a31c
 CAbilitySpeedBooster::CTunableAbilitySpeedBooster,class,base::tunable::CTunable,0x50,0x710033a578
 CAccessPointCommanderComponent,class,CAccessPointComponent,0xa20,0x7100a69610
 CAccessPointComponent,class,CUsableComponent,0x9a0,0x7100a6b630
@@ -110,6 +110,7 @@ CBoneToConstantComponent,class,CSceneComponent,0x60,0x7100803c44
 CBossAIComponent,class,CBehaviorTreeAIComponent,0x149a0,0x71003ab524
 CBossCameraCtrl,class,CCameraBoundaryCtrl,0x358,0x710074eca8
 CBossLifeComponent,class,CEnemyLifeComponent,0x278,0x71008ad3d4
+CBossRushDebugTime,class,,0x18,0x7100db6424
 CBossRushManager::CTunableBossRushManager,class,base::tunable::CTunable,0x1e8,0x7100db68b4
 CBossRushSurvivalConfiguration,class,,0x20,0x7100db5c98
 CBossSpawnGroupComponent,class,CSpawnGroupComponent,0x428,0x7100a10ab8
@@ -1427,7 +1428,6 @@ CDoorEmmyFXComponent,class,CComponent,0x138,0x71007b55e4
 CDoorGrapplePointComponent,class,CPullableGrapplePointComponent,0x98,0x71008292c4
 CDoorLifeComponent,class,CItemLifeComponent,0xc00,0x71008cb078
 CDoorLifeComponent::CTunableDoorLifeComponent,class,base::tunable::CTunable,0x38,0x71008cd2c8
-CDoorLifeComponent::SState,enum,,,0x71008da6c0
 CDoorShieldLifeComponent,class,CItemLifeComponent,0x498,0x71008ddcf0
 CDredhedAIComponent,class,CBehaviorTreeAIComponent,0x14738,0x71004e7354
 CDredhedAttackComponent,class,CAIAttackComponent,0x348,0x71004e80f4
@@ -1534,7 +1534,6 @@ CFootstepPlatformComponent,class,CComponent,0xf0,0x71007e70b4
 CForbiddenEdgesLogicAction,class,CTriggerLogicAction,0x98,0x7100a4eabc
 CForceMovementLogicAction,class,CTriggerLogicAction,0x20,0x7100a4f984
 CForcedMovementAreaComponent,class,CActorComponent,0xf8,0x71007e8fb0
-CForcedMovementAreaComponent::EForcedDirection,enum,,,0x71007ed4f0
 CFreeAimTutoLogicAction,class,CTriggerLogicAction,0x80,0x7100a3d4a4
 CFreeCameraCtrl,class,CCameraCtrl,0xc18,0x71010eee94
 CFreezeRoomComponent,class,CBaseDamageTriggerComponent,0xc50,0x7100a226c4
@@ -1549,7 +1548,6 @@ CFulmiteBellyMineAttackComponent,class,CAIAttackComponent,0x348,0x710057f100
 CFulmiteBellyMineMovementComponent,class,CProjectileMovement,0x5d8,0x710057f724
 CFusibleBoxComponent,class,CComponent,0x60,0x7100881278
 CGameBlackboard,class,CBlackboard,0x148,0x7100ae9e7c
-CGameLink<CSpawnPointComponent>,enum,,,0x7101132ba0
 CGameManager::CTunableEnemies,class,base::tunable::CTunable,0x28,0x7100de3d24
 CGameManager::CTunableGameManager,class,base::tunable::CTunable,0x30,0x7100de2780
 CGameManager::CTunableGraphicSettings,class,base::tunable::CTunable,0x28,0x7100de30dc
@@ -1577,6 +1575,7 @@ CGrappleBeamGun::CTunableGrappleBeamGun,class,base::tunable::CTunable,0x38,0x710
 CGrapplePointComponent,class,CComponent,0x88,0x7100821fbc
 CGroundShockerAIComponent,class,CBaseGroundShockerAIComponent,0x14750,0x71005a4004
 CGroundShockerAttack,class,CAttack,0x60,0x71005a020c
+CGun,class,CGameObject,0x1880,0x71008351ac
 CGun::CTunableGun,class,base::tunable::CTunable,0x40,0x7100834640
 CGunComponent,class,CComponent,0x328,0x7100838154
 CGunComponent::CTunableGunComponent,class,base::tunable::CTunable,0x48,0x7100837520
@@ -1763,7 +1762,7 @@ CPowerBombMovement,class,CBombMovement,0x538,0x7100ab0318
 CPowerBombMovement::CTunablePowerBombMovement,class,base::tunable::CTunable,0x38,0x7100aafa14
 CPowerGeneratorComponent,class,CActivatableComponent,0x160,0x7100a7dfac
 CPowerUpLifeComponent,class,CItemLifeComponent,0x3e0,0x71008e45d0
-CPrimaryGun,class,,0x1880,0x71008570a4
+CPrimaryGun,class,CGun,0x1880,0x71008570a4
 CProfessorDoorComponent,class,CEventPropComponent,0x80,0x71007dd3f4
 CProgressStatsManager::CTunableProgressStatManager,class,base::tunable::CTunable,0x38,0x7100ec5a30
 CProjectileMovement,class,CWeaponMovement,0x5d0,0x7100ac2434
@@ -1866,7 +1865,7 @@ CScourgeAIComponent,class,CBehaviorTreeAIComponent,0x14778,0x710069ef44
 CScourgeLifeComponent,class,CEnemyLifeComponent,0x280,0x71006a1890
 CScourgeTongueSlashAttack,class,CAttack,0x70,0x7100699fd4
 CScriptComponent,class,CComponent,0xc8,0x7101139a60
-CSecondaryGun,class,,0x18a0,0x710085c56c
+CSecondaryGun,class,CGun,0x18a0,0x710085c56c
 CSegmentLightComponent,class,CBaseLightComponent,0x60,0x71008f2684
 CSensor,class,,0x18,0x7100f048e0
 CSensorDoorComponent,class,CComponent,0x1f0,0x71007b78f4
@@ -1904,9 +1903,6 @@ CSoundProofTriggerComponent,class,CBaseTriggerComponent,0xaf8,0x7100a2f7a4
 CSoundTrigger,class,CBaseTriggerComponent,0xad0,0x71007177f8
 CSpawnGroupComponent,class,CComponent,0x420,0x7101117478
 CSpawnPointComponent,class,CComponent,0x3b8,0x7101123918
-CSpawnPointComponent::EDynamicSpawnPositionMode,enum,,,0x7101132ba0
-CSpawnPointComponent::EXCellSpawnPositionMode,enum,,,0x7101132ba0
-CSpawnerActorBlueprint,enum,,,0x7101132ba0
 CSpbSprActivator,class,CActivatableByProjectileComponent,0x210,0x71008988fc
 CSpecialEnergyComponent,class,CComponent,0xd8,0x7100a1e4d8
 CSpecialEnergyComponent::CTunableSpecialEnergyComponent,class,base::tunable::CTunable,0x40,0x7100a1db44
@@ -1921,10 +1917,8 @@ CStateParams,class,,0x8,0x7100f184d4
 CSteamJetComponent,class,CBaseDamageTriggerComponent,0xca0,0x710089bb14
 CSteeringMovement,class,CMovementComponent,0x238,0x71010def4c
 CStimulusDef,class,,0x18,0x7100f04f60
-CSubAreaManager,class,CSubAreaManager::CTunableSubAreaManager,0xae8,0x7100ef2780
 CSubAreaManager*,pointer,,,0x7100ad61f8
 CSubAreaManager::CTunableSubAreaManager,class,base::tunable::CTunable,0x30,0x7100edf9e4
-CSubAreaManager::ETransitionType,class,CSubAreaManager::CTunableSubAreaManager,0xae8,0x7100ef2780
 CSubareaTransitionTypeLogicAction,class,CTriggerLogicAction,0x18,0x7100a54244
 CSunnapAIComponent,class,CRodotukAIComponent,0x14870,0x71006cb724
 CSuperMissileGun,class,CMissileGun,0x1920,0x710085ef4c
@@ -1998,12 +1992,11 @@ CharClassLaunchKraidMorphballGrabEvent,class,base::global::timeline::CEvent,0x10
 CharClassRechargePlayerAmmo,class,base::global::timeline::CEvent,0x10,0x7101203a04
 CharClassRechargePlayerLife,class,base::global::timeline::CEvent,0x10,0x71012040c8
 CharClassSakaiModifyShieldEvent,class,base::global::timeline::CEvent,0x10,0x7100bce0e4
-EBreakableTileType,enum,,,0x7100c9d380
-ESubAreaItem,collection,,,0x7100fb1c80
 GUI::CAmiiboButton,class,GUI::CChangeMenuStateButton,0x2a8,0x7100af0378
 GUI::CAmiiboComposition,class,GUI::CDisplayObjectContainer,0x240,0x7100af0954
 GUI::CArchivesInspectorComposition,class,GUI::CDisplayObjectContainer,0x310,0x7100af1f50
 GUI::CBoolTunableButton,class,GUI::CButton,0x2d0,0x7100af37b8
+GUI::CBossRushReport,class,GUI::CDisplayObjectContainer,0x288,0x7100af4354
 GUI::CButton,class,GUI::CDisplayObjectContainer,0x2a8,0x71011be400
 GUI::CChangeMenuStateButton,class,GUI::CButton,0x2a8,0x7100af6260
 GUI::CChozoArchivesComposition,class,GUI::CChozoGalleryBase,0x2e0,0x7100af6844
@@ -2049,12 +2042,12 @@ GUI::CLoadCheckPointButton,class,GUI::CButton,0x2a8,0x7100b33974
 GUI::CMainMenu,class,GUI::CDisplayObjectContainer,0x558,0x7100b34230
 GUI::CMainMenuComposition,class,GUI::CDisplayObjectContainer,0x288,0x7100b369a0
 GUI::CMapMenuController,class,GUI::CDisplayObjectContainer,0x11d8,0x7100b37430
-GUI::CMapMenuController::SState,enum,,,0x7100b48ca0
 GUI::CMenuEntryDataSet,class,GUI::IDataSet,0x38,0x7101201d00
 GUI::CMissionLog,class,GUI::CDisplayObjectContainer,0x320,0x7100b54a10
 GUI::CModel3D,class,GUI::CDisplayObject,0x278,0x71011f0814
 GUI::CNewGameButton,class,GUI::CButton,0x2c0,0x7100b5d744
 GUI::CPopUpComposition,class,GUI::CDisplayObjectContainer,0x3a8,0x7100b5e368
+GUI::CPopUpGeneric,class,GUI::CDisplayObjectContainer,0x3e0,0x7100b60d58
 GUI::CPowerDescriptionButton,class,GUI::CButton,0x330,0x7100b61fc8
 GUI::CPowerDescriptionComposition,class,GUI::CDisplayObjectContainer,0x330,0x7100b6343c
 GUI::CProfileButton,class,GUI::CChangeMenuStateButton,0x2b0,0x7100b646a0
@@ -2144,7 +2137,6 @@ base::file::CPackManagerDevice,class,base::file::IDevice,0x88,0x710008a028
 base::file::CThreadSafeDevice,class,base::file::IDevice,0x30,0x710008e5a0
 base::file::IDevice,class,,0x8,0x710008894c
 base::file::nx::CDeviceNX,class,base::file::IDevice,0x48,0x710002da04
-"base::global::CArray<base::global::CStrId, EnumClass<ESubAreaItem>::Count, ESubAreaItem>",collection,,,0x7100fb1c80
 base::global::CFilePathStrId,,,,0x710000ad9c
 base::global::CFilePathStrId const*,pointer,,,0x71000a7740
 base::global::CName,,,,0x710000fd7c
@@ -2162,8 +2154,6 @@ base::global::CRntVector<CEnvironmentData::SPlayerLightTransition>*,pointer,,,0x
 base::global::CRntVector<CEnvironmentData::SSSAOTransition>*,pointer,,,0x7100f3862c
 base::global::CRntVector<CEnvironmentData::SToneMappingTransition>*,pointer,,,0x7100f3c2f8
 base::global::CRntVector<CEnvironmentData::SVerticalFogTransition>*,pointer,,,0x7100f332cc
-base::global::CRntVector<CGameLink<CSpawnPointComponent>>,enum,,,0x7101132ba0
-base::global::CRntVector<CSpawnerActorBlueprint>,enum,,,0x7101132ba0
 base::global::CRntVector<std::unique_ptr<CSubareaCharclassGroup>>const*,pointer,,,0x7100ee1014
 base::global::CRntVector<std::unique_ptr<CSubareaSetup>>const*,pointer,,,0x7100ee0f38
 base::global::CStrId,,,,0x7100009658

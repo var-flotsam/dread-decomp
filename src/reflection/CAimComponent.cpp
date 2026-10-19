@@ -16,6 +16,79 @@ using base::reflection::UnkTunableRegistry;
 // CAimComponent
 DREAD_REFL_TAG(7100340b4c);
 void fn_710033ff64(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+void fn_7100353e98();
+void fn_7100340cac(UnkReflFunction* fn, const char* name);
+void fn_7100353f28();
+void fn_7100340e28(UnkReflFunction* fn, const char* name);
+void fn_7100353fb8();
+void fn_7100340fa4(UnkReflFunction* fn, const char* name);
+void fn_7100354048();
+void fn_7100341120(UnkReflFunction* fn, const char* name);
+extern base::reflection::CType g_unk_7101d5af48;
+void fn_7100354274();
+void fn_71003540d8(UnkReflFunction* fn);
+void fn_710034005c(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sLaserFX", true), fn_7100009658(), 0x4e0, -1, -1);
+    field0->attrs.Add<const char*>(fn_7100075240(), "lasertarget");
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Laser target ID");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("sAutoAimLaserFX", true), fn_7100009658(), 0x4e8, -1, -1);
+    field1->attrs.Add<const char*>(fn_7100075240(), "lasertargeautoaim");
+    field1->attrs.Add<const char*>(fn_7100007e80(), "Autoaim laser target ID");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bAutoAimActive_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_bAutoAimActive_GetterFunction", true);
+        fn->return_type = fn_710000d228();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100353e98);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bAutoAimActive_SetterFunction", true)))
+        fn_7100340cac(fn, "_m_bAutoAimActive_SetterFunction");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("bAutoAimActive", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field2->attrs.Add<bool>(fn_7100075240(), true);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bLockOnSoundAllowed_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_bLockOnSoundAllowed_GetterFunction", true);
+        fn->return_type = fn_710000d228();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100353f28);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bLockOnSoundAllowed_SetterFunction", true)))
+        fn_7100340e28(fn, "_m_bLockOnSoundAllowed_SetterFunction");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("bLockOnSoundAllowed", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field3->attrs.Add<bool>(fn_7100075240(), true);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fCurrentAutoAimWidth_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_fCurrentAutoAimWidth_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100353fb8);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fCurrentAutoAimWidth_SetterFunction", true)))
+        fn_7100340fa4(fn, "_m_fCurrentAutoAimWidth_SetterFunction");
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fCurrentAutoAimWidth", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field4->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fCurrentAutoAimConeLength_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_fCurrentAutoAimConeLength_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100354048);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fCurrentAutoAimConeLength_SetterFunction", true)))
+        fn_7100341120(fn, "_m_fCurrentAutoAimConeLength_SetterFunction");
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("fCurrentAutoAimConeLength", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field5->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("ForceAimPressed", true))) {
+        fn->name = base::global::UnkStrId("ForceAimPressed", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100354274);
+        fn_71003540d8(fn);
+    }
+}
 bool fn_7100353e34(const void*, const void*) { return false; }
 s32 fn_7100353e3c() { return -1; }
 const base::reflection::CType& fn_7100353e44(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
@@ -41,8 +114,6 @@ DREAD_REFL_CLASS_GETTER(710033ff68, 7100340b4c, "CAimComponent", 71010c23d0, 710
 DREAD_REFL_TAG(71003425fc);
 void fn_710034129c(base::reflection::CClass*) {}
 extern bool g_unk_71726b1500;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71726b1438;
 void fn_7100342780(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);

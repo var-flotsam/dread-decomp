@@ -53,6 +53,16 @@ DREAD_REFL_ROOT_CLASS_GETTER(710104c290, 710104c414, "CFXPoolPack", 710104c238, 
 // CFXPool::CDefinition
 DREAD_REFL_TAG(710104d8a0);
 void fn_710104d528(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+extern base::reflection::CType g_unk_71727b8dd8;
+void fn_710104d61c(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sFile", true), fn_710000ad9c(), 0x0, -1, -1);
+    field0->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId(g_unk_7101d470e8));
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("eType", true), &g_unk_71727b8dd8, 0x8, -1, -1);
+    field1->attrs.Add<s32>(fn_7100075240(), &g_unk_71727b8dd8, 0);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("uSize", true), fn_7100005178(), 0xc, -1, -1);
+    field2->attrs.Add<s32>(fn_7100075240(), 1);
+}
 bool fn_7101050290(const void* a, const void* b) { return a == b; }
 s32 fn_710105029c() { return -1; }
 const base::reflection::CType& fn_71010502a4(const void* obj);

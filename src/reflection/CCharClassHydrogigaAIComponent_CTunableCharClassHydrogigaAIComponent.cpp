@@ -73,6 +73,47 @@ DREAD_REFL_CLASS_GETTER(71005b81bc, 71005b866c, "CCharClassHydrogigaAIComponent:
 // CCharClassHydrogigaAIComponent
 DREAD_REFL_TAG(71005b96bc);
 void fn_71005b8aa8(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_717270d668;
+const base::reflection::UnkReflAttrKey& fn_7100091d40();
+const base::reflection::CClass* fn_71005ad144();
+const base::reflection::CClass* fn_71005ad6a4();
+const base::reflection::CClass* fn_71005af03c();
+const base::reflection::CClass* fn_71005b2164();
+const base::reflection::CClass* fn_71005b2544();
+const base::reflection::CClass* fn_71008c1b4c();
+void fn_71005b8ba0(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("tTentacles", true), &g_unk_717270d668, 0x528, -1, -1);
+    field0->attrs_0x70.Add<bool>(fn_7100091d40(), true);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("oHydrogigaBraidAttackDef", true), fn_71005ad144(), 0x738, -1, -1);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("oHydrogigaMaelstormAttackDef", true), fn_71005ad6a4(), 0x830, -1, -1);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("oHydrogigaPolypsAttackDef", true), fn_71005af03c(), 0x920, -1, -1);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("oHydrogigaTentacleBashAttackDef", true), fn_71005b2164(), 0xa98, -1, -1);
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("oHydrogigaTongueSwirlAttackDef", true), fn_71005b2544(), 0xb88, -1, -1);
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("fTimeOpened", true), fn_710000abbc(), 0x550, -1, -1);
+    field6->attrs.Add<f32>(fn_7100075240(), 5.0f);
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("fTimeDry", true), fn_710000abbc(), 0x554, -1, -1);
+    field7->attrs.Add<f32>(fn_7100075240(), 5.0f);
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("fTimeStunned", true), fn_710000abbc(), 0x558, -1, -1);
+    field8->attrs.Add<f32>(fn_7100075240(), 5.0f);
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("fUnderwaterZipLineMultiplier", true), fn_710000abbc(), 0x55c, -1, -1);
+    field9->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("fTurbineRestoreTime", true), fn_710000abbc(), 0x560, -1, -1);
+    field10->attrs.Add<f32>(fn_7100075240(), 10.0f);
+    UnkReflField* field11 = fn_7100096524(cls, CStrId("bMeleeDestroyPolyps", true), fn_710000d228(), 0x564, -1, -1);
+    field11->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field12 = fn_7100096524(cls, CStrId("fMaxDamageDry", true), fn_710000abbc(), 0x568, -1, -1);
+    field12->attrs.Add<f32>(fn_7100075240(), 500.0f);
+    UnkReflField* field13 = fn_7100096524(cls, CStrId("fMaxDamageStunned", true), fn_710000abbc(), 0x56c, -1, -1);
+    field13->attrs.Add<f32>(fn_7100075240(), 500.0f);
+    UnkReflField* field14 = fn_7100096524(cls, CStrId("fDamageStage2", true), fn_710000abbc(), 0x570, -1, -1);
+    field14->attrs.Add<f32>(fn_7100075240(), 1800.0f);
+    UnkReflField* field15 = fn_7100096524(cls, CStrId("fDamageFactorFillingPool", true), fn_710000abbc(), 0x574, -1, -1);
+    field15->attrs.Add<f32>(fn_7100075240(), 0.2f);
+    UnkReflField* field16 = fn_7100096524(cls, CStrId("oDamageSourceFactorClose", true), fn_71008c1b4c(), 0x578, -1, -1);
+    UnkReflField* field17 = fn_7100096524(cls, CStrId("oDamageSourceFactorOpen", true), fn_71008c1b4c(), 0x5e8, -1, -1);
+    UnkReflField* field18 = fn_7100096524(cls, CStrId("oDamageSourceFactorDry", true), fn_71008c1b4c(), 0x658, -1, -1);
+    UnkReflField* field19 = fn_7100096524(cls, CStrId("oDamageSourceFactorPolyps", true), fn_71008c1b4c(), 0x6c8, -1, -1);
+}
 bool fn_71005b9c10(const void*, const void*) { return false; }
 s32 fn_71005b9c18() { return -1; }
 const base::reflection::CType& fn_71005b9c20(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

@@ -5,10 +5,26 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CXParasiteGoSpawnBehavior
 DREAD_REFL_TAG(71007cca50);
 void fn_71007cc858(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_717269bf08;
+const base::reflection::UnkReflAttrKey& fn_7100090090();
+const base::reflection::UnkReflAttrKey& fn_710025daa0();
+extern base::reflection::CType g_unk_71727bc110;
+void fn_71007cc950(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("tSpawnPoints", true), &g_unk_717269bf08, 0x20, -1, -1);
+    field0->attrs.Add<bool>(fn_7100090090(), false);
+    field0->attrs_0x70.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 3);
+}
 bool fn_71007ccbd4(const void* a, const void* b) { return a == b; }
 s32 fn_71007ccbe0() { return -1; }
 const base::reflection::CType& fn_71007ccbe8(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

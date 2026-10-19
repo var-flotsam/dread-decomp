@@ -18,6 +18,19 @@ using base::reflection::UnkTunableRegistry;
 // animtree::CAnimTreeDef
 DREAD_REFL_TAG(71002d6844);
 void fn_71002d6460(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_71726aa3a0;
+const base::reflection::UnkReflAttrKey& fn_710008ff80();
+extern base::reflection::CType g_unk_71726a9658;
+void fn_71002d69a4(UnkReflFunction* fn, const char* name);
+void fn_71002d6558(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sRootNode", true), fn_7100009658(), 0x10, -1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("aNodes", true), &g_unk_71726aa3a0, 0x18, -1, -1);
+    field1->attrs_0x70.Add<CStrId>(fn_710008ff80(), CStrId("AfterNodeDefDeserialization", true));
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("aControls", true), &g_unk_71726aa3a0, 0x48, -1, -1);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("aLinks", true), &g_unk_71726a9658, 0x78, -1, -1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AfterNodeDefDeserialization", true)))
+        fn_71002d69a4(fn, "AfterNodeDefDeserialization");
+}
 bool fn_71002d926c(const void* a, const void* b) { return a == b; }
 s32 fn_71002d9278() { return -1; }
 const base::reflection::CType& fn_71002d9280(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

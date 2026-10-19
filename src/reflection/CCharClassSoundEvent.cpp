@@ -21,6 +21,76 @@ void fn_7100cdcdc0(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Sound");
     fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("Sound", true));
 }
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100091080();
+const base::reflection::UnkReflAttrKey& fn_7100091190();
+extern base::reflection::CType g_unk_7108b6c9c8;
+void fn_7100cdcfa0(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sSoundID", true), fn_710000ad9c(), 0x10, -1, -1);
+    field0->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId(g_unk_7101d470e8));
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("sAlternativeSoundID1", true), fn_710000ad9c(), 0x18, -1, -1);
+    field1->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId(g_unk_7101d470e8));
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("sAlternativeSoundID2", true), fn_710000ad9c(), 0x20, -1, -1);
+    field2->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId(g_unk_7101d470e8));
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("sAlternativeSoundID3", true), fn_710000ad9c(), 0x28, -1, -1);
+    field3->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId(g_unk_7101d470e8));
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("sAlternativeSoundID4", true), fn_710000ad9c(), 0x30, -1, -1);
+    field4->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId(g_unk_7101d470e8));
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("sAlternativeSoundID5", true), fn_710000ad9c(), 0x38, -1, -1);
+    field5->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId(g_unk_7101d470e8));
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("sAlternativeSoundID6", true), fn_710000ad9c(), 0x40, -1, -1);
+    field6->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId(g_unk_7101d470e8));
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("sAlternativeSoundID7", true), fn_710000ad9c(), 0x48, -1, -1);
+    field7->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId(g_unk_7101d470e8));
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("fVolume", true), fn_710000abbc(), 0x58, -1, -1);
+    field8->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    field8->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    field8->attrs.Add<f32>(fn_7100091190(), 2.0f);
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("fRadiusMinAttenuation", true), fn_710000abbc(), 0x5c, -1, -1);
+    field9->attrs.Add<f32>(fn_7100075240(), 500.0f);
+    field9->attrs.Add<f32>(fn_7100091080(), 100.0f);
+    field9->attrs.Add<f32>(fn_7100091190(), 50000.0f);
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("fRadiusMaxAttenuation", true), fn_710000abbc(), 0x60, -1, -1);
+    field10->attrs.Add<f32>(fn_7100075240(), 3000.0f);
+    field10->attrs.Add<f32>(fn_7100091080(), 500.0f);
+    field10->attrs.Add<f32>(fn_7100091190(), 50000.0f);
+    UnkReflField* field11 = fn_7100096524(cls, CStrId("sNode", true), fn_7100009658(), 0x50, -1, -1);
+    field11->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    UnkReflField* field12 = fn_7100096524(cls, CStrId("fPitch", true), fn_710000abbc(), 0x64, -1, -1);
+    field12->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    field12->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    field12->attrs.Add<f32>(fn_7100091190(), 2.0f);
+    UnkReflField* field13 = fn_7100096524(cls, CStrId("fPitchMax", true), fn_710000abbc(), 0x68, -1, -1);
+    field13->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    field13->attrs.Add<f32>(fn_7100091080(), -1.0f);
+    field13->attrs.Add<f32>(fn_7100091190(), 2.0f);
+    UnkReflField* field14 = fn_7100096524(cls, CStrId("bStopOnChangeAnim", true), fn_710000d228(), 0x6c, -1, -1);
+    field14->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field15 = fn_7100096524(cls, CStrId("fFadeInTime", true), fn_710000abbc(), 0x70, -1, -1);
+    field15->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field15->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    field15->attrs.Add<f32>(fn_7100091190(), 10.0f);
+    UnkReflField* field16 = fn_7100096524(cls, CStrId("fFadeOutTime", true), fn_710000abbc(), 0x74, -1, -1);
+    field16->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field16->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    field16->attrs.Add<f32>(fn_7100091190(), 10.0f);
+    UnkReflField* field17 = fn_7100096524(cls, CStrId("fStopInTime", true), fn_710000abbc(), 0x78, -1, -1);
+    field17->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    field17->attrs.Add<f32>(fn_7100091080(), -1.0f);
+    field17->attrs.Add<f32>(fn_7100091190(), 30.0f);
+    UnkReflField* field18 = fn_7100096524(cls, CStrId("bStopOnEntityDead", true), fn_710000d228(), 0x80, -1, -1);
+    field18->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field19 = fn_7100096524(cls, CStrId("sSoundGroupId", true), fn_7100009658(), 0x88, -1, -1);
+    field19->attrs.Add<CStrId>(fn_7100075240(), CStrId("DEFAULT", true));
+    UnkReflField* field20 = fn_7100096524(cls, CStrId("sType", true), fn_7100009658(), 0x90, -1, -1);
+    field20->attrs.Add<CStrId>(fn_7100075240(), CStrId("N", true));
+    UnkReflField* field21 = fn_7100096524(cls, CStrId("eSoundType", true), &g_unk_7108b6c9c8, 0x98, -1, -1);
+    field21->attrs.Add<s32>(fn_7100075240(), &g_unk_7108b6c9c8, 0);
+    UnkReflField* field22 = fn_7100096524(cls, CStrId("bRumbleSync", true), fn_710000d228(), 0x81, -1, -1);
+    field22->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field23 = fn_7100096524(cls, CStrId("fRumbleGainOverride", true), fn_710000abbc(), 0x7c, -1, -1);
+    field23->attrs.Add<f32>(fn_7100075240(), -1.0f);
+}
 bool fn_7100cdeca0(const void* a, const void* b) { return a == b; }
 s32 fn_7100cdecac() { return -1; }
 const base::reflection::CType& fn_7100cdecb4(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

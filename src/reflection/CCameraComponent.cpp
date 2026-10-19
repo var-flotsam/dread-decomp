@@ -7,10 +7,148 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCameraComponent
 DREAD_REFL_TAG(71010e0b80);
 void fn_71010df79c(base::reflection::CClass*) {}
+void fn_71010e70d0();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+const base::reflection::UnkReflAttrKey& fn_71000923a0();
+extern base::reflection::CType g_unk_7101d55008;
+const base::reflection::UnkReflAttrKey& fn_710000bf80();
+extern base::reflection::CType g_unk_7101d679f0;
+void fn_71010e711c();
+void fn_71010e0ce0(UnkReflFunction* fn, const char* name);
+void fn_71010e7218();
+void fn_71010e0e5c(UnkReflFunction* fn, const char* name);
+void fn_71010e7314();
+void fn_71010e0fd8(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_71010e73a4();
+void fn_71010e1154(UnkReflFunction* fn, const char* name);
+void fn_71010e7434();
+void fn_71010e12d0(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100090a20();
+void fn_71010e74c4();
+void fn_71010e144c(UnkReflFunction* fn, const char* name);
+extern base::reflection::CType g_unk_7101d5af48;
+void fn_71010e7828();
+void fn_71010e7554(UnkReflFunction* fn);
+void fn_71010e15c8(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_71000904d0();
+void fn_71010e167c(UnkReflFunction* fn, const char* name);
+void fn_71010df894(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fCurrentInterp_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_fCurrentInterp_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71010e70d0);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fCurrentInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field0->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Current interpolation speed"));
+    field0->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 2);
+    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vCurrentPos_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_vCurrentPos_GetterFunction", true);
+        fn->return_type = fn_71000246e4();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71010e711c);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vCurrentPos_SetterFunction", true)))
+        fn_71010e0ce0(fn, "_vCurrentPos_SetterFunction");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("vCurrentPos", true), fn_71000246e4(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field1->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Current position"));
+    field1->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 3);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vCurrentDir_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_vCurrentDir_GetterFunction", true);
+        fn->return_type = fn_71000246e4();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71010e7218);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vCurrentDir_SetterFunction", true)))
+        fn_71010e0e5c(fn, "_vCurrentDir_SetterFunction");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("vCurrentDir", true), fn_71000246e4(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field2->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Current direction"));
+    field2->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 3);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fDefaultInterp_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_fDefaultInterp_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71010e7314);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fDefaultInterp_SetterFunction", true)))
+        fn_71010e0fd8(fn, "_m_fDefaultInterp_SetterFunction");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fDefaultInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field3->attrs.Add<f32>(fn_7100075240(), 10.0f);
+    field3->attrs.Add<const char*>(fn_7100007e80(), "Default interpolation speed");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fCurrentInterpChangeSpeed_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_fCurrentInterpChangeSpeed_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71010e73a4);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fCurrentInterpChangeSpeed_SetterFunction", true)))
+        fn_71010e1154(fn, "_m_fCurrentInterpChangeSpeed_SetterFunction");
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("fCurrentInterpChangeSpeed", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field4->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    field4->attrs.Add<const char*>(fn_7100007e80(), "Current interpolation change speed");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fDefaultNear_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_fDefaultNear_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71010e7434);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fDefaultNear_SetterFunction", true)))
+        fn_71010e12d0(fn, "_m_fDefaultNear_SetterFunction");
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("fDefaultNear", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field5->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field5->attrs.Add<bool>(fn_7100090a20(), false);
+    field5->attrs.Add<f32>(fn_7100075240(), 100.0f);
+    field5->attrs.Add<const char*>(fn_7100007e80(), "Default near plane dist");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fDefaultFar_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_fDefaultFar_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71010e74c4);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fDefaultFar_SetterFunction", true)))
+        fn_71010e144c(fn, "_m_fDefaultFar_SetterFunction");
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("fDefaultFar", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field6->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field6->attrs.Add<bool>(fn_7100090a20(), false);
+    field6->attrs.Add<f32>(fn_7100075240(), 60000.0f);
+    field6->attrs.Add<const char*>(fn_7100007e80(), "Default far plane dist");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetLogicCameraParams", true))) {
+        fn->name = base::global::UnkStrId("SetLogicCameraParams", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71010e7828);
+        fn_71010e7554(fn);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("GetLogicCameraController", true))) {
+        fn_71010e15c8(fn, "GetLogicCameraController");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString(""));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("bIgnoreSlomo", true), fn_710000d228(), 0xc20, -1, -1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("GetCtrl", true)))
+        fn_71010e167c(fn, "GetCtrl");
+}
 bool fn_71010e706c(const void*, const void*) { return false; }
 s32 fn_71010e7074() { return -1; }
 const base::reflection::CType& fn_71010e707c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

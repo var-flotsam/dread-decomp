@@ -4,6 +4,7 @@
 // template get distinct instantiations through a tag type named after their address. The
 // element types stand in for unknown ones with the same code generation.
 
+#include "base/UnkDestructors.h"
 #include "types.h"
 
 // An element of unknown, trivially copyable type and the given size (accessed as bytes).
@@ -63,3 +64,27 @@ struct UnkCloneHandle {
     UnkCloneHandle(const UnkCloneHandle& other) : ptr(other.ptr) {}
     bool operator==(const UnkCloneHandle& other) const { return ptr == other.ptr; }
 };
+
+// An 8-byte, 8-aligned trivially copyable element (UnkCloneElem<Tag, 8> is byte-aligned).
+template <class Tag>
+struct UnkCloneWord {
+    u64 value;
+
+    bool operator==(const UnkCloneWord& other) const { return value == other.value; }
+};
+
+// A 4-byte trivially copyable element.
+template <class Tag>
+struct UnkCloneU32 {
+    u32 value;
+
+    bool operator==(const UnkCloneU32& other) const { return value == other.value; }
+};
+
+// A string id released in two steps (base::UnkStrIdMember).
+template <class Tag>
+struct UnkCloneStrId : base::UnkStrIdMember {};
+
+// The same, from CFilePathStrId's pool.
+template <class Tag>
+struct UnkCloneStrIdB : base::UnkStrIdMemberOf<g_unk_7101d47200> {};

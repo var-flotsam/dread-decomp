@@ -5,10 +5,38 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CFXComponent
 DREAD_REFL_TAG(710114da84);
 void fn_710114d604(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_710114dc08(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+const base::reflection::UnkReflAttrKey& fn_71000904d0();
+void fn_710114dcbc(UnkReflFunction* fn, const char* name);
+void fn_710114d6fc(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fSelectedHighRadius", true), fn_710000abbc(), 0x118, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 250.0f);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fSelectedLowRadius", true), fn_710000abbc(), 0x114, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 350.0f);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetEffectEmissionEnabled", true))) {
+        fn_710114dc08(fn, "SetEffectEmissionEnabled");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString(""));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetEffectEnabled", true))) {
+        fn_710114dcbc(fn, "SetEffectEnabled");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString(""));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+}
 bool fn_7101157810(const void*, const void*) { return false; }
 s32 fn_7101157818() { return -1; }
 const base::reflection::CType& fn_7101157820(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

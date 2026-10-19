@@ -5,10 +5,30 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CSPBTutoLogicAction
 DREAD_REFL_TAG(7100a522dc);
 void fn_7100a51fd0(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_717269bb48;
+const base::reflection::UnkReflAttrKey& fn_710025daa0();
+extern base::reflection::CType g_unk_71727bc110;
+extern base::reflection::CType g_unk_717274caa0;
+const base::reflection::UnkReflAttrKey& fn_7100091d40();
+void fn_7100a520c8(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("wpCentralUnitDoor", true), &g_unk_717269bb48, 0x20, -1, -1);
+    field0->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 0);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("wpCentralUnit", true), &g_unk_717269bb48, 0x60, -1, -1);
+    field1->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 0);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("oSPRTuto.m_vAfterTutoLogicActions", true), &g_unk_717274caa0, 0x130, -1, -1);
+    field2->attrs_0x70.Add<bool>(fn_7100091d40(), true);
+}
 bool fn_7100a52d9c(const void* a, const void* b) { return a == b; }
 s32 fn_7100a52da8() { return -1; }
 const base::reflection::CType& fn_7100a52db0(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

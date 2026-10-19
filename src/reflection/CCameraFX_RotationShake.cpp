@@ -5,10 +5,30 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCameraFX_RotationShake
 DREAD_REFL_TAG(71010f3048);
 void fn_71010f2c90(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+void fn_71010f2d88(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fAmplitude", true), fn_710000abbc(), 0x58, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Amplitude (degrees)");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("sFunction", true), fn_7100007f84(), 0x60, -1, -1);
+    field1->attrs.Add<base::global::CRntString>(fn_7100075240(), base::global::CRntString("SqooooooszI"));
+    field1->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Function (p.ej: SqooooooszI)"));
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("bCentered", true), fn_710000d228(), 0x90, -1, -1);
+    field2->attrs.Add<bool>(fn_7100075240(), false);
+    field2->attrs.Add<const char*>(fn_7100007e80(), "Centered in player path");
+}
 bool fn_71010f34c0(const void*, const void*) { return false; }
 s32 fn_71010f34c8() { return -1; }
 const base::reflection::CType& fn_71010f34d0(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

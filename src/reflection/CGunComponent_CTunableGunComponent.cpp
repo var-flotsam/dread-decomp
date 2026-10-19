@@ -88,6 +88,39 @@ DREAD_REFL_CLASS_GETTER(7100837520, 7100837d14, "CGunComponent::CTunableGunCompo
 // CGunComponent
 DREAD_REFL_TAG(7100838798);
 void fn_7100838150(base::reflection::CClass*) {}
+void fn_71008388f8(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_71000904d0();
+void fn_71008389ac(UnkReflFunction* fn, const char* name);
+void fn_7100838a60(UnkReflFunction* fn, const char* name);
+void fn_7100838b14(UnkReflFunction* fn, const char* name);
+void fn_7100838bc8(UnkReflFunction* fn, const char* name);
+void fn_7100838248(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AddPrimaryGun", true))) {
+        fn_71008388f8(fn, "AddPrimaryGun");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Add Primary Gun"));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AddSecondaryGun", true))) {
+        fn_71008389ac(fn, "AddSecondaryGun");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Add Secondary Gun"));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SelectGun", true))) {
+        fn_7100838a60(fn, "SelectGun");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Select Gun"));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetGunChargeParams", true))) {
+        fn_7100838b14(fn, "SetGunChargeParams");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Set Gun Charge Params"));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetBillBoardGroupParams", true))) {
+        fn_7100838bc8(fn, "SetBillBoardGroupParams");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Set billboard groups params"));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+}
 bool fn_7100840ad4(const void*, const void*) { return false; }
 s32 fn_7100840adc() { return -1; }
 const base::reflection::CType& fn_7100840ae4(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

@@ -19,7 +19,6 @@ void fn_7100927b60(base::reflection::CClass*) {}
 void fn_71009284a4();
 void fn_710092816c(UnkReflFunction* fn, const char* name);
 const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::CType* fn_710000ad9c();
 void fn_7100927c58(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bAutoLockOnMelee_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_bAutoLockOnMelee_GetterFunction", true);

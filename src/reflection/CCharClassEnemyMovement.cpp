@@ -5,10 +5,962 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassEnemyMovement
 DREAD_REFL_TAG(710095f050);
 void fn_7100956298(base::reflection::CClass*) {}
+void fn_7100965124();
+void fn_710095f1d4(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+extern base::reflection::CType g_unk_717273a108;
+extern base::reflection::CType g_unk_717273a2e0;
+void fn_71009651b4();
+void fn_710095f350(UnkReflFunction* fn, const char* name);
+void fn_71009652b4();
+void fn_710095f4cc(UnkReflFunction* fn, const char* name);
+void fn_71009653b4();
+void fn_710095f648(UnkReflFunction* fn, const char* name);
+void fn_71009654b4();
+void fn_710095f7c4(UnkReflFunction* fn, const char* name);
+void fn_71009655b4();
+void fn_710095f940(UnkReflFunction* fn, const char* name);
+void fn_71009656b4();
+void fn_710095fabc(UnkReflFunction* fn, const char* name);
+void fn_71009657b4();
+void fn_710095fc38(UnkReflFunction* fn, const char* name);
+void fn_71009658b4();
+void fn_710095fdb4(UnkReflFunction* fn, const char* name);
+void fn_71009659b4();
+void fn_710095ff30(UnkReflFunction* fn, const char* name);
+void fn_7100965ab4();
+void fn_71009600ac(UnkReflFunction* fn, const char* name);
+void fn_7100965bb4();
+void fn_7100960228(UnkReflFunction* fn, const char* name);
+void fn_7100965cb4();
+void fn_71009603a4(UnkReflFunction* fn, const char* name);
+void fn_7100965db4();
+void fn_7100960520(UnkReflFunction* fn, const char* name);
+void fn_7100965eb4();
+void fn_710096069c(UnkReflFunction* fn, const char* name);
+void fn_7100965fb4();
+void fn_7100960818(UnkReflFunction* fn, const char* name);
+void fn_71009660b4();
+void fn_7100960994(UnkReflFunction* fn, const char* name);
+void fn_71009661b4();
+void fn_7100960b10(UnkReflFunction* fn, const char* name);
+void fn_71009662b4();
+void fn_7100960c8c(UnkReflFunction* fn, const char* name);
+void fn_71009663b4();
+void fn_7100960e08(UnkReflFunction* fn, const char* name);
+void fn_71009664b4();
+void fn_7100960f84(UnkReflFunction* fn, const char* name);
+void fn_71009665b4();
+void fn_7100961100(UnkReflFunction* fn, const char* name);
+void fn_71009666b4();
+void fn_710096127c(UnkReflFunction* fn, const char* name);
+void fn_7100966744();
+void fn_71009613f8(UnkReflFunction* fn, const char* name);
+void fn_7100966830();
+void fn_7100961574(UnkReflFunction* fn, const char* name);
+void fn_710096691c();
+void fn_71009616f0(UnkReflFunction* fn, const char* name);
+void fn_7100966a1c();
+void fn_710096186c(UnkReflFunction* fn, const char* name);
+void fn_7100966b1c();
+void fn_71009619e8(UnkReflFunction* fn, const char* name);
+extern base::reflection::CType g_unk_717270e1e8;
+void fn_7100966c1c();
+void fn_7100961b64(UnkReflFunction* fn, const char* name);
+void fn_7100966cac();
+void fn_7100961ce0(UnkReflFunction* fn, const char* name);
+void fn_7100966d3c();
+void fn_7100961e5c(UnkReflFunction* fn, const char* name);
+void fn_7100966dcc();
+void fn_7100961fd8(UnkReflFunction* fn, const char* name);
+void fn_7100966e5c();
+void fn_7100962154(UnkReflFunction* fn, const char* name);
+void fn_7100966eec();
+void fn_71009622d0(UnkReflFunction* fn, const char* name);
+void fn_7100966f7c();
+void fn_710096244c(UnkReflFunction* fn, const char* name);
+void fn_7100967068();
+void fn_71009625c8(UnkReflFunction* fn, const char* name);
+void fn_7100967154();
+void fn_7100962744(UnkReflFunction* fn, const char* name);
+void fn_7100967240();
+void fn_71009628c0(UnkReflFunction* fn, const char* name);
+void fn_710096732c();
+void fn_7100962a3c(UnkReflFunction* fn, const char* name);
+void fn_71009673bc();
+void fn_7100962bb8(UnkReflFunction* fn, const char* name);
+void fn_71009674bc();
+void fn_7100962d34(UnkReflFunction* fn, const char* name);
+void fn_710096754c();
+void fn_7100962eb0(UnkReflFunction* fn, const char* name);
+void fn_710096764c();
+void fn_710096302c(UnkReflFunction* fn, const char* name);
+void fn_71009676dc();
+void fn_71009631a8(UnkReflFunction* fn, const char* name);
+void fn_710096776c();
+void fn_7100963324(UnkReflFunction* fn, const char* name);
+void fn_71009677fc();
+void fn_71009634a0(UnkReflFunction* fn, const char* name);
+void fn_710096788c();
+void fn_710096361c(UnkReflFunction* fn, const char* name);
+void fn_710096791c();
+void fn_7100963798(UnkReflFunction* fn, const char* name);
+void fn_71009679ac();
+void fn_7100963914(UnkReflFunction* fn, const char* name);
+void fn_7100967a3c();
+void fn_7100963a90(UnkReflFunction* fn, const char* name);
+void fn_7100967acc();
+void fn_7100963c0c(UnkReflFunction* fn, const char* name);
+void fn_7100967b5c();
+void fn_7100963d88(UnkReflFunction* fn, const char* name);
+void fn_7100967bec();
+void fn_7100963f04(UnkReflFunction* fn, const char* name);
+void fn_7100967c7c();
+void fn_7100964080(UnkReflFunction* fn, const char* name);
+void fn_7100967d0c();
+void fn_71009641fc(UnkReflFunction* fn, const char* name);
+void fn_7100967d9c();
+void fn_7100964378(UnkReflFunction* fn, const char* name);
+void fn_7100967e2c();
+void fn_71009644f4(UnkReflFunction* fn, const char* name);
+void fn_7100956390(CClass* cls) {
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bCanFall_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_bCanFall_GetterFunction", true);
+            fn->return_type = fn_710000d228();
+            fn->field_0xb2 = 0;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_7100965124);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bCanFall_SetterFunction", true)))
+            fn_710095f1d4(fn, "_m_bCanFall_SetterFunction");
+    }();
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("bCanFall", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field0->attrs.Add<bool>(fn_7100075240(), true);
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Can fall? (set fall animation is IsOnAir change)");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("bShouldMakeExtraMove", true), fn_710000d228(), 0x1b9, -1, -1);
+    field1->attrs.Add<bool>(fn_7100075240(), false);
+    field1->attrs.Add<const char*>(fn_7100007e80(), "Should make an extra movement tick after collision?");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("eInitialState", true), &g_unk_717273a108, 0x70, -1, -1);
+    field2->attrs.Add<s32>(fn_7100075240(), &g_unk_717273a108, 1);
+    field2->attrs.Add<const char*>(fn_7100007e80(), "Walking or Flying");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("eTurn180Mode", true), &g_unk_717273a2e0, 0x74, -1, -1);
+    field3->attrs.Add<s32>(fn_7100075240(), &g_unk_717273a2e0, 1);
+    field3->attrs.Add<const char*>(fn_7100007e80(), "AxisX, AxisY or Dot");
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sIdleAnim_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_sIdleAnim_GetterFunction", true);
+            fn->return_type = fn_7100009658();
+            fn->field_0xb2 = 0x101;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_71009651b4);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sIdleAnim_SetterFunction", true)))
+            fn_710095f350(fn, "_m_sIdleAnim_SetterFunction");
+    }();
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("sIdleAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field4->attrs.Add<CStrId>(fn_7100075240(), CStrId("relax", true));
+    field4->attrs.Add<const char*>(fn_7100007e80(), "Idle animation");
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingRelaxAnim_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_sWalkingRelaxAnim_GetterFunction", true);
+            fn->return_type = fn_7100009658();
+            fn->field_0xb2 = 0x101;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_71009652b4);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingRelaxAnim_SetterFunction", true)))
+            fn_710095f4cc(fn, "_m_sWalkingRelaxAnim_SetterFunction");
+    }();
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("sWalkingRelaxAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field5->attrs.Add<CStrId>(fn_7100075240(), CStrId("relax", true));
+    field5->attrs.Add<const char*>(fn_7100007e80(), "Walking relax animation");
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingFrontAnim_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_sWalkingFrontAnim_GetterFunction", true);
+            fn->return_type = fn_7100009658();
+            fn->field_0xb2 = 0x101;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_71009653b4);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingFrontAnim_SetterFunction", true)))
+            fn_710095f648(fn, "_m_sWalkingFrontAnim_SetterFunction");
+    }();
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("sWalkingFrontAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field6->attrs.Add<CStrId>(fn_7100075240(), CStrId("walk", true));
+    field6->attrs.Add<const char*>(fn_7100007e80(), "Walking front animation");
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingBackAnim_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_sWalkingBackAnim_GetterFunction", true);
+            fn->return_type = fn_7100009658();
+            fn->field_0xb2 = 0x101;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_71009654b4);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingBackAnim_SetterFunction", true)))
+            fn_710095f7c4(fn, "_m_sWalkingBackAnim_SetterFunction");
+    }();
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("sWalkingBackAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field7->attrs.Add<CStrId>(fn_7100075240(), CStrId("back", true));
+    field7->attrs.Add<const char*>(fn_7100007e80(), "Walking back animation");
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingFrontInitAnim_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_sWalkingFrontInitAnim_GetterFunction", true);
+            fn->return_type = fn_7100009658();
+            fn->field_0xb2 = 0x101;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_71009655b4);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingFrontInitAnim_SetterFunction", true)))
+            fn_710095f940(fn, "_m_sWalkingFrontInitAnim_SetterFunction");
+    }();
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("sWalkingFrontInitAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field8->attrs.Add<CStrId>(fn_7100075240(), CStrId("walkinit", true));
+    field8->attrs.Add<const char*>(fn_7100007e80(), "Walking front init animation");
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingBackInitAnim_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_sWalkingBackInitAnim_GetterFunction", true);
+            fn->return_type = fn_7100009658();
+            fn->field_0xb2 = 0x101;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_71009656b4);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingBackInitAnim_SetterFunction", true)))
+            fn_710095fabc(fn, "_m_sWalkingBackInitAnim_SetterFunction");
+    }();
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("sWalkingBackInitAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field9->attrs.Add<CStrId>(fn_7100075240(), CStrId("backinit", true));
+    field9->attrs.Add<const char*>(fn_7100007e80(), "Walking back init animation");
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingFrontEndAnim_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_sWalkingFrontEndAnim_GetterFunction", true);
+            fn->return_type = fn_7100009658();
+            fn->field_0xb2 = 0x101;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_71009657b4);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingFrontEndAnim_SetterFunction", true)))
+            fn_710095fc38(fn, "_m_sWalkingFrontEndAnim_SetterFunction");
+    }();
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("sWalkingFrontEndAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field10->attrs.Add<CStrId>(fn_7100075240(), CStrId("walkend", true));
+    field10->attrs.Add<const char*>(fn_7100007e80(), "Walking front end animation");
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingBackEndAnim_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_sWalkingBackEndAnim_GetterFunction", true);
+            fn->return_type = fn_7100009658();
+            fn->field_0xb2 = 0x101;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_71009658b4);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingBackEndAnim_SetterFunction", true)))
+            fn_710095fdb4(fn, "_m_sWalkingBackEndAnim_SetterFunction");
+    }();
+    UnkReflField* field11 = fn_7100096524(cls, CStrId("sWalkingBackEndAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field11->attrs.Add<CStrId>(fn_7100075240(), CStrId("backend", true));
+    field11->attrs.Add<const char*>(fn_7100007e80(), "Walking back end animation");
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sFlyingRelaxAnim_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_sFlyingRelaxAnim_GetterFunction", true);
+            fn->return_type = fn_7100009658();
+            fn->field_0xb2 = 0x101;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_71009659b4);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sFlyingRelaxAnim_SetterFunction", true)))
+            fn_710095ff30(fn, "_m_sFlyingRelaxAnim_SetterFunction");
+    }();
+    UnkReflField* field12 = fn_7100096524(cls, CStrId("sFlyingRelaxAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field12->attrs.Add<CStrId>(fn_7100075240(), CStrId("relax", true));
+    field12->attrs.Add<const char*>(fn_7100007e80(), "Flying relax animation");
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sFlyingFrontAnim_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_sFlyingFrontAnim_GetterFunction", true);
+            fn->return_type = fn_7100009658();
+            fn->field_0xb2 = 0x101;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_7100965ab4);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sFlyingFrontAnim_SetterFunction", true)))
+            fn_71009600ac(fn, "_m_sFlyingFrontAnim_SetterFunction");
+    }();
+    UnkReflField* field13 = fn_7100096524(cls, CStrId("sFlyingFrontAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field13->attrs.Add<CStrId>(fn_7100075240(), CStrId("", true));
+    field13->attrs.Add<const char*>(fn_7100007e80(), "Flying front animation");
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sFlyingBackAnim_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_sFlyingBackAnim_GetterFunction", true);
+            fn->return_type = fn_7100009658();
+            fn->field_0xb2 = 0x101;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_7100965bb4);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sFlyingBackAnim_SetterFunction", true)))
+            fn_7100960228(fn, "_m_sFlyingBackAnim_SetterFunction");
+    }();
+    UnkReflField* field14 = fn_7100096524(cls, CStrId("sFlyingBackAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field14->attrs.Add<CStrId>(fn_7100075240(), CStrId("", true));
+    field14->attrs.Add<const char*>(fn_7100007e80(), "Flying back animation");
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sFlyingUpAnim_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_sFlyingUpAnim_GetterFunction", true);
+            fn->return_type = fn_7100009658();
+            fn->field_0xb2 = 0x101;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_7100965cb4);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sFlyingUpAnim_SetterFunction", true)))
+            fn_71009603a4(fn, "_m_sFlyingUpAnim_SetterFunction");
+    }();
+    UnkReflField* field15 = fn_7100096524(cls, CStrId("sFlyingUpAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field15->attrs.Add<CStrId>(fn_7100075240(), CStrId("", true));
+    field15->attrs.Add<const char*>(fn_7100007e80(), "Flying up animation");
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sFlyingDownAnim_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_sFlyingDownAnim_GetterFunction", true);
+            fn->return_type = fn_7100009658();
+            fn->field_0xb2 = 0x101;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_7100965db4);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sFlyingDownAnim_SetterFunction", true)))
+            fn_7100960520(fn, "_m_sFlyingDownAnim_SetterFunction");
+    }();
+    UnkReflField* field16 = fn_7100096524(cls, CStrId("sFlyingDownAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field16->attrs.Add<CStrId>(fn_7100075240(), CStrId("", true));
+    field16->attrs.Add<const char*>(fn_7100007e80(), "Flying down animation");
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sFlyingFrontInitAnim_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_sFlyingFrontInitAnim_GetterFunction", true);
+            fn->return_type = fn_7100009658();
+            fn->field_0xb2 = 0x101;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_7100965eb4);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sFlyingFrontInitAnim_SetterFunction", true)))
+            fn_710096069c(fn, "_m_sFlyingFrontInitAnim_SetterFunction");
+    }();
+    UnkReflField* field17 = fn_7100096524(cls, CStrId("sFlyingFrontInitAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field17->attrs.Add<CStrId>(fn_7100075240(), CStrId("", true));
+    field17->attrs.Add<const char*>(fn_7100007e80(), "Flying front init animation");
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sFlyingBackInitAnim_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_sFlyingBackInitAnim_GetterFunction", true);
+            fn->return_type = fn_7100009658();
+            fn->field_0xb2 = 0x101;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_7100965fb4);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sFlyingBackInitAnim_SetterFunction", true)))
+            fn_7100960818(fn, "_m_sFlyingBackInitAnim_SetterFunction");
+    }();
+    UnkReflField* field18 = fn_7100096524(cls, CStrId("sFlyingBackInitAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field18->attrs.Add<CStrId>(fn_7100075240(), CStrId("", true));
+    field18->attrs.Add<const char*>(fn_7100007e80(), "Flying back init animation");
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sFlyingUpInitAnim_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_sFlyingUpInitAnim_GetterFunction", true);
+            fn->return_type = fn_7100009658();
+            fn->field_0xb2 = 0x101;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_71009660b4);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sFlyingUpInitAnim_SetterFunction", true)))
+            fn_7100960994(fn, "_m_sFlyingUpInitAnim_SetterFunction");
+    }();
+    UnkReflField* field19 = fn_7100096524(cls, CStrId("sFlyingUpInitAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field19->attrs.Add<CStrId>(fn_7100075240(), CStrId("", true));
+    field19->attrs.Add<const char*>(fn_7100007e80(), "Flying up init animation");
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sFlyingDownInitAnim_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_sFlyingDownInitAnim_GetterFunction", true);
+            fn->return_type = fn_7100009658();
+            fn->field_0xb2 = 0x101;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_71009661b4);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sFlyingDownInitAnim_SetterFunction", true)))
+            fn_7100960b10(fn, "_m_sFlyingDownInitAnim_SetterFunction");
+    }();
+    UnkReflField* field20 = fn_7100096524(cls, CStrId("sFlyingDownInitAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field20->attrs.Add<CStrId>(fn_7100075240(), CStrId("", true));
+    field20->attrs.Add<const char*>(fn_7100007e80(), "Flying down init animation");
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sFlyingFrontEndAnim_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_sFlyingFrontEndAnim_GetterFunction", true);
+            fn->return_type = fn_7100009658();
+            fn->field_0xb2 = 0x101;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_71009662b4);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sFlyingFrontEndAnim_SetterFunction", true)))
+            fn_7100960c8c(fn, "_m_sFlyingFrontEndAnim_SetterFunction");
+    }();
+    UnkReflField* field21 = fn_7100096524(cls, CStrId("sFlyingFrontEndAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field21->attrs.Add<CStrId>(fn_7100075240(), CStrId("", true));
+    field21->attrs.Add<const char*>(fn_7100007e80(), "Flying front end animation");
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sFlyingBackEndAnim_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_sFlyingBackEndAnim_GetterFunction", true);
+            fn->return_type = fn_7100009658();
+            fn->field_0xb2 = 0x101;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_71009663b4);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sFlyingBackEndAnim_SetterFunction", true)))
+            fn_7100960e08(fn, "_m_sFlyingBackEndAnim_SetterFunction");
+    }();
+    UnkReflField* field22 = fn_7100096524(cls, CStrId("sFlyingBackEndAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field22->attrs.Add<CStrId>(fn_7100075240(), CStrId("", true));
+    field22->attrs.Add<const char*>(fn_7100007e80(), "Flying back end animation");
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sFlyingUpEndAnim_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_sFlyingUpEndAnim_GetterFunction", true);
+            fn->return_type = fn_7100009658();
+            fn->field_0xb2 = 0x101;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_71009664b4);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sFlyingUpEndAnim_SetterFunction", true)))
+            fn_7100960f84(fn, "_m_sFlyingUpEndAnim_SetterFunction");
+    }();
+    UnkReflField* field23 = fn_7100096524(cls, CStrId("sFlyingUpEndAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field23->attrs.Add<CStrId>(fn_7100075240(), CStrId("", true));
+    field23->attrs.Add<const char*>(fn_7100007e80(), "Flying up end animation");
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sFlyingDownEndAnim_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_sFlyingDownEndAnim_GetterFunction", true);
+            fn->return_type = fn_7100009658();
+            fn->field_0xb2 = 0x101;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_71009665b4);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sFlyingDownEndAnim_SetterFunction", true)))
+            fn_7100961100(fn, "_m_sFlyingDownEndAnim_SetterFunction");
+    }();
+    UnkReflField* field24 = fn_7100096524(cls, CStrId("sFlyingDownEndAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field24->attrs.Add<CStrId>(fn_7100075240(), CStrId("", true));
+    field24->attrs.Add<const char*>(fn_7100007e80(), "Flying down end animation");
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fFlyingStateChangeBlendTime_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_fFlyingStateChangeBlendTime_GetterFunction", true);
+            fn->return_type = fn_710000abbc();
+            fn->field_0xb2 = 0;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_71009666b4);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fFlyingStateChangeBlendTime_SetterFunction", true)))
+            fn_710096127c(fn, "_m_fFlyingStateChangeBlendTime_SetterFunction");
+    }();
+    UnkReflField* field25 = fn_7100096524(cls, CStrId("fFlyingStateChangeBlendTime", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field25->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    field25->attrs.Add<const char*>(fn_7100007e80(), "Flying State Change Blend Time");
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fFlyingUpStartAng_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_fFlyingUpStartAng_GetterFunction", true);
+            fn->return_type = fn_710000abbc();
+            fn->field_0xb2 = 0;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_7100966744);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fFlyingUpStartAng_SetterFunction", true)))
+            fn_71009613f8(fn, "_m_fFlyingUpStartAng_SetterFunction");
+    }();
+    UnkReflField* field26 = fn_7100096524(cls, CStrId("fFlyingUpStartAng", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field26->attrs.Add<f32>(fn_7100075240(), 28.0f);
+    field26->attrs.Add<const char*>(fn_7100007e80(), "Flying State Change Blend Time");
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fFlyingDownStartAng_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_fFlyingDownStartAng_GetterFunction", true);
+            fn->return_type = fn_710000abbc();
+            fn->field_0xb2 = 0;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_7100966830);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fFlyingDownStartAng_SetterFunction", true)))
+            fn_7100961574(fn, "_m_fFlyingDownStartAng_SetterFunction");
+    }();
+    UnkReflField* field27 = fn_7100096524(cls, CStrId("fFlyingDownStartAng", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field27->attrs.Add<f32>(fn_7100075240(), 28.0f);
+    field27->attrs.Add<const char*>(fn_7100007e80(), "Flying State Change Blend Time");
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sSideRelaxAnim_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_sSideRelaxAnim_GetterFunction", true);
+            fn->return_type = fn_7100009658();
+            fn->field_0xb2 = 0x101;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_710096691c);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sSideRelaxAnim_SetterFunction", true)))
+            fn_71009616f0(fn, "_m_sSideRelaxAnim_SetterFunction");
+    }();
+    UnkReflField* field28 = fn_7100096524(cls, CStrId("sSideRelaxAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field28->attrs.Add<CStrId>(fn_7100075240(), CStrId("relax", true));
+    field28->attrs.Add<const char*>(fn_7100007e80(), "Side relax animation");
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sSideWalkAnim_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_sSideWalkAnim_GetterFunction", true);
+            fn->return_type = fn_7100009658();
+            fn->field_0xb2 = 0x101;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_7100966a1c);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sSideWalkAnim_SetterFunction", true)))
+            fn_710096186c(fn, "_m_sSideWalkAnim_SetterFunction");
+    }();
+    UnkReflField* field29 = fn_7100096524(cls, CStrId("sSideWalkAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field29->attrs.Add<CStrId>(fn_7100075240(), CStrId("walk", true));
+    field29->attrs.Add<const char*>(fn_7100007e80(), "Side walk animation");
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sSideWalkInitAnim_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_sSideWalkInitAnim_GetterFunction", true);
+            fn->return_type = fn_7100009658();
+            fn->field_0xb2 = 0x101;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_7100966b1c);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sSideWalkInitAnim_SetterFunction", true)))
+            fn_71009619e8(fn, "_m_sSideWalkInitAnim_SetterFunction");
+    }();
+    UnkReflField* field30 = fn_7100096524(cls, CStrId("sSideWalkInitAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field30->attrs.Add<CStrId>(fn_7100075240(), CStrId("walkinit", true));
+    field30->attrs.Add<const char*>(fn_7100007e80(), "Side walk init animation");
+    UnkReflField* field31 = fn_7100096524(cls, CStrId("eSideLeftTag", true), &g_unk_717270e1e8, 0x160, -1, -1);
+    field31->attrs.Add<s32>(fn_7100075240(), &g_unk_717270e1e8, 2);
+    field31->attrs.Add<const char*>(fn_7100007e80(), "Side left prefix (left,right,water,charge...)");
+    UnkReflField* field32 = fn_7100096524(cls, CStrId("eSideRightTag", true), &g_unk_717270e1e8, 0x164, -1, -1);
+    field32->attrs.Add<s32>(fn_7100075240(), &g_unk_717270e1e8, 3);
+    field32->attrs.Add<const char*>(fn_7100007e80(), "Side right prefix (left,right,water,charge...)");
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_iNumScenarioCollisionSteps_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_iNumScenarioCollisionSteps_GetterFunction", true);
+            fn->return_type = fn_7100014768();
+            fn->field_0xb2 = 0;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_7100966c1c);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_iNumScenarioCollisionSteps_SetterFunction", true)))
+            fn_7100961b64(fn, "_m_iNumScenarioCollisionSteps_SetterFunction");
+    }();
+    UnkReflField* field33 = fn_7100096524(cls, CStrId("iNumScenarioCollisionSteps", true), fn_7100014768(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field33->attrs.Add<s32>(fn_7100075240(), 2);
+    field33->attrs.Add<const char*>(fn_7100007e80(), "Num scenario collision steps");
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bOnLastCollisionStepHitResetTickVelocities_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_bOnLastCollisionStepHitResetTickVelocities_GetterFunction", true);
+            fn->return_type = fn_710000d228();
+            fn->field_0xb2 = 0;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_7100966cac);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bOnLastCollisionStepHitResetTickVelocities_SetterFunction", true)))
+            fn_7100961ce0(fn, "_m_bOnLastCollisionStepHitResetTickVelocities_SetterFunction");
+    }();
+    UnkReflField* field34 = fn_7100096524(cls, CStrId("bOnLastCollisionStepHitResetTickVelocities", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field34->attrs.Add<bool>(fn_7100075240(), false);
+    field34->attrs.Add<const char*>(fn_7100007e80(), "On Last Collision Step Hit Reset Tick Velocities");
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bUseCurrentScenarioCollisionScene_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_bUseCurrentScenarioCollisionScene_GetterFunction", true);
+            fn->return_type = fn_710000d228();
+            fn->field_0xb2 = 0;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_7100966d3c);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bUseCurrentScenarioCollisionScene_SetterFunction", true)))
+            fn_7100961e5c(fn, "_m_bUseCurrentScenarioCollisionScene_SetterFunction");
+    }();
+    UnkReflField* field35 = fn_7100096524(cls, CStrId("bUseCurrentScenarioCollisionScene", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field35->attrs.Add<bool>(fn_7100075240(), true);
+    field35->attrs.Add<const char*>(fn_7100007e80(), "Use Current Scenario Collision Scene");
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bRotateWhenMoving_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_bRotateWhenMoving_GetterFunction", true);
+            fn->return_type = fn_710000d228();
+            fn->field_0xb2 = 0;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_7100966dcc);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bRotateWhenMoving_SetterFunction", true)))
+            fn_7100961fd8(fn, "_m_bRotateWhenMoving_SetterFunction");
+    }();
+    UnkReflField* field36 = fn_7100096524(cls, CStrId("bRotateWhenMoving", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field36->attrs.Add<bool>(fn_7100075240(), false);
+    field36->attrs.Add<const char*>(fn_7100007e80(), "Whether it should rotate in movement");
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fMinSpeedToRotate_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_fMinSpeedToRotate_GetterFunction", true);
+            fn->return_type = fn_710000abbc();
+            fn->field_0xb2 = 0;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_7100966e5c);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fMinSpeedToRotate_SetterFunction", true)))
+            fn_7100962154(fn, "_m_fMinSpeedToRotate_SetterFunction");
+    }();
+    UnkReflField* field37 = fn_7100096524(cls, CStrId("fMinSpeedToRotate", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field37->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field37->attrs.Add<const char*>(fn_7100007e80(), "Min speed to rotate");
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fMaxSpeedToRotate_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_fMaxSpeedToRotate_GetterFunction", true);
+            fn->return_type = fn_710000abbc();
+            fn->field_0xb2 = 0;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_7100966eec);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fMaxSpeedToRotate_SetterFunction", true)))
+            fn_71009622d0(fn, "_m_fMaxSpeedToRotate_SetterFunction");
+    }();
+    UnkReflField* field38 = fn_7100096524(cls, CStrId("fMaxSpeedToRotate", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field38->attrs.Add<f32>(fn_7100075240(), 100.0f);
+    field38->attrs.Add<const char*>(fn_7100007e80(), "Max speed to rotate");
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fMaxAngleRotationY_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_fMaxAngleRotationY_GetterFunction", true);
+            fn->return_type = fn_710000abbc();
+            fn->field_0xb2 = 0;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_7100966f7c);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fMaxAngleRotationY_SetterFunction", true)))
+            fn_710096244c(fn, "_m_fMaxAngleRotationY_SetterFunction");
+    }();
+    UnkReflField* field39 = fn_7100096524(cls, CStrId("fMaxAngleRotationY", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field39->attrs.Add<f32>(fn_7100075240(), 0.5235988f);
+    field39->attrs.Add<const char*>(fn_7100007e80(), "Max angle to rotate in Y");
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fDefaultAngleRotationY_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_fDefaultAngleRotationY_GetterFunction", true);
+            fn->return_type = fn_710000abbc();
+            fn->field_0xb2 = 0;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_7100967068);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fDefaultAngleRotationY_SetterFunction", true)))
+            fn_71009625c8(fn, "_m_fDefaultAngleRotationY_SetterFunction");
+    }();
+    UnkReflField* field40 = fn_7100096524(cls, CStrId("fDefaultAngleRotationY", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field40->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field40->attrs.Add<const char*>(fn_7100007e80(), "Default angle to rotate in Y");
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fMaxAngleRotationZ_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_fMaxAngleRotationZ_GetterFunction", true);
+            fn->return_type = fn_710000abbc();
+            fn->field_0xb2 = 0;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_7100967154);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fMaxAngleRotationZ_SetterFunction", true)))
+            fn_7100962744(fn, "_m_fMaxAngleRotationZ_SetterFunction");
+    }();
+    UnkReflField* field41 = fn_7100096524(cls, CStrId("fMaxAngleRotationZ", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field41->attrs.Add<f32>(fn_7100075240(), 0.5235988f);
+    field41->attrs.Add<const char*>(fn_7100007e80(), "Max angle to rotate in Z");
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fDefaultAngleRotationZ_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_fDefaultAngleRotationZ_GetterFunction", true);
+            fn->return_type = fn_710000abbc();
+            fn->field_0xb2 = 0;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_7100967240);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fDefaultAngleRotationZ_SetterFunction", true)))
+            fn_71009628c0(fn, "_m_fDefaultAngleRotationZ_SetterFunction");
+    }();
+    UnkReflField* field42 = fn_7100096524(cls, CStrId("fDefaultAngleRotationZ", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field42->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field42->attrs.Add<const char*>(fn_7100007e80(), "Default angle to rotate in Z");
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fSpeedToRotateFallingFromPath_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_fSpeedToRotateFallingFromPath_GetterFunction", true);
+            fn->return_type = fn_710000abbc();
+            fn->field_0xb2 = 0;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_710096732c);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fSpeedToRotateFallingFromPath_SetterFunction", true)))
+            fn_7100962a3c(fn, "_m_fSpeedToRotateFallingFromPath_SetterFunction");
+    }();
+    UnkReflField* field43 = fn_7100096524(cls, CStrId("fSpeedToRotateFallingFromPath", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field43->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    field43->attrs.Add<const char*>(fn_7100007e80(), "Speed to rotate when falling from path");
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkUpAnim_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_sWalkUpAnim_GetterFunction", true);
+            fn->return_type = fn_7100009658();
+            fn->field_0xb2 = 0x101;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_71009673bc);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkUpAnim_SetterFunction", true)))
+            fn_7100962bb8(fn, "_m_sWalkUpAnim_SetterFunction");
+    }();
+    UnkReflField* field44 = fn_7100096524(cls, CStrId("sWalkUpAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field44->attrs.Add<CStrId>(fn_7100075240(), CStrId("walk", true));
+    field44->attrs.Add<const char*>(fn_7100007e80(), "walk up animation");
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fWalkUpExitBlend_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_fWalkUpExitBlend_GetterFunction", true);
+            fn->return_type = fn_710000abbc();
+            fn->field_0xb2 = 0;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_71009674bc);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fWalkUpExitBlend_SetterFunction", true)))
+            fn_7100962d34(fn, "_m_fWalkUpExitBlend_SetterFunction");
+    }();
+    UnkReflField* field45 = fn_7100096524(cls, CStrId("fWalkUpExitBlend", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field45->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    field45->attrs.Add<const char*>(fn_7100007e80(), "Blending when exiting from the walk up animation");
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkDownAnim_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_sWalkDownAnim_GetterFunction", true);
+            fn->return_type = fn_7100009658();
+            fn->field_0xb2 = 0x101;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_710096754c);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkDownAnim_SetterFunction", true)))
+            fn_7100962eb0(fn, "_m_sWalkDownAnim_SetterFunction");
+    }();
+    UnkReflField* field46 = fn_7100096524(cls, CStrId("sWalkDownAnim", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field46->attrs.Add<CStrId>(fn_7100075240(), CStrId("walk", true));
+    field46->attrs.Add<const char*>(fn_7100007e80(), "walk down animation");
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fWalkDownExitBlend_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_fWalkDownExitBlend_GetterFunction", true);
+            fn->return_type = fn_710000abbc();
+            fn->field_0xb2 = 0;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_710096764c);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fWalkDownExitBlend_SetterFunction", true)))
+            fn_710096302c(fn, "_m_fWalkDownExitBlend_SetterFunction");
+    }();
+    UnkReflField* field47 = fn_7100096524(cls, CStrId("fWalkDownExitBlend", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field47->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    field47->attrs.Add<const char*>(fn_7100007e80(), "Blending when exiting from the walk down animation");
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fStickyDistanceToAnticipateCornerAnim_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_fStickyDistanceToAnticipateCornerAnim_GetterFunction", true);
+            fn->return_type = fn_710000abbc();
+            fn->field_0xb2 = 0;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_71009676dc);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fStickyDistanceToAnticipateCornerAnim_SetterFunction", true)))
+            fn_71009631a8(fn, "_m_fStickyDistanceToAnticipateCornerAnim_SetterFunction");
+    }();
+    UnkReflField* field48 = fn_7100096524(cls, CStrId("fStickyDistanceToAnticipateCornerAnim", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field48->attrs.Add<f32>(fn_7100075240(), 50.0f);
+    field48->attrs.Add<const char*>(fn_7100007e80(), "Distance to next corner to set the corner animation in sticky enemies");
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fStickyDistanceToQuitCornerAnim_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_fStickyDistanceToQuitCornerAnim_GetterFunction", true);
+            fn->return_type = fn_710000abbc();
+            fn->field_0xb2 = 0;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_710096776c);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fStickyDistanceToQuitCornerAnim_SetterFunction", true)))
+            fn_7100963324(fn, "_m_fStickyDistanceToQuitCornerAnim_SetterFunction");
+    }();
+    UnkReflField* field49 = fn_7100096524(cls, CStrId("fStickyDistanceToQuitCornerAnim", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field49->attrs.Add<f32>(fn_7100075240(), 75.0f);
+    field49->attrs.Add<const char*>(fn_7100007e80(), "Distance to previous corner to quit the corner animation in sticky enemies");
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bUseDistanceModeToChangeCornerAnim_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_bUseDistanceModeToChangeCornerAnim_GetterFunction", true);
+            fn->return_type = fn_710000d228();
+            fn->field_0xb2 = 0;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_71009677fc);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bUseDistanceModeToChangeCornerAnim_SetterFunction", true)))
+            fn_71009634a0(fn, "_m_bUseDistanceModeToChangeCornerAnim_SetterFunction");
+    }();
+    UnkReflField* field50 = fn_7100096524(cls, CStrId("bUseDistanceModeToChangeCornerAnim", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field50->attrs.Add<bool>(fn_7100075240(), true);
+    field50->attrs.Add<const char*>(fn_7100007e80(), "Whether it should use distances to change corner anims");
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bSynchronizeUpAnim_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_bSynchronizeUpAnim_GetterFunction", true);
+            fn->return_type = fn_710000d228();
+            fn->field_0xb2 = 0;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_710096788c);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bSynchronizeUpAnim_SetterFunction", true)))
+            fn_710096361c(fn, "_m_bSynchronizeUpAnim_SetterFunction");
+    }();
+    UnkReflField* field51 = fn_7100096524(cls, CStrId("bSynchronizeUpAnim", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field51->attrs.Add<bool>(fn_7100075240(), true);
+    field51->attrs.Add<const char*>(fn_7100007e80(), "Whether it should synchronize up corner anim");
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bSynchronizeDownAnim_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_bSynchronizeDownAnim_GetterFunction", true);
+            fn->return_type = fn_710000d228();
+            fn->field_0xb2 = 0;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_710096791c);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bSynchronizeDownAnim_SetterFunction", true)))
+            fn_7100963798(fn, "_m_bSynchronizeDownAnim_SetterFunction");
+    }();
+    UnkReflField* field52 = fn_7100096524(cls, CStrId("bSynchronizeDownAnim", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field52->attrs.Add<bool>(fn_7100075240(), true);
+    field52->attrs.Add<const char*>(fn_7100007e80(), "Whether it should synchronize down corner anim");
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fFlyingAngleAccumulativeInterpolationSpeedFactor_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_fFlyingAngleAccumulativeInterpolationSpeedFactor_GetterFunction", true);
+            fn->return_type = fn_710000abbc();
+            fn->field_0xb2 = 0;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_71009679ac);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fFlyingAngleAccumulativeInterpolationSpeedFactor_SetterFunction", true)))
+            fn_7100963914(fn, "_m_fFlyingAngleAccumulativeInterpolationSpeedFactor_SetterFunction");
+    }();
+    UnkReflField* field53 = fn_7100096524(cls, CStrId("fFlyingAngleAccumulativeInterpolationSpeedFactor", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field53->attrs.Add<f32>(fn_7100075240(), 3.0f);
+    field53->attrs.Add<const char*>(fn_7100007e80(), "Flying angle accumulative interpolation speed factor");
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bUseFlyingAngleAccumulativeInterpolationSpeedFactor_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_bUseFlyingAngleAccumulativeInterpolationSpeedFactor_GetterFunction", true);
+            fn->return_type = fn_710000d228();
+            fn->field_0xb2 = 0;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_7100967a3c);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bUseFlyingAngleAccumulativeInterpolationSpeedFactor_SetterFunction", true)))
+            fn_7100963a90(fn, "_m_bUseFlyingAngleAccumulativeInterpolationSpeedFactor_SetterFunction");
+    }();
+    UnkReflField* field54 = fn_7100096524(cls, CStrId("bUseFlyingAngleAccumulativeInterpolationSpeedFactor", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field54->attrs.Add<bool>(fn_7100075240(), false);
+    field54->attrs.Add<const char*>(fn_7100007e80(), "Whether to use the flying angle accumulative interpolation speed factor");
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bInPathMode_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_bInPathMode_GetterFunction", true);
+            fn->return_type = fn_710000d228();
+            fn->field_0xb2 = 0;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_7100967acc);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bInPathMode_SetterFunction", true)))
+            fn_7100963c0c(fn, "_m_bInPathMode_SetterFunction");
+    }();
+    UnkReflField* field55 = fn_7100096524(cls, CStrId("bInPathMode", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field55->attrs.Add<bool>(fn_7100075240(), false);
+    field55->attrs.Add<const char*>(fn_7100007e80(), "Whether it should use in path mode");
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fMaxDistanceToExecuteRule_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_fMaxDistanceToExecuteRule_GetterFunction", true);
+            fn->return_type = fn_710000abbc();
+            fn->field_0xb2 = 0;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_7100967b5c);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fMaxDistanceToExecuteRule_SetterFunction", true)))
+            fn_7100963d88(fn, "_m_fMaxDistanceToExecuteRule_SetterFunction");
+    }();
+    UnkReflField* field56 = fn_7100096524(cls, CStrId("fMaxDistanceToExecuteRule", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field56->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field56->attrs.Add<const char*>(fn_7100007e80(), "Distance to execute smart link rule");
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bUseBreakableTileBlockerCollidersOnSmartLink_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_bUseBreakableTileBlockerCollidersOnSmartLink_GetterFunction", true);
+            fn->return_type = fn_710000d228();
+            fn->field_0xb2 = 0;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_7100967bec);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bUseBreakableTileBlockerCollidersOnSmartLink_SetterFunction", true)))
+            fn_7100963f04(fn, "_m_bUseBreakableTileBlockerCollidersOnSmartLink_SetterFunction");
+    }();
+    UnkReflField* field57 = fn_7100096524(cls, CStrId("bUseBreakableTileBlockerCollidersOnSmartLink", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field57->attrs.Add<bool>(fn_7100075240(), true);
+    field57->attrs.Add<const char*>(fn_7100007e80(), "Allows use of BREAKABLE_TILE_BLOCK colliders along the smartlink");
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fSupportedOnFloorTolerance_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_fSupportedOnFloorTolerance_GetterFunction", true);
+            fn->return_type = fn_710000abbc();
+            fn->field_0xb2 = 0;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_7100967c7c);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fSupportedOnFloorTolerance_SetterFunction", true)))
+            fn_7100964080(fn, "_m_fSupportedOnFloorTolerance_SetterFunction");
+    }();
+    UnkReflField* field58 = fn_7100096524(cls, CStrId("fSupportedOnFloorTolerance", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field58->attrs.Add<f32>(fn_7100075240(), 65.0f);
+    field58->attrs.Add<const char*>(fn_7100007e80(), "Supported On Floor Tolerance");
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bBipedMode_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_bBipedMode_GetterFunction", true);
+            fn->return_type = fn_710000d228();
+            fn->field_0xb2 = 0;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_7100967d0c);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bBipedMode_SetterFunction", true)))
+            fn_71009641fc(fn, "_m_bBipedMode_SetterFunction");
+    }();
+    UnkReflField* field59 = fn_7100096524(cls, CStrId("bBipedMode", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field59->attrs.Add<bool>(fn_7100075240(), false);
+    field59->attrs.Add<const char*>(fn_7100007e80(), "Whether it should be always stand");
+    UnkReflField* field60 = fn_7100096524(cls, CStrId("bIgnoreOpenCorner", true), fn_710000d228(), 0x1b2, -1, -1);
+    field60->attrs.Add<bool>(fn_7100075240(), false);
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bRelocateOnFrozen_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_bRelocateOnFrozen_GetterFunction", true);
+            fn->return_type = fn_710000d228();
+            fn->field_0xb2 = 0;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_7100967d9c);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bRelocateOnFrozen_SetterFunction", true)))
+            fn_7100964378(fn, "_m_bRelocateOnFrozen_SetterFunction");
+    }();
+    UnkReflField* field61 = fn_7100096524(cls, CStrId("bRelocateOnFrozen", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field61->attrs.Add<bool>(fn_7100075240(), false);
+    field61->attrs.Add<const char*>(fn_7100007e80(), "Whether it should be always stand");
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bForceNextTransformCharClassScale_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_bForceNextTransformCharClassScale_GetterFunction", true);
+            fn->return_type = fn_710000d228();
+            fn->field_0xb2 = 0;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_7100967e2c);
+        }
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bForceNextTransformCharClassScale_SetterFunction", true)))
+            fn_71009644f4(fn, "_m_bForceNextTransformCharClassScale_SetterFunction");
+    }();
+    UnkReflField* field62 = fn_7100096524(cls, CStrId("bForceNextTransformCharClassScale", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field62->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field63 = fn_7100096524(cls, CStrId("fAngularSpeed", true), fn_710000abbc(), 0x6c, -1, -1);
+    field63->attrs.Add<f32>(fn_7100075240(), 10.0f);
+    UnkReflField* field64 = fn_7100096524(cls, CStrId("fSteeringAcceleration", true), fn_710000abbc(), 0x13c, -1, -1);
+    field64->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    UnkReflField* field65 = fn_7100096524(cls, CStrId("fMaxTargetDistanceToAccelerateCloseToTarget", true), fn_710000abbc(), 0x140, -1, -1);
+    field65->attrs.Add<f32>(fn_7100075240(), 100.0f);
+    UnkReflField* field66 = fn_7100096524(cls, CStrId("fCloseToTargetAcceleration", true), fn_710000abbc(), 0x144, -1, -1);
+    field66->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    UnkReflField* field67 = fn_7100096524(cls, CStrId("bLookAtHorizontalDir", true), fn_710000d228(), 0x1c9, -1, -1);
+    field67->attrs.Add<bool>(fn_7100075240(), false);
+}
 bool fn_71009650a8(const void*, const void*) { return false; }
 s32 fn_71009650b0() { return -1; }
 const base::reflection::CType& fn_71009650b8(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

@@ -5,10 +5,94 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CBreakableTileGroupComponent
 DREAD_REFL_TAG(710075416c);
 void fn_7100753520(base::reflection::CClass*) {}
+void fn_710075d2e4();
+void fn_71007542cc(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_71000923a0();
+extern base::reflection::CType g_unk_7101d55008;
+const base::reflection::UnkReflAttrKey& fn_710075a400();
+extern base::reflection::CType g_unk_7172711ad0;
+const base::reflection::UnkReflAttrKey& fn_710008fd60();
+const base::reflection::UnkReflAttrKey& fn_710008fb40();
+const base::reflection::UnkReflAttrKey& fn_710008ff80();
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+extern base::reflection::CType g_unk_7172791c90;
+void fn_710075d374();
+void fn_7100754448(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+extern base::reflection::CType g_unk_71727115d0;
+void fn_710075d73c();
+void fn_710075d430(UnkReflFunction* fn);
+const base::reflection::UnkReflAttrKey& fn_710008f920();
+const base::reflection::UnkReflAttrKey& fn_71000903c0();
+void fn_71007545bc(UnkReflFunction* fn, const char* name);
+extern base::reflection::CType g_unk_7101d5af48;
+void fn_710075d94c();
+void fn_7100753618(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_uGroupId_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_uGroupId_GetterFunction", true);
+        fn->return_type = fn_7100005178();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_710075d2e4);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_uGroupId_SetterFunction", true)))
+        fn_71007542cc(fn, "_uGroupId_SetterFunction");
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("uGroupId", true), fn_7100005178(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field0->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
+    field0->attrs.Add<u32>(fn_710075a400(), 0x0u);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("aGridTiles", true), &g_unk_7172711ad0, 0x50, -1, -1);
+    field1->attrs.Add<CStrId>(fn_710008fd60(), CStrId("CreateNewTile", true));
+    field1->attrs.Add<const char*>(fn_710008fb40(), "DeleteTileAt");
+    field1->attrs.Add<const char*>(fn_710008ff80(), "AfterGridDeserialization");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("bFakeHusks", true), fn_710000d228(), 0x4c, -1, -1);
+    field2->attrs.Add<bool>(fn_7100075240(), false);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_eCollisionMaterial_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_eCollisionMaterial_GetterFunction", true);
+        fn->return_type = &g_unk_7172791c90;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_710075d374);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_eCollisionMaterial_SetterFunction", true)))
+        fn_7100754448(fn, "_m_eCollisionMaterial_SetterFunction");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("eCollisionMaterial", true), &g_unk_7172791c90, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field3->attrs.Add<s32>(fn_7100075240(), &g_unk_7172791c90, 0);
+    field3->attrs.Add<const char*>(fn_7100007e80(), "Collision Material");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("CreateNewTile", true))) {
+        fn->name = base::global::UnkStrId("CreateNewTile", true);
+        fn->return_type = &g_unk_71727115d0;
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_710075d73c);
+        fn_710075d430(fn);
+        fn_710009ae5c(fn, fn->params.count);
+        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("uIdx", true));
+        fn->ParamAttrs(0)->Add<bool>(fn_71000903c0(), true);
+        fn->ParamAttrs(1)->Add<CStrId>(fn_710008f920(), CStrId("eTileType", true));
+        fn->ParamAttrs(2)->Add<CStrId>(fn_710008f920(), CStrId("vGridCoords", true));
+        fn->ParamAttrs(3)->Add<CStrId>(fn_710008f920(), CStrId("sHiddenSG", true));
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("DeleteTileAt", true)))
+        fn_71007545bc(fn, "DeleteTileAt");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AfterGridDeserialization", true))) {
+        fn->name = base::global::UnkStrId("AfterGridDeserialization", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_710075d94c);
+    }
+}
 bool fn_710075d280(const void*, const void*) { return false; }
 s32 fn_710075d288() { return -1; }
 const base::reflection::CType& fn_710075d290(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

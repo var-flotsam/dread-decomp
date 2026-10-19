@@ -17,7 +17,6 @@ using base::reflection::UnkTunableRegistry;
 DREAD_REFL_TAG(710079630c);
 void fn_7100795580(base::reflection::CClass*) {}
 const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::CType* fn_710000ad9c();
 const base::reflection::UnkReflAttrKey& fn_7100007e80();
 void fn_7100795678(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("fMinTimeToSpaceJump", true), fn_710000abbc(), 0x98, -1, -1);

@@ -5,6 +5,13 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassBaseTriggerComponent
 DREAD_REFL_TAG(7100a462bc);
@@ -38,6 +45,30 @@ DREAD_REFL_CLASS_GETTER(7100a461c4, 7100a462bc, "CCharClassBaseTriggerComponent"
 // CBaseTriggerComponent
 DREAD_REFL_TAG(7100a46810);
 void fn_7100a46440(base::reflection::CClass*) {}
+void fn_7100a46978(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+const base::reflection::UnkReflAttrKey& fn_71000904d0();
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+extern base::reflection::CType g_unk_7101d5af48;
+void fn_7100a4953c();
+void fn_71003540d8(UnkReflFunction* fn);
+void fn_7100a46538(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("IsPlayerInside", true))) {
+        fn_7100a46978(fn, "IsPlayerInside");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString(""));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("bCheckAllEntities", true), fn_710000d228(), 0x9bc, -1, -1);
+    field0->attrs.Add<bool>(fn_7100075240(), false);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("DisableLogic", true))) {
+        fn->name = base::global::UnkStrId("DisableLogic", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100a4953c);
+        fn_71003540d8(fn);
+    }
+}
 bool fn_7100a492ec(const void*, const void*) { return false; }
 s32 fn_7100a492f4() { return -1; }
 const base::reflection::CType& fn_7100a492fc(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

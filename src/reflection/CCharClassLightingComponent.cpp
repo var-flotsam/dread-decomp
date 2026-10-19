@@ -16,7 +16,6 @@ using base::reflection::UnkTunableRegistry;
 // CCharClassLightingComponent
 DREAD_REFL_TAG(71008e6f70);
 void fn_71008e6bcc(base::reflection::CClass*) {}
-const base::reflection::CType* fn_710000ad9c();
 void fn_71008e8694();
 void fn_71008e70f4(UnkReflFunction* fn, const char* name);
 const base::reflection::UnkReflAttrKey& fn_7100075240();

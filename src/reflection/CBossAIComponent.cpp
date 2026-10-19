@@ -5,10 +5,60 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CBossAIComponent
 DREAD_REFL_TAG(71003abf00);
 void fn_71003ab520(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+extern base::reflection::CType g_unk_71727b6630;
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+const base::reflection::UnkReflAttrKey& fn_710025daa0();
+extern base::reflection::CType g_unk_71727bc110;
+extern base::reflection::CType g_unk_717269bb48;
+extern base::reflection::CType g_unk_7101d5af48;
+void fn_71003b0e60();
+void fn_7100302d14(UnkReflFunction* fn);
+void fn_71003ab618(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sArenaLeftLandmark", true), fn_7100009658(), 0x146f0, -1, -1);
+    field0->attrs.Add<const char*>(fn_7100075240(), "");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("sArenaRightLandmark", true), fn_7100009658(), 0x146f8, -1, -1);
+    field1->attrs.Add<const char*>(fn_7100075240(), "");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fArenaLimitDist", true), fn_710000abbc(), 0x14700, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("tDoors", true), &g_unk_71727b6630, 0x146c8, -1, -1);
+    field3->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Door to lock on emmy spawn"));
+    field3->attrs_0x70.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 1);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("wpBossCamera", true), &g_unk_717269bb48, 0x14728, -1, -1);
+    field4->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 0);
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("wpBossCameraFloorLandmark", true), &g_unk_717269bb48, 0x14768, -1, -1);
+    field5->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 6);
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("wpBossCameraCeilingLandmark", true), &g_unk_717269bb48, 0x147a8, -1, -1);
+    field6->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 6);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetBossCamera", true))) {
+        fn->name = base::global::UnkStrId("SetBossCamera", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71003b0e60);
+        fn_7100302d14(fn);
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Sets the Boss Camera");
+    }
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("wpStartCombatCheckpointStartPoint", true), &g_unk_717269bb48, 0x14910, -1, -1);
+    field7->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 0);
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("sStartCombatCheckpointSnapshotId", true), fn_7100009658(), 0x14950, -1, -1);
+    field8->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("wpDeadCheckpointStartPoint", true), &g_unk_717269bb48, 0x14958, -1, -1);
+    field9->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 0);
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("bSaveGameOnAfterDead", true), fn_710000d228(), 0x14998, -1, -1);
+    field10->attrs.Add<bool>(fn_7100075240(), true);
+}
 bool fn_71003b0dfc(const void*, const void*) { return false; }
 s32 fn_71003b0e04() { return -1; }
 const base::reflection::CType& fn_71003b0e0c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

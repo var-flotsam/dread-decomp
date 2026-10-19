@@ -16,7 +16,6 @@ using base::reflection::UnkTunableRegistry;
 // GUI::CDifficultyButton
 DREAD_REFL_TAG(7100b02dc0);
 void fn_7100b02b4c(base::reflection::CClass*) {}
-const base::reflection::CType* fn_7100007f84();
 void fn_7100b02c44(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("iDifficulty", true), fn_7100014768(), 0x2ac, -1, -1);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("sDescription", true), fn_7100007f84(), 0x2b0, -1, -1);

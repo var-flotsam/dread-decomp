@@ -5,10 +5,61 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CNavMeshItemComponent
 DREAD_REFL_TAG(71009bdfa4);
 void fn_71009bd960(base::reflection::CClass*) {}
+void fn_71009be10c(UnkReflFunction* fn, const char* name);
+void fn_71009be288(UnkReflFunction* fn, const char* name);
+extern base::reflection::CType g_unk_7101d5af48;
+void fn_71009c29f0();
+void fn_7100500260(UnkReflFunction* fn);
+void fn_71009c2b04();
+void fn_71009be404(UnkReflFunction* fn, const char* name);
+void fn_71009be580(UnkReflFunction* fn, const char* name);
+void fn_71009be6fc(UnkReflFunction* fn, const char* name);
+extern base::reflection::CType g_unk_71727b6630;
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+const base::reflection::UnkReflAttrKey& fn_710025daa0();
+extern base::reflection::CType g_unk_71727bc110;
+void fn_71009bda58(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AddDefaultCollider", true)))
+        fn_71009be10c(fn, "AddDefaultCollider");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("CreateStage", true)))
+        fn_71009be288(fn, "CreateStage");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AddStageCollider", true))) {
+        fn->name = base::global::UnkStrId("AddStageCollider", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71009c29f0);
+        fn_7100500260(fn);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetStageSide", true))) {
+        fn->name = base::global::UnkStrId("SetStageSide", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71009c2b04);
+        fn_7100500260(fn);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("ChangeStage", true)))
+        fn_71009be404(fn, "ChangeStage");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("OverrideInitialStage", true)))
+        fn_71009be580(fn, "OverrideInitialStage");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetStage", true)))
+        fn_71009be6fc(fn, "SetStage");
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("tForbiddenEdgesSpawnPoints", true), &g_unk_71727b6630, 0x188, -1, -1);
+    field0->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Spawn points to set forbidden edges"));
+    field0->attrs_0x70.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 1);
+}
 bool fn_71009c2850(const void*, const void*) { return false; }
 s32 fn_71009c2858() { return -1; }
 const base::reflection::CType& fn_71009c2860(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

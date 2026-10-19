@@ -5,10 +5,149 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CSmartObjectComponent
 DREAD_REFL_TAG(7100a017e0);
 void fn_7100a00010(base::reflection::CClass*) {}
+void fn_7100a04d10();
+void fn_7100a01964(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_7100a04e10();
+void fn_7100a01ae0(UnkReflFunction* fn, const char* name);
+void fn_7100a04f10();
+void fn_7100a01c5c(UnkReflFunction* fn, const char* name);
+void fn_7100a05010();
+void fn_7100a01dd8(UnkReflFunction* fn, const char* name);
+void fn_7100a05110();
+void fn_7100a01f54(UnkReflFunction* fn, const char* name);
+void fn_7100a051b8();
+void fn_7100a020d0(UnkReflFunction* fn, const char* name);
+void fn_7100a05260();
+void fn_7100a0224c(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+void fn_7100a023c8(UnkReflFunction* fn, const char* name);
+void fn_7100a02540(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_71000904d0();
+void fn_7100a025f4(UnkReflFunction* fn, const char* name);
+void fn_7100a026a8(UnkReflFunction* fn, const char* name);
+void fn_7100a0275c(UnkReflFunction* fn, const char* name);
+void fn_7100a02810(UnkReflFunction* fn, const char* name);
+void fn_7100a00108(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sOnUseStart_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_sOnUseStart_GetterFunction", true);
+        fn->return_type = fn_7100009658();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100a04d10);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sOnUseStart_SetterFunction", true)))
+        fn_7100a01964(fn, "_m_sOnUseStart_SetterFunction");
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sOnUseStart", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field0->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sOnUseFailure_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_sOnUseFailure_GetterFunction", true);
+        fn->return_type = fn_7100009658();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100a04e10);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sOnUseFailure_SetterFunction", true)))
+        fn_7100a01ae0(fn, "_m_sOnUseFailure_SetterFunction");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("sOnUseFailure", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field1->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sOnUseSuccess_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_sOnUseSuccess_GetterFunction", true);
+        fn->return_type = fn_7100009658();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100a04f10);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sOnUseSuccess_SetterFunction", true)))
+        fn_7100a01c5c(fn, "_m_sOnUseSuccess_SetterFunction");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("sOnUseSuccess", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field2->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sUsableEntity_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_sUsableEntity_GetterFunction", true);
+        fn->return_type = fn_7100009658();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100a05010);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sUsableEntity_SetterFunction", true)))
+        fn_7100a01dd8(fn, "_m_sUsableEntity_SetterFunction");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("sUsableEntity", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field3->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sDefaultUseAction_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_sDefaultUseAction_GetterFunction", true);
+        fn->return_type = fn_7100009658();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100a05110);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sDefaultUseAction_SetterFunction", true)))
+        fn_7100a01f54(fn, "_m_sDefaultUseAction_SetterFunction");
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("sDefaultUseAction", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field4->attrs.Add<CStrId>(fn_7100075240(), CStrId("useinit", true));
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sDefaultAbortAction_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_sDefaultAbortAction_GetterFunction", true);
+        fn->return_type = fn_7100009658();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100a051b8);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sDefaultAbortAction_SetterFunction", true)))
+        fn_7100a020d0(fn, "_m_sDefaultAbortAction_SetterFunction");
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("sDefaultAbortAction", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field5->attrs.Add<CStrId>(fn_7100075240(), CStrId("useabort", true));
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bStartEnabled_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_bStartEnabled_GetterFunction", true);
+        fn->return_type = fn_710000d228();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100a05260);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bStartEnabled_SetterFunction", true)))
+        fn_7100a0224c(fn, "_m_bStartEnabled_SetterFunction");
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("bStartEnabled", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field6->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("fInterpolationTime", true), fn_710000abbc(), 0x40, -1, -1);
+    field7->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    field7->attrs.Add<const char*>(fn_7100007e80(), "Interpolation time");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("OnLevelChangeUse", true)))
+        fn_7100a023c8(fn, "OnLevelChangeUse");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetUseState", true))) {
+        fn_7100a02540(fn, "SetUseState");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Set Use State"));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("OnUseAccepted", true))) {
+        fn_7100a025f4(fn, "OnUseAccepted");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("On Use Accepted"));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("OnUseDeclined", true))) {
+        fn_7100a026a8(fn, "OnUseDeclined");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("On Use Declined"));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("OnUseContinued", true))) {
+        fn_7100a0275c(fn, "OnUseContinued");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("On Use Continued"));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("RefreshUsableEntity", true))) {
+        fn_7100a02810(fn, "RefreshUsableEntity");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Refresh Usable Entity"));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+}
 bool fn_7100a04c94(const void*, const void*) { return false; }
 s32 fn_7100a04c9c() { return -1; }
 const base::reflection::CType& fn_7100a04ca4(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

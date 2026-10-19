@@ -17,7 +17,6 @@ using base::reflection::UnkTunableRegistry;
 DREAD_REFL_TAG(710086a1e0);
 void fn_7100869ad8(base::reflection::CClass*) {}
 extern bool g_unk_7172729370;
-const base::reflection::CType* fn_7100007f84();
 const base::reflection::UnkReflAttrKey& fn_7100075240();
 const base::reflection::UnkReflAttrKey& fn_7100007e80();
 extern UnkTunableRegistry* g_unk_7101d47350;
@@ -85,6 +84,38 @@ DREAD_REFL_CLASS_GETTER(7100869adc, 710086a1e0, "CHeatableShieldComponent::CTuna
 // CHeatableShieldComponent
 DREAD_REFL_TAG(710086aa54);
 void fn_710086a650(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_7101d5af48;
+void fn_710086ce20();
+void fn_710086cb28(UnkReflFunction* fn);
+void fn_710086d4f8();
+void fn_7100500260(UnkReflFunction* fn);
+void fn_710086d530();
+void fn_710086a748(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("CreateShield", true))) {
+        fn->name = base::global::UnkStrId("CreateShield", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_710086ce20);
+        fn_710086cb28(fn);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AddShieldCollider", true))) {
+        fn->name = base::global::UnkStrId("AddShieldCollider", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_710086d4f8);
+        fn_7100500260(fn);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetTimeToStartHeatRecover", true))) {
+        fn->name = base::global::UnkStrId("SetTimeToStartHeatRecover", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_710086d530);
+        fn_7100500260(fn);
+    }
+}
 bool fn_710086ca8c(const void*, const void*) { return false; }
 s32 fn_710086ca94() { return -1; }
 const base::reflection::CType& fn_710086ca9c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

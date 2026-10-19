@@ -5,10 +5,173 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassDoorLifeComponent
 DREAD_REFL_TAG(71008b19e4);
 void fn_71008b00c0(base::reflection::CClass*) {}
+void fn_71008b2d64();
+void fn_71008b1b68(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+void fn_71008b2df4();
+void fn_71008b1ce4(UnkReflFunction* fn, const char* name);
+void fn_71008b2e84();
+void fn_71008b1e60(UnkReflFunction* fn, const char* name);
+void fn_71008b2f14();
+void fn_71008b1fdc(UnkReflFunction* fn, const char* name);
+void fn_71008b2fa4();
+void fn_71008b2158(UnkReflFunction* fn, const char* name);
+void fn_71008b3034();
+void fn_71008b22d4(UnkReflFunction* fn, const char* name);
+void fn_71008b311c();
+void fn_71008b2450(UnkReflFunction* fn, const char* name);
+void fn_71008b3204();
+void fn_71008b25cc(UnkReflFunction* fn, const char* name);
+void fn_71008b3294();
+void fn_71008b2748(UnkReflFunction* fn, const char* name);
+void fn_71008b3324();
+void fn_71008b28c4(UnkReflFunction* fn, const char* name);
+void fn_71008b33b4();
+void fn_71008b2a40(UnkReflFunction* fn, const char* name);
+void fn_71008b01b8(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fMinTimeClosed_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_fMinTimeClosed_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71008b2d64);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fMinTimeClosed_SetterFunction", true)))
+        fn_71008b1b68(fn, "_fMinTimeClosed_SetterFunction");
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fMinTimeClosed", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field0->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Minimum time to stay closed");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fMaxDistanceOpened_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_fMaxDistanceOpened_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71008b2df4);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fMaxDistanceOpened_SetterFunction", true)))
+        fn_71008b1ce4(fn, "_fMaxDistanceOpened_SetterFunction");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fMaxDistanceOpened", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field1->attrs.Add<f32>(fn_7100075240(), 500.0f);
+    field1->attrs.Add<const char*>(fn_7100007e80(), "Max distance to be opened");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bUsesPresenceDetection_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_bUsesPresenceDetection_GetterFunction", true);
+        fn->return_type = fn_710000d228();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71008b2e84);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bUsesPresenceDetection_SetterFunction", true)))
+        fn_71008b1e60(fn, "_bUsesPresenceDetection_SetterFunction");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("bUsesPresenceDetection", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field2->attrs.Add<bool>(fn_7100075240(), false);
+    field2->attrs.Add<const char*>(fn_7100007e80(), "Whether this door uses presence detection (requires collider)");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bPresenceOpenEnabled_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_bPresenceOpenEnabled_GetterFunction", true);
+        fn->return_type = fn_710000d228();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71008b2f14);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bPresenceOpenEnabled_SetterFunction", true)))
+        fn_71008b1fdc(fn, "_bPresenceOpenEnabled_SetterFunction");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("bPresenceOpenEnabled", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field3->attrs.Add<bool>(fn_7100075240(), false);
+    field3->attrs.Add<const char*>(fn_7100007e80(), "Whether this door should try to open when player is outside of the presence collider");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bUseDoorLockOnLocked_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_bUseDoorLockOnLocked_GetterFunction", true);
+        fn->return_type = fn_710000d228();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71008b2fa4);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bUseDoorLockOnLocked_SetterFunction", true)))
+        fn_71008b2158(fn, "_bUseDoorLockOnLocked_SetterFunction");
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("bUseDoorLockOnLocked", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field4->attrs.Add<bool>(fn_7100075240(), false);
+    field4->attrs.Add<const char*>(fn_7100007e80(), "Whether this door has a separate door lock actor to be used when it's locked");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_vDefaultLightColor_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_vDefaultLightColor_GetterFunction", true);
+        fn->return_type = fn_71000248c4();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71008b3034);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_vDefaultLightColor_SetterFunction", true)))
+        fn_71008b22d4(fn, "_m_vDefaultLightColor_SetterFunction");
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("vDefaultLightColor", true), fn_71000248c4(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field5->attrs.Add<base::math::CVector4D>(fn_7100075240(), base::math::CVector4D{1.0f, 0.8f, 0.34f, 1.0f});
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_vBlockLightColor_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_vBlockLightColor_GetterFunction", true);
+        fn->return_type = fn_71000248c4();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71008b311c);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_vBlockLightColor_SetterFunction", true)))
+        fn_71008b2450(fn, "_m_vBlockLightColor_SetterFunction");
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("vBlockLightColor", true), fn_71000248c4(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field6->attrs.Add<base::math::CVector4D>(fn_7100075240(), base::math::CVector4D{0.1f, 0.1f, 0.1f, 1.0f});
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bVerticalDimensionInFrustum_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_bVerticalDimensionInFrustum_GetterFunction", true);
+        fn->return_type = fn_710000d228();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71008b3204);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bVerticalDimensionInFrustum_SetterFunction", true)))
+        fn_71008b25cc(fn, "_bVerticalDimensionInFrustum_SetterFunction");
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("bVerticalDimensionInFrustum", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field7->attrs.Add<bool>(fn_7100075240(), false);
+    field7->attrs.Add<const char*>(fn_7100007e80(), "Vertical Dimension has to be in frustum to react");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bHorizontalDimensionInFrustum_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_bHorizontalDimensionInFrustum_GetterFunction", true);
+        fn->return_type = fn_710000d228();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71008b3294);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bHorizontalDimensionInFrustum_SetterFunction", true)))
+        fn_71008b2748(fn, "_bHorizontalDimensionInFrustum_SetterFunction");
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("bHorizontalDimensionInFrustum", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field8->attrs.Add<bool>(fn_7100075240(), false);
+    field8->attrs.Add<const char*>(fn_7100007e80(), "Horizontal Dimension has to be in frustum to react");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bUseHeatDeviceActivation_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_bUseHeatDeviceActivation_GetterFunction", true);
+        fn->return_type = fn_710000d228();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71008b3324);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bUseHeatDeviceActivation_SetterFunction", true)))
+        fn_71008b28c4(fn, "_bUseHeatDeviceActivation_SetterFunction");
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("bUseHeatDeviceActivation", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field9->attrs.Add<bool>(fn_7100075240(), false);
+    field9->attrs.Add<const char*>(fn_7100007e80(), "Whether this door uses heat device to open");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bStartOpened_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_bStartOpened_GetterFunction", true);
+        fn->return_type = fn_710000d228();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71008b33b4);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bStartOpened_SetterFunction", true)))
+        fn_71008b2a40(fn, "_m_bStartOpened_SetterFunction");
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("bStartOpened", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field10->attrs.Add<bool>(fn_7100075240(), false);
+    field10->attrs.Add<const char*>(fn_7100007e80(), "Doorframe must start as opened");
+}
 bool fn_71008b2c88(const void*, const void*) { return false; }
 s32 fn_71008b2c90() { return -1; }
 const base::reflection::CType& fn_71008b2c98(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

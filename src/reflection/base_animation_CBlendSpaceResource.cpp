@@ -52,7 +52,6 @@ DREAD_REFL_CLASS_GETTER(71000092e4, 71000094e4, "base::animation::CBlendSpaceRes
 // base::animation::CBlendSpaceResource::SBlendTarget
 DREAD_REFL_TAG(710000aa38);
 void fn_710000a7c8(base::reflection::CClass*) {}
-const base::reflection::CType* fn_710000ad9c();
 void fn_710000a8bc(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("fSample", true), fn_710000abbc(), 0x0, -1, -1);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("fPlayRate", true), fn_710000abbc(), 0x4, -1, -1);

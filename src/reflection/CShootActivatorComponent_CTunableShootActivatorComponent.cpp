@@ -106,6 +106,40 @@ DREAD_REFL_CLASS_GETTER(710088daec, 710088ddbc, "CCharClassShootActivatorCompone
 // CShootActivatorComponent
 DREAD_REFL_TAG(710088f988);
 void fn_710088f180(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100091080();
+const base::reflection::UnkReflAttrKey& fn_7100091190();
+extern base::reflection::CType g_unk_717269bf08;
+const base::reflection::UnkReflAttrKey& fn_7100090090();
+const base::reflection::UnkReflAttrKey& fn_710025daa0();
+extern base::reflection::CType g_unk_71727bc110;
+extern base::reflection::CType g_unk_71727b6270;
+extern base::reflection::CType g_unk_717272c848;
+void fn_710088f278(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fInitialAccumulatedTime", true), fn_710000abbc(), 0x4b8, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field0->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    field0->attrs.Add<f32>(fn_7100091190(), 100.0f);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fActivationTime", true), fn_710000abbc(), 0x4b0, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 2.0f);
+    field1->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    field1->attrs.Add<f32>(fn_7100091190(), 100.0f);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fTimePerShot", true), fn_710000abbc(), 0x4b4, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 0.3f);
+    field2->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    field2->attrs.Add<f32>(fn_7100091190(), 100.0f);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("vTargetsToActivate", true), &g_unk_717269bf08, 0x388, -1, -1);
+    field3->attrs.Add<bool>(fn_7100090090(), false);
+    field3->attrs_0x70.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 10);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("vTargetsToDeactivate", true), &g_unk_717269bf08, 0x3b0, -1, -1);
+    field4->attrs.Add<bool>(fn_7100090090(), false);
+    field4->attrs_0x70.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 10);
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("sOnUseEntityTimeline", true), fn_7100009658(), 0x4d8, -1, -1);
+    field5->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("wpAtmosphereEntity", true), &g_unk_71727b6270, 0x530, -1, -1);
+    field6->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 1);
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("vEntitiesActivatabledOnEvent", true), &g_unk_717272c848, 0x4e0, -1, -1);
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("vEntitiesDeactivatabledOnEvent", true), &g_unk_717272c848, 0x508, -1, -1);
+}
 bool fn_71008963a0(const void*, const void*) { return false; }
 s32 fn_71008963a8() { return -1; }
 const base::reflection::CType& fn_71008963b0(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

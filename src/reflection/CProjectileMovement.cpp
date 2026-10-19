@@ -18,7 +18,6 @@ DREAD_REFL_TAG(7100ac2afc);
 void fn_7100ac2430(base::reflection::CClass*) {}
 const base::reflection::UnkReflAttrKey& fn_7100075240();
 const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::CType* fn_710000ad9c();
 void fn_7100ac2528(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("fMaxDist", true), fn_710000abbc(), 0x480, -1, -1);
     field0->attrs.Add<f32>(fn_7100075240(), -1.0f);

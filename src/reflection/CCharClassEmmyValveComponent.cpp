@@ -5,6 +5,13 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassEmmyValveComponent
 DREAD_REFL_TAG(71007b1d20);
@@ -38,6 +45,27 @@ DREAD_REFL_CLASS_GETTER(71007b1c28, 71007b1d20, "CCharClassEmmyValveComponent", 
 // CEmmyValveComponent
 DREAD_REFL_TAG(71007b21b0);
 void fn_71007b1ea4(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_7101d5af48;
+void fn_71007b4bb0();
+void fn_7100302d14(UnkReflFunction* fn);
+void fn_71007b4c44();
+void fn_71007b1f9c(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetState", true))) {
+        fn->name = base::global::UnkStrId("SetState", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71007b4bb0);
+        fn_7100302d14(fn);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("CleanForceStateFlag", true))) {
+        fn->name = base::global::UnkStrId("CleanForceStateFlag", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71007b4c44);
+    }
+}
 bool fn_71007b4a5c(const void*, const void*) { return false; }
 s32 fn_71007b4a64() { return -1; }
 const base::reflection::CType& fn_71007b4a6c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

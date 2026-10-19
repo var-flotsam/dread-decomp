@@ -5,10 +5,36 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassCollisionComponent
 DREAD_REFL_TAG(710079a6bc);
 void fn_710079a214(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+extern base::reflection::CType g_unk_7172791c90;
+extern base::reflection::CType g_unk_7172718518;
+const base::reflection::UnkReflAttrKey& fn_7100091d40();
+void fn_710079a30c(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("v3SpawnPointCollisionSizeInc", true), fn_71000246e4(), 0x8c, -1, -1);
+    field0->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{0.0f, 0.0f, 0.0f});
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Life of the enemy");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("eDefaultCollisionMaterial", true), &g_unk_7172791c90, 0x98, -1, -1);
+    field1->attrs.Add<s32>(fn_7100075240(), &g_unk_7172791c90, 0);
+    field1->attrs.Add<const char*>(fn_7100007e80(), "General Collision Material");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("bShouldIgnoreSlopeSupport", true), fn_710000d228(), 0xc8, -1, -1);
+    field2->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("bForceSlopeDirectionOnFloorHit", true), fn_710000d228(), 0xc9, -1, -1);
+    field3->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("mExplicitCollisionMaterials", true), &g_unk_7172718518, 0xa0, -1, -1);
+    field4->attrs_0x70.Add<bool>(fn_7100091d40(), true);
+}
 bool fn_710079cf44(const void*, const void*) { return false; }
 s32 fn_710079cf4c() { return -1; }
 const base::reflection::CType& fn_710079cf54(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

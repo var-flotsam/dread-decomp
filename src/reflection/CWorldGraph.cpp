@@ -5,10 +5,66 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CWorldGraph
 DREAD_REFL_TAG(7100acbd1c);
 void fn_7100acb4a8(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_7172756230;
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+const base::reflection::UnkReflAttrKey& fn_710008fd60();
+const base::reflection::UnkReflAttrKey& fn_710008fb40();
+const base::reflection::UnkReflAttrKey& fn_710008ff80();
+const base::reflection::UnkReflAttrKey& fn_7100090a20();
+extern base::reflection::CType g_unk_7101d5af48;
+void fn_7100acceb8();
+extern base::reflection::CType g_unk_7172755e70;
+void fn_7100accfc8();
+void fn_7100acceec(UnkReflFunction* fn);
+const base::reflection::UnkReflAttrKey& fn_710008f920();
+const base::reflection::UnkReflAttrKey& fn_71000903c0();
+void fn_7100acbea0(UnkReflFunction* fn, const char* name);
+void fn_7100acb5a0(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("tNodes", true), &g_unk_7172756230, 0x30, -1, -1);
+    field0->attrs.Add<const char*>(fn_7100007e80(), "World Graph Nodes");
+    field0->attrs.Add<CStrId>(fn_710008fd60(), CStrId("CreateNode", true));
+    field0->attrs.Add<CStrId>(fn_710008fb40(), CStrId("DeleteNode", true));
+    field0->attrs.Add<const char*>(fn_710008ff80(), "AfterNodesCollectionDeserialization");
+    field0->attrs.Add<bool>(fn_7100090a20(), false);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AfterNodesCollectionDeserialization", true))) {
+        fn->name = base::global::UnkStrId("AfterNodesCollectionDeserialization", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100acceb8);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("CreateNode", true))) {
+        fn->name = base::global::UnkStrId("CreateNode", true);
+        fn->return_type = &g_unk_7172755e70;
+        fn->field_0xb2 = 0x1;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100accfc8);
+        fn_7100acceec(fn);
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Create Node At Index");
+        fn_710009ae5c(fn, fn->params.count);
+        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("uIdx", true));
+        fn->ParamAttrs(0)->Add<bool>(fn_71000903c0(), true);
+        fn->ParamAttrs(1)->Add<CStrId>(fn_710008f920(), CStrId("vPos", true));
+        fn->ParamAttrs(2)->Add<CStrId>(fn_710008f920(), CStrId("sID", true));
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("DeleteNode", true))) {
+        fn_7100acbea0(fn, "DeleteNode");
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Delete Node At Index");
+        fn_710009ae5c(fn, fn->params.count);
+        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("uIdx", true));
+    }
+}
 bool fn_7100accd58(const void*, const void*) { return false; }
 s32 fn_7100accd60() { return -1; }
 const base::reflection::CType& fn_7100accd68(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

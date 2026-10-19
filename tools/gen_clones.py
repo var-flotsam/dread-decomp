@@ -77,7 +77,9 @@ def elem_size(insns: Insns) -> int | None:
 # Element types for collection templates (see UnkClone.h): a pointer, trivially copyable bytes
 # (sized from the code), an owning pointer and a copyable handle.
 ELEMENTS = {"ptr": "{tag}*", "elem": "UnkCloneElem<{tag}, {size}>", "owner": "UnkCloneOwner<{tag}>",
-            "handle": "UnkCloneHandle<{tag}>"}
+            "handle": "UnkCloneHandle<{tag}>", "word": "UnkCloneWord<{tag}>", "strid": "UnkCloneStrId<{tag}>",
+            # Two template arguments: a word element keyed by a string id (keyed collections).
+            "word_strkey": "UnkCloneWord<{tag}>, UnkCloneStrId<{tag}>", "strid_b": "UnkCloneStrIdB<{tag}>"}
 
 # Collection templates: header, explicit instantiation ({T} is the element type), verified
 # reference per element type, and whether the element size is read from the code ("elem" only).
@@ -97,9 +99,19 @@ COLLECTIONS = {
     "iter_value_equal": ("base/UnkCollectionIter.h",
                          "template bool base::operator==(const base::UnkIterValue<{T}>&, "
                          "const base::UnkIterValue<{T}>&);", {"ptr": 0x71000CD4CC}),
+    "iter_value_equal_by_value": ("base/UnkCollectionIter.h",
+                                  "template bool base::refl_IterValueEqualByValue(const base::UnkIterValue<{T}>&, "
+                                  "const base::UnkIterValue<{T}>&);", {"word": 0x71000CEA70, "word_strkey": 0x7100120684}),
     "iter_value_move": ("base/UnkCollectionIter.h",
                         "template base::UnkIterValue<{T}>& base::UnkIterValue<{T}>::operator=("
                         "base::UnkIterValue<{T}>&&);", {"owner": 0x71002B954C}),
+    "iter_value_move_construct": ("base/UnkCollectionIter.h",
+                                  "template void base::refl_IterValueMove<{T}>(void*, const void*);",
+                                  {"word": 0x71000CEB44, "owner": 0x71002433A0}),
+    "iter_value_destroy": ("base/UnkCollectionIter.h", "template void base::refl_IterValueDestroy<{T}>(void*);",
+                           {"strid": 0x71000CD5D8, "strid_b": 0x71000CFD94, "word_strkey": 0x71000DE4F4}),
+    "iter_value_copy": ("base/UnkCollectionIter.h",
+                        "template void* base::refl_IterValueCopy<{T}>(void*, const void*);", {"word": 0x71000CEBA4}),
     "iter_begin": ("base/UnkCollectionIter.h",
                    "template void base::refl_Begin(const base::UnkVector<{T}>*, base::UnkCollectionIter<{T}>*);",
                    {"ptr": 0x71000CC564, "owner": 0x71002BA12C}),
@@ -175,6 +187,55 @@ def destructor(orig: asmdiff.Original, addr: int, tag: str, insns: Insns) -> str
     fn = "refl_Dtor" if not deleting else "refl_DeletingDtor" if bases else "refl_DeletingDtorNoBase"
     lines += ["};", f"template void base::{fn}<{tag}{''.join(', ' + x for x in members)}>(char*);"]
     return "\n".join(lines)
+
+
+STATE_RE = re.compile(r"w8, \[x0, #(0x[0-9a-f]+)\]")
+
+
+def iter_value_destroy_vt(orig: asmdiff.Original, addr: int, tag: str, insns: Insns) -> str | None:
+    """An iterator value's destroy helper (refl_IterValueDestroy) whose element (at +8, after a
+    u32 index) stores a vtable and releases string-id or refcounted members. Facts: the state
+    offset (= 8 + the element size), the vtable and the members' offsets in the element."""
+    head = [m for m, _ in insns[:9]]
+    if head[:3] != ["stp", "stp", "add"] or "ldr" not in head:
+        return None
+    state = next((int(h.group(1), 16) for m, o in insns[:6] if m == "ldr" and (h := STATE_RE.fullmatch(o))), None)
+    if state is None or state % 8 or state < 0x10 or ("cmp", "w8, #2") not in insns[4:8]:
+        return None
+    pages: dict[str, int] = {}
+    vtable = None
+    members: list[str] = []
+    for i, (m, o) in enumerate(insns[:-1]):
+        regs = [r.strip() for r in o.split(",")]
+        if m == "adrp":
+            pages[regs[0]] = int(regs[1][1:], 16)
+        elif m == "ldr" and vtable is None and (hit := VTABLE_RE.fullmatch(o)) and f"x{hit.group(1)}" in pages:
+            got = pages[f"x{hit.group(1)}"] + int(hit.group(2), 16)
+            if insns[i + 1] == ("add", f"x{hit.group(1)}, x{hit.group(1)}, #0x10") \
+                    and insns[i + 2] == ("str", f"x{hit.group(1)}, [x19, #8]"):
+                target = orig.img.pointer(got - BASE)
+                if target is None:
+                    return None
+                vtable = BASE + target
+        elif m == "ldr" and (hit := re.fullmatch(r"(x\d+), \[x19, #(0x[0-9a-f]+)\]", o)) \
+                and any(x == ("cbz", f"{hit.group(1)}, {t}") for x in insns[i + 1:i + 3]
+                        for t in [x[1].split(", ")[-1]]):
+            after = [x[0] for x in insns[i + 1:i + 7]]
+            kind = "UnkRefPtrAt" if "subs" in after and "sub" not in after else "UnkStrIdAt"
+            off = int(hit.group(2), 16) - 8
+            if off <= 0:
+                return None
+            members.append(f"base::{kind}<{off:#x}>")
+        elif m in ("bl", "b") and o.startswith("#0x") and int(o[1:], 16) not in (RELEASE,) \
+                and not addr <= int(o[1:], 16) < addr + orig.sizes[addr]:
+            return None
+    if vtable is None or not members or len(set(members)) != len(members):
+        return None
+    elem = f"base::UnkDtorElem<{tag}, {state - 8:#x}{''.join(', ' + x for x in members)}>"
+    return "\n".join([f"extern char g_unk_{vtable:x}[];",
+                      f"template <> struct base::UnkDtorTraits<{tag}> {{",
+                      f"    static char* vtable() {{ return g_unk_{vtable:x}; }}", "};",
+                      f"template void base::refl_IterValueDestroy<{elem}>(void*);"])
 
 
 MAKE_VALUE = 0x71000A18D4  # builds a reflected value from a type and a pointer
@@ -264,6 +325,7 @@ def enum_values(orig: asmdiff.Original, addr: int, tag: str, insns: Insns) -> st
 
 KINDS = {
     "dtor": Kind(None, "base/UnkDestructors.h", lambda tag, _: None, scan=destructor),
+    "iter_value_destroy_vt": Kind(None, "base/UnkCollectionIter.h", lambda tag, _: None, scan=iter_value_destroy_vt),
     "enum_values": Kind(None, "base/global/CStrId.h", lambda tag, _: None, scan=enum_values),
     "field_set_strid": Kind(None, "base/reflection/UnkReflValue.h", lambda tag, _: None, scan=field_set_strid),
     "field_value": Kind(None, "base/reflection/UnkReflValue.h", lambda tag, _: None, scan=field_value),
@@ -282,10 +344,11 @@ KINDS = {
 for _name, (_header, _fmt, _refs) in COLLECTIONS.items():
     for _el, _ref in _refs.items():
         KINDS[f"{_name}_{_el}"] = Kind(_ref, _header, collection(_fmt, _el), exact=_el != "elem")
+NO_PROBE = {("iter_value_copy", "owner"), ("iter_value_equal_by_value", "owner")}  # owners can't be copied
 for _name, (_header, _fmt, _refs) in COLLECTIONS.items():
-    trivial = "ptr" in _refs or "elem" in _refs
+    trivial = "ptr" in _refs or "elem" in _refs or "word" in _refs
     for _el in ("owner", "handle") + (() if trivial else ("ptr",)):
-        if _el not in _refs:
+        if _el not in _refs and (_name, _el) not in NO_PROBE:
             KINDS[f"{_name}_{_el}"] = Kind(None, _header, collection(_fmt, _el), exact=False)
 
 

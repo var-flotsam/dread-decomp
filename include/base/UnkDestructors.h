@@ -15,22 +15,48 @@ namespace base {
 
 // A string id released in two steps (the original reloads the id and the count after the
 // decrement, and the pool after a release), unlike CStrId. Which engine type it is is unknown.
-struct UnkStrIdMember {
+// Pool is the global pool pointer: most use g_unk_7101d47108; some keyed collections use
+// CFilePathStrId's (g_unk_7101d47200).
+template <global::UnkStringPool*& Pool>
+struct UnkStrIdMemberOf {
     global::UnkStringData* data;
 
-    ~UnkStrIdMember() {
-        if (global::UnkStringPool* pool = g_unk_7101d47108) {
+    // Moves take the id and leave the pool's empty string; copy-assignment retains the new id
+    // first. Inferred from fn_71000de484/fn_71000de574, which these don't match yet (scheduling).
+    UnkStrIdMemberOf(UnkStrIdMemberOf&& other) : data(other.data) { other.data = &Pool->empty; }
+    UnkStrIdMemberOf& operator=(const UnkStrIdMemberOf& other) {
+        if (data != other.data) {
+            global::UnkStringData* d = other.data;
+            global::UnkStringPool* pool = Pool;
+            if (d != &pool->empty)
+                ++d->ref_count;
+            if (data != &pool->empty) {
+                --data->ref_count;
+                if (data->ref_count == 0)
+                    fn_71000803a4(pool, data);
+            }
+            data = d;
+        }
+        return *this;
+    }
+
+    bool operator==(const UnkStrIdMemberOf& other) const { return data == other.data; }
+    bool operator!=(const UnkStrIdMemberOf& other) const { return data != other.data; }
+
+    ~UnkStrIdMemberOf() {
+        if (global::UnkStringPool* pool = Pool) {
             if (data && data != &pool->empty) {
                 --data->ref_count;
                 if (data->ref_count == 0) {
                     fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
+                    pool = Pool;
                 }
             }
             data = &pool->empty;
         }
     }
 };
+using UnkStrIdMember = UnkStrIdMemberOf<g_unk_7101d47108>;
 
 // An intrusively refcounted object (count at +8), deleted through its vtable.
 struct UnkRefCounted {
@@ -87,5 +113,17 @@ void refl_DeletingDtorNoBase(char* self) {
     (Members::Release(self), ...);
     ::operator delete(self);
 }
+
+// An element of unknown type whose destructor stores its vtable and releases members (no base
+// destructor call), as held by some collection iterator values.
+template <class Tag, u64 Size, class... Members>
+struct UnkDtorElem {
+    alignas(8) char data[Size];
+
+    ~UnkDtorElem() {
+        *reinterpret_cast<char**>(data) = UnkDtorTraits<Tag>::vtable() + 0x10;
+        (Members::Release(data), ...);
+    }
+};
 
 }  // namespace base

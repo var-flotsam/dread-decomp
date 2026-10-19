@@ -5,10 +5,42 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CMultiModelUpdaterComponent
 DREAD_REFL_TAG(7100937c4c);
 void fn_710093776c(base::reflection::CClass*) {}
+void fn_71009393fc();
+void fn_7100937dd0(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+void fn_7100937f48(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_71000904d0();
+void fn_7100937864(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sModelAlias_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_sModelAlias_GetterFunction", true);
+        fn->return_type = fn_7100009658();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71009393fc);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sModelAlias_SetterFunction", true)))
+        fn_7100937dd0(fn, "_sModelAlias_SetterFunction");
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sModelAlias", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field0->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    field0->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Current model alias"));
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetVertexLightsEnabled", true))) {
+        fn_7100937f48(fn, "SetVertexLightsEnabled");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Set Vertex Lights Enabled"));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+}
 bool fn_7100939380(const void*, const void*) { return false; }
 s32 fn_7100939388() { return -1; }
 const base::reflection::CType& fn_7100939390(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

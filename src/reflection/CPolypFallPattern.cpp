@@ -55,6 +55,24 @@ DREAD_REFL_ROOT_CLASS_GETTER(71005ada84, 71005add94, "CPolypFallPattern", 71005a
 // CCharClassHydrogigaPolypsAttack
 DREAD_REFL_TAG(71005af5d4);
 void fn_71005af038(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_71726e9b38;
+const base::reflection::UnkReflAttrKey& fn_7100091d40();
+void fn_71005af130(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("iAttackPattern", true), fn_7100014768(), 0xec, -1, -1);
+    field0->attrs.Add<s32>(fn_7100075240(), -1);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fTimeBetweenWaves", true), fn_710000abbc(), 0xf0, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 5.0f);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("uMinNumWaves", true), fn_7100005178(), 0xf4, -1, -1);
+    field2->attrs.Add<s32>(fn_7100075240(), 5);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("uMaxNumWaves", true), fn_7100005178(), 0xf8, -1, -1);
+    field3->attrs.Add<s32>(fn_7100075240(), 5);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("tUnbreakableFarPatterns", true), &g_unk_71726e9b38, 0x100, -1, -1);
+    field4->attrs_0x70.Add<bool>(fn_7100091d40(), true);
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("tUnbreakableMiddlePatterns", true), &g_unk_71726e9b38, 0x128, -1, -1);
+    field5->attrs_0x70.Add<bool>(fn_7100091d40(), true);
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("tUnbreakableClosePatterns", true), &g_unk_71726e9b38, 0x150, -1, -1);
+    field6->attrs_0x70.Add<bool>(fn_7100091d40(), true);
+}
 bool fn_71005b1d20(const void* a, const void* b) { return a == b; }
 s32 fn_71005b1d2c() { return -1; }
 const base::reflection::CType& fn_71005b1d34(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

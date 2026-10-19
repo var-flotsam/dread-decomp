@@ -23,7 +23,6 @@ const base::reflection::UnkReflAttrKey& fn_71000923a0();
 extern base::reflection::CType g_unk_7101d55008;
 const base::reflection::UnkReflAttrKey& fn_7100090a20();
 extern base::reflection::CType g_unk_7172a0d1b8;
-const base::reflection::CType* fn_7100007f84();
 const base::reflection::UnkReflAttrKey& fn_7100075240();
 void fn_71011be4f4(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("ShowIcon", true), fn_710000d228(), 0xffffffff, -1, -1);

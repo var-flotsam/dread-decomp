@@ -5,10 +5,56 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CEmmySancAIComponent
 DREAD_REFL_TAG(71004feec4);
 void fn_71004fe8e8(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_7101d5af48;
+void fn_71005003fc();
+void fn_7100500260(UnkReflFunction* fn);
+void fn_71005004a4();
+extern base::reflection::CType g_unk_717269bf08;
+const base::reflection::UnkReflAttrKey& fn_710025daa0();
+extern base::reflection::CType g_unk_71727bc110;
+extern base::reflection::CType g_unk_717269bb48;
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100090a20();
+const base::reflection::UnkReflAttrKey& fn_710000bf80();
+extern base::reflection::CType g_unk_7101d679f0;
+void fn_71004fe9e0(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("StartSancShutterPerceptionModifier", true))) {
+        fn->name = base::global::UnkStrId("StartSancShutterPerceptionModifier", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71005003fc);
+        fn_7100500260(fn);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("StopSancShutterPerceptionModifier", true))) {
+        fn->name = base::global::UnkStrId("StopSancShutterPerceptionModifier", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71005004a4);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("tFast4LegTransformationMagnet", true), &g_unk_717269bf08, 0x2a700, -1, -1);
+    field0->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 0);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("wpForceEmmyPerceptionVisionConeOffShape", true), &g_unk_717269bb48, 0x2a730, -1, -1);
+    field1->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 4);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("bZipLine004Behavior", true), fn_710000d228(), 0x2a728, -1, -1);
+    field2->attrs.Add<bool>(fn_7100075240(), false);
+    field2->attrs.Add<bool>(fn_7100090a20(), false);
+    field2->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("wpPhase2HeatEnabledLogicShape", true), &g_unk_717269bb48, 0x2a770, -1, -1);
+    field3->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 4);
+}
 bool fn_71005001fc(const void*, const void*) { return false; }
 s32 fn_7100500204() { return -1; }
 const base::reflection::CType& fn_710050020c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

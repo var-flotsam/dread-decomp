@@ -16,7 +16,6 @@ using base::reflection::UnkTunableRegistry;
 // CCharClassShipRechargeComponent
 DREAD_REFL_TAG(7100a8b128);
 void fn_7100a8ae58(base::reflection::CClass*) {}
-const base::reflection::CType* fn_7100007f84();
 const base::reflection::UnkReflAttrKey& fn_7100075240();
 const base::reflection::UnkReflAttrKey& fn_7100007e80();
 void fn_7100a8af50(CClass* cls) {
