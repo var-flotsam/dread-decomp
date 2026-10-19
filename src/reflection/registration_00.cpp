@@ -273,10 +273,6 @@ const base::reflection::CType* fn_71002f1944();
 void fn_71002f53ac();
 void fn_71002f5510();
 void fn_71002f5560();
-const base::reflection::UnkReflAttrKey& fn_7100093390();
-const base::reflection::UnkReflAttrKey& fn_71000923a0();
-extern base::reflection::CType g_unk_7101d55008;
-const base::reflection::UnkReflAttrKey& fn_7100090a20();
 void fn_7100367fb4();
 const base::reflection::CType* fn_71003648fc();
 void fn_7100368004();
@@ -408,6 +404,7 @@ void fn_710070c32c();
 extern base::reflection::CType g_unk_7172795ca8;
 void fn_710075db34();
 void fn_7100754db8(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100090a20();
 void fn_710075df98();
 extern base::reflection::CType g_unk_71727115d0;
 void fn_710075dfe8();
@@ -433,6 +430,8 @@ extern base::reflection::CType g_unk_71727147a8;
 void fn_7100779fb0();
 void fn_710077a0a8();
 void fn_710077a0f8();
+const base::reflection::UnkReflAttrKey& fn_710025daa0();
+extern base::reflection::CType g_unk_71727bc110;
 
 void fn_7100018a44(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("sType", true), fn_7100009658(), 0x0, -1, -1);
@@ -2741,14 +2740,6 @@ void fn_71002f1afc(CClass* cls) {
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
 }
 
-void fn_710031672c(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sTargetFXModel", true), fn_710000ad9c(), 0xffffffff, -1, -1);
-    field0->attrs.Add<bool>(fn_7100093390(), true);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field0->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
-    field0->attrs.Add<bool>(fn_7100090a20(), false);
-}
-
 void fn_7100364b90(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_key_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_key_GetterFunction", true);
@@ -4098,4 +4089,11 @@ void fn_710076c488(CClass* cls) {
     }
     UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, &g_unk_71727147a8, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+}
+
+void fn_710076cc60(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("wpStartPoint", true), &g_unk_717269bb48, 0x0, -1, -1);
+    field0->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 0);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("wpEmmyLandmark", true), &g_unk_717269bb48, 0x40, -1, -1);
+    field1->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 0);
 }

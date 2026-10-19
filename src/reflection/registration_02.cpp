@@ -10,16 +10,13 @@ using base::reflection::UnkReflFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 
-void fn_7100f96d64();
+void fn_7100fa040c();
 extern base::global::CStrId g_unk_7101d5a450;
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
-extern base::reflection::CType g_unk_71729ea640;
-void fn_7100f96db4();
-extern base::global::CStrId g_unk_7101d5a458;
-void fn_7100fa040c();
 const base::reflection::CType* fn_7100f9d5bc();
 void fn_7100fa045c();
+extern base::global::CStrId g_unk_7101d5a458;
 void fn_7100fa05c4();
 void fn_7100fa0614();
 void fn_7100fa88c4();
@@ -195,27 +192,6 @@ const base::reflection::CType* fn_71011ddda8();
 void fn_71011e6f68();
 void fn_71011e70cc();
 void fn_71011e711c();
-
-void fn_7100f93e40(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_key_GetterFunction", true))) {
-        fn->name = base::global::UnkStrId("_key_GetterFunction", true);
-        fn->return_type = fn_7100009658();
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100f96d64);
-    }
-    UnkReflField* field0 = fn_7100096524(cls, g_unk_7101d5a450, fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
-        fn->name = base::global::UnkStrId("_element_GetterFunction", true);
-        fn->return_type = &g_unk_71729ea640;
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100f96db4);
-    }
-    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, &g_unk_71729ea640, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-}
 
 void fn_7100f9d978(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_key_GetterFunction", true))) {

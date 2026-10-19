@@ -28,6 +28,9 @@ DESCRIPTOR_KINDS = {
     "base::reflection::CFlagsetType": "flagset",
 }
 GUARD_ACQUIRE = "__cxa_guard_acquire"
+# Getters are 240-516 bytes; larger functions that build a descriptor have a getter inlined
+# (e.g. CSubAreaManager's, inlined into a 3 KB function).
+MAX_GETTER_SIZE = 0x280
 
 
 @dataclass
@@ -126,7 +129,7 @@ def recover(img: Image, export_dir: Path, meds_types: dict) -> dict[str, Reflect
     for name in meds_types:
         for a in by_value.get(name, []):
             calls = {int(c, 16) for c in funcs[a]["calls"]}
-            if calls & guard:
+            if calls & guard and funcs[a]["bytes"] <= MAX_GETTER_SIZE:
                 types[name] = ReflectedType(name, a)
                 break
     # Class and enum getters whose type MEDS doesn't know (e.g. CGun, the parent of CPrimaryGun):
@@ -136,7 +139,7 @@ def recover(img: Image, export_dir: Path, meds_types: dict) -> dict[str, Reflect
     for a, f in sorted(funcs.items()):
         calls = {int(c, 16) for c in f["calls"]}
         kinds = {helper_kind[c] for c in calls if c in helper_kind}
-        if a in known or not calls & guard or len(calls & set(helper_kind)) != 1 or kinds - {"class", "enum"}:
+        if a in known or not calls & guard or len(calls & set(helper_kind)) != 1 or kinds - {"class", "enum"}                 or f["bytes"] > MAX_GETTER_SIZE:
             continue
         name = getter_name(img, a, f["bytes"])
         if name and name not in types:

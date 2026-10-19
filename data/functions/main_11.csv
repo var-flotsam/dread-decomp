@@ -873,7 +873,7 @@ address,size,name,name_source,subsystem,status
 0x71011329bc,80,fn_71011329bc,unknown,unknown,U
 0x7101132a0c,20,fn_7101132a0c,unknown,unknown,U
 0x7101132a20,372,fn_7101132a20,unknown,unknown,U
-0x7101132ba0,2832,base::reflection::refl_GetType<CGameLink<CSpawnPointComponent>>,reflection,engine/reflection,U
+0x7101132ba0,2832,fn_7101132ba0,unknown,unknown,U
 0x71011336b0,4,fn_71011336b0,unknown,unknown,O
 0x71011336b4,244,CAIAttackComponent::refl_GetClass,reflection,game/ai,O
 0x71011337a8,4,fn_71011337a8,unknown,game/ai?,O

@@ -30,6 +30,34 @@ struct UnkStringPool {
 // The global string pool (reached through the GOT).
 extern base::global::UnkStringPool* g_unk_7101d47108;
 void fn_71000803a4(base::global::UnkStringPool* pool, base::global::UnkStringData* data);
+u64 fn_7100001570(const char* str, u64 length);  // CRC64 of a string
+base::global::UnkStringData* fn_71000804f8(base::global::UnkStringPool* pool, u64 hash);  // lookup
+base::global::UnkStringData* fn_71000801e4(base::global::UnkStringPool* pool, u64 hash, const char* str,
+                                           u32 length, bool flag);  // insert
+u32 fn_7100080568();
+void fn_710007fdb4();
+
+namespace base::global {
+
+// A weak function-local static (guard and object reached through the GOT) whose constructor
+// creates the pool: what the string-id constructor runs when there's no pool yet.
+struct UnkStringPoolHolder {
+    u8 unk_0x0[0xe8];
+    UnkStringPoolHolder(u32 a, UnkStringPool** pool);  // fn_710007fe68
+    ~UnkStringPoolHolder();                            // fn_7100080004
+};
+
+inline void UnkEnsureStringPool() {
+    static UnkStringPoolHolder s_holder(fn_7100080568(), &g_unk_7101d47108);
+    fn_710007fdb4();
+}
+
+// Tag for the string-id constructor's inline definition. Game code calls it out of line
+// (fn_71000003d4); a few base library getters (base::file, base::animation) have it inlined,
+// with the string length folded.
+struct UnkStrIdInline {};
+
+}  // namespace base::global
 
 namespace base::global {
 
@@ -40,6 +68,25 @@ public:
     UnkStringData* data;
 
     UnkStrIdBase(const char* str, bool flag);  // fn_71000003d4
+    // The same constructor, defined inline (matches fn_71000003d4 out of line).
+    __attribute__((always_inline)) UnkStrIdBase(UnkStrIdInline, const char* str, bool flag) {
+        data = nullptr;
+        if (!g_unk_7101d47108)
+            UnkEnsureStringPool();
+        if (str) {
+            u64 length = __builtin_strlen(str);
+            if (length) {
+                u64 hash = fn_7100001570(str, length);
+                data = fn_71000804f8(g_unk_7101d47108, hash);
+                if (data)
+                    ++data->ref_count;
+                else
+                    data = fn_71000801e4(g_unk_7101d47108, hash, str, length, flag);
+            }
+        }
+        if (!data)
+            data = &g_unk_7101d47108->empty;
+    }
     UnkStrIdBase(const UnkStrIdBase& other) = default;
 
 protected:
@@ -65,6 +112,9 @@ protected:
 class CStrId : public UnkStrIdBase {
 public:
     using UnkStrIdBase::UnkStrIdBase;
+    // Not inherited: an inheriting constructor wouldn't be inlined.
+    __attribute__((always_inline)) CStrId(UnkStrIdInline tag, const char* str, bool flag)
+        : UnkStrIdBase(tag, str, flag) {}
     CStrId(const CStrId& other) : UnkStrIdBase(other) {
         if (&g_unk_7101d47108->empty != data)
             ++data->ref_count;

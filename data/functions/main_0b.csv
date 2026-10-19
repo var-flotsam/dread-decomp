@@ -1452,7 +1452,7 @@ address,size,name,name_source,subsystem,status
 0x7100b37524,4,fn_7100b37524,unknown,gui?,O
 0x7100b37528,352,GUI::CMapMenuController::refl_InitClass,reflection,gui,O
 0x7100b37688,620,fn_7100b37688,unknown,unknown,O
-0x7100b378f4,384,base::reflection::refl_InitType<GUI::CMapMenuController::SState>,reflection,engine/reflection,O
+0x7100b378f4,384,fn_7100b378f4,unknown,unknown,O
 0x7100b37a80,256,fn_7100b37a80,unknown,unknown,U
 0x7100b37b80,272,fn_7100b37b80,unknown,unknown,U
 0x7100b37c90,2432,fn_7100b37c90,unknown,unknown,U
@@ -1645,7 +1645,7 @@ address,size,name,name_source,subsystem,status
 0x7100b48c44,4,fn_7100b48c44,unknown,unknown,O
 0x7100b48c48,4,fn_7100b48c48,unknown,unknown,O
 0x7100b48c4c,76,fn_7100b48c4c,unknown,unknown,O
-0x7100b48ca0,2704,base::reflection::refl_GetType<GUI::CMapMenuController::SState>,reflection,engine/reflection,U
+0x7100b48ca0,2704,fn_7100b48ca0,unknown,unknown,U
 0x7100b49730,276,fn_7100b49730,unknown,unknown,U
 0x7100b49844,4,operator.delete,symbol,unknown,O
 0x7100b49850,172,fn_7100b49850,unknown,unknown,O

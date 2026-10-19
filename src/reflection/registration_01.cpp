@@ -10,9 +10,6 @@ using base::reflection::UnkReflFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 
-extern base::reflection::CType g_unk_717269bb48;
-const base::reflection::UnkReflAttrKey& fn_710025daa0();
-extern base::reflection::CType g_unk_71727bc110;
 void fn_710079bed8();
 extern base::global::CStrId g_unk_7101d5a450;
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
@@ -38,6 +35,8 @@ void fn_71008146d8();
 void fn_710081478c();
 void fn_71008147dc();
 extern base::reflection::CType g_unk_71727b6270;
+const base::reflection::UnkReflAttrKey& fn_710025daa0();
+extern base::reflection::CType g_unk_71727bc110;
 void fn_7100894700();
 extern base::reflection::CType g_unk_717272c488;
 void fn_7100894750();
@@ -116,6 +115,7 @@ extern base::reflection::CType g_unk_7172755e70;
 void fn_7100ad1abc();
 void fn_7100ad1c38();
 void fn_7100ad1c88();
+extern base::reflection::CType g_unk_717269bb48;
 void fn_7100ad4b2c();
 const base::reflection::UnkReflAttrKey& fn_7100090a20();
 const base::reflection::UnkReflAttrKey& fn_71000923a0();
@@ -574,13 +574,8 @@ void fn_7100f91e7c();
 void fn_7100f96ba8();
 extern base::reflection::CType g_unk_71729ea640;
 void fn_7100f96bf8();
-
-void fn_710076cc60(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("wpStartPoint", true), &g_unk_717269bb48, 0x0, -1, -1);
-    field0->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 0);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("wpEmmyLandmark", true), &g_unk_717269bb48, 0x40, -1, -1);
-    field1->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 0);
-}
+void fn_7100f96d64();
+void fn_7100f96db4();
 
 void fn_7100799378(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_key_GetterFunction", true))) {
@@ -4825,6 +4820,27 @@ void fn_7100f9385c(CClass* cls) {
         fn->field_0xb2 = 0x1;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100f96bf8);
+    }
+    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, &g_unk_71729ea640, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+}
+
+void fn_7100f93e40(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_key_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_key_GetterFunction", true);
+        fn->return_type = fn_7100009658();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f96d64);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, g_unk_7101d5a450, fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_element_GetterFunction", true);
+        fn->return_type = &g_unk_71729ea640;
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f96db4);
     }
     UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, &g_unk_71729ea640, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);

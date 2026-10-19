@@ -166,32 +166,13 @@ static_assert(sizeof(CClass) == 0x138, "descriptor stride observed in .bss");
 // constructor out of line (implicit instantiation would inline it into the getter). Whether
 // it did so with an explicit instantiation or a noinline attribute is unknown; both produce
 // the same code.
-#define DREAD_REFL_CLASS_GETTER(ADDR, INIT, NAME, PARENT, FN_0x70, FN_0xE0)                        \
-    void fn_##FN_0x70(base::reflection::CClass*);                                                  \
-    void fn_##FN_0xE0(base::reflection::CClass*);                                                  \
-    const base::reflection::CClass* fn_##PARENT();                                                 \
-    const base::reflection::CClass* fn_##ADDR() {                                                  \
-        static base::reflection::CClass s_class(base::global::CStrId(NAME, true),                  \
-                                                fn_##PARENT(), &fn_##FN_0x70, &fn_##FN_0xE0,       \
-                                                static_cast<UnkRefl_fn_##INIT*>(nullptr));         \
-        return &s_class;                                                                           \
-    }                                                                                              \
-    template base::reflection::CClass::CClass(const base::global::CStrId&,                         \
-                                              const base::reflection::CClass*,                     \
-                                              base::reflection::UnkFn_0x70,                        \
-                                              base::reflection::UnkFn_0x70, UnkRefl_fn_##INIT*)
+#define DREAD_REFL_GETTER_IMPL_(ADDR, INIT, NAME_ID, PARENT_EXPR, FN_0x70, FN_0xE0)                     void fn_##FN_0x70(base::reflection::CClass*);                                                      void fn_##FN_0xE0(base::reflection::CClass*);                                                      const base::reflection::CClass* fn_##ADDR() {                                                          static base::reflection::CClass s_class(NAME_ID, PARENT_EXPR, &fn_##FN_0x70, &fn_##FN_0xE0,                                                 static_cast<UnkRefl_fn_##INIT*>(nullptr));                 return &s_class;                                                                               }                                                                                                  template base::reflection::CClass::CClass(const base::global::CStrId&,                                                                       const base::reflection::CClass*,                                                                   base::reflection::UnkFn_0x70,                                                                      base::reflection::UnkFn_0x70, UnkRefl_fn_##INIT*)
+
+#define DREAD_REFL_CLASS_GETTER(ADDR, INIT, NAME, PARENT, FN_0x70, FN_0xE0)                            const base::reflection::CClass* fn_##PARENT();                                                     DREAD_REFL_GETTER_IMPL_(ADDR, INIT, base::global::CStrId(NAME, true), fn_##PARENT(), FN_0x70, FN_0xE0)
 
 // The same for a root class (no parent descriptor).
-#define DREAD_REFL_ROOT_CLASS_GETTER(ADDR, INIT, NAME, FN_0x70, FN_0xE0)                        \
-    void fn_##FN_0x70(base::reflection::CClass*);                                                  \
-    void fn_##FN_0xE0(base::reflection::CClass*);                                                  \
-    const base::reflection::CClass* fn_##ADDR() {                                                  \
-        static base::reflection::CClass s_class(base::global::CStrId(NAME, true),                  \
-                                                nullptr, &fn_##FN_0x70, &fn_##FN_0xE0,             \
-                                                static_cast<UnkRefl_fn_##INIT*>(nullptr));         \
-        return &s_class;                                                                           \
-    }                                                                                              \
-    template base::reflection::CClass::CClass(const base::global::CStrId&,                         \
-                                              const base::reflection::CClass*,                     \
-                                              base::reflection::UnkFn_0x70,                        \
-                                              base::reflection::UnkFn_0x70, UnkRefl_fn_##INIT*)
+#define DREAD_REFL_ROOT_CLASS_GETTER(ADDR, INIT, NAME, FN_0x70, FN_0xE0)                               DREAD_REFL_GETTER_IMPL_(ADDR, INIT, base::global::CStrId(NAME, true), nullptr, FN_0x70, FN_0xE0)
+
+// Variants with the name's constructor inlined (a few base library types, see UnkStrIdInline).
+#define DREAD_REFL_CLASS_GETTER_INLINE_NAME(ADDR, INIT, NAME, PARENT, FN_0x70, FN_0xE0)                const base::reflection::CClass* fn_##PARENT();                                                     DREAD_REFL_GETTER_IMPL_(ADDR, INIT, base::global::CStrId(base::global::UnkStrIdInline{}, NAME, true),                             fn_##PARENT(), FN_0x70, FN_0xE0)
+#define DREAD_REFL_ROOT_CLASS_GETTER_INLINE_NAME(ADDR, INIT, NAME, FN_0x70, FN_0xE0)                   DREAD_REFL_GETTER_IMPL_(ADDR, INIT, base::global::CStrId(base::global::UnkStrIdInline{}, NAME, true),                             nullptr, FN_0x70, FN_0xE0)

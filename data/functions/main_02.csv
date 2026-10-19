@@ -1235,7 +1235,7 @@ address,size,name,name_source,subsystem,status
 0x7100233910,96,fn_7100233910,unknown,unknown,U
 0x7100233970,100,fn_7100233970,unknown,unknown,U
 0x71002339d4,100,fn_71002339d4,unknown,unknown,U
-0x7100233a38,1044,RntFilePackedParams::refl_GetClass,reflection,unknown,U
+0x7100233a38,1044,fn_7100233a38,unknown,unknown,U
 0x7100233e4c,216,fn_7100233e4c,unknown,unknown,U
 0x7100233f24,28,fn_7100233f24,unknown,unknown,O
 0x7100233f40,8,fn_7100233f40,unknown,unknown,O
@@ -6117,7 +6117,7 @@ address,size,name,name_source,subsystem,status
 0x71002fc5c0,380,fn_71002fc5c0,unknown,unknown,O
 0x71002fc73c,376,fn_71002fc73c,unknown,unknown,O
 0x71002fc8b4,180,fn_71002fc8b4,unknown,unknown,O
-0x71002fc970,1280,base::reflection::refl_GetType<CAbilityEnergyWave>,reflection,engine/reflection,U
+0x71002fc970,1280,fn_71002fc970,unknown,unknown,U
 0x71002fce70,1084,fn_71002fce70,unknown,unknown,U
 0x71002fd2ac,4,fn_71002fd2ac,unknown,unknown,U
 0x71002fd2b0,512,fn_71002fd2b0,unknown,unknown,O
