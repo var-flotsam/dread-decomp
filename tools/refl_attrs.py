@@ -40,13 +40,23 @@ CSTRID_RELEASE = 0x71000803A4  # inlined ~CStrId
 GLOBAL_CSTRID = 0x7101D470E0   # g_unk_7101d470e0
 ALLOC = 0x71000839A0           # allocation (size, flags)
 TUNABLE_REGISTRY_CTOR = 0x710013AC14
+# Out-of-line parts of value types (include/base/global/): CRntString's constructors and
+# destructor, CFilePathStrId's constructor, and the hash a CName is built from.
+CRNT_CTOR = 0x710007E704
+CRNT_COPY = 0x710007EA60
+CRNT_DTOR = 0x710007ECD4
+CFP_CTOR = 0x71000166C8
+GLOBAL_CFP = 0x7101D470E8      # g_unk_7101d470e8, a global CFilePathStrId
+HASH = 0x7100001570
 # Calls that are never attribute keys; any other call in key position is one.
 NOT_KEYS = {GET_ATTRS, ADD_ATTR, ADD_FIELD, ADD_FUNCTION, CSTRID_CTOR, CSTRID_RELEASE, ALLOC,
-            TUNABLE_REGISTRY_CTOR}
+            TUNABLE_REGISTRY_CTOR, CRNT_CTOR, CRNT_COPY, CRNT_DTOR, CFP_CTOR, HASH}
 # Value type getter -> C++ type, as in UnkReflTypeOf.
 VALUE_TYPES = {0x7100005178: "u32", 0x7100014768: "s32", 0x71000081E8: "const char*", 0x7100009658: "base::global::CStrId",
                0x710000ABBC: "f32", 0x710000D228: "bool",
-               0x7100024504: "base::math::CVector2D", 0x71000246E4: "base::math::CVector3D"}
+               0x7100024504: "base::math::CVector2D", 0x71000246E4: "base::math::CVector3D",
+               0x71000248C4: "base::math::CVector4D", 0x7100007F84: "base::global::CRntString",
+               0x710000AD9C: "base::global::CFilePathStrId", 0x710000FD7C: "base::global::CName"}
 
 PRELUDE = [
     '#include "base/reflection/UnkReflAttributes.h"',
@@ -188,6 +198,11 @@ def events(orig: asmdiff.Original, addr: int) -> list[Event] | None:
             fact = facts.get(_key(cs, o[0].reg))
             if fact and fact[0] == "ptr":
                 out.append(Event("value", value=("reftype", fact[1], 8)))
+            elif fact and fact[0] == "imm" and facts.get(_key(cs, o[1].reg), ("",))[0] == "imm":
+                # A 16-byte value stored as two immediates (CVector4D).
+                width = 8 if cs.reg_name(o[0].reg)[0] == "x" else 4
+                for r in o[:2]:
+                    out.append(Event("value", value=("imm", facts[_key(cs, r.reg)][1], width)))
         elif m == "bl":
             out.append(Event("bl", target=o[0].imm, regs=dict(facts)))
             for r in [str(i) for i in range(19)] + ["s0", "d0"]:
@@ -222,6 +237,19 @@ def index_expr(fact: tuple | None) -> str | None:
 
 def value_expr(type_name: str, vals: list[tuple]) -> str | None:
     """C++ expression for a stored attribute value, or None."""
+    if type_name == "base::math::CVector4D":
+        # Two 8-byte stores (x and y, z and w).
+        if len(vals) != 2 or any(v[0] != "imm" or v[2] != 8 for v in vals):
+            return None
+        bits = [b for v in vals for b in (v[1] & 0xFFFFFFFF, v[1] >> 32)]
+        parts = [f32_literal(b) for b in bits]
+        if None in parts:
+            return None
+        return f"{type_name}{{{', '.join(parts)}}}"
+    if type_name == "base::global::CFilePathStrId":
+        if vals == [("global", GLOBAL_CFP, 8)]:
+            return "base::global::CFilePathStrId(g_unk_7101d470e8)"
+        return None
     if type_name in ("base::math::CVector2D", "base::math::CVector3D"):
         # Components stored as immediates: x and y as one 8-byte store, z as a 4-byte one.
         wide = [v[1] for v in vals if v[0] == "imm" and v[2] == 8]
@@ -298,6 +326,8 @@ def parse(orig: asmdiff.Original, addr: int, class_getters: set[int]) -> tuple[l
             decls.append(f"extern base::reflection::CType g_unk_{types[0]:x};")
             return j + 1, (f"    {target}Add<{INT_TYPES[width]}>(fn_{key:x}(), &g_unk_{types[0]:x}, "
                            f"{signed(stores[0][1], width)});")
+        if evs[j].target in (CRNT_CTOR, CRNT_COPY, CFP_CTOR, HASH):
+            return object_value(j, vals, key, target)
         if evs[j].target not in VALUE_TYPES and evs[j].target not in NOT_KEYS \
                 and evs[j].target not in class_getters:
             # Integer (enum) value typed by its own type getter.
@@ -330,6 +360,38 @@ def parse(orig: asmdiff.Original, addr: int, class_getters: set[int]) -> tuple[l
             return None
         type_arg = "CStrId" if type_name == "base::global::CStrId" else type_name
         return j + 1, f"    {target}Add<{type_arg}>(fn_{key:x}(), {expr});"
+
+    def object_value(j: int, vals: list[tuple], key: int, target: str) -> tuple[int, str] | None:
+        """A value built by an out-of-line call at j (CRntString, CFilePathStrId, CName)."""
+        t, regs = evs[j].target, evs[j].regs
+        if vals:
+            return None
+        s = regs.get("1")
+        if t == CRNT_CTOR and s and s[0] == "str":
+            type_name, expr = "base::global::CRntString", f"base::global::CRntString({c_string(s[1])})"
+        elif t == CRNT_COPY and s and s[0] == "ptr":
+            decls.append(f"extern base::global::CRntString g_unk_{s[1]:x};")
+            type_name, expr = "base::global::CRntString", f"base::global::CRntString(g_unk_{s[1]:x})"
+        elif t == CFP_CTOR and s and s[0] == "str" and regs.get("2") == ("imm", 1):
+            type_name, expr = "base::global::CFilePathStrId", f"base::global::CFilePathStrId({c_string(s[1])}, true)"
+        elif t == HASH and regs.get("0", ("",))[0] == "str" \
+                and regs.get("1") == ("imm", len(regs["0"][1].encode("utf-8"))):
+            type_name, expr = "base::global::CName", f"base::global::CName({c_string(regs['0'][1])})"
+        else:
+            return None
+        getter = [g for g, nm in VALUE_TYPES.items() if nm == type_name][0]
+        j, vals = next_bl(j + 1)
+        if j >= n or vals or evs[j].target != getter:
+            return None
+        j, vals = next_bl(j + 1)
+        if j >= n or vals or evs[j].target != ADD_ATTR:
+            return None
+        j += 1
+        if type_name == "base::global::CRntString":
+            if j >= n or evs[j].kind != "bl" or evs[j].target != CRNT_DTOR:
+                return None
+            j += 1
+        return j, f"    {target}Add<{type_name}>(fn_{key:x}(), {expr});"
 
     def skip_release(j: int) -> int:
         """Skip the release calls of inlined ~CStrId (and nothing else)."""

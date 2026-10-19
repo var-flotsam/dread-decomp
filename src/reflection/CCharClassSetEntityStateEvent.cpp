@@ -21,6 +21,13 @@ void fn_7100bd5d60(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Set Entity State (Enabled|Disabled)");
     fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("Entity", true));
 }
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_7100bd5f3c(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sEntityName", true), fn_710000fd7c(), 0x10, -1, -1);
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Entity name to search for and apply bState. If empty, bState will be applied to attached entity");
+    field0->attrs.Add<base::global::CName>(fn_7100075240(), base::global::CName(""));
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("bState", true), fn_710000d228(), 0x18, -1, -1);
+}
 bool fn_7100bd62fc(const void* a, const void* b) { return a == b; }
 s32 fn_7100bd6308() { return -1; }
 const base::reflection::CType& fn_7100bd6310(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

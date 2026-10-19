@@ -52,7 +52,6 @@ DREAD_REFL_CLASS_GETTER(7100264814, 7100264a14, "navmesh::CDynamicSmartLinkGroup
 // navmesh::CDynamicSmartLinkGroup::SDynamicSmartLinkRulesSet
 DREAD_REFL_TAG(7100265ca0);
 void fn_7100265b18(base::reflection::CClass*) {}
-const base::reflection::CType* fn_710000ad9c();
 void fn_7100265c0c(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("sLinkResource", true), fn_710000ad9c(), 0x0, -1, -1);
 }

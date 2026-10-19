@@ -17,7 +17,6 @@ using base::reflection::UnkTunableRegistry;
 DREAD_REFL_TAG(710086a1e0);
 void fn_7100869ad8(base::reflection::CClass*) {}
 extern bool g_unk_7172729370;
-const base::reflection::CType* fn_7100007f84();
 const base::reflection::UnkReflAttrKey& fn_7100075240();
 const base::reflection::UnkReflAttrKey& fn_7100007e80();
 extern UnkTunableRegistry* g_unk_7101d47350;

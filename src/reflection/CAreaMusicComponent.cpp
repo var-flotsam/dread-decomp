@@ -5,10 +5,48 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CAreaMusicComponent
 DREAD_REFL_TAG(7100715b08);
 void fn_71007153d4(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_71007161c4();
+void fn_7100715c7c(UnkReflFunction* fn, const char* name);
+extern base::reflection::CType g_unk_71729f1018;
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+void fn_71007154cc(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fEnterFadeIn", true), fn_710000abbc(), 0xacc, -1, -1);
+    field0->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fEnterFadeOut", true), fn_710000abbc(), 0xad0, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fExitFadeIn", true), fn_710000abbc(), 0xad4, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fExitFadeOut", true), fn_710000abbc(), 0xad8, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sPreset_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_sPreset_GetterFunction", true);
+        fn->return_type = fn_7100009658();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71007161c4);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sPreset_SetterFunction", true)))
+        fn_7100715c7c(fn, "_sPreset_SetterFunction");
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("sPreset", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("eEnterFadeType", true), &g_unk_71729f1018, 0xadc, -1, -1);
+    field5->attrs.Add<s32>(fn_7100075240(), &g_unk_71729f1018, 1);
+    field5->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString(""));
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("eExitFadeType", true), &g_unk_71729f1018, 0xae0, -1, -1);
+    field6->attrs.Add<s32>(fn_7100075240(), &g_unk_71729f1018, 1);
+    field6->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString(""));
+}
 bool fn_7100716120(const void*, const void*) { return false; }
 s32 fn_7100716128() { return -1; }
 const base::reflection::CType& fn_7100716130(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

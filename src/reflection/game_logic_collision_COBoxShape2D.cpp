@@ -7,10 +7,62 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // game::logic::collision::COBoxShape2D
 DREAD_REFL_TAG(7100d67b2c);
 void fn_7100d6736c(base::reflection::CClass*) {}
+void fn_7100d69010();
+void fn_7100d67cb0(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+void fn_7100d690c4();
+void fn_7100d67e2c(UnkReflFunction* fn, const char* name);
+void fn_7100d691e0();
+void fn_7100d67fa8(UnkReflFunction* fn, const char* name);
+void fn_7100d67464(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_v2Extent_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_v2Extent_GetterFunction", true);
+        fn->return_type = fn_7100024504();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100d69010);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_v2Extent_SetterFunction", true)))
+        fn_7100d67cb0(fn, "_v2Extent_SetterFunction");
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("v2Extent", true), fn_7100024504(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field0->attrs.Add<base::math::CVector2D>(fn_7100075240(), base::math::CVector2D{400.0f, 400.0f});
+    field0->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Extent"));
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fDegrees_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_fDegrees_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100d690c4);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fDegrees_SetterFunction", true)))
+        fn_7100d67e2c(fn, "_fDegrees_SetterFunction");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fDegrees", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field1->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field1->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("fDegrees"));
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bOutwardsNormal_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_bOutwardsNormal_GetterFunction", true);
+        fn->return_type = fn_710000d228();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100d691e0);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bOutwardsNormal_SetterFunction", true)))
+        fn_7100d67fa8(fn, "_bOutwardsNormal_SetterFunction");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("bOutwardsNormal", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field2->attrs.Add<bool>(fn_7100075240(), false);
+}
 bool fn_7100d68d5c(const void* a, const void* b) { return a == b; }
 s32 fn_7100d68d68() { return -1; }
 const base::reflection::CType& fn_7100d68d70(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

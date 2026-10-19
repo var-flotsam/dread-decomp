@@ -21,6 +21,19 @@ void fn_7100ce32b0(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Stop Loop Sound");
     fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("Sound", true));
 }
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100091080();
+const base::reflection::UnkReflAttrKey& fn_7100091190();
+void fn_7100ce348c(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sSoundID", true), fn_710000ad9c(), 0x10, -1, -1);
+    field0->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId(" ", true));
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fFadeOutTime", true), fn_710000abbc(), 0x18, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fStopInTime", true), fn_710000abbc(), 0x1c, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    field2->attrs.Add<f32>(fn_7100091080(), -1.0f);
+    field2->attrs.Add<f32>(fn_7100091190(), 30.0f);
+}
 bool fn_7100ce3a04(const void* a, const void* b) { return a == b; }
 s32 fn_7100ce3a10() { return -1; }
 const base::reflection::CType& fn_7100ce3a18(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

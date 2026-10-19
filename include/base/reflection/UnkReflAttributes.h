@@ -9,8 +9,12 @@
 // Only the calls are known. The container, the keys and the insert function keep
 // placeholder names.
 
+#include "base/global/CFilePathStrId.h"
+#include "base/global/CName.h"
+#include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
+#include "base/math/CVector4D.h"
 #include "base/reflection/CClass.h"
 #include "types.h"
 
@@ -97,6 +101,10 @@ const base::reflection::CType* fn_710000abbc();  // "float"
 const base::reflection::CType* fn_710000d228();  // "bool"
 const base::reflection::CType* fn_7100024504();  // "base::math::CVector2D"
 const base::reflection::CType* fn_71000246e4();  // "base::math::CVector3D"
+const base::reflection::CType* fn_71000248c4();  // "base::math::CVector4D"
+const base::reflection::CType* fn_7100007f84();  // "base::global::CRntString"
+const base::reflection::CType* fn_710000ad9c();  // "base::global::CFilePathStrId"
+const base::reflection::CType* fn_710000fd7c();  // "base::global::CName"
 
 namespace base::reflection {
 
@@ -134,6 +142,22 @@ struct UnkReflTypeOf<math::CVector2D> {
 template <>
 struct UnkReflTypeOf<math::CVector3D> {
     static const CType* Get() { return fn_71000246e4(); }
+};
+template <>
+struct UnkReflTypeOf<math::CVector4D> {
+    static const CType* Get() { return fn_71000248c4(); }
+};
+template <>
+struct UnkReflTypeOf<global::CRntString> {
+    static const CType* Get() { return fn_7100007f84(); }
+};
+template <>
+struct UnkReflTypeOf<global::CFilePathStrId> {
+    static const CType* Get() { return fn_710000ad9c(); }
+};
+template <>
+struct UnkReflTypeOf<global::CName> {
+    static const CType* Get() { return fn_710000fd7c(); }
 };
 
 struct UnkReflAttrs {

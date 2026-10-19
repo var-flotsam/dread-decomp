@@ -5,10 +5,33 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CLandmarkComponent
 DREAD_REFL_TAG(71008a3068);
 void fn_71008a2d6c(base::reflection::CClass*) {}
+void fn_71008a34f0();
+const base::reflection::UnkReflAttrKey& fn_710000bf80();
+extern base::reflection::CType g_unk_7101d679f0;
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+void fn_71008a2e64(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sLandmarkID_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_sLandmarkID_GetterFunction", true);
+        fn->return_type = fn_7100009658();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71008a34f0);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sLandmarkID", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Landmark ID"));
+}
 bool fn_71008a346c(const void*, const void*) { return false; }
 s32 fn_71008a3474() { return -1; }
 const base::reflection::CType& fn_71008a347c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

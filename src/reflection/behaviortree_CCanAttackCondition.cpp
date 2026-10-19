@@ -5,10 +5,34 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // behaviortree::CCanAttackCondition
 DREAD_REFL_TAG(7100397ae4);
 void fn_7100397660(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+extern base::global::CRntString g_unk_7101d58d10;
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+void fn_7100397758(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sAttack", true), fn_7100007f84(), 0x38, -1, -1);
+    field0->attrs.Add<base::global::CRntString>(fn_7100075240(), base::global::CRntString(g_unk_7101d58d10));
+    field0->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Attack"));
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("bCheckRotation", true), fn_710000d228(), 0x68, -1, -1);
+    field1->attrs.Add<bool>(fn_7100075240(), true);
+    field1->attrs.Add<const char*>(fn_7100007e80(), "Check rotation?");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("bIgnoreDistance", true), fn_710000d228(), 0x69, -1, -1);
+    field2->attrs.Add<bool>(fn_7100075240(), false);
+    field2->attrs.Add<const char*>(fn_7100007e80(), "Ignore distance?");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("bUseSuitableAttack", true), fn_710000d228(), 0x6a, -1, -1);
+    field3->attrs.Add<bool>(fn_7100075240(), false);
+    field3->attrs.Add<const char*>(fn_7100007e80(), "Use suitable attack if attack order is NULL?");
+}
 bool fn_71003980fc(const void*, const void*) { return false; }
 s32 fn_7100398104() { return -1; }
 const base::reflection::CType& fn_710039810c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

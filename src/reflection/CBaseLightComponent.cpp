@@ -5,10 +5,190 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CBaseLightComponent
 DREAD_REFL_TAG(71008ed9f4);
 void fn_71008ebee0(base::reflection::CClass*) {}
+void fn_71008ef0bc();
+void fn_71008edb54(UnkReflFunction* fn, const char* name);
+void fn_71008ef184();
+void fn_71008edcd0(UnkReflFunction* fn, const char* name);
+void fn_71008ef23c();
+void fn_71008ede4c(UnkReflFunction* fn, const char* name);
+void fn_71008ef2f4();
+void fn_71008edfc8(UnkReflFunction* fn, const char* name);
+void fn_71008ef3ac();
+void fn_71008ee144(UnkReflFunction* fn, const char* name);
+void fn_71008ef468();
+void fn_71008ee2c0(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_71008ef524();
+void fn_71008ee43c(UnkReflFunction* fn, const char* name);
+void fn_71008ef5e0();
+void fn_71008ee5b8(UnkReflFunction* fn, const char* name);
+void fn_71008ef69c();
+void fn_71008ee734(UnkReflFunction* fn, const char* name);
+extern base::reflection::CType g_unk_716e5992a0;
+void fn_71008ef758();
+void fn_71008ee8b0(UnkReflFunction* fn, const char* name);
+void fn_71008ef810();
+void fn_71008eea24(UnkReflFunction* fn, const char* name);
+void fn_71008ef8cc();
+void fn_71008eeba0(UnkReflFunction* fn, const char* name);
+void fn_71008ef988();
+void fn_71008eed1c(UnkReflFunction* fn, const char* name);
+void fn_71008efa44();
+void fn_71008eee98(UnkReflFunction* fn, const char* name);
+void fn_71008ebfd8(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vLightPos_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_vLightPos_GetterFunction", true);
+        fn->return_type = fn_71000246e4();
+        fn->field_0xb2 = 0x100;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71008ef0bc);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vLightPos_SetterFunction", true)))
+        fn_71008edb54(fn, "_vLightPos_SetterFunction");
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("vLightPos", true), fn_71000246e4(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fIntensity_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_fIntensity_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71008ef184);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fIntensity_SetterFunction", true)))
+        fn_71008edcd0(fn, "_fIntensity_SetterFunction");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fIntensity", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fVIntensity_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_fVIntensity_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71008ef23c);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fVIntensity_SetterFunction", true)))
+        fn_71008ede4c(fn, "_fVIntensity_SetterFunction");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fVIntensity", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fFIntensity_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_fFIntensity_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71008ef2f4);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fFIntensity_SetterFunction", true)))
+        fn_71008edfc8(fn, "_fFIntensity_SetterFunction");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fFIntensity", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vAmbient_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_vAmbient_GetterFunction", true);
+        fn->return_type = fn_71000248c4();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71008ef3ac);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vAmbient_SetterFunction", true)))
+        fn_71008ee144(fn, "_vAmbient_SetterFunction");
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("vAmbient", true), fn_71000248c4(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vDiffuse_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_vDiffuse_GetterFunction", true);
+        fn->return_type = fn_71000248c4();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71008ef468);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vDiffuse_SetterFunction", true)))
+        fn_71008ee2c0(fn, "_vDiffuse_SetterFunction");
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("vDiffuse", true), fn_71000248c4(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field5->attrs.Add<base::math::CVector4D>(fn_7100075240(), base::math::CVector4D{1.0f, 1.0f, 1.0f, 1.0f});
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vSpecular0_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_vSpecular0_GetterFunction", true);
+        fn->return_type = fn_71000248c4();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71008ef524);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vSpecular0_SetterFunction", true)))
+        fn_71008ee43c(fn, "_vSpecular0_SetterFunction");
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("vSpecular0", true), fn_71000248c4(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vSpecular1_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_vSpecular1_GetterFunction", true);
+        fn->return_type = fn_71000248c4();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71008ef5e0);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vSpecular1_SetterFunction", true)))
+        fn_71008ee5b8(fn, "_vSpecular1_SetterFunction");
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("vSpecular1", true), fn_71000248c4(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bVertexLight_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_bVertexLight_GetterFunction", true);
+        fn->return_type = fn_710000d228();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71008ef69c);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bVertexLight_SetterFunction", true)))
+        fn_71008ee734(fn, "_bVertexLight_SetterFunction");
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("bVertexLight", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_eLightPreset_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_eLightPreset_GetterFunction", true);
+        fn->return_type = &g_unk_716e5992a0;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71008ef758);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_eLightPreset_SetterFunction", true)))
+        fn_71008ee8b0(fn, "_eLightPreset_SetterFunction");
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("eLightPreset", true), &g_unk_716e5992a0, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vLightPresetParams_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_vLightPresetParams_GetterFunction", true);
+        fn->return_type = fn_71000248c4();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71008ef810);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vLightPresetParams_SetterFunction", true)))
+        fn_71008eea24(fn, "_vLightPresetParams_SetterFunction");
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("vLightPresetParams", true), fn_71000248c4(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bSubstractive_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_bSubstractive_GetterFunction", true);
+        fn->return_type = fn_710000d228();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71008ef8cc);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bSubstractive_SetterFunction", true)))
+        fn_71008eeba0(fn, "_bSubstractive_SetterFunction");
+    UnkReflField* field11 = fn_7100096524(cls, CStrId("bSubstractive", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bUseFaceCull_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_bUseFaceCull_GetterFunction", true);
+        fn->return_type = fn_710000d228();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71008ef988);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bUseFaceCull_SetterFunction", true)))
+        fn_71008eed1c(fn, "_bUseFaceCull_SetterFunction");
+    UnkReflField* field12 = fn_7100096524(cls, CStrId("bUseFaceCull", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bUseSpecular_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_bUseSpecular_GetterFunction", true);
+        fn->return_type = fn_710000d228();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71008efa44);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bUseSpecular_SetterFunction", true)))
+        fn_71008eee98(fn, "_bUseSpecular_SetterFunction");
+    UnkReflField* field13 = fn_7100096524(cls, CStrId("bUseSpecular", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+}
 bool fn_71008ef080(const void*, const void*) { return false; }
 s32 fn_71008ef088() { return -1; }
 const base::reflection::CType& fn_71008ef090(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

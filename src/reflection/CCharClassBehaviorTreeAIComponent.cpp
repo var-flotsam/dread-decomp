@@ -16,7 +16,6 @@ using base::reflection::UnkTunableRegistry;
 // CCharClassBehaviorTreeAIComponent
 DREAD_REFL_TAG(7100416c58);
 void fn_71004169b0(base::reflection::CClass*) {}
-const base::reflection::CType* fn_710000ad9c();
 const base::reflection::UnkReflAttrKey& fn_7100075240();
 const base::reflection::UnkReflAttrKey& fn_7100007e80();
 void fn_7100416aa8(CClass* cls) {

@@ -21,6 +21,13 @@ void fn_7100b95bb8(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Stop Environment Stream");
     fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("Sound", true));
 }
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_7100b95d94(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sPath", true), fn_710000ad9c(), 0x10, -1, -1);
+    field0->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId(g_unk_7101d470e8));
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fFadeOutTime", true), fn_710000abbc(), 0x18, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 0.2f);
+}
 bool fn_7100b96240(const void* a, const void* b) { return a == b; }
 s32 fn_7100b9624c() { return -1; }
 const base::reflection::CType& fn_7100b96254(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

@@ -16,7 +16,6 @@ using base::reflection::UnkTunableRegistry;
 // CAreaSoundComponent
 DREAD_REFL_TAG(71011800b0);
 void fn_710117f300(base::reflection::CClass*) {}
-const base::reflection::CType* fn_710000ad9c();
 extern base::reflection::CType g_unk_7108b6c9c8;
 const base::reflection::UnkReflAttrKey& fn_7100075240();
 extern base::reflection::CType g_unk_7108b6cf48;

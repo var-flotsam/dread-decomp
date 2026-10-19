@@ -45,7 +45,6 @@ DREAD_REFL_ROOT_CLASS_GETTER(7100b0da54, 7100b0db48, "GUI::IDisplayObjectTrack",
 DREAD_REFL_TAG(7100b0ef74);
 void fn_7100b0ed00(base::reflection::CClass*) {}
 extern base::reflection::CType g_unk_71727600a0;
-const base::reflection::CType* fn_7100007f84();
 void fn_7100b0edf8(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("aKeys", true), &g_unk_71727600a0, 0x40, -1, -1);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("sPropertyID", true), fn_7100007f84(), 0x8, -1, -1);

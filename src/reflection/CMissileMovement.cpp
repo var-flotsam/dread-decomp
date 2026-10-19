@@ -18,7 +18,6 @@ DREAD_REFL_TAG(7100ab9f48);
 void fn_7100ab9adc(base::reflection::CClass*) {}
 const base::reflection::UnkReflAttrKey& fn_7100075240();
 const base::reflection::UnkReflAttrKey& fn_7100007e80();
-const base::reflection::CType* fn_710000ad9c();
 void fn_7100ab9bd4(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("sTrailFX", true), fn_7100009658(), 0x5d8, -1, -1);
     field0->attrs.Add<const char*>(fn_7100075240(), "trail");
