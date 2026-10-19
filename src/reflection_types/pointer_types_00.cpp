@@ -4,6 +4,7 @@
 #include "base/reflection/CCollectionType.h"
 #include "base/reflection/CEnumType.h"
 #include "base/reflection/CPointerType.h"
+#include "base/reflection/UnkReflPrimitiveType.h"
 using base::reflection::CType;
 using base::reflection::UnkFn;
 const base::reflection::CType* fn_7100005178();

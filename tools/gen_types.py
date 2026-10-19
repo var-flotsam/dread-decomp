@@ -73,10 +73,10 @@ def reg(x, op) -> str:
     return "x" + name[1:] if name[0] == "w" else name
 
 
-def emulate(orig: asmdiff.Original, addr: int) -> tuple[str | None, dict, int | None]:
+def emulate(orig: asmdiff.Original, addr: int, base: str = "x19") -> tuple[str | None, dict, int | None]:
     """A descriptor constructor's kind string, its stores to the object and its tail call.
 
-    Stores are keyed by offset from the object (x19, including pre-index writebacks):
+    Stores are keyed by offset from the object (`base`, including pre-index writebacks):
     off -> ('fn'|'data'|'call'|'imm'|'arg', value).
     """
     page: dict[str, int] = {}
@@ -105,7 +105,7 @@ def emulate(orig: asmdiff.Original, addr: int) -> tuple[str | None, dict, int | 
         if m in ("mov", "movz") and len(o) == 2 and o[1].type == capstone.arm64.ARM64_OP_IMM:
             val[reg(x, o[0])] = ("imm", o[1].imm & (2**64 - 1))
             continue
-        if m == "mov" and len(o) == 2 and o[1].type == capstone.arm64.ARM64_OP_REG and reg(x, o[0]) != "x19":
+        if m == "mov" and len(o) == 2 and o[1].type == capstone.arm64.ARM64_OP_REG and reg(x, o[0]) != base:
             src = val.get(reg(x, o[1]))
             if src:
                 val[reg(x, o[0])] = src
@@ -122,7 +122,7 @@ def emulate(orig: asmdiff.Original, addr: int) -> tuple[str | None, dict, int | 
         if m == "b" and o[0].imm not in range(addr, addr + orig.sizes[addr]):
             tail = o[0].imm
             continue
-        if m in ("str", "stp", "strb") and CS.reg_name(o[-1].mem.base) == "x19":
+        if m in ("str", "stp", "strb") and CS.reg_name(o[-1].mem.base) == base:
             regs = [reg(x, op) for op in o[:-1]]
             raw = CS.reg_name(o[0].reg)
             size = 8 if raw[0] in "xd" else 4
@@ -358,9 +358,101 @@ def scan_collections(orig: asmdiff.Original, decls: set[str]) -> tuple[list, lis
     return out, local
 
 
+def primitive_traits(orig: asmdiff.Original, addr: int, decls: set[str]) -> list[str] | None:
+    """Traits of a plain CType getter (refl_GetPrimitiveType): a guarded static whose descriptor
+    is built inline, named by the string that is also hashed as its kind."""
+    insns = disasm(orig, addr)
+    if not any(x.mnemonic == "ldarb" for x in insns[:12]):
+        return None
+    # The object: the base register of most stores.
+    bases: dict[str, int] = {}
+    for x in insns:
+        if x.mnemonic in ("str", "stp", "strb") and x.operands[-1].type == capstone.arm64.ARM64_OP_MEM:
+            b = CS.reg_name(x.operands[-1].mem.base)
+            bases[b] = bases.get(b, 0) + 1
+    if not bases:
+        return None
+    base = max(bases, key=bases.get)
+    if base == "sp":
+        return None
+    page: dict[str, int] = {}
+    val: dict[str, tuple] = {}
+    name = length = None
+    calls = []
+    for x in insns:
+        m, o = x.mnemonic, x.operands
+        if m == "adrp":
+            page[reg(x, o[0])] = o[1].imm
+        elif m == "add" and len(o) == 3 and o[2].type == capstone.arm64.ARM64_OP_IMM and reg(x, o[1]) in page:
+            val[reg(x, o[0])] = ("str", orig.img.cstring(page[reg(x, o[1])] + o[2].imm - BASE))
+        elif m in ("mov", "movz") and len(o) == 2 and o[1].type == capstone.arm64.ARM64_OP_IMM:
+            val[reg(x, o[0])] = ("imm", o[1].imm)
+        elif m == "mov" and len(o) == 2 and o[1].type == capstone.arm64.ARM64_OP_REG:
+            val[reg(x, o[0])] = val.get(reg(x, o[1]), ("?",))
+        elif m == "bl":
+            t = o[0].imm
+            calls.append(t)
+            if t == CSTRID_CTOR and name is None:
+                name = val.get("x1", ("?", None))[1]
+            elif t == KIND_HASH and length is None:
+                if val.get("x0", ("?", None))[1] != name or val.get("x1", ("?",))[0] != "imm":
+                    return None
+                length = val["x1"][1]
+    if not name or length != len(name.encode("utf-8")):
+        return None
+    if calls[:2] != [0x7101238DA0, CSTRID_CTOR] or calls[2] != KIND_HASH:
+        return None
+    if [c for c in calls[3:] if c != ALLOCATOR_GETTER] != [0x71000803A4, 0x7100000250, 0x7101238DB0]:
+        return None
+    _, st, _ = emulate(orig, addr, base)
+    size = st.get(0x18)
+    if not size or size[0] != "imm" or st.get(0x78) != ("imm", 0):
+        return None
+    lines = [f"    static constexpr const char* name = {refl_attrs.c_string(name)};",
+             f"    static constexpr u64 length = {length};",
+             f"    static constexpr u64 size = {size[1]:#x};"]
+    for off in (0x28, 0x30, 0x38, 0x40, 0x48, 0x50, 0x58, 0x60, 0x68, 0x70):
+        v = st.get(off)
+        if v == ("imm", 0):
+            lines.append(f"    static constexpr UnkFn fn_{off:#x} = nullptr;")
+        elif v and v[0] == "fn":
+            decls.add(f"void fn_{v[1]:x}();")
+            lines.append(f"    static constexpr UnkFn fn_{off:#x} = &fn_{v[1]:x};")
+        else:
+            return None
+    return lines
+
+
+def emit_primitive(getter: int, body: list[str]) -> list[str]:
+    return [f"struct UnkRefl_fn_{getter:x};",
+            "template <>",
+            f"struct base::reflection::UnkReflPrimitiveTraits<UnkRefl_fn_{getter:x}> {{",
+            *body,
+            "};",
+            f"template const base::reflection::CType* "
+            f"base::reflection::refl_GetPrimitiveType<UnkRefl_fn_{getter:x}>();"]
+
+
+def scan_primitives(orig: asmdiff.Original, decls: set[str]) -> list:
+    """Plain CType getters: (getter, traits lines). Candidates call the string-id constructor
+    and the kind hash."""
+    out = []
+    for f in sorted((ROOT / "data" / "functions").glob("main_*.csv")):
+        with f.open(newline="", encoding="utf-8") as fh:
+            for r in csv.DictReader(fh):
+                a = int(r["address"], 16)
+                if r["status"] not in ("U", "O") or a not in orig.sizes or orig.sizes[a] > 1024:
+                    continue
+                body = primitive_traits(orig, a, decls)
+                if body:
+                    out.append((a, body))
+    return out
+
+
 PRELUDE = ['#include "base/reflection/CCollectionType.h"',
            '#include "base/reflection/CEnumType.h"',
            '#include "base/reflection/CPointerType.h"',
+           '#include "base/reflection/UnkReflPrimitiveType.h"',
            "using base::reflection::CType;",
            "using base::reflection::UnkFn;"]
 NAME_RE = re.compile(r"\b(?:fn|g_unk)_[0-9a-f]{10}\b")
@@ -434,13 +526,15 @@ def main() -> int:
 
     pairs, _, enums, decls = scan(orig)
     colls, _ = scan_collections(orig, decls)
+    prims = scan_primitives(orig, decls)
 
     work = ROOT / "build" / "gen_types"
     work.mkdir(parents=True, exist_ok=True)
     src, obj = work / "candidates.cpp", work / "candidates.o"
     text = (PRELUDE + sorted(decls) + [line for g, nm, i, b in pairs for line in emit(g, nm, i, b)]
             + [line for i, b in enums for line in emit_enum(i, b)]
-            + [line for i, b in colls for line in emit_collection(i, b)])
+            + [line for i, b in colls for line in emit_collection(i, b)]
+            + [line for g, b in prims for line in emit_primitive(g, b)])
     src.write_text("\n".join(text) + "\n", encoding="utf-8")
     r = subprocess.run(buildcfg.cxx_command(src, obj), capture_output=True, text=True)
     if r.returncode != 0:
@@ -449,6 +543,7 @@ def main() -> int:
     good = [p for p in pairs if p[0] in ok and p[2] in ok]
     good_enums = [e for e in enums if e[0] in ok]
     good_colls = [c for c in colls if c[0] in ok]
+    good_prims = [p for p in prims if p[0] in ok]
 
     if OUT.exists():
         shutil.rmtree(OUT)
@@ -462,9 +557,12 @@ def main() -> int:
     write_chunks("collection_types", [emit_collection(*c) for c in good_colls], decls,
                  [note, "// Descriptor constructors of collection types (globals built by static initialisers),",
                   "// byte-identical to the original."])
+    write_chunks("primitive_types", [emit_primitive(*p) for p in good_prims], decls,
+                 [note, "// Getters (refl_GetType<T>) of plain CType descriptors, byte-identical to the original."])
     print(f"pointer types: {len(pairs)} getter/constructor candidates, {len(good)} pairs byte-identical; "
           f"enums: {len(enums)} constructor candidates, {len(good_enums)} byte-identical; "
-          f"collections: {len(colls)} constructor candidates, {len(good_colls)} byte-identical")
+          f"collections: {len(colls)} constructor candidates, {len(good_colls)} byte-identical; "
+          f"plain types: {len(prims)} getter candidates, {len(good_prims)} byte-identical")
     return 0
 
 
