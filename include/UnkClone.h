@@ -13,6 +13,18 @@ struct UnkCloneElem {
     u8 data[Size];
 };
 
+// An element of the given size with an out-of-line destructor, called through
+// UnkCloneDtorTraits<Tag>::destroy (one specialisation per clone, naming the destructor).
+template <class Tag>
+struct UnkCloneDtorTraits;
+
+template <class Tag, u64 Size>
+struct UnkCloneDtorElem {
+    alignas(8) char data[Size];
+
+    ~UnkCloneDtorElem() { UnkCloneDtorTraits<Tag>::destroy(data); }
+};
+
 // A polymorphic object deleted through its vtable (deleting destructor in slot 0x10).
 struct UnkCloneObject {
     virtual void vf_0x0();

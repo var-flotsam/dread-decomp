@@ -238,6 +238,83 @@ def iter_value_destroy_vt(orig: asmdiff.Original, addr: int, tag: str, insns: In
                       f"template void base::refl_IterValueDestroy<{elem}>(void*);"])
 
 
+FILE_PATH_POOL = 0x7101D47200  # CFilePathStrId's string pool (UnkCloneStrIdB)
+
+
+def iter_value_destroy_dtor(orig: asmdiff.Original, addr: int, tag: str, insns: Insns) -> str | None:
+    """An iterator value's destroy helper (refl_IterValueDestroy) whose element (at +8) has an
+    out-of-line destructor, keyed by a u32 index or a string id. Facts: the state offset (= 8 +
+    the element size), the element's destructor, and the key's string pool."""
+    if [m for m, _ in insns[:3]] != ["stp", "stp", "add"]:
+        return None
+    state = next((int(h.group(1), 16) for m, o in insns[3:6] if m == "ldr" and (h := STATE_RE.fullmatch(o))), None)
+    if state is None or state % 8 or state < 0x10 or ("cmp", "w8, #2") not in insns[4:8]:
+        return None
+    try:
+        i = insns.index(("add", "x0, x19, #8"))
+    except ValueError:
+        return None
+    m, o = insns[i + 1]
+    if m != "bl" or not o.startswith("#0x"):
+        return None
+    dtor = int(o[1:], 16)
+    pages: dict[str, int] = {}
+    pool = None
+    for m, o in insns[i + 2:]:
+        regs = [r.strip() for r in o.split(",")]
+        if m == "adrp":
+            pages[regs[0]] = int(regs[1][1:], 16)
+        elif m == "ldr" and pool is None and (hit := re.fullmatch(r"(x\d+), \[(x\d+), #(0x[0-9a-f]+)\]", o)) \
+                and hit.group(2) in pages:
+            target = orig.img.pointer(pages[hit.group(2)] + int(hit.group(3), 16) - BASE)
+            pool = None if target is None else BASE + target
+        elif m in ("bl", "b") and o.startswith("#0x") and int(o[1:], 16) != RELEASE:
+            return None
+    releases = (("bl", f"#{RELEASE:#x}") in insns) or (("b", f"#{RELEASE:#x}") in insns)
+    key = "" if not releases else f", UnkCloneStrIdB<{tag}>" if pool == FILE_PATH_POOL else f", UnkCloneStrId<{tag}>"
+    return "\n".join([f"void fn_{dtor:x}(char*);",
+                      f"template <> struct UnkCloneDtorTraits<{tag}> {{",
+                      f"    static void destroy(char* p) {{ fn_{dtor:x}(p); }}", "};",
+                      f"template void base::refl_IterValueDestroy<UnkCloneDtorElem<{tag}, {state - 8:#x}>{key}>(void*);"])
+
+
+REFINE_TYPE = 0x710009DCD8  # refines a type descriptor for an object (UnkReflTypedPtr.h)
+
+
+def pointee_typed(orig: asmdiff.Original, addr: int, tag: str, insns: Insns) -> str | None:
+    """A reflected pointer type's helper returning the pointee with its dynamic type
+    (refl_PointeeTyped). Facts: the pointee's type getter and, when the getter is in the same
+    TU, the descriptor address the original uses instead of its return value."""
+    head = insns[:6]
+    if [m for m, _ in head[:3]] != ["stp", "stp", "add"] or head[3] != ("ldr", "x20, [x0]") \
+            or head[4] != ("mov", "x19, x8") or head[5][0] != "cbz":
+        return None
+    m, o = insns[6]
+    if m != "bl" or not o.startswith("#0x"):
+        return None
+    getter = int(o[1:], 16)
+    descriptor = None
+    if insns[7][0] == "adrp" and insns[8][0] == "add" and insns[7][1].startswith("x0, ") \
+            and insns[8][1].startswith("x0, x0, #"):
+        descriptor = int(insns[7][1].split("#")[1], 16) + int(insns[8][1].split("#")[1], 16)
+    if insns.count(("bl", f"#{REFINE_TYPE:#x}")) != 2:
+        return None
+    decl = [f"const base::reflection::CType* fn_{getter:x}();",
+            f"namespace folded {{ const base::reflection::CType* fn_{getter:x}(); }}"]
+    if descriptor is None:
+        lines = decl + [f"template <> struct base::reflection::UnkTypedPtrTraits<{tag}> {{",
+                        f"    static char* get() {{ return (char*)fn_{getter:x}(); }}",
+                        f"    static char* get_static() {{ return (char*)folded::fn_{getter:x}(); }}", "};"]
+    else:
+        lines = decl + [f'extern char g_unk_{descriptor:x}[] __attribute__((visibility("hidden")));',
+                        f"template <> struct base::reflection::UnkTypedPtrTraits<{tag}> {{",
+                        f"    static char* get() {{ fn_{getter:x}(); return g_unk_{descriptor:x}; }}",
+                        f"    static char* get_static() {{ folded::fn_{getter:x}(); return g_unk_{descriptor:x}; }}",
+                        "};"]
+    return "\n".join(lines + [f"template base::reflection::UnkReflTypedPtr "
+                              f"base::reflection::refl_PointeeTyped<{tag}>(void* const*);"])
+
+
 MAKE_VALUE = 0x71000A18D4  # builds a reflected value from a type and a pointer
 LOAD_TYPES = {("ldr", "w"): "u32", ("ldr", "x"): "u64", ("ldrb", "w"): "u8", ("ldrh", "w"): "u16",
               ("ldr", "s"): "f32", ("ldr", "d"): "f64"}
@@ -326,6 +403,8 @@ def enum_values(orig: asmdiff.Original, addr: int, tag: str, insns: Insns) -> st
 KINDS = {
     "dtor": Kind(None, "base/UnkDestructors.h", lambda tag, _: None, scan=destructor),
     "iter_value_destroy_vt": Kind(None, "base/UnkCollectionIter.h", lambda tag, _: None, scan=iter_value_destroy_vt),
+    "pointee_typed": Kind(None, "base/reflection/UnkReflTypedPtr.h", lambda tag, _: None, scan=pointee_typed),
+    "iter_value_destroy_dtor": Kind(None, "base/UnkCollectionIter.h", lambda tag, _: None, scan=iter_value_destroy_dtor),
     "enum_values": Kind(None, "base/global/CStrId.h", lambda tag, _: None, scan=enum_values),
     "field_set_strid": Kind(None, "base/reflection/UnkReflValue.h", lambda tag, _: None, scan=field_set_strid),
     "field_value": Kind(None, "base/reflection/UnkReflValue.h", lambda tag, _: None, scan=field_value),

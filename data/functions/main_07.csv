@@ -191,7 +191,7 @@ address,size,name,name_source,subsystem,status
 0x710070a75c,56,fn_710070a75c,unknown,engine/reflection?,O
 0x710070a794,28,fn_710070a794,unknown,engine/reflection?,O
 0x710070a7b0,368,fn_710070a7b0,unknown,engine/reflection?,O
-0x710070a920,104,fn_710070a920,unknown,engine/reflection?,U
+0x710070a920,104,fn_710070a920,unknown,engine/reflection?,O
 0x710070a988,12,fn_710070a988,unknown,engine/reflection?,O
 0x710070a994,16,fn_710070a994,unknown,engine/reflection?,O
 0x710070a9a4,20,fn_710070a9a4,unknown,engine/reflection?,O
@@ -204,7 +204,7 @@ address,size,name,name_source,subsystem,status
 0x710070a9f8,20,fn_710070a9f8,unknown,engine/reflection?,O
 0x710070aa0c,20,fn_710070aa0c,unknown,engine/reflection?,O
 0x710070aa20,352,base::reflection::refl_InitType<std::unique_ptr<CTentacle>>,reflection,engine/reflection,O
-0x710070ab80,104,fn_710070ab80,unknown,unknown,U
+0x710070ab80,104,fn_710070ab80,unknown,unknown,O
 0x710070abe8,36,fn_710070abe8,unknown,unknown,O
 0x710070ac0c,4,fn_710070ac0c,unknown,unknown,O
 0x710070ac10,20,fn_710070ac10,unknown,unknown,O
@@ -215,7 +215,7 @@ address,size,name,name_source,subsystem,status
 0x710070ac58,32,fn_710070ac58,unknown,unknown,O
 0x710070ac78,72,fn_710070ac78,unknown,unknown,O
 0x710070acc0,360,fn_710070acc0,unknown,unknown,O
-0x710070ae28,88,fn_710070ae28,unknown,unknown,U
+0x710070ae28,88,fn_710070ae28,unknown,unknown,O
 0x710070ae80,12,fn_710070ae80,unknown,unknown,O
 0x710070ae8c,16,fn_710070ae8c,unknown,unknown,O
 0x710070ae9c,20,fn_710070ae9c,unknown,unknown,O
@@ -228,7 +228,7 @@ address,size,name,name_source,subsystem,status
 0x710070aef0,20,fn_710070aef0,unknown,unknown,O
 0x710070af04,20,fn_710070af04,unknown,unknown,O
 0x710070af18,360,fn_710070af18,unknown,unknown,O
-0x710070b080,88,fn_710070b080,unknown,unknown,U
+0x710070b080,88,fn_710070b080,unknown,unknown,O
 0x710070b0d8,12,fn_710070b0d8,unknown,unknown,O
 0x710070b0e4,16,fn_710070b0e4,unknown,unknown,O
 0x710070b0f4,20,fn_710070b0f4,unknown,unknown,O
@@ -2077,7 +2077,7 @@ address,size,name,name_source,subsystem,status
 0x710077637c,28,fn_710077637c,unknown,unknown,O
 0x7100776398,132,fn_7100776398,unknown,unknown,O
 0x710077641c,368,fn_710077641c,unknown,unknown,O
-0x710077658c,104,fn_710077658c,unknown,unknown,U
+0x710077658c,104,fn_710077658c,unknown,unknown,O
 0x71007765f4,12,fn_71007765f4,unknown,unknown,O
 0x7100776600,16,fn_7100776600,unknown,unknown,O
 0x7100776610,20,fn_7100776610,unknown,unknown,O
@@ -2090,7 +2090,7 @@ address,size,name,name_source,subsystem,status
 0x7100776664,20,fn_7100776664,unknown,unknown,O
 0x7100776678,20,fn_7100776678,unknown,unknown,O
 0x710077668c,352,base::reflection::refl_InitType<std::unique_ptr<CCentralUnitWeightedEdges>>,reflection,engine/reflection,O
-0x71007767ec,104,fn_71007767ec,unknown,unknown,U
+0x71007767ec,104,fn_71007767ec,unknown,unknown,O
 0x7100776854,36,fn_7100776854,unknown,unknown,O
 0x7100776878,4,fn_7100776878,unknown,unknown,O
 0x710077687c,20,fn_710077687c,unknown,unknown,O
@@ -2101,7 +2101,7 @@ address,size,name,name_source,subsystem,status
 0x71007768c4,32,fn_71007768c4,unknown,unknown,O
 0x71007768e4,72,fn_71007768e4,unknown,unknown,O
 0x710077692c,360,fn_710077692c,unknown,unknown,O
-0x7100776a94,88,fn_7100776a94,unknown,unknown,U
+0x7100776a94,88,fn_7100776a94,unknown,unknown,O
 0x7100776aec,12,fn_7100776aec,unknown,unknown,O
 0x7100776af8,16,fn_7100776af8,unknown,unknown,O
 0x7100776b08,20,fn_7100776b08,unknown,unknown,O
@@ -2114,7 +2114,7 @@ address,size,name,name_source,subsystem,status
 0x7100776b5c,20,fn_7100776b5c,unknown,unknown,O
 0x7100776b70,20,fn_7100776b70,unknown,unknown,O
 0x7100776b84,360,fn_7100776b84,unknown,unknown,O
-0x7100776cec,88,fn_7100776cec,unknown,unknown,U
+0x7100776cec,88,fn_7100776cec,unknown,unknown,O
 0x7100776d44,12,fn_7100776d44,unknown,unknown,O
 0x7100776d50,16,fn_7100776d50,unknown,unknown,O
 0x7100776d60,20,fn_7100776d60,unknown,unknown,O
@@ -3241,7 +3241,7 @@ address,size,name,name_source,subsystem,status
 0x71007aa7f8,28,fn_71007aa7f8,unknown,unknown,O
 0x71007aa814,132,fn_71007aa814,unknown,unknown,O
 0x71007aa898,368,fn_71007aa898,unknown,unknown,O
-0x71007aaa08,104,fn_71007aaa08,unknown,unknown,U
+0x71007aaa08,104,fn_71007aaa08,unknown,unknown,O
 0x71007aaa70,12,fn_71007aaa70,unknown,unknown,O
 0x71007aaa7c,16,fn_71007aaa7c,unknown,unknown,O
 0x71007aaa8c,20,fn_71007aaa8c,unknown,unknown,O
@@ -3254,7 +3254,7 @@ address,size,name,name_source,subsystem,status
 0x71007aaae0,20,fn_71007aaae0,unknown,unknown,O
 0x71007aaaf4,20,fn_71007aaaf4,unknown,unknown,O
 0x71007aab08,368,fn_71007aab08,unknown,unknown,O
-0x71007aac78,104,fn_71007aac78,unknown,unknown,U
+0x71007aac78,104,fn_71007aac78,unknown,unknown,O
 0x71007aace0,12,fn_71007aace0,unknown,unknown,O
 0x71007aacec,16,fn_71007aacec,unknown,unknown,O
 0x71007aacfc,20,fn_71007aacfc,unknown,unknown,O
@@ -3293,7 +3293,7 @@ address,size,name,name_source,subsystem,status
 0x71007ab448,144,fn_71007ab448,unknown,unknown,U
 0x71007ab4d8,144,fn_71007ab4d8,unknown,unknown,U
 0x71007ab568,368,fn_71007ab568,unknown,unknown,O
-0x71007ab6d8,104,fn_71007ab6d8,unknown,unknown,U
+0x71007ab6d8,104,fn_71007ab6d8,unknown,unknown,O
 0x71007ab740,12,fn_71007ab740,unknown,unknown,O
 0x71007ab74c,16,fn_71007ab74c,unknown,unknown,O
 0x71007ab75c,20,fn_71007ab75c,unknown,unknown,O
@@ -4056,7 +4056,7 @@ address,size,name,name_source,subsystem,status
 0x71007c9f60,220,fn_71007c9f60,unknown,engine/reflection?,O
 0x71007ca03c,480,fn_71007ca03c,unknown,engine/reflection?,O
 0x71007ca21c,368,fn_71007ca21c,unknown,engine/reflection?,O
-0x71007ca38c,104,fn_71007ca38c,unknown,engine/reflection?,U
+0x71007ca38c,104,fn_71007ca38c,unknown,engine/reflection?,O
 0x71007ca3f4,12,fn_71007ca3f4,unknown,engine/reflection?,O
 0x71007ca400,16,fn_71007ca400,unknown,engine/reflection?,O
 0x71007ca410,20,fn_71007ca410,unknown,engine/reflection?,O
@@ -4069,7 +4069,7 @@ address,size,name,name_source,subsystem,status
 0x71007ca464,20,fn_71007ca464,unknown,engine/reflection?,O
 0x71007ca478,20,fn_71007ca478,unknown,engine/reflection?,O
 0x71007ca48c,352,base::reflection::refl_InitType<std::unique_ptr<CXParasiteBehavior>>,reflection,engine/reflection,O
-0x71007ca5ec,104,fn_71007ca5ec,unknown,unknown,U
+0x71007ca5ec,104,fn_71007ca5ec,unknown,unknown,O
 0x71007ca654,36,fn_71007ca654,unknown,unknown,O
 0x71007ca678,4,fn_71007ca678,unknown,unknown,O
 0x71007ca67c,20,fn_71007ca67c,unknown,unknown,O
@@ -4080,7 +4080,7 @@ address,size,name,name_source,subsystem,status
 0x71007ca6c4,32,fn_71007ca6c4,unknown,unknown,O
 0x71007ca6e4,72,fn_71007ca6e4,unknown,unknown,O
 0x71007ca72c,360,fn_71007ca72c,unknown,unknown,O
-0x71007ca894,88,fn_71007ca894,unknown,unknown,U
+0x71007ca894,88,fn_71007ca894,unknown,unknown,O
 0x71007ca8ec,12,fn_71007ca8ec,unknown,unknown,O
 0x71007ca8f8,16,fn_71007ca8f8,unknown,unknown,O
 0x71007ca908,20,fn_71007ca908,unknown,unknown,O
@@ -4093,7 +4093,7 @@ address,size,name,name_source,subsystem,status
 0x71007ca95c,20,fn_71007ca95c,unknown,unknown,O
 0x71007ca970,20,fn_71007ca970,unknown,unknown,O
 0x71007ca984,360,fn_71007ca984,unknown,unknown,O
-0x71007caaec,88,fn_71007caaec,unknown,unknown,U
+0x71007caaec,88,fn_71007caaec,unknown,unknown,O
 0x71007cab44,12,fn_71007cab44,unknown,unknown,O
 0x71007cab50,16,fn_71007cab50,unknown,unknown,O
 0x71007cab60,20,fn_71007cab60,unknown,unknown,O
@@ -5091,7 +5091,7 @@ address,size,name,name_source,subsystem,status
 0x71007f0b88,28,fn_71007f0b88,unknown,unknown,O
 0x71007f0ba4,28,fn_71007f0ba4,unknown,unknown,O
 0x71007f0bc0,368,fn_71007f0bc0,unknown,unknown,O
-0x71007f0d30,104,fn_71007f0d30,unknown,unknown,U
+0x71007f0d30,104,fn_71007f0d30,unknown,unknown,O
 0x71007f0d98,12,fn_71007f0d98,unknown,unknown,O
 0x71007f0da4,16,fn_71007f0da4,unknown,unknown,O
 0x71007f0db4,20,fn_71007f0db4,unknown,unknown,O
@@ -5104,7 +5104,7 @@ address,size,name,name_source,subsystem,status
 0x71007f0e08,20,fn_71007f0e08,unknown,unknown,O
 0x71007f0e1c,20,fn_71007f0e1c,unknown,unknown,O
 0x71007f0e30,352,base::reflection::refl_InitType<std::unique_ptr<CBarelyFrozenIceInfo>>,reflection,engine/reflection,O
-0x71007f0f90,104,fn_71007f0f90,unknown,unknown,U
+0x71007f0f90,104,fn_71007f0f90,unknown,unknown,O
 0x71007f0ff8,36,fn_71007f0ff8,unknown,unknown,O
 0x71007f101c,4,fn_71007f101c,unknown,unknown,O
 0x71007f1020,20,fn_71007f1020,unknown,unknown,O
@@ -5115,7 +5115,7 @@ address,size,name,name_source,subsystem,status
 0x71007f1068,32,fn_71007f1068,unknown,unknown,O
 0x71007f1088,72,fn_71007f1088,unknown,unknown,O
 0x71007f10d0,360,fn_71007f10d0,unknown,unknown,O
-0x71007f1238,88,fn_71007f1238,unknown,unknown,U
+0x71007f1238,88,fn_71007f1238,unknown,unknown,O
 0x71007f1290,12,fn_71007f1290,unknown,unknown,O
 0x71007f129c,16,fn_71007f129c,unknown,unknown,O
 0x71007f12ac,20,fn_71007f12ac,unknown,unknown,O
@@ -5128,7 +5128,7 @@ address,size,name,name_source,subsystem,status
 0x71007f1300,20,fn_71007f1300,unknown,unknown,O
 0x71007f1314,20,fn_71007f1314,unknown,unknown,O
 0x71007f1328,360,fn_71007f1328,unknown,unknown,O
-0x71007f1490,88,fn_71007f1490,unknown,unknown,U
+0x71007f1490,88,fn_71007f1490,unknown,unknown,O
 0x71007f14e8,12,fn_71007f14e8,unknown,unknown,O
 0x71007f14f4,16,fn_71007f14f4,unknown,unknown,O
 0x71007f1504,20,fn_71007f1504,unknown,unknown,O

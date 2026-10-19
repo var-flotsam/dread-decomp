@@ -1327,7 +1327,7 @@ address,size,name,name_source,subsystem,status
 0x7100366a94,88,fn_7100366a94,unknown,unknown,U
 0x7100366aec,28,fn_7100366aec,unknown,unknown,O
 0x7100366b08,368,fn_7100366b08,unknown,unknown,O
-0x7100366c78,104,fn_7100366c78,unknown,unknown,U
+0x7100366c78,104,fn_7100366c78,unknown,unknown,O
 0x7100366ce0,12,fn_7100366ce0,unknown,unknown,O
 0x7100366cec,16,fn_7100366cec,unknown,unknown,O
 0x7100366cfc,20,fn_7100366cfc,unknown,unknown,O
@@ -1340,7 +1340,7 @@ address,size,name,name_source,subsystem,status
 0x7100366d50,20,fn_7100366d50,unknown,unknown,O
 0x7100366d64,20,fn_7100366d64,unknown,unknown,O
 0x7100366d78,352,base::reflection::refl_InitType<std::unique_ptr<CAttackPreset>>,reflection,engine/reflection,O
-0x7100366ed8,104,fn_7100366ed8,unknown,unknown,U
+0x7100366ed8,104,fn_7100366ed8,unknown,unknown,O
 0x7100366f40,36,fn_7100366f40,unknown,unknown,O
 0x7100366f64,4,fn_7100366f64,unknown,unknown,O
 0x7100366f68,20,fn_7100366f68,unknown,unknown,O
@@ -1351,7 +1351,7 @@ address,size,name,name_source,subsystem,status
 0x7100366fb0,32,fn_7100366fb0,unknown,unknown,O
 0x7100366fd0,72,fn_7100366fd0,unknown,unknown,O
 0x7100367018,360,fn_7100367018,unknown,unknown,O
-0x7100367180,88,fn_7100367180,unknown,unknown,U
+0x7100367180,88,fn_7100367180,unknown,unknown,O
 0x71003671d8,12,fn_71003671d8,unknown,unknown,O
 0x71003671e4,16,fn_71003671e4,unknown,unknown,O
 0x71003671f4,20,fn_71003671f4,unknown,unknown,O
@@ -1364,7 +1364,7 @@ address,size,name,name_source,subsystem,status
 0x7100367248,20,fn_7100367248,unknown,unknown,O
 0x710036725c,20,fn_710036725c,unknown,unknown,O
 0x7100367270,360,fn_7100367270,unknown,unknown,O
-0x71003673d8,88,fn_71003673d8,unknown,unknown,U
+0x71003673d8,88,fn_71003673d8,unknown,unknown,O
 0x7100367430,12,fn_7100367430,unknown,unknown,O
 0x710036743c,16,fn_710036743c,unknown,unknown,O
 0x710036744c,20,fn_710036744c,unknown,unknown,O
@@ -2735,7 +2735,7 @@ address,size,name,name_source,subsystem,status
 0x7100395680,220,fn_7100395680,unknown,ai/behaviortree?,O
 0x710039575c,28,fn_710039575c,unknown,ai/behaviortree?,O
 0x7100395778,368,fn_7100395778,unknown,ai/behaviortree?,O
-0x71003958e8,104,fn_71003958e8,unknown,ai/behaviortree?,U
+0x71003958e8,104,fn_71003958e8,unknown,ai/behaviortree?,O
 0x7100395950,12,fn_7100395950,unknown,ai/behaviortree?,O
 0x710039595c,16,fn_710039595c,unknown,ai/behaviortree?,O
 0x710039596c,20,fn_710039596c,unknown,ai/behaviortree?,O
