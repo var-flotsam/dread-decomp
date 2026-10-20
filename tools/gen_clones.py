@@ -1607,7 +1607,129 @@ def push_two_types(orig, addr, tag, insns):
                       f"template void base::refl_PushTwoTypes<{tag}>(char*);"])
 
 
+def keyed_set_assign(orig, addr, tag, insns):
+    """refl_KeyedSetAssign: the lookup, the id's pool and offset, and the value's width."""
+    if len(insns) != 38 or insns[4:6] != [("ldr", "w1, [x1]"), ("mov", "x19, x2")] or insns[6][0] != "bl" \
+            or insns[30] != ("bl", f"#{RELEASE:#x}") or insns[37] != ("ret", ""):
+        return None
+    off = re.fullmatch(r"x8, \[x0(?:, #(0x[0-9a-f]+|\d))?\]", insns[7][1])
+    val = re.fullmatch(r"([wx])8, \[x19, #(0x[0-9a-f]+|\d)\]", insns[32][1])
+    pool = got_target(orig, insns, 12)
+    if insns[7][0] != "ldr" or not off or not val or insns[32][0] != "ldr" or pool not in (STRID_POOL, FILE_PATH_POOL):
+        return None
+    off = int(off.group(1) or "0", 16)
+    if int(val.group(2), 16) != off + 8:
+        return None
+    find = int(insns[6][1][1:], 16)
+    t = "u32" if val.group(1) == "w" else "u64"
+    ident = f"UnkCloneStrIdB<{tag}>" if pool == FILE_PATH_POOL else f"UnkCloneStrId<{tag}>"
+    return "\n".join([f"char* fn_{find:x}(void*, u32);",
+                      f"template <> struct base::UnkKeyedSetTraits<{tag}> {{",
+                      f"    static char* find(void* m, u32 k) {{ return fn_{find:x}(m, k); }}", "};",
+                      f"template void base::refl_KeyedSetAssign<{tag}, {ident}, {t}, {off:#x}>(void*, const u32*, const char*);"])
+
+
+def keyed_set_iter_value_copy(orig, addr, tag, insns):
+    """refl_IterValueCopy over a UnkKeyedSetEntry: the state offset, the id's pool and offset and
+    the value's width."""
+    if len(insns) != 74 or insns[4:7] != [("mov", "x19, x0"), ("cmp", "x0, x1"), ("b.eq", "@+114")] \
+            or insns[65] != ("bl", f"#{RELEASE:#x}") or insns[69] != ("mov", "x0, x19"):
+        return None
+    state = re.fullmatch(r"w8, \[x1, #(0x[0-9a-f]+)\]", insns[7][1])
+    off = re.fullmatch(r"x8, \[x21(?:, #(0x[0-9a-f]+|\d))?\]", insns[32][1])
+    val = re.fullmatch(r"([wx])8, \[x20, #(0x[0-9a-f]+|\d)\]", insns[67][1])
+    pool = got_target(orig, insns, 47)
+    if not state or not off or not val or insns[67][0] != "ldr" or pool not in (STRID_POOL, FILE_PATH_POOL):
+        return None
+    state, off = int(state.group(1), 16), int(off.group(1) or "0", 16)
+    if int(val.group(2), 16) != off + 8 or off % 8 or state != off + 0x18:
+        return None
+    t = "u32" if val.group(1) == "w" else "u64"
+    ident = f"UnkCloneStrIdB<{tag}>" if pool == FILE_PATH_POOL else f"UnkCloneStrId<{tag}>"
+    entry = f"base::UnkKeyedSetEntry<{tag}, {ident}, {t}, {off:#x}>"
+    return f"template void* base::refl_IterValueCopy<{entry}>(void*, const void*);"
+
+
+def _vt_iter_606b8(orig, tag, insns, which, frame_i, sync_i, base_i):
+    frame = re.fullmatch(r"sp, sp, #(0x[0-9a-f]+)", insns[0][1])
+    state = re.fullmatch(r"wzr, \[sp, #(0x[0-9a-f]+)\]", insns[frame_i][1])
+    base, pool = got_target(orig, insns, base_i), got_target(orig, insns, base_i + 4)
+    if insns[0][0] != "sub" or not frame or not state or insns[sync_i][0] != "bl" or base is None \
+            or pool != STRID_POOL:
+        return None
+    size = int(state.group(1), 16) - 0x20
+    if size < 0x10 or size % 8:
+        return None
+    sync = int(insns[sync_i][1][1:], 16)
+    e = f"base::UnkStrIdVtElem<{tag}, {size:#x}>"
+    return "\n".join([f"extern char g_unk_{base:x}[];", f"void fn_{sync:x}(void*);",
+                      f"template <> struct base::UnkVtIterTraits<{tag}> {{",
+                      f"    static char* base_vtable() {{ return g_unk_{base:x}; }}",
+                      f"    static void sync(void* it) {{ fn_{sync:x}(it); }}", "};",
+                      f"template void base::refl_Vt{which}(const base::UnkVector<{e}>*, "
+                      f"base::UnkCollectionIter<{e}>*);"])
+
+
+def vt_iter_end(orig, addr, tag, insns):
+    """refl_VtEnd (fn_7100f606b8): the element size (from the stride), base vtable and sync."""
+    if len(insns) != 61 or insns[4] != ("ldr", "w8, [x0, #8]") or insns[47] != ("bl", f"#{RELEASE:#x}"):
+        return None
+    stride = re.fullmatch(r"w10, #(0x[0-9a-f]+)", insns[5][1])
+    out = _vt_iter_606b8(orig, tag, insns, "End", 10, 22, 28)
+    if not stride or not out or f"{int(stride.group(1), 16):#x}>" not in out:
+        return None
+    return out
+
+
+def vt_iter_begin(orig, addr, tag, insns):
+    """refl_VtBegin (fn_7100f605d0): the element size (from the frame), base vtable and sync."""
+    if len(insns) != 58 or insns[4:6] != [("ldr", "x8, [x0]"), ("str", "wzr, [sp, #8]")] \
+            or insns[44] != ("bl", f"#{RELEASE:#x}"):
+        return None
+    return _vt_iter_606b8(orig, tag, insns, "Begin", 7, 19, 25)
+
+
+def vt_iter_sync(orig, addr, tag, insns):
+    """refl_IterSync over UnkStrIdVtElem (0x7100f606b8.h): the element size (from the state
+    offset) and the base vtable."""
+    if len(insns) != 76 or insns[4:7] != [("ldr", "x20, [x0, #8]"), ("mov", "x19, x0"), ("cbz", "x20, @+ac")] \
+            or insns[31] != ("bl", f"#{RELEASE:#x}") or insns[38] != ("stp", "x19, x20, [x19, #0x10]"):
+        return None
+    state = re.fullmatch(r"w8, \[x19, #(0x[0-9a-f]+)\]", insns[7][1])
+    base, pool = got_target(orig, insns, 12), got_target(orig, insns, 16)
+    if insns[7][0] != "ldr" or not state or base is None or pool != STRID_POOL:
+        return None
+    size = int(state.group(1), 16) - 0x18
+    if size < 0x10 or size % 8:
+        return None
+    e = f"base::UnkStrIdVtElem<{tag}, {size:#x}>"
+    return "\n".join([f"extern char g_unk_{base:x}[];",
+                      f"template <> struct base::UnkVtIterTraits<{tag}> {{",
+                      f"    static char* base_vtable() {{ return g_unk_{base:x}; }}", "};",
+                      f"template void base::refl_IterSync(base::UnkCollectionIter<{e}, u32>*);"])
+
+
+def owner_vec_insert(orig, addr, tag, insns):
+    """refl_OwnerVecInsert: the EmplaceBack it tail-calls (the only varying fact)."""
+    if len(insns) != 160 or insns[10:12] != [("cmp", "w22, w2"), ("b.ne", "@+54")] or insns[20][0] != "b" \
+            or insns[62] != ("stp", "xzr, xzr, [x1], #0x28") or insns[121] != ("ldr", "x8, [x8, #0x10]") \
+            or insns[149] != ("stp", "xzr, xzr, [x20]"):
+        return None
+    append = int(insns[20][1][1:], 16)
+    e = f"UnkCloneOwnerVecHandle<{tag}>"
+    return "\n".join([f"void fn_{append:x}(void*, void*);",
+                      f"template <> struct base::UnkOwnerVecInsertTraits<{tag}> {{",
+                      f"    static void append(void* v, void* e) {{ fn_{append:x}(v, e); }}", "};",
+                      f"template void base::refl_OwnerVecInsert(base::UnkVector<{e}>*, {e}*, u32);"])
+
+
 KINDS = {
+    "keyed_set_assign": Kind(None, "base/UnkCloneHelpers.h", lambda tag, _: None, scan=keyed_set_assign),
+    "keyed_set_iter_value_copy": Kind(None, "base/UnkCloneHelpers.h", lambda tag, _: None, scan=keyed_set_iter_value_copy),
+    "vt_iter_end": Kind(None, "base/UnkCloneHelpers.h", lambda tag, _: None, scan=vt_iter_end),
+    "vt_iter_begin": Kind(None, "base/UnkCloneHelpers.h", lambda tag, _: None, scan=vt_iter_begin),
+    "vt_iter_sync": Kind(None, "base/UnkCloneHelpers.h", lambda tag, _: None, scan=vt_iter_sync),
+    "owner_vec_insert": Kind(None, "base/UnkCloneHelpers.h", lambda tag, _: None, scan=owner_vec_insert),
     "hash_key_fields": Kind(None, "base/UnkCloneHelpers.h", lambda tag, _: None, scan=hash_key_fields),
     "push_pair": Kind(None, "base/UnkCloneHelpers.h", lambda tag, _: None, scan=push_pair),
     "deferred_invoke": Kind(None, "base/UnkCloneHelpers.h", lambda tag, _: None, scan=deferred_invoke),

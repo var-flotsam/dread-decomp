@@ -12,6 +12,32 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "base/reflection/UnkReflValue.h"
+struct UnkClone_fn_7100730194;
+template UnkCloneElem<UnkClone_fn_7100730194, 8>& base::UnkVector<UnkCloneElem<UnkClone_fn_7100730194, 8>>::GrowAt(u32);
+struct UnkClone_fn_7100730cc0;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100730cc0> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100730cc0, u32, 0x5c>(void*, char*);
+struct UnkClone_fn_7100730d0c;
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldValue<UnkClone_fn_7100730d0c, u32, 0x5c>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100730d50;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100730d50> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100730d50, u32, 0x60>(void*, char*);
+struct UnkClone_fn_7100730d9c;
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldValue<UnkClone_fn_7100730d9c, u32, 0x60>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100730de0;
+const base::reflection::CType* fn_7100014768();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100730de0> {
+    static const CType* type() { return fn_7100014768(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100730de0, u32, 0x78>(void*, char*);
+struct UnkClone_fn_7100730e2c;
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldValue<UnkClone_fn_7100730e2c, u32, 0x78>(void*, char*, base::reflection::UnkReflValue* const*);
 struct UnkClone_fn_7100730e70;
 const base::reflection::CType* fn_7100014768();
 template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100730e70> {
@@ -5170,45 +5196,3 @@ struct UnkClone_fn_7100aad3c4;
 template base::UnkNamedObject* base::refl_RegisterNamed<UnkClone_fn_7100aad3c4>(base::UnkNamedRegistry*, base::UnkNamedObject*, const char*);
 struct UnkClone_fn_7100ab005c;
 template base::UnkNamedObject* base::refl_RegisterNamed<UnkClone_fn_7100ab005c>(base::UnkNamedRegistry*, base::UnkNamedObject*, const char*);
-struct UnkClone_fn_7100ab5ac4;
-template base::UnkNamedObject* base::refl_RegisterNamed<UnkClone_fn_7100ab5ac4>(base::UnkNamedRegistry*, base::UnkNamedObject*, const char*);
-struct UnkClone_fn_7100ab5fdc;
-void fn_7100014948(void* e, const base::global::CStrId& name, u32 value);
-void fn_7100ab5fdc(void* e) {
-    fn_7100014948(e, base::global::CStrId("None", true), 0x0);
-    fn_7100014948(e, base::global::CStrId("Pooled", true), 0x1);
-    fn_7100014948(e, base::global::CStrId("Traking", true), 0x2);
-    fn_7100014948(e, base::global::CStrId("Invalid", true), 0x7fffffff);
-}
-struct UnkClone_fn_7100ab90f0;
-template void base::reflection::refl_SetDynamicValue<UnkClone_fn_7100ab90f0>(char*, base::reflection::UnkReflObject*);
-struct UnkClone_fn_7100aba508;
-const base::reflection::CType* fn_7100ab3d84();
-bool fn_7100ac3108(char* s);
-template <> struct base::reflection::UnkCastTraits<UnkClone_fn_7100aba508> {
-    static const CType* type() { return fn_7100ab3d84(); }
-    static bool base(char* s) { return fn_7100ac3108(s); }
-};
-template bool base::reflection::refl_CallAndCastField<UnkClone_fn_7100aba508, 0x10, 0x5f0>(char*);
-struct UnkClone_fn_7100abbc80;
-extern char g_unk_7101a70eb0[];
-template <> struct base::UnkDtorTraits<UnkClone_fn_7100abbc80> {
-    static char* vtable() { return g_unk_7101a70eb0; }
-};
-template void base::refl_RefPairArrayDeletingDtor<UnkClone_fn_7100abbc80, 0xc, 0x48, 0, 8>(char*);
-struct UnkClone_fn_7100ac0400;
-void fn_7100014948(void* e, const base::global::CStrId& name, u32 value);
-void fn_7100ac0400(void* e) {
-    fn_7100014948(e, base::global::CStrId("IMPACT", true), 0x0);
-    fn_7100014948(e, base::global::CStrId("IMPACT_ATTACKER", true), 0x1);
-    fn_7100014948(e, base::global::CStrId("NONE", true), 0x2);
-    fn_7100014948(e, base::global::CStrId("Invalid", true), 0x7fffffff);
-}
-struct UnkClone_fn_7100ac1e38;
-extern char g_unk_7101a967a8[];
-void fn_7100ac2e00(char*);
-template <> struct base::UnkDtorTraits<UnkClone_fn_7100ac1e38> {
-    static char* vtable() { return g_unk_7101a967a8; }
-    static void base(char* p) { fn_7100ac2e00(p); }
-};
-template void base::refl_Dtor<UnkClone_fn_7100ac1e38, base::UnkStrIdAt<0x5e0>, base::UnkRefPtrAt<0x5d8>>(char*);
