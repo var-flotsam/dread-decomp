@@ -35,6 +35,7 @@ const base::reflection::CClass* fn_71008e45d0();
 const base::reflection::CClass* fn_710090f02c();
 const base::reflection::CClass* fn_7100912a38();
 const base::reflection::CClass* fn_710091a864();
+const base::reflection::CClass* fn_7100922b8c();
 const base::reflection::CClass* fn_7100925fc0();
 const base::reflection::CClass* fn_7100937770();
 const base::reflection::CClass* fn_7100951424();
@@ -71,6 +72,7 @@ const base::reflection::CType* fn_7100009658();
 const base::reflection::CType* fn_710000d228();
 const base::reflection::CType* fn_7100014768();
 extern base::global::CStrId g_unk_7101d470e0;
+extern base::global::CStrId g_unk_7172737528;
 extern base::global::CStrId g_unk_7172737e68;
 extern base::global::CStrId g_unk_7172739f38;
 extern base::global::CStrId g_unk_717273e250;
@@ -99,6 +101,66 @@ extern base::global::CStrId g_unk_71727c9960;
 extern base::global::CStrId g_unk_71729dbbf8;
 extern base::global::CStrId g_unk_7172a065d8;
 extern base::global::CStrId g_unk_7172a06900;
+struct UnkRefl_fn_710091cc4c;
+template <>
+struct base::reflection::UnkReflStatic<UnkRefl_fn_710091cc4c> {
+    static constexpr const char* name = "MAGNET_SLIDING_BLOCK";
+};
+template const base::global::CStrId& base::reflection::refl_GetStaticStrId<UnkRefl_fn_710091cc4c>();
+struct UnkRefl_fn_710091d5f8;
+template <>
+struct base::reflection::UnkReflStatic<UnkRefl_fn_710091d5f8> {
+    static constexpr const char* name = "ZIPLINE_RAIL";
+};
+template const base::global::CStrId& base::reflection::refl_GetStaticStrId<UnkRefl_fn_710091d5f8>();
+struct UnkRefl_fn_710091f6bc;
+template <>
+struct base::reflection::UnkReflStatic<UnkRefl_fn_710091f6bc> {
+    static constexpr const char* name = "MAGNET_SLIDING_BLOCK_RAIL";
+    static UnkReflObject* find(void* o, const base::global::CStrId& n) { return fn_710023341c(o, n); }
+    static const CClass* type() { return fn_7100922b8c(); }
+    static bool is_a(const CClass* c, const CClass* b) { return fn_710009d50c(c, b); }
+};
+template base::reflection::UnkReflObject* base::reflection::refl_FindTyped<UnkRefl_fn_710091f6bc>(void*);
+struct UnkRefl_fn_710092139c;
+template <>
+struct base::reflection::UnkReflStatic<UnkRefl_fn_710092139c> {
+    static constexpr const char* name = "MAGNET_SLIDING_BLOCK";
+};
+template const base::global::CStrId& base::reflection::refl_GetStaticStrId<UnkRefl_fn_710092139c>();
+struct UnkRefl_fn_71009214b0;
+template <>
+struct base::reflection::UnkReflStatic<UnkRefl_fn_71009214b0> {
+    static const base::global::CStrId& source() { return g_unk_7172737528; }
+};
+template const base::global::CStrId& base::reflection::refl_GetStaticStrIdCopy<UnkRefl_fn_71009214b0>();
+struct UnkRefl_fn_71009217a4;
+template <>
+struct base::reflection::UnkReflStatic<UnkRefl_fn_71009217a4> {
+    static constexpr u32 flags = 0xf;
+};
+template void base::reflection::refl_Register<UnkRefl_fn_71009217a4>(void*);
+struct UnkRefl_fn_71009224dc;
+template <>
+struct base::reflection::UnkReflStatic<UnkRefl_fn_71009224dc> {
+    static constexpr const char* name = "MOVEMENT";
+    static UnkReflObject* find(void* o, const base::global::CStrId& n) { return fn_710023341c(o, n); }
+    static const CClass* type() { return fn_710091a864(); }
+    static bool is_a(const CClass* c, const CClass* b) { return fn_710009d50c(c, b); }
+};
+template base::reflection::UnkReflObject* base::reflection::refl_FindTyped<UnkRefl_fn_71009224dc>(void*);
+struct UnkRefl_fn_7100922740;
+template <>
+struct base::reflection::UnkReflStatic<UnkRefl_fn_7100922740> {
+    static constexpr const char* name = "MAGNET_SLIDING_BLOCK";
+};
+template const base::global::CStrId& base::reflection::refl_GetStaticStrId<UnkRefl_fn_7100922740>();
+struct UnkRefl_fn_7100923018;
+template <>
+struct base::reflection::UnkReflStatic<UnkRefl_fn_7100923018> {
+    static constexpr const char* name = "MAGNET_SLIDING_BLOCK_RAIL";
+};
+template const base::global::CStrId& base::reflection::refl_GetStaticStrId<UnkRefl_fn_7100923018>();
 struct UnkRefl_fn_710092482c;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_710092482c> {

@@ -1707,3 +1707,416 @@ void refl_OwnerVecInsert(UnkVector<UnkCloneOwnerVecHandle<Tag>>* v, UnkCloneOwne
     ++v->count;
 }
 }  // namespace base
+
+// A two-alternative value: 1 holds a string id and a value of `Size` bytes with an out-of-line
+// destructor (a reflected value in most copies), 2 a 16-byte pair, 0 is empty. Assigning a pair
+// or another variant's pair resets first (fn_71000c3c14, fn_71000c3cc0 and their shape copies).
+namespace base {
+template <class Tag, u64 Size>
+struct UnkStrIdValueVariant {
+    struct Pair {
+        u64 a, b;
+    };
+    union {
+        struct {
+            UnkStrIdMember id;
+            UnkCloneDtorElem<Tag, Size> value;
+        } named;
+        Pair pair;
+    };
+    u32 state;
+
+    void Reset() {
+        switch (state) {
+        case 1:
+            named.value.~UnkCloneDtorElem();
+            named.id.~UnkStrIdMember();
+            state = 0;
+            break;
+        case 2:
+            state = 0;
+            break;
+        }
+    }
+    UnkStrIdValueVariant& operator=(const Pair& p) {
+        if (static_cast<const void*>(&p) != this) {
+            u64 a = p.a, b = p.b;
+            Reset();
+            state = 2;
+            pair.a = a;
+            pair.b = b;
+        }
+        return *this;
+    }
+    UnkStrIdValueVariant& AssignPair(const UnkStrIdValueVariant& other) {
+        if (this != &other) {
+            Reset();
+            state = other.state;
+            pair = other.pair;
+        }
+        return *this;
+    }
+};
+
+template <class Tag, u64 Size>
+UnkStrIdValueVariant<Tag, Size>& refl_VariantAssign(UnkStrIdValueVariant<Tag, Size>* self,
+                                                   const UnkStrIdValueVariant<Tag, Size>* other) {
+    return self->AssignPair(*other);
+}
+
+template <class Tag, u64 Size>
+UnkStrIdValueVariant<Tag, Size>& refl_VariantAssignPair(UnkStrIdValueVariant<Tag, Size>* self,
+                                                        const typename UnkStrIdValueVariant<Tag, Size>::Pair* p) {
+    return *self = *p;
+}
+}  // namespace base
+
+// Destroys a keyed array of values with an out-of-line destructor (the UnkCloneKeyedArray
+// layout; 0x18-byte reflected values in most copies): releases the keys, destroys the
+// values, then frees both (fn_710009abf8 and its shape copies).
+namespace base {
+template <class Tag, class V>
+struct UnkKeyedValueArray {
+    V* values;
+    UnkStrIdMember* keys;
+    u32 count;
+    u32 capacity;
+    u32 field_0x18;
+    u32 flags;
+    UnkAllocator* allocator;
+
+    __attribute__((always_inline)) ~UnkKeyedValueArray() {
+        if (keys && count)
+            for (u64 i = 0; i < count; ++i)
+                keys[i].~UnkStrIdMember();
+        if (values && count)
+            for (u64 i = 0; i < count; ++i)
+                values[i].~V();
+        count = 0;
+        if (keys)
+            allocator->vf_0x48(keys);
+        if (values)
+            allocator->vf_0x48(values);
+    }
+};
+
+// The array is at `Offset` in the object destroyed.
+template <class Tag, class V, u32 Offset>
+void refl_KeyedValueArrayDtor(char* self) {
+    reinterpret_cast<UnkKeyedValueArray<Tag, V>*>(self + Offset)->~UnkKeyedValueArray();
+}
+}  // namespace base
+
+// Reads a value from a keyed array of reflected values at +0x20 (UnkKeyedValueArray) into `out`,
+// converted to the traits' type; false when the key is missing or the value is empty
+// (fn_710006d11c and its copies, one per value type).
+namespace base::reflection {
+// A typed pointer: a type descriptor and the object it describes.
+struct UnkTypedRef {
+    const CType* type;
+    void* ptr;
+};
+}  // namespace base::reflection
+
+void fn_71000a16e0(base::reflection::UnkTypedRef* out, const char* type, void* data);
+bool fn_710009d7a8(const base::reflection::CType* type, base::reflection::UnkTypedRef* dst,
+                   base::reflection::UnkTypedRef* src);
+
+namespace base {
+template <class Tag>
+struct UnkKeyedValueLookup : UnkKeyedValueArray<Tag, reflection::UnkReflValue> {
+    reflection::UnkReflValue* End() { return &this->values[this->count]; }
+    reflection::UnkReflValue* Find(const UnkStrIdMember& key) {
+        for (u64 i = 0; i < this->count; ++i)
+            if (this->keys[i].data == key.data)
+                return &this->values[i];
+        return End();
+    }
+};
+
+template <class Tag>
+bool refl_GetKeyedValue(char* self, const UnkStrIdMember* key, void* out) {
+    using namespace reflection;
+    auto* a = reinterpret_cast<UnkKeyedValueLookup<Tag>*>(self + 0x20);
+    UnkReflValue* v = a->Find(*key);
+    if (v == a->End())
+        return false;
+    const char* type = v->type;
+    if (!type)
+        return false;
+    void* p = v->field_0x14 == 1 || *reinterpret_cast<const u64*>(type + 0x18) > 8 ? v->field_0x0 : v;
+    if (!p)
+        return false;
+    const CType* t = UnkFieldTraits<Tag>::type();
+    UnkTypedRef dst{UnkFieldTraits<Tag>::type(), out};
+    UnkTypedRef src;
+    fn_71000a16e0(&src, type, p);
+    return fn_710009d7a8(t, &dst, &src);
+}
+}  // namespace base
+
+// The deleting destructor of a class holding a reflected value at +0x18, with four 16-byte
+// members after it that clear themselves (fn_71002fa6cc and its copies). UnkValueHolderTraits
+// names the base class's vtable.
+namespace base {
+template <class Tag>
+struct UnkValueHolderTraits;  // vtable()
+
+struct UnkClearedPair {
+    u64 a, b;
+    ~UnkClearedPair() {
+        a = 0;
+        b = 0;
+    }
+};
+
+template <class Tag>
+struct UnkValueHolder {
+    void* vtable;
+    u64 field_0x8;
+    u64 field_0x10;
+    reflection::UnkReflValue value;
+    UnkClearedPair pairs[4];
+};
+
+template <class Tag>
+void refl_ValueHolderDeletingDtor(UnkValueHolder<Tag>* self) {
+    for (int i = 3; i >= 0; --i)
+        self->pairs[i].~UnkClearedPair();
+    self->vtable = UnkValueHolderTraits<Tag>::vtable() + 0x10;
+    fn_71000a1c60(&self->value);
+    ::operator delete(self);
+}
+}  // namespace base
+
+// A copy constructor of a 0x48-byte class derived from a polymorphic base of two words: the
+// base's vtable and copy, then 0x1c bytes from 0x10 and six u32 fields (0x34 is padding), then
+// the class's vtable (fn_710098e094 and its copies, one per derived class).
+namespace base {
+template <class Tag>
+void refl_DerivedCopyCtor48(char* self, const char* other) {
+    *reinterpret_cast<char**>(self) = UnkCopyCtorTraits<Tag>::base_vtable() + 0x10;
+    __builtin_memcpy(self + 8, other + 8, 8);
+    __builtin_memcpy(self + 0x10, other + 0x10, 0x1c);
+    static constexpr u32 fields[] = {0x2c, 0x30, 0x38, 0x3c, 0x40, 0x44};
+    for (u32 off : fields)
+        *reinterpret_cast<u32*>(self + off) = *reinterpret_cast<const u32*>(other + off);
+    *reinterpret_cast<char**>(self) = UnkCopyCtorTraits<Tag>::vtable() + 0x10;
+}
+}  // namespace base
+
+// A copy constructor through two polymorphic bases: the first base's vtable and two words, the
+// second base's vtable and a string id at 0x18 (retained), then 0x14 bytes from 0x20 and the
+// class's vtable (fn_7100bf7624 and its copies, one per class). UnkCopyCtorTraits names the
+// first base's (base_vtable), the second base's (mid_vtable) and the class's vtables.
+namespace base {
+template <class Tag>
+void refl_StrIdCopyCtor(char* self, const char* other) {
+    using Traits = UnkCopyCtorTraits<Tag>;
+    *reinterpret_cast<char**>(self) = Traits::base_vtable() + 0x10;
+    __builtin_memcpy(self + 8, other + 8, 16);
+    *reinterpret_cast<char**>(self) = Traits::mid_vtable() + 0x10;
+    global::UnkStringData* d = *reinterpret_cast<global::UnkStringData* const*>(other + 0x18);
+    *reinterpret_cast<global::UnkStringData**>(self + 0x18) = d;
+    if (&g_unk_7101d47108->empty != d)
+        ++d->ref_count;
+    __builtin_memcpy(self + 0x20, other + 0x20, 0x14);
+    *reinterpret_cast<char**>(self) = Traits::vtable() + 0x10;
+}
+}  // namespace base
+
+// A keyed-node iterator (node at 0, key at +0 and value at +8 of the node) whose current pair
+// has an out-of-line destructor (UnkCloneDtorTraits); assigning copies the node and re-points
+// or resets the pair (fn_7100239cf4 and its shape copies).
+namespace base {
+template <class Tag, u64 Size>
+struct UnkKeyedPairValue {
+    union {
+        UnkCloneDtorElem<Tag, Size> pair;
+        struct {
+            char* key;
+            char* value;
+        } ref;
+    };
+    s32 state;  // 0 empty, 1 owns `pair`, 2 refers through `ref`
+
+    void Reset() {
+        if (state == 2) {
+        } else if (state == 1) {
+            pair.~UnkCloneDtorElem();
+        } else {
+            return;
+        }
+        state = 0;
+    }
+    void SetRef(char* key, char* value) {
+        Reset();
+        state = 2;
+        ref.key = key;
+        ref.value = value;
+    }
+};
+
+template <class Tag, u64 Size>
+struct UnkKeyedPairIter {
+    char* node;
+    UnkKeyedPairValue<Tag, Size> current;
+};
+
+template <class Tag, u64 Size>
+UnkKeyedPairIter<Tag, Size>* refl_KeyedPairIterAssign(UnkKeyedPairIter<Tag, Size>* self,
+                                                      const UnkKeyedPairIter<Tag, Size>* other) {
+    if (self != other) {
+        self->node = other->node;
+        if (char* n = self->node)
+            self->current.SetRef(n, n + 8);
+        else
+            self->current.Reset();
+    }
+    return self;
+}
+}  // namespace base
+
+// Sets a 4x4 matrix of f32 at +0x18 when it differs from the current one (read through
+// fn_710002614c), then updates the flags at +0x70 with a global mask and marks the object dirty
+// (fn_71001f30c0, fn_71001f3d60 and their copies; CurFirst: the comparison's operand order).
+struct UnkMatrix44 {
+    f32 m[16];
+};
+const UnkMatrix44& fn_710002614c(const UnkMatrix44* m);
+
+namespace base {
+template <class Tag>
+struct UnkSetMatrixTraits;  // mask(): the global the flags are cleared with
+
+template <class Tag, bool CurFirst>
+void refl_SetMatrix(char* self, const UnkMatrix44* m) {
+    UnkMatrix44* cur = reinterpret_cast<UnkMatrix44*>(self + 0x18);
+    const UnkMatrix44* now = &fn_710002614c(cur);
+    if ((CurFirst ? __builtin_memcmp(now, m, sizeof(UnkMatrix44)) : __builtin_memcmp(m, now, sizeof(UnkMatrix44))) == 0)
+        return;
+    for (int i = 0; i < 16; ++i)
+        cur->m[i] = m->m[i];
+    u32& flags = *reinterpret_cast<u32*>(self + 0x70);
+    flags = (flags | 8) & ~UnkSetMatrixTraits<Tag>::mask();
+    self[0xfa] = 1;
+}
+}  // namespace base
+
+// A chained hash map of string-id keys to values of `Size` bytes copied by an out-of-line
+// constructor (UnkValueMapTraits::copy; reflected values in most copies). Nodes are linked into
+// a bucket chain and a list of all nodes (tail at +0x38, head at +0x40). Insert takes a key and
+// a value (fn_71000d6914 and its shape copies). The node's list link is stored through a raw
+// pointer, so the tail is reloaded after it, as in the original.
+namespace base {
+template <class Tag>
+struct UnkValueMapTraits;  // copy(dst, src): the value's copy constructor
+
+// The string data's hash words.
+struct UnkHashedStringData {
+    char unk_0x0[0x30];
+    u32 hash_lo;
+    u32 hash_hi;
+};
+
+template <class Tag, u64 Size, global::UnkStringPool*& Pool>
+struct UnkValueMapNode {
+    global::UnkStringData* key;
+    UnkCloneBlock<Tag, Size> value;
+    UnkValueMapNode* next;
+    UnkValueMapNode* prev;
+    UnkValueMapNode* chain;
+
+    UnkValueMapNode(global::UnkStringData* const* k, const void* v) {
+        global::UnkStringData* d = *k;
+        key = d;
+        if (&Pool->empty != d)
+            ++d->ref_count;
+        UnkValueMapTraits<Tag>::copy(&value, v);
+        prev = nullptr;
+        chain = nullptr;
+        next = nullptr;
+    }
+};
+
+template <class Tag, u64 Size, global::UnkStringPool*& Pool>
+struct UnkValueMap {
+    using Node = UnkValueMapNode<Tag, Size, Pool>;
+    UnkAllocator* allocator;
+    u32 flags;
+    u32 count;
+    Node** buckets;
+    u32 bucket_used;
+    u32 bucket_count;
+    u64 field_0x20;
+    u64 field_0x28;
+    u64 field_0x30;
+    Node* tail;
+    Node* head;
+
+    void Insert(global::UnkStringData* const* key, const void* value) {
+        Node** b = nullptr;
+        if (bucket_used) {
+            const auto* d = reinterpret_cast<const UnkHashedStringData*>(*key);
+            u32 h = d->hash_lo ^ d->hash_hi;
+            u32 i = h % bucket_count;
+            b = buckets + i;
+        }
+        Node* old = *b;
+        auto* n = static_cast<Node*>(allocator->vf_0x40(sizeof(Node), 8, flags));
+        if (n)
+            new (n) Node(key, value);
+        n->chain = old;
+        *b = n;
+        if (!head)
+            head = n;
+        else if (Node* t = tail) {
+            *reinterpret_cast<Node**>(reinterpret_cast<char*>(n) + __builtin_offsetof(Node, prev)) = t;
+            tail->next = n;
+        }
+        tail = n;
+        ++count;
+    }
+};
+
+template <class Tag, u64 Size, global::UnkStringPool*& Pool>
+void refl_ValueMapInsert(UnkValueMap<Tag, Size, Pool>* m, global::UnkStringData* const* key, const void* value) {
+    m->Insert(key, value);
+}
+}  // namespace base
+
+// A copy constructor of a 0xd0-byte class: the base resets its u32 at +8 and stores its vtable,
+// then the fields are copied in runs (as their struct copies lower), the shared pointer at 0xc8
+// is retained (count at +8, atomically), and the class's vtable is stored (fn_7100b8eec8 and its
+// copies, one per class).
+namespace base {
+template <class T>
+inline void refl_CopyField(char* self, const char* other, u32 off) {
+    *reinterpret_cast<T*>(self + off) = *reinterpret_cast<const T*>(other + off);
+}
+
+template <class Tag>
+void refl_SharedCopyCtor(char* self, const char* other) {
+    *reinterpret_cast<u32*>(self + 8) = 0;
+    *reinterpret_cast<char**>(self) = UnkCopyCtorTraits<Tag>::base_vtable() + 0x10;
+    __builtin_memcpy(self + 0x10, other + 0x10, 0x20);
+    __builtin_memcpy(self + 0x30, other + 0x30, 0x20);
+    refl_CopyField<u32>(self, other, 0x50);
+    refl_CopyField<u32>(self, other, 0x54);
+    refl_CopyField<u8>(self, other, 0x58);
+    __builtin_memcpy(self + 0x60, other + 0x60, 0x10);
+    refl_CopyField<u32>(self, other, 0x70);
+    __builtin_memcpy(self + 0x74, other + 0x74, 3);
+    __builtin_memcpy(self + 0x78, other + 0x78, 0x20);
+    refl_CopyField<u32>(self, other, 0x98);
+    refl_CopyField<u32>(self, other, 0x9c);
+    refl_CopyField<u8>(self, other, 0xa0);
+    __builtin_memcpy(self + 0xa8, other + 0xa8, 0x18);
+    refl_CopyField<u64>(self, other, 0xc0);
+    char* p = *reinterpret_cast<char* const*>(other + 0xc8);
+    *reinterpret_cast<char**>(self + 0xc8) = p;
+    if (p)
+        __atomic_fetch_add(reinterpret_cast<u64*>(p + 8), 1, __ATOMIC_RELAXED);
+    *reinterpret_cast<char**>(self) = UnkCopyCtorTraits<Tag>::vtable() + 0x10;
+}
+}  // namespace base

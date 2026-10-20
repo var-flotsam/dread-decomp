@@ -97,11 +97,9 @@ const base::reflection::CClass* fn_71009120e4();
 const base::reflection::CClass* fn_7100912a38();
 const base::reflection::CClass* fn_7100917368();
 const base::reflection::CClass* fn_7100917f54();
-const base::reflection::CClass* fn_710091a864();
 const base::reflection::CClass* fn_710091c004();
 const base::reflection::CClass* fn_710091ce44();
 const base::reflection::CClass* fn_710091d84c();
-const base::reflection::CClass* fn_7100922b8c();
 const base::reflection::CClass* fn_71009241fc();
 const base::reflection::CClass* fn_7100924b84();
 const base::reflection::CClass* fn_7100939af4();
@@ -150,6 +148,7 @@ const base::reflection::CType* fn_7100009658();
 const base::reflection::CType* fn_710000abbc();
 const base::reflection::CType* fn_710000d228();
 const base::reflection::CType* fn_7100014768();
+const base::reflection::CType* fn_710025d654();
 extern base::global::CStrId g_unk_7101d470e0;
 extern base::global::CStrId g_unk_71726db740;
 extern base::global::CStrId g_unk_7172711530;
@@ -172,7 +171,6 @@ extern base::global::CStrId g_unk_71727325a8;
 extern base::global::CStrId g_unk_7172733330;
 extern base::global::CStrId g_unk_7172734630;
 extern base::global::CStrId g_unk_7172735480;
-extern base::global::CStrId g_unk_7172737528;
 struct UnkRefl_fn_7100007e80;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_7100007e80> {
@@ -189,6 +187,14 @@ struct base::reflection::UnkReflStatic<UnkRefl_fn_710001b9f0> {
     static constexpr u32 field_0x10 = 0x2;
 };
 template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_710001b9f0>();
+struct UnkRefl_fn_710008fa30;
+template <>
+struct base::reflection::UnkReflStatic<UnkRefl_fn_710008fa30> {
+    static constexpr const char* name = "UniqueId";
+    static const CType* type() { return fn_7100009658(); }
+    static constexpr u32 field_0x10 = 0x1;
+};
+template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_710008fa30>();
 struct UnkRefl_fn_710008fb40;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_710008fb40> {
@@ -261,6 +267,14 @@ struct base::reflection::UnkReflStatic<UnkRefl_fn_71000904d0> {
     static constexpr u32 field_0x10 = 0x4;
 };
 template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_71000904d0>();
+struct UnkRefl_fn_71000905e0;
+template <>
+struct base::reflection::UnkReflStatic<UnkRefl_fn_71000905e0> {
+    static constexpr const char* name = "AssetHash";
+    static const CType* type() { return fn_7100005178(); }
+    static constexpr u32 field_0x10 = 0x1;
+};
+template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_71000905e0>();
 struct UnkRefl_fn_71000906f0;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_71000906f0> {
@@ -285,6 +299,30 @@ struct base::reflection::UnkReflStatic<UnkRefl_fn_7100090b30> {
     static constexpr u32 field_0x10 = 0x2;
 };
 template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100090b30>();
+struct UnkRefl_fn_7100090d50;
+template <>
+struct base::reflection::UnkReflStatic<UnkRefl_fn_7100090d50> {
+    static constexpr const char* name = "EventGroup";
+    static const CType* type() { return fn_7100009658(); }
+    static constexpr u32 field_0x10 = 0x1;
+};
+template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100090d50>();
+struct UnkRefl_fn_7100090e60;
+template <>
+struct base::reflection::UnkReflStatic<UnkRefl_fn_7100090e60> {
+    static constexpr const char* name = "TrackGroup";
+    static const CType* type() { return fn_7100009658(); }
+    static constexpr u32 field_0x10 = 0x1;
+};
+template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100090e60>();
+struct UnkRefl_fn_7100090f70;
+template <>
+struct base::reflection::UnkReflStatic<UnkRefl_fn_7100090f70> {
+    static constexpr const char* name = "Group";
+    static const CType* type() { return fn_7100009658(); }
+    static constexpr u32 field_0x10 = 0x1;
+};
+template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100090f70>();
 struct UnkRefl_fn_7100091080;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_7100091080> {
@@ -301,6 +339,14 @@ struct base::reflection::UnkReflStatic<UnkRefl_fn_7100091190> {
     static constexpr u32 field_0x10 = 0x2;
 };
 template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100091190>();
+struct UnkRefl_fn_71000912a0;
+template <>
+struct base::reflection::UnkReflStatic<UnkRefl_fn_71000912a0> {
+    static constexpr const char* name = "EmptyTrack";
+    static const CType* type() { return fn_710000d228(); }
+    static constexpr u32 field_0x10 = 0x1;
+};
+template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_71000912a0>();
 struct UnkRefl_fn_71000913b0;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_71000913b0> {
@@ -381,6 +427,14 @@ struct base::reflection::UnkReflStatic<UnkRefl_fn_7100091d40> {
     static constexpr u32 field_0x10 = 0x2;
 };
 template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100091d40>();
+struct UnkRefl_fn_7100091e50;
+template <>
+struct base::reflection::UnkReflStatic<UnkRefl_fn_7100091e50> {
+    static constexpr const char* name = "SPointChClassSelectEnabled";
+    static const CType* type() { return fn_710000d228(); }
+    static constexpr u32 field_0x10 = 0x1;
+};
+template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100091e50>();
 struct UnkRefl_fn_7100091f60;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_7100091f60> {
@@ -493,6 +547,14 @@ struct base::reflection::UnkReflStatic<UnkRefl_fn_7100092f50> {
     static constexpr u32 field_0x10 = 0x2;
 };
 template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100092f50>();
+struct UnkRefl_fn_7100093060;
+template <>
+struct base::reflection::UnkReflStatic<UnkRefl_fn_7100093060> {
+    static constexpr const char* name = "bExcludeFromSchema";
+    static const CType* type() { return fn_710000d228(); }
+    static constexpr u32 field_0x10 = 0x1;
+};
+template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100093060>();
 struct UnkRefl_fn_7100093170;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_7100093170> {
@@ -533,6 +595,14 @@ struct base::reflection::UnkReflStatic<UnkRefl_fn_7100234780> {
     static constexpr u32 field_0x10 = 0x2;
 };
 template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100234780>();
+struct UnkRefl_fn_710025d550;
+template <>
+struct base::reflection::UnkReflStatic<UnkRefl_fn_710025d550> {
+    static constexpr const char* name = "VisibleNameOffset";
+    static const CType* type() { return fn_710025d654(); }
+    static constexpr u32 field_0x10 = 0x1;
+};
+template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_710025d550>();
 struct UnkRefl_fn_710025dbb0;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_710025dbb0> {
@@ -3645,63 +3715,3 @@ struct base::reflection::UnkReflStatic<UnkRefl_fn_710091af4c> {
     static constexpr const char* name = "MOVEMENT";
 };
 template const base::global::CStrId& base::reflection::refl_GetStaticStrId<UnkRefl_fn_710091af4c>();
-struct UnkRefl_fn_710091cc4c;
-template <>
-struct base::reflection::UnkReflStatic<UnkRefl_fn_710091cc4c> {
-    static constexpr const char* name = "MAGNET_SLIDING_BLOCK";
-};
-template const base::global::CStrId& base::reflection::refl_GetStaticStrId<UnkRefl_fn_710091cc4c>();
-struct UnkRefl_fn_710091d5f8;
-template <>
-struct base::reflection::UnkReflStatic<UnkRefl_fn_710091d5f8> {
-    static constexpr const char* name = "ZIPLINE_RAIL";
-};
-template const base::global::CStrId& base::reflection::refl_GetStaticStrId<UnkRefl_fn_710091d5f8>();
-struct UnkRefl_fn_710091f6bc;
-template <>
-struct base::reflection::UnkReflStatic<UnkRefl_fn_710091f6bc> {
-    static constexpr const char* name = "MAGNET_SLIDING_BLOCK_RAIL";
-    static UnkReflObject* find(void* o, const base::global::CStrId& n) { return fn_710023341c(o, n); }
-    static const CClass* type() { return fn_7100922b8c(); }
-    static bool is_a(const CClass* c, const CClass* b) { return fn_710009d50c(c, b); }
-};
-template base::reflection::UnkReflObject* base::reflection::refl_FindTyped<UnkRefl_fn_710091f6bc>(void*);
-struct UnkRefl_fn_710092139c;
-template <>
-struct base::reflection::UnkReflStatic<UnkRefl_fn_710092139c> {
-    static constexpr const char* name = "MAGNET_SLIDING_BLOCK";
-};
-template const base::global::CStrId& base::reflection::refl_GetStaticStrId<UnkRefl_fn_710092139c>();
-struct UnkRefl_fn_71009214b0;
-template <>
-struct base::reflection::UnkReflStatic<UnkRefl_fn_71009214b0> {
-    static const base::global::CStrId& source() { return g_unk_7172737528; }
-};
-template const base::global::CStrId& base::reflection::refl_GetStaticStrIdCopy<UnkRefl_fn_71009214b0>();
-struct UnkRefl_fn_71009217a4;
-template <>
-struct base::reflection::UnkReflStatic<UnkRefl_fn_71009217a4> {
-    static constexpr u32 flags = 0xf;
-};
-template void base::reflection::refl_Register<UnkRefl_fn_71009217a4>(void*);
-struct UnkRefl_fn_71009224dc;
-template <>
-struct base::reflection::UnkReflStatic<UnkRefl_fn_71009224dc> {
-    static constexpr const char* name = "MOVEMENT";
-    static UnkReflObject* find(void* o, const base::global::CStrId& n) { return fn_710023341c(o, n); }
-    static const CClass* type() { return fn_710091a864(); }
-    static bool is_a(const CClass* c, const CClass* b) { return fn_710009d50c(c, b); }
-};
-template base::reflection::UnkReflObject* base::reflection::refl_FindTyped<UnkRefl_fn_71009224dc>(void*);
-struct UnkRefl_fn_7100922740;
-template <>
-struct base::reflection::UnkReflStatic<UnkRefl_fn_7100922740> {
-    static constexpr const char* name = "MAGNET_SLIDING_BLOCK";
-};
-template const base::global::CStrId& base::reflection::refl_GetStaticStrId<UnkRefl_fn_7100922740>();
-struct UnkRefl_fn_7100923018;
-template <>
-struct base::reflection::UnkReflStatic<UnkRefl_fn_7100923018> {
-    static constexpr const char* name = "MAGNET_SLIDING_BLOCK_RAIL";
-};
-template const base::global::CStrId& base::reflection::refl_GetStaticStrId<UnkRefl_fn_7100923018>();

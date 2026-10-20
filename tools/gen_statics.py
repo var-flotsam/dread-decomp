@@ -44,6 +44,8 @@ NAME_RE = re.compile(r"\b(?:fn|g_unk)_[0-9a-f]{10}\b")
 # kind -> verified reference address
 REFERENCES = {
     "key": 0x7100007E80,   # refl_GetAttrKey: "Description"
+    # The same for keys whose u32 is 1: it shares a register with the string-id flag.
+    "key_one": 0x710008FA30,  # refl_GetAttrKey (its family includes "EventGroup", fn_7100090d50)
     "strid": 0x7100302290,  # refl_GetStaticStrId: "ABILITY"
     "strid_copy": 0x71004F0F04,  # refl_GetStaticStrIdCopy
     "find": 0x7100286AD4,  # refl_FindTyped
@@ -130,7 +132,7 @@ def emit(kind: str, addr: int, f: dict, decls: set[str]) -> list[str] | None:
                        f"    static const CClass* type() {{ return fn_{typ:x}(); }}",
                        f"    static bool is_a(const CClass* c, const CClass* b) {{ return fn_{isa:x}(c, b); }}", "};",
                        f"template base::reflection::UnkReflObject* base::reflection::refl_FindTyped<{tag}>(void*);"]
-    if kind == "key":
+    if kind in ("key", "key_one"):
         if "type" not in f or "u32" not in f:
             return None
         decls.add(f"const base::reflection::CType* fn_{f['type']:x}();")
