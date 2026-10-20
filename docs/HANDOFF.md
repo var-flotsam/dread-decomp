@@ -4,8 +4,9 @@ For the next developer, human or AI, picking up this project. Read this, then `C
 (rules and conventions), `docs/recon.md` (what's in the binary), `docs/compiler.md`
 (toolchain), and `docs/references.md` (outside projects).
 
-**Ninth session (2026-10-20, on the PC, branch `claude/sync-local-repo-4f8846`):** the shape-family
-pass, round 5 (Next steps, item 2, "Done (ninth session)"). Numbers below are current;
+**Ninth session (2026-10-20, on the PC, branches `claude/sync-local-repo-4f8846`, merged in
+var-flotsam/dread-decomp#13, and `claude/shape-round-6`):** the shape-family pass, rounds 5 and 6
+(Next steps, item 2, "Done (ninth session)"). Numbers below are current;
 `gen_lift.py` was not rerun (it skips what the other generators define).
 
 **Seventh session (2026-10-19, branch `phase-4-3-remaining-reflection`):** the full regeneration
@@ -29,13 +30,13 @@ Snapshot as of 2026-10-18 (fifth Phase 4 session; branches `phase-4-4-clones` (v
 | 4.3 Reflection | **In progress.** all 2,354 located class getters (444 in TUs with other statics, through padding); all 1,010 other `CClass` descriptor constructors (skipped TUs and getter-less types); 1,911 of 1,957 class attribute/member-field functions, 478 other registration functions plus 54 in their class getter's TU, and all 1,006 out-of-line reflected-function initialisers (`src/reflection/`, `tools/gen_reflection.py`, `tools/refl_attrs.py`). Pointer types: 993 standalone getter/constructor pairs plus 108 generated in their pointee's TU; all 238 `CEnumType` constructors; 178 standalone `CCollectionType` constructors plus those in their element class's TU (`src/reflection_types/`, `tools/gen_types.py`) |
 | Small functions | **In progress.** `tools/gen_lift.py` lifts functions of up to 512 bytes from their instructions and keeps byte-identical ones: 44,529 functions up to 2 KB, 1.78 MB (`src/lifted/`; sret functions, stack locals, a goto-based flat mode for crossing branches and loops) |
 | Guarded statics | **In progress.** `tools/gen_statics.py`: attribute keys, static string ids, typed lookups and registries built on weak function-local statics (`include/base/reflection/UnkReflStatics.h`): 765 functions, 141 KB (`src/reflection_statics/`) |
-| Repeated templates | **In progress.** `tools/gen_clones.py`: hand-matched templates instantiated once per copy (`UnkClone_fn_<addr>` tags): the named registry, `UnkVector` methods per element kind, the reflection collection iterator, a deferred set, and scan kinds (facts per candidate): destructors of string-id/refcounted members, property reads and string-id writes, enum value lists, and shape-family templates (`UnkCloneHelpers.h`): 5,770 functions, 1.18 MB (`src/clones/`) |
+| Repeated templates | **In progress.** `tools/gen_clones.py`: hand-matched templates instantiated once per copy (`UnkClone_fn_<addr>` tags): the named registry, `UnkVector` methods per element kind, the reflection collection iterator, a deferred set, and scan kinds (facts per candidate): destructors of string-id/refcounted members, property reads and string-id writes, enum value lists, and shape-family templates (`UnkCloneHelpers.h`): 6,256 functions, 1.22 MB (`src/clones/`) |
 | 4.4 Core engine types | **In progress.** String ids (`CStrId` incl. copy-assignment, `UnkStrId`), the growable array `base::UnkVector` (push, grow-at, insert, remove, clear/free, move) and its allocator interface; reflected-function initialisers now match (below) |
 | 4.5+ Boot to title screen | Not started; plan below |
 | Port | Not started (`port/` is empty) |
 
-Function status (BotW codes): `O` 79,399, `m` 3, `M` 1, `L` 1,614, `U` 23,000.
-**Game-code progress: 44.73% of bytes (8.40 MB) matching** (`tools/progress.py`; library code
+Function status (BotW codes): `O` 79,885, `m` 3, `M` 1, `L` 1,614, `U` 22,514.
+**Game-code progress: 44.92% of bytes (8.43 MB) matching** (`tools/progress.py`; library code
 excluded; 44.45% at the start of the ninth session, 39.09% at the start of the seventh). `tools/check.py` counts `src/` definitions,
 which differ slightly (matching `nn::atk` functions keep `L`; constructor aliases).
 
@@ -387,6 +388,23 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
      yet tried: 0x7100245c4c 0x7100241ddc 0x7100e02988 0x71006cc484 0x71009ba4ac
      0x71004f0ab8. Tooling note: in the Windows Bash tool, heredocs can lose backslashes; write
      patches to Python sources with the Edit tool.
+   - Done (ninth session, round 6): a new census that skips everything already in `src/` (486
+     functions). Iterator values and iterators: `index_pair_iter_assign` (16),
+     `iter_value_copy_assign_index` (14), `iter_value_from_ref` (72), `iter_value_move_ool` and
+     `iter_value_move_ool_strid` (an element with an out-of-line move constructor,
+     `UnkCloneMoveElem`; 17 + 26, the latter the round-5 leftover 0x71000d60e4),
+     `iter_value_destroy_key16` (14), `iter_value_destroy_refptr` (12). Keyed arrays:
+     `keyed_find` (26), `keyed_find_then` (20), `keyed_find_assign` (15; the original doesn't
+     tail-call the assignment, so the template uses `disable_tail_calls`). Vectors:
+     `vector_free_dtor` (10), `vector_clear_dtor` (10). Classes: `call_with_owner_id` (15),
+     `strid_dtor_at` (19), `ref_handle_copy_ctor` (20), `value_holder_dtor` (38), `zeroed_ctor`
+     (49), `dtor_call_clear` (33). Small helpers: `add_f32` (25) and `pair_counts` (35; most copies
+     return the record through x8). Left: 0x71000d15fc (an erase by `memcpy`, 25 copies: the
+     original masks the scaled index, as if the loop were idiom-recognised; no source form found),
+     0x71000d6a20 (a list walk to the i-th node, 23 copies, 67%: the counter's form),
+     0x71000de484 (20), 0x710000dc80 and 0x7100415e18 (property reads returning a reflected value
+     through x8), 0x7100142df0 (clamped colour setters), 0x71003e2ea8. In this census, families of
+     five or more `U` members still hold ~500 KB; under 100 bytes, ~30 families of 10 or more.
    - Enum static initialisers and the other per-TU static initialisers. These define
      globals, so they need the TU's data definitions (the 160 B ones are mostly lifted already).
    - Slot `0x28`/`0x30`/`0x38`/`0x48`/`0x50` helpers of other classes (need class layouts):

@@ -1823,10 +1823,10 @@ bool fn_710009d7a8(const base::reflection::CType* type, base::reflection::UnkTyp
                    base::reflection::UnkTypedRef* src);
 
 namespace base {
-template <class Tag>
-struct UnkKeyedValueLookup : UnkKeyedValueArray<Tag, reflection::UnkReflValue> {
-    reflection::UnkReflValue* End() { return &this->values[this->count]; }
-    reflection::UnkReflValue* Find(const UnkStrIdMember& key) {
+template <class Tag, class V = reflection::UnkReflValue>
+struct UnkKeyedValueLookup : UnkKeyedValueArray<Tag, V> {
+    V* End() { return &this->values[this->count]; }
+    V* Find(const UnkStrIdMember& key) {
         for (u64 i = 0; i < this->count; ++i)
             if (this->keys[i].data == key.data)
                 return &this->values[i];
@@ -2118,5 +2118,174 @@ void refl_SharedCopyCtor(char* self, const char* other) {
     if (p)
         __atomic_fetch_add(reinterpret_cast<u64*>(p + 8), 1, __ATOMIC_RELAXED);
     *reinterpret_cast<char**>(self) = UnkCopyCtorTraits<Tag>::vtable() + 0x10;
+}
+}  // namespace base
+
+// The same over an array: the iterator holds an index and an element, and its pair refers to
+// both (fn_71008932bc and its shape copies).
+namespace base {
+template <class Tag, u64 Size>
+struct UnkIndexPairIter {
+    u32 index;
+    char* element;
+    UnkKeyedPairValue<Tag, Size> current;
+};
+
+template <class Tag, u64 Size>
+UnkIndexPairIter<Tag, Size>* refl_IndexPairIterAssign(UnkIndexPairIter<Tag, Size>* self,
+                                                      const UnkIndexPairIter<Tag, Size>* other) {
+    if (self != other) {
+        self->index = other->index;
+        self->element = other->element;
+        if (char* e = self->element)
+            self->current.SetRef(reinterpret_cast<char*>(&self->index), e);
+        else
+            self->current.Reset();
+    }
+    return self;
+}
+}  // namespace base
+
+// Calls the base method, then passes a copy of the owner's string id (the owner at +0x18, its id
+// at +0x30) to a method of the member at `Offset` (fn_7100759148 and its copies). The id is a
+// union member so its release reloads the pool, as in the original.
+namespace base {
+template <class Tag>
+struct UnkCallWithIdTraits;  // base(self), call(member, id)
+
+template <class Tag, u32 Offset>
+void refl_CallWithOwnerId(char* self) {
+    UnkCallWithIdTraits<Tag>::base(self);
+    char* m = self + Offset;
+    global::UnkStringData* d =
+        *reinterpret_cast<global::UnkStringData* const*>(*reinterpret_cast<char**>(self + 0x18) + 0x30);
+    union Id {
+        UnkStrIdMember id;
+        Id() {}
+        ~Id() { id.~UnkStrIdMember(); }
+    } u;
+    u.id.data = d;
+    if (&g_unk_7101d47108->empty != d)
+        ++d->ref_count;
+    UnkCallWithIdTraits<Tag>::call(m, &u.id);
+}
+}  // namespace base
+
+// Lookups in a keyed array (UnkKeyedValueLookup) at `Offset` with values of `Size` bytes: the
+// value or null (fn_7100020320 and its copies), or a call with the value when the key is present
+// (fn_71000d7b5c and its copies; UnkKeyedFoundTraits names the call).
+namespace base {
+template <class Tag, u32 Offset, u64 Size>
+void* refl_KeyedFind(char* self, const UnkStrIdMember* key) {
+    auto* a = reinterpret_cast<UnkKeyedValueLookup<Tag, UnkCloneBlock<Tag, Size>>*>(self + Offset);
+    auto* v = a->Find(*key);
+    return v == a->End() ? nullptr : v;
+}
+
+template <class Tag>
+struct UnkKeyedFoundTraits;  // found(self, value)
+
+template <class Tag, u32 Offset, u64 Size>
+void refl_KeyedFindThen(char* self, const UnkStrIdMember* key) {
+    auto* a = reinterpret_cast<UnkKeyedValueLookup<Tag, UnkCloneBlock<Tag, Size>>*>(self + Offset);
+    auto* v = a->Find(*key);
+    if (v != a->End())
+        UnkKeyedFoundTraits<Tag>::found(self, v);
+}
+
+// An out-of-line destructor of a string id (Id) at `Offset` (fn_7100005358 and its copies).
+template <class Tag, u32 Offset, class Id>
+void refl_StrIdDtorAt(char* self) {
+    reinterpret_cast<Id*>(self + Offset)->~Id();
+}
+}  // namespace base
+
+// Copy-constructs a refcounted handle: null, then Set (fn_7100234e38 and its identical copies).
+namespace base {
+template <class Tag>
+void refl_RefHandleCopyCtor(UnkRefHandle* self, const UnkRefHandle* other) {
+    self->ptr = nullptr;
+    self->Set(other->ptr);
+}
+}  // namespace base
+
+// Assigns `value` to the value a key maps to in a keyed array at `Offset`, if present; the
+// assignment is out of line (UnkCloneAssignElem; fn_71000d7c58 and its copies). The original
+// doesn't tail-call it (probably a non-void result in the source); disable_tail_calls stands in.
+namespace base {
+template <class Tag, u32 Offset, u64 Size>
+__attribute__((disable_tail_calls)) void refl_KeyedFindAssign(char* self, const UnkStrIdMember* key,
+                                                              const UnkCloneAssignElem<Tag, Size>* value) {
+    auto* a = reinterpret_cast<UnkKeyedValueLookup<Tag, UnkCloneAssignElem<Tag, Size>>*>(self + Offset);
+    auto* v = a->Find(*key);
+    if (v != a->End())
+        *v = *value;
+}
+}  // namespace base
+
+// The value holder's complete destructor (fn_71002fa684 and its copies; see
+// refl_ValueHolderDeletingDtor).
+namespace base {
+template <class Tag>
+void refl_ValueHolderDtor(UnkValueHolder<Tag>* self) {
+    for (int i = 3; i >= 0; --i)
+        self->pairs[i].~UnkClearedPair();
+    self->vtable = UnkValueHolderTraits<Tag>::vtable() + 0x10;
+    fn_71000a1c60(&self->value);
+}
+
+// A constructor that stores the class's vtable (UnkDtorTraits) and zeroes 0x10..0x24
+// (fn_71002fa6b0 and its copies).
+template <class Tag>
+void refl_ZeroedCtor(char* self) {
+    *reinterpret_cast<char**>(self) = UnkDtorTraits<Tag>::vtable() + 0x10;
+    *reinterpret_cast<u64*>(self + 0x10) = 0;
+    *reinterpret_cast<u64*>(self + 0x18) = 0;
+    *reinterpret_cast<u32*>(self + 0x20) = 0;
+}
+
+// A destructor that calls a method of the object, then (an inlined base destructor) stores the
+// base's vtable (UnkDtorTraits), clears the T at `Offset` and calls the next base destructor
+// (fn_71003990ac and its copies).
+template <class Tag>
+struct UnkDtorCallTraits;  // call(self), base(self)
+
+template <class Tag, class T, u32 Offset>
+void refl_DtorCallClear(char* self) {
+    UnkDtorCallTraits<Tag>::call(self);
+    *reinterpret_cast<char**>(self) = UnkDtorTraits<Tag>::vtable() + 0x10;
+    *reinterpret_cast<T*>(self + Offset) = 0;
+    UnkDtorCallTraits<Tag>::base(self);
+}
+}  // namespace base
+
+// Small helpers repeated per class: adding to an f32 field (fn_71003529d4 and its copies), and a
+// 0x18-byte record of two zero words and the u32s 2 and 1, initialised in place (fn_710009eef4)
+// or returned (its copies that return through x8).
+namespace base {
+template <class Tag, u32 Offset>
+void refl_AddF32(char* self, f32 v) {
+    *reinterpret_cast<f32*>(self + Offset) += v;
+}
+
+template <class Tag>
+struct UnkPairCounts {
+    u64 a;
+    u64 b;
+    u32 c;
+    u32 d;
+};
+
+template <class Tag>
+void refl_InitPairCounts(UnkPairCounts<Tag>* self) {
+    self->a = 0;
+    self->b = 0;
+    self->c = 2;
+    self->d = 1;
+}
+
+template <class Tag>
+UnkPairCounts<Tag> refl_MakePairCounts() {
+    return {0, 0, 2, 1};
 }
 }  // namespace base

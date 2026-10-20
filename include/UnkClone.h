@@ -144,6 +144,18 @@ struct UnkCloneStrIdElem2 {
     }
 };
 
+// An element of the given size whose move constructor is out of line, called through
+// UnkCloneMoveTraits<Tag>::move (one specialisation per clone).
+template <class Tag>
+struct UnkCloneMoveTraits;
+
+template <class Tag, u64 Size>
+struct UnkCloneMoveElem {
+    u64 words[Size / 8];
+
+    UnkCloneMoveElem(UnkCloneMoveElem&& other) { UnkCloneMoveTraits<Tag>::move(this, &other); }
+};
+
 // An element of the given size whose copy-assignment is out of line, called through
 // UnkCloneAssignTraits<Tag>::assign (one specialisation per clone).
 template <class Tag>

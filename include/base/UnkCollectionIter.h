@@ -163,6 +163,14 @@ void refl_IterSync(UnkCollectionIter<T, K>* it) {
         it->current.Reset();
 }
 
+// Constructs a value that refers to the (index, element) a reference holds (fn_71000c3b5c and
+// its shape copies; only the value's size varies).
+template <class T, class K = u32>
+void refl_IterValueFromRef(UnkIterValue<T, K>* self, const typename UnkIterValue<T, K>::Ref* r) {
+    self->state = 0;
+    self->SetRef(r->index, r->element);
+}
+
 // Type-erased helpers of an iterator value's reflected class (CType+0x38, +0x40, +0x48).
 template <class T, class K = u32>
 void refl_IterValueMove(void* dst, const void* src) {
