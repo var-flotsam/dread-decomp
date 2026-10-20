@@ -813,7 +813,7 @@ address,size,name,name_source,subsystem,status
 0x710113145c,80,fn_710113145c,unknown,unknown,O
 0x71011314ac,56,fn_71011314ac,unknown,unknown,O
 0x71011314e4,8,fn_71011314e4,unknown,unknown,O
-0x71011314ec,96,fn_71011314ec,unknown,unknown,U
+0x71011314ec,96,fn_71011314ec,unknown,unknown,O
 0x710113154c,16,fn_710113154c,unknown,unknown,O
 0x710113155c,16,fn_710113155c,unknown,unknown,O
 0x710113156c,168,fn_710113156c,unknown,unknown,U

@@ -4,6 +4,10 @@ For the next developer, human or AI, picking up this project. Read this, then `C
 (rules and conventions), `docs/recon.md` (what's in the binary), `docs/compiler.md`
 (toolchain), and `docs/references.md` (outside projects).
 
+**Ninth session (2026-10-20, on the PC, branch `claude/sync-local-repo-4f8846`):** the shape-family
+pass, round 5 (Next steps, item 2, "Done (ninth session)"). Numbers below are current;
+`gen_lift.py` was not rerun (it skips what the other generators define).
+
 **Seventh session (2026-10-19, branch `phase-4-3-remaining-reflection`):** the full regeneration
 ran (the last steps, `gen_lift.py` and `check.py --update`, in a Linux cloud session with upstream
 Clang 9.0.1, which reproduced the Windows results exactly). Numbers below are current. What was
@@ -24,15 +28,15 @@ Snapshot as of 2026-10-18 (fifth Phase 4 session; branches `phase-4-4-clones` (v
 | 4.2 Lua | **Done.** Upstream 5.1.4 vendored in `lib/lua/` (2 marked config changes); 286 Lua functions located in `main` by `tools/sigmatch.py` (status `L`) |
 | 4.3 Reflection | **In progress.** all 2,354 located class getters (444 in TUs with other statics, through padding); all 1,010 other `CClass` descriptor constructors (skipped TUs and getter-less types); 1,911 of 1,957 class attribute/member-field functions, 478 other registration functions plus 54 in their class getter's TU, and all 1,006 out-of-line reflected-function initialisers (`src/reflection/`, `tools/gen_reflection.py`, `tools/refl_attrs.py`). Pointer types: 993 standalone getter/constructor pairs plus 108 generated in their pointee's TU; all 238 `CEnumType` constructors; 178 standalone `CCollectionType` constructors plus those in their element class's TU (`src/reflection_types/`, `tools/gen_types.py`) |
 | Small functions | **In progress.** `tools/gen_lift.py` lifts functions of up to 512 bytes from their instructions and keeps byte-identical ones: 44,529 functions up to 2 KB, 1.78 MB (`src/lifted/`; sret functions, stack locals, a goto-based flat mode for crossing branches and loops) |
-| Guarded statics | **In progress.** `tools/gen_statics.py`: attribute keys, static string ids, typed lookups and registries built on weak function-local statics (`include/base/reflection/UnkReflStatics.h`): 756 functions, 139 KB (`src/reflection_statics/`) |
-| Repeated templates | **In progress.** `tools/gen_clones.py`: hand-matched templates instantiated once per copy (`UnkClone_fn_<addr>` tags): the named registry, `UnkVector` methods per element kind, the reflection collection iterator, a deferred set, and scan kinds (facts per candidate): destructors of string-id/refcounted members, property reads and string-id writes, enum value lists: 2,300 functions, 628 KB (`src/clones/`) |
+| Guarded statics | **In progress.** `tools/gen_statics.py`: attribute keys, static string ids, typed lookups and registries built on weak function-local statics (`include/base/reflection/UnkReflStatics.h`): 765 functions, 141 KB (`src/reflection_statics/`) |
+| Repeated templates | **In progress.** `tools/gen_clones.py`: hand-matched templates instantiated once per copy (`UnkClone_fn_<addr>` tags): the named registry, `UnkVector` methods per element kind, the reflection collection iterator, a deferred set, and scan kinds (facts per candidate): destructors of string-id/refcounted members, property reads and string-id writes, enum value lists, and shape-family templates (`UnkCloneHelpers.h`): 5,770 functions, 1.18 MB (`src/clones/`) |
 | 4.4 Core engine types | **In progress.** String ids (`CStrId` incl. copy-assignment, `UnkStrId`), the growable array `base::UnkVector` (push, grow-at, insert, remove, clear/free, move) and its allocator interface; reflected-function initialisers now match (below) |
 | 4.5+ Boot to title screen | Not started; plan below |
 | Port | Not started (`port/` is empty) |
 
-Function status (BotW codes): `O` 79,057, `m` 3, `M` 1, `L` 1,614, `U` 23,342.
-**Game-code progress: 44.45% of bytes (8.34 MB) matching** (`tools/progress.py`; library code
-excluded; 39.09% at the start of this session). `tools/check.py` counts `src/` definitions,
+Function status (BotW codes): `O` 79,399, `m` 3, `M` 1, `L` 1,614, `U` 23,000.
+**Game-code progress: 44.73% of bytes (8.40 MB) matching** (`tools/progress.py`; library code
+excluded; 44.45% at the start of the ninth session, 39.09% at the start of the seventh). `tools/check.py` counts `src/` definitions,
 which differ slightly (matching `nn::atk` functions keep `L`; constructor aliases).
 
 ## Hard rules (summary; full text in CLAUDE.md)
@@ -362,6 +366,27 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
      0x7100239cf4 0x710023c3e0 0x71001f30c0 0x7100b8eec8 0x710098e094 0x7100bf7624 0x71003d3cf8
      0x7100e02988 0x7100c79a80 0x7100536450 0x71006cc484 0x71009ba4ac 0x71004f0ab8. About 600 KB
      is left in shape families of five or more `U` members.
+   - Done (ninth session, 2026-10-20, round 5, on the PC): most of the round-4 list (~490
+     functions). Kinds: `variant_assign`/`variant_assign_pair` (a string id + value or pair
+     variant, `UnkStrIdValueVariant`, 36), `keyed_value_array_dtor` (10), `keyed_value_get` (a
+     keyed reflected-value lookup per value type, 10), `iter_assign_block` (iterator assignment
+     over block elements, 160, of which ~130 matched other kinds before), `vector_clear_poly`
+     (25), `value_holder_deleting_dtor` (38), `derived_copy_ctor_48` (26), `strid_copy_ctor`
+     (three vtables, 22), `iter_value_destroy_poly_vec_key16` (4), `keyed_pair_iter_assign` (20),
+     `set_matrix` (8), `value_map_insert` (a chained hash map of string ids to values, 11) and
+     `shared_copy_ctor` (a 0xd0-byte class with an atomically counted pointer, 14).
+     The `dtor` scan now reads member offsets below 10 (capstone prints `#8`; 54 more) and treats
+     a second vtable store as an inlined base destructor (`refl_DtorInlineBase`, 27 more).
+     `gen_statics.py` has a second attribute-key reference for keys whose u32 is 1 (`key_one`, 9).
+     Lessons: struct-path TBAA lets Clang skip reloads that the original does after stores to a
+     node's links; store through a raw `char*` offset instead. Clang keeps the null check of a
+     node only in the form `if (n) new (n) T(...)`. Left: 0x71000d60e4 (the variant's move
+     constructor, 63%: one branch schedules the pool load early), 0x71000d6de0 (the map's erase,
+     block layout), 0x7100300380 (find by string id, then cast), 0x71003d3cf8 and 0x7100c79a80
+     (game code around guarded statics), 0x7100536450 (a TU's static string-id destructors). Not
+     yet tried: 0x7100245c4c 0x7100241ddc 0x7100e02988 0x71006cc484 0x71009ba4ac
+     0x71004f0ab8. Tooling note: in the Windows Bash tool, heredocs can lose backslashes; write
+     patches to Python sources with the Edit tool.
    - Enum static initialisers and the other per-TU static initialisers. These define
      globals, so they need the TU's data definitions (the 160 B ones are mostly lifted already).
    - Slot `0x28`/`0x30`/`0x38`/`0x48`/`0x50` helpers of other classes (need class layouts):

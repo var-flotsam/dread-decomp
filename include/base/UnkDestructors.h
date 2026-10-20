@@ -124,6 +124,34 @@ void refl_DeletingDtorNoBase(char* self) {
     __builtin_operator_delete(self);
 }
 
+// A list of member descriptors, released in order.
+template <class... Members>
+struct UnkMembers {
+    static void Release(char* self) { (Members::Release(self), ...); }
+};
+
+// A destructor whose base destructor is inlined: the class's vtable and members, then the
+// base's vtable (UnkDtorTraits::base_vtable) and members (fn_71002e1904, fn_71002e19d0 and
+// their copies).
+template <class Tag, class Derived, class Base>
+void refl_DtorInlineBase(char* self) {
+    using Traits = UnkDtorTraits<Tag>;
+    *reinterpret_cast<char**>(self) = Traits::vtable() + 0x10;
+    Derived::Release(self);
+    *reinterpret_cast<char**>(self) = Traits::base_vtable() + 0x10;
+    Base::Release(self);
+}
+
+template <class Tag, class Derived, class Base>
+void refl_DeletingDtorInlineBase(char* self) {
+    using Traits = UnkDtorTraits<Tag>;
+    *reinterpret_cast<char**>(self) = Traits::vtable() + 0x10;
+    Derived::Release(self);
+    *reinterpret_cast<char**>(self) = Traits::base_vtable() + 0x10;
+    Base::Release(self);
+    __builtin_operator_delete(self);
+}
+
 // An element of unknown type whose destructor stores its vtable and releases members (no base
 // destructor call), as held by some collection iterator values.
 template <class Tag, u64 Size, class... Members>
