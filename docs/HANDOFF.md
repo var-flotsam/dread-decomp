@@ -30,8 +30,8 @@ Snapshot as of 2026-10-18 (fifth Phase 4 session; branches `phase-4-4-clones` (v
 | 4.5+ Boot to title screen | Not started; plan below |
 | Port | Not started (`port/` is empty) |
 
-Function status (BotW codes): `O` 78,990, `m` 3, `M` 1, `L` 1,614, `U` 23,409.
-**Game-code progress: 44.36% of bytes (8.33 MB) matching** (`tools/progress.py`; library code
+Function status (BotW codes): `O` 79,057, `m` 3, `M` 1, `L` 1,614, `U` 23,342.
+**Game-code progress: 44.45% of bytes (8.34 MB) matching** (`tools/progress.py`; library code
 excluded; 39.09% at the start of this session). `tools/check.py` counts `src/` definitions,
 which differ slightly (matching `nn::atk` functions keep `L`; constructor aliases).
 
@@ -351,6 +351,17 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
      `UnkDestructors.h` and `UnkHashMap.h`. Left: 0x710088af9c (a state machine's update, 15%),
      0x7100020eb0 (string-id hash erase, 44%: block layout), 0x71004f0648 and 0x71000d6310 (block
      layout), and the large per-TU static initialisers 0x71003a8a80, 0x71002d4770, 0x710021c330.
+   - Done (eighth session, round 4): `keyed_set_assign` (21), `keyed_set_iter_value_copy` (11),
+     `vt_iter_end`/`vt_iter_begin` (11 each), `vt_iter_sync` (8), `owner_vec_insert` (5). Close but
+     not matching: 0x7100f5ff2c (`refl_StrIdValueInsert` shape, 4 instructions of register choice)
+     and 0x7100f5f5ac (an erase whose index/pointer round trip through an exact division by 24
+     Clang 9 folds away). Skipped: 0x710035d230 (static initialiser), 0x710065fb20 (state machine).
+     Not yet tried (the run hit its usage limit): 0x71000c3cc0 0x71000c3c14 0x71000d6914
+     0x71000d60e4 0x71000d6de0 0x710006d11c 0x710009abf8 0x710008fa30 0x71002464fc 0x7100245c4c
+     0x71002e19d0 0x71002e1904 0x71002d3f88 0x71002fa6cc 0x71002ca39c 0x7100300380 0x7100241ddc
+     0x7100239cf4 0x710023c3e0 0x71001f30c0 0x7100b8eec8 0x710098e094 0x7100bf7624 0x71003d3cf8
+     0x7100e02988 0x7100c79a80 0x7100536450 0x71006cc484 0x71009ba4ac 0x71004f0ab8. About 600 KB
+     is left in shape families of five or more `U` members.
    - Enum static initialisers and the other per-TU static initialisers. These define
      globals, so they need the TU's data definitions (the 160 B ones are mostly lifted already).
    - Slot `0x28`/`0x30`/`0x38`/`0x48`/`0x50` helpers of other classes (need class layouts):

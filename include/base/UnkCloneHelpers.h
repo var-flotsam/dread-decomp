@@ -1559,3 +1559,151 @@ void refl_PushTwoTypes(char* self) {
 }
 
 }  // namespace base
+
+
+// Assigns a string id and a value into the entry a lookup finds (or inserts) for a u32 key
+// (fn_7100f5f6fc and its shape copies). The lookup is a per-clone function, named through
+// UnkKeyedSetTraits<Tag>::find; the source has the entry's layout: the id at Off, the value
+// (u32 or u64) right after it.
+
+
+namespace base {
+template <class Tag>
+struct UnkKeyedSetTraits;
+
+template <class Tag, class Id, class V, u64 Off>
+void refl_KeyedSetAssign(void* map, const u32* key, const char* src) {
+    char* e = UnkKeyedSetTraits<Tag>::find(map, *key);
+    *reinterpret_cast<Id*>(e + Off) = *reinterpret_cast<const Id*>(src + Off);
+    *reinterpret_cast<V*>(e + Off + 8) = *reinterpret_cast<const V*>(src + Off + 8);
+}
+}  // namespace base
+
+
+// The entry of a u32-keyed set whose value is a string id and a u32/u64 (fn_7100f5ef98 and its
+// shape copies copy-assign an iterator value over it). The id sits at Off (0 or 8; what comes
+// before it is not copied), the value right after it.
+
+
+namespace base {
+template <u64 N>
+struct UnkKeyedSetHead {
+    u64 words[N];
+};
+template <>
+struct UnkKeyedSetHead<0> {};
+
+template <class Tag, class Id, class V, u64 Off>
+struct UnkKeyedSetEntry : UnkKeyedSetHead<Off / 8> {
+    Id id;
+    V value;
+
+    UnkKeyedSetEntry& operator=(const UnkKeyedSetEntry& other) {
+        id = other.id;
+        value = other.value;
+        return *this;
+    }
+};
+}  // namespace base
+
+
+// refl_Begin/refl_End over an array of polymorphic elements holding a string id (fn_7100f606b8,
+// fn_7100f605d0 and their shape copies). The iterator's assignment syncs its current value out
+// of line (UnkVtIterTraits<Tag>::sync, a refl_IterSync copy); the temporary's owned value would
+// be destroyed inline: the base class's vtable is stored, then the id released.
+
+
+namespace base {
+// base_vtable(): the element's base class vtable; sync(it): the out-of-line refl_IterSync.
+template <class Tag>
+struct UnkVtIterTraits;
+
+template <class Tag, u64 Size>
+struct UnkStrIdVtElem {
+    char* vtable;
+    UnkStrIdMember id;
+    u64 words[(Size - 0x10) / 8];
+
+    ~UnkStrIdVtElem() { vtable = UnkVtIterTraits<Tag>::base_vtable() + 0x10; }
+};
+
+template <class Tag, u64 Size>
+inline void refl_VtIterAssign(UnkCollectionIter<UnkStrIdVtElem<Tag, Size>>* out,
+                              const UnkCollectionIter<UnkStrIdVtElem<Tag, Size>>& it) {
+    if (out != &it) {
+        out->index = it.index;
+        out->element = it.element;
+        UnkVtIterTraits<Tag>::sync(out);
+    }
+}
+
+template <class Tag, u64 Size>
+void refl_VtBegin(const UnkVector<UnkStrIdVtElem<Tag, Size>>* v, UnkCollectionIter<UnkStrIdVtElem<Tag, Size>>* out) {
+    UnkCollectionIter<UnkStrIdVtElem<Tag, Size>> it(0, v->data);
+    refl_VtIterAssign(out, it);
+}
+
+template <class Tag, u64 Size>
+void refl_VtEnd(const UnkVector<UnkStrIdVtElem<Tag, Size>>* v, UnkCollectionIter<UnkStrIdVtElem<Tag, Size>>* out) {
+    UnkCollectionIter<UnkStrIdVtElem<Tag, Size>> it(v->count, v->data + v->count);
+    refl_VtIterAssign(out, it);
+}
+}  // namespace base
+
+
+// Moves an element in at `index` of an array of owner arrays (fn_71004a918c and its shape
+// copies): appending is the out-of-line EmplaceBack (UnkOwnerVecInsertTraits<Tag>::append, a
+// tail call); otherwise the array grows to the next multiple of the step and the elements from
+// `index` on move up one, from the last. Each element is a UnkCloneVecHandle whose array holds
+// owning pointers, freed when it is destroyed.
+
+
+
+template <class Tag>
+struct UnkCloneOwnerVecHandle : UnkCloneVecHandle<Tag> {
+    UnkCloneOwnerVecHandle(UnkCloneOwnerVecHandle&& other)
+        : UnkCloneVecHandle<Tag>(static_cast<UnkCloneVecHandle<Tag>&&>(other)) {}
+    ~UnkCloneOwnerVecHandle() { reinterpret_cast<base::UnkVector<UnkCloneOwner<Tag>>*>(this)->Free(); }
+};
+
+namespace base {
+// append(v, e): the out-of-line EmplaceBack.
+template <class Tag>
+struct UnkOwnerVecInsertTraits;
+
+template <class Tag>
+void refl_OwnerVecInsert(UnkVector<UnkCloneOwnerVecHandle<Tag>>* v, UnkCloneOwnerVecHandle<Tag>* e, u32 index) {
+    using E = UnkCloneOwnerVecHandle<Tag>;
+    u32 n = v->count;
+    if (n == index) {
+        UnkOwnerVecInsertTraits<Tag>::append(v, e);
+        return;
+    }
+    u32 cap = v->capacity;
+    if (cap <= n && v->step != 0) {
+        u32 grown = (n / v->step + 1) * v->step;
+        if (cap < grown) {
+            E* p = static_cast<E*>(v->allocator->vf_0x40((u64)grown * sizeof(E), 8, v->flags));
+            if (E* s = v->data) {
+                E* o = p;
+                for (u32 i = 0; i < v->count; ++i, ++s, ++o) {
+                    new (o) E(static_cast<E&&>(*s));
+                    s->~E();
+                }
+                v->allocator->vf_0x48(v->data);
+            }
+            v->data = p;
+            v->capacity = grown;
+        }
+    }
+    for (u32 i = v->count - 1; i >= index; --i) {
+        E* q = &v->data[i];
+        new (q + 1) E(static_cast<E&&>(*q));
+        v->data[i].~E();
+        if (i == 0)
+            break;
+    }
+    new (&v->data[index]) E(static_cast<E&&>(*e));
+    ++v->count;
+}
+}  // namespace base
