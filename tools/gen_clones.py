@@ -1073,6 +1073,21 @@ def strid_value_vec_copy(orig: asmdiff.Original, addr: int, tag: str, insns: Ins
                      [f"template void base::refl_StrIdValueVecCopy<{tag}, {t}>({vec}*, const {vec}*);"])
 
 
+def strid_value_insert(orig: asmdiff.Original, addr: int, tag: str, insns: Insns) -> str | None:
+    """refl_StrIdValueInsert: the vtables and value type."""
+    if len(insns) != 253 or calls(insns) or insns[240][0] != "ldr":
+        return None
+    gots = got_list(orig, insns)
+    t = {"w9, [x20, #0x10]": "u32", "x9, [x20, #0x10]": "u64"}.get(insns[240][1])
+    if len(gots) < 3 or gots[1] != STRID_POOL or None in gots[:3] or not t:
+        return None
+    base, vt = gots[0], gots[2]
+    vec = f"base::UnkVector<base::UnkStrIdValueElem<{tag}, {t}>>"
+    return "\n".join(strid_value_traits(tag, base, vt, [], []) +
+                     [f"template void base::refl_StrIdValueInsert<{tag}, {t}>({vec}*, "
+                      f"const base::UnkStrIdValueElem<{tag}, {t}>&, u32);"])
+
+
 def ref_pair_array_deleting_dtor(orig: asmdiff.Original, addr: int, tag: str, insns: Insns) -> str | None:
     """refl_RefPairArrayDeletingDtor (UnkDestructors.h): the vtable."""
     if len(insns) != 48 or insns[12] != ("add", "x21, x19, #0x14") or insns[18] != ("add", "x21, x21, #0x48"):
@@ -2249,6 +2264,7 @@ KINDS = {
     "strid_value_resize": Kind(None, "base/UnkStrIdValueVec.h", lambda tag, _: None, scan=strid_value_resize),
     "strid_value_grow_at": Kind(None, "base/UnkStrIdValueVec.h", lambda tag, _: None, scan=strid_value_grow_at),
     "strid_value_vec_copy": Kind(None, "base/UnkStrIdValueVec.h", lambda tag, _: None, scan=strid_value_vec_copy),
+    "strid_value_insert": Kind(None, "base/UnkStrIdValueVec.h", lambda tag, _: None, scan=strid_value_insert),
     "ref_pair_array_deleting_dtor": Kind(None, "base/UnkDestructors.h", lambda tag, _: None, scan=ref_pair_array_deleting_dtor),
     "list_owner_deleting_dtor": Kind(None, "base/UnkDestructors.h", lambda tag, _: None, scan=list_owner_deleting_dtor),
     "iter_sync_strid_elem": Kind(None, "base/UnkCollectionIter.h", lambda tag, _: None, scan=iter_sync_strid_elem),

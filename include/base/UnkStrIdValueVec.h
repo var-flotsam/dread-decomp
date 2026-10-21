@@ -2,7 +2,7 @@
 
 // A polymorphic element holding a string id (in its base class, which has its own vtable) and
 // a T: UnkVector's resize, grow-at and copy constructor over it (fn_7100f79bb0, fn_7100f44150,
-// fn_7100f5fa48 and their copies). The id is held raw, as a union member, so its copy and
+// fn_7100f5fa48 and their copies) and insert (fn_7100f601b8). The id is held raw, as a union member, so its copy and
 // stores follow the original's order; the destructor is the vtable's second slot. Default construction zero-fills the element first, as value-initialisation does.
 
 #include <new>
@@ -104,6 +104,59 @@ void refl_StrIdValueVecCopy(UnkVector<UnkStrIdValueElem<Tag, T>>* self,
         refl_StrIdValueReallocate(self, n);
     for (const E *e = other->data, *end = e + other->count; e != end; ++e)
         UnkStrIdValueTraits<Tag>::push_back(self, e);
+}
+
+// Copies `value` in at `index`, shifting the later elements up (fn_7100f601b8 and its copies).
+// Appending grows like UnkVector::PushBack, hang included; each branch constructs the element
+// itself. A copy that calls its push-back for the append (fn_7100f5ff2c) allocates one register
+// differently in the shared tail and isn't matched yet.
+template <class Tag, class T>
+void refl_StrIdValueInsert(UnkVector<UnkStrIdValueElem<Tag, T>>* v, const UnkStrIdValueElem<Tag, T>& value,
+                           u32 index) {
+    using E = UnkStrIdValueElem<Tag, T>;
+    u32 cap = v->capacity;
+    u32 n = v->count;
+    if (n == index) {
+        u32 new_capacity = cap;
+        if (cap <= n && v->step != 0)
+            new_capacity = (index / v->step + 1) * v->step;
+        if ((s32)new_capacity <= (s32)index)
+            for (;;) {
+            }
+        E* p;
+        if (cap < new_capacity) {
+            p = static_cast<E*>(v->allocator->vf_0x40((u64)new_capacity * sizeof(E), 8, v->flags));
+            if (E* s = v->data) {
+                E* o = p;
+                for (u32 i = 0; i < v->count; ++i, ++s, ++o) {
+                    new (o) E(*s);
+                    s->~E();
+                }
+                v->allocator->vf_0x48(v->data);
+            }
+            index = v->count;
+            v->data = p;
+            v->capacity = new_capacity;
+        } else {
+            p = v->data;
+        }
+        new (&p[index]) E(value);
+    } else {
+        if (cap <= n && v->step != 0) {
+            u32 grown = (n / v->step + 1) * v->step;
+            if (cap < grown)
+                refl_StrIdValueReallocate(v, grown);
+        }
+        for (u32 i = v->count - 1; i >= index; --i) {
+            E* q = &v->data[i];
+            new (q + 1) E(*q);
+            v->data[i].~E();
+            if (i == 0)
+                break;
+        }
+        new (&v->data[index]) E(value);
+    }
+    ++v->count;
 }
 
 }  // namespace base
