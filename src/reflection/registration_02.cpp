@@ -10,14 +10,18 @@ using base::reflection::UnkReflFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 
+void fn_7100f69f48();
+void fn_7100f2bbe8(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_7100f6a048();
+void fn_7100f2bd64(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100091080();
 void fn_7100f6c1c0();
 void fn_7100f2f844(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 void fn_7100f6c2a0();
 void fn_7100f2f9c0(UnkReflFunction* fn, const char* name);
 void fn_7100f6c3a4();
 void fn_7100f2fb3c(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100091080();
 void fn_7100f6c484();
 void fn_7100f2fcb8(UnkReflFunction* fn, const char* name);
 void fn_7100f6c564();
@@ -40,6 +44,12 @@ void fn_7100f6cc6c();
 void fn_7100f30a14(UnkReflFunction* fn, const char* name);
 void fn_7100f6cd4c();
 void fn_7100f30b90(UnkReflFunction* fn, const char* name);
+void fn_7100f6f6b4();
+void fn_7100f33d54(UnkReflFunction* fn, const char* name);
+void fn_7100f6f794();
+void fn_7100f33ed0(UnkReflFunction* fn, const char* name);
+void fn_7100f6f874();
+void fn_7100f3404c(UnkReflFunction* fn, const char* name);
 const base::reflection::UnkReflAttrKey& fn_7100093390();
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;
@@ -456,6 +466,32 @@ void fn_71011e6f68();
 void fn_71011e70cc();
 void fn_71011e711c();
 
+void fn_7100f2b5e4(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_tBloom_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_tBloom_GetterFunction", true);
+        fn->return_type = fn_71000246e4();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f69f48);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_tBloom_SetterFunction", true)))
+        fn_7100f2bbe8(fn, "_tBloom_SetterFunction");
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("tBloom", true), fn_71000246e4(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field0->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{0.12f, 0.12f, 0.12f});
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBloomInterp_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_fBloomInterp_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f6a048);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fBloomInterp_SetterFunction", true)))
+        fn_7100f2bd64(fn, "_fBloomInterp_SetterFunction");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fBloomInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field1->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    field1->attrs.Add<f32>(fn_7100091080(), 0.0f);
+}
+
 void fn_7100f2d850(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bEnabled_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bEnabled_GetterFunction", true);
@@ -622,6 +658,43 @@ void fn_7100f2d850(CClass* cls) {
     UnkReflField* field14 = fn_7100096524(cls, CStrId("fWaveInterp", true), fn_710000abbc(), 0x3c, -1, -1);
     field14->attrs.Add<f32>(fn_7100075240(), 1.0f);
     field14->attrs.Add<f32>(fn_7100091080(), 0.0f);
+}
+
+void fn_7100f33484(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fInterp_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_fInterp_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f6f6b4);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fInterp_SetterFunction", true)))
+        fn_7100f33d54(fn, "_fInterp_SetterFunction");
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fInterp", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field0->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    field0->attrs.Add<f32>(fn_7100091080(), 0.0f);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bEnabled_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_bEnabled_GetterFunction", true);
+        fn->return_type = fn_710000d228();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f6f794);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bEnabled_SetterFunction", true)))
+        fn_7100f33ed0(fn, "_bEnabled_SetterFunction");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("bEnabled", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field1->attrs.Add<bool>(fn_7100075240(), false);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sTexturePath_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_sTexturePath_GetterFunction", true);
+        fn->return_type = fn_710000ad9c();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100f6f874);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sTexturePath_SetterFunction", true)))
+        fn_7100f3404c(fn, "_sTexturePath_SetterFunction");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("sTexturePath", true), fn_710000ad9c(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field2->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId(base::global::UnkStrIdInline{}, "", true));
 }
 
 void fn_7100f35b38(CClass* cls) {

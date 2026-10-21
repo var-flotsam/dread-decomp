@@ -18,6 +18,32 @@ using base::reflection::UnkTunableRegistry;
 // SCameraRailNode
 DREAD_REFL_TAG(7100bfed98);
 void fn_7100bfe808(base::reflection::CClass*) {}
+void fn_7100c079cc();
+void fn_7100bfef1c(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_71000926d0();
+extern base::reflection::CType g_unk_7101d60ff0;
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+const base::reflection::UnkReflAttrKey& fn_71000923a0();
+extern base::reflection::CType g_unk_7101d55008;
+const base::reflection::UnkReflAttrKey& fn_71000924b0();
+extern base::reflection::CType g_unk_717269bb48;
+void fn_7100bfe900(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vPos_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_vPos_GetterFunction", true);
+        fn->return_type = fn_71000246e4();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100c079cc);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vPos_SetterFunction", true)))
+        fn_7100bfef1c(fn, "_vPos_SetterFunction");
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("vPos", true), fn_71000246e4(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field0->attrs.Add(fn_71000926d0(), &g_unk_7101d60ff0, base::reflection::UnkReflStringList(0x3, base::reflection::UnkReflList<base::global::CRntString>({"vPos", "vSegments:*:vPos"}, 0xa, nullptr, 0xf)));
+    field0->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Position"));
+    field0->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 3);
+    field0->attrs.Add<bool>(fn_71000924b0(), true);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("wpLogicCamera", true), &g_unk_717269bb48, 0x18, -1, -1);
+}
 bool fn_7100c076e0(const void* a, const void* b) { return a == b; }
 s32 fn_7100c076ec() { return -1; }
 const base::reflection::CType& fn_7100c076f4(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
@@ -50,7 +76,6 @@ extern base::reflection::CType g_unk_7101d5af48;
 void fn_7100c07c30();
 void fn_7100c07c44();
 void fn_7100bfff5c(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 const base::reflection::UnkReflAttrKey& fn_710008f920();
 const base::reflection::UnkReflAttrKey& fn_71000903c0();
 void fn_7100c07eb0();

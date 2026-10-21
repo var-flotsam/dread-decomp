@@ -495,8 +495,8 @@ address,size,name,name_source,subsystem,status
 0x710101f3d4,684,fn_710101f3d4,unknown,unknown,U
 0x710101f680,240,fn_710101f680,unknown,unknown,U
 0x710101f770,236,fn_710101f770,unknown,unknown,U
-0x710101f85c,128,fn_710101f85c,unknown,unknown,U
-0x710101f8dc,128,fn_710101f8dc,unknown,unknown,U
+0x710101f85c,128,fn_710101f85c,unknown,unknown,O
+0x710101f8dc,128,fn_710101f8dc,unknown,unknown,O
 0x710101f95c,108,fn_710101f95c,unknown,unknown,O
 0x710101f9c8,104,fn_710101f9c8,unknown,unknown,O
 0x710101fa30,8,fn_710101fa30,unknown,unknown,O
@@ -741,8 +741,8 @@ address,size,name,name_source,subsystem,status
 0x710102849c,412,fn_710102849c,unknown,unknown,U
 0x7101028638,88,fn_7101028638,unknown,unknown,O
 0x7101028690,88,fn_7101028690,unknown,unknown,U
-0x71010286e8,236,fn_71010286e8,unknown,unknown,U
-0x71010287d4,268,fn_71010287d4,unknown,unknown,U
+0x71010286e8,236,fn_71010286e8,unknown,unknown,O
+0x71010287d4,268,fn_71010287d4,unknown,unknown,O
 0x71010288e0,8,fn_71010288e0,unknown,unknown,O
 0x71010288e8,8,fn_71010288e8,unknown,unknown,O
 0x71010288f0,28,fn_71010288f0,unknown,unknown,O
@@ -873,7 +873,7 @@ address,size,name,name_source,subsystem,status
 0x710102b828,176,fn_710102b828,unknown,unknown,U
 0x710102b8d8,624,fn_710102b8d8,unknown,unknown,U
 0x710102bb48,432,fn_710102bb48,unknown,unknown,U
-0x710102bcf8,268,fn_710102bcf8,unknown,unknown,U
+0x710102bcf8,268,fn_710102bcf8,unknown,unknown,O
 0x710102be04,264,fn_710102be04,unknown,unknown,O
 0x710102bf0c,476,fn_710102bf0c,unknown,unknown,O
 0x710102c0e8,432,fn_710102c0e8,unknown,unknown,U
@@ -955,7 +955,7 @@ address,size,name,name_source,subsystem,status
 0x7101037b94,4,fn_7101037b94,unknown,unknown,O
 0x7101037b98,20,fn_7101037b98,unknown,unknown,O
 0x7101037bac,20,fn_7101037bac,unknown,unknown,O
-0x7101037bc0,936,fn_7101037bc0,unknown,unknown,U
+0x7101037bc0,936,fn_7101037bc0,unknown,unknown,O
 0x7101037f68,28,fn_7101037f68,unknown,unknown,O
 0x7101037f84,364,fn_7101037f84,unknown,unknown,O
 0x71010380f0,96,fn_71010380f0,unknown,unknown,O
@@ -1859,8 +1859,8 @@ address,size,name,name_source,subsystem,status
 0x7101052954,76,fn_7101052954,unknown,unknown,O
 0x71010529a0,144,fn_71010529a0,unknown,unknown,O
 0x7101052a30,572,fn_7101052a30,unknown,unknown,U
-0x7101052c6c,224,fn_7101052c6c,unknown,unknown,U
-0x7101052d4c,224,fn_7101052d4c,unknown,unknown,U
+0x7101052c6c,224,fn_7101052c6c,unknown,unknown,O
+0x7101052d4c,224,fn_7101052d4c,unknown,unknown,O
 0x7101052e2c,80,fn_7101052e2c,unknown,unknown,O
 0x7101052e7c,236,fn_7101052e7c,unknown,unknown,U
 0x7101052f68,108,fn_7101052f68,unknown,unknown,U
@@ -1887,7 +1887,7 @@ address,size,name,name_source,subsystem,status
 0x71010541b0,380,fn_71010541b0,unknown,unknown,O
 0x710105432c,4,fn_710105432c,unknown,unknown,O
 0x7101054330,244,SLogicPathNode::refl_GetClass,reflection,game,O
-0x7101054424,1384,fn_7101054424,unknown,game?,U
+0x7101054424,1384,fn_7101054424,unknown,game?,O
 0x710105498c,388,SLogicPathNode::refl_InitClass,reflection,game,O
 0x7101054b10,380,fn_7101054b10,unknown,game?,O
 0x7101054c8c,4,fn_7101054c8c,unknown,game?,O
@@ -4428,9 +4428,9 @@ address,size,name,name_source,subsystem,status
 0x71010dd0d4,240,fn_71010dd0d4,unknown,unknown,U
 0x71010dd1c4,12,fn_71010dd1c4,unknown,unknown,O
 0x71010dd1d0,3248,fn_71010dd1d0,unknown,unknown,U
-0x71010dde80,996,fn_71010dde80,unknown,unknown,U
+0x71010dde80,996,fn_71010dde80,unknown,unknown,O
 0x71010de270,756,fn_71010de270,unknown,unknown,U
-0x71010de570,984,fn_71010de570,unknown,unknown,U
+0x71010de570,984,fn_71010de570,unknown,unknown,O
 0x71010de950,960,fn_71010de950,unknown,unknown,U
 0x71010ded10,568,fn_71010ded10,unknown,unknown,O
 0x71010def48,4,fn_71010def48,unknown,unknown,O
@@ -4597,7 +4597,7 @@ address,size,name,name_source,subsystem,status
 0x71010e7a04,352,fn_71010e7a04,unknown,unknown,O
 0x71010e7b64,84,fn_71010e7b64,unknown,unknown,O
 0x71010e7bb8,84,fn_71010e7bb8,unknown,unknown,O
-0x71010e7c0c,280,fn_71010e7c0c,unknown,unknown,U
+0x71010e7c0c,280,fn_71010e7c0c,unknown,unknown,O
 0x71010e7d30,604,fn_71010e7d30,unknown,unknown,U
 0x71010e7f8c,4,fn_71010e7f8c,unknown,unknown,O
 0x71010e7f90,244,CAnimatedCameraCtrl::refl_GetClass,reflection,game,O

@@ -5,10 +5,28 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CLuaCallsLogicAction
 DREAD_REFL_TAG(7100a503a8);
 void fn_7100a4ffb0(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_7100a500a8(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sCallbackEntityName", true), fn_7100007f84(), 0x18, -1, -1);
+    field0->attrs.Add<base::global::CRntString>(fn_7100075240(), base::global::CRntString(refl_GlobalRntString()));
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("sCallback", true), fn_7100007f84(), 0x48, -1, -1);
+    field1->attrs.Add<base::global::CRntString>(fn_7100075240(), base::global::CRntString(refl_GlobalRntString()));
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("bCallbackEntity", true), fn_710000d228(), 0x10, -1, -1);
+    field2->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("bCallbackPersistent", true), fn_710000d228(), 0x78, -1, -1);
+    field3->attrs.Add<bool>(fn_7100075240(), false);
+}
 bool fn_7100a507a0(const void* a, const void* b) { return a == b; }
 s32 fn_7100a507ac() { return -1; }
 const base::reflection::CType& fn_7100a507b4(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

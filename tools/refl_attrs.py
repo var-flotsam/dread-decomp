@@ -50,13 +50,23 @@ CFP_CTOR = 0x71000166C8
 GLOBAL_CFP = 0x7101D470E8      # g_unk_7101d470e8, a global CFilePathStrId
 HASH = 0x7100001570
 RESIZE_PARAM_ATTRS = 0x710009AE5C  # fn_710009ae5c(fn, fn->params.count)
+ENSURE_POOL = 0x710007FDB4     # what an inlined string-id constructor calls when there's no pool yet
+POOL_LOOKUP = 0x71000804F8     # and the string pool's lookup and insert, which it calls
+POOL_INSERT = 0x71000801E4
+LIST_CTOR = 0x7100228CA0       # UnkReflList<CRntString> from an initializer list
+GUARD_ACQUIRE = 0x7101238DA0   # __cxa_guard_acquire
+GUARD_RELEASE = 0x7101238DB0   # __cxa_guard_release
+ATEXIT = 0x7100000250          # __cxa_atexit
+# Value type getter -> its string-id type with an inline constructor (UnkStrIdInline).
+INLINE_IDS = {0x7100009658: "CStrId", 0x710000AD9C: "base::global::CFilePathStrId"}
 # Virtual calls on a reflected function, as negative call targets: its attributes and a
 # parameter's attributes (UnkReflFunctionVtbl).
 VCALL_ATTRS = -0x48
 VCALL_PARAM_ATTRS = -0x58
 # Calls that are never attribute keys; any other call in key position is one.
 NOT_KEYS = {GET_ATTRS, ADD_ATTR, ADD_FIELD, ADD_FUNCTION, CSTRID_CTOR, CSTRID_RELEASE, ALLOC,
-            TUNABLE_REGISTRY_CTOR, CRNT_CTOR, CRNT_COPY, CRNT_DTOR, CFP_CTOR, HASH, RESIZE_PARAM_ATTRS}
+            TUNABLE_REGISTRY_CTOR, CRNT_CTOR, CRNT_COPY, CRNT_DTOR, CFP_CTOR, HASH, RESIZE_PARAM_ATTRS,
+            ENSURE_POOL, GUARD_ACQUIRE, POOL_LOOKUP, POOL_INSERT, LIST_CTOR}
 # Value type getter -> C++ type, as in UnkReflTypeOf.
 VALUE_TYPES = {0x7100005178: "u32", 0x7100014768: "s32", 0x71000081E8: "const char*", 0x7100009658: "base::global::CStrId",
                0x710000ABBC: "f32", 0x710000D228: "bool",
@@ -159,6 +169,14 @@ def events(orig: asmdiff.Original, addr: int) -> list[Event] | None:
             a = page[_key(cs, o[1].reg)] + o[2].imm
             s = orig.img.cstring(a - BASE)
             new[_key(cs, o[0].reg)] = ("str", s) if s is not None else ("addr", a)
+        elif m == "add" and len(o) == 3 and o[2].type == capstone.arm64.ARM64_OP_IMM \
+                and facts.get(_key(cs, o[1].reg), ("",))[0] == "global" and not o[2].shift.type:
+            # An address inside the object a global points to (only passed to calls).
+            new[_key(cs, o[0].reg)] = ("gaddr", (facts[_key(cs, o[1].reg)][1], o[2].imm))
+        elif m == "add" and len(o) == 3 and o[2].type == capstone.arm64.ARM64_OP_IMM \
+                and facts.get(_key(cs, o[1].reg), ("",))[0] == "pfield" and not o[2].shift.type:
+            # The same for a pointer member of a global object.
+            new[_key(cs, o[0].reg)] = ("gaddr", (facts[_key(cs, o[1].reg)][1], o[2].imm))
         elif m in ("add", "sub") and len(o) == 3 and o[2].type == capstone.arm64.ARM64_OP_IMM \
                 and facts.get(_key(cs, o[1].reg), ("",))[0] in ("imm", "count") and not o[2].shift.type:
             kind, v = facts[_key(cs, o[1].reg)]
@@ -198,7 +216,7 @@ def events(orig: asmdiff.Original, addr: int) -> list[Event] | None:
         elif m in ("str", "strb", "strh", "stur", "sturb", "sturh") and \
                 cs.reg_name(o[1].mem.base) in ("sp", "x29", "fp"):
             fact = facts.get(_key(cs, o[0].reg))
-            if fact:
+            if fact and fact[0] != "gaddr":
                 width = {"strb": 1, "sturb": 1, "strh": 2, "sturh": 2}.get(m)
                 if width is None:
                     width = 8 if cs.reg_name(o[0].reg)[0] in "xd" else 4
@@ -252,6 +270,8 @@ def events(orig: asmdiff.Original, addr: int) -> list[Event] | None:
                 fattr.pop(r, None)
             ret["0"] = target
             continue
+        elif m == "ret":
+            out.append(Event("ret"))
         elif m in ("b", "br", "blr"):
             if m != "b":
                 return None
@@ -311,8 +331,11 @@ def value_expr(type_name: str, vals: list[tuple]) -> str | None:
     kind, payload, width = stores[0]
     if type_name == "const char*" and kind == "str" and width == 8:
         return c_string(payload)
-    if type_name == "base::global::CStrId" and kind == "global" and payload == GLOBAL_CSTRID and width == 8:
-        return "CStrId(g_unk_7101d470e0)"
+    if type_name == "base::global::CStrId" and kind == "global" and width == 8:
+        # A copy of a global CStrId (g_unk_7101d470e0 is declared in UnkReflAttributes.h).
+        return f"CStrId(g_unk_{payload:x})"
+    if type_name == "base::global::CName" and kind == "imm" and width == 8:
+        return f"base::global::CName(base::global::UnkNameHash{{}}, {payload:#x}u)"
     if type_name == "base::global::CStrId" and kind == "gfield" and width == 8:
         # A CStrId that a global object points to (its pointer array, indexed by offset).
         return f"CStrId(*g_unk_{payload[0]:x}[{payload[1] // 8}])"
@@ -335,6 +358,21 @@ def parse(orig: asmdiff.Original, addr: int, class_getters: set[int]) -> tuple[l
     evs = events(orig, addr)
     if not evs:
         return None
+    # Code after the first return that initialises a guarded static (the string pool an inlined
+    # string-id constructor creates on first use) repeats nothing the statements need.
+    rets = [k for k, e in enumerate(evs) if e.kind == "ret"]
+    # The objects constructed there: object address -> constructor (UnkStrIdTable).
+    statics: dict[int, int] = {}
+    statics_seen = False  # a guarded static is initialised after the first return
+    flag_reads: set[int] = set()
+    if rets and any(e.kind == "bl" and e.target == GUARD_ACQUIRE for e in evs[rets[0]:]):
+        statics_seen = True
+        statics = {e.regs["0"][1]: e.target for e in evs[rets[0]:] if e.kind == "bl"
+                   and e.target not in (GUARD_ACQUIRE, GUARD_RELEASE, ATEXIT) and e.regs.get("0", ("",))[0] == "ptr"}
+        # Byte reads of a guarded static there: the source of an enum default's complement.
+        flag_reads = {e.value[1] for e in evs[rets[0]:] if e.kind == "value" and e.value[0] == "flagtest"}
+        evs = evs[:rets[0]]
+    evs = [e for e in evs if e.kind != "ret"]
     decls: list[str] = []
     body: list[str] = []
     i = 0
@@ -366,12 +404,52 @@ def parse(orig: asmdiff.Original, addr: int, class_getters: set[int]) -> tuple[l
             # Integer (enum) value typed by a global descriptor: no getter call.
             stores = [v for v in vals if v[0] == "imm"]
             types = [v[1] for v in vals if v[0] == "reftype"]
+            held = [v[1] for v in vals if v[0] == "global" and v[2] == 4]
+            if len(types) == 1 and len(held) == 1 and len(vals) == 2 and statics_seen:
+                # A value kept in a guarded weak static (zero, or the complement of another's
+                # low byte when the cold tail reads one).
+                src = sorted(flag_reads - {held[0]})
+                if len(src) > 1:
+                    return None
+                get = (f"base::reflection::refl_GetEnumNot8<{held[0]:#x}, {src[0]:#x}>()" if src
+                       else f"base::reflection::refl_GetEnumZero<{held[0]:#x}>()")
+                decls.append(f"extern base::reflection::CType g_unk_{types[0]:x};")
+                return j + 1, f"    {target}Add<s32>(fn_{key:x}(), &g_unk_{types[0]:x}, s32({get}));"
             if len(types) != 1 or len(stores) != 1 or len(vals) != 2 or stores[0][2] not in INT_TYPES:
                 return None
             width = stores[0][2]
             decls.append(f"extern base::reflection::CType g_unk_{types[0]:x};")
             return j + 1, (f"    {target}Add<{INT_TYPES[width]}>(fn_{key:x}(), &g_unk_{types[0]:x}, "
                            f"{signed(stores[0][1], width)});")
+        if evs[j].target == CRNT_CTOR and not vals:
+            # A list of strings: the initializer list's CRntStrings, the list, then the value.
+            k, strs = j, []
+            while k < n and evs[k].kind == "bl" and evs[k].target == CRNT_CTOR \
+                    and evs[k].regs.get("1", ("",))[0] == "str":
+                strs.append(evs[k].regs["1"][1])
+                k, after = next_bl(k + 1)
+                if after:
+                    break
+            if k < n and evs[k].target == LIST_CTOR and not after:
+                regs = evs[k].regs
+                if regs.get("2") != ("imm", len(strs)) or regs.get("4") != ("imm", 0) \
+                        or regs.get("3", ("",))[0] != "imm" or regs.get("5", ("",))[0] != "imm":
+                    return None
+                k, vals = next_bl(k + 1)
+                if k >= n or evs[k].target != ADD_ATTR or len(vals) != 4 or vals[0][0] != "imm" \
+                        or vals[0][2] != 4 or vals[1:3] != [("imm", 0, 8)] * 2 or vals[3][0] != "reftype":
+                    return None
+                desc = vals[3][1]
+                decls.append(f"extern base::reflection::CType g_unk_{desc:x};")
+                items = ", ".join(c_string(x) for x in strs)
+                k += 1
+                # The list's and the strings' destructors.
+                while k < n and ((evs[k].kind == "bl" and evs[k].target in (CRNT_DTOR, VCALL_ATTRS))
+                                 or (evs[k].kind == "value" and evs[k].value == ("imm", 0, 4))):
+                    k += 1
+                return k, (f"    {target}Add(fn_{key:x}(), &g_unk_{desc:x}, base::reflection::UnkReflStringList("
+                           f"{vals[0][1] & 0xFFFFFFFF:#x}, base::reflection::UnkReflList<base::global::CRntString>("
+                           f"{{{items}}}, {regs['3'][1]:#x}, nullptr, {regs['5'][1]:#x})));")
         if evs[j].target in (CRNT_CTOR, CRNT_COPY, CFP_CTOR, HASH):
             return object_value(j, vals, key, target)
         if evs[j].target not in VALUE_TYPES and evs[j].target not in NOT_KEYS \
@@ -388,7 +466,30 @@ def parse(orig: asmdiff.Original, addr: int, class_getters: set[int]) -> tuple[l
             decls.append(f"const base::reflection::CType* fn_{getter:x}();")
             return k + 1, (f"    {target}Add<{INT_TYPES[width]}>(fn_{key:x}(), fn_{getter:x}(), "
                            f"{signed(stores[0][1], width)});")
-        if evs[j].target == CSTRID_CTOR:
+        if evs[j].target == ENSURE_POOL and vals == [("imm", 0, 8)]:
+            # A string id with its constructor inlined: data = nullptr, the pool check (creating
+            # the pool on first use), for a non-empty literal the hash, lookup and insert, then
+            # the pool's empty string if nothing was found.
+            text, flag = "", "true"
+            j, vals = next_bl(j + 1)
+            if j < n and not vals and evs[j].target == HASH:
+                s, length = evs[j].regs.get("0"), evs[j].regs.get("1")
+                if not s or s[0] != "str" or length != ("imm", len(s[1].encode("utf-8"))) or not s[1]:
+                    return None
+                j, vals = next_bl(j + 1)
+                if j >= n or vals or evs[j].target != POOL_LOOKUP:
+                    return None
+                j, vals = next_bl(j + 1)
+                if j >= n or vals or evs[j].target != POOL_INSERT or evs[j].regs.get("2") != s \
+                        or evs[j].regs.get("4") not in (("imm", 0), ("imm", 1)):
+                    return None
+                text, flag = s[1], "true" if evs[j].regs["4"][1] else "false"
+                j, vals = next_bl(j + 1)
+            if j >= n or vals or evs[j].target not in INLINE_IDS:
+                return None
+            type_name = VALUE_TYPES[evs[j].target]
+            expr = f"{INLINE_IDS[evs[j].target]}(base::global::UnkStrIdInline{{}}, {c_string(text)}, {flag})"
+        elif evs[j].target == CSTRID_CTOR:
             s = evs[j].regs.get("1")
             if vals or not s or s[0] != "str" or evs[j].regs.get("2") != ("imm", 1):
                 return None
@@ -396,11 +497,19 @@ def parse(orig: asmdiff.Original, addr: int, class_getters: set[int]) -> tuple[l
             j, vals = next_bl(j + 1)
             if j >= n or evs[j].target != 0x7100009658:
                 return None
+        elif VALUE_TYPES.get(evs[j].target) == "base::global::CStrId" and len(vals) == 1 \
+                and vals[0][0] == "pfield" and vals[0][2] == 8 and vals[0][1][0] in statics:
+            # A copy of an id in a table built on first use.
+            type_name = "base::global::CStrId"
+            base, disp = vals[0][1]
+            expr = f"CStrId(base::reflection::refl_GetStrIdTable<{statics[base]:#x}>().ids[{disp // 8}])"
         else:
             type_name = VALUE_TYPES.get(evs[j].target)
             expr = value_expr(type_name, vals) if type_name else None
             if expr and "[" in expr:
                 decls.extend([f"extern CStrId* g_unk_{v[1][0]:x}[];" for v in vals if v[0] == "gfield"])
+            elif expr and expr.startswith("CStrId(g_unk_") and vals[0][1] != GLOBAL_CSTRID:
+                decls.append(f"extern CStrId g_unk_{vals[0][1]:x};")
         if expr is None:
             return None
         j, vals = next_bl(j + 1)
@@ -417,6 +526,15 @@ def parse(orig: asmdiff.Original, addr: int, class_getters: set[int]) -> tuple[l
         s = regs.get("1")
         if t == CRNT_CTOR and s and s[0] == "str":
             type_name, expr = "base::global::CRntString", f"base::global::CRntString({c_string(s[1])})"
+        elif t == CRNT_COPY and s == ("gaddr", (GLOBAL_CSTRID, 0x10)):
+            type_name, expr = "base::global::CRntString", "base::global::CRntString(refl_GlobalRntString())"
+        elif t == CRNT_COPY and s and s[0] == "gaddr" and isinstance(s[1][0], tuple) and s[1][1] == 0x10 \
+                and s[1][0][0] in statics:
+            # The same from an id in a string-id table built on first use.
+            base, disp = s[1][0]
+            type_name = "base::global::CRntString"
+            expr = (f"base::global::CRntString(base::reflection::refl_RntStringOf("
+                    f"base::reflection::refl_GetStrIdTable<{statics[base]:#x}>().ids[{disp // 8}]))")
         elif t == CRNT_COPY and s and s[0] == "ptr":
             decls.append(f"extern base::global::CRntString g_unk_{s[1]:x};")
             type_name, expr = "base::global::CRntString", f"base::global::CRntString(g_unk_{s[1]:x})"
@@ -627,6 +745,19 @@ def parse(orig: asmdiff.Original, addr: int, class_getters: set[int]) -> tuple[l
             if r is None:
                 return None
             i = r
+        elif evs[j].target == HASH and evs[j].regs.get("0", ("",))[0] == "str" \
+                and evs[j].regs.get("1") == ("imm", len(evs[j].regs["0"][1].encode("utf-8"))):
+            # A call on the field named by a hash (e.g. setting a getter-backed field's function
+            # index): fn_X(refl_FindField(cls, CName(name)), index).
+            name = evs[j].regs["0"][1]
+            k, vals = next_bl(j + 1)
+            index = index_expr(evs[k].regs.get("1")) if k < n else None
+            if vals or k >= n or evs[k].target in NOT_KEYS or evs[k].target <= 0 or index is None:
+                return None
+            decls.append(f"void fn_{evs[k].target:x}(UnkReflField* field, u64 index);")
+            body.append(f"    fn_{evs[k].target:x}(base::reflection::refl_FindField(cls, "
+                        f"base::global::CName({c_string(name)})), {index});")
+            i = k + 1
         elif evs[j].target == GET_ATTRS:
             r = attribute(j + 1, "fn_710009dd6c(cls)->")
             if r is None:

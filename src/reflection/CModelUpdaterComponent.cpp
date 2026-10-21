@@ -5,10 +5,77 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CModelUpdaterComponent
 DREAD_REFL_TAG(7101170330);
 void fn_710116f898(base::reflection::CClass*) {}
+void fn_7101174534();
+void fn_71011704b4(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_7101170630(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+const base::reflection::UnkReflAttrKey& fn_71000904d0();
+void fn_71011706e4(UnkReflFunction* fn, const char* name);
+void fn_7101170798(UnkReflFunction* fn, const char* name);
+void fn_710117084c(UnkReflFunction* fn, const char* name);
+void fn_7101170900(UnkReflFunction* fn, const char* name);
+void fn_71011709b4(UnkReflFunction* fn, const char* name);
+extern base::reflection::CType g_unk_7101d5af48;
+void fn_7101174a28();
+void fn_710116f990(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sDefaultModelPath_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_sDefaultModelPath_GetterFunction", true);
+        fn->return_type = fn_710000ad9c();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7101174534);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sDefaultModelPath_SetterFunction", true)))
+        fn_71011704b4(fn, "_m_sDefaultModelPath_SetterFunction");
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sDefaultModelPath", true), fn_710000ad9c(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field0->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId(base::global::UnkStrIdInline{}, "", true));
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetMeshVisible", true))) {
+        fn_7101170630(fn, "SetMeshVisible");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Set mesh visible"));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("LinkTo", true))) {
+        fn_71011706e4(fn, "LinkTo");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Link To Model"));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("Unlink", true))) {
+        fn_7101170798(fn, "Unlink");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Unlink From Model"));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetPosWorldOffset", true))) {
+        fn_710117084c(fn, "SetPosWorldOffset");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Position offset"));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetAngWorldOffset", true))) {
+        fn_7101170900(fn, "SetAngWorldOffset");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Angle offset"));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("GetNodePosition", true)))
+        fn_71011709b4(fn, "GetNodePosition");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("ForceUpdate", true))) {
+        fn->name = base::global::UnkStrId("ForceUpdate", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7101174a28);
+    }
+}
 bool fn_71011744b8(const void*, const void*) { return false; }
 s32 fn_71011744c0() { return -1; }
 const base::reflection::CType& fn_71011744c8(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

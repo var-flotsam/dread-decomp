@@ -21,6 +21,22 @@ void fn_7100bdb9f0(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Set Cool Shinespark Camera Animation");
     fn_710009dd6c(cls)->Add<const char*>(fn_7100090d50(), "Camera");
 }
+extern base::reflection::CType g_unk_71726b0570;
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+extern base::reflection::CType g_unk_71726b0808;
+void fn_7100bdbb80(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("tTravellingDirections", true), &g_unk_71726b0570, 0x6c, -1, -1);
+    field0->attrs.Add<s32>(fn_7100075240(), &g_unk_71726b0570, s32(base::reflection::refl_GetEnumZero<0x71726b0940>()));
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Play camera animation when travelling towards these directions");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("tSituations", true), &g_unk_71726b0808, 0x70, -1, -1);
+    field1->attrs.Add<s32>(fn_7100075240(), &g_unk_71726b0808, s32(base::reflection::refl_GetEnumZero<0x71726b0950>()));
+    field1->attrs.Add<const char*>(fn_7100007e80(), "Play camera animation only in these situations");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fTargetSlomo", true), fn_710000abbc(), 0x74, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    field2->attrs.Add<const char*>(fn_7100007e80(), "While playing Cool Shinespark, apply this slomo to the game");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fTargetSlomoInterpolation", true), fn_710000abbc(), 0x78, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 1.0f);
+}
 bool fn_7100bdc1c4(const void* a, const void* b) { return a == b; }
 s32 fn_7100bdc1d0() { return -1; }
 const base::reflection::CType& fn_7100bdc1d8(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
