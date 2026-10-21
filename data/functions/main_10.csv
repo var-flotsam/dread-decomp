@@ -1643,8 +1643,8 @@ address,size,name,name_source,subsystem,status
 0x710104aad8,104,fn_710104aad8,unknown,unknown,U
 0x710104ab40,12,fn_710104ab40,unknown,unknown,O
 0x710104ab4c,104,fn_710104ab4c,unknown,unknown,U
-0x710104abb4,112,fn_710104abb4,unknown,unknown,U
-0x710104ac24,112,fn_710104ac24,unknown,unknown,U
+0x710104abb4,112,fn_710104abb4,unknown,unknown,O
+0x710104ac24,112,fn_710104ac24,unknown,unknown,O
 0x710104ac94,152,fn_710104ac94,unknown,unknown,U
 0x710104ad2c,8,fn_710104ad2c,unknown,unknown,O
 0x710104ad34,12,fn_710104ad34,unknown,unknown,O
@@ -1834,7 +1834,7 @@ address,size,name,name_source,subsystem,status
 0x71010521cc,8,fn_71010521cc,unknown,unknown,O
 0x71010521d4,92,fn_71010521d4,unknown,unknown,O
 0x7101052230,92,fn_7101052230,unknown,unknown,O
-0x710105228c,40,fn_710105228c,unknown,unknown,U
+0x710105228c,40,fn_710105228c,unknown,unknown,O
 0x71010522b4,48,fn_71010522b4,unknown,unknown,O
 0x71010522e4,48,fn_71010522e4,unknown,unknown,O
 0x7101052314,308,fn_7101052314,unknown,unknown,O
@@ -2693,7 +2693,7 @@ address,size,name,name_source,subsystem,status
 0x7101075ea8,8,fn_7101075ea8,unknown,unknown,O
 0x7101075eb0,92,fn_7101075eb0,unknown,unknown,O
 0x7101075f0c,92,fn_7101075f0c,unknown,unknown,O
-0x7101075f68,40,fn_7101075f68,unknown,unknown,U
+0x7101075f68,40,fn_7101075f68,unknown,unknown,O
 0x7101075f90,48,fn_7101075f90,unknown,unknown,O
 0x7101075fc0,48,fn_7101075fc0,unknown,unknown,O
 0x7101075ff0,360,fn_7101075ff0,unknown,unknown,O
@@ -4076,8 +4076,8 @@ address,size,name,name_source,subsystem,status
 0x71010c62d8,104,fn_71010c62d8,unknown,unknown,U
 0x71010c6340,12,fn_71010c6340,unknown,unknown,O
 0x71010c634c,104,fn_71010c634c,unknown,unknown,U
-0x71010c63b4,112,fn_71010c63b4,unknown,unknown,U
-0x71010c6424,112,fn_71010c6424,unknown,unknown,U
+0x71010c63b4,112,fn_71010c63b4,unknown,unknown,O
+0x71010c6424,112,fn_71010c6424,unknown,unknown,O
 0x71010c6494,152,fn_71010c6494,unknown,unknown,U
 0x71010c652c,8,fn_71010c652c,unknown,unknown,O
 0x71010c6534,12,fn_71010c6534,unknown,unknown,O

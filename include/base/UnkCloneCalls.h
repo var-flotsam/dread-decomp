@@ -12,6 +12,8 @@
 #include "types.h"
 
 void fn_71001eef74(char* owner, char* self, bool flag);
+void fn_71001eef58(char* owner, char* self, bool flag);
+void fn_7100025a88(char* p);
 
 namespace base {
 
@@ -189,6 +191,124 @@ reflection::UnkReflValue refl_GetLookupF32(void*, char* obj) {
     r.type = nullptr;
     fn_71000a18d4(&r, type, &v, false);
     return r;
+}
+
+// refl_SetFlagNotify for the flag at 0xf8, testing the flags the other way round
+// (fn_71001f32b0 and its identical copies).
+template <class Tag>
+void refl_SetFlagNotifyB(char* self, bool v) {
+    if (*reinterpret_cast<bool*>(self + 0xf8) == v)
+        return;
+    *reinterpret_cast<bool*>(self + 0xf8) = v;
+    if (char* o = *reinterpret_cast<char**>(self + 8))
+        fn_71001eef58(o, self, v && *reinterpret_cast<bool*>(self + 0xf9));
+}
+
+// Stores the bool at `Offset` when it differs (fn_71001c3314 and its copies).
+template <class Tag, u32 Offset>
+void refl_SetBool(char* self, bool v) {
+    if (*reinterpret_cast<bool*>(self + Offset) != v)
+        *reinterpret_cast<bool*>(self + Offset) = v;
+}
+
+// When the u8 flag at `Flag` differs from v: call(self + Member, v), then, when setting,
+// fn_7100025a88(self + Next) (fn_7100140eac and its copies).
+template <class Tag, u32 Flag, u32 Member, u32 Next>
+void refl_SetFlagCall(char* self, bool v) {
+    if (!((*reinterpret_cast<u8*>(self + Flag) != 0) ^ v))
+        return;
+    UnkCallTraits<Tag>::call(self + Member, v);
+    if (v)
+        fn_7100025a88(self + Next);
+}
+
+// Releases a refcounted object (count at +8; virtual slot 0x10 when it reaches zero)
+// (fn_7100234ef0 and its identical copies).
+template <class Tag>
+struct UnkRefOwner {
+    char* p;
+    ~UnkRefOwner() {
+        if (p && --*reinterpret_cast<u32*>(p + 8) == 0)
+            reinterpret_cast<void (**)(char*)>(*reinterpret_cast<char**>(p))[2](p);
+    }
+};
+
+template <class Tag>
+void refl_ReleaseRef(UnkRefOwner<Tag>* h) {
+    h->~UnkRefOwner();
+}
+
+// refl_CopyCtor3 with two levels: the base's vtable and 0x20 bytes, the class's vtable and a
+// word (fn_7100469c04 and its copies).
+template <class Tag>
+void refl_CopyCtor2(char* self, const char* other) {
+    *reinterpret_cast<char**>(self) = UnkCallTraits<Tag>::base_vtable() + 0x10;
+    __builtin_memcpy(self + 8, other + 8, 0x20);
+    *reinterpret_cast<char**>(self) = UnkCallTraits<Tag>::vtable() + 0x10;
+    __builtin_memcpy(self + 0x28, other + 0x28, 8);
+}
+
+// A reflected property of an object three pointers away (+0x58, `Mid`, +0x78 from the one `obj`
+// points to at +8): writes its u32 at `Offset` from the argument (fn_71008f1fb4 and its copies)
+// or returns it as a value of type() (fn_71008f20d8 and its copies).
+template <class Tag, u32 Mid, u32 Offset>
+reflection::UnkReflValue refl_SetDeepU32(void*, char* obj, reflection::UnkReflValue* const* args) {
+    char* t = *reinterpret_cast<char**>(obj + 8);
+    u32 v = *reflection::refl_ArgValue<u32>(args[0]);
+    *reinterpret_cast<u32*>(*reinterpret_cast<char**>(*reinterpret_cast<char**>(
+        *reinterpret_cast<char**>(t + 0x58) + Mid) + 0x78) + Offset) = v;
+    return reflection::refl_EmptyValue();
+}
+
+template <class Tag, u32 Mid, u32 Offset>
+reflection::UnkReflValue refl_GetDeepU32(void*, char* obj) {
+    char* t = *reinterpret_cast<char**>(obj + 8);
+    u32 v = *reinterpret_cast<u32*>(*reinterpret_cast<char**>(*reinterpret_cast<char**>(
+        *reinterpret_cast<char**>(t + 0x58) + Mid) + 0x78) + Offset);
+    const reflection::CType* type = UnkCallTraits<Tag>::type();
+    reflection::UnkReflValue r;
+    r.kind = 2;
+    r.field_0x0 = nullptr;
+    r.type = nullptr;
+    fn_71000a18d4(&r, type, &v, false);
+    return r;
+}
+
+// Returns false as a value of type() (fn_71002546d0 and its identical copies).
+template <class Tag>
+reflection::UnkReflValue refl_GetFalse(void*) {
+    bool v = false;
+    const reflection::CType* type = UnkCallTraits<Tag>::type();
+    reflection::UnkReflValue r;
+    r.kind = 2;
+    r.field_0x0 = nullptr;
+    r.type = nullptr;
+    fn_71000a18d4(&r, type, &v, false);
+    return r;
+}
+
+// Parallel arrays of values and keys of the same width: stores *value at the key's slot when
+// the key is present (fn_7100251a10 and its copies).
+template <class Tag, class K, class V>
+struct UnkKeyedArray {
+    V* values;
+    K* keys;
+    u32 count;
+
+    V* End() { return &values[count]; }
+    V* Find(const K& key) {
+        for (u64 i = 0; i < count; ++i)
+            if (keys[i] == key)
+                return &values[i];
+        return End();
+    }
+};
+
+template <class Tag, class T>
+void refl_KeyedSet(UnkKeyedArray<Tag, T, T>* a, const T* key, const T* value) {
+    T* p = a->Find(*key);
+    if (p != a->End())
+        *p = *value;
 }
 
 }  // namespace base
