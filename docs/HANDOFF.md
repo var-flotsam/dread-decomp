@@ -30,6 +30,7 @@ remain as reference only. Each stream edits only the files in its row.
 | 4. Reflection leftovers | Next steps, item 2, "Left" | `tools/gen_reflection.py`, `tools/refl_attrs.py`, `tools/gen_types.py`, `src/reflection/`, `src/reflection_types/`, `include/base/reflection/` (not `UnkReflStatics.h`) | `cloud/refl-<topic>` |
 | 5. Lua leftovers | Next steps, item 3 (library code, no game progress) | `lib/lua/`, `tools/sigmatch.py`, `tools/libcheck_lua.py`, `data/library_symbols.csv` | `cloud/lua-<topic>` |
 | 6. Guarded statics | Next steps, item 1, guarded function-local statics (taken over from stream 2, which gives up these files) | `tools/gen_statics.py`, `include/base/reflection/UnkReflStatics.h`, `src/reflection_statics/` | `cloud/statics-<topic>` |
+| 7. Game logic by hand | One-off `U` game functions (not in shape families; not engine/, script/, reflection, Lua) decompiled by hand, one file per function. Split by address at 0x71008cde78 (the median `U` game-function address on 2026-10-21): below it `src/game_lo/`, from it up `src/game_hi/` | `src/game_lo/`, `src/game_hi/` | `claude/project-thread-<id>` |
 
 All may change `data/functions/*.csv` (statuses only, through `check.py --update`). Anything
 else (shared headers, `check.py`, `CLAUDE.md`) goes through the owner first.
