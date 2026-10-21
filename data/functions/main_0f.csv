@@ -98,7 +98,7 @@ address,size,name,name_source,subsystem,status
 0x7100f04cfc,324,fn_7100f04cfc,unknown,game?,U
 0x7100f04e40,56,fn_7100f04e40,unknown,game?,O
 0x7100f04e78,4,fn_7100f04e78,unknown,game?,U
-0x7100f04e7c,72,fn_7100f04e7c,unknown,game?,U
+0x7100f04e7c,72,fn_7100f04e7c,unknown,game?,O
 0x7100f04ed0,140,fn_7100f04ed0,unknown,game?,O
 0x7100f04f5c,4,fn_7100f04f5c,unknown,game?,O
 0x7100f04f60,240,CStimulusDef::refl_GetClass,reflection,game,O
@@ -4854,7 +4854,7 @@ address,size,name,name_source,subsystem,status
 0x7100fb9490,68,fn_7100fb9490,unknown,unknown,U
 0x7100fb94d4,68,fn_7100fb94d4,unknown,unknown,U
 0x7100fb9518,36,fn_7100fb9518,unknown,unknown,O
-0x7100fb953c,40,fn_7100fb953c,unknown,unknown,U
+0x7100fb953c,40,fn_7100fb953c,unknown,unknown,O
 0x7100fb9564,136,fn_7100fb9564,unknown,unknown,U
 0x7100fb95f0,172,fn_7100fb95f0,unknown,unknown,O
 0x7100fb96a0,24,fn_7100fb96a0,unknown,unknown,O
@@ -4934,7 +4934,7 @@ address,size,name,name_source,subsystem,status
 0x7100fbf684,12,fn_7100fbf684,unknown,unknown,O
 0x7100fbf690,256,fn_7100fbf690,unknown,unknown,U
 0x7100fbf790,56,fn_7100fbf790,unknown,unknown,O
-0x7100fbf7c8,56,fn_7100fbf7c8,unknown,unknown,U
+0x7100fbf7c8,56,fn_7100fbf7c8,unknown,unknown,O
 0x7100fbf800,52,fn_7100fbf800,unknown,unknown,O
 0x7100fbf834,52,fn_7100fbf834,unknown,unknown,O
 0x7100fbf868,52,fn_7100fbf868,unknown,unknown,O
