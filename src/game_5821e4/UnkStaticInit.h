@@ -52,4 +52,51 @@ __attribute__((always_inline)) inline void InitId(UnkStrIdBase* id, const char* 
     __cxa_atexit(fn_710000051c, id, g_unk_7101a19000);
 }
 
+// A reflected enum's type object (a global shared between units, so reached through the GOT),
+// built from its name by its own constructor, then two conversions registered with
+// fn_71000a16c4: from the enum to int and back. Layouts are placeholders.
+struct UnkTypeInfo {
+    u8 pad_0x0[0x30];
+    void* field_0x30;
+};
+
+struct UnkEnumType {
+    void* vtable;
+    UnkTypeInfo* field_0x8;
+};
+
+struct UnkConversion {
+    void* from;
+    void* to;
+    void (*fn)();
+    u64 field_0x18;
+};
+
+}  // namespace unk_static_init
+
+unk_static_init::UnkEnumType* fn_7100014768();  // the int type's getter
+void fn_71000a16c4(unk_static_init::UnkConversion* conversion);
+void fn_7100099468(void* type);  // an enum type's destructor, as registered
+
+namespace unk_static_init {
+
+template <class Ctor, class Factory>
+__attribute__((always_inline)) inline void InitEnum(UnkEnumType* type, const char* name, Ctor ctor,
+                                                    Factory factory, char* list, UnkConversion* to_int,
+                                                    void (*to_int_fn)(), UnkConversion* from_int,
+                                                    void (*from_int_fn)()) {
+    {
+        CStrId n(name, true);
+        ctor(type, n, factory, nullptr);
+    }
+    __cxa_atexit(fn_7100099468, type, g_unk_7101a19000);
+    fn_710009ec00(list, type);
+    void* from = type->field_0x8->field_0x30;
+    *to_int = {from, fn_7100014768()->field_0x8->field_0x30, to_int_fn, 0};
+    fn_71000a16c4(to_int);
+    void* i = fn_7100014768()->field_0x8->field_0x30;
+    *from_int = {i, type->field_0x8->field_0x30, from_int_fn, 0};
+    fn_71000a16c4(from_int);
+}
+
 }  // namespace unk_static_init
