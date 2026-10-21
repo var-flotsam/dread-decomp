@@ -3992,7 +3992,7 @@ address,size,name,name_source,subsystem,status
 0x7100aa256c,4,fn_7100aa256c,unknown,unknown,O
 0x7100aa2570,396,fn_7100aa2570,unknown,unknown,U
 0x7100aa26fc,340,fn_7100aa26fc,unknown,unknown,U
-0x7100aa2850,248,fn_7100aa2850,unknown,unknown,U
+0x7100aa2850,248,fn_7100aa2850,unknown,unknown,O
 0x7100aa2948,644,fn_7100aa2948,unknown,unknown,U
 0x7100aa2bcc,4,fn_7100aa2bcc,unknown,unknown,O
 0x7100aa2bd0,292,fn_7100aa2bd0,unknown,unknown,U
