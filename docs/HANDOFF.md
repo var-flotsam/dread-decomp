@@ -38,10 +38,11 @@ Merge rules:
 - After merging `main`, take `main`'s `data/functions/*.csv`, rerun only the generator you own,
   then `tools/check.py --update` (`tools/verify.py --regen <generator>` does both). Never
   hand-merge the CSVs.
-- `check.py` fails when one function is defined in two files outside the Phase 3 samples
-  (`src/compiler_id/`, `src/flag_id/`, `src/atk_id/`), e.g. a new clone that `src/lifted/` also
-  defines. Rerun the generator that should drop it (`gen_lift.py` for lifted copies; only stream 1
-  runs the full ~80 min lift, so other streams target `U` functions).
+- `check.py` and `verify.py` fail when one function is defined in two files outside the Phase 3
+  samples (`src/compiler_id/`, `src/flag_id/`, `src/atk_id/`), e.g. a new clone that `src/lifted/`
+  also defines. `verify.py` runs `gen_lift.py --prune` (seconds) unless `--regen` names
+  `gen_lift`, so lifted copies drop out by themselves; any stream may commit that change to
+  `src/lifted/`. Only stream 1 runs the full lift (hours in the cloud).
 - `gen_clones.py` and `gen_lift.py` skip functions defined elsewhere in `src/` (`gen_statics.py`
   runs before both), so a rerun drops duplicates.
 - A stream that changes focus updates its row above in its next PR.

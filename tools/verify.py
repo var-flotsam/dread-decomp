@@ -3,14 +3,16 @@
 
 Runs, in order:
   1. the generators named with --regen, in the order CLAUDE.md lists them
-     (gen_reflection, gen_types, gen_statics, gen_clones, gen_lift);
+     (gen_reflection, gen_types, gen_statics, gen_clones, gen_lift); without gen_lift,
+     `gen_lift.py --prune` instead (seconds), which drops lifted copies of functions that
+     other sources now define;
   2. tools/check.py --update (build src/, write O/m/M/W into data/functions/);
   3. tools/progress.py;
   4. the tools/policy_check.py rules, on tracked and untracked (not ignored) files.
 
 Prints PASS/FAIL per step, the O count before -> after, regressions (count and up to 5
 addresses), game-code progress and, on failure, the next action. Exit status 0 only if every
-step passes and no function that was O is lost.
+step passes, no function that was O is lost and no function is defined in two files.
 
 "Before" is the set of O functions from the last passing run, kept in
 build/verify/<version>/baseline.txt; the first run builds it with tools/check.py (no --update)
@@ -84,8 +86,11 @@ def main() -> int:
             return 1
         print(f"NOTE baseline: none saved; built one from the current tree (O {len(baseline)})")
 
-    for g in [g for g in GENERATORS if g in wanted]:
-        rc, lines, secs = run(f"tools/{g}.py", "--version", v)
+    steps = [(g, ["--version", v]) for g in GENERATORS if g in wanted]
+    if "gen_lift" not in wanted:
+        steps.append(("gen_lift", ["--prune"]))
+    for g, gargs in steps:
+        rc, lines, secs = run(f"tools/{g}.py", *gargs)
         last = lines[-1] if lines else ""
         if rc == 0:
             print(f"PASS {g} ({secs:.0f} s): {short(last)}")
@@ -114,6 +119,12 @@ def main() -> int:
                          f"delete {base_file.relative_to(ROOT).as_posix()} and rerun")
         elif not failed:
             print("PASS regressions: 0")
+        dups = [ln.split()[1] for ln in lines if ln.startswith("DUPLICATE ")]
+        if dups:
+            ok = False
+            print(f"FAIL duplicates: {len(dups)} functions defined in two files: {' '.join(dups[:5])}")
+            nexts.append(f"see the DUPLICATE lines of `python tools/check.py --version {v}`; rerun the generator "
+                         "that should drop its copy, or remove the hand-written one")
 
     rc, lines, _ = run("tools/progress.py")
     m = next((m for m in map(PROGRESS_LINE.match, lines) if m), None)
