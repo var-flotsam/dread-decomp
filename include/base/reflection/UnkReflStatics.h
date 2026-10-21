@@ -115,4 +115,65 @@ bool refl_RegistryMapInit(UnkReflRegistryMap* self, const base::global::CStrId& 
     return true;
 }
 
+// A u32 id per type T, set once from another weak static: a zeroed word read back as a byte
+// and inverted. Copies across many TUs share one pair of statics.
+struct UnkReflZeroWord {
+    u32 value;
+    UnkReflZeroWord() : value(0) {}
+};
+
+template <class T>
+struct UnkReflTypeId {
+    static UnkReflZeroWord& base() {
+        static UnkReflZeroWord s_base;
+        return s_base;
+    }
+    static u32& id() {
+        static u32 s_id = (u8)~*reinterpret_cast<u8*>(&base());
+        return s_id;
+    }
+};
+
+struct UnkReflTypeIdTag;
+
+struct UnkReflTypeIdArg {
+    u32 id;
+    u32 unk_0x4;
+};
+
+}  // namespace base::reflection
+
+void fn_7100a2cb7c(void* target, const void* key, base::reflection::UnkReflTypeIdArg* arg, float f, u32 flags);
+
+namespace base::reflection {
+
+// Sends the type id to the object at +0x2e8 of a context (at UnkReflStatic<G>::offset of
+// `self`), under UnkReflStatic<G>::key().
+template <class G>
+void refl_SendTypeId(void* self) {
+    char* ctx = *reinterpret_cast<char**>(static_cast<char*>(self) + UnkReflStatic<G>::offset);
+    void* target = *reinterpret_cast<void**>(ctx + 0x2e8);
+    if (target) {
+        UnkReflTypeIdArg arg;
+        arg.id = UnkReflTypeId<UnkReflTypeIdTag>::id();
+        fn_7100a2cb7c(target, UnkReflStatic<G>::key(), &arg, -1.0f, 0);
+    }
+}
+
+// A large object built once (fn_7100031894); getters return one of its parts.
+struct UnkReflSingleton {
+    UnkReflSingleton();  // fn_7100031894
+    ~UnkReflSingleton();
+};
+
+inline UnkReflSingleton& refl_GetSingleton() {
+    static UnkReflSingleton s_singleton;
+    return s_singleton;
+}
+
+template <class G>
+void* refl_GetSingletonPart() {
+    return reinterpret_cast<char*>(&refl_GetSingleton()) + UnkReflStatic<G>::offset;
+}
+
 }  // namespace base::reflection

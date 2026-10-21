@@ -39,6 +39,7 @@ OUT = ROOT / "src" / "reflection_statics"
 BASE = 0x7100000000
 CSTRID_CTOR = 0x71000003D4
 GUARD_ACQUIRE, GUARD_RELEASE, ATEXIT = 0x7101238DA0, 0x7101238DB0, 0x7100000250
+SINGLETON_CTOR = 0x7100031894
 CHUNK = 500  # functions per generated file
 NAME_RE = re.compile(r"\b(?:fn|g_unk)_[0-9a-f]{10}\b")
 # kind -> verified reference address
@@ -53,6 +54,8 @@ REFERENCES = {
     "registry_map": 0x71004F0648,  # refl_RegistryMapInit (uses the registry of fn_71004f1338)
     # A static string id with internal linkage (a plain function; object and guard adjacent).
     "strid_local": 0x7100304140,
+    "send_type_id": 0x71003D3CF8,  # refl_SendTypeId
+    "singleton_part": 0x71003B27B4,  # refl_GetSingletonPart
 }
 KNOWN_CALLS = (CSTRID_CTOR, GUARD_ACQUIRE, GUARD_RELEASE, ATEXIT,
                0x71000803A4,  # the string pool's release
@@ -92,8 +95,13 @@ def facts(orig: asmdiff.Original, addr: int) -> dict | None:
             t = orig.img.pointer(page.pop(CS.reg_name(o[1].mem.base)) + o[1].mem.disp - BASE)
             if t is not None:
                 got[CS.reg_name(o[0].reg)] = BASE + t
+                if CS.reg_name(o[0].reg) == "x1":
+                    out.setdefault("x1_got", BASE + t)
+        elif m == "ldr" and o[1].type == arm64.ARM64_OP_MEM and CS.reg_name(o[1].mem.base) == "x0":
+            out.setdefault("x0_disp", o[1].mem.disp)
         elif m == "mov" and len(o) == 2 and o[1].type == arm64.ARM64_OP_IMM:
             imms[CS.reg_name(o[0].reg)] = o[1].imm
+            out.setdefault("first_imm", o[1].imm)
         elif m == "str" and o[1].type == arm64.ARM64_OP_MEM and o[1].mem.disp == 0x10 \
                 and CS.reg_name(o[0].reg) in imms:
             out["u32"] = imms[CS.reg_name(o[0].reg)] & 0xFFFFFFFF
@@ -121,6 +129,18 @@ def emit(kind: str, addr: int, f: dict, decls: set[str], registries: dict[int, i
         return [f"const base::global::CStrId& fn_{addr:x}() {{",
                 f"    static base::global::CStrId s_id({refl_attrs.c_string(f['name'])}, true);",
                 "    return s_id;", "}"]
+    if kind == "send_type_id":
+        if "x1_got" not in f or "x0_disp" not in f:
+            return None
+        decls.add(f"extern u8 g_unk_{f['x1_got']:x};")
+        return head + [f"    static constexpr u32 offset = {f['x0_disp']:#x};",
+                       f"    static const void* key() {{ return &g_unk_{f['x1_got']:x}; }}", "};",
+                       f"template void base::reflection::refl_SendTypeId<{tag}>(void*);"]
+    if kind == "singleton_part":
+        if "first_imm" not in f or f["calls"][1:2] != [SINGLETON_CTOR]:
+            return None
+        return head + [f"    static constexpr u32 offset = {f['first_imm']:#x};", "};",
+                       f"template void* base::reflection::refl_GetSingletonPart<{tag}>();"]
     if kind == "registry_map":
         calls = [c for c in f["calls"] if c not in KNOWN_CALLS]
         if len(calls) != 2 or "guard" not in f:
