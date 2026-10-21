@@ -663,11 +663,11 @@ address,size,name,name_source,subsystem,status
 0x71003324c4,264,fn_71003324c4,unknown,unknown,U
 0x71003325cc,144,fn_71003325cc,unknown,unknown,O
 0x710033265c,328,fn_710033265c,unknown,unknown,U
-0x71003327a4,264,fn_71003327a4,unknown,unknown,U
+0x71003327a4,264,fn_71003327a4,unknown,unknown,O
 0x71003328ac,204,fn_71003328ac,unknown,unknown,U
 0x7100332978,476,fn_7100332978,unknown,unknown,O
 0x7100332b54,300,fn_7100332b54,unknown,unknown,O
-0x7100332c80,324,fn_7100332c80,unknown,unknown,U
+0x7100332c80,324,fn_7100332c80,unknown,unknown,O
 0x7100332dc4,376,fn_7100332dc4,unknown,unknown,U
 0x7100332f40,1540,fn_7100332f40,unknown,unknown,U
 0x7100333544,180,fn_7100333544,unknown,unknown,U
@@ -1238,7 +1238,7 @@ address,size,name,name_source,subsystem,status
 0x7100360890,28,fn_7100360890,unknown,unknown,O
 0x71003608ac,252,fn_71003608ac,unknown,unknown,O
 0x71003609a8,16,fn_71003609a8,unknown,unknown,O
-0x71003609b8,460,fn_71003609b8,unknown,unknown,U
+0x71003609b8,460,fn_71003609b8,unknown,unknown,O
 0x7100360b84,5828,fn_7100360b84,unknown,unknown,U
 0x7100362248,220,fn_7100362248,unknown,unknown,O
 0x7100362324,128,fn_7100362324,unknown,unknown,U
@@ -1282,7 +1282,7 @@ address,size,name,name_source,subsystem,status
 0x7100362e04,240,CCharClassAttack::refl_GetClass,reflection,game/characters,O
 0x7100362ef4,4520,fn_7100362ef4,unknown,game/characters?,O
 0x710036409c,352,CCharClassAttack::refl_InitClass,reflection,game/characters,O
-0x71003641fc,564,fn_71003641fc,unknown,unknown,U
+0x71003641fc,564,fn_71003641fc,unknown,unknown,O
 0x7100364430,596,fn_7100364430,unknown,unknown,U
 0x7100364684,36,fn_7100364684,unknown,unknown,O
 0x71003646a8,8,fn_71003646a8,unknown,unknown,O
@@ -3862,7 +3862,7 @@ address,size,name,name_source,subsystem,status
 0x71003b2390,4,fn_71003b2390,unknown,game/characters?,O
 0x71003b2394,352,CCharClassArachnusAIComponent::refl_InitClass,reflection,game/characters,O
 0x71003b24f4,8,fn_71003b24f4,unknown,unknown,O
-0x71003b24fc,504,fn_71003b24fc,unknown,unknown,U
+0x71003b24fc,504,fn_71003b24fc,unknown,unknown,O
 0x71003b26f4,28,fn_71003b26f4,unknown,unknown,O
 0x71003b2710,36,fn_71003b2710,unknown,unknown,O
 0x71003b2734,4,fn_71003b2734,unknown,unknown,O

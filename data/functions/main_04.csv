@@ -343,7 +343,7 @@ address,size,name,name_source,subsystem,status
 0x7100416aa8,432,fn_7100416aa8,unknown,game/characters?,O
 0x7100416c58,352,CCharClassBehaviorTreeAIComponent::refl_InitClass,reflection,game/characters,O
 0x7100416db8,200,fn_7100416db8,unknown,game/characters?,U
-0x7100416e80,316,fn_7100416e80,unknown,game/characters?,U
+0x7100416e80,316,fn_7100416e80,unknown,game/characters?,O
 0x7100416fbc,36,fn_7100416fbc,unknown,game/characters?,O
 0x7100416fe0,136,fn_7100416fe0,unknown,game/characters?,U
 0x7100417068,92,fn_7100417068,unknown,game/characters?,O
@@ -5835,7 +5835,7 @@ address,size,name,name_source,subsystem,status
 0x71004f14c0,88,fn_71004f14c0,unknown,unknown,U
 0x71004f1518,12,fn_71004f1518,unknown,unknown,O
 0x71004f1524,52,fn_71004f1524,unknown,unknown,O
-0x71004f1558,496,fn_71004f1558,unknown,unknown,U
+0x71004f1558,496,fn_71004f1558,unknown,unknown,O
 0x71004f1748,204,fn_71004f1748,unknown,unknown,U
 0x71004f1820,364,fn_71004f1820,unknown,unknown,U
 0x71004f198c,4,fn_71004f198c,unknown,unknown,O
