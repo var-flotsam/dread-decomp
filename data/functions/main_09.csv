@@ -332,7 +332,7 @@ address,size,name,name_source,subsystem,status
 0x710090bf18,120,fn_710090bf18,unknown,unknown,U
 0x710090bf90,212,fn_710090bf90,unknown,unknown,O
 0x710090c064,44,fn_710090c064,unknown,unknown,O
-0x710090c090,224,fn_710090c090,unknown,unknown,O
+0x710090c090,224,fn_710090c090,unknown,unknown,U
 0x710090c170,84,fn_710090c170,unknown,unknown,O
 0x710090c1c4,152,fn_710090c1c4,unknown,unknown,O
 0x710090c25c,12,fn_710090c25c,unknown,unknown,O
