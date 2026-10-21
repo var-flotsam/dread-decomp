@@ -2449,6 +2449,37 @@ def keyed_array_copy(orig, addr, tag, insns):
         [f"template void base::refl_KeyedArrayCopy({arr}*, const {arr}*);"])
 
 
+def callback_list_dtor(orig, addr, tag, insns):
+    """UnkCallbackList's destructor or deleting destructor: both vtables."""
+    if len(insns) != 56 or insns[9] != ("ldr", "x0, [x0, #0x38]") or insns[31] != ("ldr", "x8, [x9, #0x40]"):
+        return None
+    vt, base = got_target(orig, insns, 4), got_target(orig, insns, 18)
+    if vt is None or base is None:
+        return None
+    return "\n".join([f"extern char g_unk_{v:x}[];" for v in sorted({vt, base})] + [
+        f"template <> struct base::UnkCallbackTraits<{tag}> {{", f"    static char* vtable() {{ return g_unk_{vt:x}; }}",
+        f"    static char* base_vtable() {{ return g_unk_{base:x}; }}", "};",
+        f"template void base::refl_CallbackListDeletingDtor(base::UnkCallbackList<{tag}>*);"
+        if insns[-1] == ("b", f"#{OPERATOR_DELETE:#x}") else f"template base::UnkCallbackList<{tag}>::~UnkCallbackList();"])
+
+
+def iter_value_destroy_poly_vec_strid(tag, insns):
+    """refl_IterValueDestroy over an array of 0x40-byte polymorphic elements keyed by a string id
+    (the shape of fn_710023c3e0): the state, array and key offsets give the key's and the
+    array's sizes."""
+    state = re.fullmatch(rf"w8, \[x0, {OFF}\]", insns[4][1])
+    vec = re.fullmatch(rf"x1, \[x19, {OFF}\]", insns[10][1])
+    key = re.fullmatch(rf"x8, \[x19(?:, {OFF})?\]", insns[44][1])
+    if not state or not vec or not key:
+        return None
+    s, v, k = int(state.group(1), 0), int(vec.group(1), 0), int(key.group(1) or "0", 0)
+    if v - k != 8 or s - v < 0x28:
+        return None
+    elem = f"UnkClonePolyVec<{tag}>" if s - v == 0x28 else f"UnkClonePolyVecPad<{tag}, {s - v:#x}>"
+    key_t = f"UnkCloneStrId<{tag}>" if k == 0 else f"UnkCloneStrIdElem<{tag}, {k:#x}, {v:#x}, base::UnkStrIdMember>"
+    return f"template void base::refl_IterValueDestroy<{elem}, {key_t}>(void*);"
+
+
 KINDS = {
     "strid_value_insert": Kind(None, "base/UnkStrIdValueVec.h", lambda tag, _: None, scan=strid_value_insert),
     "set_flag_notify": Kind(0x71001F31E8, "base/UnkCloneCalls.h", lambda tag, _: (
@@ -2481,6 +2512,9 @@ KINDS = {
     "keyed_set": Kind(None, "base/UnkCloneCalls.h", lambda tag, _: None, scan=keyed_set),
     "value_map_clear": Kind(None, "base/UnkHashMap.h", lambda tag, _: None, scan=value_map_clear),
     "keyed_array_copy": Kind(None, "base/UnkCloneCalls.h", lambda tag, _: None, scan=keyed_array_copy),
+    "slist_insert_before": Kind(0x7100240A00, "base/UnkSList.h", lambda tag, _: (
+        f"template void base::UnkSList<{tag}>::InsertBefore(const u64&, base::UnkSList<{tag}>::Node*);")),
+    "callback_list_dtor": Kind(None, "base/UnkCloneHelpers.h", lambda tag, _: None, scan=callback_list_dtor),
     "variant_assign": Kind(0x71000C3CC0, "base/UnkCloneHelpers.h", lambda tag, ins: variant(tag, ins, "refl_VariantAssign", "{v}*"),
                            exact=False),
     "variant_assign_pair": Kind(0x71000C3C14, "base/UnkCloneHelpers.h", lambda tag, ins: variant(
@@ -2493,9 +2527,8 @@ KINDS = {
     "value_holder_deleting_dtor": Kind(None, "base/UnkCloneHelpers.h", lambda tag, _: None,
                                        scan=value_holder_deleting_dtor),
     "derived_copy_ctor_48": Kind(None, "base/UnkCloneHelpers.h", lambda tag, _: None, scan=derived_copy_ctor_48),
-    "iter_value_destroy_poly_vec_key16": Kind(0x710023C3E0, "base/UnkCloneHelpers.h", lambda tag, _: (
-        f"template void base::refl_IterValueDestroy<UnkClonePolyVec<{tag}>, "
-        f"UnkCloneStrIdElem<{tag}, 8, 16, base::UnkStrIdMember>>(void*);"), exact=False),
+    "iter_value_destroy_poly_vec_key16": Kind(0x710023C3E0, "base/UnkCloneHelpers.h",
+                                              iter_value_destroy_poly_vec_strid, exact=False),
     "keyed_pair_iter_assign": Kind(0x7100239CF4, "base/UnkCloneHelpers.h", lambda tag, ins: keyed_pair_iter_assign(tag, ins),
                                    exact=False),
     "value_map_insert": Kind(None, "base/UnkCloneHelpers.h", lambda tag, _: None, scan=value_map_insert),
