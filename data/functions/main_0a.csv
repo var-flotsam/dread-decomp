@@ -1566,8 +1566,8 @@ address,size,name,name_source,subsystem,status
 0x7100a3c218,588,fn_7100a3c218,unknown,unknown,U
 0x7100a3c464,12,fn_7100a3c464,unknown,unknown,O
 0x7100a3c470,24,fn_7100a3c470,unknown,unknown,O
-0x7100a3c488,316,fn_7100a3c488,unknown,unknown,U
-0x7100a3c5c4,328,fn_7100a3c5c4,unknown,unknown,U
+0x7100a3c488,316,fn_7100a3c488,unknown,unknown,O
+0x7100a3c5c4,328,fn_7100a3c5c4,unknown,unknown,O
 0x7100a3c70c,12,fn_7100a3c70c,unknown,unknown,O
 0x7100a3c718,8,fn_7100a3c718,unknown,unknown,O
 0x7100a3c720,28,fn_7100a3c720,unknown,unknown,O
@@ -3542,8 +3542,8 @@ address,size,name,name_source,subsystem,status
 0x7100a8c680,200,fn_7100a8c680,unknown,game/components?,O
 0x7100a8c748,908,fn_7100a8c748,unknown,game/components?,O
 0x7100a8cad4,384,fn_7100a8cad4,unknown,game/components?,O
-0x7100a8cc60,628,fn_7100a8cc60,unknown,game/components?,U
-0x7100a8cee0,636,fn_7100a8cee0,unknown,game/components?,U
+0x7100a8cc60,628,fn_7100a8cc60,unknown,game/components?,O
+0x7100a8cee0,636,fn_7100a8cee0,unknown,game/components?,O
 0x7100a8d160,1392,fn_7100a8d160,unknown,game/components?,U
 0x7100a8d6d0,4,fn_7100a8d6d0,unknown,game/components?,O
 0x7100a8d6d4,244,CTeleporterUsableComponent::refl_GetClass,reflection,game/components,O
@@ -3760,8 +3760,8 @@ address,size,name,name_source,subsystem,status
 0x7100a95ff0,588,fn_7100a95ff0,unknown,unknown,U
 0x7100a9623c,12,fn_7100a9623c,unknown,unknown,O
 0x7100a96248,24,fn_7100a96248,unknown,unknown,O
-0x7100a96260,316,fn_7100a96260,unknown,unknown,U
-0x7100a9639c,328,fn_7100a9639c,unknown,unknown,U
+0x7100a96260,316,fn_7100a96260,unknown,unknown,O
+0x7100a9639c,328,fn_7100a9639c,unknown,unknown,O
 0x7100a964e4,20,fn_7100a964e4,unknown,unknown,O
 0x7100a964f8,8,fn_7100a964f8,unknown,unknown,O
 0x7100a96500,12,fn_7100a96500,unknown,unknown,O
@@ -4230,7 +4230,7 @@ address,size,name,name_source,subsystem,status
 0x7100aacc40,1536,fn_7100aacc40,unknown,game?,O
 0x7100aad240,388,CLineBombMovement::CTunableLineBombMovement::refl_InitClass,reflection,game,O
 0x7100aad3c4,696,fn_7100aad3c4,unknown,game?,O
-0x7100aad680,932,fn_7100aad680,unknown,game?,U
+0x7100aad680,932,fn_7100aad680,unknown,game?,O
 0x7100aada30,572,fn_7100aada30,unknown,game?,O
 0x7100aadc6c,80,fn_7100aadc6c,unknown,game?,O
 0x7100aadcbc,88,fn_7100aadcbc,unknown,game?,O
