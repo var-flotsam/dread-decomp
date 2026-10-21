@@ -139,7 +139,7 @@ address,size,name,name_source,subsystem,status
 0x7100604d78,28,fn_7100604d78,unknown,game/components?,O
 0x7100604d94,72,fn_7100604d94,unknown,game/components?,O
 0x7100604ddc,12,fn_7100604ddc,unknown,game/components?,O
-0x7100604df0,352,fn_7100604df0,unknown,game/components?,U
+0x7100604df0,352,fn_7100604df0,unknown,game/components?,O
 0x7100604f50,4,fn_7100604f50,unknown,game/components?,O
 0x7100604f54,244,CKraidBouncingCreaturesMovementComponent::refl_GetClass,reflection,game/components,O
 0x7100605048,4,fn_7100605048,unknown,game/components?,O
@@ -167,7 +167,7 @@ address,size,name,name_source,subsystem,status
 0x7100605fcc,28,fn_7100605fcc,unknown,game/components?,O
 0x7100605fe8,88,fn_7100605fe8,unknown,game/components?,U
 0x7100606040,12,fn_7100606040,unknown,game/components?,O
-0x7100606050,304,fn_7100606050,unknown,game/components?,U
+0x7100606050,304,fn_7100606050,unknown,game/components?,O
 0x7100606180,4,fn_7100606180,unknown,game/components?,O
 0x7100606184,244,CKraidNailMovementComponent::refl_GetClass,reflection,game/components,O
 0x7100606278,4,fn_7100606278,unknown,game/components?,O
@@ -200,7 +200,7 @@ address,size,name,name_source,subsystem,status
 0x7100606b98,64,fn_7100606b98,unknown,game/components?,O
 0x7100606bd8,4,fn_7100606bd8,unknown,game/components?,O
 0x7100606bdc,84,fn_7100606bdc,unknown,game/components?,O
-0x7100606c30,392,fn_7100606c30,unknown,game/components?,U
+0x7100606c30,392,fn_7100606c30,unknown,game/components?,O
 0x7100606db8,4,fn_7100606db8,unknown,game/components?,O
 0x7100606dbc,244,CKraidShockerSplashMovementComponent::refl_GetClass,reflection,game/components,O
 0x7100606eb0,4,fn_7100606eb0,unknown,game/components?,O
@@ -228,7 +228,7 @@ address,size,name,name_source,subsystem,status
 0x7100607fd8,28,fn_7100607fd8,unknown,game/components?,O
 0x7100607ff4,60,fn_7100607ff4,unknown,game/components?,O
 0x7100608030,12,fn_7100608030,unknown,game/components?,O
-0x7100608040,384,fn_7100608040,unknown,game/components?,U
+0x7100608040,384,fn_7100608040,unknown,game/components?,O
 0x71006081c0,4,fn_71006081c0,unknown,game/components?,O
 0x71006081c4,244,CKraidSpikeMovablePlatformComponent::refl_GetClass,reflection,game/components,O
 0x71006082b8,4,fn_71006082b8,unknown,game/components?,O
@@ -260,7 +260,7 @@ address,size,name,name_source,subsystem,status
 0x710060906c,12,fn_710060906c,unknown,unknown,O
 0x7100609078,8,fn_7100609078,unknown,unknown,O
 0x7100609080,8,fn_7100609080,unknown,unknown,O
-0x7100609090,344,fn_7100609090,unknown,unknown,U
+0x7100609090,344,fn_7100609090,unknown,unknown,O
 0x71006091e8,4,fn_71006091e8,unknown,unknown,O
 0x71006091ec,244,behaviortree::CKreepStoreHomePosAction::refl_GetClass,reflection,ai/behaviortree,O
 0x71006092e0,4,fn_71006092e0,unknown,ai/behaviortree?,O
@@ -1045,7 +1045,7 @@ address,size,name,name_source,subsystem,status
 0x7100623a88,28,fn_7100623a88,unknown,unknown,O
 0x7100623aa4,52,fn_7100623aa4,unknown,unknown,O
 0x7100623ad8,12,fn_7100623ad8,unknown,unknown,O
-0x7100623af0,392,fn_7100623af0,unknown,unknown,U
+0x7100623af0,392,fn_7100623af0,unknown,unknown,O
 0x7100623c78,4,fn_7100623c78,unknown,unknown,O
 0x7100623c7c,244,CCharClassNailuggerAcidBallsAttack::refl_GetClass,reflection,game/characters,O
 0x7100623d70,708,fn_7100623d70,unknown,game/characters?,O
@@ -1145,7 +1145,7 @@ address,size,name,name_source,subsystem,status
 0x7100626dd4,28,fn_7100626dd4,unknown,unknown,O
 0x7100626df0,44,fn_7100626df0,unknown,unknown,O
 0x7100626e1c,12,fn_7100626e1c,unknown,unknown,O
-0x7100626e30,352,fn_7100626e30,unknown,unknown,U
+0x7100626e30,352,fn_7100626e30,unknown,unknown,O
 0x7100626f90,4,fn_7100626f90,unknown,unknown,O
 0x7100626f94,244,CCharClassObsydomithonAttack::refl_GetClass,reflection,game/characters,O
 0x7100627088,392,fn_7100627088,unknown,game/characters?,O
@@ -1731,7 +1731,7 @@ address,size,name,name_source,subsystem,status
 0x7100642248,28,fn_7100642248,unknown,unknown,O
 0x7100642264,112,fn_7100642264,unknown,unknown,O
 0x71006422d4,12,fn_71006422d4,unknown,unknown,O
-0x71006422e0,304,fn_71006422e0,unknown,unknown,U
+0x71006422e0,304,fn_71006422e0,unknown,unknown,O
 0x7100642410,4,fn_7100642410,unknown,unknown,O
 0x7100642414,244,CCharClassQuetzoaChargeAttack::CTunableCharClassQuetzoaChargeAttack::refl_GetClass,reflection,game/characters,O
 0x7100642508,304,fn_7100642508,unknown,game/characters?,O
