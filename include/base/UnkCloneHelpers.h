@@ -455,6 +455,13 @@ struct UnkCallbackList : UnkCallbackListBase<Tag> {
     u64 field_0x40;
     ~UnkCallbackList() { this->vtable = UnkCallbackTraits<Tag>::vtable() + 0x10; }
 };
+
+// Its deleting form (fn_710023af18 and its copies).
+template <class Tag>
+void refl_CallbackListDeletingDtor(UnkCallbackList<Tag>* self) {
+    self->~UnkCallbackList();
+    __builtin_operator_delete(self);
+}
 }  // namespace base
 
 // A record of an 8-byte field, a string id and a u32, copy-assigned past its first field
@@ -686,6 +693,14 @@ template <class Tag>
 struct UnkClonePolyVec {
     base::UnkVector<UnkClonePoly64<Tag>> v;
     ~UnkClonePolyVec() { v.Free(); }
+};
+// The same followed by 8-byte words up to `Size` (iterator values keyed by a string id at the
+// end of a larger key, fn_710075abfc and its copies).
+template <class Tag, u64 Size>
+struct UnkClonePolyVecPad {
+    base::UnkVector<UnkClonePoly64<Tag>> v;
+    u64 pad[(Size - 0x28) / 8];
+    ~UnkClonePolyVecPad() { v.Free(); }
 };
 namespace base {
 template <class T, class K>
