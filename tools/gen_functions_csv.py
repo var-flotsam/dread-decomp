@@ -28,7 +28,6 @@ import argparse
 import csv
 import json
 import re
-import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -37,9 +36,11 @@ sys.path.insert(0, str(Path(__file__).resolve().parent / "recon"))
 import reflection  # noqa: E402
 from image import BASE, Image  # noqa: E402
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import hostenv  # noqa: E402
+
 ROOT = Path(__file__).resolve().parent.parent
-_WIN_CXXFILT = r"C:\Program Files\LLVM\bin\llvm-cxxfilt.exe"
-CXXFILT = _WIN_CXXFILT if Path(_WIN_CXXFILT).is_file() else (shutil.which("llvm-cxxfilt") or _WIN_CXXFILT)
+CXXFILT = hostenv.cxxfilt()
 GENERIC_NAME = re.compile(r"^(FUN_|thunk_FUN_|_INIT_\d+$|LAB_|SUB_|entry$)")
 
 # First match wins. Applied to the best-guess name (or the reflected type name).

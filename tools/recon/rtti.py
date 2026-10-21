@@ -8,20 +8,22 @@ RELATIVE relocation to a known type_info.
 
 from __future__ import annotations
 
-import shutil
 import subprocess
+import sys
 from dataclasses import dataclass, field
 from pathlib import Path
 
 from image import R_AARCH64_RELATIVE, Image
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+import hostenv  # noqa: E402
 
 KINDS = {
     "_ZTVN10__cxxabiv117__class_type_infoE": "class",
     "_ZTVN10__cxxabiv120__si_class_type_infoE": "si",
     "_ZTVN10__cxxabiv121__vmi_class_type_infoE": "vmi",
 }
-_WIN_CXXFILT = r"C:\Program Files\LLVM\bin\llvm-cxxfilt.exe"
-CXXFILT = _WIN_CXXFILT if Path(_WIN_CXXFILT).is_file() else (shutil.which("llvm-cxxfilt") or _WIN_CXXFILT)
+CXXFILT = hostenv.cxxfilt()
 
 
 @dataclass

@@ -4,6 +4,8 @@ Thanks for helping. This page is the procedure for working from a fork. The rule
 section are not negotiable: a pull request that breaks one is closed, and its content may have
 to be purged from the history.
 
+Local AI coding agents (small models with short contexts) start with `AGENTS.md` instead.
+
 ## Rules
 
 1. **No game data, ever.** Never commit, paste into an issue or PR, or attach: game files or
@@ -55,6 +57,11 @@ python -m venv .venv
 .venv/Scripts/python tools/fetch_sources.py
 ```
 
+On macOS (Apple Silicon) use `.venv/bin/python`. `fetch_toolchains.py` fetches the official
+x86_64 macOS build of Clang 9.0.1 (there is no arm64 one), which runs under Rosetta 2
+(`softwareupdate --install-rosetta`); downloads go to `~/Library/Caches/dread-decomp`. This
+path is untested on hardware: `check.py` must reproduce the Windows O count before you rely on it.
+
 ### 3. Your dump
 
 Dump the base game and the 2.1.0 update from your own console. Then import and verify it.
@@ -95,6 +102,17 @@ git rebase upstream/main          # or merge, if you've already shared the branc
 `data/functions/*.csv` statuses often conflict. Don't resolve them by hand: take either side,
 then rerun `check.py --update`, which rederives every status from `src/`. If a generator's
 output conflicts, regenerate it (the order is in `CLAUDE.md`).
+
+When several machines or people work at once (the owner's workstreams are in
+`docs/HANDOFF.md`, "Workstreams"):
+
+- Merge `main` into your branch often and keep PRs small.
+- After merging `main`, take `main`'s `data/functions/*.csv`, rerun only the generator you own,
+  then `tools/check.py --update` (or `tools/verify.py --regen <generator>`). Never hand-merge the CSVs.
+- `gen_clones.py` and `gen_lift.py` skip functions defined elsewhere in `src/`, so a rerun drops
+  duplicates.
+- Branch prefixes are `pc/` and `mac/`.
+- A machine that changes focus updates its Workstreams row in its next PR.
 
 ### 6. Open a pull request
 
