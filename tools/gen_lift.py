@@ -21,6 +21,14 @@ lifts each one into C++ over `char*` parameters and keeps only the byte-identica
 
 Usage: python tools/gen_lift.py --version 2.1.0
 Outputs are deterministic. Regenerate, never edit them.
+
+To measure a lifter change in a minute instead of a full run, --report (implied by --only and
+--sample) lifts, compiles and diffs a subset in build/gen_lift_report/ without touching
+src/lifted/, and prints counts and bytes by outcome and size band: matched, lifted but not
+byte-identical, or rejected with the reason from the attempt that got furthest (the first
+unsupported mnemonic, or a category such as a register read before its definition).
+  python tools/gen_lift.py --version 2.1.0 --sample 500 --seed 1 [--examples 3]
+  python tools/gen_lift.py --version 2.1.0 --only 7100123456,7100123460   (or --only @addrs.txt)
 """
 
 from __future__ import annotations
@@ -29,6 +37,7 @@ import argparse
 import bisect
 import csv
 import math
+import random
 import re
 import shutil
 import struct
@@ -204,6 +213,22 @@ class Lifter:
         self.sret = False
         self.last_call: tuple[str | None, str] = (None, "")  # (callee or None, argument types)
         self.tails: dict[str, str] = {}  # direct tail callee -> argument types
+        # Why lift() gave up (for --report), and how far it got: the instruction index, -1
+        # before the first, the instruction count after the last.
+        self.reason, self.pos = "", -1
+
+    def fail(self, reason: str, pos: int | None = None) -> None:
+        self.reason = reason
+        if pos is not None:
+            self.pos = pos
+
+    def unsupported(self, e: Unsupported) -> None:
+        r = str(e)
+        if r[:1] in "xwsd" and r[1:].isdigit():
+            r = "reg read before def" if not isinstance(self, FlatLifter) else "flat: reg read before linear def"
+        elif r[:1] in "qvhb" and r[1:].isdigit():
+            r = "vector/half/byte register"
+        self.fail(f"unsupported: {r}")
 
     @property
     def depth(self) -> int:
@@ -552,16 +577,16 @@ class Lifter:
         code = orig.function(addr)
         ins = list(CS.disasm(code, addr))
         if not ins or len(ins) * 4 != len(code):
-            return None
+            return self.fail("undecodable instruction")
         end = addr + len(code)
         last = ins[-1].address
         if not self.setup_frame(ins):
-            return None
+            return self.fail("stack frame")
         try:
-            for x in ins:
+            for self.pos, x in enumerate(ins):
                 self.close_to(x.address)
                 if not self.live:
-                    return None  # unreachable code (or a jump-around we don't model)
+                    return self.fail("unreachable code")  # (or a jump-around we don't model)
                 if is_frame(x):
                     continue
                 m, o = x.mnemonic, x.operands
@@ -583,21 +608,22 @@ class Lifter:
                 elif m == "b":
                     t = o[0].imm
                     if not (x.address < t <= last and self.blocks and self.blocks[-1].end == x.address + 4):
-                        return None
+                        return self.fail("branch: not an else")
                     self.to_else(t)
                 elif not self.step(x, last):
-                    return None
+                    return self.fail(f"insn: {m}")
             if self.blocks or self.live:
-                return None
-        except Unsupported:
-            return None
+                return self.fail("falls off the end", len(ins))
+        except Unsupported as e:
+            return self.unsupported(e)
+        self.pos = len(ins)
         return self.finish()
 
     def finish(self) -> tuple[str, set[str]] | None:
         tails = any(k == "tail" for _, k, _ in self.rets)
         if self.sret:
             if self.returns != "value":
-                return None
+                return self.fail("variant")
             for ln, k, p in self.rets:
                 ind = self.body[ln][:len(self.body[ln]) - len(self.body[ln].lstrip())]
                 # A final call (e.g. an initialiser given &ret) stays a tail call: ret is
@@ -607,19 +633,19 @@ class Lifter:
             return self.signature("UnkResult", ["    UnkResult ret;"] + self.body), self.decls
         if self.returns != "void":
             if any(k == "value" and p is None for _, k, p in self.rets):
-                return None
+                return self.fail("variant")
             types = [p[1] for _, k, p in self.rets if k == "value"]
             if not tails and not types:
-                return None  # only no-return calls: the "void" variant
+                return self.fail("variant")  # only no-return calls: the "void" variant
             # Tail calls return what the other paths return when that is a float.
             rtype = types[0] if types and types[0][0] == "f" else "char*" if tails else types[0]
             if self.returns == "ref":
                 if rtype != "char*" or tails:
-                    return None
+                    return self.fail("variant")
                 rtype = "char&"
             if any((t[0] == "f") != (rtype[0] == "f") for t in types) or \
                     (rtype[0] == "f" and any(t != rtype for t in types)):
-                return None
+                return self.fail("variant")
         else:
             rtype = "void"
         for ln, k, p in self.rets:
@@ -641,7 +667,7 @@ class Lifter:
                 s = "return;"
             elif rtype == "char&":
                 if p[1] != "char*":
-                    return None
+                    return self.fail("variant")
                 s = f"return *{p[0]};"
             elif p[1] == rtype:
                 s = f"return {p[0]};"
@@ -1194,11 +1220,11 @@ class FlatLifter(Lifter):
         code = orig.function(addr)
         ins = list(CS.disasm(code, addr))
         if not ins or len(ins) * 4 != len(code):
-            return None
+            return self.fail("undecodable instruction")
         end = addr + len(code)
         last = ins[-1].address
         if not self.setup_frame(ins):
-            return None
+            return self.fail("stack frame")
         targets = set()
         for x in ins:
             for op in x.operands:
@@ -1207,7 +1233,7 @@ class FlatLifter(Lifter):
                         and addr <= op.imm < end:
                     targets.add(op.imm)
         try:
-            for x in ins:
+            for self.pos, x in enumerate(ins):
                 if x.address in targets:
                     self.body.append(f"L_{x.address:x}:;")
                     self.s.cmp = None if x.address != addr else self.s.cmp
@@ -1232,11 +1258,12 @@ class FlatLifter(Lifter):
                 elif m == "b":
                     self.line(f"goto L_{o[0].imm:x};")
                 elif not self.step(x, last):
-                    return None
-        except Unsupported:
-            return None
+                    return self.fail(f"insn: {m}")
+        except Unsupported as e:
+            return self.unsupported(e)
+        self.pos = len(ins)
         if ins[-1].mnemonic not in ("ret", "b", "br", "bl"):
-            return None
+            return self.fail("falls off the end")
         # Declarations go first: gotos must not jump over initialisations.
         pre = []
         for n in sorted(k for k in self.types if k < 100):
@@ -1281,31 +1308,31 @@ HEADER = ['#include "types.h"', '#define HIDDEN __attribute__((visibility("hidde
           "struct UnkResult { char data[0x100]; };", ""]
 
 
-def main() -> int:
-    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--version", required=True)
-    args = ap.parse_args()
-    orig = asmdiff.Original(args.version)
-    cands = candidates(orig)
-
-    work = ROOT / "build" / "gen_lift"
-    work.mkdir(parents=True, exist_ok=True)
+def lift_all(orig: asmdiff.Original, cands: list[int],
+             why: dict[int, tuple[int, str]] | None = None) -> list[dict[int, tuple[str, set[str]]]]:
+    """Every lifting attempt, in variant order: one {address: (definition, declarations)} per
+    attempt. With `why`, the failure that got furthest is kept for each address (earliest
+    attempt on a tie) as (instruction index, reason)."""
     lifted: list[dict[int, tuple[str, set[str]]]] = []
+
+    def attempt(lifter: Lifter, a: int, defs: dict) -> None:
+        r = lifter.lift()
+        if r:
+            defs[a] = r
+        elif why is not None and (a not in why or lifter.pos > why[a][0]):
+            why[a] = (lifter.pos, lifter.reason)
+
     for extra, returns in VARIANTS:
         defs = {}
         for a in cands:
-            r = Lifter(orig, a, extra, returns).lift()
-            if r:
-                defs[a] = r
+            attempt(Lifter(orig, a, extra, returns), a, defs)
         lifted.append(defs)
     structured = set().union(*lifted)
     rest = [a for a in cands if a not in structured]
     for extra, returns in VARIANTS:
         defs = {}
         for a in rest:
-            r = FlatLifter(orig, a, extra, returns).lift()
-            if r:
-                defs[a] = r
+            attempt(FlatLifter(orig, a, extra, returns), a, defs)
         lifted.append(defs)
     # Functions with stack locals: each layout of the locals array, structured then flat.
     rest = [a for a in rest if not any(a in d for d in lifted)]
@@ -1314,12 +1341,19 @@ def main() -> int:
             for extra, returns in VARIANTS:
                 defs = {}
                 for a in rest:
-                    r = cls(orig, a, extra, returns, stack).lift()
-                    if r:
-                        defs[a] = r
+                    attempt(cls(orig, a, extra, returns, stack), a, defs)
                 lifted.append(defs)
+    return lifted
 
-    def build(job: tuple[int, int]) -> set[int]:
+
+def build_all(orig: asmdiff.Original, lifted: list[dict[int, tuple[str, set[str]]]],
+              work: Path) -> tuple[dict[int, tuple[str, set[str]]], set[int]]:
+    """Compile every attempt in scratch TUs under `work` and diff them. Returns the first
+    byte-identical definition of each address (variant order decides) and the addresses that
+    compiled in at least one attempt."""
+    work.mkdir(parents=True, exist_ok=True)
+
+    def build(job: tuple[int, int]) -> tuple[set[int], set[int]]:
         k, part = job
         addrs = sorted(lifted[k])[part * SCRATCH_CHUNK:(part + 1) * SCRATCH_CHUNK]
         defs = {a: lifted[k][a] for a in addrs}
@@ -1334,7 +1368,7 @@ def main() -> int:
             src.write_text("\n".join(lines) + "\n", encoding="utf-8")
             r = subprocess.run(buildcfg.cxx_command(src, obj, ["-ferror-limit=0"]), capture_output=True, text=True)
             if r.returncode == 0:
-                return {res.address for res in asmdiff.diff_object(obj, orig) if res.matching} & set(defs)
+                return {res.address for res in asmdiff.diff_object(obj, orig) if res.matching} & set(defs), set(defs)
             # Drop the functions with errors (a lifter gap) and try again.
             starts = sorted(owner)
             bad = set()
@@ -1351,13 +1385,96 @@ def main() -> int:
     jobs = [(k, part) for k in range(len(lifted))
             for part in range((len(lifted[k]) + SCRATCH_CHUNK - 1) // SCRATCH_CHUNK)]
     with ThreadPoolExecutor() as pool:
-        matched = list(pool.map(build, jobs))
+        results = list(pool.map(build, jobs))
     chosen: dict[int, tuple[str, set[str]]] = {}
     for k in range(len(lifted)):  # variant order decides
-        for (kk, _), ok in zip(jobs, matched):
+        for (kk, _), (ok, _) in zip(jobs, results):
             if kk == k:
                 for a in sorted(ok):
                     chosen.setdefault(a, lifted[k][a])
+    return chosen, set().union(*[c for _, c in results])
+
+
+BANDS = [("<256", 0, 256), ("256-1K", 256, 1024), ("1-2K", 1024, 2048), (">2K", 2048, 1 << 62)]
+
+
+def report(orig: asmdiff.Original, addrs: list[int], cands: set[int], examples: int) -> None:
+    """Lift, compile and diff `addrs` in build/gen_lift_report/ (never src/) and print the
+    outcome of each by size band: count/KB per row, rows by total bytes."""
+    why: dict[int, tuple[int, str]] = {}
+    todo = [a for a in addrs if a in cands]
+    lifted = lift_all(orig, todo, why)
+    chosen, compiled = build_all(orig, lifted, ROOT / "build" / "gen_lift_report")
+    lifted_any = set().union(*lifted)
+    outcome = {}
+    for a in addrs:
+        if a not in cands:
+            outcome[a] = "rejected: size cap" if orig.sizes.get(a, 0) > MAX_SIZE else "rejected: not a candidate"
+        elif a in chosen:
+            outcome[a] = "matched"
+        elif a in compiled:
+            outcome[a] = "lifted, not byte-identical"
+        elif a in lifted_any:
+            outcome[a] = "rejected: compile error"
+        else:
+            outcome[a] = f"rejected: {why[a][1]}"
+    rows: dict[str, list[int]] = {}
+    for a in sorted(addrs):
+        rows.setdefault(outcome[a], []).append(a)
+
+    def cells(group: list[int]) -> list[str]:
+        out = []
+        for _, lo, hi in BANDS + [("total", 0, 1 << 62)]:
+            s = [orig.sizes.get(a, 0) for a in group if lo <= orig.sizes.get(a, 0) < hi]
+            out.append(f"{len(s)}/{sum(s) / 1024:.0f}K" if s else "-")
+        return out
+
+    head = ["outcome"] + [b[0] for b in BANDS] + ["total"]
+    first = ["matched", "lifted, not byte-identical"]
+    order = sorted(rows, key=lambda r: (first.index(r) if r in first else 2,
+                                        -sum(orig.sizes.get(a, 0) for a in rows[r]), r))
+    table = [head] + [[r] + cells(rows[r]) for r in order] + [["all"] + cells(list(addrs))]
+    w = [max(len(row[i]) for row in table) for i in range(len(head))]
+    for row in table:
+        print("  ".join(row[0].ljust(w[0]) if i == 0 else c.rjust(w[i]) for i, c in enumerate(row)))
+    if examples:
+        for r in order:
+            print(f"{r}: {' '.join(f'{a:x}' for a in rows[r][:examples])}")
+
+
+def parse_only(spec: str) -> list[int]:
+    text = Path(spec[1:]).read_text(encoding="utf-8") if spec.startswith("@") else spec.replace(",", "\n")
+    return sorted({int(t, 16) for t in text.split() if t.strip()})
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--version", required=True)
+    ap.add_argument("--only", help="ADDR[,ADDR...] or @file (one address per line): measure just these")
+    ap.add_argument("--sample", type=int, help="measure a random sample of N candidates")
+    ap.add_argument("--seed", type=int, default=0, help="seed for --sample (default 0)")
+    ap.add_argument("--report", action="store_true",
+                    help="print outcomes by size band instead of writing src/lifted/ (implied by --only/--sample)")
+    ap.add_argument("--new", action="store_true", help="with --report: skip functions src/lifted/ already defines")
+    ap.add_argument("--examples", type=int, default=0, help="with --report: up to K addresses per outcome")
+    args = ap.parse_args()
+    orig = asmdiff.Original(args.version)
+    cands = candidates(orig)
+
+    if args.report or args.only or args.sample:
+        addrs = parse_only(args.only) if args.only else list(cands)
+        if args.new:
+            done = {int(m.group(1), 16) for f in OUT.glob("*.cpp")
+                    for m in map(NAME_RE.match, f.read_text(encoding="utf-8").splitlines()) if m}
+            addrs = [a for a in addrs if a not in done]
+        if args.sample:
+            pool = [a for a in addrs if a in set(cands)] if args.only else addrs
+            addrs = sorted(random.Random(args.seed).sample(pool, min(args.sample, len(pool))))
+        report(orig, addrs, set(cands), args.examples)
+        return 0
+
+    lifted = lift_all(orig, cands)
+    chosen, _ = build_all(orig, lifted, ROOT / "build" / "gen_lift")
 
     if OUT.exists():
         shutil.rmtree(OUT)
