@@ -320,8 +320,11 @@ def value_expr(type_name: str, vals: list[tuple]) -> str | None:
     kind, payload, width = stores[0]
     if type_name == "const char*" and kind == "str" and width == 8:
         return c_string(payload)
-    if type_name == "base::global::CStrId" and kind == "global" and payload == GLOBAL_CSTRID and width == 8:
-        return "CStrId(g_unk_7101d470e0)"
+    if type_name == "base::global::CStrId" and kind == "global" and width == 8:
+        # A copy of a global CStrId (g_unk_7101d470e0 is declared in UnkReflAttributes.h).
+        return f"CStrId(g_unk_{payload:x})"
+    if type_name == "base::global::CName" and kind == "imm" and width == 8:
+        return f"base::global::CName(base::global::UnkNameHash{{}}, {payload:#x}u)"
     if type_name == "base::global::CStrId" and kind == "gfield" and width == 8:
         # A CStrId that a global object points to (its pointer array, indexed by offset).
         return f"CStrId(*g_unk_{payload[0]:x}[{payload[1] // 8}])"
@@ -439,6 +442,8 @@ def parse(orig: asmdiff.Original, addr: int, class_getters: set[int]) -> tuple[l
             expr = value_expr(type_name, vals) if type_name else None
             if expr and "[" in expr:
                 decls.extend([f"extern CStrId* g_unk_{v[1][0]:x}[];" for v in vals if v[0] == "gfield"])
+            elif expr and expr.startswith("CStrId(g_unk_") and vals[0][1] != GLOBAL_CSTRID:
+                decls.append(f"extern CStrId g_unk_{vals[0][1]:x};")
         if expr is None:
             return None
         j, vals = next_bl(j + 1)
