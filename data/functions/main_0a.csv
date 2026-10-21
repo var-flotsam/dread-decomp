@@ -664,7 +664,7 @@ address,size,name,name_source,subsystem,status
 0x7100a1b23c,36,fn_7100a1b23c,unknown,game/components?,O
 0x7100a1b260,132,fn_7100a1b260,unknown,game/components?,O
 0x7100a1b2e4,372,fn_7100a1b2e4,unknown,game/components?,U
-0x7100a1b458,296,fn_7100a1b458,unknown,game/components?,U
+0x7100a1b458,296,fn_7100a1b458,unknown,game/components?,O
 0x7100a1b580,40,fn_7100a1b580,unknown,game/components?,O
 0x7100a1b5a8,64,fn_7100a1b5a8,unknown,game/components?,O
 0x7100a1b5e8,28,fn_7100a1b5e8,unknown,game/components?,O

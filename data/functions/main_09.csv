@@ -750,7 +750,7 @@ address,size,name,name_source,subsystem,status
 0x71009185f0,604,fn_71009185f0,unknown,game/components?,U
 0x710091884c,556,fn_710091884c,unknown,game/components?,O
 0x7100918a78,260,fn_7100918a78,unknown,game/components?,U
-0x7100918b7c,284,fn_7100918b7c,unknown,game/components?,U
+0x7100918b7c,284,fn_7100918b7c,unknown,game/components?,O
 0x7100918c98,292,fn_7100918c98,unknown,game/components?,U
 0x7100918dbc,312,fn_7100918dbc,unknown,game/components?,U
 0x7100918ef4,40,fn_7100918ef4,unknown,game/components?,U
