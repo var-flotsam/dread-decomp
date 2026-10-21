@@ -132,6 +132,14 @@ struct UnkCallbackSet : UnkCallbackBase {
 
     UnkCallbackSet(UnkCallbackSet&& other);  // fn_71007b1928
 
+    __attribute__((always_inline)) UnkCallbackSet& operator=(const UnkCallbackSet& other) {
+        UnkRefCounted* const* from = &other.owner;  // evaluated first, as `owner = other.owner` would be
+        fn_710031d208(&owner, from);
+        field_0x30 = other.field_0x30;
+        fn_710023b29c(&callbacks, &other.callbacks);
+        return *this;
+    }
+
     UnkCallbackSet(const UnkCallbackSet& other) : owner(nullptr) {
         UnkRefCounted* p = other.owner;
         if (p != owner) {
@@ -153,6 +161,11 @@ struct UnkEntry {
     UnkId id;
 
     UnkEntry(const UnkEntry& other) = default;
+    __attribute__((always_inline)) UnkEntry& operator=(const UnkEntry& other) {
+        set = other.set;
+        static_cast<CStrId&>(id) = other.id;
+        return *this;
+    }
     __attribute__((always_inline)) ~UnkEntry() {}
     __attribute__((always_inline)) UnkEntry& operator=(UnkEntry&& other) {
         set = static_cast<UnkCallbackSet&&>(other.set);
@@ -181,6 +194,8 @@ struct UnkHolder {
     const UnkPairRef& Ref() const { return *reinterpret_cast<const UnkPairRef*>(storage); }
     u32& Value() { return kind == 2 ? *Ref().value : Pair().value; }
     UnkEntry& Entry() { return kind == 2 ? *Ref().entry : Pair().entry; }
+    const u32& Value() const { return kind == 2 ? *Ref().value : Pair().value; }
+    const UnkEntry& Entry() const { return kind == 2 ? *Ref().entry : Pair().entry; }
 };
 
 static inline __attribute__((always_inline)) void CopyHolder(UnkHolder* self, const UnkHolder* other) {
@@ -208,8 +223,9 @@ void fn_71008aa61c(UnkHolder* self, const UnkHolder* other) {
 
 
 
-// An entry as the array's Reserve moves it: CStrId has no move constructor, so the id is a
-// plain pointer here, emptied when moved from.
+// An entry as the array's Reserve moves it and its assignment destroys it: CStrId has no move
+// constructor, and its destructor would release a second time, so the id is a plain pointer
+// here, emptied when moved from.
 struct UnkMovedId {
     UnkStringData* data;
 
@@ -266,6 +282,49 @@ struct UnkEntryVector {
         capacity = n;
     }
 
+    // Reserve is this array type's out-of-line copy of Reserve.
+    template <void (*Reserve)(UnkEntryVector*, u32)>
+    __attribute__((always_inline)) void Insert(UnkMovedEntry&& value, u32 index) {
+        if (index == count) {
+            u32 n = count;
+            u32 new_capacity = capacity;
+            if (new_capacity <= n && step != 0)
+                new_capacity = (n / step + 1) * step;
+            if ((s32)n >= (s32)new_capacity)  // hangs, as UnkVector::PushBack does
+                for (;;) {
+                }
+            Reserve(this, new_capacity);
+            new (&reinterpret_cast<UnkMovedEntry*>(data)[count]) UnkMovedEntry(static_cast<UnkMovedEntry&&>(value));
+        } else {
+            u32 n = capacity;
+            if (n <= count && step != 0)
+                n = (count / step + 1) * step;
+            Reserve(this, n);
+            for (u32 i = count - 1; i >= index; --i) {
+                UnkMovedEntry* e = &reinterpret_cast<UnkMovedEntry*>(data)[i];
+                new (&e[1]) UnkMovedEntry(static_cast<UnkMovedEntry&&>(*e));
+                reinterpret_cast<UnkMovedEntry*>(data)[i].~UnkMovedEntry();
+                if (i == 0)
+                    break;
+            }
+            new (&reinterpret_cast<UnkMovedEntry*>(data)[index]) UnkMovedEntry(static_cast<UnkMovedEntry&&>(value));
+        }
+        ++count;
+    }
+
+    template <void (*Reserve)(UnkEntryVector*, u32), void (*PushBack)(UnkEntryVector*, const UnkEntry*)>
+    __attribute__((always_inline)) UnkEntryVector* Assign(const UnkEntryVector& other) {
+        if (this != &other) {
+            for (u64 i = 0; i < count; ++i)
+                reinterpret_cast<UnkMovedEntry*>(data)[i].~UnkMovedEntry();
+            count = 0;
+            Reserve(this, other.capacity);
+            for (const UnkEntry *p = other.data, *end = p + other.count; p != end; ++p)
+                PushBack(this, p);
+        }
+        return this;
+    }
+
     template <void (*Reserve)(UnkEntryVector*, u32), void (*PushBack)(UnkEntryVector*, const UnkEntry*)>
     __attribute__((always_inline)) void CopyConstruct(const UnkEntryVector& other) {
         data = nullptr;
@@ -295,4 +354,103 @@ void fn_7100895498(UnkEntryVector* v, u32 n) {
 
 void fn_71008ab4e0(UnkEntryVector* v, u32 n) {
     v->Reserve(n);
+}
+
+UnkEntryVector* fn_71008957c8(UnkEntryVector* self, const UnkEntryVector* other) {
+    return self->Assign<fn_7100895498, fn_710089566c>(*other);
+}
+
+UnkEntryVector* fn_71008ab810(UnkEntryVector* self, const UnkEntryVector* other) {
+    return self->Assign<fn_71008ab4e0, fn_71008ab6b4>(*other);
+}
+
+void fn_7100895d14(UnkEntryVector* v, UnkMovedEntry* value, u32 index) {
+    v->Insert<fn_7100895498>(static_cast<UnkMovedEntry&&>(*value), index);
+}
+
+void fn_71008abd5c(UnkEntryVector* v, UnkMovedEntry* value, u32 index) {
+    v->Insert<fn_71008ab4e0>(static_cast<UnkMovedEntry&&>(*value), index);
+}
+
+struct UnkMovedPair {
+    u32 value;
+    UnkMovedEntry entry;
+};
+
+struct UnkMovedPairRef {
+    u32* value;
+    UnkMovedEntry* entry;
+};
+
+// Moves either form into an owned pair.
+static inline __attribute__((always_inline)) void MoveHolder(UnkHolder* self, UnkHolder* other) {
+    self->kind = 0;
+    UnkMovedPair* pair = reinterpret_cast<UnkMovedPair*>(self->storage);
+    if (other->kind == 1) {
+        self->kind = 1;
+        UnkMovedPair* from = reinterpret_cast<UnkMovedPair*>(other->storage);
+        pair->value = from->value;
+        new (&pair->entry) UnkMovedEntry(static_cast<UnkMovedEntry&&>(from->entry));
+    } else if (other->kind == 2) {
+        self->kind = 1;
+        const UnkMovedPairRef* ref = reinterpret_cast<const UnkMovedPairRef*>(other->storage);
+        UnkMovedEntry* entry = ref->entry;
+        pair->value = *ref->value;
+        new (&pair->entry) UnkMovedEntry(static_cast<UnkMovedEntry&&>(*entry));
+    }
+}
+
+void fn_71008942f4(UnkHolder* self, UnkHolder* other) {
+    MoveHolder(self, other);
+}
+
+void fn_71008aa158(UnkHolder* self, UnkHolder* other) {
+    MoveHolder(self, other);
+}
+
+// Finds or adds the entry for a key (one copy per map type).
+UnkEntry* fn_7100892528(void* self, u32 key);
+UnkEntry* fn_71008a84e4(void* self, u32 key);
+
+template <UnkEntry* (*Get)(void*, u32)>
+static inline __attribute__((always_inline)) void SetEntry(void* self, const u32* key, UnkEntry* value) {
+    *Get(self, *key) = static_cast<UnkEntry&&>(*value);
+}
+
+void fn_710089504c(void* self, const u32* key, UnkEntry* value) {
+    SetEntry<fn_7100892528>(self, key, value);
+}
+
+void fn_71008aaeb0(void* self, const u32* key, UnkEntry* value) {
+    SetEntry<fn_71008a84e4>(self, key, value);
+}
+
+static inline __attribute__((always_inline)) UnkEntry* MoveAssign(UnkEntry* self, UnkEntry* other) {
+    if (self != other)
+        *self = static_cast<UnkEntry&&>(*other);
+    return self;
+}
+
+UnkEntry* fn_71008941d8(UnkEntry* self, UnkEntry* other) {
+    return MoveAssign(self, other);
+}
+
+UnkEntry* fn_71008aa03c(UnkEntry* self, UnkEntry* other) {
+    return MoveAssign(self, other);
+}
+
+static inline __attribute__((always_inline)) UnkHolder* AssignHolder(UnkHolder* self, const UnkHolder* other) {
+    if (self != other) {
+        self->Value() = other->Value();
+        self->Entry() = other->Entry();
+    }
+    return self;
+}
+
+UnkHolder* fn_71008943c4(UnkHolder* self, const UnkHolder* other) {
+    return AssignHolder(self, other);
+}
+
+UnkHolder* fn_71008aa228(UnkHolder* self, const UnkHolder* other) {
+    return AssignHolder(self, other);
 }
