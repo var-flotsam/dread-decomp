@@ -1,5 +1,6 @@
-// Begin and end of a reflected array of callback sets: an iterator at the first element or
-// one past the last, its cached value re-pointed by the iterator's sync function.
+// A reflected array of callback sets, three copies (one per array type): Begin and End (an iterator
+// at the first element or one past the last, its cached value re-pointed by the iterator's sync
+// function), Reserve, Truncate, Erase and Insert of a moved element.
 #include "base/UnkVector.h"
 
 // Function table of a type-erased value; only the slot used here is named.
@@ -80,6 +81,8 @@ struct UnkCallbackSet : UnkCallbackBase {
         fn_710023b29c(&callbacks, &other.callbacks);
     }
 
+    UnkCallbackSet(UnkCallbackSet&& other);  // fn_71007b1928
+
     __attribute__((always_inline)) ~UnkCallbackSet() {
         if (UnkRefCounted* p = owner) {
             if (--p->ref_count == 0)
@@ -142,11 +145,89 @@ void fn_710090b1c8(void* self);
 void fn_7100a39fec(void* self);
 void fn_7100a93bc4(void* self);
 
+// Reserve (one copy per array type).
+struct UnkCallbackSetVector;
+void fn_710090d00c(UnkCallbackSetVector* v, u32 n);
+void fn_7100a3b8e0(UnkCallbackSetVector* v, u32 n);
+void fn_7100a956b8(UnkCallbackSetVector* v, u32 n);
 struct UnkCallbackSetVector {
     UnkCallbackSetElem* data;
     u32 count;
     u32 capacity;
     u32 step;
+    bool field_0x14;
+    u32 flags;
+    base::UnkAllocator* allocator;
+
+    __attribute__((always_inline)) void Reserve(u32 n) {
+        if (capacity >= n)
+            return;
+        UnkCallbackSetElem* p =
+            static_cast<UnkCallbackSetElem*>(allocator->vf_0x40((u64)n * sizeof(UnkCallbackSetElem), 8, flags));
+        if (data) {
+            UnkCallbackSetElem* src = data;
+            UnkCallbackSetElem* dst = p;
+            for (u32 i = 0; i < count; ++i, ++dst, ++src) {
+                new (dst) UnkCallbackSetElem(static_cast<UnkCallbackSetElem&&>(*src));
+                src->~UnkCallbackSetElem();
+            }
+            allocator->vf_0x48(data);
+        }
+        data = p;
+        capacity = n;
+    }
+
+    __attribute__((always_inline)) void Erase(u32 index) {
+        if (index >= count)
+            return;
+        data[index].~UnkCallbackSetElem();
+        for (u64 i = index; i < count - 1; ++i) {
+            UnkCallbackSetElem* e = &data[i];
+            new (e) UnkCallbackSetElem(static_cast<UnkCallbackSetElem&&>(e[1]));
+            (&data[i])[1].~UnkCallbackSetElem();  // not data[i + 1], which indexes differently
+        }
+        --count;
+    }
+
+    __attribute__((always_inline)) u32 GrownCapacity() const {
+        u32 n = capacity;
+        if (n <= count && step != 0)
+            n = (count / step + 1) * step;
+        return n;
+    }
+
+    // Reserve is this array type's out-of-line copy of Reserve.
+    template <void (*Reserve)(UnkCallbackSetVector*, u32)>
+    __attribute__((always_inline)) void Insert(UnkCallbackSetElem&& value, u32 index) {
+        if (index == count) {
+            u32 n = count;
+            u32 new_capacity = capacity;
+            if (new_capacity <= n && step != 0)
+                new_capacity = (n / step + 1) * step;
+            if ((s32)n >= (s32)new_capacity)  // hangs, as UnkVector::PushBack does
+                for (;;) {
+                }
+            Reserve(this, new_capacity);
+            new (&data[count]) UnkCallbackSetElem(static_cast<UnkCallbackSetElem&&>(value));
+        } else {
+            Reserve(this, GrownCapacity());
+            for (u32 i = count - 1; i >= index; --i) {
+                UnkCallbackSetElem* e = &data[i];
+                new (&e[1]) UnkCallbackSetElem(static_cast<UnkCallbackSetElem&&>(*e));
+                data[i].~UnkCallbackSetElem();
+                if (i == 0)
+                    break;
+            }
+            new (&data[index]) UnkCallbackSetElem(static_cast<UnkCallbackSetElem&&>(value));
+        }
+        ++count;
+    }
+
+    __attribute__((always_inline)) void Truncate(u32 size) {
+        for (u64 i = size; i < count; ++i)
+            data[i].~UnkCallbackSetElem();
+        count = size;
+    }
 };
 
 template <void (*Sync)(void*)>
@@ -178,4 +259,52 @@ void fn_7100a96260(const UnkCallbackSetVector* v, UnkIter<fn_7100a93bc4>* out) {
 
 void fn_7100a9639c(const UnkCallbackSetVector* v, UnkIter<fn_7100a93bc4>* out) {
     *out = {v->count, v->data + v->count};
+}
+
+void fn_710090d2f4(UnkCallbackSetVector* v, u32 size) {
+    v->Truncate(size);
+}
+
+void fn_7100a3bbc8(UnkCallbackSetVector* v, u32 size) {
+    v->Truncate(size);
+}
+
+void fn_7100a959a0(UnkCallbackSetVector* v, u32 size) {
+    v->Truncate(size);
+}
+
+void fn_710090d944(UnkCallbackSetVector* v, u32 index) {
+    v->Erase(index);
+}
+
+void fn_7100a3c218(UnkCallbackSetVector* v, u32 index) {
+    v->Erase(index);
+}
+
+void fn_7100a95ff0(UnkCallbackSetVector* v, u32 index) {
+    v->Erase(index);
+}
+
+void fn_710090d00c(UnkCallbackSetVector* v, u32 n) {
+    v->Reserve(n);
+}
+
+void fn_7100a3b8e0(UnkCallbackSetVector* v, u32 n) {
+    v->Reserve(n);
+}
+
+void fn_7100a956b8(UnkCallbackSetVector* v, u32 n) {
+    v->Reserve(n);
+}
+
+void fn_710090d714(UnkCallbackSetVector* v, UnkCallbackSetElem* value, u32 index) {
+    v->Insert<fn_710090d00c>(static_cast<UnkCallbackSetElem&&>(*value), index);
+}
+
+void fn_7100a3bfe8(UnkCallbackSetVector* v, UnkCallbackSetElem* value, u32 index) {
+    v->Insert<fn_7100a3b8e0>(static_cast<UnkCallbackSetElem&&>(*value), index);
+}
+
+void fn_7100a95dc0(UnkCallbackSetVector* v, UnkCallbackSetElem* value, u32 index) {
+    v->Insert<fn_7100a956b8>(static_cast<UnkCallbackSetElem&&>(*value), index);
 }
