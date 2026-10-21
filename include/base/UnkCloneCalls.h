@@ -7,6 +7,7 @@
 
 #include "UnkClone.h"
 #include "base/UnkVector.h"
+#include "base/global/CStrId.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
 #include "types.h"
@@ -309,6 +310,42 @@ void refl_KeyedSet(UnkKeyedArray<Tag, T, T>* a, const T* key, const T* value) {
     T* p = a->Find(*key);
     if (p != a->End())
         *p = *value;
+}
+
+// A keyed array's copy constructor: values of `Size` bytes copied with copy() after reserve(),
+// then the string-id keys retained (fn_71000dcabc and its copies). The key is stored as bytes,
+// so the count is reloaded after it as in the original.
+template <class Tag, u64 Size>
+struct UnkKeyedCopyArray {
+    UnkCloneBlock<Tag, Size>* values;
+    global::UnkStringData** keys;
+    u32 count;
+    u32 capacity;
+    u32 field_0x18;
+    u32 flags;
+    UnkAllocator* allocator;
+};
+
+template <class Tag, u64 Size>
+void refl_KeyedArrayCopy(UnkKeyedCopyArray<Tag, Size>* self, const UnkKeyedCopyArray<Tag, Size>* other) {
+    self->keys = nullptr;
+    self->count = 0;
+    self->capacity = 0;
+    self->values = nullptr;
+    self->field_0x18 = other->field_0x18;
+    self->flags = other->flags;
+    self->allocator = other->allocator;
+    UnkCallTraits<Tag>::reserve(self, other->count);
+    self->count = other->count;
+    for (u64 i = 0; i < self->count; ++i)
+        UnkCallTraits<Tag>::copy(&self->values[i], &other->values[i]);
+    self->count = other->count;
+    for (u64 i = 0; i < self->count; ++i) {
+        global::UnkStringData* d = other->keys[i];
+        __builtin_memcpy(&self->keys[i], &d, 8);
+        if (&g_unk_7101d47108->empty != d)
+            ++d->ref_count;
+    }
 }
 
 }  // namespace base

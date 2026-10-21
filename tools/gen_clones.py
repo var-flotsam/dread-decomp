@@ -2417,6 +2417,38 @@ def keyed_set(orig, addr, tag, insns):
     return f"template void base::refl_KeyedSet(base::UnkKeyedArray<{tag}, {t}, {t}>*, const {t}*, const {t}*);"
 
 
+def value_map_clear(orig, addr, tag, insns):
+    """refl_ValueMapClear: the key's pool, the link's offset and the value's destructor."""
+    if len(insns) != 59 or insns[4] != ("ldr", "w8, [x0, #0xc]") or insns[22] != ("add", "x0, x20, #8") \
+            or insns[23][0] != "bl" or ("bl", f"#{MEMSET:#x}") not in insns:
+        return None
+    link = re.fullmatch(rf"x22, \[x20, {OFF}\]", insns[21][1])
+    pool = got_target(orig, insns, 9)
+    if insns[21][0] != "ldr" or not link or pool not in (STRID_POOL, FILE_PATH_POOL):
+        return None
+    key = f"UnkCloneStrIdB<{tag}>" if pool == FILE_PATH_POOL else f"UnkCloneStrId<{tag}>"
+    dtor = target(insns[23][1])
+    return "\n".join([f"void fn_{dtor:x}(char*);", f"template <> struct base::UnkHashMapTraits<{tag}> {{",
+                      f"    static void destroy(char* p) {{ fn_{dtor:x}(p); }}", "};",
+                      f"template void base::refl_ValueMapClear<{tag}, {key}, {int(link.group(1), 0):#x}>(char*);"])
+
+
+def keyed_array_copy(orig, addr, tag, insns):
+    """refl_KeyedArrayCopy: the value size, reserve() and the value's copy constructor."""
+    if len(insns) != 59 or insns[4] != ("stp", "xzr, xzr, [x0, #8]") or insns[15][0] != "bl" \
+            or insns[25][0] != "bl" or got_target(orig, insns, 34) != STRID_POOL:
+        return None
+    size = re.fullmatch(rf"x21, x21, {OFF}", insns[28][1])
+    if insns[28][0] != "add" or not size or int(size.group(1), 0) % 8:
+        return None
+    reserve, copy = target(insns[15][1]), target(insns[25][1])
+    arr = f"base::UnkKeyedCopyArray<{tag}, {int(size.group(1), 0):#x}>"
+    return "\n".join(call_traits(tag, [f"void fn_{reserve:x}(void*, u32);", f"void fn_{copy:x}(void*, const void*);"], [
+        f"    static void reserve(void* s, u32 n) {{ fn_{reserve:x}(s, n); }}",
+        f"    static void copy(void* d, const void* s) {{ fn_{copy:x}(d, s); }}"]) +
+        [f"template void base::refl_KeyedArrayCopy({arr}*, const {arr}*);"])
+
+
 KINDS = {
     "strid_value_insert": Kind(None, "base/UnkStrIdValueVec.h", lambda tag, _: None, scan=strid_value_insert),
     "set_flag_notify": Kind(0x71001F31E8, "base/UnkCloneCalls.h", lambda tag, _: (
@@ -2447,6 +2479,8 @@ KINDS = {
     "set_bool": Kind(None, "base/UnkCloneCalls.h", lambda tag, _: None, scan=set_bool),
     "set_flag_call": Kind(None, "base/UnkCloneCalls.h", lambda tag, _: None, scan=set_flag_call),
     "keyed_set": Kind(None, "base/UnkCloneCalls.h", lambda tag, _: None, scan=keyed_set),
+    "value_map_clear": Kind(None, "base/UnkHashMap.h", lambda tag, _: None, scan=value_map_clear),
+    "keyed_array_copy": Kind(None, "base/UnkCloneCalls.h", lambda tag, _: None, scan=keyed_array_copy),
     "variant_assign": Kind(0x71000C3CC0, "base/UnkCloneHelpers.h", lambda tag, ins: variant(tag, ins, "refl_VariantAssign", "{v}*"),
                            exact=False),
     "variant_assign_pair": Kind(0x71000C3C14, "base/UnkCloneHelpers.h", lambda tag, ins: variant(

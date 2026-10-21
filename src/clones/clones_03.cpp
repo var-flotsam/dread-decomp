@@ -16,6 +16,22 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "base/reflection/UnkReflValue.h"
+struct UnkClone_fn_71008fa0c0;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::UnkCallTraits<UnkClone_fn_71008fa0c0> {
+    static const base::reflection::CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::refl_GetDeepU32<UnkClone_fn_71008fa0c0, 0x138, 0xf4>(void*, char*);
+struct UnkClone_fn_71008fa118;
+template base::reflection::UnkReflValue base::refl_SetDeepU32<UnkClone_fn_71008fa118, 0x138, 0xf4>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_71008fa458;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::UnkCallTraits<UnkClone_fn_71008fa458> {
+    static const base::reflection::CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::refl_GetDeepU32<UnkClone_fn_71008fa458, 0x138, 0x10c>(void*, char*);
+struct UnkClone_fn_71008fa4b0;
+template base::reflection::UnkReflValue base::refl_SetDeepU32<UnkClone_fn_71008fa4b0, 0x138, 0x10c>(void*, char*, base::reflection::UnkReflValue* const*);
 struct UnkClone_fn_71008fa5a8;
 const base::reflection::CType* fn_710000abbc();
 template <> struct base::UnkCallTraits<UnkClone_fn_71008fa5a8> {
@@ -5209,23 +5225,3 @@ template <> struct base::UnkCtorTraits<UnkClone_fn_7100ba9fb8> {
     static void base(char* p) { fn_7100067ea4(p); }
 };
 template void base::refl_StrIdMemberCtor<UnkClone_fn_7100ba9fb8, 0x10>(char*);
-struct UnkClone_fn_7100baa07c;
-extern char g_unk_7101aa0d18[];
-void fn_7100067ed4(char*);
-template <> struct base::UnkDtorTraits<UnkClone_fn_7100baa07c> {
-    static char* vtable() { return g_unk_7101aa0d18; }
-    static void base(char* p) { fn_7100067ed4(p); }
-};
-template void base::refl_Dtor<UnkClone_fn_7100baa07c, base::UnkStrIdAt<0x10>>(char*);
-struct UnkClone_fn_7100baa0f8;
-extern char g_unk_7101aa0d18[];
-void fn_7100067ed4(char*);
-template <> struct base::UnkDtorTraits<UnkClone_fn_7100baa0f8> {
-    static char* vtable() { return g_unk_7101aa0d18; }
-    static void base(char* p) { fn_7100067ed4(p); }
-};
-template void base::refl_DeletingDtor<UnkClone_fn_7100baa0f8, base::UnkStrIdAt<0x10>>(char*);
-struct UnkClone_fn_7100baa348;
-template base::UnkIdPair<UnkClone_fn_7100baa348>& base::UnkIdPair<UnkClone_fn_7100baa348>::operator=(const base::UnkIdPair<UnkClone_fn_7100baa348>&);
-struct UnkClone_fn_7100baa3d8;
-template base::UnkIdPair<UnkClone_fn_7100baa3d8>& base::UnkIdPair<UnkClone_fn_7100baa3d8>::operator=(const base::UnkIdPair<UnkClone_fn_7100baa3d8>&);

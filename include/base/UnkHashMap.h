@@ -64,4 +64,33 @@ void refl_ChainedSetClear(char* self) {
     }
 }
 
+// refl_HashMapClear for maps whose nodes hold a string id at 0 and a value at 8 with an
+// out-of-line destructor (UnkHashMapTraits<Tag>::destroy), destroyed before the key
+// (fn_71000d6ba8 and its copies).
+template <class Tag>
+struct UnkHashMapTraits;
+
+template <class Tag, class Key, u32 NextOff>
+void refl_ValueMapClear(char* self) {
+    if (*reinterpret_cast<u32*>(self + 0xc)) {
+        char* node = *reinterpret_cast<char**>(self + 0x40);
+        while (node) {
+            char* next = *reinterpret_cast<char**>(node + NextOff);
+            UnkHashMapTraits<Tag>::destroy(node + 8);
+            reinterpret_cast<Key*>(node)->~Key();
+            (*reinterpret_cast<UnkAllocator**>(self))->vf_0x48(node);
+            node = next;
+        }
+        memset(*reinterpret_cast<void**>(self + 0x10), 0, *reinterpret_cast<u32*>(self + 0x1c) * 8ul);
+        *reinterpret_cast<u32*>(self + 0xc) = 0;
+        *reinterpret_cast<char**>(self + 0x38) = nullptr;
+        *reinterpret_cast<char**>(self + 0x40) = nullptr;
+    }
+    if (void* buckets = *reinterpret_cast<void**>(self + 0x10)) {
+        *reinterpret_cast<u32*>(self + 0x18) = 0;
+        (*reinterpret_cast<UnkAllocator**>(self + 0x30))->vf_0x48(buckets);
+        *reinterpret_cast<u32*>(self + 0x1c) = 0;
+    }
+}
+
 }  // namespace base

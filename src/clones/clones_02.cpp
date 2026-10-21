@@ -13,6 +13,14 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "base/reflection/UnkReflValue.h"
+struct UnkClone_fn_71005ec7b8;
+template void base::refl_IterDestroy(base::UnkCollectionIter<UnkCloneOwnerVec<UnkClone_fn_71005ec7b8>, u32>*);
+struct UnkClone_fn_71005ec8e0;
+template void base::refl_IterSync(base::UnkCollectionIter<UnkCloneOwnerVec<UnkClone_fn_71005ec8e0>, u32>*);
+struct UnkClone_fn_71005ecc78;
+template void base::refl_IterDestroy(base::UnkCollectionIter<UnkCloneOwnerVec<UnkClone_fn_71005ecc78>, u32>*);
+struct UnkClone_fn_71005ecda0;
+template void base::refl_IterSync(base::UnkCollectionIter<UnkCloneOwnerVec<UnkClone_fn_71005ecda0>, u32>*);
 struct UnkClone_fn_71005ed15c;
 template bool base::operator==(const base::UnkIterValue<UnkClone_fn_71005ed15c*>&, const base::UnkIterValue<UnkClone_fn_71005ed15c*>&);
 struct UnkClone_fn_71005ed20c;
@@ -5768,19 +5776,3 @@ template <> struct base::UnkCallTraits<UnkClone_fn_71008fa018> {
 template base::reflection::UnkReflValue base::refl_GetDeepU32<UnkClone_fn_71008fa018, 0x138, 0xf0>(void*, char*);
 struct UnkClone_fn_71008fa070;
 template base::reflection::UnkReflValue base::refl_SetDeepU32<UnkClone_fn_71008fa070, 0x138, 0xf0>(void*, char*, base::reflection::UnkReflValue* const*);
-struct UnkClone_fn_71008fa0c0;
-const base::reflection::CType* fn_710000abbc();
-template <> struct base::UnkCallTraits<UnkClone_fn_71008fa0c0> {
-    static const base::reflection::CType* type() { return fn_710000abbc(); }
-};
-template base::reflection::UnkReflValue base::refl_GetDeepU32<UnkClone_fn_71008fa0c0, 0x138, 0xf4>(void*, char*);
-struct UnkClone_fn_71008fa118;
-template base::reflection::UnkReflValue base::refl_SetDeepU32<UnkClone_fn_71008fa118, 0x138, 0xf4>(void*, char*, base::reflection::UnkReflValue* const*);
-struct UnkClone_fn_71008fa458;
-const base::reflection::CType* fn_710000abbc();
-template <> struct base::UnkCallTraits<UnkClone_fn_71008fa458> {
-    static const base::reflection::CType* type() { return fn_710000abbc(); }
-};
-template base::reflection::UnkReflValue base::refl_GetDeepU32<UnkClone_fn_71008fa458, 0x138, 0x10c>(void*, char*);
-struct UnkClone_fn_71008fa4b0;
-template base::reflection::UnkReflValue base::refl_SetDeepU32<UnkClone_fn_71008fa4b0, 0x138, 0x10c>(void*, char*, base::reflection::UnkReflValue* const*);
