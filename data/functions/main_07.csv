@@ -1678,7 +1678,7 @@ address,size,name,name_source,subsystem,status
 0x710075dc8c,256,fn_710075dc8c,unknown,unknown,O
 0x710075dd8c,8,fn_710075dd8c,unknown,unknown,O
 0x710075dd94,180,fn_710075dd94,unknown,unknown,O
-0x710075de48,336,fn_710075de48,unknown,unknown,U
+0x710075de48,336,fn_710075de48,unknown,unknown,O
 0x710075df98,80,fn_710075df98,unknown,unknown,O
 0x710075dfe8,56,fn_710075dfe8,unknown,unknown,O
 0x710075e020,12,fn_710075e020,unknown,unknown,O
@@ -3892,7 +3892,7 @@ address,size,name,name_source,subsystem,status
 0x71007bf268,4,fn_71007bf268,unknown,game?,O
 0x71007bf26c,388,CDrop::refl_InitClass,reflection,game,O
 0x71007bf3f0,352,fn_71007bf3f0,unknown,unknown,U
-0x71007bf550,1312,fn_71007bf550,unknown,unknown,U
+0x71007bf550,1312,fn_71007bf550,unknown,unknown,O
 0x71007bfa70,392,fn_71007bfa70,unknown,unknown,U
 0x71007bfbf8,36,fn_71007bfbf8,unknown,unknown,O
 0x71007bfc1c,8,fn_71007bfc1c,unknown,unknown,O
