@@ -10,9 +10,11 @@ inline u32 lift_bits(f32 f) { u32 v; __builtin_memcpy(&v, &f, 4); return v; }
 inline u64 lift_bits(f64 f) { u64 v; __builtin_memcpy(&v, &f, 8); return v; }
 // Inlined helpers on guarded statics (GUARDS).
 namespace lift_guard {
-u32 fn_7100080568(); void fn_710007fdb4(); extern char* g_unk_7101d47108;
+u32 fn_7100080568(); u32 fn_7100080570(); void fn_710007fdb4();
+extern char* g_unk_7101d47108; extern char* g_unk_7101d47200;
 struct StringPoolHolder { u8 unk_0x0[0xe8]; StringPoolHolder(u32 a, char** pool); ~StringPoolHolder(); };
 inline void EnsureStringPool() { static StringPoolHolder s_holder(fn_7100080568(), &g_unk_7101d47108); fn_710007fdb4(); }
+inline void EnsureFilePathPool() { static StringPoolHolder s_holder(fn_7100080570(), &g_unk_7101d47200); fn_710007fdb4(); }
 struct Singleton { Singleton(); ~Singleton(); };
 inline Singleton& GetSingleton() { static Singleton s_singleton; return s_singleton; }
 struct ZeroWord { u32 value; ZeroWord() : value(0) {} };
@@ -194,6 +196,29 @@ char* fn_7100545b90(char* p0) {
     char* r3_0 = r0_19;
     u32 r4_2 = 0x1;
     return callee::fn_7100544a34(r3_0, r2_1, r4_2);
+}
+
+extern char g_unk_7101d552d0[];
+extern char g_unk_7101d57848[];
+namespace callee { char* fn_710051d464(char*, char*, char*); }
+namespace callee { char* fn_7101047270(char*, char*); }
+namespace h { extern HIDDEN char g_unk_71726e20a8[]; }
+char* fn_7100545bc0(char* p0, char* p1) {
+    u32 r0_8 = 0x1260;
+    char* r1_0 = (p0) + r0_8;
+    char* r2_8 = (char*)g_unk_7101d57848;
+    (void)lift_guard::GetSingleton();
+    char* r4_19 = p1;
+    char* r5_8 = (char*)g_unk_7101d552d0;
+    u32 r6_9 = 0x1b58;
+    char* r7_1 = (r5_8) + r6_9;
+    char* r8_0 = callee::fn_7101047270(r1_0, r7_1);
+    if ((u64)(u64)(r8_0) != 0) {
+        char* r10_2 = r4_19;
+        char* r11_1 = (char*)h::g_unk_71726e20a8;
+        return callee::fn_710051d464(r8_0, r11_1, r10_2);
+    }
+    return r8_0;
 }
 
 void fn_7100546654(char* p0) {
