@@ -6118,7 +6118,7 @@ address,size,name,name_source,subsystem,status
 0x71002fc73c,376,fn_71002fc73c,unknown,unknown,O
 0x71002fc8b4,180,fn_71002fc8b4,unknown,unknown,O
 0x71002fc970,1280,fn_71002fc970,unknown,unknown,U
-0x71002fce70,1084,fn_71002fce70,unknown,unknown,U
+0x71002fce70,1084,fn_71002fce70,unknown,unknown,O
 0x71002fd2ac,4,fn_71002fd2ac,unknown,unknown,U
 0x71002fd2b0,512,fn_71002fd2b0,unknown,unknown,O
 0x71002fd4b0,368,fn_71002fd4b0,unknown,unknown,U
