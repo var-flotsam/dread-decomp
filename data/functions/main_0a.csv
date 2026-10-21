@@ -3542,8 +3542,8 @@ address,size,name,name_source,subsystem,status
 0x7100a8c680,200,fn_7100a8c680,unknown,game/components?,O
 0x7100a8c748,908,fn_7100a8c748,unknown,game/components?,O
 0x7100a8cad4,384,fn_7100a8cad4,unknown,game/components?,O
-0x7100a8cc60,628,fn_7100a8cc60,unknown,game/components?,U
-0x7100a8cee0,636,fn_7100a8cee0,unknown,game/components?,U
+0x7100a8cc60,628,fn_7100a8cc60,unknown,game/components?,O
+0x7100a8cee0,636,fn_7100a8cee0,unknown,game/components?,O
 0x7100a8d160,1392,fn_7100a8d160,unknown,game/components?,U
 0x7100a8d6d0,4,fn_7100a8d6d0,unknown,game/components?,O
 0x7100a8d6d4,244,CTeleporterUsableComponent::refl_GetClass,reflection,game/components,O
