@@ -2098,12 +2098,12 @@ address,size,name,name_source,subsystem,status
 0x7100083bc0,56,fn_7100083bc0,unknown,runtime?,L
 0x7100083c00,36,operator delete,symbol,runtime,L
 0x7100083c30,24,operator delete[],symbol,runtime,L
-0x7100083c48,256,fn_7100083c48,unknown,unknown,U
+0x7100083c48,256,fn_7100083c48,unknown,unknown,O
 0x7100083d48,68,fn_7100083d48,unknown,unknown,O
 0x7100083d8c,4,fn_7100083d8c,unknown,unknown,O
-0x7100083d90,484,fn_7100083d90,unknown,unknown,U
+0x7100083d90,484,fn_7100083d90,unknown,unknown,O
 0x7100083f74,188,fn_7100083f74,unknown,unknown,O
-0x7100084030,276,fn_7100084030,unknown,unknown,U
+0x7100084030,276,fn_7100084030,unknown,unknown,O
 0x7100084144,76,fn_7100084144,unknown,unknown,O
 0x7100084190,32,fn_7100084190,unknown,unknown,O
 0x71000841b0,20,fn_71000841b0,unknown,unknown,O
