@@ -22,6 +22,21 @@ const UnkReflAttrKey& refl_GetAttrKey() {
     return s_key;
 }
 
+// The same for keys with a non-zero u16 at +0x14 (0x100 seen).
+struct UnkReflAttrKeyFlags : UnkReflAttrKey {
+    UnkReflAttrKeyFlags(const base::global::CStrId& name, const CType* type, u32 unk, u16 flags)
+        : UnkReflAttrKey(name, type, unk) {
+        field_0x14 = flags;
+    }
+};
+
+template <class G>
+const UnkReflAttrKey& refl_GetAttrKeyFlags() {
+    static UnkReflAttrKeyFlags s_key(base::global::CStrId(UnkReflStatic<G>::name, true), UnkReflStatic<G>::type(),
+                                     UnkReflStatic<G>::field_0x10, UnkReflStatic<G>::field_0x14);
+    return s_key;
+}
+
 // A string id built once from a literal.
 template <class G>
 const base::global::CStrId& refl_GetStaticStrId() {
@@ -43,6 +58,20 @@ UnkReflObject* refl_FindTyped(void* owner) {
     static base::global::CStrId s_name(UnkReflStatic<G>::name, true);
     UnkReflObject* obj = UnkReflStatic<G>::find(owner, s_name);
     return obj && UnkReflStatic<G>::is_a(obj->vf_0x0(), UnkReflStatic<G>::type()) ? obj : nullptr;
+}
+
+// The same with a class whose descriptor has internal linkage elsewhere (reached directly, not
+// through the GOT): init() is its getter, called for the initialisation only.
+template <class G>
+UnkReflObject* refl_FindTypedHidden(void* owner) {
+    using S = UnkReflStatic<G>;
+    static base::global::CStrId s_name(S::name, true);
+    UnkReflObject* obj = S::find(owner, s_name);
+    if (!obj)
+        return nullptr;
+    const CClass* cls = obj->vf_0x0();
+    S::init();
+    return S::is_a(cls, &S::type) ? obj : nullptr;
 }
 
 // A list that items register themselves in (allocation flags 0xf, not the default 0x3e).

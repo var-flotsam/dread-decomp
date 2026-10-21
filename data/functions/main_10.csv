@@ -1441,7 +1441,7 @@ address,size,name,name_source,subsystem,status
 0x71010431a0,260,fn_71010431a0,unknown,unknown,O
 0x71010432b0,260,fn_71010432b0,unknown,unknown,O
 0x71010433c0,260,fn_71010433c0,unknown,unknown,O
-0x71010434d0,264,fn_71010434d0,unknown,unknown,U
+0x71010434d0,264,fn_71010434d0,unknown,unknown,O
 0x71010435e0,164,fn_71010435e0,unknown,unknown,O
 0x7101043684,4,fn_7101043684,unknown,unknown,O
 0x7101043688,244,CGameObject::refl_GetClass,reflection,game/core,O

@@ -26,6 +26,8 @@ const base::reflection::CClass* fn_71007fd654();
 const base::reflection::CClass* fn_7100821fbc();
 const base::reflection::CClass* fn_7100824cd4();
 const base::reflection::CClass* fn_71008259c4();
+const base::reflection::CClass* fn_71008292c4();
+const base::reflection::CClass* fn_710082d5b8();
 const base::reflection::CClass* fn_710082f310();
 const base::reflection::CClass* fn_7100875a2c();
 const base::reflection::CClass* fn_710088f184();
@@ -34,6 +36,7 @@ const base::reflection::CClass* fn_71008acaac();
 const base::reflection::CClass* fn_71008df5b8();
 const base::reflection::CClass* fn_71008dff9c();
 const base::reflection::CClass* fn_71008e45d0();
+const base::reflection::CClass* fn_71008e7274();
 const base::reflection::CClass* fn_71009058b4();
 const base::reflection::CClass* fn_710090f02c();
 const base::reflection::CClass* fn_7100912a38();
@@ -45,9 +48,11 @@ const base::reflection::CClass* fn_7100937770();
 const base::reflection::CClass* fn_7100951424();
 const base::reflection::CClass* fn_71009b75a4();
 const base::reflection::CClass* fn_71009dda1c();
+const base::reflection::CClass* fn_71009f58fc();
 const base::reflection::CClass* fn_7100a00014();
 const base::reflection::CClass* fn_7100a1204c();
 const base::reflection::CClass* fn_7100a13bd0();
+const base::reflection::CClass* fn_7100a15a10();
 const base::reflection::CClass* fn_7100a259f4();
 const base::reflection::CClass* fn_7100a28ca4();
 const base::reflection::CClass* fn_7100a46444();
@@ -77,6 +82,9 @@ const base::reflection::CType* fn_7100009658();
 const base::reflection::CType* fn_710000d228();
 const base::reflection::CType* fn_7100014768();
 extern base::global::CStrId g_unk_7101d470e0;
+extern base::global::CStrId g_unk_7172730208;
+extern base::global::CStrId g_unk_7172730c90;
+extern base::global::CStrId g_unk_71727310b8;
 extern base::global::CStrId g_unk_7172732318;
 extern base::global::CStrId g_unk_71727325a8;
 extern base::global::CStrId g_unk_7172733330;
@@ -111,9 +119,124 @@ extern base::global::CStrId g_unk_71727c9960;
 extern base::global::CStrId g_unk_71729dbbf8;
 extern base::global::CStrId g_unk_7172a065d8;
 extern base::global::CStrId g_unk_7172a06900;
+extern base::reflection::CClass g_unk_71727418b8 __attribute__((visibility("hidden")));
+extern base::reflection::CClass g_unk_7172744b20 __attribute__((visibility("hidden")));
 extern u8 g_unk_710164b670;
 void fn_71004f1558(base::reflection::UnkReflRegistryMap::Value** values, u32 n);
 void fn_71004f1748(base::reflection::UnkReflRegistryMap::Value* value, base::reflection::UnkReflRegistryItem* item, const base::global::CStrId& name);
+struct UnkRefl_fn_71008a9ab0;
+template <>
+struct base::reflection::UnkReflStatic<UnkRefl_fn_71008a9ab0> {
+    static constexpr u32 flags = 0xf;
+};
+struct UnkRefl_fn_71008ad180;
+template <>
+struct base::reflection::UnkReflStatic<UnkRefl_fn_71008ad180> {
+    static constexpr const char* name = "LIFE";
+};
+struct UnkRefl_fn_71008ad678;
+template <>
+struct base::reflection::UnkReflStatic<UnkRefl_fn_71008ad678> {
+    static constexpr const char* name = "LIFE";
+};
+struct UnkRefl_fn_71008bfd70;
+struct UnkRefl_fn_71008bd878;
+template <>
+struct base::reflection::UnkReflStatic<UnkRefl_fn_71008bd878> {
+    using Registry = UnkRefl_fn_71008bfd70;
+    static void grow(UnkReflRegistryMap::Value** v, u32 n) { fn_71004f1558(v, n); }
+    static void construct(UnkReflRegistryMap::Value* v, UnkReflRegistryItem* i, const base::global::CStrId& n) { fn_71004f1748(v, i, n); }
+};
+struct UnkRefl_fn_71008bf968;
+template <>
+struct base::reflection::UnkReflStatic<UnkRefl_fn_71008bf968> {
+    static constexpr const char* name = "LIFE";
+};
+struct UnkRefl_fn_71008bfa7c;
+template <>
+struct base::reflection::UnkReflStatic<UnkRefl_fn_71008bfa7c> {
+    static const base::global::CStrId& source() { return g_unk_7172730208; }
+};
+struct UnkRefl_fn_71008bfd70;
+template <>
+struct base::reflection::UnkReflStatic<UnkRefl_fn_71008bfd70> {
+    static constexpr u32 flags = 0xf;
+};
+struct UnkRefl_fn_71008c3f34;
+template <>
+struct base::reflection::UnkReflStatic<UnkRefl_fn_71008c3f34> {
+    static constexpr const char* name = "GRAPPLEPOINT";
+    static UnkReflObject* find(void* o, const base::global::CStrId& n) { return fn_710023341c(o, n); }
+    static const CClass* type() { return fn_710082d5b8(); }
+    static bool is_a(const CClass* c, const CClass* b) { return fn_710009d50c(c, b); }
+};
+struct UnkRefl_fn_71008c402c;
+template <>
+struct base::reflection::UnkReflStatic<UnkRefl_fn_71008c402c> {
+    static constexpr const char* name = "LIFE";
+};
+struct UnkRefl_fn_71008c8de8;
+struct UnkRefl_fn_71008c5414;
+template <>
+struct base::reflection::UnkReflStatic<UnkRefl_fn_71008c5414> {
+    using Registry = UnkRefl_fn_71008c8de8;
+    static void grow(UnkReflRegistryMap::Value** v, u32 n) { fn_71004f1558(v, n); }
+    static void construct(UnkReflRegistryMap::Value* v, UnkReflRegistryItem* i, const base::global::CStrId& n) { fn_71004f1748(v, i, n); }
+};
+struct UnkRefl_fn_71008c8950;
+template <>
+struct base::reflection::UnkReflStatic<UnkRefl_fn_71008c8950> {
+    static constexpr const char* name = "LIFE";
+};
+struct UnkRefl_fn_71008c8a80;
+template <>
+struct base::reflection::UnkReflStatic<UnkRefl_fn_71008c8a80> {
+    static const base::global::CStrId& source() { return g_unk_7172730c90; }
+};
+struct UnkRefl_fn_71008c8de8;
+template <>
+struct base::reflection::UnkReflStatic<UnkRefl_fn_71008c8de8> {
+    static constexpr u32 flags = 0xf;
+};
+struct UnkRefl_fn_71008caa30;
+template <>
+struct base::reflection::UnkReflStatic<UnkRefl_fn_71008caa30> {
+    static constexpr const char* name = "LIFE";
+};
+struct UnkRefl_fn_71008dbddc;
+struct UnkRefl_fn_71008d1294;
+template <>
+struct base::reflection::UnkReflStatic<UnkRefl_fn_71008d1294> {
+    using Registry = UnkRefl_fn_71008dbddc;
+    static void grow(UnkReflRegistryMap::Value** v, u32 n) { fn_71004f1558(v, n); }
+    static void construct(UnkReflRegistryMap::Value* v, UnkReflRegistryItem* i, const base::global::CStrId& n) { fn_71004f1748(v, i, n); }
+};
+struct UnkRefl_fn_71008d5d2c;
+template <>
+struct base::reflection::UnkReflStatic<UnkRefl_fn_71008d5d2c> {
+    static constexpr const char* name = "LIGHTING";
+    static UnkReflObject* find(void* o, const base::global::CStrId& n) { return fn_710023341c(o, n); }
+    static const CClass* type() { return fn_71008e7274(); }
+    static bool is_a(const CClass* c, const CClass* b) { return fn_710009d50c(c, b); }
+};
+struct UnkRefl_fn_71008d89b0;
+template <>
+struct base::reflection::UnkReflStatic<UnkRefl_fn_71008d89b0> {
+    static constexpr const char* name = "GRAPPLEPOINT";
+    static UnkReflObject* find(void* o, const base::global::CStrId& n) { return fn_710023341c(o, n); }
+    static const CClass* type() { return fn_71008292c4(); }
+    static bool is_a(const CClass* c, const CClass* b) { return fn_710009d50c(c, b); }
+};
+struct UnkRefl_fn_71008db848;
+template <>
+struct base::reflection::UnkReflStatic<UnkRefl_fn_71008db848> {
+    static constexpr const char* name = "LIFE";
+};
+struct UnkRefl_fn_71008db95c;
+template <>
+struct base::reflection::UnkReflStatic<UnkRefl_fn_71008db95c> {
+    static const base::global::CStrId& source() { return g_unk_71727310b8; }
+};
 struct UnkRefl_fn_71008dbddc;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_71008dbddc> {
@@ -719,6 +842,15 @@ template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_71009f5530> {
     static constexpr const char* name = "SHOCKWAVE";
 };
+struct UnkRefl_fn_71009f8450;
+template <>
+struct base::reflection::UnkReflStatic<UnkRefl_fn_71009f8450> {
+    static constexpr const char* name = "SHOCKWAVEPOOL";
+    static UnkReflObject* find(void* o, const base::global::CStrId& n) { return fn_710023341c(o, n); }
+    static void init() { fn_71009f58fc(); }
+    static constexpr const CClass& type = g_unk_71727418b8;
+    static bool is_a(const CClass* c, const CClass* b) { return fn_710009d50c(c, b); }
+};
 struct UnkRefl_fn_71009f854c;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_71009f854c> {
@@ -806,6 +938,15 @@ struct UnkRefl_fn_7100a150e4;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_7100a150e4> {
     static constexpr const char* name = "SPAWNPOINT";
+};
+struct UnkRefl_fn_7100a16450;
+template <>
+struct base::reflection::UnkReflStatic<UnkRefl_fn_7100a16450> {
+    static constexpr const char* name = "SPAWNPOINT";
+    static UnkReflObject* find(void* o, const base::global::CStrId& n) { return fn_710023341c(o, n); }
+    static void init() { fn_7100a15a10(); }
+    static constexpr const CClass& type = g_unk_7172744b20;
+    static bool is_a(const CClass* c, const CClass* b) { return fn_710009d50c(c, b); }
 };
 struct UnkRefl_fn_7100a178a4;
 template <>
@@ -1820,6 +1961,14 @@ struct base::reflection::UnkReflStatic<UnkRefl_fn_71010433c0> {
     static const CType* type() { return fn_7100005178(); }
     static constexpr u32 field_0x10 = 0x2;
 };
+struct UnkRefl_fn_71010434d0;
+template <>
+struct base::reflection::UnkReflStatic<UnkRefl_fn_71010434d0> {
+    static constexpr const char* name = "eActorLinkToComponentLinkTransform";
+    static const CType* type() { return fn_7100009658(); }
+    static constexpr u32 field_0x10 = 0x2;
+    static constexpr u16 field_0x14 = 0x100;
+};
 struct UnkRefl_fn_710106bc20;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_710106bc20> {
@@ -2044,6 +2193,25 @@ struct base::reflection::UnkReflStatic<UnkRefl_fn_7101199e2c> {
     static const CClass* type() { return fn_710117f304(); }
     static bool is_a(const CClass* c, const CClass* b) { return fn_710009d50c(c, b); }
 };
+template void base::reflection::refl_Register<UnkRefl_fn_71008a9ab0>(void*);
+template const base::global::CStrId& base::reflection::refl_GetStaticStrId<UnkRefl_fn_71008ad180>();
+template const base::global::CStrId& base::reflection::refl_GetStaticStrId<UnkRefl_fn_71008ad678>();
+template bool base::reflection::refl_RegistryMapInit<UnkRefl_fn_71008bd878>(base::reflection::UnkReflRegistryMap*, const base::global::CStrId&);
+template const base::global::CStrId& base::reflection::refl_GetStaticStrId<UnkRefl_fn_71008bf968>();
+template const base::global::CStrId& base::reflection::refl_GetStaticStrIdCopy<UnkRefl_fn_71008bfa7c>();
+template void base::reflection::refl_Register<UnkRefl_fn_71008bfd70>(void*);
+template base::reflection::UnkReflObject* base::reflection::refl_FindTyped<UnkRefl_fn_71008c3f34>(void*);
+template const base::global::CStrId& base::reflection::refl_GetStaticStrId<UnkRefl_fn_71008c402c>();
+template bool base::reflection::refl_RegistryMapInit<UnkRefl_fn_71008c5414>(base::reflection::UnkReflRegistryMap*, const base::global::CStrId&);
+template const base::global::CStrId& base::reflection::refl_GetStaticStrId<UnkRefl_fn_71008c8950>();
+template const base::global::CStrId& base::reflection::refl_GetStaticStrIdCopy<UnkRefl_fn_71008c8a80>();
+template void base::reflection::refl_Register<UnkRefl_fn_71008c8de8>(void*);
+template const base::global::CStrId& base::reflection::refl_GetStaticStrId<UnkRefl_fn_71008caa30>();
+template bool base::reflection::refl_RegistryMapInit<UnkRefl_fn_71008d1294>(base::reflection::UnkReflRegistryMap*, const base::global::CStrId&);
+template base::reflection::UnkReflObject* base::reflection::refl_FindTyped<UnkRefl_fn_71008d5d2c>(void*);
+template base::reflection::UnkReflObject* base::reflection::refl_FindTyped<UnkRefl_fn_71008d89b0>(void*);
+template const base::global::CStrId& base::reflection::refl_GetStaticStrId<UnkRefl_fn_71008db848>();
+template const base::global::CStrId& base::reflection::refl_GetStaticStrIdCopy<UnkRefl_fn_71008db95c>();
 template void base::reflection::refl_Register<UnkRefl_fn_71008dbddc>(void*);
 template const base::global::CStrId& base::reflection::refl_GetStaticStrId<UnkRefl_fn_71008df2fc>();
 template const base::global::CStrId& base::reflection::refl_GetStaticStrId<UnkRefl_fn_71008dfc2c>();
@@ -2150,6 +2318,7 @@ template const base::global::CStrId& base::reflection::refl_GetStaticStrId<UnkRe
 template const base::global::CStrId& base::reflection::refl_GetStaticStrId<UnkRefl_fn_71009f0b04>();
 template const base::global::CStrId& base::reflection::refl_GetStaticStrId<UnkRefl_fn_71009f3310>();
 template const base::global::CStrId& base::reflection::refl_GetStaticStrId<UnkRefl_fn_71009f5530>();
+template base::reflection::UnkReflObject* base::reflection::refl_FindTypedHidden<UnkRefl_fn_71009f8450>(void*);
 template const base::global::CStrId& base::reflection::refl_GetStaticStrId<UnkRefl_fn_71009f854c>();
 template const base::global::CStrId& base::reflection::refl_GetStaticStrId<UnkRefl_fn_71009f96e8>();
 template const base::global::CStrId& base::reflection::refl_GetStaticStrId<UnkRefl_fn_7100a04c04>();
@@ -2167,6 +2336,7 @@ template const base::global::CStrId& base::reflection::refl_GetStaticStrId<UnkRe
 template const base::global::CStrId& base::reflection::refl_GetStaticStrId<UnkRefl_fn_7100a13300>();
 template const base::global::CStrId& base::reflection::refl_GetStaticStrId<UnkRefl_fn_7100a146ec>();
 template const base::global::CStrId& base::reflection::refl_GetStaticStrId<UnkRefl_fn_7100a150e4>();
+template base::reflection::UnkReflObject* base::reflection::refl_FindTypedHidden<UnkRefl_fn_7100a16450>(void*);
 template const base::global::CStrId& base::reflection::refl_GetStaticStrId<UnkRefl_fn_7100a178a4>();
 template const base::global::CStrId& base::reflection::refl_GetStaticStrId<UnkRefl_fn_7100a19008>();
 template const base::global::CStrId& base::reflection::refl_GetStaticStrId<UnkRefl_fn_7100a19880>();
@@ -2329,6 +2499,7 @@ template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrK
 template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_71010431a0>();
 template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_71010432b0>();
 template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_71010433c0>();
+template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKeyFlags<UnkRefl_fn_71010434d0>();
 template base::reflection::UnkReflObject* base::reflection::refl_FindTyped<UnkRefl_fn_710106bc20>(void*);
 template const base::global::CStrId& base::reflection::refl_GetStaticStrId<UnkRefl_fn_71010cdd90>();
 template const base::global::CStrId& base::reflection::refl_GetStaticStrId<UnkRefl_fn_71010d0020>();
