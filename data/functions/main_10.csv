@@ -1944,7 +1944,7 @@ address,size,name,name_source,subsystem,status
 0x71010599cc,56,fn_71010599cc,unknown,unknown,O
 0x7101059a04,84,fn_7101059a04,unknown,unknown,U
 0x7101059a58,196,fn_7101059a58,unknown,unknown,U
-0x7101059b1c,224,fn_7101059b1c,unknown,unknown,U
+0x7101059b1c,224,fn_7101059b1c,unknown,unknown,O
 0x7101059bfc,324,fn_7101059bfc,unknown,unknown,U
 0x7101059d40,248,fn_7101059d40,unknown,unknown,U
 0x7101059e38,36,fn_7101059e38,unknown,unknown,O
@@ -2371,7 +2371,7 @@ address,size,name,name_source,subsystem,status
 0x7101065c4c,1236,fn_7101065c4c,unknown,unknown,U
 0x7101066120,52,fn_7101066120,unknown,unknown,U
 0x7101066154,76,fn_7101066154,unknown,unknown,O
-0x71010661a0,336,fn_71010661a0,unknown,unknown,U
+0x71010661a0,336,fn_71010661a0,unknown,unknown,O
 0x71010662f0,328,fn_71010662f0,unknown,unknown,U
 0x7101066438,432,fn_7101066438,unknown,unknown,U
 0x71010665e8,656,fn_71010665e8,unknown,unknown,U
@@ -2662,7 +2662,7 @@ address,size,name,name_source,subsystem,status
 0x7101074090,140,fn_7101074090,unknown,unknown,O
 0x7101074120,140,fn_7101074120,unknown,unknown,O
 0x71010741b0,24,fn_71010741b0,unknown,unknown,O
-0x71010741d0,276,lua_bind::WriteSaveGameVersion,string,script/bindings,U
+0x71010741d0,276,lua_bind::WriteSaveGameVersion,string,script/bindings,O
 0x71010742f0,284,lua_bind::AddPackage,string,script/bindings,U
 0x7101074410,168,lua_bind::SetDefaultPackage,string,script/bindings,U
 0x71010744c0,40,lua_bind::Load,string,script/bindings,O
@@ -2734,7 +2734,7 @@ address,size,name,name_source,subsystem,status
 0x71010778c0,104,lua_bind::GetCurrentLanguage,string,script/bindings,O
 0x7101077930,312,lua_bind::SetCurrentLanguage,string,script/bindings,U
 0x7101077a70,456,lua_bind::SetLanguageAndRegionDebug,string,script/bindings,U
-0x7101077c40,184,lua_bind::QuitGame,string,script/bindings,U
+0x7101077c40,184,lua_bind::QuitGame,string,script/bindings,O
 0x7101077d00,80,lua_bind::StopEnvironmentSound,string,script/bindings,O
 0x7101077d50,316,lua_bind::GoToMainMenu,string,script/bindings,U
 0x7101077e90,52,lua_bind::TogglePause,string,script/bindings,O
@@ -2928,7 +2928,7 @@ address,size,name,name_source,subsystem,status
 0x7101081c30,32,lua_bind::GetCooldownFlag,string,script/bindings,O
 0x7101081c50,496,lua_bind::SetCooldownFlag,string,script/bindings,U
 0x7101081e40,124,lua_bind::SetLoadScreenType,string,script/bindings,U
-0x7101081ec0,196,lua_bind::GetTeleportLocations,string,script/bindings,U
+0x7101081ec0,196,lua_bind::GetTeleportLocations,string,script/bindings,O
 0x7101081f90,360,lua_bind::WriteToGameBlackboard,string,script/bindings,U
 0x7101082100,368,lua_bind::WriteToGameBlackboardSection,string,script/bindings,U
 0x7101082270,380,lua_bind::GetFromGameBlackboard,string,script/bindings,U
@@ -2949,7 +2949,7 @@ address,size,name,name_source,subsystem,status
 0x7101082f00,140,lua_bind::SetSceneGroupEnabledByName,string,script/bindings,U
 0x7101082f90,156,lua_bind::GetSceneGroupEnabledByName,string,script/bindings,U
 0x7101083030,256,lua_bind::SetFreeCamLockSubAreas,string,script/bindings,U
-0x7101083130,244,lua_bind::IsFreeCamLockSubAreasEnabled,string,script/bindings,U
+0x7101083130,244,lua_bind::IsFreeCamLockSubAreasEnabled,string,script/bindings,O
 0x7101083230,8,lua_bind::SetForceRoundRobinForNonCulledEntities,string,script/bindings,O
 0x7101083240,8,lua_bind::IsForceRoundRobinForNonCulledEntities,string,script/bindings,O
 0x7101083250,320,lua_bind::ResetSubareaToDefaultSetup,string,script/bindings,U
@@ -4520,7 +4520,7 @@ address,size,name,name_source,subsystem,status
 0x71010e53dc,280,fn_71010e53dc,unknown,unknown,U
 0x71010e54f4,280,fn_71010e54f4,unknown,unknown,U
 0x71010e560c,1776,fn_71010e560c,unknown,unknown,U
-0x71010e5cfc,168,fn_71010e5cfc,unknown,unknown,U
+0x71010e5cfc,168,fn_71010e5cfc,unknown,unknown,O
 0x71010e5da4,660,fn_71010e5da4,unknown,unknown,U
 0x71010e6038,288,fn_71010e6038,unknown,unknown,U
 0x71010e6158,288,fn_71010e6158,unknown,unknown,U

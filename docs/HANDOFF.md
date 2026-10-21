@@ -39,6 +39,13 @@ remain as reference only. Each stream edits only the files in its row.
 | 7. Game logic by hand | One-off `U` game functions (not in shape families; not engine/, script/, reflection, Lua) decompiled by hand, one file per function. Split by address at 0x71008cde78 (the median `U` game-function address on 2026-10-21): below it `src/game_lo/`, from it up `src/game_hi/` | `src/game_lo/`, `src/game_hi/` | `claude/project-thread-<id>` |
 | 8. Table functions | The largest `U` functions that only walk a fixed table of string literals (probe of the top 10 by size, 2026-10-21; see "Giant functions" below) | `tools/gen_tables.py`, `src/tables/` | `claude/project-thread-<id>` |
 
+**Starting points for hand matching.** `python tools/gen_lift.py --version 2.1.0 --best ADDR[,ADDR...]`
+(or `--best @file`, one address per line) lifts each function in every variant and rewrite round
+and writes the closest attempt to `build/lift_best/fn_<addr>.cpp` (gitignored; the first line gives
+its instruction match), ready for `tools/trymatch.py`. About 1 s per function plus one compile per
+variant. The attempt is `char*` arithmetic over registers; give it real types, then move the
+matched function into your own files. Never commit `build/lift_best/`.
+
 All may change `data/functions/*.csv` (statuses only, through `check.py --update`). Anything
 else (shared headers, `check.py`, `CLAUDE.md`) goes through the owner first.
 
@@ -47,10 +54,11 @@ Merge rules:
 - After merging `main`, take `main`'s `data/functions/*.csv`, rerun only the generator you own,
   then `tools/check.py --update` (`tools/verify.py --regen <generator>` does both). Never
   hand-merge the CSVs.
-- `check.py` fails when one function is defined in two files outside the Phase 3 samples
-  (`src/compiler_id/`, `src/flag_id/`, `src/atk_id/`), e.g. a new clone that `src/lifted/` also
-  defines. Rerun the generator that should drop it (`gen_lift.py` for lifted copies; only stream 1
-  runs the full ~80 min lift, so other streams target `U` functions).
+- `check.py` and `verify.py` fail when one function is defined in two files outside the Phase 3
+  samples (`src/compiler_id/`, `src/flag_id/`, `src/atk_id/`), e.g. a new clone that `src/lifted/`
+  also defines. `verify.py` runs `gen_lift.py --prune` (seconds) unless `--regen` names
+  `gen_lift`, so lifted copies drop out by themselves; any stream may commit that change to
+  `src/lifted/`. Only stream 1 runs the full lift (hours in the cloud).
 - `gen_clones.py` and `gen_lift.py` skip functions defined elsewhere in `src/` (`gen_statics.py`
   runs before both), so a rerun drops duplicates.
 - A stream that changes focus updates its row above in its next PR.
@@ -312,6 +320,16 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
      families under 8 KB each (re-run the census for current numbers). The remaining call-free vtable
      functions (509) are varied virtual dispatchers, not one template.
 1. **Extend the lifter (`tools/gen_lift.py`), largest payoff first.**
+   - Done (thirteenth session, cloud): lifting now runs in parallel processes (a full run is
+     ~105 min on 4 cores); output is one file per 64 KiB with per-function declarations, so
+     `--prune` drops functions defined elsewhere in seconds; `--best` writes the closest attempt of
+     any function for hand matching. Inlined guarded-static helpers (`GUARDS`: string pool,
+     singleton, type id; replicas in `HEADER`, namespace `lift_guard`) lift as one statement:
+     +126 `O`. Negative results: of 800 unlifted candidates none match in any round, and a
+     one-field-struct ("field") rewrite for struct-path TBAA added 0 of 578 mismatches. Next, from
+     the statics thread: a fourth helper (guard GOT 0x7101cba0c0, a pool getter followed by
+     `bl 0x710007fdb4`), tbz up to four instructions after the ldarb, and the DSO handle
+     (0x7101a19000) lifted as `""` instead of an extern.
    - Done (twelfth session), mismatch study and second-round rewrites (+1,039 `O`, ~146 KB;
      45.39% to 46.16%). Lifted-but-not-matching functions were classified with a scratch script
      (best attempt per function vs the original; each normalisation step, in order, removes part
