@@ -1,0 +1,366 @@
+#pragma once
+
+// Small repeated functions built around one or two calls, matched one family at a time
+// (tools/gen_clones.py scan and reference kinds). The callees differ per copy and come from
+// UnkCallTraits<Tag>; offsets are template arguments. Layouts and names are placeholders
+// inferred from the code.
+
+#include "UnkClone.h"
+#include "base/UnkVector.h"
+#include "base/global/CStrId.h"
+#include "base/reflection/UnkReflCast.h"
+#include "base/reflection/UnkReflValue.h"
+#include "types.h"
+
+void fn_71001eef74(char* owner, char* self, bool flag);
+void fn_71001eef58(char* owner, char* self, bool flag);
+void fn_7100025a88(char* p);
+
+namespace base {
+
+// The callees of one copy (each kind uses some of): call(...), get(self), base(self),
+// member(p), vtable(), base_vtable(), mid_vtable(), cls(), type(), dflt().
+template <class Tag>
+struct UnkCallTraits;
+
+// Sets the flag at 0xf6 and, when it changed and there is an owner at +8, tells the owner,
+// passing the flag only if the one at 0xf9 is set too (fn_71001f31e8 and its identical copies).
+template <class Tag>
+void refl_SetFlagNotify(char* self, bool v) {
+    if (*reinterpret_cast<bool*>(self + 0xf6) == v)
+        return;
+    *reinterpret_cast<bool*>(self + 0xf6) = v;
+    if (char* o = *reinterpret_cast<char**>(self + 8))
+        fn_71001eef74(o, self, *reinterpret_cast<bool*>(self + 0xf9) && v);
+}
+
+// Sets the flag at 0xf7; clearing it calls virtual slot 0x60 with true (fn_71001f3344 and its
+// identical copies).
+template <class Tag>
+void refl_SetFlagVirtual(char* self, bool v) {
+    if (*reinterpret_cast<bool*>(self + 0xf7) == v)
+        return;
+    *reinterpret_cast<bool*>(self + 0xf7) = v;
+    if (v)
+        return;
+    reinterpret_cast<void (**)(char*, bool)>(*reinterpret_cast<char**>(self))[12](self, true);
+}
+
+// Passes get(self) to the child at +0x220 of the object at `Offset`, or returns false when
+// there is none (fn_7100551548 and its copies).
+template <class Tag, u32 Offset>
+bool refl_CallWithOwnerChild(char* self) {
+    char* p = *reinterpret_cast<char**>(*reinterpret_cast<char**>(self + Offset) + 0x220);
+    if (!p)
+        return false;
+    return UnkCallTraits<Tag>::call(p, UnkCallTraits<Tag>::get(self));
+}
+
+// A constructor: the base's, the class's vtable, a member's at `Offset`, then the virtual at
+// slot 0x18 (fn_71003ba70c and its copies).
+template <class Tag, u32 Offset>
+void refl_CtorThenInit(char* self) {
+    UnkCallTraits<Tag>::base(self);
+    *reinterpret_cast<char**>(self) = UnkCallTraits<Tag>::vtable() + 0x10;
+    UnkCallTraits<Tag>::member(self + Offset);
+    reinterpret_cast<void (**)(char*)>(*reinterpret_cast<char**>(self))[3](self);
+}
+
+// Calls call(o) on the object at `Offset` in the one `self` points to at +8 when it is a
+// cls() (fn_7100427fb4 and its copies); the second form reads the outer pointer from its
+// second argument.
+template <class Tag, u32 Offset>
+void refl_CastThenCall(char* self) {
+    char* o = *reinterpret_cast<char**>(*reinterpret_cast<char**>(self + 8) + Offset);
+    if (!o)
+        return;
+    if (fn_710009d50c(reinterpret_cast<reflection::UnkReflObject*>(o)->vf_0x0(), UnkCallTraits<Tag>::cls()))
+        UnkCallTraits<Tag>::call(o);
+}
+
+template <class Tag, u32 Offset>
+void refl_CastThenCallArg(void*, char* obj) {
+    char* o = *reinterpret_cast<char**>(*reinterpret_cast<char**>(obj) + Offset);
+    if (!o)
+        return;
+    if (fn_710009d50c(reinterpret_cast<reflection::UnkReflObject*>(o)->vf_0x0(), UnkCallTraits<Tag>::cls()))
+        UnkCallTraits<Tag>::call(o);
+}
+
+// Finds the first element whose leading u32 equals the key (argument K, counted from 0) and
+// forwards all arguments to call() with it (fn_71001fc7bc and its copies).
+template <class Tag, u32 K, class... A>
+void refl_FindByIdCall(UnkVector<u32*>* v, A... a) {
+    u64 args[] = {(u64)a...};
+    u32 key = (u32)args[K];
+    u32* p = nullptr;
+    for (u32 **it = v->data, **end = v->data + v->count; it != end; ++it)
+        if (**it == key) {
+            p = *it;
+            break;
+        }
+    if (p)
+        UnkCallTraits<Tag>::call(p, a...);
+}
+
+// A reflected method: passes its argument's value (null without a type) to call() and returns
+// the s32 1 as a value of type() (fn_71007af1f0 and its copies).
+template <class Tag>
+reflection::UnkReflValue refl_CallArgReturnOne(void*, char* obj, reflection::UnkReflValue* const* args) {
+    char* target = *reinterpret_cast<char**>(obj + 8);
+    reflection::UnkReflValue* arg = args[0];
+    const void* p = arg->type ? reflection::refl_ArgValue<char>(arg) : nullptr;
+    UnkCallTraits<Tag>::call(target, p);
+    s32 one = 1;
+    const reflection::CType* type = UnkCallTraits<Tag>::type();
+    reflection::UnkReflValue r;
+    r.kind = 2;
+    r.field_0x0 = nullptr;
+    r.type = nullptr;
+    fn_71000a18d4(&r, type, &one, false);
+    return r;
+}
+
+// The address of element i of an array of `Size`-byte elements; the index arrives as a u64 and
+// is truncated (fn_7100246624 and its copies).
+template <class Tag, u64 Size>
+UnkCloneElem<Tag, Size>* refl_ElemAt(UnkVector<UnkCloneElem<Tag, Size>>* v, u64 i) {
+    return &v->data[(u32)i];
+}
+
+// A copy constructor through three levels: the first base's vtable and 0x20 bytes, the second
+// base's vtable and a word, the class's vtable and a word (fn_71005f2814 and its copies). The
+// words are copied as bytes, so the vtable stores between them stay.
+template <class Tag>
+void refl_CopyCtor3(char* self, const char* other) {
+    *reinterpret_cast<char**>(self) = UnkCallTraits<Tag>::base_vtable() + 0x10;
+    __builtin_memcpy(self + 8, other + 8, 0x20);
+    *reinterpret_cast<char**>(self) = UnkCallTraits<Tag>::mid_vtable() + 0x10;
+    __builtin_memcpy(self + 0x28, other + 0x28, 8);
+    *reinterpret_cast<char**>(self) = UnkCallTraits<Tag>::vtable() + 0x10;
+    __builtin_memcpy(self + 0x30, other + 0x30, 8);
+}
+
+// A pointer and a u32 with a link to them and a state (1 and 2 are reset to 0); assignment
+// links the copy when the pointer is set (fn_710023655c and its identical copies). The two
+// resets are written differently, as the original's code differs: a range check, and a switch
+// read through the raw offset (a shared access would be hoisted above the branch).
+template <class Tag>
+struct UnkLinkSlot {
+    char* p;
+    u32 b;
+    u32* link;
+    char* p2;
+    u32 state;
+
+    UnkLinkSlot& operator=(const UnkLinkSlot& o) {
+        if (this != &o) {
+            b = o.b;
+            p = o.p;
+            if (p) {
+                if (state - 1 < 2u)
+                    state = 0;
+                state = 2;
+                link = &b;
+                p2 = p;
+            } else {
+                u32& st = *reinterpret_cast<u32*>(reinterpret_cast<char*>(this) + 0x20);
+                switch (st) {
+                case 1:
+                    st = 0;
+                    break;
+                case 2:
+                    st = 0;
+                    break;
+                }
+            }
+        }
+        return *this;
+    }
+};
+
+// A reflected f32 read: the f32 at `Offset` in what get() finds for the object `obj` points to
+// at +8, or dflt() when nothing is found (fn_71011d5868 and its copies).
+template <class Tag, u32 Offset>
+reflection::UnkReflValue refl_GetLookupF32(void*, char* obj) {
+    char* p = UnkCallTraits<Tag>::get(*reinterpret_cast<char**>(obj + 8));
+    f32 v = p ? *reinterpret_cast<f32*>(p + Offset) : UnkCallTraits<Tag>::dflt();
+    const reflection::CType* type = UnkCallTraits<Tag>::type();
+    reflection::UnkReflValue r;
+    r.kind = 2;
+    r.field_0x0 = nullptr;
+    r.type = nullptr;
+    fn_71000a18d4(&r, type, &v, false);
+    return r;
+}
+
+// refl_SetFlagNotify for the flag at 0xf8, testing the flags the other way round
+// (fn_71001f32b0 and its identical copies).
+template <class Tag>
+void refl_SetFlagNotifyB(char* self, bool v) {
+    if (*reinterpret_cast<bool*>(self + 0xf8) == v)
+        return;
+    *reinterpret_cast<bool*>(self + 0xf8) = v;
+    if (char* o = *reinterpret_cast<char**>(self + 8))
+        fn_71001eef58(o, self, v && *reinterpret_cast<bool*>(self + 0xf9));
+}
+
+// Stores the bool at `Offset` when it differs (fn_71001c3314 and its copies).
+template <class Tag, u32 Offset>
+void refl_SetBool(char* self, bool v) {
+    if (*reinterpret_cast<bool*>(self + Offset) != v)
+        *reinterpret_cast<bool*>(self + Offset) = v;
+}
+
+// When the u8 flag at `Flag` differs from v: call(self + Member, v), then, when setting,
+// fn_7100025a88(self + Next) (fn_7100140eac and its copies).
+template <class Tag, u32 Flag, u32 Member, u32 Next>
+void refl_SetFlagCall(char* self, bool v) {
+    if (!((*reinterpret_cast<u8*>(self + Flag) != 0) ^ v))
+        return;
+    UnkCallTraits<Tag>::call(self + Member, v);
+    if (v)
+        fn_7100025a88(self + Next);
+}
+
+// Releases a refcounted object (count at +8; virtual slot 0x10 when it reaches zero)
+// (fn_7100234ef0 and its identical copies).
+template <class Tag>
+struct UnkRefOwner {
+    char* p;
+    ~UnkRefOwner() {
+        if (p && --*reinterpret_cast<u32*>(p + 8) == 0)
+            reinterpret_cast<void (**)(char*)>(*reinterpret_cast<char**>(p))[2](p);
+    }
+};
+
+template <class Tag>
+void refl_ReleaseRef(UnkRefOwner<Tag>* h) {
+    h->~UnkRefOwner();
+}
+
+// refl_CopyCtor3 with two levels: the base's vtable and 0x20 bytes, the class's vtable and a
+// word (fn_7100469c04 and its copies).
+template <class Tag>
+void refl_CopyCtor2(char* self, const char* other) {
+    *reinterpret_cast<char**>(self) = UnkCallTraits<Tag>::base_vtable() + 0x10;
+    __builtin_memcpy(self + 8, other + 8, 0x20);
+    *reinterpret_cast<char**>(self) = UnkCallTraits<Tag>::vtable() + 0x10;
+    __builtin_memcpy(self + 0x28, other + 0x28, 8);
+}
+
+// A reflected property of an object three pointers away (+0x58, `Mid`, +0x78 from the one `obj`
+// points to at +8): writes its u32 at `Offset` from the argument (fn_71008f1fb4 and its copies)
+// or returns it as a value of type() (fn_71008f20d8 and its copies).
+template <class Tag, u32 Mid, u32 Offset>
+reflection::UnkReflValue refl_SetDeepU32(void*, char* obj, reflection::UnkReflValue* const* args) {
+    char* t = *reinterpret_cast<char**>(obj + 8);
+    u32 v = *reflection::refl_ArgValue<u32>(args[0]);
+    *reinterpret_cast<u32*>(*reinterpret_cast<char**>(*reinterpret_cast<char**>(
+        *reinterpret_cast<char**>(t + 0x58) + Mid) + 0x78) + Offset) = v;
+    return reflection::refl_EmptyValue();
+}
+
+template <class Tag, u32 Mid, u32 Offset>
+reflection::UnkReflValue refl_GetDeepU32(void*, char* obj) {
+    char* t = *reinterpret_cast<char**>(obj + 8);
+    u32 v = *reinterpret_cast<u32*>(*reinterpret_cast<char**>(*reinterpret_cast<char**>(
+        *reinterpret_cast<char**>(t + 0x58) + Mid) + 0x78) + Offset);
+    const reflection::CType* type = UnkCallTraits<Tag>::type();
+    reflection::UnkReflValue r;
+    r.kind = 2;
+    r.field_0x0 = nullptr;
+    r.type = nullptr;
+    fn_71000a18d4(&r, type, &v, false);
+    return r;
+}
+
+// Returns false as a value of type() (fn_71002546d0 and its identical copies).
+template <class Tag>
+reflection::UnkReflValue refl_GetFalse(void*) {
+    bool v = false;
+    const reflection::CType* type = UnkCallTraits<Tag>::type();
+    reflection::UnkReflValue r;
+    r.kind = 2;
+    r.field_0x0 = nullptr;
+    r.type = nullptr;
+    fn_71000a18d4(&r, type, &v, false);
+    return r;
+}
+
+// Parallel arrays of values and keys of the same width: stores *value at the key's slot when
+// the key is present (fn_7100251a10 and its copies).
+template <class Tag, class K, class V>
+struct UnkKeyedArray {
+    V* values;
+    K* keys;
+    u32 count;
+
+    V* End() { return &values[count]; }
+    V* Find(const K& key) {
+        for (u64 i = 0; i < count; ++i)
+            if (keys[i] == key)
+                return &values[i];
+        return End();
+    }
+};
+
+template <class Tag, class T>
+void refl_KeyedSet(UnkKeyedArray<Tag, T, T>* a, const T* key, const T* value) {
+    T* p = a->Find(*key);
+    if (p != a->End())
+        *p = *value;
+}
+
+// A keyed array's copy constructor: values of `Size` bytes copied with copy() after reserve(),
+// then the string-id keys retained (fn_71000dcabc and its copies). The key is stored as bytes,
+// so the count is reloaded after it as in the original.
+template <class Tag, u64 Size>
+struct UnkKeyedCopyArray {
+    UnkCloneBlock<Tag, Size>* values;
+    global::UnkStringData** keys;
+    u32 count;
+    u32 capacity;
+    u32 field_0x18;
+    u32 flags;
+    UnkAllocator* allocator;
+};
+
+template <class Tag, u64 Size>
+void refl_KeyedArrayCopy(UnkKeyedCopyArray<Tag, Size>* self, const UnkKeyedCopyArray<Tag, Size>* other) {
+    self->keys = nullptr;
+    self->count = 0;
+    self->capacity = 0;
+    self->values = nullptr;
+    self->field_0x18 = other->field_0x18;
+    self->flags = other->flags;
+    self->allocator = other->allocator;
+    UnkCallTraits<Tag>::reserve(self, other->count);
+    self->count = other->count;
+    for (u64 i = 0; i < self->count; ++i)
+        UnkCallTraits<Tag>::copy(&self->values[i], &other->values[i]);
+    self->count = other->count;
+    for (u64 i = 0; i < self->count; ++i) {
+        global::UnkStringData* d = other->keys[i];
+        __builtin_memcpy(&self->keys[i], &d, 8);
+        if (&g_unk_7101d47108->empty != d)
+            ++d->ref_count;
+    }
+}
+
+// A destructor that frees an array of string ids at `Offset`, then calls base(); and its
+// deleting form (fn_71005b3168 and its copies).
+template <class Tag, u32 Offset>
+void refl_StrIdVecDtor(char* self) {
+    *reinterpret_cast<char**>(self) = UnkCallTraits<Tag>::vtable() + 0x10;
+    reinterpret_cast<UnkVector<UnkCloneStrId<Tag>>*>(self + Offset)->Free();
+    UnkCallTraits<Tag>::base(self);
+}
+
+template <class Tag, u32 Offset>
+void refl_StrIdVecDeletingDtor(char* self) {
+    refl_StrIdVecDtor<Tag, Offset>(self);
+    __builtin_operator_delete(self);
+}
+
+}  // namespace base

@@ -121,6 +121,47 @@ DREAD_REFL_ROOT_CLASS_GETTER(7100c81418, 7100c8271c, "CCutSceneDef", 7100c8137c,
 // CCutSceneDef::CActorDef
 DREAD_REFL_TAG(7100c83650);
 void fn_7100c828a0(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_717270e348;
+extern base::reflection::CType g_unk_7101d60688;
+extern base::reflection::CType g_unk_7172793748;
+void fn_7100c82994(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sId", true), fn_7100009658(), 0x0, -1, -1);
+    field0->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Actor Id");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("sCharClass", true), fn_710000ad9c(), 0x8, -1, -1);
+    field1->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId(g_unk_7101d470e8));
+    field1->attrs.Add<const char*>(fn_7100007e80(), "CharClass File");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("sInGameEntityId", true), fn_7100009658(), 0x18, -1, -1);
+    field2->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    field2->attrs.Add<const char*>(fn_7100007e80(), "InGame Entity Id");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("bInGameEntityVisibleOnEnd", true), fn_710000d228(), 0x20, -1, -1);
+    field3->attrs.Add<bool>(fn_7100075240(), true);
+    field3->attrs.Add<const char*>(fn_7100007e80(), "Set InGame Entity Visible On End");
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("bExitClearTags", true), fn_710000d228(), 0x21, -1, -1);
+    field4->attrs.Add<bool>(fn_7100075240(), false);
+    field4->attrs.Add<const char*>(fn_7100007e80(), "InGame Entity Exit Clear Animation Tags");
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("fExitAnimTags", true), &g_unk_717270e348, 0x24, -1, -1);
+    field5->attrs.Add<s32>(fn_7100075240(), &g_unk_717270e348, s32(base::reflection::refl_GetEnumZero<0x7172794a88>()));
+    field5->attrs.Add<const char*>(fn_7100007e80(), "InGame Entity Exit Animation Tags");
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("dBlendSpaceVars", true), &g_unk_7101d60688, 0x28, -1, -1);
+    field6->attrs.Add<const char*>(fn_7100007e80(), "BlendSpace variable values");
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("sSkelRootNode", true), fn_710000fd7c(), 0x50, -1, -1);
+    field7->attrs.Add<base::global::CName>(fn_7100075240(), base::global::CName(base::global::UnkNameHash{}, 0xffffffffffffffffu));
+    field7->attrs.Add<const char*>(fn_7100007e80(), "Node in the cutscene entity skeleton to be used to match the final position");
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("sExitAnim", true), fn_7100009658(), 0x58, -1, -1);
+    field8->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    field8->attrs.Add<const char*>(fn_7100007e80(), "InGame Entity Exit Action Name");
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("sExitAnimChannel", true), fn_7100009658(), 0x60, -1, -1);
+    field9->attrs.Add<CStrId>(fn_7100075240(), CStrId(base::reflection::refl_GetStrIdTable<0x7100031894>().ids[433]));
+    field9->attrs.Add<const char*>(fn_7100007e80(), "InGame Entity Exit Action Channel Name");
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("fExitAnimFrame", true), fn_710000abbc(), 0x68, -1, -1);
+    field10->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field10->attrs.Add<const char*>(fn_7100007e80(), "InGame Entity Exit Action Frame");
+    UnkReflField* field11 = fn_7100096524(cls, CStrId("dLayersExitAnim", true), &g_unk_7172793748, 0x70, -1, -1);
+    field11->attrs.Add<const char*>(fn_7100007e80(), "Other Layers Exit Action Config");
+    UnkReflField* field12 = fn_7100096524(cls, CStrId("sLightingDef", true), fn_710000ad9c(), 0x98, -1, -1);
+    field12->attrs.Add<const char*>(fn_7100007e80(), ".bldef File path");
+}
 bool fn_7100c8d3a8(const void* a, const void* b) { return a == b; }
 s32 fn_7100c8d3b4() { return -1; }
 const base::reflection::CType& fn_7100c8d3bc(const void* obj);
@@ -149,6 +190,17 @@ DREAD_REFL_ROOT_CLASS_GETTER(7100c828a4, 7100c83650, "CCutSceneDef::CActorDef", 
 // CCutSceneDef::CAnimationLayerDef
 DREAD_REFL_TAG(7100c84c20);
 void fn_7100c84764(base::reflection::CClass*) {}
+void fn_7100c84858(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sExitAnim", true), fn_7100009658(), 0x0, -1, -1);
+    field0->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    field0->attrs.Add<const char*>(fn_7100007e80(), "InGame Entity Exit Action Name");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("sExitAnimChannel", true), fn_7100009658(), 0x8, -1, -1);
+    field1->attrs.Add<CStrId>(fn_7100075240(), CStrId(base::reflection::refl_GetStrIdTable<0x7100031894>().ids[433]));
+    field1->attrs.Add<const char*>(fn_7100007e80(), "InGame Entity Exit Action Channel Name");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fExitAnimFrame", true), fn_710000abbc(), 0x10, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field2->attrs.Add<const char*>(fn_7100007e80(), "InGame Entity Exit Action Frame");
+}
 bool fn_7100c8f700(const void* a, const void* b) { return a == b; }
 s32 fn_7100c8f70c() { return -1; }
 const base::reflection::CType& fn_7100c8f714(const void* obj);

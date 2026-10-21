@@ -5,10 +5,24 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassWeightActivatedPlatformSmartObjectComponent
 DREAD_REFL_TAG(7100a081b4);
 void fn_7100a07ef8(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+void fn_7100a07ff0(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sActionLayer", true), fn_7100009658(), 0x58, -1, -1);
+    field0->attrs.Add<CStrId>(fn_7100075240(), CStrId(base::reflection::refl_GetStrIdTable<0x7100031894>().ids[536]));
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Animation layer");
+}
 bool fn_7100a08454(const void*, const void*) { return false; }
 s32 fn_7100a0845c() { return -1; }
 const base::reflection::CType& fn_7100a08464(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

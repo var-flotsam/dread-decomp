@@ -6,7 +6,7 @@ For the next developer, human or AI, picking up this project. Read this, then `C
 
 **Thirteenth session (2026-10-21, Linux cloud, branch `claude/project-thread-m3b90j`):** core engine
 types (Next steps, item 4): the string pool, CRC64 and the allocator getter in `src/base/`
-(var-flotsam/dread-decomp#20 and the next PR); no generator was rerun.
+(var-flotsam/dread-decomp#20, #22 and the string heap PR); no generator was rerun.
 
 **Twelfth session (2026-10-21, on the PC, branch `claude/lifter-mismatch-classes`, var-flotsam/dread-decomp#18):** lifter mismatch study
 (Next steps, item 1, "Done (twelfth session)"); `gen_lift.py` and `check.py --update` were rerun,
@@ -25,10 +25,11 @@ remain as reference only. Each stream edits only the files in its row.
 | Stream | Area | Files it may edit | Branches |
 |---|---|---|---|
 | 1. Lifter | Next steps, item 1: loops and block layout, `ccmp`, jump tables, register moves | `tools/gen_lift.py`, `src/lifted/` | `cloud/lift-<topic>` |
-| 2. Shape families and statics | Next steps, item 2 (clone families, all sizes) and guarded statics; `docs/tasks/` | `tools/gen_clones.py`, `include/UnkClone.h`, `include/base/UnkCloneHelpers.h` and new template headers, `src/clones/`; `tools/gen_statics.py`, `include/base/reflection/UnkReflStatics.h`, `src/reflection_statics/` | `cloud/clones-<topic>` |
+| 2. Shape families | Next steps, item 2 (clone families, all sizes); `docs/tasks/` (gave guarded statics to stream 6) | `tools/gen_clones.py`, `include/UnkClone.h`, `include/base/UnkCloneHelpers.h` and new template headers, `src/clones/` | `cloud/clones-<topic>` |
 | 3. Core engine types | Next steps, item 4: string pool, `UnkReflArray`, CRC64, allocators (hand-written) | `src/base/`, `include/base/global/`, new `include/base/*.h` | `cloud/core-<topic>` |
 | 4. Reflection leftovers | Next steps, item 2, "Left" | `tools/gen_reflection.py`, `tools/refl_attrs.py`, `tools/gen_types.py`, `src/reflection/`, `src/reflection_types/`, `include/base/reflection/` (not `UnkReflStatics.h`) | `cloud/refl-<topic>` |
 | 5. Lua leftovers | Next steps, item 3 (library code, no game progress) | `lib/lua/`, `tools/sigmatch.py`, `tools/libcheck_lua.py`, `data/library_symbols.csv` | `cloud/lua-<topic>` |
+| 6. Guarded statics | Next steps, item 1, guarded function-local statics (taken over from stream 2, which gives up these files) | `tools/gen_statics.py`, `include/base/reflection/UnkReflStatics.h`, `src/reflection_statics/` | `cloud/statics-<topic>` |
 
 All may change `data/functions/*.csv` (statuses only, through `check.py --update`). Anything
 else (shared headers, `check.py`, `CLAUDE.md`) goes through the owner first.
@@ -76,7 +77,7 @@ Snapshot as of 2026-10-18 (fifth Phase 4 session; branches `phase-4-4-clones` (v
 | 4.2 Lua | **Done.** Upstream 5.1.4 vendored in `lib/lua/` (2 marked config changes); 286 Lua functions located in `main` by `tools/sigmatch.py` (status `L`) |
 | 4.3 Reflection | **In progress.** all 2,354 located class getters (444 in TUs with other statics, through padding); all 1,010 other `CClass` descriptor constructors (skipped TUs and getter-less types); 1,911 of 1,957 class attribute/member-field functions, 478 other registration functions plus 54 in their class getter's TU, and all 1,006 out-of-line reflected-function initialisers (`src/reflection/`, `tools/gen_reflection.py`, `tools/refl_attrs.py`). Pointer types: 993 standalone getter/constructor pairs plus 108 generated in their pointee's TU; all 238 `CEnumType` constructors; 178 standalone `CCollectionType` constructors plus those in their element class's TU (`src/reflection_types/`, `tools/gen_types.py`) |
 | Small functions | **In progress.** `tools/gen_lift.py` lifts functions of up to 512 bytes from their instructions and keeps byte-identical ones: 46,219 functions, 2.02 MB (`src/lifted/`; second-round store-order, may_alias and memcpy rewrites; sret functions, stack locals, a goto-based flat mode for crossing branches and loops) |
-| Guarded statics | **In progress.** `tools/gen_statics.py`: attribute keys, static string ids, typed lookups and registries built on weak function-local statics (`include/base/reflection/UnkReflStatics.h`): 765 functions, 141 KB (`src/reflection_statics/`) |
+| Guarded statics | **In progress.** `tools/gen_statics.py`: attribute keys, static string ids (weak and internal), typed lookups, registries and the tables built from them, type-id senders and singleton parts, on function-local statics (`include/base/reflection/UnkReflStatics.h`): 831 functions, 163 KB (`src/reflection_statics/`) |
 | Repeated templates | **In progress.** `tools/gen_clones.py`: hand-matched templates instantiated once per copy (`UnkClone_fn_<addr>` tags): the named registry, `UnkVector` methods per element kind, the reflection collection iterator, a deferred set, and scan kinds (facts per candidate): destructors of string-id/refcounted members, property reads and string-id writes, enum value lists, and shape-family templates (`UnkCloneHelpers.h`): 6,256 functions, 1.22 MB (`src/clones/`) |
 | 4.4 Core engine types | **In progress.** String ids (`CStrId` incl. copy-assignment, `UnkStrId`), the growable array `base::UnkVector` (push, grow-at, insert, remove, clear/free, move) and its allocator interface; reflected-function initialisers now match (below) |
 | 4.5+ Boot to title screen | Not started; plan below |
@@ -357,10 +358,14 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
    rerun `build/scratch`-style tallies by subclassing `Lifter` and recording why `step` fails):
    - **Guarded function-local statics** (`ldarb`): `tools/gen_statics.py` covers attribute keys
      (61), static string ids (386 from a literal, 55 copied from a global), typed lookups by name
-     (203) and registries (51). Left (~3,200 functions, mostly one-offs): the 437 class getters in
-     skipped TUs, primitive type getters (`refl_GetType<unsigned>`, 30 × 480 B: an inlined
-     `CType` constructor whose kind hash and name share one string), 55 × 356 B serialisers,
-     37 × 456 B and 46 pointer getters whose pointee is in a skipped TU. Add a kind: a template
+     (203), registries (51), tables built from a registry (`refl_RegistryMapInit`, 37) and internal
+     static string ids (plain functions, 13), type-id senders (`refl_SendTypeId`, 11) and
+     parts of one singleton (`refl_GetSingletonPart`, 5). Left (stream 6 census, 2026-10-21): 2,483 `U` functions call
+     `__cxa_guard_acquire` (2.28 MB); 2.15 MB of that is one-offs (game code with a static
+     inside), and only ~130 KB is in same-shape families of two or more. Older notes: the 437
+     class getters in skipped TUs, primitive type getters (`refl_GetType<unsigned>`, 30 × 480 B:
+     an inlined `CType` constructor whose kind hash and name share one string), 55 × 356 B
+     serialisers and 46 pointer getters whose pointee is in a skipped TU. Add a kind: a template
      in `UnkReflStatics.h`, a reference address in `REFERENCES`, its constants in `facts()`.
    - Stack locals are handled (one `char` array over the gap between save slots, or over the
      bytes accessed; `STACK_LAYOUTS`), but only ~22% of those functions match. Parameters first
@@ -411,9 +416,16 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
      and `CVector4D` values, function/parameter attributes through `UnkReflFunctionVtbl`, the field
      attribute container at `+0x70`, and a lambda-wrapped form for the stack-slot order
      (`refl_attrs.verify` retries alternatives): 1,911 of 1,957 attribute/field functions, 508 of
-     562 others. Left there (~45, one-offs): an inlined `CFilePathStrId` constructor (8; and
-     `fn_7100408c20`, 33 KB, for `CStrId`), `CRntString` copied from a live object, other
-     attribute builders (`fn_7100228ca0`), field lookups by name hash, guarded statics.
+     562 others. The inlined string-id constructor (`CFilePathStrId(UnkStrIdInline{}, ...)`, its
+     pool created on first use by a guarded static in a cold tail) matches since the thirteenth
+     session (7 functions), as do `CName` values stored as a hash (`UnkNameHash`) and copies of
+     any global `CStrId` (2), ids copied from a string-id table built on first use
+     (`refl_GetStrIdTable`, 3) and enum defaults kept in guarded weak statics (`refl_GetEnumZero`,
+     `refl_GetEnumNot8`, 4) (all in `UnkReflAttributes.h`). Left there (30, one-offs):
+     `fn_7100408c20` (33 KB), `CRntString` copied from a live object, other attribute builders
+     (`fn_7100228ca0`, 5), `CVector4D` copied from a constant, reflected functions inside field
+     functions, field lookups by name hash, and 4 that parse but differ. List them by failure point with a
+     copy of `refl_attrs.parse` whose `return None`s raise their line number.
    - Descriptor helpers of **collection iterator values** (`UnkIterValue<T, K>`, K = index or key):
      move-construct, destroy, copy-assign and compare as `gen_clones` kinds (word, owner,
      string-id and keyed elements; a scan kind for elements with a vtable and string-id members,
@@ -517,6 +529,30 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
      0x71000de484 (20), 0x710000dc80 and 0x7100415e18 (property reads returning a reflected value
      through x8), 0x7100142df0 (clamped colour setters), 0x71003e2ea8. In this census, families of
      five or more `U` members still hold ~500 KB; under 100 bytes, ~30 families of 10 or more.
+   - Done (2026-10-21, cloud, stream 2, round 7): 13 kinds, +180 functions. `strid_value_insert`
+     (`UnkStrIdValueVec.h`; each branch constructs the element itself, 10 × 1 KB), and a new header
+     `UnkCloneCalls.h` for small call-shaped families: `set_flag_notify` (17), `set_flag_virtual`
+     (13), `call_with_owner_child` (16), `ctor_then_init` (14), `cast_then_call` (14),
+     `find_by_id_call` (13, the key's argument register varies), `call_arg_return_one` (14),
+     `elem_at` (12), `copy_ctor3` (12; byte copies keep the vtable stores), `link_slot_assign`
+     (12; the two state resets are a range check and a switch on 1, 2 read through the raw
+     offset) and `get_lookup_f32` (11); `derived_copy_ctor` takes u8/u16 fields (+10).
+     `gen_clones.defined_in_src` ignores trailing comments (a commented declaration in
+     `src/base/` hid a clone). Left: 0x7100f5ff2c (the insert that calls its push-back, 4
+     registers in the shared tail), 0x71008eb574 (clamped colour, 16 × 100 B: the zero register
+     and loads are scheduled first), 0x710000e08c (an exact division by 3 Clang folds away),
+     0x7100339a50 (a resource load around two string-id types, 9 × 760 B).
+   - Done (2026-10-21, cloud, stream 2, round 8): +96 functions. `UnkCloneCalls.h` kinds
+     `set_flag_notify_b`, `release_ref`, `copy_ctor2`, `set_bool`, `set_flag_call` (10 each or
+     fewer), the reflected properties three pointers away `set_deep_u32`/`get_deep_u32`, `get_false`
+     and `keyed_set` (parallel key/value arrays of one width). `call_and_cast_field` also takes a
+     descriptor passed as a direct (hidden) address after its getter is called for initialisation
+     (+10).
+   - Done (2026-10-21, cloud, stream 2, round 9): +56 functions. `value_map_clear` (`UnkHashMap.h`),
+     `keyed_array_copy` (the key stored as bytes so the count reloads), `slist_insert_before` (new
+     `UnkSList.h`; the count is a union member), `callback_list_dtor` (`UnkCallbackList`'s
+     destructor and deleting destructor), `strid_vec_dtor`, and `iter_value_destroy_poly_vec_key16`
+     now reads its key and state offsets (`UnkClonePolyVecPad`; +8).
    - Enum static initialisers and the other per-TU static initialisers. These define
      globals, so they need the TU's data definitions (the 160 B ones are mostly lifted already).
    - Slot `0x28`/`0x30`/`0x38`/`0x48`/`0x50` helpers of other classes (need class layouts):
@@ -548,11 +584,17 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
    rest of the pool (`include/base/global/UnkStringPool.h` has the set and node layouts): erase
    (`fn_7100080a00`, `O`), insert (`fn_71000801e4`, `m`: register allocation around the heap's
    GOT address) and the buffer compare (`fn_710007f240`, `m`: a select the original speculates).
-   The heap behind the string copies (`g_unk_7101d58d40`; `fn_7100084030` allocates,
-   `fn_7100084144` frees) is a small-block arena with six size classes of 0x28 bytes. Left:
-   `UnkReflArray` (the keyed container at `CClass+0x110`, grown by `fn_7100097550`, 916 B: a key
-   search, growth through `fn_7100097f80`, an inlined move of the 0xb8-byte `UnkReflFunction`,
-   then attribute lookups) and the allocators over the static arena.
+   The heap behind the string copies (`g_unk_7101d58d40`, `include/base/global/UnkStringHeap.h`)
+   has six size classes (16 to 512-byte blocks carved from one allocation each): class setup
+   (`fn_7100083c48`), clear (`fn_7100083d90`) and allocate (`fn_7100084030`) are `O`. Adding a function to
+   a class (`fn_7100097550`, `UnkReflArray` at `CClass+0x110`) is `O` in
+   `src/base/reflection/fn_7100097550.cpp`: the key search, the inlined move of the 0xb8-byte
+   `UnkReflFunction` (full layout there, as local views checked against the headers) and the
+   class's `_EditorOnly` attribute read with a default (`Get<T>(key, def)`; a volatile byte read
+   keeps the default in memory as the original does). Left: the array's growth
+   (`fn_7100097f80`), the function's constructor and destructor (`fn_710009a5b4`,
+   `fn_710009aae8`), and the `U` functions next to `operator new`, probably more allocator code (`fn_7100083870`,
+   `fn_71000839c0`, `fn_7100083a10`, `fn_7100083a70`).
 5. Boot to title screen: startup, memory, file system / `files.toc` / `.pkg`, resource manager,
    Lua + GUI bindings, GUI, render front end, input, localisation, save probe. Estimated
    6,000–9,000 functions (static floor: 4,394 reachable from `nnMain`).
