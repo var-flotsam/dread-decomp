@@ -3839,7 +3839,7 @@ address,size,name,name_source,subsystem,status
 0x71002b22ac,132,fn_71002b22ac,unknown,unknown,U
 0x71002b2330,416,fn_71002b2330,unknown,unknown,U
 0x71002b24d0,24,fn_71002b24d0,unknown,unknown,U
-0x71002b24e8,112,fn_71002b24e8,unknown,unknown,U
+0x71002b24e8,112,fn_71002b24e8,unknown,unknown,O
 0x71002b2558,224,fn_71002b2558,unknown,unknown,O
 0x71002b2638,196,fn_71002b2638,unknown,unknown,O
 0x71002b26fc,216,fn_71002b26fc,unknown,unknown,U
@@ -3882,7 +3882,7 @@ address,size,name,name_source,subsystem,status
 0x71002b5338,624,fn_71002b5338,unknown,unknown,U
 0x71002b55b0,140,fn_71002b55b0,unknown,unknown,O
 0x71002b563c,92,fn_71002b563c,unknown,unknown,O
-0x71002b5698,112,fn_71002b5698,unknown,unknown,U
+0x71002b5698,112,fn_71002b5698,unknown,unknown,O
 0x71002b5708,40,fn_71002b5708,unknown,unknown,U
 0x71002b5730,140,fn_71002b5730,unknown,unknown,O
 0x71002b57bc,260,fn_71002b57bc,unknown,unknown,O
@@ -4046,8 +4046,8 @@ address,size,name,name_source,subsystem,status
 0x71002ba348,8,fn_71002ba348,unknown,unknown,O
 0x71002ba350,28,fn_71002ba350,unknown,unknown,O
 0x71002ba36c,12,fn_71002ba36c,unknown,unknown,O
-0x71002ba378,244,fn_71002ba378,unknown,unknown,U
-0x71002ba46c,244,fn_71002ba46c,unknown,unknown,U
+0x71002ba378,244,fn_71002ba378,unknown,unknown,O
+0x71002ba46c,244,fn_71002ba46c,unknown,unknown,O
 0x71002ba560,844,fn_71002ba560,unknown,unknown,U
 0x71002ba8ac,4,fn_71002ba8ac,unknown,unknown,O
 0x71002ba8b0,244,querysystem::CCurrentEvaluator::refl_GetClass,reflection,ai/querysystem,O
@@ -4064,8 +4064,8 @@ address,size,name,name_source,subsystem,status
 0x71002bacd0,116,fn_71002bacd0,unknown,ai/querysystem?,O
 0x71002bad44,116,fn_71002bad44,unknown,ai/querysystem?,O
 0x71002badb8,12,fn_71002badb8,unknown,ai/querysystem?,O
-0x71002badc4,244,fn_71002badc4,unknown,ai/querysystem?,U
-0x71002baeb8,244,fn_71002baeb8,unknown,ai/querysystem?,U
+0x71002badc4,244,fn_71002badc4,unknown,ai/querysystem?,O
+0x71002baeb8,244,fn_71002baeb8,unknown,ai/querysystem?,O
 0x71002bafb0,160,fn_71002bafb0,unknown,ai/querysystem?,O
 0x71002bb050,4,fn_71002bb050,unknown,ai/querysystem?,O
 0x71002bb054,244,querysystem::CDistanceEvaluator::refl_GetClass,reflection,ai/querysystem,O
@@ -4084,8 +4084,8 @@ address,size,name,name_source,subsystem,status
 0x71002bbbec,124,fn_71002bbbec,unknown,ai/querysystem?,O
 0x71002bbc68,124,fn_71002bbc68,unknown,ai/querysystem?,O
 0x71002bbce4,12,fn_71002bbce4,unknown,ai/querysystem?,O
-0x71002bbcf0,252,fn_71002bbcf0,unknown,ai/querysystem?,U
-0x71002bbdec,252,fn_71002bbdec,unknown,ai/querysystem?,U
+0x71002bbcf0,252,fn_71002bbcf0,unknown,ai/querysystem?,O
+0x71002bbdec,252,fn_71002bbdec,unknown,ai/querysystem?,O
 0x71002bbee8,76,fn_71002bbee8,unknown,ai/querysystem?,O
 0x71002bbf34,68,fn_71002bbf34,unknown,ai/querysystem?,O
 0x71002bbf78,76,fn_71002bbf78,unknown,ai/querysystem?,O
@@ -4108,8 +4108,8 @@ address,size,name,name_source,subsystem,status
 0x71002bcc78,124,fn_71002bcc78,unknown,ai/querysystem?,O
 0x71002bccf4,124,fn_71002bccf4,unknown,ai/querysystem?,O
 0x71002bcd70,12,fn_71002bcd70,unknown,ai/querysystem?,O
-0x71002bcd7c,252,fn_71002bcd7c,unknown,ai/querysystem?,U
-0x71002bce78,252,fn_71002bce78,unknown,ai/querysystem?,U
+0x71002bcd7c,252,fn_71002bcd7c,unknown,ai/querysystem?,O
+0x71002bce78,252,fn_71002bce78,unknown,ai/querysystem?,O
 0x71002bcf74,76,fn_71002bcf74,unknown,ai/querysystem?,O
 0x71002bcfc0,68,fn_71002bcfc0,unknown,ai/querysystem?,O
 0x71002bd004,76,fn_71002bd004,unknown,ai/querysystem?,O
