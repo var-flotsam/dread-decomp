@@ -54,9 +54,126 @@ struct UnkReflRegistry {
 };
 
 template <class G>
-void refl_Register(void* item) {
+UnkReflRegistry& refl_GetRegistry() {
     static UnkReflRegistry s_registry(UnkReflStatic<G>::flags);
-    s_registry.items.PushBack(item);
+    return s_registry;
+}
+
+template <class G>
+void refl_Register(void* item) {
+    refl_GetRegistry<G>().items.PushBack(item);
+}
+
+// What registers itself: its name is virtual slot 0x28.
+struct UnkReflRegistryItem {
+    virtual void vf_0x0();
+    virtual void vf_0x8();
+    virtual void vf_0x10();
+    virtual void vf_0x18();
+    virtual void vf_0x20();
+    virtual const base::global::CStrId& vf_0x28();
+};
+
+// A table built from a registry (UnkReflStatic<G>::Registry names its refl_Register): one
+// 16-byte value per registered item, constructed from the item and the table's name, and the
+// item's name as its key.
+struct UnkReflRegistryMap {
+    struct Value {
+        u8 unk_0x0[0x10];
+    };
+
+    bool initialized;
+    base::global::CStrId name;
+    Value* values;
+    base::global::CStrId* keys;
+    u32 count;
+    u32 capacity;
+    u32 step;
+};
+
+// UnkReflStatic<G>::grow(&values, n) resizes both arrays; construct(value, item, name) builds a
+// value. The key is copied as raw bytes, then its string referenced: the original reloads
+// `count` after the copy on both paths, which only an untyped copy gives.
+template <class G>
+bool refl_RegistryMapInit(UnkReflRegistryMap* self, const base::global::CStrId& name) {
+    using S = UnkReflStatic<G>;
+    self->name = name;
+    UnkReflRegistry& registry = refl_GetRegistry<typename S::Registry>();
+    for (void **p = registry.items.data, **e = p + registry.items.count; p != e; ++p) {
+        UnkReflRegistryItem* item = static_cast<UnkReflRegistryItem*>(*p);
+        const base::global::CStrId& key = item->vf_0x28();
+        if (self->count == self->capacity)
+            S::grow(&self->values, self->count + self->step);
+        base::global::CStrId* k = &self->keys[self->count];
+        __builtin_memcpy(k, &key, sizeof(*k));
+        if (&g_unk_7101d47108->empty != k->data)
+            ++k->data->ref_count;
+        S::construct(&self->values[self->count], item, name);
+        ++self->count;
+    }
+    self->initialized = true;
+    return true;
+}
+
+// A u32 id per type T, set once from another weak static: a zeroed word read back as a byte
+// and inverted. Copies across many TUs share one pair of statics.
+struct UnkReflZeroWord {
+    u32 value;
+    UnkReflZeroWord() : value(0) {}
+};
+
+template <class T>
+struct UnkReflTypeId {
+    static UnkReflZeroWord& base() {
+        static UnkReflZeroWord s_base;
+        return s_base;
+    }
+    static u32& id() {
+        static u32 s_id = (u8)~*reinterpret_cast<u8*>(&base());
+        return s_id;
+    }
+};
+
+struct UnkReflTypeIdTag;
+
+struct UnkReflTypeIdArg {
+    u32 id;
+    u32 unk_0x4;
+};
+
+}  // namespace base::reflection
+
+void fn_7100a2cb7c(void* target, const void* key, base::reflection::UnkReflTypeIdArg* arg, float f, u32 flags);
+
+namespace base::reflection {
+
+// Sends the type id to the object at +0x2e8 of a context (at UnkReflStatic<G>::offset of
+// `self`), under UnkReflStatic<G>::key().
+template <class G>
+void refl_SendTypeId(void* self) {
+    char* ctx = *reinterpret_cast<char**>(static_cast<char*>(self) + UnkReflStatic<G>::offset);
+    void* target = *reinterpret_cast<void**>(ctx + 0x2e8);
+    if (target) {
+        UnkReflTypeIdArg arg;
+        arg.id = UnkReflTypeId<UnkReflTypeIdTag>::id();
+        fn_7100a2cb7c(target, UnkReflStatic<G>::key(), &arg, -1.0f, 0);
+    }
+}
+
+// A large object built once (fn_7100031894); getters return one of its parts.
+struct UnkReflSingleton {
+    UnkReflSingleton();  // fn_7100031894
+    ~UnkReflSingleton();
+};
+
+inline UnkReflSingleton& refl_GetSingleton() {
+    static UnkReflSingleton s_singleton;
+    return s_singleton;
+}
+
+template <class G>
+void* refl_GetSingletonPart() {
+    return reinterpret_cast<char*>(&refl_GetSingleton()) + UnkReflStatic<G>::offset;
 }
 
 }  // namespace base::reflection
