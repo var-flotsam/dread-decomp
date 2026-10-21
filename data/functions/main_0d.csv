@@ -5009,7 +5009,7 @@ address,size,name,name_source,subsystem,status
 0x7100db86c0,28,fn_7100db86c0,unknown,unknown,O
 0x7100db86dc,36,fn_7100db86dc,unknown,unknown,O
 0x7100db8700,1772,fn_7100db8700,unknown,unknown,U
-0x7100db8dec,62664,fn_7100db8dec,unknown,unknown,U
+0x7100db8dec,62664,fn_7100db8dec,unknown,unknown,m
 0x7100dc82b4,812,fn_7100dc82b4,unknown,unknown,U
 0x7100dc85e0,584,fn_7100dc85e0,unknown,unknown,U
 0x7100dc8828,288,fn_7100dc8828,unknown,unknown,U

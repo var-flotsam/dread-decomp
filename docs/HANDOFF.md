@@ -6,8 +6,9 @@ For the next developer, human or AI, picking up this project. Read this, then `C
 
 **Fourteenth session (2026-10-21, Linux cloud, branch `claude/project-thread-slp42f`):** probe of the
 ten largest `U` functions (Next steps, "Giant functions"); new generator `tools/gen_tables.py`
-(`src/tables/`, stream 8): the strid table, then the loading screen's video map (`video_map` kind;
-`include/base/global/CFilePathStrId.h` now keeps its pointer in `UnkFilePathStrIdBase`, no regressions).
+(`src/tables/`, stream 8): the strid table, the loading screen's video map (`video_map` kind;
+`include/base/global/CFilePathStrId.h` now keeps its pointer in `UnkFilePathStrIdBase`, no regressions) and the
+boss rush setup (`boss_rush`, `m`: register allocation only).
 `gen_tables.py` and `check.py --update` were rerun.
 
 **Thirteenth session (2026-10-21, Linux cloud, branch `claude/project-thread-m3b90j`):** core engine
@@ -673,7 +674,7 @@ The ten largest `U` functions held 458 KB (2.4 points). What they are:
 | 0x7100031894 | 61 KB | Constructor of a struct of 1,198 string ids built from literals with precomputed CRC64 hashes (called from ~700 functions; a guarded static, `fn_7100065ca0`) | **O**, `tools/gen_tables.py` |
 | 0x7100057eb8 | 56 KB | Passes each of the same 1,198 literals with an empty 0x30-byte temporary to `fn_7100065b14` (a string escaper) | **O**, `tools/gen_tables.py` |
 | 0x71000406dc | 276 B | The ids' constructor (string, length, hash, flag) | **O**, `tools/gen_tables.py` |
-| 0x7100db8dec | 63 KB | Boss rush setup: member string-id assignments, then ~230 inlined pushes of entries (literals, enum values) into pool-backed vectors (`udiv` slot math, allocator vcalls) | Semi-regular (35 chunk shapes). Hand-match one push, then generate the entries: est. 2-4 h |
+| 0x7100db8dec | 63 KB | Boss rush setup: twelve stages, each four to seven `UnkStrId` assignments, flags, a CRC64 and two `UnkVector<UnkItemAmount>` arrays filled by 227 inlined pushes in all (item pointers are GOT entries) | **m**, `tools/gen_tables.py` (`boss_rush`). The calls and blocks are the original's; from the third stage on, register allocation differs (it spills the hoisted array field addresses and rematerialises constants the original keeps), and in the later stages the id release is laid out out of line. Ids had to be `UnkStrId`: with `CStrId` the moved-from temporary's destructor leaves a second store |
 | 0x7100ef378c | 52 KB | Loading screen setup: two widgets, then 79 inlined hash-map inserts of (enum key, `CFilePathStrId` video path, `CStrId` label, five flags) | **O**, `tools/gen_tables.py` (`video_map`). Keys 49-71 use `InsertCopy` (the copy taken inside the insert): the original's register allocation differs in that stretch and only that source shape reproduces it, so it is a shape match, not a known source difference. Needed `CFilePathStrId`'s pointer in a base struct with a defaulted copy (as `CStrId`'s `UnkStrIdBase`), which sets the compare order in its copy constructor |
 | 0x7100408c20 | 34 KB | Tunable registration (field name, editor description, `refl_GetType<float>` ...) | Reflection-attribute style (stream 4's `refl_attrs.py` shapes); 94 chunk shapes |
 | 0x7100c66c60 | 30 KB | Float-heavy game logic (collision, `sqrtf`) | Hand only; not regular (211 shapes in 244 calls) |
