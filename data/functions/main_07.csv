@@ -62,8 +62,8 @@ address,size,name,name_source,subsystem,status
 0x7100702a54,12,fn_7100702a54,unknown,unknown,O
 0x7100702a60,8,fn_7100702a60,unknown,unknown,O
 0x7100702a68,28,fn_7100702a68,unknown,unknown,O
-0x7100702a84,148,fn_7100702a84,unknown,unknown,U
-0x7100702b18,148,fn_7100702b18,unknown,unknown,U
+0x7100702a84,148,fn_7100702a84,unknown,unknown,O
+0x7100702b18,148,fn_7100702b18,unknown,unknown,O
 0x7100702bac,12,fn_7100702bac,unknown,unknown,O
 0x7100702bb8,48,fn_7100702bb8,unknown,unknown,O
 0x7100702be8,48,fn_7100702be8,unknown,unknown,O
@@ -271,8 +271,8 @@ address,size,name,name_source,subsystem,status
 0x710070ba38,8,fn_710070ba38,unknown,unknown,O
 0x710070ba40,28,fn_710070ba40,unknown,unknown,O
 0x710070ba5c,144,fn_710070ba5c,unknown,unknown,O
-0x710070baec,336,fn_710070baec,unknown,unknown,U
-0x710070bc3c,336,fn_710070bc3c,unknown,unknown,U
+0x710070baec,336,fn_710070baec,unknown,unknown,O
+0x710070bc3c,336,fn_710070bc3c,unknown,unknown,O
 0x710070bd8c,12,fn_710070bd8c,unknown,unknown,O
 0x710070bd98,176,fn_710070bd98,unknown,unknown,O
 0x710070be48,176,fn_710070be48,unknown,unknown,O
@@ -2281,7 +2281,7 @@ address,size,name,name_source,subsystem,status
 0x7100779ab4,12,fn_7100779ab4,unknown,unknown,O
 0x7100779ac0,8,fn_7100779ac0,unknown,unknown,O
 0x7100779ac8,8,fn_7100779ac8,unknown,unknown,O
-0x7100779ad0,152,fn_7100779ad0,unknown,unknown,U
+0x7100779ad0,152,fn_7100779ad0,unknown,unknown,O
 0x7100779b68,60,fn_7100779b68,unknown,unknown,O
 0x7100779ba4,220,fn_7100779ba4,unknown,unknown,U
 0x7100779c80,180,fn_7100779c80,unknown,unknown,O
@@ -4017,8 +4017,8 @@ address,size,name,name_source,subsystem,status
 0x71007c7f94,8,fn_71007c7f94,unknown,unknown,O
 0x71007c7f9c,28,fn_71007c7f9c,unknown,unknown,O
 0x71007c7fb8,112,fn_71007c7fb8,unknown,unknown,U
-0x71007c8028,168,fn_71007c8028,unknown,unknown,U
-0x71007c80d0,152,fn_71007c80d0,unknown,unknown,U
+0x71007c8028,168,fn_71007c8028,unknown,unknown,O
+0x71007c80d0,152,fn_71007c80d0,unknown,unknown,O
 0x71007c8168,104,fn_71007c8168,unknown,unknown,O
 0x71007c81d0,268,fn_71007c81d0,unknown,unknown,U
 0x71007c82dc,264,fn_71007c82dc,unknown,unknown,U

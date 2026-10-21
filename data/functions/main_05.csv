@@ -2203,7 +2203,7 @@ address,size,name,name_source,subsystem,status
 0x7100587050,528,fn_7100587050,unknown,unknown,U
 0x7100587260,4,fn_7100587260,unknown,unknown,O
 0x7100587264,28,fn_7100587264,unknown,unknown,O
-0x7100587280,204,fn_7100587280,unknown,unknown,U
+0x7100587280,204,fn_7100587280,unknown,unknown,O
 0x710058734c,36,fn_710058734c,unknown,unknown,O
 0x7100587370,12,fn_7100587370,unknown,unknown,O
 0x710058737c,8,fn_710058737c,unknown,unknown,O
@@ -2920,8 +2920,8 @@ address,size,name,name_source,subsystem,status
 0x71005a4004,244,CGroundShockerAIComponent::refl_GetClass,reflection,game/ai,O
 0x71005a40f8,4,fn_71005a40f8,unknown,game/ai?,O
 0x71005a40fc,356,CGroundShockerAIComponent::refl_InitClass,reflection,game/ai,O
-0x71005a4260,164,fn_71005a4260,unknown,unknown,U
-0x71005a4304,172,fn_71005a4304,unknown,unknown,U
+0x71005a4260,164,fn_71005a4260,unknown,unknown,O
+0x71005a4304,172,fn_71005a4304,unknown,unknown,O
 0x71005a43b0,172,fn_71005a43b0,unknown,unknown,O
 0x71005a445c,60,fn_71005a445c,unknown,unknown,O
 0x71005a4498,120,fn_71005a4498,unknown,unknown,O
@@ -3383,7 +3383,7 @@ address,size,name,name_source,subsystem,status
 0x71005b3e60,412,fn_71005b3e60,unknown,game/ai?,U
 0x71005b3ffc,28,fn_71005b3ffc,unknown,game/ai?,O
 0x71005b4018,144,fn_71005b4018,unknown,game/ai?,O
-0x71005b40a8,320,fn_71005b40a8,unknown,game/ai?,U
+0x71005b40a8,320,fn_71005b40a8,unknown,game/ai?,O
 0x71005b41e8,12,fn_71005b41e8,unknown,game/ai?,O
 0x71005b41f4,8,fn_71005b41f4,unknown,game/ai?,O
 0x71005b41fc,28,fn_71005b41fc,unknown,game/ai?,O
@@ -3827,7 +3827,7 @@ address,size,name,name_source,subsystem,status
 0x71005ca678,244,CInfesterAIComponent::refl_GetClass,reflection,game/ai,O
 0x71005ca76c,4,fn_71005ca76c,unknown,game/ai?,O
 0x71005ca770,356,CInfesterAIComponent::refl_InitClass,reflection,game/ai,O
-0x71005ca8d4,292,fn_71005ca8d4,unknown,unknown,U
+0x71005ca8d4,292,fn_71005ca8d4,unknown,unknown,O
 0x71005ca9f8,36,fn_71005ca9f8,unknown,unknown,O
 0x71005caa1c,732,fn_71005caa1c,unknown,unknown,U
 0x71005cacf8,104,fn_71005cacf8,unknown,unknown,O
