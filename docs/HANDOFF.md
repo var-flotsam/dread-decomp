@@ -4,6 +4,10 @@ For the next developer, human or AI, picking up this project. Read this, then `C
 (rules and conventions), `docs/recon.md` (what's in the binary), `docs/compiler.md`
 (toolchain), and `docs/references.md` (outside projects).
 
+**Fourteenth session (2026-10-21, Linux cloud, branch `claude/project-thread-slp42f`):** probe of the
+ten largest `U` functions (Next steps, "Giant functions"); new generator `tools/gen_tables.py`
+(`src/tables/`, stream 8). `gen_tables.py` and `check.py --update` were rerun.
+
 **Thirteenth session (2026-10-21, Linux cloud, branch `claude/project-thread-m3b90j`):** core engine
 types (Next steps, item 4): the string pool, CRC64 and the allocator getter in `src/base/`
 (var-flotsam/dread-decomp#20, #22 and the string heap PR); no generator was rerun.
@@ -31,6 +35,7 @@ remain as reference only. Each stream edits only the files in its row.
 | 5. Lua leftovers | Next steps, item 3 (library code, no game progress) | `lib/lua/`, `tools/sigmatch.py`, `tools/libcheck_lua.py`, `data/library_symbols.csv` | `cloud/lua-<topic>` |
 | 6. Guarded statics | Next steps, item 1, guarded function-local statics (taken over from stream 2, which gives up these files) | `tools/gen_statics.py`, `include/base/reflection/UnkReflStatics.h`, `src/reflection_statics/` | `cloud/statics-<topic>` |
 | 7. Game logic by hand | One-off `U` game functions (not in shape families; not engine/, script/, reflection, Lua) decompiled by hand, one file per function. Split by address at 0x71008cde78 (the median `U` game-function address on 2026-10-21): below it `src/game_lo/`, from it up `src/game_hi/` | `src/game_lo/`, `src/game_hi/` | `claude/project-thread-<id>` |
+| 8. Table functions | The largest `U` functions that only walk a fixed table of string literals (probe of the top 10 by size, 2026-10-21; see "Giant functions" below) | `tools/gen_tables.py`, `src/tables/` | `claude/project-thread-<id>` |
 
 **Starting points for hand matching.** `python tools/gen_lift.py --version 2.1.0 --best ADDR[,ADDR...]`
 (or `--best @file`, one address per line) lifts each function in every variant and rewrite round
@@ -85,7 +90,7 @@ Snapshot as of 2026-10-18 (fifth Phase 4 session; branches `phase-4-4-clones` (v
 | 4.2 Lua | **Done.** Upstream 5.1.4 vendored in `lib/lua/` (2 marked config changes); 286 Lua functions located in `main` by `tools/sigmatch.py` (status `L`) |
 | 4.3 Reflection | **In progress.** all 2,354 located class getters (444 in TUs with other statics, through padding); all 1,010 other `CClass` descriptor constructors (skipped TUs and getter-less types); 1,911 of 1,957 class attribute/member-field functions, 478 other registration functions plus 54 in their class getter's TU, and all 1,006 out-of-line reflected-function initialisers (`src/reflection/`, `tools/gen_reflection.py`, `tools/refl_attrs.py`). Pointer types: 993 standalone getter/constructor pairs plus 108 generated in their pointee's TU; all 238 `CEnumType` constructors; 178 standalone `CCollectionType` constructors plus those in their element class's TU (`src/reflection_types/`, `tools/gen_types.py`) |
 | Small functions | **In progress.** `tools/gen_lift.py` lifts functions of up to 512 bytes from their instructions and keeps byte-identical ones: 46,219 functions, 2.02 MB (`src/lifted/`; second-round store-order, may_alias and memcpy rewrites; sret functions, stack locals, a goto-based flat mode for crossing branches and loops) |
-| Guarded statics | **In progress.** `tools/gen_statics.py`: attribute keys, static string ids (weak and internal), typed lookups, registries and the tables built from them, type-id senders and singleton parts, on function-local statics (`include/base/reflection/UnkReflStatics.h`): 853 functions, 169 KB (`src/reflection_statics/`) |
+| Guarded statics | **In progress.** `tools/gen_statics.py`: attribute keys, static string ids (weak and internal), typed lookups, registries and the tables built from them, type-id senders and singleton parts, on function-local statics (`include/base/reflection/UnkReflStatics.h`): 865 functions, 172 KB (`src/reflection_statics/`) |
 | Repeated templates | **In progress.** `tools/gen_clones.py`: hand-matched templates instantiated once per copy (`UnkClone_fn_<addr>` tags): the named registry, `UnkVector` methods per element kind, the reflection collection iterator, a deferred set, and scan kinds (facts per candidate): destructors of string-id/refcounted members, property reads and string-id writes, enum value lists, and shape-family templates (`UnkCloneHelpers.h`): 6,256 functions, 1.22 MB (`src/clones/`) |
 | 4.4 Core engine types | **In progress.** String ids (`CStrId` incl. copy-assignment, `UnkStrId`), the growable array `base::UnkVector` (push, grow-at, insert, remove, clear/free, move) and its allocator interface; reflected-function initialisers now match (below) |
 | 4.5+ Boot to title screen | Not started; plan below |
@@ -139,6 +144,8 @@ src/reflection/           GENERATED by tools/gen_reflection.py: one file per ori
 src/lifted/               GENERATED by tools/gen_lift.py: small functions lifted from their instructions
 src/reflection_statics/   GENERATED by tools/gen_statics.py: functions around weak function-local statics
 src/clones/               GENERATED by tools/gen_clones.py: explicit instantiations for repeated functions
+src/tables/               GENERATED by tools/gen_tables.py: giant functions that walk a fixed table of string literals
+tools/gen_tables.py       table generator: recovers the entries with a small register simulator, emits and verifies
 tools/gen_clones.py       clone generator: kinds (verified reference, probe, or scan) -> instantiations, verified
 include/UnkClone.h        placeholder tag and element types for clones (bytes, owning pointer, handle)
 include/base/UnkCollectionIter.h   collection iterator and its cached (index, element) value; begin/end/erase
@@ -193,6 +200,7 @@ git submodule update --init                                       # lib/nnsdk, l
 .venv/Scripts/python tools/gen_types.py --version 2.1.0            # ~20 s
 .venv/Scripts/python tools/gen_statics.py --version 2.1.0          # ~20 s
 .venv/Scripts/python tools/gen_clones.py --version 2.1.0           # ~10 s
+.venv/Scripts/python tools/gen_tables.py --version 2.1.0           # ~5 s
 .venv/Scripts/python tools/gen_lift.py --version 2.1.0             # ~80 min; run after the other generators
 .venv/Scripts/python tools/check.py --version 2.1.0 --update       # ~35 s, parallel
 .venv/Scripts/python tools/objdiff_gen.py --version 2.1.0          # then open the repo in objdiff
@@ -370,7 +378,8 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
      static string ids (plain functions, 13), type-id senders (`refl_SendTypeId`, 11) and
      parts of one singleton (`refl_GetSingletonPart`, 5), typed lookups whose class is internal to
      another TU (`refl_FindTypedHidden`, 5) and attribute keys with a u16 at +0x14 or a global value
-     type (`refl_GetAttrKeyFlags`, `key_global`; 17). Left (stream 6 census, 2026-10-21): 2,483 `U` functions call
+     type (`refl_GetAttrKeyFlags`, `key_global`; 17), and game code parsed rather than shape-matched:
+     a u32 sent under a hash (`refl_EmitU32`, `parse_emit_u32`; 12 of 15 parsed match). Left (stream 6 census, 2026-10-21): 2,483 `U` functions call
      `__cxa_guard_acquire` (2.28 MB); 2.15 MB of that is one-offs (game code with a static
      inside), and only ~130 KB is in same-shape families of two or more. Older notes: the 437
      class getters in skipped TUs, primitive type getters (`refl_GetType<unsigned>`, 30 × 480 B:
@@ -575,6 +584,21 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
      Looked at and left: 0x7100769fc0 (a per-TU static initialiser). Not yet tried: 0x71000df484,
      0x71000df5ec, 0x71005b4d50, 0x7100af30a0, 0x71011d437c, 0x71000d8428, 0x7100240168,
      0x7100431cec, 0x71000d78ec, 0x71000d5888, 0x71000d1fec.
+   - Done (2026-10-21, cloud, stream 2, round 11): +26 functions in `UnkCloneRecords.h`:
+     `strid_vec_record_copy_ctor` (6; a string-id vector with an out-of-line Reserve, element
+     stored bitwise), `add_function_holder` (7; the first libc++ `std::function` in `include/`,
+     copied into a heap holder whose vtable is stored before the members), `keyed_move_assign` (6)
+     and `keyed_move_array_clear` (7). Close but left: 0x71000df5ec (a keyed array shrink; the key
+     loop compares a 64-bit counter in 32 bits, which no counter type reproduced) and 0x7100240168
+     (`UnkSList` set-at: two instructions of scheduling in the inlined push-back; the loop counts
+     up, `for (u32 j = 0; j < idx; ++j)`). Skipped: 0x71011d437c (a reflected float setter).
+   - Done (2026-10-21, cloud, stream 2, round 12): `strid_vec_variant_reset` (12; a string id and
+     byte vector or a word pair, with or without a key). Close but left: 0x71000d15fc (25 × 92 B,
+     a vector erase by memmove; the original forms the element offset as `lsl` + `and` mask, which
+     Clang 9 folds into the add in every form tried), 0x71002444f4 (the same variant's move
+     constructor, state 2 holding pointers; scheduling and a tail-merged load) and 0x7100f5f0f0
+     (a keyed record assigned through owned or referenced values; the original duplicates the
+     key store per source state). Skipped: 0x7100eab448 (reflected setters that notify by name).
    - Enum static initialisers and the other per-TU static initialisers. These define
      globals, so they need the TU's data definitions (the 160 B ones are mostly lifted already).
    - Slot `0x28`/`0x30`/`0x38`/`0x48`/`0x50` helpers of other classes (need class layouts):
@@ -626,6 +650,24 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
    Lua + GUI bindings, GUI, render front end, input, localisation, save probe. Estimated
    6,000–9,000 functions (static floor: 4,394 reachable from `nnMain`).
 6. Port groundwork: an aurora-style `nn::` + NVN compatibility layer (see `docs/references.md`).
+
+### Giant functions (probe, 2026-10-21, cloud thread "Biggest functions probe")
+
+The ten largest `U` functions held 458 KB (2.4 points). What they are:
+
+| Address | Size | What it is | State |
+|---|---|---|---|
+| 0x71000407f0 | 96 KB | Implicit destructor of the 1,198-id table below (every id's destructor inlined) | Not generated: structure and block layout match, register allocation doesn't (the pool sits in x8 or x0 in different ~100-id stretches). Tried 9 source shapes of the id destructor |
+| 0x7100031894 | 61 KB | Constructor of a struct of 1,198 string ids built from literals with precomputed CRC64 hashes (called from ~700 functions; a guarded static, `fn_7100065ca0`) | **O**, `tools/gen_tables.py` |
+| 0x7100057eb8 | 56 KB | Passes each of the same 1,198 literals with an empty 0x30-byte temporary to `fn_7100065b14` (a string escaper) | **O**, `tools/gen_tables.py` |
+| 0x71000406dc | 276 B | The ids' constructor (string, length, hash, flag) | **O**, `tools/gen_tables.py` |
+| 0x7100db8dec | 63 KB | Boss rush setup: member string-id assignments, then ~230 inlined pushes of entries (literals, enum values) into pool-backed vectors (`udiv` slot math, allocator vcalls) | Semi-regular (35 chunk shapes). Hand-match one push, then generate the entries: est. 2-4 h |
+| 0x7100ef378c | 52 KB | Loading screen setup: ~1.7 KB of object setup, then 77 inlined hash-map inserts of (enum key, `CFilePathStrId` video path, `CStrId` label) | Same approach (one 656-byte insert per entry): est. 2-4 h |
+| 0x7100408c20 | 34 KB | Tunable registration (field name, editor description, `refl_GetType<float>` ...) | Reflection-attribute style (stream 4's `refl_attrs.py` shapes); 94 chunk shapes |
+| 0x7100c66c60 | 30 KB | Float-heavy game logic (collision, `sqrtf`) | Hand only; not regular (211 shapes in 244 calls) |
+| 0x7100b66018 | 28 KB | Inventory GUI (beam list composition), 18 guarded statics | Irregular; hand only |
+| 0x7100ae39e0 | 21 KB | Reflection registration of a save-data class (fields with descriptions) | Stream 4 |
+| 0x7100e72680 | 17 KB | `CMinimapDef` reflection registration | Stream 4 |
 
 ## Known issues and gotchas
 

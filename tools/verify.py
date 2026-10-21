@@ -3,9 +3,9 @@
 
 Runs, in order:
   1. the generators named with --regen, in the order CLAUDE.md lists them
-     (gen_reflection, gen_types, gen_statics, gen_clones, gen_lift); without gen_lift,
-     `gen_lift.py --prune` instead (seconds), which drops lifted copies of functions that
-     other sources now define;
+     (gen_reflection, gen_types, gen_statics, gen_clones, gen_tables, gen_lift); without
+     gen_lift, `gen_lift.py --prune` instead (seconds), which drops lifted copies of functions
+     that other sources now define;
   2. tools/check.py --update (build src/, write O/m/M/W into data/functions/);
   3. tools/progress.py;
   4. the tools/policy_check.py rules, on tracked and untracked (not ignored) files.
@@ -35,7 +35,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import policy_check  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
-GENERATORS = ["gen_reflection", "gen_types", "gen_statics", "gen_clones", "gen_lift"]
+GENERATORS = ["gen_reflection", "gen_types", "gen_statics", "gen_clones", "gen_tables", "gen_lift"]
 STATUS_LINE = re.compile(r"^([OmMW])  (0x[0-9a-f]+)  ")
 SUMMARY_LINE = re.compile(r"^\d+ functions in src/: (.*)$")
 PROGRESS_LINE = re.compile(r"^matching \(O\): (\d+) functions, ([\d.]+)% of code")

@@ -2530,6 +2530,71 @@ def callback_entry_dtor(orig, addr, tag, insns):
         f"template base::{rec}<{tag}>::~{rec}();"])
 
 
+def strid_vec_record_copy_ctor(orig, addr, tag, insns):
+    """refl_StrIdVecRecordCopyCtor (UnkCloneRecords.h): the three vtables (through the GOT)."""
+    if len(insns) != 87 or insns[32] != ("bl", "#0x710000542c") or insns[60] != insns[32] \
+            or insns[54] != ("udiv", "w10, w8, w9") or got_at(orig, insns, 35, 39) != STRID_POOL:
+        return None
+    base, mid, vt = (got_target(orig, insns, i) for i in (5, 13, 76))
+    if None in (base, mid, vt):
+        return None
+    return "\n".join([f"extern char g_unk_{x:x}[];" for x in sorted({base, mid, vt})] + [
+        f"template <> struct base::UnkCopyCtorTraits<{tag}> {{",
+        f"    static char* base_vtable() {{ return g_unk_{base:x}; }}",
+        f"    static char* mid_vtable() {{ return g_unk_{mid:x}; }}",
+        f"    static char* vtable() {{ return g_unk_{vt:x}; }}", "};",
+        f"template void base::refl_StrIdVecRecordCopyCtor<{tag}>(char*, const char*);"])
+
+
+def add_function_holder(orig, addr, tag, insns):
+    """refl_AddFunctionHolder (UnkCloneRecords.h): the holder's vtable (through the GOT, read on
+    both paths)."""
+    if len(insns) != 80 or insns[7] != ("mov", "w0, #0x40") or insns[62] != ("bl", "#0x71011cf394") \
+            or insns[33] != ("ldr", "x8, [x8, #0x18]"):
+        return None
+    vt = got_target(orig, insns, 23)
+    if vt is None or got_target(orig, insns, 37) != vt:
+        return None
+    return "\n".join([f"extern char g_unk_{vt:x}[];", f"template <> struct base::UnkFunctionHolderTraits<{tag}> {{",
+                      f"    static char* vtable() {{ return g_unk_{vt:x}; }}", "};",
+                      f"template void base::refl_AddFunctionHolder<{tag}>(void*, void*, const std::function<void()>&, "
+                      "void*, u32);"])
+
+
+def keyed_move_assign(orig, addr, tag, insns):
+    """UnkKeyedMoveArray::operator= (UnkCloneRecords.h): the value size and its destructor."""
+    if len(insns) != 81 or insns[37] != ("bl", f"#{RELEASE:#x}") or insns[44][0] != "bl" or insns[52] != insns[44] \
+            or got_target(orig, insns, 11) != STRID_POOL or insns[74] != ("stp", "xzr, xzr, [x19]"):
+        return None
+    size = re.fullmatch(r"w22, #(0x[0-9a-f]+)", insns[49][1])
+    if insns[49][0] != "mov" or not size or insns[55] != ("add", f"x22, x22, #{size.group(1)}"):
+        return None
+    a = f"base::UnkKeyedMoveArray<{tag}, {int(size.group(1), 16):#x}>"
+    return dtor_traits(tag, insns[44]) + f"template {a}& {a}::operator=({a}&&);"
+
+
+def keyed_move_array_clear(orig, addr, tag, insns):
+    """UnkKeyedMoveArray::Clear (UnkCloneRecords.h): the value size and its destructor."""
+    if len(insns) != 61 or insns[35] != ("bl", f"#{RELEASE:#x}") or insns[42][0] != "bl" or insns[50] != insns[42] \
+            or got_target(orig, insns, 9) != STRID_POOL or insns[56] != ("str", "wzr, [x19, #0x10]"):
+        return None
+    size = re.fullmatch(r"w21, #(0x[0-9a-f]+)", insns[47][1])
+    if insns[47][0] != "mov" or not size or insns[53] != ("add", f"x21, x21, #{size.group(1)}"):
+        return None
+    return dtor_traits(tag, insns[42]) + f"template void base::UnkKeyedMoveArray<{tag}, {int(size.group(1), 16):#x}>::Clear();"
+
+
+def strid_vec_variant_reset(orig, addr, tag, insns):
+    """UnkStrIdVecVariant / UnkKeyedStrIdVecVariant Reset (UnkCloneRecords.h): the state offset
+    picks the record."""
+    if len(insns) != 40 or insns[32] != ("bl", f"#{RELEASE:#x}") or insns[14] != ("ldr", "x8, [x8, #0x48]") \
+            or got_target(orig, insns, 17) != STRID_POOL:
+        return None
+    rec = {("ldr", "w8, [x0, #0x30]"): "UnkStrIdVecVariant", ("ldr", "w8, [x0, #0x38]"): "UnkKeyedStrIdVecVariant"}
+    r = rec.get(insns[3])
+    return f"template void base::{r}<{tag}>::Reset();" if r else None
+
+
 KINDS = {
     "strid_value_insert": Kind(None, "base/UnkStrIdValueVec.h", lambda tag, _: None, scan=strid_value_insert),
     "set_flag_notify": Kind(0x71001F31E8, "base/UnkCloneCalls.h", lambda tag, _: (
@@ -2573,6 +2638,14 @@ KINDS = {
         f"template void base::UnkKeyedVecArray<{tag}>::Clear();")),
     "path_record_copy_ctor": Kind(None, "base/UnkCloneRecords.h", lambda tag, _: None, scan=path_record_copy_ctor),
     "callback_entry_dtor": Kind(None, "base/UnkCloneRecords.h", lambda tag, _: None, scan=callback_entry_dtor),
+    "strid_vec_record_copy_ctor": Kind(None, "base/UnkCloneRecords.h", lambda tag, _: None,
+                                       scan=strid_vec_record_copy_ctor),
+    "add_function_holder": Kind(None, "base/UnkCloneRecords.h", lambda tag, _: None, scan=add_function_holder),
+    "keyed_move_assign": Kind(None, "base/UnkCloneRecords.h", lambda tag, _: None, scan=keyed_move_assign),
+    "keyed_move_array_clear": Kind(None, "base/UnkCloneRecords.h", lambda tag, _: None,
+                                   scan=keyed_move_array_clear),
+    "strid_vec_variant_reset": Kind(None, "base/UnkCloneRecords.h", lambda tag, _: None,
+                                    scan=strid_vec_variant_reset),
     "variant_assign": Kind(0x71000C3CC0, "base/UnkCloneHelpers.h", lambda tag, ins: variant(tag, ins, "refl_VariantAssign", "{v}*"),
                            exact=False),
     "variant_assign_pair": Kind(0x71000C3C14, "base/UnkCloneHelpers.h", lambda tag, ins: variant(
