@@ -5690,8 +5690,8 @@ address,size,name,name_source,subsystem,status
 0x7100cbc520,8,fn_7100cbc520,unknown,game/characters?,O
 0x7100cbc528,28,fn_7100cbc528,unknown,game/characters?,O
 0x7100cbc544,76,fn_7100cbc544,unknown,game/characters?,O
-0x7100cbc590,268,fn_7100cbc590,unknown,game/characters?,O
-0x7100cbc69c,268,fn_7100cbc69c,unknown,game/characters?,O
+0x7100cbc590,268,fn_7100cbc590,unknown,game/characters?,U
+0x7100cbc69c,268,fn_7100cbc69c,unknown,game/characters?,U
 0x7100cbc7a8,12,fn_7100cbc7a8,unknown,game/characters?,O
 0x7100cbc7b4,48,fn_7100cbc7b4,unknown,game/characters?,O
 0x7100cbc7e4,48,fn_7100cbc7e4,unknown,game/characters?,O
@@ -5981,8 +5981,8 @@ address,size,name,name_source,subsystem,status
 0x7100cc649c,124,fn_7100cc649c,unknown,game/characters?,U
 0x7100cc6518,124,fn_7100cc6518,unknown,game/characters?,U
 0x7100cc6594,12,fn_7100cc6594,unknown,game/characters?,O
-0x7100cc65a0,244,fn_7100cc65a0,unknown,game/characters?,O
-0x7100cc6694,244,fn_7100cc6694,unknown,game/characters?,O
+0x7100cc65a0,244,fn_7100cc65a0,unknown,game/characters?,U
+0x7100cc6694,244,fn_7100cc6694,unknown,game/characters?,U
 0x7100cc6788,404,fn_7100cc6788,unknown,game/characters?,U
 0x7100cc6920,160,fn_7100cc6920,unknown,game/characters?,O
 0x7100cc69c0,232,fn_7100cc69c0,unknown,game/characters?,O
@@ -6665,8 +6665,8 @@ address,size,name,name_source,subsystem,status
 0x7100cdfd00,124,fn_7100cdfd00,unknown,game/characters?,U
 0x7100cdfd7c,124,fn_7100cdfd7c,unknown,game/characters?,U
 0x7100cdfdf8,12,fn_7100cdfdf8,unknown,game/characters?,O
-0x7100cdfe04,244,fn_7100cdfe04,unknown,game/characters?,O
-0x7100cdfef8,244,fn_7100cdfef8,unknown,game/characters?,O
+0x7100cdfe04,244,fn_7100cdfe04,unknown,game/characters?,U
+0x7100cdfef8,244,fn_7100cdfef8,unknown,game/characters?,U
 0x7100cdfff0,160,fn_7100cdfff0,unknown,game/characters?,O
 0x7100ce0090,232,fn_7100ce0090,unknown,game/characters?,O
 0x7100ce0178,244,CCharClassStaticLUACallback2Event::refl_GetClass,reflection,game/characters,O
