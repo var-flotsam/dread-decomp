@@ -5423,13 +5423,13 @@ address,size,name,name_source,subsystem,status
 0x71003fc6c8,556,fn_71003fc6c8,unknown,unknown,O
 0x71003fc8f4,1228,fn_71003fc8f4,unknown,unknown,U
 0x71003fcdc0,460,fn_71003fcdc0,unknown,unknown,U
-0x71003fcf8c,292,fn_71003fcf8c,unknown,unknown,U
+0x71003fcf8c,292,fn_71003fcf8c,unknown,unknown,O
 0x71003fd0b0,228,fn_71003fd0b0,unknown,unknown,U
 0x71003fd194,396,fn_71003fd194,unknown,unknown,U
 0x71003fd320,512,fn_71003fd320,unknown,unknown,U
 0x71003fd520,588,fn_71003fd520,unknown,unknown,U
 0x71003fd76c,364,fn_71003fd76c,unknown,unknown,U
-0x71003fd8d8,292,fn_71003fd8d8,unknown,unknown,U
+0x71003fd8d8,292,fn_71003fd8d8,unknown,unknown,O
 0x71003fd9fc,496,fn_71003fd9fc,unknown,unknown,U
 0x71003fdbec,1292,fn_71003fdbec,unknown,unknown,U
 0x71003fe0f8,220,fn_71003fe0f8,unknown,unknown,O

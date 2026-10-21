@@ -128,6 +128,16 @@ extern u8 g_unk_710164b958;
 extern u8 g_unk_7172769740;
 void fn_71004f1558(base::reflection::UnkReflRegistryMap::Value** values, u32 n);
 void fn_71004f1748(base::reflection::UnkReflRegistryMap::Value* value, base::reflection::UnkReflRegistryItem* item, const base::global::CStrId& name);
+struct UnkRefl_fn_710089af3c;
+template <>
+struct base::reflection::UnkReflStatic<UnkRefl_fn_710089af3c> {
+    static constexpr const char* name = "ACTIVATABLE_BY_PROJECTILE";
+};
+struct UnkRefl_fn_710089f8cc;
+template <>
+struct base::reflection::UnkReflStatic<UnkRefl_fn_710089f8cc> {
+    static constexpr const char* name = "ACTIVATABLE";
+};
 struct UnkRefl_fn_71008a1ed0;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_71008a1ed0> {
@@ -2259,6 +2269,8 @@ struct base::reflection::UnkReflStatic<UnkRefl_fn_7101199e2c> {
     static const CClass* type() { return fn_710117f304(); }
     static bool is_a(const CClass* c, const CClass* b) { return fn_710009d50c(c, b); }
 };
+template const base::global::CStrId& base::reflection::refl_GetStaticStrId<UnkRefl_fn_710089af3c>();
+template const base::global::CStrId& base::reflection::refl_GetStaticStrId<UnkRefl_fn_710089f8cc>();
 template base::reflection::UnkReflObject* base::reflection::refl_FindTyped<UnkRefl_fn_71008a1ed0>(void*);
 template const base::global::CStrId& base::reflection::refl_GetStaticStrId<UnkRefl_fn_71008a25dc>();
 template const base::global::CStrId& base::reflection::refl_GetStaticStrId<UnkRefl_fn_71008a33e8>();

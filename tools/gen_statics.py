@@ -366,8 +366,9 @@ def parse_emit_u32(orig: asmdiff.Original, addr: int) -> dict | None:
     target = regs.get("x0")
     if not isinstance(target, tuple) or value is None or consts.get("x2") is None:
         return None
-    after = ins[[x.address for x in ins].index(next(x.address for x in ins if x.mnemonic == "bl")) + 1]
-    returns_bool = after.mnemonic == "and" and after.op_str.startswith("w0, w0, #1")
+    k = next(i for i, x in enumerate(ins) if x.mnemonic == "bl")
+    tail = ins[k + 1:next(i for i in range(k, len(ins)) if ins[i].mnemonic == "ret")]
+    returns_bool = any(x.mnemonic == "and" and x.op_str == "w0, w0, #1" for x in tail)
     return {"target": target, "checks": checks, "hash": hash_const, "value": value & 0xFFFFFFFF,
             "kind": consts["x2"] & 0xFFFFFFFFFFFFFFFF, "bool": returns_bool, "a": got["x4"], "b": got["x5"]}
 

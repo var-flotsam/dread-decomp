@@ -1174,6 +1174,20 @@ struct base::reflection::UnkReflStatic<UnkRefl_fn_71003f92ac> {
     static const CClass* type() { return fn_71003f6484(); }
     static bool is_a(const CClass* c, const CClass* b) { return fn_710009d50c(c, b); }
 };
+bool fn_71003fcf8c(char* self) {
+    char* p1 = *reinterpret_cast<char**>(self + 0x30);
+    char* p2 = *reinterpret_cast<char**>(p1 + 0x220);
+    if (!p2)
+        return false;
+    return base::reflection::refl_EmitU32(p2, 0xa0e33be014f44bd7, 0xf4061ff25a2163d6, 0x0, &g_unk_710164b958, &g_unk_7172769740);
+}
+bool fn_71003fd8d8(char* self) {
+    char* p1 = *reinterpret_cast<char**>(self + 0x30);
+    char* p2 = *reinterpret_cast<char**>(p1 + 0x220);
+    if (!p2)
+        return false;
+    return base::reflection::refl_EmitU32(p2, 0x6a17390fc912b900, 0xf4061ff25a2163d6, 0x0, &g_unk_710164b958, &g_unk_7172769740);
+}
 struct UnkRefl_fn_71003fe0f8;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_71003fe0f8> {
@@ -3294,16 +3308,6 @@ struct base::reflection::UnkReflStatic<UnkRefl_fn_710089a1b0> {
     static const CClass* type() { return fn_71007e6074(); }
     static bool is_a(const CClass* c, const CClass* b) { return fn_710009d50c(c, b); }
 };
-struct UnkRefl_fn_710089af3c;
-template <>
-struct base::reflection::UnkReflStatic<UnkRefl_fn_710089af3c> {
-    static constexpr const char* name = "ACTIVATABLE_BY_PROJECTILE";
-};
-struct UnkRefl_fn_710089f8cc;
-template <>
-struct base::reflection::UnkReflStatic<UnkRefl_fn_710089f8cc> {
-    static constexpr const char* name = "ACTIVATABLE";
-};
 template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKeyFlags<UnkRefl_fn_7100005070>();
 template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKey<UnkRefl_fn_7100007e80>();
 template const base::reflection::UnkReflAttrKey& base::reflection::refl_GetAttrKeyFlags<UnkRefl_fn_710000bf80>();
@@ -3787,5 +3791,3 @@ template base::reflection::UnkReflObject* base::reflection::refl_FindTyped<UnkRe
 template const base::global::CStrId& base::reflection::refl_GetStaticStrId<UnkRefl_fn_7100898550>();
 template base::reflection::UnkReflObject* base::reflection::refl_FindTyped<UnkRefl_fn_7100899610>(void*);
 template base::reflection::UnkReflObject* base::reflection::refl_FindTyped<UnkRefl_fn_710089a1b0>(void*);
-template const base::global::CStrId& base::reflection::refl_GetStaticStrId<UnkRefl_fn_710089af3c>();
-template const base::global::CStrId& base::reflection::refl_GetStaticStrId<UnkRefl_fn_710089f8cc>();
