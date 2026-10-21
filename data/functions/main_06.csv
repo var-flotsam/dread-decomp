@@ -1540,7 +1540,7 @@ address,size,name,name_source,subsystem,status
 0x71006388e8,8,fn_71006388e8,unknown,unknown,O
 0x71006388f0,28,fn_71006388f0,unknown,unknown,O
 0x710063890c,68,fn_710063890c,unknown,unknown,O
-0x7100638950,652,fn_7100638950,unknown,unknown,U
+0x7100638950,652,fn_7100638950,unknown,unknown,O
 0x7100638bdc,4,fn_7100638bdc,unknown,unknown,O
 0x7100638be0,244,CPoisonFlyAIComponent::refl_GetClass,reflection,game/ai,O
 0x7100638cd4,532,fn_7100638cd4,unknown,game/ai?,O
@@ -1955,7 +1955,7 @@ address,size,name,name_source,subsystem,status
 0x71006493a0,28,fn_71006493a0,unknown,unknown,O
 0x71006493bc,104,fn_71006493bc,unknown,unknown,U
 0x7100649424,12,fn_7100649424,unknown,unknown,O
-0x7100649430,508,fn_7100649430,unknown,unknown,U
+0x7100649430,508,fn_7100649430,unknown,unknown,O
 0x710064962c,4,fn_710064962c,unknown,unknown,O
 0x7100649630,244,CQuetzoaAIComponent::refl_GetClass,reflection,game/ai,O
 0x7100649724,700,fn_7100649724,unknown,game/ai?,O
@@ -2322,7 +2322,7 @@ address,size,name,name_source,subsystem,status
 0x7100661230,4,fn_7100661230,unknown,unknown,O
 0x7100661234,4,fn_7100661234,unknown,unknown,O
 0x7100661238,264,fn_7100661238,unknown,unknown,U
-0x7100661340,824,fn_7100661340,unknown,unknown,U
+0x7100661340,824,fn_7100661340,unknown,unknown,O
 0x7100661678,4,fn_7100661678,unknown,unknown,O
 0x710066167c,244,CRobotAIComponent::refl_GetClass,reflection,game/ai,O
 0x7100661770,4,fn_7100661770,unknown,game/ai?,O
@@ -3048,7 +3048,7 @@ address,size,name,name_source,subsystem,status
 0x7100677654,12,fn_7100677654,unknown,game/characters?,O
 0x7100677660,8,fn_7100677660,unknown,game/characters?,O
 0x7100677668,8,fn_7100677668,unknown,game/characters?,O
-0x7100677670,516,fn_7100677670,unknown,game/characters?,U
+0x7100677670,516,fn_7100677670,unknown,game/characters?,O
 0x7100677874,4,fn_7100677874,unknown,game/characters?,O
 0x7100677878,244,CCharClassSabotoruLifeComponent::refl_GetClass,reflection,game/characters,O
 0x710067796c,4,fn_710067796c,unknown,game/characters?,O
@@ -3783,7 +3783,7 @@ address,size,name,name_source,subsystem,status
 0x710069093c,28,fn_710069093c,unknown,unknown,O
 0x7100690958,44,fn_7100690958,unknown,unknown,O
 0x7100690984,12,fn_7100690984,unknown,unknown,O
-0x7100690990,736,fn_7100690990,unknown,unknown,U
+0x7100690990,736,fn_7100690990,unknown,unknown,O
 0x7100690c70,4,fn_7100690c70,unknown,unknown,O
 0x7100690c74,244,CScorpiusAIComponent::refl_GetClass,reflection,game/ai,O
 0x7100690d68,784,fn_7100690d68,unknown,game/ai?,O
@@ -4242,7 +4242,7 @@ address,size,name,name_source,subsystem,status
 0x71006a9a34,20,fn_71006a9a34,unknown,unknown,O
 0x71006a9a48,20,fn_71006a9a48,unknown,unknown,O
 0x71006a9a5c,8,fn_71006a9a5c,unknown,unknown,O
-0x71006a9a70,1424,fn_71006a9a70,unknown,unknown,U
+0x71006a9a70,1424,fn_71006a9a70,unknown,unknown,O
 0x71006aa000,4,fn_71006aa000,unknown,unknown,O
 0x71006aa004,244,behaviortree::CShakernautChaseTargetAction::refl_GetClass,reflection,ai/behaviortree,O
 0x71006aa0f8,1892,fn_71006aa0f8,unknown,ai/behaviortree?,O
@@ -4436,7 +4436,7 @@ address,size,name,name_source,subsystem,status
 0x71006b6d9c,20,fn_71006b6d9c,unknown,unknown,O
 0x71006b6db0,24,fn_71006b6db0,unknown,unknown,O
 0x71006b6dc8,136,fn_71006b6dc8,unknown,unknown,U
-0x71006b6e50,640,fn_71006b6e50,unknown,unknown,U
+0x71006b6e50,640,fn_71006b6e50,unknown,unknown,O
 0x71006b70d0,4,fn_71006b70d0,unknown,unknown,O
 0x71006b70d4,244,behaviortree::CShelmitChargeAction::refl_GetClass,reflection,ai/behaviortree,O
 0x71006b71c8,4,fn_71006b71c8,unknown,ai/behaviortree?,O

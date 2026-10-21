@@ -2649,7 +2649,7 @@ address,size,name,name_source,subsystem,status
 0x7100599418,28,fn_7100599418,unknown,unknown,O
 0x7100599434,88,fn_7100599434,unknown,unknown,U
 0x710059948c,12,fn_710059948c,unknown,unknown,O
-0x71005994a0,508,fn_71005994a0,unknown,unknown,U
+0x71005994a0,508,fn_71005994a0,unknown,unknown,O
 0x710059969c,4,fn_710059969c,unknown,unknown,O
 0x71005996a0,244,CGooplotAIComponent::refl_GetClass,reflection,game/ai,O
 0x7100599794,4,fn_7100599794,unknown,game/ai?,O
@@ -3019,7 +3019,7 @@ address,size,name,name_source,subsystem,status
 0x71005a7850,12,fn_71005a7850,unknown,game/characters?,O
 0x71005a785c,8,fn_71005a785c,unknown,game/characters?,O
 0x71005a7864,8,fn_71005a7864,unknown,game/characters?,O
-0x71005a7870,516,fn_71005a7870,unknown,game/characters?,U
+0x71005a7870,516,fn_71005a7870,unknown,game/characters?,O
 0x71005a7a74,4,fn_71005a7a74,unknown,game/characters?,O
 0x71005a7a78,244,CCharClassHecathonLifeComponent::refl_GetClass,reflection,game/characters,O
 0x71005a7b6c,4,fn_71005a7b6c,unknown,game/characters?,O

@@ -8,12 +8,14 @@
 
 #include <new>
 
+#include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
 extern "C" int __cxa_atexit(void (*dtor)(void*), void* obj, void* dso);
 extern char g_unk_7101a19000[] __attribute__((visibility("hidden")));  // the module's DSO handle
 void fn_710000051c(void* id);                                           // a string id's destructor
+void fn_7100000c7c(void* id);  // a file path id's destructor
 void fn_710009ec00(char* list, void* entry);
 base::global::CStrId fn_7100de8f78(const base::global::CStrId& name);
 
@@ -46,6 +48,17 @@ __attribute__((always_inline)) inline void InitClassId(UnkStrIdBase* id, const c
     __cxa_atexit(fn_710000051c, id, g_unk_7101a19000);
 }
 
+// Storage of a file path id (its destructor is registered separately).
+struct UnkFilePathStrIdBase {
+    base::global::UnkStringData* data;
+};
+
+// A file path id built from a string.
+__attribute__((always_inline)) inline void InitPathId(UnkFilePathStrIdBase* id, const char* str) {
+    new (id) base::global::CFilePathStrId(str, true);
+    __cxa_atexit(fn_7100000c7c, id, g_unk_7101a19000);
+}
+
 // A string id built directly from a string.
 __attribute__((always_inline)) inline void InitId(UnkStrIdBase* id, const char* str) {
     new (id) UnkStrIdBase(str, true);
@@ -71,6 +84,19 @@ struct UnkConversion {
     void (*fn)();
     u64 field_0x18;
 };
+
+// A tunable object (a global reached through the GOT): its base constructor is out of line,
+// then its own vtable is stored and its destructor registered.
+struct UnkTunable {
+    void** vtable;
+};
+
+__attribute__((always_inline)) inline void InitTunable(UnkTunable* tunable, void (*ctor)(UnkTunable*),
+                                                       void** vtable, void (*dtor)(void*)) {
+    ctor(tunable);
+    tunable->vtable = vtable + 2;
+    __cxa_atexit(dtor, tunable, g_unk_7101a19000);
+}
 
 }  // namespace unk_static_init
 
