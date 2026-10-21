@@ -199,6 +199,45 @@ struct UnkKeyedMoveArray {
     }
 };
 
+// A variant of a string id and a byte vector (state 1) or a pair of words (state 2), and the
+// same after an 8-byte key; Reset destroys the id and frees the vector (fn_710075c9d4 and its
+// copies).
+template <class Tag>
+struct UnkStrIdVecVariant {
+    struct Pair {
+        u64 a, b;
+    };
+    union {
+        struct {
+            UnkStrIdMember id;
+            UnkVector<u8> vec;
+        } named;
+        Pair pair;
+    };
+    u32 state;
+
+    __attribute__((always_inline)) void Reset() {
+        switch (state) {
+        case 1:
+            named.vec.Free();
+            named.id.~UnkStrIdMember();
+            state = 0;
+            break;
+        case 2:
+            state = 0;
+            break;
+        }
+    }
+};
+
+template <class Tag>
+struct UnkKeyedStrIdVecVariant {
+    u64 key;
+    UnkStrIdVecVariant<Tag> value;
+
+    void Reset() { value.Reset(); }
+};
+
 // A callback list and a string id, with or without a key in front; only the destructor is
 // out of line (fn_71008933d4 and its copies). UnkCallbackTraits names the list's vtables.
 template <class Tag>

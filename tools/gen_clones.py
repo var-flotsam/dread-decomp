@@ -2584,6 +2584,17 @@ def keyed_move_array_clear(orig, addr, tag, insns):
     return dtor_traits(tag, insns[42]) + f"template void base::UnkKeyedMoveArray<{tag}, {int(size.group(1), 16):#x}>::Clear();"
 
 
+def strid_vec_variant_reset(orig, addr, tag, insns):
+    """UnkStrIdVecVariant / UnkKeyedStrIdVecVariant Reset (UnkCloneRecords.h): the state offset
+    picks the record."""
+    if len(insns) != 40 or insns[32] != ("bl", f"#{RELEASE:#x}") or insns[14] != ("ldr", "x8, [x8, #0x48]") \
+            or got_target(orig, insns, 17) != STRID_POOL:
+        return None
+    rec = {("ldr", "w8, [x0, #0x30]"): "UnkStrIdVecVariant", ("ldr", "w8, [x0, #0x38]"): "UnkKeyedStrIdVecVariant"}
+    r = rec.get(insns[3])
+    return f"template void base::{r}<{tag}>::Reset();" if r else None
+
+
 KINDS = {
     "strid_value_insert": Kind(None, "base/UnkStrIdValueVec.h", lambda tag, _: None, scan=strid_value_insert),
     "set_flag_notify": Kind(0x71001F31E8, "base/UnkCloneCalls.h", lambda tag, _: (
@@ -2633,6 +2644,8 @@ KINDS = {
     "keyed_move_assign": Kind(None, "base/UnkCloneRecords.h", lambda tag, _: None, scan=keyed_move_assign),
     "keyed_move_array_clear": Kind(None, "base/UnkCloneRecords.h", lambda tag, _: None,
                                    scan=keyed_move_array_clear),
+    "strid_vec_variant_reset": Kind(None, "base/UnkCloneRecords.h", lambda tag, _: None,
+                                    scan=strid_vec_variant_reset),
     "variant_assign": Kind(0x71000C3CC0, "base/UnkCloneHelpers.h", lambda tag, ins: variant(tag, ins, "refl_VariantAssign", "{v}*"),
                            exact=False),
     "variant_assign_pair": Kind(0x71000C3C14, "base/UnkCloneHelpers.h", lambda tag, ins: variant(

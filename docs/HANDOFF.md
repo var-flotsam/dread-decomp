@@ -576,6 +576,13 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
      loop compares a 64-bit counter in 32 bits, which no counter type reproduced) and 0x7100240168
      (`UnkSList` set-at: two instructions of scheduling in the inlined push-back; the loop counts
      up, `for (u32 j = 0; j < idx; ++j)`). Skipped: 0x71011d437c (a reflected float setter).
+   - Done (2026-10-21, cloud, stream 2, round 12): `strid_vec_variant_reset` (12; a string id and
+     byte vector or a word pair, with or without a key). Close but left: 0x71000d15fc (25 × 92 B,
+     a vector erase by memmove; the original forms the element offset as `lsl` + `and` mask, which
+     Clang 9 folds into the add in every form tried), 0x71002444f4 (the same variant's move
+     constructor, state 2 holding pointers; scheduling and a tail-merged load) and 0x7100f5f0f0
+     (a keyed record assigned through owned or referenced values; the original duplicates the
+     key store per source state). Skipped: 0x7100eab448 (reflected setters that notify by name).
    - Enum static initialisers and the other per-TU static initialisers. These define
      globals, so they need the TU's data definitions (the 160 B ones are mostly lifted already).
    - Slot `0x28`/`0x30`/`0x38`/`0x48`/`0x50` helpers of other classes (need class layouts):
