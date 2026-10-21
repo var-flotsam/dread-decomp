@@ -4330,8 +4330,8 @@ address,size,name,name_source,subsystem,status
 0x71008cde78,244,fn_71008cde78,unknown,unknown,U
 0x71008cdf6c,24,fn_71008cdf6c,unknown,unknown,O
 0x71008cdf84,524,fn_71008cdf84,unknown,unknown,U
-0x71008ce190,460,fn_71008ce190,unknown,unknown,U
-0x71008ce35c,1228,fn_71008ce35c,unknown,unknown,U
+0x71008ce190,460,fn_71008ce190,unknown,unknown,O
+0x71008ce35c,1228,fn_71008ce35c,unknown,unknown,O
 0x71008ce828,1032,fn_71008ce828,unknown,unknown,U
 0x71008cec30,368,fn_71008cec30,unknown,unknown,U
 0x71008ceda0,1548,fn_71008ceda0,unknown,unknown,U
