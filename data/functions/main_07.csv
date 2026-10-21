@@ -409,7 +409,7 @@ address,size,name,name_source,subsystem,status
 0x71007106d8,2096,fn_71007106d8,unknown,game/characters?,O
 0x7100710f08,388,CCharClassAnimationComponent::refl_InitClass,reflection,game/characters,O
 0x710071108c,380,fn_710071108c,unknown,unknown,O
-0x7100711208,304,fn_7100711208,unknown,unknown,U
+0x7100711208,304,fn_7100711208,unknown,unknown,O
 0x7100711338,272,fn_7100711338,unknown,unknown,U
 0x7100711448,36,fn_7100711448,unknown,unknown,O
 0x710071146c,4,fn_710071146c,unknown,unknown,O
@@ -714,7 +714,7 @@ address,size,name,name_source,subsystem,status
 0x710071f878,260,fn_710071f878,unknown,unknown,U
 0x710071f97c,376,fn_710071f97c,unknown,unknown,U
 0x710071faf4,444,fn_710071faf4,unknown,unknown,O
-0x710071fcb0,460,fn_710071fcb0,unknown,unknown,U
+0x710071fcb0,460,fn_710071fcb0,unknown,unknown,O
 0x710071fe80,228,fn_710071fe80,unknown,unknown,O
 0x710071ff64,4,fn_710071ff64,unknown,unknown,O
 0x710071ff68,244,CCharClassAudioComponent::refl_GetClass,reflection,game/characters,O
@@ -835,7 +835,7 @@ address,size,name,name_source,subsystem,status
 0x7100726580,24,fn_7100726580,unknown,game/components?,O
 0x7100726598,220,fn_7100726598,unknown,game/components?,O
 0x7100726674,248,fn_7100726674,unknown,game/components?,U
-0x710072676c,492,fn_710072676c,unknown,game/components?,U
+0x710072676c,492,fn_710072676c,unknown,game/components?,O
 0x7100726960,160,fn_7100726960,unknown,game/components?,O
 0x7100726a00,4,fn_7100726a00,unknown,game/components?,O
 0x7100726a04,244,CBillboardComponent::refl_GetClass,reflection,game/components,O
@@ -1431,7 +1431,7 @@ address,size,name,name_source,subsystem,status
 0x7100757e4c,388,fn_7100757e4c,unknown,unknown,O
 0x7100757fd0,220,fn_7100757fd0,unknown,unknown,O
 0x71007580ac,504,fn_71007580ac,unknown,unknown,O
-0x71007582a4,228,fn_71007582a4,unknown,unknown,U
+0x71007582a4,228,fn_71007582a4,unknown,unknown,O
 0x7100758388,312,fn_7100758388,unknown,unknown,U
 0x71007584c0,244,fn_71007584c0,unknown,unknown,U
 0x71007585b4,252,fn_71007585b4,unknown,unknown,U
@@ -1822,7 +1822,7 @@ address,size,name,name_source,subsystem,status
 0x710076238c,244,CBreakableVignetteComponent::refl_GetClass,reflection,game/components,O
 0x7100762480,652,fn_7100762480,unknown,game/components?,O
 0x710076270c,352,CBreakableVignetteComponent::refl_InitClass,reflection,game/components,O
-0x710076286c,308,fn_710076286c,unknown,unknown,U
+0x710076286c,308,fn_710076286c,unknown,unknown,O
 0x71007629a0,432,fn_71007629a0,unknown,unknown,U
 0x7100762b50,36,fn_7100762b50,unknown,unknown,O
 0x7100762b74,24,fn_7100762b74,unknown,unknown,O
@@ -3126,7 +3126,7 @@ address,size,name,name_source,subsystem,status
 0x710079f83c,56,fn_710079f83c,unknown,unknown,O
 0x710079f874,60,fn_710079f874,unknown,unknown,O
 0x710079f8b0,24,fn_710079f8b0,unknown,unknown,O
-0x710079f8c8,464,fn_710079f8c8,unknown,unknown,U
+0x710079f8c8,464,fn_710079f8c8,unknown,unknown,O
 0x710079fa98,244,fn_710079fa98,unknown,unknown,U
 0x710079fb8c,36,fn_710079fb8c,unknown,unknown,O
 0x710079fbb0,40,fn_710079fbb0,unknown,unknown,O
@@ -3214,7 +3214,7 @@ address,size,name,name_source,subsystem,status
 0x71007a8280,1188,fn_71007a8280,unknown,unknown,U
 0x71007a8724,716,fn_71007a8724,unknown,unknown,U
 0x71007a89f0,960,fn_71007a89f0,unknown,unknown,U
-0x71007a8db0,316,fn_71007a8db0,unknown,unknown,U
+0x71007a8db0,316,fn_71007a8db0,unknown,unknown,O
 0x71007a8eec,348,fn_71007a8eec,unknown,unknown,O
 0x71007a9048,544,fn_71007a9048,unknown,unknown,U
 0x71007a9268,8,fn_71007a9268,unknown,unknown,O
@@ -3438,7 +3438,7 @@ address,size,name,name_source,subsystem,status
 0x71007aeb34,388,CDamageComponent::refl_InitClass,reflection,game/components,O
 0x71007aecb8,180,fn_71007aecb8,unknown,unknown,O
 0x71007aed6c,284,fn_71007aed6c,unknown,unknown,U
-0x71007aee88,256,fn_71007aee88,unknown,unknown,U
+0x71007aee88,256,fn_71007aee88,unknown,unknown,O
 0x71007aef88,156,fn_71007aef88,unknown,unknown,U
 0x71007af024,164,fn_71007af024,unknown,unknown,U
 0x71007af0c8,4,fn_71007af0c8,unknown,unknown,O
@@ -4374,7 +4374,7 @@ address,size,name,name_source,subsystem,status
 0x71007d15e0,112,fn_71007d15e0,unknown,unknown,O
 0x71007d1650,4,fn_71007d1650,unknown,unknown,O
 0x71007d1654,384,fn_71007d1654,unknown,unknown,U
-0x71007d17d4,328,fn_71007d17d4,unknown,unknown,U
+0x71007d17d4,328,fn_71007d17d4,unknown,unknown,O
 0x71007d191c,292,fn_71007d191c,unknown,unknown,U
 0x71007d1a40,36,fn_71007d1a40,unknown,unknown,O
 0x71007d1a64,16,fn_71007d1a64,unknown,unknown,O
