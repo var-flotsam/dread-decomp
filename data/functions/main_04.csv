@@ -141,7 +141,7 @@ address,size,name,name_source,subsystem,status
 0x71004031e8,744,fn_71004031e8,unknown,game/ai?,O
 0x71004034d0,356,CCentralUnitAIComponent::refl_InitClass,reflection,game/ai,O
 0x7100403634,616,fn_7100403634,unknown,unknown,U
-0x710040389c,224,fn_710040389c,unknown,unknown,U
+0x710040389c,224,fn_710040389c,unknown,unknown,O
 0x710040397c,36,fn_710040397c,unknown,unknown,O
 0x71004039a0,120,fn_71004039a0,unknown,unknown,O
 0x7100403a18,236,fn_7100403a18,unknown,unknown,U
@@ -173,7 +173,7 @@ address,size,name,name_source,subsystem,status
 0x7100406e30,28,fn_7100406e30,unknown,unknown,O
 0x7100406e4c,132,fn_7100406e4c,unknown,unknown,O
 0x7100406ed0,24,fn_7100406ed0,unknown,unknown,O
-0x7100406ee8,224,fn_7100406ee8,unknown,unknown,U
+0x7100406ee8,224,fn_7100406ee8,unknown,unknown,O
 0x7100406fc8,80,fn_7100406fc8,unknown,unknown,O
 0x7100407018,236,fn_7100407018,unknown,unknown,U
 0x7100407104,108,fn_7100407104,unknown,unknown,U

@@ -830,8 +830,8 @@ address,size,name,name_source,subsystem,status
 0x7100828c44,244,CCharClassDoorGrapplePointComponent::refl_GetClass,reflection,game/characters,O
 0x7100828d38,212,fn_7100828d38,unknown,game/characters?,O
 0x7100828e0c,388,CCharClassDoorGrapplePointComponent::refl_InitClass,reflection,game/characters,O
-0x7100828f90,216,fn_7100828f90,unknown,unknown,U
-0x7100829068,224,fn_7100829068,unknown,unknown,U
+0x7100828f90,216,fn_7100828f90,unknown,unknown,O
+0x7100829068,224,fn_7100829068,unknown,unknown,O
 0x7100829148,28,fn_7100829148,unknown,unknown,O
 0x7100829164,8,fn_7100829164,unknown,unknown,O
 0x710082916c,8,fn_710082916c,unknown,unknown,O
