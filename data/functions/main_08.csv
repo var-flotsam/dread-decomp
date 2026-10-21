@@ -609,7 +609,7 @@ address,size,name,name_source,subsystem,status
 0x71008232a4,12,fn_71008232a4,unknown,unknown,O
 0x71008232b0,8,fn_71008232b0,unknown,unknown,O
 0x71008232b8,8,fn_71008232b8,unknown,unknown,O
-0x71008232c0,500,fn_71008232c0,unknown,unknown,U
+0x71008232c0,500,fn_71008232c0,unknown,unknown,O
 0x71008234b4,4,fn_71008234b4,unknown,unknown,O
 0x71008234b8,244,CCharClassHangableGrappleMagnetSlidingBlockComponent::refl_GetClass,reflection,game/characters,O
 0x71008235ac,4,fn_71008235ac,unknown,game/characters?,O
@@ -1034,7 +1034,7 @@ address,size,name,name_source,subsystem,status
 0x710082eec0,128,fn_710082eec0,unknown,game/components?,U
 0x710082ef40,168,fn_710082ef40,unknown,game/components?,U
 0x710082efe8,260,fn_710082efe8,unknown,game/components?,U
-0x710082f0f0,540,fn_710082f0f0,unknown,game/components?,U
+0x710082f0f0,540,fn_710082f0f0,unknown,game/components?,O
 0x710082f30c,4,fn_710082f30c,unknown,game/components?,O
 0x710082f310,244,CSwingableGrapplePointComponent::refl_GetClass,reflection,game/components,O
 0x710082f404,4,fn_710082f404,unknown,game/components?,O
@@ -1246,7 +1246,7 @@ address,size,name,name_source,subsystem,status
 0x710083431c,12,fn_710083431c,unknown,unknown,O
 0x7100834328,8,fn_7100834328,unknown,unknown,O
 0x7100834330,8,fn_7100834330,unknown,unknown,O
-0x7100834340,764,fn_7100834340,unknown,unknown,U
+0x7100834340,764,fn_7100834340,unknown,unknown,O
 0x710083463c,4,fn_710083463c,unknown,unknown,O
 0x7100834640,244,CGun::CTunableGun::refl_GetClass,reflection,game,O
 0x7100834734,1392,fn_7100834734,unknown,game?,O
