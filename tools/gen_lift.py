@@ -114,6 +114,19 @@ FTOINT = {"fcvtzs": "", "fcvtzu": "", "fcvtms": "__builtin_floor{s}", "fcvtmu": 
           "fcvtau": "__builtin_round{s}"}
 
 
+# Inlined helpers built on weak function-local statics, by the GOT slot of their guard: the
+# statement standing for the guard check and its out-of-line initialisation, and the calls
+# right after the check that belong to the helper. Their definitions are in HEADER (namespace
+# lift_guard), written like those in include/ (UnkReflStatics.h, CStrId.h).
+GUARD_ACQUIRE = 0x7101238da0  # __cxa_guard_acquire
+GUARDS = {
+    0x7101cba070: ("lift_guard::EnsureStringPool();", [0x710007fdb4]),
+    0x7101cbbb20: ("(void)lift_guard::GetSingleton();", []),
+    0x7101cbbcd8: ("(void)lift_guard::TypeId<lift_guard::TypeIdTag>::id();", []),
+    0x7101cbbcf8: ("(void)lift_guard::TypeId<lift_guard::TypeIdTag>::id();", []),
+}
+
+
 class Unsupported(Exception):
     pass
 
@@ -704,6 +717,71 @@ class Lifter:
 
     # -- driver -------------------------------------------------------------------------------
 
+    def find_guards(self, ins) -> None:
+        """Inlined GUARDS helpers: self.guard maps the ldarb of each to its statement and the
+        number of helper calls after the check; self.gskip holds the instructions it stands
+        for (the tbz, those calls, and the out-of-line initialisation reached from the tbz)."""
+        self.guard, self.gskip = {}, set()
+        at = {x.address: k for k, x in enumerate(ins)}
+        pages, slots = {}, {}
+        for k, x in enumerate(ins):
+            m, o = x.mnemonic, x.operands
+            if m == "adrp":
+                pages[o[0].reg] = o[1].imm
+            elif m == "ldr" and len(o) == 2 and o[1].type == arm64.ARM64_OP_MEM and o[1].mem.base in pages:
+                slots[o[0].reg] = pages[o[1].mem.base] + o[1].mem.disp
+            elif m == "ldarb" and slots.get(o[1].mem.base) in GUARDS and k + 1 < len(ins) \
+                    and x.address not in self.gskip:
+                stmt, calls = GUARDS[slots[o[1].mem.base]]
+                t = ins[k + 1]
+                if t.mnemonic != "tbz" or t.operands[0].reg != o[0].reg or t.operands[1].imm != 0:
+                    continue
+                after = ins[k + 2:k + 2 + len(calls)]
+                if [a.operands[0].imm if a.mnemonic == "bl" else None for a in after] != calls:
+                    continue
+                resume = t.address + 4
+                region, todo = set(), [t.operands[2].imm]
+                while todo:
+                    a = todo.pop()
+                    while a != resume and a not in region:
+                        if a not in at:
+                            raise Unsupported("guard")
+                        region.add(a)
+                        y = ins[at[a]]
+                        if y.mnemonic in ("ret", "br"):
+                            break
+                        tgt = [op.imm for op in y.operands if op.type == arm64.ARM64_OP_IMM]
+                        if y.mnemonic == "b":
+                            a = tgt[0]
+                            continue
+                        if y.mnemonic.startswith("b.") or y.mnemonic in ("cbz", "cbnz", "tbz", "tbnz"):
+                            todo.append(tgt[-1])
+                        a += 4
+                if not any(ins[at[a]].mnemonic == "bl" and ins[at[a]].operands[0].imm == GUARD_ACQUIRE
+                           for a in region):
+                    continue
+                # Nothing else may enter the initialisation.
+                for y in ins:
+                    if y.address in region or y.address == t.address:
+                        continue
+                    if any(op.type == arm64.ARM64_OP_IMM and op.imm in region for op in y.operands) and \
+                            (y.mnemonic in ("b", "cbz", "cbnz", "tbz", "tbnz") or y.mnemonic.startswith("b.")):
+                        raise Unsupported("guard")
+                self.guard[x.address] = (stmt, len(calls))
+                self.gskip |= region | {t.address} | {a.address for a in after}
+
+    def guard_step(self, x) -> bool:
+        """Emits a GUARDS helper at its ldarb; True if x was one or is part of one."""
+        if x.address in self.gskip:
+            return True
+        if x.address not in self.guard:
+            return False
+        stmt, calls = self.guard[x.address]
+        self.line(stmt)
+        if calls:
+            self.clobber()
+        return True
+
     def lift(self) -> tuple[str, set[str]] | None:
         orig, addr = self.orig, self.addr
         code = orig.function(addr)
@@ -715,8 +793,13 @@ class Lifter:
         if not self.setup_frame(ins):
             return self.fail("stack frame")
         try:
+            self.find_guards(ins)
             for self.pos, x in enumerate(ins):
+                if x.address in self.gskip:
+                    continue
                 self.close_to(x.address)
+                if self.live and self.guard_step(x):
+                    continue
                 if not self.live:
                     return self.fail("unreachable code")  # (or a jump-around we don't model)
                 if is_frame(x):
@@ -1371,12 +1454,15 @@ class FlatLifter(Lifter):
                         and addr <= op.imm < end:
                     targets.add(op.imm)
         try:
+            self.find_guards(ins)
             for self.pos, x in enumerate(ins):
+                if x.address in self.gskip:
+                    continue
                 if x.address in targets:
                     self.body.append(f"L_{x.address:x}:;")
                     self.s.cmp = None if x.address != addr else self.s.cmp
                     self.s.fcall = None
-                if is_frame(x):
+                if is_frame(x) or self.guard_step(x):
                     continue
                 m, o = x.mnemonic, x.operands
                 if m == "ret":
@@ -1449,6 +1535,20 @@ HEADER = ['#include "types.h"', '#define HIDDEN __attribute__((visibility("hidde
           "inline f64 lift_f64(u64 v) { f64 f; __builtin_memcpy(&f, &v, 8); return f; }",
           "inline u32 lift_bits(f32 f) { u32 v; __builtin_memcpy(&v, &f, 4); return v; }",
           "inline u64 lift_bits(f64 f) { u64 v; __builtin_memcpy(&v, &f, 8); return v; }",
+          "// Inlined helpers on guarded statics (GUARDS).",
+          "namespace lift_guard {",
+          "u32 fn_7100080568(); void fn_710007fdb4(); extern char* g_unk_7101d47108;",
+          "struct StringPoolHolder { u8 unk_0x0[0xe8]; StringPoolHolder(u32 a, char** pool); ~StringPoolHolder(); };",
+          "inline void EnsureStringPool() { static StringPoolHolder s_holder(fn_7100080568(), &g_unk_7101d47108); fn_710007fdb4(); }",
+          "struct Singleton { Singleton(); ~Singleton(); };",
+          "inline Singleton& GetSingleton() { static Singleton s_singleton; return s_singleton; }",
+          "struct ZeroWord { u32 value; ZeroWord() : value(0) {} };",
+          "template <class T> struct TypeId {",
+          "    static ZeroWord& base() { static ZeroWord s_base; return s_base; }",
+          "    static u32& id() { static u32 s_id = (u8)~*reinterpret_cast<u8*>(&base()); return s_id; }",
+          "};",
+          "struct TypeIdTag;",
+          "}",
           "// Returned in memory through x8 (built in place); the real size is unknown.",
           "struct UnkResult { char data[0x100]; };",
           "// Accesses that may alias any other (the \"alias\" rewrite): the original reloads values",
