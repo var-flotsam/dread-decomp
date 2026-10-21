@@ -4912,7 +4912,7 @@ address,size,name,name_source,subsystem,status
 0x71002d7ab4,240,animtree::CAnimTreeDef::TAnimTreeLinkDef::refl_GetClass,reflection,animation,O
 0x71002d7ba4,268,fn_71002d7ba4,unknown,animation?,O
 0x71002d7cb0,388,animtree::CAnimTreeDef::TAnimTreeLinkDef::refl_InitClass,reflection,animation,O
-0x71002d7e34,476,fn_71002d7e34,unknown,unknown,U
+0x71002d7e34,476,fn_71002d7e34,unknown,unknown,O
 0x71002d8010,576,fn_71002d8010,unknown,unknown,U
 0x71002d8250,36,fn_71002d8250,unknown,unknown,O
 0x71002d8274,64,fn_71002d8274,unknown,unknown,U

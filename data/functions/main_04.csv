@@ -2730,7 +2730,7 @@ address,size,name,name_source,subsystem,status
 0x710047d964,8,fn_710047d964,unknown,game/characters?,O
 0x710047d96c,8,fn_710047d96c,unknown,game/characters?,O
 0x710047d974,28,fn_710047d974,unknown,game/characters?,O
-0x710047d990,228,fn_710047d990,unknown,game/characters?,U
+0x710047d990,228,fn_710047d990,unknown,game/characters?,O
 0x710047da74,4,fn_710047da74,unknown,game/characters?,O
 0x710047da78,4,fn_710047da78,unknown,game/characters?,O
 0x710047da7c,12,fn_710047da7c,unknown,game/characters?,O
@@ -2741,7 +2741,7 @@ address,size,name,name_source,subsystem,status
 0x710047daac,28,fn_710047daac,unknown,game/characters?,O
 0x710047dac8,48,fn_710047dac8,unknown,game/characters?,O
 0x710047daf8,12,fn_710047daf8,unknown,game/characters?,O
-0x710047db10,380,fn_710047db10,unknown,game/characters?,U
+0x710047db10,380,fn_710047db10,unknown,game/characters?,O
 0x710047dc8c,4,fn_710047dc8c,unknown,game/characters?,O
 0x710047dc90,244,CCharClassChozoWarriorXSpitAttack::CTunableCharClassChozoWarriorXSpitAttack::refl_GetClass,reflection,game/characters,O
 0x710047dd84,636,fn_710047dd84,unknown,game/characters?,O
@@ -5836,7 +5836,7 @@ address,size,name,name_source,subsystem,status
 0x71004f1518,12,fn_71004f1518,unknown,unknown,O
 0x71004f1524,52,fn_71004f1524,unknown,unknown,O
 0x71004f1558,496,fn_71004f1558,unknown,unknown,O
-0x71004f1748,204,fn_71004f1748,unknown,unknown,U
+0x71004f1748,204,fn_71004f1748,unknown,unknown,O
 0x71004f1820,364,fn_71004f1820,unknown,unknown,U
 0x71004f198c,4,fn_71004f198c,unknown,unknown,O
 0x71004f1990,244,CCharClassEmmyForestAIComponent::refl_GetClass,reflection,game/characters,O
