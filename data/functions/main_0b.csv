@@ -265,7 +265,7 @@ address,size,name,name_source,subsystem,status
 0x7100b08690,20,fn_7100b08690,unknown,unknown,O
 0x7100b086a4,20,fn_7100b086a4,unknown,unknown,O
 0x7100b086b8,76,fn_7100b086b8,unknown,unknown,O
-0x7100b08704,208,fn_7100b08704,unknown,unknown,U
+0x7100b08704,208,fn_7100b08704,unknown,unknown,O
 0x7100b087d4,76,fn_7100b087d4,unknown,unknown,O
 0x7100b08820,176,fn_7100b08820,unknown,unknown,O
 0x7100b088d0,8,fn_7100b088d0,unknown,unknown,O
@@ -2769,7 +2769,7 @@ address,size,name,name_source,subsystem,status
 0x7100b87054,44,fn_7100b87054,unknown,gui?,O
 0x7100b87080,12,fn_7100b87080,unknown,gui?,O
 0x7100b8708c,68,fn_7100b8708c,unknown,gui?,O
-0x7100b870d0,204,fn_7100b870d0,unknown,gui?,U
+0x7100b870d0,204,fn_7100b870d0,unknown,gui?,O
 0x7100b8719c,280,fn_7100b8719c,unknown,gui?,U
 0x7100b872b4,100,fn_7100b872b4,unknown,gui?,O
 0x7100b87318,152,fn_7100b87318,unknown,gui?,U
@@ -4165,8 +4165,8 @@ address,size,name,name_source,subsystem,status
 0x7100bb479c,132,fn_7100bb479c,unknown,game/characters?,O
 0x7100bb4820,132,fn_7100bb4820,unknown,game/characters?,O
 0x7100bb48a4,12,fn_7100bb48a4,unknown,game/characters?,O
-0x7100bb48b0,252,fn_7100bb48b0,unknown,game/characters?,U
-0x7100bb49ac,252,fn_7100bb49ac,unknown,game/characters?,U
+0x7100bb48b0,252,fn_7100bb48b0,unknown,game/characters?,O
+0x7100bb49ac,252,fn_7100bb49ac,unknown,game/characters?,O
 0x7100bb4ab0,160,fn_7100bb4ab0,unknown,game/characters?,O
 0x7100bb4b50,232,fn_7100bb4b50,unknown,game/characters?,O
 0x7100bb4c38,244,CCharClassFXStopModelEffectAnim::refl_GetClass,reflection,game/characters,O
@@ -5454,8 +5454,8 @@ address,size,name,name_source,subsystem,status
 0x7100be03ec,132,fn_7100be03ec,unknown,game/characters?,O
 0x7100be0470,132,fn_7100be0470,unknown,game/characters?,O
 0x7100be04f4,12,fn_7100be04f4,unknown,game/characters?,O
-0x7100be0500,252,fn_7100be0500,unknown,game/characters?,U
-0x7100be05fc,252,fn_7100be05fc,unknown,game/characters?,U
+0x7100be0500,252,fn_7100be0500,unknown,game/characters?,O
+0x7100be05fc,252,fn_7100be05fc,unknown,game/characters?,O
 0x7100be0700,160,fn_7100be0700,unknown,game/characters?,O
 0x7100be07a0,232,fn_7100be07a0,unknown,game/characters?,O
 0x7100be0888,244,CCharClassShowTutorialMessageEvent::refl_GetClass,reflection,game/characters,O
