@@ -16,7 +16,7 @@ void fn_71001eef74(char* owner, char* self, bool flag);
 namespace base {
 
 // The callees of one copy (each kind uses some of): call(...), get(self), base(self),
-// member(p), vtable(), cls(), type().
+// member(p), vtable(), base_vtable(), mid_vtable(), cls(), type(), dflt().
 template <class Tag>
 struct UnkCallTraits;
 
@@ -115,6 +115,79 @@ reflection::UnkReflValue refl_CallArgReturnOne(void*, char* obj, reflection::Unk
     r.field_0x0 = nullptr;
     r.type = nullptr;
     fn_71000a18d4(&r, type, &one, false);
+    return r;
+}
+
+// The address of element i of an array of `Size`-byte elements; the index arrives as a u64 and
+// is truncated (fn_7100246624 and its copies).
+template <class Tag, u64 Size>
+UnkCloneElem<Tag, Size>* refl_ElemAt(UnkVector<UnkCloneElem<Tag, Size>>* v, u64 i) {
+    return &v->data[(u32)i];
+}
+
+// A copy constructor through three levels: the first base's vtable and 0x20 bytes, the second
+// base's vtable and a word, the class's vtable and a word (fn_71005f2814 and its copies). The
+// words are copied as bytes, so the vtable stores between them stay.
+template <class Tag>
+void refl_CopyCtor3(char* self, const char* other) {
+    *reinterpret_cast<char**>(self) = UnkCallTraits<Tag>::base_vtable() + 0x10;
+    __builtin_memcpy(self + 8, other + 8, 0x20);
+    *reinterpret_cast<char**>(self) = UnkCallTraits<Tag>::mid_vtable() + 0x10;
+    __builtin_memcpy(self + 0x28, other + 0x28, 8);
+    *reinterpret_cast<char**>(self) = UnkCallTraits<Tag>::vtable() + 0x10;
+    __builtin_memcpy(self + 0x30, other + 0x30, 8);
+}
+
+// A pointer and a u32 with a link to them and a state (1 and 2 are reset to 0); assignment
+// links the copy when the pointer is set (fn_710023655c and its identical copies). The two
+// resets are written differently, as the original's code differs: a range check, and a switch
+// read through the raw offset (a shared access would be hoisted above the branch).
+template <class Tag>
+struct UnkLinkSlot {
+    char* p;
+    u32 b;
+    u32* link;
+    char* p2;
+    u32 state;
+
+    UnkLinkSlot& operator=(const UnkLinkSlot& o) {
+        if (this != &o) {
+            b = o.b;
+            p = o.p;
+            if (p) {
+                if (state - 1 < 2u)
+                    state = 0;
+                state = 2;
+                link = &b;
+                p2 = p;
+            } else {
+                u32& st = *reinterpret_cast<u32*>(reinterpret_cast<char*>(this) + 0x20);
+                switch (st) {
+                case 1:
+                    st = 0;
+                    break;
+                case 2:
+                    st = 0;
+                    break;
+                }
+            }
+        }
+        return *this;
+    }
+};
+
+// A reflected f32 read: the f32 at `Offset` in what get() finds for the object `obj` points to
+// at +8, or dflt() when nothing is found (fn_71011d5868 and its copies).
+template <class Tag, u32 Offset>
+reflection::UnkReflValue refl_GetLookupF32(void*, char* obj) {
+    char* p = UnkCallTraits<Tag>::get(*reinterpret_cast<char**>(obj + 8));
+    f32 v = p ? *reinterpret_cast<f32*>(p + Offset) : UnkCallTraits<Tag>::dflt();
+    const reflection::CType* type = UnkCallTraits<Tag>::type();
+    reflection::UnkReflValue r;
+    r.kind = 2;
+    r.field_0x0 = nullptr;
+    r.type = nullptr;
+    fn_71000a18d4(&r, type, &v, false);
     return r;
 }
 

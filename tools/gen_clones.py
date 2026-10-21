@@ -2276,6 +2276,48 @@ def call_arg_return_one(orig, addr, tag, insns):
          f"base::reflection::UnkReflValue* const*);"])
 
 
+def elem_at(orig, addr, tag, insns):
+    """refl_ElemAt: the element size (the shift)."""
+    if len(insns) != 4 or insns[:2] != [("ldr", "x8, [x0]"), ("and", "x9, x1, #0xffffffff")] or insns[3] != ("ret", ""):
+        return None
+    shift = re.fullmatch(r"x0, x8, x9, lsl #(\d)", insns[2][1])
+    if insns[2][0] != "add" or not shift:
+        return None
+    size = 1 << int(shift.group(1))
+    return (f"template UnkCloneElem<{tag}, {size}>* base::refl_ElemAt(base::UnkVector<UnkCloneElem<{tag}, {size}>>*, "
+            "u64);")
+
+
+def copy_ctor3(orig, addr, tag, insns):
+    """refl_CopyCtor3: the three vtables."""
+    if len(insns) != 21 or insns[4] != ("ldp", "x10, x11, [x1, #0x18]") or insns[11] != ("stp", "x9, x8, [x0]") \
+            or insns[18] != ("ldr", "x8, [x1, #0x30]"):
+        return None
+    vts = got_target(orig, insns, 0), got_target(orig, insns, 7), got_target(orig, insns, 14)
+    if None in vts:
+        return None
+    decls = [f"extern char g_unk_{v:x}[];" for v in sorted(set(vts))]
+    return "\n".join(call_traits(tag, decls, [
+        f"    static char* {n}() {{ return g_unk_{v:x}; }}" for n, v in zip(("base_vtable", "mid_vtable", "vtable"), vts)]) +
+        [f"template void base::refl_CopyCtor3<{tag}>(char*, const char*);"])
+
+
+def get_lookup_f32(orig, addr, tag, insns):
+    """refl_GetLookupF32: the lookup, the offset, the default and the f32 type getter."""
+    if len(insns) != 23 or insns[3] != ("ldr", "x0, [x1, #8]") or insns[5][0] != "bl" or insns[11][0] != "bl" \
+            or insns[19] != ("bl", f"#{MAKE_VALUE:#x}"):
+        return None
+    off = re.fullmatch(rf"s0, \[x0, {OFF}\]", insns[7][1])
+    dflt = {"s0, wzr": "0.0f", "s0, #-1.00000000": "-1.0f"}.get(insns[9][1])
+    if insns[7][0] != "ldr" or not off or insns[9][0] != "fmov" or not dflt:
+        return None
+    get, ty = target(insns[5][1]), target(insns[11][1])
+    return "\n".join(call_traits(tag, [f"char* fn_{get:x}(char*);", f"const base::reflection::CType* fn_{ty:x}();"], [
+        f"    static char* get(char* o) {{ return fn_{get:x}(o); }}", f"    static f32 dflt() {{ return {dflt}; }}",
+        f"    static const base::reflection::CType* type() {{ return fn_{ty:x}(); }}"]) +
+        [f"template base::reflection::UnkReflValue base::refl_GetLookupF32<{tag}, {int(off.group(1), 0):#x}>(void*, char*);"])
+
+
 KINDS = {
     "strid_value_insert": Kind(None, "base/UnkStrIdValueVec.h", lambda tag, _: None, scan=strid_value_insert),
     "set_flag_notify": Kind(0x71001F31E8, "base/UnkCloneCalls.h", lambda tag, _: (
@@ -2287,6 +2329,11 @@ KINDS = {
     "cast_then_call": Kind(None, "base/UnkCloneCalls.h", lambda tag, _: None, scan=cast_then_call),
     "find_by_id_call": Kind(None, "base/UnkCloneCalls.h", lambda tag, _: None, scan=find_by_id_call),
     "call_arg_return_one": Kind(None, "base/UnkCloneCalls.h", lambda tag, _: None, scan=call_arg_return_one),
+    "elem_at": Kind(None, "base/UnkCloneCalls.h", lambda tag, _: None, scan=elem_at),
+    "copy_ctor3": Kind(None, "base/UnkCloneCalls.h", lambda tag, _: None, scan=copy_ctor3),
+    "link_slot_assign": Kind(0x710023655C, "base/UnkCloneCalls.h", lambda tag, _: (
+        f"template base::UnkLinkSlot<{tag}>& base::UnkLinkSlot<{tag}>::operator=(const base::UnkLinkSlot<{tag}>&);")),
+    "get_lookup_f32": Kind(None, "base/UnkCloneCalls.h", lambda tag, _: None, scan=get_lookup_f32),
     "variant_assign": Kind(0x71000C3CC0, "base/UnkCloneHelpers.h", lambda tag, ins: variant(tag, ins, "refl_VariantAssign", "{v}*"),
                            exact=False),
     "variant_assign_pair": Kind(0x71000C3C14, "base/UnkCloneHelpers.h", lambda tag, ins: variant(
