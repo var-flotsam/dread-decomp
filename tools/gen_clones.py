@@ -2590,6 +2590,7 @@ def defined_in_src() -> set[int]:
             continue
         text = f.read_text(encoding="utf-8")
         for line in text.splitlines():
+            line = line.split("//")[0]  # a declaration with a trailing comment is still a declaration
             m = gen_lift.NAME_RE.match(line)
             if m and ("{" in line or not line.rstrip().endswith(";")):
                 skip.add(int(m.group(1), 16))

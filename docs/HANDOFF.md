@@ -515,6 +515,19 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
      0x71000de484 (20), 0x710000dc80 and 0x7100415e18 (property reads returning a reflected value
      through x8), 0x7100142df0 (clamped colour setters), 0x71003e2ea8. In this census, families of
      five or more `U` members still hold ~500 KB; under 100 bytes, ~30 families of 10 or more.
+   - Done (2026-10-21, cloud, stream 2, round 7): 13 kinds, +180 functions. `strid_value_insert`
+     (`UnkStrIdValueVec.h`; each branch constructs the element itself, 10 × 1 KB), and a new header
+     `UnkCloneCalls.h` for small call-shaped families: `set_flag_notify` (17), `set_flag_virtual`
+     (13), `call_with_owner_child` (16), `ctor_then_init` (14), `cast_then_call` (14),
+     `find_by_id_call` (13, the key's argument register varies), `call_arg_return_one` (14),
+     `elem_at` (12), `copy_ctor3` (12; byte copies keep the vtable stores), `link_slot_assign`
+     (12; the two state resets are a range check and a switch on 1, 2 read through the raw
+     offset) and `get_lookup_f32` (11); `derived_copy_ctor` takes u8/u16 fields (+10).
+     `gen_clones.defined_in_src` ignores trailing comments (a commented declaration in
+     `src/base/` hid a clone). Left: 0x7100f5ff2c (the insert that calls its push-back, 4
+     registers in the shared tail), 0x71008eb574 (clamped colour, 16 × 100 B: the zero register
+     and loads are scheduled first), 0x710000e08c (an exact division by 3 Clang folds away),
+     0x7100339a50 (a resource load around two string-id types, 9 × 760 B).
    - Enum static initialisers and the other per-TU static initialisers. These define
      globals, so they need the TU's data definitions (the 160 B ones are mostly lifted already).
    - Slot `0x28`/`0x30`/`0x38`/`0x48`/`0x50` helpers of other classes (need class layouts):
