@@ -1887,7 +1887,7 @@ address,size,name,name_source,subsystem,status
 0x71010541b0,380,fn_71010541b0,unknown,unknown,O
 0x710105432c,4,fn_710105432c,unknown,unknown,O
 0x7101054330,244,SLogicPathNode::refl_GetClass,reflection,game,O
-0x7101054424,1384,fn_7101054424,unknown,game?,U
+0x7101054424,1384,fn_7101054424,unknown,game?,O
 0x710105498c,388,SLogicPathNode::refl_InitClass,reflection,game,O
 0x7101054b10,380,fn_7101054b10,unknown,game?,O
 0x7101054c8c,4,fn_7101054c8c,unknown,game?,O

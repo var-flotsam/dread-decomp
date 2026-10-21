@@ -9,6 +9,8 @@
 // Only the calls are known. The container, the keys and the insert function keep
 // placeholder names.
 
+#include <initializer_list>
+
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CName.h"
 #include "base/global/CRntString.h"
@@ -95,6 +97,60 @@ void fn_710013ac14(base::reflection::UnkTunableRegistry* self);
 
 // A global CStrId that default values copy (possibly the empty id).
 extern base::global::CStrId g_unk_7101d470e0;
+
+// A CRntString inside the string g_unk_7101d470e0 points to (+0x10), whose u32 at +0x44 counts
+// these uses; default values copy it.
+inline const base::global::CRntString& refl_GlobalRntString() {
+    u8* str = reinterpret_cast<u8*>(g_unk_7101d470e0.data);
+    ++*reinterpret_cast<u32*>(str + 0x44);
+    return *reinterpret_cast<const base::global::CRntString*>(str + 0x10);
+}
+
+namespace base::reflection {
+
+// A list value (base::UnkVector's layout) built from an initializer list, moved into a
+// reflected value and destroyed like UnkVector::Free.
+template <class T>
+struct UnkReflList {
+    T* data;
+    u32 count;
+    u32 capacity;
+    u32 step;
+    bool field_0x14;
+    u32 flags;
+    base::UnkAllocator* allocator;
+
+    // Out of line (fn_7100228ca0 for CRntString).
+    UnkReflList(std::initializer_list<T> items, u32 step, base::UnkAllocator* allocator, u32 flags);
+    UnkReflList(UnkReflList&& other)
+        : data(other.data), count(other.count), capacity(other.capacity), step(other.step),
+          field_0x14(other.field_0x14), flags(other.flags), allocator(other.allocator) {
+        other.data = nullptr;
+        other.count = 0;
+        other.capacity = 0;
+    }
+    ~UnkReflList() {
+        if (data) {
+            for (u32 i = 0; i < count; ++i)
+                data[i].~T();
+            count = 0;
+            allocator->vf_0x48(data);
+            capacity = 0;
+        }
+    }
+};
+
+// A default value made of a u32 and a list of strings (e.g. "vSegments:*:vPos"), typed by a
+// global descriptor.
+struct UnkReflStringList {
+    u32 field_0x0;
+    UnkReflList<base::global::CRntString> items;
+
+    UnkReflStringList(u32 a, UnkReflList<base::global::CRntString>&& list)
+        : field_0x0(a), items(static_cast<UnkReflList<base::global::CRntString>&&>(list)) {}
+};
+
+}  // namespace base::reflection
 
 namespace base::reflection {
 

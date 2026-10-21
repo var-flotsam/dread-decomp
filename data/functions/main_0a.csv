@@ -2113,7 +2113,7 @@ address,size,name,name_source,subsystem,status
 0x7100a4ff10,160,fn_7100a4ff10,unknown,game/ai?,O
 0x7100a4ffb0,4,fn_7100a4ffb0,unknown,game/ai?,O
 0x7100a4ffb4,244,CLuaCallsLogicAction::refl_GetClass,reflection,game/ai,O
-0x7100a500a8,768,fn_7100a500a8,unknown,game/ai?,U
+0x7100a500a8,768,fn_7100a500a8,unknown,game/ai?,O
 0x7100a503a8,352,CLuaCallsLogicAction::refl_InitClass,reflection,game/ai,O
 0x7100a50508,68,fn_7100a50508,unknown,game/ai?,U
 0x7100a5054c,76,fn_7100a5054c,unknown,game/ai?,U
@@ -4842,7 +4842,7 @@ address,size,name,name_source,subsystem,status
 0x7100acd4cc,256,fn_7100acd4cc,unknown,unknown,U
 0x7100acd5d0,308,fn_7100acd5d0,unknown,unknown,U
 0x7100acd710,140,fn_7100acd710,unknown,unknown,O
-0x7100acd79c,2800,fn_7100acd79c,unknown,unknown,U
+0x7100acd79c,2800,fn_7100acd79c,unknown,unknown,O
 0x7100ace28c,388,fn_7100ace28c,unknown,unknown,O
 0x7100ace410,380,fn_7100ace410,unknown,unknown,O
 0x7100ace58c,380,fn_7100ace58c,unknown,unknown,O

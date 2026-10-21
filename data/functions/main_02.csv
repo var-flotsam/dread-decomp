@@ -1087,7 +1087,7 @@ address,size,name,name_source,subsystem,status
 0x7100227310,140,fn_7100227310,unknown,unknown,O
 0x710022739c,172,fn_710022739c,unknown,unknown,O
 0x7100227448,244,CActor::refl_GetClass,reflection,game,O
-0x710022753c,4868,fn_710022753c,unknown,game?,U
+0x710022753c,4868,fn_710022753c,unknown,game?,O
 0x7100228840,360,CActor::refl_InitClass,reflection,game,O
 0x71002289a8,380,fn_71002289a8,unknown,unknown,O
 0x7100228b24,380,fn_7100228b24,unknown,unknown,O
