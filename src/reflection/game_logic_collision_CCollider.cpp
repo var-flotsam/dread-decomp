@@ -7,10 +7,33 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // game::logic::collision::CCollider
 DREAD_REFL_TAG(7100d364c4);
 void fn_7100d361bc(base::reflection::CClass*) {}
+const base::reflection::CType* fn_71009155a8();
+void fn_7100d3f7f4();
+void fn_71000e8118(UnkReflField* field, u64 index);
+void fn_7100d362b4(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("pShape", true), fn_71009155a8(), 0xffffffff, -1, -1);
+    [&] {
+        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_pShape_GetterFunction", true))) {
+            fn->name = base::global::UnkStrId("_m_pShape_GetterFunction", true);
+            fn->return_type = fn_71009155a8();
+            fn->field_0xb2 = 0;
+            fn->field_0x40 = nullptr;
+            fn->invoker = reinterpret_cast<void*>(&fn_7100d3f7f4);
+        }
+    }();
+    fn_71000e8118(base::reflection::refl_FindField(cls, base::global::CName("pShape")), cls->m_array_0x110.size() - 1);
+}
 bool fn_7100d3f74c(const void*, const void*) { return false; }
 s32 fn_7100d3f754() { return -1; }
 const base::reflection::CType& fn_7100d3f75c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

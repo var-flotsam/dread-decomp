@@ -10,6 +10,9 @@ Differences from upstream:
 - `lobject.h`: `twoto(x)` is `1L<<(x)` (64-bit node counts and masks; `ltable` matches only with it).
 - Build flag: the game's Lua has no type-based alias analysis (`-fno-strict-aliasing`,
   `buildcfg.LUA_FLAGS`); `lcode`, `llex` and `lparser` match completely only with it.
+- `lundump.c`: the game's loader is the older one that byte-swaps chunks of the other endianness
+  (`LoadState.swap`, `LoadMem` with a swap loop, `LoadHeader` ignores header byte 6) and has no
+  `nCcalls` depth check in `LoadFunction`; booleans are stored without `!= 0` (marked `dread-decomp:`).
 - The standalone `lua.c`, `luac.c` and `print.c` are omitted.
 - The game replaces `print` (`luaB_print` differs); that replacement is game code, not part of
   this directory.

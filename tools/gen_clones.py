@@ -2497,6 +2497,39 @@ def strid_vec_dtor(orig, addr, tag, insns):
         [f"template void base::{fn}<{tag}, {int(off.group(1), 0):#x}>(char*);"])
 
 
+def path_record_copy_ctor(orig, addr, tag, insns):
+    """refl_PathRecordCopyCtor (UnkCloneRecords.h): the middle and the class's vtables (through the
+    GOT) around the string pools."""
+    if len(insns) != 67 or insns[5] != ("bl", "#0x7100067ebc") or insns[46] != ("ldp", "x9, x10, [x20, #0x40]") \
+            or insns[63] != ("str", "x8, [x19]"):
+        return None
+    mid, vt = got_target(orig, insns, 6), got_at(orig, insns, 58, 60)
+    if mid is None or vt is None or got_target(orig, insns, 12) != STRID_POOL \
+            or got_target(orig, insns, 25) != FILE_PATH_POOL:
+        return None
+    return "\n".join([f"extern char g_unk_{x:x}[];" for x in sorted({mid, vt})] + [
+        f"template <> struct base::UnkCopyCtorTraits<{tag}> {{",
+        f"    static char* mid_vtable() {{ return g_unk_{mid:x}; }}",
+        f"    static char* vtable() {{ return g_unk_{vt:x}; }}", "};",
+        f"template void base::refl_PathRecordCopyCtor<{tag}>(char*, const char*);"])
+
+
+def callback_entry_dtor(orig, addr, tag, insns):
+    """UnkCallbackEntry / UnkKeyedCallbackEntry destructors (UnkCloneRecords.h): both vtables; the
+    list's offset picks the record."""
+    if len(insns) != 75 or insns[20] != ("bl", f"#{RELEASE:#x}") or got_target(orig, insns, 4) != STRID_POOL:
+        return None
+    rec = {("str", "x8, [x19, #8]"): "UnkKeyedCallbackEntry", ("str", "x8, [x19]"): "UnkCallbackEntry"}.get(insns[28])
+    vt, base = got_target(orig, insns, 24), got_target(orig, insns, 37)
+    if not rec or vt is None or base is None or insns[41] != insns[28]:
+        return None
+    return "\n".join([f"extern char g_unk_{x:x}[];" for x in sorted({vt, base})] + [
+        f"template <> struct base::UnkCallbackTraits<{tag}> {{",
+        f"    static char* vtable() {{ return g_unk_{vt:x}; }}",
+        f"    static char* base_vtable() {{ return g_unk_{base:x}; }}", "};",
+        f"template base::{rec}<{tag}>::~{rec}();"])
+
+
 KINDS = {
     "strid_value_insert": Kind(None, "base/UnkStrIdValueVec.h", lambda tag, _: None, scan=strid_value_insert),
     "set_flag_notify": Kind(0x71001F31E8, "base/UnkCloneCalls.h", lambda tag, _: (
@@ -2533,6 +2566,13 @@ KINDS = {
         f"template void base::UnkSList<{tag}>::InsertBefore(const u64&, base::UnkSList<{tag}>::Node*);")),
     "callback_list_dtor": Kind(None, "base/UnkCloneHelpers.h", lambda tag, _: None, scan=callback_list_dtor),
     "strid_vec_dtor": Kind(None, "base/UnkCloneCalls.h", lambda tag, _: None, scan=strid_vec_dtor),
+    "strid_pair_record_assign": Kind(0x7100BC59FC, "base/UnkCloneRecords.h", lambda tag, _: (
+        f"template base::UnkStrIdPairRecord<{tag}>& base::UnkStrIdPairRecord<{tag}>::operator=("
+        f"const base::UnkStrIdPairRecord<{tag}>&);")),
+    "keyed_vec_array_clear": Kind(0x710027E494, "base/UnkCloneRecords.h", lambda tag, _: (
+        f"template void base::UnkKeyedVecArray<{tag}>::Clear();")),
+    "path_record_copy_ctor": Kind(None, "base/UnkCloneRecords.h", lambda tag, _: None, scan=path_record_copy_ctor),
+    "callback_entry_dtor": Kind(None, "base/UnkCloneRecords.h", lambda tag, _: None, scan=callback_entry_dtor),
     "variant_assign": Kind(0x71000C3CC0, "base/UnkCloneHelpers.h", lambda tag, ins: variant(tag, ins, "refl_VariantAssign", "{v}*"),
                            exact=False),
     "variant_assign_pair": Kind(0x71000C3C14, "base/UnkCloneHelpers.h", lambda tag, ins: variant(
@@ -2792,7 +2832,11 @@ def defined_in_src() -> set[int]:
             m = gen_lift.NAME_RE.match(line)
             if m and ("{" in line or not line.rstrip().endswith(";")):
                 skip.add(int(m.group(1), 16))
-        skip |= {int(a, 16) for a in gen_lift.TAG_RE.findall(text)}
+            # A clone tag defines a function only where something is instantiated or specialised
+            # with it; a forward declaration or alias that reuses one (src/game_lo/) doesn't.
+            for t in gen_lift.TAG_RE.finditer(line):
+                if not t.group(0).startswith("UnkClone_fn_") or line.lstrip().startswith("template"):
+                    skip.add(int(t.group(1), 16))
     return skip
 
 

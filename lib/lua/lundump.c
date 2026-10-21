@@ -25,6 +25,7 @@ typedef struct {
  ZIO* Z;
  Mbuffer* b;
  const char* name;
+ int swap;  /* dread-decomp: the game's loader byte-swaps foreign-endian chunks */
 } LoadState;
 
 #ifdef LUAC_TRUST_BINARIES
@@ -40,7 +41,6 @@ static void error(LoadState* S, const char* why)
 }
 #endif
 
-#define LoadMem(S,b,n,size)	LoadBlock(S,b,(n)*(size))
 #define	LoadByte(S)		(lu_byte)LoadChar(S)
 #define LoadVar(S,x)		LoadMem(S,&x,1,sizeof(x))
 #define LoadVector(S,b,n,size)	LoadMem(S,b,n,size)
@@ -49,6 +49,42 @@ static void LoadBlock(LoadState* S, void* b, size_t size)
 {
  size_t r=luaZ_read(S->Z,b,size);
  IF (r!=0, "unexpected end");
+}
+
+/* dread-decomp: LoadMem, as in Lua 5.1 before 5.1.3 */
+static void LoadMem(LoadState* S, void* b, int n, size_t size)
+{
+ LoadBlock(S,b,n*size);
+ if (S->swap)
+ {
+  char* p=(char*) b;
+  char c;
+  while (n--)
+  {
+   switch (size)
+   {
+    case 1:
+	break;
+    case 2:
+	c=p[0]; p[0]=p[1]; p[1]=c;
+	break;
+    case 4:
+	c=p[0]; p[0]=p[3]; p[3]=c;
+	c=p[1]; p[1]=p[2]; p[2]=c;
+	break;
+    case 8:
+	c=p[0]; p[0]=p[7]; p[7]=c;
+	c=p[1]; p[1]=p[6]; p[6]=c;
+	c=p[2]; p[2]=p[5]; p[5]=c;
+	c=p[3]; p[3]=p[4]; p[4]=c;
+	break;
+    default:
+	IF (1, "bad size");
+	break;
+   }
+   p+=size;
+  }
+ }
 }
 
 static int LoadChar(LoadState* S)
@@ -114,7 +150,7 @@ static void LoadConstants(LoadState* S, Proto* f)
    	setnilvalue(o);
 	break;
    case LUA_TBOOLEAN:
-   	setbvalue(o,LoadChar(S)!=0);
+   	setbvalue(o,LoadChar(S));
 	break;
    case LUA_TNUMBER:
 	setnvalue(o,LoadNumber(S));
@@ -161,7 +197,6 @@ static void LoadDebug(LoadState* S, Proto* f)
 static Proto* LoadFunction(LoadState* S, TString* p)
 {
  Proto* f;
- if (++S->L->nCcalls > LUAI_MAXCCALLS) error(S,"code too deep");
  f=luaF_newproto(S->L);
  setptvalue2s(S->L,S->L->top,f); incr_top(S->L);
  f->source=LoadString(S); if (f->source==NULL) f->source=p;
@@ -176,7 +211,6 @@ static Proto* LoadFunction(LoadState* S, TString* p)
  LoadDebug(S,f);
  IF (!luaG_checkcode(f), "bad code");
  S->L->top--;
- S->L->nCcalls--;
  return f;
 }
 
@@ -186,6 +220,7 @@ static void LoadHeader(LoadState* S)
  char s[LUAC_HEADERSIZE];
  luaU_header(h);
  LoadBlock(S,s,LUAC_HEADERSIZE);
+ S->swap=(s[6]!=h[6]); s[6]=h[6];  /* dread-decomp: endianness is ignored, not rejected */
  IF (memcmp(h,s,LUAC_HEADERSIZE)!=0, "bad header");
 }
 

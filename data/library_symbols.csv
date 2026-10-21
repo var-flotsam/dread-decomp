@@ -168,6 +168,7 @@ address,size,name,library
 0x71010aa260,384,discharge2reg,lua
 0x71010aa3e0,244,condjump,lua
 0x71010aa4e0,144,lua_getstack,lua
+0x71010aa570,1160,lua_getinfo,lua
 0x71010aaa00,36,luaG_checkcode,lua
 0x71010aaa30,1288,symbexec,lua
 0x71010aaf40,204,luaG_typeerror,lua
@@ -349,7 +350,10 @@ address,size,name,library
 0x71010bae00,124,luaT_init,lua
 0x71010bae80,84,luaT_gettm,lua
 0x71010baee0,92,luaT_gettmbyobj,lua
+0x71010baf40,316,luaU_undump,lua
+0x71010bb080,3816,LoadFunction,lua
 0x71010bbf70,36,luaU_header,lua
+0x71010bbfa0,292,LoadString,lua
 0x71010bc0d0,128,luaV_tonumber,lua
 0x71010bc150,136,luaV_tostring,lua
 0x71010bc1e0,444,luaV_gettable,lua
@@ -357,6 +361,7 @@ address,size,name,library
 0x71010bc5b0,532,luaV_lessthan,lua
 0x71010bc7d0,572,luaV_equalval,lua
 0x71010bca10,856,luaV_concat,lua
+0x71010bcd70,7848,luaV_execute,lua
 0x71010bec20,92,luaZ_fill,lua
 0x71010bec80,108,luaZ_lookahead,lua
 0x71010becf0,16,luaZ_init,lua

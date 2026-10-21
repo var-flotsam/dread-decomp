@@ -13,6 +13,23 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "base/reflection/UnkReflValue.h"
+struct UnkClone_fn_7100314dc4;
+extern char g_unk_7101a20ed8[];
+template <> struct base::UnkDtorTraits<UnkClone_fn_7100314dc4> {
+    static char* vtable() { return g_unk_7101a20ed8; }
+};
+template void base::refl_DeletingDtorNoBase<UnkClone_fn_7100314dc4, base::UnkRefPtrAt<0x10>, base::UnkRefPtrAt<0x8>>(char*);
+struct UnkClone_fn_71003162a8;
+void fn_7100014948(void* e, const base::global::CStrId& name, u32 value);
+void fn_71003162a8(void* e) {
+    fn_7100014948(e, base::global::CStrId("None", true), 0x0);
+    fn_7100014948(e, base::global::CStrId("Idle", true), 0x1);
+    fn_7100014948(e, base::global::CStrId("LockingTargets", true), 0x2);
+    fn_7100014948(e, base::global::CStrId("Firing", true), 0x3);
+    fn_7100014948(e, base::global::CStrId("Invalid", true), 0x7fffffff);
+}
+struct UnkClone_fn_7100317550;
+template base::UnkNamedObject* base::refl_RegisterNamed<UnkClone_fn_7100317550>(base::UnkNamedRegistry*, base::UnkNamedObject*, const char*);
 struct UnkClone_fn_7100318298;
 extern char g_unk_7101a23040[];
 template <> struct base::UnkDtorTraits<UnkClone_fn_7100318298> {
@@ -5479,17 +5496,3 @@ template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71005e34f4> {
 template base::reflection::UnkReflValue base::reflection::refl_GetIterElementValue<UnkClone_fn_71005e34f4, UnkCloneBlock<UnkClone_fn_71005e34f4, 0x28>>(void*, char*);
 struct UnkClone_fn_71005e3630;
 template void base::refl_IterValueDestroy<UnkCloneOwnerVec<UnkClone_fn_71005e3630>, u32>(void*);
-struct UnkClone_fn_71005e3738;
-extern char g_unk_71726eee58[];
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71005e3738> {
-    static const CType* type() { return reinterpret_cast<const CType*>(g_unk_71726eee58); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetIterElementValue<UnkClone_fn_71005e3738, UnkCloneBlock<UnkClone_fn_71005e3738, 0x28>>(void*, char*);
-struct UnkClone_fn_71005e3d30;
-void fn_71005e3fb0(void*, void*);
-template <> struct base::UnkOwnerVecInsertTraits<UnkClone_fn_71005e3d30> {
-    static void append(void* v, void* e) { fn_71005e3fb0(v, e); }
-};
-template void base::refl_OwnerVecInsert(base::UnkVector<UnkCloneOwnerVecHandle<UnkClone_fn_71005e3d30>>*, UnkCloneOwnerVecHandle<UnkClone_fn_71005e3d30>*, u32);
-struct UnkClone_fn_71005e3fb0;
-template void base::UnkVector<UnkCloneVecHandle<UnkClone_fn_71005e3fb0>>::EmplaceBack(UnkCloneVecHandle<UnkClone_fn_71005e3fb0>&&);

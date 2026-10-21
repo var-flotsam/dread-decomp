@@ -30,6 +30,7 @@ remain as reference only. Each stream edits only the files in its row.
 | 4. Reflection leftovers | Next steps, item 2, "Left" | `tools/gen_reflection.py`, `tools/refl_attrs.py`, `tools/gen_types.py`, `src/reflection/`, `src/reflection_types/`, `include/base/reflection/` (not `UnkReflStatics.h`) | `cloud/refl-<topic>` |
 | 5. Lua leftovers | Next steps, item 3 (library code, no game progress) | `lib/lua/`, `tools/sigmatch.py`, `tools/libcheck_lua.py`, `data/library_symbols.csv` | `cloud/lua-<topic>` |
 | 6. Guarded statics | Next steps, item 1, guarded function-local statics (taken over from stream 2, which gives up these files) | `tools/gen_statics.py`, `include/base/reflection/UnkReflStatics.h`, `src/reflection_statics/` | `cloud/statics-<topic>` |
+| 7. Game logic by hand | One-off `U` game functions (not in shape families; not engine/, script/, reflection, Lua) decompiled by hand, one file per function. Split by address at 0x71008cde78 (the median `U` game-function address on 2026-10-21): below it `src/game_lo/`, from it up `src/game_hi/` | `src/game_lo/`, `src/game_hi/` | `claude/project-thread-<id>` |
 
 All may change `data/functions/*.csv` (statuses only, through `check.py --update`). Anything
 else (shared headers, `check.py`, `CLAUDE.md`) goes through the owner first.
@@ -77,7 +78,7 @@ Snapshot as of 2026-10-18 (fifth Phase 4 session; branches `phase-4-4-clones` (v
 | 4.2 Lua | **Done.** Upstream 5.1.4 vendored in `lib/lua/` (2 marked config changes); 286 Lua functions located in `main` by `tools/sigmatch.py` (status `L`) |
 | 4.3 Reflection | **In progress.** all 2,354 located class getters (444 in TUs with other statics, through padding); all 1,010 other `CClass` descriptor constructors (skipped TUs and getter-less types); 1,911 of 1,957 class attribute/member-field functions, 478 other registration functions plus 54 in their class getter's TU, and all 1,006 out-of-line reflected-function initialisers (`src/reflection/`, `tools/gen_reflection.py`, `tools/refl_attrs.py`). Pointer types: 993 standalone getter/constructor pairs plus 108 generated in their pointee's TU; all 238 `CEnumType` constructors; 178 standalone `CCollectionType` constructors plus those in their element class's TU (`src/reflection_types/`, `tools/gen_types.py`) |
 | Small functions | **In progress.** `tools/gen_lift.py` lifts functions of up to 512 bytes from their instructions and keeps byte-identical ones: 46,219 functions, 2.02 MB (`src/lifted/`; second-round store-order, may_alias and memcpy rewrites; sret functions, stack locals, a goto-based flat mode for crossing branches and loops) |
-| Guarded statics | **In progress.** `tools/gen_statics.py`: attribute keys, static string ids (weak and internal), typed lookups, registries and the tables built from them, type-id senders and singleton parts, on function-local statics (`include/base/reflection/UnkReflStatics.h`): 831 functions, 163 KB (`src/reflection_statics/`) |
+| Guarded statics | **In progress.** `tools/gen_statics.py`: attribute keys, static string ids (weak and internal), typed lookups, registries and the tables built from them, type-id senders and singleton parts, on function-local statics (`include/base/reflection/UnkReflStatics.h`): 853 functions, 169 KB (`src/reflection_statics/`) |
 | Repeated templates | **In progress.** `tools/gen_clones.py`: hand-matched templates instantiated once per copy (`UnkClone_fn_<addr>` tags): the named registry, `UnkVector` methods per element kind, the reflection collection iterator, a deferred set, and scan kinds (facts per candidate): destructors of string-id/refcounted members, property reads and string-id writes, enum value lists, and shape-family templates (`UnkCloneHelpers.h`): 6,256 functions, 1.22 MB (`src/clones/`) |
 | 4.4 Core engine types | **In progress.** String ids (`CStrId` incl. copy-assignment, `UnkStrId`), the growable array `base::UnkVector` (push, grow-at, insert, remove, clear/free, move) and its allocator interface; reflected-function initialisers now match (below) |
 | 4.5+ Boot to title screen | Not started; plan below |
@@ -360,7 +361,9 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
      (61), static string ids (386 from a literal, 55 copied from a global), typed lookups by name
      (203), registries (51), tables built from a registry (`refl_RegistryMapInit`, 37) and internal
      static string ids (plain functions, 13), type-id senders (`refl_SendTypeId`, 11) and
-     parts of one singleton (`refl_GetSingletonPart`, 5). Left (stream 6 census, 2026-10-21): 2,483 `U` functions call
+     parts of one singleton (`refl_GetSingletonPart`, 5), typed lookups whose class is internal to
+     another TU (`refl_FindTypedHidden`, 5) and attribute keys with a u16 at +0x14 or a global value
+     type (`refl_GetAttrKeyFlags`, `key_global`; 17). Left (stream 6 census, 2026-10-21): 2,483 `U` functions call
      `__cxa_guard_acquire` (2.28 MB); 2.15 MB of that is one-offs (game code with a static
      inside), and only ~130 KB is in same-shape families of two or more. Older notes: the 437
      class getters in skipped TUs, primitive type getters (`refl_GetType<unsigned>`, 30 × 480 B:
@@ -421,10 +424,15 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
      session (7 functions), as do `CName` values stored as a hash (`UnkNameHash`) and copies of
      any global `CStrId` (2), ids copied from a string-id table built on first use
      (`refl_GetStrIdTable`, 3) and enum defaults kept in guarded weak statics (`refl_GetEnumZero`,
-     `refl_GetEnumNot8`, 4) (all in `UnkReflAttributes.h`). Left there (30, one-offs):
-     `fn_7100408c20` (33 KB), `CRntString` copied from a live object, other attribute builders
-     (`fn_7100228ca0`, 5), `CVector4D` copied from a constant, reflected functions inside field
-     functions, field lookups by name hash, and 4 that parse but differ. List them by failure point with a
+     `refl_GetEnumNot8`, 4), the `CRntString` inside the string `g_unk_7101d470e0` points to
+     (`refl_GlobalRntString`, 3) and string-list values (`UnkReflStringList` built from an
+     initializer list by `fn_7100228ca0`, 4), the same from a string-id table
+     (`refl_RntStringOf`, 1) and calls on a field found by its name's hash, setting a
+     getter-backed field's function index (`refl_FindField`, 4) (all in `UnkReflAttributes.h`).
+     Left there (17, one-offs): `fn_7100408c20` (33 KB), `CVector4D` copied from a constant,
+     `fn_71004ded68`, `fn_7100beaf3c`, `fn_71000961f4`, `fn_710044e7fc`, `fn_7100b8bb94` (a u16
+     global or'd into a version), 6 registration functions outside class getters, and 4 that
+     parse but differ (`fn_71004ade14`, `fn_71007a2fb4`, `fn_7100add284`, `fn_7100db69a8`). List them by failure point with a
      copy of `refl_attrs.parse` whose `return None`s raise their line number.
    - Descriptor helpers of **collection iterator values** (`UnkIterValue<T, K>`, K = index or key):
      move-construct, destroy, copy-assign and compare as `gen_clones` kinds (word, owner,
@@ -553,6 +561,13 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
      `UnkSList.h`; the count is a union member), `callback_list_dtor` (`UnkCallbackList`'s
      destructor and deleting destructor), `strid_vec_dtor`, and `iter_value_destroy_poly_vec_key16`
      now reads its key and state offsets (`UnkClonePolyVecPad`; +8).
+   - Done (2026-10-21, cloud, stream 2, round 10): +29 functions in a new `UnkCloneRecords.h`:
+     `strid_pair_record_assign` (8), `keyed_vec_array_clear` (7; the vector loop counts in u32),
+     `path_record_copy_ctor` (8; string ids and a file path copied in place) and
+     `callback_entry_dtor` (6; `UnkCallbackListShort` plus a string id, with or without a key).
+     Looked at and left: 0x7100769fc0 (a per-TU static initialiser). Not yet tried: 0x71000df484,
+     0x71000df5ec, 0x71005b4d50, 0x7100af30a0, 0x71011d437c, 0x71000d8428, 0x7100240168,
+     0x7100431cec, 0x71000d78ec, 0x71000d5888, 0x71000d1fec.
    - Enum static initialisers and the other per-TU static initialisers. These define
      globals, so they need the TU's data definitions (the 160 B ones are mostly lifted already).
    - Slot `0x28`/`0x30`/`0x38`/`0x48`/`0x50` helpers of other classes (need class layouts):
@@ -562,16 +577,21 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
      templates this session: the top families were reflected-function initialisers (839 × 380 B)
      and `CClass` constructors (777 × 388 B). `tools/shape_census.py` now does this (`--top`,
      `--max-size`); `--family ADDR` lists the operands that vary across a family's copies.
-3. **Lua leftovers:** mostly done (thirteenth session, cloud). The game's Lua needs
-   `-fno-strict-aliasing` (`buildcfg.LUA_FLAGS`), a 64-bit `twoto`, `(float)strtod` and a 16-byte
-   aligned jump buffer (all in `lib/lua/README.md`); `sigmatch.py` now names look-alikes (the
-   `math_*` wrappers, `lua_error`, `luaL_register`) from the `luaL_Reg` binding tables and, for
-   the rest, by order. 363 of 465 compiled Lua functions are named (was 286). Still open:
-   `lua_getinfo`, `luaV_execute` (same instructions, different block order), `lua_gethook`/
-   `sethook`/`getlocal`/`setlocal`, `LoadFunction`/`luaU_undump`, `luaB_print` and the
-   allocator/`lua_cpcall` group in `lapi`; the `io`/`os`/`package`/`debug` libraries mostly differ
-   (the game replaced them). `libcheck_lua.py` could not be rerun (lua.org is not reachable from
-   the cloud sandbox).
+3. **Lua leftovers:** mostly done (thirteenth session, cloud; continued in the fourteenth). The
+   game's Lua needs `-fno-strict-aliasing` (`buildcfg.LUA_FLAGS`), a 64-bit `twoto`, `(float)strtod`
+   and a 16-byte aligned jump buffer, and its binary-chunk loader is the older byte-swapping one
+   (`lundump.c`: `S->swap`, a swapping `LoadMem`, no `nCcalls` check, `LoadChar` stored as is);
+   all in `lib/lua/README.md`. `sigmatch.py` names look-alikes (the `math_*` wrappers, `lua_error`,
+   `luaL_register`) from the `luaL_Reg` tables, by order for the rest, and now near-matches by
+   mnemonic sequence (mutual best, at least 0.8, 128 bytes or more). 368 of 466 compiled Lua
+   functions are named. `LoadFunction` and `luaU_undump` match exactly; `luaB_print` is game code
+   (`src/lua/fn_71010a6440.cpp`, `O`: output through a function pointer, not `fputs`). Still
+   differing by a few instruction-selection choices: `lua_getinfo` (one pre-indexed load) and
+   `luaV_execute` (six hunks: `GETARG_Bx` index, `RKB`/`RKC` extends, a pre-indexed load); neither
+   `GETARG_*` macro variants nor loop rewrites fixed them. The 55 other unnamed functions in the
+   Lua address range are game code (the game dropped most of `io`/`os`/`package`/`debug`), not
+   library look-alikes, and the 8-byte hook getters and the allocator group fold into other code.
+   `libcheck_lua.py` could not be rerun (lua.org is not reachable from the cloud sandbox).
 4. Core engine types the slice depends on. Done: the inline code of `CStrId`/`UnkStrId` (copy,
    move-assign, destructors) and `UnkVector` with the allocator interface. Done (thirteenth
    session, cloud, `src/base/`): CRC64 (`fn_7100001570`, `O`: reflected table CRC-64, init ~0,
