@@ -1557,9 +1557,44 @@ HEADER = ['#include "types.h"', '#define HIDDEN __attribute__((visibility("hidde
             for t in ("u8", "u16", "u32", "u64", "s8", "s16", "s32", "f32", "f64")], ""]
 
 
+_ORIG: asmdiff.Original | None = None  # for forked lifting workers
+
+
+def _lift_part(job: tuple[list[int], bool, frozenset]):
+    part, want_why, opts = job
+    why: dict[int, tuple[int, str]] | None = {} if want_why else None
+    return lift_serial(_ORIG, part, why, opts), why
+
+
 def lift_all(orig: asmdiff.Original, cands: list[int],
              why: dict[int, tuple[int, str]] | None = None,
              opts: frozenset = frozenset()) -> list[dict[int, tuple[str, set[str]]]]:
+    """lift_serial over slices of `cands` in parallel processes (each function is lifted on
+    its own, so the result doesn't depend on the slicing)."""
+    global _ORIG
+    import multiprocessing
+    import os
+    n = os.cpu_count() or 1
+    if n == 1 or len(cands) < 200 or "fork" not in multiprocessing.get_all_start_methods():
+        return lift_serial(orig, cands, why, opts)
+    _ORIG = orig
+    parts = [cands[k::n * 4] for k in range(n * 4)]
+    with multiprocessing.get_context("fork").Pool(n) as pool:
+        results = pool.map(_lift_part, [(p, why is not None, opts) for p in parts])
+    lifted: list[dict[int, tuple[str, set[str]]]] = []
+    for part_lifted, part_why in results:
+        for k, defs in enumerate(part_lifted):
+            if k == len(lifted):
+                lifted.append({})
+            lifted[k].update(defs)
+        if why is not None:
+            why.update(part_why)
+    return lifted
+
+
+def lift_serial(orig: asmdiff.Original, cands: list[int],
+                why: dict[int, tuple[int, str]] | None = None,
+                opts: frozenset = frozenset()) -> list[dict[int, tuple[str, set[str]]]]:
     """Every lifting attempt, in variant order: one {address: (definition, declarations)} per
     attempt. With `why`, the failure that got furthest is kept for each address (earliest
     attempt on a tie) as (instruction index, reason). `opts` are body rewrites (ROUND2)."""
