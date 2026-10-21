@@ -2480,6 +2480,23 @@ def iter_value_destroy_poly_vec_strid(tag, insns):
     return f"template void base::refl_IterValueDestroy<{elem}, {key_t}>(void*);"
 
 
+def strid_vec_dtor(orig, addr, tag, insns):
+    """refl_StrIdVecDtor / refl_StrIdVecDeletingDtor: the vtable, the array's offset and the base
+    destructor."""
+    if len(insns) not in (54, 56) or ("ccmp", "x8, x9, #4, ne") not in insns or ("bl", f"#{RELEASE:#x}") not in insns:
+        return None
+    vt = got_target(orig, insns, 4)
+    off = re.fullmatch(rf"x1, \[x0, {OFF}\]", insns[6][1])
+    base = [o for m, o in insns[-6:] if m in ("bl", "b") and o != f"#{OPERATOR_DELETE:#x}"]
+    if vt is None or insns[6][0] != "ldr" or not off or len(base) != 1:
+        return None
+    fn = "refl_StrIdVecDeletingDtor" if insns[-1] == ("b", f"#{OPERATOR_DELETE:#x}") else "refl_StrIdVecDtor"
+    b = target(base[0])
+    return "\n".join(call_traits(tag, [f"extern char g_unk_{vt:x}[];", f"void fn_{b:x}(char*);"], [
+        f"    static char* vtable() {{ return g_unk_{vt:x}; }}", f"    static void base(char* s) {{ fn_{b:x}(s); }}"]) +
+        [f"template void base::{fn}<{tag}, {int(off.group(1), 0):#x}>(char*);"])
+
+
 KINDS = {
     "strid_value_insert": Kind(None, "base/UnkStrIdValueVec.h", lambda tag, _: None, scan=strid_value_insert),
     "set_flag_notify": Kind(0x71001F31E8, "base/UnkCloneCalls.h", lambda tag, _: (
@@ -2515,6 +2532,7 @@ KINDS = {
     "slist_insert_before": Kind(0x7100240A00, "base/UnkSList.h", lambda tag, _: (
         f"template void base::UnkSList<{tag}>::InsertBefore(const u64&, base::UnkSList<{tag}>::Node*);")),
     "callback_list_dtor": Kind(None, "base/UnkCloneHelpers.h", lambda tag, _: None, scan=callback_list_dtor),
+    "strid_vec_dtor": Kind(None, "base/UnkCloneCalls.h", lambda tag, _: None, scan=strid_vec_dtor),
     "variant_assign": Kind(0x71000C3CC0, "base/UnkCloneHelpers.h", lambda tag, ins: variant(tag, ins, "refl_VariantAssign", "{v}*"),
                            exact=False),
     "variant_assign_pair": Kind(0x71000C3C14, "base/UnkCloneHelpers.h", lambda tag, ins: variant(

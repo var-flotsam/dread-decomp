@@ -348,4 +348,19 @@ void refl_KeyedArrayCopy(UnkKeyedCopyArray<Tag, Size>* self, const UnkKeyedCopyA
     }
 }
 
+// A destructor that frees an array of string ids at `Offset`, then calls base(); and its
+// deleting form (fn_71005b3168 and its copies).
+template <class Tag, u32 Offset>
+void refl_StrIdVecDtor(char* self) {
+    *reinterpret_cast<char**>(self) = UnkCallTraits<Tag>::vtable() + 0x10;
+    reinterpret_cast<UnkVector<UnkCloneStrId<Tag>>*>(self + Offset)->Free();
+    UnkCallTraits<Tag>::base(self);
+}
+
+template <class Tag, u32 Offset>
+void refl_StrIdVecDeletingDtor(char* self) {
+    refl_StrIdVecDtor<Tag, Offset>(self);
+    __builtin_operator_delete(self);
+}
+
 }  // namespace base
