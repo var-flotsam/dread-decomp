@@ -568,6 +568,14 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
      Looked at and left: 0x7100769fc0 (a per-TU static initialiser). Not yet tried: 0x71000df484,
      0x71000df5ec, 0x71005b4d50, 0x7100af30a0, 0x71011d437c, 0x71000d8428, 0x7100240168,
      0x7100431cec, 0x71000d78ec, 0x71000d5888, 0x71000d1fec.
+   - Done (2026-10-21, cloud, stream 2, round 11): +26 functions in `UnkCloneRecords.h`:
+     `strid_vec_record_copy_ctor` (6; a string-id vector with an out-of-line Reserve, element
+     stored bitwise), `add_function_holder` (7; the first libc++ `std::function` in `include/`,
+     copied into a heap holder whose vtable is stored before the members), `keyed_move_assign` (6)
+     and `keyed_move_array_clear` (7). Close but left: 0x71000df5ec (a keyed array shrink; the key
+     loop compares a 64-bit counter in 32 bits, which no counter type reproduced) and 0x7100240168
+     (`UnkSList` set-at: two instructions of scheduling in the inlined push-back; the loop counts
+     up, `for (u32 j = 0; j < idx; ++j)`). Skipped: 0x71011d437c (a reflected float setter).
    - Enum static initialisers and the other per-TU static initialisers. These define
      globals, so they need the TU's data definitions (the 160 B ones are mostly lifted already).
    - Slot `0x28`/`0x30`/`0x38`/`0x48`/`0x50` helpers of other classes (need class layouts):
