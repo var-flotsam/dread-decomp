@@ -173,6 +173,10 @@ def events(orig: asmdiff.Original, addr: int) -> list[Event] | None:
                 and facts.get(_key(cs, o[1].reg), ("",))[0] == "global" and not o[2].shift.type:
             # An address inside the object a global points to (only passed to calls).
             new[_key(cs, o[0].reg)] = ("gaddr", (facts[_key(cs, o[1].reg)][1], o[2].imm))
+        elif m == "add" and len(o) == 3 and o[2].type == capstone.arm64.ARM64_OP_IMM \
+                and facts.get(_key(cs, o[1].reg), ("",))[0] == "pfield" and not o[2].shift.type:
+            # The same for a pointer member of a global object.
+            new[_key(cs, o[0].reg)] = ("gaddr", (facts[_key(cs, o[1].reg)][1], o[2].imm))
         elif m in ("add", "sub") and len(o) == 3 and o[2].type == capstone.arm64.ARM64_OP_IMM \
                 and facts.get(_key(cs, o[1].reg), ("",))[0] in ("imm", "count") and not o[2].shift.type:
             kind, v = facts[_key(cs, o[1].reg)]
@@ -524,6 +528,13 @@ def parse(orig: asmdiff.Original, addr: int, class_getters: set[int]) -> tuple[l
             type_name, expr = "base::global::CRntString", f"base::global::CRntString({c_string(s[1])})"
         elif t == CRNT_COPY and s == ("gaddr", (GLOBAL_CSTRID, 0x10)):
             type_name, expr = "base::global::CRntString", "base::global::CRntString(refl_GlobalRntString())"
+        elif t == CRNT_COPY and s and s[0] == "gaddr" and isinstance(s[1][0], tuple) and s[1][1] == 0x10 \
+                and s[1][0][0] in statics:
+            # The same from an id in a string-id table built on first use.
+            base, disp = s[1][0]
+            type_name = "base::global::CRntString"
+            expr = (f"base::global::CRntString(base::reflection::refl_RntStringOf("
+                    f"base::reflection::refl_GetStrIdTable<{statics[base]:#x}>().ids[{disp // 8}]))")
         elif t == CRNT_COPY and s and s[0] == "ptr":
             decls.append(f"extern base::global::CRntString g_unk_{s[1]:x};")
             type_name, expr = "base::global::CRntString", f"base::global::CRntString(g_unk_{s[1]:x})"
@@ -734,6 +745,19 @@ def parse(orig: asmdiff.Original, addr: int, class_getters: set[int]) -> tuple[l
             if r is None:
                 return None
             i = r
+        elif evs[j].target == HASH and evs[j].regs.get("0", ("",))[0] == "str" \
+                and evs[j].regs.get("1") == ("imm", len(evs[j].regs["0"][1].encode("utf-8"))):
+            # A call on the field named by a hash (e.g. setting a getter-backed field's function
+            # index): fn_X(refl_FindField(cls, CName(name)), index).
+            name = evs[j].regs["0"][1]
+            k, vals = next_bl(j + 1)
+            index = index_expr(evs[k].regs.get("1")) if k < n else None
+            if vals or k >= n or evs[k].target in NOT_KEYS or evs[k].target <= 0 or index is None:
+                return None
+            decls.append(f"void fn_{evs[k].target:x}(UnkReflField* field, u64 index);")
+            body.append(f"    fn_{evs[k].target:x}(base::reflection::refl_FindField(cls, "
+                        f"base::global::CName({c_string(name)})), {index});")
+            i = k + 1
         elif evs[j].target == GET_ATTRS:
             r = attribute(j + 1, "fn_710009dd6c(cls)->")
             if r is None:

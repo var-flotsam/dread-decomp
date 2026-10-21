@@ -108,6 +108,37 @@ inline const base::global::CRntString& refl_GlobalRntString() {
 
 namespace base::reflection {
 
+// The same for an id in a string-id table (UnkStrIdTable): the count is incremented through a
+// may_alias pointer, so the id is reloaded after it, as in the original.
+inline const base::global::CRntString& refl_RntStringOf(const base::global::CStrId& id) {
+    typedef u32 __attribute__((may_alias)) a_u32;
+    ++*reinterpret_cast<a_u32*>(reinterpret_cast<u8*>(id.data) + 0x44);
+    return *reinterpret_cast<const base::global::CRntString*>(reinterpret_cast<u8*>(id.data) + 0x10);
+}
+
+// A class's member field by name (CClass+0xe8: fields of 0xb0 bytes, keyed by the name's
+// hash), or null.
+inline UnkReflField* refl_FindField(CClass* cls, const base::global::CName& name) {
+    struct Fields {
+        struct Slot {
+            u8 bytes[0xb0];
+        };
+        Slot* data;
+        const u64* keys;
+        u32 count;
+
+        Slot* Find(u64 key) {
+            for (u64 i = 0; i < count; ++i)
+                if (keys[i] == key)
+                    return &data[i];
+            return &data[count];
+        }
+    };
+    Fields& fields = *reinterpret_cast<Fields*>(&cls->m_array_0xe8);
+    auto* it = fields.Find(name.hash);
+    return it == &fields.data[fields.count] ? nullptr : reinterpret_cast<UnkReflField*>(it);
+}
+
 // A list value (base::UnkVector's layout) built from an initializer list, moved into a
 // reflected value and destroyed like UnkVector::Free.
 template <class T>
