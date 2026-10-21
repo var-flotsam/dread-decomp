@@ -5790,9 +5790,9 @@ address,size,name,name_source,subsystem,status
 0x7100af444c,352,GUI::CBossRushReport::refl_InitClass,reflection,gui,O
 0x7100af45b0,160,fn_7100af45b0,unknown,gui?,U
 0x7100af4650,748,fn_7100af4650,unknown,gui?,U
-0x7100af4940,932,fn_7100af4940,unknown,gui?,U
-0x7100af4cf0,932,fn_7100af4cf0,unknown,gui?,U
-0x7100af50a0,932,fn_7100af50a0,unknown,gui?,U
+0x7100af4940,932,fn_7100af4940,unknown,gui?,O
+0x7100af4cf0,932,fn_7100af4cf0,unknown,gui?,O
+0x7100af50a0,932,fn_7100af50a0,unknown,gui?,O
 0x7100af5450,188,fn_7100af5450,unknown,gui?,O
 0x7100af550c,372,fn_7100af550c,unknown,gui?,U
 0x7100af5680,504,fn_7100af5680,unknown,gui?,U
