@@ -24,7 +24,13 @@ lifts each one into C++ over `char*` parameters and keeps only the byte-identica
      memcpy ("copy").
 
 Usage: python tools/gen_lift.py --version 2.1.0
-Outputs are deterministic. Regenerate, never edit them.
+Outputs are deterministic. Regenerate, never edit them. There is one file per 64 KiB of
+address space, and each function follows its own declarations, so
+
+  python tools/gen_lift.py --prune
+
+drops the lifted copies of functions another source now defines (a new clone, a hand-written
+function, a merge) in seconds, with the result a full run would give for them.
 
 To measure a lifter change in a minute instead of a full run, --report (implied by --only and
 --sample) lifts, compiles and diffs a subset in build/gen_lift_report/ without touching
@@ -62,12 +68,12 @@ ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "src" / "lifted"
 BASE = 0x7100000000
 MAX_SIZE = 16384
-CHUNK = 1000  # functions per generated file
+RANGE_BITS = 16  # one generated file per 64 KiB of address space, so a file's contents depend on its range only
 # Functions per scratch TU: with -ffunction-sections, more than ~65k sections overflow the ELF
 # section index (SHN_XINDEX), which the object reader doesn't follow.
 SCRATCH_CHUNK = 8000
 NAME_RE = re.compile(r"^[A-Za-z_][\w:<>,*& ]*\bfn_([0-9a-f]{10})\(")  # a declaration or definition
-TAG_RE = re.compile(r"(?:UnkRefl_fn_|UnkClone_fn_|DREAD_REFL_\w*GETTER\()([0-9a-f]{10})\b")  # tagged definitions
+TAG_RE = re.compile(r"(?:UnkRefl_fn_|UnkClone_fn_|UnkTable_fn_|DREAD_REFL_\w*GETTER\()([0-9a-f]{10})\b")  # tagged definitions
 # (minimum call arguments, return mode): tried in this order. Return modes: "value" returns x0
 # (or s0) as set, "void" returns nothing, "ref" returns a pointer as a reference (Clang 9 then
 # doesn't turn a final call into a tail call, as in the original's `bl; ret`).
@@ -106,6 +112,19 @@ FTERNARY = {"fmadd": "{c} + {a} * {b}", "fmsub": "{c} - {a} * {b}",
 FTOINT = {"fcvtzs": "", "fcvtzu": "", "fcvtms": "__builtin_floor{s}", "fcvtmu": "__builtin_floor{s}",
           "fcvtps": "__builtin_ceil{s}", "fcvtpu": "__builtin_ceil{s}", "fcvtas": "__builtin_round{s}",
           "fcvtau": "__builtin_round{s}"}
+
+
+# Inlined helpers built on weak function-local statics, by the GOT slot of their guard: the
+# statement standing for the guard check and its out-of-line initialisation, and the calls
+# right after the check that belong to the helper. Their definitions are in HEADER (namespace
+# lift_guard), written like those in include/ (UnkReflStatics.h, CStrId.h).
+GUARD_ACQUIRE = 0x7101238da0  # __cxa_guard_acquire
+GUARDS = {
+    0x7101cba070: ("lift_guard::EnsureStringPool();", [0x710007fdb4]),
+    0x7101cbbb20: ("(void)lift_guard::GetSingleton();", []),
+    0x7101cbbcd8: ("(void)lift_guard::TypeId<lift_guard::TypeIdTag>::id();", []),
+    0x7101cbbcf8: ("(void)lift_guard::TypeId<lift_guard::TypeIdTag>::id();", []),
+}
 
 
 class Unsupported(Exception):
@@ -698,6 +717,71 @@ class Lifter:
 
     # -- driver -------------------------------------------------------------------------------
 
+    def find_guards(self, ins) -> None:
+        """Inlined GUARDS helpers: self.guard maps the ldarb of each to its statement and the
+        number of helper calls after the check; self.gskip holds the instructions it stands
+        for (the tbz, those calls, and the out-of-line initialisation reached from the tbz)."""
+        self.guard, self.gskip = {}, set()
+        at = {x.address: k for k, x in enumerate(ins)}
+        pages, slots = {}, {}
+        for k, x in enumerate(ins):
+            m, o = x.mnemonic, x.operands
+            if m == "adrp":
+                pages[o[0].reg] = o[1].imm
+            elif m == "ldr" and len(o) == 2 and o[1].type == arm64.ARM64_OP_MEM and o[1].mem.base in pages:
+                slots[o[0].reg] = pages[o[1].mem.base] + o[1].mem.disp
+            elif m == "ldarb" and slots.get(o[1].mem.base) in GUARDS and k + 1 < len(ins) \
+                    and x.address not in self.gskip:
+                stmt, calls = GUARDS[slots[o[1].mem.base]]
+                t = ins[k + 1]
+                if t.mnemonic != "tbz" or t.operands[0].reg != o[0].reg or t.operands[1].imm != 0:
+                    continue
+                after = ins[k + 2:k + 2 + len(calls)]
+                if [a.operands[0].imm if a.mnemonic == "bl" else None for a in after] != calls:
+                    continue
+                resume = t.address + 4
+                region, todo = set(), [t.operands[2].imm]
+                while todo:
+                    a = todo.pop()
+                    while a != resume and a not in region:
+                        if a not in at:
+                            raise Unsupported("guard")
+                        region.add(a)
+                        y = ins[at[a]]
+                        if y.mnemonic in ("ret", "br"):
+                            break
+                        tgt = [op.imm for op in y.operands if op.type == arm64.ARM64_OP_IMM]
+                        if y.mnemonic == "b":
+                            a = tgt[0]
+                            continue
+                        if y.mnemonic.startswith("b.") or y.mnemonic in ("cbz", "cbnz", "tbz", "tbnz"):
+                            todo.append(tgt[-1])
+                        a += 4
+                if not any(ins[at[a]].mnemonic == "bl" and ins[at[a]].operands[0].imm == GUARD_ACQUIRE
+                           for a in region):
+                    continue
+                # Nothing else may enter the initialisation.
+                for y in ins:
+                    if y.address in region or y.address == t.address:
+                        continue
+                    if any(op.type == arm64.ARM64_OP_IMM and op.imm in region for op in y.operands) and \
+                            (y.mnemonic in ("b", "cbz", "cbnz", "tbz", "tbnz") or y.mnemonic.startswith("b.")):
+                        raise Unsupported("guard")
+                self.guard[x.address] = (stmt, len(calls))
+                self.gskip |= region | {t.address} | {a.address for a in after}
+
+    def guard_step(self, x) -> bool:
+        """Emits a GUARDS helper at its ldarb; True if x was one or is part of one."""
+        if x.address in self.gskip:
+            return True
+        if x.address not in self.guard:
+            return False
+        stmt, calls = self.guard[x.address]
+        self.line(stmt)
+        if calls:
+            self.clobber()
+        return True
+
     def lift(self) -> tuple[str, set[str]] | None:
         orig, addr = self.orig, self.addr
         code = orig.function(addr)
@@ -709,8 +793,13 @@ class Lifter:
         if not self.setup_frame(ins):
             return self.fail("stack frame")
         try:
+            self.find_guards(ins)
             for self.pos, x in enumerate(ins):
+                if x.address in self.gskip:
+                    continue
                 self.close_to(x.address)
+                if self.live and self.guard_step(x):
+                    continue
                 if not self.live:
                     return self.fail("unreachable code")  # (or a jump-around we don't model)
                 if is_frame(x):
@@ -1365,12 +1454,15 @@ class FlatLifter(Lifter):
                         and addr <= op.imm < end:
                     targets.add(op.imm)
         try:
+            self.find_guards(ins)
             for self.pos, x in enumerate(ins):
+                if x.address in self.gskip:
+                    continue
                 if x.address in targets:
                     self.body.append(f"L_{x.address:x}:;")
                     self.s.cmp = None if x.address != addr else self.s.cmp
                     self.s.fcall = None
-                if is_frame(x):
+                if is_frame(x) or self.guard_step(x):
                     continue
                 m, o = x.mnemonic, x.operands
                 if m == "ret":
@@ -1411,18 +1503,25 @@ class FlatLifter(Lifter):
         return self.finish()
 
 
-def candidates(orig: asmdiff.Original) -> list[int]:
-    # Functions defined elsewhere in src/ (by hand or by another generator) are left alone.
+def defined_elsewhere() -> set[int]:
+    """Functions defined in src/ outside src/lifted/ (by hand or by another generator)."""
     skip = set()
     for f in (ROOT / "src").rglob("*.cpp"):
         if OUT not in f.parents:
             text = f.read_text(encoding="utf-8")
             for line in text.splitlines():
+                line = line.split("//", 1)[0]  # a trailing comment doesn't make a declaration a definition
                 m = NAME_RE.match(line)
                 if m and ("{" in line or not line.rstrip().endswith(";")):
                     skip.add(int(m.group(1), 16))
             # Template instantiations and macro-defined getters, named by their tags.
             skip |= {int(a, 16) for a in TAG_RE.findall(text)}
+    return skip
+
+
+def candidates(orig: asmdiff.Original) -> list[int]:
+    # Functions defined elsewhere in src/ are left alone.
+    skip = defined_elsewhere()
     rows = []
     for f in sorted((ROOT / "data" / "functions").glob("main_*.csv")):
         with f.open(newline="", encoding="utf-8") as fh:
@@ -1436,6 +1535,20 @@ HEADER = ['#include "types.h"', '#define HIDDEN __attribute__((visibility("hidde
           "inline f64 lift_f64(u64 v) { f64 f; __builtin_memcpy(&f, &v, 8); return f; }",
           "inline u32 lift_bits(f32 f) { u32 v; __builtin_memcpy(&v, &f, 4); return v; }",
           "inline u64 lift_bits(f64 f) { u64 v; __builtin_memcpy(&v, &f, 8); return v; }",
+          "// Inlined helpers on guarded statics (GUARDS).",
+          "namespace lift_guard {",
+          "u32 fn_7100080568(); void fn_710007fdb4(); extern char* g_unk_7101d47108;",
+          "struct StringPoolHolder { u8 unk_0x0[0xe8]; StringPoolHolder(u32 a, char** pool); ~StringPoolHolder(); };",
+          "inline void EnsureStringPool() { static StringPoolHolder s_holder(fn_7100080568(), &g_unk_7101d47108); fn_710007fdb4(); }",
+          "struct Singleton { Singleton(); ~Singleton(); };",
+          "inline Singleton& GetSingleton() { static Singleton s_singleton; return s_singleton; }",
+          "struct ZeroWord { u32 value; ZeroWord() : value(0) {} };",
+          "template <class T> struct TypeId {",
+          "    static ZeroWord& base() { static ZeroWord s_base; return s_base; }",
+          "    static u32& id() { static u32 s_id = (u8)~*reinterpret_cast<u8*>(&base()); return s_id; }",
+          "};",
+          "struct TypeIdTag;",
+          "}",
           "// Returned in memory through x8 (built in place); the real size is unknown.",
           "struct UnkResult { char data[0x100]; };",
           "// Accesses that may alias any other (the \"alias\" rewrite): the original reloads values",
@@ -1444,9 +1557,44 @@ HEADER = ['#include "types.h"', '#define HIDDEN __attribute__((visibility("hidde
             for t in ("u8", "u16", "u32", "u64", "s8", "s16", "s32", "f32", "f64")], ""]
 
 
+_ORIG: asmdiff.Original | None = None  # for forked lifting workers
+
+
+def _lift_part(job: tuple[list[int], bool, frozenset]):
+    part, want_why, opts = job
+    why: dict[int, tuple[int, str]] | None = {} if want_why else None
+    return lift_serial(_ORIG, part, why, opts), why
+
+
 def lift_all(orig: asmdiff.Original, cands: list[int],
              why: dict[int, tuple[int, str]] | None = None,
              opts: frozenset = frozenset()) -> list[dict[int, tuple[str, set[str]]]]:
+    """lift_serial over slices of `cands` in parallel processes (each function is lifted on
+    its own, so the result doesn't depend on the slicing)."""
+    global _ORIG
+    import multiprocessing
+    import os
+    n = os.cpu_count() or 1
+    if n == 1 or len(cands) < 200 or "fork" not in multiprocessing.get_all_start_methods():
+        return lift_serial(orig, cands, why, opts)
+    _ORIG = orig
+    parts = [cands[k::n * 4] for k in range(n * 4)]
+    with multiprocessing.get_context("fork").Pool(n) as pool:
+        results = pool.map(_lift_part, [(p, why is not None, opts) for p in parts])
+    lifted: list[dict[int, tuple[str, set[str]]]] = []
+    for part_lifted, part_why in results:
+        for k, defs in enumerate(part_lifted):
+            if k == len(lifted):
+                lifted.append({})
+            lifted[k].update(defs)
+        if why is not None:
+            why.update(part_why)
+    return lifted
+
+
+def lift_serial(orig: asmdiff.Original, cands: list[int],
+                why: dict[int, tuple[int, str]] | None = None,
+                opts: frozenset = frozenset()) -> list[dict[int, tuple[str, set[str]]]]:
     """Every lifting attempt, in variant order: one {address: (definition, declarations)} per
     attempt. With `why`, the failure that got furthest is kept for each address (earliest
     attempt on a tie) as (instruction index, reason). `opts` are body rewrites (ROUND2)."""
@@ -1485,13 +1633,14 @@ def lift_all(orig: asmdiff.Original, cands: list[int],
 
 
 def build_all(orig: asmdiff.Original, lifted: list[dict[int, tuple[str, set[str]]]],
-              work: Path) -> tuple[dict[int, tuple[str, set[str]]], set[int]]:
+              work: Path, best: dict | None = None) -> tuple[dict[int, tuple[str, set[str]]], set[int]]:
     """Compile every attempt in scratch TUs under `work` and diff them. Returns the first
     byte-identical definition of each address (variant order decides) and the addresses that
-    compiled in at least one attempt."""
+    compiled in at least one attempt. With `best`, also keeps the closest attempt of each
+    address there as (score, definition, declarations), the earliest on a tie."""
     work.mkdir(parents=True, exist_ok=True)
 
-    def build(job: tuple[int, int]) -> tuple[set[int], set[int]]:
+    def build(job: tuple[int, int]) -> tuple[set[int], set[int], dict[int, float]]:
         k, part = job
         addrs = sorted(lifted[k])[part * SCRATCH_CHUNK:(part + 1) * SCRATCH_CHUNK]
         defs = {a: lifted[k][a] for a in addrs}
@@ -1506,7 +1655,8 @@ def build_all(orig: asmdiff.Original, lifted: list[dict[int, tuple[str, set[str]
             src.write_text("\n".join(lines) + "\n", encoding="utf-8")
             r = subprocess.run(buildcfg.cxx_command(src, obj, ["-ferror-limit=0"]), capture_output=True, text=True)
             if r.returncode == 0:
-                return {res.address for res in asmdiff.diff_object(obj, orig) if res.matching} & set(defs), set(defs)
+                res = [x for x in asmdiff.diff_object(obj, orig) if x.address in defs]
+                return {x.address for x in res if x.matching}, set(defs), {x.address: x.score for x in res}
             # Drop the functions with errors (a lifter gap) and try again.
             starts = sorted(owner)
             bad = set()
@@ -1526,11 +1676,15 @@ def build_all(orig: asmdiff.Original, lifted: list[dict[int, tuple[str, set[str]
         results = list(pool.map(build, jobs))
     chosen: dict[int, tuple[str, set[str]]] = {}
     for k in range(len(lifted)):  # variant order decides
-        for (kk, _), (ok, _) in zip(jobs, results):
+        for (kk, _), (ok, _, scores) in zip(jobs, results):
             if kk == k:
                 for a in sorted(ok):
                     chosen.setdefault(a, lifted[k][a])
-    return chosen, set().union(*[c for _, c in results])
+                if best is not None:
+                    for a, sc in scores.items():
+                        if a not in best or sc > best[a][0]:
+                            best[a] = (sc, *lifted[k][a])
+    return chosen, set().union(*[c for _, c, _ in results])
 
 
 # Rewrites tried, in order, on functions that compile but don't match as lifted. Each is a
@@ -1552,6 +1706,29 @@ def lift_rounds(orig: asmdiff.Original, cands: list[int], work: Path,
         for a in sorted(more):
             chosen.setdefault(a, more[a])
     return chosen, compiled, lifted
+
+
+BEST = ROOT / "build" / "lift_best"
+
+
+def write_best(orig: asmdiff.Original, addrs: list[int]) -> None:
+    """The closest lifted attempt of each address (first round and every ROUND2 rewrite), as a
+    starting point for matching it by hand: build/lift_best/fn_<addr>.cpp, which
+    tools/trymatch.py builds and diffs. Never commit these (they are machine lifts that don't
+    match); a hand-matched version goes in src/ under its own name."""
+    best: dict[int, tuple] = {}
+    for k, opts in enumerate([frozenset()] + ROUND2):
+        build_all(orig, lift_all(orig, addrs, opts=opts), ROOT / "build" / "gen_lift_best" / str(k), best)
+    BEST.mkdir(parents=True, exist_ok=True)
+    for a in addrs:
+        if a not in best:
+            print(f"{a:x}: no attempt compiled")
+            continue
+        sc, definition, decls = best[a]
+        (BEST / f"fn_{a:x}.cpp").write_text("\n".join(
+            [f"// Closest lifted attempt ({sc:.1%} of instructions matching); tools/gen_lift.py --best."]
+            + HEADER + sorted(decls) + [definition, ""]), encoding="utf-8", newline="\n")
+        print(f"{a:x}: {sc:6.1%}  {(BEST / f'fn_{a:x}.cpp').relative_to(ROOT).as_posix()}")
 
 
 BANDS =[("<256", 0, 256), ("256-1K", 256, 1024), ("1-2K", 1024, 2048), (">2K", 2048, 1 << 62)]
@@ -1605,9 +1782,52 @@ def parse_only(spec: str) -> list[int]:
     return sorted({int(t, 16) for t in text.split() if t.strip()})
 
 
+NOTE = ["// Generated by tools/gen_lift.py from main; regenerate rather than edit.",
+        "// Small functions lifted from their instructions, byte-identical to the original.",
+        "// Each function follows its own declarations, so dropping one leaves the rest unchanged."]
+
+
+def write_out(blocks: dict[int, str]) -> None:
+    """src/lifted/: one file per address range; each block is a function's declarations then
+    its definition."""
+    if OUT.exists():
+        shutil.rmtree(OUT)
+    OUT.mkdir(parents=True)
+    files: dict[int, list[int]] = {}
+    for a in sorted(blocks):
+        files.setdefault((a - BASE) >> RANGE_BITS, []).append(a)
+    for k, addrs in files.items():
+        (OUT / f"lifted_{k:03x}.cpp").write_text(
+            "\n".join(NOTE + HEADER + [blocks[a] + "\n" for a in addrs]), encoding="utf-8", newline="\n")
+
+
+def read_out() -> dict[int, str]:
+    """The blocks write_out wrote, by address."""
+    blocks = {}
+    for f in sorted(OUT.glob("*.cpp")):
+        for block in f.read_text(encoding="utf-8").split("\n\n"):
+            for line in block.splitlines():
+                m = NAME_RE.match(line)
+                if m and line.endswith("{"):
+                    blocks[int(m.group(1), 16)] = block.strip("\n")
+                    break
+    return blocks
+
+
+def prune() -> int:
+    """Drop the lifted copies of functions that another source now defines (after a merge, or a
+    new clone or hand-written function). Gives what a full run would, minus anything a full run
+    would newly lift."""
+    blocks = read_out()
+    drop = defined_elsewhere() & set(blocks)
+    write_out({a: b for a, b in blocks.items() if a not in drop})
+    print(f"dropped {len(drop)} of {len(blocks)} lifted functions: " + " ".join(f"{a:x}" for a in sorted(drop)))
+    return 0
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--version", required=True)
+    ap.add_argument("--version", help="required except with --prune")
     ap.add_argument("--only", help="ADDR[,ADDR...] or @file (one address per line): measure just these")
     ap.add_argument("--sample", type=int, help="measure a random sample of N candidates")
     ap.add_argument("--seed", type=int, default=0, help="seed for --sample (default 0)")
@@ -1615,8 +1835,19 @@ def main() -> int:
                     help="print outcomes by size band instead of writing src/lifted/ (implied by --only/--sample)")
     ap.add_argument("--new", action="store_true", help="with --report: skip functions src/lifted/ already defines")
     ap.add_argument("--examples", type=int, default=0, help="with --report: up to K addresses per outcome")
+    ap.add_argument("--best", help="ADDR[,ADDR...] or @file: write the closest lifted attempt of each to "
+                                   "build/lift_best/ (a starting point for hand matching)")
+    ap.add_argument("--prune", action="store_true",
+                    help="only drop functions now defined elsewhere in src/ from src/lifted/ (seconds; no lifting)")
     args = ap.parse_args()
+    if args.prune:
+        return prune()
+    if not args.version:
+        ap.error("--version is required")
     orig = asmdiff.Original(args.version)
+    if args.best:
+        write_best(orig, parse_only(args.best))
+        return 0
     cands = candidates(orig)
 
     if args.report or args.only or args.sample:
@@ -1632,19 +1863,8 @@ def main() -> int:
         return 0
 
     chosen, _, lifted = lift_rounds(orig, cands, ROOT / "build" / "gen_lift")
-
-    if OUT.exists():
-        shutil.rmtree(OUT)
-    OUT.mkdir(parents=True)
-    note = ["// Generated by tools/gen_lift.py from main; regenerate rather than edit.",
-            "// Small functions lifted from their instructions, byte-identical to the original."]
+    write_out({a: "\n".join(sorted(chosen[a][1]) + [chosen[a][0]]) for a in chosen})
     ok = sorted(chosen)
-    for k in range(0, len(ok), CHUNK):
-        chunk = ok[k:k + CHUNK]
-        decls = sorted({d for a in chunk for d in chosen[a][1]})
-        (OUT / f"lifted_{k // CHUNK:02d}.cpp").write_text(
-            "\n".join(note + HEADER + decls + [""] + [chosen[a][0] + "\n" for a in chunk]),
-            encoding="utf-8", newline="\n")
     lifted_any = set().union(*lifted)
     print(f"{len(cands)} candidates, {len(lifted_any)} lifted; {len(ok)} byte-identical "
           f"({sum(orig.sizes[a] for a in ok)} bytes)")

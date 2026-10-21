@@ -314,7 +314,7 @@ address,size,name,name_source,subsystem,status
 0x710060aa60,388,CNailongThornsAttack::refl_InitClass,reflection,game/ai,O
 0x710060abe4,716,fn_710060abe4,unknown,unknown,O
 0x710060aeb0,384,fn_710060aeb0,unknown,unknown,O
-0x710060b030,228,fn_710060b030,unknown,unknown,U
+0x710060b030,228,fn_710060b030,unknown,unknown,O
 0x710060b114,220,fn_710060b114,unknown,unknown,O
 0x710060b1f0,36,fn_710060b1f0,unknown,unknown,O
 0x710060b214,96,fn_710060b214,unknown,unknown,O
@@ -394,7 +394,7 @@ address,size,name,name_source,subsystem,status
 0x710061017c,240,COffset::refl_GetClass,reflection,game,O
 0x710061026c,972,fn_710061026c,unknown,game?,O
 0x7100610638,388,COffset::refl_InitClass,reflection,game,O
-0x71006107bc,188,fn_71006107bc,unknown,game?,U
+0x71006107bc,188,fn_71006107bc,unknown,game?,O
 0x7100610878,120,fn_7100610878,unknown,game?,O
 0x71006108f0,128,fn_71006108f0,unknown,game?,O
 0x7100610970,220,fn_7100610970,unknown,game?,O
@@ -421,7 +421,7 @@ address,size,name,name_source,subsystem,status
 0x7100612a1c,240,CPattern::refl_GetClass,reflection,game,O
 0x7100612b0c,476,fn_7100612b0c,unknown,game?,O
 0x7100612ce8,388,CPattern::refl_InitClass,reflection,game,O
-0x7100612e6c,224,fn_7100612e6c,unknown,unknown,U
+0x7100612e6c,224,fn_7100612e6c,unknown,unknown,O
 0x7100612f4c,248,fn_7100612f4c,unknown,unknown,U
 0x7100613044,36,fn_7100613044,unknown,unknown,O
 0x7100613068,220,fn_7100613068,unknown,unknown,O
