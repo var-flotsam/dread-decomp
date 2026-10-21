@@ -32,6 +32,13 @@ remain as reference only. Each stream edits only the files in its row.
 | 6. Guarded statics | Next steps, item 1, guarded function-local statics (taken over from stream 2, which gives up these files) | `tools/gen_statics.py`, `include/base/reflection/UnkReflStatics.h`, `src/reflection_statics/` | `cloud/statics-<topic>` |
 | 7. Game logic by hand | One-off `U` game functions (not in shape families; not engine/, script/, reflection, Lua) decompiled by hand, one file per function. Split by address at 0x71008cde78 (the median `U` game-function address on 2026-10-21): below it `src/game_lo/`, from it up `src/game_hi/` | `src/game_lo/`, `src/game_hi/` | `claude/project-thread-<id>` |
 
+**Starting points for hand matching.** `python tools/gen_lift.py --version 2.1.0 --best ADDR[,ADDR...]`
+(or `--best @file`, one address per line) lifts each function in every variant and rewrite round
+and writes the closest attempt to `build/lift_best/fn_<addr>.cpp` (gitignored; the first line gives
+its instruction match), ready for `tools/trymatch.py`. About 1 s per function plus one compile per
+variant. The attempt is `char*` arithmetic over registers; give it real types, then move the
+matched function into your own files. Never commit `build/lift_best/`.
+
 All may change `data/functions/*.csv` (statuses only, through `check.py --update`). Anything
 else (shared headers, `check.py`, `CLAUDE.md`) goes through the owner first.
 

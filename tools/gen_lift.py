@@ -1633,13 +1633,14 @@ def lift_serial(orig: asmdiff.Original, cands: list[int],
 
 
 def build_all(orig: asmdiff.Original, lifted: list[dict[int, tuple[str, set[str]]]],
-              work: Path) -> tuple[dict[int, tuple[str, set[str]]], set[int]]:
+              work: Path, best: dict | None = None) -> tuple[dict[int, tuple[str, set[str]]], set[int]]:
     """Compile every attempt in scratch TUs under `work` and diff them. Returns the first
     byte-identical definition of each address (variant order decides) and the addresses that
-    compiled in at least one attempt."""
+    compiled in at least one attempt. With `best`, also keeps the closest attempt of each
+    address there as (score, definition, declarations), the earliest on a tie."""
     work.mkdir(parents=True, exist_ok=True)
 
-    def build(job: tuple[int, int]) -> tuple[set[int], set[int]]:
+    def build(job: tuple[int, int]) -> tuple[set[int], set[int], dict[int, float]]:
         k, part = job
         addrs = sorted(lifted[k])[part * SCRATCH_CHUNK:(part + 1) * SCRATCH_CHUNK]
         defs = {a: lifted[k][a] for a in addrs}
@@ -1654,7 +1655,8 @@ def build_all(orig: asmdiff.Original, lifted: list[dict[int, tuple[str, set[str]
             src.write_text("\n".join(lines) + "\n", encoding="utf-8")
             r = subprocess.run(buildcfg.cxx_command(src, obj, ["-ferror-limit=0"]), capture_output=True, text=True)
             if r.returncode == 0:
-                return {res.address for res in asmdiff.diff_object(obj, orig) if res.matching} & set(defs), set(defs)
+                res = [x for x in asmdiff.diff_object(obj, orig) if x.address in defs]
+                return {x.address for x in res if x.matching}, set(defs), {x.address: x.score for x in res}
             # Drop the functions with errors (a lifter gap) and try again.
             starts = sorted(owner)
             bad = set()
@@ -1674,11 +1676,15 @@ def build_all(orig: asmdiff.Original, lifted: list[dict[int, tuple[str, set[str]
         results = list(pool.map(build, jobs))
     chosen: dict[int, tuple[str, set[str]]] = {}
     for k in range(len(lifted)):  # variant order decides
-        for (kk, _), (ok, _) in zip(jobs, results):
+        for (kk, _), (ok, _, scores) in zip(jobs, results):
             if kk == k:
                 for a in sorted(ok):
                     chosen.setdefault(a, lifted[k][a])
-    return chosen, set().union(*[c for _, c in results])
+                if best is not None:
+                    for a, sc in scores.items():
+                        if a not in best or sc > best[a][0]:
+                            best[a] = (sc, *lifted[k][a])
+    return chosen, set().union(*[c for _, c, _ in results])
 
 
 # Rewrites tried, in order, on functions that compile but don't match as lifted. Each is a
@@ -1700,6 +1706,29 @@ def lift_rounds(orig: asmdiff.Original, cands: list[int], work: Path,
         for a in sorted(more):
             chosen.setdefault(a, more[a])
     return chosen, compiled, lifted
+
+
+BEST = ROOT / "build" / "lift_best"
+
+
+def write_best(orig: asmdiff.Original, addrs: list[int]) -> None:
+    """The closest lifted attempt of each address (first round and every ROUND2 rewrite), as a
+    starting point for matching it by hand: build/lift_best/fn_<addr>.cpp, which
+    tools/trymatch.py builds and diffs. Never commit these (they are machine lifts that don't
+    match); a hand-matched version goes in src/ under its own name."""
+    best: dict[int, tuple] = {}
+    for k, opts in enumerate([frozenset()] + ROUND2):
+        build_all(orig, lift_all(orig, addrs, opts=opts), ROOT / "build" / "gen_lift_best" / str(k), best)
+    BEST.mkdir(parents=True, exist_ok=True)
+    for a in addrs:
+        if a not in best:
+            print(f"{a:x}: no attempt compiled")
+            continue
+        sc, definition, decls = best[a]
+        (BEST / f"fn_{a:x}.cpp").write_text("\n".join(
+            [f"// Closest lifted attempt ({sc:.1%} of instructions matching); tools/gen_lift.py --best."]
+            + HEADER + sorted(decls) + [definition, ""]), encoding="utf-8", newline="\n")
+        print(f"{a:x}: {sc:6.1%}  {(BEST / f'fn_{a:x}.cpp').relative_to(ROOT).as_posix()}")
 
 
 BANDS =[("<256", 0, 256), ("256-1K", 256, 1024), ("1-2K", 1024, 2048), (">2K", 2048, 1 << 62)]
@@ -1806,12 +1835,17 @@ def main() -> int:
                     help="print outcomes by size band instead of writing src/lifted/ (implied by --only/--sample)")
     ap.add_argument("--new", action="store_true", help="with --report: skip functions src/lifted/ already defines")
     ap.add_argument("--examples", type=int, default=0, help="with --report: up to K addresses per outcome")
+    ap.add_argument("--best", help="ADDR[,ADDR...] or @file: write the closest lifted attempt of each to "
+                                   "build/lift_best/ (a starting point for hand matching)")
     ap.add_argument("--prune", action="store_true",
                     help="only drop functions now defined elsewhere in src/ from src/lifted/ (seconds; no lifting)")
     args = ap.parse_args()
     if args.prune:
         return prune()
     orig = asmdiff.Original(args.version)
+    if args.best:
+        write_best(orig, parse_only(args.best))
+        return 0
     cands = candidates(orig)
 
     if args.report or args.only or args.sample:
