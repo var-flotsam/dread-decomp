@@ -10,11 +10,18 @@ offsets) can be read back from the code:
                 fn_71000407f0 not generated), and a function that passes each literal with an empty
                 temporary to fn_7100065b14 (fn_7100057eb8). One original translation unit,
                 in that order.
+  video_map     The loading screen's setup (fn_7100ef378c): two widgets, then 79 inserts of
+                (key, video path, label, five flags) into a chained hash map, each inlined.
+                Two entries copy a global path instead of building one from a literal.
 
 The entries are recovered by a small register simulator over the straight-line code and
 checked against both functions; any surprise stops the generator. The output is compiled and
 diffed, and the result printed. The table's destructor isn't generated: it differs only in
 register allocation.
+
+Generating video_map also depends on CFilePathStrId's copy being a defaulted copy of its pointer
+(UnkFilePathStrIdBase), as UnkStrIdBase's is for CStrId: the pointer is then copied as an integer,
+which fixes the operand order of the compare in its copy constructor.
 
 Usage: python tools/gen_tables.py --version 2.1.0
 Outputs are deterministic. Regenerate, never edit them.
@@ -48,6 +55,16 @@ CRC64 = 0x7100001570
 TMP_CTOR = 0x710007e704
 TMP_DTOR = 0x710007ecd4
 NAME_SINK = 0x7100065b14
+
+# video_map addresses
+VIDEO_FN = 0x7100ef378c
+PATH_CTOR = 0x71000166c8
+STRID_CTOR = 0x71000003d4
+GLOBAL_PATH = 0x71729db168  # a CFilePathStrId copied by two entries
+VIDEO_DEFAULT_FLAGS = (1, 1, 0, 0, 0)
+# Keys inserted with the copy taken inside Insert (InsertCopy): the original has the two
+# moved-from ids in the other order for these, and only this contiguous run reproduces it.
+VIDEO_COPY_KEYS = range(49, 72)
 
 
 class TableError(Exception):
@@ -260,13 +277,291 @@ def generate_strid_table(original: asmdiff.Original) -> str:
     return "".join(lines)
 
 
+def video_entries(original: asmdiff.Original) -> list[tuple[int, bytes | None, bytes, tuple[int, ...]]]:
+    """(key, path literal or None for the global path, label, flags) per insert of fn_7100ef378c.
+
+    Each insert allocates its node through a virtual call (blr); the literals are the arguments of
+    the path and string-id constructors before it, the key and flags the node stores after it."""
+    insns = list(CS.disasm(original.function(VIDEO_FN), VIDEO_FN))
+    calls = [k for k, i in enumerate(insns) if i.mnemonic == "blr"]
+
+    def literal_arg(k: int) -> bytes:
+        # adrp x1, page; add x1, x1, #lo (the string argument of the call at k)
+        lo = None
+        for i in reversed(insns[max(0, k - 10):k]):
+            if i.mnemonic == "add" and i.op_str.startswith("x1, x1, #"):
+                lo = imm(i.op_str.split(", ")[2])
+            if i.mnemonic == "adrp" and i.op_str.startswith("x1,") and lo is not None:
+                return cstring(original, imm(i.op_str.split(", ")[1]) + lo)
+        raise TableError(f"video_map: no string argument for the call at {insns[k].address:#x}")
+
+    sizes = {"str": 4, "strb": 1, "strh": 2, "stur": 4, "sturb": 1, "sturh": 2}
+    out = []
+    start = 0
+    for n, b in enumerate(calls):
+        path = label = None
+        global_path = False
+        for k in range(start, b):
+            i = insns[k]
+            if i.mnemonic == "bl" and imm(i.op_str) == PATH_CTOR:
+                path = literal_arg(k)
+            elif i.mnemonic == "bl" and imm(i.op_str) == STRID_CTOR:
+                label = literal_arg(k)
+            elif i.mnemonic == "ldr" and "[" in i.op_str and "#" in i.op_str:
+                # adrp xN, page; ldr xM, [xN, #lo] (the global path's pointer)
+                base = i.op_str.split("[")[1].split(",")[0]
+                for j in reversed(insns[max(start, k - 4):k]):
+                    if j.mnemonic == "adrp" and j.op_str.split(",")[0] == base:
+                        if imm(j.op_str.split(", ")[1]) + imm(i.op_str.split("#")[1].rstrip("]")) == GLOBAL_PATH:
+                            global_path = True
+                        break
+        if label is None or (path is None) == (not global_path):
+            raise TableError(f"video_map: insert {n} has no label or an unclear path")
+        consts: dict[str, int] = {}  # by register number
+        key = None
+        flags: dict[int, int] = {}
+        end = calls[n + 1] if n + 1 < len(calls) else len(insns)
+        for k in range(start, end):
+            i = insns[k]
+            ops = [o.strip() for o in i.op_str.split(",")]
+            if i.mnemonic == "mov" and ops[1].startswith("#"):
+                consts[ops[0][1:]] = imm(ops[1]) & 0xFFFFFFFF
+            elif i.mnemonic == "movk":
+                shift = imm(ops[2].split()[-1]) if len(ops) > 2 else 0
+                r = ops[0][1:]
+                consts[r] = (consts.get(r, 0) & ~(0xFFFF << shift)) | (imm(ops[1]) << shift)
+            elif k > b and i.mnemonic in sizes and ops[1].startswith("[x0"):
+                value = 0 if ops[0] in ("wzr", "xzr") else consts.get(ops[0][1:])
+                off = imm(ops[2].rstrip("]")) if len(ops) > 2 else 0
+                size = 8 if sizes[i.mnemonic] == 4 and ops[0].startswith("x") else sizes[i.mnemonic]
+                if value is None:
+                    if off == 0 or off < 0x1d and off + size > 0x18:
+                        raise TableError(f"video_map: unknown key or flags stored at {i.address:#x}")
+                    continue  # the path and label pointers
+                if off == 0 and size == 4:
+                    key = value
+                for q in range(size):
+                    if 0x18 <= off + q <= 0x1c:
+                        flags[off + q] = (value >> (8 * q)) & 0xFF
+            if k > b and i.mnemonic == "b":
+                break
+        if key is None or sorted(flags) != list(range(0x18, 0x1d)) or any(v > 1 for v in flags.values()):
+            raise TableError(f"video_map: insert {n} has no key or unexpected flags")
+        out.append((key, None if global_path else path, label, tuple(flags[o] for o in range(0x18, 0x1d))))
+        start = b + 1
+    return out
+
+
+VIDEO_HEADER = """\
+// GENERATED by tools/gen_tables.py: do not edit; regenerate.
+// The loading screen's setup: two widgets, then {count} videos (path, label, flags) inserted by key
+// into a chained hash map (the insert inlined each time).
+
+#include <new>
+
+#include "base/UnkVector.h"
+#include "base/global/CFilePathStrId.h"
+#include "types.h"
+
+using namespace base::global;
+
+#define HIDDEN __attribute__((visibility("hidden")))
+
+struct UnkVideo {{
+    CFilePathStrId path;
+    CStrId label;
+    bool unk_0x10;
+    bool unk_0x11;
+    bool unk_0x12;
+    bool unk_0x13;
+    bool unk_0x14;
+
+    UnkVideo(const CFilePathStrId& p, const CStrId& l, bool a = true, bool b = true, bool c = false,
+             bool d = false, bool e = false)
+        : path(p), label(l), unk_0x10(a), unk_0x11(b), unk_0x12(c), unk_0x13(d), unk_0x14(e) {{}}
+}};
+
+// A node's copy of an UnkVideo, moved in: the ids are taken over and the source's set to empty.
+struct UnkVideoValue {{
+    UnkStringData* path;
+    UnkStringData* label;
+    u8 unk_0x10;
+    u8 unk_0x11;
+    u8 unk_0x12;
+    u8 unk_0x13;
+    u8 unk_0x14;
+
+    UnkVideoValue(UnkVideo& v) {{
+        path = v.path.data;
+        v.path.data = &g_unk_7101d47200->empty;
+        label = v.label.data;
+        v.label.data = &g_unk_7101d47108->empty;
+        unk_0x10 = v.unk_0x10;
+        unk_0x11 = v.unk_0x11;
+        unk_0x12 = v.unk_0x12;
+        unk_0x13 = v.unk_0x13;
+        unk_0x14 = v.unk_0x14;
+    }}
+}};
+
+struct UnkVideoNode {{
+    u32 key;
+    UnkVideoValue value;
+    UnkVideoNode* next = nullptr;
+    UnkVideoNode* prev = nullptr;
+    UnkVideoNode* chain = nullptr;  // the next node in the same bucket
+
+    UnkVideoNode(u32 k, UnkVideo& v) : key(k), value(v) {{}}
+}};
+
+// A key and a copy of the value, passed by value to Insert.
+struct UnkVideoEntry {{
+    u32 key;
+    UnkVideo value;
+
+    UnkVideoEntry(u32 k, const UnkVideo& v) : key(k), value(v) {{}}
+}};
+
+// The map's layout as base/UnkHashMap.h describes it (allocator, count, buckets, node list).
+struct UnkVideoMap {{
+    base::UnkAllocator* alloc;
+    u32 alloc_flags;
+    u32 count;
+    UnkVideoNode** buckets;
+    u32 used;
+    u32 bucket_count;
+    u8 unk_0x20[0x18];
+    UnkVideoNode* tail;
+    UnkVideoNode* head;
+
+    __attribute__((always_inline)) void Add(u32 key, UnkVideo& value) {{
+        UnkVideoNode** bucket = nullptr;
+        if (used) {{
+            u32 index = key % bucket_count;
+            bucket = buckets + index;
+        }}
+        UnkVideoNode* first = *bucket;
+        UnkVideoNode* n = static_cast<UnkVideoNode*>(alloc->vf_0x40(sizeof(UnkVideoNode), 8, alloc_flags));
+        if (n)
+            new (n) UnkVideoNode(key, value);
+        n->chain = first;
+        *bucket = n;
+        if (!head) {{
+            head = n;
+        }} else if (tail) {{
+            // Not a typed field store: the original reloads the tail after it.
+            *reinterpret_cast<UnkVideoNode**>(reinterpret_cast<char*>(n) + 0x28) = tail;
+            tail->next = n;
+        }}
+        tail = n;
+        ++count;
+    }}
+    __attribute__((always_inline)) void Insert(UnkVideoEntry entry) {{ Add(entry.key, entry.value); }}
+    // The same with the copy taken here (the moved-from ids are released in the other order).
+    __attribute__((always_inline)) void InsertCopy(u32 key, const UnkVideo& value) {{
+        UnkVideo copy(value);
+        Add(key, copy);
+    }}
+}};
+
+struct UnkRender {{
+    u8 unk_0x0[0x78];
+    u8* unk_0x78;
+    u8 unk_0x80[0x8];
+    union {{  // a store the original reloads around
+        u32 unk_0x88;
+    }};
+}};
+struct UnkWidget {{
+    u8 unk_0x0[0x18];
+    u8 unk_0x18[0x160];
+    UnkRender* unk_0x178;
+}};
+struct UnkScene {{
+    u8 unk_0x0[0x218];
+    void* unk_0x218;
+}};
+struct UnkWidgetArg {{
+    u64 unk_0x0;
+    u32 unk_0x8;
+
+    UnkWidgetArg() : unk_0x0(0), unk_0x8(0) {{}}
+}};
+extern UnkScene* g_unk_7101d47100;
+extern u8 g_unk_7101d46ee0;
+extern u8 unk_71729db160[] HIDDEN;
+extern CFilePathStrId unk_{global_path:x} HIDDEN;
+void fn_710021d3d4(void* a, void* b, UnkWidget** out, void* owner);
+bool fn_7100219ae0(UnkScene* scene, UnkWidget* widget, u32 layer);
+void fn_71001c3504(UnkRender* render, void* p);
+void fn_710020ac34(void* p, u32 v);
+void fn_710019c284(u8* p);
+void fn_710019c564(u8* p, f32 a, f32 b, f32 c, f32 d);
+void fn_710020a4c4(void* p, const UnkWidgetArg& arg);
+
+struct UnkLoadingScreen {{
+    UnkVideoMap videos;
+    u8 unk_0x48[0x108 - 0x48];
+    UnkWidget* unk_0x108;
+    UnkWidget* unk_0x110;
+}};
+void fn_7100f003e8(UnkLoadingScreen* self, s32 v);
+void fn_7100f004dc(UnkLoadingScreen* self);
+
+inline UnkWidget* UnkCreateWidget(u32 layer) {{
+    UnkScene* scene = g_unk_7101d47100;
+    UnkWidget* widget = nullptr;
+    fn_710021d3d4(scene->unk_0x218, nullptr, &widget, &g_unk_7101d46ee0);
+    fn_7100219ae0(scene, widget, layer);
+    return widget;
+}}
+
+inline void UnkSetUpWidget(UnkWidget*& w, u32 layer) {{
+    w = UnkCreateWidget(layer);
+    fn_71001c3504(w->unk_0x178, unk_71729db160);
+    fn_710020ac34(w->unk_0x18, 0);
+    u8* p = w->unk_0x178->unk_0x78;
+    p[0x181] = 0;
+    fn_710019c284(p);
+    w->unk_0x178->unk_0x88 = 0;
+    fn_710019c564(w->unk_0x178->unk_0x78, 1.0f, 1.0f, 1.0f, 1.0f);
+    fn_710020a4c4(w->unk_0x18, UnkWidgetArg());
+}}
+
+void fn_{video_fn:x}(UnkLoadingScreen* self) {{
+    UnkSetUpWidget(self->unk_0x108, 2);
+    UnkSetUpWidget(self->unk_0x110, 3);
+    fn_7100f003e8(self, -0x16);
+    fn_7100f004dc(self);
+"""
+
+
+def generate_video_map(original: asmdiff.Original) -> str:
+    entries = video_entries(original)
+    lines = [VIDEO_HEADER.format(count=len(entries), global_path=GLOBAL_PATH, video_fn=VIDEO_FN)]
+    for key, path, label, flags in entries:
+        args = list(flags)
+        while args and args[-1] == VIDEO_DEFAULT_FLAGS[len(args) - 1]:
+            args.pop()
+        extra = "".join(", true" if f else ", false" for f in args)
+        p = f"CFilePathStrId({literal(path)}, true)" if path else f"CFilePathStrId(unk_{GLOBAL_PATH:x})"
+        value = f"UnkVideo({p}, CStrId({literal(label)}, true){extra})"
+        if key in VIDEO_COPY_KEYS:
+            lines.append(f"    self->videos.InsertCopy({key}, {value});\n")
+        else:
+            lines.append(f"    self->videos.Insert(UnkVideoEntry({key}, {value}));\n")
+    lines.append("}\n")
+    return "".join(lines)
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--version", required=True)
     args = ap.parse_args()
 
     original = asmdiff.Original(args.version)
-    outputs = {f"strid_table_{TABLE_CTOR:x}.cpp": generate_strid_table(original)}
+    outputs = {f"strid_table_{TABLE_CTOR:x}.cpp": generate_strid_table(original),
+               f"video_map_{VIDEO_FN:x}.cpp": generate_video_map(original)}
 
     OUT.mkdir(parents=True, exist_ok=True)
     for f in OUT.glob("*.cpp"):

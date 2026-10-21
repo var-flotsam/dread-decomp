@@ -6,7 +6,9 @@ For the next developer, human or AI, picking up this project. Read this, then `C
 
 **Fourteenth session (2026-10-21, Linux cloud, branch `claude/project-thread-slp42f`):** probe of the
 ten largest `U` functions (Next steps, "Giant functions"); new generator `tools/gen_tables.py`
-(`src/tables/`, stream 8). `gen_tables.py` and `check.py --update` were rerun.
+(`src/tables/`, stream 8): the strid table, then the loading screen's video map (`video_map` kind;
+`include/base/global/CFilePathStrId.h` now keeps its pointer in `UnkFilePathStrIdBase`, no regressions).
+`gen_tables.py` and `check.py --update` were rerun.
 
 **Thirteenth session (2026-10-21, Linux cloud, branch `claude/project-thread-m3b90j`):** core engine
 types (Next steps, item 4): the string pool, CRC64 and the allocator getter in `src/base/`
@@ -654,7 +656,7 @@ The ten largest `U` functions held 458 KB (2.4 points). What they are:
 | 0x7100057eb8 | 56 KB | Passes each of the same 1,198 literals with an empty 0x30-byte temporary to `fn_7100065b14` (a string escaper) | **O**, `tools/gen_tables.py` |
 | 0x71000406dc | 276 B | The ids' constructor (string, length, hash, flag) | **O**, `tools/gen_tables.py` |
 | 0x7100db8dec | 63 KB | Boss rush setup: member string-id assignments, then ~230 inlined pushes of entries (literals, enum values) into pool-backed vectors (`udiv` slot math, allocator vcalls) | Semi-regular (35 chunk shapes). Hand-match one push, then generate the entries: est. 2-4 h |
-| 0x7100ef378c | 52 KB | Loading screen setup: ~1.7 KB of object setup, then 77 inlined hash-map inserts of (enum key, `CFilePathStrId` video path, `CStrId` label) | Same approach (one 656-byte insert per entry): est. 2-4 h |
+| 0x7100ef378c | 52 KB | Loading screen setup: two widgets, then 79 inlined hash-map inserts of (enum key, `CFilePathStrId` video path, `CStrId` label, five flags) | **O**, `tools/gen_tables.py` (`video_map`). Keys 49-71 use `InsertCopy` (the copy taken inside the insert): the original's register allocation differs in that stretch and only that source shape reproduces it, so it is a shape match, not a known source difference. Needed `CFilePathStrId`'s pointer in a base struct with a defaulted copy (as `CStrId`'s `UnkStrIdBase`), which sets the compare order in its copy constructor |
 | 0x7100408c20 | 34 KB | Tunable registration (field name, editor description, `refl_GetType<float>` ...) | Reflection-attribute style (stream 4's `refl_attrs.py` shapes); 94 chunk shapes |
 | 0x7100c66c60 | 30 KB | Float-heavy game logic (collision, `sqrtf`) | Hand only; not regular (211 shapes in 244 calls) |
 | 0x7100b66018 | 28 KB | Inventory GUI (beam list composition), 18 guarded statics | Irregular; hand only |
