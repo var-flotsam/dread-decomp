@@ -422,10 +422,13 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
      (`refl_GetStrIdTable`, 3) and enum defaults kept in guarded weak statics (`refl_GetEnumZero`,
      `refl_GetEnumNot8`, 4), the `CRntString` inside the string `g_unk_7101d470e0` points to
      (`refl_GlobalRntString`, 3) and string-list values (`UnkReflStringList` built from an
-     initializer list by `fn_7100228ca0`, 4) (all in `UnkReflAttributes.h`). Left there (22,
-     one-offs): `fn_7100408c20` (33 KB), `CRntString` copied from other globals, `CVector4D`
-     copied from a constant, reflected functions inside field functions, field lookups by name
-     hash, and 4 that parse but differ. List them by failure point with a
+     initializer list by `fn_7100228ca0`, 4), the same from a string-id table
+     (`refl_RntStringOf`, 1) and calls on a field found by its name's hash, setting a
+     getter-backed field's function index (`refl_FindField`, 4) (all in `UnkReflAttributes.h`).
+     Left there (17, one-offs): `fn_7100408c20` (33 KB), `CVector4D` copied from a constant,
+     `fn_71004ded68`, `fn_7100beaf3c`, `fn_71000961f4`, `fn_710044e7fc`, `fn_7100b8bb94` (a u16
+     global or'd into a version), 6 registration functions outside class getters, and 4 that
+     parse but differ (`fn_71004ade14`, `fn_71007a2fb4`, `fn_7100add284`, `fn_7100db69a8`). List them by failure point with a
      copy of `refl_attrs.parse` whose `return None`s raise their line number.
    - Descriptor helpers of **collection iterator values** (`UnkIterValue<T, K>`, K = index or key):
      move-construct, destroy, copy-assign and compare as `gen_clones` kinds (word, owner,

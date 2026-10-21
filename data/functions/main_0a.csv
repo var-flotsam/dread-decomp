@@ -754,7 +754,7 @@ address,size,name,name_source,subsystem,status
 0x7100a1e21c,696,fn_7100a1e21c,unknown,game/components?,O
 0x7100a1e4d4,4,fn_7100a1e4d4,unknown,game/components?,O
 0x7100a1e4d8,244,CSpecialEnergyComponent::refl_GetClass,reflection,game/components,O
-0x7100a1e5cc,2252,fn_7100a1e5cc,unknown,game/components?,U
+0x7100a1e5cc,2252,fn_7100a1e5cc,unknown,game/components?,O
 0x7100a1ee98,352,CSpecialEnergyComponent::refl_InitClass,reflection,game/components,O
 0x7100a1eff8,180,fn_7100a1eff8,unknown,unknown,O
 0x7100a1f0ac,380,fn_7100a1f0ac,unknown,unknown,O
@@ -3061,7 +3061,7 @@ address,size,name,name_source,subsystem,status
 0x7100a796f0,160,fn_7100a796f0,unknown,game/characters?,O
 0x7100a79790,4,fn_7100a79790,unknown,game/characters?,O
 0x7100a79794,244,CCharClassUsableComponent::refl_GetClass,reflection,game/characters,O
-0x7100a79888,6792,fn_7100a79888,unknown,game/characters?,U
+0x7100a79888,6792,fn_7100a79888,unknown,game/characters?,O
 0x7100a7b310,388,CCharClassUsableComponent::refl_InitClass,reflection,game/characters,O
 0x7100a7b494,844,fn_7100a7b494,unknown,unknown,U
 0x7100a7b7e0,1664,fn_7100a7b7e0,unknown,unknown,U

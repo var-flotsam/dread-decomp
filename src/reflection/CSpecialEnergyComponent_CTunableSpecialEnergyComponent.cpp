@@ -75,6 +75,62 @@ DREAD_REFL_CLASS_GETTER(7100a1db44, 7100a1e098, "CSpecialEnergyComponent::CTunab
 // CSpecialEnergyComponent
 DREAD_REFL_TAG(7100a1ee98);
 void fn_7100a1e4d4(base::reflection::CClass*) {}
+void fn_7100a1eff8(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+const base::reflection::UnkReflAttrKey& fn_71000904d0();
+void fn_7100a20250();
+void fn_7100a1f0ac(UnkReflFunction* fn, const char* name);
+void fn_7100a202f8();
+void fn_71000e8118(UnkReflField* field, u64 index);
+void fn_7100a1f228(UnkReflFunction* fn, const char* name);
+void fn_71000e8180(UnkReflField* field, u64 index);
+void fn_7100a203a8();
+void fn_7100a1f3a4(UnkReflFunction* fn, const char* name);
+void fn_7100a1e5cc(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("Fill", true))) {
+        fn_7100a1eff8(fn, "Fill");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Fill energy tanks"));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fMaxEnergy_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_fMaxEnergy_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100a20250);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fMaxEnergy_SetterFunction", true)))
+        fn_7100a1f0ac(fn, "_fMaxEnergy_SetterFunction");
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("fMaxEnergy", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field0->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Max energy");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fEnergy", true), fn_710000abbc(), 0xffffffff, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    field1->attrs.Add<const char*>(fn_7100007e80(), "Current energy");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fEnergy_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_fEnergy_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100a202f8);
+    }
+    fn_71000e8118(base::reflection::refl_FindField(cls, base::global::CName("fEnergy")), cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fEnergy_SetterFunction", true)))
+        fn_7100a1f228(fn, "_fEnergy_SetterFunction");
+    fn_71000e8180(base::reflection::refl_FindField(cls, base::global::CName("fEnergy")), cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bSpecialEnergyLocked_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_bSpecialEnergyLocked_GetterFunction", true);
+        fn->return_type = fn_710000d228();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100a203a8);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bSpecialEnergyLocked_SetterFunction", true)))
+        fn_7100a1f3a4(fn, "_m_bSpecialEnergyLocked_SetterFunction");
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("bSpecialEnergyLocked", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field2->attrs.Add<bool>(fn_7100075240(), false);
+    field2->attrs.Add<const char*>(fn_7100007e80(), "special energy locked");
+}
 bool fn_7100a200f0(const void*, const void*) { return false; }
 s32 fn_7100a200f8() { return -1; }
 const base::reflection::CType& fn_7100a20100(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
