@@ -35,12 +35,24 @@
     "sha256": "ea59a771d1f1a1948b7fabe74d6da87095296ebabb2ae78cb2075ec44eb57c80",
     "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-9.0.1/LLVM-9.0.1-win64.exe"
   },
+  "9.0.1-macos": {
+    "sha256": "2fdb7c04fefa4cc651a8b96a5d72311efe6b4be845a08c921166dc9883b0c5b9",
+    "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-9.0.1/clang+llvm-9.0.1-x86_64-apple-darwin.tar.xz"
+  },
   "objdiff-3.8.2": {
     "sha256": "ce9d877a8cd6f133a962fb86d66f0348b9b88d735cea0fd52ae61bb9ad4d6691",
     "url": "https://github.com/encounter/objdiff/releases/download/v3.8.2/objdiff-windows-x86_64.exe"
   },
+  "objdiff-3.8.2-macos": {
+    "sha256": "0b60fb1586f2d6efa880730a816c433327a75bb279d3411a6bf7df9dc1e1f169",
+    "url": "https://github.com/encounter/objdiff/releases/download/v3.8.2/objdiff-macos-arm64"
+  },
   "objdiff-cli-3.8.2": {
     "sha256": "36d229ac6ce74a26b47f42cf86ea8e808d8cd834a54aa62d7ed3f47b765d971b",
     "url": "https://github.com/encounter/objdiff/releases/download/v3.8.2/objdiff-cli-windows-x86_64.exe"
+  },
+  "objdiff-cli-3.8.2-macos": {
+    "sha256": "767c67e13b7b5e6ca545e7d2235e47c7bceac07d47a52776f74a52914cb4085a",
+    "url": "https://github.com/encounter/objdiff/releases/download/v3.8.2/objdiff-cli-macos-arm64"
   }
 }

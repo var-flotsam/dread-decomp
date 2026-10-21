@@ -3,6 +3,7 @@
 Start with `docs/HANDOFF.md` for current state and next steps. Contributors working from a fork: `CONTRIBUTING.md`;
 the maintainer: `docs/maintaining.md` (publication, branch rules, merging). Outside projects are listed in
 `docs/references.md`. Add any newly used or referenced project there.
+Small local models (the Mac workstream) use `AGENTS.md` and `docs/tasks/` instead of this file.
 
 A clean-room-style decompilation of Metroid Dread (Nintendo Switch), aiming for a
 native PC port later. It is modelled on PrimeDecomp and zeldaret/botw.
@@ -67,6 +68,7 @@ python tools/gen_lift.py --version <ver>         # regenerate src/lifted/ (small
 python tools/gen_lift.py --version <ver> --sample 500 [--seed S] [--only ADDR,...|@file] [--new] [--examples K]  # outcome table only (build/), ~1 min
 python tools/shape_census.py --version <ver> [--min 5] [--max-size B] [--top N] [--family ADDR]  # same-shape U families
 python tools/check.py --version <ver> [--update] # build src/, derive statuses, catch regressions
+python tools/verify.py --version <ver> [--regen gen_statics,...]  # generators + check --update + progress + policy, ~10 lines
 python tools/objdiff_gen.py --version <ver>      # objdiff targets + objdiff.json
 python tools/progress.py                         # whole-binary progress (excludes L)
 python tools/asmdiff.py --version <ver> <obj> -v # diff one object against the original
@@ -98,7 +100,8 @@ Toolchain:
   (headless: `support\analyzeHeadless.bat`).
 - CMake 4.4, Ninja 1.13, LLVM/Clang + lld 23.1.3 (`C:\Program Files\LLVM\bin`) for inspection.
 - Project compiler: upstream Clang 9.0.1 from `tools/fetch_toolchains.py`
-  (`%LOCALAPPDATA%\dread-decomp\toolchains\llvm-9.0.1`). Flags live in `tools/buildcfg.py`:
+  (`%LOCALAPPDATA%\dread-decomp\toolchains\llvm-9.0.1`; on macOS the x86_64 build under Rosetta 2 in
+  `~/Library/Caches/dread-decomp`, untested on hardware; paths in `tools/hostenv.py`). Flags live in `tools/buildcfg.py`:
   `-O3 -mcpu=cortex-a57 -fPIC -fasynchronous-unwind-tables -mno-implicit-float -fno-rtti
   -fno-exceptions` (evidence in `docs/compiler.md`).
 - objdiff 3.8.2 GUI and CLI in `%LOCALAPPDATA%\dread-decomp\tools\`.

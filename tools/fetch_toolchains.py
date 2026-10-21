@@ -1,14 +1,20 @@
 #!/usr/bin/env python3
 """Download candidate upstream LLVM/Clang releases for compiler identification.
 
-These are open-source LLVM releases, not Nintendo SDK files. Each Windows
-installer is downloaded once and extracted with 7-Zip (nothing is installed
-and PATH is untouched) into %LOCALAPPDATA%\\dread-decomp\\toolchains\\llvm-<ver>\\.
+These are open-source LLVM releases, not Nintendo SDK files. Each one is downloaded once and
+extracted (nothing is installed and PATH is untouched) into <cache>/toolchains/llvm-<ver>/,
+where <cache> comes from tools/hostenv.py (%LOCALAPPDATA%\\dread-decomp on Windows,
+~/Library/Caches/dread-decomp on macOS).
 
-SHA-256 of each installer is pinned in data/toolchains.json. The first
-download records the hash; later downloads must match it.
+  Windows: the win64 installers, extracted with 7-Zip; every candidate version.
+  macOS:   only the project compiler, from the official x86_64 tarball (there is no arm64
+           build of LLVM 9); on Apple Silicon it runs under Rosetta 2. Extracted with tarfile.
+           Untested on hardware: check.py must reproduce the PC's O count before it is used.
 
-Also fetches objdiff / objdiff-cli (TOOLS) into %LOCALAPPDATA%\\dread-decomp\\tools\\.
+SHA-256 of each download is pinned in data/toolchains.json (macOS entries carry a `-macos`
+suffix). The first download records the hash; later downloads must match it.
+
+Also fetches objdiff / objdiff-cli (TOOLS) into <cache>/tools/.
 
 Usage: python tools/fetch_toolchains.py [VERSION or TOOL ...]   (default: everything)
 """
@@ -17,18 +23,21 @@ from __future__ import annotations
 
 import hashlib
 import json
-import os
+import shutil
 import subprocess
 import sys
+import tarfile
 import urllib.request
 from pathlib import Path
 
+import hostenv
+
 ROOT = Path(__file__).resolve().parent.parent
 PINS = ROOT / "data" / "toolchains.json"
-DEST = Path(os.environ.get("LOCALAPPDATA", Path.home())) / "dread-decomp" / "toolchains"
+DEST = hostenv.cache_dir() / "toolchains"
 SEVEN_ZIP = r"C:\Program Files\7-Zip\7z.exe"
 
-CANDIDATES = {
+WINDOWS_CANDIDATES = {
     "4.0.1": "https://releases.llvm.org/4.0.1/LLVM-4.0.1-win64.exe",
     "6.0.1": "https://releases.llvm.org/6.0.1/LLVM-6.0.1-win64.exe",
     "7.0.1": "https://releases.llvm.org/7.0.1/LLVM-7.0.1-win64.exe",
@@ -39,10 +48,34 @@ CANDIDATES = {
     "11.1.0": "https://github.com/llvm/llvm-project/releases/download/llvmorg-11.1.0/LLVM-11.1.0-win64.exe",
     "12.0.1": "https://github.com/llvm/llvm-project/releases/download/llvmorg-12.0.1/LLVM-12.0.1-win64.exe",
 }
+MACOS_CANDIDATES = {
+    "9.0.1": "https://github.com/llvm/llvm-project/releases/download/llvmorg-9.0.1/"
+             "clang+llvm-9.0.1-x86_64-apple-darwin.tar.xz",
+}
+CANDIDATES = WINDOWS_CANDIDATES if hostenv.WINDOWS else MACOS_CANDIDATES if hostenv.MACOS else {}
+
+
+def pin_key(name: str) -> str:
+    """The data/toolchains.json key: the bare name on Windows, `<name>-<platform>` elsewhere."""
+    return name if hostenv.WINDOWS else f"{name}-{hostenv.PLATFORM}"
 
 
 def clang_path(version: str) -> Path:
-    return DEST / f"llvm-{version}" / "bin" / "clang++.exe"
+    return DEST / f"llvm-{version}" / "bin" / hostenv.exe("clang++")
+
+
+def extract_tarball(archive: Path, target: Path) -> None:
+    """Unpack an LLVM release tarball (one top-level folder) as target."""
+    tmp = target.with_name(target.name + ".tmp")
+    if tmp.exists():
+        shutil.rmtree(tmp)
+    with tarfile.open(archive, mode="r:*") as tar:
+        tar.extractall(tmp, filter="data")
+    tops = list(tmp.iterdir())
+    if len(tops) != 1 or not tops[0].is_dir():
+        raise SystemExit(f"{archive.name}: expected one top-level folder, found {len(tops)} entries")
+    tops[0].rename(target)
+    tmp.rmdir()
 
 
 def fetch(version: str, pins: dict) -> None:
@@ -50,40 +83,57 @@ def fetch(version: str, pins: dict) -> None:
     if clang_path(version).is_file():
         print(f"{version}: already present at {target}")
         return
+    if version not in CANDIDATES:
+        raise SystemExit(f"{version}: no LLVM build listed for {hostenv.PLATFORM} "
+                         f"(listed: {', '.join(CANDIDATES) or 'none'})")
     url = CANDIDATES[version]
     DEST.mkdir(parents=True, exist_ok=True)
     installer = DEST / url.rsplit("/", 1)[1]
     print(f"{version}: downloading {url}", flush=True)
     urllib.request.urlretrieve(url, installer)
     digest = hashlib.sha256(installer.read_bytes()).hexdigest()
-    pinned = pins.get(version, {}).get("sha256")
+    key = pin_key(version)
+    pinned = pins.get(key, {}).get("sha256")
     if pinned and pinned != digest:
         installer.unlink()
         raise SystemExit(f"{version}: sha256 {digest} does not match pinned {pinned}")
-    pins[version] = {"url": url, "sha256": digest}
-    subprocess.run([SEVEN_ZIP, "x", "-y", f"-o{target}", str(installer)], check=True,
-                   stdout=subprocess.DEVNULL)
+    pins[key] = {"url": url, "sha256": digest}
+    if hostenv.WINDOWS:
+        subprocess.run([SEVEN_ZIP, "x", "-y", f"-o{target}", str(installer)], check=True,
+                       stdout=subprocess.DEVNULL)
+    else:
+        extract_tarball(installer, target)
     installer.unlink()
     if not clang_path(version).is_file():
-        raise SystemExit(f"{version}: clang++.exe not found after extraction in {target}")
+        raise SystemExit(f"{version}: {clang_path(version).name} not found after extraction in {target}")
     print(f"{version}: extracted to {target} (sha256 {digest})")
 
 
 # Single-executable tools (encounter/objdiff, Apache-2.0). SHA-256 values are the digests
 # GitHub publishes for these release assets.
 OBJDIFF_VERSION = "3.8.2"
-TOOLS = {
+_OBJDIFF = f"https://github.com/encounter/objdiff/releases/download/v{OBJDIFF_VERSION}"
+WINDOWS_TOOLS = {
     f"objdiff-cli-{OBJDIFF_VERSION}": (
-        f"https://github.com/encounter/objdiff/releases/download/v{OBJDIFF_VERSION}/objdiff-cli-windows-x86_64.exe",
+        f"{_OBJDIFF}/objdiff-cli-windows-x86_64.exe",
         "36d229ac6ce74a26b47f42cf86ea8e808d8cd834a54aa62d7ed3f47b765d971b"),
     f"objdiff-{OBJDIFF_VERSION}": (
-        f"https://github.com/encounter/objdiff/releases/download/v{OBJDIFF_VERSION}/objdiff-windows-x86_64.exe",
+        f"{_OBJDIFF}/objdiff-windows-x86_64.exe",
         "ce9d877a8cd6f133a962fb86d66f0348b9b88d735cea0fd52ae61bb9ad4d6691"),
 }
+MACOS_TOOLS = {
+    f"objdiff-cli-{OBJDIFF_VERSION}": (
+        f"{_OBJDIFF}/objdiff-cli-macos-arm64",
+        "767c67e13b7b5e6ca545e7d2235e47c7bceac07d47a52776f74a52914cb4085a"),
+    f"objdiff-{OBJDIFF_VERSION}": (
+        f"{_OBJDIFF}/objdiff-macos-arm64",
+        "0b60fb1586f2d6efa880730a816c433327a75bb279d3411a6bf7df9dc1e1f169"),
+}
+TOOLS = WINDOWS_TOOLS if hostenv.WINDOWS else MACOS_TOOLS if hostenv.MACOS else {}
 
 
 def tool_path(name: str) -> Path:
-    return DEST.parent / "tools" / f"{name}.exe"
+    return DEST.parent / "tools" / hostenv.exe(name)
 
 
 def fetch_tool(name: str, pins: dict) -> None:
@@ -99,7 +149,9 @@ def fetch_tool(name: str, pins: dict) -> None:
         raise SystemExit(f"{name}: sha256 {digest} does not match published {expected}")
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_bytes(data)
-    pins[name] = {"url": url, "sha256": digest}
+    if not hostenv.WINDOWS:
+        path.chmod(0o755)
+    pins[pin_key(name)] = {"url": url, "sha256": digest}
     print(f"{name}: saved to {path}")
 
 
