@@ -3318,8 +3318,8 @@ address,size,name,name_source,subsystem,status
 0x7100ec9e38,1540,fn_7100ec9e38,unknown,unknown,U
 0x7100eca440,172,fn_7100eca440,unknown,unknown,O
 0x7100eca4ec,240,fn_7100eca4ec,unknown,unknown,U
-0x7100eca5dc,412,fn_7100eca5dc,unknown,unknown,U
-0x7100eca778,412,fn_7100eca778,unknown,unknown,U
+0x7100eca5dc,412,fn_7100eca5dc,unknown,unknown,m
+0x7100eca778,412,fn_7100eca778,unknown,unknown,m
 0x7100eca914,376,fn_7100eca914,unknown,unknown,O
 0x7100ecaa8c,148,fn_7100ecaa8c,unknown,unknown,O
 0x7100ecab20,952,fn_7100ecab20,unknown,unknown,U
