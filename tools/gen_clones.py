@@ -2832,7 +2832,11 @@ def defined_in_src() -> set[int]:
             m = gen_lift.NAME_RE.match(line)
             if m and ("{" in line or not line.rstrip().endswith(";")):
                 skip.add(int(m.group(1), 16))
-        skip |= {int(a, 16) for a in gen_lift.TAG_RE.findall(text)}
+            # A clone tag defines a function only where something is instantiated or specialised
+            # with it; a forward declaration or alias that reuses one (src/game_lo/) doesn't.
+            for t in gen_lift.TAG_RE.finditer(line):
+                if not t.group(0).startswith("UnkClone_fn_") or line.lstrip().startswith("template"):
+                    skip.add(int(t.group(1), 16))
     return skip
 
 

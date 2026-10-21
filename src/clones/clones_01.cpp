@@ -1201,6 +1201,8 @@ template <> struct base::reflection::UnkCastTraits<UnkClone_fn_71003b1918> {
     static bool base(char* s) { return fn_71010f977c(s); }
 };
 template bool base::reflection::refl_CallAndCastField<UnkClone_fn_71003b1918, 0x10, 0x146b0>(char*);
+struct UnkClone_fn_71003b2904;
+template UnkCloneOwner<UnkClone_fn_71003b2904>& base::UnkVector<UnkCloneOwner<UnkClone_fn_71003b2904>>::GrowAt(u32);
 struct UnkClone_fn_71003b8880;
 const base::reflection::CType* fn_71003ba008();
 bool fn_710066193c(char* s);
@@ -5494,9 +5496,3 @@ template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71005e34f4> {
 template base::reflection::UnkReflValue base::reflection::refl_GetIterElementValue<UnkClone_fn_71005e34f4, UnkCloneBlock<UnkClone_fn_71005e34f4, 0x28>>(void*, char*);
 struct UnkClone_fn_71005e3630;
 template void base::refl_IterValueDestroy<UnkCloneOwnerVec<UnkClone_fn_71005e3630>, u32>(void*);
-struct UnkClone_fn_71005e3738;
-extern char g_unk_71726eee58[];
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71005e3738> {
-    static const CType* type() { return reinterpret_cast<const CType*>(g_unk_71726eee58); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetIterElementValue<UnkClone_fn_71005e3738, UnkCloneBlock<UnkClone_fn_71005e3738, 0x28>>(void*, char*);

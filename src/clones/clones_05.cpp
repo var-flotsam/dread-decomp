@@ -15,6 +15,12 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "base/reflection/UnkReflValue.h"
+struct UnkClone_fn_7100e597e8;
+void fn_7100e5a5f8(char*, void*);
+template <> struct base::UnkKeyedFoundTraits<UnkClone_fn_7100e597e8> {
+    static void found(char* s, void* v) { fn_7100e5a5f8(s, v); }
+};
+template void base::refl_KeyedFindThen<UnkClone_fn_7100e597e8, 0, 0x60>(char*, const base::UnkStrIdMember*);
 struct UnkClone_fn_7100e59878;
 template void* base::refl_KeyedFind<UnkClone_fn_7100e59878, 0x0, 0x60>(char*, const base::UnkStrIdMember*);
 struct UnkClone_fn_7100e598e4;
@@ -6325,9 +6331,3 @@ template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_710101ddb8> {
     static const CType* type() { return fn_710000abbc(); }
 };
 template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_710101ddb8, u32, 0x124>(void*, char*);
-struct UnkClone_fn_710101de04;
-extern char* g_unk_71726bc560;
-template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_710101de04> {
-    static char* target() { return g_unk_71726bc560; }
-};
-template base::reflection::UnkReflValue base::reflection::refl_SetFieldMinNotify<UnkClone_fn_710101de04, 0x124, 0xf185bdd90259e31e>(void*, char*, base::reflection::UnkReflValue* const*);

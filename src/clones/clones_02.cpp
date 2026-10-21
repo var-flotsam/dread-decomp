@@ -15,6 +15,12 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "base/reflection/UnkReflValue.h"
+struct UnkClone_fn_71005e3738;
+extern char g_unk_71726eee58[];
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71005e3738> {
+    static const CType* type() { return reinterpret_cast<const CType*>(g_unk_71726eee58); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetIterElementValue<UnkClone_fn_71005e3738, UnkCloneBlock<UnkClone_fn_71005e3738, 0x28>>(void*, char*);
 struct UnkClone_fn_71005e3d30;
 void fn_71005e3fb0(void*, void*);
 template <> struct base::UnkOwnerVecInsertTraits<UnkClone_fn_71005e3d30> {
@@ -5771,12 +5777,3 @@ struct UnkClone_fn_71008dd1d0;
 template void base::UnkDeferredSet<UnkClone_fn_71008dd1d0>::Add(UnkClone_fn_71008dd1d0*);
 struct UnkClone_fn_71008dd384;
 template void base::UnkDeferredSet<UnkClone_fn_71008dd384>::Remove(UnkClone_fn_71008dd384*);
-struct UnkClone_fn_71008dd514;
-void fn_7100014948(void* e, const base::global::CStrId& name, u32 value);
-void fn_71008dd514(void* e) {
-    fn_7100014948(e, base::global::CStrId("NONE", true), 0x0);
-    fn_7100014948(e, base::global::CStrId("RED", true), 0x1);
-    fn_7100014948(e, base::global::CStrId("GREEN", true), 0x2);
-    fn_7100014948(e, base::global::CStrId("YELLOW", true), 0x3);
-    fn_7100014948(e, base::global::CStrId("Invalid", true), 0x7fffffff);
-}

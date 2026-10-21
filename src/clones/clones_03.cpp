@@ -17,6 +17,15 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "base/reflection/UnkReflValue.h"
+struct UnkClone_fn_71008dd514;
+void fn_7100014948(void* e, const base::global::CStrId& name, u32 value);
+void fn_71008dd514(void* e) {
+    fn_7100014948(e, base::global::CStrId("NONE", true), 0x0);
+    fn_7100014948(e, base::global::CStrId("RED", true), 0x1);
+    fn_7100014948(e, base::global::CStrId("GREEN", true), 0x2);
+    fn_7100014948(e, base::global::CStrId("YELLOW", true), 0x3);
+    fn_7100014948(e, base::global::CStrId("Invalid", true), 0x7fffffff);
+}
 struct UnkClone_fn_71008dd8a0;
 void fn_7100014948(void* e, const base::global::CStrId& name, u32 value);
 void fn_71008dd8a0(void* e) {
@@ -5213,5 +5222,3 @@ template <> struct base::UnkDtorTraits<UnkClone_fn_7100b99570> {
 template void base::refl_DeletingDtor<UnkClone_fn_7100b99570, base::UnkStrIdAt<0x10>>(char*);
 struct UnkClone_fn_7100b9989c;
 template UnkCloneIdRecord<UnkClone_fn_7100b9989c, UnkCloneStrId<UnkClone_fn_7100b9989c>, u64>& UnkCloneIdRecord<UnkClone_fn_7100b9989c, UnkCloneStrId<UnkClone_fn_7100b9989c>, u64>::operator=(const UnkCloneIdRecord<UnkClone_fn_7100b9989c, UnkCloneStrId<UnkClone_fn_7100b9989c>, u64>&);
-struct UnkClone_fn_7100b99940;
-template UnkCloneIdRecord<UnkClone_fn_7100b99940, UnkCloneStrId<UnkClone_fn_7100b99940>, u64>& UnkCloneIdRecord<UnkClone_fn_7100b99940, UnkCloneStrId<UnkClone_fn_7100b99940>, u64>::operator=(const UnkCloneIdRecord<UnkClone_fn_7100b99940, UnkCloneStrId<UnkClone_fn_7100b99940>, u64>&);

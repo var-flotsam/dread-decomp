@@ -18,6 +18,8 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "base/reflection/UnkReflValue.h"
+struct UnkClone_fn_7100b99940;
+template UnkCloneIdRecord<UnkClone_fn_7100b99940, UnkCloneStrId<UnkClone_fn_7100b99940>, u64>& UnkCloneIdRecord<UnkClone_fn_7100b99940, UnkCloneStrId<UnkClone_fn_7100b99940>, u64>::operator=(const UnkCloneIdRecord<UnkClone_fn_7100b99940, UnkCloneStrId<UnkClone_fn_7100b99940>, u64>&);
 struct UnkClone_fn_7100b9a0a4;
 extern char g_unk_7101aa0598[];
 void fn_7100067ed4(char*);
@@ -5805,9 +5807,3 @@ template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100e59610> {
     static const CType* type() { return reinterpret_cast<const CType*>(g_unk_71727c1870); }
 };
 template base::reflection::UnkReflValue base::reflection::refl_GetIterElementValue<UnkClone_fn_7100e59610, UnkCloneBlock<UnkClone_fn_7100e59610, 0x60>>(void*, char*);
-struct UnkClone_fn_7100e597e8;
-void fn_7100e5a5f8(char*, void*);
-template <> struct base::UnkKeyedFoundTraits<UnkClone_fn_7100e597e8> {
-    static void found(char* s, void* v) { fn_7100e5a5f8(s, v); }
-};
-template void base::refl_KeyedFindThen<UnkClone_fn_7100e597e8, 0, 0x60>(char*, const base::UnkStrIdMember*);
