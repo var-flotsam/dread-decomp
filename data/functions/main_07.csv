@@ -320,7 +320,7 @@ address,size,name,name_source,subsystem,status
 0x710070cc10,20,fn_710070cc10,unknown,unknown,O
 0x710070cc24,260,fn_710070cc24,unknown,unknown,O
 0x710070cd28,268,fn_710070cd28,unknown,unknown,O
-0x710070ce40,840,fn_710070ce40,unknown,unknown,U
+0x710070ce40,840,fn_710070ce40,unknown,unknown,O
 0x710070d188,516,fn_710070d188,unknown,unknown,U
 0x710070d38c,168,fn_710070d38c,unknown,unknown,U
 0x710070d434,180,fn_710070d434,unknown,unknown,U
@@ -403,7 +403,7 @@ address,size,name,name_source,subsystem,status
 0x7100710324,4,fn_7100710324,unknown,unknown,O
 0x7100710328,20,fn_7100710328,unknown,unknown,O
 0x710071033c,20,fn_710071033c,unknown,unknown,O
-0x7100710350,656,fn_7100710350,unknown,unknown,U
+0x7100710350,656,fn_7100710350,unknown,unknown,O
 0x71007105e0,4,fn_71007105e0,unknown,unknown,O
 0x71007105e4,244,CCharClassAnimationComponent::refl_GetClass,reflection,game/characters,O
 0x71007106d8,2096,fn_71007106d8,unknown,game/characters?,O
@@ -1360,7 +1360,7 @@ address,size,name,name_source,subsystem,status
 0x710075195c,112,fn_710075195c,unknown,game/components?,O
 0x71007519cc,12,fn_71007519cc,unknown,game/components?,O
 0x71007519d8,132,fn_71007519d8,unknown,game/components?,U
-0x7100751a60,508,fn_7100751a60,unknown,game/components?,U
+0x7100751a60,508,fn_7100751a60,unknown,game/components?,O
 0x7100751c5c,4,fn_7100751c5c,unknown,game/components?,O
 0x7100751c60,244,CBreakableHintComponent::refl_GetClass,reflection,game/components,O
 0x7100751d54,4,fn_7100751d54,unknown,game/components?,O
@@ -1389,7 +1389,7 @@ address,size,name,name_source,subsystem,status
 0x7100752fbc,368,fn_7100752fbc,unknown,game/components?,U
 0x710075312c,204,fn_710075312c,unknown,game/components?,U
 0x71007531f8,344,fn_71007531f8,unknown,game/components?,U
-0x7100753350,344,fn_7100753350,unknown,game/components?,U
+0x7100753350,344,fn_7100753350,unknown,game/components?,O
 0x71007534a8,120,fn_71007534a8,unknown,game/components?,O
 0x7100753520,4,fn_7100753520,unknown,game/components?,O
 0x7100753524,244,CBreakableTileGroupComponent::refl_GetClass,reflection,game/components,O
@@ -1817,7 +1817,7 @@ address,size,name,name_source,subsystem,status
 0x71007613d8,528,fn_71007613d8,unknown,unknown,U
 0x71007615e8,256,fn_71007615e8,unknown,unknown,U
 0x71007616e8,484,fn_71007616e8,unknown,unknown,U
-0x71007618d0,2744,fn_71007618d0,unknown,unknown,U
+0x71007618d0,2744,fn_71007618d0,unknown,unknown,O
 0x7100762388,4,fn_7100762388,unknown,unknown,O
 0x710076238c,244,CBreakableVignetteComponent::refl_GetClass,reflection,game/components,O
 0x7100762480,652,fn_7100762480,unknown,game/components?,O
@@ -1848,7 +1848,7 @@ address,size,name,name_source,subsystem,status
 0x71007636c8,84,fn_71007636c8,unknown,unknown,U
 0x710076371c,536,fn_710076371c,unknown,unknown,O
 0x7100763934,336,fn_7100763934,unknown,unknown,O
-0x7100763a90,488,fn_7100763a90,unknown,unknown,U
+0x7100763a90,488,fn_7100763a90,unknown,unknown,O
 0x7100763c78,4,fn_7100763c78,unknown,unknown,O
 0x7100763c7c,244,CCameraBoundaryCtrl::refl_GetClass,reflection,game,O
 0x7100763d70,4,fn_7100763d70,unknown,game?,O
@@ -2424,7 +2424,7 @@ address,size,name,name_source,subsystem,status
 0x710077cd34,4,fn_710077cd34,unknown,unknown,O
 0x710077cd38,20,fn_710077cd38,unknown,unknown,O
 0x710077cd4c,20,fn_710077cd4c,unknown,unknown,O
-0x710077cd60,316,fn_710077cd60,unknown,unknown,U
+0x710077cd60,316,fn_710077cd60,unknown,unknown,O
 0x710077ce9c,4,fn_710077ce9c,unknown,unknown,O
 0x710077cea0,244,CMagmaCentralUnitComponent::refl_GetClass,reflection,game/components,O
 0x710077cf94,216,fn_710077cf94,unknown,game/components?,O
@@ -3105,7 +3105,7 @@ address,size,name,name_source,subsystem,status
 0x710079cfec,12,fn_710079cfec,unknown,unknown,O
 0x710079cff8,8,fn_710079cff8,unknown,unknown,O
 0x710079d000,8,fn_710079d000,unknown,unknown,O
-0x710079d010,772,fn_710079d010,unknown,unknown,U
+0x710079d010,772,fn_710079d010,unknown,unknown,O
 0x710079d320,140,fn_710079d320,unknown,unknown,O
 0x710079d3ac,4,fn_710079d3ac,unknown,unknown,O
 0x710079d3b0,244,CCubeMapComponent::refl_GetClass,reflection,game/components,O
@@ -3431,7 +3431,7 @@ address,size,name,name_source,subsystem,status
 0x71007ae40c,220,fn_71007ae40c,unknown,unknown,O
 0x71007ae4e8,180,fn_71007ae4e8,unknown,unknown,U
 0x71007ae59c,4,fn_71007ae59c,unknown,unknown,O
-0x71007ae5a0,868,fn_71007ae5a0,unknown,unknown,U
+0x71007ae5a0,868,fn_71007ae5a0,unknown,unknown,O
 0x71007ae904,4,fn_71007ae904,unknown,unknown,O
 0x71007ae908,244,CDamageComponent::refl_GetClass,reflection,game/components,O
 0x71007ae9fc,312,fn_71007ae9fc,unknown,game/components?,O
@@ -5225,7 +5225,7 @@ address,size,name,name_source,subsystem,status
 0x71007f30e4,28,fn_71007f30e4,unknown,unknown,O
 0x71007f3100,184,fn_71007f3100,unknown,unknown,U
 0x71007f31b8,12,fn_71007f31b8,unknown,unknown,O
-0x71007f31d0,864,fn_71007f31d0,unknown,unknown,U
+0x71007f31d0,864,fn_71007f31d0,unknown,unknown,O
 0x71007f3530,4,fn_71007f3530,unknown,unknown,O
 0x71007f3534,244,CFrozenAsFrostbiteComponent::refl_GetClass,reflection,game/components,O
 0x71007f3628,4,fn_71007f3628,unknown,game/components?,O
