@@ -524,8 +524,8 @@
 #define LUA_NUMBER_FMT		"%.7g"
 #define lua_number2str(s,n)	sprintf((s), LUA_NUMBER_FMT, (n))
 #define LUAI_MAXNUMBER2STR	32 /* 16 digits, sign, point, and \0 */
-/* dread-decomp: strtof for float (upstream strtod). */
-#define lua_str2number(s,p)	strtof((s), (p))
+/* dread-decomp: strtod narrowed to float (upstream: a double result). */
+#define lua_str2number(s,p)	((float)strtod((s), (p)))
 
 
 /*
@@ -625,7 +625,8 @@ union luai_Cast { double l_d; long l_l; };
 /* default handling with long jumps */
 #define LUAI_THROW(L,c)	longjmp((c)->b, 1)
 #define LUAI_TRY(L,c,a)	if (setjmp((c)->b) == 0) { a }
-#define luai_jmpbuf	jmp_buf
+/* dread-decomp: 16-byte aligned (lua_longjmp::b sits at +0x10, status at +0x148). */
+#define luai_jmpbuf	jmp_buf __attribute__((aligned(16)))
 
 #endif
 

@@ -46,6 +46,7 @@ FLOAT_PATCH = [
 GAME = [*buildcfg.CODEGEN, *buildcfg.system_includes()]
 CONFIGS = {
     "c++ game-flags": ["-x", "c++", *buildcfg.CXX, *GAME],
+    "c++ game-flags no-strict-aliasing": ["-x", "c++", *buildcfg.CXX, *GAME, *buildcfg.LUA_FLAGS],
     "c game-flags": ["-x", "c", "-std=gnu99", *GAME],
     "c++ game-flags -O2": ["-x", "c++", *buildcfg.CXX, *[("-O2" if f == "-O3" else f) for f in GAME]],
     "c++ game-flags no-unwind": ["-x", "c++", *buildcfg.CXX,
@@ -70,11 +71,11 @@ def prepare(version: str) -> Path:
     return out
 
 
-def address_map(src_dir: Path, tables: list[dict]) -> dict[str, int]:
+def address_map(src_dir: Path, tables: list[dict], libs: list[str] = LIBS) -> dict[str, int]:
     """C function name -> address, by matching source luaL_Reg arrays to binary tables."""
     by_names = {tuple(e["name"] for e in t["entries"]): t for t in tables}
     out: dict[str, int] = {}
-    for lib in LIBS:
+    for lib in libs:
         text = (src_dir / lib).read_text(encoding="latin-1")
         for body in REG_RE.findall(text):
             entries = ENTRY_RE.findall(body)
