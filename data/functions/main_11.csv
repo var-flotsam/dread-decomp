@@ -1663,7 +1663,7 @@ address,size,name,name_source,subsystem,status
 0x710116f614,644,fn_710116f614,unknown,game/components?,U
 0x710116f898,4,fn_710116f898,unknown,game/components?,O
 0x710116f89c,244,CModelUpdaterComponent::refl_GetClass,reflection,game/components,O
-0x710116f990,2464,fn_710116f990,unknown,game/components?,U
+0x710116f990,2464,fn_710116f990,unknown,game/components?,O
 0x7101170330,388,CModelUpdaterComponent::refl_InitClass,reflection,game/components,O
 0x71011704b4,380,fn_71011704b4,unknown,unknown,O
 0x7101170630,180,fn_7101170630,unknown,unknown,O

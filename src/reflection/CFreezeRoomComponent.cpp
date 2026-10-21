@@ -5,10 +5,28 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CFreezeRoomComponent
 DREAD_REFL_TAG(7100a22b80);
 void fn_7100a226c0(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_7172745d60;
+extern base::reflection::CType g_unk_7172745ea0;
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_7100a227b8(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("oFreezeConfig", true), &g_unk_7172745d60, 0xbe4, -1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("oCoolConfig", true), &g_unk_7172745ea0, 0xc00, -1, -1);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("sEnterZoneSound", true), fn_710000ad9c(), 0xc20, -1, -1);
+    field2->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId(base::global::UnkStrIdInline{}, "levels/lava_pain_01.wav", true));
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("sVisualPresetOverride", true), fn_7100009658(), 0xc38, -1, -1);
+    field3->attrs.Add<CStrId>(fn_7100075240(), CStrId("ICEZONE", true));
+}
 bool fn_7100a24590(const void*, const void*) { return false; }
 s32 fn_7100a24598() { return -1; }
 const base::reflection::CType& fn_7100a245a0(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
