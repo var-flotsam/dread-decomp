@@ -318,6 +318,16 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
      families under 8 KB each (re-run the census for current numbers). The remaining call-free vtable
      functions (509) are varied virtual dispatchers, not one template.
 1. **Extend the lifter (`tools/gen_lift.py`), largest payoff first.**
+   - Done (thirteenth session, cloud): lifting now runs in parallel processes (a full run is
+     ~105 min on 4 cores); output is one file per 64 KiB with per-function declarations, so
+     `--prune` drops functions defined elsewhere in seconds; `--best` writes the closest attempt of
+     any function for hand matching. Inlined guarded-static helpers (`GUARDS`: string pool,
+     singleton, type id; replicas in `HEADER`, namespace `lift_guard`) lift as one statement:
+     +126 `O`. Negative results: of 800 unlifted candidates none match in any round, and a
+     one-field-struct ("field") rewrite for struct-path TBAA added 0 of 578 mismatches. Next, from
+     the statics thread: a fourth helper (guard GOT 0x7101cba0c0, a pool getter followed by
+     `bl 0x710007fdb4`), tbz up to four instructions after the ldarb, and the DSO handle
+     (0x7101a19000) lifted as `""` instead of an extern.
    - Done (twelfth session), mismatch study and second-round rewrites (+1,039 `O`, ~146 KB;
      45.39% to 46.16%). Lifted-but-not-matching functions were classified with a scratch script
      (best attempt per function vs the original; each normalisation step, in order, removes part
