@@ -414,9 +414,16 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
      and `CVector4D` values, function/parameter attributes through `UnkReflFunctionVtbl`, the field
      attribute container at `+0x70`, and a lambda-wrapped form for the stack-slot order
      (`refl_attrs.verify` retries alternatives): 1,911 of 1,957 attribute/field functions, 508 of
-     562 others. Left there (~45, one-offs): an inlined `CFilePathStrId` constructor (8; and
-     `fn_7100408c20`, 33 KB, for `CStrId`), `CRntString` copied from a live object, other
-     attribute builders (`fn_7100228ca0`), field lookups by name hash, guarded statics.
+     562 others. The inlined string-id constructor (`CFilePathStrId(UnkStrIdInline{}, ...)`, its
+     pool created on first use by a guarded static in a cold tail) matches since the thirteenth
+     session (7 functions), as do `CName` values stored as a hash (`UnkNameHash`) and copies of
+     any global `CStrId` (2), ids copied from a string-id table built on first use
+     (`refl_GetStrIdTable`, 3) and enum defaults kept in guarded weak statics (`refl_GetEnumZero`,
+     `refl_GetEnumNot8`, 4) (all in `UnkReflAttributes.h`). Left there (30, one-offs):
+     `fn_7100408c20` (33 KB), `CRntString` copied from a live object, other attribute builders
+     (`fn_7100228ca0`, 5), `CVector4D` copied from a constant, reflected functions inside field
+     functions, field lookups by name hash, and 4 that parse but differ. List them by failure point with a
+     copy of `refl_attrs.parse` whose `return None`s raise their line number.
    - Descriptor helpers of **collection iterator values** (`UnkIterValue<T, K>`, K = index or key):
      move-construct, destroy, copy-assign and compare as `gen_clones` kinds (word, owner,
      string-id and keyed elements; a scan kind for elements with a vtable and string-id members,
@@ -572,11 +579,14 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
    GOT address) and the buffer compare (`fn_710007f240`, `m`: a select the original speculates).
    The heap behind the string copies (`g_unk_7101d58d40`, `include/base/global/UnkStringHeap.h`)
    has six size classes (16 to 512-byte blocks carved from one allocation each): class setup
-   (`fn_7100083c48`), clear (`fn_7100083d90`) and allocate (`fn_7100084030`) are `O`. Left:
-   `UnkReflArray` (the keyed container at `CClass+0x110`, grown by `fn_7100097550`, 916 B: a key
-   search, growth through `fn_7100097f80`, an inlined move of the 0xb8-byte `UnkReflFunction`,
-   then attribute lookups; it needs the `UnkReflFunction` layout from the reflection headers) and
-   the `U` functions next to `operator new`, probably more allocator code (`fn_7100083870`,
+   (`fn_7100083c48`), clear (`fn_7100083d90`) and allocate (`fn_7100084030`) are `O`. Adding a function to
+   a class (`fn_7100097550`, `UnkReflArray` at `CClass+0x110`) is `O` in
+   `src/base/reflection/fn_7100097550.cpp`: the key search, the inlined move of the 0xb8-byte
+   `UnkReflFunction` (full layout there, as local views checked against the headers) and the
+   class's `_EditorOnly` attribute read with a default (`Get<T>(key, def)`; a volatile byte read
+   keeps the default in memory as the original does). Left: the array's growth
+   (`fn_7100097f80`), the function's constructor and destructor (`fn_710009a5b4`,
+   `fn_710009aae8`), and the `U` functions next to `operator new`, probably more allocator code (`fn_7100083870`,
    `fn_71000839c0`, `fn_7100083a10`, `fn_7100083a70`).
 5. Boot to title screen: startup, memory, file system / `files.toc` / `.pkg`, resource manager,
    Lua + GUI bindings, GUI, render front end, input, localisation, save probe. Estimated

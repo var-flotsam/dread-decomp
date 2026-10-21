@@ -4228,7 +4228,7 @@ address,size,name,name_source,subsystem,status
 0x7100c8271c,388,CCutSceneDef::refl_InitClass,reflection,game/cutscene,O
 0x7100c828a0,4,fn_7100c828a0,unknown,game/cutscene?,O
 0x7100c828a4,240,CCutSceneDef::CActorDef::refl_GetClass,reflection,game/cutscene,O
-0x7100c82994,3260,fn_7100c82994,unknown,game/cutscene?,U
+0x7100c82994,3260,fn_7100c82994,unknown,game/cutscene?,O
 0x7100c83650,388,CCutSceneDef::CActorDef::refl_InitClass,reflection,game/cutscene,O
 0x7100c837d4,220,fn_7100c837d4,unknown,game/cutscene?,O
 0x7100c838b0,220,fn_7100c838b0,unknown,game/cutscene?,O
@@ -4241,7 +4241,7 @@ address,size,name,name_source,subsystem,status
 0x7100c8456c,504,fn_7100c8456c,unknown,game/cutscene?,O
 0x7100c84764,4,fn_7100c84764,unknown,game/cutscene?,O
 0x7100c84768,240,CCutSceneDef::CAnimationLayerDef::refl_GetClass,reflection,game/cutscene,O
-0x7100c84858,968,fn_7100c84858,unknown,game/cutscene?,U
+0x7100c84858,968,fn_7100c84858,unknown,game/cutscene?,O
 0x7100c84c20,388,CCutSceneDef::CAnimationLayerDef::refl_InitClass,reflection,game/cutscene,O
 0x7100c84da4,220,fn_7100c84da4,unknown,game/cutscene?,O
 0x7100c84e80,220,fn_7100c84e80,unknown,game/cutscene?,O

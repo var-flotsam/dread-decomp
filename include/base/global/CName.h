@@ -10,10 +10,14 @@ u64 fn_7100001570(const char* str, u64 length);
 
 namespace base::global {
 
+// Tag for a CName built from its hash (reflected default values store the hash directly).
+struct UnkNameHash {};
+
 struct CName {
     u64 hash;
 
     explicit CName(const char* str) : hash(fn_7100001570(str, __builtin_strlen(str))) {}
+    CName(UnkNameHash, u64 h) : hash(h) {}
 };
 static_assert(sizeof(CName) == 0x8, "CName layout");
 
