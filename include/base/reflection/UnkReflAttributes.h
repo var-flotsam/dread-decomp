@@ -96,6 +96,46 @@ void fn_710013ac14(base::reflection::UnkTunableRegistry* self);
 // A global CStrId that default values copy (possibly the empty id).
 extern base::global::CStrId g_unk_7101d470e0;
 
+namespace base::reflection {
+
+// A table of string ids built once on first use by a weak function-local static (guard and
+// object reached through the GOT; destroyed through __cxa_atexit). Default values copy one of
+// its ids. CTOR is its constructor's address and names the table; the size is a placeholder.
+template <u64 CTOR>
+struct UnkStrIdTable {
+    base::global::CStrId ids[0x400];
+
+    UnkStrIdTable();
+    ~UnkStrIdTable();
+};
+
+template <u64 CTOR>
+UnkStrIdTable<CTOR>& refl_GetStrIdTable() {
+    static UnkStrIdTable<CTOR> s_table;
+    return s_table;
+}
+
+// Enum default values kept in weak function-local statics, shared program-wide (one per
+// ADDR, the static's address): zero, set by a dynamic initialiser (a non-constexpr call), and
+// the complement of another one's low byte.
+inline u32 refl_EnumZero() {
+    return 0;
+}
+
+template <u64 ADDR>
+const u32& refl_GetEnumZero() {
+    static u32 s_value = refl_EnumZero();
+    return s_value;
+}
+
+template <u64 ADDR, u64 SRC>
+const u32& refl_GetEnumNot8() {
+    static u32 s_value = u8(~refl_GetEnumZero<SRC>());
+    return s_value;
+}
+
+}  // namespace base::reflection
+
 // Attribute keys.
 const base::reflection::UnkReflAttrKey& fn_7100005070();  // "Version"
 const base::reflection::UnkReflAttrKey& fn_7100007e80();  // "Description"
