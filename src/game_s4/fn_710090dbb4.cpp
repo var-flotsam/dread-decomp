@@ -105,7 +105,29 @@ struct UnkIterValue {
     alignas(8) u8 storage[sizeof(Value)];
     u32 state;
 
+    struct Ref {
+        u32* index;
+        UnkCallbackSetElem* element;
+    };
+
     UnkIterValue() : state(0) {}
+    // An owned value either way: a reference's element is moved into a value of its own.
+    __attribute__((always_inline)) void MoveFrom(UnkIterValue& other) {
+        state = 0;
+        Value* value = reinterpret_cast<Value*>(storage);
+        if (other.state == 1) {
+            state = 1;
+            Value* from = reinterpret_cast<Value*>(other.storage);
+            value->index = from->index;
+            new (&value->element) UnkCallbackSetElem(static_cast<UnkCallbackSetElem&&>(from->element));
+        } else if (other.state == 2) {
+            state = 1;
+            const Ref* ref = reinterpret_cast<const Ref*>(other.storage);
+            UnkCallbackSetElem* element = ref->element;
+            value->index = *ref->index;
+            new (&value->element) UnkCallbackSetElem(static_cast<UnkCallbackSetElem&&>(*element));
+        }
+    }
     ~UnkIterValue() {
         if (state == 2) {
         } else if (state == 1) {
@@ -150,6 +172,10 @@ struct UnkCallbackSetVector;
 void fn_710090d00c(UnkCallbackSetVector* v, u32 n);
 void fn_7100a3b8e0(UnkCallbackSetVector* v, u32 n);
 void fn_7100a956b8(UnkCallbackSetVector* v, u32 n);
+// PushBack of a copy (one per array type)
+void fn_710090d1bc(UnkCallbackSetVector* v, const UnkCallbackSetElem* value);
+void fn_7100a3ba90(UnkCallbackSetVector* v, const UnkCallbackSetElem* value);
+void fn_7100a95868(UnkCallbackSetVector* v, const UnkCallbackSetElem* value);
 struct UnkCallbackSetVector {
     UnkCallbackSetElem* data;
     u32 count;
@@ -158,6 +184,21 @@ struct UnkCallbackSetVector {
     bool field_0x14;
     u32 flags;
     base::UnkAllocator* allocator;
+
+    template <void (*Reserve)(UnkCallbackSetVector*, u32),
+              void (*PushBack)(UnkCallbackSetVector*, const UnkCallbackSetElem*)>
+    __attribute__((always_inline)) void CopyConstruct(const UnkCallbackSetVector& other) {
+        data = nullptr;
+        count = 0;
+        capacity = 0;
+        step = other.step;
+        field_0x14 = other.field_0x14;
+        flags = other.flags;
+        allocator = other.allocator;
+        Reserve(this, other.capacity);
+        for (const UnkCallbackSetElem *p = other.data, *end = p + other.count; p != end; ++p)
+            PushBack(this, p);
+    }
 
     __attribute__((always_inline)) void Reserve(u32 n) {
         if (capacity >= n)
@@ -307,4 +348,28 @@ void fn_7100a3bfe8(UnkCallbackSetVector* v, UnkCallbackSetElem* value, u32 index
 
 void fn_7100a95dc0(UnkCallbackSetVector* v, UnkCallbackSetElem* value, u32 index) {
     v->Insert<fn_7100a956b8>(static_cast<UnkCallbackSetElem&&>(*value), index);
+}
+
+void fn_710090c28c(UnkIterValue* self, UnkIterValue* other) {
+    self->MoveFrom(*other);
+}
+
+void fn_7100a3ab74(UnkIterValue* self, UnkIterValue* other) {
+    self->MoveFrom(*other);
+}
+
+void fn_7100a9494c(UnkIterValue* self, UnkIterValue* other) {
+    self->MoveFrom(*other);
+}
+
+void fn_710090ce1c(UnkCallbackSetVector* self, const UnkCallbackSetVector* other) {
+    self->CopyConstruct<fn_710090d00c, fn_710090d1bc>(*other);
+}
+
+void fn_7100a3b6f0(UnkCallbackSetVector* self, const UnkCallbackSetVector* other) {
+    self->CopyConstruct<fn_7100a3b8e0, fn_7100a3ba90>(*other);
+}
+
+void fn_7100a954c8(UnkCallbackSetVector* self, const UnkCallbackSetVector* other) {
+    self->CopyConstruct<fn_7100a956b8, fn_7100a95868>(*other);
 }
