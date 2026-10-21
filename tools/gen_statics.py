@@ -50,7 +50,13 @@ REFERENCES = {
     "strid_copy": 0x71004F0F04,  # refl_GetStaticStrIdCopy
     "find": 0x7100286AD4,  # refl_FindTyped
     "register": 0x71004F1338,  # refl_Register
+    "registry_map": 0x71004F0648,  # refl_RegistryMapInit (uses the registry of fn_71004f1338)
+    # A static string id with internal linkage (a plain function; object and guard adjacent).
+    "strid_local": 0x7100304140,
 }
+KNOWN_CALLS = (CSTRID_CTOR, GUARD_ACQUIRE, GUARD_RELEASE, ATEXIT,
+               0x71000803A4,  # the string pool's release
+               0x7100083990)  # the default allocator
 
 CS = capstone.Cs(capstone.CS_ARCH_ARM64, capstone.CS_MODE_ARM)
 CS.detail = True
@@ -71,6 +77,8 @@ def facts(orig: asmdiff.Original, addr: int) -> dict | None:
     after_ctor = False
     for x in CS.disasm(orig.function(addr), addr):
         m, o = x.mnemonic, x.operands
+        if m == "ldarb" and CS.reg_name(o[1].mem.base) in got:
+            out.setdefault("guard", got[CS.reg_name(o[1].mem.base)])
         if m == "adrp":
             page[CS.reg_name(o[0].reg)] = o[1].imm
         elif m == "add" and len(o) == 3 and CS.reg_name(o[1].reg) in page and o[2].type == arm64.ARM64_OP_IMM:
@@ -103,9 +111,37 @@ def facts(orig: asmdiff.Original, addr: int) -> dict | None:
     return out
 
 
-def emit(kind: str, addr: int, f: dict, decls: set[str]) -> list[str] | None:
+def emit(kind: str, addr: int, f: dict, decls: set[str], registries: dict[int, int]) -> list[str] | None:
+    """registries: guard address -> address of the refl_Register candidate using it."""
     tag = f"UnkRefl_fn_{addr:x}"
     head = [f"struct {tag};", "template <>", f"struct base::reflection::UnkReflStatic<{tag}> {{"]
+    if kind == "strid_local":
+        if "name" not in f:
+            return None
+        return [f"const base::global::CStrId& fn_{addr:x}() {{",
+                f"    static base::global::CStrId s_id({refl_attrs.c_string(f['name'])}, true);",
+                "    return s_id;", "}"]
+    if kind == "registry_map":
+        calls = [c for c in f["calls"] if c not in KNOWN_CALLS]
+        if len(calls) != 2 or "guard" not in f:
+            return None
+        construct, grow = calls
+        decls |= {f"void fn_{grow:x}(base::reflection::UnkReflRegistryMap::Value** values, u32 n);",
+                  f"void fn_{construct:x}(base::reflection::UnkReflRegistryMap::Value* value, "
+                  f"base::reflection::UnkReflRegistryItem* item, const base::global::CStrId& name);"}
+        reg = registries.get(f["guard"])
+        if reg is not None:
+            head = [f"struct UnkRefl_fn_{reg:x};"] + head + [f"    using Registry = UnkRefl_fn_{reg:x};"]
+        elif "flags" in f:
+            head += [f"    using Registry = {tag};", f"    static constexpr u32 flags = {f['flags']:#x};"]
+        else:
+            return None
+        return head + ["    static void grow(UnkReflRegistryMap::Value** v, u32 n) "
+                       f"{{ fn_{grow:x}(v, n); }}",
+                       "    static void construct(UnkReflRegistryMap::Value* v, UnkReflRegistryItem* i, "
+                       f"const base::global::CStrId& n) {{ fn_{construct:x}(v, i, n); }}", "};",
+                       f"template bool base::reflection::refl_RegistryMapInit<{tag}>("
+                       "base::reflection::UnkReflRegistryMap*, const base::global::CStrId&);"]
     if kind == "strid_copy":
         if "source" not in f:
             return None
@@ -144,7 +180,20 @@ def emit(kind: str, addr: int, f: dict, decls: set[str]) -> list[str] | None:
 
 
 PRELUDE = ['#include "base/reflection/UnkReflStatics.h"', "using base::reflection::CClass;",
-           "using base::reflection::CType;", "using base::reflection::UnkReflObject;"]
+           "using base::reflection::CType;", "using base::reflection::UnkReflObject;",
+           "using base::reflection::UnkReflRegistryItem;", "using base::reflection::UnkReflRegistryMap;"]
+
+
+def is_instantiation(line: str) -> bool:
+    return line.startswith("template ") and not line.startswith("template <>")
+
+
+def layout(addrs: list[int], blocks: dict[int, list[str]], uses: dict[int, int]) -> list[str]:
+    """Specialisations first, then the explicit instantiations, so that a registry map's
+    instantiation sees its registry's specialisation (copied in when that one is elsewhere)."""
+    order = addrs + sorted({uses[a] for a in addrs if a in uses} - set(addrs))
+    specs = [ln for a in order for ln in blocks[a] if not is_instantiation(ln)]
+    return specs + [ln for a in addrs for ln in blocks[a] if is_instantiation(ln)]
 
 
 def main() -> int:
@@ -160,22 +209,31 @@ def main() -> int:
     shapes = {kind: shape(orig, ref) for kind, ref in REFERENCES.items()}
     sizes = {kind: len(s) * 4 for kind, s in shapes.items()}
     blocks: dict[int, list[str]] = {}
+    uses: dict[int, int] = {}  # registry map -> the refl_Register whose specialisation it needs
     decls: set[str] = set()
     counts = {kind: 0 for kind in REFERENCES}
+    found: list[tuple[str, int, dict]] = []
     for a in rows:
         for kind in REFERENCES:
             if orig.sizes.get(a) == sizes[kind] and shape(orig, a) == shapes[kind]:
                 f = facts(orig, a)
-                b = emit(kind, a, f, decls) if f else None
-                if b:
-                    blocks[a] = b
-                    counts[kind] += 1
+                if f:
+                    found.append((kind, a, f))
                 break
+    # Registries first: a registry map names the refl_Register that shares its guard.
+    registries = {f["guard"]: a for kind, a, f in found if kind == "register" and "guard" in f}
+    for kind, a, f in found:
+        b = emit(kind, a, f, decls, registries)
+        if b:
+            blocks[a] = b
+            counts[kind] += 1
+            if kind == "registry_map" and f["guard"] in registries:
+                uses[a] = registries[f["guard"]]
 
     work = ROOT / "build" / "gen_statics"
     work.mkdir(parents=True, exist_ok=True)
     src, obj = work / "candidates.cpp", work / "candidates.o"
-    src.write_text("\n".join(PRELUDE + sorted(decls) + [ln for a in sorted(blocks) for ln in blocks[a]]) + "\n",
+    src.write_text("\n".join(PRELUDE + sorted(decls) + layout(sorted(blocks), blocks, uses)) + "\n",
                    encoding="utf-8")
     r = subprocess.run(buildcfg.cxx_command(src, obj), capture_output=True, text=True)
     if r.returncode != 0:
@@ -189,7 +247,7 @@ def main() -> int:
             "// Functions around guarded function-local statics (attribute keys, string ids, typed",
             "// lookups, registries), byte-identical to the original."]
     for k in range(0, len(ok), CHUNK):
-        body = [ln for a in ok[k:k + CHUNK] for ln in blocks[a]]
+        body = layout(ok[k:k + CHUNK], blocks, uses)
         names = set(NAME_RE.findall(" ".join(body)))
         used = sorted(d for d in decls if NAME_RE.search(d).group(0) in names)
         (OUT / f"statics_{k // CHUNK:02d}.cpp").write_text("\n".join(note + PRELUDE + used + body) + "\n",

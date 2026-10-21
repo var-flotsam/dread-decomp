@@ -54,9 +54,65 @@ struct UnkReflRegistry {
 };
 
 template <class G>
-void refl_Register(void* item) {
+UnkReflRegistry& refl_GetRegistry() {
     static UnkReflRegistry s_registry(UnkReflStatic<G>::flags);
-    s_registry.items.PushBack(item);
+    return s_registry;
+}
+
+template <class G>
+void refl_Register(void* item) {
+    refl_GetRegistry<G>().items.PushBack(item);
+}
+
+// What registers itself: its name is virtual slot 0x28.
+struct UnkReflRegistryItem {
+    virtual void vf_0x0();
+    virtual void vf_0x8();
+    virtual void vf_0x10();
+    virtual void vf_0x18();
+    virtual void vf_0x20();
+    virtual const base::global::CStrId& vf_0x28();
+};
+
+// A table built from a registry (UnkReflStatic<G>::Registry names its refl_Register): one
+// 16-byte value per registered item, constructed from the item and the table's name, and the
+// item's name as its key.
+struct UnkReflRegistryMap {
+    struct Value {
+        u8 unk_0x0[0x10];
+    };
+
+    bool initialized;
+    base::global::CStrId name;
+    Value* values;
+    base::global::CStrId* keys;
+    u32 count;
+    u32 capacity;
+    u32 step;
+};
+
+// UnkReflStatic<G>::grow(&values, n) resizes both arrays; construct(value, item, name) builds a
+// value. The key is copied as raw bytes, then its string referenced: the original reloads
+// `count` after the copy on both paths, which only an untyped copy gives.
+template <class G>
+bool refl_RegistryMapInit(UnkReflRegistryMap* self, const base::global::CStrId& name) {
+    using S = UnkReflStatic<G>;
+    self->name = name;
+    UnkReflRegistry& registry = refl_GetRegistry<typename S::Registry>();
+    for (void **p = registry.items.data, **e = p + registry.items.count; p != e; ++p) {
+        UnkReflRegistryItem* item = static_cast<UnkReflRegistryItem*>(*p);
+        const base::global::CStrId& key = item->vf_0x28();
+        if (self->count == self->capacity)
+            S::grow(&self->values, self->count + self->step);
+        base::global::CStrId* k = &self->keys[self->count];
+        __builtin_memcpy(k, &key, sizeof(*k));
+        if (&g_unk_7101d47108->empty != k->data)
+            ++k->data->ref_count;
+        S::construct(&self->values[self->count], item, name);
+        ++self->count;
+    }
+    self->initialized = true;
+    return true;
 }
 
 }  // namespace base::reflection

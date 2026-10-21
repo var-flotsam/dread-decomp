@@ -5802,7 +5802,7 @@ address,size,name,name_source,subsystem,status
 0x71004f0504,36,fn_71004f0504,unknown,unknown,O
 0x71004f0528,120,fn_71004f0528,unknown,unknown,O
 0x71004f05a0,168,fn_71004f05a0,unknown,unknown,U
-0x71004f0648,456,fn_71004f0648,unknown,unknown,U
+0x71004f0648,456,fn_71004f0648,unknown,unknown,O
 0x71004f0810,4,fn_71004f0810,unknown,unknown,O
 0x71004f0814,272,fn_71004f0814,unknown,unknown,U
 0x71004f0924,324,fn_71004f0924,unknown,unknown,U
