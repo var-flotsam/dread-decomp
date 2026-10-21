@@ -5,10 +5,28 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CCharClassChozombieFXComponent
 DREAD_REFL_TAG(7100805980);
 void fn_71008054e0(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_71008055d8(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sModelResPath", true), fn_710000ad9c(), 0x58, -1, -1);
+    field0->attrs.Add<base::global::CFilePathStrId>(fn_7100075240(), base::global::CFilePathStrId(base::global::UnkStrIdInline{}, "", true));
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fScale", true), fn_710000abbc(), 0x60, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("vRotation", true), fn_71000246e4(), 0x64, -1, -1);
+    field2->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{0.0f, 0.0f, 0.0f});
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("fInstanceLifeTime", true), fn_710000abbc(), 0x70, -1, -1);
+    field3->attrs.Add<f32>(fn_7100075240(), 4.0f);
+}
 bool fn_7100805cf0(const void*, const void*) { return false; }
 s32 fn_7100805cf8() { return -1; }
 const base::reflection::CType& fn_7100805d00(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

@@ -4608,7 +4608,7 @@ address,size,name,name_source,subsystem,status
 0x71009f9820,160,fn_71009f9820,unknown,unknown,O
 0x71009f98c0,4,fn_71009f98c0,unknown,unknown,O
 0x71009f98c4,240,CShotLaunchConfig::refl_GetClass,reflection,game,O
-0x71009f99b4,552,fn_71009f99b4,unknown,game?,U
+0x71009f99b4,552,fn_71009f99b4,unknown,game?,O
 0x71009f9bdc,388,CShotLaunchConfig::refl_InitClass,reflection,game,O
 0x71009f9d60,36,fn_71009f9d60,unknown,unknown,O
 0x71009f9d84,4,fn_71009f9d84,unknown,unknown,O

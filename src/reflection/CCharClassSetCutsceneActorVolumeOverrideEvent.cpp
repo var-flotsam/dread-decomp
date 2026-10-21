@@ -21,6 +21,17 @@ void fn_7100bd2080(CClass* cls) {
     fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Cutscene Actor Volume Override");
     fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("Cutscene", true));
 }
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_7100bd225c(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sActorName", true), fn_710000fd7c(), 0x10, -1, -1);
+    field0->attrs.Add<base::global::CName>(fn_7100075240(), base::global::CName(base::global::UnkNameHash{}, 0xffffffffffffffffu));
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fVolume", true), fn_710000abbc(), 0x18, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fFadeTime", true), fn_710000abbc(), 0x1c, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("sSoundGroupId", true), fn_7100009658(), 0x20, -1, -1);
+    field3->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+}
 bool fn_7100bd29ec(const void* a, const void* b) { return a == b; }
 s32 fn_7100bd29f8() { return -1; }
 const base::reflection::CType& fn_7100bd2a00(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
