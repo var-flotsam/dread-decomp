@@ -20,6 +20,7 @@ from __future__ import annotations
 import argparse
 import csv
 import hashlib
+import json
 import struct
 import subprocess
 import sys
@@ -29,11 +30,12 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import asmdiff  # noqa: E402
 import buildcfg  # noqa: E402
 import check  # noqa: E402
+import libcheck_lua  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 MIN_TRUSTED = 32
 LIBRARIES = {
-    "lua": {"sources": sorted((ROOT / "lib" / "lua").glob("*.c"))},
+    "lua": {"sources": sorted((ROOT / "lib" / "lua").glob("*.c")), "flags": buildcfg.LUA_FLAGS},
 }
 
 
@@ -84,29 +86,59 @@ def main() -> int:
     objdir = ROOT / "build" / "sigmatch" / args.version / args.library
     objdir.mkdir(parents=True, exist_ok=True)
 
+    tables_path = ROOT / "build" / "recon" / args.version / "main_lua_tables.json"
+    bound: dict[str, int] = {}
+    if args.library == "lua" and tables_path.is_file():
+        bound = libcheck_lua.address_map(ROOT / "lib" / "lua", json.loads(tables_path.read_text()),
+                                         [p.name for p in LIBRARIES["lua"]["sources"]])
+
     found: dict[int, tuple[int, str]] = {}
-    ambiguous = missing = total = 0
+    ambiguous: list[tuple[tuple[int, str], str, list[int]]] = []   # (key, name, hits), in object order
+    missing = total = 0
     for src in LIBRARIES[args.library]["sources"]:
         obj = objdir / (src.stem + ".o")
-        r = subprocess.run(buildcfg.cxx_command(src, obj), capture_output=True, text=True)
+        r = subprocess.run(buildcfg.cxx_command(src, obj, LIBRARIES[args.library]["flags"]), capture_output=True, text=True)
         if r.returncode != 0:
             raise SystemExit(f"{src}: build failed\n{r.stderr[-1500:]}")
         funcs = asmdiff.object_functions(obj)
         names = check.demangle([n for n, _, _ in funcs])
         for name, code, _ in funcs:
             total += 1
-            hits = index.get((len(code), signature(code)), [])
+            key = (len(code), signature(code))
+            hits = index.get(key, [])
             if len(hits) == 1:
                 found.setdefault(hits[0], (len(code), names.get(name, name)))
             elif hits:
-                ambiguous += 1
+                ambiguous.append((key, names.get(name, name), hits))
             else:
                 missing += 1
 
-    # Tiny bodies (a load and a return) also occur in unrelated code. Trust matches of at least
-    # MIN_TRUSTED bytes; accept smaller ones only inside the address range the trusted ones span.
+    # Look-alikes: the binding tables name the luaL_Reg functions exactly; for the rest, a group of
+    # same-shaped functions is assigned in order when the binary has as many copies, all inside
+    # the address range of the unique matches.
     trusted = [a for a, (s, _) in found.items() if s >= MIN_TRUSTED]
     lo, hi = min(trusted), max(trusted)
+    resolved = left = 0
+    groups: dict[tuple[int, str], list[tuple[str, list[int]]]] = {}
+    for key, name, hits in ambiguous:
+        addr = bound.get(name.split("(")[0])
+        if addr in hits and addr not in found:
+            found[addr] = (key[0], name)
+            resolved += 1
+        else:
+            groups.setdefault(key, []).append((name, hits))
+    for key, members in groups.items():
+        hits = [a for a in members[0][1] if lo <= a <= hi and a not in found]
+        if len(hits) == len(members):
+            for (name, _), a in zip(members, sorted(hits)):
+                found[a] = (key[0], name)
+                resolved += 1
+        else:
+            left += len(members)
+    ambiguous = left
+
+    # Tiny bodies (a load and a return) also occur in unrelated code. Trust matches of at least
+    # MIN_TRUSTED bytes; accept smaller ones only inside the address range the trusted ones span.
     rejected = {a: v for a, v in found.items() if v[0] < MIN_TRUSTED and not lo <= a <= hi}
     for a in rejected:
         del found[a]
@@ -125,7 +157,7 @@ def main() -> int:
         w.writerows(rows)
     print(f"{args.library}: {total} compiled functions; {len(found)} matched uniquely "
           f"(region {lo:#x}-{hi:#x}; {len(rejected)} small matches outside it rejected), "
-          f"{ambiguous} ambiguous, {missing} not found -> {out.relative_to(ROOT)}")
+          f"{resolved} look-alikes resolved, {ambiguous} ambiguous, {missing} not found -> {out.relative_to(ROOT)}")
     return 0
 
 
