@@ -653,6 +653,13 @@ The ten largest `U` functions held 458 KB (2.4 points). What they are:
 | 0x7100031894 | 61 KB | Constructor of a struct of 1,198 string ids built from literals with precomputed CRC64 hashes (called from ~700 functions; a guarded static, `fn_7100065ca0`) | **O**, `tools/gen_tables.py` |
 | 0x7100057eb8 | 56 KB | Passes each of the same 1,198 literals with an empty 0x30-byte temporary to `fn_7100065b14` (a string escaper) | **O**, `tools/gen_tables.py` |
 | 0x71000406dc | 276 B | The ids' constructor (string, length, hash, flag) | **O**, `tools/gen_tables.py` |
+| 0x7100db8dec | 63 KB | Boss rush setup: member string-id assignments, then ~230 inlined pushes of entries (literals, enum values) into pool-backed vectors (`udiv` slot math, allocator vcalls) | Semi-regular (35 chunk shapes). Hand-match one push, then generate the entries: est. 2-4 h |
+| 0x7100ef378c | 52 KB | Loading screen setup: ~1.7 KB of object setup, then 77 inlined hash-map inserts of (enum key, `CFilePathStrId` video path, `CStrId` label) | Same approach (one 656-byte insert per entry): est. 2-4 h |
+| 0x7100408c20 | 34 KB | Tunable registration (field name, editor description, `refl_GetType<float>` ...) | Reflection-attribute style (stream 4's `refl_attrs.py` shapes); 94 chunk shapes |
+| 0x7100c66c60 | 30 KB | Float-heavy game logic (collision, `sqrtf`) | Hand only; not regular (211 shapes in 244 calls) |
+| 0x7100b66018 | 28 KB | Inventory GUI (beam list composition), 18 guarded statics | Irregular; hand only |
+| 0x7100ae39e0 | 21 KB | Reflection registration of a save-data class (fields with descriptions) | Stream 4 |
+| 0x7100e72680 | 17 KB | `CMinimapDef` reflection registration | Stream 4 |
 
 ## Known issues and gotchas
 
