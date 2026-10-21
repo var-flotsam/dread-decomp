@@ -8,7 +8,9 @@ lifts each one into C++ over `char*` parameters and keeps only the byte-identica
   1. Candidates are functions of at most MAX_SIZE bytes that aren't defined elsewhere in src/.
   2. A lifter turns the code into statements: loads and stores at fixed offsets, immediates,
      add/sub, compare + cset, forward branches to the epilogue (`if (!cond) { ... }`), calls
-     and tail calls (direct or through a register), string literals and global addresses.
+     and tail calls (direct or through a register), string literals and global addresses,
+     and scalar float code (s/d registers: arithmetic, fcmp/fccmp, fcsel, conversions, bit
+     casts; a call's result is a float when s0/d0 is read after it).
      Saves and restores of callee-saved registers are skipped. Anything else is rejected.
      Callees are declared in namespace `callee` (one overload per argument list), so their
      names never clash with the functions being defined; globals are `g_unk_<addr>` (reached
@@ -26,8 +28,10 @@ from __future__ import annotations
 import argparse
 import bisect
 import csv
+import math
 import re
 import shutil
+import struct
 import subprocess
 import sys
 from concurrent.futures import ThreadPoolExecutor
@@ -44,7 +48,7 @@ import refl_attrs  # noqa: E402
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "src" / "lifted"
 BASE = 0x7100000000
-MAX_SIZE = 2048
+MAX_SIZE = 16384
 CHUNK = 1000  # functions per generated file
 # Functions per scratch TU: with -ffunction-sections, more than ~65k sections overflow the ELF
 # section index (SHN_XINDEX), which the object reader doesn't follow.
@@ -72,6 +76,23 @@ CONDS = {arm64.ARM64_CC_EQ: ("==", False), arm64.ARM64_CC_NE: ("!=", False),
          arm64.ARM64_CC_LT: ("<", True), arm64.ARM64_CC_GE: (">=", True),
          arm64.ARM64_CC_GT: (">", True), arm64.ARM64_CC_LE: ("<=", True)}
 NEGATE = {"==": "!=", "!=": "==", "<": ">=", ">=": "<", ">": "<=", "<=": ">"}
+# Float operations ({s}: "f" for f32, "" for f64, as in the libm builtins' names).
+FBINARY = {"fadd": "{a} + {b}", "fsub": "{a} - {b}", "fmul": "{a} * {b}", "fdiv": "{a} / {b}",
+           "fnmul": "-({a} * {b})", "fabd": "__builtin_fabs{s}({a} - {b})",
+           "fminnm": "__builtin_fmin{s}({a}, {b})", "fmaxnm": "__builtin_fmax{s}({a}, {b})",
+           # NaN-propagating: an unordered select against a constant.
+           "fmin": "!({a} >= {b}) ? {a} : {b}", "fmax": "!({a} <= {b}) ? {a} : {b}"}
+FUNARY = {"fneg": "-({a})", "fabs": "__builtin_fabs{s}({a})", "fsqrt": "__builtin_sqrt{s}({a})",
+          "frintm": "__builtin_floor{s}({a})", "frintp": "__builtin_ceil{s}({a})",
+          "frintz": "__builtin_trunc{s}({a})", "frinta": "__builtin_round{s}({a})",
+          "frintx": "__builtin_rint{s}({a})", "frinti": "__builtin_nearbyint{s}({a})"}
+# Fused multiply-add forms (-ffp-contract=on fuses them within one expression).
+FTERNARY = {"fmadd": "{c} + {a} * {b}", "fmsub": "{c} - {a} * {b}",
+            "fnmadd": "-({a} * {b}) - {c}", "fnmsub": "{a} * {b} - {c}"}
+# Float to integer conversions: rounding builtin applied before the cast.
+FTOINT = {"fcvtzs": "", "fcvtzu": "", "fcvtms": "__builtin_floor{s}", "fcvtmu": "__builtin_floor{s}",
+          "fcvtps": "__builtin_ceil{s}", "fcvtpu": "__builtin_ceil{s}", "fcvtas": "__builtin_round{s}",
+          "fcvtau": "__builtin_round{s}"}
 
 
 class Unsupported(Exception):
@@ -109,6 +130,30 @@ def is_int(t: str) -> bool:
     return t in ("u64", "u32", "u16", "u8", "bool", "char*")
 
 
+def ftype(r: str) -> str | None:
+    """C type of a float register name (s<n>: f32, d<n>: f64), or None."""
+    return {"s": "f32", "d": "f64"}.get(r[0]) if fkey(r) is not None else None
+
+
+def float_literal(bits: int, t: str) -> str | None:
+    """A float constant with these bits, as an exact hex literal (None for inf/NaN)."""
+    v = struct.unpack("<f", struct.pack("<I", bits & 0xFFFFFFFF))[0] if t == "f32" \
+        else struct.unpack("<d", struct.pack("<Q", bits & 0xFFFFFFFFFFFFFFFF))[0]
+    if not math.isfinite(v):
+        return None
+    return f"({v.hex()}{'f' if t == 'f32' else ''})"
+
+
+def nzcv_holds(nzcv: int, cc: int) -> bool | None:
+    """Whether condition cc holds for the flags nzcv (as set by ccmp/fccmp when skipped)."""
+    n, z, c, v = (nzcv >> 3) & 1, (nzcv >> 2) & 1, (nzcv >> 1) & 1, nzcv & 1
+    return {arm64.ARM64_CC_EQ: z, arm64.ARM64_CC_NE: not z, arm64.ARM64_CC_HS: c,
+            arm64.ARM64_CC_LO: not c, arm64.ARM64_CC_MI: n, arm64.ARM64_CC_PL: not n,
+            arm64.ARM64_CC_VS: v, arm64.ARM64_CC_VC: not v, arm64.ARM64_CC_HI: c and not z,
+            arm64.ARM64_CC_LS: not (c and not z), arm64.ARM64_CC_GE: n == v, arm64.ARM64_CC_LT: n != v,
+            arm64.ARM64_CC_GT: not z and n == v, arm64.ARM64_CC_LE: not (not z and n == v)}.get(cc)
+
+
 class State:
     """Register knowledge on one path. Keys: n for x<n>/w<n>, 100 + n for s<n>/d<n>."""
 
@@ -120,11 +165,14 @@ class State:
         self.called = False
         self.written: set[int] = set()             # argument registers written since the last call
         self.cmp: tuple | None = None
+        self.retk: int | None = None               # the last written of x0 (0) and s0/d0 (100)
+        self.fcall: tuple | None = None            # the last call, while its result may be a float
 
     def copy(self) -> "State":
         s = State()
         s.vals, s.pages, s.consts = dict(self.vals), dict(self.pages), dict(self.consts)
         s.poison, s.called, s.written, s.cmp = set(self.poison), self.called, set(self.written), self.cmp
+        s.retk, s.fcall = self.retk, self.fcall
         return s
 
 
@@ -154,6 +202,8 @@ class Lifter:
         self.rets: list[tuple[int, str, tuple | None]] = []  # (line, "value"|"tail", payload)
         self.phis = 0
         self.sret = False
+        self.last_call: tuple[str | None, str] = (None, "")  # (callee or None, argument types)
+        self.tails: dict[str, str] = {}  # direct tail callee -> argument types
 
     @property
     def depth(self) -> int:
@@ -180,6 +230,11 @@ class Lifter:
         s = self.s
         if n in s.pages or n in s.poison:
             raise Unsupported("unknown value")
+        if n == 100 and n not in s.vals and s.fcall:
+            t = ftype(r)
+            self.retype_call(t, f"r{s.fcall[0]}_100")
+            s.vals[100] = (f"r{s.fcall[0]}_100", t)
+            s.fcall = None
         if n not in s.vals:
             if s.called or (n > 8 and not 100 <= n <= 107):
                 raise Unsupported(r)
@@ -202,6 +257,25 @@ class Lifter:
             raise Unsupported("float width")
         return e, t
 
+    def retype_call(self, t: str, dest: str) -> None:
+        """s0/d0 is read after a call: the callee returns a float. Its line becomes
+        `<t> <dest> = <call>;` (the call's x0 result must be unused)."""
+        ln, var, expr, fn, types = self.s.fcall
+        # (FlatLifter drops fcall when it reads X0.)
+        if var != "X0" and any(re.search(rf"\b{var}\b", s) for s in self.body[ln + 1:]):
+            raise Unsupported("call result used as both")
+        if fn:
+            ns = "fret" if t == "f32" else "dret"
+            self.decls.add(f"namespace {ns} {{ {t} {fn}({types}); }}")
+            expr = expr.replace("callee::", f"{ns}::", 1)
+        else:
+            expr = expr.replace("((char* (*)(", f"(({t} (*)(", 1)
+        ind = self.body[ln][:len(self.body[ln]) - len(self.body[ln].lstrip())]
+        self.body[ln] = ind + (f"{t} {dest} = {expr};" if dest[0] == "r" else f"{dest} = {expr};")
+        if self.s.vals.get(0, ("",))[0] == var:
+            del self.s.vals[0]
+        self.s.retk = 100
+
     def write(self, r: str, e: str, t: str, const: int | None = None) -> None:
         n = self.key(r)
         if n < 0:
@@ -209,6 +283,10 @@ class Lifter:
         var = f"r{len(self.body)}_{n}"
         self.line(f"{t} {var} = {e};")
         s = self.s
+        if n in (0, 100):
+            s.retk = n
+        if n == 100:
+            s.fcall = None
         s.vals[n] = (var, t)
         s.pages.pop(n, None)
         s.poison.discard(n)
@@ -260,6 +338,8 @@ class Lifter:
         m.called = a.called or c.called
         m.written = a.written | c.written
         m.cmp = None
+        m.fcall = None  # lines are inserted below: recorded line numbers would move
+        m.retk = a.retk if a.retk == c.retk else None
         m.poison = a.poison | c.poison
         m.pages = {n: p for n, p in a.pages.items() if c.pages.get(n) == p}
         m.poison |= (set(a.pages) | set(c.pages)) - set(m.pages)
@@ -313,8 +393,12 @@ class Lifter:
 
     # -- operands -----------------------------------------------------------------------------
 
-    def global_ref(self, a: int, through_got: bool) -> str:
-        """Address of the object or function at a, as char*."""
+    def global_ref(self, a: int, through_got: bool, align: int = 1) -> str:
+        """Address of the object or function at a, as char*. A float access gives an
+        alignment, so the page offset folds into the scaled load/store offset."""
+        if align > 1 and not through_got and a % align == 0 and a not in self.orig.sizes:
+            self.decls.add(f"namespace h{align} {{ extern HIDDEN char g_unk_{a:x}[] __attribute__((aligned({align}))); }}")
+            return f"(char*)h{align}::g_unk_{a:x}"
         if a in self.orig.sizes:
             ns = "fp" if through_got else "hf"
             self.decls.add(f"namespace {ns} {{ {'' if through_got else 'HIDDEN '}void fn_{a:x}(); }}")
@@ -325,7 +409,7 @@ class Lifter:
         self.decls.add(f"namespace h {{ extern HIDDEN char g_unk_{a:x}[]; }}")
         return f"(char*)h::g_unk_{a:x}"
 
-    def address(self, x, op) -> str:
+    def address(self, x, op, align: int = 1) -> str:
         """The memory operand's address; applies pre/post-index writeback to the base."""
         base_reg = regname(op.mem.base)
         if op.mem.index:
@@ -349,7 +433,7 @@ class Lifter:
             a = self.s.pages[n] + op.mem.disp
             if self.orig.img.relocs.get(a - BASE) is not None:
                 raise Unsupported("GOT slot as data")
-            return self.global_ref(a, False)
+            return self.global_ref(a, False, align)
         base, t = self.read(base_reg)
         if not x.writeback:
             return f"((char*)({base}) + {op.mem.disp})"
@@ -392,30 +476,46 @@ class Lifter:
                 raise Unsupported("shift")
         return e
 
+    @staticmethod
+    def fcond(c: tuple, cc: int) -> str:
+        """Condition cc after fcmp: each is ordered (false if either is NaN) or unordered."""
+        a, b = f"({c[3]})({c[0]})", f"({c[3]})({c[1]})"
+        expr = {arm64.ARM64_CC_EQ: f"{a} == {b}", arm64.ARM64_CC_NE: f"{a} != {b}",
+                arm64.ARM64_CC_MI: f"{a} < {b}", arm64.ARM64_CC_LO: f"{a} < {b}",
+                arm64.ARM64_CC_LS: f"{a} <= {b}", arm64.ARM64_CC_GT: f"{a} > {b}",
+                arm64.ARM64_CC_GE: f"{a} >= {b}", arm64.ARM64_CC_LT: f"!({a} >= {b})",
+                arm64.ARM64_CC_LE: f"!({a} > {b})", arm64.ARM64_CC_HI: f"!({a} <= {b})",
+                arm64.ARM64_CC_PL: f"!({a} < {b})", arm64.ARM64_CC_HS: f"!({a} < {b})",
+                arm64.ARM64_CC_VS: f"__builtin_isunordered({a}, {b})",
+                arm64.ARM64_CC_VC: f"!__builtin_isunordered({a}, {b})"}.get(cc)
+        if expr is None:
+            raise Unsupported("float condition")
+        return expr
+
     def cond(self, cc: int, negate: bool) -> str:
-        if not self.s.cmp or (cc not in CONDS and self.s.cmp[2] != "f"):
+        if not self.s.cmp or (cc not in CONDS and self.s.cmp[2] not in "fe"):
             raise Unsupported("condition")
         opr, signed = CONDS.get(cc, ("", False))
         c = self.s.cmp
-        if c[2] == "f":
-            # After fcmp each condition is ordered (false if either is NaN) or unordered.
-            a, b = f"({c[3]})({c[0]})", f"({c[3]})({c[1]})"
-            expr = {arm64.ARM64_CC_EQ: f"{a} == {b}", arm64.ARM64_CC_NE: f"!({a} == {b})",
-                    arm64.ARM64_CC_MI: f"{a} < {b}", arm64.ARM64_CC_LS: f"{a} <= {b}",
-                    arm64.ARM64_CC_GT: f"{a} > {b}", arm64.ARM64_CC_GE: f"{a} >= {b}",
-                    arm64.ARM64_CC_LT: f"!({a} >= {b})", arm64.ARM64_CC_LE: f"!({a} > {b})",
-                    arm64.ARM64_CC_HI: f"!({a} <= {b})", arm64.ARM64_CC_PL: f"!({a} < {b})"}.get(cc)
-            if expr is None:
-                raise Unsupported("float condition")
-            return f"!({expr})" if negate else expr
+        if c[2] in "fe":
+            # "e": a chain (fccmp) whose condition is built per cc by c[0]. Negation inverts
+            # the condition code (exact on flags; `a != b` lays out unlike `!(a == b)`).
+            if negate:
+                cc = cc + 1 if cc % 2 else cc - 1
+            return self.fcond(c, cc) if c[2] == "f" else c[0](cc)
         t = ("s64" if c[2] == "x" else "s32") if signed else ("u64" if c[2] == "x" else "u32")
         return f"({t})(u64)({c[0]}) {NEGATE[opr] if negate else opr} ({t})({c[1]})"
+
+    def has_value(self, n: int) -> bool:
+        return n in self.s.vals and n not in self.s.poison
 
     def args(self) -> list[tuple[str, str]]:
         w = self.s.written
         n = max([k for k in w if k < 100], default=-1) + 1
         n = max(n, self.extra)
         fl = max([k - 100 for k in w if k >= 100], default=-1) + 1
+        # Up to the first float register with no value (a higher one was a temporary).
+        fl = next((i for i in range(fl) if not self.has_value(100 + i)), fl)
         floats = []
         for i in range(fl):
             t = self.s.vals.get(100 + i, ("", "f32"))[1]
@@ -427,6 +527,7 @@ class Lifter:
         args = self.args()
         types = ", ".join(t for _, t in args)
         values = ", ".join(e for e, _ in args)
+        self.last_call = (fn if ptr is None else None, types)
         if ptr is not None:
             return f"((char* (*)({types}))({ptr}))({values})"
         self.decls.add(f"namespace callee {{ char* {fn}({types}); }}")
@@ -466,13 +567,15 @@ class Lifter:
                 m, o = x.mnemonic, x.operands
                 if m == "ret":
                     v = None
-                    if 0 in self.s.vals and 0 not in self.s.poison:
-                        v = self.s.vals[0]
-                    elif 100 in self.s.vals and 100 not in self.s.poison:
-                        v = self.s.vals[100]
+                    # x0, unless s0/d0 was written after it.
+                    for k in ((100, 0) if self.s.retk == 100 else (0, 100)):
+                        if k in self.s.vals and k not in self.s.poison:
+                            v = self.s.vals[k]
+                            break
                     self.terminate("value", v)
                 elif m == "b" and not addr <= o[0].imm < end:
                     self.terminate("tail", self.call(f"fn_{o[0].imm:x}"))
+                    self.tails[f"fn_{o[0].imm:x}"] = self.last_call[1]
                 elif m == "br":
                     ptr, _ = self.read(regname(o[0].reg))
                     self.s.written.discard(self.key(regname(o[0].reg)))  # the target isn't an argument
@@ -499,13 +602,17 @@ class Lifter:
                 ind = self.body[ln][:len(self.body[ln]) - len(self.body[ln].lstrip())]
                 # A final call (e.g. an initialiser given &ret) stays a tail call: ret is
                 # built in place, so nothing is left to do after it.
-                self.body[ln] = ind + (f"{p};\n{ind}return ret;" if k == "tail" else "return ret;")
+                self.body[ln] = ind + (f"{p};\n{ind}return ret;" if k == "tail" else f"{p};" if k == "noret"
+                                       else "return ret;")
             return self.signature("UnkResult", ["    UnkResult ret;"] + self.body), self.decls
         if self.returns != "void":
             if any(k == "value" and p is None for _, k, p in self.rets):
                 return None
             types = [p[1] for _, k, p in self.rets if k == "value"]
-            rtype = "char*" if tails else types[0]
+            if not tails and not types:
+                return None  # only no-return calls: the "void" variant
+            # Tail calls return what the other paths return when that is a float.
+            rtype = types[0] if types and types[0][0] == "f" else "char*" if tails else types[0]
             if self.returns == "ref":
                 if rtype != "char*" or tails:
                     return None
@@ -517,7 +624,17 @@ class Lifter:
             rtype = "void"
         for ln, k, p in self.rets:
             ind = self.body[ln][:len(self.body[ln]) - len(self.body[ln].lstrip())]
-            if k == "tail":
+            if k == "noret":
+                s = f"{p};"
+            elif k == "tail" and rtype[0] == "f":
+                if p.startswith("callee::"):
+                    fn = p[len("callee::"):p.index("(")]
+                    ns = "fret" if rtype == "f32" else "dret"
+                    self.decls.add(f"namespace {ns} {{ {rtype} {fn}({self.tails[fn]}); }}")
+                    s = f"return {ns}::{p[len('callee::'):]};"
+                else:
+                    s = f"return {p.replace('((char* (*)(', f'(({rtype} (*)(', 1)};"
+            elif k == "tail":
                 s = f"{p};\n{ind}return;" if rtype == "void" else \
                     f"return {p};" if rtype == "char*" else f"return ({rtype})(u64)({p});"
             elif rtype == "void":
@@ -641,7 +758,7 @@ class Lifter:
             else:
                 self.write(regname(o[0].reg), self.global_ref(a, False), "char*")
         elif m == "ldr" and len(o) == 2 and o[1].type == arm64.ARM64_OP_MEM \
-                and self.key(regname(o[1].mem.base)) in s.pages:
+                and regname(o[1].mem.base) != "sp" and self.key(regname(o[1].mem.base)) in s.pages:
             slot = s.pages[self.key(regname(o[1].mem.base))] + o[1].mem.disp
             r = self.orig.img.relocs.get(slot - BASE)
             rt = regname(o[0].reg)
@@ -654,12 +771,12 @@ class Lifter:
                 t = {"x": "u64", "w": "u32", "s": "f32", "d": "f64"}.get(rt[0])
                 if t is None:
                     return False
-                self.write(rt, f"*({t}*){self.global_ref(slot, False)}", t)
+                self.write(rt, f"*({t}*){self.global_ref(slot, False, {'f32': 4, 'f64': 8}.get(t, 1))}", t)
         elif m in LOADS and mem:
             rt = regname(o[0].reg)
             if rt[0] in "sd" and m in ("ldr", "ldur"):
                 t = "f32" if rt[0] == "s" else "f64"
-                self.write(rt, f"*({t}*){self.address(x, mem[0])}", t)
+                self.write(rt, f"*({t}*){self.address(x, mem[0], 4 if t == 'f32' else 8)}", t)
                 return True
             t = LOADS[m] or width_type(rt)
             if rt[0] not in "xw":
@@ -671,7 +788,7 @@ class Lifter:
             rt = regname(o[0].reg)
             if rt[0] in "sd" and m in ("str", "stur"):
                 v, t = self.read(rt)
-                self.line(f"*({t}*){self.address(x, mem[0])} = {v};")
+                self.line(f"*({t}*){self.address(x, mem[0], 4 if t == 'f32' else 8)} = {v};")
                 return True
             if rt[0] not in "xw":
                 return False
@@ -680,20 +797,22 @@ class Lifter:
             self.line(f"*({t}*){self.address(x, mem[0])} = ({t})(u64)({v});")
         elif m == "stp" and mem:
             rts = [regname(o[k].reg) for k in range(2)]
-            if any(r[0] not in "xw" for r in rts):
+            if any(r[0] not in "xwsd" for r in rts):
                 return False
             vals = [self.read(r)[0] for r in rts]
-            a = self.address(x, mem[0])
+            a = self.address(x, mem[0], {"s": 4, "d": 8}.get(rts[0][0], 1))
             for k, (rt, v) in enumerate(zip(rts, vals)):
-                t = width_type(rt)
-                self.line(f"*({t}*)({a} + {k * (8 if t == 'u64' else 4)}) = ({t})(u64)({v});")
-        elif m == "ldp" and mem and regname(o[0].reg)[0] in "xw":
-            a = self.address(x, mem[0])
+                t = ftype(rt) or width_type(rt)
+                size = 8 if rt[0] in "xd" else 4
+                self.line(f"*({t}*)({a} + {k * size}) = {v};" if rt[0] in "sd" else
+                          f"*({t}*)({a} + {k * size}) = ({t})(u64)({v});")
+        elif m == "ldp" and mem and regname(o[0].reg)[0] in "xwsd":
+            a = self.address(x, mem[0], {"s": 4, "d": 8}.get(regname(o[0].reg)[0], 1))
             tmp = self.temp_ptr(a)
             for k in range(2):
                 rt = regname(o[k].reg)
-                t = width_type(rt)
-                self.write(rt, f"*({t}*)({tmp} + {k * (8 if t == 'u64' else 4)})", t)
+                t = ftype(rt) or width_type(rt)
+                self.write(rt, f"*({t}*)({tmp} + {k * (8 if rt[0] in 'xd' else 4)})", t)
         elif m == "mov" and len(o) == 2 and regname(o[0].reg)[0] == "v" and o[1].type == arm64.ARM64_OP_REG \
                 and regname(o[1].reg)[0] == "v":
             # A whole-register float copy (mov vD.16b, vS.16b): keep the source's width.
@@ -724,18 +843,101 @@ class Lifter:
             self.write(rd, f"{v:#x}", width_type(rd), v)
         elif m == "fmov" and len(o) == 2:
             rd = regname(o[0].reg)
-            if rd[0] not in "sd":
-                return False
-            t = "f32" if rd[0] == "s" else "f64"
-            if o[1].type == arm64.ARM64_OP_FP:
-                self.write(rd, repr(float(o[1].fp)) + ("f" if t == "f32" else ""), t)
-            elif regname(o[1].reg) in ("wzr", "xzr"):
-                self.write(rd, "0.0f" if t == "f32" else "0.0", t)
-            elif regname(o[1].reg)[0] == rd[0]:
-                v, _ = self.read(regname(o[1].reg))
+            src = regname(o[1].reg) if o[1].type == arm64.ARM64_OP_REG else None
+            t = ftype(rd)
+            if t is None:
+                # fmov w, s / x, d: the float's bits.
+                if rd[0] not in "xw" or src is None or ftype(src) != ("f32" if rd[0] == "w" else "f64"):
+                    return False
+                v, _ = self.read(src)
+                self.write(rd, f"lift_bits({v})", width_type(rd))
+            elif o[1].type == arm64.ARM64_OP_FP:
+                self.write(rd, repr(float(o[1].fp)) + ("f" if t == "f32" else ""), t, float(o[1].fp))
+            elif src in ("wzr", "xzr"):
+                self.write(rd, "0.0f" if t == "f32" else "0.0", t, 0)
+            elif src[0] == rd[0]:
+                v, _ = self.read(src)
                 self.write(rd, v, t)
+            elif src[0] == ("w" if t == "f32" else "x"):
+                # Bits from an integer register: a constant (mov/movk) becomes a literal.
+                n = self.key(src)
+                if n in s.consts:
+                    lit = float_literal(s.consts[n], t)
+                    if lit is None:
+                        return False
+                    self.write(rd, lit, t)
+                else:
+                    v, _ = self.read(src)
+                    self.write(rd, f"lift_{t}(({width_type(src)})(u64)({v}))", t)
             else:
                 return False
+        elif m == "movi" and len(o) == 2 and ftype(regname(o[0].reg)) == "f64" and o[1].imm == 0:
+            self.write(regname(o[0].reg), "0.0", "f64", 0)
+        elif (m in FBINARY and len(o) == 3) or (m in FUNARY and len(o) == 2) or (m in FTERNARY and len(o) == 4):
+            rd = regname(o[0].reg)
+            t = ftype(rd)
+            if t is None or any(op.type != arm64.ARM64_OP_REG or ftype(regname(op.reg)) != t for op in o):
+                return False
+            v = [self.read(regname(op.reg))[0] for op in o[1:]]
+            fmt = FBINARY.get(m) or FUNARY.get(m) or FTERNARY[m]
+            self.write(rd, fmt.format(**dict(zip("abc", v)), s="f" if t == "f32" else ""), t)
+        elif m == "fcsel" and len(o) == 3:
+            rd = regname(o[0].reg)
+            t = ftype(rd)
+            if t is None:
+                return False
+            a, b = self.read(regname(o[1].reg))[0], self.read(regname(o[2].reg))[0]
+            ka, kb = self.key(regname(o[1].reg)), self.key(regname(o[2].reg))
+            if s.consts.get(ka) == 1 and s.consts.get(kb) == 0 and ka != kb:
+                # 1.0 or 0.0: a bool converted to float (the select ISel makes of it).
+                self.write(rd, f"({t})({self.cond(x.cc, False)})", t)
+            elif s.cmp and len(s.cmp) == 4 and s.cmp[2] in "xw" and x.cc in (arm64.ARM64_CC_NE, arm64.ARM64_CC_EQ):
+                # A bool parameter (tst w<n>, #1): only `bool` keeps fcsel ne after tst.
+                n = s.cmp[3]
+                self.params[n] = "bool"
+                self.write(rd, f"{'' if x.cc == arm64.ARM64_CC_NE else '!'}p{n} ? {a} : {b}", t)
+            else:
+                self.write(rd, f"({self.cond(x.cc, False)}) ? {a} : {b}", t)
+        elif m in ("scvtf", "ucvtf") and len(o) == 2:
+            rd, rn = regname(o[0].reg), regname(o[1].reg)
+            t = ftype(rd)
+            if t is None or rn[0] not in "xwsd":
+                return False
+            v, _ = self.read(rn)
+            st = ("s" if m == "scvtf" else "u") + ("64" if rn[0] in "xd" else "32")
+            # From a float register: an integer loaded straight into it (ldr s; ucvtf s, s).
+            self.write(rd, f"({t})({st})lift_bits({v})" if rn[0] in "sd" else f"({t})({st})(u64)({v})", t)
+        elif m in FTOINT and len(o) == 2:
+            rd, rn = regname(o[0].reg), regname(o[1].reg)
+            ft = ftype(rn)
+            if ft is None or rd[0] not in "xw":
+                return False
+            v, _ = self.read(rn)
+            if FTOINT[m]:
+                v = f"{FTOINT[m].format(s='f' if ft == 'f32' else '')}({v})"
+            it = ("s" if m[-1] == "s" else "u") + ("64" if rd[0] == "x" else "32")
+            self.write(rd, f"({width_type(rd)})({it})({v})", width_type(rd))
+        elif m == "fcvt" and len(o) == 2:
+            rd, rn = regname(o[0].reg), regname(o[1].reg)
+            if ftype(rd) is None or ftype(rn) is None:
+                return False
+            v, _ = self.read(rn)
+            self.write(rd, f"({ftype(rd)})({v})", ftype(rd))
+        elif m == "fccmp" and len(o) == 3:
+            # Flags of the fcmp if the condition holds, else the immediate: one condition
+            # chained with (&&) or (||) to the comparison.
+            prev = self.cond(x.cc, False)
+            a, t = self.read(regname(o[0].reg))
+            b, _ = self.read(regname(o[1].reg))
+            fc, nzcv = (a, b, "f", t), o[2].imm
+
+            def chained(cc: int, prev=prev, fc=fc, nzcv=nzcv) -> str:
+                holds = nzcv_holds(nzcv, cc)
+                if holds is None:
+                    raise Unsupported("condition")
+                e = self.fcond(fc, cc)
+                return f"!({prev}) || ({e})" if holds else f"({prev}) && ({e})"
+            s.cmp = (chained, None, "e")
         elif m in ("add", "sub", "and", "orr", "eor") and len(o) == 3:
             rd = regname(o[0].reg)
             if rd[0] not in "xw":
@@ -776,6 +978,9 @@ class Lifter:
             b, _ = self.operand(o[1], regname(o[0].reg))
             t = width_type(regname(o[0].reg))
             s.cmp = (f"({t})(({t})(u64)({a}) {'+' if m == 'cmn' else '&'} ({t})({b}))", "0", regname(o[0].reg)[0])
+            n = self.key(regname(o[0].reg))
+            if m == "tst" and b == "1" and a == f"p{n}" and self.params.get(n) == "u32":
+                s.cmp += (n,)  # bit 0 of a parameter: maybe a bool (see fcsel)
         elif m in ("csel", "csinc", "csneg", "csinv") and len(o) == 3:
             rd = regname(o[0].reg)
             if rd[0] not in "xw":
@@ -862,18 +1067,25 @@ class Lifter:
         elif m in ("tbz", "tbnz") and self.branch_ok(x.address, o[2].imm, last):
             v, _ = self.read(regname(o[0].reg))
             self.open_if(f"((u64)({v}) >> {o[1].imm} & 1) {'!=' if m == 'tbz' else '=='} 0", o[2].imm)
-        elif m == "bl":
-            call = self.call(f"fn_{o[0].imm:x}")
+        elif m == "bl" and x.address == last:
+            # Code ends with a call, so the callee doesn't return (declared [[noreturn]]).
+            args = self.args()
+            fn = f"fn_{o[0].imm:x}"
+            self.decls.add(f"namespace noret {{ [[noreturn]] void {fn}({', '.join(t for _, t in args)}); }}")
+            self.terminate("noret", f"noret::{fn}({', '.join(e for e, _ in args)})")
+        elif m in ("bl", "blr"):
+            if m == "bl":
+                call = self.call(f"fn_{o[0].imm:x}")
+            else:
+                ptr, _ = self.read(regname(o[0].reg))
+                self.s.written.discard(self.key(regname(o[0].reg)))  # the target isn't an argument
+                call = self.call("", ptr)
             self.clobber()
             self.write("x0", call, "char*")
             self.s.written = set()
-        elif m == "blr":
-            ptr, _ = self.read(regname(o[0].reg))
-            self.s.written.discard(self.key(regname(o[0].reg)))  # the target isn't an argument
-            call = self.call("", ptr)
-            self.clobber()
-            self.write("x0", call, "char*")
-            self.s.written = set()
+            # Until s0/d0 is read (then the callee returns a float; see retype_call).
+            var = self.s.vals[0][0] if 0 in self.s.vals else "X0"
+            self.s.fcall = (len(self.body) - 1, var, call) + self.last_call
         else:
             return False
         return True
@@ -909,6 +1121,13 @@ class FlatLifter(Lifter):
         s = self.s
         if n in s.pages:
             raise Unsupported("bare page")
+        if n == 100 and s.fcall:
+            t = ftype(r)
+            self.retype_call(t, self.storage(100, t))
+            self.types[100] = t
+            s.fcall = None
+        elif n == 0:
+            s.fcall = None  # the call's x0 result is used
         if n not in self.types:
             if s.called or (n > 8 and not 100 <= n <= 107):
                 raise Unsupported(r)
@@ -938,6 +1157,10 @@ class FlatLifter(Lifter):
             self.line(f"X{n} = (u64)({e});")
         self.types[n] = t
         s = self.s
+        if n in (0, 100):
+            s.retk = n
+        if n == 100:
+            s.fcall = None
         s.pages.pop(n, None)
         if const is None:
             s.consts.pop(n, None)
@@ -945,6 +1168,9 @@ class FlatLifter(Lifter):
             s.consts[n] = const
         if n <= 7 or 100 <= n <= 107:
             s.written.add(n)
+
+    def has_value(self, n: int) -> bool:
+        return n in self.types
 
     def temp_ptr(self, e: str) -> str:
         var = f"t{self.temps}"
@@ -985,18 +1211,20 @@ class FlatLifter(Lifter):
                 if x.address in targets:
                     self.body.append(f"L_{x.address:x}:;")
                     self.s.cmp = None if x.address != addr else self.s.cmp
+                    self.s.fcall = None
                 if is_frame(x):
                     continue
                 m, o = x.mnemonic, x.operands
                 if m == "ret":
                     v = None
-                    if 0 in self.types:
-                        v = self.read("x0")
-                    elif 100 in self.types:
+                    if 100 in self.types and (self.s.retk == 100 or 0 not in self.types):
                         v = self.read("s0" if self.types[100] == "f32" else "d0")
+                    elif 0 in self.types:
+                        v = self.read("x0")
                     self.terminate("value", v)
                 elif m == "b" and not addr <= o[0].imm < end:
                     self.terminate("tail", self.call(f"fn_{o[0].imm:x}"))
+                    self.tails[f"fn_{o[0].imm:x}"] = self.last_call[1]
                 elif m == "br":
                     ptr, _ = self.read(regname(o[0].reg))
                     self.s.written.discard(self.key(regname(o[0].reg)))  # the target isn't an argument
@@ -1007,7 +1235,7 @@ class FlatLifter(Lifter):
                     return None
         except Unsupported:
             return None
-        if ins[-1].mnemonic not in ("ret", "b", "br"):
+        if ins[-1].mnemonic not in ("ret", "b", "br", "bl"):
             return None
         # Declarations go first: gotos must not jump over initialisations.
         pre = []
@@ -1044,6 +1272,11 @@ def candidates(orig: asmdiff.Original) -> list[int]:
 
 
 HEADER = ['#include "types.h"', '#define HIDDEN __attribute__((visibility("hidden")))',
+          "// Bit casts between float and integer registers (fmov).",
+          "inline f32 lift_f32(u32 v) { f32 f; __builtin_memcpy(&f, &v, 4); return f; }",
+          "inline f64 lift_f64(u64 v) { f64 f; __builtin_memcpy(&f, &v, 8); return f; }",
+          "inline u32 lift_bits(f32 f) { u32 v; __builtin_memcpy(&v, &f, 4); return v; }",
+          "inline u64 lift_bits(f64 f) { u64 v; __builtin_memcpy(&v, &f, 8); return v; }",
           "// Returned in memory through x8 (built in place); the real size is unknown.",
           "struct UnkResult { char data[0x100]; };", ""]
 

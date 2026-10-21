@@ -1936,7 +1936,7 @@ address,size,name,name_source,subsystem,status
 0x71010592b0,104,fn_71010592b0,unknown,unknown,O
 0x7101059318,44,fn_7101059318,unknown,unknown,O
 0x7101059344,464,fn_7101059344,unknown,unknown,U
-0x7101059514,28,fn_7101059514,unknown,unknown,U
+0x7101059514,28,fn_7101059514,unknown,unknown,O
 0x7101059530,380,fn_7101059530,unknown,unknown,U
 0x71010596ac,232,fn_71010596ac,unknown,unknown,U
 0x7101059794,332,fn_7101059794,unknown,unknown,U
@@ -2125,7 +2125,7 @@ address,size,name,name_source,subsystem,status
 0x710105ca28,88,fn_710105ca28,unknown,unknown,O
 0x710105ca80,88,fn_710105ca80,unknown,unknown,O
 0x710105cad8,4,fn_710105cad8,unknown,unknown,O
-0x710105cadc,92,fn_710105cadc,unknown,unknown,U
+0x710105cadc,92,fn_710105cadc,unknown,unknown,O
 0x710105cb38,8,fn_710105cb38,unknown,unknown,O
 0x710105cb40,12,fn_710105cb40,unknown,unknown,O
 0x710105cb4c,8,fn_710105cb4c,unknown,unknown,O
@@ -2319,8 +2319,8 @@ address,size,name,name_source,subsystem,status
 0x7101061770,2096,fn_7101061770,unknown,unknown,U
 0x7101061fa0,16,fn_7101061fa0,unknown,unknown,O
 0x7101061fb0,4,fn_7101061fb0,unknown,unknown,O
-0x7101061fb4,80,fn_7101061fb4,unknown,unknown,U
-0x7101062004,156,fn_7101062004,unknown,unknown,U
+0x7101061fb4,80,fn_7101061fb4,unknown,unknown,O
+0x7101062004,156,fn_7101062004,unknown,unknown,O
 0x71010620a0,140,fn_71010620a0,unknown,unknown,O
 0x7101062130,140,fn_7101062130,unknown,unknown,O
 0x71010621bc,84,fn_71010621bc,unknown,unknown,O
@@ -2804,8 +2804,8 @@ address,size,name,name_source,subsystem,status
 0x71010798e0,504,lua_bind::GetDifficultyModesUnlocked,string,script/bindings,U
 0x7101079ae0,832,lua_bind::SetDifficultyModesUnlocked,string,script/bindings,U
 0x7101079e20,528,lua_bind::RetrievePlaythrough,string,script/bindings,U
-0x710107a030,32,lua_bind::GetTimeStamp,string,script/bindings,U
-0x710107a050,32,lua_bind::GetGameTimeStamp,string,script/bindings,U
+0x710107a030,32,lua_bind::GetTimeStamp,string,script/bindings,O
+0x710107a050,32,lua_bind::GetGameTimeStamp,string,script/bindings,O
 0x710107a070,120,lua_bind::GetCamera,string,script/bindings,U
 0x710107a0f0,36,lua_bind::ReinitPlayerFromBlackboard,string,script/bindings,O
 0x710107a120,68,lua_bind::GetPlayer,string,script/bindings,O
@@ -2822,7 +2822,7 @@ address,size,name,name_source,subsystem,status
 0x710107ba70,412,lua_bind::GetPlayerSpecialEnergyStatus,string,script/bindings,U
 0x710107bc10,68,lua_bind::SetPlayerMaxLifeOverride,string,script/bindings,U
 0x710107bc60,400,lua_bind::SetPlayerMaxLife,string,script/bindings,U
-0x710107bdf0,28,lua_bind::GetPlayerMaxLifeOverride,string,script/bindings,U
+0x710107bdf0,28,lua_bind::GetPlayerMaxLifeOverride,string,script/bindings,O
 0x710107be10,360,lua_bind::OnGunsPropertiesChanged,string,script/bindings,O
 0x710107bf80,1260,lua_bind::GetPlayerAbilityStatus,string,script/bindings,U
 0x710107c470,660,lua_bind::SetPlayerInteractMovementState,string,script/bindings,U
@@ -3031,7 +3031,7 @@ address,size,name,name_source,subsystem,status
 0x7101087a40,72,lua_bind::SetSlomo,string,script/bindings,U
 0x7101087a90,88,lua_bind::SetSlomoFor,string,script/bindings,U
 0x7101087af0,136,lua_bind::SetSlomoCustom,string,script/bindings,U
-0x7101087b80,80,lua_bind::CallbackOnEndSlomo,string,script/bindings,U
+0x7101087b80,80,lua_bind::CallbackOnEndSlomo,string,script/bindings,O
 0x7101087bd0,1020,lua_bind::CallbackOnEndSlomoWithParams,string,script/bindings,U
 0x7101087fd0,224,lua_bind::AddEntityToUpdateInCutscene,string,script/bindings,U
 0x71010880b0,188,lua_bind::AddSpawnPointEntityToUpdateInCutscene,string,script/bindings,U
@@ -3048,7 +3048,7 @@ address,size,name,name_source,subsystem,status
 0x7101088e00,188,lua_bind::GetCutsceneEntityLike,string,script/bindings,U
 0x7101088ec0,68,lua_bind::GetLastCutsceneCameraPos,string,script/bindings,O
 0x7101088f10,68,lua_bind::GetLastCutsceneCameraDir,string,script/bindings,O
-0x7101088f60,32,lua_bind::GetLastCutsceneCameraFOV,string,script/bindings,U
+0x7101088f60,32,lua_bind::GetLastCutsceneCameraFOV,string,script/bindings,O
 0x7101088f80,72,lua_bind::SetCinematicMode,string,script/bindings,U
 0x7101088fd0,76,lua_bind::HideSubtitles,string,script/bindings,O
 0x7101089020,72,lua_bind::SetShowingRollingText,string,script/bindings,U
@@ -3080,7 +3080,7 @@ address,size,name,name_source,subsystem,status
 0x710108c4d0,692,lua_bind::PlayEntitySoundContinueOnDead,string,script/bindings,U
 0x710108c790,244,lua_bind::PlayPosSound,string,script/bindings,U
 0x710108c890,200,lua_bind::PlaySound,string,script/bindings,U
-0x710108c960,68,lua_bind::StopAllSFXSounds,string,script/bindings,U
+0x710108c960,68,lua_bind::StopAllSFXSounds,string,script/bindings,O
 0x710108c9b0,200,lua_bind::PlayGUISound,string,script/bindings,U
 0x710108ca80,824,lua_bind::PlayStream,string,script/bindings,U
 0x710108cdc0,816,lua_bind::PlayLoadingStream,string,script/bindings,U
@@ -3098,15 +3098,15 @@ address,size,name,name_source,subsystem,status
 0x710108df00,508,lua_bind::OverrideSoundListener,string,script/bindings,U
 0x710108e100,48,lua_bind::ResetOverrideSoundListener,string,script/bindings,O
 0x710108e130,136,lua_bind::SetMasterVolume,string,script/bindings,U
-0x710108e1c0,60,lua_bind::GetMasterVolume,string,script/bindings,U
+0x710108e1c0,60,lua_bind::GetMasterVolume,string,script/bindings,O
 0x710108e200,104,lua_bind::SetSFXVolume,string,script/bindings,U
-0x710108e270,32,lua_bind::GetSFXVolume,string,script/bindings,U
+0x710108e270,32,lua_bind::GetSFXVolume,string,script/bindings,O
 0x710108e290,52,lua_bind::SetHeadphonesMultiplier,string,script/bindings,U
 0x710108e2d0,16,lua_bind::GetHeadphonesMultiplier,string,script/bindings,O
 0x710108e2e0,48,lua_bind::SetForceHeadphonesPlugged,string,script/bindings,U
 0x710108e310,16,lua_bind::AreHeadphonesPlugged,string,script/bindings,O
 0x710108e320,92,lua_bind::SetSoundListenerFactor,string,script/bindings,U
-0x710108e380,32,lua_bind::GetSoundListenerFactor,string,script/bindings,U
+0x710108e380,32,lua_bind::GetSoundListenerFactor,string,script/bindings,O
 0x710108e3a0,100,lua_bind::EnableReverb,string,script/bindings,U
 0x710108e410,60,lua_bind::IsReverbEnabled,string,script/bindings,O
 0x710108e450,80,lua_bind::GetReverbConfig,string,script/bindings,U
@@ -3114,7 +3114,7 @@ address,size,name,name_source,subsystem,status
 0x710108e4f0,108,lua_bind::SetLowPassFilterCutOff,string,script/bindings,U
 0x710108e560,76,lua_bind::PauseMusicAndSounds,string,script/bindings,U
 0x710108e5b0,72,lua_bind::SetMusicAndSoundsInMenu,string,script/bindings,U
-0x710108e600,28,lua_bind::GetMusicInMenuMultiplier,string,script/bindings,U
+0x710108e600,28,lua_bind::GetMusicInMenuMultiplier,string,script/bindings,O
 0x710108e620,84,lua_bind::PauseSounds,string,script/bindings,U
 0x710108e680,88,lua_bind::PauseEnvironment,string,script/bindings,U
 0x710108e6e0,916,lua_bind::PlayPresetSound,string,script/bindings,U
@@ -3138,8 +3138,8 @@ address,size,name,name_source,subsystem,status
 0x710108f870,108,lua_bind::FadeIn,string,script/bindings,U
 0x710108f8e0,68,lua_bind::OverrideScenarioRequestPostponeFadeInTime,string,script/bindings,U
 0x710108f930,72,lua_bind::OverrideScenarioRequestUseTransitioner,string,script/bindings,U
-0x710108f980,104,lua_bind::TransitionFadeOut,string,script/bindings,U
-0x710108f9f0,92,lua_bind::TransitionFadeIn,string,script/bindings,U
+0x710108f980,104,lua_bind::TransitionFadeOut,string,script/bindings,O
+0x710108f9f0,92,lua_bind::TransitionFadeIn,string,script/bindings,O
 0x710108fa50,76,lua_bind::OneStepFaderUpdate,string,script/bindings,U
 0x710108faa0,68,lua_bind::IsFadingPending,string,script/bindings,O
 0x710108faf0,68,lua_bind::IsInFadeOut,string,script/bindings,O
@@ -3184,7 +3184,7 @@ address,size,name,name_source,subsystem,status
 0x7101091d50,132,lua_bind::EnableMusic,string,script/bindings,U
 0x7101091de0,136,lua_bind::IsMusicEnabled,string,script/bindings,U
 0x7101091e70,100,lua_bind::IsMusicPlaying,string,script/bindings,O
-0x7101091ee0,60,lua_bind::GetTotalPlayTime,string,script/bindings,U
+0x7101091ee0,60,lua_bind::GetTotalPlayTime,string,script/bindings,O
 0x7101091f20,72,lua_bind::SetTotalPlayTime,string,script/bindings,U
 0x7101091f70,60,lua_bind::ResetTotalPlayTime,string,script/bindings,O
 0x7101091fb0,76,lua_bind::ScenarioAllowsToStopMusicInPlayerDeath,string,script/bindings,U
@@ -3198,7 +3198,7 @@ address,size,name,name_source,subsystem,status
 0x7101092610,72,lua_bind::EnableEnvironmentMusic,string,script/bindings,U
 0x7101092660,36,lua_bind::IsEnvironmentMusicEnabled,string,script/bindings,O
 0x7101092690,104,lua_bind::SetCurrentEnvMultiplier,string,script/bindings,U
-0x7101092700,32,lua_bind::GetCurrentEnvMultiplier,string,script/bindings,U
+0x7101092700,32,lua_bind::GetCurrentEnvMultiplier,string,script/bindings,O
 0x7101092720,660,lua_bind::DebugPlayStream,string,script/bindings,U
 0x71010929c0,244,lua_bind::DebugSetStreamVol,string,script/bindings,U
 0x7101092ac0,236,lua_bind::DebugGetStreamVolumeFromData,string,script/bindings,U
@@ -3235,7 +3235,7 @@ address,size,name,name_source,subsystem,status
 0x71010935b0,228,lua_bind::SwitchSpaceJump,string,script/bindings,U
 0x71010936a0,156,lua_bind::GetSpaceJump,string,script/bindings,O
 0x7101093740,228,lua_bind::SwitchDoubleJump,string,script/bindings,U
-0x7101093830,160,lua_bind::GetDoubleJump,string,script/bindings,U
+0x7101093830,160,lua_bind::GetDoubleJump,string,script/bindings,O
 0x71010938d0,8,lua_bind::UpdateCurrentMinimapCellIconState,string,script/bindings,O
 0x71010938e0,8,lua_bind::UpdateSpecifiedMinimapCellIconState,string,script/bindings,O
 0x71010938f0,8,lua_bind::UpdateCurrentMinimapCellIcon,string,script/bindings,O
@@ -3274,7 +3274,7 @@ address,size,name,name_source,subsystem,status
 0x71010943a0,440,lua_bind::IsDebugPadButtonPressed,string,script/bindings,U
 0x7101094560,112,lua_bind::EnableDroppedItemsAttraction,string,script/bindings,U
 0x71010945d0,96,lua_bind::IsDroppedItemsAttractionEnabled,string,script/bindings,O
-0x7101094630,100,lua_bind::GetDroppedItemAttractionAcceleration,string,script/bindings,U
+0x7101094630,100,lua_bind::GetDroppedItemAttractionAcceleration,string,script/bindings,O
 0x71010946a0,116,lua_bind::SetDroppedItemAttractionAcceleration,string,script/bindings,U
 0x7101094720,112,lua_bind::PickUpAllDroppedItems,string,script/bindings,U
 0x7101094790,60,lua_bind::GetTotalGameProgress,string,script/bindings,U
@@ -3290,7 +3290,7 @@ address,size,name,name_source,subsystem,status
 0x7101094cc0,32,lua_bind::ToggleFixedStepTime,string,script/bindings,O
 0x7101094ce0,88,lua_bind::ResetTileGroup,string,script/bindings,U
 0x7101094d40,76,lua_bind::SetSafeFarPlaneFactor,string,script/bindings,U
-0x7101094d90,60,lua_bind::GetSafeFarPlaneFactor,string,script/bindings,U
+0x7101094d90,60,lua_bind::GetSafeFarPlaneFactor,string,script/bindings,O
 0x7101094dd0,8,lua_bind::TransferGameProgress,string,script/bindings,O
 0x7101094de0,60,lua_bind::IsGameCompleted,string,script/bindings,O
 0x7101094e20,148,lua_bind::GetCurrentSubAreaId,string,script/bindings,U
@@ -3351,7 +3351,7 @@ address,size,name,name_source,subsystem,status
 0x7101097ab8,376,fn_7101097ab8,unknown,script/bindings?,U
 0x7101097c30,528,fn_7101097c30,unknown,script/bindings?,O
 0x7101097e40,24,fn_7101097e40,unknown,script/bindings?,O
-0x7101097e60,60,lua_bind::GetDisplayObject,string,script/bindings,U
+0x7101097e60,60,lua_bind::GetDisplayObject,string,script/bindings,O
 0x7101097ea0,52,lua_bind::DestroyDisplayObject,string,script/bindings,O
 0x7101097ee0,400,lua_bind::CreateDisplayObject,string,script/bindings,U
 0x7101098070,348,lua_bind::CreateDisplayObjectEx,string,script/bindings,U
@@ -3899,7 +3899,7 @@ address,size,name,name_source,subsystem,status
 0x71010c0ff0,84,fn_71010c0ff0,unknown,unknown,O
 0x71010c1050,100,fn_71010c1050,unknown,unknown,O
 0x71010c10c0,100,fn_71010c10c0,unknown,unknown,O
-0x71010c1130,164,fn_71010c1130,unknown,unknown,U
+0x71010c1130,164,fn_71010c1130,unknown,unknown,O
 0x71010c11e0,8,lua_lib::__gc_cafff0,string,lua/stdlib,L
 0x71010c11f0,156,lua_lib::__tostring,string,lua/stdlib,L
 0x71010c1290,256,lua_lib::__add,string,lua/stdlib,L
@@ -3913,7 +3913,7 @@ address,size,name,name_source,subsystem,status
 0x71010c1bb0,208,fn_71010c1bb0,unknown,unknown,U
 0x71010c1c80,280,fn_71010c1c80,unknown,unknown,U
 0x71010c1da0,148,fn_71010c1da0,unknown,unknown,U
-0x71010c1e40,128,fn_71010c1e40,unknown,unknown,U
+0x71010c1e40,128,fn_71010c1e40,unknown,unknown,O
 0x71010c1ec0,256,fn_71010c1ec0,unknown,unknown,U
 0x71010c1fc0,140,fn_71010c1fc0,unknown,unknown,O
 0x71010c2050,44,fn_71010c2050,unknown,unknown,O
@@ -4179,7 +4179,7 @@ address,size,name,name_source,subsystem,status
 0x71010cd7e0,12,fn_71010cd7e0,unknown,unknown,O
 0x71010cd7ec,1116,fn_71010cd7ec,unknown,unknown,U
 0x71010cdc48,12,fn_71010cdc48,unknown,unknown,U
-0x71010cdc54,212,fn_71010cdc54,unknown,unknown,U
+0x71010cdc54,212,fn_71010cdc54,unknown,unknown,O
 0x71010cdd28,4,fn_71010cdd28,unknown,unknown,O
 0x71010cdd2c,72,fn_71010cdd2c,unknown,unknown,O
 0x71010cdd74,28,fn_71010cdd74,unknown,unknown,O
@@ -4226,7 +4226,7 @@ address,size,name,name_source,subsystem,status
 0x71010cf54c,16,fn_71010cf54c,unknown,unknown,O
 0x71010cf55c,8,fn_71010cf55c,unknown,unknown,O
 0x71010cf564,2500,fn_71010cf564,unknown,unknown,U
-0x71010cff28,204,fn_71010cff28,unknown,unknown,U
+0x71010cff28,204,fn_71010cff28,unknown,unknown,O
 0x71010cfff4,12,fn_71010cfff4,unknown,unknown,O
 0x71010d0000,4,fn_71010d0000,unknown,unknown,O
 0x71010d0004,28,fn_71010d0004,unknown,unknown,O
@@ -4255,7 +4255,7 @@ address,size,name,name_source,subsystem,status
 0x71010d0c00,4,fn_71010d0c00,unknown,unknown,O
 0x71010d0c04,84,fn_71010d0c04,unknown,unknown,U
 0x71010d0c58,12,fn_71010d0c58,unknown,unknown,O
-0x71010d0c64,184,fn_71010d0c64,unknown,unknown,U
+0x71010d0c64,184,fn_71010d0c64,unknown,unknown,O
 0x71010d0d1c,140,fn_71010d0d1c,unknown,unknown,U
 0x71010d0da8,144,fn_71010d0da8,unknown,unknown,U
 0x71010d0e38,80,fn_71010d0e38,unknown,unknown,U
@@ -4272,7 +4272,7 @@ address,size,name,name_source,subsystem,status
 0x71010d15d0,496,fn_71010d15d0,unknown,unknown,U
 0x71010d17c0,128,fn_71010d17c0,unknown,unknown,U
 0x71010d1840,16,fn_71010d1840,unknown,unknown,O
-0x71010d1850,148,fn_71010d1850,unknown,unknown,U
+0x71010d1850,148,fn_71010d1850,unknown,unknown,O
 0x71010d18e4,428,fn_71010d18e4,unknown,unknown,U
 0x71010d1a90,208,fn_71010d1a90,unknown,unknown,U
 0x71010d1b60,316,fn_71010d1b60,unknown,unknown,U
@@ -4324,7 +4324,7 @@ address,size,name,name_source,subsystem,status
 0x71010d65a0,696,fn_71010d65a0,unknown,game/player?,O
 0x71010d6858,16,fn_71010d6858,unknown,game/player?,O
 0x71010d6868,16,fn_71010d6868,unknown,game/player?,O
-0x71010d6878,64,fn_71010d6878,unknown,game/player?,U
+0x71010d6878,64,fn_71010d6878,unknown,game/player?,O
 0x71010d68b8,4,fn_71010d68b8,unknown,game/player?,O
 0x71010d68bc,244,CPlayerMovement::refl_GetClass,reflection,game/player,O
 0x71010d69b0,2484,fn_71010d69b0,unknown,game/player?,O
@@ -4343,7 +4343,7 @@ address,size,name,name_source,subsystem,status
 0x71010d7a6c,64,fn_71010d7a6c,unknown,unknown,U
 0x71010d7aac,64,fn_71010d7aac,unknown,unknown,U
 0x71010d7aec,60,fn_71010d7aec,unknown,unknown,O
-0x71010d7b28,96,fn_71010d7b28,unknown,unknown,U
+0x71010d7b28,96,fn_71010d7b28,unknown,unknown,O
 0x71010d7b88,260,fn_71010d7b88,unknown,unknown,U
 0x71010d7c8c,36,fn_71010d7c8c,unknown,unknown,U
 0x71010d7cb0,16,fn_71010d7cb0,unknown,unknown,O
@@ -4371,7 +4371,7 @@ address,size,name,name_source,subsystem,status
 0x71010da468,600,fn_71010da468,unknown,unknown,U
 0x71010da6c0,8,fn_71010da6c0,unknown,unknown,O
 0x71010da6c8,64,fn_71010da6c8,unknown,unknown,O
-0x71010da708,72,fn_71010da708,unknown,unknown,U
+0x71010da708,72,fn_71010da708,unknown,unknown,O
 0x71010da750,88,fn_71010da750,unknown,unknown,O
 0x71010da7a8,64,fn_71010da7a8,unknown,unknown,O
 0x71010da7e8,400,fn_71010da7e8,unknown,unknown,U
@@ -4471,8 +4471,8 @@ address,size,name,name_source,subsystem,status
 0x71010e17f4,220,fn_71010e17f4,unknown,unknown,O
 0x71010e18d0,220,fn_71010e18d0,unknown,unknown,O
 0x71010e19ac,404,fn_71010e19ac,unknown,unknown,U
-0x71010e1b40,56,fn_71010e1b40,unknown,unknown,U
-0x71010e1b78,60,fn_71010e1b78,unknown,unknown,U
+0x71010e1b40,56,fn_71010e1b40,unknown,unknown,O
+0x71010e1b78,60,fn_71010e1b78,unknown,unknown,O
 0x71010e1bb4,344,fn_71010e1bb4,unknown,unknown,U
 0x71010e1d0c,100,fn_71010e1d0c,unknown,unknown,O
 0x71010e1d70,252,fn_71010e1d70,unknown,unknown,U
@@ -4484,7 +4484,7 @@ address,size,name,name_source,subsystem,status
 0x71010e20a4,12,fn_71010e20a4,unknown,unknown,O
 0x71010e20b0,204,fn_71010e20b0,unknown,unknown,U
 0x71010e217c,116,fn_71010e217c,unknown,unknown,U
-0x71010e21f0,136,fn_71010e21f0,unknown,unknown,U
+0x71010e21f0,136,fn_71010e21f0,unknown,unknown,O
 0x71010e2278,5260,fn_71010e2278,unknown,unknown,U
 0x71010e3704,240,fn_71010e3704,unknown,unknown,U
 0x71010e37f4,24,fn_71010e37f4,unknown,unknown,O
@@ -4702,7 +4702,7 @@ address,size,name,name_source,subsystem,status
 0x71010f072c,88,fn_71010f072c,unknown,game?,U
 0x71010f0784,4,fn_71010f0784,unknown,game?,O
 0x71010f0788,284,fn_71010f0788,unknown,game?,U
-0x71010f08a4,12,fn_71010f08a4,unknown,game?,U
+0x71010f08a4,12,fn_71010f08a4,unknown,game?,O
 0x71010f08b0,40,fn_71010f08b0,unknown,game?,U
 0x71010f08d8,108,fn_71010f08d8,unknown,game?,O
 0x71010f0944,28,fn_71010f0944,unknown,game?,O
@@ -4818,7 +4818,7 @@ address,size,name,name_source,subsystem,status
 0x71010f3e10,132,fn_71010f3e10,unknown,unknown,O
 0x71010f3e94,12,fn_71010f3e94,unknown,unknown,O
 0x71010f3ea0,16,fn_71010f3ea0,unknown,unknown,O
-0x71010f3eb0,104,fn_71010f3eb0,unknown,unknown,U
+0x71010f3eb0,104,fn_71010f3eb0,unknown,unknown,O
 0x71010f3f18,8,fn_71010f3f18,unknown,unknown,O
 0x71010f3f20,232,fn_71010f3f20,unknown,unknown,U
 0x71010f4008,28,fn_71010f4008,unknown,unknown,O
@@ -4877,7 +4877,7 @@ address,size,name,name_source,subsystem,status
 0x71010f9e2c,440,fn_71010f9e2c,unknown,unknown,U
 0x71010f9fe4,684,fn_71010f9fe4,unknown,unknown,U
 0x71010fa290,1092,fn_71010fa290,unknown,unknown,U
-0x71010fa6d4,188,fn_71010fa6d4,unknown,unknown,U
+0x71010fa6d4,188,fn_71010fa6d4,unknown,unknown,O
 0x71010fa790,152,fn_71010fa790,unknown,unknown,U
 0x71010fa828,280,fn_71010fa828,unknown,unknown,U
 0x71010fa940,284,fn_71010fa940,unknown,unknown,U
@@ -4914,8 +4914,8 @@ address,size,name,name_source,subsystem,status
 0x71010ff2b8,272,fn_71010ff2b8,unknown,unknown,U
 0x71010ff3c8,324,fn_71010ff3c8,unknown,unknown,U
 0x71010ff50c,64,fn_71010ff50c,unknown,unknown,U
-0x71010ff54c,68,fn_71010ff54c,unknown,unknown,U
-0x71010ff590,68,fn_71010ff590,unknown,unknown,U
+0x71010ff54c,68,fn_71010ff54c,unknown,unknown,O
+0x71010ff590,68,fn_71010ff590,unknown,unknown,O
 0x71010ff5d4,16,fn_71010ff5d4,unknown,unknown,O
 0x71010ff5e4,272,fn_71010ff5e4,unknown,unknown,U
 0x71010ff6f4,348,fn_71010ff6f4,unknown,unknown,U

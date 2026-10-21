@@ -4,6 +4,10 @@ For the next developer, human or AI, picking up this project. Read this, then `C
 (rules and conventions), `docs/recon.md` (what's in the binary), `docs/compiler.md`
 (toolchain), and `docs/references.md` (outside projects).
 
+**Tenth session (2026-10-20, branch `claude/lifter-float-0b96b0`):** lifter fixes (Next steps,
+item 1, "Done (tenth session)"); `gen_lift.py` and `check.py --update` were rerun, so the
+numbers below are current.
+
 **Ninth session (2026-10-20, on the PC, branches `claude/sync-local-repo-4f8846`, merged in
 var-flotsam/dread-decomp#13, and `claude/shape-round-6`):** the shape-family pass, rounds 5 and 6
 (Next steps, item 2, "Done (ninth session)"). Numbers below are current;
@@ -35,9 +39,9 @@ Snapshot as of 2026-10-18 (fifth Phase 4 session; branches `phase-4-4-clones` (v
 | 4.5+ Boot to title screen | Not started; plan below |
 | Port | Not started (`port/` is empty) |
 
-Function status (BotW codes): `O` 79,885, `m` 3, `M` 1, `L` 1,614, `U` 22,514.
-**Game-code progress: 44.92% of bytes (8.43 MB) matching** (`tools/progress.py`; library code
-excluded; 44.45% at the start of the ninth session, 39.09% at the start of the seventh). `tools/check.py` counts `src/` definitions,
+Function status (BotW codes): `O` 80,439, `m` 3, `M` 1, `L` 1,614, `U` 21,960.
+**Game-code progress: 45.39% of bytes (8.52 MB) matching** (`tools/progress.py`; library code
+excluded; 44.92% at the start of the tenth session, 44.45% at the start of the ninth, 39.09% at the start of the seventh). `tools/check.py` counts `src/` definitions,
 which differ slightly (matching `nn::atk` functions keep `L`; constructor aliases).
 
 ## Hard rules (summary; full text in CLAUDE.md)
@@ -240,7 +244,24 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
      the CStrId-valued iterator family (fn_71000c936c, fn_71000cea70) and a long tail of
      families under 8 KB each (re-run the census for current numbers). The remaining call-free vtable
      functions (509) are varied virtual dispatchers, not one template.
-1. **Extend the lifter (`tools/gen_lift.py`), largest payoff first.** It lifts 47,431 of 75,661
+1. **Extend the lifter (`tools/gen_lift.py`), largest payoff first.**
+   - Done (tenth session), three cheap fixes (+83 functions, ~45 KB): `MAX_SIZE` is 16 KB (was
+     2 KB); a stack load (`ldr x, [sp, #k]`) no longer crashes the GOT-load check (~2,000 more
+     functions lift, few match: the `char stk[]` layout differs); code ending in `bl` is a call to a
+     `[[noreturn]]` callee (`namespace noret`).
+   - Done (tenth session), scalar floats (+471 functions, ~42 KB): `fmov` (immediates, register
+     bit casts, mov/movk constants as hex literals), arithmetic incl. fused forms, `fcsel`,
+     `fccmp` chains, conversions, `ldp`/`stp` of s/d, float call results (a call is retyped to
+     return a float when s0/d0 is read after it: `namespace fret`/`dret`) and float tail calls.
+     Clang 9 forms that matter: `fmin`/`fmax` are `!(a >= c) ? a : c`; `fcsel` between 1.0 and 0.0
+     is `(float)(cond)`; after `tst w<n>, #1` only a `bool` parameter keeps `fcsel ne`; negated
+     float conditions invert the cc (`a != b`, not `!(a == b)`); float accesses to hidden
+     globals use an aligned declaration (`namespace h4`/`h8`) so the page offset folds.
+     Left: of ~5,400 float functions, ~3,600 now lift but ~90% still differ in scheduling and
+     register order (e.g. `fcvt` order for vararg calls, commuted `fadd` operands). Others are
+     blocked by integer gaps: guarded statics (`ldarb`), `ccmp`/`ccmn`, jump tables (`adr`).
+     Near-miss ideas: a `bool`-parameter variant for integer `tbz`/`csel` on bit 0 (the same
+     flip as `fcsel`), aligned declarations for integer global accesses. It lifts 47,431 of 75,661
    candidates (<= 512 B) and 39,598 of those match. Rejection reasons (count / bytes, at 128 B;
    rerun `build/scratch`-style tallies by subclassing `Lifter` and recording why `step` fails):
    - **Guarded function-local statics** (`ldarb`): `tools/gen_statics.py` covers attribute keys
