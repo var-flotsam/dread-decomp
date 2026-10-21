@@ -6,7 +6,7 @@ For the next developer, human or AI, picking up this project. Read this, then `C
 
 **Thirteenth session (2026-10-21, Linux cloud, branch `claude/project-thread-m3b90j`):** core engine
 types (Next steps, item 4): the string pool, CRC64 and the allocator getter in `src/base/`
-(var-flotsam/dread-decomp#20 and the next PR); no generator was rerun.
+(var-flotsam/dread-decomp#20, #22 and the string heap PR); no generator was rerun.
 
 **Twelfth session (2026-10-21, on the PC, branch `claude/lifter-mismatch-classes`, var-flotsam/dread-decomp#18):** lifter mismatch study
 (Next steps, item 1, "Done (twelfth session)"); `gen_lift.py` and `check.py --update` were rerun,
@@ -547,11 +547,14 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
    rest of the pool (`include/base/global/UnkStringPool.h` has the set and node layouts): erase
    (`fn_7100080a00`, `O`), insert (`fn_71000801e4`, `m`: register allocation around the heap's
    GOT address) and the buffer compare (`fn_710007f240`, `m`: a select the original speculates).
-   The heap behind the string copies (`g_unk_7101d58d40`; `fn_7100084030` allocates,
-   `fn_7100084144` frees) is a small-block arena with six size classes of 0x28 bytes. Left:
+   The heap behind the string copies (`g_unk_7101d58d40`, `include/base/global/UnkStringHeap.h`)
+   has six size classes (16 to 512-byte blocks carved from one allocation each): class setup
+   (`fn_7100083c48`), clear (`fn_7100083d90`) and allocate (`fn_7100084030`) are `O`. Left:
    `UnkReflArray` (the keyed container at `CClass+0x110`, grown by `fn_7100097550`, 916 B: a key
    search, growth through `fn_7100097f80`, an inlined move of the 0xb8-byte `UnkReflFunction`,
-   then attribute lookups) and the allocators over the static arena.
+   then attribute lookups; it needs the `UnkReflFunction` layout from the reflection headers) and
+   the `U` functions next to `operator new`, probably more allocator code (`fn_7100083870`,
+   `fn_71000839c0`, `fn_7100083a10`, `fn_7100083a70`).
 5. Boot to title screen: startup, memory, file system / `files.toc` / `.pkg`, resource manager,
    Lua + GUI bindings, GUI, render front end, input, localisation, save probe. Estimated
    6,000–9,000 functions (static floor: 4,394 reachable from `nnMain`).
