@@ -24,10 +24,13 @@ inline void UnkEnsureFilePathPool() {
 
 namespace base::global {
 
-class CFilePathStrId {
-public:
+// The pointer, copied as a whole (a defaulted copy, as UnkStrIdBase's).
+struct UnkFilePathStrIdBase {
     UnkStringData* data;
+};
 
+class CFilePathStrId : public UnkFilePathStrIdBase {
+public:
     CFilePathStrId(const char* str, bool flag);  // fn_71000166c8
     // The same constructor defined inline, on this pool (as UnkStrIdBase's; reflected default
     // values inline it for the empty path, so only the pool check and the empty id remain).
@@ -49,7 +52,7 @@ public:
         if (!data)
             data = &g_unk_7101d47200->empty;
     }
-    CFilePathStrId(const CFilePathStrId& other) : data(other.data) {
+    CFilePathStrId(const CFilePathStrId& other) : UnkFilePathStrIdBase(other) {
         if (&g_unk_7101d47200->empty != data)
             ++data->ref_count;
     }

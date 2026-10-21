@@ -133,7 +133,7 @@ address,size,name,name_source,subsystem,status
 0x7100b04894,12,fn_7100b04894,unknown,unknown,O
 0x7100b048a0,12,fn_7100b048a0,unknown,unknown,O
 0x7100b048ac,72,fn_7100b048ac,unknown,unknown,O
-0x7100b04900,344,fn_7100b04900,unknown,unknown,U
+0x7100b04900,344,fn_7100b04900,unknown,unknown,O
 0x7100b04a58,4,fn_7100b04a58,unknown,unknown,O
 0x7100b04a5c,244,GUI::CDisplayObjectDef::refl_GetClass,reflection,gui,O
 0x7100b04b50,1348,fn_7100b04b50,unknown,gui?,O
@@ -2803,7 +2803,7 @@ address,size,name,name_source,subsystem,status
 0x7100b88708,192,fn_7100b88708,unknown,gui?,O
 0x7100b887c8,192,fn_7100b887c8,unknown,gui?,O
 0x7100b88888,124,fn_7100b88888,unknown,gui?,O
-0x7100b88910,344,fn_7100b88910,unknown,gui?,U
+0x7100b88910,344,fn_7100b88910,unknown,gui?,O
 0x7100b88a68,4,fn_7100b88a68,unknown,gui?,O
 0x7100b88a6c,244,GUI::CTutorialComposition::refl_GetClass,reflection,gui,O
 0x7100b88b60,4,fn_7100b88b60,unknown,gui?,O
@@ -5000,7 +5000,7 @@ address,size,name,name_source,subsystem,status
 0x7100bce664,12,fn_7100bce664,unknown,game/characters?,O
 0x7100bce670,28,fn_7100bce670,unknown,game/characters?,O
 0x7100bce68c,28,fn_7100bce68c,unknown,game/characters?,O
-0x7100bce6b0,436,fn_7100bce6b0,unknown,game/characters?,U
+0x7100bce6b0,436,fn_7100bce6b0,unknown,game/characters?,O
 0x7100bce864,232,fn_7100bce864,unknown,game/characters?,O
 0x7100bce94c,244,CCharClassScorpiusSetTailDefaultMovementEvent::refl_GetClass,reflection,game/characters,O
 0x7100bcea40,208,fn_7100bcea40,unknown,game/characters?,O
