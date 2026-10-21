@@ -2444,7 +2444,7 @@ address,size,name,name_source,subsystem,status
 0x7100475f08,12,fn_7100475f08,unknown,ai/querysystem?,O
 0x7100475f14,8,fn_7100475f14,unknown,ai/querysystem?,O
 0x7100475f1c,28,fn_7100475f1c,unknown,ai/querysystem?,O
-0x7100475f38,176,fn_7100475f38,unknown,ai/querysystem?,U
+0x7100475f38,176,fn_7100475f38,unknown,ai/querysystem?,O
 0x7100475fe8,116,fn_7100475fe8,unknown,ai/querysystem?,O
 0x710047605c,116,fn_710047605c,unknown,ai/querysystem?,O
 0x71004760d0,12,fn_71004760d0,unknown,ai/querysystem?,O
@@ -2462,7 +2462,7 @@ address,size,name,name_source,subsystem,status
 0x710047698c,12,fn_710047698c,unknown,ai/querysystem?,O
 0x7100476998,8,fn_7100476998,unknown,ai/querysystem?,O
 0x71004769a0,28,fn_71004769a0,unknown,ai/querysystem?,O
-0x71004769bc,176,fn_71004769bc,unknown,ai/querysystem?,U
+0x71004769bc,176,fn_71004769bc,unknown,ai/querysystem?,O
 0x7100476a6c,88,fn_7100476a6c,unknown,ai/querysystem?,O
 0x7100476ac4,88,fn_7100476ac4,unknown,ai/querysystem?,O
 0x7100476b1c,12,fn_7100476b1c,unknown,ai/querysystem?,O
@@ -2480,7 +2480,7 @@ address,size,name,name_source,subsystem,status
 0x71004770e8,12,fn_71004770e8,unknown,ai/querysystem?,O
 0x71004770f4,8,fn_71004770f4,unknown,ai/querysystem?,O
 0x71004770fc,28,fn_71004770fc,unknown,ai/querysystem?,O
-0x7100477118,176,fn_7100477118,unknown,ai/querysystem?,U
+0x7100477118,176,fn_7100477118,unknown,ai/querysystem?,O
 0x71004771c8,88,fn_71004771c8,unknown,ai/querysystem?,O
 0x7100477220,88,fn_7100477220,unknown,ai/querysystem?,O
 0x7100477278,12,fn_7100477278,unknown,ai/querysystem?,O
@@ -2498,7 +2498,7 @@ address,size,name,name_source,subsystem,status
 0x710047782c,12,fn_710047782c,unknown,ai/querysystem?,O
 0x7100477838,8,fn_7100477838,unknown,ai/querysystem?,O
 0x7100477840,28,fn_7100477840,unknown,ai/querysystem?,O
-0x710047785c,176,fn_710047785c,unknown,ai/querysystem?,U
+0x710047785c,176,fn_710047785c,unknown,ai/querysystem?,O
 0x710047790c,88,fn_710047790c,unknown,ai/querysystem?,O
 0x7100477964,88,fn_7100477964,unknown,ai/querysystem?,O
 0x71004779bc,12,fn_71004779bc,unknown,ai/querysystem?,O
@@ -2516,7 +2516,7 @@ address,size,name,name_source,subsystem,status
 0x7100477f28,12,fn_7100477f28,unknown,ai/querysystem?,O
 0x7100477f34,8,fn_7100477f34,unknown,ai/querysystem?,O
 0x7100477f3c,28,fn_7100477f3c,unknown,ai/querysystem?,O
-0x7100477f58,176,fn_7100477f58,unknown,ai/querysystem?,U
+0x7100477f58,176,fn_7100477f58,unknown,ai/querysystem?,O
 0x7100478008,88,fn_7100478008,unknown,ai/querysystem?,O
 0x7100478060,88,fn_7100478060,unknown,ai/querysystem?,O
 0x71004780b8,12,fn_71004780b8,unknown,ai/querysystem?,O
