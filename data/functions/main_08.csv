@@ -26,7 +26,7 @@ address,size,name,name_source,subsystem,status
 0x7100802844,4,fn_7100802844,unknown,game/components?,O
 0x7100802848,4,fn_7100802848,unknown,game/components?,O
 0x710080284c,244,CAreaFXComponent::refl_GetClass,reflection,game/components,O
-0x7100802940,476,fn_7100802940,unknown,game/components?,U
+0x7100802940,476,fn_7100802940,unknown,game/components?,O
 0x7100802b1c,388,CAreaFXComponent::refl_InitClass,reflection,game/components,O
 0x7100802ca0,164,fn_7100802ca0,unknown,game/components?,U
 0x7100802d44,172,fn_7100802d44,unknown,game/components?,U
@@ -77,7 +77,7 @@ address,size,name,name_source,subsystem,status
 0x7100804270,160,fn_7100804270,unknown,unknown,O
 0x7100804310,4,fn_7100804310,unknown,unknown,O
 0x7100804314,244,CCharClassAreaFXComponent::refl_GetClass,reflection,game/characters,O
-0x7100804408,1416,fn_7100804408,unknown,game/characters?,U
+0x7100804408,1416,fn_7100804408,unknown,game/characters?,O
 0x7100804990,388,CCharClassAreaFXComponent::refl_InitClass,reflection,game/characters,O
 0x7100804b14,208,fn_7100804b14,unknown,game/characters?,U
 0x7100804be4,124,fn_7100804be4,unknown,game/characters?,O
@@ -112,7 +112,7 @@ address,size,name,name_source,subsystem,status
 0x7100805440,160,fn_7100805440,unknown,game/characters?,O
 0x71008054e0,4,fn_71008054e0,unknown,game/characters?,O
 0x71008054e4,244,CCharClassChozombieFXComponent::refl_GetClass,reflection,game/characters,O
-0x71008055d8,936,fn_71008055d8,unknown,game/characters?,U
+0x71008055d8,936,fn_71008055d8,unknown,game/characters?,O
 0x7100805980,388,CCharClassChozombieFXComponent::refl_InitClass,reflection,game/characters,O
 0x7100805b04,208,fn_7100805b04,unknown,game/characters?,U
 0x7100805bd4,124,fn_7100805bd4,unknown,game/characters?,O
@@ -130,7 +130,7 @@ address,size,name,name_source,subsystem,status
 0x7100805d70,160,fn_7100805d70,unknown,game/characters?,O
 0x7100805e10,4,fn_7100805e10,unknown,game/characters?,O
 0x7100805e14,244,CCharClassHecathonPlanktonFXComponent::refl_GetClass,reflection,game/characters,O
-0x7100805f08,1092,fn_7100805f08,unknown,game/characters?,U
+0x7100805f08,1092,fn_7100805f08,unknown,game/characters?,O
 0x710080634c,388,CCharClassHecathonPlanktonFXComponent::refl_InitClass,reflection,game/characters,O
 0x71008064d0,208,fn_71008064d0,unknown,game/characters?,U
 0x71008065a0,124,fn_71008065a0,unknown,game/characters?,O

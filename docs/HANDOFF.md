@@ -398,9 +398,13 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
      and `CVector4D` values, function/parameter attributes through `UnkReflFunctionVtbl`, the field
      attribute container at `+0x70`, and a lambda-wrapped form for the stack-slot order
      (`refl_attrs.verify` retries alternatives): 1,911 of 1,957 attribute/field functions, 508 of
-     562 others. Left there (~45, one-offs): an inlined `CFilePathStrId` constructor (8; and
-     `fn_7100408c20`, 33 KB, for `CStrId`), `CRntString` copied from a live object, other
-     attribute builders (`fn_7100228ca0`), field lookups by name hash, guarded statics.
+     562 others. The inlined string-id constructor (`CFilePathStrId(UnkStrIdInline{}, ...)`, its
+     pool created on first use by a guarded static in a cold tail) matches since the thirteenth
+     session (7 functions). Left there (39, one-offs): `fn_7100408c20` (33 KB), `CRntString`
+     copied from a live object, other attribute builders (`fn_7100228ca0`, 5), `CStrId` values
+     read from a function-local static table (`fn_7100031894`), `CName` values stored as a hash,
+     enum values in other forms, field lookups by name hash. List them by failure point with a
+     copy of `refl_attrs.parse` whose `return None`s raise their line number.
    - Descriptor helpers of **collection iterator values** (`UnkIterValue<T, K>`, K = index or key):
      move-construct, destroy, copy-assign and compare as `gen_clones` kinds (word, owner,
      string-id and keyed elements; a scan kind for elements with a vtable and string-id members,

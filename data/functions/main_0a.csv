@@ -837,7 +837,7 @@ address,size,name,name_source,subsystem,status
 0x7100a2253c,388,fn_7100a2253c,unknown,unknown,O
 0x7100a226c0,4,fn_7100a226c0,unknown,unknown,O
 0x7100a226c4,244,CFreezeRoomComponent::refl_GetClass,reflection,game/components,O
-0x7100a227b8,968,fn_7100a227b8,unknown,game/components?,U
+0x7100a227b8,968,fn_7100a227b8,unknown,game/components?,O
 0x7100a22b80,372,CFreezeRoomComponent::refl_InitClass,reflection,game/components,O
 0x7100a22cf4,876,fn_7100a22cf4,unknown,unknown,U
 0x7100a23060,272,fn_7100a23060,unknown,unknown,U
@@ -907,7 +907,7 @@ address,size,name,name_source,subsystem,status
 0x7100a2586c,388,fn_7100a2586c,unknown,unknown,O
 0x7100a259f0,4,fn_7100a259f0,unknown,unknown,O
 0x7100a259f4,244,CHeatRoomComponent::refl_GetClass,reflection,game/components,O
-0x7100a25ae8,1440,fn_7100a25ae8,unknown,game/components?,U
+0x7100a25ae8,1440,fn_7100a25ae8,unknown,game/components?,O
 0x7100a26088,372,CHeatRoomComponent::refl_InitClass,reflection,game/components,O
 0x7100a261fc,796,fn_7100a261fc,unknown,unknown,U
 0x7100a26518,400,fn_7100a26518,unknown,unknown,U
