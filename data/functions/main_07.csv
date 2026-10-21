@@ -376,7 +376,7 @@ address,size,name,name_source,subsystem,status
 0x710070f38c,4,fn_710070f38c,unknown,unknown,O
 0x710070f390,20,fn_710070f390,unknown,unknown,O
 0x710070f3a4,20,fn_710070f3a4,unknown,unknown,O
-0x710070f3b8,280,fn_710070f3b8,unknown,unknown,U
+0x710070f3b8,280,fn_710070f3b8,unknown,unknown,O
 0x710070f4d0,1228,fn_710070f4d0,unknown,unknown,U
 0x710070f99c,1484,fn_710070f99c,unknown,unknown,O
 0x710070ff68,384,fn_710070ff68,unknown,unknown,O
@@ -1499,7 +1499,7 @@ address,size,name,name_source,subsystem,status
 0x710075abbc,16,fn_710075abbc,unknown,unknown,O
 0x710075abcc,24,fn_710075abcc,unknown,unknown,O
 0x710075abe4,24,fn_710075abe4,unknown,unknown,O
-0x710075abfc,256,fn_710075abfc,unknown,unknown,U
+0x710075abfc,256,fn_710075abfc,unknown,unknown,O
 0x710075acfc,64,fn_710075acfc,unknown,unknown,O
 0x710075ad3c,64,fn_710075ad3c,unknown,unknown,O
 0x710075ad7c,512,fn_710075ad7c,unknown,unknown,U
@@ -1513,7 +1513,7 @@ address,size,name,name_source,subsystem,status
 0x710075b174,16,fn_710075b174,unknown,unknown,O
 0x710075b184,24,fn_710075b184,unknown,unknown,O
 0x710075b19c,24,fn_710075b19c,unknown,unknown,O
-0x710075b1b4,256,fn_710075b1b4,unknown,unknown,U
+0x710075b1b4,256,fn_710075b1b4,unknown,unknown,O
 0x710075b2b4,64,fn_710075b2b4,unknown,unknown,O
 0x710075b2f4,64,fn_710075b2f4,unknown,unknown,O
 0x710075b334,512,fn_710075b334,unknown,unknown,U
@@ -1675,7 +1675,7 @@ address,size,name,name_source,subsystem,status
 0x710075dc7c,8,fn_710075dc7c,unknown,unknown,O
 0x710075dc84,4,fn_710075dc84,unknown,unknown,O
 0x710075dc88,4,fn_710075dc88,unknown,unknown,O
-0x710075dc8c,256,fn_710075dc8c,unknown,unknown,U
+0x710075dc8c,256,fn_710075dc8c,unknown,unknown,O
 0x710075dd8c,8,fn_710075dd8c,unknown,unknown,O
 0x710075dd94,180,fn_710075dd94,unknown,unknown,O
 0x710075de48,336,fn_710075de48,unknown,unknown,U
@@ -1687,7 +1687,7 @@ address,size,name,name_source,subsystem,status
 0x710075e040,8,fn_710075e040,unknown,unknown,O
 0x710075e048,4,fn_710075e048,unknown,unknown,O
 0x710075e04c,4,fn_710075e04c,unknown,unknown,O
-0x710075e050,256,fn_710075e050,unknown,unknown,U
+0x710075e050,256,fn_710075e050,unknown,unknown,O
 0x710075e150,8,fn_710075e150,unknown,unknown,O
 0x710075e158,8,fn_710075e158,unknown,unknown,O
 0x710075e160,80,fn_710075e160,unknown,unknown,O
