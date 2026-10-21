@@ -188,7 +188,7 @@ address,size,name,name_source,subsystem,status
 0x7100407570,8,fn_7100407570,unknown,unknown,O
 0x7100407578,92,fn_7100407578,unknown,unknown,O
 0x71004075d4,92,fn_71004075d4,unknown,unknown,O
-0x7100407630,40,fn_7100407630,unknown,unknown,U
+0x7100407630,40,fn_7100407630,unknown,unknown,O
 0x7100407658,48,fn_7100407658,unknown,unknown,O
 0x7100407688,48,fn_7100407688,unknown,unknown,O
 0x71004076b8,8,fn_71004076b8,unknown,unknown,O
@@ -2183,8 +2183,8 @@ address,size,name,name_source,subsystem,status
 0x7100469bb0,8,fn_7100469bb0,unknown,game/ai?,O
 0x7100469bb8,28,fn_7100469bb8,unknown,game/ai?,O
 0x7100469bd4,48,fn_7100469bd4,unknown,game/ai?,O
-0x7100469c04,60,fn_7100469c04,unknown,game/ai?,U
-0x7100469c40,60,fn_7100469c40,unknown,game/ai?,U
+0x7100469c04,60,fn_7100469c04,unknown,game/ai?,O
+0x7100469c40,60,fn_7100469c40,unknown,game/ai?,O
 0x7100469c7c,12,fn_7100469c7c,unknown,game/ai?,O
 0x7100469c88,36,fn_7100469c88,unknown,game/ai?,O
 0x7100469cac,36,fn_7100469cac,unknown,game/ai?,O
