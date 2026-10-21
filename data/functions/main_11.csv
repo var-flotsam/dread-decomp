@@ -498,7 +498,7 @@ address,size,name,name_source,subsystem,status
 0x7101123744,384,fn_7101123744,unknown,unknown,O
 0x71011238c4,84,fn_71011238c4,unknown,unknown,O
 0x7101123918,244,CSpawnPointComponent::refl_GetClass,reflection,game/components,O
-0x7101123a0c,6776,fn_7101123a0c,unknown,game/components?,U
+0x7101123a0c,6776,fn_7101123a0c,unknown,game/components?,O
 0x7101125484,352,CSpawnPointComponent::refl_InitClass,reflection,game/components,O
 0x71011255e4,380,fn_71011255e4,unknown,unknown,O
 0x7101125760,380,fn_7101125760,unknown,unknown,O
@@ -1410,7 +1410,7 @@ address,size,name,name_source,subsystem,status
 0x710115dbd0,484,fn_710115dbd0,unknown,game/components?,O
 0x710115ddb4,4,fn_710115ddb4,unknown,game/components?,O
 0x710115ddb8,244,CLifeComponent::refl_GetClass,reflection,game/components,O
-0x710115deac,4212,fn_710115deac,unknown,game/components?,U
+0x710115deac,4212,fn_710115deac,unknown,game/components?,O
 0x710115ef20,344,CLifeComponent::refl_InitClass,reflection,game/components,O
 0x710115f078,180,fn_710115f078,unknown,unknown,O
 0x710115f12c,380,fn_710115f12c,unknown,unknown,O
@@ -1561,7 +1561,7 @@ address,size,name,name_source,subsystem,status
 0x710116ac60,388,CCharClassStartPointComponent::refl_InitClass,reflection,game/characters,O
 0x710116ade4,4,fn_710116ade4,unknown,unknown,O
 0x710116ade8,244,CStartPointComponent::refl_GetClass,reflection,game/components,O
-0x710116aedc,1428,fn_710116aedc,unknown,game/components?,U
+0x710116aedc,1428,fn_710116aedc,unknown,game/components?,O
 0x710116b470,388,CStartPointComponent::refl_InitClass,reflection,game/components,O
 0x710116b5f4,380,fn_710116b5f4,unknown,game/components?,O
 0x710116b770,380,fn_710116b770,unknown,game/components?,O

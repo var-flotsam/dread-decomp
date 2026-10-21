@@ -2019,7 +2019,7 @@ address,size,name,name_source,subsystem,status
 0x7100d36130,140,fn_7100d36130,unknown,game?,O
 0x7100d361bc,4,fn_7100d361bc,unknown,game?,O
 0x7100d361c0,244,game::logic::collision::CCollider::refl_GetClass,reflection,game,O
-0x7100d362b4,528,fn_7100d362b4,unknown,game?,U
+0x7100d362b4,528,fn_7100d362b4,unknown,game?,O
 0x7100d364c4,352,game::logic::collision::CCollider::refl_InitClass,reflection,game,O
 0x7100d36624,100,fn_7100d36624,unknown,unknown,O
 0x7100d36688,260,fn_7100d36688,unknown,unknown,U
@@ -3406,7 +3406,7 @@ address,size,name,name_source,subsystem,status
 0x7100d70b90,140,fn_7100d70b90,unknown,game?,O
 0x7100d70c1c,4,fn_7100d70c1c,unknown,game?,O
 0x7100d70c20,244,CEntity::refl_GetClass,reflection,game,O
-0x7100d70d14,2692,fn_7100d70d14,unknown,game?,U
+0x7100d70d14,2692,fn_7100d70d14,unknown,game?,O
 0x7100d71798,360,CEntity::refl_InitClass,reflection,game,O
 0x7100d71900,180,fn_7100d71900,unknown,unknown,O
 0x7100d719b4,180,fn_7100d719b4,unknown,unknown,O

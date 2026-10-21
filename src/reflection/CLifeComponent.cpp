@@ -5,10 +5,124 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CLifeComponent
 DREAD_REFL_TAG(710115ef20);
 void fn_710115ddb4(base::reflection::CClass*) {}
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+const base::reflection::UnkReflAttrKey& fn_710000bf80();
+extern base::reflection::CType g_unk_7101d679f0;
+const base::reflection::UnkReflAttrKey& fn_7100090a20();
+void fn_710115f078(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_71000904d0();
+void fn_710116132c();
+void fn_710115f12c(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_71000926d0();
+extern base::reflection::CType g_unk_7101d60ff0;
+void fn_71011613dc();
+void fn_71000e8118(UnkReflField* field, u64 index);
+void fn_710115f2a8(UnkReflFunction* fn, const char* name);
+void fn_71000e8180(UnkReflField* field, u64 index);
+void fn_7101161490();
+void fn_710115f424(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100093170();
+const base::reflection::UnkReflAttrKey& fn_7100324c00();
+void fn_710115f5a0(UnkReflFunction* fn, const char* name);
+void fn_710115f654(UnkReflFunction* fn, const char* name);
+void fn_710115f708(UnkReflFunction* fn, const char* name);
+extern base::reflection::CType g_unk_7101d5af48;
+void fn_7101161700();
+void fn_7100302d14(UnkReflFunction* fn);
+void fn_710115deac(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("bWantsCameraFXPreset", true), fn_710000d228(), 0xe0, -1, -1);
+    field0->attrs.Add<bool>(fn_7100075240(), true);
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Wants Camera FX Preset");
+    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<bool>(fn_7100090a20(), false);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetOnDamageCallback", true))) {
+        fn_710115f078(fn, "SetOnDamageCallback");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Set on damage lua callback"));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fMaxLife_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_fMaxLife_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_710116132c);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fMaxLife_SetterFunction", true)))
+        fn_710115f12c(fn, "_m_fMaxLife_SetterFunction");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fMaxLife", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<bool>(fn_7100090a20(), false);
+    field1->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("max life"));
+    field1->attrs.Add(fn_71000926d0(), &g_unk_7101d60ff0, base::reflection::UnkReflStringList(0x0, base::reflection::UnkReflList<base::global::CRntString>({""}, 0xa, nullptr, 0xf)));
+    field1->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fCurrentLife", true), fn_710000abbc(), 0x54, -1, -1);
+    field2->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field2->attrs.Add<bool>(fn_7100090a20(), false);
+    field2->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    field2->attrs.Add<const char*>(fn_7100007e80(), "Current Life");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fCurrentLife_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_fCurrentLife_GetterFunction", true);
+        fn->return_type = fn_710000abbc();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71011613dc);
+    }
+    fn_71000e8118(base::reflection::refl_FindField(cls, base::global::CName("fCurrentLife")), cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fCurrentLife_SetterFunction", true)))
+        fn_710115f2a8(fn, "_m_fCurrentLife_SetterFunction");
+    fn_71000e8180(base::reflection::refl_FindField(cls, base::global::CName("fCurrentLife")), cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bCurrentLifeLocked_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_m_bCurrentLifeLocked_GetterFunction", true);
+        fn->return_type = fn_710000d228();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7101161490);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bCurrentLifeLocked_SetterFunction", true)))
+        fn_710115f424(fn, "_m_bCurrentLifeLocked_SetterFunction");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("bCurrentLifeLocked", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field3->attrs.Add<bool>(fn_7100075240(), false);
+    field3->attrs.Add<bool>(fn_7100093170(), true);
+    field3->attrs.Add<const char*>(fn_7100007e80(), "Player life locked");
+    field3->attrs.Add<const char*>(fn_7100324c00(), "General");
+    field3->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field3->attrs.Add<bool>(fn_7100090a20(), false);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetInvulnerableWithReaction", true))) {
+        fn_710115f5a0(fn, "SetInvulnerableWithReaction");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Set invulnerability"));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetInvulnerable", true))) {
+        fn_710115f654(fn, "SetInvulnerable");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Set invulnerability"));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetInvulnerableFor", true))) {
+        fn_710115f708(fn, "SetInvulnerableFor");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Set invulnerable For"));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("ForceDead", true))) {
+        fn->name = base::global::UnkStrId("ForceDead", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7101161700);
+        fn_7100302d14(fn);
+    }
+}
 bool fn_7101161260(const void*, const void*) { return false; }
 s32 fn_7101161268() { return -1; }
 const base::reflection::CType& fn_7101161270(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

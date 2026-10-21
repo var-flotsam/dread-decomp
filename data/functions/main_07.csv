@@ -3181,7 +3181,7 @@ address,size,name,name_source,subsystem,status
 0x71007a217c,220,fn_71007a217c,unknown,unknown,O
 0x71007a2258,4,fn_71007a2258,unknown,unknown,O
 0x71007a225c,240,CCutsceneComponent::SActorInfo::refl_GetClass,reflection,game/components,O
-0x71007a234c,1528,fn_71007a234c,unknown,game/components?,U
+0x71007a234c,1528,fn_71007a234c,unknown,game/components?,O
 0x71007a2944,388,CCutsceneComponent::SActorInfo::refl_InitClass,reflection,game/components,O
 0x71007a2ac8,372,fn_71007a2ac8,unknown,game/components?,O
 0x71007a2c3c,4,fn_71007a2c3c,unknown,game/components?,O

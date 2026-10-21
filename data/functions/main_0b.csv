@@ -6565,7 +6565,7 @@ address,size,name,name_source,subsystem,status
 0x7100bfe68c,380,fn_7100bfe68c,unknown,unknown,O
 0x7100bfe808,4,fn_7100bfe808,unknown,unknown,O
 0x7100bfe80c,244,SCameraRailNode::refl_GetClass,reflection,game,O
-0x7100bfe900,1176,fn_7100bfe900,unknown,game?,U
+0x7100bfe900,1176,fn_7100bfe900,unknown,game?,O
 0x7100bfed98,388,SCameraRailNode::refl_InitClass,reflection,game,O
 0x7100bfef1c,380,fn_7100bfef1c,unknown,game?,O
 0x7100bff098,4,fn_7100bff098,unknown,game?,O

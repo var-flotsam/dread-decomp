@@ -18,6 +18,35 @@ using base::reflection::UnkTunableRegistry;
 // SLogicPathNode
 DREAD_REFL_TAG(710105498c);
 void fn_710105432c(base::reflection::CClass*) {}
+void fn_710105cdb4();
+void fn_7101054b10(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_71000926d0();
+extern base::reflection::CType g_unk_7101d60ff0;
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+const base::reflection::UnkReflAttrKey& fn_71000923a0();
+extern base::reflection::CType g_unk_7101d55008;
+const base::reflection::UnkReflAttrKey& fn_71000924b0();
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+void fn_7101054424(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vPos_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_vPos_GetterFunction", true);
+        fn->return_type = fn_71000246e4();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_710105cdb4);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vPos_SetterFunction", true)))
+        fn_7101054b10(fn, "_vPos_SetterFunction");
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("vPos", true), fn_71000246e4(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field0->attrs.Add(fn_71000926d0(), &g_unk_7101d60ff0, base::reflection::UnkReflStringList(0x3, base::reflection::UnkReflList<base::global::CRntString>({"vPos", "vSegments:*:vPos"}, 0xa, nullptr, 0xf)));
+    field0->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Position"));
+    field0->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 3);
+    field0->attrs.Add<bool>(fn_71000924b0(), true);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fSwarmRadius", true), fn_710000abbc(), 0x14, -1, -1);
+    field1->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("fDiversionChance", true), fn_710000abbc(), 0x18, -1, -1);
+    field2->attrs.Add<f32>(fn_7100075240(), 1.0f);
+}
 bool fn_710105cc88(const void* a, const void* b) { return a == b; }
 s32 fn_710105cc94() { return -1; }
 const base::reflection::CType& fn_710105cc9c(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
@@ -50,7 +79,6 @@ extern base::reflection::CType g_unk_7101d5af48;
 void fn_710105d0a8();
 void fn_710105d0bc();
 void fn_7101055b34(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 const base::reflection::UnkReflAttrKey& fn_710008f920();
 const base::reflection::UnkReflAttrKey& fn_71000903c0();
 void fn_710105d328();
