@@ -5,10 +5,94 @@
 // that have a known uniform shape and the attribute/member-field functions that
 // tools/refl_attrs.py reconstructs byte-identically.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflAttributes.h"
+using base::global::CStrId;
+using base::reflection::CClass;
+using base::reflection::UnkReflField;
+using base::reflection::UnkReflFunction;
+using base::reflection::UnkTunable;
+using base::reflection::UnkTunableRegistry;
 
 // CEntity
 DREAD_REFL_TAG(7100d71798);
 void fn_7100d70c1c(base::reflection::CClass*) {}
+extern base::reflection::CType g_unk_7108b6d3d0;
+void fn_7100d823f4();
+const base::reflection::UnkReflAttrKey& fn_71000923a0();
+extern base::reflection::CType g_unk_7101d55008;
+const base::reflection::UnkReflAttrKey& fn_710000bf80();
+extern base::reflection::CType g_unk_7101d679f0;
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+const base::reflection::UnkReflAttrKey& fn_7100091c30();
+const base::reflection::UnkReflAttrKey& fn_7100234410();
+const base::reflection::UnkReflAttrKey& fn_7100090a20();
+void fn_7100d82448();
+void fn_71000e8118(UnkReflField* field, u64 index);
+void fn_7100d71900(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_71000904d0();
+void fn_7100d719b4(UnkReflFunction* fn, const char* name);
+void fn_7100d71a68(UnkReflFunction* fn, const char* name);
+void fn_7100d71b1c(UnkReflFunction* fn, const char* name);
+extern base::reflection::CType g_unk_7101d5af48;
+void fn_7100d82864();
+void fn_7100d826c8(UnkReflFunction* fn);
+void fn_7100d71c98(UnkReflFunction* fn, const char* name);
+void fn_7100d70d14(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_oBBox_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_oBBox_GetterFunction", true);
+        fn->return_type = &g_unk_7108b6d3d0;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100d823f4);
+    }
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("oBBox", true), &g_unk_7108b6d3d0, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field0->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
+    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<const char*>(fn_7100007e80(), "Entity BBox");
+    field0->attrs.Add<CStrId>(fn_7100091c30(), CStrId("Bounding Box", true));
+    field0->attrs.Add<bool>(fn_7100234410(), true);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("bIsInFrustum", true), fn_710000d228(), 0xffffffff, -1, -1);
+    field1->attrs.Add<CStrId>(fn_7100091c30(), CStrId("Inside Frustum", true));
+    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<bool>(fn_7100090a20(), false);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bIsInFrustum_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_bIsInFrustum_GetterFunction", true);
+        fn->return_type = fn_710000d228();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100d82448);
+    }
+    fn_71000e8118(base::reflection::refl_FindField(cls, base::global::CName("bIsInFrustum")), cls->m_array_0x110.size() - 1);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("PlayEntityLoop", true))) {
+        fn_7100d71900(fn, "PlayEntityLoop");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString(""));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("StopEntityLoop", true))) {
+        fn_7100d719b4(fn, "StopEntityLoop");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString(""));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("StopEntityLoopWithFade", true))) {
+        fn_7100d71a68(fn, "StopEntityLoopWithFade");
+        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString(""));
+        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("DelMeIn", true))) {
+        fn_7100d71b1c(fn, "DelMeIn");
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Deletes the entity after float seconds");
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("StartTimeline", true))) {
+        fn->name = base::global::UnkStrId("StartTimeline", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7100d82864);
+        fn_7100d826c8(fn);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("EndTimeline", true)))
+        fn_7100d71c98(fn, "EndTimeline");
+}
 bool fn_7100d82294(const void*, const void*) { return false; }
 s32 fn_7100d8229c() { return -1; }
 const base::reflection::CType& fn_7100d822a4(const void* obj);

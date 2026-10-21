@@ -21,6 +21,149 @@ const base::reflection::UnkReflAttrKey& fn_7100091e50();
 void fn_71011238c4(CClass* cls) {
     fn_710009dd6c(cls)->Add<bool>(fn_7100091e50(), true);
 }
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_710000bf80();
+extern base::reflection::CType g_unk_7101d679f0;
+const base::reflection::UnkReflAttrKey& fn_7100090a20();
+extern base::reflection::CType g_unk_717269bb48;
+const base::reflection::UnkReflAttrKey& fn_710025daa0();
+extern base::reflection::CType g_unk_71727bc110;
+extern base::reflection::CType g_unk_7172a07528;
+extern base::reflection::CType g_unk_7172a073c8;
+extern base::reflection::CType g_unk_717269bf08;
+const base::reflection::UnkReflAttrKey& fn_7100090090();
+const base::reflection::UnkReflAttrKey& fn_710025dbb0();
+void fn_71011255e4(UnkReflFunction* fn, const char* name);
+extern base::reflection::CType g_unk_7101d5af48;
+void fn_7101132780();
+void fn_71011327d8();
+void fn_7101125760(UnkReflFunction* fn, const char* name);
+extern base::reflection::CType g_unk_7172a06cf0;
+const base::reflection::UnkReflAttrKey& fn_710008fd60();
+const base::reflection::UnkReflAttrKey& fn_710008fb40();
+const base::reflection::UnkReflAttrKey& fn_710008ff80();
+void fn_71011328d8();
+void fn_7101132928();
+extern base::reflection::CType g_unk_7172a06930;
+void fn_7101132978();
+void fn_71011329bc();
+void fn_7101132a0c();
+void fn_7101123a0c(CClass* cls) {
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sOnBeforeGenerate", true), fn_7100007f84(), 0xa8, -1, -1);
+    field0->attrs.Add<base::global::CRntString>(fn_7100075240(), base::global::CRntString(refl_GlobalRntString()));
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("sOnEntityGenerated", true), fn_7100007f84(), 0xd8, -1, -1);
+    field1->attrs.Add<base::global::CRntString>(fn_7100075240(), base::global::CRntString(refl_GlobalRntString()));
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("sStartAnimation", true), fn_7100009658(), 0xa0, -1, -1);
+    field2->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("bSpawnOnFloor", true), fn_710000d228(), 0x108, -1, -1);
+    field3->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("bEntityCheckFloor", true), fn_710000d228(), 0x109, -1, -1);
+    field4->attrs.Add<bool>(fn_7100075240(), true);
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("bCheckCollisions", true), fn_710000d228(), 0x10a, -1, -1);
+    field5->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("fTimeToActivate", true), fn_710000abbc(), 0x10c, -1, -1);
+    field6->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    UnkReflField* field7 = fn_7100096524(cls, CStrId("iMaxNumToGenerate", true), fn_7100014768(), 0x110, -1, -1);
+    field7->attrs.Add<s32>(fn_7100075240(), -1);
+    UnkReflField* field8 = fn_7100096524(cls, CStrId("bAllowSpawnInFrustum", true), fn_710000d228(), 0x114, -1, -1);
+    field8->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field9 = fn_7100096524(cls, CStrId("bStartEnabled", true), fn_710000d228(), 0x115, -1, -1);
+    field9->attrs.Add<bool>(fn_7100075240(), true);
+    field9->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field9->attrs.Add<bool>(fn_7100090a20(), false);
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("bAutomanaged", true), fn_710000d228(), 0x27c, -1, -1);
+    field10->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field11 = fn_7100096524(cls, CStrId("wpSceneShapeId", true), &g_unk_717269bb48, 0x120, -1, -1);
+    field11->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 4);
+    UnkReflField* field12 = fn_7100096524(cls, CStrId("wpCollisionSceneShapeId", true), &g_unk_717269bb48, 0x170, -1, -1);
+    field12->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 4);
+    UnkReflField* field13 = fn_7100096524(cls, CStrId("wpNavigableShape", true), &g_unk_717269bb48, 0x1b8, -1, -1);
+    field13->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 4);
+    UnkReflField* field14 = fn_7100096524(cls, CStrId("wpAreaOfInterest", true), &g_unk_717269bb48, 0x1f8, -1, -1);
+    field14->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 4);
+    UnkReflField* field15 = fn_7100096524(cls, CStrId("wpAreaOfInterestEnd", true), &g_unk_717269bb48, 0x238, -1, -1);
+    field15->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 4);
+    UnkReflField* field16 = fn_7100096524(cls, CStrId("fTimeOnAOIEndToUseAsMainAOI", true), fn_710000abbc(), 0x278, -1, -1);
+    field16->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    UnkReflField* field17 = fn_7100096524(cls, CStrId("fSpawnFromXCellProbability", true), fn_710000abbc(), 0x2bc, -1, -1);
+    field17->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    UnkReflField* field18 = fn_7100096524(cls, CStrId("fSpawnFromXCellProbabilityAfterFirst", true), fn_710000abbc(), 0x2c0, -1, -1);
+    field18->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    UnkReflField* field19 = fn_7100096524(cls, CStrId("eXCellSpawnPositionMode", true), &g_unk_7172a07528, 0x2c4, -1, -1);
+    field19->attrs.Add<s32>(fn_7100075240(), &g_unk_7172a07528, 0);
+    UnkReflField* field20 = fn_7100096524(cls, CStrId("bUseDynamicSpawnPosition", true), fn_710000d228(), 0x351, -1, -1);
+    field20->attrs.Add<bool>(fn_7100075240(), false);
+    UnkReflField* field21 = fn_7100096524(cls, CStrId("eDynamicSpawnPositionMode", true), &g_unk_7172a073c8, 0x354, -1, -1);
+    field21->attrs.Add<s32>(fn_7100075240(), &g_unk_7172a073c8, 1);
+    UnkReflField* field22 = fn_7100096524(cls, CStrId("tDynamicSpawnPositions", true), &g_unk_717269bf08, 0x358, -1, -1);
+    field22->attrs.Add<bool>(fn_7100090090(), false);
+    field22->attrs_0x70.Add<bool>(fn_710025dbb0(), true);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetDynamicSpawnPositionOverride", true)))
+        fn_71011255e4(fn, "SetDynamicSpawnPositionOverride");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("ResetDynamicSpawnPositionOverride", true))) {
+        fn->name = base::global::UnkStrId("ResetDynamicSpawnPositionOverride", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7101132780);
+    }
+    UnkReflField* field23 = fn_7100096524(cls, CStrId("tXCellTransformTargets", true), &g_unk_717269bf08, 0x2c8, -1, -1);
+    field23->attrs.Add<bool>(fn_7100090090(), false);
+    field23->attrs_0x70.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 3);
+    UnkReflField* field24 = fn_7100096524(cls, CStrId("wpXCellActivationAreaShape", true), &g_unk_717269bb48, 0x2f0, -1, -1);
+    field24->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 4);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sCharClass_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_sCharClass_GetterFunction", true);
+        fn->return_type = fn_7100009658();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71011327d8);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sCharClass_SetterFunction", true)))
+        fn_7101125760(fn, "_sCharClass_SetterFunction");
+    UnkReflField* field25 = fn_7100096524(cls, CStrId("sCharClass", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field25->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    field25->attrs.Add<bool>(fn_7100090a20(), false);
+    UnkReflField* field26 = fn_7100096524(cls, CStrId("voActorBlueprint", true), &g_unk_7172a06cf0, 0x390, -1, -1);
+    field26->attrs.Add<const char*>(fn_710008fd60(), "AddNewActorBlueprintAt");
+    field26->attrs.Add<const char*>(fn_710008fb40(), "DeleteActorBlueprintAt");
+    field26->attrs.Add<const char*>(fn_710008ff80(), "AfterActorBlueprintDeserialization");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("Activate", true))) {
+        fn->name = base::global::UnkStrId("Activate", true);
+        fn->return_type = fn_7100014768();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71011328d8);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("Deactivate", true))) {
+        fn->name = base::global::UnkStrId("Deactivate", true);
+        fn->return_type = fn_7100014768();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7101132928);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AddNewActorBlueprintAt", true))) {
+        fn->name = base::global::UnkStrId("AddNewActorBlueprintAt", true);
+        fn->return_type = &g_unk_7172a06930;
+        fn->field_0xb2 = 0x1;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7101132978);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("DeleteActorBlueprintAt", true))) {
+        fn->name = base::global::UnkStrId("DeleteActorBlueprintAt", true);
+        fn->return_type = fn_710000d228();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_71011329bc);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AfterActorBlueprintDeserialization", true))) {
+        fn->name = base::global::UnkStrId("AfterActorBlueprintDeserialization", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_7101132a0c);
+    }
+}
 bool fn_71011326b8(const void*, const void*) { return false; }
 s32 fn_71011326c0() { return -1; }
 const base::reflection::CType& fn_71011326c8(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }

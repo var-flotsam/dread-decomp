@@ -21,6 +21,130 @@ const base::reflection::UnkReflAttrKey& fn_710008fa30();
 void fn_710022739c(CClass* cls) {
     fn_710009dd6c(cls)->Add<CStrId>(fn_710008fa30(), CStrId("sName", true));
 }
+void fn_710023e0f8();
+void fn_71002289a8(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100007e80();
+const base::reflection::UnkReflAttrKey& fn_7100091c30();
+const base::reflection::UnkReflAttrKey& fn_7100234410();
+extern base::reflection::CType g_unk_7101d4ec50;
+const base::reflection::UnkReflAttrKey& fn_7100090a20();
+void fn_710023e1ac();
+const base::reflection::UnkReflAttrKey& fn_710000bf80();
+extern base::reflection::CType g_unk_7101d679f0;
+void fn_710023e278();
+void fn_7100228b24(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_7100075240();
+const base::reflection::UnkReflAttrKey& fn_71000926d0();
+extern base::reflection::CType g_unk_7101d60ff0;
+void fn_710023e348();
+void fn_7100228ee4(UnkReflFunction* fn, const char* name);
+const base::reflection::CType* fn_7100229060();
+void fn_710023e44c();
+const base::reflection::UnkReflAttrKey& fn_7100234780();
+const base::reflection::UnkReflAttrKey& fn_7100090090();
+void fn_710022913c(UnkReflFunction* fn, const char* name);
+const base::reflection::UnkReflAttrKey& fn_710008f920();
+extern base::reflection::CType g_unk_7101d5af48;
+void fn_710023e8b4();
+void fn_71002292b4(UnkReflFunction* fn, const char* name);
+void fn_710023e998();
+void fn_7100229430(UnkReflFunction* fn, const char* name);
+void fn_710022753c(CClass* cls) {
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sName_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_sName_GetterFunction", true);
+        fn->return_type = fn_7100009658();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_710023e0f8);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sName_SetterFunction", true)))
+        fn_71002289a8(fn, "_sName_SetterFunction");
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sName", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field0->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Actor Name"));
+    field0->attrs.Add<CStrId>(fn_7100091c30(), CStrId("Name", true));
+    field0->attrs.Add<bool>(fn_7100234410(), true);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("oActorDefLink", true), &g_unk_7101d4ec50, 0x18, -1, -1);
+    field1->attrs.Add<bool>(fn_7100090a20(), true);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sActorDefName_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_sActorDefName_GetterFunction", true);
+        fn->return_type = fn_7100009658();
+        fn->field_0xb2 = 0x101;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_710023e1ac);
+    }
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("sActorDefName", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field2->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vPos_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_vPos_GetterFunction", true);
+        fn->return_type = fn_71000246e4();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_710023e278);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vPos_SetterFunction", true)))
+        fn_7100228b24(fn, "_vPos_SetterFunction");
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("vPos", true), fn_71000246e4(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field3->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{0.0f, 0.0f, 0.0f});
+    field3->attrs.Add(fn_71000926d0(), &g_unk_7101d60ff0, base::reflection::UnkReflStringList(0x1, base::reflection::UnkReflList<base::global::CRntString>({"oBBox"}, 0xa, nullptr, 0xf)));
+    field3->attrs.Add<const char*>(fn_7100007e80(), "Position");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vAng_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_vAng_GetterFunction", true);
+        fn->return_type = fn_71000246e4();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_710023e348);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vAng_SetterFunction", true)))
+        fn_7100228ee4(fn, "_vAng_SetterFunction");
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("vAng", true), fn_71000246e4(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field4->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{0.0f, 0.0f, 0.0f});
+    field4->attrs.Add<const char*>(fn_7100007e80(), "Angle");
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_pComponents_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_pComponents_GetterFunction", true);
+        fn->return_type = fn_7100229060();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_710023e44c);
+    }
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("pComponents", true), fn_7100229060(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    field5->attrs.Add<bool>(fn_7100234780(), true);
+    field5->attrs.Add<const char*>(fn_7100007e80(), "List of entity components");
+    field5->attrs.Add<bool>(fn_7100090090(), true);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("GetComponentByName", true))) {
+        fn_710022913c(fn, "GetComponentByName");
+        fn_710009ae5c(fn, fn->params.count);
+        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("sName", true));
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("RequestDelete", true))) {
+        fn->name = base::global::UnkStrId("RequestDelete", true);
+        fn->return_type = &g_unk_7101d5af48;
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_710023e8b4);
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Request the destruction of the actor");
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetWantsEnabled", true))) {
+        fn_71002292b4(fn, "SetWantsEnabled");
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Enables or disables the actor");
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bEnabled_GetterFunction", true))) {
+        fn->name = base::global::UnkStrId("_bEnabled_GetterFunction", true);
+        fn->return_type = fn_710000d228();
+        fn->field_0xb2 = 0;
+        fn->field_0x40 = nullptr;
+        fn->invoker = reinterpret_cast<void*>(&fn_710023e998);
+    }
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bEnabled_SetterFunction", true)))
+        fn_71002292b4(fn, "_bEnabled_SetterFunction");
+    UnkReflField* field6 = fn_7100096524(cls, CStrId("bEnabled", true), fn_710000d228(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field6->attrs.Add<bool>(fn_7100075240(), true);
+    field6->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Actor Enabled?"));
+    field6->attrs.Add<bool>(fn_7100075240(), true);
+    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetVisible", true))) {
+        fn_7100229430(fn, "SetVisible");
+        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Makes the actor visible or invisible");
+    }
+}
 bool fn_710023e058(const void*, const void*) { return false; }
 s32 fn_710023e060() { return -1; }
 const base::reflection::CType& fn_710023e068(const void* obj) { return *static_cast<const base::reflection::UnkReflObject*>(obj)->vf_0x0(); }
