@@ -535,6 +535,11 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
      and `keyed_set` (parallel key/value arrays of one width). `call_and_cast_field` also takes a
      descriptor passed as a direct (hidden) address after its getter is called for initialisation
      (+10).
+   - Done (2026-10-21, cloud, stream 2, round 9): +56 functions. `value_map_clear` (`UnkHashMap.h`),
+     `keyed_array_copy` (the key stored as bytes so the count reloads), `slist_insert_before` (new
+     `UnkSList.h`; the count is a union member), `callback_list_dtor` (`UnkCallbackList`'s
+     destructor and deleting destructor), `strid_vec_dtor`, and `iter_value_destroy_poly_vec_key16`
+     now reads its key and state offsets (`UnkClonePolyVecPad`; +8).
    - Enum static initialisers and the other per-TU static initialisers. These define
      globals, so they need the TU's data definitions (the 160 B ones are mostly lifted already).
    - Slot `0x28`/`0x30`/`0x38`/`0x48`/`0x50` helpers of other classes (need class layouts):
