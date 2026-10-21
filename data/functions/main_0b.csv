@@ -5112,7 +5112,7 @@ address,size,name,name_source,subsystem,status
 0x7100bd1fe0,160,fn_7100bd1fe0,unknown,game/characters?,O
 0x7100bd2080,232,fn_7100bd2080,unknown,game/characters?,O
 0x7100bd2168,244,CCharClassSetCutsceneActorVolumeOverrideEvent::refl_GetClass,reflection,game/characters,O
-0x7100bd225c,804,fn_7100bd225c,unknown,game/characters?,U
+0x7100bd225c,804,fn_7100bd225c,unknown,game/characters?,O
 0x7100bd2580,388,CCharClassSetCutsceneActorVolumeOverrideEvent::refl_InitClass,reflection,game/characters,O
 0x7100bd2704,204,fn_7100bd2704,unknown,game/characters?,U
 0x7100bd27d0,124,fn_7100bd27d0,unknown,game/characters?,O
