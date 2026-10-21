@@ -385,8 +385,8 @@ address,size,name,name_source,subsystem,status
 0x710090d944,588,fn_710090d944,unknown,unknown,U
 0x710090db90,12,fn_710090db90,unknown,unknown,O
 0x710090db9c,24,fn_710090db9c,unknown,unknown,O
-0x710090dbb4,316,fn_710090dbb4,unknown,unknown,U
-0x710090dcf0,328,fn_710090dcf0,unknown,unknown,U
+0x710090dbb4,316,fn_710090dbb4,unknown,unknown,O
+0x710090dcf0,328,fn_710090dcf0,unknown,unknown,O
 0x710090de40,1456,fn_710090de40,unknown,unknown,U
 0x710090e3f0,4,fn_710090e3f0,unknown,unknown,O
 0x710090e3f4,244,CSoundListenerComponent::refl_GetClass,reflection,audio,O
@@ -1919,7 +1919,7 @@ address,size,name,name_source,subsystem,status
 0x7100964670,492,fn_7100964670,unknown,unknown,U
 0x710096485c,280,fn_710096485c,unknown,unknown,O
 0x7100964974,496,fn_7100964974,unknown,unknown,U
-0x7100964b64,968,fn_7100964b64,unknown,unknown,U
+0x7100964b64,968,fn_7100964b64,unknown,unknown,O
 0x7100964f2c,36,fn_7100964f2c,unknown,unknown,O
 0x7100964f50,60,fn_7100964f50,unknown,unknown,O
 0x7100964f8c,108,fn_7100964f8c,unknown,unknown,U
@@ -3915,7 +3915,7 @@ address,size,name,name_source,subsystem,status
 0x71009cbfbc,244,CCharClassPickableComponent::refl_GetClass,reflection,game/characters,O
 0x71009cc0b0,1176,fn_71009cc0b0,unknown,game/characters?,O
 0x71009cc548,388,CCharClassPickableComponent::refl_InitClass,reflection,game/characters,O
-0x71009cc6cc,560,fn_71009cc6cc,unknown,unknown,U
+0x71009cc6cc,560,fn_71009cc6cc,unknown,unknown,O
 0x71009cc8fc,36,fn_71009cc8fc,unknown,unknown,O
 0x71009cc920,28,fn_71009cc920,unknown,unknown,O
 0x71009cc93c,8,fn_71009cc93c,unknown,unknown,O
