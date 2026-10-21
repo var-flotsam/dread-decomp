@@ -620,8 +620,8 @@ address,size,name,name_source,subsystem,status
 0x7100a19330,160,fn_7100a19330,unknown,game/components?,O
 0x7100a193d0,352,CEmmySpawnPointComponent::refl_InitClass,reflection,game/components,O
 0x7100a19530,380,fn_7100a19530,unknown,game/components?,O
-0x7100a196ac,216,fn_7100a196ac,unknown,game/components?,O
-0x7100a19784,224,fn_7100a19784,unknown,game/components?,O
+0x7100a196ac,216,fn_7100a196ac,unknown,game/components?,U
+0x7100a19784,224,fn_7100a19784,unknown,game/components?,U
 0x7100a19864,28,fn_7100a19864,unknown,game/components?,O
 0x7100a19880,132,fn_7100a19880,unknown,game/components?,O
 0x7100a19904,8,fn_7100a19904,unknown,game/components?,O
@@ -1513,7 +1513,7 @@ address,size,name,name_source,subsystem,status
 0x7100a3a808,112,fn_7100a3a808,unknown,unknown,U
 0x7100a3a878,212,fn_7100a3a878,unknown,unknown,O
 0x7100a3a94c,44,fn_7100a3a94c,unknown,unknown,O
-0x7100a3a978,224,fn_7100a3a978,unknown,unknown,O
+0x7100a3a978,224,fn_7100a3a978,unknown,unknown,U
 0x7100a3aa58,84,fn_7100a3aa58,unknown,unknown,O
 0x7100a3aaac,152,fn_7100a3aaac,unknown,unknown,O
 0x7100a3ab44,12,fn_7100a3ab44,unknown,unknown,O
@@ -1680,8 +1680,8 @@ address,size,name,name_source,subsystem,status
 0x7100a3fb54,244,CShowPopUpCompositionLogicAction::refl_GetClass,reflection,game/ai,O
 0x7100a3fc48,148,fn_7100a3fc48,unknown,game/ai?,O
 0x7100a3fcdc,352,CShowPopUpCompositionLogicAction::refl_InitClass,reflection,game/ai,O
-0x7100a3fe3c,216,fn_7100a3fe3c,unknown,game/ai?,O
-0x7100a3ff14,224,fn_7100a3ff14,unknown,game/ai?,O
+0x7100a3fe3c,216,fn_7100a3fe3c,unknown,game/ai?,U
+0x7100a3ff14,224,fn_7100a3ff14,unknown,game/ai?,U
 0x7100a3fff4,208,fn_7100a3fff4,unknown,game/ai?,U
 0x7100a400c4,28,fn_7100a400c4,unknown,game/ai?,O
 0x7100a400e0,12,fn_7100a400e0,unknown,game/ai?,O
@@ -3694,7 +3694,7 @@ address,size,name,name_source,subsystem,status
 0x7100a94384,112,fn_7100a94384,unknown,unknown,U
 0x7100a943f4,212,fn_7100a943f4,unknown,unknown,O
 0x7100a944c8,44,fn_7100a944c8,unknown,unknown,O
-0x7100a944f4,224,fn_7100a944f4,unknown,unknown,O
+0x7100a944f4,224,fn_7100a944f4,unknown,unknown,U
 0x7100a945d4,84,fn_7100a945d4,unknown,unknown,O
 0x7100a94628,152,fn_7100a94628,unknown,unknown,O
 0x7100a946c0,8,fn_7100a946c0,unknown,unknown,O
