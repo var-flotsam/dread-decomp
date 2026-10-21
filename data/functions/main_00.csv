@@ -2489,7 +2489,7 @@ address,size,name,name_source,subsystem,status
 0x71000942d4,4,fn_71000942d4,unknown,unknown,O
 0x71000942d8,20,fn_71000942d8,unknown,unknown,O
 0x71000942ec,20,fn_71000942ec,unknown,unknown,O
-0x7100094300,188,fn_7100094300,unknown,unknown,U
+0x7100094300,188,fn_7100094300,unknown,unknown,O
 0x71000943bc,4,fn_71000943bc,unknown,unknown,O
 0x71000943c0,984,fn_71000943c0,unknown,unknown,U
 0x7100094798,60,fn_7100094798,unknown,unknown,O
@@ -2566,7 +2566,7 @@ address,size,name,name_source,subsystem,status
 0x71000985d8,4,fn_71000985d8,unknown,engine/reflection?,O
 0x71000985dc,20,fn_71000985dc,unknown,engine/reflection?,O
 0x71000985f0,20,fn_71000985f0,unknown,engine/reflection?,O
-0x7100098610,188,fn_7100098610,unknown,engine/reflection?,U
+0x7100098610,188,fn_7100098610,unknown,engine/reflection?,O
 0x71000986cc,4,fn_71000986cc,unknown,engine/reflection?,O
 0x71000986d0,244,base::reflection::CCollectionType::refl_GetClass,reflection,engine/reflection,O
 0x71000987c4,4,fn_71000987c4,unknown,engine/reflection?,O
@@ -3039,7 +3039,7 @@ address,size,name,name_source,subsystem,status
 0x71000a4444,4,fn_71000a4444,unknown,engine/reflection?,O
 0x71000a4448,20,fn_71000a4448,unknown,engine/reflection?,O
 0x71000a445c,20,fn_71000a445c,unknown,engine/reflection?,O
-0x71000a4470,296,fn_71000a4470,unknown,engine/reflection?,U
+0x71000a4470,296,fn_71000a4470,unknown,engine/reflection?,O
 0x71000a4598,552,fn_71000a4598,unknown,engine/reflection?,U
 0x71000a47c0,408,fn_71000a47c0,unknown,engine/reflection?,O
 0x71000a4958,36,fn_71000a4958,unknown,engine/reflection?,O
