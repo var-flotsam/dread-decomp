@@ -529,6 +529,12 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
      registers in the shared tail), 0x71008eb574 (clamped colour, 16 × 100 B: the zero register
      and loads are scheduled first), 0x710000e08c (an exact division by 3 Clang folds away),
      0x7100339a50 (a resource load around two string-id types, 9 × 760 B).
+   - Done (2026-10-21, cloud, stream 2, round 8): +96 functions. `UnkCloneCalls.h` kinds
+     `set_flag_notify_b`, `release_ref`, `copy_ctor2`, `set_bool`, `set_flag_call` (10 each or
+     fewer), the reflected properties three pointers away `set_deep_u32`/`get_deep_u32`, `get_false`
+     and `keyed_set` (parallel key/value arrays of one width). `call_and_cast_field` also takes a
+     descriptor passed as a direct (hidden) address after its getter is called for initialisation
+     (+10).
    - Enum static initialisers and the other per-TU static initialisers. These define
      globals, so they need the TU's data definitions (the 160 B ones are mostly lifted already).
    - Slot `0x28`/`0x30`/`0x38`/`0x48`/`0x50` helpers of other classes (need class layouts):
