@@ -377,12 +377,12 @@ address,size,name,name_source,subsystem,status
 0x710090cedc,68,fn_710090cedc,unknown,unknown,O
 0x710090cf20,120,fn_710090cf20,unknown,unknown,U
 0x710090cf98,116,fn_710090cf98,unknown,unknown,O
-0x710090d00c,432,fn_710090d00c,unknown,unknown,U
+0x710090d00c,432,fn_710090d00c,unknown,unknown,O
 0x710090d1bc,312,fn_710090d1bc,unknown,unknown,U
-0x710090d2f4,360,fn_710090d2f4,unknown,unknown,U
+0x710090d2f4,360,fn_710090d2f4,unknown,unknown,O
 0x710090d45c,696,fn_710090d45c,unknown,unknown,U
-0x710090d714,560,fn_710090d714,unknown,unknown,U
-0x710090d944,588,fn_710090d944,unknown,unknown,U
+0x710090d714,560,fn_710090d714,unknown,unknown,O
+0x710090d944,588,fn_710090d944,unknown,unknown,O
 0x710090db90,12,fn_710090db90,unknown,unknown,O
 0x710090db9c,24,fn_710090db9c,unknown,unknown,O
 0x710090dbb4,316,fn_710090dbb4,unknown,unknown,O
