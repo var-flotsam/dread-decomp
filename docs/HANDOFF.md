@@ -91,6 +91,8 @@ include/base/UnkDestructors.h      destructor templates over traits (vtable, bas
 include/base/UnkNamedRegistry.h, UnkDeferredSet.h, UnkIdPair.h   smaller templates found as clone families
 tools/gen_statics.py      guarded-static templates (UnkReflStatics.h) matched by shape against references
 tools/gen_lift.py         lifter: candidates <= 512 B not defined elsewhere in src/; 9 variants; verify
+                          (--sample N / --only ADDRS: outcome table by size band, in build/, ~1 min)
+tools/shape_census.py     families of undefined U functions by size + mnemonics; --family ADDR: varying operands
 include/types.h           u8..f64 without a standard library
 include/base/reflection/CClass.h   CType/CClass layout, getter macro, descriptor constructor template
 lib/lua/                  vendored upstream Lua 5.1.4 (MIT) + README listing the game's changes
@@ -433,7 +435,8 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
      `class_constructors` in `gen_reflection.py`) picks the next families.
    - A shape census (mnemonic sequence per U function, grouped) was the fastest way to pick
      templates this session: the top families were reflected-function initialisers (839 × 380 B)
-     and `CClass` constructors (777 × 388 B).
+     and `CClass` constructors (777 × 388 B). `tools/shape_census.py` now does this (`--top`,
+     `--max-size`); `--family ADDR` lists the operands that vary across a family's copies.
 3. **Lua leftovers:** 23 ambiguous and the `lapi`/`lcode`/`ltable` mismatches (`ltable` number
    hashing may need another `luaconf` change).
 4. Core engine types the slice depends on. Done: the inline code of `CStrId`/`UnkStrId` (copy,
