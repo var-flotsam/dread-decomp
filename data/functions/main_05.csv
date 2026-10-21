@@ -93,7 +93,7 @@ address,size,name,name_source,subsystem,status
 0x7100503ee4,8,fn_7100503ee4,unknown,unknown,O
 0x7100503eec,8,fn_7100503eec,unknown,unknown,O
 0x7100503ef4,28,fn_7100503ef4,unknown,unknown,O
-0x7100503f10,208,fn_7100503f10,unknown,unknown,U
+0x7100503f10,208,fn_7100503f10,unknown,unknown,O
 0x7100503fe0,12,fn_7100503fe0,unknown,unknown,O
 0x7100503fec,8,fn_7100503fec,unknown,unknown,O
 0x7100503ff4,8,fn_7100503ff4,unknown,unknown,O
@@ -184,7 +184,7 @@ address,size,name,name_source,subsystem,status
 0x710050af84,76,fn_710050af84,unknown,unknown,U
 0x710050afd0,460,fn_710050afd0,unknown,unknown,U
 0x710050b19c,1568,fn_710050b19c,unknown,unknown,U
-0x710050b7bc,340,fn_710050b7bc,unknown,unknown,U
+0x710050b7bc,340,fn_710050b7bc,unknown,unknown,O
 0x710050b910,24,fn_710050b910,unknown,unknown,O
 0x710050b928,1000,fn_710050b928,unknown,unknown,U
 0x710050bd10,328,fn_710050bd10,unknown,unknown,U
@@ -860,7 +860,7 @@ address,size,name,name_source,subsystem,status
 0x71005464d0,388,fn_71005464d0,unknown,unknown,U
 0x7100546654,32,fn_7100546654,unknown,unknown,O
 0x7100546674,8,fn_7100546674,unknown,unknown,O
-0x710054667c,188,fn_710054667c,unknown,unknown,U
+0x710054667c,188,fn_710054667c,unknown,unknown,O
 0x7100546738,760,fn_7100546738,unknown,unknown,U
 0x7100546a30,744,fn_7100546a30,unknown,unknown,U
 0x7100546d18,1092,fn_7100546d18,unknown,unknown,U
@@ -951,7 +951,7 @@ address,size,name,name_source,subsystem,status
 0x7100552f10,580,fn_7100552f10,unknown,unknown,U
 0x7100553154,3972,fn_7100553154,unknown,unknown,U
 0x71005540d8,272,fn_71005540d8,unknown,unknown,U
-0x71005541e8,216,fn_71005541e8,unknown,unknown,U
+0x71005541e8,216,fn_71005541e8,unknown,unknown,O
 0x71005542c0,928,fn_71005542c0,unknown,unknown,U
 0x7100554660,220,fn_7100554660,unknown,unknown,O
 0x710055473c,4,fn_710055473c,unknown,unknown,O
@@ -2356,7 +2356,7 @@ address,size,name,name_source,subsystem,status
 0x710058e0c8,244,CGoliathAttack::refl_GetClass,reflection,game/ai,O
 0x710058e1bc,4,fn_710058e1bc,unknown,game/ai?,O
 0x710058e1c0,388,CGoliathAttack::refl_InitClass,reflection,game/ai,O
-0x710058e344,228,fn_710058e344,unknown,unknown,U
+0x710058e344,228,fn_710058e344,unknown,unknown,O
 0x710058e428,96,fn_710058e428,unknown,unknown,O
 0x710058e488,296,fn_710058e488,unknown,unknown,U
 0x710058e5b0,176,fn_710058e5b0,unknown,unknown,U
@@ -3800,7 +3800,7 @@ address,size,name,name_source,subsystem,status
 0x71005c9c50,244,CCharClassInfesterAIComponent::refl_GetClass,reflection,game/characters,O
 0x71005c9d44,772,fn_71005c9d44,unknown,game/characters?,O
 0x71005ca048,352,CCharClassInfesterAIComponent::refl_InitClass,reflection,game/characters,O
-0x71005ca1a8,208,fn_71005ca1a8,unknown,unknown,U
+0x71005ca1a8,208,fn_71005ca1a8,unknown,unknown,O
 0x71005ca278,140,fn_71005ca278,unknown,unknown,U
 0x71005ca304,148,fn_71005ca304,unknown,unknown,U
 0x71005ca398,8,fn_71005ca398,unknown,unknown,O
