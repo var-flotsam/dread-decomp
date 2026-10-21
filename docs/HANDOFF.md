@@ -4,6 +4,32 @@ For the next developer, human or AI, picking up this project. Read this, then `C
 (rules and conventions), `docs/recon.md` (what's in the binary), `docs/compiler.md`
 (toolchain), and `docs/references.md` (outside projects).
 
+**Eleventh session (2026-10-21, branch `claude/local-agent-setup-df6136`):** set up two parallel
+workstreams (below), `AGENTS.md` and `docs/tasks/` for a small local model on a MacBook,
+macOS toolchain support (untested on hardware) and `tools/verify.py`. No matching changes.
+
+## Workstreams
+
+Two machines work at once, on separate files. Each edits only the files in its row.
+
+| Owner | Area | Files it may edit | Current branch |
+|---|---|---|---|
+| PC (Claude) | The lifter: the mismatch study, then loops, `ccmp` and jump tables (Next steps, item 1) | `tools/gen_lift.py`, `src/lifted/` | none open; new branches `pc/<topic>` |
+| Mac (local model, `AGENTS.md`) | Guarded statics, then small single-family `gen_clones.py` templates, then reflection and Lua leftovers (`docs/tasks/`) | `tools/gen_statics.py`, `include/base/reflection/UnkReflStatics.h`, `src/reflection_statics/`; for clone cards also `tools/gen_clones.py`, `include/UnkClone.h`, `include/base/UnkCloneHelpers.h`, `src/clones/` | none yet; new branches `mac/<topic>` |
+
+Both may change `data/functions/*.csv` (statuses only, through `check.py --update`) and their
+own row here. Anything else (shared headers, `check.py`, `CLAUDE.md`) goes through the owner first.
+
+Merge rules:
+- Merge `main` into your branch often and keep PRs small.
+- After merging `main`, take `main`'s `data/functions/*.csv`, rerun only the generator you own,
+  then `tools/check.py --update` (`tools/verify.py --regen <generator>` does both). Never
+  hand-merge the CSVs.
+- `gen_clones.py` and `gen_lift.py` skip functions defined elsewhere in `src/` (`gen_statics.py`
+  runs before both), so a rerun drops duplicates.
+- Branch prefixes are `pc/` and `mac/`. Only the owner pushes and merges.
+- A machine that changes focus updates its row above in its next PR.
+
 **Tenth session (2026-10-20, branch `claude/lifter-float-0b96b0`):** lifter fixes (Next steps,
 item 1, "Done (tenth session)"); `gen_lift.py` and `check.py --update` were rerun, so the
 numbers below are current.
@@ -71,6 +97,9 @@ tools/asmdiff.py          per-function instruction diff vs the original (relocat
 tools/trymatch.py         build one source (src/ or scratch) with the project flags and diff it
 tools/ghidra/decompile.py print Ghidra's decompilation of functions, to read (never commit it)
 tools/check.py            build src/ with the project toolchain; derive O/m/M/W; catch regressions
+tools/verify.py           one-command gate: --regen generators, check.py --update, progress, policy; ~10 lines
+tools/hostenv.py          platform details: download cache folder, .exe names, llvm-cxxfilt
+AGENTS.md, docs/tasks/    short guide and task cards for a small local model (Mac workstream)
 tools/objdiff_gen.py      objdiff target objects + objdiff.json (gitignored) for every src/ unit
 tools/progress.py         whole-binary progress from data/functions/ (excludes L)
 tools/hooks/pre-commit    rejects >1 MB files, console formats/keys, orig/ and build/
@@ -145,6 +174,14 @@ git submodule update --init                                       # lib/nnsdk, l
 ```
 
 The output of `gen_functions_csv.py` is reproducible (only `status` is carried over).
+
+**macOS (Apple Silicon), untested on hardware.** `tools/fetch_toolchains.py` fetches only the
+project compiler, from the official `clang+llvm-9.0.1-x86_64-apple-darwin.tar.xz` (pinned in
+`data/toolchains.json` as `9.0.1-macos`; there is no arm64 LLVM 9 build, so it runs under
+Rosetta 2), and the arm64 objdiff builds; everything goes to `~/Library/Caches/dread-decomp`
+(`tools/hostenv.py`). `llvm-cxxfilt` comes from PATH, Homebrew's `llvm` or the fetched
+toolchain. Ghidra and `gen_functions_csv.py` aren't needed there (the CSVs are tracked).
+Steps: `AGENTS.md`. Before any work on the Mac, `check.py` must give the PC's O count.
 
 ## Key facts
 

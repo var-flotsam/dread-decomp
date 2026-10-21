@@ -3,7 +3,8 @@
 linked into the game, and the libc++ headers the build uses (open source only; see docs/references.md).
 
 Each archive is downloaded once and extracted to
-%LOCALAPPDATA%\\dread-decomp\\sources\\<name>\\. SHA-256 is pinned in data/sources.json:
+<cache>/sources/<name>/ (tools/hostenv.py: %LOCALAPPDATA%\\dread-decomp on Windows,
+~/Library/Caches/dread-decomp on macOS). SHA-256 is pinned in data/sources.json:
 the first download records it, and later downloads must match.
 
 Usage: python tools/fetch_sources.py [NAME ...]   (default: all in SOURCES)
@@ -14,15 +15,16 @@ from __future__ import annotations
 import hashlib
 import io
 import json
-import os
 import sys
 import tarfile
 import urllib.request
 from pathlib import Path
 
+import hostenv
+
 ROOT = Path(__file__).resolve().parent.parent
 PINS = ROOT / "data" / "sources.json"
-DEST = Path(os.environ.get("LOCALAPPDATA", Path.home())) / "dread-decomp" / "sources"
+DEST = hostenv.cache_dir() / "sources"
 
 # Lua 5.1 patch releases (MIT), from the official lua.org archive.
 SOURCES = {f"lua-5.1.{n}": f"https://www.lua.org/ftp/lua-5.1.{n}.tar.gz" for n in range(0, 6)}
