@@ -1335,10 +1335,10 @@ address,size,name,name_source,subsystem,status
 0x710003146c,192,fn_710003146c,unknown,unknown,U
 0x710003152c,536,fn_710003152c,unknown,unknown,O
 0x7100031744,336,fn_7100031744,unknown,unknown,O
-0x7100031894,61000,fn_7100031894,unknown,unknown,U
-0x71000406dc,276,fn_71000406dc,unknown,unknown,U
+0x7100031894,61000,fn_7100031894,unknown,unknown,O
+0x71000406dc,276,fn_71000406dc,unknown,unknown,O
 0x71000407f0,95944,fn_71000407f0,unknown,unknown,U
-0x7100057eb8,56412,fn_7100057eb8,unknown,unknown,U
+0x7100057eb8,56412,fn_7100057eb8,unknown,unknown,O
 0x7100065b14,392,fn_7100065b14,unknown,unknown,U
 0x7100065ca0,132,fn_7100065ca0,unknown,unknown,U
 0x7100065d24,84,fn_7100065d24,unknown,unknown,O
