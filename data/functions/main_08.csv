@@ -3063,10 +3063,10 @@ address,size,name,name_source,subsystem,status
 0x710088ba98,292,fn_710088ba98,unknown,unknown,U
 0x710088bbbc,352,fn_710088bbbc,unknown,unknown,U
 0x710088bd1c,292,fn_710088bd1c,unknown,unknown,U
-0x710088be40,292,fn_710088be40,unknown,unknown,U
+0x710088be40,292,fn_710088be40,unknown,unknown,O
 0x710088bf64,308,fn_710088bf64,unknown,unknown,U
-0x710088c098,288,fn_710088c098,unknown,unknown,U
-0x710088c1b8,288,fn_710088c1b8,unknown,unknown,U
+0x710088c098,288,fn_710088c098,unknown,unknown,O
+0x710088c1b8,288,fn_710088c1b8,unknown,unknown,O
 0x710088c2d8,384,fn_710088c2d8,unknown,unknown,U
 0x710088c458,36,fn_710088c458,unknown,unknown,O
 0x710088c47c,324,fn_710088c47c,unknown,unknown,U

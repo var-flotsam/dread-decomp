@@ -256,6 +256,148 @@ PRELUDE = ['#include "base/reflection/UnkReflStatics.h"', "using base::reflectio
            "using base::reflection::CType;", "using base::reflection::UnkReflObject;",
            "using base::reflection::UnkReflRegistryItem;", "using base::reflection::UnkReflRegistryMap;"]
 
+# Game code that sends a u32 under a hash (fn_7101176690, with the type id's statics inlined):
+# a short chain of loads from `self` (optionally null-checked) gives the target, the hash is a
+# constant or the second parameter, the value a constant. Parsed from the path up to the call;
+# each candidate is compiled and kept only if byte-identical.
+EMIT_U32 = 0x7101176690
+TYPE_ID_GUARDS = (0x7101CBBCD8, 0x7101CBBCE0)  # GOT slots of the type id's guard and value
+
+
+def parse_emit_u32(orig: asmdiff.Original, addr: int) -> dict | None:
+    ins = list(CS.disasm(orig.function(addr), addr))
+    bls = [x.operands[0].imm for x in ins if x.mnemonic == "bl"]
+    if not bls or bls.count(EMIT_U32) != 1 or any(b not in (EMIT_U32, GUARD_ACQUIRE, GUARD_RELEASE) for b in bls):
+        return None
+    if any(x.mnemonic in ("blr", "br") for x in ins):
+        return None
+    regs: dict[str, object] = {"x0": ("self",), "x1": ("hash",)}
+    loads: list[tuple] = []  # load expressions in order
+    checks: set[tuple] = set()
+    consts: dict[str, int] = {}
+    value = None
+    hash_const = None
+    page: dict[str, int] = {}
+    got: dict[str, int] = {}
+    seen: set[int] = set()
+    rets = [x.address for x in ins if x.mnemonic == "ret"]
+    if len(rets) != 1:
+        return None
+    for i, x in enumerate(ins):
+        m, o = x.mnemonic, x.operands
+        r0 = CS.reg_name(o[0].reg) if o and o[0].type == arm64.ARM64_OP_REG else None
+        if m == "bl":
+            break
+        if m in ("stp", "ldp") or (m in ("sub", "add") and r0 in ("sp", "x29", "fp", "x3", "x6")
+                                        and CS.reg_name(o[1].reg) in ("sp", "x29", "fp")):
+            continue
+        if m == "str" and r0 in ("x19", "x20") and "sp" in x.op_str:
+            continue
+        if m == "ldr" and o[1].type == arm64.ARM64_OP_MEM and o[1].mem.index == 0:
+            base = CS.reg_name(o[1].mem.base)
+            if base in regs and isinstance(regs[base], tuple) and regs[base][0] in ("self", "load"):
+                e = ("load", regs[base], o[1].mem.disp)
+                regs[r0] = e
+                loads.append(e)
+                continue
+            if base == "x9" and o[1].mem.disp == 0:
+                regs[r0] = None
+                continue
+            if base in page:
+                slot = page.pop(base) + o[1].mem.disp
+                t = orig.img.pointer(slot - BASE)
+                if t is None:
+                    return None
+                got[r0] = BASE + t
+                seen.add(slot)
+                regs[r0] = None
+                continue
+            if r0 == "w8" and base == "x9" and o[1].mem.disp == 0:
+                continue
+            return None
+        if m == "mov" and len(o) == 2:
+            if o[1].type == arm64.ARM64_OP_IMM:
+                consts[r0] = o[1].imm
+                regs[r0] = None
+                continue
+            src = CS.reg_name(o[1].reg)
+            if src == "wzr":
+                consts[r0] = 0
+                continue
+            if src in regs:
+                regs[r0] = regs[src]
+                continue
+            return None
+        if m == "movk":
+            if r0 not in consts:
+                return None
+            sh = o[1].shift.value if o[1].shift.type else 0
+            consts[r0] = (consts[r0] & ~(0xFFFF << sh)) | (o[1].imm << sh)
+            continue
+        if m in ("stur", "str") and o[1].type == arm64.ARM64_OP_MEM and CS.reg_name(o[1].mem.base) in ("x29", "fp", "sp"):
+            if r0 == "wzr":
+                value = 0 if value is None else value
+            elif r0 == "w8" and ins[i - 1].mnemonic == "ldr" and CS.reg_name(ins[i - 1].operands[0].reg) == "w8" \
+                    and CS.reg_name(ins[i - 1].operands[1].mem.base) == "x9":
+                pass  # the type id
+            elif r0 in consts and value is None:
+                value = consts[r0]
+            else:
+                return None
+            continue
+        if m == "cbz" and r0 and r0.startswith("x") and isinstance(regs.get(r0), tuple):
+            checks.add(regs[r0])
+            continue
+        if m == "adrp":
+            page[r0] = o[1].imm
+            regs.pop(r0, None)
+            continue
+        if m in ("ldarb", "tbz"):
+            continue
+        return None
+    else:
+        return None
+    if "x4" not in got or "x5" not in got or not seen >= set(TYPE_ID_GUARDS):
+        return None
+    if "x1" in consts:
+        hash_const = consts["x1"] & 0xFFFFFFFFFFFFFFFF
+    elif regs.get("x1") != ("hash",):
+        return None
+    target = regs.get("x0")
+    if not isinstance(target, tuple) or value is None or consts.get("x2") is None:
+        return None
+    k = next(i for i, x in enumerate(ins) if x.mnemonic == "bl")
+    tail = ins[k + 1:next(i for i in range(k, len(ins)) if ins[i].mnemonic == "ret")]
+    returns_bool = any(x.mnemonic == "and" and x.op_str == "w0, w0, #1" for x in tail)
+    return {"target": target, "checks": checks, "hash": hash_const, "value": value & 0xFFFFFFFF,
+            "kind": consts["x2"] & 0xFFFFFFFFFFFFFFFF, "bool": returns_bool, "a": got["x4"], "b": got["x5"]}
+
+
+def emit_emit_u32(addr: int, f: dict) -> list[str]:
+    fail = "false" if f["bool"] else ""
+    lines: list[str] = []
+    names: dict[tuple, str] = {("self",): "self"}
+
+    def walk(e: tuple) -> str:
+        if e in names:
+            return names[e]
+        base = walk(e[1])
+        n = f"p{len(names)}"
+        names[e] = n
+        lines.append(f"    char* {n} = *reinterpret_cast<char**>({base} + {e[2]:#x});")
+        if e in f["checks"]:
+            lines.append(f"    if (!{n})")
+            lines.append(f"        return {fail};".replace(" ;", ";"))
+        return n
+
+    target = walk(f["target"])
+    params = "char* self" + (", u64 hash" if f["hash"] is None else "")
+    h = "hash" if f["hash"] is None else f"{f['hash']:#x}"
+    call = (f"base::reflection::refl_EmitU32({target}, {h}, {f['kind']:#x}, {f['value']:#x}, "
+            f"&g_unk_{f['a']:x}, &g_unk_{f['b']:x});")
+    ret = "bool" if f["bool"] else "void"
+    return [f"{ret} fn_{addr:x}({params}) {{"] + lines + [f"    {'return ' if f['bool'] else ''}{call}", "}"]
+
 
 def is_instantiation(line: str) -> bool:
     return line.startswith("template ") and not line.startswith("template <>")
@@ -275,10 +417,15 @@ def main() -> int:
     args = ap.parse_args()
     orig = asmdiff.Original(args.version)
 
-    rows = []
+    rows: list[int] = []
+    u_rows: list[int] = []  # parsed kinds only take functions nothing else in src/ defines
     for f in sorted((ROOT / "data" / "functions").glob("main_*.csv")):
         with f.open(newline="", encoding="utf-8") as fh:
-            rows += [int(r["address"], 16) for r in csv.DictReader(fh) if r["status"] in ("U", "O")]
+            for r in csv.DictReader(fh):
+                if r["status"] in ("U", "O"):
+                    rows.append(int(r["address"], 16))
+                if r["status"] == "U":
+                    u_rows.append(int(r["address"], 16))
     shapes = {kind: shape(orig, ref) for kind, ref in REFERENCES.items()}
     sizes = {kind: len(s) * 4 for kind, s in shapes.items()}
     blocks: dict[int, list[str]] = {}
@@ -293,6 +440,19 @@ def main() -> int:
                 if f:
                     found.append((kind, a, f))
                 break
+    previous = set()
+    if OUT.exists():
+        for f in OUT.glob("*.cpp"):
+            previous |= {int(a, 16) for a in re.findall(r"^\w+ fn_([0-9a-f]{10})\(", f.read_text(encoding="utf-8"), re.M)}
+    undefined = set(u_rows) | previous
+    for a in sorted(undefined - {a for _, a, _ in found}):
+        if a not in orig.sizes:
+            continue
+        f = parse_emit_u32(orig, a)
+        if f:
+            blocks[a] = emit_emit_u32(a, f)
+            decls |= {f"extern u8 g_unk_{f['a']:x};", f"extern u8 g_unk_{f['b']:x};"}
+            counts["emit_u32"] = counts.get("emit_u32", 0) + 1
     # Registries first: a registry map names the refl_Register that shares its guard.
     registries = {f["guard"]: a for kind, a, f in found if kind == "register" and "guard" in f}
     for kind, a, f in found:

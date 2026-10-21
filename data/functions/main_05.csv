@@ -3962,7 +3962,7 @@ address,size,name,name_source,subsystem,status
 0x71005d13f8,704,fn_71005d13f8,unknown,unknown,U
 0x71005d16b8,248,fn_71005d16b8,unknown,unknown,O
 0x71005d17b0,1076,fn_71005d17b0,unknown,unknown,U
-0x71005d1be4,272,fn_71005d1be4,unknown,unknown,U
+0x71005d1be4,272,fn_71005d1be4,unknown,unknown,O
 0x71005d1cf4,400,fn_71005d1cf4,unknown,unknown,U
 0x71005d1e84,144,fn_71005d1e84,unknown,unknown,U
 0x71005d1f14,220,fn_71005d1f14,unknown,unknown,U
