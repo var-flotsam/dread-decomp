@@ -1955,8 +1955,8 @@ address,size,name,name_source,subsystem,status
 0x710105a13c,28,fn_710105a13c,unknown,unknown,O
 0x710105a158,4,operator.delete,symbol,unknown,O
 0x710105a15c,28,fn_710105a15c,unknown,unknown,O
-0x710105a178,172,fn_710105a178,unknown,unknown,U
-0x710105a224,172,fn_710105a224,unknown,unknown,U
+0x710105a178,172,fn_710105a178,unknown,unknown,O
+0x710105a224,172,fn_710105a224,unknown,unknown,O
 0x710105a2d0,96,fn_710105a2d0,unknown,unknown,U
 0x710105a330,8,fn_710105a330,unknown,unknown,O
 0x710105a338,16,fn_710105a338,unknown,unknown,O
