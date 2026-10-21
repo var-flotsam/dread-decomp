@@ -693,12 +693,27 @@ def cast_calls(insns: Insns) -> tuple[int, int] | None:
     return int(calls[0][1:], 16), int(calls[1][1:], 16)
 
 
-def cast_traits(tag: str, calls: tuple[int, int], ret: str, params: str, args: str) -> list[str]:
+def static_desc(insns: Insns) -> int | None:
+    """The descriptor passed to the is-kind-of test as a direct address (adrp + add into x1), when
+    the type getter is called only to initialise it."""
+    for i in range(len(insns) - 1):
+        page = re.fullmatch(r"x1, #(0x[0-9a-f]+)", insns[i][1])
+        lo = re.fullmatch(r"x1, x1, #(0x[0-9a-f]+|\d+)", insns[i + 1][1])
+        if insns[i][0] == "adrp" and page and insns[i + 1][0] == "add" and lo:
+            return int(page.group(1), 16) + int(lo.group(1), 0)
+    return None
+
+
+def cast_traits(tag: str, calls: tuple[int, int], ret: str, params: str, args: str,
+                desc: int | None = None) -> list[str]:
     base, getter = calls
-    return [f"const base::reflection::CType* fn_{getter:x}();",
+    get = (f"fn_{getter:x}(); return reinterpret_cast<const CType*>(g_unk_{desc:x});" if desc is not None
+           else f"return fn_{getter:x}();")
+    return ([f'extern char g_unk_{desc:x}[] __attribute__((visibility("hidden")));'] if desc is not None else []) + [
+            f"const base::reflection::CType* fn_{getter:x}();",
             f"{ret} fn_{base:x}({params});",
             f"template <> struct base::reflection::UnkCastTraits<{tag}> {{",
-            f"    static const CType* type() {{ return fn_{getter:x}(); }}",
+            f"    static const CType* type() {{ {get} }}",
             f"    static {ret} base({params}) {{ {'return ' if ret != 'void' else ''}fn_{base:x}({args}); }}", "};"]
 
 
@@ -726,7 +741,7 @@ def call_and_cast_field(orig: asmdiff.Original, addr: int, tag: str, insns: Insn
         dsts = [wide]
     if len(srcs) != 1 or len(dsts) != 1:
         return None
-    return "\n".join(cast_traits(tag, calls, "bool", "char* s", "s") +
+    return "\n".join(cast_traits(tag, calls, "bool", "char* s", "s", static_desc(insns)) +
                      [f"template bool base::reflection::refl_CallAndCastField<{tag}, {srcs[0]:#x}, {dsts[0]:#x}>(char*);"])
 
 
@@ -2318,6 +2333,90 @@ def get_lookup_f32(orig, addr, tag, insns):
         [f"template base::reflection::UnkReflValue base::refl_GetLookupF32<{tag}, {int(off.group(1), 0):#x}>(void*, char*);"])
 
 
+def copy_ctor2(orig, addr, tag, insns):
+    """refl_CopyCtor2: both vtables."""
+    if len(insns) != 15 or insns[4] != ("ldp", "x10, x11, [x1, #0x18]") or insns[11] != ("stp", "x9, x8, [x0]") \
+            or insns[12] != ("ldr", "x8, [x1, #0x28]"):
+        return None
+    vts = got_target(orig, insns, 0), got_target(orig, insns, 7)
+    if None in vts:
+        return None
+    decls = [f"extern char g_unk_{v:x}[];" for v in sorted(set(vts))]
+    return "\n".join(call_traits(tag, decls, [
+        f"    static char* {n}() {{ return g_unk_{v:x}; }}" for n, v in zip(("base_vtable", "vtable"), vts)]) +
+        [f"template void base::refl_CopyCtor2<{tag}>(char*, const char*);"])
+
+
+DEEP_RE = re.compile(rf"x9, \[x9, {OFF}\]")
+
+
+def set_deep_u32(orig, addr, tag, insns):
+    """refl_SetDeepU32: the middle and field offsets."""
+    if len(insns) != 20 or insns[10] != ("ldr", "x9, [x9, #0x58]") or insns[13] != ("ldr", "x9, [x9, #0x78]") \
+            or insns[0] != ("ldr", "x10, [x2]"):
+        return None
+    mid = DEEP_RE.fullmatch(insns[11][1])
+    off = re.fullmatch(rf"w10, \[x9, {OFF}\]", insns[14][1])
+    if insns[14][0] != "str" or not mid or not off:
+        return None
+    return (f"template base::reflection::UnkReflValue base::refl_SetDeepU32<{tag}, {int(mid.group(1), 0):#x}, "
+            f"{int(off.group(1), 0):#x}>(void*, char*, base::reflection::UnkReflValue* const*);")
+
+
+def get_deep_u32(orig, addr, tag, insns):
+    """refl_GetDeepU32: the middle and field offsets and the value's type getter."""
+    if len(insns) != 22 or insns[5] != ("ldr", "x8, [x8, #0x58]") or insns[7] != ("ldr", "x8, [x8, #0x78]") \
+            or insns[10][0] != "bl" or insns[18] != ("bl", f"#{MAKE_VALUE:#x}"):
+        return None
+    mid = re.fullmatch(rf"x8, \[x8, {OFF}\]", insns[6][1])
+    off = re.fullmatch(rf"w8, \[x8, {OFF}\]", insns[8][1])
+    if not mid or not off or insns[8][0] != "ldr":
+        return None
+    ty = target(insns[10][1])
+    return "\n".join(call_traits(tag, [f"const base::reflection::CType* fn_{ty:x}();"], [
+        f"    static const base::reflection::CType* type() {{ return fn_{ty:x}(); }}"]) +
+        [f"template base::reflection::UnkReflValue base::refl_GetDeepU32<{tag}, {int(mid.group(1), 0):#x}, "
+         f"{int(off.group(1), 0):#x}>(void*, char*);"])
+
+
+def set_bool(orig, addr, tag, insns):
+    """refl_SetBool: the flag's offset."""
+    if len(insns) != 6 or insns[1:4] != [("and", "w8, w1, #1"), ("cmp", "w9, w8"), ("b.eq", "@+14")] \
+            or insns[5] != ("ret", ""):
+        return None
+    off = re.fullmatch(rf"w9, \[x0, {OFF}\]", insns[0][1])
+    if insns[0][0] != "ldrb" or not off or insns[4] != ("strb", f"w8, [x0, #{off.group(1)}]"):
+        return None
+    return f"template void base::refl_SetBool<{tag}, {int(off.group(1), 0):#x}>(char*, bool);"
+
+
+def set_flag_call(orig, addr, tag, insns):
+    """refl_SetFlagCall: the flag, member and next offsets and the call."""
+    if len(insns) != 21 or insns[6] != ("eor", "w8, w8, w1") or insns[12][0] != "bl" \
+            or insns[17] != ("b", "#0x7100025a88"):
+        return None
+    flag = re.fullmatch(rf"w8, \[x0, {OFF}\]", insns[3][1])
+    member = re.fullmatch(rf"x0, x0, {OFF}", insns[10][1])
+    nxt = re.fullmatch(rf"x0, x19, {OFF}", insns[15][1])
+    if insns[3][0] != "ldrb" or not flag or not member or not nxt:
+        return None
+    call = target(insns[12][1])
+    offs = ", ".join(f"{int(h.group(1), 0):#x}" for h in (flag, member, nxt))
+    return "\n".join(call_traits(tag, [f"void fn_{call:x}(char*, bool);"], [
+        f"    static void call(char* p, bool v) {{ fn_{call:x}(p, v); }}"]) +
+        [f"template void base::refl_SetFlagCall<{tag}, {offs}>(char*, bool);"])
+
+
+def keyed_set(orig, addr, tag, insns):
+    """refl_KeyedSet: the key/value width."""
+    if len(insns) != 28 or insns[3] != ("mov", "x9, xzr") or insns[20][0] != "str":
+        return None
+    t = {"x8, [x9]": "u64", "w8, [x9]": "u32"}.get(insns[20][1])
+    if not t:
+        return None
+    return f"template void base::refl_KeyedSet(base::UnkKeyedArray<{tag}, {t}, {t}>*, const {t}*, const {t}*);"
+
+
 KINDS = {
     "strid_value_insert": Kind(None, "base/UnkStrIdValueVec.h", lambda tag, _: None, scan=strid_value_insert),
     "set_flag_notify": Kind(0x71001F31E8, "base/UnkCloneCalls.h", lambda tag, _: (
@@ -2334,6 +2433,20 @@ KINDS = {
     "link_slot_assign": Kind(0x710023655C, "base/UnkCloneCalls.h", lambda tag, _: (
         f"template base::UnkLinkSlot<{tag}>& base::UnkLinkSlot<{tag}>::operator=(const base::UnkLinkSlot<{tag}>&);")),
     "get_lookup_f32": Kind(None, "base/UnkCloneCalls.h", lambda tag, _: None, scan=get_lookup_f32),
+    "set_flag_notify_b": Kind(0x71001F32B0, "base/UnkCloneCalls.h", lambda tag, _: (
+        f"template void base::refl_SetFlagNotifyB<{tag}>(char*, bool);")),
+    "release_ref": Kind(0x7100234EF0, "base/UnkCloneCalls.h", lambda tag, _: (
+        f"template void base::refl_ReleaseRef<{tag}>(base::UnkRefOwner<{tag}>*);")),
+    "get_false": Kind(0x71002546D0, "base/UnkCloneCalls.h", lambda tag, _: "\n".join(call_traits(
+        tag, ["const base::reflection::CType* fn_710000d228();"],
+        ["    static const base::reflection::CType* type() { return fn_710000d228(); }"]) +
+        [f"template base::reflection::UnkReflValue base::refl_GetFalse<{tag}>(void*);"])),
+    "copy_ctor2": Kind(None, "base/UnkCloneCalls.h", lambda tag, _: None, scan=copy_ctor2),
+    "set_deep_u32": Kind(None, "base/UnkCloneCalls.h", lambda tag, _: None, scan=set_deep_u32),
+    "get_deep_u32": Kind(None, "base/UnkCloneCalls.h", lambda tag, _: None, scan=get_deep_u32),
+    "set_bool": Kind(None, "base/UnkCloneCalls.h", lambda tag, _: None, scan=set_bool),
+    "set_flag_call": Kind(None, "base/UnkCloneCalls.h", lambda tag, _: None, scan=set_flag_call),
+    "keyed_set": Kind(None, "base/UnkCloneCalls.h", lambda tag, _: None, scan=keyed_set),
     "variant_assign": Kind(0x71000C3CC0, "base/UnkCloneHelpers.h", lambda tag, ins: variant(tag, ins, "refl_VariantAssign", "{v}*"),
                            exact=False),
     "variant_assign_pair": Kind(0x71000C3C14, "base/UnkCloneHelpers.h", lambda tag, ins: variant(
