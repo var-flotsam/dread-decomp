@@ -233,7 +233,7 @@ address,size,name,name_source,subsystem,status
 0x71000089e0,124,fn_71000089e0,unknown,unknown,O
 0x7100008a5c,4,fn_7100008a5c,unknown,unknown,O
 0x7100008a60,336,fn_7100008a60,unknown,unknown,O
-0x7100008bb0,12,fn_7100008bb0,unknown,unknown,U
+0x7100008bb0,12,fn_7100008bb0,unknown,unknown,O
 0x7100008bbc,432,fn_7100008bbc,unknown,unknown,U
 0x7100008d6c,92,fn_7100008d6c,unknown,unknown,U
 0x7100008dc8,100,fn_7100008dc8,unknown,unknown,U
@@ -266,8 +266,8 @@ address,size,name,name_source,subsystem,status
 0x710000abbc,480,base::reflection::refl_GetType<float>,reflection,engine/reflection,O
 0x710000ad9c,480,base::reflection::refl_GetType<base::global::CFilePathStrId>,reflection,engine/reflection,O
 0x710000af7c,1348,fn_710000af7c,unknown,unknown,U
-0x710000b4c0,196,fn_710000b4c0,unknown,unknown,U
-0x710000b584,204,fn_710000b584,unknown,unknown,U
+0x710000b4c0,196,fn_710000b4c0,unknown,unknown,O
+0x710000b584,204,fn_710000b584,unknown,unknown,O
 0x710000b650,28,fn_710000b650,unknown,unknown,O
 0x710000b66c,352,fn_710000b66c,unknown,unknown,U
 0x710000b7cc,36,fn_710000b7cc,unknown,unknown,O
@@ -355,7 +355,7 @@ address,size,name,name_source,subsystem,status
 0x710000cbbc,136,fn_710000cbbc,unknown,unknown,U
 0x710000cc44,148,fn_710000cc44,unknown,unknown,U
 0x710000ccd8,288,fn_710000ccd8,unknown,unknown,U
-0x710000ce00,12,fn_710000ce00,unknown,unknown,U
+0x710000ce00,12,fn_710000ce00,unknown,unknown,O
 0x710000ce10,240,fn_710000ce10,unknown,unknown,U
 0x710000cf00,8,fn_710000cf00,unknown,unknown,O
 0x710000cf10,524,fn_710000cf10,unknown,unknown,U
@@ -512,7 +512,7 @@ address,size,name,name_source,subsystem,status
 0x710001196c,4,fn_710001196c,unknown,unknown,O
 0x7100011970,4,operator.delete,symbol,unknown,O
 0x7100011974,80,fn_7100011974,unknown,unknown,U
-0x71000119d0,12,fn_71000119d0,unknown,unknown,U
+0x71000119d0,12,fn_71000119d0,unknown,unknown,O
 0x71000119e0,128,fn_71000119e0,unknown,unknown,O
 0x7100011a60,4,fn_7100011a60,unknown,unknown,O
 0x7100011a64,444,base::animation::ISkeletalPoseProvider::refl_GetClass,reflection,engine/base,O
@@ -575,7 +575,7 @@ address,size,name,name_source,subsystem,status
 0x7100013e64,132,fn_7100013e64,unknown,unknown,U
 0x7100013ee8,132,fn_7100013ee8,unknown,unknown,U
 0x7100013f6c,500,fn_7100013f6c,unknown,unknown,U
-0x7100014160,12,fn_7100014160,unknown,unknown,U
+0x7100014160,12,fn_7100014160,unknown,unknown,O
 0x710001416c,4,fn_710001416c,unknown,unknown,O
 0x7100014170,4,operator.delete,symbol,unknown,O
 0x7100014174,60,fn_7100014174,unknown,unknown,U
@@ -1073,7 +1073,7 @@ address,size,name,name_source,subsystem,status
 0x7100028a1c,4,fn_7100028a1c,unknown,unknown,O
 0x7100028a20,4,operator.delete,symbol,unknown,O
 0x7100028a24,180,fn_7100028a24,unknown,unknown,U
-0x7100028ae0,12,fn_7100028ae0,unknown,unknown,U
+0x7100028ae0,12,fn_7100028ae0,unknown,unknown,O
 0x7100028aec,620,fn_7100028aec,unknown,unknown,O
 0x7100028d58,384,fn_7100028d58,unknown,unknown,O
 0x7100028ed8,428,fn_7100028ed8,unknown,unknown,O
@@ -1229,7 +1229,7 @@ address,size,name,name_source,subsystem,status
 0x710002cfd4,36,fn_710002cfd4,unknown,unknown,O
 0x710002cff8,224,fn_710002cff8,unknown,unknown,U
 0x710002d0d8,448,fn_710002d0d8,unknown,unknown,U
-0x710002d298,132,fn_710002d298,unknown,unknown,U
+0x710002d298,132,fn_710002d298,unknown,unknown,O
 0x710002d31c,4,fn_710002d31c,unknown,unknown,U
 0x710002d320,8,fn_710002d320,unknown,unknown,O
 0x710002d328,96,fn_710002d328,unknown,unknown,U
@@ -2502,7 +2502,7 @@ address,size,name,name_source,subsystem,status
 0x7100094b98,340,fn_7100094b98,unknown,unknown,U
 0x7100094cf0,200,fn_7100094cf0,unknown,unknown,U
 0x7100094db8,132,fn_7100094db8,unknown,unknown,U
-0x7100094e3c,120,fn_7100094e3c,unknown,unknown,U
+0x7100094e3c,120,fn_7100094e3c,unknown,unknown,O
 0x7100094ec0,256,fn_7100094ec0,unknown,unknown,O
 0x7100094fc0,1732,fn_7100094fc0,unknown,unknown,U
 0x7100095684,240,fn_7100095684,unknown,unknown,U

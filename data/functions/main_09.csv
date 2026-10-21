@@ -4474,7 +4474,7 @@ address,size,name,name_source,subsystem,status
 0x71009f27dc,44,fn_71009f27dc,unknown,unknown,O
 0x71009f2808,12,fn_71009f2808,unknown,unknown,O
 0x71009f2814,336,fn_71009f2814,unknown,unknown,U
-0x71009f2970,12,fn_71009f2970,unknown,unknown,U
+0x71009f2970,12,fn_71009f2970,unknown,unknown,O
 0x71009f2980,160,fn_71009f2980,unknown,unknown,O
 0x71009f2a20,4,fn_71009f2a20,unknown,unknown,O
 0x71009f2a24,244,CSceneModelAnimationComponent::refl_GetClass,reflection,game/components,O

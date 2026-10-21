@@ -289,7 +289,7 @@ address,size,name,name_source,subsystem,status
 0x7100a0dab4,4,fn_7100a0dab4,unknown,game/components?,O
 0x7100a0dab8,388,CBreakableTileGroupSonarTargetComponent::refl_InitClass,reflection,game/components,O
 0x7100a0dc3c,104,fn_7100a0dc3c,unknown,game/components?,O
-0x7100a0dca4,160,fn_7100a0dca4,unknown,game/components?,U
+0x7100a0dca4,160,fn_7100a0dca4,unknown,game/components?,O
 0x7100a0dd44,500,fn_7100a0dd44,unknown,game/components?,U
 0x7100a0df38,124,fn_7100a0df38,unknown,game/components?,O
 0x7100a0dfb4,100,fn_7100a0dfb4,unknown,game/components?,O
@@ -338,7 +338,7 @@ address,size,name,name_source,subsystem,status
 0x7100a0f420,244,CDemolitionBlockSonarTargetComponent::refl_GetClass,reflection,game/components,O
 0x7100a0f514,4,fn_7100a0f514,unknown,game/components?,O
 0x7100a0f518,388,CDemolitionBlockSonarTargetComponent::refl_InitClass,reflection,game/components,O
-0x7100a0f69c,188,fn_7100a0f69c,unknown,game/components?,U
+0x7100a0f69c,188,fn_7100a0f69c,unknown,game/components?,O
 0x7100a0f758,92,fn_7100a0f758,unknown,game/components?,O
 0x7100a0f7b4,212,fn_7100a0f7b4,unknown,game/components?,U
 0x7100a0f888,220,fn_7100a0f888,unknown,game/components?,U
@@ -1113,7 +1113,7 @@ address,size,name,name_source,subsystem,status
 0x7100a2e128,4,operator.delete,symbol,unknown,O
 0x7100a2e12c,124,fn_7100a2e12c,unknown,unknown,O
 0x7100a2e1a8,336,fn_7100a2e1a8,unknown,unknown,O
-0x7100a2e300,12,fn_7100a2e300,unknown,unknown,U
+0x7100a2e300,12,fn_7100a2e300,unknown,unknown,O
 0x7100a2e30c,404,fn_7100a2e30c,unknown,unknown,U
 0x7100a2e4a0,452,fn_7100a2e4a0,unknown,unknown,U
 0x7100a2e664,336,fn_7100a2e664,unknown,unknown,O
@@ -5753,9 +5753,9 @@ address,size,name,name_source,subsystem,status
 0x7100af30a0,320,fn_7100af30a0,unknown,gui?,U
 0x7100af31e0,64,fn_7100af31e0,unknown,gui?,U
 0x7100af3220,92,fn_7100af3220,unknown,gui?,U
-0x7100af327c,56,fn_7100af327c,unknown,gui?,U
+0x7100af327c,56,fn_7100af327c,unknown,gui?,O
 0x7100af32b4,8,fn_7100af32b4,unknown,gui?,O
-0x7100af32c0,12,fn_7100af32c0,unknown,gui?,U
+0x7100af32c0,12,fn_7100af32c0,unknown,gui?,O
 0x7100af32cc,4,fn_7100af32cc,unknown,gui?,O
 0x7100af32d0,4,operator.delete,symbol,gui?,O
 0x7100af32d4,68,fn_7100af32d4,unknown,gui?,U

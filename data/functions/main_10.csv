@@ -3031,7 +3031,7 @@ address,size,name,name_source,subsystem,status
 0x7101087a40,72,lua_bind::SetSlomo,string,script/bindings,U
 0x7101087a90,88,lua_bind::SetSlomoFor,string,script/bindings,U
 0x7101087af0,136,lua_bind::SetSlomoCustom,string,script/bindings,U
-0x7101087b80,80,lua_bind::CallbackOnEndSlomo,string,script/bindings,U
+0x7101087b80,80,lua_bind::CallbackOnEndSlomo,string,script/bindings,O
 0x7101087bd0,1020,lua_bind::CallbackOnEndSlomoWithParams,string,script/bindings,U
 0x7101087fd0,224,lua_bind::AddEntityToUpdateInCutscene,string,script/bindings,U
 0x71010880b0,188,lua_bind::AddSpawnPointEntityToUpdateInCutscene,string,script/bindings,U
@@ -3351,7 +3351,7 @@ address,size,name,name_source,subsystem,status
 0x7101097ab8,376,fn_7101097ab8,unknown,script/bindings?,U
 0x7101097c30,528,fn_7101097c30,unknown,script/bindings?,O
 0x7101097e40,24,fn_7101097e40,unknown,script/bindings?,O
-0x7101097e60,60,lua_bind::GetDisplayObject,string,script/bindings,U
+0x7101097e60,60,lua_bind::GetDisplayObject,string,script/bindings,O
 0x7101097ea0,52,lua_bind::DestroyDisplayObject,string,script/bindings,O
 0x7101097ee0,400,lua_bind::CreateDisplayObject,string,script/bindings,U
 0x7101098070,348,lua_bind::CreateDisplayObjectEx,string,script/bindings,U
@@ -4179,7 +4179,7 @@ address,size,name,name_source,subsystem,status
 0x71010cd7e0,12,fn_71010cd7e0,unknown,unknown,O
 0x71010cd7ec,1116,fn_71010cd7ec,unknown,unknown,U
 0x71010cdc48,12,fn_71010cdc48,unknown,unknown,U
-0x71010cdc54,212,fn_71010cdc54,unknown,unknown,U
+0x71010cdc54,212,fn_71010cdc54,unknown,unknown,O
 0x71010cdd28,4,fn_71010cdd28,unknown,unknown,O
 0x71010cdd2c,72,fn_71010cdd2c,unknown,unknown,O
 0x71010cdd74,28,fn_71010cdd74,unknown,unknown,O

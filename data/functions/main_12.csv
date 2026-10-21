@@ -639,7 +639,7 @@ address,size,name,name_source,subsystem,status
 0x7101213f20,288,fn_7101213f20,unknown,unknown,U
 0x7101214040,176,fn_7101214040,unknown,unknown,U
 0x71012140f0,632,fn_71012140f0,unknown,unknown,U
-0x7101214368,76,fn_7101214368,unknown,unknown,U
+0x7101214368,76,fn_7101214368,unknown,unknown,O
 0x71012143b4,8,fn_71012143b4,unknown,unknown,O
 0x71012143bc,228,fn_71012143bc,unknown,unknown,U
 0x71012144a0,1840,fn_71012144a0,unknown,unknown,U

@@ -44,7 +44,7 @@ import refl_attrs  # noqa: E402
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "src" / "lifted"
 BASE = 0x7100000000
-MAX_SIZE = 2048
+MAX_SIZE = 16384
 CHUNK = 1000  # functions per generated file
 # Functions per scratch TU: with -ffunction-sections, more than ~65k sections overflow the ELF
 # section index (SHN_XINDEX), which the object reader doesn't follow.
@@ -499,12 +499,15 @@ class Lifter:
                 ind = self.body[ln][:len(self.body[ln]) - len(self.body[ln].lstrip())]
                 # A final call (e.g. an initialiser given &ret) stays a tail call: ret is
                 # built in place, so nothing is left to do after it.
-                self.body[ln] = ind + (f"{p};\n{ind}return ret;" if k == "tail" else "return ret;")
+                self.body[ln] = ind + (f"{p};\n{ind}return ret;" if k == "tail" else f"{p};" if k == "noret"
+                                       else "return ret;")
             return self.signature("UnkResult", ["    UnkResult ret;"] + self.body), self.decls
         if self.returns != "void":
             if any(k == "value" and p is None for _, k, p in self.rets):
                 return None
             types = [p[1] for _, k, p in self.rets if k == "value"]
+            if not tails and not types:
+                return None  # only no-return calls: the "void" variant
             rtype = "char*" if tails else types[0]
             if self.returns == "ref":
                 if rtype != "char*" or tails:
@@ -517,7 +520,9 @@ class Lifter:
             rtype = "void"
         for ln, k, p in self.rets:
             ind = self.body[ln][:len(self.body[ln]) - len(self.body[ln].lstrip())]
-            if k == "tail":
+            if k == "noret":
+                s = f"{p};"
+            elif k == "tail":
                 s = f"{p};\n{ind}return;" if rtype == "void" else \
                     f"return {p};" if rtype == "char*" else f"return ({rtype})(u64)({p});"
             elif rtype == "void":
@@ -641,7 +646,7 @@ class Lifter:
             else:
                 self.write(regname(o[0].reg), self.global_ref(a, False), "char*")
         elif m == "ldr" and len(o) == 2 and o[1].type == arm64.ARM64_OP_MEM \
-                and self.key(regname(o[1].mem.base)) in s.pages:
+                and regname(o[1].mem.base) != "sp" and self.key(regname(o[1].mem.base)) in s.pages:
             slot = s.pages[self.key(regname(o[1].mem.base))] + o[1].mem.disp
             r = self.orig.img.relocs.get(slot - BASE)
             rt = regname(o[0].reg)
@@ -862,6 +867,12 @@ class Lifter:
         elif m in ("tbz", "tbnz") and self.branch_ok(x.address, o[2].imm, last):
             v, _ = self.read(regname(o[0].reg))
             self.open_if(f"((u64)({v}) >> {o[1].imm} & 1) {'!=' if m == 'tbz' else '=='} 0", o[2].imm)
+        elif m == "bl" and x.address == last:
+            # Code ends with a call, so the callee doesn't return (declared [[noreturn]]).
+            args = self.args()
+            fn = f"fn_{o[0].imm:x}"
+            self.decls.add(f"namespace noret {{ [[noreturn]] void {fn}({', '.join(t for _, t in args)}); }}")
+            self.terminate("noret", f"noret::{fn}({', '.join(e for e, _ in args)})")
         elif m == "bl":
             call = self.call(f"fn_{o[0].imm:x}")
             self.clobber()
@@ -1007,7 +1018,7 @@ class FlatLifter(Lifter):
                     return None
         except Unsupported:
             return None
-        if ins[-1].mnemonic not in ("ret", "b", "br"):
+        if ins[-1].mnemonic not in ("ret", "b", "br", "bl"):
             return None
         # Declarations go first: gotos must not jump over initialisations.
         pre = []

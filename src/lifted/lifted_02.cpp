@@ -94,6 +94,7 @@ namespace callee { char* fn_71000a1ba4(u64, char*); }
 namespace callee { char* fn_71000a1c60(char*); }
 namespace callee { char* fn_71000a1c60(u64); }
 namespace callee { char* fn_71000a3f68(); }
+namespace callee { char* fn_71000afa98(); }
 namespace callee { char* fn_71000b007c(); }
 namespace callee { char* fn_71000b0660(); }
 namespace callee { char* fn_71000b092c(); }
@@ -215,6 +216,61 @@ namespace callee { char* fn_71000e70c4(char*); }
 namespace callee { char* fn_7101238e00(char*, u64, u64); }
 namespace callee { char* fn_7101238e00(u64, u64, u32); }
 namespace callee { char* fn_7101238e00(u64, u64, u64); }
+
+void fn_71000c1d6c() {
+    return;
+}
+
+char* fn_71000c1d70(char* p0, char* p1) {
+    if ((u64)(u64)(p0) != (u64)(p1)) {
+        u64 r1_8 = (u64)*(u64*)((char*)(p1) + 0);
+        *(u64*)((char*)(p0) + 0) = (u64)(u64)(r1_8);
+    }
+    return p0;
+}
+
+char* fn_71000c1d84(char* p0, char* p1) {
+    if ((u64)(u64)(p0) != (u64)(p1)) {
+        u64 r1_8 = (u64)*(u64*)((char*)(p1) + 0);
+        *(u64*)((char*)(p0) + 0) = (u64)(u64)(r1_8);
+    }
+    return p0;
+}
+
+char* fn_71000c1f58(char* p0, char* p1) {
+    u64 r0_8 = (u64)*(u64*)((char*)(p1) + 8);
+    *(u64*)((char*)(p0) + 0) = (u64)(u64)(r0_8);
+    return p0;
+}
+
+char* fn_71000c1f64(char* p0) {
+    u64 r0_8 = (u64)*(u64*)((char*)(p0) + 0);
+    u64 r1_8 = (u64)(u64)(r0_8) + (u64)(24);
+    *(u64*)((char*)(p0) + 0) = (u64)(u64)(r1_8);
+    return p0;
+}
+
+bool fn_71000c1f74(char* p0, char* p1) {
+    u64 r0_8 = (u64)*(u64*)((char*)(p0) + 0);
+    u64 r1_9 = (u64)*(u64*)((char*)(p1) + 0);
+    bool r2_0 = (u64)(u64)(r0_8) == (u64)(r1_9);
+    return r2_0;
+}
+
+u32 fn_71000c1f88() {
+    u32 r0_0 = 0xffffffff;
+    return r0_0;
+}
+
+char& fn_71000c1f90() {
+    char* r0_0 = callee::fn_71000afa98();
+    return *r0_0;
+}
+
+char* fn_71000c1fa4(char* p0) {
+    *(u64*)((char*)(p0) + 0) = (u64)(u64)(0);
+    return p0;
+}
 
 char* fn_71000c1fac(char* p0, char* p1) {
     u64 r0_8 = (u64)*(u64*)((char*)(p1) + 0);
@@ -9868,41 +9924,5 @@ L_71000e26c4:;
 }
 
 void fn_71000e5f9c() {
-    return;
-}
-
-void fn_71000e5fa0() {
-    return;
-}
-
-void fn_71000e5fa4() {
-    return;
-}
-
-void fn_71000e5fa8() {
-    return;
-}
-
-void fn_71000e5fac() {
-    return;
-}
-
-void fn_71000e5fb0() {
-    return;
-}
-
-void fn_71000e5fb4() {
-    return;
-}
-
-void fn_71000e5fb8() {
-    return;
-}
-
-void fn_71000e5fbc() {
-    return;
-}
-
-void fn_71000e5fc0() {
     return;
 }
