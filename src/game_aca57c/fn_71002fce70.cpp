@@ -16,7 +16,6 @@ struct UnkStaticIds19And1 {
     __attribute__((always_inline)) ~UnkStaticIds19And1() {}
 };
 ARRAY_DTOR(71007fd8b0, UnkStaticIds19And1, 1, g_unk_7172721508)
-ARRAY_DTOR(7100536450, UnkStaticId, 3, g_unk_71726e2308)
 
 // A string id and a file path.
 struct UnkStaticIdPath {

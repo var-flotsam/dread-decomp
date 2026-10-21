@@ -130,6 +130,8 @@ struct UnkCallbackSet : UnkCallbackBase {
         }
     }
 
+    UnkCallbackSet(UnkCallbackSet&& other);  // fn_71007b1928
+
     UnkCallbackSet(const UnkCallbackSet& other) : owner(nullptr) {
         UnkRefCounted* p = other.owner;
         if (p != owner) {
@@ -205,3 +207,92 @@ void fn_71008aa61c(UnkHolder* self, const UnkHolder* other) {
 
 
 
+
+// An entry as the array's Reserve moves it: CStrId has no move constructor, so the id is a
+// plain pointer here, emptied when moved from.
+struct UnkMovedId {
+    UnkStringData* data;
+
+    UnkMovedId(UnkMovedId&& other) : data(other.data) { other.data = &g_unk_7101d47108->empty; }
+    __attribute__((always_inline)) ~UnkMovedId() {
+        if (UnkStringPool* pool = g_unk_7101d47108) {
+            if (data && data != &pool->empty) {
+                --data->ref_count;
+                if (data->ref_count == 0) {
+                    fn_71000803a4(pool, data);
+                    pool = g_unk_7101d47108;
+                }
+            }
+            data = &pool->empty;
+        }
+    }
+};
+
+struct UnkMovedEntry {
+    UnkCallbackSet set;
+    UnkMovedId id;
+};
+
+struct UnkEntryVector;
+// Reserve and PushBack of a copy (one copy each per array type)
+void fn_7100895498(UnkEntryVector* v, u32 n);
+void fn_71008ab4e0(UnkEntryVector* v, u32 n);
+void fn_710089566c(UnkEntryVector* v, const UnkEntry* value);
+void fn_71008ab6b4(UnkEntryVector* v, const UnkEntry* value);
+
+struct UnkEntryVector {
+    UnkEntry* data;
+    u32 count;
+    u32 capacity;
+    u32 step;
+    bool field_0x14;
+    u32 flags;
+    base::UnkAllocator* allocator;
+
+    __attribute__((always_inline)) void Reserve(u32 n) {
+        if (capacity >= n)
+            return;
+        UnkEntry* p = static_cast<UnkEntry*>(allocator->vf_0x40((u64)n * sizeof(UnkEntry), 8, flags));
+        if (data) {
+            UnkMovedEntry* src = reinterpret_cast<UnkMovedEntry*>(data);
+            UnkMovedEntry* dst = reinterpret_cast<UnkMovedEntry*>(p);
+            for (u32 i = 0; i < count; ++i, ++dst, ++src) {
+                new (dst) UnkMovedEntry(static_cast<UnkMovedEntry&&>(*src));
+                src->~UnkMovedEntry();
+            }
+            allocator->vf_0x48(data);
+        }
+        data = p;
+        capacity = n;
+    }
+
+    template <void (*Reserve)(UnkEntryVector*, u32), void (*PushBack)(UnkEntryVector*, const UnkEntry*)>
+    __attribute__((always_inline)) void CopyConstruct(const UnkEntryVector& other) {
+        data = nullptr;
+        count = 0;
+        capacity = 0;
+        step = other.step;
+        field_0x14 = other.field_0x14;
+        flags = other.flags;
+        allocator = other.allocator;
+        Reserve(this, other.capacity);
+        for (const UnkEntry *p = other.data, *end = p + other.count; p != end; ++p)
+            PushBack(this, p);
+    }
+};
+
+void fn_7100895194(UnkEntryVector* self, const UnkEntryVector* other) {
+    self->CopyConstruct<fn_7100895498, fn_710089566c>(*other);
+}
+
+void fn_71008aaff8(UnkEntryVector* self, const UnkEntryVector* other) {
+    self->CopyConstruct<fn_71008ab4e0, fn_71008ab6b4>(*other);
+}
+
+void fn_7100895498(UnkEntryVector* v, u32 n) {
+    v->Reserve(n);
+}
+
+void fn_71008ab4e0(UnkEntryVector* v, u32 n) {
+    v->Reserve(n);
+}
