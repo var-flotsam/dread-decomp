@@ -4552,7 +4552,7 @@ address,size,name,name_source,subsystem,status
 0x71009f7ec4,432,fn_71009f7ec4,unknown,unknown,U
 0x71009f8074,356,fn_71009f8074,unknown,unknown,U
 0x71009f81d8,632,fn_71009f81d8,unknown,unknown,U
-0x71009f8450,224,fn_71009f8450,unknown,unknown,U
+0x71009f8450,224,fn_71009f8450,unknown,unknown,O
 0x71009f8530,28,fn_71009f8530,unknown,unknown,O
 0x71009f854c,132,fn_71009f854c,unknown,unknown,O
 0x71009f85d0,8,fn_71009f85d0,unknown,unknown,O

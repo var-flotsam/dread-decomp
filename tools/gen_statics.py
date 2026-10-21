@@ -56,6 +56,11 @@ REFERENCES = {
     "strid_local": 0x7100304140,
     "send_type_id": 0x71003D3CF8,  # refl_SendTypeId
     "singleton_part": 0x71003B27B4,  # refl_GetSingletonPart
+    "find_hidden": 0x71004EEA08,  # refl_FindTypedHidden
+    "key_flags": 0x710000D120,  # refl_GetAttrKeyFlags
+    "key_flags_b": 0x710000BF80,
+    "key_flags_c": 0x7100005070,
+    "key_global": 0x710008FF80,  # refl_GetAttrKey with a global value type
 }
 KNOWN_CALLS = (CSTRID_CTOR, GUARD_ACQUIRE, GUARD_RELEASE, ATEXIT,
                0x71000803A4,  # the string pool's release
@@ -78,16 +83,22 @@ def facts(orig: asmdiff.Original, addr: int) -> dict | None:
     out: dict = {"calls": []}
     got: dict[str, int] = {}
     after_ctor = False
+    prev: tuple[str, str] | None = None
     for x in CS.disasm(orig.function(addr), addr):
         m, o = x.mnemonic, x.operands
+        cur = prev
+        prev = (m, CS.reg_name(o[0].reg)) if o and o[0].type == arm64.ARM64_OP_REG else None
         if m == "ldarb" and CS.reg_name(o[1].mem.base) in got:
             out.setdefault("guard", got[CS.reg_name(o[1].mem.base)])
         if m == "adrp":
             page[CS.reg_name(o[0].reg)] = o[1].imm
         elif m == "add" and len(o) == 3 and CS.reg_name(o[1].reg) in page and o[2].type == arm64.ARM64_OP_IMM:
-            s = orig.img.cstring(page[CS.reg_name(o[1].reg)] + o[2].imm - BASE)
+            target = page[CS.reg_name(o[1].reg)] + o[2].imm
+            s = orig.img.cstring(target - BASE)
             if s is not None:
                 strings[CS.reg_name(o[0].reg)] = s
+            if CS.reg_name(o[0].reg) == "x1":
+                out.setdefault("x1_adds", []).append(target)
         elif m == "ldr" and o[1].type == arm64.ARM64_OP_MEM and o[1].mem.disp == 0                 and CS.reg_name(o[1].mem.base) in got:
             out.setdefault("source", got[CS.reg_name(o[1].mem.base)])
             got.pop(CS.reg_name(o[0].reg), None)
@@ -105,10 +116,18 @@ def facts(orig: asmdiff.Original, addr: int) -> dict | None:
         elif m == "str" and o[1].type == arm64.ARM64_OP_MEM and o[1].mem.disp == 0x10 \
                 and CS.reg_name(o[0].reg) in imms:
             out["u32"] = imms[CS.reg_name(o[0].reg)] & 0xFFFFFFFF
+        elif m == "str" and o[1].type == arm64.ARM64_OP_MEM and o[1].mem.disp == 8 \
+                and CS.reg_name(o[0].reg) in got and cur == ("ldr", CS.reg_name(o[0].reg)):
+            out["type_global"] = got[CS.reg_name(o[0].reg)]
+        elif m == "strh" and o[1].type == arm64.ARM64_OP_MEM and o[1].mem.disp == 0x14 \
+                and CS.reg_name(o[0].reg) in imms:
+            out["u16"] = imms[CS.reg_name(o[0].reg)] & 0xFFFF
         elif m == "str" and o[1].type == arm64.ARM64_OP_MEM and o[1].mem.disp == 0x18                 and CS.reg_name(o[0].reg) in imms:
             out["flags"] = imms[CS.reg_name(o[0].reg)] & 0xFFFFFFFF
         elif m == "bl":
             out["calls"].append(o[0].imm)
+            if o[0].imm == 0x71000803A4:
+                continue  # the string pool's release, after the key's type
             if o[0].imm == CSTRID_CTOR and "name" not in out:
                 if "x1" not in strings:
                     return None
@@ -117,6 +136,17 @@ def facts(orig: asmdiff.Original, addr: int) -> dict | None:
             elif after_ctor and "type" not in out:
                 out["type"] = o[0].imm
     return out
+
+
+def key_type(f: dict, decls: set[str]) -> str | None:
+    """An attribute key's value type: a global descriptor stored directly, or a getter's result."""
+    if "type_global" in f:
+        decls.add(f"extern const base::reflection::CType g_unk_{f['type_global']:x};")
+        return f"&g_unk_{f['type_global']:x}"
+    if "type" in f:
+        decls.add(f"const base::reflection::CType* fn_{f['type']:x}();")
+        return f"fn_{f['type']:x}()"
+    return None
 
 
 def emit(kind: str, addr: int, f: dict, decls: set[str], registries: dict[int, int]) -> list[str] | None:
@@ -136,6 +166,22 @@ def emit(kind: str, addr: int, f: dict, decls: set[str], registries: dict[int, i
         return head + [f"    static constexpr u32 offset = {f['x0_disp']:#x};",
                        f"    static const void* key() {{ return &g_unk_{f['x1_got']:x}; }}", "};",
                        f"template void base::reflection::refl_SendTypeId<{tag}>(void*);"]
+    if kind == "find_hidden":
+        calls = [c for c in f["calls"] if c not in KNOWN_CALLS]
+        if len(calls) < 3 or len(f.get("x1_adds", [])) != 2 or "name" not in f:
+            return None
+        head.append(f"    static constexpr const char* name = {refl_attrs.c_string(f['name'])};")
+        find, init, isa = calls[:3]
+        cls = f["x1_adds"][0]
+        decls |= {f"base::reflection::UnkReflObject* fn_{find:x}(void* owner, const base::global::CStrId& name);",
+                  f"const base::reflection::CClass* fn_{init:x}();",
+                  f"bool fn_{isa:x}(const base::reflection::CClass* cls, const base::reflection::CClass* base);",
+                  f'extern base::reflection::CClass g_unk_{cls:x} __attribute__((visibility("hidden")));'}
+        return head + [f"    static UnkReflObject* find(void* o, const base::global::CStrId& n) {{ return fn_{find:x}(o, n); }}",
+                       f"    static void init() {{ fn_{init:x}(); }}",
+                       f"    static constexpr const CClass& type = g_unk_{cls:x};",
+                       f"    static bool is_a(const CClass* c, const CClass* b) {{ return fn_{isa:x}(c, b); }}", "};",
+                       f"template base::reflection::UnkReflObject* base::reflection::refl_FindTypedHidden<{tag}>(void*);"]
     if kind == "singleton_part":
         if "first_imm" not in f or f["calls"][1:2] != [SINGLETON_CTOR]:
             return None
@@ -188,11 +234,18 @@ def emit(kind: str, addr: int, f: dict, decls: set[str], registries: dict[int, i
                        f"    static const CClass* type() {{ return fn_{typ:x}(); }}",
                        f"    static bool is_a(const CClass* c, const CClass* b) {{ return fn_{isa:x}(c, b); }}", "};",
                        f"template base::reflection::UnkReflObject* base::reflection::refl_FindTyped<{tag}>(void*);"]
-    if kind in ("key", "key_one"):
-        if "type" not in f or "u32" not in f:
+    if kind.startswith("key_flags"):
+        if "u32" not in f or "u16" not in f or not (ty := key_type(f, decls)):
             return None
-        decls.add(f"const base::reflection::CType* fn_{f['type']:x}();")
-        return head + [f"    static const CType* type() {{ return fn_{f['type']:x}(); }}",
+        return head + [f"    static const CType* type() {{ return {ty}; }}",
+                       f"    static constexpr u32 field_0x10 = {f['u32']:#x};",
+                       f"    static constexpr u16 field_0x14 = {f['u16']:#x};", "};",
+                       f"template const base::reflection::UnkReflAttrKey& "
+                       f"base::reflection::refl_GetAttrKeyFlags<{tag}>();"]
+    if kind in ("key", "key_one", "key_global"):
+        if "u32" not in f or not (ty := key_type(f, decls)):
+            return None
+        return head + [f"    static const CType* type() {{ return {ty}; }}",
                        f"    static constexpr u32 field_0x10 = {f['u32']:#x};", "};",
                        f"template const base::reflection::UnkReflAttrKey& "
                        f"base::reflection::refl_GetAttrKey<{tag}>();"]
