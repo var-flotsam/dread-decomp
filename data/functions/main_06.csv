@@ -5373,7 +5373,7 @@ address,size,name,name_source,subsystem,status
 0x71006dd640,612,fn_71006dd640,unknown,unknown,U
 0x71006dd8a4,600,fn_71006dd8a4,unknown,unknown,U
 0x71006ddafc,688,fn_71006ddafc,unknown,unknown,U
-0x71006dddac,248,fn_71006dddac,unknown,unknown,U
+0x71006dddac,248,fn_71006dddac,unknown,unknown,O
 0x71006ddea4,108,fn_71006ddea4,unknown,unknown,U
 0x71006ddf10,60,fn_71006ddf10,unknown,unknown,O
 0x71006ddf4c,4,fn_71006ddf4c,unknown,unknown,O
