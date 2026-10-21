@@ -377,7 +377,7 @@ address,size,name,name_source,subsystem,status
 0x710070f390,20,fn_710070f390,unknown,unknown,O
 0x710070f3a4,20,fn_710070f3a4,unknown,unknown,O
 0x710070f3b8,280,fn_710070f3b8,unknown,unknown,O
-0x710070f4d0,1228,fn_710070f4d0,unknown,unknown,U
+0x710070f4d0,1228,fn_710070f4d0,unknown,unknown,O
 0x710070f99c,1484,fn_710070f99c,unknown,unknown,O
 0x710070ff68,384,fn_710070ff68,unknown,unknown,O
 0x71007100e8,336,fn_71007100e8,unknown,unknown,O
@@ -996,7 +996,7 @@ address,size,name,name_source,subsystem,status
 0x7100732a2c,12,fn_7100732a2c,unknown,game/characters?,O
 0x7100732a38,8,fn_7100732a38,unknown,game/characters?,O
 0x7100732a40,8,fn_7100732a40,unknown,game/characters?,O
-0x7100732a50,436,fn_7100732a50,unknown,game/characters?,U
+0x7100732a50,436,fn_7100732a50,unknown,game/characters?,O
 0x7100732c04,4,fn_7100732c04,unknown,game/characters?,O
 0x7100732c08,244,CCharClassSwarmAttackComponent::refl_GetClass,reflection,game/characters,O
 0x7100732cfc,612,fn_7100732cfc,unknown,game/characters?,O
@@ -4022,7 +4022,7 @@ address,size,name,name_source,subsystem,status
 0x71007c8168,104,fn_71007c8168,unknown,unknown,O
 0x71007c81d0,268,fn_71007c81d0,unknown,unknown,U
 0x71007c82dc,264,fn_71007c82dc,unknown,unknown,U
-0x71007c83f0,688,fn_71007c83f0,unknown,unknown,U
+0x71007c83f0,688,fn_71007c83f0,unknown,unknown,O
 0x71007c86a0,4,fn_71007c86a0,unknown,unknown,O
 0x71007c86a4,244,CCharClassXParasiteDropComponent::refl_GetClass,reflection,game/characters,O
 0x71007c8798,4,fn_71007c8798,unknown,game/characters?,O
@@ -4545,7 +4545,7 @@ address,size,name,name_source,subsystem,status
 0x71007d6050,12,fn_71007d6050,unknown,unknown,O
 0x71007d605c,8,fn_71007d605c,unknown,unknown,O
 0x71007d6064,8,fn_71007d6064,unknown,unknown,O
-0x71007d6070,800,fn_71007d6070,unknown,unknown,U
+0x71007d6070,800,fn_71007d6070,unknown,unknown,O
 0x71007d6390,4,fn_71007d6390,unknown,unknown,O
 0x71007d6394,244,CCharClassAimCameraEnabledVisibleOnlyComponent::refl_GetClass,reflection,game/characters,O
 0x71007d6488,4,fn_71007d6488,unknown,game/characters?,O
