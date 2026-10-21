@@ -574,16 +574,21 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
      templates this session: the top families were reflected-function initialisers (839 × 380 B)
      and `CClass` constructors (777 × 388 B). `tools/shape_census.py` now does this (`--top`,
      `--max-size`); `--family ADDR` lists the operands that vary across a family's copies.
-3. **Lua leftovers:** mostly done (thirteenth session, cloud). The game's Lua needs
-   `-fno-strict-aliasing` (`buildcfg.LUA_FLAGS`), a 64-bit `twoto`, `(float)strtod` and a 16-byte
-   aligned jump buffer (all in `lib/lua/README.md`); `sigmatch.py` now names look-alikes (the
-   `math_*` wrappers, `lua_error`, `luaL_register`) from the `luaL_Reg` binding tables and, for
-   the rest, by order. 363 of 465 compiled Lua functions are named (was 286). Still open:
-   `lua_getinfo`, `luaV_execute` (same instructions, different block order), `lua_gethook`/
-   `sethook`/`getlocal`/`setlocal`, `LoadFunction`/`luaU_undump`, `luaB_print` and the
-   allocator/`lua_cpcall` group in `lapi`; the `io`/`os`/`package`/`debug` libraries mostly differ
-   (the game replaced them). `libcheck_lua.py` could not be rerun (lua.org is not reachable from
-   the cloud sandbox).
+3. **Lua leftovers:** mostly done (thirteenth session, cloud; continued in the fourteenth). The
+   game's Lua needs `-fno-strict-aliasing` (`buildcfg.LUA_FLAGS`), a 64-bit `twoto`, `(float)strtod`
+   and a 16-byte aligned jump buffer, and its binary-chunk loader is the older byte-swapping one
+   (`lundump.c`: `S->swap`, a swapping `LoadMem`, no `nCcalls` check, `LoadChar` stored as is);
+   all in `lib/lua/README.md`. `sigmatch.py` names look-alikes (the `math_*` wrappers, `lua_error`,
+   `luaL_register`) from the `luaL_Reg` tables, by order for the rest, and now near-matches by
+   mnemonic sequence (mutual best, at least 0.8, 128 bytes or more). 368 of 466 compiled Lua
+   functions are named. `LoadFunction` and `luaU_undump` match exactly; `luaB_print` is game code
+   (`src/lua/fn_71010a6440.cpp`, `O`: output through a function pointer, not `fputs`). Still
+   differing by a few instruction-selection choices: `lua_getinfo` (one pre-indexed load) and
+   `luaV_execute` (six hunks: `GETARG_Bx` index, `RKB`/`RKC` extends, a pre-indexed load); neither
+   `GETARG_*` macro variants nor loop rewrites fixed them. The 55 other unnamed functions in the
+   Lua address range are game code (the game dropped most of `io`/`os`/`package`/`debug`), not
+   library look-alikes, and the 8-byte hook getters and the allocator group fold into other code.
+   `libcheck_lua.py` could not be rerun (lua.org is not reachable from the cloud sandbox).
 4. Core engine types the slice depends on. Done: the inline code of `CStrId`/`UnkStrId` (copy,
    move-assign, destructors) and `UnkVector` with the allocator interface. Done (thirteenth
    session, cloud, `src/base/`): CRC64 (`fn_7100001570`, `O`: reflected table CRC-64, init ~0,

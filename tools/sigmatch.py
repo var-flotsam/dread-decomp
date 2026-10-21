@@ -21,6 +21,7 @@ import argparse
 import csv
 import hashlib
 import json
+import difflib
 import struct
 import subprocess
 import sys
@@ -34,6 +35,10 @@ import libcheck_lua  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 MIN_TRUSTED = 32
+FUZZY_MIN_SIZE = 128      # near-matches are only taken for functions at least this large
+# Functions the game replaced; they are game code (src/lua/), not library.
+GAME_REPLACED = {"luaB_print"}
+FUZZY_RATIO = 0.8         # mnemonic-sequence similarity needed for a near-match
 LIBRARIES = {
     "lua": {"sources": sorted((ROOT / "lib" / "lua").glob("*.c")), "flags": buildcfg.LUA_FLAGS},
 }
@@ -68,6 +73,36 @@ def signature(code: bytes) -> str:
     return hashlib.sha1(struct.pack(f"<{len(words)}I", *words)).hexdigest()
 
 
+def mnemonics(code: bytes) -> list[str]:
+    """Instruction mnemonics only: register, immediate and branch-layout differences drop out."""
+    from capstone import CS_ARCH_ARM64, CS_MODE_ARM, Cs
+    return [i.mnemonic for i in Cs(CS_ARCH_ARM64, CS_MODE_ARM).disasm(code, 0)]
+
+
+def near_matches(unmatched: list[tuple[str, bytes]], candidates: dict[int, bytes]) -> dict[str, int]:
+    """Pair compiled functions that no exact signature found with unnamed functions in the library's
+    address range: the game's build reorders blocks or swaps an addressing mode in a few places
+    (luaV_execute, lua_getinfo), or edits the source (the loader). A pair is accepted when each is
+    the other's best match by mnemonic sequence and the similarity is at least FUZZY_RATIO."""
+    cand = {a: mnemonics(c) for a, c in candidates.items()}
+    best_for_name: dict[str, tuple[float, int]] = {}
+    best_for_addr: dict[int, tuple[float, str]] = {}
+    for name, code in unmatched:
+        if len(code) < FUZZY_MIN_SIZE:
+            continue
+        m = mnemonics(code)
+        for a, c in cand.items():
+            if abs(len(c) - len(m)) > max(len(m), len(c)) // 5:
+                continue
+            r = difflib.SequenceMatcher(None, m, c, autojunk=False).ratio()
+            if r > best_for_name.get(name, (0.0, 0))[0]:
+                best_for_name[name] = (r, a)
+            if r > best_for_addr.get(a, (0.0, ""))[0]:
+                best_for_addr[a] = (r, name)
+    return {n: a for n, (r, a) in best_for_name.items()
+            if r >= FUZZY_RATIO and best_for_addr[a][1] == n}
+
+
 def binary_index(original: asmdiff.Original) -> dict[tuple[int, str], list[int]]:
     index: dict[tuple[int, str], list[int]] = {}
     for addr, size in original.sizes.items():
@@ -95,6 +130,7 @@ def main() -> int:
     found: dict[int, tuple[int, str]] = {}
     ambiguous: list[tuple[tuple[int, str], str, list[int]]] = []   # (key, name, hits), in object order
     missing = total = 0
+    unmatched: list[tuple[str, bytes]] = []
     for src in LIBRARIES[args.library]["sources"]:
         obj = objdir / (src.stem + ".o")
         r = subprocess.run(buildcfg.cxx_command(src, obj, LIBRARIES[args.library]["flags"]), capture_output=True, text=True)
@@ -112,6 +148,7 @@ def main() -> int:
                 ambiguous.append((key, names.get(name, name), hits))
             else:
                 missing += 1
+                unmatched.append((names.get(name, name), code))
 
     # Look-alikes: the binding tables name the luaL_Reg functions exactly; for the rest, a group of
     # same-shaped functions is assigned in order when the binary has as many copies, all inside
@@ -142,6 +179,14 @@ def main() -> int:
     rejected = {a: v for a, v in found.items() if v[0] < MIN_TRUSTED and not lo <= a <= hi}
     for a in rejected:
         del found[a]
+
+    # Near-matches for what is left (see near_matches), inside the same address range.
+    named = {n for _, n in found.values()}
+    spare = {a: original.function(a) for a in original.sizes if lo <= a <= hi and a not in found}
+    near = near_matches([(n, c) for n, c in unmatched if n not in named and n.split("(")[0] not in GAME_REPLACED], spare)
+    for name, a in near.items():
+        found[a] = (original.sizes[a], name)
+    print(f"near-matches: {', '.join(f'{n.split('(')[0]}={a:#x}' for n, a in sorted(near.items()))}")
 
     out = ROOT / "data" / "library_symbols.csv"
     rows = []
