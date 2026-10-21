@@ -173,8 +173,21 @@ struct UnkReflTypeIdArg {
 }  // namespace base::reflection
 
 void fn_7100a2cb7c(void* target, const void* key, base::reflection::UnkReflTypeIdArg* arg, float f, u32 flags);
+bool fn_7101176690(void* target, u64 hash, u64 kind, base::reflection::UnkReflTypeIdArg* value, const void* a,
+                   const void* b, base::reflection::UnkReflTypeIdArg* id);
 
 namespace base::reflection {
+
+// Sends a u32 (or the bits of another 4-byte value) under a hash, with the value's kind hash and
+// two descriptors; the type id goes along. Game code inlines it (tools/gen_statics.py parses the
+// callers).
+inline bool refl_EmitU32(void* target, u64 hash, u64 kind, u32 v, const void* a, const void* b) {
+    UnkReflTypeIdArg value;
+    value.id = v;
+    UnkReflTypeIdArg arg;
+    arg.id = UnkReflTypeId<UnkReflTypeIdTag>::id();
+    return fn_7101176690(target, hash, kind, &value, a, b, &arg);
+}
 
 // Sends the type id to the object at +0x2e8 of a context (at UnkReflStatic<G>::offset of
 // `self`), under UnkReflStatic<G>::key().

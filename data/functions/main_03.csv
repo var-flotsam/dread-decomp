@@ -959,7 +959,7 @@ address,size,name,name_source,subsystem,status
 0x7100350c5c,324,fn_7100350c5c,unknown,unknown,U
 0x7100350da0,1404,fn_7100350da0,unknown,unknown,U
 0x710035131c,320,fn_710035131c,unknown,unknown,U
-0x710035145c,288,fn_710035145c,unknown,unknown,U
+0x710035145c,288,fn_710035145c,unknown,unknown,O
 0x710035157c,72,fn_710035157c,unknown,unknown,O
 0x71003515c4,76,fn_71003515c4,unknown,unknown,O
 0x7100351610,168,fn_7100351610,unknown,unknown,O
