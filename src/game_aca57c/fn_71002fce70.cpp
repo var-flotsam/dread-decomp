@@ -17,14 +17,6 @@ struct UnkStaticIds19And1 {
 };
 ARRAY_DTOR(71007fd8b0, UnkStaticIds19And1, 1, g_unk_7172721508)
 ARRAY_DTOR(7100536450, UnkStaticId, 3, g_unk_71726e2308)
-ARRAY_DTOR(7100a8cc60, UnkStaticId, 8, g_unk_7172751a20)
-
-// A key and a string id.
-struct UnkKeyedStaticId {
-    u64 key;
-    UnkStaticId id;
-};
-ARRAY_DTOR(7100a8cee0, UnkKeyedStaticId, 8, g_unk_7172751a60)
 
 // A string id and a file path.
 struct UnkStaticIdPath {

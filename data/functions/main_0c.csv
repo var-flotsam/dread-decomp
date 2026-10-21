@@ -4091,7 +4091,7 @@ address,size,name,name_source,subsystem,status
 0x7100c66880,4,fn_7100c66880,unknown,unknown,O
 0x7100c66884,20,fn_7100c66884,unknown,unknown,O
 0x7100c66898,20,fn_7100c66898,unknown,unknown,O
-0x7100c668b0,512,fn_7100c668b0,unknown,unknown,U
+0x7100c668b0,512,fn_7100c668b0,unknown,unknown,O
 0x7100c66ab0,156,fn_7100c66ab0,unknown,unknown,O
 0x7100c66b50,268,fn_7100c66b50,unknown,unknown,U
 0x7100c66c60,29996,fn_7100c66c60,unknown,unknown,U
@@ -6304,7 +6304,7 @@ address,size,name,name_source,subsystem,status
 0x7100cd1fb4,4,fn_7100cd1fb4,unknown,game/characters?,O
 0x7100cd1fb8,20,fn_7100cd1fb8,unknown,game/characters?,O
 0x7100cd1fcc,20,fn_7100cd1fcc,unknown,game/characters?,O
-0x7100cd1fe0,432,fn_7100cd1fe0,unknown,game/characters?,U
+0x7100cd1fe0,432,fn_7100cd1fe0,unknown,game/characters?,O
 0x7100cd2190,232,fn_7100cd2190,unknown,game/characters?,O
 0x7100cd2278,244,CCharClassSetComponentEnabledEvent::refl_GetClass,reflection,game/characters,O
 0x7100cd236c,476,fn_7100cd236c,unknown,game/characters?,O
@@ -7055,7 +7055,7 @@ address,size,name,name_source,subsystem,status
 0x7100ceb618,4,fn_7100ceb618,unknown,game/characters?,O
 0x7100ceb61c,20,fn_7100ceb61c,unknown,game/characters?,O
 0x7100ceb630,20,fn_7100ceb630,unknown,game/characters?,O
-0x7100ceb650,432,fn_7100ceb650,unknown,game/characters?,U
+0x7100ceb650,432,fn_7100ceb650,unknown,game/characters?,O
 0x7100ceb800,236,fn_7100ceb800,unknown,game/characters?,O
 0x7100ceb8ec,244,CCharClassAnimSpeedTrack::refl_GetClass,reflection,game/characters,O
 0x7100ceb9e0,292,fn_7100ceb9e0,unknown,game/characters?,O

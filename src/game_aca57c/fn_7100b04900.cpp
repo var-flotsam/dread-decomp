@@ -76,15 +76,36 @@ struct UnkConverter {
 };
 void fn_71000a16c4(UnkConverter* converter);
 UnkReflType* fn_7100014768();  // the enums' integer type
+UnkReflType* fn_7100005178();  // refl_GetType<unsigned>, the flag sets' integer type
 
 __attribute__((always_inline)) static inline void InitEnumConverters(UnkReflType* type, UnkConverter& to_int,
                                                                      void (*to_int_fn)(), UnkConverter& from_int,
-                                                                     void (*from_int_fn)()) {
-    to_int = {type->info->field_0x30, fn_7100014768()->info->field_0x30, to_int_fn, nullptr};
+                                                                     void (*from_int_fn)(),
+                                                                     UnkReflType* (*int_type)() = fn_7100014768) {
+    to_int = {type->info->field_0x30, int_type()->info->field_0x30, to_int_fn, nullptr};
     fn_71000a16c4(&to_int);
-    from_int = {fn_7100014768()->info->field_0x30, type->info->field_0x30, from_int_fn, nullptr};
+    from_int = {int_type()->info->field_0x30, type->info->field_0x30, from_int_fn, nullptr};
     fn_71000a16c4(&from_int);
 }
+
+// A flag-set type: constructed from its name by `ctor`.
+void fn_710009a368(void* type);  // a flag-set type's destructor
+typedef void (*UnkFlagSetCtor)(UnkReflType* self, const CStrId& name, void* extra);
+
+__attribute__((always_inline)) static inline void InitFlagSet(UnkReflType* type, const char* name, UnkFlagSetCtor ctor) {
+    {
+        CStrId id(name, true);
+        ctor(type, id, nullptr);
+    }
+    fn_7100000250(fn_710009a368, type, &g_unk_7101a19000);
+}
+
+// TU data that follows the header: the class type a getter builds, or other values.
+struct UnkTUHeaderAndClass {
+    UnkTUHeader header;
+    u8 unk_0x18[0x8];
+    UnkReflType type;
+};
 
 extern UnkTUHeader g_unk_71727bc230 __attribute__((visibility("hidden")));
 extern UnkReflType g_unk_71727bc110;
@@ -362,3 +383,233 @@ void fn_7100c93d60() {
 // FAIL 0x7100b8e430: expected got at 102: ('bl', '7100b8dd9c', 'fn_7100b8dd9c')
 // FAIL 0x7100e06590: unknown token 11: ('got', '71727be870')
 // FAIL 0x7100c92b10: expected bl at 24: ('got', '7100c8398c')
+
+extern UnkTUHeader g_unk_7172772d18 __attribute__((visibility("hidden")));
+extern UnkReflType g_unk_7172772bb0;
+void fn_7100bcdd30();
+void fn_7100bcde7c(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
+extern char g_unk_7172772cc8;
+void fn_7100bce500() __attribute__((visibility("hidden")));
+void fn_7100bce50c() __attribute__((visibility("hidden")));
+extern UnkConverter g_unk_7172772cd0;
+extern UnkConverter g_unk_7172772cf0;
+void fn_7100bce0e4();  // CharClassSakaiModifyShieldEvent::refl_GetClass
+extern char g_unk_7172772d10;
+extern UnkReflType g_unk_7172772d38 __attribute__((visibility("hidden")));
+
+void fn_7100bce6b0() {
+    InitHeader(g_unk_7172772d18);
+    InitEnum(&g_unk_7172772bb0, "EShieldAction", fn_7100bcde7c, fn_7100bcdd30);
+    fn_710009ec00(&g_unk_7172772cc8, &g_unk_7172772bb0);
+    InitEnumConverters(&g_unk_7172772bb0, g_unk_7172772cd0, fn_7100bce500, g_unk_7172772cf0, fn_7100bce50c);
+    fn_7100bce0e4();
+    fn_710009ec00(&g_unk_7172772d10, &g_unk_7172772d38);
+}
+
+extern UnkTUHeader g_unk_7172791e30 __attribute__((visibility("hidden")));
+extern UnkReflType g_unk_7172791c90;
+void fn_7100c65ffc();
+void fn_7100c66688(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
+extern char g_unk_7172791da8;
+void fn_7100c66808() __attribute__((visibility("hidden")));
+void fn_7100c66814() __attribute__((visibility("hidden")));
+extern UnkConverter g_unk_7172791db0;
+extern UnkConverter g_unk_7172791dd0;
+void fn_7100c66820() __attribute__((visibility("hidden")));
+void fn_7100c6682c() __attribute__((visibility("hidden")));
+extern UnkConverter g_unk_7172791df0;
+extern UnkConverter g_unk_7172791e10;
+
+void fn_7100c668b0() {
+    InitHeader(g_unk_7172791e30);
+    InitEnum(&g_unk_7172791c90, "game::logic::collision::EColMat", fn_7100c66688, fn_7100c65ffc);
+    fn_710009ec00(&g_unk_7172791da8, &g_unk_7172791c90);
+    InitEnumConverters(&g_unk_7172791c90, g_unk_7172791db0, fn_7100c66808, g_unk_7172791dd0, fn_7100c66814);
+    InitEnumConverters(&g_unk_7172791c90, g_unk_7172791df0, fn_7100c66820, g_unk_7172791e10, fn_7100c6682c, fn_7100005178);
+}
+
+extern UnkTUHeader g_unk_7172758ad0 __attribute__((visibility("hidden")));
+extern UnkReflType g_unk_7172758838;
+void fn_7100adf0bc();
+void fn_7100adf388(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
+extern char g_unk_7172758950;
+void fn_7100adf658() __attribute__((visibility("hidden")));
+void fn_7100adf664() __attribute__((visibility("hidden")));
+extern UnkConverter g_unk_7172758958;
+extern UnkConverter g_unk_7172758978;
+extern UnkReflType g_unk_7172758998;
+void fn_7100adf508(UnkReflType* self, const CStrId& name, void* extra);
+extern char g_unk_7172758a88;
+void fn_7100adf670() __attribute__((visibility("hidden")));
+void fn_7100adf67c() __attribute__((visibility("hidden")));
+extern UnkConverter g_unk_7172758a90;
+extern UnkConverter g_unk_7172758ab0;
+
+void fn_7100adf770() {
+    InitHeader(g_unk_7172758ad0);
+    InitEnum(&g_unk_7172758838, "EPickingMode", fn_7100adf388, fn_7100adf0bc);
+    fn_710009ec00(&g_unk_7172758950, &g_unk_7172758838);
+    InitEnumConverters(&g_unk_7172758838, g_unk_7172758958, fn_7100adf658, g_unk_7172758978, fn_7100adf664);
+    InitFlagSet(&g_unk_7172758998, "TPickingModeFlagSet", fn_7100adf508);
+    fn_710009ec00(&g_unk_7172758a88, &g_unk_7172758998);
+    InitEnumConverters(&g_unk_7172758998, g_unk_7172758a90, fn_7100adf670, g_unk_7172758ab0, fn_7100adf67c, fn_7100005178);
+}
+
+extern UnkTUHeader g_unk_71727c0fb8 __attribute__((visibility("hidden")));
+extern UnkReflType g_unk_71727c0bc0;
+void fn_7100e16e60();
+void fn_7100e1766c(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
+extern char g_unk_71727c0cd8;
+void fn_7100e1b5c8() __attribute__((visibility("hidden")));
+void fn_7100e1b5d4() __attribute__((visibility("hidden")));
+extern UnkConverter g_unk_71727c0ce0;
+extern UnkConverter g_unk_71727c0d00;
+extern UnkReflType g_unk_71727c0d20;
+void fn_7100e177ec(UnkReflType* self, const CStrId& name, void* extra);
+extern char g_unk_71727c0e10;
+void fn_7100e1b5e0() __attribute__((visibility("hidden")));
+void fn_7100e1b5ec() __attribute__((visibility("hidden")));
+extern UnkConverter g_unk_71727c0e18;
+extern UnkConverter g_unk_71727c0e38;
+extern UnkReflType g_unk_71727c0e58;
+void fn_7100e1793c();
+void fn_7100e17b48(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
+extern char g_unk_71727c0f70;
+void fn_7100e1b5f8() __attribute__((visibility("hidden")));
+void fn_7100e1b604() __attribute__((visibility("hidden")));
+extern UnkConverter g_unk_71727c0f78;
+extern UnkConverter g_unk_71727c0f98;
+
+void fn_7100e1b8b0() {
+    InitHeader(g_unk_71727c0fb8);
+    InitEnum(&g_unk_71727c0bc0, "ETooltipCond", fn_7100e1766c, fn_7100e16e60);
+    fn_710009ec00(&g_unk_71727c0cd8, &g_unk_71727c0bc0);
+    InitEnumConverters(&g_unk_71727c0bc0, g_unk_71727c0ce0, fn_7100e1b5c8, g_unk_71727c0d00, fn_7100e1b5d4);
+    InitFlagSet(&g_unk_71727c0d20, "TTooltipConditions", fn_7100e177ec);
+    fn_710009ec00(&g_unk_71727c0e10, &g_unk_71727c0d20);
+    InitEnumConverters(&g_unk_71727c0d20, g_unk_71727c0e18, fn_7100e1b5e0, g_unk_71727c0e38, fn_7100e1b5ec, fn_7100005178);
+    InitEnum(&g_unk_71727c0e58, "ETooltipType", fn_7100e17b48, fn_7100e1793c);
+    fn_710009ec00(&g_unk_71727c0f70, &g_unk_71727c0e58);
+    InitEnumConverters(&g_unk_71727c0e58, g_unk_71727c0f78, fn_7100e1b5f8, g_unk_71727c0f98, fn_7100e1b604);
+}
+
+extern UnkTUHeader g_unk_71727ba980 __attribute__((visibility("hidden")));
+extern UnkReflType g_unk_71727ba2e0;
+void fn_7100d975d8();
+void fn_7100d977e4(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
+extern char g_unk_71727ba3f8;
+void fn_7100d9b7a4() __attribute__((visibility("hidden")));
+void fn_7100d9b7b0() __attribute__((visibility("hidden")));
+extern UnkConverter g_unk_71727ba400;
+extern UnkConverter g_unk_71727ba420;
+void fn_7100d9b7bc() __attribute__((visibility("hidden")));
+void fn_7100d9b7c8() __attribute__((visibility("hidden")));
+extern UnkConverter g_unk_71727ba440;
+extern UnkConverter g_unk_71727ba460;
+extern UnkReflType g_unk_71727ba480;
+void fn_7100d97964();
+void fn_7100d97c30(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
+extern char g_unk_71727ba598;
+void fn_7100d9b7d4() __attribute__((visibility("hidden")));
+void fn_7100d9b7e0() __attribute__((visibility("hidden")));
+extern UnkConverter g_unk_71727ba5a0;
+extern UnkConverter g_unk_71727ba5c0;
+void fn_7100d9b7ec() __attribute__((visibility("hidden")));
+void fn_7100d9b7f8() __attribute__((visibility("hidden")));
+extern UnkConverter g_unk_71727ba5e0;
+extern UnkConverter g_unk_71727ba600;
+extern UnkReflType g_unk_71727ba620;
+void fn_7100d97db0();
+void fn_7100d99934(UnkReflType* self, const CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
+extern char g_unk_71727ba758;
+UnkReflType* fn_7100d9af70();  // fn_7100d9af70
+extern char g_unk_71727ba759;
+UnkReflType* fn_7100d9b04c();  // fn_7100d9b04c
+extern char g_unk_71727ba75a;
+
+void fn_7100d9caf0() {
+    InitHeader(g_unk_71727ba980);
+    InitEnum(&g_unk_71727ba2e0, "ELightType", fn_7100d977e4, fn_7100d975d8);
+    fn_710009ec00(&g_unk_71727ba3f8, &g_unk_71727ba2e0);
+    InitEnumConverters(&g_unk_71727ba2e0, g_unk_71727ba400, fn_7100d9b7a4, g_unk_71727ba420, fn_7100d9b7b0);
+    InitEnumConverters(&g_unk_71727ba2e0, g_unk_71727ba440, fn_7100d9b7bc, g_unk_71727ba460, fn_7100d9b7c8, fn_7100005178);
+    InitEnum(&g_unk_71727ba480, "ELightAttachment", fn_7100d97c30, fn_7100d97964);
+    fn_710009ec00(&g_unk_71727ba598, &g_unk_71727ba480);
+    InitEnumConverters(&g_unk_71727ba480, g_unk_71727ba5a0, fn_7100d9b7d4, g_unk_71727ba5c0, fn_7100d9b7e0);
+    InitEnumConverters(&g_unk_71727ba480, g_unk_71727ba5e0, fn_7100d9b7ec, g_unk_71727ba600, fn_7100d9b7f8, fn_7100005178);
+    InitClass(&g_unk_71727ba620, "CLightInfo", fn_7100d99934, fn_7100d97db0);
+    fn_710009ec00(&g_unk_71727ba758, &g_unk_71727ba620);
+    fn_710009ec00(&g_unk_71727ba759, fn_7100d9af70());
+    fn_710009ec00(&g_unk_71727ba75a, fn_7100d9b04c());
+}
+
+// The TU's data: the header, then a pair of floats (-1, -1) and a flag.
+struct UnkLoadingScreenData {
+    UnkTUHeader header;
+    u8 unk_0x18[0x80];
+    f32 field_0x98;
+    f32 field_0x9c;
+    bool field_0xa0;
+};
+extern UnkLoadingScreenData g_unk_71727c0870 __attribute__((visibility("hidden")));
+extern UnkReflType g_unk_71727c0710;
+void fn_7100e0f028();
+void fn_7100e0f4d4(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
+extern char g_unk_71727c0828;
+void fn_7100e1389c() __attribute__((visibility("hidden")));
+void fn_7100e138a8() __attribute__((visibility("hidden")));
+extern UnkConverter g_unk_71727c0830;
+extern UnkConverter g_unk_71727c0850;
+
+void fn_7100e13f10() {
+    InitHeader(g_unk_71727c0870.header);
+    g_unk_71727c0870.field_0x98 = -1.0f;
+    g_unk_71727c0870.field_0x9c = -1.0f;
+    g_unk_71727c0870.field_0xa0 = true;
+    InitEnum(&g_unk_71727c0710, "ELoadingScreen", fn_7100e0f4d4, fn_7100e0f028);
+    fn_710009ec00(&g_unk_71727c0828, &g_unk_71727c0710);
+    InitEnumConverters(&g_unk_71727c0710, g_unk_71727c0830, fn_7100e1389c, g_unk_71727c0850, fn_7100e138a8);
+}
+
+
+extern UnkTUHeaderAndClass g_unk_717279cc60 __attribute__((visibility("hidden")));
+void fn_7100cd12b8();  // CCharClassSetCameraNearEvent::refl_GetClass
+extern char g_unk_717279caf8;
+extern UnkReflType g_unk_717279cb00;
+void fn_7100cd17a8();
+void fn_7100cd1954(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
+extern char g_unk_717279cc18;
+void fn_7100cd1c90() __attribute__((visibility("hidden")));
+void fn_7100cd1c9c() __attribute__((visibility("hidden")));
+extern UnkConverter g_unk_717279cc20;
+extern UnkConverter g_unk_717279cc40;
+
+void fn_7100cd1fe0() {
+    InitHeader(g_unk_717279cc60.header);
+    fn_7100cd12b8();
+    fn_710009ec00(&g_unk_717279caf8, &g_unk_717279cc60.type);
+    InitEnum(&g_unk_717279cb00, "CCharClassSetCameraNearEvent::EDir", fn_7100cd1954, fn_7100cd17a8);
+    fn_710009ec00(&g_unk_717279cc18, &g_unk_717279cb00);
+    InitEnumConverters(&g_unk_717279cb00, g_unk_717279cc20, fn_7100cd1c90, g_unk_717279cc40, fn_7100cd1c9c);
+}
+
+extern UnkTUHeaderAndClass g_unk_71727a0898 __attribute__((visibility("hidden")));
+void fn_7100ceadf8();  // CCharClassAnalogAimTrack::refl_GetClass
+extern char g_unk_71727a0730;
+extern UnkReflType g_unk_71727a0738;
+void fn_7100ceb15c();
+void fn_7100ceb308(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
+extern char g_unk_71727a0850;
+void fn_7100ceb4cc() __attribute__((visibility("hidden")));
+void fn_7100ceb4d8() __attribute__((visibility("hidden")));
+extern UnkConverter g_unk_71727a0858;
+extern UnkConverter g_unk_71727a0878;
+
+void fn_7100ceb650() {
+    InitHeader(g_unk_71727a0898.header);
+    fn_7100ceadf8();
+    fn_710009ec00(&g_unk_71727a0730, &g_unk_71727a0898.type);
+    InitEnum(&g_unk_71727a0738, "CCharClassAnalogAimTrack::EAbortAnalogAimInput", fn_7100ceb308, fn_7100ceb15c);
+    fn_710009ec00(&g_unk_71727a0850, &g_unk_71727a0738);
+    InitEnumConverters(&g_unk_71727a0738, g_unk_71727a0858, fn_7100ceb4cc, g_unk_71727a0878, fn_7100ceb4d8);
+}

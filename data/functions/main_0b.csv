@@ -5000,7 +5000,7 @@ address,size,name,name_source,subsystem,status
 0x7100bce664,12,fn_7100bce664,unknown,game/characters?,O
 0x7100bce670,28,fn_7100bce670,unknown,game/characters?,O
 0x7100bce68c,28,fn_7100bce68c,unknown,game/characters?,O
-0x7100bce6b0,436,fn_7100bce6b0,unknown,game/characters?,U
+0x7100bce6b0,436,fn_7100bce6b0,unknown,game/characters?,O
 0x7100bce864,232,fn_7100bce864,unknown,game/characters?,O
 0x7100bce94c,244,CCharClassScorpiusSetTailDefaultMovementEvent::refl_GetClass,reflection,game/characters,O
 0x7100bcea40,208,fn_7100bcea40,unknown,game/characters?,O

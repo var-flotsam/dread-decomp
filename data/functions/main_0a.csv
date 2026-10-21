@@ -5419,7 +5419,7 @@ address,size,name,name_source,subsystem,status
 0x7100adf744,4,fn_7100adf744,unknown,unknown,O
 0x7100adf748,20,fn_7100adf748,unknown,unknown,O
 0x7100adf75c,20,fn_7100adf75c,unknown,unknown,O
-0x7100adf770,656,fn_7100adf770,unknown,unknown,U
+0x7100adf770,656,fn_7100adf770,unknown,unknown,O
 0x7100adfa00,140,fn_7100adfa00,unknown,unknown,O
 0x7100adfa90,140,fn_7100adfa90,unknown,unknown,O
 0x7100adfb20,1164,fn_7100adfb20,unknown,unknown,U

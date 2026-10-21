@@ -4474,7 +4474,7 @@ address,size,name,name_source,subsystem,status
 0x7100d9ca08,76,fn_7100d9ca08,unknown,unknown,O
 0x7100d9ca54,76,fn_7100d9ca54,unknown,unknown,O
 0x7100d9caa0,76,fn_7100d9caa0,unknown,unknown,O
-0x7100d9caf0,1068,fn_7100d9caf0,unknown,unknown,U
+0x7100d9caf0,1068,fn_7100d9caf0,unknown,unknown,O
 0x7100d9cf1c,4,fn_7100d9cf1c,unknown,unknown,O
 0x7100d9cf20,244,CLightsDef::refl_GetClass,reflection,game,O
 0x7100d9d014,1256,fn_7100d9d014,unknown,game?,O
