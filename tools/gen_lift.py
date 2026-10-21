@@ -1827,7 +1827,7 @@ def prune() -> int:
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--version", required=True)
+    ap.add_argument("--version", help="required except with --prune")
     ap.add_argument("--only", help="ADDR[,ADDR...] or @file (one address per line): measure just these")
     ap.add_argument("--sample", type=int, help="measure a random sample of N candidates")
     ap.add_argument("--seed", type=int, default=0, help="seed for --sample (default 0)")
@@ -1842,6 +1842,8 @@ def main() -> int:
     args = ap.parse_args()
     if args.prune:
         return prune()
+    if not args.version:
+        ap.error("--version is required")
     orig = asmdiff.Original(args.version)
     if args.best:
         write_best(orig, parse_only(args.best))
