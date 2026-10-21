@@ -416,7 +416,7 @@ address,size,name,name_source,subsystem,status
 0x7100f17b58,4,fn_7100f17b58,unknown,unknown,O
 0x7100f17b5c,8,fn_7100f17b5c,unknown,unknown,O
 0x7100f17b64,8,fn_7100f17b64,unknown,unknown,O
-0x7100f17b70,580,fn_7100f17b70,unknown,unknown,U
+0x7100f17b70,580,fn_7100f17b70,unknown,unknown,O
 0x7100f17db4,4,fn_7100f17db4,unknown,unknown,O
 0x7100f17db8,244,CStartCentralUnitCombatLogicAction::refl_GetClass,reflection,game/ai,O
 0x7100f17eac,204,fn_7100f17eac,unknown,game/ai?,O
