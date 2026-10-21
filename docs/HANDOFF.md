@@ -15,7 +15,8 @@ macOS toolchain support (untested on hardware) and `tools/verify.py`. No matchin
 ## Workstreams
 
 **Thirteenth session (2026-10-21, cloud):** work now runs as parallel cloud threads, one per
-stream below; the Mac is paused (not enough memory). Each stream edits only the files in its row.
+stream below. The Mac workstream is retired (not enough memory); `AGENTS.md` and `docs/tasks/`
+remain as reference only. Each stream edits only the files in its row.
 
 | Stream | Area | Files it may edit | Branches |
 |---|---|---|---|
@@ -24,7 +25,6 @@ stream below; the Mac is paused (not enough memory). Each stream edits only the 
 | 3. Core engine types | Next steps, item 4: string pool, `UnkReflArray`, CRC64, allocators (hand-written) | `src/base/`, `include/base/global/`, new `include/base/*.h` | `cloud/core-<topic>` |
 | 4. Reflection leftovers | Next steps, item 2, "Left" | `tools/gen_reflection.py`, `tools/refl_attrs.py`, `tools/gen_types.py`, `src/reflection/`, `src/reflection_types/`, `include/base/reflection/` (not `UnkReflStatics.h`) | `cloud/refl-<topic>` |
 | 5. Lua leftovers | Next steps, item 3 (library code, no game progress) | `lib/lua/`, `tools/sigmatch.py`, `tools/libcheck_lua.py`, `data/library_symbols.csv` | `cloud/lua-<topic>` |
-| Mac (paused) | `AGENTS.md` and `docs/tasks/` | none while paused | `mac/<topic>` |
 
 All may change `data/functions/*.csv` (statuses only, through `check.py --update`). Anything
 else (shared headers, `check.py`, `CLAUDE.md`) goes through the owner first.
