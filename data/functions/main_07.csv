@@ -2305,7 +2305,7 @@ address,size,name,name_source,subsystem,status
 0x710077a190,16,fn_710077a190,unknown,unknown,O
 0x710077a1a0,16,fn_710077a1a0,unknown,unknown,O
 0x710077a1b0,168,fn_710077a1b0,unknown,unknown,U
-0x710077a258,16,fn_710077a258,unknown,unknown,U
+0x710077a258,16,fn_710077a258,unknown,unknown,O
 0x710077a268,36,fn_710077a268,unknown,unknown,O
 0x710077a28c,100,fn_710077a28c,unknown,unknown,O
 0x710077a2f0,40,fn_710077a2f0,unknown,unknown,O
@@ -3455,7 +3455,7 @@ address,size,name,name_source,subsystem,status
 0x71007af1d4,12,fn_71007af1d4,unknown,unknown,O
 0x71007af1e0,8,fn_71007af1e0,unknown,unknown,O
 0x71007af1e8,8,fn_71007af1e8,unknown,unknown,O
-0x71007af1f0,128,fn_71007af1f0,unknown,unknown,U
+0x71007af1f0,128,fn_71007af1f0,unknown,unknown,O
 0x71007af270,160,fn_71007af270,unknown,unknown,O
 0x71007af310,4,fn_71007af310,unknown,unknown,O
 0x71007af314,244,CDeathCameraCtrl::refl_GetClass,reflection,game,O
