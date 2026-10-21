@@ -4020,6 +4020,6 @@ address,size,name,name_source,subsystem,status
 0x7100ef2390,996,fn_7100ef2390,unknown,unknown,U
 0x7100ef2780,3348,fn_7100ef2780,unknown,unknown,U
 0x7100ef3494,440,fn_7100ef3494,unknown,unknown,U
-0x7100ef364c,160,fn_7100ef364c,unknown,unknown,U
-0x7100ef36ec,160,fn_7100ef36ec,unknown,unknown,U
+0x7100ef364c,160,fn_7100ef364c,unknown,unknown,O
+0x7100ef36ec,160,fn_7100ef36ec,unknown,unknown,O
 0x7100ef378c,52316,fn_7100ef378c,unknown,unknown,U
