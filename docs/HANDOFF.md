@@ -4,6 +4,10 @@ For the next developer, human or AI, picking up this project. Read this, then `C
 (rules and conventions), `docs/recon.md` (what's in the binary), `docs/compiler.md`
 (toolchain), and `docs/references.md` (outside projects).
 
+**Twelfth session (2026-10-21, on the PC, branch `claude/lifter-mismatch-classes`, var-flotsam/dread-decomp#18):** lifter mismatch study
+(Next steps, item 1, "Done (twelfth session)"); `gen_lift.py` and `check.py --update` were rerun,
+so the numbers below are current.
+
 **Eleventh session (2026-10-21, branch `claude/local-agent-setup-df6136`):** set up two parallel
 workstreams (below), `AGENTS.md` and `docs/tasks/` for a small local model on a MacBook,
 macOS toolchain support (untested on hardware) and `tools/verify.py`. No matching changes.
@@ -14,7 +18,7 @@ Two machines work at once, on separate files. Each edits only the files in its r
 
 | Owner | Area | Files it may edit | Current branch |
 |---|---|---|---|
-| PC (Claude) | The lifter: the mismatch study, then loops, `ccmp` and jump tables (Next steps, item 1) | `tools/gen_lift.py`, `src/lifted/` | none open; new branches `pc/<topic>` |
+| PC (Claude) | The lifter: the mismatch study, then loops, `ccmp` and jump tables (Next steps, item 1) | `tools/gen_lift.py`, `src/lifted/` | `claude/lifter-mismatch-classes` (var-flotsam/dread-decomp#18, created before this table; later ones `pc/<topic>`) |
 | Mac (local model, `AGENTS.md`) | Guarded statics, then small single-family `gen_clones.py` templates, then reflection and Lua leftovers (`docs/tasks/`) | `tools/gen_statics.py`, `include/base/reflection/UnkReflStatics.h`, `src/reflection_statics/`; for clone cards also `tools/gen_clones.py`, `include/UnkClone.h`, `include/base/UnkCloneHelpers.h`, `src/clones/` | none yet; new branches `mac/<topic>` |
 
 Both may change `data/functions/*.csv` (statuses only, through `check.py --update`) and their
@@ -58,7 +62,7 @@ Snapshot as of 2026-10-18 (fifth Phase 4 session; branches `phase-4-4-clones` (v
 | 4.1 System headers | **Done.** `lib/nnsdk` + `lib/musl` submodules, libc++ 9.0.1 headers, `tools/buildcfg.py` |
 | 4.2 Lua | **Done.** Upstream 5.1.4 vendored in `lib/lua/` (2 marked config changes); 286 Lua functions located in `main` by `tools/sigmatch.py` (status `L`) |
 | 4.3 Reflection | **In progress.** all 2,354 located class getters (444 in TUs with other statics, through padding); all 1,010 other `CClass` descriptor constructors (skipped TUs and getter-less types); 1,911 of 1,957 class attribute/member-field functions, 478 other registration functions plus 54 in their class getter's TU, and all 1,006 out-of-line reflected-function initialisers (`src/reflection/`, `tools/gen_reflection.py`, `tools/refl_attrs.py`). Pointer types: 993 standalone getter/constructor pairs plus 108 generated in their pointee's TU; all 238 `CEnumType` constructors; 178 standalone `CCollectionType` constructors plus those in their element class's TU (`src/reflection_types/`, `tools/gen_types.py`) |
-| Small functions | **In progress.** `tools/gen_lift.py` lifts functions of up to 512 bytes from their instructions and keeps byte-identical ones: 44,529 functions up to 2 KB, 1.78 MB (`src/lifted/`; sret functions, stack locals, a goto-based flat mode for crossing branches and loops) |
+| Small functions | **In progress.** `tools/gen_lift.py` lifts functions of up to 512 bytes from their instructions and keeps byte-identical ones: 46,219 functions, 2.02 MB (`src/lifted/`; second-round store-order, may_alias and memcpy rewrites; sret functions, stack locals, a goto-based flat mode for crossing branches and loops) |
 | Guarded statics | **In progress.** `tools/gen_statics.py`: attribute keys, static string ids, typed lookups and registries built on weak function-local statics (`include/base/reflection/UnkReflStatics.h`): 765 functions, 141 KB (`src/reflection_statics/`) |
 | Repeated templates | **In progress.** `tools/gen_clones.py`: hand-matched templates instantiated once per copy (`UnkClone_fn_<addr>` tags): the named registry, `UnkVector` methods per element kind, the reflection collection iterator, a deferred set, and scan kinds (facts per candidate): destructors of string-id/refcounted members, property reads and string-id writes, enum value lists, and shape-family templates (`UnkCloneHelpers.h`): 6,256 functions, 1.22 MB (`src/clones/`) |
 | 4.4 Core engine types | **In progress.** String ids (`CStrId` incl. copy-assignment, `UnkStrId`), the growable array `base::UnkVector` (push, grow-at, insert, remove, clear/free, move) and its allocator interface; reflected-function initialisers now match (below) |
@@ -119,7 +123,7 @@ include/base/UnkCollectionIter.h   collection iterator and its cached (index, el
 include/base/UnkDestructors.h      destructor templates over traits (vtable, base) and member descriptors
 include/base/UnkNamedRegistry.h, UnkDeferredSet.h, UnkIdPair.h   smaller templates found as clone families
 tools/gen_statics.py      guarded-static templates (UnkReflStatics.h) matched by shape against references
-tools/gen_lift.py         lifter: candidates <= 512 B not defined elsewhere in src/; 9 variants; verify
+tools/gen_lift.py         lifter: candidates <= 512 B not defined elsewhere in src/; 9 variants, ROUND2 rewrites; verify
                           (--sample N / --only ADDRS: outcome table by size band, in build/, ~1 min)
 tools/shape_census.py     families of undefined U functions by size + mnemonics; --family ADDR: varying operands
 include/types.h           u8..f64 without a standard library
@@ -167,7 +171,7 @@ git submodule update --init                                       # lib/nnsdk, l
 .venv/Scripts/python tools/gen_types.py --version 2.1.0            # ~20 s
 .venv/Scripts/python tools/gen_statics.py --version 2.1.0          # ~20 s
 .venv/Scripts/python tools/gen_clones.py --version 2.1.0           # ~10 s
-.venv/Scripts/python tools/gen_lift.py --version 2.1.0             # ~15 min; run after the other generators
+.venv/Scripts/python tools/gen_lift.py --version 2.1.0             # ~80 min; run after the other generators
 .venv/Scripts/python tools/check.py --version 2.1.0 --update       # ~35 s, parallel
 .venv/Scripts/python tools/objdiff_gen.py --version 2.1.0          # then open the repo in objdiff
 .venv/Scripts/python tools/progress.py
@@ -284,6 +288,41 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
      families under 8 KB each (re-run the census for current numbers). The remaining call-free vtable
      functions (509) are varied virtual dispatchers, not one template.
 1. **Extend the lifter (`tools/gen_lift.py`), largest payoff first.**
+   - Done (twelfth session), mismatch study and second-round rewrites (+1,039 `O`, ~146 KB;
+     45.39% to 46.16%). Lifted-but-not-matching functions were classified with a scratch script
+     (best attempt per function vs the original; each normalisation step, in order, removes part
+     of the differing instructions, and the function's class is the step that removes most).
+     Sample A: `--sample 600 --seed 1 --new` (450 mismatches, 172 KB); sample B: 600 new
+     candidates of 256 B-1 KB, seed 2 (396 mismatches, 184 KB). Counts / bytes, A then B:
+
+     | Class | Before (A) | Before (B) | After (A) | After (B) | Example |
+     |---|---|---|---|---|---|
+     | scheduling (same instructions, other order, incl. `ldp`/`stp` pairing) | 170 / 65 KB | 148 / 70 KB | 158 / 64 KB | 148 / 70 KB | fn_7100025bd0 |
+     | registers (same instructions, other registers) | 120 / 61 KB | 143 / 67 KB | 111 / 62 KB | 136 / 64 KB | fn_710006f230 |
+     | other (several kinds at once; mostly extra `mov`s and missing reloads) | 143 / 45 KB | 102 / 46 KB | 132 / 39 KB | 104 / 47 KB | fn_7100020a68 |
+     | extra or missing instructions | 12 / 1 KB | 2 / 1 KB | 11 / 1 KB | 1 / 0 KB | fn_710002e468 |
+     | constants materialised differently | 4 / 0 KB | 0 | 4 / 0 KB | 0 | fn_710090ca38 |
+     | stack layout (sp offsets, frame) | 1 / 0 KB | 1 / 0 KB | 1 / 0 KB | 1 / 0 KB | fn_7100861e38 |
+     | block or branch layout | 0 (365 insns) | 0 (440 insns) | 0 | 0 | fn_7100105a80 |
+     | now matching | - | - | 33 / 5 KB | 6 / 2 KB | |
+
+     Three causes inside "scheduling" and "registers" were fixable from the lifter's output, so
+     functions that compile without matching get one more round per `ROUND2` rewrite (a round
+     never loses a function that matched): **alias** (the biggest: the original reloads values
+     after stores of another type, e.g. a pointer re-read after a refcount store, so every access
+     goes through a `may_alias` typedef `a_u32` etc.; `-fno-strict-aliasing` alone gave 17 of the
+     450), **sort** (field stores of one base in ascending offset order: the scheduler and store
+     pairing moved them; as the only mode it loses 31 per 1,000, hence a second round) and
+     **copy** (a load run then a store run of the same values becomes `__builtin_memcpy`). Left:
+     - Large functions barely move (6 of 396 in sample B): most are flat-mode loops whose block
+       layout and induction variables differ, not fixable by rewriting statements.
+     - "registers" is mostly a knock-on of ordering (one moved statement renames the rest); the
+       remaining scheduling differences are around calls and GOT loads (`adrp`/`ldr` placement).
+     - "other": we emit ~3x the original's register `mov`s (values copied into callee-saved
+       registers across calls), and the original uses more `add`s and `subs` where we use
+       `sub` + `cmp`. Before the alias round the original also had ~25% more loads than us in
+       these functions; after it the counts are about even.
+     - The full run takes ~80 min on the PC (~40 min first round, ~12 min per rewrite round).
    - Done (tenth session), three cheap fixes (+83 functions, ~45 KB): `MAX_SIZE` is 16 KB (was
      2 KB); a stack load (`ldr x, [sp, #k]`) no longer crashes the GOT-load check (~2,000 more
      functions lift, few match: the `char stk[]` layout differs); code ending in `bl` is a call to a
@@ -313,7 +352,7 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
    - Stack locals are handled (one `char` array over the gap between save slots, or over the
      bytes accessed; `STACK_LAYOUTS`), but only ~22% of those functions match. Parameters first
      read as `w<n>` are `u32` (this fixed many `mov w2, w1` vs `mov x2, x1` mismatches).
-   - Mismatches now dominate (~60,700 lifted, 44,549 match). Only ~1,600 (165 KB) differ in
+   - Mismatches now dominate (60,768 lifted, 46,219 match after the twelfth session). Only ~1,600 (165 KB) differ in
      register names alone; most differ in instruction selection or scheduling (typed struct
      accesses in the original vs our `char*` arithmetic), so the generic lifter is near its
      limit. Further gains need real types per subsystem (hand decompilation), not variants. Remaining unlifted (~4.6 MB): guarded statics (`ldarb`, 1.2 MB),

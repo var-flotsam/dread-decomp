@@ -18,6 +18,10 @@ lifts each one into C++ over `char*` parameters and keeps only the byte-identica
   3. The number of arguments a call passes and whether a value is returned are not visible
      in the code. Each function is lifted in several VARIANTS; every variant is compiled in one
      scratch translation unit, and the first byte-identical variant of each function is kept.
+  4. Functions that compile but don't match get a second round per ROUND2 rewrite of the
+     statements: field stores in ascending offset order ("sort"), accesses through may_alias
+     types so stores force reloads as in the original ("alias"), and load/store copies as
+     memcpy ("copy").
 
 Usage: python tools/gen_lift.py --version 2.1.0
 Outputs are deterministic. Regenerate, never edit them.
@@ -153,6 +157,126 @@ def float_literal(bits: int, t: str) -> str | None:
     return f"({v.hex()}{'f' if t == 'f32' else ''})"
 
 
+ACCESS_RE = re.compile(r"\*\((u8|u16|u32|u64|s8|s16|s32|f32|f64)\*\)")
+STORE_RE = re.compile(r"^(\s*)\*\((?:u8|u16|u32|u64|f32|f64)\*\)(.+?) = (.+);$")
+ASSIGN_RE = re.compile(r"^\s*(?:[\w*]+ )?(\w+) = (.+);$")
+IDENT_RE = re.compile(r"\b[A-Za-z_]\w*\b")
+
+
+def store_slot(a: str) -> tuple[str, int] | None:
+    """(base, offset) of a store address the lifter wrote, or None."""
+    m = re.fullmatch(r"\(\(char\*\)\((\w+)\) \+ (-?\d+)\)|\((stk) \+ (0x[0-9a-f]+)\)", a)
+    if m:
+        return (m.group(1), int(m.group(2))) if m.group(1) else ("stk", int(m.group(4), 16))
+    m = re.fullmatch(r"\((.+) \+ (\d+)\)", a)
+    inner = m and store_slot(m.group(1))
+    return (inner[0], inner[1] + int(m.group(2))) if inner else None
+
+
+def sort_stores(body: list[str]) -> list[str]:
+    """Stores through one base within straight-line code, in ascending offset order: the
+    order fields are written in source, before the scheduler and store pairing moved them.
+    A run of stores (with register-only lines between them) is flushed at its end; it ends
+    at any other line, a store through another base, or a line that reassigns a variable a
+    pending store reads."""
+    out: list[str] = []
+    run: list[tuple[int, str, set[str]]] = []  # (offset, line, identifiers it reads)
+    key = None  # (indent, base) of the run
+
+    def flush():
+        out.extend(ln for _, ln, _ in sorted(run, key=lambda r: r[0]))
+        run.clear()
+
+    for ln in body:
+        m = STORE_RE.match(ln)
+        slot = m and store_slot(m.group(2))
+        if slot:
+            if not run or key != (m.group(1), slot[0]) or any(off == slot[1] for off, _, _ in run):
+                flush()
+                key = (m.group(1), slot[0])
+            run.append((slot[1], ln, set(IDENT_RE.findall(m.group(2) + " " + m.group(3)))))
+            continue
+        a = ASSIGN_RE.match(ln)
+        if run and a and not re.search(r"\*\(|::|\(\*\)\(", a.group(2)) and ln.startswith(key[0]) \
+                and not ln[len(key[0])].isspace() and not any(a.group(1) in ids for _, _, ids in run):
+            out.append(ln)  # register-only: the pending stores move past it
+            continue
+        flush()
+        out.append(ln)
+    flush()
+    return out
+
+
+SIZES = {"u8": 1, "u16": 2, "u32": 4, "u64": 8, "f32": 4, "f64": 8}
+TEMP_RE = re.compile(r"^\s*char\* (a\d+) = (.+);$")
+LOAD_RE = re.compile(r"^\s*(u8|u16|u32|u64|f32|f64) (\w+) = (?:\(\1\))?\*\(\1\*\)(.+);$")
+VALUE_RE = re.compile(r"^(?:\((?:u8|u16|u32|u64)\)\(u64\)\((\w+)\)|(\w+))$")
+
+
+def copy_runs(body: list[str]) -> list[str]:
+    """A block of loads from one base followed by stores of those values, in the same order,
+    to another base (both contiguous, nothing else touching memory in between) becomes
+    __builtin_memcpy: struct copies compile to that load/store pattern. Lines are blanked,
+    not removed, so recorded line numbers stay valid."""
+    body = list(body)
+    temps: dict[str, tuple[str, int]] = {}
+    i = 0
+    while i < len(body):
+        loads: list[tuple[int, str, tuple[str, int], int]] = []  # (line, var, (base, off), size)
+        j = i
+        while j < len(body):
+            t = TEMP_RE.match(body[j])
+            if t and store_slot(t.group(2)):
+                temps[t.group(1)] = store_slot(t.group(2))
+                j += 1
+                continue
+            m = LOAD_RE.match(body[j])
+            if not m:
+                break
+            a = m.group(3)
+            tm = re.fullmatch(r"\((a\d+) \+ (\d+)\)", a)
+            slot = (temps[tm.group(1)][0], temps[tm.group(1)][1] + int(tm.group(2))) \
+                if tm and tm.group(1) in temps else store_slot(a)
+            if not slot:
+                break
+            loads.append((j, m.group(2), slot, SIZES[m.group(1)]))
+            j += 1
+        stores: list[tuple[int, tuple[str, int], str, int]] = []
+        while loads and j < len(body) and len(stores) < len(loads):
+            m = STORE_RE.match(body[j])
+            slot = m and store_slot(m.group(2))
+            v = m and VALUE_RE.match(m.group(3))
+            if not (slot and v):
+                break
+            t = re.match(r"^\s*\*\((\w+)\*\)", body[j]).group(1)
+            stores.append((j, slot, v.group(1) or v.group(2), SIZES[t]))
+            j += 1
+        if loads and len(stores) == len(loads) and all(
+                s[2] == l[1] and s[3] == l[3] for s, l in zip(stores, loads)):
+            src, dst = loads[0][2], stores[0][1]
+            n = sum(l[3] for l in loads)
+            contiguous = all(l[2] == (src[0], src[1] + sum(x[3] for x in loads[:k])) for k, l in enumerate(loads)) \
+                and all(s[1] == (dst[0], dst[1] + sum(x[3] for x in stores[:k])) for k, s in enumerate(stores))
+            names = {l[1] for l in loads}
+            used = any(re.search(rf"\b{v}\b", ln) for k, ln in enumerate(body)
+                       if not loads[0][0] <= k < j for v in names)
+            if contiguous and n > 8 and src[0] != dst[0] and not used:
+                last = stores[-1][0]
+                ind = body[last][:len(body[last]) - len(body[last].lstrip())]
+                for k in [ln for ln, *_ in loads] + [ln for ln, *_ in stores]:
+                    body[k] = ""
+                body[last] = (f"{ind}__builtin_memcpy({base_ptr(dst[0])} + {dst[1]}, "
+                              f"{base_ptr(src[0])} + {src[1]}, {n});")
+                i = j
+                continue
+        i += 1
+    return body
+
+
+def base_ptr(b: str) -> str:
+    return "stk" if b == "stk" else f"(char*)({b})"
+
+
 def nzcv_holds(nzcv: int, cc: int) -> bool | None:
     """Whether condition cc holds for the flags nzcv (as set by ccmp/fccmp when skipped)."""
     n, z, c, v = (nzcv >> 3) & 1, (nzcv >> 2) & 1, (nzcv >> 1) & 1, nzcv & 1
@@ -197,6 +321,8 @@ class Block:
 
 
 class Lifter:
+    opts: frozenset = frozenset()  # second-round rewrites of the body (ROUND2)
+
     def __init__(self, orig: asmdiff.Original, addr: int, extra: int, returns: bool,
                  stack: tuple[str, int] | None = None):
         self.orig, self.addr, self.extra, self.returns = orig, addr, extra, returns
@@ -620,6 +746,12 @@ class Lifter:
         return self.finish()
 
     def finish(self) -> tuple[str, set[str]] | None:
+        if "copy" in self.opts:
+            self.body = copy_runs(self.body)
+        if "sort" in self.opts:
+            self.body = sort_stores(self.body)
+        if "alias" in self.opts:
+            self.body = [ACCESS_RE.sub(r"*(a_\1*)", ln) for ln in self.body]
         tails = any(k == "tail" for _, k, _ in self.rets)
         if self.sret:
             if self.returns != "value":
@@ -685,7 +817,7 @@ class Lifter:
         if self.frame:
             f = self.frame
             body = [f"    alignas({f['align']}) char stk[{f['size']:#x}];"] + body
-        return "\n".join([f"{rtype} fn_{self.addr:x}({', '.join(ints + floats)}) {{", *body, "}"])
+        return "\n".join([f"{rtype} fn_{self.addr:x}({', '.join(ints + floats)}) {{", *filter(None, body), "}"])
 
     def setup_frame(self, ins) -> bool:
         """Stack locals: the prologue gives sp and fp (offsets from sp at entry) and the save
@@ -1305,17 +1437,23 @@ HEADER = ['#include "types.h"', '#define HIDDEN __attribute__((visibility("hidde
           "inline u32 lift_bits(f32 f) { u32 v; __builtin_memcpy(&v, &f, 4); return v; }",
           "inline u64 lift_bits(f64 f) { u64 v; __builtin_memcpy(&v, &f, 8); return v; }",
           "// Returned in memory through x8 (built in place); the real size is unknown.",
-          "struct UnkResult { char data[0x100]; };", ""]
+          "struct UnkResult { char data[0x100]; };",
+          "// Accesses that may alias any other (the \"alias\" rewrite): the original reloads values",
+          "// a store of another type could have changed.",
+          *[f"typedef {t} __attribute__((may_alias)) a_{t};"
+            for t in ("u8", "u16", "u32", "u64", "s8", "s16", "s32", "f32", "f64")], ""]
 
 
 def lift_all(orig: asmdiff.Original, cands: list[int],
-             why: dict[int, tuple[int, str]] | None = None) -> list[dict[int, tuple[str, set[str]]]]:
+             why: dict[int, tuple[int, str]] | None = None,
+             opts: frozenset = frozenset()) -> list[dict[int, tuple[str, set[str]]]]:
     """Every lifting attempt, in variant order: one {address: (definition, declarations)} per
     attempt. With `why`, the failure that got furthest is kept for each address (earliest
-    attempt on a tie) as (instruction index, reason)."""
+    attempt on a tie) as (instruction index, reason). `opts` are body rewrites (ROUND2)."""
     lifted: list[dict[int, tuple[str, set[str]]]] = []
 
     def attempt(lifter: Lifter, a: int, defs: dict) -> None:
+        lifter.opts = opts
         r = lifter.lift()
         if r:
             defs[a] = r
@@ -1395,7 +1533,28 @@ def build_all(orig: asmdiff.Original, lifted: list[dict[int, tuple[str, set[str]
     return chosen, set().union(*[c for _, c in results])
 
 
-BANDS = [("<256", 0, 256), ("256-1K", 256, 1024), ("1-2K", 1024, 2048), (">2K", 2048, 1 << 62)]
+# Rewrites tried, in order, on functions that compile but don't match as lifted. Each is a
+# separate round (all variants again), so a rewrite never costs a function that matched.
+ROUND2 = [frozenset({"copy", "sort"}), frozenset({"copy", "alias"}), frozenset({"copy", "sort", "alias"})]
+
+
+def lift_rounds(orig: asmdiff.Original, cands: list[int], work: Path,
+                why: dict[int, tuple[int, str]] | None = None):
+    """lift_all + build_all, then each ROUND2 rewrite on what compiled without matching.
+    Returns (chosen, compiled, first-round attempts) as build_all and lift_all do."""
+    lifted = lift_all(orig, cands, why)
+    chosen, compiled = build_all(orig, lifted, work)
+    for k, opts in enumerate(ROUND2):
+        rest = sorted(compiled - set(chosen))
+        if not rest:
+            break
+        more, _ = build_all(orig, lift_all(orig, rest, opts=opts), work / f"round2_{k}")
+        for a in sorted(more):
+            chosen.setdefault(a, more[a])
+    return chosen, compiled, lifted
+
+
+BANDS =[("<256", 0, 256), ("256-1K", 256, 1024), ("1-2K", 1024, 2048), (">2K", 2048, 1 << 62)]
 
 
 def report(orig: asmdiff.Original, addrs: list[int], cands: set[int], examples: int) -> None:
@@ -1403,8 +1562,7 @@ def report(orig: asmdiff.Original, addrs: list[int], cands: set[int], examples: 
     outcome of each by size band: count/KB per row, rows by total bytes."""
     why: dict[int, tuple[int, str]] = {}
     todo = [a for a in addrs if a in cands]
-    lifted = lift_all(orig, todo, why)
-    chosen, compiled = build_all(orig, lifted, ROOT / "build" / "gen_lift_report")
+    chosen, compiled, lifted = lift_rounds(orig, todo, ROOT / "build" / "gen_lift_report", why)
     lifted_any = set().union(*lifted)
     outcome = {}
     for a in addrs:
@@ -1473,8 +1631,7 @@ def main() -> int:
         report(orig, addrs, set(cands), args.examples)
         return 0
 
-    lifted = lift_all(orig, cands)
-    chosen, _ = build_all(orig, lifted, ROOT / "build" / "gen_lift")
+    chosen, _, lifted = lift_rounds(orig, cands, ROOT / "build" / "gen_lift")
 
     if OUT.exists():
         shutil.rmtree(OUT)
