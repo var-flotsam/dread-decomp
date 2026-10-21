@@ -5,7 +5,8 @@ For the next developer, human or AI, picking up this project. Read this, then `C
 (toolchain), and `docs/references.md` (outside projects).
 
 **Thirteenth session (2026-10-21, Linux cloud, branch `claude/project-thread-m3b90j`):** core engine
-types, part 1 (Next steps, item 4). Four functions in `src/base/`; no generator was rerun.
+types (Next steps, item 4): the string pool, CRC64 and the allocator getter in `src/base/`
+(var-flotsam/dread-decomp#20 and the next PR); no generator was rerun.
 
 **Twelfth session (2026-10-21, on the PC, branch `claude/lifter-mismatch-classes`, var-flotsam/dread-decomp#18):** lifter mismatch study
 (Next steps, item 1, "Done (twelfth session)"); `gen_lift.py` and `check.py --update` were rerun,
@@ -542,7 +543,12 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
    the allocator getter (`fn_7100083990`, `O`, a hidden global) and the string release
    (`fn_71000803a4`, `m`: 3 instructions of block layout in the inlined set lookup). CRC64 and
    the constructor sit next to `nnMain`, so `gen_functions_csv.py` infers `runtime?` and marks
-   them `L`; they match but don't count toward progress until that inference is fixed. Left:
+   them `L`; they match but don't count toward progress until that inference is fixed. Then the
+   rest of the pool (`include/base/global/UnkStringPool.h` has the set and node layouts): erase
+   (`fn_7100080a00`, `O`), insert (`fn_71000801e4`, `m`: register allocation around the heap's
+   GOT address) and the buffer compare (`fn_710007f240`, `m`: a select the original speculates).
+   The heap behind the string copies (`g_unk_7101d58d40`; `fn_7100084030` allocates,
+   `fn_7100084144` frees) is a small-block arena with six size classes of 0x28 bytes. Left:
    `UnkReflArray` (the keyed container at `CClass+0x110`, grown by `fn_7100097550`, 916 B: a key
    search, growth through `fn_7100097f80`, an inlined move of the 0xb8-byte `UnkReflFunction`,
    then attribute lookups) and the allocators over the static arena.
