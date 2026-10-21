@@ -4078,7 +4078,7 @@ address,size,name,name_source,subsystem,status
 0x7100bb04b8,244,CCharClassFXCreateTrailEvent::refl_GetClass,reflection,game/characters,O
 0x7100bb05ac,3552,fn_7100bb05ac,unknown,game/characters?,O
 0x7100bb138c,388,CCharClassFXCreateTrailEvent::refl_InitClass,reflection,game/characters,O
-0x7100bb1510,500,fn_7100bb1510,unknown,game/characters?,U
+0x7100bb1510,500,fn_7100bb1510,unknown,game/characters?,O
 0x7100bb1704,32,fn_7100bb1704,unknown,game/characters?,O
 0x7100bb1724,28,fn_7100bb1724,unknown,game/characters?,O
 0x7100bb1740,280,fn_7100bb1740,unknown,game/characters?,U

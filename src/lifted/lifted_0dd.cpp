@@ -10,9 +10,11 @@ inline u32 lift_bits(f32 f) { u32 v; __builtin_memcpy(&v, &f, 4); return v; }
 inline u64 lift_bits(f64 f) { u64 v; __builtin_memcpy(&v, &f, 8); return v; }
 // Inlined helpers on guarded statics (GUARDS).
 namespace lift_guard {
-u32 fn_7100080568(); void fn_710007fdb4(); extern char* g_unk_7101d47108;
+u32 fn_7100080568(); u32 fn_7100080570(); void fn_710007fdb4();
+extern char* g_unk_7101d47108; extern char* g_unk_7101d47200;
 struct StringPoolHolder { u8 unk_0x0[0xe8]; StringPoolHolder(u32 a, char** pool); ~StringPoolHolder(); };
 inline void EnsureStringPool() { static StringPoolHolder s_holder(fn_7100080568(), &g_unk_7101d47108); fn_710007fdb4(); }
+inline void EnsureFilePathPool() { static StringPoolHolder s_holder(fn_7100080570(), &g_unk_7101d47200); fn_710007fdb4(); }
 struct Singleton { Singleton(); ~Singleton(); };
 inline Singleton& GetSingleton() { static Singleton s_singleton; return s_singleton; }
 struct ZeroWord { u32 value; ZeroWord() : value(0) {} };
@@ -1432,6 +1434,7 @@ void fn_7100dd9150() {
 namespace callee { char* fn_7100000250(char*, char*, char*); }
 namespace callee { char* fn_71000003d4(char*, char*, u32); }
 namespace fp { void fn_710000051c(); }
+namespace h { extern HIDDEN char g_unk_7101a19000[]; }
 namespace h { extern HIDDEN char g_unk_71727bdf84[]; }
 char* fn_7100dd9160() {
     char* r0_23 = (char*)h::g_unk_71727bdf84;
@@ -1444,7 +1447,7 @@ char* fn_7100dd9160() {
     *(u32*)((char*)(r0_23) + 0) = (u32)(u64)(r2_8);
     char* r8_0 = callee::fn_71000003d4(r5_0, r4_1, r6_2);
     char* r9_20 = (char*)&fp::fn_710000051c;
-    char* r10_19 = (char*)"";
+    char* r10_19 = (char*)h::g_unk_7101a19000;
     char* r11_2 = r10_19;
     char* r12_0 = r9_20;
     char* r13_1 = r1_21;
@@ -1547,6 +1550,476 @@ char* fn_7100dd9160() {
     return callee::fn_7100000250(r107_0, r108_1, r109_2);
 }
 
+extern char g_unk_71727be010[];
+extern char g_unk_71727be070[];
+extern char g_unk_71727be0d0[];
+extern char g_unk_71727be130[];
+extern char g_unk_71727be190[];
+extern char g_unk_71727be1f0[];
+extern char g_unk_71727be1f8[];
+extern char g_unk_71727be200[];
+namespace callee { char* fn_7100000250(char*, char*, char*); }
+namespace callee { char* fn_7100000250(char*, u64, char*); }
+namespace callee { char* fn_71000003d4(char*, char*, u32); }
+namespace callee { char* fn_71000166c8(char*, char*, u32); }
+namespace fp { void fn_710000051c(); }
+namespace fp { void fn_7100000c7c(); }
+namespace h { extern HIDDEN char g_unk_7101a19000[]; }
+namespace h { extern HIDDEN char g_unk_71727be208[]; }
+namespace hf { HIDDEN void fn_7100dd9370(); }
+namespace hf { HIDDEN void fn_7100dd96f0(); }
+namespace hf { HIDDEN void fn_7100dd9a70(); }
+namespace hf { HIDDEN void fn_7100dd9df0(); }
+namespace hf { HIDDEN void fn_7100dda170(); }
+namespace hf { HIDDEN void fn_7100dda4f0(); }
+namespace hf { HIDDEN void fn_7100dda8a0(); }
+char* fn_7100ddac50() {
+    char* r0_27 = (char*)h::g_unk_71727be208;
+    u32 r1_8 = 0x6;
+    char* r2_20 = r0_27;
+    char* r3_1 = (char*)"binaries";
+    u32 r4_2 = 0x1;
+    char* r5_20 = (char*)(r2_20) + 8;
+    *(u32*)((char*)(r2_20) + 0) = (u32)(u64)(r1_8);
+    char* r7_0 = r5_20;
+    char* r8_0 = callee::fn_71000003d4(r7_0, r3_1, r4_2);
+    char* r9_21 = (char*)&fp::fn_710000051c;
+    char* r10_19 = (char*)h::g_unk_7101a19000;
+    char* r11_2 = r10_19;
+    char* r12_0 = r9_21;
+    char* r13_1 = r5_20;
+    char* r14_0 = callee::fn_7100000250(r12_0, r13_1, r11_2);
+    char* r15_20 = (r0_27) + 16;
+    char* r16_1 = (char*)"sources";
+    char* r17_0 = r15_20;
+    u32 r18_2 = 0x1;
+    char* r19_0 = callee::fn_71000003d4(r17_0, r16_1, r18_2);
+    char* r20_0 = r9_21;
+    char* r21_1 = r15_20;
+    char* r22_2 = r10_19;
+    char* r23_0 = callee::fn_7100000250(r20_0, r21_1, r22_2);
+    char* r24_20 = (char*)g_unk_71727be010;
+    char* r25_1 = (char*)"gui/textures/bossrush/loading/def/01.bctex";
+    char* r26_0 = r24_20;
+    u32 r27_2 = 0x1;
+    char* r28_0 = callee::fn_71000166c8(r26_0, r25_1, r27_2);
+    char* r29_0 = (r24_20) + 8;
+    char* r30_1 = (char*)"gui/textures/bossrush/loading/def/02.bctex";
+    u32 r31_2 = 0x1;
+    char* r32_0 = callee::fn_71000166c8(r29_0, r30_1, r31_2);
+    char* r33_0 = (r24_20) + 16;
+    char* r34_1 = (char*)"gui/textures/bossrush/loading/def/03.bctex";
+    u32 r35_2 = 0x1;
+    char* r36_0 = callee::fn_71000166c8(r33_0, r34_1, r35_2);
+    char* r37_0 = (r24_20) + 24;
+    char* r38_1 = (char*)"gui/textures/bossrush/loading/def/04.bctex";
+    u32 r39_2 = 0x1;
+    char* r40_0 = callee::fn_71000166c8(r37_0, r38_1, r39_2);
+    char* r41_0 = (r24_20) + 32;
+    char* r42_1 = (char*)"gui/textures/bossrush/loading/def/05.bctex";
+    u32 r43_2 = 0x1;
+    char* r44_0 = callee::fn_71000166c8(r41_0, r42_1, r43_2);
+    char* r45_0 = (r24_20) + 40;
+    char* r46_1 = (char*)"gui/textures/bossrush/loading/def/06.bctex";
+    u32 r47_2 = 0x1;
+    char* r48_0 = callee::fn_71000166c8(r45_0, r46_1, r47_2);
+    char* r49_0 = (r24_20) + 48;
+    char* r50_1 = (char*)"gui/textures/bossrush/loading/def/07.bctex";
+    u32 r51_2 = 0x1;
+    char* r52_0 = callee::fn_71000166c8(r49_0, r50_1, r51_2);
+    char* r53_0 = (r24_20) + 56;
+    char* r54_1 = (char*)"gui/textures/bossrush/loading/def/08.bctex";
+    u32 r55_2 = 0x1;
+    char* r56_0 = callee::fn_71000166c8(r53_0, r54_1, r55_2);
+    char* r57_0 = (r24_20) + 64;
+    char* r58_1 = (char*)"gui/textures/bossrush/loading/def/09.bctex";
+    u32 r59_2 = 0x1;
+    char* r60_0 = callee::fn_71000166c8(r57_0, r58_1, r59_2);
+    char* r61_0 = (r24_20) + 72;
+    char* r62_1 = (char*)"gui/textures/bossrush/loading/def/10.bctex";
+    u32 r63_2 = 0x1;
+    char* r64_0 = callee::fn_71000166c8(r61_0, r62_1, r63_2);
+    char* r65_0 = (r24_20) + 80;
+    char* r66_1 = (char*)"gui/textures/bossrush/loading/def/11.bctex";
+    u32 r67_2 = 0x1;
+    char* r68_0 = callee::fn_71000166c8(r65_0, r66_1, r67_2);
+    char* r69_0 = (r24_20) + 88;
+    char* r70_1 = (char*)"gui/textures/bossrush/loading/def/12.bctex";
+    u32 r71_2 = 0x1;
+    char* r72_0 = callee::fn_71000166c8(r69_0, r70_1, r71_2);
+    char* r73_0 = (char*)&hf::fn_7100dd9370;
+    u64 r74_1 = 0;
+    char* r75_2 = r10_19;
+    char* r76_0 = callee::fn_7100000250(r73_0, r74_1, r75_2);
+    char* r77_20 = (char*)g_unk_71727be070;
+    char* r78_1 = (char*)"gui/textures/bossrush/loading/dre/01.bctex";
+    char* r79_0 = r77_20;
+    u32 r80_2 = 0x1;
+    char* r81_0 = callee::fn_71000166c8(r79_0, r78_1, r80_2);
+    char* r82_0 = (r77_20) + 8;
+    char* r83_1 = (char*)"gui/textures/bossrush/loading/dre/02.bctex";
+    u32 r84_2 = 0x1;
+    char* r85_0 = callee::fn_71000166c8(r82_0, r83_1, r84_2);
+    char* r86_0 = (r77_20) + 16;
+    char* r87_1 = (char*)"gui/textures/bossrush/loading/dre/03.bctex";
+    u32 r88_2 = 0x1;
+    char* r89_0 = callee::fn_71000166c8(r86_0, r87_1, r88_2);
+    char* r90_0 = (r77_20) + 24;
+    char* r91_1 = (char*)"gui/textures/bossrush/loading/dre/04.bctex";
+    u32 r92_2 = 0x1;
+    char* r93_0 = callee::fn_71000166c8(r90_0, r91_1, r92_2);
+    char* r94_0 = (r77_20) + 32;
+    char* r95_1 = (char*)"gui/textures/bossrush/loading/dre/05.bctex";
+    u32 r96_2 = 0x1;
+    char* r97_0 = callee::fn_71000166c8(r94_0, r95_1, r96_2);
+    char* r98_0 = (r77_20) + 40;
+    char* r99_1 = (char*)"gui/textures/bossrush/loading/dre/06.bctex";
+    u32 r100_2 = 0x1;
+    char* r101_0 = callee::fn_71000166c8(r98_0, r99_1, r100_2);
+    char* r102_0 = (r77_20) + 48;
+    char* r103_1 = (char*)"gui/textures/bossrush/loading/dre/07.bctex";
+    u32 r104_2 = 0x1;
+    char* r105_0 = callee::fn_71000166c8(r102_0, r103_1, r104_2);
+    char* r106_0 = (r77_20) + 56;
+    char* r107_1 = (char*)"gui/textures/bossrush/loading/dre/08.bctex";
+    u32 r108_2 = 0x1;
+    char* r109_0 = callee::fn_71000166c8(r106_0, r107_1, r108_2);
+    char* r110_0 = (r77_20) + 64;
+    char* r111_1 = (char*)"gui/textures/bossrush/loading/dre/09.bctex";
+    u32 r112_2 = 0x1;
+    char* r113_0 = callee::fn_71000166c8(r110_0, r111_1, r112_2);
+    char* r114_0 = (r77_20) + 72;
+    char* r115_1 = (char*)"gui/textures/bossrush/loading/dre/10.bctex";
+    u32 r116_2 = 0x1;
+    char* r117_0 = callee::fn_71000166c8(r114_0, r115_1, r116_2);
+    char* r118_0 = (r77_20) + 80;
+    char* r119_1 = (char*)"gui/textures/bossrush/loading/dre/11.bctex";
+    u32 r120_2 = 0x1;
+    char* r121_0 = callee::fn_71000166c8(r118_0, r119_1, r120_2);
+    char* r122_0 = (r77_20) + 88;
+    char* r123_1 = (char*)"gui/textures/bossrush/loading/dre/12.bctex";
+    u32 r124_2 = 0x1;
+    char* r125_0 = callee::fn_71000166c8(r122_0, r123_1, r124_2);
+    char* r126_0 = (char*)&hf::fn_7100dd96f0;
+    u64 r127_1 = 0;
+    char* r128_2 = r10_19;
+    char* r129_0 = callee::fn_7100000250(r126_0, r127_1, r128_2);
+    char* r130_23 = (char*)g_unk_71727be0d0;
+    char* r131_1 = (char*)"gui/textures/bossrush/loading/pra/01.bctex";
+    char* r132_0 = r130_23;
+    u32 r133_2 = 0x1;
+    char* r134_0 = callee::fn_71000166c8(r132_0, r131_1, r133_2);
+    char* r135_0 = (r130_23) + 8;
+    char* r136_1 = (char*)"gui/textures/bossrush/loading/pra/02.bctex";
+    u32 r137_2 = 0x1;
+    char* r138_0 = callee::fn_71000166c8(r135_0, r136_1, r137_2);
+    char* r139_0 = (r130_23) + 16;
+    char* r140_1 = (char*)"gui/textures/bossrush/loading/pra/03.bctex";
+    u32 r141_2 = 0x1;
+    char* r142_0 = callee::fn_71000166c8(r139_0, r140_1, r141_2);
+    char* r143_0 = (r130_23) + 24;
+    char* r144_1 = (char*)"gui/textures/bossrush/loading/pra/04.bctex";
+    u32 r145_2 = 0x1;
+    char* r146_0 = callee::fn_71000166c8(r143_0, r144_1, r145_2);
+    char* r147_0 = (r130_23) + 32;
+    char* r148_1 = (char*)"gui/textures/bossrush/loading/pra/05.bctex";
+    u32 r149_2 = 0x1;
+    char* r150_0 = callee::fn_71000166c8(r147_0, r148_1, r149_2);
+    char* r151_26 = (char*)"gui/textures/bossrush/loading/pra/06.bctex";
+    char* r152_0 = (r130_23) + 40;
+    char* r153_1 = r151_26;
+    u32 r154_2 = 0x1;
+    char* r155_0 = callee::fn_71000166c8(r152_0, r153_1, r154_2);
+    char* r156_25 = (char*)"gui/textures/bossrush/loading/pra/07.bctex";
+    char* r157_0 = (r130_23) + 48;
+    char* r158_1 = r156_25;
+    u32 r159_2 = 0x1;
+    char* r160_0 = callee::fn_71000166c8(r157_0, r158_1, r159_2);
+    char* r161_28 = (char*)"gui/textures/bossrush/loading/pra/08.bctex";
+    char* r162_0 = (r130_23) + 56;
+    char* r163_1 = r161_28;
+    u32 r164_2 = 0x1;
+    char* r165_0 = callee::fn_71000166c8(r162_0, r163_1, r164_2);
+    char* r166_20 = (char*)"gui/textures/bossrush/loading/pra/09.bctex";
+    char* r167_0 = (r130_23) + 64;
+    char* r168_1 = r166_20;
+    u32 r169_2 = 0x1;
+    char* r170_0 = callee::fn_71000166c8(r167_0, r168_1, r169_2);
+    char* r171_21 = (char*)"gui/textures/bossrush/loading/pra/10.bctex";
+    char* r172_0 = (r130_23) + 72;
+    char* r173_1 = r171_21;
+    u32 r174_2 = 0x1;
+    char* r175_0 = callee::fn_71000166c8(r172_0, r173_1, r174_2);
+    char* r176_22 = (char*)"gui/textures/bossrush/loading/pra/11.bctex";
+    char* r177_0 = (r130_23) + 80;
+    char* r178_1 = r176_22;
+    u32 r179_2 = 0x1;
+    char* r180_0 = callee::fn_71000166c8(r177_0, r178_1, r179_2);
+    char* r181_0 = (r130_23) + 88;
+    char* r182_23 = (char*)"gui/textures/bossrush/loading/pra/12.bctex";
+    char* r183_1 = r182_23;
+    u32 r184_2 = 0x1;
+    char* r185_0 = callee::fn_71000166c8(r181_0, r183_1, r184_2);
+    char* r186_0 = (char*)&hf::fn_7100dd9a70;
+    u64 r187_1 = 0;
+    char* r188_2 = r10_19;
+    char* r189_0 = callee::fn_7100000250(r186_0, r187_1, r188_2);
+    char* r190_24 = (char*)g_unk_71727be130;
+    char* r191_1 = (char*)"gui/textures/bossrush/loading/prd/01.bctex";
+    char* r192_0 = r190_24;
+    u32 r193_2 = 0x1;
+    char* r194_0 = callee::fn_71000166c8(r192_0, r191_1, r193_2);
+    char* r195_0 = (r190_24) + 8;
+    char* r196_1 = (char*)"gui/textures/bossrush/loading/prd/02.bctex";
+    u32 r197_2 = 0x1;
+    char* r198_0 = callee::fn_71000166c8(r195_0, r196_1, r197_2);
+    char* r199_0 = (r190_24) + 16;
+    char* r200_1 = (char*)"gui/textures/bossrush/loading/prd/03.bctex";
+    u32 r201_2 = 0x1;
+    char* r202_0 = callee::fn_71000166c8(r199_0, r200_1, r201_2);
+    char* r203_0 = (r190_24) + 24;
+    char* r204_1 = (char*)"gui/textures/bossrush/loading/prd/04.bctex";
+    u32 r205_2 = 0x1;
+    char* r206_0 = callee::fn_71000166c8(r203_0, r204_1, r205_2);
+    char* r207_0 = (r190_24) + 32;
+    char* r208_1 = (char*)"gui/textures/bossrush/loading/prd/05.bctex";
+    u32 r209_2 = 0x1;
+    char* r210_0 = callee::fn_71000166c8(r207_0, r208_1, r209_2);
+    char* r211_0 = (r190_24) + 40;
+    char* r212_1 = (char*)"gui/textures/bossrush/loading/prd/06.bctex";
+    u32 r213_2 = 0x1;
+    char* r214_0 = callee::fn_71000166c8(r211_0, r212_1, r213_2);
+    char* r215_0 = (r190_24) + 48;
+    char* r216_1 = (char*)"gui/textures/bossrush/loading/prd/07.bctex";
+    u32 r217_2 = 0x1;
+    char* r218_0 = callee::fn_71000166c8(r215_0, r216_1, r217_2);
+    char* r219_0 = (r190_24) + 56;
+    char* r220_1 = (char*)"gui/textures/bossrush/loading/prd/08.bctex";
+    u32 r221_2 = 0x1;
+    char* r222_0 = callee::fn_71000166c8(r219_0, r220_1, r221_2);
+    char* r223_0 = (r190_24) + 64;
+    char* r224_1 = (char*)"gui/textures/bossrush/loading/prd/09.bctex";
+    u32 r225_2 = 0x1;
+    char* r226_0 = callee::fn_71000166c8(r223_0, r224_1, r225_2);
+    char* r227_0 = (r190_24) + 72;
+    char* r228_1 = (char*)"gui/textures/bossrush/loading/prd/10.bctex";
+    u32 r229_2 = 0x1;
+    char* r230_0 = callee::fn_71000166c8(r227_0, r228_1, r229_2);
+    char* r231_0 = (r190_24) + 80;
+    char* r232_1 = (char*)"gui/textures/bossrush/loading/prd/11.bctex";
+    u32 r233_2 = 0x1;
+    char* r234_0 = callee::fn_71000166c8(r231_0, r232_1, r233_2);
+    char* r235_0 = (r190_24) + 88;
+    char* r236_1 = (char*)"gui/textures/bossrush/loading/prd/12.bctex";
+    u32 r237_2 = 0x1;
+    char* r238_0 = callee::fn_71000166c8(r235_0, r236_1, r237_2);
+    char* r239_0 = (char*)&hf::fn_7100dd9df0;
+    u64 r240_1 = 0;
+    char* r241_2 = r10_19;
+    char* r242_0 = callee::fn_7100000250(r239_0, r240_1, r241_2);
+    char* r243_24 = (char*)g_unk_71727be190;
+    char* r244_0 = r243_24;
+    char* r245_1 = (char*)"gui/textures/bossrush/loading/pra/01.bctex";
+    u32 r246_2 = 0x1;
+    char* r247_0 = callee::fn_71000166c8(r244_0, r245_1, r246_2);
+    char* r248_0 = (r243_24) + 8;
+    char* r249_1 = (char*)"gui/textures/bossrush/loading/pra/02.bctex";
+    u32 r250_2 = 0x1;
+    char* r251_0 = callee::fn_71000166c8(r248_0, r249_1, r250_2);
+    char* r252_0 = (r243_24) + 16;
+    char* r253_1 = (char*)"gui/textures/bossrush/loading/pra/03.bctex";
+    u32 r254_2 = 0x1;
+    char* r255_0 = callee::fn_71000166c8(r252_0, r253_1, r254_2);
+    char* r256_0 = (r243_24) + 24;
+    char* r257_1 = (char*)"gui/textures/bossrush/loading/pra/04.bctex";
+    u32 r258_2 = 0x1;
+    char* r259_0 = callee::fn_71000166c8(r256_0, r257_1, r258_2);
+    char* r260_0 = (r243_24) + 32;
+    char* r261_1 = (char*)"gui/textures/bossrush/loading/pra/05.bctex";
+    u32 r262_2 = 0x1;
+    char* r263_0 = callee::fn_71000166c8(r260_0, r261_1, r262_2);
+    char* r264_0 = (r243_24) + 40;
+    char* r265_1 = r151_26;
+    u32 r266_2 = 0x1;
+    char* r267_0 = callee::fn_71000166c8(r264_0, r265_1, r266_2);
+    char* r268_0 = (r243_24) + 48;
+    char* r269_1 = r156_25;
+    u32 r270_2 = 0x1;
+    char* r271_0 = callee::fn_71000166c8(r268_0, r269_1, r270_2);
+    char* r272_0 = (r243_24) + 56;
+    char* r273_1 = r161_28;
+    u32 r274_2 = 0x1;
+    char* r275_0 = callee::fn_71000166c8(r272_0, r273_1, r274_2);
+    char* r276_0 = (r243_24) + 64;
+    char* r277_1 = r166_20;
+    u32 r278_2 = 0x1;
+    char* r279_0 = callee::fn_71000166c8(r276_0, r277_1, r278_2);
+    char* r280_0 = (r243_24) + 72;
+    char* r281_1 = r171_21;
+    u32 r282_2 = 0x1;
+    char* r283_0 = callee::fn_71000166c8(r280_0, r281_1, r282_2);
+    char* r284_0 = (r243_24) + 80;
+    char* r285_1 = r176_22;
+    u32 r286_2 = 0x1;
+    char* r287_0 = callee::fn_71000166c8(r284_0, r285_1, r286_2);
+    char* r288_0 = (r243_24) + 88;
+    char* r289_1 = r182_23;
+    u32 r290_2 = 0x1;
+    char* r291_0 = callee::fn_71000166c8(r288_0, r289_1, r290_2);
+    char* r292_0 = (char*)&hf::fn_7100dda170;
+    u64 r293_1 = 0;
+    char* r294_2 = r10_19;
+    char* r295_0 = callee::fn_7100000250(r292_0, r293_1, r294_2);
+    char* r296_20 = (char*)g_unk_71727be1f0;
+    char* r297_1 = (char*)"gui/textures/bossrush/results_01.bctex";
+    char* r298_0 = r296_20;
+    u32 r299_2 = 0x1;
+    char* r300_0 = callee::fn_71000166c8(r298_0, r297_1, r299_2);
+    char* r301_21 = (char*)&fp::fn_7100000c7c;
+    char* r302_0 = r301_21;
+    char* r303_1 = r296_20;
+    char* r304_2 = r10_19;
+    char* r305_0 = callee::fn_7100000250(r302_0, r303_1, r304_2);
+    char* r306_20 = (char*)g_unk_71727be1f8;
+    char* r307_1 = (char*)"gui/textures/bossrush/results_02.bctex";
+    char* r308_0 = r306_20;
+    u32 r309_2 = 0x1;
+    char* r310_0 = callee::fn_71000166c8(r308_0, r307_1, r309_2);
+    char* r311_0 = r301_21;
+    char* r312_1 = r306_20;
+    char* r313_2 = r10_19;
+    char* r314_0 = callee::fn_7100000250(r311_0, r312_1, r313_2);
+    char* r315_20 = (char*)g_unk_71727be200;
+    char* r316_1 = (char*)"gui/textures/bossrush/bossrush_samus_stats.bctex";
+    char* r317_0 = r315_20;
+    u32 r318_2 = 0x1;
+    char* r319_0 = callee::fn_71000166c8(r317_0, r316_1, r318_2);
+    char* r320_0 = r301_21;
+    char* r321_1 = r315_20;
+    char* r322_2 = r10_19;
+    char* r323_0 = callee::fn_7100000250(r320_0, r321_1, r322_2);
+    char* r324_20 = (r0_27) + 24;
+    char* r325_1 = (char*)"";
+    char* r326_0 = r324_20;
+    u32 r327_2 = 0x1;
+    char* r328_0 = callee::fn_71000003d4(r326_0, r325_1, r327_2);
+    char* r329_0 = (char*)&fp::fn_710000051c;
+    char* r330_1 = r324_20;
+    char* r331_2 = r10_19;
+    char* r332_0 = callee::fn_7100000250(r329_0, r330_1, r331_2);
+    char* r333_20 = (char*)"#GUI_BOSSRUSH_BOSS_CORPIUS";
+    char* r334_0 = (r0_27) + 32;
+    char* r335_1 = r333_20;
+    u32 r336_2 = 0x1;
+    char* r337_0 = callee::fn_71000003d4(r334_0, r335_1, r336_2);
+    char* r338_21 = (char*)"#GUI_BOSSRUSH_BOSS_KRAID";
+    char* r339_0 = (r0_27) + 40;
+    char* r340_1 = r338_21;
+    u32 r341_2 = 0x1;
+    char* r342_0 = callee::fn_71000003d4(r339_0, r340_1, r341_2);
+    char* r343_0 = (r0_27) + 48;
+    char* r344_1 = (char*)"#GUI_BOSSRUSH_BOSS_CU_ARTARIA";
+    u32 r345_2 = 0x1;
+    char* r346_0 = callee::fn_71000003d4(r343_0, r344_1, r345_2);
+    char* r347_22 = (char*)"#GUI_BOSSRUSH_BOSS_DROGYGA";
+    char* r348_0 = (r0_27) + 56;
+    char* r349_1 = r347_22;
+    u32 r350_2 = 0x1;
+    char* r351_0 = callee::fn_71000003d4(r348_0, r349_1, r350_2);
+    char* r352_0 = (r0_27) + 64;
+    char* r353_1 = (char*)"#GUI_BOSSRUSH_BOSS_RCS";
+    u32 r354_2 = 0x1;
+    char* r355_0 = callee::fn_71000003d4(r352_0, r353_1, r354_2);
+    char* r356_23 = (char*)"#GUI_BOSSRUSH_BOSS_ESCUE";
+    char* r357_0 = (r0_27) + 72;
+    char* r358_1 = r356_23;
+    u32 r359_2 = 0x1;
+    char* r360_0 = callee::fn_71000003d4(r357_0, r358_1, r359_2);
+    char* r361_24 = (char*)"#GUI_BOSSRUSH_BOSS_EXPERIMENT_NO_Z57";
+    char* r362_0 = (r0_27) + 80;
+    char* r363_1 = r361_24;
+    u32 r364_2 = 0x1;
+    char* r365_0 = callee::fn_71000003d4(r362_0, r363_1, r364_2);
+    char* r366_0 = (r0_27) + 88;
+    char* r367_1 = (char*)"#GUI_BOSSRUSH_BOSS_TWIN_RCS";
+    u32 r368_2 = 0x1;
+    char* r369_0 = callee::fn_71000003d4(r366_0, r367_1, r368_2);
+    char* r370_25 = (char*)"#GUI_BOSSRUSH_BOSS_GOLZUNA";
+    char* r371_0 = (r0_27) + 96;
+    char* r372_1 = r370_25;
+    u32 r373_2 = 0x1;
+    char* r374_0 = callee::fn_71000003d4(r371_0, r372_1, r373_2);
+    char* r375_0 = (r0_27) + 104;
+    char* r376_1 = (char*)"#GUI_BOSSRUSH_BOSS_ELITE_CS";
+    u32 r377_2 = 0x1;
+    char* r378_0 = callee::fn_71000003d4(r375_0, r376_1, r377_2);
+    char* r379_0 = (r0_27) + 112;
+    char* r380_1 = (char*)"#GUI_BOSSRUSH_BOSS_CU_FERENIA";
+    u32 r381_2 = 0x1;
+    char* r382_0 = callee::fn_71000003d4(r379_0, r380_1, r381_2);
+    char* r383_26 = (char*)"#GUI_BOSSRUSH_BOSS_RAVEN_BEAK";
+    char* r384_0 = (r0_27) + 120;
+    char* r385_1 = r383_26;
+    u32 r386_2 = 0x1;
+    char* r387_0 = callee::fn_71000003d4(r384_0, r385_1, r386_2);
+    char* r388_0 = (char*)&hf::fn_7100dda4f0;
+    u64 r389_1 = 0;
+    char* r390_2 = r10_19;
+    char* r391_0 = callee::fn_7100000250(r388_0, r389_1, r390_2);
+    char* r392_0 = (r0_27) + 128;
+    char* r393_1 = r333_20;
+    u32 r394_2 = 0x1;
+    char* r395_0 = callee::fn_71000003d4(r392_0, r393_1, r394_2);
+    char* r396_0 = (r0_27) + 136;
+    char* r397_1 = r338_21;
+    u32 r398_2 = 0x1;
+    char* r399_0 = callee::fn_71000003d4(r396_0, r397_1, r398_2);
+    char* r400_0 = (r0_27) + 144;
+    char* r401_1 = (char*)"#GUI_BOSSRUSH_BOSS_CU_ARTARIA_PRACTICE";
+    u32 r402_2 = 0x1;
+    char* r403_0 = callee::fn_71000003d4(r400_0, r401_1, r402_2);
+    char* r404_0 = (r0_27) + 152;
+    char* r405_1 = r347_22;
+    u32 r406_2 = 0x1;
+    char* r407_0 = callee::fn_71000003d4(r404_0, r405_1, r406_2);
+    char* r408_0 = (r0_27) + 160;
+    char* r409_1 = (char*)"#GUI_BOSSRUSH_BOSS_RCS_PRACTICE";
+    u32 r410_2 = 0x1;
+    char* r411_0 = callee::fn_71000003d4(r408_0, r409_1, r410_2);
+    char* r412_0 = (r0_27) + 168;
+    char* r413_1 = r356_23;
+    u32 r414_2 = 0x1;
+    char* r415_0 = callee::fn_71000003d4(r412_0, r413_1, r414_2);
+    char* r416_0 = (r0_27) + 176;
+    char* r417_1 = r361_24;
+    u32 r418_2 = 0x1;
+    char* r419_0 = callee::fn_71000003d4(r416_0, r417_1, r418_2);
+    char* r420_0 = (r0_27) + 184;
+    char* r421_1 = (char*)"#GUI_BOSSRUSH_BOSS_TWIN_RCS_PRACTICE";
+    u32 r422_2 = 0x1;
+    char* r423_0 = callee::fn_71000003d4(r420_0, r421_1, r422_2);
+    char* r424_0 = (r0_27) + 192;
+    char* r425_1 = r370_25;
+    u32 r426_2 = 0x1;
+    char* r427_0 = callee::fn_71000003d4(r424_0, r425_1, r426_2);
+    char* r428_0 = (r0_27) + 200;
+    char* r429_1 = (char*)"#GUI_BOSSRUSH_BOSS_ELITE_CS_PRACTICE";
+    u32 r430_2 = 0x1;
+    char* r431_0 = callee::fn_71000003d4(r428_0, r429_1, r430_2);
+    char* r432_0 = (r0_27) + 208;
+    char* r433_1 = (char*)"#GUI_BOSSRUSH_BOSS_CU_FERENIA_PRACTICE";
+    u32 r434_2 = 0x1;
+    char* r435_0 = callee::fn_71000003d4(r432_0, r433_1, r434_2);
+    char* r436_0 = (r0_27) + 216;
+    char* r437_1 = r383_26;
+    u32 r438_2 = 0x1;
+    char* r439_0 = callee::fn_71000003d4(r436_0, r437_1, r438_2);
+    char* r440_2 = r10_19;
+    char* r441_0 = (char*)&hf::fn_7100dda8a0;
+    u64 r442_1 = 0;
+    return callee::fn_7100000250(r441_0, r442_1, r440_2);
+}
+
 extern char g_unk_7101d47200[];
 extern char g_unk_71727be200[];
 UnkResult fn_7100ddb670() {
@@ -1587,6 +2060,7 @@ void fn_7100ddb6f4() {
 namespace callee { char* fn_7100000250(char*, char*, char*); }
 namespace callee { char* fn_71000003d4(char*, char*, u32); }
 namespace fp { void fn_710000051c(); }
+namespace h { extern HIDDEN char g_unk_7101a19000[]; }
 namespace h { extern HIDDEN char g_unk_71727be2e8[]; }
 char* fn_7100ddbc60() {
     char* r0_22 = (char*)h::g_unk_71727be2e8;
@@ -1599,7 +2073,7 @@ char* fn_7100ddbc60() {
     char* r7_0 = r5_19;
     char* r8_0 = callee::fn_71000003d4(r7_0, r3_1, r4_2);
     char* r9_20 = (char*)&fp::fn_710000051c;
-    char* r10_21 = (char*)"";
+    char* r10_21 = (char*)h::g_unk_7101a19000;
     char* r11_2 = r10_21;
     char* r12_0 = r9_20;
     char* r13_1 = r5_19;
@@ -1672,6 +2146,7 @@ char* fn_7100ddbf58(char* p0) {
 namespace callee { char* fn_7100000250(char*, char*, char*); }
 namespace callee { char* fn_71000003d4(char*, char*, u32); }
 namespace fp { void fn_710000051c(); }
+namespace h { extern HIDDEN char g_unk_7101a19000[]; }
 namespace h { extern HIDDEN char g_unk_71727be300[]; }
 char* fn_7100dddea0() {
     char* r0_22 = (char*)h::g_unk_71727be300;
@@ -1684,7 +2159,7 @@ char* fn_7100dddea0() {
     u32 r7_23 = 0x1;
     char* r8_0 = callee::fn_71000003d4(r5_0, r4_1, r6_2);
     char* r9_20 = (char*)&fp::fn_710000051c;
-    char* r10_21 = (char*)"";
+    char* r10_21 = (char*)h::g_unk_7101a19000;
     char* r11_2 = r10_21;
     char* r12_0 = r9_20;
     char* r13_1 = r1_19;
@@ -1710,6 +2185,7 @@ namespace callee { char* fn_7100000250(char*, u64, char*); }
 namespace callee { char* fn_71000003d4(char*, char*, u32); }
 namespace callee { char* fn_71000166c8(char*, char*, u32); }
 namespace fp { void fn_710000051c(); }
+namespace h { extern HIDDEN char g_unk_7101a19000[]; }
 namespace h { extern HIDDEN char g_unk_71727be328[]; }
 namespace hf { HIDDEN void fn_7100dddf50(); }
 char* fn_7100dde000() {
@@ -1723,7 +2199,7 @@ char* fn_7100dde000() {
     char* r7_0 = r5_19;
     char* r8_0 = callee::fn_71000003d4(r7_0, r3_1, r4_2);
     char* r9_20 = (char*)&fp::fn_710000051c;
-    char* r10_21 = (char*)"";
+    char* r10_21 = (char*)h::g_unk_7101a19000;
     char* r11_2 = r10_21;
     char* r12_0 = r9_20;
     char* r13_1 = r5_19;
@@ -1766,6 +2242,7 @@ void fn_7100dde79c() {
 namespace callee { char* fn_7100000250(char*, char*, char*); }
 namespace callee { char* fn_71000003d4(char*, char*, u32); }
 namespace fp { void fn_710000051c(); }
+namespace h { extern HIDDEN char g_unk_7101a19000[]; }
 namespace h { extern HIDDEN char g_unk_71727be350[]; }
 char* fn_7100ddeb30() {
     char* r0_22 = (char*)h::g_unk_71727be350;
@@ -1778,7 +2255,7 @@ char* fn_7100ddeb30() {
     char* r7_0 = r5_19;
     char* r8_0 = callee::fn_71000003d4(r7_0, r3_1, r4_2);
     char* r9_20 = (char*)&fp::fn_710000051c;
-    char* r10_21 = (char*)"";
+    char* r10_21 = (char*)h::g_unk_7101a19000;
     char* r11_2 = r10_21;
     char* r12_0 = r9_20;
     char* r13_1 = r5_19;
@@ -1908,6 +2385,7 @@ char* fn_7100ddecfc(char* p0, u32 p1) {
 namespace callee { char* fn_7100000250(char*, char*, char*); }
 namespace callee { char* fn_71000003d4(char*, char*, u32); }
 namespace fp { void fn_710000051c(); }
+namespace h { extern HIDDEN char g_unk_7101a19000[]; }
 namespace h { extern HIDDEN char g_unk_71727be368[]; }
 char* fn_7100dded10() {
     char* r0_22 = (char*)h::g_unk_71727be368;
@@ -1920,7 +2398,7 @@ char* fn_7100dded10() {
     char* r7_0 = r5_19;
     char* r8_0 = callee::fn_71000003d4(r7_0, r3_1, r4_2);
     char* r9_20 = (char*)&fp::fn_710000051c;
-    char* r10_21 = (char*)"";
+    char* r10_21 = (char*)h::g_unk_7101a19000;
     char* r11_2 = r10_21;
     char* r12_0 = r9_20;
     char* r13_1 = r5_19;

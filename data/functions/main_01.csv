@@ -3822,7 +3822,7 @@ address,size,name,name_source,subsystem,status
 0x71001be078,340,fn_71001be078,unknown,unknown,O
 0x71001be1cc,604,fn_71001be1cc,unknown,unknown,U
 0x71001be428,8,fn_71001be428,unknown,unknown,O
-0x71001be430,60,fn_71001be430,unknown,unknown,O
+0x71001be430,60,fn_71001be430,unknown,unknown,U
 0x71001be46c,2680,fn_71001be46c,unknown,unknown,U
 0x71001beee4,80,fn_71001beee4,unknown,unknown,U
 0x71001bef34,308,fn_71001bef34,unknown,unknown,U

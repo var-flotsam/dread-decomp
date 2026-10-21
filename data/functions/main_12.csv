@@ -92,7 +92,7 @@ address,size,name,name_source,subsystem,status
 0x71012037cc,16,fn_71012037cc,unknown,unknown,O
 0x71012037dc,16,fn_71012037dc,unknown,unknown,O
 0x71012037ec,16,fn_71012037ec,unknown,unknown,O
-0x71012037fc,80,fn_71012037fc,unknown,unknown,O
+0x71012037fc,80,fn_71012037fc,unknown,unknown,U
 0x710120384c,8,fn_710120384c,unknown,unknown,O
 0x7101203854,24,fn_7101203854,unknown,unknown,O
 0x710120386c,24,fn_710120386c,unknown,unknown,O
