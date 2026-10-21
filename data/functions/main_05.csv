@@ -152,8 +152,8 @@ address,size,name,name_source,subsystem,status
 0x710050512c,100,fn_710050512c,unknown,unknown,O
 0x7100505190,1460,fn_7100505190,unknown,unknown,U
 0x7100505744,844,fn_7100505744,unknown,unknown,U
-0x7100505a90,44,fn_7100505a90,unknown,unknown,U
-0x7100505abc,28,fn_7100505abc,unknown,unknown,U
+0x7100505a90,44,fn_7100505a90,unknown,unknown,O
+0x7100505abc,28,fn_7100505abc,unknown,unknown,O
 0x7100505ad8,36,fn_7100505ad8,unknown,unknown,O
 0x7100505afc,100,fn_7100505afc,unknown,unknown,U
 0x7100505b60,1652,fn_7100505b60,unknown,unknown,U
@@ -417,7 +417,7 @@ address,size,name,name_source,subsystem,status
 0x7100516a68,8,fn_7100516a68,unknown,ai/behaviortree?,O
 0x7100516a70,8,fn_7100516a70,unknown,ai/behaviortree?,O
 0x7100516a78,28,fn_7100516a78,unknown,ai/behaviortree?,O
-0x7100516a94,56,fn_7100516a94,unknown,ai/behaviortree?,U
+0x7100516a94,56,fn_7100516a94,unknown,ai/behaviortree?,O
 0x7100516acc,12,fn_7100516acc,unknown,ai/behaviortree?,O
 0x7100516ae0,204,fn_7100516ae0,unknown,ai/behaviortree?,O
 0x7100516bac,4,fn_7100516bac,unknown,ai/behaviortree?,O
@@ -1886,7 +1886,7 @@ address,size,name,name_source,subsystem,status
 0x7100579ef8,8,fn_7100579ef8,unknown,unknown,O
 0x7100579f00,8,fn_7100579f00,unknown,unknown,O
 0x7100579f08,28,fn_7100579f08,unknown,unknown,O
-0x7100579f24,56,fn_7100579f24,unknown,unknown,U
+0x7100579f24,56,fn_7100579f24,unknown,unknown,O
 0x7100579f5c,12,fn_7100579f5c,unknown,unknown,O
 0x7100579f70,160,fn_7100579f70,unknown,unknown,O
 0x710057a010,36,fn_710057a010,unknown,unknown,O
@@ -3078,11 +3078,11 @@ address,size,name,name_source,subsystem,status
 0x71005abd7c,272,fn_71005abd7c,unknown,unknown,U
 0x71005abe8c,12,fn_71005abe8c,unknown,unknown,O
 0x71005abe98,68,fn_71005abe98,unknown,unknown,U
-0x71005abedc,20,fn_71005abedc,unknown,unknown,U
+0x71005abedc,20,fn_71005abedc,unknown,unknown,O
 0x71005abef0,68,fn_71005abef0,unknown,unknown,U
-0x71005abf34,20,fn_71005abf34,unknown,unknown,U
+0x71005abf34,20,fn_71005abf34,unknown,unknown,O
 0x71005abf48,68,fn_71005abf48,unknown,unknown,U
-0x71005abf8c,20,fn_71005abf8c,unknown,unknown,U
+0x71005abf8c,20,fn_71005abf8c,unknown,unknown,O
 0x71005abfa0,480,fn_71005abfa0,unknown,unknown,O
 0x71005ac180,4,fn_71005ac180,unknown,unknown,O
 0x71005ac184,244,CHecathonLifeComponent::refl_GetClass,reflection,game/components,O
@@ -3531,8 +3531,8 @@ address,size,name,name_source,subsystem,status
 0x71005ba30c,356,CHydrogigaAIComponent::refl_InitClass,reflection,game/ai,O
 0x71005ba470,1476,fn_71005ba470,unknown,unknown,U
 0x71005baa34,2760,fn_71005baa34,unknown,unknown,U
-0x71005bb4fc,28,fn_71005bb4fc,unknown,unknown,U
-0x71005bb518,44,fn_71005bb518,unknown,unknown,U
+0x71005bb4fc,28,fn_71005bb4fc,unknown,unknown,O
+0x71005bb518,44,fn_71005bb518,unknown,unknown,O
 0x71005bb544,36,fn_71005bb544,unknown,unknown,O
 0x71005bb568,728,fn_71005bb568,unknown,unknown,U
 0x71005bb840,9728,fn_71005bb840,unknown,unknown,U

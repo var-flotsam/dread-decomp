@@ -990,6 +990,15 @@ def shared_copy_ctor(orig, addr, tag, insns):
         f"template void base::refl_SharedCopyCtor<{tag}>(char*, const char*);"])
 
 
+def index_pair_iter_assign(tag, ins):
+    """refl_IndexPairIterAssign: the pair's size (from the state offset) and destructor."""
+    state = re.fullmatch(r"w8, \[x19, #(0x[0-9a-f]+)\]", ins[8][1])
+    if not state or int(state.group(1), 16) < 0x20 or int(state.group(1), 16) % 8:
+        return None
+    it = f"base::UnkIndexPairIter<{tag}, {int(state.group(1), 16) - 0x10:#x}>"
+    return dtor_traits(tag, ins[17]) + f"template {it}* base::refl_IndexPairIterAssign({it}*, const {it}*);"
+
+
 def strid_copy_ctor(orig, addr, tag, insns):
     """refl_StrIdCopyCtor: the three vtables (through the GOT)."""
     if len(insns) != 30 or insns[4] != ("ldp", "x8, x9, [x1, #8]") or insns[10] != ("ldr", "x8, [x1, #0x18]") \
@@ -1678,6 +1687,263 @@ def iter_value_move_assign_index(orig, addr, tag, insns):
                       f"base::UnkIterValue<{t}, {k}>&&);"])
 
 
+def iter_value_copy_assign_index(orig, addr, tag, insns):
+    """UnkIterValue::operator=(const&) with a plain index (u32 or u64) for an element with an
+    out-of-line copy-assignment (UnkCloneAssignElem). Facts: the state offset, index width and assignment."""
+    if len(insns) != 38 or insns[3:5] != [("mov", "x19, x0"), ("cmp", "x0, x1")] or insns[33][0] != "bl" \
+            or insns[24] != ("add", "x1, x1, #8") or insns[29] != ("add", "x0, x19, #8"):
+        return None
+    state = re.fullmatch(r"w8, \[x1, #(0x[0-9a-f]+)\]", insns[6][1])
+    width = re.fullmatch(r"([wx])8, \[x8\]", insns[12][1])
+    if insns[6][0] != "ldr" or not state or not width:
+        return None
+    state = int(state.group(1), 16)
+    if state % 8 or state < 0x10:
+        return None
+    k = f"UnkCloneIndexU64<{tag}>" if width.group(1) == "x" else "u32"
+    assign = int(insns[33][1][1:], 16)
+    t = f"UnkCloneAssignElem<{tag}, {state - 8:#x}>"
+    return "\n".join([f"void fn_{assign:x}(void*, const void*);",
+                      f"template <> struct UnkCloneAssignTraits<{tag}> {{",
+                      f"    static void assign(void* dst, const void* src) {{ fn_{assign:x}(dst, src); }}", "};",
+                      f"template base::UnkIterValue<{t}, {k}>& base::UnkIterValue<{t}, {k}>::operator=("
+                      f"const base::UnkIterValue<{t}, {k}>&);"])
+
+
+def call_with_owner_id(orig, addr, tag, insns):
+    """refl_CallWithOwnerId: the base method, the member's offset and the method it calls."""
+    if len(insns) != 38 or insns[4][0] != "bl" or insns[19][0] != "bl" or insns[5] != ("ldr", "x8, [x19, #0x18]") \
+            or insns[8] != ("ldr", "x8, [x8, #0x30]") or insns[31] != ("bl", f"#{RELEASE:#x}") \
+            or got_at(orig, insns, 7, 10) != STRID_POOL:
+        return None
+    off = re.fullmatch(r"x0, x19, #(0x[0-9a-f]+)", insns[6][1])
+    if insns[6][0] != "add" or not off:
+        return None
+    base, call = int(insns[4][1][1:], 16), int(insns[19][1][1:], 16)
+    return "\n".join([f"void fn_{base:x}(char*);", f"void fn_{call:x}(char*, base::UnkStrIdMember*);",
+                      f"template <> struct base::UnkCallWithIdTraits<{tag}> {{",
+                      f"    static void base(char* p) {{ fn_{base:x}(p); }}",
+                      f"    static void call(char* m, base::UnkStrIdMember* id) {{ fn_{call:x}(m, id); }}", "};",
+                      f"template void base::refl_CallWithOwnerId<{tag}, {off.group(1)}>(char*);"])
+
+
+def iter_value_from_ref(tag, ins):
+    """refl_IterValueFromRef: the value's size (from the state offset)."""
+    state = re.fullmatch(r"wzr, \[x0, #(0x[0-9a-f]+)\]", ins[0][1])
+    if not state or int(state.group(1), 16) < 0x10 or int(state.group(1), 16) % 8:
+        return None
+    v = f"base::UnkIterValue<UnkCloneBlock<{tag}, {int(state.group(1), 16) - 8:#x}>>"
+    return f"template void base::refl_IterValueFromRef({v}*, const {v}::Ref*);"
+
+
+def iter_value_move_ool(orig, addr, tag, insns):
+    """refl_IterValueMove for a u32 index and an element with an out-of-line move constructor
+    (UnkCloneMoveElem): the state offset and the move."""
+    if len(insns) != 17 or insns[7] != ("ldr", "w8, [x1], #8") or insns[13] != ("ldr", "w8, [x8]") \
+            or insns[9][0] != "b" or insns[15] != insns[9]:
+        return None
+    state = re.fullmatch(r"w8, \[x1, #(0x[0-9a-f]+)\]", insns[1][1])
+    if not state or int(state.group(1), 16) < 0x10 or int(state.group(1), 16) % 8:
+        return None
+    move = int(insns[9][1][1:], 16)
+    return "\n".join([f"void fn_{move:x}(void*, void*);", f"template <> struct UnkCloneMoveTraits<{tag}> {{",
+                      f"    static void move(void* dst, void* src) {{ fn_{move:x}(dst, src); }}", "};",
+                      f"template void base::refl_IterValueMove<UnkCloneMoveElem<{tag}, {int(state.group(1), 16) - 8:#x}>>("
+                      "void*, const void*);"])
+
+
+def iter_value_move_ool_strid(orig, addr, tag, insns):
+    """The same keyed by a string id: the state offset, the keys' pool and the move."""
+    if len(insns) != 27 or insns[10] != ("str", "x8, [x0], #8") or insns[14][0] != "b" or insns[25] != insns[14]:
+        return None
+    state = re.fullmatch(r"w8, \[x1, #(0x[0-9a-f]+)\]", insns[1][1])
+    pool = got_target(orig, insns, 8)
+    if not state or int(state.group(1), 16) < 0x10 or int(state.group(1), 16) % 8 \
+            or pool not in (STRID_POOL, FILE_PATH_POOL) or got_target(orig, insns, 20) != pool:
+        return None
+    move = int(insns[14][1][1:], 16)
+    ident = f"UnkCloneStrIdB<{tag}>" if pool == FILE_PATH_POOL else f"UnkCloneStrId<{tag}>"
+    return "\n".join([f"void fn_{move:x}(void*, void*);", f"template <> struct UnkCloneMoveTraits<{tag}> {{",
+                      f"    static void move(void* dst, void* src) {{ fn_{move:x}(dst, src); }}", "};",
+                      f"template void base::refl_IterValueMove<UnkCloneMoveElem<{tag}, {int(state.group(1), 16) - 8:#x}>, "
+                      f"{ident}>(void*, const void*);"])
+
+
+def keyed_find(orig, addr, tag, insns):
+    """refl_KeyedFind: the array's offset (from the count's) and the value's size."""
+    if len(insns) != 27 or insns[25] != ("csel", "x0, xzr, x9, eq") or insns[7] != ("ldr", "x13, [x10]"):
+        return None
+    count = re.fullmatch(r"w8, \[x0, #(0x[0-9a-f]+)\]", insns[0][1])
+    size = re.fullmatch(r"w9, #(0x[0-9a-f]+)", insns[17][1])
+    if not count or not size or int(count.group(1), 16) < 0x10 or int(size.group(1), 16) % 8:
+        return None
+    off = int(count.group(1), 16) - 0x10
+    return f"template void* base::refl_KeyedFind<{tag}, {off:#x}, {size.group(1)}>(char*, const base::UnkStrIdMember*);"
+
+
+def keyed_find_then(orig, addr, tag, insns):
+    """refl_KeyedFindThen: the value's size and the call."""
+    if len(insns) != 31 or insns[0] != ("ldr", "w8, [x0, #0x10]") or insns[23][0] != "b" \
+            or insns[7] != ("ldr", "x13, [x10]") or insns[29] != ("b.ne", "@+5c"):
+        return None
+    size = re.fullmatch(r"w9, #(0x[0-9a-f]+)", insns[17][1])
+    if not size or int(size.group(1), 16) % 8:
+        return None
+    call = int(insns[23][1][1:], 16)
+    return "\n".join([f"void fn_{call:x}(char*, void*);", f"template <> struct base::UnkKeyedFoundTraits<{tag}> {{",
+                      f"    static void found(char* s, void* v) {{ fn_{call:x}(s, v); }}", "};",
+                      f"template void base::refl_KeyedFindThen<{tag}, 0, {size.group(1)}>(char*, const base::UnkStrIdMember*);"])
+
+
+def strid_dtor_at(orig, addr, tag, insns):
+    """refl_StrIdDtorAt: the id's offset and pool."""
+    if len(insns) != 26 or insns[19] != ("bl", f"#{RELEASE:#x}") or insns[5] != ("mov", "x19, x0"):
+        return None
+    pool = got_target(orig, insns, 3)
+    at = re.fullmatch(r"x8, \[x19(?:, #(0x[0-9a-f]+|\d))?\]", insns[8][1])
+    if pool not in (STRID_POOL, FILE_PATH_POOL) or not at or insns[22][1] != insns[8][1]:
+        return None
+    ident = f"UnkCloneStrIdB<{tag}>" if pool == FILE_PATH_POOL else f"UnkCloneStrId<{tag}>"
+    return f"template void base::refl_StrIdDtorAt<{tag}, {int(at.group(1) or '0', 0):#x}, {ident}>(char*);"
+
+
+def iter_value_destroy_key16(orig, addr, tag, insns):
+    """refl_IterValueDestroy over a 16-byte key with a string id at +8 and an element with an
+    out-of-line destructor: the state offset (the element's size), the destructor and the pool."""
+    if len(insns) != 34 or insns[9] != ("add", "x0, x19, #0x10") or insns[10][0] != "bl" \
+            or insns[15] != ("ldr", "x8, [x19, #8]") or insns[26] != ("bl", f"#{RELEASE:#x}"):
+        return None
+    state = re.fullmatch(r"w8, \[x0, #(0x[0-9a-f]+)\]", insns[3][1])
+    pool = got_target(orig, insns, 11)
+    if not state or int(state.group(1), 16) < 0x18 or int(state.group(1), 16) % 8 \
+            or pool not in (STRID_POOL, FILE_PATH_POOL) or insns[30] != ("str", f"wzr, [x19, #{state.group(1)}]"):
+        return None
+    ident = f"base::UnkStrIdMemberOf<g_unk_{pool:x}>"
+    return dtor_traits(tag, insns[10]) + (
+        f"template void base::refl_IterValueDestroy<UnkCloneDtorElem<{tag}, {int(state.group(1), 16) - 0x10:#x}>, "
+        f"UnkCloneStrIdElem<{tag}, 8, 16, {ident}>>(void*);")
+
+
+def keyed_find_assign(orig, addr, tag, insns):
+    """refl_KeyedFindAssign: the value's size and its assignment."""
+    if len(insns) != 36 or insns[2] != ("ldr", "w8, [x0, #0x10]") or insns[25] != ("mov", "x1, x2") \
+            or insns[26][0] != "bl" or insns[9] != ("ldr", "x13, [x10]"):
+        return None
+    size = re.fullmatch(r"w9, #(0x[0-9a-f]+)", insns[19][1])
+    if not size or int(size.group(1), 16) % 8:
+        return None
+    assign = int(insns[26][1][1:], 16)
+    return "\n".join([f"void fn_{assign:x}(void*, const void*);", f"template <> struct UnkCloneAssignTraits<{tag}> {{",
+                      f"    static void assign(void* dst, const void* src) {{ fn_{assign:x}(dst, src); }}", "};",
+                      f"template void base::refl_KeyedFindAssign<{tag}, 0, {size.group(1)}>(char*, "
+                      f"const base::UnkStrIdMember*, const UnkCloneAssignElem<{tag}, {size.group(1)}>*);"])
+
+
+def vector_free_dtor(orig, addr, tag, insns):
+    """UnkVector<T>::Free() for elements with an out-of-line destructor (UnkCloneDtorElem): the
+    element's size and destructor."""
+    if len(insns) != 35 or insns[10][0] != "bl" or insns[18] != insns[10] or insns[26] != ("str", "wzr, [x19, #8]") \
+            or insns[30] != ("str", "wzr, [x19, #0xc]") or insns[28] != ("ldr", "x8, [x8, #0x48]"):
+        return None
+    size = re.fullmatch(r"w21, #(0x[0-9a-f]+)", insns[15][1])
+    if not size or int(size.group(1), 16) % 8 or insns[21] != ("add", f"x21, x21, #{size.group(1)}"):
+        return None
+    return dtor_traits(tag, insns[10]) + f"template void base::UnkVector<UnkCloneDtorElem<{tag}, {size.group(1)}>>::Free();"
+
+
+def value_holder_dtor(orig, addr, tag, insns):
+    """refl_ValueHolderDtor: the base class's vtable (through the GOT)."""
+    if len(insns) != 11 or insns[0] != ("stp", "xzr, xzr, [x0, #0x60]") or insns[8] != ("stp", "xzr, xzr, [x0, #0x30]") \
+            or insns[6] != ("add", "x8, x0, #0x18") or insns[10] != ("b", f"#{0x71000A1C60:#x}"):
+        return None
+    vt = got_at(orig, insns, 1, 4)
+    if vt is None:
+        return None
+    return "\n".join([f"extern char g_unk_{vt:x}[];", f"template <> struct base::UnkValueHolderTraits<{tag}> {{",
+                      f"    static char* vtable() {{ return g_unk_{vt:x}; }}", "};",
+                      f"template void base::refl_ValueHolderDtor(base::UnkValueHolder<{tag}>*);"])
+
+
+def zeroed_ctor(orig, addr, tag, insns):
+    """refl_ZeroedCtor: the class's vtable (through the GOT)."""
+    if len(insns) != 7 or insns[2:4] != [("str", "wzr, [x0, #0x20]"), ("stp", "xzr, xzr, [x0, #0x10]")] \
+            or insns[5] != ("str", "x8, [x0]"):
+        return None
+    vt = got_target(orig, insns, 0)
+    if vt is None:
+        return None
+    return "\n".join([f"extern char g_unk_{vt:x}[];", f"template <> struct base::UnkDtorTraits<{tag}> {{",
+                      f"    static char* vtable() {{ return g_unk_{vt:x}; }}", "};",
+                      f"template void base::refl_ZeroedCtor<{tag}>(char*);"])
+
+
+def dtor_call_clear(orig, addr, tag, insns):
+    """refl_DtorCallClear: the method, the base's vtable, the cleared field and the next base."""
+    if len(insns) != 14 or insns[3] != ("mov", "x19, x0") or insns[4][0] != "bl" or insns[13][0] != "b" \
+            or insns[9] != ("str", "x8, [x19]"):
+        return None
+    vt = got_at(orig, insns, 5, 6)
+    field = re.fullmatch(r"([wx])zr, \[x19, #(0x[0-9a-f]+|\d)\]", insns[7][1])
+    if vt is None or insns[7][0] != "str" or not field or int(field.group(2), 0) < 8:
+        return None
+    call, base = int(insns[4][1][1:], 16), int(insns[13][1][1:], 16)
+    t = "u64" if field.group(1) == "x" else "u32"
+    return "\n".join([f"extern char g_unk_{vt:x}[];"] + [f"void fn_{x:x}(char*);" for x in sorted({call, base})] + [
+        f"template <> struct base::UnkDtorTraits<{tag}> {{", f"    static char* vtable() {{ return g_unk_{vt:x}; }}", "};",
+        f"template <> struct base::UnkDtorCallTraits<{tag}> {{",
+        f"    static void call(char* p) {{ fn_{call:x}(p); }}", f"    static void base(char* p) {{ fn_{base:x}(p); }}", "};",
+        f"template void base::refl_DtorCallClear<{tag}, {t}, {int(field.group(2), 0):#x}>(char*);"])
+
+
+def add_f32(orig, addr, tag, insns):
+    """refl_AddF32: the field's offset."""
+    if len(insns) != 4 or insns[1] != ("fadd", "s0, s1, s0") or insns[3] != ("ret", ""):
+        return None
+    off = re.fullmatch(r"s1, \[x0, #(0x[0-9a-f]+|\d)\]", insns[0][1])
+    if insns[0][0] != "ldr" or not off or insns[2] != ("str", f"s0, [x0, #{off.group(1)}]"):
+        return None
+    return f"template void base::refl_AddF32<{tag}, {int(off.group(1), 0):#x}>(char*, f32);"
+
+
+def pair_counts(orig, addr, tag, insns):
+    """refl_InitPairCounts (through x0) or refl_MakePairCounts (returned through x8)."""
+    for base, fn, sig in (("x0", "refl_InitPairCounts", "(base::UnkPairCounts<{t}>*)"), ("x8", "refl_MakePairCounts", "()")):
+        r = "x8" if base == "x0" else "x9"
+        if insns == [("mov", f"{r}, #2"), ("movk", f"{r}, #1, lsl #32"), ("str", f"{r}, [{base}, #0x10]"),
+                     ("stp", f"xzr, xzr, [{base}]"), ("ret", "")]:
+            ret = "void" if base == "x0" else f"base::UnkPairCounts<{tag}>"
+            return f"template {ret} base::{fn}<{tag}>{sig.format(t=tag)};"
+    return None
+
+
+def vector_clear_dtor(orig, addr, tag, insns):
+    """UnkVector<T>::Clear() for elements with an out-of-line destructor (UnkCloneDtorElem): the
+    element's size and destructor."""
+    if len(insns) != 22 or insns[4] != ("ldr", "w8, [x0, #8]") or insns[8] != ("mov", "x21, xzr") \
+            or insns[11][0] != "bl" or insns[17] != ("str", "wzr, [x19, #8]"):
+        return None
+    size = re.fullmatch(r"x20, x20, #(0x[0-9a-f]+)", insns[14][1])
+    if not size or int(size.group(1), 16) % 8:
+        return None
+    return dtor_traits(tag, insns[11]) + f"template void base::UnkVector<UnkCloneDtorElem<{tag}, {size.group(1)}>>::Clear();"
+
+
+def iter_value_destroy_refptr(orig, addr, tag, insns):
+    """refl_IterValueDestroy for a u32 index and an element holding one refcounted pointer: the
+    state offset (the element's size) and the pointer's offset."""
+    if len(insns) != 22 or insns[16] != ("ldr", "x8, [x8, #0x10]") or insns[12] != ("subs", "w8, w8, #1"):
+        return None
+    state = re.fullmatch(r"w8, \[x0, #(0x[0-9a-f]+)\]", insns[3][1])
+    ptr = re.fullmatch(r"x0, \[x19, #(0x[0-9a-f]+|\d)\]", insns[9][1])
+    if not state or not ptr or insns[18] != ("str", f"wzr, [x19, #{state.group(1)}]"):
+        return None
+    size, off = int(state.group(1), 16) - 8, int(ptr.group(1), 0) - 8
+    if size < 8 or size % 8 or not 0 <= off <= size - 8:
+        return None
+    return (f"template void base::refl_IterValueDestroy<UnkCloneStrIdElem<{tag}, {off:#x}, {size:#x}, "
+            f"base::UnkRefPtrMember>>(void*);")
+
+
 def owner_dtor(orig, addr, tag, insns):
     """refl_OwnerDtor (0x71001f2ae4.h): both vtables (through the GOT) and the owned object's
     destructor."""
@@ -1923,6 +2189,32 @@ KINDS = {
     "value_map_insert": Kind(None, "base/UnkCloneHelpers.h", lambda tag, _: None, scan=value_map_insert),
     "shared_copy_ctor": Kind(None, "base/UnkCloneHelpers.h", lambda tag, _: None, scan=shared_copy_ctor),
     "set_matrix": Kind(None, "base/UnkCloneHelpers.h", lambda tag, _: None, scan=set_matrix),
+    "index_pair_iter_assign": Kind(0x71008932BC, "base/UnkCloneHelpers.h", lambda tag, ins: index_pair_iter_assign(tag, ins),
+                                   exact=False),
+    "iter_value_copy_assign_index": Kind(None, "base/UnkCollectionIter.h", lambda tag, _: None,
+                                         scan=iter_value_copy_assign_index),
+    "call_with_owner_id": Kind(None, "base/UnkCloneHelpers.h", lambda tag, _: None, scan=call_with_owner_id),
+    "iter_value_from_ref": Kind(0x71000C3B5C, "base/UnkCollectionIter.h", lambda tag, ins: iter_value_from_ref(tag, ins),
+                                exact=False),
+    "ref_handle_copy_ctor": Kind(0x7100234E38, "base/UnkCloneHelpers.h", lambda tag, _: (
+        f"template void base::refl_RefHandleCopyCtor<{tag}>(base::UnkRefHandle*, const base::UnkRefHandle*);")),
+    "iter_value_destroy_key16": Kind(None, "base/UnkCollectionIter.h", lambda tag, _: None, scan=iter_value_destroy_key16),
+    "vector_clear_dtor": Kind(None, "base/UnkVector.h", lambda tag, _: None, scan=vector_clear_dtor),
+    "iter_value_destroy_refptr": Kind(None, "base/UnkCollectionIter.h", lambda tag, _: None,
+                                      scan=iter_value_destroy_refptr),
+    "add_f32": Kind(None, "base/UnkCloneHelpers.h", lambda tag, _: None, scan=add_f32),
+    "pair_counts": Kind(None, "base/UnkCloneHelpers.h", lambda tag, _: None, scan=pair_counts),
+    "value_holder_dtor": Kind(None, "base/UnkCloneHelpers.h", lambda tag, _: None, scan=value_holder_dtor),
+    "zeroed_ctor": Kind(None, "base/UnkCloneHelpers.h", lambda tag, _: None, scan=zeroed_ctor),
+    "dtor_call_clear": Kind(None, "base/UnkCloneHelpers.h", lambda tag, _: None, scan=dtor_call_clear),
+    "keyed_find_assign": Kind(None, "base/UnkCloneHelpers.h", lambda tag, _: None, scan=keyed_find_assign),
+    "vector_free_dtor": Kind(None, "base/UnkVector.h", lambda tag, _: None, scan=vector_free_dtor),
+    "keyed_find": Kind(None, "base/UnkCloneHelpers.h", lambda tag, _: None, scan=keyed_find),
+    "keyed_find_then": Kind(None, "base/UnkCloneHelpers.h", lambda tag, _: None, scan=keyed_find_then),
+    "strid_dtor_at": Kind(None, "base/UnkCloneHelpers.h", lambda tag, _: None, scan=strid_dtor_at),
+    "iter_value_move_ool": Kind(None, "base/UnkCollectionIter.h", lambda tag, _: None, scan=iter_value_move_ool),
+    "iter_value_move_ool_strid": Kind(None, "base/UnkCollectionIter.h", lambda tag, _: None,
+                                      scan=iter_value_move_ool_strid),
     "strid_copy_ctor": Kind(None, "base/UnkCloneHelpers.h", lambda tag, _: None, scan=strid_copy_ctor),
     "keyed_value_get": Kind(None, "base/UnkCloneHelpers.h", lambda tag, _: None, scan=keyed_value_get),
     "keyed_set_assign": Kind(None, "base/UnkCloneHelpers.h", lambda tag, _: None, scan=keyed_set_assign),

@@ -5,15 +5,3044 @@
 #include "base/UnkCache.h"
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkCollectionIter.h"
-#include "base/UnkDeferredSet.h"
 #include "base/UnkDestructors.h"
 #include "base/UnkHashMap.h"
 #include "base/UnkNamedRegistry.h"
+#include "base/UnkStrIdValueVec.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "base/reflection/UnkReflValue.h"
+struct UnkClone_fn_7100f5d8ec;
+template base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f5d8ec, UnkClonePolyB, 0x20>>& base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f5d8ec, UnkClonePolyB, 0x20>>::operator=(base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f5d8ec, UnkClonePolyB, 0x20>>&&);
+struct UnkClone_fn_7100f5e8a4;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f5e8a4> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f5e8a4, u32, 0x0>(void*, char*);
+struct UnkClone_fn_7100f5e8f0;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f5e8f0> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f5e8f0, u32, 0x0>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f5eb3c;
+template base::UnkStrIdRecordB<UnkClone_fn_7100f5eb3c>& base::UnkStrIdRecordB<UnkClone_fn_7100f5eb3c>::operator=(const base::UnkStrIdRecordB<UnkClone_fn_7100f5eb3c>&);
+struct UnkClone_fn_7100f5ebd8;
+template base::UnkStrIdRecordB<UnkClone_fn_7100f5ebd8>& base::UnkStrIdRecordB<UnkClone_fn_7100f5ebd8>::operator=(const base::UnkStrIdRecordB<UnkClone_fn_7100f5ebd8>&);
+struct UnkClone_fn_7100f5ec90;
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkDtorTraits<UnkClone_fn_7100f5ec90> {
+    static char* vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_DeletingDtorNoBase<UnkClone_fn_7100f5ec90, base::UnkStrIdAt<0x8>>(char*);
+struct UnkClone_fn_7100f5ed10;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f5ed10> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f5ed10, u32, 0x10>(void*, char*);
+struct UnkClone_fn_7100f5ed5c;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f5ed5c> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f5ed5c, u32, 0x10>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f5ee20;
+extern char g_unk_7101cab248[];
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkPolyStrIdTraits<UnkClone_fn_7100f5ee20> {
+    static char* vtable() { return g_unk_7101cab248; }
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_IterValueMove<base::UnkPolyStrIdElem<UnkClone_fn_7100f5ee20, u32>>(void*, const void*);
+struct UnkClone_fn_7100f5ef08;
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkDtorTraits<UnkClone_fn_7100f5ef08> {
+    static char* vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_IterValueDestroy<base::UnkDtorElem<UnkClone_fn_7100f5ef08, 0x18, base::UnkStrIdAt<0x8>>>(void*);
+struct UnkClone_fn_7100f5ef98;
+template void* base::refl_IterValueCopy<base::UnkKeyedSetEntry<UnkClone_fn_7100f5ef98, UnkCloneStrId<UnkClone_fn_7100f5ef98>, u32, 0x8>>(void*, const void*);
+struct UnkClone_fn_7100f5f25c;
+template base::reflection::UnkReflValue base::reflection::refl_GetIterElementDynValue<UnkClone_fn_7100f5f25c, UnkCloneBlock<UnkClone_fn_7100f5f25c, 0x18>>(void*, char*);
+struct UnkClone_fn_7100f5f2ec;
+extern char g_unk_7101cab248[];
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkPolyStrIdTraits<UnkClone_fn_7100f5f2ec> {
+    static char* vtable() { return g_unk_7101cab248; }
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_IterValueMove<base::UnkPolyStrIdElem<UnkClone_fn_7100f5f2ec, u32>>(void*, const void*);
+struct UnkClone_fn_7100f5f3d4;
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkDtorTraits<UnkClone_fn_7100f5f3d4> {
+    static char* vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_IterValueDestroy<base::UnkDtorElem<UnkClone_fn_7100f5f3d4, 0x18, base::UnkStrIdAt<0x8>>>(void*);
+struct UnkClone_fn_7100f5f4c4;
+template base::reflection::UnkReflValue base::reflection::refl_GetIterElementDynValue<UnkClone_fn_7100f5f4c4, UnkCloneBlock<UnkClone_fn_7100f5f4c4, 0x18>>(void*, char*);
+struct UnkClone_fn_7100f5f52c;
+template void base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f5f52c, UnkClonePolyB, 0x18>>::Clear();
+struct UnkClone_fn_7100f5f6fc;
+char* fn_7100f44150(void*, u32);
+template <> struct base::UnkKeyedSetTraits<UnkClone_fn_7100f5f6fc> {
+    static char* find(void* m, u32 k) { return fn_7100f44150(m, k); }
+};
+template void base::refl_KeyedSetAssign<UnkClone_fn_7100f5f6fc, UnkCloneStrId<UnkClone_fn_7100f5f6fc>, u32, 0x8>(void*, const u32*, const char*);
+struct UnkClone_fn_7100f5f794;
+char* fn_7100f44150(void*, u32);
+template <> struct base::UnkKeyedSetTraits<UnkClone_fn_7100f5f794> {
+    static char* find(void* m, u32 k) { return fn_7100f44150(m, k); }
+};
+template void base::refl_KeyedSetAssign<UnkClone_fn_7100f5f794, UnkCloneStrId<UnkClone_fn_7100f5f794>, u32, 0x8>(void*, const u32*, const char*);
+struct UnkClone_fn_7100f5f8d0;
+template void base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f5f8d0, UnkClonePolyB, 0x18>>::Free();
+struct UnkClone_fn_7100f5f99c;
+template base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f5f99c, UnkClonePolyB, 0x18>>& base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f5f99c, UnkClonePolyB, 0x18>>::operator=(base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f5f99c, UnkClonePolyB, 0x18>>&&);
+struct UnkClone_fn_7100f5fa48;
+extern char g_unk_7101cab1f8[];
+extern char g_unk_7101cab248[];
+void fn_7100f5fbb8(void*, const void*);
+template <> struct base::UnkStrIdValueTraits<UnkClone_fn_7100f5fa48> {
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+    static char* vtable() { return g_unk_7101cab248; }
+    static void push_back(void* v, const void* e) { fn_7100f5fbb8(v, e); }
+};
+template void base::refl_StrIdValueVecCopy<UnkClone_fn_7100f5fa48, u32>(base::UnkVector<base::UnkStrIdValueElem<UnkClone_fn_7100f5fa48, u32>>*, const base::UnkVector<base::UnkStrIdValueElem<UnkClone_fn_7100f5fa48, u32>>*);
+struct UnkClone_fn_7100f5fbb8;
+extern char g_unk_7101cab248[];
+template <> struct base::UnkIdValueTraits<UnkClone_fn_7100f5fbb8> {
+    static char* vtable() { return g_unk_7101cab248; }
+};
+template void base::refl_IdValuePushBack(base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f5fbb8, UnkCloneElem<UnkClone_fn_7100f5fbb8, 4>>>*, const base::UnkIdValueElem<UnkClone_fn_7100f5fbb8, UnkCloneElem<UnkClone_fn_7100f5fbb8, 4>>&);
+struct UnkClone_fn_7100f5fd88;
+extern char g_unk_7101cab248[];
+void fn_7100f5fbb8(base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f5fd88, UnkCloneElem<UnkClone_fn_7100f5fd88, 4>>>*, const base::UnkIdValueElem<UnkClone_fn_7100f5fd88, UnkCloneElem<UnkClone_fn_7100f5fd88, 4>>&);
+template <> struct base::UnkIdValueTraits<UnkClone_fn_7100f5fd88> {
+    static char* vtable() { return g_unk_7101cab248; }
+    static void push_back(base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f5fd88, UnkCloneElem<UnkClone_fn_7100f5fd88, 4>>>* v, const base::UnkIdValueElem<UnkClone_fn_7100f5fd88, UnkCloneElem<UnkClone_fn_7100f5fd88, 4>>& x) { fn_7100f5fbb8(v, x); }
+};
+template base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f5fd88, UnkCloneElem<UnkClone_fn_7100f5fd88, 4>>>* base::refl_IdValueAssign(base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f5fd88, UnkCloneElem<UnkClone_fn_7100f5fd88, 4>>>*, const base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f5fd88, UnkCloneElem<UnkClone_fn_7100f5fd88, 4>>>*);
+struct UnkClone_fn_7100f605d0;
+extern char g_unk_7101cab1f8[];
+void fn_7100f4af08(void*);
+template <> struct base::UnkVtIterTraits<UnkClone_fn_7100f605d0> {
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+    static void sync(void* it) { fn_7100f4af08(it); }
+};
+template void base::refl_VtBegin(const base::UnkVector<base::UnkStrIdVtElem<UnkClone_fn_7100f605d0, 0x18>>*, base::UnkCollectionIter<base::UnkStrIdVtElem<UnkClone_fn_7100f605d0, 0x18>>*);
+struct UnkClone_fn_7100f606b8;
+extern char g_unk_7101cab1f8[];
+void fn_7100f4af08(void*);
+template <> struct base::UnkVtIterTraits<UnkClone_fn_7100f606b8> {
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+    static void sync(void* it) { fn_7100f4af08(it); }
+};
+template void base::refl_VtEnd(const base::UnkVector<base::UnkStrIdVtElem<UnkClone_fn_7100f606b8, 0x18>>*, base::UnkCollectionIter<base::UnkStrIdVtElem<UnkClone_fn_7100f606b8, 0x18>>*);
+struct UnkClone_fn_7100f60880;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f60880> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f60880, u32, 0x0>(void*, char*);
+struct UnkClone_fn_7100f608cc;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f608cc> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f608cc, u32, 0x0>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f60960;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f60960> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f60960, u32, 0x4>(void*, char*);
+struct UnkClone_fn_7100f609ac;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f609ac> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f609ac, u32, 0x4>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f60a40;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f60a40> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f60a40, u32, 0x8>(void*, char*);
+struct UnkClone_fn_7100f60a8c;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f60a8c> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f60a8c, u32, 0x8>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f60b20;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f60b20> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f60b20, u32, 0x10>(void*, char*);
+struct UnkClone_fn_7100f60b6c;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f60b6c> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f60b6c, u32, 0x10>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f60c00;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f60c00> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f60c00, u32, 0xc>(void*, char*);
+struct UnkClone_fn_7100f60c4c;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f60c4c> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f60c4c, u32, 0xc>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f60ce0;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f60ce0> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f60ce0, u32, 0x14>(void*, char*);
+struct UnkClone_fn_7100f60d2c;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f60d2c> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f60d2c, u32, 0x14>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f60dc0;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f60dc0> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f60dc0, u32, 0x18>(void*, char*);
+struct UnkClone_fn_7100f60e0c;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f60e0c> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f60e0c, u32, 0x18>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f60ea0;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f60ea0> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f60ea0, u32, 0x20>(void*, char*);
+struct UnkClone_fn_7100f60eec;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f60eec> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f60eec, u32, 0x20>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f60f80;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f60f80> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f60f80, u32, 0x1c>(void*, char*);
+struct UnkClone_fn_7100f60fcc;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f60fcc> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f60fcc, u32, 0x1c>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f61218;
+template base::UnkStrIdRecordB<UnkClone_fn_7100f61218>& base::UnkStrIdRecordB<UnkClone_fn_7100f61218>::operator=(const base::UnkStrIdRecordB<UnkClone_fn_7100f61218>&);
+struct UnkClone_fn_7100f612b4;
+template base::UnkStrIdRecordB<UnkClone_fn_7100f612b4>& base::UnkStrIdRecordB<UnkClone_fn_7100f612b4>::operator=(const base::UnkStrIdRecordB<UnkClone_fn_7100f612b4>&);
+struct UnkClone_fn_7100f6136c;
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkDtorTraits<UnkClone_fn_7100f6136c> {
+    static char* vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_DeletingDtorNoBase<UnkClone_fn_7100f6136c, base::UnkStrIdAt<0x8>>(char*);
+struct UnkClone_fn_7100f613ec;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f613ec> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f613ec, u32, 0x10>(void*, char*);
+struct UnkClone_fn_7100f61438;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f61438> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f61438, u32, 0x10>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f614fc;
+extern char g_unk_7101cab270[];
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkPolyStrIdTraits<UnkClone_fn_7100f614fc> {
+    static char* vtable() { return g_unk_7101cab270; }
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_IterValueMove<base::UnkPolyStrIdElem<UnkClone_fn_7100f614fc, u32>>(void*, const void*);
+struct UnkClone_fn_7100f615e4;
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkDtorTraits<UnkClone_fn_7100f615e4> {
+    static char* vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_IterValueDestroy<base::UnkDtorElem<UnkClone_fn_7100f615e4, 0x18, base::UnkStrIdAt<0x8>>>(void*);
+struct UnkClone_fn_7100f61674;
+template void* base::refl_IterValueCopy<base::UnkKeyedSetEntry<UnkClone_fn_7100f61674, UnkCloneStrId<UnkClone_fn_7100f61674>, u32, 0x8>>(void*, const void*);
+struct UnkClone_fn_7100f61938;
+template base::reflection::UnkReflValue base::reflection::refl_GetIterElementDynValue<UnkClone_fn_7100f61938, UnkCloneBlock<UnkClone_fn_7100f61938, 0x18>>(void*, char*);
+struct UnkClone_fn_7100f619c8;
+extern char g_unk_7101cab270[];
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkPolyStrIdTraits<UnkClone_fn_7100f619c8> {
+    static char* vtable() { return g_unk_7101cab270; }
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_IterValueMove<base::UnkPolyStrIdElem<UnkClone_fn_7100f619c8, u32>>(void*, const void*);
+struct UnkClone_fn_7100f61ab0;
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkDtorTraits<UnkClone_fn_7100f61ab0> {
+    static char* vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_IterValueDestroy<base::UnkDtorElem<UnkClone_fn_7100f61ab0, 0x18, base::UnkStrIdAt<0x8>>>(void*);
+struct UnkClone_fn_7100f61ba0;
+template base::reflection::UnkReflValue base::reflection::refl_GetIterElementDynValue<UnkClone_fn_7100f61ba0, UnkCloneBlock<UnkClone_fn_7100f61ba0, 0x18>>(void*, char*);
+struct UnkClone_fn_7100f61c08;
+template void base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f61c08, UnkClonePolyB, 0x18>>::Clear();
+struct UnkClone_fn_7100f61dd8;
+char* fn_7100f442c4(void*, u32);
+template <> struct base::UnkKeyedSetTraits<UnkClone_fn_7100f61dd8> {
+    static char* find(void* m, u32 k) { return fn_7100f442c4(m, k); }
+};
+template void base::refl_KeyedSetAssign<UnkClone_fn_7100f61dd8, UnkCloneStrId<UnkClone_fn_7100f61dd8>, u32, 0x8>(void*, const u32*, const char*);
+struct UnkClone_fn_7100f61e70;
+char* fn_7100f442c4(void*, u32);
+template <> struct base::UnkKeyedSetTraits<UnkClone_fn_7100f61e70> {
+    static char* find(void* m, u32 k) { return fn_7100f442c4(m, k); }
+};
+template void base::refl_KeyedSetAssign<UnkClone_fn_7100f61e70, UnkCloneStrId<UnkClone_fn_7100f61e70>, u32, 0x8>(void*, const u32*, const char*);
+struct UnkClone_fn_7100f61fac;
+template void base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f61fac, UnkClonePolyB, 0x18>>::Free();
+struct UnkClone_fn_7100f62078;
+template base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f62078, UnkClonePolyB, 0x18>>& base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f62078, UnkClonePolyB, 0x18>>::operator=(base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f62078, UnkClonePolyB, 0x18>>&&);
+struct UnkClone_fn_7100f62124;
+extern char g_unk_7101cab1f8[];
+extern char g_unk_7101cab270[];
+void fn_7100f62294(void*, const void*);
+template <> struct base::UnkStrIdValueTraits<UnkClone_fn_7100f62124> {
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+    static char* vtable() { return g_unk_7101cab270; }
+    static void push_back(void* v, const void* e) { fn_7100f62294(v, e); }
+};
+template void base::refl_StrIdValueVecCopy<UnkClone_fn_7100f62124, u32>(base::UnkVector<base::UnkStrIdValueElem<UnkClone_fn_7100f62124, u32>>*, const base::UnkVector<base::UnkStrIdValueElem<UnkClone_fn_7100f62124, u32>>*);
+struct UnkClone_fn_7100f62294;
+extern char g_unk_7101cab270[];
+template <> struct base::UnkIdValueTraits<UnkClone_fn_7100f62294> {
+    static char* vtable() { return g_unk_7101cab270; }
+};
+template void base::refl_IdValuePushBack(base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f62294, UnkCloneElem<UnkClone_fn_7100f62294, 4>>>*, const base::UnkIdValueElem<UnkClone_fn_7100f62294, UnkCloneElem<UnkClone_fn_7100f62294, 4>>&);
+struct UnkClone_fn_7100f62464;
+extern char g_unk_7101cab270[];
+void fn_7100f62294(base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f62464, UnkCloneElem<UnkClone_fn_7100f62464, 4>>>*, const base::UnkIdValueElem<UnkClone_fn_7100f62464, UnkCloneElem<UnkClone_fn_7100f62464, 4>>&);
+template <> struct base::UnkIdValueTraits<UnkClone_fn_7100f62464> {
+    static char* vtable() { return g_unk_7101cab270; }
+    static void push_back(base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f62464, UnkCloneElem<UnkClone_fn_7100f62464, 4>>>* v, const base::UnkIdValueElem<UnkClone_fn_7100f62464, UnkCloneElem<UnkClone_fn_7100f62464, 4>>& x) { fn_7100f62294(v, x); }
+};
+template base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f62464, UnkCloneElem<UnkClone_fn_7100f62464, 4>>>* base::refl_IdValueAssign(base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f62464, UnkCloneElem<UnkClone_fn_7100f62464, 4>>>*, const base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f62464, UnkCloneElem<UnkClone_fn_7100f62464, 4>>>*);
+struct UnkClone_fn_7100f62cac;
+extern char g_unk_7101cab1f8[];
+void fn_7100f4c668(void*);
+template <> struct base::UnkVtIterTraits<UnkClone_fn_7100f62cac> {
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+    static void sync(void* it) { fn_7100f4c668(it); }
+};
+template void base::refl_VtBegin(const base::UnkVector<base::UnkStrIdVtElem<UnkClone_fn_7100f62cac, 0x18>>*, base::UnkCollectionIter<base::UnkStrIdVtElem<UnkClone_fn_7100f62cac, 0x18>>*);
+struct UnkClone_fn_7100f62d94;
+extern char g_unk_7101cab1f8[];
+void fn_7100f4c668(void*);
+template <> struct base::UnkVtIterTraits<UnkClone_fn_7100f62d94> {
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+    static void sync(void* it) { fn_7100f4c668(it); }
+};
+template void base::refl_VtEnd(const base::UnkVector<base::UnkStrIdVtElem<UnkClone_fn_7100f62d94, 0x18>>*, base::UnkCollectionIter<base::UnkStrIdVtElem<UnkClone_fn_7100f62d94, 0x18>>*);
+struct UnkClone_fn_7100f630b0;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f630b0> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f630b0, u32, 0x0>(void*, char*);
+struct UnkClone_fn_7100f630fc;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f630fc> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f630fc, u32, 0x0>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f63190;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f63190> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f63190, u32, 0x18>(void*, char*);
+struct UnkClone_fn_7100f631dc;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f631dc> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f631dc, u32, 0x18>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f63270;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f63270> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f63270, u32, 0x14>(void*, char*);
+struct UnkClone_fn_7100f632bc;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f632bc> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f632bc, u32, 0x14>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f6365c;
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkDtorTraits<UnkClone_fn_7100f6365c> {
+    static char* vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_DeletingDtorNoBase<UnkClone_fn_7100f6365c, base::UnkStrIdAt<0x8>>(char*);
+struct UnkClone_fn_7100f636dc;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f636dc> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f636dc, u32, 0x10>(void*, char*);
+struct UnkClone_fn_7100f63728;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f63728> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f63728, u32, 0x10>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f637bc;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f637bc> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f637bc, u32, 0x14>(void*, char*);
+struct UnkClone_fn_7100f63808;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f63808> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f63808, u32, 0x14>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f638cc;
+extern char g_unk_7101cab298[];
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkPolyStrIdTraits<UnkClone_fn_7100f638cc> {
+    static char* vtable() { return g_unk_7101cab298; }
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_IterValueMove<base::UnkPolyStrIdElem<UnkClone_fn_7100f638cc, u64>>(void*, const void*);
+struct UnkClone_fn_7100f639b4;
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkDtorTraits<UnkClone_fn_7100f639b4> {
+    static char* vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_IterValueDestroy<base::UnkDtorElem<UnkClone_fn_7100f639b4, 0x18, base::UnkStrIdAt<0x8>>>(void*);
+struct UnkClone_fn_7100f63a44;
+template void* base::refl_IterValueCopy<base::UnkKeyedSetEntry<UnkClone_fn_7100f63a44, UnkCloneStrId<UnkClone_fn_7100f63a44>, u64, 0x8>>(void*, const void*);
+struct UnkClone_fn_7100f63d70;
+template base::reflection::UnkReflValue base::reflection::refl_GetIterElementDynValue<UnkClone_fn_7100f63d70, UnkCloneBlock<UnkClone_fn_7100f63d70, 0x18>>(void*, char*);
+struct UnkClone_fn_7100f63e00;
+extern char g_unk_7101cab298[];
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkPolyStrIdTraits<UnkClone_fn_7100f63e00> {
+    static char* vtable() { return g_unk_7101cab298; }
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_IterValueMove<base::UnkPolyStrIdElem<UnkClone_fn_7100f63e00, u64>>(void*, const void*);
+struct UnkClone_fn_7100f63ee8;
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkDtorTraits<UnkClone_fn_7100f63ee8> {
+    static char* vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_IterValueDestroy<base::UnkDtorElem<UnkClone_fn_7100f63ee8, 0x18, base::UnkStrIdAt<0x8>>>(void*);
+struct UnkClone_fn_7100f63fd8;
+template base::reflection::UnkReflValue base::reflection::refl_GetIterElementDynValue<UnkClone_fn_7100f63fd8, UnkCloneBlock<UnkClone_fn_7100f63fd8, 0x18>>(void*, char*);
+struct UnkClone_fn_7100f64040;
+template void base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f64040, UnkClonePolyB, 0x18>>::Clear();
+struct UnkClone_fn_7100f64210;
+char* fn_7100f44438(void*, u32);
+template <> struct base::UnkKeyedSetTraits<UnkClone_fn_7100f64210> {
+    static char* find(void* m, u32 k) { return fn_7100f44438(m, k); }
+};
+template void base::refl_KeyedSetAssign<UnkClone_fn_7100f64210, UnkCloneStrId<UnkClone_fn_7100f64210>, u64, 0x8>(void*, const u32*, const char*);
+struct UnkClone_fn_7100f642a8;
+char* fn_7100f44438(void*, u32);
+template <> struct base::UnkKeyedSetTraits<UnkClone_fn_7100f642a8> {
+    static char* find(void* m, u32 k) { return fn_7100f44438(m, k); }
+};
+template void base::refl_KeyedSetAssign<UnkClone_fn_7100f642a8, UnkCloneStrId<UnkClone_fn_7100f642a8>, u64, 0x8>(void*, const u32*, const char*);
+struct UnkClone_fn_7100f643e4;
+template void base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f643e4, UnkClonePolyB, 0x18>>::Free();
+struct UnkClone_fn_7100f644b0;
+template base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f644b0, UnkClonePolyB, 0x18>>& base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f644b0, UnkClonePolyB, 0x18>>::operator=(base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f644b0, UnkClonePolyB, 0x18>>&&);
+struct UnkClone_fn_7100f6455c;
+extern char g_unk_7101cab1f8[];
+extern char g_unk_7101cab298[];
+void fn_7100f646cc(void*, const void*);
+template <> struct base::UnkStrIdValueTraits<UnkClone_fn_7100f6455c> {
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+    static char* vtable() { return g_unk_7101cab298; }
+    static void push_back(void* v, const void* e) { fn_7100f646cc(v, e); }
+};
+template void base::refl_StrIdValueVecCopy<UnkClone_fn_7100f6455c, u64>(base::UnkVector<base::UnkStrIdValueElem<UnkClone_fn_7100f6455c, u64>>*, const base::UnkVector<base::UnkStrIdValueElem<UnkClone_fn_7100f6455c, u64>>*);
+struct UnkClone_fn_7100f646cc;
+extern char g_unk_7101cab298[];
+template <> struct base::UnkIdValueTraits<UnkClone_fn_7100f646cc> {
+    static char* vtable() { return g_unk_7101cab298; }
+};
+template void base::refl_IdValuePushBack(base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f646cc, UnkCloneElem<UnkClone_fn_7100f646cc, 8>>>*, const base::UnkIdValueElem<UnkClone_fn_7100f646cc, UnkCloneElem<UnkClone_fn_7100f646cc, 8>>&);
+struct UnkClone_fn_7100f6489c;
+extern char g_unk_7101cab298[];
+void fn_7100f646cc(base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f6489c, UnkCloneElem<UnkClone_fn_7100f6489c, 8>>>*, const base::UnkIdValueElem<UnkClone_fn_7100f6489c, UnkCloneElem<UnkClone_fn_7100f6489c, 8>>&);
+template <> struct base::UnkIdValueTraits<UnkClone_fn_7100f6489c> {
+    static char* vtable() { return g_unk_7101cab298; }
+    static void push_back(base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f6489c, UnkCloneElem<UnkClone_fn_7100f6489c, 8>>>* v, const base::UnkIdValueElem<UnkClone_fn_7100f6489c, UnkCloneElem<UnkClone_fn_7100f6489c, 8>>& x) { fn_7100f646cc(v, x); }
+};
+template base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f6489c, UnkCloneElem<UnkClone_fn_7100f6489c, 8>>>* base::refl_IdValueAssign(base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f6489c, UnkCloneElem<UnkClone_fn_7100f6489c, 8>>>*, const base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f6489c, UnkCloneElem<UnkClone_fn_7100f6489c, 8>>>*);
+struct UnkClone_fn_7100f650e4;
+extern char g_unk_7101cab1f8[];
+void fn_7100f4ddc8(void*);
+template <> struct base::UnkVtIterTraits<UnkClone_fn_7100f650e4> {
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+    static void sync(void* it) { fn_7100f4ddc8(it); }
+};
+template void base::refl_VtBegin(const base::UnkVector<base::UnkStrIdVtElem<UnkClone_fn_7100f650e4, 0x18>>*, base::UnkCollectionIter<base::UnkStrIdVtElem<UnkClone_fn_7100f650e4, 0x18>>*);
+struct UnkClone_fn_7100f651cc;
+extern char g_unk_7101cab1f8[];
+void fn_7100f4ddc8(void*);
+template <> struct base::UnkVtIterTraits<UnkClone_fn_7100f651cc> {
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+    static void sync(void* it) { fn_7100f4ddc8(it); }
+};
+template void base::refl_VtEnd(const base::UnkVector<base::UnkStrIdVtElem<UnkClone_fn_7100f651cc, 0x18>>*, base::UnkCollectionIter<base::UnkStrIdVtElem<UnkClone_fn_7100f651cc, 0x18>>*);
+struct UnkClone_fn_7100f657e4;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f657e4> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f657e4, u32, 0x0>(void*, char*);
+struct UnkClone_fn_7100f65830;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f65830> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f65830, u32, 0x0>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f659ac;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f659ac> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f659ac, u32, 0x34>(void*, char*);
+struct UnkClone_fn_7100f659f8;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f659f8> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f659f8, u32, 0x34>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f65d98;
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkDtorTraits<UnkClone_fn_7100f65d98> {
+    static char* vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_DeletingDtorNoBase<UnkClone_fn_7100f65d98, base::UnkStrIdAt<0x8>>(char*);
+struct UnkClone_fn_7100f65e18;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f65e18> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f65e18, u32, 0x10>(void*, char*);
+struct UnkClone_fn_7100f65e64;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f65e64> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f65e64, u32, 0x10>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f65ef8;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f65ef8> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f65ef8, u32, 0x14>(void*, char*);
+struct UnkClone_fn_7100f65f44;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f65f44> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f65f44, u32, 0x14>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f66008;
+extern char g_unk_7101cab2c0[];
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkPolyStrIdTraits<UnkClone_fn_7100f66008> {
+    static char* vtable() { return g_unk_7101cab2c0; }
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_IterValueMove<base::UnkPolyStrIdElem<UnkClone_fn_7100f66008, u64>>(void*, const void*);
+struct UnkClone_fn_7100f660f0;
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkDtorTraits<UnkClone_fn_7100f660f0> {
+    static char* vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_IterValueDestroy<base::UnkDtorElem<UnkClone_fn_7100f660f0, 0x18, base::UnkStrIdAt<0x8>>>(void*);
+struct UnkClone_fn_7100f66180;
+template void* base::refl_IterValueCopy<base::UnkKeyedSetEntry<UnkClone_fn_7100f66180, UnkCloneStrId<UnkClone_fn_7100f66180>, u64, 0x8>>(void*, const void*);
+struct UnkClone_fn_7100f664ac;
+template base::reflection::UnkReflValue base::reflection::refl_GetIterElementDynValue<UnkClone_fn_7100f664ac, UnkCloneBlock<UnkClone_fn_7100f664ac, 0x18>>(void*, char*);
+struct UnkClone_fn_7100f6653c;
+extern char g_unk_7101cab2c0[];
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkPolyStrIdTraits<UnkClone_fn_7100f6653c> {
+    static char* vtable() { return g_unk_7101cab2c0; }
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_IterValueMove<base::UnkPolyStrIdElem<UnkClone_fn_7100f6653c, u64>>(void*, const void*);
+struct UnkClone_fn_7100f66624;
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkDtorTraits<UnkClone_fn_7100f66624> {
+    static char* vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_IterValueDestroy<base::UnkDtorElem<UnkClone_fn_7100f66624, 0x18, base::UnkStrIdAt<0x8>>>(void*);
+struct UnkClone_fn_7100f66714;
+template base::reflection::UnkReflValue base::reflection::refl_GetIterElementDynValue<UnkClone_fn_7100f66714, UnkCloneBlock<UnkClone_fn_7100f66714, 0x18>>(void*, char*);
+struct UnkClone_fn_7100f6677c;
+template void base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f6677c, UnkClonePolyB, 0x18>>::Clear();
+struct UnkClone_fn_7100f6694c;
+char* fn_7100f445ac(void*, u32);
+template <> struct base::UnkKeyedSetTraits<UnkClone_fn_7100f6694c> {
+    static char* find(void* m, u32 k) { return fn_7100f445ac(m, k); }
+};
+template void base::refl_KeyedSetAssign<UnkClone_fn_7100f6694c, UnkCloneStrId<UnkClone_fn_7100f6694c>, u64, 0x8>(void*, const u32*, const char*);
+struct UnkClone_fn_7100f669e4;
+char* fn_7100f445ac(void*, u32);
+template <> struct base::UnkKeyedSetTraits<UnkClone_fn_7100f669e4> {
+    static char* find(void* m, u32 k) { return fn_7100f445ac(m, k); }
+};
+template void base::refl_KeyedSetAssign<UnkClone_fn_7100f669e4, UnkCloneStrId<UnkClone_fn_7100f669e4>, u64, 0x8>(void*, const u32*, const char*);
+struct UnkClone_fn_7100f66b20;
+template void base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f66b20, UnkClonePolyB, 0x18>>::Free();
+struct UnkClone_fn_7100f66bec;
+template base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f66bec, UnkClonePolyB, 0x18>>& base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f66bec, UnkClonePolyB, 0x18>>::operator=(base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f66bec, UnkClonePolyB, 0x18>>&&);
+struct UnkClone_fn_7100f66c98;
+extern char g_unk_7101cab1f8[];
+extern char g_unk_7101cab2c0[];
+void fn_7100f66e08(void*, const void*);
+template <> struct base::UnkStrIdValueTraits<UnkClone_fn_7100f66c98> {
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+    static char* vtable() { return g_unk_7101cab2c0; }
+    static void push_back(void* v, const void* e) { fn_7100f66e08(v, e); }
+};
+template void base::refl_StrIdValueVecCopy<UnkClone_fn_7100f66c98, u64>(base::UnkVector<base::UnkStrIdValueElem<UnkClone_fn_7100f66c98, u64>>*, const base::UnkVector<base::UnkStrIdValueElem<UnkClone_fn_7100f66c98, u64>>*);
+struct UnkClone_fn_7100f66e08;
+extern char g_unk_7101cab2c0[];
+template <> struct base::UnkIdValueTraits<UnkClone_fn_7100f66e08> {
+    static char* vtable() { return g_unk_7101cab2c0; }
+};
+template void base::refl_IdValuePushBack(base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f66e08, UnkCloneElem<UnkClone_fn_7100f66e08, 8>>>*, const base::UnkIdValueElem<UnkClone_fn_7100f66e08, UnkCloneElem<UnkClone_fn_7100f66e08, 8>>&);
+struct UnkClone_fn_7100f66fd8;
+extern char g_unk_7101cab2c0[];
+void fn_7100f66e08(base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f66fd8, UnkCloneElem<UnkClone_fn_7100f66fd8, 8>>>*, const base::UnkIdValueElem<UnkClone_fn_7100f66fd8, UnkCloneElem<UnkClone_fn_7100f66fd8, 8>>&);
+template <> struct base::UnkIdValueTraits<UnkClone_fn_7100f66fd8> {
+    static char* vtable() { return g_unk_7101cab2c0; }
+    static void push_back(base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f66fd8, UnkCloneElem<UnkClone_fn_7100f66fd8, 8>>>* v, const base::UnkIdValueElem<UnkClone_fn_7100f66fd8, UnkCloneElem<UnkClone_fn_7100f66fd8, 8>>& x) { fn_7100f66e08(v, x); }
+};
+template base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f66fd8, UnkCloneElem<UnkClone_fn_7100f66fd8, 8>>>* base::refl_IdValueAssign(base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f66fd8, UnkCloneElem<UnkClone_fn_7100f66fd8, 8>>>*, const base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f66fd8, UnkCloneElem<UnkClone_fn_7100f66fd8, 8>>>*);
+struct UnkClone_fn_7100f67820;
+extern char g_unk_7101cab1f8[];
+void fn_7100f4f528(void*);
+template <> struct base::UnkVtIterTraits<UnkClone_fn_7100f67820> {
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+    static void sync(void* it) { fn_7100f4f528(it); }
+};
+template void base::refl_VtBegin(const base::UnkVector<base::UnkStrIdVtElem<UnkClone_fn_7100f67820, 0x18>>*, base::UnkCollectionIter<base::UnkStrIdVtElem<UnkClone_fn_7100f67820, 0x18>>*);
+struct UnkClone_fn_7100f67908;
+extern char g_unk_7101cab1f8[];
+void fn_7100f4f528(void*);
+template <> struct base::UnkVtIterTraits<UnkClone_fn_7100f67908> {
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+    static void sync(void* it) { fn_7100f4f528(it); }
+};
+template void base::refl_VtEnd(const base::UnkVector<base::UnkStrIdVtElem<UnkClone_fn_7100f67908, 0x18>>*, base::UnkCollectionIter<base::UnkStrIdVtElem<UnkClone_fn_7100f67908, 0x18>>*);
+struct UnkClone_fn_7100f67c4c;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f67c4c> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f67c4c, u32, 0x0>(void*, char*);
+struct UnkClone_fn_7100f67c98;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f67c98> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f67c98, u32, 0x0>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f67e2c;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f67e2c> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f67e2c, u32, 0x10>(void*, char*);
+struct UnkClone_fn_7100f67e78;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f67e78> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f67e78, u32, 0x10>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f68218;
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkDtorTraits<UnkClone_fn_7100f68218> {
+    static char* vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_DeletingDtorNoBase<UnkClone_fn_7100f68218, base::UnkStrIdAt<0x8>>(char*);
+struct UnkClone_fn_7100f68298;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f68298> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f68298, u32, 0x10>(void*, char*);
+struct UnkClone_fn_7100f682e4;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f682e4> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f682e4, u32, 0x10>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f68378;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f68378> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f68378, u32, 0x14>(void*, char*);
+struct UnkClone_fn_7100f683c4;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f683c4> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f683c4, u32, 0x14>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f68488;
+extern char g_unk_7101cab2e8[];
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkPolyStrIdTraits<UnkClone_fn_7100f68488> {
+    static char* vtable() { return g_unk_7101cab2e8; }
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_IterValueMove<base::UnkPolyStrIdElem<UnkClone_fn_7100f68488, u64>>(void*, const void*);
+struct UnkClone_fn_7100f68570;
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkDtorTraits<UnkClone_fn_7100f68570> {
+    static char* vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_IterValueDestroy<base::UnkDtorElem<UnkClone_fn_7100f68570, 0x18, base::UnkStrIdAt<0x8>>>(void*);
+struct UnkClone_fn_7100f68600;
+template void* base::refl_IterValueCopy<base::UnkKeyedSetEntry<UnkClone_fn_7100f68600, UnkCloneStrId<UnkClone_fn_7100f68600>, u64, 0x8>>(void*, const void*);
+struct UnkClone_fn_7100f6892c;
+template base::reflection::UnkReflValue base::reflection::refl_GetIterElementDynValue<UnkClone_fn_7100f6892c, UnkCloneBlock<UnkClone_fn_7100f6892c, 0x18>>(void*, char*);
+struct UnkClone_fn_7100f689bc;
+extern char g_unk_7101cab2e8[];
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkPolyStrIdTraits<UnkClone_fn_7100f689bc> {
+    static char* vtable() { return g_unk_7101cab2e8; }
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_IterValueMove<base::UnkPolyStrIdElem<UnkClone_fn_7100f689bc, u64>>(void*, const void*);
+struct UnkClone_fn_7100f68aa4;
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkDtorTraits<UnkClone_fn_7100f68aa4> {
+    static char* vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_IterValueDestroy<base::UnkDtorElem<UnkClone_fn_7100f68aa4, 0x18, base::UnkStrIdAt<0x8>>>(void*);
+struct UnkClone_fn_7100f68b94;
+template base::reflection::UnkReflValue base::reflection::refl_GetIterElementDynValue<UnkClone_fn_7100f68b94, UnkCloneBlock<UnkClone_fn_7100f68b94, 0x18>>(void*, char*);
+struct UnkClone_fn_7100f68bfc;
+template void base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f68bfc, UnkClonePolyB, 0x18>>::Clear();
+struct UnkClone_fn_7100f68dcc;
+char* fn_7100f44720(void*, u32);
+template <> struct base::UnkKeyedSetTraits<UnkClone_fn_7100f68dcc> {
+    static char* find(void* m, u32 k) { return fn_7100f44720(m, k); }
+};
+template void base::refl_KeyedSetAssign<UnkClone_fn_7100f68dcc, UnkCloneStrId<UnkClone_fn_7100f68dcc>, u64, 0x8>(void*, const u32*, const char*);
+struct UnkClone_fn_7100f68e64;
+char* fn_7100f44720(void*, u32);
+template <> struct base::UnkKeyedSetTraits<UnkClone_fn_7100f68e64> {
+    static char* find(void* m, u32 k) { return fn_7100f44720(m, k); }
+};
+template void base::refl_KeyedSetAssign<UnkClone_fn_7100f68e64, UnkCloneStrId<UnkClone_fn_7100f68e64>, u64, 0x8>(void*, const u32*, const char*);
+struct UnkClone_fn_7100f68fa0;
+template void base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f68fa0, UnkClonePolyB, 0x18>>::Free();
+struct UnkClone_fn_7100f6906c;
+template base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f6906c, UnkClonePolyB, 0x18>>& base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f6906c, UnkClonePolyB, 0x18>>::operator=(base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f6906c, UnkClonePolyB, 0x18>>&&);
+struct UnkClone_fn_7100f69118;
+extern char g_unk_7101cab1f8[];
+extern char g_unk_7101cab2e8[];
+void fn_7100f69288(void*, const void*);
+template <> struct base::UnkStrIdValueTraits<UnkClone_fn_7100f69118> {
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+    static char* vtable() { return g_unk_7101cab2e8; }
+    static void push_back(void* v, const void* e) { fn_7100f69288(v, e); }
+};
+template void base::refl_StrIdValueVecCopy<UnkClone_fn_7100f69118, u64>(base::UnkVector<base::UnkStrIdValueElem<UnkClone_fn_7100f69118, u64>>*, const base::UnkVector<base::UnkStrIdValueElem<UnkClone_fn_7100f69118, u64>>*);
+struct UnkClone_fn_7100f69288;
+extern char g_unk_7101cab2e8[];
+template <> struct base::UnkIdValueTraits<UnkClone_fn_7100f69288> {
+    static char* vtable() { return g_unk_7101cab2e8; }
+};
+template void base::refl_IdValuePushBack(base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f69288, UnkCloneElem<UnkClone_fn_7100f69288, 8>>>*, const base::UnkIdValueElem<UnkClone_fn_7100f69288, UnkCloneElem<UnkClone_fn_7100f69288, 8>>&);
+struct UnkClone_fn_7100f69458;
+extern char g_unk_7101cab2e8[];
+void fn_7100f69288(base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f69458, UnkCloneElem<UnkClone_fn_7100f69458, 8>>>*, const base::UnkIdValueElem<UnkClone_fn_7100f69458, UnkCloneElem<UnkClone_fn_7100f69458, 8>>&);
+template <> struct base::UnkIdValueTraits<UnkClone_fn_7100f69458> {
+    static char* vtable() { return g_unk_7101cab2e8; }
+    static void push_back(base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f69458, UnkCloneElem<UnkClone_fn_7100f69458, 8>>>* v, const base::UnkIdValueElem<UnkClone_fn_7100f69458, UnkCloneElem<UnkClone_fn_7100f69458, 8>>& x) { fn_7100f69288(v, x); }
+};
+template base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f69458, UnkCloneElem<UnkClone_fn_7100f69458, 8>>>* base::refl_IdValueAssign(base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f69458, UnkCloneElem<UnkClone_fn_7100f69458, 8>>>*, const base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f69458, UnkCloneElem<UnkClone_fn_7100f69458, 8>>>*);
+struct UnkClone_fn_7100f69ca0;
+extern char g_unk_7101cab1f8[];
+void fn_7100f50c88(void*);
+template <> struct base::UnkVtIterTraits<UnkClone_fn_7100f69ca0> {
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+    static void sync(void* it) { fn_7100f50c88(it); }
+};
+template void base::refl_VtBegin(const base::UnkVector<base::UnkStrIdVtElem<UnkClone_fn_7100f69ca0, 0x18>>*, base::UnkCollectionIter<base::UnkStrIdVtElem<UnkClone_fn_7100f69ca0, 0x18>>*);
+struct UnkClone_fn_7100f69d88;
+extern char g_unk_7101cab1f8[];
+void fn_7100f50c88(void*);
+template <> struct base::UnkVtIterTraits<UnkClone_fn_7100f69d88> {
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+    static void sync(void* it) { fn_7100f50c88(it); }
+};
+template void base::refl_VtEnd(const base::UnkVector<base::UnkStrIdVtElem<UnkClone_fn_7100f69d88, 0x18>>*, base::UnkCollectionIter<base::UnkStrIdVtElem<UnkClone_fn_7100f69d88, 0x18>>*);
+struct UnkClone_fn_7100f6a048;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f6a048> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f6a048, u32, 0x0>(void*, char*);
+struct UnkClone_fn_7100f6a094;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f6a094> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f6a094, u32, 0x0>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f6a2e0;
+template base::UnkStrIdRecordB<UnkClone_fn_7100f6a2e0>& base::UnkStrIdRecordB<UnkClone_fn_7100f6a2e0>::operator=(const base::UnkStrIdRecordB<UnkClone_fn_7100f6a2e0>&);
+struct UnkClone_fn_7100f6a37c;
+template base::UnkStrIdRecordB<UnkClone_fn_7100f6a37c>& base::UnkStrIdRecordB<UnkClone_fn_7100f6a37c>::operator=(const base::UnkStrIdRecordB<UnkClone_fn_7100f6a37c>&);
+struct UnkClone_fn_7100f6a434;
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkDtorTraits<UnkClone_fn_7100f6a434> {
+    static char* vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_DeletingDtorNoBase<UnkClone_fn_7100f6a434, base::UnkStrIdAt<0x8>>(char*);
+struct UnkClone_fn_7100f6a4b4;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f6a4b4> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f6a4b4, u32, 0x10>(void*, char*);
+struct UnkClone_fn_7100f6a500;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f6a500> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f6a500, u32, 0x10>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f6a5c4;
+extern char g_unk_7101cab310[];
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkPolyStrIdTraits<UnkClone_fn_7100f6a5c4> {
+    static char* vtable() { return g_unk_7101cab310; }
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_IterValueMove<base::UnkPolyStrIdElem<UnkClone_fn_7100f6a5c4, u32>>(void*, const void*);
+struct UnkClone_fn_7100f6a6ac;
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkDtorTraits<UnkClone_fn_7100f6a6ac> {
+    static char* vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_IterValueDestroy<base::UnkDtorElem<UnkClone_fn_7100f6a6ac, 0x18, base::UnkStrIdAt<0x8>>>(void*);
+struct UnkClone_fn_7100f6a73c;
+template void* base::refl_IterValueCopy<base::UnkKeyedSetEntry<UnkClone_fn_7100f6a73c, UnkCloneStrId<UnkClone_fn_7100f6a73c>, u32, 0x8>>(void*, const void*);
+struct UnkClone_fn_7100f6aa00;
+template base::reflection::UnkReflValue base::reflection::refl_GetIterElementDynValue<UnkClone_fn_7100f6aa00, UnkCloneBlock<UnkClone_fn_7100f6aa00, 0x18>>(void*, char*);
+struct UnkClone_fn_7100f6aa90;
+extern char g_unk_7101cab310[];
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkPolyStrIdTraits<UnkClone_fn_7100f6aa90> {
+    static char* vtable() { return g_unk_7101cab310; }
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_IterValueMove<base::UnkPolyStrIdElem<UnkClone_fn_7100f6aa90, u32>>(void*, const void*);
+struct UnkClone_fn_7100f6ab78;
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkDtorTraits<UnkClone_fn_7100f6ab78> {
+    static char* vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_IterValueDestroy<base::UnkDtorElem<UnkClone_fn_7100f6ab78, 0x18, base::UnkStrIdAt<0x8>>>(void*);
+struct UnkClone_fn_7100f6ac68;
+template base::reflection::UnkReflValue base::reflection::refl_GetIterElementDynValue<UnkClone_fn_7100f6ac68, UnkCloneBlock<UnkClone_fn_7100f6ac68, 0x18>>(void*, char*);
+struct UnkClone_fn_7100f6acd0;
+template void base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f6acd0, UnkClonePolyB, 0x18>>::Clear();
+struct UnkClone_fn_7100f6aea0;
+char* fn_7100f44894(void*, u32);
+template <> struct base::UnkKeyedSetTraits<UnkClone_fn_7100f6aea0> {
+    static char* find(void* m, u32 k) { return fn_7100f44894(m, k); }
+};
+template void base::refl_KeyedSetAssign<UnkClone_fn_7100f6aea0, UnkCloneStrId<UnkClone_fn_7100f6aea0>, u32, 0x8>(void*, const u32*, const char*);
+struct UnkClone_fn_7100f6af38;
+char* fn_7100f44894(void*, u32);
+template <> struct base::UnkKeyedSetTraits<UnkClone_fn_7100f6af38> {
+    static char* find(void* m, u32 k) { return fn_7100f44894(m, k); }
+};
+template void base::refl_KeyedSetAssign<UnkClone_fn_7100f6af38, UnkCloneStrId<UnkClone_fn_7100f6af38>, u32, 0x8>(void*, const u32*, const char*);
+struct UnkClone_fn_7100f6b074;
+template void base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f6b074, UnkClonePolyB, 0x18>>::Free();
+struct UnkClone_fn_7100f6b140;
+template base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f6b140, UnkClonePolyB, 0x18>>& base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f6b140, UnkClonePolyB, 0x18>>::operator=(base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f6b140, UnkClonePolyB, 0x18>>&&);
+struct UnkClone_fn_7100f6b1ec;
+extern char g_unk_7101cab1f8[];
+extern char g_unk_7101cab310[];
+void fn_7100f6b35c(void*, const void*);
+template <> struct base::UnkStrIdValueTraits<UnkClone_fn_7100f6b1ec> {
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+    static char* vtable() { return g_unk_7101cab310; }
+    static void push_back(void* v, const void* e) { fn_7100f6b35c(v, e); }
+};
+template void base::refl_StrIdValueVecCopy<UnkClone_fn_7100f6b1ec, u32>(base::UnkVector<base::UnkStrIdValueElem<UnkClone_fn_7100f6b1ec, u32>>*, const base::UnkVector<base::UnkStrIdValueElem<UnkClone_fn_7100f6b1ec, u32>>*);
+struct UnkClone_fn_7100f6b35c;
+extern char g_unk_7101cab310[];
+template <> struct base::UnkIdValueTraits<UnkClone_fn_7100f6b35c> {
+    static char* vtable() { return g_unk_7101cab310; }
+};
+template void base::refl_IdValuePushBack(base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f6b35c, UnkCloneElem<UnkClone_fn_7100f6b35c, 4>>>*, const base::UnkIdValueElem<UnkClone_fn_7100f6b35c, UnkCloneElem<UnkClone_fn_7100f6b35c, 4>>&);
+struct UnkClone_fn_7100f6b52c;
+extern char g_unk_7101cab310[];
+void fn_7100f6b35c(base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f6b52c, UnkCloneElem<UnkClone_fn_7100f6b52c, 4>>>*, const base::UnkIdValueElem<UnkClone_fn_7100f6b52c, UnkCloneElem<UnkClone_fn_7100f6b52c, 4>>&);
+template <> struct base::UnkIdValueTraits<UnkClone_fn_7100f6b52c> {
+    static char* vtable() { return g_unk_7101cab310; }
+    static void push_back(base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f6b52c, UnkCloneElem<UnkClone_fn_7100f6b52c, 4>>>* v, const base::UnkIdValueElem<UnkClone_fn_7100f6b52c, UnkCloneElem<UnkClone_fn_7100f6b52c, 4>>& x) { fn_7100f6b35c(v, x); }
+};
+template base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f6b52c, UnkCloneElem<UnkClone_fn_7100f6b52c, 4>>>* base::refl_IdValueAssign(base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f6b52c, UnkCloneElem<UnkClone_fn_7100f6b52c, 4>>>*, const base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f6b52c, UnkCloneElem<UnkClone_fn_7100f6b52c, 4>>>*);
+struct UnkClone_fn_7100f6bd74;
+extern char g_unk_7101cab1f8[];
+void fn_7100f52460(void*);
+template <> struct base::UnkVtIterTraits<UnkClone_fn_7100f6bd74> {
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+    static void sync(void* it) { fn_7100f52460(it); }
+};
+template void base::refl_VtBegin(const base::UnkVector<base::UnkStrIdVtElem<UnkClone_fn_7100f6bd74, 0x18>>*, base::UnkCollectionIter<base::UnkStrIdVtElem<UnkClone_fn_7100f6bd74, 0x18>>*);
+struct UnkClone_fn_7100f6be5c;
+extern char g_unk_7101cab1f8[];
+void fn_7100f52460(void*);
+template <> struct base::UnkVtIterTraits<UnkClone_fn_7100f6be5c> {
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+    static void sync(void* it) { fn_7100f52460(it); }
+};
+template void base::refl_VtEnd(const base::UnkVector<base::UnkStrIdVtElem<UnkClone_fn_7100f6be5c, 0x18>>*, base::UnkCollectionIter<base::UnkStrIdVtElem<UnkClone_fn_7100f6be5c, 0x18>>*);
+struct UnkClone_fn_7100f6c1c0;
+const base::reflection::CType* fn_710000d228();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f6c1c0> {
+    static const CType* type() { return fn_710000d228(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f6c1c0, u8, 0x0>(void*, char*);
+struct UnkClone_fn_7100f6c20c;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f6c20c> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f6c20c, u8, 0x0>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f6c3a4;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f6c3a4> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f6c3a4, u32, 0x14>(void*, char*);
+struct UnkClone_fn_7100f6c3f0;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f6c3f0> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f6c3f0, u32, 0x14>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f6c484;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f6c484> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f6c484, u32, 0x18>(void*, char*);
+struct UnkClone_fn_7100f6c4d0;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f6c4d0> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f6c4d0, u32, 0x18>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f6c564;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f6c564> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f6c564, u32, 0x1c>(void*, char*);
+struct UnkClone_fn_7100f6c5b0;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f6c5b0> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f6c5b0, u32, 0x1c>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f6c72c;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f6c72c> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f6c72c, u32, 0x28>(void*, char*);
+struct UnkClone_fn_7100f6c778;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f6c778> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f6c778, u32, 0x28>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f6c80c;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f6c80c> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f6c80c, u32, 0x40>(void*, char*);
+struct UnkClone_fn_7100f6c858;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f6c858> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f6c858, u32, 0x40>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f6c8ec;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f6c8ec> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f6c8ec, u32, 0x44>(void*, char*);
+struct UnkClone_fn_7100f6c938;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f6c938> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f6c938, u32, 0x44>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f6c9cc;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f6c9cc> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f6c9cc, u32, 0x48>(void*, char*);
+struct UnkClone_fn_7100f6ca18;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f6ca18> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f6ca18, u32, 0x48>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f6caac;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f6caac> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f6caac, u32, 0x4c>(void*, char*);
+struct UnkClone_fn_7100f6caf8;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f6caf8> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f6caf8, u32, 0x4c>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f6cb8c;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f6cb8c> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f6cb8c, u32, 0x2c>(void*, char*);
+struct UnkClone_fn_7100f6cbd8;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f6cbd8> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f6cbd8, u32, 0x2c>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f6cc6c;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f6cc6c> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f6cc6c, u32, 0x30>(void*, char*);
+struct UnkClone_fn_7100f6ccb8;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f6ccb8> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f6ccb8, u32, 0x30>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f6cd4c;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f6cd4c> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f6cd4c, u32, 0x34>(void*, char*);
+struct UnkClone_fn_7100f6cd98;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f6cd98> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f6cd98, u32, 0x34>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f6d15c;
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkDtorTraits<UnkClone_fn_7100f6d15c> {
+    static char* vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_DeletingDtorNoBase<UnkClone_fn_7100f6d15c, base::UnkStrIdAt<0x8>>(char*);
+struct UnkClone_fn_7100f6d1dc;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f6d1dc> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f6d1dc, u32, 0x10>(void*, char*);
+struct UnkClone_fn_7100f6d228;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f6d228> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f6d228, u32, 0x10>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f6d2bc;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f6d2bc> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f6d2bc, u32, 0x14>(void*, char*);
+struct UnkClone_fn_7100f6d308;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f6d308> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f6d308, u32, 0x14>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f6d39c;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f6d39c> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f6d39c, u32, 0x20>(void*, char*);
+struct UnkClone_fn_7100f6d3e8;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f6d3e8> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f6d3e8, u32, 0x20>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f6d47c;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f6d47c> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f6d47c, u32, 0x24>(void*, char*);
+struct UnkClone_fn_7100f6d4c8;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f6d4c8> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f6d4c8, u32, 0x24>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f6d55c;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f6d55c> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f6d55c, u32, 0x18>(void*, char*);
+struct UnkClone_fn_7100f6d5a8;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f6d5a8> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f6d5a8, u32, 0x18>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f6d764;
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkDtorTraits<UnkClone_fn_7100f6d764> {
+    static char* vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_IterValueDestroy<base::UnkDtorElem<UnkClone_fn_7100f6d764, 0x28, base::UnkStrIdAt<0x8>>>(void*);
+struct UnkClone_fn_7100f6db30;
+template base::reflection::UnkReflValue base::reflection::refl_GetIterElementDynValue<UnkClone_fn_7100f6db30, UnkCloneBlock<UnkClone_fn_7100f6db30, 0x28>>(void*, char*);
+struct UnkClone_fn_7100f6dcb8;
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkDtorTraits<UnkClone_fn_7100f6dcb8> {
+    static char* vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_IterValueDestroy<base::UnkDtorElem<UnkClone_fn_7100f6dcb8, 0x28, base::UnkStrIdAt<0x8>>>(void*);
+struct UnkClone_fn_7100f6dda8;
+template base::reflection::UnkReflValue base::reflection::refl_GetIterElementDynValue<UnkClone_fn_7100f6dda8, UnkCloneBlock<UnkClone_fn_7100f6dda8, 0x28>>(void*, char*);
+struct UnkClone_fn_7100f6de10;
+template void base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f6de10, UnkClonePolyB, 0x28>>::Clear();
+struct UnkClone_fn_7100f6e494;
+template void base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f6e494, UnkClonePolyB, 0x28>>::Free();
+struct UnkClone_fn_7100f6e560;
+template base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f6e560, UnkClonePolyB, 0x28>>& base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f6e560, UnkClonePolyB, 0x28>>::operator=(base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f6e560, UnkClonePolyB, 0x28>>&&);
+struct UnkClone_fn_7100f6f1f8;
+extern char g_unk_7101cab1f8[];
+void fn_7100f53bb0(void*);
+template <> struct base::UnkVtIterTraits<UnkClone_fn_7100f6f1f8> {
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+    static void sync(void* it) { fn_7100f53bb0(it); }
+};
+template void base::refl_VtBegin(const base::UnkVector<base::UnkStrIdVtElem<UnkClone_fn_7100f6f1f8, 0x28>>*, base::UnkCollectionIter<base::UnkStrIdVtElem<UnkClone_fn_7100f6f1f8, 0x28>>*);
+struct UnkClone_fn_7100f6f2e0;
+extern char g_unk_7101cab1f8[];
+void fn_7100f53bb0(void*);
+template <> struct base::UnkVtIterTraits<UnkClone_fn_7100f6f2e0> {
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+    static void sync(void* it) { fn_7100f53bb0(it); }
+};
+template void base::refl_VtEnd(const base::UnkVector<base::UnkStrIdVtElem<UnkClone_fn_7100f6f2e0, 0x28>>*, base::UnkCollectionIter<base::UnkStrIdVtElem<UnkClone_fn_7100f6f2e0, 0x28>>*);
+struct UnkClone_fn_7100f6f514;
+template void base::refl_StrIdDtorAt<UnkClone_fn_7100f6f514, 0x8, UnkCloneStrIdB<UnkClone_fn_7100f6f514>>(char*);
+struct UnkClone_fn_7100f6f6b4;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f6f6b4> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f6f6b4, u32, 0x0>(void*, char*);
+struct UnkClone_fn_7100f6f700;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f6f700> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f6f700, u32, 0x0>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f6f794;
+const base::reflection::CType* fn_710000d228();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f6f794> {
+    static const CType* type() { return fn_710000d228(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f6f794, u8, 0x4>(void*, char*);
+struct UnkClone_fn_7100f6f7e0;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f6f7e0> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f6f7e0, u8, 0x4>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f6fbcc;
+template base::UnkStrIdRecordB<UnkClone_fn_7100f6fbcc>& base::UnkStrIdRecordB<UnkClone_fn_7100f6fbcc>::operator=(const base::UnkStrIdRecordB<UnkClone_fn_7100f6fbcc>&);
+struct UnkClone_fn_7100f6fc68;
+template base::UnkStrIdRecordB<UnkClone_fn_7100f6fc68>& base::UnkStrIdRecordB<UnkClone_fn_7100f6fc68>::operator=(const base::UnkStrIdRecordB<UnkClone_fn_7100f6fc68>&);
+struct UnkClone_fn_7100f6fd20;
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkDtorTraits<UnkClone_fn_7100f6fd20> {
+    static char* vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_DeletingDtorNoBase<UnkClone_fn_7100f6fd20, base::UnkStrIdAt<0x8>>(char*);
+struct UnkClone_fn_7100f6fda0;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f6fda0> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f6fda0, u32, 0x10>(void*, char*);
+struct UnkClone_fn_7100f6fdec;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f6fdec> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f6fdec, u32, 0x10>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f6feb0;
+extern char g_unk_7101cab360[];
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkPolyStrIdTraits<UnkClone_fn_7100f6feb0> {
+    static char* vtable() { return g_unk_7101cab360; }
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_IterValueMove<base::UnkPolyStrIdElem<UnkClone_fn_7100f6feb0, u32>>(void*, const void*);
+struct UnkClone_fn_7100f6ff98;
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkDtorTraits<UnkClone_fn_7100f6ff98> {
+    static char* vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_IterValueDestroy<base::UnkDtorElem<UnkClone_fn_7100f6ff98, 0x18, base::UnkStrIdAt<0x8>>>(void*);
+struct UnkClone_fn_7100f70028;
+template void* base::refl_IterValueCopy<base::UnkKeyedSetEntry<UnkClone_fn_7100f70028, UnkCloneStrId<UnkClone_fn_7100f70028>, u32, 0x8>>(void*, const void*);
+struct UnkClone_fn_7100f702ec;
+template base::reflection::UnkReflValue base::reflection::refl_GetIterElementDynValue<UnkClone_fn_7100f702ec, UnkCloneBlock<UnkClone_fn_7100f702ec, 0x18>>(void*, char*);
+struct UnkClone_fn_7100f7037c;
+extern char g_unk_7101cab360[];
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkPolyStrIdTraits<UnkClone_fn_7100f7037c> {
+    static char* vtable() { return g_unk_7101cab360; }
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_IterValueMove<base::UnkPolyStrIdElem<UnkClone_fn_7100f7037c, u32>>(void*, const void*);
+struct UnkClone_fn_7100f70464;
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkDtorTraits<UnkClone_fn_7100f70464> {
+    static char* vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_IterValueDestroy<base::UnkDtorElem<UnkClone_fn_7100f70464, 0x18, base::UnkStrIdAt<0x8>>>(void*);
+struct UnkClone_fn_7100f70554;
+template base::reflection::UnkReflValue base::reflection::refl_GetIterElementDynValue<UnkClone_fn_7100f70554, UnkCloneBlock<UnkClone_fn_7100f70554, 0x18>>(void*, char*);
+struct UnkClone_fn_7100f705bc;
+template void base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f705bc, UnkClonePolyB, 0x18>>::Clear();
+struct UnkClone_fn_7100f7078c;
+char* fn_7100f44a08(void*, u32);
+template <> struct base::UnkKeyedSetTraits<UnkClone_fn_7100f7078c> {
+    static char* find(void* m, u32 k) { return fn_7100f44a08(m, k); }
+};
+template void base::refl_KeyedSetAssign<UnkClone_fn_7100f7078c, UnkCloneStrId<UnkClone_fn_7100f7078c>, u32, 0x8>(void*, const u32*, const char*);
+struct UnkClone_fn_7100f70824;
+char* fn_7100f44a08(void*, u32);
+template <> struct base::UnkKeyedSetTraits<UnkClone_fn_7100f70824> {
+    static char* find(void* m, u32 k) { return fn_7100f44a08(m, k); }
+};
+template void base::refl_KeyedSetAssign<UnkClone_fn_7100f70824, UnkCloneStrId<UnkClone_fn_7100f70824>, u32, 0x8>(void*, const u32*, const char*);
+struct UnkClone_fn_7100f70960;
+template void base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f70960, UnkClonePolyB, 0x18>>::Free();
+struct UnkClone_fn_7100f70a2c;
+template base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f70a2c, UnkClonePolyB, 0x18>>& base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f70a2c, UnkClonePolyB, 0x18>>::operator=(base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f70a2c, UnkClonePolyB, 0x18>>&&);
+struct UnkClone_fn_7100f70ad8;
+extern char g_unk_7101cab1f8[];
+extern char g_unk_7101cab360[];
+void fn_7100f70c48(void*, const void*);
+template <> struct base::UnkStrIdValueTraits<UnkClone_fn_7100f70ad8> {
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+    static char* vtable() { return g_unk_7101cab360; }
+    static void push_back(void* v, const void* e) { fn_7100f70c48(v, e); }
+};
+template void base::refl_StrIdValueVecCopy<UnkClone_fn_7100f70ad8, u32>(base::UnkVector<base::UnkStrIdValueElem<UnkClone_fn_7100f70ad8, u32>>*, const base::UnkVector<base::UnkStrIdValueElem<UnkClone_fn_7100f70ad8, u32>>*);
+struct UnkClone_fn_7100f70c48;
+extern char g_unk_7101cab360[];
+template <> struct base::UnkIdValueTraits<UnkClone_fn_7100f70c48> {
+    static char* vtable() { return g_unk_7101cab360; }
+};
+template void base::refl_IdValuePushBack(base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f70c48, UnkCloneElem<UnkClone_fn_7100f70c48, 4>>>*, const base::UnkIdValueElem<UnkClone_fn_7100f70c48, UnkCloneElem<UnkClone_fn_7100f70c48, 4>>&);
+struct UnkClone_fn_7100f70e18;
+extern char g_unk_7101cab360[];
+void fn_7100f70c48(base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f70e18, UnkCloneElem<UnkClone_fn_7100f70e18, 4>>>*, const base::UnkIdValueElem<UnkClone_fn_7100f70e18, UnkCloneElem<UnkClone_fn_7100f70e18, 4>>&);
+template <> struct base::UnkIdValueTraits<UnkClone_fn_7100f70e18> {
+    static char* vtable() { return g_unk_7101cab360; }
+    static void push_back(base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f70e18, UnkCloneElem<UnkClone_fn_7100f70e18, 4>>>* v, const base::UnkIdValueElem<UnkClone_fn_7100f70e18, UnkCloneElem<UnkClone_fn_7100f70e18, 4>>& x) { fn_7100f70c48(v, x); }
+};
+template base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f70e18, UnkCloneElem<UnkClone_fn_7100f70e18, 4>>>* base::refl_IdValueAssign(base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f70e18, UnkCloneElem<UnkClone_fn_7100f70e18, 4>>>*, const base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f70e18, UnkCloneElem<UnkClone_fn_7100f70e18, 4>>>*);
+struct UnkClone_fn_7100f71660;
+extern char g_unk_7101cab1f8[];
+void fn_7100f55310(void*);
+template <> struct base::UnkVtIterTraits<UnkClone_fn_7100f71660> {
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+    static void sync(void* it) { fn_7100f55310(it); }
+};
+template void base::refl_VtBegin(const base::UnkVector<base::UnkStrIdVtElem<UnkClone_fn_7100f71660, 0x18>>*, base::UnkCollectionIter<base::UnkStrIdVtElem<UnkClone_fn_7100f71660, 0x18>>*);
+struct UnkClone_fn_7100f71748;
+extern char g_unk_7101cab1f8[];
+void fn_7100f55310(void*);
+template <> struct base::UnkVtIterTraits<UnkClone_fn_7100f71748> {
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+    static void sync(void* it) { fn_7100f55310(it); }
+};
+template void base::refl_VtEnd(const base::UnkVector<base::UnkStrIdVtElem<UnkClone_fn_7100f71748, 0x18>>*, base::UnkCollectionIter<base::UnkStrIdVtElem<UnkClone_fn_7100f71748, 0x18>>*);
+struct UnkClone_fn_7100f718d8;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f718d8> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f718d8, u32, 0x0>(void*, char*);
+struct UnkClone_fn_7100f71924;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f71924> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f71924, u32, 0x0>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f719b8;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f719b8> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f719b8, u32, 0x4>(void*, char*);
+struct UnkClone_fn_7100f71a04;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f71a04> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f71a04, u32, 0x4>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f71a98;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f71a98> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f71a98, u32, 0x8>(void*, char*);
+struct UnkClone_fn_7100f71ae4;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f71ae4> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f71ae4, u32, 0x8>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f71d38;
+template base::UnkStrIdRecordB<UnkClone_fn_7100f71d38>& base::UnkStrIdRecordB<UnkClone_fn_7100f71d38>::operator=(const base::UnkStrIdRecordB<UnkClone_fn_7100f71d38>&);
+struct UnkClone_fn_7100f71dd4;
+template base::UnkStrIdRecordB<UnkClone_fn_7100f71dd4>& base::UnkStrIdRecordB<UnkClone_fn_7100f71dd4>::operator=(const base::UnkStrIdRecordB<UnkClone_fn_7100f71dd4>&);
+struct UnkClone_fn_7100f71e8c;
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkDtorTraits<UnkClone_fn_7100f71e8c> {
+    static char* vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_DeletingDtorNoBase<UnkClone_fn_7100f71e8c, base::UnkStrIdAt<0x8>>(char*);
+struct UnkClone_fn_7100f71f0c;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f71f0c> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f71f0c, u32, 0x10>(void*, char*);
+struct UnkClone_fn_7100f71f58;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f71f58> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f71f58, u32, 0x10>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f7201c;
+extern char g_unk_7101cab388[];
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkPolyStrIdTraits<UnkClone_fn_7100f7201c> {
+    static char* vtable() { return g_unk_7101cab388; }
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_IterValueMove<base::UnkPolyStrIdElem<UnkClone_fn_7100f7201c, u32>>(void*, const void*);
+struct UnkClone_fn_7100f72104;
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkDtorTraits<UnkClone_fn_7100f72104> {
+    static char* vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_IterValueDestroy<base::UnkDtorElem<UnkClone_fn_7100f72104, 0x18, base::UnkStrIdAt<0x8>>>(void*);
+struct UnkClone_fn_7100f72194;
+template void* base::refl_IterValueCopy<base::UnkKeyedSetEntry<UnkClone_fn_7100f72194, UnkCloneStrId<UnkClone_fn_7100f72194>, u32, 0x8>>(void*, const void*);
+struct UnkClone_fn_7100f72458;
+template base::reflection::UnkReflValue base::reflection::refl_GetIterElementDynValue<UnkClone_fn_7100f72458, UnkCloneBlock<UnkClone_fn_7100f72458, 0x18>>(void*, char*);
+struct UnkClone_fn_7100f724e8;
+extern char g_unk_7101cab388[];
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkPolyStrIdTraits<UnkClone_fn_7100f724e8> {
+    static char* vtable() { return g_unk_7101cab388; }
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_IterValueMove<base::UnkPolyStrIdElem<UnkClone_fn_7100f724e8, u32>>(void*, const void*);
+struct UnkClone_fn_7100f725d0;
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkDtorTraits<UnkClone_fn_7100f725d0> {
+    static char* vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_IterValueDestroy<base::UnkDtorElem<UnkClone_fn_7100f725d0, 0x18, base::UnkStrIdAt<0x8>>>(void*);
+struct UnkClone_fn_7100f726c0;
+template base::reflection::UnkReflValue base::reflection::refl_GetIterElementDynValue<UnkClone_fn_7100f726c0, UnkCloneBlock<UnkClone_fn_7100f726c0, 0x18>>(void*, char*);
+struct UnkClone_fn_7100f72728;
+template void base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f72728, UnkClonePolyB, 0x18>>::Clear();
+struct UnkClone_fn_7100f728f8;
+char* fn_7100f44b7c(void*, u32);
+template <> struct base::UnkKeyedSetTraits<UnkClone_fn_7100f728f8> {
+    static char* find(void* m, u32 k) { return fn_7100f44b7c(m, k); }
+};
+template void base::refl_KeyedSetAssign<UnkClone_fn_7100f728f8, UnkCloneStrId<UnkClone_fn_7100f728f8>, u32, 0x8>(void*, const u32*, const char*);
+struct UnkClone_fn_7100f72990;
+char* fn_7100f44b7c(void*, u32);
+template <> struct base::UnkKeyedSetTraits<UnkClone_fn_7100f72990> {
+    static char* find(void* m, u32 k) { return fn_7100f44b7c(m, k); }
+};
+template void base::refl_KeyedSetAssign<UnkClone_fn_7100f72990, UnkCloneStrId<UnkClone_fn_7100f72990>, u32, 0x8>(void*, const u32*, const char*);
+struct UnkClone_fn_7100f72acc;
+template void base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f72acc, UnkClonePolyB, 0x18>>::Free();
+struct UnkClone_fn_7100f72b98;
+template base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f72b98, UnkClonePolyB, 0x18>>& base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f72b98, UnkClonePolyB, 0x18>>::operator=(base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f72b98, UnkClonePolyB, 0x18>>&&);
+struct UnkClone_fn_7100f72c44;
+extern char g_unk_7101cab1f8[];
+extern char g_unk_7101cab388[];
+void fn_7100f72db4(void*, const void*);
+template <> struct base::UnkStrIdValueTraits<UnkClone_fn_7100f72c44> {
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+    static char* vtable() { return g_unk_7101cab388; }
+    static void push_back(void* v, const void* e) { fn_7100f72db4(v, e); }
+};
+template void base::refl_StrIdValueVecCopy<UnkClone_fn_7100f72c44, u32>(base::UnkVector<base::UnkStrIdValueElem<UnkClone_fn_7100f72c44, u32>>*, const base::UnkVector<base::UnkStrIdValueElem<UnkClone_fn_7100f72c44, u32>>*);
+struct UnkClone_fn_7100f72db4;
+extern char g_unk_7101cab388[];
+template <> struct base::UnkIdValueTraits<UnkClone_fn_7100f72db4> {
+    static char* vtable() { return g_unk_7101cab388; }
+};
+template void base::refl_IdValuePushBack(base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f72db4, UnkCloneElem<UnkClone_fn_7100f72db4, 4>>>*, const base::UnkIdValueElem<UnkClone_fn_7100f72db4, UnkCloneElem<UnkClone_fn_7100f72db4, 4>>&);
+struct UnkClone_fn_7100f72f84;
+extern char g_unk_7101cab388[];
+void fn_7100f72db4(base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f72f84, UnkCloneElem<UnkClone_fn_7100f72f84, 4>>>*, const base::UnkIdValueElem<UnkClone_fn_7100f72f84, UnkCloneElem<UnkClone_fn_7100f72f84, 4>>&);
+template <> struct base::UnkIdValueTraits<UnkClone_fn_7100f72f84> {
+    static char* vtable() { return g_unk_7101cab388; }
+    static void push_back(base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f72f84, UnkCloneElem<UnkClone_fn_7100f72f84, 4>>>* v, const base::UnkIdValueElem<UnkClone_fn_7100f72f84, UnkCloneElem<UnkClone_fn_7100f72f84, 4>>& x) { fn_7100f72db4(v, x); }
+};
+template base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f72f84, UnkCloneElem<UnkClone_fn_7100f72f84, 4>>>* base::refl_IdValueAssign(base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f72f84, UnkCloneElem<UnkClone_fn_7100f72f84, 4>>>*, const base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f72f84, UnkCloneElem<UnkClone_fn_7100f72f84, 4>>>*);
+struct UnkClone_fn_7100f737cc;
+extern char g_unk_7101cab1f8[];
+void fn_7100f56a70(void*);
+template <> struct base::UnkVtIterTraits<UnkClone_fn_7100f737cc> {
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+    static void sync(void* it) { fn_7100f56a70(it); }
+};
+template void base::refl_VtBegin(const base::UnkVector<base::UnkStrIdVtElem<UnkClone_fn_7100f737cc, 0x18>>*, base::UnkCollectionIter<base::UnkStrIdVtElem<UnkClone_fn_7100f737cc, 0x18>>*);
+struct UnkClone_fn_7100f738b4;
+extern char g_unk_7101cab1f8[];
+void fn_7100f56a70(void*);
+template <> struct base::UnkVtIterTraits<UnkClone_fn_7100f738b4> {
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+    static void sync(void* it) { fn_7100f56a70(it); }
+};
+template void base::refl_VtEnd(const base::UnkVector<base::UnkStrIdVtElem<UnkClone_fn_7100f738b4, 0x18>>*, base::UnkCollectionIter<base::UnkStrIdVtElem<UnkClone_fn_7100f738b4, 0x18>>*);
+struct UnkClone_fn_7100f73b34;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f73b34> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f73b34, u32, 0x0>(void*, char*);
+struct UnkClone_fn_7100f73b80;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f73b80> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f73b80, u32, 0x0>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f73c14;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f73c14> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f73c14, u32, 0x4>(void*, char*);
+struct UnkClone_fn_7100f73c60;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f73c60> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f73c60, u32, 0x4>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f73cf4;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f73cf4> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f73cf4, u32, 0x8>(void*, char*);
+struct UnkClone_fn_7100f73d40;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f73d40> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f73d40, u32, 0x8>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f73dd4;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f73dd4> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f73dd4, u32, 0xc>(void*, char*);
+struct UnkClone_fn_7100f73e20;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f73e20> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f73e20, u32, 0xc>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f73eb4;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f73eb4> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f73eb4, u32, 0x10>(void*, char*);
+struct UnkClone_fn_7100f73f00;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f73f00> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f73f00, u32, 0x10>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f73f94;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f73f94> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f73f94, u32, 0x14>(void*, char*);
+struct UnkClone_fn_7100f73fe0;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f73fe0> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f73fe0, u32, 0x14>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f74178;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f74178> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f74178, u32, 0x28>(void*, char*);
+struct UnkClone_fn_7100f741c4;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f741c4> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f741c4, u32, 0x28>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f74258;
+const base::reflection::CType* fn_710000d228();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f74258> {
+    static const CType* type() { return fn_710000d228(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f74258, u8, 0x2c>(void*, char*);
+struct UnkClone_fn_7100f742a4;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f742a4> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f742a4, u8, 0x2c>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f744f8;
+template base::UnkStrIdRecordB<UnkClone_fn_7100f744f8>& base::UnkStrIdRecordB<UnkClone_fn_7100f744f8>::operator=(const base::UnkStrIdRecordB<UnkClone_fn_7100f744f8>&);
+struct UnkClone_fn_7100f74594;
+template base::UnkStrIdRecordB<UnkClone_fn_7100f74594>& base::UnkStrIdRecordB<UnkClone_fn_7100f74594>::operator=(const base::UnkStrIdRecordB<UnkClone_fn_7100f74594>&);
+struct UnkClone_fn_7100f7464c;
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkDtorTraits<UnkClone_fn_7100f7464c> {
+    static char* vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_DeletingDtorNoBase<UnkClone_fn_7100f7464c, base::UnkStrIdAt<0x8>>(char*);
+struct UnkClone_fn_7100f746cc;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f746cc> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f746cc, u32, 0x10>(void*, char*);
+struct UnkClone_fn_7100f74718;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f74718> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f74718, u32, 0x10>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f747dc;
+extern char g_unk_7101cab3b0[];
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkPolyStrIdTraits<UnkClone_fn_7100f747dc> {
+    static char* vtable() { return g_unk_7101cab3b0; }
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_IterValueMove<base::UnkPolyStrIdElem<UnkClone_fn_7100f747dc, u32>>(void*, const void*);
+struct UnkClone_fn_7100f748c4;
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkDtorTraits<UnkClone_fn_7100f748c4> {
+    static char* vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_IterValueDestroy<base::UnkDtorElem<UnkClone_fn_7100f748c4, 0x18, base::UnkStrIdAt<0x8>>>(void*);
+struct UnkClone_fn_7100f74954;
+template void* base::refl_IterValueCopy<base::UnkKeyedSetEntry<UnkClone_fn_7100f74954, UnkCloneStrId<UnkClone_fn_7100f74954>, u32, 0x8>>(void*, const void*);
+struct UnkClone_fn_7100f74c18;
+template base::reflection::UnkReflValue base::reflection::refl_GetIterElementDynValue<UnkClone_fn_7100f74c18, UnkCloneBlock<UnkClone_fn_7100f74c18, 0x18>>(void*, char*);
+struct UnkClone_fn_7100f74ca8;
+extern char g_unk_7101cab3b0[];
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkPolyStrIdTraits<UnkClone_fn_7100f74ca8> {
+    static char* vtable() { return g_unk_7101cab3b0; }
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_IterValueMove<base::UnkPolyStrIdElem<UnkClone_fn_7100f74ca8, u32>>(void*, const void*);
+struct UnkClone_fn_7100f74d90;
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkDtorTraits<UnkClone_fn_7100f74d90> {
+    static char* vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_IterValueDestroy<base::UnkDtorElem<UnkClone_fn_7100f74d90, 0x18, base::UnkStrIdAt<0x8>>>(void*);
+struct UnkClone_fn_7100f74e80;
+template base::reflection::UnkReflValue base::reflection::refl_GetIterElementDynValue<UnkClone_fn_7100f74e80, UnkCloneBlock<UnkClone_fn_7100f74e80, 0x18>>(void*, char*);
+struct UnkClone_fn_7100f74ee8;
+template void base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f74ee8, UnkClonePolyB, 0x18>>::Clear();
+struct UnkClone_fn_7100f750b8;
+char* fn_7100f44cf0(void*, u32);
+template <> struct base::UnkKeyedSetTraits<UnkClone_fn_7100f750b8> {
+    static char* find(void* m, u32 k) { return fn_7100f44cf0(m, k); }
+};
+template void base::refl_KeyedSetAssign<UnkClone_fn_7100f750b8, UnkCloneStrId<UnkClone_fn_7100f750b8>, u32, 0x8>(void*, const u32*, const char*);
+struct UnkClone_fn_7100f75150;
+char* fn_7100f44cf0(void*, u32);
+template <> struct base::UnkKeyedSetTraits<UnkClone_fn_7100f75150> {
+    static char* find(void* m, u32 k) { return fn_7100f44cf0(m, k); }
+};
+template void base::refl_KeyedSetAssign<UnkClone_fn_7100f75150, UnkCloneStrId<UnkClone_fn_7100f75150>, u32, 0x8>(void*, const u32*, const char*);
+struct UnkClone_fn_7100f7528c;
+template void base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f7528c, UnkClonePolyB, 0x18>>::Free();
+struct UnkClone_fn_7100f75358;
+template base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f75358, UnkClonePolyB, 0x18>>& base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f75358, UnkClonePolyB, 0x18>>::operator=(base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f75358, UnkClonePolyB, 0x18>>&&);
+struct UnkClone_fn_7100f75404;
+extern char g_unk_7101cab1f8[];
+extern char g_unk_7101cab3b0[];
+void fn_7100f75574(void*, const void*);
+template <> struct base::UnkStrIdValueTraits<UnkClone_fn_7100f75404> {
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+    static char* vtable() { return g_unk_7101cab3b0; }
+    static void push_back(void* v, const void* e) { fn_7100f75574(v, e); }
+};
+template void base::refl_StrIdValueVecCopy<UnkClone_fn_7100f75404, u32>(base::UnkVector<base::UnkStrIdValueElem<UnkClone_fn_7100f75404, u32>>*, const base::UnkVector<base::UnkStrIdValueElem<UnkClone_fn_7100f75404, u32>>*);
+struct UnkClone_fn_7100f75574;
+extern char g_unk_7101cab3b0[];
+template <> struct base::UnkIdValueTraits<UnkClone_fn_7100f75574> {
+    static char* vtable() { return g_unk_7101cab3b0; }
+};
+template void base::refl_IdValuePushBack(base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f75574, UnkCloneElem<UnkClone_fn_7100f75574, 4>>>*, const base::UnkIdValueElem<UnkClone_fn_7100f75574, UnkCloneElem<UnkClone_fn_7100f75574, 4>>&);
+struct UnkClone_fn_7100f75744;
+extern char g_unk_7101cab3b0[];
+void fn_7100f75574(base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f75744, UnkCloneElem<UnkClone_fn_7100f75744, 4>>>*, const base::UnkIdValueElem<UnkClone_fn_7100f75744, UnkCloneElem<UnkClone_fn_7100f75744, 4>>&);
+template <> struct base::UnkIdValueTraits<UnkClone_fn_7100f75744> {
+    static char* vtable() { return g_unk_7101cab3b0; }
+    static void push_back(base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f75744, UnkCloneElem<UnkClone_fn_7100f75744, 4>>>* v, const base::UnkIdValueElem<UnkClone_fn_7100f75744, UnkCloneElem<UnkClone_fn_7100f75744, 4>>& x) { fn_7100f75574(v, x); }
+};
+template base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f75744, UnkCloneElem<UnkClone_fn_7100f75744, 4>>>* base::refl_IdValueAssign(base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f75744, UnkCloneElem<UnkClone_fn_7100f75744, 4>>>*, const base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f75744, UnkCloneElem<UnkClone_fn_7100f75744, 4>>>*);
+struct UnkClone_fn_7100f75f8c;
+extern char g_unk_7101cab1f8[];
+void fn_7100f581d0(void*);
+template <> struct base::UnkVtIterTraits<UnkClone_fn_7100f75f8c> {
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+    static void sync(void* it) { fn_7100f581d0(it); }
+};
+template void base::refl_VtBegin(const base::UnkVector<base::UnkStrIdVtElem<UnkClone_fn_7100f75f8c, 0x18>>*, base::UnkCollectionIter<base::UnkStrIdVtElem<UnkClone_fn_7100f75f8c, 0x18>>*);
+struct UnkClone_fn_7100f76074;
+extern char g_unk_7101cab1f8[];
+void fn_7100f581d0(void*);
+template <> struct base::UnkVtIterTraits<UnkClone_fn_7100f76074> {
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+    static void sync(void* it) { fn_7100f581d0(it); }
+};
+template void base::refl_VtEnd(const base::UnkVector<base::UnkStrIdVtElem<UnkClone_fn_7100f76074, 0x18>>*, base::UnkCollectionIter<base::UnkStrIdVtElem<UnkClone_fn_7100f76074, 0x18>>*);
+struct UnkClone_fn_7100f761d8;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f761d8> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f761d8, u32, 0x0>(void*, char*);
+struct UnkClone_fn_7100f76224;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f76224> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f76224, u32, 0x0>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f762b8;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f762b8> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f762b8, u32, 0x4>(void*, char*);
+struct UnkClone_fn_7100f76304;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f76304> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f76304, u32, 0x4>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f76398;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f76398> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f76398, u32, 0x8>(void*, char*);
+struct UnkClone_fn_7100f763e4;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f763e4> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f763e4, u32, 0x8>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f76478;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f76478> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f76478, u32, 0xc>(void*, char*);
+struct UnkClone_fn_7100f764c4;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f764c4> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f764c4, u32, 0xc>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f76718;
+template base::UnkStrIdRecordB<UnkClone_fn_7100f76718>& base::UnkStrIdRecordB<UnkClone_fn_7100f76718>::operator=(const base::UnkStrIdRecordB<UnkClone_fn_7100f76718>&);
+struct UnkClone_fn_7100f767b4;
+template base::UnkStrIdRecordB<UnkClone_fn_7100f767b4>& base::UnkStrIdRecordB<UnkClone_fn_7100f767b4>::operator=(const base::UnkStrIdRecordB<UnkClone_fn_7100f767b4>&);
+struct UnkClone_fn_7100f7686c;
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkDtorTraits<UnkClone_fn_7100f7686c> {
+    static char* vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_DeletingDtorNoBase<UnkClone_fn_7100f7686c, base::UnkStrIdAt<0x8>>(char*);
+struct UnkClone_fn_7100f768ec;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f768ec> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100f768ec, u32, 0x10>(void*, char*);
+struct UnkClone_fn_7100f76938;
+extern char* g_unk_7101d47368;
+void fn_7100d8ced8(char*);
+void fn_7100d8f1c0(char*);
+void* fn_71000839a0(u64 size, u32 flags);
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_7100f76938> {
+    static void apply() {
+        char* s = g_unk_7101d47368;
+        if (!s) {
+            s = static_cast<char*>(fn_71000839a0(0x4c8, 3));
+            fn_7100d8ced8(s);
+            g_unk_7101d47368 = s;
+        }
+        fn_7100d8f1c0(s);
+    }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldApply<UnkClone_fn_7100f76938, u32, 0x10>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f769fc;
+extern char g_unk_7101cab3d8[];
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkPolyStrIdTraits<UnkClone_fn_7100f769fc> {
+    static char* vtable() { return g_unk_7101cab3d8; }
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_IterValueMove<base::UnkPolyStrIdElem<UnkClone_fn_7100f769fc, u32>>(void*, const void*);
+struct UnkClone_fn_7100f76ae4;
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkDtorTraits<UnkClone_fn_7100f76ae4> {
+    static char* vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_IterValueDestroy<base::UnkDtorElem<UnkClone_fn_7100f76ae4, 0x18, base::UnkStrIdAt<0x8>>>(void*);
+struct UnkClone_fn_7100f76b74;
+template void* base::refl_IterValueCopy<base::UnkKeyedSetEntry<UnkClone_fn_7100f76b74, UnkCloneStrId<UnkClone_fn_7100f76b74>, u32, 0x8>>(void*, const void*);
+struct UnkClone_fn_7100f76e38;
+template base::reflection::UnkReflValue base::reflection::refl_GetIterElementDynValue<UnkClone_fn_7100f76e38, UnkCloneBlock<UnkClone_fn_7100f76e38, 0x18>>(void*, char*);
+struct UnkClone_fn_7100f76ec8;
+extern char g_unk_7101cab3d8[];
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkPolyStrIdTraits<UnkClone_fn_7100f76ec8> {
+    static char* vtable() { return g_unk_7101cab3d8; }
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_IterValueMove<base::UnkPolyStrIdElem<UnkClone_fn_7100f76ec8, u32>>(void*, const void*);
+struct UnkClone_fn_7100f76fb0;
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkDtorTraits<UnkClone_fn_7100f76fb0> {
+    static char* vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_IterValueDestroy<base::UnkDtorElem<UnkClone_fn_7100f76fb0, 0x18, base::UnkStrIdAt<0x8>>>(void*);
+struct UnkClone_fn_7100f770a0;
+template base::reflection::UnkReflValue base::reflection::refl_GetIterElementDynValue<UnkClone_fn_7100f770a0, UnkCloneBlock<UnkClone_fn_7100f770a0, 0x18>>(void*, char*);
+struct UnkClone_fn_7100f77108;
+template void base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f77108, UnkClonePolyB, 0x18>>::Clear();
+struct UnkClone_fn_7100f772d8;
+char* fn_7100f44e64(void*, u32);
+template <> struct base::UnkKeyedSetTraits<UnkClone_fn_7100f772d8> {
+    static char* find(void* m, u32 k) { return fn_7100f44e64(m, k); }
+};
+template void base::refl_KeyedSetAssign<UnkClone_fn_7100f772d8, UnkCloneStrId<UnkClone_fn_7100f772d8>, u32, 0x8>(void*, const u32*, const char*);
+struct UnkClone_fn_7100f77370;
+char* fn_7100f44e64(void*, u32);
+template <> struct base::UnkKeyedSetTraits<UnkClone_fn_7100f77370> {
+    static char* find(void* m, u32 k) { return fn_7100f44e64(m, k); }
+};
+template void base::refl_KeyedSetAssign<UnkClone_fn_7100f77370, UnkCloneStrId<UnkClone_fn_7100f77370>, u32, 0x8>(void*, const u32*, const char*);
+struct UnkClone_fn_7100f774ac;
+template void base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f774ac, UnkClonePolyB, 0x18>>::Free();
+struct UnkClone_fn_7100f77578;
+template base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f77578, UnkClonePolyB, 0x18>>& base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f77578, UnkClonePolyB, 0x18>>::operator=(base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f77578, UnkClonePolyB, 0x18>>&&);
+struct UnkClone_fn_7100f77624;
+extern char g_unk_7101cab1f8[];
+extern char g_unk_7101cab3d8[];
+void fn_7100f77794(void*, const void*);
+template <> struct base::UnkStrIdValueTraits<UnkClone_fn_7100f77624> {
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+    static char* vtable() { return g_unk_7101cab3d8; }
+    static void push_back(void* v, const void* e) { fn_7100f77794(v, e); }
+};
+template void base::refl_StrIdValueVecCopy<UnkClone_fn_7100f77624, u32>(base::UnkVector<base::UnkStrIdValueElem<UnkClone_fn_7100f77624, u32>>*, const base::UnkVector<base::UnkStrIdValueElem<UnkClone_fn_7100f77624, u32>>*);
+struct UnkClone_fn_7100f77794;
+extern char g_unk_7101cab3d8[];
+template <> struct base::UnkIdValueTraits<UnkClone_fn_7100f77794> {
+    static char* vtable() { return g_unk_7101cab3d8; }
+};
+template void base::refl_IdValuePushBack(base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f77794, UnkCloneElem<UnkClone_fn_7100f77794, 4>>>*, const base::UnkIdValueElem<UnkClone_fn_7100f77794, UnkCloneElem<UnkClone_fn_7100f77794, 4>>&);
+struct UnkClone_fn_7100f77964;
+extern char g_unk_7101cab3d8[];
+void fn_7100f77794(base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f77964, UnkCloneElem<UnkClone_fn_7100f77964, 4>>>*, const base::UnkIdValueElem<UnkClone_fn_7100f77964, UnkCloneElem<UnkClone_fn_7100f77964, 4>>&);
+template <> struct base::UnkIdValueTraits<UnkClone_fn_7100f77964> {
+    static char* vtable() { return g_unk_7101cab3d8; }
+    static void push_back(base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f77964, UnkCloneElem<UnkClone_fn_7100f77964, 4>>>* v, const base::UnkIdValueElem<UnkClone_fn_7100f77964, UnkCloneElem<UnkClone_fn_7100f77964, 4>>& x) { fn_7100f77794(v, x); }
+};
+template base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f77964, UnkCloneElem<UnkClone_fn_7100f77964, 4>>>* base::refl_IdValueAssign(base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f77964, UnkCloneElem<UnkClone_fn_7100f77964, 4>>>*, const base::UnkVector<base::UnkIdValueElem<UnkClone_fn_7100f77964, UnkCloneElem<UnkClone_fn_7100f77964, 4>>>*);
+struct UnkClone_fn_7100f781ac;
+extern char g_unk_7101cab1f8[];
+void fn_7100f59930(void*);
+template <> struct base::UnkVtIterTraits<UnkClone_fn_7100f781ac> {
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+    static void sync(void* it) { fn_7100f59930(it); }
+};
+template void base::refl_VtBegin(const base::UnkVector<base::UnkStrIdVtElem<UnkClone_fn_7100f781ac, 0x18>>*, base::UnkCollectionIter<base::UnkStrIdVtElem<UnkClone_fn_7100f781ac, 0x18>>*);
+struct UnkClone_fn_7100f78294;
+extern char g_unk_7101cab1f8[];
+void fn_7100f59930(void*);
+template <> struct base::UnkVtIterTraits<UnkClone_fn_7100f78294> {
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+    static void sync(void* it) { fn_7100f59930(it); }
+};
+template void base::refl_VtEnd(const base::UnkVector<base::UnkStrIdVtElem<UnkClone_fn_7100f78294, 0x18>>*, base::UnkCollectionIter<base::UnkStrIdVtElem<UnkClone_fn_7100f78294, 0x18>>*);
+struct UnkClone_fn_7100f78434;
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldStrId<UnkClone_fn_7100f78434, 0x3a0>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100f78c3c;
+void fn_7100f44fd8(void*, void*);
+template <> struct UnkCloneMoveTraits<UnkClone_fn_7100f78c3c> {
+    static void move(void* dst, void* src) { fn_7100f44fd8(dst, src); }
+};
+template void base::refl_IterValueMove<UnkCloneMoveElem<UnkClone_fn_7100f78c3c, 0x3a8>, UnkCloneStrId<UnkClone_fn_7100f78c3c>>(void*, const void*);
+struct UnkClone_fn_7100f78ca8;
+void fn_7100d8f9e4(char*);
+template <> struct UnkCloneDtorTraits<UnkClone_fn_7100f78ca8> {
+    static void destroy(char* p) { fn_7100d8f9e4(p); }
+};
+template void base::refl_IterValueDestroy<UnkCloneDtorElem<UnkClone_fn_7100f78ca8, 0x3a8>, UnkCloneStrId<UnkClone_fn_7100f78ca8>>(void*);
+struct UnkClone_fn_7100f78d30;
+void fn_7100f46654(void*, const void*);
+template <> struct UnkCloneAssignTraits<UnkClone_fn_7100f78d30> {
+    static void assign(void* dst, const void* src) { fn_7100f46654(dst, src); }
+};
+template void* base::refl_IterValueCopy<UnkCloneAssignElem<UnkClone_fn_7100f78d30, 0x3a8>, UnkCloneStrId<UnkClone_fn_7100f78d30>>(void*, const void*);
+struct UnkClone_fn_7100f7904c;
+extern char g_unk_71729e0568[];
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f7904c> {
+    static const CType* type() { return reinterpret_cast<const CType*>(g_unk_71729e0568); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetIterElementValue<UnkClone_fn_7100f7904c, UnkCloneBlock<UnkClone_fn_7100f7904c, 0x3a8>>(void*, char*);
+struct UnkClone_fn_7100f790b4;
+void fn_7100f42c44(void*, void*);
+template <> struct UnkCloneMoveTraits<UnkClone_fn_7100f790b4> {
+    static void move(void* dst, void* src) { fn_7100f42c44(dst, src); }
+};
+template void base::refl_IterValueMove<UnkCloneMoveElem<UnkClone_fn_7100f790b4, 0x3a8>, UnkCloneStrId<UnkClone_fn_7100f790b4>>(void*, const void*);
+struct UnkClone_fn_7100f79120;
+void fn_7100d8f9e4(char*);
+template <> struct UnkCloneDtorTraits<UnkClone_fn_7100f79120> {
+    static void destroy(char* p) { fn_7100d8f9e4(p); }
+};
+template void base::refl_IterValueDestroy<UnkCloneDtorElem<UnkClone_fn_7100f79120, 0x3a8>, UnkCloneStrId<UnkClone_fn_7100f79120>>(void*);
+struct UnkClone_fn_7100f79208;
+extern char g_unk_71729e0568[];
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f79208> {
+    static const CType* type() { return reinterpret_cast<const CType*>(g_unk_71729e0568); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetIterElementValue<UnkClone_fn_7100f79208, UnkCloneBlock<UnkClone_fn_7100f79208, 0x3a8>>(void*, char*);
+struct UnkClone_fn_7100f79bb0;
+extern char g_unk_7101cab1f8[];
+extern char g_unk_7101cab248[];
+template <> struct base::UnkStrIdValueTraits<UnkClone_fn_7100f79bb0> {
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+    static char* vtable() { return g_unk_7101cab248; }
+    static void init(u32&) {}
+};
+template void base::refl_StrIdValueResize<UnkClone_fn_7100f79bb0, u32>(base::UnkVector<base::UnkStrIdValueElem<UnkClone_fn_7100f79bb0, u32>>*, u32);
+struct UnkClone_fn_7100f79db4;
+extern char g_unk_7101cab1f8[];
+extern char g_unk_7101cab270[];
+template <> struct base::UnkStrIdValueTraits<UnkClone_fn_7100f79db4> {
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+    static char* vtable() { return g_unk_7101cab270; }
+    static void init(u32&) {}
+};
+template void base::refl_StrIdValueResize<UnkClone_fn_7100f79db4, u32>(base::UnkVector<base::UnkStrIdValueElem<UnkClone_fn_7100f79db4, u32>>*, u32);
+struct UnkClone_fn_7100f79fb8;
+extern char g_unk_7101cab1f8[];
+extern char g_unk_7101cab298[];
+template <> struct base::UnkStrIdValueTraits<UnkClone_fn_7100f79fb8> {
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+    static char* vtable() { return g_unk_7101cab298; }
+    static void init(u64&) {}
+};
+template void base::refl_StrIdValueResize<UnkClone_fn_7100f79fb8, u64>(base::UnkVector<base::UnkStrIdValueElem<UnkClone_fn_7100f79fb8, u64>>*, u32);
+struct UnkClone_fn_7100f7a1bc;
+extern char g_unk_7101cab1f8[];
+extern char g_unk_7101cab2c0[];
+template <> struct base::UnkStrIdValueTraits<UnkClone_fn_7100f7a1bc> {
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+    static char* vtable() { return g_unk_7101cab2c0; }
+    static void init(u64&) {}
+};
+template void base::refl_StrIdValueResize<UnkClone_fn_7100f7a1bc, u64>(base::UnkVector<base::UnkStrIdValueElem<UnkClone_fn_7100f7a1bc, u64>>*, u32);
+struct UnkClone_fn_7100f7a3c0;
+extern char g_unk_7101cab1f8[];
+extern char g_unk_7101cab2e8[];
+template <> struct base::UnkStrIdValueTraits<UnkClone_fn_7100f7a3c0> {
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+    static char* vtable() { return g_unk_7101cab2e8; }
+    static void init(u64&) {}
+};
+template void base::refl_StrIdValueResize<UnkClone_fn_7100f7a3c0, u64>(base::UnkVector<base::UnkStrIdValueElem<UnkClone_fn_7100f7a3c0, u64>>*, u32);
+struct UnkClone_fn_7100f7a5c4;
+extern char g_unk_7101cab1f8[];
+extern char g_unk_7101cab310[];
+template <> struct base::UnkStrIdValueTraits<UnkClone_fn_7100f7a5c4> {
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+    static char* vtable() { return g_unk_7101cab310; }
+    static void init(u32&) {}
+};
+template void base::refl_StrIdValueResize<UnkClone_fn_7100f7a5c4, u32>(base::UnkVector<base::UnkStrIdValueElem<UnkClone_fn_7100f7a5c4, u32>>*, u32);
+struct UnkClone_fn_7100f7a9d8;
+extern char g_unk_7101cab1f8[];
+extern char g_unk_7101cab360[];
+template <> struct base::UnkStrIdValueTraits<UnkClone_fn_7100f7a9d8> {
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+    static char* vtable() { return g_unk_7101cab360; }
+    static void init(u32&) {}
+};
+template void base::refl_StrIdValueResize<UnkClone_fn_7100f7a9d8, u32>(base::UnkVector<base::UnkStrIdValueElem<UnkClone_fn_7100f7a9d8, u32>>*, u32);
+struct UnkClone_fn_7100f7abdc;
+extern char g_unk_7101cab1f8[];
+extern char g_unk_7101cab388[];
+template <> struct base::UnkStrIdValueTraits<UnkClone_fn_7100f7abdc> {
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+    static char* vtable() { return g_unk_7101cab388; }
+    static void init(f32& v) { v = 1.0f; }
+};
+template void base::refl_StrIdValueResize<UnkClone_fn_7100f7abdc, f32>(base::UnkVector<base::UnkStrIdValueElem<UnkClone_fn_7100f7abdc, f32>>*, u32);
+struct UnkClone_fn_7100f7ade4;
+extern char g_unk_7101cab1f8[];
+extern char g_unk_7101cab3b0[];
+template <> struct base::UnkStrIdValueTraits<UnkClone_fn_7100f7ade4> {
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+    static char* vtable() { return g_unk_7101cab3b0; }
+    static void init(f32& v) { v = 1.0f; }
+};
+template void base::refl_StrIdValueResize<UnkClone_fn_7100f7ade4, f32>(base::UnkVector<base::UnkStrIdValueElem<UnkClone_fn_7100f7ade4, f32>>*, u32);
+struct UnkClone_fn_7100f7afec;
+extern char g_unk_7101cab1f8[];
+extern char g_unk_7101cab3d8[];
+template <> struct base::UnkStrIdValueTraits<UnkClone_fn_7100f7afec> {
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+    static char* vtable() { return g_unk_7101cab3d8; }
+    static void init(f32& v) { v = 1.0f; }
+};
+template void base::refl_StrIdValueResize<UnkClone_fn_7100f7afec, f32>(base::UnkVector<base::UnkStrIdValueElem<UnkClone_fn_7100f7afec, f32>>*, u32);
+struct UnkClone_fn_7100f81c98;
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkVtIterTraits<UnkClone_fn_7100f81c98> {
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_IterSync(base::UnkCollectionIter<base::UnkStrIdVtElem<UnkClone_fn_7100f81c98, 0x20>, u32>*);
+struct UnkClone_fn_7100f82110;
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkVtIterTraits<UnkClone_fn_7100f82110> {
+    static char* base_vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_IterSync(base::UnkCollectionIter<base::UnkStrIdVtElem<UnkClone_fn_7100f82110, 0x20>, u32>*);
+struct UnkClone_fn_7100f83260;
+void fn_7100d90304(char*);
+template <> struct UnkCloneDtorTraits<UnkClone_fn_7100f83260> {
+    static void destroy(char* p) { fn_7100d90304(p); }
+};
+template void base::refl_IterValueDestroy<UnkCloneDtorElem<UnkClone_fn_7100f83260, 0x68>, UnkCloneStrIdElem<UnkClone_fn_7100f83260, 8, 16, base::UnkStrIdMemberOf<g_unk_7101d47108>>>(void*);
+struct UnkClone_fn_7100f83358;
+void fn_7100d90304(char*);
+template <> struct UnkCloneDtorTraits<UnkClone_fn_7100f83358> {
+    static void destroy(char* p) { fn_7100d90304(p); }
+};
+template void base::refl_MapIterSync(base::UnkMapIter<UnkCloneDtorElem<UnkClone_fn_7100f83358, 0x68>, UnkCloneStrId<UnkClone_fn_7100f83358>>*);
+struct UnkClone_fn_7100f83694;
+void fn_7100d90304(char*);
+template <> struct UnkCloneDtorTraits<UnkClone_fn_7100f83694> {
+    static void destroy(char* p) { fn_7100d90304(p); }
+};
+template void base::refl_IterValueDestroy<UnkCloneDtorElem<UnkClone_fn_7100f83694, 0x68>, UnkCloneStrIdElem<UnkClone_fn_7100f83694, 8, 16, base::UnkStrIdMemberOf<g_unk_7101d47108>>>(void*);
+struct UnkClone_fn_7100f8378c;
+void fn_7100d90304(char*);
+template <> struct UnkCloneDtorTraits<UnkClone_fn_7100f8378c> {
+    static void destroy(char* p) { fn_7100d90304(p); }
+};
+template void base::refl_MapIterSync(base::UnkMapIter<UnkCloneDtorElem<UnkClone_fn_7100f8378c, 0x68>, UnkCloneStrId<UnkClone_fn_7100f8378c>>*);
+struct UnkClone_fn_7100f83b94;
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkDtorTraits<UnkClone_fn_7100f83b94> {
+    static char* vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_DeletingDtorNoBase<UnkClone_fn_7100f83b94, base::UnkStrIdAt<0x8>>(char*);
+struct UnkClone_fn_7100f83d2c;
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkDtorTraits<UnkClone_fn_7100f83d2c> {
+    static char* vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_IterValueDestroy<base::UnkDtorElem<UnkClone_fn_7100f83d2c, 0x20, base::UnkStrIdAt<0x8>>>(void*);
+struct UnkClone_fn_7100f840e8;
+extern char g_unk_71729e8888[];
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f840e8> {
+    static const CType* type() { return reinterpret_cast<const CType*>(g_unk_71729e8888); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetIterElementValue<UnkClone_fn_7100f840e8, UnkCloneBlock<UnkClone_fn_7100f840e8, 0x20>>(void*, char*);
+struct UnkClone_fn_7100f84238;
+extern char g_unk_7101cab1f8[];
+template <> struct base::UnkDtorTraits<UnkClone_fn_7100f84238> {
+    static char* vtable() { return g_unk_7101cab1f8; }
+};
+template void base::refl_IterValueDestroy<base::UnkDtorElem<UnkClone_fn_7100f84238, 0x20, base::UnkStrIdAt<0x8>>>(void*);
+struct UnkClone_fn_7100f84328;
+extern char g_unk_71729e8888[];
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f84328> {
+    static const CType* type() { return reinterpret_cast<const CType*>(g_unk_71729e8888); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetIterElementValue<UnkClone_fn_7100f84328, UnkCloneBlock<UnkClone_fn_7100f84328, 0x20>>(void*, char*);
+struct UnkClone_fn_7100f84368;
+template void base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f84368, UnkClonePolyB, 0x20>>::Clear();
+struct UnkClone_fn_7100f846f0;
+template void base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f846f0, UnkClonePolyB, 0x20>>::Free();
+struct UnkClone_fn_7100f847bc;
+template base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f847bc, UnkClonePolyB, 0x20>>& base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f847bc, UnkClonePolyB, 0x20>>::operator=(base::UnkVector<UnkClonePolyElem<UnkClone_fn_7100f847bc, UnkClonePolyB, 0x20>>&&);
+struct UnkClone_fn_7100f866fc;
+void fn_7100d90304(char*);
+template <> struct UnkCloneDtorTraits<UnkClone_fn_7100f866fc> {
+    static void destroy(char* p) { fn_7100d90304(p); }
+};
+template void base::refl_IterValueDestroy<UnkCloneDtorElem<UnkClone_fn_7100f866fc, 0x68>, UnkCloneStrId<UnkClone_fn_7100f866fc>>(void*);
+struct UnkClone_fn_7100f86784;
+void fn_7100f86150(void*, const void*);
+template <> struct UnkCloneAssignTraits<UnkClone_fn_7100f86784> {
+    static void assign(void* dst, const void* src) { fn_7100f86150(dst, src); }
+};
+template void* base::refl_IterValueCopy<UnkCloneAssignElem<UnkClone_fn_7100f86784, 0x68>, UnkCloneStrId<UnkClone_fn_7100f86784>>(void*, const void*);
+struct UnkClone_fn_7100f86c1c;
+extern char g_unk_71729e8dc0[];
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f86c1c> {
+    static const CType* type() { return reinterpret_cast<const CType*>(g_unk_71729e8dc0); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetIterElementValue<UnkClone_fn_7100f86c1c, UnkCloneBlock<UnkClone_fn_7100f86c1c, 0x68>>(void*, char*);
+struct UnkClone_fn_7100f86c88;
+void fn_7100d90304(char*);
+template <> struct UnkCloneDtorTraits<UnkClone_fn_7100f86c88> {
+    static void destroy(char* p) { fn_7100d90304(p); }
+};
+template void base::refl_IterValueDestroy<UnkCloneDtorElem<UnkClone_fn_7100f86c88, 0x68>, UnkCloneStrId<UnkClone_fn_7100f86c88>>(void*);
+struct UnkClone_fn_7100f86ee0;
+extern char g_unk_71729e8dc0[];
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f86ee0> {
+    static const CType* type() { return reinterpret_cast<const CType*>(g_unk_71729e8dc0); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetIterElementValue<UnkClone_fn_7100f86ee0, UnkCloneBlock<UnkClone_fn_7100f86ee0, 0x68>>(void*, char*);
+struct UnkClone_fn_7100f8a5e0;
+extern char g_unk_71729e8dc0[];
+const base::reflection::CType* fn_710000d228();
+template <> struct base::UnkPushTwoTraits<UnkClone_fn_7100f8a5e0> {
+    static const base::reflection::CType* first() { return reinterpret_cast<const base::reflection::CType*>(g_unk_71729e8dc0); }
+    static const base::reflection::CType* get() { return fn_710000d228(); }
+};
+template void base::refl_PushTwoTypes<UnkClone_fn_7100f8a5e0>(char*);
+struct UnkClone_fn_7100f8aa3c;
+extern char g_unk_71729f37a0[];
+const base::reflection::CType* fn_710000d228();
+template <> struct base::UnkPushTwoTraits<UnkClone_fn_7100f8aa3c> {
+    static const base::reflection::CType* first() { return reinterpret_cast<const base::reflection::CType*>(g_unk_71729f37a0); }
+    static const base::reflection::CType* get() { return fn_710000d228(); }
+};
+template void base::refl_PushTwoTypes<UnkClone_fn_7100f8aa3c>(char*);
+struct UnkClone_fn_7100f8fd68;
+template void base::UnkIterValue<UnkCloneStrIdElem2<UnkClone_fn_7100f8fd68, 0x0, 0x8, 0x28, UnkCloneStrId<UnkClone_fn_7100f8fd68>>>::Reset();
+struct UnkClone_fn_7100f9025c;
+template void base::UnkIterValue<UnkCloneStrIdElem2<UnkClone_fn_7100f9025c, 0x0, 0x8, 0x28, UnkCloneStrId<UnkClone_fn_7100f9025c>>>::Reset();
+struct UnkClone_fn_7100f90b44;
+template void base::refl_StrIdDtorAt<UnkClone_fn_7100f90b44, 0x0, UnkCloneStrId<UnkClone_fn_7100f90b44>>(char*);
+struct UnkClone_fn_7100f91438;
+extern char g_unk_71729ea500[];
+const base::reflection::CType* fn_710000d228();
+template <> struct base::UnkPushTwoTraits<UnkClone_fn_7100f91438> {
+    static const base::reflection::CType* first() { return reinterpret_cast<const base::reflection::CType*>(g_unk_71729ea500); }
+    static const base::reflection::CType* get() { return fn_710000d228(); }
+};
+template void base::refl_PushTwoTypes<UnkClone_fn_7100f91438>(char*);
+struct UnkClone_fn_7100f915d4;
+template base::UnkPairCounts<UnkClone_fn_7100f915d4> base::refl_MakePairCounts<UnkClone_fn_7100f915d4>();
+struct UnkClone_fn_7100f916cc;
+template void base::UnkIterValue<UnkCloneStrIdElem<UnkClone_fn_7100f916cc, 0x0, 0x20, UnkCloneStrId<UnkClone_fn_7100f916cc>>, UnkCloneStrId<UnkClone_fn_7100f916cc>>::Reset();
+struct UnkClone_fn_7100f91c1c;
+extern char g_unk_71729ea500[];
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f91c1c> {
+    static const CType* type() { return reinterpret_cast<const CType*>(g_unk_71729ea500); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetIterElementValue<UnkClone_fn_7100f91c1c, UnkCloneBlock<UnkClone_fn_7100f91c1c, 0x20>>(void*, char*);
+struct UnkClone_fn_7100f91d54;
+template void base::UnkIterValue<UnkCloneStrIdElem<UnkClone_fn_7100f91d54, 0x0, 0x20, UnkCloneStrId<UnkClone_fn_7100f91d54>>, UnkCloneStrId<UnkClone_fn_7100f91d54>>::Reset();
+struct UnkClone_fn_7100f91e7c;
+extern char g_unk_71729ea500[];
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f91e7c> {
+    static const CType* type() { return reinterpret_cast<const CType*>(g_unk_71729ea500); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetIterElementValue<UnkClone_fn_7100f91e7c, UnkCloneBlock<UnkClone_fn_7100f91e7c, 0x20>>(void*, char*);
+struct UnkClone_fn_7100f95778;
+void fn_7100f8da4c(char*);
+template <> struct UnkCloneDtorTraits<UnkClone_fn_7100f95778> {
+    static void destroy(char* p) { fn_7100f8da4c(p); }
+};
+template void base::refl_IterValueDestroy<UnkCloneDtorElem<UnkClone_fn_7100f95778, 0x78>, UnkCloneStrIdElem<UnkClone_fn_7100f95778, 8, 16, base::UnkStrIdMemberOf<g_unk_7101d47108>>>(void*);
+struct UnkClone_fn_7100f95870;
+void fn_7100f8da4c(char*);
+template <> struct UnkCloneDtorTraits<UnkClone_fn_7100f95870> {
+    static void destroy(char* p) { fn_7100f8da4c(p); }
+};
+template void base::refl_MapIterSync(base::UnkMapIter<UnkCloneDtorElem<UnkClone_fn_7100f95870, 0x78>, UnkCloneStrId<UnkClone_fn_7100f95870>>*);
+struct UnkClone_fn_7100f95bac;
+void fn_7100f8da4c(char*);
+template <> struct UnkCloneDtorTraits<UnkClone_fn_7100f95bac> {
+    static void destroy(char* p) { fn_7100f8da4c(p); }
+};
+template void base::refl_IterValueDestroy<UnkCloneDtorElem<UnkClone_fn_7100f95bac, 0x78>, UnkCloneStrIdElem<UnkClone_fn_7100f95bac, 8, 16, base::UnkStrIdMemberOf<g_unk_7101d47108>>>(void*);
+struct UnkClone_fn_7100f95ca4;
+void fn_7100f8da4c(char*);
+template <> struct UnkCloneDtorTraits<UnkClone_fn_7100f95ca4> {
+    static void destroy(char* p) { fn_7100f8da4c(p); }
+};
+template void base::refl_MapIterSync(base::UnkMapIter<UnkCloneDtorElem<UnkClone_fn_7100f95ca4, 0x78>, UnkCloneStrId<UnkClone_fn_7100f95ca4>>*);
+struct UnkClone_fn_7100f96608;
+extern char g_unk_71729ea640[];
+const base::reflection::CType* fn_710000d228();
+template <> struct base::UnkPushTwoTraits<UnkClone_fn_7100f96608> {
+    static const base::reflection::CType* first() { return reinterpret_cast<const base::reflection::CType*>(g_unk_71729ea640); }
+    static const base::reflection::CType* get() { return fn_710000d228(); }
+};
+template void base::refl_PushTwoTypes<UnkClone_fn_7100f96608>(char*);
+struct UnkClone_fn_7100f967a4;
+template base::UnkPairCounts<UnkClone_fn_7100f967a4> base::refl_MakePairCounts<UnkClone_fn_7100f967a4>();
+struct UnkClone_fn_7100f967e8;
+void fn_7100f8e1ac(void*, void*);
+template <> struct UnkCloneMoveTraits<UnkClone_fn_7100f967e8> {
+    static void move(void* dst, void* src) { fn_7100f8e1ac(dst, src); }
+};
+template void base::refl_IterValueMove<UnkCloneMoveElem<UnkClone_fn_7100f967e8, 0x78>, UnkCloneStrId<UnkClone_fn_7100f967e8>>(void*, const void*);
+struct UnkClone_fn_7100f96854;
+void fn_7100f8da4c(char*);
+template <> struct UnkCloneDtorTraits<UnkClone_fn_7100f96854> {
+    static void destroy(char* p) { fn_7100f8da4c(p); }
+};
+template void base::refl_IterValueDestroy<UnkCloneDtorElem<UnkClone_fn_7100f96854, 0x78>, UnkCloneStrId<UnkClone_fn_7100f96854>>(void*);
+struct UnkClone_fn_7100f968dc;
+void fn_7100f8e688(void*, const void*);
+template <> struct UnkCloneAssignTraits<UnkClone_fn_7100f968dc> {
+    static void assign(void* dst, const void* src) { fn_7100f8e688(dst, src); }
+};
+template void* base::refl_IterValueCopy<UnkCloneAssignElem<UnkClone_fn_7100f968dc, 0x78>, UnkCloneStrId<UnkClone_fn_7100f968dc>>(void*, const void*);
+struct UnkClone_fn_7100f96bf8;
+extern char g_unk_71729ea640[];
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f96bf8> {
+    static const CType* type() { return reinterpret_cast<const CType*>(g_unk_71729ea640); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetIterElementValue<UnkClone_fn_7100f96bf8, UnkCloneBlock<UnkClone_fn_7100f96bf8, 0x78>>(void*, char*);
+struct UnkClone_fn_7100f96c60;
+void fn_7100f8dca0(void*, void*);
+template <> struct UnkCloneMoveTraits<UnkClone_fn_7100f96c60> {
+    static void move(void* dst, void* src) { fn_7100f8dca0(dst, src); }
+};
+template void base::refl_IterValueMove<UnkCloneMoveElem<UnkClone_fn_7100f96c60, 0x78>, UnkCloneStrId<UnkClone_fn_7100f96c60>>(void*, const void*);
+struct UnkClone_fn_7100f96ccc;
+void fn_7100f8da4c(char*);
+template <> struct UnkCloneDtorTraits<UnkClone_fn_7100f96ccc> {
+    static void destroy(char* p) { fn_7100f8da4c(p); }
+};
+template void base::refl_IterValueDestroy<UnkCloneDtorElem<UnkClone_fn_7100f96ccc, 0x78>, UnkCloneStrId<UnkClone_fn_7100f96ccc>>(void*);
+struct UnkClone_fn_7100f96db4;
+extern char g_unk_71729ea640[];
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100f96db4> {
+    static const CType* type() { return reinterpret_cast<const CType*>(g_unk_71729ea640); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetIterElementValue<UnkClone_fn_7100f96db4, UnkCloneBlock<UnkClone_fn_7100f96db4, 0x78>>(void*, char*);
+struct UnkClone_fn_7100f96ec0;
+void fn_7100f8dca0(void*, const void*);
+template <> struct base::UnkValueMapTraits<UnkClone_fn_7100f96ec0> {
+    static void copy(void* d, const void* s) { fn_7100f8dca0(d, s); }
+};
+template void base::refl_ValueMapInsert(base::UnkValueMap<UnkClone_fn_7100f96ec0, 0x78, g_unk_7101d47108>*, base::global::UnkStringData* const*, const void*);
+struct UnkClone_fn_7100f96fc8;
+void fn_7100f8e1ac(void*, const void*);
+template <> struct base::UnkValueMapTraits<UnkClone_fn_7100f96fc8> {
+    static void copy(void* d, const void* s) { fn_7100f8e1ac(d, s); }
+};
+template void base::refl_ValueMapInsert(base::UnkValueMap<UnkClone_fn_7100f96fc8, 0x78, g_unk_7101d47108>*, base::global::UnkStringData* const*, const void*);
+struct UnkClone_fn_7100f9ca8c;
+extern char g_unk_71729e0568[];
+const base::reflection::CType* fn_710000d228();
+template <> struct base::UnkPushTwoTraits<UnkClone_fn_7100f9ca8c> {
+    static const base::reflection::CType* first() { return reinterpret_cast<const base::reflection::CType*>(g_unk_71729e0568); }
+    static const base::reflection::CType* get() { return fn_710000d228(); }
+};
+template void base::refl_PushTwoTypes<UnkClone_fn_7100f9ca8c>(char*);
+struct UnkClone_fn_7100f9cc28;
+template base::UnkPairCounts<UnkClone_fn_7100f9cc28> base::refl_MakePairCounts<UnkClone_fn_7100f9cc28>();
+struct UnkClone_fn_7100f9ef80;
+const base::reflection::CType* fn_7100f9d5bc();
+namespace folded { const base::reflection::CType* fn_7100f9d5bc(); }
+template <> struct base::reflection::UnkTypedPtrTraits<UnkClone_fn_7100f9ef80> {
+    static char* get() { return (char*)fn_7100f9d5bc(); }
+    static char* get_static() { return (char*)folded::fn_7100f9d5bc(); }
+};
+template base::reflection::UnkReflTypedPtr base::reflection::refl_PointeeTyped<UnkClone_fn_7100f9ef80>(void* const*);
+struct UnkClone_fn_7100f9f1d8;
+const base::reflection::CType* fn_7100f9d5bc();
+namespace folded { const base::reflection::CType* fn_7100f9d5bc(); }
+template <> struct base::reflection::UnkTypedPtrTraits<UnkClone_fn_7100f9f1d8> {
+    static char* get() { return (char*)fn_7100f9d5bc(); }
+    static char* get_static() { return (char*)folded::fn_7100f9d5bc(); }
+};
+template base::reflection::UnkReflTypedPtr base::reflection::refl_PointeeTyped<UnkClone_fn_7100f9f1d8>(void* const*);
+struct UnkClone_fn_7100fa01ac;
+template bool base::operator==(const base::UnkIterValue<UnkClone_fn_7100fa01ac*>&, const base::UnkIterValue<UnkClone_fn_7100fa01ac*>&);
+struct UnkClone_fn_7100fa025c;
+template void base::refl_IterValueMove<UnkCloneOwner<UnkClone_fn_7100fa025c>>(void*, const void*);
+struct UnkClone_fn_7100fa045c;
+const base::reflection::CType* fn_7100f9d5bc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100fa045c> {
+    static const CType* type() { return fn_7100f9d5bc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetIterElementValue<UnkClone_fn_7100fa045c, UnkCloneBlock<UnkClone_fn_7100fa045c, 0x8>>(void*, char*);
+struct UnkClone_fn_7100fa04b0;
+template bool base::operator==(const base::UnkIterValue<UnkClone_fn_7100fa04b0*>&, const base::UnkIterValue<UnkClone_fn_7100fa04b0*>&);
+struct UnkClone_fn_7100fa0614;
+const base::reflection::CType* fn_7100f9d5bc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100fa0614> {
+    static const CType* type() { return fn_7100f9d5bc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetIterElementValue<UnkClone_fn_7100fa0614, UnkCloneBlock<UnkClone_fn_7100fa0614, 0x8>>(void*, char*);
+struct UnkClone_fn_7100fa0a70;
+template bool base::refl_VectorEqual<UnkClone_fn_7100fa0a70>(const base::UnkVector<UnkCloneWord<UnkClone_fn_7100fa0a70>>*, const base::UnkVector<UnkCloneWord<UnkClone_fn_7100fa0a70>>*);
+struct UnkClone_fn_7100fa7240;
+const base::reflection::CType* fn_7100fa3364();
+namespace folded { const base::reflection::CType* fn_7100fa3364(); }
+template <> struct base::reflection::UnkTypedPtrTraits<UnkClone_fn_7100fa7240> {
+    static char* get() { return (char*)fn_7100fa3364(); }
+    static char* get_static() { return (char*)folded::fn_7100fa3364(); }
+};
+template base::reflection::UnkReflTypedPtr base::reflection::refl_PointeeTyped<UnkClone_fn_7100fa7240>(void* const*);
+struct UnkClone_fn_7100fa7498;
+const base::reflection::CType* fn_7100fa3364();
+namespace folded { const base::reflection::CType* fn_7100fa3364(); }
+template <> struct base::reflection::UnkTypedPtrTraits<UnkClone_fn_7100fa7498> {
+    static char* get() { return (char*)fn_7100fa3364(); }
+    static char* get_static() { return (char*)folded::fn_7100fa3364(); }
+};
+template base::reflection::UnkReflTypedPtr base::reflection::refl_PointeeTyped<UnkClone_fn_7100fa7498>(void* const*);
+struct UnkClone_fn_7100fa7880;
+template base::UnkCollectionIter<UnkCloneOwner<UnkClone_fn_7100fa7880>>& base::UnkCollectionIter<UnkCloneOwner<UnkClone_fn_7100fa7880>>::operator=(const base::UnkCollectionIter<UnkCloneOwner<UnkClone_fn_7100fa7880>>&);
+struct UnkClone_fn_7100fa7930;
+template base::UnkCollectionIter<UnkCloneOwner<UnkClone_fn_7100fa7930>>& base::UnkCollectionIter<UnkCloneOwner<UnkClone_fn_7100fa7930>>::operator=(const base::UnkCollectionIter<UnkCloneOwner<UnkClone_fn_7100fa7930>>&);
+struct UnkClone_fn_7100fa7cd8;
+template base::UnkCollectionIter<UnkCloneOwner<UnkClone_fn_7100fa7cd8>>& base::UnkCollectionIter<UnkCloneOwner<UnkClone_fn_7100fa7cd8>>::operator=(const base::UnkCollectionIter<UnkCloneOwner<UnkClone_fn_7100fa7cd8>>&);
+struct UnkClone_fn_7100fa7d88;
+template base::UnkCollectionIter<UnkCloneOwner<UnkClone_fn_7100fa7d88>>& base::UnkCollectionIter<UnkCloneOwner<UnkClone_fn_7100fa7d88>>::operator=(const base::UnkCollectionIter<UnkCloneOwner<UnkClone_fn_7100fa7d88>>&);
+struct UnkClone_fn_7100fa8158;
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldStrId<UnkClone_fn_7100fa8158, 0x10>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100fa8258;
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldStrId<UnkClone_fn_7100fa8258, 0x18>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100fa8358;
+const base::reflection::CType* fn_710000d228();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100fa8358> {
+    static const CType* type() { return fn_710000d228(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100fa8358, u8, 0xcd>(void*, char*);
+struct UnkClone_fn_7100fa83a4;
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldValue<UnkClone_fn_7100fa83a4, u8, 0xcd>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100fa83e8;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100fa83e8> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100fa83e8, u32, 0xc8>(void*, char*);
+struct UnkClone_fn_7100fa8434;
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldValue<UnkClone_fn_7100fa8434, u32, 0xc8>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100fa8478;
+const base::reflection::CType* fn_710000d228();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100fa8478> {
+    static const CType* type() { return fn_710000d228(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7100fa8478, u8, 0xcc>(void*, char*);
+struct UnkClone_fn_7100fa84c4;
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldValue<UnkClone_fn_7100fa84c4, u8, 0xcc>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100fa854c;
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldStrId<UnkClone_fn_7100fa854c, 0x28>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100fa8680;
+template base::UnkPairCounts<UnkClone_fn_7100fa8680> base::refl_MakePairCounts<UnkClone_fn_7100fa8680>();
+struct UnkClone_fn_7100fa8694;
+template bool base::operator==(const base::UnkIterValue<UnkClone_fn_7100fa8694*>&, const base::UnkIterValue<UnkClone_fn_7100fa8694*>&);
+struct UnkClone_fn_7100fa8744;
+template void base::refl_IterValueMove<UnkCloneOwner<UnkClone_fn_7100fa8744>>(void*, const void*);
 struct UnkClone_fn_7100fa87e0;
 template base::UnkIterValue<UnkCloneOwner<UnkClone_fn_7100fa87e0>>& base::UnkIterValue<UnkCloneOwner<UnkClone_fn_7100fa87e0>>::operator=(base::UnkIterValue<UnkCloneOwner<UnkClone_fn_7100fa87e0>>&&);
 struct UnkClone_fn_7100fa8914;
@@ -118,6 +3147,8 @@ template <> struct base::reflection::UnkTypedPtrTraits<UnkClone_fn_7100fb58c4> {
 template base::reflection::UnkReflTypedPtr base::reflection::refl_PointeeTyped<UnkClone_fn_7100fb58c4>(void* const*);
 struct UnkClone_fn_7100fb6568;
 template base::reflection::UnkReflValue base::reflection::refl_SetFieldStrId<UnkClone_fn_7100fb6568, 0x8>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7100fb6764;
+template base::UnkPairCounts<UnkClone_fn_7100fb6764> base::refl_MakePairCounts<UnkClone_fn_7100fb6764>();
 struct UnkClone_fn_7100fb6778;
 template bool base::operator==(const base::UnkIterValue<UnkClone_fn_7100fb6778*>&, const base::UnkIterValue<UnkClone_fn_7100fb6778*>&);
 struct UnkClone_fn_7100fb6828;
@@ -138,6 +3169,10 @@ template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100fb6bac> {
 template base::reflection::UnkReflValue base::reflection::refl_GetIterElementValue<UnkClone_fn_7100fb6bac, UnkCloneBlock<UnkClone_fn_7100fb6bac, 0x8>>(void*, char*);
 struct UnkClone_fn_7100fb6dc4;
 template bool base::refl_VectorEqual<UnkClone_fn_7100fb6dc4>(const base::UnkVector<UnkCloneWord<UnkClone_fn_7100fb6dc4>>*, const base::UnkVector<UnkCloneWord<UnkClone_fn_7100fb6dc4>>*);
+struct UnkClone_fn_7100fbc7d0;
+template void base::refl_RefHandleCopyCtor<UnkClone_fn_7100fbc7d0>(base::UnkRefHandle*, const base::UnkRefHandle*);
+struct UnkClone_fn_7100fbc82c;
+template void base::refl_RefHandleCopyCtor<UnkClone_fn_7100fbc82c>(base::UnkRefHandle*, const base::UnkRefHandle*);
 struct UnkClone_fn_7100fbca78;
 const base::reflection::CType* fn_7100fbc1ac();
 namespace folded { const base::reflection::CType* fn_7100fbc1ac(); }
@@ -160,18 +3195,30 @@ template <> struct base::UnkRefSlotTraits<UnkClone_fn_7100fc12bc> {
     static char* vtable() { return g_unk_7101a209e0; }
 };
 template void base::refl_AssignHandleFromSource<UnkClone_fn_7100fc12bc>(base::UnkRefHandle*, const char*);
+struct UnkClone_fn_7100fc1428;
+template void base::refl_RefHandleCopyCtor<UnkClone_fn_7100fc1428>(base::UnkRefHandle*, const base::UnkRefHandle*);
+struct UnkClone_fn_7100fc1484;
+template void base::refl_RefHandleCopyCtor<UnkClone_fn_7100fc1484>(base::UnkRefHandle*, const base::UnkRefHandle*);
 struct UnkClone_fn_7100fc1568;
 extern char g_unk_7101a209e0[];
 template <> struct base::UnkRefSlotTraits<UnkClone_fn_7100fc1568> {
     static char* vtable() { return g_unk_7101a209e0; }
 };
 template base::UnkRefHandle* base::refl_AssignHandle<UnkClone_fn_7100fc1568>(base::UnkRefHandle*, const base::UnkRefHandle*);
+struct UnkClone_fn_7100fc91a8;
+template void base::refl_StrIdDtorAt<UnkClone_fn_7100fc91a8, 0x0, UnkCloneStrId<UnkClone_fn_7100fc91a8>>(char*);
 struct UnkClone_fn_7100fcbde4;
 template void base::UnkCloneKeyedArray<UnkClone_fn_7100fcbde4>::Reserve(u32);
 struct UnkClone_fn_7100fcea5c;
 template void base::reflection::refl_SetDynamicValue<UnkClone_fn_7100fcea5c>(char*, base::reflection::UnkReflObject*);
 struct UnkClone_fn_7100fcee7c;
 template void base::reflection::refl_SetDynamicValue<UnkClone_fn_7100fcee7c>(char*, base::reflection::UnkReflObject*);
+struct UnkClone_fn_7100fd0f10;
+extern char g_unk_7101cac080[];
+template <> struct base::UnkDtorTraits<UnkClone_fn_7100fd0f10> {
+    static char* vtable() { return g_unk_7101cac080; }
+};
+template void base::refl_ZeroedCtor<UnkClone_fn_7100fd0f10>(char*);
 struct UnkClone_fn_7100fd352c;
 template base::UnkNamedObject* base::refl_RegisterNamed<UnkClone_fn_7100fd352c>(base::UnkNamedRegistry*, base::UnkNamedObject*, const char*);
 struct UnkClone_fn_7100fd422c;
@@ -182,6 +3229,12 @@ struct UnkClone_fn_7100fd9c00;
 template base::UnkStrIdHashNode<UnkClone_fn_7100fd9c00>* base::refl_StrIdHashErase(base::UnkStrIdHashMap<UnkClone_fn_7100fd9c00>*, const base::UnkStrIdMember*);
 struct UnkClone_fn_7100fd9e9c;
 template base::UnkStrIdHashNode<UnkClone_fn_7100fd9e9c>* base::refl_StrIdHashErase(base::UnkStrIdHashMap<UnkClone_fn_7100fd9e9c>*, const base::UnkStrIdMember*);
+struct UnkClone_fn_7100fde474;
+extern char g_unk_7101cac290[];
+template <> struct base::UnkDtorTraits<UnkClone_fn_7100fde474> {
+    static char* vtable() { return g_unk_7101cac290; }
+};
+template void base::refl_ZeroedCtor<UnkClone_fn_7100fde474>(char*);
 struct UnkClone_fn_7100fdeaa4;
 void fn_7100014948(void* e, const base::global::CStrId& name, u32 value);
 void fn_7100fdeaa4(void* e) {
@@ -293,6 +3346,30 @@ template <> struct UnkCloneDtorTraits<UnkClone_fn_7100ff47b8> {
     static void destroy(char* p) { fn_7100ff4844(p); }
 };
 template base::UnkKeyedPairIter<UnkClone_fn_7100ff47b8, 0x38>* base::refl_KeyedPairIterAssign(base::UnkKeyedPairIter<UnkClone_fn_7100ff47b8, 0x38>*, const base::UnkKeyedPairIter<UnkClone_fn_7100ff47b8, 0x38>*);
+struct UnkClone_fn_7100ff5a58;
+void fn_7100ff5b70(char*);
+template <> struct UnkCloneDtorTraits<UnkClone_fn_7100ff5a58> {
+    static void destroy(char* p) { fn_7100ff5b70(p); }
+};
+template base::UnkIndexPairIter<UnkClone_fn_7100ff5a58, 0x80>* base::refl_IndexPairIterAssign(base::UnkIndexPairIter<UnkClone_fn_7100ff5a58, 0x80>*, const base::UnkIndexPairIter<UnkClone_fn_7100ff5a58, 0x80>*);
+struct UnkClone_fn_7100ff5ae4;
+void fn_7100ff5b70(char*);
+template <> struct UnkCloneDtorTraits<UnkClone_fn_7100ff5ae4> {
+    static void destroy(char* p) { fn_7100ff5b70(p); }
+};
+template base::UnkIndexPairIter<UnkClone_fn_7100ff5ae4, 0x80>* base::refl_IndexPairIterAssign(base::UnkIndexPairIter<UnkClone_fn_7100ff5ae4, 0x80>*, const base::UnkIndexPairIter<UnkClone_fn_7100ff5ae4, 0x80>*);
+struct UnkClone_fn_7100ff5f3c;
+void fn_7100ff6054(char*);
+template <> struct UnkCloneDtorTraits<UnkClone_fn_7100ff5f3c> {
+    static void destroy(char* p) { fn_7100ff6054(p); }
+};
+template base::UnkIndexPairIter<UnkClone_fn_7100ff5f3c, 0x80>* base::refl_IndexPairIterAssign(base::UnkIndexPairIter<UnkClone_fn_7100ff5f3c, 0x80>*, const base::UnkIndexPairIter<UnkClone_fn_7100ff5f3c, 0x80>*);
+struct UnkClone_fn_7100ff5fc8;
+void fn_7100ff6054(char*);
+template <> struct UnkCloneDtorTraits<UnkClone_fn_7100ff5fc8> {
+    static void destroy(char* p) { fn_7100ff6054(p); }
+};
+template base::UnkIndexPairIter<UnkClone_fn_7100ff5fc8, 0x80>* base::refl_IndexPairIterAssign(base::UnkIndexPairIter<UnkClone_fn_7100ff5fc8, 0x80>*, const base::UnkIndexPairIter<UnkClone_fn_7100ff5fc8, 0x80>*);
 struct UnkClone_fn_7100ff7248;
 void fn_7100ff7360(char*);
 template <> struct UnkCloneDtorTraits<UnkClone_fn_7100ff7248> {
@@ -317,30 +3394,56 @@ template <> struct UnkCloneDtorTraits<UnkClone_fn_7100ff779c> {
     static void destroy(char* p) { fn_7100ff7828(p); }
 };
 template base::UnkKeyedPairIter<UnkClone_fn_7100ff779c, 0x38>* base::refl_KeyedPairIterAssign(base::UnkKeyedPairIter<UnkClone_fn_7100ff779c, 0x38>*, const base::UnkKeyedPairIter<UnkClone_fn_7100ff779c, 0x38>*);
+struct UnkClone_fn_7100ff8900;
+void fn_7100fed6cc(char*);
+template <> struct UnkCloneDtorTraits<UnkClone_fn_7100ff8900> {
+    static void destroy(char* p) { fn_7100fed6cc(p); }
+};
+template void base::refl_IterValueDestroy<UnkCloneDtorElem<UnkClone_fn_7100ff8900, 0x50>, UnkCloneStrIdElem<UnkClone_fn_7100ff8900, 8, 16, base::UnkStrIdMemberOf<g_unk_7101d47108>>>(void*);
 struct UnkClone_fn_7100ff89f8;
 void fn_7100fed6cc(char*);
 template <> struct UnkCloneDtorTraits<UnkClone_fn_7100ff89f8> {
     static void destroy(char* p) { fn_7100fed6cc(p); }
 };
 template void base::refl_MapIterSync(base::UnkMapIter<UnkCloneDtorElem<UnkClone_fn_7100ff89f8, 0x50>, UnkCloneStrId<UnkClone_fn_7100ff89f8>>*);
+struct UnkClone_fn_7100ff8d34;
+void fn_7100fed6cc(char*);
+template <> struct UnkCloneDtorTraits<UnkClone_fn_7100ff8d34> {
+    static void destroy(char* p) { fn_7100fed6cc(p); }
+};
+template void base::refl_IterValueDestroy<UnkCloneDtorElem<UnkClone_fn_7100ff8d34, 0x50>, UnkCloneStrIdElem<UnkClone_fn_7100ff8d34, 8, 16, base::UnkStrIdMemberOf<g_unk_7101d47108>>>(void*);
 struct UnkClone_fn_7100ff8e2c;
 void fn_7100fed6cc(char*);
 template <> struct UnkCloneDtorTraits<UnkClone_fn_7100ff8e2c> {
     static void destroy(char* p) { fn_7100fed6cc(p); }
 };
 template void base::refl_MapIterSync(base::UnkMapIter<UnkCloneDtorElem<UnkClone_fn_7100ff8e2c, 0x50>, UnkCloneStrId<UnkClone_fn_7100ff8e2c>>*);
+struct UnkClone_fn_7100ff9f70;
+void fn_7100fee034(char*);
+template <> struct UnkCloneDtorTraits<UnkClone_fn_7100ff9f70> {
+    static void destroy(char* p) { fn_7100fee034(p); }
+};
+template void base::refl_IterValueDestroy<UnkCloneDtorElem<UnkClone_fn_7100ff9f70, 0x50>, UnkCloneStrIdElem<UnkClone_fn_7100ff9f70, 8, 16, base::UnkStrIdMemberOf<g_unk_7101d47108>>>(void*);
 struct UnkClone_fn_7100ffa068;
 void fn_7100fee034(char*);
 template <> struct UnkCloneDtorTraits<UnkClone_fn_7100ffa068> {
     static void destroy(char* p) { fn_7100fee034(p); }
 };
 template void base::refl_MapIterSync(base::UnkMapIter<UnkCloneDtorElem<UnkClone_fn_7100ffa068, 0x50>, UnkCloneStrId<UnkClone_fn_7100ffa068>>*);
+struct UnkClone_fn_7100ffa3a4;
+void fn_7100fee034(char*);
+template <> struct UnkCloneDtorTraits<UnkClone_fn_7100ffa3a4> {
+    static void destroy(char* p) { fn_7100fee034(p); }
+};
+template void base::refl_IterValueDestroy<UnkCloneDtorElem<UnkClone_fn_7100ffa3a4, 0x50>, UnkCloneStrIdElem<UnkClone_fn_7100ffa3a4, 8, 16, base::UnkStrIdMemberOf<g_unk_7101d47108>>>(void*);
 struct UnkClone_fn_7100ffa49c;
 void fn_7100fee034(char*);
 template <> struct UnkCloneDtorTraits<UnkClone_fn_7100ffa49c> {
     static void destroy(char* p) { fn_7100fee034(p); }
 };
 template void base::refl_MapIterSync(base::UnkMapIter<UnkCloneDtorElem<UnkClone_fn_7100ffa49c, 0x50>, UnkCloneStrId<UnkClone_fn_7100ffa49c>>*);
+struct UnkClone_fn_7100ffad4c;
+template void base::refl_StrIdDtorAt<UnkClone_fn_7100ffad4c, 0x0, UnkCloneStrIdB<UnkClone_fn_7100ffad4c>>(char*);
 struct UnkClone_fn_7100ffafc4;
 template void base::refl_IterValueDestroy<UnkCloneStrIdElem<UnkClone_fn_7100ffafc4, 0x0, 0x18, UnkCloneStrIdB<UnkClone_fn_7100ffafc4>>>(void*);
 struct UnkClone_fn_7100ffb388;
@@ -431,6 +3534,14 @@ template <> struct base::UnkPushTwoTraits<UnkClone_fn_7101003cd0> {
     static const base::reflection::CType* get() { return fn_710000d228(); }
 };
 template void base::refl_PushTwoTypes<UnkClone_fn_7101003cd0>(char*);
+struct UnkClone_fn_7101003e6c;
+template base::UnkPairCounts<UnkClone_fn_7101003e6c> base::refl_MakePairCounts<UnkClone_fn_7101003e6c>();
+struct UnkClone_fn_7101003eb0;
+void fn_7100fed9dc(void*, void*);
+template <> struct UnkCloneMoveTraits<UnkClone_fn_7101003eb0> {
+    static void move(void* dst, void* src) { fn_7100fed9dc(dst, src); }
+};
+template void base::refl_IterValueMove<UnkCloneMoveElem<UnkClone_fn_7101003eb0, 0x50>, UnkCloneStrId<UnkClone_fn_7101003eb0>>(void*, const void*);
 struct UnkClone_fn_7101003f1c;
 void fn_7100fed6cc(char*);
 template <> struct UnkCloneDtorTraits<UnkClone_fn_7101003f1c> {
@@ -443,6 +3554,12 @@ template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71010043d8> {
     static const CType* type() { return reinterpret_cast<const CType*>(g_unk_71729f3268); }
 };
 template base::reflection::UnkReflValue base::reflection::refl_GetIterElementValue<UnkClone_fn_71010043d8, UnkCloneBlock<UnkClone_fn_71010043d8, 0x50>>(void*, char*);
+struct UnkClone_fn_7101004440;
+void fn_7100fed7b0(void*, void*);
+template <> struct UnkCloneMoveTraits<UnkClone_fn_7101004440> {
+    static void move(void* dst, void* src) { fn_7100fed7b0(dst, src); }
+};
+template void base::refl_IterValueMove<UnkCloneMoveElem<UnkClone_fn_7101004440, 0x50>, UnkCloneStrId<UnkClone_fn_7101004440>>(void*, const void*);
 struct UnkClone_fn_71010044ac;
 void fn_7100fed6cc(char*);
 template <> struct UnkCloneDtorTraits<UnkClone_fn_71010044ac> {
@@ -475,6 +3592,14 @@ template <> struct base::UnkPushTwoTraits<UnkClone_fn_7101004fb8> {
     static const base::reflection::CType* get() { return fn_710000d228(); }
 };
 template void base::refl_PushTwoTypes<UnkClone_fn_7101004fb8>(char*);
+struct UnkClone_fn_7101005154;
+template base::UnkPairCounts<UnkClone_fn_7101005154> base::refl_MakePairCounts<UnkClone_fn_7101005154>();
+struct UnkClone_fn_7101005198;
+void fn_7100fee558(void*, void*);
+template <> struct UnkCloneMoveTraits<UnkClone_fn_7101005198> {
+    static void move(void* dst, void* src) { fn_7100fee558(dst, src); }
+};
+template void base::refl_IterValueMove<UnkCloneMoveElem<UnkClone_fn_7101005198, 0x50>, UnkCloneStrId<UnkClone_fn_7101005198>>(void*, const void*);
 struct UnkClone_fn_7101005204;
 void fn_7100fee034(char*);
 template <> struct UnkCloneDtorTraits<UnkClone_fn_7101005204> {
@@ -493,6 +3618,12 @@ template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71010055a8> {
     static const CType* type() { return reinterpret_cast<const CType*>(g_unk_71729f37a0); }
 };
 template base::reflection::UnkReflValue base::reflection::refl_GetIterElementValue<UnkClone_fn_71010055a8, UnkCloneBlock<UnkClone_fn_71010055a8, 0x50>>(void*, char*);
+struct UnkClone_fn_7101005610;
+void fn_7100fee244(void*, void*);
+template <> struct UnkCloneMoveTraits<UnkClone_fn_7101005610> {
+    static void move(void* dst, void* src) { fn_7100fee244(dst, src); }
+};
+template void base::refl_IterValueMove<UnkCloneMoveElem<UnkClone_fn_7101005610, 0x50>, UnkCloneStrId<UnkClone_fn_7101005610>>(void*, const void*);
 struct UnkClone_fn_710100567c;
 void fn_7100fee034(char*);
 template <> struct UnkCloneDtorTraits<UnkClone_fn_710100567c> {
@@ -1410,6 +4541,8 @@ template <> struct base::reflection::UnkTypedPtrTraits<UnkClone_fn_71010262bc> {
     static char* get_static() { folded::fn_7101020058(); return g_unk_71729f9d78; }
 };
 template base::reflection::UnkReflTypedPtr base::reflection::refl_PointeeTyped<UnkClone_fn_71010262bc>(void* const*);
+struct UnkClone_fn_7101026d24;
+template void base::refl_IterValueFromRef(base::UnkIterValue<UnkCloneBlock<UnkClone_fn_7101026d24, 0x18>>*, const base::UnkIterValue<UnkCloneBlock<UnkClone_fn_7101026d24, 0x18>>::Ref*);
 struct UnkClone_fn_7101026d54;
 void fn_7100026f70(char*);
 template <> struct UnkCloneDtorTraits<UnkClone_fn_7101026d54> {
@@ -1428,6 +4561,8 @@ template <> struct UnkCloneDtorTraits<UnkClone_fn_7101026e88> {
     static void destroy(char* p) { fn_7100026f70(p); }
 };
 template base::UnkStrIdValueVariant<UnkClone_fn_7101026e88, 0x18>& base::refl_VariantAssign(base::UnkStrIdValueVariant<UnkClone_fn_7101026e88, 0x18>*, const base::UnkStrIdValueVariant<UnkClone_fn_7101026e88, 0x18>*);
+struct UnkClone_fn_7101027134;
+template void base::refl_IterValueFromRef(base::UnkIterValue<UnkCloneBlock<UnkClone_fn_7101027134, 0x18>>*, const base::UnkIterValue<UnkCloneBlock<UnkClone_fn_7101027134, 0x18>>::Ref*);
 struct UnkClone_fn_7101027164;
 void fn_7100026f70(char*);
 template <> struct UnkCloneDtorTraits<UnkClone_fn_7101027164> {
@@ -1501,6 +4636,26 @@ template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71010297bc> {
     static const CType* type() { return reinterpret_cast<const CType*>(g_unk_7101d4ec50); }
 };
 template base::reflection::UnkReflValue base::reflection::refl_GetIterElementValue<UnkClone_fn_71010297bc, UnkCloneBlock<UnkClone_fn_71010297bc, 0x18>>(void*, char*);
+struct UnkClone_fn_71010298f8;
+void fn_710102a800(char*, void*);
+template <> struct base::UnkKeyedFoundTraits<UnkClone_fn_71010298f8> {
+    static void found(char* s, void* v) { fn_710102a800(s, v); }
+};
+template void base::refl_KeyedFindThen<UnkClone_fn_71010298f8, 0, 0x18>(char*, const base::UnkStrIdMember*);
+struct UnkClone_fn_7101029988;
+template void* base::refl_KeyedFind<UnkClone_fn_7101029988, 0x0, 0x18>(char*, const base::UnkStrIdMember*);
+struct UnkClone_fn_71010299f4;
+void fn_7100027118(void*, const void*);
+template <> struct UnkCloneAssignTraits<UnkClone_fn_71010299f4> {
+    static void assign(void* dst, const void* src) { fn_7100027118(dst, src); }
+};
+template void base::refl_KeyedFindAssign<UnkClone_fn_71010299f4, 0, 0x18>(char*, const base::UnkStrIdMember*, const UnkCloneAssignElem<UnkClone_fn_71010299f4, 0x18>*);
+struct UnkClone_fn_7101029a84;
+void fn_7100027118(void*, const void*);
+template <> struct UnkCloneAssignTraits<UnkClone_fn_7101029a84> {
+    static void assign(void* dst, const void* src) { fn_7100027118(dst, src); }
+};
+template void base::refl_KeyedFindAssign<UnkClone_fn_7101029a84, 0, 0x18>(char*, const base::UnkStrIdMember*, const UnkCloneAssignElem<UnkClone_fn_7101029a84, 0x18>*);
 struct UnkClone_fn_7101029bb0;
 void fn_7100026f70(char*);
 template <> struct UnkCloneDtorTraits<UnkClone_fn_7101029bb0> {
@@ -1591,6 +4746,8 @@ template <> struct base::UnkPushPairTraits<UnkClone_fn_710103a65c> {
     static void* second() { return push_pair::fn_710000d228(); }
 };
 template void base::refl_PushPair<UnkClone_fn_710103a65c>(char*);
+struct UnkClone_fn_710103a7f8;
+template base::UnkPairCounts<UnkClone_fn_710103a7f8> base::refl_MakePairCounts<UnkClone_fn_710103a7f8>();
 struct UnkClone_fn_710103a8a8;
 const base::reflection::CType* fn_710000abbc();
 template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_710103a8a8> {
@@ -1837,12 +4994,24 @@ template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_710103c1b4> {
     static const CType* type() { return reinterpret_cast<const CType*>(g_unk_71729f9fe8); }
 };
 template base::reflection::UnkReflValue base::reflection::refl_GetIterElementValue<UnkClone_fn_710103c1b4, UnkCloneBlock<UnkClone_fn_710103c1b4, 0x50>>(void*, char*);
+struct UnkClone_fn_7101040bd4;
+void fn_7101036e34(char*);
+template <> struct UnkCloneDtorTraits<UnkClone_fn_7101040bd4> {
+    static void destroy(char* p) { fn_7101036e34(p); }
+};
+template void base::refl_IterValueDestroy<UnkCloneDtorElem<UnkClone_fn_7101040bd4, 0x5d0>, UnkCloneStrIdElem<UnkClone_fn_7101040bd4, 8, 16, base::UnkStrIdMemberOf<g_unk_7101d47108>>>(void*);
 struct UnkClone_fn_7101040ccc;
 void fn_7101036e34(char*);
 template <> struct UnkCloneDtorTraits<UnkClone_fn_7101040ccc> {
     static void destroy(char* p) { fn_7101036e34(p); }
 };
 template void base::refl_MapIterSync(base::UnkMapIter<UnkCloneDtorElem<UnkClone_fn_7101040ccc, 0x5d0>, UnkCloneStrId<UnkClone_fn_7101040ccc>>*);
+struct UnkClone_fn_7101041008;
+void fn_7101036e34(char*);
+template <> struct UnkCloneDtorTraits<UnkClone_fn_7101041008> {
+    static void destroy(char* p) { fn_7101036e34(p); }
+};
+template void base::refl_IterValueDestroy<UnkCloneDtorElem<UnkClone_fn_7101041008, 0x5d0>, UnkCloneStrIdElem<UnkClone_fn_7101041008, 8, 16, base::UnkStrIdMemberOf<g_unk_7101d47108>>>(void*);
 struct UnkClone_fn_7101041100;
 void fn_7101036e34(char*);
 template <> struct UnkCloneDtorTraits<UnkClone_fn_7101041100> {
@@ -1856,6 +5025,14 @@ template <> struct base::UnkPushPairTraits<UnkClone_fn_7101041968> {
     static void* second() { return push_pair::fn_710000d228(); }
 };
 template void base::refl_PushPair<UnkClone_fn_7101041968>(char*);
+struct UnkClone_fn_7101041b04;
+template base::UnkPairCounts<UnkClone_fn_7101041b04> base::refl_MakePairCounts<UnkClone_fn_7101041b04>();
+struct UnkClone_fn_7101041b48;
+void fn_7101036fb8(void*, void*);
+template <> struct UnkCloneMoveTraits<UnkClone_fn_7101041b48> {
+    static void move(void* dst, void* src) { fn_7101036fb8(dst, src); }
+};
+template void base::refl_IterValueMove<UnkCloneMoveElem<UnkClone_fn_7101041b48, 0x5d0>, UnkCloneStrId<UnkClone_fn_7101041b48>>(void*, const void*);
 struct UnkClone_fn_7101041bb4;
 void fn_7101036e34(char*);
 template <> struct UnkCloneDtorTraits<UnkClone_fn_7101041bb4> {
@@ -1864,6 +5041,12 @@ template <> struct UnkCloneDtorTraits<UnkClone_fn_7101041bb4> {
 template void base::refl_IterValueDestroy<UnkCloneDtorElem<UnkClone_fn_7101041bb4, 0x5d0>, UnkCloneStrId<UnkClone_fn_7101041bb4>>(void*);
 struct UnkClone_fn_7101042078;
 template base::reflection::UnkReflValue base::reflection::refl_GetIterElementDynValue<UnkClone_fn_7101042078, UnkCloneBlock<UnkClone_fn_7101042078, 0x5d0>>(void*, char*);
+struct UnkClone_fn_7101042108;
+void fn_7101041d34(void*, void*);
+template <> struct UnkCloneMoveTraits<UnkClone_fn_7101042108> {
+    static void move(void* dst, void* src) { fn_7101041d34(dst, src); }
+};
+template void base::refl_IterValueMove<UnkCloneMoveElem<UnkClone_fn_7101042108, 0x5d0>, UnkCloneStrId<UnkClone_fn_7101042108>>(void*, const void*);
 struct UnkClone_fn_7101042174;
 void fn_7101036e34(char*);
 template <> struct UnkCloneDtorTraits<UnkClone_fn_7101042174> {
@@ -1890,12 +5073,16 @@ template <> struct base::reflection::UnkTypedPtrTraits<UnkClone_fn_71010490b4> {
     static char* get_static() { return (char*)folded::fn_7101045d7c(); }
 };
 template base::reflection::UnkReflTypedPtr base::reflection::refl_PointeeTyped<UnkClone_fn_71010490b4>(void* const*);
+struct UnkClone_fn_7101049604;
+template void base::refl_IterValueFromRef(base::UnkIterValue<UnkCloneBlock<UnkClone_fn_7101049604, 0x8>>*, const base::UnkIterValue<UnkCloneBlock<UnkClone_fn_7101049604, 0x8>>::Ref*);
 struct UnkClone_fn_7101049634;
 template void base::refl_IterValueDestroy<UnkCloneWord<UnkClone_fn_7101049634>, UnkCloneStrId<UnkClone_fn_7101049634>>(void*);
 struct UnkClone_fn_71010496b4;
 template base::UnkStrKeyWordValue<UnkClone_fn_71010496b4>* base::refl_IterValueAssignRef(base::UnkStrKeyWordValue<UnkClone_fn_71010496b4>*, const base::UnkStrKeyWordValue<UnkClone_fn_71010496b4>::Ref*);
 struct UnkClone_fn_7101049758;
 template base::UnkStrKeyWordValue<UnkClone_fn_7101049758>* base::refl_IterValueAssignRaw(base::UnkStrKeyWordValue<UnkClone_fn_7101049758>*, const base::UnkStrKeyWordValue<UnkClone_fn_7101049758>*);
+struct UnkClone_fn_71010499fc;
+template void base::refl_IterValueFromRef(base::UnkIterValue<UnkCloneBlock<UnkClone_fn_71010499fc, 0x8>>*, const base::UnkIterValue<UnkCloneBlock<UnkClone_fn_71010499fc, 0x8>>::Ref*);
 struct UnkClone_fn_7101049a2c;
 template void base::refl_IterValueDestroy<UnkCloneWord<UnkClone_fn_7101049a2c>, UnkCloneStrId<UnkClone_fn_7101049a2c>>(void*);
 struct UnkClone_fn_7101049aac;
@@ -1968,12 +5155,18 @@ template <> struct base::UnkKeyedSetTraits<UnkClone_fn_710104f70c> {
     static char* find(void* m, u32 k) { return fn_710104ff64(m, k); }
 };
 template void base::refl_KeyedSetAssign<UnkClone_fn_710104f70c, UnkCloneStrIdB<UnkClone_fn_710104f70c>, u64, 0x0>(void*, const u32*, const char*);
+struct UnkClone_fn_71010503d0;
+template void base::refl_StrIdDtorAt<UnkClone_fn_71010503d0, 0x0, UnkCloneStrIdB<UnkClone_fn_71010503d0>>(char*);
 struct UnkClone_fn_7101052068;
 extern char g_unk_7101a209e0[];
 template <> struct base::UnkRefSlotTraits<UnkClone_fn_7101052068> {
     static char* vtable() { return g_unk_7101a209e0; }
 };
 template void base::refl_AssignHandleFromSource<UnkClone_fn_7101052068>(base::UnkRefHandle*, const char*);
+struct UnkClone_fn_71010521d4;
+template void base::refl_RefHandleCopyCtor<UnkClone_fn_71010521d4>(base::UnkRefHandle*, const base::UnkRefHandle*);
+struct UnkClone_fn_7101052230;
+template void base::refl_RefHandleCopyCtor<UnkClone_fn_7101052230>(base::UnkRefHandle*, const base::UnkRefHandle*);
 struct UnkClone_fn_7101052314;
 extern char g_unk_7101a209e0[];
 template <> struct base::UnkRefSlotTraits<UnkClone_fn_7101052314> {
@@ -2032,6 +5225,10 @@ struct UnkClone_fn_710105ca28;
 template base::UnkCollectionIter<UnkCloneBlock<UnkClone_fn_710105ca28, 0x8>>& base::UnkCollectionIter<UnkCloneBlock<UnkClone_fn_710105ca28, 0x8>>::operator=(const base::UnkCollectionIter<UnkCloneBlock<UnkClone_fn_710105ca28, 0x8>>&);
 struct UnkClone_fn_710105ca80;
 template base::UnkCollectionIter<UnkCloneBlock<UnkClone_fn_710105ca80, 0x8>>& base::UnkCollectionIter<UnkCloneBlock<UnkClone_fn_710105ca80, 0x8>>::operator=(const base::UnkCollectionIter<UnkCloneBlock<UnkClone_fn_710105ca80, 0x8>>&);
+struct UnkClone_fn_710105d0a8;
+template base::UnkPairCounts<UnkClone_fn_710105d0a8> base::refl_MakePairCounts<UnkClone_fn_710105d0a8>();
+struct UnkClone_fn_710105d0bc;
+template base::UnkPairCounts<UnkClone_fn_710105d0bc> base::refl_MakePairCounts<UnkClone_fn_710105d0bc>();
 struct UnkClone_fn_710105dbbc;
 template base::reflection::UnkReflValue base::reflection::refl_GetIterElementDynValue<UnkClone_fn_710105dbbc, UnkCloneBlock<UnkClone_fn_710105dbbc, 0x20>>(void*, char*);
 struct UnkClone_fn_710105dd74;
@@ -2138,6 +5335,10 @@ struct UnkClone_fn_7101070f70;
 template void base::refl_End(const base::UnkVector<UnkCloneHandle<UnkClone_fn_7101070f70>>*, base::UnkCollectionIter<UnkCloneHandle<UnkClone_fn_7101070f70>>*);
 struct UnkClone_fn_7101071b78;
 template base::reflection::UnkReflValue base::reflection::refl_SetFieldValue<UnkClone_fn_7101071b78, u8, 0x505>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_7101075eb0;
+template void base::refl_RefHandleCopyCtor<UnkClone_fn_7101075eb0>(base::UnkRefHandle*, const base::UnkRefHandle*);
+struct UnkClone_fn_7101075f0c;
+template void base::refl_RefHandleCopyCtor<UnkClone_fn_7101075f0c>(base::UnkRefHandle*, const base::UnkRefHandle*);
 struct UnkClone_fn_7101076158;
 const base::reflection::CType* fn_710107552c();
 namespace folded { const base::reflection::CType* fn_710107552c(); }
@@ -2214,12 +5415,16 @@ template <> struct base::reflection::UnkTypedPtrTraits<UnkClone_fn_71010c4bd8> {
     static char* get_static() { return (char*)folded::fn_71010c301c(); }
 };
 template base::reflection::UnkReflTypedPtr base::reflection::refl_PointeeTyped<UnkClone_fn_71010c4bd8>(void* const*);
+struct UnkClone_fn_71010c4ec4;
+template void base::refl_IterValueFromRef(base::UnkIterValue<UnkCloneBlock<UnkClone_fn_71010c4ec4, 0x8>>*, const base::UnkIterValue<UnkCloneBlock<UnkClone_fn_71010c4ec4, 0x8>>::Ref*);
 struct UnkClone_fn_71010c4ef4;
 template void base::refl_IterValueDestroy<UnkCloneWord<UnkClone_fn_71010c4ef4>, UnkCloneStrId<UnkClone_fn_71010c4ef4>>(void*);
 struct UnkClone_fn_71010c4f74;
 template base::UnkStrKeyWordValue<UnkClone_fn_71010c4f74>* base::refl_IterValueAssignRef(base::UnkStrKeyWordValue<UnkClone_fn_71010c4f74>*, const base::UnkStrKeyWordValue<UnkClone_fn_71010c4f74>::Ref*);
 struct UnkClone_fn_71010c5018;
 template base::UnkStrKeyWordValue<UnkClone_fn_71010c5018>* base::refl_IterValueAssignRaw(base::UnkStrKeyWordValue<UnkClone_fn_71010c5018>*, const base::UnkStrKeyWordValue<UnkClone_fn_71010c5018>*);
+struct UnkClone_fn_71010c52bc;
+template void base::refl_IterValueFromRef(base::UnkIterValue<UnkCloneBlock<UnkClone_fn_71010c52bc, 0x8>>*, const base::UnkIterValue<UnkCloneBlock<UnkClone_fn_71010c52bc, 0x8>>::Ref*);
 struct UnkClone_fn_71010c52ec;
 template void base::refl_IterValueDestroy<UnkCloneWord<UnkClone_fn_71010c52ec>, UnkCloneStrId<UnkClone_fn_71010c52ec>>(void*);
 struct UnkClone_fn_71010c536c;
@@ -2268,6 +5473,12 @@ struct UnkClone_fn_71010c66b0;
 template base::UnkStrIdArray<UnkClone_fn_71010c66b0>& base::UnkStrIdArray<UnkClone_fn_71010c66b0>::operator=(base::UnkStrIdArray<UnkClone_fn_71010c66b0>&&);
 struct UnkClone_fn_71010c67b4;
 template void base::UnkCloneKeyedArray<UnkClone_fn_71010c67b4>::Reserve(u32);
+struct UnkClone_fn_71010c7da4;
+extern char g_unk_7101cb0648[];
+template <> struct base::UnkDtorTraits<UnkClone_fn_71010c7da4> {
+    static char* vtable() { return g_unk_7101cb0648; }
+};
+template void base::refl_ZeroedCtor<UnkClone_fn_71010c7da4>(char*);
 struct UnkClone_fn_71010c8070;
 const base::reflection::CType* fn_710095629c();
 bool fn_71009760a0(char* s);
@@ -2276,6 +5487,12 @@ template <> struct base::reflection::UnkCastTraits<UnkClone_fn_71010c8070> {
     static bool base(char* s) { return fn_71009760a0(s); }
 };
 template bool base::reflection::refl_CallAndCastField<UnkClone_fn_71010c8070, 0x10, 0x1c18>(char*);
+struct UnkClone_fn_71010ce374;
+extern char g_unk_7101cb06e0[];
+template <> struct base::UnkDtorTraits<UnkClone_fn_71010ce374> {
+    static char* vtable() { return g_unk_7101cb06e0; }
+};
+template void base::refl_ZeroedCtor<UnkClone_fn_71010ce374>(char*);
 struct UnkClone_fn_71010ceaf0;
 template UnkCloneElem<UnkClone_fn_71010ceaf0, 8>& base::UnkVector<UnkCloneElem<UnkClone_fn_71010ceaf0, 8>>::GrowAt(u32);
 struct UnkClone_fn_71010cec40;
@@ -2437,6 +5654,18 @@ template <> struct base::UnkDtorTraits<UnkClone_fn_71010f0ed0> {
     static void base(char* p) { fn_7101043934(p); }
 };
 template void base::refl_DeletingDtor<UnkClone_fn_71010f0ed0, base::UnkStrIdAt<0x10>>(char*);
+struct UnkClone_fn_71010f17cc;
+extern char g_unk_7101cb1bd8[];
+void fn_7100023854(char*);
+void fn_71010f3d20(char*);
+template <> struct base::UnkDtorTraits<UnkClone_fn_71010f17cc> {
+    static char* vtable() { return g_unk_7101cb1bd8; }
+};
+template <> struct base::UnkDtorCallTraits<UnkClone_fn_71010f17cc> {
+    static void call(char* p) { fn_71010f3d20(p); }
+    static void base(char* p) { fn_7100023854(p); }
+};
+template void base::refl_DtorCallClear<UnkClone_fn_71010f17cc, u64, 0x58>(char*);
 struct UnkClone_fn_71010f1d24;
 extern char g_unk_7101cb1c38[];
 void fn_71010f3d94(char*);
@@ -2633,1231 +5862,3 @@ template <> struct UnkHashKeyTraits<UnkClone_fn_710111f850> {
 template u32 refl_HashKeyFields<UnkClone_fn_710111f850, 0x10>(char*);
 struct UnkClone_fn_710111f9b4;
 template void base::refl_StrIdListCtor<UnkClone_fn_710111f9b4>(char*);
-struct UnkClone_fn_7101120480;
-extern char g_unk_7101a209e0[];
-template <> struct base::UnkRefSlotTraits<UnkClone_fn_7101120480> {
-    static char* vtable() { return g_unk_7101a209e0; }
-};
-template void base::refl_AssignHandleFromSource<UnkClone_fn_7101120480>(base::UnkRefHandle*, const char*);
-struct UnkClone_fn_7101120afc;
-extern char g_unk_7101cb2a58[];
-template <> struct base::UnkDtorTraits<UnkClone_fn_7101120afc> {
-    static char* vtable() { return g_unk_7101cb2a58; }
-};
-template void base::refl_DtorNoBase<UnkClone_fn_7101120afc, base::UnkStrIdAt<0x10>>(char*);
-struct UnkClone_fn_71011232cc;
-void fn_7100014948(void* e, const base::global::CStrId& name, u32 value);
-void fn_71011232cc(void* e) {
-    fn_7100014948(e, base::global::CStrId("ClosestToPlayer", true), 0x0);
-    fn_7100014948(e, base::global::CStrId("FarthestToPlayer", true), 0x1);
-    fn_7100014948(e, base::global::CStrId("Random", true), 0x2);
-    fn_7100014948(e, base::global::CStrId("Invalid", true), 0x7fffffff);
-}
-struct UnkClone_fn_71011235f8;
-void fn_7100014948(void* e, const base::global::CStrId& name, u32 value);
-void fn_71011235f8(void* e) {
-    fn_7100014948(e, base::global::CStrId("FarthestToSpawnPoint", true), 0x0);
-    fn_7100014948(e, base::global::CStrId("ClosestToSpawnPoint", true), 0x1);
-    fn_7100014948(e, base::global::CStrId("Invalid", true), 0x7fffffff);
-}
-struct UnkClone_fn_710112c6e8;
-extern char g_unk_7101cb2a58[];
-template <> struct base::UnkDtorTraits<UnkClone_fn_710112c6e8> {
-    static char* vtable() { return g_unk_7101cb2a58; }
-};
-template void base::refl_DeletingDtorNoBase<UnkClone_fn_710112c6e8, base::UnkStrIdAt<0x10>>(char*);
-struct UnkClone_fn_710112c83c;
-namespace hash_key { extern base::global::CStrId g_unk_7172a06900; }
-template <> struct UnkHashKeyTraits<UnkClone_fn_710112c83c> {
-    static const base::global::CStrId& source() { return hash_key::g_unk_7172a06900; }
-};
-template u32 refl_HashKeyFields<UnkClone_fn_710112c83c, 0x10>(char*);
-struct UnkClone_fn_710112dc04;
-const base::reflection::CType* fn_7101123918();
-namespace folded { const base::reflection::CType* fn_7101123918(); }
-extern char g_unk_7172a086d8[] __attribute__((visibility("hidden")));
-template <> struct base::reflection::UnkTypedPtrTraits<UnkClone_fn_710112dc04> {
-    static char* get() { fn_7101123918(); return g_unk_7172a086d8; }
-    static char* get_static() { folded::fn_7101123918(); return g_unk_7172a086d8; }
-};
-template base::reflection::UnkReflTypedPtr base::reflection::refl_PointeeTyped<UnkClone_fn_710112dc04>(void* const*);
-struct UnkClone_fn_710112e668;
-extern char g_unk_7101cb2880[];
-extern char g_unk_7101a20998[];
-template <> struct base::UnkCallbackTraits<UnkClone_fn_710112e668> {
-    static char* vtable() { return g_unk_7101cb2880; }
-    static char* base_vtable() { return g_unk_7101a20998; }
-};
-template void base::refl_IterDestroy(base::UnkCollectionIter<base::UnkCallbackListShort<UnkClone_fn_710112e668>, u32>*);
-struct UnkClone_fn_710112e7e0;
-extern char g_unk_7101cb2880[];
-extern char g_unk_7101a20998[];
-template <> struct base::UnkCallbackTraits<UnkClone_fn_710112e7e0> {
-    static char* vtable() { return g_unk_7101cb2880; }
-    static char* base_vtable() { return g_unk_7101a20998; }
-};
-template void base::refl_IterSync(base::UnkCollectionIter<base::UnkCallbackListShort<UnkClone_fn_710112e7e0>, u32>*);
-struct UnkClone_fn_710112ec04;
-extern char g_unk_7101cb2880[];
-extern char g_unk_7101a20998[];
-template <> struct base::UnkCallbackTraits<UnkClone_fn_710112ec04> {
-    static char* vtable() { return g_unk_7101cb2880; }
-    static char* base_vtable() { return g_unk_7101a20998; }
-};
-template void base::refl_IterDestroy(base::UnkCollectionIter<base::UnkCallbackListShort<UnkClone_fn_710112ec04>, u32>*);
-struct UnkClone_fn_710112ed7c;
-extern char g_unk_7101cb2880[];
-extern char g_unk_7101a20998[];
-template <> struct base::UnkCallbackTraits<UnkClone_fn_710112ed7c> {
-    static char* vtable() { return g_unk_7101cb2880; }
-    static char* base_vtable() { return g_unk_7101a20998; }
-};
-template void base::refl_IterSync(base::UnkCollectionIter<base::UnkCallbackListShort<UnkClone_fn_710112ed7c>, u32>*);
-struct UnkClone_fn_710112ef98;
-template void base::refl_StrIdListCtor<UnkClone_fn_710112ef98>(char*);
-struct UnkClone_fn_710112f6a0;
-extern char g_unk_7172a06930[];
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_710112f6a0> {
-    static const CType* type() { return reinterpret_cast<const CType*>(g_unk_7172a06930); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetIterElementValue<UnkClone_fn_710112f6a0, UnkCloneBlock<UnkClone_fn_710112f6a0, 0x18>>(void*, char*);
-struct UnkClone_fn_710112f81c;
-extern char g_unk_7172a06930[];
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_710112f81c> {
-    static const CType* type() { return reinterpret_cast<const CType*>(g_unk_7172a06930); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetIterElementValue<UnkClone_fn_710112f81c, UnkCloneBlock<UnkClone_fn_710112f81c, 0x18>>(void*, char*);
-struct UnkClone_fn_7101130a58;
-extern char g_unk_7101cb2880[];
-extern char g_unk_7101a20998[];
-template <> struct base::UnkCallbackTraits<UnkClone_fn_7101130a58> {
-    static char* vtable() { return g_unk_7101cb2880; }
-    static char* base_vtable() { return g_unk_7101a20998; }
-};
-template void base::refl_IterValueDestroy<base::UnkCallbackListShort<UnkClone_fn_7101130a58>>(void*);
-struct UnkClone_fn_7101130fb0;
-extern char g_unk_7172a06e68[];
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7101130fb0> {
-    static const CType* type() { return reinterpret_cast<const CType*>(g_unk_7172a06e68); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetIterElementValue<UnkClone_fn_7101130fb0, UnkCloneBlock<UnkClone_fn_7101130fb0, 0x40>>(void*, char*);
-struct UnkClone_fn_7101131014;
-extern char g_unk_7101cb2880[];
-extern char g_unk_7101a20998[];
-template <> struct base::UnkCallbackTraits<UnkClone_fn_7101131014> {
-    static char* vtable() { return g_unk_7101cb2880; }
-    static char* base_vtable() { return g_unk_7101a20998; }
-};
-template void base::refl_IterValueDestroy<base::UnkCallbackListShort<UnkClone_fn_7101131014>>(void*);
-struct UnkClone_fn_71011314ac;
-extern char g_unk_7172a06e68[];
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71011314ac> {
-    static const CType* type() { return reinterpret_cast<const CType*>(g_unk_7172a06e68); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetIterElementValue<UnkClone_fn_71011314ac, UnkCloneBlock<UnkClone_fn_71011314ac, 0x40>>(void*, char*);
-struct UnkClone_fn_71011314ec;
-template void base::UnkVector<UnkClonePolyElem<UnkClone_fn_71011314ec, UnkClonePolyA, 0x40>>::Clear();
-struct UnkClone_fn_71011317b4;
-template void base::UnkVector<UnkClonePolyElem<UnkClone_fn_71011317b4, UnkClonePolyA, 0x40>>::Free();
-struct UnkClone_fn_7101131880;
-template base::UnkVector<UnkClonePolyElem<UnkClone_fn_7101131880, UnkClonePolyA, 0x40>>& base::UnkVector<UnkClonePolyElem<UnkClone_fn_7101131880, UnkClonePolyA, 0x40>>::operator=(base::UnkVector<UnkClonePolyElem<UnkClone_fn_7101131880, UnkClonePolyA, 0x40>>&&);
-struct UnkClone_fn_710113281c;
-template base::reflection::UnkReflValue base::reflection::refl_SetFieldStrId<UnkClone_fn_710113281c, 0x48>(void*, char*, base::reflection::UnkReflValue* const*);
-struct UnkClone_fn_7101133d58;
-const base::reflection::CType* fn_710077e954();
-bool fn_7101136210(char* s);
-template <> struct base::reflection::UnkCastTraits<UnkClone_fn_7101133d58> {
-    static const CType* type() { return fn_710077e954(); }
-    static bool base(char* s) { return fn_7101136210(s); }
-};
-template bool base::reflection::refl_CallAndCastField<UnkClone_fn_7101133d58, 0x10, 0x340>(char*);
-struct UnkClone_fn_7101136210;
-const base::reflection::CType* fn_710078a054();
-bool fn_71010c41bc(char* s);
-template <> struct base::reflection::UnkCastTraits<UnkClone_fn_7101136210> {
-    static const CType* type() { return fn_710078a054(); }
-    static bool base(char* s) { return fn_71010c41bc(s); }
-};
-template bool base::reflection::refl_CallAndCastField<UnkClone_fn_7101136210, 0x10, 0x130>(char*);
-struct UnkClone_fn_71011384e0;
-template UnkCloneElem<UnkClone_fn_71011384e0, 8>& base::UnkVector<UnkCloneElem<UnkClone_fn_71011384e0, 8>>::GrowAt(u32);
-struct UnkClone_fn_7101138630;
-template void base::refl_CountedDeferredAdd(base::UnkCountedDeferredSet<UnkClone_fn_7101138630>*, UnkClone_fn_7101138630*);
-struct UnkClone_fn_7101138bb0;
-extern char g_unk_7101cb3058[];
-extern char g_unk_7101cb3078[];
-template <> struct base::UnkPoolListTraits<UnkClone_fn_7101138bb0> {
-    static char* vtable() { return g_unk_7101cb3058; }
-    static char* base_vtable() { return g_unk_7101cb3078; }
-};
-template void base::refl_PoolListCtor<UnkClone_fn_7101138bb0, 0, 0x10>(base::UnkPoolList<UnkClone_fn_7101138bb0, 0, 0x10>*, u32, u32, u32, base::UnkAllocator*);
-struct UnkClone_fn_7101138cc8;
-extern char g_unk_7101cb3058[];
-extern char g_unk_7101cb3078[];
-template <> struct base::UnkPoolListTraits<UnkClone_fn_7101138cc8> {
-    static char* vtable() { return g_unk_7101cb3058; }
-    static char* base_vtable() { return g_unk_7101cb3078; }
-};
-template void base::refl_PoolListDtor<UnkClone_fn_7101138cc8, 0x8, 0x10>(base::UnkPoolList<UnkClone_fn_7101138cc8, 0x8, 0x10>*);
-struct UnkClone_fn_710113974c;
-extern char g_unk_7101a1a4c8[];
-extern char g_unk_7101cb3058[];
-extern char g_unk_7101cb3078[];
-template <> struct base::UnkListOwnerTraits<UnkClone_fn_710113974c> {
-    static char* vtable() { return g_unk_7101cb3058; }
-    static char* base_vtable() { return g_unk_7101cb3078; }
-    static char* member_vtable() { return g_unk_7101a1a4c8; }
-};
-template void base::refl_ListOwnerDeletingDtor<UnkClone_fn_710113974c, 0x8>(char*);
-struct UnkClone_fn_710113982c;
-extern char g_unk_7101cb3078[];
-template <> struct base::UnkDtorTraits<UnkClone_fn_710113982c> {
-    static char* vtable() { return g_unk_7101cb3078; }
-};
-template void base::refl_ListDtor<UnkClone_fn_710113982c, 0x20, 0x8>(char*);
-struct UnkClone_fn_7101139890;
-extern char g_unk_7101cb3078[];
-template <> struct base::UnkDtorTraits<UnkClone_fn_7101139890> {
-    static char* vtable() { return g_unk_7101cb3078; }
-};
-template void base::refl_ListDeletingDtor<UnkClone_fn_7101139890, 0x20, 0x8>(char*);
-struct UnkClone_fn_710113a840;
-void fn_7100014948(void* e, const base::global::CStrId& name, u32 value);
-void fn_710113a840(void* e) {
-    fn_7100014948(e, base::global::CStrId("None", true), 0x0);
-    fn_7100014948(e, base::global::CStrId("RootToDC_Grab", true), 0x1);
-    fn_7100014948(e, base::global::CStrId("FeetToRoot", true), 0x2);
-    fn_7100014948(e, base::global::CStrId("Invalid", true), 0x7fffffff);
-}
-struct UnkClone_fn_710113ad50;
-extern char g_unk_7101cb33a8[];
-template <> struct base::UnkDtorTraits<UnkClone_fn_710113ad50> {
-    static char* vtable() { return g_unk_7101cb33a8; }
-};
-template void base::refl_ListDtor<UnkClone_fn_710113ad50, 0x20, 0x8>(char*);
-struct UnkClone_fn_710113b47c;
-const base::reflection::CType* fn_7100790104();
-bool fn_71010c41bc(char* s);
-template <> struct base::reflection::UnkCastTraits<UnkClone_fn_710113b47c> {
-    static const CType* type() { return fn_7100790104(); }
-    static bool base(char* s) { return fn_71010c41bc(s); }
-};
-template bool base::reflection::refl_CallAndCastField<UnkClone_fn_710113b47c, 0x10, 0x1c8>(char*);
-struct UnkClone_fn_710113f684;
-extern char g_unk_7101cb33a8[];
-template <> struct base::UnkDtorTraits<UnkClone_fn_710113f684> {
-    static char* vtable() { return g_unk_7101cb33a8; }
-};
-template void base::refl_ListDeletingDtor<UnkClone_fn_710113f684, 0x20, 0x8>(char*);
-struct UnkClone_fn_71011400f8;
-template base::UnkNamedObject* base::refl_RegisterNamed<UnkClone_fn_71011400f8>(base::UnkNamedRegistry*, base::UnkNamedObject*, const char*);
-struct UnkClone_fn_7101141468;
-template void base::refl_HashMapClear<UnkCloneStrId<UnkClone_fn_7101141468>, 0x0, 0x10>(char*);
-struct UnkClone_fn_7101149248;
-const base::reflection::CType* fn_7100014768();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7101149248> {
-    static const CType* type() { return fn_7100014768(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7101149248, u32, 0x24>(void*, char*);
-struct UnkClone_fn_710114e5f8;
-const base::reflection::CType* fn_710078f484();
-bool fn_71010c41bc(char* s);
-template <> struct base::reflection::UnkCastTraits<UnkClone_fn_710114e5f8> {
-    static const CType* type() { return fn_710078f484(); }
-    static bool base(char* s) { return fn_71010c41bc(s); }
-};
-template bool base::reflection::refl_CallAndCastField<UnkClone_fn_710114e5f8, 0x10, 0x1a8>(char*);
-struct UnkClone_fn_7101158c4c;
-extern char g_unk_7101cb3988[];
-void fn_710115f91c(char*);
-template <> struct base::UnkDtorTraits<UnkClone_fn_7101158c4c> {
-    static char* vtable() { return g_unk_7101cb3988; }
-    static void base(char* p) { fn_710115f91c(p); }
-};
-template void base::refl_Dtor<UnkClone_fn_7101158c4c, base::UnkRefPtrAt<0x240>>(char*);
-struct UnkClone_fn_710115a430;
-template base::UnkNamedObject* base::refl_RegisterNamed<UnkClone_fn_710115a430>(base::UnkNamedRegistry*, base::UnkNamedObject*, const char*);
-struct UnkClone_fn_710115a950;
-const base::reflection::CType* fn_71008b3b04();
-bool fn_710115fbe4(char* s);
-template <> struct base::reflection::UnkCastTraits<UnkClone_fn_710115a950> {
-    static const CType* type() { return fn_71008b3b04(); }
-    static bool base(char* s) { return fn_710115fbe4(s); }
-};
-template bool base::reflection::refl_CallAndCastField<UnkClone_fn_710115a950, 0x10, 0x260>(char*);
-struct UnkClone_fn_710115fbe4;
-const base::reflection::CType* fn_71008bbf8c();
-bool fn_71010c41bc(char* s);
-template <> struct base::reflection::UnkCastTraits<UnkClone_fn_710115fbe4> {
-    static const CType* type() { return fn_71008bbf8c(); }
-    static bool base(char* s) { return fn_71010c41bc(s); }
-};
-template bool base::reflection::refl_CallAndCastField<UnkClone_fn_710115fbe4, 0x10, 0x40>(char*);
-struct UnkClone_fn_710116132c;
-const base::reflection::CType* fn_710000abbc();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_710116132c> {
-    static const CType* type() { return fn_710000abbc(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_710116132c, u32, 0x50>(void*, char*);
-struct UnkClone_fn_71011613dc;
-const base::reflection::CType* fn_710000abbc();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71011613dc> {
-    static const CType* type() { return fn_710000abbc(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_71011613dc, u32, 0x54>(void*, char*);
-struct UnkClone_fn_7101161490;
-const base::reflection::CType* fn_710000d228();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7101161490> {
-    static const CType* type() { return fn_710000d228(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_7101161490, u8, 0x5c>(void*, char*);
-struct UnkClone_fn_71011614dc;
-template base::reflection::UnkReflValue base::reflection::refl_SetFieldValue<UnkClone_fn_71011614dc, u8, 0x5c>(void*, char*, base::reflection::UnkReflValue* const*);
-struct UnkClone_fn_710116179c;
-namespace deferred_invoke { base::UnkDeferredCallback<u64>** fn_71011619b4(base::UnkVector<base::UnkDeferredCallback<u64>*>*, u32); }
-template <> struct base::UnkDeferredInvokeTraits<UnkClone_fn_710116179c> {
-    static base::UnkDeferredCallback<u64>** at(base::UnkVector<base::UnkDeferredCallback<u64>*>* v, u32 i) { return deferred_invoke::fn_71011619b4(v, i); }
-};
-template void base::refl_DeferredInvoke<UnkClone_fn_710116179c, u64>(base::UnkDeferredSet<base::UnkDeferredCallback<u64>>*, const u64*);
-struct UnkClone_fn_71011619b4;
-template UnkCloneElem<UnkClone_fn_71011619b4, 8>& base::UnkVector<UnkCloneElem<UnkClone_fn_71011619b4, 8>>::GrowAt(u32);
-struct UnkClone_fn_71011644f8;
-template base::UnkNamedObject* base::refl_RegisterNamed<UnkClone_fn_71011644f8>(base::UnkNamedRegistry*, base::UnkNamedObject*, const char*);
-struct UnkClone_fn_7101164a08;
-const base::reflection::CType* fn_7100793a34();
-bool fn_710115fbe4(char* s);
-template <> struct base::reflection::UnkCastTraits<UnkClone_fn_7101164a08> {
-    static const CType* type() { return fn_7100793a34(); }
-    static bool base(char* s) { return fn_710115fbe4(s); }
-};
-template bool base::reflection::refl_CallAndCastField<UnkClone_fn_7101164a08, 0x10, 0x458>(char*);
-struct UnkClone_fn_710116a30c;
-const base::reflection::CType* fn_710000abbc();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_710116a30c> {
-    static const CType* type() { return fn_710000abbc(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_710116a30c, u32, 0x318>(void*, char*);
-struct UnkClone_fn_710116a4bc;
-namespace deferred_invoke { base::UnkDeferredCallback<const void*>** fn_710116a6d4(base::UnkVector<base::UnkDeferredCallback<const void*>*>*, u32); }
-template <> struct base::UnkDeferredInvokeTraits<UnkClone_fn_710116a4bc> {
-    static base::UnkDeferredCallback<const void*>** at(base::UnkVector<base::UnkDeferredCallback<const void*>*>* v, u32 i) { return deferred_invoke::fn_710116a6d4(v, i); }
-};
-template void base::refl_DeferredInvokePtr<UnkClone_fn_710116a4bc>(base::UnkDeferredSet<base::UnkDeferredCallback<const void*>>*, const void*);
-struct UnkClone_fn_710116a6d4;
-template UnkCloneElem<UnkClone_fn_710116a6d4, 8>& base::UnkVector<UnkCloneElem<UnkClone_fn_710116a6d4, 8>>::GrowAt(u32);
-struct UnkClone_fn_710116ce84;
-template base::reflection::UnkReflValue base::reflection::refl_SetFieldValue<UnkClone_fn_710116ce84, u8, 0x7b>(void*, char*, base::reflection::UnkReflValue* const*);
-struct UnkClone_fn_710116d5b4;
-void fn_7100014948(void* e, const base::global::CStrId& name, u32 value);
-void fn_710116d5b4(void* e) {
-    fn_7100014948(e, base::global::CStrId("INDIR_Left", true), 0x0);
-    fn_7100014948(e, base::global::CStrId("INDIR_Right", true), 0x1);
-    fn_7100014948(e, base::global::CStrId("INDIR_Any", true), 0x2);
-    fn_7100014948(e, base::global::CStrId("Invalid", true), 0x7fffffff);
-}
-struct UnkClone_fn_710116d8e0;
-void fn_7100014948(void* e, const base::global::CStrId& name, u32 value);
-void fn_710116d8e0(void* e) {
-    fn_7100014948(e, base::global::CStrId("ACCUMULATIVE", true), 0x0);
-    fn_7100014948(e, base::global::CStrId("LINEAR", true), 0x1);
-    fn_7100014948(e, base::global::CStrId("INSTANT", true), 0x2);
-    fn_7100014948(e, base::global::CStrId("EASY_IN_EASY_OUT", true), 0x3);
-    fn_7100014948(e, base::global::CStrId("Invalid", true), 0x7fffffff);
-}
-struct UnkClone_fn_710117b794;
-extern char g_unk_7101cb4840[];
-extern char g_unk_7101cb4860[];
-template <> struct base::UnkPoolListTraits<UnkClone_fn_710117b794> {
-    static char* vtable() { return g_unk_7101cb4840; }
-    static char* base_vtable() { return g_unk_7101cb4860; }
-};
-template void base::refl_PoolListCtor<UnkClone_fn_710117b794, 0, 0x10>(base::UnkPoolList<UnkClone_fn_710117b794, 0, 0x10>*, u32, u32, u32, base::UnkAllocator*);
-struct UnkClone_fn_710117b8ac;
-extern char g_unk_7101cb4840[];
-extern char g_unk_7101cb4860[];
-template <> struct base::UnkPoolListTraits<UnkClone_fn_710117b8ac> {
-    static char* vtable() { return g_unk_7101cb4840; }
-    static char* base_vtable() { return g_unk_7101cb4860; }
-};
-template void base::refl_PoolListDtor<UnkClone_fn_710117b8ac, 0x8, 0x10>(base::UnkPoolList<UnkClone_fn_710117b8ac, 0x8, 0x10>*);
-struct UnkClone_fn_710117b9a4;
-extern char g_unk_7101a1a4c8[];
-extern char g_unk_7101cb4840[];
-extern char g_unk_7101cb4860[];
-template <> struct base::UnkListOwnerTraits<UnkClone_fn_710117b9a4> {
-    static char* vtable() { return g_unk_7101cb4840; }
-    static char* base_vtable() { return g_unk_7101cb4860; }
-    static char* member_vtable() { return g_unk_7101a1a4c8; }
-};
-template void base::refl_ListOwnerDeletingDtor<UnkClone_fn_710117b9a4, 0x8>(char*);
-struct UnkClone_fn_710117ba84;
-extern char g_unk_7101cb4860[];
-template <> struct base::UnkDtorTraits<UnkClone_fn_710117ba84> {
-    static char* vtable() { return g_unk_7101cb4860; }
-};
-template void base::refl_ListDtor<UnkClone_fn_710117ba84, 0x20, 0x8>(char*);
-struct UnkClone_fn_710117bae8;
-extern char g_unk_7101cb4860[];
-template <> struct base::UnkDtorTraits<UnkClone_fn_710117bae8> {
-    static char* vtable() { return g_unk_7101cb4860; }
-};
-template void base::refl_ListDeletingDtor<UnkClone_fn_710117bae8, 0x20, 0x8>(char*);
-struct UnkClone_fn_710117bd5c;
-namespace push_pair { void* fn_710000fd7c(); void* fn_710000d228(); }
-template <> struct base::UnkPushPairTraits<UnkClone_fn_710117bd5c> {
-    static void* first() { return push_pair::fn_710000fd7c(); }
-    static void* second() { return push_pair::fn_710000d228(); }
-};
-template void base::refl_PushPair<UnkClone_fn_710117bd5c>(char*);
-struct UnkClone_fn_710117ee74;
-template UnkCloneElem<UnkClone_fn_710117ee74, 8>& base::UnkVector<UnkCloneElem<UnkClone_fn_710117ee74, 8>>::GrowAt(u32);
-struct UnkClone_fn_710117efc4;
-template void base::refl_CountedDeferredAdd(base::UnkCountedDeferredSet<UnkClone_fn_710117efc4>*, UnkClone_fn_710117efc4*);
-struct UnkClone_fn_7101181c10;
-extern char g_unk_7101cb4ad8[];
-void fn_71010c4194(char*);
-template <> struct base::UnkDtorTraits<UnkClone_fn_7101181c10> {
-    static char* vtable() { return g_unk_7101cb4ad8; }
-    static void base(char* p) { fn_71010c4194(p); }
-};
-template void base::refl_Dtor<UnkClone_fn_7101181c10, base::UnkRefPtrAt<0x40>>(char*);
-struct UnkClone_fn_71011837ec;
-template base::UnkNamedObject* base::refl_RegisterNamed<UnkClone_fn_71011837ec>(base::UnkNamedRegistry*, base::UnkNamedObject*, const char*);
-struct UnkClone_fn_7101185fcc;
-extern char g_unk_7101cb5010[];
-template <> struct base::UnkDtorTraits<UnkClone_fn_7101185fcc> {
-    static char* vtable() { return g_unk_7101cb5010; }
-};
-template void base::refl_ListDtor<UnkClone_fn_7101185fcc, 0x20, 0x8>(char*);
-struct UnkClone_fn_7101186030;
-extern char g_unk_7101cb5010[];
-template <> struct base::UnkDtorTraits<UnkClone_fn_7101186030> {
-    static char* vtable() { return g_unk_7101cb5010; }
-};
-template void base::refl_ListDeletingDtor<UnkClone_fn_7101186030, 0x20, 0x8>(char*);
-struct UnkClone_fn_710118f9b8;
-namespace deferred_invoke { base::UnkDeferredCallback<u64>** fn_710118fbd0(base::UnkVector<base::UnkDeferredCallback<u64>*>*, u32); }
-template <> struct base::UnkDeferredInvokeTraits<UnkClone_fn_710118f9b8> {
-    static base::UnkDeferredCallback<u64>** at(base::UnkVector<base::UnkDeferredCallback<u64>*>* v, u32 i) { return deferred_invoke::fn_710118fbd0(v, i); }
-};
-template void base::refl_DeferredInvoke<UnkClone_fn_710118f9b8, u64>(base::UnkDeferredSet<base::UnkDeferredCallback<u64>>*, const u64*);
-struct UnkClone_fn_710118fbd0;
-template UnkCloneElem<UnkClone_fn_710118fbd0, 8>& base::UnkVector<UnkCloneElem<UnkClone_fn_710118fbd0, 8>>::GrowAt(u32);
-struct UnkClone_fn_7101194aa8;
-template UnkCloneHandle<UnkClone_fn_7101194aa8>& base::UnkVector<UnkCloneHandle<UnkClone_fn_7101194aa8>>::GrowAt(u32);
-struct UnkClone_fn_71011951e8;
-char** fn_71011952f0(char*, u32);
-template <> struct base::UnkChainedSetTraits<UnkClone_fn_71011951e8> {
-    static char** bucket(char* self, u32 i) { return fn_71011952f0(self, i); }
-};
-template void base::refl_ChainedSetClear<UnkClone_fn_71011951e8, UnkCloneStrId<UnkClone_fn_71011951e8>, 0x10>(char*);
-struct UnkClone_fn_71011952f0;
-template UnkCloneHandle<UnkClone_fn_71011952f0>& base::UnkVector<UnkCloneHandle<UnkClone_fn_71011952f0>>::GrowAt(u32);
-struct UnkClone_fn_71011954cc;
-char** fn_71011955d4(char*, u32);
-template <> struct base::UnkChainedSetTraits<UnkClone_fn_71011954cc> {
-    static char** bucket(char* self, u32 i) { return fn_71011955d4(self, i); }
-};
-template void base::refl_ChainedSetClear<UnkClone_fn_71011954cc, UnkCloneStrIdB<UnkClone_fn_71011954cc>, 0x10>(char*);
-struct UnkClone_fn_71011955d4;
-template UnkCloneHandle<UnkClone_fn_71011955d4>& base::UnkVector<UnkCloneHandle<UnkClone_fn_71011955d4>>::GrowAt(u32);
-struct UnkClone_fn_710119598c;
-namespace chain_map { void* fn_71011952f0(void*, u32); }
-template <> struct base::UnkChainMapTraits<UnkClone_fn_710119598c> {
-    template <class M>
-    static auto at(M* m, u32 b) { return static_cast<decltype(m->first_node)*>(chain_map::fn_71011952f0(m, b)); }
-};
-template void base::refl_ChainMapErase(base::UnkChainMap<UnkClone_fn_710119598c, base::UnkStrIdMemberOf<g_unk_7101d47108>>*, base::UnkChainMapIter<UnkClone_fn_710119598c, base::UnkStrIdMemberOf<g_unk_7101d47108>>*);
-struct UnkClone_fn_7101195c04;
-namespace chain_map { void* fn_71011955d4(void*, u32); }
-template <> struct base::UnkChainMapTraits<UnkClone_fn_7101195c04> {
-    template <class M>
-    static auto at(M* m, u32 b) { return static_cast<decltype(m->first_node)*>(chain_map::fn_71011955d4(m, b)); }
-};
-template void base::refl_ChainMapErase(base::UnkChainMap<UnkClone_fn_7101195c04, base::UnkStrIdMemberOf<g_unk_7101d47200>>*, base::UnkChainMapIter<UnkClone_fn_7101195c04, base::UnkStrIdMemberOf<g_unk_7101d47200>>*);
-struct UnkClone_fn_710119afe4;
-extern char g_unk_7101cb5328[];
-template <> struct base::UnkDtorTraits<UnkClone_fn_710119afe4> {
-    static char* vtable() { return g_unk_7101cb5328; }
-};
-template void base::refl_ListDtor<UnkClone_fn_710119afe4, 0x20, 0x8>(char*);
-struct UnkClone_fn_710119bb24;
-extern char g_unk_7101cb5328[];
-template <> struct base::UnkDtorTraits<UnkClone_fn_710119bb24> {
-    static char* vtable() { return g_unk_7101cb5328; }
-};
-template void base::refl_ListDeletingDtor<UnkClone_fn_710119bb24, 0x20, 0x8>(char*);
-struct UnkClone_fn_710119d340;
-extern char g_unk_7172a0be70[] __attribute__((visibility("hidden")));
-extern const char g_unk_71015f76c2[] __attribute__((visibility("hidden")));
-extern char g_unk_7172a0bd10[];
-extern char g_unk_7172a0be48[];
-void fn_710119bc0c();
-void fn_710119bc64(char*, const base::global::CStrId&, u64, u64, void (*)(), u64);
-template <> struct base::UnkTypeInitTraits<UnkClone_fn_710119d340> {
-    static base::UnkTypeInitIds* ids() { return reinterpret_cast<base::UnkTypeInitIds*>(g_unk_7172a0be70); }
-    static const char* name() { return g_unk_71015f76c2; }
-    static char* type() { return g_unk_7172a0bd10; }
-    static char* list() { return g_unk_7172a0be48; }
-    static void init(char* t, const base::global::CStrId& n) { fn_710119bc64(t, n, 0, 0, fn_710119bc0c, 0); }
-};
-template void base::refl_TypeStaticInit<UnkClone_fn_710119d340>();
-struct UnkClone_fn_710119fb40;
-template base::UnkNamedObject* base::refl_RegisterNamed<UnkClone_fn_710119fb40>(base::UnkNamedRegistry*, base::UnkNamedObject*, const char*);
-struct UnkClone_fn_71011a52ac;
-extern char g_unk_7101cb5598[];
-template <> struct base::UnkDtorTraits<UnkClone_fn_71011a52ac> {
-    static char* vtable() { return g_unk_7101cb5598; }
-};
-template void base::refl_ListDtor<UnkClone_fn_71011a52ac, 0x20, 0x8>(char*);
-struct UnkClone_fn_71011a5e10;
-extern char g_unk_7101cb5598[];
-template <> struct base::UnkDtorTraits<UnkClone_fn_71011a5e10> {
-    static char* vtable() { return g_unk_7101cb5598; }
-};
-template void base::refl_ListDeletingDtor<UnkClone_fn_71011a5e10, 0x20, 0x8>(char*);
-struct UnkClone_fn_71011a6394;
-template base::UnkNamedObject* base::refl_RegisterNamed<UnkClone_fn_71011a6394>(base::UnkNamedRegistry*, base::UnkNamedObject*, const char*);
-struct UnkClone_fn_71011a8d30;
-extern char g_unk_7101cb56b8[];
-extern char g_unk_7101cb56d8[];
-template <> struct base::UnkPoolListTraits<UnkClone_fn_71011a8d30> {
-    static char* vtable() { return g_unk_7101cb56b8; }
-    static char* base_vtable() { return g_unk_7101cb56d8; }
-};
-template void base::refl_PoolListCtor<UnkClone_fn_71011a8d30, 0, 0x10>(base::UnkPoolList<UnkClone_fn_71011a8d30, 0, 0x10>*, u32, u32, u32, base::UnkAllocator*);
-struct UnkClone_fn_71011a8e48;
-extern char g_unk_7101cb56f8[];
-extern char g_unk_7101cb5718[];
-template <> struct base::UnkPoolListTraits<UnkClone_fn_71011a8e48> {
-    static char* vtable() { return g_unk_7101cb56f8; }
-    static char* base_vtable() { return g_unk_7101cb5718; }
-};
-template void base::refl_PoolListCtor<UnkClone_fn_71011a8e48, 0, 0x10>(base::UnkPoolList<UnkClone_fn_71011a8e48, 0, 0x10>*, u32, u32, u32, base::UnkAllocator*);
-struct UnkClone_fn_71011a94e4;
-extern char g_unk_7101cb56f8[];
-extern char g_unk_7101cb5718[];
-template <> struct base::UnkPoolListTraits<UnkClone_fn_71011a94e4> {
-    static char* vtable() { return g_unk_7101cb56f8; }
-    static char* base_vtable() { return g_unk_7101cb5718; }
-};
-template void base::refl_PoolListDtor<UnkClone_fn_71011a94e4, 0x8, 0x10>(base::UnkPoolList<UnkClone_fn_71011a94e4, 0x8, 0x10>*);
-struct UnkClone_fn_71011a95dc;
-extern char g_unk_7101cb56b8[];
-extern char g_unk_7101cb56d8[];
-template <> struct base::UnkPoolListTraits<UnkClone_fn_71011a95dc> {
-    static char* vtable() { return g_unk_7101cb56b8; }
-    static char* base_vtable() { return g_unk_7101cb56d8; }
-};
-template void base::refl_PoolListDtor<UnkClone_fn_71011a95dc, 0x8, 0x10>(base::UnkPoolList<UnkClone_fn_71011a95dc, 0x8, 0x10>*);
-struct UnkClone_fn_71011aad4c;
-template void base::refl_HashMapInit<UnkClone_fn_71011aad4c, 0x28>(char*, u32, u32);
-struct UnkClone_fn_71011aaea0;
-extern char g_unk_7101a1a4c8[];
-extern char g_unk_7101cb56b8[];
-extern char g_unk_7101cb56d8[];
-template <> struct base::UnkListOwnerTraits<UnkClone_fn_71011aaea0> {
-    static char* vtable() { return g_unk_7101cb56b8; }
-    static char* base_vtable() { return g_unk_7101cb56d8; }
-    static char* member_vtable() { return g_unk_7101a1a4c8; }
-};
-template void base::refl_ListOwnerDeletingDtor<UnkClone_fn_71011aaea0, 0x8>(char*);
-struct UnkClone_fn_71011aaf80;
-extern char g_unk_7101cb56d8[];
-template <> struct base::UnkDtorTraits<UnkClone_fn_71011aaf80> {
-    static char* vtable() { return g_unk_7101cb56d8; }
-};
-template void base::refl_ListDtor<UnkClone_fn_71011aaf80, 0x20, 0x8>(char*);
-struct UnkClone_fn_71011aafe4;
-extern char g_unk_7101cb56d8[];
-template <> struct base::UnkDtorTraits<UnkClone_fn_71011aafe4> {
-    static char* vtable() { return g_unk_7101cb56d8; }
-};
-template void base::refl_ListDeletingDtor<UnkClone_fn_71011aafe4, 0x20, 0x8>(char*);
-struct UnkClone_fn_71011ab038;
-extern char g_unk_7101a1a4c8[];
-extern char g_unk_7101cb56f8[];
-extern char g_unk_7101cb5718[];
-template <> struct base::UnkListOwnerTraits<UnkClone_fn_71011ab038> {
-    static char* vtable() { return g_unk_7101cb56f8; }
-    static char* base_vtable() { return g_unk_7101cb5718; }
-    static char* member_vtable() { return g_unk_7101a1a4c8; }
-};
-template void base::refl_ListOwnerDeletingDtor<UnkClone_fn_71011ab038, 0x8>(char*);
-struct UnkClone_fn_71011ab118;
-extern char g_unk_7101cb5718[];
-template <> struct base::UnkDtorTraits<UnkClone_fn_71011ab118> {
-    static char* vtable() { return g_unk_7101cb5718; }
-};
-template void base::refl_ListDtor<UnkClone_fn_71011ab118, 0x20, 0x8>(char*);
-struct UnkClone_fn_71011ab17c;
-extern char g_unk_7101cb5718[];
-template <> struct base::UnkDtorTraits<UnkClone_fn_71011ab17c> {
-    static char* vtable() { return g_unk_7101cb5718; }
-};
-template void base::refl_ListDeletingDtor<UnkClone_fn_71011ab17c, 0x20, 0x8>(char*);
-struct UnkClone_fn_71011ab1d0;
-template void base::refl_HashMapClear<UnkCloneStrIdB<UnkClone_fn_71011ab1d0>, 0x0, 0x10>(char*);
-struct UnkClone_fn_71011b2e44;
-template void base::refl_HashMapClear<UnkCloneStrIdB<UnkClone_fn_71011b2e44>, 0x0, 0x10>(char*);
-struct UnkClone_fn_71011b5674;
-template UnkCloneElem<UnkClone_fn_71011b5674, 8>& base::UnkVector<UnkCloneElem<UnkClone_fn_71011b5674, 8>>::GrowAt(u32);
-struct UnkClone_fn_71011bba6c;
-extern char g_unk_7101cb58a8[];
-template <> struct base::UnkDtorTraits<UnkClone_fn_71011bba6c> {
-    static char* vtable() { return g_unk_7101cb58a8; }
-};
-template void base::refl_ListDtor<UnkClone_fn_71011bba6c, 0x28, 0x8>(char*);
-struct UnkClone_fn_71011bbad0;
-extern char g_unk_7101cb58a8[];
-template <> struct base::UnkDtorTraits<UnkClone_fn_71011bbad0> {
-    static char* vtable() { return g_unk_7101cb58a8; }
-};
-template void base::refl_ListDeletingDtor<UnkClone_fn_71011bbad0, 0x28, 0x8>(char*);
-struct UnkClone_fn_71011bd150;
-const base::reflection::CType* fn_71011d7b84();
-namespace folded { const base::reflection::CType* fn_71011d7b84(); }
-template <> struct base::reflection::UnkTypedPtrTraits<UnkClone_fn_71011bd150> {
-    static char* get() { return (char*)fn_71011d7b84(); }
-    static char* get_static() { return (char*)folded::fn_71011d7b84(); }
-};
-template base::reflection::UnkReflTypedPtr base::reflection::refl_PointeeTyped<UnkClone_fn_71011bd150>(void* const*);
-struct UnkClone_fn_71011be0d0;
-void fn_7100014948(void* e, const base::global::CStrId& name, u32 value);
-void fn_71011be0d0(void* e) {
-    fn_7100014948(e, base::global::CStrId("Align_Centered", true), 0x0);
-    fn_7100014948(e, base::global::CStrId("Align_Left", true), 0x1);
-    fn_7100014948(e, base::global::CStrId("Align_Right", true), 0x2);
-    fn_7100014948(e, base::global::CStrId("Invalid", true), 0x7fffffff);
-}
-struct UnkClone_fn_71011d02c4;
-const base::reflection::CType* fn_7100fc036c();
-namespace folded { const base::reflection::CType* fn_7100fc036c(); }
-template <> struct base::reflection::UnkTypedPtrTraits<UnkClone_fn_71011d02c4> {
-    static char* get() { return (char*)fn_7100fc036c(); }
-    static char* get_static() { return (char*)folded::fn_7100fc036c(); }
-};
-template base::reflection::UnkReflTypedPtr base::reflection::refl_PointeeTyped<UnkClone_fn_71011d02c4>(void* const*);
-struct UnkClone_fn_71011d051c;
-const base::reflection::CType* fn_7100fc036c();
-namespace folded { const base::reflection::CType* fn_7100fc036c(); }
-template <> struct base::reflection::UnkTypedPtrTraits<UnkClone_fn_71011d051c> {
-    static char* get() { return (char*)fn_7100fc036c(); }
-    static char* get_static() { return (char*)folded::fn_7100fc036c(); }
-};
-template base::reflection::UnkReflTypedPtr base::reflection::refl_PointeeTyped<UnkClone_fn_71011d051c>(void* const*);
-struct UnkClone_fn_71011d089c;
-template base::UnkCollectionIter<UnkCloneBlock<UnkClone_fn_71011d089c, 0x8>>& base::UnkCollectionIter<UnkCloneBlock<UnkClone_fn_71011d089c, 0x8>>::operator=(const base::UnkCollectionIter<UnkCloneBlock<UnkClone_fn_71011d089c, 0x8>>&);
-struct UnkClone_fn_71011d08f4;
-template base::UnkCollectionIter<UnkCloneBlock<UnkClone_fn_71011d08f4, 0x8>>& base::UnkCollectionIter<UnkCloneBlock<UnkClone_fn_71011d08f4, 0x8>>::operator=(const base::UnkCollectionIter<UnkCloneBlock<UnkClone_fn_71011d08f4, 0x8>>&);
-struct UnkClone_fn_71011d0bdc;
-template base::UnkCollectionIter<UnkCloneBlock<UnkClone_fn_71011d0bdc, 0x8>>& base::UnkCollectionIter<UnkCloneBlock<UnkClone_fn_71011d0bdc, 0x8>>::operator=(const base::UnkCollectionIter<UnkCloneBlock<UnkClone_fn_71011d0bdc, 0x8>>&);
-struct UnkClone_fn_71011d0c34;
-template base::UnkCollectionIter<UnkCloneBlock<UnkClone_fn_71011d0c34, 0x8>>& base::UnkCollectionIter<UnkCloneBlock<UnkClone_fn_71011d0c34, 0x8>>::operator=(const base::UnkCollectionIter<UnkCloneBlock<UnkClone_fn_71011d0c34, 0x8>>&);
-struct UnkClone_fn_71011d17e4;
-template bool base::refl_IterValueEqualByValue(const base::UnkIterValue<UnkCloneWord<UnkClone_fn_71011d17e4>>&, const base::UnkIterValue<UnkCloneWord<UnkClone_fn_71011d17e4>>&);
-struct UnkClone_fn_71011d18b8;
-template void base::refl_IterValueMove<UnkCloneWord<UnkClone_fn_71011d18b8>>(void*, const void*);
-struct UnkClone_fn_71011d1918;
-template void base::refl_IterValueAssign(base::UnkIterValue<UnkCloneWord<UnkClone_fn_71011d1918>, u32>*, const base::UnkIterValue<UnkCloneWord<UnkClone_fn_71011d1918>, u32>*);
-struct UnkClone_fn_71011d1998;
-template base::UnkIterValue<UnkClone_fn_71011d1998*>& base::UnkIterValue<UnkClone_fn_71011d1998*>::operator=(base::UnkIterValue<UnkClone_fn_71011d1998*>&&);
-struct UnkClone_fn_71011d1a84;
-const base::reflection::CType* fn_7100fc036c();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71011d1a84> {
-    static const CType* type() { return fn_7100fc036c(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetIterElementValue<UnkClone_fn_71011d1a84, UnkCloneBlock<UnkClone_fn_71011d1a84, 0x8>>(void*, char*);
-struct UnkClone_fn_71011d1ad8;
-template bool base::refl_IterValueEqualByValue(const base::UnkIterValue<UnkCloneWord<UnkClone_fn_71011d1ad8>>&, const base::UnkIterValue<UnkCloneWord<UnkClone_fn_71011d1ad8>>&);
-struct UnkClone_fn_71011d1bac;
-template void base::refl_IterValueMove<UnkCloneWord<UnkClone_fn_71011d1bac>>(void*, const void*);
-struct UnkClone_fn_71011d1c6c;
-const base::reflection::CType* fn_7100fc036c();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71011d1c6c> {
-    static const CType* type() { return fn_7100fc036c(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetIterElementValue<UnkClone_fn_71011d1c6c, UnkCloneBlock<UnkClone_fn_71011d1c6c, 0x8>>(void*, char*);
-struct UnkClone_fn_71011d1dcc;
-template bool base::refl_VectorEqual<UnkClone_fn_71011d1dcc>(const base::UnkVector<UnkCloneWord<UnkClone_fn_71011d1dcc>>*, const base::UnkVector<UnkCloneWord<UnkClone_fn_71011d1dcc>>*);
-struct UnkClone_fn_71011d20b8;
-template void base::UnkVector<UnkCloneElem<UnkClone_fn_71011d20b8, 8>>::Insert(UnkCloneElem<UnkClone_fn_71011d20b8, 8>&&, u32);
-struct UnkClone_fn_71011d2268;
-template void base::UnkVector<UnkCloneElem<UnkClone_fn_71011d2268, 8>>::Insert(UnkCloneElem<UnkClone_fn_71011d2268, 8>&&, u32);
-struct UnkClone_fn_71011d2438;
-template void base::refl_Begin(const base::UnkVector<UnkClone_fn_71011d2438*>*, base::UnkCollectionIter<UnkClone_fn_71011d2438*>*);
-struct UnkClone_fn_71011d24e0;
-template void base::refl_End(const base::UnkVector<UnkCloneHandle<UnkClone_fn_71011d24e0>>*, base::UnkCollectionIter<UnkCloneHandle<UnkClone_fn_71011d24e0>>*);
-struct UnkClone_fn_71011d2590;
-template bool base::refl_IterValueEqualByValue(const base::UnkIterValue<UnkCloneWord<UnkClone_fn_71011d2590>>&, const base::UnkIterValue<UnkCloneWord<UnkClone_fn_71011d2590>>&);
-struct UnkClone_fn_71011d2664;
-template void base::refl_IterValueMove<UnkCloneWord<UnkClone_fn_71011d2664>>(void*, const void*);
-struct UnkClone_fn_71011d26c4;
-template void base::refl_IterValueAssign(base::UnkIterValue<UnkCloneWord<UnkClone_fn_71011d26c4>, u32>*, const base::UnkIterValue<UnkCloneWord<UnkClone_fn_71011d26c4>, u32>*);
-struct UnkClone_fn_71011d2744;
-template base::UnkIterValue<UnkClone_fn_71011d2744*>& base::UnkIterValue<UnkClone_fn_71011d2744*>::operator=(base::UnkIterValue<UnkClone_fn_71011d2744*>&&);
-struct UnkClone_fn_71011d2830;
-const base::reflection::CType* fn_7100fc036c();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71011d2830> {
-    static const CType* type() { return fn_7100fc036c(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetIterElementValue<UnkClone_fn_71011d2830, UnkCloneBlock<UnkClone_fn_71011d2830, 0x8>>(void*, char*);
-struct UnkClone_fn_71011d2884;
-template bool base::refl_IterValueEqualByValue(const base::UnkIterValue<UnkCloneWord<UnkClone_fn_71011d2884>>&, const base::UnkIterValue<UnkCloneWord<UnkClone_fn_71011d2884>>&);
-struct UnkClone_fn_71011d2958;
-template void base::refl_IterValueMove<UnkCloneWord<UnkClone_fn_71011d2958>>(void*, const void*);
-struct UnkClone_fn_71011d2a18;
-const base::reflection::CType* fn_7100fc036c();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71011d2a18> {
-    static const CType* type() { return fn_7100fc036c(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetIterElementValue<UnkClone_fn_71011d2a18, UnkCloneBlock<UnkClone_fn_71011d2a18, 0x8>>(void*, char*);
-struct UnkClone_fn_71011d37f0;
-template base::reflection::UnkReflValue base::reflection::refl_SetFieldStrId<UnkClone_fn_71011d37f0, 0x130>(void*, char*, base::reflection::UnkReflValue* const*);
-struct UnkClone_fn_71011d38ac;
-const base::reflection::CType* fn_710000d228();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71011d38ac> {
-    static const CType* type() { return fn_710000d228(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_71011d38ac, u8, 0xb4>(void*, char*);
-struct UnkClone_fn_71011d3954;
-const base::reflection::CType* fn_710000d228();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71011d3954> {
-    static const CType* type() { return fn_710000d228(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_71011d3954, u8, 0xb5>(void*, char*);
-struct UnkClone_fn_71011d3a3c;
-const base::reflection::CType* fn_710000d228();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71011d3a3c> {
-    static const CType* type() { return fn_710000d228(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_71011d3a3c, u8, 0x181>(void*, char*);
-struct UnkClone_fn_71011d3b74;
-const base::reflection::CType* fn_710000d228();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71011d3b74> {
-    static const CType* type() { return fn_710000d228(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_71011d3b74, u8, 0x182>(void*, char*);
-struct UnkClone_fn_71011d3bc0;
-template base::reflection::UnkReflValue base::reflection::refl_SetFieldValue<UnkClone_fn_71011d3bc0, u8, 0x182>(void*, char*, base::reflection::UnkReflValue* const*);
-struct UnkClone_fn_71011d3c04;
-const base::reflection::CType* fn_710000d228();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71011d3c04> {
-    static const CType* type() { return fn_710000d228(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_71011d3c04, u8, 0x185>(void*, char*);
-struct UnkClone_fn_71011d4ea8;
-const base::reflection::CType* fn_710000abbc();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71011d4ea8> {
-    static const CType* type() { return fn_710000abbc(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_71011d4ea8, u32, 0x9c>(void*, char*);
-struct UnkClone_fn_71011d4f84;
-const base::reflection::CType* fn_710000abbc();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71011d4f84> {
-    static const CType* type() { return fn_710000abbc(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_71011d4f84, u32, 0x94>(void*, char*);
-struct UnkClone_fn_71011d5084;
-const base::reflection::CType* fn_710000abbc();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71011d5084> {
-    static const CType* type() { return fn_710000abbc(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_71011d5084, u32, 0x98>(void*, char*);
-struct UnkClone_fn_71011d5184;
-const base::reflection::CType* fn_710000abbc();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71011d5184> {
-    static const CType* type() { return fn_710000abbc(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_71011d5184, u32, 0x88>(void*, char*);
-struct UnkClone_fn_71011d5260;
-const base::reflection::CType* fn_710000abbc();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71011d5260> {
-    static const CType* type() { return fn_710000abbc(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_71011d5260, u32, 0xa0>(void*, char*);
-struct UnkClone_fn_71011d5364;
-const base::reflection::CType* fn_710000abbc();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71011d5364> {
-    static const CType* type() { return fn_710000abbc(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_71011d5364, u32, 0xa4>(void*, char*);
-struct UnkClone_fn_71011d5468;
-const base::reflection::CType* fn_710000abbc();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71011d5468> {
-    static const CType* type() { return fn_710000abbc(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_71011d5468, u32, 0xa8>(void*, char*);
-struct UnkClone_fn_71011d556c;
-const base::reflection::CType* fn_710000abbc();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71011d556c> {
-    static const CType* type() { return fn_710000abbc(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_71011d556c, u32, 0xac>(void*, char*);
-struct UnkClone_fn_71011d5670;
-const base::reflection::CType* fn_710000abbc();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71011d5670> {
-    static const CType* type() { return fn_710000abbc(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_71011d5670, u32, 0x8c>(void*, char*);
-struct UnkClone_fn_71011d576c;
-const base::reflection::CType* fn_710000abbc();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71011d576c> {
-    static const CType* type() { return fn_710000abbc(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_71011d576c, u32, 0x90>(void*, char*);
-struct UnkClone_fn_71011d6238;
-const base::reflection::CType* fn_7100014768();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71011d6238> {
-    static const CType* type() { return fn_7100014768(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_71011d6238, u32, 0x138>(void*, char*);
-struct UnkClone_fn_71011d8d78;
-extern char g_unk_7101a9d490[];
-extern char g_unk_7101a9d4b0[];
-template <> struct base::UnkPoolListTraits<UnkClone_fn_71011d8d78> {
-    static char* vtable() { return g_unk_7101a9d490; }
-    static char* base_vtable() { return g_unk_7101a9d4b0; }
-};
-template void base::refl_PoolListCtor<UnkClone_fn_71011d8d78, 0, 0x10>(base::UnkPoolList<UnkClone_fn_71011d8d78, 0, 0x10>*, u32, u32, u32, base::UnkAllocator*);
-struct UnkClone_fn_71011da3d0;
-const base::reflection::CType* fn_71011d7b84();
-namespace folded { const base::reflection::CType* fn_71011d7b84(); }
-extern char g_unk_7172a0f120[] __attribute__((visibility("hidden")));
-template <> struct base::reflection::UnkTypedPtrTraits<UnkClone_fn_71011da3d0> {
-    static char* get() { fn_71011d7b84(); return g_unk_7172a0f120; }
-    static char* get_static() { folded::fn_71011d7b84(); return g_unk_7172a0f120; }
-};
-template base::reflection::UnkReflTypedPtr base::reflection::refl_PointeeTyped<UnkClone_fn_71011da3d0>(void* const*);
-struct UnkClone_fn_71011da6a8;
-extern char g_unk_7101a209e0[];
-template <> struct base::UnkRefSlotTraits<UnkClone_fn_71011da6a8> {
-    static char* vtable() { return g_unk_7101a209e0; }
-};
-template void base::refl_AssignHandleFromSource<UnkClone_fn_71011da6a8>(base::UnkRefHandle*, const char*);
-struct UnkClone_fn_71011daabc;
-const base::reflection::CType* fn_71011d6a04();
-namespace folded { const base::reflection::CType* fn_71011d6a04(); }
-template <> struct base::reflection::UnkTypedPtrTraits<UnkClone_fn_71011daabc> {
-    static char* get() { return (char*)fn_71011d6a04(); }
-    static char* get_static() { return (char*)folded::fn_71011d6a04(); }
-};
-template base::reflection::UnkReflTypedPtr base::reflection::refl_PointeeTyped<UnkClone_fn_71011daabc>(void* const*);
-struct UnkClone_fn_71011dad14;
-const base::reflection::CType* fn_71011d6a04();
-namespace folded { const base::reflection::CType* fn_71011d6a04(); }
-template <> struct base::reflection::UnkTypedPtrTraits<UnkClone_fn_71011dad14> {
-    static char* get() { return (char*)fn_71011d6a04(); }
-    static char* get_static() { return (char*)folded::fn_71011d6a04(); }
-};
-template base::reflection::UnkReflTypedPtr base::reflection::refl_PointeeTyped<UnkClone_fn_71011dad14>(void* const*);
-struct UnkClone_fn_71011db094;
-template base::UnkCollectionIter<UnkCloneBlock<UnkClone_fn_71011db094, 0x8>>& base::UnkCollectionIter<UnkCloneBlock<UnkClone_fn_71011db094, 0x8>>::operator=(const base::UnkCollectionIter<UnkCloneBlock<UnkClone_fn_71011db094, 0x8>>&);
-struct UnkClone_fn_71011db0ec;
-template base::UnkCollectionIter<UnkCloneBlock<UnkClone_fn_71011db0ec, 0x8>>& base::UnkCollectionIter<UnkCloneBlock<UnkClone_fn_71011db0ec, 0x8>>::operator=(const base::UnkCollectionIter<UnkCloneBlock<UnkClone_fn_71011db0ec, 0x8>>&);
-struct UnkClone_fn_71011db3d4;
-template base::UnkCollectionIter<UnkCloneBlock<UnkClone_fn_71011db3d4, 0x8>>& base::UnkCollectionIter<UnkCloneBlock<UnkClone_fn_71011db3d4, 0x8>>::operator=(const base::UnkCollectionIter<UnkCloneBlock<UnkClone_fn_71011db3d4, 0x8>>&);
-struct UnkClone_fn_71011db42c;
-template base::UnkCollectionIter<UnkCloneBlock<UnkClone_fn_71011db42c, 0x8>>& base::UnkCollectionIter<UnkCloneBlock<UnkClone_fn_71011db42c, 0x8>>::operator=(const base::UnkCollectionIter<UnkCloneBlock<UnkClone_fn_71011db42c, 0x8>>&);
-struct UnkClone_fn_71011db484;
-template bool base::refl_IterValueEqualByValue(const base::UnkIterValue<UnkCloneWord<UnkClone_fn_71011db484>>&, const base::UnkIterValue<UnkCloneWord<UnkClone_fn_71011db484>>&);
-struct UnkClone_fn_71011db558;
-template void base::refl_IterValueMove<UnkCloneWord<UnkClone_fn_71011db558>>(void*, const void*);
-struct UnkClone_fn_71011db5b8;
-template void base::refl_IterValueAssign(base::UnkIterValue<UnkCloneWord<UnkClone_fn_71011db5b8>, u32>*, const base::UnkIterValue<UnkCloneWord<UnkClone_fn_71011db5b8>, u32>*);
-struct UnkClone_fn_71011db638;
-template base::UnkIterValue<UnkClone_fn_71011db638*>& base::UnkIterValue<UnkClone_fn_71011db638*>::operator=(base::UnkIterValue<UnkClone_fn_71011db638*>&&);
-struct UnkClone_fn_71011db724;
-const base::reflection::CType* fn_71011d6a04();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71011db724> {
-    static const CType* type() { return fn_71011d6a04(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetIterElementValue<UnkClone_fn_71011db724, UnkCloneBlock<UnkClone_fn_71011db724, 0x8>>(void*, char*);
-struct UnkClone_fn_71011db778;
-template bool base::refl_IterValueEqualByValue(const base::UnkIterValue<UnkCloneWord<UnkClone_fn_71011db778>>&, const base::UnkIterValue<UnkCloneWord<UnkClone_fn_71011db778>>&);
-struct UnkClone_fn_71011db84c;
-template void base::refl_IterValueMove<UnkCloneWord<UnkClone_fn_71011db84c>>(void*, const void*);
-struct UnkClone_fn_71011db90c;
-const base::reflection::CType* fn_71011d6a04();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71011db90c> {
-    static const CType* type() { return fn_71011d6a04(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetIterElementValue<UnkClone_fn_71011db90c, UnkCloneBlock<UnkClone_fn_71011db90c, 0x8>>(void*, char*);
-struct UnkClone_fn_71011dba6c;
-template bool base::refl_VectorEqual<UnkClone_fn_71011dba6c>(const base::UnkVector<UnkCloneWord<UnkClone_fn_71011dba6c>>*, const base::UnkVector<UnkCloneWord<UnkClone_fn_71011dba6c>>*);
-struct UnkClone_fn_71011dbd58;
-template void base::UnkVector<UnkCloneElem<UnkClone_fn_71011dbd58, 8>>::Insert(UnkCloneElem<UnkClone_fn_71011dbd58, 8>&&, u32);
-struct UnkClone_fn_71011dbf08;
-template void base::UnkVector<UnkCloneElem<UnkClone_fn_71011dbf08, 8>>::Insert(UnkCloneElem<UnkClone_fn_71011dbf08, 8>&&, u32);
-struct UnkClone_fn_71011dc0b8;
-template UnkCloneElem<UnkClone_fn_71011dc0b8, 8>& base::UnkVector<UnkCloneElem<UnkClone_fn_71011dc0b8, 8>>::GrowAt(u32);
-struct UnkClone_fn_71011dc228;
-template void base::refl_Begin(const base::UnkVector<UnkClone_fn_71011dc228*>*, base::UnkCollectionIter<UnkClone_fn_71011dc228*>*);
-struct UnkClone_fn_71011dc2d0;
-template void base::refl_End(const base::UnkVector<UnkCloneHandle<UnkClone_fn_71011dc2d0>>*, base::UnkCollectionIter<UnkCloneHandle<UnkClone_fn_71011dc2d0>>*);
-struct UnkClone_fn_71011dc5f8;
-namespace push_pair { void* fn_7100005178(); void* fn_710009c7b8(); }
-template <> struct base::UnkPushPairTraits<UnkClone_fn_71011dc5f8> {
-    static void* first() { return push_pair::fn_7100005178(); }
-    static void* second() { return push_pair::fn_710009c7b8(); }
-};
-template void base::refl_PushPair<UnkClone_fn_71011dc5f8>(char*);
-struct UnkClone_fn_71011dede4;
-void fn_7100014948(void* e, const base::global::CStrId& name, u32 value);
-void fn_71011dede4(void* e) {
-    fn_7100014948(e, base::global::CStrId("DONT_FORCE", true), 0x0);
-    fn_7100014948(e, base::global::CStrId("FORCE_VISIBLE_WITH_FADE", true), 0x1);
-    fn_7100014948(e, base::global::CStrId("FORCE_INVISIBLE_WITH_FADE", true), 0x2);
-    fn_7100014948(e, base::global::CStrId("FORCE_VISIBLE_NO_FADE", true), 0x3);
-    fn_7100014948(e, base::global::CStrId("FORCE_INVISIBLE_NO_FADE", true), 0x4);
-}
-struct UnkClone_fn_71011e1f5c;
-template UnkCloneOwner<UnkClone_fn_71011e1f5c>& base::UnkVector<UnkCloneOwner<UnkClone_fn_71011e1f5c>>::GrowAt(u32);
-struct UnkClone_fn_71011e5764;
-const base::reflection::CType* fn_71011dd304();
-namespace folded { const base::reflection::CType* fn_71011dd304(); }
-extern char g_unk_7172a101a0[] __attribute__((visibility("hidden")));
-template <> struct base::reflection::UnkTypedPtrTraits<UnkClone_fn_71011e5764> {
-    static char* get() { fn_71011dd304(); return g_unk_7172a101a0; }
-    static char* get_static() { folded::fn_71011dd304(); return g_unk_7172a101a0; }
-};
-template base::reflection::UnkReflTypedPtr base::reflection::refl_PointeeTyped<UnkClone_fn_71011e5764>(void* const*);
-struct UnkClone_fn_71011e59c4;
-const base::reflection::CType* fn_71011dd304();
-namespace folded { const base::reflection::CType* fn_71011dd304(); }
-extern char g_unk_7172a101a0[] __attribute__((visibility("hidden")));
-template <> struct base::reflection::UnkTypedPtrTraits<UnkClone_fn_71011e59c4> {
-    static char* get() { fn_71011dd304(); return g_unk_7172a101a0; }
-    static char* get_static() { folded::fn_71011dd304(); return g_unk_7172a101a0; }
-};
-template base::reflection::UnkReflTypedPtr base::reflection::refl_PointeeTyped<UnkClone_fn_71011e59c4>(void* const*);
-struct UnkClone_fn_71011e5c6c;
-const base::reflection::CType* fn_71011ddda8();
-namespace folded { const base::reflection::CType* fn_71011ddda8(); }
-template <> struct base::reflection::UnkTypedPtrTraits<UnkClone_fn_71011e5c6c> {
-    static char* get() { return (char*)fn_71011ddda8(); }
-    static char* get_static() { return (char*)folded::fn_71011ddda8(); }
-};
-template base::reflection::UnkReflTypedPtr base::reflection::refl_PointeeTyped<UnkClone_fn_71011e5c6c>(void* const*);
-struct UnkClone_fn_71011e5ec4;
-const base::reflection::CType* fn_71011ddda8();
-namespace folded { const base::reflection::CType* fn_71011ddda8(); }
-template <> struct base::reflection::UnkTypedPtrTraits<UnkClone_fn_71011e5ec4> {
-    static char* get() { return (char*)fn_71011ddda8(); }
-    static char* get_static() { return (char*)folded::fn_71011ddda8(); }
-};
-template base::reflection::UnkReflTypedPtr base::reflection::refl_PointeeTyped<UnkClone_fn_71011e5ec4>(void* const*);
-struct UnkClone_fn_71011e62ac;
-template base::UnkCollectionIter<UnkCloneOwner<UnkClone_fn_71011e62ac>>& base::UnkCollectionIter<UnkCloneOwner<UnkClone_fn_71011e62ac>>::operator=(const base::UnkCollectionIter<UnkCloneOwner<UnkClone_fn_71011e62ac>>&);
-struct UnkClone_fn_71011e635c;
-template base::UnkCollectionIter<UnkCloneOwner<UnkClone_fn_71011e635c>>& base::UnkCollectionIter<UnkCloneOwner<UnkClone_fn_71011e635c>>::operator=(const base::UnkCollectionIter<UnkCloneOwner<UnkClone_fn_71011e635c>>&);
-struct UnkClone_fn_71011e6704;
-template base::UnkCollectionIter<UnkCloneOwner<UnkClone_fn_71011e6704>>& base::UnkCollectionIter<UnkCloneOwner<UnkClone_fn_71011e6704>>::operator=(const base::UnkCollectionIter<UnkCloneOwner<UnkClone_fn_71011e6704>>&);
-struct UnkClone_fn_71011e67b4;
-template base::UnkCollectionIter<UnkCloneOwner<UnkClone_fn_71011e67b4>>& base::UnkCollectionIter<UnkCloneOwner<UnkClone_fn_71011e67b4>>::operator=(const base::UnkCollectionIter<UnkCloneOwner<UnkClone_fn_71011e67b4>>&);
-struct UnkClone_fn_71011e6ce8;
-template bool base::operator==(const base::UnkIterValue<UnkClone_fn_71011e6ce8*>&, const base::UnkIterValue<UnkClone_fn_71011e6ce8*>&);
-struct UnkClone_fn_71011e6d98;
-template void base::refl_IterValueMove<UnkCloneOwner<UnkClone_fn_71011e6d98>>(void*, const void*);
-struct UnkClone_fn_71011e6e34;
-template base::UnkIterValue<UnkCloneOwner<UnkClone_fn_71011e6e34>>& base::UnkIterValue<UnkCloneOwner<UnkClone_fn_71011e6e34>>::operator=(base::UnkIterValue<UnkCloneOwner<UnkClone_fn_71011e6e34>>&&);
-struct UnkClone_fn_71011e6f68;
-const base::reflection::CType* fn_71011ddda8();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71011e6f68> {
-    static const CType* type() { return fn_71011ddda8(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetIterElementValue<UnkClone_fn_71011e6f68, UnkCloneBlock<UnkClone_fn_71011e6f68, 0x8>>(void*, char*);
-struct UnkClone_fn_71011e6fbc;
-template bool base::operator==(const base::UnkIterValue<UnkClone_fn_71011e6fbc*>&, const base::UnkIterValue<UnkClone_fn_71011e6fbc*>&);
-struct UnkClone_fn_71011e711c;
-const base::reflection::CType* fn_71011ddda8();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71011e711c> {
-    static const CType* type() { return fn_71011ddda8(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetIterElementValue<UnkClone_fn_71011e711c, UnkCloneBlock<UnkClone_fn_71011e711c, 0x8>>(void*, char*);
-struct UnkClone_fn_71011e7178;
-template void base::refl_ClearWide(base::UnkVector<UnkCloneOwner<UnkClone_fn_71011e7178>>*);
-struct UnkClone_fn_71011e7334;
-template bool base::refl_VectorEqual<UnkClone_fn_71011e7334>(const base::UnkVector<UnkCloneWord<UnkClone_fn_71011e7334>>*, const base::UnkVector<UnkCloneWord<UnkClone_fn_71011e7334>>*);
-struct UnkClone_fn_71011e7414;
-template void base::UnkVector<UnkCloneOwner<UnkClone_fn_71011e7414>>::Free();
-struct UnkClone_fn_71011e74a4;
-template base::UnkVector<UnkCloneOwner<UnkClone_fn_71011e74a4>>& base::UnkVector<UnkCloneOwner<UnkClone_fn_71011e74a4>>::operator=(base::UnkVector<UnkCloneOwner<UnkClone_fn_71011e74a4>>&&);
-struct UnkClone_fn_71011e7844;
-template void base::refl_Begin(const base::UnkVector<UnkCloneOwner<UnkClone_fn_71011e7844>>*, base::UnkCollectionIter<UnkCloneOwner<UnkClone_fn_71011e7844>>*);
-struct UnkClone_fn_71011e7948;
-template void base::refl_End(const base::UnkVector<UnkCloneOwner<UnkClone_fn_71011e7948>>*, base::UnkCollectionIter<UnkCloneOwner<UnkClone_fn_71011e7948>>*);
-struct UnkClone_fn_71011e7f2c;
-template void base::UnkDeferredSet<UnkClone_fn_71011e7f2c>::Remove(UnkClone_fn_71011e7f2c*);
-struct UnkClone_fn_71011e80bc;
-template void base::UnkDeferredSet<UnkClone_fn_71011e80bc>::Remove(UnkClone_fn_71011e80bc*);
-struct UnkClone_fn_71011e824c;
-template void base::UnkDeferredSet<UnkClone_fn_71011e824c>::Remove(UnkClone_fn_71011e824c*);
-struct UnkClone_fn_71011e83dc;
-template void base::UnkDeferredSet<UnkClone_fn_71011e83dc>::Remove(UnkClone_fn_71011e83dc*);
-struct UnkClone_fn_71011e856c;
-template void base::UnkDeferredSet<UnkClone_fn_71011e856c>::Add(UnkClone_fn_71011e856c*);
-struct UnkClone_fn_71011e8720;
-template void base::UnkDeferredSet<UnkClone_fn_71011e8720>::Add(UnkClone_fn_71011e8720*);
-struct UnkClone_fn_71011ec16c;
-extern char g_unk_7101cb65e8[];
-template <> struct base::UnkDtorTraits<UnkClone_fn_71011ec16c> {
-    static char* vtable() { return g_unk_7101cb65e8; }
-};
-template void base::refl_ListDtor<UnkClone_fn_71011ec16c, 0x20, 0x8>(char*);
-struct UnkClone_fn_71011ef880;
-extern char g_unk_7101cb65c8[];
-template <> struct base::UnkDtorTraits<UnkClone_fn_71011ef880> {
-    static char* vtable() { return g_unk_7101cb65c8; }
-};
-template void base::refl_ListDtor<UnkClone_fn_71011ef880, 0x20, 0x8>(char*);
-struct UnkClone_fn_71011ef8e4;
-extern char g_unk_7101cb65c8[];
-template <> struct base::UnkDtorTraits<UnkClone_fn_71011ef8e4> {
-    static char* vtable() { return g_unk_7101cb65c8; }
-};
-template void base::refl_ListDeletingDtor<UnkClone_fn_71011ef8e4, 0x20, 0x8>(char*);
-struct UnkClone_fn_71011ef99c;
-const base::reflection::CType* fn_710000d228();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71011ef99c> {
-    static const CType* type() { return fn_710000d228(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_71011ef99c, u8, 0x2f4>(void*, char*);
-struct UnkClone_fn_71011efa60;
-const base::reflection::CType* fn_710000d228();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71011efa60> {
-    static const CType* type() { return fn_710000d228(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_71011efa60, u8, 0x2a0>(void*, char*);
-struct UnkClone_fn_71011f0110;
-const base::reflection::CType* fn_710000abbc();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71011f0110> {
-    static const CType* type() { return fn_710000abbc(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_71011f0110, u32, 0x2a8>(void*, char*);
-struct UnkClone_fn_71011f01c4;
-const base::reflection::CType* fn_7100014768();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71011f01c4> {
-    static const CType* type() { return fn_7100014768(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_71011f01c4, u32, 0x308>(void*, char*);
-struct UnkClone_fn_71011f0278;
-const base::reflection::CType* fn_7100014768();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71011f0278> {
-    static const CType* type() { return fn_7100014768(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_71011f0278, u32, 0x2f0>(void*, char*);
-struct UnkClone_fn_71011f0364;
-const base::reflection::CType* fn_7100014768();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71011f0364> {
-    static const CType* type() { return fn_7100014768(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_71011f0364, u32, 0x304>(void*, char*);
-struct UnkClone_fn_71011f0418;
-const base::reflection::CType* fn_7100014768();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71011f0418> {
-    static const CType* type() { return fn_7100014768(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_71011f0418, u32, 0x2ac>(void*, char*);
-struct UnkClone_fn_71011f04cc;
-const base::reflection::CType* fn_7100014768();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71011f04cc> {
-    static const CType* type() { return fn_7100014768(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_71011f04cc, u32, 0x2b0>(void*, char*);
-struct UnkClone_fn_71011f0580;
-extern char g_unk_7101cb65e8[];
-template <> struct base::UnkDtorTraits<UnkClone_fn_71011f0580> {
-    static char* vtable() { return g_unk_7101cb65e8; }
-};
-template void base::refl_ListDeletingDtor<UnkClone_fn_71011f0580, 0x20, 0x8>(char*);
-struct UnkClone_fn_71011f4e1c;
-const base::reflection::CType* fn_710000d228();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71011f4e1c> {
-    static const CType* type() { return fn_710000d228(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_71011f4e1c, u8, 0x194>(void*, char*);
-struct UnkClone_fn_71011f52c4;
-const base::reflection::CType* fn_710000abbc();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71011f52c4> {
-    static const CType* type() { return fn_710000abbc(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_71011f52c4, u32, 0x240>(void*, char*);
-struct UnkClone_fn_71011f5388;
-const base::reflection::CType* fn_710000abbc();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71011f5388> {
-    static const CType* type() { return fn_710000abbc(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_71011f5388, u32, 0x244>(void*, char*);
-struct UnkClone_fn_71011f544c;
-const base::reflection::CType* fn_710000abbc();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71011f544c> {
-    static const CType* type() { return fn_710000abbc(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_71011f544c, u32, 0x248>(void*, char*);
-struct UnkClone_fn_71011f5510;
-const base::reflection::CType* fn_710000abbc();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71011f5510> {
-    static const CType* type() { return fn_710000abbc(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_71011f5510, u32, 0x22c>(void*, char*);
-struct UnkClone_fn_71011f55d4;
-const base::reflection::CType* fn_710000abbc();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71011f55d4> {
-    static const CType* type() { return fn_710000abbc(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_71011f55d4, u32, 0x230>(void*, char*);
-struct UnkClone_fn_71011f5698;
-const base::reflection::CType* fn_710000abbc();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71011f5698> {
-    static const CType* type() { return fn_710000abbc(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_71011f5698, u32, 0x228>(void*, char*);
-struct UnkClone_fn_71011f56e4;
-template base::reflection::UnkReflValue base::reflection::refl_SetFieldValue<UnkClone_fn_71011f56e4, u32, 0x228>(void*, char*, base::reflection::UnkReflValue* const*);
-struct UnkClone_fn_71011f5728;
-const base::reflection::CType* fn_710000abbc();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71011f5728> {
-    static const CType* type() { return fn_710000abbc(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_71011f5728, u32, 0x234>(void*, char*);
-struct UnkClone_fn_71011f5774;
-template base::reflection::UnkReflValue base::reflection::refl_SetFieldValue<UnkClone_fn_71011f5774, u32, 0x234>(void*, char*, base::reflection::UnkReflValue* const*);
-struct UnkClone_fn_71011f57b8;
-const base::reflection::CType* fn_710000abbc();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71011f57b8> {
-    static const CType* type() { return fn_710000abbc(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_71011f57b8, u32, 0x220>(void*, char*);
-struct UnkClone_fn_71011f5804;
-template base::reflection::UnkReflValue base::reflection::refl_SetFieldValue<UnkClone_fn_71011f5804, u32, 0x220>(void*, char*, base::reflection::UnkReflValue* const*);
-struct UnkClone_fn_71011f5848;
-const base::reflection::CType* fn_710000abbc();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71011f5848> {
-    static const CType* type() { return fn_710000abbc(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_71011f5848, u32, 0x238>(void*, char*);
-struct UnkClone_fn_71011f5894;
-template base::reflection::UnkReflValue base::reflection::refl_SetFieldValue<UnkClone_fn_71011f5894, u32, 0x238>(void*, char*, base::reflection::UnkReflValue* const*);
-struct UnkClone_fn_71011f58d8;
-const base::reflection::CType* fn_710000abbc();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71011f58d8> {
-    static const CType* type() { return fn_710000abbc(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_71011f58d8, u32, 0x18c>(void*, char*);
-struct UnkClone_fn_71011f5924;
-template base::reflection::UnkReflValue base::reflection::refl_SetFieldValue<UnkClone_fn_71011f5924, u32, 0x18c>(void*, char*, base::reflection::UnkReflValue* const*);
-struct UnkClone_fn_71011f5968;
-const base::reflection::CType* fn_710000abbc();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71011f5968> {
-    static const CType* type() { return fn_710000abbc(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_71011f5968, u32, 0x190>(void*, char*);
-struct UnkClone_fn_71011f59b4;
-template base::reflection::UnkReflValue base::reflection::refl_SetFieldValue<UnkClone_fn_71011f59b4, u32, 0x190>(void*, char*, base::reflection::UnkReflValue* const*);
-struct UnkClone_fn_71011f8a0c;
-extern char g_unk_7101cb6888[];
-void fn_71011ccfb4(char*);
-template <> struct base::UnkDtorTraits<UnkClone_fn_71011f8a0c> {
-    static char* vtable() { return g_unk_7101cb6888; }
-    static void base(char* p) { fn_71011ccfb4(p); }
-};
-template void base::refl_Dtor<UnkClone_fn_71011f8a0c, base::UnkStrIdAt<0x1d0>, base::UnkStrIdAt<0x1c8>>(char*);
-struct UnkClone_fn_71011fa690;
-const base::reflection::CType* fn_710000d228();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71011fa690> {
-    static const CType* type() { return fn_710000d228(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_71011fa690, u8, 0x1e5>(void*, char*);
-struct UnkClone_fn_71011fa760;
-const base::reflection::CType* fn_710000d228();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71011fa760> {
-    static const CType* type() { return fn_710000d228(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_71011fa760, u8, 0x1e6>(void*, char*);
-struct UnkClone_fn_71011fa830;
-const base::reflection::CType* fn_710000d228();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71011fa830> {
-    static const CType* type() { return fn_710000d228(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_71011fa830, u8, 0x1e4>(void*, char*);
-struct UnkClone_fn_71011fcb54;
-extern char g_unk_7101cb6ac8[];
-void fn_71011ccfb4(char*);
-template <> struct base::UnkDtorTraits<UnkClone_fn_71011fcb54> {
-    static char* vtable() { return g_unk_7101cb6ac8; }
-    static void base(char* p) { fn_71011ccfb4(p); }
-};
-template void base::refl_Dtor<UnkClone_fn_71011fcb54, base::UnkStrIdAt<0x198>>(char*);
-struct UnkClone_fn_71011fcbd0;
-extern char g_unk_7101cb6ac8[];
-void fn_71011ccfb4(char*);
-template <> struct base::UnkDtorTraits<UnkClone_fn_71011fcbd0> {
-    static char* vtable() { return g_unk_7101cb6ac8; }
-    static void base(char* p) { fn_71011ccfb4(p); }
-};
-template void base::refl_DeletingDtor<UnkClone_fn_71011fcbd0, base::UnkStrIdAt<0x198>>(char*);
-struct UnkClone_fn_71011fe028;
-const base::reflection::CType* fn_7100014768();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71011fe028> {
-    static const CType* type() { return fn_7100014768(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_71011fe028, u32, 0x1d4>(void*, char*);
-struct UnkClone_fn_71011fe114;
-const base::reflection::CType* fn_7100014768();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71011fe114> {
-    static const CType* type() { return fn_7100014768(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_71011fe114, u32, 0x1d8>(void*, char*);
-struct UnkClone_fn_71011fe200;
-const base::reflection::CType* fn_710000abbc();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71011fe200> {
-    static const CType* type() { return fn_710000abbc(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_71011fe200, u32, 0x1a8>(void*, char*);
-struct UnkClone_fn_71011fe2ec;
-const base::reflection::CType* fn_710000abbc();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71011fe2ec> {
-    static const CType* type() { return fn_710000abbc(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_71011fe2ec, u32, 0x1ac>(void*, char*);
-struct UnkClone_fn_71011ff500;
-extern char g_unk_7101cb6d08[];
-void fn_71011d8e90(char*);
-template <> struct base::UnkDtorTraits<UnkClone_fn_71011ff500> {
-    static char* vtable() { return g_unk_7101cb6d08; }
-    static void base(char* p) { fn_71011d8e90(p); }
-};
-template void base::refl_Dtor<UnkClone_fn_71011ff500, base::UnkStrIdAt<0x250>>(char*);
-struct UnkClone_fn_71011ff57c;
-extern char g_unk_7101cb6d08[];
-void fn_71011d8e90(char*);
-template <> struct base::UnkDtorTraits<UnkClone_fn_71011ff57c> {
-    static char* vtable() { return g_unk_7101cb6d08; }
-    static void base(char* p) { fn_71011d8e90(p); }
-};
-template void base::refl_DeletingDtor<UnkClone_fn_71011ff57c, base::UnkStrIdAt<0x250>>(char*);
-struct UnkClone_fn_7101202948;
-extern char g_unk_7101cb7130[];
-template <> struct base::UnkDtorTraits<UnkClone_fn_7101202948> {
-    static char* vtable() { return g_unk_7101cb7130; }
-};
-template void base::refl_DtorNoBase<UnkClone_fn_7101202948, base::UnkRefPtrAt<0x38>>(char*);
-struct UnkClone_fn_7101202980;
-extern char g_unk_7101cb7130[];
-template <> struct base::UnkDtorTraits<UnkClone_fn_7101202980> {
-    static char* vtable() { return g_unk_7101cb7130; }
-};
-template void base::refl_DeletingDtorNoBase<UnkClone_fn_7101202980, base::UnkRefPtrAt<0x38>>(char*);
-struct UnkClone_fn_7101202e50;
-extern char g_unk_7101cb7168[];
-template <> struct base::UnkDtorTraits<UnkClone_fn_7101202e50> {
-    static char* vtable() { return g_unk_7101cb7168; }
-};
-template void base::refl_DtorNoBase<UnkClone_fn_7101202e50, base::UnkRefPtrAt<0x38>>(char*);
-struct UnkClone_fn_7101202e88;
-extern char g_unk_7101cb7168[];
-template <> struct base::UnkDtorTraits<UnkClone_fn_7101202e88> {
-    static char* vtable() { return g_unk_7101cb7168; }
-};
-template void base::refl_DeletingDtorNoBase<UnkClone_fn_7101202e88, base::UnkRefPtrAt<0x38>>(char*);
