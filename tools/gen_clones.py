@@ -2417,6 +2417,119 @@ def keyed_set(orig, addr, tag, insns):
     return f"template void base::refl_KeyedSet(base::UnkKeyedArray<{tag}, {t}, {t}>*, const {t}*, const {t}*);"
 
 
+def value_map_clear(orig, addr, tag, insns):
+    """refl_ValueMapClear: the key's pool, the link's offset and the value's destructor."""
+    if len(insns) != 59 or insns[4] != ("ldr", "w8, [x0, #0xc]") or insns[22] != ("add", "x0, x20, #8") \
+            or insns[23][0] != "bl" or ("bl", f"#{MEMSET:#x}") not in insns:
+        return None
+    link = re.fullmatch(rf"x22, \[x20, {OFF}\]", insns[21][1])
+    pool = got_target(orig, insns, 9)
+    if insns[21][0] != "ldr" or not link or pool not in (STRID_POOL, FILE_PATH_POOL):
+        return None
+    key = f"UnkCloneStrIdB<{tag}>" if pool == FILE_PATH_POOL else f"UnkCloneStrId<{tag}>"
+    dtor = target(insns[23][1])
+    return "\n".join([f"void fn_{dtor:x}(char*);", f"template <> struct base::UnkHashMapTraits<{tag}> {{",
+                      f"    static void destroy(char* p) {{ fn_{dtor:x}(p); }}", "};",
+                      f"template void base::refl_ValueMapClear<{tag}, {key}, {int(link.group(1), 0):#x}>(char*);"])
+
+
+def keyed_array_copy(orig, addr, tag, insns):
+    """refl_KeyedArrayCopy: the value size, reserve() and the value's copy constructor."""
+    if len(insns) != 59 or insns[4] != ("stp", "xzr, xzr, [x0, #8]") or insns[15][0] != "bl" \
+            or insns[25][0] != "bl" or got_target(orig, insns, 34) != STRID_POOL:
+        return None
+    size = re.fullmatch(rf"x21, x21, {OFF}", insns[28][1])
+    if insns[28][0] != "add" or not size or int(size.group(1), 0) % 8:
+        return None
+    reserve, copy = target(insns[15][1]), target(insns[25][1])
+    arr = f"base::UnkKeyedCopyArray<{tag}, {int(size.group(1), 0):#x}>"
+    return "\n".join(call_traits(tag, [f"void fn_{reserve:x}(void*, u32);", f"void fn_{copy:x}(void*, const void*);"], [
+        f"    static void reserve(void* s, u32 n) {{ fn_{reserve:x}(s, n); }}",
+        f"    static void copy(void* d, const void* s) {{ fn_{copy:x}(d, s); }}"]) +
+        [f"template void base::refl_KeyedArrayCopy({arr}*, const {arr}*);"])
+
+
+def callback_list_dtor(orig, addr, tag, insns):
+    """UnkCallbackList's destructor or deleting destructor: both vtables."""
+    if len(insns) != 56 or insns[9] != ("ldr", "x0, [x0, #0x38]") or insns[31] != ("ldr", "x8, [x9, #0x40]"):
+        return None
+    vt, base = got_target(orig, insns, 4), got_target(orig, insns, 18)
+    if vt is None or base is None:
+        return None
+    return "\n".join([f"extern char g_unk_{v:x}[];" for v in sorted({vt, base})] + [
+        f"template <> struct base::UnkCallbackTraits<{tag}> {{", f"    static char* vtable() {{ return g_unk_{vt:x}; }}",
+        f"    static char* base_vtable() {{ return g_unk_{base:x}; }}", "};",
+        f"template void base::refl_CallbackListDeletingDtor(base::UnkCallbackList<{tag}>*);"
+        if insns[-1] == ("b", f"#{OPERATOR_DELETE:#x}") else f"template base::UnkCallbackList<{tag}>::~UnkCallbackList();"])
+
+
+def iter_value_destroy_poly_vec_strid(tag, insns):
+    """refl_IterValueDestroy over an array of 0x40-byte polymorphic elements keyed by a string id
+    (the shape of fn_710023c3e0): the state, array and key offsets give the key's and the
+    array's sizes."""
+    state = re.fullmatch(rf"w8, \[x0, {OFF}\]", insns[4][1])
+    vec = re.fullmatch(rf"x1, \[x19, {OFF}\]", insns[10][1])
+    key = re.fullmatch(rf"x8, \[x19(?:, {OFF})?\]", insns[44][1])
+    if not state or not vec or not key:
+        return None
+    s, v, k = int(state.group(1), 0), int(vec.group(1), 0), int(key.group(1) or "0", 0)
+    if v - k != 8 or s - v < 0x28:
+        return None
+    elem = f"UnkClonePolyVec<{tag}>" if s - v == 0x28 else f"UnkClonePolyVecPad<{tag}, {s - v:#x}>"
+    key_t = f"UnkCloneStrId<{tag}>" if k == 0 else f"UnkCloneStrIdElem<{tag}, {k:#x}, {v:#x}, base::UnkStrIdMember>"
+    return f"template void base::refl_IterValueDestroy<{elem}, {key_t}>(void*);"
+
+
+def strid_vec_dtor(orig, addr, tag, insns):
+    """refl_StrIdVecDtor / refl_StrIdVecDeletingDtor: the vtable, the array's offset and the base
+    destructor."""
+    if len(insns) not in (54, 56) or ("ccmp", "x8, x9, #4, ne") not in insns or ("bl", f"#{RELEASE:#x}") not in insns:
+        return None
+    vt = got_target(orig, insns, 4)
+    off = re.fullmatch(rf"x1, \[x0, {OFF}\]", insns[6][1])
+    base = [o for m, o in insns[-6:] if m in ("bl", "b") and o != f"#{OPERATOR_DELETE:#x}"]
+    if vt is None or insns[6][0] != "ldr" or not off or len(base) != 1:
+        return None
+    fn = "refl_StrIdVecDeletingDtor" if insns[-1] == ("b", f"#{OPERATOR_DELETE:#x}") else "refl_StrIdVecDtor"
+    b = target(base[0])
+    return "\n".join(call_traits(tag, [f"extern char g_unk_{vt:x}[];", f"void fn_{b:x}(char*);"], [
+        f"    static char* vtable() {{ return g_unk_{vt:x}; }}", f"    static void base(char* s) {{ fn_{b:x}(s); }}"]) +
+        [f"template void base::{fn}<{tag}, {int(off.group(1), 0):#x}>(char*);"])
+
+
+def path_record_copy_ctor(orig, addr, tag, insns):
+    """refl_PathRecordCopyCtor (UnkCloneRecords.h): the middle and the class's vtables (through the
+    GOT) around the string pools."""
+    if len(insns) != 67 or insns[5] != ("bl", "#0x7100067ebc") or insns[46] != ("ldp", "x9, x10, [x20, #0x40]") \
+            or insns[63] != ("str", "x8, [x19]"):
+        return None
+    mid, vt = got_target(orig, insns, 6), got_at(orig, insns, 58, 60)
+    if mid is None or vt is None or got_target(orig, insns, 12) != STRID_POOL \
+            or got_target(orig, insns, 25) != FILE_PATH_POOL:
+        return None
+    return "\n".join([f"extern char g_unk_{x:x}[];" for x in sorted({mid, vt})] + [
+        f"template <> struct base::UnkCopyCtorTraits<{tag}> {{",
+        f"    static char* mid_vtable() {{ return g_unk_{mid:x}; }}",
+        f"    static char* vtable() {{ return g_unk_{vt:x}; }}", "};",
+        f"template void base::refl_PathRecordCopyCtor<{tag}>(char*, const char*);"])
+
+
+def callback_entry_dtor(orig, addr, tag, insns):
+    """UnkCallbackEntry / UnkKeyedCallbackEntry destructors (UnkCloneRecords.h): both vtables; the
+    list's offset picks the record."""
+    if len(insns) != 75 or insns[20] != ("bl", f"#{RELEASE:#x}") or got_target(orig, insns, 4) != STRID_POOL:
+        return None
+    rec = {("str", "x8, [x19, #8]"): "UnkKeyedCallbackEntry", ("str", "x8, [x19]"): "UnkCallbackEntry"}.get(insns[28])
+    vt, base = got_target(orig, insns, 24), got_target(orig, insns, 37)
+    if not rec or vt is None or base is None or insns[41] != insns[28]:
+        return None
+    return "\n".join([f"extern char g_unk_{x:x}[];" for x in sorted({vt, base})] + [
+        f"template <> struct base::UnkCallbackTraits<{tag}> {{",
+        f"    static char* vtable() {{ return g_unk_{vt:x}; }}",
+        f"    static char* base_vtable() {{ return g_unk_{base:x}; }}", "};",
+        f"template base::{rec}<{tag}>::~{rec}();"])
+
+
 KINDS = {
     "strid_value_insert": Kind(None, "base/UnkStrIdValueVec.h", lambda tag, _: None, scan=strid_value_insert),
     "set_flag_notify": Kind(0x71001F31E8, "base/UnkCloneCalls.h", lambda tag, _: (
@@ -2447,6 +2560,19 @@ KINDS = {
     "set_bool": Kind(None, "base/UnkCloneCalls.h", lambda tag, _: None, scan=set_bool),
     "set_flag_call": Kind(None, "base/UnkCloneCalls.h", lambda tag, _: None, scan=set_flag_call),
     "keyed_set": Kind(None, "base/UnkCloneCalls.h", lambda tag, _: None, scan=keyed_set),
+    "value_map_clear": Kind(None, "base/UnkHashMap.h", lambda tag, _: None, scan=value_map_clear),
+    "keyed_array_copy": Kind(None, "base/UnkCloneCalls.h", lambda tag, _: None, scan=keyed_array_copy),
+    "slist_insert_before": Kind(0x7100240A00, "base/UnkSList.h", lambda tag, _: (
+        f"template void base::UnkSList<{tag}>::InsertBefore(const u64&, base::UnkSList<{tag}>::Node*);")),
+    "callback_list_dtor": Kind(None, "base/UnkCloneHelpers.h", lambda tag, _: None, scan=callback_list_dtor),
+    "strid_vec_dtor": Kind(None, "base/UnkCloneCalls.h", lambda tag, _: None, scan=strid_vec_dtor),
+    "strid_pair_record_assign": Kind(0x7100BC59FC, "base/UnkCloneRecords.h", lambda tag, _: (
+        f"template base::UnkStrIdPairRecord<{tag}>& base::UnkStrIdPairRecord<{tag}>::operator=("
+        f"const base::UnkStrIdPairRecord<{tag}>&);")),
+    "keyed_vec_array_clear": Kind(0x710027E494, "base/UnkCloneRecords.h", lambda tag, _: (
+        f"template void base::UnkKeyedVecArray<{tag}>::Clear();")),
+    "path_record_copy_ctor": Kind(None, "base/UnkCloneRecords.h", lambda tag, _: None, scan=path_record_copy_ctor),
+    "callback_entry_dtor": Kind(None, "base/UnkCloneRecords.h", lambda tag, _: None, scan=callback_entry_dtor),
     "variant_assign": Kind(0x71000C3CC0, "base/UnkCloneHelpers.h", lambda tag, ins: variant(tag, ins, "refl_VariantAssign", "{v}*"),
                            exact=False),
     "variant_assign_pair": Kind(0x71000C3C14, "base/UnkCloneHelpers.h", lambda tag, ins: variant(
@@ -2459,9 +2585,8 @@ KINDS = {
     "value_holder_deleting_dtor": Kind(None, "base/UnkCloneHelpers.h", lambda tag, _: None,
                                        scan=value_holder_deleting_dtor),
     "derived_copy_ctor_48": Kind(None, "base/UnkCloneHelpers.h", lambda tag, _: None, scan=derived_copy_ctor_48),
-    "iter_value_destroy_poly_vec_key16": Kind(0x710023C3E0, "base/UnkCloneHelpers.h", lambda tag, _: (
-        f"template void base::refl_IterValueDestroy<UnkClonePolyVec<{tag}>, "
-        f"UnkCloneStrIdElem<{tag}, 8, 16, base::UnkStrIdMember>>(void*);"), exact=False),
+    "iter_value_destroy_poly_vec_key16": Kind(0x710023C3E0, "base/UnkCloneHelpers.h",
+                                              iter_value_destroy_poly_vec_strid, exact=False),
     "keyed_pair_iter_assign": Kind(0x7100239CF4, "base/UnkCloneHelpers.h", lambda tag, ins: keyed_pair_iter_assign(tag, ins),
                                    exact=False),
     "value_map_insert": Kind(None, "base/UnkCloneHelpers.h", lambda tag, _: None, scan=value_map_insert),
@@ -2707,7 +2832,11 @@ def defined_in_src() -> set[int]:
             m = gen_lift.NAME_RE.match(line)
             if m and ("{" in line or not line.rstrip().endswith(";")):
                 skip.add(int(m.group(1), 16))
-        skip |= {int(a, 16) for a in gen_lift.TAG_RE.findall(text)}
+            # A clone tag defines a function only where something is instantiated or specialised
+            # with it; a forward declaration or alias that reuses one (src/game_lo/) doesn't.
+            for t in gen_lift.TAG_RE.finditer(line):
+                if not t.group(0).startswith("UnkClone_fn_") or line.lstrip().startswith("template"):
+                    skip.add(int(t.group(1), 16))
     return skip
 
 

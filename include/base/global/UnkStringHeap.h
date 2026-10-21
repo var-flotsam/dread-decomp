@@ -46,8 +46,14 @@ struct UnkStringBlockClass {
 };
 
 struct UnkStringHeap {
+    UnkStringHeap();   // fn_7100083d48
+    ~UnkStringHeap();  // fn_7100083d8c
+
     UnkStringBlockClass classes[6];
     bool initialized;  // +0xf0
 };
 
 }  // namespace base::global
+
+// Sets up each size class with counts[class] blocks.
+void fn_7100083f74(base::global::UnkStringHeap* heap, const u32* counts);
