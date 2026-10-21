@@ -4,6 +4,9 @@ For the next developer, human or AI, picking up this project. Read this, then `C
 (rules and conventions), `docs/recon.md` (what's in the binary), `docs/compiler.md`
 (toolchain), and `docs/references.md` (outside projects).
 
+**Thirteenth session (2026-10-21, Linux cloud, branch `claude/project-thread-m3b90j`):** core engine
+types, part 1 (Next steps, item 4). Four functions in `src/base/`; no generator was rerun.
+
 **Twelfth session (2026-10-21, on the PC, branch `claude/lifter-mismatch-classes`, var-flotsam/dread-decomp#18):** lifter mismatch study
 (Next steps, item 1, "Done (twelfth session)"); `gen_lift.py` and `check.py --update` were rerun,
 so the numbers below are current.
@@ -516,10 +519,17 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
 3. **Lua leftovers:** 23 ambiguous and the `lapi`/`lcode`/`ltable` mismatches (`ltable` number
    hashing may need another `luaconf` change).
 4. Core engine types the slice depends on. Done: the inline code of `CStrId`/`UnkStrId` (copy,
-   move-assign, destructors) and `UnkVector` with the allocator interface. Left: the string pool
-   itself (the `fn_71000003d4` constructor and `fn_71000803a4` release), `UnkReflArray` (the
-   keyed container at `CClass+0x110`, grown by `fn_7100097550`), CRC64 (`fn_7100001570`), the
-   allocator getter (`fn_7100083990`) and the allocators over the static arena.
+   move-assign, destructors) and `UnkVector` with the allocator interface. Done (thirteenth
+   session, cloud, `src/base/`): CRC64 (`fn_7100001570`, `O`: reflected table CRC-64, init ~0,
+   no final xor; the index must be written `(crc ^ byte) & 0xff`), the string-id constructor
+   out of line (`fn_71000003d4`, `O`, a wrapper around the inline `UnkStrIdBase` constructor),
+   the allocator getter (`fn_7100083990`, `O`, a hidden global) and the string release
+   (`fn_71000803a4`, `m`: 3 instructions of block layout in the inlined set lookup). CRC64 and
+   the constructor sit next to `nnMain`, so `gen_functions_csv.py` infers `runtime?` and marks
+   them `L`; they match but don't count toward progress until that inference is fixed. Left:
+   `UnkReflArray` (the keyed container at `CClass+0x110`, grown by `fn_7100097550`, 916 B: a key
+   search, growth through `fn_7100097f80`, an inlined move of the 0xb8-byte `UnkReflFunction`,
+   then attribute lookups) and the allocators over the static arena.
 5. Boot to title screen: startup, memory, file system / `files.toc` / `.pkg`, resource manager,
    Lua + GUI bindings, GUI, render front end, input, localisation, save probe. Estimated
    6,000–9,000 functions (static floor: 4,394 reachable from `nnMain`).
