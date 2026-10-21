@@ -93,7 +93,7 @@ address,size,name,name_source,subsystem,status
 0x7100503ee4,8,fn_7100503ee4,unknown,unknown,O
 0x7100503eec,8,fn_7100503eec,unknown,unknown,O
 0x7100503ef4,28,fn_7100503ef4,unknown,unknown,O
-0x7100503f10,208,fn_7100503f10,unknown,unknown,U
+0x7100503f10,208,fn_7100503f10,unknown,unknown,O
 0x7100503fe0,12,fn_7100503fe0,unknown,unknown,O
 0x7100503fec,8,fn_7100503fec,unknown,unknown,O
 0x7100503ff4,8,fn_7100503ff4,unknown,unknown,O
