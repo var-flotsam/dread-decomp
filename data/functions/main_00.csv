@@ -2541,7 +2541,7 @@ address,size,name,name_source,subsystem,status
 0x7100096fc8,648,fn_7100096fc8,unknown,engine/reflection?,U
 0x7100097250,296,fn_7100097250,unknown,engine/reflection?,U
 0x7100097378,472,fn_7100097378,unknown,engine/reflection?,U
-0x7100097550,916,fn_7100097550,unknown,engine/reflection?,U
+0x7100097550,916,fn_7100097550,unknown,engine/reflection?,O
 0x71000978e4,108,fn_71000978e4,unknown,engine/reflection?,O
 0x7100097950,80,fn_7100097950,unknown,engine/reflection?,U
 0x71000979a0,740,fn_71000979a0,unknown,engine/reflection?,U
