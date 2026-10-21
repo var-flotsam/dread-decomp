@@ -90,7 +90,7 @@ address,size,name,name_source,subsystem,status
 0x7100104cc0,60,fn_7100104cc0,unknown,unknown,O
 0x7100104cfc,212,fn_7100104cfc,unknown,unknown,U
 0x7100104dd0,84,fn_7100104dd0,unknown,unknown,O
-0x7100104e30,196,fn_7100104e30,unknown,unknown,U
+0x7100104e30,196,fn_7100104e30,unknown,unknown,O
 0x7100104ef4,20,fn_7100104ef4,unknown,unknown,U
 0x7100104f08,300,fn_7100104f08,unknown,unknown,U
 0x7100105034,64,fn_7100105034,unknown,unknown,O
@@ -131,7 +131,7 @@ address,size,name,name_source,subsystem,status
 0x7100106a14,4,fn_7100106a14,unknown,unknown,O
 0x7100106a18,20,fn_7100106a18,unknown,unknown,O
 0x7100106a2c,20,fn_7100106a2c,unknown,unknown,O
-0x7100106a40,292,fn_7100106a40,unknown,unknown,U
+0x7100106a40,292,fn_7100106a40,unknown,unknown,O
 0x7100106b64,4,fn_7100106b64,unknown,unknown,O
 0x7100106b68,244,base::snd::CSoundSystem::CTunableSoundSystem::refl_GetClass,reflection,engine/base,O
 0x7100106c5c,1584,fn_7100106c5c,unknown,engine/base?,O
@@ -350,7 +350,7 @@ address,size,name,name_source,subsystem,status
 0x710010d464,68,fn_710010d464,unknown,unknown,U
 0x710010d4a8,76,fn_710010d4a8,unknown,unknown,O
 0x710010d4f4,68,fn_710010d4f4,unknown,unknown,U
-0x710010d540,196,fn_710010d540,unknown,unknown,U
+0x710010d540,196,fn_710010d540,unknown,unknown,O
 0x710010d604,24,fn_710010d604,unknown,unknown,O
 0x710010d61c,36,fn_710010d61c,unknown,unknown,O
 0x710010d640,36,fn_710010d640,unknown,unknown,O
@@ -396,7 +396,7 @@ address,size,name,name_source,subsystem,status
 0x7100110a54,68,fn_7100110a54,unknown,unknown,U
 0x7100110a98,80,fn_7100110a98,unknown,unknown,U
 0x7100110ae8,164,fn_7100110ae8,unknown,unknown,U
-0x7100110b90,196,fn_7100110b90,unknown,unknown,U
+0x7100110b90,196,fn_7100110b90,unknown,unknown,O
 0x7100110c54,84,fn_7100110c54,unknown,unknown,U
 0x7100110ca8,44,fn_7100110ca8,unknown,unknown,O
 0x7100110cd4,228,fn_7100110cd4,unknown,unknown,U
