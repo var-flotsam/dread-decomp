@@ -5,6 +5,7 @@
 #include "base/UnkCache.h"
 #include "base/UnkCloneCalls.h"
 #include "base/UnkCloneHelpers.h"
+#include "base/UnkCloneRecords.h"
 #include "base/UnkCollectionIter.h"
 #include "base/UnkDeferredSet.h"
 #include "base/UnkDestructors.h"
@@ -3756,6 +3757,12 @@ struct UnkClone_fn_710027990c;
 template UnkCloneElem<UnkClone_fn_710027990c, 8>& base::UnkVector<UnkCloneElem<UnkClone_fn_710027990c, 8>>::GrowAt(u32);
 struct UnkClone_fn_7100279a5c;
 template UnkCloneElem<UnkClone_fn_7100279a5c, 8>& base::UnkVector<UnkCloneElem<UnkClone_fn_7100279a5c, 8>>::GrowAt(u32);
+struct UnkClone_fn_710027e494;
+template void base::UnkKeyedVecArray<UnkClone_fn_710027e494>::Clear();
+struct UnkClone_fn_710027e70c;
+template void base::UnkKeyedVecArray<UnkClone_fn_710027e70c>::Clear();
+struct UnkClone_fn_710027ead8;
+template void base::UnkKeyedVecArray<UnkClone_fn_710027ead8>::Clear();
 struct UnkClone_fn_710028003c;
 namespace deferred_invoke { base::UnkDeferredCallback<const void*>** fn_7100280254(base::UnkVector<base::UnkDeferredCallback<const void*>*>*, u32); }
 template <> struct base::UnkDeferredInvokeTraits<UnkClone_fn_710028003c> {
@@ -4660,20 +4667,3 @@ struct UnkClone_fn_71003066b0;
 template UnkCloneElem<UnkClone_fn_71003066b0, 8>& base::UnkVector<UnkCloneElem<UnkClone_fn_71003066b0, 8>>::GrowAt(u32);
 struct UnkClone_fn_7100308690;
 template base::UnkNamedObject* base::refl_RegisterNamed<UnkClone_fn_7100308690>(base::UnkNamedRegistry*, base::UnkNamedObject*, const char*);
-struct UnkClone_fn_7100314dc4;
-extern char g_unk_7101a20ed8[];
-template <> struct base::UnkDtorTraits<UnkClone_fn_7100314dc4> {
-    static char* vtable() { return g_unk_7101a20ed8; }
-};
-template void base::refl_DeletingDtorNoBase<UnkClone_fn_7100314dc4, base::UnkRefPtrAt<0x10>, base::UnkRefPtrAt<0x8>>(char*);
-struct UnkClone_fn_71003162a8;
-void fn_7100014948(void* e, const base::global::CStrId& name, u32 value);
-void fn_71003162a8(void* e) {
-    fn_7100014948(e, base::global::CStrId("None", true), 0x0);
-    fn_7100014948(e, base::global::CStrId("Idle", true), 0x1);
-    fn_7100014948(e, base::global::CStrId("LockingTargets", true), 0x2);
-    fn_7100014948(e, base::global::CStrId("Firing", true), 0x3);
-    fn_7100014948(e, base::global::CStrId("Invalid", true), 0x7fffffff);
-}
-struct UnkClone_fn_7100317550;
-template base::UnkNamedObject* base::refl_RegisterNamed<UnkClone_fn_7100317550>(base::UnkNamedRegistry*, base::UnkNamedObject*, const char*);

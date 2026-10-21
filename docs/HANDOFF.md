@@ -552,6 +552,13 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
      `UnkSList.h`; the count is a union member), `callback_list_dtor` (`UnkCallbackList`'s
      destructor and deleting destructor), `strid_vec_dtor`, and `iter_value_destroy_poly_vec_key16`
      now reads its key and state offsets (`UnkClonePolyVecPad`; +8).
+   - Done (2026-10-21, cloud, stream 2, round 10): +29 functions in a new `UnkCloneRecords.h`:
+     `strid_pair_record_assign` (8), `keyed_vec_array_clear` (7; the vector loop counts in u32),
+     `path_record_copy_ctor` (8; string ids and a file path copied in place) and
+     `callback_entry_dtor` (6; `UnkCallbackListShort` plus a string id, with or without a key).
+     Looked at and left: 0x7100769fc0 (a per-TU static initialiser). Not yet tried: 0x71000df484,
+     0x71000df5ec, 0x71005b4d50, 0x7100af30a0, 0x71011d437c, 0x71000d8428, 0x7100240168,
+     0x7100431cec, 0x71000d78ec, 0x71000d5888, 0x71000d1fec.
    - Enum static initialisers and the other per-TU static initialisers. These define
      globals, so they need the TU's data definitions (the 160 B ones are mostly lifted already).
    - Slot `0x28`/`0x30`/`0x38`/`0x48`/`0x50` helpers of other classes (need class layouts):
