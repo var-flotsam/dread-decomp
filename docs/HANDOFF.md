@@ -5,7 +5,8 @@ For the next developer, human or AI, picking up this project. Read this, then `C
 (toolchain), and `docs/references.md` (outside projects).
 
 **Thirteenth session (2026-10-21, Linux cloud, branch `claude/project-thread-m3b90j`):** core engine
-types, part 1 (Next steps, item 4). Four functions in `src/base/`; no generator was rerun.
+types (Next steps, item 4): the string pool, CRC64 and the allocator getter in `src/base/`
+(var-flotsam/dread-decomp#20 and the next PR); no generator was rerun.
 
 **Twelfth session (2026-10-21, on the PC, branch `claude/lifter-mismatch-classes`, var-flotsam/dread-decomp#18):** lifter mismatch study
 (Next steps, item 1, "Done (twelfth session)"); `gen_lift.py` and `check.py --update` were rerun,
@@ -537,8 +538,16 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
      templates this session: the top families were reflected-function initialisers (839 × 380 B)
      and `CClass` constructors (777 × 388 B). `tools/shape_census.py` now does this (`--top`,
      `--max-size`); `--family ADDR` lists the operands that vary across a family's copies.
-3. **Lua leftovers:** 23 ambiguous and the `lapi`/`lcode`/`ltable` mismatches (`ltable` number
-   hashing may need another `luaconf` change).
+3. **Lua leftovers:** mostly done (thirteenth session, cloud). The game's Lua needs
+   `-fno-strict-aliasing` (`buildcfg.LUA_FLAGS`), a 64-bit `twoto`, `(float)strtod` and a 16-byte
+   aligned jump buffer (all in `lib/lua/README.md`); `sigmatch.py` now names look-alikes (the
+   `math_*` wrappers, `lua_error`, `luaL_register`) from the `luaL_Reg` binding tables and, for
+   the rest, by order. 363 of 465 compiled Lua functions are named (was 286). Still open:
+   `lua_getinfo`, `luaV_execute` (same instructions, different block order), `lua_gethook`/
+   `sethook`/`getlocal`/`setlocal`, `LoadFunction`/`luaU_undump`, `luaB_print` and the
+   allocator/`lua_cpcall` group in `lapi`; the `io`/`os`/`package`/`debug` libraries mostly differ
+   (the game replaced them). `libcheck_lua.py` could not be rerun (lua.org is not reachable from
+   the cloud sandbox).
 4. Core engine types the slice depends on. Done: the inline code of `CStrId`/`UnkStrId` (copy,
    move-assign, destructors) and `UnkVector` with the allocator interface. Done (thirteenth
    session, cloud, `src/base/`): CRC64 (`fn_7100001570`, `O`: reflected table CRC-64, init ~0,
@@ -547,7 +556,12 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
    the allocator getter (`fn_7100083990`, `O`, a hidden global) and the string release
    (`fn_71000803a4`, `m`: 3 instructions of block layout in the inlined set lookup). CRC64 and
    the constructor sit next to `nnMain`, so `gen_functions_csv.py` infers `runtime?` and marks
-   them `L`; they match but don't count toward progress until that inference is fixed. Left:
+   them `L`; they match but don't count toward progress until that inference is fixed. Then the
+   rest of the pool (`include/base/global/UnkStringPool.h` has the set and node layouts): erase
+   (`fn_7100080a00`, `O`), insert (`fn_71000801e4`, `m`: register allocation around the heap's
+   GOT address) and the buffer compare (`fn_710007f240`, `m`: a select the original speculates).
+   The heap behind the string copies (`g_unk_7101d58d40`; `fn_7100084030` allocates,
+   `fn_7100084144` frees) is a small-block arena with six size classes of 0x28 bytes. Left:
    `UnkReflArray` (the keyed container at `CClass+0x110`, grown by `fn_7100097550`, 916 B: a key
    search, growth through `fn_7100097f80`, an inlined move of the 0xb8-byte `UnkReflFunction`,
    then attribute lookups) and the allocators over the static arena.

@@ -1,47 +1,15 @@
 // The string pool's release: called when a string id's reference count drops to zero. It
 // frees the string's heap copy, then finds the string's node in the pool's chained hash set
-// (keyed by the string's CRC-64, fn_7100001570) and erases it. Layouts are placeholders:
-// a node is the key (+0), the UnkStringData (+0x8) and the next node in its bucket (+0x50);
-// the data keeps the heap copy at +0, a string buffer at +0x10 and the key again at +0x30.
+// (keyed by the string's CRC-64, fn_7100001570) and erases it (layouts in
+// base/global/UnkStringPool.h).
 #include <new>
 
 #include "base/global/CStrId.h"
-
-using base::global::UnkStringData;
-using base::global::UnkStringPool;
-
-namespace base::global {
-
-// The set, a bucket index (-1 when out of range) and the set's modification count.
-struct UnkPoolBucketRef {
-    char* set;
-    u32 bucket;
-    u32 version;
-
-    UnkPoolBucketRef(char* set, u32 bucket)
-        : set(set), bucket(bucket), version(*reinterpret_cast<u32*>(set + 0x48)) {}
-};
-
-// Where a lookup in the pool's set ended: the node found (or null) and the node before it.
-struct UnkPoolIter {
-    char* node;
-    char* prev;
-    UnkPoolBucketRef ref;
-
-    UnkPoolIter(char* node, char* prev, char* set, u32 bucket) : node(node), prev(prev), ref(set, bucket) {}
-};
-
-}  // namespace base::global
+#include "base/global/UnkStringPool.h"
 
 using base::global::UnkPoolIter;
-
-char** fn_7100080824(char* set, u32 bucket);  // the address of a bucket
-bool fn_710007f240(char* buffer, const char* str);
-void fn_7100084144(void* heap, char* ptr);       // free
-void fn_7100080a00(char* set, UnkPoolIter* it);  // erase
-void fn_710007edac(char* buffer, const char* str, u32 length, s64 capacity);
-
-extern void* g_unk_7101d58d40;  // the heap the string copies come from (reached through the GOT)
+using base::global::UnkStringData;
+using base::global::UnkStringPool;
 
 namespace base::global {
 

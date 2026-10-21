@@ -356,7 +356,8 @@ typedef struct Table {
 	(check_exp((size&(size-1))==0, (cast(int, (s) & ((size)-1)))))
 
 
-#define twoto(x)	(1<<(x))
+/* dread-decomp: the game computes node counts and masks in 64 bits (ltable hashing, luaH_resizearray). */
+#define twoto(x)	(1L<<(x))
 #define sizenode(t)	(twoto((t)->lsizenode))
 
 

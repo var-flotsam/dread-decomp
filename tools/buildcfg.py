@@ -36,6 +36,11 @@ def project_includes() -> list[str]:
     return ["-I", str(ROOT / "include"), "-I", str(ROOT / "lib" / "nnsdk" / "include"), "-DSWITCH", "-DNNSDK"]
 
 
+# The game's Lua objects have no type-based alias analysis (every field store may alias a reload);
+# found by tools/sigmatch.py: lcode, llex and lparser match completely only with this flag.
+LUA_FLAGS = ["-fno-strict-aliasing"]
+
+
 def cxx_command(src: Path, obj: Path, extra: list[str] | None = None) -> list[str]:
     """Compile a C++ source (or a C source as C++, as the game builds Lua)."""
     lang = ["-x", "c++"] if src.suffix == ".c" else []
