@@ -342,7 +342,7 @@ address,size,name,name_source,subsystem,status
 0x71004169b4,244,CCharClassBehaviorTreeAIComponent::refl_GetClass,reflection,game/characters,O
 0x7100416aa8,432,fn_7100416aa8,unknown,game/characters?,O
 0x7100416c58,352,CCharClassBehaviorTreeAIComponent::refl_InitClass,reflection,game/characters,O
-0x7100416db8,200,fn_7100416db8,unknown,game/characters?,U
+0x7100416db8,200,fn_7100416db8,unknown,game/characters?,O
 0x7100416e80,316,fn_7100416e80,unknown,game/characters?,O
 0x7100416fbc,36,fn_7100416fbc,unknown,game/characters?,O
 0x7100416fe0,136,fn_7100416fe0,unknown,game/characters?,U
@@ -830,7 +830,7 @@ address,size,name,name_source,subsystem,status
 0x710042679c,400,fn_710042679c,unknown,game/ai?,U
 0x710042692c,120,fn_710042692c,unknown,game/ai?,O
 0x71004269a4,432,fn_71004269a4,unknown,game/ai?,U
-0x7100426b54,284,fn_7100426b54,unknown,game/ai?,U
+0x7100426b54,284,fn_7100426b54,unknown,game/ai?,O
 0x7100426c70,4,fn_7100426c70,unknown,game/ai?,O
 0x7100426c74,8,fn_7100426c74,unknown,game/ai?,O
 0x7100426c7c,360,fn_7100426c7c,unknown,game/ai?,U
@@ -1642,7 +1642,7 @@ address,size,name,name_source,subsystem,status
 0x7100456978,4,fn_7100456978,unknown,unknown,O
 0x710045697c,4,fn_710045697c,unknown,unknown,O
 0x7100456980,320,fn_7100456980,unknown,unknown,O
-0x7100456ac0,188,fn_7100456ac0,unknown,unknown,U
+0x7100456ac0,188,fn_7100456ac0,unknown,unknown,O
 0x7100456b7c,1448,fn_7100456b7c,unknown,unknown,U
 0x7100457124,336,fn_7100457124,unknown,unknown,O
 0x7100457274,796,fn_7100457274,unknown,unknown,U
