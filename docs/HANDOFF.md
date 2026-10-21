@@ -14,25 +14,33 @@ macOS toolchain support (untested on hardware) and `tools/verify.py`. No matchin
 
 ## Workstreams
 
-Two machines work at once, on separate files. Each edits only the files in its row.
+**Thirteenth session (2026-10-21, cloud):** work now runs as parallel cloud threads, one per
+stream below; the Mac is paused (not enough memory). Each stream edits only the files in its row.
 
-| Owner | Area | Files it may edit | Current branch |
+| Stream | Area | Files it may edit | Branches |
 |---|---|---|---|
-| PC (Claude) | The lifter: the mismatch study, then loops, `ccmp` and jump tables (Next steps, item 1) | `tools/gen_lift.py`, `src/lifted/` | `claude/lifter-mismatch-classes` (var-flotsam/dread-decomp#18, created before this table; later ones `pc/<topic>`) |
-| Mac (local model, `AGENTS.md`) | Guarded statics, then small single-family `gen_clones.py` templates, then reflection and Lua leftovers (`docs/tasks/`) | `tools/gen_statics.py`, `include/base/reflection/UnkReflStatics.h`, `src/reflection_statics/`; for clone cards also `tools/gen_clones.py`, `include/UnkClone.h`, `include/base/UnkCloneHelpers.h`, `src/clones/` | none yet; new branches `mac/<topic>` |
+| 1. Lifter | Next steps, item 1: loops and block layout, `ccmp`, jump tables, register moves | `tools/gen_lift.py`, `src/lifted/` | `cloud/lift-<topic>` |
+| 2. Shape families and statics | Next steps, item 2 (clone families, all sizes) and guarded statics; `docs/tasks/` | `tools/gen_clones.py`, `include/UnkClone.h`, `include/base/UnkCloneHelpers.h` and new template headers, `src/clones/`; `tools/gen_statics.py`, `include/base/reflection/UnkReflStatics.h`, `src/reflection_statics/` | `cloud/clones-<topic>` |
+| 3. Core engine types | Next steps, item 4: string pool, `UnkReflArray`, CRC64, allocators (hand-written) | `src/base/`, `include/base/global/`, new `include/base/*.h` | `cloud/core-<topic>` |
+| 4. Reflection leftovers | Next steps, item 2, "Left" | `tools/gen_reflection.py`, `tools/refl_attrs.py`, `tools/gen_types.py`, `src/reflection/`, `src/reflection_types/`, `include/base/reflection/` (not `UnkReflStatics.h`) | `cloud/refl-<topic>` |
+| 5. Lua leftovers | Next steps, item 3 (library code, no game progress) | `lib/lua/`, `tools/sigmatch.py`, `tools/libcheck_lua.py`, `data/library_symbols.csv` | `cloud/lua-<topic>` |
+| Mac (paused) | `AGENTS.md` and `docs/tasks/` | none while paused | `mac/<topic>` |
 
-Both may change `data/functions/*.csv` (statuses only, through `check.py --update`) and their
-own row here. Anything else (shared headers, `check.py`, `CLAUDE.md`) goes through the owner first.
+All may change `data/functions/*.csv` (statuses only, through `check.py --update`). Anything
+else (shared headers, `check.py`, `CLAUDE.md`) goes through the owner first.
 
 Merge rules:
-- Merge `main` into your branch often and keep PRs small.
+- Keep PRs small, sized to finish within one session; merge `main` into your branch before merging.
 - After merging `main`, take `main`'s `data/functions/*.csv`, rerun only the generator you own,
   then `tools/check.py --update` (`tools/verify.py --regen <generator>` does both). Never
   hand-merge the CSVs.
+- `check.py` fails when one function is defined in two files outside the Phase 3 samples
+  (`src/compiler_id/`, `src/flag_id/`, `src/atk_id/`), e.g. a new clone that `src/lifted/` also
+  defines. Rerun the generator that should drop it (`gen_lift.py` for lifted copies; only stream 1
+  runs the full ~80 min lift, so other streams target `U` functions).
 - `gen_clones.py` and `gen_lift.py` skip functions defined elsewhere in `src/` (`gen_statics.py`
   runs before both), so a rerun drops duplicates.
-- Branch prefixes are `pc/` and `mac/`. Only the owner pushes and merges.
-- A machine that changes focus updates its row above in its next PR.
+- A stream that changes focus updates its row above in its next PR.
 
 **Tenth session (2026-10-20, branch `claude/lifter-float-0b96b0`):** lifter fixes (Next steps,
 item 1, "Done (tenth session)"); `gen_lift.py` and `check.py --update` were rerun, so the
@@ -69,9 +77,9 @@ Snapshot as of 2026-10-18 (fifth Phase 4 session; branches `phase-4-4-clones` (v
 | 4.5+ Boot to title screen | Not started; plan below |
 | Port | Not started (`port/` is empty) |
 
-Function status (BotW codes): `O` 80,439, `m` 3, `M` 1, `L` 1,614, `U` 21,960.
-**Game-code progress: 45.39% of bytes (8.52 MB) matching** (`tools/progress.py`; library code
-excluded; 44.92% at the start of the tenth session, 44.45% at the start of the ninth, 39.09% at the start of the seventh). `tools/check.py` counts `src/` definitions,
+Function status (BotW codes): `O` 81,478, `m` 3, `M` 1, `L` 1,614, `U` 20,921.
+**Game-code progress: 46.16% of bytes (8.67 MB) matching** (`tools/progress.py`; library code
+excluded; 45.39% at the start of the twelfth session, 44.92% at the start of the tenth session, 44.45% at the start of the ninth, 39.09% at the start of the seventh). `tools/check.py` counts `src/` definitions,
 which differ slightly (matching `nn::atk` functions keep `L`; constructor aliases).
 
 ## Hard rules (summary; full text in CLAUDE.md)
