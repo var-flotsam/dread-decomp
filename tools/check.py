@@ -15,7 +15,7 @@ at column 0 with `name(`). A compiled symbol maps to an original function by
 data/functions/.
 
 Usage:
-  python tools/check.py --version 2.1.0            # report; exit 1 if an O function regressed
+  python tools/check.py --version 2.1.0            # report; exit 1 if an O function regressed or a function is defined in two files
   python tools/check.py --version 2.1.0 --update   # also write O/m/M/W into data/functions/
 """
 
@@ -115,6 +115,7 @@ def main() -> int:
     original = asmdiff.Original(args.version)
 
     results = {}  # address -> (status, symbol, score)
+    defined_in: dict[str, set[Path]] = {}  # address -> source files that define it
     srcs = sources()
     from concurrent.futures import ThreadPoolExecutor
     with ThreadPoolExecutor(args.jobs) as pool:
@@ -130,6 +131,7 @@ def main() -> int:
             short = names.get(res.symbol, res.symbol).split("::")[-1]
             status = "O" if res.matching else notes.get(short, "W")
             results[f"{res.address:#x}"] = (status, names.get(res.symbol, res.symbol), res.score)
+            defined_in.setdefault(f"{res.address:#x}", set()).add(src)
 
     regressions = 0
     for addr, (status, name, score) in sorted(results.items()):
@@ -141,6 +143,18 @@ def main() -> int:
         print(f"{status}  {addr}  {score:6.1%}  {name}{flag}")
     counts = {s: sum(1 for v in results.values() if v[0] == s) for s in "OmMW"}
     print(f"{len(results)} functions in src/: " + ", ".join(f"{k} {v}" for k, v in counts.items()))
+    # Parallel workstreams can each define the same function (e.g. a clone and a lifted copy).
+    # The Phase 3 identification samples overlap other sources by design and are not counted.
+    samples = [ROOT / "src" / d for d in ("compiler_id", "flag_id", "atk_id")]
+    duplicates = {}
+    for a, fs in defined_in.items():
+        fs = {f for f in fs if not any(d in f.parents for d in samples)}
+        if len(fs) > 1:
+            duplicates[a] = fs
+    for addr, fs in sorted(duplicates.items()):
+        print(f"DUPLICATE  {addr}  " + "  ".join(str(f.relative_to(ROOT).as_posix()) for f in sorted(fs)))
+    if duplicates:
+        print(f"{len(duplicates)} functions defined in more than one file; rerun the generators (verify.py --regen)")
 
     if args.update:
         for name, frows in files.items():
@@ -156,7 +170,7 @@ def main() -> int:
                     w.writeheader()
                     w.writerows(frows)
         print("statuses written to data/functions/")
-    return 1 if failed or regressions else 0
+    return 1 if failed or regressions or duplicates else 0
 
 
 if __name__ == "__main__":

@@ -5,7 +5,11 @@ as linked into Metroid Dread's `main`. Identified by `tools/libcheck_lua.py`: bu
 project flags, 81 of 82 standard-library functions are byte-identical to the game's.
 
 Differences from upstream:
-- `luaconf.h`: `lua_Number` is `float` (marked `dread-decomp:`).
+- `luaconf.h`: `lua_Number` is `float`, `lua_str2number` is `(float)strtod`, and the long-jump buffer is
+  16-byte aligned (marked `dread-decomp:`).
+- `lobject.h`: `twoto(x)` is `1L<<(x)` (64-bit node counts and masks; `ltable` matches only with it).
+- Build flag: the game's Lua has no type-based alias analysis (`-fno-strict-aliasing`,
+  `buildcfg.LUA_FLAGS`); `lcode`, `llex` and `lparser` match completely only with it.
 - The standalone `lua.c`, `luac.c` and `print.c` are omitted.
 - The game replaces `print` (`luaB_print` differs); that replacement is game code, not part of
   this directory.
