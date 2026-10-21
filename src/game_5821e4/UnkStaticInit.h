@@ -98,6 +98,38 @@ __attribute__((always_inline)) inline void InitTunable(UnkTunable* tunable, void
     __cxa_atexit(dtor, tunable, g_unk_7101a19000);
 }
 
+// A named property object (a global reached through the GOT) linked into a global list on
+// construction; once built, it is checked through its vtable (slots 2 and 3) and, if those
+// allow it, handed to the unit's own function. Layout and slot roles are placeholders.
+struct UnkProperty {
+    void** vtable;
+    UnkProperty* next;
+    UnkFilePathStrIdBase name;  // storage of a string id
+    const void* type;
+    u32 field_0x20;
+
+    __attribute__((always_inline)) UnkProperty(void** vt, UnkProperty*& head, const char* str, const void* t) {
+        next = head;
+        head = this;
+        vtable = vt + 2;
+        new (&name) UnkStrIdBase(str, true);
+        type = t;
+        field_0x20 = 0;
+    }
+    bool vf_0x10() { return reinterpret_cast<bool (*)(UnkProperty*)>(vtable[2])(this); }
+    bool vf_0x18() { return reinterpret_cast<bool (*)(UnkProperty*)>(vtable[3])(this); }
+};
+
+template <class Ctor>
+__attribute__((always_inline)) inline void InitProperty(UnkProperty* p, void** vtable, UnkProperty*& head,
+                                                        const char* name, const void* type, Ctor on_init,
+                                                        void (*dtor)(void*)) {
+    new (p) UnkProperty(vtable, head, name, type);
+    if (p->vf_0x10() && !p->vf_0x18())
+        on_init(p);
+    __cxa_atexit(dtor, p, g_unk_7101a19000);
+}
+
 }  // namespace unk_static_init
 
 unk_static_init::UnkEnumType* fn_7100014768();  // the int type's getter
