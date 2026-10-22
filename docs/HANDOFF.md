@@ -952,6 +952,19 @@ the copy to x19); ours copies `this` first and keeps the pool in x0, and a 3-id 
 Ten more shapes of the id destructor (an early return, no local pool, a cached empty pointer,
 `__builtin_expect` on each test, `always_inline`) don't change that.
 
+**Field registrations the reflection parser stopped at** (stream 7, 2026-10-22), both **O**:
+CCharClassAIComponent's member fields (`fn_7100408c20`, 33 KB, 142 fields, the giant-functions
+table's "tunable registration") and CExplosionGfx's (`fn_7100ddf434`, 3.6 KB). Both are
+`tools/refl_attrs.py` drafts finished by hand, in `src/game_s7/`. What the parser lacks: defaults
+of a reflected struct type (four `SDeathImpactDisplacement` values, two 8-byte stores, typed by
+the class getter); defaults copied from global `CVector2D`/`CVector4D` constants through the GOT,
+which match only as member-by-member copies (`CVector2D{g.x, g.y}`); and an empty `CStrId`
+default, which the original builds without testing the pointer after the pool check
+(`UnkEmptyStrIdValue` in `fn_7100408c20.cpp`; `CStrId(UnkStrIdInline{}, "", true)` tests it).
+The large one also needs `alternatives()`' typed lambda form. Still `U`: `fn_7100beaf3c` (a
+`CRntString` default joined from two globals with "|"), and five small ones (`fn_710044e7fc`,
+`fn_71004ded68`, `fn_7100b8bb94`, `fn_7100097378`, `fn_71002584a0`).
+
 **Render resource types** (stream 7): `fn_71001b1dd0` (**m**, 2.5 KB) registers nine render
 resource types through a record with an out-of-line constructor and destructor (`fn_71000e9a7c`,
 `fn_71000e8dd0`). Findings: this TU's file-path ids decrement and test in two steps and assign as

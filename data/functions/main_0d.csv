@@ -5422,7 +5422,7 @@ address,size,name,name_source,subsystem,status
 0x7100ddf1c0,384,fn_7100ddf1c0,unknown,unknown,O
 0x7100ddf340,4,fn_7100ddf340,unknown,unknown,O
 0x7100ddf344,240,CExplosionGfx::refl_GetClass,reflection,game,O
-0x7100ddf434,3628,fn_7100ddf434,unknown,game?,U
+0x7100ddf434,3628,fn_7100ddf434,unknown,game?,O
 0x7100de0260,388,CExplosionGfx::refl_InitClass,reflection,game,O
 0x7100de03e4,992,fn_7100de03e4,unknown,unknown,U
 0x7100de07c4,264,fn_7100de07c4,unknown,unknown,O

@@ -235,7 +235,7 @@ address,size,name,name_source,subsystem,status
 0x7100408a40,232,fn_7100408a40,unknown,game/characters?,O
 0x7100408b28,4,fn_7100408b28,unknown,game/characters?,O
 0x7100408b2c,244,CCharClassAIComponent::refl_GetClass,reflection,game/characters,O
-0x7100408c20,33760,fn_7100408c20,unknown,game/characters?,U
+0x7100408c20,33760,fn_7100408c20,unknown,game/characters?,O
 0x7100411000,352,CCharClassAIComponent::refl_InitClass,reflection,game/characters,O
 0x7100411160,380,fn_7100411160,unknown,unknown,O
 0x71004112dc,380,fn_71004112dc,unknown,unknown,O
