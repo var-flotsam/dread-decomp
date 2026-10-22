@@ -968,8 +968,21 @@ refs), slot-array SetAt, id-record pair and map assigns, string-id map Clear/Beg
 resets and assigns, pair assigns and equality. Also `src/game_s7/fn_7100f798fc.cpp`: the five
 string-id map End iterators after the begins of `fn_7100f79844.cpp` (slice 6, no active stream).
 Left: `fn_71000d56ac`, `fn_71000e00a0`, `fn_710111410c` (array equality through an out-of-line
-element compare, 94%: one register), and the TU static initialisers near `fn_7100ad28e0`
-(`fn_7100205820`, `fn_71001f2650`, 96-99%, which register pointer types).
+element compare, 94%: one register). The TU static initialisers `fn_7100205820` and
+`fn_71001f2650` left here are **O** in batch 13.
+
+**Slice 1 static initialisers, batch 13** (stream 7, 2026-10-22): 16 of slice 1's 33 per-unit
+static initialisers **O** (about 12 KB; `src/game_s1/`, with game/UnkTUInit.h's helpers). New
+shapes, kept local to the files: header ids built the other way round ("sources" first, the word
+stored last as in `fn_71001258b0`, or not at all), sometimes followed by the three function
+records (`fn_71000f3150`, `fn_71000113b0`); a class kept right after the header (registered
+after its getter is called); enum converters whose functions are local to the unit (declared
+`visibility("hidden")`, `fn_7100261530`, `fn_71001fa720`); resource types added to a registry
+(`fn_7100005700` for the animation and curve resources, `fn_71000113b0` for blend spaces).
+`fn_71001545d0` (fonts) is **m**: two identity matrices whose stores merge differently. Left:
+the rest have one-off layouts (sub-allocators `fn_7100224c70`, whose header ids merge with the
+statics; game tables `fn_710015ef10`; larger units `fn_7100140400`, `fn_710001f460`,
+`fn_71001b2e60`, `fn_71001e0820`, `fn_7100158130`), 0-60% as drafted.
 
 **Matching does not check relocated targets.** `tools/asmdiff.py` masks every relocated field, so
 a function stays **O** with the wrong global, GOT slot or callee named. Two slips found this way

@@ -189,7 +189,7 @@ address,size,name,name_source,subsystem,status
 0x7100205598,168,fn_7100205598,unknown,unknown,O
 0x7100205640,176,fn_7100205640,unknown,unknown,O
 0x71002056f0,296,fn_71002056f0,unknown,unknown,U
-0x7100205820,932,fn_7100205820,unknown,unknown,U
+0x7100205820,932,fn_7100205820,unknown,unknown,O
 0x7100205bc4,220,fn_7100205bc4,unknown,unknown,O
 0x7100205ca0,212,fn_7100205ca0,unknown,unknown,O
 0x7100205d74,36,fn_7100205d74,unknown,unknown,O
@@ -2451,7 +2451,7 @@ address,size,name,name_source,subsystem,status
 0x71002520e8,20,fn_71002520e8,unknown,unknown,O
 0x71002520fc,152,fn_71002520fc,unknown,unknown,O
 0x7100252194,168,fn_7100252194,unknown,unknown,U
-0x7100252240,808,fn_7100252240,unknown,unknown,U
+0x7100252240,808,fn_7100252240,unknown,unknown,O
 0x7100252568,88,fn_7100252568,unknown,unknown,O
 0x71002525c0,244,CActorComponentDef::refl_GetClass,reflection,game,O
 0x71002526b4,2184,fn_71002526b4,unknown,game?,O
@@ -2861,7 +2861,7 @@ address,size,name,name_source,subsystem,status
 0x7100261384,20,fn_7100261384,unknown,unknown,O
 0x7100261398,20,fn_7100261398,unknown,unknown,O
 0x71002613ac,376,fn_71002613ac,unknown,unknown,U
-0x7100261530,1892,fn_7100261530,unknown,unknown,U
+0x7100261530,1892,fn_7100261530,unknown,unknown,O
 0x7100261c94,2100,fn_7100261c94,unknown,unknown,O
 0x71002624c8,388,fn_71002624c8,unknown,unknown,O
 0x710026264c,180,fn_710026264c,unknown,unknown,O
@@ -2929,7 +2929,7 @@ address,size,name,name_source,subsystem,status
 0x7100264100,284,fn_7100264100,unknown,unknown,U
 0x710026421c,412,fn_710026421c,unknown,unknown,O
 0x71002643b8,216,fn_71002643b8,unknown,unknown,U
-0x7100264490,384,fn_7100264490,unknown,unknown,U
+0x7100264490,384,fn_7100264490,unknown,unknown,O
 0x7100264610,140,fn_7100264610,unknown,unknown,O
 0x71002646a0,140,fn_71002646a0,unknown,unknown,O
 0x7100264730,140,fn_7100264730,unknown,unknown,O
@@ -3217,7 +3217,7 @@ address,size,name,name_source,subsystem,status
 0x710026c610,20,fn_710026c610,unknown,unknown,O
 0x710026c624,168,fn_710026c624,unknown,unknown,O
 0x710026c6cc,176,fn_710026c6cc,unknown,unknown,O
-0x710026c780,768,fn_710026c780,unknown,unknown,U
+0x710026c780,768,fn_710026c780,unknown,unknown,O
 0x710026ca80,88,fn_710026ca80,unknown,unknown,O
 0x710026cad8,244,navmesh::CDynamicSmartLinkRules::refl_GetClass,reflection,ai/navmesh,O
 0x710026cbcc,4,fn_710026cbcc,unknown,ai/navmesh?,O
