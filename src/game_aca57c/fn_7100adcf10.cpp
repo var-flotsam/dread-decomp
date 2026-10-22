@@ -1,7 +1,13 @@
 // More per-TU static initialisers (helpers in game/UnkTUInit.h; see also fn_7100b04900.cpp):
 // some TUs' data has function records after the header, and collection and vector types are
 // registered for the reflected containers.
+#include "base/UnkVector.h"
+#include "base/global/CFilePathStrId.h"
+#include "base/global/CRntString.h"
 #include "game/UnkTUInit.h"
+
+using base::global::CFilePathStrId;
+using base::global::CRntString;
 
 UnkReflType* fn_7100adc1d8();  // base::reflection::refl_GetType<gameeditor::TPropertyId>
 UnkReflType* fn_7100adc2b4();
@@ -776,3 +782,427 @@ void fn_7100e0ecb0() {
     fn_710009ec00(&g_unk_71727bfdab, fn_7100e095dc());
     fn_710009ec00(&g_unk_71727bfdac, fn_7100e096b8());
 }
+
+extern UnkTUHeader g_unk_71727c9948 __attribute__((visibility("hidden")));
+struct UnkCharMap;
+extern UnkCharMap g_unk_71727c8f58;
+void fn_7100e768b0(UnkCharMap* self, const char* chars, u32 count, u32 a, void* b, u32 c);
+void fn_7100e76a5c(void* self);
+UnkReflType* fn_7100e76a98();
+extern char g_unk_71727c8f80;
+UnkReflType* fn_7100e76b74();
+extern char g_unk_71727c8f81;
+extern UnkReflType g_unk_71727c8f88;
+void fn_7100e76c50();
+void fn_7100e76fd4(UnkReflType* self, const CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
+extern UnkReflType g_unk_7101d5e2e0;
+extern char g_unk_71727c90c0;
+UnkReflType* fn_7100e77158();
+extern char g_unk_71727c90c1;
+extern UnkReflType g_unk_71727c90c8;
+void fn_7100e77234();
+void fn_7100e775b8(UnkReflType* self, const CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
+extern char g_unk_71727c9200;
+UnkReflType* fn_7100e7773c();
+extern char g_unk_71727c9201;
+extern UnkReflType g_unk_71727c9208;
+void fn_7100e77818(UnkReflType* self, const CStrId& name, void* a, void* b);
+extern char g_unk_71727c9378;
+extern UnkReflType g_unk_71727c9380;
+void fn_7100e77a0c();
+void fn_7100e77d68(UnkReflType* self, const CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
+extern char g_unk_71727c94b8;
+extern UnkPropertyEx<> g_unk_71727c94c0;
+extern void* g_unk_7101a45fe8[];
+extern void* g_unk_7101a45f90[];
+void fn_71002ef5bc(void* self);
+void fn_71004fd2cc(UnkPropertyEx<>* p);
+void fn_71004fa3b8(void* p);
+
+void fn_7100e7c980() {
+    InitHeader(g_unk_71727c9948);
+    {
+        char chars[7];
+        chars[0] = ' ';
+        chars[1] = '-';
+        chars[2] = '=';
+        chars[3] = '+';
+        chars[4] = 'o';
+        chars[5] = 'O';
+        chars[6] = '@';
+        fn_7100e768b0(&g_unk_71727c8f58, chars, sizeof(chars), 10, nullptr, 15);
+    }
+    fn_7100000250(fn_7100e76a5c, &g_unk_71727c8f58, &g_unk_7101a19000);
+    fn_710009ec00(&g_unk_71727c8f80, fn_7100e76a98());
+    fn_710009ec00(&g_unk_71727c8f81, fn_7100e76b74());
+    InitClass(&g_unk_71727c8f88, "base::reflection::CollectionTypeMapper<minimapGrid::TMinimapVisMap>::TKeyElementIterator::value_type", fn_7100e76fd4, fn_7100e76c50, &g_unk_7101d5e2e0);
+    fn_710009ec00(&g_unk_71727c90c0, &g_unk_71727c8f88);
+    fn_710009ec00(&g_unk_71727c90c1, fn_7100e77158());
+    InitClass(&g_unk_71727c90c8, "base::reflection::CollectionTypeMapper<minimapGrid::TMinimapVisMap>::TKeyElementConstIterator::value_type", fn_7100e775b8, fn_7100e77234, &g_unk_7101d5e2e0);
+    fn_710009ec00(&g_unk_71727c9200, &g_unk_71727c90c8);
+    fn_710009ec00(&g_unk_71727c9201, fn_7100e7773c());
+    InitVector(&g_unk_71727c9208, "minimapGrid::TMinimapVisMap", fn_7100e77818);
+    fn_710009ec00(&g_unk_71727c9378, &g_unk_71727c9208);
+    InitClass(&g_unk_71727c9380, "CMinimapGrid::SGridDef", fn_7100e77d68, fn_7100e77a0c);
+    fn_710009ec00(&g_unk_71727c94b8, &g_unk_71727c9380);
+    InitPropertyEx(&g_unk_71727c94c0, g_unk_7101a45fe8, g_unk_7101a45f90, g_unk_71726db788, fn_71002ef5bc,
+                   "MINIMAP_VISIBILITY", &g_unk_71727c9208, fn_71004fd2cc, fn_71004fa3b8);
+}
+
+
+
+extern UnkTUHeader g_unk_7172755b78 __attribute__((visibility("hidden")));
+extern CStrId g_unk_7172755b00;
+extern UnkProperty g_unk_7172755b08;
+extern void* g_unk_7101a97370[];
+void* fn_710000d228();  // the bool type's getter
+void fn_7100acacf8(UnkProperty* p);
+void fn_7100ac8db0(void* p);
+extern CStrId g_unk_7172755b90 __attribute__((visibility("hidden")));
+void fn_7100ac8e2c();  // CWeightActivablePropComponent::refl_GetClass
+extern char g_unk_7172755b30;
+
+void fn_7100acb290() {
+    InitHeader(g_unk_7172755b78);
+    new (&g_unk_7172755b00) CStrId("ACTIVABLE", true);
+    fn_7100000250(fn_710000051c, &g_unk_7172755b00, &g_unk_7101a19000);
+    InitProperty(&g_unk_7172755b08, g_unk_7101a97370, g_unk_71726db788, "Opened", fn_710000d228(), fn_7100acacf8,
+                 fn_7100ac8db0);
+    new (TUAt<CStrId, 0x0>(g_unk_7172755b90)) CStrId("collision_close", true);
+    fn_7100000250(fn_710000051c, TUAt<CStrId, 0x0>(g_unk_7172755b90), &g_unk_7101a19000);
+    new (TUAt<CStrId, 0x8>(g_unk_7172755b90)) CStrId("player_detector", true);
+    fn_7100000250(fn_710000051c, TUAt<CStrId, 0x8>(g_unk_7172755b90), &g_unk_7101a19000);
+    new (TUAt<CStrId, 0x10>(g_unk_7172755b90)) CStrId("closed", true);
+    fn_7100000250(fn_710000051c, TUAt<CStrId, 0x10>(g_unk_7172755b90), &g_unk_7101a19000);
+    new (TUAt<CStrId, 0x18>(g_unk_7172755b90)) CStrId("opened", true);
+    fn_7100000250(fn_710000051c, TUAt<CStrId, 0x18>(g_unk_7172755b90), &g_unk_7101a19000);
+    fn_7100ac8e2c();
+    fn_710009ec00(&g_unk_7172755b30, TUType<0x28>(g_unk_7172755b90));
+}
+
+extern UnkTUHeader g_unk_7172797460 __attribute__((visibility("hidden")));
+extern CStrId g_unk_7172796388;
+extern UnkReflType g_unk_71727966a0;
+void fn_7100ca3c84();
+void fn_7100ca3e50(UnkReflType* self, const CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
+extern char g_unk_71727967d8;
+UnkReflType* fn_7100ca3fb0();
+extern char g_unk_71727967d9;
+extern UnkReflType g_unk_71727967e0;
+void fn_7100ca408c();
+void fn_7100ca4090(UnkReflType* self, const CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
+extern char g_unk_7172796918;
+UnkReflType* fn_7100ca4214();
+extern char g_unk_7172796919;
+void fn_7100ca42f4();  // CBreakableTileManager::CTunableBreakableTileManager::refl_GetClass
+extern char g_unk_717279691a;
+extern UnkReflType g_unk_7172797480 __attribute__((visibility("hidden")));
+extern UnkTunable g_unk_7172796920;
+void fn_7100136ecc(UnkTunable* self);
+extern void* g_unk_7101aa5328[];
+void fn_7100075104(void* self);
+UnkReflType* fn_7100ca4f04();
+extern char g_unk_7172796971;
+UnkReflType* fn_7100ca4fe0();
+extern char g_unk_7172796972;
+extern UnkReflType g_unk_7172796978;
+void fn_7100ca50bc();
+void fn_7100ca5440(UnkReflType* self, const CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
+extern UnkReflType g_unk_7101d5e2e0;
+extern char g_unk_7172796ab0;
+UnkReflType* fn_7100ca55c4();
+extern char g_unk_7172796ab1;
+extern UnkReflType g_unk_7172796ab8;
+void fn_7100ca56a0();
+void fn_7100ca5a24(UnkReflType* self, const CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
+extern char g_unk_7172796bf0;
+UnkReflType* fn_7100ca5ba8();
+extern char g_unk_7172796bf1;
+extern UnkReflType g_unk_7172796bf8;
+void fn_7100ca5c84(UnkReflType* self, const CStrId& name, void* a, void* b);
+extern char g_unk_7172796d68;
+extern UnkPropertyEx<0x160> g_unk_7172796390;
+extern UnkPropertyEx<0x160> g_unk_7172796518;
+extern void* g_unk_7101a889c8[];
+extern void* g_unk_7101aa52d0[];
+void fn_7100ae9cc8(void* self);
+void fn_7100ca9504(UnkPropertyEx<0x160>* p);
+void fn_7100ca3be4(void* p);
+extern CFilePathStrId g_unk_7172796d70[10];
+void fn_7100ca5e60(void*) __attribute__((visibility("hidden")));  // destroys g_unk_7172796d70
+
+void fn_7100ca6150() {
+    InitHeader(g_unk_7172797460);
+    new (&g_unk_7172796388) CStrId("BLEAKABLE", true);
+    fn_7100000250(fn_710000051c, &g_unk_7172796388, &g_unk_7101a19000);
+    InitPropertyEx(&g_unk_7172796390, g_unk_7101a889c8, g_unk_7101aa52d0, g_unk_71726db788, fn_7100ae9cc8,
+                   "PB_AND_SM", fn_7100005178(), fn_7100ca9504, fn_7100ca3be4);
+    InitPropertyEx(&g_unk_7172796518, g_unk_7101a889c8, g_unk_7101aa52d0, g_unk_71726db788, fn_7100ae9cc8,
+                   "VIGNETTE", fn_7100005178(), fn_7100ca9504, fn_7100ca3be4);
+    InitClass(&g_unk_71727966a0, "CBreakableTileManager", fn_7100ca3e50, fn_7100ca3c84);
+    fn_710009ec00(&g_unk_71727967d8, &g_unk_71727966a0);
+    fn_710009ec00(&g_unk_71727967d9, fn_7100ca3fb0());
+    InitClass(&g_unk_71727967e0, "CBreakableTileManager::STileGroupGroup", fn_7100ca4090, fn_7100ca408c);
+    fn_710009ec00(&g_unk_7172796918, &g_unk_71727967e0);
+    fn_710009ec00(&g_unk_7172796919, fn_7100ca4214());
+    fn_7100ca42f4();
+    fn_710009ec00(&g_unk_717279691a, &g_unk_7172797480);
+    InitTunable(&g_unk_7172796920, fn_7100136ecc, g_unk_7101aa5328, fn_7100075104);
+    fn_710009ec00(&g_unk_7172796971, fn_7100ca4f04());
+    fn_710009ec00(&g_unk_7172796972, fn_7100ca4fe0());
+    InitClass(&g_unk_7172796978, "base::reflection::CollectionTypeMapper<base::global::CRntPooledDictionary<base::global::CStrId, CBreakableTileManager::STileGroupGroup>>::TKeyElementIterator::value_type", fn_7100ca5440, fn_7100ca50bc, &g_unk_7101d5e2e0);
+    fn_710009ec00(&g_unk_7172796ab0, &g_unk_7172796978);
+    fn_710009ec00(&g_unk_7172796ab1, fn_7100ca55c4());
+    InitClass(&g_unk_7172796ab8, "base::reflection::CollectionTypeMapper<base::global::CRntPooledDictionary<base::global::CStrId, CBreakableTileManager::STileGroupGroup>>::TKeyElementConstIterator::value_type", fn_7100ca5a24, fn_7100ca56a0, &g_unk_7101d5e2e0);
+    fn_710009ec00(&g_unk_7172796bf0, &g_unk_7172796ab8);
+    fn_710009ec00(&g_unk_7172796bf1, fn_7100ca5ba8());
+    InitVector(&g_unk_7172796bf8, "base::global::CRntPooledDictionary<base::global::CStrId, CBreakableTileManager::STileGroupGroup>", fn_7100ca5c84);
+    fn_710009ec00(&g_unk_7172796d68, &g_unk_7172796bf8);
+    new (&g_unk_7172796d70[0]) CFilePathStrId("maps/blocks/breakable_block_undefined/breakable_block_undefined.bcmdl", true);
+    new (&g_unk_7172796d70[1]) CFilePathStrId("maps/blocks/breakable_block_powerbeam/breakable_block_powerbeam.bcmdl", true);
+    new (&g_unk_7172796d70[2]) CFilePathStrId("maps/blocks/breakable_block_bomb/breakable_block_bomb.bcmdl", true);
+    new (&g_unk_7172796d70[3]) CFilePathStrId("maps/blocks/breakable_block_missile/breakable_block_missile.bcmdl", true);
+    new (&g_unk_7172796d70[4]) CFilePathStrId("maps/blocks/breakable_block_supermissile/breakable_block_supermissile.bcmdl", true);
+    new (&g_unk_7172796d70[5]) CFilePathStrId("maps/blocks/breakable_block_powerbomb/breakable_block_powerbomb.bcmdl", true);
+    new (&g_unk_7172796d70[6]) CFilePathStrId("maps/blocks/breakable_block_screwattack/breakable_block_screwattack.bcmdl", true);
+    new (&g_unk_7172796d70[7]) CFilePathStrId("maps/blocks/breakable_block_weight/breakable_block_weight.bcmdl", true);
+    new (&g_unk_7172796d70[8]) CFilePathStrId("maps/blocks/breakable_block_baby/breakable_block_baby.bcmdl", true);
+    new (&g_unk_7172796d70[9]) CFilePathStrId("maps/blocks/breakable_block_speedbuster/breakable_block_speedbuster.bcmdl", true);
+    fn_7100000250(fn_7100ca5e60, nullptr, &g_unk_7101a19000);
+}
+
+extern UnkTUHeader g_unk_71727c0a38 __attribute__((visibility("hidden")));
+extern CStrId g_unk_71727c0918;
+extern UnkProperty g_unk_71727c0920;
+extern UnkProperty g_unk_71727c0948;
+extern UnkProperty g_unk_71727c0970;
+extern UnkProperty g_unk_71727c0998;
+extern void* g_unk_7101aa9c38[];
+void fn_7100e165e8(UnkProperty* p);
+void fn_7100e140c0(void* p);
+void* fn_710000d228();  // the bool type's getter
+void fn_7100e1413c();   // CArenaManager::CTunableArenaManager::refl_GetClass
+extern char g_unk_71727c09c0;
+extern CRntString g_unk_71727c0a58 __attribute__((visibility("hidden")));
+extern UnkTunable g_unk_71727c09c8;
+void fn_7100136ecc(UnkTunable* self);
+extern void* g_unk_7101aa9c90[];
+void fn_7100075104(void* self);
+UnkReflType* fn_7100009658();  // base::reflection::refl_GetType<base::global::CStrId>
+void fn_710007ecd4(void* str);  // CRntString destructor
+
+void fn_7100e16af0() {
+    InitHeader(g_unk_71727c0a38);
+    new (&g_unk_71727c0918) CStrId("ARENA", true);
+    fn_7100000250(fn_710000051c, &g_unk_71727c0918, &g_unk_7101a19000);
+    InitProperty(&g_unk_71727c0920, g_unk_7101aa9c38, g_unk_71726db788, "PrevSG", fn_7100009658(), fn_7100e165e8,
+                 fn_7100e140c0);
+    InitProperty(&g_unk_71727c0948, g_unk_7101aa9c38, g_unk_71726db788, "SG", fn_7100009658(), fn_7100e165e8,
+                 fn_7100e140c0);
+    InitProperty(&g_unk_71727c0970, g_unk_7101aa9c38, g_unk_71726db788, "AllDead", fn_710000d228(), fn_7100e165e8,
+                 fn_7100e140c0);
+    InitProperty(&g_unk_71727c0998, g_unk_7101aa9c38, g_unk_71726db788, "UseIntro", fn_710000d228(), fn_7100e165e8,
+                 fn_7100e140c0);
+    fn_7100e1413c();
+    fn_710009ec00(&g_unk_71727c09c0, TUType<0x30>(g_unk_71727c0a58));
+    InitTunable(&g_unk_71727c09c8, fn_7100136ecc, g_unk_7101aa9c90, fn_7100075104);
+    new (&g_unk_71727c0a58) CRntString("Intro");
+    fn_7100000250(fn_710007ecd4, &g_unk_71727c0a58, &g_unk_7101a19000);
+}
+
+
+extern UnkTUHeader g_unk_7172755cf8 __attribute__((visibility("hidden")));
+extern CStrId g_unk_7172755d10 __attribute__((visibility("hidden")));
+CStrId fn_7100de8f78(const CStrId& name);
+void fn_7100acb4ac();  // CWorldGraph::refl_GetClass
+extern char g_unk_7172755cf0;
+
+// The id lives in an inline function: its guard and object are reached through the GOT.
+inline const CStrId& WorldGraphId() {
+    static CStrId s_id("WORLDGRAPH", true);
+    return s_id;
+}
+
+void fn_7100acd5d0() {
+    InitHeader(g_unk_7172755cf8);
+    new (&g_unk_7172755d10) CStrId(fn_7100de8f78(WorldGraphId()));
+    fn_7100000250(fn_710000051c, &g_unk_7172755d10, &g_unk_7101a19000);
+    fn_7100acb4ac();
+    fn_710009ec00(&g_unk_7172755cf0, TUType<0x10>(g_unk_7172755d10));
+}
+
+extern UnkTUHeader g_unk_7172756998 __attribute__((visibility("hidden")));
+UnkReflType* fn_710025d654();  // base::reflection::refl_GetType<gameeditor::CGameModelIndex>
+extern char g_unk_7172756940;
+UnkReflType* fn_7100009658();  // base::reflection::refl_GetType<base::global::CStrId>
+extern UnkConverter g_unk_7172756948;
+void fn_7100ad37c0() __attribute__((visibility("hidden")));
+extern UnkValue g_unk_7172756968;
+extern UnkValue g_unk_7172756978;
+extern UnkValue g_unk_7172756988;
+extern const char g_unk_710164b8ab[];
+extern const char g_unk_710164b8ad[];
+extern const char g_unk_710164b8af[];
+
+void fn_7100ad39e0() {
+    InitHeader(g_unk_7172756998);
+    fn_710009ec00(&g_unk_7172756940, fn_710025d654());
+    InitConverter(g_unk_7172756948, fn_710025d654, fn_7100009658, fn_7100ad37c0);
+    new (&g_unk_7172756968) UnkValue(CStrId(g_unk_710164b8ab, true), fn_7100009658);
+    fn_7100000250(fn_710010c424, &g_unk_7172756968, &g_unk_7101a19000);
+    new (&g_unk_7172756978) UnkValue(CStrId(g_unk_710164b8ad, true), fn_7100009658);
+    fn_7100000250(fn_710010c424, &g_unk_7172756978, &g_unk_7101a19000);
+    new (&g_unk_7172756988) UnkValue(CStrId(g_unk_710164b8af, true), fn_7100009658);
+    fn_7100000250(fn_710010c424, &g_unk_7172756988, &g_unk_7101a19000);
+}
+
+extern UnkTUHeader g_unk_71727bc598 __attribute__((visibility("hidden")));
+extern UnkReflType g_unk_71727bc290;
+void fn_7100da684c();
+void fn_7100da6938(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
+extern char g_unk_71727bc3a8;
+void fn_7100dab9bc() __attribute__((visibility("hidden")));
+void fn_7100dab9c8() __attribute__((visibility("hidden")));
+extern UnkConverter g_unk_71727bc3b0;
+extern UnkConverter g_unk_71727bc3d0;
+extern UnkReflType g_unk_71727bc3f0;
+void fn_7100da6ab8();
+void fn_7100da6cc4(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
+extern char g_unk_71727bc508;
+void fn_7100dab9d4() __attribute__((visibility("hidden")));
+void fn_7100dab9e0() __attribute__((visibility("hidden")));
+extern UnkConverter g_unk_71727bc510;
+extern UnkConverter g_unk_71727bc530;
+extern UnkTUData g_unk_71727bc5b0 __attribute__((visibility("hidden")));
+void fn_7100da6e50(void*) __attribute__((visibility("hidden")));  // destroys an array
+void fn_7100da6f50(void*) __attribute__((visibility("hidden")));  // destroys an array
+void fn_7100da7408();  // CAIManager::CTunableAIManager::refl_GetClass
+extern char g_unk_71727bc550;
+extern UnkTunable g_unk_71727bc558;
+void fn_7100136ecc(UnkTunable* self);
+extern void* g_unk_7101aa9278[];
+void fn_7100075104(void* self);
+
+void fn_7100da7050() {
+    InitHeader(g_unk_71727bc598);
+    InitEnum(&g_unk_71727bc290, "CAIManager::EAIGroup", fn_7100da6938, fn_7100da684c);
+    fn_710009ec00(&g_unk_71727bc3a8, &g_unk_71727bc290);
+    InitEnumConverters(&g_unk_71727bc290, g_unk_71727bc3b0, fn_7100dab9bc, g_unk_71727bc3d0, fn_7100dab9c8);
+    InitEnum(&g_unk_71727bc3f0, "CAIManager::EBumpMode", fn_7100da6cc4, fn_7100da6ab8);
+    fn_710009ec00(&g_unk_71727bc508, &g_unk_71727bc3f0);
+    InitEnumConverters(&g_unk_71727bc3f0, g_unk_71727bc510, fn_7100dab9d4, g_unk_71727bc530, fn_7100dab9e0);
+    new (TUAt<CFilePathStrId, 0x30>(g_unk_71727bc5b0)) CFilePathStrId("actors/props/barelyice/models/barelyice00_weak.bcmdl", true);
+    new (TUAt<CFilePathStrId, 0x38>(g_unk_71727bc5b0)) CFilePathStrId("actors/props/barelyice/models/barelyice01_weak.bcmdl", true);
+    new (TUAt<CFilePathStrId, 0x40>(g_unk_71727bc5b0)) CFilePathStrId("actors/props/barelyice/models/barelyice02_weak.bcmdl", true);
+    fn_7100000250(fn_7100da6e50, nullptr, &g_unk_7101a19000);
+    new (TUAt<CFilePathStrId, 0x48>(g_unk_71727bc5b0)) CFilePathStrId("actors/props/barelyice/models/barelyice00_strong.bcmdl", true);
+    new (TUAt<CFilePathStrId, 0x50>(g_unk_71727bc5b0)) CFilePathStrId("actors/props/barelyice/models/barelyice01_strong.bcmdl", true);
+    new (TUAt<CFilePathStrId, 0x58>(g_unk_71727bc5b0)) CFilePathStrId("actors/props/barelyice/models/barelyice02_strong.bcmdl", true);
+    fn_7100000250(fn_7100da6f50, nullptr, &g_unk_7101a19000);
+    new (TUAt<CStrId, 0x0>(g_unk_71727bc5b0)) CStrId("ITEM_OPTIC_CAMOUFLAGE", true);
+    fn_7100000250(fn_710000051c, TUAt<CStrId, 0x0>(g_unk_71727bc5b0), &g_unk_7101a19000);
+    fn_7100da7408();
+    fn_710009ec00(&g_unk_71727bc550, TUType<0xb8>(g_unk_71727bc5b0));
+    InitTunable(&g_unk_71727bc558, fn_7100136ecc, g_unk_7101aa9278, fn_7100075104);
+}
+
+
+extern UnkTUHeader g_unk_7172791e70 __attribute__((visibility("hidden")));
+
+struct UnkElem188 {
+    virtual void vf_0x0();
+    virtual ~UnkElem188();
+    UnkElem188(UnkElem188&& other);  // fn_7100d36688
+    u8 unk_0x8[0x180];
+};
+extern base::UnkVector<UnkElem188> g_unk_7172791e48;
+void fn_7100c66ab0(void* vector);
+extern CStrId g_unk_7172791e88 __attribute__((visibility("hidden")));
+
+void fn_7100c77cd0() {
+    InitHeader(g_unk_7172791e70);
+    new (&g_unk_7172791e48) base::UnkVector<UnkElem188>(0xf);
+    g_unk_7172791e48.Reserve(50);
+    fn_7100000250(fn_7100c66ab0, &g_unk_7172791e48, &g_unk_7101a19000);
+    new (&g_unk_7172791e88) CStrId("ConeCollisionScene", true);
+    fn_7100000250(fn_710000051c, &g_unk_7172791e88, &g_unk_7101a19000);
+}
+
+extern UnkTUHeader g_unk_71727bc0f8 __attribute__((visibility("hidden")));
+extern UnkReflType g_unk_71727bbe68;
+void fn_7100da4720();
+void fn_7100da4a08(UnkReflType* self, const CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
+extern char g_unk_71727bbfa0;
+UnkReflType* fn_7100da4cf0();
+extern char g_unk_71727bbfa1;
+UnkReflType* fn_7100009658();  // base::reflection::refl_GetType<base::global::CStrId>
+extern UnkConverter g_unk_71727bbfa8;
+void fn_7100da5184() __attribute__((visibility("hidden")));
+extern CStrId g_unk_71727bbfc8;
+extern CStrId g_unk_71727bbfd0;
+struct UnkPair16 {
+    u64 field_0x0;
+    u64 field_0x8;
+};
+extern UnkPair16 g_unk_71727bbfd8;
+
+void fn_7100da54b0() {
+    InitHeader(g_unk_71727bc0f8);
+    InitClass(&g_unk_71727bbe68, "CBaseGameLink", fn_7100da4a08, fn_7100da4720);
+    fn_710009ec00(&g_unk_71727bbfa0, &g_unk_71727bbe68);
+    fn_710009ec00(&g_unk_71727bbfa1, fn_7100da4cf0());
+    InitConverterTo(g_unk_71727bbfa8, &g_unk_71727bbe68, fn_7100009658, fn_7100da5184);
+    new (&g_unk_71727bbfc8) CStrId("{EMPTY}", true);
+    fn_7100000250(fn_710000051c, &g_unk_71727bbfc8, &g_unk_7101a19000);
+    new (&g_unk_71727bbfd0) CStrId("{BROKEN}", true);
+    fn_7100000250(fn_710000051c, &g_unk_71727bbfd0, &g_unk_7101a19000);
+    g_unk_71727bbfd8.field_0x0 = 0;
+    g_unk_71727bbfd8.field_0x8 = 0;
+}
+
+
+extern UnkTUHeader g_unk_71729ce040 __attribute__((visibility("hidden")));
+extern UnkReflType g_unk_71729cdd78;
+void fn_7100eb695c();
+void fn_7100eb6b48(UnkReflType* self, const CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
+extern char g_unk_71729cdeb0;
+extern UnkReflType g_unk_71729cdeb8;
+void fn_7100eb6ccc();
+void fn_7100eb71d8(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
+extern char g_unk_71729cdfd0;
+void fn_7100ebecec() __attribute__((visibility("hidden")));
+void fn_7100ebecf8() __attribute__((visibility("hidden")));
+extern UnkConverter g_unk_71729cdfd8;
+extern UnkConverter g_unk_71729cdff8;
+extern UnkTUData g_unk_71729ce058 __attribute__((visibility("hidden")));
+void fn_7100eb7590(void* self);
+// An array-like global: three zero words, a growth step of 10, flags 0xe and the default
+// allocator.
+struct UnkArray_71729ce018 {
+    u64 field_0x0;
+    u64 field_0x8;
+    u64 field_0x10;
+    u32 field_0x18;
+    u32 field_0x1c;
+    base::UnkAllocator* allocator;
+};
+extern UnkArray_71729ce018 g_unk_71729ce018;
+
+void fn_7100ebefd0() {
+    InitHeader(g_unk_71729ce040);
+    InitClass(&g_unk_71729cdd78, "minimap::CAnimatedValue::SAnimConfig", fn_7100eb6b48, fn_7100eb695c);
+    fn_710009ec00(&g_unk_71729cdeb0, &g_unk_71729cdd78);
+    InitEnum(&g_unk_71729cdeb8, "minimap::EIconAnimID", fn_7100eb71d8, fn_7100eb6ccc);
+    fn_710009ec00(&g_unk_71729cdfd0, &g_unk_71729cdeb8);
+    InitEnumConverters(&g_unk_71729cdeb8, g_unk_71729cdfd8, fn_7100ebecec, g_unk_71729cdff8, fn_7100ebecf8);
+    new (TUAt<CStrId, 0x0>(g_unk_71729ce058)) CStrId("digital_medium", true);
+    fn_7100000250(fn_710000051c, TUAt<CStrId, 0x0>(g_unk_71729ce058), &g_unk_7101a19000);
+    g_unk_71729ce018.field_0x0 = 0;
+    g_unk_71729ce018.field_0x8 = 0;
+    g_unk_71729ce018.field_0x10 = 0;
+    g_unk_71729ce018.field_0x18 = 10;
+    g_unk_71729ce018.field_0x1c = 0xe;
+    g_unk_71729ce018.allocator = fn_7100083990();
+    fn_7100000250(fn_7100eb7590, &g_unk_71729ce018, &g_unk_7101a19000);
+}
+
