@@ -1026,6 +1026,15 @@ batch 15 functions that named the wrong string pool (`fn_71000cdbbc`, `fn_71000c
 default one, `fn_710000cc44` CFilePathStrId's); they now name the original's pool. Left: `fn_710001dc08` (an array
 erase, not the move-assign its size suggested).
 
+**Slice 1 near copies, batch 17** (stream 7, 2026-10-22): 5 functions **O**, 2 **m**
+(`src/game_s1/`). One is the `refl_InitClass` of an unnamed class whose getter is inlined into
+`fn_7100103ef0` (`fn_71000f56d4.cpp`). It is written as a hand-written trait specialization plus
+an explicit instantiation of the shared `CClass` constructor, because `gen_reflection.py` only
+emits classes that have a getter. The others are a move-assign of an id and file path record
+(`fn_710001d15c`, `fn_710001cd80`), equality of holders of an id and weak handles compared by
+target (`fn_7100244aac.cpp`), and file-path iterator copy-assigns at 73.6% that differ only in
+registers (`fn_71000cfe14`, `fn_71000cd658`, **m**).
+
 **dlmalloc 2.8.4 vendored** (stream 7, 2026-10-22, owner-approved): `lib/dlmalloc/` holds
 upstream `malloc.c` unmodified and `mspace.c` with the game's settings (README there). It was
 fetched from a mirror pinned to a commit in `tools/fetch_sources.py` and `data/sources.json`,
