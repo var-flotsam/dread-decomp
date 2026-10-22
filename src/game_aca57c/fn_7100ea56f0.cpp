@@ -63,3 +63,56 @@ void fn_7100ea56f0(UnkNumberedIds* self, u32 number) {
     fn_710007f564(&str, "_border");
     self->field_0x10 = UnkTempStrIdT(str);
 }
+
+// Builds a record's id from a string, with "[suffix]" appended when the suffix isn't empty, and
+// takes the word after the string.
+struct UnkReleasedStrId {
+    UnkStringData* data;
+
+    __attribute__((always_inline)) ~UnkReleasedStrId() {
+        if (UnkStringPool* pool = g_unk_7101d47108) {
+            if (data && data != &pool->empty) {
+                --data->ref_count;
+                if (data->ref_count == 0) {
+                    fn_71000803a4(pool, data);
+                    pool = g_unk_7101d47108;
+                }
+            }
+            data = &pool->empty;
+        }
+    }
+};
+
+extern void* g_unk_7101a1b750[];
+using UnkString80 = UnkBufferString<0x80, g_unk_7101a1b750>;
+
+struct UnkSuffix {
+    const char* data;
+};
+void fn_710007f5ac(void* self, char c);                // appends a character
+void fn_710007f3b4(void* self, const UnkSuffix* str);  // appends a string
+
+struct UnkStringWord {
+    u8 field_0x0[0xc8];
+    u64 field_0xc8;
+};
+
+struct UnkIdWord {
+    UnkReleasedStrId id;
+    u64 field_0x8;
+};
+
+void fn_7100ae9bb0(UnkIdWord* self, const UnkStringWord* source, const UnkSuffix* suffix) {
+    self->field_0x8 = source->field_0xc8;
+    UnkString80 str;
+    fn_710007eaa0(&str, source);
+    if (suffix->data && suffix->data[0]) {
+        fn_710007f5ac(&str, '[');
+        fn_710007f3b4(&str, suffix);
+        fn_710007f5ac(&str, ']');
+    }
+    UnkTempStrId id;
+    fn_7100000850(&id, &str, true);
+    self->id.~UnkReleasedStrId();
+    self->id.data = id.data;
+}

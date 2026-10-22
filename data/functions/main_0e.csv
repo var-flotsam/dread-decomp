@@ -3034,7 +3034,7 @@ address,size,name,name_source,subsystem,status
 0x7100eaf7d8,64,fn_7100eaf7d8,unknown,unknown,O
 0x7100eaf818,4,fn_7100eaf818,unknown,unknown,O
 0x7100eaf81c,64,fn_7100eaf81c,unknown,unknown,O
-0x7100eaf85c,212,fn_7100eaf85c,unknown,unknown,U
+0x7100eaf85c,212,fn_7100eaf85c,unknown,unknown,O
 0x7100eaf930,48,fn_7100eaf930,unknown,unknown,O
 0x7100eaf960,256,fn_7100eaf960,unknown,unknown,O
 0x7100eafa60,272,fn_7100eafa60,unknown,unknown,O
