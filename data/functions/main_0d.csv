@@ -2746,7 +2746,7 @@ address,size,name,name_source,subsystem,status
 0x7100d5c968,4,fn_7100d5c968,unknown,unknown,O
 0x7100d5c96c,456,fn_7100d5c96c,unknown,unknown,U
 0x7100d5cb34,4,operator.delete,symbol,unknown,O
-0x7100d5cb38,328,fn_7100d5cb38,unknown,unknown,U
+0x7100d5cb38,328,fn_7100d5cb38,unknown,unknown,m
 0x7100d5cc80,284,fn_7100d5cc80,unknown,unknown,U
 0x7100d5cd9c,268,fn_7100d5cd9c,unknown,unknown,U
 0x7100d5cea8,268,fn_7100d5cea8,unknown,unknown,U
@@ -4677,7 +4677,7 @@ address,size,name,name_source,subsystem,status
 0x7100da2774,128,fn_7100da2774,unknown,unknown,U
 0x7100da27f4,176,fn_7100da27f4,unknown,unknown,U
 0x7100da28a4,92,fn_7100da28a4,unknown,unknown,U
-0x7100da2900,328,fn_7100da2900,unknown,unknown,U
+0x7100da2900,328,fn_7100da2900,unknown,unknown,m
 0x7100da2a50,140,fn_7100da2a50,unknown,unknown,O
 0x7100da2adc,4,fn_7100da2adc,unknown,unknown,O
 0x7100da2ae0,244,CLockRoomLogicAction::refl_GetClass,reflection,game/ai,O

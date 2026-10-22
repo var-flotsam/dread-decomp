@@ -969,7 +969,7 @@ address,size,name,name_source,subsystem,status
 0x7100351ed4,268,fn_7100351ed4,unknown,unknown,U
 0x7100351fe0,220,fn_7100351fe0,unknown,unknown,U
 0x71003520bc,388,fn_71003520bc,unknown,unknown,U
-0x7100352240,380,fn_7100352240,unknown,unknown,U
+0x7100352240,380,fn_7100352240,unknown,unknown,O
 0x71003523bc,488,fn_71003523bc,unknown,unknown,U
 0x71003525a4,1072,fn_71003525a4,unknown,unknown,U
 0x71003529d4,16,fn_71003529d4,unknown,unknown,O
@@ -1652,7 +1652,7 @@ address,size,name,name_source,subsystem,status
 0x710036d734,244,behaviortree::CSetAnimationForImpact::refl_GetClass,reflection,ai/behaviortree,O
 0x710036d828,880,fn_710036d828,unknown,ai/behaviortree?,O
 0x710036db98,388,behaviortree::CSetAnimationForImpact::refl_InitClass,reflection,ai/behaviortree,O
-0x710036dd1c,248,fn_710036dd1c,unknown,ai/behaviortree?,U
+0x710036dd1c,248,fn_710036dd1c,unknown,ai/behaviortree?,O
 0x710036de14,524,fn_710036de14,unknown,ai/behaviortree?,U
 0x710036e020,252,fn_710036e020,unknown,ai/behaviortree?,U
 0x710036e11c,8,fn_710036e11c,unknown,ai/behaviortree?,O
@@ -1673,7 +1673,7 @@ address,size,name,name_source,subsystem,status
 0x710036e394,244,behaviortree::CSetAnimDependsOnDirAction::refl_GetClass,reflection,ai/behaviortree,O
 0x710036e488,4204,fn_710036e488,unknown,ai/behaviortree?,O
 0x710036f4f4,388,behaviortree::CSetAnimDependsOnDirAction::refl_InitClass,reflection,ai/behaviortree,O
-0x710036f678,392,fn_710036f678,unknown,ai/behaviortree?,U
+0x710036f678,392,fn_710036f678,unknown,ai/behaviortree?,O
 0x710036f800,312,fn_710036f800,unknown,ai/behaviortree?,U
 0x710036f938,3008,fn_710036f938,unknown,ai/behaviortree?,U
 0x71003704f8,768,fn_71003704f8,unknown,ai/behaviortree?,U
@@ -3751,7 +3751,7 @@ address,size,name,name_source,subsystem,status
 0x71003ac9ec,368,fn_71003ac9ec,unknown,unknown,U
 0x71003acb5c,688,fn_71003acb5c,unknown,unknown,U
 0x71003ace0c,520,fn_71003ace0c,unknown,unknown,U
-0x71003ad014,352,fn_71003ad014,unknown,unknown,U
+0x71003ad014,352,fn_71003ad014,unknown,unknown,O
 0x71003ad174,260,fn_71003ad174,unknown,unknown,U
 0x71003ad278,412,fn_71003ad278,unknown,unknown,O
 0x71003ad414,4,fn_71003ad414,unknown,unknown,O

@@ -305,7 +305,7 @@ address,size,name,name_source,subsystem,status
 0x7100511258,200,fn_7100511258,unknown,unknown,U
 0x7100511320,4,fn_7100511320,unknown,unknown,O
 0x7100511324,140,fn_7100511324,unknown,unknown,U
-0x71005113b0,1460,fn_71005113b0,unknown,unknown,U
+0x71005113b0,1460,fn_71005113b0,unknown,unknown,O
 0x7100511964,4,fn_7100511964,unknown,unknown,O
 0x7100511968,244,behaviortree::CEmmyChaseAction::refl_GetClass,reflection,ai/behaviortree,O
 0x7100511a5c,4,fn_7100511a5c,unknown,ai/behaviortree?,O
@@ -603,7 +603,7 @@ address,size,name,name_source,subsystem,status
 0x710052cd8c,380,fn_710052cd8c,unknown,unknown,O
 0x710052cf08,380,fn_710052cf08,unknown,unknown,O
 0x710052d084,380,fn_710052d084,unknown,unknown,O
-0x710052d200,1072,fn_710052d200,unknown,unknown,U
+0x710052d200,1072,fn_710052d200,unknown,unknown,O
 0x710052d630,112,fn_710052d630,unknown,unknown,O
 0x710052d6a0,120,fn_710052d6a0,unknown,unknown,O
 0x710052d718,328,fn_710052d718,unknown,unknown,U
@@ -2110,7 +2110,7 @@ address,size,name,name_source,subsystem,status
 0x7100581de0,424,fn_7100581de0,unknown,unknown,U
 0x7100581f88,252,fn_7100581f88,unknown,unknown,U
 0x7100582084,64,fn_7100582084,unknown,unknown,O
-0x71005820c4,284,fn_71005820c4,unknown,unknown,U
+0x71005820c4,284,fn_71005820c4,unknown,unknown,O
 0x71005821e0,4,fn_71005821e0,unknown,unknown,O
 0x71005821e4,444,fn_71005821e4,unknown,unknown,U
 0x71005823a0,4,fn_71005823a0,unknown,unknown,O
