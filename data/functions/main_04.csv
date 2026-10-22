@@ -261,7 +261,7 @@ address,size,name,name_source,subsystem,status
 0x7100413084,1692,fn_7100413084,unknown,unknown,U
 0x7100413720,1972,fn_7100413720,unknown,unknown,U
 0x7100413ed4,36,fn_7100413ed4,unknown,unknown,O
-0x7100413ef8,216,fn_7100413ef8,unknown,unknown,U
+0x7100413ef8,216,fn_7100413ef8,unknown,unknown,O
 0x7100413fd0,8,fn_7100413fd0,unknown,unknown,O
 0x7100413fd8,8,fn_7100413fd8,unknown,unknown,O
 0x7100413fe0,8,fn_7100413fe0,unknown,unknown,O
@@ -1486,7 +1486,7 @@ address,size,name,name_source,subsystem,status
 0x7100449064,244,behaviortree::CHyperDashAttackAction::refl_GetClass,reflection,ai/behaviortree,O
 0x7100449158,716,fn_7100449158,unknown,ai/behaviortree?,O
 0x7100449424,388,behaviortree::CHyperDashAttackAction::refl_InitClass,reflection,ai/behaviortree,O
-0x71004495a8,256,fn_71004495a8,unknown,ai/behaviortree?,U
+0x71004495a8,256,fn_71004495a8,unknown,ai/behaviortree?,O
 0x71004496a8,448,fn_71004496a8,unknown,ai/behaviortree?,U
 0x7100449868,220,fn_7100449868,unknown,ai/behaviortree?,U
 0x7100449944,664,fn_7100449944,unknown,ai/behaviortree?,U
@@ -1573,7 +1573,7 @@ address,size,name,name_source,subsystem,status
 0x710044ede8,1096,fn_710044ede8,unknown,unknown,U
 0x710044f230,2532,fn_710044f230,unknown,unknown,U
 0x710044fc14,36,fn_710044fc14,unknown,unknown,O
-0x710044fc38,788,fn_710044fc38,unknown,unknown,U
+0x710044fc38,788,fn_710044fc38,unknown,unknown,m
 0x710044ff4c,172,fn_710044ff4c,unknown,unknown,U
 0x710044fff8,140,fn_710044fff8,unknown,unknown,U
 0x7100450084,524,fn_7100450084,unknown,unknown,U
@@ -3126,7 +3126,7 @@ address,size,name,name_source,subsystem,status
 0x710048dda0,184,fn_710048dda0,unknown,unknown,O
 0x710048de58,616,fn_710048de58,unknown,unknown,U
 0x710048e0c0,36,fn_710048e0c0,unknown,unknown,O
-0x710048e0e4,368,fn_710048e0e4,unknown,unknown,U
+0x710048e0e4,368,fn_710048e0e4,unknown,unknown,m
 0x710048e254,312,fn_710048e254,unknown,unknown,U
 0x710048e38c,88,fn_710048e38c,unknown,unknown,U
 0x710048e3e4,464,fn_710048e3e4,unknown,unknown,U
@@ -5171,7 +5171,7 @@ address,size,name,name_source,subsystem,status
 0x71004d75c8,180,fn_71004d75c8,unknown,unknown,U
 0x71004d767c,160,fn_71004d767c,unknown,unknown,U
 0x71004d771c,216,fn_71004d771c,unknown,unknown,O
-0x71004d77f4,208,fn_71004d77f4,unknown,unknown,U
+0x71004d77f4,208,fn_71004d77f4,unknown,unknown,O
 0x71004d78c4,24,fn_71004d78c4,unknown,unknown,U
 0x71004d78dc,164,fn_71004d78dc,unknown,unknown,U
 0x71004d7980,604,fn_71004d7980,unknown,unknown,U

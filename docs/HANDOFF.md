@@ -744,6 +744,17 @@ property's name pointer is; the stream functions return an integer (a pointer co
 the branch weights and the block layout), and handlers return `u32` (with `bool`, the base
 handler's result is masked on return). More callers of these stream functions are under 2 KB
 (`fn_7101171fcc`, `fn_71010e4ab8`, `fn_71011608b4`, `fn_71010c4250` itself).
+Also **O**: a state-machine setup that creates 18 states and adds them to a keyed list
+(`fn_71010e2278`, 5.1 KB), and a GUI panel setup that keeps handles to 18 children found by name
+hash (`fn_71011dfeb0`, 5.3 KB). Both use the shared handles in `src/game_s7/UnkHandleS7.h`
+(an object's slot at vf_0x28, a handle created on first use). Findings: in the keyed list's add,
+the name is copied as raw bytes and the values are union members, or the count isn't reloaded;
+a temporary `CFilePathStrId` built inside the call's argument (not a named local) gives the
+original's join block; one callee needed its float parameters declared before the pointer to get
+the argument copies in order. The child hashes are CRC-64s computed at compile time; strings for
+some are in the binary (a reverse lookup over all strings finds them), the rest stay constants.
+Related `U` GUI setups that use the same child lookup (`fn_71011d98ec`): `fn_7100b39950` (12 KB),
+`fn_7100b49c88`, `fn_7100b4d4a4`, `fn_7100b92e9c`, `fn_7100b921e0`, `fn_7100b94320`.
 
 ## Known issues and gotchas
 
