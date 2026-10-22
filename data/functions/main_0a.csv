@@ -5813,7 +5813,7 @@ address,size,name,name_source,subsystem,status
 0x7100af6354,208,fn_7100af6354,unknown,gui?,O
 0x7100af6424,352,GUI::CChangeMenuStateButton::refl_InitClass,reflection,gui,O
 0x7100af6584,48,fn_7100af6584,unknown,gui?,O
-0x7100af65b4,308,fn_7100af65b4,unknown,gui?,U
+0x7100af65b4,308,fn_7100af65b4,unknown,gui?,O
 0x7100af66e8,28,fn_7100af66e8,unknown,gui?,O
 0x7100af6704,36,fn_7100af6704,unknown,gui?,O
 0x7100af6728,8,fn_7100af6728,unknown,gui?,O

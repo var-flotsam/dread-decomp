@@ -3321,7 +3321,7 @@ address,size,name,name_source,subsystem,status
 0x7100d6e97c,80,fn_7100d6e97c,unknown,unknown,O
 0x7100d6e9cc,84,fn_7100d6e9cc,unknown,unknown,O
 0x7100d6ea20,8,fn_7100d6ea20,unknown,unknown,O
-0x7100d6ea28,208,fn_7100d6ea28,unknown,unknown,U
+0x7100d6ea28,208,fn_7100d6ea28,unknown,unknown,O
 0x7100d6eaf8,252,fn_7100d6eaf8,unknown,unknown,O
 0x7100d6ebf4,252,fn_7100d6ebf4,unknown,unknown,O
 0x7100d6ecf0,4,fn_7100d6ecf0,unknown,unknown,O
@@ -3364,7 +3364,7 @@ address,size,name,name_source,subsystem,status
 0x7100d6f800,80,fn_7100d6f800,unknown,unknown,O
 0x7100d6f850,84,fn_7100d6f850,unknown,unknown,O
 0x7100d6f8a4,8,fn_7100d6f8a4,unknown,unknown,O
-0x7100d6f8ac,208,fn_7100d6f8ac,unknown,unknown,U
+0x7100d6f8ac,208,fn_7100d6f8ac,unknown,unknown,O
 0x7100d6f97c,252,fn_7100d6f97c,unknown,unknown,O
 0x7100d6fa78,252,fn_7100d6fa78,unknown,unknown,O
 0x7100d6fb74,4,fn_7100d6fb74,unknown,unknown,O
@@ -5015,9 +5015,9 @@ address,size,name,name_source,subsystem,status
 0x7100dc8828,288,fn_7100dc8828,unknown,unknown,O
 0x7100dc8948,288,fn_7100dc8948,unknown,unknown,O
 0x7100dc8a68,288,fn_7100dc8a68,unknown,unknown,O
-0x7100dc8b88,212,fn_7100dc8b88,unknown,unknown,U
-0x7100dc8c5c,212,fn_7100dc8c5c,unknown,unknown,U
-0x7100dc8d30,212,fn_7100dc8d30,unknown,unknown,U
+0x7100dc8b88,212,fn_7100dc8b88,unknown,unknown,O
+0x7100dc8c5c,212,fn_7100dc8c5c,unknown,unknown,O
+0x7100dc8d30,212,fn_7100dc8d30,unknown,unknown,O
 0x7100dc8e04,600,fn_7100dc8e04,unknown,unknown,U
 0x7100dc905c,512,fn_7100dc905c,unknown,unknown,O
 0x7100dc925c,176,fn_7100dc925c,unknown,unknown,U
@@ -5677,7 +5677,7 @@ address,size,name,name_source,subsystem,status
 0x7100dfb050,352,fn_7100dfb050,unknown,unknown,U
 0x7100dfb1b0,384,fn_7100dfb1b0,unknown,unknown,U
 0x7100dfb330,1064,fn_7100dfb330,unknown,unknown,U
-0x7100dfb758,472,fn_7100dfb758,unknown,unknown,U
+0x7100dfb758,472,fn_7100dfb758,unknown,unknown,O
 0x7100dfb930,632,fn_7100dfb930,unknown,unknown,U
 0x7100dfbba8,508,fn_7100dfbba8,unknown,unknown,U
 0x7100dfbda4,152,fn_7100dfbda4,unknown,unknown,U
