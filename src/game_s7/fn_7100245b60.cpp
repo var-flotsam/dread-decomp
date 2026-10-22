@@ -1,4 +1,4 @@
-// Copies of fn_7100d87614 (src/game_aca57c/fn_7100adae44.cpp) for other types, with their own callees: fn_7100245b60, fn_7101130b50.
+// Copies of fn_7100d87614 (src/game_aca57c/fn_7100adae44.cpp) for other types, with their own callees and data (the names, strings and comments below are the original's): fn_7100245b60, fn_7101130b50.
 // Assignments of a pair of values held either in place or by reference (state 2), from another
 // such pair: read and written through the state-dependent accessors.
 #include <new>

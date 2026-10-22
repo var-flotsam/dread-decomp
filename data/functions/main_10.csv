@@ -1751,9 +1751,9 @@ address,size,name,name_source,subsystem,status
 0x710104eca8,68,fn_710104eca8,unknown,unknown,U
 0x710104ecec,4,fn_710104ecec,unknown,unknown,O
 0x710104ecf0,64,fn_710104ecf0,unknown,unknown,O
-0x710104ed30,212,fn_710104ed30,unknown,unknown,U
+0x710104ed30,212,fn_710104ed30,unknown,unknown,O
 0x710104ee04,48,fn_710104ee04,unknown,unknown,O
-0x710104ee34,256,fn_710104ee34,unknown,unknown,U
+0x710104ee34,256,fn_710104ee34,unknown,unknown,O
 0x710104ef34,12,fn_710104ef34,unknown,unknown,O
 0x710104ef40,8,fn_710104ef40,unknown,unknown,O
 0x710104ef48,12,fn_710104ef48,unknown,unknown,O
@@ -1778,7 +1778,7 @@ address,size,name,name_source,subsystem,status
 0x710104f550,80,fn_710104f550,unknown,unknown,O
 0x710104f5a0,88,fn_710104f5a0,unknown,unknown,U
 0x710104f5f8,8,fn_710104f5f8,unknown,unknown,O
-0x710104f600,180,fn_710104f600,unknown,unknown,U
+0x710104f600,180,fn_710104f600,unknown,unknown,O
 0x710104f6b4,16,fn_710104f6b4,unknown,unknown,O
 0x710104f6c4,16,fn_710104f6c4,unknown,unknown,O
 0x710104f6d4,8,fn_710104f6d4,unknown,unknown,O
@@ -1792,9 +1792,9 @@ address,size,name,name_source,subsystem,status
 0x710104f85c,64,fn_710104f85c,unknown,unknown,O
 0x710104f89c,4,fn_710104f89c,unknown,unknown,O
 0x710104f8a0,64,fn_710104f8a0,unknown,unknown,O
-0x710104f8e0,212,fn_710104f8e0,unknown,unknown,U
+0x710104f8e0,212,fn_710104f8e0,unknown,unknown,O
 0x710104f9b4,48,fn_710104f9b4,unknown,unknown,O
-0x710104f9e4,256,fn_710104f9e4,unknown,unknown,U
+0x710104f9e4,256,fn_710104f9e4,unknown,unknown,O
 0x710104fae4,440,fn_710104fae4,unknown,unknown,U
 0x710104fc9c,404,fn_710104fc9c,unknown,unknown,U
 0x710104fe30,308,fn_710104fe30,unknown,unknown,U
@@ -1812,7 +1812,7 @@ address,size,name,name_source,subsystem,status
 0x71010503d0,104,fn_71010503d0,unknown,unknown,O
 0x7101050438,156,fn_7101050438,unknown,unknown,O
 0x71010504d4,156,fn_71010504d4,unknown,unknown,U
-0x7101050570,772,fn_7101050570,unknown,unknown,U
+0x7101050570,772,fn_7101050570,unknown,unknown,O
 0x7101050874,4,fn_7101050874,unknown,unknown,O
 0x7101050878,244,CLogicCamera::refl_GetClass,reflection,game,O
 0x710105096c,1476,fn_710105096c,unknown,game?,O
@@ -1945,7 +1945,7 @@ address,size,name,name_source,subsystem,status
 0x7101059a04,84,fn_7101059a04,unknown,unknown,U
 0x7101059a58,196,fn_7101059a58,unknown,unknown,U
 0x7101059b1c,224,fn_7101059b1c,unknown,unknown,O
-0x7101059bfc,324,fn_7101059bfc,unknown,unknown,U
+0x7101059bfc,324,fn_7101059bfc,unknown,unknown,O
 0x7101059d40,248,fn_7101059d40,unknown,unknown,U
 0x7101059e38,36,fn_7101059e38,unknown,unknown,O
 0x7101059e5c,304,fn_7101059e5c,unknown,unknown,U
