@@ -754,7 +754,16 @@ original's join block; one callee needed its float parameters declared before th
 the argument copies in order. The child hashes are CRC-64s computed at compile time; strings for
 some are in the binary (a reverse lookup over all strings finds them), the rest stay constants.
 Related `U` GUI setups that use the same child lookup (`fn_71011d98ec`): `fn_7100b39950` (12 KB),
-`fn_7100b49c88`, `fn_7100b4d4a4`, `fn_7100b92e9c`, `fn_7100b921e0`, `fn_7100b94320`.
+`fn_7100b49c88`, `fn_7100b4d4a4`, `fn_7100b92e9c`.
+The boss rush results screens (`fn_7100b94320`, `fn_7100b921e0`) are **m**; shared declarations are
+in `src/game_s7/UnkGuiS7.h`. The button callbacks are `std::function<void()>` built from
+`std::bind(&C::method, this)`; libc++'s small buffer holds the bind object. Finding for compositions
+looked up through the registry (`fn_71011b69d8`, also the menu setups in `src/game_aca57c/`): take
+a reference to the slot after assigning it (`self->composition = ...Get(); auto& c =
+self->composition;`), not before. The original keeps the slot's address in a register, set by
+pre-indexed stores, and only this order gives that. What's left: `fn_7100b94320` addresses five
+loads from the object rather than through that register, and in `fn_7100b921e0` a colour copy is
+only partly sunk below a branch.
 
 ## Known issues and gotchas
 
