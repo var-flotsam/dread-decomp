@@ -319,7 +319,7 @@ address,size,name,name_source,subsystem,status
 0x7100b09b10,624,fn_7100b09b10,unknown,unknown,U
 0x7100b09d80,880,fn_7100b09d80,unknown,unknown,U
 0x7100b0a0f0,8,fn_7100b0a0f0,unknown,unknown,O
-0x7100b0a100,848,fn_7100b0a100,unknown,unknown,U
+0x7100b0a100,848,fn_7100b0a100,unknown,unknown,O
 0x7100b0a450,636,fn_7100b0a450,unknown,unknown,O
 0x7100b0a6cc,352,fn_7100b0a6cc,unknown,unknown,O
 0x7100b0a82c,380,fn_7100b0a82c,unknown,unknown,O
@@ -441,7 +441,7 @@ address,size,name,name_source,subsystem,status
 0x7100b0d54c,20,fn_7100b0d54c,unknown,unknown,O
 0x7100b0d560,168,fn_7100b0d560,unknown,unknown,O
 0x7100b0d608,176,fn_7100b0d608,unknown,unknown,O
-0x7100b0d6c0,912,fn_7100b0d6c0,unknown,unknown,U
+0x7100b0d6c0,912,fn_7100b0d6c0,unknown,unknown,O
 0x7100b0da50,4,fn_7100b0da50,unknown,unknown,O
 0x7100b0da54,240,GUI::IDisplayObjectTrack::refl_GetClass,reflection,gui,O
 0x7100b0db44,4,fn_7100b0db44,unknown,gui?,O
@@ -2367,7 +2367,7 @@ address,size,name,name_source,subsystem,status
 0x7100b79670,20,fn_7100b79670,unknown,unknown,O
 0x7100b79684,168,fn_7100b79684,unknown,unknown,O
 0x7100b7972c,176,fn_7100b7972c,unknown,unknown,O
-0x7100b797e0,912,fn_7100b797e0,unknown,unknown,U
+0x7100b797e0,912,fn_7100b797e0,unknown,unknown,O
 0x7100b79b70,4,fn_7100b79b70,unknown,unknown,O
 0x7100b79b74,244,GUI::CSlotInfoComposition::refl_GetClass,reflection,gui,O
 0x7100b79c68,4,fn_7100b79c68,unknown,gui?,O
@@ -2587,7 +2587,7 @@ address,size,name,name_source,subsystem,status
 0x7100b81264,8,fn_7100b81264,unknown,unknown,O
 0x7100b8126c,16,fn_7100b8126c,unknown,unknown,O
 0x7100b8127c,12,fn_7100b8127c,unknown,unknown,O
-0x7100b81290,912,fn_7100b81290,unknown,unknown,U
+0x7100b81290,912,fn_7100b81290,unknown,unknown,O
 0x7100b81620,268,fn_7100b81620,unknown,unknown,O
 0x7100b8172c,388,fn_7100b8172c,unknown,unknown,O
 0x7100b818b0,268,fn_7100b818b0,unknown,unknown,O
@@ -2720,7 +2720,7 @@ address,size,name,name_source,subsystem,status
 0x7100b84804,20,fn_7100b84804,unknown,unknown,O
 0x7100b84818,168,fn_7100b84818,unknown,unknown,O
 0x7100b848c0,176,fn_7100b848c0,unknown,unknown,O
-0x7100b84970,1076,fn_7100b84970,unknown,unknown,U
+0x7100b84970,1076,fn_7100b84970,unknown,unknown,O
 0x7100b84da4,4,fn_7100b84da4,unknown,unknown,O
 0x7100b84da8,244,GUI::CSubtitleComposition::refl_GetClass,reflection,gui,O
 0x7100b84e9c,4,fn_7100b84e9c,unknown,gui?,O
