@@ -785,14 +785,15 @@ entry has the implicit copy: the plain members are copied as one block. `fn_7100
 `__insertion_sort_incomplete` are **O** and the rest **m** (register choice). The second has an
 out-of-line comparator (`fn_71003cd4fc`, **O**) that returns a word: the callers test all of `w0`
 (`cbz`), not bit 0 as they would for a `bool`. `fn_710072a110.cpp` sorts object pointers nearest
-first: `__sort3/4/5` **O**, the two with insertion loops **m**. `fn_710010e470.cpp` sorts boxes
+first: all five **O** (through a class iterator, see below). `fn_710010e470.cpp` sorts boxes
 by the centre on one axis: all five **m** (see its note). Other findings:
 - The game's `swap` is always inlined, so the element needs an `always_inline` ADL `swap`.
 - `__sort` switches to insertion sort below 30 elements for trivially copyable types and below 6
   otherwise. `lib/libcxx/sort.h` now computes this the way libc++ does.
 - Temporaries made in one comparison get separate stack slots.
 - Writing an expression term by term keeps the original's order.
-- With 8-byte elements, our insertion loops walk an index where the original walks a pointer.
+- With 8-byte elements sorted through raw pointers, our insertion loops walk an index where the
+  original walks a pointer. The fix is the class iterator below.
 - Some game comparators have internal linkage (an anonymous namespace). Then every
   instantiation is internal, and `std::__sort` inlines its one call to `__insertion_sort_3`. This
   made `fn_7100338620`'s `__sort` **O** with plain `std::__sort`, without `lib/libcxx/sort.h`.
@@ -809,7 +810,7 @@ by the centre on one axis: all five **m** (see its note). Other findings:
 
 Three more families: `fn_7100354e10` and `fn_710081ccd0` (0x48-byte entries, nearest first with
 z taken as 0) and `fn_71010dd1d0` (entry pointers by depth, then by tile group). The insertion
-sorts of the first two and `fn_71010dd1d0`'s `__sort4` are **O**; the rest are **m**.
+sorts of the first two and all of `fn_71010dd1d0` are **O**; the rest are **m**.
 - The distance with z taken as 0 matched when each position is copied into a vector with z = 0
   and a comparator member takes the full 3D distance to it. Writing out the 2D terms plus `z * z`
   gives the right values in the wrong load order.
@@ -821,12 +822,23 @@ sorts of the first two and `fn_71010dd1d0`'s `__sort4` are **O**; the rest are *
   call targets, so they don't need names here.
 
 `fn_7100abbd40` is the same code as `fn_7100354e10`'s family. `fn_71001e2e30` sorts object pointers
-by a float in a copied info block, with an internal comparator: `__sort3/4/5` **O**, the rest **m**.
+by a float in a copied info block, with an internal comparator: all five **O**.
 
-Claimed by stream 7 (thread `claude/project-thread-slp42f`, 2026-10-22), although each `__sort` is
-under 2 KB: the clone sort families `fn_71000a0660`/`fn_71000a5e00` and
-`fn_71002c5c00`/`fn_71007f6100`/`fn_71007f6b90`/`fn_71007f7620`, with their helpers. Hand slices,
-leave these to stream 7.
+**Sort through a class iterator.** Many of the game's pointer containers have their own iterator
+class, and libc++ then instantiates the helpers on it rather than on a raw pointer.
+`src/game_s7/UnkIter.h` is a minimal random-access iterator over a plain array. Sorting through it
+fixes three differences at once:
+- the insertion loops walk a pointer, not an index;
+- `__sort4`/`__sort5` inline the way the game's do;
+- the halving in `__sort` is unsigned, even with plain `std::__sort`.
+
+With it, `fn_710072a110`, `fn_71010dd1d0` and `fn_71001e2e30` became fully **O**. So did the clone
+families `fn_71000a0660`/`fn_71000a5e00` (by name, `strcmp`) and
+`fn_71002c5c00`/`fn_71007f6100`/`fn_71007f6b90`/`fn_71007f7620` (by a float; the float is in a
+union, so the original reloads it after each element store). Try the iterator first on any sort
+family of 8-byte elements whose insertion loops are **m**. It doesn't help the 0x48-byte handle
+families (`fn_7100566930`, `fn_71003cd6e0`, `fn_7100354e10`, `fn_710081ccd0`), `fn_710010e470` or
+`fn_7100338620`.
 
 More instantiations found by their recursion (each 2 KB, or with 2 KB helpers):
 - `fn_7100134020`

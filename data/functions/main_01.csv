@@ -4181,11 +4181,11 @@ address,size,name,name_source,subsystem,status
 0x71001e26a4,1044,fn_71001e26a4,unknown,unknown,U
 0x71001e2ab8,20,fn_71001e2ab8,unknown,unknown,O
 0x71001e2acc,856,fn_71001e2acc,unknown,unknown,U
-0x71001e2e30,4024,fn_71001e2e30,unknown,unknown,m
+0x71001e2e30,4024,fn_71001e2e30,unknown,unknown,O
 0x71001e3df0,1304,fn_71001e3df0,unknown,unknown,O
 0x71001e4310,1000,fn_71001e4310,unknown,unknown,O
 0x71001e4700,1308,fn_71001e4700,unknown,unknown,O
-0x71001e4c20,1168,fn_71001e4c20,unknown,unknown,m
+0x71001e4c20,1168,fn_71001e4c20,unknown,unknown,O
 0x71001e50b0,468,fn_71001e50b0,unknown,unknown,U
 0x71001e5284,208,fn_71001e5284,unknown,unknown,U
 0x71001e5354,124,fn_71001e5354,unknown,unknown,O

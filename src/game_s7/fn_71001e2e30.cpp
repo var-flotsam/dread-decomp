@@ -1,9 +1,10 @@
-// libc++ std::sort helpers instantiated for a list of object pointers, ordered by a float in each
+// libc++ std::sort helpers instantiated for a container of object pointers (through its own
+// iterator class), ordered by a float in each
 // object's info block. The comparator copies both blocks into default-constructed temporaries
 // before comparing them. Names and layouts are placeholders.
 #include <algorithm>
-#include "../../lib/libcxx/sort.h"
 #include "types.h"
+#include "UnkIter.h"
 
 // Default-constructed out of line (fn_710021685c); its virtual destructor is fn_7100216934.
 struct UnkInfo_71001e2e30 {
@@ -80,25 +81,14 @@ using C = UnkCmp_71001e2e30;
 
 // Not in the game: a direct call, so that the internal instantiations are emitted and their
 // unused comparator arguments dropped, as in the game.
-void unk_anchor_71001e2e30(P* first, P* last) {
-    C c;
-    libcxx_adapted::__sort<C&>(first, last, c);
+void unk_anchor_71001e2e30(UnkIter<P> first, UnkIter<P> last) {
+    std::sort(first, last, C());
 }
 
 // The instantiations are internal, so their names are set in assembly (an alias would keep the
-// comparator arguments). The declarations below only carry the annotations.
-asm(".globl fn_71001e2e30\n.set fn_71001e2e30, _ZN14libcxx_adapted6__sortIRN12_GLOBAL__N_117UnkCmp_71001e2e30EPP17UnkObj_71001e2e30EEvT0_S7_T_");
-asm(".globl fn_71001e3df0\n.set fn_71001e3df0, _ZNSt3__17__sort3IRN12_GLOBAL__N_117UnkCmp_71001e2e30EPP17UnkObj_71001e2e30EEjT0_S7_S7_T_");
-asm(".globl fn_71001e4310\n.set fn_71001e4310, _ZNSt3__17__sort4IRN12_GLOBAL__N_117UnkCmp_71001e2e30EPP17UnkObj_71001e2e30EEjT0_S7_S7_S7_T_");
-asm(".globl fn_71001e4700\n.set fn_71001e4700, _ZNSt3__17__sort5IRN12_GLOBAL__N_117UnkCmp_71001e2e30EPP17UnkObj_71001e2e30EEjT0_S7_S7_S7_S7_T_");
-asm(".globl fn_71001e4c20\n.set fn_71001e4c20, _ZNSt3__127__insertion_sort_incompleteIRN12_GLOBAL__N_117UnkCmp_71001e2e30EPP17UnkObj_71001e2e30EEbT0_S7_T_");
-extern "C" {
-// NON_MATCHING(minor): the adapted std::__sort; the inlined insertion sort walks the elements with
-// another pointer, and other values move between registers and the stack. Same behaviour.
-void fn_71001e2e30()
-    ;
-// NON_MATCHING(minor): the insertion loop walks an index where the original walks a pointer; same
-// behaviour.
-void fn_71001e4c20()
-    ;
-}
+// comparator arguments).
+asm(".globl fn_71001e2e30\n.set fn_71001e2e30, _ZNSt3__16__sortIRN12_GLOBAL__N_117UnkCmp_71001e2e30E7UnkIterIP17UnkObj_71001e2e30EEEvT0_S8_T_");
+asm(".globl fn_71001e3df0\n.set fn_71001e3df0, _ZNSt3__17__sort3IRN12_GLOBAL__N_117UnkCmp_71001e2e30E7UnkIterIP17UnkObj_71001e2e30EEEjT0_S8_S8_T_");
+asm(".globl fn_71001e4310\n.set fn_71001e4310, _ZNSt3__17__sort4IRN12_GLOBAL__N_117UnkCmp_71001e2e30E7UnkIterIP17UnkObj_71001e2e30EEEjT0_S8_S8_S8_T_");
+asm(".globl fn_71001e4700\n.set fn_71001e4700, _ZNSt3__17__sort5IRN12_GLOBAL__N_117UnkCmp_71001e2e30E7UnkIterIP17UnkObj_71001e2e30EEEjT0_S8_S8_S8_S8_T_");
+asm(".globl fn_71001e4c20\n.set fn_71001e4c20, _ZNSt3__127__insertion_sort_incompleteIRN12_GLOBAL__N_117UnkCmp_71001e2e30E7UnkIterIP17UnkObj_71001e2e30EEEbT0_S8_T_");

@@ -4433,9 +4433,9 @@ address,size,name,name_source,subsystem,status
 0x71002c58a4,40,fn_71002c58a4,unknown,ai/querysystem?,O
 0x71002c58cc,720,fn_71002c58cc,unknown,ai/querysystem?,U
 0x71002c5b9c,88,fn_71002c5b9c,unknown,ai/querysystem?,U
-0x71002c5c00,1616,fn_71002c5c00,unknown,ai/querysystem?,U
-0x71002c6250,348,fn_71002c6250,unknown,ai/querysystem?,U
-0x71002c63b0,724,fn_71002c63b0,unknown,ai/querysystem?,U
+0x71002c5c00,1616,fn_71002c5c00,unknown,ai/querysystem?,O
+0x71002c6250,348,fn_71002c6250,unknown,ai/querysystem?,O
+0x71002c63b0,724,fn_71002c63b0,unknown,ai/querysystem?,O
 0x71002c6684,504,fn_71002c6684,unknown,ai/querysystem?,U
 0x71002c6880,140,fn_71002c6880,unknown,ai/querysystem?,O
 0x71002c690c,4,fn_71002c690c,unknown,ai/querysystem?,O
