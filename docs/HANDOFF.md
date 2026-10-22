@@ -682,6 +682,20 @@ The ten largest `U` functions held 458 KB (2.4 points). What they are:
 | 0x7100ae39e0 | 21 KB | Reflection registration of a save-data class (fields with descriptions) | Stream 4 |
 | 0x7100e72680 | 17 KB | `CMinimapDef` reflection registration | Stream 4 |
 
+**Above 2 KB, outside the six hand slices (`src/game_s7/`, 2026-10-21).** 559 `U` functions above
+2 KB held 2.18 MB. Most call-table candidates are singletons; the static initialisers were dropped
+(their globals are merged by GlobalMerge, and the original's post-increment folding can't be
+reproduced through an `extern char[]`). Done: the loading-screen tips registration
+`fn_7100e17d14` (**O**, 60 calls through an `std::initializer_list` pair), and libc++'s
+`std::sort` helpers instantiated for a ref-counted handle list (`fn_710117d4d0.cpp`): `__sort3`,
+`__sort4`, `__sort5` **O** and `__insertion_sort_incomplete` **m**, each mapped to its address
+through an `alias` declaration. The comparator takes its handles by value and has external
+linkage (an anonymous namespace changes the load order). `__sort` itself (`fn_710117c430`,
+4 KB) stays `U`: the original halves the length unsigned and inlines `__insertion_sort_3`,
+unlike libc++ 9.0.1; a specialisation adapted from libc++'s body gets the same instructions in a
+different block layout, but copying libc++ source into `src/` needs the owner's word on
+licensing first. Left for hand work: `fn_7101144a5c`, `fn_7100e68f44`, `fn_7100dd3624`.
+
 ## Known issues and gotchas
 
 - **Linux:** the tools also run on Linux with upstream clang+llvm 9.0.1 (the Linux release tarball, with a `bin/clang++.exe` symlink to `clang++` at the path `fetch_toolchains.clang_path` expects) and `llvm-cxxfilt` on PATH. Results are identical to Windows.
