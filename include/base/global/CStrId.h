@@ -152,6 +152,20 @@ public:
             data = &pool->empty;
         }
     }
+    // The release part of ReleaseAndTake on its own (fn_71002ee65c): the same two-step release,
+    // leaving the empty id.
+    void Reset() {
+        if (UnkStringPool* pool = g_unk_7101d47108) {
+            if (data && data != &pool->empty) {
+                --data->ref_count;
+                if (data->ref_count == 0) {
+                    fn_71000803a4(pool, data);
+                    pool = g_unk_7101d47108;
+                }
+            }
+            data = &pool->empty;
+        }
+    }
     // The move assignment of the records that hold an id (fn_71002e1dc0, fn_71003eeca8): the id is
     // released like a destructor would, but in two steps (the original reloads `data` and the
     // count after the decrement), then takes the other's; the other gets the empty id.
