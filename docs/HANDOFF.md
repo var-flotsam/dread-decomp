@@ -695,10 +695,10 @@ reproduced through an `extern char[]`). Done: the loading-screen tips registrati
 `__sort4`, `__sort5` **O** and `__insertion_sort_incomplete` **m**, each mapped to its address
 through an `alias` declaration. The comparator takes its handles by value and has external
 linkage (an anonymous namespace changes the load order). `__sort` itself (`fn_710117c430`,
-4 KB) stays `U`: the original halves the length unsigned and inlines `__insertion_sort_3`,
-unlike libc++ 9.0.1; a specialisation adapted from libc++'s body gets the same instructions in a
-different block layout, but copying libc++ source into `src/` needs the owner's word on
-licensing first. Left for hand work: `fn_7101144a5c`, `fn_7100e68f44`, `fn_7100dd3624`.
+4 KB) is **m**: the original halves the length unsigned and inlines `__insertion_sort_3`, unlike
+libc++ 9.0.1, so its body is an adapted copy of libc++'s in `lib/libcxx/sort.h` (owner-approved,
+with LLVM's license); it has the same operations in another block layout. Left for hand work:
+`fn_7101144a5c`, `fn_7100e68f44`, `fn_7100dd3624`.
 
 Static initialisers above 2 KB (31, 152 KB) are this stream's too (the coordinator's call,
 2026-10-22). Sources are written with slice 3's helpers (`src/game_5821e4/UnkStaticInit.h`) plus

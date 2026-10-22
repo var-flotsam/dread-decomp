@@ -1,8 +1,9 @@
 // libc++ std::sort helpers instantiated for a list of ref-counted object handles, sorted by the
 // u32 at +0x60 in descending order. The comparator takes its arguments by value, so every
 // comparison copies (and releases) both handles. std::__sort itself (fn_710117c430) differs from
-// libc++ 9.0.1 (signed versus unsigned len / 2) and stays undecompiled.
+// libc++ 9.0.1, so its body is the adapted copy in lib/libcxx/sort.h.
 #include <algorithm>
+#include "../../lib/libcxx/sort.h"
 #include "types.h"
 
 struct UnkObj {
@@ -45,6 +46,7 @@ struct UnkSortCmp {
     bool operator()(UnkRef a, UnkRef b) const { return b.p->field_0x60 < a.p->field_0x60; }
 };
 
+template void libcxx_adapted::__sort<UnkSortCmp, UnkRef*>(UnkRef*, UnkRef*, UnkSortCmp);
 template unsigned std::__sort3<UnkSortCmp, UnkRef*>(UnkRef*, UnkRef*, UnkRef*, UnkSortCmp);
 template unsigned std::__sort4<UnkSortCmp, UnkRef*>(UnkRef*, UnkRef*, UnkRef*, UnkRef*, UnkSortCmp);
 template unsigned std::__sort5<UnkSortCmp, UnkRef*>(UnkRef*, UnkRef*, UnkRef*, UnkRef*, UnkRef*,
@@ -61,3 +63,8 @@ unsigned fn_710117e030(UnkRef*, UnkRef*, UnkRef*, UnkRef*, UnkRef*, UnkSortCmp)
 // to xzr; same behaviour.
 bool fn_710117e5b0(UnkRef*, UnkRef*, UnkSortCmp)
     __attribute__((alias("_ZNSt3__127__insertion_sort_incompleteI10UnkSortCmpP6UnkRefEEbT0_S4_T_")));
+// NON_MATCHING(minor): same algorithm and operations, but the original lays the blocks out in
+// another order (partition loops and handle releases) and duplicates a few (17 more instructions);
+// same behaviour.
+void fn_710117c430(UnkRef*, UnkRef*, UnkSortCmp)
+    __attribute__((alias("_ZN14libcxx_adapted6__sortI10UnkSortCmpP6UnkRefEEvT0_S4_T_")));
