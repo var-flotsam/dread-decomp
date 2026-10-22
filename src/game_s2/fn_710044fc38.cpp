@@ -48,15 +48,14 @@ __attribute__((always_inline)) static inline void RegisterState(UnkCmdComponent*
                                                                 void (*init)(void*, char*), u32 actor_off) {
     char* base = reinterpret_cast<char*>(self);
     char* member = base + member_off;
-    void** list = self->field_0x161c;
+    // Addressed by hand: an array member would be materialised ahead of the first store.
+    char* list = base + 0x161c;
     u32 n = self->field_0x1618;
-    list[n] = member;
+    *reinterpret_cast<void**>(list + ((u64)n << 3)) = member;
     self->field_0x1618 = n + 1;
     init(member, reinterpret_cast<UnkCmdActorRef*>(self)->actor + actor_off);
 }
 
-// NON_MATCHING(minor): the list base (+0x161c) is materialised before the actor store instead of after
-// the first state's address (scheduling only)
 bool fn_710044fc38(UnkCmdComponent* self) {
     bool result = fn_71003ac8f4(self);
     UnkCmdActor* obj = self->field_0x10;

@@ -37,14 +37,14 @@ struct __attribute__((packed)) UnkStateActorRef {
 __attribute__((always_inline)) static inline void RegisterState(UnkStateComponent* self, u32 member_off,
                                                                 void (*init)(void*, char*), u32 data_off) {
     char* member = reinterpret_cast<char*>(self) + member_off;
+    // Addressed by hand: an array member would be materialised ahead of the first store.
+    char* list = reinterpret_cast<char*>(self) + 0x161c;
     u32 n = self->field_0x1618;
-    self->field_0x161c[n] = member;
+    *reinterpret_cast<void**>(list + ((u64)n << 3)) = member;
     self->field_0x1618 = n + 1;
     init(member, reinterpret_cast<UnkStateActorRef*>(self)->actor + data_off);
 }
 
-// NON_MATCHING(minor): the list base (+0x161c) is materialised before the actor store instead of after
-// the first state's address (scheduling only)
 bool fn_710048e0e4(UnkStateComponent* self) {
     bool result = fn_7100498a38(self);
     UnkStateActor* obj = self->field_0x10;
