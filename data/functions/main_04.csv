@@ -3445,7 +3445,7 @@ address,size,name,name_source,subsystem,status
 0x7100497a44,12,fn_7100497a44,unknown,unknown,O
 0x7100497a50,232,fn_7100497a50,unknown,unknown,O
 0x7100497b38,760,fn_7100497b38,unknown,unknown,U
-0x7100497e30,248,fn_7100497e30,unknown,unknown,U
+0x7100497e30,248,fn_7100497e30,unknown,unknown,O
 0x7100497f28,4,fn_7100497f28,unknown,unknown,O
 0x7100497f2c,244,CChozoWarriorAIComponent::refl_GetClass,reflection,game/ai,O
 0x7100498020,388,fn_7100498020,unknown,game/ai?,O
@@ -3918,7 +3918,7 @@ address,size,name,name_source,subsystem,status
 0x71004a8728,472,fn_71004a8728,unknown,unknown,O
 0x71004a8900,80,fn_71004a8900,unknown,unknown,O
 0x71004a8950,56,fn_71004a8950,unknown,unknown,O
-0x71004a8988,224,fn_71004a8988,unknown,unknown,U
+0x71004a8988,224,fn_71004a8988,unknown,unknown,O
 0x71004a8a68,8,fn_71004a8a68,unknown,unknown,O
 0x71004a8a70,12,fn_71004a8a70,unknown,unknown,O
 0x71004a8a7c,8,fn_71004a8a7c,unknown,unknown,O
@@ -4658,7 +4658,7 @@ address,size,name,name_source,subsystem,status
 0x71004be2bc,20,fn_71004be2bc,unknown,unknown,O
 0x71004be2d0,260,fn_71004be2d0,unknown,unknown,O
 0x71004be3d4,268,fn_71004be3d4,unknown,unknown,O
-0x71004be4e0,224,fn_71004be4e0,unknown,unknown,U
+0x71004be4e0,224,fn_71004be4e0,unknown,unknown,O
 0x71004be5c0,8,fn_71004be5c0,unknown,unknown,O
 0x71004be5c8,12,fn_71004be5c8,unknown,unknown,O
 0x71004be5d4,8,fn_71004be5d4,unknown,unknown,O
@@ -4670,7 +4670,7 @@ address,size,name,name_source,subsystem,status
 0x71004be740,472,fn_71004be740,unknown,unknown,O
 0x71004be918,80,fn_71004be918,unknown,unknown,O
 0x71004be968,56,fn_71004be968,unknown,unknown,O
-0x71004be9a0,224,fn_71004be9a0,unknown,unknown,U
+0x71004be9a0,224,fn_71004be9a0,unknown,unknown,O
 0x71004bea80,8,fn_71004bea80,unknown,unknown,O
 0x71004bea88,12,fn_71004bea88,unknown,unknown,O
 0x71004bea94,8,fn_71004bea94,unknown,unknown,O
