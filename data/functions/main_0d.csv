@@ -1057,7 +1057,7 @@ address,size,name,name_source,subsystem,status
 0x7100d17558,244,CCharClassMaterialPropertyTransitionTrack::refl_GetClass,reflection,game/characters,O
 0x7100d1764c,3776,fn_7100d1764c,unknown,game/characters?,O
 0x7100d1850c,368,CCharClassMaterialPropertyTransitionTrack::refl_InitClass,reflection,game/characters,O
-0x7100d1867c,204,fn_7100d1867c,unknown,game/characters?,U
+0x7100d1867c,204,fn_7100d1867c,unknown,game/characters?,O
 0x7100d18748,484,fn_7100d18748,unknown,game/characters?,O
 0x7100d1892c,36,fn_7100d1892c,unknown,game/characters?,O
 0x7100d18950,28,fn_7100d18950,unknown,game/characters?,O
@@ -1139,7 +1139,7 @@ address,size,name,name_source,subsystem,status
 0x7100d1a874,12,fn_7100d1a874,unknown,game/characters?,O
 0x7100d1a880,8,fn_7100d1a880,unknown,game/characters?,O
 0x7100d1a888,28,fn_7100d1a888,unknown,game/characters?,O
-0x7100d1a8a4,92,fn_7100d1a8a4,unknown,game/characters?,U
+0x7100d1a8a4,92,fn_7100d1a8a4,unknown,game/characters?,O
 0x7100d1a900,96,fn_7100d1a900,unknown,game/characters?,O
 0x7100d1a960,96,fn_7100d1a960,unknown,game/characters?,O
 0x7100d1a9c0,12,fn_7100d1a9c0,unknown,game/characters?,O
@@ -1169,7 +1169,7 @@ address,size,name,name_source,subsystem,status
 0x7100d1b894,12,fn_7100d1b894,unknown,game/characters?,O
 0x7100d1b8a0,8,fn_7100d1b8a0,unknown,game/characters?,O
 0x7100d1b8a8,28,fn_7100d1b8a8,unknown,game/characters?,O
-0x7100d1b8c4,144,fn_7100d1b8c4,unknown,game/characters?,U
+0x7100d1b8c4,144,fn_7100d1b8c4,unknown,game/characters?,m
 0x7100d1b954,172,fn_7100d1b954,unknown,game/characters?,O
 0x7100d1ba00,172,fn_7100d1ba00,unknown,game/characters?,O
 0x7100d1baac,12,fn_7100d1baac,unknown,game/characters?,O
@@ -1260,7 +1260,7 @@ address,size,name,name_source,subsystem,status
 0x7100d223c0,12,fn_7100d223c0,unknown,game/characters?,O
 0x7100d223cc,8,fn_7100d223cc,unknown,game/characters?,O
 0x7100d223d4,28,fn_7100d223d4,unknown,game/characters?,O
-0x7100d223f0,152,fn_7100d223f0,unknown,game/characters?,U
+0x7100d223f0,152,fn_7100d223f0,unknown,game/characters?,O
 0x7100d22488,388,fn_7100d22488,unknown,game/characters?,O
 0x7100d2260c,388,fn_7100d2260c,unknown,game/characters?,O
 0x7100d22790,12,fn_7100d22790,unknown,game/characters?,O
