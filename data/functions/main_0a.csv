@@ -2651,7 +2651,7 @@ address,size,name,name_source,subsystem,status
 0x7100a64a48,8,fn_7100a64a48,unknown,unknown,O
 0x7100a64a50,8,fn_7100a64a50,unknown,unknown,O
 0x7100a64a58,344,fn_7100a64a58,unknown,unknown,U
-0x7100a64bb0,2056,fn_7100a64bb0,unknown,unknown,U
+0x7100a64bb0,2056,fn_7100a64bb0,unknown,unknown,O
 0x7100a653b8,120,fn_7100a653b8,unknown,unknown,O
 0x7100a65430,4,fn_7100a65430,unknown,unknown,O
 0x7100a65434,244,CWaterTriggerChangeComponent::refl_GetClass,reflection,game/components,O

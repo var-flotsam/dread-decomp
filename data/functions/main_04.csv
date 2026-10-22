@@ -4767,7 +4767,7 @@ address,size,name,name_source,subsystem,status
 0x71004c0dac,28,fn_71004c0dac,unknown,unknown,O
 0x71004c0dc8,4,fn_71004c0dc8,unknown,unknown,O
 0x71004c0dcc,12,fn_71004c0dcc,unknown,unknown,O
-0x71004c0de0,2100,fn_71004c0de0,unknown,unknown,U
+0x71004c0de0,2100,fn_71004c0de0,unknown,unknown,O
 0x71004c1614,4,fn_71004c1614,unknown,unknown,O
 0x71004c1618,244,CCooldownXBossAttack::refl_GetClass,reflection,game/ai,O
 0x71004c170c,4,fn_71004c170c,unknown,game/ai?,O
@@ -5120,7 +5120,7 @@ address,size,name,name_source,subsystem,status
 0x71004d559c,564,fn_71004d559c,unknown,unknown,U
 0x71004d57d0,24,fn_71004d57d0,unknown,unknown,O
 0x71004d57e8,4,fn_71004d57e8,unknown,unknown,O
-0x71004d57f0,3520,fn_71004d57f0,unknown,unknown,U
+0x71004d57f0,3520,fn_71004d57f0,unknown,unknown,O
 0x71004d65b0,4,fn_71004d65b0,unknown,unknown,O
 0x71004d65b4,244,CCooldownXBossWeakPointLifeComponent::refl_GetClass,reflection,game/components,O
 0x71004d66a8,4,fn_71004d66a8,unknown,game/components?,O

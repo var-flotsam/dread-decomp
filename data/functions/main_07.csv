@@ -2394,7 +2394,7 @@ address,size,name,name_source,subsystem,status
 0x710077bbc4,12,fn_710077bbc4,unknown,unknown,O
 0x710077bbd0,264,fn_710077bbd0,unknown,unknown,U
 0x710077bcd8,4,fn_710077bcd8,unknown,unknown,O
-0x710077bce0,2316,fn_710077bce0,unknown,unknown,U
+0x710077bce0,2316,fn_710077bce0,unknown,unknown,O
 0x710077c5ec,4,fn_710077c5ec,unknown,unknown,O
 0x710077c5f0,244,CCentralUnitComponentDef::refl_GetClass,reflection,game,O
 0x710077c6e4,4,fn_710077c6e4,unknown,game?,O
