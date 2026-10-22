@@ -81,3 +81,16 @@ static inline void CopyWeakRef(UnkWeakHandle** slot, UnkWeakHandle* other) {
     UnkWeakHandle* handle = target ? GetWeakHandle(target) : nullptr;
     AssignRef(slot, handle);
 }
+
+// A counted reference to an object (what the constructors that return one by value hand out);
+// dropping the last one calls vf_0x10.
+struct UnkRefPtr {
+    UnkRefObject* field_0x0;
+
+    ~UnkRefPtr() {
+        if (field_0x0) {
+            if (--field_0x0->ref_count == 0)
+                field_0x0->vf_0x10();
+        }
+    }
+};
