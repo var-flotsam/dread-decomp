@@ -128,6 +128,11 @@ bool refl_IterValueEqualByValue(const UnkIterValue<T, K>& a, const UnkIterValue<
     return x == y;
 }
 
+template <class T, class K>
+struct UnkCollectionIter;
+template <class T, class K>
+void refl_IterSync(UnkCollectionIter<T, K>* it);
+
 // K is the index type, as in UnkIterValue.
 template <class T, class K = u32>
 struct UnkCollectionIter {
@@ -144,10 +149,7 @@ struct UnkCollectionIter {
         if (this != &other) {
             index = other.index;
             element = other.element;
-            if (element)
-                current.SetRef(&index, element);
-            else
-                current.Reset();
+            refl_IterSync(this);
         }
         return *this;
     }

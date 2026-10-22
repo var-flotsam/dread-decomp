@@ -9,6 +9,12 @@
 
 #include "types.h"
 
+// A translation unit that has the element accessor inlined, rather than calling the out-of-line
+// copy, defines this as `__attribute__((always_inline))` before including the header.
+#ifndef UNK_VECTOR_GROW_AT_ATTR
+#define UNK_VECTOR_GROW_AT_ATTR
+#endif
+
 namespace base {
 
 // Only the slots the array uses are named. vf_0x40 allocates (size, alignment, flags);
@@ -140,7 +146,7 @@ struct UnkVector {
     // array to the next multiple of the step and then to exactly index + 1 elements,
     // value-initialising the new ones (fn_71000305d8, fn_71002b9ed8 and their copies). The
     // capacity stays in a register between the two steps.
-    T& GrowAt(u32 index) {
+    UNK_VECTOR_GROW_AT_ATTR T& GrowAt(u32 index) {
         if (field_0x14 && count <= index) {
             u32 cap = capacity;
             if (cap <= index && step != 0) {
