@@ -73,7 +73,7 @@ address,size,name,name_source,subsystem,status
 0x7100503354,28,fn_7100503354,unknown,unknown,O
 0x7100503370,84,fn_7100503370,unknown,unknown,O
 0x71005033c4,12,fn_71005033c4,unknown,unknown,O
-0x71005033d0,500,fn_71005033d0,unknown,unknown,U
+0x71005033d0,500,fn_71005033d0,unknown,unknown,O
 0x71005035c4,4,fn_71005035c4,unknown,unknown,O
 0x71005035c8,244,CCharClassEmmyShipyardAIComponent::refl_GetClass,reflection,game/characters,O
 0x71005036bc,4,fn_71005036bc,unknown,game/characters?,O
@@ -1663,7 +1663,7 @@ address,size,name,name_source,subsystem,status
 0x7100572328,4,fn_7100572328,unknown,unknown,O
 0x710057232c,20,fn_710057232c,unknown,unknown,O
 0x7100572340,20,fn_7100572340,unknown,unknown,O
-0x7100572360,664,fn_7100572360,unknown,unknown,U
+0x7100572360,664,fn_7100572360,unknown,unknown,O
 0x71005725f8,108,fn_71005725f8,unknown,unknown,O
 0x7100572664,52,fn_7100572664,unknown,unknown,O
 0x7100572698,40,fn_7100572698,unknown,unknown,U
@@ -1851,7 +1851,7 @@ address,size,name,name_source,subsystem,status
 0x7100578c44,12,fn_7100578c44,unknown,unknown,O
 0x7100578c50,8,fn_7100578c50,unknown,unknown,O
 0x7100578c58,8,fn_7100578c58,unknown,unknown,O
-0x7100578c60,844,fn_7100578c60,unknown,unknown,U
+0x7100578c60,844,fn_7100578c60,unknown,unknown,O
 0x7100578fac,4,fn_7100578fac,unknown,unknown,O
 0x7100578fb0,244,CCharClassFingSwarmControllerComponent::refl_GetClass,reflection,game/characters,O
 0x71005790a4,4,fn_71005790a4,unknown,game/characters?,O
