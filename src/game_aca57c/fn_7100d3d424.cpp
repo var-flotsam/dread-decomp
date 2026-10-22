@@ -15,7 +15,13 @@ using namespace base::global;
 struct UnkReleasedStrId {
     UnkStringData* data;
 
-    UnkReleasedStrId(UnkReleasedStrId&& other) : data(other.data) { other.data = &g_unk_7101d47108->empty; }
+    // The pointer is stored bytewise (char alias info), so the destructor of the moved-from id
+    // reloads the pool.
+    UnkReleasedStrId(UnkReleasedStrId&& other) {
+        UnkStringData* d = other.data;
+        __builtin_memcpy(&data, &d, sizeof(d));
+        other.data = &g_unk_7101d47108->empty;
+    }
     ~UnkReleasedStrId() {
         if (UnkStringPool* pool = g_unk_7101d47108) {
             if (data && data != &pool->empty) {
@@ -613,6 +619,38 @@ static inline void Reserve(UnkIdMap<V>* self, u32 capacity) {
     }
 }
 
+// Shrinks both arrays to the count, moving the values (destroying the old ones with Destroy) and
+// copying the keys (counting a use) before releasing the old ones.
+template <class V, void (*Destroy)(V*)>
+static inline void ShrinkToFit(UnkIdMap<V>* self) {
+    if (self->count == self->capacity)
+        return;
+    V* values = static_cast<V*>(self->allocator->vf_0x40((u64)self->count * sizeof(V), 8, self->flags));
+    auto* keys = static_cast<UnkReleasedStrId*>(
+        self->allocator->vf_0x40((u64)self->count * sizeof(UnkReleasedStrId), 8, self->flags));
+    if (V* src = self->values) {
+        V* dst = values;
+        for (u32 i = 0; i < self->count; ++i, ++src, ++dst) {
+            new (dst) V(static_cast<V&&>(*src));
+            Destroy(src);
+        }
+        self->allocator->vf_0x48(self->values);
+    }
+    if (UnkReleasedStrId* src = self->keys) {
+        for (u32 i = 0; i < self->count; ++i, ++src) {
+            UnkStringData* data = src->data;
+            __builtin_memcpy(&keys[i], &data, sizeof(data));
+            if (&g_unk_7101d47108->empty != data)
+                ++data->ref_count;
+            src->~UnkReleasedStrId();
+        }
+        self->allocator->vf_0x48(self->keys);
+    }
+    self->values = values;
+    self->keys = keys;
+    self->capacity = self->count;
+}
+
 template <class V, void (*Destroy)(V*), void (*Free)(UnkIdMap<V>*), void (*Allocate)(UnkIdMap<V>*, u32),
           V* (*AssignValue)(V*, const V*)>
 static inline UnkIdMap<V>* Assign(UnkIdMap<V>* self, const UnkIdMap<V>* other) {
@@ -645,13 +683,15 @@ static inline UnkIdMap<V>* Assign(UnkIdMap<V>* self, const UnkIdMap<V>* other) {
 // Ids to arrays of array pairs.
 using UnkPairArrayValue = UnkSecondPtrArray<UnkFreedVectorPair>;
 using UnkIdPairArrayMap = UnkIdMap<UnkPairArrayValue>;
-void fn_7100e588d0(UnkIdPairArrayMap* self);             // frees the storage
 UnkPairArrayValue* fn_7100e5493c(UnkPairArrayValue* self, const UnkPairArrayValue* other);
 
 __attribute__((noinline)) void fn_7100e5854c(UnkIdPairArrayMap* self, u32 capacity);
+__attribute__((noinline)) void fn_7100e588d0(UnkIdPairArrayMap* self);
 
-// NON_MATCHING(minor): in the key loop the old key and the released key use swapped scratch
-// registers (x8/x9).
+// NON_MATCHING(minor): in the key loop the original steps the old key with its own pointer;
+// ours addresses it from the shared index.
+void fn_7100e588d0(UnkIdPairArrayMap* self) { ShrinkToFit<UnkPairArrayValue, fn_7100e493f4>(self); }
+
 void fn_7100e5854c(UnkIdPairArrayMap* self, u32 capacity) {
     Reserve<UnkPairArrayValue, fn_7100e493f4>(self, capacity);
 }
@@ -660,15 +700,49 @@ UnkIdPairArrayMap* fn_7100e5870c(UnkIdPairArrayMap* self, const UnkIdPairArrayMa
     return Assign<UnkPairArrayValue, fn_7100e493f4, fn_7100e588d0, fn_7100e5854c, fn_7100e5493c>(self, other);
 }
 
-// Ids to 0x60-byte records.
+// Ids to 0x60-byte records: plain words, two string ids and an array of string ids (destroyed by
+// fn_7100e4a1d0 and copied by fn_7100e4fd1c, both in fn_7100e4fd1c.cpp).
 struct UnkRecord60 {
-    u64 unk_0x0[0xc];
+    u32 field_0x0[10];
+    UnkStringData* id_0x28;
+    UnkStringData* id_0x30;
+    UnkStringData** ids;
+    u32 count;
+    u32 capacity;
+    u32 step;
+    bool field_0x4c;
+    u32 flags;
+    base::UnkAllocator* allocator;
+
+    // Takes over the ids (leaving the pool's empty string) and the array (leaving it empty).
+    __attribute__((always_inline)) UnkRecord60(UnkRecord60&& other) {
+        for (u32 i = 0; i < 10; ++i)
+            field_0x0[i] = other.field_0x0[i];
+        id_0x28 = other.id_0x28;
+        UnkStringData* empty = &g_unk_7101d47108->empty;
+        other.id_0x28 = empty;
+        id_0x30 = other.id_0x30;
+        other.id_0x30 = empty;
+        ids = other.ids;
+        count = other.count;
+        capacity = other.capacity;
+        step = other.step;
+        field_0x4c = other.field_0x4c;
+        flags = other.flags;
+        allocator = other.allocator;
+        other.ids = nullptr;
+        other.count = 0;
+        other.capacity = 0;
+    }
 };
+static_assert(sizeof(UnkRecord60) == 0x60, "UnkRecord60 layout");
 using UnkIdRecordMap = UnkIdMap<UnkRecord60>;
 void fn_7100e4a1d0(UnkRecord60* record);                // destructor
 void fn_7100e5a114(UnkIdRecordMap* self);              // frees the storage
-void fn_7100e59d18(UnkIdRecordMap* self, u32 count);  // allocates the storage
 UnkRecord60* fn_7100e4fd1c(UnkRecord60* self, const UnkRecord60* other);
+__attribute__((noinline)) void fn_7100e59d18(UnkIdRecordMap* self, u32 capacity);
+
+void fn_7100e59d18(UnkIdRecordMap* self, u32 capacity) { Reserve<UnkRecord60, fn_7100e4a1d0>(self, capacity); }
 
 UnkIdRecordMap* fn_7100e59f50(UnkIdRecordMap* self, const UnkIdRecordMap* other) {
     return Assign<UnkRecord60, fn_7100e4a1d0, fn_7100e5a114, fn_7100e59d18, fn_7100e4fd1c>(self, other);
