@@ -1033,7 +1033,7 @@ address,size,name,name_source,subsystem,status
 0x710082eeb8,8,fn_710082eeb8,unknown,game/components?,O
 0x710082eec0,128,fn_710082eec0,unknown,game/components?,U
 0x710082ef40,168,fn_710082ef40,unknown,game/components?,U
-0x710082efe8,260,fn_710082efe8,unknown,game/components?,U
+0x710082efe8,260,fn_710082efe8,unknown,game/components?,O
 0x710082f0f0,540,fn_710082f0f0,unknown,game/components?,O
 0x710082f30c,4,fn_710082f30c,unknown,game/components?,O
 0x710082f310,244,CSwingableGrapplePointComponent::refl_GetClass,reflection,game/components,O
