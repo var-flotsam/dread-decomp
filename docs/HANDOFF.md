@@ -820,9 +820,13 @@ sorts of the first two and `fn_71010dd1d0`'s `__sort4` are **O**; the rest are *
   anchor and `.set` names. Its `__sort3` and `__sort5` stay in `src/game_hi/`: `check.py` masks
   call targets, so they don't need names here.
 
+`fn_7100abbd40` is the same code as `fn_7100354e10`'s family. `fn_71001e2e30` sorts object pointers
+by a float in a copied info block, with an internal comparator: `__sort3/4/5` **O**, the rest **m**.
+
 More instantiations found by their recursion (each 2 KB, or with 2 KB helpers):
 - `fn_7100134020`
-- `fn_71001e2e30`
+- `fn_7100213380` (0x40-byte polymorphic boxes by the centre on an axis; the swaps rebuild a box
+  from its corners with coordinates stored as tenths)
 - `fn_7100212a80`
 - `fn_7100248e50`
 - `fn_710030ed9c`
