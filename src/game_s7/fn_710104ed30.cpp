@@ -23,7 +23,7 @@ __attribute__((always_inline)) static inline bool Equal(const UnkRecord80IterVal
     return x->field_0x8 == y->field_0x8;
 }
 
-// Free of an array (base::UnkVector's layout) of string ids paired with a word: each id is
+// Free of an array (base::UnkVector's layout) of file-path ids (CFilePathStrId's pool) paired with a word: each id is
 // released (and left as the empty id) before the array is freed.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
@@ -35,12 +35,12 @@ struct UnkEmptiedStrId {
     UnkStringData* data;
 
     __attribute__((always_inline)) ~UnkEmptiedStrId() {
-        if (UnkStringPool* pool = g_unk_7101d47108) {
+        if (UnkStringPool* pool = g_unk_7101d47200) {
             if (data && data != &pool->empty) {
                 --data->ref_count;
                 if (data->ref_count == 0) {
                     fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
+                    pool = g_unk_7101d47200;
                 }
             }
             data = &pool->empty;

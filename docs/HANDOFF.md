@@ -958,6 +958,32 @@ starts from the shared headers and patterns found since (`src/game_s7/UnkIter.h`
 `include/game_s2/UnkWeakHandle.h`, `include/game_s2/UnkOwnedList.h`) and from near copies of
 matched functions, not from the stragglers slice 1 left.
 
+**Slice 1 near copies, batch 12** (stream 7, 2026-10-22): 80 functions **O**, mostly slice 1's
+same-shape copies of matched templates with other element sizes, offsets, pools or callees
+(`src/game_s1/`, one file per original, each header naming the original). Families: the
+owned-list map Reserve (`fn_71001358e0`, 15 copies binary-wide; `Reserve` must be
+`always_inline` or the extra copies become 4-byte tail calls; slice 5's `m` `fn_7100b48944` has
+the same code), id-list owner destructors, out-of-line element arrays (move-assign, End, bound
+refs), slot-array SetAt, id-record pair and map assigns, string-id map Clear/Begin/End, variant
+resets and assigns, pair assigns and equality. Also `src/game_s7/fn_7100f798fc.cpp`: the five
+string-id map End iterators after the begins of `fn_7100f79844.cpp` (slice 6, no active stream).
+Left: `fn_71000d56ac`, `fn_71000e00a0`, `fn_710111410c` (array equality through an out-of-line
+element compare, 94%: one register), and the TU static initialisers near `fn_7100ad28e0`
+(`fn_7100205820`, `fn_71001f2650`, 96-99%, which register pointer types).
+
+**Matching does not check relocated targets.** `tools/asmdiff.py` masks every relocated field, so
+a function stays **O** with the wrong global, GOT slot or callee named. Two slips found this way
+and fixed: `src/game_s7/fn_710104ed30.cpp` released its ids through the default pool where the
+original uses CFilePathStrId's (`g_unk_7101d47200`), and vtables named 0x10 below the address
+the GOT slot holds (the slot holds the vtable itself; `&Vtable[2]` is what gets stored). A
+scratch check compares each `fn_`/`g_unk_` relocation of an **O** function against the original
+instruction at the same offset (b/bl targets, ADRP pages, low-12 offsets, and for GOT loads a slot
+holding that address); worth adding to `check.py` (owner's call). Over `src/game_s7/` and
+`src/game_s1/` it finds nothing else except the older stream 7 copy files whose headers say the
+names inside are the original's (about 670 references in 24 files). Those copies call the
+original's callees and read its data, which is right for matching but wrong for a port; renaming
+them to their own targets is open cleanup. Batch 12's copies already name their own.
+
 **Field registrations the reflection parser stopped at** (stream 7, 2026-10-22), both **O**:
 CCharClassAIComponent's member fields (`fn_7100408c20`, 33 KB, 142 fields, the giant-functions
 table's "tunable registration") and CExplosionGfx's (`fn_7100ddf434`, 3.6 KB). Both are

@@ -3273,7 +3273,7 @@ address,size,name,name_source,subsystem,status
 0x7100f79830,12,fn_7100f79830,unknown,unknown,O
 0x7100f7983c,8,fn_7100f7983c,unknown,unknown,O
 0x7100f79844,184,fn_7100f79844,unknown,unknown,O
-0x7100f798fc,180,fn_7100f798fc,unknown,unknown,U
+0x7100f798fc,180,fn_7100f798fc,unknown,unknown,O
 0x7100f799b0,512,fn_7100f799b0,unknown,unknown,U
 0x7100f79bb0,516,fn_7100f79bb0,unknown,unknown,O
 0x7100f79db4,516,fn_7100f79db4,unknown,unknown,O
@@ -3631,7 +3631,7 @@ address,size,name,name_source,subsystem,status
 0x7100f875f8,12,fn_7100f875f8,unknown,unknown,O
 0x7100f87604,8,fn_7100f87604,unknown,unknown,O
 0x7100f8760c,184,fn_7100f8760c,unknown,unknown,O
-0x7100f876c4,180,fn_7100f876c4,unknown,unknown,U
+0x7100f876c4,180,fn_7100f876c4,unknown,unknown,O
 0x7100f87780,1744,fn_7100f87780,unknown,unknown,U
 0x7100f87e50,3540,fn_7100f87e50,unknown,unknown,O
 0x7100f88c24,352,fn_7100f88c24,unknown,unknown,O
@@ -4063,7 +4063,7 @@ address,size,name,name_source,subsystem,status
 0x7100f9725c,12,fn_7100f9725c,unknown,unknown,O
 0x7100f97268,8,fn_7100f97268,unknown,unknown,O
 0x7100f97270,184,fn_7100f97270,unknown,unknown,O
-0x7100f97328,180,fn_7100f97328,unknown,unknown,U
+0x7100f97328,180,fn_7100f97328,unknown,unknown,O
 0x7100f973e0,1032,fn_7100f973e0,unknown,unknown,U
 0x7100f977e8,4,fn_7100f977e8,unknown,unknown,O
 0x7100f977ec,240,STransition::refl_GetClass,reflection,game,O
