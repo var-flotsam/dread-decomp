@@ -1293,7 +1293,7 @@ address,size,name,name_source,subsystem,status
 0x710092e83c,1880,fn_710092e83c,unknown,unknown,U
 0x710092ef94,288,fn_710092ef94,unknown,unknown,U
 0x710092f0b4,336,fn_710092f0b4,unknown,unknown,U
-0x710092f204,2208,fn_710092f204,unknown,unknown,U
+0x710092f204,2208,fn_710092f204,unknown,unknown,m
 0x710092faa4,488,fn_710092faa4,unknown,unknown,U
 0x710092fc8c,872,fn_710092fc8c,unknown,unknown,U
 0x710092fff4,1220,fn_710092fff4,unknown,unknown,U

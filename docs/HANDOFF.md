@@ -729,6 +729,11 @@ value first; a local array of 64 elements with default member initialisers is fu
 a counter declared after it lands below it on the stack (declare it first). Tried and left: the
 other collision dispatch `fn_7100d51368` (4 KB, inlined geometry per case) and constructors that
 inline a vector reserve (`fn_7100ee1f34`).
+Also **O**: a component cache (`fn_7100d78a30`, 7.3 KB, 42 slots), where each slot has its own
+weak inline `static const CStrId` kind id (`Kind_LIFE()` and so on, reached through the GOT); the
+comparison must take both ids by reference (`SameId(Kind(), comp->owner->id)`) or the owner load
+is hoisted. `fn_710092f204` (melee hit-effect path from 15 local statics) stays **m**: the
+original tests kind 5 before kind 2 and duplicates each item id's out-of-line first-use build.
 
 ## Known issues and gotchas
 
