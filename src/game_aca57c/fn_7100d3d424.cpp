@@ -494,7 +494,27 @@ struct UnkSecondPtrArray {
     u32 capacity;
     u32 field_0x18;
     u32 field_0x1c;
-    void* allocator;
+    base::UnkAllocator* allocator;
+
+    UnkSecondPtrArray(UnkSecondPtrArray&& other)
+        : data(other.data), field_0x8(other.field_0x8), count(other.count), capacity(other.capacity),
+          field_0x18(other.field_0x18), field_0x1c(other.field_0x1c), allocator(other.allocator) {
+        other.count = 0;
+        other.data = nullptr;
+        other.field_0x8 = nullptr;
+    }
+
+    // Destroys the elements and frees both arrays (fn_7100e493f4 for array pairs).
+    __attribute__((always_inline)) void Destroy() {
+        if (data)
+            for (u32 i = 0; i < count; ++i)
+                data[i].~T();
+        count = 0;
+        if (field_0x8)
+            allocator->vf_0x48(field_0x8);
+        if (data)
+            allocator->vf_0x48(data);
+    }
 };
 
 template <class T, class Index>
@@ -546,4 +566,110 @@ UnkPairArray* fn_7100e52e64(UnkPairArray* self, const UnkPairArray* other) {
             fn_7100e52cf4(self, it);
     }
     return self;
+}
+
+void fn_7100e493f4(UnkSecondPtrArray<UnkFreedVectorPair>* self) { self->Destroy(); }
+
+// Copy-assignments of maps of ids to values (values at 0, keys at 8, sharing one count): both
+// sides are destroyed, the storage is reallocated when the other's count differs from the
+// capacity, then the values are assigned and the keys copied, counting a use of each.
+template <class V>
+struct UnkIdMap {
+    V* values;
+    UnkReleasedStrId* keys;
+    u32 count;
+    u32 capacity;
+    u32 step;
+    u32 flags;
+    base::UnkAllocator* allocator;
+};
+
+// Grows both arrays, moving the values (destroying the old ones with Destroy) and the keys.
+template <class V, void (*Destroy)(V*)>
+static inline void Reserve(UnkIdMap<V>* self, u32 capacity) {
+    if (self->capacity < capacity) {
+        V* values = static_cast<V*>(self->allocator->vf_0x40((u64)capacity * sizeof(V), 8, self->flags));
+        auto* keys = static_cast<UnkReleasedStrId*>(
+            self->allocator->vf_0x40((u64)capacity * sizeof(UnkReleasedStrId), 8, self->flags));
+        if (V* src = self->values) {
+            V* dst = values;
+            for (u32 i = 0; i < self->count; ++i, ++src, ++dst) {
+                new (dst) V(static_cast<V&&>(*src));
+                Destroy(src);
+            }
+            self->allocator->vf_0x48(self->values);
+        }
+        if (UnkReleasedStrId* src = self->keys) {
+            UnkReleasedStrId* dst = keys;
+            for (u32 i = 0; i < self->count; ++i, ++src, ++dst) {
+                new (dst) UnkReleasedStrId(static_cast<UnkReleasedStrId&&>(*src));
+                src->~UnkReleasedStrId();
+            }
+            self->allocator->vf_0x48(self->keys);
+        }
+        self->values = values;
+        self->keys = keys;
+        self->capacity = capacity;
+    }
+}
+
+template <class V, void (*Destroy)(V*), void (*Free)(UnkIdMap<V>*), void (*Allocate)(UnkIdMap<V>*, u32),
+          V* (*AssignValue)(V*, const V*)>
+static inline UnkIdMap<V>* Assign(UnkIdMap<V>* self, const UnkIdMap<V>* other) {
+    if (self != other) {
+        if (self->keys)
+            for (u64 i = 0; i < self->count; ++i)
+                self->keys[i].~UnkReleasedStrId();
+        if (self->values)
+            for (u32 i = 0; i < self->count; ++i)
+                Destroy(&self->values[i]);
+        self->count = 0;
+        if (other->count != self->capacity) {
+            Free(self);
+            Allocate(self, other->count);
+        }
+        self->count = other->count;
+        for (u32 i = 0; i < self->count; ++i)
+            AssignValue(&self->values[i], &other->values[i]);
+        self->count = other->count;
+        for (u32 i = 0; i < self->count; ++i) {
+            UnkStringData* data = other->keys[i].data;
+            __builtin_memcpy(&self->keys[i], &data, sizeof(data));
+            if (&g_unk_7101d47108->empty != data)
+                ++data->ref_count;
+        }
+    }
+    return self;
+}
+
+// Ids to arrays of array pairs.
+using UnkPairArrayValue = UnkSecondPtrArray<UnkFreedVectorPair>;
+using UnkIdPairArrayMap = UnkIdMap<UnkPairArrayValue>;
+void fn_7100e588d0(UnkIdPairArrayMap* self);             // frees the storage
+UnkPairArrayValue* fn_7100e5493c(UnkPairArrayValue* self, const UnkPairArrayValue* other);
+
+__attribute__((noinline)) void fn_7100e5854c(UnkIdPairArrayMap* self, u32 capacity);
+
+// NON_MATCHING(minor): in the key loop the old key and the released key use swapped scratch
+// registers (x8/x9).
+void fn_7100e5854c(UnkIdPairArrayMap* self, u32 capacity) {
+    Reserve<UnkPairArrayValue, fn_7100e493f4>(self, capacity);
+}
+
+UnkIdPairArrayMap* fn_7100e5870c(UnkIdPairArrayMap* self, const UnkIdPairArrayMap* other) {
+    return Assign<UnkPairArrayValue, fn_7100e493f4, fn_7100e588d0, fn_7100e5854c, fn_7100e5493c>(self, other);
+}
+
+// Ids to 0x60-byte records.
+struct UnkRecord60 {
+    u64 unk_0x0[0xc];
+};
+using UnkIdRecordMap = UnkIdMap<UnkRecord60>;
+void fn_7100e4a1d0(UnkRecord60* record);                // destructor
+void fn_7100e5a114(UnkIdRecordMap* self);              // frees the storage
+void fn_7100e59d18(UnkIdRecordMap* self, u32 count);  // allocates the storage
+UnkRecord60* fn_7100e4fd1c(UnkRecord60* self, const UnkRecord60* other);
+
+UnkIdRecordMap* fn_7100e59f50(UnkIdRecordMap* self, const UnkIdRecordMap* other) {
+    return Assign<UnkRecord60, fn_7100e4a1d0, fn_7100e5a114, fn_7100e59d18, fn_7100e4fd1c>(self, other);
 }

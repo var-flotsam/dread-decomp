@@ -1,5 +1,7 @@
 // Assignments of a pair of values held either in place or by reference (state 2), from another
 // such pair: read and written through the state-dependent accessors.
+#include <new>
+
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
@@ -518,4 +520,162 @@ using UnkU32ValuesCallbacksPair = UnkValuePairRef<u32, UnkValuesCallbacks>;
 
 UnkU32ValuesCallbacksPair* fn_7100c0837c(UnkU32ValuesCallbacksPair* self, UnkU32ValuesCallbacksPair* other) {
     return Assign(self, other);
+}
+
+// Equality of two pairs: both values compared through the state-dependent accessors.
+template <class X, class Y>
+static inline bool Equals(UnkValuePairRef<X, Y>* a, UnkValuePairRef<X, Y>* b) {
+    return a->GetX() == b->GetX() && a->GetY() == b->GetY();
+}
+
+bool fn_7100adad14(UnkU32Pair* a, UnkU32Pair* b) { return Equals(a, b); }
+bool fn_7100adb008(UnkU32Pair* a, UnkU32Pair* b) { return Equals(a, b); }
+bool fn_7100eb1de0(UnkU32Pair* a, UnkU32Pair* b) { return Equals(a, b); }
+bool fn_7100eb20d4(UnkU32Pair* a, UnkU32Pair* b) { return Equals(a, b); }
+
+// A value and a reference-counted weak handle (released through vf_0x10; compared by target).
+// The count is a union member (no type-based alias info: the handle is reloaded after the
+// count changes).
+struct UnkHandleObj {
+    virtual void vf_0x0();
+    virtual void vf_0x8();
+    virtual void vf_0x10();
+    union {
+        s32 ref_count;
+    };
+    void* target;
+};
+
+struct UnkWeakHandle {
+    UnkHandleObj* ptr;
+
+    UnkWeakHandle(const UnkWeakHandle& other) : ptr(nullptr) { *this = other; }
+    UnkWeakHandle& operator=(const UnkWeakHandle& other) {
+        UnkHandleObj* p = other.ptr;
+        if (p)
+            ++p->ref_count;
+        if (UnkHandleObj* old = ptr) {
+            if (--old->ref_count == 0)
+                old->vf_0x10();
+        }
+        ptr = p;
+        return *this;
+    }
+    void* Get() const { return ptr ? ptr->target : nullptr; }
+    bool operator==(const UnkWeakHandle& other) const {
+        void* theirs = other.Get();
+        return Get() == theirs;
+    }
+};
+
+// Copy-construction that always holds the values in place: from in-place values (state 1) or
+// from the referents (state 2).
+template <class X, class Y>
+static inline void Emplace(UnkValuePairRef<X, Y>* self, const X& x, const Y& y) {
+    self->state = 1;
+    new (&self->values.x) X(x);
+    new (&self->values.y) Y(y);
+}
+
+template <class X, class Y>
+static inline void CopyConstruct(UnkValuePairRef<X, Y>* self, const UnkValuePairRef<X, Y>* other) {
+    self->state = 0;
+    switch (other->state) {
+    case 1:
+        Emplace(self, other->values.x, other->values.y);
+        break;
+    case 2:
+        Emplace(self, *other->refs.x, *other->refs.y);
+        break;
+    }
+}
+
+using UnkU32HandlePair = UnkValuePairRef<u32, UnkWeakHandle>;
+
+bool fn_7100d3f840(UnkU32HandlePair* a, UnkU32HandlePair* b) { return Equals(a, b); }
+bool fn_7100d3fc20(UnkU32HandlePair* a, UnkU32HandlePair* b) { return Equals(a, b); }
+bool fn_7100d838ac(UnkU32HandlePair* a, UnkU32HandlePair* b) { return Equals(a, b); }
+bool fn_7100d83c8c(UnkU32HandlePair* a, UnkU32HandlePair* b) { return Equals(a, b); }
+// NON_MATCHING(minor): the original returns separately from each path (the epilogue is
+// duplicated) and lays the release call out after the returns; ours shares one exit.
+void fn_7100d3f91c(UnkU32HandlePair* self, const UnkU32HandlePair* other) { CopyConstruct(self, other); }
+// NON_MATCHING(minor): as fn_7100d3f91c.
+void fn_7100d3fcfc(UnkU32HandlePair* self, const UnkU32HandlePair* other) { CopyConstruct(self, other); }
+// NON_MATCHING(minor): as fn_7100d3f91c.
+void fn_7100d83988(UnkU32HandlePair* self, const UnkU32HandlePair* other) { CopyConstruct(self, other); }
+// NON_MATCHING(minor): as fn_7100d3f91c.
+void fn_7100d83d68(UnkU32HandlePair* self, const UnkU32HandlePair* other) { CopyConstruct(self, other); }
+
+void fn_7100e483a0(UnkIdVectorsPair* self) { self->Reset(); }
+void fn_7100e4886c(UnkIdVectorsPair* self) { self->Reset(); }
+void fn_7100e55568(UnkIdVectorsPair* self) { self->Reset(); }
+void fn_7100e55cc8(UnkIdVectorsPair* self) { self->Reset(); }
+
+// Assignment from an in-place (state 1) or by-reference (state 2) pair of an id and a slot: the
+// id is moved (released, taken, the other's left empty) and the slot assigned by fn_71002a5d1c.
+struct UnkAssignedSlot {
+    void* ptr;
+
+    UnkAssignedSlot& operator=(const UnkAssignedSlot& other);
+};
+void fn_71002a5d1c(UnkAssignedSlot* self, const UnkAssignedSlot* other);
+__attribute__((always_inline)) inline UnkAssignedSlot& UnkAssignedSlot::operator=(const UnkAssignedSlot& other) {
+    fn_71002a5d1c(this, &other);
+    return *this;
+}
+
+// The id pointers are moved bitwise (the original reloads the pair's state after them).
+__attribute__((always_inline)) static inline void MoveAssign(UnkPairReleasedStrId* self, UnkPairReleasedStrId* other) {
+    self->~UnkPairReleasedStrId();
+    __builtin_memcpy(&self->data, &other->data, sizeof(self->data));
+    base::global::UnkStringData* empty = &g_unk_7101d47108->empty;
+    __builtin_memcpy(&other->data, &empty, sizeof(empty));
+}
+
+using UnkIdSlotPair = UnkValuePairRef<UnkPairReleasedStrId, UnkAssignedSlot>;
+
+template <class Y>
+__attribute__((always_inline)) static inline UnkValuePairRef<UnkPairReleasedStrId, Y>* MoveAssignSet(
+    UnkValuePairRef<UnkPairReleasedStrId, Y>* self, UnkValuePairRef<UnkPairReleasedStrId, Y>* other) {
+    if (other->state == 1) {
+        MoveAssign(&self->GetX(), &other->values.x);
+        self->GetY() = other->values.y;
+    } else if (other->state == 2) {
+        UnkPairReleasedStrId* x = other->refs.x;
+        MoveAssign(&self->GetX(), x);
+        self->GetY() = *other->refs.y;
+    }
+    return self;
+}
+
+UnkIdSlotPair* fn_7100d41198(UnkIdSlotPair* self, UnkIdSlotPair* other) { return MoveAssignSet(self, other); }
+
+// The same with records assigned out of line.
+#define UNK_ASSIGNED_RECORD(name, size, assign)                                   \
+    struct name {                                                                 \
+        u64 unk_0x0[size / 8];                                                    \
+        name& operator=(const name& other);                                       \
+    };                                                                            \
+    void assign(name* self, const name* other);                                   \
+    __attribute__((always_inline)) inline name& name::operator=(const name& other) { \
+        assign(this, &other);                                                     \
+        return *this;                                                             \
+    }
+
+UNK_ASSIGNED_RECORD(UnkAssignedRecord_e4fff8, 0x60, fn_7100e4fff8)
+UNK_ASSIGNED_RECORD(UnkAssignedRecord_e51a60, 0x80, fn_7100e51a60)
+UNK_ASSIGNED_RECORD(UnkAssignedRecord_e6e320, 0xc8, fn_7100e6e320)
+
+using UnkIdRecordPair_e4fff8 = UnkValuePairRef<UnkPairReleasedStrId, UnkAssignedRecord_e4fff8>;
+using UnkIdRecordPair_e51a60 = UnkValuePairRef<UnkPairReleasedStrId, UnkAssignedRecord_e51a60>;
+using UnkIdRecordPair_e6e320 = UnkValuePairRef<UnkPairReleasedStrId, UnkAssignedRecord_e6e320>;
+
+UnkIdRecordPair_e4fff8* fn_7100e59270(UnkIdRecordPair_e4fff8* self, UnkIdRecordPair_e4fff8* other) {
+    return MoveAssignSet(self, other);
+}
+UnkIdRecordPair_e51a60* fn_7100e604a8(UnkIdRecordPair_e51a60* self, UnkIdRecordPair_e51a60* other) {
+    return MoveAssignSet(self, other);
+}
+UnkIdRecordPair_e6e320* fn_7100e6eccc(UnkIdRecordPair_e6e320* self, UnkIdRecordPair_e6e320* other) {
+    return MoveAssignSet(self, other);
 }
