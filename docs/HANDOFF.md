@@ -764,6 +764,11 @@ self->composition;`), not before. The original keeps the slot's address in a reg
 pre-indexed stores, and only this order gives that. What's left: `fn_7100b94320` addresses five
 loads from the object rather than through that register, and in `fn_7100b921e0` a colour copy is
 only partly sunk below a branch.
+Music volume overrides by stream id (`src/game_s7/fn_71010182fc.cpp`): the setter
+`fn_7101019158` (4.5 KB) is **O** and the getter `fn_71010182fc` (3.7 KB) is **m**. Each is a
+73-case switch on the id's CRC-64 (signed). Clang's compare tree comes out the same when the cases
+are written in the order of their bodies in the binary. The getter's unmatched ids branch to a
+`ret` shared with a case in the middle; ours go to the last one.
 
 ## Known issues and gotchas
 
