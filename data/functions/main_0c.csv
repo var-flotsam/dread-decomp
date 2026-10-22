@@ -2827,7 +2827,7 @@ address,size,name,name_source,subsystem,status
 0x7100c45b28,368,CCharClassPlayTimelineTrack::refl_InitClass,reflection,game/characters,O
 0x7100c45c98,268,fn_7100c45c98,unknown,game/characters?,O
 0x7100c45da4,36,fn_7100c45da4,unknown,game/characters?,O
-0x7100c45dc8,332,fn_7100c45dc8,unknown,game/characters?,U
+0x7100c45dc8,332,fn_7100c45dc8,unknown,game/characters?,O
 0x7100c45f14,28,fn_7100c45f14,unknown,game/characters?,O
 0x7100c45f30,12,fn_7100c45f30,unknown,game/characters?,O
 0x7100c45f3c,8,fn_7100c45f3c,unknown,game/characters?,O
@@ -4521,7 +4521,7 @@ address,size,name,name_source,subsystem,status
 0x7100c8ee8c,64,fn_7100c8ee8c,unknown,unknown,O
 0x7100c8eecc,140,fn_7100c8eecc,unknown,unknown,O
 0x7100c8ef58,48,fn_7100c8ef58,unknown,unknown,O
-0x7100c8ef88,164,fn_7100c8ef88,unknown,unknown,U
+0x7100c8ef88,164,fn_7100c8ef88,unknown,unknown,O
 0x7100c8f02c,468,fn_7100c8f02c,unknown,unknown,U
 0x7100c8f200,800,fn_7100c8f200,unknown,unknown,U
 0x7100c8f520,12,fn_7100c8f520,unknown,unknown,O
@@ -4636,7 +4636,7 @@ address,size,name,name_source,subsystem,status
 0x7100c922fc,64,fn_7100c922fc,unknown,unknown,O
 0x7100c9233c,140,fn_7100c9233c,unknown,unknown,O
 0x7100c923c8,156,fn_7100c923c8,unknown,unknown,U
-0x7100c92464,164,fn_7100c92464,unknown,unknown,U
+0x7100c92464,164,fn_7100c92464,unknown,unknown,O
 0x7100c92508,516,fn_7100c92508,unknown,unknown,U
 0x7100c9270c,548,fn_7100c9270c,unknown,unknown,U
 0x7100c92930,12,fn_7100c92930,unknown,unknown,O
