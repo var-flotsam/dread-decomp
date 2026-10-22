@@ -1,6 +1,7 @@
-// Deleting destructors of two objects that each hold a list of reference nodes (keyed in the
-// first, as in fn_7100f00af4's list): restore the vtable, release each node's reference and free
-// the node through the list's allocator, then free the object.
+// Destructors (complete and deleting) of two objects that each hold a list of reference nodes
+// (keyed in the first, as in fn_7100f00af4's list): restore the vtable, release each node's
+// reference and free the node through the list's allocator, then empty the list (the deleting
+// ones then free the object).
 #include "base/UnkVector.h"
 #include "types.h"
 
@@ -51,6 +52,9 @@ struct UnkList {
             allocator->vf_0x48(n);
             n = next;
         }
+        count = 0;
+        head = nullptr;
+        tail = nullptr;
     }
 };
 
@@ -71,4 +75,12 @@ void fn_7100f02528(UnkRefListOwner<g_unk_7101caa208, UnkKeyRefNode>& self) {
 
 void fn_7100f025c0(UnkRefListOwner<g_unk_7101caa228, UnkRefNode>& self) {
     delete &self;
+}
+
+void fn_7100ef36ec(UnkRefListOwner<g_unk_7101caa208, UnkKeyRefNode>& self) {
+    self.~UnkRefListOwner();
+}
+
+void fn_7100ef364c(UnkRefListOwner<g_unk_7101caa228, UnkRefNode>& self) {
+    self.~UnkRefListOwner();
 }

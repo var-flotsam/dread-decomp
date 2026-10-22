@@ -10,9 +10,11 @@ inline u32 lift_bits(f32 f) { u32 v; __builtin_memcpy(&v, &f, 4); return v; }
 inline u64 lift_bits(f64 f) { u64 v; __builtin_memcpy(&v, &f, 8); return v; }
 // Inlined helpers on guarded statics (GUARDS).
 namespace lift_guard {
-u32 fn_7100080568(); void fn_710007fdb4(); extern char* g_unk_7101d47108;
+u32 fn_7100080568(); u32 fn_7100080570(); void fn_710007fdb4();
+extern char* g_unk_7101d47108; extern char* g_unk_7101d47200;
 struct StringPoolHolder { u8 unk_0x0[0xe8]; StringPoolHolder(u32 a, char** pool); ~StringPoolHolder(); };
 inline void EnsureStringPool() { static StringPoolHolder s_holder(fn_7100080568(), &g_unk_7101d47108); fn_710007fdb4(); }
+inline void EnsureFilePathPool() { static StringPoolHolder s_holder(fn_7100080570(), &g_unk_7101d47200); fn_710007fdb4(); }
 struct Singleton { Singleton(); ~Singleton(); };
 inline Singleton& GetSingleton() { static Singleton s_singleton; return s_singleton; }
 struct ZeroWord { u32 value; ZeroWord() : value(0) {} };
@@ -5477,6 +5479,31 @@ extern char g_unk_71729f1318[];
 char* fn_7100ffac10() {
     char* r0_0 = (char*)g_unk_71729f1318;
     return r0_0;
+}
+
+extern char g_unk_7101d47200[];
+extern char g_unk_7101d472f0[];
+void fn_7100ffac1c(char* p0) {
+    *(u64*)(((char*)(p0) + 8) + 0) = (u64)(u64)(0);
+    *(u64*)(((char*)(p0) + 8) + 8) = (u64)(u64)(0);
+    char* r2_19 = p0;
+    *(u64*)((char*)(p0) + 0) = (u64)(u64)(0);
+    char* r4_20 = (char*)g_unk_7101d47200;
+    u64 r5_8 = (u64)*(u64*)((char*)(r4_20) + 0);
+    u64 m0 = r5_8;
+    if ((u64)(u64)(r5_8) == 0) {
+        char* r7_8 = (char*)g_unk_7101d472f0;
+        lift_guard::EnsureFilePathPool();
+        u64 r9_8 = (u64)*(u64*)((char*)(r4_20) + 0);
+        m0 = r9_8;
+    }
+    u64 r13_8 = (u64)(u64)(m0) + (u64)(16);
+    u64 r14_9 = 0xffffffffffffffff;
+    *(u64*)(((char*)(r2_19) + 0) + 0) = (u64)(u64)(r13_8);
+    *(u64*)(((char*)(r2_19) + 0) + 8) = (u64)(u64)(r14_9);
+    u32 r17_8 = 0x1;
+    *(u32*)((char*)(r2_19) + 16) = (u32)(u64)(r17_8);
+    return;
 }
 
 extern char g_unk_7101d47200[];

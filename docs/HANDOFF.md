@@ -6,7 +6,10 @@ For the next developer, human or AI, picking up this project. Read this, then `C
 
 **Fourteenth session (2026-10-21, Linux cloud, branch `claude/project-thread-slp42f`):** probe of the
 ten largest `U` functions (Next steps, "Giant functions"); new generator `tools/gen_tables.py`
-(`src/tables/`, stream 8). `gen_tables.py` and `check.py --update` were rerun.
+(`src/tables/`, stream 8): the strid table, the loading screen's video map (`video_map` kind;
+`include/base/global/CFilePathStrId.h` now keeps its pointer in `UnkFilePathStrIdBase`, no regressions) and the
+boss rush setup (`boss_rush`, `m`: register allocation only).
+`gen_tables.py` and `check.py --update` were rerun.
 
 **Thirteenth session (2026-10-21, Linux cloud, branch `claude/project-thread-m3b90j`):** core engine
 types (Next steps, item 4): the string pool, CRC64 and the allocator getter in `src/base/`
@@ -90,7 +93,7 @@ Snapshot as of 2026-10-18 (fifth Phase 4 session; branches `phase-4-4-clones` (v
 | 4.2 Lua | **Done.** Upstream 5.1.4 vendored in `lib/lua/` (2 marked config changes); 286 Lua functions located in `main` by `tools/sigmatch.py` (status `L`) |
 | 4.3 Reflection | **In progress.** all 2,354 located class getters (444 in TUs with other statics, through padding); all 1,010 other `CClass` descriptor constructors (skipped TUs and getter-less types); 1,911 of 1,957 class attribute/member-field functions, 478 other registration functions plus 54 in their class getter's TU, and all 1,006 out-of-line reflected-function initialisers (`src/reflection/`, `tools/gen_reflection.py`, `tools/refl_attrs.py`). Pointer types: 993 standalone getter/constructor pairs plus 108 generated in their pointee's TU; all 238 `CEnumType` constructors; 178 standalone `CCollectionType` constructors plus those in their element class's TU (`src/reflection_types/`, `tools/gen_types.py`) |
 | Small functions | **In progress.** `tools/gen_lift.py` lifts functions of up to 512 bytes from their instructions and keeps byte-identical ones: 46,219 functions, 2.02 MB (`src/lifted/`; second-round store-order, may_alias and memcpy rewrites; sret functions, stack locals, a goto-based flat mode for crossing branches and loops) |
-| Guarded statics | **In progress.** `tools/gen_statics.py`: attribute keys, static string ids (weak and internal), typed lookups, registries and the tables built from them, type-id senders and singleton parts, on function-local statics (`include/base/reflection/UnkReflStatics.h`), and game code with its own statics lifted through `gen_lift.py`: 880 functions, 175 KB (`src/reflection_statics/`) |
+| Guarded statics | **In progress.** `tools/gen_statics.py`: attribute keys, static string ids (weak and internal), typed lookups, registries and the tables built from them, type-id senders and singleton parts, on function-local statics (`include/base/reflection/UnkReflStatics.h`), and game code with its own statics lifted through `gen_lift.py`: 879 functions, 175 KB (`src/reflection_statics/`) |
 | Repeated templates | **In progress.** `tools/gen_clones.py`: hand-matched templates instantiated once per copy (`UnkClone_fn_<addr>` tags): the named registry, `UnkVector` methods per element kind, the reflection collection iterator, a deferred set, and scan kinds (facts per candidate): destructors of string-id/refcounted members, property reads and string-id writes, enum value lists, and shape-family templates (`UnkCloneHelpers.h`): 6,256 functions, 1.22 MB (`src/clones/`) |
 | 4.4 Core engine types | **In progress.** String ids (`CStrId` incl. copy-assignment, `UnkStrId`), the growable array `base::UnkVector` (push, grow-at, insert, remove, clear/free, move) and its allocator interface; reflected-function initialisers now match (below) |
 | 4.5+ Boot to title screen | Not started; plan below |
@@ -392,7 +395,7 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
      a u32 sent under a hash (`refl_EmitU32`, `parse_emit_u32`; 12 of 15 parsed match). Game code with
      its own static (a string id or file-path id from a literal, or a zeroed word) goes through
      `gen_lift.py`'s Lifter, patched in-process by `own_patch` (`src/reflection_statics/own_*.cpp`):
-     15 of 858 candidates up to 1 KB match. Most of the rest lift but differ in the stack frame
+     14 of 281 candidates up to 1 KB match. Most of the rest lift but differ in the stack frame
      around the guard (the original spills x0/x1 below its locals) or in general lifter gaps. Left (stream 6 census, 2026-10-21): 2,483 `U` functions call
      `__cxa_guard_acquire` (2.28 MB); 2.15 MB of that is one-offs (game code with a static
      inside), and only ~130 KB is in same-shape families of two or more. Older notes: the 437
@@ -675,13 +678,27 @@ The ten largest `U` functions held 458 KB (2.4 points). What they are:
 | 0x7100031894 | 61 KB | Constructor of a struct of 1,198 string ids built from literals with precomputed CRC64 hashes (called from ~700 functions; a guarded static, `fn_7100065ca0`) | **O**, `tools/gen_tables.py` |
 | 0x7100057eb8 | 56 KB | Passes each of the same 1,198 literals with an empty 0x30-byte temporary to `fn_7100065b14` (a string escaper) | **O**, `tools/gen_tables.py` |
 | 0x71000406dc | 276 B | The ids' constructor (string, length, hash, flag) | **O**, `tools/gen_tables.py` |
-| 0x7100db8dec | 63 KB | Boss rush setup: member string-id assignments, then ~230 inlined pushes of entries (literals, enum values) into pool-backed vectors (`udiv` slot math, allocator vcalls) | Semi-regular (35 chunk shapes). Hand-match one push, then generate the entries: est. 2-4 h |
-| 0x7100ef378c | 52 KB | Loading screen setup: ~1.7 KB of object setup, then 77 inlined hash-map inserts of (enum key, `CFilePathStrId` video path, `CStrId` label) | Same approach (one 656-byte insert per entry): est. 2-4 h |
+| 0x7100db8dec | 63 KB | Boss rush setup: twelve stages, each four to seven `UnkStrId` assignments, flags, a CRC64 and two `UnkVector<UnkItemAmount>` arrays filled by 227 inlined pushes in all (item pointers are GOT entries) | **m**, `tools/gen_tables.py` (`boss_rush`). The calls and blocks are the original's; from the third stage on, register allocation differs (it spills the hoisted array field addresses and rematerialises constants the original keeps), and in the later stages the id release is laid out out of line. Ids had to be `UnkStrId`: with `CStrId` the moved-from temporary's destructor leaves a second store |
+| 0x7100ef378c | 52 KB | Loading screen setup: two widgets, then 79 inlined hash-map inserts of (enum key, `CFilePathStrId` video path, `CStrId` label, five flags) | **O**, `tools/gen_tables.py` (`video_map`). Keys 49-71 use `InsertCopy` (the copy taken inside the insert): the original's register allocation differs in that stretch and only that source shape reproduces it, so it is a shape match, not a known source difference. Needed `CFilePathStrId`'s pointer in a base struct with a defaulted copy (as `CStrId`'s `UnkStrIdBase`), which sets the compare order in its copy constructor |
 | 0x7100408c20 | 34 KB | Tunable registration (field name, editor description, `refl_GetType<float>` ...) | Reflection-attribute style (stream 4's `refl_attrs.py` shapes); 94 chunk shapes |
 | 0x7100c66c60 | 30 KB | Float-heavy game logic (collision, `sqrtf`) | Hand only; not regular (211 shapes in 244 calls) |
 | 0x7100b66018 | 28 KB | Inventory GUI (beam list composition), 18 guarded statics | Irregular; hand only |
 | 0x7100ae39e0 | 21 KB | Reflection registration of a save-data class (fields with descriptions) | Stream 4 |
 | 0x7100e72680 | 17 KB | `CMinimapDef` reflection registration | Stream 4 |
+
+**Above 2 KB, outside the six hand slices (`src/game_s7/`, 2026-10-21).** 559 `U` functions above
+2 KB held 2.18 MB. Most call-table candidates are singletons; the static initialisers were dropped
+(their globals are merged by GlobalMerge, and the original's post-increment folding can't be
+reproduced through an `extern char[]`). Done: the loading-screen tips registration
+`fn_7100e17d14` (**O**, 60 calls through an `std::initializer_list` pair), and libc++'s
+`std::sort` helpers instantiated for a ref-counted handle list (`fn_710117d4d0.cpp`): `__sort3`,
+`__sort4`, `__sort5` **O** and `__insertion_sort_incomplete` **m**, each mapped to its address
+through an `alias` declaration. The comparator takes its handles by value and has external
+linkage (an anonymous namespace changes the load order). `__sort` itself (`fn_710117c430`,
+4 KB) stays `U`: the original halves the length unsigned and inlines `__insertion_sort_3`,
+unlike libc++ 9.0.1; a specialisation adapted from libc++'s body gets the same instructions in a
+different block layout, but copying libc++ source into `src/` needs the owner's word on
+licensing first. Left for hand work: `fn_7101144a5c`, `fn_7100e68f44`, `fn_7100dd3624`.
 
 ## Known issues and gotchas
 

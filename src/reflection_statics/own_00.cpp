@@ -9,9 +9,11 @@ inline u32 lift_bits(f32 f) { u32 v; __builtin_memcpy(&v, &f, 4); return v; }
 inline u64 lift_bits(f64 f) { u64 v; __builtin_memcpy(&v, &f, 8); return v; }
 // Inlined helpers on guarded statics (GUARDS).
 namespace lift_guard {
-u32 fn_7100080568(); void fn_710007fdb4(); extern char* g_unk_7101d47108;
+u32 fn_7100080568(); u32 fn_7100080570(); void fn_710007fdb4();
+extern char* g_unk_7101d47108; extern char* g_unk_7101d47200;
 struct StringPoolHolder { u8 unk_0x0[0xe8]; StringPoolHolder(u32 a, char** pool); ~StringPoolHolder(); };
 inline void EnsureStringPool() { static StringPoolHolder s_holder(fn_7100080568(), &g_unk_7101d47108); fn_710007fdb4(); }
+inline void EnsureFilePathPool() { static StringPoolHolder s_holder(fn_7100080570(), &g_unk_7101d47200); fn_710007fdb4(); }
 struct Singleton { Singleton(); ~Singleton(); };
 inline Singleton& GetSingleton() { static Singleton s_singleton; return s_singleton; }
 struct ZeroWord { u32 value; ZeroWord() : value(0) {} };
@@ -43,11 +45,7 @@ struct ZeroWord { u32 v; ZeroWord() : v(0) {} };
 }
 
 extern char g_unk_710164779c[];
-extern char g_unk_7101a6f8a0[];
 extern char g_unk_7101aa1c20[];
-extern char g_unk_7101d47108[];
-extern char g_unk_7101d471f8[];
-extern char g_unk_7101d57cd0[];
 extern char g_unk_71726a4780[];
 extern char g_unk_71726aec18[];
 extern char g_unk_71726af0b0[];
@@ -66,11 +64,9 @@ namespace callee { char* fn_7100bda678(); }
 namespace callee { char* fn_7100d7c990(char*); }
 namespace callee { char* fn_7100ed77b8(u64, char*); }
 namespace callee { char* fn_71010d1ca0(); }
-namespace callee { char* fn_71011acd10(); }
 namespace h { extern HIDDEN char g_unk_71726f37c0[]; }
 namespace h { extern HIDDEN char g_unk_71727331f0[]; }
 namespace h { extern HIDDEN char g_unk_71727344e0[]; }
-namespace lift_static { inline ZeroWord& s_7101d57cc8() { static ZeroWord s; return s; } }
 namespace lift_static { inline ZeroWord& s_71726a4778() { static ZeroWord s; return s; } }
 namespace lift_static { inline ZeroWord& s_71726aec10() { static ZeroWord s; return s; } }
 namespace lift_static { inline ZeroWord& s_71726b0940() { static ZeroWord s; return s; } }
@@ -320,35 +316,6 @@ void fn_71006c0930(char* p0) {
     char* r57_8 = (char*)(gs_71726b5354);
     u32 r58_8 = (u32)*(u32*)((char*)(r57_8) + 0);
     *(u32*)((char*)(r10_19) + 196) = (u32)(u64)(r58_8);
-    return;
-}
-
-void fn_7100797234(char* p0) {
-    char* gs_7101d57cc8;
-    char* r1_19 = p0;
-    char* r2_0 = callee::fn_71011acd10();
-    char* r3_8 = (char*)g_unk_7101a6f8a0;
-    char* r6_8 = (r3_8) + 16;
-    char* r8_20 = (char*)g_unk_7101d47108;
-    *(u64*)((char*)(r1_19) + 0) = (u64)(u64)(r6_8);
-    *(u32*)((char*)(r1_19) + 88) = (u32)(u64)(0);
-    *(u64*)((char*)(r1_19) + 96) = (u64)(u64)(0);
-    u64 r9_8 = (u64)*(u64*)((char*)(r8_20) + 0);
-    u64 m0 = r9_8;
-    if ((u64)(u64)(r9_8) == 0) {
-        char* r11_8 = (char*)g_unk_7101d471f8;
-        lift_guard::EnsureStringPool();
-        u64 r13_8 = (u64)*(u64*)((char*)(r8_20) + 0);
-        m0 = r13_8;
-    }
-    u64 r17_8 = (u64)(u64)(m0) + (u64)(16);
-    char* r20_8 = (char*)g_unk_7101d57cd0;
-    *(u64*)(((char*)(r1_19) + 96) + 0) = (u64)(u64)(r17_8);
-    *(u64*)(((char*)(r1_19) + 96) + 8) = (u64)(u64)(0);
-    gs_7101d57cc8 = (char*)&lift_static::s_7101d57cc8();
-    char* r22_20 = (char*)(gs_7101d57cc8);
-    u32 r23_8 = (u32)*(u32*)((char*)(r22_20) + 0);
-    *(u32*)((char*)(r1_19) + 112) = (u32)(u64)(r23_8);
     return;
 }
 
