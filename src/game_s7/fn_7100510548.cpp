@@ -1,18 +1,29 @@
-// A record's copy-assignment: thirteen entries, then values copied one by one and a string id (UnkAnyPropsS7.h).
+// A record's copy constructor and copy-assignment: thirteen entries, then values copied one by one and a string id (UnkAnyPropsS7.h).
 #include "UnkAnyPropsS7.h"
 #include "base/global/CStrId.h"
 
 using namespace unk_any_props;
 
-struct UnkRecord_7100510548 {
-    virtual void vf_0x0();
-    UnkBlock20 field_0x8;
+struct UnkRecord_7100510548 : UnkRecordBase {
+    void vf_0x0() override;
     UnkPropList field_0x28;
     u64 field_0xd8;
     UnkPropRef field_0xe0;
     // The u64 and the block after the entries are plain fields: the last entry's block is then
     // copied in another order.
-    UnkEntry entries[13];
+    UnkEntry entry_0;
+    UnkEntry entry_1;
+    UnkEntry entry_2;
+    UnkEntry entry_3;
+    UnkEntry entry_4;
+    UnkEntry entry_5;
+    UnkEntry entry_6;
+    UnkEntry entry_7;
+    UnkEntry entry_8;
+    UnkEntry entry_9;
+    UnkEntry entry_10;
+    UnkEntry entry_11;
+    UnkEntry entry_12;
     u64 field_0x6b0;
     UnkBlock20 field_0x6b8;
     UnkVal<u32> field_0x6d8;
@@ -62,11 +73,14 @@ struct UnkRecord_7100510548 {
     u64 field_0x7a8;
     u64 field_0x7b0;
     u32 field_0x7b8;
+    UnkRecord_7100510548(const UnkRecord_7100510548& o);
     UnkRecord_7100510548& operator=(const UnkRecord_7100510548& o);
 };
-static_assert(__builtin_offsetof(UnkRecord_7100510548, entries) == 0x100, "");
+static_assert(__builtin_offsetof(UnkRecord_7100510548, entry_0) == 0x100, "");
 static_assert(__builtin_offsetof(UnkRecord_7100510548, field_0x7a0) == 0x7a0, "");
 
+UnkRecord_7100510548::UnkRecord_7100510548(const UnkRecord_7100510548& o) = default;
 UnkRecord_7100510548& UnkRecord_7100510548::operator=(const UnkRecord_7100510548& o) = default;
 
 extern "C" void fn_7100510548() __attribute__((alias("_ZN20UnkRecord_7100510548aSERKS_")));
+extern "C" void fn_710050f824() __attribute__((alias("_ZN20UnkRecord_7100510548C2ERKS_")));

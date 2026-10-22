@@ -907,6 +907,43 @@ the code:
 The memcpy of the last array entry is scheduled with whatever plain fields follow it, so the
 load order there tells you whether the next field is plain or wrapped (`fn_7100510548`).
 `fn_7100fbdfd0` (slice 6's range) also calls `fn_710009efb8` once; it is not part of this family.
+The records' copy constructors are **O** in the same files: `fn_7100441cfc`, `fn_710048acac`,
+`fn_710050f824`, and in slice 2's range `fn_7100433c5c` and `fn_71004c8ad4` (stream 7's, same
+terms). Each is defaulted and aliased like the operator=. What the constructors needed:
+- the entries are separate members (an array is copied by a loop) and derive from the property,
+  each level storing its vptr;
+- the records derive from a base (vtable 0x7101cd1b38) and sometimes a middle class, whose vptr
+  store survives only if an untyped copy follows it (`fn_710048acac`'s two-u32 field);
+- the block, `UnkPropRef`'s values, `UnkVal` and `UnkTail` have user copy constructors, so they
+  are copied one by one instead of joining a memcpy run.
+
+**Collection-type registration** (stream 7): `fn_71000e2800` (14 KB, **O**, no callers in code)
+adds 105 type getters' results to their one-byte lists (`fn_710009ec00`), builds 60 `CClass`
+globals from their names (`CollectionTypeMapper<...>` value types, `CRntVector<...>` and so on;
+the constructors take four or six arguments), registers their destructors and 45 conversions.
+Every global and callback is reached through the GOT, so all are plain `extern`s. The source was
+written mechanically from the call sequence, with the helpers in `UnkStaticInitS7.h`.
+
+**Hash lists by height** (stream 7, 2026-10-22): `fn_71003f2a8c` and `fn_71006c26fc` clear a
+list of 64-bit name hashes and push three to five constants, chosen by the height difference of two
+positions against 300. `fn_71006c26fc` is **O**; `fn_71003f2a8c` is **m** (one store's index
+register). Both are in `src/game_s7/fn_71003f2a8c.cpp`, using a local copy of the `UnkVector` layout
+whose PushBack copies the old elements one by one through a pointer. Two details mattered:
+- The list must be a reference parameter. Only then can the step be loaded before the first push's
+  capacity test (the original selects the step when the capacity is 0).
+- Each branch pushes its own last hash and returns. A shared tail lets Clang sink the pushes into
+  one with a phi of the constant.
+
+**Flag lists** (stream 7): `fn_7100eed9ec` (**O**) and `fn_7100600c98` (**m**) build a local list
+of `u32` flags on the stack (`src/game_s7/UnkFlagListS7.h`: a linked list with a vtable,
+allocator and flags 0x13) and hand it to `fn_71008724f8`. The list's fields are union members:
+the original reloads them after every node store. `alignas(16)` puts the list at sp+0x10.
+`fn_7100600c98`'s remaining difference is that the first call's flag statics share the list's stack slot.
+
+**Link groups** (stream 7): `fn_7100de7d88` (**O**) is the defaulted destructor of 13 link groups,
+each three pointer arrays plus one field. It needs 13 separate members: an array of
+non-trivially-destructible members becomes a loop. `fn_7100b34b44` (**m**, registers swap from the
+second push) clears a pointer list and pushes 14 addresses inside the same object.
 
 ## Known issues and gotchas
 
