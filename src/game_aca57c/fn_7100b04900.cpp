@@ -3,109 +3,7 @@
 // "sources" ids), then registers its reflected types: a class or enum type built from its name
 // (destroyed at exit) and noted in the TU's registry flags, and for enums a pair of converter
 // records (to and from the integer type) registered with fn_71000a16c4.
-#include <new>
-
-#include "base/global/CStrId.h"
-#include "types.h"
-
-using base::global::CStrId;
-
-extern char g_unk_7101a19000 __attribute__((visibility("hidden")));  // the DSO handle
-int fn_7100000250(void (*dtor)(void*), void* object, void* dso);     // __cxa_atexit
-void fn_710000051c(void* id);                                         // a CStrId's destructor
-
-struct UnkReflTypeInfo {
-    u8 unk_0x0[0x30];
-    void* field_0x30;
-};
-struct UnkReflType {
-    void* vtable;
-    UnkReflTypeInfo* info;
-};
-void fn_710009ec00(void* flag, UnkReflType* type);
-void fn_7100096604(void* type);  // a class type's destructor
-void fn_7100099468(void* type);  // an enum type's destructor
-
-// The header data every TU's initialiser starts with.
-struct UnkTUHeader {
-    u32 field_0x0;
-    CStrId binaries;
-    CStrId sources;
-};
-
-__attribute__((always_inline)) static inline void InitHeader(UnkTUHeader& h) {
-    h.field_0x0 = 6;
-    new (&h.binaries) CStrId("binaries", true);
-    fn_7100000250(fn_710000051c, &h.binaries, &g_unk_7101a19000);
-    new (&h.sources) CStrId("sources", true);
-    fn_7100000250(fn_710000051c, &h.sources, &g_unk_7101a19000);
-}
-
-// A class type: constructed from its name by `ctor` with its base type (if any) and an init
-// function.
-typedef void (*UnkClassCtor)(UnkReflType* self, const CStrId& name, UnkReflType* base, void* a, void (*init)(),
-                             void* b);
-
-__attribute__((always_inline)) static inline void InitClass(UnkReflType* type, const char* name, UnkClassCtor ctor,
-                                                            void (*init)(), UnkReflType* base = nullptr) {
-    {
-        CStrId id(name, true);
-        ctor(type, id, base, nullptr, init, nullptr);
-    }
-    fn_7100000250(fn_7100096604, type, &g_unk_7101a19000);
-}
-
-// An enum type: constructed from its name by `ctor` with an init function.
-typedef void (*UnkEnumCtor)(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-
-__attribute__((always_inline)) static inline void InitEnum(UnkReflType* type, const char* name, UnkEnumCtor ctor,
-                                                           void (*init)()) {
-    {
-        CStrId id(name, true);
-        ctor(type, id, init, nullptr);
-    }
-    fn_7100000250(fn_7100099468, type, &g_unk_7101a19000);
-}
-
-// A converter between two types, registered with fn_71000a16c4.
-struct UnkConverter {
-    void* from;
-    void* to;
-    void (*convert)();
-    void* field_0x18;
-};
-void fn_71000a16c4(UnkConverter* converter);
-UnkReflType* fn_7100014768();  // the enums' integer type
-UnkReflType* fn_7100005178();  // refl_GetType<unsigned>, the flag sets' integer type
-
-__attribute__((always_inline)) static inline void InitEnumConverters(UnkReflType* type, UnkConverter& to_int,
-                                                                     void (*to_int_fn)(), UnkConverter& from_int,
-                                                                     void (*from_int_fn)(),
-                                                                     UnkReflType* (*int_type)() = fn_7100014768) {
-    to_int = {type->info->field_0x30, int_type()->info->field_0x30, to_int_fn, nullptr};
-    fn_71000a16c4(&to_int);
-    from_int = {int_type()->info->field_0x30, type->info->field_0x30, from_int_fn, nullptr};
-    fn_71000a16c4(&from_int);
-}
-
-// A flag-set type: constructed from its name by `ctor`.
-void fn_710009a368(void* type);  // a flag-set type's destructor
-typedef void (*UnkFlagSetCtor)(UnkReflType* self, const CStrId& name, void* extra);
-
-__attribute__((always_inline)) static inline void InitFlagSet(UnkReflType* type, const char* name, UnkFlagSetCtor ctor) {
-    {
-        CStrId id(name, true);
-        ctor(type, id, nullptr);
-    }
-    fn_7100000250(fn_710009a368, type, &g_unk_7101a19000);
-}
-
-// TU data that follows the header: the class type a getter builds, or other values.
-struct UnkTUHeaderAndClass {
-    UnkTUHeader header;
-    u8 unk_0x18[0x8];
-    UnkReflType type;
-};
+#include "game/UnkTUInit.h"
 
 extern UnkTUHeader g_unk_71727bc230 __attribute__((visibility("hidden")));
 extern UnkReflType g_unk_71727bc110;
@@ -182,8 +80,6 @@ void fn_7100c94720() {
     fn_710009ec00(&g_unk_71727953c0, &g_unk_71727952a8);
     InitEnumConverters(&g_unk_71727952a8, g_unk_71727953c8, fn_7100c94690, g_unk_71727953e8, fn_7100c9469c);
 }
-
-// FAIL 0x7100c77cd0: unknown token 8: ('got', '7172791e48')
 
 extern UnkTUHeader g_unk_717277e0f8 __attribute__((visibility("hidden")));
 extern UnkReflType g_unk_717277df90;
@@ -297,12 +193,6 @@ void fn_7100de25a0() {
     fn_710009ec00(&g_unk_71727be4e8, &g_unk_71727be730);
 }
 
-// FAIL 0x7100adcf10: unknown token 8: ('got', '710000cf00')
-// FAIL 0x7100db21d0: expected got at 10: ('bl', '7100000250', 'fn_7100000250')
-// FAIL 0x7100da54b0: unknown token 22: ('bl', '7100009658', 'base::reflection::refl_GetType<base::global::CStrId>')
-// FAIL 0x7100c668b0: unknown token 27: ('bl', '7100005178', 'base::reflection::refl_GetType<unsigned>')
-// FAIL 0x7100acb290: unknown token 8: ('got', '7172755b00')
-
 extern UnkTUHeader g_unk_71727bf998 __attribute__((visibility("hidden")));
 extern UnkReflType g_unk_71727bf6f8;
 void fn_7100e06ce0();
@@ -325,8 +215,6 @@ void fn_7100e07920() {
     InitClass(&g_unk_71727bf858, "CGlobalEventManager::SMissionLogEntry", fn_7100e07250, fn_7100e0700c);
     fn_710009ec00(&g_unk_71727bf990, &g_unk_71727bf858);
 }
-
-// FAIL 0x7100adf770: expected got at 30: ('bl', '7100adf508', 'fn_7100adf508')
 
 extern UnkTUHeader g_unk_7172795270 __attribute__((visibility("hidden")));
 extern UnkReflType g_unk_7172794fb0;
@@ -355,34 +243,6 @@ void fn_7100c93d60() {
     fn_710009ec00(&g_unk_7172795228, &g_unk_7172795110);
     InitEnumConverters(&g_unk_7172795110, g_unk_7172795230, fn_7100c93c60, g_unk_7172795250, fn_7100c93c6c);
 }
-
-// FAIL 0x7100ebefd0: unknown token 38: ('data', '71729ce058')
-// FAIL 0x7100ad39e0: unknown token 11: ('bl', '710025d654', 'base::reflection::refl_GetType<gameeditor::CGameModelIndex>')
-// FAIL 0x7100da1ce0: expected bl at 27: ('got', '7100d9dce8')
-// FAIL 0x7100b0a100: unknown token 8: ('got', '710000cf00')
-// FAIL 0x7100e16af0: unknown token 8: ('got', '71727c0918')
-// FAIL 0x7100e0ecb0: unknown token 8: ('got', '710000cf00')
-// FAIL 0x7100e1b8b0: expected got at 30: ('bl', '7100e177ec', 'fn_7100e177ec')
-// FAIL 0x7100ad28e0: expected bl at 30: ('got', '7100acea3c')
-// FAIL 0x7100b0d6c0: expected bl at 33: ('got', '7100b0ab60')
-// FAIL 0x7100b797e0: expected bl at 33: ('got', '7100b76544')
-// FAIL 0x7100b81290: expected bl at 33: ('got', '7100b7db14')
-// FAIL 0x7100da7050: unknown token 45: ('data', '71727bc5b0')
-// FAIL 0x7100b2bc80: unknown token 8: ('got', '7172762b18')
-// FAIL 0x7100aef910: unknown token 19: ('bl', '7100009658', 'base::reflection::refl_GetType<base::global::CStrId>')
-// FAIL 0x7100d9caf0: unknown token 27: ('bl', '7100005178', 'base::reflection::refl_GetType<unsigned>')
-// FAIL 0x7100b84970: expected bl at 44: ('got', '7100b81cf8')
-// FAIL 0x7100e7c980: unknown token 8: ('got', '71727c8f58')
-// FAIL 0x7100d90cd0: unknown token 8: ('got', '710000cf00')
-// FAIL 0x7100ad4c90: unknown token 23: ('data', '7172756cd0')
-// FAIL 0x7100e1dde0: expected got at 11: ('bl', '7100000250', 'fn_7100000250')
-// FAIL 0x7100d6ff80: unknown token 20: ('bl', '71009155a8', 'base::reflection::refl_GetType<game::logic::collision::CShape*>')
-// FAIL 0x7100adbc20: expected bl at 62: ('got', '7100ad6f04')
-// FAIL 0x7100b5d0c0: expected bl at 21: ('got', '7100b54e20')
-// FAIL 0x7100ca6150: unknown token 8: ('got', '7172796388')
-// FAIL 0x7100b8e430: expected got at 102: ('bl', '7100b8dd9c', 'fn_7100b8dd9c')
-// FAIL 0x7100e06590: unknown token 11: ('got', '71727be870')
-// FAIL 0x7100c92b10: expected bl at 24: ('got', '7100c8398c')
 
 extern UnkTUHeader g_unk_7172772d18 __attribute__((visibility("hidden")));
 extern UnkReflType g_unk_7172772bb0;
@@ -570,7 +430,6 @@ void fn_7100e13f10() {
     fn_710009ec00(&g_unk_71727c0828, &g_unk_71727c0710);
     InitEnumConverters(&g_unk_71727c0710, g_unk_71727c0830, fn_7100e1389c, g_unk_71727c0850, fn_7100e138a8);
 }
-
 
 extern UnkTUHeaderAndClass g_unk_717279cc60 __attribute__((visibility("hidden")));
 void fn_7100cd12b8();  // CCharClassSetCameraNearEvent::refl_GetClass

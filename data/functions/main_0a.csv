@@ -4996,7 +4996,7 @@ address,size,name,name_source,subsystem,status
 0x7100ad2714,20,fn_7100ad2714,unknown,unknown,O
 0x7100ad2728,216,fn_7100ad2728,unknown,unknown,U
 0x7100ad2800,224,fn_7100ad2800,unknown,unknown,U
-0x7100ad28e0,912,fn_7100ad28e0,unknown,unknown,U
+0x7100ad28e0,912,fn_7100ad28e0,unknown,unknown,O
 0x7100ad2c70,140,fn_7100ad2c70,unknown,unknown,O
 0x7100ad2d00,140,fn_7100ad2d00,unknown,unknown,O
 0x7100ad2d8c,4,fn_7100ad2d8c,unknown,unknown,O
@@ -5362,7 +5362,7 @@ address,size,name,name_source,subsystem,status
 0x7100adcee4,4,fn_7100adcee4,unknown,unknown,O
 0x7100adcee8,20,fn_7100adcee8,unknown,unknown,O
 0x7100adcefc,20,fn_7100adcefc,unknown,unknown,O
-0x7100adcf10,484,fn_7100adcf10,unknown,unknown,U
+0x7100adcf10,484,fn_7100adcf10,unknown,unknown,O
 0x7100add100,140,fn_7100add100,unknown,unknown,O
 0x7100add18c,4,fn_7100add18c,unknown,unknown,O
 0x7100add190,244,CTunableMenuHelperClass::refl_GetClass,reflection,game,O
@@ -5670,7 +5670,7 @@ address,size,name,name_source,subsystem,status
 0x7100aef4ec,392,fn_7100aef4ec,unknown,unknown,U
 0x7100aef674,240,fn_7100aef674,unknown,unknown,O
 0x7100aef764,420,fn_7100aef764,unknown,unknown,U
-0x7100aef910,1012,fn_7100aef910,unknown,unknown,U
+0x7100aef910,1012,fn_7100aef910,unknown,unknown,O
 0x7100aefd04,4,fn_7100aefd04,unknown,unknown,O
 0x7100aefd08,368,fn_7100aefd08,unknown,unknown,O
 0x7100aefe78,12,fn_7100aefe78,unknown,unknown,O

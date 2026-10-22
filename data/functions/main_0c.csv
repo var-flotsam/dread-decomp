@@ -4643,7 +4643,7 @@ address,size,name,name_source,subsystem,status
 0x7100c9293c,20,fn_7100c9293c,unknown,unknown,O
 0x7100c92950,216,fn_7100c92950,unknown,unknown,U
 0x7100c92a28,224,fn_7100c92a28,unknown,unknown,U
-0x7100c92b10,1972,fn_7100c92b10,unknown,unknown,U
+0x7100c92b10,1972,fn_7100c92b10,unknown,unknown,O
 0x7100c932c4,428,fn_7100c932c4,unknown,unknown,O
 0x7100c93470,384,fn_7100c93470,unknown,unknown,O
 0x7100c935f0,620,fn_7100c935f0,unknown,unknown,O
