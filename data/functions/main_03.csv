@@ -244,7 +244,7 @@ address,size,name,name_source,subsystem,status
 0x7100314e54,352,fn_7100314e54,unknown,unknown,U
 0x7100314fb4,220,fn_7100314fb4,unknown,unknown,U
 0x7100315090,4,operator.delete,symbol,unknown,O
-0x7100315094,252,fn_7100315094,unknown,unknown,U
+0x7100315094,252,fn_7100315094,unknown,unknown,O
 0x7100315190,220,fn_7100315190,unknown,unknown,U
 0x710031526c,1004,fn_710031526c,unknown,unknown,U
 0x7100315658,960,fn_7100315658,unknown,unknown,U

@@ -5213,7 +5213,7 @@ address,size,name,name_source,subsystem,status
 0x71008fa600,96,fn_71008fa600,unknown,unknown,U
 0x71008fa660,88,fn_71008fa660,unknown,unknown,U
 0x71008fa6b8,80,fn_71008fa6b8,unknown,unknown,U
-0x71008fa708,200,fn_71008fa708,unknown,unknown,U
+0x71008fa708,200,fn_71008fa708,unknown,unknown,O
 0x71008fa7d0,100,fn_71008fa7d0,unknown,unknown,O
 0x71008fa834,80,fn_71008fa834,unknown,unknown,O
 0x71008fa884,116,fn_71008fa884,unknown,unknown,O

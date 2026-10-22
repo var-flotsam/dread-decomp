@@ -5340,7 +5340,7 @@ address,size,name,name_source,subsystem,status
 0x7100bdc1c4,12,fn_7100bdc1c4,unknown,game/characters?,O
 0x7100bdc1d0,8,fn_7100bdc1d0,unknown,game/characters?,O
 0x7100bdc1d8,28,fn_7100bdc1d8,unknown,game/characters?,O
-0x7100bdc1f4,224,fn_7100bdc1f4,unknown,game/characters?,U
+0x7100bdc1f4,224,fn_7100bdc1f4,unknown,game/characters?,O
 0x7100bdc2d4,312,fn_7100bdc2d4,unknown,game/characters?,O
 0x7100bdc40c,312,fn_7100bdc40c,unknown,game/characters?,O
 0x7100bdc544,12,fn_7100bdc544,unknown,game/characters?,O

@@ -3953,7 +3953,7 @@ address,size,name,name_source,subsystem,status
 0x71011fa434,24,fn_71011fa434,unknown,gui?,O
 0x71011fa44c,28,fn_71011fa44c,unknown,gui?,O
 0x71011fa468,232,fn_71011fa468,unknown,gui?,U
-0x71011fa550,136,fn_71011fa550,unknown,gui?,U
+0x71011fa550,136,fn_71011fa550,unknown,gui?,O
 0x71011fa5d8,8,fn_71011fa5d8,unknown,gui?,O
 0x71011fa5e0,8,fn_71011fa5e0,unknown,gui?,O
 0x71011fa5e8,28,fn_71011fa5e8,unknown,gui?,O

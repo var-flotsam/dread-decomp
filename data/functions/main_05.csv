@@ -787,7 +787,7 @@ address,size,name,name_source,subsystem,status
 0x710053600c,388,fn_710053600c,unknown,unknown,O
 0x7100536190,220,fn_7100536190,unknown,unknown,O
 0x710053626c,480,fn_710053626c,unknown,unknown,O
-0x7100536450,248,fn_7100536450,unknown,unknown,U
+0x7100536450,248,fn_7100536450,unknown,unknown,O
 0x7100536550,5792,fn_7100536550,unknown,unknown,U
 0x7100537bf0,4,fn_7100537bf0,unknown,unknown,O
 0x7100537bf4,244,CEmmyAIComponent::CTunableEmmyAIComponent::refl_GetClass,reflection,game/ai,O
@@ -5377,7 +5377,7 @@ address,size,name,name_source,subsystem,status
 0x71005fc728,592,fn_71005fc728,unknown,unknown,U
 0x71005fc978,712,fn_71005fc978,unknown,unknown,U
 0x71005fcc40,388,fn_71005fcc40,unknown,unknown,U
-0x71005fcdc4,204,fn_71005fcdc4,unknown,unknown,U
+0x71005fcdc4,204,fn_71005fcdc4,unknown,unknown,O
 0x71005fce90,20,fn_71005fce90,unknown,unknown,O
 0x71005fcea4,248,fn_71005fcea4,unknown,unknown,U
 0x71005fcf9c,236,fn_71005fcf9c,unknown,unknown,U
