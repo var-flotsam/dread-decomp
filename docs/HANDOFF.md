@@ -907,6 +907,22 @@ the code:
 The memcpy of the last array entry is scheduled with whatever plain fields follow it, so the
 load order there tells you whether the next field is plain or wrapped (`fn_7100510548`).
 `fn_7100fbdfd0` (slice 6's range) also calls `fn_710009efb8` once; it is not part of this family.
+The records' copy constructors are **O** in the same files: `fn_7100441cfc`, `fn_710048acac`,
+`fn_710050f824`, and in slice 2's range `fn_7100433c5c` and `fn_71004c8ad4` (stream 7's, same
+terms). Each is defaulted and aliased like the operator=. What the constructors needed:
+- the entries are separate members (an array is copied by a loop) and derive from the property,
+  each level storing its vptr;
+- the records derive from a base (vtable 0x7101cd1b38) and sometimes a middle class, whose vptr
+  store survives only if an untyped copy follows it (`fn_710048acac`'s two-u32 field);
+- the block, `UnkPropRef`'s values, `UnkVal` and `UnkTail` have user copy constructors, so they
+  are copied one by one instead of joining a memcpy run.
+
+**Collection-type registration** (stream 7): `fn_71000e2800` (14 KB, **O**, no callers in code)
+adds 105 type getters' results to their one-byte lists (`fn_710009ec00`), builds 60 `CClass`
+globals from their names (`CollectionTypeMapper<...>` value types, `CRntVector<...>` and so on;
+the constructors take four or six arguments), registers their destructors and 45 conversions.
+Every global and callback is reached through the GOT, so all are plain `extern`s. The source was
+written mechanically from the call sequence, with the helpers in `UnkStaticInitS7.h`.
 
 **Hash lists by height** (stream 7, 2026-10-22): `fn_71003f2a8c` and `fn_71006c26fc` clear a
 list of 64-bit name hashes and push three to five constants, chosen by the height difference of two
