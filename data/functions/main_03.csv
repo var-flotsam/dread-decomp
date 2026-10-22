@@ -2623,7 +2623,7 @@ address,size,name,name_source,subsystem,status
 0x7100392518,268,fn_7100392518,unknown,ai/behaviortree?,O
 0x7100392624,36,fn_7100392624,unknown,ai/behaviortree?,O
 0x7100392648,188,fn_7100392648,unknown,ai/behaviortree?,U
-0x7100392704,148,fn_7100392704,unknown,ai/behaviortree?,U
+0x7100392704,148,fn_7100392704,unknown,ai/behaviortree?,O
 0x7100392798,8,fn_7100392798,unknown,ai/behaviortree?,O
 0x71003927a0,28,fn_71003927a0,unknown,ai/behaviortree?,O
 0x71003927bc,8,fn_71003927bc,unknown,ai/behaviortree?,O
@@ -3914,7 +3914,7 @@ address,size,name,name_source,subsystem,status
 0x71003b457c,260,fn_71003b457c,unknown,unknown,U
 0x71003b4680,116,fn_71003b4680,unknown,unknown,U
 0x71003b46f4,36,fn_71003b46f4,unknown,unknown,O
-0x71003b4718,164,fn_71003b4718,unknown,unknown,U
+0x71003b4718,164,fn_71003b4718,unknown,unknown,O
 0x71003b47bc,508,fn_71003b47bc,unknown,unknown,U
 0x71003b49b8,708,fn_71003b49b8,unknown,unknown,U
 0x71003b4c7c,1096,fn_71003b4c7c,unknown,unknown,U
@@ -4935,7 +4935,7 @@ address,size,name,name_source,subsystem,status
 0x71003e60ac,52,fn_71003e60ac,unknown,game/ai?,O
 0x71003e60e0,4,fn_71003e60e0,unknown,game/ai?,O
 0x71003e60e4,1100,fn_71003e60e4,unknown,game/ai?,U
-0x71003e6530,1204,fn_71003e6530,unknown,game/ai?,U
+0x71003e6530,1204,fn_71003e6530,unknown,game/ai?,m
 0x71003e69e4,544,fn_71003e69e4,unknown,game/ai?,U
 0x71003e6c04,124,fn_71003e6c04,unknown,game/ai?,U
 0x71003e6c80,76,fn_71003e6c80,unknown,game/ai?,O

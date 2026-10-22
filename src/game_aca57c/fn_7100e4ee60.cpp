@@ -213,3 +213,23 @@ struct UnkKeyedThreeArrays {
 
 void fn_7100e4c99c(UnkKeyedThreeArrays* self) { self->~UnkKeyedThreeArrays(); }
 void fn_7100e4cd88(UnkKeyedThreeArrays* self) { self->~UnkKeyedThreeArrays(); }
+
+// An iterator value over the 0x60-byte records taking another's reference: its owned pair is
+// destroyed, then the state and the reference are copied.
+using UnkArrayRecord60IterValue = base::UnkIterValue<UnkArrayRecord60, UnkReleasedStrId>;
+
+__attribute__((always_inline)) static inline void TakeRef(UnkArrayRecord60IterValue* self,
+                                                          const UnkArrayRecord60IterValue* other) {
+    using Pair = UnkArrayRecord60IterValue::Value;
+    if (self->state == 2) {
+        self->state = 0;
+    } else if (self->state == 1) {
+        self->value.~Pair();
+        self->state = 0;
+    }
+    self->state = other->state;
+    self->ref = other->ref;
+}
+
+void fn_7100e48574(UnkArrayRecord60IterValue* self, const UnkArrayRecord60IterValue* other) { TakeRef(self, other); }
+void fn_7100e48a40(UnkArrayRecord60IterValue* self, const UnkArrayRecord60IterValue* other) { TakeRef(self, other); }

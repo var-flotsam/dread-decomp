@@ -85,3 +85,28 @@ struct UnkIdWordList {
 
 void fn_7100b480a0(UnkIdWordList* self) { self->~UnkIdWordList(); }
 void fn_7100ea8cd4(UnkIdWordList* self) { self->~UnkIdWordList(); }
+
+// The same with a second string id at 0x48 and a word (released first).
+template <void** Vtable>
+struct UnkIdListIdHolder {
+    void** vtable;
+    u8 unk_0x8[0x10];
+    UnkReleasedStrId id;
+    UnkReleasedArray<UnkReleasedStrId> ids;
+    UnkReleasedStrId id_0x48;
+    u32 field_0x50;
+
+    __attribute__((always_inline)) ~UnkIdListIdHolder() { vtable = Vtable + 2; }
+};
+
+template <void** Vtable>
+__attribute__((always_inline)) static inline void Destroy(UnkIdListIdHolder<Vtable>* self) {
+    self->~UnkIdListIdHolder();
+    fn_710006b5dc(self);
+}
+
+extern void* g_unk_7101aa2b80[];
+extern void* g_unk_7101aa7d00[];
+
+void fn_7100c12a84(UnkIdListIdHolder<g_unk_7101aa2b80>* self) { Destroy(self); }
+void fn_7100d21ff8(UnkIdListIdHolder<g_unk_7101aa7d00>* self) { Destroy(self); }
