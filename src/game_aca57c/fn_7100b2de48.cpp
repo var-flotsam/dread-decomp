@@ -130,7 +130,7 @@ struct UnkStateOwner {
     UnkComposition* field_0x2c0;
     UnkComposition* field_0x2c8;
     UnkComposition* field_0x2d0;
-    u8 unk_0x2d8[0x4];
+    f32 field_0x2d8;
     bool field_0x2dc;
     bool field_0x2dd;
     bool field_0x2de;
@@ -683,7 +683,9 @@ void fn_7100b31464();
 
 struct UnkMenuStatesBase {
     void** vtable;
-    u8 unk_0x8[0x228];
+    u8 unk_0x8[0x180];
+    u8 field_0x188;
+    u8 unk_0x189[0xa7];
 
     UnkMenuStatesBase() { fn_71011d8d24(this); }
     ~UnkMenuStatesBase() { fn_71011d8e90(this); }
@@ -695,7 +697,7 @@ struct UnkMenuStatesVtable : UnkMenuStatesBase {
 
 // A callback (owner and function) and the set it is registered with, which its destructor
 // leaves through `Unregister`.
-template <void (*Unregister)(void*, void**)>
+template <void (*Unregister)(void*, void**), void (*Register)(void*, void**) = nullptr>
 struct UnkCallback {
     void* set;
     void* owner;
@@ -710,8 +712,21 @@ struct UnkCallback {
         fn = nullptr;
         owner = nullptr;
     }
+
+    // Moves the callback to the set at `Offset` in `owner`.
+    template <u32 Offset>
+    void Watch(void* owner) {
+        if (set) {
+            Unregister(set, &set);
+            set = nullptr;
+        }
+        set = static_cast<char*>(owner) + Offset;
+        Register(set, &set);
+    }
 };
 void fn_71004567dc(void* set, void** slot);
+void fn_71004f3cf0(void* set, void** slot);
+void fn_7100b31900(void* set, void** slot);
 void fn_71004f3ea4(void* set, void** slot);
 void fn_7100b31770(void* set, void** slot);
 
@@ -772,7 +787,11 @@ struct UnkMenuStates : UnkMenuStatesVtable {
     void* field_0x2d0 = nullptr;
     f32 field_0x2d8 = -1.0f;
     bool field_0x2dc = false;
-    u8 unk_0x2dd[0x13];
+    u8 unk_0x2dd[0x3];
+    s32 field_0x2e0;
+    s32 field_0x2e4;
+    s32 field_0x2e8;
+    u8 unk_0x2ec[0x4];
     UnkIdPair field_0x2f0;
     UnkIdPair field_0x308;
     UnkIdPair field_0x320;
@@ -780,8 +799,8 @@ struct UnkMenuStates : UnkMenuStatesVtable {
     UnkIdPair field_0x350;
     UnkIdPair field_0x368;
     UnkPtrArray field_0x380{0xf};
-    UnkCallback<fn_71004f3ea4> field_0x3a8{this, fn_7100b31394};
-    UnkCallback<fn_7100b31770> field_0x3c0{this, fn_7100b31464};
+    UnkCallback<fn_71004f3ea4, fn_71004f3cf0> field_0x3a8{this, fn_7100b31394};
+    UnkCallback<fn_7100b31770, fn_7100b31900> field_0x3c0{this, fn_7100b31464};
     struct UnkMember3d8 {
         u8 unk_0x0[0xb0];
 
@@ -851,12 +870,22 @@ void fn_7100b2e978(UnkStateOwner* self, const UnkInputEvent* event) {
 }
 
 // The state table (0x380) gives each state's enter and exit functions.
+// Three member functions per state (enter, exit and one more); zeroed and copied as raw bytes
+// (the original reloads the count and the array around each element).
 struct UnkStateFns {
     void (UnkStateOwner::*enter)();
     void (UnkStateOwner::*exit)();
+    void (UnkStateOwner::*field_0x20)();
+
+    UnkStateFns() { __builtin_memset(this, 0, sizeof(*this)); }
+    UnkStateFns(UnkStateFns&& other) { __builtin_memcpy(this, &other, sizeof(*this)); }
 };
 struct UnkStateTable;
-UnkStateFns* fn_7100b2f03c(UnkStateTable** table, s32 state);
+
+// The table's entry for a state, growing the table when needed (base::UnkVector::GrowAt).
+__attribute__((flatten)) UnkStateFns* fn_7100b2f03c(UnkStateTable** table, s32 state) {
+    return &reinterpret_cast<base::UnkVector<UnkStateFns>*>(table)->GrowAt(state);
+}
 struct UnkHighlight {
     u8 unk_0x0[0x2e1];
     bool field_0x2e1;
@@ -915,4 +944,92 @@ void fn_7100b2eaac(UnkStateOwner* self, s32 state, bool from_game, bool now) {
     if (highlight && !reinterpret_cast<UnkHighlight*>(highlight)->field_0x2e1)
         return;
     fn_71011b6bbc(g_unk_717271e8f8, self->current, false);
+}
+
+extern UnkGuiKey g_unk_7172762fe0 __attribute__((visibility("hidden")));
+bool fn_7100b41e5c(UnkObject* obj);
+
+// Page switching between states 7, 8 and 9 (outside boss rush, while the world's object at
+// 0xd63f40 allows it): from state 7 to `Next`, from `Prev` back to 7, each with a sound and a
+// 0.12 delay at 0x2d8.
+template <s32 Prev, s32 Next>
+__attribute__((always_inline)) static inline void SwitchPage(UnkStateOwner* self, const UnkInputEvent* event) {
+    if (event->handled)
+        return;
+    UnkObjRef* ref = g_unk_7101d47310->field_0x2228->field_0xd63f40;
+    if (!ref)
+        return;
+    UnkObject* obj = ref->obj;
+    if (!obj || fn_7100b41e5c(obj) || fn_7100b44a3c(obj))
+        return;
+    if (g_unk_71726bc570->field_0xb8)
+        return;
+    switch (self->field_0x2e0) {
+    case 7:
+        fn_710002fd10(g_unk_717271e8f8->field_0xca8, &g_unk_7172762fe0);
+        self->field_0x2d8 = 0.12f;
+        fn_7100b2eaac(self, Next, false, true);
+        return;
+    case Prev:
+        fn_710002fd10(g_unk_717271e8f8->field_0xca8, &g_unk_7172762fe0);
+        self->field_0x2d8 = 0.12f;
+        fn_7100b2eaac(self, 7, false, true);
+        return;
+    }
+}
+
+void fn_7100b2ed84(UnkStateOwner* self, const UnkInputEvent* event) { SwitchPage<9, 8>(self, event); }
+void fn_7100b2ee88(UnkStateOwner* self, const UnkInputEvent* event) { SwitchPage<8, 9>(self, event); }
+
+// A string id and a file-path id copied from globals for an assignment (fn_71000267f8), the
+// path released as a two-step member.
+struct UnkIdPairValue {
+    union {
+        CStrId id;
+    };
+    union {
+        CFilePathStrId path_init;
+        base::UnkStrIdMemberOf<g_unk_7101d47200> path;
+    };
+
+    UnkIdPairValue(const CStrId& a, const CFilePathStrId& b) : id(a) { new (&path_init) CFilePathStrId(b); }
+    ~UnkIdPairValue() {
+        path.~UnkStrIdMemberOf();
+        id.~CStrId();
+    }
+};
+void fn_71000267f8(UnkIdPair* pair, const UnkIdPairValue& value);
+void fn_71011d931c(UnkMenuStates* self);
+void fn_7100b2f6b0(UnkMenuStates* self);
+void fn_7100b2c2bc(UnkMenuStates* self);
+void fn_7100b2cd24(UnkMenuStates* self);
+extern CStrId g_unk_71727b9d30;
+extern CFilePathStrId g_unk_7172762ff0 __attribute__((visibility("hidden")));
+extern CFilePathStrId g_unk_7172762ff8 __attribute__((visibility("hidden")));
+extern CFilePathStrId g_unk_7172762fe8 __attribute__((visibility("hidden")));
+extern CFilePathStrId g_unk_7172763000 __attribute__((visibility("hidden")));
+
+// Initialisation: after the base part (fn_71011d931c) four id pairs are set, fn_7100b2f6b0
+// runs, the delay and states are reset (state 1 next), the object is activated once (0x188,
+// vf_0xa0), the two callbacks are moved to the manager's sets at 0x24f8 and 0x2128, and the
+// power description and mission menu are set up.
+void fn_7100b2f250(UnkMenuStates* self) {
+    fn_71011d931c(self);
+    fn_71000267f8(&self->field_0x2f0, UnkIdPairValue(g_unk_71727b9d30, g_unk_7172762ff0));
+    fn_71000267f8(&self->field_0x308, UnkIdPairValue(g_unk_71727b9d30, g_unk_7172762ff8));
+    fn_71000267f8(&self->field_0x368, UnkIdPairValue(g_unk_71727b9d30, g_unk_7172762fe8));
+    fn_71000267f8(&self->field_0x320, UnkIdPairValue(g_unk_71727b9d30, g_unk_7172763000));
+    fn_7100b2f6b0(self);
+    self->field_0x2e0 = -1;
+    self->field_0x2e4 = -1;
+    self->field_0x2e8 = 1;
+    self->field_0x2d8 = -1.0f;
+    if (self->field_0x188 != 1) {
+        self->field_0x188 = 1;
+        reinterpret_cast<void (*)(UnkMenuStates*)>(self->vtable[0xa0 / 8])(self);
+    }
+    self->field_0x3a8.Watch<0x24f8>(g_unk_7101d47310);
+    self->field_0x3c0.Watch<0x2128>(g_unk_7101d47310);
+    fn_7100b2c2bc(self);
+    fn_7100b2cd24(self);
 }
