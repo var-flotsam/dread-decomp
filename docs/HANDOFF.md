@@ -927,6 +927,12 @@ the constructors take four or six arguments), registers their destructors and 45
 Every global and callback is reached through the GOT, so all are plain `extern`s. The source was
 written mechanically from the call sequence, with the helpers in `UnkStaticInitS7.h`.
 
+**Copies of stream 2's shapes** (stream 7, claimed 2026-10-22): the static-id guard copies of
+`fn_7100464520` (`fn_71005b9d70`, `fn_71006e0f90`, `fn_7100898e80`, in `fn_71005b9d70.cpp`) and the
+copies of the compare `fn_71004a84c8` (`fn_71005d9dec`, `fn_71005ee098`, in `fn_71005d9dec.cpp`;
+each member of the compared value is inline or, in mode 2, a pointer; the loop index must be `u64`).
+`fn_71004a84c8` itself stays with stream 2.
+
 **Inventory string and projectile models** (stream 7): `fn_7101147868` (**O**, 4.9 KB) appends a
 "SamusInventory" record whose value is 26 digits, one per item definition (1 when the inventory's
 map holds an amount above zero under the item's qualified id). Findings: the lazy id check must be
