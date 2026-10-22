@@ -938,7 +938,10 @@ destroy-then-move; the vector growth moves elements bitwise (`memcpy`, so `count
 `fn_7100464520` (`fn_71005b9d70`, `fn_71006e0f90`, `fn_7100898e80`, in `fn_71005b9d70.cpp`) and the
 copies of the compare `fn_71004a84c8` (`fn_71005d9dec`, `fn_71005ee098`, in `fn_71005d9dec.cpp`;
 each member of the compared value is inline or, in mode 2, a pointer; the loop index must be `u64`).
-`fn_71004a84c8` itself stays with stream 2.
+`fn_71004a84c8` itself stays with stream 2. Also claimed (2026-10-22): the three copies of each of
+stream 2's owned-list array functions (`UnkOwnedList.h`) at 0x71005da4f8-0x71005db4c0,
+0x71005e3778-0x71005e4740 and 0x71005ee7a4-0x71005ef76c (clear, compare, free, move-assign, erase,
+grow-at, begin, end), in `fn_71005da4f8.cpp`.
 
 **Inventory string and projectile models** (stream 7): `fn_7101147868` (**O**, 4.9 KB) appends a
 "SamusInventory" record whose value is 26 digits, one per item definition (1 when the inventory's
