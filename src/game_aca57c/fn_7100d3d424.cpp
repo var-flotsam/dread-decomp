@@ -232,9 +232,27 @@ struct UnkMovedArray {
     u32 count;
     u32 capacity;
     u32 step;
-    bool field_0x1c;
+    bool field_0x14;
     u32 flags;
-    void* allocator;
+    base::UnkAllocator* allocator;
+
+    // Grows the array, moving the elements over (fn_7100e52b58 for array pairs).
+    __attribute__((always_inline)) void Reserve(u32 new_capacity) {
+        if (capacity < new_capacity) {
+            T* p = static_cast<T*>(allocator->vf_0x40((u64)new_capacity * sizeof(T), 8, flags));
+            if (data) {
+                T* src = data;
+                T* dst = p;
+                for (u32 i = 0; i < count; ++i, ++src, ++dst) {
+                    new (dst) T(static_cast<T&&>(*src));
+                    src->~T();
+                }
+                allocator->vf_0x48(data);
+            }
+            data = p;
+            capacity = new_capacity;
+        }
+    }
 
     template <class Index = u64>
     __attribute__((always_inline)) void MoveFrom(UnkMovedArray* src) {
@@ -244,7 +262,7 @@ struct UnkMovedArray {
         allocator = src->allocator;
         flags = src->flags;
         step = src->step;
-        field_0x1c = src->field_0x1c;
+        field_0x14 = src->field_0x14;
         count = src->count;
         capacity = src->capacity;
         data = src->data;
@@ -342,15 +360,49 @@ UnkMovedArray<UnkUnionRefPtr>* fn_7100d844e0(UnkMovedArray<UnkUnionRefPtr>* self
 
 // Move-assignments of arrays of arrays (each element frees its storage), and of arrays of
 // pairs of arrays.
+// The data pointer is a union member (no type-based alias info: it is reloaded after the
+// element's other fields are moved).
 template <class T>
-struct UnkFreedVector : base::UnkVector<T> {
-    ~UnkFreedVector() { this->Free(); }
+struct UnkFreedVector {
+    union {
+        T* data;
+    };
+    u32 count;
+    u32 capacity;
+    u32 step;
+    bool field_0x14;
+    u32 flags;
+    base::UnkAllocator* allocator;
+
+    // Takes over the other's array, leaving it empty.
+    UnkFreedVector(UnkFreedVector&& other)
+        : data(other.data), count(other.count), capacity(other.capacity), step(other.step),
+          field_0x14(other.field_0x14), flags(other.flags), allocator(other.allocator) {
+        other.data = nullptr;
+        other.count = 0;
+        other.capacity = 0;
+    }
+    ~UnkFreedVector() {
+        if (data) {
+            count = 0;
+            allocator->vf_0x48(data);
+            capacity = 0;
+        }
+    }
 };
 
 struct UnkFreedVectorPair {
     UnkFreedVector<u32> first;
     UnkFreedVector<u32> second;
-    u8 unk_0x50[0x10];
+    u32 field_0x50;
+    u32 field_0x54;
+    u32 field_0x58;
+    u32 field_0x5c;
+
+    UnkFreedVectorPair(UnkFreedVectorPair&& other)
+        : first(static_cast<UnkFreedVector<u32>&&>(other.first)),
+          second(static_cast<UnkFreedVector<u32>&&>(other.second)), field_0x50(other.field_0x50),
+          field_0x54(other.field_0x54), field_0x58(other.field_0x58), field_0x5c(other.field_0x5c) {}
 };
 
 UnkMovedArray<UnkFreedVector<u32>>* fn_7100d43c6c(UnkMovedArray<UnkFreedVector<u32>>* self,
@@ -364,5 +416,134 @@ UnkMovedArray<UnkFreedVectorPair>* fn_7100e52a58(UnkMovedArray<UnkFreedVectorPai
                                                   UnkMovedArray<UnkFreedVectorPair>* other) {
     if (self != other)
         self->MoveFrom<u32>(other);
+    return self;
+}
+
+// Move-assignment of an array of records holding a value, an id and an array of ids (which
+// frees its storage).
+struct UnkFreedIdArray {
+    UnkReleasedStrId* data;
+    u32 count;
+    u32 capacity;
+    u32 step;
+    bool field_0x14;
+    u32 flags;
+    base::UnkAllocator* allocator;
+
+    ~UnkFreedIdArray() {
+        if (data) {
+            for (u64 i = 0; i < count; ++i)
+                data[i].~UnkReleasedStrId();
+            count = 0;
+            allocator->vf_0x48(data);
+            capacity = 0;
+        }
+    }
+};
+
+struct UnkIdArrayRecord {
+    u64 field_0x0;
+    UnkReleasedStrId id;
+    UnkFreedIdArray ids;
+};
+
+UnkMovedArray<UnkIdArrayRecord>* fn_7100b5c0d0(UnkMovedArray<UnkIdArrayRecord>* self, UnkMovedArray<UnkIdArrayRecord>* other) {
+    if (self != other)
+        self->MoveFrom<u32>(other);
+    return self;
+}
+
+// Move-assignment of an id, four values and a large plain block.
+struct UnkIdValuesBlock {
+    UnkReleasedStrId id;
+    u32 field_0x8;
+    u32 field_0xc;
+    u32 field_0x10;
+    u32 field_0x14;
+    u64 unk_0x18;
+    u8 data[0x5f54];
+};
+
+UnkIdValuesBlock* fn_7100e7c638(UnkIdValuesBlock* self, UnkIdValuesBlock* other) {
+    if (self != other) {
+        MoveAssign(&self->id, &other->id);
+        self->field_0x8 = other->field_0x8;
+        self->field_0xc = other->field_0xc;
+        self->field_0x10 = other->field_0x10;
+        self->field_0x14 = other->field_0x14;
+        __builtin_memcpy(self->data, other->data, sizeof(self->data));
+    }
+    return self;
+}
+
+// Move-assignment of an array with a second pointer (destroying the elements through
+// fn_7100ea7034, keeping the storage).
+struct UnkRecord118 {
+    u64 unk_0x0[0x23];
+
+    ~UnkRecord118();
+};
+void fn_7100ea7034(UnkRecord118* self);
+inline UnkRecord118::~UnkRecord118() { fn_7100ea7034(this); }
+
+template <class T>
+struct UnkSecondPtrArray {
+    T* data;
+    void* field_0x8;
+    u32 count;
+    u32 capacity;
+    u32 field_0x18;
+    u32 field_0x1c;
+    void* allocator;
+};
+
+template <class T, class Index>
+static inline UnkSecondPtrArray<T>* MoveAssign(UnkSecondPtrArray<T>* self, UnkSecondPtrArray<T>* other) {
+    if (self != other) {
+        if (self->data)
+            for (Index i = 0; i < self->count; ++i)
+                self->data[i].~T();
+        self->count = 0;
+        self->allocator = other->allocator;
+        self->field_0x8 = other->field_0x8;
+        self->data = other->data;
+        self->capacity = other->capacity;
+        self->count = other->count;
+        self->field_0x1c = other->field_0x1c;
+        self->field_0x18 = other->field_0x18;
+        other->count = 0;
+        other->data = nullptr;
+        other->field_0x8 = nullptr;
+    }
+    return self;
+}
+
+UnkSecondPtrArray<UnkRecord118>* fn_7100eae08c(UnkSecondPtrArray<UnkRecord118>* self, UnkSecondPtrArray<UnkRecord118>* other) {
+    return MoveAssign<UnkRecord118, u32>(self, other);
+}
+UnkSecondPtrArray<UnkFreedVectorPair>* fn_7100e54838(UnkSecondPtrArray<UnkFreedVectorPair>* self,
+                                                      UnkSecondPtrArray<UnkFreedVectorPair>* other) {
+    return MoveAssign<UnkFreedVectorPair, u32>(self, other);
+}
+
+// Copy-assignment of an array of array pairs through its out-of-line Reserve and PushBack.
+struct UnkPairArray : UnkMovedArray<UnkFreedVectorPair> {};
+void fn_7100e52b58(UnkPairArray* self, u32 capacity);                      // Reserve
+void fn_7100e52cf4(UnkPairArray* self, const UnkFreedVectorPair* value);  // PushBack
+
+// The array's Reserve: moves the pairs into a new array.
+__attribute__((noinline)) void fn_7100e52b58(UnkPairArray* self, u32 capacity) {
+    self->Reserve(capacity);
+}
+
+UnkPairArray* fn_7100e52e64(UnkPairArray* self, const UnkPairArray* other) {
+    if (self != other) {
+        for (u32 i = 0; i < self->count; ++i)
+            self->data[i].~UnkFreedVectorPair();
+        self->count = 0;
+        fn_7100e52b58(self, other->capacity);
+        for (const UnkFreedVectorPair *it = other->data, *end = it + other->count; it != end; ++it)
+            fn_7100e52cf4(self, it);
+    }
     return self;
 }

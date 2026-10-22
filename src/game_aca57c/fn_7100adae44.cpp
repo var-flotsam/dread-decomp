@@ -339,3 +339,183 @@ static inline UnkIdVectorsPair* SetRefs(UnkIdVectorsPair* self, const UnkIdVecto
 
 UnkIdVectorsPair* fn_7100e48460(UnkIdVectorsPair* self, const UnkIdVectorsPair* other) { return SetRefs(self, other); }
 UnkIdVectorsPair* fn_7100e4892c(UnkIdVectorsPair* self, const UnkIdVectorsPair* other) { return SetRefs(self, other); }
+
+// Four values, an id, a record assigned by fn_7100e4f444 and a value.
+struct UnkArraysRecord {
+    u64 unk_0x0[0xc];
+};
+UnkArraysRecord* fn_7100e4f444(UnkArraysRecord* self, const UnkArraysRecord* other);  // operator=
+
+struct UnkValuesIdArrays {
+    u32 field_0x0;
+    u32 field_0x4;
+    u32 field_0x8;
+    u32 field_0xc;
+    CStrId id;
+    UnkArraysRecord arrays;
+    u32 field_0x78;
+
+    UnkValuesIdArrays& operator=(const UnkValuesIdArrays& other) {
+        field_0x0 = other.field_0x0;
+        field_0x4 = other.field_0x4;
+        field_0x8 = other.field_0x8;
+        field_0xc = other.field_0xc;
+        id = other.id;
+        fn_7100e4f444(&arrays, &other.arrays);
+        field_0x78 = other.field_0x78;
+        return *this;
+    }
+};
+
+using UnkIdValuesArraysPair = UnkValuePairRef<CStrId, UnkValuesIdArrays>;
+
+UnkIdValuesArraysPair* fn_7100e60320(UnkIdValuesArraysPair* self, UnkIdValuesArraysPair* other) {
+    return AssignFrom(self, other);
+}
+
+// A record whose leading part is assigned by fn_710011dac0 (after two values and a flag set
+// on assignment), then a value and the arrays record.
+struct UnkPartsRecord {
+    u64 unk_0x0[5];
+    u32 field_0x28;
+    bool field_0x2c;
+    bool field_0x2d;
+    u64 unk_0x30[2];
+    u32 field_0x40;
+    UnkArraysRecord arrays;
+
+    UnkPartsRecord& operator=(const UnkPartsRecord& other);
+};
+void fn_710011dac0(UnkPartsRecord* self, const UnkPartsRecord* other);
+inline UnkPartsRecord& UnkPartsRecord::operator=(const UnkPartsRecord& other) {
+    field_0x28 = other.field_0x28;
+    field_0x2c = other.field_0x2c;
+    field_0x2d = true;
+    fn_710011dac0(this, &other);
+    field_0x40 = other.field_0x40;
+    fn_7100e4f444(&arrays, &other.arrays);
+    return *this;
+}
+
+using UnkIdPartsPair = UnkValuePairRef<CStrId, UnkPartsRecord>;
+
+UnkIdPartsPair* fn_7100e5e5ec(UnkIdPartsPair* self, UnkIdPartsPair* other) { return AssignFrom(self, other); }
+
+// An id, a value, an array of polymorphic records (assigned by fn_7100e4e898), flags, values
+// and two arrays records.
+struct UnkPolyVector {
+    u64 unk_0x0[5];
+
+    UnkPolyVector& operator=(const UnkPolyVector& other);
+};
+UnkPolyVector* fn_7100e4e898(UnkPolyVector* self, const UnkPolyVector* other);
+__attribute__((always_inline)) inline UnkPolyVector& UnkPolyVector::operator=(const UnkPolyVector& other) {
+    fn_7100e4e898(this, &other);
+    return *this;
+}
+
+struct UnkIdPolyRecord {
+    CStrId id;
+    u32 field_0x8;
+    u64 unk_0x10;
+    UnkPolyVector records;
+    bool field_0x40;
+    u8 unk_0x41[0x1f];
+    bool field_0x60;
+    u32 field_0x64;
+    u32 field_0x68;
+    u32 field_0x6c;
+    u32 field_0x70;
+    UnkArraysRecord first;
+    UnkArraysRecord second;
+
+    __attribute__((always_inline)) UnkIdPolyRecord& operator=(const UnkIdPolyRecord& other) {
+        id = other.id;
+        field_0x8 = other.field_0x8;
+        records = other.records;
+        field_0x40 = other.field_0x40;
+        field_0x60 = other.field_0x60;
+        field_0x64 = other.field_0x64;
+        field_0x68 = other.field_0x68;
+        field_0x6c = other.field_0x6c;
+        field_0x70 = other.field_0x70;
+        fn_7100e4f444(&first, &other.first);
+        fn_7100e4f444(&second, &other.second);
+        return *this;
+    }
+};
+static_assert(sizeof(UnkIdPolyRecord) == 0x138, "");
+
+using UnkU32PolyRecordPair = UnkValuePairRef<u32, UnkIdPolyRecord>;
+
+UnkU32PolyRecordPair* fn_7100e61b0c(UnkU32PolyRecordPair* self, UnkU32PolyRecordPair* other) { return Assign(self, other); }
+
+// A callback set (as in src/game_s4/fn_71008947b8.cpp): a vtable, an array assigned by
+// fn_710023b29c, a value and an owner reference assigned by fn_710031d208.
+struct UnkCallbackArray {
+    u64 unk_0x0[5];
+};
+UnkCallbackArray* fn_710023b29c(UnkCallbackArray* self, const UnkCallbackArray* other);
+
+struct UnkCallbackOwner;
+void fn_710031d208(UnkCallbackOwner** self, UnkCallbackOwner* const* other);
+
+struct UnkCallbackSet {
+    void* vtable;
+    UnkCallbackArray callbacks;
+    u32 field_0x30;
+    UnkCallbackOwner* owner;
+
+    __attribute__((always_inline)) UnkCallbackSet& operator=(const UnkCallbackSet& other) {
+        UnkCallbackOwner* const* from = &other.owner;
+        fn_710031d208(&owner, from);
+        field_0x30 = other.field_0x30;
+        fn_710023b29c(&callbacks, &other.callbacks);
+        return *this;
+    }
+};
+
+using UnkU32CallbacksPair = UnkValuePairRef<u32, UnkCallbackSet>;
+
+UnkU32CallbacksPair* fn_7100d87614(UnkU32CallbacksPair* self, UnkU32CallbacksPair* other) { return Assign(self, other); }
+
+// Three values and a callback set whose owner is a handle assigned by fn_7100234f78.
+struct UnkCallbackHandle;
+void fn_7100234f78(UnkCallbackHandle** self, UnkCallbackHandle* const* other);
+
+struct UnkHandleCallbackSet {
+    void* vtable;
+    UnkCallbackArray callbacks;
+    u32 field_0x30;
+    UnkCallbackHandle* owner;
+
+    __attribute__((always_inline)) UnkHandleCallbackSet& operator=(const UnkHandleCallbackSet& other) {
+        UnkCallbackHandle* const* from = &other.owner;
+        fn_7100234f78(&owner, from);
+        field_0x30 = other.field_0x30;
+        fn_710023b29c(&callbacks, &other.callbacks);
+        return *this;
+    }
+};
+
+struct UnkValuesCallbacks {
+    u64 unk_0x0;
+    u32 field_0x8;
+    u32 field_0xc;
+    u32 field_0x10;
+    UnkHandleCallbackSet set;
+
+    __attribute__((always_inline)) UnkValuesCallbacks& operator=(const UnkValuesCallbacks& other) {
+        field_0x8 = other.field_0x8;
+        field_0xc = other.field_0xc;
+        field_0x10 = other.field_0x10;
+        set = other.set;
+        return *this;
+    }
+};
+
+using UnkU32ValuesCallbacksPair = UnkValuePairRef<u32, UnkValuesCallbacks>;
+
+UnkU32ValuesCallbacksPair* fn_7100c0837c(UnkU32ValuesCallbacksPair* self, UnkU32ValuesCallbacksPair* other) {
+    return Assign(self, other);
+}
