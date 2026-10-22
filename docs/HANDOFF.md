@@ -807,8 +807,18 @@ by the centre on one axis: all five **m** (see its note). Other findings:
   that calls `std::sort`, and names them with `asm(".set ...")`. That made its
   `__insertion_sort_incomplete` **O**.
 
-`fn_7100354e10` uses the same 0x48-byte entry, sorted nearest first by the sign of a distance
-difference with z taken as 0. Its insertion sorts reach 92% (the order of the z term).
+Three more families: `fn_7100354e10` and `fn_710081ccd0` (0x48-byte entries, nearest first with
+z taken as 0) and `fn_71010dd1d0` (entry pointers by depth, then by tile group). The insertion
+sorts of the first two and `fn_71010dd1d0`'s `__sort4` are **O**; the rest are **m**.
+- The distance with z taken as 0 matched when each position is copied into a vector with z = 0
+  and a comparator member takes the full 3D distance to it. Writing out the 2D terms plus `z * z`
+  gives the right values in the wrong load order.
+- Clang adds the inline hint only for an explicit `inline`: a member defined in its class gets the
+  default threshold (250 instead of 325). `fn_71010dd1d0`'s comparator is inlined everywhere, as
+  in the game, only when `operator()` is declared `inline`.
+- `fn_71010dd1d0`'s helpers had their comparator dropped (internal, empty), so it uses the
+  anchor and `.set` names. Its `__sort3` and `__sort5` stay in `src/game_hi/`: `check.py` masks
+  call targets, so they don't need names here.
 
 More instantiations found by their recursion (each 2 KB, or with 2 KB helpers):
 - `fn_7100134020`
@@ -818,8 +828,6 @@ More instantiations found by their recursion (each 2 KB, or with 2 KB helpers):
 - `fn_710030ed9c`
 - `fn_7100336ca0` (weak handles assigned by `fn_71003384e0`: the original reloads the handle
   after the comparison, unexplained)
-- `fn_710081ccd0`
-- `fn_71010dd1d0`
 
 ## Known issues and gotchas
 
