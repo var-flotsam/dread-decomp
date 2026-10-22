@@ -984,6 +984,20 @@ the rest have one-off layouts (sub-allocators `fn_7100224c70`, whose header ids 
 statics; game tables `fn_710015ef10`; larger units `fn_7100140400`, `fn_710001f460`,
 `fn_71001b2e60`, `fn_71001e0820`, `fn_7100158130`), 0-60% as drafted.
 
+**Slice 1 near copies, batch 14** (stream 7, 2026-10-22): 22 functions **O** (`src/game_s1/`),
+copies of generated or hand-matched functions whose code differs only in element types, offsets
+or callees. Each copy names its own callees and data. They cover a vector Free inlined into its
+owner at an offset, cached iterator value equality (`UnkIterValue` with 0x18- and 0x30-byte
+elements compared out of line, or 64-bit keys, which only match through a key struct with its own
+`operator!=`), End and Insert for 1- and 2-byte elements, by-value equality with 64-bit indices,
+deferred callback calls with bool and u16 arguments, a pair equality, a record destructor and a
+reflected-value handler. Wrappers around a template that the compiler won't inline (`Insert`,
+`refl_DeferredInvoke`) use `__attribute__((flatten))`. Left, all 60-88% when drafted:
+`fn_7100124084` (scheduling), `fn_710020d4b8` (calls swapped, which changes the block layout), the
+string-id keyed copies `fn_71000de3b0`/`fn_71000de8e8` (float elements), `fn_71000de574` and
+`fn_71000de6b0` (4-byte elements), and reflection type getters whose frames differ
+(`fn_71000d5e74`, `fn_71000d5f4c`, `fn_71002475b0`).
+
 **dlmalloc 2.8.4 vendored** (stream 7, 2026-10-22, owner-approved): `lib/dlmalloc/` holds
 upstream `malloc.c` unmodified and `mspace.c` with the game's settings (README there). It was
 fetched from a mirror pinned to a commit in `tools/fetch_sources.py` and `data/sources.json`,
