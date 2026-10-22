@@ -109,3 +109,30 @@ void fn_7100b47eb8(UnkNamedWithRef* self) { self->~UnkNamedWithRef(); }
 void fn_7100b39640(UnkNamedWithRefId* self) { self->~UnkNamedWithRefId(); }
 // NON_MATCHING(minor): as fn_7100b395fc.
 void fn_7100b39714(UnkNamedWithRefId* self) { self->~UnkNamedWithRefId(); }
+
+// Deleting destructors of the base (four copies).
+// NON_MATCHING(minor): as fn_7100b395fc, and the deleted pointer takes a third register.
+void fn_7100b4797c(UnkNamedBase* self) {
+    self->~UnkNamedBase();
+    operator delete(self);
+}
+// NON_MATCHING(minor): as fn_7100b4797c.
+void fn_7100b479ec(UnkNamedBase* self) {
+    self->~UnkNamedBase();
+    operator delete(self);
+}
+// NON_MATCHING(minor): as fn_7100b4797c.
+void fn_7100b47a38(UnkNamedBase* self) {
+    self->~UnkNamedBase();
+    operator delete(self);
+}
+// NON_MATCHING(minor): as fn_7100b4797c.
+void fn_7100b47b2c(UnkNamedBase* self) {
+    self->~UnkNamedBase();
+    operator delete(self);
+}
+// NON_MATCHING(minor): as fn_7100b3955c, deleting.
+void fn_7100b47a84(UnkNamedWithId* self) {
+    self->~UnkNamedWithId();
+    operator delete(self);
+}
