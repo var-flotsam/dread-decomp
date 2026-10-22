@@ -938,6 +938,10 @@ A looser pass (calls may target different functions with the same position in ea
 data page addresses may differ) found 35 more `U` copies of 17 originals, also claimed by stream 7
 on 2026-10-22. They are written the same way, with each copy's own callees and data declared; the
 largest family is `fn_7100d94830`'s erase-by-key (9 copies).
+A third pass (also masking the offsets of loads and stores whose base came from a page address)
+found 56 more `U` copies of 30 originals, claimed by stream 7 on 2026-10-22; the largest family is
+`fn_7100d2ac00` (8 copies, in `fn_7100a15260.cpp`). Copy files keep the original's names, strings
+and comments (asmdiff masks data), and their first line says so.
 
 **Render resource types** (stream 7): `fn_71001b1dd0` (**m**, 2.5 KB) registers nine render
 resource types through a record with an out-of-line constructor and destructor (`fn_71000e9a7c`,

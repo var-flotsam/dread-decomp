@@ -1,4 +1,4 @@
-// Copies of fn_7100d94830 (src/game_aca57c/fn_7100d94830.cpp) for other types, with their own callees: fn_71002f7e04, fn_7100020eb0, fn_7100021c04, fn_7100022958, fn_71000eca70, fn_710102c298, fn_7101195894, fn_7101195b0c, fn_7101195d84.
+// Copies of fn_7100d94830 (src/game_aca57c/fn_7100d94830.cpp) for other types, with their own callees and data (the names, strings and comments below are the original's): fn_71002f7e04, fn_7100020eb0, fn_7100021c04, fn_7100022958, fn_71000eca70, fn_710102c298, fn_7101195894, fn_7101195b0c, fn_7101195d84.
 // Erase by key from five hash maps keyed by object pointers (hashed by the two words at +0x30 of
 // the object): find the node and its predecessor, then hand the iterator to the map's erase.
 // Each map type has its own bucket getter and erase.

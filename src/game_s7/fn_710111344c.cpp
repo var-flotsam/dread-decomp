@@ -1,4 +1,4 @@
-// Copies of fn_7100a3ab74 (src/game_s4/fn_710090dbb4.cpp) for other types, with their own callees: fn_710111344c.
+// Copies of fn_7100a3ab74 (src/game_s4/fn_710090dbb4.cpp) for other types, with their own callees and data (the names, strings and comments below are the original's): fn_710111344c.
 // A reflected array of callback sets, three copies (one per array type): Begin and End (an iterator
 // at the first element or one past the last, its cached value re-pointed by the iterator's sync
 // function), Reserve, Truncate, Erase and Insert of a moved element.

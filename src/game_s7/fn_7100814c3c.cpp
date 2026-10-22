@@ -1,4 +1,4 @@
-// Copies of fn_7100c92464 (src/game_aca57c/fn_7100ad2004.cpp) for other types, with their own callees: fn_7100814c3c.
+// Copies of fn_7100c92464 (src/game_aca57c/fn_7100ad2004.cpp) for other types, with their own callees and data (the names, strings and comments below are the original's): fn_7100814c3c.
 // Move-assignments of engine arrays (base/UnkVector.h): the elements are destroyed, then the
 // other array's storage and settings are taken over. One element type per copy.
 #include "base/UnkVector.h"
