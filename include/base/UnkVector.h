@@ -224,6 +224,12 @@ struct UnkVector {
         ++count;
     }
 
+    // Grows the array to at least n elements (fn_7100c77cd0 inlines it).
+    void Reserve(u32 n) {
+        if (capacity < n)
+            Reallocate(n);
+    }
+
 private:
     static constexpr bool kTrivial = __is_trivially_copyable(T);
 
@@ -238,7 +244,7 @@ private:
             } else {
                 T* src = data;
                 T* dst = p;
-                for (u32 i = 0; i < count; ++i, ++src, ++dst) {
+                for (u32 i = 0; i < count; ++i, ++dst, ++src) {
                     new (dst) T(static_cast<T&&>(*src));
                     src->~T();
                 }
