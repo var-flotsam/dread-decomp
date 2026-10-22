@@ -199,3 +199,48 @@ UNK_ITER_MOVE_NEW(7100267598, UnkPathRef<UnkMovedFilePathStrId>, u32)
 UNK_ITER_MOVE_NEW(7100267a00, UnkPathRef<UnkCopiedFilePathStrId>, u32)
 UNK_ITER_MOVE_NEW(710000d938, UnkWordPathRef<UnkMovedFilePathStrId>, u32)
 UNK_ITER_MOVE_NEW(710000ddb8, UnkWordPathRef<UnkCopiedFilePathStrId>, u32)
+
+// A file path id copy-assigned as CStrId is (CStrId.h): the other's id gains a reference, then
+// the old one is released (in two steps, the count being a union member).
+struct UnkAssignedFilePathStrId {
+    UnkStringData* data;
+
+    UnkAssignedFilePathStrId& operator=(const UnkAssignedFilePathStrId& other) {
+        UnkStringData* d = other.data;
+        if (data != d) {
+            UnkStringPool* pool = g_unk_7101d47200;
+            if (d != &pool->empty)
+                ++d->ref_count;
+            if (data != &pool->empty) {
+                --data->ref_count;
+                if (data->ref_count == 0)
+                    fn_71000803a4(pool, data);
+            }
+            data = d;
+        }
+        return *this;
+    }
+};
+
+// Copy-assignment of a cached iterator value from another, as fn_7100f66180 does for 8-byte keys:
+// the index and the element are assigned through the state-dependent accessors.
+template <class T, class K>
+static inline UnkIterValue<T, K>* CopyAssign(UnkIterValue<T, K>* self, const UnkIterValue<T, K>* other) {
+    if (self != other) {
+        self->Index() = other->Index();
+        self->Element() = other->Element();
+    }
+    return self;
+}
+
+// NON_MATCHING(minor): the original reads this id before the other's; registers differ.
+UnkIterValue<UnkAssignedFilePathStrId>* fn_71000cfe14(UnkIterValue<UnkAssignedFilePathStrId>* self,
+                                                      const UnkIterValue<UnkAssignedFilePathStrId>* other) {
+    return CopyAssign(self, other);
+}
+
+// NON_MATCHING(minor): the original reads this id before the other's; registers differ.
+UnkIterValue<UnkAssignedFilePathStrId>* fn_71000cd658(UnkIterValue<UnkAssignedFilePathStrId>* self,
+                                                      const UnkIterValue<UnkAssignedFilePathStrId>* other) {
+    return CopyAssign(self, other);
+}

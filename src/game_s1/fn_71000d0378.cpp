@@ -238,3 +238,17 @@ __attribute__((flatten)) UnkIterValue<UnkWordPathRes>* fn_710000da34(UnkIterValu
                                                                      UnkIterValue<UnkWordPathRes>* other) {
     return MoveAssign(self, other);
 }
+
+// Move-assignment of an id and a file path id, as fn_71002db2a0 (src/game_s2/fn_71002db2a0.cpp)
+// does for two ids.
+UnkReleasedIdPair* fn_710001d15c(UnkReleasedIdPair* self, UnkReleasedIdPair* other) {
+    if (self != other)
+        *self = static_cast<UnkReleasedIdPair&&>(*other);
+    return self;
+}
+
+UnkReleasedIdPair* fn_710001cd80(UnkReleasedIdPair* self, UnkReleasedIdPair* other) {
+    if (self != other)
+        *self = static_cast<UnkReleasedIdPair&&>(*other);
+    return self;
+}
