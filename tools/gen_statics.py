@@ -11,6 +11,9 @@ are weak, reached through the GOT, and the object's destructor is registered at 
      constructor, the value type getter it calls and the u32 it stores.
   3. All candidates are compiled in one scratch translation unit; only byte-identical
      functions are written out.
+  4. Game code with its own guarded statics (a string id from a literal, a zeroed word) is
+     lifted by tools/gen_lift.py's Lifter, taught those statics in this process (own_patch);
+     only byte-identical functions are written out (own_*.cpp).
 
 Usage: python tools/gen_statics.py --version 2.1.0
 Outputs are deterministic. Regenerate, never edit them.
@@ -411,6 +414,192 @@ def layout(addrs: list[int], blocks: dict[int, list[str]], uses: dict[int, int])
     return specs + [ln for a in addrs for ln in blocks[a] if is_instantiation(ln)]
 
 
+# -- Functions with their own guarded statics, through tools/gen_lift.py --------------------
+# The lifter inlines the GUARDS helpers; these are statics local to the function itself: a
+# string id (or file-path id) built from a literal, or a word set to zero. The guard's ldarb,
+# its tbz (with up to four unrelated instructions scheduled between) and the initialisation
+# reached from the tbz become one statement declaring the static; its address is a local the
+# rest of the body uses. Weak statics (through the GOT) belong to an inline function.
+
+OWN_MAX_SIZE = 1024  # larger ones lift but none matched, and lifting them took most of the run
+OWN_CTORS = {0x71000003D4: "StrId", 0x71000166C8: "FilePathId"}
+OWN_HEADER = ["// Function-local statics (gen_statics.py).", "namespace lift_static {",
+              "struct StrId { void* data; StrId(const char* s, bool f); ~StrId(); };",
+              "struct FilePathId { void* data; FilePathId(const char* s, bool f); ~FilePathId(); };",
+              "struct ZeroWord { u32 v; ZeroWord() : v(0) {} };", "}", ""]
+
+
+def _own_region(gl, ins, at, t):
+    """The instructions reached from the tbz's target until they rejoin after it."""
+    resume = t.address + 4
+    region, todo = set(), [t.operands[2].imm]
+    while todo:
+        a = todo.pop()
+        while a != resume and a not in region:
+            if a not in at:
+                raise gl.Unsupported("guard")
+            region.add(a)
+            y = ins[at[a]]
+            if y.mnemonic in ("ret", "br"):
+                break
+            tgt = [op.imm for op in y.operands if op.type == arm64.ARM64_OP_IMM]
+            if y.mnemonic == "b":
+                a = tgt[0]
+                continue
+            if y.mnemonic.startswith("b.") or y.mnemonic in ("cbz", "cbnz", "tbz", "tbnz"):
+                todo.append(tgt[-1])
+            a += 4
+    return region
+
+
+def _own_init(gl, lifter, ins, at, before, region):
+    """(type, object, literal or None) from a linear walk of `before` (the straight-line code up
+    to the tbz) then the region, or None if the initialisation is something else."""
+    pages, regs = {}, {}
+    calls, ctor, zero = [], None, None
+    for a in [y.address for y in before] + sorted(region):
+        y = ins[at[a]]
+        m, o = y.mnemonic, y.operands
+        r0 = gl.regname(o[0].reg) if o and o[0].type == arm64.ARM64_OP_REG else None
+        inside = a in region
+        if not inside and m in ("bl", "blr"):
+            for r in range(19):
+                regs.pop(f"x{r}", None)
+                pages.pop(f"x{r}", None)
+            continue
+        if m not in ("adrp", "add", "ldr", "mov", "str", "bl"):
+            for r in y.regs_access()[1]:
+                n = "x" + gl.regname(r)[1:]
+                regs.pop(n, None)
+                pages.pop(n, None)
+            continue
+        if not inside and m in ("str", "bl"):
+            continue
+        p0, g0 = dict(pages), dict(regs)
+        if m != "adrp" and r0 and m != "str":
+            regs.pop(r0, None)
+            pages.pop(r0, None)
+        if m == "adrp":
+            pages[r0] = o[1].imm
+        elif m == "add" and len(o) == 3 and o[2].type == arm64.ARM64_OP_IMM and gl.regname(o[1].reg) in p0:
+            regs[r0] = ("int", p0[gl.regname(o[1].reg)] + o[2].imm)
+        elif m == "ldr" and o[1].type == arm64.ARM64_OP_MEM and gl.regname(o[1].mem.base) in p0:
+            p = lifter.orig.img.pointer(p0[gl.regname(o[1].mem.base)] + o[1].mem.disp - BASE)
+            if p is not None:
+                regs[r0] = ("got", BASE + p)
+        elif m == "mov" and len(o) == 2 and o[1].type == arm64.ARM64_OP_REG:
+            if g0.get(gl.regname(o[1].reg)):
+                regs[r0] = g0[gl.regname(o[1].reg)]
+        elif m == "str" and o[0].type == arm64.ARM64_OP_REG and gl.regname(o[0].reg) == "wzr" and \
+                o[1].type == arm64.ARM64_OP_MEM and o[1].mem.disp == 0 and g0.get(gl.regname(o[1].mem.base)):
+            zero = g0[gl.regname(o[1].mem.base)]
+        elif m == "bl":
+            calls.append(o[0].imm)
+            if o[0].imm in OWN_CTORS:
+                obj, lit = regs.get("x0"), regs.get("x1")
+                if ctor or not obj or not lit or lit[0] != "int":
+                    return None
+                s = lifter.orig.img.cstring(lit[1] - BASE)
+                if s is None:
+                    return None
+                ctor = (OWN_CTORS[o[0].imm], obj, s)
+    if not ctor and zero and set(calls) == {GUARD_ACQUIRE, GUARD_RELEASE}:
+        ctor = ("ZeroWord", zero, None)
+    if not ctor or GUARD_ACQUIRE not in calls or set(calls) - {GUARD_ACQUIRE, ATEXIT, GUARD_RELEASE} - set(OWN_CTORS):
+        return None
+    return ctor
+
+
+def own_patch(gl) -> None:
+    """Teach gen_lift's Lifter (in this process only) the statics above."""
+    find, gref = gl.Lifter.find_guards, gl.Lifter.global_ref
+
+    def find_guards(self, ins):
+        find(self, ins)
+        self.statics = {}
+        at = {x.address: k for k, x in enumerate(ins)}
+        for k, x in enumerate(ins):
+            if x.mnemonic != "ldarb" or x.address in self.guard or x.address in self.gskip:
+                continue
+            w, j = x.operands[0].reg, k + 1
+            while j < len(ins) and j <= k + 4 and ins[j].mnemonic not in ("tbz", "tbnz") and \
+                    ins[j].mnemonic[0] not in "bc" and w not in ins[j].regs_access()[1]:
+                j += 1
+            if j >= len(ins):
+                continue
+            t = ins[j]
+            if t.mnemonic != "tbz" or t.operands[0].reg != w or t.operands[1].imm != 0:
+                continue
+            region = _own_region(gl, ins, at, t)
+            init = _own_init(gl, self, ins, at, ins[:j], region)
+            if not init:
+                continue
+            for y in ins:  # nothing else may enter the initialisation
+                if y.address not in region and y.address != t.address and \
+                        (y.mnemonic in ("b", "cbz", "cbnz", "tbz", "tbnz") or y.mnemonic.startswith("b.")) and \
+                        any(op.type == arm64.ARM64_OP_IMM and op.imm in region for op in y.operands):
+                    raise gl.Unsupported("guard")
+            typ, (kind, obj), lit = init
+            name = f"s_{obj:x}"
+            args = f"({refl_attrs.c_string(lit)}, true)" if lit is not None else ""
+            if kind == "got":  # weak: the static of an inline function
+                self.decls.add(f"namespace lift_static {{ inline {typ}& {name}() "
+                               f"{{ static {typ} s{args}; return s; }} }}")
+                stmt = f"g{name} = (char*)&lift_static::{name}();"
+            else:
+                if obj in self.statics:
+                    raise gl.Unsupported("guard: object twice")
+                stmt = f"static lift_static::{typ} {name}{args}; g{name} = (char*)&{name};"
+            if obj not in self.statics:
+                self.line(f"char* g{name};")  # at the top: gotos may jump past the statement
+            self.guard[x.address] = (stmt, 0)
+            self.gskip |= region | {t.address}
+            self.statics[obj] = f"g{name}"
+
+    def global_ref(self, a, through_got, align=1):
+        if a in getattr(self, "statics", {}):
+            return f"(char*)({self.statics[a]})"
+        return gref(self, a, through_got, align)
+
+    gl.Lifter.find_guards, gl.Lifter.global_ref = find_guards, global_ref
+    gl.HEADER = gl.HEADER + OWN_HEADER
+
+
+def own_candidates(gl, orig: asmdiff.Original, addrs: set[int]) -> list[int]:
+    """Those of `addrs` (up to OWN_MAX_SIZE bytes) with one of these statics."""
+    out = []
+    for a in sorted(addrs):
+        n = orig.sizes.get(a, 0)
+        if not n or n > OWN_MAX_SIZE:
+            continue
+        code = orig.function(a)
+        for k in range(0, n, 4):
+            w = int.from_bytes(code[k:k + 4], "little")
+            if w >> 26 == 0x25:
+                off = (w & 0x3FFFFFF) - ((w & 0x2000000) << 1)
+                if a + k + off * 4 == GUARD_ACQUIRE:
+                    lifter = gl.Lifter(orig, a, *gl.VARIANTS[0])
+                    try:
+                        lifter.find_guards(list(gl.CS.disasm(code, a)))
+                    except gl.Unsupported:
+                        break
+                    if lifter.statics:
+                        out.append(a)
+                    break
+    return out
+
+
+def own_statics(orig: asmdiff.Original, addrs: set[int]) -> tuple[list[tuple[str, set[str]]], int, int]:
+    """The byte-identical lifted (definition, declarations) of `addrs` that use one of these
+    statics, in address order; and the candidate count and matched bytes."""
+    import gen_lift as gl
+    own_patch(gl)
+    cands = own_candidates(gl, orig, addrs)
+    chosen, _, _ = gl.lift_rounds(orig, cands, ROOT / "build" / "gen_statics" / "own")
+    keep = sorted(a for a, (src, _) in chosen.items() if "lift_static::" in src)
+    return [chosen[a] for a in keep], len(cands), sum(orig.sizes[a] for a in keep)
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--version", required=True)
@@ -443,7 +632,7 @@ def main() -> int:
     previous = set()
     if OUT.exists():
         for f in OUT.glob("*.cpp"):
-            previous |= {int(a, 16) for a in re.findall(r"^\w+ fn_([0-9a-f]{10})\(", f.read_text(encoding="utf-8"), re.M)}
+            previous |= {int(a, 16) for a in re.findall(r"^[\w*]+ fn_([0-9a-f]{10})\(", f.read_text(encoding="utf-8"), re.M)}
     undefined = set(u_rows) | previous
     for a in sorted(undefined - {a for _, a, _ in found}):
         if a not in orig.sizes:
@@ -487,6 +676,17 @@ def main() -> int:
                                                           encoding="utf-8", newline="\n")
     print(f"candidates: {counts}; {len(ok)} of {len(blocks)} byte-identical "
           f"({sum(orig.sizes[a] for a in ok)} bytes)")
+
+    own, n, size = own_statics(orig, undefined - set(ok))
+    import gen_lift as gl
+    note = ["// Generated by tools/gen_statics.py (through tools/gen_lift.py) from main; regenerate",
+            "// rather than edit. Functions with their own guarded statics, byte-identical to the original."]
+    for k in range(0, len(own), CHUNK):
+        part = own[k:k + CHUNK]
+        decls = sorted(set().union(*[d for _, d in part]))  # an inline static's getter is defined once
+        (OUT / f"own_{k // CHUNK:02d}.cpp").write_text(
+            "\n".join(note + gl.HEADER + decls + [""] + [src + "\n" for src, _ in part]), encoding="utf-8", newline="\n")
+    print(f"own statics: {len(own)} of {n} byte-identical ({size} bytes)")
     return 0
 
 

@@ -2878,7 +2878,7 @@ address,size,name,name_source,subsystem,status
 0x7100796bc4,244,CCharClassTimelineComponent::refl_GetClass,reflection,game/characters,O
 0x7100796cb8,1016,fn_7100796cb8,unknown,game/characters?,O
 0x71007970b0,388,CCharClassTimelineComponent::refl_InitClass,reflection,game/characters,O
-0x7100797234,268,fn_7100797234,unknown,unknown,U
+0x7100797234,268,fn_7100797234,unknown,unknown,O
 0x7100797340,124,fn_7100797340,unknown,unknown,O
 0x71007973bc,132,fn_71007973bc,unknown,unknown,O
 0x7100797440,28,fn_7100797440,unknown,unknown,O

@@ -90,7 +90,7 @@ Snapshot as of 2026-10-18 (fifth Phase 4 session; branches `phase-4-4-clones` (v
 | 4.2 Lua | **Done.** Upstream 5.1.4 vendored in `lib/lua/` (2 marked config changes); 286 Lua functions located in `main` by `tools/sigmatch.py` (status `L`) |
 | 4.3 Reflection | **In progress.** all 2,354 located class getters (444 in TUs with other statics, through padding); all 1,010 other `CClass` descriptor constructors (skipped TUs and getter-less types); 1,911 of 1,957 class attribute/member-field functions, 478 other registration functions plus 54 in their class getter's TU, and all 1,006 out-of-line reflected-function initialisers (`src/reflection/`, `tools/gen_reflection.py`, `tools/refl_attrs.py`). Pointer types: 993 standalone getter/constructor pairs plus 108 generated in their pointee's TU; all 238 `CEnumType` constructors; 178 standalone `CCollectionType` constructors plus those in their element class's TU (`src/reflection_types/`, `tools/gen_types.py`) |
 | Small functions | **In progress.** `tools/gen_lift.py` lifts functions of up to 512 bytes from their instructions and keeps byte-identical ones: 46,219 functions, 2.02 MB (`src/lifted/`; second-round store-order, may_alias and memcpy rewrites; sret functions, stack locals, a goto-based flat mode for crossing branches and loops) |
-| Guarded statics | **In progress.** `tools/gen_statics.py`: attribute keys, static string ids (weak and internal), typed lookups, registries and the tables built from them, type-id senders and singleton parts, on function-local statics (`include/base/reflection/UnkReflStatics.h`): 865 functions, 172 KB (`src/reflection_statics/`) |
+| Guarded statics | **In progress.** `tools/gen_statics.py`: attribute keys, static string ids (weak and internal), typed lookups, registries and the tables built from them, type-id senders and singleton parts, on function-local statics (`include/base/reflection/UnkReflStatics.h`), and game code with its own statics lifted through `gen_lift.py`: 880 functions, 175 KB (`src/reflection_statics/`) |
 | Repeated templates | **In progress.** `tools/gen_clones.py`: hand-matched templates instantiated once per copy (`UnkClone_fn_<addr>` tags): the named registry, `UnkVector` methods per element kind, the reflection collection iterator, a deferred set, and scan kinds (facts per candidate): destructors of string-id/refcounted members, property reads and string-id writes, enum value lists, and shape-family templates (`UnkCloneHelpers.h`): 6,256 functions, 1.22 MB (`src/clones/`) |
 | 4.4 Core engine types | **In progress.** String ids (`CStrId` incl. copy-assignment, `UnkStrId`), the growable array `base::UnkVector` (push, grow-at, insert, remove, clear/free, move) and its allocator interface; reflected-function initialisers now match (below) |
 | 4.5+ Boot to title screen | Not started; plan below |
@@ -198,7 +198,7 @@ git submodule update --init                                       # lib/nnsdk, l
 .venv/Scripts/python tools/sigmatch.py --version 2.1.0             # then rerun gen_functions_csv.py
 .venv/Scripts/python tools/gen_reflection.py --version 2.1.0
 .venv/Scripts/python tools/gen_types.py --version 2.1.0            # ~20 s
-.venv/Scripts/python tools/gen_statics.py --version 2.1.0          # ~20 s
+.venv/Scripts/python tools/gen_statics.py --version 2.1.0          # ~6 min (own statics are lifted)
 .venv/Scripts/python tools/gen_clones.py --version 2.1.0           # ~10 s
 .venv/Scripts/python tools/gen_tables.py --version 2.1.0           # ~5 s
 .venv/Scripts/python tools/gen_lift.py --version 2.1.0             # ~80 min; run after the other generators
@@ -389,7 +389,11 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
      parts of one singleton (`refl_GetSingletonPart`, 5), typed lookups whose class is internal to
      another TU (`refl_FindTypedHidden`, 5) and attribute keys with a u16 at +0x14 or a global value
      type (`refl_GetAttrKeyFlags`, `key_global`; 17), and game code parsed rather than shape-matched:
-     a u32 sent under a hash (`refl_EmitU32`, `parse_emit_u32`; 12 of 15 parsed match). Left (stream 6 census, 2026-10-21): 2,483 `U` functions call
+     a u32 sent under a hash (`refl_EmitU32`, `parse_emit_u32`; 12 of 15 parsed match). Game code with
+     its own static (a string id or file-path id from a literal, or a zeroed word) goes through
+     `gen_lift.py`'s Lifter, patched in-process by `own_patch` (`src/reflection_statics/own_*.cpp`):
+     15 of 858 candidates up to 1 KB match. Most of the rest lift but differ in the stack frame
+     around the guard (the original spills x0/x1 below its locals) or in general lifter gaps. Left (stream 6 census, 2026-10-21): 2,483 `U` functions call
      `__cxa_guard_acquire` (2.28 MB); 2.15 MB of that is one-offs (game code with a static
      inside), and only ~130 KB is in same-shape families of two or more. Older notes: the 437
      class getters in skipped TUs, primitive type getters (`refl_GetType<unsigned>`, 30 × 480 B:
