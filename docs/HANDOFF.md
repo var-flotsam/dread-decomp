@@ -462,10 +462,13 @@ None blocking. The owner asked for best judgement on `nn::atk` and tracing (deci
      initializer list by `fn_7100228ca0`, 4), the same from a string-id table
      (`refl_RntStringOf`, 1) and calls on a field found by its name's hash, setting a
      getter-backed field's function index (`refl_FindField`, 4) (all in `UnkReflAttributes.h`).
-     Left there (17, one-offs): `fn_7100408c20` (33 KB), `CVector4D` copied from a constant,
+     Left there (13, one-offs): `fn_7100408c20` (33 KB), `CVector4D` copied from a constant,
      `fn_71004ded68`, `fn_7100beaf3c`, `fn_71000961f4`, `fn_710044e7fc`, `fn_7100b8bb94` (a u16
-     global or'd into a version), 6 registration functions outside class getters, and 4 that
-     parse but differ (`fn_71004ade14`, `fn_71007a2fb4`, `fn_7100add284`, `fn_7100db69a8`). List them by failure point with a
+     global or'd into a version), and 6 registration functions outside class getters. The 4 that
+     parsed but differed (`fn_71004ade14`, `fn_71007a2fb4`, `fn_7100add284`, `fn_7100db69a8`) match by
+     hand in `src/game_s7/`: a type getter defined in the class's own file is called but its known
+     return passed as a hidden constant, written `(fn_getter(), &g_unk_<addr>)` with the global
+     declared `visibility("hidden")`. `refl_attrs` could emit that form itself. List them by failure point with a
      copy of `refl_attrs.parse` whose `return None`s raise their line number.
    - Descriptor helpers of **collection iterator values** (`UnkIterValue<T, K>`, K = index or key):
      move-construct, destroy, copy-assign and compare as `gen_clones` kinds (word, owner,
@@ -923,6 +926,17 @@ globals from their names (`CollectionTypeMapper<...>` value types, `CRntVector<.
 the constructors take four or six arguments), registers their destructors and 45 conversions.
 Every global and callback is reached through the GOT, so all are plain `extern`s. The source was
 written mechanically from the call sequence, with the helpers in `UnkStaticInitS7.h`.
+
+**Inventory string and projectile models** (stream 7): `fn_7101147868` (**O**, 4.9 KB) appends a
+"SamusInventory" record whose value is 26 digits, one per item definition (1 when the inventory's
+map holds an amount above zero under the item's qualified id). Findings: the lazy id check must be
+a pointer compare (`data == &pool->empty`; the integer compare other files use inverts the branch
+here); the record is built as a temporary inside the append call; and its constructor
+(`fn_7100ec4240`, declared with an `asm` label) takes the two ids by value, so the caller destroys
+the copies after the append and keeps their final stores. `fn_7101144a5c` (11.8 KB, next to it)
+builds a local map from the 26 area-and-item names and walks it; still `U`.
+`fn_7100ed4cb8` (**O**) loads the nine beam projectile models through the manager's pool; the
+model pointer must be declared before the path id (stack order).
 
 **Hash lists by height** (stream 7, 2026-10-22): `fn_71003f2a8c` and `fn_71006c26fc` clear a
 list of 64-bit name hashes and push three to five constants, chosen by the height difference of two

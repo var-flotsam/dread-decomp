@@ -305,7 +305,7 @@ address,size,name,name_source,subsystem,status
 0x7100415d44,68,fn_7100415d44,unknown,unknown,O
 0x7100415d88,76,fn_7100415d88,unknown,unknown,O
 0x7100415dd4,68,fn_7100415dd4,unknown,unknown,O
-0x7100415e18,72,fn_7100415e18,unknown,unknown,U
+0x7100415e18,72,fn_7100415e18,unknown,unknown,O
 0x7100415e60,68,fn_7100415e60,unknown,unknown,O
 0x7100415ea4,76,fn_7100415ea4,unknown,unknown,O
 0x7100415ef0,68,fn_7100415ef0,unknown,unknown,O
@@ -2096,7 +2096,7 @@ address,size,name,name_source,subsystem,status
 0x71004643e4,52,fn_71004643e4,unknown,unknown,O
 0x7100464418,12,fn_7100464418,unknown,unknown,O
 0x7100464430,232,fn_7100464430,unknown,unknown,O
-0x7100464520,128,fn_7100464520,unknown,unknown,U
+0x7100464520,128,fn_7100464520,unknown,unknown,O
 0x71004645a0,352,fn_71004645a0,unknown,unknown,O
 0x7100464700,4,fn_7100464700,unknown,unknown,O
 0x7100464704,244,CChozoRobotSoldierCannonShotAttack::refl_GetClass,reflection,game/ai,O
@@ -2136,8 +2136,8 @@ address,size,name,name_source,subsystem,status
 0x7100467afc,48,fn_7100467afc,unknown,game/ai?,O
 0x7100467b2c,408,fn_7100467b2c,unknown,game/ai?,O
 0x7100467cc4,300,fn_7100467cc4,unknown,game/ai?,O
-0x7100467df0,128,fn_7100467df0,unknown,game/ai?,U
-0x7100467e70,128,fn_7100467e70,unknown,game/ai?,U
+0x7100467df0,128,fn_7100467df0,unknown,game/ai?,O
+0x7100467e70,128,fn_7100467e70,unknown,game/ai?,O
 0x7100467ef0,160,fn_7100467ef0,unknown,game/ai?,O
 0x7100467f90,4,fn_7100467f90,unknown,game/ai?,O
 0x7100467f94,244,CChozoRobotSoldierDashSlashAttack::refl_GetClass,reflection,game/ai,O
@@ -2189,7 +2189,7 @@ address,size,name,name_source,subsystem,status
 0x7100469c88,36,fn_7100469c88,unknown,game/ai?,O
 0x7100469cac,36,fn_7100469cac,unknown,game/ai?,O
 0x7100469cd0,280,fn_7100469cd0,unknown,game/ai?,O
-0x7100469df0,128,fn_7100469df0,unknown,game/ai?,U
+0x7100469df0,128,fn_7100469df0,unknown,game/ai?,O
 0x7100469e70,160,fn_7100469e70,unknown,game/ai?,O
 0x7100469f10,4,fn_7100469f10,unknown,game/ai?,O
 0x7100469f14,244,CChozoRobotSoldierUppercutAttack::refl_GetClass,reflection,game/ai,O
@@ -4003,7 +4003,7 @@ address,size,name,name_source,subsystem,status
 0x71004adb24,504,fn_71004adb24,unknown,unknown,O
 0x71004add1c,4,fn_71004add1c,unknown,unknown,O
 0x71004add20,244,CCharClassCooldownXBossLavaDropsAttack::refl_GetClass,reflection,game/characters,O
-0x71004ade14,1920,fn_71004ade14,unknown,game/characters?,U
+0x71004ade14,1920,fn_71004ade14,unknown,game/characters?,O
 0x71004ae594,352,CCharClassCooldownXBossLavaDropsAttack::refl_InitClass,reflection,game/characters,O
 0x71004ae6f4,204,fn_71004ae6f4,unknown,unknown,U
 0x71004ae7c0,308,fn_71004ae7c0,unknown,unknown,U

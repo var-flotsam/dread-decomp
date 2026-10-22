@@ -3190,7 +3190,7 @@ address,size,name,name_source,subsystem,status
 0x71007a2d38,388,CCutsceneComponent::SSamusActorInfo::refl_InitClass,reflection,game/components,O
 0x71007a2ebc,4,fn_71007a2ebc,unknown,game/components?,O
 0x71007a2ec0,244,CCutsceneComponent::refl_GetClass,reflection,game/components,O
-0x71007a2fb4,8264,fn_71007a2fb4,unknown,game/components?,U
+0x71007a2fb4,8264,fn_71007a2fb4,unknown,game/components?,O
 0x71007a4ffc,352,CCutsceneComponent::refl_InitClass,reflection,game/components,O
 0x71007a515c,380,fn_71007a515c,unknown,unknown,O
 0x71007a52d8,372,fn_71007a52d8,unknown,unknown,O
