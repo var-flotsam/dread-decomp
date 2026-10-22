@@ -1035,6 +1035,14 @@ emits classes that have a getter. The others are a move-assign of an id and file
 target (`fn_7100244aac.cpp`), and file-path iterator copy-assigns at 73.6% that differ only in
 registers (`fn_71000cfe14`, `fn_71000cd658`, **m**).
 
+**Slice 1 near copies, batch 18** (stream 7, 2026-10-22): 6 functions **O** (`src/game_s1/`):
+- two destructors of a reflection class that free an array of 16-byte id records, then call the base destructor (`fn_7100099468.cpp`);
+- clears of a string-id table keyed by string ids (`fn_71000d99d0`, `fn_71000db40c`);
+- a destructor of three ids and a string, cleared first (`fn_7100133be4.cpp`);
+- the erase of a hash set laid out as the string pool set, with its link at 0x10 (`fn_71000866dc.cpp`).
+
+Not attempted: the callback-set iterator copies `fn_71002475b0` and `fn_71002476ec`. They need the compiler-generated vtables of a copied class, which the copy files can't name yet.
+
 **dlmalloc 2.8.4 vendored** (stream 7, 2026-10-22, owner-approved): `lib/dlmalloc/` holds
 upstream `malloc.c` unmodified and `mspace.c` with the game's settings (README there). It was
 fetched from a mirror pinned to a commit in `tools/fetch_sources.py` and `data/sources.json`,

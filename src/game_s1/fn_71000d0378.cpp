@@ -252,3 +252,28 @@ UnkReleasedIdPair* fn_710001cd80(UnkReleasedIdPair* self, UnkReleasedIdPair* oth
         *self = static_cast<UnkReleasedIdPair&&>(*other);
     return self;
 }
+
+// Clear of a table of string ids keyed by string ids, as the tables' Clear in
+// src/game_s7/fn_71002520fc.cpp does for records: the keys (at 8), then the values (at 0) are
+// released, and the count is zeroed (the arrays are kept): fn_71000d99d0, fn_71000db40c.
+struct UnkIdIdTable {
+    UnkReleasedStrId* values;
+    UnkReleasedStrId* keys;
+    u32 count;
+
+    __attribute__((always_inline)) void Clear() {
+        if (keys && count) {
+            for (u64 i = 0; i < count; ++i)
+                keys[i].~UnkReleasedStrId();
+        }
+        if (values && count) {
+            for (u64 i = 0; i < count; ++i)
+                values[i].~UnkReleasedStrId();
+        }
+        count = 0;
+    }
+};
+
+void fn_71000d99d0(UnkIdIdTable* self) { self->Clear(); }
+
+void fn_71000db40c(UnkIdIdTable* self) { self->Clear(); }
