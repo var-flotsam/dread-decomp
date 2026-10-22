@@ -984,7 +984,7 @@ address,size,name,name_source,subsystem,status
 0x7100125584,236,fn_7100125584,unknown,unknown,O
 0x7100125670,412,fn_7100125670,unknown,unknown,O
 0x710012580c,156,fn_710012580c,unknown,unknown,U
-0x71001258b0,324,fn_71001258b0,unknown,unknown,U
+0x71001258b0,324,fn_71001258b0,unknown,unknown,O
 0x71001259f4,52,fn_71001259f4,unknown,unknown,O
 0x7100125a28,20,fn_7100125a28,unknown,unknown,O
 0x7100125a3c,40,fn_7100125a3c,unknown,unknown,U
@@ -2314,7 +2314,7 @@ address,size,name,name_source,subsystem,status
 0x7100153a88,8,fn_7100153a88,unknown,unknown,O
 0x7100153a90,44,fn_7100153a90,unknown,unknown,U
 0x7100153abc,4,operator.delete,symbol,unknown,O
-0x7100153ac0,352,fn_7100153ac0,unknown,unknown,U
+0x7100153ac0,352,fn_7100153ac0,unknown,unknown,O
 0x7100153c20,140,fn_7100153c20,unknown,unknown,O
 0x7100153cb0,12,fn_7100153cb0,unknown,unknown,O
 0x7100153cc0,12,fn_7100153cc0,unknown,unknown,O
@@ -2358,7 +2358,7 @@ address,size,name,name_source,subsystem,status
 0x71001545a0,4,fn_71001545a0,unknown,unknown,O
 0x71001545b0,4,fn_71001545b0,unknown,unknown,O
 0x71001545c0,4,fn_71001545c0,unknown,unknown,O
-0x71001545d0,408,fn_71001545d0,unknown,unknown,U
+0x71001545d0,408,fn_71001545d0,unknown,unknown,m
 0x7100154770,14672,fn_7100154770,unknown,unknown,O
 0x71001580c0,44,fn_71001580c0,unknown,unknown,O
 0x71001580f0,20,fn_71001580f0,unknown,unknown,O
@@ -3644,7 +3644,7 @@ address,size,name,name_source,subsystem,status
 0x71001b1088,12,fn_71001b1088,unknown,unknown,O
 0x71001b1094,8,fn_71001b1094,unknown,unknown,O
 0x71001b109c,12,fn_71001b109c,unknown,unknown,O
-0x71001b10b0,376,fn_71001b10b0,unknown,unknown,U
+0x71001b10b0,376,fn_71001b10b0,unknown,unknown,O
 0x71001b1228,4,fn_71001b1228,unknown,unknown,O
 0x71001b122c,244,msapi::res::CRenderRes::refl_GetClass,reflection,msapi,O
 0x71001b1320,4,fn_71001b1320,unknown,msapi?,O
@@ -4509,7 +4509,7 @@ address,size,name,name_source,subsystem,status
 0x71001f25e0,80,fn_71001f25e0,unknown,unknown,U
 0x71001f2630,28,fn_71001f2630,unknown,unknown,O
 0x71001f264c,4,fn_71001f264c,unknown,unknown,O
-0x71001f2650,952,fn_71001f2650,unknown,unknown,U
+0x71001f2650,952,fn_71001f2650,unknown,unknown,O
 0x71001f2a08,220,fn_71001f2a08,unknown,unknown,O
 0x71001f2ae4,212,fn_71001f2ae4,unknown,unknown,O
 0x71001f2bb8,36,fn_71001f2bb8,unknown,unknown,O
@@ -4695,7 +4695,7 @@ address,size,name,name_source,subsystem,status
 0x71001fa4d8,12,fn_71001fa4d8,unknown,unknown,O
 0x71001fa4e4,492,fn_71001fa4e4,unknown,unknown,U
 0x71001fa6d0,68,fn_71001fa6d0,unknown,unknown,O
-0x71001fa720,800,fn_71001fa720,unknown,unknown,U
+0x71001fa720,800,fn_71001fa720,unknown,unknown,O
 0x71001faa40,212,fn_71001faa40,unknown,unknown,O
 0x71001fab14,36,fn_71001fab14,unknown,unknown,O
 0x71001fab38,120,fn_71001fab38,unknown,unknown,U
@@ -4827,7 +4827,7 @@ address,size,name,name_source,subsystem,status
 0x71001fe260,304,fn_71001fe260,unknown,unknown,U
 0x71001fe390,384,fn_71001fe390,unknown,unknown,U
 0x71001fe510,36,fn_71001fe510,unknown,unknown,O
-0x71001fe540,344,fn_71001fe540,unknown,unknown,U
+0x71001fe540,344,fn_71001fe540,unknown,unknown,O
 0x71001fe698,508,fn_71001fe698,unknown,unknown,O
 0x71001fe894,380,fn_71001fe894,unknown,unknown,O
 0x71001fea10,220,base::reflection::refl_GetType<engine::scene::CSceneSlot*>,reflection,engine/reflection,O
