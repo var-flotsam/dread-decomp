@@ -10,9 +10,11 @@ inline u32 lift_bits(f32 f) { u32 v; __builtin_memcpy(&v, &f, 4); return v; }
 inline u64 lift_bits(f64 f) { u64 v; __builtin_memcpy(&v, &f, 8); return v; }
 // Inlined helpers on guarded statics (GUARDS).
 namespace lift_guard {
-u32 fn_7100080568(); void fn_710007fdb4(); extern char* g_unk_7101d47108;
+u32 fn_7100080568(); u32 fn_7100080570(); void fn_710007fdb4();
+extern char* g_unk_7101d47108; extern char* g_unk_7101d47200;
 struct StringPoolHolder { u8 unk_0x0[0xe8]; StringPoolHolder(u32 a, char** pool); ~StringPoolHolder(); };
 inline void EnsureStringPool() { static StringPoolHolder s_holder(fn_7100080568(), &g_unk_7101d47108); fn_710007fdb4(); }
+inline void EnsureFilePathPool() { static StringPoolHolder s_holder(fn_7100080570(), &g_unk_7101d47200); fn_710007fdb4(); }
 struct Singleton { Singleton(); ~Singleton(); };
 inline Singleton& GetSingleton() { static Singleton s_singleton; return s_singleton; }
 struct ZeroWord { u32 value; ZeroWord() : value(0) {} };
@@ -1434,10 +1436,11 @@ extern char g_unk_7101a1ad00[];
 extern char g_unk_7101d59010[];
 namespace callee { char* fn_7100000250(char*, char*, char*); }
 namespace fp { void fn_7100084190(); }
+namespace h { extern HIDDEN char g_unk_7101a19000[]; }
 char* fn_7100084210() {
     char* r0_8 = (char*)g_unk_7101a1ad00;
     char* r1_1 = (char*)g_unk_7101d59010;
-    char* r2_2 = (char*)"";
+    char* r2_2 = (char*)h::g_unk_7101a19000;
     char* r3_0 = (char*)&fp::fn_7100084190;
     char* r4_8 = (r0_8) + 16;
     *(u64*)((char*)(r1_1) + 0) = (u64)(u64)(r4_8);
@@ -2549,6 +2552,7 @@ extern char g_unk_7101d592b8[];
 namespace callee { char* fn_7100000250(char*, char*, char*); }
 namespace callee { char* fn_71000003d4(char*, char*, u32); }
 namespace fp { void fn_710000051c(); }
+namespace h { extern HIDDEN char g_unk_7101a19000[]; }
 char* fn_7100088900() {
     char* r0_19 = (char*)g_unk_7101d592b8;
     char* r1_1 = (char*)"sources";
@@ -2556,7 +2560,7 @@ char* fn_7100088900() {
     u32 r3_2 = 0x1;
     char* r4_0 = callee::fn_71000003d4(r2_0, r1_1, r3_2);
     char* r5_0 = (char*)&fp::fn_710000051c;
-    char* r6_2 = (char*)"";
+    char* r6_2 = (char*)h::g_unk_7101a19000;
     char* r7_1 = r0_19;
     return callee::fn_7100000250(r5_0, r7_1, r6_2);
 }
@@ -2567,6 +2571,31 @@ void fn_7100088be8() {
 
 void fn_7100088bec() {
     return;
+}
+
+extern char g_unk_7101d592c0[];
+extern char g_unk_7101d592c8[];
+namespace callee { char* fn_7100000250(char*, char*, char*); }
+namespace callee { char* fn_71000003d4(char*, char*, u32); }
+namespace callee { char* fn_710008894c(); }
+namespace callee { char* fn_710009ec00(char*, char*); }
+namespace fp { void fn_710000051c(); }
+namespace h { extern HIDDEN char g_unk_7101a19000[]; }
+namespace h { extern HIDDEN char g_unk_7101d592d8[]; }
+char* fn_7100088bf0() {
+    char* r0_0 = callee::fn_710008894c();
+    char* r1_0 = (char*)g_unk_7101d592c0;
+    char* r2_1 = (char*)h::g_unk_7101d592d8;
+    char* r3_0 = callee::fn_710009ec00(r1_0, r2_1);
+    char* r4_19 = (char*)g_unk_7101d592c8;
+    char* r5_1 = (char*)"";
+    char* r6_0 = r4_19;
+    u32 r7_2 = 0x1;
+    char* r8_0 = callee::fn_71000003d4(r6_0, r5_1, r7_2);
+    char* r9_0 = (char*)&fp::fn_710000051c;
+    char* r10_2 = (char*)h::g_unk_7101a19000;
+    char* r11_1 = r4_19;
+    return callee::fn_7100000250(r9_0, r11_1, r10_2);
 }
 
 namespace callee { char* fn_71000839a0(u32, u32); }
@@ -3335,6 +3364,7 @@ namespace callee { char* fn_71000003d4(char*, char*, u32); }
 namespace callee { char* fn_710008a028(); }
 namespace callee { char* fn_710009ec00(char*, char*); }
 namespace fp { void fn_710000051c(); }
+namespace h { extern HIDDEN char g_unk_7101a19000[]; }
 namespace h { extern HIDDEN char g_unk_7101d59558[]; }
 char* fn_710008b640() {
     char* r0_19 = (char*)h::g_unk_7101d59558;
@@ -3343,7 +3373,7 @@ char* fn_710008b640() {
     u32 r3_2 = 0x1;
     char* r4_0 = callee::fn_71000003d4(r2_0, r1_1, r3_2);
     char* r5_20 = (char*)&fp::fn_710000051c;
-    char* r6_21 = (char*)"";
+    char* r6_21 = (char*)h::g_unk_7101a19000;
     char* r7_2 = r6_21;
     char* r8_0 = r5_20;
     char* r9_1 = r0_19;

@@ -164,6 +164,9 @@ def main() -> int:
                 if r["address"] in results and r["status"] != "L" and r["status"] != results[r["address"]][0]:
                     r["status"] = results[r["address"]][0]
                     changed = True
+                elif r["address"] not in results and r["status"] in ("O", "m", "M", "W") and not failed:
+                    r["status"] = "U"  # nothing in src/ defines it any more
+                    changed = True
             if changed:
                 with (ROOT / "data" / "functions" / name).open("w", newline="", encoding="utf-8") as fh:
                     w = csv.DictWriter(fh, fieldnames=list(frows[0].keys()), lineterminator="\n")

@@ -73,6 +73,7 @@ RANGE_BITS = 16  # one generated file per 64 KiB of address space, so a file's c
 # section index (SHN_XINDEX), which the object reader doesn't follow.
 SCRATCH_CHUNK = 8000
 NAME_RE = re.compile(r"^[A-Za-z_][\w:<>,*& ]*\bfn_([0-9a-f]{10})\(")  # a declaration or definition
+TAGGED_DIRS = ("reflection", "reflection_types", "reflection_statics", "clones", "tables")  # generator outputs
 TAG_RE = re.compile(r"(?:UnkRefl_fn_|UnkClone_fn_|UnkTable_fn_|DREAD_REFL_\w*GETTER\()([0-9a-f]{10})\b")  # tagged definitions
 # (minimum call arguments, return mode): tried in this order. Return modes: "value" returns x0
 # (or s0) as set, "void" returns nothing, "ref" returns a pointer as a reference (Clang 9 then
@@ -119,8 +120,10 @@ FTOINT = {"fcvtzs": "", "fcvtzu": "", "fcvtms": "__builtin_floor{s}", "fcvtmu": 
 # right after the check that belong to the helper. Their definitions are in HEADER (namespace
 # lift_guard), written like those in include/ (UnkReflStatics.h, CStrId.h).
 GUARD_ACQUIRE = 0x7101238da0  # __cxa_guard_acquire
+DSO_HANDLE = 0x7101a19000  # __dso_handle (passed to __cxa_atexit): an address, not the string ""
 GUARDS = {
     0x7101cba070: ("lift_guard::EnsureStringPool();", [0x710007fdb4]),
+    0x7101cba0c0: ("lift_guard::EnsureFilePathPool();", [0x710007fdb4]),
     0x7101cbbb20: ("(void)lift_guard::GetSingleton();", []),
     0x7101cbbcd8: ("(void)lift_guard::TypeId<lift_guard::TypeIdTag>::id();", []),
     0x7101cbbcf8: ("(void)lift_guard::TypeId<lift_guard::TypeIdTag>::id();", []),
@@ -733,10 +736,19 @@ class Lifter:
             elif m == "ldarb" and slots.get(o[1].mem.base) in GUARDS and k + 1 < len(ins) \
                     and x.address not in self.gskip:
                 stmt, calls = GUARDS[slots[o[1].mem.base]]
-                t = ins[k + 1]
+                # The tbz, possibly after a few scheduled instructions that leave the flag alone.
+                j = k + 1
+                while j < min(k + 6, len(ins)) and ins[j].mnemonic != "tbz":
+                    y = ins[j]
+                    if y.mnemonic.startswith("b") or y.mnemonic in ("cbz", "cbnz", "tbnz", "ret") or \
+                            (y.operands and y.operands[0].type == arm64.ARM64_OP_REG
+                             and regname(y.operands[0].reg)[1:] == regname(o[0].reg)[1:]):
+                        break
+                    j += 1
+                t = ins[j] if j < len(ins) else ins[k]
                 if t.mnemonic != "tbz" or t.operands[0].reg != o[0].reg or t.operands[1].imm != 0:
                     continue
-                after = ins[k + 2:k + 2 + len(calls)]
+                after = ins[j + 1:j + 1 + len(calls)]
                 if [a.operands[0].imm if a.mnemonic == "bl" else None for a in after] != calls:
                     continue
                 resume = t.address + 4
@@ -1000,7 +1012,7 @@ class Lifter:
                 and self.key(regname(o[1].reg)) in s.pages:
             a = s.pages[self.key(regname(o[1].reg))] + o[2].imm
             text = self.orig.img.cstring(a - BASE)
-            if text is not None and a not in self.orig.sizes:
+            if text is not None and a not in self.orig.sizes and a != DSO_HANDLE:
                 self.write(regname(o[0].reg), f"(char*){refl_attrs.c_string(text)}", "char*")
             else:
                 self.write(regname(o[0].reg), self.global_ref(a, False), "char*")
@@ -1505,17 +1517,28 @@ class FlatLifter(Lifter):
 
 def defined_elsewhere() -> set[int]:
     """Functions defined in src/ outside src/lifted/ (by hand or by another generator)."""
+    return defined_outside(OUT)
+
+
+def defined_outside(out: Path) -> set[int]:
+    """Functions defined in src/ outside `out`, by name or by tag."""
     skip = set()
     for f in (ROOT / "src").rglob("*.cpp"):
-        if OUT not in f.parents:
+        if out not in f.parents:
             text = f.read_text(encoding="utf-8")
-            for line in text.splitlines():
-                line = line.split("//", 1)[0]  # a trailing comment doesn't make a declaration a definition
+            lines = [ln.split("//", 1)[0] for ln in text.splitlines()]  # comments don't count
+            for i, line in enumerate(lines):
                 m = NAME_RE.match(line)
-                if m and ("{" in line or not line.rstrip().endswith(";")):
-                    skip.add(int(m.group(1), 16))
-            # Template instantiations and macro-defined getters, named by their tags.
-            skip |= {int(a, 16) for a in TAG_RE.findall(text)}
+                if m:
+                    # A definition reaches `{` before `;` (declarations may span several lines).
+                    rest = " ".join(lines[i:i + 20])
+                    brace, semi = rest.find("{"), rest.find(";")
+                    if brace >= 0 and (semi < 0 or brace < semi):
+                        skip.add(int(m.group(1), 16))
+            # Template instantiations and macro-defined getters, named by their tags. Only the
+            # generators define functions that way; hand-written code may just use a tag.
+            if any(ROOT / "src" / d in f.parents for d in TAGGED_DIRS):
+                skip |= {int(a, 16) for a in TAG_RE.findall(text)}
     return skip
 
 
@@ -1537,9 +1560,11 @@ HEADER = ['#include "types.h"', '#define HIDDEN __attribute__((visibility("hidde
           "inline u64 lift_bits(f64 f) { u64 v; __builtin_memcpy(&v, &f, 8); return v; }",
           "// Inlined helpers on guarded statics (GUARDS).",
           "namespace lift_guard {",
-          "u32 fn_7100080568(); void fn_710007fdb4(); extern char* g_unk_7101d47108;",
+          "u32 fn_7100080568(); u32 fn_7100080570(); void fn_710007fdb4();",
+          "extern char* g_unk_7101d47108; extern char* g_unk_7101d47200;",
           "struct StringPoolHolder { u8 unk_0x0[0xe8]; StringPoolHolder(u32 a, char** pool); ~StringPoolHolder(); };",
           "inline void EnsureStringPool() { static StringPoolHolder s_holder(fn_7100080568(), &g_unk_7101d47108); fn_710007fdb4(); }",
+          "inline void EnsureFilePathPool() { static StringPoolHolder s_holder(fn_7100080570(), &g_unk_7101d47200); fn_710007fdb4(); }",
           "struct Singleton { Singleton(); ~Singleton(); };",
           "inline Singleton& GetSingleton() { static Singleton s_singleton; return s_singleton; }",
           "struct ZeroWord { u32 value; ZeroWord() : value(0) {} };",
@@ -1837,6 +1862,8 @@ def main() -> int:
     ap.add_argument("--examples", type=int, default=0, help="with --report: up to K addresses per outcome")
     ap.add_argument("--best", help="ADDR[,ADDR...] or @file: write the closest lifted attempt of each to "
                                    "build/lift_best/ (a starting point for hand matching)")
+    ap.add_argument("--add", help="ADDR[,ADDR...] or @file: lift just these candidates into src/lifted/, keeping "
+                                  "the rest (what a full run gives them, when nothing else changed)")
     ap.add_argument("--prune", action="store_true",
                     help="only drop functions now defined elsewhere in src/ from src/lifted/ (seconds; no lifting)")
     args = ap.parse_args()
@@ -1849,6 +1876,15 @@ def main() -> int:
         write_best(orig, parse_only(args.best))
         return 0
     cands = candidates(orig)
+    if args.add:
+        todo = sorted(set(parse_only(args.add)) & set(cands))
+        chosen, _, _ = lift_rounds(orig, todo, ROOT / "build" / "gen_lift_add")
+        blocks = {a: b for a, b in read_out().items() if a not in todo}
+        blocks.update({a: "\n".join(sorted(chosen[a][1]) + [chosen[a][0]]) for a in chosen})
+        write_out(blocks)
+        print(f"{len(todo)} candidates; {len(chosen)} byte-identical added: "
+              + " ".join(f"{a:x}" for a in sorted(chosen)))
+        return 0
 
     if args.report or args.only or args.sample:
         addrs = parse_only(args.only) if args.only else list(cands)
