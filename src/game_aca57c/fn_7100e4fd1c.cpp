@@ -101,3 +101,40 @@ void fn_7100e4fd1c(UnkIdsRecord60* self, const UnkIdsRecord60* other) {
 }
 
 void fn_7100e4a1d0(UnkIdsRecord60* self) { self->~UnkIdsRecord60(); }
+
+// Move-assignment: copies the words, releases and takes over each id (leaving the pool's empty
+// string), and unless assigning to itself, releases the ids in the array and takes over the
+// other's array (the old storage is not freed).
+__attribute__((always_inline)) static inline void MoveAssign(UnkReleasedStrIdArray* self,
+                                                            UnkReleasedStrIdArray* other) {
+    if (self != other) {
+        for (u64 i = 0; i < self->count; ++i)
+            self->data[i].~UnkReleasedStrId();
+        self->count = 0;
+        self->allocator = other->allocator;
+        self->flags = other->flags;
+        self->step = other->step;
+        self->field_0x14 = other->field_0x14;
+        self->count = other->count;
+        self->capacity = other->capacity;
+        self->data = other->data;
+        other->data = nullptr;
+        other->count = 0;
+        other->capacity = 0;
+    }
+}
+
+__attribute__((always_inline)) static inline void MoveId(UnkReleasedStrId* self, UnkReleasedStrId* other) {
+    self->~UnkReleasedStrId();
+    self->data = other->data;
+    other->data = &g_unk_7101d47108->empty;
+}
+
+UnkIdsRecord60* fn_7100e4fff8(UnkIdsRecord60* self, UnkIdsRecord60* other) {
+    for (u32 i = 0; i < 10; ++i)
+        self->field_0x0[i] = other->field_0x0[i];
+    MoveId(&self->id_0x28, &other->id_0x28);
+    MoveId(&self->id_0x30, &other->id_0x30);
+    MoveAssign(&self->ids, &other->ids);
+    return self;
+}
