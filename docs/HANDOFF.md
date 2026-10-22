@@ -703,17 +703,18 @@ with LLVM's license); it has the same operations in another block layout. Left f
 Static initialisers above 2 KB (31, 152 KB) are this stream's too (the coordinator's call,
 2026-10-22). Sources are written with slice 3's helpers (`src/game_5821e4/UnkStaticInit.h`) plus
 `src/game_s7/UnkStaticInitS7.h` (header-id variants, named values, conversions with a type object
-on one side, buffer params, empty ids, resource types, (id, value) pair lists). 24 match and 2
-are `m` (register allocation only). Findings: a unit whose u32 sits right before its ids (merged
+on one side, buffer params, empty ids, resource types, (id, value) pair lists). 26 match and 3
+are `m` (register allocation or store scheduling only). Findings: a unit whose u32 sits right before its ids (merged
 globals) takes a packed, 4-byte-aligned struct; each vector of ids built from a list must sit in
 its own immediately called lambda, because the original inlines one initialiser function per
 global and the inliner then shares one stack array between lists of the same length (so lists of
 one length in a unit need one element type: `UnkIdElem` when any has an empty id); resource-type
 source-extension arrays are filled element by element (an initialised array becomes a constant
 copy), declared in reverse order; and the lift drops stack stores of strings kept in callee-saved
-registers, so take those from the original's code. Still `U`: `fn_7100eb4510` (an inlined vector
-reserve with a virtual allocator), `fn_71011496a0`, `fn_7101132ba0`, `fn_71008da6c0` (no lift) and
-`fn_71001e0820` (merged globals with a second base register).
+registers, so take those from the original's code. Three the lifter rejects (an inlined guarded
+static: a class name id built on first use, `InitClassIdFrom`) were converted from the original's
+code directly. Still `U`: `fn_7100eb4510` (an inlined vector reserve with a virtual allocator) and
+`fn_71001e0820` (merged globals: the original folds one id's address into a post-indexed store).
 
 ## Known issues and gotchas
 
