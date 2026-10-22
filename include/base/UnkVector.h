@@ -224,6 +224,24 @@ struct UnkVector {
         ++count;
     }
 
+    // EmplaceBack with a copy-constructed element.
+    void PushBackCopy(const T& value) {
+        u32 n = count;
+        u32 old_capacity = capacity;
+        u32 new_capacity = old_capacity;
+        if (old_capacity <= n && step != 0)
+            new_capacity = (n / step + 1) * step;
+        if ((s32)n >= (s32)new_capacity)
+            for (;;) {
+            }
+        if (old_capacity < new_capacity) {
+            Reallocate(new_capacity);
+            n = count;
+        }
+        new (&data[n]) T(value);
+        ++count;
+    }
+
     // Grows the array to at least n elements (fn_7100c77cd0 inlines it).
     void Reserve(u32 n) {
         if (capacity < n)
