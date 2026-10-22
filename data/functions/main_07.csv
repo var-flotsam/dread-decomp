@@ -877,11 +877,11 @@ address,size,name,name_source,subsystem,status
 0x710072a100,4,fn_710072a100,unknown,game/components?,O
 0x710072a104,4,fn_710072a104,unknown,game/components?,O
 0x710072a108,4,fn_710072a108,unknown,game/components?,O
-0x710072a110,2384,fn_710072a110,unknown,game/components?,U
-0x710072aa60,716,fn_710072aa60,unknown,game/components?,U
-0x710072ad30,564,fn_710072ad30,unknown,game/components?,U
-0x710072af70,724,fn_710072af70,unknown,game/components?,U
-0x710072b250,772,fn_710072b250,unknown,game/components?,U
+0x710072a110,2384,fn_710072a110,unknown,game/components?,m
+0x710072aa60,716,fn_710072aa60,unknown,game/components?,O
+0x710072ad30,564,fn_710072ad30,unknown,game/components?,O
+0x710072af70,724,fn_710072af70,unknown,game/components?,O
+0x710072b250,772,fn_710072b250,unknown,game/components?,m
 0x710072b554,24,fn_710072b554,unknown,game/components?,U
 0x710072b56c,24,fn_710072b56c,unknown,game/components?,U
 0x710072b590,160,fn_710072b590,unknown,game/components?,O

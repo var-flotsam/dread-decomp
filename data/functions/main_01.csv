@@ -363,11 +363,11 @@ address,size,name,name_source,subsystem,status
 0x710010df80,476,fn_710010df80,unknown,unknown,U
 0x710010e15c,520,fn_710010e15c,unknown,unknown,U
 0x710010e364,256,fn_710010e364,unknown,unknown,U
-0x710010e470,2220,fn_710010e470,unknown,unknown,U
-0x710010ed20,692,fn_710010ed20,unknown,unknown,U
-0x710010efe0,536,fn_710010efe0,unknown,unknown,U
-0x710010f200,688,fn_710010f200,unknown,unknown,U
-0x710010f4b0,708,fn_710010f4b0,unknown,unknown,U
+0x710010e470,2220,fn_710010e470,unknown,unknown,W
+0x710010ed20,692,fn_710010ed20,unknown,unknown,W
+0x710010efe0,536,fn_710010efe0,unknown,unknown,W
+0x710010f200,688,fn_710010f200,unknown,unknown,W
+0x710010f4b0,708,fn_710010f4b0,unknown,unknown,W
 0x710010f774,196,fn_710010f774,unknown,unknown,U
 0x710010f838,56,fn_710010f838,unknown,unknown,U
 0x710010f870,1464,fn_710010f870,unknown,unknown,O

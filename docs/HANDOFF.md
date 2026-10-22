@@ -777,10 +777,37 @@ locals of the last two flags have to be function-scope so they get separate stac
 `memcpy`, then retained, as in the state-list `Add`. `fn_7100d92158` (7.4 KB) registers 29
 descriptors: a temporary entry is built by `fn_710002003c`, passed to `fn_710002002c`, and its ids
 are released in two steps. Three of the descriptors get a factory singleton created on first use.
-The `fn_71002a5d1c` family (about 16 U functions of 2 to 5 KB, such as `fn_7100566930` and
-`fn_71005679f0`) looks like libc++ sort helpers. Their 0x44-byte element holds two weak handles,
-assigned with `fn_71002a5d1c`, and 14 words, and it is sorted by the float at +0x18. The libc++
-excerpt in `lib/libcxx/sort.h` should cover them, as it did for `fn_710117d4d0`.
+Five more libc++ sort families are in `src/game_s7/`, mapped by `alias` as in `fn_710117d4d0.cpp`.
+`fn_710031e030.cpp` (entries of two handles and plain data, by a float) is **O** in all six. Its
+entry has the implicit copy: the plain members are copied as one block. `fn_7100566930.cpp` and
+`fn_71003cd6e0.cpp` sort 0x48-byte entries (two weak handles assigned with `fn_71002a5d1c`, then
+13 words), whose copy is member by member with a self-check. Their `__insertion_sort_3` and
+`__insertion_sort_incomplete` are **O** and the rest **m** (register choice). The second has an
+out-of-line comparator (`fn_71003cd4fc`, **O**) that returns a word: the callers test all of `w0`
+(`cbz`), not bit 0 as they would for a `bool`. `fn_710072a110.cpp` sorts object pointers nearest
+first: `__sort3/4/5` **O**, the two with insertion loops **m**. `fn_710010e470.cpp` sorts boxes
+by the centre on one axis: all five **m** (see its note). Other findings:
+- The game's `swap` is always inlined, so the element needs an `always_inline` ADL `swap`.
+- `__sort` switches to insertion sort below 30 elements for trivially copyable types and below 6
+  otherwise. `lib/libcxx/sort.h` now computes this the way libc++ does.
+- Temporaries made in one comparison get separate stack slots.
+- Writing an expression term by term keeps the original's order.
+- With 8-byte elements, our insertion loops walk an index where the original walks a pointer.
+
+`fn_7100354e10` uses the same 0x48-byte entry, sorted nearest first by the sign of a distance
+difference with z taken as 0. Its insertion sorts reach 92% (the order of the z term).
+
+More instantiations found by their recursion (each 2 KB, or with 2 KB helpers):
+- `fn_7100134020`
+- `fn_71001e2e30`
+- `fn_7100212a80`
+- `fn_7100248e50`
+- `fn_710030ed9c`
+- `fn_7100336ca0`
+- `fn_7100338620` (no calls in its comparator)
+- `fn_710081ccd0`
+- `fn_7100d4de00`
+- `fn_71010dd1d0`
 
 ## Known issues and gotchas
 

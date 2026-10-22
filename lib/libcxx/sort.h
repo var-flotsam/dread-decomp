@@ -40,7 +40,9 @@ template <class _Compare, class _RandomAccessIterator>
 void __sort(_RandomAccessIterator __first, _RandomAccessIterator __last, _Compare __comp) {
     using std::swap;
     typedef typename std::iterator_traits<_RandomAccessIterator>::difference_type difference_type;
-    const difference_type __limit = 6;
+    typedef typename std::iterator_traits<_RandomAccessIterator>::value_type value_type;
+    const difference_type __limit = std::is_trivially_copy_constructible<value_type>::value &&
+                                    std::is_trivially_copy_assignable<value_type>::value ? 30 : 6;
     while (true) {
     __restart:
         difference_type __len = __last - __first;
