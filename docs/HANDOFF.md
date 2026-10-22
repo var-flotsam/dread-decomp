@@ -952,6 +952,12 @@ the copy to x19); ours copies `this` first and keeps the pool in x0, and a 3-id 
 Ten more shapes of the id destructor (an early return, no local pool, a cached empty pointer,
 `__builtin_expect` on each test, `always_inline`) don't change that.
 
+**Slice 1 taken over by stream 7** (2026-10-22, coordinator's call): the hand slice below
+0x71002a4814 (`U` game functions of 128 B-2 KB, `src/game_s1/`) had no active stream. Stream 7
+starts from the shared headers and patterns found since (`src/game_s7/UnkIter.h`,
+`include/game_s2/UnkWeakHandle.h`, `include/game_s2/UnkOwnedList.h`) and from near copies of
+matched functions, not from the stragglers slice 1 left.
+
 **Field registrations the reflection parser stopped at** (stream 7, 2026-10-22), both **O**:
 CCharClassAIComponent's member fields (`fn_7100408c20`, 33 KB, 142 fields, the giant-functions
 table's "tunable registration") and CExplosionGfx's (`fn_7100ddf434`, 3.6 KB). Both are
