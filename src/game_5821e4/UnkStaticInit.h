@@ -59,6 +59,26 @@ __attribute__((always_inline)) inline void InitPathId(UnkFilePathStrIdBase* id, 
     __cxa_atexit(fn_7100000c7c, id, g_unk_7101a19000);
 }
 
+// A temporary string id (an element of an initializer list) whose release decrements and tests
+// the count in two steps; fn_710058a070 builds a vector of ids from such a list.
+struct UnkStrIdTmp : UnkStrIdBase {
+    using UnkStrIdBase::UnkStrIdBase;
+    ~UnkStrIdTmp() {
+        if (base::global::UnkStringPool* pool = g_unk_7101d47108) {
+            if (data && data != &pool->empty) {
+                --data->ref_count;
+                if (data->ref_count == 0) {
+                    fn_71000803a4(pool, data);
+                    pool = g_unk_7101d47108;
+                }
+            }
+            data = &pool->empty;
+        }
+    }
+};
+
+void fn_710058a070(void* self, const UnkStrIdBase* ids, u32 count);
+
 // A string id built directly from a string.
 __attribute__((always_inline)) inline void InitId(UnkStrIdBase* id, const char* str) {
     new (id) UnkStrIdBase(str, true);
