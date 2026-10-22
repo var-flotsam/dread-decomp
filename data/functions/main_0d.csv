@@ -4309,7 +4309,7 @@ address,size,name,name_source,subsystem,status
 0x7100d91f50,20,fn_7100d91f50,unknown,unknown,O
 0x7100d91f64,20,fn_7100d91f64,unknown,unknown,O
 0x7100d91f80,472,fn_7100d91f80,unknown,unknown,O
-0x7100d92158,7424,fn_7100d92158,unknown,unknown,U
+0x7100d92158,7424,fn_7100d92158,unknown,unknown,O
 0x7100d93e58,4,fn_7100d93e58,unknown,unknown,O
 0x7100d93e5c,412,fn_7100d93e5c,unknown,unknown,m
 0x7100d93ff8,112,fn_7100d93ff8,unknown,unknown,O
