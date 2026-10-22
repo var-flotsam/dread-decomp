@@ -1283,11 +1283,11 @@ address,size,name,name_source,subsystem,status
 0x7100b2e978,308,fn_7100b2e978,unknown,unknown,O
 0x7100b2eaac,604,fn_7100b2eaac,unknown,unknown,m
 0x7100b2ed08,124,fn_7100b2ed08,unknown,unknown,U
-0x7100b2ed84,260,fn_7100b2ed84,unknown,unknown,U
-0x7100b2ee88,260,fn_7100b2ee88,unknown,unknown,U
+0x7100b2ed84,260,fn_7100b2ed84,unknown,unknown,O
+0x7100b2ee88,260,fn_7100b2ee88,unknown,unknown,O
 0x7100b2ef8c,176,fn_7100b2ef8c,unknown,unknown,O
-0x7100b2f03c,532,fn_7100b2f03c,unknown,unknown,U
-0x7100b2f250,1120,fn_7100b2f250,unknown,unknown,U
+0x7100b2f03c,532,fn_7100b2f03c,unknown,unknown,O
+0x7100b2f250,1120,fn_7100b2f250,unknown,unknown,O
 0x7100b2f6b0,2792,fn_7100b2f6b0,unknown,unknown,U
 0x7100b30198,496,fn_7100b30198,unknown,unknown,U
 0x7100b30388,204,fn_7100b30388,unknown,unknown,O
@@ -1637,7 +1637,7 @@ address,size,name,name_source,subsystem,status
 0x7100b4864c,144,fn_7100b4864c,unknown,unknown,O
 0x7100b486dc,264,fn_7100b486dc,unknown,unknown,m
 0x7100b487e4,352,fn_7100b487e4,unknown,unknown,O
-0x7100b48944,432,fn_7100b48944,unknown,unknown,U
+0x7100b48944,432,fn_7100b48944,unknown,unknown,m
 0x7100b48af4,304,fn_7100b48af4,unknown,unknown,O
 0x7100b48c24,12,fn_7100b48c24,unknown,unknown,O
 0x7100b48c30,12,fn_7100b48c30,unknown,unknown,O
@@ -1663,7 +1663,7 @@ address,size,name,name_source,subsystem,status
 0x7100b4ba04,892,fn_7100b4ba04,unknown,unknown,U
 0x7100b4bd80,1384,fn_7100b4bd80,unknown,unknown,U
 0x7100b4c2e8,340,fn_7100b4c2e8,unknown,unknown,U
-0x7100b4c43c,272,fn_7100b4c43c,unknown,unknown,U
+0x7100b4c43c,272,fn_7100b4c43c,unknown,unknown,O
 0x7100b4c54c,4,operator.delete,symbol,unknown,O
 0x7100b4c550,8,fn_7100b4c550,unknown,unknown,O
 0x7100b4c558,28,fn_7100b4c558,unknown,unknown,O
@@ -2078,7 +2078,7 @@ address,size,name,name_source,subsystem,status
 0x7100b64b64,212,fn_7100b64b64,unknown,gui?,U
 0x7100b64c38,732,fn_7100b64c38,unknown,gui?,U
 0x7100b64f14,296,fn_7100b64f14,unknown,gui?,U
-0x7100b6503c,148,fn_7100b6503c,unknown,gui?,U
+0x7100b6503c,148,fn_7100b6503c,unknown,gui?,O
 0x7100b650d0,28,fn_7100b650d0,unknown,gui?,O
 0x7100b650ec,36,fn_7100b650ec,unknown,gui?,O
 0x7100b65110,4,fn_7100b65110,unknown,gui?,O
