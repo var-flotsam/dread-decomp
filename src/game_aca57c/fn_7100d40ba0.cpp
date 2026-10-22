@@ -1,6 +1,8 @@
 // The reflected collection functions Begin, End and Erase of arrays of reference-counted pointers
-// (base::refl_Begin/refl_End; the iterator's cached value releases an owned pointer).
+// (base::refl_Begin/refl_End; the iterator's cached value releases an owned pointer), and the
+// move constructor of an iterator value over a map of such pointers keyed by string ids.
 #include "base/UnkCollectionIter.h"
+#include "base/global/CStrId.h"
 #include "types.h"
 
 struct UnkRefObject {
@@ -76,3 +78,60 @@ void fn_7100d44810(const base::UnkVector<UnkPlainVector>* v, UnkPlainVectorIter*
 void fn_7100d4492c(const base::UnkVector<UnkPlainVector>* v, UnkPlainVectorIter* out) {
     *out = UnkPlainVectorIter(v->count, v->data + v->count);
 }
+
+// A string id key that is taken over when moved (the source is left holding the empty id).
+struct UnkMovedStrId {
+    base::global::UnkStringData* data;
+
+    __attribute__((always_inline)) UnkMovedStrId(UnkMovedStrId&& other) : data(other.data) {
+        other.data = &g_unk_7101d47108->empty;
+    }
+};
+
+// The move constructor of an iterator value over a keyed map of such pointers.
+using UnkKeyedRefPtrValue = base::UnkIterValue<UnkRefPtr, UnkMovedStrId>;
+
+// (base::UnkIterValue's move constructor, inlined.)
+__attribute__((always_inline)) static inline void Move(UnkKeyedRefPtrValue* self, UnkKeyedRefPtrValue* other) {
+    using Pair = UnkKeyedRefPtrValue::Value;
+    self->state = 0;
+    if (other->state == 1) {
+        self->state = 1;
+        new (&self->value) Pair(static_cast<Pair&&>(other->value));
+    } else if (other->state == 2) {
+        self->state = 1;
+        UnkKeyedRefPtrValue::Ref r = other->ref;
+        new (&self->value) Pair{static_cast<UnkMovedStrId&&>(*const_cast<UnkMovedStrId*>(r.index)),
+                                static_cast<UnkRefPtr&&>(*r.element)};
+    }
+}
+
+// NON_MATCHING(minor): block layout; the original keeps the release call out of line and gives
+// each path its own return.
+void fn_7100d410b4(UnkKeyedRefPtrValue* self, UnkKeyedRefPtrValue* other) { Move(self, other); }
+// NON_MATCHING(minor): as fn_7100d410b4.
+void fn_7100d41564(UnkKeyedRefPtrValue* self, UnkKeyedRefPtrValue* other) { Move(self, other); }
+
+// Equality of two such iterator values: the keys by identity, then the objects' words at 0x10
+// (zero for no object).
+struct UnkRefObjectId : UnkRefObject {
+    u64 field_0x10;
+};
+
+__attribute__((always_inline)) static inline u64 IdOf(const UnkRefPtr& p) {
+    return p.ptr ? static_cast<UnkRefObjectId*>(p.ptr)->field_0x10 : 0;
+}
+
+__attribute__((always_inline)) static inline bool Equal(const UnkKeyedRefPtrValue* a, const UnkKeyedRefPtrValue* b) {
+    const UnkMovedStrId* ka = a->state == 2 ? a->ref.index : &a->value.index;
+    const UnkMovedStrId* kb = b->state == 2 ? b->ref.index : &b->value.index;
+    if (ka->data != kb->data)
+        return false;
+    const UnkRefPtr* x = a->state == 2 ? a->ref.element : &a->value.element;
+    const UnkRefPtr* y = b->state == 2 ? b->ref.element : &b->value.element;
+    u64 id = IdOf(*y);
+    return IdOf(*x) == id;
+}
+
+bool fn_7100d40df8(const UnkKeyedRefPtrValue* a, const UnkKeyedRefPtrValue* b) { return Equal(a, b); }
+bool fn_7100d413d0(const UnkKeyedRefPtrValue* a, const UnkKeyedRefPtrValue* b) { return Equal(a, b); }

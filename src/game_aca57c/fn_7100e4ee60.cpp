@@ -2,8 +2,10 @@
 // value array (at 0) are destroyed (records with an id at 0x18 of 0x28 bytes or at 0 of 0x18
 // bytes, or owned objects that are deleted), and the count (at 0x10) is zeroed. The arrays
 // themselves are kept.
-// Also the tables' End, which points an iterator value at the key and value one past the last.
+// Also the tables' Begin and End, which point an iterator value at the first key and value or
+// one past the last.
 #include "base/UnkCollectionIter.h"
+#include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
@@ -129,3 +131,85 @@ void fn_7100e5c54c(const UnkIdRecordTable<UnkIdRecord28>* self, base::UnkIterVal
 void fn_7100e7232c(const UnkIdRecordTable<UnkIdRecord18>* self, base::UnkIterValue<UnkIdRecord18, UnkReleasedStrId>* out) {
     End(self, out);
 }
+
+// Tables whose 0x28-byte values have an out-of-line destructor.
+template <void (*Destroy)(void*)>
+struct UnkOutOfLineValue28 {
+    u64 unk_0x0[5];
+
+    ~UnkOutOfLineValue28() { Destroy(this); }
+};
+
+void fn_71000df388(void* self);
+void fn_7100e493f4(void* self);
+using UnkValue28A = UnkOutOfLineValue28<fn_71000df388>;
+using UnkValue28B = UnkOutOfLineValue28<fn_7100e493f4>;
+
+void fn_7100aef39c(const UnkIdRecordTable<UnkValue28A>* self, base::UnkIterValue<UnkValue28A, UnkReleasedStrId>* out) {
+    Begin(self, out);
+}
+void fn_7100aef43c(const UnkIdRecordTable<UnkValue28A>* self, base::UnkIterValue<UnkValue28A, UnkReleasedStrId>* out) {
+    End(self, out);
+}
+void fn_7100e58da0(const UnkIdRecordTable<UnkValue28B>* self, base::UnkIterValue<UnkValue28B, UnkReleasedStrId>* out) {
+    Begin(self, out);
+}
+void fn_7100e58e40(const UnkIdRecordTable<UnkValue28B>* self, base::UnkIterValue<UnkValue28B, UnkReleasedStrId>* out) {
+    End(self, out);
+}
+
+// A table of 0x60-byte records holding two arrays (base::UnkVector's layout, freed when
+// destroyed) and four words.
+struct UnkFreedArray {
+    void* data;
+    u32 count;
+    u32 capacity;
+    u32 step;
+    bool field_0x14;
+    u32 flags;
+    base::UnkAllocator* allocator;
+
+    __attribute__((always_inline)) ~UnkFreedArray() {
+        if (data) {
+            count = 0;
+            allocator->vf_0x48(data);
+            capacity = 0;
+        }
+    }
+};
+
+struct UnkArrayRecord60 {
+    UnkFreedArray field_0x0;
+    UnkFreedArray field_0x28;
+    u32 field_0x50[4];
+};
+
+void fn_7100e572d8(const UnkIdRecordTable<UnkArrayRecord60>* self,
+                   base::UnkIterValue<UnkArrayRecord60, UnkReleasedStrId>* out) {
+    Begin(self, out);
+}
+void fn_7100e573b0(const UnkIdRecordTable<UnkArrayRecord60>* self,
+                   base::UnkIterValue<UnkArrayRecord60, UnkReleasedStrId>* out) {
+    End(self, out);
+}
+
+// A table of words.
+void fn_7100d86fe8(const UnkIdRecordTable<u64>* self, base::UnkIterValue<u64, UnkReleasedStrId>* out) {
+    Begin(self, out);
+}
+// NON_MATCHING(minor): the two end pointers swap registers.
+void fn_7100d87080(const UnkIdRecordTable<u64>* self, base::UnkIterValue<u64, UnkReleasedStrId>* out) {
+    End(self, out);
+}
+
+// Destructor of a keyed record of three arrays.
+struct UnkKeyedThreeArrays {
+    UnkReleasedStrId key;
+    UnkFreedArray field_0x8;
+    u64 field_0x30[4];
+    UnkFreedArray field_0x50;
+    UnkFreedArray field_0x78;
+};
+
+void fn_7100e4c99c(UnkKeyedThreeArrays* self) { self->~UnkKeyedThreeArrays(); }
+void fn_7100e4cd88(UnkKeyedThreeArrays* self) { self->~UnkKeyedThreeArrays(); }
