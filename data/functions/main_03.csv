@@ -5291,7 +5291,7 @@ address,size,name,name_source,subsystem,status
 0x71003f454c,356,CBigkranXAIComponent::refl_InitClass,reflection,game/ai,O
 0x71003f46b0,296,fn_71003f46b0,unknown,unknown,U
 0x71003f47d8,36,fn_71003f47d8,unknown,unknown,O
-0x71003f47fc,208,fn_71003f47fc,unknown,unknown,U
+0x71003f47fc,208,fn_71003f47fc,unknown,unknown,O
 0x71003f48cc,64,fn_71003f48cc,unknown,unknown,O
 0x71003f490c,4,fn_71003f490c,unknown,unknown,O
 0x71003f4910,152,fn_71003f4910,unknown,unknown,O

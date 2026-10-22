@@ -5322,7 +5322,7 @@ address,size,name,name_source,subsystem,status
 0x7100adc390,220,fn_7100adc390,unknown,engine/reflection?,O
 0x7100adc470,72,fn_7100adc470,unknown,engine/reflection?,O
 0x7100adc4c0,168,fn_7100adc4c0,unknown,engine/reflection?,U
-0x7100adc570,160,fn_7100adc570,unknown,engine/reflection?,U
+0x7100adc570,160,fn_7100adc570,unknown,engine/reflection?,O
 0x7100adc610,364,base::reflection::refl_InitType<gameeditor::TPropertyId>,reflection,engine/reflection,O
 0x7100adc77c,52,fn_7100adc77c,unknown,unknown,O
 0x7100adc7b0,104,fn_7100adc7b0,unknown,unknown,O

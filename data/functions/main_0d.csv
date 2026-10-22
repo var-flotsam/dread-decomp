@@ -1190,7 +1190,7 @@ address,size,name,name_source,subsystem,status
 0x7100d1ea20,380,fn_7100d1ea20,unknown,game/characters?,O
 0x7100d1eb9c,380,fn_7100d1eb9c,unknown,game/characters?,O
 0x7100d1ed18,380,fn_7100d1ed18,unknown,game/characters?,O
-0x7100d1ee94,456,fn_7100d1ee94,unknown,game/characters?,U
+0x7100d1ee94,456,fn_7100d1ee94,unknown,game/characters?,m
 0x7100d1f05c,1764,fn_7100d1f05c,unknown,game/characters?,U
 0x7100d1f740,36,fn_7100d1f740,unknown,game/characters?,O
 0x7100d1f764,784,fn_7100d1f764,unknown,game/characters?,U

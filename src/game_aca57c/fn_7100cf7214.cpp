@@ -475,3 +475,35 @@ void fn_7100c1f318(UnkRootTwoDirectEmptyIds<g_unk_7101aa30a8>* self) {
     fn_7100c1ee78();
     new (self) UnkRootTwoDirectEmptyIds<g_unk_7101aa30a8>(&g_unk_7172781298);
 }
+
+// A middle class on the root (the base of the class constructed by fn_7100d215a4): six groups of
+// a string id, an array of 8-byte values, a second string id and a word.
+template <u32 Flags>
+struct UnkIdArrayIdWordGroup {
+    CStrId id;
+    base::UnkVector<u64> values;
+    CStrId id_0x30;
+    u32 field_0x38;
+
+    __attribute__((always_inline)) UnkIdArrayIdWordGroup()
+        : id("", true), values(Flags), id_0x30("", true), field_0x38(0) {}
+};
+
+extern void* g_unk_7101aa7cb0[];
+
+struct UnkRootSixGroups : UnkRoot {
+    UnkIdArrayIdWordGroup<5> field_0x18;
+    UnkIdArrayIdWordGroup<5> field_0x58;
+    UnkIdArrayIdWordGroup<5> field_0x98;
+    UnkIdArrayIdWordGroup<5> field_0xd8;
+    UnkIdArrayIdWordGroup<0xf> field_0x118;
+    UnkIdArrayIdWordGroup<0xf> field_0x158;
+
+    __attribute__((always_inline)) explicit UnkRootSixGroups(UnkClass* cls)
+        : UnkRoot(cls), field_0x18((SetVtable(g_unk_7101aa7cb0), UnkIdArrayIdWordGroup<5>())) {}
+};
+static_assert(sizeof(UnkRootSixGroups) == 0x198, "UnkRootSixGroups layout");
+
+// NON_MATCHING(minor): the last two groups' arrays address their flag byte from the array's base
+// (an extra add each) in the original, scheduled around the 0xf flags load.
+void fn_7100d1ee94(UnkRootSixGroups* self, UnkClass* cls) { new (self) UnkRootSixGroups(cls); }
