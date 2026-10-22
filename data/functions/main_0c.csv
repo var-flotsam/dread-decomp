@@ -408,7 +408,7 @@ address,size,name,name_source,subsystem,status
 0x7100c0bfb4,168,fn_7100c0bfb4,unknown,unknown,O
 0x7100c0c05c,176,fn_7100c0c05c,unknown,unknown,O
 0x7100c0c10c,668,fn_7100c0c10c,unknown,unknown,U
-0x7100c0c3b0,2096,fn_7100c0c3b0,unknown,unknown,U
+0x7100c0c3b0,2096,fn_7100c0c3b0,unknown,unknown,O
 0x7100c0cbe0,232,fn_7100c0cbe0,unknown,unknown,O
 0x7100c0ccc8,244,CCharClassAttackCanBeAbortedTrack::refl_GetClass,reflection,game/characters,O
 0x7100c0cdbc,4,fn_7100c0cdbc,unknown,game/characters?,O

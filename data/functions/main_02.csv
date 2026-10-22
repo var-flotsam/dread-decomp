@@ -2271,7 +2271,7 @@ address,size,name,name_source,subsystem,status
 0x710024b780,1672,fn_710024b780,unknown,unknown,U
 0x710024be10,3216,fn_710024be10,unknown,unknown,U
 0x710024caa0,404,fn_710024caa0,unknown,unknown,O
-0x710024cc40,5800,fn_710024cc40,unknown,unknown,U
+0x710024cc40,5800,fn_710024cc40,unknown,unknown,O
 0x710024e2e8,220,fn_710024e2e8,unknown,unknown,U
 0x710024e3c4,4,fn_710024e3c4,unknown,unknown,O
 0x710024e3c8,244,CActorComponent::refl_GetClass,reflection,game/components,O

@@ -2545,7 +2545,7 @@ address,size,name,name_source,subsystem,status
 0x7100d447f8,24,fn_7100d447f8,unknown,unknown,O
 0x7100d44810,284,fn_7100d44810,unknown,unknown,U
 0x7100d4492c,296,fn_7100d4492c,unknown,unknown,U
-0x7100d44a60,2712,fn_7100d44a60,unknown,unknown,U
+0x7100d44a60,2712,fn_7100d44a60,unknown,unknown,O
 0x7100d454f8,4,fn_7100d454f8,unknown,unknown,O
 0x7100d454fc,244,game::logic::collision::CColliderGroup::refl_GetClass,reflection,game,O
 0x7100d455f0,4,fn_7100d455f0,unknown,game?,O
@@ -4186,7 +4186,7 @@ address,size,name,name_source,subsystem,status
 0x7100d8a27c,288,fn_7100d8a27c,unknown,unknown,U
 0x7100d8a39c,412,fn_7100d8a39c,unknown,unknown,U
 0x7100d8a538,600,fn_7100d8a538,unknown,unknown,U
-0x7100d8a790,4100,fn_7100d8a790,unknown,unknown,U
+0x7100d8a790,4100,fn_7100d8a790,unknown,unknown,O
 0x7100d8b794,80,fn_7100d8b794,unknown,unknown,O
 0x7100d8b7e4,164,fn_7100d8b7e4,unknown,unknown,U
 0x7100d8b888,252,fn_7100d8b888,unknown,unknown,U

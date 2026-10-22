@@ -700,6 +700,17 @@ unlike libc++ 9.0.1; a specialisation adapted from libc++'s body gets the same i
 different block layout, but copying libc++ source into `src/` needs the owner's word on
 licensing first. Left for hand work: `fn_7101144a5c`, `fn_7100e68f44`, `fn_7100dd3624`.
 
+Static initialisers above 2 KB (31, 152 KB) are this stream's too (the coordinator's call,
+2026-10-22). Sources are written with slice 3's helpers (`src/game_5821e4/UnkStaticInit.h`) plus
+`src/game_s7/UnkStaticInitS7.h` (header-id variants, named values, conversions with a type object
+on one side, buffer params, empty ids). 18 match. Two findings: a unit whose u32 sits right before
+its ids (merged globals) takes a packed, 4-byte-aligned struct; and each vector of ids built from a
+list must sit in its own immediately called lambda, because the original inlines one initialiser
+function per global and the inliner then shares one stack array between lists of the same length.
+Still `U`: `fn_7100fb1c80`, `fn_7100ef2780`, `fn_7101116680`, `fn_7100eb4510`, `fn_7100e72680`,
+`fn_7100d96670`, `fn_7100dd14a0`, `fn_7100e63280`, `fn_7100ae39e0`, `fn_71011496a0`,
+`fn_7101132ba0`, `fn_71008da6c0` and `fn_71001e0820` (merged globals with a second base register).
+
 ## Known issues and gotchas
 
 - **Linux:** the tools also run on Linux with upstream clang+llvm 9.0.1 (the Linux release tarball, with a `bin/clang++.exe` symlink to `clang++` at the path `fetch_toolchains.clang_path` expects) and `llvm-cxxfilt` on PATH. Results are identical to Windows.

@@ -3806,7 +3806,7 @@ address,size,name,name_source,subsystem,status
 0x7100ede778,532,fn_7100ede778,unknown,unknown,U
 0x7100ede98c,88,fn_7100ede98c,unknown,unknown,O
 0x7100ede9e4,256,fn_7100ede9e4,unknown,unknown,U
-0x7100edeaf0,2916,fn_7100edeaf0,unknown,unknown,U
+0x7100edeaf0,2916,fn_7100edeaf0,unknown,unknown,O
 0x7100edf654,524,fn_7100edf654,unknown,unknown,O
 0x7100edf860,384,fn_7100edf860,unknown,unknown,O
 0x7100edf9e0,4,fn_7100edf9e0,unknown,unknown,O
