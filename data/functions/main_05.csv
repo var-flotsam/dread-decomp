@@ -787,7 +787,7 @@ address,size,name,name_source,subsystem,status
 0x710053600c,388,fn_710053600c,unknown,unknown,O
 0x7100536190,220,fn_7100536190,unknown,unknown,O
 0x710053626c,480,fn_710053626c,unknown,unknown,O
-0x7100536450,248,fn_7100536450,unknown,unknown,O
+0x7100536450,248,fn_7100536450,unknown,unknown,U
 0x7100536550,5792,fn_7100536550,unknown,unknown,U
 0x7100537bf0,4,fn_7100537bf0,unknown,unknown,O
 0x7100537bf4,244,CEmmyAIComponent::CTunableEmmyAIComponent::refl_GetClass,reflection,game/ai,O
@@ -2317,7 +2317,7 @@ address,size,name,name_source,subsystem,status
 0x710058c758,8,fn_710058c758,unknown,unknown,O
 0x710058c760,8,fn_710058c760,unknown,unknown,O
 0x710058c768,288,fn_710058c768,unknown,unknown,O
-0x710058c890,624,fn_710058c890,unknown,unknown,U
+0x710058c890,624,fn_710058c890,unknown,unknown,O
 0x710058cb00,4,fn_710058cb00,unknown,unknown,O
 0x710058cb04,244,CCharClassGoliathAttack::refl_GetClass,reflection,game/characters,O
 0x710058cbf8,212,fn_710058cbf8,unknown,game/characters?,O

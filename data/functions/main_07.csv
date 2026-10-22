@@ -5287,7 +5287,7 @@ address,size,name,name_source,subsystem,status
 0x71007f7620,1616,fn_71007f7620,unknown,game/components?,U
 0x71007f7c70,348,fn_71007f7c70,unknown,game/components?,U
 0x71007f7dd0,724,fn_71007f7dd0,unknown,game/components?,U
-0x71007f80b0,608,fn_71007f80b0,unknown,game/components?,U
+0x71007f80b0,608,fn_71007f80b0,unknown,game/components?,O
 0x71007f8310,4,fn_71007f8310,unknown,game/components?,O
 0x71007f8314,244,CFrozenComponent::refl_GetClass,reflection,game/components,O
 0x71007f8408,4,fn_71007f8408,unknown,game/components?,O
