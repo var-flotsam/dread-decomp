@@ -840,6 +840,26 @@ family. It also made `fn_7100213380` (0x40-byte polymorphic boxes, below) fully 
 families (`fn_7100566930`, `fn_71003cd6e0`, `fn_7100354e10`, `fn_710081ccd0`), `fn_710010e470` or
 `fn_7100338620`.
 
+Also claimed by stream 7 (2026-10-22, coordinator-approved), although each `__sort` is under
+2 KB: the sort families `fn_7100256810`, `fn_7100742750`, `fn_7100743340`, `fn_7100744000`,
+`fn_7101072a80`, `fn_710109b9f0` and `fn_71011bc0b0`, with their helpers. Stream 7 also takes any
+further libc++ sort family it finds, after noting it here. Hand slices, leave these to stream 7.
+Further families claimed the same way: `fn_71002aa690` (0x30-byte elements) and `fn_7100c75e40`
+(0x28-byte elements), with their helpers.
+All seven are done (2026-10-22), each through `UnkIter`: every function is **O** except
+`fn_7100744000`'s own `__sort` (**m**, below).
+- `fn_7100742750` compares with a plain function pointer. With a comparator type that isn't
+  internal, `std::__sort` keeps `__insertion_sort_3` out of line (`fn_7100742ee0`), as this copy
+  does; an internal comparator inlines it, as the other six do. So whether the game's `__sort`
+  calls `__insertion_sort_3` tells you whether the comparator was internal.
+- `fn_7100256810` (an s32 field), `fn_71011bc0b0` (an s32 key with a fallback field) and
+  `fn_7100744000` (a float key, then an id) needed the compared field to be a union member, so
+  that it is read again after each element store. `fn_7100744000` also needed a swap that assigns
+  the two members in turn, and its `__sort` is still one instruction off (the original advances
+  the pointer and then loads; ours loads with a pre-indexed address).
+- `fn_7101072a80`, `fn_710109b9f0` and `fn_71011bc0b0` have empty comparators, so they use the
+  anchor and `.set` names.
+
 More instantiations found by their recursion (each 2 KB, or with 2 KB helpers):
 - `fn_7100134020`: all five **m**. 0x160-byte entries (three pooled string ids and a string with
   its own storage) by name. One difference is left: the original reuses the compared id's pointer
@@ -854,8 +874,9 @@ More instantiations found by their recursion (each 2 KB, or with 2 KB helpers):
 - `fn_7100212a80` (not a sort: it builds a box tree and calls `fn_7100213380`)
 - `fn_7100248e50`
 - `fn_710030ed9c`
-- `fn_7100336ca0` (weak handles assigned by `fn_71003384e0`: the original reloads the handle
-  after the comparison, unexplained)
+- `fn_7100336ca0`: all five **m** (weak handles assigned by `fn_71003384e0`, nearest first).
+  The class iterator fixed the handle reload and the sizes. The comparisons still load the target
+  and the positions in another order, whatever the distance's shape.
 
 ## Known issues and gotchas
 

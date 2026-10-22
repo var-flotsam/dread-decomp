@@ -2697,11 +2697,11 @@ address,size,name,name_source,subsystem,status
 0x71011bbdc0,140,fn_71011bbdc0,unknown,unknown,O
 0x71011bbe4c,188,fn_71011bbe4c,unknown,unknown,U
 0x71011bbf08,424,fn_71011bbf08,unknown,unknown,U
-0x71011bc0b0,1920,fn_71011bc0b0,unknown,unknown,U
-0x71011bc830,384,fn_71011bc830,unknown,unknown,U
-0x71011bc9b0,360,fn_71011bc9b0,unknown,unknown,U
-0x71011bcb20,472,fn_71011bcb20,unknown,unknown,U
-0x71011bcd00,540,fn_71011bcd00,unknown,unknown,U
+0x71011bc0b0,1920,fn_71011bc0b0,unknown,unknown,O
+0x71011bc830,384,fn_71011bc830,unknown,unknown,O
+0x71011bc9b0,360,fn_71011bc9b0,unknown,unknown,O
+0x71011bcb20,472,fn_71011bcb20,unknown,unknown,O
+0x71011bcd00,540,fn_71011bcd00,unknown,unknown,O
 0x71011bcf1c,220,fn_71011bcf1c,unknown,unknown,O
 0x71011bcff8,344,fn_71011bcff8,unknown,unknown,O
 0x71011bd150,88,fn_71011bd150,unknown,unknown,O

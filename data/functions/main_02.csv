@@ -2521,9 +2521,9 @@ address,size,name,name_source,subsystem,status
 0x71002567b8,28,fn_71002567b8,unknown,unknown,O
 0x71002567d4,44,fn_71002567d4,unknown,unknown,O
 0x7100256800,12,fn_7100256800,unknown,unknown,O
-0x7100256810,1660,fn_7100256810,unknown,unknown,U
-0x7100256e90,348,fn_7100256e90,unknown,unknown,U
-0x7100256ff0,728,fn_7100256ff0,unknown,unknown,U
+0x7100256810,1660,fn_7100256810,unknown,unknown,O
+0x7100256e90,348,fn_7100256e90,unknown,unknown,O
+0x7100256ff0,728,fn_7100256ff0,unknown,unknown,O
 0x71002572d0,160,fn_71002572d0,unknown,unknown,O
 0x7100257370,220,fn_7100257370,unknown,unknown,O
 0x710025744c,220,fn_710025744c,unknown,unknown,O

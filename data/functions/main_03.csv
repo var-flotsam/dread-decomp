@@ -739,11 +739,11 @@ address,size,name,name_source,subsystem,status
 0x7100336b44,8,fn_7100336b44,unknown,unknown,O
 0x7100336b4c,8,fn_7100336b4c,unknown,unknown,O
 0x7100336b54,328,fn_7100336b54,unknown,unknown,U
-0x7100336ca0,2564,fn_7100336ca0,unknown,unknown,U
-0x71003376b0,964,fn_71003376b0,unknown,unknown,U
-0x7100337a80,764,fn_7100337a80,unknown,unknown,U
-0x7100337d80,996,fn_7100337d80,unknown,unknown,U
-0x7100338170,880,fn_7100338170,unknown,unknown,U
+0x7100336ca0,2564,fn_7100336ca0,unknown,unknown,m
+0x71003376b0,964,fn_71003376b0,unknown,unknown,m
+0x7100337a80,764,fn_7100337a80,unknown,unknown,m
+0x7100337d80,996,fn_7100337d80,unknown,unknown,m
+0x7100338170,880,fn_7100338170,unknown,unknown,m
 0x71003384e0,308,fn_71003384e0,unknown,unknown,O
 0x7100338620,2224,fn_7100338620,unknown,unknown,O
 0x7100338ed0,652,fn_7100338ed0,unknown,unknown,O
