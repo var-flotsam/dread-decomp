@@ -1253,7 +1253,7 @@ address,size,name,name_source,subsystem,status
 0x7100d218cc,1088,fn_7100d218cc,unknown,game/characters?,O
 0x7100d21d0c,368,CCharClassModifyDamageTrack::refl_InitClass,reflection,game/characters,O
 0x7100d21e7c,380,fn_7100d21e7c,unknown,game/characters?,O
-0x7100d21ff8,344,fn_7100d21ff8,unknown,game/characters?,U
+0x7100d21ff8,344,fn_7100d21ff8,unknown,game/characters?,O
 0x7100d22150,36,fn_7100d22150,unknown,game/characters?,O
 0x7100d22174,560,fn_7100d22174,unknown,game/characters?,U
 0x7100d223a4,28,fn_7100d223a4,unknown,game/characters?,O

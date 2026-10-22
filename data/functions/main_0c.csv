@@ -652,7 +652,7 @@ address,size,name,name_source,subsystem,status
 0x7100c1232c,1132,fn_7100c1232c,unknown,game/characters?,O
 0x7100c12798,368,CCharClassCooldownXBossDamageShapesTrack::refl_InitClass,reflection,game/characters,O
 0x7100c12908,380,fn_7100c12908,unknown,game/characters?,O
-0x7100c12a84,344,fn_7100c12a84,unknown,game/characters?,U
+0x7100c12a84,344,fn_7100c12a84,unknown,game/characters?,O
 0x7100c12bdc,36,fn_7100c12bdc,unknown,game/characters?,O
 0x7100c12c00,784,fn_7100c12c00,unknown,game/characters?,U
 0x7100c12f10,28,fn_7100c12f10,unknown,game/characters?,O
