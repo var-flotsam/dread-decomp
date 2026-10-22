@@ -307,3 +307,14 @@ struct UnkIdValue {
 };
 
 }  // namespace unk_static_init
+
+namespace unk_static_init {
+
+// A string id built through fn_7100de8f78 from a class name held in a function-local static
+// (built on first use, guarded).
+__attribute__((always_inline)) inline void InitClassIdFrom(UnkStrIdBase* id, const CStrId& name) {
+    new (id) CStrId(fn_7100de8f78(name));
+    __cxa_atexit(fn_710000051c, id, g_unk_7101a19000);
+}
+
+}  // namespace unk_static_init

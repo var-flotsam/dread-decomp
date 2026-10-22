@@ -4413,7 +4413,7 @@ address,size,name,name_source,subsystem,status
 0x71008da4f0,192,fn_71008da4f0,unknown,unknown,U
 0x71008da5b0,4,fn_71008da5b0,unknown,unknown,O
 0x71008da5c0,248,fn_71008da5c0,unknown,unknown,O
-0x71008da6c0,2840,fn_71008da6c0,unknown,unknown,U
+0x71008da6c0,2840,fn_71008da6c0,unknown,unknown,m
 0x71008db1d8,116,fn_71008db1d8,unknown,unknown,U
 0x71008db24c,164,fn_71008db24c,unknown,unknown,U
 0x71008db2f0,336,fn_71008db2f0,unknown,unknown,U

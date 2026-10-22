@@ -873,7 +873,7 @@ address,size,name,name_source,subsystem,status
 0x71011329bc,80,fn_71011329bc,unknown,unknown,U
 0x7101132a0c,20,fn_7101132a0c,unknown,unknown,O
 0x7101132a20,372,fn_7101132a20,unknown,unknown,U
-0x7101132ba0,2832,fn_7101132ba0,unknown,unknown,U
+0x7101132ba0,2832,fn_7101132ba0,unknown,unknown,O
 0x71011336b0,4,fn_71011336b0,unknown,unknown,O
 0x71011336b4,244,CAIAttackComponent::refl_GetClass,reflection,game/ai,O
 0x71011337a8,4,fn_71011337a8,unknown,game/ai?,O
@@ -1158,7 +1158,7 @@ address,size,name,name_source,subsystem,status
 0x7101149480,100,fn_7101149480,unknown,game/components?,O
 0x71011494e4,128,fn_71011494e4,unknown,game/components?,O
 0x7101149564,304,fn_7101149564,unknown,game/components?,U
-0x71011496a0,2108,fn_71011496a0,unknown,game/components?,U
+0x71011496a0,2108,fn_71011496a0,unknown,game/components?,O
 0x7101149edc,4,fn_7101149edc,unknown,game/components?,O
 0x7101149ee0,244,CPositionalSoundComponent::refl_GetClass,reflection,game/components,O
 0x7101149fd4,3768,fn_7101149fd4,unknown,game/components?,O
