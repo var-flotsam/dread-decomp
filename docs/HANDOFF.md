@@ -823,6 +823,11 @@ sorts of the first two and `fn_71010dd1d0`'s `__sort4` are **O**; the rest are *
 `fn_7100abbd40` is the same code as `fn_7100354e10`'s family. `fn_71001e2e30` sorts object pointers
 by a float in a copied info block, with an internal comparator: `__sort3/4/5` **O**, the rest **m**.
 
+Claimed by stream 7 (thread `claude/project-thread-slp42f`, 2026-10-22), although each `__sort` is
+under 2 KB: the clone sort families `fn_71000a0660`/`fn_71000a5e00` and
+`fn_71002c5c00`/`fn_71007f6100`/`fn_71007f6b90`/`fn_71007f7620`, with their helpers. Hand slices,
+leave these to stream 7.
+
 More instantiations found by their recursion (each 2 KB, or with 2 KB helpers):
 - `fn_7100134020`
 - `fn_7100213380` (0x40-byte polymorphic boxes by the centre on an axis; the swaps rebuild a box
