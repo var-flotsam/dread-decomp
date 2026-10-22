@@ -1,4 +1,9 @@
 address,size,name,library
+0x71000815b0,684,create_mspace_with_base,dlmalloc
+0x7100081860,2824,mspace_malloc,dlmalloc
+0x7100082370,1652,mspace_free,dlmalloc
+0x71000829f0,528,mspace_memalign,dlmalloc
+0x7100082c00,56,dlmalloc_usable_size,dlmalloc
 0x71010a0880,168,lua_checkstack,lua
 0x71010a0930,140,lua_xmove,lua
 0x71010a09c0,12,lua_setlevel,lua

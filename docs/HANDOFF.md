@@ -984,6 +984,16 @@ the rest have one-off layouts (sub-allocators `fn_7100224c70`, whose header ids 
 statics; game tables `fn_710015ef10`; larger units `fn_7100140400`, `fn_710001f460`,
 `fn_71001b2e60`, `fn_71001e0820`, `fn_7100158130`), 0-60% as drafted.
 
+**dlmalloc 2.8.4 vendored** (stream 7, 2026-10-22, owner-approved): `lib/dlmalloc/` holds
+upstream `malloc.c` unmodified and `mspace.c` with the game's settings (README there). It was
+fetched from a mirror pinned to a commit in `tools/fetch_sources.py` and `data/sources.json`,
+because the author's site is blocked here. `tools/sigmatch.py --library dlmalloc` names the five
+functions the game links (`create_mspace_with_base`, `mspace_malloc`, `mspace_free`,
+`mspace_memalign`, `dlmalloc_usable_size`, 0x71000815b0-0x7100082c38), and
+`tools/gen_functions_csv.py` marks them **L**. Three are byte-identical; `mspace_free` is 8 bytes
+longer in the game (a near match). For the owner: `include/base/UnkDefaultAllocator.h` still
+calls these "apparently dlmalloc's mspace functions" and can now name them.
+
 **Matching does not check relocated targets.** `tools/asmdiff.py` masks every relocated field, so
 a function stays **O** with the wrong global, GOT slot or callee named. Two slips found this way
 and fixed: `src/game_s7/fn_710104ed30.cpp` released its ids through the default pool where the
