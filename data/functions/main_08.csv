@@ -3382,7 +3382,7 @@ address,size,name,name_source,subsystem,status
 0x71008988fc,244,CSpbSprActivator::refl_GetClass,reflection,game,O
 0x71008989f0,768,fn_71008989f0,unknown,game?,O
 0x7100898cf0,388,CSpbSprActivator::refl_InitClass,reflection,game,O
-0x7100898e80,128,fn_7100898e80,unknown,unknown,U
+0x7100898e80,128,fn_7100898e80,unknown,unknown,O
 0x7100898f00,188,fn_7100898f00,unknown,unknown,O
 0x7100898fbc,408,fn_7100898fbc,unknown,unknown,U
 0x7100899154,1024,fn_7100899154,unknown,unknown,U
