@@ -1,8 +1,10 @@
-// libc++ std::sort helpers instantiated for a list of object pointers, sorted by squared distance
-// from a point (nearest first). The positions come from fn_7100745e24. std::__sort is the adapted
-// copy in lib/libcxx/sort.h. Names and layouts are placeholders.
+// libc++ std::sort helpers instantiated for a container of object pointers (through its own
+// iterator class), sorted by squared distance from a point (nearest first). The positions come
+// from fn_7100745e24. std::__sort is the adapted copy in lib/libcxx/sort.h. Names and layouts are
+// placeholders.
 #include <algorithm>
 #include "../../lib/libcxx/sort.h"
+#include "UnkIter.h"
 #include "types.h"
 
 // Returned through x8, so the original's result type is not trivially copyable.
@@ -32,24 +34,21 @@ struct UnkNearer_710072a110 {
 };
 
 using P = UnkObj_710072a110*;
+using I = UnkIter<P>;
 using C = UnkNearer_710072a110;
-template void libcxx_adapted::__sort<C&, P*>(P*, P*, C&);
-template unsigned std::__sort3<C&, P*>(P*, P*, P*, C&);
-template unsigned std::__sort4<C&, P*>(P*, P*, P*, P*, C&);
-template unsigned std::__sort5<C&, P*>(P*, P*, P*, P*, P*, C&);
-template bool std::__insertion_sort_incomplete<C&, P*>(P*, P*, C&);
+template void libcxx_adapted::__sort<C&, I>(I, I, C&);
+template unsigned std::__sort3<C&, I>(I, I, I, C&);
+template unsigned std::__sort4<C&, I>(I, I, I, I, C&);
+template unsigned std::__sort5<C&, I>(I, I, I, I, I, C&);
+template bool std::__insertion_sort_incomplete<C&, I>(I, I, C&);
 
-// NON_MATCHING(minor): the inlined insertion sort's loop walks an index where the original walks a
-// pointer (as in fn_710072b250), which also costs a register; same behaviour.
-void fn_710072a110(P*, P*, C&)
-    __attribute__((alias("_ZN14libcxx_adapted6__sortIR20UnkNearer_710072a110PP17UnkObj_710072a110EEvT0_S6_T_")));
-unsigned fn_710072aa60(P*, P*, P*, C&)
-    __attribute__((alias("_ZNSt3__17__sort3IR20UnkNearer_710072a110PP17UnkObj_710072a110EEjT0_S6_S6_T_")));
-unsigned fn_710072ad30(P*, P*, P*, P*, C&)
-    __attribute__((alias("_ZNSt3__17__sort4IR20UnkNearer_710072a110PP17UnkObj_710072a110EEjT0_S6_S6_S6_T_")));
-unsigned fn_710072af70(P*, P*, P*, P*, P*, C&)
-    __attribute__((alias("_ZNSt3__17__sort5IR20UnkNearer_710072a110PP17UnkObj_710072a110EEjT0_S6_S6_S6_S6_T_")));
-// NON_MATCHING(minor): the insertion loop walks an index where the original walks a pointer; same
-// behaviour.
-bool fn_710072b250(P*, P*, C&)
-    __attribute__((alias("_ZNSt3__127__insertion_sort_incompleteIR20UnkNearer_710072a110PP17UnkObj_710072a110EEbT0_S6_T_")));
+void fn_710072a110(I, I, C&)
+    __attribute__((alias("_ZN14libcxx_adapted6__sortIR20UnkNearer_710072a1107UnkIterIP17UnkObj_710072a110EEEvT0_S7_T_")));
+unsigned fn_710072aa60(I, I, I, C&)
+    __attribute__((alias("_ZNSt3__17__sort3IR20UnkNearer_710072a1107UnkIterIP17UnkObj_710072a110EEEjT0_S7_S7_T_")));
+unsigned fn_710072ad30(I, I, I, I, C&)
+    __attribute__((alias("_ZNSt3__17__sort4IR20UnkNearer_710072a1107UnkIterIP17UnkObj_710072a110EEEjT0_S7_S7_S7_T_")));
+unsigned fn_710072af70(I, I, I, I, I, C&)
+    __attribute__((alias("_ZNSt3__17__sort5IR20UnkNearer_710072a1107UnkIterIP17UnkObj_710072a110EEEjT0_S7_S7_S7_S7_T_")));
+bool fn_710072b250(I, I, C&)
+    __attribute__((alias("_ZNSt3__127__insertion_sort_incompleteIR20UnkNearer_710072a1107UnkIterIP17UnkObj_710072a110EEEbT0_S7_T_")));

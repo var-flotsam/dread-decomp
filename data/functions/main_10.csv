@@ -4427,11 +4427,11 @@ address,size,name,name_source,subsystem,status
 0x71010dcfd0,260,fn_71010dcfd0,unknown,unknown,U
 0x71010dd0d4,240,fn_71010dd0d4,unknown,unknown,U
 0x71010dd1c4,12,fn_71010dd1c4,unknown,unknown,O
-0x71010dd1d0,3248,fn_71010dd1d0,unknown,unknown,m
+0x71010dd1d0,3248,fn_71010dd1d0,unknown,unknown,O
 0x71010dde80,996,fn_71010dde80,unknown,unknown,O
 0x71010de270,756,fn_71010de270,unknown,unknown,O
 0x71010de570,984,fn_71010de570,unknown,unknown,O
-0x71010de950,960,fn_71010de950,unknown,unknown,m
+0x71010de950,960,fn_71010de950,unknown,unknown,O
 0x71010ded10,568,fn_71010ded10,unknown,unknown,O
 0x71010def48,4,fn_71010def48,unknown,unknown,O
 0x71010def4c,244,CSteeringMovement::refl_GetClass,reflection,game,O

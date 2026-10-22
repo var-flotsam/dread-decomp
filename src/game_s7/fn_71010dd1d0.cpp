@@ -1,10 +1,10 @@
-// libc++ std::sort helpers instantiated for a list of entry pointers, ordered by depth (the float
-// at +0x38): of two entries within 1e-5 of each other, one that isn't in a breakable tile group
+// libc++ std::sort helpers instantiated for a container of entry pointers (through its own
+// iterator class), ordered by depth (the float at +0x38): of two entries within 1e-5 of each other, one that isn't in a breakable tile group
 // goes before one that is; any other pair compares equal. The game's __sort3 and __sort5
 // (fn_71010dde80, fn_71010de570) are defined in src/game_hi/. Names and layouts are placeholders.
 #include <algorithm>
-#include "../../lib/libcxx/sort.h"
 #include "types.h"
+#include "UnkIter.h"
 
 struct UnkClass;
 namespace CBreakableTileGroup {
@@ -63,24 +63,12 @@ using C = UnkCmp_71010dd1d0;
 
 // Not in the game (its caller is fn_71010dbd54): a direct call, so that the internal
 // instantiations are emitted and their unused comparator arguments dropped, as in the game.
-void unk_anchor_71010dd1d0(P* first, P* last) {
-    C c;
-    libcxx_adapted::__sort<C&>(first, last, c);
+void unk_anchor_71010dd1d0(UnkIter<P> first, UnkIter<P> last) {
+    std::sort(first, last, C());
 }
 
 // The instantiations are internal, so their names are set in assembly (an alias would keep the
-// comparator arguments). The declarations below only carry the annotations.
-asm(".globl fn_71010dd1d0\n.set fn_71010dd1d0, _ZN14libcxx_adapted6__sortIRN12_GLOBAL__N_117UnkCmp_71010dd1d0EPP19UnkEntry_71010dd1d0EEvT0_S7_T_");
-asm(".globl fn_71010de270\n.set fn_71010de270, _ZNSt3__17__sort4IRN12_GLOBAL__N_117UnkCmp_71010dd1d0EPP19UnkEntry_71010dd1d0EEjT0_S7_S7_S7_T_");
-asm(".globl fn_71010de950\n.set fn_71010de950, _ZNSt3__127__insertion_sort_incompleteIRN12_GLOBAL__N_117UnkCmp_71010dd1d0EPP19UnkEntry_71010dd1d0EEbT0_S7_T_");
-extern "C" {
-// NON_MATCHING(minor): the adapted std::__sort; the original keeps the end pointer in x26 and
-// the swap count in w19 where ours spills them, so other values move between registers and the
-// stack. Same behaviour.
-void fn_71010dd1d0()
-    ;
-// NON_MATCHING(minor): the insertion loop walks an index where the original walks a pointer, and
-// the blocks are laid out in another order; same behaviour.
-void fn_71010de950()
-    ;
-}
+// comparator arguments).
+asm(".globl fn_71010dd1d0\n.set fn_71010dd1d0, _ZNSt3__16__sortIRN12_GLOBAL__N_117UnkCmp_71010dd1d0E7UnkIterIP19UnkEntry_71010dd1d0EEEvT0_S8_T_");
+asm(".globl fn_71010de270\n.set fn_71010de270, _ZNSt3__17__sort4IRN12_GLOBAL__N_117UnkCmp_71010dd1d0E7UnkIterIP19UnkEntry_71010dd1d0EEEjT0_S8_S8_S8_T_");
+asm(".globl fn_71010de950\n.set fn_71010de950, _ZNSt3__127__insertion_sort_incompleteIRN12_GLOBAL__N_117UnkCmp_71010dd1d0E7UnkIterIP19UnkEntry_71010dd1d0EEEbT0_S8_T_");
