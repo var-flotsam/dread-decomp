@@ -3523,7 +3523,7 @@ address,size,name,name_source,subsystem,status
 0x71005b9c3c,44,fn_71005b9c3c,unknown,unknown,O
 0x71005b9c68,12,fn_71005b9c68,unknown,unknown,O
 0x71005b9c80,232,fn_71005b9c80,unknown,unknown,O
-0x71005b9d70,128,fn_71005b9d70,unknown,unknown,U
+0x71005b9d70,128,fn_71005b9d70,unknown,unknown,O
 0x71005b9df0,676,fn_71005b9df0,unknown,unknown,O
 0x71005ba094,4,fn_71005ba094,unknown,unknown,O
 0x71005ba098,244,CHydrogigaAIComponent::refl_GetClass,reflection,game/ai,O
@@ -4267,7 +4267,7 @@ address,size,name,name_source,subsystem,status
 0x71005d9bc8,20,fn_71005d9bc8,unknown,unknown,O
 0x71005d9bdc,260,fn_71005d9bdc,unknown,unknown,O
 0x71005d9ce0,268,fn_71005d9ce0,unknown,unknown,O
-0x71005d9dec,224,fn_71005d9dec,unknown,unknown,U
+0x71005d9dec,224,fn_71005d9dec,unknown,unknown,O
 0x71005d9ecc,8,fn_71005d9ecc,unknown,unknown,O
 0x71005d9ed4,12,fn_71005d9ed4,unknown,unknown,O
 0x71005d9ee0,8,fn_71005d9ee0,unknown,unknown,O
@@ -5015,7 +5015,7 @@ address,size,name,name_source,subsystem,status
 0x71005ede74,20,fn_71005ede74,unknown,unknown,O
 0x71005ede88,260,fn_71005ede88,unknown,unknown,O
 0x71005edf8c,268,fn_71005edf8c,unknown,unknown,O
-0x71005ee098,224,fn_71005ee098,unknown,unknown,U
+0x71005ee098,224,fn_71005ee098,unknown,unknown,O
 0x71005ee178,8,fn_71005ee178,unknown,unknown,O
 0x71005ee180,12,fn_71005ee180,unknown,unknown,O
 0x71005ee18c,8,fn_71005ee18c,unknown,unknown,O
