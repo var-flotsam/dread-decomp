@@ -38,6 +38,7 @@ before vendoring anything.
 | [encounter/objdiff](https://github.com/encounter/objdiff) | 3.8.2 (GUI + CLI, SHA-256 checked against GitHub's published digests) | Per-unit diff GUI and progress reports (`tools/objdiff_gen.py` writes target objects and `objdiff.json`) | Apache-2.0 |
 | [Lua 5.1.x sources](https://www.lua.org/ftp/) | 5.1, 5.1.1–5.1.5 (pinned in `data/sources.json`, kept outside the repo) | Identifying the embedded Lua: **5.1.4**, float `lua_Number`, built as C++ (`tools/libcheck_lua.py`) | MIT |
 | [libc++ 9.0.1 headers](https://github.com/llvm/llvm-project/releases/tag/llvmorg-9.0.1) (`libcxx-9.0.1.src`) | pinned in `data/sources.json`, kept outside the repo | C++ standard library headers for the build (Nintendo's SDK also ships libc++) | Apache-2.0 with LLVM exception |
+| [libc++ `std::__sort`](https://github.com/llvm/llvm-project/blob/llvmorg-9.0.1/libcxx/include/algorithm) (`libcxx/include/algorithm`, `llvmorg-9.0.1`) | adapted copy vendored in `lib/libcxx/` (owner-approved, 2026-10-22; changes in its README) | Body of the game's `std::__sort` instantiation (`fn_710117c430`) | Apache-2.0 with LLVM exception |
 | [capstone-engine/capstone](https://github.com/capstone-engine/capstone) | 5.0.9 (PyPI) | AArch64 disassembly in tools | BSD |
 | [eliben/pyelftools](https://github.com/eliben/pyelftools) | 0.33 | Reading compiled objects | Public domain |
 | [python-lz4/python-lz4](https://github.com/python-lz4/python-lz4) | 4.4.5 | NSO segment decompression | BSD |

@@ -361,7 +361,7 @@ address,size,name,name_source,subsystem,status
 0x71011162b4,60,fn_71011162b4,unknown,unknown,O
 0x71011162f0,60,fn_71011162f0,unknown,unknown,O
 0x710111632c,844,fn_710111632c,unknown,unknown,U
-0x7101116680,3452,fn_7101116680,unknown,unknown,U
+0x7101116680,3452,fn_7101116680,unknown,unknown,O
 0x71011173fc,120,fn_71011173fc,unknown,unknown,O
 0x7101117474,4,fn_7101117474,unknown,unknown,O
 0x7101117478,244,CSpawnGroupComponent::refl_GetClass,reflection,game/components,O
@@ -1881,7 +1881,7 @@ address,size,name,name_source,subsystem,status
 0x710117c258,140,fn_710117c258,unknown,unknown,O
 0x710117c2e4,312,fn_710117c2e4,unknown,unknown,U
 0x710117c420,12,fn_710117c420,unknown,unknown,O
-0x710117c430,4256,fn_710117c430,unknown,unknown,U
+0x710117c430,4256,fn_710117c430,unknown,unknown,m
 0x710117d4d0,1820,fn_710117d4d0,unknown,unknown,O
 0x710117dbf0,1080,fn_710117dbf0,unknown,unknown,O
 0x710117e030,1400,fn_710117e030,unknown,unknown,O
