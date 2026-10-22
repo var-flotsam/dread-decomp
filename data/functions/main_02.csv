@@ -587,11 +587,11 @@ address,size,name,name_source,subsystem,status
 0x7100212794,352,fn_7100212794,unknown,unknown,U
 0x71002128f4,396,fn_71002128f4,unknown,unknown,U
 0x7100212a80,2296,fn_7100212a80,unknown,unknown,U
-0x7100213380,3752,fn_7100213380,unknown,unknown,U
-0x7100214230,2028,fn_7100214230,unknown,unknown,U
-0x7100214a20,1308,fn_7100214a20,unknown,unknown,U
-0x7100214f40,1716,fn_7100214f40,unknown,unknown,U
-0x7100215600,1236,fn_7100215600,unknown,unknown,U
+0x7100213380,3752,fn_7100213380,unknown,unknown,O
+0x7100214230,2028,fn_7100214230,unknown,unknown,O
+0x7100214a20,1308,fn_7100214a20,unknown,unknown,O
+0x7100214f40,1716,fn_7100214f40,unknown,unknown,O
+0x7100215600,1236,fn_7100215600,unknown,unknown,O
 0x7100215ae0,140,fn_7100215ae0,unknown,unknown,O
 0x7100215b70,140,fn_7100215b70,unknown,unknown,O
 0x7100215c00,140,fn_7100215c00,unknown,unknown,O
@@ -4284,7 +4284,7 @@ address,size,name,name_source,subsystem,status
 0x71002c1484,388,querysystem::CIsInFrustumFilter::refl_InitClass,reflection,ai/querysystem,O
 0x71002c1608,4,fn_71002c1608,unknown,ai/querysystem?,O
 0x71002c160c,36,fn_71002c160c,unknown,ai/querysystem?,O
-0x71002c1630,228,fn_71002c1630,unknown,ai/querysystem?,U
+0x71002c1630,228,fn_71002c1630,unknown,ai/querysystem?,m
 0x71002c1714,28,fn_71002c1714,unknown,ai/querysystem?,O
 0x71002c1730,12,fn_71002c1730,unknown,ai/querysystem?,O
 0x71002c173c,8,fn_71002c173c,unknown,ai/querysystem?,O
@@ -4694,7 +4694,7 @@ address,size,name,name_source,subsystem,status
 0x71002cd5bc,48,fn_71002cd5bc,unknown,unknown,O
 0x71002cd5ec,308,fn_71002cd5ec,unknown,unknown,U
 0x71002cd720,308,fn_71002cd720,unknown,unknown,U
-0x71002cd854,356,fn_71002cd854,unknown,unknown,U
+0x71002cd854,356,fn_71002cd854,unknown,unknown,O
 0x71002cd9b8,460,fn_71002cd9b8,unknown,unknown,U
 0x71002cdb84,588,fn_71002cdb84,unknown,unknown,U
 0x71002cddd0,588,fn_71002cddd0,unknown,unknown,U
@@ -5297,7 +5297,7 @@ address,size,name,name_source,subsystem,status
 0x71002e1c54,108,fn_71002e1c54,unknown,animation?,O
 0x71002e1cc0,12,fn_71002e1cc0,unknown,animation?,O
 0x71002e1ccc,244,fn_71002e1ccc,unknown,animation?,U
-0x71002e1dc0,240,fn_71002e1dc0,unknown,animation?,U
+0x71002e1dc0,240,fn_71002e1dc0,unknown,animation?,O
 0x71002e1eb0,160,fn_71002e1eb0,unknown,animation?,O
 0x71002e1f50,4,fn_71002e1f50,unknown,animation?,O
 0x71002e1f54,244,animtree::CBoneFilterNode::refl_GetClass,reflection,animation,O
