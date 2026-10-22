@@ -845,7 +845,15 @@ Also claimed by stream 7 (2026-10-22, coordinator-approved), although each `__so
 `fn_7101072a80`, `fn_710109b9f0` and `fn_71011bc0b0`, with their helpers. Stream 7 also takes any
 further libc++ sort family it finds, after noting it here. Hand slices, leave these to stream 7.
 Further families claimed the same way: `fn_71002aa690` (0x30-byte elements) and `fn_7100c75e40`
-(0x28-byte elements), with their helpers.
+(0x28-byte elements), with their helpers. Both are done on plain pointers (the class iterator made
+them worse), with comparator types of external linkage, since each keeps `__insertion_sort_3` out
+of line:
+- `fn_71002aa690`: nearest first with z taken as 0, like `fn_7100354e10`. Four **O**. The two
+  insertion sorts are **m**: the held entry's store-back is addressed from another register. The
+  position's x and z had to be union members; y as well made it worse.
+- `fn_7100c75e40`: by a key, then nearest first in 2D. `__sort`, `__sort4` and `__sort5` are **O**.
+  `__sort3` and the insertion sorts are **m**: the original loads the first entry before the
+  branch that picks the swap.
 All seven are done (2026-10-22), each through `UnkIter`: every function is **O** except
 `fn_7100744000`'s own `__sort` (**m**, below).
 - `fn_7100742750` compares with a plain function pointer. With a comparator type that isn't
