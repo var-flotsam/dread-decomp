@@ -3830,7 +3830,7 @@ address,size,name,name_source,subsystem,status
 0x71002b16f4,172,fn_71002b16f4,unknown,unknown,U
 0x71002b17a0,508,fn_71002b17a0,unknown,unknown,O
 0x71002b199c,160,fn_71002b199c,unknown,unknown,m
-0x71002b1a3c,576,fn_71002b1a3c,unknown,unknown,U
+0x71002b1a3c,576,fn_71002b1a3c,unknown,unknown,O
 0x71002b1c7c,356,fn_71002b1c7c,unknown,unknown,U
 0x71002b1de0,204,fn_71002b1de0,unknown,unknown,U
 0x71002b1eac,536,fn_71002b1eac,unknown,unknown,O
