@@ -836,15 +836,22 @@ With it, `fn_710072a110`, `fn_71010dd1d0` and `fn_71001e2e30` became fully **O**
 families `fn_71000a0660`/`fn_71000a5e00` (by name, `strcmp`) and
 `fn_71002c5c00`/`fn_71007f6100`/`fn_71007f6b90`/`fn_71007f7620` (by a float; the float is in a
 union, so the original reloads it after each element store). Try the iterator first on any sort
-family of 8-byte elements whose insertion loops are **m**. It doesn't help the 0x48-byte handle
+family. It also made `fn_7100213380` (0x40-byte polymorphic boxes, below) fully **O**. It doesn't help the 0x48-byte handle
 families (`fn_7100566930`, `fn_71003cd6e0`, `fn_7100354e10`, `fn_710081ccd0`), `fn_710010e470` or
 `fn_7100338620`.
 
 More instantiations found by their recursion (each 2 KB, or with 2 KB helpers):
-- `fn_7100134020`
-- `fn_7100213380` (0x40-byte polymorphic boxes by the centre on an axis; the swaps rebuild a box
-  from its corners with coordinates stored as tenths)
-- `fn_7100212a80`
+- `fn_7100134020`: all five **m**. 0x160-byte entries (three pooled string ids and a string with
+  its own storage) by name. One difference is left: the original reuses the compared id's pointer
+  when a swap moves the entry. That needs the alias analysis to know the swap's temporary isn't the
+  entry, which it does only for pointer arguments, but sorting raw pointers pairs stores the
+  original keeps apart. See the file's note.
+- `fn_7100213380`: done, all five **O**. 0x40-byte polymorphic boxes by the centre on an axis. A
+  copy rebuilds the box from its corners and stores them again as whole tenths. Three details
+  mattered: one inline virtual keeps the vtable out of the file (the copy's calls stay indirect),
+  the assignment is user-written (so the tenths and the last word are copied separately), and the
+  elements are sorted through `UnkIter`.
+- `fn_7100212a80` (not a sort: it builds a box tree and calls `fn_7100213380`)
 - `fn_7100248e50`
 - `fn_710030ed9c`
 - `fn_7100336ca0` (weak handles assigned by `fn_71003384e0`: the original reloads the handle

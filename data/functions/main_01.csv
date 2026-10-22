@@ -1145,11 +1145,11 @@ address,size,name,name_source,subsystem,status
 0x7100133be4,268,fn_7100133be4,unknown,unknown,U
 0x7100133cf0,312,fn_7100133cf0,unknown,unknown,O
 0x7100133e28,500,fn_7100133e28,unknown,unknown,U
-0x7100134020,2612,fn_7100134020,unknown,unknown,U
-0x7100134a60,1096,fn_7100134a60,unknown,unknown,U
-0x7100134eb0,756,fn_7100134eb0,unknown,unknown,U
-0x71001351b0,972,fn_71001351b0,unknown,unknown,U
-0x7100135580,864,fn_7100135580,unknown,unknown,U
+0x7100134020,2612,fn_7100134020,unknown,unknown,m
+0x7100134a60,1096,fn_7100134a60,unknown,unknown,m
+0x7100134eb0,756,fn_7100134eb0,unknown,unknown,m
+0x71001351b0,972,fn_71001351b0,unknown,unknown,m
+0x7100135580,864,fn_7100135580,unknown,unknown,m
 0x71001358e0,432,fn_71001358e0,unknown,unknown,U
 0x7100135a90,4,fn_7100135a90,unknown,unknown,O
 0x7100135a94,244,base::tunable::CTunable::refl_GetClass,reflection,engine/base,O
