@@ -22,9 +22,9 @@ address,size,name,name_source,subsystem,status
 0x7100301600,256,fn_7100301600,unknown,unknown,U
 0x7100301700,28,fn_7100301700,unknown,unknown,O
 0x710030171c,52,fn_710030171c,unknown,unknown,U
-0x7100301750,80,fn_7100301750,unknown,unknown,U
-0x71003017a0,112,fn_71003017a0,unknown,unknown,U
-0x7100301810,80,fn_7100301810,unknown,unknown,U
+0x7100301750,80,fn_7100301750,unknown,unknown,O
+0x71003017a0,112,fn_71003017a0,unknown,unknown,O
+0x7100301810,80,fn_7100301810,unknown,unknown,O
 0x7100301860,148,fn_7100301860,unknown,unknown,U
 0x71003018f4,276,fn_71003018f4,unknown,unknown,U
 0x7100301a08,192,fn_7100301a08,unknown,unknown,U
