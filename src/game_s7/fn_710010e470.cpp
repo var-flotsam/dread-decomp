@@ -58,13 +58,21 @@ template unsigned std::__sort4<C&, E*>(E*, E*, E*, E*, C&);
 template unsigned std::__sort5<C&, E*>(E*, E*, E*, E*, E*, C&);
 template bool std::__insertion_sort_incomplete<C&, E*>(E*, E*, C&);
 
+// extern "C", so the names stay plain.
+extern "C" {
 // NON_MATCHING(minor): register allocation and reloads, see the note at the top of the file.
-extern "C" void fn_710010e470() __attribute__((alias("_ZN14libcxx_adapted6__sortIR20UnkByAxis_710010e470P17UnkBox_710010e470EEvT0_S5_T_")));
+void fn_710010e470()
+    __attribute__((alias("_ZN14libcxx_adapted6__sortIR20UnkByAxis_710010e470P17UnkBox_710010e470EEvT0_S5_T_")));
 // NON_MATCHING(minor): register allocation and reloads, see the note at the top of the file.
-extern "C" void fn_710010ed20() __attribute__((alias("_ZNSt3__17__sort3IR20UnkByAxis_710010e470P17UnkBox_710010e470EEjT0_S5_S5_T_")));
+void fn_710010ed20()
+    __attribute__((alias("_ZNSt3__17__sort3IR20UnkByAxis_710010e470P17UnkBox_710010e470EEjT0_S5_S5_T_")));
 // NON_MATCHING(minor): register allocation and reloads, see the note at the top of the file.
-extern "C" void fn_710010efe0() __attribute__((alias("_ZNSt3__17__sort4IR20UnkByAxis_710010e470P17UnkBox_710010e470EEjT0_S5_S5_S5_T_")));
+void fn_710010efe0()
+    __attribute__((alias("_ZNSt3__17__sort4IR20UnkByAxis_710010e470P17UnkBox_710010e470EEjT0_S5_S5_S5_T_")));
 // NON_MATCHING(minor): register allocation and reloads, see the note at the top of the file.
-extern "C" void fn_710010f200() __attribute__((alias("_ZNSt3__17__sort5IR20UnkByAxis_710010e470P17UnkBox_710010e470EEjT0_S5_S5_S5_S5_T_")));
+void fn_710010f200()
+    __attribute__((alias("_ZNSt3__17__sort5IR20UnkByAxis_710010e470P17UnkBox_710010e470EEjT0_S5_S5_S5_S5_T_")));
 // NON_MATCHING(minor): register allocation and reloads, see the note at the top of the file.
-extern "C" void fn_710010f4b0() __attribute__((alias("_ZNSt3__127__insertion_sort_incompleteIR20UnkByAxis_710010e470P17UnkBox_710010e470EEbT0_S5_T_")));
+void fn_710010f4b0()
+    __attribute__((alias("_ZNSt3__127__insertion_sort_incompleteIR20UnkByAxis_710010e470P17UnkBox_710010e470EEbT0_S5_T_")));
+}
