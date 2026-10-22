@@ -3780,8 +3780,8 @@ address,size,name,name_source,subsystem,status
 0x71002ae4d4,28,fn_71002ae4d4,unknown,unknown,O
 0x71002ae4f0,248,fn_71002ae4f0,unknown,unknown,O
 0x71002ae5e8,12,fn_71002ae5e8,unknown,unknown,O
-0x71002ae5f4,244,fn_71002ae5f4,unknown,unknown,U
-0x71002ae6e8,244,fn_71002ae6e8,unknown,unknown,U
+0x71002ae5f4,244,fn_71002ae5f4,unknown,unknown,O
+0x71002ae6e8,244,fn_71002ae6e8,unknown,unknown,O
 0x71002ae7dc,12,fn_71002ae7dc,unknown,unknown,O
 0x71002ae7e8,12,fn_71002ae7e8,unknown,unknown,O
 0x71002ae7f4,8,fn_71002ae7f4,unknown,unknown,O
