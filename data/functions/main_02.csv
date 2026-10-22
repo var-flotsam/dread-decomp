@@ -4099,7 +4099,7 @@ address,size,name,name_source,subsystem,status
 0x71002bc8f0,380,fn_71002bc8f0,unknown,ai/querysystem?,O
 0x71002bca6c,4,fn_71002bca6c,unknown,ai/querysystem?,O
 0x71002bca70,36,fn_71002bca70,unknown,ai/querysystem?,O
-0x71002bca94,220,fn_71002bca94,unknown,ai/querysystem?,U
+0x71002bca94,220,fn_71002bca94,unknown,ai/querysystem?,O
 0x71002bcb70,28,fn_71002bcb70,unknown,ai/querysystem?,O
 0x71002bcb8c,12,fn_71002bcb8c,unknown,ai/querysystem?,O
 0x71002bcb98,8,fn_71002bcb98,unknown,ai/querysystem?,O
@@ -4320,7 +4320,7 @@ address,size,name,name_source,subsystem,status
 0x71002c2588,388,querysystem::CLookAtTargetFilter::refl_InitClass,reflection,ai/querysystem,O
 0x71002c270c,4,fn_71002c270c,unknown,ai/querysystem?,O
 0x71002c2710,36,fn_71002c2710,unknown,ai/querysystem?,O
-0x71002c2734,160,fn_71002c2734,unknown,ai/querysystem?,U
+0x71002c2734,160,fn_71002c2734,unknown,ai/querysystem?,O
 0x71002c27d4,28,fn_71002c27d4,unknown,ai/querysystem?,O
 0x71002c27f0,12,fn_71002c27f0,unknown,ai/querysystem?,O
 0x71002c27fc,8,fn_71002c27fc,unknown,ai/querysystem?,O
@@ -4356,7 +4356,7 @@ address,size,name,name_source,subsystem,status
 0x71002c3524,388,querysystem::CMaxTargetDistanceFilter::refl_InitClass,reflection,ai/querysystem,O
 0x71002c36a8,4,fn_71002c36a8,unknown,ai/querysystem?,O
 0x71002c36ac,36,fn_71002c36ac,unknown,ai/querysystem?,O
-0x71002c36d0,148,fn_71002c36d0,unknown,ai/querysystem?,U
+0x71002c36d0,148,fn_71002c36d0,unknown,ai/querysystem?,O
 0x71002c3764,28,fn_71002c3764,unknown,ai/querysystem?,O
 0x71002c3780,12,fn_71002c3780,unknown,ai/querysystem?,O
 0x71002c378c,8,fn_71002c378c,unknown,ai/querysystem?,O
@@ -4393,7 +4393,7 @@ address,size,name,name_source,subsystem,status
 0x71002c45f8,180,fn_71002c45f8,unknown,ai/querysystem?,O
 0x71002c46ac,4,fn_71002c46ac,unknown,ai/querysystem?,O
 0x71002c46b0,36,fn_71002c46b0,unknown,ai/querysystem?,O
-0x71002c46d4,148,fn_71002c46d4,unknown,ai/querysystem?,U
+0x71002c46d4,148,fn_71002c46d4,unknown,ai/querysystem?,O
 0x71002c4768,28,fn_71002c4768,unknown,ai/querysystem?,O
 0x71002c4784,12,fn_71002c4784,unknown,ai/querysystem?,O
 0x71002c4790,8,fn_71002c4790,unknown,ai/querysystem?,O
