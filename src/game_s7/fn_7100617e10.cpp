@@ -1,4 +1,4 @@
-// Copies of fn_7100f49614 (src/game_7100ece7fc/fn_7100f49614.cpp) for other types, with their own callees and data (the names, strings and comments below are the original's): fn_7100617e10, fn_7100618288.
+// Copies of fn_7100f49614 (src/game_7100ece7fc/fn_7100f49614.cpp) for other types, with their own callees and data (they name their own callees, data and strings; the comments describe the original): fn_7100617e10, fn_7100618288.
 // Resets a three-state value holder (state at +0x38): state 1 holds an id/value element at
 // +0x18, which is destroyed (its base vtable is restored, then its string id released);
 // state 2 holds nothing to destroy. Both go back to state 0; any other state is left alone.
@@ -9,14 +9,14 @@
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
-extern char g_unk_7101cab1f8[];  // the elements' base vtable
+extern char g_unk_7101a56178[];  // the elements' base vtable
 
 struct UnkIdValueBase_0x18 {
     char* vtable;
     UnkStringData* id;  // CStrId; released in two steps (decrement, then test)
 
     __attribute__((always_inline)) ~UnkIdValueBase_0x18() {
-        vtable = g_unk_7101cab1f8 + 0x10;
+        vtable = g_unk_7101a56178 + 0x10;
         if (UnkStringPool* pool = g_unk_7101d47108) {
             if (id && id != &pool->empty) {
                 --id->ref_count;

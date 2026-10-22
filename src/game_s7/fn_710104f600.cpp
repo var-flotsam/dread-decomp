@@ -1,4 +1,4 @@
-// Copies of fn_7100eaf4e0 (src/game_aca57c/fn_7100d3d424.cpp) for other types, with their own callees and data (the names, strings and comments below are the original's): fn_710104f600.
+// Copies of fn_7100eaf4e0 (src/game_aca57c/fn_7100d3d424.cpp) for other types, with their own callees and data (they name their own callees, data and strings; the comments describe the original): fn_710104f600.
 // Resets and assignments of small holders of string ids: a two-state variant (state 1 holds a
 // string id and a reference; state 2 holds nothing to destroy) reset to state 0, a counted
 // array of ids stored after its count, and a move-assignment of an id with two values that
@@ -13,29 +13,33 @@ using namespace base::global;
 
 // A string id whose destructor decrements and tests in two steps (the original reloads the id
 // after the decrement).
-struct UnkReleasedStrId {
+template <UnkStringPool** Pool>
+struct UnkReleasedStrIdT {
     UnkStringData* data;
 
     // The pointer is stored bytewise (char alias info), so the destructor of the moved-from id
     // reloads the pool.
-    UnkReleasedStrId(UnkReleasedStrId&& other) {
+    UnkReleasedStrIdT(UnkReleasedStrIdT&& other) {
         UnkStringData* d = other.data;
         __builtin_memcpy(&data, &d, sizeof(d));
-        other.data = &g_unk_7101d47108->empty;
+        other.data = &(*Pool)->empty;
     }
-    ~UnkReleasedStrId() {
-        if (UnkStringPool* pool = g_unk_7101d47108) {
+    ~UnkReleasedStrIdT() {
+        if (UnkStringPool* pool = *Pool) {
             if (data && data != &pool->empty) {
                 --data->ref_count;
                 if (data->ref_count == 0) {
                     fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
+                    pool = *Pool;
                 }
             }
             data = &pool->empty;
         }
     }
 };
+using UnkReleasedStrId = UnkReleasedStrIdT<&g_unk_7101d47108>;
+// The same id in CFilePathStrId's pool.
+using UnkFilePathReleasedStrId = UnkReleasedStrIdT<&g_unk_7101d47200>;
 
 struct UnkRefObject {
     virtual void vf_0x0();
@@ -93,12 +97,13 @@ struct UnkCountedIds {
 #pragma pack(pop)
 
 struct UnkIdValues {
-    UnkReleasedStrId id;
+    UnkFilePathReleasedStrId id;
     u32 field_0x8;
     u32 field_0xc;
 
     UnkIdValues(UnkIdValues&& other)
-        : id(static_cast<UnkReleasedStrId&&>(other.id)), field_0x8(other.field_0x8), field_0xc(other.field_0xc) {}
+        : id(static_cast<UnkFilePathReleasedStrId&&>(other.id)), field_0x8(other.field_0x8),
+          field_0xc(other.field_0xc) {}
 };
 
 struct UnkIdValues4 {

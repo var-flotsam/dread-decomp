@@ -1,4 +1,4 @@
-// Copies of fn_7100c073f0 (src/game_aca57c/fn_7100c073f0.cpp) for other types, with their own callees and data (the names, strings and comments below are the original's): fn_7101059bfc.
+// Copies of fn_7100c073f0 (src/game_aca57c/fn_7100c073f0.cpp) for other types, with their own callees and data (they name their own callees, data and strings; the comments describe the original): fn_7101059bfc.
 // Constructor of an array of 0x50-byte polymorphic elements with the given allocator flags,
 // reserving `n` elements up front.
 #include "base/UnkVector.h"

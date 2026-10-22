@@ -1,4 +1,4 @@
-// Copies of fn_71003e2ea8 (src/game_s2/fn_71003e2ea8.cpp) for other types, with their own callees and data (the names, strings and comments below are the original's): fn_710063dd68.
+// Copies of fn_71003e2ea8 (src/game_s2/fn_71003e2ea8.cpp) for other types, with their own callees and data (they name their own callees, data and strings; the comments describe the original): fn_710063dd68.
 // Destructor body: runs the base destructor (fn_7100394bd4), then, when the weak handle at +0x58 still has a
 // target, hands the target the object at +0x40 (fn_710117b3f0) and drops the handle.
 #include "game_s2/UnkWeakHandle.h"

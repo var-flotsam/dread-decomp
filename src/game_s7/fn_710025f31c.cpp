@@ -1,4 +1,4 @@
-// Copies of fn_7100e59270 (src/game_aca57c/fn_7100adae44.cpp) for other types, with their own callees and data (the names, strings and comments below are the original's): fn_710025f31c.
+// Copies of fn_7100e59270 (src/game_aca57c/fn_7100adae44.cpp) for other types, with their own callees and data (they name their own callees, data and strings; the comments describe the original): fn_710025f31c.
 // Assignments of a pair of values held either in place or by reference (state 2), from another
 // such pair: read and written through the state-dependent accessors.
 #include <new>
@@ -591,15 +591,15 @@ __attribute__((always_inline)) static inline UnkValuePairRef<UnkPairReleasedStrI
         return *this;                                                             \
     }
 
-UNK_ASSIGNED_RECORD(UnkAssignedRecord_e4fff8, 0x60, fn_7100e4fff8)
+UNK_ASSIGNED_RECORD(UnkAssignedRecord_2632a8, 0x60, fn_71002632a8)
 UNK_ASSIGNED_RECORD(UnkAssignedRecord_e51a60, 0x80, fn_7100e51a60)
 UNK_ASSIGNED_RECORD(UnkAssignedRecord_e6e320, 0xc8, fn_7100e6e320)
 
-using UnkIdRecordPair_e4fff8 = UnkValuePairRef<UnkPairReleasedStrId, UnkAssignedRecord_e4fff8>;
+using UnkIdRecordPair_2632a8 = UnkValuePairRef<UnkPairReleasedStrId, UnkAssignedRecord_2632a8>;
 using UnkIdRecordPair_e51a60 = UnkValuePairRef<UnkPairReleasedStrId, UnkAssignedRecord_e51a60>;
 using UnkIdRecordPair_e6e320 = UnkValuePairRef<UnkPairReleasedStrId, UnkAssignedRecord_e6e320>;
 
-UnkIdRecordPair_e4fff8* fn_710025f31c(UnkIdRecordPair_e4fff8* self, UnkIdRecordPair_e4fff8* other) {
+UnkIdRecordPair_2632a8* fn_710025f31c(UnkIdRecordPair_2632a8* self, UnkIdRecordPair_2632a8* other) {
     return MoveAssignSet(self, other);
 }
 

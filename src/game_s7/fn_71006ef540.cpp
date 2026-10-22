@@ -1,4 +1,4 @@
-// Copies of fn_710046f678 (src/game_s2/fn_710046f678.cpp) for other types, with their own callees and data (the names, strings and comments below are the original's): fn_71006ef540.
+// Copies of fn_710046f678 (src/game_s2/fn_710046f678.cpp) for other types, with their own callees and data (they name their own callees, data and strings; the comments describe the original): fn_71006ef540.
 // Node routine that calls fn_71003ace0c and initialises or clears fields.
 #include <new>
 

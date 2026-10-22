@@ -1,4 +1,4 @@
-// Copies of fn_7101157b48 (src/game_7100ece7fc/fn_7101157b48.cpp) for other types, with their own callees and data (the names, strings and comments below are the original's): fn_7100030300, fn_710003146c.
+// Copies of fn_7101157b48 (src/game_7100ece7fc/fn_7101157b48.cpp) for other types, with their own callees and data (they name their own callees, data and strings; the comments describe the original): fn_7100030300, fn_710003146c.
 // Destructors (deleting, and one complete) of three objects that each hold a list of string-id nodes: restore the vtable,
 // release each node's id and free the node through the list's allocator, then free the object.
 #include <new>
@@ -68,7 +68,8 @@ struct UnkIdList {
     }
 };
 
-extern void* g_unk_7101cb38a8[];
+extern void* g_unk_7101a1a0b0[];
+extern void* g_unk_7101a1a090[];
 extern void* g_unk_7101cb38e8[];
 extern void* g_unk_7101cb46a0[];
 
@@ -80,11 +81,11 @@ struct UnkIdListOwner {
     ~UnkIdListOwner() { vtable = &Vtable[2]; }
 };
 
-void fn_7100030300(UnkIdListOwner<g_unk_7101cb38a8, UnkIdNode_0x18, 0>& self) {
+void fn_7100030300(UnkIdListOwner<g_unk_7101a1a090, UnkIdNode_0x18, 0>& self) {
     delete &self;
 }
 
-void fn_710003146c(UnkIdListOwner<g_unk_7101cb38a8, UnkIdNode_0x18, 0>& self) {
+void fn_710003146c(UnkIdListOwner<g_unk_7101a1a0b0, UnkIdNode_0x18, 0>& self) {
     delete &self;
 }
 

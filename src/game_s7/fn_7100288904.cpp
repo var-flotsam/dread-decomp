@@ -1,4 +1,4 @@
-// Copies of fn_71002885e8 (src/flag_id/fn_71002885e8.cpp) for other types, with their own callees and data (the names, strings and comments below are the original's): fn_7100288904.
+// Copies of fn_71002885e8 (src/flag_id/fn_71002885e8.cpp) for other types, with their own callees and data (they name their own callees, data and strings; the comments describe the original): fn_7100288904.
 // Calls a handler for every 4-byte entry of an array.
 #include "types.h"
 

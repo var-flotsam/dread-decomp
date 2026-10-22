@@ -1,4 +1,4 @@
-// Copies of fn_7100b4c2e8 (src/game_aca57c/fn_7100b021fc.cpp) for other types, with their own callees and data (the names, strings and comments below are the original's): fn_7101185c74.
+// Copies of fn_7100b4c2e8 (src/game_aca57c/fn_7100b021fc.cpp) for other types, with their own callees and data (they name their own callees, data and strings; the comments describe the original): fn_7101185c74.
 // Weak references to GUI objects: setters that take the focused object of the GUI root (its
 // object at 0x230, whose target is at 0x10), and assignments from another object's handle.
 #include "game_s2/UnkWeakHandle.h"

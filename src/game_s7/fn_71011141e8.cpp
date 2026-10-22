@@ -1,4 +1,4 @@
-// Copies of fn_7100895194 (src/game_s4/fn_71008947b8.cpp) for other types, with their own callees and data (the names, strings and comments below are the original's): fn_71011141e8.
+// Copies of fn_7100895194 (src/game_s4/fn_71008947b8.cpp) for other types, with their own callees and data (they name their own callees, data and strings; the comments describe the original): fn_71011141e8.
 // Copy-constructs a value-or-reference holder: kind 1 holds a value (an id and an entry) in
 // place, kind 2 points at them; the copy always holds them in place (kind 1).
 // fn_71008aa61c is an identical copy.
