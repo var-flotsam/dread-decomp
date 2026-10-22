@@ -1,6 +1,7 @@
 // Three setters that store `true` under a property of the "USER_DATA" section of the
 // singleton's data (unless that data is locked at 0xe8), then tell the singleton (created on
-// first use) through fn_7101203854.
+// first use) through fn_7101203854. Three getters read the same properties (false when the
+// section is missing).
 #include "base/global/CStrId.h"
 #include "types.h"
 
@@ -61,3 +62,22 @@ extern UnkPropertyName g_unk_71727bd2a0;
 void fn_7100dc8828() { SetFlag<&g_unk_71727bd270>(); }
 void fn_7100dc8948() { SetFlag<&g_unk_71727bd288>(); }
 void fn_7100dc8a68() { SetFlag<&g_unk_71727bd2a0>(); }
+
+bool fn_710006d11c(UnkSection* section, UnkPropertyName* name, bool* out);  // reads a bool
+UnkSection* fn_7101047270(UnkUserData* data, const CStrId& name);
+
+template <UnkPropertyName* Name>
+__attribute__((always_inline)) static inline bool GetFlag() {
+    UnkUserData* data = fn_710120384c(GetOwner());
+    bool value = false;
+    {
+        CStrId section_name("USER_DATA", true);
+        if (UnkSection* section = fn_7101047270(data, section_name))
+            fn_710006d11c(section, Name, &value);
+    }
+    return value;
+}
+
+bool fn_7100dc8b88() { return GetFlag<&g_unk_71727bd270>(); }
+bool fn_7100dc8c5c() { return GetFlag<&g_unk_71727bd288>(); }
+bool fn_7100dc8d30() { return GetFlag<&g_unk_71727bd2a0>(); }
