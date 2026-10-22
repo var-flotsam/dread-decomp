@@ -1013,6 +1013,19 @@ copy- and move-assignment of 8-byte iterator values (`fn_71001f1d38`, `fn_71001f
 push-back that the copy file won't inline (`fn_71002a1778`, `fn_7100279ca0`), and drafts whose
 originals are generated (`mkcopy2` only finds hand-written originals).
 
+**Slice 1 near copies, batch 16** (stream 7, 2026-10-22): 28 functions **O** (`src/game_s1/`).
+More of the cached iterator values: equality with 8-byte keys (`fn_71000d4d50.cpp`), moves whose
+elements are a string id and a file path id, a reflected value, a counted reference, or a file
+path id with a counted resource (`fn_71000cd580.cpp`), and resets and move-assigns of values
+owning string ids (`fn_71000d0378.cpp`). Reflected-value and reference elements only inline as a
+placement-new move in a `flatten` function. A counted reference copies as "null, then assign"
+(the original reloads the slot after the count update, so the count sits in a union, as in
+`UnkWeakHandle.h`). In a move-assign, a string id re-reads its pool for the other's empty string
+while a file path id keeps the pool read for the release. The relocation check also caught three
+batch 15 functions that named the wrong string pool (`fn_71000cdbbc`, `fn_71000ce0a4` use the
+default one, `fn_710000cc44` CFilePathStrId's); they now name the original's pool. Left: `fn_710001dc08` (an array
+erase, not the move-assign its size suggested).
+
 **dlmalloc 2.8.4 vendored** (stream 7, 2026-10-22, owner-approved): `lib/dlmalloc/` holds
 upstream `malloc.c` unmodified and `mspace.c` with the game's settings (README there). It was
 fetched from a mirror pinned to a commit in `tools/fetch_sources.py` and `data/sources.json`,
