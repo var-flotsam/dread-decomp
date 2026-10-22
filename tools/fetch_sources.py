@@ -33,6 +33,13 @@ del SOURCES["lua-5.1.0"]
 # libc++ headers matching the project compiler (Apache-2.0 with LLVM exception).
 SOURCES["libcxx-9.0.1.src"] = ("https://github.com/llvm/llvm-project/releases/download/llvmorg-9.0.1/"
                                "libcxx-9.0.1.src.tar.xz")
+# dlmalloc 2.8.4 (public domain), the allocator behind the game's sub-allocators; a single file,
+# vendored unmodified as lib/dlmalloc/malloc.c. The author's site (gee.cs.oswego.edu) is not
+# reachable from every environment, so this pins a mirror of every release at one commit.
+SOURCES["dlmalloc-2.8.4"] = ("https://raw.githubusercontent.com/DenizThatMenace/dlmalloc/"
+                             "c48293b68aa8d883d1fa8c285f1e8dab23ca8a2a/malloc-2.8.4.c")
+# Single-file sources: saved as <name>/<file name> instead of extracted.
+SINGLE_FILES = {"dlmalloc-2.8.4": "malloc.c"}
 
 
 def source_dir(name: str) -> Path:
@@ -53,6 +60,11 @@ def fetch(name: str, pins: dict) -> None:
         raise SystemExit(f"{name}: sha256 {digest} does not match pinned {pinned}")
     pins[name] = {"url": url, "sha256": digest}
     DEST.mkdir(parents=True, exist_ok=True)
+    if name in SINGLE_FILES:
+        target.mkdir()
+        (target / SINGLE_FILES[name]).write_bytes(data)
+        print(f"{name}: saved to {target} (sha256 {digest})")
+        return
     with tarfile.open(fileobj=io.BytesIO(data), mode="r:*") as tar:
         tar.extractall(DEST, filter="data")
     if not target.is_dir():

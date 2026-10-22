@@ -72,10 +72,10 @@ SUBSYSTEM_RULES = [
     (r"^S[A-Z]\w*", "game"),
 ]
 
-# Code we don't decompile as game code: vendored upstream (Lua), Nintendo
+# Code we don't decompile as game code: vendored upstream (Lua, dlmalloc), Nintendo
 # middleware/SDK (nn::atk, nn::), and the C/C++ runtime. Marked L, like BotW's
 # "library function" status, and excluded from progress.
-LIBRARY_SUBSYSTEMS = {"middleware/nn-atk", "sdk", "runtime", "lua/stdlib", "lua"}
+LIBRARY_SUBSYSTEMS = {"middleware/nn-atk", "sdk", "runtime", "lua/stdlib", "lua", "dlmalloc"}
 # Statuses that come from src/ (tools/check.py) and must survive regeneration.
 DECOMP_STATUSES = {"O", "m", "M", "W"}
 

@@ -1,4 +1,8 @@
 {
+  "dlmalloc-2.8.4": {
+    "sha256": "bbd3026844b52ca4f76873dff0b020677698147317787c511411e19cea18f37d",
+    "url": "https://raw.githubusercontent.com/DenizThatMenace/dlmalloc/c48293b68aa8d883d1fa8c285f1e8dab23ca8a2a/malloc-2.8.4.c"
+  },
   "libcxx-9.0.1.src": {
     "sha256": "0981ff11b862f4f179a13576ab0a2f5530f46bd3b6b4a90f568ccc6a62914b34",
     "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-9.0.1/libcxx-9.0.1.src.tar.xz"

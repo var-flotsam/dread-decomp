@@ -41,6 +41,7 @@ GAME_REPLACED = {"luaB_print"}
 FUZZY_RATIO = 0.8         # mnemonic-sequence similarity needed for a near-match
 LIBRARIES = {
     "lua": {"sources": sorted((ROOT / "lib" / "lua").glob("*.c")), "flags": buildcfg.LUA_FLAGS},
+    "dlmalloc": {"sources": [ROOT / "lib" / "dlmalloc" / "mspace.c"], "flags": ["-fno-strict-aliasing"]},
 }
 
 

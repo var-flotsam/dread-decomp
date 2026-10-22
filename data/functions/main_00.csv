@@ -2043,11 +2043,11 @@ address,size,name,name_source,subsystem,status
 0x710008158c,8,fn_710008158c,unknown,unknown,O
 0x7100081594,4,fn_7100081594,unknown,unknown,O
 0x7100081598,12,fn_7100081598,unknown,unknown,O
-0x71000815b0,684,fn_71000815b0,unknown,unknown,U
-0x7100081860,2824,fn_7100081860,unknown,unknown,U
-0x7100082370,1652,fn_7100082370,unknown,unknown,U
-0x71000829f0,528,fn_71000829f0,unknown,unknown,U
-0x7100082c00,56,fn_7100082c00,unknown,unknown,U
+0x71000815b0,684,create_mspace_with_base,library,dlmalloc,L
+0x7100081860,2824,mspace_malloc,library,dlmalloc,L
+0x7100082370,1652,mspace_free,library,dlmalloc,L
+0x71000829f0,528,mspace_memalign,library,dlmalloc,L
+0x7100082c00,56,dlmalloc_usable_size,library,dlmalloc,L
 0x7100082c38,144,fn_7100082c38,unknown,unknown,m
 0x7100082cc8,84,fn_7100082cc8,unknown,unknown,O
 0x7100082d1c,92,fn_7100082d1c,unknown,unknown,O
