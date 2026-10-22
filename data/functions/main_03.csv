@@ -5253,7 +5253,7 @@ address,size,name,name_source,subsystem,status
 0x71003f268c,132,fn_71003f268c,unknown,game/ai?,U
 0x71003f2710,440,fn_71003f2710,unknown,game/ai?,U
 0x71003f28c8,452,fn_71003f28c8,unknown,game/ai?,U
-0x71003f2a8c,2308,fn_71003f2a8c,unknown,game/ai?,U
+0x71003f2a8c,2308,fn_71003f2a8c,unknown,game/ai?,m
 0x71003f3390,896,fn_71003f3390,unknown,game/ai?,U
 0x71003f3710,104,fn_71003f3710,unknown,game/ai?,O
 0x71003f3778,384,fn_71003f3778,unknown,game/ai?,U

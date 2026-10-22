@@ -5521,7 +5521,7 @@ address,size,name,name_source,subsystem,status
 0x7100de7894,240,fn_7100de7894,unknown,unknown,O
 0x7100de7984,748,fn_7100de7984,unknown,unknown,U
 0x7100de7c70,280,fn_7100de7c70,unknown,unknown,U
-0x7100de7d88,3148,fn_7100de7d88,unknown,unknown,U
+0x7100de7d88,3148,fn_7100de7d88,unknown,unknown,O
 0x7100de89d4,240,fn_7100de89d4,unknown,unknown,O
 0x7100de8ac4,508,fn_7100de8ac4,unknown,unknown,U
 0x7100de8cc0,100,fn_7100de8cc0,unknown,unknown,O
