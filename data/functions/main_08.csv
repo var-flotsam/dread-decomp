@@ -408,7 +408,7 @@ address,size,name,name_source,subsystem,status
 0x7100815758,308,fn_7100815758,unknown,unknown,O
 0x710081588c,404,fn_710081588c,unknown,unknown,U
 0x7100815a20,224,fn_7100815a20,unknown,unknown,O
-0x7100815b00,916,fn_7100815b00,unknown,unknown,U
+0x7100815b00,916,fn_7100815b00,unknown,unknown,O
 0x7100815e94,4,fn_7100815e94,unknown,unknown,O
 0x7100815e98,244,CCharClassGrappleBeamComponent::refl_GetClass,reflection,game/characters,O
 0x7100815f8c,256,fn_7100815f8c,unknown,game/characters?,O
