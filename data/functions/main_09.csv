@@ -3425,7 +3425,7 @@ address,size,name,name_source,subsystem,status
 0x71009ba650,8,fn_71009ba650,unknown,unknown,O
 0x71009ba658,52,fn_71009ba658,unknown,unknown,O
 0x71009ba68c,428,fn_71009ba68c,unknown,unknown,U
-0x71009ba838,432,fn_71009ba838,unknown,unknown,U
+0x71009ba838,432,fn_71009ba838,unknown,unknown,O
 0x71009ba9f0,308,fn_71009ba9f0,unknown,unknown,O
 0x71009bab24,4,fn_71009bab24,unknown,unknown,O
 0x71009bab28,244,CCharClassChangeStageNavMeshItemComponent::refl_GetClass,reflection,game/characters,O
@@ -3719,7 +3719,7 @@ address,size,name,name_source,subsystem,status
 0x71009c3f04,48,fn_71009c3f04,unknown,unknown,O
 0x71009c3f34,116,fn_71009c3f34,unknown,unknown,O
 0x71009c3fa8,432,fn_71009c3fa8,unknown,unknown,U
-0x71009c4158,432,fn_71009c4158,unknown,unknown,U
+0x71009c4158,432,fn_71009c4158,unknown,unknown,O
 0x71009c4308,448,fn_71009c4308,unknown,unknown,U
 0x71009c44c8,268,fn_71009c44c8,unknown,unknown,O
 0x71009c45d4,440,fn_71009c45d4,unknown,unknown,U
