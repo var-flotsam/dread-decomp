@@ -59,6 +59,26 @@ __attribute__((always_inline)) inline void InitPathId(UnkFilePathStrIdBase* id, 
     __cxa_atexit(fn_7100000c7c, id, g_unk_7101a19000);
 }
 
+// A temporary string id (an element of an initializer list) whose release decrements and tests
+// the count in two steps; fn_710058a070 builds a vector of ids from such a list.
+struct UnkStrIdTmp : UnkStrIdBase {
+    using UnkStrIdBase::UnkStrIdBase;
+    ~UnkStrIdTmp() {
+        if (base::global::UnkStringPool* pool = g_unk_7101d47108) {
+            if (data && data != &pool->empty) {
+                --data->ref_count;
+                if (data->ref_count == 0) {
+                    fn_71000803a4(pool, data);
+                    pool = g_unk_7101d47108;
+                }
+            }
+            data = &pool->empty;
+        }
+    }
+};
+
+void fn_710058a070(void* self, const UnkStrIdBase* ids, u32 count);
+
 // A string id built directly from a string.
 __attribute__((always_inline)) inline void InitId(UnkStrIdBase* id, const char* str) {
     new (id) UnkStrIdBase(str, true);
@@ -120,6 +140,40 @@ struct UnkProperty {
     bool vf_0x18() { return reinterpret_cast<bool (*)(UnkProperty*)>(vtable[3])(this); }
 };
 
+void fn_71002ef5bc(void* member);  // the base's member constructor
+
+// A property of the same list whose base has an out-of-line member (fn_71002ef5bc) and whose
+// own part holds a name, a pointer to the global it controls and a word.
+struct UnkProperty2 {
+    void** vtable;
+    UnkProperty* next;
+    u64 field_0x10[2];
+    u64 field_0x20;
+    UnkFilePathStrIdBase name;  // storage of a string id
+    void* value;
+    u32 field_0x38;
+
+    bool vf_0x10() { return reinterpret_cast<bool (*)(UnkProperty2*)>(vtable[2])(this); }
+    bool vf_0x18() { return reinterpret_cast<bool (*)(UnkProperty2*)>(vtable[3])(this); }
+};
+
+template <class Init>
+__attribute__((always_inline)) inline void InitProperty2(UnkProperty2* p, void** base_vtable, UnkProperty*& head,
+                                                         void** vtable, const char* name, void* value, Init on_init,
+                                                         void (*dtor)(void*)) {
+    p->next = head;
+    head = reinterpret_cast<UnkProperty*>(p);
+    p->vtable = base_vtable + 2;
+    fn_71002ef5bc(p->field_0x10);
+    p->vtable = vtable + 2;
+    new (&p->name) UnkStrIdBase(name, true);
+    p->value = value;
+    p->field_0x38 = 0;
+    if (p->vf_0x10() && !p->vf_0x18())
+        on_init(p);
+    __cxa_atexit(dtor, p, g_unk_7101a19000);
+}
+
 template <class Ctor>
 __attribute__((always_inline)) inline void InitProperty(UnkProperty* p, void** vtable, UnkProperty*& head,
                                                         const char* name, const void* type, Ctor on_init,
@@ -155,6 +209,35 @@ __attribute__((always_inline)) inline void InitEnum(UnkEnumType* type, const cha
     void* i = fn_7100014768()->field_0x8->field_0x30;
     *from_int = {i, type->field_0x8->field_0x30, from_int_fn, 0};
     fn_71000a16c4(from_int);
+}
+
+// The same for a reflected type built without a factory (a flag set), with its own destructor
+// and conversions to and from another type (int_type).
+template <class Ctor>
+__attribute__((always_inline)) inline void InitFlagSet(UnkEnumType* type, const char* name, Ctor ctor,
+                                                       void (*dtor)(void*), char* list, UnkEnumType* (*int_type)(),
+                                                       UnkConversion* to_int, void (*to_int_fn)(),
+                                                       UnkConversion* from_int, void (*from_int_fn)()) {
+    {
+        CStrId n(name, true);
+        ctor(type, n, nullptr);
+    }
+    __cxa_atexit(dtor, type, g_unk_7101a19000);
+    fn_710009ec00(list, type);
+    void* from = type->field_0x8->field_0x30;
+    *to_int = {from, int_type()->field_0x8->field_0x30, to_int_fn, 0};
+    fn_71000a16c4(to_int);
+    void* i = int_type()->field_0x8->field_0x30;
+    *from_int = {i, type->field_0x8->field_0x30, from_int_fn, 0};
+    fn_71000a16c4(from_int);
+}
+
+// A conversion between two reflected types, registered on its own.
+__attribute__((always_inline)) inline void InitConversion(UnkConversion* c, UnkEnumType* (*from_type)(),
+                                                          UnkEnumType* (*to_type)(), void (*fn)()) {
+    void* from = from_type()->field_0x8->field_0x30;
+    *c = {from, to_type()->field_0x8->field_0x30, fn, 0};
+    fn_71000a16c4(c);
 }
 
 }  // namespace unk_static_init

@@ -950,7 +950,7 @@ address,size,name,name_source,subsystem,status
 0x710061e880,28,fn_710061e880,unknown,unknown,O
 0x710061e89c,152,fn_710061e89c,unknown,unknown,U
 0x710061e934,12,fn_710061e934,unknown,unknown,O
-0x710061e940,2848,fn_710061e940,unknown,unknown,U
+0x710061e940,2848,fn_710061e940,unknown,unknown,O
 0x710061f460,4,fn_710061f460,unknown,unknown,O
 0x710061f464,244,CNailongAIComponent::refl_GetClass,reflection,game/ai,O
 0x710061f558,384,fn_710061f558,unknown,game/ai?,O
@@ -2584,7 +2584,7 @@ address,size,name,name_source,subsystem,status
 0x71006684f0,20,fn_71006684f0,unknown,unknown,O
 0x7100668504,168,fn_7100668504,unknown,unknown,U
 0x71006685ac,172,fn_71006685ac,unknown,unknown,U
-0x7100668660,1216,fn_7100668660,unknown,unknown,U
+0x7100668660,1216,fn_7100668660,unknown,unknown,O
 0x7100668b20,4,fn_7100668b20,unknown,unknown,O
 0x7100668b24,244,CRodomithonXAIComponent::refl_GetClass,reflection,game/ai,O
 0x7100668c18,216,fn_7100668c18,unknown,game/ai?,O
@@ -2837,7 +2837,7 @@ address,size,name,name_source,subsystem,status
 0x71006717a4,24,fn_71006717a4,unknown,unknown,O
 0x71006717bc,168,fn_71006717bc,unknown,unknown,U
 0x7100671864,176,fn_7100671864,unknown,unknown,U
-0x7100671920,1236,fn_7100671920,unknown,unknown,U
+0x7100671920,1236,fn_7100671920,unknown,unknown,O
 0x7100671df4,4,fn_7100671df4,unknown,unknown,O
 0x7100671df8,244,CRodotukAIComponent::refl_GetClass,reflection,game/ai,O
 0x7100671eec,216,fn_7100671eec,unknown,game/ai?,O
