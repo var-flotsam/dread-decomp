@@ -1,0 +1,341 @@
+// Assignments of a pair of values held either in place or by reference (state 2), from another
+// such pair: read and written through the state-dependent accessors.
+#include "base/UnkVector.h"
+#include "base/global/CStrId.h"
+#include "types.h"
+
+using base::global::CStrId;
+
+template <class X, class Y>
+struct UnkValuePairRef {
+    union {
+        struct {
+            X x;
+            Y y;
+        } values;
+        struct {
+            X* x;
+            Y* y;
+        } refs;
+    };
+    s32 state;
+
+    X& GetX() { return state == 2 ? *refs.x : values.x; }
+    Y& GetY() { return state == 2 ? *refs.y : values.y; }
+
+    // Destroys the in-place values (state 1); either way the pair is left empty.
+    void Reset() {
+        switch (state) {
+        case 1:
+            values.y.~Y();
+            values.x.~X();
+            state = 0;
+            break;
+        case 2:
+            state = 0;
+            break;
+        }
+    }
+
+    // Refers to `x` and `y`.
+    void Set(X* x, Y* y) {
+        Reset();
+        state = 2;
+        refs.x = x;
+        refs.y = y;
+    }
+};
+
+// Assigns both values whatever the other's state.
+template <class X, class Y>
+static inline UnkValuePairRef<X, Y>* Assign(UnkValuePairRef<X, Y>* self, UnkValuePairRef<X, Y>* other) {
+    if (self != other) {
+        self->GetX() = other->GetX();
+        self->GetY() = other->GetY();
+    }
+    return self;
+}
+
+// Assigns only from an in-place (state 1) or by-reference (state 2) pair.
+template <class X, class Y>
+static inline UnkValuePairRef<X, Y>* AssignSet(UnkValuePairRef<X, Y>* self, UnkValuePairRef<X, Y>* other) {
+    if (self != other) {
+        switch (other->state) {
+        case 1:
+            self->GetX() = other->values.x;
+            self->GetY() = other->values.y;
+            break;
+        case 2:
+            self->GetX() = *other->refs.x;
+            self->GetY() = *other->refs.y;
+            break;
+        }
+    }
+    return self;
+}
+
+// A value and a flag, and two values, assigned member by member.
+struct UnkValueFlag {
+    u32 value;
+    bool flag;
+
+    // Copies the five data bytes (not the padding).
+    UnkValueFlag& operator=(const UnkValueFlag& other) {
+        __builtin_memcpy(this, &other, 5);
+        return *this;
+    }
+};
+
+struct UnkValues2Memberwise {
+    u32 a;
+    u32 b;
+
+    UnkValues2Memberwise& operator=(const UnkValues2Memberwise& other) {
+        a = other.a;
+        b = other.b;
+        return *this;
+    }
+};
+
+// Two values.
+struct UnkValues2 {
+    u32 a;
+    u32 b;
+};
+
+using UnkU32Pair = UnkValuePairRef<u32, u32>;
+using UnkU32FlagPair = UnkValuePairRef<u32, UnkValueFlag>;
+using UnkU32ValuesPair = UnkValuePairRef<u32, UnkValues2>;
+using UnkU32Values2Pair = UnkValuePairRef<u32, UnkValues2Memberwise>;
+
+UnkU32Pair* fn_7100adae44(UnkU32Pair* self, UnkU32Pair* other) { return Assign(self, other); }
+UnkU32Pair* fn_7100dd0298(UnkU32Pair* self, UnkU32Pair* other) { return Assign(self, other); }
+UnkU32Pair* fn_7100eb1f10(UnkU32Pair* self, UnkU32Pair* other) { return Assign(self, other); }
+UnkU32Pair* fn_7100adaee4(UnkU32Pair* self, UnkU32Pair* other) { return AssignSet(self, other); }
+UnkU32Pair* fn_7100dd0338(UnkU32Pair* self, UnkU32Pair* other) { return AssignSet(self, other); }
+UnkU32Pair* fn_7100eb1fb0(UnkU32Pair* self, UnkU32Pair* other) { return AssignSet(self, other); }
+
+UnkU32FlagPair* fn_7100b19250(UnkU32FlagPair* self, UnkU32FlagPair* other) { return Assign(self, other); }
+UnkU32FlagPair* fn_7100b192f4(UnkU32FlagPair* self, UnkU32FlagPair* other) { return AssignSet(self, other); }
+UnkU32ValuesPair* fn_7100b17a60(UnkU32ValuesPair* self, UnkU32ValuesPair* other) { return Assign(self, other); }
+UnkU32ValuesPair* fn_7100b17afc(UnkU32ValuesPair* self, UnkU32ValuesPair* other) { return AssignSet(self, other); }
+UnkU32Values2Pair* fn_7100c0aeb0(UnkU32Values2Pair* self, UnkU32Values2Pair* other) { return Assign(self, other); }
+UnkU32Values2Pair* fn_7100c0af54(UnkU32Values2Pair* self, UnkU32Values2Pair* other) { return AssignSet(self, other); }
+
+// An id and two values.
+struct UnkIdValues2 {
+    CStrId id;
+    u32 a;
+    u32 b;
+
+    UnkIdValues2& operator=(const UnkIdValues2& other) {
+        id = other.id;
+        a = other.a;
+        b = other.b;
+        return *this;
+    }
+};
+
+using UnkU32IdValuesPair = UnkValuePairRef<u32, UnkIdValues2>;
+
+UnkU32IdValuesPair* fn_7100eaee5c(UnkU32IdValuesPair* self, UnkU32IdValuesPair* other) { return Assign(self, other); }
+
+// Six values, an id and a half-word.
+struct UnkValuesIdHalf {
+    u32 field_0x0;
+    u32 field_0x4;
+    u32 field_0x8;
+    u32 field_0xc;
+    u32 field_0x10;
+    u32 field_0x14;
+    CStrId id;
+    u16 field_0x20;
+
+    UnkValuesIdHalf& operator=(const UnkValuesIdHalf& other) {
+        field_0x0 = other.field_0x0;
+        field_0x4 = other.field_0x4;
+        field_0x8 = other.field_0x8;
+        field_0xc = other.field_0xc;
+        field_0x10 = other.field_0x10;
+        field_0x14 = other.field_0x14;
+        id = other.id;
+        field_0x20 = other.field_0x20;
+        return *this;
+    }
+};
+
+using UnkIdValuesIdPair = UnkValuePairRef<CStrId, UnkValuesIdHalf>;
+
+// As Assign, comparing the other with self.
+template <class X, class Y>
+static inline UnkValuePairRef<X, Y>* AssignFrom(UnkValuePairRef<X, Y>* self, UnkValuePairRef<X, Y>* other) {
+    if (other != self) {
+        self->GetX() = other->GetX();
+        self->GetY() = other->GetY();
+    }
+    return self;
+}
+
+UnkIdValuesIdPair* fn_7100e5acb4(UnkIdValuesIdPair* self, UnkIdValuesIdPair* other) { return AssignFrom(self, other); }
+
+// An id and four values; two ids and a value.
+struct UnkIdValues4 {
+    CStrId id;
+    u32 field_0x8;
+    u32 field_0xc;
+    u32 field_0x10;
+    u32 field_0x14;
+
+    UnkIdValues4& operator=(const UnkIdValues4& other) {
+        id = other.id;
+        field_0x8 = other.field_0x8;
+        field_0xc = other.field_0xc;
+        field_0x10 = other.field_0x10;
+        field_0x14 = other.field_0x14;
+        return *this;
+    }
+};
+
+struct UnkIdsValue {
+    CStrId first;
+    CStrId second;
+    u32 field_0x10;
+
+    __attribute__((always_inline)) UnkIdsValue& operator=(const UnkIdsValue& other) {
+        first = other.first;
+        second = other.second;
+        field_0x10 = other.field_0x10;
+        return *this;
+    }
+};
+
+using UnkIdIdValues4Pair = UnkValuePairRef<CStrId, UnkIdValues4>;
+using UnkIdIdsValuePair = UnkValuePairRef<CStrId, UnkIdsValue>;
+
+UnkIdIdValues4Pair* fn_7100e70ab4(UnkIdIdValues4Pair* self, UnkIdIdValues4Pair* other) { return AssignFrom(self, other); }
+UnkIdIdsValuePair* fn_7100c8fcd8(UnkIdIdsValuePair* self, UnkIdIdsValuePair* other) { return Assign(self, other); }
+
+// A value and a string (assigned by fn_710007eaa0).
+struct UnkAssignedString {
+    u64 unk_0x0[6];
+
+    UnkAssignedString& operator=(const UnkAssignedString& other);
+};
+void fn_710007eaa0(UnkAssignedString* self, const UnkAssignedString* other);
+__attribute__((always_inline)) inline UnkAssignedString& UnkAssignedString::operator=(const UnkAssignedString& other) {
+    fn_710007eaa0(this, &other);
+    return *this;
+}
+
+struct UnkValueString {
+    u32 value;
+    UnkAssignedString string;
+
+    UnkValueString& operator=(const UnkValueString& other) {
+        value = other.value;
+        string = other.string;
+        return *this;
+    }
+};
+
+using UnkU32ValueStringPair = UnkValuePairRef<u32, UnkValueString>;
+
+UnkU32ValueStringPair* fn_7100b1ac58(UnkU32ValueStringPair* self, UnkU32ValueStringPair* other) { return Assign(self, other); }
+UnkU32ValueStringPair* fn_7100b1acf8(UnkU32ValueStringPair* self, UnkU32ValueStringPair* other) { return AssignSet(self, other); }
+
+// A value and an optional external array, with a pair referring to both: assignment copies the
+// value and the array pointer and rebinds the pair. The in-place array frees its storage.
+template <class T>
+struct UnkFreedVector : base::UnkVector<T> {
+    ~UnkFreedVector() { this->Free(); }
+};
+
+struct UnkBoundValueArray {
+    u32 value;
+    UnkFreedVector<u32>* array;
+    UnkValuePairRef<u32, UnkFreedVector<u32>> pair;
+};
+
+static inline UnkBoundValueArray* Assign(UnkBoundValueArray* self, const UnkBoundValueArray* other) {
+    if (self != other) {
+        self->value = other->value;
+        self->array = other->array;
+        if (self->array)
+            self->pair.Set(&self->value, self->array);
+        else
+            self->pair.Reset();
+    }
+    return self;
+}
+
+UnkBoundValueArray* fn_7100d3f08c(UnkBoundValueArray* self, const UnkBoundValueArray* other) { return Assign(self, other); }
+UnkBoundValueArray* fn_7100d3f14c(UnkBoundValueArray* self, const UnkBoundValueArray* other) { return Assign(self, other); }
+UnkBoundValueArray* fn_7100d3f514(UnkBoundValueArray* self, const UnkBoundValueArray* other) { return Assign(self, other); }
+UnkBoundValueArray* fn_7100d3f5d4(UnkBoundValueArray* self, const UnkBoundValueArray* other) { return Assign(self, other); }
+
+// As UnkBoundValueArray, with a string (destroyed by fn_710007ecd4) placed 0x10 into the pair.
+struct alignas(16) UnkFreedString {
+    u64 unk_0x0[6];
+
+    ~UnkFreedString();
+};
+void fn_710007ecd4(UnkFreedString* self);
+inline UnkFreedString::~UnkFreedString() { fn_710007ecd4(this); }
+
+struct UnkBoundValueString {
+    u32 value;
+    UnkFreedString* string;
+    UnkValuePairRef<u32, UnkFreedString> pair;
+};
+
+static inline UnkBoundValueString* Assign(UnkBoundValueString* self, const UnkBoundValueString* other) {
+    if (self != other) {
+        self->value = other->value;
+        self->string = other->string;
+        if (self->string)
+            self->pair.Set(&self->value, self->string);
+        else
+            self->pair.Reset();
+    }
+    return self;
+}
+
+UnkBoundValueString* fn_7100b15ac4(UnkBoundValueString* self, const UnkBoundValueString* other) { return Assign(self, other); }
+UnkBoundValueString* fn_7100b15b54(UnkBoundValueString* self, const UnkBoundValueString* other) { return Assign(self, other); }
+UnkBoundValueString* fn_7100b15ebc(UnkBoundValueString* self, const UnkBoundValueString* other) { return Assign(self, other); }
+UnkBoundValueString* fn_7100b15f4c(UnkBoundValueString* self, const UnkBoundValueString* other) { return Assign(self, other); }
+
+// A pair of an id and two arrays, set to refer to another pair's referents.
+struct UnkPairReleasedStrId {
+    base::global::UnkStringData* data;
+
+    ~UnkPairReleasedStrId() {
+        if (base::global::UnkStringPool* pool = g_unk_7101d47108) {
+            if (data && data != &pool->empty) {
+                --data->ref_count;
+                if (data->ref_count == 0) {
+                    fn_71000803a4(pool, data);
+                    pool = g_unk_7101d47108;
+                }
+            }
+            data = &pool->empty;
+        }
+    }
+};
+
+struct UnkVectorPair {
+    UnkFreedVector<u32> first;
+    UnkFreedVector<u32> second;
+    u64 unk_0x50[2];
+};
+
+using UnkIdVectorsPair = UnkValuePairRef<UnkPairReleasedStrId, UnkVectorPair>;
+
+static inline UnkIdVectorsPair* SetRefs(UnkIdVectorsPair* self, const UnkIdVectorsPair* other) {
+    if (self != other)
+        self->Set(other->refs.x, other->refs.y);
+    return self;
+}
+
+UnkIdVectorsPair* fn_7100e48460(UnkIdVectorsPair* self, const UnkIdVectorsPair* other) { return SetRefs(self, other); }
+UnkIdVectorsPair* fn_7100e4892c(UnkIdVectorsPair* self, const UnkIdVectorsPair* other) { return SetRefs(self, other); }
