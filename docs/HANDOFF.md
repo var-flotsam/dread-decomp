@@ -998,6 +998,21 @@ string-id keyed copies `fn_71000de3b0`/`fn_71000de8e8` (float elements), `fn_710
 `fn_71000de6b0` (4-byte elements), and reflection type getters whose frames differ
 (`fn_71000d5e74`, `fn_71000d5f4c`, `fn_71002475b0`).
 
+**Slice 1 near copies, batch 15** (stream 7, 2026-10-22): 38 functions **O** (`src/game_s1/`).
+Most are construction and assignment of the reflection collections' cached iterator values and
+value pairs, for other element and key types (`fn_71000cd580.cpp`, `fn_71000e0f70.cpp`). A
+`refl_IterValueMove` instantiation wrapped in a `flatten` function reproduces each move
+constructor. Elements that the original copies member by member need a user-written move
+constructor; with an implicit one the copy merges into wider loads. The copy constructor (state 1
+copied, state 2 read through the reference) is local. Pair equality over float vectors compares
+within a tolerance (0.001, or the global `g_unk_7101647774` read at each use). Also: string-id
+arrays (clears, guarded clears, moves; some in CFilePathStrId's pool), a string-id move-assign,
+a string-id pair assign, and a transform node angle setter that also keeps the negated z angle
+at 0x150 (negate the stored angle, not the argument, to get the integer `eor`). Left at 0-48%:
+copy- and move-assignment of 8-byte iterator values (`fn_71001f1d38`, `fn_71001f1db4`), a
+push-back that the copy file won't inline (`fn_71002a1778`, `fn_7100279ca0`), and drafts whose
+originals are generated (`mkcopy2` only finds hand-written originals).
+
 **dlmalloc 2.8.4 vendored** (stream 7, 2026-10-22, owner-approved): `lib/dlmalloc/` holds
 upstream `malloc.c` unmodified and `mspace.c` with the game's settings (README there). It was
 fetched from a mirror pinned to a commit in `tools/fetch_sources.py` and `data/sources.json`,
