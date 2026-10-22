@@ -62,7 +62,7 @@ address,size,name,name_source,subsystem,status
 0x7100502dd8,644,fn_7100502dd8,unknown,unknown,U
 0x710050305c,4,fn_710050305c,unknown,unknown,O
 0x7100503060,8,fn_7100503060,unknown,unknown,O
-0x7100503068,144,fn_7100503068,unknown,unknown,U
+0x7100503068,144,fn_7100503068,unknown,unknown,O
 0x71005030f8,76,fn_71005030f8,unknown,unknown,O
 0x7100503144,24,fn_7100503144,unknown,unknown,O
 0x710050315c,328,fn_710050315c,unknown,unknown,U
@@ -1894,7 +1894,7 @@ address,size,name,name_source,subsystem,status
 0x710057a138,236,fn_710057a138,unknown,unknown,U
 0x710057a224,160,fn_710057a224,unknown,unknown,U
 0x710057a2c4,232,fn_710057a2c4,unknown,unknown,U
-0x710057a3ac,148,fn_710057a3ac,unknown,unknown,U
+0x710057a3ac,148,fn_710057a3ac,unknown,unknown,O
 0x710057a440,140,fn_710057a440,unknown,unknown,O
 0x710057a4cc,4,fn_710057a4cc,unknown,unknown,O
 0x710057a4d0,244,CCharClassFulmiteBellyMineAIComponent::refl_GetClass,reflection,game/characters,O

@@ -65,7 +65,7 @@ address,size,name,name_source,subsystem,status
 0x7100401788,260,fn_7100401788,unknown,ai/behaviortree?,O
 0x710040188c,388,behaviortree::CCentralUnitAttackAction::refl_InitClass,reflection,ai/behaviortree,O
 0x7100401a10,4,fn_7100401a10,unknown,ai/behaviortree?,O
-0x7100401a14,140,fn_7100401a14,unknown,ai/behaviortree?,U
+0x7100401a14,140,fn_7100401a14,unknown,ai/behaviortree?,O
 0x7100401aa0,8,fn_7100401aa0,unknown,ai/behaviortree?,O
 0x7100401aa8,28,fn_7100401aa8,unknown,ai/behaviortree?,O
 0x7100401ac4,36,fn_7100401ac4,unknown,ai/behaviortree?,O
@@ -122,7 +122,7 @@ address,size,name,name_source,subsystem,status
 0x7100402b88,468,fn_7100402b88,unknown,ai/behaviortree?,O
 0x7100402d5c,388,behaviortree::CRinkaShootAction::refl_InitClass,reflection,ai/behaviortree,O
 0x7100402ee0,4,fn_7100402ee0,unknown,unknown,O
-0x7100402ee4,144,fn_7100402ee4,unknown,unknown,U
+0x7100402ee4,144,fn_7100402ee4,unknown,unknown,O
 0x7100402f74,8,fn_7100402f74,unknown,unknown,O
 0x7100402f7c,28,fn_7100402f7c,unknown,unknown,O
 0x7100402f98,36,fn_7100402f98,unknown,unknown,O
@@ -345,7 +345,7 @@ address,size,name,name_source,subsystem,status
 0x7100416db8,200,fn_7100416db8,unknown,game/characters?,O
 0x7100416e80,316,fn_7100416e80,unknown,game/characters?,O
 0x7100416fbc,36,fn_7100416fbc,unknown,game/characters?,O
-0x7100416fe0,136,fn_7100416fe0,unknown,game/characters?,U
+0x7100416fe0,136,fn_7100416fe0,unknown,game/characters?,O
 0x7100417068,92,fn_7100417068,unknown,game/characters?,O
 0x71004170c4,28,fn_71004170c4,unknown,game/characters?,O
 0x71004170e0,8,fn_71004170e0,unknown,game/characters?,O
