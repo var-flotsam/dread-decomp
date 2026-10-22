@@ -927,6 +927,14 @@ the constructors take four or six arguments), registers their destructors and 45
 Every global and callback is reached through the GOT, so all are plain `extern`s. The source was
 written mechanically from the call sequence, with the helpers in `UnkStaticInitS7.h`.
 
+**Exact copies of matched functions** (stream 7, claimed 2026-10-22): a whole-binary scan for `U`
+functions whose instructions equal an `O` function's (local branches normalised, calls and page
+addresses identical) found 115 (27 KB); 114 are written as copies of their originals' source in
+`src/game_s7/` (one file per original file, named after its first copy; each lists its copies),
+and `fn_71004a84c8` stays with stream 2. Several were "tried and left" by the clone rounds above
+(0x7100287de8, 0x71000df388, 0x7100020898, 0x71000d1fec, 0x71002444f4); the hand-matched originals
+now cover them. Rerun the scan after each batch of new matches: new `O` functions bring new copies.
+
 **Render resource types** (stream 7): `fn_71001b1dd0` (**m**, 2.5 KB) registers nine render
 resource types through a record with an out-of-line constructor and destructor (`fn_71000e9a7c`,
 `fn_71000e8dd0`). Findings: this TU's file-path ids decrement and test in two steps and assign as
