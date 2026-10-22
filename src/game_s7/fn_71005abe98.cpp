@@ -1,4 +1,4 @@
-// Copies of fn_7100b87488 (src/game_aca57c/fn_7100ad4b54.cpp) for other types, with their own callees and data (the names, strings and comments below are the original's): fn_71005abe98, fn_71005abf48.
+// Copies of fn_7100b87488 (src/game_aca57c/fn_7100ad4b54.cpp) for other types, with their own callees and data (they name their own callees, data and strings; the comments describe the original): fn_71005abe98, fn_71005abf48.
 // Getters building a value of kind 2 (fn_71000a18d4 fills in the rest from the type the value is
 // described by): words of the translation unit's globals, a zero, flags of an object and a vector.
 #include "types.h"

@@ -1,4 +1,4 @@
-// Copies of fn_71002f7324 (src/game_s2/fn_71002f7324.cpp) for other types, with their own callees and data (the names, strings and comments below are the original's): fn_7100020790, fn_71000214ec, fn_7100022240, fn_7101025ccc.
+// Copies of fn_71002f7324 (src/game_s2/fn_71002f7324.cpp) for other types, with their own callees and data (they name their own callees, data and strings; the comments describe the original): fn_7100020790, fn_71000214ec, fn_7100022240, fn_7101025ccc.
 // Looks up an entry of a hash table of reference-counted objects, keyed by the object at +0x8 of `key`
 // (its hash is the xor of two words at +0x30), and returns a counted reference to it. A missing entry is
 // created through the table's vtable slot at +0x48.

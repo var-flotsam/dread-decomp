@@ -1,4 +1,4 @@
-// Copies of fn_71002b5698 (src/game_s2/fn_71002b5698.cpp) for other types, with their own callees and data (the names, strings and comments below are the original's): fn_7101002998.
+// Copies of fn_71002b5698 (src/game_s2/fn_71002b5698.cpp) for other types, with their own callees and data (they name their own callees, data and strings; the comments describe the original): fn_7101002998.
 // Node routine that calls fn_71002b6094 and releases the string id at +0x0.
 #include <new>
 

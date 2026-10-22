@@ -1,4 +1,4 @@
-// Copies of fn_7100acd5d0 (src/game_aca57c/fn_7100adcf10.cpp) for other types, with their own callees and data (the names, strings and comments below are the original's): fn_71009ba9f0.
+// Copies of fn_7100acd5d0 (src/game_aca57c/fn_7100adcf10.cpp) for other types, with their own callees and data (they name their own callees, data and strings; the comments describe the original): fn_71009ba9f0.
 // More per-TU static initialisers (helpers in game/UnkTUInit.h; see also fn_7100b04900.cpp):
 // some TUs' data has function records after the header, and collection and vector types are
 // registered for the reflected containers.
@@ -546,25 +546,25 @@ void fn_7100075104(void* self);
 UnkReflType* fn_7100009658();  // base::reflection::refl_GetType<base::global::CStrId>
 void fn_710007ecd4(void* str);  // CRntString destructor
 
-extern UnkTUHeader g_unk_7172755cf8 __attribute__((visibility("hidden")));
-extern CStrId g_unk_7172755d10 __attribute__((visibility("hidden")));
+extern UnkTUHeader g_unk_717273d710 __attribute__((visibility("hidden")));
+extern CStrId g_unk_717273d728 __attribute__((visibility("hidden")));
 CStrId fn_7100de8f78(const CStrId& name);
 void fn_7100acb4ac();  // CWorldGraph::refl_GetClass
-extern char g_unk_7172755cf0;
+extern char g_unk_717273d6f8;
 
 // The id lives in an inline function: its guard and object are reached through the GOT.
-inline const CStrId& WorldGraphId() {
-    static CStrId s_id("WORLDGRAPH", true);
+inline const CStrId& ChangeStageNavmeshItemId() {
+    static CStrId s_id("CHANGE_STAGE_NAVMESH_ITEM", true);
     return s_id;
 }
 
 void fn_71009b9654();
 void fn_71009ba9f0() {
-    InitHeader(g_unk_7172755cf8);
-    new (&g_unk_7172755d10) CStrId(fn_7100de8f78(WorldGraphId()));
-    fn_7100000250(fn_710000051c, &g_unk_7172755d10, &g_unk_7101a19000);
+    InitHeader(g_unk_717273d710);
+    new (&g_unk_717273d728) CStrId(fn_7100de8f78(ChangeStageNavmeshItemId()));
+    fn_7100000250(fn_710000051c, &g_unk_717273d728, &g_unk_7101a19000);
     fn_71009b9654();
-    fn_710009ec00(&g_unk_7172755cf0, TUType<0x10>(g_unk_7172755d10));
+    fn_710009ec00(&g_unk_717273d6f8, TUType<0x10>(g_unk_717273d728));
 }
 
 extern UnkTUHeader g_unk_7172756998 __attribute__((visibility("hidden")));

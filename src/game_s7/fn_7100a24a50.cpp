@@ -1,4 +1,4 @@
-// Copies of fn_7100e7cdfc (src/game_aca57c/fn_7100ca3be4.cpp) for other types, with their own callees and data (the names, strings and comments below are the original's): fn_7100a24a50, fn_71009bd8c0.
+// Copies of fn_7100e7cdfc (src/game_aca57c/fn_7100ca3be4.cpp) for other types, with their own callees and data (they name their own callees, data and strings; the comments describe the original): fn_7100a24a50, fn_71009bd8c0.
 // The destructors of reflected property types (vtable 0x7101aa52d0, used for
 // CBreakableTileManager's "PB_AND_SM" and "VIGNETTE" properties, and 0x7101ca9ea0): the string
 // id at 0x170 is released, then the base property (vtable 0x7101a889c8) destroys its value
@@ -18,7 +18,8 @@ void fn_710007ed40(void* self);
 
 extern void* g_unk_7101a889c8[];
 extern void* g_unk_7101aa52d0[];
-extern void* g_unk_7101ca9ea0[];
+extern void* g_unk_7101a88970[];
+extern void* g_unk_7101a8d830[];
 
 // A string id whose destructor reloads the id after the decrement.
 struct UnkReleasedStrId {
@@ -74,10 +75,11 @@ struct UnkIdPropertyT : UnkPropertyBase {
 using UnkIdProperty = UnkIdPropertyT<g_unk_7101aa52d0>;
 static_assert(sizeof(UnkIdProperty) == 0x178, "UnkIdProperty layout");
 
-// The same destructor for another property type (vtable 0x7101ca9ea0).
-using UnkIdProperty2 = UnkIdPropertyT<g_unk_7101ca9ea0>;
+// The same destructor for two other property types (vtables 0x7101a8d830 and 0x7101a88970).
+using UnkIdProperty2 = UnkIdPropertyT<g_unk_7101a8d830>;
+using UnkIdProperty3 = UnkIdPropertyT<g_unk_7101a88970>;
 
 void fn_7100a24a50(UnkIdProperty2* self) { self->~UnkIdPropertyT(); }
 
-void fn_71009bd8c0(UnkIdProperty2* self) { self->~UnkIdPropertyT(); }
+void fn_71009bd8c0(UnkIdProperty3* self) { self->~UnkIdPropertyT(); }
 

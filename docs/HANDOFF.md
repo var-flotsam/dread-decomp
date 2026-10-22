@@ -1002,10 +1002,13 @@ the GOT slot holds (the slot holds the vtable itself; `&Vtable[2]` is what gets 
 scratch check compares each `fn_`/`g_unk_` relocation of an **O** function against the original
 instruction at the same offset (b/bl targets, ADRP pages, low-12 offsets, and for GOT loads a slot
 holding that address); worth adding to `check.py` (owner's call). Over `src/game_s7/` and
-`src/game_s1/` it finds nothing else except the older stream 7 copy files whose headers say the
-names inside are the original's (about 670 references in 24 files). Those copies call the
-original's callees and read its data, which is right for matching but wrong for a port; renaming
-them to their own targets is open cleanup. Batch 12's copies already name their own.
+`src/game_s1/` it now finds nothing. The older stream 7 copy files used to call the original's
+callees and read its data (about 670 references in 24 files: right for matching, wrong for a
+port); they now name their own callees, data and strings, and their headers say only the comments
+describe the original. Where a shared helper held the name, the helper takes it as a template
+argument (the string pool of `UnkReleasedStrIdT`, the vtable of `UnkIdPropertyT`, the owner
+assignment of `UnkCallbackSet`). The scratch renamer that did this (each relocation's original
+target, renamed inside that function only) is the same check run the other way.
 
 **Field registrations the reflection parser stopped at** (stream 7, 2026-10-22), both **O**:
 CCharClassAIComponent's member fields (`fn_7100408c20`, 33 KB, 142 fields, the giant-functions

@@ -1,4 +1,4 @@
-// Copies of fn_71002fd814 (src/game_s2/fn_71002fd814.cpp) for other types, with their own callees and data (the names, strings and comments below are the original's): fn_71008397f4, fn_7100723cf0, fn_7100723e20, fn_710072b9e0, fn_71007ba354, fn_710115a9e8.
+// Copies of fn_71002fd814 (src/game_s2/fn_71002fd814.cpp) for other types, with their own callees and data (they name their own callees, data and strings; the comments describe the original): fn_71008397f4, fn_7100723cf0, fn_7100723e20, fn_710072b9e0, fn_71007ba354, fn_710115a9e8.
 // Gives the holder a weak reference when it has none or the one it has lost its target: the holder's
 // handle is made to refer to the weak handle of the object fn_7100303054 returns (created on first
 // use), or to nothing when there is no such object.

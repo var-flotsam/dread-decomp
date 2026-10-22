@@ -1,4 +1,4 @@
-// Copies of fn_7100d87614 (src/game_aca57c/fn_7100adae44.cpp) for other types, with their own callees and data (the names, strings and comments below are the original's): fn_7100245b60, fn_7101130b50.
+// Copies of fn_7100d87614 (src/game_aca57c/fn_7100adae44.cpp) for other types, with their own callees and data (they name their own callees, data and strings; the comments describe the original): fn_7100245b60, fn_7101130b50.
 // Assignments of a pair of values held either in place or by reference (state 2), from another
 // such pair: read and written through the state-dependent accessors.
 #include <new>
@@ -408,40 +408,43 @@ static_assert(sizeof(UnkIdPolyRecord) == 0x138, "");
 using UnkU32PolyRecordPair = UnkValuePairRef<u32, UnkIdPolyRecord>;
 
 // A callback set (as in src/game_s4/fn_71008947b8.cpp): a vtable, an array assigned by
-// fn_710023b29c, a value and an owner reference assigned by fn_710031d208.
+// fn_710023b29c, a value and an owner reference assigned by AssignOwner.
 struct UnkCallbackArray {
     u64 unk_0x0[5];
 };
 UnkCallbackArray* fn_710023b29c(UnkCallbackArray* self, const UnkCallbackArray* other);
 
 struct UnkCallbackOwner;
-void fn_710031d208(UnkCallbackOwner** self, UnkCallbackOwner* const* other);
+void fn_71006eb8cc(UnkCallbackOwner** self, UnkCallbackOwner* const* other);
+struct UnkCallbackHandle;
+void fn_7100234f78(UnkCallbackHandle** self, UnkCallbackHandle* const* other);
 
+template <class Owner, void (*AssignOwner)(Owner**, Owner* const*)>
 struct UnkCallbackSet {
     void* vtable;
     UnkCallbackArray callbacks;
     u32 field_0x30;
-    UnkCallbackOwner* owner;
+    Owner* owner;
 
     __attribute__((always_inline)) UnkCallbackSet& operator=(const UnkCallbackSet& other) {
-        UnkCallbackOwner* const* from = &other.owner;
-        fn_710031d208(&owner, from);
+        Owner* const* from = &other.owner;
+        AssignOwner(&owner, from);
         field_0x30 = other.field_0x30;
         fn_710023b29c(&callbacks, &other.callbacks);
         return *this;
     }
 };
 
-using UnkU32CallbacksPair = UnkValuePairRef<u32, UnkCallbackSet>;
+using UnkU32HandleCallbacksPair = UnkValuePairRef<u32, UnkCallbackSet<UnkCallbackHandle, fn_7100234f78>>;
+using UnkU32CallbacksPair = UnkValuePairRef<u32, UnkCallbackSet<UnkCallbackOwner, fn_71006eb8cc>>;
 
-void fn_7100234f78(UnkCallbackOwner** self, UnkCallbackOwner* const* other);
-UnkU32CallbacksPair* fn_7100245b60(UnkU32CallbacksPair* self, UnkU32CallbacksPair* other) { return Assign(self, other); }
+UnkU32HandleCallbacksPair* fn_7100245b60(UnkU32HandleCallbacksPair* self, UnkU32HandleCallbacksPair* other) {
+    return Assign(self, other);
+}
 
 UnkU32CallbacksPair* fn_7101130b50(UnkU32CallbacksPair* self, UnkU32CallbacksPair* other) { return Assign(self, other); }
 
 // Three values and a callback set whose owner is a handle assigned by fn_7100234f78.
-struct UnkCallbackHandle;
-void fn_7100234f78(UnkCallbackHandle** self, UnkCallbackHandle* const* other);
 
 struct UnkHandleCallbackSet {
     void* vtable;

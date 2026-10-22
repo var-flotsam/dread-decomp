@@ -1,4 +1,4 @@
-// Copies of fn_7100c07eb0 (src/game_aca57c/fn_7100d82864.cpp) for other types, with their own callees and data (the names, strings and comments below are the original's): fn_710105d328.
+// Copies of fn_7100c07eb0 (src/game_aca57c/fn_7100d82864.cpp) for other types, with their own callees and data (they name their own callees, data and strings; the comments describe the original): fn_710105d328.
 // Handlers taking reflected values and returning a status record {0, 0, 2, 1}: calls with a
 // value and an optional pointer, a bounds reset over point lists, a string-id array copy and
 // erasing an element of an array of 0x58-byte polymorphic records.

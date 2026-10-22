@@ -1,4 +1,4 @@
-// Copies of fn_7100c9022c (src/game_aca57c/fn_7100ad4b54.cpp) for other types, with their own callees and data (the names, strings and comments below are the original's): fn_710000dc80, fn_710000df24.
+// Copies of fn_7100c9022c (src/game_aca57c/fn_7100ad4b54.cpp) for other types, with their own callees and data (they name their own callees, data and strings; the comments describe the original): fn_710000dc80, fn_710000df24.
 // Getters building a value of kind 2 (fn_71000a18d4 fills in the rest from the type the value is
 // described by): words of the translation unit's globals, a zero, flags of an object and a vector.
 #include "types.h"
@@ -102,7 +102,7 @@ void* fn_7100c828a4();  // CCutSceneDef::CActorDef::refl_GetClass
 void* fn_7100c84768();  // CCutSceneDef::CAnimationLayerDef::refl_GetClass
 void* fn_7100c85d3c();  // CCutSceneDef::CTakeDef::refl_GetClass
 extern u8 g_unk_7172794c08[] __attribute__((visibility("hidden")));
-extern u8 g_unk_7172794d40[] __attribute__((visibility("hidden")));
+extern u8 g_unk_7101d4cfb0[] __attribute__((visibility("hidden")));
 extern u8 g_unk_7172794e78[] __attribute__((visibility("hidden")));
 
 template <u32 Size>
@@ -131,11 +131,11 @@ __attribute__((always_inline)) static inline UnkValue GetDef(UnkArgument<UnkDefI
 
 void* fn_710000a7cc();
 UnkValue fn_710000dc80(void* unused, UnkArgument<UnkDefIterValue<0x18>>* argument) {
-    return GetDef<0x18, fn_710000a7cc, g_unk_7172794d40>(argument);
+    return GetDef<0x18, fn_710000a7cc, g_unk_7101d4cfb0>(argument);
 }
 
 UnkValue fn_710000df24(void* unused, UnkArgument<UnkDefIterValue<0x18>>* argument) {
-    return GetDef<0x18, fn_710000a7cc, g_unk_7172794d40>(argument);
+    return GetDef<0x18, fn_710000a7cc, g_unk_7101d4cfb0>(argument);
 }
 
 // Values of kind 2 holding a manager singleton, created on first use (allocated with flags 0x3f or

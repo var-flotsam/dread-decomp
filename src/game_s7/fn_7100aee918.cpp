@@ -1,4 +1,4 @@
-// Copies of fn_7100e5854c (src/game_aca57c/fn_7100d3d424.cpp) for other types, with their own callees and data (the names, strings and comments below are the original's): fn_7100aee918.
+// Copies of fn_7100e5854c (src/game_aca57c/fn_7100d3d424.cpp) for other types, with their own callees and data (they name their own callees, data and strings; the comments describe the original): fn_7100aee918.
 // Resets and assignments of small holders of string ids: a two-state variant (state 1 holds a
 // string id and a reference; state 2 holds nothing to destroy) reset to state 0, a counted
 // array of ids stored after its count, and a move-assignment of an id with two values that

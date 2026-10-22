@@ -1,4 +1,4 @@
-// Copies of fn_7100eaf85c (src/game_aca57c/fn_7100ad17ec.cpp) for other types, with their own callees and data (the names, strings and comments below are the original's): fn_710104ed30, fn_710104f8e0.
+// Copies of fn_7100eaf85c (src/game_aca57c/fn_7100ad17ec.cpp) for other types, with their own callees and data (they name their own callees, data and strings; the comments describe the original): fn_710104ed30, fn_710104f8e0.
 // Equality of two iterator values over 0x80-byte records keyed by a word (base::UnkIterValue's
 // layout, the state at 0x88): the keys are compared, then the records by their word at 8.
 #include "base/UnkCollectionIter.h"
