@@ -2817,7 +2817,7 @@ address,size,name,name_source,subsystem,status
 0x710107a2f0,176,lua_bind::ForceConvertToSamus,string,script/bindings,U
 0x710107a3a0,620,lua_bind::RecoverSpecialEnergy,string,script/bindings,U
 0x710107a610,620,lua_bind::GetPlayerEnergyStatus,string,script/bindings,U
-0x710107a880,3200,lua_bind::GainAllItemsAndPowerUps,string,script/bindings,U
+0x710107a880,3200,lua_bind::GainAllItemsAndPowerUps,string,script/bindings,O
 0x710107b500,1392,lua_bind::GetPlayerCurrentModeGuns,string,script/bindings,U
 0x710107ba70,412,lua_bind::GetPlayerSpecialEnergyStatus,string,script/bindings,U
 0x710107bc10,68,lua_bind::SetPlayerMaxLifeOverride,string,script/bindings,U

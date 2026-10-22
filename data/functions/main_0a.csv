@@ -4190,7 +4190,7 @@ address,size,name,name_source,subsystem,status
 0x7100aaa914,480,fn_7100aaa914,unknown,game?,U
 0x7100aaaaf4,384,fn_7100aaaaf4,unknown,game?,U
 0x7100aaac74,12,fn_7100aaac74,unknown,game?,O
-0x7100aaac80,4124,fn_7100aaac80,unknown,game?,U
+0x7100aaac80,4124,fn_7100aaac80,unknown,game?,O
 0x7100aabc9c,272,fn_7100aabc9c,unknown,game?,U
 0x7100aabdac,416,fn_7100aabdac,unknown,game?,U
 0x7100aabf4c,184,fn_7100aabf4c,unknown,game?,U

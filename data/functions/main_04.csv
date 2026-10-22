@@ -5170,7 +5170,7 @@ address,size,name,name_source,subsystem,status
 0x71004d757c,76,fn_71004d757c,unknown,unknown,O
 0x71004d75c8,180,fn_71004d75c8,unknown,unknown,U
 0x71004d767c,160,fn_71004d767c,unknown,unknown,U
-0x71004d771c,216,fn_71004d771c,unknown,unknown,U
+0x71004d771c,216,fn_71004d771c,unknown,unknown,O
 0x71004d77f4,208,fn_71004d77f4,unknown,unknown,U
 0x71004d78c4,24,fn_71004d78c4,unknown,unknown,U
 0x71004d78dc,164,fn_71004d78dc,unknown,unknown,U

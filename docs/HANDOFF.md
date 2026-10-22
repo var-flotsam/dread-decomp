@@ -716,6 +716,20 @@ static: a class name id built on first use, `InitClassIdFrom`) were converted fr
 code directly. Still `U`: `fn_7100eb4510` (an inlined vector reserve with a virtual allocator) and
 `fn_71001e0820` (merged globals: the original folds one id's address into a post-indexed store).
 
+Other functions above 2 KB (2026-10-22), all **O**: `lua_bind::GainAllItemsAndPowerUps`
+(`fn_710107a880`, 37 item grants through a lazily built qualified id, `fn_7100ae9a10`), a
+property-bag serializer (`fn_7100bda920`), a shape-pair collision dispatch (`fn_7100d541c0`) and
+a 64-hit query (`fn_7100aaac80`). The property bag (`src/game_s7/UnkPropBagS7.h`: two vectors and
+a lock, keys from the id table `fn_7100031894` builds, setters `fn_710033187c` float,
+`fn_710050f4ac` bool, `fn_710050e4dc` string, `fn_7100aa3b9c` u32, destructor `fn_710050e8e4`)
+is used by 121 `U` functions (121 KB, most under 2 KB). Findings: the lock is a member with its
+own constructor (calling `fn_710007be8c` from the bag's constructor body moves it after the second
+vector); a call whose `x0` is left as it is (the dispatch's handlers) takes an empty struct by
+value first; a local array of 64 elements with default member initialisers is fully unrolled, and
+a counter declared after it lands below it on the stack (declare it first). Tried and left: the
+other collision dispatch `fn_7100d51368` (4 KB, inlined geometry per case) and constructors that
+inline a vector reserve (`fn_7100ee1f34`).
+
 ## Known issues and gotchas
 
 - **Linux:** the tools also run on Linux with upstream clang+llvm 9.0.1 (the Linux release tarball, with a `bin/clang++.exe` symlink to `clang++` at the path `fetch_toolchains.clang_path` expects) and `llvm-cxxfilt` on PATH. Results are identical to Windows.
