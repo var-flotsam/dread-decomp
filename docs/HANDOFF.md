@@ -769,6 +769,18 @@ Music volume overrides by stream id (`src/game_s7/fn_71010182fc.cpp`): the sette
 73-case switch on the id's CRC-64 (signed). Clang's compare tree comes out the same when the cases
 are written in the order of their bodies in the binary. The getter's unmatched ids branch to a
 `ret` shared with a case in the middle; ours go to the last one.
+Three more long repeated functions are **O** in `src/game_s7/`. `fn_7100fc4b34` (8.4 KB) reads
+about 50 tuning values from two property sets: each value is reset, then read by its definition's
+qualified id from a section keyed in the id table, through a `Get<Reader>` template. The four
+locals of the last two flags have to be function-scope so they get separate stack slots.
+`fn_71011415f4` (3.4 KB) clears a component's flag set and re-adds 30 ids. The id is copied with
+`memcpy`, then retained, as in the state-list `Add`. `fn_7100d92158` (7.4 KB) registers 29
+descriptors: a temporary entry is built by `fn_710002003c`, passed to `fn_710002002c`, and its ids
+are released in two steps. Three of the descriptors get a factory singleton created on first use.
+The `fn_71002a5d1c` family (about 16 U functions of 2 to 5 KB, such as `fn_7100566930` and
+`fn_71005679f0`) looks like libc++ sort helpers. Their 0x44-byte element holds two weak handles,
+assigned with `fn_71002a5d1c`, and 14 words, and it is sorted by the float at +0x18. The libc++
+excerpt in `lib/libcxx/sort.h` should cover them, as it did for `fn_710117d4d0`.
 
 ## Known issues and gotchas
 

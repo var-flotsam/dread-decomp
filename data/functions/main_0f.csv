@@ -5025,7 +5025,7 @@ address,size,name,name_source,subsystem,status
 0x7100fc41e4,720,fn_7100fc41e4,unknown,unknown,U
 0x7100fc44b4,396,fn_7100fc44b4,unknown,unknown,U
 0x7100fc4640,1268,fn_7100fc4640,unknown,unknown,U
-0x7100fc4b34,8408,fn_7100fc4b34,unknown,unknown,U
+0x7100fc4b34,8408,fn_7100fc4b34,unknown,unknown,O
 0x7100fc6c0c,8,fn_7100fc6c0c,unknown,unknown,O
 0x7100fc6c14,292,fn_7100fc6c14,unknown,unknown,U
 0x7100fc6d38,212,fn_7100fc6d38,unknown,unknown,U
