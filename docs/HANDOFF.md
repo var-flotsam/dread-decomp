@@ -734,6 +734,16 @@ weak inline `static const CStrId` kind id (`Kind_LIFE()` and so on, reached thro
 comparison must take both ids by reference (`SameId(Kind(), comp->owner->id)`) or the owner load
 is hoisted. `fn_710092f204` (melee hit-effect path from 15 local statics) stays **m**: the
 original tests kind 5 before kind 2 and duplicates each item id's out-of-line first-use build.
+Property handlers, all **O**: `fn_7101129240`, `fn_71010d3508`, `fn_710111dc08` (11 KB). Each
+compares a property's name with keys from the id table and reads the value from the property's
+stream (`fn_710007cf30`) or writes it there (`fn_710007cb4c`), falling back to
+`fn_71010c4250`; helpers are in `src/game_s7/UnkPropS7.h`. Findings: the id table needs a sized
+type (with the empty `UnkReflSingleton`, Clang decides no store can reach a key and drops the
+reloads); the key's use count is a union member but the property name's is not, while the
+property's name pointer is; the stream functions return an integer (a pointer compare changes
+the branch weights and the block layout), and handlers return `u32` (with `bool`, the base
+handler's result is masked on return). More callers of these stream functions are under 2 KB
+(`fn_7101171fcc`, `fn_71010e4ab8`, `fn_71011608b4`, `fn_71010c4250` itself).
 
 ## Known issues and gotchas
 
