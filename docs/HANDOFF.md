@@ -942,6 +942,15 @@ A third pass (also masking the offsets of loads and stores whose base came from 
 found 56 more `U` copies of 30 originals, claimed by stream 7 on 2026-10-22; the largest family is
 `fn_7100d2ac00` (8 copies, in `fn_7100a15260.cpp`). Copy files keep the original's names, strings
 and comments (asmdiff masks data), and their first line says so.
+The two copies of `fn_71002430e8` (a generated clone, `refl_StrIdHashErase`) that release their
+keys through CFilePathStrId's pool, `fn_71000741d4` and `fn_71011aa6a0`, are stream 7's (**O**).
+Stream 7 probed the id table's destructor `fn_71000407f0` (96 KB, see "Giant functions") on
+2026-10-22 and left it: built as a defaulted destructor of the generated table it reloads the pool
+at the same ids as the original (every 99), but the pool's register is swapped in each stretch. The
+original's first stretch keeps the pool in x8 (its first load still reads `this` from x0, before
+the copy to x19); ours copies `this` first and keeps the pool in x0, and a 3-id table is all x0.
+Ten more shapes of the id destructor (an early return, no local pool, a cached empty pointer,
+`__builtin_expect` on each test, `always_inline`) don't change that.
 
 **Render resource types** (stream 7): `fn_71001b1dd0` (**m**, 2.5 KB) registers nine render
 resource types through a record with an out-of-line constructor and destructor (`fn_71000e9a7c`,
