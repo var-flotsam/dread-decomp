@@ -4010,7 +4010,7 @@ address,size,name,name_source,subsystem,status
 0x7100ef1580,136,fn_7100ef1580,unknown,unknown,U
 0x7100ef1608,536,fn_7100ef1608,unknown,unknown,O
 0x7100ef1820,336,fn_7100ef1820,unknown,unknown,O
-0x7100ef1970,332,fn_7100ef1970,unknown,unknown,U
+0x7100ef1970,332,fn_7100ef1970,unknown,unknown,O
 0x7100ef1abc,340,fn_7100ef1abc,unknown,unknown,U
 0x7100ef1c10,276,fn_7100ef1c10,unknown,unknown,U
 0x7100ef1d24,248,fn_7100ef1d24,unknown,unknown,U

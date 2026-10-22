@@ -854,6 +854,10 @@ of line:
 - `fn_7100c75e40`: by a key, then nearest first in 2D. `__sort`, `__sort4` and `__sort5` are **O**.
   `__sort3` and the insertion sorts are **m**: the original loads the first entry before the
   branch that picks the swap.
+
+Copies of slice 2's `fn_71002dacc0` (a pair of empty string ids) outside slice 2's range,
+`fn_7100a8e07c` and `fn_7100ef1970`, are stream 7's (coordinator's call, 2026-10-22): both **O**
+in `src/game_s7/fn_7100a8e07c.cpp`.
 All seven are done (2026-10-22), each through `UnkIter`: every function is **O** except
 `fn_7100744000`'s own `__sort` (**m**, below).
 - `fn_7100742750` compares with a plain function pointer. With a comparator type that isn't

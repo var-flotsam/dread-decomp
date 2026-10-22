@@ -3550,7 +3550,7 @@ address,size,name,name_source,subsystem,status
 0x7100a8d7c8,1236,fn_7100a8d7c8,unknown,game/components?,O
 0x7100a8dc9c,388,CTeleporterUsableComponent::refl_InitClass,reflection,game/components,O
 0x7100a8de20,604,fn_7100a8de20,unknown,game/components?,U
-0x7100a8e07c,332,fn_7100a8e07c,unknown,game/components?,U
+0x7100a8e07c,332,fn_7100a8e07c,unknown,game/components?,O
 0x7100a8e1c8,688,fn_7100a8e1c8,unknown,game/components?,U
 0x7100a8e478,36,fn_7100a8e478,unknown,game/components?,O
 0x7100a8e49c,36,fn_7100a8e49c,unknown,game/components?,O

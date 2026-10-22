@@ -50,12 +50,12 @@ address,size,name,name_source,subsystem,status
 0x7100502594,44,fn_7100502594,unknown,unknown,O
 0x71005025c0,100,fn_71005025c0,unknown,unknown,O
 0x7100502624,4,fn_7100502624,unknown,unknown,O
-0x7100502628,168,fn_7100502628,unknown,unknown,U
+0x7100502628,168,fn_7100502628,unknown,unknown,m
 0x71005026d0,408,fn_71005026d0,unknown,unknown,U
 0x7100502868,24,fn_7100502868,unknown,unknown,O
 0x7100502880,92,fn_7100502880,unknown,unknown,O
 0x71005028dc,8,fn_71005028dc,unknown,unknown,O
-0x71005028e4,176,fn_71005028e4,unknown,unknown,U
+0x71005028e4,176,fn_71005028e4,unknown,unknown,m
 0x7100502994,4,fn_7100502994,unknown,unknown,O
 0x7100502998,152,fn_7100502998,unknown,unknown,U
 0x7100502a30,936,fn_7100502a30,unknown,unknown,U
