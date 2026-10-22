@@ -3095,7 +3095,7 @@ address,size,name,name_source,subsystem,status
 0x710039db88,388,behaviortree::CIsTargetAtDistanceCondition::refl_InitClass,reflection,ai/behaviortree,O
 0x710039dd0c,4,fn_710039dd0c,unknown,ai/behaviortree?,O
 0x710039dd10,36,fn_710039dd10,unknown,ai/behaviortree?,O
-0x710039dd34,140,fn_710039dd34,unknown,ai/behaviortree?,U
+0x710039dd34,140,fn_710039dd34,unknown,ai/behaviortree?,O
 0x710039ddc0,28,fn_710039ddc0,unknown,ai/behaviortree?,O
 0x710039dddc,8,fn_710039dddc,unknown,ai/behaviortree?,O
 0x710039dde4,8,fn_710039dde4,unknown,ai/behaviortree?,O
@@ -5320,7 +5320,7 @@ address,size,name,name_source,subsystem,status
 0x71003f5f3c,396,fn_71003f5f3c,unknown,unknown,U
 0x71003f60c8,444,fn_71003f60c8,unknown,unknown,U
 0x71003f6284,36,fn_71003f6284,unknown,unknown,O
-0x71003f62a8,176,fn_71003f62a8,unknown,unknown,U
+0x71003f62a8,176,fn_71003f62a8,unknown,unknown,O
 0x71003f6358,8,fn_71003f6358,unknown,unknown,O
 0x71003f6360,28,fn_71003f6360,unknown,unknown,O
 0x71003f637c,8,fn_71003f637c,unknown,unknown,O

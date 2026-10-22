@@ -833,7 +833,7 @@ address,size,name,name_source,subsystem,status
 0x7100426b54,284,fn_7100426b54,unknown,game/ai?,O
 0x7100426c70,4,fn_7100426c70,unknown,game/ai?,O
 0x7100426c74,8,fn_7100426c74,unknown,game/ai?,O
-0x7100426c7c,360,fn_7100426c7c,unknown,game/ai?,U
+0x7100426c7c,360,fn_7100426c7c,unknown,game/ai?,O
 0x7100426de4,464,fn_7100426de4,unknown,game/ai?,U
 0x7100426fb4,148,fn_7100426fb4,unknown,game/ai?,U
 0x7100427048,1336,fn_7100427048,unknown,game/ai?,U
@@ -1409,7 +1409,7 @@ address,size,name,name_source,subsystem,status
 0x7100443938,388,CChozoCommanderZeroLaserAttack::refl_InitClass,reflection,game/ai,O
 0x7100443abc,104,fn_7100443abc,unknown,game/ai?,O
 0x7100443b24,96,fn_7100443b24,unknown,game/ai?,O
-0x7100443b84,148,fn_7100443b84,unknown,game/ai?,U
+0x7100443b84,148,fn_7100443b84,unknown,game/ai?,O
 0x7100443c18,124,fn_7100443c18,unknown,game/ai?,O
 0x7100443c94,200,fn_7100443c94,unknown,game/ai?,O
 0x7100443d5c,336,fn_7100443d5c,unknown,game/ai?,O
@@ -1801,7 +1801,7 @@ address,size,name,name_source,subsystem,status
 0x710045bc94,24,fn_710045bc94,unknown,unknown,O
 0x710045bcac,92,fn_710045bcac,unknown,unknown,O
 0x710045bd08,8,fn_710045bd08,unknown,unknown,O
-0x710045bd10,300,fn_710045bd10,unknown,unknown,U
+0x710045bd10,300,fn_710045bd10,unknown,unknown,O
 0x710045be3c,828,fn_710045be3c,unknown,unknown,U
 0x710045c178,4,fn_710045c178,unknown,unknown,O
 0x710045c17c,1024,fn_710045c17c,unknown,unknown,U
@@ -2403,7 +2403,7 @@ address,size,name,name_source,subsystem,status
 0x71004743ec,4,fn_71004743ec,unknown,unknown,O
 0x71004743f0,108,fn_71004743f0,unknown,unknown,U
 0x710047445c,72,fn_710047445c,unknown,unknown,U
-0x71004744a4,260,fn_71004744a4,unknown,unknown,U
+0x71004744a4,260,fn_71004744a4,unknown,unknown,m
 0x71004745a8,440,fn_71004745a8,unknown,unknown,U
 0x7100474760,492,fn_7100474760,unknown,unknown,U
 0x710047494c,404,fn_710047494c,unknown,unknown,U
@@ -2439,7 +2439,7 @@ address,size,name,name_source,subsystem,status
 0x7100475ca8,388,querysystem::CChozoRobotSoldierHeightEvaluator::refl_InitClass,reflection,ai/querysystem,O
 0x7100475e2c,4,fn_7100475e2c,unknown,ai/querysystem?,O
 0x7100475e30,36,fn_7100475e30,unknown,ai/querysystem?,O
-0x7100475e54,152,fn_7100475e54,unknown,ai/querysystem?,U
+0x7100475e54,152,fn_7100475e54,unknown,ai/querysystem?,m
 0x7100475eec,28,fn_7100475eec,unknown,ai/querysystem?,O
 0x7100475f08,12,fn_7100475f08,unknown,ai/querysystem?,O
 0x7100475f14,8,fn_7100475f14,unknown,ai/querysystem?,O
@@ -2529,7 +2529,7 @@ address,size,name,name_source,subsystem,status
 0x710047839c,388,querysystem::CChozoRobotSoldierMinTargetDistanceFilter::refl_InitClass,reflection,ai/querysystem,O
 0x7100478520,4,fn_7100478520,unknown,unknown,O
 0x7100478524,36,fn_7100478524,unknown,unknown,O
-0x7100478548,200,fn_7100478548,unknown,unknown,U
+0x7100478548,200,fn_7100478548,unknown,unknown,O
 0x7100478610,28,fn_7100478610,unknown,unknown,O
 0x710047862c,12,fn_710047862c,unknown,unknown,O
 0x7100478638,8,fn_7100478638,unknown,unknown,O
@@ -3547,7 +3547,7 @@ address,size,name,name_source,subsystem,status
 0x710049e7d4,156,fn_710049e7d4,unknown,unknown,U
 0x710049e870,548,fn_710049e870,unknown,unknown,U
 0x710049ea94,112,fn_710049ea94,unknown,unknown,O
-0x710049eb04,256,fn_710049eb04,unknown,unknown,U
+0x710049eb04,256,fn_710049eb04,unknown,unknown,O
 0x710049ec04,48,fn_710049ec04,unknown,unknown,O
 0x710049ec34,180,fn_710049ec34,unknown,unknown,U
 0x710049ece8,100,fn_710049ece8,unknown,unknown,U
@@ -5074,7 +5074,7 @@ address,size,name,name_source,subsystem,status
 0x71004d2014,148,fn_71004d2014,unknown,unknown,U
 0x71004d20a8,432,fn_71004d20a8,unknown,unknown,U
 0x71004d2258,632,fn_71004d2258,unknown,unknown,U
-0x71004d24d0,348,fn_71004d24d0,unknown,unknown,U
+0x71004d24d0,348,fn_71004d24d0,unknown,unknown,m
 0x71004d262c,672,fn_71004d262c,unknown,unknown,U
 0x71004d28cc,272,fn_71004d28cc,unknown,unknown,U
 0x71004d29dc,744,fn_71004d29dc,unknown,unknown,U
@@ -5103,7 +5103,7 @@ address,size,name,name_source,subsystem,status
 0x71004d4a98,768,fn_71004d4a98,unknown,unknown,U
 0x71004d4d98,60,fn_71004d4d98,unknown,unknown,O
 0x71004d4dd4,68,fn_71004d4dd4,unknown,unknown,O
-0x71004d4e18,172,fn_71004d4e18,unknown,unknown,U
+0x71004d4e18,172,fn_71004d4e18,unknown,unknown,O
 0x71004d4ec4,1216,fn_71004d4ec4,unknown,unknown,U
 0x71004d5384,128,fn_71004d5384,unknown,unknown,O
 0x71004d5404,76,fn_71004d5404,unknown,unknown,U

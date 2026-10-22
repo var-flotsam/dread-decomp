@@ -1,6 +1,7 @@
 // Reserve of a growable array of reference-counted pointers (base::UnkVector's layout): moves
 // each pointer into the new storage by copying it (taking a reference) and releasing the old
-// slot, then frees the old storage. Four array types share the same body.
+// slot, then frees the old storage. Four array types share the same body. Also the arrays'
+// destructor and Clear.
 #include <new>
 
 #include "base/UnkVector.h"
@@ -82,3 +83,30 @@ void fn_7100da2900(UnkRefPtrArray* self, u32 capacity) { Reserve(self, capacity)
 // NON_MATCHING(minor): the original gives the null-pointer and release paths their own copies of
 // the loop latch; ours shares one latch.
 void fn_7100e169a4(UnkRefPtrArray* self, u32 capacity) { Reserve(self, capacity); }
+
+// Destructor: releases each pointer and frees the storage. Four identical copies.
+static inline void Free(UnkRefPtrArray* self) {
+    if (self->data) {
+        for (u64 i = 0; i < self->count; ++i)
+            self->data[i].~UnkRefPtr();
+        self->count = 0;
+        self->allocator->vf_0x48(self->data);
+        self->capacity = 0;
+    }
+}
+
+void fn_7100d403b4(UnkRefPtrArray* self) { Free(self); }
+void fn_7100d84420(UnkRefPtrArray* self) { Free(self); }
+void fn_7100da2060(UnkRefPtrArray* self) { Free(self); }
+void fn_7100de49cc(UnkRefPtrArray* self) { Free(self); }
+
+// Clear: releases each pointer, keeping the storage. Three identical copies.
+static inline void Clear(UnkRefPtrArray* self) {
+    for (u64 i = 0; i < self->count; ++i)
+        self->data[i].~UnkRefPtr();
+    self->count = 0;
+}
+
+void fn_7100d3fecc(UnkRefPtrArray* self) { Clear(self); }
+void fn_7100d83f38(UnkRefPtrArray* self) { Clear(self); }
+void fn_7100da2774(UnkRefPtrArray* self) { Clear(self); }
