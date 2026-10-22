@@ -934,6 +934,10 @@ addresses identical) found 115 (27 KB); 114 are written as copies of their origi
 and `fn_71004a84c8` stays with stream 2. Several were "tried and left" by the clone rounds above
 (0x7100287de8, 0x71000df388, 0x7100020898, 0x71000d1fec, 0x71002444f4); the hand-matched originals
 now cover them. Rerun the scan after each batch of new matches: new `O` functions bring new copies.
+A looser pass (calls may target different functions with the same position in each body, and
+data page addresses may differ) found 35 more `U` copies of 17 originals, also claimed by stream 7
+on 2026-10-22. They are written the same way, with each copy's own callees and data declared; the
+largest family is `fn_7100d94830`'s erase-by-key (9 copies).
 
 **Render resource types** (stream 7): `fn_71001b1dd0` (**m**, 2.5 KB) registers nine render
 resource types through a record with an out-of-line constructor and destructor (`fn_71000e9a7c`,
