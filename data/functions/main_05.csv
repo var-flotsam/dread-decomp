@@ -3077,11 +3077,11 @@ address,size,name,name_source,subsystem,status
 0x71005abd60,28,fn_71005abd60,unknown,unknown,O
 0x71005abd7c,272,fn_71005abd7c,unknown,unknown,U
 0x71005abe8c,12,fn_71005abe8c,unknown,unknown,O
-0x71005abe98,68,fn_71005abe98,unknown,unknown,U
+0x71005abe98,68,fn_71005abe98,unknown,unknown,O
 0x71005abedc,20,fn_71005abedc,unknown,unknown,O
 0x71005abef0,68,fn_71005abef0,unknown,unknown,O
 0x71005abf34,20,fn_71005abf34,unknown,unknown,O
-0x71005abf48,68,fn_71005abf48,unknown,unknown,U
+0x71005abf48,68,fn_71005abf48,unknown,unknown,O
 0x71005abf8c,20,fn_71005abf8c,unknown,unknown,O
 0x71005abfa0,480,fn_71005abfa0,unknown,unknown,O
 0x71005ac180,4,fn_71005ac180,unknown,unknown,O

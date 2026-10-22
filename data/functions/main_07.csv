@@ -805,8 +805,8 @@ address,size,name,name_source,subsystem,status
 0x7100723b6c,296,fn_7100723b6c,unknown,game/components?,U
 0x7100723c94,36,fn_7100723c94,unknown,game/components?,O
 0x7100723cb8,56,fn_7100723cb8,unknown,game/components?,O
-0x7100723cf0,304,fn_7100723cf0,unknown,game/components?,U
-0x7100723e20,304,fn_7100723e20,unknown,game/components?,U
+0x7100723cf0,304,fn_7100723cf0,unknown,game/components?,O
+0x7100723e20,304,fn_7100723e20,unknown,game/components?,O
 0x7100723f50,1156,fn_7100723f50,unknown,game/components?,U
 0x71007243d4,52,fn_71007243d4,unknown,game/components?,O
 0x7100724408,608,fn_7100724408,unknown,game/components?,U
@@ -892,7 +892,7 @@ address,size,name,name_source,subsystem,status
 0x710072b88c,144,fn_710072b88c,unknown,unknown,O
 0x710072b91c,140,fn_710072b91c,unknown,unknown,O
 0x710072b9a8,56,fn_710072b9a8,unknown,unknown,O
-0x710072b9e0,304,fn_710072b9e0,unknown,unknown,U
+0x710072b9e0,304,fn_710072b9e0,unknown,unknown,O
 0x710072bb10,112,fn_710072bb10,unknown,unknown,U
 0x710072bb80,20,fn_710072bb80,unknown,unknown,O
 0x710072bb94,28,fn_710072bb94,unknown,unknown,O
@@ -2317,7 +2317,7 @@ address,size,name,name_source,subsystem,status
 0x710077a37c,64,fn_710077a37c,unknown,unknown,O
 0x710077a3bc,140,fn_710077a3bc,unknown,unknown,O
 0x710077a448,48,fn_710077a448,unknown,unknown,O
-0x710077a478,164,fn_710077a478,unknown,unknown,U
+0x710077a478,164,fn_710077a478,unknown,unknown,O
 0x710077a51c,276,fn_710077a51c,unknown,unknown,U
 0x710077a630,208,fn_710077a630,unknown,unknown,U
 0x710077a700,300,fn_710077a700,unknown,unknown,U
@@ -3739,7 +3739,7 @@ address,size,name,name_source,subsystem,status
 0x71007ba19c,308,fn_71007ba19c,unknown,game/components?,U
 0x71007ba2d0,4,fn_71007ba2d0,unknown,game/components?,U
 0x71007ba2d4,128,fn_71007ba2d4,unknown,game/components?,U
-0x71007ba354,304,fn_71007ba354,unknown,game/components?,U
+0x71007ba354,304,fn_71007ba354,unknown,game/components?,O
 0x71007ba484,252,fn_71007ba484,unknown,game/components?,U
 0x71007ba580,140,fn_71007ba580,unknown,game/components?,U
 0x71007ba60c,1832,fn_71007ba60c,unknown,game/components?,U
