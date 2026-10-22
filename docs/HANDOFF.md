@@ -855,9 +855,6 @@ of line:
   `__sort3` and the insertion sorts are **m**: the original loads the first entry before the
   branch that picks the swap.
 
-Copies of slice 2's `fn_71002dacc0` (a pair of empty string ids) outside slice 2's range,
-`fn_7100a8e07c` and `fn_7100ef1970`, are stream 7's (coordinator's call, 2026-10-22): both **O**
-in `src/game_s7/fn_7100a8e07c.cpp`.
 All seven are done (2026-10-22), each through `UnkIter`: every function is **O** except
 `fn_7100744000`'s own `__sort` (**m**, below).
 - `fn_7100742750` compares with a plain function pointer. With a comparator type that isn't
@@ -889,6 +886,27 @@ More instantiations found by their recursion (each 2 KB, or with 2 KB helpers):
 - `fn_7100336ca0`: all five **m** (weak handles assigned by `fn_71003384e0`, nearest first).
   The class iterator fixed the handle reload and the sizes. The comparisons still load the target
   and the positions in another order, whatever the distance's shape.
+
+Copies of slice 2's `fn_71002dacc0` (a pair of empty string ids) outside slice 2's range,
+`fn_7100a8e07c` and `fn_7100ef1970`, are stream 7's (coordinator's call, 2026-10-22): both **O**
+in `src/game_s7/fn_7100a8e07c.cpp`.
+
+**Copy-assignment of property records** (stream 7, 2026-10-22; `fn_710043439c` and `fn_71004c8f58`
+are under 2 KB in slice 2's range but share the types, so stream 7 took them too, with no open PR
+touching them). `fn_7100442780`, `fn_710043439c`, `fn_710048b740`, `fn_7100510548` and
+`fn_71004c8f58` are all **O**: records holding 0x70-byte entries (a property with an any-like
+value assigned by `fn_710009efb8`, then a 0x40-byte block). Types are in
+`src/game_s7/UnkAnyPropsS7.h`. Each operator= is defaulted out of line and aliased to the address,
+because a wrapper calling it doesn't inline it. With a defaulted operator=, the layout alone decides
+the code:
+- runs of trivially copyable fields become one memcpy (loads, then stores);
+- fields copied one by one, interleaved, are wrapper types with a user operator= (`UnkVal<T>`,
+  or a struct with its own operator=; field order inside it can even be reversed);
+- an 8-byte gap that is never copied is a polymorphic member's vptr;
+- the weak handle's operator= needs `always_inline`.
+The memcpy of the last array entry is scheduled with whatever plain fields follow it, so the
+load order there tells you whether the next field is plain or wrapped (`fn_7100510548`).
+`fn_7100fbdfd0` (slice 6's range) also calls `fn_710009efb8` once; it is not part of this family.
 
 ## Known issues and gotchas
 
