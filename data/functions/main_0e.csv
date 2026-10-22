@@ -3422,7 +3422,7 @@ address,size,name,name_source,subsystem,status
 0x7100ed4454,1672,fn_7100ed4454,unknown,unknown,U
 0x7100ed4adc,140,fn_7100ed4adc,unknown,unknown,O
 0x7100ed4b68,336,fn_7100ed4b68,unknown,unknown,O
-0x7100ed4cb8,2116,fn_7100ed4cb8,unknown,unknown,U
+0x7100ed4cb8,2116,fn_7100ed4cb8,unknown,unknown,O
 0x7100ed54fc,216,fn_7100ed54fc,unknown,unknown,U
 0x7100ed55d4,892,fn_7100ed55d4,unknown,unknown,U
 0x7100ed5950,144,fn_7100ed5950,unknown,unknown,O

@@ -5366,7 +5366,7 @@ address,size,name,name_source,subsystem,status
 0x7100add100,140,fn_7100add100,unknown,unknown,O
 0x7100add18c,4,fn_7100add18c,unknown,unknown,O
 0x7100add190,244,CTunableMenuHelperClass::refl_GetClass,reflection,game,O
-0x7100add284,656,fn_7100add284,unknown,game?,U
+0x7100add284,656,fn_7100add284,unknown,game?,O
 0x7100add514,372,CTunableMenuHelperClass::refl_InitClass,reflection,game,O
 0x7100add688,380,fn_7100add688,unknown,unknown,O
 0x7100add810,808,fn_7100add810,unknown,unknown,U

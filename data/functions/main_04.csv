@@ -4003,7 +4003,7 @@ address,size,name,name_source,subsystem,status
 0x71004adb24,504,fn_71004adb24,unknown,unknown,O
 0x71004add1c,4,fn_71004add1c,unknown,unknown,O
 0x71004add20,244,CCharClassCooldownXBossLavaDropsAttack::refl_GetClass,reflection,game/characters,O
-0x71004ade14,1920,fn_71004ade14,unknown,game/characters?,U
+0x71004ade14,1920,fn_71004ade14,unknown,game/characters?,O
 0x71004ae594,352,CCharClassCooldownXBossLavaDropsAttack::refl_InitClass,reflection,game/characters,O
 0x71004ae6f4,204,fn_71004ae6f4,unknown,unknown,U
 0x71004ae7c0,308,fn_71004ae7c0,unknown,unknown,U

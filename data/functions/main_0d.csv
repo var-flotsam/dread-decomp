@@ -4997,7 +4997,7 @@ address,size,name,name_source,subsystem,status
 0x7100db672c,388,CBossRushDebugTime::refl_InitClass,reflection,game,O
 0x7100db68b0,4,fn_7100db68b0,unknown,game?,O
 0x7100db68b4,244,CBossRushManager::CTunableBossRushManager::refl_GetClass,reflection,game,O
-0x7100db69a8,3460,fn_7100db69a8,unknown,game?,U
+0x7100db69a8,3460,fn_7100db69a8,unknown,game?,O
 0x7100db772c,388,CBossRushManager::CTunableBossRushManager::refl_InitClass,reflection,game,O
 0x7100db78b0,4,fn_7100db78b0,unknown,unknown,O
 0x7100db78b4,696,fn_7100db78b4,unknown,unknown,O
