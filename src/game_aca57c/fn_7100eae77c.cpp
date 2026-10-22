@@ -1,6 +1,6 @@
 // Shrink-to-fit of a container of two parallel arrays (0x118-byte records and u32 values)
 // sharing a count and capacity: both are reallocated to exactly `count`, the records moved over
-// (each source destroyed by fn_7100ea7034), the values copied and the old arrays freed.
+// (each source destroyed by fn_7100ea7034, also here), the values copied and the old arrays freed.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
@@ -13,6 +13,19 @@ struct UnkMovedStrId {
     UnkStringData* data;
 
     UnkMovedStrId(UnkMovedStrId&& other) : data(other.data) { other.data = &g_unk_7101d47108->empty; }
+    // Decrements and tests in two steps (the original reloads the id after the decrement).
+    __attribute__((always_inline)) ~UnkMovedStrId() {
+        if (base::global::UnkStringPool* pool = g_unk_7101d47108) {
+            if (data && data != &pool->empty) {
+                --data->ref_count;
+                if (data->ref_count == 0) {
+                    fn_71000803a4(pool, data);
+                    pool = g_unk_7101d47108;
+                }
+            }
+            data = &pool->empty;
+        }
+    }
 };
 
 // A 0x30-byte string moved by fn_710007eab4.
@@ -20,8 +33,11 @@ struct UnkMovedString {
     u64 unk_0x0[6];
 
     UnkMovedString(UnkMovedString&& other);
+    ~UnkMovedString();
 };
 void fn_710007eab4(UnkMovedString* dst, UnkMovedString* src);
+void fn_710007ecd4(void* string);  // the string's destructor
+__attribute__((always_inline)) inline UnkMovedString::~UnkMovedString() { fn_710007ecd4(this); }
 __attribute__((always_inline)) inline UnkMovedString::UnkMovedString(UnkMovedString&& other) { fn_710007eab4(this, &other); }
 
 // A string with its own inline storage, copied (not moved) by fn_710007eaa0.
@@ -37,8 +53,14 @@ struct UnkStrBuffer {
     UnkStrStorage storage;
 
     UnkStrBuffer(const UnkStrBuffer& other);
+    ~UnkStrBuffer();
 };
 void fn_710007e6e4(UnkStrBuffer* self, void* storage);
+void fn_710007ed40(UnkStrBuffer* self);  // releases the storage
+__attribute__((always_inline)) inline UnkStrBuffer::~UnkStrBuffer() {
+    fn_710007ed40(this);
+    fn_710007ecd4(this);
+}
 void fn_710007eaa0(UnkStrBuffer* self, const UnkStrBuffer* other);
 __attribute__((always_inline)) inline UnkStrBuffer::UnkStrBuffer(const UnkStrBuffer& other) {
     fn_710007e6e4(this, &storage);
@@ -91,10 +113,14 @@ struct UnkRecord118 {
           field_0x40(other.field_0x40), field_0x58(static_cast<UnkMovedString&&>(other.field_0x58)),
           field_0x88(other.field_0x88), field_0x90(other.field_0x90), field_0xa0(other.field_0xa0),
           field_0x108(other.field_0x108), field_0x110(other.field_0x110) {}
+    __attribute__((always_inline)) ~UnkRecord118() {}
 };
 static_assert(sizeof(UnkRecord118) == 0x118, "UnkRecord118 layout");
 
-void fn_7100ea7034(UnkRecord118* record);  // destructor
+__attribute__((noinline)) void fn_7100ea7034(UnkRecord118* record);
+
+// The record's destructor.
+void fn_7100ea7034(UnkRecord118* record) { record->~UnkRecord118(); }
 
 struct UnkRecord118Table {
     UnkRecord118* records;

@@ -1,7 +1,8 @@
 // Copy constructor of an array of 0x60-byte records with a second pointer array alongside (the
 // array type moved by fn_7100e493f4's users): reserves the source's count out of line
 // (fn_7100e54ad8), copy-constructs each record (an array copied by fn_71000cbae4 and a u16 array
-// copied inline with its settings) and copies the pointer array.
+// copied inline with its settings) and copies the pointer array. Also the PushBack of a plain
+// array of the same records.
 #include <new>
 
 #include "base/UnkVector.h"
@@ -156,4 +157,30 @@ inline UnkRecord60Array::UnkRecord60Array(const UnkRecord60Array& other)
 // pointer and count is not paired.
 void fn_7100e5493c(UnkRecord60Array* self, const UnkRecord60Array& other) {
     new (self) UnkRecord60Array(other);
+}
+
+// A plain array of the records (base::UnkVector's layout) with an out-of-line Reserve
+// (fn_7100e52b58): appends a copy, growing like PushBack (including its hang).
+struct UnkRecord60List {
+    UnkRecord60* data;
+    u32 count;
+    u32 capacity;
+    u32 step;
+    bool field_0x14;
+    u32 flags;
+    base::UnkAllocator* allocator;
+};
+void fn_7100e52b58(UnkRecord60List* self, u32 capacity);
+
+void fn_7100e52cf4(UnkRecord60List* self, const UnkRecord60* value) {
+    u32 n = self->count;
+    u32 new_capacity = self->capacity;
+    if (new_capacity <= n && self->step != 0)
+        new_capacity = (n / self->step + 1) * self->step;
+    if ((s32)n >= (s32)new_capacity)
+        for (;;) {
+        }
+    fn_7100e52b58(self, new_capacity);
+    new (&self->data[self->count]) UnkRecord60(*value);
+    ++self->count;
 }

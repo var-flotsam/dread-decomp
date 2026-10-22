@@ -16,8 +16,15 @@ struct UnkPart0 {
 void fn_710011d8b4(UnkPart0* self, const UnkPart0* other);
 inline UnkPart0::UnkPart0(const UnkPart0& other) { fn_710011d8b4(this, &other); }
 
+// base::UnkVector's layout, copied out of line.
 struct UnkPart48 {
-    u64 unk_0x0[5];
+    void* data;
+    u32 count;
+    u32 capacity;
+    u32 step;
+    bool field_0x14;
+    u32 flags;
+    base::UnkAllocator* allocator;
 
     UnkPart48(const UnkPart48& other);
 };
@@ -109,3 +116,52 @@ struct UnkRecord80 {
 static_assert(sizeof(UnkRecord80) == 0x80, "UnkRecord80 layout");
 
 void fn_7100e5190c(UnkRecord80* self, const UnkRecord80& other) { new (self) UnkRecord80(other); }
+
+// Move-assignment of an array of plain values: unless assigning to itself, takes over the other's
+// array and settings (the old storage is not freed) and leaves the other empty.
+template <class A>
+__attribute__((always_inline)) static inline void MoveAssign(A* self, A* other) {
+    if (self != other) {
+        self->count = 0;
+        self->allocator = other->allocator;
+        self->flags = other->flags;
+        self->step = other->step;
+        self->field_0x14 = other->field_0x14;
+        self->count = other->count;
+        self->capacity = other->capacity;
+        self->data = other->data;
+        other->data = nullptr;
+        other->count = 0;
+        other->capacity = 0;
+    }
+}
+
+// The 0x80-byte record's move-assignment: copies the words, releases and takes over the id
+// (leaving the pool's empty string), then moves the arrays.
+UnkRecord80* fn_7100e51a60(UnkRecord80* self, UnkRecord80* other) {
+    self->field_0x0 = other->field_0x0;
+    self->field_0x4 = other->field_0x4;
+    self->field_0x8 = other->field_0x8;
+    self->field_0xc = other->field_0xc;
+    if (base::global::UnkStringPool* pool = g_unk_7101d47108) {
+        base::global::UnkStringData*& data = self->field_0x10.data;
+        if (data && data != &pool->empty) {
+            --data->ref_count;
+            if (data->ref_count == 0) {
+                fn_71000803a4(pool, data);
+                pool = g_unk_7101d47108;
+            }
+        }
+        data = &pool->empty;
+    }
+    self->field_0x10.data = other->field_0x10.data;
+    other->field_0x10.data = &g_unk_7101d47108->empty;
+    MoveAssign(&self->field_0x18, &other->field_0x18);
+    MoveAssign(&self->field_0x40, &other->field_0x40);
+    self->field_0x68 = other->field_0x68;
+    self->field_0x6c = other->field_0x6c;
+    self->field_0x70 = other->field_0x70;
+    self->field_0x74 = other->field_0x74;
+    self->field_0x78 = other->field_0x78;
+    return self;
+}
