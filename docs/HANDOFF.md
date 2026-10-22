@@ -793,6 +793,19 @@ by the centre on one axis: all five **m** (see its note). Other findings:
 - Temporaries made in one comparison get separate stack slots.
 - Writing an expression term by term keeps the original's order.
 - With 8-byte elements, our insertion loops walk an index where the original walks a pointer.
+- Some game comparators have internal linkage (an anonymous namespace). Then every
+  instantiation is internal, and `std::__sort` inlines its one call to `__insertion_sort_3`. This
+  made `fn_7100338620`'s `__sort` **O** with plain `std::__sort`, without `lib/libcxx/sort.h`.
+  - Map the instantiations with `extern "C"` aliases: a declaration that uses the internal type
+    is itself internal and gets dropped.
+  - Write each alias as `void fn_X()` on its own line inside an `extern "C" { }` block, so the
+    `NON_MATCHING` annotation attaches. `check.py` doesn't read `extern "C" void fn_X()`, so
+    those functions show up as **W**.
+- When an internal instantiation's comparator is empty, the game's helpers take no comparator
+  argument (dead-argument elimination). An alias counts as taking the address, which blocks that.
+  `fn_7100d4de00.cpp` therefore gets the instantiations emitted from an unmapped anchor function
+  that calls `std::sort`, and names them with `asm(".set ...")`. That made its
+  `__insertion_sort_incomplete` **O**.
 
 `fn_7100354e10` uses the same 0x48-byte entry, sorted nearest first by the sign of a distance
 difference with z taken as 0. Its insertion sorts reach 92% (the order of the z term).
@@ -803,10 +816,9 @@ More instantiations found by their recursion (each 2 KB, or with 2 KB helpers):
 - `fn_7100212a80`
 - `fn_7100248e50`
 - `fn_710030ed9c`
-- `fn_7100336ca0`
-- `fn_7100338620` (no calls in its comparator)
+- `fn_7100336ca0` (weak handles assigned by `fn_71003384e0`: the original reloads the handle
+  after the comparison, unexplained)
 - `fn_710081ccd0`
-- `fn_7100d4de00`
 - `fn_71010dd1d0`
 
 ## Known issues and gotchas
