@@ -1043,6 +1043,14 @@ registers (`fn_71000cfe14`, `fn_71000cd658`, **m**).
 
 Not attempted: the callback-set iterator copies `fn_71002475b0` and `fn_71002476ec`. They need the compiler-generated vtables of a copied class, which the copy files can't name yet.
 
+**Slice 1 near copies, batch 19** (stream 7, 2026-10-23): 8 functions **O** (`src/game_s1/`):
+- a deleting destructor that frees an array of 16-byte id records (`fn_710016a7f8`);
+- keyed value array destructors, one with its own vtable and values freed by `fn_7100020164`, two with polymorphic values (`fn_710001fa30.cpp`);
+- type-descriptor push pairs (`fn_7100263ea8.cpp`);
+- `End` for 12-byte elements (`fn_71000cc60c`, `fn_71001205d0`).
+
+The copies call the shared clone templates through `flatten` wrappers, with traits of their own.
+
 **dlmalloc 2.8.4 vendored** (stream 7, 2026-10-22, owner-approved): `lib/dlmalloc/` holds
 upstream `malloc.c` unmodified and `mspace.c` with the game's settings (README there). It was
 fetched from a mirror pinned to a commit in `tools/fetch_sources.py` and `data/sources.json`,
