@@ -9,6 +9,7 @@ typedef u32 __attribute__((may_alias)) a_u32;
 struct UnkVec3f {
     f32 x, y, z;
     UnkVec3f() {}
+    UnkVec3f(f32 x_, f32 y_, f32 z_) : x(x_), y(y_), z(z_) {}
     UnkVec3f(const UnkVec3f& o) {
         ((a_u32*)this)[0] = ((const a_u32*)&o)[0];
         ((a_u32*)this)[1] = ((const a_u32*)&o)[1];
@@ -22,9 +23,41 @@ struct UnkVec3f {
     }
 };
 
-struct UnkXform;
+// A transform: a row-major 4x4 matrix (rotation and scale in the upper-left 3x3, translation in
+// column 3) with its rotation angles and scale cached lazily. Flag bits: 2 angles valid, 4 scale
+// valid, 8 matrix valid. UnkXformNode embeds one at +0x18.
+struct UnkXform {
+    f32 m[4][4];
+    UnkVec3f angle;  // 0x40
+    UnkVec3f scale;  // 0x4c
+    u32 flags;       // 0x58
+
+    inline UnkVec3f GetTranslation() const;
+    inline UnkVec3f GetAngle();
+    inline UnkVec3f GetScale();
+};
 UnkVec3f fn_7100076cec(UnkXform* x);
 UnkVec3f fn_7100079b18(UnkXform* x, f32 hint);
+
+UnkVec3f UnkXform::GetTranslation() const {
+    return UnkVec3f(m[0][3], m[1][3], m[2][3]);
+}
+
+UnkVec3f UnkXform::GetAngle() {
+    if (!(flags & 2)) {
+        angle = fn_7100079b18(this, angle.z);
+        flags |= 2;
+    }
+    return angle;
+}
+
+UnkVec3f UnkXform::GetScale() {
+    if (!(flags & 4)) {
+        scale = fn_7100076cec(this);
+        flags |= 4;
+    }
+    return scale;
+}
 
 #define UNK_CHANGED(a, b) ((a) - 0.001f > (b) || (a) + 0.001f < (b))
 

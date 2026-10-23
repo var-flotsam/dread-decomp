@@ -1116,6 +1116,18 @@ Dropped after the time box: `fn_71000876d8` (hash lookup; load scheduling) and `
 - two millisecond clocks (`fn_7100080c40.cpp`, calling `nn::os` and `nn::oe` by their SDK names).
 Dropped after the time box: `fn_71000de3b0`/`fn_71000de8e8` (iterator value equality over floats; register order).
 
+**Slice 1 hubs, batch 1** (stream 7, 2026-10-23): work order switched to hub functions (most
+unmatched callers first). **O**: `fn_710009d50c` (reflected is-kind-of walk over `CType::m_parent`,
+1778 unmatched callers), `fn_71000a18d4` (builds an `UnkReflValue`; the last argument is a u32
+mode, 1 = by reference, so `UnkReflValue.h` now declares it `u32 by_ref`; the type is stored as a
+plain pointer so the copy function reloads), `fn_710002614c` (transform matrix getter, 545
+callers), `fn_7100076cec` (transform scale). `fn_7100079b18` (transform angles) is
+`NON_MATCHING(minor)` at 91.5% (b's x/y swap registers). `include/game/UnkXformNode.h` now has the
+full `UnkXform` layout (4x4 matrix, cached angle 0x40, scale 0x4c, flags 0x58) with
+`GetTranslation`/`GetAngle`/`GetScale`, and `UnkVec3f` gained a 3-float constructor (the matrix
+getter's translation needs it). Unmatched local re-declarations of `fn_71000a18d4` elsewhere still
+use their own types.
+
 **dlmalloc 2.8.4 vendored** (stream 7, 2026-10-22, owner-approved): `lib/dlmalloc/` holds
 upstream `malloc.c` unmodified and `mspace.c` with the game's settings (README there). It was
 fetched from a mirror pinned to a commit in `tools/fetch_sources.py` and `data/sources.json`,
