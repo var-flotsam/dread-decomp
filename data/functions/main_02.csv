@@ -3027,7 +3027,7 @@ address,size,name,name_source,subsystem,status
 0x71002673f8,368,fn_71002673f8,unknown,unknown,U
 0x7100267568,48,fn_7100267568,unknown,unknown,O
 0x7100267598,236,fn_7100267598,unknown,unknown,O
-0x7100267684,500,fn_7100267684,unknown,unknown,U
+0x7100267684,500,fn_7100267684,unknown,unknown,O
 0x7100267878,80,fn_7100267878,unknown,unknown,O
 0x71002678c8,88,fn_71002678c8,unknown,unknown,U
 0x7100267920,12,fn_7100267920,unknown,unknown,O
@@ -3222,8 +3222,8 @@ address,size,name,name_source,subsystem,status
 0x710026cad8,244,navmesh::CDynamicSmartLinkRules::refl_GetClass,reflection,ai/navmesh,O
 0x710026cbcc,4,fn_710026cbcc,unknown,ai/navmesh?,O
 0x710026cbd0,352,navmesh::CDynamicSmartLinkRules::refl_InitClass,reflection,ai/navmesh,O
-0x710026cd30,156,fn_710026cd30,unknown,ai/navmesh?,U
-0x710026cdcc,164,fn_710026cdcc,unknown,ai/navmesh?,U
+0x710026cd30,156,fn_710026cd30,unknown,ai/navmesh?,O
+0x710026cdcc,164,fn_710026cdcc,unknown,ai/navmesh?,O
 0x710026ce70,8,fn_710026ce70,unknown,ai/navmesh?,O
 0x710026ce78,1132,fn_710026ce78,unknown,ai/navmesh?,U
 0x710026d2e4,448,fn_710026d2e4,unknown,ai/navmesh?,U

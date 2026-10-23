@@ -1,6 +1,7 @@
 // Looks up a 64-bit key in a hash map at +0xb8 (base::global::CRntVector buckets, indexed by the
 // key's low 32 bits modulo the bucket capacity, as in fn_710019e100): returns the found entry's
-// flag, or true when the key isn't there.
+// flag, or true when the key isn't there. Also whether a key is in the hash set of
+// fn_710019e100's owner (at +8, buckets at +0x18): fn_710019e4fc.
 #include "types.h"
 
 extern "C" [[noreturn]] void __assert_fail(const char* expr, const char* file, int line, const char* func);
@@ -44,3 +45,34 @@ bool fn_710014bdec(UnkFlagMapOwner* self, u64 key) {
     }
     return true;
 }
+
+struct UnkKeyNode {
+    u64 key;
+    u8 field_0x8[0x18];
+    UnkKeyNode* next;
+};
+
+struct UnkKeySet {
+    u8 field_0x0[0x10];
+    UnkRntVector<UnkKeyNode*> buckets;  // +0x10
+};
+
+struct UnkKeySetOwner {
+    u8 field_0x0[0x8];
+    UnkKeySet set;  // +0x8
+};
+
+__attribute__((always_inline)) static inline UnkKeyNode* Find(UnkKeySet* set, u64 key) {
+    if (set->buckets.size == 0)
+        return nullptr;
+    UnkKeyNode** bucket = set->buckets.At((u32)key % set->buckets.capacity);
+    if (!bucket)
+        return nullptr;
+    for (UnkKeyNode* n = *bucket; n; n = n->next) {
+        if (n->key == key)
+            return n;
+    }
+    return nullptr;
+}
+
+bool fn_710019e4fc(UnkKeySetOwner* self, u64 key) { return Find(&self->set, key) != nullptr; }
