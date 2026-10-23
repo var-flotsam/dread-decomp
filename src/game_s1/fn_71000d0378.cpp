@@ -285,6 +285,27 @@ void fn_71000d99d0(UnkIdTable<UnkReleasedStrId>* self) { self->Clear(); }
 
 void fn_71000db40c(UnkIdTable<UnkFilePathReleasedStrId>* self) { self->Clear(); }
 
+// The same for a table of counted resources paired with 8 plain bytes, whose value loop is
+// written as a do-while (the count is already known to be nonzero): fn_71001d7444.
+struct UnkResWord {
+    UnkAssignedRef54 shared;
+    u64 field_0x8;
+};
+
+void fn_71001d7444(UnkIdTable<UnkResWord>* self) {
+    if (self->keys && self->count) {
+        for (u64 i = 0; i < self->count; ++i)
+            self->keys[i].~UnkReleasedStrId();
+    }
+    if (self->values && self->count) {
+        u64 i = 0;
+        do {
+            self->values[i].~UnkResWord();
+        } while (++i < self->count);
+    }
+    self->count = 0;
+}
+
 // Destructors of a file path id and a counted resource, after 8 plain bytes or not, as
 // fn_710019e82c (src/game_lo/fn_710019e82c.cpp) does for a string id: fn_7100269170,
 // fn_710000f514.
