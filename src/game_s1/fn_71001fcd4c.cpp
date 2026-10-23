@@ -148,3 +148,14 @@ f32 fn_71001fd94c(const UnkPtrArray* items, s32 id) {
         return 1.0f;
     return fn_7100202f54(found);
 }
+
+// With the handler written inline: sets the two flags at 0x143 and 0x144 of the item
+// (fn_71001fc7f4).
+bool fn_71001fc7f4(const UnkPtrArray* items, bool flag_0x143, bool flag_0x144, s32 id) {
+    UnkItem* found = Find(items, id);
+    if (!found)
+        return false;
+    reinterpret_cast<bool*>(found)[0x143] = flag_0x143;
+    reinterpret_cast<bool*>(found)[0x144] = flag_0x144;
+    return true;
+}

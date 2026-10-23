@@ -18,3 +18,11 @@ UnkMatrix44_7100078c9c fn_7100078c9c(f32 x, f32 y, f32 z) {
     r.m[11] = z;
     return r;
 }
+
+// fn_7100077c04 applied to fn_7100078fc8 of the second matrix and the first (fn_710007a400).
+UnkMatrix44_7100078c9c fn_7100078fc8(const UnkMatrix44_7100078c9c& m);
+UnkMatrix44_7100078c9c fn_7100077c04(const UnkMatrix44_7100078c9c& a, const UnkMatrix44_7100078c9c& b);
+
+UnkMatrix44_7100078c9c fn_710007a400(const UnkMatrix44_7100078c9c& a, const UnkMatrix44_7100078c9c& b) {
+    return fn_7100077c04(fn_7100078fc8(b), a);
+}

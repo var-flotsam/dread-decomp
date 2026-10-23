@@ -95,3 +95,78 @@ void fn_7100233584(UnkBoolOwner* self, bool arg) {
     for (UnkBoolChild** p = self->children; p != end; ++p)
         (*p)->vf_0x118(arg);
 }
+
+// An object of the same owner layout that calls one of its own slots and then another slot on
+// each child: slot 0x58 then children's 0x50 (fn_7100232938), slot 0x68 then children's 0x58
+// (fn_710023298c).
+struct UnkTreeNode {
+    virtual void vf_0x0();
+    virtual void vf_0x8();
+    virtual void vf_0x10();
+    virtual void vf_0x18();
+    virtual void vf_0x20();
+    virtual void vf_0x28();
+    virtual void vf_0x30();
+    virtual void vf_0x38();
+    virtual void vf_0x40();
+    virtual void vf_0x48();
+    virtual void vf_0x50();
+    virtual void vf_0x58();
+    virtual void vf_0x60();
+    virtual void vf_0x68();
+    u8 pad_0x8[0x98];
+    UnkTreeNode** children;
+    u8 pad_0xa8[8];
+    u32 count;
+};
+
+void fn_7100232938(UnkTreeNode* self) {
+    self->vf_0x58();
+    UnkTreeNode** end = self->children + self->count;
+    for (UnkTreeNode** p = self->children; p != end; ++p)
+        (*p)->vf_0x50();
+}
+
+void fn_710023298c(UnkTreeNode* self) {
+    self->vf_0x68();
+    UnkTreeNode** end = self->children + self->count;
+    for (UnkTreeNode** p = self->children; p != end; ++p)
+        (*p)->vf_0x58();
+}
+
+// Passes each child of an array at 0x60 (count at 0x68) to fn_710021b8e0 (fn_7100224ebc,
+// fn_7100224ef4).
+void fn_710021b8e0(void* child);
+
+struct UnkChildOwner60 {
+    u8 pad_0x0[0x60];
+    UnkChildArray<void> children;
+};
+
+__attribute__((always_inline)) static inline void PassEach(UnkChildOwner60* self) {
+    void** end = self->children.data + self->children.count;
+    for (void** p = self->children.data; p != end; ++p)
+        fn_710021b8e0(*p);
+}
+
+void fn_7100224ebc(UnkChildOwner60* self) { PassEach(self); }
+
+void fn_7100224ef4(UnkChildOwner60* self) { PassEach(self); }
+
+// Passes each 0x48-byte element of an array (base::UnkVector's leading fields) to fn_7100119d3c
+// with a flag (fn_7100125338).
+struct UnkElem_0x48 {
+    u8 data[0x48];
+};
+void fn_7100119d3c(UnkElem_0x48* elem, bool flag);
+
+struct UnkElemArray_7100125338 {
+    UnkElem_0x48* data;
+    u32 count;
+};
+
+void fn_7100125338(UnkElemArray_7100125338* self, bool flag) {
+    UnkElem_0x48* end = self->data + self->count;
+    for (UnkElem_0x48* p = self->data; p != end; ++p)
+        fn_7100119d3c(p, flag);
+}

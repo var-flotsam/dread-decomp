@@ -1101,6 +1101,14 @@ These were found by re-running the near-copy search against the functions matche
 - a wide-string search (`fn_7100067460.cpp`), a translation matrix (`fn_7100078c9c.cpp`), a timer reset whose division by 1000 is written out the way the original computes it (`fn_7100080c40.cpp`), and a sub-allocator free hook (`fn_71001039b4.cpp`).
 Dropped after the time box: `fn_71000876d8` (hash lookup; load scheduling) and `fn_71001f1d38` (iterator value copy with 64-bit keys).
 
+**Slice 1 near copies, batch 27** (stream 7, 2026-10-23): 35 small functions **O** (`src/game_s1/`), mostly groups of identical copies:
+- string id assignment from a string, in both pools (`fn_71000cc800.cpp`); destructors of an id and path pair (`fn_710001cbd8.cpp`);
+- keyed-array lookups returning null when absent (`fn_71002519a8.cpp`), and a byte-array equality (`fn_71000d25f0.cpp`);
+- node list destructors with node destructors, and a list clear (`fn_7100219134.cpp`); linked-list iterator increments (`fn_710023644c.cpp`);
+- per-child virtual calls and calls over element arrays (`fn_710014be78.cpp`), one more find-and-forward variant (`fn_71001fcd4c.cpp`), a float-sum reflection getter (`fn_71001109c4.cpp`);
+- destructors: pooled objects (`fn_710019bfb8.cpp`), a three-member class (`fn_7100086d7c.cpp`), a counted reference (`fn_71000139c0.cpp`) and a vibration player derived from `nn::hid::VibrationPlayer` (`fn_71000707dc.cpp`, declaring the two SDK destructors it calls);
+- a matrix composition (`fn_7100078c9c.cpp`).
+
 **dlmalloc 2.8.4 vendored** (stream 7, 2026-10-22, owner-approved): `lib/dlmalloc/` holds
 upstream `malloc.c` unmodified and `mspace.c` with the game's settings (README there). It was
 fetched from a mirror pinned to a commit in `tools/fetch_sources.py` and `data/sources.json`,
