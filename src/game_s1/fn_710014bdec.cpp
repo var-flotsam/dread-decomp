@@ -1,7 +1,8 @@
 // Looks up a 64-bit key in a hash map at +0xb8 (base::global::CRntVector buckets, indexed by the
 // key's low 32 bits modulo the bucket capacity, as in fn_710019e100): returns the found entry's
 // flag, or true when the key isn't there. Also whether a key is in the hash set of
-// fn_710019e100's owner (at +8, buckets at +0x18): fn_710019e4fc.
+// fn_710019e100's owner (at +8, buckets at +0x18): fn_710019e4fc; and one at 0x108 hashing both
+// key halves: fn_71001ef3f8.
 #include "types.h"
 
 extern "C" [[noreturn]] void __assert_fail(const char* expr, const char* file, int line, const char* func);
@@ -62,10 +63,13 @@ struct UnkKeySetOwner {
     UnkKeySet set;  // +0x8
 };
 
+// Fold: the bucket hash is the key's two halves xor'd instead of its low half.
+template <bool Fold = false>
 __attribute__((always_inline)) static inline UnkKeyNode* Find(UnkKeySet* set, u64 key) {
     if (set->buckets.size == 0)
         return nullptr;
-    UnkKeyNode** bucket = set->buckets.At((u32)key % set->buckets.capacity);
+    u32 hash = Fold ? (u32)(key >> 32) ^ (u32)key : (u32)key;
+    UnkKeyNode** bucket = set->buckets.At(hash % set->buckets.capacity);
     if (!bucket)
         return nullptr;
     for (UnkKeyNode* n = *bucket; n; n = n->next) {
@@ -76,3 +80,11 @@ __attribute__((always_inline)) static inline UnkKeyNode* Find(UnkKeySet* set, u6
 }
 
 bool fn_710019e4fc(UnkKeySetOwner* self, u64 key) { return Find(&self->set, key) != nullptr; }
+
+// The same for a set at 0x108 with the folded hash and the key passed by address: fn_71001ef3f8.
+struct UnkKeySetOwner108 {
+    u8 field_0x0[0x108];
+    UnkKeySet set;  // +0x108
+};
+
+bool fn_71001ef3f8(UnkKeySetOwner108* self, const u64* key) { return Find<true>(&self->set, *key) != nullptr; }

@@ -1,6 +1,8 @@
 // Reset of a frame timer: clears the elapsed time at 0x20 and the scale pair at 0x30, then sets
 // the three time stamps at 8, 0x10 and 0x18 to the current system time in microseconds. The
 // same reset without the stamp at 8 is fn_7100080e38 (lifted). Its only caller is fn_7100015c70.
+// Also the milliseconds since the start stamp (fn_7100080f2c) and the program's total active time
+// in milliseconds (fn_7100080bd0).
 
 #include <nn/os/os_TickTypes.h>
 
@@ -39,3 +41,16 @@ void fn_7100080c40(UnkTimer_7100080c40* self) {
     self->last = self->current = now;
     self->start = now;
 }
+
+// Milliseconds since the start stamp (fn_7100080f2c).
+s64 fn_7100080f2c(const UnkTimer_7100080c40* self) {
+    s64 now = DivideBy1000(nn::os::ConvertToTimeSpan(nn::os::GetSystemTick()).nanoseconds);
+    return (now - self->start) / 1000;
+}
+
+namespace nn::oe {
+nn::TimeSpan GetProgramTotalActiveTime();
+}  // namespace nn::oe
+
+// The program's total active time in milliseconds (fn_7100080bd0).
+s64 fn_7100080bd0() { return DivideBy1000(nn::oe::GetProgramTotalActiveTime().nanoseconds) / 1000; }

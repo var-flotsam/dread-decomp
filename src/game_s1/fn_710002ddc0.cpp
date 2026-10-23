@@ -117,3 +117,24 @@ void fn_71001a9978(UnkIdOwned_71001a98dc* self) {
     Destroy(self);
     operator delete(self);
 }
+
+// The deleting destructor of fn_710019e82c's class (vtable unk_7101a1e2c8: a counted object at
+// 0x10, count at +0x54, freed by fn_710001737c, and a string id at 8): fn_710019e8c0.
+extern char unk_7101a1e2c8[];
+void fn_710001737c(char* p);
+
+struct UnkCountedId_710019e8c0 {
+    char* vtable;
+    base::UnkStrIdMember id;
+    char* counted;
+};
+
+void fn_710019e8c0(UnkCountedId_710019e8c0* self) {
+    self->vtable = unk_7101a1e2c8 + 0x10;
+    if (char* counted = self->counted) {
+        if (--*reinterpret_cast<s32*>(counted + 0x54) == 0)
+            fn_710001737c(counted);
+    }
+    Release(&self->id);
+    operator delete(self);
+}

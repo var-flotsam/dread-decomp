@@ -1649,7 +1649,7 @@ address,size,name,name_source,subsystem,status
 0x710007174c,180,fn_710007174c,unknown,unknown,O
 0x7100071800,156,fn_7100071800,unknown,unknown,O
 0x710007189c,140,fn_710007189c,unknown,unknown,O
-0x7100071928,140,fn_7100071928,unknown,unknown,U
+0x7100071928,140,fn_7100071928,unknown,unknown,O
 0x71000719b4,228,fn_71000719b4,unknown,unknown,O
 0x7100071a98,224,fn_7100071a98,unknown,unknown,U
 0x7100071b80,556,fn_7100071b80,unknown,unknown,U
@@ -1990,13 +1990,13 @@ address,size,name,name_source,subsystem,status
 0x7100080b74,4,fn_7100080b74,unknown,unknown,O
 0x7100080b78,4,operator.delete,symbol,unknown,O
 0x7100080b7c,84,fn_7100080b7c,unknown,unknown,O
-0x7100080bd0,112,fn_7100080bd0,unknown,unknown,U
+0x7100080bd0,112,fn_7100080bd0,unknown,unknown,O
 0x7100080c40,120,fn_7100080c40,unknown,unknown,O
 0x7100080cb8,376,fn_7100080cb8,unknown,unknown,U
 0x7100080e30,8,fn_7100080e30,unknown,unknown,O
 0x7100080e38,116,fn_7100080e38,unknown,unknown,O
 0x7100080eac,128,fn_7100080eac,unknown,unknown,O
-0x7100080f2c,136,fn_7100080f2c,unknown,unknown,U
+0x7100080f2c,136,fn_7100080f2c,unknown,unknown,O
 0x7100080fb4,108,fn_7100080fb4,unknown,unknown,O
 0x7100081020,28,fn_7100081020,unknown,unknown,O
 0x7100081040,104,fn_7100081040,unknown,unknown,O
@@ -2387,7 +2387,7 @@ address,size,name,name_source,subsystem,status
 0x710008e5a0,448,base::file::CThreadSafeDevice::refl_GetClass,reflection,engine/base,O
 0x710008e760,4,fn_710008e760,unknown,engine/base?,O
 0x710008e764,360,base::file::CThreadSafeDevice::refl_InitClass,reflection,engine/base,O
-0x710008e8cc,180,fn_710008e8cc,unknown,unknown,U
+0x710008e8cc,180,fn_710008e8cc,unknown,unknown,O
 0x710008e980,36,fn_710008e980,unknown,unknown,O
 0x710008e9a4,56,fn_710008e9a4,unknown,unknown,O
 0x710008e9dc,20,fn_710008e9dc,unknown,unknown,O
