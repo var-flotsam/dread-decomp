@@ -1080,6 +1080,13 @@ Left: `fn_71001f1db4` (an iterator value move-assign with 64-bit keys whose stor
 
 Also `fn_7100272bbc.cpp`, a pair assignment copy of `fn_7100c0837c`, is minor: the original copies the record's 0x15-byte tail last 8 bytes first. Left: the set erase `fn_7100142504`/`fn_710019e268` (15%; the list links only alias as an array, but the bucket-chain loop still differs).
 
+**Slice 1 near copies, batch 24** (stream 7, 2026-10-23): 6 functions **O** (`src/game_s1/`):
+- complete and deleting destructors of two classes that hold a string id and an array of plain values (`fn_71001f9c3c`, `fn_71001f9cd4`, `fn_710026cd30`, `fn_710026cdcc` in `fn_710002ddc0.cpp`);
+- a hash-set key lookup (`fn_710019e4fc` in `fn_710014bdec.cpp`);
+- an iterator value move-assign whose file path id re-reads its pool for the other's empty string (`fn_7100267684` in `fn_71000d0378.cpp`; `UnkReleasedStrIdT` now takes a `Reread` flag).
+
+These were found by re-running the near-copy search against the functions matched in batches 20 to 23.
+
 **dlmalloc 2.8.4 vendored** (stream 7, 2026-10-22, owner-approved): `lib/dlmalloc/` holds
 upstream `malloc.c` unmodified and `mspace.c` with the game's settings (README there). It was
 fetched from a mirror pinned to a commit in `tools/fetch_sources.py` and `data/sources.json`,

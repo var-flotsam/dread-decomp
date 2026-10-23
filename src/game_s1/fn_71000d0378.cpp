@@ -17,7 +17,7 @@ using namespace base::global;
 
 // A string id whose destructor decrements and tests in two steps (the original reloads the id
 // after the decrement).
-template <UnkStringPool** Pool>
+template <UnkStringPool** Pool, bool Reread = Pool == &g_unk_7101d47108>
 struct UnkReleasedStrIdT {
     UnkStringData* data;
 
@@ -41,7 +41,7 @@ struct UnkReleasedStrIdT {
         }
     }
     // Releases the id, then takes the other's (a string id re-reads the pool for the other's empty
-    // string, a file path id keeps the one read for the release).
+    // string, a file path id usually keeps the one read for the release).
     UnkReleasedStrIdT& operator=(UnkReleasedStrIdT&& other) {
         UnkStringPool* pool = *Pool;
         if (pool) {
@@ -55,7 +55,7 @@ struct UnkReleasedStrIdT {
             data = &pool->empty;
         }
         data = other.data;
-        if constexpr (Pool == &g_unk_7101d47108)
+        if constexpr (Reread)
             other.data = &(*Pool)->empty;
         else
             other.data = &pool->empty;
@@ -317,6 +317,18 @@ struct UnkPathRes {
 void fn_7100269170(UnkPathRes* self) { self->~UnkPathRes(); }
 
 void fn_710000f514(UnkWordPathRes* self) { self->~UnkWordPathRes(); }
+
+// The move-assignment of iterator values over such pairs (as fn_710000da34 above), where the path
+// id re-reads its pool for the other's empty string: fn_7100267684.
+struct UnkRereadPathRes {
+    UnkReleasedStrIdT<&g_unk_7101d47200, true> path;
+    UnkAssignedRef54 shared;
+};
+
+__attribute__((flatten)) UnkIterValue<UnkRereadPathRes>* fn_7100267684(UnkIterValue<UnkRereadPathRes>* self,
+                                                                       UnkIterValue<UnkRereadPathRes>* other) {
+    return MoveAssign(self, other);
+}
 
 // End of a table of words keyed by string ids, as fn_7100aef43c (src/game_aca57c/fn_7100e4ee60.cpp)
 // does for records: the iterator value is pointed one past the last key and value: fn_71000df938.
