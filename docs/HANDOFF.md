@@ -1051,6 +1051,14 @@ Not attempted: the callback-set iterator copies `fn_71002475b0` and `fn_71002476
 
 The copies call the shared clone templates through `flatten` wrappers, with traits of their own.
 
+**Slice 1 near copies, batch 20** (stream 7, 2026-10-23): 6 functions **O** (`src/game_s1/`):
+- destructors of a file path id and a counted resource, with or without a leading word (`fn_7100269170`, `fn_710000f514`);
+- an insert into a string-id hash map keyed by the name an object reports through its vtable (`fn_71000875d0.cpp`);
+- `End` for 0x18-byte out-of-line elements (`fn_71000d5f4c`) and for a word table keyed by string ids (`fn_71000df938`);
+- a bound-pair assignment for 0x18-byte records (`fn_71000d5e74.cpp`).
+
+Also fixed `fn_71000db40c` from batch 18: its values are file path ids. It matched byte for byte, but it named the default pool, which the relocation check caught.
+
 **dlmalloc 2.8.4 vendored** (stream 7, 2026-10-22, owner-approved): `lib/dlmalloc/` holds
 upstream `malloc.c` unmodified and `mspace.c` with the game's settings (README there). It was
 fetched from a mirror pinned to a commit in `tools/fetch_sources.py` and `data/sources.json`,

@@ -1,6 +1,6 @@
 // Copies for other element types, naming their own callees and data (the comments are adapted from the original's): of
 // fn_7100ad2004 (src/game_aca57c/fn_7100ad2004.cpp): fn_71000d5888, fn_71000e027c, fn_710027370c; and of fn_7100c8f61c
-// (src/game_aca57c/fn_7100ad2800.cpp): fn_71000e0e8c, fn_7100273dbc. Move-assignments of engine arrays
+// (src/game_aca57c/fn_7100ad2800.cpp): fn_71000e0e8c, fn_7100273dbc, fn_71000d5f4c. Move-assignments of engine arrays
 // (base/UnkVector.h), and the reflected End of the same arrays, whose elements' destructor is out of line (0x18-byte
 // elements destroyed by fn_71000a1c60, 0x30-byte ones by fn_710007ecd4, 0x50-byte ones by fn_710026ead0).
 #include "base/UnkCollectionIter.h"
@@ -33,6 +33,7 @@ UnkVector<UnkElement50>& fn_710027370c(UnkVector<UnkElement50>* self, UnkVector<
     return *self = static_cast<UnkVector<UnkElement50>&&>(other);
 }
 
+using UnkElement18Iter = base::UnkCollectionIter<UnkElement18>;
 using UnkElement30Iter = base::UnkCollectionIter<UnkElement30>;
 using UnkElement50Iter = base::UnkCollectionIter<UnkElement50>;
 
@@ -41,4 +42,7 @@ void fn_71000e0e8c(const UnkVector<UnkElement30>* v, UnkElement30Iter* out) {
 }
 void fn_7100273dbc(const UnkVector<UnkElement50>* v, UnkElement50Iter* out) {
     *out = UnkElement50Iter(v->count, v->data + v->count);
+}
+void fn_71000d5f4c(const UnkVector<UnkElement18>* v, UnkElement18Iter* out) {
+    *out = UnkElement18Iter(v->count, v->data + v->count);
 }
