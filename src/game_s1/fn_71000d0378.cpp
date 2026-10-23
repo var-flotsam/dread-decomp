@@ -207,6 +207,12 @@ struct UnkAssignedRef54 {
         }
         return *this;
     }
+    ~UnkAssignedRef54() {
+        if (UnkResource54* p = ptr) {
+            if (--p->ref_count == 0)
+                fn_710001737c(p);
+        }
+    }
 };
 
 // 8 plain bytes, a file path id and a counted resource (the resource is copied on a move).
@@ -253,11 +259,12 @@ UnkReleasedIdPair* fn_710001cd80(UnkReleasedIdPair* self, UnkReleasedIdPair* oth
     return self;
 }
 
-// Clear of a table of string ids keyed by string ids, as the tables' Clear in
-// src/game_s7/fn_71002520fc.cpp does for records: the keys (at 8), then the values (at 0) are
-// released, and the count is zeroed (the arrays are kept): fn_71000d99d0, fn_71000db40c.
-struct UnkIdIdTable {
-    UnkReleasedStrId* values;
+// Clear of a table of string ids (fn_71000d99d0) or file path ids (fn_71000db40c) keyed by string
+// ids, as the tables' Clear in src/game_s7/fn_71002520fc.cpp does for records: the keys (at 8),
+// then the values (at 0) are released, and the count is zeroed (the arrays are kept).
+template <class Value>
+struct UnkIdTable {
+    Value* values;
     UnkReleasedStrId* keys;
     u32 count;
 
@@ -268,12 +275,30 @@ struct UnkIdIdTable {
         }
         if (values && count) {
             for (u64 i = 0; i < count; ++i)
-                values[i].~UnkReleasedStrId();
+                values[i].~Value();
         }
         count = 0;
     }
 };
 
-void fn_71000d99d0(UnkIdIdTable* self) { self->Clear(); }
+void fn_71000d99d0(UnkIdTable<UnkReleasedStrId>* self) { self->Clear(); }
 
-void fn_71000db40c(UnkIdIdTable* self) { self->Clear(); }
+void fn_71000db40c(UnkIdTable<UnkFilePathReleasedStrId>* self) { self->Clear(); }
+
+// Destructors of a file path id and a counted resource, after 8 plain bytes or not, as
+// fn_710019e82c (src/game_lo/fn_710019e82c.cpp) does for a string id: fn_7100269170,
+// fn_710000f514.
+struct UnkPathRes {
+    UnkFilePathReleasedStrId path;
+    UnkAssignedRef54 shared;
+};
+
+void fn_7100269170(UnkPathRes* self) { self->~UnkPathRes(); }
+
+void fn_710000f514(UnkWordPathRes* self) { self->~UnkWordPathRes(); }
+
+// End of a table of words keyed by string ids, as fn_7100aef43c (src/game_aca57c/fn_7100e4ee60.cpp)
+// does for records: the iterator value is pointed one past the last key and value: fn_71000df938.
+void fn_71000df938(const UnkIdTable<u32>* self, UnkIterValue<u32, UnkReleasedStrId>* out) {
+    out->SetRef(self->keys + self->count, self->values + self->count);
+}
