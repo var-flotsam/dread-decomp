@@ -1059,6 +1059,13 @@ The copies call the shared clone templates through `flatten` wrappers, with trai
 
 Also fixed `fn_71000db40c` from batch 18: its values are file path ids. It matched byte for byte, but it named the default pool, which the relocation check caught.
 
+**Slice 1 near copies, batch 21** (stream 7, 2026-10-23): 7 functions **O** (`src/game_s1/fn_7100099468.cpp`):
+- the deleting destructor of the class that frees its id records at 0xf0 (`fn_7100099550`), and the complete destructor of the class with id records at 0x10 (`fn_710016a714`);
+- `Free` of arrays of bare string ids from either pool (`fn_71001b15b4`, `fn_71000d076c`, `fn_71000cdfb0`);
+- `Begin` over the same arrays (`fn_71000d0f1c`, `fn_71000ce8b8`).
+
+The matching `End` copies (`fn_71000d0ff4`, `fn_71000ce990`) are left at 96%: the original loads the count before the data pointer.
+
 **dlmalloc 2.8.4 vendored** (stream 7, 2026-10-22, owner-approved): `lib/dlmalloc/` holds
 upstream `malloc.c` unmodified and `mspace.c` with the game's settings (README there). It was
 fetched from a mirror pinned to a commit in `tools/fetch_sources.py` and `data/sources.json`,
