@@ -7,7 +7,6 @@
 #include "game/UnkXformNode.h"
 
 struct UnkXformNodeNegZ : UnkXformNode {
-    u8 pad_0xfc[0x54];
     f32 neg_z_0x150;
 };
 
