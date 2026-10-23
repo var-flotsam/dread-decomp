@@ -42,6 +42,13 @@ struct UnkXform {
     inline void SetScale(const UnkVec3f& v);
 
     UnkXform() {}
+    // Word by word, matrix included.
+    UnkXform(const UnkXform& o) {
+        UnkCopyMatrix(reinterpret_cast<UnkMatrix44*>(m), *reinterpret_cast<const UnkMatrix44*>(o.m));
+        angle = o.angle;
+        scale = o.scale;
+        flags = o.flags;
+    }
     // From a matrix alone: angles and scale are derived on first use.
     UnkXform(const UnkMatrix44& matrix) {
         *reinterpret_cast<UnkMatrix44*>(m) = matrix;
@@ -127,13 +134,16 @@ struct UnkXformNode {
     UnkVec3f angle_0x58;
     UnkVec3f scale_0x64;
     u32 flags_0x70;
-    u8 pad_0x74[0x85];
+    u8 pad_0x74[0x81];
+    bool field_0xf5;
+    u8 pad_0xf6;
+    u8 field_0xf7;
+    u8 pad_0xf8;
     bool active_0xf9;
     u8 dirty_0xfa;
     u8 flag_0xfb;
     u8 pad_0xfc[0xc];
     UnkXformTarget* target_0x108;
-    UnkMatrix44 matrix_0x110;  // applied after the node's own matrix
 
     UnkXform* Xform() { return reinterpret_cast<UnkXform*>(xform_0x18); }
 
@@ -169,4 +179,4 @@ struct UnkXformNode {
         return angle_0x58;
     }
 };
-static_assert(sizeof(UnkXformNode) == 0x150, "UnkXformNode layout");
+static_assert(sizeof(UnkXformNode) == 0x110, "UnkXformNode layout");

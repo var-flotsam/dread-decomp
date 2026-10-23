@@ -1139,12 +1139,23 @@ the translation), `fn_710020aafc` (scale by a factor),
 `fn_710023e348` (reflected angle getter) and `fn_7100196674` (cached aspect-scaled matrix).
 `UnkXform` gained `GetMatrix`, `SetAngle`, `SetScale`, `SetTranslation` and a from-matrix
 constructor; `UnkMatrix44` moved to `include/base/UnkMatrix44.h`; `UnkXformNode` gained the fields
-at 0xf9-0x110 and is now 0x150 bytes (static_assert; `fn_710020a6e8` and `fn_71010d3508` adjusted). Caution: `UnkXformNode`'s own fields (`angle_0x58`, `flags_0x70`, ...) and
+at 0xf9-0x108 (static_assert on its size; `fn_710020a6e8` and `fn_71010d3508` adjusted). Caution: `UnkXformNode`'s own fields (`angle_0x58`, `flags_0x70`, ...) and
 `Xform()->...` describe the same memory with different struct paths, so type-based alias analysis
 treats them as independent; within one function use one view. Folding `UnkXformNode` onto an
 embedded `UnkXform` (27 files) would remove that. Dropped after a time-box: `fn_71000127c8`
 (matrix product: the original reloads the zeroed rows 1-3 of the result), `fn_7100025bd0`/`fn_7100025d10`
 (transform tree update: matrix copy split and a leftover flag branch).
+
+**Slice 1 hubs, batch 3** (stream 7, 2026-10-23): 8 more transform callers **O**: bone world
+matrices by index (`fn_71001c1b70`; by id `fn_71001c1694` is `NON_MATCHING(minor)`: the original
+compares the not-found end pointer with itself), `fn_71001bfd5c` (matrix follower),
+`fn_71001bc740` (move and face the new position; `fn_710007a7f0` takes its direction by value,
+which a non-trivial copy passes by address), `fn_71001f4434`, `fn_71001eaf3c` (pool entry
+placement), `fn_7100140f8c`/`fn_7100145f80` (apply a transform but keep the own scale) and
+`fn_7100208a64` (target link on/off). `UnkXform` now has a word-by-word copy constructor;
+`include/base/UnkMatrix44.h` has `UnkCopyMatrix` (written out, since a loop becomes a memcpy).
+`UnkXformNode` is back to ending at the target pointer (0x110 bytes): the matrix at 0x110 belongs
+to one subclass (`fn_710020a44c`), and another keeps flags there (`fn_7100208a64`).
 
 **dlmalloc 2.8.4 vendored** (stream 7, 2026-10-22, owner-approved): `lib/dlmalloc/` holds
 upstream `malloc.c` unmodified and `mspace.c` with the game's settings (README there). It was
