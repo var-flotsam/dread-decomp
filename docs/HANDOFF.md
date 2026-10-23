@@ -1087,6 +1087,13 @@ Also `fn_7100272bbc.cpp`, a pair assignment copy of `fn_7100c0837c`, is minor: t
 
 These were found by re-running the near-copy search against the functions matched in batches 20 to 23.
 
+**Slice 1 near copies, batch 25** (stream 7, 2026-10-23): 21 small functions **O** (`src/game_s1/`). They came from widening the near-copy search to functions of 64 bytes and up:
+- getters building reflected values (`fn_71002678c8.cpp`);
+- calls of a virtual slot on each child of an array with a float or bool argument (`fn_710014be78.cpp`);
+- iterator value moves with 64-bit indices and out-of-line element moves (`fn_71000dbc34.cpp`);
+- find-by-id-and-forward wrappers (`fn_71001fcd4c.cpp`, copies of `fn_71001fd8a0`);
+- array equality for words and floats, and a keyed set with u64 keys (`fn_71000d25f0.cpp`).
+
 **dlmalloc 2.8.4 vendored** (stream 7, 2026-10-22, owner-approved): `lib/dlmalloc/` holds
 upstream `malloc.c` unmodified and `mspace.c` with the game's settings (README there). It was
 fetched from a mirror pinned to a commit in `tools/fetch_sources.py` and `data/sources.json`,
