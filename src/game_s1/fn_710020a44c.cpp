@@ -8,7 +8,11 @@ UnkMatrix44 fn_71000127c8(const UnkMatrix44& a, const UnkMatrix44& b);  // a * b
 void fn_710019c474(void* target, const UnkMatrix44* m);
 void fn_71001c34f4(void* target, f32 value);
 
-bool fn_710020a44c(UnkXformNode* self) {
+struct UnkXformNodeWithOffset : UnkXformNode {
+    UnkMatrix44 matrix_0x110;  // applied after the node's own matrix
+};
+
+bool fn_710020a44c(UnkXformNodeWithOffset* self) {
     if (self->active_0xf9) {
         if (self->dirty_0xfa) {
             UnkXformTarget* target = self->target_0x108;
