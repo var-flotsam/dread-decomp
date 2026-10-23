@@ -24,7 +24,7 @@ struct UnkReflValue {
 }  // namespace base::reflection
 
 void fn_71000a18d4(base::reflection::UnkReflValue* out, const base::reflection::CType* type, const void* value,
-                   bool flag);
+                   u32 by_ref);
 
 namespace base::reflection {
 
