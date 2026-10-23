@@ -1128,6 +1128,24 @@ full `UnkXform` layout (4x4 matrix, cached angle 0x40, scale 0x4c, flags 0x58) w
 getter's translation needs it). Unmatched local re-declarations of `fn_71000a18d4` elsewhere still
 use their own types.
 
+**Slice 1 hubs, batch 2** (stream 7, 2026-10-23): 27 unmatched callers of the transform hubs
+**O** (`src/game_s1/`), all through `include/game/UnkXformNode.h`: angle/scale getters of objects
+holding an `UnkXform` (`fn_71001413d4` and five copies), pose copies into a node (`fn_71001439d8`
+and four copies), matrix setters that pass the translation on (`fn_71001f70dc` and three copies,
+`fn_710020d744`, `fn_7100206294`), node angle/scale/translation setters with change checks
+(`fn_710020d5b8`, `fn_710020d33c`, `fn_710020d4b8`; `fn_7100209b48` sets the angles but tests
+the translation), `fn_710020aafc` (scale by a factor),
+`fn_710020a44c` (pushes a dirty node to its target), `fn_710023415c`, `fn_71001bc8a4`,
+`fn_710023e348` (reflected angle getter) and `fn_7100196674` (cached aspect-scaled matrix).
+`UnkXform` gained `GetMatrix`, `SetAngle`, `SetScale`, `SetTranslation` and a from-matrix
+constructor; `UnkMatrix44` moved to `include/base/UnkMatrix44.h`; `UnkXformNode` gained the fields
+at 0xf9-0x110 and is now 0x150 bytes (static_assert; `fn_710020a6e8` and `fn_71010d3508` adjusted). Caution: `UnkXformNode`'s own fields (`angle_0x58`, `flags_0x70`, ...) and
+`Xform()->...` describe the same memory with different struct paths, so type-based alias analysis
+treats them as independent; within one function use one view. Folding `UnkXformNode` onto an
+embedded `UnkXform` (27 files) would remove that. Dropped after a time-box: `fn_71000127c8`
+(matrix product: the original reloads the zeroed rows 1-3 of the result), `fn_7100025bd0`/`fn_7100025d10`
+(transform tree update: matrix copy split and a leftover flag branch).
+
 **dlmalloc 2.8.4 vendored** (stream 7, 2026-10-22, owner-approved): `lib/dlmalloc/` holds
 upstream `malloc.c` unmodified and `mspace.c` with the game's settings (README there). It was
 fetched from a mirror pinned to a commit in `tools/fetch_sources.py` and `data/sources.json`,

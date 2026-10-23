@@ -38,7 +38,7 @@ struct UnkActor_71010d3508 {
     virtual void vf_0xd8(const UnkVec3f* pos, bool flag);
     u8 unk_0x8[0x18];
     UnkXformNode node;
-    u8 unk_0x11c[0x260];
+    u8 unk_0x170[0x20c];
     union {
         f32 field_0x37c;
     };

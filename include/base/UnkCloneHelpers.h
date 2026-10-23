@@ -10,6 +10,7 @@
 #include "base/UnkCollectionIter.h"
 #include "base/UnkDeferredSet.h"
 #include "base/UnkDestructors.h"
+#include "base/UnkMatrix44.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflCast.h"
@@ -1995,9 +1996,6 @@ UnkKeyedPairIter<Tag, Size>* refl_KeyedPairIterAssign(UnkKeyedPairIter<Tag, Size
 // Sets a 4x4 matrix of f32 at +0x18 when it differs from the current one (read through
 // fn_710002614c), then updates the flags at +0x70 with a global mask and marks the object dirty
 // (fn_71001f30c0, fn_71001f3d60 and their copies; CurFirst: the comparison's operand order).
-struct UnkMatrix44 {
-    f32 m[16];
-};
 const UnkMatrix44& fn_710002614c(const UnkMatrix44* m);
 
 namespace base {
