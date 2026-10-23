@@ -1066,6 +1066,13 @@ Also fixed `fn_71000db40c` from batch 18: its values are file path ids. It match
 
 The matching `End` copies (`fn_71000d0ff4`, `fn_71000ce990`) are left at 96%: the original loads the count before the data pointer.
 
+**Slice 1 near copies, batch 22** (stream 7, 2026-10-23): 5 functions **O** (`src/game_s1/`):
+- `PushBack` of a copy for records of a word and a 0x100-byte object (`fn_71002a1778.cpp`, two copies of `fn_7100b1a860`);
+- the complete and deleting destructors of a class with a string id and a string (`fn_710002ddc0.cpp`). The deleting one releases the id without resetting it, so it is written out;
+- a flag lookup in a `CRntVector`-bucketed hash map (`fn_710014bdec.cpp`, like `fn_710019e100`).
+
+Left: `fn_71001f1db4` (an iterator value move-assign with 64-bit keys whose stores alias the state; 23%).
+
 **dlmalloc 2.8.4 vendored** (stream 7, 2026-10-22, owner-approved): `lib/dlmalloc/` holds
 upstream `malloc.c` unmodified and `mspace.c` with the game's settings (README there). It was
 fetched from a mirror pinned to a commit in `tools/fetch_sources.py` and `data/sources.json`,

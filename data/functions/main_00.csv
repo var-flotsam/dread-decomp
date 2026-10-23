@@ -1257,8 +1257,8 @@ address,size,name,name_source,subsystem,status
 0x710002dbc8,360,base::file::nx::CDeviceNX::refl_InitClass,reflection,engine/base,O
 0x710002dd30,4,fn_710002dd30,unknown,unknown,O
 0x710002dd34,140,fn_710002dd34,unknown,unknown,O
-0x710002ddc0,124,fn_710002ddc0,unknown,unknown,U
-0x710002de3c,132,fn_710002de3c,unknown,unknown,U
+0x710002ddc0,124,fn_710002ddc0,unknown,unknown,O
+0x710002de3c,132,fn_710002de3c,unknown,unknown,O
 0x710002dec0,20,fn_710002dec0,unknown,unknown,O
 0x710002ded4,8,fn_710002ded4,unknown,unknown,O
 0x710002dedc,164,fn_710002dedc,unknown,unknown,U
