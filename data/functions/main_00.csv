@@ -5379,7 +5379,7 @@ address,size,name,name_source,subsystem,status
 0x71000e17f4,8,fn_71000e17f4,unknown,unknown,O
 0x71000e17fc,12,fn_71000e17fc,unknown,unknown,O
 0x71000e1808,64,fn_71000e1808,unknown,unknown,O
-0x71000e1848,188,fn_71000e1848,unknown,unknown,U
+0x71000e1848,188,fn_71000e1848,unknown,unknown,O
 0x71000e1904,64,fn_71000e1904,unknown,unknown,O
 0x71000e1944,60,fn_71000e1944,unknown,unknown,O
 0x71000e1980,184,fn_71000e1980,unknown,unknown,U

@@ -1073,6 +1073,13 @@ The matching `End` copies (`fn_71000d0ff4`, `fn_71000ce990`) are left at 96%: th
 
 Left: `fn_71001f1db4` (an iterator value move-assign with 64-bit keys whose stores alias the state; 23%).
 
+**Slice 1 near copies, batch 23** (stream 7, 2026-10-23): 3 functions **O**, 1 **m** (`src/game_s1/`):
+- a hash-set key move (`fn_710014239c.cpp`, a copy of `fn_710019e100` that appends before erasing);
+- the Clear of a string-id keyed table of counted resources (`fn_71001d7444` in `fn_71000d0378.cpp`; the value loop only matches as a do-while);
+- a byte array copy constructor (`fn_71000e1848` in `fn_71000d1f3c.cpp`).
+
+Also `fn_7100272bbc.cpp`, a pair assignment copy of `fn_7100c0837c`, is minor: the original copies the record's 0x15-byte tail last 8 bytes first. Left: the set erase `fn_7100142504`/`fn_710019e268` (15%; the list links only alias as an array, but the bucket-chain loop still differs).
+
 **dlmalloc 2.8.4 vendored** (stream 7, 2026-10-22, owner-approved): `lib/dlmalloc/` holds
 upstream `malloc.c` unmodified and `mspace.c` with the game's settings (README there). It was
 fetched from a mirror pinned to a commit in `tools/fetch_sources.py` and `data/sources.json`,

@@ -2,7 +2,8 @@
 // types: End for 2-byte, 1-byte and 12-byte elements (as in fn_7100b0d608: fn_71000d1f3c, fn_71000e1e84;
 // fn_71000cc60c, fn_71001205d0), Insert of
 // a 2-byte element (as in fn_7100b844f8: fn_71000d19c4, fn_71000d1b74), and by-value equality of
-// cached iterator values with 64-bit indices (as in fn_7101070418: fn_71001f1c04, fn_71001f1ef4).
+// cached iterator values with 64-bit indices (as in fn_7101070418: fn_71001f1c04, fn_71001f1ef4), and a
+// byte array copy constructor (fn_71000e1848).
 #include "base/UnkCollectionIter.h"
 #include "base/UnkVector.h"
 #include "types.h"
@@ -47,4 +48,19 @@ bool fn_71001f1c04(const UnkIterValue<UnkWord64, u64>& a, const UnkIterValue<Unk
 
 bool fn_71001f1ef4(const UnkIterValue<UnkWord64, u64>& a, const UnkIterValue<UnkWord64, u64>& b) {
     return base::refl_IterValueEqualByValue(a, b);
+}
+
+// base::UnkVector's copy constructor for bytes: the source's capacity is reserved, then its
+// elements copied with memcpy (as the generated fn_7100adb380 does for words): fn_71000e1848.
+void fn_71000e1848(UnkVector<u8>* self, const UnkVector<u8>* other) {
+    self->data = nullptr;
+    self->count = 0;
+    self->capacity = 0;
+    self->step = other->step;
+    self->field_0x14 = other->field_0x14;
+    self->flags = other->flags;
+    self->allocator = other->allocator;
+    self->Reserve(other->capacity);
+    __builtin_memcpy(self->data, other->data, other->count);
+    self->count = other->count;
 }
