@@ -1109,6 +1109,13 @@ Dropped after the time box: `fn_71000876d8` (hash lookup; load scheduling) and `
 - destructors: pooled objects (`fn_710019bfb8.cpp`), a three-member class (`fn_7100086d7c.cpp`), a counted reference (`fn_71000139c0.cpp`) and a vibration player derived from `nn::hid::VibrationPlayer` (`fn_71000707dc.cpp`, declaring the two SDK destructors it calls);
 - a matrix composition (`fn_7100078c9c.cpp`).
 
+**Slice 1 near copies, batch 28** (stream 7, 2026-10-23): 20 small functions **O** (`src/game_s1/`):
+- destructors: a counted id (`fn_710002ddc0.cpp`), a dead-marked object (`fn_71001f3438.cpp`), a plain object with blocks and an array (`fn_710019506c.cpp`), counted and id members (`fn_71001bd92c.cpp`), an active flag and an owned mutex (`fn_710008e8cc.cpp`), owned-object arrays (`fn_7100243aac.cpp`);
+- constructors (`fn_7100138090.cpp`, `fn_71001a9f84.cpp`), record copy and copy-assignment (`fn_71001b3a3c.cpp`, `fn_71000d0378.cpp`);
+- a folded-hash set lookup (`fn_710014bdec.cpp`), a keyed presence test (`fn_71002519a8.cpp`), a table end (`fn_71000d0378.cpp`), a lazily created part's id setter (`fn_71001c3504.cpp`), an interpolated value setter (`fn_7100105f1c.cpp`);
+- two millisecond clocks (`fn_7100080c40.cpp`, calling `nn::os` and `nn::oe` by their SDK names).
+Dropped after the time box: `fn_71000de3b0`/`fn_71000de8e8` (iterator value equality over floats; register order).
+
 **dlmalloc 2.8.4 vendored** (stream 7, 2026-10-22, owner-approved): `lib/dlmalloc/` holds
 upstream `malloc.c` unmodified and `mspace.c` with the game's settings (README there). It was
 fetched from a mirror pinned to a commit in `tools/fetch_sources.py` and `data/sources.json`,

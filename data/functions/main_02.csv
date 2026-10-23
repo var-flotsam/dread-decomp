@@ -2101,7 +2101,7 @@ address,size,name,name_source,subsystem,status
 0x7100243a20,12,fn_7100243a20,unknown,unknown,O
 0x7100243a2c,64,fn_7100243a2c,unknown,unknown,O
 0x7100243a6c,64,fn_7100243a6c,unknown,unknown,O
-0x7100243aac,172,fn_7100243aac,unknown,unknown,U
+0x7100243aac,172,fn_7100243aac,unknown,unknown,O
 0x7100243b58,204,fn_7100243b58,unknown,unknown,O
 0x7100243c24,672,fn_7100243c24,unknown,unknown,U
 0x7100243ec4,612,fn_7100243ec4,unknown,unknown,U
@@ -2450,7 +2450,7 @@ address,size,name,name_source,subsystem,status
 0x71002520dc,12,fn_71002520dc,unknown,unknown,O
 0x71002520e8,20,fn_71002520e8,unknown,unknown,O
 0x71002520fc,152,fn_71002520fc,unknown,unknown,O
-0x7100252194,168,fn_7100252194,unknown,unknown,U
+0x7100252194,168,fn_7100252194,unknown,unknown,O
 0x7100252240,808,fn_7100252240,unknown,unknown,O
 0x7100252568,88,fn_7100252568,unknown,unknown,O
 0x71002525c0,244,CActorComponentDef::refl_GetClass,reflection,game,O

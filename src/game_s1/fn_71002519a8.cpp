@@ -47,3 +47,23 @@ static inline UnkRecord_0x40* FindRecord(UnkRecordsByKeyHolder_7100015250* self,
 UnkRecord_0x40* fn_7100015250(UnkRecordsByKeyHolder_7100015250* self, u64 key) { return FindRecord(self, key); }
 
 UnkRecord_0x40* fn_7100015508(UnkRecordsByKeyHolder_7100015250* self, u64 key) { return FindRecord(self, key); }
+
+// Whether a key is present in the keyed array of 0x98-byte records held at 8 in the object at
+// 0x80 of the object at 0x78 (fn_71001c147c).
+struct UnkRecord_0x98 {
+    u8 data[0x98];
+};
+
+struct UnkRecordsByKeyHolder_71001c147c {
+    u64 field_0x0;
+    base::UnkKeyedArray<UnkRecord_0x98, u64, UnkRecord_0x98> records;
+};
+
+bool fn_71001c147c(char* self, const u64* key) {
+    char* owner = *reinterpret_cast<char**>(self + 0x78);
+    auto* holder = *reinterpret_cast<UnkRecordsByKeyHolder_71001c147c**>(owner + 0x80);
+    UnkRecord_0x98* p = holder->records.Find(*key);
+    if (p == holder->records.End())
+        p = nullptr;
+    return p != nullptr;
+}

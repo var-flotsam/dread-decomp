@@ -335,3 +335,32 @@ __attribute__((flatten)) UnkIterValue<UnkRereadPathRes>* fn_7100267684(UnkIterVa
 void fn_71000df938(const UnkIdTable<u32>* self, UnkIterValue<u32, UnkReleasedStrId>* out) {
     out->SetRef(self->keys + self->count, self->values + self->count);
 }
+
+// The same over 8-byte values: fn_7100252194.
+void fn_7100252194(const UnkIdTable<u64>* self, UnkIterValue<u64, UnkReleasedStrId>* out) {
+    out->SetRef(self->keys + self->count, self->values + self->count);
+}
+
+// Copy-assignment of a 0x38-byte record with a counted resource at 0x18 between plain fields
+// (fn_71001ae8f0, fn_71001ae984).
+struct UnkResRecord_71001ae8f0 {
+    u64 field_0x0;
+    u64 field_0x8;
+    u64 field_0x10;
+    UnkAssignedRef54 res;
+    u64 field_0x20;
+    u64 field_0x28;
+    u64 field_0x30;
+};
+
+UnkResRecord_71001ae8f0* fn_71001ae8f0(UnkResRecord_71001ae8f0* self, const UnkResRecord_71001ae8f0* other) {
+    if (self != other)
+        *self = *other;
+    return self;
+}
+
+UnkResRecord_71001ae8f0* fn_71001ae984(UnkResRecord_71001ae8f0* self, const UnkResRecord_71001ae8f0* other) {
+    if (self != other)
+        *self = *other;
+    return self;
+}
