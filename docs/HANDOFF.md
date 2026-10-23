@@ -1094,6 +1094,13 @@ These were found by re-running the near-copy search against the functions matche
 - find-by-id-and-forward wrappers (`fn_71001fcd4c.cpp`, copies of `fn_71001fd8a0`);
 - array equality for words and floats, and a keyed set with u64 keys (`fn_71000d25f0.cpp`).
 
+**Slice 1 near copies, batch 26** (stream 7, 2026-10-23): 33 small functions **O** (`src/game_s1/`), from the near-copy search at 36 bytes and up:
+- 13 more find-and-forward wrappers (`fn_71001fcd4c.cpp`);
+- destructors: an id plus an allocator-owned block (`fn_710002ddc0.cpp`), chained-set holders (`fn_7100022518.cpp`), an array holder (`fn_710014a86c.cpp`), a node list (`fn_7100218a2c.cpp`);
+- reflection invokers: a constant-true getter (`fn_7100254728.cpp`), a two-float setter (`fn_71001109c4.cpp`), in-place array construction (`fn_710025d844.cpp`), iterator increments over refcounted pointers (`fn_7100236ff4.cpp`);
+- a wide-string search (`fn_7100067460.cpp`), a translation matrix (`fn_7100078c9c.cpp`), a timer reset whose division by 1000 is written out the way the original computes it (`fn_7100080c40.cpp`), and a sub-allocator free hook (`fn_71001039b4.cpp`).
+Dropped after the time box: `fn_71000876d8` (hash lookup; load scheduling) and `fn_71001f1d38` (iterator value copy with 64-bit keys).
+
 **dlmalloc 2.8.4 vendored** (stream 7, 2026-10-22, owner-approved): `lib/dlmalloc/` holds
 upstream `malloc.c` unmodified and `mspace.c` with the game's settings (README there). It was
 fetched from a mirror pinned to a commit in `tools/fetch_sources.py` and `data/sources.json`,

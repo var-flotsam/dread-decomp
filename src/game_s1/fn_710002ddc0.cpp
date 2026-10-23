@@ -4,6 +4,8 @@
 // a class (vtable unk_7101a1f380) with a string id at 8 and an array of plain values at 0x10:
 // fn_71001f9c3c, fn_71001f9cd4. Also a class (vtable unk_7101a20d68) with the id at 0x58 and the
 // array at 0x68, above a base whose destructor is fn_7100016f88: fn_710026cd30, fn_710026cdcc.
+// And a class (vtable unk_7101a1e4d8) with the id at 8 and an allocator-owned block at 0x30,
+// above a base whose destructor is fn_710002384c: fn_71001a98dc, fn_71001a9978.
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
@@ -84,6 +86,34 @@ __attribute__((always_inline)) static inline void Destroy(UnkIdValues_710026cd30
 void fn_710026cd30(UnkIdValues_710026cd30* self) { Destroy(self); }
 
 void fn_710026cdcc(UnkIdValues_710026cd30* self) {
+    Destroy(self);
+    operator delete(self);
+}
+
+extern char unk_7101a1e4d8[];
+void fn_710002384c(void* self);
+
+struct UnkIdOwned_71001a98dc {
+    char* vtable;
+    base::UnkStrIdMember id;
+    u8 pad_0x10[0x20];
+    void* owned;
+};
+
+__attribute__((always_inline)) static inline void Destroy(UnkIdOwned_71001a98dc* self) {
+    self->vtable = unk_7101a1e4d8 + 0x10;
+    if (self->owned) {
+        fn_7100083990()->vf_0x48(self->owned);
+        self->owned = nullptr;
+    }
+    using Id = base::UnkStrIdMember;
+    self->id.~Id();
+    fn_710002384c(self);
+}
+
+void fn_71001a98dc(UnkIdOwned_71001a98dc* self) { Destroy(self); }
+
+void fn_71001a9978(UnkIdOwned_71001a98dc* self) {
     Destroy(self);
     operator delete(self);
 }
