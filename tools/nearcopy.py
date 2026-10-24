@@ -32,6 +32,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import asmdiff  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
+GENERATED = ("src/lifted/", "src/reflection", "src/clones/", "src/tables/")
 
 
 def norm(code: bytes) -> list[int]:
@@ -60,20 +61,27 @@ def refs(addr: int, code: bytes) -> list[int]:
             page[w & 31] = (pc & ~0xFFF) + ((imm ^ 0x100000) - 0x100000) * 4096
         elif w & 0x7F800000 == 0x11000000 and (w >> 5) & 31 in page:
             out.append(page[(w >> 5) & 31] + ((w >> 10) & 0xFFF))
+            page.pop(w & 31, None)  # the destination no longer holds a page
         elif w & 0x3B000000 == 0x39000000 and (w >> 5) & 31 in page:
             out.append(page[(w >> 5) & 31] + (((w >> 10) & 0xFFF) << (w >> 30)))
+            if w & 0x400000:  # a load overwrites its target register
+                page.pop(w & 31, None)
     return out
 
 
 def defining_file(addr: int) -> str:
-    """The first src/ file that mentions addr outside a comment or declaration."""
+    """The src/ file that defines addr: hand-written files first, then generated ones."""
     out = subprocess.run(["git", "grep", "-n", f"{addr:x}", "--", "src/"], capture_output=True, text=True, cwd=ROOT).stdout
+    found = []
     for line in out.splitlines():
         path, _, text = line.split(":", 2)
         t = text.strip()
-        if not (t.startswith("//") or t.endswith(";") or "callee::" in t):
-            return path
-    return "?"
+        clone = t.startswith("template ") and f"UnkClone_fn_{addr:x}" in t
+        if not clone and (t.startswith("//") or t.endswith(";") or "callee" in t):
+            continue
+        found.append(path)
+    found.sort(key=lambda p: p.startswith(GENERATED))
+    return found[0] if found else "?"
 
 
 def main() -> int:
