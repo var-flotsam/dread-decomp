@@ -2,6 +2,7 @@
 // reports the first state, the position is moved by -75 on y if the owner is below it on y and the
 // object's matrix points toward it, or by 50 along the matrix's x column when the two matrices
 // differ; otherwise y is raised by 6. Returns false when there is no object.
+#include "game/UnkActor.h"
 #include "types.h"
 
 struct UnkVec3 {
@@ -41,7 +42,6 @@ struct UnkSelf {
     UnkOwner* field_0x8;
 };
 
-UnkTarget* fn_7100d7c990(UnkOwner* owner);
 bool fn_71009e12d0(UnkHelper* helper);
 bool fn_71009e6434(UnkHelper* helper);
 f32* fn_710002614c(void* matrix);
@@ -59,7 +59,7 @@ static inline u32 AsU32(f32 value) {
 }
 
 bool fn_710046514c(UnkSelf* self, UnkVec3* out) {
-    UnkTarget* target = fn_7100d7c990(self->field_0x8);
+    UnkTarget* target = reinterpret_cast<UnkTarget*>(fn_7100d7c990(reinterpret_cast<UnkActor*>(self->field_0x8)));
     if (!target)
         return false;
     u32 x = target->field_0x44;

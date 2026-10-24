@@ -2,20 +2,8 @@
 // the object (the vector to it has a negative dot product with the object's direction, the part at
 // 0x38, elements at 0x8, 0x18, 0x28); otherwise whether the squared distance between the two is not below the
 // square of both radii (at 0x37c) plus 70.
+#include "game/UnkActor.h"
 #include "types.h"
-
-struct UnkPositioned {
-    u8 pad_0x0[0x38];
-    u8 field_0x38[8];
-    u8 pad_0x40[4];
-    f32 field_0x44;
-    u8 pad_0x48[0xc];
-    f32 field_0x54;
-    u8 pad_0x58[0xc];
-    f32 field_0x64;
-    u8 pad_0x68[0x314];
-    f32 field_0x37c;
-};
 
 struct UnkMatrixRow {
     u8 pad_0x0[8];
@@ -28,15 +16,14 @@ struct UnkMatrixRow {
 
 struct UnkFollower {
     u8 pad_0x0[8];
-    UnkPositioned* field_0x8;
+    UnkActor* field_0x8;
 };
 
-UnkPositioned* fn_7100d7c990(UnkPositioned* object);
 UnkMatrixRow* fn_710002614c(void* part);
 
 bool fn_710049eb04(UnkFollower* self) {
-    UnkPositioned* target = fn_7100d7c990(self->field_0x8);
-    UnkPositioned* me = self->field_0x8;
+    UnkActor* target = fn_7100d7c990(self->field_0x8);
+    UnkActor* me = self->field_0x8;
     f32 tx = target->field_0x44;
     f32 ty = target->field_0x54;
     f32 tz = target->field_0x64;
@@ -53,11 +40,11 @@ bool fn_710049eb04(UnkFollower* self) {
     f32 dot = dx0 * m8 + dy0 * m18 + dz0 * m28;
     if (dot < 0.0f)
         return false;
-    UnkPositioned* a = self->field_0x8;
+    UnkActor* a = self->field_0x8;
     f32 ax = a->field_0x44;
     f32 ay = a->field_0x54;
     f32 az = a->field_0x64;
-    UnkPositioned* p = fn_7100d7c990(a);
+    UnkActor* p = fn_7100d7c990(a);
     f32 dx = ax - p->field_0x44;
     f32 dy = ay - p->field_0x54;
     f32 pz = p->field_0x64;

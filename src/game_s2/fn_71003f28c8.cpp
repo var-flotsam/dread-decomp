@@ -5,6 +5,7 @@
 // then compared with one of two ranges of the data, and when it is inside, further checks (an
 // owner query and a value of the owner's target against one of the data) decide. A true result
 // is cleared when the sub-object at +0x220 of the owner isn't a track that can be aborted.
+#include "game/UnkActor.h"
 #include "types.h"
 
 struct UnkSpitMatrix {
@@ -16,33 +17,9 @@ struct UnkSpitMatrix {
     f32 field_0x28;
 };
 
-struct UnkSpitPoint {
-    u8 pad_0x0[0x44];
-    f32 field_0x44;
-    u8 pad_0x48[0xc];
-    f32 field_0x54;
-    u8 pad_0x58[0xc];
-    f32 field_0x64;
-};
-
 struct UnkSpitOwnerTarget {
     u8 pad_0x0[0x14f8];
     f32 field_0x14f8;
-};
-
-struct UnkSpitOwner {
-    u8 pad_0x0[0x38];
-    u8 field_0x38[0xc];
-    f32 field_0x44;
-    u8 pad_0x48[0xc];
-    f32 field_0x54;
-    u8 pad_0x58[0xc];
-    f32 field_0x64;
-    u8 pad_0x68[0x10];
-    u8 pad_0x78[0x1a8];
-    void* field_0x220;
-    u8 pad_0x228[0x18];
-    UnkSpitOwnerTarget* field_0x240;
 };
 
 struct UnkSpitConfig {
@@ -55,26 +32,25 @@ struct UnkSpitConfig {
 
 struct UnkSpitState1 {
     u8 pad_0x0[0x8];
-    UnkSpitOwner* field_0x8;
+    UnkActor* field_0x8;
     u8 pad_0x10[0x18];
     UnkSpitConfig* field_0x28;
     u8 pad_0x30[0xb0];
     f32 field_0xe0;
 };
 
-UnkSpitPoint* fn_7100d7c990(UnkSpitOwner* owner);
 const UnkSpitMatrix* fn_710002614c(void* transform);
-bool fn_7100d7bea0(UnkSpitOwner* owner, bool flag);
+bool fn_7100d7bea0(UnkActor* owner, bool flag);
 void* fn_7100c0ccc8();  // CCharClassAttackCanBeAbortedTrack::refl_GetClass
 bool fn_710117b348(void* object, void* type);
 
 // NON_MATCHING(minor): same behaviour; the original reads the owner->target vector in another
 // order, tests the owner before the result at the end and shares that end between the paths.
 bool fn_71003f28c8(UnkSpitState1* self, f32 delta) {
-    UnkSpitOwner* owner = self->field_0x8;
+    UnkActor* owner = self->field_0x8;
     if (!owner)
         return false;
-    UnkSpitPoint* target = fn_7100d7c990(owner);
+    UnkActor* target = fn_7100d7c990(owner);
     if (!target)
         return false;
     if (!self->field_0x28)
@@ -112,7 +88,8 @@ bool fn_71003f28c8(UnkSpitState1* self, f32 delta) {
     } else {
         bool busy = fn_7100d7bea0(owner, true);
         owner = self->field_0x8;
-        result = !busy && owner->field_0x240 && owner->field_0x240->field_0x14f8 > self->field_0x28->field_0xfc;
+        result = !busy && owner->field_0x240 &&
+                 static_cast<UnkSpitOwnerTarget*>(owner->field_0x240)->field_0x14f8 > self->field_0x28->field_0xfc;
     }
 finish:
     if (owner && result) {

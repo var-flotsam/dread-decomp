@@ -1,6 +1,7 @@
 // Sets up an actor's components (two of them through a mask of all flags), then hands a list of
 // nineteen flag values to fn_71008724f8 under a fixed key. Layouts are placeholders.
 #include "UnkFlagListS7.h"
+#include "game/UnkActor.h"
 
 using unk_flag_list::UnkFlagList;
 using unk_flag_list::UnkFlagListKey;
@@ -38,22 +39,9 @@ bool fn_7101176690(void* obj, u64 hash, u64 key, const UnkFlags_7100600c98& flag
                    const UnkS12_7100600c98& b, const UnkMask_7100600c98& mask);
 void fn_7100a2cb7c(void* obj, UnkKey_7100600c98* key, UnkMask_7100600c98* mask, f32 value, u32 arg);
 
-struct UnkActor_7100600c98 {
-    u8 pad_0x0[0x220];
-    void* field_0x220;
-    u8 pad_0x228[0xc0];
-    void* field_0x2e8;
-};
-
-struct UnkInfo_7100600c98 {
-    u8 pad_0x0[0x1d8];
-    void* field_0x1d8;
-};
-UnkInfo_7100600c98* fn_7100d7c990(UnkActor_7100600c98* actor);
-
 struct UnkStruct_7100600c98 {
     u8 pad_0x0[0x30];
-    UnkActor_7100600c98* actor;
+    UnkActor* actor;
 };
 
 extern UnkFlagListKey g_unk_71726f37a0 __attribute__((visibility("hidden")));

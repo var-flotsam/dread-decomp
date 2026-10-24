@@ -1,5 +1,6 @@
 // Fills a box (two corners, 0x18 bytes) around the object's position when it has a position
 // object: x +-1150, y raised by 600 and then +-650, and z kept as is for both corners.
+#include "game/UnkActor.h"
 #include "types.h"
 
 struct UnkPositioned {
@@ -25,10 +26,8 @@ struct UnkBox {
     f32 max_z;
 };
 
-UnkPositioned* fn_7100d7c990(UnkPositioned* object);
-
 void fn_71004d4e18(UnkBoxed* self, UnkBox* box) {
-    if (!fn_7100d7c990(self->field_0x30))
+    if (!fn_7100d7c990(reinterpret_cast<UnkActor*>(self->field_0x30)))
         return;
     UnkPositioned* p = self->field_0x30;
     f32 y = p->field_0x54 + 600.0f;

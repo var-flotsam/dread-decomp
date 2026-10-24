@@ -4,19 +4,11 @@
 // the distance itself.
 #include "base/math/CVector.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkActor.h"
 #include "types.h"
 
 using base::math::CVector3D;
 using base::reflection::CClass;
-
-struct UnkTargetPos {
-    u8 pad_0x0[0x44];
-    f32 field_0x44;
-    u8 pad_0x48[0xc];
-    f32 field_0x54;
-    u8 pad_0x58[0xc];
-    f32 field_0x64;
-};
 
 struct UnkAttackTunables {
     u8 pad_0x0[0x11c];
@@ -32,18 +24,17 @@ struct UnkAttackObject {
 
 struct UnkMover {
     u8 pad_0x0[0x30];
-    UnkTargetPos* field_0x30;
+    UnkActor* field_0x30;
     u8 pad_0x38[0x15118];
     UnkAttackObject* field_0x15150;
 };
 
-UnkTargetPos* fn_7100d7c990(UnkTargetPos* object);
 const CClass* fn_71004add20();  // CCharClassCooldownXBossLavaDropsAttack::refl_GetClass
 
 // NON_MATCHING(minor): the two argument copies at the start (position, scale) are in the other order;
 // behaviour is identical
 void fn_71004d24d0(UnkMover* self, CVector3D* position, f32 scale) {
-    UnkTargetPos* target = fn_7100d7c990(self->field_0x30);
+    UnkActor* target = fn_7100d7c990(self->field_0x30);
     CVector3D to = target ? CVector3D{target->field_0x44, target->field_0x54, target->field_0x64} : CVector3D{0.0f, 0.0f, 0.0f};
     f32 dx = to.x - position->x;
     f32 dy = to.y - position->y;

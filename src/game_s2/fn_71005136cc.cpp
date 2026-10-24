@@ -2,36 +2,13 @@
 // takes the vector from the owner's position to the record's position, picks the owner's matrix
 // column (words at +8, +0x18, +0x28; negated when it points against that vector) and hands it in a
 // parameter block (kind 5) to fn_71006f4b0c with 0.
+#include "game/UnkActor.h"
 #include "game_s2/UnkParams.h"
 #include "types.h"
 
-struct UnkPosition {
-    u8 pad_0x0[0x44];
-    f32 field_0x44;
-    u8 pad_0x48[0xc];
-    f32 field_0x54;
-    u8 pad_0x58[0xc];
-    f32 field_0x64;
-};
-
-struct UnkOwner {
-    u8 pad_0x0[0x38];
-    u8 field_0x38[0xc];
-    u8 pad_0x44[0x0];
-    f32 field_0x44;
-    u8 pad_0x48[0xc];
-    f32 field_0x54;
-    u8 pad_0x58[0xc];
-    f32 field_0x64;
-    u8 pad_0x68[0x1b0];
-    void* field_0x218;
-    u8 pad_0x220[0x78];
-    void* field_0x298;
-};
-
 struct UnkComponent {
     u8 pad_0x0[0x18];
-    UnkOwner* field_0x18;
+    UnkActor* field_0x18;
 };
 
 struct UnkColumn {
@@ -66,7 +43,6 @@ struct UnkParams_71005136cc {
     u8 field_0x3d;
 };
 
-UnkPosition* fn_7100d7c990(UnkOwner* owner);
 UnkColumn* fn_710002614c(void* object);
 
 static inline f32 AsF32(u32 bits) {
@@ -76,10 +52,10 @@ static inline f32 AsF32(u32 bits) {
 }
 
 void fn_71005136cc(UnkComponent* self) {
-    UnkOwner* owner = self->field_0x18;
+    UnkActor* owner = self->field_0x18;
     if (owner->field_0x298 && owner->field_0x218) {
-        UnkPosition* position = fn_7100d7c990(owner);
-        UnkOwner* o = self->field_0x18;
+        UnkActor* position = fn_7100d7c990(owner);
+        UnkActor* o = self->field_0x18;
         f32 px = position->field_0x44;
         f32 py = position->field_0x54;
         f32 pz = position->field_0x64;

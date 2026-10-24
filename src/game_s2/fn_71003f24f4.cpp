@@ -4,25 +4,12 @@
 // the owner (+0x8) plus two values of the owner object; state 3 forwards a request (under two
 // fixed 64-bit ids) to the sub-object at +0x220 of the owner.
 #include "UnkSpitSend.h"
+#include "game/UnkActor.h"
 
 struct UnkVec3_71003f24f4 {
     f32 x;
     f32 y;
     f32 z;
-};
-
-struct UnkSpitTarget {
-    u8 pad_0x0[0x44];
-    f32 field_0x44;
-    u8 pad_0x48[0xc];
-    f32 field_0x54;
-    u8 pad_0x58[0xc];
-    f32 field_0x64;
-};
-
-struct UnkSpitOwnerObject {
-    u8 pad_0x0[0x220];
-    void* field_0x220;
 };
 
 struct UnkSpitConfig {
@@ -33,7 +20,7 @@ struct UnkSpitConfig {
 
 struct UnkSpitStateObject {
     u8 pad_0x0[0x8];
-    UnkSpitOwnerObject* field_0x8;
+    UnkActor* field_0x8;
     u8 pad_0x10[0x18];
     UnkSpitConfig* field_0x28;
     u8 pad_0x30[4];
@@ -46,8 +33,6 @@ struct UnkSpitStateObject {
     UnkVec3_71003f24f4 field_0xec;
 };
 
-UnkSpitTarget* fn_7100d7c990(UnkSpitOwnerObject* owner);
-
 void fn_71003f24f4(UnkSpitStateObject* self, u32 state) {
     if (self->field_0x34 == state)
         return;
@@ -59,7 +44,7 @@ void fn_71003f24f4(UnkSpitStateObject* self, u32 state) {
         break;
     case 2:
         if (self->field_0x8) {
-            if (UnkSpitTarget* target = fn_7100d7c990(self->field_0x8)) {
+            if (UnkActor* target = fn_7100d7c990(self->field_0x8)) {
                 if (UnkSpitConfig* config = self->field_0x28) {
                     self->field_0xdc = config->field_0xec;
                     self->field_0xe4 = 0;

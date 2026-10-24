@@ -5,12 +5,8 @@
 // and the result is stored twice in a row (+0x60..+0x74).
 #include <math.h>
 
+#include "game/UnkActor.h"
 #include "types.h"
-
-struct UnkBody {
-    u8 pad_0x0[0x44];
-    f32 field_0x44;
-};
 
 struct UnkConfig {
     u8 pad_0x0[0xf8];
@@ -31,7 +27,7 @@ struct UnkScaled {
 
 struct UnkSelf {
     u8 pad_0x0[8];
-    UnkBody* field_0x8;
+    UnkActor* field_0x8;
     u8 pad_0x10[0x48];
     u32 field_0x58;
     u8 pad_0x5c[0x0];
@@ -42,14 +38,12 @@ struct UnkSelfCfg {
     UnkConfig* field_0x50;
 };
 
-UnkBody* fn_7100d7c990(UnkBody* object);
-
 // NON_MATCHING(minor): the z product has its operands in the other order (scheduling only)
 void fn_7100437fb4(UnkSelf* self, UnkScaled* block) {
     if (self->field_0x58 != 0)
         return;
     f32 own_x = self->field_0x8->field_0x44;
-    UnkBody* target = fn_7100d7c990(self->field_0x8);
+    UnkActor* target = fn_7100d7c990(self->field_0x8);
     f32 distance = fabsf(own_x - target->field_0x44);
     UnkConfig* config = reinterpret_cast<UnkSelfCfg*>(self)->field_0x50;
     f32 fraction = distance / config->field_0x100;

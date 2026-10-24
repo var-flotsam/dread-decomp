@@ -1,31 +1,8 @@
 // Whether the first object is behind the second: true when the first has no position object,
 // otherwise whether the vector from the second to the first's position has a dot product with the
 // second's direction (the part at 0x38; elements at 0x8, 0x18, 0x28) that is negative or unordered.
+#include "game/UnkActor.h"
 #include "types.h"
-
-struct UnkPositioned {
-    u8 pad_0x0[0x44];
-    f32 field_0x44;
-    u8 pad_0x48[0xc];
-    f32 field_0x54;
-    u8 pad_0x58[0xc];
-    f32 field_0x64;
-};
-
-struct UnkFacing : UnkPositioned {
-    u8 pad_0x68[0x18];
-};
-
-struct UnkOther {
-    u8 pad_0x0[0x38];
-    u8 field_0x38[8];
-    u8 pad_0x40[4];
-    f32 field_0x44;
-    u8 pad_0x48[0xc];
-    f32 field_0x54;
-    u8 pad_0x58[0xc];
-    f32 field_0x64;
-};
 
 struct UnkMatrixRow {
     u8 pad_0x0[8];
@@ -36,11 +13,10 @@ struct UnkMatrixRow {
     f32 field_0x28;
 };
 
-UnkPositioned* fn_7100d7c990(void* object);
 UnkMatrixRow* fn_710002614c(void* part);
 
-bool fn_71002c2734(void* self, void* first, UnkOther* second) {
-    UnkPositioned* target = fn_7100d7c990(first);
+bool fn_71002c2734(void* self, UnkActor* first, UnkActor* second) {
+    UnkActor* target = fn_7100d7c990(first);
     if (target) {
         f32 tx = target->field_0x44;
         f32 ty = target->field_0x54;
