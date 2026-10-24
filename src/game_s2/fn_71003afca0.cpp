@@ -2,6 +2,7 @@
 // (fn_7100ae986c) and, unless the id is empty, passes the handle to three services of the
 // global registry (fn_71011437bc, fn_7100301860, fn_7100b30454).
 #include "base/global/CStrId.h"
+#include "game/UnkGameManager.h"
 
 using base::global::CStrId;
 
@@ -11,11 +12,9 @@ struct UnkStrIdHandle {
     UnkStrIdHandle(const CStrId& id);  // fn_7100ae986c
 };
 
-struct UnkRegistry;
-extern UnkRegistry* g_unk_7101d47310;
-void* fn_7100df55e4(UnkRegistry* registry);
-void* fn_7100df5440(UnkRegistry* registry);
-void* fn_7100deac84(UnkRegistry* registry);
+void* fn_7100df55e4(UnkGameManager* manager);
+void* fn_7100df5440(UnkGameManager* manager);
+void* fn_7100deac84(UnkGameManager* manager);
 void fn_71011437bc(void* service, const UnkStrIdHandle& handle);
 void fn_7100301860(void* service, const UnkStrIdHandle& handle);
 void fn_7100b30454(void* service, const UnkStrIdHandle& handle);

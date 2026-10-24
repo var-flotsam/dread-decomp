@@ -3,12 +3,8 @@
 // through fn_71002b4538). Then looks every 24-byte entry at +0x128 up by its key, keeps a weak
 // reference to what it finds in the entry, and sets one of the flags at +0x1e8..+0x1ea from the kind
 // of the object's component.
+#include "game/UnkGameManager.h"
 #include "game_s2/UnkWeakHandle.h"
-
-struct UnkManager {
-    u8 pad_0x0[0x1af8];
-    void* field_0x1af8;
-};
 
 struct UnkKeyed {
     u8 pad_0x0[0x30];
@@ -46,7 +42,6 @@ struct UnkOwner {
     UnkLinkList* field_0x1f0;
 };
 
-extern UnkManager* g_unk_7101d47310;
 extern u32 g_unk_71727bebb8;
 extern char g_unk_71726a4bc0[] __attribute__((visibility("hidden")));
 
@@ -56,7 +51,7 @@ void fn_71002b3aa0(UnkOwner* self, bool flag, void* arg);
 UnkLinkList* fn_7100ca7a64(void* manager, u16 id);
 void fn_71002b46ec(UnkLinkList* list, UnkLinkList** slot);
 void fn_71002b4538(UnkLinkList* list, UnkLinkList** slot);
-UnkWeakTarget* fn_7100debbc8(UnkManager* manager, const u64* key, const u32* kind);
+UnkWeakTarget* fn_7100debbc8(UnkGameManager* manager, const u64* key, const u32* kind);
 void* fn_71002b3b84(UnkWeakTarget* object);
 void fn_71009c1130(void* component, u32 value, void* owner);
 s32 fn_71009c0b8c(void* component);

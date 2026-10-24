@@ -4,6 +4,7 @@
 // death track and the float at +0x54 of the player object (+0x1c0) is not positive, either starts
 // the countdown (0.33 s, after a player call, unless the effect object at +0x1040 of the manager is
 // busy) or runs it down and calls vtable slot 0x180 of the player object when it expires.
+#include "game/UnkGameManager.h"
 #include "types.h"
 
 struct UnkPlayerObject {
@@ -40,14 +41,12 @@ struct UnkVec {
     u32 z;
 };
 
-struct UnkManager;
-extern UnkManager* g_unk_7101d47310;
 extern const char g_unk_7101649988[] __attribute__((visibility("hidden")));
 void* fn_7100d19258();  // CCharClassMeleeDamageTrack::refl_GetClass
 void* fn_7100c19578();  // CCharClassFadeToBlackDeathTrack::refl_GetClass
 bool fn_710117b348(UnkAttack* object, void* class_ptr);
-UnkOwner* fn_7100defcd4(UnkManager* manager);
-UnkPlayer* fn_7100dec788(UnkManager* manager);
+UnkOwner* fn_7100defcd4(UnkGameManager* manager);
+UnkPlayer* fn_7100dec788(UnkGameManager* manager);
 void fn_710048a070(UnkSelf* self);
 void fn_7100d7c828(UnkPlayer* player, const char* name, u32 flag);
 bool fn_7101053a7c(void* effects);
@@ -71,7 +70,7 @@ void fn_710048a304(UnkSelf* self, f32 delta) {
                     player = fn_7100dec788(g_unk_7101d47310);
                     if (player)
                         fn_7100d7c828(player, g_unk_7101649988, 0);
-                    char* effects = reinterpret_cast<char*>(g_unk_7101d47310) + 0x1040;
+                    void* effects = g_unk_7101d47310->field_0x1040;
                     if (!fn_7101053a7c(effects) && !fn_7101053a0c(effects)) {
                         self->field_0x13c = 0.33f;
                         UnkVec position;

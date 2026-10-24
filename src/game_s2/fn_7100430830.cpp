@@ -5,6 +5,7 @@
 // is clamped to include 0.
 #include "base/UnkMatrix44.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkGameManager.h"
 #include "types.h"
 
 using base::reflection::CClass;
@@ -40,9 +41,7 @@ struct UnkBox {
     f32 field_0x14;
 };
 
-struct UnkManager;
-extern UnkManager* g_unk_7101d47310;
-void* fn_7100defcec(UnkManager* manager);
+void* fn_7100defcec(UnkGameManager* manager);
 UnkCamera* fn_71010e2080();
 const CClass* fn_710074eca8();  // CBossCameraCtrl::refl_GetClass
 const CClass* fn_710044e708();  // CChozoCommanderAIComponent::refl_GetClass

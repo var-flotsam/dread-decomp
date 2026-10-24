@@ -4,6 +4,7 @@
 // stores fn_710112bf20's string id in the manager's name member at +0x2230.
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkGameManager.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -43,14 +44,8 @@ struct UnkSelf {
     UnkFlagObject* field_0x14908;
 };
 
-struct UnkManager {
-    u8 pad_0x0[0x2230];
-    CStrId field_0x2230;
-};
-
-extern UnkManager* g_unk_7101d47310;
 const CClass* fn_71011abbd4();  // CCharClass::refl_GetClass
-void fn_7100df5cec(UnkManager* manager, void* target);
+void fn_7100df5cec(UnkGameManager* manager, void* target);
 void fn_710115fe20(UnkHolder* holder);
 CStrId* fn_710112bf20();
 
@@ -60,7 +55,7 @@ void fn_71003ad8e4(UnkSelf* self) {
         return;
     UnkActor* actor = self->field_0x30->field_0x28;
     if (actor && fn_710009d50c(actor->vf_0x0(), fn_71011abbd4())) {
-        UnkManager* manager = g_unk_7101d47310;
+        UnkGameManager* manager = g_unk_7101d47310;
         UnkActor* object = self->field_0x30->field_0x28;
         char* cast = nullptr;
         if (object && fn_710009d50c(object->vf_0x0(), fn_71011abbd4()))
@@ -75,6 +70,6 @@ void fn_71003ad8e4(UnkSelf* self) {
         if (!holder->field_0x48 || !holder->field_0x48->field_0x10)
             return;
     }
-    UnkManager* manager = g_unk_7101d47310;
+    UnkGameManager* manager = g_unk_7101d47310;
     manager->field_0x2230 = *fn_710112bf20();
 }

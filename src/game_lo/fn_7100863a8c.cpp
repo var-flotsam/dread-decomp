@@ -5,6 +5,7 @@
 
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkGameManager.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -53,16 +54,6 @@ struct UnkTracker_7100863a8c;
 bool fn_7100d5a930(UnkTracker_7100863a8c* self, UnkObj_7100863a8c* obj);
 void fn_7100d5abfc(UnkTracker_7100863a8c* self, UnkObj_7100863a8c* obj);
 
-struct UnkGlobalSub_7100863a8c {
-    u8 unk_0x0[0x820];
-    UnkTracker_7100863a8c* tracker;
-};
-struct UnkGlobal_7100863a8c {
-    u8 unk_0x0[0x608];
-    UnkGlobalSub_7100863a8c* field_0x608;
-};
-extern void* g_unk_7101d47310;  // the game's global object (reached through the GOT); typed at the use
-
 struct UnkManager_7100863a8c {
     u8 unk_0x0[0x6b0];
 };
@@ -99,7 +90,7 @@ found:
     if (!obj)
         return;
     if (UnkTracker_7100863a8c* tracker =
-            static_cast<UnkGlobal_7100863a8c*>(g_unk_7101d47310)->field_0x608->tracker) {
+            static_cast<UnkTracker_7100863a8c*>(g_unk_7101d47310->field_0x608->field_0x820)) {
         if (fn_7100d5a930(tracker, obj)) {
             fn_7100d5abfc(tracker, obj);
             obj->vf_0x40(4);

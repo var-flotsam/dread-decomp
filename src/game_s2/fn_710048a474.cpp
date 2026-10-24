@@ -4,6 +4,7 @@
 // grab energy recharge attack, retunes the player's object at +0x1c0: when its two floats at
 // 0x50 leave a positive amount to cover, the vtable slot 0x168 is called with the rate.
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkGameManager.h"
 #include "types.h"
 
 using base::reflection::CClass;
@@ -58,14 +59,12 @@ struct UnkSelf {
     f32 field_0x138;
 };
 
-struct UnkManager;
-extern UnkManager* g_unk_7101d47310;
 void* fn_7100c3aaa8();  // CCharClassLetBossDieTrack::refl_GetClass
 const CClass* fn_710048db44();  // CChozoWarriorXAIComponent::refl_GetClass
 void* fn_7100c63ac8();  // CCharClassUltimateGrabEnergyRecharge::refl_GetClass
 bool fn_710117b348(UnkAttack* object, void* class_ptr);
 void fn_710048fc80(UnkObject* component);
-UnkPlayer* fn_7100dec788(UnkManager* manager);
+UnkPlayer* fn_7100dec788(UnkGameManager* manager);
 void fn_710117b08c(UnkAttack* attack, UnkQuery* query);
 f32 fn_7101177ea0(UnkAttack* attack, u64 hash);
 

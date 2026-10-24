@@ -4,6 +4,7 @@
 // the height of the owner above a point computed from the reference at +0x68 (the reference itself
 // in mode 1, else the point 12 bytes in) must reach a tunable (at +0x7fc of the object at +0x149d0).
 #include "game/UnkActor.h"
+#include "game/UnkGameManager.h"
 #include "types.h"
 
 struct UnkFlagged {
@@ -39,12 +40,9 @@ struct UnkSelfFar {
     UnkTunables* field_0x149d0;
 };
 
-struct UnkManager;
-extern UnkManager* g_unk_7101d47310;
-
 s32 fn_71009e8590(UnkFlagged* object);
 bool fn_71009e75e8(UnkFlagged* object);
-bool fn_7100df5630(UnkManager* manager);
+bool fn_7100df5630(UnkGameManager* manager);
 void fn_7100125b1c(f32* out, char* from, char* to);
 
 // NON_MATCHING(minor): the two operands of the "mode matches" `and` are swapped (scheduling only)

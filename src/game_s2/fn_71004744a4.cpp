@@ -3,6 +3,7 @@
 // global at 0x7101d47310), true for one at nearly the same height (within 10) whose x lies between
 // the two.
 #include "game/UnkActor.h"
+#include "game/UnkGameManager.h"
 #include "types.h"
 
 struct UnkEntity {
@@ -23,10 +24,8 @@ struct UnkEntryList {
     UnkEntry** end() { return data + count; }
 };
 
-struct UnkManager;
-extern UnkManager* g_unk_7101d47310;
 extern char g_unk_71726cca00[] __attribute__((visibility("hidden")));
-UnkEntryList* fn_7100de94cc(UnkManager* manager, const void* key);
+UnkEntryList* fn_7100de94cc(UnkGameManager* manager, const void* key);
 
 // NON_MATCHING(minor): the height band test (+-10) is a conditional-compare chain with its two operands
 // swapped, and the two constants are materialised in the other order

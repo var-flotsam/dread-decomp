@@ -4,6 +4,7 @@
 // static) updates; the named id at 0x717275ac18+0x10 is set to the default id on first use.
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/UnkGameManager.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -23,14 +24,8 @@ struct UnkNamedId {
     CStrId field_0x10;
 };
 
-struct UnkManager {
-    u8 pad_0x0[0x968];
-    u8 field_0x968[1];
-};
-
 struct UnkTarget;
 
-extern UnkManager* g_unk_7101d47310;
 extern UnkNamedId g_unk_7172759178;
 void fn_7100ae9a10(CStrId* id, UnkNamedId* named, const CStrId* default_id);
 UnkTarget* fn_7101047270(void* entry, const CStrId* id);

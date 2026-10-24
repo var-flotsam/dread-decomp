@@ -3,6 +3,7 @@
 // kind is 2, read without a null check as in the original). Then the counter at 0x600 is cleared and the
 // flag at 0x64 of the object at 0x1b8 set.
 #include "base/global/CStrId.h"
+#include "game/UnkGameManager.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -40,9 +41,8 @@ struct UnkSelf {
     u32 field_0x600;
 };
 
-extern void* g_unk_7101d47310;
 extern char g_unk_71726c9e08[] __attribute__((visibility("hidden")));
-void fn_7100de9540(void* manager, const char* name, UnkSelf* self);
+void fn_7100de9540(UnkGameManager* manager, const char* name, UnkSelf* self);
 void fn_7100ac3880(UnkSelf* self);
 UnkDef* fn_71008640a4(void* class_def, const CStrId* id);
 

@@ -6,6 +6,7 @@
 #include "base/UnkMatrix44.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/UnkGameManager.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -41,15 +42,12 @@ struct UnkSelf {
     u8 field_0x6a1;
 };
 
-struct UnkDispatcher;
-
 struct UnkNamedId {
     u8 pad_0x0[0x10];
     CStrId field_0x10;
 };
 
 extern UnkNamedId g_unk_717275ac18;
-extern UnkDispatcher* g_unk_7101d47310;
 extern u8 g_unk_71726b16d0[] __attribute__((visibility("hidden")));
 
 void fn_7100350da0(UnkSelf* self);
@@ -57,8 +55,8 @@ void* fn_710083cd30(UnkComponent* component);
 void fn_7100ae9a10(CStrId* id, UnkNamedId* named, const CStrId* default_id);
 bool fn_71011428bc(void* object, const CStrId* id);
 bool fn_710117ae38(void* attack, u64 hash, bool flag);
-void fn_7100e03a78(UnkDispatcher* dispatcher, void* key);
-void fn_7100e038b0(UnkDispatcher* dispatcher, void* key, UnkVec* vec, u64 arg);
+void fn_7100e03a78(UnkGameManager* dispatcher, void* key);
+void fn_7100e038b0(UnkGameManager* dispatcher, void* key, UnkVec* vec, u64 arg);
 
 // The bit pattern of a float in memory (a word load, as the original reads it).
 static inline u32 AsU32(const f32& value) {
@@ -94,7 +92,7 @@ void fn_710035131c(UnkSelf* self) {
         return;
     self->field_0x6a1 = 0;
     fn_7100e03a78(g_unk_7101d47310, g_unk_71726b16d0);
-    UnkDispatcher* dispatcher = g_unk_7101d47310;
+    UnkGameManager* dispatcher = g_unk_7101d47310;
     const UnkMatrix44& m = fn_710002614c(reinterpret_cast<const UnkMatrix44*>(self->field_0x30->field_0x38));
     u32 x = AsU32(m.m[2]);  // the third column (the facing), as bit patterns
     u32 y = AsU32(m.m[6]);

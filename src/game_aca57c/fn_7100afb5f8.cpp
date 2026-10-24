@@ -3,6 +3,7 @@
 // Three identical copies.
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkGameManager.h"
 #include "types.h"
 
 using base::reflection::CClass;
@@ -39,8 +40,7 @@ struct UnkPopUpListener {
     UnkCallbackSlot callback;
 };
 
-extern void* g_unk_7101d47310;
-UnkReflObject* fn_7100e033a8(void* manager);
+UnkReflObject* fn_7100e033a8(UnkGameManager* manager);
 const CClass* fn_7100b34230();  // GUI::CMainMenu::refl_GetClass
 const CClass* fn_7100b5e368();  // GUI::CPopUpComposition::refl_GetClass
 

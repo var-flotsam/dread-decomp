@@ -10,6 +10,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkGameManager.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -70,16 +71,6 @@ struct UnkPlacedObj {
     virtual void vf_0x60();
     virtual bool vf_0x68();
     virtual void vf_0x70();
-};
-struct UnkGameManager {
-    u8 unk_0x0[0x498];
-    UnkPlacedObj* placed;
-    u8 unk_0x4a0[0x1d88];
-    struct UnkWorld* field_0x2228;
-    u8 unk_0x2230[0x28];
-    UnkFlagRef* field_0x2258;
-    u8 unk_0x2260[0x10];
-    UnkFlagRef* field_0x2270;
 };
 struct UnkObject {
     void** vtable;
@@ -150,7 +141,6 @@ struct UnkStateOwner {
 };
 
 extern UnkParamTarget* g_unk_7101d47300;
-extern UnkGameManager* g_unk_7101d47310;
 extern UnkSoundHolder* g_unk_7101d47340;
 struct UnkModeFlags {
     u8 unk_0x0[0xb8];
@@ -209,7 +199,14 @@ void fn_71011cdc30(UnkComposition* item, bool value);
 // The flags are stored as plain bytes: the original reloads the handle after the store.
 static inline void StoreFlag(bool* field, bool value) { *reinterpret_cast<u8*>(field) = value; }
 
-static inline UnkComposition* GetHolder(UnkFlagRef* ref) { return ref ? ref->holder : nullptr; }
+// The game manager's flag references at 0x2258 and 0x2270 (void* in game/UnkGameManager.h).
+static inline UnkComposition* GetHolder(void* p) {
+    UnkFlagRef* ref = static_cast<UnkFlagRef*>(p);
+    return ref ? ref->holder : nullptr;
+}
+
+// The game manager's object at 0x498.
+static inline UnkPlacedObj* Placed() { return static_cast<UnkPlacedObj*>(g_unk_7101d47310->field_0x498); }
 
 static inline UnkMissionLog* GetMissionLog(UnkObjRef* ref) {
     UnkObject* obj = ref ? ref->obj : nullptr;
@@ -239,10 +236,10 @@ __attribute__((always_inline)) static inline void ResetParams() {
 }
 
 // Records a flag of the game manager and applies it when set.
-template <UnkFlagRef* UnkGameManager::*Ref>
+template <void* UnkGameManager::*Ref>
 __attribute__((always_inline)) static inline void RecordFlag(bool* field) {
     UnkGameManager* manager = g_unk_7101d47310;
-    bool flag = (manager->*Ref)->holder->flag;
+    bool flag = static_cast<UnkFlagRef*>(manager->*Ref)->holder->flag;
     StoreFlag(field, flag);
     if (flag)
         fn_71011cdc30(GetHolder(manager->*Ref), false);
@@ -256,7 +253,7 @@ void fn_7100b2de48(UnkStateOwner* self) {
         fn_7100b2cc40(self);
     self->current = self->field_0x2c0;
     ResetParams();
-    UnkPlacedObj* placed = g_unk_7101d47310->placed;
+    UnkPlacedObj* placed = Placed();
     if (!placed->vf_0x68()) {
         placed->vf_0x70();
         RecordFlag<&UnkGameManager::field_0x2258>(&self->field_0x2dd);
@@ -280,7 +277,7 @@ void fn_7100b2d278(UnkStateOwner* self) {
     }
     self->field_0x2e4 = 1;
     ResetParams();
-    UnkPlacedObj* placed = g_unk_7101d47310->placed;
+    UnkPlacedObj* placed = Placed();
     if (!placed->vf_0x68()) {
         placed->vf_0x70();
         fn_7100fc9d78(g_unk_717275c380, &g_unk_71729f0178, self->current);
@@ -299,7 +296,7 @@ void fn_7100b2d278(UnkStateOwner* self) {
 __attribute__((always_inline)) static inline void UndoFlags(UnkStateOwner* self) {
     if (!self->field_0x279)
         return;
-    UnkPlacedObj* placed = g_unk_7101d47310->placed;
+    UnkPlacedObj* placed = Placed();
     if (placed->vf_0x68()) {
         placed->vf_0x70();
         if (self->field_0x2dd)
@@ -391,7 +388,7 @@ void fn_7100b2dad0(UnkStateOwner* self) {
         }
         self->field_0x2e4 = 1;
     }
-    UnkPlacedObj* placed = g_unk_7101d47310->placed;
+    UnkPlacedObj* placed = Placed();
     if (!placed->vf_0x68()) {
         placed->vf_0x70();
         RecordFlag<&UnkGameManager::field_0x2258>(&self->field_0x2dd);
@@ -504,7 +501,7 @@ void fn_7100b2dfc4(UnkStateOwner* self) {
     if (!self->field_0x279)
         return;
     fn_7100e9b4b0(g_unk_7101d47310->field_0x2228);
-    UnkPlacedObj* placed = g_unk_7101d47310->placed;
+    UnkPlacedObj* placed = Placed();
     if (placed && placed->vf_0x68())
         placed->vf_0x70();
     fn_7100fc9d78(g_unk_717275c380, &g_unk_71729f0180, self);
@@ -652,7 +649,7 @@ void fn_7100b2e3b8(UnkStateOwner* self) {
     if (!self->field_0x279)
         return;
     fn_7100e9b4b0(g_unk_7101d47310->field_0x2228);
-    UnkPlacedObj* placed = g_unk_7101d47310->placed;
+    UnkPlacedObj* placed = Placed();
     if (placed && placed->vf_0x68())
         placed->vf_0x70();
     fn_7100fc9d78(g_unk_717275c380, &g_unk_71729f0180, self);
@@ -821,6 +818,9 @@ struct UnkWorld {
     u8 unk_0x0[0xd63f40];
     UnkObjRef* field_0xd63f40;
 };
+
+// The game manager's world at 0x2228.
+static inline UnkWorld* World() { return static_cast<UnkWorld*>(g_unk_7101d47310->field_0x2228); }
 struct UnkInputEvent {
     u8 unk_0x0[0x1a];
     bool handled;
@@ -842,7 +842,7 @@ void fn_7100b2e978(UnkStateOwner* self, const UnkInputEvent* event) {
         return;
     switch (self->field_0x2e0) {
     case 1: {
-        UnkPlacedObj* placed = g_unk_7101d47310->placed;
+        UnkPlacedObj* placed = Placed();
         if (!placed || !fn_710118a8d0(placed))
             return;
         if (g_unk_71726bc570->field_0xb8)
@@ -852,7 +852,7 @@ void fn_7100b2e978(UnkStateOwner* self, const UnkInputEvent* event) {
         return;
     }
     case 7: {
-        UnkObjRef* ref = g_unk_7101d47310->field_0x2228->field_0xd63f40;
+        UnkObjRef* ref = World()->field_0xd63f40;
         if (fn_7100b44a3c(ref ? ref->obj : nullptr))
             return;
         fn_7100b2eaac(self, 1, true, true);
@@ -935,8 +935,7 @@ void fn_7100b2eaac(UnkStateOwner* self, s32 state, bool from_game, bool now) {
         }
     }
     fn_71011cf2a4(self->current, 1);
-    UnkFlagRef* ref = g_unk_7101d47310->field_0x2258;
-    UnkComposition* highlight = GetHolder(ref);
+    UnkComposition* highlight = GetHolder(g_unk_7101d47310->field_0x2258);
     if (highlight && !reinterpret_cast<UnkHighlight*>(highlight)->field_0x2e1)
         return;
     fn_71011b6bbc(g_unk_717271e8f8, self->current, false);
@@ -952,7 +951,7 @@ template <s32 Prev, s32 Next>
 __attribute__((always_inline)) static inline void SwitchPage(UnkStateOwner* self, const UnkInputEvent* event) {
     if (event->handled)
         return;
-    UnkObjRef* ref = g_unk_7101d47310->field_0x2228->field_0xd63f40;
+    UnkObjRef* ref = World()->field_0xd63f40;
     if (!ref)
         return;
     UnkObject* obj = ref->obj;

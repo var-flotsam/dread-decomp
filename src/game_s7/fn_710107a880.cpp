@@ -2,6 +2,7 @@
 // values on the player, then gives every item and power-up to the player's inventory.
 // Layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/UnkGameManager.h"
 
 using base::global::CStrId;
 
@@ -71,9 +72,6 @@ extern UnkItemDef g_unk_717275aa98;
 extern UnkItemDef g_unk_717275aad8;
 extern UnkItemDef g_unk_717275ab58;
 extern UnkItemDef g_unk_717275ab98;
-
-struct UnkGameManager;
-extern UnkGameManager* g_unk_7101d47310;
 
 struct UnkInventory;
 void fn_7101142a28(UnkInventory* inventory, const UnkQualifiedId& item, bool a, bool b, bool c, f32 amount,
