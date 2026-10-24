@@ -12,8 +12,9 @@
 # > New self-hosted runner, pick Windows, and run the printed download/config commands in a folder
 # outside this repository (for example %USERPROFILE%\actions-runner); install it as a service so it
 # survives reboots. Git for Windows must be installed (actions/checkout and the bash steps use it).
-# The runner checks the repository out into its own work folder, so that checkout must be given,
-# before the first run and by hand:
+# The runner checks the repository out into its own work folder. Let the first job create that
+# checkout (it fails at the orig/2.1.0 test; actions/checkout deletes the contents of a folder it
+# did not create, junction links included), then give the checkout by hand:
 #   - orig/2.1.0            the dump as tools/setup.py lays it out (a directory junction to the owner's
 #                           copy is fine: `mklink /J orig <path-to-your-clone>\orig`);
 #   - build/recon/2.1.0     tools/recon/run.py output (asmdiff reads main_eh_functions.json from it;

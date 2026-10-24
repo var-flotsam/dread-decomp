@@ -103,11 +103,17 @@ only `check.py`'s own status lines reach GitHub.
   scheduled task `GitHub Actions runner (dread-decomp)` (Task Scheduler), so it has the user's
   `%LOCALAPPDATA%\dread-decomp` toolchain cache and sees `C:\Program Files\LLVM`. If it is not
   running, start the task or run `run.cmd` in that folder; `_diag\` holds its logs.
-- Its checkout, `_work\dread-decomp\dread-decomp`, was pre-cloned so that `actions/checkout`
-  (with `clean: false`) only fetches, and holds junctions `orig` and `build\recon` to this
-  clone's copies. Never remove them with a recursive delete (a junction's target would go too);
-  `rmdir` removes only the link.
-- `.env` in the runner folder sets `DREAD_PYTHON` to this clone's `.venv\Scripts\python.exe`.
+- Its checkout, `_work\dread-decomp\dread-decomp`, holds junctions `orig` and `build\recon` to
+  this clone's copies. They were added *after* the first job: `actions/checkout` deletes the
+  contents of a work folder it did not create itself (a pre-clone with a different remote URL
+  counts as foreign; it removed the junction links, not their targets), and only fetches into a
+  checkout it made (`clean: false` keeps the ignored junctions). If the checkout is ever
+  recreated, let one job run, then add the junctions again. Never remove them with a recursive
+  delete; `rmdir` removes only the link.
+- `.env` in the runner folder sets `DREAD_PYTHON` to this clone's `.venv\Scripts\python.exe`;
+  `.path` holds the job PATH with `C:\Program Files\Git\bin` first, because Git for Windows is
+  not on this user's PATH and the workflow's steps use `shell: bash`. Restart the runner after
+  changing either file.
 - To retire it: `config.cmd remove --token <token from gh api ... /actions/runners/remove-token>`,
   delete the scheduled task, then the folder.
 
