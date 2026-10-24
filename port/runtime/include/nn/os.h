@@ -22,7 +22,12 @@
 //   SetMultiWaitHolderUserData,
 //   ClearSystemEvent, DestroySystemEvent, WaitSystemEvent, TryWaitSystemEvent, TimedWaitSystemEvent,
 //   GetSystemTick, ConvertToTick, ConvertToTimeSpan, GetHostArgc, GetHostArgv.
-// Only what src/ uses today is declared; each of the others is added with the function that
+// Declared below: the four mutex calls, GetCurrentThread (src/base/UnkDefaultAllocatorGlobal.cpp)
+// and, in nn/os/os_TickTypes.h, the tick calls. src/ itself names only MutexType, GetCurrentThread,
+// GetSystemTick and ConvertToTimeSpan: the engine reaches the mutex calls through four-byte
+// wrappers (fn_71000668f8, fn_7100066918, fn_710006691c, fn_7100066920, declared in
+// include/base/UnkDefaultAllocator.h), which the port implements over these at M1, and
+// ConvertToTick is the inverse the stubs use. Each of the others is added with the function that
 // needs it, in the game's layout where the game embeds the object.
 
 #include "nn/nn_common.h"

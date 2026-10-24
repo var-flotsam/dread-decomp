@@ -16,6 +16,15 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
+# One configuration by default, at the sweep's optimisation level (tools/port_sweep.py compiles
+# with -O2): RelWithDebInfo is -O2 -g -DNDEBUG. An empty CMAKE_BUILD_TYPE would compile at -O0,
+# which is not what the sweep measured.
+get_property(_dread_multi_config GLOBAL PROPERTY GENERATOR_IS_MULTI_CONFIG)
+if(NOT _dread_multi_config AND NOT CMAKE_BUILD_TYPE)
+  set(CMAKE_BUILD_TYPE RelWithDebInfo CACHE STRING "Build type (default RelWithDebInfo: -O2 -g, the sweep's level)" FORCE)
+  set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS Debug Release RelWithDebInfo MinSizeRel)
+endif()
+
 get_filename_component(DREAD_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/.." ABSOLUTE)
 set(DREAD_GAME_VERSION "2.1.0" CACHE STRING "Game version the sources under src/ were matched against (passed to the sweep)")
 
@@ -51,6 +60,12 @@ set(DREAD_MUSL_INCLUDE "${_dread_musl_default}" CACHE PATH "musl include directo
 
 add_library(dread_stdlib INTERFACE)
 target_compile_options(dread_stdlib INTERFACE -fno-rtti -fno-exceptions)
+# CMAKE_POSITION_INDEPENDENT_CODE adds -fPIC only when CMake's platform is not Windows. The
+# compile-only configure on a Windows host targets x86_64-linux-gnu while CMake's platform is
+# still the host, so the flag is added by hand there; the sweep passes it too.
+if(WIN32 AND CMAKE_CXX_COMPILER_TARGET AND NOT CMAKE_CXX_COMPILER_TARGET MATCHES "windows|msvc|mingw|cygwin")
+  target_compile_options(dread_stdlib INTERFACE -fPIC)
+endif()
 if(DREAD_LIBCXX_INCLUDE AND DREAD_MUSL_INCLUDE)
   message(STATUS "dread: standard library headers from ${DREAD_LIBCXX_INCLUDE} and ${DREAD_MUSL_INCLUDE} (compile only)")
   target_compile_options(dread_stdlib INTERFACE -nostdinc++)
@@ -64,17 +79,33 @@ endif()
 
 add_subdirectory(runtime)
 
-# The game: every source under src/, except the Phase 3 identification samples (they define
-# functions other files define too) and anything matching DREAD_SWEEP_EXCLUDE: regexes over the
-# repository-relative path, for sources the sweep reports as not yet portable. The list is empty
-# because the first sweep (2026-10-24, port/README.md) found nothing to exclude.
+# The game: every source under src/, except the four below and anything matching
+# DREAD_SWEEP_EXCLUDE: regexes over the repository-relative path, for sources the sweep reports
+# as not yet portable. That list is empty because the first sweep (2026-10-24, port/README.md)
+# found nothing to exclude.
+#
+# The Phase 3 identification samples (src/compiler_id, src/flag_id, src/atk_id; 36 frozen files)
+# are compiled like everything else, except the four that define a function another source also
+# defines, so that every function has one definition: fn_7100227448 (src/reflection/CActor.cpp
+# defines the same symbol) and fn_71005a2dd8, fn_71006a3390, fn_71006de790 (a constructor here,
+# a placeholder signature in src/lifted). The other 32 samples are the only definition of their
+# function. tools/check.py exempts the sample directories from its DUPLICATE rule, so this list is
+# kept current from the sweep's definitions report (tools/port_sweep.py reads the objects back
+# with llvm-nm), not from check.py.
+set(_dread_sample_duplicates
+  src/flag_id/fn_7100227448.cpp
+  src/flag_id/fn_71005a2dd8.cpp
+  src/flag_id/fn_71006a3390.cpp
+  src/flag_id/fn_71006de790.cpp)
 set(DREAD_SWEEP_EXCLUDE "" CACHE STRING "Semicolon-separated CMake regexes over src/ paths to leave out of dread_game")
 file(GLOB_RECURSE _dread_game_all CONFIGURE_DEPENDS "${DREAD_ROOT}/src/*.cpp")
 set(_dread_game_sources "")
 set(_dread_game_excluded "")
+set(_dread_game_sample_dups "")
 foreach(_src IN LISTS _dread_game_all)
   file(RELATIVE_PATH _rel "${DREAD_ROOT}" "${_src}")
-  if(_rel MATCHES "^src/(compiler_id|flag_id|atk_id)/")
+  if(_rel IN_LIST _dread_sample_duplicates)
+    list(APPEND _dread_game_sample_dups "${_rel}")
     continue()
   endif()
   set(_skip FALSE)
@@ -92,7 +123,8 @@ foreach(_src IN LISTS _dread_game_all)
 endforeach()
 list(LENGTH _dread_game_sources _dread_game_count)
 list(LENGTH _dread_game_excluded _dread_game_excluded_count)
-message(STATUS "dread: dread_game has ${_dread_game_count} sources, ${_dread_game_excluded_count} excluded by DREAD_SWEEP_EXCLUDE")
+list(LENGTH _dread_game_sample_dups _dread_game_sample_dups_count)
+message(STATUS "dread: dread_game has ${_dread_game_count} sources, ${_dread_game_sample_dups_count} sample duplicates left out, ${_dread_game_excluded_count} excluded by DREAD_SWEEP_EXCLUDE")
 
 # OBJECT, not STATIC: the whole-program link (M1) must keep every function, including the ones
 # nothing references yet, and a static library would drop their objects.

@@ -22,19 +22,11 @@ constexpr Result ResultSuccess() { return Result{0}; }
 constexpr Result ResultNotPorted() { return Result{0xffffffffu}; }
 
 // A signed duration in nanoseconds. The game reads the member directly
-// (src/game_s1/fn_7100080c40.cpp), so it is a plain field, not an accessor.
+// (src/game_s1/fn_7100080c40.cpp), so it is a plain field, not an accessor, and there are no
+// conversion helpers: nothing in src/ or in the port's own stubs needs one, and nothing the game
+// does forces the SDK's names for them on the port.
 struct TimeSpan {
     s64 nanoseconds;
-
-    static constexpr TimeSpan FromNanoSeconds(s64 ns) { return TimeSpan{ns}; }
-    static constexpr TimeSpan FromMicroSeconds(s64 us) { return TimeSpan{us * 1000}; }
-    static constexpr TimeSpan FromMilliSeconds(s64 ms) { return TimeSpan{ms * 1000000}; }
-    static constexpr TimeSpan FromSeconds(s64 s) { return TimeSpan{s * 1000000000}; }
-
-    constexpr s64 GetNanoSeconds() const { return nanoseconds; }
-    constexpr s64 GetMicroSeconds() const { return nanoseconds / 1000; }
-    constexpr s64 GetMilliSeconds() const { return nanoseconds / 1000000; }
-    constexpr s64 GetSeconds() const { return nanoseconds / 1000000000; }
 };
 static_assert(sizeof(TimeSpan) == 8, "a time span is one 64-bit word in the game's objects");
 

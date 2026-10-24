@@ -24,12 +24,14 @@ imported symbol names recorded in `data/functions/`.
 
 ### Targets
 
-- `dread_game` (OBJECT library): every `src/**/*.cpp` except the Phase 3 sample directories
-  (`src/compiler_id`, `src/flag_id`, `src/atk_id`, which define functions other files define
-  too) and anything matching `DREAD_SWEEP_EXCLUDE`. Compiled with `include/` and the runtime's
-  headers, `-fno-rtti -fno-exceptions`, warnings off (the code is held to the original's bytes,
-  not to a newer compiler's warnings). An object library rather than a static one so that the
-  whole-program link of M1 keeps every function, referenced or not.
+- `dread_game` (OBJECT library): every `src/**/*.cpp` except four files and anything matching
+  `DREAD_SWEEP_EXCLUDE`. The four are the frozen Phase 3 samples that define a function another
+  source also defines ([What M0 found](#what-m0-found-2026-10-24)); the other 32 samples under
+  `src/compiler_id`, `src/flag_id` and `src/atk_id` are compiled like everything else. Compiled
+  with `include/` and the runtime's headers, at the configuration's optimisation level (`-O2 -g`
+  by default), `-fPIC`, `-fno-rtti -fno-exceptions`, warnings off (the code is held to the
+  original's bytes, not to a newer compiler's warnings). An object library rather than a static
+  one so that the whole-program link of M1 keeps every function, referenced or not.
 - `dread_runtime` (STATIC library): `runtime/src/*.cpp`, the stubs behind `runtime/include/nn/`.
 - `dread`: `main.cpp` linked with `dread_runtime`. `DREAD_LINK_GAME=ON` adds `dread_game`, which
   fails to link until every function the boot path reaches has a source (M1). Built only when
@@ -40,6 +42,7 @@ imported symbol names recorded in `data/functions/`.
 
 | Variable | Default | Meaning |
 |---|---|---|
+| `CMAKE_BUILD_TYPE` | `RelWithDebInfo` with a single-configuration generator | `-O2 -g -DNDEBUG`: the sweep's optimisation level (`-O2`) with debug info. Left empty it would mean `-O0`, which is not what the sweep measured |
 | `DREAD_LINK` | ON; OFF when `CMAKE_TRY_COMPILE_TARGET_TYPE` is `STATIC_LIBRARY` or `CMAKE_CROSSCOMPILING` | build the executable (needs a linker and a C/C++ runtime for the target) |
 | `DREAD_LINK_GAME` | OFF | link `dread_game` into `dread` (M1) |
 | `DREAD_LIBCXX_INCLUDE`, `DREAD_MUSL_INCLUDE` | on a Windows host, the libc++ 9.0.1 headers under `%LOCALAPPDATA%\dread-decomp\sources` and `lib/musl/include` when both exist (what `tools/buildcfg.py` uses); empty elsewhere | compile against these headers with `-nostdinc++` (compile only, nothing links against them). Empty means the host's own libc++ and libc, which is what a real host build uses |
@@ -67,10 +70,12 @@ cmake --build build/port/cmake --target dread_game
 Linking a Windows executable needs one of: the MSVC Build Tools (then target
 `x86_64-pc-windows-msvc`, lld-link, and the host's standard library: leave
 `DREAD_LIBCXX_INCLUDE` and `DREAD_MUSL_INCLUDE` empty), MinGW-w64 (an `x86_64-w64-mingw32`
-toolchain), or WSL (a Linux build, below). On a Windows target `include/types.h` must change too:
-it defines `u64` as `unsigned long`, which is 32-bit there (LLP64), and its `static_assert` says
-so. That LP64 assumption is the one thing in `include/` known not to port to Windows itself; the
-Linux triple sidesteps it.
+toolchain), or WSL (a Linux build, below). On a Windows target `include/types.h` must take `u64`
+and `s64` from `long long` under `_WIN64`: `main` as of this M0 (35941e73) defines them from
+`long`, which is 32-bit there (LLP64), and its `static_assert` says so. A separate change does
+exactly that (`Phase 4.5: types.h: 64-bit Windows hosts get u64/s64 from long long`); until it is
+in, that LP64 assumption is the one thing in `include/` known not to port to Windows itself, and
+the Linux triple sidesteps it.
 
 ### Linux
 
@@ -106,6 +111,14 @@ header (`<nn/...>`): those are the port's own declarations to write. Objects go 
 `build/port/sweep/`, the report to stdout and `build/port/sweep.json`; the exit status is always 0.
 `lib/nnsdk` is never on its include path; `port/runtime/include` is, unless `--no-runtime`.
 
+With `llvm-nm` next to the compiler (or on `PATH`) the sweep then reads the objects back and
+reports definitions: a strong symbol defined in more than one object (a link error), and a
+`fn_<addr>` function defined in more than one object under different signatures (two copies of
+one function, which no linker notices). It takes the own name of each demangled symbol, so a
+function address inside a template argument does not count as a definition. `tools/check.py`
+reports duplicates too but leaves the Phase 3 sample directories out of that rule; the per-file
+exclusions in `port/CMakeLists.txt` come from this report.
+
 ## What M0 found (2026-10-24)
 
 Raw sweep (`--no-runtime`; Clang 23.1.3, `x86_64-linux-gnu`, libc++ 9.0.1 and musl headers):
@@ -123,15 +136,30 @@ declarations those nine files needed, and so the whole of the runtime's typed su
 | Header | Declares | Needed by |
 |---|---|---|
 | `nn/nn_common.h` | `nn::Result`, `nn::TimeSpan` (a plain `nanoseconds` field, as the game reads it) | every other header |
-| `nn/os/os_TickTypes.h` | `nn::os::Tick`, `SystemTickFrequency` (19.2 MHz), `GetSystemTick`, `ConvertToTimeSpan`, `ConvertToTick` | `src/game_s1/fn_7100080c40.cpp` (frame timers) |
-| `nn/os.h` | `nn::os::MutexType` (32 bytes, 8-aligned: fixed by the game's object layouts), `InitializeMutex`, `FinalizeMutex`, `LockMutex`, `UnlockMutex`, opaque `ThreadType`, `GetCurrentThread` | `include/base/UnkDefaultAllocator.h` and its seven includers |
-| `nn/oe.h` | `PerformanceMode`, `PerformanceConfiguration`, `Initialize`, `SetPerformanceConfiguration`, `GetProgramTotalActiveTime` | `src/game_s7/fn_71001587f0.cpp`, `src/game_s1/fn_7100080c40.cpp` |
+| `nn/os/os_TickTypes.h` | `nn::os::Tick`, `SystemTickFrequency` (the runtime's own rate, 19.2 MHz like the console; no game code depends on the value), `GetSystemTick`, `ConvertToTimeSpan`, `ConvertToTick` | `src/game_s1/fn_7100080c40.cpp` (frame timers) |
+| `nn/os.h` | `nn::os::MutexType` (32 bytes, 8-aligned: fixed by the game's object layouts), `InitializeMutex`, `FinalizeMutex`, `LockMutex`, `UnlockMutex` (declared from the import names: the engine reaches them through four-byte wrappers, so `src/` itself names only `MutexType`), opaque `ThreadType`, `GetCurrentThread` | `include/base/UnkDefaultAllocator.h` and its seven includers |
+| `nn/oe.h` | `PerformanceMode` (no enumerators: the game passes the value 1), `PerformanceConfiguration`, `Initialize`, `SetPerformanceConfiguration`, `GetProgramTotalActiveTime` | `src/game_s7/fn_71001587f0.cpp`, `src/game_s1/fn_7100080c40.cpp` |
 | `nn/vi.h` | opaque `Display` and `Layer`, `Initialize`, `OpenDefaultDisplay`, `CreateLayer`, `GetNativeWindow` | `src/game_s7/fn_71001587f0.cpp` (graphics start-up) |
 | `nn/fs.h`, `nn/hid.h`, `nn/audio.h`, `nn/time.h`, `nn/account.h`, `nn/prepo.h`, `nn/nfp.h`, `nn/diag.h`, `nn/mem.h` | nothing yet: each lists `main`'s imports from that namespace and what the boot path needs | M1 onwards |
 
+Definitions (the sweep's `llvm-nm` pass over the 3,808 objects): one symbol is defined in two
+objects, `fn_7100227448()` (`CActor::refl_GetClass`) in `src/flag_id/fn_7100227448.cpp` and
+`src/reflection/CActor.cpp`; three more functions are defined twice under different signatures,
+`fn_71005a2dd8`, `fn_71006a3390` and `fn_71006de790`, as a constructor in `src/flag_id` and with
+a placeholder `char*` signature in `src/lifted`. All four are frozen Phase 3 samples, and those
+four files are the only ones `dread_game` leaves out, so every function it compiles has one
+definition. The other 32 samples (10 in `src/compiler_id`, 16 in `src/flag_id`, 6 in
+`src/atk_id`; 22 `O`, 3 `m`, 1 `M` and 6 `L` in `data/functions/`) are the only definition of
+their function and are compiled. `tools/check.py` derives their statuses from them but exempts
+the sample directories from its DUPLICATE rule, which is why the sweep checks definitions itself.
+No function outside the samples is defined twice.
+
 What the sweep cannot see, and M1 inherits: the objects are compiled, not linked. Every
-`fn_<addr>` callee without a source, every `g_unk_<addr>` data symbol and vtable (`.data` and
-`.rodata` come from the user's dump at build time), and functions defined in more than one file
-(`tools/check.py` reports those) are the next list. The CMake build on the Windows PC configures
-and builds `dread_runtime` and `dread_game`; it cannot produce a Windows executable until a linker
-and a C runtime are installed (above).
+`fn_<addr>` callee without a source and every `g_unk_<addr>` data symbol and vtable (`.data` and
+`.rodata` come from the user's dump at build time) are the next list. Two caveats on the numbers:
+the sweep and the CMake build compile at the same optimisation level and with the same PIC
+setting (`-O2`, `-fPIC`; the CMake default build type is `RelWithDebInfo`), but both have only
+been run with the libc++ 9.0.1 and musl headers on the Windows PC. The host standard library a
+Linux or WSL build links against (`--system-stdlib`, the CMake default there) has not been tried.
+The CMake build on the Windows PC configures and builds `dread_runtime` and `dread_game`; it
+cannot produce a Windows executable until a linker and a C runtime are installed (above).

@@ -111,10 +111,15 @@ the 3,808 `src/` files without the runtime and all 3,808 with it. The only categ
 `src/clones` or `src/reflection` failed, and no inline assembly or AArch64-only builtin turned up.
 The build configures on the Windows PC and `dread_runtime` and `dread_game` compile there, but it
 cannot link a Windows executable yet: the PC has LLVM 23 without a Windows SDK or MSVC (the MSVC
-Build Tools, MinGW-w64 or WSL are the options), and a Windows target also needs `include/types.h`
-to stop defining `u64` as `unsigned long` (LLP64). What the sweep cannot see is M1's list:
-callees without a source, data symbols and vtables, and functions defined in two files. The other
-M0 items (the slice, hub and declaration tools, `data/tu_map.csv`) are tracked in `docs/HANDOFF.md`.
+Build Tools, MinGW-w64 or WSL are the options), and a Windows target needs `include/types.h` to
+take `u64`/`s64` from `long long` under `_WIN64` (LLP64), which a separate change does (`Phase
+4.5: types.h: 64-bit Windows hosts get u64/s64 from long long`). The sweep also reads the objects
+back with `llvm-nm`: four frozen Phase 3 samples define a function another source defines
+(`fn_7100227448`, also in `src/reflection/CActor.cpp`, and three `src/lifted` pairs) and are the
+only files `dread_game` leaves out; the other 32 samples (22 `O`) are compiled, and no other
+function is defined twice. What the sweep cannot see is M1's list: callees without a source, and
+data symbols and vtables. The other M0 items (the slice, hub and declaration tools,
+`data/tu_map.csv`) are tracked in `docs/HANDOFF.md`.
 
 This is aggressive. M1 is realistic with focus. M2 depends on shader translation, which is either
 a large dependency or a large project. "Playable in a few months" requires M2 to go well; say so

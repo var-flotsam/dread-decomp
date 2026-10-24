@@ -16,12 +16,10 @@
 
 namespace nn::oe {
 
-// The console's two clock profiles. The game asks for the second (value 1) with configuration
-// 0x10001 at graphics start-up; the PC has one profile and the port ignores both.
-enum PerformanceMode : s32 {
-    PerformanceMode_Normal = 0,
-    PerformanceMode_Boost = 1,
-};
+// The console's clock profiles, as a number. The game never names one: it passes
+// PerformanceMode(1) with configuration 0x10001 at graphics start-up (fn_71001587f0), so the
+// type carries no enumerators. The PC has one profile and the port ignores both arguments.
+enum PerformanceMode : s32 {};
 using PerformanceConfiguration = s32;
 
 void Initialize();

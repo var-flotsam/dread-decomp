@@ -11,6 +11,12 @@ not depend on it, so every `<nn/...>` header that src/ includes is a declaration
 runtime has to provide (port/runtime/include). Those files are listed separately, and with
 port/runtime/include present (the default) its declarations are used; --no-runtime shows the raw list.
 
+With llvm-nm (next to the compiler, or on PATH) the compiled objects are read back for definitions:
+a strong symbol defined in more than one object (a link error) and a `fn_<addr>` function defined in
+more than one object under different signatures (two copies of one function, which no linker
+notices). tools/check.py reports duplicates too, but exempts the Phase 3 sample directories from
+that rule; the port build's per-file exclusions (port/CMakeLists.txt) are drawn from this list.
+
 Objects go to build/port/sweep/, the report to stdout and build/port/sweep.json. The exit status is
 always 0: this is a report, not a check. Standard library only (it imports tools/buildcfg.py for the
 include paths).
@@ -54,6 +60,10 @@ SDK_HEADER = re.compile(r"'(nn/[^']+)' file not found")
 HEADER = re.compile(r"'([^']+)' file not found")
 STATIC_ASSERT = re.compile(r'static_assert failed(?: due to requirement \'.*?\')?(?: "(.*)")?')
 TOO_MANY = "too many errors emitted"
+# A function named after its address, in the last component of a demangled symbol's own name
+# (fn_<addr>, or Unk_fn_<addr> for a function the sample sources write as a constructor).
+FN_ADDR = re.compile(r"fn_(7[01][0-9a-f]{8})\b")
+NM_BATCH = 150  # objects per llvm-nm call (Windows command lines are limited to 32 K characters)
 
 
 def host_cxx() -> str:
@@ -142,8 +152,12 @@ def normalise(msg: str) -> str:
     return out
 
 
+def obj_path(src: Path, obj_dir: Path) -> Path:
+    return obj_dir / src.relative_to(ROOT / "src").with_suffix(".o")
+
+
 def compile_one(cxx: str, flags: list[str], src: Path, obj_dir: Path) -> tuple[Path, int, str]:
-    obj = obj_dir / src.relative_to(ROOT / "src").with_suffix(".o")
+    obj = obj_path(src, obj_dir)
     obj.parent.mkdir(parents=True, exist_ok=True)
     cmd = [cxx, *flags, rel(src), "-o", str(obj)]
     try:
@@ -166,6 +180,72 @@ def parse(stderr: str) -> tuple[list[tuple[str, int, str]], bool]:
             continue
         errors.append((rel(m.group("file")), int(m.group("line")), m.group("msg").strip()))
     return errors, truncated
+
+
+def find_nm(cxx: str) -> str | None:
+    """llvm-nm next to the compiler, else on PATH; None when there is none."""
+    exe = Path(cxx)
+    for name in ("llvm-nm" + exe.suffix, "llvm-nm"):
+        cand = exe.parent / name
+        if cand.is_file():
+            return str(cand)
+    return shutil.which("llvm-nm")
+
+
+def own_name(demangled: str) -> str:
+    """A demangled symbol's qualified name without parameter list or template arguments, so a
+    function address inside a template argument (`UnkOutOfLineElement<48u, &fn_710007ecd4>`) is
+    not taken for the function's own name. `fn_71000e027c(base::UnkVector<...>&&)` gives
+    `fn_71000e027c`; `Unk_fn_71005a2dd8::Unk_fn_71005a2dd8()` keeps both components."""
+    out: list[str] = []
+    depth = 0
+    for ch in demangled.replace("(anonymous namespace)::", ""):
+        if ch == "<":
+            depth += 1
+        elif ch == ">":
+            depth = max(0, depth - 1)
+        elif depth == 0:
+            if ch == "(":
+                break
+            out.append(ch)
+    return "".join(out).strip()
+
+
+def definitions(nm: str, objects: list[tuple[Path, Path]]) -> dict:
+    """Read the compiled objects back with llvm-nm: strong global symbols defined in more than
+    one object, and fn_<addr> functions defined in more than one object under any symbol
+    (the same one, a link error; different ones, two copies of one function)."""
+    by_obj = {str(obj): src for src, obj in objects}
+    symbol_objs: dict[str, set[str]] = defaultdict(set)
+    func_objs: dict[str, dict[str, set[str]]] = defaultdict(lambda: defaultdict(set))
+    paths = sorted(by_obj)
+    for i in range(0, len(paths), NM_BATCH):
+        batch = paths[i:i + NM_BATCH]
+        r = subprocess.run([nm, "--defined-only", "--demangle", *batch],
+                           capture_output=True, text=True, encoding="utf-8", errors="replace")
+        current = batch[0] if len(batch) == 1 else None  # one input: no file header lines
+        for line in r.stdout.splitlines():
+            if line.endswith(":") and line[:-1] in by_obj:
+                current = line[:-1]
+                continue
+            parts = line.split(None, 2)
+            if len(parts) < 3 or current is None:
+                continue
+            _value, kind, sym = parts
+            if kind in ("T", "D", "B", "R"):
+                symbol_objs[sym].add(current)
+            if kind in ("T", "t"):
+                last = own_name(sym).rsplit("::", 1)[-1].lstrip("~")
+                m = FN_ADDR.search(last)
+                if m:
+                    func_objs[m.group(1)][current].add(sym)
+    collisions = [{"symbol": sym, "sources": sorted(rel(by_obj[o]) for o in objs)}
+                  for sym, objs in sorted(symbol_objs.items()) if len(objs) > 1]
+    copies = [{"function": f"fn_{addr}",
+               "definitions": {rel(by_obj[o]): sorted(syms)
+                               for o, syms in sorted(per.items(), key=lambda kv: rel(by_obj[kv[0]]))}}
+              for addr, per in sorted(func_objs.items()) if len(per) > 1]
+    return {"tool": nm, "objects": len(paths), "symbol_collisions": collisions, "function_copies": copies}
 
 
 def main() -> int:
@@ -257,6 +337,20 @@ def main() -> int:
     if truncated:
         print(f"files where Clang stopped at {args.error_limit} errors (counts are lower bounds): {len(truncated)}")
 
+    nm = find_nm(cxx)
+    defs = None
+    if nm:
+        defs = definitions(nm, [(src, obj_path(src, obj_dir)) for src, code, _ in results if code == 0])
+        print(f"definitions ({len(defs['symbol_collisions'])} symbols and {len(defs['function_copies'])} functions"
+              f" defined in more than one of the {defs['objects']} objects; llvm-nm):")
+        for c in defs["symbol_collisions"]:
+            print(f"  symbol   {c['symbol']}  " + "  ".join(c["sources"]))
+        for c in defs["function_copies"]:
+            print(f"  function {c['function']}  "
+                  + "  ".join(f"{f} [{'; '.join(syms)}]" for f, syms in c["definitions"].items()))
+    else:
+        print("definitions: not checked (no llvm-nm next to the compiler or on PATH)")
+
     report = {
         "version": args.version,
         "target": args.target,
@@ -270,6 +364,7 @@ def main() -> int:
         "sdk_headers": dict(sorted(sdk_headers.items())),
         "sdk_only_files": sdk_only,
         "failed_files": {k: failed_files[k] for k in sorted(failed_files)},
+        "definitions": defs,
     }
     out = Path(args.json)
     out.parent.mkdir(parents=True, exist_ok=True)
