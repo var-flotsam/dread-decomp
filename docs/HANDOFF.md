@@ -231,7 +231,9 @@ macOS under Rosetta 2 (`AGENTS.md`).
    are reconciled (list under "Next steps", stream A).
 3. The frozen Phase 3 sample `src/flag_id/fn_71004dd360.cpp` names a global where the original
    holds a function address (one `RELOC` line, reported only). Fix the sample or leave it frozen.
-4. Make the self-hosted check job a required status (after registering a runner; `docs/maintaining.md`).
+4. ~~Register a runner and enable the self-hosted check job.~~ Done 2026-10-24 (runner `dread-pc`,
+   `docs/maintaining.md`). It cannot be a *required* check while the repository is private without
+   GitHub Pro: merge on green by hand until the repository is public.
 
 ## Next steps
 
