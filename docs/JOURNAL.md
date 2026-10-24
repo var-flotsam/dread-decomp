@@ -1,0 +1,1135 @@
+# Journal: session and batch log
+
+History of the Phase 4 work, moved out of `docs/HANDOFF.md` on 2026-10-24 so that the handoff holds only
+the current state. Append new entries at the top of the "Session log" (newest first); add each matching
+finding worth reusing to the index. Nothing here is edited after the fact except to fix a link.
+
+## Findings index
+
+Matching findings worth reusing, by topic. Each line links to the entry that records it.
+
+**String ids and pools**
+- `UnkStrIdBase` with `CStrId`/`UnkStrId` on top; refcount as a union member so the decrement reloads: [work log item 0](#work-log-by-stream-through-2026-10-23), "Matching notes".
+- Which pool a file names must be checked, not assumed (`check.py` now does): [Matching does not check relocated targets](#matching-does-not-check-relocated-targets).
+- A move-assign re-reads the pool for the other's empty string; a file path id keeps the pool read: [batch 16](#slice-1-near-copies-batch-16).
+- Lazy id check must be a pointer compare (`data == &pool->empty`): [Inventory string and projectile models](#inventory-string-and-projectile-models).
+
+**Vectors, arrays, lists**
+- `UnkVector`: trivially copyable elements by `memcpy`, others moved one by one, 32-bit counter; `Insert`'s append path is `PushBack`'s shape: work log item 0.
+- `Reserve` must be `always_inline` or copies become 4-byte tail calls: [batch 12](#slice-1-near-copies-batch-12).
+- A list passed as a reference parameter lets the step load before the first capacity test; each branch pushes its own last value: [Hash lists by height](#hash-lists-by-height).
+- List fields as union members so they reload after node stores; `alignas(16)` for the stack slot: [Flag lists](#flag-lists).
+- An array of non-trivially-destructible members becomes a loop: declare separate members: [Link groups](#link-groups).
+
+**Iterators and iterator values**
+- Elements copied member by member need a user-written move constructor; `flatten` wrappers reproduce inlined template moves: [batch 15](#slice-1-near-copies-batch-15).
+- 64-bit keys only match through a key struct with its own `operator!=`: [batch 14](#slice-1-near-copies-batch-14).
+- Counted references copy as "null, then assign" with the count in a union: [batch 16](#slice-1-near-copies-batch-16).
+
+**libc++ sorts**
+- Sort through a minimal class iterator (`UnkIter`) to fix pointer walks, inlining and unsigned halving; internal comparators inline `__insertion_sort_3`: [Sort through a class iterator](#sort-through-a-class-iterator) and [Above 2 KB](#above-2-kb-outside-the-six-hand-slices-srcgame_s7-2026-10-21).
+
+**Copy constructors and assignment (record layouts)**
+- A defaulted `operator=` shows the layout: memcpy runs are plain fields, interleaved copies are wrapper types, an uncopied 8-byte gap is a vptr: [Copy-assignment of property records](#copy-assignment-of-property-records).
+- Vptr stores of a middle base survive only when an untyped copy follows: same entry.
+
+**Static initialisers and tables**
+- Each vector of ids built from a list sits in its own immediately called lambda; lists of one length in a unit need one element type; packed 4-byte-aligned struct when a u32 precedes the ids: [Above 2 KB](#above-2-kb-outside-the-six-hand-slices-srcgame_s7-2026-10-21).
+- Header ids built "sources first", enum converters local to the unit (`visibility("hidden")`): [batch 13](#slice-1-static-initialisers-batch-13).
+- Giant table functions are generated (`tools/gen_tables.py`); the id table's destructor still differs in register allocation: [Giant functions](#giant-functions-probe-2026-10-21-cloud-thread-biggest-functions-probe).
+
+**Reflection attributes and registration**
+- `AddField` takes the name by value; `Add` by const reference as a {type, ptr} temporary; struct-typed defaults and `CVector2D` globals copied member by member: [Field registrations the reflection parser stopped at](#field-registrations-the-reflection-parser-stopped-at).
+- Collection types are globals built by static initialisers, all reached through the GOT: [Collection-type registration](#collection-type-registration).
+
+**Transform nodes and math**
+- `UnkXform` layout (4x4 matrix, angle 0x40, scale 0x4c, flags 0x58); the same memory viewed through two struct paths defeats alias analysis, so use one view per function: [hubs batch 2](#slice-1-hubs-batch-2).
+- Taking both ids by reference in a comparison keeps the owner load from being hoisted; a loop over a matrix becomes memcpy, so write `UnkCopyMatrix` out: [hubs batch 3](#slice-1-hubs-batch-3).
+
+**Switches and block layout**
+- Write switch cases in the order of their bodies in the binary to get Clang's compare tree: [Above 2 KB](#above-2-kb-outside-the-six-hand-slices-srcgame_s7-2026-10-21) (music volume overrides).
+- `__builtin_expect`, `always_inline` and early returns do not change register allocation in long inlined destructor runs: [Exact copies of matched functions](#exact-copies-of-matched-functions).
+
+**Lifter and generators**
+- Alias, sort and copy rewrite rounds; "the generic lifter is near its limit": work log item 1.
+- Clone kinds and the census method; families tried and left: work log items 0 and 2.
+
+## Session log (newest first)
+
+**Fifteenth session (2026-10-24, on the PC, branch `claude/strategy-cleanup`): strategy readthrough
+and its changes.** Findings that drove it: 53.8% of game bytes matched, but 9.4 MB of the 10.1 MB is
+generated and only 0.76 MB is hand-typed; the boot path from `nnMain` was 27% matched; hand-written
+files declared 3,260 symbols with 223 conflicting signatures (one callee with 23 signatures in 34
+files) and 3,539 private struct views, so nothing could link; `asmdiff` masked relocations, so a
+function could be `O` with the wrong pool; the handoff was a 28k-token append-only log; 178 PRs in
+six days at a median of 10 functions and 3 minutes to merge. Changes: `check.py` and `trymatch.py`
+verify relocation targets (382,619 checked; 40 mismatches, 39 in generated files from three
+generator bugs, 25 hand-written files corrected, mostly globals named after their GOT slot);
+`tools/callgraph.py`, `tools/hubs.py`, `progress.py --slice boot`; `tools/decl_check.py` with a CI
+step and `check-local.yml` for a self-hosted `check.py`; `tools/tu_map.py` and `data/tu_map.csv`
+(2,773 units from 2,760 initialisers); the canonical-header pilot (`fn_710009d50c`: 70 declarations,
+12 signatures, to one header, 68 files migrated byte-identical, one left as-is because its wrong
+declaration is load-bearing for an `m`); `docs/PORT_PLAN.md` (two routes, the recommended hybrid
+and its milestones); the handoff split into this journal and a short state page; new rules in
+`CLAUDE.md`/`CONTRIBUTING.md` (one declaration per symbol, files by unit, hubs first, logs here,
+bigger PRs). Findings: a `u32`-returning declaration of a `bool` function can be load-bearing
+(`fn_71003f1b00.cpp`: with `bool` Clang folds `(ok & flag) == 1` into `tst`); retyping a class
+getter where it feeds one call creates a conflict with its other declarations, so retype them all;
+`.init_array` entries are in address order with each initialiser last in its TU, and the reflection
+boilerplate (attribute helper, then getter) opens a TU; Lua's range is 0x71010a0880–0x71010bee20.
+
+**Fourteenth session (2026-10-21, Linux cloud, branch `claude/project-thread-slp42f`):** probe of the
+ten largest `U` functions (Next steps, "Giant functions"); new generator `tools/gen_tables.py`
+(`src/tables/`, stream 8): the strid table, the loading screen's video map (`video_map` kind;
+`include/base/global/CFilePathStrId.h` now keeps its pointer in `UnkFilePathStrIdBase`, no regressions) and the
+boss rush setup (`boss_rush`, `m`: register allocation only).
+`gen_tables.py` and `check.py --update` were rerun.
+
+**Thirteenth session (2026-10-21, Linux cloud, branch `claude/project-thread-m3b90j`):** core engine
+types (Next steps, item 4): the string pool, CRC64 and the allocator getter in `src/base/`
+(var-flotsam/dread-decomp#20, #22 and the string heap PR); no generator was rerun.
+
+**Twelfth session (2026-10-21, on the PC, branch `claude/lifter-mismatch-classes`, var-flotsam/dread-decomp#18):** lifter mismatch study
+(Next steps, item 1, "Done (twelfth session)"); `gen_lift.py` and `check.py --update` were rerun,
+so the numbers below are current.
+
+**Eleventh session (2026-10-21, branch `claude/local-agent-setup-df6136`):** set up two parallel
+workstreams (below), `AGENTS.md` and `docs/tasks/` for a small local model on a MacBook,
+macOS toolchain support (untested on hardware) and `tools/verify.py`. No matching changes.
+
+
+**Tenth session (2026-10-20, branch `claude/lifter-float-0b96b0`):** lifter fixes (Next steps,
+item 1, "Done (tenth session)"); `gen_lift.py` and `check.py --update` were rerun, so the
+numbers below are current.
+
+**Ninth session (2026-10-20, on the PC, branches `claude/sync-local-repo-4f8846`, merged in
+var-flotsam/dread-decomp#13, and `claude/shape-round-6`):** the shape-family pass, rounds 5 and 6
+(Next steps, item 2, "Done (ninth session)"). Numbers below are current;
+`gen_lift.py` was not rerun (it skips what the other generators define).
+
+**Seventh session (2026-10-19, branch `phase-4-3-remaining-reflection`):** the full regeneration
+ran (the last steps, `gen_lift.py` and `check.py --update`, in a Linux cloud session with upstream
+Clang 9.0.1, which reproduced the Windows results exactly). Numbers below are current. What was
+done: Next steps, item 2.
+
+Snapshot as of 2026-10-18 (fifth Phase 4 session; branches `phase-4-4-clones` (var-flotsam/dread-decomp#18, open) and `phase-4-4-skipped-getters` on top of it (not pushed); earlier work merged in var-flotsam/dread-decomp#13–#17). Target: **Metroid Dread 2.1.0**, `main` build ID
+`646761F643AFEBB379EDD5E6A5151AF2CEF93DC1`.
+
+
+## Work log by stream, through 2026-10-23
+
+The numbered items are the former "Next steps" of the handoff, kept as a record of what each stream did,
+tried and left. The current next steps are in `docs/HANDOFF.md`.
+
+
+0. **Clone generator (`tools/gen_clones.py`), done this session.** Exact-clone families (same
+   instructions up to branch targets) were 1.3 MB of `U`. To find more, group `U` functions by
+   `gen_clones.instructions()` (branch targets made relative) and sort by total bytes. Three kinds of entry:
+   a verified reference (exact or shape match), a **probe** (no reference: the instantiation is
+   compiled and its mnemonics searched for, so a template matched for one element type finds its
+   copies for others) and a **scan** (facts read per candidate; `dtor`). Matching notes:
+   - Union members model the original's missing alias info in several places (refcounts,
+     `UnkVector`'s count in the registry, owning/handle element pointers, `UnkIterValue::Ref`).
+   - `UnkVector`: trivially copyable elements are copied with `memcpy`/`memset`, others moved one by
+     one (source walked by pointer, destination by its own pointer, 32-bit counter); `Insert`'s
+     append path is `PushBack`'s shape (count re-read before `data` is stored). Trivially copyable
+     8-byte elements match as `UnkCloneElem<Tag, 8>` (bytes) where a pointer element doesn't.
+   - Left: `UnkVector::EraseAt` (fn_71002b9908, 28 × 192 B: loop counter and source offset in
+     separate registers), ~400 destructors with other member kinds (vectors, nested objects),
+     the CStrId-valued iterator family (fn_71000c936c, fn_71000cea70) and a long tail of
+     families under 8 KB each (re-run the census for current numbers). The remaining call-free vtable
+     functions (509) are varied virtual dispatchers, not one template.
+1. **Extend the lifter (`tools/gen_lift.py`), largest payoff first.**
+   - Done (thirteenth session, cloud): lifting now runs in parallel processes (a full run is
+     ~105 min on 4 cores); output is one file per 64 KiB with per-function declarations, so
+     `--prune` drops functions defined elsewhere in seconds; `--best` writes the closest attempt of
+     any function for hand matching. Inlined guarded-static helpers (`GUARDS`: string pool,
+     singleton, type id; replicas in `HEADER`, namespace `lift_guard`) lift as one statement:
+     +126 `O`. Negative results: of 800 unlifted candidates none match in any round, and a
+     one-field-struct ("field") rewrite for struct-path TBAA added 0 of 578 mismatches. Next, from
+     the statics thread: a fourth helper (guard GOT 0x7101cba0c0, a pool getter followed by
+     `bl 0x710007fdb4`), tbz up to four instructions after the ldarb, and the DSO handle
+     (0x7101a19000) lifted as `""` instead of an extern.
+   - Done (twelfth session), mismatch study and second-round rewrites (+1,039 `O`, ~146 KB;
+     45.39% to 46.16%). Lifted-but-not-matching functions were classified with a scratch script
+     (best attempt per function vs the original; each normalisation step, in order, removes part
+     of the differing instructions, and the function's class is the step that removes most).
+     Sample A: `--sample 600 --seed 1 --new` (450 mismatches, 172 KB); sample B: 600 new
+     candidates of 256 B-1 KB, seed 2 (396 mismatches, 184 KB). Counts / bytes, A then B:
+
+     | Class | Before (A) | Before (B) | After (A) | After (B) | Example |
+     |---|---|---|---|---|---|
+     | scheduling (same instructions, other order, incl. `ldp`/`stp` pairing) | 170 / 65 KB | 148 / 70 KB | 158 / 64 KB | 148 / 70 KB | fn_7100025bd0 |
+     | registers (same instructions, other registers) | 120 / 61 KB | 143 / 67 KB | 111 / 62 KB | 136 / 64 KB | fn_710006f230 |
+     | other (several kinds at once; mostly extra `mov`s and missing reloads) | 143 / 45 KB | 102 / 46 KB | 132 / 39 KB | 104 / 47 KB | fn_7100020a68 |
+     | extra or missing instructions | 12 / 1 KB | 2 / 1 KB | 11 / 1 KB | 1 / 0 KB | fn_710002e468 |
+     | constants materialised differently | 4 / 0 KB | 0 | 4 / 0 KB | 0 | fn_710090ca38 |
+     | stack layout (sp offsets, frame) | 1 / 0 KB | 1 / 0 KB | 1 / 0 KB | 1 / 0 KB | fn_7100861e38 |
+     | block or branch layout | 0 (365 insns) | 0 (440 insns) | 0 | 0 | fn_7100105a80 |
+     | now matching | - | - | 33 / 5 KB | 6 / 2 KB | |
+
+     Three causes inside "scheduling" and "registers" were fixable from the lifter's output, so
+     functions that compile without matching get one more round per `ROUND2` rewrite (a round
+     never loses a function that matched): **alias** (the biggest: the original reloads values
+     after stores of another type, e.g. a pointer re-read after a refcount store, so every access
+     goes through a `may_alias` typedef `a_u32` etc.; `-fno-strict-aliasing` alone gave 17 of the
+     450), **sort** (field stores of one base in ascending offset order: the scheduler and store
+     pairing moved them; as the only mode it loses 31 per 1,000, hence a second round) and
+     **copy** (a load run then a store run of the same values becomes `__builtin_memcpy`). Left:
+     - Large functions barely move (6 of 396 in sample B): most are flat-mode loops whose block
+       layout and induction variables differ, not fixable by rewriting statements.
+     - "registers" is mostly a knock-on of ordering (one moved statement renames the rest); the
+       remaining scheduling differences are around calls and GOT loads (`adrp`/`ldr` placement).
+     - "other": we emit ~3x the original's register `mov`s (values copied into callee-saved
+       registers across calls), and the original uses more `add`s and `subs` where we use
+       `sub` + `cmp`. Before the alias round the original also had ~25% more loads than us in
+       these functions; after it the counts are about even.
+     - The full run takes ~80 min on the PC (~40 min first round, ~12 min per rewrite round).
+   - Done (tenth session), three cheap fixes (+83 functions, ~45 KB): `MAX_SIZE` is 16 KB (was
+     2 KB); a stack load (`ldr x, [sp, #k]`) no longer crashes the GOT-load check (~2,000 more
+     functions lift, few match: the `char stk[]` layout differs); code ending in `bl` is a call to a
+     `[[noreturn]]` callee (`namespace noret`).
+   - Done (tenth session), scalar floats (+471 functions, ~42 KB): `fmov` (immediates, register
+     bit casts, mov/movk constants as hex literals), arithmetic incl. fused forms, `fcsel`,
+     `fccmp` chains, conversions, `ldp`/`stp` of s/d, float call results (a call is retyped to
+     return a float when s0/d0 is read after it: `namespace fret`/`dret`) and float tail calls.
+     Clang 9 forms that matter: `fmin`/`fmax` are `!(a >= c) ? a : c`; `fcsel` between 1.0 and 0.0
+     is `(float)(cond)`; after `tst w<n>, #1` only a `bool` parameter keeps `fcsel ne`; negated
+     float conditions invert the cc (`a != b`, not `!(a == b)`); float accesses to hidden
+     globals use an aligned declaration (`namespace h4`/`h8`) so the page offset folds.
+     Left: of ~5,400 float functions, ~3,600 now lift but ~90% still differ in scheduling and
+     register order (e.g. `fcvt` order for vararg calls, commuted `fadd` operands). Others are
+     blocked by integer gaps: guarded statics (`ldarb`), `ccmp`/`ccmn`, jump tables (`adr`).
+     Near-miss ideas: a `bool`-parameter variant for integer `tbz`/`csel` on bit 0 (the same
+     flip as `fcsel`), aligned declarations for integer global accesses. It lifts 47,431 of 75,661
+   candidates (<= 512 B) and 39,598 of those match. Rejection reasons (count / bytes, at 128 B;
+   rerun `build/scratch`-style tallies by subclassing `Lifter` and recording why `step` fails):
+   - **Guarded function-local statics** (`ldarb`): `tools/gen_statics.py` covers attribute keys
+     (61), static string ids (386 from a literal, 55 copied from a global), typed lookups by name
+     (203), registries (51), tables built from a registry (`refl_RegistryMapInit`, 37) and internal
+     static string ids (plain functions, 13), type-id senders (`refl_SendTypeId`, 11) and
+     parts of one singleton (`refl_GetSingletonPart`, 5), typed lookups whose class is internal to
+     another TU (`refl_FindTypedHidden`, 5) and attribute keys with a u16 at +0x14 or a global value
+     type (`refl_GetAttrKeyFlags`, `key_global`; 17), and game code parsed rather than shape-matched:
+     a u32 sent under a hash (`refl_EmitU32`, `parse_emit_u32`; 12 of 15 parsed match). Game code with
+     its own static (a string id or file-path id from a literal, or a zeroed word) goes through
+     `gen_lift.py`'s Lifter, patched in-process by `own_patch` (`src/reflection_statics/own_*.cpp`):
+     14 of 281 candidates up to 1 KB match. Most of the rest lift but differ in the stack frame
+     around the guard (the original spills x0/x1 below its locals) or in general lifter gaps. Left (stream 6 census, 2026-10-21): 2,483 `U` functions call
+     `__cxa_guard_acquire` (2.28 MB); 2.15 MB of that is one-offs (game code with a static
+     inside), and only ~130 KB is in same-shape families of two or more. Older notes: the 437
+     class getters in skipped TUs, primitive type getters (`refl_GetType<unsigned>`, 30 × 480 B:
+     an inlined `CType` constructor whose kind hash and name share one string), 55 × 356 B
+     serialisers and 46 pointer getters whose pointee is in a skipped TU. Add a kind: a template
+     in `UnkReflStatics.h`, a reference address in `REFERENCES`, its constants in `facts()`.
+   - Stack locals are handled (one `char` array over the gap between save slots, or over the
+     bytes accessed; `STACK_LAYOUTS`), but only ~22% of those functions match. Parameters first
+     read as `w<n>` are `u32` (this fixed many `mov w2, w1` vs `mov x2, x1` mismatches).
+   - Mismatches now dominate (60,768 lifted, 46,219 match after the twelfth session). Only ~1,600 (165 KB) differ in
+     register names alone; most differ in instruction selection or scheduling (typed struct
+     accesses in the original vs our `char*` arithmetic), so the generic lifter is near its
+     limit. Further gains need real types per subsystem (hand decompilation), not variants. Remaining unlifted (~4.6 MB): guarded statics (`ldarb`, 1.2 MB),
+     `ccmp`, float arithmetic, early returns of values set on only one path.
+   - **`CCollectionType`** (`include/base/reflection/CCollectionType.h`): the descriptors are
+     globals built by static initialisers, so only constructors are generated: 178 standalone
+     (`gen_types.py`; an element descriptor loaded through the GOT is a global, not a local
+     class) and the rest in their element class's TU (`gen_reflection.py`, "local items"; 175 of
+     181 local pointer/collection types match). The static initialisers
+     that build the descriptors (e.g. `fn_71000e2800`, 14 KB) are still `U`.
+   - sret (`x8` read first) and crossing branches/loops are handled (UnkResult built in place;
+     `FlatLifter` with gotos), but only ~25% of flat-mode lifts match; the rest differ in
+     register allocation or block layout.
+   - Missing instructions: `tst`, `subs`, `csel`, `madd`, `udiv`, `mvn`, shifted/extended
+     register operands (`add x0, x1, x2, lsl #3`), register-indexed addressing, loops
+     (backward branches), float arithmetic.
+   - **Mismatches** (~7,800 lifted but not byte-identical): register allocation differences
+     (callee-saved registers assigned in another order, ~3,200), store scheduling in large
+     constructors (~1,200, mostly descriptor constructors of other kinds), conditional-branch
+     layout. A variant that changes declaration order of temporaries may help the first.
+   - Raising `MAX_SIZE` beyond 512 adds little (most large functions fail to lift); per-variant
+     scratch TUs are capped at 8,000 functions (`SCRATCH_CHUNK`, ELF section-index limit).
+2. **Remaining reflection.** Done this session: pointer types whose pointee getter is in the
+   same TU (generated into that TU; constructor uses the constant address), the `CPointerType`
+   flag at `+0xe0` (true for `std::unique_ptr`), helpers/attribute functions/descriptor
+   constructors of skipped TUs (no getters, no dummy statics), registration functions outside
+   class getters (mostly container accessors passed by static initialisers) and every
+   out-of-line reflected-function initialiser (`refl_attrs.parse_initialiser`). Left:
+   - Done (sixth session): class getters in TUs with **other statics**, through padding (see
+     Decisions; `layout_gap`/`padding_lines` in `gen_reflection.py`); the 54 container accessors
+     (912 B), generated in their element class getter's TU.
+   - Done (seventh session): **every located class getter** (2,354 of 2,355). The shape check
+     ignores the descriptor's offset from a same-TU parent's (`add xN, x2, #imm`); six base library
+     getters inline the name's constructor (`CStrId(UnkStrIdInline{}, ...)` in `CStrId.h`, the
+     same body as `fn_71000003d4`, which matches out of line but is marked `L` by neighbour
+     inference) and are verified by compiling them, like padded TUs. `tools/recon/reflection.py`
+     names class/enum getters MEDS doesn't list (`CGun`, `GUI::CBossRushReport`, ...) and ignores
+     functions over 640 B: those have a getter inlined (the "2 non-contiguous TUs",
+     `CSubAreaManager`, were such a misdetection; seven `CAbility*` types had shared one wrong
+     getter). Primitive `CType` getters (`refl_GetType<float>`, `fn_7100008500`;
+     `UnkReflPrimitiveType.h`), pointer getters with the constructor inlined and `CFlagsetType`
+     constructors (`gen_types.py`). Registration functions: `CRntString`, `CFilePathStrId`, `CName`
+     and `CVector4D` values, function/parameter attributes through `UnkReflFunctionVtbl`, the field
+     attribute container at `+0x70`, and a lambda-wrapped form for the stack-slot order
+     (`refl_attrs.verify` retries alternatives): 1,911 of 1,957 attribute/field functions, 508 of
+     562 others. The inlined string-id constructor (`CFilePathStrId(UnkStrIdInline{}, ...)`, its
+     pool created on first use by a guarded static in a cold tail) matches since the thirteenth
+     session (7 functions), as do `CName` values stored as a hash (`UnkNameHash`) and copies of
+     any global `CStrId` (2), ids copied from a string-id table built on first use
+     (`refl_GetStrIdTable`, 3) and enum defaults kept in guarded weak statics (`refl_GetEnumZero`,
+     `refl_GetEnumNot8`, 4), the `CRntString` inside the string `g_unk_7101d470e0` points to
+     (`refl_GlobalRntString`, 3) and string-list values (`UnkReflStringList` built from an
+     initializer list by `fn_7100228ca0`, 4), the same from a string-id table
+     (`refl_RntStringOf`, 1) and calls on a field found by its name's hash, setting a
+     getter-backed field's function index (`refl_FindField`, 4) (all in `UnkReflAttributes.h`).
+     Left there (13, one-offs): `fn_7100408c20` (33 KB), `CVector4D` copied from a constant,
+     `fn_71004ded68`, `fn_7100beaf3c`, `fn_71000961f4`, `fn_710044e7fc`, `fn_7100b8bb94` (a u16
+     global or'd into a version), and 6 registration functions outside class getters. The 4 that
+     parsed but differed (`fn_71004ade14`, `fn_71007a2fb4`, `fn_7100add284`, `fn_7100db69a8`) match by
+     hand in `src/game_s7/`: a type getter defined in the class's own file is called but its known
+     return passed as a hidden constant, written `(fn_getter(), &g_unk_<addr>)` with the global
+     declared `visibility("hidden")`. `refl_attrs` could emit that form itself. List them by failure point with a
+     copy of `refl_attrs.parse` whose `return None`s raise their line number.
+   - Descriptor helpers of **collection iterator values** (`UnkIterValue<T, K>`, K = index or key):
+     move-construct, destroy, copy-assign and compare as `gen_clones` kinds (word, owner,
+     string-id and keyed elements; a scan kind for elements with a vtable and string-id members,
+     `UnkDtorElem`). Left: keyed move/copy-assign (written in `UnkStrIdMemberOf`, differ in
+     scheduling), elements with vectors or out-of-line destructors, and an element destroy keyed by
+     a string id that compiles to a 4-byte thunk when it shares a file with an identical one.
+   - Done (eighth session): two `gen_clones` scan kinds. `pointee_typed` covers the reflected
+     pointer helper that returns the pointee with its dynamic type (`UnkReflTypedPtr.h`, 328
+     functions). Its getter is called once per branch, which only matches when the null branch
+     calls a second, linker-folded copy of the getter (`folded::fn_<addr>`). `iter_value_destroy_dtor`
+     covers iterator-value destroys whose element has an out-of-line destructor (50). The
+     helper-slot census (`class_constructors` traits whose status is `U`) now gives 2,355
+     functions, 374 KB, in small families (the largest is 5 KB).
+   - Done (eighth session): scan kind `iter_element_value` (162 functions): an iterator value's
+     element returned as a reflected value (`refl_GetIterElementValue`, `UnkReflValue.h`). The
+     element stands in as `UnkCloneBlock` (u64 words; a byte array of the same size forms the
+     element address differently and doesn't match).
+     Leaf copies load the element type's descriptor through the GOT (143 more).
+   - Done (eighth session): scan kinds `field_set_value` (scalar property writes,
+     `refl_SetFieldValue`, 187), and `call_and_cast_arg` / `call_and_cast_field` (overrides that
+     call their base, then cache a pointer cast to a class with the is-kind-of test
+     `fn_710009d50c`, `UnkReflCast.h`, 163).
+   - Done (eighth session): setters that clamp an f32 and notify a target by a 64-bit id
+     (`refl_SetFieldMinNotify`, 73) or update a lazily created singleton (`refl_SetFieldApply`, 75);
+     collection-iterator copy-assignment with out-of-line element destructors (`iter_assign_dtor`,
+     52; `UnkCollectionIter` now takes the index type). Deleting destructors free through
+     `__builtin_operator_delete` like compiler-generated ones, so stores before the free are
+     dropped (40 more `dtor` matches).
+   - Done (eighth session): more destructor shapes in `UnkDestructors.h`: no base call
+     (`refl_DtorNoBase`, 49 more `dtor`), linked lists freed through their allocator (`list_dtor`,
+     57), and classes with a secondary base linked into a refcounted owner's list (`linked_dtor`,
+     87); `refl_SetDynamicValue` (`UnkReflCast.h`, 49 identical copies, a reference kind).
+     Capstone prints immediates below 10 in decimal, so operand regexes need `(0x...|\d)`.
+   - Done (eighth session): `hash_map_clear` (`UnkHashMap.h`, 44), `list_deleting_dtor` (57),
+     `iter_element_dyn_value` (44), `iter_value_destroy_strid_elem` (34), and 14 reference kinds for
+     families of identical copies (`UnkCloneHelpers.h`, `UnkSharedRecord.h`, `refl_IterSync`; 188).
+     Census of identical-copy families (`U`, same normalised instructions): ~0.8 MB in 1,345
+     families. Tried and left: the state machine at 0x71002fab10 (44 copies; the original keeps
+     `next` in two registers), keyed-array Reserve 0x71001358e0, 0x71002b9908, 0x71000204d4 and
+     0x7100287de8 (98%, one swapped pair), 0x71000df388, 0x7100241b30, 0x7100122160, 0x71001f3be4.
+   - Done (eighth session, round 2): scan kinds `id_record_assign` (28), `strid_member_ctor` (25),
+     `vector_move_poly` (25), `iter_value_destroy_strid2` (24; instantiates `UnkIterValue::Reset`,
+     which the original doesn't inline), `iter_value_copy_assign_elem` (19), and 23 more reference
+     kinds in `UnkCloneHelpers.h` (~280 functions). `gen_clones.py` now also retries `W` candidates.
+     Left: 0x710013208c, 0x71004a84c8 (96%, an inverted branch pair), 0x71001f3a64, 0x71000cbef4,
+     0x710035480c (the state-machine shape again), 0x7100020898, 0x7100085930.
+   - Done (eighth session, round 3): 32 scan kinds over shape families (593 functions), among them
+     `derived_copy_ctor` (68), `hash_key_fields` (55), `callback_base_dtor` (34),
+     `callback_list_destroy` (28), `vector_free_poly` (26), the string-id value vector
+     (`UnkStrIdValueVec.h`), pool lists, per-TU type initialisers (`type_static_init`), cast-and-register
+     and owner destructors. Templates are in `UnkCloneHelpers.h`, `UnkStrIdValueVec.h`, `UnkCache.h`,
+     `UnkDestructors.h` and `UnkHashMap.h`. Left: 0x710088af9c (a state machine's update, 15%),
+     0x7100020eb0 (string-id hash erase, 44%: block layout), 0x71004f0648 and 0x71000d6310 (block
+     layout), and the large per-TU static initialisers 0x71003a8a80, 0x71002d4770, 0x710021c330.
+   - Done (eighth session, round 4): `keyed_set_assign` (21), `keyed_set_iter_value_copy` (11),
+     `vt_iter_end`/`vt_iter_begin` (11 each), `vt_iter_sync` (8), `owner_vec_insert` (5). Close but
+     not matching: 0x7100f5ff2c (`refl_StrIdValueInsert` shape, 4 instructions of register choice)
+     and 0x7100f5f5ac (an erase whose index/pointer round trip through an exact division by 24
+     Clang 9 folds away). Skipped: 0x710035d230 (static initialiser), 0x710065fb20 (state machine).
+     Not yet tried (the run hit its usage limit): 0x71000c3cc0 0x71000c3c14 0x71000d6914
+     0x71000d60e4 0x71000d6de0 0x710006d11c 0x710009abf8 0x710008fa30 0x71002464fc 0x7100245c4c
+     0x71002e19d0 0x71002e1904 0x71002d3f88 0x71002fa6cc 0x71002ca39c 0x7100300380 0x7100241ddc
+     0x7100239cf4 0x710023c3e0 0x71001f30c0 0x7100b8eec8 0x710098e094 0x7100bf7624 0x71003d3cf8
+     0x7100e02988 0x7100c79a80 0x7100536450 0x71006cc484 0x71009ba4ac 0x71004f0ab8. About 600 KB
+     is left in shape families of five or more `U` members.
+   - Done (ninth session, 2026-10-20, round 5, on the PC): most of the round-4 list (~490
+     functions). Kinds: `variant_assign`/`variant_assign_pair` (a string id + value or pair
+     variant, `UnkStrIdValueVariant`, 36), `keyed_value_array_dtor` (10), `keyed_value_get` (a
+     keyed reflected-value lookup per value type, 10), `iter_assign_block` (iterator assignment
+     over block elements, 160, of which ~130 matched other kinds before), `vector_clear_poly`
+     (25), `value_holder_deleting_dtor` (38), `derived_copy_ctor_48` (26), `strid_copy_ctor`
+     (three vtables, 22), `iter_value_destroy_poly_vec_key16` (4), `keyed_pair_iter_assign` (20),
+     `set_matrix` (8), `value_map_insert` (a chained hash map of string ids to values, 11) and
+     `shared_copy_ctor` (a 0xd0-byte class with an atomically counted pointer, 14).
+     The `dtor` scan now reads member offsets below 10 (capstone prints `#8`; 54 more) and treats
+     a second vtable store as an inlined base destructor (`refl_DtorInlineBase`, 27 more).
+     `gen_statics.py` has a second attribute-key reference for keys whose u32 is 1 (`key_one`, 9).
+     Lessons: struct-path TBAA lets Clang skip reloads that the original does after stores to a
+     node's links; store through a raw `char*` offset instead. Clang keeps the null check of a
+     node only in the form `if (n) new (n) T(...)`. Left: 0x71000d60e4 (the variant's move
+     constructor, 63%: one branch schedules the pool load early), 0x71000d6de0 (the map's erase,
+     block layout), 0x7100300380 (find by string id, then cast), 0x71003d3cf8 and 0x7100c79a80
+     (game code around guarded statics), 0x7100536450 (a TU's static string-id destructors). Not
+     yet tried: 0x7100245c4c 0x7100241ddc 0x7100e02988 0x71006cc484 0x71009ba4ac
+     0x71004f0ab8. Tooling note: in the Windows Bash tool, heredocs can lose backslashes; write
+     patches to Python sources with the Edit tool.
+   - Done (ninth session, round 6): a new census that skips everything already in `src/` (486
+     functions). Iterator values and iterators: `index_pair_iter_assign` (16),
+     `iter_value_copy_assign_index` (14), `iter_value_from_ref` (72), `iter_value_move_ool` and
+     `iter_value_move_ool_strid` (an element with an out-of-line move constructor,
+     `UnkCloneMoveElem`; 17 + 26, the latter the round-5 leftover 0x71000d60e4),
+     `iter_value_destroy_key16` (14), `iter_value_destroy_refptr` (12). Keyed arrays:
+     `keyed_find` (26), `keyed_find_then` (20), `keyed_find_assign` (15; the original doesn't
+     tail-call the assignment, so the template uses `disable_tail_calls`). Vectors:
+     `vector_free_dtor` (10), `vector_clear_dtor` (10). Classes: `call_with_owner_id` (15),
+     `strid_dtor_at` (19), `ref_handle_copy_ctor` (20), `value_holder_dtor` (38), `zeroed_ctor`
+     (49), `dtor_call_clear` (33). Small helpers: `add_f32` (25) and `pair_counts` (35; most copies
+     return the record through x8). Left: 0x71000d15fc (an erase by `memcpy`, 25 copies: the
+     original masks the scaled index, as if the loop were idiom-recognised; no source form found),
+     0x71000d6a20 (a list walk to the i-th node, 23 copies, 67%: the counter's form),
+     0x71000de484 (20), 0x710000dc80 and 0x7100415e18 (property reads returning a reflected value
+     through x8), 0x7100142df0 (clamped colour setters), 0x71003e2ea8. In this census, families of
+     five or more `U` members still hold ~500 KB; under 100 bytes, ~30 families of 10 or more.
+   - Done (2026-10-21, cloud, stream 2, round 7): 13 kinds, +180 functions. `strid_value_insert`
+     (`UnkStrIdValueVec.h`; each branch constructs the element itself, 10 × 1 KB), and a new header
+     `UnkCloneCalls.h` for small call-shaped families: `set_flag_notify` (17), `set_flag_virtual`
+     (13), `call_with_owner_child` (16), `ctor_then_init` (14), `cast_then_call` (14),
+     `find_by_id_call` (13, the key's argument register varies), `call_arg_return_one` (14),
+     `elem_at` (12), `copy_ctor3` (12; byte copies keep the vtable stores), `link_slot_assign`
+     (12; the two state resets are a range check and a switch on 1, 2 read through the raw
+     offset) and `get_lookup_f32` (11); `derived_copy_ctor` takes u8/u16 fields (+10).
+     `gen_clones.defined_in_src` ignores trailing comments (a commented declaration in
+     `src/base/` hid a clone). Left: 0x7100f5ff2c (the insert that calls its push-back, 4
+     registers in the shared tail), 0x71008eb574 (clamped colour, 16 × 100 B: the zero register
+     and loads are scheduled first), 0x710000e08c (an exact division by 3 Clang folds away),
+     0x7100339a50 (a resource load around two string-id types, 9 × 760 B).
+   - Done (2026-10-21, cloud, stream 2, round 8): +96 functions. `UnkCloneCalls.h` kinds
+     `set_flag_notify_b`, `release_ref`, `copy_ctor2`, `set_bool`, `set_flag_call` (10 each or
+     fewer), the reflected properties three pointers away `set_deep_u32`/`get_deep_u32`, `get_false`
+     and `keyed_set` (parallel key/value arrays of one width). `call_and_cast_field` also takes a
+     descriptor passed as a direct (hidden) address after its getter is called for initialisation
+     (+10).
+   - Done (2026-10-21, cloud, stream 2, round 9): +56 functions. `value_map_clear` (`UnkHashMap.h`),
+     `keyed_array_copy` (the key stored as bytes so the count reloads), `slist_insert_before` (new
+     `UnkSList.h`; the count is a union member), `callback_list_dtor` (`UnkCallbackList`'s
+     destructor and deleting destructor), `strid_vec_dtor`, and `iter_value_destroy_poly_vec_key16`
+     now reads its key and state offsets (`UnkClonePolyVecPad`; +8).
+   - Done (2026-10-21, cloud, stream 2, round 10): +29 functions in a new `UnkCloneRecords.h`:
+     `strid_pair_record_assign` (8), `keyed_vec_array_clear` (7; the vector loop counts in u32),
+     `path_record_copy_ctor` (8; string ids and a file path copied in place) and
+     `callback_entry_dtor` (6; `UnkCallbackListShort` plus a string id, with or without a key).
+     Looked at and left: 0x7100769fc0 (a per-TU static initialiser). Not yet tried: 0x71000df484,
+     0x71000df5ec, 0x71005b4d50, 0x7100af30a0, 0x71011d437c, 0x71000d8428, 0x7100240168,
+     0x7100431cec, 0x71000d78ec, 0x71000d5888, 0x71000d1fec.
+   - Done (2026-10-21, cloud, stream 2, round 11): +26 functions in `UnkCloneRecords.h`:
+     `strid_vec_record_copy_ctor` (6; a string-id vector with an out-of-line Reserve, element
+     stored bitwise), `add_function_holder` (7; the first libc++ `std::function` in `include/`,
+     copied into a heap holder whose vtable is stored before the members), `keyed_move_assign` (6)
+     and `keyed_move_array_clear` (7). Close but left: 0x71000df5ec (a keyed array shrink; the key
+     loop compares a 64-bit counter in 32 bits, which no counter type reproduced) and 0x7100240168
+     (`UnkSList` set-at: two instructions of scheduling in the inlined push-back; the loop counts
+     up, `for (u32 j = 0; j < idx; ++j)`). Skipped: 0x71011d437c (a reflected float setter).
+   - Done (2026-10-21, cloud, stream 2, round 12): `strid_vec_variant_reset` (12; a string id and
+     byte vector or a word pair, with or without a key). Close but left: 0x71000d15fc (25 × 92 B,
+     a vector erase by memmove; the original forms the element offset as `lsl` + `and` mask, which
+     Clang 9 folds into the add in every form tried), 0x71002444f4 (the same variant's move
+     constructor, state 2 holding pointers; scheduling and a tail-merged load) and 0x7100f5f0f0
+     (a keyed record assigned through owned or referenced values; the original duplicates the
+     key store per source state). Skipped: 0x7100eab448 (reflected setters that notify by name).
+   - Enum static initialisers and the other per-TU static initialisers. These define
+     globals, so they need the TU's data definitions (the 160 B ones are mostly lifted already).
+   - Slot `0x28`/`0x30`/`0x38`/`0x48`/`0x50` helpers of other classes (need class layouts):
+     ~2,400 functions, ~390 KB; a census of `U` helpers by slot and mnemonics (see
+     `class_constructors` in `gen_reflection.py`) picks the next families.
+   - A shape census (mnemonic sequence per U function, grouped) was the fastest way to pick
+     templates this session: the top families were reflected-function initialisers (839 × 380 B)
+     and `CClass` constructors (777 × 388 B). `tools/shape_census.py` now does this (`--top`,
+     `--max-size`); `--family ADDR` lists the operands that vary across a family's copies.
+3. **Lua leftovers:** mostly done (thirteenth session, cloud; continued in the fourteenth). The
+   game's Lua needs `-fno-strict-aliasing` (`buildcfg.LUA_FLAGS`), a 64-bit `twoto`, `(float)strtod`
+   and a 16-byte aligned jump buffer, and its binary-chunk loader is the older byte-swapping one
+   (`lundump.c`: `S->swap`, a swapping `LoadMem`, no `nCcalls` check, `LoadChar` stored as is);
+   all in `lib/lua/README.md`. `sigmatch.py` names look-alikes (the `math_*` wrappers, `lua_error`,
+   `luaL_register`) from the `luaL_Reg` tables, by order for the rest, and now near-matches by
+   mnemonic sequence (mutual best, at least 0.8, 128 bytes or more). 368 of 466 compiled Lua
+   functions are named. `LoadFunction` and `luaU_undump` match exactly; `luaB_print` is game code
+   (`src/lua/fn_71010a6440.cpp`, `O`: output through a function pointer, not `fputs`). Still
+   differing by a few instruction-selection choices: `lua_getinfo` (one pre-indexed load) and
+   `luaV_execute` (six hunks: `GETARG_Bx` index, `RKB`/`RKC` extends, a pre-indexed load); neither
+   `GETARG_*` macro variants nor loop rewrites fixed them. The 55 other unnamed functions in the
+   Lua address range are game code (the game dropped most of `io`/`os`/`package`/`debug`), not
+   library look-alikes, and the 8-byte hook getters and the allocator group fold into other code.
+   `libcheck_lua.py` could not be rerun (lua.org is not reachable from the cloud sandbox).
+4. Core engine types the slice depends on. Done: the inline code of `CStrId`/`UnkStrId` (copy,
+   move-assign, destructors) and `UnkVector` with the allocator interface. Done (thirteenth
+   session, cloud, `src/base/`): CRC64 (`fn_7100001570`, `O`: reflected table CRC-64, init ~0,
+   no final xor; the index must be written `(crc ^ byte) & 0xff`), the string-id constructor
+   out of line (`fn_71000003d4`, `O`, a wrapper around the inline `UnkStrIdBase` constructor),
+   the allocator getter (`fn_7100083990`, `O`, a hidden global) and the string release
+   (`fn_71000803a4`, `m`: 3 instructions of block layout in the inlined set lookup). CRC64 and
+   the constructor sit next to `nnMain`, so `gen_functions_csv.py` infers `runtime?` and marks
+   them `L`; they match but don't count toward progress until that inference is fixed. Then the
+   rest of the pool (`include/base/global/UnkStringPool.h` has the set and node layouts): erase
+   (`fn_7100080a00`, `O`), insert (`fn_71000801e4`, `m`: register allocation around the heap's
+   GOT address) and the buffer compare (`fn_710007f240`, `m`: a select the original speculates).
+   The heap behind the string copies (`g_unk_7101d58d40`, `include/base/global/UnkStringHeap.h`)
+   has six size classes (16 to 512-byte blocks carved from one allocation each): class setup
+   (`fn_7100083c48`), clear (`fn_7100083d90`) and allocate (`fn_7100084030`) are `O`. Adding a function to
+   a class (`fn_7100097550`, `UnkReflArray` at `CClass+0x110`) is `O` in
+   `src/base/reflection/fn_7100097550.cpp`: the key search, the inlined move of the 0xb8-byte
+   `UnkReflFunction` (full layout there, as local views checked against the headers) and the
+   class's `_EditorOnly` attribute read with a default (`Get<T>(key, def)`; a volatile byte read
+   keeps the default in memory as the original does). Left: the array's growth
+   (`fn_7100097f80`), the function's constructor and destructor (`fn_710009a5b4`,
+   `fn_710009aae8`), and the `U` functions next to `operator new`, probably more allocator code (`fn_7100083870`,
+   `fn_71000839c0`, `fn_7100083a10`, `fn_7100083a70`).
+5. Boot to title screen: startup, memory, file system / `files.toc` / `.pkg`, resource manager,
+   Lua + GUI bindings, GUI, render front end, input, localisation, save probe. Estimated
+   6,000–9,000 functions (static floor: 4,394 reachable from `nnMain`).
+6. Port groundwork: an aurora-style `nn::` + NVN compatibility layer (see `docs/references.md`).
+
+
+### Giant functions (probe, 2026-10-21, cloud thread "Biggest functions probe")
+
+The ten largest `U` functions held 458 KB (2.4 points). What they are:
+
+| Address | Size | What it is | State |
+|---|---|---|---|
+| 0x71000407f0 | 96 KB | Implicit destructor of the 1,198-id table below (every id's destructor inlined) | Not generated: structure and block layout match, register allocation doesn't (the pool sits in x8 or x0 in different ~100-id stretches). Tried 9 source shapes of the id destructor |
+| 0x7100031894 | 61 KB | Constructor of a struct of 1,198 string ids built from literals with precomputed CRC64 hashes (called from ~700 functions; a guarded static, `fn_7100065ca0`) | **O**, `tools/gen_tables.py` |
+| 0x7100057eb8 | 56 KB | Passes each of the same 1,198 literals with an empty 0x30-byte temporary to `fn_7100065b14` (a string escaper) | **O**, `tools/gen_tables.py` |
+| 0x71000406dc | 276 B | The ids' constructor (string, length, hash, flag) | **O**, `tools/gen_tables.py` |
+| 0x7100db8dec | 63 KB | Boss rush setup: twelve stages, each four to seven `UnkStrId` assignments, flags, a CRC64 and two `UnkVector<UnkItemAmount>` arrays filled by 227 inlined pushes in all (item pointers are GOT entries) | **m**, `tools/gen_tables.py` (`boss_rush`). The calls and blocks are the original's; from the third stage on, register allocation differs (it spills the hoisted array field addresses and rematerialises constants the original keeps), and in the later stages the id release is laid out out of line. Ids had to be `UnkStrId`: with `CStrId` the moved-from temporary's destructor leaves a second store |
+| 0x7100ef378c | 52 KB | Loading screen setup: two widgets, then 79 inlined hash-map inserts of (enum key, `CFilePathStrId` video path, `CStrId` label, five flags) | **O**, `tools/gen_tables.py` (`video_map`). Keys 49-71 use `InsertCopy` (the copy taken inside the insert): the original's register allocation differs in that stretch and only that source shape reproduces it, so it is a shape match, not a known source difference. Needed `CFilePathStrId`'s pointer in a base struct with a defaulted copy (as `CStrId`'s `UnkStrIdBase`), which sets the compare order in its copy constructor |
+| 0x7100408c20 | 34 KB | Tunable registration (field name, editor description, `refl_GetType<float>` ...) | Reflection-attribute style (stream 4's `refl_attrs.py` shapes); 94 chunk shapes |
+| 0x7100c66c60 | 30 KB | Float-heavy game logic (collision, `sqrtf`) | Hand only; not regular (211 shapes in 244 calls) |
+| 0x7100b66018 | 28 KB | Inventory GUI (beam list composition), 18 guarded statics | Irregular; hand only |
+| 0x7100ae39e0 | 21 KB | Reflection registration of a save-data class (fields with descriptions) | Stream 4 |
+| 0x7100e72680 | 17 KB | `CMinimapDef` reflection registration | Stream 4 |
+
+### Above 2 KB, outside the six hand slices (`src/game_s7/`, 2026-10-21)
+
+559 `U` functions above
+2 KB held 2.18 MB. Most call-table candidates are singletons; the static initialisers were dropped
+(their globals are merged by GlobalMerge, and the original's post-increment folding can't be
+reproduced through an `extern char[]`). Done: the loading-screen tips registration
+`fn_7100e17d14` (**O**, 60 calls through an `std::initializer_list` pair), and libc++'s
+`std::sort` helpers instantiated for a ref-counted handle list (`fn_710117d4d0.cpp`): `__sort3`,
+`__sort4`, `__sort5` **O** and `__insertion_sort_incomplete` **m**, each mapped to its address
+through an `alias` declaration. The comparator takes its handles by value and has external
+linkage (an anonymous namespace changes the load order). `__sort` itself (`fn_710117c430`,
+4 KB) is **m**: the original halves the length unsigned and inlines `__insertion_sort_3`, unlike
+libc++ 9.0.1, so its body is an adapted copy of libc++'s in `lib/libcxx/sort.h` (owner-approved,
+with LLVM's license); it has the same operations in another block layout. Left for hand work:
+`fn_7101144a5c`, `fn_7100e68f44`, `fn_7100dd3624`.
+
+Static initialisers above 2 KB (31, 152 KB) are this stream's too (the coordinator's call,
+2026-10-22). Sources are written with slice 3's helpers (`src/game_5821e4/UnkStaticInit.h`) plus
+`src/game_s7/UnkStaticInitS7.h` (header-id variants, named values, conversions with a type object
+on one side, buffer params, empty ids, resource types, (id, value) pair lists). 26 match and 3
+are `m` (register allocation or store scheduling only). Findings: a unit whose u32 sits right before its ids (merged
+globals) takes a packed, 4-byte-aligned struct; each vector of ids built from a list must sit in
+its own immediately called lambda, because the original inlines one initialiser function per
+global and the inliner then shares one stack array between lists of the same length (so lists of
+one length in a unit need one element type: `UnkIdElem` when any has an empty id); resource-type
+source-extension arrays are filled element by element (an initialised array becomes a constant
+copy), declared in reverse order; and the lift drops stack stores of strings kept in callee-saved
+registers, so take those from the original's code. Three the lifter rejects (an inlined guarded
+static: a class name id built on first use, `InitClassIdFrom`) were converted from the original's
+code directly. Still `U`: `fn_7100eb4510` (an inlined vector reserve with a virtual allocator) and
+`fn_71001e0820` (merged globals: the original folds one id's address into a post-indexed store).
+
+Other functions above 2 KB (2026-10-22), all **O**: `lua_bind::GainAllItemsAndPowerUps`
+(`fn_710107a880`, 37 item grants through a lazily built qualified id, `fn_7100ae9a10`), a
+property-bag serializer (`fn_7100bda920`), a shape-pair collision dispatch (`fn_7100d541c0`) and
+a 64-hit query (`fn_7100aaac80`). The property bag (`src/game_s7/UnkPropBagS7.h`: two vectors and
+a lock, keys from the id table `fn_7100031894` builds, setters `fn_710033187c` float,
+`fn_710050f4ac` bool, `fn_710050e4dc` string, `fn_7100aa3b9c` u32, destructor `fn_710050e8e4`)
+is used by 121 `U` functions (121 KB, most under 2 KB). Findings: the lock is a member with its
+own constructor (calling `fn_710007be8c` from the bag's constructor body moves it after the second
+vector); a call whose `x0` is left as it is (the dispatch's handlers) takes an empty struct by
+value first; a local array of 64 elements with default member initialisers is fully unrolled, and
+a counter declared after it lands below it on the stack (declare it first). Tried and left: the
+other collision dispatch `fn_7100d51368` (4 KB, inlined geometry per case) and constructors that
+inline a vector reserve (`fn_7100ee1f34`).
+Also **O**: a component cache (`fn_7100d78a30`, 7.3 KB, 42 slots), where each slot has its own
+weak inline `static const CStrId` kind id (`Kind_LIFE()` and so on, reached through the GOT); the
+comparison must take both ids by reference (`SameId(Kind(), comp->owner->id)`) or the owner load
+is hoisted. `fn_710092f204` (melee hit-effect path from 15 local statics) stays **m**: the
+original tests kind 5 before kind 2 and duplicates each item id's out-of-line first-use build.
+Property handlers, all **O**: `fn_7101129240`, `fn_71010d3508`, `fn_710111dc08` (11 KB). Each
+compares a property's name with keys from the id table and reads the value from the property's
+stream (`fn_710007cf30`) or writes it there (`fn_710007cb4c`), falling back to
+`fn_71010c4250`; helpers are in `src/game_s7/UnkPropS7.h`. Findings: the id table needs a sized
+type (with the empty `UnkReflSingleton`, Clang decides no store can reach a key and drops the
+reloads); the key's use count is a union member but the property name's is not, while the
+property's name pointer is; the stream functions return an integer (a pointer compare changes
+the branch weights and the block layout), and handlers return `u32` (with `bool`, the base
+handler's result is masked on return). More callers of these stream functions are under 2 KB
+(`fn_7101171fcc`, `fn_71010e4ab8`, `fn_71011608b4`, `fn_71010c4250` itself).
+Also **O**: a state-machine setup that creates 18 states and adds them to a keyed list
+(`fn_71010e2278`, 5.1 KB), and a GUI panel setup that keeps handles to 18 children found by name
+hash (`fn_71011dfeb0`, 5.3 KB). Both use the shared handles in `src/game_s7/UnkHandleS7.h`
+(an object's slot at vf_0x28, a handle created on first use). Findings: in the keyed list's add,
+the name is copied as raw bytes and the values are union members, or the count isn't reloaded;
+a temporary `CFilePathStrId` built inside the call's argument (not a named local) gives the
+original's join block; one callee needed its float parameters declared before the pointer to get
+the argument copies in order. The child hashes are CRC-64s computed at compile time; strings for
+some are in the binary (a reverse lookup over all strings finds them), the rest stay constants.
+Related `U` GUI setups that use the same child lookup (`fn_71011d98ec`): `fn_7100b39950` (12 KB),
+`fn_7100b49c88`, `fn_7100b4d4a4`, `fn_7100b92e9c`.
+The boss rush results screens (`fn_7100b94320`, `fn_7100b921e0`) are **m**; shared declarations are
+in `src/game_s7/UnkGuiS7.h`. The button callbacks are `std::function<void()>` built from
+`std::bind(&C::method, this)`; libc++'s small buffer holds the bind object. Finding for compositions
+looked up through the registry (`fn_71011b69d8`, also the menu setups in `src/game_aca57c/`): take
+a reference to the slot after assigning it (`self->composition = ...Get(); auto& c =
+self->composition;`), not before. The original keeps the slot's address in a register, set by
+pre-indexed stores, and only this order gives that. What's left: `fn_7100b94320` addresses five
+loads from the object rather than through that register, and in `fn_7100b921e0` a colour copy is
+only partly sunk below a branch.
+Music volume overrides by stream id (`src/game_s7/fn_71010182fc.cpp`): the setter
+`fn_7101019158` (4.5 KB) is **O** and the getter `fn_71010182fc` (3.7 KB) is **m**. Each is a
+73-case switch on the id's CRC-64 (signed). Clang's compare tree comes out the same when the cases
+are written in the order of their bodies in the binary. The getter's unmatched ids branch to a
+`ret` shared with a case in the middle; ours go to the last one.
+Three more long repeated functions are **O** in `src/game_s7/`. `fn_7100fc4b34` (8.4 KB) reads
+about 50 tuning values from two property sets: each value is reset, then read by its definition's
+qualified id from a section keyed in the id table, through a `Get<Reader>` template. The four
+locals of the last two flags have to be function-scope so they get separate stack slots.
+`fn_71011415f4` (3.4 KB) clears a component's flag set and re-adds 30 ids. The id is copied with
+`memcpy`, then retained, as in the state-list `Add`. `fn_7100d92158` (7.4 KB) registers 29
+descriptors: a temporary entry is built by `fn_710002003c`, passed to `fn_710002002c`, and its ids
+are released in two steps. Three of the descriptors get a factory singleton created on first use.
+Five more libc++ sort families are in `src/game_s7/`, mapped by `alias` as in `fn_710117d4d0.cpp`.
+`fn_710031e030.cpp` (entries of two handles and plain data, by a float) is **O** in all six. Its
+entry has the implicit copy: the plain members are copied as one block. `fn_7100566930.cpp` and
+`fn_71003cd6e0.cpp` sort 0x48-byte entries (two weak handles assigned with `fn_71002a5d1c`, then
+13 words), whose copy is member by member with a self-check. Their `__insertion_sort_3` and
+`__insertion_sort_incomplete` are **O** and the rest **m** (register choice). The second has an
+out-of-line comparator (`fn_71003cd4fc`, **O**) that returns a word: the callers test all of `w0`
+(`cbz`), not bit 0 as they would for a `bool`. `fn_710072a110.cpp` sorts object pointers nearest
+first: all five **O** (through a class iterator, see below). `fn_710010e470.cpp` sorts boxes
+by the centre on one axis: all five **m** (see its note). Other findings:
+- The game's `swap` is always inlined, so the element needs an `always_inline` ADL `swap`.
+- `__sort` switches to insertion sort below 30 elements for trivially copyable types and below 6
+  otherwise. `lib/libcxx/sort.h` now computes this the way libc++ does.
+- Temporaries made in one comparison get separate stack slots.
+- Writing an expression term by term keeps the original's order.
+- With 8-byte elements sorted through raw pointers, our insertion loops walk an index where the
+  original walks a pointer. The fix is the class iterator below.
+- Some game comparators have internal linkage (an anonymous namespace). Then every
+  instantiation is internal, and `std::__sort` inlines its one call to `__insertion_sort_3`. This
+  made `fn_7100338620`'s `__sort` **O** with plain `std::__sort`, without `lib/libcxx/sort.h`.
+  - Map the instantiations with `extern "C"` aliases: a declaration that uses the internal type
+    is itself internal and gets dropped.
+  - Write each alias as `void fn_X()` on its own line inside an `extern "C" { }` block, so the
+    `NON_MATCHING` annotation attaches. `check.py` doesn't read `extern "C" void fn_X()`, so
+    those functions show up as **W**.
+- When an internal instantiation's comparator is empty, the game's helpers take no comparator
+  argument (dead-argument elimination). An alias counts as taking the address, which blocks that.
+  `fn_7100d4de00.cpp` therefore gets the instantiations emitted from an unmapped anchor function
+  that calls `std::sort`, and names them with `asm(".set ...")`. That made its
+  `__insertion_sort_incomplete` **O**.
+
+Three more families: `fn_7100354e10` and `fn_710081ccd0` (0x48-byte entries, nearest first with
+z taken as 0) and `fn_71010dd1d0` (entry pointers by depth, then by tile group). The insertion
+sorts of the first two and all of `fn_71010dd1d0` are **O**; the rest are **m**.
+- The distance with z taken as 0 matched when each position is copied into a vector with z = 0
+  and a comparator member takes the full 3D distance to it. Writing out the 2D terms plus `z * z`
+  gives the right values in the wrong load order.
+- Clang adds the inline hint only for an explicit `inline`: a member defined in its class gets the
+  default threshold (250 instead of 325). `fn_71010dd1d0`'s comparator is inlined everywhere, as
+  in the game, only when `operator()` is declared `inline`.
+- `fn_71010dd1d0`'s helpers had their comparator dropped (internal, empty), so it uses the
+  anchor and `.set` names. Its `__sort3` and `__sort5` stay in `src/game_hi/`: `check.py` masks
+  call targets, so they don't need names here.
+
+`fn_7100abbd40` is the same code as `fn_7100354e10`'s family. `fn_71001e2e30` sorts object pointers
+by a float in a copied info block, with an internal comparator: all five **O**.
+
+### Sort through a class iterator
+
+Many of the game's pointer containers have their own iterator
+class, and libc++ then instantiates the helpers on it rather than on a raw pointer.
+`src/game_s7/UnkIter.h` is a minimal random-access iterator over a plain array. Sorting through it
+fixes three differences at once:
+- the insertion loops walk a pointer, not an index;
+- `__sort4`/`__sort5` inline the way the game's do;
+- the halving in `__sort` is unsigned, even with plain `std::__sort`.
+
+With it, `fn_710072a110`, `fn_71010dd1d0` and `fn_71001e2e30` became fully **O**. So did the clone
+families `fn_71000a0660`/`fn_71000a5e00` (by name, `strcmp`) and
+`fn_71002c5c00`/`fn_71007f6100`/`fn_71007f6b90`/`fn_71007f7620` (by a float; the float is in a
+union, so the original reloads it after each element store). Try the iterator first on any sort
+family. It also made `fn_7100213380` (0x40-byte polymorphic boxes, below) fully **O**. It doesn't help the 0x48-byte handle
+families (`fn_7100566930`, `fn_71003cd6e0`, `fn_7100354e10`, `fn_710081ccd0`), `fn_710010e470` or
+`fn_7100338620`.
+
+Also claimed by stream 7 (2026-10-22, coordinator-approved), although each `__sort` is under
+2 KB: the sort families `fn_7100256810`, `fn_7100742750`, `fn_7100743340`, `fn_7100744000`,
+`fn_7101072a80`, `fn_710109b9f0` and `fn_71011bc0b0`, with their helpers. Stream 7 also takes any
+further libc++ sort family it finds, after noting it here. Hand slices, leave these to stream 7.
+Further families claimed the same way: `fn_71002aa690` (0x30-byte elements) and `fn_7100c75e40`
+(0x28-byte elements), with their helpers. Both are done on plain pointers (the class iterator made
+them worse), with comparator types of external linkage, since each keeps `__insertion_sort_3` out
+of line:
+- `fn_71002aa690`: nearest first with z taken as 0, like `fn_7100354e10`. Four **O**. The two
+  insertion sorts are **m**: the held entry's store-back is addressed from another register. The
+  position's x and z had to be union members; y as well made it worse.
+- `fn_7100c75e40`: by a key, then nearest first in 2D. `__sort`, `__sort4` and `__sort5` are **O**.
+  `__sort3` and the insertion sorts are **m**: the original loads the first entry before the
+  branch that picks the swap.
+
+All seven are done (2026-10-22), each through `UnkIter`: every function is **O** except
+`fn_7100744000`'s own `__sort` (**m**, below).
+- `fn_7100742750` compares with a plain function pointer. With a comparator type that isn't
+  internal, `std::__sort` keeps `__insertion_sort_3` out of line (`fn_7100742ee0`), as this copy
+  does; an internal comparator inlines it, as the other six do. So whether the game's `__sort`
+  calls `__insertion_sort_3` tells you whether the comparator was internal.
+- `fn_7100256810` (an s32 field), `fn_71011bc0b0` (an s32 key with a fallback field) and
+  `fn_7100744000` (a float key, then an id) needed the compared field to be a union member, so
+  that it is read again after each element store. `fn_7100744000` also needed a swap that assigns
+  the two members in turn, and its `__sort` is still one instruction off (the original advances
+  the pointer and then loads; ours loads with a pre-indexed address).
+- `fn_7101072a80`, `fn_710109b9f0` and `fn_71011bc0b0` have empty comparators, so they use the
+  anchor and `.set` names.
+
+More instantiations found by their recursion (each 2 KB, or with 2 KB helpers):
+- `fn_7100134020`: all five **m**. 0x160-byte entries (three pooled string ids and a string with
+  its own storage) by name. One difference is left: the original reuses the compared id's pointer
+  when a swap moves the entry. That needs the alias analysis to know the swap's temporary isn't the
+  entry, which it does only for pointer arguments, but sorting raw pointers pairs stores the
+  original keeps apart. See the file's note.
+- `fn_7100213380`: done, all five **O**. 0x40-byte polymorphic boxes by the centre on an axis. A
+  copy rebuilds the box from its corners and stores them again as whole tenths. Three details
+  mattered: one inline virtual keeps the vtable out of the file (the copy's calls stay indirect),
+  the assignment is user-written (so the tenths and the last word are copied separately), and the
+  elements are sorted through `UnkIter`.
+- `fn_7100212a80` (not a sort: it builds a box tree and calls `fn_7100213380`)
+- `fn_7100248e50`
+- `fn_710030ed9c`
+- `fn_7100336ca0`: all five **m** (weak handles assigned by `fn_71003384e0`, nearest first).
+  The class iterator fixed the handle reload and the sizes. The comparisons still load the target
+  and the positions in another order, whatever the distance's shape.
+
+Copies of slice 2's `fn_71002dacc0` (a pair of empty string ids) outside slice 2's range,
+`fn_7100a8e07c` and `fn_7100ef1970`, are stream 7's (coordinator's call, 2026-10-22): both **O**
+in `src/game_s7/fn_7100a8e07c.cpp`.
+
+### Copy-assignment of property records
+
+(stream 7, 2026-10-22; `fn_710043439c` and `fn_71004c8f58`
+are under 2 KB in slice 2's range but share the types, so stream 7 took them too, with no open PR
+touching them). `fn_7100442780`, `fn_710043439c`, `fn_710048b740`, `fn_7100510548` and
+`fn_71004c8f58` are all **O**: records holding 0x70-byte entries (a property with an any-like
+value assigned by `fn_710009efb8`, then a 0x40-byte block). Types are in
+`src/game_s7/UnkAnyPropsS7.h`. Each operator= is defaulted out of line and aliased to the address,
+because a wrapper calling it doesn't inline it. With a defaulted operator=, the layout alone decides
+the code:
+- runs of trivially copyable fields become one memcpy (loads, then stores);
+- fields copied one by one, interleaved, are wrapper types with a user operator= (`UnkVal<T>`,
+  or a struct with its own operator=; field order inside it can even be reversed);
+- an 8-byte gap that is never copied is a polymorphic member's vptr;
+- the weak handle's operator= needs `always_inline`.
+The memcpy of the last array entry is scheduled with whatever plain fields follow it, so the
+load order there tells you whether the next field is plain or wrapped (`fn_7100510548`).
+`fn_7100fbdfd0` (slice 6's range) also calls `fn_710009efb8` once; it is not part of this family.
+The records' copy constructors are **O** in the same files: `fn_7100441cfc`, `fn_710048acac`,
+`fn_710050f824`, and in slice 2's range `fn_7100433c5c` and `fn_71004c8ad4` (stream 7's, same
+terms). Each is defaulted and aliased like the operator=. What the constructors needed:
+- the entries are separate members (an array is copied by a loop) and derive from the property,
+  each level storing its vptr;
+- the records derive from a base (vtable 0x7101cd1b38) and sometimes a middle class, whose vptr
+  store survives only if an untyped copy follows it (`fn_710048acac`'s two-u32 field);
+- the block, `UnkPropRef`'s values, `UnkVal` and `UnkTail` have user copy constructors, so they
+  are copied one by one instead of joining a memcpy run.
+
+### Collection-type registration
+
+(stream 7): `fn_71000e2800` (14 KB, **O**, no callers in code)
+adds 105 type getters' results to their one-byte lists (`fn_710009ec00`), builds 60 `CClass`
+globals from their names (`CollectionTypeMapper<...>` value types, `CRntVector<...>` and so on;
+the constructors take four or six arguments), registers their destructors and 45 conversions.
+Every global and callback is reached through the GOT, so all are plain `extern`s. The source was
+written mechanically from the call sequence, with the helpers in `UnkStaticInitS7.h`.
+
+### Exact copies of matched functions
+
+(stream 7, claimed 2026-10-22): a whole-binary scan for `U`
+functions whose instructions equal an `O` function's (local branches normalised, calls and page
+addresses identical) found 115 (27 KB); 114 are written as copies of their originals' source in
+`src/game_s7/` (one file per original file, named after its first copy; each lists its copies),
+and `fn_71004a84c8` stays with stream 2. Several were "tried and left" by the clone rounds above
+(0x7100287de8, 0x71000df388, 0x7100020898, 0x71000d1fec, 0x71002444f4); the hand-matched originals
+now cover them. Rerun the scan after each batch of new matches: new `O` functions bring new copies.
+A looser pass (calls may target different functions with the same position in each body, and
+data page addresses may differ) found 35 more `U` copies of 17 originals, also claimed by stream 7
+on 2026-10-22. They are written the same way, with each copy's own callees and data declared; the
+largest family is `fn_7100d94830`'s erase-by-key (9 copies).
+A third pass (also masking the offsets of loads and stores whose base came from a page address)
+found 56 more `U` copies of 30 originals, claimed by stream 7 on 2026-10-22; the largest family is
+`fn_7100d2ac00` (8 copies, in `fn_7100a15260.cpp`). Copy files keep the original's names, strings
+and comments (asmdiff masks data), and their first line says so.
+The two copies of `fn_71002430e8` (a generated clone, `refl_StrIdHashErase`) that release their
+keys through CFilePathStrId's pool, `fn_71000741d4` and `fn_71011aa6a0`, are stream 7's (**O**).
+Stream 7 probed the id table's destructor `fn_71000407f0` (96 KB, see "Giant functions") on
+2026-10-22 and left it: built as a defaulted destructor of the generated table it reloads the pool
+at the same ids as the original (every 99), but the pool's register is swapped in each stretch. The
+original's first stretch keeps the pool in x8 (its first load still reads `this` from x0, before
+the copy to x19); ours copies `this` first and keeps the pool in x0, and a 3-id table is all x0.
+Ten more shapes of the id destructor (an early return, no local pool, a cached empty pointer,
+`__builtin_expect` on each test, `always_inline`) don't change that.
+
+### Slice 1 taken over by stream 7
+
+(2026-10-22, coordinator's call): the hand slice below
+0x71002a4814 (`U` game functions of 128 B-2 KB, `src/game_s1/`) had no active stream. Stream 7
+starts from the shared headers and patterns found since (`src/game_s7/UnkIter.h`,
+`include/game_s2/UnkWeakHandle.h`, `include/game_s2/UnkOwnedList.h`) and from near copies of
+matched functions, not from the stragglers slice 1 left.
+
+### Slice 1 near copies, batch 12
+
+(stream 7, 2026-10-22): 80 functions **O**, mostly slice 1's
+same-shape copies of matched templates with other element sizes, offsets, pools or callees
+(`src/game_s1/`, one file per original, each header naming the original). Families: the
+owned-list map Reserve (`fn_71001358e0`, 15 copies binary-wide; `Reserve` must be
+`always_inline` or the extra copies become 4-byte tail calls; slice 5's `m` `fn_7100b48944` has
+the same code), id-list owner destructors, out-of-line element arrays (move-assign, End, bound
+refs), slot-array SetAt, id-record pair and map assigns, string-id map Clear/Begin/End, variant
+resets and assigns, pair assigns and equality. Also `src/game_s7/fn_7100f798fc.cpp`: the five
+string-id map End iterators after the begins of `fn_7100f79844.cpp` (slice 6, no active stream).
+Left: `fn_71000d56ac`, `fn_71000e00a0`, `fn_710111410c` (array equality through an out-of-line
+element compare, 94%: one register). The TU static initialisers `fn_7100205820` and
+`fn_71001f2650` left here are **O** in batch 13.
+
+### Slice 1 static initialisers, batch 13
+
+(stream 7, 2026-10-22): 16 of slice 1's 33 per-unit
+static initialisers **O** (about 12 KB; `src/game_s1/`, with game/UnkTUInit.h's helpers). New
+shapes, kept local to the files: header ids built the other way round ("sources" first, the word
+stored last as in `fn_71001258b0`, or not at all), sometimes followed by the three function
+records (`fn_71000f3150`, `fn_71000113b0`); a class kept right after the header (registered
+after its getter is called); enum converters whose functions are local to the unit (declared
+`visibility("hidden")`, `fn_7100261530`, `fn_71001fa720`); resource types added to a registry
+(`fn_7100005700` for the animation and curve resources, `fn_71000113b0` for blend spaces).
+`fn_71001545d0` (fonts) is **m**: two identity matrices whose stores merge differently. Left:
+the rest have one-off layouts (sub-allocators `fn_7100224c70`, whose header ids merge with the
+statics; game tables `fn_710015ef10`; larger units `fn_7100140400`, `fn_710001f460`,
+`fn_71001b2e60`, `fn_71001e0820`, `fn_7100158130`), 0-60% as drafted.
+
+### Slice 1 near copies, batch 14
+
+(stream 7, 2026-10-22): 22 functions **O** (`src/game_s1/`),
+copies of generated or hand-matched functions whose code differs only in element types, offsets
+or callees. Each copy names its own callees and data. They cover a vector Free inlined into its
+owner at an offset, cached iterator value equality (`UnkIterValue` with 0x18- and 0x30-byte
+elements compared out of line, or 64-bit keys, which only match through a key struct with its own
+`operator!=`), End and Insert for 1- and 2-byte elements, by-value equality with 64-bit indices,
+deferred callback calls with bool and u16 arguments, a pair equality, a record destructor and a
+reflected-value handler. Wrappers around a template that the compiler won't inline (`Insert`,
+`refl_DeferredInvoke`) use `__attribute__((flatten))`. Left, all 60-88% when drafted:
+`fn_7100124084` (scheduling), `fn_710020d4b8` (calls swapped, which changes the block layout), the
+string-id keyed copies `fn_71000de3b0`/`fn_71000de8e8` (float elements), `fn_71000de574` and
+`fn_71000de6b0` (4-byte elements), and reflection type getters whose frames differ
+(`fn_71000d5e74`, `fn_71000d5f4c`, `fn_71002475b0`).
+
+### Slice 1 near copies, batch 15
+
+(stream 7, 2026-10-22): 38 functions **O** (`src/game_s1/`).
+Most are construction and assignment of the reflection collections' cached iterator values and
+value pairs, for other element and key types (`fn_71000cd580.cpp`, `fn_71000e0f70.cpp`). A
+`refl_IterValueMove` instantiation wrapped in a `flatten` function reproduces each move
+constructor. Elements that the original copies member by member need a user-written move
+constructor; with an implicit one the copy merges into wider loads. The copy constructor (state 1
+copied, state 2 read through the reference) is local. Pair equality over float vectors compares
+within a tolerance (0.001, or the global `g_unk_7101647774` read at each use). Also: string-id
+arrays (clears, guarded clears, moves; some in CFilePathStrId's pool), a string-id move-assign,
+a string-id pair assign, and a transform node angle setter that also keeps the negated z angle
+at 0x150 (negate the stored angle, not the argument, to get the integer `eor`). Left at 0-48%:
+copy- and move-assignment of 8-byte iterator values (`fn_71001f1d38`, `fn_71001f1db4`), a
+push-back that the copy file won't inline (`fn_71002a1778`, `fn_7100279ca0`), and drafts whose
+originals are generated (`mkcopy2` only finds hand-written originals).
+
+### Slice 1 near copies, batch 16
+
+(stream 7, 2026-10-22): 28 functions **O** (`src/game_s1/`).
+More of the cached iterator values: equality with 8-byte keys (`fn_71000d4d50.cpp`), moves whose
+elements are a string id and a file path id, a reflected value, a counted reference, or a file
+path id with a counted resource (`fn_71000cd580.cpp`), and resets and move-assigns of values
+owning string ids (`fn_71000d0378.cpp`). Reflected-value and reference elements only inline as a
+placement-new move in a `flatten` function. A counted reference copies as "null, then assign"
+(the original reloads the slot after the count update, so the count sits in a union, as in
+`UnkWeakHandle.h`). In a move-assign, a string id re-reads its pool for the other's empty string
+while a file path id keeps the pool read for the release. The relocation check also caught three
+batch 15 functions that named the wrong string pool (`fn_71000cdbbc`, `fn_71000ce0a4` use the
+default one, `fn_710000cc44` CFilePathStrId's); they now name the original's pool. Left: `fn_710001dc08` (an array
+erase, not the move-assign its size suggested).
+
+### Slice 1 near copies, batch 17
+
+(stream 7, 2026-10-22): 5 functions **O**, 2 **m**
+(`src/game_s1/`). One is the `refl_InitClass` of an unnamed class whose getter is inlined into
+`fn_7100103ef0` (`fn_71000f56d4.cpp`). It is written as a hand-written trait specialization plus
+an explicit instantiation of the shared `CClass` constructor, because `gen_reflection.py` only
+emits classes that have a getter. The others are a move-assign of an id and file path record
+(`fn_710001d15c`, `fn_710001cd80`), equality of holders of an id and weak handles compared by
+target (`fn_7100244aac.cpp`), and file-path iterator copy-assigns at 73.6% that differ only in
+registers (`fn_71000cfe14`, `fn_71000cd658`, **m**).
+
+### Slice 1 near copies, batch 18
+
+(stream 7, 2026-10-22): 6 functions **O** (`src/game_s1/`):
+- two destructors of a reflection class that free an array of 16-byte id records, then call the base destructor (`fn_7100099468.cpp`);
+- clears of a string-id table keyed by string ids (`fn_71000d99d0`, `fn_71000db40c`);
+- a destructor of three ids and a string, cleared first (`fn_7100133be4.cpp`);
+- the erase of a hash set laid out as the string pool set, with its link at 0x10 (`fn_71000866dc.cpp`).
+
+Not attempted: the callback-set iterator copies `fn_71002475b0` and `fn_71002476ec`. They need the compiler-generated vtables of a copied class, which the copy files can't name yet.
+
+### Slice 1 near copies, batch 19
+
+(stream 7, 2026-10-23): 8 functions **O** (`src/game_s1/`):
+- a deleting destructor that frees an array of 16-byte id records (`fn_710016a7f8`);
+- keyed value array destructors, one with its own vtable and values freed by `fn_7100020164`, two with polymorphic values (`fn_710001fa30.cpp`);
+- type-descriptor push pairs (`fn_7100263ea8.cpp`);
+- `End` for 12-byte elements (`fn_71000cc60c`, `fn_71001205d0`).
+
+The copies call the shared clone templates through `flatten` wrappers, with traits of their own.
+
+### Slice 1 near copies, batch 20
+
+(stream 7, 2026-10-23): 6 functions **O** (`src/game_s1/`):
+- destructors of a file path id and a counted resource, with or without a leading word (`fn_7100269170`, `fn_710000f514`);
+- an insert into a string-id hash map keyed by the name an object reports through its vtable (`fn_71000875d0.cpp`);
+- `End` for 0x18-byte out-of-line elements (`fn_71000d5f4c`) and for a word table keyed by string ids (`fn_71000df938`);
+- a bound-pair assignment for 0x18-byte records (`fn_71000d5e74.cpp`).
+
+Also fixed `fn_71000db40c` from batch 18: its values are file path ids. It matched byte for byte, but it named the default pool, which the relocation check caught.
+
+### Slice 1 near copies, batch 21
+
+(stream 7, 2026-10-23): 7 functions **O** (`src/game_s1/fn_7100099468.cpp`):
+- the deleting destructor of the class that frees its id records at 0xf0 (`fn_7100099550`), and the complete destructor of the class with id records at 0x10 (`fn_710016a714`);
+- `Free` of arrays of bare string ids from either pool (`fn_71001b15b4`, `fn_71000d076c`, `fn_71000cdfb0`);
+- `Begin` over the same arrays (`fn_71000d0f1c`, `fn_71000ce8b8`).
+
+The matching `End` copies (`fn_71000d0ff4`, `fn_71000ce990`) are left at 96%: the original loads the count before the data pointer.
+
+### Slice 1 near copies, batch 22
+
+(stream 7, 2026-10-23): 5 functions **O** (`src/game_s1/`):
+- `PushBack` of a copy for records of a word and a 0x100-byte object (`fn_71002a1778.cpp`, two copies of `fn_7100b1a860`);
+- the complete and deleting destructors of a class with a string id and a string (`fn_710002ddc0.cpp`). The deleting one releases the id without resetting it, so it is written out;
+- a flag lookup in a `CRntVector`-bucketed hash map (`fn_710014bdec.cpp`, like `fn_710019e100`).
+
+Left: `fn_71001f1db4` (an iterator value move-assign with 64-bit keys whose stores alias the state; 23%).
+
+### Slice 1 near copies, batch 23
+
+(stream 7, 2026-10-23): 3 functions **O**, 1 **m** (`src/game_s1/`):
+- a hash-set key move (`fn_710014239c.cpp`, a copy of `fn_710019e100` that appends before erasing);
+- the Clear of a string-id keyed table of counted resources (`fn_71001d7444` in `fn_71000d0378.cpp`; the value loop only matches as a do-while);
+- a byte array copy constructor (`fn_71000e1848` in `fn_71000d1f3c.cpp`).
+
+Also `fn_7100272bbc.cpp`, a pair assignment copy of `fn_7100c0837c`, is minor: the original copies the record's 0x15-byte tail last 8 bytes first. Left: the set erase `fn_7100142504`/`fn_710019e268` (15%; the list links only alias as an array, but the bucket-chain loop still differs).
+
+### Slice 1 near copies, batch 24
+
+(stream 7, 2026-10-23): 6 functions **O** (`src/game_s1/`):
+- complete and deleting destructors of two classes that hold a string id and an array of plain values (`fn_71001f9c3c`, `fn_71001f9cd4`, `fn_710026cd30`, `fn_710026cdcc` in `fn_710002ddc0.cpp`);
+- a hash-set key lookup (`fn_710019e4fc` in `fn_710014bdec.cpp`);
+- an iterator value move-assign whose file path id re-reads its pool for the other's empty string (`fn_7100267684` in `fn_71000d0378.cpp`; `UnkReleasedStrIdT` now takes a `Reread` flag).
+
+These were found by re-running the near-copy search against the functions matched in batches 20 to 23.
+
+### Slice 1 near copies, batch 25
+
+(stream 7, 2026-10-23): 21 small functions **O** (`src/game_s1/`). They came from widening the near-copy search to functions of 64 bytes and up:
+- getters building reflected values (`fn_71002678c8.cpp`);
+- calls of a virtual slot on each child of an array with a float or bool argument (`fn_710014be78.cpp`);
+- iterator value moves with 64-bit indices and out-of-line element moves (`fn_71000dbc34.cpp`);
+- find-by-id-and-forward wrappers (`fn_71001fcd4c.cpp`, copies of `fn_71001fd8a0`);
+- array equality for words and floats, and a keyed set with u64 keys (`fn_71000d25f0.cpp`).
+
+### Slice 1 near copies, batch 26
+
+(stream 7, 2026-10-23): 33 small functions **O** (`src/game_s1/`), from the near-copy search at 36 bytes and up:
+- 13 more find-and-forward wrappers (`fn_71001fcd4c.cpp`);
+- destructors: an id plus an allocator-owned block (`fn_710002ddc0.cpp`), chained-set holders (`fn_7100022518.cpp`), an array holder (`fn_710014a86c.cpp`), a node list (`fn_7100218a2c.cpp`);
+- reflection invokers: a constant-true getter (`fn_7100254728.cpp`), a two-float setter (`fn_71001109c4.cpp`), in-place array construction (`fn_710025d844.cpp`), iterator increments over refcounted pointers (`fn_7100236ff4.cpp`);
+- a wide-string search (`fn_7100067460.cpp`), a translation matrix (`fn_7100078c9c.cpp`), a timer reset whose division by 1000 is written out the way the original computes it (`fn_7100080c40.cpp`), and a sub-allocator free hook (`fn_71001039b4.cpp`).
+Dropped after the time box: `fn_71000876d8` (hash lookup; load scheduling) and `fn_71001f1d38` (iterator value copy with 64-bit keys).
+
+### Slice 1 near copies, batch 27
+
+(stream 7, 2026-10-23): 35 small functions **O** (`src/game_s1/`), mostly groups of identical copies:
+- string id assignment from a string, in both pools (`fn_71000cc800.cpp`); destructors of an id and path pair (`fn_710001cbd8.cpp`);
+- keyed-array lookups returning null when absent (`fn_71002519a8.cpp`), and a byte-array equality (`fn_71000d25f0.cpp`);
+- node list destructors with node destructors, and a list clear (`fn_7100219134.cpp`); linked-list iterator increments (`fn_710023644c.cpp`);
+- per-child virtual calls and calls over element arrays (`fn_710014be78.cpp`), one more find-and-forward variant (`fn_71001fcd4c.cpp`), a float-sum reflection getter (`fn_71001109c4.cpp`);
+- destructors: pooled objects (`fn_710019bfb8.cpp`), a three-member class (`fn_7100086d7c.cpp`), a counted reference (`fn_71000139c0.cpp`) and a vibration player derived from `nn::hid::VibrationPlayer` (`fn_71000707dc.cpp`, declaring the two SDK destructors it calls);
+- a matrix composition (`fn_7100078c9c.cpp`).
+
+### Slice 1 near copies, batch 28
+
+(stream 7, 2026-10-23): 20 small functions **O** (`src/game_s1/`):
+- destructors: a counted id (`fn_710002ddc0.cpp`), a dead-marked object (`fn_71001f3438.cpp`), a plain object with blocks and an array (`fn_710019506c.cpp`), counted and id members (`fn_71001bd92c.cpp`), an active flag and an owned mutex (`fn_710008e8cc.cpp`), owned-object arrays (`fn_7100243aac.cpp`);
+- constructors (`fn_7100138090.cpp`, `fn_71001a9f84.cpp`), record copy and copy-assignment (`fn_71001b3a3c.cpp`, `fn_71000d0378.cpp`);
+- a folded-hash set lookup (`fn_710014bdec.cpp`), a keyed presence test (`fn_71002519a8.cpp`), a table end (`fn_71000d0378.cpp`), a lazily created part's id setter (`fn_71001c3504.cpp`), an interpolated value setter (`fn_7100105f1c.cpp`);
+- two millisecond clocks (`fn_7100080c40.cpp`, calling `nn::os` and `nn::oe` by their SDK names).
+Dropped after the time box: `fn_71000de3b0`/`fn_71000de8e8` (iterator value equality over floats; register order).
+
+### Slice 1 hubs, batch 1
+
+(stream 7, 2026-10-23): work order switched to hub functions (most
+unmatched callers first). **O**: `fn_710009d50c` (reflected is-kind-of walk over `CType::m_parent`,
+1778 unmatched callers), `fn_71000a18d4` (builds an `UnkReflValue`; the last argument is a u32
+mode, 1 = by reference, so `UnkReflValue.h` now declares it `u32 by_ref`; the type is stored as a
+plain pointer so the copy function reloads), `fn_710002614c` (transform matrix getter, 545
+callers), `fn_7100076cec` (transform scale). `fn_7100079b18` (transform angles) is
+`NON_MATCHING(minor)` at 91.5% (b's x/y swap registers). `include/game/UnkXformNode.h` now has the
+full `UnkXform` layout (4x4 matrix, cached angle 0x40, scale 0x4c, flags 0x58) with
+`GetTranslation`/`GetAngle`/`GetScale`, and `UnkVec3f` gained a 3-float constructor (the matrix
+getter's translation needs it). Unmatched local re-declarations of `fn_71000a18d4` elsewhere still
+use their own types.
+
+### Slice 1 hubs, batch 2
+
+(stream 7, 2026-10-23): 27 unmatched callers of the transform hubs
+**O** (`src/game_s1/`), all through `include/game/UnkXformNode.h`: angle/scale getters of objects
+holding an `UnkXform` (`fn_71001413d4` and five copies), pose copies into a node (`fn_71001439d8`
+and four copies), matrix setters that pass the translation on (`fn_71001f70dc` and three copies,
+`fn_710020d744`, `fn_7100206294`), node angle/scale/translation setters with change checks
+(`fn_710020d5b8`, `fn_710020d33c`, `fn_710020d4b8`; `fn_7100209b48` sets the angles but tests
+the translation), `fn_710020aafc` (scale by a factor),
+`fn_710020a44c` (pushes a dirty node to its target), `fn_710023415c`, `fn_71001bc8a4`,
+`fn_710023e348` (reflected angle getter) and `fn_7100196674` (cached aspect-scaled matrix).
+`UnkXform` gained `GetMatrix`, `SetAngle`, `SetScale`, `SetTranslation` and a from-matrix
+constructor; `UnkMatrix44` moved to `include/base/UnkMatrix44.h`; `UnkXformNode` gained the fields
+at 0xf9-0x108 (static_assert on its size; `fn_710020a6e8` and `fn_71010d3508` adjusted). Caution: `UnkXformNode`'s own fields (`angle_0x58`, `flags_0x70`, ...) and
+`Xform()->...` describe the same memory with different struct paths, so type-based alias analysis
+treats them as independent; within one function use one view. Folding `UnkXformNode` onto an
+embedded `UnkXform` (27 files) would remove that. Dropped after a time-box: `fn_71000127c8`
+(matrix product: the original reloads the zeroed rows 1-3 of the result), `fn_7100025bd0`/`fn_7100025d10`
+(transform tree update: matrix copy split and a leftover flag branch).
+
+### Slice 1 hubs, batch 3
+
+(stream 7, 2026-10-23): 8 more transform callers **O**: bone world
+matrices by index (`fn_71001c1b70`; by id `fn_71001c1694` is `NON_MATCHING(minor)`: the original
+compares the not-found end pointer with itself), `fn_71001bfd5c` (matrix follower),
+`fn_71001bc740` (move and face the new position; `fn_710007a7f0` takes its direction by value,
+which a non-trivial copy passes by address), `fn_71001f4434`, `fn_71001eaf3c` (pool entry
+placement), `fn_7100140f8c`/`fn_7100145f80` (apply a transform but keep the own scale) and
+`fn_7100208a64` (target link on/off). `UnkXform` now has a word-by-word copy constructor;
+`include/base/UnkMatrix44.h` has `UnkCopyMatrix` (written out, since a loop becomes a memcpy).
+`UnkXformNode` is back to ending at the target pointer (0x110 bytes): the matrix at 0x110 belongs
+to one subclass (`fn_710020a44c`), and another keeps flags there (`fn_7100208a64`).
+
+### dlmalloc 2.8.4 vendored
+
+(stream 7, 2026-10-22, owner-approved): `lib/dlmalloc/` holds
+upstream `malloc.c` unmodified and `mspace.c` with the game's settings (README there). It was
+fetched from a mirror pinned to a commit in `tools/fetch_sources.py` and `data/sources.json`,
+because the author's site is blocked here. `tools/sigmatch.py --library dlmalloc` names the five
+functions the game links (`create_mspace_with_base`, `mspace_malloc`, `mspace_free`,
+`mspace_memalign`, `dlmalloc_usable_size`, 0x71000815b0-0x7100082c38), and
+`tools/gen_functions_csv.py` marks them **L**. Three are byte-identical; `mspace_free` is 8 bytes
+longer in the game (a near match). For the owner: `include/base/UnkDefaultAllocator.h` still
+calls these "apparently dlmalloc's mspace functions" and can now name them.
+
+### Matching does not check relocated targets
+
+`tools/asmdiff.py` masks every relocated field, so
+a function stays **O** with the wrong global, GOT slot or callee named. Two slips found this way
+and fixed: `src/game_s7/fn_710104ed30.cpp` released its ids through the default pool where the
+original uses CFilePathStrId's (`g_unk_7101d47200`), and vtables named 0x10 below the address
+the GOT slot holds (the slot holds the vtable itself; `&Vtable[2]` is what gets stored). A
+scratch check compares each `fn_`/`g_unk_` relocation of an **O** function against the original
+instruction at the same offset (b/bl targets, ADRP pages, low-12 offsets, and for GOT loads a slot
+holding that address); worth adding to `check.py` (owner's call). Over `src/game_s7/` and
+`src/game_s1/` it now finds nothing. The older stream 7 copy files used to call the original's
+callees and read its data (about 670 references in 24 files: right for matching, wrong for a
+port); they now name their own callees, data and strings, and their headers say only the comments
+describe the original. Where a shared helper held the name, the helper takes it as a template
+argument (the string pool of `UnkReleasedStrIdT`, the vtable of `UnkIdPropertyT`, the owner
+assignment of `UnkCallbackSet`). The scratch renamer that did this (each relocation's original
+target, renamed inside that function only) is the same check run the other way.
+
+### Field registrations the reflection parser stopped at
+
+(stream 7, 2026-10-22), both **O**:
+CCharClassAIComponent's member fields (`fn_7100408c20`, 33 KB, 142 fields, the giant-functions
+table's "tunable registration") and CExplosionGfx's (`fn_7100ddf434`, 3.6 KB). Both are
+`tools/refl_attrs.py` drafts finished by hand, in `src/game_s7/`. What the parser lacks: defaults
+of a reflected struct type (four `SDeathImpactDisplacement` values, two 8-byte stores, typed by
+the class getter); defaults copied from global `CVector2D`/`CVector4D` constants through the GOT,
+which match only as member-by-member copies (`CVector2D{g.x, g.y}`); and an empty `CStrId`
+default, which the original builds without testing the pointer after the pool check
+(`UnkEmptyStrIdValue` in `fn_7100408c20.cpp`; `CStrId(UnkStrIdInline{}, "", true)` tests it).
+The large one also needs `alternatives()`' typed lambda form. Still `U`: `fn_7100beaf3c` (a
+`CRntString` default joined from two globals with "|"), and five small ones (`fn_710044e7fc`,
+`fn_71004ded68`, `fn_7100b8bb94`, `fn_7100097378`, `fn_71002584a0`).
+
+### Render resource types
+
+(stream 7): `fn_71001b1dd0` (**m**, 2.5 KB) registers nine render
+resource types through a record with an out-of-line constructor and destructor (`fn_71000e9a7c`,
+`fn_71000e8dd0`). Findings: this TU's file-path ids decrement and test in two steps and assign as
+destroy-then-move; the vector growth moves elements bitwise (`memcpy`, so `count` is reloaded) with
+`src`/`dst` pointers and a `u32` counter; the file's statics are one merged block
+(`g_unk_716e5543a0`). Left: the last copy loop's count stays in memory in ours (one instruction).
+
+### Copies of stream 2's shapes
+
+(stream 7, claimed 2026-10-22): the static-id guard copies of
+`fn_7100464520` (`fn_71005b9d70`, `fn_71006e0f90`, `fn_7100898e80`, in `fn_71005b9d70.cpp`) and the
+copies of the compare `fn_71004a84c8` (`fn_71005d9dec`, `fn_71005ee098`, in `fn_71005d9dec.cpp`;
+each member of the compared value is inline or, in mode 2, a pointer; the loop index must be `u64`).
+`fn_71004a84c8` itself stays with stream 2. Also claimed (2026-10-22): the three copies of each of
+stream 2's owned-list array functions (`UnkOwnedList.h`) at 0x71005da4f8-0x71005db4c0,
+0x71005e3778-0x71005e4740 and 0x71005ee7a4-0x71005ef76c (clear, compare, free, move-assign, erase,
+grow-at, begin, end), in `fn_71005da4f8.cpp`.
+
+### Inventory string and projectile models
+
+(stream 7): `fn_7101147868` (**O**, 4.9 KB) appends a
+"SamusInventory" record whose value is 26 digits, one per item definition (1 when the inventory's
+map holds an amount above zero under the item's qualified id). Findings: the lazy id check must be
+a pointer compare (`data == &pool->empty`; the integer compare other files use inverts the branch
+here); the record is built as a temporary inside the append call; and its constructor
+(`fn_7100ec4240`, declared with an `asm` label) takes the two ids by value, so the caller destroys
+the copies after the append and keeps their final stores. `fn_7101144a5c` (11.8 KB, next to it)
+builds a local map from the 26 area-and-item names and walks it; still `U`.
+`fn_7100ed4cb8` (**O**) loads the nine beam projectile models through the manager's pool; the
+model pointer must be declared before the path id (stack order).
+
+### Hash lists by height
+
+(stream 7, 2026-10-22): `fn_71003f2a8c` and `fn_71006c26fc` clear a
+list of 64-bit name hashes and push three to five constants, chosen by the height difference of two
+positions against 300. `fn_71006c26fc` is **O**; `fn_71003f2a8c` is **m** (one store's index
+register). Both are in `src/game_s7/fn_71003f2a8c.cpp`, using a local copy of the `UnkVector` layout
+whose PushBack copies the old elements one by one through a pointer. Two details mattered:
+- The list must be a reference parameter. Only then can the step be loaded before the first push's
+  capacity test (the original selects the step when the capacity is 0).
+- Each branch pushes its own last hash and returns. A shared tail lets Clang sink the pushes into
+  one with a phi of the constant.
+
+### Flag lists
+
+(stream 7): `fn_7100eed9ec` (**O**) and `fn_7100600c98` (**m**) build a local list
+of `u32` flags on the stack (`src/game_s7/UnkFlagListS7.h`: a linked list with a vtable,
+allocator and flags 0x13) and hand it to `fn_71008724f8`. The list's fields are union members:
+the original reloads them after every node store. `alignas(16)` puts the list at sp+0x10.
+`fn_7100600c98`'s remaining difference is that the first call's flag statics share the list's stack slot.
+
+### Link groups
+
+(stream 7): `fn_7100de7d88` (**O**) is the defaulted destructor of 13 link groups,
+each three pointer arrays plus one field. It needs 13 separate members: an array of
+non-trivially-destructible members becomes a loop. `fn_7100b34b44` (**m**, registers swap from the
+second push) clears a pointer list and pushes 14 addresses inside the same object.

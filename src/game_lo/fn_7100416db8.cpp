@@ -1,9 +1,8 @@
 // Constructor: runs the base constructor, stores the class's vtable, clears a 16-bit field and
 // sets the file-path string id at +0x500 to the empty path (creating the pool if needed).
+#include "game/UnkPathRegistry.h"
 #include "base/global/CFilePathStrId.h"
 #include "types.h"
-
-extern char g_unk_7101a34218[];  // vtable
 
 struct UnkObject_7100416db8 {
     char* vtable;

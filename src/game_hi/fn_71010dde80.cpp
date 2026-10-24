@@ -1,12 +1,13 @@
 // Sorts three entries in place (libc++ __sort3 shape) and returns the number of swaps. The order
 // puts an entry before another at (nearly) the same depth when only the second one belongs to a
 // breakable tile group.
+#include "base/reflection/UnkReflCast.h"
 #include "types.h"
 
-struct UnkClass;
+using base::reflection::CClass;
 
 struct UnkReflObj {
-    virtual UnkClass* vf_0x0();
+    virtual const CClass* vf_0x0();
 };
 
 struct UnkInner_0x18 {
@@ -26,9 +27,8 @@ struct UnkEntry_0x3c {
 };
 
 namespace CBreakableTileGroup {
-UnkClass* refl_GetClass();
+const CClass* refl_GetClass();
 }
-bool fn_710009d50c(UnkClass*, UnkClass*);
 
 static inline bool IsTileGroup(const UnkEntry_0x3c* e) {
     if (UnkOwner_0x18* o = e->field_0x0)

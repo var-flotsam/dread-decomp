@@ -1,10 +1,13 @@
 // A cooldown-boss component's update step: if it is active, lets the owner's boss AI know and
 // runs the base update with the same arguments.
+#include "base/reflection/UnkReflCast.h"
 #include "types.h"
+
+using base::reflection::CClass;
 
 struct UnkBossAI {
     void** vtable;
-    const void* vf_0x0() { return reinterpret_cast<const void* (*)(UnkBossAI*)>(vtable[0])(this); }
+    const CClass* vf_0x0() { return reinterpret_cast<const CClass* (*)(UnkBossAI*)>(vtable[0])(this); }
 };
 
 struct UnkBossHolder {
@@ -26,8 +29,7 @@ struct UnkBossComponent {
     u32 field_0x5d8;
 };
 
-void* fn_71004cf318();  // CCooldownXBossAIComponent::refl_GetClass
-bool fn_710009d50c(const void* from, void* to);
+const CClass* fn_71004cf318();  // CCooldownXBossAIComponent::refl_GetClass
 void fn_71004d43dc(UnkBossAI* ai, void* target);
 void fn_7100232c68(void* target);
 bool fn_7100ac4c60(UnkBossComponent* self, u64 a, u64 b, u64 c, u64 d);

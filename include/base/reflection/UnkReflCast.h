@@ -9,6 +9,8 @@
 #include "base/reflection/UnkReflValue.h"
 #include "types.h"
 
+// The is-kind-of test: whether `type` is `base` or derives from it, walking CType::m_parent
+// (src/base/reflection/fn_710009d50c.cpp). Canonical declaration: include this header, never redeclare.
 bool fn_710009d50c(const base::reflection::CType* type, const base::reflection::CType* base);
 bool fn_710009d52c(const base::reflection::CType* type, const base::reflection::CType* current);
 void fn_71000a1c60(base::reflection::UnkReflValue* value);

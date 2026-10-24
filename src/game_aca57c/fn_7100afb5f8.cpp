@@ -2,6 +2,7 @@
 // 0x260), when there is a main menu and its pop-up (at 0x540) is a GUI::CPopUpComposition.
 // Three identical copies.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflCast.h"
 #include "types.h"
 
 using base::reflection::CClass;
@@ -40,7 +41,6 @@ struct UnkPopUpListener {
 
 extern void* g_unk_7101d47310;
 UnkReflObject* fn_7100e033a8(void* manager);
-bool fn_710009d50c(const CType* type, const CType* base);
 const CClass* fn_7100b34230();  // GUI::CMainMenu::refl_GetClass
 const CClass* fn_7100b5e368();  // GUI::CPopUpComposition::refl_GetClass
 

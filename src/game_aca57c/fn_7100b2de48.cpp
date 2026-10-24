@@ -7,13 +7,14 @@
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "base/reflection/UnkReflCast.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
 using base::global::CStrId;
+using base::reflection::CClass;
 
 struct UnkParamTarget;
-struct UnkReflType;
 struct UnkWatchSet {
     u8 unk_0x0[0x80];
 };
@@ -42,7 +43,7 @@ struct UnkComposition {
     bool field_0xb4;
     bool flag;
 
-    const UnkReflType* Type() { return reinterpret_cast<const UnkReflType* (*)(UnkComposition*)>(vtable[0])(this); }
+    const CClass* Type() { return reinterpret_cast<const CClass* (*)(UnkComposition*)>(vtable[0])(this); }
     void SendEvent(const char* name, bool flag) {
         reinterpret_cast<void (*)(UnkComposition*, const char*, bool)>(vtable[0x1e8 / 8])(this, name, flag);
     }
@@ -81,7 +82,7 @@ struct UnkGameManager {
 struct UnkObject {
     void** vtable;
 
-    const UnkReflType* Type() { return reinterpret_cast<const UnkReflType* (*)(UnkObject*)>(vtable[0])(this); }
+    const CClass* Type() { return reinterpret_cast<const CClass* (*)(UnkObject*)>(vtable[0])(this); }
 };
 struct UnkObjRef {
     u8 unk_0x0[0x10];
@@ -174,9 +175,8 @@ void fn_710002fd10(void* list, UnkGuiKey* key);
 void fn_710002ffb4(void* list, UnkGuiKey* key);
 void fn_71004f3cf0(UnkWatchSet* set, UnkWatchSet** slot);
 void fn_71004f3ea4(UnkWatchSet* set, UnkWatchSet** slot);
-bool fn_710009d50c(const UnkReflType* type, const UnkReflType* base);
-const UnkReflType* fn_7100af0954();  // GUI::CAmiiboComposition::refl_GetClass
-const UnkReflType* fn_7100b54a10();  // GUI::CMissionLog::refl_GetClass
+const CClass* fn_7100af0954();  // GUI::CAmiiboComposition::refl_GetClass
+const CClass* fn_7100b54a10();  // GUI::CMissionLog::refl_GetClass
 void fn_7100e9b464(void* target, bool value);
 void fn_7100e9b1f8(void* target, bool value);
 u64 fn_7100001570(const char* text, u64 length);
@@ -184,7 +184,7 @@ void fn_7100066a50(void* text, const char32_t* value);
 void fn_7100066e44(void* text);
 void fn_7100b2cb44(UnkStateOwner* self);
 UnkComposition* fn_71011d98ec(UnkComposition* composition, u64 id);
-const UnkReflType* fn_71011e8dfc();  // GUI::CLabel::refl_GetClass
+const CClass* fn_71011e8dfc();  // GUI::CLabel::refl_GetClass
 void fn_71011ec468(UnkComposition* label, void* text, bool value);
 void fn_71011b6bbc(UnkGuiRoot* root, void* object, bool value);
 void fn_7100af1bfc(UnkComposition* composition);
@@ -475,7 +475,7 @@ struct UnkSamusMenu : UnkObject {
     CStrId field_0x230;
 };
 extern CStrId g_unk_7101d470e0;
-const UnkReflType* fn_7100b65dc0();  // GUI::CSamusMenuComposition::refl_GetClass
+const CClass* fn_7100b65dc0();  // GUI::CSamusMenuComposition::refl_GetClass
 void fn_7100e9b4b0(void* target);
 
 // End of the Samus menu state: the menu's id at 0x230 is reset to the global id, the menu is
@@ -829,7 +829,7 @@ struct UnkInputEvent {
     u8 unk_0x0[0x1a];
     bool handled;
 };
-const UnkReflType* fn_7100b5e368();  // GUI::CPopUpComposition::refl_GetClass
+const CClass* fn_7100b5e368();  // GUI::CPopUpComposition::refl_GetClass
 bool fn_710118a8d0(UnkPlacedObj* placed);
 bool fn_7100b44a3c(UnkObject* obj);
 void fn_7100b2eaac(UnkStateOwner* self, s32 state, bool a, bool b);

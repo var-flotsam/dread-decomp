@@ -9,6 +9,10 @@ check.py for that.
 
 The object goes to build/trymatch/<version>/<name>.o, never next to the source.
 
+Relocation targets are checked as in check.py: a function that matches byte-for-byte also
+has to name the original's callees, globals and GOT slots, or it gets a `RELOC` line under
+its MATCH line and counts as not matching (`--no-reloc` skips this).
+
 Usage:
   python tools/trymatch.py --version 2.1.0 src/flag_id/fn_7100227448.cpp
   python tools/trymatch.py --version 2.1.0 scratch.cpp -v              # side-by-side diff
@@ -36,6 +40,7 @@ def main() -> int:
     ap.add_argument("--version", required=True)
     ap.add_argument("source", type=Path)
     ap.add_argument("-v", "--verbose", action="store_true", help="print side-by-side disassembly of mismatches")
+    ap.add_argument("--no-reloc", action="store_true", help="skip the relocation target check")
     ap.add_argument("flags", nargs="*", help="extra compiler flags (after --)")
     args = ap.parse_args()
 
@@ -50,24 +55,30 @@ def main() -> int:
         print(r.stderr, end="")
 
     rows, _ = check.load_csv()
-    by_name: dict[str, list[int]] = {}
-    for row in rows.values():
-        by_name.setdefault(row["name"], []).append(int(row["address"], 16))
-    funcs = asmdiff.object_functions(obj)
-    names = check.demangle([n for n, _, _ in funcs])
-    codes = {n: c for n, c, _ in funcs}
+    by_name = check.csv_by_name(rows)
+    funcs = asmdiff.read_object(obj)
+    codes = {f.symbol: f.code for f in funcs}
     original = asmdiff.Original(args.version)
 
-    results = asmdiff.diff_object(obj, original, check.resolver(by_name, names))
+    results, names, full_names, targets = check.diff_with_targets(funcs, original, by_name)
+    mismatched = 0
     for res in results:
         status = "MATCH" if res.matching else f"{res.score:5.1%}"
         print(f"{status:>6}  {res.address:#x}  {names.get(res.symbol, res.symbol)}  "
               f"orig {res.orig_size} B, ours {res.our_size} B, {len(res.diff_insns)} differing insns")
         if args.verbose and not res.matching:
             asmdiff.print_side_by_side(res, original, codes[res.symbol])
+        if res.matching and not args.no_reloc:
+            rep = asmdiff.check_relocs(res, original, targets)
+            if rep.mismatches:
+                mismatched += 1
+                for m in rep.mismatches:
+                    sym = check.strip_params(full_names.get(m.symbol, m.symbol))
+                    print(f"  RELOC  {asmdiff.format_mismatch(m, sym)}")
     unmapped = len(funcs) - len(results)
-    matched = sum(r.matching for r in results)
-    print(f"{matched}/{len(results)} functions match" + (f" ({unmapped} not mapped to an address)" if unmapped else ""))
+    matched = sum(r.matching for r in results) - mismatched
+    print(f"{matched}/{len(results)} functions match" + (f" ({unmapped} not mapped to an address)" if unmapped else "")
+          + (f"; {mismatched} with a wrong relocation target" if mismatched else ""))
     return 0 if results and matched == len(results) else 1
 
 

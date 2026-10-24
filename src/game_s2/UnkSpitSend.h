@@ -33,8 +33,8 @@ struct UnkMode_SpitSend {
 };
 
 struct UnkDesc_SpitSend;
-extern UnkDesc_SpitSend unk_7101cd0898;  // reached through the GOT
-extern UnkDesc_SpitSend unk_7101cd08a0;  // reached through the GOT
+extern UnkDesc_SpitSend g_unk_710164b958;  // reached through the GOT
+extern UnkDesc_SpitSend g_unk_7172769740;  // reached through the GOT
 
 void fn_7101176690(void* target, u64 hash, u64 kind, const UnkMode_SpitSend* mode, const UnkDesc_SpitSend* a,
                    const UnkDesc_SpitSend* b, const UnkMask_SpitSend* mask);
@@ -43,5 +43,5 @@ void fn_7101176690(void* target, u64 hash, u64 kind, const UnkMode_SpitSend* mod
 inline void UnkSpitSend(void* target, u64 hash, u64 kind) {
     UnkMode_SpitSend mode(0);
     UnkMask_SpitSend mask = UnkAll_SpitSend();
-    fn_7101176690(target, hash, kind, &mode, &unk_7101cd0898, &unk_7101cd08a0, &mask);
+    fn_7101176690(target, hash, kind, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
 }

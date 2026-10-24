@@ -2,11 +2,14 @@
 // CChozoWarriorAIComponent whose class data (+0x10) is a CCharClassChozoWarriorAIComponent with
 // its flag at +0x7f8 set, returns it only if the byte at +0x14999 of the component is set (else
 // 0).
+#include "base/reflection/UnkReflCast.h"
 #include "types.h"
+
+using base::reflection::CClass;
 
 struct UnkObject {
     void** vtable;
-    const void* vf_0x0() { return reinterpret_cast<const void* (*)(UnkObject*)>(vtable[0])(this); }
+    const CClass* vf_0x0() { return reinterpret_cast<const CClass* (*)(UnkObject*)>(vtable[0])(this); }
 };
 
 struct UnkClassData : UnkObject {
@@ -32,9 +35,8 @@ struct UnkSelf {
 };
 
 f32 fn_7100362648(UnkSelf* self);
-void* fn_7100497f2c();  // CChozoWarriorAIComponent::refl_GetClass
-void* fn_7100496fbc();  // CCharClassChozoWarriorAIComponent::refl_GetClass
-bool fn_710009d50c(const void* from, void* to);
+const CClass* fn_7100497f2c();  // CChozoWarriorAIComponent::refl_GetClass
+const CClass* fn_7100496fbc();  // CCharClassChozoWarriorAIComponent::refl_GetClass
 
 f32 fn_7100495954(UnkSelf* self) {
     f32 value = fn_7100362648(self);

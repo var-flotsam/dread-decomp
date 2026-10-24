@@ -47,7 +47,7 @@ static inline void DestroyArray() {
 ARRAY_DTOR(71008da5c0, UnkStaticPathId, 3, g_unk_7172731840)
 ARRAY_DTOR(71008ded60, UnkStaticPathId, 3, g_unk_7172732068)
 ARRAY_DTOR(7100a8cc60, UnkStaticId, 8, g_unk_7172751a20)
-ARRAY_DTOR(7100a8cee0, UnkStaticValueId, 8, g_unk_7172751a68)
+ARRAY_DTOR(7100a8cee0, UnkStaticValueId, 8, g_unk_7172751a60)
 ARRAY_DTOR(7100aad680, UnkStaticId, 12, g_unk_7172753e60)
 
 // The same release over string-id members, last to first.

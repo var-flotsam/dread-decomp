@@ -1,10 +1,12 @@
 // Whether any entry of the list has an infester AI component with its flag at 0x146e1 set, or
 // fn_7101136308 of its object at 0x278 holds.
+#include "base/reflection/UnkReflCast.h"
 #include "types.h"
 
-struct UnkReflType;
+using base::reflection::CClass;
+
 struct UnkAIComponent {
-    virtual const UnkReflType* vf_0x0();
+    virtual const CClass* vf_0x0();
 };
 struct UnkInfesterComponent : UnkAIComponent {
     u8 unk_0x8[0x146d9];
@@ -25,8 +27,7 @@ struct UnkSelf {
     UnkNode* head;
 };
 
-bool fn_710009d50c(const UnkReflType* type, const UnkReflType* base);
-const UnkReflType* fn_71005ca678();  // CInfesterAIComponent::refl_GetClass
+const CClass* fn_71005ca678();  // CInfesterAIComponent::refl_GetClass
 bool fn_7101136308(void* a0);
 
 bool fn_710057a3ac(UnkSelf* self) {

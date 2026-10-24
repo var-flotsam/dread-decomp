@@ -134,24 +134,26 @@ void fn_710023298c(UnkTreeNode* self) {
         (*p)->vf_0x58();
 }
 
-// Passes each child of an array at 0x60 (count at 0x68) to fn_710021b8e0 (fn_7100224ebc,
-// fn_7100224ef4).
+// Passes each child of an array at 0x60 (count at 0x68) to a callback: fn_7100224ebc to
+// fn_710021b8e0, fn_7100224ef4 to fn_710021b944.
 void fn_710021b8e0(void* child);
+void fn_710021b944(void* child);
 
 struct UnkChildOwner60 {
     u8 pad_0x0[0x60];
     UnkChildArray<void> children;
 };
 
+template <void (*Pass)(void*)>
 __attribute__((always_inline)) static inline void PassEach(UnkChildOwner60* self) {
     void** end = self->children.data + self->children.count;
     for (void** p = self->children.data; p != end; ++p)
-        fn_710021b8e0(*p);
+        Pass(*p);
 }
 
-void fn_7100224ebc(UnkChildOwner60* self) { PassEach(self); }
+void fn_7100224ebc(UnkChildOwner60* self) { PassEach<fn_710021b8e0>(self); }
 
-void fn_7100224ef4(UnkChildOwner60* self) { PassEach(self); }
+void fn_7100224ef4(UnkChildOwner60* self) { PassEach<fn_710021b944>(self); }
 
 // Passes each 0x48-byte element of an array (base::UnkVector's leading fields) to fn_7100119d3c
 // with a flag (fn_7100125338).

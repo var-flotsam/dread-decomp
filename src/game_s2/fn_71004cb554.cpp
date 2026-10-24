@@ -3,7 +3,10 @@
 // (0 when there is none). Then asks the owner's object at +0x240 whether it is of the component's
 // class and, if so, readies it (fn_71004d1fe8, flag at 0x15834) and copies the global's value at
 // +0x28 to the second global.
+#include "base/reflection/UnkReflCast.h"
 #include "types.h"
+
+using base::reflection::CClass;
 
 struct UnkEntry {
     u8 pad_0x0[0x30];
@@ -28,7 +31,7 @@ struct UnkGlobal2 {
 
 struct UnkActor {
     void** vtable;
-    const void* vf_0x0(f32 value) { return reinterpret_cast<const void* (*)(UnkActor*, f32)>(vtable[0])(this, value); }
+    const CClass* vf_0x0(f32 value) { return reinterpret_cast<const CClass* (*)(UnkActor*, f32)>(vtable[0])(this, value); }
     u8 pad_0x8[0x1582c];
     u8 field_0x15834;
 };
@@ -68,8 +71,7 @@ extern UnkGlobal2 g_unk_7172790a08;
 void fn_71004c1944(UnkSelf* self);
 UnkEntry* fn_71004ba10c(UnkPool* pool, u32 index, u32 flag);
 int fn_71012395a0();
-const void* fn_71004cf318();  // the actor class's refl_GetClass
-bool fn_710009d50c(const void* from, const void* to);
+const CClass* fn_71004cf318();  // the actor class's refl_GetClass
 void fn_71004d1fe8(UnkActor* actor);
 
 void fn_71004cb554(UnkSelf* self) {
@@ -95,7 +97,7 @@ void fn_71004cb554(UnkSelf* self) {
     self->field_0x74 = value;
     UnkActor* actor = owner->field_0x240;
     if (actor) {
-        const void* type = actor->vf_0x0(value);
+        const CClass* type = actor->vf_0x0(value);
         if (fn_710009d50c(type, fn_71004cf318())) {
             fn_71004d1fe8(actor);
             actor->field_0x15834 = 1;

@@ -3,11 +3,14 @@
 // and its object at +0x240 answers true to vtable slot 0x2d8, then, for the player's ultimate
 // grab energy recharge attack, retunes the player's object at +0x1c0: when its two floats at
 // 0x50 leave a positive amount to cover, the vtable slot 0x168 is called with the rate.
+#include "base/reflection/UnkReflCast.h"
 #include "types.h"
+
+using base::reflection::CClass;
 
 struct UnkObject {
     void** vtable;
-    const void* vf_0x0() { return reinterpret_cast<const void* (*)(UnkObject*)>(vtable[0])(this); }
+    const CClass* vf_0x0() { return reinterpret_cast<const CClass* (*)(UnkObject*)>(vtable[0])(this); }
     bool vf_0x2d8() { return reinterpret_cast<bool (*)(UnkObject*)>(vtable[0x5b])(this); }
 };
 
@@ -58,10 +61,9 @@ struct UnkSelf {
 struct UnkManager;
 extern UnkManager* g_unk_7101d47310;
 void* fn_7100c3aaa8();  // CCharClassLetBossDieTrack::refl_GetClass
-void* fn_710048db44();  // CChozoWarriorXAIComponent::refl_GetClass
+const CClass* fn_710048db44();  // CChozoWarriorXAIComponent::refl_GetClass
 void* fn_7100c63ac8();  // CCharClassUltimateGrabEnergyRecharge::refl_GetClass
 bool fn_710117b348(UnkAttack* object, void* class_ptr);
-bool fn_710009d50c(const void* from, void* to);
 void fn_710048fc80(UnkObject* component);
 UnkPlayer* fn_7100dec788(UnkManager* manager);
 void fn_710117b08c(UnkAttack* attack, UnkQuery* query);

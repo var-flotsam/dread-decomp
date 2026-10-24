@@ -1,13 +1,11 @@
 // Destructor of an object holding an array of owned objects and five string ids: deletes the
 // owned objects, releases the string ids, then frees the array.
 #include "UnkClone.h"
+#include "game/UnkVtable_7101a24158.h"
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkDestructors.h"
 
 struct UnkTag_fn_7100364430;
-
-// The class's vtable (reached through the GOT).
-extern char g_unk_7101cd1000[];
 
 struct UnkObject_7100364430 {
     char* vtable;
@@ -21,7 +19,7 @@ struct UnkObject_7100364430 {
     base::UnkStrIdMember field_0xc8;
 
     __attribute__((always_inline)) ~UnkObject_7100364430() {
-        vtable = g_unk_7101cd1000 + 0x10;
+        vtable = g_unk_7101a24158 + 0x10;
         items.v.Clear();
     }
 };

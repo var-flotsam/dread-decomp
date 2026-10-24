@@ -2,8 +2,11 @@
 // the listener at +0x40 and drops the handle, clears two flags, runs the base reset (fn_710051db44),
 // hands a default parameter block to the owner's target (+0x298) and, if the owner's object at +0x1f0 is
 // an enemy movement, clears the two words at +0x19e0.
+#include "base/reflection/UnkReflCast.h"
 #include "game_s2/UnkParams.h"
 #include "game_s2/UnkWeakHandle.h"
+
+using base::reflection::CClass;
 
 struct UnkMover {
     void** vtable;
@@ -35,8 +38,7 @@ struct UnkComponent {
 
 void fn_710051db44(UnkComponent* self, u32 arg);
 void fn_710117b3f0(UnkWeakTarget* target, void* object);
-bool fn_710009d50c(void* a, void* b);
-void* fn_71010c74e0();
+const CClass* fn_71010c74e0();
 
 void fn_71005174e0(UnkComponent* self, u32 arg) {
     self->field_0x30 = ~0ull;
@@ -65,7 +67,7 @@ void fn_71005174e0(UnkComponent* self, u32 arg) {
     }
     UnkMover* mover = self->field_0x18->field_0x1f0;
     if (mover) {
-        if (fn_710009d50c(reinterpret_cast<void* (*)(UnkMover*)>(mover->vtable[0])(mover), fn_71010c74e0())) {
+        if (fn_710009d50c(reinterpret_cast<const CClass* (*)(UnkMover*)>(mover->vtable[0])(mover), fn_71010c74e0())) {
             mover->field_0x19e8 = 0;
             mover->field_0x19e0 = 0;
         }

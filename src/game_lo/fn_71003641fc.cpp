@@ -2,16 +2,15 @@
 // default allocator, several empty string ids and a block of defaults (-1.0f sentinels, flags).
 #include <new>
 
+#include "game/UnkVtable_7101a24158.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
 using base::global::CStrId;
 
-extern void* unk_7101cd1b98[];  // vtable (reached through the GOT)
-
 struct UnkStruct_71003641fc {
-    void** vtable;
+    char* vtable;
     u64 field_0x8;
     u64 field_0x10;
     u32 field_0x18;
@@ -70,7 +69,7 @@ static inline void InitEmptyStrId(CStrId* id) {
 }
 
 void fn_71003641fc(UnkStruct_71003641fc* self) {
-    self->vtable = &unk_7101cd1b98[2];
+    self->vtable = g_unk_7101a24158 + 0x10;
     self->field_0x8 = 0;
     self->field_0x10 = 0;
     self->field_0x18 = 10;

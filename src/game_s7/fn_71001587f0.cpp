@@ -3,6 +3,7 @@
 // the window's two render targets and their sync object, then the performance mode.
 #include <nn/oe.h>
 #include <nn/vi.h>
+#include "game/UnkGraphicsState.h"
 #include "base/UnkVector.h"
 #include "types.h"
 
@@ -114,9 +115,7 @@ extern UnkHandle* g_unk_716e29c170[2];
 extern void* g_unk_716e29bcc0;
 extern UnkPool g_unk_716e29bcd0[];
 extern u8 g_unk_716e29c1d8[];
-extern u8 g_unk_716e29c678[];
 extern u8 g_unk_716e29c680[];
-extern u8 g_unk_716e29c68c[];
 extern u8 g_unk_716e29c6a8[];
 extern u8 g_unk_716e29c6b0[];
 extern u8 g_unk_716e29c6cc[];

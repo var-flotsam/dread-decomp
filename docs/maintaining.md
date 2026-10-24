@@ -68,17 +68,35 @@ To change the ruleset, edit the JSON, then
 
 ## Merging a pull request
 
-CI can only check content policy: it has no game data, so it can't build or match. For any PR
-that touches `src/`, `include/`, `tools/` or `data/`:
+Hosted CI checks content policy and declaration consistency (`tools/decl_check.py --base`); it has
+no game data, so it can't build or match. For any PR that touches `src/`, `include/`, `tools/` or
+`data/`, either the self-hosted check job (next section) is green, or run it by hand:
 
 ```sh
 gh pr checkout <number>
-.venv/Scripts/python tools/check.py --version 2.1.0 --update   # no REGRESSION lines
+.venv/Scripts/python tools/check.py --version 2.1.0 --update   # no REGRESSION, DUPLICATE or RELOC lines on hand-written files
+.venv/Scripts/python tools/decl_check.py --base origin/main     # PASS: no new conflicting or duplicated declarations
 git status --short data/functions                               # should match what the PR committed
 ```
 
-For generator changes, also rerun the generator and confirm its output is unchanged
+`RELOC` lines on generated files are the generator's bug, not the PR's, unless the PR changed that
+generator. For generator changes, also rerun the generator and confirm its output is unchanged
 (`git status` clean). Then merge on GitHub with a merge commit.
+
+**Size of a pull request.** Each PR costs a session start and a review. Prefer one hub cluster
+(a hub and the callers it unblocks) or at least about 30 functions per PR; a branch under that
+keeps accumulating. The exception is a tool or header change that other streams wait on.
+
+## The self-hosted check job
+
+`.github/workflows/check-local.yml` runs `tools/check.py --update` on a runner you host on the PC
+that holds the dump, so merges can rely on a green check instead of a local run. It is inert
+until the repository variable `SELF_HOSTED_CHECK` is `true`. The workflow's header comment has
+the full procedure: register a Windows runner outside the repository, give its checkout
+`orig/2.1.0`, `build/recon/2.1.0` and the toolchain cache (junctions to your clone's copies
+work), point `DREAD_PYTHON` at a Python with the project's packages, set the variable, watch one
+run go green, and only then add `check` to the ruleset's required status checks. The job never
+uploads artifacts or logs; only `check.py`'s own status lines reach GitHub.
 
 For a stacked PR (based on another PR's branch), change its base to `main` *before* merging and
 deleting the lower branch; otherwise GitHub closes it.

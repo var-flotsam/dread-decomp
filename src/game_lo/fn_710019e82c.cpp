@@ -7,7 +7,7 @@ using base::UnkStrIdMember;
 
 void fn_710001737c(char* p);
 
-extern char unk_7101cc6c98[];  // vtable (reached through the GOT)
+extern char g_unk_7101a1e2c8[];  // vtable (reached through the GOT)
 
 struct UnkStruct_710019e82c {
     char* vtable;
@@ -16,7 +16,7 @@ struct UnkStruct_710019e82c {
 };
 
 void fn_710019e82c(UnkStruct_710019e82c* self) {
-    self->vtable = unk_7101cc6c98 + 0x10;
+    self->vtable = g_unk_7101a1e2c8 + 0x10;
     if (char* counted = self->field_0x10) {
         if (--*reinterpret_cast<s32*>(counted + 0x54) == 0)
             fn_710001737c(counted);

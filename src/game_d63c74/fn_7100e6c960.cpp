@@ -1,18 +1,18 @@
 // Destructor of a record of a string id, 8 bytes, two string ids and a string, as fn_7100133be4
 // (src/game_s1/fn_7100133be4.cpp): fn_7100e6c960.
 #include "base/global/CStrId.h"
+#include "base/global/UnkStringPool.h"
 #include "types.h"
 
 using namespace base::global;
 
 struct UnkString30;
 void fn_710007ed40(UnkString30* self);
-void fn_710007ecd4(UnkString30* self);
 
 struct UnkString30 {
     u64 field_0x0[6];
 
-    __attribute__((always_inline)) ~UnkString30() { fn_710007ecd4(this); }
+    __attribute__((always_inline)) ~UnkString30() { fn_710007ecd4(reinterpret_cast<char*>(this)); }
 };
 
 // A string id whose destructor decrements and tests in two steps (the original reloads the id

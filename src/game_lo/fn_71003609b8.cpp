@@ -1,12 +1,13 @@
 // When the owning actor's AI component (a CCharClassAIComponent) has a flag set, hands the
 // actor to a lazily created manager; then pokes two other actor components.
+#include "game/UnkManager_71726af468.h"
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflCast.h"
 #include "types.h"
 
 using base::reflection::CClass;
 using base::reflection::UnkReflObject;
 
-bool fn_710009d50c(const CClass* cls, const CClass* base);
 const CClass* fn_7100408b2c();  // CCharClassAIComponent::refl_GetClass
 void* fn_71000839a0(u64 size, u32 flags);
 
@@ -56,12 +57,7 @@ struct UnkStruct_71003609b8_Actor {
     void* field_0x2e8;
 };
 
-struct UnkManager_71003609b8 {
-    u8 pad_0x0[0x2610];
-};
-void fn_7100da7e2c(UnkManager_71003609b8* self);
-void fn_7100daaee4(UnkManager_71003609b8* self, UnkStruct_71003609b8_Actor* actor);
-extern UnkManager_71003609b8* unk_7101cd0900;  // the manager instance (reached through the GOT)
+void fn_7100daaee4(UnkManager_71726af468* self, UnkStruct_71003609b8_Actor* actor);
 
 UnkStruct_71003609b8_Target* fn_71010cc3bc(void* obj);
 void* fn_7100a2c13c(void* obj, void* key);
@@ -75,13 +71,13 @@ struct UnkStruct_71003609b8 {
     u8 field_0x18[0x8];
 };
 
-static inline UnkManager_71003609b8* GetManager() {
-    if (!unk_7101cd0900) {
-        UnkManager_71003609b8* m = static_cast<UnkManager_71003609b8*>(fn_71000839a0(0x2610, 0x3f));
+static inline UnkManager_71726af468* GetManager() {
+    if (!g_unk_71726af468) {
+        UnkManager_71726af468* m = static_cast<UnkManager_71726af468*>(fn_71000839a0(0x2610, 0x3f));
         fn_7100da7e2c(m);
-        unk_7101cd0900 = m;
+        g_unk_71726af468 = m;
     }
-    return unk_7101cd0900;
+    return g_unk_71726af468;
 }
 
 // A small flag value whose constructors are not constexpr, so its statics are guarded.

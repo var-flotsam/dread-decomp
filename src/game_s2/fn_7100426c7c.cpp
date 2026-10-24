@@ -2,13 +2,14 @@
 // angle held in the component (in radians at 0x28), passing the target's position (values at
 // 0x44, 0x54 and 0x64). When the action accepts, returns the (possibly adjusted) angle in radians,
 // otherwise 0.
+#include "base/reflection/UnkReflCast.h"
 #include "types.h"
 
-struct UnkReflType;
+using base::reflection::CClass;
 
 struct UnkAimAction {
     void** vtable;
-    const UnkReflType* vf_0x18() { return reinterpret_cast<const UnkReflType* (*)(UnkAimAction*)>(vtable[3])(this); }
+    const CClass* vf_0x18() { return reinterpret_cast<const CClass* (*)(UnkAimAction*)>(vtable[3])(this); }
 };
 
 struct UnkAimTarget {
@@ -45,8 +46,7 @@ struct UnkPosition {
 UnkAimActor* fn_7100d7c990(UnkAimTarget* target);
 void* fn_71011771e0(void* handle, u64 key);
 UnkAimAction* fn_710070d500(void* found);
-const UnkReflType* fn_7100b8f4e8();  // CAIAimAction::refl_GetClass
-bool fn_710009d50c(const UnkReflType* type, const UnkReflType* base);
+const CClass* fn_7100b8f4e8();  // CAIAimAction::refl_GetClass
 void* fn_710002614c(void* actor_part);
 u64 fn_7100001570(const char* str, u64 length);
 bool fn_7100b8fa7c(UnkAimAction* action, f32* angle, void* part, u64* hash, UnkPosition* position, bool flag,

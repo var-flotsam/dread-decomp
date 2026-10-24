@@ -3,17 +3,18 @@
 // goes before one that is; any other pair compares equal. The game's __sort3 and __sort5
 // (fn_71010dde80, fn_71010de570) are defined in src/game_hi/. Names and layouts are placeholders.
 #include <algorithm>
+#include "base/reflection/UnkReflCast.h"
 #include "types.h"
 #include "UnkIter.h"
 
-struct UnkClass;
+using base::reflection::CClass;
+
 namespace CBreakableTileGroup {
-UnkClass* refl_GetClass();
+const CClass* refl_GetClass();
 }
-bool fn_710009d50c(UnkClass*, UnkClass*);
 
 struct UnkReflObj_71010dd1d0 {
-    virtual UnkClass* vf_0x0();
+    virtual const CClass* vf_0x0();
 };
 
 struct UnkInner_71010dd1d0 {
