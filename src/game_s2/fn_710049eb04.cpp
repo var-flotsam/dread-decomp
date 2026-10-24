@@ -1,25 +1,15 @@
 // Whether the object's target is far enough to leave alone: false when the target lies behind
-// the object (the vector to it has a negative dot product with the object's direction, the part at
-// 0x38, elements at 0x8, 0x18, 0x28); otherwise whether the squared distance between the two is not below the
-// square of both radii (at 0x37c) plus 70.
+// the object (the vector to it has a negative dot product with the object's direction, the third
+// column of its transform's matrix); otherwise whether the squared distance between the two is not
+// below the square of both radii (at 0x37c) plus 70.
+#include "base/UnkMatrix44.h"
 #include "game/UnkActor.h"
 #include "types.h"
-
-struct UnkMatrixRow {
-    u8 pad_0x0[8];
-    f32 field_0x8;
-    u8 pad_0xc[0xc];
-    f32 field_0x18;
-    u8 pad_0x1c[0xc];
-    f32 field_0x28;
-};
 
 struct UnkFollower {
     u8 pad_0x0[8];
     UnkActor* field_0x8;
 };
-
-UnkMatrixRow* fn_710002614c(void* part);
 
 bool fn_710049eb04(UnkFollower* self) {
     UnkActor* target = fn_7100d7c990(self->field_0x8);
@@ -33,10 +23,10 @@ bool fn_710049eb04(UnkFollower* self) {
     f32 dx0 = tx - mx;
     f32 dy0 = ty - my;
     f32 dz0 = tz - mz;
-    UnkMatrixRow* m = fn_710002614c(me->field_0x38);
-    f32 m8 = m->field_0x8;
-    f32 m18 = m->field_0x18;
-    f32 m28 = m->field_0x28;
+    const UnkMatrix44& m = fn_710002614c(reinterpret_cast<const UnkMatrix44*>(me->field_0x38));
+    f32 m8 = m.m[2];
+    f32 m18 = m.m[6];
+    f32 m28 = m.m[10];
     f32 dot = dx0 * m8 + dy0 * m18 + dz0 * m28;
     if (dot < 0.0f)
         return false;

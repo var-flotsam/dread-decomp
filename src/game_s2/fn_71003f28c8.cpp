@@ -5,17 +5,9 @@
 // then compared with one of two ranges of the data, and when it is inside, further checks (an
 // owner query and a value of the owner's target against one of the data) decide. A true result
 // is cleared when the sub-object at +0x220 of the owner isn't a track that can be aborted.
+#include "base/UnkMatrix44.h"
 #include "game/UnkActor.h"
 #include "types.h"
-
-struct UnkSpitMatrix {
-    u8 pad_0x0[0x8];
-    f32 field_0x8;
-    u8 pad_0xc[0xc];
-    f32 field_0x18;
-    u8 pad_0x1c[0xc];
-    f32 field_0x28;
-};
 
 struct UnkSpitOwnerTarget {
     u8 pad_0x0[0x14f8];
@@ -39,7 +31,6 @@ struct UnkSpitState1 {
     f32 field_0xe0;
 };
 
-const UnkSpitMatrix* fn_710002614c(void* transform);
 bool fn_7100d7bea0(UnkActor* owner, bool flag);
 void* fn_7100c0ccc8();  // CCharClassAttackCanBeAbortedTrack::refl_GetClass
 bool fn_710117b348(void* object, void* type);
@@ -55,10 +46,10 @@ bool fn_71003f28c8(UnkSpitState1* self, f32 delta) {
         return false;
     if (!self->field_0x28)
         return false;
-    const UnkSpitMatrix* matrix = fn_710002614c(self->field_0x8->field_0x38);
-    f32 facing_x = matrix->field_0x8;
-    f32 facing_y = matrix->field_0x18;
-    f32 facing_z = matrix->field_0x28;
+    const UnkMatrix44& matrix = fn_710002614c(reinterpret_cast<const UnkMatrix44*>(self->field_0x8->field_0x38));
+    f32 facing_x = matrix.m[2];
+    f32 facing_y = matrix.m[6];
+    f32 facing_z = matrix.m[10];
     owner = self->field_0x8;
     f32 tx = target->field_0x44, ty = target->field_0x54, tz = target->field_0x64;
     f32 ox = owner->field_0x44, oy = owner->field_0x54, oz = owner->field_0x64;

@@ -2,6 +2,7 @@
 // translation, rotation angles and scale (fn_71000791a8) when it is not valid; the angles and
 // scale are derived from the old matrix first if they are not cached yet.
 #include "base/UnkCloneHelpers.h"
+#include "base/UnkMatrix44.h"
 #include "game/UnkXformNode.h"
 
 UnkMatrix44 fn_71000791a8(const UnkVec3f& translation, const UnkVec3f& angle, const UnkVec3f& scale);

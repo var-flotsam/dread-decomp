@@ -3,6 +3,7 @@
 // that replaces the first when the owner's direction is positive), when the global manager's
 // camera controller is a boss camera: its fixed 3.0 is written to the controller's 0x344. The z extent
 // is clamped to include 0.
+#include "base/UnkMatrix44.h"
 #include "base/reflection/UnkReflCast.h"
 #include "types.h"
 
@@ -16,11 +17,6 @@ struct UnkObject {
 struct UnkCamera : UnkObject {
     u8 pad_0x8[0x33c];
     f32 field_0x344;
-};
-
-struct UnkDirection {
-    u8 pad_0x0[8];
-    f32 field_0x8;
 };
 
 struct UnkOwner {
@@ -50,7 +46,6 @@ void* fn_7100defcec(UnkManager* manager);
 UnkCamera* fn_71010e2080();
 const CClass* fn_710074eca8();  // CBossCameraCtrl::refl_GetClass
 const CClass* fn_710044e708();  // CChozoCommanderAIComponent::refl_GetClass
-UnkDirection* fn_710002614c(void* position);
 
 // NON_MATCHING(minor): the last z clamp (fmaxnm) and its store are scheduled before the paired store
 // of the max x/y pair (scheduling only)
@@ -71,7 +66,7 @@ void fn_7100430830(UnkSelf* self, UnkBox* box) {
     camera->field_0x344 = 3.0f;
     f32 low = region[0];
     f32 high = region[1];
-    if (fn_710002614c(self->field_0x8->field_0x38)->field_0x8 > 0.0f)
+    if (fn_710002614c(reinterpret_cast<const UnkMatrix44*>(self->field_0x8->field_0x38)).m[2] > 0.0f)
         low = region[2];
     f32 min_x = box->field_0x0 < low ? box->field_0x0 : low;
     f32 min_y = box->field_0x4 < high ? box->field_0x4 : high;

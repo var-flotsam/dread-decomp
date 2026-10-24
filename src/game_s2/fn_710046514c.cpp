@@ -2,6 +2,7 @@
 // reports the first state, the position is moved by -75 on y if the owner is below it on y and the
 // object's matrix points toward it, or by 50 along the matrix's x column when the two matrices
 // differ; otherwise y is raised by 6. Returns false when there is no object.
+#include "base/UnkMatrix44.h"
 #include "game/UnkActor.h"
 #include "types.h"
 
@@ -44,7 +45,10 @@ struct UnkSelf {
 
 bool fn_71009e12d0(UnkHelper* helper);
 bool fn_71009e6434(UnkHelper* helper);
-f32* fn_710002614c(void* matrix);
+// The matrix of the transform at +0x38 of an actor (fn_710002614c), as its 16 floats.
+static inline const f32* Matrix(const u8* xform) {
+    return fn_710002614c(reinterpret_cast<const UnkMatrix44*>(xform)).m;
+}
 
 static inline f32 AsF32(u32 bits) {
     f32 value;
@@ -71,7 +75,7 @@ bool fn_710046514c(UnkSelf* self, UnkVec3* out) {
                 f32 oy = AsF32(self->field_0x8->field_0x54);
                 f32 oz = AsF32(self->field_0x8->field_0x64);
                 f32 ox = AsF32(self->field_0x8->field_0x44);
-                f32* m = fn_710002614c(target->field_0x38);
+                const f32* m = Matrix(target->field_0x38);
                 f32 m0 = m[2];
                 f32 m1 = m[6];
                 f32 m2 = m[10];
@@ -84,18 +88,18 @@ bool fn_710046514c(UnkSelf* self, UnkVec3* out) {
             } else if (!(reinterpret_cast<bool (*)(UnkHelper*)>(target->field_0x208->vtable[0x3b8 / 8]))(
                            target->field_0x208) &&
                        !fn_71009e6434(target->field_0x208)) {
-                f32* a = fn_710002614c(target->field_0x38);
+                const f32* a = Matrix(target->field_0x38);
                 f32 a0 = a[2];
                 f32 a1 = a[6];
                 f32 a2 = a[10];
-                f32* b = fn_710002614c(reinterpret_cast<char*>(self->field_0x8) + 0x38);
+                const f32* b = Matrix(self->field_0x8->field_0x38);
                 f32 b0;
                 f32 b1;
                 f32 b2;
                 if (!((b0 = b[2], a0 + 0.001f >= b0 && a0 + -0.001f <= b0) &&
                       (b1 = b[6], a1 + 0.001f >= b1 && a1 + -0.001f <= b1) &&
                       (b2 = b[10], a2 + 0.001f >= b2 && a2 + -0.001f <= b2)))
-                    x = AsU32(fn_710002614c(target->field_0x38)[2] * 50.0f + AsF32(x));
+                    x = AsU32(Matrix(target->field_0x38)[2] * 50.0f + AsF32(x));
             }
         } else {
             y = AsU32(AsF32(y) + 6.0f);
