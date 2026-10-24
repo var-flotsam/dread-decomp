@@ -13,7 +13,6 @@ extern UnkStrIdBase g_unk_717271a038;
 extern UnkProperty g_unk_717271a040;
 extern UnkProperty* g_unk_71726db788;
 extern void* g_unk_7101a70508[];
-const void* fn_710000d228();  // the bool type's getter
 void fn_71007b16c0(UnkProperty* p);
 void fn_71007afa60(void* p);
 void* fn_71007afadc();  // CDemolitionBlockComponent::refl_GetClass
@@ -22,7 +21,7 @@ extern char g_unk_717271a068[];
 void fn_71007b1a40() {
     InitHeaderIds(&g_unk_717271a0b0.ids);
     InitId(&g_unk_717271a038, "DEMOLITIONBLOCK");
-    InitProperty(&g_unk_717271a040, g_unk_7101a70508, g_unk_71726db788, "Used", fn_710000d228(),
+    InitProperty(&g_unk_717271a040, g_unk_7101a70508, g_unk_71726db788, "Used", TypeOf<fn_710000d228>(),
                  fn_71007b16c0, fn_71007afa60);
     fn_71007afadc();
     fn_710009ec00(g_unk_717271a068, g_unk_717271a0b0.field_0x20);

@@ -1,6 +1,7 @@
 // Copies of fn_7100c9022c (src/game_aca57c/fn_7100ad4b54.cpp) for other types, with their own callees and data (they name their own callees, data and strings; the comments describe the original): fn_710000dc80, fn_710000df24.
 // Getters building a value of kind 2 (fn_71000a18d4 fills in the rest from the type the value is
 // described by): words of the translation unit's globals, a zero, flags of an object and a vector.
+#include "base/reflection/UnkReflAttributes.h"
 #include "types.h"
 
 struct UnkValue {
@@ -19,11 +20,13 @@ __attribute__((always_inline)) static inline UnkValue MakeValue(void* type, cons
     fn_71000a18d4(&result, type, value, 0);
     return result;
 }
+// The plain types' getters (base/reflection/UnkReflAttributes.h) return the descriptor as const.
+__attribute__((always_inline)) static inline UnkValue MakeValue(const base::reflection::CType* type,
+                                                               const void* value) {
+    return MakeValue(static_cast<void*>(const_cast<base::reflection::CType*>(type)), value);
+}
 
-void* fn_7100014768();  // a 4-byte type's getter
 void* fn_7100010e58();  // an 8-byte type's getter
-void* fn_710000d228();  // the bool type's getter
-void* fn_71000246e4();  // base::reflection::refl_GetType<base::math::CVector3D>
 
 extern u32 g_unk_7172756b90 __attribute__((visibility("hidden")));
 extern u32 g_unk_7172756cbc __attribute__((visibility("hidden")));
@@ -140,7 +143,6 @@ UnkValue fn_710000df24(void* unused, UnkArgument<UnkDefIterValue<0x18>>* argumen
 
 // Values of kind 2 holding a manager singleton, created on first use (allocated with flags 0x3f or
 // 3, and constructed in place).
-void* fn_71000839a0(u64 size, u32 flags);
 void fn_7100ee1f34(void* self);
 void fn_7100d8ced8(void* self);
 void fn_7100359118(void* self);
@@ -173,5 +175,4 @@ struct UnkAngleSource {
     f32 field_0xcc;
 };
 
-void* fn_710000abbc();  // base::reflection::refl_GetType<float>
 

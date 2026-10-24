@@ -13,7 +13,6 @@ using base::global::CRntString;
 UnkReflType* fn_7100adc1d8();  // base::reflection::refl_GetType<gameeditor::TPropertyId>
 UnkReflType* fn_7100adc2b4();
 UnkReflType* fn_7100adc390();
-UnkReflType* fn_7100009658();  // base::reflection::refl_GetType<base::global::CStrId>
 void fn_7100adc470();
 void fn_7100adc4c0();
 
@@ -58,7 +57,6 @@ extern UnkReflType g_unk_717275b580;
 void fn_7100ae963c();
 void fn_7100ae96e8(UnkReflType* self, const CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
 extern char g_unk_717275b6b8;
-UnkReflType* fn_7100009658();  // base::reflection::refl_GetType<base::global::CStrId>
 extern UnkConverter g_unk_717275b6c0;
 void fn_7100aebf80() __attribute__((visibility("hidden")));
 extern UnkConverter g_unk_717275b6e0;
@@ -468,7 +466,6 @@ extern UnkTUHeader g_unk_7172755b78 __attribute__((visibility("hidden")));
 extern CStrId g_unk_7172755b00;
 extern UnkProperty g_unk_7172755b08;
 extern void* g_unk_7101a97370[];
-void* fn_710000d228();  // the bool type's getter
 void fn_7100acacf8(UnkProperty* p);
 void fn_7100ac8db0(void* p);
 extern CStrId g_unk_7172755b90 __attribute__((visibility("hidden")));
@@ -535,7 +532,6 @@ extern UnkProperty g_unk_71727c0998;
 extern void* g_unk_7101aa9c38[];
 void fn_7100e165e8(UnkProperty* p);
 void fn_7100e140c0(void* p);
-void* fn_710000d228();  // the bool type's getter
 void fn_7100e1413c();   // CArenaManager::CTunableArenaManager::refl_GetClass
 extern char g_unk_71727c09c0;
 extern CRntString g_unk_71727c0a58 __attribute__((visibility("hidden")));
@@ -543,8 +539,6 @@ extern UnkTunable g_unk_71727c09c8;
 void fn_7100136ecc(UnkTunable* self);
 extern void* g_unk_7101aa9c90[];
 void fn_7100075104(void* self);
-UnkReflType* fn_7100009658();  // base::reflection::refl_GetType<base::global::CStrId>
-void fn_710007ecd4(void* str);  // CRntString destructor
 
 extern UnkTUHeader g_unk_717273d710 __attribute__((visibility("hidden")));
 extern CStrId g_unk_717273d728 __attribute__((visibility("hidden")));
@@ -570,7 +564,6 @@ void fn_71009ba9f0() {
 extern UnkTUHeader g_unk_7172756998 __attribute__((visibility("hidden")));
 UnkReflType* fn_710025d654();  // base::reflection::refl_GetType<gameeditor::CGameModelIndex>
 extern char g_unk_7172756940;
-UnkReflType* fn_7100009658();  // base::reflection::refl_GetType<base::global::CStrId>
 extern UnkConverter g_unk_7172756948;
 void fn_7100ad37c0() __attribute__((visibility("hidden")));
 extern UnkValue g_unk_7172756968;
@@ -626,7 +619,6 @@ void fn_7100da4a08(UnkReflType* self, const CStrId& name, UnkReflType* base, voi
 extern char g_unk_71727bbfa0;
 UnkReflType* fn_7100da4cf0();
 extern char g_unk_71727bbfa1;
-UnkReflType* fn_7100009658();  // base::reflection::refl_GetType<base::global::CStrId>
 extern UnkConverter g_unk_71727bbfa8;
 void fn_7100da5184() __attribute__((visibility("hidden")));
 extern CStrId g_unk_71727bbfc8;

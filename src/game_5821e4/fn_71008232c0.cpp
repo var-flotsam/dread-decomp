@@ -13,20 +13,18 @@ extern UnkStrIdBase g_unk_71727235c8;
 extern UnkProperty g_unk_71727235d0;
 extern UnkProperty* g_unk_71726db788;
 extern void* g_unk_7101a75830[];
-const void* fn_710000d228();  // the bool type's getter
 void fn_71008230c8(UnkProperty* p);
 void fn_7100821f40(void* p);
 extern UnkProperty g_unk_71727235f8;
-const void* fn_71000246e4();  // base::reflection::refl_GetType<base::math::CVector3D>
 void* fn_7100821fbc();  // CGrapplePointComponent::refl_GetClass
 extern char g_unk_7172723620[];
 
 void fn_71008232c0() {
     InitHeaderIds(&g_unk_7172723668.ids);
     InitId(&g_unk_71727235c8, "GRAPPLE");
-    InitProperty(&g_unk_71727235d0, g_unk_7101a75830, g_unk_71726db788, "Used", fn_710000d228(),
+    InitProperty(&g_unk_71727235d0, g_unk_7101a75830, g_unk_71726db788, "Used", TypeOf<fn_710000d228>(),
                  fn_71008230c8, fn_7100821f40);
-    InitProperty(&g_unk_71727235f8, g_unk_7101a75830, g_unk_71726db788, "Position", fn_71000246e4(),
+    InitProperty(&g_unk_71727235f8, g_unk_7101a75830, g_unk_71726db788, "Position", TypeOf<fn_71000246e4>(),
                  fn_71008230c8, fn_7100821f40);
     fn_7100821fbc();
     fn_710009ec00(g_unk_7172723620, g_unk_7172723668.field_0x20);

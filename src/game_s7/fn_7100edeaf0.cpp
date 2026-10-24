@@ -84,7 +84,6 @@ void fn_7100ed0188(UnkEnumType* type, const CStrId& name, void (*factory)(), voi
 void fn_7100ecfb5c();
 extern UnkConversion g_unk_71729ce4e8;
 void fn_7100ed791c() __attribute__((visibility("hidden")));
-UnkEnumType* fn_7100005178();
 extern UnkConversion g_unk_71729ce508;
 void fn_7100ed7928() __attribute__((visibility("hidden")));
 extern UnkConversion g_unk_71729ce648;
@@ -196,11 +195,11 @@ void fn_7100edeaf0() {
     g_unk_71729da448.field_0x2c = -1.0f;
     g_unk_71729da448.field_0x30 = true;
     InitEnum(&g_unk_71729ce388, "EWeaponType", fn_7100ed0188, fn_7100ecfb5c, g_unk_71729ce4a0, &g_unk_71729ce4a8, fn_7100ed7904, &g_unk_71729ce4c8, fn_7100ed7910);
-    InitConversion(&g_unk_71729ce4e8, &g_unk_71729ce388, fn_7100005178, fn_7100ed791c);
-    InitConversion(&g_unk_71729ce508, fn_7100005178, &g_unk_71729ce388, fn_7100ed7928);
+    InitConversion(&g_unk_71729ce4e8, &g_unk_71729ce388, TypeOf<fn_7100005178>, fn_7100ed791c);
+    InitConversion(&g_unk_71729ce508, TypeOf<fn_7100005178>, &g_unk_71729ce388, fn_7100ed7928);
     InitEnum(&g_unk_71729ce528, "EWeaponState", fn_7100ed0694, fn_7100ed0308, g_unk_71729ce640, &g_unk_71729ce648, fn_7100ed7934, &g_unk_71729ce668, fn_7100ed7940);
-    InitConversion(&g_unk_71729ce688, &g_unk_71729ce528, fn_7100005178, fn_7100ed794c);
-    InitConversion(&g_unk_71729ce6a8, fn_7100005178, &g_unk_71729ce528, fn_7100ed7958);
+    InitConversion(&g_unk_71729ce688, &g_unk_71729ce528, TypeOf<fn_7100005178>, fn_7100ed794c);
+    InitConversion(&g_unk_71729ce6a8, TypeOf<fn_7100005178>, &g_unk_71729ce528, fn_7100ed7958);
     fn_710009ec00(g_unk_71729ce6c8, fn_7100ed0814());
     fn_710009ec00(g_unk_71729ce6c9, fn_7100ed08f0());
     {

@@ -4,6 +4,7 @@
 #include <new>
 
 #include "base/UnkVector.h"
+#include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
@@ -253,7 +254,6 @@ struct alignas(16) UnkFreedString {
 
     ~UnkFreedString();
 };
-void fn_710007ecd4(UnkFreedString* self);
 
 struct UnkBoundValueString {
     u32 value;

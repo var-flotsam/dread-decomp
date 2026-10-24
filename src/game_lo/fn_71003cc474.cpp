@@ -1,6 +1,7 @@
 // Destructor of an unidentified class: releases its string ids, file-path ids and a
 // reference-counted object, destroys a member at 0x158, then the subobject at 8.
 #include "base/global/CFilePathStrId.h"
+#include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
@@ -34,7 +35,6 @@ struct UnkRefCounted_71003cc474 {
 struct UnkMember_71003cc474 {
     u8 unk_0x0[0x30];
 };
-void fn_710007ecd4(UnkMember_71003cc474* self);
 
 struct UnkBase_71003cc474 {
     u8 unk_0x0[0x138];
@@ -63,7 +63,7 @@ void fn_71003cc474(UnkStruct_71003cc474* self) {
         if (--p->ref_count == 0)
             p->vf_0x10();
     }
-    fn_710007ecd4(&self->field_0x158);
+    fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(&self->field_0x158));
     ReleaseId(self->field_0x150, g_unk_7101d47200);
     ReleaseId(self->field_0x140, g_unk_7101d47108);
     fn_71008c1558(&self->base);

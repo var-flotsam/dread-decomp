@@ -39,8 +39,6 @@ extern char g_unk_71727192e1[];
 UnkEnumType* fn_71007a217c();
 extern UnkConversion g_unk_71727192e8;
 void fn_71007ab7d8() __attribute__((visibility("hidden")));
-UnkEnumType* fn_7100005178();  // base::reflection::refl_GetType<unsigned>
-UnkEnumType* fn_7100009658();  // base::reflection::refl_GetType<base::global::CStrId>
 void* fn_71007a225c();  // CCutsceneComponent::SActorInfo::refl_GetClass
 extern char g_unk_7172719308[];
 void* fn_71007a2c40();  // CCutsceneComponent::SSamusActorInfo::refl_GetClass
@@ -73,7 +71,7 @@ void fn_71007ae5a0() {
     __cxa_atexit(fn_710009891c, &g_unk_7172719170, g_unk_7101a19000);
     fn_710009ec00(g_unk_71727192e0, &g_unk_7172719170);
     fn_710009ec00(g_unk_71727192e1, fn_71007a217c());
-    InitConversion(&g_unk_71727192e8, fn_7100005178, fn_7100009658, fn_71007ab7d8);
+    InitConversion(&g_unk_71727192e8, TypeOf<fn_7100005178>, TypeOf<fn_7100009658>, fn_71007ab7d8);
     fn_71007a225c();
     fn_710009ec00(g_unk_7172719308, g_unk_7172719990.field_0x30);
     fn_71007a2c40();

@@ -38,7 +38,6 @@ extern UnkEnumType g_unk_71726b0570;
 void fn_7100327808(UnkEnumType* type, const CStrId& name, void* arg);
 void fn_710009a368(void* type);  // the type's destructor, as registered
 extern char g_unk_71726b0660[];
-UnkEnumType* fn_7100005178();  // base::reflection::refl_GetType<unsigned>
 extern UnkConversion g_unk_71726b0668;
 extern UnkConversion g_unk_71726b0688;
 void fn_7100331834() __attribute__((visibility("hidden")));
@@ -67,9 +66,9 @@ void fn_7100332f40() {
     fn_710009ec00(g_unk_71726b0371, g_unk_71726b0970.field_0x198);
     InitTunable(&g_unk_71726b0378, fn_7100136ecc, g_unk_7101a23448, fn_7100075104);
     InitEnum(&g_unk_71726b0410, "EShinesparkTravellingDirection", fn_7100327688, fn_71003272fc, g_unk_71726b0528, &g_unk_71726b0530, fn_710033181c, &g_unk_71726b0550, fn_7100331828);
-    InitFlagSet(&g_unk_71726b0570, "TShinesparkTravellingDirectionFlagSet", fn_7100327808, fn_710009a368, g_unk_71726b0660, fn_7100005178, &g_unk_71726b0668, fn_7100331834, &g_unk_71726b0688, fn_7100331840);
+    InitFlagSet(&g_unk_71726b0570, "TShinesparkTravellingDirectionFlagSet", fn_7100327808, fn_710009a368, g_unk_71726b0660, TypeOf<fn_7100005178>, &g_unk_71726b0668, fn_7100331834, &g_unk_71726b0688, fn_7100331840);
     InitEnum(&g_unk_71726b06a8, "ECoolShinesparkSituation", fn_7100327a44, fn_7100327958, g_unk_71726b07c0, &g_unk_71726b07c8, fn_710033184c, &g_unk_71726b07e8, fn_7100331858);
-    InitFlagSet(&g_unk_71726b0808, "TCoolShinesparkSituation", fn_7100327bc4, fn_710009a368, g_unk_71726b08f8, fn_7100005178, &g_unk_71726b0900, fn_7100331864, &g_unk_71726b0920, fn_7100331870);
+    InitFlagSet(&g_unk_71726b0808, "TCoolShinesparkSituation", fn_7100327bc4, fn_710009a368, g_unk_71726b08f8, TypeOf<fn_7100005178>, &g_unk_71726b0900, fn_7100331864, &g_unk_71726b0920, fn_7100331870);
     InitId(&g_unk_71726b0970.field_0x28, "Shinespark");
     InitId(&g_unk_71726b0970.field_0x30, "CharacterShinespark");
     InitId(&g_unk_71726b0970.field_0x38, "CharacterNotSupported");

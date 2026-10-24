@@ -15,7 +15,6 @@ extern UnkStrIdBase g_unk_717271ebb8;
 extern UnkProperty g_unk_717271ebc0;
 extern UnkProperty* g_unk_71726db788;
 extern void* g_unk_7101a72f00[];
-const void* fn_710000d228();  // the bool type's getter
 void fn_71007dca34(UnkProperty* p);
 void fn_71007db81c(void* p);
 extern UnkProperty g_unk_717271ebe8;
@@ -28,11 +27,11 @@ extern char g_unk_717271ec39[];
 void fn_71007dcd50() {
     InitHeaderIds(&g_unk_717271ec80.ids);
     InitId(&g_unk_717271ebb8, "EVENTPROP");
-    InitProperty(&g_unk_717271ebc0, g_unk_7101a72f00, g_unk_71726db788, "EventPending", fn_710000d228(),
+    InitProperty(&g_unk_717271ebc0, g_unk_7101a72f00, g_unk_71726db788, "EventPending", TypeOf<fn_710000d228>(),
                  fn_71007dca34, fn_71007db81c);
-    InitProperty(&g_unk_717271ebe8, g_unk_7101a72f00, g_unk_71726db788, "EventLaunched", fn_710000d228(),
+    InitProperty(&g_unk_717271ebe8, g_unk_7101a72f00, g_unk_71726db788, "EventLaunched", TypeOf<fn_710000d228>(),
                  fn_71007dca34, fn_71007db81c);
-    InitProperty(&g_unk_717271ec10, g_unk_7101a72f00, g_unk_71726db788, "EventFinished", fn_710000d228(),
+    InitProperty(&g_unk_717271ec10, g_unk_7101a72f00, g_unk_71726db788, "EventFinished", TypeOf<fn_710000d228>(),
                  fn_71007dca34, fn_71007db81c);
     fn_71007db898();
     fn_710009ec00(g_unk_717271ec38, g_unk_717271ec80.field_0x28);

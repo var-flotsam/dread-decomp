@@ -8,15 +8,14 @@
 
 #include <new>
 
+#include "base/UnkAtExit.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "base/reflection/UnkReflAttributes.h"
 #include "types.h"
 
-extern "C" int __cxa_atexit(void (*dtor)(void*), void* obj, void* dso);
-extern char g_unk_7101a19000[] __attribute__((visibility("hidden")));  // the module's DSO handle
-void fn_710000051c(void* id);                                           // a string id's destructor
+void fn_710000051c(void* id);  // a string id's destructor
 void fn_7100000c7c(void* id);  // a file path id's destructor
-void fn_710009ec00(char* list, void* entry);
 base::global::CStrId fn_7100de8f78(const base::global::CStrId& name);
 
 namespace unk_static_init {
@@ -105,6 +104,13 @@ struct UnkConversion {
     u64 field_0x18;
 };
 
+// A reflected type's getter (base/reflection/UnkReflAttributes.h declares the plain types'), as
+// the helpers see the type object: through the placeholder layout above.
+template <const base::reflection::CType* (*Getter)()>
+__attribute__((always_inline)) inline UnkEnumType* TypeOf() {
+    return reinterpret_cast<UnkEnumType*>(const_cast<base::reflection::CType*>(Getter()));
+}
+
 // A tunable object (a global reached through the GOT): its base constructor is out of line,
 // then its own vtable is stored and its destructor registered.
 struct UnkTunable {
@@ -186,7 +192,6 @@ __attribute__((always_inline)) inline void InitProperty(UnkProperty* p, void** v
 
 }  // namespace unk_static_init
 
-unk_static_init::UnkEnumType* fn_7100014768();  // the int type's getter
 void fn_71000a16c4(unk_static_init::UnkConversion* conversion);
 void fn_7100099468(void* type);  // an enum type's destructor, as registered
 
@@ -204,9 +209,9 @@ __attribute__((always_inline)) inline void InitEnum(UnkEnumType* type, const cha
     __cxa_atexit(fn_7100099468, type, g_unk_7101a19000);
     fn_710009ec00(list, type);
     void* from = type->field_0x8->field_0x30;
-    *to_int = {from, fn_7100014768()->field_0x8->field_0x30, to_int_fn, 0};
+    *to_int = {from, TypeOf<fn_7100014768>()->field_0x8->field_0x30, to_int_fn, 0};
     fn_71000a16c4(to_int);
-    void* i = fn_7100014768()->field_0x8->field_0x30;
+    void* i = TypeOf<fn_7100014768>()->field_0x8->field_0x30;
     *from_int = {i, type->field_0x8->field_0x30, from_int_fn, 0};
     fn_71000a16c4(from_int);
 }

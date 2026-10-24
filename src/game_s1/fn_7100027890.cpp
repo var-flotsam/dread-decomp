@@ -1,5 +1,6 @@
 // Static initialiser of a global with five embedded sub-objects (a vtable pointer at the start
 // of each, and a back pointer 0x20 bytes on); registers its destructor with atexit.
+#include "base/UnkAtExit.h"
 #include "types.h"
 
 #define HIDDEN __attribute__((visibility("hidden")))
@@ -29,10 +30,8 @@ struct UnkMultiObj_0xe8 {
 extern UnkMultiObj_0xe8 g_unk_7101d4ee20 HIDDEN;
 extern u8 g_unk_7101a197b0[] HIDDEN, g_unk_7101a197f8[] HIDDEN, g_unk_7101a19840[] HIDDEN,
     g_unk_7101a19888[] HIDDEN, g_unk_7101a198d0[] HIDDEN;
-extern u8 g_unk_7101a19000 HIDDEN;  // __dso_handle
 
 void fn_7100027780(void*) HIDDEN;  // destructor of g_unk_7101d4ee20
-int fn_7100000250(void (*)(void*), void*, void*);
 
 void fn_7100027890() {
     UnkMultiObj_0xe8& o = g_unk_7101d4ee20;

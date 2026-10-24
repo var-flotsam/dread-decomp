@@ -19,7 +19,6 @@ extern UnkStrIdBase g_unk_717271a208;
 extern UnkProperty g_unk_717271a210;
 extern UnkProperty* g_unk_71726db788;
 extern void* g_unk_7101a706d8[];
-const void* fn_710000d228();  // the bool type's getter
 void fn_71007b4824(UnkProperty* p);
 void fn_71007b1bac(void* p);
 void* fn_71007b1c28();  // CCharClassEmmyValveComponent::refl_GetClass
@@ -30,7 +29,7 @@ extern char g_unk_717271a239[];
 void fn_71007b4d80() {
     InitHeaderIds(&g_unk_717271a290.ids);
     InitId(&g_unk_717271a208, "EMMY_VALVE");
-    InitProperty(&g_unk_717271a210, g_unk_7101a706d8, g_unk_71726db788, "Disabled", fn_710000d228(),
+    InitProperty(&g_unk_717271a210, g_unk_7101a706d8, g_unk_71726db788, "Disabled", TypeOf<fn_710000d228>(),
                  fn_71007b4824, fn_71007b1bac);
     fn_71007b1c28();
     fn_710009ec00(g_unk_717271a238, g_unk_717271a290.field_0x48);

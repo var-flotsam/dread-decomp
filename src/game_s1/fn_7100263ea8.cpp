@@ -3,9 +3,8 @@
 // and g_unk_7101d4ec50: fn_7100263ea8; the unsigned integer type and g_unk_7108b6da30:
 // fn_710011e050.
 #include "base/UnkCloneHelpers.h"
+#include "base/reflection/UnkReflAttributes.h"
 
-const base::reflection::CType* fn_7100005178();  // refl_GetType<unsigned>
-const base::reflection::CType* fn_7100009658();  // refl_GetType<base::global::CStrId>
 extern base::reflection::CType g_unk_7101d4ec50;
 extern base::reflection::CType g_unk_7108b6da30;
 

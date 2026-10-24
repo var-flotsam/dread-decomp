@@ -2,9 +2,8 @@
 // takes the vector from the owner's position to the record's position, picks the owner's matrix
 // column (words at +8, +0x18, +0x28; negated when it points against that vector) and hands it in a
 // parameter block (kind 5) to fn_71006f4b0c with 0.
+#include "game_s2/UnkParams.h"
 #include "types.h"
-
-extern void* g_unk_7101a25b10[];
 
 struct UnkPosition {
     u8 pad_0x0[0x44];
@@ -44,7 +43,8 @@ struct UnkColumn {
     u32 field_0x28;
 };
 
-struct UnkParams {
+// The kind-5 block (game_s2/UnkParams.h) with its first fields seen as words.
+struct UnkParams_71005136cc {
     void** vtable;
     u32 field_0x8;
     u32 field_0xc;
@@ -68,7 +68,6 @@ struct UnkParams {
 
 UnkPosition* fn_7100d7c990(UnkOwner* owner);
 UnkColumn* fn_710002614c(void* object);
-void fn_71006f4b0c(void* target, UnkParams* params, u32 flag);
 
 static inline f32 AsF32(u32 bits) {
     f32 value;
@@ -99,7 +98,7 @@ void fn_71005136cc(UnkComponent* self) {
             y ^= 0x80000000;
             z ^= 0x80000000;
         }
-        UnkParams params;
+        UnkParams_71005136cc params;
         params.field_0x30 = 0;
         params.field_0x1c = 0;
         __builtin_memset(params.field_0x20, 0, 16);

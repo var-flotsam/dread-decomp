@@ -1,18 +1,17 @@
 // Static initialiser: constructs two string-id globals in place (registering their destructors
 // with atexit), then registers 1 class: "base::global::CLut".
+#include <new>
+
+#include "base/UnkAtExit.h"
 #include "base/global/CStrId.h"
+#include "base/reflection/UnkReflAttributes.h"
 
 #define HIDDEN __attribute__((visibility("hidden")))
-
-inline void* operator new(unsigned long, void* p) { return p; }
 
 using base::global::CStrId;
 
 extern CStrId g_unk_7101d57990[2] HIDDEN;
-extern u8 g_unk_7101a19000 HIDDEN;  // __dso_handle
 void fn_710000051c(void*);
-int fn_7100000250(void (*)(void*), void*, void*);
-void fn_710009ec00(void* registry, void* obj);
 extern u8 g_unk_7101d57850[];
 extern u8 g_unk_7101d57988[];
 void fn_7100065d24(void*);

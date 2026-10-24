@@ -4,7 +4,9 @@
 // through its allocator, at +0x8..) and a derived part that also holds a second, embedded sub-object (vtable
 // 0x7101a1a4c8 at +0x30, with its own allocator at +0x38). The derived part frees the nodes and the sub-object's block,
 // then the base part runs the list cleanup again.
+#include "base/UnkBlockFreeList.h"
 #include "base/UnkVector.h"
+#include "base/global/CRntString.h"
 
 extern void* g_unk_7101a1bcd0[];  // derived part's vtable (fn_71000fc7cc)
 extern void* g_unk_7101a1bcf0[];  // base part's vtable (fn_71000fc7cc)
@@ -13,8 +15,6 @@ extern void* g_unk_7101a1a070[];  // base part's vtable (fn_71000732d4)
 extern void* g_unk_7101a1a4c8[];  // the sub-object's vtable
 
 void fn_710007ed40(void* node);
-void fn_710007ecd4(void* node);
-void fn_71000837f4(void* object);
 
 template <u32 Next>
 struct UnkListNode {
@@ -33,8 +33,7 @@ struct UnkNodeOwner {
     u8 pad_0x28[8];
     void** field_0x30;
     base::UnkAllocator* field_0x38;
-    u8 field_0x40[0x20];
-    void* field_0x60;
+    UnkBlockFreeList field_0x40;  // the sub-object's free list; its buffer is at +0x60
     u8 pad_0x68[4];
     u8 field_0x6c;
 
@@ -56,8 +55,8 @@ struct UnkNodeOwner {
         field_0x18 = nullptr;
         field_0x20 = nullptr;
         field_0x30 = g_unk_7101a1a4c8 + 2;
-        if (void* block = field_0x60) {
-            fn_71000837f4(field_0x40);
+        if (void* block = field_0x40.buffer) {
+            fn_71000837f4(&field_0x40);
             field_0x38->vf_0x48(block);
             field_0x38 = nullptr;
         }
@@ -71,11 +70,11 @@ struct UnkNodeOwner {
 
 __attribute__((always_inline)) inline void DestroyNode148(UnkListNode<0x148>* node) {
     fn_710007ed40(node);
-    fn_710007ecd4(node);
+    fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(node));
 }
 
 __attribute__((always_inline)) inline void DestroyNode30(UnkListNode<0x30>* node) {
-    fn_710007ecd4(node);
+    fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(node));
 }
 
 void fn_71000fc7cc(UnkNodeOwner<UnkListNode<0x148>, DestroyNode148>* self) {

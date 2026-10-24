@@ -1,6 +1,7 @@
 // Constructor tail: runs the base constructor, clears the state at 0x58..0x75 and, when the owner
 // has an object at +0x298, sends it a query record whose direction is copied from the nested record
 // returned by fn_710002614c. Finishes with fn_7100426b54 on a fixed key.
+#include "game_s2/UnkParams.h"
 #include "types.h"
 
 extern void* g_unk_7101a24b58[];
@@ -63,7 +64,6 @@ struct UnkSelf {
 
 void fn_710042bb3c(UnkSelf* self);
 UnkDirection* fn_710002614c(void* position);
-void fn_71006f4b0c(void* object, UnkQuery* query, u32 flag);
 void fn_7100426b54(UnkSelf* self, u64 key, bool flag);
 
 // NON_MATCHING(minor): the zeroing of the query direction (overwritten right after) is optimised

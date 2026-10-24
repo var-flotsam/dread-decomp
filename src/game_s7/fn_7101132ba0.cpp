@@ -17,7 +17,6 @@ struct UnkStatics_7101132ba0 {
 };
 extern UnkStatics_7101132ba0 g_unk_7172a08680 __attribute__((visibility("hidden")));
 extern UnkStrIdBase g_unk_7172a06900;
-const void* fn_710000d228();
 extern UnkProperty g_unk_7172a06908;
 extern UnkProperty* g_unk_71726db788;
 extern void* g_unk_7101cb2a58[];
@@ -62,7 +61,6 @@ void fn_7101121fb8();
 extern char g_unk_7172a06fa0[];
 extern UnkConversion g_unk_7172a06fa8;
 void fn_7101130850();
-UnkEnumType* fn_7100009658();
 extern char g_unk_7172a06fc8[];
 UnkEnumType* fn_7101122358();
 extern char g_unk_7172a06fc9[];
@@ -115,7 +113,7 @@ void fn_71011258dc(void* self);  // its destructor, as registered
 void fn_7101132ba0() {
     InitHeaderIds(&g_unk_7172a08680.ids);
     InitId(&g_unk_7172a06900, "SPAWNPOINT");
-    InitProperty(&g_unk_7172a06908, g_unk_7101cb2a58, g_unk_71726db788, "Enabled", fn_710000d228(), fn_710112f064, fn_7101120afc);
+    InitProperty(&g_unk_7172a06908, g_unk_7101cb2a58, g_unk_71726db788, "Enabled", TypeOf<fn_710000d228>(), fn_710112f064, fn_7101120afc);
     {
         CStrId n("CSpawnerActorBlueprint", true);
         fn_7101120c4c(&g_unk_7172a06930, n, nullptr, nullptr, fn_7101120b74, nullptr);
@@ -153,7 +151,7 @@ void fn_7101132ba0() {
     }
     __cxa_atexit(fn_7100096604, &g_unk_7172a06e68, g_unk_7101a19000);
     fn_710009ec00(g_unk_7172a06fa0, &g_unk_7172a06e68);
-    InitConversion(&g_unk_7172a06fa8, fn_7100009658, &g_unk_7172a06e68, fn_7101130850);
+    InitConversion(&g_unk_7172a06fa8, TypeOf<fn_7100009658>, &g_unk_7172a06e68, fn_7101130850);
     fn_710009ec00(g_unk_7172a06fc8, fn_7101122358());
     fn_710009ec00(g_unk_7172a06fc9, fn_7101122434());
     {

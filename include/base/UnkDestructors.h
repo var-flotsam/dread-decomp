@@ -8,6 +8,7 @@
 
 #include <new>
 
+#include "base/UnkBlockFreeList.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
@@ -240,8 +241,6 @@ void refl_RefPairArrayDeletingDtor(char* self) {
 
 }  // namespace base
 
-void fn_71000837f4(char*);
-
 namespace base {
 
 // vtable(), base_vtable(): the class's and its base's; member_vtable(): the member at +0x30.
@@ -274,7 +273,7 @@ void refl_ListOwnerDeletingDtor(char* self) {
     *reinterpret_cast<char**>(self + 0x20) = nullptr;
     *reinterpret_cast<char**>(self + 0x30) = Traits::member_vtable() + 0x10;
     if (char* p = *reinterpret_cast<char**>(self + 0x60)) {
-        fn_71000837f4(self + 0x40);
+        fn_71000837f4(reinterpret_cast<UnkBlockFreeList*>(self + 0x40));
         (*reinterpret_cast<UnkAllocator**>(self + 0x38))->vf_0x48(p);
         *reinterpret_cast<char**>(self + 0x38) = nullptr;
     }

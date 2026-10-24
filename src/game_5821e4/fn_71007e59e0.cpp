@@ -15,7 +15,6 @@ extern UnkStrIdBase g_unk_717271f348;
 extern UnkProperty g_unk_717271f350;
 extern UnkProperty* g_unk_71726db788;
 extern void* g_unk_7101a73580[];
-const void* fn_710000d228();  // the bool type's getter
 void fn_71007e53d0(UnkProperty* p);
 void fn_71007dff10(void* p);
 void* fn_71007dff8c();  // CCharClassEventScenarioComponent::refl_GetClass
@@ -26,7 +25,7 @@ extern char g_unk_717271f379[];
 void fn_71007e59e0() {
     InitHeaderIds(&g_unk_717271f3d0.ids);
     InitId(&g_unk_717271f348, "EVENTSCENARIO");
-    InitProperty(&g_unk_717271f350, g_unk_7101a73580, g_unk_71726db788, "EventFinished", fn_710000d228(),
+    InitProperty(&g_unk_717271f350, g_unk_7101a73580, g_unk_71726db788, "EventFinished", TypeOf<fn_710000d228>(),
                  fn_71007e53d0, fn_71007dff10);
     fn_71007dff8c();
     fn_710009ec00(g_unk_717271f378, g_unk_717271f3d0.field_0x28);

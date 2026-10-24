@@ -18,7 +18,6 @@ extern UnkStatics_7100d44a60 g_unk_71727b2988 __attribute__((visibility("hidden"
 void* fn_7100d361c0();
 extern char g_unk_71727b0448[];
 extern UnkNamedValue g_unk_71727b0450;
-UnkEnumType* fn_7100009658();
 void fn_710010c424(void* value);  // its destructor, as registered
 extern char g_unk_71727b0460[];
 UnkEnumType* fn_7100d37398();
@@ -112,7 +111,7 @@ void fn_7100d44a60() {
     InitHeaderIds(&g_unk_71727b2988.ids);
     fn_7100d361c0();
     fn_710009ec00(g_unk_71727b0448, g_unk_71727b2988.field_0x20);
-    InitNamedValue(&g_unk_71727b0450, "pShape", fn_7100009658, fn_710010c424);
+    InitNamedValue(&g_unk_71727b0450, "pShape", TypeOf<fn_7100009658>, fn_710010c424);
     fn_710009ec00(g_unk_71727b0460, fn_7100d37398());
     fn_710009ec00(g_unk_71727b0461, fn_7100d37474());
     fn_710009ec00(g_unk_71727b0462, fn_7100d37550());

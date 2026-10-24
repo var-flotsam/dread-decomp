@@ -285,7 +285,7 @@ void fn_7100c668b0() {
     InitEnum(&g_unk_7172791c90, "game::logic::collision::EColMat", fn_7100c66688, fn_7100c65ffc);
     fn_710009ec00(&g_unk_7172791da8, &g_unk_7172791c90);
     InitEnumConverters(&g_unk_7172791c90, g_unk_7172791db0, fn_7100c66808, g_unk_7172791dd0, fn_7100c66814);
-    InitEnumConverters(&g_unk_7172791c90, g_unk_7172791df0, fn_7100c66820, g_unk_7172791e10, fn_7100c6682c, fn_7100005178);
+    InitEnumConverters(&g_unk_7172791c90, g_unk_7172791df0, fn_7100c66820, g_unk_7172791e10, fn_7100c6682c, refl_TypeOf<fn_7100005178>);
 }
 
 extern UnkTUHeader g_unk_7172758ad0 __attribute__((visibility("hidden")));
@@ -312,7 +312,7 @@ void fn_7100adf770() {
     InitEnumConverters(&g_unk_7172758838, g_unk_7172758958, fn_7100adf658, g_unk_7172758978, fn_7100adf664);
     InitFlagSet(&g_unk_7172758998, "TPickingModeFlagSet", fn_7100adf508);
     fn_710009ec00(&g_unk_7172758a88, &g_unk_7172758998);
-    InitEnumConverters(&g_unk_7172758998, g_unk_7172758a90, fn_7100adf670, g_unk_7172758ab0, fn_7100adf67c, fn_7100005178);
+    InitEnumConverters(&g_unk_7172758998, g_unk_7172758a90, fn_7100adf670, g_unk_7172758ab0, fn_7100adf67c, refl_TypeOf<fn_7100005178>);
 }
 
 extern UnkTUHeader g_unk_71727c0fb8 __attribute__((visibility("hidden")));
@@ -347,7 +347,7 @@ void fn_7100e1b8b0() {
     InitEnumConverters(&g_unk_71727c0bc0, g_unk_71727c0ce0, fn_7100e1b5c8, g_unk_71727c0d00, fn_7100e1b5d4);
     InitFlagSet(&g_unk_71727c0d20, "TTooltipConditions", fn_7100e177ec);
     fn_710009ec00(&g_unk_71727c0e10, &g_unk_71727c0d20);
-    InitEnumConverters(&g_unk_71727c0d20, g_unk_71727c0e18, fn_7100e1b5e0, g_unk_71727c0e38, fn_7100e1b5ec, fn_7100005178);
+    InitEnumConverters(&g_unk_71727c0d20, g_unk_71727c0e18, fn_7100e1b5e0, g_unk_71727c0e38, fn_7100e1b5ec, refl_TypeOf<fn_7100005178>);
     InitEnum(&g_unk_71727c0e58, "ETooltipType", fn_7100e17b48, fn_7100e1793c);
     fn_710009ec00(&g_unk_71727c0f70, &g_unk_71727c0e58);
     InitEnumConverters(&g_unk_71727c0e58, g_unk_71727c0f78, fn_7100e1b5f8, g_unk_71727c0f98, fn_7100e1b604);
@@ -392,11 +392,11 @@ void fn_7100d9caf0() {
     InitEnum(&g_unk_71727ba2e0, "ELightType", fn_7100d977e4, fn_7100d975d8);
     fn_710009ec00(&g_unk_71727ba3f8, &g_unk_71727ba2e0);
     InitEnumConverters(&g_unk_71727ba2e0, g_unk_71727ba400, fn_7100d9b7a4, g_unk_71727ba420, fn_7100d9b7b0);
-    InitEnumConverters(&g_unk_71727ba2e0, g_unk_71727ba440, fn_7100d9b7bc, g_unk_71727ba460, fn_7100d9b7c8, fn_7100005178);
+    InitEnumConverters(&g_unk_71727ba2e0, g_unk_71727ba440, fn_7100d9b7bc, g_unk_71727ba460, fn_7100d9b7c8, refl_TypeOf<fn_7100005178>);
     InitEnum(&g_unk_71727ba480, "ELightAttachment", fn_7100d97c30, fn_7100d97964);
     fn_710009ec00(&g_unk_71727ba598, &g_unk_71727ba480);
     InitEnumConverters(&g_unk_71727ba480, g_unk_71727ba5a0, fn_7100d9b7d4, g_unk_71727ba5c0, fn_7100d9b7e0);
-    InitEnumConverters(&g_unk_71727ba480, g_unk_71727ba5e0, fn_7100d9b7ec, g_unk_71727ba600, fn_7100d9b7f8, fn_7100005178);
+    InitEnumConverters(&g_unk_71727ba480, g_unk_71727ba5e0, fn_7100d9b7ec, g_unk_71727ba600, fn_7100d9b7f8, refl_TypeOf<fn_7100005178>);
     InitClass(&g_unk_71727ba620, "CLightInfo", fn_7100d99934, fn_7100d97db0);
     fn_710009ec00(&g_unk_71727ba758, &g_unk_71727ba620);
     fn_710009ec00(&g_unk_71727ba759, fn_7100d9af70());

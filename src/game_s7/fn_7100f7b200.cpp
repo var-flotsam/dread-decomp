@@ -466,7 +466,6 @@ UnkEnumType* fn_7100f426c8();
 extern char g_unk_71729e0a9a[];
 UnkEnumType* fn_7100f427a4();
 extern UnkNamedValue g_unk_71729e0aa0;
-UnkEnumType* fn_7100009658();
 void fn_710010c424(void* value);  // its destructor, as registered
 extern UnkStruct_71729e0ab0 g_unk_71729e0ab0;
 void fn_7100ad3404(UnkStruct_71729e0ab0* self, UnkNamedValueTmp* value, bool flag);
@@ -914,6 +913,6 @@ void fn_7100f7b200() {
     fn_710009ec00(g_unk_71729e0a98, &g_unk_71729e0928);
     fn_710009ec00(g_unk_71729e0a99, fn_7100f426c8());
     fn_710009ec00(g_unk_71729e0a9a, fn_7100f427a4());
-    InitNamedValue(&g_unk_71729e0aa0, "sID", fn_7100009658, fn_710010c424);
+    InitNamedValue(&g_unk_71729e0aa0, "sID", TypeOf<fn_7100009658>, fn_710010c424);
     InitFromNamedValue(&g_unk_71729e0ab0, g_unk_71729e0aa0, fn_7100ad3404, fn_7100d8ce3c);
 }

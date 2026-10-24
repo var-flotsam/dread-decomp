@@ -4,6 +4,7 @@
 #include <stdarg.h>
 
 #include "../game_s7/UnkPropBagS7.h"
+#include "base/global/CRntString.h"
 #include "types.h"
 
 using namespace unk_prop_bag;
@@ -15,7 +16,6 @@ void fn_710007e6e4(UnkStrBuffer* self, void* storage);
 void fn_710007e77c(UnkStrBuffer* self, const char* str);
 void fn_710007eaa0(UnkStrBuffer* self, const UnkStrBuffer* other);
 void fn_710007ed40(UnkStrBuffer* self);
-void fn_710007ecd4(UnkStrBuffer* self);
 
 struct UnkStrStorage {
     void* vtable;
@@ -39,7 +39,7 @@ struct UnkStrBuffer {
     }
     ~UnkStrBuffer() {
         fn_710007ed40(this);
-        fn_710007ecd4(this);
+        fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(this));
     }
     const char* c_str() const { return data ? data : ""; }
 };

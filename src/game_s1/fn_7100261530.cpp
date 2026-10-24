@@ -127,5 +127,5 @@ void fn_7100261530() {
     fn_710009ec00(&g_unk_71726a0df0, &g_unk_71726a0cd8);
     InitEnumConverters(&g_unk_71726a0cd8, g_unk_71726a0df8, fn_710025ef30, g_unk_71726a0e18, fn_710025ef3c);
     InitEnumConverters(&g_unk_71726a0cd8, g_unk_71726a0e38, fn_710025ef48, g_unk_71726a0e58, fn_710025ef54,
-                       fn_7100005178);
+                       refl_TypeOf<fn_7100005178>);
 }

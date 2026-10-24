@@ -12,7 +12,6 @@ using base::global::CRntString;
 UnkReflType* fn_7100adc1d8();  // base::reflection::refl_GetType<gameeditor::TPropertyId>
 UnkReflType* fn_7100adc2b4();
 UnkReflType* fn_7100adc390();
-UnkReflType* fn_7100009658();  // base::reflection::refl_GetType<base::global::CStrId>
 void fn_7100adc470();
 void fn_7100adc4c0();
 
@@ -31,10 +30,10 @@ void fn_7100adcf10() {
     fn_710009ec00(&g_unk_7172758255, fn_7100adc2b4());
     fn_710009ec00(&g_unk_7172758256, fn_7100adc390());
 
-    InitConverter(g_unk_7172758258, fn_7100adc1d8, fn_7100005178, fn_7100adc470);
-    InitConverter(g_unk_7172758278, fn_7100adc1d8, fn_7100009658, fn_7100adc4c0);
+    InitConverter(g_unk_7172758258, fn_7100adc1d8, refl_TypeOf<fn_7100005178>, fn_7100adc470);
+    InitConverter(g_unk_7172758278, fn_7100adc1d8, refl_TypeOf<fn_7100009658>, fn_7100adc4c0);
 
-    new (&g_unk_7172758298) UnkValue(static_cast<u32>(-1), fn_7100005178);
+    new (&g_unk_7172758298) UnkValue(static_cast<u32>(-1), refl_TypeOf<fn_7100005178>);
     fn_7100000250(fn_710010c424, &g_unk_7172758298, &g_unk_7101a19000);
 }
 
@@ -94,7 +93,6 @@ extern UnkReflType g_unk_717275b580;
 void fn_7100ae963c();
 void fn_7100ae96e8(UnkReflType* self, const CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
 extern char g_unk_717275b6b8;
-UnkReflType* fn_7100009658();  // base::reflection::refl_GetType<base::global::CStrId>
 extern UnkConverter g_unk_717275b6c0;
 void fn_7100aebf80() __attribute__((visibility("hidden")));
 extern UnkConverter g_unk_717275b6e0;
@@ -127,8 +125,8 @@ void fn_7100aef910() {
     InitHeader(g_unk_717275bf40);
     InitClass(&g_unk_717275b580, "CGameBBPropID", fn_7100ae96e8, fn_7100ae963c);
     fn_710009ec00(&g_unk_717275b6b8, &g_unk_717275b580);
-    InitConverterTo(g_unk_717275b6c0, &g_unk_717275b580, fn_7100009658, fn_7100aebf80);
-    InitConverterFrom(g_unk_717275b6e0, &g_unk_717275b580, fn_7100009658, fn_7100aec000);
+    InitConverterTo(g_unk_717275b6c0, &g_unk_717275b580, refl_TypeOf<fn_7100009658>, fn_7100aebf80);
+    InitConverterFrom(g_unk_717275b6e0, &g_unk_717275b580, refl_TypeOf<fn_7100009658>, fn_7100aec000);
     fn_7100ae9e7c();
     fn_710009ec00(&g_unk_717275b700, &g_unk_717275bf60);
     fn_710009ec00(&g_unk_717275b701, fn_7100aea26c());
@@ -855,7 +853,6 @@ extern UnkTUHeader g_unk_7172755b78 __attribute__((visibility("hidden")));
 extern CStrId g_unk_7172755b00;
 extern UnkProperty g_unk_7172755b08;
 extern void* g_unk_7101a97370[];
-void* fn_710000d228();  // the bool type's getter
 void fn_7100acacf8(UnkProperty* p);
 void fn_7100ac8db0(void* p);
 extern CStrId g_unk_7172755b90 __attribute__((visibility("hidden")));
@@ -866,7 +863,7 @@ void fn_7100acb290() {
     InitHeader(g_unk_7172755b78);
     new (&g_unk_7172755b00) CStrId("ACTIVABLE", true);
     fn_7100000250(fn_710000051c, &g_unk_7172755b00, &g_unk_7101a19000);
-    InitProperty(&g_unk_7172755b08, g_unk_7101a97370, g_unk_71726db788, "Opened", fn_710000d228(), fn_7100acacf8,
+    InitProperty(&g_unk_7172755b08, g_unk_7101a97370, g_unk_71726db788, "Opened", refl_TypeOf<fn_710000d228>(), fn_7100acacf8,
                  fn_7100ac8db0);
     new (TUAt<CStrId, 0x0>(g_unk_7172755b90)) CStrId("collision_close", true);
     fn_7100000250(fn_710000051c, TUAt<CStrId, 0x0>(g_unk_7172755b90), &g_unk_7101a19000);
@@ -936,9 +933,9 @@ void fn_7100ca6150() {
     new (&g_unk_7172796388) CStrId("BLEAKABLE", true);
     fn_7100000250(fn_710000051c, &g_unk_7172796388, &g_unk_7101a19000);
     InitPropertyEx(&g_unk_7172796390, g_unk_7101a889c8, g_unk_7101aa52d0, g_unk_71726db788, fn_7100ae9cc8,
-                   "PB_AND_SM", fn_7100005178(), fn_7100ca9504, fn_7100ca3be4);
+                   "PB_AND_SM", refl_TypeOf<fn_7100005178>(), fn_7100ca9504, fn_7100ca3be4);
     InitPropertyEx(&g_unk_7172796518, g_unk_7101a889c8, g_unk_7101aa52d0, g_unk_71726db788, fn_7100ae9cc8,
-                   "VIGNETTE", fn_7100005178(), fn_7100ca9504, fn_7100ca3be4);
+                   "VIGNETTE", refl_TypeOf<fn_7100005178>(), fn_7100ca9504, fn_7100ca3be4);
     InitClass(&g_unk_71727966a0, "CBreakableTileManager", fn_7100ca3e50, fn_7100ca3c84);
     fn_710009ec00(&g_unk_71727967d8, &g_unk_71727966a0);
     fn_710009ec00(&g_unk_71727967d9, fn_7100ca3fb0());
@@ -980,7 +977,6 @@ extern UnkProperty g_unk_71727c0998;
 extern void* g_unk_7101aa9c38[];
 void fn_7100e165e8(UnkProperty* p);
 void fn_7100e140c0(void* p);
-void* fn_710000d228();  // the bool type's getter
 void fn_7100e1413c();   // CArenaManager::CTunableArenaManager::refl_GetClass
 extern char g_unk_71727c09c0;
 extern CRntString g_unk_71727c0a58 __attribute__((visibility("hidden")));
@@ -988,26 +984,24 @@ extern UnkTunable g_unk_71727c09c8;
 void fn_7100136ecc(UnkTunable* self);
 extern void* g_unk_7101aa9c90[];
 void fn_7100075104(void* self);
-UnkReflType* fn_7100009658();  // base::reflection::refl_GetType<base::global::CStrId>
-void fn_710007ecd4(void* str);  // CRntString destructor
 
 void fn_7100e16af0() {
     InitHeader(g_unk_71727c0a38);
     new (&g_unk_71727c0918) CStrId("ARENA", true);
     fn_7100000250(fn_710000051c, &g_unk_71727c0918, &g_unk_7101a19000);
-    InitProperty(&g_unk_71727c0920, g_unk_7101aa9c38, g_unk_71726db788, "PrevSG", fn_7100009658(), fn_7100e165e8,
+    InitProperty(&g_unk_71727c0920, g_unk_7101aa9c38, g_unk_71726db788, "PrevSG", refl_TypeOf<fn_7100009658>(), fn_7100e165e8,
                  fn_7100e140c0);
-    InitProperty(&g_unk_71727c0948, g_unk_7101aa9c38, g_unk_71726db788, "SG", fn_7100009658(), fn_7100e165e8,
+    InitProperty(&g_unk_71727c0948, g_unk_7101aa9c38, g_unk_71726db788, "SG", refl_TypeOf<fn_7100009658>(), fn_7100e165e8,
                  fn_7100e140c0);
-    InitProperty(&g_unk_71727c0970, g_unk_7101aa9c38, g_unk_71726db788, "AllDead", fn_710000d228(), fn_7100e165e8,
+    InitProperty(&g_unk_71727c0970, g_unk_7101aa9c38, g_unk_71726db788, "AllDead", refl_TypeOf<fn_710000d228>(), fn_7100e165e8,
                  fn_7100e140c0);
-    InitProperty(&g_unk_71727c0998, g_unk_7101aa9c38, g_unk_71726db788, "UseIntro", fn_710000d228(), fn_7100e165e8,
+    InitProperty(&g_unk_71727c0998, g_unk_7101aa9c38, g_unk_71726db788, "UseIntro", refl_TypeOf<fn_710000d228>(), fn_7100e165e8,
                  fn_7100e140c0);
     fn_7100e1413c();
     fn_710009ec00(&g_unk_71727c09c0, TUType<0x30>(g_unk_71727c0a58));
     InitTunable(&g_unk_71727c09c8, fn_7100136ecc, g_unk_7101aa9c90, fn_7100075104);
     new (&g_unk_71727c0a58) CRntString("Intro");
-    fn_7100000250(fn_710007ecd4, &g_unk_71727c0a58, &g_unk_7101a19000);
+    fn_7100000250(reinterpret_cast<void (*)(void*)>(fn_710007ecd4), &g_unk_71727c0a58, &g_unk_7101a19000);
 }
 
 
@@ -1034,7 +1028,6 @@ void fn_7100acd5d0() {
 extern UnkTUHeader g_unk_7172756998 __attribute__((visibility("hidden")));
 UnkReflType* fn_710025d654();  // base::reflection::refl_GetType<gameeditor::CGameModelIndex>
 extern char g_unk_7172756940;
-UnkReflType* fn_7100009658();  // base::reflection::refl_GetType<base::global::CStrId>
 extern UnkConverter g_unk_7172756948;
 void fn_7100ad37c0() __attribute__((visibility("hidden")));
 extern UnkValue g_unk_7172756968;
@@ -1047,12 +1040,12 @@ extern const char g_unk_710164b8af[];
 void fn_7100ad39e0() {
     InitHeader(g_unk_7172756998);
     fn_710009ec00(&g_unk_7172756940, fn_710025d654());
-    InitConverter(g_unk_7172756948, fn_710025d654, fn_7100009658, fn_7100ad37c0);
-    new (&g_unk_7172756968) UnkValue(CStrId(g_unk_710164b8ab, true), fn_7100009658);
+    InitConverter(g_unk_7172756948, fn_710025d654, refl_TypeOf<fn_7100009658>, fn_7100ad37c0);
+    new (&g_unk_7172756968) UnkValue(CStrId(g_unk_710164b8ab, true), refl_TypeOf<fn_7100009658>);
     fn_7100000250(fn_710010c424, &g_unk_7172756968, &g_unk_7101a19000);
-    new (&g_unk_7172756978) UnkValue(CStrId(g_unk_710164b8ad, true), fn_7100009658);
+    new (&g_unk_7172756978) UnkValue(CStrId(g_unk_710164b8ad, true), refl_TypeOf<fn_7100009658>);
     fn_7100000250(fn_710010c424, &g_unk_7172756978, &g_unk_7101a19000);
-    new (&g_unk_7172756988) UnkValue(CStrId(g_unk_710164b8af, true), fn_7100009658);
+    new (&g_unk_7172756988) UnkValue(CStrId(g_unk_710164b8af, true), refl_TypeOf<fn_7100009658>);
     fn_7100000250(fn_710010c424, &g_unk_7172756988, &g_unk_7101a19000);
 }
 
@@ -1135,7 +1128,6 @@ void fn_7100da4a08(UnkReflType* self, const CStrId& name, UnkReflType* base, voi
 extern char g_unk_71727bbfa0;
 UnkReflType* fn_7100da4cf0();
 extern char g_unk_71727bbfa1;
-UnkReflType* fn_7100009658();  // base::reflection::refl_GetType<base::global::CStrId>
 extern UnkConverter g_unk_71727bbfa8;
 void fn_7100da5184() __attribute__((visibility("hidden")));
 extern CStrId g_unk_71727bbfc8;
@@ -1151,7 +1143,7 @@ void fn_7100da54b0() {
     InitClass(&g_unk_71727bbe68, "CBaseGameLink", fn_7100da4a08, fn_7100da4720);
     fn_710009ec00(&g_unk_71727bbfa0, &g_unk_71727bbe68);
     fn_710009ec00(&g_unk_71727bbfa1, fn_7100da4cf0());
-    InitConverterTo(g_unk_71727bbfa8, &g_unk_71727bbe68, fn_7100009658, fn_7100da5184);
+    InitConverterTo(g_unk_71727bbfa8, &g_unk_71727bbe68, refl_TypeOf<fn_7100009658>, fn_7100da5184);
     new (&g_unk_71727bbfc8) CStrId("{EMPTY}", true);
     fn_7100000250(fn_710000051c, &g_unk_71727bbfc8, &g_unk_7101a19000);
     new (&g_unk_71727bbfd0) CStrId("{BROKEN}", true);

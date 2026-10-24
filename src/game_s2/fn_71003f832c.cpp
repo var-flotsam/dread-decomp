@@ -2,6 +2,7 @@
 // flag at +0x146e8 when the value at +0x146e4 is negative; going from 2 to 1 hands a parameter block
 // (vtable g_unk_7101a25fb0, kind 6, carrying that flag) to fn_71006f4b0c and stores three components of
 // the owner's matrix as a vector at +0x146e0.
+#include "game_s2/UnkParams.h"
 #include "types.h"
 
 extern void* g_unk_7101a25fb0[];
@@ -29,7 +30,8 @@ struct UnkVec3 {
     u32 z;
 };
 
-struct UnkParams {
+// The kind-6 block.
+struct UnkParams6 {
     void** vtable;
     u8 field_0x8[13];
     u8 pad_0x15[3];
@@ -56,7 +58,6 @@ struct UnkComponent {
     u8 field_0x146e0[4];
 };
 
-void fn_71006f4b0c(void* target, UnkParams* params, u32 flag);
 UnkMatrix* fn_710002614c(void* object);
 void fn_710007b444(void* dst, const UnkVec3* src);
 
@@ -72,7 +73,7 @@ void fn_71003f832c(UnkComponent* self, u32 old_state, u32 new_state) {
     if (old_state == 2 && new_state == 1) {
         UnkOwner* owner = self->field_0x30;
         if (owner->field_0x218) {
-            UnkParams params;
+            UnkParams6 params;
             __builtin_memset(params.field_0x8, 0, 13);
             params.field_0x30 = 0;
             __builtin_memset(params.field_0x20, 0, 16);

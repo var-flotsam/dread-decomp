@@ -13,11 +13,9 @@ extern UnkStrIdBase g_unk_7172711530;
 extern UnkProperty g_unk_7172711538;
 extern UnkProperty* g_unk_71726db788;
 extern void* g_unk_7101a6e558[];
-const void* fn_7100007f84();  // base::reflection::refl_GetType<base::global::CRntString>
 void fn_710075d124(UnkProperty* p);
 void fn_71007534a8(void* p);
 extern UnkProperty g_unk_7172711560;
-const void* fn_710000d228();  // the bool type's getter
 extern UnkProperty2 g_unk_7172711588;
 extern void* g_unk_7101a45fe8[];
 extern void* g_unk_7101a45f90[];
@@ -99,9 +97,9 @@ extern char g_unk_7172712430[];
 void fn_71007618d0() {
     InitHeaderIds(&g_unk_7172713268.ids);
     InitId(&g_unk_7172711530, "TILEGROUP");
-    InitProperty(&g_unk_7172711538, g_unk_7101a6e558, g_unk_71726db788, "TileStates", fn_7100007f84(),
+    InitProperty(&g_unk_7172711538, g_unk_7101a6e558, g_unk_71726db788, "TileStates", TypeOf<fn_7100007f84>(),
                  fn_710075d124, fn_71007534a8);
-    InitProperty(&g_unk_7172711560, g_unk_7101a6e558, g_unk_71726db788, "FakeHusks", fn_710000d228(),
+    InitProperty(&g_unk_7172711560, g_unk_7101a6e558, g_unk_71726db788, "FakeHusks", TypeOf<fn_710000d228>(),
                  fn_710075d124, fn_71007534a8);
     InitProperty2(&g_unk_7172711588, g_unk_7101a45fe8, g_unk_71726db788, g_unk_7101a45f90, "MINIMAP_TILES", &g_unk_71727122c0,
                   fn_71004fd2cc, fn_71004fa3b8);

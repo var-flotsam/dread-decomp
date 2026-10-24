@@ -5,13 +5,13 @@
 // (fn_710007e77c) or another string (fn_710007eaa0), and destroyed in two steps (fn_710007ed40,
 // fn_710007ecd4). Names and roles are placeholders.
 
+#include "base/global/CRntString.h"
 #include "types.h"
 
 void fn_710007e6e4(void* self, void* inline_buffer);
 void fn_710007e77c(void* self, const char* str);
 void fn_710007eaa0(void* self, const void* other);
 void fn_710007ed40(void* self);
-void fn_710007ecd4(void* self);
 
 template <u32 N, void** Vtable>
 struct UnkBufferString {
@@ -41,6 +41,6 @@ struct UnkBufferString {
     }
     __attribute__((always_inline)) ~UnkBufferString() {
         fn_710007ed40(this);
-        fn_710007ecd4(this);
+        fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(this));
     }
 };

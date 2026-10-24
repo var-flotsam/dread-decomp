@@ -1,5 +1,6 @@
 // Deleting destructor of an object (vtable 0x7101a9cb48) holding a reference at 0xf0, over a
 // base (vtable 0x7101a9c8e0) with two strings (at 0x28, and one with inline storage at 0x70).
+#include "base/global/CRntString.h"
 #include "types.h"
 
 extern void* g_unk_7101a9cb48[];  // the object's vtable
@@ -18,8 +19,7 @@ struct UnkString {
     ~UnkString();
 };
 void fn_710007ed40(UnkString* self);
-void fn_710007ecd4(UnkString* self);
-inline UnkString::~UnkString() { fn_710007ecd4(this); }
+inline UnkString::~UnkString() { fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(this)); }
 
 struct UnkInlineString {
     UnkString str;

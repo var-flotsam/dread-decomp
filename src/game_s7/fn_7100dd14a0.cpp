@@ -34,7 +34,6 @@ void fn_7100dcfb6c(void* p);
 void fn_7100db464c(void* p);
 extern UnkProperty2 g_unk_71727bca80;
 extern UnkProperty2 g_unk_71727bcac0;
-void* fn_710000abbc();
 extern UnkProperty2 g_unk_71727bcb00;
 void fn_7100db49e4(UnkEnumType* type, const CStrId& name, void*, void*, void (*)(), void*);
 void fn_7100096604(void* type);  // the type's destructor, as registered
@@ -134,8 +133,8 @@ void fn_7100dd14a0() {
     InitId(&g_unk_71727bca38, "BOSSRUSH");
     InitProperty2(&g_unk_71727bca40, g_unk_7101a45fe8, g_unk_71726db788, g_unk_7101aa94d8, "BossRushRecord", &g_unk_71727bcb40, fn_7100dcfb6c, fn_7100db464c);
     InitProperty2(&g_unk_71727bca80, g_unk_7101a45fe8, g_unk_71726db788, g_unk_7101aa94d8, "DreadRushRecord", &g_unk_71727bcb40, fn_7100dcfb6c, fn_7100db464c);
-    InitProperty2(&g_unk_71727bcac0, g_unk_7101a45fe8, g_unk_71726db788, g_unk_7101aa94d8, "SurvivalRushRecord", fn_7100014768(), fn_7100dcfb6c, fn_7100db464c);
-    InitProperty2(&g_unk_71727bcb00, g_unk_7101a45fe8, g_unk_71726db788, g_unk_7101aa94d8, "SurvivalRushTime", fn_710000abbc(), fn_7100dcfb6c, fn_7100db464c);
+    InitProperty2(&g_unk_71727bcac0, g_unk_7101a45fe8, g_unk_71726db788, g_unk_7101aa94d8, "SurvivalRushRecord", TypeOf<fn_7100014768>(), fn_7100dcfb6c, fn_7100db464c);
+    InitProperty2(&g_unk_71727bcb00, g_unk_7101a45fe8, g_unk_71726db788, g_unk_7101aa94d8, "SurvivalRushTime", TypeOf<fn_710000abbc>(), fn_7100dcfb6c, fn_7100db464c);
     {
         CStrId n("CBossRushManager::SRushRecord", true);
         fn_7100db49e4(&g_unk_71727bcb40, n, nullptr, nullptr, fn_7100db4718, nullptr);

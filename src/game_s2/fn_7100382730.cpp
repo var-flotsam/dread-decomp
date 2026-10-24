@@ -2,6 +2,7 @@
 // vector and a flag, mostly zero) and hands it to fn_71006f4b0c. With the flag at +0x2c set the
 // direction is the sign of the x offset to the position object; otherwise it is copied from a
 // nested record of the object's component when that has one. Always returns 2.
+#include "game_s2/UnkParams.h"
 #include "types.h"
 
 struct UnkTarget {
@@ -44,8 +45,6 @@ struct UnkSelf {
     u8 field_0x2c;
 };
 
-extern void* g_unk_7101a25b10[];
-
 struct UnkQuery {
     void** vtable;
     f32 field_0x8;
@@ -84,7 +83,6 @@ struct UnkQuery {
 
 UnkTarget* fn_7100d7c990(UnkOwner* object);
 UnkQueryObject* fn_71010fccf8(UnkQueryObject* object);
-void fn_71006f4b0c(UnkQueryObject* object, UnkQuery* query, u32 flag);
 
 // NON_MATCHING(minor): the two null tests after the query object lookup (the object, the position
 // object) are made in the other order (scheduling only)

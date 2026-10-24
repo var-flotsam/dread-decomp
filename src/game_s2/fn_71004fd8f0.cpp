@@ -15,7 +15,6 @@ struct UnkStatics_71004fd8f0 {
     u8 field_0xd0[8];
 };
 extern UnkStatics_71004fd8f0 g_unk_71726dd1e0 __attribute__((visibility("hidden")));
-void* fn_710000d228();  // the bool type's getter
 extern UnkProperty2 g_unk_71726dd158;
 extern UnkProperty* g_unk_71726db788;
 extern void* g_unk_7101a45fe8[];
@@ -33,7 +32,7 @@ void fn_71004fd8f0() {
     InitId(&g_unk_71726dd1e0.field_0x30, "EmmyProtoAIComponent");
     InitId(&g_unk_71726dd1e0.field_0x38, "EmmyProtoAIComponent");
     InitProperty2(&g_unk_71726dd158, g_unk_7101a45fe8, g_unk_71726db788, g_unk_7101a45f90,
-                  "EMMY_PROTO_GRAB_TUTO_LAUNCHED", fn_710000d228(), fn_71004fd2cc, fn_71004fa3b8);
+                  "EMMY_PROTO_GRAB_TUTO_LAUNCHED", TypeOf<fn_710000d228>(), fn_71004fd2cc, fn_71004fa3b8);
     fn_71004fa488();
     fn_710009ec00(g_unk_71726dd198, g_unk_71726dd1e0.field_0xd0);
 }

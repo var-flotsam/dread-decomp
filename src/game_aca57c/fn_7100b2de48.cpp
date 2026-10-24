@@ -6,6 +6,7 @@
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
+#include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflCast.h"
 #include "types.h"
@@ -524,7 +525,6 @@ extern void* g_unk_7101a1b750[];
 void fn_710007e6e4(UnkInlineString* self, void* allocator);  // string constructor
 void fn_710007e77c(UnkInlineString* self, const char* str);  // assign
 void fn_710007ed40(UnkInlineString* self);
-void fn_710007ecd4(UnkInlineString* self);
 
 struct UnkPathIds;
 void fn_710001f074(UnkPathIds* out, const UnkInlineString* path);
@@ -583,7 +583,7 @@ void fn_7100b2cebc(UnkStateOwner* self) {
     fn_710007e77c(&path, "playdata:playthroughs/pt_official/pt_official");
     fn_71002f7048(g_unk_71726ae8a8, UnkPathIds(path));
     fn_710007ed40(&path);
-    fn_710007ecd4(&path);
+    fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(&path));
 }
 
 void fn_7100b2c964(UnkStateOwner* self);

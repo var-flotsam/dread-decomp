@@ -16,7 +16,6 @@ extern UnkStatics_71004f1820 g_unk_7172735508 __attribute__((visibility("hidden"
 extern UnkStrIdBase g_unk_71727502f0;
 extern UnkStrIdBase g_unk_7172739f38;
 extern UnkStrIdBase g_unk_7172735480;
-void* fn_710000d228();  // the bool type's getter
 extern UnkProperty g_unk_71727502f8;
 extern UnkProperty g_unk_7172739f40;
 extern UnkProperty g_unk_7172735488;
@@ -42,7 +41,7 @@ void* fn_7100952c3c();
 void fn_7100a7f7b0() {
     InitHeaderIds(&g_unk_7172750368.ids);
     InitId(&g_unk_71727502f0, "POWERGENERATOR");
-    InitProperty(&g_unk_71727502f8, g_unk_7101a91118, g_unk_71726db788, "Used", fn_710000d228(),
+    InitProperty(&g_unk_71727502f8, g_unk_7101a91118, g_unk_71726db788, "Used", TypeOf<fn_710000d228>(),
                  fn_7100a7f500, fn_7100a7df30);
     fn_7100a7dfac();
     fn_710009ec00(g_unk_7172750320, g_unk_7172750368.field_0x20);
@@ -51,7 +50,7 @@ void fn_7100a7f7b0() {
 void fn_71009101b0() {
     InitHeaderIds(&g_unk_7172735508.ids);
     InitId(&g_unk_7172735480, "LA_TRIGGER");
-    InitProperty(&g_unk_7172735488, g_unk_7101a814e8, g_unk_71726db788, "Enabled", fn_710000d228(),
+    InitProperty(&g_unk_7172735488, g_unk_7101a814e8, g_unk_71726db788, "Enabled", TypeOf<fn_710000d228>(),
                  fn_710090ffb4, fn_710090efb0);
     fn_710090f02c();
     fn_710009ec00(g_unk_71727354b0, g_unk_7172735508.field_0x20);
@@ -60,7 +59,7 @@ void fn_71009101b0() {
 void fn_7100953fa0() {
     InitHeaderIds(&g_unk_7172739fb0.ids);
     InitId(&g_unk_7172739f38, "WAMP");
-    InitProperty(&g_unk_7172739f40, g_unk_7101a84c68, g_unk_71726db788, "Finished", fn_710000d228(),
+    InitProperty(&g_unk_7172739f40, g_unk_7101a84c68, g_unk_71726db788, "Finished", TypeOf<fn_710000d228>(),
                  fn_7100953d64, fn_7100952bc0);
     fn_7100952c3c();
     fn_710009ec00(g_unk_7172739f68, g_unk_7172739fb0.field_0x20);

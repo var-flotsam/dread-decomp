@@ -3,6 +3,7 @@
 // string, each registered for destruction.
 #include <new>
 
+#include "base/UnkAtExit.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "types.h"
@@ -10,10 +11,7 @@
 using base::global::CRntString;
 using base::global::UnkStrIdBase;
 
-extern "C" int __cxa_atexit(void (*dtor)(void*), void* obj, void* dso);
-extern char g_unk_7101a19000[] __attribute__((visibility("hidden")));  // the module's DSO handle
 void fn_710000051c(void* id);    // a string id's destructor, as registered
-void fn_710007ecd4(void* str);   // CRntString's destructor, as registered
 
 struct UnkStatics_71729dc370 {
     u32 field_0x0;
@@ -43,5 +41,5 @@ void fn_7100f17b70() {
     InitId(&s->ids[10], "");
     InitId(&s->ids[11], "REWARDS_BK");
     new (&s->name) CRntString("EndScreen");
-    __cxa_atexit(fn_710007ecd4, &s->name, g_unk_7101a19000);
+    __cxa_atexit(reinterpret_cast<void (*)(void*)>(fn_710007ecd4), &s->name, g_unk_7101a19000);
 }

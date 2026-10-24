@@ -17,7 +17,6 @@ extern UnkStrIdBase g_unk_7172724fd0;
 extern UnkProperty g_unk_7172724fd8;
 extern UnkProperty* g_unk_71726db788;
 extern void* g_unk_7101a76fa8[];
-const void* fn_7100009658();  // base::reflection::refl_GetType<base::global::CStrId>
 void fn_710082ec70(UnkProperty* p);
 void fn_710082d53c(void* p);
 void* fn_710082d5b8();  // CPullOffGrapplePointComponent::refl_GetClass
@@ -26,7 +25,7 @@ extern char g_unk_7172725000[];
 void fn_710082f0f0() {
     InitHeaderIds(&g_unk_7172725048.ids);
     InitId(&g_unk_7172724fd0, "GRAPPLEPULLOFF");
-    InitProperty(&g_unk_7172724fd8, g_unk_7101a76fa8, g_unk_71726db788, "ActivatableObjectLastAnim", fn_7100009658(),
+    InitProperty(&g_unk_7172724fd8, g_unk_7101a76fa8, g_unk_71726db788, "ActivatableObjectLastAnim", TypeOf<fn_7100009658>(),
                  fn_710082ec70, fn_710082d53c);
     fn_710082d5b8();
     fn_710009ec00(g_unk_7172725000, g_unk_7172725048.field_0x40);

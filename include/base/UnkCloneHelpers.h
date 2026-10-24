@@ -7,9 +7,12 @@
 #include <new>
 
 #include "UnkClone.h"
+#include "base/UnkAtExit.h"
+#include "base/UnkBlockFreeList.h"
 #include "base/UnkCollectionIter.h"
 #include "base/UnkDeferredSet.h"
 #include "base/UnkDestructors.h"
+#include "base/UnkHashStream.h"
 #include "base/UnkMatrix44.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
@@ -862,19 +865,8 @@ struct UnkCallbackListShort : UnkCallbackListBase<Tag> {
 };
 }  // namespace base
 
-// A hasher fed with values and finished into a u32 (fn_71004f0fc8 and its copies).
-struct UnkHashBuilder {
-    u64 words[3];
-    void* field_0x18;
-    u64 words2[3];
-};
-
-void fn_710007be8c(UnkHashBuilder* h, u32 seed, void* p);
-void fn_710007c3f0(UnkHashBuilder* h, const void* data, u64 size);
-u64 fn_710007c1a4(UnkHashBuilder* h);
-u32 fn_710007b750(void* table, u64 value, s32 flags);
-void fn_710007c0e4(UnkHashBuilder* h);
-
+// A hasher fed with values and finished into a u32 (fn_71004f0fc8 and its copies): the hash
+// stream of base/UnkHashStream.h.
 struct UnkHashKeySource {
     virtual void vf_0x0();
     virtual void vf_0x8();
@@ -893,7 +885,7 @@ struct UnkHashKeyTraits;  // source(): the string id the static is copied from
 // Off + 8 and the u32 at Off + 0x10.
 template <class Tag, u32 Off>
 u32 refl_HashKeyFields(char* obj) {
-    UnkHashBuilder h;
+    UnkHashStream_0x38 h;
     fn_710007be8c(&h, 0x16, nullptr);
     static base::global::CStrId s_id(UnkHashKeyTraits<Tag>::source());
     u64 v = *reinterpret_cast<u64*>(reinterpret_cast<char*>(s_id.data) + 0x30);
@@ -903,7 +895,7 @@ u32 refl_HashKeyFields(char* obj) {
     *reinterpret_cast<u32*>(&v) = (*reinterpret_cast<UnkHashKeySource**>(obj + Off + 8))->vf_0x38();
     fn_710007c3f0(&h, &v, 4);
     fn_710007c3f0(&h, obj + Off + 0x10, 4);
-    void* t = h.field_0x18;
+    void* t = h.dest_0x18;
     u32 r = fn_710007b750(t, fn_710007c1a4(&h), -1);
     fn_710007c0e4(&h);
     return r;
@@ -1116,25 +1108,13 @@ void refl_CallbackBaseDeletingDtor(char* self) {
 // pool and makes it the list's allocator. Layouts and names are placeholders.
 
 
-// The block pool's free list (callee names unknown): constructor, reset, and init over a buffer
-// of `size` bytes cut into `elem`-byte blocks.
-void fn_710008377c(void* self);
-void fn_71000837f4(void* self);
-void fn_710008378c(void* self, void* buffer, u64 size, u64 elem);
+// The block pool's free list is UnkBlockFreeList (base/UnkBlockFreeList.h).
 extern char g_unk_7101a1a4c8[];  // the pool's vtable
 
 namespace base {
 // vtable(): the list's; base_vtable(): its base's.
 template <class Tag>
 struct UnkPoolListTraits;
-
-struct UnkBlockFreeList {
-    u64 size;
-    u64 elem;
-    u64 field_0x10;
-    u64 count;
-    void* buffer;
-};
 
 // An allocator handing out blocks of a buffer taken from `parent`.
 struct UnkBlockPool {
@@ -1255,13 +1235,10 @@ void refl_PoolListDtor(UnkPoolList<Tag, Next, Elem>* self) {
 
 
 
-extern "C" int __cxa_atexit(void (*dtor)(void*), void* obj, void* dso);
-extern char g_unk_7101a19000[] __attribute__((visibility("hidden")));  // the module's DSO handle
 extern const char g_unk_7101618faa[] __attribute__((visibility("hidden")));  // the ids' strings
 extern const char g_unk_71015ba597[] __attribute__((visibility("hidden")));
 void fn_710000051c(void* id);   // a string id's destructor, as registered
 void fn_7100096604(void* type); // the type object's destructor, as registered
-void fn_710009ec00(char* list, char* type);
 
 namespace base {
 // ids(): this unit's copy of the header statics (hidden); type(): the type object; name(): its
@@ -1506,9 +1483,6 @@ void refl_PushThenNext(char* self) {
 // the map's allocator, then resizes the bucket array at +0x10 to `buckets`, zero-filling new
 // buckets. Names and roles are placeholders inferred from the code.
 
-void fn_71000837f4(char* pool);
-void fn_710008378c(char* pool, void* block, u64 size, u64 node_size);
-
 namespace base {
 
 template <class Tag, u64 NodeSize>
@@ -1517,7 +1491,7 @@ void refl_HashMapInit(char* self, u32 buckets, u32 nodes) {
     UnkAllocator* a = *reinterpret_cast<UnkAllocator**>(self);
     UnkAllocator*& pool_alloc = *reinterpret_cast<UnkAllocator**>(self + 0x50);
     if (void* block = *reinterpret_cast<void**>(self + 0x78)) {
-        fn_71000837f4(self + 0x58);
+        fn_71000837f4(reinterpret_cast<UnkBlockFreeList*>(self + 0x58));
         pool_alloc->vf_0x48(block);
         pool_alloc = nullptr;
     }
@@ -1527,7 +1501,7 @@ void refl_HashMapInit(char* self, u32 buckets, u32 nodes) {
         pool_alloc = a;
         u64 size = (u64)nodes * NodeSize;
         void* block = a->vf_0x40(size, 8, flags);
-        fn_710008378c(self + 0x58, block, size, NodeSize);
+        fn_710008378c(reinterpret_cast<UnkBlockFreeList*>(self + 0x58), block, size, NodeSize);
     }
     *reinterpret_cast<char**>(self) = self + 0x48;
     UnkVector<void*>* v = reinterpret_cast<UnkVector<void*>*>(self + 0x10);

@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the ELavaCarpetState, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>::TKeyElementConstIterator::value_type, base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>, base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>>::TKeyElementConstIterator::value_type, base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>.
 #include "../game_s7/UnkStaticInitS7.h"
+#include "base/global/CRntString.h"
 
 using namespace unk_static_init;
 
@@ -7,11 +8,10 @@ struct UnkRntString {
     u8 field_0x0[0x30];
 };
 void fn_710007e704(UnkRntString* self, const char* str);  // builds one from a string
-void fn_710007ecd4(void* self);                           // its destructor
 
 __attribute__((always_inline)) inline void InitRntString(UnkRntString* s, const char* str) {
     fn_710007e704(s, str);
-    __cxa_atexit(fn_710007ecd4, s, g_unk_7101a19000);
+    __cxa_atexit(reinterpret_cast<void (*)(void*)>(fn_710007ecd4), s, g_unk_7101a19000);
 }
 
 struct UnkStatics_71004a9c40 {

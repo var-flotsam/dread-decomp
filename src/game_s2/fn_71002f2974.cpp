@@ -3,15 +3,15 @@
 // a second, embedded sub-object (vtable 0x7101a1a4c8 at +0x30, with its own allocator at +0x38).
 // The derived part frees the nodes and the sub-object's block, then the base part runs the list
 // cleanup again.
+#include "base/UnkBlockFreeList.h"
 #include "base/UnkVector.h"
+#include "base/global/CRntString.h"
 
 extern void* g_unk_7101a222a8[];  // derived part's vtable
 extern void* g_unk_7101a222c8[];  // base part's vtable
 extern void* g_unk_7101a1a4c8[];  // the sub-object's vtable
 
 void fn_710007ed40(void* node);
-void fn_710007ecd4(void* node);
-void fn_71000837f4(void* object);
 
 struct UnkListNode {
     u8 pad_0x0[0x68];
@@ -28,8 +28,7 @@ struct UnkNodeOwner {
     u8 pad_0x28[8];
     void** field_0x30;
     base::UnkAllocator* field_0x38;
-    u8 field_0x40[0x20];
-    void* field_0x60;
+    UnkBlockFreeList field_0x40;  // the sub-object's free list; its buffer is at +0x60
     u8 pad_0x68[4];
     u8 field_0x6c;
 
@@ -37,7 +36,7 @@ struct UnkNodeOwner {
         for (UnkListNode* node = field_0x10; node;) {
             UnkListNode* next = node->field_0x68;
             fn_710007ed40(node);
-            fn_710007ecd4(node);
+            fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(node));
             field_0x20->vf_0x48(node);
             node = next;
         }
@@ -53,8 +52,8 @@ void fn_71002f2974(UnkNodeOwner* self) {
     self->field_0x18 = nullptr;
     self->field_0x20 = nullptr;
     self->field_0x30 = g_unk_7101a1a4c8 + 2;
-    if (void* block = self->field_0x60) {
-        fn_71000837f4(self->field_0x40);
+    if (void* block = self->field_0x40.buffer) {
+        fn_71000837f4(&self->field_0x40);
         self->field_0x38->vf_0x48(block);
         self->field_0x38 = nullptr;
     }
