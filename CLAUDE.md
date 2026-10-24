@@ -70,6 +70,7 @@ python tools/gen_lift.py --version <ver>         # regenerate src/lifted/ (small
 python tools/gen_lift.py --version <ver> --best ADDR,...|@file  # closest lifted attempt per function -> build/lift_best/ (hand-matching start)
 python tools/gen_lift.py --prune                 # drop lifted copies of functions now defined elsewhere (seconds; verify.py runs it)
 python tools/gen_lift.py --version <ver> --sample 500 [--seed S] [--only ADDR,...|@file] [--new] [--examples K]  # outcome table only (build/), ~1 min
+python tools/nearcopy.py --version <ver> LO HI | --refs U O   # U functions closest to an O one (hand-matching starts; .claude/skills/dread-match)
 python tools/shape_census.py --version <ver> [--min 5] [--max-size B] [--top N] [--family ADDR]  # same-shape U families (maintenance)
 python tools/tu_map.py --version <ver>           # translation-unit map from .init_array -> data/tu_map.csv (~10 s)
 python tools/tu_map.py --function <addr|name>    # the unit a function belongs to and a file name for it; --report, --top N
