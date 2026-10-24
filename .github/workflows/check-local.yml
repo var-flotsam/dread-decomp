@@ -70,28 +70,32 @@ jobs:
         with:
           submodules: true
           clean: false
+      # Windows PowerShell, which every Windows runner has; Git for Windows puts only Git\cmd on
+      # PATH, so `shell: bash` is not available unless the runner is started with Git\bin on PATH.
       - name: Build check (tools/check.py --update)
-        shell: bash
+        shell: powershell
         run: |
-          py="${DREAD_PYTHON:-.venv/Scripts/python}"
-          if [ ! -e orig/2.1.0 ]; then
-            echo "::error::orig/2.1.0 is missing in the runner's checkout; see the header of this workflow"
+          $py = if ($env:DREAD_PYTHON) { $env:DREAD_PYTHON } else { '.venv\Scripts\python.exe' }
+          if (-not (Test-Path 'orig\2.1.0')) {
+            Write-Output "::error::orig/2.1.0 is missing in the runner's checkout; see the header of this workflow"
             exit 1
-          fi
-          log="$(mktemp)"
-          rc=0
-          "$py" tools/check.py --version 2.1.0 --update 2>&1 | tee "$log" || rc=$?
-          bad="$(grep -cE '^BUILD FAILED |REGRESSION \(was O\)$|^DUPLICATE ' "$log" || true)"
-          rm -f "$log"
-          if [ "$bad" != 0 ]; then
-            echo "::error::tools/check.py printed $bad BUILD FAILED / REGRESSION / DUPLICATE lines (see above)"
+          }
+          $log = Join-Path $env:RUNNER_TEMP 'check.log'
+          cmd /c "`"$py`" tools/check.py --version 2.1.0 --update > `"$log`" 2>&1"
+          $rc = $LASTEXITCODE
+          Get-Content $log
+          $bad = @(Select-String -Path $log -Pattern '^BUILD FAILED |REGRESSION \(was O\)$|^DUPLICATE ').Count
+          Remove-Item $log -ErrorAction SilentlyContinue
+          if ($bad -ne 0) {
+            Write-Output "::error::tools/check.py printed $bad BUILD FAILED / REGRESSION / DUPLICATE lines (see above)"
             exit 1
-          fi
-          exit "$rc"
+          }
+          exit $rc
       - name: Committed statuses match (data/functions)
-        shell: bash
+        shell: powershell
         run: |
-          if ! git diff --stat --exit-code -- data/functions; then
-            echo "::error::data/functions/ differs from what check.py --update derives; run it locally and commit the CSVs"
+          git diff --stat --exit-code -- data/functions
+          if ($LASTEXITCODE -ne 0) {
+            Write-Output "::error::data/functions/ differs from what check.py --update derives; run it locally and commit the CSVs"
             exit 1
-          fi
+          }

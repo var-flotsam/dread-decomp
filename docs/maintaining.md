@@ -110,10 +110,11 @@ only `check.py`'s own status lines reach GitHub.
   checkout it made (`clean: false` keeps the ignored junctions). If the checkout is ever
   recreated, let one job run, then add the junctions again. Never remove them with a recursive
   delete; `rmdir` removes only the link.
-- `.env` in the runner folder sets `DREAD_PYTHON` to this clone's `.venv\Scripts\python.exe`;
-  `.path` holds the job PATH with `C:\Program Files\Git\bin` first, because Git for Windows is
-  not on this user's PATH and the workflow's steps use `shell: bash`. Restart the runner after
-  changing either file.
+- `.env` in the runner folder sets `DREAD_PYTHON` to this clone's `.venv\Scripts\python.exe`
+  (restart the runner after changing it). The workflow's steps are Windows PowerShell: Git for
+  Windows puts only `Git\cmd` on PATH, so `git` works in jobs but `bash` does not; the logon task
+  also prepends `C:\Program Files\Git\bin` to the runner's PATH for any future `shell: bash` step
+  (the runner's `.path` file is not honoured on Windows).
 - To retire it: `config.cmd remove --token <token from gh api ... /actions/runners/remove-token>`,
   delete the scheduled task, then the folder.
 
