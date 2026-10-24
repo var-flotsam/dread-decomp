@@ -96,7 +96,7 @@ extern base::global::CStrId g_unk_7172737528;
 extern base::global::CStrId g_unk_7172737e68;
 extern base::global::CStrId g_unk_7172739f38;
 extern base::global::CStrId g_unk_717273e250;
-extern base::global::CStrId g_unk_717273ff60;
+extern base::global::CStrId g_unk_717273fe00;
 extern base::global::CStrId g_unk_71727408e8;
 extern base::global::CStrId g_unk_71727434d8;
 extern base::global::CStrId g_unk_717274a618;
@@ -845,7 +845,7 @@ struct base::reflection::UnkReflStatic<UnkRefl_fn_71009d39b8> {
 struct UnkRefl_fn_71009d3ad0;
 template <>
 struct base::reflection::UnkReflStatic<UnkRefl_fn_71009d3ad0> {
-    static const base::global::CStrId& source() { return g_unk_717273ff60; }
+    static const base::global::CStrId& source() { return g_unk_717273fe00; }
 };
 struct UnkRefl_fn_71009d3f7c;
 template <>

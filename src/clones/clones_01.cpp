@@ -1929,6 +1929,15 @@ template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_710041a720> {
 template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_710041a720, u8, 0x512>(void*, char*);
 struct UnkClone_fn_710041a76c;
 template base::reflection::UnkReflValue base::reflection::refl_SetFieldValue<UnkClone_fn_710041a76c, u8, 0x512>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_710041b1b8;
+extern char g_unk_7101a34550[];
+void fn_7100416e80(char*);
+// string ids released through both pools, assigned per member
+template <> struct base::UnkDtorTraits<UnkClone_fn_710041b1b8> {
+    static char* vtable() { return g_unk_7101a34550; }
+    static void base(char* p) { fn_7100416e80(p); }
+};
+template void base::refl_Dtor<UnkClone_fn_710041b1b8, base::UnkStrIdAt<0x518>, base::UnkMemberAt<base::UnkStrIdMemberOf<g_unk_7101d47200>, 0x510>>(char*);
 struct UnkClone_fn_710041c188;
 template base::UnkNamedObject* base::refl_RegisterNamed<UnkClone_fn_710041c188>(base::UnkNamedRegistry*, base::UnkNamedObject*, const char*);
 struct UnkClone_fn_710041e058;
@@ -5543,5 +5552,3 @@ struct UnkClone_fn_71005e25c0;
 template void base::refl_ClearWide(base::UnkVector<UnkCloneOwner<UnkClone_fn_71005e25c0>>*);
 struct UnkClone_fn_71005e277c;
 template bool base::refl_VectorEqual<UnkClone_fn_71005e277c>(const base::UnkVector<UnkCloneWord<UnkClone_fn_71005e277c>>*, const base::UnkVector<UnkCloneWord<UnkClone_fn_71005e277c>>*);
-struct UnkClone_fn_71005e285c;
-template void base::UnkVector<UnkCloneOwner<UnkClone_fn_71005e285c>>::Free();

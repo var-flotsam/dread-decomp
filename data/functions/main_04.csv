@@ -439,7 +439,7 @@ address,size,name,name_source,subsystem,status
 0x710041afb8,352,CCharClassRobotAIComponent::refl_InitClass,reflection,game/characters,O
 0x710041b118,104,fn_710041b118,unknown,game/characters?,U
 0x710041b180,56,fn_710041b180,unknown,game/characters?,U
-0x710041b1b8,200,fn_710041b1b8,unknown,game/characters?,U
+0x710041b1b8,200,fn_710041b1b8,unknown,game/characters?,O
 0x710041b280,36,fn_710041b280,unknown,game/characters?,O
 0x710041b2a4,412,fn_710041b2a4,unknown,game/characters?,U
 0x710041b440,28,fn_710041b440,unknown,game/characters?,O

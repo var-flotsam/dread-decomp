@@ -26,11 +26,11 @@ references (switch tables, string literals), conditional branches and symbols th
 not resolve are counted as unchecked, never as a mismatch. Each mismatch prints one
 line, `RELOC  <addr>  <symbol> -> original <target>  +<offset>  <kind>  <source>`, and
 the function is demoted from O to W (m/M when annotated), so a RELOC line on a
-function that was O is also a REGRESSION. Generated sources (REPORT_ONLY: src/clones/,
-src/lifted/, src/reflection*/, src/tables/) and the frozen Phase 3 samples keep their
-status: their RELOC lines are reported for the generator's owner, who fixes the
-generator and regenerates; with --update they therefore stay O in data/functions/, and
-tools/progress.py counts them as matching until then. `--no-reloc` skips the check.
+function that was O is also a REGRESSION. Generated sources are held to the same rule:
+every generator verifies its candidates with asmdiff.diff_object(strict=True), so a RELOC
+line in a generated file is a generator regression (fix the generator and regenerate, never
+the output). REPORT_ONLY below can exempt top-level src/ directories temporarily; it is
+empty. `--no-reloc` skips the check.
 
 Usage:
   python tools/check.py --version 2.1.0            # report; exit 1 if an O function regressed or a function is defined in two files
@@ -58,11 +58,10 @@ COMPILER = buildcfg.COMPILER  # project toolchain and flags: tools/buildcfg.py
 
 ANNOTATION = re.compile(r"//\s*NON_MATCHING\((minor|major)\)")
 DEFINITION = re.compile(r"^[A-Za-z_][\w:<>,\*& ]*?\b([A-Za-z_][\w:]*)\s*\(")
-QUALIFIERS = re.compile(r"(\s*(const|volatile|&&|&))+$")
-# Top-level src/ directories whose relocation mismatches are reported but do not demote: generated
-# sources (fix the generator, then regenerate) and the Phase 3 identification samples (frozen).
-REPORT_ONLY = ("clones", "lifted", "reflection", "reflection_statics", "reflection_types", "tables",
-               "compiler_id", "flag_id", "atk_id")
+# Top-level src/ directories whose relocation mismatches are reported but do not demote. Empty
+# since 2026-10-24: the generators verify relocation targets themselves and the Phase 3 samples
+# were corrected. Name a directory here only as a temporary measure while a generator is fixed.
+REPORT_ONLY: tuple[str, ...] = ()
 
 
 def annotations(src: Path) -> dict[str, str]:
@@ -90,31 +89,10 @@ def load_csv() -> tuple[dict[str, dict], dict[str, list[dict]]]:
     return rows, files
 
 
-def demangle(names: list[str], strip: bool = True) -> dict[str, str]:
-    """Symbol -> demangled name; `strip` cuts at the first '(' (the qualified function name)."""
-    names = [n for n in names if n]
-    if not names:
-        return {}
-    out = subprocess.run([CXXFILT], input="\n".join(names), capture_output=True, text=True,
-                         check=True).stdout.splitlines()
-    return {n: o.split("(")[0] if strip else o for n, o in zip(names, out)}
-
-
-def strip_params(demangled: str) -> str:
-    """Drop a trailing parameter list and qualifiers: 'a::b(int) const' -> 'a::b'.
-
-    Unlike demangle(strip=True) it leaves names that only contain parentheses alone, so a
-    function-local static 'f()::s' is not mistaken for 'f'.
-    """
-    name = QUALIFIERS.sub("", demangled)
-    if not name.endswith(")"):
-        return demangled
-    depth = 0
-    for i in range(len(name) - 1, -1, -1):
-        depth += {")": 1, "(": -1}.get(name[i], 0)
-        if depth == 0:
-            return name[:i]
-    return demangled
+# Demangling (one llvm-cxxfilt call per batch) and parameter stripping live in asmdiff, which the
+# generators use through asmdiff.diff_object(strict=True); these are the same functions.
+demangle = asmdiff.demangle
+strip_params = asmdiff.strip_params
 
 
 def object_path(version: str, src: Path) -> Path:
@@ -143,19 +121,14 @@ def resolver(by_name: dict[str, list[int]], names: dict[str, str]):
 def target_resolver(by_name: dict[str, list[int]], full_names: dict[str, str], defined: dict[str, int]):
     """Map a relocation's symbol to the original address it stands for, or None.
 
-    In order: a function this object defines (the address its diff used), a demangled
-    `fn_<addr>`/`g_unk_<addr>` name (asmdiff.TARGET_RE), a name unique in data/functions/.
+    asmdiff.target_resolver (in order: a function this object defines, the address its diff used;
+    a demangled `fn_<addr>`/`g_unk_<addr>` name, asmdiff.TARGET_RE) with a name unique in
+    data/functions/ as the last resort.
     """
-    def resolve(sym: str) -> int | None:
-        if sym in defined:
-            return defined[sym]
-        name = strip_params(full_names.get(sym, sym))
-        m = asmdiff.TARGET_RE.match(name)
-        if m:
-            return int(m.group(1), 16)
+    def unique(name: str) -> int | None:
         hits = by_name.get(name, [])
         return hits[0] if len(hits) == 1 else None
-    return resolve
+    return asmdiff.target_resolver(full_names, defined, unique)
 
 
 def sources() -> list[Path]:

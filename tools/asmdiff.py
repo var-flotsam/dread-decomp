@@ -21,12 +21,18 @@ never as a mismatch.
 
 Usage:
   python tools/asmdiff.py --version 2.1.0 build/obj/foo.o [-v] [--no-reloc]
-As a library: diff_object(obj_path, original) -> list[FunctionResult]
+As a library: diff_object(obj_path, original, strict=False) -> list[FunctionResult]
               check_relocs(result, original, resolve) -> RelocReport
+With strict=True (what the generators use) a function whose bytes match is also checked for
+its relocation targets: its symbols are demangled with llvm-cxxfilt (one call per object,
+object_resolver) and resolved through fn_/g_unk_<addr> names in any namespace or through the
+functions the object itself defines; a wrong target lands in FunctionResult.reloc_mismatches
+and makes `matching` False (bytes_match stays True). Without strict the caller runs
+check_relocs itself, as check.py does with its data/functions/ names as a further source.
 The command line resolves symbols as check.py does (demangled fn_/g_unk_ names, unique
 data/functions/ names) and prints a RELOC line under each matching function with a wrong target;
-without check.py's tools (llvm-cxxfilt, the toolchain modules) it says so on stderr and resolves
-plain fn_/g_unk_ symbol names only.
+without check.py's tools (the toolchain modules) it demangles on its own, and without
+llvm-cxxfilt it says so on stderr and resolves plain fn_/g_unk_ symbol names only.
 
 Disassembly printed with -v is for discussion only. Never write it into
 tracked files.
@@ -38,6 +44,7 @@ import argparse
 import json
 import re
 import struct
+import subprocess
 import sys
 from collections import Counter
 from dataclasses import dataclass, field
@@ -48,6 +55,7 @@ from elftools.elf.relocation import RelocationSection
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 sys.path.insert(0, str(Path(__file__).resolve().parent / "recon"))
+import hostenv  # noqa: E402
 from image import BASE, R_AARCH64_RELATIVE, Image  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -56,6 +64,7 @@ NAME_RE = re.compile(r"fn_([0-9a-fA-F]{10})")
 # noret::, base::), as opposed to one that merely mentions an address (Unk_fn_<addr>::...).
 # unk_<addr> is the older spelling of g_unk_<addr>.
 TARGET_RE = re.compile(r"^(?:\w+::)*(?:fn|g_unk|unk)_([0-9a-f]{10})$")
+QUALIFIERS = re.compile(r"(\s*(const|volatile|&&|&))+$")
 
 # relocation type -> bits of the instruction that are *kept* when comparing
 MASKS = {
@@ -105,10 +114,19 @@ class FunctionResult:
     our_size: int
     diff_insns: list[int] = field(default_factory=list)  # indices of differing instructions
     relocs: dict[int, ObjReloc] = field(default_factory=dict)
+    # Relocations naming a target other than the original's; filled by diff_functions(strict=True)
+    # on functions whose bytes match (check_relocs), empty otherwise.
+    reloc_mismatches: list[RelocMismatch] = field(default_factory=list)
+
+    @property
+    def bytes_match(self) -> bool:
+        """Byte-identical with the relocated fields masked, whatever the relocations name."""
+        return self.orig_size == self.our_size and not self.diff_insns
 
     @property
     def matching(self) -> bool:
-        return self.orig_size == self.our_size and not self.diff_insns
+        """bytes_match, and (strict mode) every checked relocation names the original's target."""
+        return self.bytes_match and not self.reloc_mismatches
 
     @property
     def score(self) -> float:
@@ -254,8 +272,81 @@ def object_functions(path: Path) -> list[tuple[str, bytes, dict[int, int]]]:
     return [(f.symbol, f.code, {o: r.type for o, r in f.relocs.items()}) for f in read_object(path)]
 
 
-def diff_functions(functions: list[ObjFunction], original: Original, resolve=None) -> list[FunctionResult]:
-    """Diff every function that maps to an original address (see diff_object)."""
+def strip_params(demangled: str) -> str:
+    """Drop a trailing parameter list and qualifiers: 'a::b(int) const' -> 'a::b'.
+
+    Unlike demangle(strip=True) it leaves names that only contain parentheses alone, so a
+    function-local static 'f()::s' is not mistaken for 'f'.
+    """
+    name = QUALIFIERS.sub("", demangled)
+    if not name.endswith(")"):
+        return demangled
+    depth = 0
+    for i in range(len(name) - 1, -1, -1):
+        depth += {")": 1, "(": -1}.get(name[i], 0)
+        if depth == 0:
+            return name[:i]
+    return demangled
+
+
+_CXXFILT: str | None = None
+
+
+def cxxfilt() -> str:
+    """llvm-cxxfilt's path (hostenv.cxxfilt), looked up once."""
+    global _CXXFILT
+    if _CXXFILT is None:
+        _CXXFILT = hostenv.cxxfilt()
+    return _CXXFILT
+
+
+def demangle(names: list[str], strip: bool = True) -> dict[str, str]:
+    """Symbol -> demangled name, through one llvm-cxxfilt subprocess for the whole batch; `strip`
+    cuts at the first '(' (the qualified function name). Raises OSError when llvm-cxxfilt is missing."""
+    names = [n for n in names if n]
+    if not names:
+        return {}
+    out = subprocess.run([cxxfilt()], input="\n".join(names), capture_output=True, text=True,
+                         check=True).stdout.splitlines()
+    return {n: o.split("(")[0] if strip else o for n, o in zip(names, out)}
+
+
+def target_resolver(full_names: dict[str, str], defined: dict[str, int], fallback=None):
+    """resolve(symbol) -> the original address a relocation's symbol stands for, or None.
+
+    In order: a function the object itself defines (`defined`: symbol -> the address its diff
+    used, so a call into the same object checks against that function), the symbol's demangled
+    name (`full_names`, else the symbol itself) with its parameter list stripped when it is
+    fn_<addr>/g_unk_<addr>/unk_<addr> in any namespace (TARGET_RE), then fallback(name) on that
+    stripped name (check.py: a name unique in data/functions/).
+    """
+    def resolve(sym: str) -> int | None:
+        if sym in defined:
+            return defined[sym]
+        name = strip_params(full_names.get(sym, sym))
+        m = TARGET_RE.match(name)
+        if m:
+            return int(m.group(1), 16)
+        return fallback(name) if fallback else None
+    return resolve
+
+
+def object_resolver(functions: list[ObjFunction], results: list[FunctionResult], fallback=None):
+    """target_resolver for one object: its relocation symbols demangled in a single llvm-cxxfilt
+    call, its diffed functions as the defined set. Raises OSError without llvm-cxxfilt."""
+    symbols = sorted({r.symbol for f in functions for r in f.relocs.values() if not r.section})
+    return target_resolver(demangle(symbols, strip=False), {res.symbol: res.address for res in results}, fallback)
+
+
+def diff_functions(functions: list[ObjFunction], original: Original, resolve=None,
+                   strict: bool = False) -> list[FunctionResult]:
+    """Diff every function that maps to an original address (see diff_object).
+
+    With strict=True, each function whose bytes match is also checked for its relocation targets
+    (check_relocs through object_resolver): the mismatches go in FunctionResult.reloc_mismatches
+    and make `matching` False. Section-relative and string relocations, conditional branches and
+    symbols that do not resolve stay unchecked, never a failure.
+    """
     results = []
     for fn in functions:
         m = NAME_RE.search(fn.symbol)
@@ -274,19 +365,29 @@ def diff_functions(functions: list[ObjFunction], original: Original, resolve=Non
             if (a & mask) != (b & mask):
                 res.diff_insns.append(i)
         results.append(res)
+    if strict:
+        try:
+            targets = object_resolver(functions, results)
+        except OSError as e:
+            raise SystemExit(f"the strict relocation check needs llvm-cxxfilt ({cxxfilt()}): {e}")
+        for res in results:
+            if res.bytes_match:
+                res.reloc_mismatches = check_relocs(res, original, targets).mismatches
     return results
 
 
-def diff_object(obj: Path, original: Original, resolve=None) -> list[FunctionResult]:
+def diff_object(obj: Path, original: Original, resolve=None, strict: bool = False) -> list[FunctionResult]:
     """Diff every function in obj that maps to an original address.
 
     A symbol maps through fn_<addr> in its name, or through resolve(symbol) -> address|None.
+    strict=True also rejects a byte match whose relocations name the wrong target (diff_functions).
     """
-    return diff_functions(read_object(obj), original, resolve)
+    return diff_functions(read_object(obj), original, resolve, strict)
 
 
 def default_resolve(symbol: str) -> int | None:
-    """fn_<addr> / g_unk_<addr> / unk_<addr> symbols (plain C names) -> address. check.py's resolver also demangles."""
+    """fn_<addr> / g_unk_<addr> / unk_<addr> symbols (plain C names) -> address, without llvm-cxxfilt;
+    object_resolver and check.py's resolver also demangle."""
     m = TARGET_RE.match(symbol)
     return int(m.group(1), 16) if m else None
 
@@ -406,6 +507,22 @@ def format_mismatch(m: RelocMismatch, name: str | None = None) -> str:
     return f"{sym} -> original {actual}  {m.offset:+#x}  {m.kind}"
 
 
+def reloc_rejects(results: list[FunctionResult], limit: int = 10) -> list[str]:
+    """Lines for a generator's log about the byte-identical functions strict mode rejected for a
+    wrong relocation target: a count, up to `limit` of them with their first mismatch
+    (format_mismatch), then the addresses of the rest. Empty when nothing was rejected."""
+    bad = sorted((r for r in results if r.reloc_mismatches), key=lambda r: r.address)
+    if not bad:
+        return []
+    lines = [f"{len(bad)} byte-identical candidate(s) rejected for a wrong relocation target:"]
+    for r in bad[:limit]:
+        more = f"  (+{len(r.reloc_mismatches) - 1} more)" if len(r.reloc_mismatches) > 1 else ""
+        lines.append(f"  reloc  {r.address:#x}  {format_mismatch(r.reloc_mismatches[0])}{more}")
+    if len(bad) > limit:
+        lines.append(f"  ... and {len(bad) - limit} more: " + " ".join(f"{r.address:x}" for r in bad[limit:]))
+    return lines
+
+
 def print_side_by_side(res: FunctionResult, original: Original, code: bytes) -> None:
     import capstone
     cs = capstone.Cs(capstone.CS_ARCH_ARM64, capstone.CS_MODE_ARM)
@@ -429,15 +546,16 @@ def main() -> int:
     ap.add_argument("-v", "--verbose", action="store_true", help="print side-by-side disassembly")
     ap.add_argument("--no-reloc", action="store_true", help="skip the relocation target check")
     args = ap.parse_args()
-    # check.py's resolution (demangling through llvm-cxxfilt, the data/functions name map) when its
-    # tools are present; otherwise plain fn_/g_unk_ symbol names, all a C-named object needs.
+    # check.py's resolution (the data/functions name map on top of the demangled names) when its
+    # tools are present; otherwise this module's own demangling, and without llvm-cxxfilt plain
+    # fn_/g_unk_ symbol names, all a C-named object needs.
     try:
         import check
         by_name = check.csv_by_name(check.load_csv()[0])
-        check.demangle(["_Z1fv"])
+        demangle(["_Z1fv"])
     except Exception as e:  # an import error, or llvm-cxxfilt missing
         check = None
-        print(f"note: {e}; resolving plain fn_/g_unk_ symbol names only", file=sys.stderr)
+        print(f"note: {e}; resolving fn_/g_unk_ symbol names only", file=sys.stderr)
     original = Original(args.version)
     total = matched = 0
     report = RelocReport()
@@ -447,7 +565,11 @@ def main() -> int:
         if check is not None:
             diffs, names, full_names, targets = check.diff_with_targets(functions, original, by_name)
         else:
-            diffs, names, full_names, targets = diff_functions(functions, original), {}, {}, default_resolve
+            diffs, names, full_names = diff_functions(functions, original), {}, {}
+            try:
+                targets = object_resolver(functions, diffs)
+            except OSError:
+                targets = default_resolve
         for r in diffs:
             total += 1
             matched += r.matching
@@ -459,7 +581,7 @@ def main() -> int:
                 report.merge(rep)
                 for m in rep.mismatches:
                     sym = full_names.get(m.symbol, m.symbol)
-                    print(f"  RELOC  {format_mismatch(m, check.strip_params(sym) if check else sym)}")
+                    print(f"  RELOC  {format_mismatch(m, strip_params(sym))}")
             if args.verbose and not r.matching:
                 print_side_by_side(r, original, codes[r.symbol])
     print(f"{matched}/{total} functions match")

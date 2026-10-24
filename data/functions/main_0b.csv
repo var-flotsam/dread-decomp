@@ -5313,7 +5313,7 @@ address,size,name,name_source,subsystem,status
 0x7100bd92ec,4616,fn_7100bd92ec,unknown,game/characters?,O
 0x7100bda4f4,388,CCharClassSetRelativeCameraAnimationBaseEvent::refl_InitClass,reflection,game/characters,O
 0x7100bda678,228,fn_7100bda678,unknown,game/characters?,U
-0x7100bda75c,416,fn_7100bda75c,unknown,game/characters?,U
+0x7100bda75c,416,fn_7100bda75c,unknown,game/characters?,O
 0x7100bda8fc,36,fn_7100bda8fc,unknown,game/characters?,O
 0x7100bda920,2624,fn_7100bda920,unknown,game/characters?,O
 0x7100bdb360,28,fn_7100bdb360,unknown,game/characters?,O

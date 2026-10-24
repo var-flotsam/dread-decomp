@@ -34,9 +34,10 @@ function, a merge) in seconds, with the result a full run would give for them.
 
 To measure a lifter change in a minute instead of a full run, --report (implied by --only and
 --sample) lifts, compiles and diffs a subset in build/gen_lift_report/ without touching
-src/lifted/, and prints counts and bytes by outcome and size band: matched, lifted but not
-byte-identical, or rejected with the reason from the attempt that got furthest (the first
-unsupported mnemonic, or a category such as a register read before its definition).
+src/lifted/, and prints counts and bytes by outcome and size band: matched, lifted and
+byte-identical but naming a wrong relocation target (callee, global or GOT slot; never emitted),
+lifted but not byte-identical, or rejected with the reason from the attempt that got furthest
+(the first unsupported mnemonic, or a category such as a register read before its definition).
   python tools/gen_lift.py --version 2.1.0 --sample 500 --seed 1 [--examples 3]
   python tools/gen_lift.py --version 2.1.0 --only 7100123456,7100123460   (or --only @addrs.txt)
 """
@@ -1658,14 +1659,17 @@ def lift_serial(orig: asmdiff.Original, cands: list[int],
 
 
 def build_all(orig: asmdiff.Original, lifted: list[dict[int, tuple[str, set[str]]]],
-              work: Path, best: dict | None = None) -> tuple[dict[int, tuple[str, set[str]]], set[int]]:
+              work: Path, best: dict | None = None,
+              reloc_bad: set[int] | None = None) -> tuple[dict[int, tuple[str, set[str]]], set[int]]:
     """Compile every attempt in scratch TUs under `work` and diff them. Returns the first
-    byte-identical definition of each address (variant order decides) and the addresses that
+    matching definition of each address (variant order decides; byte-identical with every
+    relocation naming the original's target, asmdiff strict mode) and the addresses that
     compiled in at least one attempt. With `best`, also keeps the closest attempt of each
-    address there as (score, definition, declarations), the earliest on a tie."""
+    address there as (score, definition, declarations), the earliest on a tie. With `reloc_bad`,
+    adds the addresses of attempts that were byte-identical but named a wrong target."""
     work.mkdir(parents=True, exist_ok=True)
 
-    def build(job: tuple[int, int]) -> tuple[set[int], set[int], dict[int, float]]:
+    def build(job: tuple[int, int]) -> tuple[set[int], set[int], dict[int, float], set[int]]:
         k, part = job
         addrs = sorted(lifted[k])[part * SCRATCH_CHUNK:(part + 1) * SCRATCH_CHUNK]
         defs = {a: lifted[k][a] for a in addrs}
@@ -1680,8 +1684,10 @@ def build_all(orig: asmdiff.Original, lifted: list[dict[int, tuple[str, set[str]
             src.write_text("\n".join(lines) + "\n", encoding="utf-8")
             r = subprocess.run(buildcfg.cxx_command(src, obj, ["-ferror-limit=0"]), capture_output=True, text=True)
             if r.returncode == 0:
-                res = [x for x in asmdiff.diff_object(obj, orig) if x.address in defs]
-                return {x.address for x in res if x.matching}, set(defs), {x.address: x.score for x in res}
+                # strict: one llvm-cxxfilt call per object; a byte match naming the wrong target is not a match
+                res = [x for x in asmdiff.diff_object(obj, orig, strict=True) if x.address in defs]
+                return ({x.address for x in res if x.matching}, set(defs), {x.address: x.score for x in res},
+                        {x.address for x in res if x.reloc_mismatches})
             # Drop the functions with errors (a lifter gap) and try again.
             starts = sorted(owner)
             bad = set()
@@ -1701,7 +1707,7 @@ def build_all(orig: asmdiff.Original, lifted: list[dict[int, tuple[str, set[str]
         results = list(pool.map(build, jobs))
     chosen: dict[int, tuple[str, set[str]]] = {}
     for k in range(len(lifted)):  # variant order decides
-        for (kk, _), (ok, _, scores) in zip(jobs, results):
+        for (kk, _), (ok, _, scores, bad) in zip(jobs, results):
             if kk == k:
                 for a in sorted(ok):
                     chosen.setdefault(a, lifted[k][a])
@@ -1709,7 +1715,9 @@ def build_all(orig: asmdiff.Original, lifted: list[dict[int, tuple[str, set[str]
                     for a, sc in scores.items():
                         if a not in best or sc > best[a][0]:
                             best[a] = (sc, *lifted[k][a])
-    return chosen, set().union(*[c for _, c, _ in results])
+                if reloc_bad is not None:
+                    reloc_bad.update(bad)
+    return chosen, set().union(*[c for _, c, _, _ in results])
 
 
 # Rewrites tried, in order, on functions that compile but don't match as lifted. Each is a
@@ -1718,16 +1726,17 @@ ROUND2 = [frozenset({"copy", "sort"}), frozenset({"copy", "alias"}), frozenset({
 
 
 def lift_rounds(orig: asmdiff.Original, cands: list[int], work: Path,
-                why: dict[int, tuple[int, str]] | None = None):
+                why: dict[int, tuple[int, str]] | None = None, reloc_bad: set[int] | None = None):
     """lift_all + build_all, then each ROUND2 rewrite on what compiled without matching.
-    Returns (chosen, compiled, first-round attempts) as build_all and lift_all do."""
+    Returns (chosen, compiled, first-round attempts) as build_all and lift_all do; `reloc_bad`
+    collects the byte-identical attempts build_all rejected for a wrong relocation target."""
     lifted = lift_all(orig, cands, why)
-    chosen, compiled = build_all(orig, lifted, work)
+    chosen, compiled = build_all(orig, lifted, work, reloc_bad=reloc_bad)
     for k, opts in enumerate(ROUND2):
         rest = sorted(compiled - set(chosen))
         if not rest:
             break
-        more, _ = build_all(orig, lift_all(orig, rest, opts=opts), work / f"round2_{k}")
+        more, _ = build_all(orig, lift_all(orig, rest, opts=opts), work / f"round2_{k}", reloc_bad=reloc_bad)
         for a in sorted(more):
             chosen.setdefault(a, more[a])
     return chosen, compiled, lifted
@@ -1763,8 +1772,9 @@ def report(orig: asmdiff.Original, addrs: list[int], cands: set[int], examples: 
     """Lift, compile and diff `addrs` in build/gen_lift_report/ (never src/) and print the
     outcome of each by size band: count/KB per row, rows by total bytes."""
     why: dict[int, tuple[int, str]] = {}
+    reloc_bad: set[int] = set()
     todo = [a for a in addrs if a in cands]
-    chosen, compiled, lifted = lift_rounds(orig, todo, ROOT / "build" / "gen_lift_report", why)
+    chosen, compiled, lifted = lift_rounds(orig, todo, ROOT / "build" / "gen_lift_report", why, reloc_bad)
     lifted_any = set().union(*lifted)
     outcome = {}
     for a in addrs:
@@ -1772,6 +1782,8 @@ def report(orig: asmdiff.Original, addrs: list[int], cands: set[int], examples: 
             outcome[a] = "rejected: size cap" if orig.sizes.get(a, 0) > MAX_SIZE else "rejected: not a candidate"
         elif a in chosen:
             outcome[a] = "matched"
+        elif a in reloc_bad:
+            outcome[a] = "lifted, wrong relocation target"
         elif a in compiled:
             outcome[a] = "lifted, not byte-identical"
         elif a in lifted_any:
@@ -1790,8 +1802,8 @@ def report(orig: asmdiff.Original, addrs: list[int], cands: set[int], examples: 
         return out
 
     head = ["outcome"] + [b[0] for b in BANDS] + ["total"]
-    first = ["matched", "lifted, not byte-identical"]
-    order = sorted(rows, key=lambda r: (first.index(r) if r in first else 2,
+    first = ["matched", "lifted, wrong relocation target", "lifted, not byte-identical"]
+    order = sorted(rows, key=lambda r: (first.index(r) if r in first else len(first),
                                         -sum(orig.sizes.get(a, 0) for a in rows[r]), r))
     table = [head] + [[r] + cells(rows[r]) for r in order] + [["all"] + cells(list(addrs))]
     w = [max(len(row[i]) for row in table) for i in range(len(head))]
@@ -1898,12 +1910,15 @@ def main() -> int:
         report(orig, addrs, set(cands), args.examples)
         return 0
 
-    chosen, _, lifted = lift_rounds(orig, cands, ROOT / "build" / "gen_lift")
+    reloc_bad: set[int] = set()
+    chosen, _, lifted = lift_rounds(orig, cands, ROOT / "build" / "gen_lift", reloc_bad=reloc_bad)
     write_out({a: "\n".join(sorted(chosen[a][1]) + [chosen[a][0]]) for a in chosen})
     ok = sorted(chosen)
     lifted_any = set().union(*lifted)
+    reloc_bad -= set(chosen)
     print(f"{len(cands)} candidates, {len(lifted_any)} lifted; {len(ok)} byte-identical "
-          f"({sum(orig.sizes[a] for a in ok)} bytes)")
+          f"({sum(orig.sizes[a] for a in ok)} bytes)"
+          + (f"; {len(reloc_bad)} byte-identical but rejected for a wrong relocation target" if reloc_bad else ""))
     return 0
 
 

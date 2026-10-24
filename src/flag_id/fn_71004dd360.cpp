@@ -18,7 +18,12 @@ struct UnkSource {
 };
 
 struct UnkGlobal;
-extern UnkGlobal g_unk_7101cdddd8;
+struct UnkStruct_0x68;
+
+// Stored into the object below as a callback (the GOT slot 0x7101cdddd8 holds its address; the
+// sample had named that slot). Its real signature is unknown: it takes the same object and reads
+// its source and w0..w2.
+void fn_71004dd73c(UnkStruct_0x68* self);
 
 struct UnkVec3u {
     u32 x, y, z;
@@ -53,7 +58,7 @@ void fn_71004dd360(UnkStruct_0x68* self) {
         self->w2 = t->c;
     }
     self->self_ref = self;
-    self->global = &g_unk_7101cdddd8;
+    self->global = reinterpret_cast<UnkGlobal*>(&fn_71004dd73c);
     self->field_0x58 = 0;
     self->field_0x60 = 0;
     fn_71004dd3d8(self);

@@ -840,7 +840,7 @@ address,size,name,name_source,subsystem,status
 0x7100a227b8,968,fn_7100a227b8,unknown,game/components?,O
 0x7100a22b80,372,CFreezeRoomComponent::refl_InitClass,reflection,game/components,O
 0x7100a22cf4,876,fn_7100a22cf4,unknown,unknown,U
-0x7100a23060,272,fn_7100a23060,unknown,unknown,U
+0x7100a23060,272,fn_7100a23060,unknown,unknown,O
 0x7100a23170,36,fn_7100a23170,unknown,unknown,O
 0x7100a23194,56,fn_7100a23194,unknown,unknown,O
 0x7100a231cc,60,fn_7100a231cc,unknown,unknown,O
@@ -1963,7 +1963,7 @@ address,size,name,name_source,subsystem,status
 0x7100a4b0f8,8,fn_7100a4b0f8,unknown,game/components?,O
 0x7100a4b100,320,fn_7100a4b100,unknown,game/components?,U
 0x7100a4b240,28,fn_7100a4b240,unknown,game/components?,O
-0x7100a4b25c,344,fn_7100a4b25c,unknown,game/components?,U
+0x7100a4b25c,344,fn_7100a4b25c,unknown,game/components?,O
 0x7100a4b3b4,36,fn_7100a4b3b4,unknown,game/components?,O
 0x7100a4b3d8,68,fn_7100a4b3d8,unknown,game/components?,O
 0x7100a4b41c,264,fn_7100a4b41c,unknown,game/components?,U
@@ -4139,7 +4139,7 @@ address,size,name,name_source,subsystem,status
 0x7100aa7c00,380,fn_7100aa7c00,unknown,unknown,O
 0x7100aa7d7c,380,fn_7100aa7d7c,unknown,unknown,O
 0x7100aa7ef8,1052,fn_7100aa7ef8,unknown,unknown,U
-0x7100aa8314,344,fn_7100aa8314,unknown,unknown,U
+0x7100aa8314,344,fn_7100aa8314,unknown,unknown,O
 0x7100aa846c,36,fn_7100aa846c,unknown,unknown,O
 0x7100aa8490,4,fn_7100aa8490,unknown,unknown,O
 0x7100aa8494,316,fn_7100aa8494,unknown,unknown,U
@@ -4497,7 +4497,7 @@ address,size,name,name_source,subsystem,status
 0x7100ab9f48,352,CMissileMovement::refl_InitClass,reflection,game,O
 0x7100aba0a8,24,fn_7100aba0a8,unknown,game?,O
 0x7100aba0c0,716,fn_7100aba0c0,unknown,game?,U
-0x7100aba38c,344,fn_7100aba38c,unknown,game?,U
+0x7100aba38c,344,fn_7100aba38c,unknown,game?,O
 0x7100aba4e4,36,fn_7100aba4e4,unknown,game?,O
 0x7100aba508,112,fn_7100aba508,unknown,game?,O
 0x7100aba578,12,fn_7100aba578,unknown,game?,O

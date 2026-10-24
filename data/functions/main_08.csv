@@ -5288,8 +5288,8 @@ address,size,name,name_source,subsystem,status
 0x71008fd4b0,256,fn_71008fd4b0,unknown,unknown,O
 0x71008fd5b0,612,fn_71008fd5b0,unknown,unknown,U
 0x71008fd814,28,fn_71008fd814,unknown,unknown,O
-0x71008fd830,200,fn_71008fd830,unknown,unknown,U
-0x71008fd8f8,208,fn_71008fd8f8,unknown,unknown,U
+0x71008fd830,200,fn_71008fd830,unknown,unknown,O
+0x71008fd8f8,208,fn_71008fd8f8,unknown,unknown,O
 0x71008fd9c8,4,fn_71008fd9c8,unknown,unknown,O
 0x71008fd9cc,340,fn_71008fd9cc,unknown,unknown,O
 0x71008fdb20,36,fn_71008fdb20,unknown,unknown,O

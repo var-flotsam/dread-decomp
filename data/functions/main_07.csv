@@ -410,7 +410,7 @@ address,size,name,name_source,subsystem,status
 0x7100710f08,388,CCharClassAnimationComponent::refl_InitClass,reflection,game/characters,O
 0x710071108c,380,fn_710071108c,unknown,unknown,O
 0x7100711208,304,fn_7100711208,unknown,unknown,O
-0x7100711338,272,fn_7100711338,unknown,unknown,U
+0x7100711338,272,fn_7100711338,unknown,unknown,O
 0x7100711448,36,fn_7100711448,unknown,unknown,O
 0x710071146c,4,fn_710071146c,unknown,unknown,O
 0x7100711470,28,fn_7100711470,unknown,unknown,O
@@ -2752,7 +2752,7 @@ address,size,name,name_source,subsystem,status
 0x7100792634,244,CCharClassMorphBallMovement::refl_GetClass,reflection,game/characters,O
 0x7100792728,2340,fn_7100792728,unknown,game/characters?,O
 0x710079304c,388,CCharClassMorphBallMovement::refl_InitClass,reflection,game/characters,O
-0x71007931d0,200,fn_71007931d0,unknown,game/characters?,U
+0x71007931d0,200,fn_71007931d0,unknown,game/characters?,O
 0x7100793298,36,fn_7100793298,unknown,game/characters?,O
 0x71007932bc,28,fn_71007932bc,unknown,game/characters?,O
 0x71007932d8,8,fn_71007932d8,unknown,game/characters?,O
