@@ -1,6 +1,6 @@
 // Copies of generated helpers for other element types. Equality of two arrays (base::UnkVector's
 // layout), element by element, as base::refl_VectorEqual (the generated fn_7100d42580) does for
-// words: words (fn_71000d25f0), floats (fn_71000d4404) and bytes (fn_71000e17a8). Set of a value
+// words: words (fn_71000d25f0), halfwords (fn_71000d16d8), floats (fn_71000d4404) and bytes (fn_71000e17a8). Set of a value
 // by key in a keyed array (u64 keys, u32 values), as base::refl_KeyedSet (the generated
 // fn_7100251a80) does for words: fn_71000dee28, fn_71000dee9c.
 #include "base/UnkCloneCalls.h"
@@ -20,6 +20,8 @@ __attribute__((always_inline)) static inline bool Equal(const base::UnkVector<T>
 }
 
 bool fn_71000d25f0(const base::UnkVector<u32>* a, const base::UnkVector<u32>* b) { return Equal(a, b); }
+
+bool fn_71000d16d8(const base::UnkVector<u16>* a, const base::UnkVector<u16>* b) { return Equal(a, b); }
 
 bool fn_71000d4404(const base::UnkVector<f32>* a, const base::UnkVector<f32>* b) { return Equal(a, b); }
 
