@@ -10,6 +10,7 @@
 #include "base/UnkAtExit.h"
 #include "base/UnkBlockFreeList.h"
 #include "base/UnkCollectionIter.h"
+#include "base/UnkCountedResource.h"
 #include "base/UnkDeferredSet.h"
 #include "base/UnkDestructors.h"
 #include "base/UnkHashStream.h"
@@ -1424,7 +1425,6 @@ struct UnkCloneIndexU64 {
 // copies). Names and roles are placeholders inferred from the code.
 
 void fn_7100216934(char* p);
-void fn_710001737c(char* p);
 
 namespace base {
 
@@ -1445,8 +1445,8 @@ void refl_OwnerDtor(char* self) {
     *reinterpret_cast<char**>(self) = Traits::base_vtable() + 0x10;
     *reinterpret_cast<u32*>(self + 0x100) = 0xdeaddead;
     fn_7100216934(self + 0x80);
-    if (char* counted = *reinterpret_cast<char**>(self + 0x78)) {
-        if (--*reinterpret_cast<s32*>(counted + 0x54) == 0)
+    if (UnkCountedResource* counted = *reinterpret_cast<UnkCountedResource**>(self + 0x78)) {
+        if (--counted->ref_count == 0)
             fn_710001737c(counted);
     }
     reinterpret_cast<UnkStrIdMember*>(self + 0x10)->~UnkStrIdMember();

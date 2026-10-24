@@ -4,23 +4,13 @@
 // at 0x30): a found resource is sent an event (vtable unk_7101a19610, with the two extra
 // arguments) through fn_7100017390, a missing one is created through the map's vf_0x48. Either
 // way a new reference is returned. One map type per bucket accessor (fn_7100d94654 and others).
+#include "base/UnkCountedResource.h"
 #include "types.h"
 
-// The count is a union member (no type-based aliasing): the reference's pointer is reloaded
-// after it changes.
-struct UnkShared54 {
-    u8 unk_0x0[0x54];
-    union {
-        s32 ref_count;
-    };
-};
-
-void fn_710001737c(UnkShared54* resource);  // frees a released resource
-
 struct UnkShared54Ref {
-    UnkShared54* ptr;
+    UnkCountedResource* ptr;
 
-    explicit UnkShared54Ref(UnkShared54* p) : ptr(nullptr) {
+    explicit UnkShared54Ref(UnkCountedResource* p) : ptr(nullptr) {
         if (p) {
             ++p->ref_count;
             ptr = p;
@@ -28,11 +18,11 @@ struct UnkShared54Ref {
     }
     ~UnkShared54Ref();
 
-    UnkShared54Ref& operator=(UnkShared54* p) {
+    UnkShared54Ref& operator=(UnkCountedResource* p) {
         if (ptr != p) {
             if (p)
                 ++p->ref_count;
-            if (UnkShared54* old = ptr) {
+            if (UnkCountedResource* old = ptr) {
                 if (--old->ref_count == 0)
                     fn_710001737c(old);
             }
@@ -55,7 +45,7 @@ struct UnkResourceKey {
 
 struct UnkResourceNode {
     UnkKeyObject* key;
-    UnkShared54* value;
+    UnkCountedResource* value;
     UnkResourceNode* next;
 };
 
@@ -67,7 +57,7 @@ struct UnkResourceEvent {
     u32 arg;
     void* data;
 };
-void fn_7100017390(UnkShared54* resource, UnkResourceEvent* event);
+void fn_7100017390(UnkCountedResource* resource, UnkResourceEvent* event);
 
 struct UnkBuckets {
     UnkResourceNode** data;
@@ -86,7 +76,7 @@ struct UnkResourceMap {
     virtual void vf_0x30();
     virtual void vf_0x38();
     virtual void vf_0x40();
-    virtual UnkShared54* vf_0x48(const UnkResourceKey& key, u32 arg, void* data);
+    virtual UnkCountedResource* vf_0x48(const UnkResourceKey& key, u32 arg, void* data);
 
     UnkBuckets buckets;
 };
@@ -108,7 +98,7 @@ __attribute__((always_inline)) static inline UnkShared54Ref GetOrCreate(UnkResou
             }
         }
     }
-    UnkShared54* resource;
+    UnkCountedResource* resource;
     if (found) {
         resource = found->value;
         UnkResourceEvent event;

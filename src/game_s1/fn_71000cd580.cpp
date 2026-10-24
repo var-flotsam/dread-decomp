@@ -13,6 +13,7 @@
 #include <new>
 
 #include "base/UnkCollectionIter.h"
+#include "base/UnkCountedResource.h"
 #include "base/reflection/UnkReflValue.h"
 #include "base/global/CStrId.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -99,22 +100,14 @@ struct UnkCopiedRef {
     UnkCopiedRef(const UnkCopiedRef& other) : ptr(nullptr) { AssignRef(&ptr, other.ptr); }
 };
 
-// A counted resource (count at 0x54, freed by fn_710001737c), referenced the same way.
-struct UnkCounted54 {
-    u8 unk_0x0[0x54];
-    union {  // (the original reloads around the count, as through a union)
-        s32 ref_count;
-    };
-};
-void fn_710001737c(UnkCounted54* obj);
-
+// A counted resource (base/UnkCountedResource.h), referenced the same way.
 struct UnkCopiedRef54 {
-    UnkCounted54* ptr;
+    UnkCountedResource* ptr;
 
     UnkCopiedRef54(const UnkCopiedRef54& other) : ptr(nullptr) {
-        if (UnkCounted54* p = other.ptr) {
+        if (UnkCountedResource* p = other.ptr) {
             ++p->ref_count;
-            if (UnkCounted54* old = ptr) {
+            if (UnkCountedResource* old = ptr) {
                 if (--old->ref_count == 0)
                     fn_710001737c(old);
             }

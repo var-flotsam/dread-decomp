@@ -1,5 +1,6 @@
 // Destructor body of a large owner object: releases its listeners, ref-counted pointers, node
 // list, handler and resource members and calls the destructors of its many embedded members.
+#include "base/UnkCountedResource.h"
 #include "base/global/CRntString.h"
 #include "types.h"
 #include "base/global/CStrId.h"
@@ -242,21 +243,14 @@ struct UnkHandlerDerived {
     }
 };
 
-void fn_710001737c(void* p);
-
-struct UnkResData {
-    u8 pad_0x0[0x54];
-    s32 ref_count;
-};
-
 struct UnkResource {
     UnkStrIdField<&g_unk_7101d47108> id;
     UnkStrIdField<&g_unk_7101d47200> path;
-    UnkResData* res;
+    UnkCountedResource* res;
 
     __attribute__((always_inline)) void Destroy() {
         fn_7100027044(this);
-        if (UnkResData* r = res) {
+        if (UnkCountedResource* r = res) {
             if (--r->ref_count == 0)
                 fn_710001737c(r);
         }

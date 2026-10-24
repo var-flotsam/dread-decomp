@@ -1,5 +1,6 @@
 // Destructor body of the component built by fn_7100ac2c5c: drops the bound callback, then
 // releases the member ids and reference-counted objects and runs the base destructor.
+#include "base/UnkCountedResource.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "types.h"
@@ -12,12 +13,6 @@ struct UnkRefObject {
     virtual void vf_0x0();
     virtual void vf_0x8();
     virtual void vf_0x10();
-    s32 ref_count;
-};
-
-// Reference counted, freed by fn_710001737c (count at +0x54).
-struct UnkRefObject2 {
-    u8 unk_0x0[0x54];
     s32 ref_count;
 };
 
@@ -38,7 +33,7 @@ struct UnkComponent_0x5b8 {
     u8 unk_0x538[0x48];
     UnkStringData* field_0x580;  // CStrId
     UnkStringData* field_0x588;  // CFilePathStrId
-    UnkRefObject2* field_0x590;
+    UnkCountedResource* field_0x590;
     UnkStringData* field_0x598;  // CStrId
     void* field_0x5a0;
     void* field_0x5a8;
@@ -48,7 +43,6 @@ struct UnkComponent_0x5b8 {
 extern void* g_unk_7101a96b30[];
 void fn_71005c4828(void* callback, void** slot);
 void fn_7100027044(UnkStringData** self);
-void fn_710001737c(UnkRefObject2* object);
 void fn_7100ac72a4(UnkComponent_0x5b8* self);
 
 // A string id's destructor on the given pool: decrement, then test the reloaded count.
@@ -80,7 +74,7 @@ void fn_7100ac2e00(UnkComponent_0x5b8* self) {
     self->field_0x5a8 = nullptr;
     ReleaseId(&self->field_0x598, &g_unk_7101d47108);
     fn_7100027044(&self->field_0x580);
-    if (UnkRefObject2* p = self->field_0x590)
+    if (UnkCountedResource* p = self->field_0x590)
         if (--p->ref_count == 0)
             fn_710001737c(p);
     ReleaseId(&self->field_0x588, &g_unk_7101d47200);

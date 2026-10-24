@@ -3,6 +3,7 @@
 // of the global object, and unless the game manager's object at 0x498 is already in place
 // (vf_0x68), sets it up (vf_0x70) and records two flags, applying each (fn_71011cdc30) that is
 // set. Finally the global at 0x7101d47340 (created on first use) gets 0xfd.
+#include "base/UnkCountedResource.h"
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
@@ -546,14 +547,9 @@ struct UnkPathIds {
     }
 };
 
-// A reference-counted resource (count at 0x54, freed by fn_710001737c).
-void fn_710001737c(struct UnkResource* resource);
-struct UnkResource {
-    u8 unk_0x0[0x54];
-    s32 ref_count;
-};
+// A reference-counted resource (base/UnkCountedResource.h), dropped when the handle dies.
 struct UnkResourceHandle {
-    UnkResource* ptr;
+    UnkCountedResource* ptr;
 
     ~UnkResourceHandle() {
         if (ptr && --ptr->ref_count == 0)
