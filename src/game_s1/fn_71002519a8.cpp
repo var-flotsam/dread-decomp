@@ -19,6 +19,23 @@ u64* fn_71000dacdc(UnkValuesByKey* a, const u64* key) { return FindValue(a, key)
 
 u64* fn_71000d92a8(UnkValuesByKey* a, const u64* key) { return FindValue(a, key); }
 
+// Removal of the value stored for a key, when present (the removal itself is a separate function per type):
+// fn_71000d9234, fn_71000dac68.
+void fn_71000d9de8(UnkValuesByKey* a, u64* value);
+void fn_71000db82c(UnkValuesByKey* a, u64* value);
+
+void fn_71000d9234(UnkValuesByKey* a, const u64* key) {
+    u64* p = a->Find(*key);
+    if (p != a->End())
+        fn_71000d9de8(a, p);
+}
+
+void fn_71000dac68(UnkValuesByKey* a, const u64* key) {
+    u64* p = a->Find(*key);
+    if (p != a->End())
+        fn_71000db82c(a, p);
+}
+
 // The same over 4-byte values (fn_71000dedbc).
 struct UnkKeyedWords_71000dedbc;
 using UnkWordsByKey = base::UnkKeyedArray<UnkKeyedWords_71000dedbc, u64, u32>;
@@ -26,6 +43,15 @@ using UnkWordsByKey = base::UnkKeyedArray<UnkKeyedWords_71000dedbc, u64, u32>;
 u32* fn_71000dedbc(UnkWordsByKey* a, const u64* key) {
     u32* p = a->Find(*key);
     return p == a->End() ? nullptr : p;
+}
+
+void fn_71000df750(UnkWordsByKey* a, u32* value);
+
+// Removal over 4-byte values (fn_71000ded44).
+void fn_71000ded44(UnkWordsByKey* a, const u64* key) {
+    u32* p = a->Find(*key);
+    if (p != a->End())
+        fn_71000df750(a, p);
 }
 
 // And over 0x40-byte records held at 8 in an object, with the key passed by value

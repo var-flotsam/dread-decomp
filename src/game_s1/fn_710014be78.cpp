@@ -170,3 +170,23 @@ void fn_7100125338(UnkElemArray_7100125338* self, bool flag) {
     for (UnkElem_0x48* p = self->data; p != end; ++p)
         fn_7100119d3c(p, flag);
 }
+
+// The same over the 0xb0-byte values of a keyed array held at 0xe8 in an object, passing a
+// pointer along (fn_7100097950).
+struct UnkElem_0xb0 {
+    u8 data[0xb0];
+};
+void fn_71000e82a8(UnkElem_0xb0* elem, void* arg);
+
+struct UnkElemHolder_7100097950 {
+    u8 unk_0x0[0xe8];
+    UnkElem_0xb0* values;
+    void* keys;
+    u32 count;
+};
+
+void fn_7100097950(UnkElemHolder_7100097950* self, void* arg) {
+    UnkElem_0xb0* end = self->values + self->count;
+    for (UnkElem_0xb0* p = self->values; p != end; ++p)
+        fn_71000e82a8(p, arg);
+}

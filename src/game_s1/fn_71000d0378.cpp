@@ -174,6 +174,36 @@ __attribute__((flatten)) void fn_71000da2e8(UnkPathByIdValue* self) { self->Rese
 
 __attribute__((flatten)) void fn_71000da974(UnkPathByIdValue* self) { self->Reset(); }
 
+// Assignment of the reference another iterator value holds (its slot 0x48): fn_71000c5778,
+// fn_71000c5c54.
+template <class T, class K>
+__attribute__((always_inline)) static inline UnkIterValue<T, K>* AssignRef(UnkIterValue<T, K>* self,
+                                                                         const UnkIterValue<T, K>* other) {
+    if (self != other) {
+        // base::UnkIterValue::SetRef, inlined.
+        using Pair = typename UnkIterValue<T, K>::Value;
+        typename UnkIterValue<T, K>::Ref r = other->ref;
+        if (self->state == 2) {
+            self->state = 0;
+        } else if (self->state == 1) {
+            self->value.~Pair();
+            self->state = 0;
+        }
+        self->state = 2;
+        self->ref.index = r.index;
+        self->ref.element = r.element;
+    }
+    return self;
+}
+
+__attribute__((flatten)) UnkPathByIdValue* fn_71000c5778(UnkPathByIdValue* self, const UnkPathByIdValue* other) {
+    return AssignRef(self, other);
+}
+
+__attribute__((flatten)) UnkPathByIdValue* fn_71000c5c54(UnkPathByIdValue* self, const UnkPathByIdValue* other) {
+    return AssignRef(self, other);
+}
+
 __attribute__((flatten)) void fn_710001c1f4(UnkIterValue<UnkReleasedIdPair10>* self) { self->Reset(); }
 
 __attribute__((flatten)) void fn_710001c720(UnkIterValue<UnkReleasedIdPair10>* self) { self->Reset(); }
@@ -285,6 +315,14 @@ void fn_71000d99d0(UnkIdTable<UnkReleasedStrId>* self) { self->Clear(); }
 
 void fn_71000db40c(UnkIdTable<UnkFilePathReleasedStrId>* self) { self->Clear(); }
 
+// The same for a table of 0xb8-byte polymorphic values, destroyed through their vtable: fn_71000dd850.
+struct UnkPolyValue_0xb8 {
+    virtual ~UnkPolyValue_0xb8();
+    u8 unk_0x8[0xb0];
+};
+
+void fn_71000dd850(UnkIdTable<UnkPolyValue_0xb8>* self) { self->Clear(); }
+
 // The same for a table of counted resources paired with 8 plain bytes, whose value loop is
 // written as a do-while (the count is already known to be nonzero): fn_71001d7444.
 struct UnkResWord {
@@ -317,6 +355,13 @@ struct UnkPathRes {
 void fn_7100269170(UnkPathRes* self) { self->~UnkPathRes(); }
 
 void fn_710000f514(UnkWordPathRes* self) { self->~UnkWordPathRes(); }
+
+// Its move-assignment, with a self check (fn_710000f674).
+UnkWordPathRes* fn_710000f674(UnkWordPathRes* self, UnkWordPathRes* other) {
+    if (self != other)
+        *self = static_cast<UnkWordPathRes&&>(*other);
+    return self;
+}
 
 // The move-assignment of iterator values over such pairs (as fn_710000da34 above), where the path
 // id re-reads its pool for the other's empty string: fn_7100267684.
