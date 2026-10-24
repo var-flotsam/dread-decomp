@@ -1,7 +1,7 @@
 // Copies of fn_7100d43c6c (src/game_aca57c/fn_7100d3d424.cpp) for another element type, naming their own callees and
-// data (the comments are adapted from the original's): fn_710011eff4, fn_7100125584. Move-assignments of arrays of
-// records holding an array (which frees its storage) and 0x20 more bytes: the old elements are destroyed (the storage
-// is kept), the other's array is taken and left empty.
+// data (the comments are adapted from the original's): fn_710011eff4, fn_7100125584, fn_7100124084. Move-assignments
+// of arrays of records holding an array (which frees its storage) and 0x20 more bytes: the old elements are destroyed
+// (the storage is kept), the other's array is taken and left empty.
 #include "base/UnkVector.h"
 #include "types.h"
 
@@ -82,5 +82,14 @@ UnkFlaggedMovedArray<UnkFreedVectorRecord>* fn_7100125584(UnkFlaggedMovedArray<U
         self->MoveFrom(other);
         self->field_0x38 = other->field_0x38;
     }
+    return self;
+}
+
+// The same, the flag taken even when the array is moved onto itself.
+UnkFlaggedMovedArray<UnkFreedVectorRecord>* fn_7100124084(UnkFlaggedMovedArray<UnkFreedVectorRecord>* self,
+                                                          UnkFlaggedMovedArray<UnkFreedVectorRecord>* other) {
+    if (self != other)
+        self->MoveFrom(other);
+    self->field_0x38 = other->field_0x38;
     return self;
 }
