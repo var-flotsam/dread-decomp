@@ -2,8 +2,10 @@
 
 You are a coding agent working on dread-decomp, a matching decompilation of Metroid Dread 2.1.0
 (Nintendo Switch, AArch64). Source in `src/` must compile with Clang 9.0.1 to the same bytes as
-the original game. Read this file and one task card in `docs/tasks/`. Do not read
-`docs/HANDOFF.md` unless a card tells you to: it is long.
+the original game. Read this file and one task card in `docs/tasks/`. `docs/HANDOFF.md` is the
+short current-state page and is safe to read; do not read `docs/JOURNAL.md` (the long history)
+unless a card tells you to. The Mac workstream this guide was written for is retired
+(`docs/tasks/README.md`); the rules below still hold for any small-context agent.
 
 ## Hard rules
 

@@ -1,5 +1,10 @@
 # Task cards
 
+**Retired.** The Mac workstream (a small local model) was stopped on 2026-10-21 for lack of
+memory, and the generator families these cards target are now in maintenance
+(`docs/HANDOFF.md`, "Workstreams"). The cards stay as a reference for writing short,
+self-contained briefs; their numbers are stale.
+
 Short, self-contained jobs for the Mac workstream (a small local model; see `AGENTS.md` and
 `docs/HANDOFF.md`, "Workstreams"). Each card fits in about 2k tokens and lists the goal, the files
 you may edit, exact commands, an example address, what done looks like, and a time-box.

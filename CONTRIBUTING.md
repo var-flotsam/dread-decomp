@@ -22,13 +22,28 @@ Local AI coding agents (small models with short contexts) start with `AGENTS.md`
    `src/reflection_statics/`, `src/clones/`, `src/lifted/` and the `status` column of `data/functions/` are
    produced by tools. Change the tool, regenerate, and commit both.
 5. **No regressions.** `tools/check.py --version 2.1.0 --update` must pass with no
-   `REGRESSION` lines before you open a PR.
+   `REGRESSION`, `DUPLICATE` or (on hand-written files) `RELOC` lines before you open a PR. A
+   function is `O` only when its bytes match *and* every callee, global and GOT slot it names is
+   the original's.
 6. Names you can't justify keep address-based placeholders (`fn_7100123456`, `field_0x18`).
    Real names come from RTTI, reflection data, strings or
    [mercury-engine-data-structures](https://github.com/randovania/mercury-engine-data-structures).
+7. **One declaration per shared symbol.** A function or global that more than one file uses is
+   declared once, in a header under `include/`, with one signature. A `.cpp` may declare only
+   what it alone uses. `tools/decl_check.py --base origin/main` must not report growth
+   (CI runs it on every PR); `tools/decl_check.py --symbol fn_<addr>` shows where a symbol is
+   declared today.
+8. **Files live where the code came from.** New hand-written sources go under
+   `src/<subsystem>/`, named for the class or translation unit they belong to
+   (`tools/tu_map.py --function <addr>` names the unit; `data/tu_map.csv` has them all). No new
+   address-named directories (`src/game_<addr>/`, `src/game_s<N>/`); the existing ones are moved
+   as their units complete.
+9. **Logs go to `docs/JOURNAL.md`.** `docs/HANDOFF.md` holds only the current state and is
+   edited in place, never appended to. Batch notes, findings and session summaries go at the top
+   of the journal, and reusable matching findings into its index.
 
-The pre-commit hook and CI enforce part of rules 1 and 4 (paths, file types, sizes). The rest
-is on you and on review.
+The pre-commit hook and CI enforce part of rules 1, 4 and 7 (paths, file types, sizes,
+declaration growth). The rest is on you and on review.
 
 ## Fork procedure
 
@@ -83,9 +98,13 @@ git fetch upstream
 git switch -c <topic> upstream/main
 ```
 
-- Pick work from `docs/HANDOFF.md` ("Next steps"), or open an issue first for anything large
-  (a new generator, a new subsystem, a change to shared headers) so two people don't do the same
-  thing.
+- Pick work with `tools/hubs.py --version 2.1.0 --boot` (the unmatched functions with the most
+  unmatched callers along the boot path, then the whole binary), or `--ready` (functions whose
+  callees are all matched). `docs/HANDOFF.md` ("Next steps") says what each stream is on; open
+  an issue first for anything large (a new generator, a new subsystem, a change to shared
+  headers) so two people don't do the same thing.
+- A PR is a hub cluster or about 30 functions or more; keep accumulating on your branch below
+  that (the maintainer guide explains why).
 - Commit messages start with the phase and step: `Phase 4.3: ...`.
 - Keep commits focused: a tool change and its regenerated output belong together; unrelated
   changes don't.
@@ -114,12 +133,38 @@ When several machines or people work at once (the owner's workstreams are in
 - Branch prefixes are `pc/` and `mac/`.
 - A machine that changes focus updates its Workstreams row in its next PR.
 
+### Migrating a hub to its canonical header
+
+The pilot (`fn_710009d50c`, 70 declarations with 12 signatures to one header) set the recipe:
+
+1. Find the definition (`grep -rn 'fn_<addr>(' src/` outside the generated directories) and its
+   real-typed signature. Declare it once in the topical header under `include/` (a small new header
+   only if none fits), with a two-line comment, and make sure the definition's `.cpp` includes it.
+2. List the redeclaring files with `tools/decl_check.py --symbol fn_<addr>`. For every file in the
+   list, and every includer of any `.h` in it, copy the file aside and record its
+   `tools/trymatch.py --version 2.1.0 <file>` output as the baseline.
+3. In each file delete the local declaration, add the `#include` in the file's include order, and
+   make the arguments real-typed with the smallest edit: rename the file's placeholder type
+   (`struct UnkReflType;` becomes `using base::reflection::CClass;`), or retype the `void*` getters
+   and vtable-slot accessors that feed the call; cast at the call only for an argument that is
+   something else. When you retype a getter, run `--symbol` on it and retype its other
+   declarations too, or list them as follow-ups. Delete declarations the file no longer uses.
+4. If the header chain now declares another symbol the file declared differently, drop the local
+   one and use the header's real types for it too.
+5. Rebuild each file with `trymatch.py` and compare with the baseline: every line, including
+   non-matching percentages, must be identical. Restore a file whose output changes from the copy
+   you saved (not with `git checkout`, which also discards other uncommitted edits) and list it
+   with the reason: a wrong-typed declaration can be load-bearing for a `NON_MATCHING` function.
+6. Finish with `tools/check.py --version 2.1.0` (no `REGRESSION` lines), `tools/policy_check.py`,
+   `decl_check.py --symbol fn_<addr>` (one declaration left) and `decl_check.py --base origin/main`.
+
 ### 6. Open a pull request
 
 Push to your fork and open a PR against `var-flotsam/dread-decomp:main`. Fill in the template:
-what you matched (functions and bytes; `tools/progress.py` before and after), which tools you
-changed, and confirm the checklist. CI runs the content-policy checks; it can't run
-`check.py`, because CI has no game data, so reviewers rely on your report.
+what you matched (functions and bytes; `tools/progress.py --slice boot` before and after), which
+tools you changed, and confirm the checklist. Hosted CI runs the content-policy and
+declaration checks; it can't run `check.py`, because it has no game data. The maintainer's
+self-hosted job runs `check.py` when it is enabled; otherwise reviewers rely on your report.
 
 ### 7. Review and merge
 

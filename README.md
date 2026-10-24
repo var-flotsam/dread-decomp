@@ -12,9 +12,12 @@ expected version (`data/hashes.json`) before using it.
 
 ## Status
 
-Progress is measured over the game's own code (libraries excluded) by `tools/progress.py`.
+Progress is measured over the game's own code (libraries excluded) by `tools/progress.py`, for
+the whole binary and for the boot path (`--slice boot`: everything reachable from `nnMain`).
 Current numbers, what each part of the tree is and what to work on next are in
-[`docs/HANDOFF.md`](docs/HANDOFF.md).
+[`docs/HANDOFF.md`](docs/HANDOFF.md); the route from matching source to a running PC build, and
+what it needs, is in [`docs/PORT_PLAN.md`](docs/PORT_PLAN.md); the history is in
+[`docs/JOURNAL.md`](docs/JOURNAL.md).
 
 Much of the matching code so far is **generated** from the binary by the tools in `tools/`
 (reflection boilerplate, descriptor constructors, small functions lifted from their
