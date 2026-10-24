@@ -68,6 +68,7 @@ python tools/gen_lift.py --version <ver>         # regenerate src/lifted/ (small
 python tools/gen_lift.py --version <ver> --best ADDR,...|@file  # closest lifted attempt per function -> build/lift_best/ (hand-matching start)
 python tools/gen_lift.py --prune                 # drop lifted copies of functions now defined elsewhere (seconds; verify.py runs it)
 python tools/gen_lift.py --version <ver> --sample 500 [--seed S] [--only ADDR,...|@file] [--new] [--examples K]  # outcome table only (build/), ~1 min
+python tools/nearcopy.py --version <ver> LO HI | --refs U O   # U functions closest to an O one (hand-matching starts; .claude/skills/dread-match)
 python tools/shape_census.py --version <ver> [--min 5] [--max-size B] [--top N] [--family ADDR]  # same-shape U families
 python tools/check.py --version <ver> [--update] # build src/, derive statuses, catch regressions
 python tools/verify.py --version <ver> [--regen gen_statics,...]  # generators + check --update + progress + policy, ~10 lines
