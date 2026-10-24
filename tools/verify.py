@@ -8,7 +8,10 @@ Runs, in order:
      that other sources now define;
   2. tools/check.py --update (build src/, write O/m/M/W into data/functions/);
   3. tools/progress.py;
-  4. the tools/policy_check.py rules, on tracked and untracked (not ignored) files.
+  4. the tools/policy_check.py rules, on tracked and untracked (not ignored) files;
+  5. tools/decl_check.py in report mode: how many fn_/g_unk_ symbols the hand-written sources
+     declare in more than one file or with conflicting signatures (informational; it never fails
+     this gate, CI enforces no growth per pull request with `decl_check.py --base`).
 
 Prints PASS/FAIL per step, the O count before -> after, regressions (count and up to 5
 addresses), game-code progress and, on failure, the next action. Exit status 0 only if every
@@ -25,6 +28,7 @@ Usage: python tools/verify.py --version 2.1.0 [--regen gen_statics,gen_clones]
 from __future__ import annotations
 
 import argparse
+import json
 import re
 import subprocess
 import sys
@@ -145,6 +149,18 @@ def main() -> int:
         nexts.append("fix or delete the files `python tools/policy_check.py` names (never commit them)")
     else:
         print(f"PASS policy: {len(files)} files, 0 problems")
+
+    # Informational: declaration consistency of the hand-written sources. Never fails this gate;
+    # CI enforces no growth per pull request with `tools/decl_check.py --base <ref>`.
+    rc, lines, _ = run("tools/decl_check.py", "--json")
+    try:
+        d = json.loads("\n".join(lines))
+        print(f"PASS decl_check (info): {d['declared']} fn_/g_unk_ symbols declared in {d['files']} hand-written "
+              f"files, {d['multi_file']} in more than one file ({d['extra_files']} extra copies), {d['conflicting']} "
+              f"with conflicting signatures ({d['extra_signatures']} extra), {d['header_redeclared']} declared in "
+              "include/ and again in src/ (no growth enforced by `decl_check.py --base <ref>`)")
+    except (ValueError, KeyError):
+        print(f"NOTE decl_check: no counts (exit {rc}): {short(lines[-1] if lines else '')}")
 
     if ok:
         base_file.parent.mkdir(parents=True, exist_ok=True)

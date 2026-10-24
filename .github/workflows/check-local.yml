@@ -1,0 +1,95 @@
+# The real build check (tools/check.py --update) on the owner's own PC, where the game dump and the
+# toolchain live. GitHub's hosted runners cannot run it: it needs orig/2.1.0, which never leaves the
+# owner's machines (CLAUDE.md hard rules), so this job targets a self-hosted runner.
+#
+# Inert until the repository variable SELF_HOSTED_CHECK is set to 'true' (GitHub: Settings > Secrets
+# and variables > Actions > Variables > New repository variable). Until then every run is skipped.
+# Make this job a required status check (Settings > Branches > branch protection rules for main)
+# only AFTER that variable is set and a run has gone green, or every pull request would wait on a
+# job that never runs.
+#
+# Registering the runner (once, on the PC that holds the dump): GitHub: Settings > Actions > Runners
+# > New self-hosted runner, pick Windows, and run the printed download/config commands in a folder
+# outside this repository (for example %USERPROFILE%\actions-runner); install it as a service so it
+# survives reboots. Git for Windows must be installed (actions/checkout and the bash steps use it).
+# The runner checks the repository out into its own work folder, so that checkout must be given,
+# before the first run and by hand:
+#   - orig/2.1.0            the dump as tools/setup.py lays it out (a directory junction to the owner's
+#                           copy is fine: `mklink /J orig <path-to-your-clone>\orig`);
+#   - build/recon/2.1.0     tools/recon/run.py output (asmdiff reads main_eh_functions.json from it;
+#                           a junction to the owner's build/recon works too);
+#   - the toolchain cache   %LOCALAPPDATA%\dread-decomp (tools/fetch_toolchains.py), under the account
+#                           the runner service runs as;
+#   - a Python environment  with the repo's deps (lz4, capstone, pyelftools). DREAD_PYTHON names its
+#                           interpreter and defaults to .venv/Scripts/python under the checkout; set it
+#                           in the runner's .env file (<runner folder>\.env, one KEY=value per line,
+#                           restart the service) to reuse the owner's clone's .venv, for example
+#                           DREAD_PYTHON=C:\path\to\your\clone\.venv\Scripts\python.exe
+# The checkout below runs with clean: false so those gitignored directories (and junctions) survive
+# between runs; never set clean: true here, `git clean -x` would follow the junctions.
+#
+# Never add upload-artifact, upload-pages or any log-shipping step to this job. build/ and orig/ on
+# the runner hold game-derived data, and the hard rules forbid publishing it. Only check.py's own
+# status lines (function addresses, names, percentages) reach the Actions log.
+#
+# Pull requests from forks never run here. The job executes the pull request's own tools/check.py,
+# CMake files and Python on the PC that holds orig/ (the dump) and sits next to the keys, which is
+# the hazard GitHub documents for self-hosted runners, so the job condition also requires the head
+# repository to be this repository (github.event.pull_request.head.repo.full_name == github.repository).
+# A fork's pull request then shows this job as skipped, which branch protection counts as passing even
+# when the job is required: run tools/check.py locally on a fork's branch before merging it, and the
+# push run on main covers the merge itself. Keep "Require approval for all outside collaborators"
+# (Settings > Actions > General) on as the second guard for the hosted policy workflow.
+
+name: check (self-hosted)
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: check-local-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: check
+    # Skipped (reported as passing) unless the repository variable is set and the code under test is this
+    # repository's own: a pull request from a fork never reaches the self-hosted runner (see the header).
+    if: vars.SELF_HOSTED_CHECK == 'true' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
+    runs-on: self-hosted
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+          clean: false
+      - name: Build check (tools/check.py --update)
+        shell: bash
+        run: |
+          py="${DREAD_PYTHON:-.venv/Scripts/python}"
+          if [ ! -e orig/2.1.0 ]; then
+            echo "::error::orig/2.1.0 is missing in the runner's checkout; see the header of this workflow"
+            exit 1
+          fi
+          log="$(mktemp)"
+          rc=0
+          "$py" tools/check.py --version 2.1.0 --update 2>&1 | tee "$log" || rc=$?
+          bad="$(grep -cE '^BUILD FAILED |REGRESSION \(was O\)$|^DUPLICATE ' "$log" || true)"
+          rm -f "$log"
+          if [ "$bad" != 0 ]; then
+            echo "::error::tools/check.py printed $bad BUILD FAILED / REGRESSION / DUPLICATE lines (see above)"
+            exit 1
+          fi
+          exit "$rc"
+      - name: Committed statuses match (data/functions)
+        shell: bash
+        run: |
+          if ! git diff --stat --exit-code -- data/functions; then
+            echo "::error::data/functions/ differs from what check.py --update derives; run it locally and commit the CSVs"
+            exit 1
+          fi

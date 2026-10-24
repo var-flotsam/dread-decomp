@@ -28,5 +28,12 @@ jobs:
       - name: Content policy (changed files)
         if: github.event_name == 'pull_request'
         run: python tools/policy_check.py --base "origin/${{ github.base_ref }}"
+      # Hand-written sources must not add fn_/g_unk_ declarations that conflict with existing ones:
+      # the conflicting-signature counts may not grow vs the base branch, and no symbol that include/
+      # declares may gain a local prototype (tools/decl_check.py; CONTRIBUTING.md rule 7). One more
+      # identical local copy only warns; add --strict here to reject those too.
+      - name: Declaration consistency (vs base branch)
+        if: github.event_name == 'pull_request'
+        run: python tools/decl_check.py --base "origin/${{ github.base_ref }}"
       - name: Python tools compile
         run: python -m compileall -q tools
