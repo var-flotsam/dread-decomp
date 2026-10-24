@@ -111,7 +111,15 @@ only `check.py`'s own status lines reach GitHub.
   recreated, let one job run, then add the junctions again. Never remove them with a recursive
   delete; `rmdir` removes only the link.
 - `.env` in the runner folder sets `DREAD_PYTHON` to this clone's `.venv\Scripts\python.exe`
-  (restart the runner after changing it). The workflow's steps are Windows PowerShell: Git for
+  and pins `LOCALAPPDATA`, `APPDATA` and `USERPROFILE` (restart the runner after changing it).
+- **The toolchain cache must exist in the real profile.** Shells run by the Claude desktop app
+  are sandboxed and virtualize `%LOCALAPPDATA%`: a `tools/fetch_toolchains.py` run from such a
+  shell writes to a redirected copy that only those shells see (the folder's ACL carries an
+  app-container SID), while the runner, started by Task Scheduler, sees the real profile where
+  the folder did not exist. The repository folder is not virtualized. The real
+  `%LOCALAPPDATA%\dread-decomp` was populated on 2026-10-24 by staging `toolchains\llvm-9.0.1`
+  and `sources\libcxx-9.0.1.src` through `build\cache_export\` and copying from a scheduled task.
+  Run `fetch_toolchains.py` and `fetch_sources.py` from a normal terminal to refresh it. The workflow's steps are Windows PowerShell: Git for
   Windows puts only `Git\cmd` on PATH, so `git` works in jobs but `bash` does not; the logon task
   also prepends `C:\Program Files\Git\bin` to the runner's PATH for any future `shell: bash` step
   (the runner's `.path` file is not honoured on Windows).
