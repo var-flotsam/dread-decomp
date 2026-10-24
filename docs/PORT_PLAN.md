@@ -85,7 +85,10 @@ oracle are tool work (weeks), lifted code is ugly and must be clearly fenced off
 tree, and a semantic lift can be wrong in ways a byte match cannot. The percentage of hand-typed
 code becomes the honest readability metric; the bytes-matched number keeps measuring verification.
 
-**Decision for the owner:** adopt Route B, or stay on Route A and accept a longer timeline.
+**Decision (owner, 2026-10-24): Route B.** The port lives in `port/` on `main`, not on a
+long-lived branch: it must track every header and matched function as they land, and a side
+branch would diverge within days. Port work goes through short-lived branches and pull requests
+like everything else, and a port change never edits `src/` matching code in the same PR.
 
 ## Milestones (Route B), each with a gate
 
@@ -117,7 +120,7 @@ when planning, and re-estimate after M1.
 
 ## Open decisions
 
-1. Route B (lifted code in the port as a bridge) or Route A.
+1. ~~Route B or Route A.~~ Route B, decided 2026-10-24 (above).
 2. Where semantic lifts live and whether they are tracked (they are our tool's output, no game
    bytes, but large; the 1 MB file limit and reviewability argue for generated-and-gitignored with
    a pinned generator version, like `build/`).

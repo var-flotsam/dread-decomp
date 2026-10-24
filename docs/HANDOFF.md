@@ -67,7 +67,7 @@ headers under `include/` are everyone's, so a change there says so in the PR tit
 | A. Boot slice and hubs | `tools/hubs.py --boot`: hubs, then their callers, then ready functions; canonical headers for each hub | `src/<subsystem>/` (new), the existing `src/game_*/` files it migrates, `include/` | `claude/boot-<topic>` |
 | B. Core engine types | `base::` containers, string ids and pool, reflection runtime, allocators (the engine hubs) | `src/base/`, `include/base/` | `claude/core-<topic>` |
 | C. Gameplay slice | After the title screen: player, world, characters along the gameplay path | `src/game/`, `include/game/` | `claude/game-<topic>` |
-| D. Port layer | `port/`: x86-64 build, `nn::` runtime, NVN shim, audio. Starts once the route is decided | `port/` | `claude/port-<topic>` |
+| D. Port layer | `port/` on `main` (Route B, decided 2026-10-24): x86-64 build, `nn::` runtime, NVN shim, audio; M0 in `docs/PORT_PLAN.md` first | `port/` | `claude/port-<topic>` |
 | E. Tooling | `check.py`, `asmdiff.py`, `hubs.py`, `callgraph.py`, `decl_check.py`, `tu_map.py`, `verify.py`, CI | `tools/`, `.github/` | `claude/tools-<topic>` |
 | M. Generators (maintenance) | Regenerate when needed; fix the pool bugs below; no new variant or shape rounds | `tools/gen_*.py`, `tools/refl_attrs.py`, `tools/sigmatch.py`, `src/reflection*/`, `src/clones/`, `src/lifted/`, `src/tables/`, `lib/lua/` | `claude/gen-<topic>` |
 
@@ -223,8 +223,8 @@ macOS under Rosetta 2 (`AGENTS.md`).
 
 ## Open decisions for the owner
 
-1. Route A or Route B in `docs/PORT_PLAN.md` (the choice decides whether stream D starts and
-   whether the lifter gets a semantic coverage mode).
+1. ~~Route A or Route B.~~ Route B (2026-10-24): stream D starts with M0, and the lifter gets a
+   semantic coverage mode for the port (stream M's one remaining generator task).
 2. `tools/decl_check.py` strictness: today CI fails a PR that adds a conflicting signature or a
    local prototype of a symbol `include/` declares, and only warns about one more identical copy
    (`--strict` fails those too). Tighten once the 13 symbols that `include/` itself declares twice
@@ -277,12 +277,14 @@ lower bound; directory moves driven by `data/tu_map.csv` once a unit is complete
 per unit); `tools/gen_functions_csv.py` subsystem inference from `tu_map.csv` instead of
 neighbours (68,731 functions are still "unknown").
 
-**Stream D (port).** `docs/PORT_PLAN.md`, M0: after the route decision, a `port/` CMake build for
-x86-64 that compiles `src/` (compile only) to list non-portable constructs (`include/types.h`
-assumes LP64: `unsigned long` is 32-bit on Windows), then the `nn::` stubs.
+**Stream D (port).** `docs/PORT_PLAN.md`, M0: a `port/` CMake build for x86-64 that compiles
+`src/` (compile only) to list non-portable constructs (`include/types.h` assumes LP64:
+`unsigned long` is 32-bit on Windows), then the `nn::` stubs, in the order the boot path needs them.
 
-**Stream M (generators).** Only the bugs above and `--prune`/regeneration after merges. Open
-leftovers of every generator round are recorded in `docs/JOURNAL.md` (work log items 0–3).
+**Stream M (generators).** The bugs above, `--prune`/regeneration after merges, and the lifter's
+semantic coverage mode for Route B (accept lifts that compile and behave, outside `src/`, never
+counted as matching; the oracle options are in the plan). Open leftovers of every generator round
+are recorded in `docs/JOURNAL.md` (work log items 0–3).
 
 ## Known issues and gotchas
 
