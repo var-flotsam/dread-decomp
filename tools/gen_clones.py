@@ -139,41 +139,64 @@ OPERATOR_DELETE = 0x7100083C00
 VTABLE_RE = re.compile(r"x(\d+), \[x\1, #(0x[0-9a-f]+)\]")
 
 
+GOT_LDR_RE = re.compile(r"(x\d+), \[(x\d+), #(0x[0-9a-f]+|\d+)\]")
+
+
+def strid_member(off: int, pool: int) -> str:
+    """The descriptor of a string-id member at `off` released through `pool` (UnkDestructors.h):
+    UnkStrIdAt for the default pool, UnkStrIdMemberOf<CFilePathStrId's pool> otherwise. Both
+    pools are declared by base/global/CStrId.h, which the header includes."""
+    if pool == FILE_PATH_POOL:
+        return f"base::UnkMemberAt<base::UnkStrIdMemberOf<g_unk_{pool:x}>, {off:#x}>"
+    return f"base::UnkStrIdAt<{off:#x}>"
+
+
 def destructor(orig: asmdiff.Original, addr: int, tag: str, insns: Insns) -> str | None:
     """A destructor that stores a vtable, releases string-id members and calls its base
     (UnkDestructors.h). Facts: the vtable (through the GOT), the member offsets in release
-    order, the base destructor and, for the deleting form, the free function. A second vtable
-    store is an inlined base destructor: the members after it are the base's."""
+    order, the pool each string id is released through (the most recent pool loaded through the
+    GOT before the member's load; one load can serve several members, and a member scheduled
+    before the function's first pool load takes the next one), the base destructor and, for
+    the deleting form, the free function. A second vtable store is an inlined base destructor:
+    the members after it are the base's."""
     if not any(m == "str" and o.endswith(", [x0]") for m, o in insns[:10]):
         return None
     pages: dict[str, int] = {}
     vtables: list[tuple[int, int]] = []  # (vtable, members released before its store)
-    members: list[str] = []
+    members: list[str | int] = []  # descriptors; a string id is its offset until its pool is known
+    pools: list[tuple[int, int]] = []  # (members released before the load, pool) per pool load
     calls: list[int] = []
     for i, (m, o) in enumerate(insns[:-1]):
         regs = [r.strip() for r in o.split(",")]
         if m == "adrp":
             pages[regs[0]] = int(regs[1][1:], 16)
-        elif m == "ldr" and len(vtables) < 2 and (hit := VTABLE_RE.fullmatch(o)) and f"x{hit.group(1)}" in pages:
-            got = pages[f"x{hit.group(1)}"] + int(hit.group(2), 16)
-            nxt = insns[i + 1]
-            if nxt == ("add", f"x{hit.group(1)}, x{hit.group(1)}, #0x10"):
-                target = orig.img.pointer(got - BASE)
+        elif m == "ldr" and (hit := GOT_LDR_RE.fullmatch(o)) and hit.group(2) in pages:
+            dst, got = hit.group(1), pages[hit.group(2)] + int(hit.group(3), 0)
+            target = orig.img.pointer(got - BASE)
+            if dst == hit.group(2) and len(vtables) < 2 and insns[i + 1] == ("add", f"{dst}, {dst}, #0x10"):
                 if target is None:
                     return None
                 vtables.append((BASE + target, len(members)))
+            elif target is not None and BASE + target in (STRID_POOL, FILE_PATH_POOL):
+                pools.append((len(members), BASE + target))
+            pages.pop(dst, None)  # the register now holds the loaded value, not the page
         elif m == "ldr" and (hit := re.fullmatch(r"(x\d+), \[x(?:0|19), #(0x[0-9a-f]+|\d)\]", o)) \
                 and any(x == ("cbz", f"{hit.group(1)}, {t}") for x in insns[i + 1:i + 3]
                         for t in [x[1].split(", ")[-1]]):
             # A refcounted pointer's count is decremented with subs; a string id's with sub
             # (after a compare with the pool's empty string).
             after = [x[0] for x in insns[i + 1:i + 7]]
-            kind = "UnkRefPtrAt" if "subs" in after and "sub" not in after else "UnkStrIdAt"
-            members.append(f"base::{kind}<{int(hit.group(2), 0):#x}>")
+            off = int(hit.group(2), 0)
+            members.append(f"base::UnkRefPtrAt<{off:#x}>" if "subs" in after and "sub" not in after else off)
         elif m in ("bl", "b") and o.startswith("#0x"):
             t = int(o[1:], 16)
             if t != RELEASE and t not in calls:
                 calls.append(t)
+    for k, mem in enumerate(members):
+        if isinstance(mem, int):
+            before = [p for n, p in pools if n <= k]
+            after = [p for n, p in pools if n > k]
+            members[k] = strid_member(mem, before[-1] if before else after[0] if after else STRID_POOL)
     m, o = insns[-1]
     if m == "b" and o.startswith("#0x") and int(o[1:], 16) not in calls:
         calls.append(int(o[1:], 16))
@@ -181,6 +204,8 @@ def destructor(orig: asmdiff.Original, addr: int, tag: str, insns: Insns) -> str
     bases = [c for c in calls if c != OPERATOR_DELETE]
     if not vtables or len(bases) > 1 or not (bases or deleting or members) or len(set(members)) != len(members):
         return None
+    # Both pools in one destructor: each member got the pool loaded last before it.
+    mixed = ["// string ids released through both pools, assigned per member"] if len({p for _, p in pools}) > 1 else []
     vtable = vtables[0][0]
     if len(vtables) == 2:
         base_vt, split = vtables[1]
@@ -188,13 +213,13 @@ def destructor(orig: asmdiff.Original, addr: int, tag: str, insns: Insns) -> str
         if bases or base_vt == vtable:
             return None
         fn = "refl_DeletingDtorInlineBase" if deleting else "refl_DtorInlineBase"
-        return "\n".join([f"extern char g_unk_{x:x}[];" for x in sorted({vtable, base_vt})] + [
+        return "\n".join([f"extern char g_unk_{x:x}[];" for x in sorted({vtable, base_vt})] + mixed + [
             f"template <> struct base::UnkDtorTraits<{tag}> {{",
             f"    static char* vtable() {{ return g_unk_{vtable:x}; }}",
             f"    static char* base_vtable() {{ return g_unk_{base_vt:x}; }}", "};",
             f"template void base::{fn}<{tag}, base::UnkMembers<{', '.join(lo)}>, "
             f"base::UnkMembers<{', '.join(hi)}>>(char*);"])
-    lines = [f"extern char g_unk_{vtable:x}[];"] + [f"void fn_{c:x}(char*);" for c in bases]
+    lines = [f"extern char g_unk_{vtable:x}[];"] + [f"void fn_{c:x}(char*);" for c in bases] + mixed
     lines += [f"template <> struct base::UnkDtorTraits<{tag}> {{",
               f"    static char* vtable() {{ return g_unk_{vtable:x}; }}"]
     if bases:
@@ -2975,7 +3000,11 @@ def main() -> int:
     r = subprocess.run(buildcfg.cxx_command(src, obj), capture_output=True, text=True)
     if r.returncode != 0:
         raise SystemExit(f"candidates failed to compile:\n{r.stderr[:4000]}")
-    ok = sorted({res.address for res in asmdiff.diff_object(obj, orig) if res.matching} & set(found))
+    # strict: a copy whose bytes match but whose relocations name another string pool, callee or
+    # global is rejected, not emitted
+    results = asmdiff.diff_object(obj, orig, strict=True)
+    ok = sorted({res.address for res in results if res.matching} & set(found))
+    rejected = asmdiff.reloc_rejects([res for res in results if res.address in found])
 
     if OUT.exists():
         shutil.rmtree(OUT)
@@ -2991,6 +3020,8 @@ def main() -> int:
               for name in KINDS}
     print(f"{len(ok)} of {len(found)} candidates byte-identical ({sum(orig.sizes[a] for a in ok)} bytes); "
           f"per kind (candidates, matching): {counts}")
+    for line in rejected:
+        print(line)
     return 0
 
 

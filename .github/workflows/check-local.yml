@@ -12,8 +12,9 @@
 # > New self-hosted runner, pick Windows, and run the printed download/config commands in a folder
 # outside this repository (for example %USERPROFILE%\actions-runner); install it as a service so it
 # survives reboots. Git for Windows must be installed (actions/checkout and the bash steps use it).
-# The runner checks the repository out into its own work folder, so that checkout must be given,
-# before the first run and by hand:
+# The runner checks the repository out into its own work folder. Let the first job create that
+# checkout (it fails at the orig/2.1.0 test; actions/checkout deletes the contents of a folder it
+# did not create, junction links included), then give the checkout by hand:
 #   - orig/2.1.0            the dump as tools/setup.py lays it out (a directory junction to the owner's
 #                           copy is fine: `mklink /J orig <path-to-your-clone>\orig`);
 #   - build/recon/2.1.0     tools/recon/run.py output (asmdiff reads main_eh_functions.json from it;
@@ -47,6 +48,7 @@ on:
   pull_request:
   push:
     branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -68,28 +70,52 @@ jobs:
         with:
           submodules: true
           clean: false
+      # Windows PowerShell, which every Windows runner has; Git for Windows puts only Git\cmd on
+      # PATH, so `shell: bash` is not available unless the runner is started with Git\bin on PATH.
+      - name: Toolchain and dump present
+        shell: powershell
+        run: |
+          $py = if ($env:DREAD_PYTHON) { $env:DREAD_PYTHON } else { '.venv\Scripts\python.exe' }
+          Write-Output "python: $py (exists: $(Test-Path $py))"
+          Write-Output "LOCALAPPDATA=$env:LOCALAPPDATA  USERPROFILE=$env:USERPROFILE"
+          $script = @'
+          import sys
+          sys.path.insert(0, "tools")
+          import buildcfg, fetch_toolchains, hostenv
+          from pathlib import Path
+          items = {"clang++": fetch_toolchains.clang_path(buildcfg.COMPILER), "libc++ headers": buildcfg.libcxx_include(),
+                   "llvm-cxxfilt": Path(hostenv.cxxfilt()), "orig/2.1.0/main.elf": Path("orig/2.1.0/main.elf"),
+                   "build/recon/2.1.0": Path("build/recon/2.1.0/main_eh_functions.json")}
+          missing = [k for k, p in items.items() if not p.exists()]
+          for k, p in items.items():
+              print(f"{k}: {p} ({'ok' if p.exists() else 'MISSING'})")
+          sys.exit(1 if missing else 0)
+          '@
+          $script | & $py -
+          if ($LASTEXITCODE -ne 0) {
+            Write-Output "::error::a toolchain path or the dump is missing in the runner's environment; see the lines above and the header of this workflow"
+            exit 1
+          }
       - name: Build check (tools/check.py --update)
-        shell: bash
+        shell: powershell
         run: |
-          py="${DREAD_PYTHON:-.venv/Scripts/python}"
-          if [ ! -e orig/2.1.0 ]; then
-            echo "::error::orig/2.1.0 is missing in the runner's checkout; see the header of this workflow"
+          $py = if ($env:DREAD_PYTHON) { $env:DREAD_PYTHON } else { '.venv\Scripts\python.exe' }
+          $log = Join-Path $env:RUNNER_TEMP 'check.log'
+          cmd /c "`"$py`" tools/check.py --version 2.1.0 --update > `"$log`" 2>&1"
+          $rc = $LASTEXITCODE
+          Get-Content $log
+          $bad = @(Select-String -Path $log -Pattern '^BUILD FAILED |REGRESSION \(was O\)$|^DUPLICATE ').Count
+          Remove-Item $log -ErrorAction SilentlyContinue
+          if ($bad -ne 0) {
+            Write-Output "::error::tools/check.py printed $bad BUILD FAILED / REGRESSION / DUPLICATE lines (see above)"
             exit 1
-          fi
-          log="$(mktemp)"
-          rc=0
-          "$py" tools/check.py --version 2.1.0 --update 2>&1 | tee "$log" || rc=$?
-          bad="$(grep -cE '^BUILD FAILED |REGRESSION \(was O\)$|^DUPLICATE ' "$log" || true)"
-          rm -f "$log"
-          if [ "$bad" != 0 ]; then
-            echo "::error::tools/check.py printed $bad BUILD FAILED / REGRESSION / DUPLICATE lines (see above)"
-            exit 1
-          fi
-          exit "$rc"
+          }
+          exit $rc
       - name: Committed statuses match (data/functions)
-        shell: bash
+        shell: powershell
         run: |
-          if ! git diff --stat --exit-code -- data/functions; then
-            echo "::error::data/functions/ differs from what check.py --update derives; run it locally and commit the CSVs"
+          git diff --stat --exit-code -- data/functions
+          if ($LASTEXITCODE -ne 0) {
+            Write-Output "::error::data/functions/ differs from what check.py --update derives; run it locally and commit the CSVs"
             exit 1
-          fi
+          }

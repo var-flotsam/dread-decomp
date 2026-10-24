@@ -77,44 +77,72 @@ def shape(orig: asmdiff.Original, addr: int) -> list[str]:
     return [x.mnemonic for x in CS.disasm(orig.function(addr), addr)]
 
 
+# Registers a call clobbers (the AAPCS64 caller-saved set, both spellings).
+CALLER_SAVED = {f"{p}{i}" for p in "wx" for i in range(19)}
+
+
+def _written(x) -> set[str]:
+    """The general registers an instruction writes, in both their w and x spellings."""
+    out: set[str] = set()
+    for r in x.regs_access()[1]:
+        n = CS.reg_name(r)
+        if n and n[0] in "wx" and n[1:].isdigit():
+            out |= {"w" + n[1:], "x" + n[1:]}
+    return out
+
+
 def facts(orig: asmdiff.Original, addr: int) -> dict | None:
     """The name string, the first call after the string-id constructor and the u32 stored at
-    +0x10 of the object."""
+    +0x10 of the object.
+
+    The per-register state (page, strings, imms, got) describes a register's current value
+    only: every write an instruction makes drops what was known about that register, except
+    the entry the instruction's own branch below just set, and a call clobbers x0-x18. So an
+    `adrp` over a register that held a GOT pointer makes the `ldr` after it a page load, never
+    a dereference (the slots of fn_71009d3ad0 start at a page boundary: `ldr x0, [x0]`)."""
     page: dict[str, int] = {}
     strings: dict[str, str] = {}
     imms: dict[str, int] = {}
     out: dict = {"calls": []}
     got: dict[str, int] = {}
+    state = (page, strings, imms, got)
+    fresh: set[tuple[int, str]] = set()  # (id(dict), register): set by the current instruction
+
+    def put(d: dict, reg: str, value) -> None:
+        d[reg] = value
+        fresh.add((id(d), reg))
+
     after_ctor = False
     prev: tuple[str, str] | None = None
     for x in CS.disasm(orig.function(addr), addr):
         m, o = x.mnemonic, x.operands
         cur = prev
         prev = (m, CS.reg_name(o[0].reg)) if o and o[0].type == arm64.ARM64_OP_REG else None
+        fresh.clear()
         if m == "ldarb" and CS.reg_name(o[1].mem.base) in got:
             out.setdefault("guard", got[CS.reg_name(o[1].mem.base)])
         if m == "adrp":
-            page[CS.reg_name(o[0].reg)] = o[1].imm
+            put(page, CS.reg_name(o[0].reg), o[1].imm)
         elif m == "add" and len(o) == 3 and CS.reg_name(o[1].reg) in page and o[2].type == arm64.ARM64_OP_IMM:
             target = page[CS.reg_name(o[1].reg)] + o[2].imm
             s = orig.img.cstring(target - BASE)
             if s is not None:
-                strings[CS.reg_name(o[0].reg)] = s
+                put(strings, CS.reg_name(o[0].reg), s)
             if CS.reg_name(o[0].reg) == "x1":
                 out.setdefault("x1_adds", []).append(target)
-        elif m == "ldr" and o[1].type == arm64.ARM64_OP_MEM and o[1].mem.disp == 0                 and CS.reg_name(o[1].mem.base) in got:
+        elif m == "ldr" and o[1].type == arm64.ARM64_OP_MEM and o[1].mem.disp == 0 \
+                and CS.reg_name(o[1].mem.base) in got:
             out.setdefault("source", got[CS.reg_name(o[1].mem.base)])
-            got.pop(CS.reg_name(o[0].reg), None)
         elif m == "ldr" and o[1].type == arm64.ARM64_OP_MEM and CS.reg_name(o[1].mem.base) in page:
             t = orig.img.pointer(page.pop(CS.reg_name(o[1].mem.base)) + o[1].mem.disp - BASE)
             if t is not None:
-                got[CS.reg_name(o[0].reg)] = BASE + t
+                put(got, CS.reg_name(o[0].reg), BASE + t)
                 if CS.reg_name(o[0].reg) == "x1":
                     out.setdefault("x1_got", BASE + t)
         elif m == "ldr" and o[1].type == arm64.ARM64_OP_MEM and CS.reg_name(o[1].mem.base) == "x0":
             out.setdefault("x0_disp", o[1].mem.disp)
         elif m == "mov" and len(o) == 2 and o[1].type == arm64.ARM64_OP_IMM:
-            imms[CS.reg_name(o[0].reg)] = o[1].imm
+            put(imms, CS.reg_name(o[0].reg), o[1].imm)
             out.setdefault("first_imm", o[1].imm)
         elif m == "str" and o[1].type == arm64.ARM64_OP_MEM and o[1].mem.disp == 0x10 \
                 and CS.reg_name(o[0].reg) in imms:
@@ -125,7 +153,8 @@ def facts(orig: asmdiff.Original, addr: int) -> dict | None:
         elif m == "strh" and o[1].type == arm64.ARM64_OP_MEM and o[1].mem.disp == 0x14 \
                 and CS.reg_name(o[0].reg) in imms:
             out["u16"] = imms[CS.reg_name(o[0].reg)] & 0xFFFF
-        elif m == "str" and o[1].type == arm64.ARM64_OP_MEM and o[1].mem.disp == 0x18                 and CS.reg_name(o[0].reg) in imms:
+        elif m == "str" and o[1].type == arm64.ARM64_OP_MEM and o[1].mem.disp == 0x18 \
+                and CS.reg_name(o[0].reg) in imms:
             out["flags"] = imms[CS.reg_name(o[0].reg)] & 0xFFFFFFFF
         elif m == "bl":
             out["calls"].append(o[0].imm)
@@ -138,6 +167,11 @@ def facts(orig: asmdiff.Original, addr: int) -> dict | None:
                 after_ctor = True
             elif after_ctor and "type" not in out:
                 out["type"] = o[0].imm
+        # what this instruction wrote (or a call clobbered) no longer holds the value recorded
+        for reg in _written(x) | (CALLER_SAVED if m == "bl" else set()):
+            for d in state:
+                if (id(d), reg) not in fresh:
+                    d.pop(reg, None)
     return out
 
 
@@ -595,7 +629,11 @@ def own_statics(orig: asmdiff.Original, addrs: set[int]) -> tuple[list[tuple[str
     import gen_lift as gl
     own_patch(gl)
     cands = own_candidates(gl, orig, addrs)
-    chosen, _, _ = gl.lift_rounds(orig, cands, ROOT / "build" / "gen_statics" / "own")
+    reloc_bad: set[int] = set()  # byte-identical lifts naming the wrong target (gen_lift's strict diff)
+    chosen, _, _ = gl.lift_rounds(orig, cands, ROOT / "build" / "gen_statics" / "own", reloc_bad=reloc_bad)
+    if reloc_bad - set(chosen):
+        print(f"own statics: {len(reloc_bad - set(chosen))} byte-identical lift(s) rejected for a wrong "
+              "relocation target: " + " ".join(f"{a:x}" for a in sorted(reloc_bad - set(chosen))))
     keep = sorted(a for a, (src, _) in chosen.items() if "lift_static::" in src)
     return [chosen[a] for a in keep], len(cands), sum(orig.sizes[a] for a in keep)
 
@@ -660,7 +698,11 @@ def main() -> int:
     r = subprocess.run(buildcfg.cxx_command(src, obj), capture_output=True, text=True)
     if r.returncode != 0:
         raise SystemExit(f"candidates failed to compile:\n{r.stderr[:4000]}")
-    ok = sorted({res.address for res in asmdiff.diff_object(obj, orig) if res.matching} & set(blocks))
+    # strict: a block whose bytes match but whose relocations name the wrong static, callee or
+    # global is rejected, not emitted
+    results = asmdiff.diff_object(obj, orig, strict=True)
+    ok = sorted({res.address for res in results if res.matching} & set(blocks))
+    rejected = asmdiff.reloc_rejects([res for res in results if res.address in blocks])
 
     if OUT.exists():
         shutil.rmtree(OUT)
@@ -676,6 +718,8 @@ def main() -> int:
                                                           encoding="utf-8", newline="\n")
     print(f"candidates: {counts}; {len(ok)} of {len(blocks)} byte-identical "
           f"({sum(orig.sizes[a] for a in ok)} bytes)")
+    for line in rejected:
+        print(line)
 
     own, n, size = own_statics(orig, undefined - set(ok))
     import gen_lift as gl

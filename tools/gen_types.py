@@ -641,7 +641,11 @@ def main() -> int:
     r = subprocess.run(buildcfg.cxx_command(src, obj), capture_output=True, text=True)
     if r.returncode != 0:
         raise SystemExit(f"candidates failed to compile:\n{r.stderr[:4000]}")
-    ok = {res.address for res in asmdiff.diff_object(obj, orig) if res.matching}
+    # strict: a byte match whose relocations name the wrong callee, global or GOT slot is rejected
+    results = asmdiff.diff_object(obj, orig, strict=True)
+    ok = {res.address for res in results if res.matching}
+    for line in asmdiff.reloc_rejects(results):
+        print(line)
     good = [p for p in pairs if p[0] in ok and p[2] in ok]
     good_enums = [e for e in enums if e[0] in ok]
     good_colls = [c for c in colls if c[0] in ok]

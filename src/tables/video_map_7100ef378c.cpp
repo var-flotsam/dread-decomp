@@ -132,11 +132,11 @@ struct UnkWidgetArg {
 
     UnkWidgetArg() : unk_0x0(0), unk_0x8(0) {}
 };
-extern UnkScene* g_unk_7101d47100;
-extern u8 g_unk_7101d46ee0;
+extern UnkScene* g_unk_7101d47300;  // the global object (reached through the GOT)
+extern CStrId g_unk_7101d470e0;  // a global string id
 extern u8 unk_71729db160[] HIDDEN;
 extern CFilePathStrId unk_71729db168 HIDDEN;
-void fn_710021d3d4(void* a, void* b, UnkWidget** out, void* owner);
+void fn_710021d3d4(void* a, void* b, UnkWidget** out, const CStrId* id);
 bool fn_7100219ae0(UnkScene* scene, UnkWidget* widget, u32 layer);
 void fn_71001c3504(UnkRender* render, void* p);
 void fn_710020ac34(void* p, u32 v);
@@ -154,9 +154,9 @@ void fn_7100f003e8(UnkLoadingScreen* self, s32 v);
 void fn_7100f004dc(UnkLoadingScreen* self);
 
 inline UnkWidget* UnkCreateWidget(u32 layer) {
-    UnkScene* scene = g_unk_7101d47100;
+    UnkScene* scene = g_unk_7101d47300;
     UnkWidget* widget = nullptr;
-    fn_710021d3d4(scene->unk_0x218, nullptr, &widget, &g_unk_7101d46ee0);
+    fn_710021d3d4(scene->unk_0x218, nullptr, &widget, &g_unk_7101d470e0);
     fn_7100219ae0(scene, widget, layer);
     return widget;
 }

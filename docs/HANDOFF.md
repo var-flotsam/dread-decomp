@@ -229,9 +229,11 @@ macOS under Rosetta 2 (`AGENTS.md`).
    local prototype of a symbol `include/` declares, and only warns about one more identical copy
    (`--strict` fails those too). Tighten once the 13 symbols that `include/` itself declares twice
    are reconciled (list under "Next steps", stream A).
-3. The frozen Phase 3 sample `src/flag_id/fn_71004dd360.cpp` names a global where the original
-   holds a function address (one `RELOC` line, reported only). Fix the sample or leave it frozen.
-4. Make the self-hosted check job a required status (after registering a runner; `docs/maintaining.md`).
+3. ~~The frozen Phase 3 sample `src/flag_id/fn_71004dd360.cpp` names a global where the original
+   holds a function address.~~ Fixed 2026-10-24 (it stores a function's address; bytes unchanged).
+4. ~~Register a runner and enable the self-hosted check job.~~ Done 2026-10-24 (runner `dread-pc`,
+   `docs/maintaining.md`). It cannot be a *required* check while the repository is private without
+   GitHub Pro: merge on green by hand until the repository is public.
 
 ## Next steps
 
@@ -265,17 +267,15 @@ function array's growth (`fn_7100097f80`), the function's constructor and destru
 and the string-id constructor sit next to `nnMain`, so `gen_functions_csv.py` infers `runtime?`
 and marks them `L` although they match; fix that inference.
 
-**Stream E (tooling).** Fix the generator target bugs the relocation check found (39 functions,
-all `got` relocations, reported only and still counted `O`): 36 clone copies in
-`src/clones/clones_02/03/04/06.cpp` name the default string pool `g_unk_7101d47108` where the
-original uses CFilePathStrId's `g_unk_7101d47200` (a `gen_clones` kind takes the pool as a template
-parameter without reading the slot); `src/tables/video_map_7100ef378c.cpp` names both pools 0x200
-too low (`gen_tables`); `src/reflection_statics/statics_01.cpp` `fn_71009d3ad0` names
-`g_unk_717273ff60` for 0x717273fe00 (`gen_statics`). Then regenerate and drop `REPORT_ONLY` for
-those directories. Other items: a dynamic boot trace from Eden's GDB stub to replace the static
-lower bound; directory moves driven by `data/tu_map.csv` once a unit is complete (one rename PR
-per unit); `tools/gen_functions_csv.py` subsystem inference from `tu_map.csv` instead of
-neighbours (68,731 functions are still "unknown").
+**Stream E (tooling).** Done 2026-10-24: every generator verifies relocation targets
+(`asmdiff.diff_object(strict=True)`), the three generator target bugs are fixed (`gen_clones`'s
+destructor scan now reads each string-id member's pool, `gen_statics`'s fact extractor drops
+stale register state, `gen_tables` reads the video map's globals from the GOT) and `check.py`
+enforces relocation targets everywhere. Next: a dynamic boot trace from Eden's GDB stub to
+replace the static lower bound; directory moves driven by `data/tu_map.csv` once a unit is
+complete (one rename PR per unit); `tools/gen_functions_csv.py` subsystem inference from
+`tu_map.csv` instead of neighbours (68,731 functions are still "unknown"); `trymatch.py`-style
+relocation checking in `tools/nearcopy.py`'s candidates if it compiles anything.
 
 **Stream D (port).** `docs/PORT_PLAN.md`, M0: a `port/` CMake build for x86-64 that compiles
 `src/` (compile only) to list non-portable constructs (`include/types.h` assumes LP64:
@@ -297,8 +297,9 @@ are recorded in `docs/JOURNAL.md` (work log items 0–3).
   objdiff counts both.
 - **Relocation check limits:** section-relative references (switch tables, string literals),
   conditional branches and unresolved symbols are not checked (about 129,000 relocations), so a
-  wrong string literal is still not caught. `REPORT_ONLY` directories (generated and Phase 3
-  samples) keep `O` under `--update` until their generators are fixed.
+  wrong string literal is still not caught. Every generator verifies targets itself
+  (`asmdiff.diff_object(strict=True)`), so a `RELOC` line in a generated file means a generator
+  regression: fix the generator, never the output.
 - **`decl_check.py` is a brace-structure heuristic**, not a parser: a brace-init default argument
   drops that prototype, every `#if` branch is scanned, and only the first declarator of a
   multi-declarator prototype is recorded (none of these occur today). Attributes, `noexcept` and the

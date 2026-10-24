@@ -90,13 +90,47 @@ keeps accumulating. The exception is a tool or header change that other streams 
 ## The self-hosted check job
 
 `.github/workflows/check-local.yml` runs `tools/check.py --update` on a runner you host on the PC
-that holds the dump, so merges can rely on a green check instead of a local run. It is inert
-until the repository variable `SELF_HOSTED_CHECK` is `true`. The workflow's header comment has
-the full procedure: register a Windows runner outside the repository, give its checkout
-`orig/2.1.0`, `build/recon/2.1.0` and the toolchain cache (junctions to your clone's copies
-work), point `DREAD_PYTHON` at a Python with the project's packages, set the variable, watch one
-run go green, and only then add `check` to the ruleset's required status checks. The job never
-uploads artifacts or logs; only `check.py`'s own status lines reach GitHub.
+that holds the dump, so merges can rely on a green check instead of a local run. It runs only
+while the repository variable `SELF_HOSTED_CHECK` is `true` (set on 2026-10-24) and only for
+pull requests from this repository, never from forks. The job never uploads artifacts or logs;
+only `check.py`'s own status lines reach GitHub.
+
+**The runner as set up on 2026-10-24** (runner `dread-pc`, label `dread`, in
+`%USERPROFILE%\actions-runner`, outside the repository):
+- The runner package `actions-runner-win-x64-2.338.1.zip` was verified against GitHub's
+  published SHA-256 before extraction and registered with a short-lived token from `gh api`.
+- It runs as the signed-in user, not as a service: a hidden process started by the logon
+  scheduled task `GitHub Actions runner (dread-decomp)` (Task Scheduler), so it has the user's
+  `%LOCALAPPDATA%\dread-decomp` toolchain cache and sees `C:\Program Files\LLVM`. If it is not
+  running, start the task or run `run.cmd` in that folder; `_diag\` holds its logs.
+- Its checkout, `_work\dread-decomp\dread-decomp`, holds junctions `orig` and `build\recon` to
+  this clone's copies. They were added *after* the first job: `actions/checkout` deletes the
+  contents of a work folder it did not create itself (a pre-clone with a different remote URL
+  counts as foreign; it removed the junction links, not their targets), and only fetches into a
+  checkout it made (`clean: false` keeps the ignored junctions). If the checkout is ever
+  recreated, let one job run, then add the junctions again. Never remove them with a recursive
+  delete; `rmdir` removes only the link.
+- `.env` in the runner folder sets `DREAD_PYTHON` to this clone's `.venv\Scripts\python.exe`
+  and pins `LOCALAPPDATA`, `APPDATA` and `USERPROFILE` (restart the runner after changing it).
+- **The toolchain cache must exist in the real profile.** Shells run by the Claude desktop app
+  are sandboxed and virtualize `%LOCALAPPDATA%`: a `tools/fetch_toolchains.py` run from such a
+  shell writes to a redirected copy that only those shells see (the folder's ACL carries an
+  app-container SID), while the runner, started by Task Scheduler, sees the real profile where
+  the folder did not exist. The repository folder is not virtualized. The real
+  `%LOCALAPPDATA%\dread-decomp` was populated on 2026-10-24 by staging `toolchains\llvm-9.0.1`
+  and `sources\libcxx-9.0.1.src` through `build\cache_export\` and copying from a scheduled task.
+  Run `fetch_toolchains.py` and `fetch_sources.py` from a normal terminal to refresh it. The workflow's steps are Windows PowerShell: Git for
+  Windows puts only `Git\cmd` on PATH, so `git` works in jobs but `bash` does not; the logon task
+  also prepends `C:\Program Files\Git\bin` to the runner's PATH for any future `shell: bash` step
+  (the runner's `.path` file is not honoured on Windows).
+- To retire it: `config.cmd remove --token <token from gh api ... /actions/runners/remove-token>`,
+  delete the scheduled task, then the folder.
+
+Required status checks need a ruleset or branch protection, which a private repository without
+GitHub Pro cannot have (`maintaining.md`, "Repository settings"). Until the repository is public:
+merge a pull request only when its `check` job is green (or run `check.py` locally), and re-run
+the job after merging `main` into the branch. `workflow_dispatch` lets you start a run by hand
+from the Actions tab.
 
 For a stacked PR (based on another PR's branch), change its base to `main` *before* merging and
 deleting the lower branch; otherwise GitHub closes it.

@@ -1011,7 +1011,11 @@ def _compile(version: str, candidates: dict[int, tuple[list[str], str]], workdir
     if r.returncode != 0:
         raise SystemExit(f"candidate attribute functions failed to compile:\n{r.stderr[:4000]}")
     orig = asmdiff.Original(version)
-    return {res.address for res in asmdiff.diff_object(obj, orig) if res.matching}
+    # strict: a byte match whose relocations name the wrong callee, global or GOT slot is rejected
+    results = asmdiff.diff_object(obj, orig, strict=True)
+    for line in asmdiff.reloc_rejects([res for res in results if res.address in candidates]):
+        print(f"{name}: {line}")
+    return {res.address for res in results if res.matching}
 
 
 def verify(version: str, candidates: dict[int, tuple[list[str], str]], workdir: Path) -> set[int]:

@@ -446,7 +446,11 @@ def main() -> int:
     r = subprocess.run(buildcfg.cxx_command(work / "candidates.cpp", work / "candidates.o"), capture_output=True, text=True)
     if r.returncode != 0:
         raise SystemExit(f"descriptor constructor candidates failed to compile:\n{r.stderr[:4000]}")
-    ctor_ok = {res.address for res in asmdiff.diff_object(work / "candidates.o", orig) if res.matching} & set(ctors)
+    # strict: a byte match whose relocations name the wrong callee, global or GOT slot is rejected
+    ctor_results = asmdiff.diff_object(work / "candidates.o", orig, strict=True)
+    ctor_ok = {res.address for res in ctor_results if res.matching} & set(ctors)
+    for line in asmdiff.reloc_rejects([res for res in ctor_results if res.address in ctors]):
+        print(line)
     attached_inits = {g.init for b in blocks for g in b if g.init}
 
     attr_total = len({a for b in blocks for g in b for a in (g.fn_0x70, g.fn_0xe0)
@@ -656,7 +660,10 @@ def main() -> int:
             r = subprocess.run(buildcfg.cxx_command(src, obj), capture_output=True, text=True)
         if r.returncode != 0:
             return set()
-        return {res.address for res in asmdiff.diff_object(obj, orig) if res.matching}
+        results = asmdiff.diff_object(obj, orig, strict=True)  # bytes and relocation targets
+        for line in asmdiff.reloc_rejects(results, limit=3):
+            print(f"{name}: {line}")
+        return {res.address for res in results if res.matching}
 
     with_ptrs = [n for n, (_, ptrs) in files.items() if ptrs or n in padded]
     with ThreadPoolExecutor() as pool:

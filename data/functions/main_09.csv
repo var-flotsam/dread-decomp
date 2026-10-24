@@ -3933,7 +3933,7 @@ address,size,name,name_source,subsystem,status
 0x71009ccbf8,512,fn_71009ccbf8,unknown,game/components?,O
 0x71009ccdf8,388,CPickableComponent::refl_InitClass,reflection,game/components,O
 0x71009ccf7c,260,fn_71009ccf7c,unknown,game/components?,U
-0x71009cd080,272,fn_71009cd080,unknown,game/components?,U
+0x71009cd080,272,fn_71009cd080,unknown,game/components?,O
 0x71009cd190,36,fn_71009cd190,unknown,game/components?,O
 0x71009cd1b4,272,fn_71009cd1b4,unknown,game/components?,O
 0x71009cd2c4,332,fn_71009cd2c4,unknown,game/components?,U
