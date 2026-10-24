@@ -100,6 +100,22 @@ like everything else, and a port change never edits `src/` matching code in the 
 | M3 | A level loads and plays | Gameplay slice (player, world, characters, physics) runs lifted or matched; collision and animation are correct | month 3 to 4 |
 | M4 | Playable | Audio, saves, cutscenes or a skip; stability over a full session | month 4 and later |
 
+**M0 status (2026-10-24).** The port skeleton is in: `port/CMakeLists.txt` (`dread_game`,
+`dread_runtime`, `dread`, `sweep`), `port/runtime/` with the `nn::` headers the three
+SDK-including sources need (`nn::os` tick and mutex, `nn::oe`, `nn::vi`) and empty skeletons for
+the other namespaces, and `tools/port_sweep.py`, the compile-only sweep (`port/README.md`). With
+Clang 23 for `x86_64-linux-gnu` and the libc++ 9.0.1 and musl headers, the sweep compiles 3,799 of
+the 3,808 `src/` files without the runtime and all 3,808 with it. The only category was
+`sdk header not found` (`<nn/os.h>` through `include/base/UnkDefaultAllocator.h` in 7 files,
+`<nn/os/os_TickTypes.h>` and `<nn/oe.h>`/`<nn/vi.h>` in one each); nothing in `src/lifted`,
+`src/clones` or `src/reflection` failed, and no inline assembly or AArch64-only builtin turned up.
+The build configures on the Windows PC and `dread_runtime` and `dread_game` compile there, but it
+cannot link a Windows executable yet: the PC has LLVM 23 without a Windows SDK or MSVC (the MSVC
+Build Tools, MinGW-w64 or WSL are the options), and a Windows target also needs `include/types.h`
+to stop defining `u64` as `unsigned long` (LLP64). What the sweep cannot see is M1's list:
+callees without a source, data symbols and vtables, and functions defined in two files. The other
+M0 items (the slice, hub and declaration tools, `data/tu_map.csv`) are tracked in `docs/HANDOFF.md`.
+
 This is aggressive. M1 is realistic with focus. M2 depends on shader translation, which is either
 a large dependency or a large project. "Playable in a few months" requires M2 to go well; say so
 when planning, and re-estimate after M1.
