@@ -7,8 +7,7 @@
 
 using base::UnkAllocator;
 
-extern char unk_7101aa28d8[];  // the array's vtable (at 0x18)
-extern char unk_7101a9d4b0[];  // the array's vtable (at 0x8)
+extern char unk_7101aa28d8[];  // the array's vtable (at 0x18, or at 0x8 in fn_7100c09b38's pair)
 
 struct UnkRecord58 {
     virtual void vf_0x0();
@@ -53,8 +52,8 @@ __attribute__((always_inline)) static inline void ResetArrayVariant(char* self) 
 
 void fn_7100c060d8(char* self) { ResetArrayVariant<0x18, unk_7101aa28d8>(self); }
 void fn_7100c065dc(char* self) { ResetArrayVariant<0x18, unk_7101aa28d8>(self); }
-void fn_7100c09b38(char* self) { ResetArrayVariant<0x8, unk_7101a9d4b0>(self); }
-void fn_7100c09ea4(char* self) { ResetArrayVariant<0x8, unk_7101a9d4b0>(self); }
+void fn_7100c09b38(char* self) { ResetArrayVariant<0x8, unk_7101aa28d8>(self); }
+void fn_7100c09ea4(char* self) { ResetArrayVariant<0x8, unk_7101aa28d8>(self); }
 
 // Sets the variant at 0x10 from the pointer at 8: a pair of this and the pointer (state 2), or
 // empty without one (fn_7100c0621c and its copy).

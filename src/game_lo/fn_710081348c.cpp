@@ -10,15 +10,15 @@ struct UnkManager_710081348c {
 };
 void fn_71011a870c(UnkManager_710081348c* self);
 void fn_71011a91c4(UnkManager_710081348c* self, void* handle, u32 id);
-extern UnkManager_710081348c* unk_7101cd1270;  // the manager instance (reached through the GOT)
+extern UnkManager_710081348c* g_unk_71726b0cd8;  // the manager instance (reached through the GOT)
 
 static inline UnkManager_710081348c* GetManager() {
-    if (!unk_7101cd1270) {
+    if (!g_unk_71726b0cd8) {
         UnkManager_710081348c* m = static_cast<UnkManager_710081348c*>(fn_71000839a0(0x1e8, 0x3f));
         fn_71011a870c(m);
-        unk_7101cd1270 = m;
+        g_unk_71726b0cd8 = m;
     }
-    return unk_7101cd1270;
+    return g_unk_71726b0cd8;
 }
 
 struct UnkStruct_710081348c_Desc {

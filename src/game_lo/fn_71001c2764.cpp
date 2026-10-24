@@ -1,6 +1,7 @@
 // Unless a global flag blocks it, forwards a request keyed by two ids to a sub-object; when it
 // succeeds and `remove` is set, moves every matching entry of the object's list past its end
 // (swapping it with the last entry and shrinking the count).
+#include "game/UnkGlobal_710b372a98.h"
 #include "types.h"
 
 // A 16-byte value returned through x8, so not trivially copyable.
@@ -13,8 +14,6 @@ struct UnkValue_71001c2764 {
 UnkValue_71001c2764 fn_7100030878(const UnkValue_71001c2764* src);
 
 bool fn_71001996e0(void* target, u32 a, u32 b, UnkValue_71001c2764 value, u32 c);
-
-extern char* unk_7101cc4780;  // reached through the GOT
 
 struct UnkEntry_71001c2764 {
     u8 unk_0x0[0x28];
@@ -35,7 +34,7 @@ struct UnkStruct_71001c2764 {
 
 bool fn_71001c2764(UnkStruct_71001c2764* self, u32 a, u32 b, const UnkValue_71001c2764* value, u32 c,
                    bool remove) {
-    if (unk_7101cc4780[0x318367c])
+    if (g_unk_710b372a98->field_0x318367c)
         return false;
     if (!fn_71001996e0(self->field_0x78, a, b, fn_7100030878(value), c))
         return false;

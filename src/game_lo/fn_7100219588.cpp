@@ -23,7 +23,7 @@ struct UnkStruct_7100219588_Global {
     u8 pad_0x0[0x258];
     void* field_0x258;
 };
-extern UnkStruct_7100219588_Global* unk_7101cba0d0;  // reached through the GOT
+extern void* g_unk_7101d47300;  // the global object (reached through the GOT); typed at the use
 
 void fn_71001fd7b4(void* views, UnkStruct_7100219588_Xform* xform, u32 a, u32 b);
 UnkStruct_7100219588_View* fn_71001fce38(void* views, u32 a, u32 b);
@@ -48,10 +48,10 @@ bool fn_7100219588(UnkStruct_7100219588* self, const void* pos, u32 a, u32 b) {
         if (UnkStruct_7100219588_View* view = fn_71001fce38(self->field_0x220, a, b))
             fn_7100150d30(view->field_0x108, &xform, pos, &x, &y, true);
     }
-    UnkStruct_7100219588_Global* g = unk_7101cba0d0;
+    UnkStruct_7100219588_Global* g = static_cast<UnkStruct_7100219588_Global*>(g_unk_7101d47300);
     u32 width = fn_7100132f80();
     f32 sx = fn_71001d08f4(g->field_0x258);
-    g = unk_7101cba0d0;
+    g = static_cast<UnkStruct_7100219588_Global*>(g_unk_7101d47300);
     u32 height = fn_7100132f90();
     f32 sy = fn_71001d08f4(g->field_0x258);
     s32 max_y = (u32)(sy * (f32)height);

@@ -61,22 +61,22 @@ struct UnkGlobal_7100863a8c {
     u8 unk_0x0[0x608];
     UnkGlobalSub_7100863a8c* field_0x608;
 };
-extern UnkGlobal_7100863a8c* unk_7101cba088;  // reached through the GOT
+extern void* g_unk_7101d47310;  // the game's global object (reached through the GOT); typed at the use
 
 struct UnkManager_7100863a8c {
     u8 unk_0x0[0x6b0];
 };
 void fn_7100d46804(UnkManager_7100863a8c* self);
 void fn_7100d46c60(UnkManager_7100863a8c* self, UnkObj_7100863a8c* obj);
-extern UnkManager_7100863a8c* unk_7101cccb90;  // the manager instance (reached through the GOT)
+extern UnkManager_7100863a8c* g_unk_71726a4788;  // the manager instance (reached through the GOT)
 
 static inline UnkManager_7100863a8c* GetManager() {
-    if (!unk_7101cccb90) {
+    if (!g_unk_71726a4788) {
         UnkManager_7100863a8c* m = static_cast<UnkManager_7100863a8c*>(fn_71000839a0(0x6b0, 0x3f));
         fn_7100d46804(m);
-        unk_7101cccb90 = m;
+        g_unk_71726a4788 = m;
     }
-    return unk_7101cccb90;
+    return g_unk_71726a4788;
 }
 
 struct UnkStruct_7100863a8c {
@@ -98,7 +98,8 @@ found:
     UnkObj_7100863a8c* obj = fn_71007253b8(&self->records, i).field_0x28;
     if (!obj)
         return;
-    if (UnkTracker_7100863a8c* tracker = unk_7101cba088->field_0x608->tracker) {
+    if (UnkTracker_7100863a8c* tracker =
+            static_cast<UnkGlobal_7100863a8c*>(g_unk_7101d47310)->field_0x608->tracker) {
         if (fn_7100d5a930(tracker, obj)) {
             fn_7100d5abfc(tracker, obj);
             obj->vf_0x40(4);

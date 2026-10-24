@@ -1,18 +1,8 @@
 // Sets two global mode values (0-9). When either changes, marks two flags dirty, records the
 // new values, maps each into a second numbering (0-3 -> 1-4, 4-5 -> 9-10, 6-9 -> 5-8), and
 // passes the mapped pair, twice, to a global callback.
+#include "game/UnkGraphicsState.h"
 #include "types.h"
-
-// All reached through the GOT.
-extern s32 unk_7101cc5e68;   // first value
-extern s32 unk_7101cc5e70;   // second value
-extern bool unk_7101cc5da8;  // dirty flags
-extern bool unk_7101cc5db0;
-extern s32 unk_7101cc5e78;   // first value, mapped
-extern s32 unk_7101cc5e80;   // second value, mapped
-struct UnkTarget_710015a500;
-extern UnkTarget_710015a500 unk_7101cc5cd8;
-extern void (*unk_7101cc54b0)(UnkTarget_710015a500* target, s32 a, s32 b, s32 c, s32 d);
 
 static inline void Map_710015a500(s32 v, s32* out) {
     switch (v) {
@@ -50,19 +40,19 @@ static inline void Map_710015a500(s32 v, s32* out) {
 }
 
 void fn_710015a500(s32 a, s32 b) {
-    if (unk_7101cc5e68 == a && unk_7101cc5e70 == b)
+    if (g_unk_7101a1d7c8 == a && g_unk_716e29c670 == b)
         return;
-    unk_7101cc5da8 = true;
-    unk_7101cc5db0 = true;
-    if (unk_7101cc5e68 != a) {
-        unk_7101cc5e68 = a;
-        Map_710015a500(a, &unk_7101cc5e78);
+    g_unk_7101a1d7c5 = true;
+    g_unk_7101a1d7c6 = true;
+    if (g_unk_7101a1d7c8 != a) {
+        g_unk_7101a1d7c8 = a;
+        Map_710015a500(a, &g_unk_7101a1d7d0);
     }
-    if (unk_7101cc5e70 != b) {
-        unk_7101cc5e70 = b;
-        Map_710015a500(b, &unk_7101cc5e80);
+    if (g_unk_716e29c670 != b) {
+        g_unk_716e29c670 = b;
+        Map_710015a500(b, &g_unk_7101a1d7d4);
     }
-    s32 ma = unk_7101cc5e78;
-    s32 mb = unk_7101cc5e80;
-    unk_7101cc54b0(&unk_7101cc5cd8, ma, mb, ma, mb);
+    s32 ma = g_unk_7101a1d7d0;
+    s32 mb = g_unk_7101a1d7d4;
+    g_unk_716e29b4d0(g_unk_716e29c678, ma, mb, ma, mb);
 }

@@ -1,5 +1,6 @@
 // Getters building a value of kind 2 (fn_71000a18d4 fills in the rest from the type the value is
 // described by): words of the translation unit's globals, a zero, flags of an object and a vector.
+#include "base/reflection/UnkReflAttributes.h"  // the type getters (refl_GetType<T>)
 #include "types.h"
 
 struct UnkValue {
@@ -10,19 +11,20 @@ struct UnkValue {
 
 void fn_71000a18d4(UnkValue* out, void* type, const void* value, u32 flag);
 
-__attribute__((always_inline)) static inline UnkValue MakeValue(void* type, const void* value) {
+// The type getters return a const descriptor; fn_71000a18d4 is declared with the non-const pointer
+// its other callers use (it only reads the descriptor).
+__attribute__((always_inline)) static inline UnkValue MakeValue(const void* type, const void* value) {
     UnkValue result;
     result.field_0x0 = 0;
     result.field_0x8 = 0;
     result.field_0x10 = 2;
-    fn_71000a18d4(&result, type, value, 0);
+    fn_71000a18d4(&result, const_cast<void*>(type), value, 0);
     return result;
 }
 
-void* fn_7100014768();  // a 4-byte type's getter
+// fn_7100014768 (int), fn_7100005178 (unsigned), fn_710000abbc (float), fn_710000d228 (bool) and
+// fn_71000246e4 (CVector3D) are the type getters UnkReflAttributes.h declares.
 void* fn_7100010e58();  // an 8-byte type's getter
-void* fn_710000d228();  // the bool type's getter
-void* fn_71000246e4();  // base::reflection::refl_GetType<base::math::CVector3D>
 
 extern u32 g_unk_7172756b90 __attribute__((visibility("hidden")));
 extern u32 g_unk_7172756cbc __attribute__((visibility("hidden")));
@@ -35,15 +37,15 @@ UnkValue fn_7100ad4b54() {
 }
 UnkValue fn_7100ad4ba0() {
     u32 value = g_unk_7172756cbc;
-    return MakeValue(fn_7100014768(), &value);
+    return MakeValue(fn_7100005178(), &value);
 }
 UnkValue fn_7100ad4bec() {
     u64 value = g_unk_7172756b98;
     return MakeValue(fn_7100010e58(), &value);
 }
 UnkValue fn_7100ad4c38() {
-    u32 value = g_unk_7172756ba0;
-    return MakeValue(fn_7100014768(), &value);
+    u32 value = g_unk_7172756ba0;  // a float's bits, copied as a word
+    return MakeValue(fn_710000abbc(), &value);
 }
 
 UnkValue fn_7100b87488() {
@@ -190,7 +192,6 @@ UnkValue fn_7100c91e70(void* unused, UnkArgument<UnkDefIterValue<0x40>>* argumen
 
 // Values of kind 2 holding a manager singleton, created on first use (allocated with flags 0x3f or
 // 3, and constructed in place).
-void* fn_71000839a0(u64 size, u32 flags);
 void fn_7100ee1f34(void* self);
 void fn_7100d8ced8(void* self);
 void fn_7100359118(void* self);
@@ -227,8 +228,6 @@ struct UnkAngleSource {
     f32 field_0xc8;
     f32 field_0xcc;
 };
-
-void* fn_710000abbc();  // base::reflection::refl_GetType<float>
 
 UnkValue fn_7100d690c4(void* unused, UnkArgument<UnkAngleSource>* argument) {
     UnkAngleSource* source = argument->field_0x8;

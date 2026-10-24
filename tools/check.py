@@ -14,9 +14,28 @@ at column 0 with `name(`). A compiled symbol maps to an original function by
 `fn_<addr>` in its name, or by its demangled name when that name is unique in
 data/functions/.
 
+Relocation targets: a function whose bytes match is O only if every relocation it
+carries names the original's target too (asmdiff.check_relocs). A relocation's symbol
+resolves to an original address when it is defined in the same object (through the
+mapping above), when its demangled name is `fn_<addr>` or `g_unk_<addr>` (the older
+`unk_<addr>` too; in any namespace: callee::, folded::, noret::), or when that name is unique in
+data/functions/; the address plus the addend must equal what the original encodes
+(BL/B offset, ADRP+lo12 address, or the GOT slot's RELATIVE relocation). Imports are
+compared by name through the original's PLT stub or GOT slot. Section-relative
+references (switch tables, string literals), conditional branches and symbols that do
+not resolve are counted as unchecked, never as a mismatch. Each mismatch prints one
+line, `RELOC  <addr>  <symbol> -> original <target>  +<offset>  <kind>  <source>`, and
+the function is demoted from O to W (m/M when annotated), so a RELOC line on a
+function that was O is also a REGRESSION. Generated sources (REPORT_ONLY: src/clones/,
+src/lifted/, src/reflection*/, src/tables/) and the frozen Phase 3 samples keep their
+status: their RELOC lines are reported for the generator's owner, who fixes the
+generator and regenerates; with --update they therefore stay O in data/functions/, and
+tools/progress.py counts them as matching until then. `--no-reloc` skips the check.
+
 Usage:
   python tools/check.py --version 2.1.0            # report; exit 1 if an O function regressed or a function is defined in two files
   python tools/check.py --version 2.1.0 --update   # also write O/m/M/W into data/functions/
+  python tools/check.py --version 2.1.0 --no-reloc # bytes only, as before the relocation check
 """
 
 from __future__ import annotations
@@ -39,6 +58,11 @@ COMPILER = buildcfg.COMPILER  # project toolchain and flags: tools/buildcfg.py
 
 ANNOTATION = re.compile(r"//\s*NON_MATCHING\((minor|major)\)")
 DEFINITION = re.compile(r"^[A-Za-z_][\w:<>,\*& ]*?\b([A-Za-z_][\w:]*)\s*\(")
+QUALIFIERS = re.compile(r"(\s*(const|volatile|&&|&))+$")
+# Top-level src/ directories whose relocation mismatches are reported but do not demote: generated
+# sources (fix the generator, then regenerate) and the Phase 3 identification samples (frozen).
+REPORT_ONLY = ("clones", "lifted", "reflection", "reflection_statics", "reflection_types", "tables",
+               "compiler_id", "flag_id", "atk_id")
 
 
 def annotations(src: Path) -> dict[str, str]:
@@ -66,12 +90,31 @@ def load_csv() -> tuple[dict[str, dict], dict[str, list[dict]]]:
     return rows, files
 
 
-def demangle(names: list[str]) -> dict[str, str]:
+def demangle(names: list[str], strip: bool = True) -> dict[str, str]:
+    """Symbol -> demangled name; `strip` cuts at the first '(' (the qualified function name)."""
+    names = [n for n in names if n]
     if not names:
         return {}
     out = subprocess.run([CXXFILT], input="\n".join(names), capture_output=True, text=True,
                          check=True).stdout.splitlines()
-    return {n: o.split("(")[0] for n, o in zip(names, out)}
+    return {n: o.split("(")[0] if strip else o for n, o in zip(names, out)}
+
+
+def strip_params(demangled: str) -> str:
+    """Drop a trailing parameter list and qualifiers: 'a::b(int) const' -> 'a::b'.
+
+    Unlike demangle(strip=True) it leaves names that only contain parentheses alone, so a
+    function-local static 'f()::s' is not mistaken for 'f'.
+    """
+    name = QUALIFIERS.sub("", demangled)
+    if not name.endswith(")"):
+        return demangled
+    depth = 0
+    for i in range(len(name) - 1, -1, -1):
+        depth += {")": 1, "(": -1}.get(name[i], 0)
+        if depth == 0:
+            return name[:i]
+    return demangled
 
 
 def object_path(version: str, src: Path) -> Path:
@@ -97,8 +140,56 @@ def resolver(by_name: dict[str, list[int]], names: dict[str, str]):
     return resolve
 
 
+def target_resolver(by_name: dict[str, list[int]], full_names: dict[str, str], defined: dict[str, int]):
+    """Map a relocation's symbol to the original address it stands for, or None.
+
+    In order: a function this object defines (the address its diff used), a demangled
+    `fn_<addr>`/`g_unk_<addr>` name (asmdiff.TARGET_RE), a name unique in data/functions/.
+    """
+    def resolve(sym: str) -> int | None:
+        if sym in defined:
+            return defined[sym]
+        name = strip_params(full_names.get(sym, sym))
+        m = asmdiff.TARGET_RE.match(name)
+        if m:
+            return int(m.group(1), 16)
+        hits = by_name.get(name, [])
+        return hits[0] if len(hits) == 1 else None
+    return resolve
+
+
 def sources() -> list[Path]:
     return sorted((ROOT / "src").rglob("*.cpp"))
+
+
+def csv_by_name(rows: dict[str, dict]) -> dict[str, list[int]]:
+    """CSV name -> addresses carrying it (a name is a resolver key only when it has one)."""
+    by_name: dict[str, list[int]] = {}
+    for r in rows.values():
+        by_name.setdefault(r["name"], []).append(int(r["address"], 16))
+    return by_name
+
+
+def diff_with_targets(functions: list[asmdiff.ObjFunction], original: asmdiff.Original,
+                      by_name: dict[str, list[int]]):
+    """Diff an object's functions and build the resolver for their relocation targets.
+
+    Returns (diffs, names, full_names, targets): names maps each function symbol to its
+    qualified demangled name, full_names every symbol (functions and relocation targets) to
+    its full demangled form, targets(symbol) a relocation's symbol to an original address or None.
+    """
+    symbols = {f.symbol for f in functions}
+    symbols.update(r.symbol for f in functions for r in f.relocs.values() if not r.section)
+    full_names = demangle(sorted(symbols), strip=False)
+    names = {f.symbol: full_names.get(f.symbol, f.symbol).split("(")[0] for f in functions}
+    diffs = asmdiff.diff_functions(functions, original, resolver(by_name, names))
+    targets = target_resolver(by_name, full_names, {res.symbol: res.address for res in diffs})
+    return diffs, names, full_names, targets
+
+
+def reloc_line(addr: str, m: asmdiff.RelocMismatch, full_names: dict[str, str], src: Path) -> str:
+    sym = strip_params(full_names.get(m.symbol, m.symbol))
+    return f"RELOC  {addr}  {asmdiff.format_mismatch(m, sym)}  {src.relative_to(ROOT).as_posix()}"
 
 
 def main() -> int:
@@ -106,16 +197,19 @@ def main() -> int:
     ap.add_argument("--version", required=True)
     ap.add_argument("--update", action="store_true", help="write statuses into data/functions/")
     ap.add_argument("-j", "--jobs", type=int, default=8, help="parallel compiles")
+    ap.add_argument("--no-reloc", action="store_true", help="skip the relocation target check")
     args = ap.parse_args()
 
     rows, files = load_csv()
-    by_name: dict[str, list[int]] = {}
-    for r in rows.values():
-        by_name.setdefault(r["name"], []).append(int(r["address"], 16))
+    by_name = csv_by_name(rows)
     original = asmdiff.Original(args.version)
 
     results = {}  # address -> (status, symbol, score)
     defined_in: dict[str, set[Path]] = {}  # address -> source files that define it
+    reloc_lines: dict[str, list[str]] = {}  # address -> RELOC lines, from every file defining it
+    report_only_addrs: set[str] = set()  # addresses whose mismatches are in REPORT_ONLY directories
+    demoted: set[str] = set()  # addresses a mismatch demoted
+    report = asmdiff.RelocReport()
     srcs = sources()
     from concurrent.futures import ThreadPoolExecutor
     with ThreadPoolExecutor(args.jobs) as pool:
@@ -124,14 +218,26 @@ def main() -> int:
     for src, obj in zip(srcs, objects):
         if obj is None:
             continue
-        names = demangle([n for n, _, _ in asmdiff.object_functions(obj)])
-        resolve = resolver(by_name, names)
+        diffs, names, full_names, targets = diff_with_targets(asmdiff.read_object(obj), original, by_name)
         notes = annotations(src)
-        for res in asmdiff.diff_object(obj, original, resolve):
+        report_only = src.relative_to(ROOT / "src").parts[0] in REPORT_ONLY
+        for res in diffs:
             short = names.get(res.symbol, res.symbol).split("::")[-1]
             status = "O" if res.matching else notes.get(short, "W")
-            results[f"{res.address:#x}"] = (status, names.get(res.symbol, res.symbol), res.score)
-            defined_in.setdefault(f"{res.address:#x}", set()).add(src)
+            addr = f"{res.address:#x}"
+            if res.matching and not args.no_reloc:
+                rep = asmdiff.check_relocs(res, original, targets)
+                report.merge(rep)
+                if rep.mismatches:
+                    if report_only:
+                        report_only_addrs.add(addr)
+                    else:
+                        status = notes.get(short, "W")
+                        demoted.add(addr)
+                    reloc_lines.setdefault(addr, []).extend(reloc_line(addr, m, full_names, src)
+                                                            for m in rep.mismatches)
+            results[addr] = (status, names.get(res.symbol, res.symbol), res.score)
+            defined_in.setdefault(addr, set()).add(src)
 
     regressions = 0
     for addr, (status, name, score) in sorted(results.items()):
@@ -140,9 +246,18 @@ def main() -> int:
         if old == "O" and status != "O":
             flag = "  REGRESSION (was O)"
             regressions += 1
+        for line in reloc_lines.get(addr, []):
+            print(line)
         print(f"{status}  {addr}  {score:6.1%}  {name}{flag}")
     counts = {s: sum(1 for v in results.values() if v[0] == s) for s in "OmMW"}
     print(f"{len(results)} functions in src/: " + ", ".join(f"{k} {v}" for k, v in counts.items()))
+    if not args.no_reloc:
+        def kinds(c):
+            return ", ".join(f"{k} {v}" for k, v in sorted(c.items(), key=lambda kv: -kv[1]))
+        print(f"relocations: {sum(report.checked.values())} checked ({kinds(report.checked)}), "
+              f"{len(report.mismatches)} mismatched in {len(reloc_lines)} functions"
+              f" ({len(report_only_addrs - demoted)} in generated or sample files, reported only), "
+              f"{sum(report.unchecked.values())} unchecked ({kinds(report.unchecked)})")
     # Parallel workstreams can each define the same function (e.g. a clone and a lifted copy).
     # The Phase 3 identification samples overlap other sources by design and are not counted.
     samples = [ROOT / "src" / d for d in ("compiler_id", "flag_id", "atk_id")]
