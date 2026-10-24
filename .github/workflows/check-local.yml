@@ -72,14 +72,34 @@ jobs:
           clean: false
       # Windows PowerShell, which every Windows runner has; Git for Windows puts only Git\cmd on
       # PATH, so `shell: bash` is not available unless the runner is started with Git\bin on PATH.
+      - name: Toolchain and dump present
+        shell: powershell
+        run: |
+          $py = if ($env:DREAD_PYTHON) { $env:DREAD_PYTHON } else { '.venv\Scripts\python.exe' }
+          Write-Output "python: $py (exists: $(Test-Path $py))"
+          Write-Output "LOCALAPPDATA=$env:LOCALAPPDATA  USERPROFILE=$env:USERPROFILE"
+          $script = @'
+          import sys
+          sys.path.insert(0, "tools")
+          import buildcfg, fetch_toolchains, hostenv
+          from pathlib import Path
+          items = {"clang++": fetch_toolchains.clang_path(buildcfg.COMPILER), "libc++ headers": buildcfg.libcxx_include(),
+                   "llvm-cxxfilt": Path(hostenv.cxxfilt()), "orig/2.1.0/main.elf": Path("orig/2.1.0/main.elf"),
+                   "build/recon/2.1.0": Path("build/recon/2.1.0/main_eh_functions.json")}
+          missing = [k for k, p in items.items() if not p.exists()]
+          for k, p in items.items():
+              print(f"{k}: {p} ({'ok' if p.exists() else 'MISSING'})")
+          sys.exit(1 if missing else 0)
+          '@
+          $script | & $py -
+          if ($LASTEXITCODE -ne 0) {
+            Write-Output "::error::a toolchain path or the dump is missing in the runner's environment; see the lines above and the header of this workflow"
+            exit 1
+          }
       - name: Build check (tools/check.py --update)
         shell: powershell
         run: |
           $py = if ($env:DREAD_PYTHON) { $env:DREAD_PYTHON } else { '.venv\Scripts\python.exe' }
-          if (-not (Test-Path 'orig\2.1.0')) {
-            Write-Output "::error::orig/2.1.0 is missing in the runner's checkout; see the header of this workflow"
-            exit 1
-          }
           $log = Join-Path $env:RUNNER_TEMP 'check.log'
           cmd /c "`"$py`" tools/check.py --version 2.1.0 --update > `"$log`" 2>&1"
           $rc = $LASTEXITCODE
