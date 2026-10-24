@@ -3302,7 +3302,7 @@ address,size,name,name_source,subsystem,status
 0x7100d6e328,12,fn_7100d6e328,unknown,unknown,O
 0x7100d6e334,8,fn_7100d6e334,unknown,unknown,O
 0x7100d6e33c,8,fn_7100d6e33c,unknown,unknown,O
-0x7100d6e344,112,fn_7100d6e344,unknown,unknown,U
+0x7100d6e344,112,fn_7100d6e344,unknown,unknown,O
 0x7100d6e3b4,128,fn_7100d6e3b4,unknown,unknown,O
 0x7100d6e434,268,fn_7100d6e434,unknown,unknown,O
 0x7100d6e540,48,fn_7100d6e540,unknown,unknown,O
