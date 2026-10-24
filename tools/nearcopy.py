@@ -75,9 +75,11 @@ def defining_file(addr: int) -> str:
     found = []
     for line in out.splitlines():
         path, _, text = line.split(":", 2)
-        t = text.strip()
+        t = text.split("//", 1)[0].strip()  # an address in a trailing comment is not a definition
+        if f"{addr:x}" not in t:
+            continue
         clone = t.startswith("template ") and f"UnkClone_fn_{addr:x}" in t
-        if not clone and (t.startswith("//") or t.endswith(";") or "callee" in t):
+        if not clone and (t.endswith(";") or "callee" in t):
             continue
         found.append(path)
     found.sort(key=lambda p: p.startswith(GENERATED))
