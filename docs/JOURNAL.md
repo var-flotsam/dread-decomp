@@ -78,6 +78,20 @@ getter where it feeds one call creates a conflict with its other declarations, s
 `.init_array` entries are in address order with each initialiser last in its TU, and the reflection
 boilerplate (attribute helper, then getter) opens a TU; Lua's range is 0x71010a0880–0x71010bee20.
 
+Second part of the session (generator fixes, branch `claude/gen-reloc-fixes`): every generator
+now verifies relocation targets through `asmdiff.diff_object(strict=True)` (one `llvm-cxxfilt`
+call per object; a byte-identical candidate with a wrong target is rejected and logged), and the
+three bugs the check found are fixed. `gen_clones`'s destructor scan assigned every string-id
+member the default pool; it now takes the most recent pool load before each member, which also
+matched 14 destructors that release ids through both pools (fn_710041b1b8 and others). `gen_statics`'s
+`facts()` mistook a GOT page load for a dereference when a register still held an earlier GOT
+pointer (the three slots of fn_71009d3ad0 start at a page boundary); every written register now
+drops its stale state and a call clobbers x0–x18. `gen_tables` had hand-typed the video map's two
+globals 0x200 too low; it reads them from the GOT now. The frozen sample `src/flag_id/fn_71004dd360.cpp`
+stored a global's address where the original stores a function's (`fn_71004dd73c`, a callback).
+`check.py` no longer exempts generated directories. The self-hosted check runner `dread-pc` was
+registered the same day (`docs/maintaining.md`).
+
 **Fourteenth session (2026-10-21, Linux cloud, branch `claude/project-thread-slp42f`):** probe of the
 ten largest `U` functions (Next steps, "Giant functions"); new generator `tools/gen_tables.py`
 (`src/tables/`, stream 8): the strid table, the loading screen's video map (`video_map` kind;
