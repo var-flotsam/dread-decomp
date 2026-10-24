@@ -2,11 +2,11 @@
 // commander's stage defines: when the commander is found and is of the right class, each axis is
 // moved to stay a margin (25 plus the component's value at 0x5dc) away from the area's edge.
 #include "base/math/CVector.h"
+#include "base/reflection/UnkReflCast.h"
 #include "types.h"
 
 using base::math::CVector3D;
-
-struct UnkReflType;
+using base::reflection::CClass;
 
 struct UnkTargetPos {
     u8 pad_0x0[0x44];
@@ -28,7 +28,7 @@ struct UnkCommander {
     void** vtable;
     u8 pad_0x8[0x15d14];
     UnkArea field_0x15d1c;
-    const UnkReflType* vf_0x0() { return reinterpret_cast<const UnkReflType* (*)(UnkCommander*)>(vtable[0])(this); }
+    const CClass* vf_0x0() { return reinterpret_cast<const CClass* (*)(UnkCommander*)>(vtable[0])(this); }
 };
 
 struct UnkCommanderOwner {
@@ -51,8 +51,7 @@ struct UnkClamper {
 };
 
 UnkTargetPos* fn_7100d7c990(UnkTargetPos* object);
-const UnkReflType* fn_710044e708();  // CChozoCommanderAIComponent::refl_GetClass
-bool fn_710009d50c(const UnkReflType* type, const UnkReflType* base);
+const CClass* fn_710044e708();  // CChozoCommanderAIComponent::refl_GetClass
 
 union UnkBits {
     u32 u;

@@ -1,11 +1,14 @@
 // When the owner faces the target (the sign of its direction's x equals the sign of the x offset to
 // the target) and the target's object at +0x1b8 fails a test, hands the owner's component at +0x240
 // to fn_71004554d8 if its class is the commander AI component.
+#include "base/reflection/UnkReflCast.h"
 #include "types.h"
+
+using base::reflection::CClass;
 
 struct UnkComponent {
     void** vtable;
-    const void* vf_0x0() { return reinterpret_cast<const void* (*)(UnkComponent*)>(vtable[0])(this); }
+    const CClass* vf_0x0() { return reinterpret_cast<const CClass* (*)(UnkComponent*)>(vtable[0])(this); }
 };
 
 struct UnkDirection {
@@ -36,8 +39,7 @@ struct UnkSelf {
 UnkBody* fn_7100d7c990(UnkOwner* object);
 UnkDirection* fn_710002614c(void* object);
 bool fn_7101161088(void* object);
-void* fn_710044e708();  // CChozoCommanderAIComponent::refl_GetClass
-bool fn_710009d50c(const void* from, void* to);
+const CClass* fn_710044e708();  // CChozoCommanderAIComponent::refl_GetClass
 void fn_71004554d8(UnkComponent* component);
 
 static inline f32 Sign(f32 v) { return (f32)((v > 0.0f) - (v < 0.0f)); }

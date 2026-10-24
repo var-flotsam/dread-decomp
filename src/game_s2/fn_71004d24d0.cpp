@@ -3,11 +3,11 @@
 // the target is (distance over a maximum, capped at 1), scaled by `scale`, and never more than
 // the distance itself.
 #include "base/math/CVector.h"
+#include "base/reflection/UnkReflCast.h"
 #include "types.h"
 
 using base::math::CVector3D;
-
-struct UnkReflType;
+using base::reflection::CClass;
 
 struct UnkTargetPos {
     u8 pad_0x0[0x44];
@@ -27,7 +27,7 @@ struct UnkAttackTunables {
 
 struct UnkAttackObject {
     void** vtable;
-    const UnkReflType* vf_0x0() { return reinterpret_cast<const UnkReflType* (*)(UnkAttackObject*)>(vtable[0])(this); }
+    const CClass* vf_0x0() { return reinterpret_cast<const CClass* (*)(UnkAttackObject*)>(vtable[0])(this); }
 };
 
 struct UnkMover {
@@ -38,8 +38,7 @@ struct UnkMover {
 };
 
 UnkTargetPos* fn_7100d7c990(UnkTargetPos* object);
-const UnkReflType* fn_71004add20();  // CCharClassCooldownXBossLavaDropsAttack::refl_GetClass
-bool fn_710009d50c(const UnkReflType* type, const UnkReflType* base);
+const CClass* fn_71004add20();  // CCharClassCooldownXBossLavaDropsAttack::refl_GetClass
 
 // NON_MATCHING(minor): the two argument copies at the start (position, scale) are in the other order;
 // behaviour is identical

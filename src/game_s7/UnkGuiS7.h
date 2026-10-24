@@ -8,19 +8,20 @@
 
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "base/reflection/UnkReflCast.h"
 
 namespace unk_gui {
 
 using base::global::CRntString;
 using base::global::CStrId;
+using base::reflection::CClass;
+using UnkClass = CClass;  // the name the includers (fn_7100b921e0, fn_7100b94320) still use
 
-struct UnkClass;
-bool fn_710009d50c(const UnkClass* type, const UnkClass* base);
-const UnkClass* fn_71011e8dfc();  // GUI::CLabel::refl_GetClass
-const UnkClass* fn_71011f6890();  // GUI::CSprite::refl_GetClass
+const CClass* fn_71011e8dfc();  // GUI::CLabel::refl_GetClass
+const CClass* fn_71011f6890();  // GUI::CSprite::refl_GetClass
 
 struct UnkGuiObj {
-    virtual const UnkClass* GetClass();
+    virtual const CClass* GetClass();
     u8 unk_0x8[0x188];
     const char* field_0x190;
 };
@@ -157,7 +158,7 @@ inline f32 Trunc(f32 t) { return t > 0.0f ? __builtin_floorf(t) : __builtin_ceil
 // The child of `composition` with this name when it is of the class `get_class` returns, else
 // null.
 __attribute__((always_inline)) inline UnkGuiObj* FindChild(UnkGuiObj* composition, const char* name,
-                                                           const UnkClass* (*get_class)()) {
+                                                           const CClass* (*get_class)()) {
     UnkGuiObj* child = fn_71011d98ec(composition, fn_7100001570(name, __builtin_strlen(name)));
     return child && fn_710009d50c(child->GetClass(), get_class()) ? child : nullptr;
 }

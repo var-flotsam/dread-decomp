@@ -2,13 +2,16 @@
 // AI component (null otherwise) and registers three embedded entries in the list at 0x161c, each
 // one initialised from its own fixed offset into that component. Returns bit 0 of the first
 // step's result.
+#include "base/reflection/UnkReflCast.h"
 #include "types.h"
+
+using base::reflection::CClass;
 
 typedef u64 u64_a4 __attribute__((aligned(4)));
 
 struct UnkComponent {
     void** vtable;
-    const void* vf_0x0() { return reinterpret_cast<const void* (*)(UnkComponent*)>(vtable[0])(this); }
+    const CClass* vf_0x0() { return reinterpret_cast<const CClass* (*)(UnkComponent*)>(vtable[0])(this); }
 };
 
 struct UnkSelf {
@@ -27,8 +30,7 @@ struct UnkSelf {
 };
 
 u32 fn_71003ac8f4(UnkSelf* self);
-void* fn_7100496fbc();  // CCharClassChozoWarriorAIComponent::refl_GetClass
-bool fn_710009d50c(const void* from, void* to);
+const CClass* fn_7100496fbc();  // CCharClassChozoWarriorAIComponent::refl_GetClass
 void fn_7100494c30(void* entry, u8* source);
 void fn_7100495474(void* entry, u8* source);
 void fn_710049418c(void* entry, u8* source);

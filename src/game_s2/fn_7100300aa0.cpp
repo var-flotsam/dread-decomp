@@ -1,9 +1,11 @@
 // Finds the component named `id` in the array at +0x40 (compared with the id of the record at +0xc8 of
 // each entry) and returns it when it is an instance of the class fn_71003335fc describes, else null.
 #include "base/global/CStrId.h"
+#include "base/reflection/UnkReflCast.h"
 #include "types.h"
 
 using base::global::CStrId;
+using base::reflection::CClass;
 
 struct UnkNamed {
     CStrId field_0x0;
@@ -21,8 +23,7 @@ struct UnkOwner {
     u32 field_0x48;
 };
 
-void* fn_71003335fc();
-bool fn_710009d50c(void* a, void* b);
+const CClass* fn_71003335fc();
 
 // The first entry is tested before the loop, as in the original.
 static inline UnkEntry** FindByName(UnkEntry** begin, UnkEntry** end, CStrId key) {
@@ -44,5 +45,5 @@ UnkEntry* fn_7100300aa0(UnkOwner* self, const CStrId* id) {
     UnkEntry* entry = *it;
     if (!entry)
         return nullptr;
-    return fn_710009d50c(reinterpret_cast<void* (*)(UnkEntry*)>(entry->vtable[0])(entry), fn_71003335fc()) ? entry : nullptr;
+    return fn_710009d50c(reinterpret_cast<const CClass* (*)(UnkEntry*)>(entry->vtable[0])(entry), fn_71003335fc()) ? entry : nullptr;
 }

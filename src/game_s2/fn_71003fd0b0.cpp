@@ -2,11 +2,13 @@
 // after fn_7100d7c990 gives the target object, the angle becomes atan2 of the position
 // difference (values at 0x54 and 0x44), is normalised, and the current value moves towards it
 // by at most the tunable at 0x24 times `scale`. fn_71003fd194 then gets the current value.
+#include "base/reflection/UnkReflCast.h"
 #include "types.h"
 
-struct UnkReflType;
+using base::reflection::CClass;
+
 struct UnkAIObject {
-    virtual const UnkReflType* vf_0x0();
+    virtual const CClass* vf_0x0();
 };
 struct UnkPositioned {
     u8 unk_0x0[0x44];
@@ -33,8 +35,7 @@ struct UnkTunable {
 
 extern UnkTunable g_unk_71726c32a0;
 extern "C" f32 atan2f(f32 y, f32 x);
-bool fn_710009d50c(const UnkReflType* type, const UnkReflType* base);
-const UnkReflType* fn_71003feb44();  // CCharClassCentralUnitCannonAIComponent::refl_GetClass
+const CClass* fn_71003feb44();  // CCharClassCentralUnitCannonAIComponent::refl_GetClass
 UnkPositioned* fn_7100d7c990(UnkPositioned* object);
 void fn_710007a170(UnkAim* aim, f32 current);
 void fn_71003fd194(UnkSelf* self, f32 current);

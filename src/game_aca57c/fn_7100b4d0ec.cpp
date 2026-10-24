@@ -3,6 +3,7 @@
 // the current main menu (or to nothing when no main menu is active).
 #include "base/global/CRntString.h"
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflCast.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -44,7 +45,6 @@ void fn_71011cf2a4(void* composition, s32 value);
 void fn_71011cf364(void* composition, s32 value);
 void fn_71011cde44(void* composition, s32 value);
 UnkReflObject* fn_7100e033a8(void* manager);
-bool fn_710009d50c(const CType* type, const CType* base);
 const CClass* fn_7100b34230();  // GUI::CMainMenu::refl_GetClass
 void fn_71011d968c(UnkReflObject* menu, void* composition);
 

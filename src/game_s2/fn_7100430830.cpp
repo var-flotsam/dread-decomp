@@ -3,11 +3,14 @@
 // that replaces the first when the owner's direction is positive), when the global manager's
 // camera controller is a boss camera: its fixed 3.0 is written to the controller's 0x344. The z extent
 // is clamped to include 0.
+#include "base/reflection/UnkReflCast.h"
 #include "types.h"
+
+using base::reflection::CClass;
 
 struct UnkObject {
     void** vtable;
-    const void* vf_0x0() { return reinterpret_cast<const void* (*)(UnkObject*)>(vtable[0])(this); }
+    const CClass* vf_0x0() { return reinterpret_cast<const CClass* (*)(UnkObject*)>(vtable[0])(this); }
 };
 
 struct UnkCamera : UnkObject {
@@ -45,9 +48,8 @@ struct UnkManager;
 extern UnkManager* g_unk_7101d47310;
 void* fn_7100defcec(UnkManager* manager);
 UnkCamera* fn_71010e2080();
-void* fn_710074eca8();  // CBossCameraCtrl::refl_GetClass
-void* fn_710044e708();  // CChozoCommanderAIComponent::refl_GetClass
-bool fn_710009d50c(const void* from, void* to);
+const CClass* fn_710074eca8();  // CBossCameraCtrl::refl_GetClass
+const CClass* fn_710044e708();  // CChozoCommanderAIComponent::refl_GetClass
 UnkDirection* fn_710002614c(void* position);
 
 // NON_MATCHING(minor): the last z clamp (fmaxnm) and its store are scheduled before the paired store

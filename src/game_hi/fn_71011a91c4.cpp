@@ -1,7 +1,10 @@
 // Handles a resource-backed item: unless deferring, looks up its resource's handler and queues
 // the handler when it is idle; otherwise (or when nothing is queued) resets the item and
 // forwards it to the global manager.
+#include "base/reflection/UnkReflCast.h"
 #include "types.h"
+
+using base::reflection::CClass;
 
 struct UnkKey_71011a91c4 {
     u8 unk_0x0[0x30];
@@ -10,7 +13,7 @@ struct UnkKey_71011a91c4 {
 };
 
 struct UnkRes_71011a91c4 {
-    virtual void* vf_0x0();
+    virtual const CClass* vf_0x0();
     u8 unk_0x8[0x8];
     UnkKey_71011a91c4* key;
 };
@@ -81,8 +84,7 @@ struct UnkStruct_71011a91c4 {
     }
 };
 
-void* fn_71000e8a5c();
-bool fn_710009d50c(void* type, void* base);
+const CClass* fn_71000e8a5c();
 bool fn_710104ddcc(UnkHandler_71011a91c4* h, UnkItem_71011a91c4* item);
 u32 fn_710104de7c(UnkHandler_71011a91c4* h);
 bool fn_71002199d8(void* mgr, UnkItemBase_71011a91c4* item, u32 flag);

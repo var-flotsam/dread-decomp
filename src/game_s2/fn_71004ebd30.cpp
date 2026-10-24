@@ -17,7 +17,8 @@ extern UnkConversion g_unk_71726daf38;
 extern UnkConversion g_unk_71726daf58;
 void fn_71004ebc1c() __attribute__((visibility("hidden")));
 void fn_71004ebc28() __attribute__((visibility("hidden")));
-void* fn_71004eb2d0();  // CCharClassDropterAIComponent::refl_GetClass
+namespace base { namespace reflection { class CClass; } }
+const base::reflection::CClass* fn_71004eb2d0();  // CCharClassDropterAIComponent::refl_GetClass
 extern char g_unk_71726daf78[];
 
 void fn_71004ebd30() {

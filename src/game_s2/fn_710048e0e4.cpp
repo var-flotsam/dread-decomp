@@ -1,11 +1,14 @@
 // Sets up a component's sub-components: casts the owner's object to the component's actor class,
 // then registers six state blocks (each added to a list in the component and initialised from
 // the actor's data).
+#include "base/reflection/UnkReflCast.h"
 #include "types.h"
+
+using base::reflection::CClass;
 
 struct UnkStateActor {
     void** vtable;
-    const void* vf_0x0() { return reinterpret_cast<const void* (*)(UnkStateActor*)>(vtable[0])(this); }
+    const CClass* vf_0x0() { return reinterpret_cast<const CClass* (*)(UnkStateActor*)>(vtable[0])(this); }
 };
 
 struct __attribute__((packed)) UnkStateComponent {
@@ -18,8 +21,7 @@ struct __attribute__((packed)) UnkStateComponent {
 };
 
 bool fn_7100498a38(UnkStateComponent* self);
-void* fn_710048d394();  // the actor class's refl_GetClass
-bool fn_710009d50c(const void* from, void* to);
+const CClass* fn_710048d394();  // the actor class's refl_GetClass
 
 void fn_7100481794(void* state, char* data);
 void fn_710048cb88(void* state, char* data);

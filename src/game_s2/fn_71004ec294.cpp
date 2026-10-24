@@ -5,13 +5,16 @@
 // and configures them.
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkReflCast.h"
 #include "types.h"
+
+using base::reflection::CClass;
 
 typedef u64 u64_a4 __attribute__((aligned(4)));
 
 struct UnkActor {
     void** vtable;
-    const void* vf_0x0() { return reinterpret_cast<const void* (*)(UnkActor*)>(vtable[0])(this); }
+    const CClass* vf_0x0() { return reinterpret_cast<const CClass* (*)(UnkActor*)>(vtable[0])(this); }
 };
 
 struct UnkEffect {
@@ -47,8 +50,7 @@ extern UnkManager* g_unk_7101d47300;
 extern const u64 g_unk_71726db100[] __attribute__((visibility("hidden")));
 extern const u64 g_unk_71726db108[] __attribute__((visibility("hidden")));
 bool fn_7100369490(UnkComponent* self);
-void* fn_71004eb2d0();  // CCharClassDropterAIComponent::refl_GetClass
-bool fn_710009d50c(const void* from, void* to);
+const CClass* fn_71004eb2d0();  // CCharClassDropterAIComponent::refl_GetClass
 void fn_71004e8ea0(void* state, char* data);
 void fn_7100149930(UnkPool* pool, void* a, UnkEffect** out, base::global::CStrId* name);
 void fn_7100219ae0(UnkManager* manager, void* entry, u32 flag);

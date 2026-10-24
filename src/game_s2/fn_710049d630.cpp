@@ -22,7 +22,8 @@ struct UnkStatics_710049d630 {
 extern UnkStatics_710049d630 g_unk_71726d1248 __attribute__((visibility("hidden")));
 void fn_7100497b38(void* self, const UnkStrIdBase* ids, u32 count);
 void fn_7100497e30(void* self);  // its destructor, as registered
-void* fn_7100497f2c();           // CChozoWarriorAIComponent::refl_GetClass
+namespace base { namespace reflection { class CClass; } }
+const base::reflection::CClass* fn_7100497f2c();  // CChozoWarriorAIComponent::refl_GetClass
 extern char g_unk_71726d10e0[];
 extern UnkEnumType g_unk_71726d10e8;
 void fn_7100498514(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);

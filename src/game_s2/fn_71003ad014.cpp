@@ -46,7 +46,8 @@ inline UnkIdTable& GetIdTable() {
 extern void* g_unk_7101d47310;
 void* fn_7100defcec(void* holder);
 UnkCameraCtrl* fn_71010e389c(void* holder, void* key);
-void* fn_710074eca8();  // CBossCameraCtrl::refl_GetClass
+namespace base { namespace reflection { class CClass; } }
+const base::reflection::CClass* fn_710074eca8();  // CBossCameraCtrl::refl_GetClass
 void fn_71003ad174(UnkCameraOwner* self, u32 arg);
 void fn_7100750804(UnkCameraCtrl* ctrl, void* arg);
 void fn_7100750948(UnkCameraCtrl* ctrl, void* arg);

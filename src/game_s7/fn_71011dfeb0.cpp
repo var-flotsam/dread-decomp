@@ -8,20 +8,20 @@
 #include "base/UnkDestructors.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "base/reflection/UnkReflCast.h"
 #include "UnkHandleS7.h"
 
 using base::global::CFilePathStrId;
 using base::global::CStrId;
 using base::global::UnkStrIdInline;
+using base::reflection::CClass;
 using namespace unk_handle;
 
-struct UnkClass_71011dfeb0;
-bool fn_710009d50c(const UnkClass_71011dfeb0* type, const UnkClass_71011dfeb0* base);
-const UnkClass_71011dfeb0* fn_71011d7b84();  // GUI::CDisplayObjectContainer::refl_GetClass
-const UnkClass_71011dfeb0* fn_71011e8dfc();  // GUI::CLabel::refl_GetClass
+const CClass* fn_71011d7b84();  // GUI::CDisplayObjectContainer::refl_GetClass
+const CClass* fn_71011e8dfc();  // GUI::CLabel::refl_GetClass
 
 struct UnkGuiObj_71011dfeb0 {
-    virtual const UnkClass_71011dfeb0* GetClass();
+    virtual const CClass* GetClass();
     virtual void vf_0x8();
     virtual void vf_0x10();
     virtual void vf_0x18();
@@ -98,7 +98,7 @@ struct UnkPanel_71011dfeb0 {
 
     // The child with this name when it is of the class `get_class` returns, else null.
     template <class T>
-    __attribute__((always_inline)) T* FindAs(const char* name, const UnkClass_71011dfeb0* (*get_class)()) {
+    __attribute__((always_inline)) T* FindAs(const char* name, const CClass* (*get_class)()) {
         UnkGuiObj_71011dfeb0* child = fn_71011d98ec(this, fn_7100001570(name, __builtin_strlen(name)));
         return child && fn_710009d50c(child->GetClass(), get_class()) ? static_cast<T*>(child)
                                                                       : nullptr;

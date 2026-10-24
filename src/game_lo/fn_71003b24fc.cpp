@@ -4,12 +4,12 @@
 #include "UnkClone.h"
 #include "base/UnkVector.h"
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflCast.h"
 #include "types.h"
 
 using base::reflection::CClass;
 using base::reflection::CType;
 
-bool fn_710009d50c(const CType* type, const CType* base);
 const CClass* fn_7100576258();  // CEnemyPreset::refl_GetClass
 
 struct UnkClone_fn_71003b2904;

@@ -2,11 +2,13 @@
 // object's ability set at 0x2e0, the ability with the given type id is looked up and returned
 // if it is of the expected class (CAbilityShinespark, CAbilityGhostAura,
 // CAbilityOpticCamouflage, CAbilitySpeedBooster, CAbilityMultiLockon).
+#include "base/reflection/UnkReflCast.h"
 #include "types.h"
 
-struct UnkReflType;
+using base::reflection::CClass;
+
 struct UnkAbility {
-    virtual const UnkReflType* vf_0x0();
+    virtual const CClass* vf_0x0();
 };
 struct UnkAbilitySet;
 struct UnkAbilityOwner {
@@ -22,9 +24,7 @@ struct UnkPlayer {
     UnkAbilityHolder* holder;
 };
 
-bool fn_710009d50c(const UnkReflType* type, const UnkReflType* base);
-
-template <u64 (*Id)(), UnkAbility* (*Find)(UnkAbilitySet*, u64), const UnkReflType* (*Class)()>
+template <u64 (*Id)(), UnkAbility* (*Find)(UnkAbilitySet*, u64), const CClass* (*Class)()>
 __attribute__((always_inline)) static inline UnkAbility* GetAbility(UnkPlayer* self) {
     UnkAbilityHolder* holder = self->holder;
     if (!holder || !holder->owner)
@@ -45,11 +45,11 @@ u64 fn_7100308c74();
 u64 fn_7100323590();
 u64 fn_710033b6a4();
 u64 fn_71003182d8();
-const UnkReflType* fn_71003255a4();  // CAbilityShinespark::refl_GetClass
-const UnkReflType* fn_7100306914();  // CAbilityGhostAura::refl_GetClass
-const UnkReflType* fn_7100320270();  // CAbilityOpticCamouflage::refl_GetClass
-const UnkReflType* fn_710033a31c();  // CAbilitySpeedBooster::refl_GetClass
-const UnkReflType* fn_7100316638();  // CAbilityMultiLockon::refl_GetClass
+const CClass* fn_71003255a4();  // CAbilityShinespark::refl_GetClass
+const CClass* fn_7100306914();  // CAbilityGhostAura::refl_GetClass
+const CClass* fn_7100320270();  // CAbilityOpticCamouflage::refl_GetClass
+const CClass* fn_710033a31c();  // CAbilitySpeedBooster::refl_GetClass
+const CClass* fn_7100316638();  // CAbilityMultiLockon::refl_GetClass
 
 UnkAbility* fn_7100df5308(UnkPlayer* self) {
     return GetAbility<fn_7100327d14, fn_71003013ec, fn_71003255a4>(self);
@@ -86,7 +86,7 @@ struct UnkStatefulAbility : UnkAbility {
     }
 };
 
-template <u64 (*Id)(), const UnkReflType* (*Class)()>
+template <u64 (*Id)(), const CClass* (*Class)()>
 __attribute__((always_inline)) static inline bool IsInState6(UnkPlayer* self) {
     UnkAbility* ability = GetAbility<Id, fn_71003013ec, Class>(self);
     if (!ability)
