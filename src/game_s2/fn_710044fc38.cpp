@@ -1,6 +1,7 @@
 // Sets up a chozo commander AI component's sub-components: casts the owner's object to the
 // component's actor class, then registers sixteen state blocks (each added to a list in the
 // component and initialised from the actor).
+#include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "types.h"
 
@@ -21,7 +22,6 @@ struct __attribute__((packed)) UnkCmdComponent {
 };
 
 bool fn_71003ac8f4(UnkCmdComponent* self);
-const CClass* fn_710044d0c0();  // CCharClassChozoCommanderAIComponent::refl_GetClass
 
 void fn_710043b630(void* state, char* actor);
 void fn_7100435160(void* state, char* actor);

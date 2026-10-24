@@ -1,5 +1,6 @@
 // Static initialiser of NailuggerAcidBallMovementComponent's unit.
 #include "UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -11,7 +12,6 @@ struct UnkStatics_7100626e30 {
     u8 field_0x30[8];
 };
 extern UnkStatics_7100626e30 g_unk_71726f8818 __attribute__((visibility("hidden")));
-void* fn_7100626184();  // CNailuggerAcidBallMovementComponent::refl_GetClass
 extern char g_unk_71726f8810[];
 
 void fn_7100626e30() {

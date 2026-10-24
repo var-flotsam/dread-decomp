@@ -1,5 +1,6 @@
 // Static initialiser of CKraidSpikeMovablePlatformComponent's unit.
 #include "UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -11,7 +12,6 @@ struct UnkStatics_7100609090 {
     u8 field_0x30[8];
 };
 extern UnkStatics_7100609090 g_unk_71726f4610 __attribute__((visibility("hidden")));
-void* fn_71006081c4();  // CKraidSpikeMovablePlatformComponent::refl_GetClass
 extern char g_unk_71726f4608[];
 
 void fn_7100609090() {

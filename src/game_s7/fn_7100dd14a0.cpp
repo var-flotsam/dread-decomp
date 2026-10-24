@@ -2,6 +2,7 @@
 // base::global::CRntSmallDictionary<int, float>: the header ids, then the unit's own statics and
 // registrations (helpers in UnkStaticInitS7.h). Layouts are placeholders.
 #include "UnkStaticInitS7.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -64,15 +65,12 @@ extern char g_unk_71727bd071[];
 UnkEnumType* fn_7100db5adc();
 extern char g_unk_71727bd072[];
 UnkEnumType* fn_7100db5bb8();
-void* fn_7100db5c98();
 extern char g_unk_71727bd073[];
 extern char g_unk_71727bd074[];
 UnkEnumType* fn_7100db6268();
 extern char g_unk_71727bd075[];
 UnkEnumType* fn_7100db6344();
-void* fn_7100db6424();
 extern char g_unk_71727bd076[];
-void* fn_7100db68b4();
 extern char g_unk_71727bd077[];
 struct UnkTunable_71727bd078 : UnkTunable {
     u8 pad_0x8[0x30];

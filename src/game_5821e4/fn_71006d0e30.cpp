@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the CTakumakuDashAttack::EState enum.
 #include "UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -9,7 +10,6 @@ struct UnkStatics_71006d0e30 {
     u8 field_0x20[8];
 };
 extern UnkStatics_71006d0e30 g_unk_7172709448 __attribute__((visibility("hidden")));
-void* fn_71006ce0a4();  // CTakumakuDashAttack::refl_GetClass
 extern char g_unk_71727092e0[];
 extern UnkEnumType g_unk_71727092e8;
 void fn_71006ce58c(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);

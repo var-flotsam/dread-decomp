@@ -1,6 +1,7 @@
 // With the flag at 0x5d8 set, notifies the cooldown X boss AI component of the owner at 0x230
 // (when it is one), then fn_7100232c68 on the object at 0x30, and forwards all arguments to
 // fn_7100ac4c04; otherwise false.
+#include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "types.h"
 
@@ -26,7 +27,6 @@ struct UnkSelf {
     u32 field_0x5d8;
 };
 
-const CClass* fn_71004cf318();  // CCooldownXBossAIComponent::refl_GetClass
 void fn_71004d43dc(UnkAIComponent* component, void* a1);
 void fn_7100232c68(void* object);
 bool fn_7100ac4c04(UnkSelf* self, void* a1, void* a2, void* a3, void* a4, void* a5);

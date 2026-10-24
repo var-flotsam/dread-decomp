@@ -1,6 +1,7 @@
 // Looks up two entries by key in the owner's collision component (the object at +0x2a0 of the
 // owner when it is of that class) and, when both exist, runs fn_7100d35a98 on the second with 1 and
 // on the first with 0.
+#include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "types.h"
 
@@ -25,7 +26,6 @@ struct UnkEntry;
 
 extern u64 g_unk_71726bd8d0[2] __attribute__((visibility("hidden")));
 
-const CClass* fn_710085fc44();  // CCollisionComponent::refl_GetClass
 UnkEntry* fn_7100864194(UnkComponent* component, const u64* key);
 void fn_7100d35a98(UnkEntry* entry, u32 flag);
 

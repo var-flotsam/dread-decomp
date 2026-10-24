@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<animtree::CAnimTreeElementDef>>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<animtree::CAnimTreeElementDef>>>::TKeyElementConstIterator::value_type, base::global::CRntVector<std::unique_ptr<animtree::CAnimTreeElementDef>>.
 #include "../game_s7/UnkStaticInitS7.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -10,7 +11,6 @@ struct UnkStatics_71002df1a0 {
 };
 extern UnkStatics_71002df1a0 g_unk_71726aaa88 __attribute__((visibility("hidden")));
 extern char g_unk_71726aa118[];
-void* fn_71002dbcf4();  // animtree::CAnimTreeElementDef::refl_GetClass
 extern char g_unk_71726aa119[];
 UnkEnumType* fn_71002dbffc();  // base::reflection::refl_GetType<std::unique_ptr<animtree::CAnimTreeElementDef>>
 extern char g_unk_71726aa11a[];

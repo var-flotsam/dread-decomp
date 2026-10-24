@@ -4,6 +4,7 @@
 // camera controller is a boss camera: its fixed 3.0 is written to the controller's 0x344. The z extent
 // is clamped to include 0.
 #include "base/UnkMatrix44.h"
+#include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
@@ -43,8 +44,6 @@ struct UnkBox {
 
 void* fn_7100defcec(UnkGameManager* manager);
 UnkCamera* fn_71010e2080();
-const CClass* fn_710074eca8();  // CBossCameraCtrl::refl_GetClass
-const CClass* fn_710044e708();  // CChozoCommanderAIComponent::refl_GetClass
 
 // NON_MATCHING(minor): the last z clamp (fmaxnm) and its store are scheduled before the paired store
 // of the max x/y pair (scheduling only)

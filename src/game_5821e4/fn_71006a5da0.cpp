@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the CShakernautDoubleGroundShockAttack::EState, CShakernautDoubleGroundShockAttack::ESide enums.
 #include "UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -27,7 +28,6 @@ struct UnkStatics_71006a5da0 {
     u8 field_0xb0[8];
 };
 extern UnkStatics_71006a5da0 g_unk_71727057a0 __attribute__((visibility("hidden")));
-void* fn_71006a3524();  // CShakernautDoubleGroundShockAttack::refl_GetClass
 extern char g_unk_71727054d8[];
 extern UnkEnumType g_unk_71727054e0;
 void fn_71006a3d0c(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);

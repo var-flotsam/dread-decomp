@@ -1,6 +1,7 @@
 // Sets a camera-control flag held in an object's tail state. Clearing it runs the pending
 // step; if the flag changed, the object is notified (vf_0x830) and a boss camera control found
 // through the id table is told the new state.
+#include "base/reflection/UnkClassGetters.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
@@ -46,8 +47,6 @@ inline UnkIdTable& GetIdTable() {
 
 void* fn_7100defcec(UnkGameManager* manager);
 UnkCameraCtrl* fn_71010e389c(void* holder, void* key);
-namespace base { namespace reflection { class CClass; } }
-const base::reflection::CClass* fn_710074eca8();  // CBossCameraCtrl::refl_GetClass
 void fn_71003ad174(UnkCameraOwner* self, u32 arg);
 void fn_7100750804(UnkCameraCtrl* ctrl, void* arg);
 void fn_7100750948(UnkCameraCtrl* ctrl, void* arg);

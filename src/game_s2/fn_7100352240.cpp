@@ -2,10 +2,11 @@
 // actor's target, takes how far along it the actor is (or, without one, the gap between two
 // stored values), and applies the change to the output signed by the track's direction.
 #include "base/UnkMatrix44.h"
+#include "base/reflection/UnkClassGetters.h"
 #include "types.h"
 
 struct UnkTrackQuery {
-    void* field_0x0;
+    const base::reflection::CClass* field_0x0;
     struct UnkRange* field_0x8;
     f32 field_0x10;
 };
@@ -42,11 +43,8 @@ struct UnkAimOutput {
     f32 field_0x6c;
 };
 
-void* fn_7100c50338();  // CCharClassSPAnalogAimKinematicDeltaTrack::refl_GetClass
-void* fn_7100ceadf8();  // CCharClassAnalogAimTrack::refl_GetClass
-void* fn_7100d2b3a8();  // CCharClassTurnTrack::refl_GetClass
 void fn_710117b08c(UnkAimTarget* target, UnkTrackQuery* query);
-bool fn_710117b348(UnkAimTarget* target, void* cls);
+bool fn_710117b348(UnkAimTarget* target, const base::reflection::CClass* cls);
 f32 fn_7101177ea0(UnkAimTarget* target, u64 key);
 
 void fn_7100352240(UnkAimComponent* self, UnkAimOutput* out) {

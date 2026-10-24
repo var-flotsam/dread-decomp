@@ -1,5 +1,6 @@
 // Static initialiser of CCubeMapComponent's unit.
 #include "UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -11,7 +12,6 @@ struct UnkStatics_71007a10c0 {
     u8 field_0x48[8];
 };
 extern UnkStatics_71007a10c0 g_unk_7172718d68 __attribute__((visibility("hidden")));
-void* fn_710079d3b0();  // CCubeMapComponent::refl_GetClass
 extern char g_unk_7172718d54[];
 
 void fn_71007a10c0() {

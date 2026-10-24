@@ -2,6 +2,7 @@
 // the target) and the target's object at +0x1b8 fails a test, hands the owner's component at +0x240
 // to fn_71004554d8 if its class is the commander AI component.
 #include "base/UnkMatrix44.h"
+#include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkActor.h"
 #include "types.h"
@@ -19,7 +20,6 @@ struct UnkSelf {
 };
 
 bool fn_7101161088(void* object);
-const CClass* fn_710044e708();  // CChozoCommanderAIComponent::refl_GetClass
 void fn_71004554d8(UnkComponent* component);
 
 static inline f32 Sign(f32 v) { return (f32)((v > 0.0f) - (v < 0.0f)); }

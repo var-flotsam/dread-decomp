@@ -6,6 +6,7 @@
 // the unit's own statics and registrations (helpers in UnkStaticInitS7.h). Layouts are
 // placeholders.
 #include "UnkStaticInitS7.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -15,7 +16,6 @@ struct UnkStatics_7100d44a60 {
     u8 field_0x20[8];
 };
 extern UnkStatics_7100d44a60 g_unk_71727b2988 __attribute__((visibility("hidden")));
-void* fn_7100d361c0();
 extern char g_unk_71727b0448[];
 extern UnkNamedValue g_unk_71727b0450;
 void fn_710010c424(void* value);  // its destructor, as registered

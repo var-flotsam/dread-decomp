@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the CBigFistAttack::EBigFistAttackState enum.
 #include "../game_5821e4/UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -23,7 +24,6 @@ extern UnkConversion g_unk_71726c04d0;
 extern UnkConversion g_unk_71726c04f0;
 void fn_71003e13b8() __attribute__((visibility("hidden")));
 void fn_71003e13c4() __attribute__((visibility("hidden")));
-void* fn_71003e05e0();  // CBigFistAttack::refl_GetClass
 extern char g_unk_71726c0510[];
 
 void fn_71003e1840() {

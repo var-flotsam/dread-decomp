@@ -3,6 +3,7 @@
 // "sources" ids), then registers its reflected types: a class or enum type built from its name
 // (destroyed at exit) and noted in the TU's registry flags, and for enums a pair of converter
 // records (to and from the integer type) registered with fn_71000a16c4.
+#include "base/reflection/UnkClassGetters.h"
 #include "game/UnkTUInit.h"
 
 extern UnkTUHeader g_unk_71727bc230 __attribute__((visibility("hidden")));
@@ -90,7 +91,6 @@ void fn_7100c1140c() __attribute__((visibility("hidden")));
 void fn_7100c11418() __attribute__((visibility("hidden")));
 extern UnkConverter g_unk_717277e0b0;
 extern UnkConverter g_unk_717277e0d0;
-void fn_7100c11094();  // CCharClassCommanderWingsTrack::refl_GetClass
 extern char g_unk_717277e0f0;
 extern UnkReflType g_unk_717277e118 __attribute__((visibility("hidden")));
 
@@ -112,7 +112,6 @@ void fn_7100d2aa68() __attribute__((visibility("hidden")));
 void fn_7100d2aa74() __attribute__((visibility("hidden")));
 extern UnkConverter g_unk_71727ae030;
 extern UnkConverter g_unk_71727ae050;
-void fn_7100d2a190();  // CCharClassToStateTrack::refl_GetClass
 extern char g_unk_71727ae070;
 extern UnkReflType g_unk_71727ae098 __attribute__((visibility("hidden")));
 
@@ -134,7 +133,6 @@ void fn_7100da3e00() __attribute__((visibility("hidden")));
 void fn_7100da3e0c() __attribute__((visibility("hidden")));
 extern UnkConverter g_unk_71727bba08;
 extern UnkConverter g_unk_71727bba28;
-void fn_7100da3ba0();  // IPath::refl_GetClass
 extern char g_unk_71727bba48;
 extern UnkReflType g_unk_71727bba70 __attribute__((visibility("hidden")));
 
@@ -178,7 +176,6 @@ void fn_7100de1b0c() __attribute__((visibility("hidden")));
 void fn_7100de1b18() __attribute__((visibility("hidden")));
 extern UnkConverter g_unk_71727be4a8;
 extern UnkConverter g_unk_71727be4c8;
-void fn_7100ddf344();  // CExplosionGfx::refl_GetClass
 extern char g_unk_71727be4e8;
 extern UnkReflType g_unk_71727be730 __attribute__((visibility("hidden")));
 
@@ -253,7 +250,6 @@ void fn_7100bce500() __attribute__((visibility("hidden")));
 void fn_7100bce50c() __attribute__((visibility("hidden")));
 extern UnkConverter g_unk_7172772cd0;
 extern UnkConverter g_unk_7172772cf0;
-void fn_7100bce0e4();  // CharClassSakaiModifyShieldEvent::refl_GetClass
 extern char g_unk_7172772d10;
 extern UnkReflType g_unk_7172772d38 __attribute__((visibility("hidden")));
 
@@ -432,7 +428,6 @@ void fn_7100e13f10() {
 }
 
 extern UnkTUHeaderAndClass g_unk_717279cc60 __attribute__((visibility("hidden")));
-void fn_7100cd12b8();  // CCharClassSetCameraNearEvent::refl_GetClass
 extern char g_unk_717279caf8;
 extern UnkReflType g_unk_717279cb00;
 void fn_7100cd17a8();
@@ -453,7 +448,6 @@ void fn_7100cd1fe0() {
 }
 
 extern UnkTUHeaderAndClass g_unk_71727a0898 __attribute__((visibility("hidden")));
-void fn_7100ceadf8();  // CCharClassAnalogAimTrack::refl_GetClass
 extern char g_unk_71727a0730;
 extern UnkReflType g_unk_71727a0738;
 void fn_7100ceb15c();

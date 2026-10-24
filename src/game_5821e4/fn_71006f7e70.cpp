@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the EFollowPathRotationMode, EFollowInPathOrientation enums.
 #include "UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -25,7 +26,6 @@ extern UnkConversion g_unk_717270cb80;
 extern UnkConversion g_unk_717270cba0;
 void fn_71006f794c() __attribute__((visibility("hidden")));
 void fn_71006f7958() __attribute__((visibility("hidden")));
-void* fn_71006f5fbc();  // CCharClassAINavigationComponent::refl_GetClass
 extern char g_unk_717270cbc0[];
 
 void fn_71006f7e70() {

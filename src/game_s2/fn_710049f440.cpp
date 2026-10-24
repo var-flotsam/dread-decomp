@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the CChozoZombieXPoisonClawsAttack::EState.
 #include "../game_s7/UnkStaticInitS7.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -11,7 +12,6 @@ struct UnkStatics_710049f440 {
     u8 field_0x30[8];
 };
 extern UnkStatics_710049f440 g_unk_71726d16e8 __attribute__((visibility("hidden")));
-void* fn_710049de64();  // CChozoZombieXPoisonClawsAttack::refl_GetClass
 extern char g_unk_71726d1580[];
 extern UnkEnumType g_unk_71726d1588;
 void fn_710049e34c(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);

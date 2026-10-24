@@ -1,5 +1,6 @@
 // Reflection fields of CCharClassCooldownXBossLavaDropsAttack. Written from the refl_attrs draft;
 // one field type getter lives in this class's translation unit.
+#include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -8,7 +9,6 @@ using base::reflection::UnkReflFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::CType* fn_71004ab5ac();
 extern const base::reflection::CType g_unk_71726d5010 __attribute__((visibility("hidden")));
 extern base::reflection::CType g_unk_71726d3d30;
 

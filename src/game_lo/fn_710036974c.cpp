@@ -1,11 +1,11 @@
 // Runs the base handler, then, when the owner's AI is a CCharClassCrazyTrack, either
 // notifies it (flag set in the message) or updates and resets a pending timer.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkClassGetters.h"
 #include "types.h"
 
 using base::reflection::CClass;
 
-const CClass* fn_7100cf3508();  // CCharClassCrazyTrack::refl_GetClass
 bool fn_710117b348(void* obj, const CClass* cls);
 
 struct UnkStruct_710036974c_Msg {

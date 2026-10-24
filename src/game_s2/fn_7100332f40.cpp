@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the EShinesparkTravellingDirection, TShinesparkTravellingDirectionFlagSet, ECoolShinesparkSituation, TCoolShinesparkSituation.
 #include "../game_s7/UnkStaticInitS7.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -19,9 +20,7 @@ struct UnkStatics_7100332f40 {
 };
 extern UnkStatics_7100332f40 g_unk_71726b0970 __attribute__((visibility("hidden")));
 extern char g_unk_71726b0370[];
-void* fn_71003255a4();  // CAbilityShinespark::refl_GetClass
 extern char g_unk_71726b0371[];
-void* fn_7100325824();  // CAbilityShinespark::CTunableAbilityShinespark::refl_GetClass
 extern UnkTunable g_unk_71726b0378;
 void fn_7100136ecc(UnkTunable* self);  // the base constructor
 extern void* g_unk_7101a23448[];

@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the CAbilityOpticCamouflage::ESelectionMode, CAbilityOpticCamouflage::ESelectionInput.
 #include "../game_s7/UnkStaticInitS7.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -15,7 +16,6 @@ struct UnkStatics_7100325290 {
 };
 extern UnkStatics_7100325290 g_unk_71726b00b8 __attribute__((visibility("hidden")));
 extern char g_unk_71726afcf0[];
-void* fn_7100320270();  // CAbilityOpticCamouflage::refl_GetClass
 extern UnkEnumType g_unk_71726afcf8;
 void fn_7100320638(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_71003204ec();
@@ -33,7 +33,6 @@ extern UnkConversion g_unk_71726aff98;
 void fn_7100324a98() __attribute__((visibility("hidden")));
 void fn_7100324aa4() __attribute__((visibility("hidden")));
 extern char g_unk_71726affb8[];
-void* fn_7100320a88();  // CAbilityOpticCamouflage::CTunableAbilityOpticCamouflage::refl_GetClass
 extern UnkTunable g_unk_71726affc0;
 void fn_7100136ecc(UnkTunable* self);  // the base constructor
 extern void* g_unk_7101a23250[];

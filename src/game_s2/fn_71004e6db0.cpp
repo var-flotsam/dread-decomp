@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the CCharClassDredhedAIComponent::ESubspecies.
 #include "../game_s7/UnkStaticInitS7.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -17,7 +18,6 @@ extern UnkConversion g_unk_71726da598;
 extern UnkConversion g_unk_71726da5b8;
 void fn_71004e6ca8() __attribute__((visibility("hidden")));
 void fn_71004e6cb4() __attribute__((visibility("hidden")));
-void* fn_71004e6770();  // CCharClassDredhedAIComponent::refl_GetClass
 extern char g_unk_71726da5d8[];
 
 void fn_71004e6db0() {

@@ -3,6 +3,7 @@
 // and others: the header ids, then the unit's own statics and registrations (helpers in
 // UnkStaticInitS7.h). Layouts are placeholders.
 #include "UnkStaticInitS7.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -16,7 +17,6 @@ struct UnkStatics_7100d8a790 {
     u8 field_0xa8[8];
 };
 extern UnkStatics_7100d8a790 g_unk_71727b85d8 __attribute__((visibility("hidden")));
-void* fn_7100d70c20();
 extern char g_unk_71727b5288[];
 extern char g_unk_71727b5289[];
 UnkEnumType* fn_7100a0536c();

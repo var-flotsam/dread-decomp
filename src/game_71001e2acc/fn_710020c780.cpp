@@ -3,13 +3,12 @@
 // (from 0x28 and 0x38) into this one (0x88 and 0x98) and passes them to vtable slot 0x30:
 // fn_710020c780 (fn_71001bdc9c), fn_71001f8750 (fn_71001bcb50).
 #include "base/global/CStrId.h"
+#include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "types.h"
 
 using base::reflection::CClass;
 using base::reflection::UnkReflObject;
-
-const CClass* fn_71001b122c();
 
 struct UnkSettings_710020c780 {
     u32 field_0x0;

@@ -2,6 +2,7 @@
 // X-boss AI component (null otherwise) and registers five embedded entries in the list at 0x161c,
 // each one initialised from its own fixed offset into that component. Returns bit 0 of the
 // first step's result.
+#include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "types.h"
 
@@ -35,7 +36,6 @@ struct UnkSelf {
 };
 
 u32 fn_71003ac8f4(UnkSelf* self);
-const CClass* fn_71004cde00();  // CCharClassCooldownXBossAIComponent::refl_GetClass
 void fn_71004c3604(void* entry, u8* source);
 void fn_71004c6564(void* entry, u8* source);
 void fn_71004c987c(void* entry, u8* source);

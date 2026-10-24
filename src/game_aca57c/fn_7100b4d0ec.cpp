@@ -3,6 +3,7 @@
 // the current main menu (or to nothing when no main menu is active).
 #include "base/global/CRntString.h"
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
@@ -45,7 +46,6 @@ void fn_71011cf2a4(void* composition, s32 value);
 void fn_71011cf364(void* composition, s32 value);
 void fn_71011cde44(void* composition, s32 value);
 UnkReflObject* fn_7100e033a8(UnkGameManager* manager);
-const CClass* fn_7100b34230();  // GUI::CMainMenu::refl_GetClass
 void fn_71011d968c(UnkReflObject* menu, void* composition);
 
 template <s32 Value>

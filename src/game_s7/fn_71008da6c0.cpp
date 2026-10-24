@@ -1,6 +1,7 @@
 // Static initialiser of the unit of CDoorLifeComponent::SState: the header ids, then the unit's
 // own statics and registrations (helpers in UnkStaticInitS7.h). Layouts are placeholders.
 #include "UnkStaticInitS7.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -57,9 +58,7 @@ void fn_71008dbb90() __attribute__((visibility("hidden")));
 extern char g_unk_7172731318[];
 void fn_71008caef4(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_71008cace8();
-void* fn_71008cb078();
 extern char g_unk_7172731360[];
-void* fn_71008cd2c8();
 extern char g_unk_7172731361[];
 extern UnkTunable g_unk_7172731368;
 void fn_7100136ecc(UnkTunable* self);  // the base constructor

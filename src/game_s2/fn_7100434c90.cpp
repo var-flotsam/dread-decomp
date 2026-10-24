@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the CChozoCommanderKiGrabAttack::SState.
 #include "../game_s7/UnkStaticInitS7.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -19,7 +20,6 @@ extern UnkConversion g_unk_71726c7d90;
 extern UnkConversion g_unk_71726c7db0;
 void fn_71004336d8() __attribute__((visibility("hidden")));
 void fn_71004336e4() __attribute__((visibility("hidden")));
-void* fn_710042fea8();  // CChozoCommanderKiGrabAttack::refl_GetClass
 extern char g_unk_71726c7dd0[];
 
 void fn_7100434c90() {

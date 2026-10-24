@@ -1,6 +1,7 @@
 // Counts an animated node: when the node picked from the argument's holder (inline, or behind
 // a pointer for 9 or more entries or kind 1) is a CAnimatedNode, the counter at 0xa8 of the
 // object at 8 is incremented. Returns an empty result of kind 2.
+#include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "types.h"
 
@@ -34,8 +35,6 @@ struct UnkResult_0x18 {
     u64 empty[2];
     u64 kind_and_flag;
 };
-
-const CClass* fn_71002d2250();  // animtree::CAnimatedNode::refl_GetClass
 
 UnkResult_0x18 fn_71002d92b4(void* unused, UnkCounter* counter, UnkNodeSource** source) {
     UnkNodeSource* src = *source;

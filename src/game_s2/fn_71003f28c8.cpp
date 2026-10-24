@@ -6,6 +6,7 @@
 // owner query and a value of the owner's target against one of the data) decide. A true result
 // is cleared when the sub-object at +0x220 of the owner isn't a track that can be aborted.
 #include "base/UnkMatrix44.h"
+#include "base/reflection/UnkClassGetters.h"
 #include "game/UnkActor.h"
 #include "types.h"
 
@@ -32,8 +33,7 @@ struct UnkSpitState1 {
 };
 
 bool fn_7100d7bea0(UnkActor* owner, bool flag);
-void* fn_7100c0ccc8();  // CCharClassAttackCanBeAbortedTrack::refl_GetClass
-bool fn_710117b348(void* object, void* type);
+bool fn_710117b348(void* object, const base::reflection::CClass* type);
 
 // NON_MATCHING(minor): same behaviour; the original reads the owner->target vector in another
 // order, tests the owner before the result at the end and shares that end between the paths.

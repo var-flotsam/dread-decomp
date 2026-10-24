@@ -2,6 +2,7 @@
 // Static initialiser of the unit of CEmmyCaveAIComponent: a string id, a property and the class
 // registration.
 #include "../game_5821e4/UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -27,17 +28,13 @@ void fn_71004f1338(UnkProperty* p);
 void fn_7100a7df30(void* p);
 void fn_7100952bc0(void* p);
 void fn_710090efb0(void* p);
-void* fn_71004f00b4();  // CEmmyCaveAIComponent::refl_GetClass
 extern char g_unk_7172750320[];
 extern char g_unk_7172739f68[];
 extern char g_unk_71727354b0[];
 
 void fn_7100a7f500(UnkProperty* p);
-void* fn_7100a7dfac();
 void fn_710090ffb4(UnkProperty* p);
-void* fn_710090f02c();
 void fn_7100953d64(UnkProperty* p);
-void* fn_7100952c3c();
 void fn_7100a7f7b0() {
     InitHeaderIds(&g_unk_7172750368.ids);
     InitId(&g_unk_71727502f0, "POWERGENERATOR");

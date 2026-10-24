@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the CCharClassVulkranAIComponent::EDir, CCharClassVulkranAIComponent::ESubspecies enums.
 #include "UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -20,7 +21,6 @@ struct UnkStatics_71006dae40 {
     u8 field_0x78[8];
 };
 extern UnkStatics_71006dae40 g_unk_717270a458 __attribute__((visibility("hidden")));
-void* fn_71006d85b4();  // CCharClassVulkranAIComponent::refl_GetClass
 extern char g_unk_717270a190[];
 extern UnkEnumType g_unk_717270a198;
 void fn_71006da1f8(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);

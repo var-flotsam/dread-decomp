@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>>::TKeyElementConstIterator::value_type, base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat> reflected types.
 #include "UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -33,7 +34,6 @@ void fn_710009891c(void* type);  // the type's destructor, as registered
 extern char g_unk_7172718688[];
 extern char g_unk_7172718689[];
 void* fn_710079a138();  // fn_710079a138
-void* fn_710079a218();  // CCharClassCollisionComponent::refl_GetClass
 extern char g_unk_717271868a[];
 
 void fn_710079d010() {

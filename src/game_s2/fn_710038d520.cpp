@@ -3,6 +3,7 @@
 // +0x70, or when a kind-2 message arrives while the owner's attack at +0x220 is a graze track.
 // Always returns 1.
 #include "base/global/CStrId.h"
+#include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "types.h"
 
@@ -35,8 +36,7 @@ struct UnkHandler {
     base::global::UnkStringData* field_0x70;
 };
 
-void* fn_7100c219b8();  // CCharClassGrazeTrack::refl_GetClass
-bool fn_710117b348(UnkAttack* object, void* class_ptr);
+bool fn_710117b348(UnkAttack* object, const base::reflection::CClass* class_ptr);
 void fn_710038cd5c(UnkHandler* self);
 
 u32 fn_710038d520(UnkHandler* self, UnkMessage* message) {

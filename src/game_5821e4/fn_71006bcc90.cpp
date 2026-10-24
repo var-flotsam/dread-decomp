@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the EShellState enum.
 #include "UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -25,7 +26,6 @@ extern UnkConversion g_unk_7172707140;
 extern UnkConversion g_unk_7172707160;
 void fn_71006bca54() __attribute__((visibility("hidden")));
 void fn_71006bca60() __attribute__((visibility("hidden")));
-void* fn_71006b98c0();  // CShelmitAIComponent::refl_GetClass
 extern char g_unk_7172707180[];
 
 void fn_71006bcc90() {

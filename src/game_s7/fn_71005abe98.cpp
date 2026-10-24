@@ -1,6 +1,7 @@
 // Copies of fn_7100b87488 (src/game_aca57c/fn_7100ad4b54.cpp) for other types, with their own callees and data (they name their own callees, data and strings; the comments describe the original): fn_71005abe98, fn_71005abf48.
 // Getters building a value of kind 2 (fn_71000a18d4 fills in the rest from the type the value is
 // described by): words of the translation unit's globals, a zero, flags of an object and a vector.
+#include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "types.h"
 
@@ -111,9 +112,6 @@ __attribute__((always_inline)) static inline UnkValue GetVirtualFlag(UnkArgument
 // Values of kind 2 referring (flag 1) to a cutscene definition held by an iterator value: in place
 // at 0x8, or through the pointer there when the state (after the Size-byte value) is 2. The class
 // getter is called first, so the class (whose reflected data is at the descriptor) is set up.
-void* fn_7100c828a4();  // CCutSceneDef::CActorDef::refl_GetClass
-void* fn_7100c84768();  // CCutSceneDef::CAnimationLayerDef::refl_GetClass
-void* fn_7100c85d3c();  // CCutSceneDef::CTakeDef::refl_GetClass
 extern u8 g_unk_7172794c08[] __attribute__((visibility("hidden")));
 extern u8 g_unk_7172794d40[] __attribute__((visibility("hidden")));
 extern u8 g_unk_7172794e78[] __attribute__((visibility("hidden")));

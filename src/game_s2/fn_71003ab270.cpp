@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the behaviortree::SStatus::Enum, behaviortree::SCompareOperator::Enum.
 #include "../game_s7/UnkStaticInitS7.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -25,7 +26,6 @@ extern UnkConversion g_unk_71726bc3b0;
 extern UnkConversion g_unk_71726bc3d0;
 void fn_71003aaf50() __attribute__((visibility("hidden")));
 void fn_71003aaf5c() __attribute__((visibility("hidden")));
-void* fn_71003aa0c0();  // behaviortree::CBehaviorTree::refl_GetClass
 extern char g_unk_71726bc3f0[];
 
 void fn_71003ab270() {

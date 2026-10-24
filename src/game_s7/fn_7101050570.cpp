@@ -1,6 +1,7 @@
 // Copies of fn_71002db4a0 (src/game_s2/fn_71002db4a0.cpp) for other types, with their own callees and data (they name their own callees, data and strings; the comments describe the original): fn_7101050570.
 // Static initialiser of the unit of the base::reflection::CollectionTypeMapper<base::global::CRntVector<animtree::CAnimTreeDef::TAnimTreeLinkDef>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<animtree::CAnimTreeDef::TAnimTreeLinkDef>>::TKeyElementConstIterator::value_type, base::global::CRntVector<animtree::CAnimTreeDef::TAnimTreeLinkDef>.
 #include "../game_s7/UnkStaticInitS7.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -13,7 +14,6 @@ struct UnkStatics_71002db4a0 {
 };
 extern UnkStatics_71002db4a0 g_unk_71729fda70 __attribute__((visibility("hidden")));
 extern char g_unk_71729fd230[];
-void* fn_71002d6464();  // animtree::CAnimTreeDef::refl_GetClass
 extern char g_unk_71729fd231[];
 UnkEnumType* fn_71002d6b20();
 extern char g_unk_71729fd232[];
@@ -37,9 +37,7 @@ void fn_71002d78b8(UnkEnumType* type, const CStrId& name, void*, void*);
 void fn_710009891c(void* type);  // the type's destructor, as registered
 extern char g_unk_71729fd628[];
 extern char g_unk_71729fd629[];
-void* fn_71002d7ab4();  // animtree::CAnimTreeDef::TAnimTreeLinkDef::refl_GetClass
 
-void* fn_710104c290();
 UnkEnumType* fn_710104c598();
 UnkEnumType* fn_710104c674();
 void fn_710104cae0(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
@@ -47,7 +45,6 @@ UnkEnumType* fn_710104cc64();
 void fn_710104d0d0(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
 UnkEnumType* fn_710104d254();
 void fn_710104d330(UnkEnumType* type, const CStrId& name, void*, void*);
-void* fn_710104d52c();
 void fn_7101050570() {
     InitHeaderIds(&g_unk_71729fda70.ids);
     fn_710104c290();

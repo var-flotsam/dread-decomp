@@ -4,6 +4,7 @@
 // death track and the float at +0x54 of the player object (+0x1c0) is not positive, either starts
 // the countdown (0.33 s, after a player call, unless the effect object at +0x1040 of the manager is
 // busy) or runs it down and calls vtable slot 0x180 of the player object when it expires.
+#include "base/reflection/UnkClassGetters.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
@@ -42,9 +43,7 @@ struct UnkVec {
 };
 
 extern const char g_unk_7101649988[] __attribute__((visibility("hidden")));
-void* fn_7100d19258();  // CCharClassMeleeDamageTrack::refl_GetClass
-void* fn_7100c19578();  // CCharClassFadeToBlackDeathTrack::refl_GetClass
-bool fn_710117b348(UnkAttack* object, void* class_ptr);
+bool fn_710117b348(UnkAttack* object, const base::reflection::CClass* class_ptr);
 UnkOwner* fn_7100defcd4(UnkGameManager* manager);
 UnkPlayer* fn_7100dec788(UnkGameManager* manager);
 void fn_710048a070(UnkSelf* self);

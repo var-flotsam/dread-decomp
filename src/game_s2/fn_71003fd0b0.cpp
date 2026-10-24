@@ -2,6 +2,7 @@
 // after fn_7100d7c990 gives the target object, the angle becomes atan2 of the position
 // difference (values at 0x54 and 0x44), is normalised, and the current value moves towards it
 // by at most the tunable at 0x24 times `scale`. fn_71003fd194 then gets the current value.
+#include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkActor.h"
 #include "types.h"
@@ -30,7 +31,6 @@ struct UnkTunable {
 
 extern UnkTunable g_unk_71726c32a0;
 extern "C" f32 atan2f(f32 y, f32 x);
-const CClass* fn_71003feb44();  // CCharClassCentralUnitCannonAIComponent::refl_GetClass
 void fn_710007a170(UnkAim* aim, f32 current);
 void fn_71003fd194(UnkSelf* self, f32 current);
 

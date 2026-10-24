@@ -1,5 +1,6 @@
 // Static initialiser of a reflected component's unit.
 #include "UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -19,7 +20,6 @@ extern UnkProperty* g_unk_71726db788;
 extern void* g_unk_7101a76fa8[];
 void fn_710082ec70(UnkProperty* p);
 void fn_710082d53c(void* p);
-void* fn_710082d5b8();  // CPullOffGrapplePointComponent::refl_GetClass
 extern char g_unk_7172725000[];
 
 void fn_710082f0f0() {

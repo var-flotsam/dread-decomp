@@ -4,6 +4,7 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "base/reflection/UnkClassGetters.h"
 #include "game/UnkTUInit.h"
 
 // The data starts with the header built the other way round ("sources" first, no word stored),
@@ -50,8 +51,6 @@ UnkReflType* fn_710000a4f4();
 void fn_710000a5d0(UnkReflType* self, const CStrId& name, void* a, void* b);
 extern UnkReflType g_unk_7101d4cfb0 __attribute__((visibility("hidden")));
 extern char g_unk_7101d4c138[];
-void fn_71000092e4();  // base::animation::CBlendSpaceResource::refl_GetClass
-void fn_710000a7cc();  // base::animation::CBlendSpaceResource::SBlendTarget::refl_GetClass
 
 void fn_71000113b0() {
     new (&g_unk_7101d4cdc8.sources) CStrId("sources", true);

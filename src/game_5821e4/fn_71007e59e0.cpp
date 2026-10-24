@@ -1,5 +1,6 @@
 // Static initialiser of a reflected component's unit.
 #include "UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -17,9 +18,7 @@ extern UnkProperty* g_unk_71726db788;
 extern void* g_unk_7101a73580[];
 void fn_71007e53d0(UnkProperty* p);
 void fn_71007dff10(void* p);
-void* fn_71007dff8c();  // CCharClassEventScenarioComponent::refl_GetClass
 extern char g_unk_717271f378[];
-void* fn_71007e020c();  // CEventScenarioComponent::refl_GetClass
 extern char g_unk_717271f379[];
 
 void fn_71007e59e0() {

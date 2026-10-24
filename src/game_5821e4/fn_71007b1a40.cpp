@@ -1,5 +1,6 @@
 // Static initialiser of a reflected component's unit.
 #include "UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -15,7 +16,6 @@ extern UnkProperty* g_unk_71726db788;
 extern void* g_unk_7101a70508[];
 void fn_71007b16c0(UnkProperty* p);
 void fn_71007afa60(void* p);
-void* fn_71007afadc();  // CDemolitionBlockComponent::refl_GetClass
 extern char g_unk_717271a068[];
 
 void fn_71007b1a40() {

@@ -1,11 +1,10 @@
 // Handles a movement-state params message: forwards it to the matching state, records the requested
 // state id and, unless state changes are locked, switches the active state to it.
+#include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "types.h"
 
 using base::reflection::CClass;
-
-const CClass* fn_71009b0304();
 
 struct UnkEvent {
     virtual const CClass* vf0();

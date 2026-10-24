@@ -1,5 +1,6 @@
 // Whether any entry of the list has an infester AI component with its flag at 0x146e1 set, or
 // fn_7101136308 of its object at 0x278 holds.
+#include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "types.h"
 
@@ -27,7 +28,6 @@ struct UnkSelf {
     UnkNode* head;
 };
 
-const CClass* fn_71005ca678();  // CInfesterAIComponent::refl_GetClass
 bool fn_7101136308(void* a0);
 
 bool fn_710057a3ac(UnkSelf* self) {

@@ -2,6 +2,7 @@
 // statics (path ids, ids, strings, small-buffer strings, floats) and the class registration.
 #include "../game_s7/UnkStaticInitS7.h"
 #include "base/global/CRntString.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -89,7 +90,6 @@ struct UnkStatics_71005113b0 {
     u8 field_0x530[8];
 };
 extern UnkStatics_71005113b0 g_unk_71726de558 __attribute__((visibility("hidden")));
-void* fn_7100504d60();  // CEmmyGrabSamusAttack::refl_GetClass
 extern char g_unk_71726de550[];
 void fn_7100505000(void* self, const UnkInlineStr50* strs, u32 count);
 void fn_710050512c(void* self);  // its destructor, as registered

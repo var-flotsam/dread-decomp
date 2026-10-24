@@ -4,6 +4,7 @@
 // "sources" ids), then registers its reflected types: a class or enum type built from its name
 // (destroyed at exit) and noted in the TU's registry flags, and for enums a pair of converter
 // records (to and from the integer type) registered with fn_71000a16c4.
+#include "base/reflection/UnkClassGetters.h"
 #include "game/UnkTUInit.h"
 
 extern UnkTUHeader g_unk_71727bc230 __attribute__((visibility("hidden")));
@@ -57,7 +58,6 @@ void fn_7100c1140c() __attribute__((visibility("hidden")));
 void fn_7100c11418() __attribute__((visibility("hidden")));
 extern UnkConverter g_unk_717277e0b0;
 extern UnkConverter g_unk_717277e0d0;
-void fn_7100c11094();  // CCharClassCommanderWingsTrack::refl_GetClass
 extern char g_unk_717277e0f0;
 extern UnkReflType g_unk_717277e118 __attribute__((visibility("hidden")));
 
@@ -126,7 +126,6 @@ extern UnkConverter g_unk_7172745488;
 extern UnkConverter g_unk_71727446b8;
 extern UnkConverter g_unk_717273db10;
 extern UnkConverter g_unk_717273a420;
-void fn_7100d2a190();  // CCharClassToStateTrack::refl_GetClass
 extern char g_unk_71727553c8;
 extern char g_unk_717274c0f8;
 extern char g_unk_717274b5d8;
@@ -145,21 +144,13 @@ extern UnkReflType g_unk_717273db58 __attribute__((visibility("hidden")));
 extern UnkReflType g_unk_717273a468 __attribute__((visibility("hidden")));
 
 void fn_7100a14bf8(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-void fn_7100a14d7c();
 void fn_7100a1cd3c(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-void fn_7100a1cec0();
 void fn_7100a40d1c(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-void fn_7100a40ea0();
 void fn_7100a4d014(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-void fn_7100a4d198();
 void fn_7100a50a2c(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-void fn_7100a50bb0();
 void fn_7100ac05ac(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-void fn_7100ac0730();
 void fn_7100956118(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-void fn_710095629c();
 void fn_71009bb50c(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
-void fn_71009bb690();
 void fn_7100a15260() {
     InitHeader(g_unk_71727446e0);
     InitEnum(&g_unk_7172744578, "EAutsniperSpawnPointDir", fn_7100a14bf8, fn_7100a14aac);
@@ -241,7 +232,6 @@ void fn_7100da3e00() __attribute__((visibility("hidden")));
 void fn_7100da3e0c() __attribute__((visibility("hidden")));
 extern UnkConverter g_unk_71727bba08;
 extern UnkConverter g_unk_71727bba28;
-void fn_7100da3ba0();  // IPath::refl_GetClass
 extern char g_unk_71727bba48;
 extern UnkReflType g_unk_71727bba70 __attribute__((visibility("hidden")));
 
@@ -268,7 +258,6 @@ void fn_7100de1b0c() __attribute__((visibility("hidden")));
 void fn_7100de1b18() __attribute__((visibility("hidden")));
 extern UnkConverter g_unk_71727be4a8;
 extern UnkConverter g_unk_71727be4c8;
-void fn_7100ddf344();  // CExplosionGfx::refl_GetClass
 extern char g_unk_71727be4e8;
 extern UnkReflType g_unk_71727be730 __attribute__((visibility("hidden")));
 
@@ -313,7 +302,6 @@ void fn_7100bce500() __attribute__((visibility("hidden")));
 void fn_7100bce50c() __attribute__((visibility("hidden")));
 extern UnkConverter g_unk_7172772cd0;
 extern UnkConverter g_unk_7172772cf0;
-void fn_7100bce0e4();  // CharClassSakaiModifyShieldEvent::refl_GetClass
 extern char g_unk_7172772d10;
 extern UnkReflType g_unk_7172772d38 __attribute__((visibility("hidden")));
 
@@ -426,7 +414,6 @@ extern UnkConverter g_unk_71727c0830;
 extern UnkConverter g_unk_71727c0850;
 
 extern UnkTUHeaderAndClass g_unk_717279cc60 __attribute__((visibility("hidden")));
-void fn_7100cd12b8();  // CCharClassSetCameraNearEvent::refl_GetClass
 extern char g_unk_717279caf8;
 extern UnkReflType g_unk_717279cb00;
 void fn_7100cd17a8();
@@ -438,7 +425,6 @@ extern UnkConverter g_unk_717279cc20;
 extern UnkConverter g_unk_717279cc40;
 
 extern UnkTUHeaderAndClass g_unk_71727a0898 __attribute__((visibility("hidden")));
-void fn_7100ceadf8();  // CCharClassAnalogAimTrack::refl_GetClass
 extern char g_unk_71727a0730;
 extern UnkReflType g_unk_71727a0738;
 void fn_7100ceb15c();

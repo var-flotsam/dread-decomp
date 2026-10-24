@@ -1,6 +1,7 @@
 // Static initialiser of the unit of GUI::CMapMenuController::SState: the header ids, then the
 // unit's own statics and registrations (helpers in UnkStaticInitS7.h). Layouts are placeholders.
 #include "UnkStaticInitS7.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -43,7 +44,6 @@ extern void* g_unk_7101a45fe8[];
 extern void* g_unk_7101a9caf0[];
 void fn_7100b481b8(UnkProperty2* p);
 void fn_7100b37360(void* p);
-void* fn_7100b37430();
 extern char g_unk_7172763a10[];
 extern UnkConversion g_unk_7172763b38;
 extern UnkConversion g_unk_7172763b58;

@@ -3,6 +3,7 @@
 // depending on its reflected class.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
@@ -10,9 +11,6 @@
 using base::global::UnkStringData;
 using base::reflection::CClass;
 using base::reflection::UnkReflObject;
-
-const CClass* fn_7100d361c0();  // game::logic::collision::CCollider::refl_GetClass
-const CClass* fn_7100d454fc();  // game::logic::collision::CColliderGroup::refl_GetClass
 
 // A string id moved by taking the pointer and leaving the source empty.
 struct UnkId_71008618cc {

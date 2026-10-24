@@ -1,6 +1,7 @@
 // Update of a gobbler-style component: runs the base update, nudges the actor's target state
 // unless it is already a gobbler-ignore track change, and scales a value by how far the actor
 // is from the other (clamped, 1 at the near limit).
+#include "base/reflection/UnkClassGetters.h"
 #include "game/UnkActor.h"
 #include "types.h"
 
@@ -25,8 +26,7 @@ struct UnkGobblerComponent {
 };
 
 void fn_7100369c44(UnkGobblerComponent* self);
-void* fn_7100c20d58();  // CCharClassGobblerIgnorePrefixChangeTrack::refl_GetClass
-bool fn_710117b348(UnkActorTarget* target, void* cls);
+bool fn_710117b348(UnkActorTarget* target, const base::reflection::CClass* cls);
 void fn_710117662c(UnkActorTarget* target, u32 a, u32 b, u32 c, u32 d, f32 value);
 void fn_7101178e08(UnkActorTarget* target, u32 a, u32 b, u32 c, f32 value);
 extern char g_unk_71726e5148[] __attribute__((visibility("hidden")));

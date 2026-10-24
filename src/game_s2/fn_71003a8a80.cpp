@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the behaviortree::CParallel::EPolicy.
 #include "../game_s7/UnkStaticInitS7.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -17,7 +18,6 @@ extern UnkConversion g_unk_71726bbcd0;
 extern UnkConversion g_unk_71726bbcf0;
 void fn_71003a879c() __attribute__((visibility("hidden")));
 void fn_71003a87a8() __attribute__((visibility("hidden")));
-void* fn_71003a7840();  // behaviortree::CParallel::refl_GetClass
 extern char g_unk_71726bbd10[];
 
 void fn_71003a8a80() {

@@ -1,6 +1,7 @@
 // Runs the base step, clears the flag at 0x146f8 and the word at 0x1472c, then asks the two objects
 // the owner's object at +0x220 (+0x30 of the component) has registered under g_unk_71726c40d8 and
 // g_unk_71726c40e0 to run their slot 0x80 when they are of the component's class (fn_71002e6474).
+#include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "types.h"
 
@@ -35,7 +36,6 @@ extern __attribute__((visibility("hidden"))) char g_unk_71726c40d8[];
 extern __attribute__((visibility("hidden"))) char g_unk_71726c40e0[];
 void fn_71003695b8(UnkSelf* self);
 UnkEntry* fn_71002d57ac(void* registry, const void* key);
-const CClass* fn_71002e6474();  // the entry class's refl_GetClass
 
 void fn_7100403a18(UnkSelf* self) {
     fn_71003695b8(self);

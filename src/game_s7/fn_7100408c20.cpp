@@ -4,6 +4,7 @@
 // of the four SDeathImpactDisplacement fields; those were added by hand), in its typed lambda
 // form: typed values call their type getter after the value is stored (AddTyped), and each
 // function registration sits in its own immediately called lambda.
+#include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -52,9 +53,6 @@ extern base::reflection::CType g_unk_717270c618;
 extern base::reflection::CType g_unk_71726b1db0;
 extern base::reflection::CType g_unk_71726e36c8;
 const base::reflection::UnkReflAttrKey& fn_7100091d40();
-const base::reflection::CClass* fn_71002d0420();
-const base::reflection::CClass* fn_71002d093c();
-const base::reflection::CClass* fn_71002d0e58();
 extern base::reflection::CType g_unk_7172a05520;
 extern base::reflection::CType g_unk_7101d5c998;
 void fn_7100416554();
@@ -66,7 +64,6 @@ void fn_7100412d8c(UnkReflFunction* fn, const char* name);
 void fn_71004167c0();
 void fn_7100412f08(UnkReflFunction* fn, const char* name);
 extern base::reflection::CType g_unk_71726b1f10;
-const base::reflection::CClass* fn_710035cb6c();
 // The value type of four fields' defaults (0x10 bytes; its class getter is fn_710035cb6c).
 struct SDeathImpactDisplacement {
     f32 field_0x0;

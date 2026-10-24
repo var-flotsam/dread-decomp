@@ -2,6 +2,7 @@
 // CEmmyAIComponent::ETargetPerceptionType and others: the header ids, then the unit's own statics
 // and registrations (helpers in UnkStaticInitS7.h). Layouts are placeholders.
 #include "UnkStaticInitS7.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -110,7 +111,6 @@ extern void* g_unk_7101a45fe8[];
 extern void* g_unk_7101a45f90[];
 void fn_71004fd2cc(UnkProperty2* p);
 void fn_71004fa3b8(void* p);
-void* fn_7100531c10();
 extern char g_unk_71726dfe40[];
 extern char g_unk_71726dfe41[];
 UnkEnumType* fn_71005321d8();
@@ -140,7 +140,6 @@ void fn_710009891c(void* type);  // the type's destructor, as registered
 extern char g_unk_71726e0238[];
 extern UnkConversion g_unk_71726e0240;
 void fn_710055d690() __attribute__((visibility("hidden")));
-void* fn_71005332f4();
 extern char g_unk_71726e0260[];
 extern char g_unk_71726e0261[];
 UnkEnumType* fn_7100533ad8();
@@ -167,7 +166,6 @@ void fn_7100534a10(UnkEnumType* type, const CStrId& name, void*, void*);
 extern char g_unk_71726e0658[];
 extern UnkConversion g_unk_71726e0660;
 void fn_710055e90c() __attribute__((visibility("hidden")));
-void* fn_7100534bf4();
 extern char g_unk_71726e0680[];
 extern char g_unk_71726e0681[];
 UnkEnumType* fn_7100535334();
@@ -195,13 +193,11 @@ extern char g_unk_71726e0a78[];
 extern UnkConversion g_unk_71726e0a80;
 void fn_710055fb88() __attribute__((visibility("hidden")));
 void fn_7100536450(void*) __attribute__((visibility("hidden")));  // the array's destructor
-void* fn_7100537bf4();
 extern char g_unk_71726e0aa0[];
 extern UnkTunable g_unk_71726e0aa8;
 void fn_7100136ecc(UnkTunable* self);  // the base constructor
 extern void* g_unk_7101a48b50[];
 void fn_7100075104(void* self);  // its destructor, as registered
-void* fn_710053b934();
 extern char g_unk_71726e0bb1[];
 extern UnkStrIdBase g_unk_71726e0bb8;
 

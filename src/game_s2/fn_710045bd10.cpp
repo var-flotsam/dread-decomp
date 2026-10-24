@@ -2,6 +2,7 @@
 // commander's stage defines: when the commander is found and is of the right class, each axis is
 // moved to stay a margin (25 plus the component's value at 0x5dc) away from the area's edge.
 #include "base/math/CVector.h"
+#include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkActor.h"
 #include "types.h"
@@ -50,8 +51,6 @@ struct UnkClamper {
     u8 pad_0x238[0x3a4];
     f32 field_0x5dc;
 };
-
-const CClass* fn_710044e708();  // CChozoCommanderAIComponent::refl_GetClass
 
 union UnkBits {
     u32 u;

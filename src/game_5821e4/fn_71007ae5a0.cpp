@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the base::reflection::CollectionTypeMapper<base::global::CRntVector<CCutsceneComponent::SActorInfo>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<CCutsceneComponent::SActorInfo>>::TKeyElementConstIterator::value_type, base::global::CRntVector<CCutsceneComponent::SActorInfo> reflected types.
 #include "UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -39,11 +40,8 @@ extern char g_unk_71727192e1[];
 UnkEnumType* fn_71007a217c();
 extern UnkConversion g_unk_71727192e8;
 void fn_71007ab7d8() __attribute__((visibility("hidden")));
-void* fn_71007a225c();  // CCutsceneComponent::SActorInfo::refl_GetClass
 extern char g_unk_7172719308[];
-void* fn_71007a2c40();  // CCutsceneComponent::SSamusActorInfo::refl_GetClass
 extern char g_unk_7172719309[];
-void* fn_71007a2ec0();  // CCutsceneComponent::refl_GetClass
 extern char g_unk_717271930a[];
 
 void fn_71007ae5a0() {

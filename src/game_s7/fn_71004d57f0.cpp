@@ -1,6 +1,7 @@
 // Static initialiser of a reflected unit: the header ids, then the unit's own statics and
 // registrations (helpers in UnkStaticInitS7.h). Layouts are placeholders.
 #include "UnkStaticInitS7.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -38,7 +39,6 @@ struct UnkStatics_71004d57f0 {
 extern UnkStatics_71004d57f0 g_unk_71726d86d8 __attribute__((visibility("hidden")));
 void fn_71004cee70(void* self, const UnkStrIdBase* ids, u32 count);
 void fn_71004cf1d4(void* self);  // its destructor, as registered
-void* fn_71004cf318();
 extern char g_unk_71726d86d0[];
 
 void fn_71004d57f0() {

@@ -1,5 +1,6 @@
 // Starts the central unit's reaction: -1 request id gives 6, otherwise the central unit AI
 // component of the owner at 0x18 (when it is one) is handed to fn_7100405d58, which gives 5.
+#include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "types.h"
 
@@ -20,7 +21,6 @@ struct UnkSelf {
     u32 field_0x30;
 };
 
-const CClass* fn_71004030f4();  // CCentralUnitAIComponent::refl_GetClass
 void fn_7100405d58(UnkAIComponent* component, s32 a1, u32 a2);
 
 u32 fn_7100402ee4(UnkSelf* self) {

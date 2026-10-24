@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the CCharClassPoisonFlyAIComponent::ESubspecies enum.
 #include "UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -11,7 +12,6 @@ struct UnkStatics_7100638950 {
     u8 field_0x160[8];
 };
 extern UnkStatics_7100638950 g_unk_71726fa2e0 __attribute__((visibility("hidden")));
-void* fn_71006367c4();  // CCharClassPoisonFlyAIComponent::CTunableCharClassPoisonFlyAIComponent::refl_GetClass
 extern char g_unk_71726fa0f0[];
 extern UnkTunable g_unk_71726fa0f8;
 void fn_7100136ecc(UnkTunable* self);  // the base constructor
@@ -25,7 +25,6 @@ extern UnkConversion g_unk_71726fa280;
 extern UnkConversion g_unk_71726fa2a0;
 void fn_71006387b8() __attribute__((visibility("hidden")));
 void fn_71006387c4() __attribute__((visibility("hidden")));
-void* fn_7100638214();  // CCharClassPoisonFlyAIComponent::refl_GetClass
 extern char g_unk_71726fa2c0[];
 extern UnkStrIdBase g_unk_71726fa2c8;
 extern UnkStrIdBase g_unk_71726fa2d0;

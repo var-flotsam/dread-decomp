@@ -2,6 +2,7 @@
 // and screw-attack tracks of the owner's character class (zeroing or blocking the damage), and
 // reports whether the owner's shield currently absorbs it (2) or not (0).
 #include "base/global/CStrId.h"
+#include "base/reflection/UnkClassGetters.h"
 #include "game/UnkActor.h"
 
 using base::global::CStrId;
@@ -41,7 +42,7 @@ struct UnkTrack_7101105e44 {
 };
 
 struct UnkTrackQuery_7101105e44 {
-    void* cls;
+    const base::reflection::CClass* cls;
     UnkTrack_7101105e44* result;
     f32 field_0x10;
 };
@@ -86,11 +87,8 @@ struct UnkStruct_7101105e44 {
 };
 
 void fn_7100d7add4(UnkActor_7101105e44* actor, bool value);
-void* fn_7100c135a8();
-void* fn_7100c2bcd8();
-void* fn_7100bf0758();
 void fn_710117b08c(void* char_class, UnkTrackQuery_7101105e44* query);
-bool fn_710117b348(void* char_class, void* cls);
+bool fn_710117b348(void* char_class, const base::reflection::CClass* cls);
 u32 fn_7100414070(const char* str);
 void fn_71008c1538(UnkDamage_7101105e44* d, f32 amount);
 bool fn_7101161088(UnkShield_7101105e44* shield);

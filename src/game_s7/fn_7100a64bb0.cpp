@@ -3,6 +3,7 @@
 // CTriggerComponent::EEvent: the header ids, then the unit's own statics and registrations
 // (helpers in UnkStaticInitS7.h). Layouts are placeholders.
 #include "UnkStaticInitS7.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -66,9 +67,7 @@ extern UnkEnumType g_unk_717274dc70;
 extern char g_unk_717274dd88[];
 void fn_7100a5b92c(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_7100a5b600();
-void* fn_7100a5bab0();
 extern char g_unk_717274ddd0[];
-void* fn_7100a5d274();
 extern char g_unk_717274ddd1[];
 extern UnkTunable g_unk_717274ddd8;
 void fn_7100136ecc(UnkTunable* self);  // the base constructor

@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the CBigkranXMagmaRainAttack::EState.
 #include "../game_s7/UnkStaticInitS7.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -10,7 +11,6 @@ struct UnkStatics_71003eb3f0 {
     u8 field_0x28[8];
 };
 extern UnkStatics_71003eb3f0 g_unk_71726c1800 __attribute__((visibility("hidden")));
-void* fn_71003e9efc();  // CBigkranXMagmaRainAttack::refl_GetClass
 extern char g_unk_71726c1698[];
 extern UnkEnumType g_unk_71726c16a0;
 void fn_71003ea384(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);

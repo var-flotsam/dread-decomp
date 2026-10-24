@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the EForceOpticCamouflageMode enum.
 #include "UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -21,13 +22,11 @@ extern UnkConversion g_unk_7172703e40;
 extern UnkConversion g_unk_7172703e60;
 void fn_71006907c4() __attribute__((visibility("hidden")));
 void fn_71006907d0() __attribute__((visibility("hidden")));
-void* fn_710068e010();  // CCharClassScorpiusAIComponent::CTunableCharClassScorpiusAIComponent::refl_GetClass
 extern char g_unk_7172703e80[];
 extern UnkTunable g_unk_7172703e88;
 void fn_7100136ecc(UnkTunable* self);  // the base constructor
 extern void* g_unk_7101a60f28[];
 void fn_7100075104(void* self);  // its destructor, as registered
-void* fn_710068f63c();  // CCharClassScorpiusAIComponent::refl_GetClass
 extern char g_unk_7172703ee9[];
 extern UnkStrIdBase g_unk_7172703ef0;
 extern UnkStrIdBase g_unk_7172703ef8;

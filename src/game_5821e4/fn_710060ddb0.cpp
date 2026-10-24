@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the CNailongThornsAttack::EState enum.
 #include "UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -16,7 +17,6 @@ struct UnkStatics_710060ddb0 {
     u8 field_0x58[8];
 };
 extern UnkStatics_710060ddb0 g_unk_71726f4d08 __attribute__((visibility("hidden")));
-void* fn_710060a968();  // CNailongThornsAttack::refl_GetClass
 extern char g_unk_71726f4ba0[];
 extern UnkEnumType g_unk_71726f4ba8;
 void fn_710060aeb0(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);

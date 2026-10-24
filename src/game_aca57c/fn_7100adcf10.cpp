@@ -4,6 +4,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
+#include "base/reflection/UnkClassGetters.h"
 #include "game/UnkTUInit.h"
 
 using base::global::CFilePathStrId;
@@ -97,7 +98,6 @@ extern UnkConverter g_unk_717275b6c0;
 void fn_7100aebf80() __attribute__((visibility("hidden")));
 extern UnkConverter g_unk_717275b6e0;
 void fn_7100aec000() __attribute__((visibility("hidden")));
-void fn_7100ae9e7c();  // CGameBlackboard::refl_GetClass
 extern char g_unk_717275b700;
 extern UnkReflType g_unk_717275bf60 __attribute__((visibility("hidden")));
 UnkReflType* fn_7100aea26c();
@@ -150,7 +150,6 @@ void fn_7100aef910() {
 }
 
 extern UnkTUHeaderFnsClass g_unk_717275ed68 __attribute__((visibility("hidden")));
-void fn_7100b04a5c();  // GUI::CDisplayObjectDef::refl_GetClass
 extern char g_unk_717275e1f8;
 UnkReflType* fn_7100b05394();  // base::reflection::refl_GetType<GUI::CDisplayObjectDef*>
 extern char g_unk_717275e1f9;
@@ -413,9 +412,7 @@ void fn_7100b84970() {
 }
 
 extern UnkTUHeader g_unk_7172794a98 __attribute__((visibility("hidden")));
-void fn_7100c81418();  // CCutSceneDef::refl_GetClass
 extern char g_unk_71727930c8;
-void fn_7100c828a4();  // CCutSceneDef::CActorDef::refl_GetClass
 extern char g_unk_71727930c9;
 UnkReflType* fn_7100c837d4();
 extern char g_unk_71727930ca;
@@ -437,7 +434,6 @@ extern char g_unk_7172793349;
 extern UnkReflType g_unk_7172793350;
 void fn_7100c8456c(UnkReflType* self, const CStrId& name, void* a, void* b);
 extern char g_unk_71727934c0;
-void fn_7100c84768();  // CCutSceneDef::CAnimationLayerDef::refl_GetClass
 extern char g_unk_71727934c1;
 extern UnkReflType g_unk_7172794d40 __attribute__((visibility("hidden")));
 UnkReflType* fn_7100c84da4();
@@ -459,7 +455,6 @@ extern char g_unk_7172793741;
 extern UnkReflType g_unk_7172793748;
 void fn_7100c85b3c(UnkReflType* self, const CStrId& name, void* a, void* b);
 extern char g_unk_71727938b8;
-void fn_7100c85d3c();  // CCutSceneDef::CTakeDef::refl_GetClass
 extern char g_unk_71727938b9;
 extern UnkReflType g_unk_7172794e78 __attribute__((visibility("hidden")));
 UnkReflType* fn_7100c868ec();
@@ -548,7 +543,6 @@ void fn_7100c92b10() {
 }
 
 extern UnkTUHeader g_unk_71727b4f88 __attribute__((visibility("hidden")));
-void fn_7100d69690();  // game::logic::collision::CShape::refl_GetClass
 extern char g_unk_71727b3dd8;
 UnkReflType* fn_71009155a8();  // base::reflection::refl_GetType<game::logic::collision::CShape*>
 extern char g_unk_71727b3dd9;
@@ -644,7 +638,6 @@ void fn_7100d6ff80() {
 }
 
 extern UnkTUHeader g_unk_71727bb618 __attribute__((visibility("hidden")));
-void fn_7100d9cf20();  // CLightsDef::refl_GetClass
 extern char g_unk_71727ba998;
 UnkReflType* fn_7100d9d978();
 extern char g_unk_71727ba999;
@@ -723,7 +716,6 @@ void fn_7100db21d0() {
 }
 
 extern UnkTUHeaderFnsClass g_unk_71727c0520 __attribute__((visibility("hidden")));
-void fn_7100e07bb8();  // CLightManager::refl_GetClass
 extern char g_unk_71727bf9b0;
 UnkReflType* fn_7100e085b0();
 extern char g_unk_71727bf9b1;
@@ -856,7 +848,6 @@ extern void* g_unk_7101a97370[];
 void fn_7100acacf8(UnkProperty* p);
 void fn_7100ac8db0(void* p);
 extern CStrId g_unk_7172755b90 __attribute__((visibility("hidden")));
-void fn_7100ac8e2c();  // CWeightActivablePropComponent::refl_GetClass
 extern char g_unk_7172755b30;
 
 void fn_7100acb290() {
@@ -891,7 +882,6 @@ void fn_7100ca4090(UnkReflType* self, const CStrId& name, UnkReflType* base, voi
 extern char g_unk_7172796918;
 UnkReflType* fn_7100ca4214();
 extern char g_unk_7172796919;
-void fn_7100ca42f4();  // CBreakableTileManager::CTunableBreakableTileManager::refl_GetClass
 extern char g_unk_717279691a;
 extern UnkReflType g_unk_7172797480 __attribute__((visibility("hidden")));
 extern UnkTunable g_unk_7172796920;
@@ -977,7 +967,6 @@ extern UnkProperty g_unk_71727c0998;
 extern void* g_unk_7101aa9c38[];
 void fn_7100e165e8(UnkProperty* p);
 void fn_7100e140c0(void* p);
-void fn_7100e1413c();   // CArenaManager::CTunableArenaManager::refl_GetClass
 extern char g_unk_71727c09c0;
 extern CRntString g_unk_71727c0a58 __attribute__((visibility("hidden")));
 extern UnkTunable g_unk_71727c09c8;
@@ -1008,7 +997,6 @@ void fn_7100e16af0() {
 extern UnkTUHeader g_unk_7172755cf8 __attribute__((visibility("hidden")));
 extern CStrId g_unk_7172755d10 __attribute__((visibility("hidden")));
 CStrId fn_7100de8f78(const CStrId& name);
-void fn_7100acb4ac();  // CWorldGraph::refl_GetClass
 extern char g_unk_7172755cf0;
 
 // The id lives in an inline function: its guard and object are reached through the GOT.
@@ -1069,7 +1057,6 @@ extern UnkConverter g_unk_71727bc530;
 extern UnkTUData g_unk_71727bc5b0 __attribute__((visibility("hidden")));
 void fn_7100da6e50(void*) __attribute__((visibility("hidden")));  // destroys an array
 void fn_7100da6f50(void*) __attribute__((visibility("hidden")));  // destroys an array
-void fn_7100da7408();  // CAIManager::CTunableAIManager::refl_GetClass
 extern char g_unk_71727bc550;
 extern UnkTunable g_unk_71727bc558;
 void fn_7100136ecc(UnkTunable* self);

@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the CScourgeTongueSlashAttack::EState enum.
 #include "UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -15,7 +16,6 @@ struct UnkStatics_710069cd80 {
     u8 field_0x50[8];
 };
 extern UnkStatics_710069cd80 g_unk_7172704928 __attribute__((visibility("hidden")));
-void* fn_7100699fd4();  // CScourgeTongueSlashAttack::refl_GetClass
 extern char g_unk_71727047c0[];
 extern UnkEnumType g_unk_71727047c8;
 void fn_710069a57c(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);

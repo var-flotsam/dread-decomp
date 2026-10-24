@@ -3,6 +3,7 @@
 // 0x44, 0x54 and 0x64). When the action accepts, returns the (possibly adjusted) angle in radians,
 // otherwise 0.
 #include "base/UnkMatrix44.h"
+#include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkActor.h"
 #include "types.h"
@@ -40,7 +41,6 @@ struct UnkPosition {
 
 void* fn_71011771e0(void* handle, u64 key);
 UnkAimAction* fn_710070d500(void* found);
-const CClass* fn_7100b8f4e8();  // CAIAimAction::refl_GetClass
 u64 fn_7100001570(const char* str, u64 length);
 bool fn_7100b8fa7c(UnkAimAction* action, f32* angle, const UnkMatrix44* matrix, u64* hash, UnkPosition* position,
                    bool flag, bool flag2);

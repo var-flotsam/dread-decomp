@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the CAutoolAIComponent::EThrusterMode enum.
 #include "../game_5821e4/UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -13,7 +14,6 @@ struct UnkStatics_71003c7230 {
 };
 extern UnkStatics_71003c7230 g_unk_71726be9a0 __attribute__((visibility("hidden")));
 extern char g_unk_71726be828[];
-void* fn_71003c2a94();  // CAutoolAIComponent::refl_GetClass
 extern UnkEnumType g_unk_71726be830;
 void fn_71003c2f9c(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_71003c2df0();

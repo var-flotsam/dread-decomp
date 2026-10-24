@@ -9,6 +9,7 @@
 
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "base/reflection/UnkClassGetters.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -239,7 +240,6 @@ void fn_7100c545f0(UnkThreeIdsOnMiddle* self, const UnkThreeIdsOnMiddle* other) 
 void fn_7100c546cc(UnkThreeIdsOnMiddle* self, const UnkThreeIdsOnMiddle* other) { CopyConstruct(self, other); }
 
 // Constructors: the class is registered (its refl_GetClass) and its object passed to the root.
-UnkClass* fn_7100bf1638();  // CCharClassAllowCrouchRepositionTrack::refl_GetClass
 extern UnkClass g_unk_7172777d38 __attribute__((visibility("hidden")));
 
 void fn_7100bf1c0c(UnkRootTwoIds<g_unk_7101aa2230>* self) {
@@ -247,10 +247,6 @@ void fn_7100bf1c0c(UnkRootTwoIds<g_unk_7101aa2230>* self) {
     new (self) UnkRootTwoIds<g_unk_7101aa2230>(&g_unk_7172777d38);
 }
 
-UnkClass* fn_7100bf1f28();  // CCharClassAllowFallendRepositionTrack::refl_GetClass
-UnkClass* fn_7100c291f8();  // CCharClassIgnoreCollisionMaskTrack::refl_GetClass
-UnkClass* fn_7100c455b8();  // CCharClassPlayTimelineTrack::refl_GetClass
-UnkClass* fn_7100cecf98();  // CCharClassAttackFailActionTrack::refl_GetClass
 extern UnkClass g_unk_7172777e98 __attribute__((visibility("hidden")));
 extern UnkClass g_unk_7172783918 __attribute__((visibility("hidden")));
 extern UnkClass g_unk_717278a9e8 __attribute__((visibility("hidden")));
@@ -301,11 +297,6 @@ extern void* g_unk_7101aa3440[];
 extern void* g_unk_7101aa3f20[];
 extern void* g_unk_7101aa3f70[];
 extern void* g_unk_7101aa41a8[];
-UnkClass* fn_7100c1d4b8();  // CCharClassForceBumpFXTrack::refl_GetClass
-UnkClass* fn_7100c26e68();  // CCharClassIgnoreBumpFXTrack::refl_GetClass
-UnkClass* fn_7100c3e258();  // CCharClassMeleeFailActionTrack::refl_GetClass
-UnkClass* fn_7100c3f0d8();  // CCharClassMeleeSuccessBigAIActionTrack::refl_GetClass
-UnkClass* fn_7100c44688();  // CCharClassOverrideSamusMeleeActionTrack::refl_GetClass
 extern UnkClass g_unk_7172780e78 __attribute__((visibility("hidden")));
 extern UnkClass g_unk_7172783238 __attribute__((visibility("hidden")));
 extern UnkClass g_unk_7172789118 __attribute__((visibility("hidden")));
@@ -334,7 +325,6 @@ void fn_7100c44cb4(UnkRootIdFlag<g_unk_7101aa41a8>* self) {
 }
 
 
-UnkClass* fn_7100d1b068();  // CCharClassModifyBumpedActionTrack::refl_GetClass
 extern UnkClass g_unk_71727abcd8 __attribute__((visibility("hidden")));
 
 // NON_MATCHING(minor): as fn_7100c45f60 (the post-increment goes to the second id, not the fourth).
@@ -387,10 +377,6 @@ extern void* g_unk_7101aa7008[];
 extern void* g_unk_7101aa7030[];
 extern void* g_unk_7101aa6f40[];
 extern void* g_unk_7101aa7c38[];
-UnkClass* fn_7100cfe868();  // CCharClassGrabbedTrackTrack::refl_GetClass
-UnkClass* fn_7100cff148();  // CCharClassGrabberTrackTrack::refl_GetClass
-UnkClass* fn_7100cfbd38();  // CCharClassFXControlTrack::refl_GetClass
-UnkClass* fn_7100d1a278();  // CCharClassMeleeSuccessActionTrack::refl_GetClass
 extern UnkClass g_unk_71727a4ed8 __attribute__((visibility("hidden")));
 extern UnkClass g_unk_71727a5038 __attribute__((visibility("hidden")));
 extern UnkClass g_unk_71727a47f8 __attribute__((visibility("hidden")));
@@ -414,7 +400,6 @@ void fn_7100d1a8a4(UnkRootIdFlag<g_unk_7101aa7c38>* self) {
 }
 
 // CCharClassMaterialPropertyTransitionTrack's constructor (the three-group class above).
-UnkClass* fn_7100d17558();  // CCharClassMaterialPropertyTransitionTrack::refl_GetClass
 extern UnkClass g_unk_71727ab338 __attribute__((visibility("hidden")));
 
 void fn_7100d1867c(UnkThreeGroups* self) {
@@ -434,8 +419,6 @@ struct UnkRootIdArrayIdWord : UnkRootIdArray<Vtable> {
 
 extern void* g_unk_7101aa2b80[];
 extern void* g_unk_7101aa7d00[];
-UnkClass* fn_7100c12238();  // CCharClassCooldownXBossDamageShapesTrack::refl_GetClass
-UnkClass* fn_7100d217d8();  // CCharClassModifyDamageTrack::refl_GetClass
 extern UnkClass g_unk_717277e538 __attribute__((visibility("hidden")));
 extern UnkClass g_unk_71727ac0f8 __attribute__((visibility("hidden")));
 
@@ -468,7 +451,6 @@ struct UnkRootTwoDirectEmptyIds : UnkRoot {
         : UnkRoot(cls), ids{(SetVtable(Vtable), UnkDirectEmptyId()), UnkDirectEmptyId()} {}
 };
 
-UnkClass* fn_7100c1ee78();  // CCharClassForceRotationOnActionTrack::refl_GetClass
 extern UnkClass g_unk_7172781298 __attribute__((visibility("hidden")));
 
 void fn_7100c1f318(UnkRootTwoDirectEmptyIds<g_unk_7101aa30a8>* self) {

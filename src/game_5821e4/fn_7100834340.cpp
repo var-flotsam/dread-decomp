@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the CGrappleBeamGun::ESelectionMode, CGrappleBeamGun::ESelectionInput enums.
 #include "UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -11,7 +12,6 @@ struct UnkStatics_7100834340 {
     u8 field_0x160[8];
 };
 extern UnkStatics_7100834340 g_unk_7172725c08 __attribute__((visibility("hidden")));
-void* fn_7100832034();  // CGrappleBeamGun::refl_GetClass
 extern char g_unk_71727258f8[];
 extern UnkEnumType g_unk_7172725900;
 void fn_710083251c(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
@@ -29,7 +29,6 @@ extern UnkConversion g_unk_7172725b80;
 extern UnkConversion g_unk_7172725ba0;
 void fn_71008340c8() __attribute__((visibility("hidden")));
 void fn_71008340d4() __attribute__((visibility("hidden")));
-void* fn_71008329cc();  // CGrappleBeamGun::CTunableGrappleBeamGun::refl_GetClass
 extern char g_unk_7172725bc0[];
 extern UnkTunable g_unk_7172725bc8;
 void fn_7100136ecc(UnkTunable* self);  // the base constructor

@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the EJumpType.
 #include "../game_s7/UnkStaticInitS7.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -20,7 +21,6 @@ extern UnkConversion g_unk_71726bd868;
 extern UnkConversion g_unk_71726bd888;
 void fn_71003bbaf4() __attribute__((visibility("hidden")));
 void fn_71003bbb00() __attribute__((visibility("hidden")));
-void* fn_71003baf80();  // CAutectorAIComponent::refl_GetClass
 extern char g_unk_71726bd8a8[];
 
 void fn_71003bbc20() {

@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the CCharClassQuetzoaAIComponent::ESubspecies enum.
 #include "UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -11,7 +12,6 @@ struct UnkStatics_7100649430 {
     u8 field_0x160[8];
 };
 extern UnkStatics_7100649430 g_unk_71726fbd88 __attribute__((visibility("hidden")));
-void* fn_71006483b4();  // CCharClassQuetzoaAIComponent::CTunableCharClassQuetzoaAIComponent::refl_GetClass
 extern char g_unk_71726fbbe8[];
 extern UnkTunable g_unk_71726fbbf0;
 void fn_7100136ecc(UnkTunable* self);  // the base constructor
@@ -25,7 +25,6 @@ extern UnkConversion g_unk_71726fbd40;
 extern UnkConversion g_unk_71726fbd60;
 void fn_7100649274() __attribute__((visibility("hidden")));
 void fn_7100649280() __attribute__((visibility("hidden")));
-void* fn_7100648ce0();  // CCharClassQuetzoaAIComponent::refl_GetClass
 extern char g_unk_71726fbd80[];
 
 void fn_7100649430() {

@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the CCharClassGooplotAIComponent::ESubspecies enum.
 #include "UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -11,7 +12,6 @@ struct UnkStatics_71005994a0 {
     u8 field_0x160[8];
 };
 extern UnkStatics_71005994a0 g_unk_71726e7480 __attribute__((visibility("hidden")));
-void* fn_71005972bc();  // CCharClassGooplotAIComponent::CTunableCharClassGooplotAIComponent::refl_GetClass
 extern char g_unk_71726e72b0[];
 extern UnkTunable g_unk_71726e72b8;
 void fn_7100136ecc(UnkTunable* self);  // the base constructor
@@ -25,7 +25,6 @@ extern UnkConversion g_unk_71726e7438;
 extern UnkConversion g_unk_71726e7458;
 void fn_71005992e0() __attribute__((visibility("hidden")));
 void fn_71005992ec() __attribute__((visibility("hidden")));
-void* fn_7100598ca0();  // CCharClassGooplotAIComponent::refl_GetClass
 extern char g_unk_71726e7478[];
 
 void fn_71005994a0() {

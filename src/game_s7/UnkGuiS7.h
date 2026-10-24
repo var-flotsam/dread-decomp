@@ -8,6 +8,7 @@
 
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 
 namespace unk_gui {
@@ -16,9 +17,6 @@ using base::global::CRntString;
 using base::global::CStrId;
 using base::reflection::CClass;
 using UnkClass = CClass;  // the name the includers (fn_7100b921e0, fn_7100b94320) still use
-
-const CClass* fn_71011e8dfc();  // GUI::CLabel::refl_GetClass
-const CClass* fn_71011f6890();  // GUI::CSprite::refl_GetClass
 
 struct UnkGuiObj {
     virtual const CClass* GetClass();

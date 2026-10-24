@@ -32,11 +32,12 @@ struct UnkReflType {
     void (*destroy)(UnkValue* value);
 };
 
-// A reflected type's getter (base/reflection/UnkReflAttributes.h declares the plain types'), as
-// the helpers see the type object: through the placeholder layout above.
-template <const base::reflection::CType* (*Getter)()>
+// A reflected type's getter (base/reflection/UnkReflAttributes.h declares the plain types',
+// base/reflection/UnkClassGetters.h the classes'), as the helpers see the type object: through
+// the placeholder layout above. The getters return a pointer to const CType or CClass.
+template <auto Getter>
 __attribute__((always_inline)) static inline UnkReflType* refl_TypeOf() {
-    return reinterpret_cast<UnkReflType*>(const_cast<base::reflection::CType*>(Getter()));
+    return reinterpret_cast<UnkReflType*>(const_cast<void*>(static_cast<const void*>(Getter())));
 }
 
 void fn_7100096604(void* type);  // a class type's destructor

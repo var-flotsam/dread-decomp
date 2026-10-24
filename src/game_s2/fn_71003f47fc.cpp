@@ -2,6 +2,7 @@
 // component (null otherwise) and registers two embedded entries in the list at 0x161c, each one
 // initialised from its own fixed offset into that component. Returns bit 0 of the first step's
 // result.
+#include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "types.h"
 
@@ -27,7 +28,6 @@ struct UnkSelf {
 };
 
 u32 fn_71003e59f8(UnkSelf* self);
-const CClass* fn_71003f5604();  // CCharClassBigkranXAIComponent::refl_GetClass
 void fn_71003ea558(void* entry, u8* source);
 void fn_71003f14c4(void* entry, u8* source);
 

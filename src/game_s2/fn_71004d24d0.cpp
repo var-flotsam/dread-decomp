@@ -3,6 +3,7 @@
 // the target is (distance over a maximum, capped at 1), scaled by `scale`, and never more than
 // the distance itself.
 #include "base/math/CVector.h"
+#include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkActor.h"
 #include "types.h"
@@ -28,8 +29,6 @@ struct UnkMover {
     u8 pad_0x38[0x15118];
     UnkAttackObject* field_0x15150;
 };
-
-const CClass* fn_71004add20();  // CCharClassCooldownXBossLavaDropsAttack::refl_GetClass
 
 // NON_MATCHING(minor): the two argument copies at the start (position, scale) are in the other order;
 // behaviour is identical

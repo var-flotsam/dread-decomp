@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the CCharClassNailongThornsAttack::EDepthornAttackType enum.
 #include "UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -17,7 +18,6 @@ extern UnkConversion g_unk_71726f4a00;
 extern UnkConversion g_unk_71726f4a20;
 void fn_710060a6e4() __attribute__((visibility("hidden")));
 void fn_710060a6f0() __attribute__((visibility("hidden")));
-void* fn_7100609a38();  // CCharClassNailongThornsAttack::refl_GetClass
 extern char g_unk_71726f4a40[];
 
 void fn_710060a7b0() {

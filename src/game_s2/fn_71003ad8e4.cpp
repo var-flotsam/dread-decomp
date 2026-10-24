@@ -3,6 +3,7 @@
 // the owner's object at +0x1b8 has a usable child at +0x48 (running fn_710115fe20 to make one),
 // stores fn_710112bf20's string id in the manager's name member at +0x2230.
 #include "base/global/CStrId.h"
+#include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
@@ -44,7 +45,6 @@ struct UnkSelf {
     UnkFlagObject* field_0x14908;
 };
 
-const CClass* fn_71011abbd4();  // CCharClass::refl_GetClass
 void fn_7100df5cec(UnkGameManager* manager, void* target);
 void fn_710115fe20(UnkHolder* holder);
 CStrId* fn_710112bf20();

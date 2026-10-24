@@ -1,5 +1,6 @@
 // Reflection fields and functions of CCutsceneComponent. Written from the refl_attrs draft; one
 // return-type getter lives in this class's translation unit.
+#include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -38,7 +39,6 @@ void fn_71007ad9ec();
 void fn_71007ada28();
 void fn_71007adb08();
 void fn_71007adb3c();
-const base::reflection::CType* fn_71007a225c();
 extern const base::reflection::CType g_unk_71727199c0 __attribute__((visibility("hidden")));
 void fn_71007adb50();
 void fn_71007adba0();

@@ -3,14 +3,12 @@
 // each entry of the array at +0x48, and clears the flag.
 #include "base/UnkVector.h"
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "types.h"
 
 using base::reflection::CClass;
 using base::reflection::UnkReflObject;
-
-const CClass* fn_7100d361c0();  // game::logic::collision::CCollider::refl_GetClass
-const CClass* fn_7100d454fc();  // game::logic::collision::CColliderGroup::refl_GetClass
 
 struct UnkStruct_7100861148_Collider : UnkReflObject {
     u8 pad_0x8[0x28];
