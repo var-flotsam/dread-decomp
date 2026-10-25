@@ -76,12 +76,9 @@ cmake --build build/port/cmake --target dread_game
 Linking a Windows executable needs one of: the MSVC Build Tools (then target
 `x86_64-pc-windows-msvc`, lld-link, and the host's standard library: leave
 `DREAD_LIBCXX_INCLUDE` and `DREAD_MUSL_INCLUDE` empty), MinGW-w64 (an `x86_64-w64-mingw32`
-toolchain), or WSL (a Linux build, below). On a Windows target `include/types.h` must take `u64`
-and `s64` from `long long` under `_WIN64`: `main` as of this M0 (35941e73) defines them from
-`long`, which is 32-bit there (LLP64), and its `static_assert` says so. A separate change does
-exactly that (`Phase 4.5: types.h: 64-bit Windows hosts get u64/s64 from long long`); until it is
-in, that LP64 assumption is the one thing in `include/` known not to port to Windows itself, and
-the Linux triple sidesteps it.
+toolchain), or WSL (a Linux build, below). A Windows target is LLP64 (`long` is 32-bit):
+`include/types.h` takes `u64` and `s64` from `long long` under `_WIN64` (merged with
+var-flotsam/dread-decomp#184), and its `static_assert` checks the widths on every target.
 
 ### Linux
 
