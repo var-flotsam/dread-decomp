@@ -6,8 +6,21 @@ it needs). History, batch logs and the index of matching findings are in `docs/J
 `docs/recon.md` describes the binary, `docs/compiler.md` the toolchain, `docs/references.md` the
 outside projects. This page is edited in place, never appended to: session notes go to the journal.
 
-**Last updated 2026-10-24** (branch `claude/strategy-cleanup`, after the strategy readthrough).
+**Last updated 2026-10-25** (branch `claude/cheap-progress`: the mechanical hub-migration tools).
 Target: **Metroid Dread 2.1.0**, `main` build ID `646761F643AFEBB379EDD5E6A5151AF2CEF93DC1`.
+
+## Start here
+
+- **Open work:** `gh pr list` is the source of truth for what is waiting to merge; the lifter's semantic
+  coverage mode (stream M) runs in its own session on a `claude/lifter-semantic-coverage-*` branch.
+- **Next hub batch:** `python tools/hub_migrate.py --version 2.1.0 --header-redeclared` (about a minute)
+  prints the `LEFT` files that need a hand (135 declarations in 85 files on 2026-10-25, each with its
+  compile error). Work them per `.claude/skills/dread-hubs`, several agents at once on disjoint file
+  sets, verified with `tools/baseline.py`; then `tools/decl_check.py --list` for the next symbols.
+- **Port:** `python tools/port_link.py --version 2.1.0` rebuilds `build/port/link/boot_missing.csv`, the
+  boot-slice functions without a source (the lifter's worklist) and the runtime stubs still needed.
+- Every number on this page names the command that produced it; rerun the command rather than trust
+  the page.
 
 ## Where things stand
 
@@ -36,9 +49,10 @@ clones, tables) and 0.76 MB is hand-written with real types. The `U` bytes are m
 game logic (5.6 MB between 256 B and 2 KB), which needs real types, not generators.
 
 Source hygiene (`tools/decl_check.py`, 2026-10-25): 11,298 `fn_`/`g_unk_` symbols declared in
-1,480 hand-written files (2,355 of them the generated class-getter header); 310 with conflicting
-signatures (393 on the morning of 2026-10-24, 337 after the first hub batch); 45 declared in
-`include/` and again in a `.cpp` (76, then 53). Translation units (`tools/tu_map.py`): 2,773 units from 2,760 static initialisers, 2,712
+1,480 hand-written files (2,355 of them the generated class-getter header); 309 with conflicting
+signatures (393 on the morning of 2026-10-24, 337 after the first hub batch, 310 after the second);
+35 declared in `include/` and again in a `.cpp` (76, 53, 45; the mechanical pass of 2026-10-25 took
+ten more); 1,311 declared in more than one file (2,212 extra copies). Translation units (`tools/tu_map.py`): 2,773 units from 2,760 static initialisers, 2,712
 at high confidence; 11,656 `U` functions (6.0 MB) sit in a unit with a reflected class hint.
 
 ## Direction (decided 2026-10-24, owner's goal: clean, readable, playable in a few months)
@@ -120,6 +134,8 @@ tools/progress.py                whole-binary progress; --slice boot for the nnM
 tools/dashboard_export.py        status, daily history, phases and workstreams as CSVs for the project dashboard (build/dashboard/)
 tools/callgraph.py, hubs.py      direct-call graph (Ghidra export); hubs by unmatched callers, --ready, --callers
 tools/decl_check.py              fn_/g_unk_ declarations in several files or with conflicting signatures; --base enforces
+tools/baseline.py                trymatch output snapshot, compare and restore for a file set (headers expand to includers)
+tools/hub_migrate.py             mechanical canonical-header migration on top of baseline.py; LEFT lines are the hand work
 tools/tu_map.py                  translation-unit map from .init_array + reflection groups -> data/tu_map.csv; --function
 tools/objdiff_gen.py             objdiff targets + objdiff.json (gitignored) for every src/ unit
 tools/shape_census.py            same-shape U families (maintenance)
@@ -291,6 +307,29 @@ Leftovers that keep a second declaration on purpose: `src/game_s2/fn_71003f1b00.
 their own word-typed views of the actor's translation, two callers of `fn_710001737c` with a local
 count view; `src/game_s7/UnkGuiS7.h` keeps `using UnkClass = CClass` for two includers.
 
+The mechanical part of a migration is a tool since 2026-10-25: `tools/hub_migrate.py` removes the
+local declarations, includes the header and keeps only byte-identical files (`tools/baseline.py`
+is the per-file evidence, parallel, with copies to restore from). Its first pass over the symbols a
+header already declared migrated 66 files for 15 symbols in a minute and left 135 declarations in
+85 files, each with its compile error: 75 are `reference to 'UnkTunable'/'UnkProperty' is ambiguous`
+in the static-initialiser units of `src/game_5821e4/` and `src/game_s7/`. Those units use the older
+helper family `unk_static_init::{UnkTunable, UnkProperty, UnkProperty2, InitProperty, InitProperty2,
+InitTunable}` from `src/game_5821e4/UnkStaticInit.h` (and `UnkStaticInitS7.h`) under
+`using namespace unk_static_init;`, while `include/game/UnkTUInit.h` declares the same objects at
+global scope (`UnkPropertyHead`, `UnkProperty`, `UnkPropertyEx<>`, `UnkTunable`, `InitProperty`,
+`InitPropertyEx`, `InitTunable`, `g_unk_71726db788` as `UnkPropertyHead*`), so a unit cannot see
+both. The fix is one hub step, not 75 file edits: make the `src/` headers a thin layer over
+`UnkTUInit.h` (same layouts: `UnkProperty2` is `UnkPropertyEx<0x18>`; `next`/`head` become
+`UnkPropertyHead*`; the helper bodies keep their store order, which is load-bearing) and drop the 21
+local `extern UnkProperty* g_unk_71726db788` declarations in the same step; verify all 195 includers
+with `tools/baseline.py compare --tag tuinit` (the baseline is saved). The other 33 are a
+placeholder parameter type the header's real type rejects (the mutex wrappers
+`fn_71000668f8`/`fn_7100066918`/`fn_710006691c`/`fn_7100066920` with private `UnkMutex_*` types, the
+block free list `fn_710008377c`, the registry string setters `fn_710007e704`/`fn_710007ea60`), the
+rest assignments to `void*`. That list is the next hand batch (`.claude/skills/dread-hubs`), and
+the headers `UnkStaticInit.h` and `UnkSpitSend.h` must keep their copies until their includers are
+done (the tool leaves a header alone when one includer breaks).
+
 **Stream B (core engine types).** Left from the string-id and reflection work: the reflected
 function array's growth (`fn_7100097f80`), the function's constructor and destructor
 (`fn_710009a5b4`, `fn_710009aae8`), the allocator functions next to `operator new`
@@ -300,7 +339,11 @@ and the string-id constructors sit next to `nnMain`, so `gen_functions_csv.py` i
 and marks them `L` although they match (`fn_7100000850`, the constructor from a `CRntString`,
 matches since 2026-10-25 and still reads `L`); fix that inference.
 
-**Stream E (tooling).** Done 2026-10-24: every generator verifies relocation targets
+**Stream E (tooling).** Done 2026-10-25: `tools/baseline.py` (trymatch snapshots for a file set,
+compare, restore; headers expand to their includers; `--obj-dir` per source so agents never
+collide) and `tools/hub_migrate.py` (the mechanical hub migration on top of it, with a `BROKEN`
+guard for files that do not compile before the edit), plus the batch procedure in
+`.claude/skills/dread-hubs`. Done 2026-10-24: every generator verifies relocation targets
 (`asmdiff.diff_object(strict=True)`), the three generator target bugs are fixed (`gen_clones`'s
 destructor scan now reads each string-id member's pool, `gen_statics`'s fact extractor drops
 stale register state, `gen_tables` reads the video map's globals from the GOT) and `check.py`

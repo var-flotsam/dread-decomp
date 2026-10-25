@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the EAnimationTag, TAnimationTagFlagSet enums.
 #include "UnkStaticInit.h"
+#include "game/UnkTUInit.h"
 
 using namespace unk_static_init;
 
@@ -22,7 +23,6 @@ extern UnkConversion g_unk_717270e440;
 extern UnkConversion g_unk_717270e460;
 void fn_7100710250() __attribute__((visibility("hidden")));
 void fn_710071025c() __attribute__((visibility("hidden")));
-void fn_710009a368(void* type);  // the type's destructor, as registered
 
 void fn_7100710350() {
     InitHeaderIds(&g_unk_717270e480.ids);

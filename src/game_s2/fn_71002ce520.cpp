@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the SLaunchPatternStep, base::reflection::CollectionTypeMapper<TLaunchPattern>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<TLaunchPattern>::TKeyElementConstIterator::value_type, TLaunchPattern, SLaunchConfig, base::reflection::CollectionTypeMapper<TLaunchConfigs>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<TLaunchConfigs>::TKeyElementConstIterator::value_type, TLaunchConfigs.
 #include "../game_s7/UnkStaticInitS7.h"
+#include "game/UnkTUInit.h"
 
 using namespace unk_static_init;
 
@@ -31,7 +32,6 @@ extern char g_unk_71726a79c9[];
 UnkEnumType* fn_71002c8308();
 extern UnkEnumType g_unk_71726a79d0;
 void fn_71002c83e4(UnkEnumType* type, const CStrId& name, void*, void*);
-void fn_710009891c(void* type);  // the type's destructor, as registered
 extern char g_unk_71726a7b40[];
 extern UnkEnumType g_unk_71726a7b48;
 void fn_71002c85d8();

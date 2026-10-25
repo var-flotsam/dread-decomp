@@ -5,6 +5,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflConverter.h"
+#include "game/UnkTUInit.h"
 
 #define HIDDEN __attribute__((visibility("hidden")))
 
@@ -51,7 +52,6 @@ void fn_7100029548() HIDDEN;
 void fn_7100029554() HIDDEN;
 void fn_7100029560() HIDDEN;
 void fn_710002956c() HIDDEN;
-void fn_7100099468(void*);
 void fn_71000296e0() {
     {
         CStrId name("base::curves::EKeysType", true);

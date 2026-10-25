@@ -1,6 +1,7 @@
 // Static initialiser of the unit of the base::reflection::CollectionTypeMapper<base::global::CRntVector< std::unique_ptr<CPlaythroughDef::SCheckpointDef> >>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector< std::unique_ptr<CPlaythroughDef::SCheckpointDef> >>::TKeyElementConstIterator::value_type, base::global::CRntVector< std::unique_ptr<CPlaythroughDef::SCheckpointDef> >.
 #include "../game_s7/UnkStaticInitS7.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/UnkTUInit.h"
 
 using namespace unk_static_init;
 
@@ -9,9 +10,6 @@ struct UnkFnObj {
     void (*field_0x18)();
     u64 field_0x20[2];
 };
-void fn_710000cf00();
-void fn_710000d470();
-void fn_710000d4f4();
 
 struct UnkStatics_71002f6180 {
     HeaderIds ids;
@@ -46,7 +44,6 @@ extern char g_unk_71726adc91[];
 UnkEnumType* fn_71002f2004();
 extern UnkEnumType g_unk_71726adc98;
 void fn_71002f20e0(UnkEnumType* type, const CStrId& name, void*, void*);
-void fn_710009891c(void* type);  // the type's destructor, as registered
 extern char g_unk_71726ade08[];
 extern char g_unk_71726ade09[];
 UnkEnumType* fn_71002f1944();  // base::reflection::refl_GetType<std::unique_ptr<CPlaythroughDef::SCheckpointDef>>

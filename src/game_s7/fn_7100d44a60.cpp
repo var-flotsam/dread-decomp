@@ -7,6 +7,7 @@
 // placeholders.
 #include "UnkStaticInitS7.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/UnkTUInit.h"
 
 using namespace unk_static_init;
 
@@ -18,7 +19,6 @@ struct UnkStatics_7100d44a60 {
 extern UnkStatics_7100d44a60 g_unk_71727b2988 __attribute__((visibility("hidden")));
 extern char g_unk_71727b0448[];
 extern UnkNamedValue g_unk_71727b0450;
-void fn_710010c424(void* value);  // its destructor, as registered
 extern char g_unk_71727b0460[];
 UnkEnumType* fn_7100d37398();
 extern char g_unk_71727b0461[];
@@ -45,7 +45,6 @@ extern char g_unk_71727b06e1[];
 UnkEnumType* fn_7100d382d0();
 extern UnkEnumType g_unk_71727b06e8;
 void fn_7100d383ac(UnkEnumType* type, const CStrId& name, void*, void*);
-void fn_710009891c(void* type);  // the type's destructor, as registered
 extern char g_unk_71727b0858[];
 extern char g_unk_71727b0859[];
 UnkEnumType* fn_7100d3859c();

@@ -1,6 +1,7 @@
 // Static initialiser of the unit of the base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CAttackPreset>>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CAttackPreset>>>::TKeyElementConstIterator::value_type, base::global::CRntVector<std::unique_ptr<CAttackPreset>>.
 #include "../game_s7/UnkStaticInitS7.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/UnkTUInit.h"
 
 using namespace unk_static_init;
 
@@ -34,7 +35,6 @@ extern char g_unk_71726b28d9[];
 UnkEnumType* fn_710036567c();
 extern UnkEnumType g_unk_71726b28e0;
 void fn_7100365758(UnkEnumType* type, const CStrId& name, void*, void*);
-void fn_710009891c(void* type);  // the type's destructor, as registered
 extern char g_unk_71726b2a50[];
 extern UnkConversion g_unk_71726b2a58;
 UnkEnumType* fn_71003648fc();

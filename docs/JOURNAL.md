@@ -76,6 +76,29 @@ marks `L`. Lua brings 24 C library functions the tool did not know (`stdio`, loc
 are listed as the host's, and the residue grows from 304 to 375 by such names only. The sweep on the
 same `main` compiles all 3,812 sources.
 
+**Seventeenth session (2026-10-25, on the PC, branch `claude/cheap-progress`): making hub batches
+cheap.** Review of where hub batch 2 spent its 3.8 hours and 4.7 million tokens: the five-step
+sequential chain set the wall-clock, every agent re-implemented the baseline-edit-compare loop by
+hand (most of the 1,091 tool calls), and eleven adversarial reviews of mechanical steps found 25
+nits and nothing to fix. Changes: `tools/baseline.py` (trymatch snapshots for a file set, in
+parallel, with copies to restore from; a header expands to its hand-written includers) and
+`tools/hub_migrate.py` (the mechanical migration: remove the local declarations, include the one
+header, keep only byte-identical files, print the rest as `LEFT` with the compile error; a file that
+does not compile before the edit is `BROKEN` and left alone, and a header is left alone when one
+includer breaks); `decl_check.Decl` records each declaration's statement span for it; the batch
+procedure is `.claude/skills/dread-hubs`. First pass over the 39 symbols a single header already
+declared: 66 files migrated for 15 symbols in about a minute of compute, 135 declarations in 85
+files left for a hand pass (75 a local placeholder struct colliding with the header's type, 33 a
+placeholder parameter type the header rejects); conflicting 310 to 309, header re-declarations 45
+to 35, extra copies 2,304 to 2,212, `O` unchanged. Findings: a tool that restores edited files must
+also restore edited headers, or an includer broken by a leftover header edit looks "unchanged"
+(same error before and after) in every later comparison; `--defsym` in a relocatable link needs its
+target defined by an input, so a stand-in for an undefined symbol is a jump thunk, not an alias.
+Recommendations recorded in the handoff's "Start here": migrate per file, not per symbol
+(disjoint by construction); review by tier (deterministic compare plus a spot check for mechanical
+steps, a full adversarial pass for new tools); publish the repository so green PRs merge themselves
+instead of stacking.
+
 **Sixteenth session (2026-10-25, on the PC, branches `claude/hubs-2` and `claude/port-m1`): hub
 batch 2 and the port link.** Hub batch 2 (var-flotsam/dread-decomp#187): 25 symbols to one
 real-typed declaration each in 11 headers, in eleven steps by workflow agents. Six steps whose

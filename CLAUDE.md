@@ -83,6 +83,8 @@ python tools/dashboard_export.py [--ref HEAD] [--days 30]  # status CSVs for the
 python tools/hubs.py --version <ver> [--boot] [--top N]      # U functions by unmatched callers: what to match next
 python tools/hubs.py --version <ver> --ready [--boot]        # U functions whose callees are all matched; --callers <fn> lists callers
 python tools/decl_check.py [--list | --symbol <name> | --json] [--base <ref> [--strict]]  # fn_/g_unk_ declared in several files or with conflicting signatures; --base enforces (CI)
+python tools/hub_migrate.py --version <ver> SYM... | --header-redeclared [--dry-run]  # mechanical hub migration: drop local declarations, include the one header, keep byte-identical files; LEFT lines are the hand work
+python tools/baseline.py save|compare|restore --tag T [FILES | --symbol SYM | --includers HDR]  # trymatch output snapshot and compare for a file set (the migration evidence; .claude/skills/dread-hubs)
 python tools/asmdiff.py --version <ver> <obj> -v # diff one object against the original (RELOC lines included)
 python tools/trymatch.py --version <ver> <file.cpp> [-v] [--no-reloc] [-- flags]  # build + diff one source
 python tools/ghidra/decompile.py --version <ver> <addr|name>...    # read Ghidra's pseudocode (never commit it)
@@ -156,7 +158,9 @@ Toolchain:
 - **One declaration per shared symbol.** A function or global used by more than one file is declared
   once, in a header under `include/`, with one signature; a `.cpp` declares only what it alone uses.
   `python tools/decl_check.py --base origin/main` must pass (CI runs it); `--symbol <name>` shows every
-  copy. Migrating a hub to its header: `CONTRIBUTING.md`, "Migrating a hub".
+  copy. Migrating a hub to its header: `tools/hub_migrate.py` does the mechanical part and lists the
+  files it leaves; the hand recipe is `CONTRIBUTING.md`, "Migrating a hub", verified with
+  `tools/baseline.py` (procedure for a batch: `.claude/skills/dread-hubs`).
 - **Files by unit.** New hand-written sources go under `src/<subsystem>/`, named for the class or
   translation unit (`python tools/tu_map.py --function <addr>`); no new address-named directories.
 - **What to match next:** `python tools/hubs.py --version <ver> --boot` (hubs along the boot path by

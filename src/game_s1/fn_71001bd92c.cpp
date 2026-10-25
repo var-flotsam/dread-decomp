@@ -3,12 +3,11 @@
 // reverse order. fn_7100269170 is a relative. Also one with a counted object at 0 and a file path
 // id at 0x18 (fn_7100071928).
 
+#include "base/UnkCloneHelpers.h"
 #include "base/UnkCountedResource.h"
 #include "base/UnkDestructors.h"
 #include "base/global/CFilePathStrId.h"
 #include "types.h"
-
-void fn_7100216934(char* p);
 
 struct UnkMember_71001bd92c {
     char storage[0x60];

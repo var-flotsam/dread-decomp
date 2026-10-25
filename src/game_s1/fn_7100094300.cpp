@@ -3,6 +3,7 @@
 #include "base/UnkAtExit.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/UnkTUInit.h"
 
 #define HIDDEN __attribute__((visibility("hidden")))
 
@@ -11,7 +12,6 @@ using base::global::CStrId;
 extern u8 g_unk_7101d5a038[];
 extern u8 g_unk_7101d5a150[];
 
-void fn_7100099468(void*);
 void fn_7100093f60(void*);
 void fn_710009410c(void* obj, CStrId* name, void (*fn)(void*), void* a);
 
