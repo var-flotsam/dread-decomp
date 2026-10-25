@@ -311,10 +311,19 @@ The mechanical part of a migration is a tool since 2026-10-25: `tools/hub_migrat
 local declarations, includes the header and keeps only byte-identical files (`tools/baseline.py`
 is the per-file evidence, parallel, with copies to restore from). Its first pass over the symbols a
 header already declared migrated 66 files for 15 symbols in a minute and left 135 declarations in
-85 files, each with its compile error: 75 are a local placeholder `struct` colliding with the
-header's type (`UnkTunable`, `UnkProperty` in the static-initialiser units of `src/game_5821e4/` and
-`src/game_s7/`, which include `UnkTUInit.h` through `UnkStaticInit.h` only after their own structs),
-33 a placeholder parameter type the header's real type rejects (the mutex wrappers
+85 files, each with its compile error: 75 are `reference to 'UnkTunable'/'UnkProperty' is ambiguous`
+in the static-initialiser units of `src/game_5821e4/` and `src/game_s7/`. Those units use the older
+helper family `unk_static_init::{UnkTunable, UnkProperty, UnkProperty2, InitProperty, InitProperty2,
+InitTunable}` from `src/game_5821e4/UnkStaticInit.h` (and `UnkStaticInitS7.h`) under
+`using namespace unk_static_init;`, while `include/game/UnkTUInit.h` declares the same objects at
+global scope (`UnkPropertyHead`, `UnkProperty`, `UnkPropertyEx<>`, `UnkTunable`, `InitProperty`,
+`InitPropertyEx`, `InitTunable`, `g_unk_71726db788` as `UnkPropertyHead*`), so a unit cannot see
+both. The fix is one hub step, not 75 file edits: make the `src/` headers a thin layer over
+`UnkTUInit.h` (same layouts: `UnkProperty2` is `UnkPropertyEx<0x18>`; `next`/`head` become
+`UnkPropertyHead*`; the helper bodies keep their store order, which is load-bearing) and drop the 21
+local `extern UnkProperty* g_unk_71726db788` declarations in the same step; verify all 195 includers
+with `tools/baseline.py compare --tag tuinit` (the baseline is saved). The other 33 are a
+placeholder parameter type the header's real type rejects (the mutex wrappers
 `fn_71000668f8`/`fn_7100066918`/`fn_710006691c`/`fn_7100066920` with private `UnkMutex_*` types, the
 block free list `fn_710008377c`, the registry string setters `fn_710007e704`/`fn_710007ea60`), the
 rest assignments to `void*`. That list is the next hand batch (`.claude/skills/dread-hubs`), and
