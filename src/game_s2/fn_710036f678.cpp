@@ -3,6 +3,7 @@
 // with inline storage.
 #include <new>
 
+#include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
@@ -47,7 +48,6 @@ struct UnkNode {
 };
 
 void fn_7100393e68(UnkNode*);
-void fn_710007e6e4(void* self, void* inline_buffer);
 extern void* g_unk_7101a24d08[];
 extern void* g_unk_7101a194b8[];
 
@@ -73,7 +73,8 @@ void fn_710036f678(UnkNode* self) {
     if (!g_unk_7101d47108)
         base::global::UnkEnsureStringPool();
     self->field_0x90.data = &g_unk_7101d47108->empty;
-    fn_710007e6e4(&self->field_0x98, &self->field_0x98.vtable);
+    fn_710007e6e4(reinterpret_cast<base::global::CRntString*>(&self->field_0x98),
+                  reinterpret_cast<base::UnkAllocator*>(&self->field_0x98.vtable));
     self->field_0x98.vtable = &g_unk_7101a194b8[2];
     self->field_0x98.field_0x138 = 0;
     self->field_0x98.field_0x140 = 0;

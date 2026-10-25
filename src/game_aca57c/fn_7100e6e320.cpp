@@ -1,6 +1,7 @@
 // Move-assignment of a 0xc8-byte record: releases and takes over each string id (leaving the
 // pool's empty string), assigns its string with its own storage out of line (fn_710007eaa0)
 // and copies the plain values.
+#include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
@@ -30,10 +31,10 @@ __attribute__((always_inline)) static inline void MoveId(UnkReleasedStrId* self,
     other->data = &g_unk_7101d47108->empty;
 }
 
+// A string (base::global::CRntString) with its own inline storage behind it.
 struct UnkStrBuffer {
     u8 unk_0x0[0x88];
 };
-void fn_710007eaa0(UnkStrBuffer* self, const UnkStrBuffer* other);
 
 // Plain values copied as a whole.
 struct UnkWords5 {
@@ -57,7 +58,8 @@ UnkRecordC8* fn_7100e6e320(UnkRecordC8* self, UnkRecordC8* other) {
     self->field_0x8 = other->field_0x8;
     MoveId(&self->id_0x10, &other->id_0x10);
     MoveId(&self->id_0x18, &other->id_0x18);
-    fn_710007eaa0(&self->field_0x20, &other->field_0x20);
+    fn_710007eaa0(reinterpret_cast<base::global::CRntString*>(&self->field_0x20),
+                  reinterpret_cast<const base::global::CRntString*>(&other->field_0x20));
     self->field_0xa8 = other->field_0xa8;
     self->field_0xac = other->field_0xac;
     self->field_0xb0 = other->field_0xb0;

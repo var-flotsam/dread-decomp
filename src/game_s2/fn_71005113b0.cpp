@@ -8,9 +8,6 @@ using namespace unk_static_init;
 
 // A string with 0x20 bytes of inline storage (0x50 bytes in all).
 extern void* g_unk_7101a479c8[];
-void fn_710007e6e4(void* self, void* inline_buffer);  // a small buffer's constructor
-void fn_710007e77c(void* self, const char* str);      // assigns a string to it
-void fn_710007ed40(void* self);
 void fn_7100504fdc(void* self);  // its destructor, as registered
 
 struct UnkInlineStr50Raw {
@@ -23,11 +20,12 @@ struct UnkInlineStr50Raw {
 };
 
 __attribute__((always_inline)) inline void BuildInlineStr50(UnkInlineStr50Raw* s, const char* str) {
-    fn_710007e6e4(s, &s->vtable);
+    auto* string = reinterpret_cast<base::global::CRntString*>(s);
+    fn_710007e6e4(string, reinterpret_cast<base::UnkAllocator*>(&s->vtable));
     s->vtable = g_unk_7101a479c8 + 2;
     s->field_0x40 = 0;
     s->field_0x48 = 0;
-    fn_710007e77c(s, str);
+    fn_710007e77c(string, str);
 }
 
 __attribute__((always_inline)) inline void InitInlineStr50(UnkInlineStr50Raw* s, const char* str) {
@@ -39,7 +37,7 @@ __attribute__((always_inline)) inline void InitInlineStr50(UnkInlineStr50Raw* s,
 struct UnkInlineStr50 : UnkInlineStr50Raw {
     UnkInlineStr50(const char* str) { BuildInlineStr50(this, str); }
     ~UnkInlineStr50() {
-        fn_710007ed40(this);
+        fn_710007ed40(reinterpret_cast<base::global::CRntString*>(this));
         fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(this));
     }
 };

@@ -11,12 +11,6 @@ using namespace unk_prop_bag;
 
 extern void* g_unk_7101a194b8[];
 
-struct UnkStrBuffer;
-void fn_710007e6e4(UnkStrBuffer* self, void* storage);
-void fn_710007e77c(UnkStrBuffer* self, const char* str);
-void fn_710007eaa0(UnkStrBuffer* self, const UnkStrBuffer* other);
-void fn_710007ed40(UnkStrBuffer* self);
-
 struct UnkStrStorage {
     void* vtable;
     u8 pad_0x8[0x100];
@@ -31,15 +25,18 @@ struct UnkStrBuffer {
     u8 pad_0xc[0x24];
     UnkStrStorage storage;
 
+    // The string part (its constructor and destructor run by hand).
+    base::global::CRntString* Str() { return reinterpret_cast<base::global::CRntString*>(this); }
+
     UnkStrBuffer() {
-        fn_710007e6e4(this, &storage);
+        fn_710007e6e4(Str(), reinterpret_cast<base::UnkAllocator*>(&storage));
         storage.vtable = g_unk_7101a194b8 + 2;
         storage.field_0x108 = nullptr;
         storage.field_0x110 = 0;
     }
     ~UnkStrBuffer() {
-        fn_710007ed40(this);
-        fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(this));
+        fn_710007ed40(Str());
+        fn_710007ecd4(Str());
     }
     const char* c_str() const { return data ? data : ""; }
 };
@@ -56,7 +53,7 @@ s32 fn_71010c0cd0(lua_State* L, s32 count, char* buf, u32 size, UnkPropBag* resu
     if (!name)                                                                       \
         return false;                                                                \
     UnkStrBuffer str;                                                                \
-    fn_710007e77c(&str, name);                                                       \
+    fn_710007e77c(str.Str(), name);                                                  \
     s32 n = 0;                                                                       \
     const char* p = str.data;                                                        \
     for (u64 left = str.length; left != 0; --left, ++p) {                            \
@@ -67,8 +64,8 @@ s32 fn_71010c0cd0(lua_State* L, s32 count, char* buf, u32 size, UnkPropBag* resu
     buf[n] = 0;                                                                      \
     {                                                                                \
         UnkStrBuffer stripped;                                                       \
-        fn_710007e77c(&stripped, buf);                                               \
-        fn_710007eaa0(&str, &stripped);                                              \
+        fn_710007e77c(stripped.Str(), buf);                                          \
+        fn_710007eaa0(str.Str(), stripped.Str());                                    \
     }                                                                                \
     bool result = false;                                                             \
     if (fn_71010c0bb0(g_unk_7172a01d18, str.c_str()) != 0) {                         \

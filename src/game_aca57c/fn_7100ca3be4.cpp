@@ -13,7 +13,6 @@ using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
 void fn_71009c172c(void* self);
-void fn_710007ed40(void* self);
 
 extern void* g_unk_7101a889c8[];
 extern void* g_unk_7101aa52d0[];
@@ -43,7 +42,7 @@ struct UnkNameHolder {
     CRntString name;
     u64 unk_0x30[0x14];
 
-    ~UnkNameHolder() { fn_710007ed40(this); }
+    ~UnkNameHolder() { fn_710007ed40(&name); }
 };
 
 struct UnkHolderMember {

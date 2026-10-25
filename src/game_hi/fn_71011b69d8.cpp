@@ -4,6 +4,7 @@
 
 struct UnkTag_71011b69d8 {};
 
+// A string (base::global::CRntString's layout), moved by fn_710007eab4.
 struct UnkEntry_0x30 {
     u8 data[0x30];
 };
@@ -53,8 +54,6 @@ struct UnkRegistry_0x70 {
 };
 
 UnkScriptPath_0x148 fn_71011b66fc(UnkTag_71011b69d8 tag, const char* const* name);
-void fn_710007eab4(UnkEntry_0x30* dst, const UnkEntry_0x30* src);
-void fn_710007ed40(UnkScriptPath_0x148* p);
 void* fn_71000839a0(u64 size, u32 flags);
 void fn_7100087388(UnkRegistry_0x70* r);
 void fn_710008d4c0(UnkStrPair_0x10* s, const UnkEntry_0x30* e);
@@ -68,9 +67,10 @@ UnkRefHandle_71011b69d8 fn_71011b69d8(UnkTag_71011b69d8 tag, const char* const* 
     UnkEntry_0x30 path;
     {
         UnkScriptPath_0x148 sp = fn_71011b66fc(tag, name);
-        fn_710007eab4(&path, &sp.path);
-        fn_710007ed40(&sp);
-        fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(&sp.path));
+        auto* sp_str = reinterpret_cast<base::global::CRntString*>(&sp.path);
+        fn_710007eab4(reinterpret_cast<base::global::CRntString*>(&path), sp_str);
+        fn_710007ed40(sp_str);
+        fn_710007ecd4(sp_str);
     }
     UnkRegistry_0x70* reg = g_unk_7101d4b5a0;
     if (!reg) {

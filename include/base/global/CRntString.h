@@ -58,3 +58,20 @@ void fn_710007ecd4(base::global::CRntString* self);
 // Copies [str, str + length) in (fn_710007ebc8).
 void fn_710007ebc8(base::global::CRntString* self, const char* str, u32 length, s64 key);
 void fn_710007f3e4(base::global::CRntString* self, const char* str, u32 length);  // appends
+
+// Builds an empty string that allocates from `allocator` (fn_710007e6e4): the first step of
+// constructing a string with inline storage, whose allocator object follows the string (the
+// callers set that object's vtable afterwards). Leaves owns_allocator and borrowed clear.
+void fn_710007e6e4(base::global::CRntString* self, base::UnkAllocator* allocator);
+// Assigns a C string (fn_710007e77c) or another string's text and key (fn_710007eaa0), both
+// through fn_710007ebc8.
+void fn_710007e77c(base::global::CRntString* self, const char* str);
+void fn_710007eaa0(base::global::CRntString* self, const base::global::CRntString* other);
+// Move-constructs from `other`, which is left empty: the heap copy and allocator are taken over,
+// unless `other` allocates from an allocator it doesn't own (inline storage), when the text is
+// copied instead.
+void fn_710007eab4(base::global::CRntString* self, base::global::CRntString* other);
+// Clears the string: frees the heap copy (unless borrowed) and resets data, length and key; the
+// allocator is kept. The first step of destroying a string with inline storage, before
+// fn_710007ecd4.
+void fn_710007ed40(base::global::CRntString* self);
