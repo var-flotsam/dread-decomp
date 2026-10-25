@@ -3223,7 +3223,7 @@ address,size,name,name_source,subsystem,status
 0x7100ebefa0,20,fn_7100ebefa0,unknown,unknown,O
 0x7100ebefb4,20,fn_7100ebefb4,unknown,unknown,O
 0x7100ebefd0,680,fn_7100ebefd0,unknown,unknown,O
-0x7100ebf278,132,fn_7100ebf278,unknown,unknown,U
+0x7100ebf278,132,fn_7100ebf278,unknown,unknown,O
 0x7100ebf2fc,280,fn_7100ebf2fc,unknown,unknown,U
 0x7100ebf414,324,fn_7100ebf414,unknown,unknown,U
 0x7100ebf558,4,fn_7100ebf558,unknown,unknown,O
