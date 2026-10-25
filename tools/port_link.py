@@ -59,6 +59,15 @@ standard library's by address, above), or none, by status and bytes. <out>/boot_
 functions without a definition by callers in the slice: the lifter's coverage worklist and the
 matching queue.
 
+With --lifted <dir> (tools/port_lift.py's output, build/port/lifted/), the semantic lifts join the
+game: link 1L, <out>/dread_game_lifted.o = dread_game.o + <dir>/obj/fn_<addr>.o, leaving out any lift
+whose address the sources now define (a stale lift: the tool says so, and also when the manifest's
+generator sources differ from the checked-out ones). The boot slice is reported twice, without the
+lifts (boot_missing.csv, still the lifter's worklist) and with them (a `lifted` column;
+<out>/boot_unlifted.csv lists what is still missing), and everything after it (aliases, traps, the
+second link) works on the lifted link. Semantic lifts never count as matching: tools/check.py and
+tools/progress.py never see them.
+
 A second relocatable link, <out>/dread_whole.o, takes dread_game.o, the runtime's objects (compiled
 here with the sweep's flags, so the tool does not depend on the CMake build), the trap thunks
 (<out>/traps.s) and the aliases (<out>/aliases.rsp). Its residue, the undefined symbols left, is
@@ -67,7 +76,7 @@ names without an address, runtime stubs not written yet.
 
 Outputs under <out> (default build/port/link/): runtime/*.o, lib/*.o, objects.rsp, dread_game.o, aliases.rsp,
 traps.s, traps.o, dread_whole.o, boot_missing.csv and link.json (everything the report prints, with
-the full lists). Every output is rebuilt on every run. Exit status 0 unless a link fails (1).
+the full lists); with --lifted also objects_lifted.rsp, dread_game_lifted.o and boot_unlifted.csv. Every output is rebuilt on every run. Exit status 0 unless a link fails (1).
 Standard library plus the project's own tools: port_sweep (flags, sources, own_name), asmdiff
 (demangle, strip_params, NAME_RE, TARGET_RE), check (load_csv, csv_by_name), callgraph (the boot
 slice). Needs clang++, ld.lld and llvm-nm (next to the compiler, or on PATH; llvm-objdump there too
@@ -80,12 +89,14 @@ Usage:
   python tools/port_link.py --version 2.1.0 --cxx /usr/bin/clang++ --target x86_64-linux-gnu --system-stdlib
   python tools/port_link.py --version 2.1.0 --alias-mismatch     # emit the class_mismatch aliases instead of traps
   python tools/port_link.py --version 2.1.0 --no-libraries       # without lib/lua and lib/dlmalloc (the first M1 run)
+  python tools/port_link.py --version 2.1.0 --lifted build/port/lifted   # with tools/port_lift.py's semantic lifts
 """
 
 from __future__ import annotations
 
 import argparse
 import csv
+import hashlib
 import json
 import re
 import shutil
@@ -229,6 +240,12 @@ class Entry:
 
 def rel(path: Path | str) -> str:
     return port_sweep.rel(path)
+
+
+def port_lift_blob(path: str) -> str:
+    """Git's blob hash of a repository file (tools/port_lift.py records its sources' in the manifest)."""
+    data = (ROOT / path).read_bytes()
+    return hashlib.sha1(b"blob %d\0" % len(data) + data).hexdigest()
 
 
 def find_tool(cxx: str, name: str) -> str | None:
@@ -816,8 +833,9 @@ def print_summary(title: str, summary: dict, examples: int) -> None:
 
 
 def boot_slice(version: str, lk: Link, entries: list[Entry], runtime_by_name: dict[str, list[str]],
-               out_csv: Path) -> dict | None:
-    """Coverage of every function reachable from nnMain; writes out_csv (the ones without a definition)."""
+               out_csv: Path, lifted: frozenset = frozenset(), title: str = "") -> dict | None:
+    """Coverage of every function reachable from nnMain; writes out_csv (the ones without a definition).
+    `lifted`: addresses only the semantic lifts define (--lifted), counted in their own column."""
     try:
         g = callgraph.CallGraph(version)
     except SystemExit as e:
@@ -834,7 +852,9 @@ def boot_slice(version: str, lk: Link, entries: list[Entry], runtime_by_name: di
     missing_rows = []
     for a in funcs:
         row = g.funcs[a]
-        if a in lk.code_defs:
+        if a in lifted:
+            cover = "lifted"
+        elif a in lk.code_defs:
             cover = "aliased" if a in aliased else "defined"
         elif a in hosted:
             cover = "host"
@@ -856,27 +876,25 @@ def boot_slice(version: str, lk: Link, entries: list[Entry], runtime_by_name: di
         imp[key]["reached"] += 1
         if group == "nn" and g.funcs[a]["name"][len(IMPORT_PREFIX):] in runtime_by_name:
             imp[key]["runtime"] += 1
+    covers = ("defined", "aliased", "host", "lifted", "none") if lifted else ("defined", "aliased", "host", "none")
     result = {
         "root": f"0x{callgraph.NNMAIN:x}", "reachable": len(reach), "imports_reached": len(imports),
         "functions": len(funcs),
-        "by_status": {st: {"functions": sum(c.values()), "defined": c["defined"], "aliased": c["aliased"],
-                           "host": c["host"], "none": c["none"], "bytes_none": bytes_none[st]}
+        "by_status": {st: {"functions": sum(c.values()), **{k: c[k] for k in covers}, "bytes_none": bytes_none[st]}
                       for st, c in sorted(table.items())},
-        "totals": {k: sum(c[k] for c in table.values()) for k in ("defined", "aliased", "host", "none")},
+        "totals": {k: sum(c[k] for c in table.values()) for k in covers},
         "bytes_none": sum(bytes_none.values()),
         "imports": {k: dict(v) for k, v in sorted(imp.items())},
         "missing_csv": rel(out_csv),
         "caveat": callgraph.CAVEAT,
     }
-    print(f"boot slice (reachable from nnMain, 0x{callgraph.NNMAIN:x}): {len(reach)} functions,"
+    print(f"boot slice{title} (reachable from nnMain, 0x{callgraph.NNMAIN:x}): {len(reach)} functions,"
           f" {len(imports)} imports, {len(funcs)} game functions")
-    print("  status  functions   defined   aliased      host      none   bytes(none)")
+    print("  status  functions" + "".join(f"{k:>10s}" for k in covers) + "   bytes(none)")
     for st, c in result["by_status"].items():
-        print(f"  {st:6s} {c['functions']:10d} {c['defined']:9d} {c['aliased']:9d} {c['host']:9d} {c['none']:9d}"
-              f" {c['bytes_none']:13,d}")
+        print(f"  {st:6s} {c['functions']:10d}" + "".join(f"{c[k]:10d}" for k in covers) + f" {c['bytes_none']:13,d}")
     t = result["totals"]
-    print(f"  {'all':6s} {len(funcs):10d} {t['defined']:9d} {t['aliased']:9d} {t['host']:9d} {t['none']:9d}"
-          f" {result['bytes_none']:13,d}")
+    print(f"  {'all':6s} {len(funcs):10d}" + "".join(f"{t[k]:10d}" for k in covers) + f" {result['bytes_none']:13,d}")
     print("  imports reached: " + ", ".join(f"{k} {v['reached']}" + (f" (runtime {v['runtime']})" if v.get("runtime") else "")
                                            for k, v in result["imports"].items()))
     print(f"  worklist: {rel(out_csv)} ({len(missing_rows)} functions without a definition, by callers in the slice)")
@@ -896,6 +914,8 @@ def main() -> int:
     ap.add_argument("--examples", type=int, default=3, help="examples printed per class (default 3)")
     ap.add_argument("--alias-mismatch", action="store_true",
                     help="emit the --defsym for a called alias whose argument classes differ (default: a trap at the call)")
+    ap.add_argument("--lifted", help="a tools/port_lift.py output directory (build/port/lifted): link its objects too "
+                                     "and report the boot slice with and without them")
     ap.add_argument("--no-libraries", action="store_true",
                     help="leave lib/lua and lib/dlmalloc out of the link (their status-L functions become missing)")
     args = ap.parse_args()
@@ -951,6 +971,7 @@ def main() -> int:
     rows, _ = check.load_csv()
     resolver = Resolver(rows)
     lk = Link(symbols, demangled, resolver, relocations(objdump, game_o))
+    lk1 = lk  # (link 1, before any semantic lifts)
     runtime_symbols = {s for _, syms in rt_symbols for k, s in syms if k in CODE_KINDS}
     runtime_by_name: dict[str, list[str]] = defaultdict(list)
     for s in sorted(runtime_symbols):
@@ -974,6 +995,48 @@ def main() -> int:
     # e. the boot slice
     print()
     slice_ = boot_slice(args.version, lk, entries, runtime_by_name, out / "boot_missing.csv")
+
+    # e2. with the semantic lifts (tools/port_lift.py): a second first link, the slice again, and the
+    # lifted link is the one the aliases, traps and residue below are computed on
+    lifted_report = None
+    if args.lifted:
+        ldir = Path(args.lifted)
+        manifest = json.loads((ldir / "manifest.json").read_text(encoding="utf-8")) \
+            if (ldir / "manifest.json").is_file() else {}
+        stale = [s for s, h in manifest.get("sources", {}).items()
+                 if (ROOT / s).is_file() and port_lift_blob(s) != h]
+        lobjs, kept, dropped = sorted((ldir / "obj").glob("fn_*.o")), [], []
+        for o in lobjs:
+            a = int(o.stem[3:], 16)
+            (dropped if a in lk.code_defs else kept).append((a, o))
+        print()
+        print(f"lifted: {len(lobjs)} semantic lifts in {rel(ldir)} ({manifest.get('generator', 'no manifest')}"
+              + (f"; generated by older versions of {', '.join(stale)}: rerun tools/port_lift.py" if stale else "")
+              + f"); {len(dropped)} left out because the sources now define them")
+        lifted_rsp = out / "objects_lifted.rsp"
+        write_rsp(lifted_rsp, [quote(o) for _, o in kept])
+        lifted_o = out / "dread_game_lifted.o"
+        r, dtl = link(lld, lifted_o, [str(game_o), f"@{lifted_rsp.as_posix()}"])
+        if r.returncode != 0:
+            print(f"LINK FAILED ({rel(lifted_o)}):")
+            print("\n".join(r.stderr.splitlines()[:40]))
+            return 1
+        print(f"link 1L: {rel(lifted_o)} in {dtl:.1f} s, no duplicate symbols")
+        lsyms = nm_symbols(nm, lifted_o)
+        new_names = sorted({s for _, s in lsyms} - set(demangled))
+        if new_names:
+            demangled.update(asmdiff.demangle(new_names, strip=False))
+        lk = Link(lsyms, demangled, resolver, relocations(objdump, lifted_o))
+        entries = classify(lk, runtime_by_name, runtime_symbols, args.alias_mismatch)
+        game_o = lifted_o
+        print()
+        lifted_slice = boot_slice(args.version, lk, entries, runtime_by_name, out / "boot_unlifted.csv",
+                                  frozenset(a for a, _ in kept), " with the semantic lifts")
+        lifted_report = {"dir": rel(ldir), "generator": manifest.get("generator"), "stale_sources": stale,
+                         "objects": len(lobjs), "linked": len(kept),
+                         "left_out_defined_in_sources": [f"0x{a:x}" for a, _ in dropped],
+                         "link": {"output": rel(lifted_o), "seconds": round(dtl, 2), "undefined": len(lk.undefined)},
+                         "boot_slice": lifted_slice}
 
     # f. aliases, traps, the second link
     aliases = [e for e in entries if e.target and e.trap is None and e.cls in ("function_alias", "data", "import")]
@@ -1023,12 +1086,12 @@ def main() -> int:
                    "sample_duplicates": skipped, "runtime_objects": [rel(o) for o in runtime_objs],
                    "library_objects": [rel(o) for o in lib_objs], "library_flags": LIBRARY_FLAGS},
         "options": {"alias_mismatch": args.alias_mismatch, "no_libraries": args.no_libraries},
-        "link1": {"output": rel(game_o), "bytes": game_o.stat().st_size, "seconds": round(dt1, 2),
-                  "defined_entries": lk.defined_entries, "defined_names": len(lk.defined_symbols),
-                  "undefined": len(lk.undefined)},
-        "definitions": {"addresses": len(lk.code_defs), "rules": dict(sorted(lk.def_rules.items())),
-                        "pointer_only_addresses": len(lk.pointer_only),
-                        "unresolved_global_functions": sorted(lk.unresolved_code), "vtables_defined": lk.vtables_defined,
+        "link1": {"output": rel(out / 'dread_game.o'), "bytes": (out / 'dread_game.o').stat().st_size, "seconds": round(dt1, 2),
+                  "defined_entries": lk1.defined_entries, "defined_names": len(lk1.defined_symbols),
+                  "undefined": len(lk1.undefined)},
+        "definitions": {"addresses": len(lk1.code_defs), "rules": dict(sorted(lk1.def_rules.items())),
+                        "pointer_only_addresses": len(lk1.pointer_only),
+                        "unresolved_global_functions": sorted(lk1.unresolved_code), "vtables_defined": lk1.vtables_defined,
                         "runtime_functions": sorted(demangled.get(s, s) for s in runtime_symbols)},
         "classes": summary,
         "aliases": [{"symbol": e.demangled, "mangled": e.symbol, "target": e.target, "abi": e.sub,
@@ -1041,6 +1104,7 @@ def main() -> int:
         "imports": [{"symbol": e.demangled, "address": f"0x{e.address:x}", "name": e.name, "group": e.sub,
                      "flags": e.flags, "target": e.target or e.jump} for e in entries if e.cls == "import"],
         "boot_slice": slice_,
+        "lifted": lifted_report,
         "link_inputs": {"aliases": rel(aliases_rsp), "defsyms": len(aliases), "defsyms_by_class": dict(alias_counts),
                         "traps": rel(traps_s), "trap_thunks": traps, "jump_thunks": jumps},
         "link2": {"output": rel(whole_o), "bytes": whole_o.stat().st_size, "seconds": round(dt2, 2),
