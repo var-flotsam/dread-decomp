@@ -9,7 +9,6 @@
 using base::global::CStrId;
 
 extern void* unk_7101a7e178[];  // vtable (reached through the GOT)
-extern CStrId g_unk_7101d470e0;  // a global string id
 
 struct UnkStruct_71008c0c74 {
     void** vtable;

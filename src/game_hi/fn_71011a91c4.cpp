@@ -3,6 +3,7 @@
 // forwards it to the global manager.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkRenderManager.h"
 #include "types.h"
 
 using base::reflection::CClass;
@@ -87,8 +88,7 @@ struct UnkStruct_71011a91c4 {
 
 bool fn_710104ddcc(UnkHandler_71011a91c4* h, UnkItem_71011a91c4* item);
 u32 fn_710104de7c(UnkHandler_71011a91c4* h);
-bool fn_71002199d8(void* mgr, UnkItemBase_71011a91c4* item, u32 flag);
-extern void* g_unk_7101d47300;
+bool fn_71002199d8(UnkRenderManager* mgr, UnkItemBase_71011a91c4* item, u32 flag);
 
 static inline UnkRes_71011a91c4* CastRes_71011a91c4(UnkRes_71011a91c4* r) {
     if (!r)

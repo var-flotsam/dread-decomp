@@ -3,21 +3,16 @@
 // is 1 (hands it to the sink at +0x5e0, releases the reference and moves to state 2), then walks the
 // record's entries (when its object at +0x30 answers 0x10 to vtable slot 0x18) calling
 // fn_7100116de0 on each until one reports true.
+#include "base/UnkRefHandle.h"
 #include "types.h"
-
-struct UnkShared {
-    void** vtable;
-    s32 field_0x8;
-    void vf_0x10() { reinterpret_cast<void (*)(UnkShared*)>(vtable[2])(this); }
-};
 
 // A counted reference: the destructor drops it and releases the object at zero.
 struct UnkRef {
-    UnkShared* ptr;
+    base::UnkRefCounted* ptr;
     ~UnkRef() {
         if (ptr) {
-            if (--ptr->field_0x8 == 0)
-                ptr->vf_0x10();
+            if (--ptr->ref_count == 0)
+                delete ptr;
         }
     }
 };
@@ -44,8 +39,8 @@ struct UnkTracker {
     UnkTarget* field_0x30;
 };
 
-struct UnkSink {
-    u8 pad_0x0[0x10];
+// The handle the record refers to (base::UnkRefCounted's layout); its target is at +0x10.
+struct UnkSink : base::UnkRefCounted {
     void* field_0x10;
 };
 
@@ -54,7 +49,7 @@ struct UnkRecord {
     u8 field_0x5b0[0x28];
     s32 field_0x5d8;
     u8 pad_0x5dc[4];
-    UnkSink* field_0x5e0;
+    base::UnkRefHandle field_0x5e0;
 };
 
 struct UnkRoot {
@@ -68,7 +63,6 @@ struct UnkSelf {
 };
 
 UnkRef fn_710023b580(void* source);
-void fn_7100234f78(void* sink, UnkRef* ref);
 UnkTracker* fn_710028aca8(void* link);
 bool fn_7100116de0(UnkEntry* entry, void* arg, u32 a, u32 b, f32 scale);
 
@@ -82,11 +76,12 @@ bool fn_71005528fc(UnkSelf* self, void* arg) {
     if (record->field_0x5d8 == 1) {
         {
             UnkRef ref = fn_710023b580(record->field_0x5b0);
-            fn_7100234f78(&record->field_0x5e0, &ref);
+            // The reference's pointer is the handle's.
+            fn_7100234f78(&record->field_0x5e0, reinterpret_cast<const base::UnkRefHandle*>(&ref));
         }
         record->field_0x5d8 = 2;
     }
-    UnkSink* sink = record->field_0x5e0;
+    UnkSink* sink = static_cast<UnkSink*>(record->field_0x5e0.ptr);
     if (!sink || !sink->field_0x10)
         return false;
     UnkTracker* tracker = fn_710028aca8(sink->field_0x10);

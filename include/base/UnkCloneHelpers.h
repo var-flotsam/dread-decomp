@@ -15,6 +15,7 @@
 #include "base/UnkDestructors.h"
 #include "base/UnkHashStream.h"
 #include "base/UnkMatrix44.h"
+#include "base/UnkRefHandle.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflCast.h"
@@ -171,23 +172,7 @@ struct UnkCloneOwnerVec {
 // traits' vtable), or null (fn_7100234f78 and its identical copies).
 namespace base {
 template <class Tag> struct UnkRefSlotTraits;  // vtable(): the vtable of the handles created
-// A refcounted pointer; a union member, so the old pointer is reloaded after the increment.
-struct UnkRefHandle {
-    union {
-        UnkRefCounted* ptr;
-    };
-    void Set(UnkRefCounted* p) {
-        if (ptr != p) {
-            if (p)
-                ++p->ref_count;
-            if (UnkRefCounted* old = ptr) {
-                if (--old->ref_count == 0)
-                    delete old;
-            }
-            ptr = p;
-        }
-    }
-};
+// The slot, UnkRefHandle, is in base/UnkRefHandle.h.
 struct UnkRefSource {
     virtual void vf_0x0(); virtual void vf_0x8(); virtual void vf_0x10(); virtual void vf_0x18(); virtual void vf_0x20();
     virtual UnkRefHandle* vf_0x28();

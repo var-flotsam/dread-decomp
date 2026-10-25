@@ -4,11 +4,12 @@
 // 0x29418) is running, the owner's object isn't an ignore-perception track and the flag at
 // 0x29f26 is clear; then the sub-object decides (fn_7100573d54).
 #include "base/reflection/UnkClassGetters.h"
+#include "game/UnkAnimationComponent.h"
 #include "types.h"
 
 struct UnkTrackOwner {
     u8 unk_0x0[0x220];
-    void* field_0x220;
+    UnkAnimationComponent* field_0x220;
 };
 struct UnkSelf {
     u8 unk_0x0[0x30];
@@ -26,7 +27,6 @@ struct UnkSelf {
 };
 
 bool fn_710002fb70(void* timer);
-bool fn_710117b348(void* object, const base::reflection::CClass* type);
 bool fn_7100573d54(void* sub, void* a1);
 
 __attribute__((always_inline)) static inline bool Check(UnkSelf* self, void* sub, void* a1) {
@@ -34,7 +34,7 @@ __attribute__((always_inline)) static inline bool Check(UnkSelf* self, void* sub
         return true;
     if (!self->field_0x14c14 || fn_710002fb70(self->timer_0x29350))
         return false;
-    void* object = self->owner->field_0x220;
+    UnkAnimationComponent* object = self->owner->field_0x220;
     if (!object || fn_710117b348(object, fn_7100c78d04()) ||
         fn_710002fb70(self->timer_0x29418) || self->field_0x29f26)
         return false;

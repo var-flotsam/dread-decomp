@@ -6,6 +6,7 @@
 #include "base/UnkMatrix44.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
@@ -42,9 +43,11 @@ struct UnkSelf {
     u8 field_0x6a1;
 };
 
-struct UnkNamedId {
-    u8 pad_0x0[0x10];
-    CStrId field_0x10;
+// A blackboard property definition (game/UnkGameBlackboard.h): its qualified id is built on
+// first use.
+struct UnkNamedId : UnkIdSource {
+    u64 field_0x8;
+    UnkQualifiedId qid;
 };
 
 extern UnkNamedId g_unk_717275ac18;
@@ -52,7 +55,6 @@ extern u8 g_unk_71726b16d0[] __attribute__((visibility("hidden")));
 
 void fn_7100350da0(UnkSelf* self);
 void* fn_710083cd30(UnkComponent* component);
-void fn_7100ae9a10(CStrId* id, UnkNamedId* named, const CStrId* default_id);
 bool fn_71011428bc(void* object, const CStrId* id);
 bool fn_710117ae38(void* attack, u64 hash, bool flag);
 void fn_7100e03a78(UnkGameManager* dispatcher, void* key);
@@ -81,9 +83,9 @@ void fn_710035131c(UnkSelf* self) {
     void* object = owner->field_0x270;
     if (!object)
         return;
-    if (g_unk_717275ac18.field_0x10.data == &g_unk_7101d47108->empty)
-        fn_7100ae9a10(&g_unk_717275ac18.field_0x10, &g_unk_717275ac18, &g_unk_7101d470e0);
-    if (!fn_71011428bc(object, &g_unk_717275ac18.field_0x10))
+    if (g_unk_717275ac18.qid.id.data == &g_unk_7101d47108->empty)
+        fn_7100ae9a10(&g_unk_717275ac18.qid, &g_unk_717275ac18, g_unk_7101d470e0);
+    if (!fn_71011428bc(object, &g_unk_717275ac18.qid.id))
         return;
     void* attack = self->field_0x30->field_0x220;
     if (!attack)

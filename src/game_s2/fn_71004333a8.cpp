@@ -3,6 +3,7 @@
 // floats to -1 and continues into the state's next step with the limit read from a member object
 // (or INT_MAX when there is none; the step takes a float only when there is one).
 #include "game/UnkActor.h"
+#include "game/UnkAnimationComponent.h"
 #include "types.h"
 
 struct UnkLimit {
@@ -25,7 +26,6 @@ struct UnkStep {
 };
 
 void fn_7100352b14(void* body_field, UnkActor* owner, u32 flag);
-void fn_7101177ea0(void* object, u64 key);
 void* fn_71004321a0(UnkStep* self, u32 limit);
 void* fn_71004321a0(UnkStep* self, u32 limit, f32 value);
 
@@ -35,7 +35,7 @@ void* fn_71004333a8(UnkStep* self) {
     UnkActor* body = fn_7100d7c990(self->field_0x8);
     fn_7100352b14(body ? body->field_0x2b0 : nullptr, self->field_0x8, 1);
     if (self->field_0x13c) {
-        fn_7101177ea0(self->field_0x8->field_0x220, 0xf4061ff25a2163d6ull);
+        fn_7101177ea0(static_cast<UnkAnimationComponent*>(self->field_0x8->field_0x220), 0xf4061ff25a2163d6ull);
         self->field_0x140 = 0.0f;
         self->field_0x144 = -1.0f;
         self->field_0x148 = -1.0f;

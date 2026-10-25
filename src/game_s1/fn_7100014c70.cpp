@@ -5,6 +5,7 @@
 #include "base/UnkAtExit.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkReflConverter.h"
 
 #define HIDDEN __attribute__((visibility("hidden")))
 
@@ -12,7 +13,7 @@ using base::global::CStrId;
 
 struct UnkEnumDesc {
     u8 pad_0x0[0x30];
-    u64 field_0x30;
+    void* field_0x30;
 };
 struct UnkEnumInfo {
     u8 pad_0x0[8];
@@ -25,23 +26,17 @@ template <const base::reflection::CType* (*Getter)()>
 static inline UnkEnumInfo* TypeOf() {
     return reinterpret_cast<UnkEnumInfo*>(const_cast<base::reflection::CType*>(Getter()));
 }
-struct UnkEnumPair {
-    u64 first, second;
-    void (*fn)();
-    u64 zero;
-};
 
 extern UnkEnumInfo g_unk_7101d4d5d0;
 extern u8 g_unk_7101d4d6e8[];
-extern UnkEnumPair g_unk_7101d4d6f0;
-extern UnkEnumPair g_unk_7101d4d710;
+extern UnkConverter g_unk_7101d4d6f0;
+extern UnkConverter g_unk_7101d4d710;
 
 void fn_7100099468(void*);
 void fn_710001449c();
 void fn_7100014be4() HIDDEN;
 void fn_7100014bf0() HIDDEN;
 void fn_71000145e8(UnkEnumInfo* obj, CStrId* name, void (*fn)(), void* a);
-void fn_71000a16c4(UnkEnumPair* p);
 
 void fn_7100014c70() {
     {
@@ -50,18 +45,18 @@ void fn_7100014c70() {
     }
     fn_7100000250(fn_7100099468, &g_unk_7101d4d5d0, &g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d4d6e8, &g_unk_7101d4d5d0);
-    u64 a = g_unk_7101d4d5d0.desc_0x8->field_0x30;
-    u64 b = TypeOf<fn_7100014768>()->desc_0x8->field_0x30;
-    g_unk_7101d4d6f0.first = a;
-    g_unk_7101d4d6f0.second = b;
-    g_unk_7101d4d6f0.fn = fn_7100014be4;
-    g_unk_7101d4d6f0.zero = 0;
+    void* a = g_unk_7101d4d5d0.desc_0x8->field_0x30;
+    void* b = TypeOf<fn_7100014768>()->desc_0x8->field_0x30;
+    g_unk_7101d4d6f0.from = a;
+    g_unk_7101d4d6f0.to = b;
+    g_unk_7101d4d6f0.convert = fn_7100014be4;
+    g_unk_7101d4d6f0.next = nullptr;
     fn_71000a16c4(&g_unk_7101d4d6f0);
-    u64 c = TypeOf<fn_7100014768>()->desc_0x8->field_0x30;
-    u64 d = g_unk_7101d4d5d0.desc_0x8->field_0x30;
-    g_unk_7101d4d710.first = c;
-    g_unk_7101d4d710.second = d;
-    g_unk_7101d4d710.fn = fn_7100014bf0;
-    g_unk_7101d4d710.zero = 0;
+    void* c = TypeOf<fn_7100014768>()->desc_0x8->field_0x30;
+    void* d = g_unk_7101d4d5d0.desc_0x8->field_0x30;
+    g_unk_7101d4d710.from = c;
+    g_unk_7101d4d710.to = d;
+    g_unk_7101d4d710.convert = fn_7100014bf0;
+    g_unk_7101d4d710.next = nullptr;
     fn_71000a16c4(&g_unk_7101d4d710);
 }

@@ -3,22 +3,20 @@
 // is 1 the handle at 0x15df0 first takes a new value and the state becomes 2. The answer is then
 // whether the object found for the handle has its byte at +0x212 other than 1 (true when there is
 // no such object).
+#include "base/UnkRefHandle.h"
 #include "types.h"
 
-struct UnkCounted {
-    void** vtable;
-    u32 count;
-    u32 pad_0xc;
+// The handle the component refers to (base::UnkRefCounted's layout); its target is at +0x10.
+struct UnkCounted : base::UnkRefCounted {
     void* field_0x10;
-    void vf_0x10() { reinterpret_cast<void (*)(UnkCounted*)>(vtable[2])(this); }
 };
 
 // A counted reference; the destructor decrements and tests in one step.
 struct UnkRef {
     UnkCounted* ptr;
     ~UnkRef() {
-        if (ptr && --ptr->count == 0)
-            ptr->vf_0x10();
+        if (ptr && --ptr->ref_count == 0)
+            delete ptr;
     }
 };
 
@@ -39,11 +37,10 @@ struct UnkSelf {
     u8 field_0x15dc0[0x28];
     u32 state;
     u32 pad_0x15dec;
-    UnkCounted* handle;
+    base::UnkRefHandle handle;
 };
 
 UnkRef fn_7100353be8(void* from);
-void fn_710031d208(UnkCounted** to, const UnkRef* from);
 UnkFound* fn_71004067a4(void* owner);
 bool fn_710117ae38(void* object, u64 hash, u32 flag);
 
@@ -55,11 +52,13 @@ bool fn_7100452608(UnkSelf* self) {
     if (self->state == 1) {
         {
             UnkRef fresh = fn_7100353be8(self->field_0x15dc0);
-            fn_710031d208(&self->handle, &fresh);
+            // The reference's pointer is the handle's.
+            fn_710031d208(&self->handle, reinterpret_cast<const base::UnkRefHandle*>(&fresh));
         }
         self->state = 2;
     }
-    UnkFound* found = fn_71004067a4(self->handle ? self->handle->field_0x10 : nullptr);
+    UnkCounted* handle = static_cast<UnkCounted*>(self->handle.ptr);
+    UnkFound* found = fn_71004067a4(handle ? handle->field_0x10 : nullptr);
     if (!found)
         return true;
     return found->field_0x212 != 1;

@@ -29,7 +29,6 @@ struct UnkWords2 {
 struct UnkClass;
 struct UnkRoot;
 void fn_710006afb8(UnkRoot* self, UnkClass* cls);  // the root's constructor
-extern CStrId g_unk_7101d470e0;
 
 struct UnkRoot {
     void** vtable;

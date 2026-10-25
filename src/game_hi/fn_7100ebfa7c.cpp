@@ -1,5 +1,9 @@
-// Finds the nearest navigation point for a position: queries the start cell, then probes the
-// cell's crossable edges that the position lies on and keeps the closer of the two results.
+// The navmesh manager's unit (game/UnkNavMeshManager.h): fn_7100ebfa7c finds the nearest navigation
+// point for a position on its current mesh (queries the start cell, then probes the cell's crossable
+// edges that the position lies on and keeps the closer of the two results); fn_7100ebf278 is the
+// manager's constructor.
+#include "base/UnkVector.h"
+#include "game/UnkNavMeshManager.h"
 #include "types.h"
 
 
@@ -43,7 +47,7 @@ struct Cell {
     u8 field_0x10;
 };
 
-struct Mesh;
+using Mesh = UnkNavMesh;
 
 struct Result {
     u16 field_0x0;
@@ -70,14 +74,10 @@ struct Result {
     }
 };
 
-struct Self {
-    Mesh* field_0x0;
-};
-
 
 
 u16 fn_710027a41c(Mesh*, Vec2*, u32);
-bool fn_7100ebfd4c(Self*, Vec2*, u16, Result*, u32, f32, f32);
+bool fn_7100ebfd4c(UnkNavMeshManager*, Vec2*, u16, Result*, u32, f32, f32);
 Cell* fn_710027a328(Mesh*, u16);
 Vec2 fn_7100125a64(Vec2*);
 Edge* fn_71002afbe4(Cell*, u8*);
@@ -94,17 +94,17 @@ static inline f32 DistSq(const Vec2& a, const Vec2& b) {
     return dx * dx + dy * dy;
 }
 
-bool fn_7100ebfa7c(Self* self, Vec2* pos, Result* out, f32 a, u32 flags, f32 b) {
-    if (self->field_0x0 == nullptr)
+bool fn_7100ebfa7c(UnkNavMeshManager* self, Vec2* pos, Result* out, f32 a, u32 flags, f32 b) {
+    if (self->navmesh == nullptr)
         return false;
     Vec2 p;
     p.x = pos->x;
     p.y = pos->y;
     s32 ret = 0;
-    u16 cellId = fn_710027a41c(self->field_0x0, &p, flags);
+    u16 cellId = fn_710027a41c(self->navmesh, &p, flags);
     if (cellId != 0xffff) {
         ret = fn_7100ebfd4c(self, pos, cellId, out, flags, a, b);
-        Mesh* mesh = self->field_0x0;
+        Mesh* mesh = self->navmesh;
         Cell* cell = fn_710027a328(mesh, cellId);
         Vec2 dir = fn_7100125a64(pos);
         for (u8 i = 0; i < cell->field_0x10; ++i) {
@@ -140,4 +140,24 @@ bool fn_7100ebfa7c(Self* self, Vec2* pos, Result* out, f32 a, u32 flags, f32 b) 
         }
     }
     return ret;
+}
+
+// The manager's constructor: no mesh yet, the query state and the reachability tester
+// constructed in place, an empty smart-link group registry (growth step 10, allocation flags 0x57,
+// the default allocator) and a pool of 100 registry nodes.
+void fn_71002810b0(UnkNavMeshState_0x5ddf0* self);
+void fn_71002b4934(UnkNavMeshReach_0x5038* self);
+void fn_7100ebf2fc(UnkNavMeshNodePool_0x70* self, u32 count, u32 unused, u32 flags, base::UnkAllocator* allocator);
+
+void fn_7100ebf278(UnkNavMeshManager* self) {
+    self->navmesh = nullptr;
+    fn_71002810b0(&self->state);
+    fn_71002b4934(&self->reach);
+    self->field_0x62e38 = nullptr;
+    self->field_0x62e40 = nullptr;
+    self->field_0x62e30 = nullptr;
+    self->field_0x62e48 = 10;
+    self->field_0x62e4c = 0x57;
+    self->allocator = fn_7100083990();
+    fn_7100ebf2fc(&self->pool, 100, 0, 0x57, nullptr);
 }

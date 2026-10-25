@@ -3,6 +3,7 @@
 // and registrations (helpers in UnkStaticInitS7.h). Layouts are placeholders.
 #include "UnkStaticInitS7.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "base/reflection/UnkReflStatics.h"
 
 using namespace unk_static_init;
 
@@ -109,7 +110,6 @@ extern UnkProperty2 g_unk_71726dfe00;
 extern UnkProperty* g_unk_71726db788;
 extern void* g_unk_7101a45fe8[];
 extern void* g_unk_7101a45f90[];
-void fn_71004fd2cc(UnkProperty2* p);
 void fn_71004fa3b8(void* p);
 extern char g_unk_71726dfe40[];
 extern char g_unk_71726dfe41[];

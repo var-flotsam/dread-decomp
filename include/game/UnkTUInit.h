@@ -13,6 +13,7 @@
 #include "base/UnkAtExit.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkReflConverter.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -84,14 +85,8 @@ __attribute__((always_inline)) static inline void InitEnum(UnkReflType* type, co
     fn_7100000250(fn_7100099468, type, &g_unk_7101a19000);
 }
 
-// A converter between two types, registered with fn_71000a16c4.
-struct UnkConverter {
-    void* from;
-    void* to;
-    void (*convert)();
-    void* field_0x18;
-};
-void fn_71000a16c4(UnkConverter* converter);
+// A converter between two types (UnkConverter) is registered with fn_71000a16c4: both are
+// declared in base/reflection/UnkReflConverter.h.
 
 // The enums' integer type is fn_7100014768 (int); the flag sets' is fn_7100005178 (unsigned).
 __attribute__((always_inline)) static inline void InitEnumConverters(UnkReflType* type, UnkConverter& to_int,

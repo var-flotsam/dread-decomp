@@ -14,8 +14,6 @@ extern void* g_unk_7101a1a4a8[];  // derived part's vtable (fn_71000732d4)
 extern void* g_unk_7101a1a070[];  // base part's vtable (fn_71000732d4)
 extern void* g_unk_7101a1a4c8[];  // the sub-object's vtable
 
-void fn_710007ed40(void* node);
-
 template <u32 Next>
 struct UnkListNode {
     u8 pad_0x0[Next];
@@ -69,8 +67,9 @@ struct UnkNodeOwner {
 };
 
 __attribute__((always_inline)) inline void DestroyNode148(UnkListNode<0x148>* node) {
-    fn_710007ed40(node);
-    fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(node));
+    auto* str = reinterpret_cast<base::global::CRntString*>(node);
+    fn_710007ed40(str);
+    fn_710007ecd4(str);
 }
 
 __attribute__((always_inline)) inline void DestroyNode30(UnkListNode<0x30>* node) {

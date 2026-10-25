@@ -6,14 +6,12 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkActor.h"
+#include "game/UnkAnimationComponent.h"
 #include "types.h"
 
 using base::reflection::CClass;
 
-struct UnkAimAction {
-    void** vtable;
-    const CClass* vf_0x18() { return reinterpret_cast<const CClass* (*)(UnkAimAction*)>(vtable[3])(this); }
-};
+using UnkAimAction = UnkTrackAction;
 
 struct UnkAimActor {
     u8 pad_0x0[0x38];
@@ -39,8 +37,7 @@ struct UnkPosition {
     u32 field_0x8;
 };
 
-void* fn_71011771e0(void* handle, u64 key);
-UnkAimAction* fn_710070d500(void* found);
+UnkTrack* fn_71011771e0(void* handle, u64 key);
 u64 fn_7100001570(const char* str, u64 length);
 bool fn_7100b8fa7c(UnkAimAction* action, f32* angle, const UnkMatrix44* matrix, u64* hash, UnkPosition* position,
                    bool flag, bool flag2);

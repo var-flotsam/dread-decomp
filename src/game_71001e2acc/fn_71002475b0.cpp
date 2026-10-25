@@ -1,47 +1,8 @@
 // A copy of fn_7101114f80 (src/game_s7/fn_7101114f80.cpp) with its own sync function: Begin of a
 // reflected array of callback sets without the value after each set (fn_71002475b0).
+#include "base/UnkErasedVector.h"
 #include "base/UnkVector.h"
 
-// Function table of a type-erased value; only the slot used here is named.
-struct UnkErasedOps {
-    void* field_0x0[8];
-    void (*destroy)(struct UnkErasedValue* self);
-};
-
-struct UnkErasedValue {
-    void* storage;
-    UnkErasedOps* ops;
-};
-
-struct UnkErasedVector {
-    UnkErasedValue* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-
-    UnkErasedVector() : data(nullptr), count(0), capacity(0), step(10), field_0x14(true), flags(0xf) {
-        allocator = fn_7100083990();
-    }
-    ~UnkErasedVector() {
-        if (data) {
-            for (u64 i = 0; i < count; ++i) {
-                UnkErasedValue& v = data[i];
-                if (v.ops) {
-                    v.ops->destroy(&v);
-                    v.ops = nullptr;
-                }
-            }
-            count = 0;
-            allocator->vf_0x48(data);
-            capacity = 0;
-        }
-    }
-};
-
-UnkErasedVector* fn_710023b29c(UnkErasedVector* self, const UnkErasedVector* other);
 void fn_7100ad3588(UnkErasedVector* self);  // clear
 
 struct UnkRefCounted {
@@ -55,7 +16,7 @@ struct UnkRefCounted {
 
 struct UnkCallbackBase {
     virtual void vf0();
-    UnkErasedVector callbacks;
+    UnkOwnedErasedVector callbacks;
     u32 field_0x30;
 
     UnkCallbackBase() : field_0x30(0) {}

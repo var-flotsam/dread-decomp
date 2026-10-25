@@ -3,6 +3,7 @@
 #include <new>
 
 #include "base/UnkCountedResource.h"
+#include "base/global/CStrId.h"
 #include "types.h"
 
 // String data whose count is a plain member: the original keeps the pool's empty entry in a
@@ -11,18 +12,13 @@ struct UnkIdData_710071faf4 {
     u8 unk_0x0[0x8];
     s32 ref_count;
 };
-struct UnkIdPool_710071faf4 {
-    u8 unk_0x0[0x10];
-    UnkIdData_710071faf4 empty;
-};
-extern UnkIdPool_710071faf4* g_unk_7101d47108;  // string ids
-extern UnkIdPool_710071faf4* g_unk_7101d47200;  // file-path ids
 
-template <UnkIdPool_710071faf4** Pool>
+// Pool is the pool's global pointer: g_unk_7101d47108 for string ids, g_unk_7101d47200 for file-path ids.
+template <base::global::UnkStringPool** Pool>
 struct UnkId_710071faf4 {
     UnkIdData_710071faf4* data;
     UnkId_710071faf4(const UnkId_710071faf4& other) : data(other.data) {
-        if (&(*Pool)->empty != data)
+        if (&(*Pool)->empty != reinterpret_cast<base::global::UnkStringData*>(data))
             ++data->ref_count;
     }
 };

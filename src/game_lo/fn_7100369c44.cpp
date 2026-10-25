@@ -4,13 +4,13 @@
 // fn_71003697f0 when it expires. Otherwise it runs a one-shot virtual the first frame after the
 // flag at +6 was set, then updates an optional helper.
 #include "base/reflection/UnkClassGetters.h"
+#include "game/UnkAnimationComponent.h"
 #include "types.h"
 
 namespace base::reflection {
 using base::reflection::CClass;
 }
 
-bool fn_710117b348(void* obj, const base::reflection::CClass* cls);
 bool fn_710117adc0(void* obj, u64 hash);
 bool fn_71007f9f20(void* obj);
 
@@ -19,7 +19,7 @@ void fn_71003aa7c4(UnkHelper_7100369c44* helper, f32 dt);
 
 struct UnkOwner_7100369c44 {
     u8 pad_0x0[0x220];
-    void* field_0x220;
+    UnkAnimationComponent* field_0x220;
     u8 pad_0x228[0x2c8 - 0x228];
     void* field_0x2c8;
 };
@@ -55,7 +55,7 @@ void fn_71003697f0(UnkSelf_7100369c44* self);
 void fn_7100369c44(UnkSelf_7100369c44* self, f32 dt) {
     UnkState_7100369c44* s = &self->state;
     fn_71011000e0(self, dt);
-    void* track = self->owner->field_0x220;
+    UnkAnimationComponent* track = self->owner->field_0x220;
     void* other = self->owner->field_0x2c8;
     bool skip = other ? fn_71007f9f20(other) : false;
     if (track) {

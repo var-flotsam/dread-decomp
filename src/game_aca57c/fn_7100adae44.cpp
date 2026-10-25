@@ -2,6 +2,8 @@
 // such pair: read and written through the state-dependent accessors.
 #include <new>
 
+#include "base/UnkErasedVector.h"
+#include "base/UnkRefHandle.h"
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
@@ -218,15 +220,15 @@ using UnkIdIdsValuePair = UnkValuePairRef<CStrId, UnkIdsValue>;
 UnkIdIdValues4Pair* fn_7100e70ab4(UnkIdIdValues4Pair* self, UnkIdIdValues4Pair* other) { return AssignFrom(self, other); }
 UnkIdIdsValuePair* fn_7100c8fcd8(UnkIdIdsValuePair* self, UnkIdIdsValuePair* other) { return Assign(self, other); }
 
-// A value and a string (assigned by fn_710007eaa0).
+// A value and a string (base::global::CRntString's layout, assigned by fn_710007eaa0).
 struct UnkAssignedString {
     u64 unk_0x0[6];
 
     UnkAssignedString& operator=(const UnkAssignedString& other);
 };
-void fn_710007eaa0(UnkAssignedString* self, const UnkAssignedString* other);
 __attribute__((always_inline)) inline UnkAssignedString& UnkAssignedString::operator=(const UnkAssignedString& other) {
-    fn_710007eaa0(this, &other);
+    fn_710007eaa0(reinterpret_cast<base::global::CRntString*>(this),
+                  reinterpret_cast<const base::global::CRntString*>(&other));
     return *this;
 }
 
@@ -454,22 +456,14 @@ UnkU32PolyRecordPair* fn_7100e61b0c(UnkU32PolyRecordPair* self, UnkU32PolyRecord
 
 // A callback set (as in src/game_s4/fn_71008947b8.cpp): a vtable, an array assigned by
 // fn_710023b29c, a value and an owner reference assigned by fn_710031d208.
-struct UnkCallbackArray {
-    u64 unk_0x0[5];
-};
-UnkCallbackArray* fn_710023b29c(UnkCallbackArray* self, const UnkCallbackArray* other);
-
-struct UnkCallbackOwner;
-void fn_710031d208(UnkCallbackOwner** self, UnkCallbackOwner* const* other);
-
 struct UnkCallbackSet {
     void* vtable;
-    UnkCallbackArray callbacks;
+    UnkErasedVector callbacks;
     u32 field_0x30;
-    UnkCallbackOwner* owner;
+    base::UnkRefHandle owner;
 
     __attribute__((always_inline)) UnkCallbackSet& operator=(const UnkCallbackSet& other) {
-        UnkCallbackOwner* const* from = &other.owner;
+        const base::UnkRefHandle* from = &other.owner;
         fn_710031d208(&owner, from);
         field_0x30 = other.field_0x30;
         fn_710023b29c(&callbacks, &other.callbacks);
@@ -482,17 +476,14 @@ using UnkU32CallbacksPair = UnkValuePairRef<u32, UnkCallbackSet>;
 UnkU32CallbacksPair* fn_7100d87614(UnkU32CallbacksPair* self, UnkU32CallbacksPair* other) { return Assign(self, other); }
 
 // Three values and a callback set whose owner is a handle assigned by fn_7100234f78.
-struct UnkCallbackHandle;
-void fn_7100234f78(UnkCallbackHandle** self, UnkCallbackHandle* const* other);
-
 struct UnkHandleCallbackSet {
     void* vtable;
-    UnkCallbackArray callbacks;
+    UnkErasedVector callbacks;
     u32 field_0x30;
-    UnkCallbackHandle* owner;
+    base::UnkRefHandle owner;
 
     __attribute__((always_inline)) UnkHandleCallbackSet& operator=(const UnkHandleCallbackSet& other) {
-        UnkCallbackHandle* const* from = &other.owner;
+        const base::UnkRefHandle* from = &other.owner;
         fn_7100234f78(&owner, from);
         field_0x30 = other.field_0x30;
         fn_710023b29c(&callbacks, &other.callbacks);

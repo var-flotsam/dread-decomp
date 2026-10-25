@@ -11,8 +11,6 @@ extern void* g_unk_7101a222a8[];  // derived part's vtable
 extern void* g_unk_7101a222c8[];  // base part's vtable
 extern void* g_unk_7101a1a4c8[];  // the sub-object's vtable
 
-void fn_710007ed40(void* node);
-
 struct UnkListNode {
     u8 pad_0x0[0x68];
     UnkListNode* field_0x68;
@@ -35,8 +33,9 @@ struct UnkNodeOwner {
     __attribute__((always_inline)) void FreeNodes() {
         for (UnkListNode* node = field_0x10; node;) {
             UnkListNode* next = node->field_0x68;
-            fn_710007ed40(node);
-            fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(node));
+            auto* str = reinterpret_cast<base::global::CRntString*>(node);
+            fn_710007ed40(str);
+            fn_710007ecd4(str);
             field_0x20->vf_0x48(node);
             node = next;
         }

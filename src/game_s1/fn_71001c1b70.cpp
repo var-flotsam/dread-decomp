@@ -3,6 +3,7 @@
 // bones (0x98-byte entries keyed by u64 ids, in the skeleton reached through +0x78 and +0x80) are
 // updated first (fn_710019b9c8). By index (fn_71001c1b70) or by id (fn_71001c1694).
 #include "base/UnkCloneCalls.h"
+#include "game/UnkSphere.h"
 #include "game/UnkXformNode.h"
 
 struct UnkBone_0x98 {
@@ -31,17 +32,10 @@ struct UnkBoneArrayHolder {
     UnkMatrix44 matrix;
 };
 
-// Updated with a size (fn_710021693c) and a position (fn_7100216978).
-struct UnkSized {
-    u8 pad_0x0[0x8];
-    f32 size;
-    UnkVec3f offset;  // a point in the owner's space
-};
-
 struct UnkBoneOwner {
     u8 pad_0x0[0x20];
-    UnkSized sized;
-    u8 pad_0x38[0x40];
+    UnkSphere sphere;
+    u8 pad_0x70[0x8];
     UnkBoneArrayHolder* holder;
     UnkXform xform;
     u8 pad_0xdc[0xc];
@@ -131,7 +125,7 @@ bool fn_71001c1c70(UnkBoneOwner* self, u32 index, UnkMatrix44* out) {
 // Sets the owner's scale, unless it is within 0.001 of the current one: the size of the part at
 // 0x20 follows the largest component (fn_710021693c) and the holder takes the new matrix
 // (fn_71001c1f9c).
-void fn_710021693c(UnkSized* self, f32 size);
+void fn_710021693c(UnkSphere* self, f32 radius);
 
 // By reference, as std::max (by value the compiler orders the loads differently).
 __attribute__((always_inline)) static inline const f32& Larger(const f32& a, const f32& b) { return a < b ? b : a; }
@@ -145,7 +139,7 @@ void fn_71001c1f9c(UnkBoneOwner* self, const UnkVec3f* scale) {
         return;
     f32 old_largest = Largest(self->xform.GetScale());
     self->xform.SetScale(*scale);
-    fn_710021693c(&self->sized, self->sized.size * (Largest(self->xform.GetScale()) / old_largest));
+    fn_710021693c(&self->sphere, self->sphere.radius * (Largest(self->xform.GetScale()) / old_largest));
     const UnkMatrix44& m = self->xform.GetMatrix();
     UnkCopyMatrix(&self->holder->matrix, m);
 }
@@ -217,7 +211,6 @@ bool fn_71001c1e5c(UnkBoneOwner* self, const u64* id, UnkMatrix44* out) {
 // (fn_71001c21d4).
 extern u32 g_unk_716e554858 __attribute__((visibility("hidden")));
 UnkVec3f fn_7100077c70(const UnkMatrix44& m, const UnkVec3f& p);
-void fn_7100216978(UnkSized* self, const UnkVec3f* position);
 
 void fn_71001c21d4(UnkBoneOwner* self, const UnkMatrix44* m) {
     if (__builtin_memcmp(m, &self->xform.GetMatrix(), sizeof(UnkMatrix44)) == 0)
@@ -226,13 +219,13 @@ void fn_71001c21d4(UnkBoneOwner* self, const UnkMatrix44* m) {
     for (int i = 0; i < 16; ++i)
         (&self->xform.m[0][0])[i] = m->m[i];
     self->xform.flags = (self->xform.flags | 8) & ~g_unk_716e554858;
-    UnkSized* sized = &self->sized;
+    UnkSphere* sphere = &self->sphere;
     {
-        UnkVec3f p = fn_7100077c70(self->xform.GetMatrix(), sized->offset);
-        fn_7100216978(sized, &p);
+        UnkVec3f p = fn_7100077c70(self->xform.GetMatrix(), sphere->offset);
+        fn_7100216978(sphere, &p);
     }
-    f32 size = sized->size;
-    fn_710021693c(sized, size * (Largest(self->xform.GetScale()) / old_largest));
+    f32 size = sphere->radius;
+    fn_710021693c(sphere, size * (Largest(self->xform.GetScale()) / old_largest));
     const UnkMatrix44& n = self->xform.GetMatrix();
     UnkCopyMatrix(&self->holder->matrix, n);
     self->field_0x359 = false;
@@ -245,13 +238,13 @@ void fn_71001c2480(UnkBoneOwner* self, UnkXform* x) {
     f32 old_largest = Largest(self->xform.GetScale());
     if (&self->xform != x)
         new (&self->xform) UnkXform(*x);
-    UnkSized* sized = &self->sized;
+    UnkSphere* sphere = &self->sphere;
     {
-        UnkVec3f p = fn_7100077c70(self->xform.GetMatrix(), sized->offset);
-        fn_7100216978(sized, &p);
+        UnkVec3f p = fn_7100077c70(self->xform.GetMatrix(), sphere->offset);
+        fn_7100216978(sphere, &p);
     }
-    f32 size = sized->size;
-    fn_710021693c(sized, size * (Largest(self->xform.GetScale()) / old_largest));
+    f32 size = sphere->radius;
+    fn_710021693c(sphere, size * (Largest(self->xform.GetScale()) / old_largest));
     const UnkMatrix44& n = self->xform.GetMatrix();
     UnkCopyMatrix(&self->holder->matrix, n);
 }

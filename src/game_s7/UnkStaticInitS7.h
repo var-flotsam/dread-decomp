@@ -9,6 +9,7 @@
 // are computed once). One block per list in a single function gives each its own array.
 
 #include "../game_5821e4/UnkStaticInit.h"
+#include "base/global/CRntString.h"
 
 namespace unk_static_init {
 
@@ -153,15 +154,8 @@ __attribute__((always_inline)) inline void InitFromNamedValue(T* obj, const UnkN
     __cxa_atexit(dtor, obj, g_unk_7101a19000);
 }
 
-}  // namespace unk_static_init
-
-void fn_710007e6e4(void* self, void* inline_buffer);  // a small buffer's constructor
-void fn_710007e77c(void* self, const char* str);      // assigns a string to it
-
-namespace unk_static_init {
-
-// A static of 0x80 bytes: three floats, a small buffer whose inline storage starts at +0x40
-// (filled with "as"), and a few cleared words. Layout and roles are placeholders.
+// A static of 0x80 bytes: three floats, a string (base::global::CRntString) whose inline storage
+// starts at +0x40 (filled with "as"), and a few cleared words. Layout and roles are placeholders.
 struct UnkBufferParam {
     f32 field_0x0;
     f32 field_0x4;
@@ -181,11 +175,12 @@ __attribute__((always_inline)) inline void InitBufferParam(UnkBufferParam* p, f3
     p->field_0x0 = a;
     p->field_0x4 = b;
     p->field_0x8 = c;
-    fn_710007e6e4(p->field_0x10, &p->field_0x40);
+    auto* str = reinterpret_cast<base::global::CRntString*>(p->field_0x10);
+    fn_710007e6e4(str, reinterpret_cast<base::UnkAllocator*>(&p->field_0x40));
     p->field_0x40 = vtable + 2;
     p->field_0x68 = 0;
     p->field_0x70 = 0;
-    fn_710007e77c(p->field_0x10, "as");
+    fn_710007e77c(str, "as");
     p->field_0x78 = 0;
     __cxa_atexit(dtor, p, g_unk_7101a19000);
 }

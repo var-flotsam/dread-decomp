@@ -10,6 +10,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkGuiDisplayObject.h"
 
 namespace unk_gui {
 
@@ -18,11 +19,7 @@ using base::global::CStrId;
 using base::reflection::CClass;
 using UnkClass = CClass;  // the name the includers (fn_7100b921e0, fn_7100b94320) still use
 
-struct UnkGuiObj {
-    virtual const CClass* GetClass();
-    u8 unk_0x8[0x188];
-    const char* field_0x190;
-};
+using UnkGuiObj = ::UnkGuiDisplayObject;  // game/UnkGuiDisplayObject.h: GetClass() and field_0x190
 
 // A reference-counted weak handle to the looked-up object, released through vf_0x10.
 struct UnkGuiHandleObj {
@@ -110,7 +107,6 @@ UnkGuiObj* fn_71011d9508(UnkGuiObj* self, const char* const* path);
 void fn_71011d968c(void* menu, UnkGuiObj* composition);
 void fn_71011b6bbc(UnkGuiRoot* root, UnkGuiObj* object, bool value);
 void fn_71011cdce8(UnkGuiObj* object, s32 value);
-void fn_71011cf2a4(UnkGuiObj* object, s32 value);
 void fn_71011cde44(UnkGuiObj* object, s32 value);
 void fn_71011cfba8(UnkGuiObj* object, f32 alpha);
 void fn_71011cdc30(UnkGuiObj* object, bool value);

@@ -12,13 +12,14 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkGuiDisplayObject.h"
+#include "game/UnkRenderManager.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
 using base::global::CStrId;
 using base::reflection::CClass;
 
-struct UnkParamTarget;
 struct UnkWatchSet {
     u8 unk_0x0[0x80];
 };
@@ -141,7 +142,6 @@ struct UnkStateOwner {
     UnkObject* MissionMenu() const { return field_0x490 ? field_0x490->obj : nullptr; }
 };
 
-extern UnkParamTarget* g_unk_7101d47300;
 extern UnkSoundHolder* g_unk_7101d47340;
 struct UnkModeFlags {
     u8 unk_0x0[0xb8];
@@ -179,7 +179,6 @@ void fn_71011ec468(UnkComposition* label, void* text, bool value);
 void fn_71011b6bbc(UnkGuiRoot* root, void* object, bool value);
 void fn_7100af1bfc(UnkComposition* composition);
 void fn_71011cdce8(UnkComposition* composition, s32 value);
-void fn_71011cf2a4(UnkComposition* composition, s32 value);
 UnkGuiChild* fn_71011d94d4(UnkComposition* composition, const CStrId& name);
 void fn_7100b2c6a0(UnkStateOwner* self);
 void fn_7100b2c784(UnkStateOwner* self);
@@ -187,10 +186,10 @@ void* fn_71000839a0(u64 size, u32 flags);
 void fn_710006cd9c(UnkSoundHolder* holder);
 void fn_710006d2a0(UnkSoundGroup* group, u32 id);
 void fn_710006d4d0(UnkSoundGroup* group, u32 id);
-void fn_7100219294(UnkParamTarget* target, u64 hash, const f32* value, u32 mode);
-void fn_7100219cb0(UnkParamTarget* target, bool a, bool b);
-void fn_7100219d4c(UnkParamTarget* target, bool a, bool b);
-void fn_7100219da4(UnkParamTarget* target, bool a, bool b, u32 mode);
+void fn_7100219294(UnkRenderManager* target, u64 hash, const f32* value, u32 mode);
+void fn_7100219cb0(UnkRenderManager* target, bool a, bool b);
+void fn_7100219d4c(UnkRenderManager* target, bool a, bool b);
+void fn_7100219da4(UnkRenderManager* target, bool a, bool b, u32 mode);
 void fn_7100b2cc40(UnkStateOwner* self);
 void fn_71011cdc30(UnkComposition* item, bool value);
 
@@ -342,7 +341,7 @@ void fn_7100b2dcac(UnkStateOwner* self) {
 // entries and nothing is watched yet, its object is watched at 0x248 and 0x278 is set;
 // otherwise fn_71011cdce8 runs on it.
 void fn_7100b2d0a4(UnkStateOwner* self) {
-    fn_71011cf2a4(self->current, 0);
+    fn_71011cf2a4(reinterpret_cast<UnkGuiDisplayObject*>(self->current), false);
     if (self->field_0x2e8 == 1) {
         self->current->SendEvent("OnHideToGame", false);
     } else {
@@ -471,7 +470,6 @@ struct UnkSamusMenu : UnkObject {
     u8 unk_0x8[0x228];
     CStrId field_0x230;
 };
-extern CStrId g_unk_7101d470e0;
 void fn_7100e9b4b0(void* target);
 
 // End of the Samus menu state: the menu's id at 0x230 is reset to the global id, the menu is
@@ -517,9 +515,6 @@ struct UnkInlineString {
     u32 field_0xc0;
 };
 extern void* g_unk_7101a1b750[];
-void fn_710007e6e4(UnkInlineString* self, void* allocator);  // string constructor
-void fn_710007e77c(UnkInlineString* self, const char* str);  // assign
-void fn_710007ed40(UnkInlineString* self);
 
 struct UnkPathIds;
 void fn_710001f074(UnkPathIds* out, const UnkInlineString* path);
@@ -566,14 +561,15 @@ void fn_7100b2cebc(UnkStateOwner* self) {
     self->field_0x2e4 = -1;
     PlaySound<fn_710006d4d0>(0xfd);
     UnkInlineString path;
-    fn_710007e6e4(&path, &path.vtable);
+    auto* str = reinterpret_cast<base::global::CRntString*>(&path);
+    fn_710007e6e4(str, reinterpret_cast<base::UnkAllocator*>(&path.vtable));
     path.vtable = &g_unk_7101a1b750[2];
     path.field_0xb8 = 0;
     path.field_0xc0 = 0;
-    fn_710007e77c(&path, "playdata:playthroughs/pt_official/pt_official");
+    fn_710007e77c(str, "playdata:playthroughs/pt_official/pt_official");
     fn_71002f7048(g_unk_71726ae8a8, UnkPathIds(path));
-    fn_710007ed40(&path);
-    fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(&path));
+    fn_710007ed40(str);
+    fn_710007ecd4(str);
 }
 
 void fn_7100b2c964(UnkStateOwner* self);
@@ -930,7 +926,7 @@ void fn_7100b2eaac(UnkStateOwner* self, s32 state, bool from_game, bool now) {
             return;
         }
     }
-    fn_71011cf2a4(self->current, 1);
+    fn_71011cf2a4(reinterpret_cast<UnkGuiDisplayObject*>(self->current), true);
     UnkComposition* highlight = GetHolder(g_unk_7101d47310->field_0x2258);
     if (highlight && !reinterpret_cast<UnkHighlight*>(highlight)->field_0x2e1)
         return;

@@ -2,27 +2,21 @@
 // copy.
 #include <new>
 
+#include "base/global/CStrId.h"
 #include "types.h"
 
 // The pooled string data, seen here with a plain (type-based alias) reference count: the pool
 // is loaded once for all seven copies.
-struct UnkStringData {
+struct UnkStringData_7100968a84 {
     u8 unk_0x0[0x8];
     s32 ref_count;
 };
 
-struct UnkStringPool {
-    u8 unk_0x0[0x10];
-    UnkStringData empty;
-};
-
-extern UnkStringPool* g_unk_7101d47108;
-
 struct UnkId {
-    UnkStringData* data;
+    UnkStringData_7100968a84* data;
 
     UnkId(const UnkId& other) : data(other.data) {
-        if (&g_unk_7101d47108->empty != data)
+        if (&g_unk_7101d47108->empty != reinterpret_cast<base::global::UnkStringData*>(data))
             ++data->ref_count;
     }
 };

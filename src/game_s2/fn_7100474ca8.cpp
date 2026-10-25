@@ -1,8 +1,9 @@
 // True when the owner's attack has less than three of its counter left after the elapsed value for
 // the ultimate recharge hash is taken off: (fn_7101177da8 count) - (fn_7101177ea0 elapsed) < 3.
+#include "game/UnkAnimationComponent.h"
 #include "types.h"
 
-struct UnkAttack;
+using UnkAttack = UnkAnimationComponent;
 
 struct UnkOwner {
     u8 pad_0x0[0x220];
@@ -14,7 +15,6 @@ struct UnkSelf {
     UnkOwner* field_0x30;
 };
 
-f32 fn_7101177ea0(UnkAttack* attack, u64 hash);
 s32 fn_7101177da8(UnkAttack* attack, u64 hash);
 
 bool fn_7100474ca8(UnkSelf* self) {

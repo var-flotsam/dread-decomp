@@ -5,6 +5,7 @@
 #include "base/global/CRntString.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkGuiDisplayObject.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -16,13 +17,13 @@ struct UnkGuiHandleObj {
     virtual void vf_0x8();
     virtual void vf_0x10();
     s32 ref_count;
-    void* target;
+    UnkGuiDisplayObject* target;
 };
 
 struct UnkGuiHandle {
     UnkGuiHandleObj* ptr;
 
-    void* Get() const { return ptr ? ptr->target : nullptr; }
+    UnkGuiDisplayObject* Get() const { return ptr ? ptr->target : nullptr; }
     ~UnkGuiHandle() {
         if (UnkGuiHandleObj* p = ptr) {
             if (--p->ref_count == 0)
@@ -34,7 +35,6 @@ struct UnkGuiHandle {
 extern void* g_unk_717271e8f8;
 UnkGuiHandle fn_71011b69d8(void* registry, const CRntString& name);
 void fn_71011cdce8(void* composition, s32 value);
-void fn_71011cf2a4(void* composition, s32 value);
 void fn_71011cf364(void* composition, s32 value);
 void fn_71011cde44(void* composition, s32 value);
 void fn_71011d968c(void* menu, void* composition);
@@ -42,7 +42,7 @@ void fn_71011d968c(void* menu, void* composition);
 template <u32 Offset>
 struct UnkMenu {
     u8 unk_0x0[Offset];
-    void* composition;
+    UnkGuiDisplayObject* composition;
 };
 
 // vf_0x78 of a composition (called with -1500 and true by the variant below).
@@ -54,7 +54,7 @@ static inline void CallVf78(void* composition, s32 a, bool b) {
 template <u32 Offset, s32 Value, bool Vf78 = false>
 __attribute__((always_inline)) static inline void SetUp(UnkMenu<Offset>* self, const char* name) {
     self->composition = fn_71011b69d8(g_unk_717271e8f8, CRntString(name)).Get();
-    void* const& composition = self->composition;
+    UnkGuiDisplayObject* const& composition = self->composition;
     if (composition) {
         fn_71011cdce8(composition, 0);
         fn_71011cf2a4(composition, 0);
@@ -66,8 +66,9 @@ __attribute__((always_inline)) static inline void SetUp(UnkMenu<Offset>* self, c
     }
 }
 
-// NON_MATCHING(minor): the original keeps the slot's address in a register (x20) instead of
-// addressing it from the menu.
+// NON_MATCHING(minor): the original reloads the slot through its address register (x20) for the
+// fn_71011cf2a4 call too; ours addresses that one load from the menu (and, in the vf_0x78 variants,
+// swaps that load's form with the vf_0x78 one). Same behaviour.
 void fn_7100b2c6a0(UnkMenu<0x290>* self) { SetUp<0x290, -1>(self, "ConfigMenuComposition"); }
 // NON_MATCHING(minor): as fn_7100b2c6a0.
 void fn_7100b2c784(UnkMenu<0x2c8>* self) { SetUp<0x2c8, -1>(self, "ConfigMenuBossRush"); }
@@ -117,18 +118,11 @@ void fn_7100b2cd24(UnkHandleMenu<0x490>* self) { SetUpHandle<0x490, false>(self,
 
 // The icons HUD: the looked-up object is kept at 0x2d0 only as a GUI::CHUD (else null) and set
 // up through that slot.
-struct UnkGuiObject {
-    void** vtable;
-
-    const CClass* Type() { return reinterpret_cast<const CClass* (*)(UnkGuiObject*)>(vtable[0])(this); }
-};
-
 void fn_7100b2c58c(UnkMenu<0x2d0>* self) {
-    UnkGuiObject* obj =
-        static_cast<UnkGuiObject*>(fn_71011b69d8(g_unk_717271e8f8, CRntString("IconsHudComposition")).Get());
+    UnkGuiDisplayObject* obj = fn_71011b69d8(g_unk_717271e8f8, CRntString("IconsHudComposition")).Get();
     if (!obj)
         return;
-    self->composition = fn_710009d50c(obj->Type(), fn_71011dce90()) ? obj : nullptr;
+    self->composition = fn_710009d50c(obj->GetClass(), fn_71011dce90()) ? obj : nullptr;
     fn_71011cdce8(self->composition, 0);
     fn_71011cf2a4(self->composition, 0);
     fn_71011cf364(self->composition, 0);

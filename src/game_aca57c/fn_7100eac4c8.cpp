@@ -29,13 +29,15 @@ struct alignas(Align) UnkBlock {
 
 struct UnkObject30;
 void fn_710007ea60(UnkObject30* self, const UnkObject30* other);
-void fn_710007eab4(UnkObject30* self, UnkObject30* other);
 
 struct UnkObject30 {
     u64 field_0x0[6];
 
     __attribute__((always_inline)) UnkObject30(const UnkObject30& other) { fn_710007ea60(this, &other); }
-    __attribute__((always_inline)) UnkObject30(UnkObject30&& other) { fn_710007eab4(this, &other); }
+    __attribute__((always_inline)) UnkObject30(UnkObject30&& other) {
+        fn_710007eab4(reinterpret_cast<base::global::CRntString*>(this),
+                      reinterpret_cast<base::global::CRntString*>(&other));
+    }
 };
 
 template <class Id>

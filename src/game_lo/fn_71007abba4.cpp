@@ -4,6 +4,7 @@
 #include <new>
 
 #include "base/UnkCloneHelpers.h"
+#include "base/UnkErasedVector.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
@@ -38,22 +39,6 @@ struct UnkByteArray_71007abba4 {
     }
 };
 
-struct UnkValue_71007abba4 {
-    u64 words[2];
-};
-// The engine array's layout; built field by field (base::UnkVector's constructor doesn't match).
-struct UnkValueArray_71007abba4 {
-    UnkValue_71007abba4* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
-// Copy-assigns the array (src/game_lo/fn_710023b29c.cpp).
-UnkValueArray_71007abba4* fn_710023b29c(UnkValueArray_71007abba4* self, const UnkValueArray_71007abba4* other);
-
 class UnkSubBase_71007abba4 {
 public:
     virtual void vf_0x0();
@@ -69,7 +54,7 @@ public:
         field_0x68 = 0;
     }
 
-    UnkValueArray_71007abba4 values;
+    UnkErasedVector values;  // built field by field (base::UnkVector's constructor doesn't match)
     u32 field_0x68;
 };
 

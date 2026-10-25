@@ -6,7 +6,6 @@
 using base::global::UnkStrIdBase;
 
 extern UnkStrIdBase g_unk_71726c2888[2] __attribute__((visibility("hidden")));
-extern UnkStrIdBase g_unk_7101d470e0;
 
 struct UnkSpitOwnerState {
     u8 pad_0x0[0x6f8];

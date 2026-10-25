@@ -5,6 +5,7 @@
 // 0x50 leave a positive amount to cover, the vtable slot 0x168 is called with the rate.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
@@ -26,7 +27,7 @@ struct UnkPlayerObject {
     }
 };
 
-struct UnkAttack;
+using UnkAttack = UnkAnimationComponent;
 
 struct UnkFound {
     u8 pad_0x0[0x14];
@@ -60,11 +61,9 @@ struct UnkSelf {
     f32 field_0x138;
 };
 
-bool fn_710117b348(UnkAttack* object, const base::reflection::CClass* class_ptr);
 void fn_710048fc80(UnkObject* component);
 UnkPlayer* fn_7100dec788(UnkGameManager* manager);
 void fn_710117b08c(UnkAttack* attack, UnkQuery* query);
-f32 fn_7101177ea0(UnkAttack* attack, u64 hash);
 
 void fn_710048a474(UnkSelf* self, f32 delta) {
     f32 previous = self->field_0x138;

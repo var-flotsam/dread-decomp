@@ -19,12 +19,6 @@ struct UnkAllocator {
 
 extern void* g_unk_7101a1b750[];
 
-struct UnkStrBuffer;
-void fn_710007e6e4(UnkStrBuffer* self, void* storage);
-void fn_710007e77c(UnkStrBuffer* self, const char* str);
-void fn_710007eaa0(UnkStrBuffer* self, const UnkStrBuffer* other);
-void fn_710007ed40(UnkStrBuffer* self);
-
 struct UnkStrStorage {
     void* vtable;
     u8 pad_0x8[0x80];
@@ -41,15 +35,18 @@ struct UnkStrBuffer {
     u8 pad_0x28[0x8];
     UnkStrStorage storage;
 
+    // The string part (its constructor and destructor run by hand).
+    base::global::CRntString* Str() { return reinterpret_cast<base::global::CRntString*>(this); }
+
     UnkStrBuffer() {
-        fn_710007e6e4(this, &storage);
+        fn_710007e6e4(Str(), reinterpret_cast<base::UnkAllocator*>(&storage));
         storage.vtable = g_unk_7101a1b750 + 2;
         storage.field_0x88 = nullptr;
         storage.field_0x90 = 0;
     }
     ~UnkStrBuffer() {
-        fn_710007ed40(this);
-        fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(this));
+        fn_710007ed40(Str());
+        fn_710007ecd4(Str());
     }
     const char* c_str() const { return data ? data : ""; }
 };
@@ -117,7 +114,7 @@ bool fn_71009cde54(UnkScriptRunner* self, const char* name, const char* fmt, ...
     if (!name)
         return false;
     UnkStrBuffer str;
-    fn_710007e77c(&str, name);
+    fn_710007e77c(str.Str(), name);
     s32 n = 0;
     const char* p = str.data;
     for (u64 left = str.length; left != 0; --left, ++p) {
@@ -128,8 +125,8 @@ bool fn_71009cde54(UnkScriptRunner* self, const char* name, const char* fmt, ...
     buf[n] = 0;
     {
         UnkStrBuffer stripped;
-        fn_710007e77c(&stripped, buf);
-        fn_710007eaa0(&str, &stripped);
+        fn_710007e77c(stripped.Str(), buf);
+        fn_710007eaa0(str.Str(), stripped.Str());
     }
     u64 hash = str.hash;
     bool result;

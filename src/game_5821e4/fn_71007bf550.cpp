@@ -7,8 +7,6 @@
 
 using base::global::CStrId;
 
-extern CStrId g_unk_7101d470e0;  // a global string id
-
 struct UnkEntry_71007bf550 {
     CStrId field_0x0 = g_unk_7101d470e0;
     CStrId field_0x8 = g_unk_7101d470e0;

@@ -93,6 +93,15 @@ void refl_Register(void* item) {
     refl_GetRegistry<G>().items.PushBack(item);
 }
 
+}  // namespace base::reflection
+
+// refl_Register<UnkRefl_fn_71004fd2cc> (src/reflection_statics/, flags 0xf): adds a reflected
+// property object (UnkProperty2, UnkProperty3, UnkPropertyEx of the TU initialisers) to its
+// registry; the on_init callback of InitProperty2/InitProperty3/InitPropertyEx.
+void fn_71004fd2cc(void* item);
+
+namespace base::reflection {
+
 // What registers itself: its name is virtual slot 0x28.
 struct UnkReflRegistryItem {
     virtual void vf_0x0();

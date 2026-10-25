@@ -11,8 +11,6 @@ using base::global::CRntString;
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
-void fn_710007ed40(void* self);
-
 extern void* g_unk_7101a9c8e0[];
 extern void* g_unk_7101a9ca40[];
 extern void* g_unk_7101a9cb48[];
@@ -57,7 +55,7 @@ struct UnkRefPtr {
 struct UnkNameHolder {
     CRntString name;
 
-    __attribute__((always_inline)) ~UnkNameHolder() { fn_710007ed40(this); }
+    __attribute__((always_inline)) ~UnkNameHolder() { fn_710007ed40(&name); }
 };
 
 __attribute__((always_inline)) static inline void SetVtable(void* self, void** vtable) {

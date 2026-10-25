@@ -7,9 +7,6 @@
 
 using namespace base::global;
 
-struct UnkString30;
-void fn_710007ed40(UnkString30* self);
-
 struct UnkString30 {
     u64 field_0x0[6];
 
@@ -41,7 +38,7 @@ struct UnkIdsString {
     UnkReleasedStrId field_0x10;
     UnkString30 field_0x18;
 
-    __attribute__((always_inline)) ~UnkIdsString() { fn_710007ed40(&field_0x18); }
+    __attribute__((always_inline)) ~UnkIdsString() { fn_710007ed40(reinterpret_cast<CRntString*>(&field_0x18)); }
 };
 
 void fn_7100133be4(UnkIdsString* self) { self->~UnkIdsString(); }

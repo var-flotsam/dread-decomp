@@ -18,14 +18,13 @@ struct UnkString {
 
     ~UnkString();
 };
-void fn_710007ed40(UnkString* self);
 inline UnkString::~UnkString() { fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(this)); }
 
 struct UnkInlineString {
     UnkString str;
     u8 buffer[0x38];
 
-    ~UnkInlineString() { fn_710007ed40(&str); }
+    ~UnkInlineString() { fn_710007ed40(reinterpret_cast<base::global::CRntString*>(&str)); }
 };
 
 struct UnkStringBase {

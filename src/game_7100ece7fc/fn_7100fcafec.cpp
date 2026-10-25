@@ -35,8 +35,6 @@ struct UnkIdEntry_0x10 {
     UnkEntryId id;
 };
 
-void fn_710007ed40(CRntString* str);
-
 extern void* g_unk_7101caba40[];
 extern void* g_unk_7101cabad0[];
 

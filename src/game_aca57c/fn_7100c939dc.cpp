@@ -7,8 +7,6 @@
 
 using base::global::CStrId;
 
-extern CStrId g_unk_7101d470e0;
-
 struct UnkMaskA {
     u32 value;
     UnkMaskA() : value(0) {}

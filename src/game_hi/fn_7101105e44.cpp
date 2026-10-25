@@ -4,6 +4,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkActor.h"
+#include "game/UnkAnimationComponent.h"
 
 using base::global::CStrId;
 
@@ -63,7 +64,7 @@ struct UnkActor_7101105e44 {
     u8 unk_0x0[0x1b8];
     UnkShield_7101105e44* shield;
     u8 unk_0x1c0[0x60];
-    void* char_class;
+    UnkAnimationComponent* char_class;
     u8 unk_0x228[0xe8];
     bool field_0x310;
 };
@@ -88,7 +89,6 @@ struct UnkStruct_7101105e44 {
 
 void fn_7100d7add4(UnkActor_7101105e44* actor, bool value);
 void fn_710117b08c(void* char_class, UnkTrackQuery_7101105e44* query);
-bool fn_710117b348(void* char_class, const base::reflection::CClass* cls);
 u32 fn_7100414070(const char* str);
 void fn_71008c1538(UnkDamage_7101105e44* d, f32 amount);
 bool fn_7101161088(UnkShield_7101105e44* shield);

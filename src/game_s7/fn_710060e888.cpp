@@ -4,6 +4,7 @@
 // fn_71010fccf8) has a record whose entry at +0x10 of the first pointer has kind 2, copies the
 // value at +0xac of the second pointer and the 12 bytes at +0x40 of the owner's record at +0x1f0 into the
 // object at +0x14678. Then hands a default parameter block to fn_71006f4b0c. Always returns state 7.
+#include "game/UnkAIComponent.h"
 #include "game_s2/UnkParams.h"
 
 struct UnkKind {
@@ -27,11 +28,6 @@ struct UnkRecord {
     UnkValue* field_0x10;
 };
 
-struct UnkTarget {
-    u8 pad_0x0[0xb0];
-    UnkRecord* field_0xb0;
-};
-
 struct UnkSource {
     u8 pad_0x0[0x40];
     u64 field_0x40;
@@ -42,7 +38,7 @@ struct UnkOwner {
     u8 pad_0x0[0x1f0];
     UnkSource* field_0x1f0;
     u8 pad_0x1f8[0x48];
-    void* field_0x240;
+    UnkAIComponent* field_0x240;
 };
 
 struct UnkComponent {
@@ -56,17 +52,15 @@ struct __attribute__((packed)) UnkCopy {
     u32 field_0xc;
 };
 
-UnkTarget* fn_71010fccf8(void* object);
-
 u32 fn_710060e888(UnkComponent* self) {
-    char* object = static_cast<char*>(self->field_0x18->field_0x240);
-    UnkTarget* target = fn_71010fccf8(object);
+    UnkAIComponent* object = self->field_0x18->field_0x240;
+    UnkNavigation* target = fn_71010fccf8(object);
     UnkSource* source = self->field_0x18->field_0x1f0;
     if (object && target && source) {
-        UnkRecord* record = target->field_0xb0;
+        UnkRecord* record = static_cast<UnkRecord*>(target->field_0xb0);
         if (record->field_0x0 && record->field_0x0->field_0x10 && record->field_0x0->field_0x10->field_0x10 == 2 &&
             record->field_0x10) {
-            UnkCopy* dst = reinterpret_cast<UnkCopy*>(object + 0x14678);
+            UnkCopy* dst = reinterpret_cast<UnkCopy*>(reinterpret_cast<char*>(object) + 0x14678);
             dst->field_0x0 = record->field_0x10->field_0xac;
             u64 low = source->field_0x40;
             u32 high = source->field_0x48;

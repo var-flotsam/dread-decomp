@@ -5,8 +5,6 @@
 #include "base/global/CRntString.h"
 
 using namespace unk_prop_bag;
-using base::global::UnkStringData;
-using base::global::UnkStringPool;
 
 // A string with 0x80 bytes of inline storage (as in fn_7100ae9a10).
 struct UnkInlineString {
@@ -18,9 +16,6 @@ struct UnkInlineString {
     u32 field_0xc0;
 };
 extern void* g_unk_7101a1b750[];
-void fn_710007e6e4(UnkInlineString* self, void* allocator);  // string constructor
-void fn_710007ed40(UnkInlineString* self);
-void fn_7100000850(UnkStringData** out, const UnkInlineString* str, bool flag);  // id from a string
 
 bool fn_7100e03d78(UnkPropBag* bag, const char* function, const char* args);  // runs a script call
 bool fn_7100e03f50(UnkPropBag* bag, const u64* key, UnkInlineString* out, bool flag);  // reads a string
@@ -41,7 +36,9 @@ struct UnkBuiltId {
         CStrId id;
     };
 
-    explicit UnkBuiltId(const UnkInlineString& str) { fn_7100000850(&id.data, &str, true); }
+    explicit UnkBuiltId(const UnkInlineString& str) {
+        fn_7100000850(&id, *reinterpret_cast<const base::global::CRntString*>(&str), true);
+    }
     ~UnkBuiltId() { id.~CStrId(); }
 };
 
@@ -50,15 +47,16 @@ struct UnkHashedName {
     u64 hash;
 };
 
-// NON_MATCHING(minor): the original keeps the store of the empty string into the moved-from
-// temporary id (and the pool reload after a release); ours drops both as dead.
+// NON_MATCHING(minor): the id's stack slot (8 bytes higher in the original) and the order of the
+// final hash load against the start-point lookup's argument setup.
 void* fn_7100e01680(UnkObj_7100e01680* self) {
     UnkBuiltId built(self->field_0x518);
     CStrId& id = built.id;
     UnkPropBag bag;
     if (fn_7100e03d78(&bag, "CurrentScenario.GetStartPointOverride", "")) {
         UnkInlineString s;
-        fn_710007e6e4(&s, &s.vtable);
+        auto* str = reinterpret_cast<base::global::CRntString*>(&s);
+        fn_710007e6e4(str, reinterpret_cast<base::UnkAllocator*>(&s.vtable));
         s.vtable = &g_unk_7101a1b750[2];
         s.field_0xb8 = 0;
         s.field_0xc0 = 0;
@@ -71,8 +69,8 @@ void* fn_7100e01680(UnkObj_7100e01680* self) {
             id.data = tmp.data;
             tmp.data = &g_unk_7101d47108->empty;
         }
-        fn_710007ed40(&s);
-        fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(&s));
+        fn_710007ed40(str);
+        fn_710007ecd4(str);
     }
     if (id.data == &g_unk_7101d47108->empty)
         return nullptr;

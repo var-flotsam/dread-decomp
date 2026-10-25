@@ -3,6 +3,7 @@
 // blocked: calls fn_7100219588 on the global at g_unk_7101d47300 with it and returns whether the
 // answer has bit 0 clear.
 #include "base/UnkMatrix44.h"
+#include "game/UnkRenderManager.h"
 #include "types.h"
 
 struct UnkTarget {
@@ -21,8 +22,7 @@ struct UnkSelf {
     f32 field_0x18;
 };
 
-extern void* g_unk_7101d47300;
-u64 fn_7100219588(void* world, f32* point, u32 a, u32 b);
+bool fn_7100219588(UnkRenderManager* self, const void* pos, u32 a, u32 b);  // src/game_lo/fn_7100219588.cpp
 
 // NON_MATCHING(minor): the sums land in other registers (the original adds into s8-s10 with the products
 // as first operand, a commuted add; one product is also kept in s5 instead of s0)

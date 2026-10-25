@@ -1,4 +1,5 @@
 // Finds a display object by a dotted path: splits the path on '.' and walks child containers by name.
+#include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
@@ -23,8 +24,10 @@ struct UnkIdHolder_71011d9508 {
     }
 };
 
+// A token of the split path: a string with inline storage, then the link to the next token.
 struct UnkToken_71011d9508 {
-    u8 str[0x88];
+    base::global::CRntString str;
+    u8 unk_0x30[0x58];
     UnkToken_71011d9508* next;
 };
 
@@ -60,7 +63,6 @@ struct UnkDisplayObject_71011d9508 {
 void fn_710008377c(void* p);
 void fn_71009319dc(const char* str, const char* sep, UnkTokenList_0x70* out);
 void fn_7100931c34(UnkTokenList_0x70* list);
-void fn_7100000850(UnkIdHolder_71011d9508* out, const UnkToken_71011d9508* str, bool flag);
 extern char g_unk_7101a838c8[];
 extern char g_unk_7101a1a4c8[];
 extern char g_unk_7172a0f120[] __attribute__((visibility("hidden")));
@@ -90,7 +92,7 @@ UnkDisplayObject_71011d9508* fn_71011d9508(UnkDisplayObject_71011d9508* self, co
             break;
         }
         UnkIdHolder_71011d9508 id;
-        fn_7100000850(&id, tok, true);
+        fn_7100000850(reinterpret_cast<base::global::UnkStrIdBase*>(&id), tok->str, true);
         UnkDisplayObject_71011d9508* found = nullptr;
         if (UnkChildLink_71011d9508* l = cur->children) {
             do {

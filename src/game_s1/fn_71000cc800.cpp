@@ -5,24 +5,25 @@
 
 #include "base/UnkDestructors.h"
 #include "base/global/CFilePathStrId.h"
+#include "base/global/CRntString.h"
 #include "types.h"
 
+using base::global::CRntString;
 using base::global::UnkStringData;
 
-void fn_7100000850(UnkStringData** out, const void* str, bool flag);  // default pool
 void fn_710001a270(UnkStringData** out, const void* str, bool flag);  // file-path pool
 
-static inline void BuildId(base::UnkStrIdMember*, UnkStringData** out, const void* str) {
-    fn_7100000850(out, str, true);
+static inline void BuildId(base::UnkStrIdMember*, UnkStringData** out, const CRntString* str) {
+    fn_7100000850(reinterpret_cast<base::global::UnkStrIdBase*>(out), *str, true);
 }
-static inline void BuildId(base::UnkStrIdMemberOf<g_unk_7101d47200>*, UnkStringData** out, const void* str) {
+static inline void BuildId(base::UnkStrIdMemberOf<g_unk_7101d47200>*, UnkStringData** out, const CRntString* str) {
     fn_710001a270(out, str, true);
 }
 
 template <base::global::UnkStringPool*& Pool>
 static inline base::UnkStrIdMemberOf<Pool>* AssignFromString(base::UnkStrIdMemberOf<Pool>* self,
-                                                             const void* str) {
-    if (self != str) {
+                                                             const CRntString* str) {
+    if (reinterpret_cast<const CRntString*>(self) != str) {
         UnkStringData* data;
         BuildId(self, &data, str);
         using Id = base::UnkStrIdMemberOf<Pool>;
@@ -32,19 +33,19 @@ static inline base::UnkStrIdMemberOf<Pool>* AssignFromString(base::UnkStrIdMembe
     return self;
 }
 
-base::UnkStrIdMember* fn_71000cc800(base::UnkStrIdMember* self, const void* str) {
+base::UnkStrIdMember* fn_71000cc800(base::UnkStrIdMember* self, const CRntString* str) {
     return AssignFromString(self, str);
 }
 
 base::UnkStrIdMemberOf<g_unk_7101d47200>* fn_71000cc890(base::UnkStrIdMemberOf<g_unk_7101d47200>* self,
-                                                         const void* str) {
+                                                         const CRntString* str) {
     return AssignFromString(self, str);
 }
 
-base::UnkStrIdMember* fn_71000ccca8(base::UnkStrIdMember* self, const void* str) {
+base::UnkStrIdMember* fn_71000ccca8(base::UnkStrIdMember* self, const CRntString* str) {
     return AssignFromString(self, str);
 }
 
-base::UnkStrIdMember* fn_71000ccd84(base::UnkStrIdMember* self, const void* str) {
+base::UnkStrIdMember* fn_71000ccd84(base::UnkStrIdMember* self, const CRntString* str) {
     return AssignFromString(self, str);
 }

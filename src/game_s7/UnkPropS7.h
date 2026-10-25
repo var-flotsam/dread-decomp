@@ -88,4 +88,3 @@ inline bool IsName(UnkProp* p, const base::global::CRntString& name) {
 s64 fn_710007cf30(void* stream, const char* format, ...);  // read
 s64 fn_710007cb4c(void* stream, const char* format, ...);  // write
 s64 fn_710007cee4(void* stream, const char** out);          // the next string, in place
-void fn_710007e77c(base::global::CRntString* str, const char* value);  // assigns

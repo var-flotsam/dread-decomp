@@ -10,10 +10,9 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
+#include "engine/scene/UnkToggle.h"
 #include "types.h"
 
-void fn_71001eef74(char* owner, char* self, bool flag);
-void fn_71001eef58(char* owner, char* self, bool flag);
 void fn_7100025a88(char* p);
 
 namespace base {
@@ -31,7 +30,8 @@ void refl_SetFlagNotify(char* self, bool v) {
         return;
     *reinterpret_cast<bool*>(self + 0xf6) = v;
     if (char* o = *reinterpret_cast<char**>(self + 8))
-        fn_71001eef74(o, self, *reinterpret_cast<bool*>(self + 0xf9) && v);
+        fn_71001eef74(reinterpret_cast<UnkToggleListener*>(o), reinterpret_cast<UnkToggle*>(self),
+                      *reinterpret_cast<bool*>(self + 0xf9) && v);
 }
 
 // Sets the flag at 0xf7; clearing it calls virtual slot 0x60 with true (fn_71001f3344 and its
@@ -202,7 +202,8 @@ void refl_SetFlagNotifyB(char* self, bool v) {
         return;
     *reinterpret_cast<bool*>(self + 0xf8) = v;
     if (char* o = *reinterpret_cast<char**>(self + 8))
-        fn_71001eef58(o, self, v && *reinterpret_cast<bool*>(self + 0xf9));
+        fn_71001eef58(reinterpret_cast<UnkToggleListener*>(o), reinterpret_cast<UnkToggle*>(self),
+                      v && *reinterpret_cast<bool*>(self + 0xf9));
 }
 
 // Stores the bool at `Offset` when it differs (fn_71001c3314 and its copies).

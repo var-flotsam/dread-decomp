@@ -5,6 +5,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "base/reflection/UnkReflStatics.h"
 #include "game/UnkTUInit.h"
 
 using base::global::CFilePathStrId;
@@ -806,7 +807,6 @@ extern UnkPropertyEx<> g_unk_71727c94c0;
 extern void* g_unk_7101a45fe8[];
 extern void* g_unk_7101a45f90[];
 void fn_71002ef5bc(void* self);
-void fn_71004fd2cc(UnkPropertyEx<>* p);
 void fn_71004fa3b8(void* p);
 
 void fn_7100e7c980() {
@@ -836,7 +836,8 @@ void fn_7100e7c980() {
     InitClass(&g_unk_71727c9380, "CMinimapGrid::SGridDef", fn_7100e77d68, fn_7100e77a0c);
     fn_710009ec00(&g_unk_71727c94b8, &g_unk_71727c9380);
     InitPropertyEx(&g_unk_71727c94c0, g_unk_7101a45fe8, g_unk_7101a45f90, g_unk_71726db788, fn_71002ef5bc,
-                   "MINIMAP_VISIBILITY", &g_unk_71727c9208, fn_71004fd2cc, fn_71004fa3b8);
+                   "MINIMAP_VISIBILITY", &g_unk_71727c9208,
+                   reinterpret_cast<void (*)(UnkPropertyEx<>*)>(fn_71004fd2cc), fn_71004fa3b8);
 }
 
 

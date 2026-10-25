@@ -15,7 +15,6 @@ extern char unk_7101a202e0[];
 extern char unk_7101a1a070[];
 extern char unk_7101a1bcf0[];
 void fn_710008d8e8(char* node);
-void fn_710007ed40(char* node);
 
 struct UnkNodeList_7100219134 {
     char* vtable;
@@ -43,8 +42,9 @@ static inline void DestroyList(UnkNodeList_7100219134* self) {
 static inline void DestroyNode_710002e3f8(char* node) { fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(node)); }
 
 static inline void DestroyNode_7100103cb8(char* node) {
-    fn_710007ed40(node);
-    fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(node));
+    auto* str = reinterpret_cast<base::global::CRntString*>(node);
+    fn_710007ed40(str);
+    fn_710007ecd4(str);
 }
 
 void fn_7100219134(UnkNodeList_7100219134* self) { DestroyList<unk_7101a202e0, 0x10, fn_710008d8e8>(self); }

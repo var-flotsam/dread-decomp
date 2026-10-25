@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the CPlaythrough::SCheckpointData, CPlaythrough::SCheckpointData::SValidationInfo, base::reflection::CollectionTypeMapper<CPlaythrough::TDictCheckpointDatas>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<CPlaythrough::TDictCheckpointDatas>::TKeyElementConstIterator::value_type, CPlaythrough::TDictCheckpointDatas.
 #include "../game_s7/UnkStaticInitS7.h"
+#include "base/global/CRntString.h"
 #include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
@@ -23,17 +24,16 @@ struct UnkBufferStr {
     u32 field_0xc0;
     u8 pad_0xc4[4];
 };
-void fn_710007e6e4(void* self, void* inline_buffer);  // a small buffer's constructor
-void fn_710007e77c(void* self, const char* str);      // assigns a string to it
-void fn_71002eba1c(void* self);                       // its destructor, as registered
+void fn_71002eba1c(void* self);  // its destructor, as registered
 extern void* g_unk_7101a1b750[];
 
 __attribute__((always_inline)) inline void InitBufferStr(UnkBufferStr* b, const char* str) {
-    fn_710007e6e4(b, &b->field_0x30);
+    auto* s = reinterpret_cast<base::global::CRntString*>(b);
+    fn_710007e6e4(s, reinterpret_cast<base::UnkAllocator*>(&b->field_0x30));
     b->field_0x30 = g_unk_7101a1b750 + 2;
     b->field_0xb8 = 0;
     b->field_0xc0 = 0;
-    fn_710007e77c(b, str);
+    fn_710007e77c(s, str);
     __cxa_atexit(fn_71002eba1c, b, g_unk_7101a19000);
 }
 
