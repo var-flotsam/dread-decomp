@@ -20,8 +20,8 @@ imported symbol names recorded in `data/functions/`.
 | `sample_duplicates.txt` | the sources `dread_game` and the whole-program link both leave out (frozen samples that define a function another source defines), with the reason |
 | `main.cpp` | the executable's entry point; at M0 a banner |
 | `runtime/include/nn/` | the port's `nn::` declarations, one header per namespace, each with a note on what the boot path needs from it |
-| `runtime/include/dread_port.h` | the runtime's own surface: `dread_port_missing_function`, the trap behind every function without a source |
-| `runtime/src/` | stub implementations; every stub carries a `TODO(M<n>)` naming the boot-path function that needs it; `missing.cpp` is the trap |
+| `runtime/include/dread_port.h` | the runtime's own surface: `dread_port_missing_function`, the trap behind every function without a source, and `dread_port_mismatched_call`, the trap behind a call the link refused to alias |
+| `runtime/src/` | stub implementations; every stub carries a `TODO(M<n>)` naming the boot-path function that needs it; `missing.cpp` holds the two traps |
 | `../tools/port_sweep.py` | the compile-only sweep that lists what in `src/` does not port |
 | `../tools/port_link.py` | the whole-program relocatable link and the report of what is missing ([The link (M1)](#the-link-m1)) |
 
@@ -54,7 +54,7 @@ imported symbol names recorded in `data/functions/`.
 | `DREAD_LIBCXX_INCLUDE`, `DREAD_MUSL_INCLUDE` | on a Windows host, the libc++ 9.0.1 headers under `%LOCALAPPDATA%\dread-decomp\sources` and `lib/musl/include` when both exist (what `tools/buildcfg.py` uses); empty elsewhere | compile against these headers with `-nostdinc++` (compile only, nothing links against them). Empty means the host's own libc++ and libc, which is what a real host build uses |
 | `DREAD_SWEEP_EXCLUDE` | empty | semicolon-separated CMake regexes over repository-relative paths; sources the sweep marks as not yet portable are left out of `dread_game` until fixed |
 | `DREAD_GAME_VERSION` | `2.1.0` | passed to the sweep |
-| `DREAD_PYTHON` | the repository's `.venv`, else `find_package(Python3)` | runs the sweep |
+| `DREAD_PYTHON` | the repository's `.venv`, else `find_package(Python3)` | runs the sweep and the link report. A checkout without `.venv` (a worktree, a fresh clone) must set it to an interpreter with `pyelftools`: `tools/port_link.py` imports `tools/asmdiff.py`, which needs it (the sweep itself needs only the standard library) |
 
 ## Configuring
 
@@ -186,12 +186,15 @@ option: `include/base/UnkCloneHelpers.h`, `include/base/UnkStaticStrId.h`,
 `include/base/global/CRntString.h` and `include/game/UnkTUInit.h` declare globals with
 `visibility("hidden")`, and lld refuses an undefined hidden symbol in a shared object. The link
 takes under a second, reports no duplicate symbol (a duplicate fails the run: it is a real problem),
-and leaves 60,402 undefined symbols out of 165,796. The tool resolves symbols to addresses exactly
-as `tools/check.py` does (a definition by `fn_<addr>` anywhere in the mangled symbol, which is how
-a template instantiation tagged `UnkRefl_fn_<addr>` counts as that function; a reference by its
-demangled name without parameters, `fn_`/`g_unk_`/`unk_<addr>` in any namespace, else a name
-unique in `data/functions/`), classifies each undefined symbol, and generates the inputs that
-close the link:
+and leaves 60,402 undefined symbols next to 131,638 defined symbol-table entries (105,394 distinct
+names; local names such as `.L.str` repeat across objects). The tool resolves symbols to addresses
+exactly as `tools/check.py` does (a definition by `fn_<addr>` anywhere in the mangled symbol, which
+is how a template instantiation tagged `UnkRefl_fn_<addr>` counts as that function; a reference by
+its demangled name without parameters, `fn_`/`g_unk_`/`unk_<addr>` in any namespace, else a name
+unique in `data/functions/`), with one guard: a symbol whose only mention of an address is a
+function pointer (`&fn_<addr>` in a template argument) defines nothing at that address, so it is
+neither an alias target nor coverage. It classifies each undefined symbol and generates the inputs
+that close the link:
 
 - **Function aliases** (`aliases.rsp`, one `--defsym=<reference>=<definition>` each). Most
   references name a function that *is* defined, under another symbol: hand-written files declare
@@ -204,77 +207,92 @@ close the link:
   or absolute entry only takes the address (the function tables of `src/reflection_types` and
   `src/reflection`), and for the calls the two parameter lists are compared by x86-64 argument
   class, since a `float` or `double` by value travels in a different register than an integer or a
-  pointer. The sub-classes are in the report; `class_mismatch` is the only unsafe one.
+  pointer. The sub-classes are in the report; `class_mismatch` is the only unsafe one, and a called
+  alias with that verdict is not emitted: the call gets a thunk to `dread_port_mismatched_call`
+  instead, so it fails at the call with the address rather than computing with the wrong register
+  (`--alias-mismatch` emits the alias anyway, for experiments).
 - **Absolute data symbols** (`aliases.rsp`, `--defsym=<symbol>=0x<address>`), for every
   `g_unk_<addr>`/`unk_<addr>` reference, plain or namespaced. Nothing in `src/` defines game data:
   `.data`, `.rodata` and `.bss` come from the user's dump, which M1's data loader maps at the
   original addresses at build time, and an absolute symbol is exactly what a reference to such a
   mapping resolves to. Caveat for the loader and the final link: the hidden declarations above are
-  referenced PC-relatively (20,998 relocations against 6,287 symbols in this run), so the program
-  image has to be linked within 2 GB of the game's addresses (`0x7100000000` and up), or those
-  declarations lose `hidden`; everything else goes through the GOT and does not care.
-- **Traps** (`traps.s`, assembled to `traps.o`): for every undefined function symbol whose address
-  has no definition at all, a thunk `movabsq $0x<addr>, %rdi; jmp dread_port_missing_function`,
-  so a boot that reaches unported code stops with the address instead of running off
-  (`runtime/src/missing.cpp`). Imports of C library names (`<EXTERNAL>::strlen` and the like,
-  referenced through their 4-byte thunk's `fn_<addr>`) get `jmp strlen` instead, and imports of
-  `nn::` names get a `--defsym` to the runtime's function when `runtime/` defines one, a trap
-  otherwise; those are the "runtime stubs needed".
+  referenced PC-relatively, and the report counts those relocations (`R_X86_64_PC32`: 20,178
+  against 5,467 symbols, 5,315 addresses, in this run; `classes.data.pc_relative` in `link.json`),
+  so the program image has to be linked within 2 GB of the game's addresses (`0x7100000000` and
+  up), or those declarations lose `hidden`; everything else goes through the GOT and does not care.
+- **Traps and jumps** (`traps.s`, assembled to `traps.o`): for every undefined function symbol
+  whose address has no definition at all, a thunk `movabsq $0x<addr>, %rdi; jmp
+  dread_port_missing_function`, so a boot that reaches unported code stops with the address instead
+  of running off (`runtime/src/missing.cpp`). Imports of C library names (`<EXTERNAL>::strlen` and
+  the like, referenced through their 4-byte thunk's `fn_<addr>`) get `jmp strlen` instead, and so
+  do the status-`L` functions reached by their `fn_<addr>` name whose `data/functions/` name is the
+  host's: `operator new`, `operator delete`, `operator delete[]` and `free` jump to the host's
+  `_Znwm`, `_ZdlPv`, `_ZdaPv` and `free` (the game's own allocator, dlmalloc's `mspace_*`, is not
+  among them and stays trapped until `lib/dlmalloc` is compiled in). Imports of `nn::` names get a
+  `--defsym` to the runtime's function when `runtime/` defines one, a trap otherwise; those are the
+  "runtime stubs needed".
 - **A second relocatable link**, `dread_whole.o` = `dread_game.o` + the runtime's objects
   (compiled by the tool with the sweep's flags, so it does not depend on the CMake build) +
   `traps.o` + `@aliases.rsp`. What is still undefined after it, the residue, is what the port has to
-  provide outside this mechanism. lld took the 53,250 `--defsym` in one response file; no chunking
+  provide outside this mechanism. lld took the 53,244 `--defsym` in one response file; no chunking
   was needed.
 
 The boot slice (`tools/callgraph.py`, every function reachable from `nnMain` by direct calls) is
-reported by coverage, and `boot_missing.csv` lists the functions without a definition by callers in
-the slice: the lifter's coverage worklist and the matching queue. `link.json` holds everything the
-report prints with the full lists (aliases with their ABI verdict, missing functions with status
-and size, imports).
+reported by coverage (defined; defined but reached through an alias only; host, the standard
+library's by address; none), and `boot_missing.csv` lists the functions without a definition by
+callers in the slice: the lifter's coverage worklist and the matching queue. `link.json` holds
+everything the report prints with the full lists (aliases with their ABI verdict, missing functions
+with status and size, imports, the host-library functions reached by address). Every figure below
+is printed by the tool or stored in `link.json`; none is computed by hand.
 
 ### What the first link found (2026-10-24)
 
 Clang 23.1.3 and lld for `x86_64-linux-gnu`, the sweep's objects with `port/runtime/include` on
-the include path: 3,804 objects, 105,394 defined and 60,402 undefined symbols; 84,966 addresses
-have a function definition (71,965 under their own `fn_<addr>` name, 17,638 as a tagged template
-instantiation), 530 global functions resolve to no address (anchors, pads, the users of statics),
-4 vtables are defined.
+the include path: 3,804 objects, 131,638 defined symbol-table entries (105,394 distinct names) and
+60,402 undefined symbols; 84,966 addresses have a function definition (71,965 under their own
+`fn_<addr>` name, 17,638 as a tagged template instantiation; no address is mentioned only as a
+function pointer), 530 global functions resolve to no address (anchors, pads, the users of
+statics), 4 vtables are defined.
 
 | Class | Symbols | Addresses | Detail |
 |---|---|---|---|
-| Function alias | 37,531 | 35,176 | 27,188 only take the address; 10,343 are calls: `same` 7,548, `same_with_this` 1,132, `ref_more_args` 459 (all safe), `ref_fewer_args` 1,185 (check), `unmangled_definition` 13, `class_mismatch` 6 (unsafe: three declarations of `fn_7100a2cb7c` pass a `float` where the definition takes `bool`, and three lifted callers pass a `float` to a definition that takes `char*`). 141 addresses have several distinct definitions (C1/C2 constructors, tagged helpers); the alias takes the one whose signature fits best |
-| Missing function | 6,749 | 5,909 | status `U` 5,849 addresses, 2,626,352 bytes (4,871 of the symbols are calls); status `L` 60 addresses, 13,704 bytes (26 Lua API functions and dlmalloc's `mspace_*`: `lib/lua` and `lib/dlmalloc` are vendored and not compiled into the port yet; the C++ allocation operators, which lifted code reaches by address; `fn_`-named library functions); no `O`, `m`, `M` or `W` |
+| Function alias | 37,531 | 35,176 | 27,188 only take the address; 10,343 are calls: `same` 7,548, `same_with_this` 1,132, `ref_more_args` 459 (all safe), `ref_fewer_args` 1,185 (check), `unmangled_definition` 13, `class_mismatch` 6 (unsafe: three declarations of `fn_7100a2cb7c` pass a `float` where the definition takes `bool`, and three lifted callers pass a `float` to a definition that takes `char*`; these six are trapped, not aliased). 141 aliases (85 addresses) choose among several distinct definitions (C1/C2 constructors, tagged helpers); the alias takes the one whose signature fits best |
+| Missing function | 6,741 | 5,905 | status `U` 5,849 addresses, 2,626,352 bytes (4,871 of the symbols are calls); status `L` 56 addresses, 13,568 bytes (26 Lua API functions and dlmalloc's `mspace_*`: `lib/lua` and `lib/dlmalloc` are vendored and not compiled into the port yet; `fn_`-named library functions); no `O`, `m`, `M` or `W` |
 | Import | 117 | 92 | C library 19 addresses (`jmp` thunks); `nn::os` 21 (the runtime defines 9), `nn::nfp` 21, `movie` 8, `nn::audio` 6, `nn::hid` 4, `nn::mem` 4, `nn::time` 3, `nn::diag` 2, `nn::oe` 2 (runtime 1), `nn::fs` 1, `nn::util` 1 |
-| Data | 15,709 | 15,450 | 4,993 namespaced references; none defined in the link |
+| Data | 15,709 | 15,450 | 4,993 namespaced references; none defined in the link; 5,467 symbols (5,315 addresses) referenced PC-relatively, 20,178 relocations |
 | Vtable | 71 | | `vtable for CAttack` and 70 more: classes with a virtual function nothing defines |
-| Standard library | 31 | | C 21, C++ 10 (`__cxa_*`, `operator new/delete`, `std::__shared_weak_count`) |
+| Standard library | 39 | 4 | by name: C 21, C++ 10 (`__cxa_*`, `operator new/delete`, `std::__shared_weak_count`); by address: 8 references to the 4 status-`L` functions whose name is the host's (`operator new` 0x7100083b60, `operator delete` 0x7100083c00, `operator delete[]` 0x7100083c30, `free` 0x7100132340), each a `jmp` to the host's symbol |
 | `nn::` by name | 12 | | 10 defined by the runtime, 2 not (`nn::hid::VibrationPlayer` and `VibrationNodeConnection` destructors) |
 | Named without address | 182 | | `UnkIdTable::UnkIdTable()`, `UnkMapIter<...>::Advance()`, ...: they need an `fn_<addr>` or a `data/functions/` name first |
 
 Boot slice: 4,441 functions reachable from `nnMain`, 230 of them imports, 4,211 game functions.
 
-| Status | Functions | Defined | Aliased only | None | Bytes of none |
-|---|---|---|---|---|---|
-| `O` | 1,875 | 975 | 899 | 1 | 384 |
-| `m` | 49 | 31 | 18 | 0 | 0 |
-| `M` | 1 | 1 | 0 | 0 | 0 |
-| `U` | 2,153 | 0 | 0 | 2,153 | 1,237,420 |
-| `L` | 133 | 0 | 2 | 131 | 49,268 |
-| all | 4,211 | 1,007 | 919 | 2,285 | 1,287,072 |
+| Status | Functions | Defined | Aliased only | Host | None | Bytes of none |
+|---|---|---|---|---|---|---|
+| `O` | 1,875 | 975 | 899 | 0 | 1 | 384 |
+| `m` | 49 | 31 | 18 | 0 | 0 | 0 |
+| `M` | 1 | 1 | 0 | 0 | 0 | 0 |
+| `U` | 2,153 | 0 | 0 | 0 | 2,153 | 1,237,420 |
+| `L` | 133 | 0 | 2 | 3 | 128 | 49,176 |
+| all | 4,211 | 1,007 | 919 | 3 | 2,282 | 1,286,980 |
 
 The one `O` function without a definition is `fn_71011bc830`: `src/game_s7/fn_71011bc0b0.cpp`
 defines it with an `asm(".set ...")` alias to a libc++ `__sort3` instantiation that the x86-64
-compile does not emit, so the alias defines nothing there. The imports the slice reaches: C library
-90, `nn::os` 30 (runtime 11), `movie` 24, `nn::oe` 20 (runtime 4), `nn::hid` 12, `nn::prepo` 12,
-`nn::account` 8, `nn::fs` 8, `nv` 6 (the NVN bootstrap), host C++ library 6, `nn::mem` 4,
-`nn::time` 4, `nn::util` 4, `nn::diag` 2. The worklist's head is an `L` function with 470 callers
-in the slice (`fn_7100000250`), then `U` functions with 80, 56 and 36 callers, then
-`operator delete` with 35; 103 of the slice's 131 missing `L` functions are Lua's.
+compile does not emit, so the alias defines nothing there. The three `L` functions the host
+provides are `operator new`, `operator delete` and `operator delete[]`. The imports the slice
+reaches: C library 90, `nn::os` 30 (runtime 11), `movie` 24, `nn::oe` 20 (runtime 4), `nn::hid`
+12, `nn::prepo` 12, `nn::account` 8, `nn::fs` 8, `nv` 6 (the NVN bootstrap), host C++ library 6,
+`nn::mem` 4, `nn::time` 4, `nn::util` 4, `nn::diag` 2. The worklist's head is an `L` function with
+470 callers in the slice (`fn_7100000250`), then `U` functions with 80, 56 and 36 callers, then
+another `L` function with 34 (`fn_7100000850`); 103 of the slice's 128 missing `L` functions are
+Lua's.
 
-Link inputs: 53,250 `--defsym` (37,531 function aliases, 15,709 data symbols, 10 imports to the
-runtime), 6,816 trap thunks and 40 jumps to the C library. The second link succeeds in about 3 s
-and leaves a **residue of 304** undefined symbols: 71 vtables, 49 standard library names (C 31:
-the libc the thunks jump to and the C runtime; C++ 18: `operator new/delete`, `__cxa_*`,
+Link inputs: 53,244 `--defsym` (37,525 function aliases, 15,709 data symbols, 10 imports to the
+runtime), 6,814 trap thunks (6,808 for functions without a definition, 6 for the refused
+`class_mismatch` calls) and 48 jumps to the host's library (40 import thunks, 8 by address). The
+second link succeeds in about 3 s and leaves a **residue of 304** undefined symbols: 71 vtables,
+49 standard library names (C 31: the libc the thunks jump to and the C runtime; C++ 18:
+`operator new/delete`, which the by-address thunks jump to as well, `__cxa_*`,
 `std::recursive_mutex` and `steady_clock` from the runtime's own stubs), 2 `nn::hid` destructors
 the runtime does not define yet, and the 182 names without an address. That residue is the port's
 remaining work outside the lifter: the vtables are the data loader's and the matching queue's

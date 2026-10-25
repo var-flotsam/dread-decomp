@@ -15,7 +15,10 @@ run) and leaves a set of undefined symbols, which this tool sorts by what each o
                    for the calls, the parameter lists of the reference and the definition are
                    compared by x86-64 argument class (integer or pointer against float or double by
                    value, which travel in different registers): the sub-classes say which aliases
-                   are safe and which need the declaration fixed.
+                   are safe and which need the declaration fixed. A called alias whose classes
+                   differ (class_mismatch) is not emitted: the call gets a trap of its own
+                   (dread_port_mismatched_call) so it fails at the call instead of computing with
+                   the wrong register; --alias-mismatch emits the alias anyway.
   MISSING FUNCTION an address in data/functions/ with no definition at all, by status: the lifter's
                    coverage work (U) and the matching queue. Each gets a trap thunk that reports the
                    address (port/runtime/src/missing.cpp).
@@ -25,10 +28,15 @@ run) and leaves a set of undefined symbols, which this tool sorts by what each o
                    "runtime stub needed"); a C library name becomes a jump to the host's function.
   DATA             g_unk_<addr>/unk_<addr> globals: the game's .data, .rodata and .bss, which the
                    port maps from the user's dump at their original addresses; each is defined as
-                   that absolute address.
+                   that absolute address. The ones referenced PC-relatively (R_X86_64_PC32: the
+                   declarations with visibility("hidden")) are counted, since they tie the final
+                   image to within 2 GB of the game's addresses.
   VTABLE           vtables, VTTs and typeinfo of classes whose virtual functions are not all defined.
   STANDARD LIBRARY std::, operator new/delete, __cxa_*, compiler-rt builtins and C names: the host's,
                    even where data/functions/ lists the copy statically linked into main (status L).
+                   That includes the L functions reached by address whose CSV name is a C library
+                   or allocation operator name (fn_7100083c00 = operator delete, free, ...): a jump
+                   to the host's function, not a trap.
   NN RUNTIME       nn:: functions called by their real name (the sources that include the SDK
                    headers): the runtime defines them, or has to.
   NAMED WITHOUT ADDRESS  a name that resolves to no address (UnkIdTable::UnkIdTable(), ...): it
@@ -38,14 +46,15 @@ Symbols resolve to addresses as tools/check.py does. A definition: fn_<addr> any
 symbol (asmdiff.NAME_RE; this is how a template instantiation tagged UnkRefl_fn_<addr> counts as
 that function), else its demangled name unique in data/functions/. A reference: the demangled name
 without its parameter list (asmdiff.strip_params) when it is fn_/g_unk_/unk_<addr> in any namespace
-(asmdiff.TARGET_RE), else a name unique in data/functions/ (check.csv_by_name). A definition whose
-only mention of the address is a function pointer (`&fn_<addr>` in a template argument) is not an
-alias target.
+(asmdiff.TARGET_RE), else a name unique in data/functions/ (check.csv_by_name). A symbol whose only
+mention of the address is a function pointer (`&fn_<addr>` in a template argument) defines nothing
+at that address: it is neither an alias target nor coverage of the boot slice.
 
 The boot slice (tools/callgraph.py: every function reachable from nnMain by direct calls, imports
-apart) is reported by coverage: defined, defined but reached through an alias only, or none, by
-status and bytes. <out>/boot_missing.csv lists the functions without a definition by callers in the
-slice: the lifter's coverage worklist and the matching queue.
+apart) is reported by coverage: defined, defined but reached through an alias only, host (the
+standard library's by address, above), or none, by status and bytes. <out>/boot_missing.csv lists the
+functions without a definition by callers in the slice: the lifter's coverage worklist and the
+matching queue.
 
 A second relocatable link, <out>/dread_whole.o, takes dread_game.o, the runtime's objects (compiled
 here with the sweep's flags, so the tool does not depend on the CMake build), the trap thunks
@@ -66,6 +75,7 @@ Usage:
   python tools/port_link.py --version 2.1.0                      # build/port/sweep -> build/port/link
   python tools/port_link.py --version 2.1.0 --objects build/port/sweep --out build/port/link
   python tools/port_link.py --version 2.1.0 --cxx /usr/bin/clang++ --target x86_64-linux-gnu --system-stdlib
+  python tools/port_link.py --version 2.1.0 --alias-mismatch     # emit the class_mismatch aliases instead of traps
 """
 
 from __future__ import annotations
@@ -94,6 +104,7 @@ SAMPLE_DUPLICATES = ROOT / "port" / "sample_duplicates.txt"  # shared with port/
 RUNTIME_SRC = ROOT / "port" / "runtime" / "src"
 RUNTIME_INCLUDE = port_sweep.RUNTIME_INCLUDE
 TRAP = "dread_port_missing_function"  # port/runtime/src/missing.cpp, declared in dread_port.h
+MISMATCH_TRAP = "dread_port_mismatched_call"  # same file: a called alias whose argument classes differ
 IMPORT_PREFIX = callgraph.IMPORT_PREFIX
 
 # llvm-nm symbol kinds. Uppercase W/V are weak definitions; lowercase w/v are weak undefined.
@@ -129,6 +140,13 @@ pthread_mutex_lock pthread_mutex_unlock pthread_mutex_init pthread_mutex_destroy
 pthread_join clock_gettime gettimeofday time localtime gmtime mktime nanosleep usleep sleep
 stdin stdout stderr errno environ
 """.split())
+# A status-L function reached by its fn_<addr> name whose CSV name is one of these is the host's
+# too (a jump thunk, as for an import): the allocation operators by their Itanium mangled names
+# (operator new(unsigned long), operator new[](unsigned long), operator delete(void*),
+# operator delete[](void*)), and any C_LIBRARY name as itself.
+HOST_OPERATORS = {"operator new": "_Znwm", "operator new[]": "_Znam",
+                  "operator delete": "_ZdlPv", "operator delete[]": "_ZdaPv"}
+PC_RELATIVE = "R_X86_64_PC32"  # a PC-relative reference to a hidden symbol (no GOT)
 # A by-value parameter that goes in an integer register (or is a pointer, reference, array or
 # function pointer). Anything else named by value is an aggregate or enum: its class is unknown
 # without the type's definition.
@@ -146,7 +164,8 @@ ABI_NOTE = {
     "ref_more_args": "the reference passes extra arguments, which the definition ignores: safe",
     "ref_fewer_args": "the definition reads arguments the reference does not pass: check",
     "unmangled_definition": "the definition is an unmangled (extern \"C\" or asm alias) name: unknown",
-    "class_mismatch": "a float or double argument against an integer or pointer one: wrong register, unsafe",
+    "class_mismatch": "a float or double argument against an integer or pointer one: wrong register, unsafe"
+                      " (trapped unless --alias-mismatch)",
 }
 CLASS_ORDER = ["function_alias", "missing_function", "import", "data", "vtable", "stdlib", "nn_runtime",
                "named_without_address"]
@@ -183,11 +202,13 @@ class Entry:
     status: str = ""
     name: str = ""
     size: int = 0
-    target: str = ""  # --defsym target: a mangled symbol or 0x<address>
+    target: str = ""  # --defsym target: a mangled symbol or 0x<address> (a function alias keeps it for the report even when trapped)
     trap: int | None = None  # a trap thunk with this address
-    jump: str = ""  # a jump thunk to this C name
+    trap_fn: str = TRAP  # the runtime function the trap thunk jumps to
+    jump: str = ""  # a jump thunk to this host symbol (a C name, or a mangled allocation operator)
     flags: list[str] = field(default_factory=list)
     candidates: int = 0  # distinct definitions the alias chose from
+    pc_relative: int = 0  # data: R_X86_64_PC32 relocations against the symbol
 
 
 def rel(path: Path | str) -> str:
@@ -266,23 +287,23 @@ def nm_symbols(nm: str, path: Path) -> list[tuple[str, str]]:
     return out
 
 
-def relocation_kinds(objdump: str | None, path: Path) -> dict[str, set[str]] | None:
-    """Symbol -> the relocation types the object applies against it (llvm-objdump -r), or None
-    without llvm-objdump. Section symbols are left out."""
+def relocations(objdump: str | None, path: Path) -> dict[str, Counter[str]] | None:
+    """Symbol -> relocation type -> how many the object applies against it (llvm-objdump -r), or
+    None without llvm-objdump. Section symbols are left out."""
     if not objdump:
         return None
     r = subprocess.run([objdump, "-r", str(path)], capture_output=True, text=True, encoding="utf-8", errors="replace")
     if r.returncode != 0:
         raise SystemExit(f"{objdump} -r {rel(path)} failed:\n{r.stderr}")
-    kinds: dict[str, set[str]] = defaultdict(set)
+    counts: dict[str, Counter[str]] = defaultdict(Counter)
     for line in r.stdout.splitlines():
         parts = line.split()
         if len(parts) < 3 or not parts[1].startswith("R_"):
             continue
         sym = re.split(r"[+-]", parts[2], 1)[0]
         if sym and not sym.startswith("."):
-            kinds[sym].add(parts[1])
-    return kinds
+            counts[sym][parts[1]] += 1
+    return counts
 
 
 def link(lld: str, output: Path, inputs: list[str]) -> tuple[subprocess.CompletedProcess, float]:
@@ -466,12 +487,14 @@ class Link:
     """The symbols of one relocatable link, resolved to addresses."""
 
     def __init__(self, symbols: list[tuple[str, str]], demangled: dict[str, str], resolver: Resolver,
-                 relocs: dict[str, set[str]] | None):
+                 relocs: dict[str, Counter[str]] | None):
         self.resolver = resolver
         self.demangled = demangled
         self.relocs = relocs
         self.undefined: list[str] = []
-        self.code_defs: dict[int, list[Definition]] = defaultdict(list)
+        self.defined_entries = 0  # symbol-table entries (a local name such as .L.str repeats across objects)
+        self.code_defs: dict[int, list[Definition]] = defaultdict(list)  # own and tagged definitions only
+        self.pointer_only: dict[int, list[Definition]] = defaultdict(list)  # &fn_<addr> in a template argument: no definition
         self.data_defs: dict[int, list[tuple[str, str]]] = defaultdict(list)
         self.defined_symbols: set[str] = set()
         self.def_rules: Counter[str] = Counter()
@@ -482,6 +505,7 @@ class Link:
             if kind in UNDEF_KINDS:
                 self.undefined.append(sym)
                 continue
+            self.defined_entries += 1
             self.defined_symbols.add(sym)
             if kind in CODE_KINDS:
                 a, rule = resolver.definition(sym, dem)
@@ -492,7 +516,8 @@ class Link:
                     continue
                 tag = address_tag(dem, a) if rule == "fn_in_symbol" else "own"
                 self.def_rules[f"{rule}/{tag}"] += 1
-                self.code_defs[a].append(Definition(kind, sym, dem, rule, tag))
+                d = Definition(kind, sym, dem, rule, tag)
+                (self.pointer_only if tag == "pointer" else self.code_defs)[a].append(d)
             elif kind in DATA_KINDS:
                 if dem.startswith("vtable for "):
                     self.vtables_defined += 1
@@ -502,18 +527,37 @@ class Link:
 
     def alias_candidates(self, addr: int) -> list[Definition]:
         """Global definitions of `addr` an alias may point at (a local one cannot be named)."""
-        return [d for d in self.code_defs.get(addr, []) if d.kind in "TW" and d.tag != "pointer"]
+        return [d for d in self.code_defs.get(addr, []) if d.kind in "TW"]
 
     def use(self, sym: str) -> tuple[bool, bool]:
         """(called, address taken) from the relocations against `sym`; (True, True) when unknown."""
         if self.relocs is None:
             return True, True
-        kinds = self.relocs.get(sym, set())
+        kinds = set(self.relocs.get(sym, ()))
         return bool(kinds & CALL_RELOCS), bool(kinds & ADDRESS_RELOCS)
 
+    def pc_relative(self, sym: str) -> int:
+        """R_X86_64_PC32 relocations against `sym` (0 when relocations are unknown)."""
+        return self.relocs.get(sym, Counter())[PC_RELATIVE] if self.relocs is not None else 0
 
-def classify(lk: Link, runtime_by_name: dict[str, list[str]], runtime_symbols: set[str]) -> list[Entry]:
-    """One Entry per undefined symbol of `lk`."""
+
+def host_symbol(row: dict) -> tuple[str, str]:
+    """(host symbol, 'C' or 'C++') when a status-L row's name is the host standard library's
+    (HOST_OPERATORS, C_LIBRARY), else ('', '')."""
+    if row["status"] != "L":
+        return "", ""
+    name = row["name"]
+    if name in HOST_OPERATORS:
+        return HOST_OPERATORS[name], "C++"
+    if name in C_LIBRARY:
+        return name, "C"
+    return "", ""
+
+
+def classify(lk: Link, runtime_by_name: dict[str, list[str]], runtime_symbols: set[str],
+             alias_mismatch: bool = False) -> list[Entry]:
+    """One Entry per undefined symbol of `lk`. A called function alias with a class_mismatch
+    verdict is trapped unless `alias_mismatch`."""
     res = lk.resolver
     out: list[Entry] = []
     for sym in lk.undefined:
@@ -544,6 +588,9 @@ def classify(lk: Link, runtime_by_name: dict[str, list[str]], runtime_symbols: s
             defs = lk.data_defs.get(addr)
             e.sub = "namespaced" if "::" in name else "plain"
             e.target = defs[0][1] if defs else f"0x{addr:x}"
+            e.pc_relative = lk.pc_relative(sym)
+            if e.pc_relative:
+                e.flags.append("pc_relative")
             if defs:
                 e.flags.append("defined_in_link")
             if res.row(addr):
@@ -571,8 +618,14 @@ def classify(lk: Link, runtime_by_name: dict[str, list[str]], runtime_symbols: s
             e.candidates = len({d.demangled for d in cands})
             if best.tag == "tag":
                 e.flags.append("tagged_template")
+            if e.sub == "class_mismatch" and not alias_mismatch:
+                e.trap, e.trap_fn = addr, MISMATCH_TRAP  # the alias stays in the report, not in aliases.rsp
+                e.flags.append("trapped")
         elif lk.code_defs.get(addr):
             e.cls, e.sub, e.trap = "missing_function", "local definition only", addr
+        elif row and host_symbol(row)[0]:
+            e.jump, kind = host_symbol(row)
+            e.cls, e.sub = "stdlib", f"{kind} (status L, by address)"
         elif row and row["name"].startswith(IMPORT_PREFIX):
             e.cls = "import"
             group, gname = import_group(row["name"])
@@ -608,8 +661,9 @@ def write_rsp(path: Path, lines: list[str]) -> None:
 
 
 def write_traps(path: Path, entries: list[Entry]) -> tuple[int, int]:
-    """traps.s: a thunk per trapped symbol (loads the address, jumps to the runtime's trap) and
-    per C library import (jumps to the host's function). Returns (traps, jumps)."""
+    """traps.s: a thunk per trapped symbol (loads the address, jumps to the runtime's trap: the
+    missing-function one, or the mismatched-call one for a refused alias) and per host-library
+    function reached by an fn_<addr> name (jumps to the host's symbol). Returns (traps, jumps)."""
     lines = ["# Generated by tools/port_link.py. One thunk per function the link has no definition for.",
              "\t.text"]
     traps = jumps = 0
@@ -621,7 +675,7 @@ def write_traps(path: Path, entries: list[Entry]) -> tuple[int, int]:
             lines.append(f"\tjmp\t{e.jump}")
             jumps += 1
         else:
-            lines += [f"\tmovabsq\t$0x{e.trap:x}, %rdi", f"\tjmp\t{TRAP}"]
+            lines += [f"\tmovabsq\t$0x{e.trap:x}, %rdi", f"\tjmp\t{e.trap_fn}"]
             traps += 1
         lines.append(f"\t.size\t{e.symbol}, .-{e.symbol}")
     lines.append('\t.section\t.note.GNU-stack,"",@progbits')
@@ -648,7 +702,9 @@ def summarize(entries: list[Entry], examples: int, keep_empty: bool) -> dict:
                                          for e in es if e.sub == s][:examples]}
                         for s in ABI_ORDER}
             d["signature_when_called_or_not"] = dict(sorted(Counter(e.signature for e in es).items()))
-            d["several_definitions"] = sum(1 for e in es if e.candidates > 1)
+            multi = [e for e in es if e.candidates > 1]
+            d["several_definitions"] = {"aliases": len(multi), "addresses": len({e.address for e in multi})}
+            d["trapped"] = sum(1 for e in es if e.trap is not None)
         elif cls == "missing_function":
             by_status: dict = {}
             for st in sorted(subs):
@@ -666,10 +722,15 @@ def summarize(entries: list[Entry], examples: int, keep_empty: bool) -> dict:
                              for s in sorted(subs)}
         elif cls == "data":
             d["namespaced_references"] = subs.get("namespaced", 0)
+            pc = [e for e in es if e.pc_relative]
+            d["pc_relative"] = {"symbols": len(pc), "addresses": len({e.address for e in pc}),
+                                "relocations": sum(e.pc_relative for e in pc),
+                                "note": f"{PC_RELATIVE} relocations: the declarations with visibility(\"hidden\"); the final"
+                                        " image must sit within 2 GB of the game's addresses"}
             d["examples"] = [e.demangled for e in es[:examples]]
         else:
             d["by_kind"] = dict(sorted(subs.items()))
-            d["names"] = sorted(e.demangled for e in es)
+            d["names"] = sorted(e.demangled + (f" -> {e.jump}" if e.jump else "") for e in es)
         out[cls] = d
     return out
 
@@ -696,8 +757,9 @@ def print_summary(title: str, summary: dict, examples: int) -> None:
                         print(f"                   def {ex['definition']}")
             print(f"           signature verdict over all {d['symbols']} (called or not): "
                   + flags_text(d["signature_when_called_or_not"]))
+            sd = d["several_definitions"]
             print(f"           flags: {flags_text(d['flags'])}; several distinct definitions (chosen by signature):"
-                  f" {d['several_definitions']}")
+                  f" {sd['aliases']} aliases ({sd['addresses']} addresses); trapped instead of aliased: {d['trapped']}")
         elif cls == "missing_function":
             for st, s in d["by_status"].items():
                 print(f"           {s['symbols']:6d} symbols {s['addresses']:6d} addresses {s['bytes']:10,d} bytes"
@@ -709,9 +771,12 @@ def print_summary(title: str, summary: dict, examples: int) -> None:
                 print(f"           {s['symbols']:6d} symbols {s['addresses']:6d} addresses  {g}" + (f"  [{fl}]" if fl else "")
                       + f"  e.g. {', '.join(s['examples'][:examples])}")
         elif cls == "data":
+            pc = d["pc_relative"]
             print(f"           namespaced references {d['namespaced_references']}"
                   + (f", flags: {flags_text(d['flags'])}" if d["flags"] else "")
                   + f"  e.g. {', '.join(d['examples'][:examples])}")
+            print(f"           PC-relative ({PC_RELATIVE}, the hidden declarations): {pc['relocations']} relocations"
+                  f" against {pc['symbols']} symbols ({pc['addresses']} addresses)")
         else:
             print(f"           {flags_text(d['by_kind'])}  e.g. {', '.join(d['names'][:examples])}")
 
@@ -728,6 +793,7 @@ def boot_slice(version: str, lk: Link, entries: list[Entry], runtime_by_name: di
     imports = {a for a in reach if callgraph.is_import(g.funcs[a])}
     funcs = reach - imports
     aliased = {e.address for e in entries if e.cls == "function_alias"}
+    hosted = {e.address for e in entries if e.cls == "stdlib" and e.address is not None}  # the host's by address
     _, callers = g.collapsed()
     table: dict[str, Counter] = defaultdict(Counter)
     bytes_none: Counter = Counter()
@@ -736,6 +802,8 @@ def boot_slice(version: str, lk: Link, entries: list[Entry], runtime_by_name: di
         row = g.funcs[a]
         if a in lk.code_defs:
             cover = "aliased" if a in aliased else "defined"
+        elif a in hosted:
+            cover = "host"
         else:
             cover = "none"
             bytes_none[row["status"]] += row["size"]
@@ -758,9 +826,9 @@ def boot_slice(version: str, lk: Link, entries: list[Entry], runtime_by_name: di
         "root": f"0x{callgraph.NNMAIN:x}", "reachable": len(reach), "imports_reached": len(imports),
         "functions": len(funcs),
         "by_status": {st: {"functions": sum(c.values()), "defined": c["defined"], "aliased": c["aliased"],
-                           "none": c["none"], "bytes_none": bytes_none[st]}
+                           "host": c["host"], "none": c["none"], "bytes_none": bytes_none[st]}
                       for st, c in sorted(table.items())},
-        "totals": {k: sum(c[k] for c in table.values()) for k in ("defined", "aliased", "none")},
+        "totals": {k: sum(c[k] for c in table.values()) for k in ("defined", "aliased", "host", "none")},
         "bytes_none": sum(bytes_none.values()),
         "imports": {k: dict(v) for k, v in sorted(imp.items())},
         "missing_csv": rel(out_csv),
@@ -768,11 +836,13 @@ def boot_slice(version: str, lk: Link, entries: list[Entry], runtime_by_name: di
     }
     print(f"boot slice (reachable from nnMain, 0x{callgraph.NNMAIN:x}): {len(reach)} functions,"
           f" {len(imports)} imports, {len(funcs)} game functions")
-    print("  status  functions   defined   aliased      none   bytes(none)")
+    print("  status  functions   defined   aliased      host      none   bytes(none)")
     for st, c in result["by_status"].items():
-        print(f"  {st:6s} {c['functions']:10d} {c['defined']:9d} {c['aliased']:9d} {c['none']:9d} {c['bytes_none']:13,d}")
+        print(f"  {st:6s} {c['functions']:10d} {c['defined']:9d} {c['aliased']:9d} {c['host']:9d} {c['none']:9d}"
+              f" {c['bytes_none']:13,d}")
     t = result["totals"]
-    print(f"  {'all':6s} {len(funcs):10d} {t['defined']:9d} {t['aliased']:9d} {t['none']:9d} {result['bytes_none']:13,d}")
+    print(f"  {'all':6s} {len(funcs):10d} {t['defined']:9d} {t['aliased']:9d} {t['host']:9d} {t['none']:9d}"
+          f" {result['bytes_none']:13,d}")
     print("  imports reached: " + ", ".join(f"{k} {v['reached']}" + (f" (runtime {v['runtime']})" if v.get("runtime") else "")
                                            for k, v in result["imports"].items()))
     print(f"  worklist: {rel(out_csv)} ({len(missing_rows)} functions without a definition, by callers in the slice)")
@@ -790,6 +860,8 @@ def main() -> int:
     ap.add_argument("--system-stdlib", action="store_true",
                     help="compile the runtime against the host's standard library headers, as the sweep's option")
     ap.add_argument("--examples", type=int, default=3, help="examples printed per class (default 3)")
+    ap.add_argument("--alias-mismatch", action="store_true",
+                    help="emit the --defsym for a called alias whose argument classes differ (default: a trap at the call)")
     args = ap.parse_args()
 
     cxx = args.cxx or port_sweep.host_cxx()
@@ -839,20 +911,22 @@ def main() -> int:
         raise SystemExit(f"llvm-cxxfilt is needed ({asmdiff.cxxfilt()}): {e}")
     rows, _ = check.load_csv()
     resolver = Resolver(rows)
-    lk = Link(symbols, demangled, resolver, relocation_kinds(objdump, game_o))
+    lk = Link(symbols, demangled, resolver, relocations(objdump, game_o))
     runtime_symbols = {s for _, syms in rt_symbols for k, s in syms if k in CODE_KINDS}
     runtime_by_name: dict[str, list[str]] = defaultdict(list)
     for s in sorted(runtime_symbols):
         runtime_by_name[asmdiff.strip_params(demangled.get(s, s))].append(s)
-    print(f"symbols: {len(lk.defined_symbols)} defined, {len(lk.undefined)} undefined;"
+    print(f"symbols: {lk.defined_entries} defined entries ({len(lk.defined_symbols)} distinct names),"
+          f" {len(lk.undefined)} undefined;"
           f" {len(lk.code_defs)} addresses have a function definition"
-          f" ({', '.join(f'{k} {v}' for k, v in sorted(lk.def_rules.items()))}),"
+          f" ({', '.join(f'{k} {v}' for k, v in sorted(lk.def_rules.items()))};"
+          f" a pointer-only mention defines nothing: {len(lk.pointer_only)} addresses),"
           f" {len(lk.unresolved_code)} global functions resolve to no address (anchors, pads, statics' users),"
           f" {lk.vtables_defined} vtables defined;"
           f" runtime: {len(runtime_symbols)} functions")
 
     # d. classification
-    entries = classify(lk, runtime_by_name, runtime_symbols)
+    entries = classify(lk, runtime_by_name, runtime_symbols, args.alias_mismatch)
     summary = summarize(entries, args.examples, keep_empty=True)
     assert sum(d["symbols"] for d in summary.values()) == len(entries) == len(lk.undefined)
     print()
@@ -863,7 +937,7 @@ def main() -> int:
     slice_ = boot_slice(args.version, lk, entries, runtime_by_name, out / "boot_missing.csv")
 
     # f. aliases, traps, the second link
-    aliases = [e for e in entries if e.target and e.cls in ("function_alias", "data", "import")]
+    aliases = [e for e in entries if e.target and e.trap is None and e.cls in ("function_alias", "data", "import")]
     aliases_rsp = out / "aliases.rsp"
     write_rsp(aliases_rsp, [f"--defsym={e.symbol}={e.target}" for e in aliases])
     traps_s, traps_o = out / "traps.s", out / "traps.o"
@@ -877,15 +951,15 @@ def main() -> int:
     print()
     print(f"link inputs: {rel(aliases_rsp)} with {len(aliases)} --defsym"
           f" (function {alias_counts['function_alias']}, data {alias_counts['data']}, import {alias_counts['import']});"
-          f" {rel(traps_s)} with {traps} traps and {jumps} jumps to the C library")
+          f" {rel(traps_s)} with {traps} traps and {jumps} jumps to the host's library")
     whole_o = out / "dread_whole.o"
     r, dt2 = link(lld, whole_o, [str(game_o), *map(str, runtime_objs), str(traps_o), f"@{aliases_rsp.as_posix()}"])
     if r.returncode != 0:
         print(f"LINK FAILED ({rel(whole_o)}):")
         print("\n".join(r.stderr.splitlines()[:40]))
         return 1
-    whole = Link(nm_symbols(nm, whole_o), demangled, resolver, relocation_kinds(objdump, whole_o))
-    residue_entries = classify(whole, runtime_by_name, runtime_symbols)
+    whole = Link(nm_symbols(nm, whole_o), demangled, resolver, relocations(objdump, whole_o))
+    residue_entries = classify(whole, runtime_by_name, runtime_symbols, args.alias_mismatch)
     residue = summarize(residue_entries, args.examples, keep_empty=False)
     print(f"link 2: {rel(whole_o)} in {dt2:.1f} s ({whole_o.stat().st_size / 1e6:.1f} MB)")
     print_summary("residue", residue, args.examples)
@@ -908,15 +982,21 @@ def main() -> int:
         "flags": flags, "out": rel(out),
         "inputs": {"objects": len(objs), "objects_dir": rel(Path(args.objects)), "sources_without_object": missing_objs,
                    "sample_duplicates": skipped, "runtime_objects": [rel(o) for o in runtime_objs]},
+        "options": {"alias_mismatch": args.alias_mismatch},
         "link1": {"output": rel(game_o), "bytes": game_o.stat().st_size, "seconds": round(dt1, 2),
-                  "defined": len(lk.defined_symbols), "undefined": len(lk.undefined)},
+                  "defined_entries": lk.defined_entries, "defined_names": len(lk.defined_symbols),
+                  "undefined": len(lk.undefined)},
         "definitions": {"addresses": len(lk.code_defs), "rules": dict(sorted(lk.def_rules.items())),
+                        "pointer_only_addresses": len(lk.pointer_only),
                         "unresolved_global_functions": sorted(lk.unresolved_code), "vtables_defined": lk.vtables_defined,
                         "runtime_functions": sorted(demangled.get(s, s) for s in runtime_symbols)},
         "classes": summary,
         "aliases": [{"symbol": e.demangled, "mangled": e.symbol, "target": e.target, "abi": e.sub,
-                     "signature": e.signature, "flags": e.flags, "candidates": e.candidates}
+                     "signature": e.signature, "flags": e.flags, "candidates": e.candidates,
+                     "trapped": e.trap is not None}
                     for e in entries if e.cls == "function_alias"],
+        "host_by_address": [{"symbol": e.demangled, "address": f"0x{e.address:x}", "name": e.name, "host": e.jump}
+                            for e in entries if e.cls == "stdlib" and e.address is not None],
         "missing_functions": sorted(missing_list.values(), key=lambda m: m["address"]),
         "imports": [{"symbol": e.demangled, "address": f"0x{e.address:x}", "name": e.name, "group": e.sub,
                      "flags": e.flags, "target": e.target or e.jump} for e in entries if e.cls == "import"],
