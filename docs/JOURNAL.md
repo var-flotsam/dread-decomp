@@ -52,9 +52,54 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 **Lifter and generators**
 - Alias, sort and copy rewrite rounds; "the generic lifter is near its limit": work log item 1.
+- Parallel agents in one checkout: file-disjoint steps, `trymatch.py --obj-dir`, one `check.py` at the end: [sixteenth session](#session-log-newest-first).
+
+**Declarations and calling conventions**
+- A caller declared with fewer parameters can rely on an argument register the caller left set (six callers of `fn_7100216978` passed the vector in `x1` unawares); declaring the real signature keeps the bytes: [sixteenth session](#session-log-newest-first).
+- A union-typed scoped reference adds a reload in its destructor; cast at the call instead. A cast that lets Clang tail-merge two paths can be undone by an anonymous-union member: [sixteenth session](#session-log-newest-first).
+- On the x86-64 port a mismatched declaration is a register mismatch only across argument classes (`float` vs integer or pointer); count and pointee differences are harmless for address-taking references: [sixteenth session](#session-log-newest-first).
 - Clone kinds and the census method; families tried and left: work log items 0 and 2.
 
 ## Session log (newest first)
+
+**Sixteenth session (2026-10-25, on the PC, branches `claude/hubs-2` and `claude/port-m1`): hub
+batch 2 and the port link.** Hub batch 2 (var-flotsam/dread-decomp#187): 25 symbols to one
+real-typed declaration each in 11 headers, in eleven steps by workflow agents. Six steps whose
+declaring files were disjoint ran in parallel in the main checkout and five that shared files ran
+in sequence. Every agent kept its objects apart with the new `trymatch.py --obj-dir`, ran no
+generator, `check.py` or git command, and reported its files and a commit message. The
+orchestrator reran the generators named, ran `check.py --update` once and committed per step.
+Matched: `fn_7100216978` (the positioned sphere's position setter: copies the vector into +0x18
+and stores each component times ten, truncated, as three `s32` at +0x40; the 0x50-byte sphere is
+embedded at +0x80 of transform nodes), the scene toggle notifiers `fn_71001eef58` and
+`fn_71001eef74` (tail calls into one of two adjacent delegate virtuals, the bool choosing the
+slot), the nav-mesh manager's constructor `fn_7100ebf278`, the animation component's track
+progress `fn_7101177ea0`, the `CStrId` constructor from a `CRntString` `fn_7100000850` (still `L`
+in the CSV) and, as `m` at 47.9%, the GUI focus setter `fn_71011cf2a4`; `fn_71000a16c4` (the
+converter list registration) went from lifted to hand-written. Conflicting signatures 337 to 310,
+header re-declarations 53 to 45; `O` 84,708 to 84,713. Findings: six callers that declared
+`fn_7100216978` with one parameter relied on the vector still being in `x1`, and the real
+two-parameter declaration leaves their bytes unchanged; two outputs improved instead of staying
+identical once calls were typed (`fn_7100e01680.cpp` 53.3% to 94.1%, `fn_7100b2c6a0.cpp`'s seven
+minor functions to 98.2/96.8%); a union-typed scoped reference adds a reload in its destructor,
+so the six `game_s2` handle callers cast at the call; in `fn_7100b1ae74.cpp` the cast form let
+Clang tail-merge two move paths and an anonymous-union member restored the match;
+`UnkStaticInit.h` cannot include `UnkTUInit.h` (160 includers use `using namespace
+unk_static_init;` and both headers define `UnkTunable`/`UnkProperty`), so their shared record
+lives in a small header both include. S1's definition first went into the frozen sample
+`src/flag_id/fn_7100216c2c.cpp`; it was moved to `src/game/UnkSphere.cpp`, since
+`compiler_matrix.py` compiles the samples by path.
+
+Port M1 step 1 (var-flotsam/dread-decomp#186): `tools/port_link.py`, the whole-program
+relocatable link and its report (numbers in `port/README.md`, "The link (M1)", and
+`docs/PORT_PLAN.md`). Facts it rests on: a shared-object link with unresolved symbols ignored
+fails on the sources' `visibility("hidden")` globals, so the link is `ld.lld -r`; in `-r` mode
+`--defsym=A=B` works when an input object defines `B` (also a COMDAT weak definition) and fails
+when `B` is undefined, so a jump to a libc name or a trap is an assembly thunk; an absolute
+`--defsym` stands in for each data symbol until the data loader maps the dump; 53,244 `--defsym`
+fit one response file. Of 37,531 alias references, 27,188 only take the address; of the 10,343
+calls 6 pass a `float` where the definition takes an integer or pointer and are trapped instead.
+
 
 **Status dashboard (2026-10-24, branch `claude/task-status-dashboard-9a819f`).** A private dashboard
 artifact (owner's claude.ai account) shows matching progress for the whole binary and the boot slice,
