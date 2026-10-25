@@ -2,7 +2,10 @@
 # (src/) and the imported symbol names (data/functions/), with stub implementations under src/.
 # Nothing here comes from lib/nnsdk. Each stub names the boot-path function that needs it in a
 # TODO; a namespace with no caller yet is a header with a comment on what the boot path will need.
+# include/dread_port.h is the runtime's own surface: the trap behind the functions the port has no
+# source for (src/missing.cpp), which the thunks tools/port_link.py generates jump to.
 add_library(dread_runtime STATIC
+  src/missing.cpp
   src/os.cpp
   src/oe.cpp
   src/vi.cpp)

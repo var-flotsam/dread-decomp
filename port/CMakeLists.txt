@@ -79,24 +79,18 @@ endif()
 
 add_subdirectory(runtime)
 
-# The game: every source under src/, except the four below and anything matching
+# The game: every source under src/, except the sample duplicates and anything matching
 # DREAD_SWEEP_EXCLUDE: regexes over the repository-relative path, for sources the sweep reports
 # as not yet portable. That list is empty because the first sweep (2026-10-24, port/README.md)
 # found nothing to exclude.
 #
 # The Phase 3 identification samples (src/compiler_id, src/flag_id, src/atk_id; 36 frozen files)
 # are compiled like everything else, except the four that define a function another source also
-# defines, so that every function has one definition: fn_7100227448 (src/reflection/CActor.cpp
-# defines the same symbol) and fn_71005a2dd8, fn_71006a3390, fn_71006de790 (a constructor here,
-# a placeholder signature in src/lifted). The other 32 samples are the only definition of their
-# function. tools/check.py exempts the sample directories from its DUPLICATE rule, so this list is
-# kept current from the sweep's definitions report (tools/port_sweep.py reads the objects back
-# with llvm-nm), not from check.py.
-set(_dread_sample_duplicates
-  src/flag_id/fn_7100227448.cpp
-  src/flag_id/fn_71005a2dd8.cpp
-  src/flag_id/fn_71006a3390.cpp
-  src/flag_id/fn_71006de790.cpp)
+# defines, so that every function has one definition. They are listed in sample_duplicates.txt
+# (with the reason for each), which tools/port_link.py reads too, so the CMake build and the
+# whole-program link leave out the same files.
+file(STRINGS "${CMAKE_CURRENT_SOURCE_DIR}/sample_duplicates.txt" _dread_sample_duplicates REGEX "^src/")
+set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/sample_duplicates.txt")
 set(DREAD_SWEEP_EXCLUDE "" CACHE STRING "Semicolon-separated CMake regexes over src/ paths to leave out of dread_game")
 file(GLOB_RECURSE _dread_game_all CONFIGURE_DEPENDS "${DREAD_ROOT}/src/*.cpp")
 set(_dread_game_sources "")
@@ -148,6 +142,9 @@ if(CMAKE_HOST_WIN32)
 else()
   set(_dread_python_default "${DREAD_ROOT}/.venv/bin/python")
 endif()
+# Without the repository's .venv (a worktree, a fresh clone) the system Python is found instead;
+# the sweep needs only the standard library, but tools/port_link.py imports tools/asmdiff.py, which
+# needs pyelftools, so such a checkout sets DREAD_PYTHON to an interpreter that has it.
 if(NOT EXISTS "${_dread_python_default}")
   find_package(Python3 COMPONENTS Interpreter QUIET)
   if(Python3_Interpreter_FOUND)
@@ -155,8 +152,12 @@ if(NOT EXISTS "${_dread_python_default}")
   else()
     set(_dread_python_default "python3")
   endif()
+  set(_dread_no_venv TRUE)
 endif()
-set(DREAD_PYTHON "${_dread_python_default}" CACHE FILEPATH "Python for tools/port_sweep.py (the repository's .venv when present)")
+set(DREAD_PYTHON "${_dread_python_default}" CACHE FILEPATH "Python for tools/port_sweep.py and tools/port_link.py (the repository's .venv when present; port_link.py needs pyelftools)")
+if(_dread_no_venv)
+  message(STATUS "dread: no .venv in the repository; DREAD_PYTHON is ${DREAD_PYTHON} (tools/port_link.py needs pyelftools there)")
+endif()
 set(_dread_sweep_args --version "${DREAD_GAME_VERSION}" --cxx "${CMAKE_CXX_COMPILER}")
 if(CMAKE_CXX_COMPILER_TARGET)
   list(APPEND _dread_sweep_args --target "${CMAKE_CXX_COMPILER_TARGET}")
@@ -168,5 +169,16 @@ add_custom_target(sweep
   COMMAND "${DREAD_PYTHON}" "${DREAD_ROOT}/tools/port_sweep.py" ${_dread_sweep_args}
   WORKING_DIRECTORY "${DREAD_ROOT}"
   COMMENT "Compile-only sweep of src/ for the host (report in build/port/sweep.json)"
+  USES_TERMINAL
+  VERBATIM)
+
+# The whole-program link report (M1): the sweep's objects linked with ld.lld -r, the undefined
+# symbols classified, the boot slice's coverage, the aliases and traps that close the link
+# (build/port/link/). It reads the sweep's objects, so run `sweep` first. Same compiler, target
+# and standard-library choice as the sweep.
+add_custom_target(link_report
+  COMMAND "${DREAD_PYTHON}" "${DREAD_ROOT}/tools/port_link.py" ${_dread_sweep_args}
+  WORKING_DIRECTORY "${DREAD_ROOT}"
+  COMMENT "Whole-program relocatable link of the sweep's objects and the report of what is missing (build/port/link/)"
   USES_TERMINAL
   VERBATIM)

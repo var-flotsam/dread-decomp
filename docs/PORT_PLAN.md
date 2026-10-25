@@ -121,6 +121,33 @@ function is defined twice. What the sweep cannot see is M1's list: callees witho
 data symbols and vtables. The other M0 items (the slice, hub and declaration tools,
 `data/tu_map.csv`) are tracked in `docs/HANDOFF.md`.
 
+**M1 status (2026-10-24).** Step 1, the whole-program link report, is in: `tools/port_link.py`
+(`port/README.md`, "The link (M1)") links the sweep's 3,804 objects with `ld.lld -r` (no duplicate
+symbol; 60,402 undefined), classifies every undefined symbol, generates the aliases and traps that
+close the link, and links again. Headline numbers: the boot slice has 4,211 game functions, of
+which 1,007 are defined, 919 defined but reached only through an alias, 3 are the host's
+(`operator new`/`delete`/`delete[]`, status `L`, reached by address), and **2,282 have no
+definition at all, 1,286,980 bytes**: 2,153 `U` (1,237,420 bytes), 128 `L` (49,176 bytes), one
+`O` (an `asm` alias to a libc++ internal the x86-64 compile does not emit). That is the lifter's
+coverage work, listed by callers in `build/port/link/boot_missing.csv`. Aliases: 37,531 for 35,176
+addresses (hand declarations with other parameter lists, `gen_lift`'s `callee::` convention, tagged
+template instantiations); 27,188 only take the address, and of the 10,343 calls 9,139 are safe by
+x86-64 argument class, 1,185 pass fewer arguments than the definition reads (check), 13 land on an
+unmangled definition and 6 are unsafe (a `float` against a `bool`): those six are trapped at the
+call rather than aliased. Data: 15,709 references to 15,450 `g_unk_` addresses, all defined as
+absolute addresses until the data loader maps the dump; 5,467 of the symbols are referenced
+PC-relatively (20,178 relocations, the `hidden` declarations), which ties the final image to within
+2 GB of `0x7100000000`.
+Imports the slice reaches, by namespace: C library 90, `nn::os` 30 (the runtime defines 11),
+`movie` 24, `nn::oe` 20 (4), `nn::hid` 12, `nn::prepo` 12, `nn::account` 8, `nn::fs` 8, `nv` 6,
+`nn::mem` 4, `nn::time` 4, `nn::util` 4, `nn::diag` 2. Vtables undefined: 71. Names that resolve to
+no address: 182. The second link's residue is 304 symbols (those vtables and names, 49 standard
+library names, 2 `nn::hid` destructors). Next for M1: the lifter's coverage mode over
+`boot_missing.csv` (the 2,153 `U` functions of the slice first, by callers), the runtime stubs in
+call order along the boot path (`nn::os` and `nn::oe` first, then `nn::fs`, `nn::hid`, `movie`,
+`nv`), and the data loader that maps the dump's segments at their original addresses and replaces
+the absolute symbols.
+
 This is aggressive. M1 is realistic with focus. M2 depends on shader translation, which is either
 a large dependency or a large project. "Playable in a few months" requires M2 to go well; say so
 when planning, and re-estimate after M1.
