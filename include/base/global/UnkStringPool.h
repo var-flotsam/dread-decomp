@@ -9,6 +9,7 @@
 // +0x30, node allocator +0x38 with its flags at +0x40, node count +0x44, modification count
 // +0x48.
 
+#include "base/global/CRntString.h"
 #include "types.h"
 
 namespace base::global {
@@ -37,7 +38,7 @@ struct UnkPoolIter {
 char** fn_7100080824(char* set, u32 bucket);  // the address of a bucket
 bool fn_710007f240(char* buffer, const char* str);  // the buffer differs from str
 void fn_710007ecb4(char* buffer, const char* str, u32 length, s64 key);  // buffer constructor
-void fn_710007ecd4(char* buffer);                                          // buffer destructor
+// The buffer's destructor is fn_710007ecd4 (base/global/CRntString.h): the buffer is a CRntString.
 void fn_710007edac(char* buffer, const char* str, u32 length, s64 key);   // buffer assign
 void fn_7100080a00(char* set, base::global::UnkPoolIter* it);             // erase
 char* fn_7100084030(void* heap, u32 size);    // allocate; the block's first field is the memory

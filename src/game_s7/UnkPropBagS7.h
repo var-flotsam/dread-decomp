@@ -4,6 +4,7 @@
 // (fn_71010e560c). The keys are string ids from the large id table built by fn_7100031894.
 // Names and layouts are placeholders.
 
+#include "base/UnkHashStream.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflStatics.h"
@@ -12,12 +13,8 @@ namespace unk_prop_bag {
 
 using base::global::CStrId;
 
-struct UnkLock;
-void fn_710007be8c(UnkLock* lock, u32 flags, void* unk);  // constructor
-
-struct UnkLock {
-    u8 unk_0x0[0x38];
-
+// The bag's hash stream (base/UnkHashStream.h), built with the bag's allocation flags.
+struct UnkLock : UnkHashStream_0x38 {
     UnkLock() { fn_710007be8c(this, 0x3d, nullptr); }
 };
 

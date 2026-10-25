@@ -1,5 +1,6 @@
 // Static initialiser of CKraidBouncingCreaturesMovementComponent's unit.
 #include "UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -11,7 +12,6 @@ struct UnkStatics_7100606050 {
 };
 extern UnkStatics_7100606050 g_unk_71726f41b8 __attribute__((visibility("hidden")));
 extern char g_unk_71726f41b0[];
-void* fn_7100604f54();  // CKraidBouncingCreaturesMovementComponent::refl_GetClass
 
 void fn_7100606050() {
     InitHeaderIds(&g_unk_71726f41b8.ids);

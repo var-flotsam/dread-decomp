@@ -1,6 +1,7 @@
 // Describes an object's settings in a property bag and hands the bag to a manager-owned
 // receiver. Layouts are placeholders.
 #include "UnkPropBagS7.h"
+#include "game/UnkGameManager.h"
 
 using namespace unk_prop_bag;
 
@@ -39,8 +40,6 @@ struct UnkObj_7100bda920 {
     bool field_0x6b;
 };
 
-struct UnkGameManager;
-extern UnkGameManager* g_unk_7101d47310;
 struct UnkReceiver;
 UnkReceiver* fn_7100defcec(UnkGameManager* manager);
 void fn_71010e560c(UnkReceiver* receiver, UnkPropBag* bag, void* target, void* info, const UnkPair& a,

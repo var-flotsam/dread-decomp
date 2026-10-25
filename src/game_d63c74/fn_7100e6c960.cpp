@@ -12,7 +12,7 @@ void fn_710007ed40(UnkString30* self);
 struct UnkString30 {
     u64 field_0x0[6];
 
-    __attribute__((always_inline)) ~UnkString30() { fn_710007ecd4(reinterpret_cast<char*>(this)); }
+    __attribute__((always_inline)) ~UnkString30() { fn_710007ecd4(reinterpret_cast<CRntString*>(this)); }
 };
 
 // A string id whose destructor decrements and tests in two steps (the original reloads the id

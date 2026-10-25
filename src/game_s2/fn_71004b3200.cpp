@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the ELavaDropArm, ELavaDropArmPos, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaDropsDef>>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaDropsDef>>>::TKeyElementConstIterator::value_type, base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaDropsDef>>, base::reflection::CollectionTypeMapper<base::global::CRntVector<CCooldownXBossLavaDropsMovementDef>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<CCooldownXBossLavaDropsMovementDef>>::TKeyElementConstIterator::value_type, base::global::CRntVector<CCooldownXBossLavaDropsMovementDef>.
 #include "../game_s7/UnkStaticInitS7.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -16,7 +17,6 @@ struct UnkStatics_71004b3200 {
 };
 extern UnkStatics_71004b3200 g_unk_71726d4d68 __attribute__((visibility("hidden")));
 extern char g_unk_71726d37b0[];
-void* fn_71004aa3a8();  // CCharClassCooldownXBossLavaDropsAttack::CTunableCharClassCooldownXBossLavaDropsAttack::refl_GetClass
 extern UnkTunable g_unk_71726d37b8;
 void fn_7100136ecc(UnkTunable* self);  // the base constructor
 extern void* g_unk_7101a3e130[];
@@ -38,9 +38,7 @@ extern UnkConversion g_unk_71726d3a88;
 void fn_71004ae9e4() __attribute__((visibility("hidden")));
 void fn_71004ae9f0() __attribute__((visibility("hidden")));
 extern char g_unk_71726d3aa8[];
-void* fn_71004ab110();  // CCooldownXBossLavaDropsMovementDef::refl_GetClass
 extern char g_unk_71726d3aa9[];
-void* fn_71004ab5ac();  // CCooldownXBossLavaDropsDef::refl_GetClass
 extern char g_unk_71726d3aaa[];
 UnkEnumType* fn_71004abc74();
 extern char g_unk_71726d3aab[];
@@ -90,7 +88,6 @@ extern UnkEnumType g_unk_71726d4150;
 void fn_71004adb24(UnkEnumType* type, const CStrId& name, void*, void*);
 extern char g_unk_71726d42c0[];
 extern char g_unk_71726d42c1[];
-void* fn_71004add20();  // CCharClassCooldownXBossLavaDropsAttack::refl_GetClass
 
 void fn_71004b3200() {
     InitHeaderIds(&g_unk_71726d4d68.ids);

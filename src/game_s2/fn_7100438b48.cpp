@@ -1,18 +1,11 @@
 // Constructor tail: runs the base constructor, clears the state at 0x58..0x75 and, when the owner
-// has an object at +0x298, sends it a query record whose direction is copied from the nested record
-// returned by fn_710002614c. Finishes with fn_7100426b54 on a fixed key.
+// has an object at +0x298, sends it a query record whose direction is the third column of the
+// owner's matrix (fn_710002614c). Finishes with fn_7100426b54 on a fixed key.
+#include "base/UnkMatrix44.h"
+#include "game_s2/UnkParams.h"
 #include "types.h"
 
 extern void* g_unk_7101a24b58[];
-
-struct UnkDirection {
-    u8 pad_0x0[8];
-    u32 field_0x8;
-    u8 pad_0xc[0xc];
-    u32 field_0x18;
-    u8 pad_0x1c[0xc];
-    u32 field_0x28;
-};
 
 struct UnkQuery {
     void** vtable;
@@ -62,9 +55,15 @@ struct UnkSelf {
 };
 
 void fn_710042bb3c(UnkSelf* self);
-UnkDirection* fn_710002614c(void* position);
-void fn_71006f4b0c(void* object, UnkQuery* query, u32 flag);
 void fn_7100426b54(UnkSelf* self, u64 key, bool flag);
+
+// The bit pattern of a float (by value: the by-reference form the other callers use changes this
+// non-matching function's code).
+static inline u32 AsU32(f32 value) {
+    u32 bits;
+    __builtin_memcpy(&bits, &value, 4);
+    return bits;
+}
 
 // NON_MATCHING(minor): the zeroing of the query direction (overwritten right after) is optimised
 // out, so the stack setup is two stores shorter
@@ -76,10 +75,10 @@ void fn_7100438b48(UnkSelf* self) {
     __builtin_memset(self->field_0x5c + 0x10, 0, 10);
     if (owner->field_0x298) {
         UnkQuery query;
-        UnkDirection* direction = fn_710002614c(owner->field_0x38);
-        u32 x = direction->field_0x8;
-        u32 y = direction->field_0x18;
-        u32 z = direction->field_0x28;
+        const UnkMatrix44& m = fn_710002614c(reinterpret_cast<const UnkMatrix44*>(owner->field_0x38));
+        u32 x = AsU32(m.m[2]);  // the third column (the facing), as bit patterns
+        u32 y = AsU32(m.m[6]);
+        u32 z = AsU32(m.m[10]);
         query.field_0x8 = x;
         query.field_0xc = y;
         query.field_0x10 = z;

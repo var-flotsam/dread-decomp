@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CAttackPreset>>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CAttackPreset>>>::TKeyElementConstIterator::value_type, base::global::CRntVector<std::unique_ptr<CAttackPreset>>.
 #include "../game_s7/UnkStaticInitS7.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -39,7 +40,6 @@ extern UnkConversion g_unk_71726b2a58;
 UnkEnumType* fn_71003648fc();
 void fn_7100367d78() __attribute__((visibility("hidden")));
 extern char g_unk_71726b2a78[];
-void* fn_710036593c();  // CAttackPreset::refl_GetClass
 
 void fn_7100368d80() {
     InitHeaderIds(&g_unk_71726b30e0.ids);

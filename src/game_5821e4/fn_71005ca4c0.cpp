@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the CCharClassInfesterAIComponent::ESubspecies enum.
 #include "UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -17,7 +18,6 @@ extern UnkConversion g_unk_71726ec270;
 extern UnkConversion g_unk_71726ec290;
 void fn_71005ca3c4() __attribute__((visibility("hidden")));
 void fn_71005ca3d0() __attribute__((visibility("hidden")));
-void* fn_71005c9c50();  // CCharClassInfesterAIComponent::refl_GetClass
 extern char g_unk_71726ec2b0[];
 
 void fn_71005ca4c0() {

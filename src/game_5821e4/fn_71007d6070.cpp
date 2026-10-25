@@ -1,5 +1,6 @@
 // Static initialiser of SmallExplosion's unit (with the CEscapeSequenceExplosionComponent::EExplosionType enum).
 #include "UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -20,7 +21,6 @@ extern UnkConversion g_unk_717271e258;
 extern UnkConversion g_unk_717271e278;
 void fn_71007d5f58() __attribute__((visibility("hidden")));
 void fn_71007d5f64() __attribute__((visibility("hidden")));
-void* fn_71007d58c0();  // CEscapeSequenceExplosionComponent::refl_GetClass
 extern char g_unk_717271e298[];
 
 void fn_71007d6070() {

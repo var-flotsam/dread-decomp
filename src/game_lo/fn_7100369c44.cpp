@@ -3,14 +3,13 @@
 // CCharClassCrazyTrack it runs down a timer (only while a hashed condition holds) and fires
 // fn_71003697f0 when it expires. Otherwise it runs a one-shot virtual the first frame after the
 // flag at +6 was set, then updates an optional helper.
+#include "base/reflection/UnkClassGetters.h"
 #include "types.h"
 
 namespace base::reflection {
-class CClass;
+using base::reflection::CClass;
 }
 
-const base::reflection::CClass* fn_7100d253f8();  // CCharClassPushTrack::refl_GetClass
-const base::reflection::CClass* fn_7100cf3508();  // CCharClassCrazyTrack::refl_GetClass
 bool fn_710117b348(void* obj, const base::reflection::CClass* cls);
 bool fn_710117adc0(void* obj, u64 hash);
 bool fn_71007f9f20(void* obj);

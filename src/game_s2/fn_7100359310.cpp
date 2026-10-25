@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the EInputAimDir.
 #include "../game_s7/UnkStaticInitS7.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -17,9 +18,7 @@ struct UnkStatics_7100359310 {
     u8 field_0x300[8];
 };
 extern UnkStatics_7100359310 g_unk_71726b16a0 __attribute__((visibility("hidden")));
-void* fn_710033ff68();  // CAimComponent::refl_GetClass
 extern char g_unk_71726b1430[];
-void* fn_71003412a0();  // CAimComponent::CTunableAim::refl_GetClass
 extern char g_unk_71726b1431[];
 struct __attribute__((packed)) UnkAimTunable {
     void** vtable;

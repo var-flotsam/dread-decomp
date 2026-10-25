@@ -1,6 +1,7 @@
 // Constructor tail of an Autclast charge attack's component: runs the base (fn_71003606c8), takes the
 // first word of the global manager (creating the manager first when there is none) and, given an
 // owner's object, stores it cast to the attack class (null when it is not one).
+#include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "types.h"
 
@@ -26,7 +27,6 @@ extern UnkManager* g_unk_71726a4510;
 void* fn_71000839a0(u64 size, u32 flags);
 void fn_71003606c8(UnkSelf* self, UnkActor* actor);
 void fn_7100ebf278(void* manager);
-const CClass* fn_71003b815c();  // CCharClassAutclastChargeAttack::refl_GetClass
 
 void fn_71003b4718(UnkSelf* self, UnkActor* actor) {
     fn_71003606c8(self, actor);

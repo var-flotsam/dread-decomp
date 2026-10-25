@@ -1,14 +1,12 @@
 // Switches two attached effect objects off and, while the owner's EMMY AI component (with its
 // EMMY character class) is in state 1, toggles each one's mode and restarts it with the given
 // colours and timings, then runs a follow-up.
+#include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "types.h"
 
 using base::reflection::CClass;
 using base::reflection::UnkReflObject;
-
-const CClass* fn_710053b934();  // CEmmyAIComponent::refl_GetClass
-const CClass* fn_710051e010();  // CCharClassEmmyAIComponent::refl_GetClass
 
 // Passed by value but in memory, so its copy constructor is user-provided.
 struct UnkColor_710050f26c {

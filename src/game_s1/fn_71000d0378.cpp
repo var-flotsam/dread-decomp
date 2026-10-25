@@ -9,6 +9,7 @@
 // fn_710001c720; fn_710001d3cc, fn_710001da74). Move-assignments of the latter (fn_710001d658)
 // and of values holding a word, a file path id and a counted resource (fn_710000da34).
 #include "base/UnkCollectionIter.h"
+#include "base/UnkCountedResource.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
@@ -212,24 +213,16 @@ __attribute__((flatten)) void fn_710001d3cc(UnkIterValue<UnkReleasedIdPair>* sel
 
 __attribute__((flatten)) void fn_710001da74(UnkIterValue<UnkReleasedIdPair>* self) { self->Reset(); }
 
-// A counted resource (count at 0x54, freed by fn_710001737c), referenced and assigned by pointer.
-struct UnkResource54 {
-    u8 unk_0x0[0x54];
-    union {  // (the original reloads around the count, as through a union)
-        s32 ref_count;
-    };
-};
-void fn_710001737c(UnkResource54* obj);
-
+// A counted resource (base/UnkCountedResource.h), referenced and assigned by pointer.
 struct UnkAssignedRef54 {
-    UnkResource54* ptr;
+    UnkCountedResource* ptr;
 
     UnkAssignedRef54& operator=(const UnkAssignedRef54& other) {
-        UnkResource54* p = other.ptr;
+        UnkCountedResource* p = other.ptr;
         if (ptr != p) {
             if (p)
                 ++p->ref_count;
-            if (UnkResource54* old = ptr) {
+            if (UnkCountedResource* old = ptr) {
                 if (--old->ref_count == 0)
                     fn_710001737c(old);
             }
@@ -238,7 +231,7 @@ struct UnkAssignedRef54 {
         return *this;
     }
     ~UnkAssignedRef54() {
-        if (UnkResource54* p = ptr) {
+        if (UnkCountedResource* p = ptr) {
             if (--p->ref_count == 0)
                 fn_710001737c(p);
         }

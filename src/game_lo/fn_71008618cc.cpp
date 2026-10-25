@@ -3,15 +3,14 @@
 // depending on its reflected class.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkGameManager.h"
 #include "types.h"
 
 using base::global::UnkStringData;
 using base::reflection::CClass;
 using base::reflection::UnkReflObject;
-
-const CClass* fn_7100d361c0();  // game::logic::collision::CCollider::refl_GetClass
-const CClass* fn_7100d454fc();  // game::logic::collision::CColliderGroup::refl_GetClass
 
 // A string id moved by taking the pointer and leaving the source empty.
 struct UnkId_71008618cc {
@@ -43,16 +42,6 @@ struct UnkTracker_71008618cc;
 void fn_7100d59994(UnkTracker_71008618cc* self, UnkReflObject* collider);
 void fn_7100d5a304(UnkTracker_71008618cc* self, UnkReflObject* group);
 
-struct UnkGlobalSub_71008618cc {
-    u8 unk_0x0[0x820];
-    UnkTracker_71008618cc* tracker;
-};
-struct UnkGlobal_71008618cc {
-    u8 unk_0x0[0x608];
-    UnkGlobalSub_71008618cc* field_0x608;
-};
-extern UnkGlobal_71008618cc* g_unk_7101d47310;
-
 struct UnkStruct_71008618cc;
 struct UnkVtbl_71008618cc {
     void* pad_0x0[46];
@@ -72,10 +61,10 @@ struct UnkStruct_71008618cc {
 void fn_71008618cc(UnkStruct_71008618cc* self) {
     if (self->registered)
         return;
-    UnkGlobalSub_71008618cc* sub = g_unk_7101d47310->field_0x608;
+    UnkGameManagerSub_0x608* sub = g_unk_7101d47310->field_0x608;
     if (!sub)
         return;
-    UnkTracker_71008618cc* tracker = sub->tracker;
+    UnkTracker_71008618cc* tracker = static_cast<UnkTracker_71008618cc*>(sub->field_0x820);
     if (!tracker)
         return;
     for (u32 i = 0; i < self->records.count; ++i) {

@@ -1,9 +1,8 @@
 // Per-frame step of a component: runs the base step, then when the owner (+0x18) has an object at +0x240
 // that fn_71010fccf8 turns into a target, builds a parameter block (vtable g_unk_7101a25b10, kind 5) on
 // the stack and hands it to fn_71006f4b0c with 1.
+#include "game_s2/UnkParams.h"
 #include "types.h"
-
-extern void* g_unk_7101a25b10[];
 
 struct UnkOwner {
     u8 pad_0x0[0x240];
@@ -15,28 +14,9 @@ struct UnkComponent {
     UnkOwner* field_0x18;
 };
 
-struct UnkParams {
-    void** vtable;
-    u8 field_0x8[13];
-    u8 pad_0x15[3];
-    u32 field_0x18;
-    u8 field_0x1c;
-    u8 pad_0x1d[3];
-    u8 field_0x20[16];
-    u8 field_0x30;
-    u8 pad_0x31[3];
-    u32 field_0x34;
-    u8 pad_0x38;
-    u8 field_0x39;
-    u8 pad_0x3a;
-    u8 field_0x3b;
-    u8 pad_0x3c;
-    u8 field_0x3d;
-};
 
 void fn_7100394bd4(UnkComponent* self);
 void* fn_71010fccf8(void* object);
-void fn_71006f4b0c(void* target, UnkParams* params, u32 flag);
 
 void fn_7100388430(UnkComponent* self) {
     fn_7100394bd4(self);

@@ -1,6 +1,7 @@
 // Static initialiser of the unit of CDoorLifeComponent::SState: the header ids, then the unit's
 // own statics and registrations (helpers in UnkStaticInitS7.h). Layouts are placeholders.
 #include "UnkStaticInitS7.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -33,7 +34,6 @@ struct UnkStatics_71008da6c0 {
 extern UnkStatics_71008da6c0 g_unk_7172731708 __attribute__((visibility("hidden")));
 struct UnkStruct_7172731438;
 extern UnkStrIdBase g_unk_71727310b8;
-const void* fn_710000d228();
 extern UnkProperty g_unk_71727310c0;
 extern UnkProperty* g_unk_71726db788;
 extern void* g_unk_7101a7ea58[];
@@ -58,9 +58,7 @@ void fn_71008dbb90() __attribute__((visibility("hidden")));
 extern char g_unk_7172731318[];
 void fn_71008caef4(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_71008cace8();
-void* fn_71008cb078();
 extern char g_unk_7172731360[];
-void* fn_71008cd2c8();
 extern char g_unk_7172731361[];
 extern UnkTunable g_unk_7172731368;
 void fn_7100136ecc(UnkTunable* self);  // the base constructor
@@ -119,14 +117,14 @@ void fn_71008ce35c(void* self);  // its destructor, as registered
 void fn_71008da6c0() {
     InitHeaderIds(&g_unk_7172731708.ids);
     InitId(&g_unk_71727310b8, "DOOR");
-    InitProperty(&g_unk_71727310c0, g_unk_7101a7ea58, g_unk_71726db788, "Opened", fn_710000d228(), fn_71008dbddc, fn_71008cac70);
-    InitProperty(&g_unk_71727310e8, g_unk_7101a7ea58, g_unk_71726db788, "Disabled", fn_710000d228(), fn_71008dbddc, fn_71008cac70);
-    InitProperty(&g_unk_7172731110, g_unk_7101a7ea58, g_unk_71726db788, "StayOpened", fn_710000d228(), fn_71008dbddc, fn_71008cac70);
-    InitProperty(&g_unk_7172731138, g_unk_7101a7ea58, g_unk_71726db788, "ChangeWhenVisible", fn_710000d228(), fn_71008dbddc, fn_71008cac70);
+    InitProperty(&g_unk_71727310c0, g_unk_7101a7ea58, g_unk_71726db788, "Opened", TypeOf<fn_710000d228>(), fn_71008dbddc, fn_71008cac70);
+    InitProperty(&g_unk_71727310e8, g_unk_7101a7ea58, g_unk_71726db788, "Disabled", TypeOf<fn_710000d228>(), fn_71008dbddc, fn_71008cac70);
+    InitProperty(&g_unk_7172731110, g_unk_7101a7ea58, g_unk_71726db788, "StayOpened", TypeOf<fn_710000d228>(), fn_71008dbddc, fn_71008cac70);
+    InitProperty(&g_unk_7172731138, g_unk_7101a7ea58, g_unk_71726db788, "ChangeWhenVisible", TypeOf<fn_710000d228>(), fn_71008dbddc, fn_71008cac70);
     InitProperty(&g_unk_7172731160, g_unk_7101a7ea58, g_unk_71726db788, "NextState", &g_unk_7172731200, fn_71008dbddc, fn_71008cac70);
-    InitProperty(&g_unk_7172731188, g_unk_7101a7ea58, g_unk_71726db788, "ControlledByUsable", fn_710000d228(), fn_71008dbddc, fn_71008cac70);
-    InitProperty(&g_unk_71727311b0, g_unk_7101a7ea58, g_unk_71726db788, "IsWet", fn_710000d228(), fn_71008dbddc, fn_71008cac70);
-    InitProperty(&g_unk_71727311d8, g_unk_7101a7ea58, g_unk_71726db788, "FrozenDuringCooldown", fn_710000d228(), fn_71008dbddc, fn_71008cac70);
+    InitProperty(&g_unk_7172731188, g_unk_7101a7ea58, g_unk_71726db788, "ControlledByUsable", TypeOf<fn_710000d228>(), fn_71008dbddc, fn_71008cac70);
+    InitProperty(&g_unk_71727311b0, g_unk_7101a7ea58, g_unk_71726db788, "IsWet", TypeOf<fn_710000d228>(), fn_71008dbddc, fn_71008cac70);
+    InitProperty(&g_unk_71727311d8, g_unk_7101a7ea58, g_unk_71726db788, "FrozenDuringCooldown", TypeOf<fn_710000d228>(), fn_71008dbddc, fn_71008cac70);
     InitId(&g_unk_7172731708.field_0x18, "door");
     InitPathId(&g_unk_7172731708.field_0x20, "props/genericdoor/mdoor_fireopened.wav");
     InitPathId(&g_unk_7172731708.field_0x28, "props/genericdoor/mdoor_fireclosed.wav");

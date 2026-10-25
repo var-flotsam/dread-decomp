@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the CSluggerSpitAttack::EState enum.
 #include "UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -16,7 +17,6 @@ struct UnkStatics_71006c4230 {
     u8 field_0x58[8];
 };
 extern UnkStatics_71006c4230 g_unk_7172707ba0 __attribute__((visibility("hidden")));
-void* fn_71006c01d4();  // CSluggerSpitAttack::refl_GetClass
 extern char g_unk_7172707a28[];
 extern UnkEnumType g_unk_7172707a30;
 void fn_71006c06bc(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);

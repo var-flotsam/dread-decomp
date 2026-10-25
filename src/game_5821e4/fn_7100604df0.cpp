@@ -1,5 +1,6 @@
 // Static initialiser of CKraidAcidBlobsMovementComponent's unit.
 #include "UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -11,7 +12,6 @@ struct UnkStatics_7100604df0 {
     u8 field_0x30[8];
 };
 extern UnkStatics_7100604df0 g_unk_71726f4048 __attribute__((visibility("hidden")));
-void* fn_71006043e4();  // CKraidAcidBlobsMovementComponent::refl_GetClass
 extern char g_unk_71726f4040[];
 
 void fn_7100604df0() {

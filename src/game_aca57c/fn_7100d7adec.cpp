@@ -1,6 +1,7 @@
 // Calls one virtual function (vf_0x138 to vf_0x158) on each of an entity's components that is a
 // CComponent (null entries skipped). Four slots.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "types.h"
 
@@ -17,8 +18,6 @@ struct UnkComponentOwner {
     void* field_0xa8;
     u32 count;
 };
-
-const CClass* fn_71010c23d0();  // CComponent::refl_GetClass
 
 template <u32 Slot>
 __attribute__((always_inline)) static inline void CallEach(UnkComponentOwner* self) {

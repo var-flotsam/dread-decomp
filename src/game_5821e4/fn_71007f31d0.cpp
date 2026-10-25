@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CBarelyFrozenIceInfo>>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CBarelyFrozenIceInfo>>>::TKeyElementConstIterator::value_type, base::global::CRntVector<std::unique_ptr<CBarelyFrozenIceInfo>> reflected types.
 #include "UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -11,7 +12,6 @@ struct UnkStatics_71007f31d0 {
     u8 field_0x160[8];
 };
 extern UnkStatics_71007f31d0 g_unk_7172720b20 __attribute__((visibility("hidden")));
-void* fn_71007eea64();  // CBarelyFrozenIceInfo::refl_GetClass
 extern char g_unk_7172720098[];
 extern char g_unk_7172720099[];
 UnkEnumType* fn_71007ef13c();
@@ -41,7 +41,6 @@ void fn_710009891c(void* type);  // the type's destructor, as registered
 extern char g_unk_7172720490[];
 extern UnkConversion g_unk_7172720498;
 void fn_71007f1e30() __attribute__((visibility("hidden")));
-void* fn_71007f0258();  // CCharClassFrozenAsFrostbiteComponent::refl_GetClass
 extern char g_unk_71727204b8[];
 
 void fn_71007f31d0() {

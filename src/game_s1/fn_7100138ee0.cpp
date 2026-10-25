@@ -2,6 +2,7 @@
 // (the comments are adapted from the original's): fn_7100138ee0. Move-assignment of an array whose elements follow
 // another pointer (destroying the elements through fn_710007ecd4, keeping the storage).
 #include "base/UnkVector.h"
+#include "base/global/CRntString.h"
 #include "types.h"
 
 struct UnkRecord30 {
@@ -9,8 +10,7 @@ struct UnkRecord30 {
 
     ~UnkRecord30();
 };
-void fn_710007ecd4(UnkRecord30* self);
-inline UnkRecord30::~UnkRecord30() { fn_710007ecd4(this); }
+inline UnkRecord30::~UnkRecord30() { fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(this)); }
 
 template <class T>
 struct UnkFirstPtrArray {

@@ -1,5 +1,6 @@
 // Destructor body: tears down the object's trees, pooled arrays, strings and string ids in
 // reverse member order, then runs the base-class destructor.
+#include "base/global/CRntString.h"
 #include "types.h"
 #include "base/global/CStrId.h"
 
@@ -88,7 +89,6 @@ struct UnkObj_71009cf440 {
 extern void* g_unk_7101a89358[];
 void fn_71009cef20(void* p);
 void fn_71004f11f8(UnkPool* p);
-void fn_710007ecd4(void* p);
 void fn_71009cd080(UnkObj_71009cf440* self);
 
 void fn_71009cf440(UnkObj_71009cf440* self) {
@@ -118,8 +118,8 @@ void fn_71009cf440(UnkObj_71009cf440* self) {
     if (self->field_0x138.data)
         self->field_0x138.allocator->Free(self->field_0x138.data);
     self->field_0x120.Release();
-    fn_710007ecd4(self->field_0xf0);
-    fn_710007ecd4(self->field_0xc0);
+    fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(self->field_0xf0));
+    fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(self->field_0xc0));
     self->field_0xb8.Release();
     self->field_0xa0.Release();
     self->field_0x98.Release();

@@ -4,31 +4,29 @@
 // libc++ 9.0.1, so its body is the adapted copy in lib/libcxx/sort.h.
 #include <algorithm>
 #include "../../lib/libcxx/sort.h"
+#include "base/UnkCountedResource.h"
 #include "types.h"
 
-struct UnkObj {
-    u8 pad_0x0[0x54];
-    union {
-        u32 ref_count;
-    };
+// The resource of base/UnkCountedResource.h with the sort key at +0x60. The handles hold the
+// resource type itself (a conversion at the free call folds a known-null argument differently
+// and changes both non-matching sorts); the comparator casts for the key.
+struct UnkObj : UnkCountedResource {
     u8 pad_0x58[8];
     u32 field_0x60;
 };
 
-void fn_710001737c(UnkObj* obj);
-
 struct UnkRef {
-    UnkObj* p;
+    UnkCountedResource* p;
     UnkRef(const UnkRef& o) : p(o.p) {
         if (p)
             ++p->ref_count;
     }
     UnkRef& operator=(const UnkRef& o) {
-        UnkObj* np = o.p;
+        UnkCountedResource* np = o.p;
         if (p != np) {
             if (np)
                 ++np->ref_count;
-            UnkObj* old = p;
+            UnkCountedResource* old = p;
             if (old && --old->ref_count == 0)
                 fn_710001737c(old);
             p = np;
@@ -36,14 +34,16 @@ struct UnkRef {
         return *this;
     }
     ~UnkRef() {
-        UnkObj* old = p;
+        UnkCountedResource* old = p;
         if (old && --old->ref_count == 0)
             fn_710001737c(old);
     }
 };
 
 struct UnkSortCmp {
-    bool operator()(UnkRef a, UnkRef b) const { return b.p->field_0x60 < a.p->field_0x60; }
+    bool operator()(UnkRef a, UnkRef b) const {
+        return static_cast<UnkObj*>(b.p)->field_0x60 < static_cast<UnkObj*>(a.p)->field_0x60;
+    }
 };
 
 template void libcxx_adapted::__sort<UnkSortCmp, UnkRef*>(UnkRef*, UnkRef*, UnkSortCmp);

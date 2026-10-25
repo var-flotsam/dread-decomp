@@ -2,19 +2,11 @@
 // position (within 0.001 on every axis) the answer is no; otherwise yes if the position lies in
 // front of the object at +0x18, i.e. the vector to it from there has a positive component along
 // the object's facing (the third column of its matrix).
+#include "base/UnkMatrix44.h"
 #include "types.h"
 
 struct UnkVec3f {
     f32 x, y, z;
-};
-
-struct UnkMatrix {
-    u8 pad_0x0[0x8];
-    f32 field_0x8;
-    u8 pad_0xc[0xc];
-    f32 field_0x18;
-    u8 pad_0x1c[0xc];
-    f32 field_0x28;
 };
 
 struct UnkFacing {
@@ -37,7 +29,6 @@ struct UnkSelf {
 
 extern const UnkVec3f g_unk_710164779c;
 void fn_710039525c(UnkSelf* self, void* arg, UnkVec3f* out);
-const UnkMatrix* fn_710002614c(void* transform);
 
 #define UNK_NEAR(a, b) ((a) - 0.001f <= (b) && (a) + 0.001f >= (b))
 
@@ -60,9 +51,9 @@ bool fn_71003a1014(UnkSelf* self) {
     f32 dx = p.x - fx;
     f32 dy = p.y - fy;
     f32 dz = p.z - fz;
-    const UnkMatrix* matrix = fn_710002614c(facing->field_0x38);
-    f32 m0 = matrix->field_0x8;
-    f32 m1 = matrix->field_0x18;
-    f32 m2 = matrix->field_0x28;
+    const UnkMatrix44& matrix = fn_710002614c(reinterpret_cast<const UnkMatrix44*>(facing->field_0x38));
+    f32 m0 = matrix.m[2];
+    f32 m1 = matrix.m[6];
+    f32 m2 = matrix.m[10];
     return dx * m0 + dy * m1 + dz * m2 > 0;
 }

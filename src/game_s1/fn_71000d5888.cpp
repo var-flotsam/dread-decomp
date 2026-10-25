@@ -5,6 +5,7 @@
 // elements destroyed by fn_71000a1c60, 0x30-byte ones by fn_710007ecd4, 0x50-byte ones by fn_710026ead0).
 #include "base/UnkCollectionIter.h"
 #include "base/UnkVector.h"
+#include "base/global/CRntString.h"
 #include "types.h"
 
 using base::UnkVector;
@@ -17,10 +18,11 @@ struct UnkOutOfLineElement {
 };
 
 void fn_71000a1c60(void* self);
-void fn_710007ecd4(void* self);
 void fn_710026ead0(void* self);
+// The 0x30-byte elements are strings (base/global/CRntString.h).
+inline void DestroyString(void* self) { fn_710007ecd4(static_cast<base::global::CRntString*>(self)); }
 using UnkElement18 = UnkOutOfLineElement<0x18, fn_71000a1c60>;
-using UnkElement30 = UnkOutOfLineElement<0x30, fn_710007ecd4>;
+using UnkElement30 = UnkOutOfLineElement<0x30, DestroyString>;
 using UnkElement50 = UnkOutOfLineElement<0x50, fn_710026ead0>;
 
 UnkVector<UnkElement18>& fn_71000d5888(UnkVector<UnkElement18>* self, UnkVector<UnkElement18>&& other) {

@@ -1,6 +1,7 @@
 // Copies of fn_710070ce40 (src/game_5821e4/fn_710070ce40.cpp) for other types, with their own callees and data (they name their own callees, data and strings; the comments describe the original): fn_7100a57af0.
 // Static initialiser of the unit of the base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CTentacle>>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CTentacle>>>::TKeyElementConstIterator::value_type, base::global::CRntVector<std::unique_ptr<CTentacle>> reflected types.
 #include "../game_5821e4/UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -10,7 +11,6 @@ struct UnkStatics_710070ce40 {
     u8 field_0x20[8];
 };
 extern UnkStatics_710070ce40 g_unk_717274d298 __attribute__((visibility("hidden")));
-void* fn_7100708410();  // CTentacle::refl_GetClass
 extern char g_unk_717274c818[];
 extern char g_unk_717274c819[];
 UnkEnumType* fn_7100708b74();
@@ -41,7 +41,6 @@ extern char g_unk_717274cc10[];
 extern UnkConversion g_unk_717274cc18;
 void fn_7100a56d5c() __attribute__((visibility("hidden")));
 
-void* fn_7100a54724();
 UnkEnumType* fn_7100a5498c();
 UnkEnumType* fn_7100a54a68();
 UnkEnumType* fn_7100a54b44();

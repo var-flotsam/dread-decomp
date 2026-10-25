@@ -2,14 +2,15 @@
 // flags) it is replaced by the other (fn_7100714604). Otherwise the matrices are multiplied,
 // the flags merged, and the position either becomes the weighted average (mode 1, weights
 // summed) or the product's translation divided by the larger weight.
+#include "base/UnkMatrix44.h"
 #include "base/math/CVector.h"
 #include "types.h"
 
 using base::math::CVector3D;
 
-// A 4x4 matrix of f32, copied element by element.
-struct UnkMatrix44_7100714808 {
-    f32 m[16];
+// The matrix (base/UnkMatrix44.h) with this file's element-by-element copy: with the real type's
+// plain copy the function no longer resembles the original.
+struct UnkMatrix44_7100714808 : UnkMatrix44 {
     UnkMatrix44_7100714808(const UnkMatrix44_7100714808& o) {
         for (s32 i = 0; i < 16; ++i)
             m[i] = o.m[i];
@@ -21,7 +22,7 @@ struct UnkMatrix44_7100714808 {
     }
 };
 
-// A matrix with six cleared words and a kind (8 when built from a matrix).
+// A transform: its matrix, six cleared words and a kind (8 when built from a matrix).
 struct UnkXform_7100714808 {
     UnkMatrix44_7100714808 m;
     f32 field_0x40[6];
@@ -50,8 +51,7 @@ struct UnkWeighted_7100714808 {
     f32 weight;
 };
 
-const UnkMatrix44_7100714808& fn_710002614c(const UnkWeighted_7100714808* x);  // the current matrix
-UnkMatrix44_7100714808 fn_71000127c8(const UnkMatrix44_7100714808& a, const UnkMatrix44_7100714808& b);  // a * b
+UnkMatrix44_7100714808 fn_71000127c8(const UnkMatrix44& a, const UnkMatrix44& b);  // a * b
 void fn_7100714604(UnkWeighted_7100714808* self, const UnkWeighted_7100714808* other);  // assigns
 
 // NON_MATCHING(minor): in the weighted average, four of the multiplications by the inverse
@@ -63,8 +63,8 @@ void fn_7100714808(UnkWeighted_7100714808* self, const UnkWeighted_7100714808* o
         fn_7100714604(self, other);
         return;
     }
-    const UnkMatrix44_7100714808& a = fn_710002614c(self);
-    const UnkMatrix44_7100714808& b = fn_710002614c(other);
+    const UnkMatrix44& a = fn_710002614c(&self->xform.m);
+    const UnkMatrix44& b = fn_710002614c(&other->xform.m);
     UnkMatrix44_7100714808 prod = fn_71000127c8(a, b);
     self->xform = UnkXform_7100714808(prod);
     self->flags = self->flags | other->flags;

@@ -1,6 +1,7 @@
 // Static initialiser of the unit of animtree::CAnimTreeRes: the header ids, three function-holding
 // statics, the class registration and a resource type registered under "animtree".
 #include "../game_s7/UnkStaticInitS7.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -22,7 +23,6 @@ struct UnkStatics_71002e0370 {
     u8 field_0xb0[8];
 };
 extern UnkStatics_71002e0370 g_unk_71726aadc8 __attribute__((visibility("hidden")));
-void* fn_71002dfda8();  // animtree::CAnimTreeRes::refl_GetClass
 extern char g_unk_71726aad40[];
 extern char g_unk_71726aad48[];
 

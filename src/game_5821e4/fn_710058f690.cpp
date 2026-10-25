@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the CGoliathAttack::EGoliathAttackState enum.
 #include "UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -20,7 +21,6 @@ extern UnkConversion g_unk_71726e6278;
 extern UnkConversion g_unk_71726e6298;
 void fn_710058f314() __attribute__((visibility("hidden")));
 void fn_710058f320() __attribute__((visibility("hidden")));
-void* fn_710058e0c8();  // CGoliathAttack::refl_GetClass
 extern char g_unk_71726e62b8[];
 
 void fn_710058f690() {

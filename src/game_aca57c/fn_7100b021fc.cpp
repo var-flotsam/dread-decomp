@@ -1,5 +1,6 @@
 // Weak references to GUI objects: setters that take the focused object of the GUI root (its
 // object at 0x230, whose target is at 0x10), and assignments from another object's handle.
+#include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game_s2/UnkWeakHandle.h"
 
@@ -70,7 +71,6 @@ void fn_7100b42be0(UnkWeakRefF0* self, UnkWeakTarget* other) { AssignRef(&self->
 
 // A weak reference to a GUI::CBossRushReport, assigned from another weak reference: it refers to
 // nothing when the other's object is not one.
-const CClass* fn_7100af4354();  // GUI::CBossRushReport::refl_GetClass
 
 __attribute__((always_inline)) static inline const CClass* GetClass(UnkWeakTarget* target) {
     return reinterpret_cast<const CClass* (*)(UnkWeakTarget*)>((*reinterpret_cast<void***>(target))[0])(target);

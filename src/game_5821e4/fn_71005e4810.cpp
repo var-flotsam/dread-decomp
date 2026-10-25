@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>::TKeyElementConstIterator::value_type, base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>, base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>>::TKeyElementConstIterator::value_type, base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>> reflected types.
 #include "UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -13,7 +14,6 @@ struct UnkStatics_71005e4810 {
     u8 field_0x2a0[8];
 };
 extern UnkStatics_71005e4810 g_unk_71726efec0 __attribute__((visibility("hidden")));
-void* fn_71005dcbcc();  // CBouncingCreaturesLaunchPattern::refl_GetClass
 extern char g_unk_71726eebd0[];
 extern char g_unk_71726eebd1[];
 UnkEnumType* fn_71005dd104();
@@ -62,13 +62,11 @@ void fn_71005def9c(UnkEnumType* type, const CStrId& name, void*, void*);
 extern char g_unk_71726ef3c0[];
 extern UnkConversion g_unk_71726ef3c8;
 void fn_71005e2034() __attribute__((visibility("hidden")));
-void* fn_71005df184();  // CCharClassKraidBouncingCreaturesAttack::CTunableCharClassKraidBouncingCreaturesAttack::refl_GetClass
 extern char g_unk_71726ef3e8[];
 extern UnkTunable g_unk_71726ef3f0;
 void fn_7100136ecc(UnkTunable* self);  // the base constructor
 extern void* g_unk_7101a53690[];
 void fn_7100075104(void* self);  // its destructor, as registered
-void* fn_71005df894();  // CCharClassKraidBouncingCreaturesAttack::refl_GetClass
 extern char g_unk_71726ef419[];
 
 void fn_71005e4810() {

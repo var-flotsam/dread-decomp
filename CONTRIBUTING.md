@@ -140,6 +140,8 @@ The pilot (`fn_710009d50c`, 70 declarations with 12 signatures to one header) se
 1. Find the definition (`grep -rn 'fn_<addr>(' src/` outside the generated directories) and its
    real-typed signature. Declare it once in the topical header under `include/` (a small new header
    only if none fits), with a two-line comment, and make sure the definition's `.cpp` includes it.
+   Class getters (`T::refl_GetClass`) are already declared for every reflected class in the
+   generated `include/base/reflection/UnkClassGetters.h`: include that, never declare one.
 2. List the redeclaring files with `tools/decl_check.py --symbol fn_<addr>`. For every file in the
    list, and every includer of any `.h` in it, copy the file aside and record its
    `tools/trymatch.py --version 2.1.0 <file>` output as the baseline.

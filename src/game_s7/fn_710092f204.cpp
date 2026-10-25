@@ -2,6 +2,7 @@
 // suit (from its inventory), or the plain one while it is in some state. Layouts are
 // placeholders; the item globals are the item definitions of fn_710107a880.
 #include "base/global/CFilePathStrId.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using base::global::CFilePathStrId;
 using base::global::CStrId;
@@ -35,10 +36,8 @@ extern UnkItemDef g_unk_717275a498;
 struct UnkInventory;
 bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
 
-struct UnkState;
 struct UnkStateSet;
-UnkState* fn_7100c13dd8();
-bool fn_710117b348(UnkStateSet* set, UnkState* state);
+bool fn_710117b348(UnkStateSet* set, const base::reflection::CClass* state);
 
 struct UnkOwner {
     u8 unk_0x0[0x220];

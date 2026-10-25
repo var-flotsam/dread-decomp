@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the CSabotoruTurnInDoorAttack::EState enum.
 #include "UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -10,7 +11,6 @@ struct UnkStatics_71006741d0 {
     u8 field_0x28[8];
 };
 extern UnkStatics_71006741d0 g_unk_71726fffe0 __attribute__((visibility("hidden")));
-void* fn_7100672b94();  // CSabotoruTurnInDoorAttack::refl_GetClass
 extern char g_unk_71726ffe78[];
 extern UnkEnumType g_unk_71726ffe80;
 void fn_710067307c(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);

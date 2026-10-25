@@ -2,16 +2,8 @@
 // (at 0x24): the distance between the first object's position (values at 0x44, 0x54, 0x64) and
 // the second's, clamped to the limits and scaled. Returns 0 without a position object or with limits
 // that aren't ordered and non-negative.
+#include "game/UnkActor.h"
 #include "types.h"
-
-struct UnkPositioned {
-    u8 pad_0x0[0x44];
-    f32 field_0x44;
-    u8 pad_0x48[0xc];
-    f32 field_0x54;
-    u8 pad_0x58[0xc];
-    f32 field_0x64;
-};
 
 struct UnkLimits {
     u8 pad_0x0[0x20];
@@ -19,11 +11,9 @@ struct UnkLimits {
     f32 field_0x24;
 };
 
-UnkPositioned* fn_7100d7c990(void* object);
-
-f32 fn_71002bca94(UnkLimits* self, void* first, UnkPositioned* second) {
+f32 fn_71002bca94(UnkLimits* self, UnkActor* first, UnkActor* second) {
     f32 result = 0.0f;
-    UnkPositioned* target = fn_7100d7c990(first);
+    UnkActor* target = fn_7100d7c990(first);
     if (target) {
         f32 tx = target->field_0x44;
         f32 ty = target->field_0x54;

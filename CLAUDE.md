@@ -63,6 +63,7 @@ python tools/compiler_matrix.py --version <ver> --set leaf|nonleaf|atk
 python tools/libcheck_lua.py --version <ver>     # upstream Lua vs the embedded copy
 python tools/sigmatch.py --version <ver> [--library lua]  # name vendored-library functions -> data/library_symbols.csv; then rerun gen_functions_csv.py
 python tools/gen_reflection.py --version <ver>   # regenerate src/reflection/ (uses tools/refl_attrs.py)
+python tools/gen_class_getters.py                # regenerate include/base/reflection/UnkClassGetters.h from data/functions/ (no game data)
 python tools/gen_types.py --version <ver>        # regenerate src/reflection_types/ (non-class type getters)
 python tools/gen_statics.py --version <ver>      # regenerate src/reflection_statics/ (guarded function-local statics)
 python tools/gen_clones.py --version <ver>       # regenerate src/clones/ (repeated template instantiations; ~10 s)
@@ -175,7 +176,10 @@ Toolchain:
   maintenance. Current state, numbers and next steps: `docs/HANDOFF.md`; the route to a running build
   and its open decisions: `docs/PORT_PLAN.md`.
 - Generated sources (`src/reflection/`, `src/reflection_types/`, `src/reflection_statics/`, `src/clones/`,
-  `src/tables/`, `src/lifted/`) are outputs of `tools/gen_reflection.py`, `tools/gen_types.py`,
-  `tools/gen_statics.py`, `tools/gen_clones.py`, `tools/gen_tables.py` and `tools/gen_lift.py`:
-  regenerate, never hand-edit. Their relocation mismatches (`RELOC` lines) are reported, not enforced,
-  until the generator is fixed.
+  `src/tables/`, `src/lifted/`, and the header `include/base/reflection/UnkClassGetters.h`) are outputs
+  of `tools/gen_reflection.py`, `tools/gen_types.py`, `tools/gen_statics.py`, `tools/gen_clones.py`,
+  `tools/gen_tables.py`, `tools/gen_lift.py` and `tools/gen_class_getters.py`: regenerate, never
+  hand-edit. Every generator verifies relocation targets, so a `RELOC` line in generated code is a
+  generator regression: fix the generator, never its output.
+- Class getters (`T::refl_GetClass`) are declared for every reflected class in
+  `include/base/reflection/UnkClassGetters.h`; include it instead of declaring one locally.

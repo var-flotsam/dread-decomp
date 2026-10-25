@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the CNailongAIComponent::EType enum.
 #include "UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -10,7 +11,6 @@ struct UnkStatics_71006225e0 {
     u8 field_0x28[8];
 };
 extern UnkStatics_71006225e0 g_unk_71726f7e40 __attribute__((visibility("hidden")));
-void* fn_710061f464();  // CNailongAIComponent::refl_GetClass
 extern char g_unk_71726f7cd8[];
 extern UnkEnumType g_unk_71726f7ce0;
 void fn_710061f9e8(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);

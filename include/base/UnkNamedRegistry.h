@@ -6,6 +6,7 @@
 
 #include <string.h>
 
+#include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
@@ -32,6 +33,7 @@ struct UnkNamedObject {
     global::CStrId field_0x10;  // the short class name
 };
 
+// A key: a global::CRntString (the same layout), built by fn_710007e704 without a constructor.
 struct UnkNamedEntry {
     u8 unk_0x0[0x30];
 };
@@ -51,7 +53,6 @@ struct UnkNamedRegistry {
 
 void fn_710007e704(base::UnkNamedEntry* entry, const char* key);
 void fn_710007ea60(base::UnkNamedEntry* dst, const base::UnkNamedEntry* src);
-void fn_710007ecd4(base::UnkNamedEntry* entry);
 void fn_710007547c(base::UnkNamedRegistry* registry, u32 capacity);
 void fn_7100136f38(base::UnkNamedObject* obj);
 
@@ -93,7 +94,7 @@ UnkNamedObject* refl_RegisterNamed(UnkNamedRegistry* reg, UnkNamedObject* obj, c
     fn_710007ea60(&reg->entries[reg->count], &entry);
     reg->objects[reg->count] = obj;
     reg->count++;
-    fn_710007ecd4(&entry);
+    fn_710007ecd4(reinterpret_cast<global::CRntString*>(&entry));
     fn_7100136f38(obj);
     return obj;
 }

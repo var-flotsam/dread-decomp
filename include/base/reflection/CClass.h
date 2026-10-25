@@ -154,6 +154,10 @@ static_assert(sizeof(CClass) == 0x138, "descriptor stride observed in .bss");
 
 }  // namespace base::reflection
 
+// Adds a type to the list its translation unit's static initialiser registers it in (the list
+// is a byte array in the unit's data, after the type objects; fn_710009ec00 is in CType's unit).
+void fn_710009ec00(void* list, void* type);
+
 // Declares the tag type for one reflected class. INIT is the address of its descriptor
 // constructor instantiation (T::refl_InitClass), so that instantiation's symbol carries it.
 #define DREAD_REFL_TAG(INIT) struct UnkRefl_fn_##INIT

@@ -3,6 +3,7 @@
 // its slot 0x90 with 0 and its slot 0xd0 for each of the (slot 0xf0) count of its parts with the
 // vector (0, 0, 0, 1.0). Returns the object, or null when it isn't live. With bit 0 of the argument
 // set, first calls fn_71011e49fc on the object at +0x2d0 of the global manager's service.
+#include "game/UnkGameManager.h"
 #include "types.h"
 
 struct UnkVec4 {
@@ -38,9 +39,8 @@ struct UnkSelf {
     UnkOwner* field_0x30;
 };
 
-extern void* g_unk_7101d47310;
 extern char g_unk_7101648d40[];
-UnkService* fn_7100deac84(void* manager);
+UnkService* fn_7100deac84(UnkGameManager* manager);
 void fn_71011e49fc(void* object);
 void fn_7100d7c828(UnkOwner* owner, const char* name, u32 flag);
 UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);

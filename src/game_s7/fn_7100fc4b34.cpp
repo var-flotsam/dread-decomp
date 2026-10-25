@@ -5,6 +5,7 @@
 // set only when the first set has them and the second doesn't. Names and layouts are
 // placeholders.
 #include "UnkPropS7.h"
+#include "base/global/CRntString.h"
 
 using namespace unk_prop;
 
@@ -72,7 +73,6 @@ struct UnkString_7100fc4b34 {
 };
 void fn_710007eba0(UnkString_7100fc4b34* self, u32 size);
 void fn_710007eaa0(UnkString_7100fc4b34* self, const UnkString_7100fc4b34* other);
-void fn_710007ecd4(UnkString_7100fc4b34* self);
 bool fn_7100ec50e4(char* section, const void* name, UnkString_7100fc4b34* out);
 
 template <auto Reader, class T, class N>
@@ -217,7 +217,7 @@ bool fn_7100fc4b34(UnkOwner_7100fc4b34* self, UnkPropSet_7100fc4b34* a, UnkPropS
         UnkString_7100fc4b34 s;
         fn_710007eba0(&s, 0x40);
         fn_710007eaa0(&out->field_0x80, &s);
-        fn_710007ecd4(&s);
+        fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(&s));
     }
     Get<fn_7100ec50e4>(a, Key(0x1148), Qid(g_unk_71727594b8), &out->field_0x80);
     f32 x = 0.0f;

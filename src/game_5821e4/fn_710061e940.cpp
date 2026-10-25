@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CShootDCBones>>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CShootDCBones>>>::TKeyElementConstIterator::value_type, base::global::CRntVector<std::unique_ptr<CShootDCBones>>, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<COffset>>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<COffset>>>::TKeyElementConstIterator::value_type, base::global::CRntVector<std::unique_ptr<COffset>>, base::reflection::CollectionTypeMapper<TPatterns>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<TPatterns>::TKeyElementConstIterator::value_type, TPatterns, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPattern>>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPattern>>>::TKeyElementConstIterator::value_type, base::global::CRntVector<std::unique_ptr<CPattern>> reflected types.
 #include "UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -16,7 +17,6 @@ struct UnkStatics_710061e940 {
     u8 field_0x3e8[8];
 };
 extern UnkStatics_710061e940 g_unk_71726f77b8 __attribute__((visibility("hidden")));
-void* fn_710060ead4();  // CShootDCBones::refl_GetClass
 extern char g_unk_71726f4ff8[];
 extern char g_unk_71726f4ff9[];
 UnkEnumType* fn_710060f060();
@@ -46,7 +46,6 @@ void fn_710009891c(void* type);  // the type's destructor, as registered
 extern char g_unk_71726f53f0[];
 extern UnkConversion g_unk_71726f53f8;
 void fn_7100616470() __attribute__((visibility("hidden")));
-void* fn_710061017c();  // COffset::refl_GetClass
 extern char g_unk_71726f5418[];
 extern char g_unk_71726f5419[];
 UnkEnumType* fn_7100610970();
@@ -92,7 +91,6 @@ UnkEnumType* fn_7100612744();
 extern UnkEnumType g_unk_71726f5ac0;
 void fn_7100612820(UnkEnumType* type, const CStrId& name, void*, void*);
 extern char g_unk_71726f5c30[];
-void* fn_7100612a1c();  // CPattern::refl_GetClass
 extern char g_unk_71726f5c31[];
 extern char g_unk_71726f5c32[];
 UnkEnumType* fn_7100613068();
@@ -119,7 +117,6 @@ void fn_7100613fa0(UnkEnumType* type, const CStrId& name, void*, void*);
 extern char g_unk_71726f6028[];
 extern UnkConversion g_unk_71726f6030;
 void fn_7100619738() __attribute__((visibility("hidden")));
-void* fn_7100614184();  // CCharClassNailongAIComponent::refl_GetClass
 extern char g_unk_71726f6050[];
 
 void fn_710061e940() {

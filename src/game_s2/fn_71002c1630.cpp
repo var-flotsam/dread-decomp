@@ -2,13 +2,8 @@
 // matrix's third column by the scale at +0x14 and along the second column by the scale at +0x18 is
 // blocked: calls fn_7100219588 on the global at g_unk_7101d47300 with it and returns whether the
 // answer has bit 0 clear.
+#include "base/UnkMatrix44.h"
 #include "types.h"
-
-struct UnkMatrix {
-    f32 r0[4];
-    f32 r1[4];
-    f32 r2[4];
-};
 
 struct UnkTarget {
     u8 pad_0x0[0x38];
@@ -27,7 +22,6 @@ struct UnkSelf {
 };
 
 extern void* g_unk_7101d47300;
-UnkMatrix* fn_710002614c(void* transform);
 u64 fn_7100219588(void* world, f32* point, u32 a, u32 b);
 
 // NON_MATCHING(minor): the sums land in other registers (the original adds into s8-s10 with the products
@@ -37,10 +31,10 @@ u32 fn_71002c1630(UnkSelf* self, void* unused, UnkTarget* target) {
     f32 y = target->field_0x54;
     alignas(16) f32 point[4];
     __builtin_memcpy(&point[2], &target->field_0x64, 4);
-    UnkMatrix* m = fn_710002614c(target->field_0x38);
-    f32 z0 = m->r0[2];
-    f32 z1 = m->r1[2];
-    f32 z2 = m->r2[2];
+    const UnkMatrix44* m = &fn_710002614c(reinterpret_cast<const UnkMatrix44*>(target->field_0x38));
+    f32 z0 = m->m[2];
+    f32 z1 = m->m[6];
+    f32 z2 = m->m[10];
     f32 s = self->field_0x14;
     f32 o0 = z0 * s;
     f32 o1 = z1 * s;
@@ -50,10 +44,10 @@ u32 fn_71002c1630(UnkSelf* self, void* unused, UnkTarget* target) {
     f32 az = point[2] + o2;
     point[1] = ay;
     point[2] = az;
-    m = fn_710002614c(target->field_0x38);
-    f32 y0 = m->r0[1];
-    f32 y1 = m->r1[1];
-    f32 y2 = m->r2[1];
+    m = &fn_710002614c(reinterpret_cast<const UnkMatrix44*>(target->field_0x38));
+    f32 y0 = m->m[1];
+    f32 y1 = m->m[5];
+    f32 y2 = m->m[9];
     f32 t = self->field_0x18;
     f32 p0 = y0 * t;
     f32 p1 = y1 * t;

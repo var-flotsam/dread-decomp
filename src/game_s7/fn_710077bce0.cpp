@@ -5,6 +5,7 @@
 // then the unit's own statics and registrations (helpers in UnkStaticInitS7.h). Layouts are
 // placeholders.
 #include "UnkStaticInitS7.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -18,7 +19,6 @@ struct UnkStatics_710077bce0 {
     u8 field_0x170[8];
 };
 extern UnkStatics_710077bce0 g_unk_71727153d8 __attribute__((visibility("hidden")));
-void* fn_710076a0f8();
 extern char g_unk_7172713dd0[];
 extern char g_unk_7172713dd1[];
 UnkEnumType* fn_710076a7d0();
@@ -54,7 +54,6 @@ extern UnkProperty* g_unk_71726db788;
 extern void* g_unk_7101a6edd0[];
 void fn_71007798d0(UnkProperty* p);
 void fn_710076b8e8(void* p);
-const void* fn_710000d228();
 extern UnkProperty g_unk_7172714220;
 extern UnkConversion g_unk_7172714368;
 extern UnkConversion g_unk_7172714388;
@@ -87,7 +86,6 @@ extern UnkEnumType g_unk_71727147a8;
 void fn_710076cdd0(UnkEnumType* type, const CStrId& name, void*, void*, void (*)(), void*);
 void fn_710076cc60();
 extern char g_unk_71727148e0[];
-void* fn_710076cf58();
 extern char g_unk_71727148e1[];
 
 void fn_710077bce0() {
@@ -120,8 +118,8 @@ void fn_710077bce0() {
     fn_710009ec00(g_unk_71727141c8, &g_unk_7172714058);
     InitConversion(&g_unk_71727141d0, fn_710076a8ac, fn_710076a7d0, fn_710077768c);
     InitId(&g_unk_71727141f0, "CENTRAL_UNIT");
-    InitProperty(&g_unk_71727141f8, g_unk_7101a6edd0, g_unk_71726db788, "State", fn_7100014768(), fn_71007798d0, fn_710076b8e8);
-    InitProperty(&g_unk_7172714220, g_unk_7101a6edd0, g_unk_71726db788, "EmmyDisabled", fn_710000d228(), fn_71007798d0, fn_710076b8e8);
+    InitProperty(&g_unk_71727141f8, g_unk_7101a6edd0, g_unk_71726db788, "State", TypeOf<fn_7100014768>(), fn_71007798d0, fn_710076b8e8);
+    InitProperty(&g_unk_7172714220, g_unk_7101a6edd0, g_unk_71726db788, "EmmyDisabled", TypeOf<fn_710000d228>(), fn_71007798d0, fn_710076b8e8);
     InitEnum(&g_unk_7172714248, "CCentralUnitComponent::ECentralUnitMode", fn_710076bb6c, fn_710076b960, g_unk_7172714360, &g_unk_7172714368, fn_7100777950, &g_unk_7172714388, fn_710077795c);
     fn_710009ec00(g_unk_71727143a8, fn_710076bcec());
     fn_710009ec00(g_unk_71727143a9, fn_710076bdc8());

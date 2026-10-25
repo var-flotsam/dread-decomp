@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CChozoRobotSoldierCannonShotPattern>>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CChozoRobotSoldierCannonShotPattern>>>::TKeyElementConstIterator::value_type, base::global::CRntVector<std::unique_ptr<CChozoRobotSoldierCannonShotPattern>>.
 #include "../game_s7/UnkStaticInitS7.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -14,7 +15,6 @@ struct UnkStatics_7100461590 {
 };
 extern UnkStatics_7100461590 g_unk_71726cad28 __attribute__((visibility("hidden")));
 extern char g_unk_71726ca260[];
-void* fn_710045cd20();  // CChozoRobotSoldierCannonShotPattern::refl_GetClass
 extern char g_unk_71726ca261[];
 UnkEnumType* fn_710045d1c0();
 extern char g_unk_71726ca262[];
@@ -45,13 +45,11 @@ extern UnkConversion g_unk_71726ca660;
 UnkEnumType* fn_710045d29c();
 void fn_71004603f0() __attribute__((visibility("hidden")));
 extern char g_unk_71726ca680[];
-void* fn_710045e2dc();  // CCharClassChozoRobotSoldierCannonShotAttack::CTunableCharClassChozoRobotSoldierCannonShotAttack::refl_GetClass
 extern UnkTunable g_unk_71726ca688;
 void fn_7100136ecc(UnkTunable* self);  // the base constructor
 extern void* g_unk_7101a38178[];
 void fn_7100075104(void* self);  // its destructor, as registered
 extern char g_unk_71726ca6c1[];
-void* fn_710045eb2c();  // CCharClassChozoRobotSoldierCannonShotAttack::refl_GetClass
 
 void fn_7100461590() {
     InitHeaderIds(&g_unk_71726cad28.ids);

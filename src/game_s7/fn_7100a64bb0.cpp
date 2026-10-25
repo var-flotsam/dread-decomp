@@ -3,6 +3,7 @@
 // CTriggerComponent::EEvent: the header ids, then the unit's own statics and registrations
 // (helpers in UnkStaticInitS7.h). Layouts are placeholders.
 #include "UnkStaticInitS7.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -18,7 +19,6 @@ struct UnkStatics_7100a64bb0 {
 };
 extern UnkStatics_7100a64bb0 g_unk_717274e4b8 __attribute__((visibility("hidden")));
 extern UnkStrIdBase g_unk_717274d6c0;
-const void* fn_710000d228();
 extern UnkProperty g_unk_717274d6c8;
 extern UnkProperty* g_unk_71726db788;
 extern void* g_unk_7101a8f780[];
@@ -67,9 +67,7 @@ extern UnkEnumType g_unk_717274dc70;
 extern char g_unk_717274dd88[];
 void fn_7100a5b92c(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_7100a5b600();
-void* fn_7100a5bab0();
 extern char g_unk_717274ddd0[];
-void* fn_7100a5d274();
 extern char g_unk_717274ddd1[];
 extern UnkTunable g_unk_717274ddd8;
 void fn_7100136ecc(UnkTunable* self);  // the base constructor
@@ -79,8 +77,8 @@ void fn_7100075104(void* self);  // its destructor, as registered
 void fn_7100a64bb0() {
     InitHeaderIds(&g_unk_717274e4b8.ids);
     InitId(&g_unk_717274d6c0, "TRIGGER");
-    InitProperty(&g_unk_717274d6c8, g_unk_7101a8f780, g_unk_71726db788, "Enabled", fn_710000d228(), fn_7100a63000, fn_7100a59a00);
-    InitProperty(&g_unk_717274d6f0, g_unk_7101a8f7d8, g_unk_71726db788, "ConditionDone", fn_710000d228(), fn_7100a63000, fn_7100a59a78);
+    InitProperty(&g_unk_717274d6c8, g_unk_7101a8f780, g_unk_71726db788, "Enabled", TypeOf<fn_710000d228>(), fn_7100a63000, fn_7100a59a00);
+    InitProperty(&g_unk_717274d6f0, g_unk_7101a8f7d8, g_unk_71726db788, "ConditionDone", TypeOf<fn_710000d228>(), fn_7100a63000, fn_7100a59a78);
     InitClassId(&g_unk_717274e4b8.field_0x18, "TRIGGERS");
     InitClassId(&g_unk_717274e4b8.field_0x20, "ATTACHED_TRIGGERS");
     InitClassId(&g_unk_717274e4b8.field_0x28, "ATTACHED_TRIGGERS_CHECKPINT");

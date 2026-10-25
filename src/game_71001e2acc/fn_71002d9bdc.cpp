@@ -1,6 +1,7 @@
 // Getters of the 0x10-byte TAnimTreeLinkDef behind a collection iterator value, as a value of kind 2
 // (as in fn_7100c8e85c, src/game_aca57c/fn_7100ad4b54.cpp): the value is stored inline at 8, or
 // through the pointer there when the state after it is 2. fn_71002d9bdc, fn_71002d9e50.
+#include "base/reflection/UnkClassGetters.h"
 #include "types.h"
 
 struct UnkValue {
@@ -11,7 +12,6 @@ struct UnkValue {
 
 void fn_71000a18d4(UnkValue* out, void* type, const void* value, u32 flag);
 
-void* fn_71002d7ab4();  // animtree::CAnimTreeDef::TAnimTreeLinkDef::refl_GetClass
 extern u8 g_unk_71726a9e80[] __attribute__((visibility("hidden")));
 
 template <typename T>

@@ -1,6 +1,7 @@
 // Stores the owner's aim component (when the object at 0x10 is a CCharClassAimComponent) at
 // 0x2b0 and copies three of its values (0x60, 0x58, 0x7c) into the owner; returns what
 // fn_71010c41bc gave. The component is read without a null check, as in the original.
+#include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "types.h"
 
@@ -29,7 +30,6 @@ struct UnkSelf {
     u32 field_0x578;
 };
 
-const CClass* fn_7100359cb0();  // CCharClassAimComponent::refl_GetClass
 bool fn_71010c41bc();
 
 bool fn_7100343c18(UnkSelf* self) {

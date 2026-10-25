@@ -2,15 +2,15 @@
 // +0x5f8, divided by the scale object's), flags the owner's objects at +0x1b8 and +0x2a0, runs
 // fn_71005026d0 with the tunable's start value, clears the flag at +0x5e4 and passes the component to
 // fn_7100de9540.
+#include "game/UnkGameManager.h"
 #include "game_s2/UnkChargeComponent.h"
 
-extern void* g_unk_7101d47310;
 extern char g_unk_71726ddc48[] __attribute__((visibility("hidden")));
 
 void fn_7100ac3880(f32 rate);
 void fn_71008618cc(void* object);
 void fn_71005026d0(UnkChargeComponent* self, u32 mode, f32 value);
-void fn_7100de9540(void* manager, void* name, UnkChargeComponent* component);
+void fn_7100de9540(UnkGameManager* manager, void* name, UnkChargeComponent* component);
 
 // NON_MATCHING(minor): the two rate addresses are computed in the other order (the select picks the same one).
 void fn_7100502628(UnkChargeComponent* self) {

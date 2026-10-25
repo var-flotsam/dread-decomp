@@ -1,6 +1,7 @@
 // Runs a script chunk once per name: strips the spaces from the name, skips names already run (by
 // their hash), else loads the chunk and, when that fails, formats and reports the error message.
 #include <stdarg.h>
+#include "base/global/CRntString.h"
 #include "types.h"
 
 struct UnkAllocator {
@@ -23,7 +24,6 @@ void fn_710007e6e4(UnkStrBuffer* self, void* storage);
 void fn_710007e77c(UnkStrBuffer* self, const char* str);
 void fn_710007eaa0(UnkStrBuffer* self, const UnkStrBuffer* other);
 void fn_710007ed40(UnkStrBuffer* self);
-void fn_710007ecd4(UnkStrBuffer* self);
 
 struct UnkStrStorage {
     void* vtable;
@@ -49,7 +49,7 @@ struct UnkStrBuffer {
     }
     ~UnkStrBuffer() {
         fn_710007ed40(this);
-        fn_710007ecd4(this);
+        fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(this));
     }
     const char* c_str() const { return data ? data : ""; }
 };

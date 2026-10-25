@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the CShelmitPlasmaRayAttack::EAttackState enum.
 #include "UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -14,7 +15,6 @@ struct UnkStatics_71006b6e50 {
     u8 field_0x48[8];
 };
 extern UnkStatics_71006b6e50 g_unk_7172706920 __attribute__((visibility("hidden")));
-void* fn_71006b2f34();  // CShelmitPlasmaRayAttack::refl_GetClass
 extern char g_unk_71727067b8[];
 extern UnkEnumType g_unk_71727067c0;
 void fn_71006b36bc(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);

@@ -1,16 +1,12 @@
 // Update of a GUI screen that starts a new game when asked (flag at 0x2ac): unless
 // fn_7101053a98 vetoes it, the screen's GUI key is dropped and the script function
 // Init.CreateAndInitNewGame is called for the cave start point, then the request is cleared.
+#include "game/UnkGameManager.h"
 #include "types.h"
 
 struct UnkNewGameScreen {
     u8 unk_0x0[0x2ac];
     bool field_0x2ac;
-};
-
-struct UnkGameManager {
-    u8 unk_0x0[0x1040];
-    u8 field_0x1040[1];
 };
 
 struct UnkGuiRoot {
@@ -19,7 +15,6 @@ struct UnkGuiRoot {
 };
 
 struct UnkGuiKey;
-extern UnkGameManager* g_unk_7101d47310;
 extern UnkGuiRoot* g_unk_717271e8f8;
 extern UnkGuiKey g_unk_71727659c0 __attribute__((visibility("hidden")));
 

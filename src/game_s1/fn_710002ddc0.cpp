@@ -6,6 +6,7 @@
 // array at 0x68, above a base whose destructor is fn_7100016f88: fn_710026cd30, fn_710026cdcc.
 // And a class (vtable unk_7101a1e4d8) with the id at 8 and an allocator-owned block at 0x30,
 // above a base whose destructor is fn_710002384c: fn_71001a98dc, fn_71001a9978.
+#include "base/UnkCountedResource.h"
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
@@ -121,18 +122,17 @@ void fn_71001a9978(UnkIdOwned_71001a98dc* self) {
 // The deleting destructor of fn_710019e82c's class (vtable unk_7101a1e2c8: a counted object at
 // 0x10, count at +0x54, freed by fn_710001737c, and a string id at 8): fn_710019e8c0.
 extern char unk_7101a1e2c8[];
-void fn_710001737c(char* p);
 
 struct UnkCountedId_710019e8c0 {
     char* vtable;
     base::UnkStrIdMember id;
-    char* counted;
+    UnkCountedResource* counted;
 };
 
 void fn_710019e8c0(UnkCountedId_710019e8c0* self) {
     self->vtable = unk_7101a1e2c8 + 0x10;
-    if (char* counted = self->counted) {
-        if (--*reinterpret_cast<s32*>(counted + 0x54) == 0)
+    if (UnkCountedResource* counted = self->counted) {
+        if (--counted->ref_count == 0)
             fn_710001737c(counted);
     }
     Release(&self->id);

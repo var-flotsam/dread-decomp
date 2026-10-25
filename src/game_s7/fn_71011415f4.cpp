@@ -2,6 +2,7 @@
 // the manager's table (when it has one), then rebuilds its flag set: 26 ids set, four cleared.
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/UnkGameManager.h"
 
 using base::global::CStrId;
 using base::global::UnkStringPool;
@@ -66,10 +67,6 @@ struct UnkEntry_71011415f4 {
 bool fn_7101047208(UnkTable_71011415f4* table, const CStrId* id);
 UnkEntry_71011415f4* fn_71010472e0(UnkTable_71011415f4* table, const CStrId* id);
 
-struct UnkMgr_71011415f4 {
-    u8 unk_0x0[0x968];
-};
-
 struct UnkComponent_71011415f4 {
     u8 unk_0x0[0x88];
     CStrId id;
@@ -79,10 +76,9 @@ struct UnkComponent_71011415f4 {
     void Apply(void* entry_data);  // fn_710114433c
 };
 
-extern UnkMgr_71011415f4* g_unk_7101d47310;
 extern const CStrId g_unk_7101d470e0;
 extern char g_unk_7172a092b0[] __attribute__((visibility("hidden")));
-void fn_7100de9540(UnkMgr_71011415f4* mgr, void* kind, UnkComponent_71011415f4* component);
+void fn_7100de9540(UnkGameManager* mgr, void* kind, UnkComponent_71011415f4* component);
 
 extern CStrId g_unk_7172a092b8 __attribute__((visibility("hidden")));
 extern CStrId g_unk_7172a092c0 __attribute__((visibility("hidden")));
@@ -116,7 +112,7 @@ extern CStrId g_unk_7172a093b8 __attribute__((visibility("hidden")));
 extern CStrId g_unk_7172a093c0 __attribute__((visibility("hidden")));
 
 static inline UnkTable_71011415f4* Table() {
-    return reinterpret_cast<UnkTable_71011415f4*>(reinterpret_cast<char*>(g_unk_7101d47310) + 0x968);
+    return reinterpret_cast<UnkTable_71011415f4*>(g_unk_7101d47310->field_0x968);
 }
 
 void fn_71011415f4(UnkComponent_71011415f4* self) {

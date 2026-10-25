@@ -1,6 +1,7 @@
 // Static initialiser of the unit of GUI::CMapMenuController::SState: the header ids, then the
 // unit's own statics and registrations (helpers in UnkStaticInitS7.h). Layouts are placeholders.
 #include "UnkStaticInitS7.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -37,14 +38,12 @@ struct __attribute__((packed, aligned(4))) UnkStatics_7100b48ca0 {
     u8 field_0x10c[8];
 };
 extern UnkStatics_7100b48ca0 g_unk_7172763d5c __attribute__((visibility("hidden")));
-void* fn_710000d228();
 extern UnkProperty2 g_unk_71727639d0;
 extern UnkProperty* g_unk_71726db788;
 extern void* g_unk_7101a45fe8[];
 extern void* g_unk_7101a9caf0[];
 void fn_7100b481b8(UnkProperty2* p);
 void fn_7100b37360(void* p);
-void* fn_7100b37430();
 extern char g_unk_7172763a10[];
 extern UnkConversion g_unk_7172763b38;
 extern UnkConversion g_unk_7172763b58;
@@ -83,7 +82,7 @@ void fn_7100b48ca0() {
     g_unk_7172763d5c.field_0xfc = -1.0f;
     g_unk_7172763d5c.field_0x100 = -1.0f;
     g_unk_7172763d5c.field_0x104 = true;
-    InitProperty2(&g_unk_71727639d0, g_unk_7101a45fe8, g_unk_71726db788, g_unk_7101a9caf0, "NavigationMenuOpen", fn_710000d228(), fn_7100b481b8, fn_7100b37360);
+    InitProperty2(&g_unk_71727639d0, g_unk_7101a45fe8, g_unk_71726db788, g_unk_7101a9caf0, "NavigationMenuOpen", TypeOf<fn_710000d228>(), fn_7100b481b8, fn_7100b37360);
     fn_7100b37430();
     fn_710009ec00(g_unk_7172763a10, g_unk_7172763d5c.field_0x10c);
     InitEnum(&g_unk_7172763a18, "GUI::CMapMenuController::SState", fn_7100b378f4, fn_7100b37688, g_unk_7172763b30, &g_unk_7172763b38, fn_7100b47ea0, &g_unk_7172763b58, fn_7100b47eac);

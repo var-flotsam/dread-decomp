@@ -1,14 +1,12 @@
 // Frees an object's array of string ids while holding its lock, then frees its other
 // array (whose elements need no destruction).
+#include "base/UnkHashStream.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
-struct UnkLock_710050e8e4 {
-    u8 unk_0x0[0x38];
-};
-void fn_710007c144(UnkLock_710050e8e4* lock);  // lock
-void fn_710007c0e4(UnkLock_710050e8e4* lock);  // unlock
+// The 0x38-byte object at +0x28 is the hash stream (base/UnkHashStream.h); fn_710007c0e4 destroys it.
+void fn_710007c144(UnkHashStream_0x38* s);
 
 // A string id whose destructor decrements and tests the count in two steps.
 struct UnkStrId_710050e8e4 {
@@ -29,7 +27,7 @@ struct UnkStrId_710050e8e4 {
 
 struct UnkStruct_710050e8e4 {
     base::UnkVector<u64> field_0x0;
-    UnkLock_710050e8e4 field_0x28;
+    UnkHashStream_0x38 field_0x28;
     base::UnkVector<UnkStrId_710050e8e4> field_0x60;
 };
 

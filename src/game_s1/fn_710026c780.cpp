@@ -3,6 +3,7 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "base/reflection/UnkClassGetters.h"
 #include "game/UnkTUInit.h"
 
 extern UnkTUHeader g_unk_71726a3680 __attribute__((visibility("hidden")));
@@ -19,7 +20,6 @@ extern char g_unk_71726a2fb0;
 extern char g_unk_71726a2fb1;
 extern UnkReflType g_unk_71726a2fb8;
 extern char g_unk_71726a3128;
-void fn_71002696e4();  // navmesh::CDynamicSmartLinkRule::refl_GetClass
 UnkReflType* fn_7100269948();
 UnkReflType* fn_7100269a24();
 UnkReflType* fn_7100269b00();

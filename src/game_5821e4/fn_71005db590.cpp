@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>::TKeyElementConstIterator::value_type, base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>, base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>>::TKeyElementConstIterator::value_type, base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>> reflected types.
 #include "UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -13,7 +14,6 @@ struct UnkStatics_71005db590 {
     u8 field_0x2a0[8];
 };
 extern UnkStatics_71005db590 g_unk_71726ee3c8 __attribute__((visibility("hidden")));
-void* fn_71005d3704();  // CAcidBlobsLaunchPattern::refl_GetClass
 extern char g_unk_71726ed0d8[];
 extern char g_unk_71726ed0d9[];
 UnkEnumType* fn_71005d3ba0();
@@ -62,13 +62,11 @@ void fn_71005d5a38(UnkEnumType* type, const CStrId& name, void*, void*);
 extern char g_unk_71726ed8c8[];
 extern UnkConversion g_unk_71726ed8d0;
 void fn_71005d8fb4() __attribute__((visibility("hidden")));
-void* fn_71005d5c20();  // CCharClassKraidAcidBlobsAttack::CTunableCharClassKraidAcidBlobsAttack::refl_GetClass
 extern char g_unk_71726ed8f0[];
 extern UnkTunable g_unk_71726ed8f8;
 void fn_7100136ecc(UnkTunable* self);  // the base constructor
 extern void* g_unk_7101a534a0[];
 void fn_7100075104(void* self);  // its destructor, as registered
-void* fn_71005d6288();  // CCharClassKraidAcidBlobsAttack::refl_GetClass
 extern char g_unk_71726ed921[];
 
 void fn_71005db590() {

@@ -27,3 +27,8 @@ inline void UnkCopyMatrix(UnkMatrix44* dst, const UnkMatrix44& src) {
     dst->m[14] = src.m[14];
     dst->m[15] = src.m[15];
 }
+
+// The matrix of a transform (UnkXform, game/UnkXformNode.h, whose matrix is its first member):
+// rebuilt from the translation, angles and scale when it is not valid, so the argument is the
+// transform itself, not a bare matrix. Defined in src/game_s1/fn_710002614c.cpp.
+const UnkMatrix44& fn_710002614c(const UnkMatrix44* m);

@@ -4,20 +4,20 @@
 
 #include <new>
 
+#include "base/UnkCountedResource.h"
 #include "types.h"
 
 extern char unk_7101a19380[];
-void fn_710001737c(char* p);
 
 struct UnkCountedRef_71000139c0 {
     char* vtable;
-    char* counted;
+    UnkCountedResource* counted;
 };
 
 __attribute__((always_inline)) static inline void Destroy(UnkCountedRef_71000139c0* self) {
     self->vtable = unk_7101a19380 + 0x10;
-    if (char* counted = self->counted) {
-        if (--*reinterpret_cast<s32*>(counted + 0x54) == 0)
+    if (UnkCountedResource* counted = self->counted) {
+        if (--counted->ref_count == 0)
             fn_710001737c(counted);
     }
 }

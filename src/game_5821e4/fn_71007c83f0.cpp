@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the SDropProbabilities::SDir, SDropProbabilities::SType enums.
 #include "UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -25,7 +26,6 @@ extern UnkConversion g_unk_717271bbf0;
 extern UnkConversion g_unk_717271bc10;
 void fn_71007c7e88() __attribute__((visibility("hidden")));
 void fn_71007c7e94() __attribute__((visibility("hidden")));
-void* fn_71007c6784();  // SDropProbabilities::refl_GetClass
 extern char g_unk_717271bc30[];
 
 void fn_71007c83f0() {

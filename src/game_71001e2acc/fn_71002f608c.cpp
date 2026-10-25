@@ -3,10 +3,10 @@
 // src/game_s1/fn_7100219134.cpp), linked through 0x68, with vtable unk_7101a222c8.
 
 #include "base/UnkVector.h"
+#include "base/global/CRntString.h"
 #include "types.h"
 
 extern char unk_7101a222c8[];
-void fn_710007ecd4(char* node);
 void fn_710007ed40(char* node);
 
 struct UnkNodeList_71002f608c {
@@ -22,7 +22,7 @@ void fn_71002f608c(UnkNodeList_71002f608c* self) {
     for (char* n = self->head; n;) {
         char* next = *reinterpret_cast<char**>(n + 0x68);
         fn_710007ed40(n);
-        fn_710007ecd4(n);
+        fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(n));
         self->allocator->vf_0x48(n);
         n = next;
     }

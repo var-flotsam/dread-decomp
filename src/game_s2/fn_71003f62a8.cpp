@@ -3,20 +3,12 @@
 // 0x44, 0x54, 0x64) and the position object's is below the squared radius at 0x608, else 0x5c0 when
 // it is not below the squared radius at 0x60c, else 0x578. Without an object, its body or a
 // position object the answer is 0x578.
+#include "game/UnkActor.h"
 #include "types.h"
-
-struct UnkPositioned {
-    u8 pad_0x0[0x44];
-    f32 field_0x44;
-    u8 pad_0x48[0xc];
-    f32 field_0x54;
-    u8 pad_0x58[0xc];
-    f32 field_0x64;
-};
 
 struct UnkObject {
     u8 pad_0x0[0x30];
-    UnkPositioned* field_0x30;
+    UnkActor* field_0x30;
 };
 
 struct UnkPicker {
@@ -28,13 +20,11 @@ struct UnkPicker {
     f32 field_0x60c;
 };
 
-UnkPositioned* fn_7100d7c990(UnkPositioned* object);
-
 void* fn_71003f62a8(UnkPicker* self, UnkObject* object) {
     if (object) {
-        UnkPositioned* body = object->field_0x30;
+        UnkActor* body = object->field_0x30;
         if (body) {
-            UnkPositioned* target = fn_7100d7c990(body);
+            UnkActor* target = fn_7100d7c990(body);
             if (target) {
                 f32 bx = body->field_0x44;
                 f32 by = body->field_0x54;

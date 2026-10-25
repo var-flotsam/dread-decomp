@@ -3,6 +3,7 @@
 // fn_710000c2c0, fn_710000c75c (at 0x20), fn_710000d728, fn_710000dd0c (at 0x10), fn_7100266b28, fn_7100266fc4 (at
 // 0x18), fn_710026735c, fn_7100267954 (at 0x8). Reset of a two-state variant (state 1 holds a string id and a
 // reference; state 2 holds nothing to destroy) to state 0.
+#include "base/UnkCountedResource.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
@@ -28,18 +29,12 @@ struct UnkReleasedFilePathId {
     }
 };
 
-// A reference-counted object (count at 0x54) destroyed by fn_710001737c.
-struct UnkCountedObject {
-    u8 unk_0x0[0x54];
-    s32 ref_count;
-};
-void fn_710001737c(UnkCountedObject* object);
-
+// A reference-counted resource (base/UnkCountedResource.h), dropped when the pointer dies.
 struct UnkCountedPtr {
-    UnkCountedObject* ptr;
+    UnkCountedResource* ptr;
 
     ~UnkCountedPtr() {
-        if (UnkCountedObject* p = ptr) {
+        if (UnkCountedResource* p = ptr) {
             if (--p->ref_count == 0)
                 fn_710001737c(p);
         }

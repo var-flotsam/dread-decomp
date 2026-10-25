@@ -1,5 +1,6 @@
 // Queries up to 64 objects around a point and switches each one (by its kind) to state 2 or 1.
 // Names and layouts are placeholders.
+#include "game/UnkGameManager.h"
 #include "types.h"
 
 struct UnkRefCounted {
@@ -40,16 +41,6 @@ struct UnkSwitcher {
                                                                                                          kind);
     }
 };
-
-struct UnkFlags_7100aaac80 {
-    u8 unk_0x0[0xdc];
-    bool field_0xdc;
-};
-struct UnkGameManager {
-    u8 unk_0x0[0x1af8];
-    UnkFlags_7100aaac80* field_0x1af8;
-};
-extern UnkGameManager* g_unk_7101d47310;
 
 void fn_7100aaac80(UnkSwitcher* self, void* where, void* filter) {
     if (g_unk_7101d47310->field_0x1af8->field_0xdc)

@@ -1,6 +1,8 @@
 // Static initialiser of the unit of CEmmyGrabSamusAttack: the header ids, then the unit's own
 // statics (path ids, ids, strings, small-buffer strings, floats) and the class registration.
 #include "../game_s7/UnkStaticInitS7.h"
+#include "base/global/CRntString.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -9,7 +11,6 @@ extern void* g_unk_7101a479c8[];
 void fn_710007e6e4(void* self, void* inline_buffer);  // a small buffer's constructor
 void fn_710007e77c(void* self, const char* str);      // assigns a string to it
 void fn_710007ed40(void* self);
-void fn_710007ecd4(void* self);
 void fn_7100504fdc(void* self);  // its destructor, as registered
 
 struct UnkInlineStr50Raw {
@@ -39,7 +40,7 @@ struct UnkInlineStr50 : UnkInlineStr50Raw {
     UnkInlineStr50(const char* str) { BuildInlineStr50(this, str); }
     ~UnkInlineStr50() {
         fn_710007ed40(this);
-        fn_710007ecd4(this);
+        fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(this));
     }
 };
 
@@ -50,7 +51,7 @@ void fn_710007e704(UnkRntString* self, const char* str);  // builds one from a s
 
 __attribute__((always_inline)) inline void InitRntString(UnkRntString* s, const char* str) {
     fn_710007e704(s, str);
-    __cxa_atexit(fn_710007ecd4, s, g_unk_7101a19000);
+    __cxa_atexit(reinterpret_cast<void (*)(void*)>(fn_710007ecd4), s, g_unk_7101a19000);
 }
 
 struct UnkStatics_71005113b0 {
@@ -89,7 +90,6 @@ struct UnkStatics_71005113b0 {
     u8 field_0x530[8];
 };
 extern UnkStatics_71005113b0 g_unk_71726de558 __attribute__((visibility("hidden")));
-void* fn_7100504d60();  // CEmmyGrabSamusAttack::refl_GetClass
 extern char g_unk_71726de550[];
 void fn_7100505000(void* self, const UnkInlineStr50* strs, u32 count);
 void fn_710050512c(void* self);  // its destructor, as registered

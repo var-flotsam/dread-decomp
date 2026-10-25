@@ -5,44 +5,14 @@
 // then compared with one of two ranges of the data, and when it is inside, further checks (an
 // owner query and a value of the owner's target against one of the data) decide. A true result
 // is cleared when the sub-object at +0x220 of the owner isn't a track that can be aborted.
+#include "base/UnkMatrix44.h"
+#include "base/reflection/UnkClassGetters.h"
+#include "game/UnkActor.h"
 #include "types.h"
-
-struct UnkSpitMatrix {
-    u8 pad_0x0[0x8];
-    f32 field_0x8;
-    u8 pad_0xc[0xc];
-    f32 field_0x18;
-    u8 pad_0x1c[0xc];
-    f32 field_0x28;
-};
-
-struct UnkSpitPoint {
-    u8 pad_0x0[0x44];
-    f32 field_0x44;
-    u8 pad_0x48[0xc];
-    f32 field_0x54;
-    u8 pad_0x58[0xc];
-    f32 field_0x64;
-};
 
 struct UnkSpitOwnerTarget {
     u8 pad_0x0[0x14f8];
     f32 field_0x14f8;
-};
-
-struct UnkSpitOwner {
-    u8 pad_0x0[0x38];
-    u8 field_0x38[0xc];
-    f32 field_0x44;
-    u8 pad_0x48[0xc];
-    f32 field_0x54;
-    u8 pad_0x58[0xc];
-    f32 field_0x64;
-    u8 pad_0x68[0x10];
-    u8 pad_0x78[0x1a8];
-    void* field_0x220;
-    u8 pad_0x228[0x18];
-    UnkSpitOwnerTarget* field_0x240;
 };
 
 struct UnkSpitConfig {
@@ -55,34 +25,31 @@ struct UnkSpitConfig {
 
 struct UnkSpitState1 {
     u8 pad_0x0[0x8];
-    UnkSpitOwner* field_0x8;
+    UnkActor* field_0x8;
     u8 pad_0x10[0x18];
     UnkSpitConfig* field_0x28;
     u8 pad_0x30[0xb0];
     f32 field_0xe0;
 };
 
-UnkSpitPoint* fn_7100d7c990(UnkSpitOwner* owner);
-const UnkSpitMatrix* fn_710002614c(void* transform);
-bool fn_7100d7bea0(UnkSpitOwner* owner, bool flag);
-void* fn_7100c0ccc8();  // CCharClassAttackCanBeAbortedTrack::refl_GetClass
-bool fn_710117b348(void* object, void* type);
+bool fn_7100d7bea0(UnkActor* owner, bool flag);
+bool fn_710117b348(void* object, const base::reflection::CClass* type);
 
 // NON_MATCHING(minor): same behaviour; the original reads the owner->target vector in another
 // order, tests the owner before the result at the end and shares that end between the paths.
 bool fn_71003f28c8(UnkSpitState1* self, f32 delta) {
-    UnkSpitOwner* owner = self->field_0x8;
+    UnkActor* owner = self->field_0x8;
     if (!owner)
         return false;
-    UnkSpitPoint* target = fn_7100d7c990(owner);
+    UnkActor* target = fn_7100d7c990(owner);
     if (!target)
         return false;
     if (!self->field_0x28)
         return false;
-    const UnkSpitMatrix* matrix = fn_710002614c(self->field_0x8->field_0x38);
-    f32 facing_x = matrix->field_0x8;
-    f32 facing_y = matrix->field_0x18;
-    f32 facing_z = matrix->field_0x28;
+    const UnkMatrix44& matrix = fn_710002614c(reinterpret_cast<const UnkMatrix44*>(self->field_0x8->field_0x38));
+    f32 facing_x = matrix.m[2];
+    f32 facing_y = matrix.m[6];
+    f32 facing_z = matrix.m[10];
     owner = self->field_0x8;
     f32 tx = target->field_0x44, ty = target->field_0x54, tz = target->field_0x64;
     f32 ox = owner->field_0x44, oy = owner->field_0x54, oz = owner->field_0x64;
@@ -112,7 +79,8 @@ bool fn_71003f28c8(UnkSpitState1* self, f32 delta) {
     } else {
         bool busy = fn_7100d7bea0(owner, true);
         owner = self->field_0x8;
-        result = !busy && owner->field_0x240 && owner->field_0x240->field_0x14f8 > self->field_0x28->field_0xfc;
+        result = !busy && owner->field_0x240 &&
+                 static_cast<UnkSpitOwnerTarget*>(owner->field_0x240)->field_0x14f8 > self->field_0x28->field_0xfc;
     }
 finish:
     if (owner && result) {

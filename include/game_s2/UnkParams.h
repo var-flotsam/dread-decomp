@@ -27,4 +27,6 @@ struct UnkParams {
     u8 field_0x3d;
 };
 
-void fn_71006f4b0c(void* target, UnkParams* params, u32 flag);
+// Hands a parameter block to a target: an UnkParams (kind 5), an UnkParams7 (kind 7,
+// game_s2/UnkParams7.h) or another kind's block; the block's vtable tells them apart.
+void fn_71006f4b0c(void* target, void* params, u32 flag);

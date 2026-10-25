@@ -1,5 +1,7 @@
 // Static initialiser of the unit of the ELavaCarpetState, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>::TKeyElementConstIterator::value_type, base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>, base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>>::TKeyElementConstIterator::value_type, base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>.
 #include "../game_s7/UnkStaticInitS7.h"
+#include "base/global/CRntString.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -7,11 +9,10 @@ struct UnkRntString {
     u8 field_0x0[0x30];
 };
 void fn_710007e704(UnkRntString* self, const char* str);  // builds one from a string
-void fn_710007ecd4(void* self);                           // its destructor
 
 __attribute__((always_inline)) inline void InitRntString(UnkRntString* s, const char* str) {
     fn_710007e704(s, str);
-    __cxa_atexit(fn_710007ecd4, s, g_unk_7101a19000);
+    __cxa_atexit(reinterpret_cast<void (*)(void*)>(fn_710007ecd4), s, g_unk_7101a19000);
 }
 
 struct UnkStatics_71004a9c40 {
@@ -29,7 +30,6 @@ struct UnkStatics_71004a9c40 {
 };
 extern UnkStatics_71004a9c40 g_unk_71726d3398 __attribute__((visibility("hidden")));
 extern char g_unk_71726d1f40[];
-void* fn_71004a1a2c();  // CCharClassCooldownXBossLavaCarpetAttack::CTunableCharClassCooldownXBossLavaCarpetAttack::refl_GetClass
 extern UnkTunable g_unk_71726d1f48;
 void fn_7100136ecc(UnkTunable* self);  // the base constructor
 extern void* g_unk_7101a3e038[];
@@ -43,7 +43,6 @@ extern UnkConversion g_unk_71726d20b8;
 void fn_71004a52c4() __attribute__((visibility("hidden")));
 void fn_71004a52d0() __attribute__((visibility("hidden")));
 extern char g_unk_71726d20d8[];
-void* fn_71004a2588();  // CCooldownXBossLavaCarpetDef::refl_GetClass
 extern char g_unk_71726d20d9[];
 UnkEnumType* fn_71004a2b34();
 extern char g_unk_71726d20da[];
@@ -93,7 +92,6 @@ extern UnkConversion g_unk_71726d28d0;
 UnkEnumType* fn_71004a2c10();
 void fn_71004a7394() __attribute__((visibility("hidden")));
 extern char g_unk_71726d28f0[];
-void* fn_71004a4bb4();  // CCharClassCooldownXBossLavaCarpetAttack::refl_GetClass
 
 void fn_71004a9c40() {
     InitHeaderIds(&g_unk_71726d3398.ids);

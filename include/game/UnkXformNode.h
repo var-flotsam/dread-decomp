@@ -64,8 +64,7 @@ struct UnkXform {
 UnkVec3f fn_7100076cec(UnkXform* x);
 UnkVec3f fn_7100079b18(UnkXform* x, f32 hint);
 
-const UnkMatrix44& fn_710002614c(const UnkMatrix44* m);  // GetMatrix out of line
-
+// Out of line: fn_710002614c (base/UnkMatrix44.h) takes the transform through its matrix.
 const UnkMatrix44& UnkXform::GetMatrix() {
     return fn_710002614c(reinterpret_cast<const UnkMatrix44*>(this));
 }

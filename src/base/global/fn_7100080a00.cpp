@@ -38,7 +38,7 @@ void fn_7100080a00(char* set, UnkPoolIter* it) {
     if (prev)
         *reinterpret_cast<char**>(prev + 0x50) = *reinterpret_cast<char**>(node + 0x50);
     --*reinterpret_cast<u32*>(set + 0x44);
-    fn_710007ecd4(node + 0x18);
+    fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(node + 0x18));
     (*reinterpret_cast<base::UnkAllocator**>(set + 0x38))->vf_0x48(node);
     ++*reinterpret_cast<u32*>(set + 0x48);
 }

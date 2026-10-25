@@ -1,5 +1,6 @@
 // Getters building a value of kind 2 (fn_71000a18d4 fills in the rest from the type the value is
 // described by): words of the translation unit's globals, a zero, flags of an object and a vector.
+#include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"  // the type getters (refl_GetType<T>)
 #include "types.h"
 
@@ -140,9 +141,6 @@ UnkValue fn_7100d691e0(void* unused, UnkArgument<UnkFlagSource>* argument) { ret
 // Values of kind 2 referring (flag 1) to a cutscene definition held by an iterator value: in place
 // at 0x8, or through the pointer there when the state (after the Size-byte value) is 2. The class
 // getter is called first, so the class (whose reflected data is at the descriptor) is set up.
-void* fn_7100c828a4();  // CCutSceneDef::CActorDef::refl_GetClass
-void* fn_7100c84768();  // CCutSceneDef::CAnimationLayerDef::refl_GetClass
-void* fn_7100c85d3c();  // CCutSceneDef::CTakeDef::refl_GetClass
 extern u8 g_unk_7172794c08[] __attribute__((visibility("hidden")));
 extern u8 g_unk_7172794d40[] __attribute__((visibility("hidden")));
 extern u8 g_unk_7172794e78[] __attribute__((visibility("hidden")));
@@ -159,7 +157,7 @@ struct UnkDefIterValue {
     __attribute__((always_inline)) void* Get() { return state == 2 ? ref : value; }
 };
 
-template <u32 Size, void* (*GetClass)(), u8* Descriptor>
+template <u32 Size, const base::reflection::CClass* (*GetClass)(), u8* Descriptor>
 __attribute__((always_inline)) static inline UnkValue GetDef(UnkArgument<UnkDefIterValue<Size>>* argument) {
     void* def = argument->field_0x8->Get();
     GetClass();

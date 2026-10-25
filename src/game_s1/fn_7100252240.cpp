@@ -3,6 +3,7 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "base/reflection/UnkClassGetters.h"
 #include "game/UnkTUInit.h"
 
 extern UnkTUHeader g_unk_717269fed8 __attribute__((visibility("hidden")));
@@ -21,7 +22,6 @@ extern UnkReflType g_unk_717269f810;
 extern char g_unk_717269f980;
 extern char g_unk_717269f981;
 extern char g_unk_717269f982;
-void fn_710024e3c8();  // CActorComponent::refl_GetClass
 UnkReflType* fn_710023e498();  // base::reflection::refl_GetType<CActorComponent*>
 UnkReflType* fn_710024e644();
 UnkReflType* fn_710024e720();

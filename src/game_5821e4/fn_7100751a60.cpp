@@ -1,5 +1,6 @@
 // Static initialiser of CBreakableScenarioComponent's unit.
 #include "UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -19,9 +20,7 @@ extern void* g_unk_7101a45f90[];
 extern UnkEnumType g_unk_717273e7f0;
 void fn_71004fd2cc(UnkProperty2* p);
 void fn_71004fa3b8(void* p);
-void* fn_7100750d48();  // CCharClassBreakableScenarioComponent::refl_GetClass
 extern char g_unk_71727110d8[];
-void* fn_7100751108();  // CBreakableScenarioComponent::refl_GetClass
 extern char g_unk_71727110d9[];
 
 void fn_7100751a60() {

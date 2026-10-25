@@ -6,6 +6,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "base/reflection/UnkClassGetters.h"
 #include "types.h"
 
 extern "C" [[noreturn]] void __assert_fail(const char* expr, const char* file, int line, const char* func);
@@ -153,7 +154,6 @@ static_assert(sizeof(UnkResDesc) == 0x90, "");
 struct UnkResRegistry;
 extern UnkResRegistry* g_unk_7101d472f8;
 void fn_71000ea29c(UnkResRegistry* registry, UnkResDesc* desc);
-void* fn_71001b122c();  // msapi::res::CRenderRes::refl_GetClass
 UnkPathId fn_7100169c74(const CStrId& name);
 void fn_71001b2e44();
 void fn_71001b2e4c();

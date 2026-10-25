@@ -2,6 +2,7 @@
 // component, stores the tunable fn_7100552e3c picks for it at 0x6b8 and 0x6bc and, when that
 // component's object at +0x10 is a character-class Emmy AI component, sets 0x6c8 to
 // 2 / (the value at 0x120 of the object its slot 0xd8 returns) * the picked value + 2.
+#include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "types.h"
 
@@ -39,8 +40,6 @@ struct UnkSelf {
 };
 
 void fn_710050cd98(UnkSelf* self);
-const CClass* fn_710053b934();  // CEmmyAIComponent::refl_GetClass
-const CClass* fn_710051e010();  // CCharClassEmmyAIComponent::refl_GetClass
 f32 fn_7100552e3c(UnkEmmyAI* ai);
 
 void fn_710050ccc8(UnkSelf* self) {

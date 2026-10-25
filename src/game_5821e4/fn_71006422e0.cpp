@@ -1,5 +1,6 @@
 // Static initialiser of QuetzoaMultiTargetProjectileMovementComponent's unit.
 #include "UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -10,7 +11,6 @@ struct UnkStatics_71006422e0 {
     u8 field_0x28[8];
 };
 extern UnkStatics_71006422e0 g_unk_71726fae00 __attribute__((visibility("hidden")));
-void* fn_71006411c4();  // CQuetzoaMultiTargetProjectileMovementComponent::refl_GetClass
 extern char g_unk_71726fadf8[];
 
 void fn_71006422e0() {

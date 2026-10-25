@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the CCharClassTakumakuAIComponent::ESubspecies enum.
 #include "UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -10,7 +11,6 @@ struct UnkStatics_71006d39c0 {
     u8 field_0x28[8];
 };
 extern UnkStatics_71006d39c0 g_unk_71727099c8 __attribute__((visibility("hidden")));
-void* fn_71006d2174();  // CCharClassTakumakuAIComponent::refl_GetClass
 extern char g_unk_7172709860[];
 extern UnkEnumType g_unk_7172709868;
 void fn_71006d3360(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);

@@ -2,6 +2,7 @@
 // base::global::CRntVector<SLogicSubPath> and others: the header ids, then the unit's own statics
 // and registrations (helpers in UnkStaticInitS7.h). Layouts are placeholders.
 #include "UnkStaticInitS7.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -20,11 +21,8 @@ void fn_710105402c(UnkEnumType* type, const CStrId& name, void*, void*, void (*)
 void fn_7100096604(void* type);  // the type's destructor, as registered
 void fn_7101053e24();
 extern char g_unk_71729fe2b0[];
-void* fn_7101054330();
 extern char g_unk_71729fe2b1[];
-void* fn_7101054c90();
 extern char g_unk_71729fe2b2[];
-void* fn_7101055ef0();
 extern char g_unk_71729fe2b3[];
 extern char g_unk_71729fe2b4[];
 UnkEnumType* fn_71010561fc();

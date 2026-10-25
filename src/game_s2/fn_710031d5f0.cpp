@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the CAbilityMultiLockon::SSubState enum.
 #include "../game_s7/UnkStaticInitS7.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -23,9 +24,7 @@ extern UnkConversion g_unk_71726af868;
 extern UnkConversion g_unk_71726af888;
 void fn_710031d8ac() __attribute__((visibility("hidden")));
 void fn_710031d8b8() __attribute__((visibility("hidden")));
-void* fn_7100316638();  // CAbilityMultiLockon::refl_GetClass
 extern char g_unk_71726af8a8[];
-void* fn_71003169f8();  // CAbilityMultiLockon::CTunableAbilityMultiLockon::refl_GetClass
 extern char g_unk_71726af8a9[];
 extern UnkTunable g_unk_71726af8b0;
 void fn_7100136ecc(UnkTunable* self);  // the base constructor
