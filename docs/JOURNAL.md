@@ -56,6 +56,13 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Status dashboard (2026-10-24, branch `claude/task-status-dashboard-9a819f`).** A private dashboard
+artifact (owner's claude.ai account) shows matching progress for the whole binary and the boot slice,
+a daily trend, status by subsystem, and the phase and workstream tables of this handoff.
+`tools/dashboard_export.py` writes its four datasets to `build/dashboard/` (counts only); refreshing
+it means re-running the script after a merge and uploading the files. Its whole-binary share leaves
+Ghidra's import stubs out, so it reads about 0.1 point above `tools/progress.py` (53.9% vs 53.8%).
+
 **Fifteenth session (2026-10-24, on the PC, branch `claude/strategy-cleanup`): strategy readthrough
 and its changes.** Findings that drove it: 53.8% of game bytes matched, but 9.4 MB of the 10.1 MB is
 generated and only 0.76 MB is hand-typed; the boot path from `nnMain` was 27% matched; hand-written

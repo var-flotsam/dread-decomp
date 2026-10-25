@@ -79,6 +79,7 @@ python tools/check.py --version <ver> [--update] [--no-reloc]  # build src/, der
 python tools/verify.py --version <ver> [--regen gen_statics,...]  # generators + check --update + progress + policy + decl_check (info), ~10 lines
 python tools/objdiff_gen.py --version <ver>      # objdiff targets + objdiff.json
 python tools/progress.py [--slice boot | --slice-from <fn>]  # whole-binary progress (excludes L); the nnMain boot slice
+python tools/dashboard_export.py [--ref HEAD] [--days 30]  # status CSVs for the project dashboard -> build/dashboard/ (refresh: upload them)
 python tools/hubs.py --version <ver> [--boot] [--top N]      # U functions by unmatched callers: what to match next
 python tools/hubs.py --version <ver> --ready [--boot]        # U functions whose callees are all matched; --callers <fn> lists callers
 python tools/decl_check.py [--list | --symbol <name> | --json] [--base <ref> [--strict]]  # fn_/g_unk_ declared in several files or with conflicting signatures; --base enforces (CI)
