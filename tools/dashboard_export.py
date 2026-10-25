@@ -89,8 +89,12 @@ def history(ref: str, days: int) -> list[list]:
     return out
 
 
+def plain(s: str) -> str:
+    return re.sub(r"\*\*|`", "", s).strip()
+
+
 def handoff_table(md: str, heading: str) -> list[list[str]]:
-    """Body rows of the first markdown table after `heading`, with ** and ` removed."""
+    """Body rows of the first markdown table after `heading`, cells as written (markdown kept)."""
     block: list[str] = []
     for line in md.split(heading, 1)[1].splitlines()[1:]:
         if line.startswith("|"):
@@ -99,14 +103,16 @@ def handoff_table(md: str, heading: str) -> list[list[str]]:
             break
     if len(block) < 3:
         raise SystemExit(f"docs/HANDOFF.md: no table under {heading!r}")
-    return [[re.sub(r"\*\*|`", "", c.strip()) for c in line.strip("|").split("|")] for line in block[2:]]
+    return [[c.strip() for c in line.strip("|").split("|")] for line in block[2:]]
 
 
 def phases(md: str) -> list[list]:
     out = []
     for i, (phase, state) in enumerate(handoff_table(md, "## Where things stand"), 1):
-        m = re.match(r"([^.]+)\.\s*(.*)", state)  # "Done. Dump imported ..." -> state, detail
-        out.append([i, phase, *(m.groups() if m else (state, ""))])
+        # the state is the leading bold run: "**Done.** Dump imported ...", "**M0 done** (2026-10-24 ...): ..."
+        m = re.match(r"\*\*(.+?)\*\*\s*(.*)", state)
+        st, detail = (m.group(1).rstrip("."), m.group(2)) if m else (state, "")
+        out.append([i, plain(phase), plain(st), plain(detail)])
     return out
 
 
@@ -133,7 +139,7 @@ def main() -> int:
               history(args.ref, args.days))
     write_csv(args.out / "phases.csv", ["order", "phase", "state", "detail"], phases(md))
     write_csv(args.out / "workstreams.csv", ["stream", "area", "branches"],
-              [[c[0], c[1], c[3]] for c in handoff_table(md, "## Workstreams")])
+              [[plain(c[0]), plain(c[1]), plain(c[3])] for c in handoff_table(md, "## Workstreams")])
 
     head, at = git("log", "-1", "--format=%h %cI", "HEAD").split()
     dirty = bool(git("status", "--porcelain", "--", "data/functions", "docs/HANDOFF.md").strip())
