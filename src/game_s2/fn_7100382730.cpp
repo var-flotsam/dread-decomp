@@ -2,6 +2,7 @@
 // vector and a flag, mostly zero) and hands it to fn_71006f4b0c. With the flag at +0x2c set the
 // direction is the sign of the x offset to the position object; otherwise it is copied from a
 // nested record of the object's component when that has one. Always returns 2.
+#include "game/UnkAIComponent.h"
 #include "game/UnkActor.h"
 #include "game_s2/UnkParams.h"
 #include "types.h"
@@ -20,11 +21,6 @@ struct UnkRecordList {
 
 struct UnkRecordPtr {
     UnkRecordList* field_0x0;
-};
-
-struct UnkQueryObject {
-    u8 pad_0x0[0xb0];
-    UnkRecordPtr* field_0xb0;
 };
 
 struct UnkSelf {
@@ -70,8 +66,6 @@ struct UnkQuery {
     }
 };
 
-UnkQueryObject* fn_71010fccf8(UnkQueryObject* object);
-
 // NON_MATCHING(minor): the two null tests after the query object lookup (the object, the position
 // object) are made in the other order (scheduling only)
 u32 fn_7100382730(UnkSelf* self) {
@@ -79,7 +73,7 @@ u32 fn_7100382730(UnkSelf* self) {
         UnkActor* target = fn_7100d7c990(self->field_0x18);
         UnkActor* owner = self->field_0x18;
         if (owner && owner->field_0x240) {
-            UnkQueryObject* object = fn_71010fccf8(static_cast<UnkQueryObject*>(owner->field_0x240));
+            UnkNavigation* object = fn_71010fccf8(static_cast<UnkAIComponent*>(owner->field_0x240));
             if (target && object) {
                 owner = self->field_0x18;
                 if (owner) {
@@ -90,7 +84,7 @@ u32 fn_7100382730(UnkSelf* self) {
                         query.field_0xc = 0.0f;
                         query.field_0x10 = 0.0f;
                         query.field_0x14 = 1;
-                    } else if (UnkRecordList* list = object->field_0xb0->field_0x0) {
+                    } else if (UnkRecordList* list = static_cast<UnkRecordPtr*>(object->field_0xb0)->field_0x0) {
                         if (UnkRecord* record = list->field_0x10) {
                             if (record->field_0x84) {
                                 u64 xy = record->field_0x78;
