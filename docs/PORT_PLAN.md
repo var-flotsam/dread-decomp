@@ -100,6 +100,27 @@ like everything else, and a port change never edits `src/` matching code in the 
 | M3 | A level loads and plays | Gameplay slice (player, world, characters, physics) runs lifted or matched; collision and animation are correct | month 3 to 4 |
 | M4 | Playable | Audio, saves, cutscenes or a skip; stability over a full session | month 4 and later |
 
+**M0 status (2026-10-24).** The port skeleton is in: `port/CMakeLists.txt` (`dread_game`,
+`dread_runtime`, `dread`, `sweep`), `port/runtime/` with the `nn::` headers the three
+SDK-including sources need (`nn::os` tick and mutex, `nn::oe`, `nn::vi`) and empty skeletons for
+the other namespaces, and `tools/port_sweep.py`, the compile-only sweep (`port/README.md`). With
+Clang 23 for `x86_64-linux-gnu` and the libc++ 9.0.1 and musl headers, the sweep compiles 3,799 of
+the 3,808 `src/` files without the runtime and all 3,808 with it. The only category was
+`sdk header not found` (`<nn/os.h>` through `include/base/UnkDefaultAllocator.h` in 7 files,
+`<nn/os/os_TickTypes.h>` and `<nn/oe.h>`/`<nn/vi.h>` in one each); nothing in `src/lifted`,
+`src/clones` or `src/reflection` failed, and no inline assembly or AArch64-only builtin turned up.
+The build configures on the Windows PC and `dread_runtime` and `dread_game` compile there, but it
+cannot link a Windows executable yet: the PC has LLVM 23 without a Windows SDK or MSVC (the MSVC
+Build Tools, MinGW-w64 or WSL are the options), and a Windows target needs `include/types.h` to
+take `u64`/`s64` from `long long` under `_WIN64` (LLP64), which a separate change does (`Phase
+4.5: types.h: 64-bit Windows hosts get u64/s64 from long long`). The sweep also reads the objects
+back with `llvm-nm`: four frozen Phase 3 samples define a function another source defines
+(`fn_7100227448`, also in `src/reflection/CActor.cpp`, and three `src/lifted` pairs) and are the
+only files `dread_game` leaves out; the other 32 samples (22 `O`) are compiled, and no other
+function is defined twice. What the sweep cannot see is M1's list: callees without a source, and
+data symbols and vtables. The other M0 items (the slice, hub and declaration tools,
+`data/tu_map.csv`) are tracked in `docs/HANDOFF.md`.
+
 This is aggressive. M1 is realistic with focus. M2 depends on shader translation, which is either
 a large dependency or a large project. "Playable in a few months" requires M2 to go well; say so
 when planning, and re-estimate after M1.
