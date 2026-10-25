@@ -119,6 +119,15 @@ def select(files: list[str], symbols: list[str], headers: list[str], report: dec
     return sorted(expand(paths))
 
 
+DIAG_POS = re.compile(r"^(.*?):\d+:\d+: (warning|note): ", re.M)
+
+
+def normalise(output: str) -> str:
+    """A warning's or note's line and column are dropped: removing a declaration above a line
+    moves every diagnostic below it without changing the code it is about."""
+    return DIAG_POS.sub(r"\1: \2: ", output)
+
+
 def trymatch(version: str, path: str) -> str:
     obj_dir = OBJ / Path(path).parent
     cmd = [sys.executable, str(ROOT / "tools" / "trymatch.py"), "--version", version, path, "--obj-dir", str(obj_dir)]
@@ -126,7 +135,7 @@ def trymatch(version: str, path: str) -> str:
     out = r.stdout.replace("\r\n", "\n")
     if r.stderr.strip():
         out += "\n[stderr]\n" + r.stderr.replace("\r\n", "\n")
-    return out + f"\n[exit {r.returncode}]\n"
+    return normalise(out + f"\n[exit {r.returncode}]\n")
 
 
 def run_all(version: str, paths: list[str], jobs: int) -> dict[str, str]:
@@ -179,7 +188,7 @@ def compare(tag: str, paths: list[str], version: str, jobs: int) -> dict[str, tu
         if not o.is_file():
             result[p] = ("NEW", now)
             continue
-        before = o.read_text(encoding="utf-8")
+        before = normalise(o.read_text(encoding="utf-8"))
         if before == now:
             result[p] = ("UNCHANGED", "")
         else:
