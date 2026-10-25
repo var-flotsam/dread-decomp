@@ -309,26 +309,29 @@ count view; `src/game_s7/UnkGuiS7.h` keeps `using UnkClass = CClass` for two inc
 
 The mechanical part of a migration is a tool since 2026-10-25: `tools/hub_migrate.py` removes the
 local declarations, includes the header and keeps only byte-identical files (`tools/baseline.py`
-is the per-file evidence, parallel, with copies to restore from). Its first pass over the symbols a
-header already declared migrated 66 files for 15 symbols in a minute and left 135 declarations in
-85 files, each with its compile error: 75 are `reference to 'UnkTunable'/'UnkProperty' is ambiguous`
-in the static-initialiser units of `src/game_5821e4/` and `src/game_s7/`. Those units use the older
-helper family `unk_static_init::{UnkTunable, UnkProperty, UnkProperty2, InitProperty, InitProperty2,
-InitTunable}` from `src/game_5821e4/UnkStaticInit.h` (and `UnkStaticInitS7.h`) under
-`using namespace unk_static_init;`, while `include/game/UnkTUInit.h` declares the same objects at
-global scope (`UnkPropertyHead`, `UnkProperty`, `UnkPropertyEx<>`, `UnkTunable`, `InitProperty`,
-`InitPropertyEx`, `InitTunable`, `g_unk_71726db788` as `UnkPropertyHead*`), so a unit cannot see
-both. The fix is one hub step, not 75 file edits: make the `src/` headers a thin layer over
-`UnkTUInit.h` (same layouts: `UnkProperty2` is `UnkPropertyEx<0x18>`; `next`/`head` become
-`UnkPropertyHead*`; the helper bodies keep their store order, which is load-bearing) and drop the 21
-local `extern UnkProperty* g_unk_71726db788` declarations in the same step; verify all 195 includers
-with `tools/baseline.py compare --tag tuinit` (the baseline is saved). The other 33 are a
-placeholder parameter type the header's real type rejects (the mutex wrappers
-`fn_71000668f8`/`fn_7100066918`/`fn_710006691c`/`fn_7100066920` with private `UnkMutex_*` types, the
-block free list `fn_710008377c`, the registry string setters `fn_710007e704`/`fn_710007ea60`), the
-rest assignments to `void*`. That list is the next hand batch (`.claude/skills/dread-hubs`), and
-the headers `UnkStaticInit.h` and `UnkSpitSend.h` must keep their copies until their includers are
-done (the tool leaves a header alone when one includer breaks).
+is the per-file evidence, parallel, with copies to restore from). Two passes so far. The first
+(var-flotsam/dread-decomp#190) migrated 66 files for 15 symbols in a minute. The second (branch
+`claude/tuinit-unify`) first moved the symbols both static-initialiser helper families name into
+two small headers they both include: `include/base/reflection/UnkReflTypeDtors.h` (the type
+objects' destructors `fn_7100096604`, `fn_7100099468`, `fn_710009891c`, `fn_710009a368`,
+`fn_710010c424`; `base/UnkCloneHelpers.h` includes it too) and `include/game/UnkTUSymbols.h` (the
+function records `fn_710000cf00`/`fn_710000d470`/`fn_710000d4f4`, `UnkPropertyHead` and the property
+list head `g_unk_71726db788`); `unk_static_init`'s property structs point `next` at
+`UnkPropertyHead` and its helpers take the head as `UnkPropertyHead*&` (pointer retypes only; the
+helper bodies and their store order are untouched, because they are load-bearing). That unblocked
+96 files (the class-type destructor alone was declared locally in 57), all 195 includers of the two
+families byte-identical (`baseline.py`, tag `tuinit`). What the tool leaves now: 50 declarations in
+43 files, each with its compile error on record, nearly all a placeholder parameter type the
+header's real type rejects: the mutex wrappers `fn_71000668f8`/`fn_7100066918`/`fn_710006691c`/
+`fn_7100066920` (private `UnkMutex_*` types), the block free list `fn_710008377c`, the registry
+string setters `fn_710007e704`/`fn_710007ea60`, the allocator getter `fn_7100083990` (`UnkAllocator`
+vs `base::UnkAllocator`), `fn_71000a1c60` (6 files), `fn_710013ac14` (3), `fn_7100a2cb7c` (3, a
+`float` where the definition takes `bool`), and the globals `g_unk_7101a1a4c8` (4),
+`g_unk_7101a209e0` (3), `g_unk_7101a19610` (2). `hub_migrate.py --header-redeclared` prints the
+current list; it is the next hand batch (`.claude/skills/dread-hubs`). The two helper families
+themselves still coexist (`unk_static_init`'s and `UnkTUInit.h`'s near-duplicate `UnkTunable`,
+`UnkProperty`, `InitTunable`, `InitProperty`; the global ones have one caller each), so folding one
+into the other is a later readability step, verified the same way.
 
 **Stream B (core engine types).** Left from the string-id and reflection work: the reflected
 function array's growth (`fn_7100097f80`), the function's constructor and destructor
