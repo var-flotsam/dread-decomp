@@ -1,8 +1,10 @@
 # The PC port build (docs/PORT_PLAN.md, Route B). Targets:
 #   dread_runtime  the port's own nn:: declarations and stubs (runtime/)
 #   dread_game     every source under src/, compiled for the host (compile only at M0)
+#   dread_libs     the vendored libraries main links statically: lib/lua and lib/dlmalloc (as C++)
 #   dread          the executable (main.cpp): the runtime now, the game objects from M1
 #   sweep          tools/port_sweep.py with this build's compiler and target
+#   link_report    tools/port_link.py: the whole-program relocatable link and what is missing
 # Configure from the repository root, for example
 #   cmake -S port -B build/port/cmake -G Ninja
 # port/README.md has the configure line for each platform, including the compile-only one for a
@@ -128,11 +130,22 @@ target_link_libraries(dread_game PUBLIC dread_runtime)
 # Matched code is held to the original's bytes, not to a newer compiler's warnings.
 target_compile_options(dread_game PRIVATE -w)
 
+# The vendored libraries main links statically (status L in data/functions/): all of lib/lua and
+# dlmalloc through mspace.c (the game's settings; it includes malloc.c), compiled as C++ without
+# type-based alias analysis, as the matching build compiles them (tools/buildcfg.py LUA_FLAGS,
+# tools/sigmatch.py). tools/port_link.py compiles the same files for the link report.
+file(GLOB _dread_lua_sources CONFIGURE_DEPENDS "${DREAD_ROOT}/lib/lua/*.c")
+set(_dread_lib_sources ${_dread_lua_sources} "${DREAD_ROOT}/lib/dlmalloc/mspace.c")
+set_source_files_properties(${_dread_lib_sources} PROPERTIES LANGUAGE CXX)
+add_library(dread_libs OBJECT ${_dread_lib_sources})
+target_link_libraries(dread_libs PUBLIC dread_stdlib)
+target_compile_options(dread_libs PRIVATE -fno-strict-aliasing -w)
+
 if(DREAD_LINK)
   add_executable(dread main.cpp)
   target_link_libraries(dread PRIVATE dread_runtime)
   if(DREAD_LINK_GAME)
-    target_link_libraries(dread PRIVATE dread_game)
+    target_link_libraries(dread PRIVATE dread_game dread_libs)
   endif()
 endif()
 

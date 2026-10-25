@@ -2,7 +2,9 @@
 """Link every object of the port into one relocatable file and report what is missing.
 
 Milestone M1 of docs/PORT_PLAN.md starts with the whole-program link: the objects of the compile-only
-sweep (tools/port_sweep.py, build/port/sweep/), linked with `ld.lld -r` into one relocatable object,
+sweep (tools/port_sweep.py, build/port/sweep/) and of the vendored libraries main links statically
+(lib/lua and lib/dlmalloc, compiled here as C++ with buildcfg.LUA_FLAGS, as the matching build and
+tools/sigmatch.py compile them), linked with `ld.lld -r` into one relocatable object,
 build/port/link/dread_game.o. The link succeeds (a duplicate symbol is a real problem and fails the
 run) and leaves a set of undefined symbols, which this tool sorts by what each one needs:
 
@@ -35,8 +37,9 @@ run) and leaves a set of undefined symbols, which this tool sorts by what each o
   STANDARD LIBRARY std::, operator new/delete, __cxa_*, compiler-rt builtins and C names: the host's,
                    even where data/functions/ lists the copy statically linked into main (status L).
                    That includes the L functions reached by address whose CSV name is a C library
-                   or allocation operator name (fn_7100083c00 = operator delete, free, ...): a jump
-                   to the host's function, not a trap.
+                   or allocation operator name (fn_7100083c00 = operator delete, free, ...), and the
+                   ones HOST_BY_ADDRESS lists from the sources (fn_7100000250 = __cxa_atexit): a
+                   jump to the host's function, not a trap.
   NN RUNTIME       nn:: functions called by their real name (the sources that include the SDK
                    headers): the runtime defines them, or has to.
   NAMED WITHOUT ADDRESS  a name that resolves to no address (UnkIdTable::UnkIdTable(), ...): it
@@ -62,7 +65,7 @@ here with the sweep's flags, so the tool does not depend on the CMake build), th
 what the port still has to provide outside this mechanism: vtables, the host's standard library,
 names without an address, runtime stubs not written yet.
 
-Outputs under <out> (default build/port/link/): runtime/*.o, objects.rsp, dread_game.o, aliases.rsp,
+Outputs under <out> (default build/port/link/): runtime/*.o, lib/*.o, objects.rsp, dread_game.o, aliases.rsp,
 traps.s, traps.o, dread_whole.o, boot_missing.csv and link.json (everything the report prints, with
 the full lists). Every output is rebuilt on every run. Exit status 0 unless a link fails (1).
 Standard library plus the project's own tools: port_sweep (flags, sources, own_name), asmdiff
@@ -76,6 +79,7 @@ Usage:
   python tools/port_link.py --version 2.1.0 --objects build/port/sweep --out build/port/link
   python tools/port_link.py --version 2.1.0 --cxx /usr/bin/clang++ --target x86_64-linux-gnu --system-stdlib
   python tools/port_link.py --version 2.1.0 --alias-mismatch     # emit the class_mismatch aliases instead of traps
+  python tools/port_link.py --version 2.1.0 --no-libraries       # without lib/lua and lib/dlmalloc (the first M1 run)
 """
 
 from __future__ import annotations
@@ -103,6 +107,11 @@ ROOT = Path(__file__).resolve().parent.parent
 SAMPLE_DUPLICATES = ROOT / "port" / "sample_duplicates.txt"  # shared with port/CMakeLists.txt
 RUNTIME_SRC = ROOT / "port" / "runtime" / "src"
 RUNTIME_INCLUDE = port_sweep.RUNTIME_INCLUDE
+# The vendored libraries main links statically (status L in data/functions/), as tools/sigmatch.py's
+# LIBRARIES lists them: all of lib/lua (built as C++, as the game builds Lua) and dlmalloc through
+# mspace.c (the game's settings; it includes malloc.c). port/CMakeLists.txt compiles the same files.
+LIBRARY_SOURCES = [*sorted((ROOT / "lib" / "lua").glob("*.c")), ROOT / "lib" / "dlmalloc" / "mspace.c"]
+LIBRARY_FLAGS = ["-x", "c++", *buildcfg.LUA_FLAGS]
 TRAP = "dread_port_missing_function"  # port/runtime/src/missing.cpp, declared in dread_port.h
 MISMATCH_TRAP = "dread_port_mismatched_call"  # same file: a called alias whose argument classes differ
 IMPORT_PREFIX = callgraph.IMPORT_PREFIX
@@ -139,6 +148,8 @@ trunc fabs fmin fmax hypot ldexp frexp modf copysign sincos nan
 pthread_mutex_lock pthread_mutex_unlock pthread_mutex_init pthread_mutex_destroy pthread_self pthread_create
 pthread_join clock_gettime gettimeofday time localtime gmtime mktime nanosleep usleep sleep
 stdin stdout stderr errno environ
+clearerr feof ferror fgets freopen fscanf getc ungetc setvbuf tmpfile tmpnam remove rename system
+clock difftime strftime setlocale localeconv strcoll strcspn strpbrk iscntrl ispunct
 """.split())
 # A status-L function reached by its fn_<addr> name whose CSV name is one of these is the host's
 # too (a jump thunk, as for an import): the allocation operators by their Itanium mangled names
@@ -146,6 +157,11 @@ stdin stdout stderr errno environ
 # operator delete[](void*)), and any C_LIBRARY name as itself.
 HOST_OPERATORS = {"operator new": "_Znwm", "operator new[]": "_Znam",
                   "operator delete": "_ZdlPv", "operator delete[]": "_ZdaPv"}
+# Status-L functions the CSV still names fn_<addr> but the sources identify as a C or C++ runtime
+# function, with the header that says so: the same jump to the host's function.
+HOST_BY_ADDRESS = {
+    0x7100000250: ("__cxa_atexit", "C++"),  # include/base/UnkAtExit.h: every static initialiser registers through it
+}
 PC_RELATIVE = "R_X86_64_PC32"  # a PC-relative reference to a hidden symbol (no GOT)
 # A by-value parameter that goes in an integer register (or is a pointer, reference, array or
 # function pointer). Anything else named by value is an aggregate or enum: its class is unknown
@@ -268,6 +284,21 @@ def compile_runtime(cxx: str, flags: list[str], out_dir: Path) -> list[Path]:
                            encoding="utf-8", errors="replace", cwd=ROOT)
         if r.returncode != 0:
             raise SystemExit(f"runtime: {rel(src)} does not compile:\n{r.stderr}")
+        objs.append(obj)
+    return objs
+
+
+def compile_libraries(cxx: str, flags: list[str], out_dir: Path) -> list[Path]:
+    """The vendored libraries (LIBRARY_SOURCES) with the sweep's flags plus LIBRARY_FLAGS, one object
+    per source, named <library>_<stem>.o."""
+    out_dir.mkdir(parents=True, exist_ok=True)
+    objs = []
+    for src in LIBRARY_SOURCES:
+        obj = out_dir / f"{src.parent.name}_{src.stem}.o"
+        r = subprocess.run([cxx, *flags, *LIBRARY_FLAGS, str(src), "-o", str(obj)], capture_output=True,
+                           text=True, encoding="utf-8", errors="replace", cwd=ROOT)
+        if r.returncode != 0:
+            raise SystemExit(f"library: {rel(src)} does not compile:\n{r.stderr}")
         objs.append(obj)
     return objs
 
@@ -543,9 +574,12 @@ class Link:
 
 def host_symbol(row: dict) -> tuple[str, str]:
     """(host symbol, 'C' or 'C++') when a status-L row's name is the host standard library's
-    (HOST_OPERATORS, C_LIBRARY), else ('', '')."""
+    (HOST_OPERATORS, C_LIBRARY) or its address is in HOST_BY_ADDRESS, else ('', '')."""
     if row["status"] != "L":
         return "", ""
+    by_address = HOST_BY_ADDRESS.get(int(row["address"], 16))
+    if by_address:
+        return by_address
     name = row["name"]
     if name in HOST_OPERATORS:
         return HOST_OPERATORS[name], "C++"
@@ -862,6 +896,8 @@ def main() -> int:
     ap.add_argument("--examples", type=int, default=3, help="examples printed per class (default 3)")
     ap.add_argument("--alias-mismatch", action="store_true",
                     help="emit the --defsym for a called alias whose argument classes differ (default: a trap at the call)")
+    ap.add_argument("--no-libraries", action="store_true",
+                    help="leave lib/lua and lib/dlmalloc out of the link (their status-L functions become missing)")
     args = ap.parse_args()
 
     cxx = args.cxx or port_sweep.host_cxx()
@@ -878,21 +914,24 @@ def main() -> int:
     print(f"port link: target {target}, {port_sweep.compiler_version(cxx)}, {Path(lld).name}, {Path(nm).name}"
           + (f", {Path(objdump).name}" if objdump else ", no llvm-objdump (calls and address takes not told apart)"))
 
-    # a. the runtime, compiled as the sweep compiles, and the sweep's objects
+    # a. the runtime, compiled as the sweep compiles, the vendored libraries and the sweep's objects
     runtime_objs = compile_runtime(cxx, flags, out / "runtime")
+    lib_objs = [] if args.no_libraries else compile_libraries(cxx, flags, out / "lib")
     objs, missing_objs, skipped = collect_objects(Path(args.objects), read_sample_duplicates())
     if not objs:
         raise SystemExit(f"no objects under {rel(Path(args.objects))}: run tools/port_sweep.py --version {args.version} first")
     print(f"objects: {len(objs)} from {rel(Path(args.objects))}, {len(skipped)} sample duplicates left out"
-          f" ({rel(SAMPLE_DUPLICATES)}), {len(runtime_objs)} runtime objects compiled to {rel(out / 'runtime')}")
+          f" ({rel(SAMPLE_DUPLICATES)}), {len(runtime_objs)} runtime objects compiled to {rel(out / 'runtime')}, "
+          + (f"{len(lib_objs)} library objects (lib/lua, lib/dlmalloc) compiled to {rel(out / 'lib')}" if lib_objs
+             else "no library objects (--no-libraries)"))
     if missing_objs:
         print(f"  {len(missing_objs)} sources have no object (the sweep must run first; continuing without them):")
         for m in missing_objs[:10]:
             print(f"    {m}")
 
-    # b. the relocatable link of the game
+    # b. the relocatable link of the game (the libraries are part of it: main links them statically)
     objects_rsp = out / "objects.rsp"
-    write_rsp(objects_rsp, [quote(o) for o in objs])
+    write_rsp(objects_rsp, [quote(o) for o in [*objs, *lib_objs]])
     game_o = out / "dread_game.o"
     r, dt1 = link(lld, game_o, [f"@{objects_rsp.as_posix()}"])
     if r.returncode != 0:
@@ -981,8 +1020,9 @@ def main() -> int:
         "tools": {"cxx": cxx, "lld": lld, "nm": nm, "objdump": objdump, "cxxfilt": asmdiff.cxxfilt()},
         "flags": flags, "out": rel(out),
         "inputs": {"objects": len(objs), "objects_dir": rel(Path(args.objects)), "sources_without_object": missing_objs,
-                   "sample_duplicates": skipped, "runtime_objects": [rel(o) for o in runtime_objs]},
-        "options": {"alias_mismatch": args.alias_mismatch},
+                   "sample_duplicates": skipped, "runtime_objects": [rel(o) for o in runtime_objs],
+                   "library_objects": [rel(o) for o in lib_objs], "library_flags": LIBRARY_FLAGS},
+        "options": {"alias_mismatch": args.alias_mismatch, "no_libraries": args.no_libraries},
         "link1": {"output": rel(game_o), "bytes": game_o.stat().st_size, "seconds": round(dt1, 2),
                   "defined_entries": lk.defined_entries, "defined_names": len(lk.defined_symbols),
                   "undefined": len(lk.undefined)},
