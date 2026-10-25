@@ -6,7 +6,7 @@ it needs). History, batch logs and the index of matching findings are in `docs/J
 `docs/recon.md` describes the binary, `docs/compiler.md` the toolchain, `docs/references.md` the
 outside projects. This page is edited in place, never appended to: session notes go to the journal.
 
-**Last updated 2026-10-24** (branch `claude/strategy-cleanup`, after the strategy readthrough).
+**Last updated 2026-10-25** (branch `claude/lifter-semantic-coverage-225e8f`, port M1 step 3: semantic lifts).
 Target: **Metroid Dread 2.1.0**, `main` build ID `646761F643AFEBB379EDD5E6A5151AF2CEF93DC1`.
 
 ## Where things stand
@@ -21,7 +21,7 @@ Target: **Metroid Dread 2.1.0**, `main` build ID `646761F643AFEBB379EDD5E6A5151A
 | Generators: lifted, statics, clones, tables | **In maintenance.** `src/lifted/` 46,380 functions; `src/reflection_statics/`, `src/clones/`, `src/tables/`. The lifter is at its limit for byte-identical output (see the journal); no new variant rounds |
 | 4.4 Core engine types and hand matching | **In progress.** String ids and pool, `UnkVector`, CRC64, allocator getter, reflected-function array; hand slices in `src/game_*/` (0.76 MB typed) |
 | 4.5 Boot to title screen | **Measured, not started as a slice.** 4,441 functions reachable from `nnMain` by direct calls; see the table below |
-| Port | **M0 done** (var-flotsam/dread-decomp#183): `tools/port_sweep.py` compiles all 3,808 `src/` files for x86-64 once `port/runtime/include` stands in for the SDK headers; `port/` CMake project with `dread_game`, `dread_runtime` (our own `nn::` declarations and stubs) and the banner executable. **M1 steps 1 and 2 done** (2026-10-25, var-flotsam/dread-decomp#186 and the vendored-libraries step): `tools/port_link.py` links the whole program, Lua and dlmalloc included, relocatably and lists what is missing (2,157 boot-slice functions without a source). No executable on this PC (no Windows SDK or WSL) |
+| Port | **M0 done** (var-flotsam/dread-decomp#183): `tools/port_sweep.py` compiles all 3,808 `src/` files for x86-64 once `port/runtime/include` stands in for the SDK headers; `port/` CMake project with `dread_game`, `dread_runtime` (our own `nn::` declarations and stubs) and the banner executable. **M1 steps 1 and 2 done** (2026-10-25, var-flotsam/dread-decomp#186 and the vendored-libraries step): `tools/port_link.py` links the whole program, Lua and dlmalloc included, relocatably and lists what is missing (2,157 boot-slice functions without a source). **M1 step 3 done** (2026-10-25): `tools/port_lift.py` gives 1,777 of the slice's 2,148 `U` functions a semantic lift checked by a P-code oracle (`build/port/lifted/`, never `src/`); with them 380 slice functions are left without a source. No executable on this PC (no Windows SDK or WSL) |
 
 Numbers from `tools/progress.py` and `tools/progress.py --slice boot` on 2026-10-25 (hub batch 2,
 var-flotsam/dread-decomp#187):
@@ -55,7 +55,8 @@ at high confidence; 11,656 `U` functions (6.0 MB) sit in a unit with a reflected
 5. **Files by unit, not by address slice**: `tools/tu_map.py --function <addr>` names the unit;
    new files go under `src/<subsystem>/`; no new `src/game_<addr>/` directories.
 6. **Generators are in maintenance**; the only generator work left that pays is the lifter's
-   coverage mode for the port (Route B in `docs/PORT_PLAN.md`), if the owner chooses it.
+   semantic mode for the port (Route B in `docs/PORT_PLAN.md`), which exists since 2026-10-25
+   (`tools/port_lift.py`) and grows by closing its gaps.
 7. **Logs go to `docs/JOURNAL.md`**; this page stays short. Bigger PRs (a hub cluster or about
    30 functions); the self-hosted check job replaces reading every diff (`docs/maintaining.md`).
 
@@ -323,15 +324,25 @@ build (`dread_libs`), and `fn_7100000250` (`__cxa_atexit`) jumps to the host's. 
 batch 2 the boot slice's 4,211 game functions are 1,109 defined, 941 reached through an alias only,
 4 the host's and **2,157 without a source** (1.24 MB; 2,148 `U`, 8 `L`, one `O`), listed by
 callers in `build/port/link/boot_missing.csv`, the lifter's coverage worklist. The residue is 375
-(the 304 above plus Lua's C library calls). Next for M1, in order: the lifter's semantic coverage
-mode over `boot_missing.csv` (stream M); `nn::` stubs in call order (`nn::os` 16 and `nn::oe` 1 still
+(the 304 above plus Lua's C library calls). M1 step 3 is done (2026-10-25): `tools/port_lift.py`
+lifts the slice's `U` functions in `gen_lift`'s semantic mode and accepts a lift when Ghidra-P-code
+execution of it and of the original agree (`tools/pcode_emu.py`, oracle (b); design and limits in
+`docs/PORT_PLAN.md`, usage in `port/README.md`). 1,777 of 2,148 pass (839 KB); with
+`tools/port_link.py --lifted build/port/lifted` the slice has **380 functions without a source**
+(399 KB), listed in `boot_unlifted.csv`. The oracle covers a median 67% of an original's
+instructions, so the next lifter work is coverage (more inputs) and its gaps: `adds`/`ands` carry
+conditions (42), jump tables (37), float-argument mismatches the oracle reports (31). Next for M1,
+in order: `nn::` stubs in call order (`nn::os` 16 and `nn::oe` 1 still
 needed, then `nn::fs`, `nn::hid`, `movie`, `nv`); the data loader that maps the dump's segments at
 their original addresses (5,467 data symbols are referenced PC-relatively, so the image must sit
 within 2 GB of `0x7100000000`). Producing an executable needs WSL or the MSVC Build Tools.
 
-**Stream M (generators).** The bugs above, `--prune`/regeneration after merges, and the lifter's
-semantic coverage mode for Route B (accept lifts that compile and behave, outside `src/`, never
-counted as matching; the oracle options are in the plan). Open leftovers of every generator round
+**Stream M (generators).** The bugs above and `--prune`/regeneration after merges. The lifter's
+semantic mode exists (`opts={"semantic"}`, driven by `tools/port_lift.py`; byte mode is unchanged,
+checked text for text on 4,000 candidates): its gaps are listed under stream D. A `src/lifted/`
+concern it surfaced for the port: byte-identical lifts can rely on argument registers a call does
+not name (the AArch64 bytes are the same, an x86-64 compile is not bound to them), and the
+`lift_guard` helpers construct statics of their own with a constructor that has no address. Open leftovers of every generator round
 are recorded in `docs/JOURNAL.md` (work log items 0–3).
 
 ## Known issues and gotchas

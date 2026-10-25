@@ -52,6 +52,7 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 **Lifter and generators**
 - Alias, sort and copy rewrite rounds; "the generic lifter is near its limit": work log item 1.
+- Semantic mode and its P-code oracle; four flat-mode bugs byte identity hid; the oracle's reach (mutation test): [port M1 step 3](#session-log-newest-first).
 - Parallel agents in one checkout: file-disjoint steps, `trymatch.py --obj-dir`, one `check.py` at the end: [sixteenth session](#session-log-newest-first).
 
 **Declarations and calling conventions**
@@ -61,6 +62,29 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - Clone kinds and the census method; families tried and left: work log items 0 and 2.
 
 ## Session log (newest first)
+
+**Port M1 step 3 (2026-10-25, branch `claude/lifter-semantic-coverage-225e8f`): semantic lifts.**
+`tools/port_lift.py` gives the boot slice's `U` functions a source that behaves like the original:
+`gen_lift`'s lifters in semantic mode, every variant compiled for AArch64, and the first one whose
+behaviour agrees with the original's under Ghidra P-code execution (`tools/ghidra/pcode.py`,
+`tools/pcode_emu.py`) compiled for x86-64 into `build/port/lifted/` (gitignored, a manifest with the
+generator's version and source hashes; open decision 2 keeps its default). `tools/abi_facts.py`
+supplies callee argument registers (with their width) and whether callers use a result.
+`tools/port_link.py --lifted` links the lifts and reports the slice with and without them. Result:
+1,777 of 2,148 accepted (839,396 bytes); slice functions without a source 2,157 to 380. The existing
+lifter already compiled 1,550 of the 2,148, it only lacked a way to accept them; `x8`-result calls
+(C++17 copy elision into the caller's slot), guards and exclusives as atomics, `ccmp`/`ccmn` and a
+dozen instructions brought the compiled count to 1,957. Findings: the oracle exposed four flat-mode
+lifter bugs that byte identity hides (a compare reading a register its own `subs` rewrote, a
+post-indexed access using the updated base, a 64-bit read cast to the type of a write elsewhere,
+callee-saved spills into the locals dropped as frame saves); its own false alarms came from scratch
+registers (only the original's argument registers count), indirect-call targets, recursion, frame
+layout (a stack argument compares the object both sides wrote, stack addresses as equal) and
+32-bit arguments (low half only, from `abi_facts`' width). A mutation test shows its reach: 45% of
+300 injected faults rejected, 79% where the inputs ran the whole function; coverage is the limit
+(median 67%). Ghidra parses instruction words in memory with no project, 100 instructions in 40 ms;
+`tools/ghidra/` must never be importable as `ghidra` next to the Java packages, so the extractor runs
+as its own process.
 
 **Port M1 step 2 (2026-10-25, branch `claude/port-libs`): the vendored libraries in the link.**
 `tools/port_link.py` compiles `lib/lua` (all 29 files) and `lib/dlmalloc/mspace.c` as C++ with

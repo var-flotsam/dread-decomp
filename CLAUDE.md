@@ -89,6 +89,9 @@ python tools/ghidra/decompile.py --version <ver> <addr|name>...    # read Ghidra
 python tools/policy_check.py [--base <ref>]      # content rules (also run by CI on every PR)
 python tools/port_sweep.py --version <ver>       # port: compile every src/ file for x86-64 (compile only) -> build/port/sweep/
 python tools/port_link.py --version <ver>        # port: whole-program relocatable link of the sweep objects, undefined-symbol report, boot_missing.csv -> build/port/link/
+python tools/port_lift.py --version <ver> [--top N | --only ADDR,...] [--debug ADDR] [--mutants N]  # port: semantic lifts of boot_missing.csv's U functions, checked by the P-code oracle -> build/port/lifted/ (never src/)
+python tools/port_link.py --version <ver> --lifted build/port/lifted   # the link with the semantic lifts: boot slice with and without them
+python tools/abi_facts.py --version <ver> ADDR...  # argument registers a function reads, whether callers use its result (semantic lifts, oracle)
 ```
 
 Target version: **2.1.0** (update v327680). The `main` NSO build ID is

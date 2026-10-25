@@ -31,7 +31,7 @@ before vendoring anything.
 | Project | Version | Used for | License |
 |---|---|---|---|
 | [randovania/mercury-engine-data-structures](https://github.com/randovania/mercury-engine-data-structures) (MEDS) | 0.36.2 (PyPI) | Dread type names and hierarchy, property names, `files.toc` / `.pkg` parsing, asset-ID hashing | MIT |
-| [NationalSecurityAgency/ghidra](https://github.com/NationalSecurityAgency/ghidra) | 12.1.4 (release zip, SHA-256 checked) | Headless auto-analysis and exports | Apache-2.0 |
+| [NationalSecurityAgency/ghidra](https://github.com/NationalSecurityAgency/ghidra) | 12.1.4 (release zip, SHA-256 checked) | Headless auto-analysis and exports; its AArch64 SLEIGH specification gives the raw P-code the semantic-lift oracle executes (`tools/ghidra/pcode.py`, `tools/pcode_emu.py`) | Apache-2.0 |
 | PyGhidra | 3.1.0 (wheel bundled with Ghidra, installed offline) | Driving Ghidra from Python | Apache-2.0 |
 | [llvm/llvm-project](https://github.com/llvm/llvm-project) | 23.1.3 (winget; `llvm-readobj`, `llvm-objdump`, `llvm-cxxfilt`) | Inspection and demangling | Apache-2.0 with LLVM exception |
 | LLVM releases 7.1.0+ ([GitHub releases](https://github.com/llvm/llvm-project/releases)) and 4.0.1, 6.0.1, 7.0.1, 9.0.0 ([releases.llvm.org](https://releases.llvm.org/)): 4.0.1, 6.0.1, 7.0.1, 8.0.1, 9.0.0, 9.0.1, 10.0.0, 11.1.0, 12.0.1 | pinned in `data/toolchains.json` | Compiler candidates; **9.0.1 is the project toolchain** (9.0.0 is identical) | Apache-2.0 with LLVM exception (4.0.1–7.0.1: UIUC) |
@@ -40,7 +40,7 @@ before vendoring anything.
 | [libc++ 9.0.1 headers](https://github.com/llvm/llvm-project/releases/tag/llvmorg-9.0.1) (`libcxx-9.0.1.src`) | pinned in `data/sources.json`, kept outside the repo | C++ standard library headers for the build (Nintendo's SDK also ships libc++) | Apache-2.0 with LLVM exception |
 | [libc++ `std::__sort`](https://github.com/llvm/llvm-project/blob/llvmorg-9.0.1/libcxx/include/algorithm) (`libcxx/include/algorithm`, `llvmorg-9.0.1`) | adapted copy vendored in `lib/libcxx/` (owner-approved, 2026-10-22; changes in its README) | Body of the game's `std::__sort` instantiation (`fn_710117c430`) | Apache-2.0 with LLVM exception |
 | [dlmalloc 2.8.4](https://gee.cs.oswego.edu/pub/misc/malloc-2.8.4.c) (Doug Lea), fetched from the [DenizThatMenace/dlmalloc](https://github.com/DenizThatMenace/dlmalloc) mirror of every release at commit `c48293b6` (the author's site is blocked here) | vendored unmodified in `lib/dlmalloc/` (owner-approved, 2026-10-22), sha256 pinned in `data/sources.json` | The game's sub-allocator heaps: mspaces built without locks or system memory (`lib/dlmalloc/README.md`); named by `tools/sigmatch.py --library dlmalloc` | Public domain (CC0) |
-| [capstone-engine/capstone](https://github.com/capstone-engine/capstone) | 5.0.9 (PyPI) | AArch64 disassembly in tools | BSD |
+| [capstone-engine/capstone](https://github.com/capstone-engine/capstone) | 5.0.9 (PyPI) | AArch64 disassembly in tools; register liveness for `tools/abi_facts.py` | BSD |
 | [eliben/pyelftools](https://github.com/eliben/pyelftools) | 0.33 | Reading compiled objects | Public domain |
 | [python-lz4/python-lz4](https://github.com/python-lz4/python-lz4) | 4.4.5 | NSO segment decompression | BSD |
 | Python 3.12, Temurin JDK 21, CMake 4.4, Ninja 1.13, 7-Zip | winget | Toolchain | various |

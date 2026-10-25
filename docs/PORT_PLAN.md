@@ -156,6 +156,54 @@ boot slice's functions without a definition drop from 2,276 to **2,157 (1,238,54
 Next: the lifter's coverage mode over `boot_missing.csv`, the runtime stubs and the data loader, as
 above.
 
+**M1 step 3 (2026-10-25): the lifter's semantic coverage mode.** Design, as built:
+
+- *Approach.* `tools/port_lift.py` runs `gen_lift`'s lifters with `opts={"semantic"}` over the `U`
+  rows of `boot_missing.csv`. Semantic mode changes only what byte identity used to vouch for: a
+  direct call names every argument register its callee reads (`tools/abi_facts.py`, liveness over
+  the callee's instructions), a callee that returns through `x8` gets its result placed by C++17
+  copy elision, string literals stay the game's addresses, `ldarb` guards and exclusive
+  load/store pairs are lifted as atomics instead of `lift_guard` helpers (whose constructor has no
+  address), carry and overflow conditions after `adds`/`ands` are refused, division and shifts
+  follow AArch64, and flat mode keeps the values a pending compare or a writeback reads, never
+  narrows a 64-bit read to the type of the last write in address order, and lifts spills of
+  callee-saved registers into the locals (only the prologue's slots are frame bookkeeping).
+  Byte mode is untouched: on 4,000 sampled candidates every attempt is identical, text for text.
+- *Oracle (b).* `tools/pcode_emu.py` runs the original instructions and each compiled variant
+  (AArch64, the project compiler, `-fno-strict-aliasing -fwrapv -fno-delete-null-pointer-checks`)
+  as raw P-code from Ghidra's AArch64 specification (`tools/ghidra/pcode.py`, an in-memory parse,
+  no project lock), so the lifter never decides what an instruction means. Inputs are seeded:
+  registers and memory words drawn from five profiles (zero-, pointer- and small-integer-heavy,
+  and the function's own constants), more seeds while they reach new instructions. Callees are not
+  run: each call is recorded with the argument registers the callee reads (only the low 32 bits of
+  one it reads as `w<n>`), returns a value derived from its position, clobbers the caller-saved
+  registers and writes a pattern through stack pointer arguments. A variant is accepted when its
+  calls, its writes outside its own frame and its result agree with the original's on every
+  conclusive input. `--mutants N` measures the oracle itself by injecting one-point faults into
+  accepted lifts.
+- *Oracle (c).* Not runnable on this PC (no executable). Every generated x86-64 source opens its
+  function with `DREAD_PORT_LIFTED(<address>)`, empty by default, so a boot can log which lifts
+  ran once one exists.
+- *Layout (open decision 2, default kept).* `build/port/lifted/`: `src/fn_<addr>.cpp`,
+  `obj/fn_<addr>.o` (x86-64, `tools/port_sweep.py`'s compiler and flags) and `manifest.json` (the
+  generator version, the blob hashes of its five sources, every function's outcome, inputs and
+  coverage). Nothing enters `src/`; `tools/check.py` and `tools/progress.py` never see a semantic
+  lift. `tools/port_link.py --lifted build/port/lifted` links them (leaving out any address the
+  sources now define) and reports the boot slice with and without them.
+- *Result.* On `main` after hub batch 2: of the slice's 2,148 `U` functions, 1,966 lift, 1,957
+  compile and **1,777 pass the oracle (839,396 bytes)**; 157 are rejected by it, 23 are
+  inconclusive, the rest are lifter gaps (`adds`/`ands` carry conditions 42, jump tables 37, stack
+  arguments 21, ...). With them the slice's functions without a source drop from 2,157 to **380
+  (399,148 bytes)** (`tools/port_link.py --lifted`); the residue grows by three C library names.
+  The run takes about 40 minutes on the PC (8 oracle processes).
+- *Limits.* Seeded inputs reach a median of 67% of an original's instructions (446 of the accepted
+  lifts are covered completely, 623 below half). The mutation test (300 one-point faults) is
+  rejected 45% of the time overall and 79% on completely covered functions, so a lift means
+  "agrees wherever the inputs went", not proved; the manifest keeps each lift's coverage. Floating-point results compare bit for bit on
+  AArch64; x86-64 without FMA rounds fused multiply-adds differently, and out-of-range float to
+  integer conversions differ. A function pointer argument whose callee is unknown is compared by
+  `x0` and the registers set for it; a callee's float argument width is not known (`f32` assumed).
+
 This is aggressive. M1 is realistic with focus. M2 depends on shader translation, which is either
 a large dependency or a large project. "Playable in a few months" requires M2 to go well; say so
 when planning, and re-estimate after M1.
@@ -179,7 +227,9 @@ when planning, and re-estimate after M1.
 1. ~~Route B or Route A.~~ Route B, decided 2026-10-24 (above).
 2. Where semantic lifts live and whether they are tracked (they are our tool's output, no game
    bytes, but large; the 1 MB file limit and reviewability argue for generated-and-gitignored with
-   a pinned generator version, like `build/`).
+   a pinned generator version, like `build/`). Since M1 step 3 they are generated into
+   `build/port/lifted/` with the generator's version and source hashes in its manifest; tracking
+   them (for example as `port/lifted/`) stays the owner's call.
 3. Graphics backend (Vulkan is the natural target for an NVN shim) and the shader translator
    (write, or depend on an emulator's; license check first).
 4. `nn::atk`: lift it for the port (keeps "not decompiled") or replace it.
