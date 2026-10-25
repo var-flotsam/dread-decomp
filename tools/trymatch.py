@@ -7,7 +7,8 @@ maps to an original address. Symbols map the same way as in check.py: `fn_<addr>
 name, or a unique demangled name from data/functions/. Nothing in data/ is updated; run
 check.py for that.
 
-The object goes to build/trymatch/<version>/<name>.o, never next to the source.
+The object goes to build/trymatch/<version>/<name>.o (or under --obj-dir, so that parallel runs on
+different sources keep their objects apart), never next to the source.
 
 Relocation targets are checked as in check.py: a function that matches byte-for-byte also
 has to name the original's callees, globals and GOT slots, or it gets a `RELOC` line under
@@ -41,11 +42,12 @@ def main() -> int:
     ap.add_argument("source", type=Path)
     ap.add_argument("-v", "--verbose", action="store_true", help="print side-by-side disassembly of mismatches")
     ap.add_argument("--no-reloc", action="store_true", help="skip the relocation target check")
+    ap.add_argument("--obj-dir", type=Path, help="where the object goes (default build/trymatch/<version>/)")
     ap.add_argument("flags", nargs="*", help="extra compiler flags (after --)")
     args = ap.parse_args()
 
     src = args.source.resolve()
-    obj = ROOT / "build" / "trymatch" / args.version / (src.stem + ".o")
+    obj = (args.obj_dir or ROOT / "build" / "trymatch" / args.version) / (src.stem + ".o")
     obj.parent.mkdir(parents=True, exist_ok=True)
     r = subprocess.run(buildcfg.cxx_command(src, obj, args.flags), capture_output=True, text=True)
     if r.returncode != 0:
