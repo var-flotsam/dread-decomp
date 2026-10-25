@@ -10,15 +10,13 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflCast.h"
 #include "UnkHandleS7.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using base::global::CFilePathStrId;
 using base::global::CStrId;
 using base::global::UnkStrIdInline;
 using base::reflection::CClass;
 using namespace unk_handle;
-
-const CClass* fn_71011d7b84();  // GUI::CDisplayObjectContainer::refl_GetClass
-const CClass* fn_71011e8dfc();  // GUI::CLabel::refl_GetClass
 
 struct UnkGuiObj_71011dfeb0 {
     virtual const CClass* GetClass();

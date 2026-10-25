@@ -2,6 +2,7 @@
 // AI component (null otherwise) and registers three embedded entries in the list at 0x161c, each
 // one initialised from its own fixed offset into that component. Returns bit 0 of the first
 // step's result.
+#include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "types.h"
 
@@ -30,7 +31,6 @@ struct UnkSelf {
 };
 
 u32 fn_71003ac8f4(UnkSelf* self);
-const CClass* fn_7100496fbc();  // CCharClassChozoWarriorAIComponent::refl_GetClass
 void fn_7100494c30(void* entry, u8* source);
 void fn_7100495474(void* entry, u8* source);
 void fn_710049418c(void* entry, u8* source);

@@ -2,18 +2,13 @@
 // object; otherwise, over the registered objects other than this one (looked up by key through the
 // global at 0x7101d47310), true for one at nearly the same height (within 10) whose x lies between
 // the two.
+#include "game/UnkActor.h"
+#include "game/UnkGameManager.h"
 #include "types.h"
-
-struct UnkBody {
-    u8 pad_0x0[0x44];
-    f32 field_0x44;
-    u8 pad_0x48[0xc];
-    f32 field_0x54;
-};
 
 struct UnkEntity {
     u8 pad_0x0[0x30];
-    UnkBody* field_0x30;
+    UnkActor* field_0x30;
 };
 
 struct UnkEntry {
@@ -29,16 +24,13 @@ struct UnkEntryList {
     UnkEntry** end() { return data + count; }
 };
 
-struct UnkManager;
-extern UnkManager* g_unk_7101d47310;
 extern char g_unk_71726cca00[] __attribute__((visibility("hidden")));
-UnkBody* fn_7100d7c990(UnkBody* object);
-UnkEntryList* fn_7100de94cc(UnkManager* manager, const void* key);
+UnkEntryList* fn_7100de94cc(UnkGameManager* manager, const void* key);
 
 // NON_MATCHING(minor): the height band test (+-10) is a conditional-compare chain with its two operands
 // swapped, and the two constants are materialised in the other order
 bool fn_71004744a4(UnkEntity* self) {
-    UnkBody* target = fn_7100d7c990(self->field_0x30);
+    UnkActor* target = fn_7100d7c990(self->field_0x30);
     if (!target)
         return false;
     UnkEntryList* list = fn_7100de94cc(g_unk_7101d47310, g_unk_71726cca00);
@@ -46,7 +38,7 @@ bool fn_71004744a4(UnkEntity* self) {
         UnkEntity* other = entry ? entry->field_0x10 : nullptr;
         if (other == self)
             continue;
-        UnkBody* me = self->field_0x30;
+        UnkActor* me = self->field_0x30;
         f32 my_y = me->field_0x54;
         f32 other_y = other->field_0x30->field_0x54;
         f32 lo = my_y + -10.0f;

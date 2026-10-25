@@ -1,18 +1,17 @@
 // Static initialiser: constructs two string-id globals in place (registering their destructors
 // with atexit), then registers 1 class: "EExecutionReturnValue".
+#include <new>
+
+#include "base/UnkAtExit.h"
 #include "base/global/CStrId.h"
+#include "base/reflection/UnkReflAttributes.h"
 
 #define HIDDEN __attribute__((visibility("hidden")))
-
-inline void* operator new(unsigned long, void* p) { return p; }
 
 using base::global::CStrId;
 
 extern CStrId g_unk_7101d5bdb0[2] HIDDEN;
-extern u8 g_unk_7101a19000 HIDDEN;  // __dso_handle
 void fn_710000051c(void*);
-int fn_7100000250(void (*)(void*), void*, void*);
-void fn_710009ec00(void* registry, void* obj);
 extern u8 g_unk_7101d5b720[];
 extern u8 g_unk_7101d5b838[];
 void fn_7100099468(void*);

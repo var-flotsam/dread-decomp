@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the CCentralUnitCannonAIComponent::EState.
 #include "../game_s7/UnkStaticInitS7.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -12,7 +13,6 @@ struct UnkStatics_71003fe930 {
     u8 field_0x80[8];
 };
 extern UnkStatics_71003fe930 g_unk_71726c30e0 __attribute__((visibility("hidden")));
-void* fn_71003fafa0();  // CCentralUnitCannonAIComponent::refl_GetClass
 extern char g_unk_71726c2f78[];
 extern UnkEnumType g_unk_71726c2f80;
 void fn_71003fb528(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);

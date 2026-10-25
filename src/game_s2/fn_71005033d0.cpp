@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the reflected types.
 #include "../game_s7/UnkStaticInitS7.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -18,7 +19,6 @@ struct UnkStatics_71005033d0 {
 };
 extern UnkStatics_71005033d0 g_unk_71726ddc28 __attribute__((visibility("hidden")));
 extern char g_unk_71726ddc20[];
-void* fn_71005022a4();  // CEmmyWaveMovementComponent::refl_GetClass
 
 void fn_71005033d0() {
     InitHeaderIds(&g_unk_71726ddc28.ids);

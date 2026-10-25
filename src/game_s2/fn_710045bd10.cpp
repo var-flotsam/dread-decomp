@@ -2,7 +2,9 @@
 // commander's stage defines: when the commander is found and is of the right class, each axis is
 // moved to stay a margin (25 plus the component's value at 0x5dc) away from the area's edge.
 #include "base/math/CVector.h"
+#include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkActor.h"
 #include "types.h"
 
 using base::math::CVector3D;
@@ -43,15 +45,12 @@ struct UnkCommanderHolder {
 
 struct UnkClamper {
     u8 pad_0x0[0x30];
-    UnkTargetPos* field_0x30;
+    UnkActor* field_0x30;
     u8 pad_0x38[0x1f8];
     UnkCommanderHolder* field_0x230;
     u8 pad_0x238[0x3a4];
     f32 field_0x5dc;
 };
-
-UnkTargetPos* fn_7100d7c990(UnkTargetPos* object);
-const CClass* fn_710044e708();  // CChozoCommanderAIComponent::refl_GetClass
 
 union UnkBits {
     u32 u;
@@ -69,7 +68,7 @@ struct UnkVec3Bits {
 };
 
 UnkVec3Bits fn_710045bd10(UnkClamper* self) {
-    UnkTargetPos* target = fn_7100d7c990(self->field_0x30);
+    UnkTargetPos* target = reinterpret_cast<UnkTargetPos*>(fn_7100d7c990(self->field_0x30));
     UnkVec3Bits result(target->field_0x44, target->field_0x54, target->field_0x64);
     if (!self->field_0x230 || !self->field_0x230->field_0x10)
         return result;

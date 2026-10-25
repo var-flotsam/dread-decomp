@@ -4,7 +4,9 @@
 // main menu is active) or, for screens set up once, reports whether it was found.
 #include "base/global/CRntString.h"
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkGameManager.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -39,14 +41,12 @@ struct UnkMenuScreen {
 };
 
 extern void* g_unk_717271e8f8;
-extern void* g_unk_7101d47310;
 UnkGuiHandle fn_71011b69d8(void* registry, const CRntString& name);
 void fn_71011cdce8(void* composition, s32 value);
 void fn_71011cf2a4(void* composition, s32 value);
 void fn_71011cf364(void* composition, s32 value);
 void fn_71011cde44(void* composition, s32 value);
-UnkReflObject* fn_7100e033a8(void* manager);
-const CClass* fn_7100b34230();  // GUI::CMainMenu::refl_GetClass
+UnkReflObject* fn_7100e033a8(UnkGameManager* manager);
 void fn_71011d968c(UnkReflObject* menu, void* composition);
 
 static inline void CallVf78(void* composition, s32 a, bool b) {

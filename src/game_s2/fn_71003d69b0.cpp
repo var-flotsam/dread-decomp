@@ -2,6 +2,7 @@
 // it is cleared and, unless the state at 0x50 is already 5, the autsniper switches to state 5:
 // its AI component (when it is one) gets the flag at 0x27248, the component's byte at 0x179d is
 // cleared, the counter at 0x9c is reset and the three follow-up steps run.
+#include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "types.h"
 
@@ -35,7 +36,6 @@ struct UnkSelf {
     u32 field_0x9c;
 };
 
-const CClass* fn_71003da2e0();  // CAutsniperAIComponent::refl_GetClass
 void fn_71003d7158(UnkSelf* self);
 void fn_71003d7250(UnkSelf* self);
 void fn_71003d7348(UnkSelf* self);

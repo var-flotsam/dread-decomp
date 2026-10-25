@@ -3,9 +3,9 @@
 // at 0x27720 is clear; otherwise only when the flag at 0x14c14 is set, neither timer (0x29350,
 // 0x29418) is running, the owner's object isn't an ignore-perception track and the flag at
 // 0x29f26 is clear; then the sub-object decides (fn_7100573d54).
+#include "base/reflection/UnkClassGetters.h"
 #include "types.h"
 
-struct UnkReflType;
 struct UnkTrackOwner {
     u8 unk_0x0[0x220];
     void* field_0x220;
@@ -26,8 +26,7 @@ struct UnkSelf {
 };
 
 bool fn_710002fb70(void* timer);
-const UnkReflType* fn_7100c78d04();  // CCharClassIgnorePerceptionTrack::refl_GetClass
-bool fn_710117b348(void* object, const UnkReflType* type);
+bool fn_710117b348(void* object, const base::reflection::CClass* type);
 bool fn_7100573d54(void* sub, void* a1);
 
 __attribute__((always_inline)) static inline bool Check(UnkSelf* self, void* sub, void* a1) {

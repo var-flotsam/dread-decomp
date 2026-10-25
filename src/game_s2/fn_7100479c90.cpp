@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the reflected types.
 #include "../game_s7/UnkStaticInitS7.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -14,7 +15,6 @@ struct UnkStatics_7100479c90 {
     u8 field_0x48[8];
 };
 extern UnkStatics_7100479c90 g_unk_71726cd548 __attribute__((visibility("hidden")));
-void* fn_7100478eb4();  // CChozoRobotSoldierBeamMovementComponent::refl_GetClass
 extern char g_unk_71726cd540[];
 
 void fn_7100479c90() {

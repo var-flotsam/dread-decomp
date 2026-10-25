@@ -2,6 +2,7 @@
 // a reference-counted object pointer is shared, everything else is copied.
 #include <new>
 
+#include "base/UnkCountedResource.h"
 #include "types.h"
 
 // String data whose count is a plain member: the original keeps the pool's empty entry in a
@@ -28,14 +29,15 @@ struct UnkId_710071faf4 {
 using UnkStrId_710071faf4 = UnkId_710071faf4<&g_unk_7101d47108>;
 using UnkPathId_710071faf4 = UnkId_710071faf4<&g_unk_7101d47200>;
 
+// The resource of base/UnkCountedResource.h, seen with a plain count: the increment may alias
+// anything (the original reloads the pointer it is about to replace after it), the decrement is
+// a plain access (through the header's union member the function no longer matches), so the
+// pointer is cast for the free.
 struct UnkShared_710071faf4 {
     u8 unk_0x0[0x54];
     s32 ref_count;
 };
-// The increment may alias anything: the original reloads the pointer it is about to replace
-// after it (the decrement is a plain access).
 typedef s32 __attribute__((may_alias)) UnkAliasS32_710071faf4;
-void fn_710001737c(UnkShared_710071faf4* p);  // destroys it
 
 struct UnkRef_710071faf4 {
     UnkShared_710071faf4* ptr;
@@ -43,7 +45,7 @@ struct UnkRef_710071faf4 {
         if (UnkShared_710071faf4* p = other.ptr) {
             ++*reinterpret_cast<UnkAliasS32_710071faf4*>(&p->ref_count);
             if (ptr && --ptr->ref_count == 0)
-                fn_710001737c(ptr);
+                fn_710001737c(reinterpret_cast<UnkCountedResource*>(ptr));
             ptr = p;
         }
     }

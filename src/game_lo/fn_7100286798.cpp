@@ -1,6 +1,7 @@
 // Binds an actor and caches values from its component (0x240 -> 0x1610): two computed ids,
 // several parameters, three values from its transform, the table entry for its key in a
 // lazily created manager, and two derived pointers.
+#include "base/UnkMatrix44.h"
 #include "types.h"
 
 void* fn_71000839a0(u64 size, u32 flags);
@@ -72,20 +73,9 @@ struct UnkComponent_7100286798 {
 void* fn_71010fb398(UnkComponent_7100286798* self);
 void* fn_71010fb288(UnkComponent_7100286798* self);
 
-struct UnkTransform_7100286798 {
-    u32 field_0x0;
-    u32 field_0x4;
-    u8 unk_0x8[0xc];
-    u32 field_0x14;
-    u8 unk_0x18[0xc];
-    u32 field_0x24;
-};
-struct UnkTransformSrc_7100286798;
-UnkTransform_7100286798* fn_710002614c(UnkTransformSrc_7100286798* self);
-
 struct UnkActor_7100286798 {
     u8 unk_0x0[0x38];
-    u8 field_0x38;  // the transform source
+    u8 field_0x38;  // the transform (UnkXform); fn_710002614c returns its matrix
     u8 unk_0x39[0x207];
     UnkComponent_7100286798* component;  // 0x240
 };
@@ -115,6 +105,13 @@ struct UnkStruct_7100286798 {
     void* field_0x198;
 };
 
+// The bit pattern of a float in memory (a word load, as the original reads it).
+static inline u32 AsU32(const f32& value) {
+    u32 bits;
+    __builtin_memcpy(&bits, &value, 4);
+    return bits;
+}
+
 void fn_7100286798(UnkStruct_7100286798* self, UnkActor_7100286798* actor) {
     self->actor = actor;
     if (!actor || !actor->component)
@@ -131,11 +128,10 @@ void fn_7100286798(UnkStruct_7100286798* self, UnkActor_7100286798* actor) {
     self->field_0x15c = src->field_0x238;
     self->field_0x160 = src->field_0xec;
     self->field_0x164 = src->field_0xf0;
-    UnkTransform_7100286798* t =
-        fn_710002614c(reinterpret_cast<UnkTransformSrc_7100286798*>(&self->actor->field_0x38));
-    u32 a = t->field_0x4;
-    u32 b = t->field_0x14;
-    u32 c = t->field_0x24;
+    const UnkMatrix44& t = fn_710002614c(reinterpret_cast<const UnkMatrix44*>(&self->actor->field_0x38));
+    u32 a = AsU32(t.m[1]);  // the second column, as bit patterns
+    u32 b = AsU32(t.m[5]);
+    u32 c = AsU32(t.m[9]);
     self->field_0x168 = a;
     self->field_0x16c = b;
     self->field_0x170 = c;

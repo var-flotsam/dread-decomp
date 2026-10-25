@@ -4,6 +4,7 @@
 // fn_7100552a34 with the result and the flag. Returns whether a pair of state bytes at +0x14c34
 // allows the transition (running fn_7100544fb8 when the first byte is clear).
 #include "base/math/CVector.h"
+#include "game/UnkActor.h"
 #include "types.h"
 
 using base::math::CVector2D;
@@ -39,13 +40,12 @@ struct UnkBody {
 
 struct UnkStepper {
     u8 pad_0x0[0x30];
-    void* field_0x30;
+    UnkActor* field_0x30;
     u8 pad_0x38[0x14bfc];
     u8 field_0x14c34;
     u8 field_0x14c35;
 };
 
-UnkBody* fn_7100d7c990(void* object);
 UnkVec3Bits fn_7100979a60(UnkPlace* place);
 void fn_710007b430(CVector2D* out, const CVector3D* in);
 bool fn_71005528fc(UnkStepper* self, const CVector2D* point);
@@ -63,7 +63,7 @@ struct UnkPos {
 bool fn_71005416bc(UnkStepper* self, bool flag) {
     bool found = false;
     if (fn_7100d7c990(self->field_0x30)) {
-        UnkBody* body = fn_7100d7c990(self->field_0x30);
+        UnkBody* body = reinterpret_cast<UnkBody*>(fn_7100d7c990(self->field_0x30));
         UnkPos pos;
         if (body) {
             pos = {body->field_0x44, body->field_0x54, body->field_0x64};

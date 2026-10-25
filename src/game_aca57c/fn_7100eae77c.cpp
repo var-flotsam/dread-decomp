@@ -2,6 +2,7 @@
 // sharing a count and capacity: both are reallocated to exactly `count`, the records moved over
 // (each source destroyed by fn_7100ea7034, also here), the values copied and the old arrays freed.
 #include "base/UnkVector.h"
+#include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
@@ -36,8 +37,7 @@ struct UnkMovedString {
     ~UnkMovedString();
 };
 void fn_710007eab4(UnkMovedString* dst, UnkMovedString* src);
-void fn_710007ecd4(void* string);  // the string's destructor
-__attribute__((always_inline)) inline UnkMovedString::~UnkMovedString() { fn_710007ecd4(this); }
+__attribute__((always_inline)) inline UnkMovedString::~UnkMovedString() { fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(this)); }
 __attribute__((always_inline)) inline UnkMovedString::UnkMovedString(UnkMovedString&& other) { fn_710007eab4(this, &other); }
 
 // A string with its own inline storage, copied (not moved) by fn_710007eaa0.
@@ -59,7 +59,7 @@ void fn_710007e6e4(UnkStrBuffer* self, void* storage);
 void fn_710007ed40(UnkStrBuffer* self);  // releases the storage
 __attribute__((always_inline)) inline UnkStrBuffer::~UnkStrBuffer() {
     fn_710007ed40(this);
-    fn_710007ecd4(this);
+    fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(this));
 }
 void fn_710007eaa0(UnkStrBuffer* self, const UnkStrBuffer* other);
 __attribute__((always_inline)) inline UnkStrBuffer::UnkStrBuffer(const UnkStrBuffer& other) {

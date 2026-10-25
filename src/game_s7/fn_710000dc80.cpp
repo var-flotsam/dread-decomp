@@ -1,6 +1,8 @@
 // Copies of fn_7100c9022c (src/game_aca57c/fn_7100ad4b54.cpp) for other types, with their own callees and data (they name their own callees, data and strings; the comments describe the original): fn_710000dc80, fn_710000df24.
 // Getters building a value of kind 2 (fn_71000a18d4 fills in the rest from the type the value is
 // described by): words of the translation unit's globals, a zero, flags of an object and a vector.
+#include "base/reflection/UnkClassGetters.h"
+#include "base/reflection/UnkReflAttributes.h"
 #include "types.h"
 
 struct UnkValue {
@@ -19,11 +21,13 @@ __attribute__((always_inline)) static inline UnkValue MakeValue(void* type, cons
     fn_71000a18d4(&result, type, value, 0);
     return result;
 }
+// The plain types' getters (base/reflection/UnkReflAttributes.h) return the descriptor as const.
+__attribute__((always_inline)) static inline UnkValue MakeValue(const base::reflection::CType* type,
+                                                               const void* value) {
+    return MakeValue(static_cast<void*>(const_cast<base::reflection::CType*>(type)), value);
+}
 
-void* fn_7100014768();  // a 4-byte type's getter
 void* fn_7100010e58();  // an 8-byte type's getter
-void* fn_710000d228();  // the bool type's getter
-void* fn_71000246e4();  // base::reflection::refl_GetType<base::math::CVector3D>
 
 extern u32 g_unk_7172756b90 __attribute__((visibility("hidden")));
 extern u32 g_unk_7172756cbc __attribute__((visibility("hidden")));
@@ -98,9 +102,6 @@ __attribute__((always_inline)) static inline UnkValue GetVirtualFlag(UnkArgument
 // Values of kind 2 referring (flag 1) to a cutscene definition held by an iterator value: in place
 // at 0x8, or through the pointer there when the state (after the Size-byte value) is 2. The class
 // getter is called first, so the class (whose reflected data is at the descriptor) is set up.
-void* fn_7100c828a4();  // CCutSceneDef::CActorDef::refl_GetClass
-void* fn_7100c84768();  // CCutSceneDef::CAnimationLayerDef::refl_GetClass
-void* fn_7100c85d3c();  // CCutSceneDef::CTakeDef::refl_GetClass
 extern u8 g_unk_7172794c08[] __attribute__((visibility("hidden")));
 extern u8 g_unk_7101d4cfb0[] __attribute__((visibility("hidden")));
 extern u8 g_unk_7172794e78[] __attribute__((visibility("hidden")));
@@ -117,7 +118,7 @@ struct UnkDefIterValue {
     __attribute__((always_inline)) void* Get() { return state == 2 ? ref : value; }
 };
 
-template <u32 Size, void* (*GetClass)(), u8* Descriptor>
+template <u32 Size, const base::reflection::CClass* (*GetClass)(), u8* Descriptor>
 __attribute__((always_inline)) static inline UnkValue GetDef(UnkArgument<UnkDefIterValue<Size>>* argument) {
     void* def = argument->field_0x8->Get();
     GetClass();
@@ -129,7 +130,6 @@ __attribute__((always_inline)) static inline UnkValue GetDef(UnkArgument<UnkDefI
     return result;
 }
 
-void* fn_710000a7cc();
 UnkValue fn_710000dc80(void* unused, UnkArgument<UnkDefIterValue<0x18>>* argument) {
     return GetDef<0x18, fn_710000a7cc, g_unk_7101d4cfb0>(argument);
 }
@@ -140,7 +140,6 @@ UnkValue fn_710000df24(void* unused, UnkArgument<UnkDefIterValue<0x18>>* argumen
 
 // Values of kind 2 holding a manager singleton, created on first use (allocated with flags 0x3f or
 // 3, and constructed in place).
-void* fn_71000839a0(u64 size, u32 flags);
 void fn_7100ee1f34(void* self);
 void fn_7100d8ced8(void* self);
 void fn_7100359118(void* self);
@@ -173,5 +172,4 @@ struct UnkAngleSource {
     f32 field_0xcc;
 };
 
-void* fn_710000abbc();  // base::reflection::refl_GetType<float>
 

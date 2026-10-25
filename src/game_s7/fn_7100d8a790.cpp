@@ -3,6 +3,7 @@
 // and others: the header ids, then the unit's own statics and registrations (helpers in
 // UnkStaticInitS7.h). Layouts are placeholders.
 #include "UnkStaticInitS7.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -16,7 +17,6 @@ struct UnkStatics_7100d8a790 {
     u8 field_0xa8[8];
 };
 extern UnkStatics_7100d8a790 g_unk_71727b85d8 __attribute__((visibility("hidden")));
-void* fn_7100d70c20();
 extern char g_unk_71727b5288[];
 extern char g_unk_71727b5289[];
 UnkEnumType* fn_7100a0536c();
@@ -146,7 +146,6 @@ void fn_7100d77c64(UnkEnumType* type, const CStrId& name, void*, void*);
 extern char g_unk_71727b6b98[];
 extern UnkConversion g_unk_71727b6ba0;
 void fn_7100d8a39c();
-UnkEnumType* fn_7100009658();
 extern UnkConversion g_unk_71727b6bc0;
 void fn_7100d8a538();
 UnkEnumType* fn_7100231c1c();
@@ -300,7 +299,7 @@ void fn_7100d8a790() {
     }
     __cxa_atexit(fn_710009891c, &g_unk_71727b6a28, g_unk_7101a19000);
     fn_710009ec00(g_unk_71727b6b98, &g_unk_71727b6a28);
-    InitConversion(&g_unk_71727b6ba0, fn_7100009658, &g_unk_71727b6270, fn_7100d8a39c);
+    InitConversion(&g_unk_71727b6ba0, TypeOf<fn_7100009658>, &g_unk_71727b6270, fn_7100d8a39c);
     InitConversion(&g_unk_71727b6bc0, fn_7100231c1c, &g_unk_71727b6270, fn_7100d8a538);
-    InitNamedValue(&g_unk_71727b6be0, "oBBox", fn_7100009658, fn_710010c424);
+    InitNamedValue(&g_unk_71727b6be0, "oBBox", TypeOf<fn_7100009658>, fn_710010c424);
 }

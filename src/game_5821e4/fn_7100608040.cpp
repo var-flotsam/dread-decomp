@@ -1,5 +1,6 @@
 // Static initialiser of CKraidShockerSplashMovementComponent's unit.
 #include "UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -12,7 +13,6 @@ struct UnkStatics_7100608040 {
     u8 field_0x38[8];
 };
 extern UnkStatics_7100608040 g_unk_71726f4498 __attribute__((visibility("hidden")));
-void* fn_7100606dbc();  // CKraidShockerSplashMovementComponent::refl_GetClass
 extern char g_unk_71726f4490[];
 
 void fn_7100608040() {

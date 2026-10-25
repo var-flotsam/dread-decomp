@@ -3,6 +3,7 @@
 // configures it and hands it to the menu itself (compare fn_7100b4d0ec, which hands it to the
 // main menu). Some also call the composition's vf_0x78.
 #include "base/global/CRntString.h"
+#include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "types.h"
 
@@ -121,7 +122,6 @@ struct UnkGuiObject {
 
     const CClass* Type() { return reinterpret_cast<const CClass* (*)(UnkGuiObject*)>(vtable[0])(this); }
 };
-const CClass* fn_71011dce90();  // GUI::CHUD::refl_GetClass
 
 void fn_7100b2c58c(UnkMenu<0x2d0>* self) {
     UnkGuiObject* obj =

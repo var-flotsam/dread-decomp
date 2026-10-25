@@ -5,12 +5,12 @@
 #include <new>
 
 #include "base/UnkVector.h"
+#include "base/global/CRntString.h"
 #include "types.h"
 
 struct UnkString30;
 void fn_710007ea60(UnkString30* self, const UnkString30* other);
 void fn_710007eab4(UnkString30* self, UnkString30* other);
-void fn_710007ecd4(UnkString30* self);
 void fn_710007e6c4(UnkString30* self);
 
 // base::global::CRntString's layout, with a move constructor.
@@ -20,7 +20,7 @@ struct UnkString30 {
     __attribute__((always_inline)) UnkString30() { fn_710007e6c4(this); }
     __attribute__((always_inline)) UnkString30(const UnkString30& other) { fn_710007ea60(this, &other); }
     __attribute__((always_inline)) UnkString30(UnkString30&& other) { fn_710007eab4(this, &other); }
-    __attribute__((always_inline)) ~UnkString30() { fn_710007ecd4(this); }
+    __attribute__((always_inline)) ~UnkString30() { fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(this)); }
 };
 
 // Copied as a whole, also when moved.

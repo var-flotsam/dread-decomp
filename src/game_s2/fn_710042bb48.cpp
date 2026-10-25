@@ -3,6 +3,7 @@
 // the owner's limit table when it is past the first one, copies the owner's y, then compares the
 // remaining distance against the two ranges the controller reports. Returns false at once when the
 // controller's step at +0xf0 is -1.
+#include "game/UnkActor.h"
 #include "types.h"
 
 typedef f32 __attribute__((may_alias)) a_f32;
@@ -55,14 +56,12 @@ struct UnkSelf {
     UnkController* field_0x48;
 };
 
-UnkPoint* fn_7100d7c990(UnkPoint* point);
-
 bool fn_710042bb48(UnkSelf* self, UnkOut* out) {
     bool result = false;
     if (self->field_0x48->field_0xf0 != -1.0f) {
         f32 from = self->field_0x8->field_0x44;
         u32 y = self->field_0x8->field_0x54;
-        f32 to = fn_7100d7c990(self->field_0x8)->field_0x44;
+        f32 to = reinterpret_cast<UnkPoint*>(fn_7100d7c990(reinterpret_cast<UnkActor*>(self->field_0x8)))->field_0x44;
         *reinterpret_cast<a_u32*>(&out->y) = y;
         f32 diff = to - from;
         s32 sign = (diff > 0.0f) - (diff < 0.0f);

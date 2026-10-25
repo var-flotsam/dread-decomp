@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the CPlaythrough::SCheckpointData, CPlaythrough::SCheckpointData::SValidationInfo, base::reflection::CollectionTypeMapper<CPlaythrough::TDictCheckpointDatas>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<CPlaythrough::TDictCheckpointDatas>::TKeyElementConstIterator::value_type, CPlaythrough::TDictCheckpointDatas.
 #include "../game_s7/UnkStaticInitS7.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -48,7 +49,6 @@ struct UnkStatics_71002efa40 {
 };
 extern UnkStatics_71002efa40 g_unk_71726ad668 __attribute__((visibility("hidden")));
 extern char g_unk_71726ac870[];
-void* fn_71002e970c();  // CPlaythrough::refl_GetClass
 extern UnkEnumType g_unk_71726ac878;
 void fn_71002ea1d0();
 void fn_71002ea320(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);

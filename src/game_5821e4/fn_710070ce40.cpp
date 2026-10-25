@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CTentacle>>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CTentacle>>>::TKeyElementConstIterator::value_type, base::global::CRntVector<std::unique_ptr<CTentacle>> reflected types.
 #include "UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -9,7 +10,6 @@ struct UnkStatics_710070ce40 {
     u8 field_0x20[8];
 };
 extern UnkStatics_710070ce40 g_unk_717270de60 __attribute__((visibility("hidden")));
-void* fn_7100708410();  // CTentacle::refl_GetClass
 extern char g_unk_717270d3e0[];
 extern char g_unk_717270d3e1[];
 UnkEnumType* fn_7100708b74();

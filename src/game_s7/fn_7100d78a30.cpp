@@ -2,54 +2,12 @@
 // CLifeComponent at +0x1b8 to CEmmyValveComponent at +0x300), when the component's owner id is
 // that class's kind id. Class names come from the getters' reflection names; layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflObject;
-
-const CClass* fn_710115ddb8();  // CLifeComponent::refl_GetClass
-const CClass* fn_7101161bb4();  // CPlayerLifeComponent::refl_GetClass
-const CClass* fn_7101158414();  // CCharacterLifeComponent::refl_GetClass
-const CClass* fn_71011593e4();  // CEnemyLifeComponent::refl_GetClass
-const CClass* fn_7100870440();  // CInputComponent::refl_GetClass
-const CClass* fn_7101139a60();  // CScriptComponent::refl_GetClass
-const CClass* fn_7100a5bab0();  // CTriggerComponent::refl_GetClass
-const CClass* fn_71010d02f4();  // CMovementComponent::refl_GetClass
-const CClass* fn_7100975b3c();  // CCharacterMovement::refl_GetClass
-const CClass* fn_71010d68bc();  // CPlayerMovement::refl_GetClass
-const CClass* fn_71009dda1c();  // CSamusMovement::refl_GetClass
-const CClass* fn_710093b204();  // CMorphBallMovement::refl_GetClass
-const CClass* fn_71010c74e0();  // CEnemyMovement::refl_GetClass
-const CClass* fn_7101174bd4();  // CAnimationComponent::refl_GetClass
-const CClass* fn_710116f89c();  // CModelUpdaterComponent::refl_GetClass
-const CClass* fn_7100726a04();  // CBillboardComponent::refl_GetClass
-const CClass* fn_710116d338();  // CInterpolationComponent::refl_GetClass
-const CClass* fn_71010f6b50();  // CAIComponent::refl_GetClass
-const CClass* fn_71010df7a0();  // CCameraComponent::refl_GetClass
-const CClass* fn_7101149ee0();  // CPositionalSoundComponent::refl_GetClass
-const CClass* fn_7101135a64();  // CAttackComponent::refl_GetClass
-const CClass* fn_710113a334();  // CGrabComponent::refl_GetClass
-const CClass* fn_7101138934();  // CFactionComponent::refl_GetClass
-const CClass* fn_71011408c4();  // CInventoryComponent::refl_GetClass
-const CClass* fn_71011336b4();  // CAIAttackComponent::refl_GetClass
-const CClass* fn_710114d608();  // CFXComponent::refl_GetClass
-const CClass* fn_7100925fc0();  // CMaterialFXComponent::refl_GetClass
-const CClass* fn_7101181994();  // CTargetComponent::refl_GetClass
-const CClass* fn_71006f3ea0();  // CAINavigationComponent::refl_GetClass
-const CClass* fn_710085fc44();  // CCollisionComponent::refl_GetClass
-const CClass* fn_7100838154();  // CGunComponent::refl_GetClass
-const CClass* fn_710033ff68();  // CAimComponent::refl_GetClass
-const CClass* fn_7100718718();  // CAudioComponent::refl_GetClass
-const CClass* fn_71009d9dc4();  // CRumbleComponent::refl_GetClass
-const CClass* fn_71007f8314();  // CFrozenComponent::refl_GetClass
-const CClass* fn_71009f8e94();  // CShotComponent::refl_GetClass
-const CClass* fn_71009f2a24();  // CSceneModelAnimationComponent::refl_GetClass
-const CClass* fn_71002fbaf8();  // CAbilityComponent::refl_GetClass
-const CClass* fn_7100a2a190();  // CTimelineComponent::refl_GetClass
-const CClass* fn_7100951424();  // CMovablePlatformComponent::refl_GetClass
-const CClass* fn_71009288b0();  // CMeleeComponent::refl_GetClass
-const CClass* fn_71007b1ea8();  // CEmmyValveComponent::refl_GetClass
 
 struct UnkComponentOwner {
     u64 field_0x0;

@@ -1,6 +1,7 @@
 // Copies of fn_7100434c90 (src/game_s2/fn_7100434c90.cpp) for other types, with their own callees and data (they name their own callees, data and strings; the comments describe the original): fn_7100a9a600.
 // Static initialiser of the unit of CTrainUsableComponent and ETrainDirection.
 #include "../game_s7/UnkStaticInitS7.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -21,11 +22,9 @@ extern UnkConversion g_unk_7172752cd0;
 extern UnkConversion g_unk_7172752cf0;
 void fn_7100a9a480() __attribute__((visibility("hidden")));
 void fn_7100a9a48c() __attribute__((visibility("hidden")));
-void* fn_710042fea8();  // CChozoCommanderKiGrabAttack::refl_GetClass
 extern char g_unk_7172752d10[];
 
 void fn_7100a98b4c(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
-void* fn_7100a98cd0();
 void fn_7100a9a600() {
     InitHeaderIds(&g_unk_7172752d18.ids);
     InitId(&g_unk_7172752d18.field_0x18, "CTrainUsableComponent");

@@ -1,5 +1,6 @@
 // Finds a display object by a dotted path: splits the path on '.' and walks child containers by name.
 #include "base/global/CStrId.h"
+#include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 
 using base::global::CStrId;
@@ -59,7 +60,6 @@ struct UnkDisplayObject_71011d9508 {
 void fn_710008377c(void* p);
 void fn_71009319dc(const char* str, const char* sep, UnkTokenList_0x70* out);
 void fn_7100931c34(UnkTokenList_0x70* list);
-void* fn_71011d7b84();
 void fn_7100000850(UnkIdHolder_71011d9508* out, const UnkToken_71011d9508* str, bool flag);
 extern char g_unk_7101a838c8[];
 extern char g_unk_7101a1a4c8[];

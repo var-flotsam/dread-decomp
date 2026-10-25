@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the CShakernautPiercingLaserAttack::EState, CShakernautPiercingLaserAttack::ESide enums.
 #include "UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -28,7 +29,6 @@ struct UnkStatics_71006a9a70 {
     u8 field_0xd0[8];
 };
 extern UnkStatics_71006a9a70 g_unk_7172705c50 __attribute__((visibility("hidden")));
-void* fn_71006a6330();  // CShakernautPiercingLaserAttack::refl_GetClass
 extern char g_unk_7172705988[];
 extern UnkEnumType g_unk_7172705990;
 void fn_71006a6938(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);

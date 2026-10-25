@@ -8,13 +8,13 @@
 // Also the clear of such a list with plain nodes (fn_710023fe88). fn_71011aaf80 is a relative.
 
 #include "base/UnkVector.h"
+#include "base/global/CRntString.h"
 #include "types.h"
 
 extern char unk_7101a202e0[];
 extern char unk_7101a1a070[];
 extern char unk_7101a1bcf0[];
 void fn_710008d8e8(char* node);
-void fn_710007ecd4(char* node);
 void fn_710007ed40(char* node);
 
 struct UnkNodeList_7100219134 {
@@ -39,14 +39,17 @@ static inline void DestroyList(UnkNodeList_7100219134* self) {
     self->tail = nullptr;
 }
 
+// A node that is a string (base/global/CRntString.h).
+static inline void DestroyNode_710002e3f8(char* node) { fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(node)); }
+
 static inline void DestroyNode_7100103cb8(char* node) {
     fn_710007ed40(node);
-    fn_710007ecd4(node);
+    fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(node));
 }
 
 void fn_7100219134(UnkNodeList_7100219134* self) { DestroyList<unk_7101a202e0, 0x10, fn_710008d8e8>(self); }
 
-void fn_710002e3f8(UnkNodeList_7100219134* self) { DestroyList<unk_7101a1a070, 0x30, fn_710007ecd4>(self); }
+void fn_710002e3f8(UnkNodeList_7100219134* self) { DestroyList<unk_7101a1a070, 0x30, DestroyNode_710002e3f8>(self); }
 
 void fn_7100103cb8(UnkNodeList_7100219134* self) {
     DestroyList<unk_7101a1bcf0, 0x148, DestroyNode_7100103cb8>(self);

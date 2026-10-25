@@ -1,5 +1,6 @@
 // Static initialiser of CXParasiteAIComponent's unit (with the CXParasiteAIComponent::EXParasiteBehaviorType enum).
 #include "UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -30,7 +31,6 @@ extern UnkConversion g_unk_717270b830;
 extern UnkConversion g_unk_717270b850;
 void fn_71006ebac8() __attribute__((visibility("hidden")));
 void fn_71006ebad4() __attribute__((visibility("hidden")));
-void* fn_71006e5f28();  // CXParasiteAIComponent::refl_GetClass
 extern char g_unk_717270b880[];
 
 void fn_71006e5b10() {

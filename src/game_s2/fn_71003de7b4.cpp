@@ -1,4 +1,5 @@
 // Checks the object behind +0x30 for a usable +0x208 and, if so, copies three of its values into `out`.
+#include "game/UnkActor.h"
 #include "types.h"
 
 struct UnkInfo {
@@ -28,17 +29,16 @@ struct UnkOut {
 
 struct UnkSelf {
     u8 pad_0x0[0x30];
-    u64 field_0x30;
+    UnkActor* field_0x30;
 };
 
 bool fn_710110a164();
-UnkInfo* fn_7100d7c990(u64 handle);
 bool fn_71009e12d0(void* obj);
 void fn_710007b444(void* dst, const UnkVec3* value);
 
 bool fn_71003de7b4(UnkSelf* self, UnkOut* out) {
     bool result = fn_710110a164();
-    UnkInfo* info = fn_7100d7c990(self->field_0x30);
+    UnkInfo* info = reinterpret_cast<UnkInfo*>(fn_7100d7c990(self->field_0x30));
     if (info && info->field_0x208 && fn_71009e12d0(info->field_0x208)) {
         u32 a = info->field_0x44;
         u32 b = info->field_0x54;

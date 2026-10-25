@@ -1,5 +1,7 @@
 // Destructor body of a large owner object: releases its listeners, ref-counted pointers, node
 // list, handler and resource members and calls the destructors of its many embedded members.
+#include "base/UnkCountedResource.h"
+#include "base/global/CRntString.h"
 #include "types.h"
 #include "base/global/CStrId.h"
 
@@ -59,7 +61,6 @@ struct UnkRefPtr {
 void fn_710117b3f0(void* owner, void* listener);
 void fn_71002aeb9c(void* root, void* tree);
 void fn_710002f67c(void* p);
-void fn_710007ecd4(void* p);
 void fn_7100027044(void* p);
 void fn_7100872908(void* p, void* handler);
 void fn_71009a1f40(void* p);
@@ -238,25 +239,18 @@ struct UnkHandlerDerived {
             delete[] field_0x40;
             field_0x40 = nullptr;
         }
-        fn_710007ecd4(field_0x8);
+        fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(field_0x8));
     }
-};
-
-void fn_710001737c(void* p);
-
-struct UnkResData {
-    u8 pad_0x0[0x54];
-    s32 ref_count;
 };
 
 struct UnkResource {
     UnkStrIdField<&g_unk_7101d47108> id;
     UnkStrIdField<&g_unk_7101d47200> path;
-    UnkResData* res;
+    UnkCountedResource* res;
 
     __attribute__((always_inline)) void Destroy() {
         fn_7100027044(this);
-        if (UnkResData* r = res) {
+        if (UnkCountedResource* r = res) {
             if (--r->ref_count == 0)
                 fn_710001737c(r);
         }

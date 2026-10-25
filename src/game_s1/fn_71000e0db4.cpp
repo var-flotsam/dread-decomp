@@ -3,6 +3,7 @@
 // that refers to them (state 2) while the pointer is set. Each function builds one from the pointer held by its first
 // argument and assigns it to the second: the value and the pointer are copied and the target's pair is rebound to the
 // target's own members (or reset). The in-place second value is destroyed out of line. Two record sizes.
+#include "base/global/CRntString.h"
 #include "types.h"
 
 template <class X, class Y>
@@ -79,10 +80,11 @@ struct UnkDestroyed {
 };
 
 void fn_7100ad04c4(void* self);
-void fn_710007ecd4(void* self);
 void fn_710026ead0(void* self);
+// The 0x30-byte values are strings (base/global/CRntString.h).
+inline void DestroyString(void* self) { fn_710007ecd4(static_cast<base::global::CRntString*>(self)); }
 
-using UnkBound30 = UnkDestroyed<0x30, fn_710007ecd4>;
+using UnkBound30 = UnkDestroyed<0x30, DestroyString>;
 using UnkBound50 = UnkDestroyed<0x50, fn_710026ead0>;
 
 void fn_71000e0db4(UnkBound30* const* src, UnkBoundRef<UnkBound30>* out) { AssignBound(src, out); }

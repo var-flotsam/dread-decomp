@@ -3,6 +3,7 @@
 #include "base/UnkCloneCalls.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "types.h"
 
@@ -10,8 +11,6 @@ using base::global::CStrId;
 using base::global::UnkStringData;
 using base::reflection::CClass;
 using base::reflection::UnkReflObject;
-
-const CClass* fn_710116f89c();  // CModelUpdaterComponent::refl_GetClass
 
 struct UnkTag_7100233684;
 

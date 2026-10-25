@@ -4,6 +4,7 @@
 // (copied as one block); the class's own vtable last. Two identical copies each.
 #include <new>
 
+#include "base/UnkCountedResource.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "types.h"
@@ -13,27 +14,18 @@ using base::global::CStrId;
 
 void fn_7100067ebc(char* self, const char* other);
 
-struct UnkShared54 {
-    u8 unk_0x0[0x54];
-    union {  // (the original reloads around the count, as through a union)
-        s32 ref_count;
-        u32 ref_count_u;
-    };
-};
-void fn_710001737c(UnkShared54* obj);
-
 struct UnkShared54Ptr {
-    UnkShared54* ptr;
+    UnkCountedResource* ptr;
 
     UnkShared54Ptr(const UnkShared54Ptr& other) {
         ptr = nullptr;
         *this = other.ptr;
     }
-    UnkShared54Ptr& operator=(UnkShared54* p) {
+    UnkShared54Ptr& operator=(UnkCountedResource* p) {
         if (p != ptr) {
             if (p)
                 ++p->ref_count;
-            if (UnkShared54* old = ptr) {
+            if (UnkCountedResource* old = ptr) {
                 if (--old->ref_count == 0)
                     fn_710001737c(old);
             }

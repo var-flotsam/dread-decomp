@@ -4,11 +4,11 @@
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkReflCast.h"
 #include "types.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using base::reflection::CClass;
 using base::reflection::UnkReflObject;
 
-const CClass* fn_7100408b2c();  // CCharClassAIComponent::refl_GetClass
 void* fn_71000839a0(u64 size, u32 flags);
 
 struct UnkStruct_71003609b8_Ai : UnkReflObject {

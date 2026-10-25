@@ -1,6 +1,7 @@
 // Constructor tail of a CBigkranXSpitAttack's component: runs the base (fn_71003606c8), and, given
 // an owner's object, stores it cast to the attack class (null when it is not one). When that
 // succeeds the component's state is reset (+0xd0, +0xe8/+0xec/+0xf0, a float at +0xf4).
+#include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "types.h"
 
@@ -22,7 +23,6 @@ struct UnkSelf {
 };
 
 void fn_71003606c8(UnkSelf* self, UnkActor* actor);
-const CClass* fn_71003ef9b4();  // CCharClassBigkranXSpitAttack::refl_GetClass
 
 // NON_MATCHING(minor): same behaviour; the original stores +0xd0 before building the 64-bit constant
 // for +0xf0, ours builds it first.

@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the CBreakableTileGroupComponent::STileInfo, CBreakableTileGroupComponent::SMinimapTileState, base::reflection::CollectionTypeMapper<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>>::TKeyElementConstIterator::value_type, base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>, base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TMinimapTileStates>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TMinimapTileStates>::TKeyElementConstIterator::value_type, CBreakableTileGroupComponent::TMinimapTileStates, base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TActorTileStatesMap>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TActorTileStatesMap>::TKeyElementConstIterator::value_type, CBreakableTileGroupComponent::TActorTileStatesMap reflected types.
 #include "UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -13,18 +14,15 @@ extern UnkStrIdBase g_unk_7172711530;
 extern UnkProperty g_unk_7172711538;
 extern UnkProperty* g_unk_71726db788;
 extern void* g_unk_7101a6e558[];
-const void* fn_7100007f84();  // base::reflection::refl_GetType<base::global::CRntString>
 void fn_710075d124(UnkProperty* p);
 void fn_71007534a8(void* p);
 extern UnkProperty g_unk_7172711560;
-const void* fn_710000d228();  // the bool type's getter
 extern UnkProperty2 g_unk_7172711588;
 extern void* g_unk_7101a45fe8[];
 extern void* g_unk_7101a45f90[];
 extern UnkEnumType g_unk_71727122c0;
 void fn_71004fd2cc(UnkProperty2* p);
 void fn_71004fa3b8(void* p);
-void* fn_7100753524();  // CBreakableTileGroupComponent::refl_GetClass
 extern char g_unk_71727115c8[];
 void fn_7100754738();
 extern UnkEnumType g_unk_71727115d0;
@@ -99,9 +97,9 @@ extern char g_unk_7172712430[];
 void fn_71007618d0() {
     InitHeaderIds(&g_unk_7172713268.ids);
     InitId(&g_unk_7172711530, "TILEGROUP");
-    InitProperty(&g_unk_7172711538, g_unk_7101a6e558, g_unk_71726db788, "TileStates", fn_7100007f84(),
+    InitProperty(&g_unk_7172711538, g_unk_7101a6e558, g_unk_71726db788, "TileStates", TypeOf<fn_7100007f84>(),
                  fn_710075d124, fn_71007534a8);
-    InitProperty(&g_unk_7172711560, g_unk_7101a6e558, g_unk_71726db788, "FakeHusks", fn_710000d228(),
+    InitProperty(&g_unk_7172711560, g_unk_7101a6e558, g_unk_71726db788, "FakeHusks", TypeOf<fn_710000d228>(),
                  fn_710075d124, fn_71007534a8);
     InitProperty2(&g_unk_7172711588, g_unk_7101a45fe8, g_unk_71726db788, g_unk_7101a45f90, "MINIMAP_TILES", &g_unk_71727122c0,
                   fn_71004fd2cc, fn_71004fa3b8);

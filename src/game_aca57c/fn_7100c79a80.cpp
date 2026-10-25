@@ -2,6 +2,7 @@
 // local list, gather it with spans from the owner and the caller's pair into a parameter
 // block, and hand that to a handler (one per function) unless the manager declines; five pass it to a
 // second handler then.
+#include "game/UnkGameManager.h"
 #include "types.h"
 
 struct UnkOffsetTable {
@@ -69,9 +70,8 @@ struct UnkSampleParams {
     UnkTail field_0x30;
 };
 
-extern void* g_unk_7101d47310;
-bool fn_7100deabe4(void* manager);
-bool fn_7100deac04(void* manager);
+bool fn_7100deabe4(UnkGameManager* manager);
+bool fn_7100deac04(UnkGameManager* manager);
 f32 fn_7100027910(void* entry, f32 value);
 
 // Without Fallback the parameters are dropped when the manager declines.

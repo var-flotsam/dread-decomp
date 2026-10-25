@@ -63,6 +63,7 @@ python tools/compiler_matrix.py --version <ver> --set leaf|nonleaf|atk
 python tools/libcheck_lua.py --version <ver>     # upstream Lua vs the embedded copy
 python tools/sigmatch.py --version <ver> [--library lua]  # name vendored-library functions -> data/library_symbols.csv; then rerun gen_functions_csv.py
 python tools/gen_reflection.py --version <ver>   # regenerate src/reflection/ (uses tools/refl_attrs.py)
+python tools/gen_class_getters.py                # regenerate include/base/reflection/UnkClassGetters.h from data/functions/ (no game data)
 python tools/gen_types.py --version <ver>        # regenerate src/reflection_types/ (non-class type getters)
 python tools/gen_statics.py --version <ver>      # regenerate src/reflection_statics/ (guarded function-local statics)
 python tools/gen_clones.py --version <ver>       # regenerate src/clones/ (repeated template instantiations; ~10 s)
@@ -78,6 +79,7 @@ python tools/check.py --version <ver> [--update] [--no-reloc]  # build src/, der
 python tools/verify.py --version <ver> [--regen gen_statics,...]  # generators + check --update + progress + policy + decl_check (info), ~10 lines
 python tools/objdiff_gen.py --version <ver>      # objdiff targets + objdiff.json
 python tools/progress.py [--slice boot | --slice-from <fn>]  # whole-binary progress (excludes L); the nnMain boot slice
+python tools/dashboard_export.py [--ref HEAD] [--days 30]  # status CSVs for the project dashboard -> build/dashboard/ (refresh: upload them)
 python tools/hubs.py --version <ver> [--boot] [--top N]      # U functions by unmatched callers: what to match next
 python tools/hubs.py --version <ver> --ready [--boot]        # U functions whose callees are all matched; --callers <fn> lists callers
 python tools/decl_check.py [--list | --symbol <name> | --json] [--base <ref> [--strict]]  # fn_/g_unk_ declared in several files or with conflicting signatures; --base enforces (CI)
@@ -175,7 +177,10 @@ Toolchain:
   maintenance. Current state, numbers and next steps: `docs/HANDOFF.md`; the route to a running build
   and its open decisions: `docs/PORT_PLAN.md`.
 - Generated sources (`src/reflection/`, `src/reflection_types/`, `src/reflection_statics/`, `src/clones/`,
-  `src/tables/`, `src/lifted/`) are outputs of `tools/gen_reflection.py`, `tools/gen_types.py`,
-  `tools/gen_statics.py`, `tools/gen_clones.py`, `tools/gen_tables.py` and `tools/gen_lift.py`:
-  regenerate, never hand-edit. Their relocation mismatches (`RELOC` lines) are reported, not enforced,
-  until the generator is fixed.
+  `src/tables/`, `src/lifted/`, and the header `include/base/reflection/UnkClassGetters.h`) are outputs
+  of `tools/gen_reflection.py`, `tools/gen_types.py`, `tools/gen_statics.py`, `tools/gen_clones.py`,
+  `tools/gen_tables.py`, `tools/gen_lift.py` and `tools/gen_class_getters.py`: regenerate, never
+  hand-edit. Every generator verifies relocation targets, so a `RELOC` line in generated code is a
+  generator regression: fix the generator, never its output.
+- Class getters (`T::refl_GetClass`) are declared for every reflected class in
+  `include/base/reflection/UnkClassGetters.h`; include it instead of declaring one locally.

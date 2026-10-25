@@ -1,5 +1,6 @@
 // Static initialiser of NailongThornMovementComponent's unit.
 #include "UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -12,7 +13,6 @@ struct UnkStatics_7100623af0 {
     u8 field_0x38[8];
 };
 extern UnkStatics_7100623af0 g_unk_71726f8118 __attribute__((visibility("hidden")));
-void* fn_7100622d34();  // CNailongThornMovementComponent::refl_GetClass
 extern char g_unk_71726f8100[];
 
 void fn_7100623af0() {

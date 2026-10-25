@@ -3,6 +3,7 @@
 // test (fn_710009d50c), and, when it has a constructor hook (CType::m_fn_0x28), its storage is
 // allocated (CType::m_size, alignment 8) and constructed through the hook. Returns the object or
 // null.
+#include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "types.h"
 
@@ -13,9 +14,6 @@ struct UnkSource {
 };
 
 extern u64 g_unk_71727b9db0;
-const CClass* fn_71002e970c();
-const CClass* fn_71002effc4();  // CPlaythroughDef::refl_GetClass
-const CClass* fn_7100016894();
 
 // NON_MATCHING(minor): the two description calls are laid out the other way round (the branch on the
 // comparison is b.ne where the original has b.eq); behaviour is identical

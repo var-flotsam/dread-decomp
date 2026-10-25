@@ -1,50 +1,19 @@
 // Per-frame step of a component: when the owner (+0x18) has a target at +0x298 and a record at +0x218,
-// takes the vector from the owner's position to the record's position, picks the owner's matrix
-// column (words at +8, +0x18, +0x28; negated when it points against that vector) and hands it in a
-// parameter block (kind 5) to fn_71006f4b0c with 0.
+// takes the vector from the owner's position to the record's position, picks the third column of
+// the owner's matrix (as bit patterns; negated when it points against that vector) and hands it in
+// a parameter block (kind 5) to fn_71006f4b0c with 0.
+#include "base/UnkMatrix44.h"
+#include "game/UnkActor.h"
+#include "game_s2/UnkParams.h"
 #include "types.h"
-
-extern void* g_unk_7101a25b10[];
-
-struct UnkPosition {
-    u8 pad_0x0[0x44];
-    f32 field_0x44;
-    u8 pad_0x48[0xc];
-    f32 field_0x54;
-    u8 pad_0x58[0xc];
-    f32 field_0x64;
-};
-
-struct UnkOwner {
-    u8 pad_0x0[0x38];
-    u8 field_0x38[0xc];
-    u8 pad_0x44[0x0];
-    f32 field_0x44;
-    u8 pad_0x48[0xc];
-    f32 field_0x54;
-    u8 pad_0x58[0xc];
-    f32 field_0x64;
-    u8 pad_0x68[0x1b0];
-    void* field_0x218;
-    u8 pad_0x220[0x78];
-    void* field_0x298;
-};
 
 struct UnkComponent {
     u8 pad_0x0[0x18];
-    UnkOwner* field_0x18;
+    UnkActor* field_0x18;
 };
 
-struct UnkColumn {
-    u8 pad_0x0[8];
-    u32 field_0x8;
-    u8 pad_0xc[0xc];
-    u32 field_0x18;
-    u8 pad_0x1c[0xc];
-    u32 field_0x28;
-};
-
-struct UnkParams {
+// The kind-5 block (game_s2/UnkParams.h) with its first fields seen as words.
+struct UnkParams_71005136cc {
     void** vtable;
     u32 field_0x8;
     u32 field_0xc;
@@ -66,21 +35,24 @@ struct UnkParams {
     u8 field_0x3d;
 };
 
-UnkPosition* fn_7100d7c990(UnkOwner* owner);
-UnkColumn* fn_710002614c(void* object);
-void fn_71006f4b0c(void* target, UnkParams* params, u32 flag);
-
 static inline f32 AsF32(u32 bits) {
     f32 value;
     __builtin_memcpy(&value, &bits, 4);
     return value;
 }
 
+// The bit pattern of a float in memory (a word load, as the original reads it).
+static inline u32 AsU32(const f32& value) {
+    u32 bits;
+    __builtin_memcpy(&bits, &value, 4);
+    return bits;
+}
+
 void fn_71005136cc(UnkComponent* self) {
-    UnkOwner* owner = self->field_0x18;
+    UnkActor* owner = self->field_0x18;
     if (owner->field_0x298 && owner->field_0x218) {
-        UnkPosition* position = fn_7100d7c990(owner);
-        UnkOwner* o = self->field_0x18;
+        UnkActor* position = fn_7100d7c990(owner);
+        UnkActor* o = self->field_0x18;
         f32 px = position->field_0x44;
         f32 py = position->field_0x54;
         f32 pz = position->field_0x64;
@@ -90,16 +62,16 @@ void fn_71005136cc(UnkComponent* self) {
         f32 dx = px - ox;
         f32 dy = py - oy;
         f32 dz = pz - oz;
-        UnkColumn* column = fn_710002614c(o->field_0x38);
-        u32 x = column->field_0x8;
-        u32 y = column->field_0x18;
-        u32 z = column->field_0x28;
+        const UnkMatrix44& column = fn_710002614c(reinterpret_cast<const UnkMatrix44*>(o->field_0x38));
+        u32 x = AsU32(column.m[2]);  // the third column, as bit patterns
+        u32 y = AsU32(column.m[6]);
+        u32 z = AsU32(column.m[10]);
         if (!(dx * AsF32(x) + dy * AsF32(y) + dz * AsF32(z) > 0.0f)) {
             x ^= 0x80000000;
             y ^= 0x80000000;
             z ^= 0x80000000;
         }
-        UnkParams params;
+        UnkParams_71005136cc params;
         params.field_0x30 = 0;
         params.field_0x1c = 0;
         __builtin_memset(params.field_0x20, 0, 16);

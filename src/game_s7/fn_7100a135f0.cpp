@@ -1,6 +1,7 @@
 // Copies of fn_710035d230 (src/game_s2/fn_710035d230.cpp) for other types, with their own callees and data (they name their own callees, data and strings; the comments describe the original): fn_7100a135f0, fn_7100a17b30, fn_7100a4f6d0.
 // Static initialiser of the unit of the ECutPathMode, EXpawnAngPolicy.
 #include "../game_s7/UnkStaticInitS7.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -56,20 +57,16 @@ void fn_7100a1339c() __attribute__((visibility("hidden")));
 void fn_7100a4f4e0() __attribute__((visibility("hidden")));
 void fn_7100a1794c() __attribute__((visibility("hidden")));
 void fn_7100a133a8() __attribute__((visibility("hidden")));
-void* fn_710035cb6c();  // SDeathImpactDisplacement::refl_GetClass
 extern char g_unk_717274bb58[];
 extern char g_unk_7172744af8[];
 extern char g_unk_7172744150[];
 
 void fn_7100a11bfc(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_7100a11ec8(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
-void* fn_7100a1204c();
 void fn_7100a15560(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_7100a1588c(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
-void* fn_7100a15a10();
 void fn_7100a4e66c(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_7100a4e938(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
-void* fn_7100a4eabc();
 void fn_7100a135f0() {
     InitHeaderIds(&g_unk_7172744158.ids);
     InitEnum(&g_unk_7172743e90, "ESwifterSpawnGroupDirection", fn_7100a11bfc, fn_7100a11ab0,

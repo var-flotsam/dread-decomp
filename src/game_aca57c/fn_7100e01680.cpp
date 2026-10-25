@@ -2,6 +2,7 @@
 // overrides it (the script call fills a property bag with the result, read back as a string),
 // then the start point registered under the id's hash. Layouts are placeholders.
 #include "../game_s7/UnkPropBagS7.h"
+#include "base/global/CRntString.h"
 
 using namespace unk_prop_bag;
 using base::global::UnkStringData;
@@ -19,7 +20,6 @@ struct UnkInlineString {
 extern void* g_unk_7101a1b750[];
 void fn_710007e6e4(UnkInlineString* self, void* allocator);  // string constructor
 void fn_710007ed40(UnkInlineString* self);
-void fn_710007ecd4(UnkInlineString* self);
 void fn_7100000850(UnkStringData** out, const UnkInlineString* str, bool flag);  // id from a string
 
 bool fn_7100e03d78(UnkPropBag* bag, const char* function, const char* args);  // runs a script call
@@ -72,7 +72,7 @@ void* fn_7100e01680(UnkObj_7100e01680* self) {
             tmp.data = &g_unk_7101d47108->empty;
         }
         fn_710007ed40(&s);
-        fn_710007ecd4(&s);
+        fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(&s));
     }
     if (id.data == &g_unk_7101d47108->empty)
         return nullptr;

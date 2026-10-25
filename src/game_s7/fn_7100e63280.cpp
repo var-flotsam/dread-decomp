@@ -2,6 +2,7 @@
 // and others: the header ids, then the unit's own statics and registrations (helpers in
 // UnkStaticInitS7.h). Layouts are placeholders.
 #include "UnkStaticInitS7.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -85,7 +86,6 @@ extern UnkEnumType g_unk_71727c1d70;
 void fn_7100e31a94(UnkEnumType* type, const CStrId& name, void*, void*, void (*)(), void*);
 void fn_7100e31748();
 extern char g_unk_71727c1ea8[];
-void* fn_7100e31c70();
 extern char g_unk_71727c1ea9[];
 extern char g_unk_71727c1eaa[];
 UnkEnumType* fn_7100e32bec();

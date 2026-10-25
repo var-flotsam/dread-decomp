@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the behaviortree::CScaredAction::EState.
 #include "../game_s7/UnkStaticInitS7.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -9,7 +10,6 @@ struct UnkStatics_7100390910 {
     u8 field_0x20[8];
 };
 extern UnkStatics_7100390910 g_unk_71726b71b8 __attribute__((visibility("hidden")));
-void* fn_710038f7d4();  // behaviortree::CScaredAction::refl_GetClass
 extern char g_unk_71726b7050[];
 extern UnkEnumType g_unk_71726b7058;
 void fn_710038fde8(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);

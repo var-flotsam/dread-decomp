@@ -3,6 +3,7 @@
 // (0 when there is none). Then asks the owner's object at +0x240 whether it is of the component's
 // class and, if so, readies it (fn_71004d1fe8, flag at 0x15834) and copies the global's value at
 // +0x28 to the second global.
+#include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "types.h"
 
@@ -71,7 +72,6 @@ extern UnkGlobal2 g_unk_7172790a08;
 void fn_71004c1944(UnkSelf* self);
 UnkEntry* fn_71004ba10c(UnkPool* pool, u32 index, u32 flag);
 int fn_71012395a0();
-const CClass* fn_71004cf318();  // the actor class's refl_GetClass
 void fn_71004d1fe8(UnkActor* actor);
 
 void fn_71004cb554(UnkSelf* self) {

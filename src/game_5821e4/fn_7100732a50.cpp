@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the CCharClassFlockingSwarmControllerComponent::SRotationMode enum.
 #include "UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -17,7 +18,6 @@ extern UnkConversion g_unk_71727104b8;
 extern UnkConversion g_unk_71727104d8;
 void fn_7100732900() __attribute__((visibility("hidden")));
 void fn_710073290c() __attribute__((visibility("hidden")));
-void* fn_7100731670();  // CCharClassFlockingSwarmControllerComponent::refl_GetClass
 extern char g_unk_71727104f8[];
 
 void fn_7100732a50() {

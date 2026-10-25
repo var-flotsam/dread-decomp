@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the base::reflection::CollectionTypeMapper<base::global::CRntVector<animtree::CAnimTreeDef::TAnimTreeLinkDef>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<animtree::CAnimTreeDef::TAnimTreeLinkDef>>::TKeyElementConstIterator::value_type, base::global::CRntVector<animtree::CAnimTreeDef::TAnimTreeLinkDef>.
 #include "../game_s7/UnkStaticInitS7.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -12,7 +13,6 @@ struct UnkStatics_71002db4a0 {
 };
 extern UnkStatics_71002db4a0 g_unk_71726a9d20 __attribute__((visibility("hidden")));
 extern char g_unk_71726a93d0[];
-void* fn_71002d6464();  // animtree::CAnimTreeDef::refl_GetClass
 extern char g_unk_71726a93d1[];
 UnkEnumType* fn_71002d6b20();
 extern char g_unk_71726a93d2[];
@@ -36,7 +36,6 @@ void fn_71002d78b8(UnkEnumType* type, const CStrId& name, void*, void*);
 void fn_710009891c(void* type);  // the type's destructor, as registered
 extern char g_unk_71726a97c8[];
 extern char g_unk_71726a97c9[];
-void* fn_71002d7ab4();  // animtree::CAnimTreeDef::TAnimTreeLinkDef::refl_GetClass
 
 void fn_71002db4a0() {
     InitHeaderIds(&g_unk_71726a9d20.ids);

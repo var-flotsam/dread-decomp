@@ -3,6 +3,8 @@
 // +0x228 hits, the sign of the owner's facing is compared with the sign of the overlap along x; if
 // they agree and the owner is past the edge of the hit shape, the offset is added to both of two
 // fields of the output.
+#include "base/UnkMatrix44.h"
+#include "game/UnkActor.h"
 #include "types.h"
 
 struct UnkShape {
@@ -28,27 +30,11 @@ struct UnkFlagged {
     u8 field_0xf9;
 };
 
-struct UnkBodyObj {
-    u8 pad_0x0[0x1f8];
-    UnkFlagged* field_0x1f8;
-};
-
-struct UnkDirection {
-    u8 pad_0x0[8];
-    f32 field_0x8;
-};
-
 struct UnkEntity;
-
-struct UnkOwner {
-    u8 pad_0x0[0x38];
-    u8 field_0x38[0x1f0];
-    UnkEntity* field_0x228;
-};
 
 struct UnkSelf {
     u8 pad_0x0[8];
-    UnkOwner* field_0x8;
+    UnkActor* field_0x8;
     u8 pad_0x10[0x48];
     f32 field_0x58;
 };
@@ -60,39 +46,33 @@ struct UnkOutput {
     f32 field_0x6c;
 };
 
-struct UnkMatrix {
-    f32 m[16];
-};
-
-UnkBodyObj* fn_7100d7c990(UnkOwner* object);
 UnkShape* fn_7100976588(UnkFlagged* flagged);
-UnkDirection* fn_710002614c(void* object);
 extern char g_unk_7101649570[];
-bool fn_71011735e8(UnkEntity* entity, const void* key, UnkMatrix* out, u32 flags);
+bool fn_71011735e8(UnkEntity* entity, const void* key, UnkMatrix44* out, u32 flags);
 
 void fn_710043c084(UnkSelf* self, UnkOutput* out) {
-    UnkBodyObj* target = fn_7100d7c990(self->field_0x8);
+    UnkActor* target = fn_7100d7c990(self->field_0x8);
     if (!target)
         return;
-    UnkFlagged* flagged = target->field_0x1f8;
+    UnkFlagged* flagged = static_cast<UnkFlagged*>(target->field_0x1f8);
     if (!flagged)
         return;
     if (!(self->field_0x58 >= 0.0f))
         return;
     if (flagged->field_0xf9)
         return;
-    UnkEntity* entity = self->field_0x8->field_0x228;
+    UnkEntity* entity = static_cast<UnkEntity*>(self->field_0x8->field_0x228);
     UnkShape* shape = fn_7100976588(flagged);
     if (!entity || !shape)
         return;
-    UnkMatrix m = {};
+    UnkMatrix44 m = {};
     m.m[15] = 1.0f;
     m.m[10] = 1.0f;
     m.m[5] = 1.0f;
     m.m[0] = 1.0f;
     if (!fn_71011735e8(entity, g_unk_7101649570, &m, 0))
         return;
-    f32 x = fn_710002614c(self->field_0x8->field_0x38)->field_0x8;
+    f32 x = fn_710002614c(reinterpret_cast<const UnkMatrix44*>(self->field_0x8->field_0x38)).m[2];
     s32 facing = (x > 0.0f) - (x < 0.0f);
     f32 facing_f = (f32)facing;
     if (shape->field_0x60)

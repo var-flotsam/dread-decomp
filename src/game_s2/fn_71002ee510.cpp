@@ -1,5 +1,6 @@
 // Builds a result (kind 2, empty) in place and hands it the playthrough definition of the
 // owner's object at 0x70 (when it is one) to fill in.
+#include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "types.h"
 
@@ -19,7 +20,6 @@ struct UnkDefHolder {
     UnkDefOwner* owner;
 };
 
-const CClass* fn_71002effc4();  // CPlaythroughDef::refl_GetClass
 const CType* fn_71002ee1dc();
 
 UnkReflValue fn_71002ee510(void* unused, UnkDefHolder* holder) {

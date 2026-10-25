@@ -1,5 +1,6 @@
 // Reflection functions of CTunableMenuHelperClass. Written from the refl_attrs draft; the class's
 // own getter, used as a return type, lives in this translation unit.
+#include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -7,7 +8,6 @@ using base::reflection::UnkReflField;
 using base::reflection::UnkReflFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
-const base::reflection::CType* fn_7100add190();
 extern const base::reflection::CType g_unk_71727586d0 __attribute__((visibility("hidden")));
 void fn_7100adeaf4();
 void fn_7100add688(UnkReflFunction* fn, const char* name);

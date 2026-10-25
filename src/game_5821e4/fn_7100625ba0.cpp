@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the CNailuggerAcidBallsAttack::EState enum.
 #include "UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -10,7 +11,6 @@ struct UnkStatics_7100625ba0 {
     u8 field_0x28[8];
 };
 extern UnkStatics_7100625ba0 g_unk_71726f8550 __attribute__((visibility("hidden")));
-void* fn_7100624324();  // CNailuggerAcidBallsAttack::refl_GetClass
 extern char g_unk_71726f83e8[];
 extern UnkEnumType g_unk_71726f83f0;
 void fn_71006247ac(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);

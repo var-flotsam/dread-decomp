@@ -2,7 +2,9 @@
 // 0x260), when there is a main menu and its pop-up (at 0x540) is a GUI::CPopUpComposition.
 // Three identical copies.
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkGameManager.h"
 #include "types.h"
 
 using base::reflection::CClass;
@@ -39,10 +41,7 @@ struct UnkPopUpListener {
     UnkCallbackSlot callback;
 };
 
-extern void* g_unk_7101d47310;
-UnkReflObject* fn_7100e033a8(void* manager);
-const CClass* fn_7100b34230();  // GUI::CMainMenu::refl_GetClass
-const CClass* fn_7100b5e368();  // GUI::CPopUpComposition::refl_GetClass
+UnkReflObject* fn_7100e033a8(UnkGameManager* manager);
 
 __attribute__((always_inline)) static inline void WatchPopUp(UnkPopUpListener* self) {
     UnkReflObject* menu = fn_7100e033a8(g_unk_7101d47310);

@@ -1,5 +1,6 @@
 // Static initialiser of CFrozenAsFrostbiteComponent's unit.
 #include "UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -16,8 +17,6 @@ struct UnkStatics_71007f80b0 {
 };
 extern UnkStatics_71007f80b0 g_unk_7172720e00 __attribute__((visibility("hidden")));
 void fn_710058a2b8(void* self);
-void* fn_71007f3534();  // CFrozenAsFrostbiteComponent::refl_GetClass
-void* fn_71007f3790();
 extern char g_unk_7172720db8[];
 extern char g_unk_7172720db9[];
 extern UnkTunable g_unk_7172720dc0;

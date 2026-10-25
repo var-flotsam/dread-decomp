@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the CAutsniperShootAttack::ELaserState, CAutsniperShootAttack::EAutsniperState.
 #include "../game_s7/UnkStaticInitS7.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -20,7 +21,6 @@ struct UnkStatics_71003d8910 {
 };
 extern UnkStatics_71003d8910 g_unk_71726bf7f8 __attribute__((visibility("hidden")));
 extern char g_unk_71726bf530[];
-void* fn_71003d2cd4();  // CAutsniperShootAttack::refl_GetClass
 extern UnkEnumType g_unk_71726bf538;
 void fn_71003d32d0(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_71003d2f44();

@@ -2,6 +2,7 @@
 // base::global::CRntSmallDictionary<int, float>: the header ids, then the unit's own statics and
 // registrations (helpers in UnkStaticInitS7.h). Layouts are placeholders.
 #include "UnkStaticInitS7.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -34,7 +35,6 @@ void fn_7100dcfb6c(void* p);
 void fn_7100db464c(void* p);
 extern UnkProperty2 g_unk_71727bca80;
 extern UnkProperty2 g_unk_71727bcac0;
-void* fn_710000abbc();
 extern UnkProperty2 g_unk_71727bcb00;
 void fn_7100db49e4(UnkEnumType* type, const CStrId& name, void*, void*, void (*)(), void*);
 void fn_7100096604(void* type);  // the type's destructor, as registered
@@ -65,15 +65,12 @@ extern char g_unk_71727bd071[];
 UnkEnumType* fn_7100db5adc();
 extern char g_unk_71727bd072[];
 UnkEnumType* fn_7100db5bb8();
-void* fn_7100db5c98();
 extern char g_unk_71727bd073[];
 extern char g_unk_71727bd074[];
 UnkEnumType* fn_7100db6268();
 extern char g_unk_71727bd075[];
 UnkEnumType* fn_7100db6344();
-void* fn_7100db6424();
 extern char g_unk_71727bd076[];
-void* fn_7100db68b4();
 extern char g_unk_71727bd077[];
 struct UnkTunable_71727bd078 : UnkTunable {
     u8 pad_0x8[0x30];
@@ -134,8 +131,8 @@ void fn_7100dd14a0() {
     InitId(&g_unk_71727bca38, "BOSSRUSH");
     InitProperty2(&g_unk_71727bca40, g_unk_7101a45fe8, g_unk_71726db788, g_unk_7101aa94d8, "BossRushRecord", &g_unk_71727bcb40, fn_7100dcfb6c, fn_7100db464c);
     InitProperty2(&g_unk_71727bca80, g_unk_7101a45fe8, g_unk_71726db788, g_unk_7101aa94d8, "DreadRushRecord", &g_unk_71727bcb40, fn_7100dcfb6c, fn_7100db464c);
-    InitProperty2(&g_unk_71727bcac0, g_unk_7101a45fe8, g_unk_71726db788, g_unk_7101aa94d8, "SurvivalRushRecord", fn_7100014768(), fn_7100dcfb6c, fn_7100db464c);
-    InitProperty2(&g_unk_71727bcb00, g_unk_7101a45fe8, g_unk_71726db788, g_unk_7101aa94d8, "SurvivalRushTime", fn_710000abbc(), fn_7100dcfb6c, fn_7100db464c);
+    InitProperty2(&g_unk_71727bcac0, g_unk_7101a45fe8, g_unk_71726db788, g_unk_7101aa94d8, "SurvivalRushRecord", TypeOf<fn_7100014768>(), fn_7100dcfb6c, fn_7100db464c);
+    InitProperty2(&g_unk_71727bcb00, g_unk_7101a45fe8, g_unk_71726db788, g_unk_7101aa94d8, "SurvivalRushTime", TypeOf<fn_710000abbc>(), fn_7100dcfb6c, fn_7100db464c);
     {
         CStrId n("CBossRushManager::SRushRecord", true);
         fn_7100db49e4(&g_unk_71727bcb40, n, nullptr, nullptr, fn_7100db4718, nullptr);

@@ -23,7 +23,6 @@ void fn_7100fae524(UnkEnumType* type, const CStrId& name, void (*factory)(), voi
 void fn_7100fae138();
 extern UnkConversion g_unk_71729ee3a8;
 void fn_7100faf808() __attribute__((visibility("hidden")));
-UnkEnumType* fn_7100005178();
 extern UnkConversion g_unk_71729ee3c8;
 void fn_7100faf814() __attribute__((visibility("hidden")));
 extern char g_unk_71729ee3e8[];
@@ -89,8 +88,8 @@ void fn_7100fb1c80() {
     }();
     __cxa_atexit(fn_7100ee1548, g_unk_71729ee200, g_unk_7101a19000);
     InitEnum(&g_unk_71729ee248, "ESubAreaItem", fn_7100fae524, fn_7100fae138, g_unk_71729ee360, &g_unk_71729ee368, fn_7100faf7f0, &g_unk_71729ee388, fn_7100faf7fc);
-    InitConversion(&g_unk_71729ee3a8, &g_unk_71729ee248, fn_7100005178, fn_7100faf808);
-    InitConversion(&g_unk_71729ee3c8, fn_7100005178, &g_unk_71729ee248, fn_7100faf814);
+    InitConversion(&g_unk_71729ee3a8, &g_unk_71729ee248, TypeOf<fn_7100005178>, fn_7100faf808);
+    InitConversion(&g_unk_71729ee3c8, TypeOf<fn_7100005178>, &g_unk_71729ee248, fn_7100faf814);
     fn_710009ec00(g_unk_71729ee3e8, fn_7100fae6a4());
     fn_710009ec00(g_unk_71729ee3e9, fn_7100fae780());
     {

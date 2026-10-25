@@ -4,6 +4,7 @@
 // at +0x14890 and +0x14898 when they are missing (looked up through the manager's pool at +0x218)
 // and configures them.
 #include "base/global/CStrId.h"
+#include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "types.h"
@@ -50,7 +51,6 @@ extern UnkManager* g_unk_7101d47300;
 extern const u64 g_unk_71726db100[] __attribute__((visibility("hidden")));
 extern const u64 g_unk_71726db108[] __attribute__((visibility("hidden")));
 bool fn_7100369490(UnkComponent* self);
-const CClass* fn_71004eb2d0();  // CCharClassDropterAIComponent::refl_GetClass
 void fn_71004e8ea0(void* state, char* data);
 void fn_7100149930(UnkPool* pool, void* a, UnkEffect** out, base::global::CStrId* name);
 void fn_7100219ae0(UnkManager* manager, void* entry, u32 flag);

@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the CRinkaUnitComponent::ERinkaType, CRinkaUnitComponent::ECentralUnitType enums.
 #include "UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -13,7 +14,6 @@ struct UnkStatics_7100661340 {
     u8 field_0xc8[8];
 };
 extern UnkStatics_7100661340 g_unk_71726fd0f0 __attribute__((visibility("hidden")));
-void* fn_710065e7c4();  // CRinkaUnitComponent::refl_GetClass
 extern char g_unk_71726fce28[];
 extern UnkEnumType g_unk_71726fce30;
 void fn_710065ece4(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);

@@ -1,5 +1,6 @@
 // Builds a qualified id for an object: joins a prefix id, the object's group id (vf_0x20) and
 // its own id (vf_0x28) with ':' (skipping empty parts), and stores the result and the object.
+#include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 
 using base::global::CStrId;
@@ -20,7 +21,6 @@ void fn_710007e6e4(UnkInlineString* self, void* allocator);  // string construct
 void fn_710007f3b4(UnkInlineString* self, const void* str);  // append a string
 void fn_710007f5ac(UnkInlineString* self, char c);           // append a character
 void fn_710007ed40(UnkInlineString* self);
-void fn_710007ecd4(UnkInlineString* self);
 void fn_7100000850(UnkStringData** out, UnkInlineString* str, bool flag);  // id from a string
 
 struct UnkIdSource {
@@ -89,5 +89,5 @@ void fn_7100ae9a10(UnkQualifiedId* self, UnkIdSource* source, const CStrId& pref
         self->id.data = tmp;
     }
     fn_710007ed40(&s);
-    fn_710007ecd4(&s);
+    fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(&s));
 }

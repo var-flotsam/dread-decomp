@@ -1,10 +1,12 @@
 // Moves an analog-aim value toward the actor's current target: finds the aim-delta track on the
 // actor's target, takes how far along it the actor is (or, without one, the gap between two
 // stored values), and applies the change to the output signed by the track's direction.
+#include "base/UnkMatrix44.h"
+#include "base/reflection/UnkClassGetters.h"
 #include "types.h"
 
 struct UnkTrackQuery {
-    void* field_0x0;
+    const base::reflection::CClass* field_0x0;
     struct UnkRange* field_0x8;
     f32 field_0x10;
 };
@@ -26,11 +28,6 @@ struct UnkAimActor {
     UnkAimTarget* field_0x220;
 };
 
-struct UnkDirection {
-    u8 pad_0x0[8];
-    f32 field_0x8;
-};
-
 struct UnkAimComponent {
     u8 pad_0x0[0x30];
     UnkAimActor* field_0x30;
@@ -46,13 +43,9 @@ struct UnkAimOutput {
     f32 field_0x6c;
 };
 
-void* fn_7100c50338();  // CCharClassSPAnalogAimKinematicDeltaTrack::refl_GetClass
-void* fn_7100ceadf8();  // CCharClassAnalogAimTrack::refl_GetClass
-void* fn_7100d2b3a8();  // CCharClassTurnTrack::refl_GetClass
 void fn_710117b08c(UnkAimTarget* target, UnkTrackQuery* query);
-bool fn_710117b348(UnkAimTarget* target, void* cls);
+bool fn_710117b348(UnkAimTarget* target, const base::reflection::CClass* cls);
 f32 fn_7101177ea0(UnkAimTarget* target, u64 key);
-UnkDirection* fn_710002614c(void* actor_part);
 
 void fn_7100352240(UnkAimComponent* self, UnkAimOutput* out) {
     if (!self->field_0x30->field_0x220)
@@ -77,7 +70,7 @@ void fn_7100352240(UnkAimComponent* self, UnkAimOutput* out) {
             return;
         delta = self->field_0x670 - self->field_0x674;
     }
-    f32 direction = fn_710002614c(self->field_0x30->field_0x38)->field_0x8;
+    f32 direction = fn_710002614c(reinterpret_cast<const UnkMatrix44*>(self->field_0x30->field_0x38)).m[2];
     f32 sign = (direction > 0.0f) - (direction < 0.0f);
     out->field_0x60 = delta * sign;
     out->field_0x6c = delta * sign;

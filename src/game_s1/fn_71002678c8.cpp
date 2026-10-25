@@ -4,6 +4,7 @@
 // 0x10-byte value) is 2. The class getter is called first: fn_71002678c8, fn_7100267b5c. Also, as
 // fn_7100d2c880 (src/game_aca57c/fn_7100ad4b54.cpp), a bool value: whether the word at 0x40 of the
 // argument's object is above 1 (fn_710011e3b8).
+#include "base/reflection/UnkClassGetters.h"
 #include "types.h"
 
 struct UnkValue {
@@ -14,7 +15,6 @@ struct UnkValue {
 
 void fn_71000a18d4(UnkValue* out, void* type, const void* value, u32 flag);
 
-void* fn_7100265b1c();  // navmesh::CDynamicSmartLinkGroup::SDynamicSmartLinkRulesSet::refl_GetClass
 extern u8 g_unk_71726a2bf8[] __attribute__((visibility("hidden")));
 
 template <class T>

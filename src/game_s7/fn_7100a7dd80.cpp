@@ -1,6 +1,7 @@
 // Copies of fn_71002d4770 (src/game_s2/fn_71002d4770.cpp) for other types, with their own callees and data (they name their own callees, data and strings; the comments describe the original): fn_7100a7dd80, fn_71009b6e00, fn_71009c68e0.
 // Static initialiser of the unit of the animtree::CAnimatedNodeDef::EAnimNodeType.
 #include "../game_s7/UnkStaticInitS7.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -12,7 +13,6 @@ struct UnkStatics_71002d4770 {
 extern UnkStatics_71002d4770 g_unk_7172750198 __attribute__((visibility("hidden")));
 extern UnkStatics_71002d4770 g_unk_717273f0b8 __attribute__((visibility("hidden")));
 extern UnkStatics_71002d4770 g_unk_717273d180 __attribute__((visibility("hidden")));
-void* fn_71002d32f8();  // animtree::CAnimatedNodeDef::refl_GetClass
 extern char g_unk_7172750030[];
 extern char g_unk_717273ef50[];
 extern char g_unk_717273d018[];
@@ -39,11 +39,8 @@ void fn_7100a7dbf0() __attribute__((visibility("hidden")));
 void fn_71009c6720() __attribute__((visibility("hidden")));
 void fn_71009b6cfc() __attribute__((visibility("hidden")));
 
-void* fn_7100a7bfc4();
 void fn_7100a7c630(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
-void* fn_71009b57c4();
 void fn_71009b5c38(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
-void* fn_71009c53f0();
 void fn_71009c5814(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_7100a7dd80() {
     InitHeaderIds(&g_unk_7172750198.ids);

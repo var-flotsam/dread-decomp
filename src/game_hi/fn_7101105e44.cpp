@@ -2,6 +2,8 @@
 // and screw-attack tracks of the owner's character class (zeroing or blocking the damage), and
 // reports whether the owner's shield currently absorbs it (2) or not (0).
 #include "base/global/CStrId.h"
+#include "base/reflection/UnkClassGetters.h"
+#include "game/UnkActor.h"
 
 using base::global::CStrId;
 
@@ -40,7 +42,7 @@ struct UnkTrack_7101105e44 {
 };
 
 struct UnkTrackQuery_7101105e44 {
-    void* cls;
+    const base::reflection::CClass* cls;
     UnkTrack_7101105e44* result;
     f32 field_0x10;
 };
@@ -85,15 +87,11 @@ struct UnkStruct_7101105e44 {
 };
 
 void fn_7100d7add4(UnkActor_7101105e44* actor, bool value);
-void* fn_7100c135a8();
-void* fn_7100c2bcd8();
-void* fn_7100bf0758();
 void fn_710117b08c(void* char_class, UnkTrackQuery_7101105e44* query);
-bool fn_710117b348(void* char_class, void* cls);
+bool fn_710117b348(void* char_class, const base::reflection::CClass* cls);
 u32 fn_7100414070(const char* str);
 void fn_71008c1538(UnkDamage_7101105e44* d, f32 amount);
 bool fn_7101161088(UnkShield_7101105e44* shield);
-UnkStateOwner_7101105e44* fn_7100d7c990(UnkActor_7101105e44* actor);
 
 static inline const char* UseStr_7101105e44(const UnkIdCopy_7101105e44& id) {
     UnkStrUse_7101105e44* s = reinterpret_cast<UnkStrUse_7101105e44*>(id.data);
@@ -109,7 +107,8 @@ u32 fn_7101105e44(UnkStruct_7101105e44* self, UnkDamage_7101105e44* d) {
     }
     self->field_0x60 = true;
     if (!(d->flags & 0x20000030)) {
-        UnkStateOwner_7101105e44* o = fn_7100d7c990(self->actor);
+        UnkStateOwner_7101105e44* o =
+            reinterpret_cast<UnkStateOwner_7101105e44*>(fn_7100d7c990(reinterpret_cast<UnkActor*>(self->actor)));
         if (o && o->field_0x1c0 && o->field_0x1c0->field_0x330) {
             fn_71008c1538(d, 999999.0f);
             return 0;

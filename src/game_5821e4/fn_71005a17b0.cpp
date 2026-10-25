@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the CGroundShockerAttack::EState enum.
 #include "UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -11,7 +12,6 @@ struct UnkStatics_71005a17b0 {
     u8 field_0x30[8];
 };
 extern UnkStatics_71005a17b0 g_unk_71726e8028 __attribute__((visibility("hidden")));
-void* fn_71005a020c();  // CGroundShockerAttack::refl_GetClass
 extern char g_unk_71726e7ec0[];
 extern UnkEnumType g_unk_71726e7ec8;
 void fn_71005a0814(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);

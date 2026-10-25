@@ -2,6 +2,7 @@
 // vtable is set, the id at 0x18 is handed to fn_7100027044, then the refcounted pointer at 0x28
 // (count at 0x54, freed by fn_710001737c), the file path at 0x20 and the string ids at 0x18 and
 // 0x10 are released and the base destructor (fn_7100067ed4) runs.
+#include "base/UnkCountedResource.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "types.h"
@@ -31,19 +32,11 @@ struct UnkReleasedId {
 using UnkReleasedStrId = UnkReleasedId<&g_unk_7101d47108>;
 using UnkReleasedPathId = UnkReleasedId<&g_unk_7101d47200>;
 
-struct UnkShared54 {
-    u8 unk_0x0[0x54];
-    union {  // (the original reloads around the count, as through a union)
-        s32 ref_count;
-    };
-};
-void fn_710001737c(UnkShared54* obj);
-
 struct UnkShared54Ptr {
-    UnkShared54* ptr;
+    UnkCountedResource* ptr;
 
     __attribute__((always_inline)) ~UnkShared54Ptr() {
-        if (UnkShared54* p = ptr) {
+        if (UnkCountedResource* p = ptr) {
             if (--p->ref_count == 0)
                 fn_710001737c(p);
         }

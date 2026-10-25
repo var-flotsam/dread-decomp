@@ -33,7 +33,6 @@ extern void* g_unk_716e29ab88;
 extern void* g_unk_716e29ab90;
 extern UnkMatrix44f g_unk_716e29ab98;
 extern UnkMatrix44f g_unk_716e29abd8;
-void* fn_7100083990();
 void fn_7100154538(void* handle);
 
 // NON_MATCHING(minor): the first matrix's stores are merged differently (the original pairs every

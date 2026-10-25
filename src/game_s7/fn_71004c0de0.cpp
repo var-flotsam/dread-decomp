@@ -4,6 +4,7 @@
 // base::global::CRntVector<CCooldownXBossFireBallDef>: the header ids, then the unit's own statics
 // and registrations (helpers in UnkStaticInitS7.h). Layouts are placeholders.
 #include "UnkStaticInitS7.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -19,9 +20,7 @@ struct UnkStatics_71004c0de0 {
     u8 field_0x3e0[8];
 };
 extern UnkStatics_71004c0de0 g_unk_71726d7350 __attribute__((visibility("hidden")));
-void* fn_71004b518c();
 extern char g_unk_71726d5820[];
-void* fn_71004b5628();
 extern char g_unk_71726d5821[];
 extern char g_unk_71726d5822[];
 UnkEnumType* fn_71004b5dc0();
@@ -89,13 +88,11 @@ UnkEnumType* fn_71004b8af8();
 extern UnkEnumType g_unk_71726d62c0;
 void fn_71004b8bd4(UnkEnumType* type, const CStrId& name, void*, void*);
 extern char g_unk_71726d6430[];
-void* fn_71004b8dd0();
 extern char g_unk_71726d6431[];
 extern UnkTunable g_unk_71726d6438;
 void fn_7100136ecc(UnkTunable* self);  // the base constructor
 extern void* g_unk_7101a3e378[];
 void fn_7100075104(void* self);  // its destructor, as registered
-void* fn_71004b9584();
 extern char g_unk_71726d6469[];
 
 void fn_71004c0de0() {

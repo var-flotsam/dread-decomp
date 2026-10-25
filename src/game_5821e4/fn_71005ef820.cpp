@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the ESpinningNailsState, ESpinningNailsSpeed, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>::TKeyElementConstIterator::value_type, base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>, base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>>::TKeyElementConstIterator::value_type, base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>> reflected types.
 #include "UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -13,7 +14,6 @@ struct UnkStatics_71005ef820 {
     u8 field_0x2a0[8];
 };
 extern UnkStatics_71005ef820 g_unk_71726f20c0 __attribute__((visibility("hidden")));
-void* fn_71005e742c();  // CCharClassKraidSpinningNailsAttack::CTunableCharClassKraidSpinningNailsAttack::refl_GetClass
 extern char g_unk_71726f0b08[];
 extern UnkTunable g_unk_71726f0b10;
 void fn_7100136ecc(UnkTunable* self);  // the base constructor
@@ -35,7 +35,6 @@ extern UnkConversion g_unk_71726f0dc0;
 extern UnkConversion g_unk_71726f0de0;
 void fn_71005eae30() __attribute__((visibility("hidden")));
 void fn_71005eae3c() __attribute__((visibility("hidden")));
-void* fn_71005e82b4();  // CKraidSpinningNailsDef::refl_GetClass
 extern char g_unk_71726f0e00[];
 extern char g_unk_71726f0e01[];
 UnkEnumType* fn_71005e871c();
@@ -84,7 +83,6 @@ void fn_71005ea5b4(UnkEnumType* type, const CStrId& name, void*, void*);
 extern char g_unk_71726f15f0[];
 extern UnkConversion g_unk_71726f15f8;
 void fn_71005ecf00() __attribute__((visibility("hidden")));
-void* fn_71005ea79c();  // CCharClassKraidSpinningNailsAttack::refl_GetClass
 extern char g_unk_71726f1618[];
 
 void fn_71005ef820() {

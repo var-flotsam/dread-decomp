@@ -1,4 +1,5 @@
 // Resolves a GUI script name to a path, loads it once through the lazily created registry, and returns a handle to the loaded object.
+#include "base/global/CRntString.h"
 #include "types.h"
 
 struct UnkTag_71011b69d8 {};
@@ -54,7 +55,6 @@ struct UnkRegistry_0x70 {
 UnkScriptPath_0x148 fn_71011b66fc(UnkTag_71011b69d8 tag, const char* const* name);
 void fn_710007eab4(UnkEntry_0x30* dst, const UnkEntry_0x30* src);
 void fn_710007ed40(UnkScriptPath_0x148* p);
-void fn_710007ecd4(UnkEntry_0x30* e);
 void* fn_71000839a0(u64 size, u32 flags);
 void fn_7100087388(UnkRegistry_0x70* r);
 void fn_710008d4c0(UnkStrPair_0x10* s, const UnkEntry_0x30* e);
@@ -70,7 +70,7 @@ UnkRefHandle_71011b69d8 fn_71011b69d8(UnkTag_71011b69d8 tag, const char* const* 
         UnkScriptPath_0x148 sp = fn_71011b66fc(tag, name);
         fn_710007eab4(&path, &sp.path);
         fn_710007ed40(&sp);
-        fn_710007ecd4(&sp.path);
+        fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(&sp.path));
     }
     UnkRegistry_0x70* reg = g_unk_7101d4b5a0;
     if (!reg) {
@@ -114,6 +114,6 @@ UnkRefHandle_71011b69d8 fn_71011b69d8(UnkTag_71011b69d8 tag, const char* const* 
         ++h->ref_count;
         result.ptr = h;
     }
-    fn_710007ecd4(&path);
+    fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(&path));
     return result;
 }

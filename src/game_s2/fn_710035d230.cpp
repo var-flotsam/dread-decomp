@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the ECutPathMode, EXpawnAngPolicy.
 #include "../game_s7/UnkStaticInitS7.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -25,7 +26,6 @@ extern UnkConversion g_unk_71726b2030;
 extern UnkConversion g_unk_71726b2050;
 void fn_710035d0ac() __attribute__((visibility("hidden")));
 void fn_710035d0b8() __attribute__((visibility("hidden")));
-void* fn_710035cb6c();  // SDeathImpactDisplacement::refl_GetClass
 extern char g_unk_71726b2070[];
 
 void fn_710035d230() {

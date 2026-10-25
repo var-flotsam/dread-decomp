@@ -3,6 +3,7 @@
 // (with its handler fn_7100474f24), initialises three embedded blocks at 0x27628, 0x27690 and
 // 0x276f8 from the actor and registers four embedded entries in the list at 0x161c, each initialised
 // from its own fixed offset into the actor. Returns bit 0 of the first step's result.
+#include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "types.h"
 
@@ -41,7 +42,6 @@ struct UnkSelf {
 };
 
 u32 fn_71003ac8f4(UnkSelf* self);
-const CClass* fn_710046d9e0();  // CCharClassChozoRobotSoldierAIComponent::refl_GetClass
 void fn_7100474f24();
 void fn_71002c550c(void* block, u8* source);
 void fn_71004649f0(void* entry, u8* source);

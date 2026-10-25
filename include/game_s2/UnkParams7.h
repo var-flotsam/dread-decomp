@@ -1,8 +1,9 @@
 #pragma once
 
 // The larger parameter block (kind 7, vtable g_unk_7101a265a8) that some component handlers build on
-// the stack for fn_71006f4b0c. Only the fields the handlers touch are named.
+// the stack for fn_71006f4b0c (game_s2/UnkParams.h). Only the fields the handlers touch are named.
 
+#include "game_s2/UnkParams.h"
 #include "types.h"
 
 extern void* g_unk_7101a265a8[];
@@ -43,5 +44,3 @@ struct __attribute__((packed)) UnkParams7 {
     u8 pad_0x91[7];
     u8 field_0x98;
 };
-
-void fn_71006f4b0c(void* target, UnkParams7* params, u32 flag);

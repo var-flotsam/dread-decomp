@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the CCharClassRodotukAIComponent::SAbsorbConfig::EType, CCharClassRodotukAIComponent::SAbsorbConfig, base::reflection::CollectionTypeMapper<CCharClassRodotukAIComponent::TVAbsorbConfigs>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<CCharClassRodotukAIComponent::TVAbsorbConfigs>::TKeyElementConstIterator::value_type, CCharClassRodotukAIComponent::TVAbsorbConfigs reflected types.
 #include "UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -11,9 +12,7 @@ struct UnkStatics_7100671920 {
     u8 field_0x160[8];
 };
 extern UnkStatics_7100671920 g_unk_71726ff920 __attribute__((visibility("hidden")));
-void* fn_710066cd74();  // CCharClassRodotukAIComponent::refl_GetClass
 extern char g_unk_71726fede8[];
-void* fn_710066d22c();  // CCharClassRodotukAIComponent::CTunableCharClassRodotukAIComponent::refl_GetClass
 extern char g_unk_71726fede9[];
 extern UnkTunable g_unk_71726fedf0;
 void fn_7100136ecc(UnkTunable* self);  // the base constructor

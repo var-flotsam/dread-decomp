@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPolypFallPattern>>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPolypFallPattern>>>::TKeyElementConstIterator::value_type, base::global::CRntVector<std::unique_ptr<CPolypFallPattern>> reflected types.
 #include "UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -11,7 +12,6 @@ struct UnkStatics_71005b1e00 {
     u8 field_0x160[8];
 };
 extern UnkStatics_71005b1e00 g_unk_71726ea338 __attribute__((visibility("hidden")));
-void* fn_71005ada84();  // CPolypFallPattern::refl_GetClass
 extern char g_unk_71726e98b0[];
 extern char g_unk_71726e98b1[];
 UnkEnumType* fn_71005adf20();
@@ -41,7 +41,6 @@ void fn_710009891c(void* type);  // the type's destructor, as registered
 extern char g_unk_71726e9ca8[];
 extern UnkConversion g_unk_71726e9cb0;
 void fn_71005b0d08() __attribute__((visibility("hidden")));
-void* fn_71005af03c();  // CCharClassHydrogigaPolypsAttack::refl_GetClass
 extern char g_unk_71726e9cd0[];
 
 void fn_71005b1e00() {

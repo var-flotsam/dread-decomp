@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the CChozoWarriorXUltimateGrabAttack::SState enum.
 #include "../game_s7/UnkStaticInitS7.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -21,9 +22,7 @@ extern UnkConversion g_unk_71726cf458;
 extern UnkConversion g_unk_71726cf478;
 void fn_710048a930() __attribute__((visibility("hidden")));
 void fn_710048a93c() __attribute__((visibility("hidden")));
-void* fn_7100486188();  // CChozoWarriorXUltimateGrabAttack::refl_GetClass
 extern char g_unk_71726cf498[];
-void* fn_7100486408();  // CChozoWarriorXUltimateGrabAttack::CTunableChozoWarriorXUltimateGrabAttack::refl_GetClass
 extern char g_unk_71726cf499[];
 extern UnkTunable g_unk_71726cf4a0;
 void fn_7100136ecc(UnkTunable* self);  // the base constructor

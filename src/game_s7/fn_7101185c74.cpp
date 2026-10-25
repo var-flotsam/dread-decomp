@@ -1,6 +1,7 @@
 // Copies of fn_7100b4c2e8 (src/game_aca57c/fn_7100b021fc.cpp) for other types, with their own callees and data (they name their own callees, data and strings; the comments describe the original): fn_7101185c74.
 // Weak references to GUI objects: setters that take the focused object of the GUI root (its
 // object at 0x230, whose target is at 0x10), and assignments from another object's handle.
+#include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game_s2/UnkWeakHandle.h"
 
@@ -53,7 +54,6 @@ struct UnkReportRef {
     UnkWeakHandle* handle;
 };
 
-const CClass* fn_71011c3868();
 UnkReportRef* fn_7101185c74(UnkReportRef* self, const UnkReportRef* other) {
     UnkWeakTarget* target = other->handle ? other->handle->target : nullptr;
     UnkWeakHandle* handle = nullptr;

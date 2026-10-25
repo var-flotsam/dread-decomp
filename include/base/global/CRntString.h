@@ -51,6 +51,10 @@ static_assert(sizeof(CRntString) == 0x30, "CRntString layout");
 
 }  // namespace base::global
 
+// The destructor, as a function (fn_710007ecd4): frees the heap copy. It is also what
+// __cxa_atexit registers for global strings, and the second step of destroying a string with
+// inline storage (after fn_710007ed40).
+void fn_710007ecd4(base::global::CRntString* self);
 // Copies [str, str + length) in (fn_710007ebc8).
 void fn_710007ebc8(base::global::CRntString* self, const char* str, u32 length, s64 key);
 void fn_710007f3e4(base::global::CRntString* self, const char* str, u32 length);  // appends

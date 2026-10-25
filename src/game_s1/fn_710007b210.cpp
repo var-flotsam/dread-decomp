@@ -1,7 +1,9 @@
 // Static initialiser registering 2 enum types: for each, builds the enum info object, registers
 // its destructor with atexit, adds it to the registry, then fills two handler records and
 // registers both. Enums: base::math::ETransformSpace, base::math::EMaxAxis.
+#include "base/UnkAtExit.h"
 #include "base/global/CStrId.h"
+#include "base/reflection/UnkReflAttributes.h"
 
 #define HIDDEN __attribute__((visibility("hidden")))
 
@@ -15,18 +17,21 @@ struct UnkEnumInfo {
     u8 pad_0x0[8];
     UnkEnumDesc* desc_0x8;
 };
+
+// The reflected int and unsigned types (base/reflection/UnkReflAttributes.h), seen through the
+// placeholder.
+template <const base::reflection::CType* (*Getter)()>
+static inline UnkEnumInfo* TypeOf() {
+    return reinterpret_cast<UnkEnumInfo*>(const_cast<base::reflection::CType*>(Getter()));
+}
 struct UnkEnumPair {
     u64 first, second;
     void (*fn)();
     u64 zero;
 };
 
-extern u8 g_unk_7101a19000 HIDDEN;  // __dso_handle
-void fn_710009ec00(void* registry, void* obj);
 void fn_71000a16c4(UnkEnumPair* p);
-int fn_7100000250(void (*)(void*), void*, void*);
 void fn_71000145e8(UnkEnumInfo* obj, CStrId* name, void (*fn)(), void* a);
-UnkEnumInfo* fn_7100014768();
 extern UnkEnumInfo g_unk_7101d58900;
 extern UnkEnumInfo g_unk_7101d58a60;
 extern UnkEnumPair g_unk_7101d58a20;
@@ -53,13 +58,13 @@ void fn_710007b210() {
     fn_710009ec00(g_unk_7101d58a18, &g_unk_7101d58900);
     {
         u64 a = g_unk_7101d58900.desc_0x8->field_0x30;
-        u64 b = fn_7100014768()->desc_0x8->field_0x30;
+        u64 b = TypeOf<fn_7100014768>()->desc_0x8->field_0x30;
         g_unk_7101d58a20.first = a;
         g_unk_7101d58a20.second = b;
         g_unk_7101d58a20.fn = fn_710007b0f4;
         g_unk_7101d58a20.zero = 0;
         fn_71000a16c4(&g_unk_7101d58a20);
-        u64 c = fn_7100014768()->desc_0x8->field_0x30;
+        u64 c = TypeOf<fn_7100014768>()->desc_0x8->field_0x30;
         u64 d = g_unk_7101d58900.desc_0x8->field_0x30;
         g_unk_7101d58a40.first = c;
         g_unk_7101d58a40.second = d;
@@ -75,13 +80,13 @@ void fn_710007b210() {
     fn_710009ec00(g_unk_7101d58b78, &g_unk_7101d58a60);
     {
         u64 a = g_unk_7101d58a60.desc_0x8->field_0x30;
-        u64 b = fn_7100014768()->desc_0x8->field_0x30;
+        u64 b = TypeOf<fn_7100014768>()->desc_0x8->field_0x30;
         g_unk_7101d58b80.first = a;
         g_unk_7101d58b80.second = b;
         g_unk_7101d58b80.fn = fn_710007b10c;
         g_unk_7101d58b80.zero = 0;
         fn_71000a16c4(&g_unk_7101d58b80);
-        u64 c = fn_7100014768()->desc_0x8->field_0x30;
+        u64 c = TypeOf<fn_7100014768>()->desc_0x8->field_0x30;
         u64 d = g_unk_7101d58a60.desc_0x8->field_0x30;
         g_unk_7101d58ba0.first = c;
         g_unk_7101d58ba0.second = d;

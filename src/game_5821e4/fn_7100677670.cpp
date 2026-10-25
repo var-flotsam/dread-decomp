@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the CCharClassSabotoruAIComponent::ESubspecies enum.
 #include "UnkStaticInit.h"
+#include "base/reflection/UnkClassGetters.h"
 
 using namespace unk_static_init;
 
@@ -19,9 +20,7 @@ extern UnkConversion g_unk_71727007e0;
 extern UnkConversion g_unk_7172700800;
 void fn_7100677498() __attribute__((visibility("hidden")));
 void fn_71006774a4() __attribute__((visibility("hidden")));
-void* fn_71006767d0();  // CCharClassSabotoruAIComponent::refl_GetClass
 extern char g_unk_7172700820[];
-void* fn_7100676c10();  // CCharClassSabotoruAIComponent::CTunableCharClassSabotoruAIComponent::refl_GetClass
 extern char g_unk_7172700821[];
 extern UnkTunable g_unk_7172700828;
 void fn_7100136ecc(UnkTunable* self);  // the base constructor

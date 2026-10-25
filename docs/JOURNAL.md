@@ -56,6 +56,13 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Status dashboard (2026-10-24, branch `claude/task-status-dashboard-9a819f`).** A private dashboard
+artifact (owner's claude.ai account) shows matching progress for the whole binary and the boot slice,
+a daily trend, status by subsystem, and the phase and workstream tables of this handoff.
+`tools/dashboard_export.py` writes its four datasets to `build/dashboard/` (counts only); refreshing
+it means re-running the script after a merge and uploading the files. Its whole-binary share leaves
+Ghidra's import stubs out, so it reads about 0.1 point above `tools/progress.py` (53.9% vs 53.8%).
+
 **Fifteenth session (2026-10-24, on the PC, branch `claude/strategy-cleanup`): strategy readthrough
 and its changes.** Findings that drove it: 53.8% of game bytes matched, but 9.4 MB of the 10.1 MB is
 generated and only 0.76 MB is hand-typed; the boot path from `nnMain` was 27% matched; hand-written
@@ -91,6 +98,29 @@ globals 0x200 too low; it reads them from the GOT now. The frozen sample `src/fl
 stored a global's address where the original stores a function's (`fn_71004dd73c`, a callback).
 `check.py` no longer exempts generated directories. The self-hosted check runner `dread-pc` was
 registered the same day (`docs/maintaining.md`).
+
+Third part (hub migrations, branch `claude/hubs-1`, and port M0, branch `claude/port-m0`): six
+canonical-header steps, each byte-identical per file against a trymatch baseline and reviewed.
+The 13 symbols `include/` declared twice were reconciled first (`fn_710007ecd4` is
+`CRntString`'s destructor; the hash-stream functions moved to `include/base/UnkHashStream.h`;
+the block free list and the DSO handle got their own headers), then `fn_7100d7c990` (the actor's
+target getter: follows the slot at +0x290 through a weak handle, else returns the player from the
+game manager; `include/game/UnkActor.h`), `fn_710002614c` (`UnkMatrix44.h`), `fn_710001737c`
+(frees a counted resource through the descriptor registry; `UnkCountedResource.h`),
+`g_unk_7101d47310` (the game manager singleton; `UnkGameManager.h` with offset static_asserts for
+the fields the 30 files touch) and the class getters (`tools/gen_class_getters.py` writes
+`UnkClassGetters.h` from the CSV; 243 files). Conflicting signatures 393 to 337, header
+re-declarations 76 to 53, `O` unchanged. Findings: a header included by generated clones must keep
+the form the instantiations compile with (re-run `gen_clones.py` after editing it; it emitted
+identical files each time); a union-member refcount in a shared struct changes codegen in callers
+that read it as a plain word, so two callers keep a local view; ten callers of the actor getter
+need word-typed views of the translation for integer loads; `refl_TypeOf` in `UnkTUInit.h` now
+takes `template <auto Getter>` so plain-type and class getters both fit. Port M0: `tools/port_sweep.py`
+compiles all 3,808 `src/` files for `x86_64-linux-gnu` with the project's libc++ 9.0.1 and musl
+headers (the only failures without the runtime are the four SDK headers); `port/` CMake project with
+`dread_game`, `dread_runtime` (own `nn::` declarations written from the uses; only 4 Phase 3 sample
+files duplicate another source and are excluded) and a banner executable; nothing links on the PC
+(no Windows SDK).
 
 **Fourteenth session (2026-10-21, Linux cloud, branch `claude/project-thread-slp42f`):** probe of the
 ten largest `U` functions (Next steps, "Giant functions"); new generator `tools/gen_tables.py`

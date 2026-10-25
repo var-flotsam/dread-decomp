@@ -10,14 +10,14 @@
 
 #include <new>
 
+#include "base/UnkAtExit.h"
 #include "base/global/CStrId.h"
+#include "base/reflection/UnkReflAttributes.h"
 #include "types.h"
 
 using base::global::CStrId;
 
-extern char g_unk_7101a19000 __attribute__((visibility("hidden")));  // the DSO handle
-int fn_7100000250(void (*dtor)(void*), void* object, void* dso);     // __cxa_atexit
-void fn_710000051c(void* id);                                         // a CStrId's destructor
+void fn_710000051c(void* id);  // a CStrId's destructor
 
 struct UnkReflTypeInfo {
     u8 unk_0x0[0x30];
@@ -31,7 +31,15 @@ struct UnkReflType {
     void (*construct)(UnkValue* value, const void* src);  // copies a value of the type
     void (*destroy)(UnkValue* value);
 };
-void fn_710009ec00(void* flag, UnkReflType* type);
+
+// A reflected type's getter (base/reflection/UnkReflAttributes.h declares the plain types',
+// base/reflection/UnkClassGetters.h the classes'), as the helpers see the type object: through
+// the placeholder layout above. The getters return a pointer to const CType or CClass.
+template <auto Getter>
+__attribute__((always_inline)) static inline UnkReflType* refl_TypeOf() {
+    return reinterpret_cast<UnkReflType*>(const_cast<void*>(static_cast<const void*>(Getter())));
+}
+
 void fn_7100096604(void* type);  // a class type's destructor
 void fn_7100099468(void* type);  // an enum type's destructor
 
@@ -84,13 +92,12 @@ struct UnkConverter {
     void* field_0x18;
 };
 void fn_71000a16c4(UnkConverter* converter);
-UnkReflType* fn_7100014768();  // the enums' integer type
-UnkReflType* fn_7100005178();  // refl_GetType<unsigned>, the flag sets' integer type
 
+// The enums' integer type is fn_7100014768 (int); the flag sets' is fn_7100005178 (unsigned).
 __attribute__((always_inline)) static inline void InitEnumConverters(UnkReflType* type, UnkConverter& to_int,
                                                                      void (*to_int_fn)(), UnkConverter& from_int,
                                                                      void (*from_int_fn)(),
-                                                                     UnkReflType* (*int_type)() = fn_7100014768) {
+                                                                     UnkReflType* (*int_type)() = refl_TypeOf<fn_7100014768>) {
     to_int = {type->info->field_0x30, int_type()->info->field_0x30, to_int_fn, nullptr};
     fn_71000a16c4(&to_int);
     from_int = {int_type()->info->field_0x30, type->info->field_0x30, from_int_fn, nullptr};
