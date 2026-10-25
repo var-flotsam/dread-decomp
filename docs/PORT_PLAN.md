@@ -148,6 +148,14 @@ call order along the boot path (`nn::os` and `nn::oe` first, then `nn::fs`, `nn:
 `nv`), and the data loader that maps the dump's segments at their original addresses and replaces
 the absolute symbols.
 
+**M1 step 2 (2026-10-25).** The vendored libraries are in the link and the build (`dread_libs`:
+`lib/lua` and `lib/dlmalloc` compiled as C++ with the matching build's flags), and `fn_7100000250`
+(`__cxa_atexit`, per `include/base/UnkAtExit.h`) jumps to the host's. On `main` after hub batch 2 the
+boot slice's functions without a definition drop from 2,276 to **2,157 (1,238,544 bytes)**: 2,148
+`U`, 8 `L` (127 before), one `O`. The residue grows from 304 to 375 by Lua's C library calls only.
+Next: the lifter's coverage mode over `boot_missing.csv`, the runtime stubs and the data loader, as
+above.
+
 This is aggressive. M1 is realistic with focus. M2 depends on shader translation, which is either
 a large dependency or a large project. "Playable in a few months" requires M2 to go well; say so
 when planning, and re-estimate after M1.

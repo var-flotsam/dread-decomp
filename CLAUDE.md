@@ -42,7 +42,7 @@ files over 1 MB, `.nso/.nro/.nca/.nsp/.xci/.nsz/.xcz/.keys/.elf`, and anything u
 | `lib/` | yes | vendored upstream Lua 5.1.4 (`lib/lua`), dlmalloc 2.8.4, one libc++ sort; submodules `lib/nnsdk`, `lib/musl` (headers only) |
 | `data/` | yes | metadata only: `hashes.json`, `functions/main_XX.csv`, `reflection_types.csv`, `tu_map.csv`, `library_symbols.csv`, `toolchains.json`, `sources.json`; never code bytes |
 | `docs/` | yes | `HANDOFF.md` (state), `PORT_PLAN.md`, `JOURNAL.md` (history), `recon.md`, `compiler.md`, `maintaining.md`, `references.md` |
-| `port/` | yes | PC port layer (Route B): CMake project (`dread_game`, `dread_runtime`, `dread`, `sweep`, `link_report`), the port's own `nn::` runtime under `runtime/`, `sample_duplicates.txt`; `port/README.md` has the layout, the sweep and the link |
+| `port/` | yes | PC port layer (Route B): CMake project (`dread_game`, `dread_libs`, `dread_runtime`, `dread`, `sweep`, `link_report`), the port's own `nn::` runtime under `runtime/`, `sample_duplicates.txt`; `port/README.md` has the layout, the sweep and the link |
 
 ## Setup
 

@@ -62,6 +62,20 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Port M1 step 2 (2026-10-25, branch `claude/port-libs`): the vendored libraries in the link.**
+`tools/port_link.py` compiles `lib/lua` (all 29 files) and `lib/dlmalloc/mspace.c` as C++ with
+`-fno-strict-aliasing`, as the matching build does, into the first link; `port/CMakeLists.txt` has
+the same as `dread_libs`. All 30 compile for `x86_64-linux-gnu` with the project's libc++ and musl
+headers, and link 1 still finds no duplicate symbol. The Lua and dlmalloc definitions resolve their
+`L` addresses through their unique CSV names (369 addresses). `fn_7100000250` jumps to the host's
+`__cxa_atexit`, as `include/base/UnkAtExit.h` identifies it (a new by-address host table). It has
+470 callers in the boot slice, so a trap there would have stopped the boot at the first static
+initialiser. On `main` after hub batch 2 the slice's functions without a definition went from 2,276
+to 2,157. Missing `L` functions fell from 127 to 8, among them `nnMain` itself, which the CSV
+marks `L`. Lua brings 24 C library functions the tool did not know (`stdio`, locale, time); they
+are listed as the host's, and the residue grows from 304 to 375 by such names only. The sweep on the
+same `main` compiles all 3,812 sources.
+
 **Sixteenth session (2026-10-25, on the PC, branches `claude/hubs-2` and `claude/port-m1`): hub
 batch 2 and the port link.** Hub batch 2 (var-flotsam/dread-decomp#187): 25 symbols to one
 real-typed declaration each in 11 headers, in eleven steps by workflow agents. Six steps whose

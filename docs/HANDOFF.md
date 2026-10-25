@@ -21,7 +21,7 @@ Target: **Metroid Dread 2.1.0**, `main` build ID `646761F643AFEBB379EDD5E6A5151A
 | Generators: lifted, statics, clones, tables | **In maintenance.** `src/lifted/` 46,380 functions; `src/reflection_statics/`, `src/clones/`, `src/tables/`. The lifter is at its limit for byte-identical output (see the journal); no new variant rounds |
 | 4.4 Core engine types and hand matching | **In progress.** String ids and pool, `UnkVector`, CRC64, allocator getter, reflected-function array; hand slices in `src/game_*/` (0.76 MB typed) |
 | 4.5 Boot to title screen | **Measured, not started as a slice.** 4,441 functions reachable from `nnMain` by direct calls; see the table below |
-| Port | **M0 done** (var-flotsam/dread-decomp#183): `tools/port_sweep.py` compiles all 3,808 `src/` files for x86-64 once `port/runtime/include` stands in for the SDK headers; `port/` CMake project with `dread_game`, `dread_runtime` (our own `nn::` declarations and stubs) and the banner executable. **M1 step 1 done** (2026-10-25, var-flotsam/dread-decomp#186): `tools/port_link.py` links the whole program relocatably and lists what is missing (2,282 boot-slice functions without a source). No executable on this PC (no Windows SDK or WSL) |
+| Port | **M0 done** (var-flotsam/dread-decomp#183): `tools/port_sweep.py` compiles all 3,808 `src/` files for x86-64 once `port/runtime/include` stands in for the SDK headers; `port/` CMake project with `dread_game`, `dread_runtime` (our own `nn::` declarations and stubs) and the banner executable. **M1 steps 1 and 2 done** (2026-10-25, var-flotsam/dread-decomp#186 and the vendored-libraries step): `tools/port_link.py` links the whole program, Lua and dlmalloc included, relocatably and lists what is missing (2,157 boot-slice functions without a source). No executable on this PC (no Windows SDK or WSL) |
 
 Numbers from `tools/progress.py` and `tools/progress.py --slice boot` on 2026-10-25 (hub batch 2,
 var-flotsam/dread-decomp#187):
@@ -318,12 +318,13 @@ classifies what is missing, generates `--defsym` aliases (37,531 references to f
 under another symbol: the declaration debt and the lifter's `callee::` convention), absolute data
 symbols (15,450 `g_unk_` addresses) and trap thunks, and links again to a residue of 304 (71
 vtables, 49 standard library names, 2 `nn::hid` destructors, 182 names without an address).
-The boot slice's 4,211 game functions: 1,007 defined, 919 reached through an alias only, 3 the
-host's, **2,282 without a source** (1.29 MB; 2,153 `U`, 128 `L`, one `O`), listed by callers in
-`build/port/link/boot_missing.csv`, the lifter's coverage worklist (counted before batch 2's five
-matches). Next for M1, in order: a port CMake rule that compiles `lib/lua` (103 of the slice's 128
-missing `L` functions are Lua's) and `lib/dlmalloc`; the lifter's semantic coverage mode over
-`boot_missing.csv` (stream M); `nn::` stubs in call order (`nn::os` 16 and `nn::oe` 1 still
+M1 step 2 is done (2026-10-25): `lib/lua` and `lib/dlmalloc` are compiled into the link and the
+build (`dread_libs`), and `fn_7100000250` (`__cxa_atexit`) jumps to the host's. On `main` after hub
+batch 2 the boot slice's 4,211 game functions are 1,109 defined, 941 reached through an alias only,
+4 the host's and **2,157 without a source** (1.24 MB; 2,148 `U`, 8 `L`, one `O`), listed by
+callers in `build/port/link/boot_missing.csv`, the lifter's coverage worklist. The residue is 375
+(the 304 above plus Lua's C library calls). Next for M1, in order: the lifter's semantic coverage
+mode over `boot_missing.csv` (stream M); `nn::` stubs in call order (`nn::os` 16 and `nn::oe` 1 still
 needed, then `nn::fs`, `nn::hid`, `movie`, `nv`); the data loader that maps the dump's segments at
 their original addresses (5,467 data symbols are referenced PC-relatively, so the image must sit
 within 2 GB of `0x7100000000`). Producing an executable needs WSL or the MSVC Build Tools.
@@ -355,8 +356,9 @@ are recorded in `docs/JOURNAL.md` (work log items 0–3).
   unit; 107 units are just their initialiser (their code was folded or inlined away); 38 units over
   64 KB certainly hold several TUs. Cite address ranges with unit indices, which renumber on
   regeneration.
-- **`check-local.yml`** is untested on a real runner and inert until `SELF_HOSTED_CHECK` is set.
-  A fork's PR skips it (counts as passing), so fork PRs still need a local `check.py`.
+- **`check-local.yml`** runs `check.py` on the runner `dread-pc` for every PR from this
+  repository (`SELF_HOSTED_CHECK` is set; `docs/maintaining.md`). A fork's PR skips it (counts as
+  passing), so fork PRs still need a local `check.py`.
 - objdiff targets: call targets are verified against the original, but data references are
   mirrored from our object without verification. String-literal relocations point at an undefined
   `.rodata.str1.1` symbol in the target.
