@@ -54,6 +54,7 @@ MAX_STEPS = 60000
 WINDOW = 64                       # bytes compared and written around a stack pointer argument
 
 X0, Q0, SP, NG, ZR, CY, OV = 0x4000, 0x5000, 8, 0x100, 0x101, 0x102, 0x103
+QSTRIDE = 0x20  # Ghidra spaces q<n> 32 bytes apart (room for SVE z<n>): q1 is at 0x5020
 REG_SIZE = 0x6000
 CALLER_SAVED_X = range(19)
 CALLER_SAVED_Q = list(range(8)) + list(range(16, 32))
@@ -372,8 +373,8 @@ class Machine:
         self.regs[off:off + size] = (v & ((1 << (8 * size)) - 1)).to_bytes(size, "little")
         if X0 <= off < X0 + 72:
             self.state[(off - X0) // 8] = "written"
-        elif Q0 <= off < Q0 + 128:
-            self.state[100 + (off - Q0) // 16] = "written"
+        elif Q0 <= off < Q0 + 8 * QSTRIDE:
+            self.state[100 + (off - Q0) // QSTRIDE] = "written"
 
     def x(self, n: int) -> int:
         return self.reg(X0 + 8 * n, 8)
@@ -420,7 +421,7 @@ class Machine:
                 bits = f_to(rnd.uniform(-100, 100), 4)
             else:
                 bits = f_to(rnd.uniform(-100, 100), 8)
-            self.regs[Q0 + 16 * i:Q0 + 16 * i + 16] = bits.to_bytes(16, "little")
+            self.regs[Q0 + QSTRIDE * i:Q0 + QSTRIDE * i + 16] = bits.to_bytes(16, "little")
         self.regs[X0 + 8 * 30:X0 + 8 * 31] = SENTINEL.to_bytes(8, "little")
         self.regs[X0 + 8 * 29:X0 + 8 * 30] = bytes(8)
         self.regs[SP:SP + 8] = ENTRY_SP.to_bytes(8, "little")
@@ -446,13 +447,15 @@ class Machine:
             if k < 100:
                 args.append((k, self.stackref(self.x(k))))
             else:
-                args.append((k, self.reg(Q0 + 16 * (k - 100), 8)))
+                args.append((k, self.reg(Q0 + QSTRIDE * (k - 100), 8)))
             if st == "junk" or k == self.target_reg:
                 continue
             if f is not None:  # a known callee: exactly the registers it reads
                 if k not in f.args:
                     continue
             elif k == 8 or (st == "entry" and k != 0):  # unknown: x0 and what was set for it
+                continue
+            elif k >= 100 and isinstance(t, tuple):  # an import of unknown signature: integers only
                 continue
             # A register the callee reads only as w<n> has an unspecified upper half.
             sel.append((k, 32 if f is not None and k < 9 and k not in f.wide else 64))
@@ -472,7 +475,7 @@ class Machine:
             if i <= 8:
                 self.state[i] = "junk"
         for i in CALLER_SAVED_Q:
-            self.regs[Q0 + 16 * i:Q0 + 16 * i + 16] = mix(n, 9, i).to_bytes(16, "little")
+            self.regs[Q0 + QSTRIDE * i:Q0 + QSTRIDE * i + 16] = mix(n, 9, i).to_bytes(16, "little")
             if i < 8:
                 self.state[100 + i] = "junk"
         for k in range(NG, OV + 1):
@@ -480,7 +483,11 @@ class Machine:
         ret = self.word(mix(n, 11, self.seed))
         self.regs[X0:X0 + 8] = ret.to_bytes(8, "little")
         self.regs[Q0:Q0 + 16] = f_to(n + 0.5, 4).to_bytes(16, "little")  # an f32 result (the game's floats)
-        self.state[0] = self.state[100] = "written"
+        self.state[0] = "written"
+        # A float argument counts only when the caller's own code set it: a result left in v0 and
+        # read by the next callee is indistinguishable from garbage it does not read (liveness
+        # over-approximates), so a float result passed straight on is not compared.
+        self.state[100] = "junk"
 
     def stackref(self, v: int):
         """A stack address as the bytes the function wrote around it; anything else as is."""
@@ -834,9 +841,23 @@ class Verdict:
 
 
 def compare(a: Machine, b: Machine, ret: str | None) -> str:
-    """'' when two runs agree, else the first difference. `ret` is the lift's result kind:
+    """'' when two runs agree, 'skip' when the input decides nothing (the original faulted, the
+    lift did not), else the first difference. `ret` is the lift's result kind:
     None (not compared), 'x8', 'x16', 'x32', 'x64', 'f32', 'f64'."""
     ea, eb = a.events, b.events
+    if ea and ea[-1][0] == ("end", "fault") and not (eb and eb[-1][0] == ("end", "fault")):
+        # The original crashed on this input and the lift did not: C lets the compiler drop or
+        # move a load whose value decides nothing, so the end proves nothing. What both did
+        # before the original's crash must still agree (calls and writes, not their memory at the
+        # crash, which the lift may have passed).
+        for i in range(len(ea) - 1):
+            if i >= len(eb) or ea[i] != eb[i]:
+                if i < len(eb) and ea[i][0][0] == eb[i][0][0] == "call" and ea[i][0][1] == eb[i][0][1] \
+                        and ea[i][1] == eb[i][1] and all(same_arg(dict(ea[i][0][3]).get(k), dict(eb[i][0][3]).get(k))
+                                                         for k, _ in ea[i][0][2]):
+                    continue
+                return f"event {i} before the original's fault"
+        return "skip"
     for i in range(min(len(ea), len(eb))):
         (va, ma), (vb, mb) = ea[i], eb[i]
         if va != vb:
