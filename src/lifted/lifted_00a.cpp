@@ -244,17 +244,6 @@ char* fn_71000a062c(char* p0, char* p1) {
     return r7_0;
 }
 
-extern char g_unk_7101d5bdc8[];
-char* fn_71000a16c4(char* p0) {
-    char* r0_8 = (char*)g_unk_7101d5bdc8;
-    u64 r1_9 = (u64)*(u64*)((char*)(r0_8) + 0);
-    if ((u64)(u64)(r1_9) != 0) {
-        *(u64*)((char*)(p0) + 24) = (u64)(u64)(r1_9);
-    }
-    *(u64*)((char*)(r0_8) + 0) = (u64)(u64)(p0);
-    return p0;
-}
-
 namespace callee { char* fn_710009dcd8(char*, char*); }
 char* fn_71000a16e0(char* p0, char* p1, char* p2) {
     char* r0_20 = p0;

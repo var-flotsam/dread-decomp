@@ -12,6 +12,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkReflConverter.h"
 #include "types.h"
 
 void fn_710000051c(void* id);  // a string id's destructor
@@ -97,12 +98,8 @@ struct UnkEnumType {
     UnkTypeInfo* field_0x8;
 };
 
-struct UnkConversion {
-    void* from;
-    void* to;
-    void (*fn)();
-    u64 field_0x18;
-};
+// The conversion record and fn_71000a16c4 are declared in base/reflection/UnkReflConverter.h.
+using UnkConversion = ::UnkConverter;
 
 // A reflected type's getter (base/reflection/UnkReflAttributes.h declares the plain types'), as
 // the helpers see the type object: through the placeholder layout above.
@@ -192,7 +189,6 @@ __attribute__((always_inline)) inline void InitProperty(UnkProperty* p, void** v
 
 }  // namespace unk_static_init
 
-void fn_71000a16c4(unk_static_init::UnkConversion* conversion);
 void fn_7100099468(void* type);  // an enum type's destructor, as registered
 
 namespace unk_static_init {

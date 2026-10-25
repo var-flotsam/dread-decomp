@@ -4,6 +4,7 @@
 #include "base/UnkAtExit.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkReflConverter.h"
 
 #define HIDDEN __attribute__((visibility("hidden")))
 
@@ -11,7 +12,7 @@ using base::global::CStrId;
 
 struct UnkEnumDesc {
     u8 pad_0x0[0x30];
-    u64 field_0x30;
+    void* field_0x30;
 };
 struct UnkEnumInfo {
     u8 pad_0x0[8];
@@ -24,23 +25,17 @@ template <const base::reflection::CType* (*Getter)()>
 static inline UnkEnumInfo* TypeOf() {
     return reinterpret_cast<UnkEnumInfo*>(const_cast<base::reflection::CType*>(Getter()));
 }
-struct UnkEnumPair {
-    u64 first, second;
-    void (*fn)();
-    u64 zero;
-};
 
-void fn_71000a16c4(UnkEnumPair* p);
 void fn_71000145e8(UnkEnumInfo* obj, CStrId* name, void (*fn)(), void* a);
 extern UnkEnumInfo g_unk_7101d4ef10;
 extern UnkEnumInfo g_unk_7101d4f070;
 extern UnkEnumInfo g_unk_7101d4f1d0;
-extern UnkEnumPair g_unk_7101d4f030;
-extern UnkEnumPair g_unk_7101d4f050;
-extern UnkEnumPair g_unk_7101d4f190;
-extern UnkEnumPair g_unk_7101d4f1b0;
-extern UnkEnumPair g_unk_7101d4f2f0;
-extern UnkEnumPair g_unk_7101d4f310;
+extern UnkConverter g_unk_7101d4f030;
+extern UnkConverter g_unk_7101d4f050;
+extern UnkConverter g_unk_7101d4f190;
+extern UnkConverter g_unk_7101d4f1b0;
+extern UnkConverter g_unk_7101d4f2f0;
+extern UnkConverter g_unk_7101d4f310;
 extern u8 g_unk_7101d4f028[];
 extern u8 g_unk_7101d4f188[];
 extern u8 g_unk_7101d4f2e8[];
@@ -65,19 +60,19 @@ void fn_71000296e0() {
     fn_7100000250(fn_7100099468, &g_unk_7101d4ef10, &g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d4f028, &g_unk_7101d4ef10);
     {
-        u64 a = g_unk_7101d4ef10.desc_0x8->field_0x30;
-        u64 b = TypeOf<fn_7100014768>()->desc_0x8->field_0x30;
-        g_unk_7101d4f030.first = a;
-        g_unk_7101d4f030.second = b;
-        g_unk_7101d4f030.fn = fn_7100029530;
-        g_unk_7101d4f030.zero = 0;
+        void* a = g_unk_7101d4ef10.desc_0x8->field_0x30;
+        void* b = TypeOf<fn_7100014768>()->desc_0x8->field_0x30;
+        g_unk_7101d4f030.from = a;
+        g_unk_7101d4f030.to = b;
+        g_unk_7101d4f030.convert = fn_7100029530;
+        g_unk_7101d4f030.next = nullptr;
         fn_71000a16c4(&g_unk_7101d4f030);
-        u64 c = TypeOf<fn_7100014768>()->desc_0x8->field_0x30;
-        u64 d = g_unk_7101d4ef10.desc_0x8->field_0x30;
-        g_unk_7101d4f050.first = c;
-        g_unk_7101d4f050.second = d;
-        g_unk_7101d4f050.fn = fn_710002953c;
-        g_unk_7101d4f050.zero = 0;
+        void* c = TypeOf<fn_7100014768>()->desc_0x8->field_0x30;
+        void* d = g_unk_7101d4ef10.desc_0x8->field_0x30;
+        g_unk_7101d4f050.from = c;
+        g_unk_7101d4f050.to = d;
+        g_unk_7101d4f050.convert = fn_710002953c;
+        g_unk_7101d4f050.next = nullptr;
         fn_71000a16c4(&g_unk_7101d4f050);
     }
     {
@@ -87,19 +82,19 @@ void fn_71000296e0() {
     fn_7100000250(fn_7100099468, &g_unk_7101d4f070, &g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d4f188, &g_unk_7101d4f070);
     {
-        u64 a = g_unk_7101d4f070.desc_0x8->field_0x30;
-        u64 b = TypeOf<fn_7100014768>()->desc_0x8->field_0x30;
-        g_unk_7101d4f190.first = a;
-        g_unk_7101d4f190.second = b;
-        g_unk_7101d4f190.fn = fn_7100029548;
-        g_unk_7101d4f190.zero = 0;
+        void* a = g_unk_7101d4f070.desc_0x8->field_0x30;
+        void* b = TypeOf<fn_7100014768>()->desc_0x8->field_0x30;
+        g_unk_7101d4f190.from = a;
+        g_unk_7101d4f190.to = b;
+        g_unk_7101d4f190.convert = fn_7100029548;
+        g_unk_7101d4f190.next = nullptr;
         fn_71000a16c4(&g_unk_7101d4f190);
-        u64 c = TypeOf<fn_7100014768>()->desc_0x8->field_0x30;
-        u64 d = g_unk_7101d4f070.desc_0x8->field_0x30;
-        g_unk_7101d4f1b0.first = c;
-        g_unk_7101d4f1b0.second = d;
-        g_unk_7101d4f1b0.fn = fn_7100029554;
-        g_unk_7101d4f1b0.zero = 0;
+        void* c = TypeOf<fn_7100014768>()->desc_0x8->field_0x30;
+        void* d = g_unk_7101d4f070.desc_0x8->field_0x30;
+        g_unk_7101d4f1b0.from = c;
+        g_unk_7101d4f1b0.to = d;
+        g_unk_7101d4f1b0.convert = fn_7100029554;
+        g_unk_7101d4f1b0.next = nullptr;
         fn_71000a16c4(&g_unk_7101d4f1b0);
     }
     {
@@ -109,19 +104,19 @@ void fn_71000296e0() {
     fn_7100000250(fn_7100099468, &g_unk_7101d4f1d0, &g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d4f2e8, &g_unk_7101d4f1d0);
     {
-        u64 a = g_unk_7101d4f1d0.desc_0x8->field_0x30;
-        u64 b = TypeOf<fn_7100014768>()->desc_0x8->field_0x30;
-        g_unk_7101d4f2f0.first = a;
-        g_unk_7101d4f2f0.second = b;
-        g_unk_7101d4f2f0.fn = fn_7100029560;
-        g_unk_7101d4f2f0.zero = 0;
+        void* a = g_unk_7101d4f1d0.desc_0x8->field_0x30;
+        void* b = TypeOf<fn_7100014768>()->desc_0x8->field_0x30;
+        g_unk_7101d4f2f0.from = a;
+        g_unk_7101d4f2f0.to = b;
+        g_unk_7101d4f2f0.convert = fn_7100029560;
+        g_unk_7101d4f2f0.next = nullptr;
         fn_71000a16c4(&g_unk_7101d4f2f0);
-        u64 c = TypeOf<fn_7100014768>()->desc_0x8->field_0x30;
-        u64 d = g_unk_7101d4f1d0.desc_0x8->field_0x30;
-        g_unk_7101d4f310.first = c;
-        g_unk_7101d4f310.second = d;
-        g_unk_7101d4f310.fn = fn_710002956c;
-        g_unk_7101d4f310.zero = 0;
+        void* c = TypeOf<fn_7100014768>()->desc_0x8->field_0x30;
+        void* d = g_unk_7101d4f1d0.desc_0x8->field_0x30;
+        g_unk_7101d4f310.from = c;
+        g_unk_7101d4f310.to = d;
+        g_unk_7101d4f310.convert = fn_710002956c;
+        g_unk_7101d4f310.next = nullptr;
         fn_71000a16c4(&g_unk_7101d4f310);
     }
 }
