@@ -2,6 +2,8 @@
 #include "../game_s7/UnkStaticInitS7.h"
 #include "base/global/CRntString.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "base/reflection/UnkReflTypeDtors.h"
+#include "game/UnkTUInit.h"
 
 using namespace unk_static_init;
 
@@ -10,9 +12,6 @@ struct UnkFnObj {
     void (*field_0x18)();
     u64 field_0x20[2];
 };
-void fn_710000cf00();
-void fn_710000d470();
-void fn_710000d4f4();
 
 // A small-buffer string static (0xc8 bytes): the string object, its inline buffer's vtable at +0x30
 // and two cleared words. Layout is a placeholder.
@@ -52,7 +51,6 @@ extern char g_unk_71726ac870[];
 extern UnkEnumType g_unk_71726ac878;
 void fn_71002ea1d0();
 void fn_71002ea320(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
-void fn_7100096604(void* type);  // the type's destructor, as registered
 extern char g_unk_71726ac9b0[];
 extern UnkEnumType g_unk_71726ac9b8;
 void fn_71002ea494();
@@ -81,7 +79,6 @@ extern char g_unk_71726acd71[];
 UnkEnumType* fn_71002eb75c();
 extern UnkEnumType g_unk_71726acd78;
 void fn_71002eb838(UnkEnumType* type, const CStrId& name, void*, void*);
-void fn_710009891c(void* type);  // the type's destructor, as registered
 extern char g_unk_71726acee8[];
 
 void fn_71002efa40() {

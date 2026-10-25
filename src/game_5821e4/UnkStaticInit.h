@@ -13,6 +13,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflConverter.h"
+#include "game/UnkTUSymbols.h"
 #include "types.h"
 
 void fn_710000051c(void* id);  // a string id's destructor
@@ -123,17 +124,18 @@ __attribute__((always_inline)) inline void InitTunable(UnkTunable* tunable, void
 
 // A named property object (a global reached through the GOT) linked into a global list on
 // construction; once built, it is checked through its vtable (slots 2 and 3) and, if those
-// allow it, handed to the unit's own function. Layout and slot roles are placeholders.
+// allow it, handed to the unit's own function. Layout and slot roles are placeholders; the list
+// head g_unk_71726db788 is game/UnkTUSymbols.h's (an UnkPropertyHead*: vtable and next).
 struct UnkProperty {
     void** vtable;
-    UnkProperty* next;
+    UnkPropertyHead* next;
     UnkFilePathStrIdBase name;  // storage of a string id
     const void* type;
     u32 field_0x20;
 
-    __attribute__((always_inline)) UnkProperty(void** vt, UnkProperty*& head, const char* str, const void* t) {
+    __attribute__((always_inline)) UnkProperty(void** vt, UnkPropertyHead*& head, const char* str, const void* t) {
         next = head;
-        head = this;
+        head = reinterpret_cast<UnkPropertyHead*>(this);
         vtable = vt + 2;
         new (&name) UnkStrIdBase(str, true);
         type = t;
@@ -149,7 +151,7 @@ void fn_71002ef5bc(void* member);  // the base's member constructor
 // own part holds a name, a pointer to the global it controls and a word.
 struct UnkProperty2 {
     void** vtable;
-    UnkProperty* next;
+    UnkPropertyHead* next;
     u64 field_0x10[2];
     u64 field_0x20;
     UnkFilePathStrIdBase name;  // storage of a string id
@@ -161,11 +163,11 @@ struct UnkProperty2 {
 };
 
 template <class Init>
-__attribute__((always_inline)) inline void InitProperty2(UnkProperty2* p, void** base_vtable, UnkProperty*& head,
+__attribute__((always_inline)) inline void InitProperty2(UnkProperty2* p, void** base_vtable, UnkPropertyHead*& head,
                                                          void** vtable, const char* name, void* value, Init on_init,
                                                          void (*dtor)(void*)) {
     p->next = head;
-    head = reinterpret_cast<UnkProperty*>(p);
+    head = reinterpret_cast<UnkPropertyHead*>(p);
     p->vtable = base_vtable + 2;
     fn_71002ef5bc(p->field_0x10);
     p->vtable = vtable + 2;
@@ -178,7 +180,7 @@ __attribute__((always_inline)) inline void InitProperty2(UnkProperty2* p, void**
 }
 
 template <class Ctor>
-__attribute__((always_inline)) inline void InitProperty(UnkProperty* p, void** vtable, UnkProperty*& head,
+__attribute__((always_inline)) inline void InitProperty(UnkProperty* p, void** vtable, UnkPropertyHead*& head,
                                                         const char* name, const void* type, Ctor on_init,
                                                         void (*dtor)(void*)) {
     new (p) UnkProperty(vtable, head, name, type);
@@ -188,8 +190,6 @@ __attribute__((always_inline)) inline void InitProperty(UnkProperty* p, void** v
 }
 
 }  // namespace unk_static_init
-
-void fn_7100099468(void* type);  // an enum type's destructor, as registered
 
 namespace unk_static_init {
 

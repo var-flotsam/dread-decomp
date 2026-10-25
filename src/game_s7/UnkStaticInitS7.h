@@ -213,7 +213,7 @@ namespace unk_static_init {
 // (fn_7100ae9cc8). Layout and slot roles are placeholders.
 struct UnkProperty3 {
     void** vtable;
-    UnkProperty* next;
+    UnkPropertyHead* next;
     u8 field_0x10[0x160];
     UnkFilePathStrIdBase name;  // storage of a string id
     void* value;
@@ -224,11 +224,11 @@ struct UnkProperty3 {
 };
 
 template <class Init>
-__attribute__((always_inline)) inline void InitProperty3(UnkProperty3* p, void** base_vtable, UnkProperty*& head,
+__attribute__((always_inline)) inline void InitProperty3(UnkProperty3* p, void** base_vtable, UnkPropertyHead*& head,
                                                          void** vtable, const char* name, void* value, Init on_init,
                                                          void (*dtor)(void*)) {
     p->next = head;
-    head = reinterpret_cast<UnkProperty*>(p);
+    head = reinterpret_cast<UnkPropertyHead*>(p);
     p->vtable = base_vtable + 2;
     fn_7100ae9cc8(p->field_0x10);
     p->vtable = vtable + 2;

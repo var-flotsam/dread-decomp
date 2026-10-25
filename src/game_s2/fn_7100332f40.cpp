@@ -1,6 +1,7 @@
 // Static initialiser of the unit of the EShinesparkTravellingDirection, TShinesparkTravellingDirectionFlagSet, ECoolShinesparkSituation, TCoolShinesparkSituation.
 #include "../game_s7/UnkStaticInitS7.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "base/reflection/UnkReflTypeDtors.h"
 
 using namespace unk_static_init;
 
@@ -35,7 +36,6 @@ void fn_710033181c() __attribute__((visibility("hidden")));
 void fn_7100331828() __attribute__((visibility("hidden")));
 extern UnkEnumType g_unk_71726b0570;
 void fn_7100327808(UnkEnumType* type, const CStrId& name, void* arg);
-void fn_710009a368(void* type);  // the type's destructor, as registered
 extern char g_unk_71726b0660[];
 extern UnkConversion g_unk_71726b0668;
 extern UnkConversion g_unk_71726b0688;

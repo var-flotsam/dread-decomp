@@ -12,8 +12,6 @@ using base::reflection::UnkReflField;
 using base::reflection::UnkReflFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 void fn_7100415b48();
 void fn_7100411160(UnkReflFunction* fn, const char* name);
 void fn_7100415bd8();

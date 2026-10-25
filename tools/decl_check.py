@@ -103,6 +103,10 @@ class Decl:
     path: str
     line: int
     scope: str
+    # Character span [start, end) of the whole statement, `;` included, in the file's text with
+    # line endings normalised to LF (tools/hub_migrate.py removes the statement by it).
+    start: int = 0
+    end: int = 0
 
 
 def hand_written(path: str) -> bool:
@@ -401,7 +405,7 @@ def scan(text: str, path: str) -> list[Decl]:
                 if found:
                     first = start + (len(stmt) - len(stmt.lstrip()))
                     line = text.count("\n", 0, first) + 1
-                    out.extend(Decl(name, sig, path, line, scope_name(stack)) for name, sig in found)
+                    out.extend(Decl(name, sig, path, line, scope_name(stack), first, i + 1) for name, sig in found)
         start = pos = i + 1
     return out
 

@@ -4,6 +4,8 @@
 // UnkStaticInitS7.h). Layouts are placeholders.
 #include "UnkStaticInitS7.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "base/reflection/UnkReflTypeDtors.h"
+#include "game/UnkTUInit.h"
 
 using namespace unk_static_init;
 
@@ -26,7 +28,6 @@ extern char g_unk_717269a34d[];
 UnkEnumType* fn_710022991c();
 extern UnkEnumType g_unk_717269a350;
 void fn_7100229d7c(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
-void fn_7100096604(void* type);  // the type's destructor, as registered
 extern char g_unk_7101d5e2e0[];
 void fn_71002299f8();
 extern char g_unk_717269a488[];
@@ -40,7 +41,6 @@ extern char g_unk_717269a5c9[];
 UnkEnumType* fn_710022a4e4();
 extern UnkEnumType g_unk_717269a5d0;
 void fn_710022a5c0(UnkEnumType* type, const CStrId& name, void*, void*);
-void fn_710009891c(void* type);  // the type's destructor, as registered
 extern char g_unk_717269a740[];
 extern char g_unk_717269a741[];
 UnkEnumType* fn_710022a7b0();
@@ -201,7 +201,6 @@ extern UnkConversion g_unk_717269c4b8;
 void fn_710023de90() __attribute__((visibility("hidden")));
 UnkEnumType* fn_7100231c1c();
 extern UnkNamedValue g_unk_717269c4e0;
-void fn_710010c424(void* value);  // its destructor, as registered
 extern UnkNamedValue g_unk_717269c4f0;
 extern UnkNamedValue g_unk_717269c500;
 

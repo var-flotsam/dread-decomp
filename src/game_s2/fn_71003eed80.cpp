@@ -1,5 +1,7 @@
 // Static initialiser of the unit of the SBigkranXSpitLaunchPatternStep, base::reflection::CollectionTypeMapper<TBigkranXSpitLaunchPattern>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<TBigkranXSpitLaunchPattern>::TKeyElementConstIterator::value_type, TBigkranXSpitLaunchPattern, SBigkranXSpitLaunchConfig.
 #include "../game_s7/UnkStaticInitS7.h"
+#include "base/reflection/UnkReflTypeDtors.h"
+#include "game/UnkTUInit.h"
 
 using namespace unk_static_init;
 
@@ -10,7 +12,6 @@ extern UnkStatics_71003eed80 g_unk_71726c2418 __attribute__((visibility("hidden"
 extern UnkEnumType g_unk_71726c1960;
 void fn_71003eb5d4();
 void fn_71003eb864(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
-void fn_7100096604(void* type);  // the type's destructor, as registered
 extern char g_unk_71726c1a98[];
 extern char g_unk_71726c1a99[];
 UnkEnumType* fn_71003eb9e8();
@@ -31,7 +32,6 @@ extern char g_unk_71726c1d19[];
 UnkEnumType* fn_71003ec68c();
 extern UnkEnumType g_unk_71726c1d20;
 void fn_71003ec768(UnkEnumType* type, const CStrId& name, void*, void*);
-void fn_710009891c(void* type);  // the type's destructor, as registered
 extern char g_unk_71726c1e90[];
 extern UnkEnumType g_unk_71726c1e98;
 void fn_71003ec95c();
