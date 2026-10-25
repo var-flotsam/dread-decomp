@@ -1,0 +1,14 @@
+# Sources left out of the port's game objects, read by port/CMakeLists.txt (dread_game) and by
+# tools/port_link.py (the whole-program link), so that every function in the link has exactly one
+# definition. One repository-relative path per line; blank lines and lines starting with # are ignored.
+#
+# The four are frozen Phase 3 identification samples that define a function another source also
+# defines: src/flag_id/fn_7100227448.cpp defines CActor::refl_GetClass, which src/reflection/CActor.cpp
+# defines as well, and the other three define a constructor that src/lifted also defines with a
+# placeholder signature. tools/check.py exempts the sample directories from its DUPLICATE rule, so this
+# list is kept current from the definitions report of tools/port_sweep.py (llvm-nm over the objects),
+# not from check.py.
+src/flag_id/fn_7100227448.cpp
+src/flag_id/fn_71005a2dd8.cpp
+src/flag_id/fn_71006a3390.cpp
+src/flag_id/fn_71006de790.cpp
