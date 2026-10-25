@@ -1,8 +1,8 @@
-// Initialises an entity's two model handles from the global model registry (created on first
-// use), runs two virtual set-up steps and stores the squares of two floats.
+// Initialises an entity's two smart-link group handles from the navmesh manager's registry
+// (game/UnkNavMeshManager.h; the manager is created on first use), runs two virtual set-up
+// steps and stores the squares of two floats.
+#include "game/UnkNavMeshManager.h"
 #include "types.h"
-
-struct UnkModelRegistry;
 
 struct UnkModelEntity {
     void** vtable;
@@ -21,16 +21,14 @@ struct UnkModelEntity {
     void vf_0xd0() { reinterpret_cast<void (*)(UnkModelEntity*)>(vtable[0xd0 / 8])(this); }
 };
 
-extern UnkModelRegistry* g_unk_71726a4510;
 void* fn_71000839a0(u64 size, u32 flags);
-void fn_7100ebf278(UnkModelRegistry* registry);
-void* fn_7100ec0d20(UnkModelRegistry* registry, void* arg);
+void* fn_7100ec0d20(UnkNavMeshManager* manager, void* key);
 bool fn_71011ace94(UnkModelEntity* self);
 
-static inline UnkModelRegistry* GetRegistry() {
-    UnkModelRegistry* registry = g_unk_71726a4510;
+static inline UnkNavMeshManager* GetRegistry() {
+    UnkNavMeshManager* registry = g_unk_71726a4510;
     if (!registry) {
-        registry = static_cast<UnkModelRegistry*>(fn_71000839a0(0x62ec8, 0x3f));
+        registry = static_cast<UnkNavMeshManager*>(fn_71000839a0(0x62ec8, 0x3f));
         fn_7100ebf278(registry);
         g_unk_71726a4510 = registry;
     }

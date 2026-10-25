@@ -1,7 +1,9 @@
 // Binds an actor and caches values from its component (0x240 -> 0x1610): two computed ids,
-// several parameters, three values from its transform, the table entry for its key in a
-// lazily created manager, and two derived pointers.
+// several parameters, three values from its transform, the table entry for its key in the
+// navmesh manager's current mesh (game/UnkNavMeshManager.h; the manager is created on first
+// use), and two derived pointers.
 #include "base/UnkMatrix44.h"
+#include "game/UnkNavMeshManager.h"
 #include "types.h"
 
 void* fn_71000839a0(u64 size, u32 flags);
@@ -10,7 +12,8 @@ struct UnkEntry_7100286798 {
     u8 unk_0x0[0x28];
 };
 
-struct UnkTable_7100286798 {
+// The navigation mesh, as far as this file reads it: the key/value table at +0x338.
+struct UnkNavMesh {
     u8 unk_0x0[0x338];
     UnkEntry_7100286798* values;
     void** keys;
@@ -29,16 +32,9 @@ struct UnkTable_7100286798 {
     }
 };
 
-struct UnkManager_7100286798 {
-    UnkTable_7100286798* table;
-    u8 unk_0x8[0x62ec0];
-};
-void fn_7100ebf278(UnkManager_7100286798* self);
-extern UnkManager_7100286798* g_unk_71726a4510;
-
-static inline UnkManager_7100286798* GetManager() {
+static inline UnkNavMeshManager* GetManager() {
     if (!g_unk_71726a4510) {
-        UnkManager_7100286798* m = static_cast<UnkManager_7100286798*>(fn_71000839a0(0x62ec8, 0x3f));
+        UnkNavMeshManager* m = static_cast<UnkNavMeshManager*>(fn_71000839a0(0x62ec8, 0x3f));
         fn_7100ebf278(m);
         g_unk_71726a4510 = m;
     }
@@ -135,7 +131,7 @@ void fn_7100286798(UnkStruct_7100286798* self, UnkActor_7100286798* actor) {
     self->field_0x168 = a;
     self->field_0x16c = b;
     self->field_0x170 = c;
-    UnkTable_7100286798* table = GetManager()->table;
+    UnkNavMesh* table = GetManager()->navmesh;
     self->field_0x178 = table ? table->Get(src->key) : nullptr;
     self->field_0x180 = src->field_0x1d0;
     self->field_0x190 = fn_71010fb398(self->actor->component);
