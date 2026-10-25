@@ -16,7 +16,7 @@ imported symbol names recorded in `data/functions/`.
 
 | Path | Contents |
 |---|---|
-| `CMakeLists.txt` | the `dread_port` project: `dread_game`, `dread_runtime`, `dread`, `sweep`, `link_report` |
+| `CMakeLists.txt` | the `dread_port` project: `dread_game`, `dread_libs`, `dread_runtime`, `dread`, `sweep`, `link_report` |
 | `sample_duplicates.txt` | the sources `dread_game` and the whole-program link both leave out (frozen samples that define a function another source defines), with the reason |
 | `main.cpp` | the executable's entry point; at M0 a banner |
 | `runtime/include/nn/` | the port's `nn::` declarations, one header per namespace, each with a note on what the boot path needs from it |
@@ -37,10 +37,14 @@ imported symbol names recorded in `data/functions/`.
   by default), `-fPIC`, `-fno-rtti -fno-exceptions`, warnings off (the code is held to the
   original's bytes, not to a newer compiler's warnings). An object library rather than a static
   one so that the whole-program link of M1 keeps every function, referenced or not.
+- `dread_libs` (OBJECT library): the vendored libraries `main` links statically, all of `lib/lua`
+  and dlmalloc through `lib/dlmalloc/mspace.c`, compiled as C++ with `-fno-strict-aliasing`, as the
+  matching build compiles them (`tools/buildcfg.py`'s `LUA_FLAGS`). Their functions are status `L`;
+  the port needs them all the same, since the game calls Lua and allocates through the mspaces.
 - `dread_runtime` (STATIC library): `runtime/src/*.cpp`, the stubs behind `runtime/include/nn/`.
-- `dread`: `main.cpp` linked with `dread_runtime`. `DREAD_LINK_GAME=ON` adds `dread_game`, which
-  fails to link until every function the boot path reaches has a source (M1). Built only when
-  `DREAD_LINK` is ON.
+- `dread`: `main.cpp` linked with `dread_runtime`. `DREAD_LINK_GAME=ON` adds `dread_game` and
+  `dread_libs`, which fail to link until every function the boot path reaches has a source (M1).
+  Built only when `DREAD_LINK` is ON.
 - `sweep`: runs `tools/port_sweep.py` with this build's compiler, target and standard library.
 - `link_report`: runs `tools/port_link.py` the same way, over the sweep's objects (run `sweep` first).
 
@@ -176,8 +180,10 @@ cmake --build build/port/cmake --target link_report   # the same, with the build
 ```
 
 M1's first step is to link everything the sweep compiled into one program and see what is missing.
-`tools/port_link.py` does that as a **relocatable link**: `ld.lld -r` over the 3,804 sweep objects
-(the 3,808 sources minus `sample_duplicates.txt`) into `build/port/link/dread_game.o`, which keeps
+`tools/port_link.py` does that as a **relocatable link**: `ld.lld -r` over the sweep objects (every
+`src/` source minus `sample_duplicates.txt`) and, since M1's second step, the 30 objects of the
+vendored libraries (`lib/lua`, `lib/dlmalloc`; the tool compiles them as `dread_libs` does,
+`--no-libraries` leaves them out) into `build/port/link/dread_game.o`, which keeps
 every undefined symbol as it is. A shared-object link with unresolved symbols ignored is not an
 option: `include/base/UnkCloneHelpers.h`, `include/base/UnkStaticStrId.h`,
 `include/base/global/CRntString.h` and `include/game/UnkTUInit.h` declare globals with
@@ -224,8 +230,10 @@ that close the link:
   the like, referenced through their 4-byte thunk's `fn_<addr>`) get `jmp strlen` instead, and so
   do the status-`L` functions reached by their `fn_<addr>` name whose `data/functions/` name is the
   host's: `operator new`, `operator delete`, `operator delete[]` and `free` jump to the host's
-  `_Znwm`, `_ZdlPv`, `_ZdaPv` and `free` (the game's own allocator, dlmalloc's `mspace_*`, is not
-  among them and stays trapped until `lib/dlmalloc` is compiled in). Imports of `nn::` names get a
+  `_Znwm`, `_ZdlPv`, `_ZdaPv` and `free`, and `fn_7100000250`, which `include/base/UnkAtExit.h`
+  identifies as `main`'s `__cxa_atexit`, jumps to the host's `__cxa_atexit` (the tool's
+  `HOST_BY_ADDRESS`; every static initialiser registers its destructors through it). The game's
+  own allocator, dlmalloc's `mspace_*`, is not among them: it is compiled in from `lib/dlmalloc`. Imports of `nn::` names get a
   `--defsym` to the runtime's function when `runtime/` defines one, a trap otherwise; those are the
   "runtime stubs needed".
 - **A second relocatable link**, `dread_whole.o` = `dread_game.o` + the runtime's objects
@@ -296,3 +304,31 @@ remaining work outside the lifter: the vtables are the data loader's and the mat
 (a vtable is defined once every virtual function of the class is), the standard library is the
 host's at the final link, the named functions need addresses, and the runtime stubs come in call
 order along the boot path.
+
+### With the vendored libraries (2026-10-25)
+
+M1's second step compiles `lib/lua` and `lib/dlmalloc` into the link (`dread_libs`) and sends
+`fn_7100000250` to the host's `__cxa_atexit`. Measured on `main` after hub batch 2 (3,812 sources,
+3,808 sweep objects, all compiling), first without the libraries (`--no-libraries`), then with them:
+
+| Boot slice, functions without a definition | `--no-libraries` | With the libraries |
+|---|---|---|
+| status `U` | 2,148 (1,236,964 bytes) | 2,148 (1,236,964 bytes) |
+| status `L` | 127 (48,876 bytes) | 8 (1,196 bytes) |
+| status `O` | 1 | 1 |
+| all | 2,276 (1,286,224 bytes) | **2,157 (1,238,544 bytes)** |
+
+With them, 1,109 of the slice's 4,211 game functions are defined, 941 are reached through an alias
+only and 4 are the host's. Link 1 finds no duplicate symbol, and 369 more addresses have a
+definition: the Lua and dlmalloc functions, which resolve by their unique names in
+`data/functions/`. Outside the slice, 23 status-`L` addresses (2,232 bytes) are still
+missing. Sixteen are `nn::atk` middleware. Five are functions next to `nnMain` that the CSV marks `L`
+by its `runtime?` inference, among them the `CStrId` destructor `fn_710000051c`. Two sit in Lua's
+range without a name (`fn_71010a4740`, `fn_71010a4900`). The slice's 8 are `fn_7100000790`
+(14 callers), `fn_7100083ba0` (3), `fn_71000005d0`, `fn_7100000610`, `fn_71010a4900`,
+`fn_71010a58e0`, `fn_71010a5a70` and `nnMain` itself, the entry the port's `main` will call.
+
+The residue of the second link grows from 304 to 375, by C library names only: Lua's `stdio`,
+locale and time functions, which the host's libc provides at the final link. `C_LIBRARY` lists them,
+so none of them lands under "named without address". The link inputs are 53,203 `--defsym`, 6,723
+traps and 51 jumps to the host's library.
