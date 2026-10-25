@@ -63,6 +63,23 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Port M1, semantic-lifter gaps (2026-10-25, branch `claude/port-lift-gaps`).** On top of the
+semantic lifts: every condition now follows the flags exactly (carry from an unsigned compare of
+the result, overflow through a wider signed sum; `ands`/`tst` clear C and V), flat mode keeps NZCV
+in `bool` locals so a condition in another block (`cmp; b L` ... `L: b.ls`) reads the right flags,
+Clang's compressed jump tables (`adr; ldrb|ldrh [table, index]; add, lsl #2; br`) become a `switch`
+with the targets read from the table, a float register only passed on to a callee goes as `f64`
+(all its bits, whatever width the callee reads), and an argument register unwritten in address
+order is the incoming argument (flat mode's "a call happened" is linear, not per path). Oracle
+fixes, each found from a rejected lift that was right: Ghidra spaces `q<n>` 32 bytes apart (room
+for SVE), so `v1`-`v7` had been set and compared at the wrong offsets; a float left in `v0` by a
+call and read by the next callee is not an argument the caller chose; an input where the original
+faults and the lift does not compares only what came before the fault (C may drop or move a load
+whose value decides nothing); `__cxa_guard_*` and `__cxa_atexit` have signatures. Result: 1,941 of
+2,148 accepted (1,042,620 bytes), the slice's functions without a source 380 to 216. The mutation
+test first looked worse (35%): the flag locals are mutation sites that are mostly never read, so
+they are excluded now; on the top 300 the rate is back to 49% (83% on fully covered functions).
+
 **Port M1 step 3 (2026-10-25, branch `claude/lifter-semantic-coverage-225e8f`): semantic lifts.**
 `tools/port_lift.py` gives the boot slice's `U` functions a source that behaves like the original:
 `gen_lift`'s lifters in semantic mode, every variant compiled for AArch64, and the first one whose

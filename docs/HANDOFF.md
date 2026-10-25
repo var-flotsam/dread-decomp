@@ -21,7 +21,7 @@ Target: **Metroid Dread 2.1.0**, `main` build ID `646761F643AFEBB379EDD5E6A5151A
 | Generators: lifted, statics, clones, tables | **In maintenance.** `src/lifted/` 46,380 functions; `src/reflection_statics/`, `src/clones/`, `src/tables/`. The lifter is at its limit for byte-identical output (see the journal); no new variant rounds |
 | 4.4 Core engine types and hand matching | **In progress.** String ids and pool, `UnkVector`, CRC64, allocator getter, reflected-function array; hand slices in `src/game_*/` (0.76 MB typed) |
 | 4.5 Boot to title screen | **Measured, not started as a slice.** 4,441 functions reachable from `nnMain` by direct calls; see the table below |
-| Port | **M0 done** (var-flotsam/dread-decomp#183): `tools/port_sweep.py` compiles all 3,808 `src/` files for x86-64 once `port/runtime/include` stands in for the SDK headers; `port/` CMake project with `dread_game`, `dread_runtime` (our own `nn::` declarations and stubs) and the banner executable. **M1 steps 1 and 2 done** (2026-10-25, var-flotsam/dread-decomp#186 and the vendored-libraries step): `tools/port_link.py` links the whole program, Lua and dlmalloc included, relocatably and lists what is missing (2,157 boot-slice functions without a source). **M1 step 3 done** (2026-10-25): `tools/port_lift.py` gives 1,777 of the slice's 2,148 `U` functions a semantic lift checked by a P-code oracle (`build/port/lifted/`, never `src/`); with them 380 slice functions are left without a source. No executable on this PC (no Windows SDK or WSL) |
+| Port | **M0 done** (var-flotsam/dread-decomp#183): `tools/port_sweep.py` compiles all 3,808 `src/` files for x86-64 once `port/runtime/include` stands in for the SDK headers; `port/` CMake project with `dread_game`, `dread_runtime` (our own `nn::` declarations and stubs) and the banner executable. **M1 steps 1 and 2 done** (2026-10-25, var-flotsam/dread-decomp#186 and the vendored-libraries step): `tools/port_link.py` links the whole program, Lua and dlmalloc included, relocatably and lists what is missing (2,157 boot-slice functions without a source). **M1 step 3 done** (2026-10-25): `tools/port_lift.py` gives 1,777 of the slice's 2,148 `U` functions a semantic lift checked by a P-code oracle (`build/port/lifted/`, never `src/`); with them 380 slice functions are left without a source; the gaps step raises that to 1,941 lifts and 216 left. No executable on this PC (no Windows SDK or WSL) |
 
 Numbers from `tools/progress.py` and `tools/progress.py --slice boot` on 2026-10-25 (hub batch 2,
 var-flotsam/dread-decomp#187):
@@ -328,10 +328,13 @@ callers in `build/port/link/boot_missing.csv`, the lifter's coverage worklist. T
 lifts the slice's `U` functions in `gen_lift`'s semantic mode and accepts a lift when Ghidra-P-code
 execution of it and of the original agree (`tools/pcode_emu.py`, oracle (b); design and limits in
 `docs/PORT_PLAN.md`, usage in `port/README.md`). 1,777 of 2,148 pass (839 KB); with
-`tools/port_link.py --lifted build/port/lifted` the slice has **380 functions without a source**
-(399 KB), listed in `boot_unlifted.csv`. The oracle covers a median 67% of an original's
-instructions, so the next lifter work is coverage (more inputs) and its gaps: `adds`/`ands` carry
-conditions (42), jump tables (37), float-argument mismatches the oracle reports (31). Next for M1,
+`tools/port_link.py --lifted build/port/lifted` the slice has 380 functions without a source. The
+gaps step (exact flags, jump tables, float pass-through, four oracle fixes) brings it to 1,941
+lifts (1.04 MB) and **216 slice functions without a source** (196 KB, `boot_unlifted.csv`). The
+oracle covers a median 67% of an original's instructions, so the next lifter work is input
+coverage and the remaining gaps: stack arguments (23), flat-mode register order (14), `x8`
+results in tail position (14), other jump-table shapes (9), and the 104 functions the oracle
+rejects (`tools/port_lift.py --debug ADDR` shows the first difference). Next for M1,
 in order: `nn::` stubs in call order (`nn::os` 16 and `nn::oe` 1 still
 needed, then `nn::fs`, `nn::hid`, `movie`, `nv`); the data loader that maps the dump's segments at
 their original addresses (5,467 data symbols are referenced PC-relatively, so the image must sit
