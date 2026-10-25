@@ -6,26 +6,16 @@
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkGameBlackboard.h"
 #include "types.h"
 
 using base::global::CStrId;
 
-struct UnkIdSource_7101147868 {
-    virtual void vf_0x0();
-};
-
-// A definition's qualified id, built on first use (as in fn_7100fc4b34).
-struct UnkQualifiedId_7101147868 {
-    CStrId id;
-    UnkIdSource_7101147868* source;
-};
-void fn_7100ae9a10(UnkQualifiedId_7101147868* self, UnkIdSource_7101147868* source, const CStrId& prefix);
-
-struct UnkDef_7101147868 : UnkIdSource_7101147868 {
+// A definition's qualified id (game/UnkGameBlackboard.h), built on first use (as in fn_7100fc4b34).
+struct UnkDef_7101147868 : UnkIdSource {
     u64 field_0x8;
-    UnkQualifiedId_7101147868 qid;
+    UnkQualifiedId qid;
 };
-extern const CStrId g_unk_7101d470e0;
 
 static inline const CStrId& Qid(UnkDef_7101147868& def) {
     // A pointer compare (an integer compare inverts the branch and the block layout).

@@ -1,11 +1,9 @@
 // Builds a typed value from an object's payload, using a global type descriptor.
+#include "base/reflection/UnkReflValue.h"
 #include "types.h"
 
-struct UnkValue_0x18 {
-    u64 field_0x0 = 0;
-    u64 field_0x8 = 0;
-    u32 kind = 2;
-};
+using base::reflection::CType;
+using base::reflection::UnkReflValue;
 
 struct UnkPayload {
     u8 unk_0x0[0x8];
@@ -19,17 +17,17 @@ struct UnkHolder {
     UnkPayload* payload;
 };
 
-struct UnkType;
-extern const UnkType g_unk_7101cc2e90;
-
-void fn_71000a18d4(UnkValue_0x18* out, const UnkType* type, void* data, bool flag);
+extern const CType g_unk_7101cc2e90;
 
 // NON_MATCHING(minor): one temporary lands in w8 instead of w9 (register allocation only).
-UnkValue_0x18 fn_710011ec5c(void* self, const UnkHolder* holder) {
+UnkReflValue fn_710011ec5c(void* self, const UnkHolder* holder) {
     void* data = &holder->payload->data;
     if (holder->payload->kind == 2)
         data = *static_cast<void**>(data);
-    UnkValue_0x18 result;
+    UnkReflValue result;
+    result.field_0x0 = nullptr;
+    result.type = nullptr;
+    result.kind = 2;
     fn_71000a18d4(&result, &g_unk_7101cc2e90, data, true);
     return result;
 }

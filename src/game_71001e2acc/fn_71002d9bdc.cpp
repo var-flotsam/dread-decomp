@@ -2,17 +2,13 @@
 // (as in fn_7100c8e85c, src/game_aca57c/fn_7100ad4b54.cpp): the value is stored inline at 8, or
 // through the pointer there when the state after it is 2. fn_71002d9bdc, fn_71002d9e50.
 #include "base/reflection/UnkClassGetters.h"
+#include "base/reflection/UnkReflValue.h"
 #include "types.h"
 
-struct UnkValue {
-    u64 field_0x0;
-    u64 field_0x8;
-    u32 field_0x10;
-};
+using base::reflection::CType;
+using base::reflection::UnkReflValue;
 
-void fn_71000a18d4(UnkValue* out, void* type, const void* value, u32 flag);
-
-extern u8 g_unk_71726a9e80[] __attribute__((visibility("hidden")));
+extern const CType g_unk_71726a9e80 __attribute__((visibility("hidden")));
 
 template <typename T>
 struct UnkArgument {
@@ -31,17 +27,17 @@ struct UnkLinkDefIterValue {
     __attribute__((always_inline)) void* Get() { return state == 2 ? ref : value; }
 };
 
-__attribute__((always_inline)) static inline UnkValue GetLinkDef(UnkArgument<UnkLinkDefIterValue>* argument) {
+__attribute__((always_inline)) static inline UnkReflValue GetLinkDef(UnkArgument<UnkLinkDefIterValue>* argument) {
     void* def = argument->field_0x8->Get();
     fn_71002d7ab4();
-    UnkValue result;
-    result.field_0x0 = 0;
-    result.field_0x8 = 0;
-    result.field_0x10 = 2;
-    fn_71000a18d4(&result, g_unk_71726a9e80, def, 1);
+    UnkReflValue result;
+    result.field_0x0 = nullptr;
+    result.type = nullptr;
+    result.kind = 2;
+    fn_71000a18d4(&result, &g_unk_71726a9e80, def, 1);
     return result;
 }
 
-UnkValue fn_71002d9bdc(void* unused, UnkArgument<UnkLinkDefIterValue>* argument) { return GetLinkDef(argument); }
+UnkReflValue fn_71002d9bdc(void* unused, UnkArgument<UnkLinkDefIterValue>* argument) { return GetLinkDef(argument); }
 
-UnkValue fn_71002d9e50(void* unused, UnkArgument<UnkLinkDefIterValue>* argument) { return GetLinkDef(argument); }
+UnkReflValue fn_71002d9e50(void* unused, UnkArgument<UnkLinkDefIterValue>* argument) { return GetLinkDef(argument); }

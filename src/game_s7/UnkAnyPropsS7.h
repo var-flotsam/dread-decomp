@@ -12,19 +12,16 @@
 // - the entries are separate members: an array of them would be copied by a loop.
 // Names and layouts are placeholders.
 
+#include "base/reflection/UnkReflValue.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 namespace unk_any_props {
 
-struct UnkAnyType {
-    u8 pad_0x0[0x18];
-    u64 size;
-};
+using UnkAnyType = base::reflection::CType;
 
-struct UnkAny;
-void fn_71000a18d4(UnkAny* any, UnkAnyType* type, const void* data, u32 flag);
-
+// The layout of base::reflection::UnkReflValue (base/reflection/UnkReflValue.h), with the user
+// copy constructor and copy-assignment that decide how the records below are copied.
 struct UnkAny {
     u64 storage;
     UnkAnyType* type;
@@ -33,13 +30,14 @@ struct UnkAny {
 
     // Values of up to 8 bytes are stored inline unless field_0x14 is 1.
     const void* Data() const {
-        if (field_0x14 == 1 || type->size > 8)
+        if (field_0x14 == 1 || type->m_size > 8)
             return *reinterpret_cast<void* const*>(&storage);
         return &storage;
     }
     UnkAny(const UnkAny& o) : storage(0), type(nullptr) {
         field_0x10 = o.field_0x10;
-        fn_71000a18d4(this, o.type, o.type ? o.Data() : nullptr, 0);
+        fn_71000a18d4(reinterpret_cast<base::reflection::UnkReflValue*>(this), o.type,
+                      o.type ? o.Data() : nullptr, 0);
     }
     UnkAny& operator=(const UnkAny& o);  // fn_710009efb8
 };

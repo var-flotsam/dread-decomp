@@ -6,28 +6,18 @@
 // placeholders.
 #include "UnkPropS7.h"
 #include "base/global/CRntString.h"
+#include "base/global/CStrId.h"
+#include "game/UnkGameBlackboard.h"
 
 using namespace unk_prop;
 
-struct UnkIdSource_7100fc4b34 {
-    virtual void vf_0x0();
-};
-
-// A definition's qualified id, built on first use (as in fn_710092f204).
-struct UnkQualifiedId_7100fc4b34 {
-    CStrId id;
-    UnkIdSource_7100fc4b34* source;
-};
-void fn_7100ae9a10(UnkQualifiedId_7100fc4b34* self, UnkIdSource_7100fc4b34* source,
-                   const CStrId& prefix);
-
-struct UnkDef_7100fc4b34 : UnkIdSource_7100fc4b34 {
+// A definition's qualified id (game/UnkGameBlackboard.h), built on first use (as in fn_710092f204).
+struct UnkDef_7100fc4b34 : UnkIdSource {
     u64 field_0x8;
-    UnkQualifiedId_7100fc4b34 qid;
+    UnkQualifiedId qid;
 };
-extern const CStrId g_unk_7101d470e0;
 
-static inline const UnkQualifiedId_7100fc4b34& Qid(UnkDef_7100fc4b34& def) {
+static inline const UnkQualifiedId& Qid(UnkDef_7100fc4b34& def) {
     if ((u64)def.qid.id.data == (u64)g_unk_7101d47108 + 0x10)
         fn_7100ae9a10(&def.qid, &def, g_unk_7101d470e0);
     return def.qid;
@@ -42,13 +32,13 @@ struct UnkSubId_7100fc4b34 {
 struct UnkQualifiedName_7100fc4b34 {
     const char* str;
     u8 unk_0x8[0xc0];
-    UnkIdSource_7100fc4b34* source;
+    UnkIdSource* source;
 };
-void fn_7100ae9d7c(UnkQualifiedName_7100fc4b34* self, UnkIdSource_7100fc4b34* source,
+void fn_7100ae9d7c(UnkQualifiedName_7100fc4b34* self, UnkIdSource* source,
                    const CStrId& prefix);
 const UnkSubId_7100fc4b34& fn_71003327a4(UnkQualifiedName_7100fc4b34* self, const CStrId* name);
 
-struct UnkNamedDef_7100fc4b34 : UnkIdSource_7100fc4b34 {
+struct UnkNamedDef_7100fc4b34 : UnkIdSource {
     u64 field_0x8;
     UnkQualifiedName_7100fc4b34 name;
 };
@@ -72,7 +62,6 @@ struct UnkString_7100fc4b34 {
     u8 unk_0x0[0x30];
 };
 void fn_710007eba0(UnkString_7100fc4b34* self, u32 size);
-void fn_710007eaa0(UnkString_7100fc4b34* self, const UnkString_7100fc4b34* other);
 bool fn_7100ec50e4(char* section, const void* name, UnkString_7100fc4b34* out);
 
 template <auto Reader, class T, class N>
@@ -216,7 +205,8 @@ bool fn_7100fc4b34(UnkOwner_7100fc4b34* self, UnkPropSet_7100fc4b34* a, UnkPropS
     {
         UnkString_7100fc4b34 s;
         fn_710007eba0(&s, 0x40);
-        fn_710007eaa0(&out->field_0x80, &s);
+        fn_710007eaa0(reinterpret_cast<base::global::CRntString*>(&out->field_0x80),
+                      reinterpret_cast<const base::global::CRntString*>(&s));
         fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(&s));
     }
     Get<fn_7100ec50e4>(a, Key(0x1148), Qid(g_unk_71727594b8), &out->field_0x80);

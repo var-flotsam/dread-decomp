@@ -5,17 +5,14 @@
 // fn_7100d2c880 (src/game_aca57c/fn_7100ad4b54.cpp), a bool value: whether the word at 0x40 of the
 // argument's object is above 1 (fn_710011e3b8).
 #include "base/reflection/UnkClassGetters.h"
+#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkReflValue.h"
 #include "types.h"
 
-struct UnkValue {
-    u64 field_0x0;
-    u64 field_0x8;
-    u32 field_0x10;
-};
+using base::reflection::CType;
+using base::reflection::UnkReflValue;
 
-void fn_71000a18d4(UnkValue* out, void* type, const void* value, u32 flag);
-
-extern u8 g_unk_71726a2bf8[] __attribute__((visibility("hidden")));
+extern const CType g_unk_71726a2bf8 __attribute__((visibility("hidden")));
 
 template <class T>
 struct UnkArgument {
@@ -35,38 +32,36 @@ struct UnkDefIterValue {
     __attribute__((always_inline)) void* Get() { return state == 2 ? ref : value; }
 };
 
-__attribute__((always_inline)) static inline UnkValue GetRulesSet(UnkArgument<UnkDefIterValue<0x10>>* argument) {
+__attribute__((always_inline)) static inline UnkReflValue GetRulesSet(UnkArgument<UnkDefIterValue<0x10>>* argument) {
     void* def = argument->field_0x8->Get();
     fn_7100265b1c();
-    UnkValue result;
-    result.field_0x0 = 0;
-    result.field_0x8 = 0;
-    result.field_0x10 = 2;
-    fn_71000a18d4(&result, g_unk_71726a2bf8, def, 1);
+    UnkReflValue result;
+    result.field_0x0 = nullptr;
+    result.type = nullptr;
+    result.kind = 2;
+    fn_71000a18d4(&result, &g_unk_71726a2bf8, def, 1);
     return result;
 }
 
-UnkValue fn_71002678c8(void* unused, UnkArgument<UnkDefIterValue<0x10>>* argument) { return GetRulesSet(argument); }
+UnkReflValue fn_71002678c8(void* unused, UnkArgument<UnkDefIterValue<0x10>>* argument) { return GetRulesSet(argument); }
 
-UnkValue fn_7100267b5c(void* unused, UnkArgument<UnkDefIterValue<0x10>>* argument) { return GetRulesSet(argument); }
+UnkReflValue fn_7100267b5c(void* unused, UnkArgument<UnkDefIterValue<0x10>>* argument) { return GetRulesSet(argument); }
 
-__attribute__((always_inline)) static inline UnkValue MakeValue(void* type, const void* value) {
-    UnkValue result;
-    result.field_0x0 = 0;
-    result.field_0x8 = 0;
-    result.field_0x10 = 2;
+__attribute__((always_inline)) static inline UnkReflValue MakeValue(const CType* type, const void* value) {
+    UnkReflValue result;
+    result.field_0x0 = nullptr;
+    result.type = nullptr;
+    result.kind = 2;
     fn_71000a18d4(&result, type, value, 0);
     return result;
 }
-
-void* fn_710000d228();  // the bool type's getter
 
 struct UnkCountObject {
     u8 unk_0x0[0x40];
     u32 field_0x40;
 };
 
-UnkValue fn_710011e3b8(void* unused, UnkArgument<UnkCountObject>* argument) {
+UnkReflValue fn_710011e3b8(void* unused, UnkArgument<UnkCountObject>* argument) {
     bool value = argument->field_0x8->field_0x40 > 1;
     return MakeValue(fn_710000d228(), &value);
 }

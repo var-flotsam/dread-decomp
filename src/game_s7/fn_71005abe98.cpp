@@ -3,43 +3,34 @@
 // described by): words of the translation unit's globals, a zero, flags of an object and a vector.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkReflValue.h"
 #include "types.h"
 
-struct UnkValue {
-    u64 field_0x0;
-    u64 field_0x8;
-    u32 field_0x10;
-};
+using base::reflection::CType;
+using base::reflection::UnkReflValue;
 
-void fn_71000a18d4(UnkValue* out, void* type, const void* value, u32 flag);
-
-__attribute__((always_inline)) static inline UnkValue MakeValue(void* type, const void* value) {
-    UnkValue result;
-    result.field_0x0 = 0;
-    result.field_0x8 = 0;
-    result.field_0x10 = 2;
+__attribute__((always_inline)) static inline UnkReflValue MakeValue(const CType* type, const void* value) {
+    UnkReflValue result;
+    result.field_0x0 = nullptr;
+    result.type = nullptr;
+    result.kind = 2;
     fn_71000a18d4(&result, type, value, 0);
     return result;
 }
-// The plain types' getters (base/reflection/UnkReflAttributes.h) return the descriptor as const.
-__attribute__((always_inline)) static inline UnkValue MakeValue(const base::reflection::CType* type,
-                                                               const void* value) {
-    return MakeValue(static_cast<void*>(const_cast<base::reflection::CType*>(type)), value);
-}
 
-void* fn_7100010e58();  // an 8-byte type's getter
+const CType* fn_7100010e58();  // an 8-byte type's getter
 
 extern u32 g_unk_7172756b90 __attribute__((visibility("hidden")));
 extern u32 g_unk_7172756cbc __attribute__((visibility("hidden")));
 extern u64 g_unk_7172756b98 __attribute__((visibility("hidden")));
 extern u32 g_unk_7172756ba0 __attribute__((visibility("hidden")));
 
-UnkValue fn_71005abe98() {
+UnkReflValue fn_71005abe98() {
     u32 value = 0;
     return MakeValue(fn_710000abbc(), &value);
 }
 
-UnkValue fn_71005abf48() {
+UnkReflValue fn_71005abf48() {
     u32 value = 0;
     return MakeValue(fn_7100005178(), &value);
 }
@@ -58,7 +49,7 @@ struct UnkArgument {
 
 // Flags of the argument's object (at 0xd63d6b, 0xd641c4 and 0xd641c5).
 template <u32 Offset>
-__attribute__((always_inline)) static inline UnkValue GetFlag(UnkArgument<bool>* argument) {
+__attribute__((always_inline)) static inline UnkReflValue GetFlag(UnkArgument<bool>* argument) {
     bool value = argument->field_0x8[Offset];
     return MakeValue(fn_710000d228(), &value);
 }
@@ -104,7 +95,7 @@ struct UnkFlagSource {
     virtual bool vf_0x58();
 };
 
-__attribute__((always_inline)) static inline UnkValue GetVirtualFlag(UnkArgument<UnkFlagSource>* argument) {
+__attribute__((always_inline)) static inline UnkReflValue GetVirtualFlag(UnkArgument<UnkFlagSource>* argument) {
     bool value = argument->field_0x8->vf_0x58();
     return MakeValue(fn_710000d228(), &value);
 }
@@ -112,9 +103,9 @@ __attribute__((always_inline)) static inline UnkValue GetVirtualFlag(UnkArgument
 // Values of kind 2 referring (flag 1) to a cutscene definition held by an iterator value: in place
 // at 0x8, or through the pointer there when the state (after the Size-byte value) is 2. The class
 // getter is called first, so the class (whose reflected data is at the descriptor) is set up.
-extern u8 g_unk_7172794c08[] __attribute__((visibility("hidden")));
-extern u8 g_unk_7172794d40[] __attribute__((visibility("hidden")));
-extern u8 g_unk_7172794e78[] __attribute__((visibility("hidden")));
+extern const CType g_unk_7172794c08 __attribute__((visibility("hidden")));
+extern const CType g_unk_7172794d40 __attribute__((visibility("hidden")));
+extern const CType g_unk_7172794e78 __attribute__((visibility("hidden")));
 
 template <u32 Size>
 struct UnkDefIterValue {
@@ -128,14 +119,14 @@ struct UnkDefIterValue {
     __attribute__((always_inline)) void* Get() { return state == 2 ? ref : value; }
 };
 
-template <u32 Size, void* (*GetClass)(), u8* Descriptor>
-__attribute__((always_inline)) static inline UnkValue GetDef(UnkArgument<UnkDefIterValue<Size>>* argument) {
+template <u32 Size, void* (*GetClass)(), const CType* Descriptor>
+__attribute__((always_inline)) static inline UnkReflValue GetDef(UnkArgument<UnkDefIterValue<Size>>* argument) {
     void* def = argument->field_0x8->Get();
     GetClass();
-    UnkValue result;
-    result.field_0x0 = 0;
-    result.field_0x8 = 0;
-    result.field_0x10 = 2;
+    UnkReflValue result;
+    result.field_0x0 = nullptr;
+    result.type = nullptr;
+    result.kind = 2;
     fn_71000a18d4(&result, Descriptor, def, 1);
     return result;
 }
@@ -146,17 +137,17 @@ void fn_7100ee1f34(void* self);
 void fn_7100d8ced8(void* self);
 void fn_7100359118(void* self);
 void fn_7100fd3804(void* self);
-void* fn_7100ad61f8();  // base::reflection::refl_GetType<CSubAreaManager*>
-void* fn_7100ad62d4();  // base::reflection::refl_GetType<CEnvironmentManager*>
-void* fn_7100ad6568();  // base::reflection::refl_GetType<CLightManager*>
-void* fn_7100ad6644();  // base::reflection::refl_GetType<sound::CMusicManager*>
+const CType* fn_7100ad61f8();  // base::reflection::refl_GetType<CSubAreaManager*>
+const CType* fn_7100ad62d4();  // base::reflection::refl_GetType<CEnvironmentManager*>
+const CType* fn_7100ad6568();  // base::reflection::refl_GetType<CLightManager*>
+const CType* fn_7100ad6644();  // base::reflection::refl_GetType<sound::CMusicManager*>
 extern void* g_unk_7101d47360;
 extern void* g_unk_7101d47368;
 extern void* g_unk_71726b1688;
 extern void* g_unk_71726bc560;
 
-template <void** Instance, u64 Size, void (*Construct)(void*), void* (*GetType)(), u32 Flags = 0x3f>
-__attribute__((always_inline)) static inline UnkValue GetSingleton() {
+template <void** Instance, u64 Size, void (*Construct)(void*), const CType* (*GetType)(), u32 Flags = 0x3f>
+__attribute__((always_inline)) static inline UnkReflValue GetSingleton() {
     void* instance = *Instance;
     if (!instance) {
         instance = fn_71000839a0(Size, Flags);

@@ -2,32 +2,16 @@
 // values on the player, then gives every item and power-up to the player's inventory.
 // Layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 
 using base::global::CStrId;
 
-struct UnkIdSource {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-    virtual void vf_0x18();
-    virtual const CStrId& vf_0x20();
-    virtual const CStrId& vf_0x28();
-};
-
-struct UnkQualifiedId {
-    CStrId id;
-    UnkIdSource* source;
-};
-void fn_7100ae9a10(UnkQualifiedId* self, UnkIdSource* source, const CStrId& prefix);
-
-// An item definition: its qualified id is built on first use.
+// An item definition (game/UnkGameBlackboard.h): its qualified id is built on first use.
 struct UnkItemDef : UnkIdSource {
     u64 field_0x8;
     UnkQualifiedId qid;
 };
-extern const CStrId g_unk_7101d470e0;  // the qualified ids' prefix
-
 // Compared as integers, as in fn_7100ae9a10.
 static inline const UnkQualifiedId& GetQualifiedId(UnkItemDef& def) {
     if ((u64)def.qid.id.data == (u64)g_unk_7101d47108 + 0x10)
