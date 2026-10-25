@@ -1,6 +1,7 @@
 // Static initialiser of the unit of the ELavaDropArm, ELavaDropArmPos, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaDropsDef>>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaDropsDef>>>::TKeyElementConstIterator::value_type, base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaDropsDef>>, base::reflection::CollectionTypeMapper<base::global::CRntVector<CCooldownXBossLavaDropsMovementDef>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<CCooldownXBossLavaDropsMovementDef>>::TKeyElementConstIterator::value_type, base::global::CRntVector<CCooldownXBossLavaDropsMovementDef>.
 #include "../game_s7/UnkStaticInitS7.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "base/reflection/UnkReflTypeDtors.h"
 
 using namespace unk_static_init;
 
@@ -51,7 +52,6 @@ extern UnkEnumType g_unk_71726d3ab0;
 extern char g_unk_7101d5e2e0[];
 void fn_71004abfe4();
 void fn_71004ac368(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
-void fn_7100096604(void* type);  // the type's destructor, as registered
 extern char g_unk_71726d3be8[];
 extern char g_unk_71726d3be9[];
 UnkEnumType* fn_71004ac4ec();
@@ -63,7 +63,6 @@ extern char g_unk_71726d3d29[];
 UnkEnumType* fn_71004acad0();
 extern UnkEnumType g_unk_71726d3d30;
 void fn_71004acbac(UnkEnumType* type, const CStrId& name, void*, void*);
-void fn_710009891c(void* type);  // the type's destructor, as registered
 extern char g_unk_71726d3ea0[];
 extern UnkConversion g_unk_71726d3ea8;
 UnkEnumType* fn_71004abd50();

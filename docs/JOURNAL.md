@@ -97,7 +97,20 @@ target defined by an input, so a stand-in for an undefined symbol is a jump thun
 Recommendations recorded in the handoff's "Start here": migrate per file, not per symbol
 (disjoint by construction); review by tier (deterministic compare plus a spot check for mechanical
 steps, a full adversarial pass for new tools); publish the repository so green PRs merge themselves
-instead of stacking.
+instead of stacking. Second part (branch `claude/tuinit-unify`): 75 of the 135 left declarations
+were one problem, the two static-initialiser helper families (`unk_static_init` in
+`src/game_5821e4/UnkStaticInit.h` and `src/game_s7/UnkStaticInitS7.h`; global in
+`include/game/UnkTUInit.h`) each declaring the same type destructors, function records and property
+list head, so a unit that saw both got ambiguities. The symbols moved into
+`include/base/reflection/UnkReflTypeDtors.h` and `include/game/UnkTUSymbols.h`, which both families
+(and `base/UnkCloneHelpers.h`) include; `next`/`head` in the `unk_static_init` property helpers
+became `UnkPropertyHead*` (pointer retypes; bodies and store order untouched); 21 files dropped
+their local `g_unk_71726db788`; then `hub_migrate.py --header-redeclared` migrated 75 more files
+(`fn_7100096604` was declared locally in 57). All 195 includers byte-identical, `gen_clones.py`
+unchanged, `O` unchanged; header re-declarations 45 to 27, extra copies 2,304 to 2,114, 50
+declarations in 43 files left (placeholder parameter types the headers reject). Finding: a
+baseline compare must drop warnings' line and column, since removing a line above a warning moves
+it without changing the code (`baseline.py` does).
 
 **Sixteenth session (2026-10-25, on the PC, branches `claude/hubs-2` and `claude/port-m1`): hub
 batch 2 and the port link.** Hub batch 2 (var-flotsam/dread-decomp#187): 25 symbols to one

@@ -10,7 +10,6 @@ struct UnkStatics_7100ae39e0 {
 };
 extern UnkStatics_7100ae39e0 g_unk_717275b550 __attribute__((visibility("hidden")));
 extern UnkProperty2 g_unk_7172758b70;
-extern UnkProperty* g_unk_71726db788;
 extern void* g_unk_7101a45fe8[];
 extern void* g_unk_7101a45f90[];
 void fn_71004fa3b8(void* p);

@@ -4,6 +4,7 @@
 #include "UnkStaticInitS7.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "base/reflection/UnkReflTypeDtors.h"
 
 using namespace unk_static_init;
 
@@ -107,7 +108,6 @@ extern char g_unk_71726dfdb8[];
 void fn_7100531a8c(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_71005318e0();
 extern UnkProperty2 g_unk_71726dfe00;
-extern UnkProperty* g_unk_71726db788;
 extern void* g_unk_7101a45fe8[];
 extern void* g_unk_7101a45f90[];
 void fn_71004fa3b8(void* p);
@@ -122,7 +122,6 @@ extern char g_unk_71726dfe44[];
 UnkEnumType* fn_710053246c();
 extern UnkEnumType g_unk_71726dfe48;
 void fn_71005328cc(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
-void fn_7100096604(void* type);  // the type's destructor, as registered
 extern char g_unk_7101d5e2e0[];
 void fn_7100532548();
 extern char g_unk_71726dff80[];
@@ -136,7 +135,6 @@ extern char g_unk_71726e00c1[];
 UnkEnumType* fn_7100533034();
 extern UnkEnumType g_unk_71726e00c8;
 void fn_7100533110(UnkEnumType* type, const CStrId& name, void*, void*);
-void fn_710009891c(void* type);  // the type's destructor, as registered
 extern char g_unk_71726e0238[];
 extern UnkConversion g_unk_71726e0240;
 void fn_710055d690() __attribute__((visibility("hidden")));

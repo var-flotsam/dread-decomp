@@ -1,6 +1,7 @@
 // Static initialiser of the unit of the CCharClassRodomithonXAIComponent::SFirePillarConfig::EType, CCharClassRodomithonXAIComponent::SFirePillarConfig, base::reflection::CollectionTypeMapper<CCharClassRodomithonXAIComponent::TVFirePillarConfigs>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<CCharClassRodomithonXAIComponent::TVFirePillarConfigs>::TKeyElementConstIterator::value_type, CCharClassRodomithonXAIComponent::TVFirePillarConfigs reflected types.
 #include "UnkStaticInit.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "base/reflection/UnkReflTypeDtors.h"
 #include "game/UnkTUInit.h"
 
 using namespace unk_static_init;
@@ -24,7 +25,6 @@ void fn_7100666bdc() __attribute__((visibility("hidden")));
 void fn_71006656c4();
 extern UnkEnumType g_unk_71726fdd80;
 void fn_7100665984(UnkEnumType* type, const CStrId& name, void*, void*, void (*)(), void*);
-void fn_7100096604(void* type);  // the type's destructor, as registered
 extern char g_unk_71726fdeb8[];
 extern char g_unk_71726fdeb9[];
 void* fn_7100665b08();  // fn_7100665b08

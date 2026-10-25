@@ -39,7 +39,6 @@ struct __attribute__((packed, aligned(4))) UnkStatics_7100b48ca0 {
 };
 extern UnkStatics_7100b48ca0 g_unk_7172763d5c __attribute__((visibility("hidden")));
 extern UnkProperty2 g_unk_71727639d0;
-extern UnkProperty* g_unk_71726db788;
 extern void* g_unk_7101a45fe8[];
 extern void* g_unk_7101a9caf0[];
 void fn_7100b481b8(UnkProperty2* p);
