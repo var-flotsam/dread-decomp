@@ -1,15 +1,15 @@
 // Returns a new reference to a ref-counted handle's object and records the object once in a
 // function-local static registry (a fixed array of handles behind a u32 count).
+#include "base/global/CStrId.h"
 #include "types.h"
 
+// A string id's data, seen with a plain count.
 struct UnkRefObj {
     char pad[8];
     s32 refCount;
 };
 
-// Shared "empty" object base; the empty handle points 0x10 past it and is never counted.
-extern char* g_unk_7101d47108;
-
+// The empty handle is the string pool's empty entry (0x10 past the pool) and is never counted.
 static inline bool IsCounted(UnkRefObj* p) {
     return (u64)p != (u64)g_unk_7101d47108 + 0x10;
 }

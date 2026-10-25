@@ -1,4 +1,5 @@
 // Returns whether any listed object's class name contains the given class's name (optionally skipping objects that report busy).
+#include "base/global/CStrId.h"
 #include "types.h"
 
 struct UnkClsStr_710117af10 {
@@ -12,11 +13,6 @@ struct UnkCls_710117af10 {
     union {
         s32 field_0x44;
     };
-};
-
-struct UnkClsHolder_710117af10 {
-    u8 unk_0x0[0x10];
-    UnkCls_710117af10 cls;
 };
 
 struct UnkObj_710117af10;
@@ -41,7 +37,6 @@ struct UnkStruct_710117af10 {
 UnkCls_710117af10** fn_710070d7f8(UnkObj_710117af10* obj);
 bool fn_710070d830(UnkObj_710117af10* obj);
 bool fn_710007fb9c(const UnkClsStr_710117af10* str, const char* sub);
-extern UnkClsHolder_710117af10* g_unk_7101d47108;
 
 bool fn_710117af10(UnkStruct_710117af10* self, UnkCls_710117af10** name, bool skipBusy) {
     for (UnkElem_710117af10** it = self->field_0x40->items;
@@ -50,7 +45,7 @@ bool fn_710117af10(UnkStruct_710117af10* self, UnkCls_710117af10** name, bool sk
         UnkCls_710117af10** cls = fn_710070d7f8(obj);
         (*cls)->field_0x44++;
         UnkCls_710117af10* c = *cls;
-        if (c == &g_unk_7101d47108->cls)
+        if (c == reinterpret_cast<UnkCls_710117af10*>(&g_unk_7101d47108->empty))
             continue;
         const UnkClsStr_710117af10* str = &c->name;
         (*name)->field_0x44++;

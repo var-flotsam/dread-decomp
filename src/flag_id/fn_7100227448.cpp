@@ -2,21 +2,12 @@
 // static descriptor built from the type name, the parent's descriptor, and two
 // type-specific function pointers. UnkClass is this file's placeholder for
 // base::reflection::CClass, which base/reflection/UnkClassGetters.h declares the getters with.
+#include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "types.h"
 
-struct UnkStringData {
-    u8 unk_0x0[0x8];
-    s32 ref_count;
-};
-
-struct UnkStringPool {
-    u8 unk_0x0[0x10];
-    UnkStringData empty;
-};
-
-extern UnkStringPool* g_unk_7101d47108;
-void fn_71000803a4(UnkStringPool* pool, UnkStringData* data);
+using base::global::UnkStringData;
+using base::global::UnkStringPool;
 
 struct UnkName {
     UnkStringData* data;

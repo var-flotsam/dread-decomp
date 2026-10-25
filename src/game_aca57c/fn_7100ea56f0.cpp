@@ -4,6 +4,7 @@
 #include "base/global/CStrId.h"
 #include "types.h"
 
+using base::global::UnkStrIdBase;
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
@@ -14,7 +15,6 @@ using UnkString20 = UnkBufferString<0x20, g_unk_7101a1b5a0>;
 struct UnkTempStrId {
     UnkStringData* data;
 };
-void fn_7100000850(UnkTempStrId* self, const void* str, bool flag);
 
 // A string id taking over another (CStrId's move-assignment).
 struct UnkAssignedStrId {
@@ -49,7 +49,9 @@ struct UnkNumberedIds {
 };
 
 struct UnkTempStrIdT : UnkTempStrId {
-    __attribute__((always_inline)) UnkTempStrIdT(const UnkString20& str) { fn_7100000850(this, &str, true); }
+    __attribute__((always_inline)) UnkTempStrIdT(const UnkString20& str) {
+        fn_7100000850(reinterpret_cast<UnkStrIdBase*>(this), *str.Str(), true);
+    }
 };
 
 // NON_MATCHING(minor): the original keeps the moved-from temporary's empty-string stores (it
@@ -105,14 +107,14 @@ struct UnkIdWord {
 void fn_7100ae9bb0(UnkIdWord* self, const UnkStringWord* source, const UnkSuffix* suffix) {
     self->field_0x8 = source->field_0xc8;
     UnkString80 str;
-    fn_710007eaa0(&str, source);
+    fn_710007eaa0(str.Str(), reinterpret_cast<const base::global::CRntString*>(source));
     if (suffix->data && suffix->data[0]) {
         fn_710007f5ac(&str, '[');
         fn_710007f3b4(&str, suffix);
         fn_710007f5ac(&str, ']');
     }
     UnkTempStrId id;
-    fn_7100000850(&id, &str, true);
+    fn_7100000850(reinterpret_cast<UnkStrIdBase*>(&id), *str.Str(), true);
     self->id.~UnkReleasedStrId();
     self->id.data = id.data;
 }

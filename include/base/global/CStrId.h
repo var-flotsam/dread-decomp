@@ -210,4 +210,16 @@ public:
     }
 };
 
+class CRntString;
+
 }  // namespace base::global
+
+// The string-id constructor from a CRntString (fn_7100000850), out of line: the string's cached
+// CRC-64 (`key`) is the pool hash, so nothing is rehashed, and a string with no text is passed as
+// "". Defined in src/base/global/fn_71000003d4.cpp.
+void fn_7100000850(base::global::UnkStrIdBase* self, const base::global::CRntString& str, bool flag);
+
+// The global empty string id: a guarded static that unit 0's initializer (fn_7100001390) builds
+// from no string, so it holds the pool's empty entry; its destructor is fn_710000051c. Default
+// ids are copied from it and ids are compared with it.
+extern base::global::CStrId g_unk_7101d470e0;

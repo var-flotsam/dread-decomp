@@ -95,11 +95,8 @@ void fn_710009ae5c(base::reflection::UnkReflFunction* fn, u32 count);
 void* fn_71000839a0(u64 size, u32 flags);
 void fn_710013ac14(base::reflection::UnkTunableRegistry* self);
 
-// A global CStrId that default values copy (possibly the empty id).
-extern base::global::CStrId g_unk_7101d470e0;
-
-// A CRntString inside the string g_unk_7101d470e0 points to (+0x10), whose u32 at +0x44 counts
-// these uses; default values copy it.
+// The CRntString inside the string the global empty id g_unk_7101d470e0 (base/global/CStrId.h)
+// points to (+0x10), whose u32 at +0x44 counts these uses; default values copy it.
 inline const base::global::CRntString& refl_GlobalRntString() {
     u8* str = reinterpret_cast<u8*>(g_unk_7101d470e0.data);
     ++*reinterpret_cast<u32*>(str + 0x44);

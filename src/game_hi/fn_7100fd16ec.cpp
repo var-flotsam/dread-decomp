@@ -61,7 +61,6 @@ struct UnkMgr_0xf18 {
 };
 
 extern UnkMgr_0xf18* g_unk_71726bc560;
-extern base::global::CStrId g_unk_7101d470e0;
 
 void* fn_71000839a0(u64 size, u32 flags);
 void fn_7100fd3804(UnkMgr_0xf18*);
