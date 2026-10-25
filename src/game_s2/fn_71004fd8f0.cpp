@@ -2,6 +2,7 @@
 // class registration.
 #include "../game_5821e4/UnkStaticInit.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "base/reflection/UnkReflStatics.h"
 
 using namespace unk_static_init;
 
@@ -20,7 +21,6 @@ extern UnkProperty2 g_unk_71726dd158;
 extern UnkProperty* g_unk_71726db788;
 extern void* g_unk_7101a45fe8[];
 extern void* g_unk_7101a45f90[];
-void fn_71004fd2cc(UnkProperty2* p);
 void fn_71004fa3b8(void* p);
 extern char g_unk_71726dd198[];
 

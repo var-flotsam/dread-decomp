@@ -451,7 +451,6 @@ extern UnkPropertyEx<> g_unk_71727c94c0;
 extern void* g_unk_7101a45fe8[];
 extern void* g_unk_7101a45f90[];
 void fn_71002ef5bc(void* self);
-void fn_71004fd2cc(UnkPropertyEx<>* p);
 void fn_71004fa3b8(void* p);
 
 extern UnkTUHeader g_unk_7172755b78 __attribute__((visibility("hidden")));

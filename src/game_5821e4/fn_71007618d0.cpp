@@ -1,6 +1,7 @@
 // Static initialiser of the unit of the CBreakableTileGroupComponent::STileInfo, CBreakableTileGroupComponent::SMinimapTileState, base::reflection::CollectionTypeMapper<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>>::TKeyElementConstIterator::value_type, base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>, base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TMinimapTileStates>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TMinimapTileStates>::TKeyElementConstIterator::value_type, CBreakableTileGroupComponent::TMinimapTileStates, base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TActorTileStatesMap>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TActorTileStatesMap>::TKeyElementConstIterator::value_type, CBreakableTileGroupComponent::TActorTileStatesMap reflected types.
 #include "UnkStaticInit.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "base/reflection/UnkReflStatics.h"
 
 using namespace unk_static_init;
 
@@ -21,7 +22,6 @@ extern UnkProperty2 g_unk_7172711588;
 extern void* g_unk_7101a45fe8[];
 extern void* g_unk_7101a45f90[];
 extern UnkEnumType g_unk_71727122c0;
-void fn_71004fd2cc(UnkProperty2* p);
 void fn_71004fa3b8(void* p);
 extern char g_unk_71727115c8[];
 void fn_7100754738();
