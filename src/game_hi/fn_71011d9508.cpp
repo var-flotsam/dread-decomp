@@ -1,4 +1,5 @@
 // Finds a display object by a dotted path: splits the path on '.' and walks child containers by name.
+#include "base/UnkCloneHelpers.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
@@ -64,7 +65,6 @@ void fn_710008377c(void* p);
 void fn_71009319dc(const char* str, const char* sep, UnkTokenList_0x70* out);
 void fn_7100931c34(UnkTokenList_0x70* list);
 extern char g_unk_7101a838c8[];
-extern char g_unk_7101a1a4c8[];
 extern char g_unk_7172a0f120[] __attribute__((visibility("hidden")));
 
 UnkDisplayObject_71011d9508* fn_71011d9508(UnkDisplayObject_71011d9508* self, const char* const* path) {

@@ -3,12 +3,12 @@
 // at +0x54, freed by fn_710001737c) and releases a string id at 0x10; it has no base destructor.
 // fn_710019e82c is a smaller relative.
 
+#include "base/UnkCloneHelpers.h"
 #include "base/UnkCountedResource.h"
 #include "base/UnkDestructors.h"
 #include "types.h"
 
 extern char unk_7101a1f000[];
-void fn_7100216934(char* p);
 
 struct UnkObject_71001f3438 {
     char* vtable;

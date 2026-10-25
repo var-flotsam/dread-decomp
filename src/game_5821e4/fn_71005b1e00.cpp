@@ -1,6 +1,8 @@
 // Static initialiser of the unit of the base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPolypFallPattern>>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPolypFallPattern>>>::TKeyElementConstIterator::value_type, base::global::CRntVector<std::unique_ptr<CPolypFallPattern>> reflected types.
 #include "UnkStaticInit.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "base/reflection/UnkReflTypeDtors.h"
+#include "game/UnkTUInit.h"
 
 using namespace unk_static_init;
 
@@ -25,7 +27,6 @@ extern char g_unk_7101d5e2e0[];
 void fn_71005ae290();
 extern UnkEnumType g_unk_71726e98b8;
 void fn_71005ae614(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
-void fn_7100096604(void* type);  // the type's destructor, as registered
 extern char g_unk_71726e99f0[];
 extern char g_unk_71726e99f1[];
 UnkEnumType* fn_71005ae798();
@@ -37,7 +38,6 @@ extern char g_unk_71726e9b31[];
 UnkEnumType* fn_71005aed7c();
 extern UnkEnumType g_unk_71726e9b38;
 void fn_71005aee58(UnkEnumType* type, const CStrId& name, void*, void*);
-void fn_710009891c(void* type);  // the type's destructor, as registered
 extern char g_unk_71726e9ca8[];
 extern UnkConversion g_unk_71726e9cb0;
 void fn_71005b0d08() __attribute__((visibility("hidden")));

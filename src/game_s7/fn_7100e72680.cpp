@@ -3,6 +3,8 @@
 // Layouts are placeholders.
 #include "UnkStaticInitS7.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "base/reflection/UnkReflTypeDtors.h"
+#include "game/UnkTUInit.h"
 
 using namespace unk_static_init;
 
@@ -32,12 +34,8 @@ struct UnkStatics_7100e72680 {
     u8 field_0x118[8];
 };
 extern UnkStatics_7100e72680 g_unk_71727c8d08 __attribute__((visibility("hidden")));
-void fn_710000cf00();
-void fn_710000d470();
-void fn_710000d4f4();
 extern UnkEnumType g_unk_71727c7438;
 void fn_7100e65554(UnkEnumType* type, const CStrId& name, void*, void*, void (*)(), void*);
-void fn_7100096604(void* type);  // the type's destructor, as registered
 void fn_7100e65204();
 extern char g_unk_71727c7570[];
 extern UnkEnumType g_unk_71727c7578;
@@ -68,7 +66,6 @@ extern char g_unk_71727c7a71[];
 UnkEnumType* fn_7100e675f8();
 extern UnkEnumType g_unk_71727c7a78;
 void fn_7100e676d4(UnkEnumType* type, const CStrId& name, void*, void*);
-void fn_710009891c(void* type);  // the type's destructor, as registered
 extern char g_unk_71727c7be8[];
 extern char g_unk_71727c7be9[];
 UnkEnumType* fn_7100e678cc();

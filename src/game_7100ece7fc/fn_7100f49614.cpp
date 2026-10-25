@@ -2,13 +2,12 @@
 // +0x18, which is destroyed (its base vtable is restored, then its string id released);
 // state 2 holds nothing to destroy. Both go back to state 0; any other state is left alone.
 // Six copies, one per element type.
+#include "base/UnkCloneHelpers.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
-
-extern char g_unk_7101cab1f8[];  // the elements' base vtable
 
 struct UnkIdValueBase_0x18 {
     char* vtable;

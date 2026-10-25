@@ -20,7 +20,6 @@ extern UnkStrIdBase g_unk_7172735480;
 extern UnkProperty g_unk_71727502f8;
 extern UnkProperty g_unk_7172739f40;
 extern UnkProperty g_unk_7172735488;
-extern UnkProperty* g_unk_71726db788;
 extern void* g_unk_7101a91118[];
 extern void* g_unk_7101a84c68[];
 extern void* g_unk_7101a814e8[];
@@ -61,4 +60,3 @@ void fn_7100953fa0() {
     fn_7100952c3c();
     fn_710009ec00(g_unk_7172739f68, g_unk_7172739fb0.field_0x20);
 }
-

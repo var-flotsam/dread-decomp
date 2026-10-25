@@ -11,7 +11,6 @@ using base::reflection::UnkTunableRegistry;
 void fn_71007ad4d0();
 void fn_71007a515c(UnkReflFunction* fn, const char* name);
 const base::reflection::UnkReflAttrKey& fn_7100090a20();
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 void fn_71007ad5e8();
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
 extern base::reflection::CType g_unk_7101d679f0;

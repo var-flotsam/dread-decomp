@@ -2,6 +2,8 @@
 // base::spatial::SSegmentData and others: the header ids, then the unit's own statics and
 // registrations (helpers in UnkStaticInitS7.h). Layouts are placeholders.
 #include "UnkStaticInitS7.h"
+#include "base/reflection/UnkReflTypeDtors.h"
+#include "game/UnkTUInit.h"
 
 using namespace unk_static_init;
 
@@ -11,7 +13,6 @@ struct UnkStatics_7100122e30 {
 extern UnkStatics_7100122e30 g_unk_7108b6fd60 __attribute__((visibility("hidden")));
 extern UnkEnumType g_unk_7108b6d7b0;
 void fn_7100111068(UnkEnumType* type, const CStrId& name, void*, void*, void (*)(), void*);
-void fn_7100096604(void* type);  // the type's destructor, as registered
 void fn_7100110e60();
 extern char g_unk_7108b6d8e8[];
 extern UnkEnumType g_unk_7108b6d8f0;
@@ -43,7 +44,6 @@ extern char g_unk_7108b6dde9[];
 UnkEnumType* fn_7100113cd8();
 extern UnkEnumType g_unk_7108b6ddf0;
 void fn_7100113db4(UnkEnumType* type, const CStrId& name, void*, void*);
-void fn_710009891c(void* type);  // the type's destructor, as registered
 extern char g_unk_7108b6df60[];
 extern char g_unk_7108b6df61[];
 UnkEnumType* fn_7100113fa8();

@@ -6,6 +6,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflConverter.h"
+#include "game/UnkTUInit.h"
 
 #define HIDDEN __attribute__((visibility("hidden")))
 
@@ -32,7 +33,6 @@ extern u8 g_unk_7101d55120[];
 extern UnkConverter g_unk_7101d55128;
 extern UnkConverter g_unk_7101d55148;
 
-void fn_7100099468(void*);
 void fn_710002d420();
 void fn_710002d7ac() HIDDEN;
 void fn_710002d7b8() HIDDEN;

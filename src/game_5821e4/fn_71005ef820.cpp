@@ -1,6 +1,7 @@
 // Static initialiser of the unit of the ESpinningNailsState, ESpinningNailsSpeed, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>::TKeyElementConstIterator::value_type, base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>, base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>>::TKeyElementConstIterator::value_type, base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>> reflected types.
 #include "UnkStaticInit.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "base/reflection/UnkReflTypeDtors.h"
 
 using namespace unk_static_init;
 
@@ -48,7 +49,6 @@ extern char g_unk_7101d5e2e0[];
 void fn_71005e8a8c();
 extern UnkEnumType g_unk_71726f0e08;
 void fn_71005e8e10(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
-void fn_7100096604(void* type);  // the type's destructor, as registered
 extern char g_unk_71726f0f40[];
 extern char g_unk_71726f0f41[];
 UnkEnumType* fn_71005e8f94();
@@ -60,7 +60,6 @@ extern char g_unk_71726f1081[];
 UnkEnumType* fn_71005e9578();
 extern UnkEnumType g_unk_71726f1088;
 void fn_71005e9654(UnkEnumType* type, const CStrId& name, void*, void*);
-void fn_710009891c(void* type);  // the type's destructor, as registered
 extern char g_unk_71726f11f8[];
 extern char g_unk_71726f11f9[];
 UnkEnumType* fn_71005e9834();

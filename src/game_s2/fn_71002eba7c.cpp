@@ -11,7 +11,6 @@
 using base::global::CFilePathStrId;
 using base::global::CStrId;
 
-extern CFilePathStrId g_unk_7101d470e8;
 extern void* g_unk_7101a22200[];  // the object's vtable
 
 void fn_7100016ad8(void* self);

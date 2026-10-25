@@ -4,6 +4,7 @@
 #include <new>
 
 #include "base/UnkVector.h"
+#include "game_s2/UnkItem50.h"
 #include "types.h"
 
 struct UnkPolyElem_0x20 {
@@ -13,8 +14,6 @@ struct UnkPolyElem_0x20 {
     u64 field_0x10;
     u64 field_0x18;
 };
-
-extern void* g_unk_7101cac938[];
 
 struct UnkPolyArrayOwner_710105a224 {
     void** vtable;

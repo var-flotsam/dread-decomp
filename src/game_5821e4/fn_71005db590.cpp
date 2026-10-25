@@ -1,6 +1,7 @@
 // Static initialiser of the unit of the base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>::TKeyElementConstIterator::value_type, base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>, base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>>::TKeyElementConstIterator::value_type, base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>> reflected types.
 #include "UnkStaticInit.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "base/reflection/UnkReflTypeDtors.h"
 
 using namespace unk_static_init;
 
@@ -27,7 +28,6 @@ extern char g_unk_7101d5e2e0[];
 void fn_71005d3f10();
 extern UnkEnumType g_unk_71726ed0e0;
 void fn_71005d4294(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
-void fn_7100096604(void* type);  // the type's destructor, as registered
 extern char g_unk_71726ed218[];
 extern char g_unk_71726ed219[];
 UnkEnumType* fn_71005d4418();
@@ -39,7 +39,6 @@ extern char g_unk_71726ed359[];
 UnkEnumType* fn_71005d49fc();
 extern UnkEnumType g_unk_71726ed360;
 void fn_71005d4ad8(UnkEnumType* type, const CStrId& name, void*, void*);
-void fn_710009891c(void* type);  // the type's destructor, as registered
 extern char g_unk_71726ed4d0[];
 extern char g_unk_71726ed4d1[];
 UnkEnumType* fn_71005d4cb8();

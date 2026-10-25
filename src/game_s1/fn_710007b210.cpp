@@ -5,6 +5,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflConverter.h"
+#include "game/UnkTUInit.h"
 
 #define HIDDEN __attribute__((visibility("hidden")))
 
@@ -43,7 +44,6 @@ void fn_710007b0f4() HIDDEN;
 void fn_710007b100() HIDDEN;
 void fn_710007b10c() HIDDEN;
 void fn_710007b118() HIDDEN;
-void fn_7100099468(void*);
 void fn_710007b210() {
     {
         CStrId name("base::math::ETransformSpace", true);
