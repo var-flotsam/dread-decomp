@@ -42,7 +42,7 @@ files over 1 MB, `.nso/.nro/.nca/.nsp/.xci/.nsz/.xcz/.keys/.elf`, and anything u
 | `lib/` | yes | vendored upstream Lua 5.1.4 (`lib/lua`), dlmalloc 2.8.4, one libc++ sort; submodules `lib/nnsdk`, `lib/musl` (headers only) |
 | `data/` | yes | metadata only: `hashes.json`, `functions/main_XX.csv`, `reflection_types.csv`, `tu_map.csv`, `library_symbols.csv`, `toolchains.json`, `sources.json`; never code bytes |
 | `docs/` | yes | `HANDOFF.md` (state), `PORT_PLAN.md`, `JOURNAL.md` (history), `recon.md`, `compiler.md`, `maintaining.md`, `references.md` |
-| `port/` | yes | PC port layer (empty; `port/README.md` points at the plan) |
+| `port/` | yes | PC port layer (Route B): CMake project (`dread_game`, `dread_runtime`, `dread`, `sweep`, `link_report`), the port's own `nn::` runtime under `runtime/`, `sample_duplicates.txt`; `port/README.md` has the layout, the sweep and the link |
 
 ## Setup
 
@@ -87,6 +87,8 @@ python tools/asmdiff.py --version <ver> <obj> -v # diff one object against the o
 python tools/trymatch.py --version <ver> <file.cpp> [-v] [--no-reloc] [-- flags]  # build + diff one source
 python tools/ghidra/decompile.py --version <ver> <addr|name>...    # read Ghidra's pseudocode (never commit it)
 python tools/policy_check.py [--base <ref>]      # content rules (also run by CI on every PR)
+python tools/port_sweep.py --version <ver>       # port: compile every src/ file for x86-64 (compile only) -> build/port/sweep/
+python tools/port_link.py --version <ver>        # port: whole-program relocatable link of the sweep objects, undefined-symbol report, boot_missing.csv -> build/port/link/
 ```
 
 Target version: **2.1.0** (update v327680). The `main` NSO build ID is
