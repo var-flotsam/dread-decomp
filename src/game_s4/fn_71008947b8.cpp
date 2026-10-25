@@ -2,6 +2,8 @@
 // place, kind 2 points at them; the copy always holds them in place (kind 1).
 // fn_71008aa61c is an identical copy.
 #include "base/global/CStrId.h"
+#include "base/UnkErasedVector.h"
+#include "base/UnkRefHandle.h"
 #include "base/UnkVector.h"
 
 using base::global::CStrId;
@@ -43,71 +45,19 @@ struct UnkId : CStrId {
     }
 };
 
-// Function table of a type-erased value; only the slot used here is named.
-struct UnkErasedOps {
-    void* field_0x0[8];
-    void (*destroy)(struct UnkErasedValue* self);
-};
-
-struct UnkErasedValue {
-    void* storage;
-    UnkErasedOps* ops;
-};
-
-struct UnkErasedVector {
-    UnkErasedValue* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-
-    UnkErasedVector() : data(nullptr), count(0), capacity(0), step(10), field_0x14(true), flags(0xf) {
-        allocator = fn_7100083990();
-    }
-    ~UnkErasedVector() {
-        if (data) {
-            for (u64 i = 0; i < count; ++i) {
-                UnkErasedValue& v = data[i];
-                if (v.ops) {
-                    v.ops->destroy(&v);
-                    v.ops = nullptr;
-                }
-            }
-            count = 0;
-            allocator->vf_0x48(data);
-            capacity = 0;
-        }
-    }
-};
-
-UnkErasedVector* fn_710023b29c(UnkErasedVector* self, const UnkErasedVector* other);
 void fn_7100ad3588(UnkErasedVector* self);  // clear
-
-struct UnkRefCounted {
-    virtual void vf0();
-    virtual void vf8();
-    virtual void Delete();
-    union {
-        s32 ref_count;
-    };
-};
 
 struct UnkCallbackBase {
     virtual void vf0();
-    UnkErasedVector callbacks;
+    UnkOwnedErasedVector callbacks;
     u32 field_0x30;
 
     UnkCallbackBase() : field_0x30(0) {}
 };
 
-struct UnkCallbackSet;
-void fn_710031d208(UnkRefCounted** self, UnkRefCounted* const* other);
-
 struct UnkCallbackSet : UnkCallbackBase {
     virtual void vf8();
-    UnkRefCounted* owner;
+    base::UnkRefHandle owner;
 
     __attribute__((always_inline)) UnkCallbackSet& operator=(UnkCallbackSet&& other) {
         fn_710031d208(&owner, &other.owner);
@@ -115,42 +65,34 @@ struct UnkCallbackSet : UnkCallbackBase {
         fn_710023b29c(&callbacks, &other.callbacks);
         other.field_0x30 = 0;
         fn_7100ad3588(&other.callbacks);
-        if (UnkRefCounted* p = other.owner) {
+        if (base::UnkRefCounted* p = other.owner.ptr) {
             if (--p->ref_count == 0)
-                p->Delete();
-            other.owner = nullptr;
+                delete p;
+            other.owner.ptr = nullptr;
         }
         return *this;
     }
 
     __attribute__((always_inline)) ~UnkCallbackSet() {
-        if (UnkRefCounted* p = owner) {
+        if (base::UnkRefCounted* p = owner.ptr) {
             if (--p->ref_count == 0)
-                p->Delete();
+                delete p;
         }
     }
 
     UnkCallbackSet(UnkCallbackSet&& other);  // fn_71007b1928
 
     __attribute__((always_inline)) UnkCallbackSet& operator=(const UnkCallbackSet& other) {
-        UnkRefCounted* const* from = &other.owner;  // evaluated first, as `owner = other.owner` would be
+        const base::UnkRefHandle* from = &other.owner;  // evaluated first, as `owner = other.owner` would be
         fn_710031d208(&owner, from);
         field_0x30 = other.field_0x30;
         fn_710023b29c(&callbacks, &other.callbacks);
         return *this;
     }
 
-    UnkCallbackSet(const UnkCallbackSet& other) : owner(nullptr) {
-        UnkRefCounted* p = other.owner;
-        if (p != owner) {
-            if (p)
-                ++p->ref_count;
-            if (UnkRefCounted* old = owner) {
-                if (--old->ref_count == 0)
-                    old->Delete();
-            }
-            owner = p;
-        }
+    UnkCallbackSet(const UnkCallbackSet& other) {
+        owner.ptr = nullptr;
+        owner.Set(other.owner.ptr);
         field_0x30 = other.field_0x30;
         fn_710023b29c(&callbacks, &other.callbacks);
     }

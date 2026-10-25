@@ -1,11 +1,9 @@
 // Move assignment (returns this) of a record: plain fields are copied, the string id at 0x40 is
 // released and taken over (the source ends up empty) and the reference-counted pointer at 0x48 is assigned.
+#include "base/UnkRefHandle.h"
 #include "base/global/CStrId.h"
 #include "game_s2/UnkTwoStepStrId.h"
 #include "types.h"
-
-struct UnkRefCounted;
-void fn_710031d208(UnkRefCounted** self, UnkRefCounted* const* other);
 
 struct UnkMovedRecord {
     u64 field_0x0;
@@ -23,7 +21,7 @@ struct UnkMovedRecord {
     u32 field_0x34;
     u32 field_0x38;
     UnkStrIdTwoStep field_0x40;
-    UnkRefCounted* field_0x48;
+    base::UnkRefHandle field_0x48;
     u32 field_0x50;
     u32 field_0x54;
     u32 field_0x58;

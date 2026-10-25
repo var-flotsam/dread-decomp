@@ -3,6 +3,8 @@
 // placeholders.
 #include "UnkHandleS7.h"
 #include "UnkPropS7.h"
+#include "base/global/CStrId.h"
+#include "game/UnkRenderManager.h"
 #include "game/UnkXformNode.h"
 
 #include <new>
@@ -91,17 +93,11 @@ struct UnkSceneObj_71010e2278 : UnkSceneBase_71010e2278, UnkSceneNode_71010e2278
     UnkSceneXform_71010e2278 xform;
 };
 
-struct UnkMgr_71010e2278 {
-    u8 unk_0x0[0x218];
-    void* field_0x218;
-};
-extern UnkMgr_71010e2278* g_unk_7101d47300;
-extern CStrId g_unk_7101d470e0;
 extern char g_unk_7172a045f0[] __attribute__((visibility("hidden")));
 
 void fn_7100e13928(void* unk, void* unk2, UnkSceneObj_71010e2278** out, const CStrId* name);
-void fn_7100219ae0(UnkMgr_71010e2278* mgr, UnkSceneNode_71010e2278* node, u32 layer);
-void fn_7100219bb4(UnkMgr_71010e2278* mgr, UnkSceneObj_71010e2278* obj, u32 layer);
+void fn_7100219ae0(UnkRenderManager* mgr, UnkSceneNode_71010e2278* node, u32 layer);
+void fn_7100219bb4(UnkRenderManager* mgr, UnkSceneObj_71010e2278* obj, u32 layer);
 void fn_71001453c4(UnkSceneObj_71010e2278* obj, UnkArg2_71010e2278* a2);
 void fn_7100030fc0(void* dst, const void* src, f32 value);
 
@@ -145,7 +141,7 @@ struct UnkOwner_71010e2278 {
 
 void fn_71010e2278(UnkOwner_71010e2278* self, UnkArg1_71010e2278* a1, UnkArg2_71010e2278* a2,
                    f32 x, f32 y, f32 z) {
-    UnkMgr_71010e2278* mgr = g_unk_7101d47300;
+    UnkRenderManager* mgr = g_unk_7101d47300;
     UnkSceneObj_71010e2278* scene = nullptr;
     fn_7100e13928(mgr->field_0x218, nullptr, &scene, &g_unk_7101d470e0);
     fn_7100219ae0(mgr, scene, 0);

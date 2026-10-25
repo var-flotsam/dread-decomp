@@ -7,6 +7,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkRenderManager.h"
 #include "types.h"
 
 using base::reflection::CClass;
@@ -21,13 +22,6 @@ struct UnkActor {
 struct UnkEffect {
     u8 pad_0x0[0x130];
     void* field_0x130;
-};
-
-struct UnkPool;
-
-struct UnkManager {
-    u8 pad_0x0[0x218];
-    UnkPool* field_0x218;
 };
 
 struct __attribute__((packed)) UnkComponent {
@@ -47,18 +41,17 @@ struct UnkActorBlock {
     UnkEffect* effect_b;
 };
 
-extern UnkManager* g_unk_7101d47300;
 extern const u64 g_unk_71726db100[] __attribute__((visibility("hidden")));
 extern const u64 g_unk_71726db108[] __attribute__((visibility("hidden")));
 bool fn_7100369490(UnkComponent* self);
 void fn_71004e8ea0(void* state, char* data);
-void fn_7100149930(UnkPool* pool, void* a, UnkEffect** out, base::global::CStrId* name);
-void fn_7100219ae0(UnkManager* manager, void* entry, u32 flag);
+void fn_7100149930(UnkRenderPool* pool, void* a, UnkEffect** out, base::global::CStrId* name);
+void fn_7100219ae0(UnkRenderManager* manager, void* entry, u32 flag);
 void fn_71001be020(void* target, const u64* key);
 void fn_7100149490(UnkEffect* effect, u32 flag);
 
 __attribute__((always_inline)) static inline void CreateEffect(UnkEffect*& slot, const u64* key) {
-    UnkManager* manager = g_unk_7101d47300;
+    UnkRenderManager* manager = g_unk_7101d47300;
     UnkEffect* effect = nullptr;
     fn_7100149930(manager->field_0x218, nullptr, &effect, &g_unk_7101d470e0);
     fn_7100219ae0(manager, effect ? reinterpret_cast<char*>(effect) + 8 : nullptr, 0);

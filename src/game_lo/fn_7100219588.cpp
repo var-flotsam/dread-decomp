@@ -1,5 +1,6 @@
 // Projects a position to screen coordinates through the view selected by (a, b) and reports
 // whether it lands inside the scaled screen area.
+#include "game/UnkRenderManager.h"
 #include "types.h"
 
 struct UnkStruct_7100219588_Xform {
@@ -19,12 +20,6 @@ struct UnkStruct_7100219588_View {
     void* field_0x108;
 };
 
-struct UnkStruct_7100219588_Global {
-    u8 pad_0x0[0x258];
-    void* field_0x258;
-};
-extern void* g_unk_7101d47300;  // the global object (reached through the GOT); typed at the use
-
 void fn_71001fd7b4(void* views, UnkStruct_7100219588_Xform* xform, u32 a, u32 b);
 UnkStruct_7100219588_View* fn_71001fce38(void* views, u32 a, u32 b);
 void fn_7100150d30(void* camera, UnkStruct_7100219588_Xform* xform, const void* pos, s32* x, s32* y, bool flag);
@@ -32,14 +27,7 @@ u32 fn_7100132f80();
 u32 fn_7100132f90();
 f32 fn_71001d08f4(void* obj);
 
-struct UnkStruct_7100219588 {
-    u8 pad_0x0[0x220];
-    void* field_0x220;
-    u8 pad_0x228[0x40];
-    bool field_0x268;
-};
-
-bool fn_7100219588(UnkStruct_7100219588* self, const void* pos, u32 a, u32 b) {
+bool fn_7100219588(UnkRenderManager* self, const void* pos, u32 a, u32 b) {
     s32 x;
     s32 y;
     if (self->field_0x268) {
@@ -48,10 +36,10 @@ bool fn_7100219588(UnkStruct_7100219588* self, const void* pos, u32 a, u32 b) {
         if (UnkStruct_7100219588_View* view = fn_71001fce38(self->field_0x220, a, b))
             fn_7100150d30(view->field_0x108, &xform, pos, &x, &y, true);
     }
-    UnkStruct_7100219588_Global* g = static_cast<UnkStruct_7100219588_Global*>(g_unk_7101d47300);
+    UnkRenderManager* g = g_unk_7101d47300;
     u32 width = fn_7100132f80();
     f32 sx = fn_71001d08f4(g->field_0x258);
-    g = static_cast<UnkStruct_7100219588_Global*>(g_unk_7101d47300);
+    g = g_unk_7101d47300;
     u32 height = fn_7100132f90();
     f32 sy = fn_71001d08f4(g->field_0x258);
     s32 max_y = (u32)(sy * (f32)height);
