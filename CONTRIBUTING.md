@@ -135,7 +135,14 @@ When several machines or people work at once (the owner's workstreams are in
 
 ### Migrating a hub to its canonical header
 
-The pilot (`fn_710009d50c`, 70 declarations with 12 signatures to one header) set the recipe:
+Run the mechanical pass first: `tools/hub_migrate.py --version 2.1.0 fn_<addr>` (or
+`--header-redeclared` for every symbol a header under `include/` already declares) removes the local
+declarations, adds the include, rebuilds every touched file and the includers of touched headers,
+keeps only the files whose `trymatch.py` output is byte-identical, and prints the rest as `LEFT`
+lines with their compile error. The recipe below is for those files; verify them with
+`tools/baseline.py save|compare|restore --tag <step>` (a snapshot of every file's output, with
+copies to restore from) rather than one `trymatch.py` call at a time. The pilot (`fn_710009d50c`,
+70 declarations with 12 signatures to one header) set the recipe:
 
 1. Find the definition (`grep -rn 'fn_<addr>(' src/` outside the generated directories) and its
    real-typed signature. Declare it once in the topical header under `include/` (a small new header
