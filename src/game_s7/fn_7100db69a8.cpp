@@ -10,7 +10,6 @@ using base::reflection::UnkReflFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 extern bool g_unk_71727bd260;
-const base::reflection::UnkReflAttrKey& fn_7100075240();
 // Both getters are defined in this class's translation unit, so the original calls them and then
 // passes their known return value.
 extern const base::reflection::CType g_unk_71727bdbb8 __attribute__((visibility("hidden")));

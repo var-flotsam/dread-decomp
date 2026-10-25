@@ -1,6 +1,7 @@
 // A reflected getter: looks the named entry up in the object's component at +0x50 and returns
 // the translation of the 4x4 transform it fills in, or zero when there is no component or no
 // entry.
+#include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflValue.h"
 #include "types.h"
 
@@ -8,7 +9,6 @@ using base::reflection::CType;
 using base::reflection::UnkReflValue;
 
 bool fn_71001c1694(char* self, const void* name, f32* transform);
-const CType* fn_71000246e4();
 
 UnkReflValue fn_7101174944(void*, char* obj, UnkReflValue* const* args) {
     char* target = *reinterpret_cast<char**>(obj + 8);

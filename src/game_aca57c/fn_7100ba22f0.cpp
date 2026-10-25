@@ -4,6 +4,7 @@
 // identical copies. Some go through a middle class whose vtable is set first.
 #include <new>
 
+#include "base/UnkCloneRecords.h"
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
@@ -11,8 +12,6 @@
 
 using base::global::CFilePathStrId;
 using base::global::CStrId;
-
-void fn_7100067ebc(char* self, const char* other);
 
 extern char unk_7101aa0988[];  // the middle class's vtable
 extern char unk_7101aa0958[];

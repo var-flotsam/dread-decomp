@@ -5,6 +5,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflConverter.h"
+#include "game/UnkTUInit.h"
 
 #define HIDDEN __attribute__((visibility("hidden")))
 
@@ -42,8 +43,6 @@ void fn_710006a0f0() HIDDEN;
 void fn_710006a0fc() HIDDEN;
 void fn_710006a108() HIDDEN;
 void fn_710006a114() HIDDEN;
-void fn_7100099468(void*);
-void fn_710009a368(void*);
 void fn_710006a210() {
     {
         CStrId name("EEventProps", true);

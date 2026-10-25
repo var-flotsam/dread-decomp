@@ -2,6 +2,7 @@
 // EnumClass<ESubAreaItem>::Count, ESubAreaItem>: the header ids, then the unit's own statics and
 // registrations (helpers in UnkStaticInitS7.h). Layouts are placeholders.
 #include "UnkStaticInitS7.h"
+#include "game/UnkTUInit.h"
 
 using namespace unk_static_init;
 
@@ -45,7 +46,6 @@ extern char g_unk_71729ee669[];
 UnkEnumType* fn_7100faf348();
 extern UnkEnumType g_unk_71729ee670;
 void fn_7100faf424(UnkEnumType* type, const CStrId& name, void*, void*);
-void fn_710009891c(void* type);  // the type's destructor, as registered
 extern char g_unk_71729ee7e0[];
 extern char g_unk_71729ee7e1[];
 UnkEnumType* fn_7100faf618();

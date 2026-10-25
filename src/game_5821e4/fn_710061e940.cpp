@@ -1,6 +1,7 @@
 // Static initialiser of the unit of the base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CShootDCBones>>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CShootDCBones>>>::TKeyElementConstIterator::value_type, base::global::CRntVector<std::unique_ptr<CShootDCBones>>, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<COffset>>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<COffset>>>::TKeyElementConstIterator::value_type, base::global::CRntVector<std::unique_ptr<COffset>>, base::reflection::CollectionTypeMapper<TPatterns>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<TPatterns>::TKeyElementConstIterator::value_type, TPatterns, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPattern>>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPattern>>>::TKeyElementConstIterator::value_type, base::global::CRntVector<std::unique_ptr<CPattern>> reflected types.
 #include "UnkStaticInit.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/UnkTUInit.h"
 
 using namespace unk_static_init;
 
@@ -42,7 +43,6 @@ extern char g_unk_71726f5279[];
 UnkEnumType* fn_710060febc();
 extern UnkEnumType g_unk_71726f5280;
 void fn_710060ff98(UnkEnumType* type, const CStrId& name, void*, void*);
-void fn_710009891c(void* type);  // the type's destructor, as registered
 extern char g_unk_71726f53f0[];
 extern UnkConversion g_unk_71726f53f8;
 void fn_7100616470() __attribute__((visibility("hidden")));

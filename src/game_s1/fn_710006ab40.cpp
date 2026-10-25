@@ -5,6 +5,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflConverter.h"
+#include "game/UnkTUInit.h"
 
 #define HIDDEN __attribute__((visibility("hidden")))
 
@@ -42,8 +43,6 @@ void fn_710006aa24() HIDDEN;
 void fn_710006aa30() HIDDEN;
 void fn_710006aa3c() HIDDEN;
 void fn_710006aa48() HIDDEN;
-void fn_7100099468(void*);
-void fn_710009a368(void*);
 void fn_710006ab40() {
     {
         CStrId name("base::global::timeline::ELayer", true);

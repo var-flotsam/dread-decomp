@@ -1,6 +1,7 @@
 // Static initialiser of the unit of the base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CBarelyFrozenIceInfo>>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CBarelyFrozenIceInfo>>>::TKeyElementConstIterator::value_type, base::global::CRntVector<std::unique_ptr<CBarelyFrozenIceInfo>> reflected types.
 #include "UnkStaticInit.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/UnkTUInit.h"
 
 using namespace unk_static_init;
 
@@ -37,7 +38,6 @@ extern char g_unk_7172720319[];
 UnkEnumType* fn_71007eff98();
 extern UnkEnumType g_unk_7172720320;
 void fn_71007f0074(UnkEnumType* type, const CStrId& name, void*, void*);
-void fn_710009891c(void* type);  // the type's destructor, as registered
 extern char g_unk_7172720490[];
 extern UnkConversion g_unk_7172720498;
 void fn_71007f1e30() __attribute__((visibility("hidden")));

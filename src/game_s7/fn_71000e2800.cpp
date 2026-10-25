@@ -5,6 +5,7 @@
 // registered (helpers in UnkStaticInitS7.h). Every global is reached through the GOT. Layouts are
 // placeholders.
 #include "UnkStaticInitS7.h"
+#include "game/UnkTUInit.h"
 
 using namespace unk_static_init;
 
@@ -59,7 +60,6 @@ extern char g_unk_7101d5c071[];
 UnkEnumType* fn_71000a84cc();
 extern char g_unk_7101d5c078[];
 void fn_71000a85a8(void* obj, const CStrId& name, void* a, void* b);
-void fn_710009891c(void*);
 extern char g_unk_7101d5c1e8[];
 extern char g_unk_7101d5c1e9[];
 UnkEnumType* fn_7100067f5c();

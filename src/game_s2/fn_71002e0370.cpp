@@ -2,6 +2,7 @@
 // statics, the class registration and a resource type registered under "animtree".
 #include "../game_s7/UnkStaticInitS7.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/UnkTUInit.h"
 
 using namespace unk_static_init;
 
@@ -10,9 +11,6 @@ struct UnkFnObj {
     void (*field_0x18)();
     u64 field_0x20[2];
 };
-void fn_710000cf00();
-void fn_710000d470();
-void fn_710000d4f4();
 
 struct UnkStatics_71002e0370 {
     HeaderIds ids;

@@ -1,6 +1,7 @@
 // Static initialiser of the unit of the base::reflection::CollectionTypeMapper<base::global::CRntVector<CCutsceneComponent::SActorInfo>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<CCutsceneComponent::SActorInfo>>::TKeyElementConstIterator::value_type, base::global::CRntVector<CCutsceneComponent::SActorInfo> reflected types.
 #include "UnkStaticInit.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/UnkTUInit.h"
 
 using namespace unk_static_init;
 
@@ -34,7 +35,6 @@ extern char g_unk_7172719169[];
 UnkEnumType* fn_71007a1ea8();
 extern UnkEnumType g_unk_7172719170;
 void fn_71007a1f84(UnkEnumType* type, const CStrId& name, void*, void*);
-void fn_710009891c(void* type);  // the type's destructor, as registered
 extern char g_unk_71727192e0[];
 extern char g_unk_71727192e1[];
 UnkEnumType* fn_71007a217c();

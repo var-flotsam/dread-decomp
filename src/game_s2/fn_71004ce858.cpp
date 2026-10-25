@@ -4,6 +4,7 @@
 // addressed by offset; their types are unknown.
 #include <new>
 
+#include "base/UnkVector.h"
 #include "types.h"
 
 typedef void** __attribute__((may_alias)) UnkVtable;
@@ -12,7 +13,6 @@ struct UnkNode {
     UnkVtable vtable;
 };
 
-void* fn_7100083990();
 void fn_710041a198(UnkNode*);
 void fn_71004a4ffc(void*);
 void fn_71004ae6f4(void*);

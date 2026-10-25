@@ -4,6 +4,7 @@
 // (copied as one block); the class's own vtable last. Two identical copies each.
 #include <new>
 
+#include "base/UnkCloneRecords.h"
 #include "base/UnkCountedResource.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
@@ -11,8 +12,6 @@
 
 using base::global::CFilePathStrId;
 using base::global::CStrId;
-
-void fn_7100067ebc(char* self, const char* other);
 
 struct UnkShared54Ptr {
     UnkCountedResource* ptr;
