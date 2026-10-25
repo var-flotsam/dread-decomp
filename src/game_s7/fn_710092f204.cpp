@@ -2,26 +2,19 @@
 // suit (from its inventory), or the plain one while it is in some state. Layouts are
 // placeholders; the item globals are the item definitions of fn_710107a880.
 #include "base/global/CFilePathStrId.h"
+#include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/UnkAnimationComponent.h"
+#include "game/UnkGameBlackboard.h"
 
 using base::global::CFilePathStrId;
 using base::global::CStrId;
 
-struct UnkIdSource {
-    virtual void vf_0x0();
-};
-
-struct UnkQualifiedId {
-    CStrId id;
-    UnkIdSource* source;
-};
-void fn_7100ae9a10(UnkQualifiedId* self, UnkIdSource* source, const CStrId& prefix);
-
+// An item definition (game/UnkGameBlackboard.h): its qualified id is built on first use.
 struct UnkItemDef : UnkIdSource {
     u64 field_0x8;
     UnkQualifiedId qid;
 };
-extern const CStrId g_unk_7101d470e0;
 
 static inline const UnkQualifiedId& GetQualifiedId(UnkItemDef& def) {
     if ((u64)def.qid.id.data == (u64)g_unk_7101d47108 + 0x10)
@@ -36,8 +29,7 @@ extern UnkItemDef g_unk_717275a498;
 struct UnkInventory;
 bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
 
-struct UnkStateSet;
-bool fn_710117b348(UnkStateSet* set, const base::reflection::CClass* state);
+using UnkStateSet = UnkAnimationComponent;
 
 struct UnkOwner {
     u8 unk_0x0[0x220];

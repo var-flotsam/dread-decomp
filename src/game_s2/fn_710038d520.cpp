@@ -5,11 +5,12 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/UnkAnimationComponent.h"
 #include "types.h"
 
 using base::global::CStrId;
 
-struct UnkAttack;
+using UnkAttack = UnkAnimationComponent;
 
 struct UnkPayload {
     u8 pad_0x0[0x10];
@@ -36,7 +37,6 @@ struct UnkHandler {
     base::global::UnkStringData* field_0x70;
 };
 
-bool fn_710117b348(UnkAttack* object, const base::reflection::CClass* class_ptr);
 void fn_710038cd5c(UnkHandler* self);
 
 u32 fn_710038d520(UnkHandler* self, UnkMessage* message) {

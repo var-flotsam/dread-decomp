@@ -8,6 +8,7 @@
 #include "base/UnkMatrix44.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkActor.h"
+#include "game/UnkAnimationComponent.h"
 #include "types.h"
 
 struct UnkSpitOwnerTarget {
@@ -33,7 +34,6 @@ struct UnkSpitState1 {
 };
 
 bool fn_7100d7bea0(UnkActor* owner, bool flag);
-bool fn_710117b348(void* object, const base::reflection::CClass* type);
 
 // NON_MATCHING(minor): same behaviour; the original reads the owner->target vector in another
 // order, tests the owner before the result at the end and shares that end between the paths.
@@ -84,7 +84,7 @@ bool fn_71003f28c8(UnkSpitState1* self, f32 delta) {
     }
 finish:
     if (owner && result) {
-        if (void* track = owner->field_0x220) {
+        if (UnkAnimationComponent* track = static_cast<UnkAnimationComponent*>(owner->field_0x220)) {
             if (!fn_710117b348(track, fn_7100c0ccc8()))
                 result = 0;
         }

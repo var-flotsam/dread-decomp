@@ -7,6 +7,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkGuiDisplayObject.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -20,13 +21,13 @@ struct UnkGuiHandleObj {
     virtual void vf_0x8();
     virtual void vf_0x10();
     s32 ref_count;
-    void* target;
+    UnkGuiDisplayObject* target;
 };
 
 struct UnkGuiHandle {
     UnkGuiHandleObj* ptr;
 
-    void* Get() const { return ptr ? ptr->target : nullptr; }
+    UnkGuiDisplayObject* Get() const { return ptr ? ptr->target : nullptr; }
     ~UnkGuiHandle() {
         if (UnkGuiHandleObj* p = ptr) {
             if (--p->ref_count == 0)
@@ -37,13 +38,12 @@ struct UnkGuiHandle {
 
 struct UnkMenuScreen {
     void* vtable;
-    void* composition;
+    UnkGuiDisplayObject* composition;
 };
 
 extern void* g_unk_717271e8f8;
 UnkGuiHandle fn_71011b69d8(void* registry, const CRntString& name);
 void fn_71011cdce8(void* composition, s32 value);
-void fn_71011cf2a4(void* composition, s32 value);
 void fn_71011cf364(void* composition, s32 value);
 void fn_71011cde44(void* composition, s32 value);
 UnkReflObject* fn_7100e033a8(UnkGameManager* manager);
@@ -56,7 +56,7 @@ static inline void CallVf78(void* composition, s32 a, bool b) {
 
 template <s32 Value>
 __attribute__((always_inline)) static inline bool SetUpForMenu(UnkMenuScreen* self, const char* name) {
-    void*& composition = self->composition;
+    UnkGuiDisplayObject*& composition = self->composition;
     composition = fn_71011b69d8(g_unk_717271e8f8, CRntString(name)).Get();
     if (composition) {
         fn_71011cdce8(composition, 0);

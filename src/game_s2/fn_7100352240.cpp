@@ -3,6 +3,7 @@
 // stored values), and applies the change to the output signed by the track's direction.
 #include "base/UnkMatrix44.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/UnkAnimationComponent.h"
 #include "types.h"
 
 struct UnkTrackQuery {
@@ -17,9 +18,7 @@ struct UnkRange {
     f32 field_0x14;
 };
 
-struct UnkAimTarget {
-    u8 pad_0x0[1];
-};
+using UnkAimTarget = UnkAnimationComponent;
 
 struct UnkAimActor {
     u8 pad_0x0[0x38];
@@ -44,8 +43,6 @@ struct UnkAimOutput {
 };
 
 void fn_710117b08c(UnkAimTarget* target, UnkTrackQuery* query);
-bool fn_710117b348(UnkAimTarget* target, const base::reflection::CClass* cls);
-f32 fn_7101177ea0(UnkAimTarget* target, u64 key);
 
 void fn_7100352240(UnkAimComponent* self, UnkAimOutput* out) {
     if (!self->field_0x30->field_0x220)

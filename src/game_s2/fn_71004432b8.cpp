@@ -2,9 +2,10 @@
 // object at +0x8) for a float with a fixed name hash and passes it on, otherwise -1.0; clears the
 // four floats at +0x140 to (0, -1, -1, -1) and runs fn_710043fd04 with the id of the object at
 // +0x98 (0x7fffffff when there is none) and the float.
+#include "game/UnkAnimationComponent.h"
 #include "types.h"
 
-struct UnkAttack;
+using UnkAttack = UnkAnimationComponent;
 
 struct UnkIdObject {
     u8 pad_0x0[0x10];
@@ -34,7 +35,6 @@ struct UnkEffect {
     UnkVec4 field_0x140;
 };
 
-f32 fn_7101177ea0(UnkAttack* attack, u64 hash);
 void fn_710043fd04(UnkEffect* self, u32 id, f32 time);
 
 void fn_71004432b8(UnkEffect* self) {

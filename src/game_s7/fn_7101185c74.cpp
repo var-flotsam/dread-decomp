@@ -18,7 +18,6 @@ struct UnkGuiRoot {
 };
 
 extern UnkGuiRoot* g_unk_717271e8f8;
-void fn_71011cf2a4(void* composition, s32 value);
 void fn_71011b6bbc(UnkGuiRoot* root, void* object, s32 value);
 
 // Unless the flag at 0x181 is set, refers to the focused object at 0x318 (or to nothing), passes it
