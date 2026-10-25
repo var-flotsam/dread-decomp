@@ -1,6 +1,7 @@
 // Static initialiser of the unit of the base::reflection::CollectionTypeMapper<base::global::CRntVector<SFXInstanceData, false>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<SFXInstanceData, false>>::TKeyElementConstIterator::value_type, base::global::CRntVector<SFXInstanceData, false>, SFXInstanceData reflected types.
 #include "UnkStaticInit.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "base/reflection/UnkReflTypeDtors.h"
 #include "game/UnkTUInit.h"
 
 using namespace unk_static_init;
@@ -19,7 +20,6 @@ extern char g_unk_7101d5e2e0[];
 void fn_7100810094();
 extern UnkEnumType g_unk_7172722530;
 void fn_7100810418(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
-void fn_7100096604(void* type);  // the type's destructor, as registered
 extern char g_unk_7172722668[];
 extern char g_unk_7172722669[];
 void* fn_710081059c();  // fn_710081059c

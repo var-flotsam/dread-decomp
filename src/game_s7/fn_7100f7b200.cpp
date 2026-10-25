@@ -4,6 +4,7 @@
 // UnkStaticInitS7.h). Layouts are placeholders.
 #include "UnkStaticInitS7.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "base/reflection/UnkReflTypeDtors.h"
 #include "game/UnkTUInit.h"
 
 using namespace unk_static_init;
@@ -39,7 +40,6 @@ extern UnkStatics_7100f7b200 g_unk_71729e7958 __attribute__((visibility("hidden"
 struct UnkStruct_71729e0ab0;
 extern UnkEnumType g_unk_71729dc6c8;
 void fn_7100f19cf8(UnkEnumType* type, const CStrId& name, void*, void*, void (*)(), void*);
-void fn_7100096604(void* type);  // the type's destructor, as registered
 void fn_7100f18890();
 extern char g_unk_71729dc800[];
 extern char g_unk_71729dc801[];

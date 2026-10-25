@@ -5,6 +5,7 @@
 // placeholders.
 #include "UnkStaticInitS7.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "base/reflection/UnkReflTypeDtors.h"
 #include "game/UnkTUInit.h"
 
 using namespace unk_static_init;
@@ -30,7 +31,6 @@ extern char g_unk_717275f8e3[];
 UnkEnumType* fn_7100b0de6c();
 extern UnkEnumType g_unk_717275f8e8;
 void fn_7100b0e2cc(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
-void fn_7100096604(void* type);  // the type's destructor, as registered
 extern char g_unk_7101d5e2e0[];
 void fn_7100b0df48();
 extern char g_unk_717275fa20[];

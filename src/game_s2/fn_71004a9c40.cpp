@@ -2,6 +2,7 @@
 #include "../game_s7/UnkStaticInitS7.h"
 #include "base/global/CRntString.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "base/reflection/UnkReflTypeDtors.h"
 
 using namespace unk_static_init;
 
@@ -55,7 +56,6 @@ extern UnkEnumType g_unk_71726d20e0;
 extern char g_unk_7101d5e2e0[];
 void fn_71004a2ea4();
 void fn_71004a3228(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
-void fn_7100096604(void* type);  // the type's destructor, as registered
 extern char g_unk_71726d2218[];
 extern char g_unk_71726d2219[];
 UnkEnumType* fn_71004a33ac();
@@ -67,7 +67,6 @@ extern char g_unk_71726d2359[];
 UnkEnumType* fn_71004a3990();
 extern UnkEnumType g_unk_71726d2360;
 void fn_71004a3a6c(UnkEnumType* type, const CStrId& name, void*, void*);
-void fn_710009891c(void* type);  // the type's destructor, as registered
 extern char g_unk_71726d24d0[];
 extern char g_unk_71726d24d1[];
 UnkEnumType* fn_71004a3c4c();

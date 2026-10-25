@@ -14,6 +14,8 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflConverter.h"
+#include "base/reflection/UnkReflTypeDtors.h"
+#include "game/UnkTUSymbols.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -41,8 +43,7 @@ __attribute__((always_inline)) static inline UnkReflType* refl_TypeOf() {
     return reinterpret_cast<UnkReflType*>(const_cast<void*>(static_cast<const void*>(Getter())));
 }
 
-void fn_7100096604(void* type);  // a class type's destructor
-void fn_7100099468(void* type);  // an enum type's destructor
+// The type objects' destructors (fn_7100096604 and the others) come from UnkReflTypeDtors.h.
 
 // The header data every TU's initialiser starts with.
 struct UnkTUHeader {
@@ -100,7 +101,6 @@ __attribute__((always_inline)) static inline void InitEnumConverters(UnkReflType
 }
 
 // A flag-set type: constructed from its name by `ctor`.
-void fn_710009a368(void* type);  // a flag-set type's destructor
 typedef void (*UnkFlagSetCtor)(UnkReflType* self, const CStrId& name, void* extra);
 
 __attribute__((always_inline)) static inline void InitFlagSet(UnkReflType* type, const char* name, UnkFlagSetCtor ctor) {
@@ -145,10 +145,6 @@ struct UnkTUHeaderFnsClass {
     UnkReflType type;
 };
 
-void fn_710000cf00();
-void fn_710000d470();
-void fn_710000d4f4();
-
 __attribute__((always_inline)) static inline void InitRecord(UnkFnRecord& r, void (*fn)()) {
     r.field_0x0 = 0;
     r.field_0x8 = 0;
@@ -172,7 +168,6 @@ __attribute__((always_inline)) static inline void InitHeaderFns(Header& h) {
 
 // A vector type: constructed from its name by `ctor`.
 typedef void (*UnkVectorCtor)(UnkReflType* self, const CStrId& name, void* a, void* b);
-void fn_710009891c(void* type);  // a vector type's destructor
 
 __attribute__((always_inline)) static inline void InitVector(UnkReflType* type, const char* name, UnkVectorCtor ctor) {
     {
@@ -199,7 +194,6 @@ struct UnkValue {
             t->construct(this, &v);
     }
 };
-void fn_710010c424(void* value);
 
 // A converter from `type` to the type `to` returns.
 __attribute__((always_inline)) static inline void InitConverter(UnkConverter& c, UnkReflType* (*type)(),
@@ -236,12 +230,8 @@ __attribute__((always_inline)) static inline T* TUAt(Header& h) {
 // construction (fn_71008232c0 and its unit have the same pattern). Once built, it is checked
 // through its vtable (slots 2 and 3) and, if those allow it, handed to the unit's own function.
 // The extended form constructs a member at 0x10 out of line between its base and own vtables.
-// Layout and slot roles are placeholders.
-struct UnkPropertyHead {
-    void** vtable;
-    UnkPropertyHead* next;
-};
-extern UnkPropertyHead* g_unk_71726db788;  // the list head
+// Layout and slot roles are placeholders; UnkPropertyHead and the list head g_unk_71726db788 are in
+// game/UnkTUSymbols.h.
 
 template <u32 MemberSize = 0x18>
 struct UnkPropertyEx : UnkPropertyHead {

@@ -19,6 +19,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflCast.h"
+#include "base/reflection/UnkReflTypeDtors.h"
 #include "types.h"
 
 void* fn_71000839a0(u64 size, u32 flags);
@@ -1224,7 +1225,7 @@ void refl_PoolListDtor(UnkPoolList<Tag, Next, Elem>* self) {
 extern const char g_unk_7101618faa[] __attribute__((visibility("hidden")));  // the ids' strings
 extern const char g_unk_71015ba597[] __attribute__((visibility("hidden")));
 void fn_710000051c(void* id);   // a string id's destructor, as registered
-void fn_7100096604(void* type); // the type object's destructor, as registered
+// fn_7100096604, the type object's destructor, is declared in base/reflection/UnkReflTypeDtors.h.
 
 namespace base {
 // ids(): this unit's copy of the header statics (hidden); type(): the type object; name(): its

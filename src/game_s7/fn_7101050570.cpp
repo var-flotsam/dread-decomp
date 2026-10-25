@@ -2,6 +2,7 @@
 // Static initialiser of the unit of the base::reflection::CollectionTypeMapper<base::global::CRntVector<animtree::CAnimTreeDef::TAnimTreeLinkDef>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<animtree::CAnimTreeDef::TAnimTreeLinkDef>>::TKeyElementConstIterator::value_type, base::global::CRntVector<animtree::CAnimTreeDef::TAnimTreeLinkDef>.
 #include "../game_s7/UnkStaticInitS7.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "base/reflection/UnkReflTypeDtors.h"
 #include "game/UnkTUInit.h"
 
 using namespace unk_static_init;
@@ -23,7 +24,6 @@ extern UnkEnumType g_unk_71729fd238;
 extern char g_unk_7101d5e2e0[];
 void fn_710104c750();
 void fn_71002d7068(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
-void fn_7100096604(void* type);  // the type's destructor, as registered
 extern char g_unk_71729fd370[];
 extern char g_unk_71729fd371[];
 UnkEnumType* fn_71002d71ec();

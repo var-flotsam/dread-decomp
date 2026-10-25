@@ -1,6 +1,7 @@
 // Static initialiser of the unit of the CCharClassRodotukAIComponent::SAbsorbConfig::EType, CCharClassRodotukAIComponent::SAbsorbConfig, base::reflection::CollectionTypeMapper<CCharClassRodotukAIComponent::TVAbsorbConfigs>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<CCharClassRodotukAIComponent::TVAbsorbConfigs>::TKeyElementConstIterator::value_type, CCharClassRodotukAIComponent::TVAbsorbConfigs reflected types.
 #include "UnkStaticInit.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "base/reflection/UnkReflTypeDtors.h"
 
 using namespace unk_static_init;
 
@@ -29,7 +30,6 @@ void fn_710066fc68() __attribute__((visibility("hidden")));
 void fn_710066e1d4();
 extern UnkEnumType g_unk_71726fefa8;
 void fn_710066e9b0(UnkEnumType* type, const CStrId& name, void*, void*, void (*)(), void*);
-void fn_7100096604(void* type);  // the type's destructor, as registered
 extern char g_unk_71726ff0e0[];
 extern char g_unk_71726ff0e1[];
 void* fn_710066eb34();  // fn_710066eb34
@@ -50,7 +50,6 @@ extern char g_unk_71726ff361[];
 void* fn_710066f7d8();  // fn_710066f7d8
 extern UnkEnumType g_unk_71726ff368;
 void fn_710066f8b4(UnkEnumType* type, const CStrId& name, void*, void*);
-void fn_710009891c(void* type);  // the type's destructor, as registered
 extern char g_unk_71726ff4d8[];
 
 void fn_7100671920() {
