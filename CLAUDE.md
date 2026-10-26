@@ -94,6 +94,8 @@ python tools/port_link.py --version <ver>        # port: whole-program relocatab
 python tools/port_lift.py --version <ver> [--top N | --only ADDR,...] [--debug ADDR] [--mutants N]  # port: semantic lifts of boot_missing.csv's U functions, checked by the P-code oracle -> build/port/lifted/ (never src/)
 python tools/port_link.py --version <ver> --lifted build/port/lifted   # the link with the semantic lifts: boot slice with and without them
 python tools/abi_facts.py --version <ver> ADDR...  # argument registers a function reads, whether callers use its result (semantic lifts, oracle)
+python tools/fetch_toolchains.py glslang-16.6.0     # Khronos glslang, for bshdat.py --compile
+python tools/bshdat.py --version <ver> [--only NAME] [--compile]  # port: .bshdat shader packages -> GLSL + manifests in build/shaders/<ver>/; --compile: glslang to SPIR-V, compile_report.csv (~1 min)
 ```
 
 Target version: **2.1.0** (update v327680). The `main` NSO build ID is

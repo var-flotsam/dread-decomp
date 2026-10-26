@@ -64,7 +64,55 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - A callee without an address (`__cxa_atexit`) is an unchecked relocation; spell it by its `fn_` name (`fn_7100000250`). Compare the relocation totals before and after a header refactor: [TU helper fold](#session-log-newest-first).
 - Store order between two distinct globals is the original's per unit, steered by source order: keep both orders as named helpers rather than one: [TU helper fold](#session-log-newest-first).
 
+**Port: shaders**
+- `.bshdat` layout, the GLSL in each stage's debug section, and the two rewrites glslang needs (block `location` to the compiler's binding, `GL_NV_explicit_typecast`): [shader packages parsed](#session-log-newest-first).
+- NVN's compiler numbers a stage's active uniform blocks 0..n-1 in declaration order, whatever the source says; take bindings from the reflection, never from the source: same entry.
+
 ## Session log (newest first)
+
+**Shader packages parsed (2026-10-26, branch `claude/port-bshdat`; port M2 groundwork).**
+`tools/bshdat.py` parses all 478 `.bshdat` packages from their bytes and writes every stage's GLSL
+to `build/shaders/2.1.0/<package>/p<key>.vert|.frag` with a `manifest.json` per package; 9 s for
+the set, 50 s with `--compile`. A package is an `MSHD` header of seven file offsets (the program
+list, a variant map from a key to a program, a pointer to the last program, a zero, two lists of
+uniform names and one of vertex attribute names, each name with an engine ID), the compiled stage
+blobs (0x80-aligned, padding 0xff) and the tables behind them (lists of 16-byte nodes, 48-byte
+program records with three stage slots: slot 0 always empty, then vertex and fragment). The parser
+accounts for every byte of every package. Correction to the 2026-10-25 count: the 1,342 `void
+main` are stages; there are **671 programs** (287 packages with one, 190 with two, the second
+adding `DEFERRED_AS_FORWARD` in 189 of them, one with four). Each stage blob is the NVN compiler's
+output: a header, four sections, of which the reflection (active uniform blocks, uniforms with
+samplers, inputs and outputs, and the bindings assigned per stage) and the debug section are
+decoded. The debug text is the assembly listing followed by a source file table, one
+`#MSDB: (<name>:<file id>:<length>:SOURCE_FILE|INCLUDED_FILE)` line and one C string literal per
+file; the decoded length matches the record in all 3,279 files. Sources include
+`common_funcs.h` (1,272 stages), `common_ibl.h` (629), `common_deferred.h` and
+`common_shadows.h` (15); the tool inlines them, and moves `#version` (440 core in 1,327 stages,
+450 in 15) ahead of the engine's variant prefix (`#define HAS_NORMAL` ... `NUM_BONE_COMPONENTS
+4`), which the compiler received before it. 1,298 stages enable `GL_NV_gpu_shader5`, but none
+uses a 64-bit handle or integer: the compiled SPIR-V declares only the `Shader` capability, so the
+bindless textures of NVN are an API matter for the shim, not a shader one. With glslang 16.6.0
+(pinned in `tools/fetch_toolchains.py`): as extracted 250 of 1,342 stages compile for `-G` and
+`-V` and no complete program, because every program declares uniform blocks as
+`layout(location = N) uniform Block {`, which GLSL rejects. Replacing that with the binding the
+compiler assigned leaves 1,075 stages (409 programs); the rest use C-style casts (`(int) x`, 266
+stages, 261 programs), which `#extension GL_NV_explicit_typecast` (glslang implements it)
+accepts. With both rewrites 1,341 stages and 670 programs compile for OpenGL and Vulkan; the last
+is `pp_fxaa_nx`'s fragment stage (FXAA 3.11's `textureLodOffset` with an offset that is not a
+constant expression; NVIDIA's compiler folds it), which needs a hand fix. The binding model the
+NVN shim must reproduce: the compiler ignored the block numbers and gave each stage's active
+blocks bindings 0, 1, 2, ... in declaration order (all 2,891 active blocks; 69 differ from the
+declared number, in the deferred-lighting shaders and where an earlier block is unused); samplers
+keep their explicit `layout(binding = N)` (1,904, bindings 0 to 13); a stage has at most five
+blocks. NVN numbers blocks and textures per stage and separately, Vulkan has one (set, binding)
+space per pipeline: compiled as is, 665 of 670 programs put two resources on one binding, and one
+descriptor set per stage with samplers from binding 16 (`--resource-set-binding`,
+`--shift-combined-sampler-binding`) removes every collision. Not decoded: blob sections 0 and 1
+(by size, the machine code and a control section), the header constants of blob and debug
+section, the reflection's last 0x108 bytes and nine record words, the binary debug part
+(`0x0000c0de`), what the two halves of a variant key mean (always equal), header `+0x18`/`+0x20`
+and program slot 0, and where the name tables' IDs come from (one fixed engine enumeration; the
+lists also name uniforms no stage uses).
 
 **TU helper fold (2026-10-26, branch `claude/tuinit-fold`).** `include/game/UnkTUInit.h` and
 `unk_static_init` (`src/game_5821e4/UnkStaticInit.h`, `src/game_s7/UnkStaticInitS7.h`) each defined
