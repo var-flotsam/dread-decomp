@@ -3,13 +3,13 @@
 // argument and finishes by calling virtual slot 0x50 (the tail call).
 #include "base/UnkInitRecord_0x5c.h"
 #include "base/UnkVector.h"
+#include "game/UnkSphere.h"
 #include "types.h"
 
 extern void* g_unk_7101a1f000[];
 extern void* g_unk_7101a1f218[];
 void fn_71000003d4(void* self, const char* s, bool flag);
 void fn_710021685c(void* self);
-void fn_710021693c(void* self, f32 v);
 
 struct UnkWidgetArg;
 struct UnkWidgetMember {
@@ -35,7 +35,7 @@ struct UnkWidget {
     u8 sub_0x18[0x5c];
     s32 field_0x74;
     void* field_0x78;
-    u8 sub_0x80[0x50];
+    UnkSphere sub_0x80;
     s32 field_0xd0, field_0xd4, field_0xd8, field_0xdc;
     f32 field_0xe0;
     s32 field_0xe4, field_0xe8, field_0xec, field_0xf0;
@@ -68,7 +68,7 @@ void fn_71001f4dcc(UnkWidget* self, UnkWidgetArg* a) {
     fn_7100025624(self->sub_0x18);
     self->field_0x74 = -1;
     self->field_0x78 = nullptr;
-    fn_710021685c(self->sub_0x80);
+    fn_710021685c(&self->sub_0x80);
     self->field_0xd0 = 0;
     self->field_0xd4 = 0;
     self->field_0xd8 = -1;
@@ -116,5 +116,5 @@ void fn_71001f4dcc(UnkWidget* self, UnkWidgetArg* a) {
     self->flag_0x183 = 1;
     self->flag_0x184 = 0;
     self->field_0x188 = 0;
-    fn_710021693c(self->sub_0x80, 0.0f);
+    fn_710021693c(&self->sub_0x80, 0.0f);
 }

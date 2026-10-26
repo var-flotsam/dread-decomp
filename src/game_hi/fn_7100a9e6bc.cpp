@@ -4,6 +4,7 @@
 #include "base/UnkStrIdTable.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkComponent.h"
 #include "base/reflection/UnkReflCast.h"
 #include "types.h"
 
@@ -40,9 +41,7 @@ struct UnkState {
 };
 static_assert(sizeof(UnkState) == 0x70, "UnkState layout");
 
-struct UnkStateObject {
-    void** vtable;
-    u8 unk_0x8[0x38];
+struct UnkStateObject : UnkComponent {
     u8 field_0x40[0xa0];
     UnkRefObject* field_0xe0;
     UnkRefObject* field_0xe8;
@@ -72,7 +71,6 @@ extern void* g_unk_7101a946c0[];
 extern void* g_unk_7101a94718[];
 void fn_7100a2d4d0(void* target, void* listener);
 void fn_7100431cec(void* self);
-void fn_71010c4194(UnkStateObject* self);
 
 static inline void Release(UnkRefObject* p) {
     if (p && --p->ref_count == 0)

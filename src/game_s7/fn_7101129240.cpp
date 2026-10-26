@@ -1,6 +1,7 @@
 // Reads or writes one of an object's named settings. Unknown keys go to the base handler
 // (fn_71010c4250). Layouts are placeholders.
 #include "UnkPropS7.h"
+#include "game/UnkComponent.h"
 
 using namespace unk_prop;
 using base::global::CRntString;
@@ -21,7 +22,6 @@ struct UnkObj_7101129240 {
 };
 
 void fn_7101129b08(UnkObj_7101129240* self, bool flag);
-u32 fn_71010c4250(UnkObj_7101129240* self, UnkProp* p);
 
 u32 fn_7101129240(UnkObj_7101129240* self, UnkProp* p) {
     if (!p->set && Is(p, Key(0x1758)))
@@ -67,5 +67,7 @@ u32 fn_7101129240(UnkObj_7101129240* self, UnkProp* p) {
         fn_7101129b08(self, false);
         return true;
     }
-    return fn_71010c4250(self, p);
+    // The base handler takes the component and the property record: the object's first 0x40
+    // bytes are the component, UnkProp is the record.
+    return fn_71010c4250(reinterpret_cast<UnkComponent*>(self), reinterpret_cast<UnkComponentProp*>(p));
 }

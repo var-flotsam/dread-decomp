@@ -2,6 +2,7 @@
 // the default state and flags, then the derived vtable, builds the member at +0x108 from the
 // argument, calls virtual slot 0x50 and then clears one flag and sets two fields.
 #include "base/UnkInitRecord_0x5c.h"
+#include "game/UnkSphere.h"
 #include "types.h"
 
 inline void* operator new(unsigned long, void* p) { return p; }
@@ -10,7 +11,6 @@ extern void* g_unk_7101a1f000[];
 extern void* g_unk_7101a1f968[];
 void fn_71000003d4(void* self, const char* s, bool flag);
 void fn_710021685c(void* self);
-void fn_710021693c(void* self, f32 v);
 
 struct UnkWidgetArg;
 struct UnkWidgetMember {
@@ -27,7 +27,7 @@ struct UnkWidget {
     u8 sub_0x18[0x5c];
     s32 field_0x74;
     void* field_0x78;
-    u8 sub_0x80[0x50];
+    UnkSphere sub_0x80;
     s32 field_0xd0, field_0xd4, field_0xd8, field_0xdc;
     f32 field_0xe0;
     s32 field_0xe4, field_0xe8, field_0xec, field_0xf0;
@@ -48,7 +48,7 @@ void fn_710020ae7c(UnkWidget* self, UnkWidgetArg* a) {
     fn_7100025624(self->sub_0x18);
     self->field_0x74 = -1;
     self->field_0x78 = nullptr;
-    fn_710021685c(self->sub_0x80);
+    fn_710021685c(&self->sub_0x80);
     self->field_0xd0 = 0;
     self->field_0xd4 = 0;
     self->field_0xd8 = -1;
@@ -71,7 +71,7 @@ void fn_710020ae7c(UnkWidget* self, UnkWidgetArg* a) {
     self->field_0x100 = 0x600d600d;
     self->vtable_0x0 = g_unk_7101a1f968 + 2;
     new (&self->member_0x108) UnkWidgetMember(fn_71001512e0(a));
-    fn_710021693c(self->sub_0x80, 0.0f);
+    fn_710021693c(&self->sub_0x80, 0.0f);
     ((UnkVf50)self->vtable_0x0[10])(self, 1);
     self->flag_0xf7 = 0;
     self->flag_0xf5 = 1;

@@ -1,6 +1,7 @@
 // Destructor body: releases the two callback lists (each with a ref-counted owner), the pooled
 // arrays and string ids, resets the five embedded sub-objects, then runs the base destructor.
 #include "base/UnkStrIdTable.h"
+#include "game/UnkComponent.h"
 #include "types.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflCast.h"
@@ -135,9 +136,8 @@ struct UnkSub2 {
     }
 };
 
-struct UnkObj_710091e510 {
-    void* vtable;
-    u8 pad_0x8[0x48];
+struct UnkObj_710091e510 : UnkComponent {
+    u8 pad_0x40[0x10];
     UnkSub field_0x50;
     UnkSub field_0xc0;
     UnkSub field_0x130;
@@ -154,8 +154,6 @@ struct UnkObj_710091e510 {
     UnkStrIdTable field_0x478;
     UnkCallbackList field_0x4a0;
 };
-
-void fn_71010c4194(UnkObj_710091e510* self);
 
 void fn_710091e510(UnkObj_710091e510* self) {
     self->vtable = g_unk_7101a82960 + 2;

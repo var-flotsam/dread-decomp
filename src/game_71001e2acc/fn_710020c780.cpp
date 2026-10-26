@@ -5,6 +5,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkSphere.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -61,7 +62,7 @@ struct UnkUpdater_710020c780 {
     u8 unk_0x8[0x10];
     u8 field_0x18[0x60];
     UnkReflObject* field_0x78;
-    u8 field_0x80[0x8];
+    u8 field_0x80[0x8];  // the start of an embedded UnkSphere (its radius is field_0x88); the calls cast
     f32 field_0x88;
     u8 unk_0x8c[0xc];
     UnkSettings_710020c780 settings;
@@ -109,7 +110,6 @@ void fn_71001f8750(UnkUpdater_710020c780* self) { Update<fn_71001bcb50>(self); }
 // float (fn_71001bc0b4, key unk_7101648bf0): when found, 0xfc records whether it is outside
 // +/-0.001 (fn_7100206d8c).
 void fn_71001bbd6c(UnkSource_710020c780* source, UnkReflObject* obj);
-void fn_710021693c(void* value, f32 f);
 bool fn_71001bc0b4(UnkSource_710020c780* source, const void* key, u32 flag, f32* out);
 extern u8 g_unk_7101648bf0[] __attribute__((visibility("hidden")));
 
@@ -120,7 +120,7 @@ void fn_7100206d8c(UnkUpdater_710020c780* self) {
     if (obj)
         cast = fn_710009d50c(obj->vf_0x0(), fn_71001b122c()) ? obj : nullptr;
     fn_71001bbd6c(source, cast);
-    fn_710021693c(self->field_0x80, 0.0f);
+    fn_710021693c(reinterpret_cast<UnkSphere*>(self->field_0x80), 0.0f);
     f32 value = 0.0f;
     if (fn_71001bc0b4(self->field_0x108, g_unk_7101648bf0, 1, &value))
         self->field_0xfc = !(value - 0.001f <= 0.0f) | !(value + 0.001f >= 0.0f);
@@ -172,7 +172,7 @@ __attribute__((always_inline)) static inline void CopyBack(UnkUpdater_710020c780
     f32 old = self->field_0x88;
     self->field_0x88 = s->field_0x28;
     self->settings = s->settings;
-    fn_710021693c(self->field_0x80, old);
+    fn_710021693c(reinterpret_cast<UnkSphere*>(self->field_0x80), old);
 }
 
 bool fn_71001fb0c4(UnkUpdater_710020c780* self, f32 dt) {
@@ -226,5 +226,5 @@ void fn_710020dbd8(UnkUpdater_710020c780* self) {
     UnkSource_710020c780* lookup = self->field_0x108;
     u64 key = fn_7100001570("BSphereRadius", 13);
     if (fn_71001c32bc(lookup, &key, 1, &radius))
-        fn_710021693c(self->field_0x80, radius);
+        fn_710021693c(reinterpret_cast<UnkSphere*>(self->field_0x80), radius);
 }
