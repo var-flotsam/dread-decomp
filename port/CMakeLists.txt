@@ -1,5 +1,6 @@
 # The PC port build (docs/PORT_PLAN.md, Route B). Targets:
 #   dread_runtime  the port's own nn:: declarations and stubs (runtime/)
+#   dread_nvn      the NVN shim over Vulkan (nvn/): the shader manifest and the binding layer
 #   dread_game     every source under src/, compiled for the host (compile only at M0)
 #   dread_libs     the vendored libraries main links statically: lib/lua and lib/dlmalloc (as C++)
 #   dread          the executable (main.cpp): the runtime now, the game objects from M1
@@ -81,6 +82,47 @@ else()
 endif()
 
 add_subdirectory(runtime)
+
+# The NVN shim (nvn/) compiles against the Khronos Vulkan headers: by default the pinned copy
+# tools/fetch_toolchains.py fetches (vulkan-headers-<ver> under the tool cache), else a Vulkan SDK's
+# (VULKAN_SDK). Empty: dread_nvn is not built.
+set(_dread_vulkan_default "")
+# The tool cache, as tools/hostenv.py cache_dir() finds it.
+if(CMAKE_HOST_WIN32)
+  if(DEFINED ENV{LOCALAPPDATA})
+    file(TO_CMAKE_PATH "$ENV{LOCALAPPDATA}/dread-decomp" _dread_cache)
+  else()
+    file(TO_CMAKE_PATH "$ENV{USERPROFILE}/dread-decomp" _dread_cache)
+  endif()
+elseif(CMAKE_HOST_APPLE)
+  set(_dread_cache "$ENV{HOME}/Library/Caches/dread-decomp")
+elseif(IS_DIRECTORY "$ENV{HOME}/dread-decomp")
+  set(_dread_cache "$ENV{HOME}/dread-decomp")
+elseif(DEFINED ENV{XDG_CACHE_HOME} AND NOT "$ENV{XDG_CACHE_HOME}" STREQUAL "")
+  set(_dread_cache "$ENV{XDG_CACHE_HOME}/dread-decomp")
+else()
+  set(_dread_cache "$ENV{HOME}/.cache/dread-decomp")
+endif()
+# Only complete fetches: tools/fetch_toolchains.py renames vulkan-headers-<ver>.tmp into place last.
+file(GLOB _dread_vulkan_candidates LIST_DIRECTORIES true "${_dread_cache}/tools/vulkan-headers-*")
+list(FILTER _dread_vulkan_candidates INCLUDE REGEX "/vulkan-headers-[0-9.]+$")
+list(TRANSFORM _dread_vulkan_candidates APPEND "/include")
+if(_dread_vulkan_candidates)
+  list(SORT _dread_vulkan_candidates COMPARE NATURAL ORDER DESCENDING)
+  list(GET _dread_vulkan_candidates 0 _dread_vulkan_default)
+elseif(DEFINED ENV{VULKAN_SDK} AND EXISTS "$ENV{VULKAN_SDK}/include/vulkan/vulkan_core.h")
+  file(TO_CMAKE_PATH "$ENV{VULKAN_SDK}/include" _dread_vulkan_default)
+endif()
+set(DREAD_VULKAN_INCLUDE "${_dread_vulkan_default}" CACHE PATH "Vulkan headers (python tools/fetch_toolchains.py vulkan-headers-1.4.328); empty: no NVN shim")
+if(DREAD_VULKAN_INCLUDE)
+  if(NOT EXISTS "${DREAD_VULKAN_INCLUDE}/vulkan/vulkan_core.h")
+    message(FATAL_ERROR "dread: DREAD_VULKAN_INCLUDE (${DREAD_VULKAN_INCLUDE}) has no vulkan/vulkan_core.h")
+  endif()
+  message(STATUS "dread: Vulkan headers from ${DREAD_VULKAN_INCLUDE}")
+  add_subdirectory(nvn)
+else()
+  message(STATUS "dread: no Vulkan headers (python tools/fetch_toolchains.py vulkan-headers-1.4.328); dread_nvn not built")
+endif()
 
 # The game: every source under src/, except the sample duplicates and anything matching
 # DREAD_SWEEP_EXCLUDE: regexes over the repository-relative path, for sources the sweep reports
