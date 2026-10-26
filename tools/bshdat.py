@@ -95,7 +95,9 @@ manifest is written. One stage needs a source fix no general rewrite covers (FIX
 non-constant texel offset); it is applied in the shim modes and in --install.
 
 Usage:
-  python tools/bshdat.py --version 2.1.0 [--only NAME[,NAME...]] [--compile] [--install DIR] [--jobs N]
+  python tools/bshdat.py --version 2.1.0 [--only NAME[,NAME...]] [--compile] [--jobs N]
+  python tools/bshdat.py --version 2.1.0 --install DIR [--jobs N]     (every package; no --only)
+  python tools/bshdat.py --version 2.1.0 --glslang-path               (the glslang it runs)
 glslang: python tools/fetch_toolchains.py glslang-16.6.0 (Khronos, BSD-3-Clause and others;
 fetched by name only), else glslang or glslangValidator from PATH. Standard library only.
 Exit status 1 when a package fails to parse or has bytes the parser does not account for.
@@ -646,30 +648,32 @@ def glslang_version(tool: str) -> str:
 SHIM_TYPECAST = "#extension GL_NV_explicit_typecast : enable"
 
 # Source fixes for single stages that no general rewrite covers, applied with the shim rewrites
-# ("fixups"), keyed by (package, stage): each (old, new) must occur exactly once in the extracted
-# text, so a dump whose source differs fails loudly instead of compiling something else.
+# ("fixups"), keyed by (package, stage): each is a regular expression over the extracted text and
+# its replacement, and must match exactly once, so a dump whose source differs fails loudly
+# instead of compiling something else. The patterns describe the construct, not the shipped text.
 #  - pp_fxaa_nx, fragment: FXAA 3.11's FxaaTexOff(tex, pos, off, rcpFrame) passes its parameter
 #    `off` to textureLodOffset, whose offset GLSL requires to be a constant expression (NVIDIA's
-#    compiler inlined the function and folded it). Every call passes a literal FxaaInt2(x, y), so
-#    the function becomes a macro: the definition is renamed out of the way (its body, now unused,
-#    samples without the offset so that it compiles) and `#define FxaaTexOff(...)` puts the literal
-#    offset straight into textureLodOffset at each call. Same texels as the original, no rounding.
+#    compiler inlined the function and folded it). Every call passes a literal FxaaInt2(x, y) and
+#    the source selects FXAA_GLSL_130 (any other branch fails to compile rather than miscompiles),
+#    so the function becomes a macro: the textureLodOffset call in its body samples without the
+#    offset (the function is no longer called; it only has to compile), the definition is renamed
+#    out of the way, and `#define FxaaTexOff(...)` ahead of it puts each call's literal offset
+#    straight into textureLodOffset. Same texels as the original, no rounding.
 FIXUPS: dict[tuple[str, str], tuple[tuple[str, str], ...]] = {
     ("pp_fxaa_nx", "frag"): (
-        ("float4 FxaaTexOff(FxaaTex tex, float2 pos, int2 off, float2 rcpFrame) {",
-         "#define FxaaTexOff(t, p, o, r) textureLodOffset(t, (p).xy, 0.0, o)\n"
-         "float4 FxaaTexOff_bshdat_unused(FxaaTex tex, float2 pos, int2 off, float2 rcpFrame) {"),
-        ("return textureLodOffset(tex, pos.xy, 0.0, off.xy);",
-         "return textureLod(tex, pos.xy, 0.0); // bshdat.py: FxaaTexOff is the macro above"),
+        (r"\btextureLodOffset\((\w+),\s*(\w+)\.xy,\s*0\.0,\s*\w+\.xy\)",
+         r"textureLod(\1, \2.xy, 0.0) /* bshdat.py: FxaaTexOff is a macro */"),
+        (r"^([ \t]*)(\w+[ \t]+)FxaaTexOff([ \t]*\()",
+         r"\1#define FxaaTexOff(t, p, o, r) textureLodOffset(t, (p).xy, 0.0, o)\n\1\2FxaaTexOff_bshdat_unused\3"),
     ),
 }
 
 
 def apply_fixups(text: str, fixups: tuple[tuple[str, str], ...], where: str) -> str:
-    for old, new in fixups:
-        if text.count(old) != 1:
-            raise FormatError(f"{where}: fixup expects one `{old}`, found {text.count(old)}")
-        text = text.replace(old, new)
+    for pattern, repl in fixups:
+        text, n = re.subn(pattern, repl, text, flags=re.M)
+        if n != 1:
+            raise FormatError(f"{where}: fixup /{pattern}/ matched {n} times, expected once")
     return text
 
 
@@ -909,6 +913,7 @@ VK_SET = {"vert": 0, "frag": 1}  # VK_LAYOUT: one descriptor set per stage
 VK_SAMPLER_BASE = 16             # VK_LAYOUT: combined samplers from binding 16
 INSTALL_FORMAT = 1
 INSTALL_MANIFEST = "shaders.manifest"
+INSTALL_MARKER = ".bshdat-install"
 
 
 def stage_layout(st: dict, resources: list[dict], stage: str, where: str) -> tuple[list, list]:
@@ -925,6 +930,10 @@ def stage_layout(st: dict, resources: list[dict], stage: str, where: str) -> tup
     vk = {(r["kind"], r["binding"]): r for r in resources}
     if any(r["set"] != VK_SET[stage] for r in resources):
         raise FormatError(f"{where}: a resource outside descriptor set {VK_SET[stage]}")
+    if any(r["kind"] == "block" and r["binding"] >= VK_SAMPLER_BASE for r in resources):
+        raise FormatError(f"{where}: a uniform block at binding {VK_SAMPLER_BASE} or above, among the samplers")
+    if len({r["binding"] for r in resources}) != len(resources):
+        raise FormatError(f"{where}: two resources share a binding")
     blocks, samplers, seen = [], [], set()
     for b in refl["blocks"]:
         if b["binding"] < 0:
@@ -976,11 +985,13 @@ def install(out_root: Path, manifests: list[dict], dest: Path, version: str, job
     """
     tool = glslang_path()
     if dest.exists():
-        if any(dest.iterdir()) and not (dest / INSTALL_MANIFEST).exists() and not (dest / ".bshdat-install").exists():
-            raise SystemExit(f"{dest} exists and is not a shader install directory; refusing to clear it")
+        # Only a directory an earlier install wrote (it writes INSTALL_MARKER first) is cleared.
+        if any(dest.iterdir()) and not (dest / INSTALL_MARKER).is_file():
+            raise SystemExit(f"{dest} exists and is not a shader install directory (no {INSTALL_MARKER}); "
+                             "refusing to clear it")
         shutil.rmtree(dest)
     dest.mkdir(parents=True)
-    (dest / ".bshdat-install").write_text("written by tools/bshdat.py --install\n")
+    (dest / INSTALL_MARKER).write_text("written by tools/bshdat.py --install\n")
     tasks = []
     for man in manifests:
         (dest / man["package"]).mkdir()
@@ -1059,8 +1070,15 @@ def main() -> int:
     ap.add_argument("--install", metavar="DIR", type=Path,
                     help="the port's build step: compile every stage for Vulkan (vk_shim) into DIR with "
                          "DIR/shaders.manifest; fails unless every stage compiles")
+    ap.add_argument("--glslang-path", action="store_true",
+                    help="print the glslang this tool runs and exit (the port's CMake depends on the file)")
     ap.add_argument("--jobs", type=int, default=os.cpu_count() or 4)
     args = ap.parse_args()
+    if args.glslang_path:
+        print(Path(glslang_path()).as_posix())
+        return 0
+    if args.install and args.only:
+        ap.error("--install covers every package; with --only it would replace a full install with a partial one")
     only = [n for o in args.only for n in o.split(",") if n] if args.only else None
     out_root = ROOT / "build" / "shaders" / args.version
     out_root.mkdir(parents=True, exist_ok=True)

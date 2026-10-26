@@ -61,8 +61,8 @@ imported symbol names recorded in `data/functions/`.
 | `DREAD_LIBCXX_INCLUDE`, `DREAD_MUSL_INCLUDE` | on a Windows host, the libc++ 9.0.1 headers under `%LOCALAPPDATA%\dread-decomp\sources` and `lib/musl/include` when both exist (what `tools/buildcfg.py` uses); empty elsewhere | compile against these headers with `-nostdinc++` (compile only, nothing links against them). Empty means the host's own libc++ and libc, which is what a real host build uses |
 | `DREAD_SWEEP_EXCLUDE` | empty | semicolon-separated CMake regexes over repository-relative paths; sources the sweep marks as not yet portable are left out of `dread_game` until fixed |
 | `DREAD_GAME_VERSION` | `2.1.0` | passed to the sweep |
-| `DREAD_PYTHON` | the repository's `.venv`, else `find_package(Python3)` | runs the sweep and the link report. A checkout without `.venv` (a worktree, a fresh clone) must set it to an interpreter with `pyelftools`: `tools/port_link.py` imports `tools/asmdiff.py`, which needs it (the sweep itself needs only the standard library) |
-| `DREAD_SHADERS` | ON when `orig/<version>/romfs/system/shd/` exists | build the `shaders` target (needs glslang: `tools/fetch_toolchains.py glslang-16.6.0`) |
+| `DREAD_PYTHON` | the repository's `.venv`, else `find_package(Python3)` | runs the sweep, the link report and the shader build step. A checkout without `.venv` (a worktree, a fresh clone) must set it to an interpreter with `pyelftools`: `tools/port_link.py` imports `tools/asmdiff.py`, which needs it (the sweep itself needs only the standard library) |
+| `DREAD_SHADERS` | ON when `orig/<version>/romfs/system/shd/` exists at the first configure (a dump added later needs `-DDREAD_SHADERS=ON`) | build the `shaders` target (needs glslang: `tools/fetch_toolchains.py glslang-16.6.0`) |
 | `DREAD_SHADER_DIR` | `<build dir>/shaders` | where `tools/bshdat.py --install` writes the SPIR-V and `shaders.manifest` |
 
 ## Configuring
@@ -431,15 +431,16 @@ and sampler at the binding the shim expects, and only the `Shader` capability. T
 `install()`) of packages, variant keys and defines, per-stage blocks and samplers with their NVN
 slot and Vulkan binding, inputs and outputs, and the package's attribute and uniform name tables
 with their engine IDs. The manifest is written last and only when every stage passed, so a failed
-build reruns. On 2.1.0 all 1,342 stages of the 671 programs compile and match (36 MB of SPIR-V).
-The target is on when the dump's `romfs/system/shd/` exists (`DREAD_SHADERS`); the SPIR-V is
+build reruns. On 2.1.0 all 1,342 stages of the 671 programs compile and match (31 MB of SPIR-V).
+The target is on when the dump's `romfs/system/shd/` exists (`DREAD_SHADERS`), and reruns when the dump's packages, the tool or the glslang binary change; the SPIR-V is
 derived from game data, so it stays under `build/` and is never installed or distributed.
 
 The one source fix (`FIXUPS`): `pp_fxaa_nx`'s fragment stage is FXAA 3.11, whose `FxaaTexOff`
 passes its `off` parameter to `textureLodOffset`; GLSL requires that offset to be a constant
 expression (NVIDIA's compiler inlined the function and folded it). Every call passes a literal, so
 `FxaaTexOff` becomes a macro and each call gets its constant offset (`ConstOffset` in the SPIR-V):
-the same texels as the original. A fixup that does not find its text exactly once fails the stage.
+the same texels as the original. A fixup is a regular expression over the construct (never the
+shipped text, which is game data); one that does not match exactly once fails the stage.
 
 `--compile` is the study behind this: glslang on every source as extracted and in each rewrite
 mode, OpenGL and Vulkan (`.gl.spv`, `.vk.spv` beside the sources), `compile_report.csv` and a

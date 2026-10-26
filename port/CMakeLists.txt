@@ -204,7 +204,8 @@ add_custom_target(link_report
 # DREAD_SHADER_DIR, beside the executable. Derived from game data: it stays under build/ and is
 # never installed or distributed. The executable carries no shader compiler. Needs glslang
 # (python tools/fetch_toolchains.py glslang-16.6.0) and the dump (tools/setup.py); on by default
-# when the dump's shader folder exists.
+# when the dump's shader folder exists at the first configure (a cache option keeps its value: a
+# dump added later needs -DDREAD_SHADERS=ON).
 set(_dread_shd_dir "${DREAD_ROOT}/orig/${DREAD_GAME_VERSION}/romfs/system/shd")
 if(IS_DIRECTORY "${_dread_shd_dir}")
   set(_dread_shaders_default ON)
@@ -219,11 +220,22 @@ if(DREAD_SHADERS)
   if(_dread_bshdat_count EQUAL 0)
     message(FATAL_ERROR "dread: DREAD_SHADERS is ON but ${_dread_shd_dir} has no .bshdat files (run tools/setup.py, or set DREAD_SHADERS=OFF)")
   endif()
-  message(STATUS "dread: ${_dread_bshdat_count} shader packages -> ${DREAD_SHADER_DIR}")
+  # The glslang bshdat.py runs (the pinned one in the tool cache, else PATH): a new glslang rebuilds.
+  execute_process(
+    COMMAND "${DREAD_PYTHON}" "${DREAD_ROOT}/tools/bshdat.py" --version "${DREAD_GAME_VERSION}" --glslang-path
+    WORKING_DIRECTORY "${DREAD_ROOT}"
+    OUTPUT_VARIABLE _dread_glslang OUTPUT_STRIP_TRAILING_WHITESPACE
+    ERROR_VARIABLE _dread_glslang_error
+    RESULT_VARIABLE _dread_glslang_result)
+  if(NOT _dread_glslang_result EQUAL 0 OR NOT EXISTS "${_dread_glslang}")
+    message(FATAL_ERROR "dread: no glslang for the shaders (${_dread_glslang_error}); run python tools/fetch_toolchains.py glslang-16.6.0, or set DREAD_SHADERS=OFF")
+  endif()
+  message(STATUS "dread: ${_dread_bshdat_count} shader packages -> ${DREAD_SHADER_DIR} (glslang ${_dread_glslang})")
   add_custom_command(
     OUTPUT "${DREAD_SHADER_DIR}/shaders.manifest"
     COMMAND "${DREAD_PYTHON}" "${DREAD_ROOT}/tools/bshdat.py" --version "${DREAD_GAME_VERSION}" --install "${DREAD_SHADER_DIR}"
-    DEPENDS "${DREAD_ROOT}/tools/bshdat.py" "${DREAD_ROOT}/tools/fetch_toolchains.py" "${DREAD_ROOT}/tools/hostenv.py" ${_dread_bshdat}
+    DEPENDS "${DREAD_ROOT}/tools/bshdat.py" "${DREAD_ROOT}/tools/fetch_toolchains.py" "${DREAD_ROOT}/tools/hostenv.py"
+            "${_dread_glslang}" ${_dread_bshdat}
     WORKING_DIRECTORY "${DREAD_ROOT}"
     COMMENT "Compiling the game's shaders to SPIR-V (tools/bshdat.py --install, about a minute)"
     USES_TERMINAL
