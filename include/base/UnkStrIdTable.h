@@ -1,7 +1,8 @@
 #pragma once
 
-// String ids in two parallel arrays, as fn_71004f11f8 sees them: 16-byte values whose first word
-// is a string id, and the string-id keys, with a shared count (+0x10) and the allocator at +0x20.
+// String ids in two parallel arrays: 16-byte values whose first word is a string id, and the
+// string-id keys, with a shared count (+0x10; what fn_71004f11f8 reads) and, from its callers'
+// layouts (fn_71004f0428), the allocator at +0x20.
 // tools/tu_map.py puts fn_71004f11f8 in the unit it names after CEmmyCaveAIComponent. The names
 // and the layout are placeholders.
 

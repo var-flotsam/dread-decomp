@@ -15,8 +15,8 @@ struct UnkStrIdPathPair {
 
 void fn_710008d8e8(UnkStrIdPathPair* self);
 
-// The pair with the resource the path resolves to (unit 32 of tools/tu_map.py, like the pair's
-// own functions).
+// The pair with the resource the path resolves to (both functions are in unit 32 of
+// tools/tu_map.py).
 struct UnkStrIdPathResource {
     UnkStrIdPathPair ids;
     UnkCountedResource* resource;

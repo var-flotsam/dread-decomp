@@ -30,8 +30,8 @@ static_assert(__builtin_offsetof(UnkGuiRoot, field_0xca8) == 0xca8, "UnkGuiRoot 
 
 extern UnkGuiRoot* g_unk_717271e8f8;
 
-// Makes `object` the root's focused object (the reference at +0x230, `value` is the flag the
-// menus pass false for). Defined in the unit's generated code.
+// Makes `object` the root's focused object (the reference at +0x230, `value` is the flag sent with
+// the focus-gained event; the menus pass false). Defined in the unit's generated code.
 void fn_71011b6bbc(UnkGuiRoot* root, UnkGuiDisplayObject* object, bool value);
 
 // Sends a message (a 0x28-byte event built by fn_710120235c) to the root. Defined in the unit's

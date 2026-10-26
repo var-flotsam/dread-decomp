@@ -22,6 +22,11 @@ struct CAttack {
     s64 field_0x18;
     u64 field_0x20;
 };
+static_assert(sizeof(CAttack) == 0x28, "CAttack layout");
+
+// The reference-counted and weak-handle types below repeat game_s2/UnkWeakHandle.h's (UnkRefObject,
+// UnkWeakHandle with vtable g_unk_7101a209e0, AssignRef) for the attacks' copy constructors; they
+// are to be merged into that header.
 
 struct UnkAttackRefCounted {
     virtual void vf_0x0();
