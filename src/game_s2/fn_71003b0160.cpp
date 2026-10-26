@@ -22,7 +22,6 @@ struct UnkComponent {
     base::UnkRefHandle field_0x147a0;
 };
 
-UnkRefPtr fn_710023b580(void* member);
 
 bool fn_71003b0160(UnkComponent* self, u32* out) {
     if (self->field_0x14798 == 1) {

@@ -1,4 +1,5 @@
 // Resolves a GUI script name to a path, loads it once through the lazily created registry, and returns a handle to the loaded object.
+#include "base/UnkRegistry.h"
 #include "base/UnkStrIdPathPair.h"
 #include "base/global/CRntString.h"
 #include "game/UnkGuiHandle.h"
@@ -54,12 +55,8 @@ struct UnkRefSource_71011b69d8 {
     virtual UnkRefHandle_71011b69d8* vf_0x28();
 };
 
-struct UnkRegistry_0x70 {
-    u8 data[0x70];
-};
 
 UnkScriptPath_0x148 fn_71011b66fc(void* registry, const base::global::CRntString& name);
-void fn_7100087388(UnkRegistry_0x70* r);
 void fn_710008d4c0(UnkStrPair_0x10* s, const UnkEntry_0x30* e);
 bool fn_7100087850(UnkRegistry_0x70* r, const UnkStrPair_0x10* s);
 UnkRefSource_71011b69d8* fn_71011b6208(UnkTag_71011b69d8 tag, const UnkStrPair_0x10* s);

@@ -29,6 +29,17 @@ CBlackboard::CSection* fn_7101047270(CBlackboard* self, const CStrId& key) {
     return slot != &self->sections[self->count] ? *slot : nullptr;
 }
 
+// Two more copies of the lookup above (identical code, other translation units' instantiations).
+CBlackboard::CSection* fn_7101047414(CBlackboard* self, const CStrId& key) {
+    CBlackboard::CSection** slot = FindSlot(self, key);
+    return slot != &self->sections[self->count] ? *slot : nullptr;
+}
+
+CBlackboard::CSection* fn_7101047484(CBlackboard* self, const CStrId& key) {
+    CBlackboard::CSection** slot = FindSlot(self, key);
+    return slot != &self->sections[self->count] ? *slot : nullptr;
+}
+
 CBlackboard::CSection* fn_71010472e0(CBlackboard* self, const CStrId& key) {
     CBlackboard::CSection** slot = FindSlot(self, key);
     if (slot != &self->sections[self->count])

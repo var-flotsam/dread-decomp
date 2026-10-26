@@ -36,3 +36,13 @@ static_assert(__builtin_offsetof(UnkSoundSystemATK, field_0x400528) == 0x400528,
 // released. Does nothing while the global flag g_unk_7108b6ab60 is set. Defined in
 // src/base/snd/CSoundSystemATK.cpp.
 void fn_71000faac4(base::snd::UnkSoundSystemATK* self, s32 command, const void* payload);
+
+#include "base/global/CFilePathStrId.h"
+
+// Returns the file-path id for the lowercased name of `id` with every character outside a-z and 0-9
+// replaced by '_' (the name goes through the 0x7108b6b910 scratch buffer), caching the result in the
+// map at g_unk_7101d685c8 (keyed by the id's hash); an id passed in as empty comes back as it is. While
+// the global flag g_unk_7108b6ab60 is set it returns the global id g_unk_7101d470e8 instead. The
+// unit this belongs to (99, the sound system's) is only the address range's. Defined in
+// src/base/snd/CSoundSystemATK.cpp.
+base::global::CFilePathStrId fn_71000f63b0(const base::global::CFilePathStrId& id);

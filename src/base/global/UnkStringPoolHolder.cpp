@@ -11,8 +11,10 @@
 #include "base/global/UnkStringPoolBody.h"
 
 using base::UnkNamedEntry;
+using base::UnkAllocator;
 using base::UnkVector;
 using base::global::UnkPoolNode;
+using base::global::UnkPoolSetWithNodes;
 using base::global::UnkStringPool;
 using base::global::UnkStringPoolBody;
 using base::global::UnkStringPoolHolder;
@@ -56,13 +58,13 @@ UnkStringPoolHolder::UnkStringPoolHolder(u32 a, UnkStringPool** pool) {
     state->set.node_flags = 0x25;
     state->set.node_count = 0;
     state->set.version = 1;
-    state->nodes_vtable = g_unk_7101a1a4c8 + 0x10;
-    state->nodes_parent = nullptr;
-    fn_710008377c(&state->nodes_blocks);
-    state->nodes_field_0x38 = 0;
-    state->nodes_field_0x3c = false;
+    state->set.nodes.vtable = g_unk_7101a1a4c8 + 0x10;
+    state->set.nodes.parent = nullptr;
+    fn_710008377c(&state->set.nodes.blocks);
+    state->set.nodes.field_0x38 = 0;
+    state->set.nodes.field_0x3c = false;
     char* set = reinterpret_cast<char*>(&state->set);
-    fn_7100080578(set, a, a);
+    fn_7100080578(&state->set, a, a);
     self->state.empty.ref_count = 1;
 
     // The empty string's node, under the key -1.
@@ -120,4 +122,57 @@ UnkStringPoolHolder::~UnkStringPoolHolder() {
     *self->slot = nullptr;
     fn_71000800dc(set);
     fn_710007ecd4(&s.empty.buffer);
+}
+
+// Sets the set up (fn_7100080578; see base/global/UnkStringPoolBody.h).
+// NON_MATCHING(minor): the bucket copy loop compares its counter with the count as 64-bit values
+// where the original compares the low halves (one instruction); the same behaviour. The barriers
+// on `set` make each use of the node pool's address a fresh computation, as in the original.
+void fn_7100080578(UnkPoolSetWithNodes* set, u32 buckets, u32 nodes) {
+    u32 flags = set->node_flags;
+    UnkAllocator* node_allocator = set->node_allocator;
+    void* old_memory = set->nodes.blocks.buffer;
+    if (old_memory) {
+        fn_71000837f4(&set->nodes.blocks);
+        set->nodes.parent->vf_0x48(old_memory);
+        set->nodes.parent = nullptr;
+    }
+    // The pool's address is formed afresh at each use rather than kept in a register.
+    if (nodes) {
+        if (!node_allocator)
+            node_allocator = fn_7100083990();
+        set->nodes.parent = node_allocator;
+        void* memory = node_allocator->vf_0x40((u64)nodes * sizeof(UnkPoolNode), 8, flags);
+        asm("" : "+r"(set));
+        fn_710008378c(&set->nodes.blocks, memory, (u64)nodes * sizeof(UnkPoolNode), sizeof(UnkPoolNode));
+    }
+    asm("" : "+r"(set));
+    set->node_allocator = reinterpret_cast<UnkAllocator*>(&set->nodes);
+    UnkVector<char*>& v = set->buckets;
+    u32 count = v.count;
+    if (count < buckets) {
+        if (v.capacity < buckets) {
+            char** grown = static_cast<char**>(v.allocator->vf_0x40((u64)buckets << 3, 8, v.flags));
+            char** old = v.data;
+            if (old) {
+                // Bitwise copies: the original reloads the count after each store.
+                if (v.count) {
+                    u32 i = 0;
+                    do {
+                        __builtin_memcpy(&grown[i], &old[i], sizeof(char*));
+                        ++i;
+                    } while (i < v.count);
+                }
+                v.allocator->vf_0x48(v.data);
+            }
+            count = v.count;
+            v.data = grown;
+            v.capacity = buckets;
+        }
+        for (u32 i = count; i < buckets; ++i)
+            v.data[i] = nullptr;
+    } else if (count <= buckets) {
+        return;
+    }
+    v.count = buckets;
 }

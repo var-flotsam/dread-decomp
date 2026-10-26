@@ -5,6 +5,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflValue.h"
 #include "types.h"
+#include "game/sound/CMusicManager.h"
 
 using base::reflection::CType;
 using base::reflection::UnkReflValue;
@@ -136,7 +137,6 @@ __attribute__((always_inline)) static inline UnkReflValue GetDef(UnkArgument<Unk
 void fn_7100ee1f34(void* self);
 void fn_7100d8ced8(void* self);
 void fn_7100359118(void* self);
-void fn_7100fd3804(void* self);
 const CType* fn_7100ad61f8();  // base::reflection::refl_GetType<CSubAreaManager*>
 const CType* fn_7100ad62d4();  // base::reflection::refl_GetType<CEnvironmentManager*>
 const CType* fn_7100ad6568();  // base::reflection::refl_GetType<CLightManager*>

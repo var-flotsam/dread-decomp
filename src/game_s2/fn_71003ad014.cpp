@@ -45,7 +45,6 @@ inline UnkIdTable& GetIdTable() {
     return s_table;
 }
 
-void* fn_7100defcec(UnkGameManager* manager);
 UnkCameraCtrl* fn_71010e389c(void* holder, void* key);
 void fn_71003ad174(UnkCameraOwner* self, u32 arg);
 void fn_7100750804(UnkCameraCtrl* ctrl, void* arg);

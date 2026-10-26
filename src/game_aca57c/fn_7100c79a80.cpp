@@ -70,7 +70,6 @@ struct UnkSampleParams {
     UnkTail field_0x30;
 };
 
-bool fn_7100deabe4(UnkGameManager* manager);
 bool fn_7100deac04(UnkGameManager* manager);
 f32 fn_7100027910(void* entry, f32 value);
 

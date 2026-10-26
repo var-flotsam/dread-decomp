@@ -6,6 +6,7 @@
 #include "base/global/CStrId.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
+#include "game/sound/CMusicManager.h"
 
 struct UnkState {
     u8 unk_0x0[0x10];
@@ -22,7 +23,6 @@ struct UnkMgr_0xf18 {
 
 extern UnkMgr_0xf18* g_unk_71726bc560;
 
-void fn_7100fd3804(UnkMgr_0xf18*);
 void fn_7100fdb9e0(UnkMgr_0xf18*, u32, u32, f32, f32);
 
 static inline UnkMgr_0xf18* GetMgr() {

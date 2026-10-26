@@ -30,13 +30,7 @@ struct UnkSubId_7100fc4b34 {
     CStrId id;
     u64 field_0x8;
 };
-struct UnkQualifiedName_7100fc4b34 {
-    const char* str;
-    u8 unk_0x8[0xc0];
-    UnkIdSource* source;
-};
-void fn_7100ae9d7c(UnkQualifiedName_7100fc4b34* self, UnkIdSource* source,
-                   const CStrId& prefix);
+using UnkQualifiedName_7100fc4b34 = UnkQualifiedName;
 const UnkSubId_7100fc4b34& fn_71003327a4(UnkQualifiedName_7100fc4b34* self, const CStrId* name);
 
 struct UnkNamedDef_7100fc4b34 : UnkIdSource {

@@ -32,3 +32,16 @@ struct UnkQualifiedId {
 // (skipping empty parts) into a string, interns it as `self->id` and stores the source
 // (src/game_hi/fn_7100ae9a10.cpp).
 void fn_7100ae9a10(UnkQualifiedId* self, UnkIdSource* source, const base::global::CStrId& prefix);
+
+// A qualified id kept as a string with inline storage (0xc8 bytes: the string, whose data pointer
+// is first, and the buffer after it) and the object it names. Built by fn_7100ae9d7c; callers
+// test whether `str` is empty to see whether it is.
+struct UnkQualifiedName {
+    const char* str;
+    u8 unk_0x8[0xc0];
+    UnkIdSource* source;
+};
+
+// Sets `self->source` and appends "prefix:group:own" to the string (empty prefix and group left
+// out, with their ':'), as fn_7100ae9a10 does for an id (src/game/CGameBlackboard.cpp).
+void fn_7100ae9d7c(UnkQualifiedName* self, UnkIdSource* source, const base::global::CStrId& prefix);

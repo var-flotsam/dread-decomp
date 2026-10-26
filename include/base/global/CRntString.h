@@ -58,6 +58,11 @@ void fn_710007ecd4(base::global::CRntString* self);
 // Copies [str, str + length) in (fn_710007ebc8).
 void fn_710007ebc8(base::global::CRntString* self, const char* str, u32 length, s64 key);
 void fn_710007f3e4(base::global::CRntString* self, const char* str, u32 length);  // appends
+// Appends another string's text (fn_710007f3b4, through fn_710007f3e4 with its data and length);
+// returns the string.
+base::global::CRntString* fn_710007f3b4(base::global::CRntString* self, const base::global::CRntString* other);
+// Whether the string's text equals a C string (fn_710007f140, src/base/global/CRntString.cpp).
+bool fn_710007f140(const base::global::CRntString* self, const char* str);
 // Appends one character (through fn_710007f3e4); returns the string.
 base::global::CRntString* fn_710007f5ac(base::global::CRntString* self, char c);
 
