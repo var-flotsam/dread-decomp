@@ -117,6 +117,17 @@ marks `L`. Lua brings 24 C library functions the tool did not know (`stdio`, loc
 are listed as the host's, and the residue grows from 304 to 375 by such names only. The sweep on the
 same `main` compiles all 3,812 sources.
 
+**Shader sources (2026-10-25, branch `claude/shader-sources`).** Asked how other decomp ports
+handle shaders (fixed-function consoles generate programs from combiner or TEV state at runtime;
+Xbox 360 recomps wrote their own bytecode recompiler), the dump was checked: every one of the 478
+`.bshdat` packages carries its programs' GLSL source next to the compiled Maxwell code (1,342
+`void main`, `#version 440 core` and `450`, vertex and fragment stages only, 1,301 programs with
+`#extension GL_NV_gpu_shader5`, 130 MB in all, about 80% text). The port therefore compiles the
+shipped GLSL with glslang to SPIR-V and needs no Maxwell translator and nothing from an emulator;
+`docs/PORT_PLAN.md`'s surface table and open decision 3 record it. Left to write: a `.bshdat`
+parser (our own; mercury-engine-data-structures has none) and the NVN shim's binding model,
+including the bindless handles behind `GL_NV_gpu_shader5`.
+
 **Seventeenth session (2026-10-25, on the PC, branch `claude/cheap-progress`): making hub batches
 cheap.** Review of where hub batch 2 spent its 3.8 hours and 4.7 million tokens: the five-step
 sequential chain set the wall-clock, every agent re-implemented the baseline-edit-compare loop by

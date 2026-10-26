@@ -222,7 +222,9 @@ macOS under Rosetta 2 (`AGENTS.md`).
   growable array. Details and matching facts: `docs/JOURNAL.md` ("Key facts" of earlier sessions
   are kept there verbatim).
 - **Memory:** 1.82 GB `.bss`; the engine reserves its memory statically. **Codename:** "cazadora".
-- **Game data in RomFS:** 5,754 `.bctex` textures, 478 `.bshdat` precompiled shaders, 1,276
+- **Game data in RomFS:** 5,754 `.bctex` textures, 478 `.bshdat` shader packages (each with its
+  programs' GLSL source beside the compiled Maxwell code: 1,342 programs, vertex and fragment only;
+  the port compiles the sources with glslang, `docs/PORT_PLAN.md`), 1,276
   `.bfstm` audio streams, 101 WebM videos, 72 `.pkg` packs; parsing in mercury-engine-data-structures.
 
 ## Decisions made (and why)
