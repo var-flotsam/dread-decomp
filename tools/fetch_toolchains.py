@@ -14,20 +14,25 @@ where <cache> comes from tools/hostenv.py (%LOCALAPPDATA%\\dread-decomp on Windo
 SHA-256 of each download is pinned in data/toolchains.json (macOS entries carry a `-macos`
 suffix). The first download records the hash; later downloads must match it.
 
-Also fetches objdiff / objdiff-cli (TOOLS) into <cache>/tools/.
+Also fetches objdiff / objdiff-cli (TOOLS) into <cache>/tools/. On request only (not part of the
+default, since matching does not need it): glslang (ARCHIVE_TOOLS, the Khronos GLSL compiler for
+tools/bshdat.py --compile) into <cache>/tools/glslang-<ver>/bin/.
 
-Usage: python tools/fetch_toolchains.py [VERSION or TOOL ...]   (default: everything)
+Usage: python tools/fetch_toolchains.py [VERSION or TOOL ...]   (default: LLVM candidates + objdiff)
+       python tools/fetch_toolchains.py glslang-16.6.0               (glslang, by name only)
 """
 
 from __future__ import annotations
 
 import hashlib
+import io
 import json
 import shutil
 import subprocess
 import sys
 import tarfile
 import urllib.request
+import zipfile
 from pathlib import Path
 
 import hostenv
@@ -131,9 +136,66 @@ MACOS_TOOLS = {
 }
 TOOLS = WINDOWS_TOOLS if hostenv.WINDOWS else MACOS_TOOLS if hostenv.MACOS else {}
 
+# Tools shipped as archives: only their bin/ folder is kept, in <cache>/tools/<name>/bin/.
+# glslang (KhronosGroup/glslang, BSD-3-Clause and others), the reference GLSL compiler, used by
+# tools/bshdat.py --compile. SHA-256 values are the digests GitHub publishes for the assets.
+# Only the Windows zip has been fetched so far; the macOS and Linux tarballs are untested.
+GLSLANG_VERSION = "16.6.0"
+_GLSLANG = f"https://github.com/KhronosGroup/glslang/releases/download/{GLSLANG_VERSION}/glslang-{GLSLANG_VERSION}"
+ARCHIVE_TOOLS = {
+    f"glslang-{GLSLANG_VERSION}": {
+        "windows": (f"{_GLSLANG}-windows-x86_64-release.zip",
+                    "82bf434e69b9bb4829de7e2b4bc2c5e7a7861e53d66cf75e5cc70f5f694a8d9b"),
+        "macos": (f"{_GLSLANG}-macos-universal-release.tar.gz",
+                  "4f8c05f2888a73ed0b7b274bc524af9130e09ae94b43c0f3f9ed83cfae852834"),
+        "linux": (f"{_GLSLANG}-linux-x86_64-release.tar.gz",
+                  "2c34071f56ecf39d16233294d3739cf43f981fd39080f2fd9dccb782101191ce"),
+    },
+}
+
 
 def tool_path(name: str) -> Path:
     return DEST.parent / "tools" / hostenv.exe(name)
+
+
+def fetch_archive_tool(name: str, pins: dict) -> None:
+    target = DEST.parent / "tools" / name
+    if (target / "bin").is_dir() and any((target / "bin").iterdir()):
+        print(f"{name}: already present at {target}")
+        return
+    url, expected = ARCHIVE_TOOLS[name][hostenv.PLATFORM]
+    print(f"{name}: downloading {url}", flush=True)
+    data = urllib.request.urlopen(url, timeout=300).read()
+    digest = hashlib.sha256(data).hexdigest()
+    if digest != expected:
+        raise SystemExit(f"{name}: sha256 {digest} does not match published {expected}")
+    tmp = target.with_name(target.name + ".tmp")
+    if tmp.exists():
+        shutil.rmtree(tmp)
+    (tmp / "bin").mkdir(parents=True)
+    if url.endswith(".zip"):
+        with zipfile.ZipFile(io.BytesIO(data)) as z:
+            members = [m for m in z.infolist() if m.filename.startswith("bin/") and not m.is_dir()]
+            for m in members:
+                (tmp / "bin" / Path(m.filename).name).write_bytes(z.read(m))
+    else:
+        with tarfile.open(fileobj=io.BytesIO(data), mode="r:*") as tar:
+            members = [m for m in tar.getmembers() if "/bin/" in f"/{m.name}" and (m.isfile() or m.issym())]
+            for m in members:
+                if m.issym():
+                    (tmp / "bin" / Path(m.name).name).symlink_to(Path(m.linkname).name)
+                else:
+                    out = tmp / "bin" / Path(m.name).name
+                    out.write_bytes(tar.extractfile(m).read())
+                    out.chmod(0o755)
+    if not members:
+        shutil.rmtree(tmp)
+        raise SystemExit(f"{name}: no bin/ folder in {url}")
+    if target.exists():
+        shutil.rmtree(target)
+    tmp.rename(target)
+    pins[pin_key(name)] = {"url": url, "sha256": digest}
+    print(f"{name}: {len(members)} files saved to {target / 'bin'}")
 
 
 def fetch_tool(name: str, pins: dict) -> None:
@@ -156,12 +218,14 @@ def fetch_tool(name: str, pins: dict) -> None:
 
 
 def main() -> int:
-    versions = sys.argv[1:] or [*CANDIDATES, *TOOLS]
+    versions = sys.argv[1:] or [*CANDIDATES, *TOOLS]  # ARCHIVE_TOOLS by name only
     pins = json.loads(PINS.read_text()) if PINS.is_file() else {}
     try:
         for v in versions:
             if v in TOOLS:
                 fetch_tool(v, pins)
+            elif v in ARCHIVE_TOOLS:
+                fetch_archive_tool(v, pins)
             else:
                 fetch(v, pins)
     finally:
