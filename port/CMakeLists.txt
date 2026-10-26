@@ -170,8 +170,10 @@ message(STATUS "dread: dread_game has ${_dread_game_count} sources, ${_dread_gam
 add_library(dread_game OBJECT ${_dread_game_sources})
 target_include_directories(dread_game PRIVATE "${DREAD_ROOT}/include")
 target_link_libraries(dread_game PUBLIC dread_runtime)
-# Matched code is held to the original's bytes, not to a newer compiler's warnings.
-target_compile_options(dread_game PRIVATE -w)
+# Matched code is held to the original's bytes, not to a newer compiler's warnings. It type-puns as
+# the original did (words read as u64, storage cast to its layout), so type-based alias analysis is
+# off, as for dread_libs and the sweep (tools/port_sweep.py HOST_FLAGS).
+target_compile_options(dread_game PRIVATE -fno-strict-aliasing -w)
 
 # The vendored libraries main links statically (status L in data/functions/): all of lib/lua and
 # dlmalloc through mspace.c (the game's settings; it includes malloc.c), compiled as C++ without

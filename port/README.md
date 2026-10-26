@@ -37,7 +37,7 @@ imported symbol names recorded in `data/functions/`.
   same files. The other 32 samples under `src/compiler_id`, `src/flag_id` and `src/atk_id` are
   compiled like everything else. Compiled
   with `include/` and the runtime's headers, at the configuration's optimisation level (`-O2 -g`
-  by default), `-fPIC`, `-fno-rtti -fno-exceptions`, warnings off (the code is held to the
+  by default), `-fPIC`, `-fno-rtti -fno-exceptions`, `-fno-strict-aliasing` (the code type-puns as the original did), warnings off (the code is held to the
   original's bytes, not to a newer compiler's warnings). An object library rather than a static
   one so that the whole-program link of M1 keeps every function, referenced or not.
 - `dread_libs` (OBJECT library): the vendored libraries `main` links statically, all of `lib/lua`
@@ -118,7 +118,7 @@ python tools/port_sweep.py --version 2.1.0 --only '^src/game_s7/' --jobs 16
 
 It compiles every `src/**/*.cpp` on its own with the project's include setup
 (`tools/buildcfg.py`: the libc++ 9.0.1 and musl headers, `include/`) and the host's code
-generation flags (`-std=c++1z -O2 -fno-rtti -fno-exceptions -fPIC -c`, none of the AArch64
+generation flags (`-std=c++1z -O2 -fno-strict-aliasing -fno-rtti -fno-exceptions -fPIC -c`, none of the AArch64
 flags), sorts the errors into categories (the message with file, line and quoted names
 stripped, so one problem in a hundred generated files is one line), counts failures per top-level
 `src/` directory, and lists separately the files that fail only because they include an SDK
