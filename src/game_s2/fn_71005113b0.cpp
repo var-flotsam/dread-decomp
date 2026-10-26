@@ -1,6 +1,7 @@
 // Static initialiser of the unit of CEmmyGrabSamusAttack: the header ids, then the unit's own
 // statics (path ids, ids, strings, small-buffer strings, floats) and the class registration.
 #include "../game_s7/UnkStaticInitS7.h"
+#include "base/UnkNamedRegistry.h"
 #include "base/global/CRntString.h"
 #include "base/reflection/UnkClassGetters.h"
 
@@ -42,12 +43,7 @@ struct UnkInlineStr50 : UnkInlineStr50Raw {
     }
 };
 
-struct UnkRntString {
-    u8 field_0x0[0x30];
-};
-void fn_710007e704(UnkRntString* self, const char* str);  // builds one from a string
-
-__attribute__((always_inline)) inline void InitRntString(UnkRntString* s, const char* str) {
+__attribute__((always_inline)) inline void InitRntString(base::UnkNamedEntry* s, const char* str) {
     fn_710007e704(s, str);
     __cxa_atexit(reinterpret_cast<void (*)(void*)>(fn_710007ecd4), s, g_unk_7101a19000);
 }
@@ -74,10 +70,10 @@ struct UnkStatics_71005113b0 {
     u8 pad_0x101[3];
     f32 field_0x104[4];
     u8 pad_0x114[4];
-    UnkRntString field_0x118;
-    UnkRntString field_0x148;
-    UnkRntString field_0x178;
-    UnkRntString field_0x1a8;
+    base::UnkNamedEntry field_0x118;
+    base::UnkNamedEntry field_0x148;
+    base::UnkNamedEntry field_0x178;
+    base::UnkNamedEntry field_0x1a8;
     UnkInlineStr50Raw field_0x1d8;
     UnkInlineStr50Raw field_0x228;
     UnkInlineStr50Raw field_0x278;

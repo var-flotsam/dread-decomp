@@ -1,15 +1,11 @@
 // Constructor of a node: runs its base constructor, sets the vtable, builds an empty string at
 // +0x30, leaves an id as the empty string, clears the remaining fields and gives an embedded
 // listener its vtable.
+#include "base/UnkNamedRegistry.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
 using base::global::UnkStrIdBase;
-
-struct UnkRntString {
-    u8 field_0x0[0x30];
-};
-void fn_710007e704(UnkRntString* self, const char* str);  // builds one from a string
 
 template <class T>
 struct __attribute__((packed)) UnkPacked {
@@ -24,7 +20,7 @@ struct UnkListener {
 struct UnkNode {
     void** vtable;
     u8 pad_0x8[0x28];
-    UnkRntString field_0x30;
+    base::UnkNamedEntry field_0x30;
     UnkStrIdBase field_0x60;
     u16 field_0x68;
     u8 pad_0x6a[10];

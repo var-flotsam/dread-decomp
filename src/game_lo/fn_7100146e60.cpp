@@ -1,9 +1,9 @@
 // Switches an object on or off: records a state value, resets two sub-objects when turning
 // on, and forwards the flag to an object reached through field_0x160.
+#include "base/UnkCloneCalls.h"
 #include "types.h"
 
 void fn_7100208bb4(void* obj, bool flag);
-void fn_7100025a88(void* obj);
 void fn_7100192f08(void* obj, bool flag);
 
 struct UnkStruct_7100146e60_Owner {
@@ -17,7 +17,7 @@ struct UnkStruct_7100146e60 {
     bool field_0x121;
     u8 pad_0x122[0x3e];
     UnkStruct_7100146e60_Owner* field_0x160;
-    u8 field_0x168[0xd8];
+    char field_0x168[0xd8];
     bool field_0x240;
     u8 pad_0x241[3];
     s32 field_0x244;

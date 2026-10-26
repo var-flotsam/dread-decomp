@@ -1,11 +1,9 @@
 // Constructor of a 0xb0-byte state object: three allocator handles, counters and flags set to
 // their defaults, and an embedded sub-object at +0x58.
+#include "base/UnkCloneHelpers.h"
 #include "types.h"
 
-struct UnkAllocator;
-UnkAllocator* fn_7100083990();
-void fn_710008377c(void* self);
-extern void* g_unk_7101a1a4c8[];
+using base::UnkAllocator;
 
 struct UnkState_0xb0 {
     UnkAllocator* alloc_0x0;
@@ -21,7 +19,7 @@ struct UnkState_0xb0 {
     void* field_0x40;
     void* vtable_0x48;
     void* field_0x50;
-    u8 sub_0x58[0x28];
+    UnkBlockFreeList sub_0x58;
     s32 field_0x80;
     u8 field_0x84;
     u8 pad_0x85[3];
@@ -49,9 +47,9 @@ void fn_710008c674(UnkState_0xb0* self) {
     self->alloc_0x30 = fn_7100083990();
     self->field_0x38 = nullptr;
     self->field_0x40 = nullptr;
-    self->vtable_0x48 = g_unk_7101a1a4c8 + 2;
+    self->vtable_0x48 = g_unk_7101a1a4c8 + 0x10;
     self->field_0x50 = nullptr;
-    fn_710008377c(self->sub_0x58);
+    fn_710008377c(&self->sub_0x58);
     self->field_0x80 = 0;
     self->field_0x84 = 0;
     self->field_0x88 = nullptr;

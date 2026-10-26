@@ -1,12 +1,8 @@
 // Sets the reflected value stored under a key: when the key is present and its current value
 // accepts the new one in place, nothing else happens; otherwise the value is stored through the
 // map's insert, the owner is marked dirty and its listener is notified.
+#include "base/UnkCloneHelpers.h"
 #include "types.h"
-
-struct UnkTypedRef_7100332c80 {
-    const char* type;
-    void* ptr;
-};
 
 struct UnkReflValue_7100332c80 {
     void* field_0x0;
@@ -29,7 +25,7 @@ public:
     virtual void vf_0x20();
     virtual void vf_0x28();
     virtual void vf_0x30();
-    virtual void vf_0x38(void* owner, const u64* key, UnkTypedRef_7100332c80* value);
+    virtual void vf_0x38(void* owner, const u64* key, base::reflection::UnkTypedRef* value);
 };
 
 struct UnkValueMap_7100332c80 {
@@ -56,14 +52,13 @@ struct UnkKeyedValues_7100332c80 {
     }
 };
 
-void fn_71000a16e0(UnkTypedRef_7100332c80* out, const char* type, void* data);
-void fn_71000a1760(UnkTypedRef_7100332c80* out, const UnkTypedRef_7100332c80* in);
-bool fn_710009d5d4(const char* type, UnkTypedRef_7100332c80* dst, const UnkTypedRef_7100332c80* src);
-void fn_7100332dc4(UnkValueMap_7100332c80* map, const u64* key, const UnkTypedRef_7100332c80* value);
+void fn_71000a1760(base::reflection::UnkTypedRef* out, const base::reflection::UnkTypedRef* in);
+bool fn_710009d5d4(const char* type, base::reflection::UnkTypedRef* dst, const base::reflection::UnkTypedRef* src);
+void fn_7100332dc4(UnkValueMap_7100332c80* map, const u64* key, const base::reflection::UnkTypedRef* value);
 
-void fn_7100332c80(UnkKeyedValues_7100332c80* self, const u64* key, const UnkTypedRef_7100332c80* value) {
-    UnkTypedRef_7100332c80 dst;
-    UnkTypedRef_7100332c80 copy;
+void fn_7100332c80(UnkKeyedValues_7100332c80* self, const u64* key, const base::reflection::UnkTypedRef* value) {
+    base::reflection::UnkTypedRef dst;
+    base::reflection::UnkTypedRef copy;
     UnkReflValue_7100332c80* v = self->Find(key);
     if (v != self->End()) {
         const char* type = v->type;

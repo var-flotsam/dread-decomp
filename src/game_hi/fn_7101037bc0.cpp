@@ -1,15 +1,15 @@
 // Fills a sound play description from a sound definition: copies the ids and settings, picks a
 // random file from the given variation list (falling back to the first list, or to the default
 // path), and randomises volume, pitch and pan within the definition's ranges and given scales.
+#include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
 static inline f32 Min(f32 a, f32 b) { return b < a ? b : a; }
 
-// A file-path string id (pool g_unk_7101d47200) with CStrId's copy-assignment.
-struct UnkPathId {
-    base::global::UnkStringData* data;
-
+// A file-path string id (pool g_unk_7101d47200) as the code assigns it, with CStrId's copy-assignment,
+// which CFilePathStrId's header lacks; the default path g_unk_7101d470e8 is viewed through it.
+struct UnkPathId : base::global::CFilePathStrId {
     UnkPathId& operator=(const UnkPathId& other) {
         if (data != other.data) {
             base::global::UnkStringData* d = other.data;
@@ -26,8 +26,6 @@ struct UnkPathId {
         return *this;
     }
 };
-
-extern UnkPathId g_unk_7101d470e8;
 
 extern "C" int rand();
 
@@ -111,7 +109,7 @@ void fn_7101037bc0(UnkSoundDef* self, UnkSoundDesc* out, f32* scales, u32 index)
     raw.b = ids.b;
     out->field_0x18 = self->field_0x58;
 
-    UnkPathId* path = &g_unk_7101d470e8;
+    UnkPathId* path = static_cast<UnkPathId*>(&g_unk_7101d470e8);
     if (index != 0xffffffff && !(self->field_0x5a8 > 0.0f && rand() % 100 < (s32)self->field_0x5a8)) {
         UnkPathList_0x50& list = self->field_0x68[index];
         if (list.count != 0) {

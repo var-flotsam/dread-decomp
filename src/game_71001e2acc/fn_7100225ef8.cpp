@@ -1,14 +1,8 @@
 // Flush of a movie player: runs fn_7101239de0 on the object at 0x50, then empties its two locked
 // ring queues (64 4-byte entries at 0x2a0, 64 0x18-byte entries at 0x3e0), stepping the read
 // position up to the write position before resetting both to the start.
+#include "base/UnkDefaultAllocator.h"
 #include "types.h"
-
-struct UnkMutex_7100225ef8 {
-    u8 data[0x20];
-};
-
-void fn_710006691c(UnkMutex_7100225ef8* mutex);  // nn::os::LockMutex
-void fn_7100066920(UnkMutex_7100225ef8* mutex);
 
 template <class T, u32 N>
 struct UnkRing_7100225ef8 {
@@ -30,7 +24,7 @@ struct UnkRing_7100225ef8 {
 
 template <class T, u32 N, u32 Gap>
 struct UnkLockedRing_7100225ef8 {
-    UnkMutex_7100225ef8 mutex;
+    nn::os::MutexType mutex;
     u8 unk_0x20[Gap];
     UnkRing_7100225ef8<T, N> ring;
 

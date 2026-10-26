@@ -5,6 +5,7 @@
 // 0x7101a1a4c8 at +0x30, with its own allocator at +0x38). The derived part frees the nodes and the sub-object's block,
 // then the base part runs the list cleanup again.
 #include "base/UnkBlockFreeList.h"
+#include "base/UnkCloneHelpers.h"
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
 
@@ -12,7 +13,6 @@ extern void* g_unk_7101a1bcd0[];  // derived part's vtable (fn_71000fc7cc)
 extern void* g_unk_7101a1bcf0[];  // base part's vtable (fn_71000fc7cc)
 extern void* g_unk_7101a1a4a8[];  // derived part's vtable (fn_71000732d4)
 extern void* g_unk_7101a1a070[];  // base part's vtable (fn_71000732d4)
-extern void* g_unk_7101a1a4c8[];  // the sub-object's vtable
 
 template <u32 Next>
 struct UnkListNode {
@@ -29,7 +29,7 @@ struct UnkNodeOwner {
     Node* field_0x18;
     base::UnkAllocator* field_0x20;
     u8 pad_0x28[8];
-    void** field_0x30;
+    void* field_0x30;
     base::UnkAllocator* field_0x38;
     UnkBlockFreeList field_0x40;  // the sub-object's free list; its buffer is at +0x60
     u8 pad_0x68[4];
@@ -52,7 +52,7 @@ struct UnkNodeOwner {
         field_0x10 = nullptr;
         field_0x18 = nullptr;
         field_0x20 = nullptr;
-        field_0x30 = g_unk_7101a1a4c8 + 2;
+        field_0x30 = g_unk_7101a1a4c8 + 0x10;
         if (void* block = field_0x40.buffer) {
             fn_71000837f4(&field_0x40);
             field_0x38->vf_0x48(block);

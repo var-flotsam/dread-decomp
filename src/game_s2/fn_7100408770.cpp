@@ -1,7 +1,10 @@
 // Asks the global registry (created on first use) for the value named by a fixed string id and the
 // string id at +0x510 (each use counted on its string data at 0x44; the first text defaults to
 // the empty string) and returns it; 0 when nothing is found.
+#include "base/reflection/UnkReflAttributes.h"
 #include "types.h"
+
+using base::reflection::UnkTunableRegistry;
 
 struct UnkNamedString {
     u8 unk_0x0[0x10];
@@ -12,7 +15,6 @@ struct UnkNamedString {
         u32 uses;
     };
 };
-struct UnkRegistry;
 struct UnkSelf {
     u8 unk_0x0[0x510];
     UnkNamedString* name;
@@ -22,17 +24,15 @@ struct UnkGroupIds {
     UnkNamedString* group;
 };
 
-extern UnkRegistry* g_unk_7101d47350;
+extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkGroupIds g_unk_717272fd38;
-void* fn_71000839a0(u32 size, u32 align_mask);
-void fn_710013ac14(UnkRegistry* registry);
-void fn_710013c7e0(UnkRegistry* registry, const char* group, const char* name, f32* value);
+void fn_710013c7e0(UnkTunableRegistry* registry, const char* group, const char* name, f32* value);
 
 f32 fn_7100408770(UnkSelf* self) {
     f32 found = 0.0f;
-    UnkRegistry* registry = g_unk_7101d47350;
+    UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
-        registry = static_cast<UnkRegistry*>(fn_71000839a0(0x58, 0x3f));
+        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
         fn_710013ac14(registry);
         g_unk_7101d47350 = registry;
     }

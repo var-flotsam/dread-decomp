@@ -3,6 +3,7 @@
 #include "game/UnkManager_71726af468.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkReflCast.h"
+#include "base/reflection/UnkReflStatics.h"
 #include "types.h"
 #include "base/reflection/UnkClassGetters.h"
 
@@ -61,8 +62,6 @@ void fn_7100daaee4(UnkManager_71726af468* self, UnkStruct_71003609b8_Actor* acto
 
 UnkStruct_71003609b8_Target* fn_71010cc3bc(void* obj);
 void* fn_7100a2c13c(void* obj, void* key);
-struct UnkMask_71003609b8;
-void fn_7100a2cb7c(void* obj, void* key, UnkMask_71003609b8* mask, f32 value, u32 arg);
 
 struct UnkStruct_71003609b8 {
     u8 pad_0x0[0x8];
@@ -116,7 +115,8 @@ void fn_71003609b8(UnkStruct_71003609b8* self) {
     }
     if (void* q = self->field_0x8->field_0x2e8) {
         if (fn_7100a2c13c(q, self->field_0x18)) {
-            UnkMask_71003609b8 mask = UnkAll_71003609b8();
+            base::reflection::UnkReflTypeIdArg mask;
+            mask.id = UnkAll_71003609b8().value;
             fn_7100a2cb7c(q, self->field_0x18, &mask, -1.0f, 0);
         }
     }

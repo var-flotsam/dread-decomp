@@ -1,6 +1,7 @@
 // Sets up an actor's components (two of them through a mask of all flags), then hands a list of
 // nineteen flag values to fn_71008724f8 under a fixed key. Layouts are placeholders.
 #include "UnkFlagListS7.h"
+#include "base/reflection/UnkReflStatics.h"
 #include "game/UnkActor.h"
 
 using unk_flag_list::UnkFlagList;
@@ -35,10 +36,6 @@ extern UnkS12_7100600c98 g_unk_7101cd08a0_target;
 struct UnkKey_7100600c98;
 extern UnkKey_7100600c98 g_unk_7101ce6100_target;
 
-bool fn_7101176690(void* obj, u64 hash, u64 key, const UnkFlags_7100600c98& flags, const UnkS16_7100600c98& a,
-                   const UnkS12_7100600c98& b, const UnkMask_7100600c98& mask);
-void fn_7100a2cb7c(void* obj, UnkKey_7100600c98* key, UnkMask_7100600c98* mask, f32 value, u32 arg);
-
 struct UnkStruct_7100600c98 {
     u8 pad_0x0[0x30];
     UnkActor* actor;
@@ -50,13 +47,16 @@ extern UnkFlagListKey g_unk_71726f37a0 __attribute__((visibility("hidden")));
 // them their own, after the mask).
 void fn_7100600c98(UnkStruct_7100600c98* self) {
     if (void* p = self->actor->field_0x220) {
-        UnkFlags_7100600c98 none;
-        UnkMask_7100600c98 all = UnkAll_7100600c98();
-        fn_7101176690(p, 0x039363ae10389fa6ull, 0xf4061ff25a2163d6ull, none, g_unk_7101cd0898_target,
-                      g_unk_7101cd08a0_target, all);
+        base::reflection::UnkReflTypeIdArg none;
+        none.id = 0;
+        base::reflection::UnkReflTypeIdArg all;
+        all.id = UnkAll_7100600c98().value;
+        fn_7101176690(p, 0x039363ae10389fa6ull, 0xf4061ff25a2163d6ull, &none, &g_unk_7101cd0898_target,
+                      &g_unk_7101cd08a0_target, &all);
     }
     if (void* q = self->actor->field_0x2e8) {
-        UnkMask_7100600c98 all = UnkAll_7100600c98();
+        base::reflection::UnkReflTypeIdArg all;
+        all.id = UnkAll_7100600c98().value;
         fn_7100a2cb7c(q, &g_unk_7101ce6100_target, &all, -1.0f, 0);
     }
     if (void* target = fn_7100d7c990(self->actor)->field_0x1d8) {
