@@ -16,6 +16,8 @@ using base::reflection::CClass;
 extern void* g_unk_717271e8f8;
 void fn_71011cf364(void* composition, s32 value);
 void fn_71011cde44(void* composition, s32 value);
+// Kept local: with the header's typed signature (UnkGuiDisplayObject*, UnkGuiDisplayObject*) the
+// NON_MATCHING(minor) functions below change (the last reloads of the slot lose the x20 address).
 void fn_71011d968c(void* menu, void* composition);
 
 template <u32 Offset>

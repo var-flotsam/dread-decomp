@@ -22,4 +22,6 @@ struct UnkStrIdTable {
     base::UnkAllocator* allocator;
 };
 static_assert(sizeof(UnkStrIdTable) == 0x28, "UnkStrIdTable placeholder layout");
+
+// Resets every id in both arrays to the empty id and clears the count. Not decompiled yet.
 void fn_71004f11f8(UnkStrIdTable* self);

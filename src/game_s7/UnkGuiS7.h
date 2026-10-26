@@ -12,6 +12,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiHandle.h"
+#include "game/UnkGuiRoot.h"
 
 namespace unk_gui {
 
@@ -21,11 +22,6 @@ using base::reflection::CClass;
 using UnkClass = CClass;  // the name the includers (fn_7100b921e0, fn_7100b94320) still use
 
 using UnkGuiObj = ::UnkGuiDisplayObject;  // game/UnkGuiDisplayObject.h: GetClass() and field_0x190
-
-struct UnkGuiRoot {
-    u8 unk_0x0[0x68];
-    void* menu;
-};
 
 // A text string built from a number.
 struct UnkText {
@@ -77,14 +73,11 @@ struct UnkOwner {
     UnkMode* mode;
 };
 
-extern UnkGuiRoot* g_unk_717271e8f8;
 extern UnkStats* g_unk_71726bc570;
 extern CStrId g_unk_7172769ca0[2] __attribute__((visibility("hidden")));  // background ids
 
 UnkGuiObj* fn_71011d98ec(UnkGuiObj* composition, u64 id);  // finds a child
 UnkGuiObj* fn_71011d9508(UnkGuiObj* self, const char* const* path);
-void fn_71011d968c(void* menu, UnkGuiObj* composition);
-void fn_71011b6bbc(UnkGuiRoot* root, UnkGuiObj* object, bool value);
 void fn_71011cde44(UnkGuiObj* object, s32 value);
 void fn_71011cfba8(UnkGuiObj* object, f32 alpha);
 void fn_71011cdc30(UnkGuiObj* object, bool value);

@@ -1,5 +1,6 @@
 // Destructor body: releases the two callback lists (each with a ref-counted owner), the pooled
 // arrays and string ids, resets the five embedded sub-objects, then runs the base destructor.
+#include "base/UnkStrIdTable.h"
 #include "types.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflCast.h"
@@ -96,15 +97,6 @@ struct UnkCallbackList {
     }
 };
 
-struct UnkPool {
-    void* data;
-    void* field_0x8;
-    u32 count;
-    u8 pad_0x14[0xc];
-    UnkAllocator* allocator;
-};
-
-void fn_71004f11f8(UnkPool* p);
 void fn_710002f67c(void* p);
 
 // An embedded sub-object (0x70 bytes) with its own vtable.
@@ -159,7 +151,7 @@ struct UnkObj_710091e510 {
     UnkCallbackList field_0x428;
     u8 pad_0x468[0x8];
     UnkStrIdField field_0x470;
-    UnkPool field_0x478;
+    UnkStrIdTable field_0x478;
     UnkCallbackList field_0x4a0;
 };
 
@@ -169,10 +161,10 @@ void fn_710091e510(UnkObj_710091e510* self) {
     self->vtable = g_unk_7101a82960 + 2;
     self->field_0x4a0.Destroy();
     fn_71004f11f8(&self->field_0x478);
-    if (self->field_0x478.field_0x8)
-        self->field_0x478.allocator->Free(self->field_0x478.field_0x8);
-    if (self->field_0x478.data)
-        self->field_0x478.allocator->Free(self->field_0x478.data);
+    if (self->field_0x478.keys)
+        self->field_0x478.allocator->vf_0x48(self->field_0x478.keys);
+    if (self->field_0x478.values)
+        self->field_0x478.allocator->vf_0x48(self->field_0x478.values);
     self->field_0x470.Release();
     self->field_0x428.Destroy();
     self->field_0x418.Release();

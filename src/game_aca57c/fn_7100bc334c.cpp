@@ -3,6 +3,7 @@
 // (count at 0x54, freed by fn_710001737c), the file path at 0x20 and the string ids at 0x18 and
 // 0x10 are released and the base destructor (fn_7100067ed4) runs.
 #include "base/UnkCountedResource.h"
+#include "base/UnkStrIdPathPair.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "types.h"
@@ -43,7 +44,6 @@ struct UnkShared54Ptr {
     }
 };
 
-void fn_7100027044(UnkReleasedStrId* id);
 void fn_7100067ed4(void* self);  // the base's destructor
 
 template <char* Vtable>
@@ -57,7 +57,7 @@ struct UnkPathRefBase {
 
     __attribute__((always_inline)) ~UnkPathRefBase() {
         vtable = Vtable + 0x10;
-        fn_7100027044(&b);
+        fn_7100027044(reinterpret_cast<UnkStrIdPathResource*>(&b));
     }
 };
 

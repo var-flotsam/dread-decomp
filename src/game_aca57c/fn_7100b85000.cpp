@@ -2,6 +2,7 @@
 // 0x280: the objects the first one points to have their first word cleared, the three are
 // emptied and freed, then the base destructor (fn_71011d8e90) runs.
 #include "base/UnkVector.h"
+#include "game/UnkGuiDisplayObject.h"
 #include "types.h"
 
 struct UnkLinked {
@@ -13,8 +14,6 @@ template <class T>
 struct UnkFreedVector : base::UnkVector<T> {
     __attribute__((always_inline)) ~UnkFreedVector() { this->Free(); }
 };
-
-void fn_71011d8e90(void* self);  // the base's destructor
 
 template <void** Vtable>
 struct UnkLinkOwner {
@@ -38,7 +37,7 @@ static_assert(__builtin_offsetof(UnkLinkOwner<nullptr>, field_0x280) == 0x280, "
 template <void** Vtable>
 __attribute__((always_inline)) static inline void Destroy(UnkLinkOwner<Vtable>* self) {
     self->~UnkLinkOwner();
-    fn_71011d8e90(self);
+    fn_71011d8e90(reinterpret_cast<UnkGuiDisplayObject*>(self));
 }
 
 extern void* g_unk_7101a9f820[];

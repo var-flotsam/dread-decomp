@@ -25,7 +25,6 @@ extern void* g_unk_717271e8f8;
 void fn_71011cf364(void* composition, s32 value);
 void fn_71011cde44(void* composition, s32 value);
 UnkReflObject* fn_7100e033a8(UnkGameManager* manager);
-void fn_71011d968c(UnkReflObject* menu, void* composition);
 
 static inline void CallVf78(void* composition, s32 a, bool b) {
     void** vtable = *static_cast<void***>(composition);
@@ -45,7 +44,7 @@ __attribute__((always_inline)) static inline bool SetUpForMenu(UnkMenuScreen* se
         UnkReflObject* menu = fn_7100e033a8(g_unk_7101d47310);
         if (menu)
             menu = fn_710009d50c(menu->vf_0x0(), fn_7100b34230()) ? menu : nullptr;
-        fn_71011d968c(menu, composition);
+        fn_71011d968c(reinterpret_cast<UnkGuiDisplayObject*>(menu), composition);
     }
     return true;
 }

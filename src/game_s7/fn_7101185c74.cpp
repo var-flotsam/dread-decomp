@@ -8,18 +8,6 @@
 
 using base::reflection::CClass;
 
-struct UnkGuiFocus {
-    u8 unk_0x0[0x10];
-    UnkWeakTarget* field_0x10;
-};
-
-struct UnkGuiRoot {
-    u8 unk_0x0[0x230];
-    UnkGuiFocus* field_0x230;
-};
-
-extern UnkGuiRoot* g_unk_717271e8f8;
-
 // Unless the flag at 0x181 is set, refers to the focused object at 0x318 (or to nothing), passes it
 // 0 and this object 1, then hands this object to the root.
 struct UnkGuiFocusUser318 {

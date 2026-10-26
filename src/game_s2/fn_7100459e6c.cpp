@@ -3,6 +3,7 @@
 // kind is 2, read without a null check as in the original). Then the counter at 0x600 is cleared and the
 // flag at 0x64 of the object at 0x1b8 set.
 #include "base/global/CStrId.h"
+#include "game/UnkCollisionRecord.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
@@ -30,7 +31,7 @@ struct UnkOwner {
     u8 unk_0x0[0x1b8];
     UnkSubObject* field_0x1b8;
     u8 unk_0x1c0[0xe0];
-    void* field_0x2a0;
+    UnkCollisionContainer* field_0x2a0;
 };
 struct UnkSelf {
     u8 unk_0x0[0x30];
@@ -44,15 +45,14 @@ struct UnkSelf {
 extern char g_unk_71726c9e08[] __attribute__((visibility("hidden")));
 void fn_7100de9540(UnkGameManager* manager, const char* name, UnkSelf* self);
 void fn_7100ac3880(UnkSelf* self);
-UnkDef* fn_71008640a4(void* class_def, const CStrId* id);
 
 void fn_7100459e6c(UnkSelf* self) {
     fn_7100de9540(g_unk_7101d47310, g_unk_71726c9e08, self);
     fn_7100ac3880(self);
-    void* class_def = self->owner->field_0x2a0;
+    UnkCollisionContainer* class_def = self->owner->field_0x2a0;
     {
         CStrId id("damage", true);
-        UnkComponentHolder* holder = fn_71008640a4(class_def, &id)->field_0x158;
+        UnkComponentHolder* holder = reinterpret_cast<UnkDef*>(fn_71008640a4(class_def, &id))->field_0x158;
         UnkDamageComponent* component =
             holder->vf_0x18() == 2 ? reinterpret_cast<UnkDamageComponent*>(holder) : nullptr;
         self->field_0x5f0 = component->field_0xa8;

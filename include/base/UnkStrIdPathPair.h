@@ -16,12 +16,16 @@ struct UnkStrIdPathPair {
 void fn_710008d8e8(UnkStrIdPathPair* self);
 
 // The pair with the resource the path resolves to (unit 32 of tools/tu_map.py, like the pair's
-// own functions): fn_71000267f8 assigns one, copying both ids and resolving the resource again
-// (fn_710002038c) when both are set; fn_7100027044 releases the ids and drops the resource.
+// own functions).
 struct UnkStrIdPathResource {
     UnkStrIdPathPair ids;
     UnkCountedResource* resource;
 };
 static_assert(sizeof(UnkStrIdPathResource) == 0x18, "UnkStrIdPathResource placeholder layout");
-void fn_71000267f8(UnkStrIdPathResource* self, const UnkStrIdPathResource& other);
+
+// Assigns both ids from `other` (a string id and a file-path id: only the pair's two words are
+// read) and, when both are set, resolves the resource again (fn_710002038c). Not decompiled yet.
+void fn_71000267f8(UnkStrIdPathResource* self, const UnkStrIdPathPair& other);
+
+// Releases the ids and drops the resource. Not decompiled yet.
 void fn_7100027044(UnkStrIdPathResource* self);

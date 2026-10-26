@@ -1,5 +1,7 @@
 // Destructor body: tears down the object's trees, pooled arrays, strings and string ids in
 // reverse member order, then runs the base-class destructor.
+#include "base/UnkDeferredSet.h"
+#include "base/UnkStrIdTable.h"
 #include "base/global/CRntString.h"
 #include "types.h"
 #include "base/global/CStrId.h"
@@ -39,11 +41,10 @@ struct UnkAllocator {
 };
 
 struct UnkTree;
-void fn_71004f3ea4(void* root, UnkTree* tree);
 void fn_71009d3dc4(void* root, UnkTree* tree);
 
 struct UnkTree {
-    void* root;
+    base::UnkDeferredSet<void>* root;
     void* field_0x8;
     void* field_0x10;
 
@@ -79,7 +80,7 @@ struct UnkObj_71009cf440 {
     UnkPool field_0x138;
     u8 pad_0x160[0x10];
     UnkStrIdField field_0x170;
-    UnkPool field_0x178;
+    UnkStrIdTable field_0x178;
     UnkStrIdField field_0x1a0;
     u8 pad_0x1a8[0x10];
     UnkTree field_0x1b8;
@@ -88,7 +89,6 @@ struct UnkObj_71009cf440 {
 
 extern void* g_unk_7101a89358[];
 void fn_71009cef20(void* p);
-void fn_71004f11f8(UnkPool* p);
 void fn_71009cd080(UnkObj_71009cf440* self);
 
 void fn_71009cf440(UnkObj_71009cf440* self) {
@@ -102,10 +102,10 @@ void fn_71009cf440(UnkObj_71009cf440* self) {
     self->field_0x1b8.field_0x10 = nullptr;
     self->field_0x1a0.Release();
     fn_71004f11f8(&self->field_0x178);
-    if (self->field_0x178.field_0x8)
-        self->field_0x178.allocator->Free(self->field_0x178.field_0x8);
-    if (self->field_0x178.data)
-        self->field_0x178.allocator->Free(self->field_0x178.data);
+    if (self->field_0x178.keys)
+        self->field_0x178.allocator->vf_0x48(self->field_0x178.keys);
+    if (self->field_0x178.values)
+        self->field_0x178.allocator->vf_0x48(self->field_0x178.values);
     self->field_0x170.Release();
     if (self->field_0x138.data) {
         for (u64 i = 0; i < self->field_0x138.count; ++i) {
