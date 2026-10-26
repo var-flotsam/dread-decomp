@@ -3,7 +3,8 @@
 // The part of an attack (the root class is CAttack, size 0x28; src/game_5821e4/CAttack.h has the
 // whole layout for the copy constructors) that the subclasses' destructors and resets share:
 // the vtable, the actor the attack belongs to (+0x8) and the key the attack registers with the
-// actor's components (+0x18). Subclasses derive from it and start their own members at +0x20.
+// actor's components (+0x18). The subclass views here derive from it and pad from +0x20 (CAttack
+// itself has a field there).
 // fn_71003609b8 is defined in src/game_lo/fn_71003609b8.cpp.
 
 #include "game/UnkActor.h"

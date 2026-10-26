@@ -182,6 +182,7 @@ def migrate(symbols: list[str], version: str, header: str | None, declaration: s
                       + ("" if has_include(read(path)[0], hdr) else f'; add #include "{spelling}"'))
         if dry_run:
             continue
+        baseline._INCLUDE_CACHE = None  # an earlier symbol of this run may have added includes
         verify = sorted(set(baseline.expand(set(targets) | set(touched_headers))))
         tag = f"hub_migrate-{symbol}"
         print(f"  baseline {tag}: {len(verify)} file(s) to rebuild")
@@ -203,39 +204,43 @@ def migrate(symbols: list[str], version: str, header: str | None, declaration: s
             print(f"  {symbol}: nothing migrated")
             worst = max(worst, 1)
             continue
-        try:
+        undo: set[str] = set()
+        still: list[str] = []
+        moved: list[str] = []
+        try:  # every compare and restore inside: an interrupted run leaves the tree as it was
             for path, (text, crlf) in edits.items():
                 write(path, text, crlf)
             result = baseline.compare(tag, verify, version, jobs)
-        except BaseException:
-            baseline.restore(tag, list(edits))  # an interrupted run leaves the tree as it was
-            raise
-        changed = [p for p, (st, _) in result.items() if st != "UNCHANGED"]
-        kept = [p for p in targets if p not in changed]
-        if changed:
-            # First the changed files alone go back: with their own declaration next to the
-            # header's (the same signature, or an overload) they usually build as before.
-            undo = set(changed)
-            baseline.restore(tag, sorted(undo))
-            again = baseline.compare(tag, sorted(changed), version, jobs)
-            still = [p for p, (st, _) in again.items() if st != "UNCHANGED"]
+            changed = [p for p, (st, _) in result.items() if st != "UNCHANGED"]
+            if changed:
+                # First the changed files alone go back: with their own declaration next to the
+                # header's (the same signature, or an overload) they usually build as before.
+                undo = set(changed)
+                baseline.restore(tag, sorted(undo))
+                again = baseline.compare(tag, sorted(changed), version, jobs)
+                still = [p for p, (st, _) in again.items() if st != "UNCHANGED"]
             if still:
                 # Then a header with an includer that still differs: a header is all or nothing.
                 # Undoing the canonical header's new declaration takes back every file migrated
-                # onto it; undoing another header can move its other includers, so check them and
-                # give the symbol up if any moved.
+                # onto it; undoing another header changes what all its includers see (the files
+                # restored alone too), so all are compared again and the symbol is given up if
+                # any moved.
                 bad = {h for h in touched_headers if any(c in baseline.expand({h}) for c in still)}
                 undo |= bad
                 if hdr in bad:
                     undo |= set(edits)
                 baseline.restore(tag, sorted(undo))
-                rest = [p for p in verify if p not in undo]
-                if hdr not in bad and rest:
-                    final = baseline.compare(tag, rest, version, jobs)
-                    if any(st != "UNCHANGED" for st, _ in final.values()):
+                if hdr not in bad:
+                    final = baseline.compare(tag, list(verify), version, jobs)
+                    moved = sorted(p for p, (st, _) in final.items() if st != "UNCHANGED")
+                    if moved:
                         undo |= set(edits)
                         baseline.restore(tag, sorted(undo))
-            kept = [p for p in targets if p not in undo]
+        except BaseException:
+            baseline.restore(tag, list(edits))
+            raise
+        kept = [p for p in targets if p not in undo]
+        if changed:
             for p in sorted(changed):
                 st, diff = result[p]
                 lines = diff.splitlines()[2:]
@@ -245,9 +250,14 @@ def migrate(symbols: list[str], version: str, header: str | None, declaration: s
                 d = baseline.BASE / tag / "diff" / (p + ".txt")
                 d.parent.mkdir(parents=True, exist_ok=True)
                 d.write_text(diff, encoding="utf-8")
-                print(f"  LEFT  {p}  {st}: {first.strip()[:200]}")
+                if p in still:
+                    print(f"  LEFT  {p}  {st}: {first.strip()[:200]}")
+                else:
+                    print(f"  LEFT  {p}  keeps its own declaration next to the header's (migrated: {first.strip()[:160]})")
+            for p in moved:
+                print(f"  MOVED  {p}  changed once a header went back: the symbol is given up")
             for p in sorted((set(targets) & undo) - set(changed)):
-                print(f"  UNDONE  {p}  builds as before, but the header edit it relies on went back")
+                print(f"  UNDONE  {p}  the header edit it relies on went back")
             worst = max(worst, 1)
         for p in kept:
             print(f"  migrated  {p}")

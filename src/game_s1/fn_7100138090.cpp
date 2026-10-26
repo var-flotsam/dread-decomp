@@ -2,6 +2,7 @@
 // empty string ids at 8, 0x10 and 0x18 (fn_71000003d4), a cleared flag at 0x20, then a call of
 // its own slot 0x18. fn_710039b35c is a relative. It has no direct callers.
 
+#include "game/UnkTUProperty.h"
 #include "types.h"
 
 extern char unk_7101a1a478[];
@@ -26,8 +27,10 @@ void fn_7100138090(UnkObject_7100138090* self) {
     self->vtable[3](self);
 }
 
-// The same constructor without the call of slot 0x18 (fn_7100136ecc).
-void fn_7100136ecc(UnkObject_7100138090* self) {
+// The same constructor without the call of slot 0x18 (fn_7100136ecc, the tunables' base constructor:
+// game/UnkTUProperty.h).
+void fn_7100136ecc(UnkTunable* tunable) {
+    auto* self = reinterpret_cast<UnkObject_7100138090*>(tunable);
     fn_7100023838(self);
     self->vtable = reinterpret_cast<void (**)(UnkObject_7100138090*)>(unk_7101a1a478 + 0x10);
     fn_71000003d4(&self->id_0x8, "", true);

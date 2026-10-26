@@ -11,7 +11,8 @@
 #include "base/global/CStrId.h"
 #include "types.h"
 
-// Hash of a type-kind name ("base::reflection::CClass", length 0x18).
+// Type-kind names are hashed with fn_7100001570 (base/global/CStrId.h): "base::reflection::CClass",
+// length 0x18.
 
 namespace base::reflection {
 

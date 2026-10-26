@@ -58,7 +58,7 @@ struct UnkRegistry_0x70 {
     u8 data[0x70];
 };
 
-UnkScriptPath_0x148 fn_71011b66fc(void* registry, const char* const* name);
+UnkScriptPath_0x148 fn_71011b66fc(void* registry, const base::global::CRntString& name);
 void fn_7100087388(UnkRegistry_0x70* r);
 void fn_710008d4c0(UnkStrPair_0x10* s, const UnkEntry_0x30* e);
 bool fn_7100087850(UnkRegistry_0x70* r, const UnkStrPair_0x10* s);
@@ -68,7 +68,7 @@ extern UnkRegistry_0x70* g_unk_7101d4b5a0;
 UnkGuiHandle fn_71011b69d8(void* registry, const base::global::CRntString& name) {
     UnkEntry_0x30 path;
     {
-        UnkScriptPath_0x148 sp = fn_71011b66fc(registry, reinterpret_cast<const char* const*>(&name));
+        UnkScriptPath_0x148 sp = fn_71011b66fc(registry, name);
         auto* sp_str = reinterpret_cast<base::global::CRntString*>(&sp.path);
         fn_710007eab4(reinterpret_cast<base::global::CRntString*>(&path), sp_str);
         fn_710007ed40(sp_str);
