@@ -434,6 +434,9 @@ are recorded in `docs/JOURNAL.md` (work log items 0–3).
 - **Ghidra project lock:** only one process can open `build/ghidra/<ver>/dread.gpr` at a time.
   `tools/ghidra/decompile.py` fails from a worktree under `.claude/` (Ghidra rejects a path element
   starting with a dot): run it from the main checkout.
+- **Worktrees on Windows:** a new worktree needs `orig` and `build` linked to the main checkout's.
+  Git Bash's `ln -s` silently copies them (12.6 GB, 2026-10-26) unless native symlinks are on; make
+  junctions instead: `cmd //c mklink /J orig <main>\orig` (and `build`).
 - `llvm-readelf` isn't in the LLVM Windows build; use `llvm-readobj --elf-output-style=GNU`.
 - Constructors compile to two aliased symbols (C1/C2). `check.py` counts them once (by address);
   objdiff counts both.
