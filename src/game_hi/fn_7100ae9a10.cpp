@@ -18,7 +18,6 @@ struct UnkInlineString {
 };
 
 extern void* g_unk_7101a1b750[];
-void fn_710007f3b4(UnkInlineString* self, const void* str);  // append a string
 
 // The string data's use count, a union member like ref_count (no type-based alias info, so
 // the id is reloaded after the increment).
@@ -29,9 +28,10 @@ struct UnkStringUse {
     };
 };
 
-static inline const void* UseStr(const CStrId& id) {
+// The id's string (a CRntString at +0x10 of the string data), with its use count raised.
+static inline const base::global::CRntString* UseStr(const CStrId& id) {
     ++reinterpret_cast<UnkStringUse*>(id.data)->use_count;
-    return reinterpret_cast<char*>(id.data) + 0x10;
+    return reinterpret_cast<const base::global::CRntString*>(reinterpret_cast<char*>(id.data) + 0x10);
 }
 
 // Compared as integers: a pointer comparison puts the operands the other way round.
@@ -48,14 +48,14 @@ void fn_7100ae9a10(UnkQualifiedId* self, UnkIdSource* source, const CStrId& pref
     s.field_0xc0 = 0;
     self->source = source;
     if (HasValue(prefix)) {
-        fn_710007f3b4(&s, UseStr(prefix));
+        fn_710007f3b4(str, UseStr(prefix));
         fn_710007f5ac(str, ':');
     }
     if (HasValue(source->vf_0x20())) {
-        fn_710007f3b4(&s, UseStr(source->vf_0x20()));
+        fn_710007f3b4(str, UseStr(source->vf_0x20()));
         fn_710007f5ac(str, ':');
     }
-    fn_710007f3b4(&s, UseStr(source->vf_0x28()));
+    fn_710007f3b4(str, UseStr(source->vf_0x28()));
     {
         UnkStringData* tmp;
         fn_7100000850(reinterpret_cast<base::global::UnkStrIdBase*>(&tmp), *str, true);

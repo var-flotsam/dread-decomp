@@ -42,7 +42,6 @@ struct UnkBox {
     f32 field_0x14;
 };
 
-void* fn_7100defcec(UnkGameManager* manager);
 UnkCamera* fn_71010e2080();
 
 // NON_MATCHING(minor): the last z clamp (fmaxnm) and its store are scheduled before the paired store

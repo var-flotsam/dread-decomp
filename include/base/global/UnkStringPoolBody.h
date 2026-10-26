@@ -49,18 +49,29 @@ struct UnkPoolSet {
 };
 static_assert(sizeof(UnkPoolSet) == 0x50, "UnkPoolSet layout");
 
-// What follows the two header fields: the empty string, the set and the node pool.
-struct UnkStringPoolState {
-    UnkStringEntry empty;  // +0x10: the empty string, which every default id points at
-    UnkPoolSet set;        // +0x58
-    // +0xa8: the block pool the nodes' memory comes from, laid out as UnkBlockPool
-    // (base/UnkCloneHelpers.h).
-    char* nodes_vtable;
-    UnkAllocator* nodes_parent;
-    UnkBlockFreeList nodes_blocks;
-    u32 nodes_field_0x38;
-    bool nodes_field_0x3c;
+// The block pool the set's nodes' memory comes from, laid out as UnkBlockPool
+// (base/UnkCloneHelpers.h). It follows the set, and the set's node allocator points at it once
+// fn_7100080578 has set the pool up.
+struct UnkPoolNodes {
+    char* vtable;
+    UnkAllocator* parent;  // the allocator the node memory comes from
+    UnkBlockFreeList blocks;
+    u32 field_0x38;
+    bool field_0x3c;
 };
+
+// The set with its node pool (what fn_7100080578 takes).
+struct UnkPoolSetWithNodes : UnkPoolSet {
+    UnkPoolNodes nodes;  // +0x50
+};
+
+// What follows the two header fields: the empty string, then the set and the node pool.
+struct UnkStringPoolState {
+    UnkStringEntry empty;        // +0x10: the empty string, which every default id points at
+    UnkPoolSetWithNodes set;     // +0x58
+};
+static_assert(__builtin_offsetof(UnkStringPoolState, set) == sizeof(UnkStringEntry), "the set follows the empty string");
+static_assert(__builtin_offsetof(UnkPoolSetWithNodes, nodes) == sizeof(UnkPoolSet), "the node pool follows the set");
 
 struct UnkStringPoolBody {
     UnkStringPool** slot;  // +0: the global this pool is published in once it's built
@@ -72,5 +83,8 @@ static_assert(sizeof(UnkStringPoolBody) == 0xe8, "UnkStringPoolBody layout");
 }  // namespace base::global
 
 
-void fn_7100080578(char* set, u32 a, u32 b);  // sets up the set's buckets for the pool
+// Sets the set up: gives the node pool that follows it room for `nodes` nodes (0x58 bytes each,
+// freeing the memory it had) and points the set's node allocator at it, then makes the bucket
+// array `buckets` long (growing it, the new buckets empty, or just cutting the count).
+void fn_7100080578(base::global::UnkPoolSetWithNodes* set, u32 buckets, u32 nodes);
 void fn_71000800dc(char* set);                // frees the set's bucket array

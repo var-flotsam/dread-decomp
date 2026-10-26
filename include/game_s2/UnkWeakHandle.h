@@ -94,3 +94,8 @@ struct UnkRefPtr {
         }
     }
 };
+
+// The counted reference to the weak handle of the actor that the reflected property `member` reads
+// as (directly or through a pointer value), or null (fn_7100ad7cc0 reads the property). Returned in
+// memory. Defined in src/game/CActor.cpp (unit 341).
+UnkRefPtr fn_710023b580(void* member);

@@ -4,20 +4,12 @@
 // handle is replaced by a fresh one and the state becomes 2. When no entry is found the result is
 // the default value.
 #include "base/UnkRefHandle.h"
+#include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 // The handle an entry refers to (base::UnkRefCounted's layout); its target, the entry's owner, is at +0x10.
 struct UnkCounted : base::UnkRefCounted {
     void* owner;
-};
-
-// A counted reference; the destructor decrements and tests in one step.
-struct UnkRef {
-    UnkCounted* ptr;
-    ~UnkRef() {
-        if (ptr && --ptr->ref_count == 0)
-            delete ptr;
-    }
 };
 
 struct UnkEntry {
@@ -50,14 +42,12 @@ struct UnkSelf {
     UnkTable table;
 };
 
-UnkRef fn_710023b580(void* from);
-
 UnkValue fn_7100473a08(UnkSelf* self, void* owner) {
     for (u64 i = 0; i < self->table.count; ++i) {
         UnkEntry* entry = &self->table.entries[i];
         if (entry->state == 1) {
             {
-                UnkRef fresh = fn_710023b580(entry->field_0x8);
+                UnkRefPtr fresh = fn_710023b580(entry->field_0x8);
                 // The reference's pointer is the handle's.
                 fn_7100234f78(&entry->handle, reinterpret_cast<const base::UnkRefHandle*>(&fresh));
             }

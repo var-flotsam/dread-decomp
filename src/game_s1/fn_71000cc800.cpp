@@ -11,13 +11,11 @@
 using base::global::CRntString;
 using base::global::UnkStringData;
 
-void fn_710001a270(UnkStringData** out, const void* str, bool flag);  // file-path pool
-
 static inline void BuildId(base::UnkStrIdMember*, UnkStringData** out, const CRntString* str) {
     fn_7100000850(reinterpret_cast<base::global::UnkStrIdBase*>(out), *str, true);
 }
 static inline void BuildId(base::UnkStrIdMemberOf<g_unk_7101d47200>*, UnkStringData** out, const CRntString* str) {
-    fn_710001a270(out, str, true);
+    fn_710001a270(reinterpret_cast<base::global::UnkFilePathStrIdBase*>(out), *str, true);
 }
 
 template <base::global::UnkStringPool*& Pool>

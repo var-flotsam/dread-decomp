@@ -3,6 +3,7 @@
 // and from a CRntString (fn_7100000850), which reuses the string's cached CRC-64 as the pool hash.
 #include <new>
 
+#include "base/global/CFilePathStrId.h"  // g_unk_710162e2ed: the empty string passed when a CRntString has no text
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 
@@ -13,9 +14,6 @@ using base::global::UnkStrIdInline;
 void fn_71000003d4(UnkStrIdBase* self, const char* str, bool flag) {
     new (self) UnkStrIdBase(UnkStrIdInline(), str, flag);
 }
-
-// The empty string the constructor passes to the pool when the CRntString has no text.
-extern const char g_unk_710162e2ed[] __attribute__((visibility("hidden")));
 
 void fn_7100000850(UnkStrIdBase* self, const CRntString& str, bool flag) {
     self->data = nullptr;

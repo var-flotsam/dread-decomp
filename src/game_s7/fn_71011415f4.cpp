@@ -104,7 +104,7 @@ extern CStrId g_unk_7172a093b8 __attribute__((visibility("hidden")));
 extern CStrId g_unk_7172a093c0 __attribute__((visibility("hidden")));
 
 static inline CBlackboard* Table() {
-    return reinterpret_cast<CBlackboard*>(g_unk_7101d47310->field_0x968);
+    return &g_unk_7101d47310->field_0x968;
 }
 
 void fn_71011415f4(UnkComponent_71011415f4* self) {

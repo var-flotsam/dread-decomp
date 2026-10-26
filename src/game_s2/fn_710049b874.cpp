@@ -19,7 +19,6 @@ struct UnkComponent {
 };
 
 void fn_71003aea40(UnkComponent* self);
-UnkRefPtr fn_710023b580(void* member);
 void fn_710049b920(UnkComponent* self);
 
 void fn_710049b874(UnkComponent* self) {

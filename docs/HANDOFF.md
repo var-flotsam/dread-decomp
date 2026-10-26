@@ -6,7 +6,7 @@ it needs). History, batch logs and the index of matching findings are in `docs/J
 `docs/recon.md` describes the binary, `docs/compiler.md` the toolchain, `docs/references.md` the
 outside projects. This page is edited in place, never appended to: session notes go to the journal.
 
-**Last updated 2026-10-26** (hub batches 3 and 4, var-flotsam/dread-decomp#195 and #197; the TU helper fold, #196; the shader packages, #198; boot hubs round 1, #199; port M2's shader build step and NVN binding layer, #202 and #204; hub batch 5, branch `claude/hub-batch-5`).
+**Last updated 2026-10-26** (hub batches 3 and 4, var-flotsam/dread-decomp#195 and #197; the TU helper fold, #196; the shader packages, #198; boot hubs round 1, #199; port M2's shader build step and NVN binding layer, #202 and #204; hub batch 5, branch `claude/hub-batch-5`; boot hubs round 2, branch `claude/boot-hubs-2`).
 Target: **Metroid Dread 2.1.0**, `main` build ID `646761F643AFEBB379EDD5E6A5151AF2CEF93DC1`.
 
 ## Start here
@@ -21,10 +21,12 @@ Target: **Metroid Dread 2.1.0**, `main` build ID `646761F643AFEBB379EDD5E6A5151A
   `.claude/skills/dread-hubs`: the tool first (`hub_migrate.py SYM --header H --declaration D` once a
   signature is chosen), agents on disjoint file sets for what it leaves, verified with
   `tools/baseline.py` (`save --tag <batch>-full --all` before the agents start: two minutes).
-- **Next boot hubs:** `tools/hubs.py --version 2.1.0 --boot` (round 2's list and round 1's
-  follow-ups are under stream A below). Round 1 ran four agents, one per hub group on disjoint files,
-  each with the brief "match it (`dread-match` loop, time-boxed), one header, migrate the declaring
-  files"; the whole-tree baseline before and `check.py` once after.
+- **Next boot hubs:** `tools/hubs.py --version 2.1.0 --boot` (round 3's list and round 2's
+  follow-ups are under stream A below). Rounds 1 and 2 ran four and five agents, one per hub group
+  on disjoint files (grouped by `tools/tu_map.py` unit), each with the brief "match it (`dread-match`
+  loop, time-boxed), one header, migrate the declaring files"; the whole-tree baseline before,
+  then the orchestrator settles the declarations the agents left, runs `check.py` once, and has an
+  adversarial review check the headers and every `NON_MATCHING(minor)` claim.
 - **Port:** `python tools/port_link.py --version 2.1.0` rebuilds `build/port/link/boot_missing.csv`, the
   boot-slice functions without a source (the lifter's worklist) and the runtime stubs still needed.
   Graphics (M2): `cmake --build build/port/cmake --target shaders dread_nvn` compiles the dump's
@@ -52,7 +54,7 @@ var-flotsam/dread-decomp#187):
 | Scope | Functions counted | Bytes | `O` matching | `O`+`m` usable | `U` left |
 |---|---|---|---|---|---|
 | Whole binary (library `L` excluded) | 102,398 | 18.77 MB | **53.90%** (84,713) | 55.40% | 17,438 functions, 8.37 MB |
-| Boot slice (reachable from `nnMain`, direct calls only) | 4,308 | 1.71 MB | **24.96%** (1,889; boot hubs round 1, 2026-10-26) | 27.49% | 2,366 functions |
+| Boot slice (reachable from `nnMain`, direct calls only) | 4,308 | 1.71 MB | **25.19%** (1,903; boot hubs round 2, 2026-10-26) | 28.09% | 2,343 functions |
 
 Of the 10.1 MB matched, about 9.4 MB is generated (reflection boilerplate, lifted `char*` code,
 clones, tables) and 0.76 MB is hand-written with real types. The `U` bytes are mostly mid-sized
@@ -276,22 +278,26 @@ macOS under Rosetta 2 (`AGENTS.md`).
 
 ## Next steps
 
-**Stream A (boot slice and hubs).** Round 1 (2026-10-26, journal) matched the eight top hubs of
-2026-10-25 and two siblings (the string-pool holder, the `CBlackboard` section lookups,
-`CRntFile`'s seek, the navmesh cell's edge lookup, the sound command queue, the game manager's id
-map), four agents on disjoint files, each hub in a file named for its class with one header. Next,
-from `tools/hubs.py --version 2.1.0 --boot` (2026-10-26): `fn_710000542c` (264 B, 21 unmatched
-callers; declared in `UnkCloneRecords.h`), `fn_7100ee1f34` (2,096 B, 19), `fn_710023b580` (564 B,
-19), `fn_710001a270` (300 B, 19, the `CFilePathStrId` constructor), `fn_7100deba8c` (316 B, 18),
-`fn_7100fd3804` (1,900 B, 17), `fn_7100deabe4` (32 B, 16), `fn_710007e7f8` (616 B, 16),
-`fn_7100087388` (272 B, 15), `fn_710009dcd8` (44 B, 15), `fn_7100defcec` (28 B, 15); the round's
-own follow-ups: `fn_7101047414` and `fn_7101047484` (byte-identical to the `CBlackboard` lookup),
-`fn_7100080578` (the string pool's next piece), `UnkHashStream_0x38` is `CRntFile` (its
-functions `fn_710007be8c`, `fn_710007bf9c`, `fn_710007c3f0`, `fn_710007c1a4`, `fn_710007c0e4`),
-`UnkGameManager`'s `field_0x968` is an embedded `CBlackboard`. Binary-wide the largest are
-`fn_71010c0270` (120 B, 354 unmatched callers, almost all `lua_bind::*`) and `fn_71006f4b0c`
-(592 B, 211). 824 boot-slice `U` functions (259 KB) are "ready" (`--ready --boot`); 6,479
-binary-wide (1.9 MB).
+**Stream A (boot slice and hubs).** Round 1 (2026-10-26, #199) matched the eight top hubs of
+2026-10-25 and two siblings; round 2 (2026-10-26, journal) took the next 18 boot hubs and round 1's
+follow-ups: 14 `O`, 10 `NON_MATCHING(minor)`, one dropped, each in a file named for its class or
+unit with one header (`CRntFile`, `CFilePathStrId`, `CType`, `CGameManager`, `CBlackboard`,
+`CGameBlackboard`, the music, model and rumble managers, the file device, the registry). Next,
+from `tools/hubs.py --version 2.1.0 --boot` (2026-10-26, after round 2): `fn_7100ee1f34` (2,096 B,
+19 unmatched callers; the `CSubAreaManager` unit's 0xae8-byte object, dropped in round 2, layout
+notes in the journal), `fn_71000ead80` (416 B, 13), `fn_71000ea448` (2,032 B, 12),
+`fn_7100076acc` (544 B, 12), `fn_710007c1ac` (476 B, 12, the `CRntFile` unit), `fn_710009d52c`
+(168 B, 12, `CType`'s unit), `fn_7100087850` (160 B, 11, the registry's lookup), `fn_71011a2fbc`
+(20 B, 11), `fn_710027a33c` (204 B, 11), `fn_7101196fd8` (48 B, 11), `fn_7100decab0` (428 B, 10,
+the game manager's target getter, declared in `UnkGameManager.h`). Round 2's own follow-ups: a
+second pass on its low-scoring minors (`fn_710023b580` 10.6%, `fn_710009d7a8` 16.4%,
+`fn_7100deba8c` 16.5%, `fn_710007c714` 23.8%, `fn_7100fd3804` 24.8%, `fn_710007e7f8` 43.5%);
+the music manager singleton `g_unk_71726bc560` still has three local types (five files, two of
+them with their own view of the 0xf18-byte object); `UnkGameManager` lacks the map at +0x1a70 that
+`fn_7100e039e4` reads through its own view; `src/game_aca57c/fn_7100ea56f0.cpp`'s `UnkSuffix` is a
+`CRntString`; `fn_710008b88c` has no header. Binary-wide the largest are `fn_71010c0270` (120 B,
+354 unmatched callers, almost all `lua_bind::*`) and `fn_71006f4b0c` (592 B, 211). 895 boot-slice
+`U` functions (300 KB) are "ready" (`--ready --boot`).
 
 Canonical headers. Batch 1 (2026-10-24, #184): the 13 symbols `include/` declared twice, the
 actor's target getter (`include/game/UnkActor.h`), the matrix getter (`UnkMatrix44.h`), the

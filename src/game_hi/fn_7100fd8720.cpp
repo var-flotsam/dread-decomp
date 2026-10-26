@@ -4,6 +4,7 @@
 
 #include "base/UnkVector.h"
 #include "types.h"
+#include "game/sound/CMusicManager.h"
 
 struct UnkHandle;
 struct UnkMgr;
@@ -16,8 +17,6 @@ struct UnkNode_0x68 {
     UnkNode_0x68* next;
 };
 
-extern char g_unk_7101cac270[];  // base vtable
-extern char g_unk_7101cac250[];  // vtable
 extern UnkMgr* g_unk_7101d4d820;
 
 void fn_7100fde6c4(UnkNode_0x68*);  // node destructor
@@ -70,15 +69,16 @@ struct UnkListArray {
     UnkNodeList_0x38& operator[](u32 index);
 };
 
-void fn_7100fde040(UnkListArray*, u32);  // reserve
 
 inline UnkNodeList_0x38& UnkListArray::operator[](u32 index) {
     if (autoGrow && count <= index) {
         u32 n = capacity;
         if (capacity <= index && step != 0)
             n = (index / step + 1) * step;
-        fn_7100fde040(this, n);
-        fn_7100fde040(this, index + 1);
+        // the music manager's slot array (game/sound/CMusicManager.h) under a local view
+        auto* v = reinterpret_cast<base::UnkVector<UnkMusicSlot_0x38>*>(this);
+        fn_7100fde040(v, n);
+        fn_7100fde040(v, index + 1);
         for (u32 i = count; i < index + 1; ++i)
             new (&data[i]) UnkNodeList_0x38();
         count = index + 1;

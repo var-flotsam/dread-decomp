@@ -1,6 +1,7 @@
 // Static initialiser of the unit of the CSluggerSpitAttack::EState enum.
 #include "UnkStaticInit.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "base/math/UnkZeroVector3.h"
 
 using namespace unk_static_init;
 
@@ -26,12 +27,7 @@ extern UnkConversion g_unk_7172707b50;
 extern UnkConversion g_unk_7172707b70;
 void fn_71006c3b84() __attribute__((visibility("hidden")));
 void fn_71006c3b90() __attribute__((visibility("hidden")));
-struct UnkVec3 {
-    f32 x;
-    f32 y;
-    f32 z;
-};
-extern const UnkVec3 g_unk_710164779c;
+using UnkVec3 = base::math::CVector3D;
 extern UnkVec3 g_unk_7172707b90;
 
 void fn_71006c4230() {

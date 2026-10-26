@@ -4,16 +4,14 @@
 #include "base/UnkVector.h"
 #include "types.h"
 
-struct UnkManager_710081348c {
-    u8 pad_0x0[0x1e8];
-};
-void fn_71011a870c(UnkManager_710081348c* self);
-void fn_71011a91c4(UnkManager_710081348c* self, void* handle, u32 id);
-extern UnkManager_710081348c* g_unk_71726b0cd8;  // the manager instance (reached through the GOT)
+#include "game/UnkModelManager.h"
 
-static inline UnkManager_710081348c* GetManager() {
+// Defined in game_hi with its own view of the manager (its container half).
+void fn_71011a91c4(UnkModelManager* self, void* handle, u32 id);
+
+static inline UnkModelManager* GetManager() {
     if (!g_unk_71726b0cd8) {
-        UnkManager_710081348c* m = static_cast<UnkManager_710081348c*>(fn_71000839a0(0x1e8, 0x3f));
+        UnkModelManager* m = static_cast<UnkModelManager*>(fn_71000839a0(0x1e8, 0x3f));
         fn_71011a870c(m);
         g_unk_71726b0cd8 = m;
     }

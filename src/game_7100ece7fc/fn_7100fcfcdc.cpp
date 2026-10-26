@@ -2,6 +2,7 @@
 // (fn_7100fe1028), sets both vtables, constructs each entry with its kind (fn_7100fd10cc) and
 // gives all but the first a derived vtable.
 #include "types.h"
+#include "game/sound/CMusicManager.h"
 
 struct UnkEntry_0x150 {
     void** vtable;
@@ -35,11 +36,11 @@ extern void* g_unk_7101cabbe8[];
 extern void* g_unk_7101cabb60[];
 extern void* g_unk_7101cabf20[];
 extern void* g_unk_7101cabe98[];
-void fn_7100fe1028(UnkObject_7100fcfcdc* self);
 void fn_7100fd10cc(UnkEntry_0x150* self, s32 kind);
 
-void fn_7100fcfcdc(UnkObject_7100fcfcdc* self) {
-    fn_7100fe1028(self);
+void fn_7100fcfcdc(UnkMusicBank_0xb78* bank, u32 kind) {
+    auto* self = reinterpret_cast<UnkObject_7100fcfcdc*>(bank);  // this file's view of the bank
+    fn_7100fe1028(reinterpret_cast<UnkMusicChannel_0x30*>(self), kind);  // its base, the channel
     self->field_0x38 = nullptr;
     self->field_0x40 = nullptr;
     self->field_0x48 = nullptr;

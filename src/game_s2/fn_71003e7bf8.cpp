@@ -37,7 +37,7 @@ void fn_71003e7bf8(UnkOwner* self, UnkOther* other) {
             value = 0;
         } else {
             bool flag = false;
-            CBlackboard* blackboard = reinterpret_cast<CBlackboard*>(g_unk_7101d47310->field_0x968);
+            CBlackboard* blackboard = &g_unk_7101d47310->field_0x968;
             const CStrId& id = base::reflection::refl_GetStrIdTable<0x7100031894>().ids[0x22a];
             if (g_unk_7172759178.qid.id.data == &g_unk_7101d47108->empty)
                 fn_7100ae9a10(&g_unk_7172759178.qid, &g_unk_7172759178, g_unk_7101d470e0);

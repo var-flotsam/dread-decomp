@@ -880,7 +880,7 @@ u32 refl_HashKeyFields(char* obj) {
     *reinterpret_cast<u32*>(&v) = (*reinterpret_cast<UnkHashKeySource**>(obj + Off + 8))->vf_0x38();
     fn_710007c3f0(&h, &v, 4);
     fn_710007c3f0(&h, obj + Off + 0x10, 4);
-    void* t = h.dest_0x18;
+    void* t = h.data;
     u32 r = fn_710007b750(t, fn_710007c1a4(&h), -1);
     fn_710007c0e4(&h);
     return r;
