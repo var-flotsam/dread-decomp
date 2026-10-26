@@ -8,12 +8,18 @@
 # tools/test_port_loader.py) and src/image.cpp (the host layer, which maps the dump before the
 # game's static initialisers when the game is linked in).
 add_library(dread_runtime STATIC
+  src/account.cpp
+  src/diag.cpp
   src/fs.cpp
   src/image.cpp
   src/loader.cpp
+  src/mem.cpp
   src/missing.cpp
+  src/nv.cpp
   src/os.cpp
   src/oe.cpp
+  src/time.cpp
+  src/util.cpp
   src/vi.cpp)
 target_include_directories(dread_runtime PUBLIC
   "${CMAKE_CURRENT_SOURCE_DIR}/include"

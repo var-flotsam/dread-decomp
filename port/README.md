@@ -413,10 +413,11 @@ post-indexed load reading the incremented base, a 64-bit read narrowed to the ty
 elsewhere in the function, callee-saved registers spilled into the locals and dropped as if they
 were the prologue's saves.
 
-## The runtime's `nn::os`, `nn::oe` and `nn::fs` (M1)
+## The runtime (M1)
 
-Every `nn::os`, `nn::oe` and `nn::fs` import the boot slice reaches is defined in `runtime/` (30,
-20 and 8 imports, counting the GOT slots; `port_link.py` aliases each import's four-byte thunk to the
+Every `nn::os`, `nn::oe`, `nn::fs`, `nn::account`, `nn::mem`, `nn::time`, `nn::util`, `nn::diag`
+and `nv` import the boot slice reaches is defined in `runtime/` (30, 20, 8, 8, 4, 4, 4, 2 and 6
+imports, counting the GOT slots; `port_link.py` aliases each import's four-byte thunk to the
 runtime's function by name), and so is every one a source calls from outside the slice. Each
 definition's `TODO(M<n>)` names its callers; `runtime/include/nn/os.h` and `oe.h` say where each
 layout comes from.
@@ -446,6 +447,18 @@ layout comes from.
   Directory entries keep the game's 0x310-byte layout (`fn_710002e6e0`). Files are `std::FILE`
   streams and directories `std::filesystem`; on this PC that is compile-checked only (no C++
   runtime to run it with).
+- **The rest of the system start-up** `fn_71001325d0`: `nn::mem::StandardAllocator` (the game's
+  one, at `0x710ab70000` in the mapped `.bss`) allocates on the host's heap with a header per
+  block, not in the 32 MB region the game names; `nv` keeps the allocator callbacks and the 8 MB
+  it is given for the NVN shim (`GetGraphicsSetupForPort`); `nn::account` has one local user,
+  always open, with a fixed id (so one save directory); `nn::util::GenerateUuid` is a random
+  version-4 UUID, `TSNPrintf`/`SNPrintf` are `vsnprintf`; `nn::time` reads the host's local
+  time into the game's 0xd0-byte `ClockSnapshot`; `nn::diag::detail::AbortImpl` (both forms)
+  prints what it was given and aborts. Not yet: `nn::util::DecompressGzip` (needs an inflater;
+  its one caller is outside the slice) and `ReferSymbol`.
+- **Imports outside `nn::`** (`nv`, `movie`) resolve to the runtime by name like `nn::` ones, and
+  an overloaded name (`AbortImpl`) goes to the overload whose parameters fit the caller's
+  reference best (`port_link.py`'s `runtime_overload`, the alias ranking).
 
 ## The data loader (M1)
 
