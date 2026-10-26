@@ -15,6 +15,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflConverter.h"
 #include "base/reflection/UnkReflTypeDtors.h"
+#include "game/UnkTUProperty.h"
 #include "game/UnkTUSymbols.h"
 #include "types.h"
 
@@ -226,79 +227,8 @@ __attribute__((always_inline)) static inline T* TUAt(Header& h) {
     return reinterpret_cast<T*>(reinterpret_cast<char*>(&h) + Offset);
 }
 
-// A named property object (a global reached through the GOT) linked into a global list on
-// construction (fn_71008232c0 and its unit have the same pattern). Once built, it is checked
-// through its vtable (slots 2 and 3) and, if those allow it, handed to the unit's own function.
-// The extended form constructs a member at 0x10 out of line between its base and own vtables.
-// Layout and slot roles are placeholders; UnkPropertyHead and the list head g_unk_71726db788 are in
-// game/UnkTUSymbols.h.
-
-template <u32 MemberSize = 0x18>
-struct UnkPropertyEx : UnkPropertyHead {
-    u8 field_0x10[MemberSize];
-    CStrId name;
-    void* value;
-    u32 field_0x38;
-
-    bool vf_0x10() { return reinterpret_cast<bool (*)(UnkPropertyEx*)>(vtable[2])(this); }
-    bool vf_0x18() { return reinterpret_cast<bool (*)(UnkPropertyEx*)>(vtable[3])(this); }
-};
-
-template <class P>
-__attribute__((always_inline)) static inline void InitPropertyEx(P* p, void** base_vtable, void** vtable,
-                                                                 UnkPropertyHead*& head, void (*member_ctor)(void*),
-                                                                 const char* name, void* value,
-                                                                 void (*on_init)(P*), void (*dtor)(void*)) {
-    p->next = head;
-    p->vtable = base_vtable + 2;
-    head = p;
-    member_ctor(&p->field_0x10);
-    p->vtable = vtable + 2;
-    new (&p->name) CStrId(name, true);
-    p->value = value;
-    p->field_0x38 = 0;
-    if (p->vf_0x10() && !p->vf_0x18())
-        on_init(p);
-    fn_7100000250(dtor, p, &g_unk_7101a19000);
-}
-
-// The plain form: the name at 0x10 and the value at 0x18.
-struct UnkProperty : UnkPropertyHead {
-    CStrId name;
-    void* value;
-    u32 field_0x20;
-
-    bool vf_0x10() { return reinterpret_cast<bool (*)(UnkProperty*)>(vtable[2])(this); }
-    bool vf_0x18() { return reinterpret_cast<bool (*)(UnkProperty*)>(vtable[3])(this); }
-};
-
-template <class P>
-__attribute__((always_inline)) static inline void InitProperty(P* p, void** vtable, UnkPropertyHead*& head,
-                                                               const char* name, void* value, void (*on_init)(P*),
-                                                               void (*dtor)(void*)) {
-    p->next = head;
-    p->vtable = vtable + 2;
-    head = p;
-    new (&p->name) CStrId(name, true);
-    p->value = value;
-    p->field_0x20 = 0;
-    if (p->vf_0x10() && !p->vf_0x18())
-        on_init(p);
-    fn_7100000250(dtor, p, &g_unk_7101a19000);
-}
-
-// A tunable object (a global reached through the GOT): its base constructor is out of line,
-// then its own vtable is stored and its destructor registered.
-struct UnkTunable {
-    void** vtable;
-};
-
-__attribute__((always_inline)) static inline void InitTunable(UnkTunable* tunable, void (*ctor)(UnkTunable*),
-                                                              void** vtable, void (*dtor)(void*)) {
-    ctor(tunable);
-    tunable->vtable = vtable + 2;
-    fn_7100000250(dtor, tunable, &g_unk_7101a19000);
-}
+// Named properties and tunables (UnkProperty, UnkPropertyEx<>, UnkTunable and their initialisers)
+// are game/UnkTUProperty.h's, shared with the unk_static_init helpers.
 
 // TU data whose layout is only known through offsets.
 struct UnkTUData;

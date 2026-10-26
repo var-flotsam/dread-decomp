@@ -13,8 +13,8 @@ void fn_710000d470();
 void fn_710000d4f4();
 
 // A named property object (a global reached through the GOT) linked into a global list on
-// construction; the list head is g_unk_71726db788. The full shapes are UnkTUInit.h's UnkProperty and
-// UnkPropertyEx<> (UnkStaticInit.h's UnkProperty, UnkProperty2 and UnkProperty3 have the same layouts).
+// construction; the list head is g_unk_71726db788. The full shapes, UnkProperty and UnkPropertyEx<>,
+// are in game/UnkTUProperty.h.
 struct UnkPropertyHead {
     void** vtable;
     UnkPropertyHead* next;

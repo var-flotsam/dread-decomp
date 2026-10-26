@@ -61,8 +61,29 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - On the x86-64 port a mismatched declaration is a register mismatch only across argument classes (`float` vs integer or pointer); count and pointee differences are harmless for address-taking references: [sixteenth session](#session-log-newest-first).
 - Clone kinds and the census method; families tried and left: work log items 0 and 2.
 - A function passed as a template argument keeps its relocation target only if the template takes the function's own type (no inline wrapper): [hub batch 3](#session-log-newest-first).
+- A callee without an address (`__cxa_atexit`) is an unchecked relocation; spell it by its `fn_` name (`fn_7100000250`). Compare the relocation totals before and after a header refactor: [TU helper fold](#session-log-newest-first).
+- Store order between two distinct globals is the original's per unit, steered by source order: keep both orders as named helpers rather than one: [TU helper fold](#session-log-newest-first).
 
 ## Session log (newest first)
+
+**TU helper fold (2026-10-26, branch `claude/tuinit-fold`).** `include/game/UnkTUInit.h` and
+`unk_static_init` (`src/game_5821e4/UnkStaticInit.h`, `src/game_s7/UnkStaticInitS7.h`) each defined
+the tunable and named-property statics; both now include one header, `include/game/UnkTUProperty.h`.
+The layouts were the same (`UnkProperty2` is `UnkPropertyEx<0x18>`, `UnkProperty3`
+`UnkPropertyEx<0x160>`); the bodies differed only in where the vtable store falls relative to the
+list link. That order is the original's, unit by unit, and not a property of the class: the same
+property class (same vtables, member constructor `fn_71002ef5bc`) is built link-first in
+`fn_71004fd8f0` and vtable-first in `fn_7100adcf10`. The property and the list head are distinct
+globals, so the scheduler may reorder the stores, and the source order steers it. So each
+initialiser keeps both bodies verbatim under two names, and the extended form takes the member
+constructor as an argument (one helper instead of one per member size). `UnkChargeComponent.h`'s
+own `struct UnkTunable` (one tunable's rates at +0x9c) clashed with the shared one; as
+`UnkChargeTunable : UnkTunable` at the same offsets it lets `fn_7100536550.cpp` take
+`g_unk_71726e0aa8` from that header. All 197 includers byte-identical on the first compile.
+Finding: `__cxa_atexit` is an unresolved callee for `check.py` (no address), so every helper call
+spelled that way went unchecked. Respelling the helpers' 24 call sites as `fn_7100000250` added
+1,055 checked relocations, 0 mismatched. Folding the first 11 calls of the global family the
+other way had silently removed 11 checks, which the relocation totals showed.
 
 **Hub batch 3 (2026-10-26, branch `claude/dread-decomp-hub-batch-3-85bf13`).** The hand pass on
 what `tools/hub_migrate.py --header-redeclared` left: 23 symbols, 52 declarations in 43 files, all

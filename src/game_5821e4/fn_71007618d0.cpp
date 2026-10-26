@@ -18,7 +18,7 @@ extern void* g_unk_7101a6e558[];
 void fn_710075d124(UnkProperty* p);
 void fn_71007534a8(void* p);
 extern UnkProperty g_unk_7172711560;
-extern UnkProperty2 g_unk_7172711588;
+extern UnkPropertyEx<> g_unk_7172711588;
 extern void* g_unk_7101a45fe8[];
 extern void* g_unk_7101a45f90[];
 extern UnkEnumType g_unk_71727122c0;
@@ -99,7 +99,7 @@ void fn_71007618d0() {
                  fn_710075d124, fn_71007534a8);
     InitProperty(&g_unk_7172711560, g_unk_7101a6e558, g_unk_71726db788, "FakeHusks", TypeOf<fn_710000d228>(),
                  fn_710075d124, fn_71007534a8);
-    InitProperty2(&g_unk_7172711588, g_unk_7101a45fe8, g_unk_71726db788, g_unk_7101a45f90, "MINIMAP_TILES", &g_unk_71727122c0,
+    InitPropertyEx(&g_unk_7172711588, g_unk_7101a45fe8, g_unk_71726db788, g_unk_7101a45f90, fn_71002ef5bc, "MINIMAP_TILES", &g_unk_71727122c0,
                   fn_71004fd2cc, fn_71004fa3b8);
     fn_7100753524();
     fn_710009ec00(g_unk_71727115c8, g_unk_7172713268.field_0x20);

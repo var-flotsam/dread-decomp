@@ -24,9 +24,9 @@ struct HeaderIds2 {
 __attribute__((always_inline)) inline void InitHeaderIds(HeaderIds2* ids) {
     ids->field_0x0 = 6;
     new (&ids->field_0x10) UnkStrIdBase("binaries", true);
-    __cxa_atexit(fn_710000051c, &ids->field_0x10, g_unk_7101a19000);
+    fn_7100000250(fn_710000051c, &ids->field_0x10, g_unk_7101a19000);
     new (&ids->field_0x18) UnkStrIdBase("sources", true);
-    __cxa_atexit(fn_710000051c, &ids->field_0x18, g_unk_7101a19000);
+    fn_7100000250(fn_710000051c, &ids->field_0x18, g_unk_7101a19000);
 }
 
 
@@ -41,9 +41,9 @@ struct __attribute__((packed, aligned(4))) HeaderIds4 {
 __attribute__((always_inline)) inline void InitHeaderIds(HeaderIds4* ids) {
     ids->field_0x0 = 6;
     new (&ids->field_0x4) UnkStrIdBase("binaries", true);
-    __cxa_atexit(fn_710000051c, &ids->field_0x4, g_unk_7101a19000);
+    fn_7100000250(fn_710000051c, &ids->field_0x4, g_unk_7101a19000);
     new (&ids->field_0xc) UnkStrIdBase("sources", true);
-    __cxa_atexit(fn_710000051c, &ids->field_0xc, g_unk_7101a19000);
+    fn_7100000250(fn_710000051c, &ids->field_0xc, g_unk_7101a19000);
 }
 
 // The header statics in units built from the other order: "sources" first, the u32 last.
@@ -55,9 +55,9 @@ struct HeaderIdsRev {
 
 __attribute__((always_inline)) inline void InitHeaderIds(HeaderIdsRev* ids) {
     new (&ids->field_0x8) UnkStrIdBase("sources", true);
-    __cxa_atexit(fn_710000051c, &ids->field_0x8, g_unk_7101a19000);
+    fn_7100000250(fn_710000051c, &ids->field_0x8, g_unk_7101a19000);
     new (&ids->field_0x10) UnkStrIdBase("binaries", true);
-    __cxa_atexit(fn_710000051c, &ids->field_0x10, g_unk_7101a19000);
+    fn_7100000250(fn_710000051c, &ids->field_0x10, g_unk_7101a19000);
     ids->field_0x0 = 6;
 }
 }  // namespace unk_static_init
@@ -113,7 +113,7 @@ __attribute__((always_inline)) inline void InitNamedValue(UnkNamedValue* v, cons
         if (t->init)
             t->init(v, &n);
     }
-    __cxa_atexit(dtor, v, g_unk_7101a19000);
+    fn_7100000250(dtor, v, g_unk_7101a19000);
 }
 
 }  // namespace unk_static_init
@@ -151,7 +151,7 @@ __attribute__((always_inline)) inline void InitFromNamedValue(T* obj, const UnkN
         UnkNamedValueTmp tmp(from);
         ctor(obj, &tmp, true);
     }
-    __cxa_atexit(dtor, obj, g_unk_7101a19000);
+    fn_7100000250(dtor, obj, g_unk_7101a19000);
 }
 
 // A static of 0x80 bytes: three floats, a string (base::global::CRntString) whose inline storage
@@ -182,7 +182,7 @@ __attribute__((always_inline)) inline void InitBufferParam(UnkBufferParam* p, f3
     p->field_0x70 = 0;
     fn_710007e77c(str, "as");
     p->field_0x78 = 0;
-    __cxa_atexit(dtor, p, g_unk_7101a19000);
+    fn_7100000250(dtor, p, g_unk_7101a19000);
 }
 
 }  // namespace unk_static_init
@@ -200,44 +200,7 @@ __attribute__((always_inline)) inline void MakeEmptyId(UnkStrIdBase* id) {
 
 __attribute__((always_inline)) inline void InitEmptyId(UnkStrIdBase* id) {
     MakeEmptyId(id);
-    __cxa_atexit(fn_710000051c, id, g_unk_7101a19000);
-}
-
-}  // namespace unk_static_init
-
-void fn_7100ae9cc8(void* member);  // the base's member constructor
-
-namespace unk_static_init {
-
-// A property of the same list as UnkProperty2 whose base has a larger out-of-line member
-// (fn_7100ae9cc8). Layout and slot roles are placeholders.
-struct UnkProperty3 {
-    void** vtable;
-    UnkPropertyHead* next;
-    u8 field_0x10[0x160];
-    UnkFilePathStrIdBase name;  // storage of a string id
-    void* value;
-    u32 field_0x180;
-
-    bool vf_0x10() { return reinterpret_cast<bool (*)(UnkProperty3*)>(vtable[2])(this); }
-    bool vf_0x18() { return reinterpret_cast<bool (*)(UnkProperty3*)>(vtable[3])(this); }
-};
-
-template <class Init>
-__attribute__((always_inline)) inline void InitProperty3(UnkProperty3* p, void** base_vtable, UnkPropertyHead*& head,
-                                                         void** vtable, const char* name, void* value, Init on_init,
-                                                         void (*dtor)(void*)) {
-    p->next = head;
-    head = reinterpret_cast<UnkPropertyHead*>(p);
-    p->vtable = base_vtable + 2;
-    fn_7100ae9cc8(p->field_0x10);
-    p->vtable = vtable + 2;
-    new (&p->name) UnkStrIdBase(name, true);
-    p->value = value;
-    p->field_0x180 = 0;
-    if (p->vf_0x10() && !p->vf_0x18())
-        on_init(p);
-    __cxa_atexit(dtor, p, g_unk_7101a19000);
+    fn_7100000250(fn_710000051c, id, g_unk_7101a19000);
 }
 
 }  // namespace unk_static_init
@@ -251,7 +214,7 @@ __attribute__((always_inline)) inline void InitTunableZeroed(UnkTunable* tunable
     ctor(tunable);
     tunable->vtable = vtable + 2;
     __builtin_memset(reinterpret_cast<char*>(tunable) + Offset, 0, Size);
-    __cxa_atexit(dtor, tunable, g_unk_7101a19000);
+    fn_7100000250(dtor, tunable, g_unk_7101a19000);
 }
 
 }  // namespace unk_static_init
@@ -309,7 +272,7 @@ namespace unk_static_init {
 // (built on first use, guarded).
 __attribute__((always_inline)) inline void InitClassIdFrom(UnkStrIdBase* id, const CStrId& name) {
     new (id) CStrId(fn_7100de8f78(name));
-    __cxa_atexit(fn_710000051c, id, g_unk_7101a19000);
+    fn_7100000250(fn_710000051c, id, g_unk_7101a19000);
 }
 
 }  // namespace unk_static_init

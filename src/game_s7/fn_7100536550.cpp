@@ -5,6 +5,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "base/reflection/UnkReflTypeDtors.h"
+#include "game_s2/UnkChargeComponent.h"
 
 using namespace unk_static_init;
 
@@ -107,7 +108,7 @@ extern UnkEnumType g_unk_71726dfca0;
 extern char g_unk_71726dfdb8[];
 void fn_7100531a8c(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_71005318e0();
-extern UnkProperty2 g_unk_71726dfe00;
+extern UnkPropertyEx<> g_unk_71726dfe00;
 extern void* g_unk_7101a45fe8[];
 extern void* g_unk_7101a45f90[];
 void fn_71004fa3b8(void* p);
@@ -192,7 +193,6 @@ extern UnkConversion g_unk_71726e0a80;
 void fn_710055fb88() __attribute__((visibility("hidden")));
 void fn_7100536450(void*) __attribute__((visibility("hidden")));  // the array's destructor
 extern char g_unk_71726e0aa0[];
-extern UnkTunable g_unk_71726e0aa8;
 void fn_7100136ecc(UnkTunable* self);  // the base constructor
 extern void* g_unk_7101a48b50[];
 void fn_7100075104(void* self);  // its destructor, as registered
@@ -204,7 +204,7 @@ void fn_7100536550() {
     InitEnum(&g_unk_71726df9e0, "EIceMode", fn_7100531314, fn_71005311c8, g_unk_71726dfaf8, &g_unk_71726dfb00, fn_710055c3d8, &g_unk_71726dfb20, fn_710055c3e4);
     InitEnum(&g_unk_71726dfb40, "EMinimapMode", fn_7100531760, fn_7100531494, g_unk_71726dfc58, &g_unk_71726dfc60, fn_710055c3f0, &g_unk_71726dfc80, fn_710055c3fc);
     InitEnum(&g_unk_71726dfca0, "CEmmyAIComponent::ETargetPerceptionType", fn_7100531a8c, fn_71005318e0, g_unk_71726dfdb8, &g_unk_71726dfdc0, fn_710055c408, &g_unk_71726dfde0, fn_710055c414);
-    InitProperty2(&g_unk_71726dfe00, g_unk_7101a45fe8, g_unk_71726db788, g_unk_7101a45f90, "EMMY_RANGE_TUTO_IDX", TypeOf<fn_7100014768>(), fn_71004fd2cc, fn_71004fa3b8);
+    InitPropertyEx(&g_unk_71726dfe00, g_unk_7101a45fe8, g_unk_71726db788, g_unk_7101a45f90, fn_71002ef5bc, "EMMY_RANGE_TUTO_IDX", TypeOf<fn_7100014768>(), fn_71004fd2cc, fn_71004fa3b8);
     fn_7100531c10();
     fn_710009ec00(g_unk_71726dfe40, g_unk_71726e1f30.field_0x540);
     fn_710009ec00(g_unk_71726dfe41, fn_71005321d8());

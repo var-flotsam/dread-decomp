@@ -6,15 +6,15 @@ it needs). History, batch logs and the index of matching findings are in `docs/J
 `docs/recon.md` describes the binary, `docs/compiler.md` the toolchain, `docs/references.md` the
 outside projects. This page is edited in place, never appended to: session notes go to the journal.
 
-**Last updated 2026-10-26** (hub batch 3, branch `claude/dread-decomp-hub-batch-3-85bf13`).
+**Last updated 2026-10-26** (hub batch 3, var-flotsam/dread-decomp#195; the TU helper fold, branch `claude/tuinit-fold`).
 Target: **Metroid Dread 2.1.0**, `main` build ID `646761F643AFEBB379EDD5E6A5151AF2CEF93DC1`.
 
 ## Start here
 
 - **Open work:** `gh pr list` is the source of truth for what is waiting to merge; the lifter's semantic
   coverage mode (stream M) runs in its own session on a `claude/lifter-semantic-coverage-*` branch.
-- **Next hub batch:** `tools/hub_migrate.py --header-redeclared` has nothing left but two deliberate
-  keeps (batch 3, 2026-10-26). Next are the four symbols `include/` itself declares in two or three
+- **Next hub batch:** `tools/hub_migrate.py --header-redeclared` has nothing left but one deliberate
+  keep (`src/game_s2/fn_71003f1b00.cpp`; batch 3 and the TU helper fold, 2026-10-26). Next are the four symbols `include/` itself declares in two or three
   headers (`fn_71000839a0` in 27 files, `fn_710000051c`, `fn_7100001570`, `g_unk_7101d47200`: pick one
   header, then `hub_migrate.py SYM --header ...`), then `tools/decl_check.py --list`, conflicting
   signatures first. Work them per `.claude/skills/dread-hubs`: the tool first, agents on disjoint file
@@ -53,8 +53,8 @@ game logic (5.6 MB between 256 B and 2 KB), which needs real types, not generato
 Source hygiene (`tools/decl_check.py`, 2026-10-26): 11,298 `fn_`/`g_unk_` symbols declared in
 1,482 hand-written files (2,355 of them the generated class-getter header); 286 with conflicting
 signatures (393 on the morning of 2026-10-24, 337 after the first hub batch, 310 after the second,
-308 after the TU-init symbols); 6 declared in `include/` and again outside it (76, 53, 45, 27);
-1,282 declared in more than one file (2,060 extra copies). Translation units (`tools/tu_map.py`): 2,773 units from 2,760 static initialisers, 2,712
+308 after the TU-init symbols); 5 declared in `include/` and again outside it (76, 53, 45, 27, 6);
+1,279 declared in more than one file (2,055 extra copies). Translation units (`tools/tu_map.py`): 2,773 units from 2,760 static initialisers, 2,712
 at high confidence; 11,656 `U` functions (6.0 MB) sit in a unit with a reflected class hint.
 
 ## Direction (decided 2026-10-24, owner's goal: clean, readable, playable in a few months)
@@ -327,11 +327,16 @@ helper bodies and their store order are untouched, because they are load-bearing
 96 files (the class-type destructor alone was declared locally in 57), all 195 includers of the two
 families byte-identical (`baseline.py`, tag `tuinit`). Batch 3 (2026-10-26) hand-migrated the 40
 files the tool left (placeholder types renamed to the headers' real ones, five agents on disjoint
-file sets, about 7 minutes; journal). The two helper families themselves still coexist
-(`unk_static_init`'s and `UnkTUInit.h`'s near-duplicate `UnkTunable`, `UnkProperty`, `InitTunable`,
-`InitProperty`; the global ones have two users, `fn_7100adcf10.cpp` and `fn_71009ba9f0.cpp`), so
-folding one into the other is the next readability step, verified the same way; it also unblocks
-`src/game_s7/fn_7100536550.cpp` (`UnkTunable` ambiguous).
+file sets, about 7 minutes; journal). The two helper families now share one set of property and
+tunable helpers, `include/game/UnkTUProperty.h` (2026-10-26, branch `claude/tuinit-fold`): each
+property initialiser in both store orders (`InitProperty`/`InitPropertyEx` link first,
+`...VtableFirst` store the vtable first; the source order steers the scheduler). What the families
+still hold apart is the TU header data (`InitHeader*`), the type registrations (`InitEnum`,
+`InitFlagSet`, `InitClass`, `InitVector` vs `unk_static_init`'s) and two placeholder views of a
+type object (`UnkReflType` vs `UnkEnumType`); folding those is the next readability step, verified
+the same way (`baseline.py`, every includer of both families). Cheap follow-up: 729 calls in unit
+files still spell the atexit stub `__cxa_atexit`, which `check.py` cannot resolve; `fn_7100000250`
+makes each a checked relocation (the helper headers' 24 sites added 1,055 checks, 0 mismatched).
 
 **Stream B (core engine types).** Left from the string-id and reflection work: the reflected
 function array's growth (`fn_7100097f80`), the function's constructor and destructor
@@ -403,8 +408,9 @@ are recorded in `docs/JOURNAL.md` (work log items 0–3).
 - Constructors compile to two aliased symbols (C1/C2). `check.py` counts them once (by address);
   objdiff counts both.
 - **Relocation check limits:** section-relative references (switch tables, string literals),
-  conditional branches and unresolved symbols are not checked (about 129,000 relocations), so a
-  wrong string literal is still not caught. Every generator verifies targets itself
+  conditional branches and unresolved symbols are not checked (about 128,000 relocations), so a
+  wrong string literal is still not caught. A callee with no address is unresolved: write the
+  atexit stub as `fn_7100000250`, not `__cxa_atexit`. Every generator verifies targets itself
   (`asmdiff.diff_object(strict=True)`), so a `RELOC` line in a generated file means a generator
   regression: fix the generator, never the output.
 - **`decl_check.py` is a brace-structure heuristic**, not a parser: a brace-init default argument

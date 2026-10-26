@@ -96,8 +96,8 @@ void refl_Register(void* item) {
 }  // namespace base::reflection
 
 // refl_Register<UnkRefl_fn_71004fd2cc> (src/reflection_statics/, flags 0xf): adds a reflected
-// property object (UnkProperty2, UnkProperty3, UnkPropertyEx of the TU initialisers) to its
-// registry; the on_init callback of InitProperty2/InitProperty3/InitPropertyEx.
+// property object (UnkPropertyEx<> of the TU initialisers, game/UnkTUProperty.h) to its
+// registry; the on_init callback of InitPropertyEx.
 void fn_71004fd2cc(void* item);
 
 namespace base::reflection {

@@ -2,7 +2,7 @@
 
 // A blackboard property definition's qualified id, as the hand-written sources see it. The
 // definitions are the polymorphic property objects the per-unit static initialisers build
-// (UnkProperty2 in src/game_5821e4/UnkStaticInit.h: "ITEM_CENTRAL_UNIT_ENERGY",
+// (UnkPropertyEx<> in game/UnkTUProperty.h: "ITEM_CENTRAL_UNIT_ENERGY",
 // "QUARENTINE_OPENED", ...); each holds at +0x10 an id that is joined on first use from a
 // prefix, the definition's group id (vtable slot 0x20) and its own id (slot 0x28), with the
 // definition itself after it. tools/tu_map.py puts the builder fn_7100ae9a10 in the
