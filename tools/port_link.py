@@ -158,7 +158,8 @@ sin cos tan asin acos atan atan2 sinh cosh tanh exp exp2 log log2 log10 pow sqrt
 trunc fabs fmin fmax hypot ldexp frexp modf copysign sincos nan
 pthread_mutex_lock pthread_mutex_unlock pthread_mutex_init pthread_mutex_destroy pthread_self pthread_create
 pthread_join pthread_detach pthread_key_create pthread_getspecific pthread_setspecific sched_yield
-clock_gettime gettimeofday time localtime gmtime mktime nanosleep usleep sleep bcmp mmap munmap mprotect
+clock_gettime gettimeofday time localtime localtime_r gmtime mktime nanosleep usleep sleep bcmp mmap munmap mprotect
+fseeko ftello
 stdin stdout stderr errno environ
 clearerr feof ferror fgets freopen fscanf getc ungetc setvbuf tmpfile tmpnam remove rename system
 clock difftime strftime setlocale localeconv strcoll strcspn strpbrk iscntrl ispunct
@@ -606,6 +607,22 @@ def host_symbol(row: dict) -> tuple[str, str]:
     return "", ""
 
 
+def runtime_overload(candidates: list[str], reference: str, demangled: dict[str, str]) -> str:
+    """The runtime definition an import's reference lands on when the runtime overloads the name
+    (nn::diag::detail::AbortImpl has a 4-argument and a 6-argument form, both imported): the one
+    whose parameters fit the reference's best, by the alias ranking (SIGNATURE_ORDER); a
+    reference without parameters, or a tie, keeps the first in name order."""
+    if len(candidates) == 1:
+        return candidates[0]
+    ref = param_list(reference)
+
+    def rank(sym: str) -> tuple:
+        dem = demangled.get(sym, sym)
+        sig, _ = signature_class(ref, param_list(dem), class_qualified(dem))
+        return SIGNATURE_ORDER.index(sig), sym
+    return min(candidates, key=rank)
+
+
 def classify(lk: Link, runtime_by_name: dict[str, list[str]], runtime_symbols: set[str],
              alias_mismatch: bool = False) -> list[Entry]:
     """One Entry per undefined symbol of `lk`. A called function alias with a class_mismatch
@@ -681,23 +698,22 @@ def classify(lk: Link, runtime_by_name: dict[str, list[str]], runtime_symbols: s
         elif row and row["name"].startswith(IMPORT_PREFIX):
             e.cls = "import"
             group, gname = import_group(row["name"])
-            if group == "nn":
-                e.sub = gname  # nn::<namespace>
+            if group in ("nn", "other"):
+                e.sub = gname  # nn::<namespace>, or movie, nv and any other SDK namespace
                 rt = runtime_by_name.get(row["name"][len(IMPORT_PREFIX):])
                 if rt:
-                    e.target = rt[0]
+                    e.target = runtime_overload(rt, dem, lk.demangled)
                     e.flags.append("runtime")
+                    if len(rt) > 1:
+                        e.flags.append("overload_by_arguments")
                 else:
                     e.trap = addr
                     e.flags.append("stub_needed")
             elif group == "c":
                 e.sub, e.jump = "C library", gname
-            elif group == "cxx":
+            else:
                 e.sub, e.trap = "host C++ library", addr
                 e.flags.append("mangled_name_needed")
-            else:
-                e.sub, e.trap = gname, addr  # movie:: and any other SDK namespace
-                e.flags.append("stub_needed")
         elif row:
             e.cls, e.sub, e.trap = "missing_function", row["status"], addr
         else:
@@ -750,7 +766,7 @@ def write_image_tables(path: Path, lk: "Link", entries: list[Entry], runtime_glo
                                   target, the runtime function or the trap or jump thunk the link made
                                   for that address; sorted by address. The loader translates the
                                   game's code pointers (vtables, callbacks) through it.
-      dread_port_imports          {name, code}: the runtime's nn:: functions by mangled name, the C
+      dread_port_imports          {name, code}: the runtime's nn::, nv:: and movie:: functions by mangled name, the C
                                   library names main imports, HOST_ABI_IMPORTS. The loader resolves
                                   the dump's symbol relocations through it.
       dread_port_data_references  every data address the link defines as an absolute symbol, sorted;
@@ -777,7 +793,7 @@ def write_image_tables(path: Path, lk: "Link", entries: list[Entry], runtime_glo
         by_entry += 1
     imports: dict[str, str] = {}
     for sym in sorted(runtime_globals):
-        if demangled.get(sym, sym).startswith("nn::"):
+        if demangled.get(sym, sym).startswith(("nn::", "nv::", "movie::")):
             imports[sym] = sym
     for row in rows.values():
         if row["name"].startswith(IMPORT_PREFIX):
@@ -952,7 +968,7 @@ def boot_slice(version: str, lk: Link, entries: list[Entry], runtime_by_name: di
         group, name = import_group(g.funcs[a]["name"])
         key = name if group == "nn" else {"c": "C library", "cxx": "host C++ library"}.get(group, name)
         imp[key]["reached"] += 1
-        if group == "nn" and g.funcs[a]["name"][len(IMPORT_PREFIX):] in runtime_by_name:
+        if group in ("nn", "other") and g.funcs[a]["name"][len(IMPORT_PREFIX):] in runtime_by_name:
             imp[key]["runtime"] += 1
     covers = ("defined", "aliased", "host", "lifted", "none") if lifted else ("defined", "aliased", "host", "none")
     result = {

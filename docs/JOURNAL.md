@@ -86,6 +86,19 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Port M1: the system start-up's services (2026-10-26).** `nn::mem`, `nv`, `nn::account`,
+`nn::util`, `nn::time` and `nn::diag` in `port/runtime/`, so every import `fn_71001325d0` makes
+resolves. From the bytes (capstone over the dump, read only): the start-up initialises the
+StandardAllocator at `0x710ab70000` with a 32 MB region and hands it to `nv` through three
+callbacks that only shuffle registers, `(size, alignment, user)` to `Allocate(this=user, size,
+alignment)`, `(pointer, user)` to `Free`, `(pointer, size, user)` to `Reallocate`; Ghidra's
+pseudocode hides the `this` and showed the arguments in another order. `nn::diag::detail::AbortImpl`
+is imported twice (4 arguments, and 6 with a result and a format): `port_link.py` used to send
+both thunks to the first runtime definition; it now ranks the overloads against the caller's
+reference (`runtime_overload`), and resolves `nv`/`movie` imports to the runtime as it does
+`nn::` ones. Slice imports with a runtime definition: all but `nn::hid` 12, `nn::prepo` 12,
+`movie` 24 and the host's C and C++ library.
+
 **Port M1: `nn::fs` (2026-10-26).** All 22 `nn::fs` imports in `port/runtime/` over host
 directories, from the callers' uses (Ghidra, read only): the engine's file object
 `fn_7101235090`..`fn_71012355b0` (handle at +8, position at +0x20, cached size at +0x18 with
