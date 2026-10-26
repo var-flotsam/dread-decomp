@@ -1,6 +1,6 @@
 // CInfesterShootAttack (reflection: size 0x60): its copy constructor (fn_71005c743c) and move
 // constructor (fn_71005c7508), both the implicit copy.
-#include "CAttack.h"
+#include "game/CAttack.h"
 
 #include <new>
 

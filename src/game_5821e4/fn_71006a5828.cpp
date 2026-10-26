@@ -1,7 +1,7 @@
 // CShakernautDoubleGroundShockAttack (reflection: size 0x68): its copy constructor (fn_71006a5828)
 // and move constructor (fn_71006a58f4), both the implicit copy,
 // and its copy (fn_71006a59cc) and move (fn_71006a5b3c) assignments, both the implicit copy assignment.
-#include "CAttack.h"
+#include "game/CAttack.h"
 
 #include <new>
 

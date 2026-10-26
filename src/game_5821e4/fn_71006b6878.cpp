@@ -1,6 +1,6 @@
 // CShelmitPlasmaRayAttack (reflection: size 0xb0): its copy constructor (fn_71006b6878) and
 // move constructor (fn_71006b69b4), both the implicit copy.
-#include "CAttack.h"
+#include "game/CAttack.h"
 
 #include <new>
 

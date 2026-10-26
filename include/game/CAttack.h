@@ -6,14 +6,17 @@
 // implicit ones, and their members have no separate moves, so the two are identical.
 
 #include "base/UnkVector.h"
+#include "game/UnkActor.h"
 #include "types.h"
 
 #include <new>
 
 // CAttack (reflection: size 0x28), the root class. Only its layout and vtable are needed.
+// The subclass views in game/UnkAttack.h (UnkAttackBase) see the same first 0x20 bytes without
+// the virtual destructor.
 struct CAttack {
     virtual ~CAttack();
-    u64 field_0x8;
+    UnkActor* field_0x8;  // the actor the attack belongs to
     u32 field_0x10;
     bool field_0x14;
     s64 field_0x18;
