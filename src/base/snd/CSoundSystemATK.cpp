@@ -11,7 +11,8 @@ extern u8 g_unk_7108b6ab60 __attribute__((visibility("hidden")));
 // The payload size of each command.
 extern const s32 g_unk_7101647a0c[] __attribute__((visibility("hidden")));
 
-// Whether the caller is on the sound thread; the result is not used here.
+// Probably whether the caller is on the sound thread (it compares a stored thread id with the
+// current one); the result is not used here.
 bool fn_7100132cd0();
 
 void fn_71000faac4(UnkSoundSystemATK* self, s32 command, const void* payload) {

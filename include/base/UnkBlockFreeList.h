@@ -19,3 +19,4 @@ struct UnkBlockFreeList {
 void fn_710008377c(UnkBlockFreeList* list);                                     // constructor
 void fn_71000837f4(UnkBlockFreeList* list);                                     // reset (the buffer stays)
 void fn_710008378c(UnkBlockFreeList* list, void* buffer, u64 size, u64 elem);  // init over a buffer
+extern char g_unk_7101a1a4c8[];  // the block pool's vtable (the pool object: base/UnkCloneHelpers.h)

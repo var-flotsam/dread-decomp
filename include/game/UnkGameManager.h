@@ -55,7 +55,7 @@ struct UnkGameManager {
     u8 pad_0x4a0[0x168];
     UnkGameManagerSub_0x608* field_0x608;
     u8 pad_0x610[0x358];
-    u8 field_0x968[1];  // an embedded table keyed by string id (fn_7101047208, fn_71010472e0, fn_7101047270)
+    u8 field_0x968[1];  // an embedded CBlackboard (game/CBlackboard.h; fn_7101047208, fn_71010472e0, fn_7101047270)
     u8 pad_0x969[0x697];
     UnkGameManagerIdMap field_0x1000;  // string ids replaced by others (fn_7100dfbda4)
     u8 pad_0x1018[0x28];

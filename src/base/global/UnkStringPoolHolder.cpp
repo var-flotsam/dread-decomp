@@ -18,13 +18,17 @@ using base::global::UnkStringPoolBody;
 using base::global::UnkStringPoolHolder;
 using base::global::UnkStringPoolState;
 
+static_assert(sizeof(UnkStringPoolHolder) == sizeof(UnkStringPoolBody), "the holder's storage is the pool body");
+
 // Clang 9, the matching compiler, ignores the asm labels on the holder's constructor and destructor
 // (base/global/CStrId.h) and emits their mangled symbols, so these aliases give the definitions the
 // addresses' names; the callers keep referring to the members. A newer Clang, the port's, names the
 // definitions by their labels, and an alias to a symbol it doesn't emit is an error there.
+// check.py reads the NON_MATCHING note below as the constructor alias's: keep the note directly
+// above the #if and the alias declaration over two lines, as they are.
 // NON_MATCHING(minor): scheduling. Clang puts the move of the 0x25 flags constant one instruction
 // ahead of the pre-indexed store of the empty string's heap copy; the original has it after.
-#if __clang_major__ <= 9
+#if defined(__clang__) && __clang_major__ <= 9
 void fn_710007fe68(UnkStringPoolHolder*, u32, UnkStringPool**)
     __attribute__((alias("_ZN4base6global19UnkStringPoolHolderC1EjPPNS0_13UnkStringPoolE")));
 void fn_7100080004(UnkStringPoolHolder*)

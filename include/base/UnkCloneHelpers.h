@@ -1094,7 +1094,6 @@ void refl_CallbackBaseDeletingDtor(char* self) {
 
 
 // The block pool's free list is UnkBlockFreeList (base/UnkBlockFreeList.h).
-extern char g_unk_7101a1a4c8[];  // the pool's vtable
 
 namespace base {
 // vtable(): the list's; base_vtable(): its base's.

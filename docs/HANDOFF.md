@@ -373,7 +373,9 @@ guard for files that do not compile before the edit), plus the batch procedure i
 destructor scan now reads each string-id member's pool, `gen_statics`'s fact extractor drops
 stale register state, `gen_tables` reads the video map's globals from the GOT) and `check.py`
 enforces relocation targets everywhere. Next: a dynamic boot trace from Eden's GDB stub to
-replace the static lower bound; directory moves driven by `data/tu_map.csv` once a unit is
+replace the static lower bound; `check.py`'s resolver could map the mangled constructor and
+destructor names of address-bound members (`UnkStringPoolHolder`'s C1/D1) to their addresses, so the
+66 includers' references are checked; directory moves driven by `data/tu_map.csv` once a unit is
 complete (one rename PR per unit); `tools/gen_functions_csv.py` subsystem inference from
 `tu_map.csv` instead of neighbours (68,731 functions are still "unknown"); `trymatch.py`-style
 relocation checking in `tools/nearcopy.py`'s candidates if it compiles anything; `check.py`'s
@@ -405,7 +407,9 @@ rejects (`tools/port_lift.py --debug ADDR` shows the first difference). Next for
 in order: `nn::` stubs in call order (`nn::os` 16 and `nn::oe` 1 still
 needed, then `nn::fs`, `nn::hid`, `movie`, `nv`); the data loader that maps the dump's segments at
 their original addresses (5,467 data symbols are referenced PC-relatively, so the image must sit
-within 2 GB of `0x7100000000`). Producing an executable needs WSL or the MSVC Build Tools.
+within 2 GB of `0x7100000000`). Producing an executable needs WSL or the MSVC Build Tools. The game code type-puns as the original's
+did (words read as `u64`, storage cast to its layout), so `dread_game` should build with
+`-fno-strict-aliasing` as `dread_libs` does (review of boot hubs round 1).
 M2 groundwork (2026-10-26, branch `claude/port-bshdat`): `tools/bshdat.py --version 2.1.0
 --compile` parses the 478 shader packages, extracts the 671 programs' 1,342 GLSL sources and the
 compiler's reflection to `build/shaders/2.1.0/`, and compiles 1,341 stages to OpenGL and Vulkan

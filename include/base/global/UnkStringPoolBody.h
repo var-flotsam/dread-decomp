@@ -71,7 +71,6 @@ static_assert(sizeof(UnkStringPoolBody) == 0xe8, "UnkStringPoolBody layout");
 
 }  // namespace base::global
 
-extern char g_unk_7101a1a4c8[];  // the block pool's vtable (base/UnkCloneHelpers.h)
 
 void fn_7100080578(char* set, u32 a, u32 b);  // sets up the set's buckets for the pool
 void fn_71000800dc(char* set);                // frees the set's bucket array
