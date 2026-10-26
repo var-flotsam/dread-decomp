@@ -74,6 +74,13 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Port decision 3 (2026-10-26, the owner).** Vulkan is the first graphics backend and the shaders
+are compiled to SPIR-V at build time from the user's dump (`tools/bshdat.py --compile`'s Vulkan
+mode, the FXAA rule added there), so the executable carries no shader compiler. OpenGL was set
+aside: 1,298 stages need the NVIDIA-only `GL_NV_gpu_shader5` under GL, and macOS stops at GL 4.1.
+glslang 16.6.0 was installed into the owner's real tool cache from this session through a one-shot
+scheduled task (tool shells only see a sandboxed `%LOCALAPPDATA%`).
+
 **Boot hubs, round 1 (2026-10-26, branch `claude/boot-hubs-1`).** Four sonnet agents, one per group
 of `tools/hubs.py --boot` hubs on disjoint files, each matching its functions and declaring them once
 (the `dread-match` loop, time-boxed): nine `O` and one `m`, 2.4 KB, every declaring file moved onto

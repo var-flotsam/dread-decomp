@@ -255,6 +255,7 @@ macOS under Rosetta 2 (`AGENTS.md`).
 | **Handoff split into state and journal; PRs of 30+ functions; self-hosted check job** (2026-10-24) | Every session read a 28k-token log; 178 PRs in six days at a median of 10 functions and 3 minutes to merge |
 | **Class getters declared once in a generated header** (`UnkClassGetters.h`, 2026-10-24) | 243 hand files declared getters locally as `void*`; the CSV knows every getter, so the header needs no game data and never drifts |
 | Route to a running build: **Route B** (`docs/PORT_PLAN.md`, 2026-10-24) | One program now, lifted code as a bridge that matching replaces; the port lives in `port/` on `main` |
+| **Vulkan first; shaders compiled to SPIR-V at build time** from the user's dump (owner, 2026-10-26; `docs/PORT_PLAN.md` decision 3) | NVN's object model maps onto Vulkan, the binding layout is already worked out for it, and it runs on all three systems; the sources need the NVIDIA-only `GL_NV_gpu_shader5` under OpenGL. A build step (`tools/bshdat.py --compile`) keeps a compiler out of the executable; its output stays local game-derived data |
 
 ## Open decisions for the owner
 
@@ -269,6 +270,7 @@ macOS under Rosetta 2 (`AGENTS.md`).
 4. ~~Register a runner and enable the self-hosted check job.~~ Done 2026-10-24 (runner `dread-pc`,
    `docs/maintaining.md`). It cannot be a *required* check while the repository is private without
    GitHub Pro: merge on green by hand until the repository is public.
+5. ~~Graphics backend and when shaders compile.~~ Vulkan first, SPIR-V at build time (2026-10-26).
 
 ## Next steps
 
@@ -418,9 +420,11 @@ M2 groundwork (2026-10-26, branch `claude/port-bshdat`): `tools/bshdat.py --vers
 --compile` parses the 478 shader packages, extracts the 671 programs' 1,342 GLSL sources and the
 compiler's reflection to `build/shaders/2.1.0/`, and compiles 1,341 stages to OpenGL and Vulkan
 SPIR-V with glslang 16.6.0 after two rewrites (block bindings from the reflection,
-`GL_NV_explicit_typecast`); FXAA's fragment stage needs a hand fix. Next for M2: the NVN shim's
-binding layer (one Vulkan set per stage, samplers from binding 16) and the engine's variant
-selection by key.
+`GL_NV_explicit_typecast`); FXAA's fragment stage needs a rewrite rule. Decided 2026-10-26: Vulkan
+first, the SPIR-V built from the user's dump by the port's build (`bshdat.py --compile`'s Vulkan
+mode), no compiler in the executable. Next for M2: that build step in `port/` (the FXAA rule, the
+SPIR-V installed under `build/`), the NVN shim's binding layer over Vulkan (one descriptor set per
+stage, samplers from binding 16) and the engine's variant selection by key.
 
 **Stream M (generators).** The bugs above and `--prune`/regeneration after merges. The lifter's
 semantic mode exists (`opts={"semantic"}`, driven by `tools/port_lift.py`; byte mode is unchanged,
