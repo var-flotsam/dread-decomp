@@ -25,7 +25,7 @@ imported symbol names recorded in `data/functions/`.
 | `../tools/port_sweep.py` | the compile-only sweep that lists what in `src/` does not port |
 | `../tools/port_link.py` | the whole-program relocatable link and the report of what is missing ([The link (M1)](#the-link-m1)) |
 | `../tools/port_lift.py` | semantic lifts of the boot slice's `U` functions into `build/port/lifted/`, checked by the P-code oracle ([Semantic lifts](#semantic-lifts-m1-step-3)) |
-| `../tools/bshdat.py` | the `.bshdat` shader packages: GLSL sources, reflection and SPIR-V in `build/shaders/` ([Shaders](#shaders-m2-groundwork)) |
+| `../tools/bshdat.py` | the `.bshdat` shader packages: GLSL sources, reflection, the study's SPIR-V in `build/shaders/`; `--install` is the build step behind the `shaders` target ([Shaders](#shaders-m2)) |
 
 ### Targets
 
@@ -49,6 +49,7 @@ imported symbol names recorded in `data/functions/`.
   Built only when `DREAD_LINK` is ON.
 - `sweep`: runs `tools/port_sweep.py` with this build's compiler, target and standard library.
 - `link_report`: runs `tools/port_link.py` the same way, over the sweep's objects (run `sweep` first).
+- `shaders` (in `ALL`; `dread` depends on it): `tools/bshdat.py --install` compiles the game's shaders to SPIR-V from the dump into `DREAD_SHADER_DIR` ([Shaders](#shaders-m2)). On when the dump's shader folder exists (`DREAD_SHADERS`).
 
 ### Cache variables
 
@@ -61,6 +62,8 @@ imported symbol names recorded in `data/functions/`.
 | `DREAD_SWEEP_EXCLUDE` | empty | semicolon-separated CMake regexes over repository-relative paths; sources the sweep marks as not yet portable are left out of `dread_game` until fixed |
 | `DREAD_GAME_VERSION` | `2.1.0` | passed to the sweep |
 | `DREAD_PYTHON` | the repository's `.venv`, else `find_package(Python3)` | runs the sweep and the link report. A checkout without `.venv` (a worktree, a fresh clone) must set it to an interpreter with `pyelftools`: `tools/port_link.py` imports `tools/asmdiff.py`, which needs it (the sweep itself needs only the standard library) |
+| `DREAD_SHADERS` | ON when `orig/<version>/romfs/system/shd/` exists | build the `shaders` target (needs glslang: `tools/fetch_toolchains.py glslang-16.6.0`) |
+| `DREAD_SHADER_DIR` | `<build dir>/shaders` | where `tools/bshdat.py --install` writes the SPIR-V and `shaders.manifest` |
 
 ## Configuring
 
@@ -402,21 +405,43 @@ post-indexed load reading the incremented base, a 64-bit read narrowed to the ty
 elsewhere in the function, callee-saved registers spilled into the locals and dropped as if they
 were the prologue's saves.
 
-## Shaders (M2 groundwork)
+## Shaders (M2)
 
 ```sh
 python tools/fetch_toolchains.py glslang-16.6.0       # once, by name (not in the default fetch): Khronos glslang
-python tools/bshdat.py --version 2.1.0 --compile      # build/shaders/2.1.0/, about a minute
+cmake --build build/port/cmake --target shaders       # the build step: SPIR-V + shaders.manifest, about a minute
+python tools/bshdat.py --version 2.1.0 --compile      # the study: every mode, build/shaders/2.1.0/compile_report.csv
 ```
 
 `tools/bshdat.py` parses the game's 478 `.bshdat` packages (layout in its docstring) and writes,
 per package, `p<key>.vert` and `p<key>.frag` for each program (the GLSL its debug section carries,
 includes inlined, the engine's variant `#define`s after `#version`) and `manifest.json` (variant
 keys and defines, includes, section offsets, the compiler's reflection of each stage, the
-package's name tables). `--compile` runs glslang on every source as extracted and with the two
-rewrites a loader in the NVN shim makes (`shim_rewrite`: each uniform block gets the binding NVN's
-compiler gave it, taken from the reflection, and `GL_NV_explicit_typecast` is enabled), keeps the
-SPIR-V of the rewritten sources beside them (`.gl.spv`, `.vk.spv`; Vulkan with one descriptor set
-per stage and samplers from binding 16) and writes `compile_report.csv`. On 2.1.0, 1,341 of the
-1,342 stages compile in both targets; the exception and the binding model are recorded in
-`docs/JOURNAL.md` (2026-10-26). Everything under `build/shaders/` is game data and stays local.
+package's name tables) to `build/shaders/<version>/`.
+
+**The build step** (decision 3: Vulkan, SPIR-V at build time). The `shaders` target (in `ALL`, and
+a dependency of `dread`) runs `tools/bshdat.py --install ${DREAD_SHADER_DIR}`, by default
+`<build dir>/shaders/` beside the executable. It compiles every stage once, for Vulkan, with the
+loader's rewrites (`shim_rewrite`: each uniform block gets the binding NVN's compiler gave it,
+from the reflection; `GL_NV_explicit_typecast` is enabled; the per-stage `FIXUPS`), one descriptor
+set per stage (vertex 0, fragment 1) and the combined samplers from binding 16. Each module is then
+read back (`spirv_resources`) and checked against the stage's NVN reflection: every active block
+and sampler at the binding the shim expects, and only the `Shader` capability. The result is
+`<package>/p<key>.<stage>.spv` and `shaders.manifest`, a line-per-record table (format in
+`install()`) of packages, variant keys and defines, per-stage blocks and samplers with their NVN
+slot and Vulkan binding, inputs and outputs, and the package's attribute and uniform name tables
+with their engine IDs. The manifest is written last and only when every stage passed, so a failed
+build reruns. On 2.1.0 all 1,342 stages of the 671 programs compile and match (36 MB of SPIR-V).
+The target is on when the dump's `romfs/system/shd/` exists (`DREAD_SHADERS`); the SPIR-V is
+derived from game data, so it stays under `build/` and is never installed or distributed.
+
+The one source fix (`FIXUPS`): `pp_fxaa_nx`'s fragment stage is FXAA 3.11, whose `FxaaTexOff`
+passes its `off` parameter to `textureLodOffset`; GLSL requires that offset to be a constant
+expression (NVIDIA's compiler inlined the function and folded it). Every call passes a literal, so
+`FxaaTexOff` becomes a macro and each call gets its constant offset (`ConstOffset` in the SPIR-V):
+the same texels as the original. A fixup that does not find its text exactly once fails the stage.
+
+`--compile` is the study behind this: glslang on every source as extracted and in each rewrite
+mode, OpenGL and Vulkan (`.gl.spv`, `.vk.spv` beside the sources), `compile_report.csv` and a
+summary; 1,342 of 1,342 stages compile in the shim modes. The binding model is recorded in
+`docs/JOURNAL.md` (2026-10-26). Everything under `build/` is game data and stays local.

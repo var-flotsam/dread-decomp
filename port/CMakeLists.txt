@@ -5,6 +5,7 @@
 #   dread          the executable (main.cpp): the runtime now, the game objects from M1
 #   sweep          tools/port_sweep.py with this build's compiler and target
 #   link_report    tools/port_link.py: the whole-program relocatable link and what is missing
+#   shaders        tools/bshdat.py --install: the game's shaders as SPIR-V from the dump (decision 3)
 # Configure from the repository root, for example
 #   cmake -S port -B build/port/cmake -G Ninja
 # port/README.md has the configure line for each platform, including the compile-only one for a
@@ -195,3 +196,40 @@ add_custom_target(link_report
   COMMENT "Whole-program relocatable link of the sweep's objects and the report of what is missing (build/port/link/)"
   USES_TERMINAL
   VERBATIM)
+
+# Shaders (docs/PORT_PLAN.md, decision 3: Vulkan, SPIR-V compiled at build time). tools/bshdat.py
+# --install extracts the GLSL from the user's own .bshdat packages, compiles every stage with
+# glslang for Vulkan (one descriptor set per stage, samplers from binding 16) and writes the SPIR-V
+# and shaders.manifest, the table the NVN shim loads, to
+# DREAD_SHADER_DIR, beside the executable. Derived from game data: it stays under build/ and is
+# never installed or distributed. The executable carries no shader compiler. Needs glslang
+# (python tools/fetch_toolchains.py glslang-16.6.0) and the dump (tools/setup.py); on by default
+# when the dump's shader folder exists.
+set(_dread_shd_dir "${DREAD_ROOT}/orig/${DREAD_GAME_VERSION}/romfs/system/shd")
+if(IS_DIRECTORY "${_dread_shd_dir}")
+  set(_dread_shaders_default ON)
+else()
+  set(_dread_shaders_default OFF)
+endif()
+option(DREAD_SHADERS "Compile the game's shaders to SPIR-V from the dump (tools/bshdat.py --install)" ${_dread_shaders_default})
+set(DREAD_SHADER_DIR "${CMAKE_BINARY_DIR}/shaders" CACHE PATH "Where the SPIR-V and shaders.manifest go (beside the executable)")
+if(DREAD_SHADERS)
+  file(GLOB _dread_bshdat CONFIGURE_DEPENDS "${_dread_shd_dir}/*.bshdat")
+  list(LENGTH _dread_bshdat _dread_bshdat_count)
+  if(_dread_bshdat_count EQUAL 0)
+    message(FATAL_ERROR "dread: DREAD_SHADERS is ON but ${_dread_shd_dir} has no .bshdat files (run tools/setup.py, or set DREAD_SHADERS=OFF)")
+  endif()
+  message(STATUS "dread: ${_dread_bshdat_count} shader packages -> ${DREAD_SHADER_DIR}")
+  add_custom_command(
+    OUTPUT "${DREAD_SHADER_DIR}/shaders.manifest"
+    COMMAND "${DREAD_PYTHON}" "${DREAD_ROOT}/tools/bshdat.py" --version "${DREAD_GAME_VERSION}" --install "${DREAD_SHADER_DIR}"
+    DEPENDS "${DREAD_ROOT}/tools/bshdat.py" "${DREAD_ROOT}/tools/fetch_toolchains.py" "${DREAD_ROOT}/tools/hostenv.py" ${_dread_bshdat}
+    WORKING_DIRECTORY "${DREAD_ROOT}"
+    COMMENT "Compiling the game's shaders to SPIR-V (tools/bshdat.py --install, about a minute)"
+    USES_TERMINAL
+    VERBATIM)
+  add_custom_target(shaders ALL DEPENDS "${DREAD_SHADER_DIR}/shaders.manifest")
+  if(TARGET dread)
+    add_dependencies(dread shaders)
+  endif()
+endif()
