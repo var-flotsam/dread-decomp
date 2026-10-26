@@ -4,6 +4,7 @@
 // -1 stays when nothing is found.
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkTunableRegistry.h"
 #include "types.h"
 
 using base::global::UnkStringPool;
@@ -26,7 +27,6 @@ struct UnkSelf {
     UnkNamedString* name;
 };
 
-extern UnkTunableRegistry* g_unk_7101d47350;
 void fn_710013c7e0(UnkTunableRegistry* registry, const char* group, const char* name, f32* value);
 
 f32 fn_7100576ae8(UnkSelf* self) {

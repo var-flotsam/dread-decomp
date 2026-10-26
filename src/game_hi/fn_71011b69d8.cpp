@@ -65,7 +65,7 @@ bool fn_7100087850(UnkRegistry_0x70* r, const UnkStrPair_0x10* s);
 UnkRefSource_71011b69d8* fn_71011b6208(UnkTag_71011b69d8 tag, const UnkStrPair_0x10* s);
 extern UnkRegistry_0x70* g_unk_7101d4b5a0;
 
-UnkGuiHandle fn_71011b69d8(void* registry, const base::global::CRntString& name) {
+UnkGuiHandle fn_71011b69d8(UnkGuiRoot* registry, const base::global::CRntString& name) {
     UnkEntry_0x30 path;
     {
         UnkScriptPath_0x148 sp = fn_71011b66fc(registry, name);

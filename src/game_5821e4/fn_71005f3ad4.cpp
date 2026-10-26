@@ -1,6 +1,6 @@
 // CKraidBouncingCreaturesAttack (reflection: size 0x68, parent CKraidAttack): its copy constructor
 // (fn_71005f3ad4) and move constructor (fn_71005f3ba8), both the implicit copy.
-#include "CAttack.h"
+#include "game/CAttack.h"
 
 #include <new>
 

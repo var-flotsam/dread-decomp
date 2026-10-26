@@ -32,3 +32,7 @@ inline void UnkCopyMatrix(UnkMatrix44* dst, const UnkMatrix44& src) {
 // rebuilt from the translation, angles and scale when it is not valid, so the argument is the
 // transform itself, not a bare matrix. Defined in src/game_s1/fn_710002614c.cpp.
 const UnkMatrix44& fn_710002614c(const UnkMatrix44* m);
+// The scale matrix for the three factors. The result is returned through x8.
+UnkMatrix44 fn_7100079138(f32 x, f32 y, f32 z);
+// The matrix product a * b, returned through x8.
+UnkMatrix44 fn_71000127c8(const UnkMatrix44& a, const UnkMatrix44& b);

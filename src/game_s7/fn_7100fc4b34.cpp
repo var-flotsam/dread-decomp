@@ -52,7 +52,6 @@ static inline UnkSubId_7100fc4b34 SubId(UnkNamedDef_7100fc4b34& def, const CStrI
 
 // Typed reads of a section's value (refl_GetKeyedValue copies).
 bool fn_7100395b34(CBlackboard::CSection* section, const void* name, f32* out);
-bool fn_710006d11c(CBlackboard::CSection* section, const void* name, bool* out);
 bool fn_7100395a30(CBlackboard::CSection* section, const void* name, s32* out);
 bool fn_7100a68fb0(CBlackboard::CSection* section, const void* name, u32* out);
 
@@ -66,7 +65,7 @@ template <auto Reader, class T, class N>
 __attribute__((always_inline)) inline void Get(CBlackboard* set, const CStrId& section,
                                                const N& name, T* out) {
     if (CBlackboard::CSection* s = fn_7101047270(set, section))
-        Reader(s, &name, out);
+        Reader(s, reinterpret_cast<const CStrId*>(&name), out);  // every name starts with its CStrId
 }
 
 extern UnkDef_7100fc4b34 g_unk_717275a118;

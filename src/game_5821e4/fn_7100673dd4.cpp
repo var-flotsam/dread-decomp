@@ -1,6 +1,6 @@
 // CSabotoruTurnInDoorAttack (reflection: size 0x60): its copy constructor (fn_7100673dd4) and move
 // constructor (fn_7100673ea0), both the implicit copy.
-#include "CAttack.h"
+#include "game/CAttack.h"
 
 #include <new>
 

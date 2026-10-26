@@ -1,7 +1,7 @@
 // CQuetzoaXMultiTargetAttack (reflection: size 0x60): its copy constructor (fn_710063e44c) and move
 // constructor (fn_710063e500), both the implicit copy,
 // and its copy (fn_710063e5c0) and move (fn_710063e71c) assignments, both the implicit copy assignment.
-#include "CAttack.h"
+#include "game/CAttack.h"
 
 #include <new>
 

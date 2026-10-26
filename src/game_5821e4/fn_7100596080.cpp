@@ -1,6 +1,6 @@
 // CGooplotJumpAttack (reflection: size 0x88): its copy constructor (fn_7100596080) and move
 // constructor (fn_710059618c), both the implicit copy.
-#include "CAttack.h"
+#include "game/CAttack.h"
 
 #include <new>
 

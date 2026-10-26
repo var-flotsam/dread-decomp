@@ -11,6 +11,10 @@ using base::math::CVector3D;
 // The matrix (base/UnkMatrix44.h) with this file's element-by-element copy: with the real type's
 // plain copy the function no longer resembles the original.
 struct UnkMatrix44_7100714808 : UnkMatrix44 {
+    UnkMatrix44_7100714808(const UnkMatrix44& o) {
+        for (s32 i = 0; i < 16; ++i)
+            m[i] = o.m[i];
+    }
     UnkMatrix44_7100714808(const UnkMatrix44_7100714808& o) {
         for (s32 i = 0; i < 16; ++i)
             m[i] = o.m[i];
@@ -28,7 +32,7 @@ struct UnkXform_7100714808 {
     f32 field_0x40[6];
     u32 field_0x58;
 
-    explicit UnkXform_7100714808(const UnkMatrix44_7100714808& mat) : m(mat) {
+    explicit UnkXform_7100714808(const UnkMatrix44& mat) : m(mat) {
         for (s32 i = 0; i < 6; ++i)
             field_0x40[i] = 0.0f;
         field_0x58 = 8;
@@ -51,7 +55,6 @@ struct UnkWeighted_7100714808 {
     f32 weight;
 };
 
-UnkMatrix44_7100714808 fn_71000127c8(const UnkMatrix44& a, const UnkMatrix44& b);  // a * b
 void fn_7100714604(UnkWeighted_7100714808* self, const UnkWeighted_7100714808* other);  // assigns
 
 // NON_MATCHING(minor): in the weighted average, four of the multiplications by the inverse
@@ -65,7 +68,7 @@ void fn_7100714808(UnkWeighted_7100714808* self, const UnkWeighted_7100714808* o
     }
     const UnkMatrix44& a = fn_710002614c(&self->xform.m);
     const UnkMatrix44& b = fn_710002614c(&other->xform.m);
-    UnkMatrix44_7100714808 prod = fn_71000127c8(a, b);
+    UnkMatrix44 prod = fn_71000127c8(a, b);
     self->xform = UnkXform_7100714808(prod);
     self->flags = self->flags | other->flags;
     f32 w0 = self->weight;

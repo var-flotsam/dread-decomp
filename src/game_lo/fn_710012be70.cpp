@@ -8,15 +8,7 @@
 using base::math::CVector2D;
 using base::math::CVector3D;
 
-// Returned through x8, so the original's result type is not trivially copyable.
-struct UnkVec2Result_710012be70 {
-    f32 x;
-    f32 y;
-    UnkVec2Result_710012be70(const UnkVec2Result_710012be70& o);
-};
-
 bool fn_7100126018(const UnkSegment2D* seg, const CVector2D* point, CVector2D* out, f32 tolerance);
-UnkVec2Result_710012be70 fn_7100125e78(const UnkSegment2D* seg);
 
 struct UnkContact_710012be70 {
     CVector3D point;
@@ -29,13 +21,13 @@ struct UnkContact_710012be70 {
         point = p;
         flags |= 8;
     }
-    void SetNormalA(const UnkVec2Result_710012be70& n) {
+    void SetNormalA(const UnkVec2Result& n) {
         normal_a.x = n.x;
         normal_a.y = n.y;
         normal_a.z = 0.0f;
         flags |= 0x20;
     }
-    void SetNormalB(const UnkVec2Result_710012be70& n) {
+    void SetNormalB(const UnkVec2Result& n) {
         normal_b.x = n.x;
         normal_b.y = n.y;
         normal_b.z = 0.0f;

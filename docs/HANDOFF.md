@@ -6,7 +6,7 @@ it needs). History, batch logs and the index of matching findings are in `docs/J
 `docs/recon.md` describes the binary, `docs/compiler.md` the toolchain, `docs/references.md` the
 outside projects. This page is edited in place, never appended to: session notes go to the journal.
 
-**Last updated 2026-10-26** (hub batches 3 and 4, var-flotsam/dread-decomp#195 and #197; the TU helper fold, #196; the shader packages, #198; boot hubs round 1, branch `claude/boot-hubs-1`; port M2's shader build step and NVN binding layer, #202 and #204).
+**Last updated 2026-10-26** (hub batches 3 and 4, var-flotsam/dread-decomp#195 and #197; the TU helper fold, #196; the shader packages, #198; boot hubs round 1, #199; port M2's shader build step and NVN binding layer, #202 and #204; hub batch 5, branch `claude/hub-batch-5`).
 Target: **Metroid Dread 2.1.0**, `main` build ID `646761F643AFEBB379EDD5E6A5151AF2CEF93DC1`.
 
 ## Start here
@@ -15,9 +15,9 @@ Target: **Metroid Dread 2.1.0**, `main` build ID `646761F643AFEBB379EDD5E6A5151A
   coverage mode (stream M) runs in its own session on a `claude/lifter-semantic-coverage-*` branch.
 - **Next hub batch:** `tools/hub_migrate.py --header-redeclared` has nothing left but one deliberate
   keep (`src/game_s2/fn_71003f1b00.cpp`), and every conflicting symbol with a hand-written definition
-  has one declaration (batch 4). The 250 conflicting symbols left have no hand-written definition:
-  39 a lifted one, 211 none, so the callers' types and `tools/abi_facts.py` decide the signature, and
-  most need a shared type in a new header. `tools/decl_check.py --list` ranks them. Work them per
+  has one declaration (batch 4). The 224 conflicting symbols left (batch 5, 2026-10-26) have no
+  hand-written definition, so the callers' types, `tools/abi_facts.py` and Ghidra's view decide the
+  signature, and most need a shared type in a new header. `tools/decl_check.py --list` ranks them. Work them per
   `.claude/skills/dread-hubs`: the tool first (`hub_migrate.py SYM --header H --declaration D` once a
   signature is chosen), agents on disjoint file sets for what it leaves, verified with
   `tools/baseline.py` (`save --tag <batch>-full --all` before the agents start: two minutes).
@@ -58,12 +58,12 @@ Of the 10.1 MB matched, about 9.4 MB is generated (reflection boilerplate, lifte
 clones, tables) and 0.76 MB is hand-written with real types. The `U` bytes are mostly mid-sized
 game logic (5.6 MB between 256 B and 2 KB), which needs real types, not generators.
 
-Source hygiene (`tools/decl_check.py`, 2026-10-26): 11,298 `fn_`/`g_unk_` symbols declared in
-1,502 hand-written files (2,355 of them the generated class-getter header); 251 with conflicting
-signatures (393 on the morning of 2026-10-24, 337 after the first hub batch, 310 after the second,
-308 after the TU-init symbols, 286 after the third); 1 declared in `include/` and again outside it
-(76, 53, 45, 27, 6, 5; the one left is deliberate); 1,243 declared in more than one file (1,906 extra
-copies). Translation units (`tools/tu_map.py`): 2,773 units from 2,760 static initialisers, 2,712
+Source hygiene (`tools/decl_check.py`, 2026-10-26, after hub batch 5): 11,311 `fn_`/`g_unk_` symbols
+declared in 1,519 hand-written files (2,355 of them the generated class-getter header); 224 with
+conflicting signatures (393 on the morning of 2026-10-24, 337 after the first hub batch, 310 after the
+second, 308 after the TU-init symbols, 286 after the third, 249 after the fourth); 1 declared in
+`include/` and again outside it (76, 53, 45, 27, 6, 5; the one left is deliberate); 1,215 declared in
+more than one file (1,830 extra copies). Translation units (`tools/tu_map.py`): 2,773 units from 2,760 static initialisers, 2,712
 at high confidence; 11,656 `U` functions (6.0 MB) sit in a unit with a reflected class hint.
 
 ## Direction (decided 2026-10-24, owner's goal: clean, readable, playable in a few months)
@@ -313,15 +313,25 @@ ones in sequence (`tools/trymatch.py --obj-dir` keeps parallel objects apart).
 
 Batch 4 (2026-10-26) gave every conflicting symbol with a hand-written definition one declaration
 with the definition's types (29 symbols, 19 new headers such as `UnkTimelineComponent.h`,
-`UnkCollisionRecord.h`, `UnkSpitAttack.h`, `UnkGuiHandle.h`; journal). Next, by
-`tools/decl_check.py --list`: `fn_71004f3ea4` (4 signatures in 3 files), `fn_710007b430`,
-`fn_71000127c8`, `fn_71004f11f8`, the GUI functions `fn_71011b6bbc`, `fn_71011d8e90`, `fn_71011d968c`
-(3 each). Batch 4's own follow-ups: `fn_7100a2c13c`, `fn_7100a2cfe8` and `fn_7100a2cb7c` (whose
-`UnkReflStatics.h` declaration disagrees with its definition) into `UnkTimelineComponent.h`;
-`fn_71001c28f8` into `UnkSlots.h`; the 0x60-byte record's `PushBack` `fn_7100e52cf4` (5 files) into
-`UnkFreedVectorPair.h`; `fn_7100125e78`, `fn_7100125b1c` onto `UnkSegment2D.h`; `UnkAttack.h` and
-`src/game_5821e4/CAttack.h` into one `CAttack`; `gen_tables.py` should use `UnkRenderManager.h`'s
-`fn_7100219ae0` (its video map declares it `void`). Older follow-ups:
+`UnkCollisionRecord.h`, `UnkSpitAttack.h`, `UnkGuiHandle.h`; journal). Batch 5 (2026-10-26, journal)
+chose signatures for 34 symbols without one (Ghidra, `abi_facts.py`, the callers), among them the
+deferred set's add and remove, the GUI root (`UnkGuiRoot.h`: layout, global, five root functions),
+the display-object container, the matrix product and scale, the segment's normal and constructor,
+the timeline component's lookups, reflection type globals, the suit properties, behaviour-tree
+nodes, and moved `CAttack.h` to `include/game/`. Next, by `tools/decl_check.py --list`:
+`fn_7100de9540`, `fn_71010c4194`, `fn_71010c4250`, `fn_710117ae38`, `fn_710117b08c`, `fn_71011d98ec`,
+`fn_710120235c`, `g_unk_71726bc570` (3 signatures each) and the item properties
+`g_unk_717275a058` ... `g_unk_717275a258` (like the suits in `UnkSuitProperties.h`; one item-property
+header for all). Batch 5's own follow-ups (its review): `UnkGuiRoot.h`'s `UnkGuiFocus` is
+`UnkWeakHandle` (`game_s2/UnkWeakHandle.h`; +0x230 and +0x238); `include/game/CAttack.h` repeats the
+weak-handle types of that header; `UnkSuitProperties.h`'s `SuitAs` views a property as another class
+where an accessor of its +0x10 qualified id would do; `UnkReflStatics.h` includes
+`UnkTimelineComponent.h` (heavy; a forward declaration needs a second declaration); `UnkStrIdTable`
+and `CBlackboard.h`'s `UnkPropertyArrays` are one parallel-array template with two strides;
+`fn_710002ffb4` and `fn_710002fd10` (the GUI root's +0xca8; two files); the GUI callers cast their
+own views to `UnkGuiDisplayObject*` (derive them instead). `src/game_aca57c/fn_7100b2c6a0.cpp` calls
+`fn_71011d968c` through an untyped function pointer (the typed call changes its minor functions).
+Older follow-ups:
 `fn_710021693c` and `fn_7100216d30` into `UnkSphere.h`; `fn_71004fa3b8` (9 identical local
 declarations); the `UnkActor` slots at +0x240 and +0x298 typed `UnkAIComponent*` and
 `UnkNavigation*`; `fn_7100394bd4` (2 signatures); `fn_7100ad3588` into `UnkErasedVector.h` and

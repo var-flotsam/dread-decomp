@@ -2,6 +2,7 @@
 // string id at +0x510 (each use counted on its string data at 0x44; the first text defaults to
 // the empty string) and returns it; 0 when nothing is found.
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkTunableRegistry.h"
 #include "types.h"
 
 using base::reflection::UnkTunableRegistry;
@@ -24,7 +25,6 @@ struct UnkGroupIds {
     UnkNamedString* group;
 };
 
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkGroupIds g_unk_717272fd38;
 void fn_710013c7e0(UnkTunableRegistry* registry, const char* group, const char* name, f32* value);
 

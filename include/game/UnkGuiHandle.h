@@ -9,6 +9,8 @@
 #include "game/UnkGuiDisplayObject.h"
 #include "types.h"
 
+struct UnkGuiRoot;
+
 struct UnkGuiHandleObj {
     virtual void vf_0x0();
     virtual void vf_0x8();
@@ -29,4 +31,4 @@ struct UnkGuiHandle {
     }
 };
 
-UnkGuiHandle fn_71011b69d8(void* registry, const base::global::CRntString& name);
+UnkGuiHandle fn_71011b69d8(UnkGuiRoot* registry, const base::global::CRntString& name);

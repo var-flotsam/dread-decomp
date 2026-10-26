@@ -1,6 +1,6 @@
 // CGroundShockerAttack (reflection: size 0x60): its copy constructor (fn_71005a12ec) and move
 // constructor (fn_71005a13a0), both the implicit copy.
-#include "CAttack.h"
+#include "game/CAttack.h"
 
 #include <new>
 

@@ -1,6 +1,6 @@
 // CShakernautPiercingLaserAttack (reflection: size 0xc0): its copy constructor (fn_71006a9468)
 // and move constructor (fn_71006a95bc), both the implicit copy.
-#include "CAttack.h"
+#include "game/CAttack.h"
 
 #include <new>
 

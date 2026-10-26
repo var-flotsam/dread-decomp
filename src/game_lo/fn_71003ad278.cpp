@@ -4,6 +4,7 @@
 // zero) and marks the object at +0x30.
 #include "base/UnkVector.h"
 #include "base/math/CVector4D.h"
+#include "game/UnkBehaviorTree.h"
 #include "game/UnkSlots.h"
 #include "types.h"
 
@@ -47,9 +48,8 @@ struct UnkEntry_71003ad278 {
     CVector4D value;
 };
 
-struct UnkObject_71003ad278 {
-    u8 pad_0x0[0x30];
-    UnkLink_71003ad278* field_0x30;
+struct UnkObject_71003ad278 : UnkBehaviorTreeAI {
+    UnkLink_71003ad278* Link() const { return static_cast<UnkLink_71003ad278*>(field_0x30); }
     u8 pad_0x38[0x146c8 - 0x38];
     base::UnkVector<UnkElem_71003ad278> elems;  // 0x146c8
     u8 pad_0x146f0[0x147e9 - 0x146f0];
@@ -80,8 +80,6 @@ struct UnkObject_71003ad278 {
 
 extern const CVector4D unk_71016491b0 __attribute__((visibility("hidden")));  // zero
 
-void fn_71003695b8(UnkObject_71003ad278* self);  // the base reset
-
 static inline void Apply(UnkTarget_71003ad278* target, u32 id, u32 kind, const CVector4D* value) {
     fn_71001c2764(target->field_0x138, id, kind, value, true, true);
 }
@@ -105,7 +103,7 @@ void fn_71003ad278(UnkObject_71003ad278* self) {
     if (flags->field_0x50c)
         return;
     if (flags->field_0x510) {
-        UnkLink_71003ad278* link = self->field_0x30;
+        UnkLink_71003ad278* link = self->Link();
         if (link->field_0x228) {
             if (UnkTarget_71003ad278* target = link->field_0x228->target) {
                 if (link->field_0x1b8) {
@@ -120,5 +118,5 @@ void fn_71003ad278(UnkObject_71003ad278* self) {
             }
         }
     }
-    self->field_0x30->field_0x312 = true;
+    self->Link()->field_0x312 = true;
 }

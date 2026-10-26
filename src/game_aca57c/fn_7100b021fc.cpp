@@ -3,22 +3,10 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkGuiDisplayObject.h"
+#include "game/UnkGuiRoot.h"
 #include "game_s2/UnkWeakHandle.h"
 
 using base::reflection::CClass;
-
-struct UnkGuiFocus {
-    u8 unk_0x0[0x10];
-    UnkWeakTarget* field_0x10;
-};
-
-struct UnkGuiRoot {
-    u8 unk_0x0[0x230];
-    UnkGuiFocus* field_0x230;
-};
-
-extern UnkGuiRoot* g_unk_717271e8f8;
-void fn_71011b6bbc(UnkGuiRoot* root, void* object, s32 value);
 
 // Unless the flag at 0x181 is set, refers to the focused object at 0x318 (or to nothing), passes it
 // 0 and this object 1, then hands this object to the root.
@@ -39,7 +27,7 @@ void fn_7100b021fc(UnkGuiFocusUser318* self) {
     if (handle && handle->target)
         fn_71011cf2a4(reinterpret_cast<UnkGuiDisplayObject*>(handle->target), false);
     fn_71011cf2a4(reinterpret_cast<UnkGuiDisplayObject*>(self), true);
-    fn_71011b6bbc(g_unk_717271e8f8, self, 0);
+    fn_71011b6bbc(g_unk_717271e8f8, reinterpret_cast<UnkGuiDisplayObject*>(self), false);
 }
 
 // As fn_7100b021fc with the reference at 0x238, which is only changed when there is a focused
@@ -58,7 +46,7 @@ void fn_7100b619b4(UnkGuiFocusUser238* self) {
         }
     }
     fn_71011cf2a4(reinterpret_cast<UnkGuiDisplayObject*>(self), true);
-    fn_71011b6bbc(g_unk_717271e8f8, self, 0);
+    fn_71011b6bbc(g_unk_717271e8f8, reinterpret_cast<UnkGuiDisplayObject*>(self), false);
 }
 
 // Refers the reference at 0xf0 to `other`'s weak handle.

@@ -89,6 +89,17 @@ static_assert(__builtin_offsetof(UnkTimelineComponent, timed_flags) == 0x1a0, "U
 void fn_7100a2b7b8(UnkTimelineComponent* self, const u64* id);
 // Whether an id is known: queued for addition, or already in the table.
 bool fn_7100a2be94(UnkTimelineComponent* self, const u64* id);
+// The entry for an id in a resource reached through the owner (+0x30, its +0x28 when that is of
+// the expected class; the id may be remapped first), not in the table above; null when there is
+// none. The callers only test it or pass it on (fn_7100a2c200).
+struct UnkTimelineResourceEntry;
+UnkTimelineResourceEntry* fn_7100a2c13c(UnkTimelineComponent* self, const u64* id);
+// Whether the id is in the table (fn_7100d7c828 skips adding the default then).
+bool fn_7100a2cfe8(UnkTimelineComponent* self, const u64* id);
+// Sets a value for an id (-1 = none): on the timed list when the delay is positive or about
+// zero, else now, or queued while the table is locked; `unique` ignores unknown ids on the
+// immediate path. Defined in src/game_hi/fn_7100a2cb7c.cpp.
+void fn_7100a2cb7c(UnkTimelineComponent* self, const u64* id, const u32* value, bool unique, f32 delay);
 // Gives the actor's component, when it has one, a key it doesn't know yet: removes the key first
 // when `flag` is set, then adds it with the default mask and a delay of -1 unless fn_7100a2cfe8
 // holds for it.

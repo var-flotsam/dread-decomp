@@ -1,6 +1,7 @@
 // Destructor body of the component built by fn_7100ac2c5c: drops the bound callback, then
 // releases the member ids and reference-counted objects and runs the base destructor.
 #include "base/UnkCountedResource.h"
+#include "base/UnkStrIdPathPair.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "types.h"
@@ -42,7 +43,6 @@ struct UnkComponent_0x5b8 {
 
 extern void* g_unk_7101a96b30[];
 void fn_71005c4828(void* callback, void** slot);
-void fn_7100027044(UnkStringData** self);
 void fn_7100ac72a4(UnkComponent_0x5b8* self);
 
 // A string id's destructor on the given pool: decrement, then test the reloaded count.
@@ -73,7 +73,7 @@ void fn_7100ac2e00(UnkComponent_0x5b8* self) {
     self->field_0x5b0 = nullptr;
     self->field_0x5a8 = nullptr;
     ReleaseId(&self->field_0x598, &g_unk_7101d47108);
-    fn_7100027044(&self->field_0x580);
+    fn_7100027044(reinterpret_cast<UnkStrIdPathResource*>(&self->field_0x580));
     if (UnkCountedResource* p = self->field_0x590)
         if (--p->ref_count == 0)
             fn_710001737c(p);

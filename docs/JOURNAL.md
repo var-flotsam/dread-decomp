@@ -58,6 +58,7 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 **Declarations and calling conventions**
 - A caller declared with fewer parameters can rely on an argument register the caller left set (six callers of `fn_7100216978` passed the vector in `x1` unawares); declaring the real signature keeps the bytes: [sixteenth session](#session-log-newest-first).
 - A union-typed scoped reference adds a reload in its destructor; cast at the call instead. A cast that lets Clang tail-merge two paths can be undone by an anonymous-union member: [sixteenth session](#session-log-newest-first).
+- A global the generated sources declare keeps their type in its header (`CType` for reflected type globals), or every generated includer stops compiling; a typed call that changes a minor function's code can go through a function-pointer view of the header's declaration: [hub batch 5](#session-log-newest-first).
 - On the x86-64 port a mismatched declaration is a register mismatch only across argument classes (`float` vs integer or pointer); count and pointee differences are harmless for address-taking references: [sixteenth session](#session-log-newest-first).
 - Clone kinds and the census method; families tried and left: work log items 0 and 2.
 - A function passed as a template argument keeps its relocation target only if the template takes the function's own type (no inline wrapper): [hub batch 3](#session-log-newest-first).
@@ -138,6 +139,37 @@ aliases the C1/D1 symbols to `fn_<addr>` under `__clang_major__ <= 9`, as
 fails from a worktree under `.claude/` (Ghidra rejects a path element starting with a dot): run it
 from the main checkout. About 70 minutes of wall clock for the slowest agent, 0.96 M agent tokens.
 Boot slice 1,881 to 1,889 `O`.
+
+**Hub batch 5 (2026-10-26, branch `claude/hub-batch-5`).** The first batch of conflicting symbols
+without a hand-written definition: the signature comes from Ghidra's view (read only), the argument
+registers and result use from `tools/abi_facts.py`, and the callers' types. 34 symbols. Procedure as
+the owner set it: a whole-tree baseline (`baseline.py save --tag hb5-full --all`, 1,395 files, 4
+minutes); then `hub_migrate.py SYM --header H --declaration D` for 22 chosen signatures in one
+scripted run (about 40 minutes; 22 file declarations migrated, three symbols done outright:
+`fn_7100e52cf4`, `g_unk_7101d47350`, the empty element destructor `fn_71002874dc`); then five sonnet
+agents on file-disjoint sets for the `LEFT` files (GUI and string ids, math and timeline, reflection
+globals and blackboard, behaviour tree and slots, then `CAttack`), and a sixth for the GUI root
+global the GUI set turned up; then an adversarial review of the headers. Every agent ended with its
+own baseline unchanged; the whole-tree compare stayed unchanged; `check.py --update` clean.
+decl_check: conflicting 249 to 224 (307 to 261 extra signatures), extra copies 1,903 to 1,830,
+header re-declarations 1 to 1. Findings: the GUI "watch set" and "tree" placeholders were all
+`base::UnkDeferredSet<void>` (its out-of-line Remove `fn_71004f3ea4` and Add `fn_71004f3cf0`); the
+"named components" lookup `fn_71008640a4` is the collision container's lookup by name (into
+`UnkCollisionRecord.h`); `fn_71000267f8` reads only the ids of its source, so it takes the pair
+while its target is the pair with the resource; the GUI root (`g_unk_717271e8f8`) got a header with
+its layout and its five root-taking functions, and `fn_71011b69d8` takes it. A global the generated
+reflection sources declare (`g_unk_7101d5c998`, `g_unk_71727952a8`) must keep their type (`CType`)
+in the header, or every generated includer fails to compile: `hub_migrate.py` and `baseline.py`
+rebuild hand-written includers only, so `check.py` caught it. One file
+(`src/game_aca57c/fn_7100b2c6a0.cpp`) changes its `NON_MATCHING(minor)` functions (98.2% to 96.5%,
+an address register no longer reused) when it calls `fn_71011d968c` with the header's typed
+arguments, and also with a `void` cast, a named local or a `static_cast` through `void*`; calling the
+header's function through a `void (*)(void*, void*)` view keeps the bytes and the one declaration.
+The segment constructor `fn_7100125b1c` is bound with an asm label on `UnkSegment2D`'s constructor
+(the `CStrId.h` precedent), so callers construct the segment. The frozen Phase 3 sample
+`src/flag_id/fn_71005a998c.cpp` now derives its object from the header's `UnkBehaviorTreeAI`
+(identical output; `compiler_matrix.py` compiles it with `include/`). Coordinated with boot hubs round
+2 (append-only edits to `CBlackboard.h` on both sides; `g_unk_710164779c` left to that session).
 
 **Shader packages parsed (2026-10-26, branch `claude/port-bshdat`; port M2 groundwork).**
 `tools/bshdat.py` parses all 478 `.bshdat` packages from their bytes and writes every stage's GLSL

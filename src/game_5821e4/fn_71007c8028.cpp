@@ -1,7 +1,7 @@
 // SDropProbabilities (reflection: size 0x90): its copy constructor (fn_71007c8028) and move
 // constructor (fn_71007c80d0), both implicit. The string id is copied or moved; the move leaves
 // the source empty.
-#include "CAttack.h"
+#include "game/CAttack.h"
 #include "base/global/CStrId.h"
 
 #include <new>

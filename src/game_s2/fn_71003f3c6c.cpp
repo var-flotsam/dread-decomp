@@ -1,5 +1,5 @@
 // CBigkranXSpitAttack (reflection: size 0x128): its copy constructor, out of line.
-#include "../game_5821e4/CAttack.h"
+#include "game/CAttack.h"
 
 // A 0x48-byte member copied out of line (fn_7100331c7c).
 struct UnkMember_7100331c7c {

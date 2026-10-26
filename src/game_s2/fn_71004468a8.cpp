@@ -36,7 +36,6 @@ struct UnkSelf {
 
 extern __attribute__((visibility("hidden"))) base::global::CStrId g_unk_71726c8da8;
 void fn_710042bb40(UnkSelf* self);
-void* fn_71008640a4(void* object, const void* key);
 void** fn_7100443d5c(void* list, u32 index);
 void fn_710117b3f0(void* object, void* list);
 

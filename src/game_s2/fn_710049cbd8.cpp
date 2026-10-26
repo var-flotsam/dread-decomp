@@ -3,6 +3,8 @@
 // 0x7101d47310 answering a query; then, when the mode at +0x70 differs from "nonzero and flag clear",
 // the height of the owner above a point computed from the reference at +0x68 (the reference itself
 // in mode 1, else the point 12 bytes in) must reach a tunable (at +0x7fc of the object at +0x149d0).
+#include "base/math/CVector.h"
+#include "base/math/UnkSegment2D.h"
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
@@ -43,7 +45,6 @@ struct UnkSelfFar {
 s32 fn_71009e8590(UnkFlagged* object);
 bool fn_71009e75e8(UnkFlagged* object);
 bool fn_7100df5630(UnkGameManager* manager);
-void fn_7100125b1c(f32* out, char* from, char* to);
 
 // NON_MATCHING(minor): the two operands of the "mode matches" `and` are swapped (scheduling only)
 bool fn_710049cbd8(UnkSelf* self) {
@@ -57,9 +58,9 @@ bool fn_710049cbd8(UnkSelf* self) {
         u32 expected = nonzero & clear;
         if (mode != expected) {
             char* from = self->field_0x68;
-            f32 out[6];
-            fn_7100125b1c(out, from, mode == 1 ? from : from + 12);
-            f32 below = out[1];
+            char* to = mode == 1 ? from : from + 12;
+            UnkSegment2D seg(*reinterpret_cast<base::math::CVector2D*>(from), *reinterpret_cast<base::math::CVector2D*>(to));
+            f32 below = seg.start.y;
             if (body->field_0x54 - below >= reinterpret_cast<UnkSelfFar*>(self)->field_0x149d0->field_0x7fc)
                 return true;
         }

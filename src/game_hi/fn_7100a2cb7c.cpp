@@ -39,7 +39,6 @@ static inline void AppendCopy(base::UnkVector<UnkPendingAdd>& a, const UnkPendin
     ++a.count;
 }
 
-void* fn_7100a2c13c(UnkTimelineComponent* self, const u64* id);
 void fn_7100a2c200(UnkTimelineComponent* self, void* entry, const u32* value);
 
 // NON_MATCHING(minor): the duplicate-id scan's two exit tests are merged into one conditional

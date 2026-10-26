@@ -1,6 +1,6 @@
 // CHydrogigaAttack (reflection: size 0x60): its copy constructor (fn_71005b32d0) and move
 // constructor (fn_71005b3414), both the implicit copy.
-#include "CAttack.h"
+#include "game/CAttack.h"
 #include "base/UnkCloneRecords.h"
 
 #include <new>

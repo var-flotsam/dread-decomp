@@ -5,23 +5,19 @@
 
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/UnkBehaviorTree.h"
 #include "types.h"
 
 using base::global::CRntString;
 using base::global::UnkStrId;
 
-typedef void** __attribute__((may_alias)) UnkVtable;
-
-struct UnkNode_71003a3e64 {
-    UnkVtable vtable;
-    u8 pad_0x8[0x30];
+struct UnkNode_71003a3e64 : UnkBehaviorTreeNode {
     CRntString field_0x38;
     UnkStrId field_0x68;
 
     void vf_0x18() { reinterpret_cast<void (*)(UnkNode_71003a3e64*)>(vtable[3])(this); }
 };
 
-void fn_71003944e8(UnkNode_71003a3e64*);
 extern void* g_unk_7101a28ac0[];
 
 void fn_71003a3e64(UnkNode_71003a3e64* self) {
