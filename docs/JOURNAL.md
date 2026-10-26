@@ -71,8 +71,45 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 **Port: shaders**
 - `.bshdat` layout, the GLSL in each stage's debug section, and the two rewrites glslang needs (block `location` to the compiler's binding, `GL_NV_explicit_typecast`): [shader packages parsed](#session-log-newest-first).
 - NVN's compiler numbers a stage's active uniform blocks 0..n-1 in declaration order, whatever the source says; take bindings from the reflection, never from the source: same entry.
+- `nvnProgramSetShaders` gets each stage's control section by pointer; key stages by FNV-1a 64 over its first 2,048 bytes. NVN block sizes are the SPIR-V span rounded to 16. The engine selects variants itself (`fn_71001b0f24`): [port M2](#session-log-newest-first).
+- A source fix for one shader is a regular expression over the construct, never the shipped lines (those are game data): same entry.
 
 ## Session log (newest first)
+
+**Port M2: shader build step, NVN binding layer, variant selection (2026-10-26, var-flotsam/dread-decomp#202
+and #204).** Three pieces of the graphics stream, each reviewed by an adversarial subagent before its
+PR. (1) `tools/bshdat.py --install DIR` is the port's build step (`shaders` target): every stage
+compiled once for Vulkan with the loader's rewrites, read back by a small SPIR-V reader and checked
+against NVN's reflection (bindings, the `Shader` capability only, block sizes: NVN's size is the
+SPIR-V layout's span rounded up to 16 in all 2,891 active blocks), then `shaders.manifest`. FXAA
+3.11's `FxaaTexOff` passes a parameter as `textureLodOffset`'s offset; every call passes a literal,
+so the fixup turns the function into a macro (`ConstOffset` in the SPIR-V, same texels). The first
+version quoted the two shipped lines in a tracked file; the fixups are now regular expressions over
+the construct. All 1,342 stages compile. (2) Reading the engine: `.bshdat` files are
+`msapi::res::CProgramResource` (`fn_71001b2e60` registers the extension). The engine parses each
+stage blob's reflection itself (`fn_710015c9b0`, including uniform names; NVN has no
+uniform-location API). It copies section 0's code part into GPU memory and passes NVN
+`{code address, control pointer}` per stage (`fn_710015d760`). Section 0's record words +0x30,
++0x34 and +0x38 are the control offset (0), the code offset and the code size. So the shim recognises
+a stage by its control section: FNV-1a 64 over the first 2,048 bytes separates all 1,010 distinct
+ones (1,342 stages; shorter prefixes give 764). Stages with one control section have the same code,
+SPIR-V and interface. The program record's empty slot 0 is the engine's stage type 2, bound as NVN
+stage 2 with bit 4 (geometry). Call sites through the NVN table (code loading each slot's GOT
+entry): 150 of 523 functions are used. Bindings use only
+`BindUniformBuffer(cmd, stage, slot from the reflection, address, size)` (`fn_710015d900`),
+`BindTexture(cmd, stage, slot 0-15, GetTextureHandle(texture id, sampler id))` (`fn_7100161250`),
+`UpdateUniformBuffer` and the two pools. A depth-only pass unbinds the fragment stage with
+`BindProgram(cmd, null, 2)`. `port/nvn/` (`dread_nvn`) holds the manifest reader and the binding
+layer, compile-checked only. (3) Variant selection: `fn_71001b0050` turns the variant map into
+`{key, key & key2, program}` entries and three engine-ID-to-name tables (IDs above 0x11a less
+0x2cd). The header's `+0x18` names the default program, and its `+0x20` list is a third, empty, name
+list. `fn_71001b0f24` returns the last entry from the top down to entry 1 whose `key & key2` equals
+the key, else entry 0, else the default. The renderer keeps the current key at `+0x317af78` of its
+context (`fn_71001cc608` applies it; set by `fn_710014d1a0`, `fn_71001cafa0` and `fn_71001d4be4`,
+reset by `fn_71001cde48`). The shim needs nothing for variants; the loader and selector are `U` and
+belong on the lifter's list. Khronos Vulkan-Headers 1.4.328 are pinned. They were installed into the
+owner's real cache by a one-shot scheduled task; the first attempt unregistered the task before it
+finished, so wait for the task's state instead of sleeping.
 
 **Port decision 3 (2026-10-26, the owner).** Vulkan is the first graphics backend and the shaders
 are compiled to SPIR-V at build time from the user's dump (`tools/bshdat.py --compile`'s Vulkan
