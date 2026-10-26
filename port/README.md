@@ -24,6 +24,7 @@ imported symbol names recorded in `data/functions/`.
 | `runtime/src/` | stub implementations; every stub carries a `TODO(M<n>)` naming the boot-path function that needs it; `missing.cpp` holds the two traps |
 | `../tools/port_sweep.py` | the compile-only sweep that lists what in `src/` does not port |
 | `../tools/port_link.py` | the whole-program relocatable link and the report of what is missing ([The link (M1)](#the-link-m1)) |
+| `../tools/port_lift.py` | semantic lifts of the boot slice's `U` functions into `build/port/lifted/`, checked by the P-code oracle ([Semantic lifts](#semantic-lifts-m1-step-3)) |
 
 ### Targets
 
@@ -332,3 +333,55 @@ The residue of the second link grows from 304 to 375, by C library names only: L
 locale and time functions, which the host's libc provides at the final link. `C_LIBRARY` lists them,
 so none of them lands under "named without address". The link inputs are 53,203 `--defsym`, 6,723
 traps and 51 jumps to the host's library.
+
+## Semantic lifts (M1 step 3)
+
+```sh
+python tools/port_lift.py --version 2.1.0                      # build/port/link/boot_missing.csv -> build/port/lifted/
+python tools/port_link.py --version 2.1.0 --lifted build/port/lifted
+python tools/port_lift.py --version 2.1.0 --debug 7100129910   # every attempt and the first disagreeing input
+python tools/port_lift.py --version 2.1.0 --top 300 --mutants 200 --out build/port/lifted_t300   # test the oracle
+```
+
+The boot slice's `U` functions get a source that behaves like the original without matching it.
+`tools/port_lift.py` lifts them with `tools/gen_lift.py`'s lifters in semantic mode, compiles every
+variant for AArch64 with the project compiler and `-fno-strict-aliasing -fwrapv
+-fno-delete-null-pointer-checks`, and runs each against the original, in variant order, as Ghidra
+P-code (`tools/pcode_emu.py`, oracle (b) of `docs/PORT_PLAN.md`). The first variant whose calls
+(target and the argument registers the callee reads, `tools/abi_facts.py`), writes outside its own
+frame and result agree with the original's on every conclusive input is compiled for x86-64 with
+the sweep's compiler and flags:
+
+| Path | Contents |
+|---|---|
+| `build/port/lifted/src/fn_<addr>.cpp` | the lift, opening with `DREAD_PORT_LIFTED(<addr>)` (empty unless a boot defines it: oracle (c)) |
+| `build/port/lifted/obj/fn_<addr>.o` | its x86-64 object, which `port_link.py --lifted` links |
+| `build/port/lifted/manifest.json` | the generator version and its sources' blob hashes, and every worklist function's outcome, oracle inputs and coverage |
+| `build/port/lifted_work/` | the AArch64 attempts and their laid-out objects |
+| `build/port/pcode_cache.pickle`, `build/port/abi_facts.pickle` | P-code per instruction word and the calling-convention facts, kept between runs (game-derived: `build/` only) |
+
+None of it is tracked and none of it counts as matching (open decision 2; `tools/check.py` never
+sees it). `port_link.py --lifted` leaves out a lift whose address the sources now define and says
+when the manifest's generator sources differ from the checked-out ones.
+
+**Result on `main` after hub batch 2 (2026-10-25).** Of 2,148 `U` functions (1,236,964 bytes):
+
+| Outcome | Functions | Bytes |
+|---|---|---|
+| accepted | 1,777 | 839,396 |
+| rejected by the oracle | 157 | 123 KB |
+| inconclusive (time-outs, a return outside the function) | 23 | 6 KB |
+| lifter gaps: `adds`/`ands` carry or overflow conditions, jump tables (`adr`), other conditions, flat-mode register order, float widths, stack arguments, ... | 191 | 262 KB |
+
+The link with them (`port_link.py --lifted`): of the slice's 4,211 game functions, 1,777 are
+lifted and **380 (399,148 bytes) still have no source**, down from 2,157 (`boot_unlifted.csv`,
+headed by `fn_710023b580`, 19 callers, an `adds` carry condition, and
+`fn_7100defcec`, 16, which the oracle rejects: the original faults on one input where the lift returns). The residue grows from 375 to 378 by `atoi`, `roundf` and `wcscmp`, the host's.
+
+The oracle's reach is the limit to keep in mind: its inputs run a median of 67% of an original's
+instructions, and of 300 faults injected into accepted lifts it rejects 45%, 79% on the functions
+it covers completely. What it found along the way were real lifter bugs that byte identity had
+hidden, all fixed in semantic mode: a compare reading a register its own `subs` overwrote, a
+post-indexed load reading the incremented base, a 64-bit read narrowed to the type of a write
+elsewhere in the function, callee-saved registers spilled into the locals and dropped as if they
+were the prologue's saves.
