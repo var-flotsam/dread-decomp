@@ -46,8 +46,9 @@ namespace base::global {
 // creates the pool: what the string-id constructor runs when there's no pool yet.
 struct UnkStringPoolHolder {
     u8 unk_0x0[0xe8];
-    UnkStringPoolHolder(u32 a, UnkStringPool** pool);  // fn_710007fe68
-    ~UnkStringPoolHolder();                            // fn_7100080004
+    // Defined in src/base/global/UnkStringPoolHolder.cpp.
+    UnkStringPoolHolder(u32 a, UnkStringPool** pool) asm("fn_710007fe68");
+    ~UnkStringPoolHolder() asm("fn_7100080004");
 };
 
 inline void UnkEnsureStringPool() {

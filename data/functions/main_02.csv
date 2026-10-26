@@ -3808,8 +3808,8 @@ address,size,name,name_source,subsystem,status
 0x71002af96c,4,fn_71002af96c,unknown,unknown,O
 0x71002af970,216,fn_71002af970,unknown,unknown,O
 0x71002afa48,412,fn_71002afa48,unknown,unknown,U
-0x71002afbe4,80,fn_71002afbe4,unknown,unknown,U
-0x71002afc34,80,fn_71002afc34,unknown,unknown,U
+0x71002afbe4,80,fn_71002afbe4,unknown,unknown,O
+0x71002afc34,80,fn_71002afc34,unknown,unknown,O
 0x71002afc84,84,fn_71002afc84,unknown,unknown,U
 0x71002afcd8,392,fn_71002afcd8,unknown,unknown,U
 0x71002afe60,72,fn_71002afe60,unknown,unknown,U

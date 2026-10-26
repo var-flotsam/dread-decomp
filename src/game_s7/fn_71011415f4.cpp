@@ -1,7 +1,8 @@
-// Refreshes a component: runs the base refresh, registers it, applies the entry its id names in
-// the manager's table (when it has one), then rebuilds its flag set: 26 ids set, four cleared.
+// Refreshes a component: runs the base refresh, registers it, applies the section its id names in
+// the manager's blackboard (when it has one), then rebuilds its flag set: 26 ids set, four cleared.
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CBlackboard.h"
 #include "game/UnkGameManager.h"
 
 using base::global::CStrId;
@@ -59,21 +60,13 @@ struct UnkFlagSet_71011415f4 {
     }
 };
 
-struct UnkTable_71011415f4;
-struct UnkEntry_71011415f4 {
-    u8 unk_0x0[0x18];
-    u8 field_0x18[0x8];
-};
-bool fn_7101047208(UnkTable_71011415f4* table, const CStrId* id);
-UnkEntry_71011415f4* fn_71010472e0(UnkTable_71011415f4* table, const CStrId* id);
-
 struct UnkComponent_71011415f4 {
     u8 unk_0x0[0x88];
     CStrId id;
     UnkFlagSet_71011415f4 flags;
 
-    void Refresh();                // fn_71010c4228
-    void Apply(void* entry_data);  // fn_710114433c
+    void Refresh();                  // fn_71010c4228
+    void Apply(void* section_data);  // fn_710114433c
 };
 
 extern char g_unk_7172a092b0[] __attribute__((visibility("hidden")));
@@ -110,15 +103,15 @@ extern CStrId g_unk_7172a093b0 __attribute__((visibility("hidden")));
 extern CStrId g_unk_7172a093b8 __attribute__((visibility("hidden")));
 extern CStrId g_unk_7172a093c0 __attribute__((visibility("hidden")));
 
-static inline UnkTable_71011415f4* Table() {
-    return reinterpret_cast<UnkTable_71011415f4*>(g_unk_7101d47310->field_0x968);
+static inline CBlackboard* Table() {
+    return reinterpret_cast<CBlackboard*>(g_unk_7101d47310->field_0x968);
 }
 
 void fn_71011415f4(UnkComponent_71011415f4* self) {
     self->Refresh();
     fn_7100de9540(g_unk_7101d47310, g_unk_7172a092b0, self);
-    if (self->id.data != g_unk_7101d470e0.data && fn_7101047208(Table(), &self->id))
-        self->Apply(fn_71010472e0(Table(), &self->id)->field_0x18);
+    if (self->id.data != g_unk_7101d470e0.data && fn_7101047208(Table(), self->id))
+        self->Apply(&fn_71010472e0(Table(), self->id)->data);
     self->flags.Clear();
     self->flags.Add(g_unk_7172a092b8, true);
     self->flags.Add(g_unk_7172a092c0, true);
