@@ -1,6 +1,7 @@
 // Static initialiser of the unit of the CCharClassQuetzoaAIComponent::ESubspecies enum.
 #include "UnkStaticInit.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/UnkTUProperty.h"
 
 using namespace unk_static_init;
 
@@ -14,7 +15,6 @@ struct UnkStatics_7100649430 {
 extern UnkStatics_7100649430 g_unk_71726fbd88 __attribute__((visibility("hidden")));
 extern char g_unk_71726fbbe8[];
 extern UnkTunable g_unk_71726fbbf0;
-void fn_7100136ecc(UnkTunable* self);  // the base constructor
 extern void* g_unk_7101a5a210[];
 void fn_7100075104(void* self);  // its destructor, as registered
 extern UnkEnumType g_unk_71726fbc20;

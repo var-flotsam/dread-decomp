@@ -6,9 +6,8 @@
 
 #include <new>
 
+#include "base/UnkVector.h"
 #include "types.h"
-
-void* fn_71000839a0(u64 size, u32 flags);  // allocation
 
 namespace unk_handle {
 

@@ -1,5 +1,6 @@
 // When the owning actor's AI component (a CCharClassAIComponent) has a flag set, hands the
 // actor to a lazily created manager; then pokes two other actor components.
+#include "base/UnkVector.h"
 #include "game/UnkManager_71726af468.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkReflCast.h"
@@ -9,8 +10,6 @@
 
 using base::reflection::CClass;
 using base::reflection::UnkReflObject;
-
-void* fn_71000839a0(u64 size, u32 flags);
 
 struct UnkStruct_71003609b8_Ai : UnkReflObject {
     u8 pad_0x8[0x169];

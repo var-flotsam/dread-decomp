@@ -37,6 +37,8 @@ base::global::UnkStringData* fn_71000801e4(base::global::UnkStringPool* pool, u6
                                            u32 length, bool flag);  // insert
 u32 fn_7100080568();
 void fn_710007fdb4();
+// A string id's destructor, out of line: what static initialisers register with the atexit stub.
+void fn_710000051c(void* id);
 
 namespace base::global {
 

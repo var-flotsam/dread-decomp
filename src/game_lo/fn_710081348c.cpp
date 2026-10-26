@@ -1,9 +1,8 @@
 // Releases an object: returns the handle at field_0x38 (if any) to a lazily created manager,
 // with an id taken from the description at field_0x0, then releases the path id at field_0x8.
 #include "base/UnkDestructors.h"
+#include "base/UnkVector.h"
 #include "types.h"
-
-void* fn_71000839a0(u64 size, u32 flags);
 
 struct UnkManager_710081348c {
     u8 pad_0x0[0x1e8];

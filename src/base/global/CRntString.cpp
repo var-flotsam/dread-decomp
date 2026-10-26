@@ -4,10 +4,9 @@
 #include <string.h>
 
 #include "base/global/CRntString.h"
+#include "base/global/CStrId.h"
 
 using base::global::CRntString;
-
-u64 fn_7100001570(const char* str, u64 length);  // CRC-64
 
 // Replaces the string with a copy of `str` (or an empty block of `length` + 1 bytes when str is
 // null). The original calls it out of line from the functions below; noinline keeps it so here.

@@ -163,7 +163,6 @@ u64 fn_710015383c(u64 size, u64 align);
 void fn_710015385c(UnkPool* pool, u64 size, s32 flags, void* device);
 void fn_7100153968(UnkPool* pool, u64 size, u64 align);
 void fn_71001587e0();
-void* fn_71000839a0(u64 size, u32 flags);
 void fn_71001b3dc0();
 void fn_7100161520();
 void fn_7100153f40();

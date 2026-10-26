@@ -2,6 +2,7 @@
 // it started and registers its id with the global manager (created on first use), then calls the
 // target's slot-0x178 callback unless that is disabled (0x1472c). Finally unregisters the id from the
 // manager and releases the counted reference at 0x146d0.
+#include "base/UnkVector.h"
 #include "game/UnkManager_71726af468.h"
 #include "types.h"
 
@@ -35,7 +36,6 @@ struct UnkSelf {
     UnkState state;
 };
 
-void* fn_71000839a0(u32 size, u32 align_mask);
 void fn_71003fa71c(void* registry, void* id);
 void fn_71003f9388(void* registry, void* id, u32 flag);
 void fn_7100a1782c(UnkTarget* target, u32 flag);

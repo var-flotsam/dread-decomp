@@ -4,6 +4,7 @@
 #include "UnkStaticInitS7.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflTypeDtors.h"
+#include "game/UnkTUProperty.h"
 
 using namespace unk_static_init;
 
@@ -105,7 +106,6 @@ struct UnkTunable_71727bd078 : UnkTunable {
     void** field_0x1c0;  // a member's vtable
 };
 extern UnkTunable_71727bd078 g_unk_71727bd078;
-void fn_7100136ecc(UnkTunable* self);  // the base constructor
 extern void* g_unk_7101aa9530[];
 extern void* g_unk_7101aa9560[];
 extern void* g_unk_7101aa9588[];

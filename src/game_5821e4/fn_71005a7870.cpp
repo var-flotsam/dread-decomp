@@ -1,6 +1,7 @@
 // Static initialiser of the unit of the CCharClassHecathonAIComponent::ESubspecies enum.
 #include "UnkStaticInit.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/UnkTUProperty.h"
 
 using namespace unk_static_init;
 
@@ -23,7 +24,6 @@ void fn_71005a76a0() __attribute__((visibility("hidden")));
 extern char g_unk_71726e8cf8[];
 extern char g_unk_71726e8cf9[];
 extern UnkTunable g_unk_71726e8d00;
-void fn_7100136ecc(UnkTunable* self);  // the base constructor
 extern void* g_unk_7101a4f768[];
 void fn_7100075104(void* self);  // its destructor, as registered
 

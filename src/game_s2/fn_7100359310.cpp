@@ -41,7 +41,7 @@ struct __attribute__((packed)) UnkAimTunable {
     u64 field_0x8c;
 };
 extern UnkAimTunable g_unk_71726b1438;
-void fn_7100136ecc(UnkAimTunable* self);  // the base constructor
+// UnkAimTunable is the full (packed) view of a tunable; fn_7100136ecc (game/UnkTUProperty.h) builds its base.
 extern void* g_unk_7101a23c28[];
 void fn_7100075104(void* self);  // its destructor, as registered
 extern UnkEnumType g_unk_71726b1508;
@@ -67,7 +67,7 @@ void fn_7100359310() {
     fn_710009ec00(g_unk_71726b1431, g_unk_71726b16a0.field_0x300);
     {
         UnkAimTunable* t = &g_unk_71726b1438;
-        fn_7100136ecc(t);
+        fn_7100136ecc(reinterpret_cast<UnkTunable*>(t));
         t->vtable = g_unk_7101a23c28 + 2;
         t->field_0x24 = 0;
         t->field_0x2c = 0;

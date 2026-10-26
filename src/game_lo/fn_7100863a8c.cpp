@@ -11,8 +11,6 @@
 using base::global::CStrId;
 using base::global::UnkStringData;
 
-void* fn_71000839a0(u64 size, u32 flags);
-
 struct UnkObj_7100863a8c {
     virtual void vf_0x0();
     virtual void vf_0x8();

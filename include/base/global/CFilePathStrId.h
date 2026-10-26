@@ -9,7 +9,6 @@
 #include "types.h"
 
 // The file-path string pool (reached through the GOT).
-extern base::global::UnkStringPool* g_unk_7101d47200;
 u32 fn_7100080570();
 
 namespace base::global {

@@ -7,6 +7,7 @@
 #include "base/global/CRntString.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkTUInit.h"
+#include "game/UnkTUProperty.h"
 
 using base::global::CFilePathStrId;
 using base::global::CRntString;
@@ -478,7 +479,6 @@ extern char g_unk_7172796919;
 extern char g_unk_717279691a;
 extern UnkReflType g_unk_7172797480 __attribute__((visibility("hidden")));
 extern UnkTunable g_unk_7172796920;
-void fn_7100136ecc(UnkTunable* self);
 extern void* g_unk_7101aa5328[];
 void fn_7100075104(void* self);
 UnkReflType* fn_7100ca4f04();
@@ -522,7 +522,6 @@ void fn_7100e140c0(void* p);
 extern char g_unk_71727c09c0;
 extern CRntString g_unk_71727c0a58 __attribute__((visibility("hidden")));
 extern UnkTunable g_unk_71727c09c8;
-void fn_7100136ecc(UnkTunable* self);
 extern void* g_unk_7101aa9c90[];
 void fn_7100075104(void* self);
 
@@ -579,7 +578,6 @@ void fn_7100da6e50(void*) __attribute__((visibility("hidden")));  // destroys an
 void fn_7100da6f50(void*) __attribute__((visibility("hidden")));  // destroys an array
 extern char g_unk_71727bc550;
 extern UnkTunable g_unk_71727bc558;
-void fn_7100136ecc(UnkTunable* self);
 extern void* g_unk_7101aa9278[];
 void fn_7100075104(void* self);
 
@@ -638,4 +636,3 @@ struct UnkArray_71729ce018 {
     base::UnkAllocator* allocator;
 };
 extern UnkArray_71729ce018 g_unk_71729ce018;
-

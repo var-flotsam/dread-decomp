@@ -17,7 +17,6 @@
 #include "game/UnkTUSymbols.h"
 #include "types.h"
 
-void fn_710000051c(void* id);  // a string id's destructor
 void fn_7100000c7c(void* id);  // a file path id's destructor
 base::global::CStrId fn_7100de8f78(const base::global::CStrId& name);
 

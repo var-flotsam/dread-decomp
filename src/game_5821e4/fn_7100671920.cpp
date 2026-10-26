@@ -2,6 +2,7 @@
 #include "UnkStaticInit.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflTypeDtors.h"
+#include "game/UnkTUProperty.h"
 
 using namespace unk_static_init;
 
@@ -16,7 +17,6 @@ extern UnkStatics_7100671920 g_unk_71726ff920 __attribute__((visibility("hidden"
 extern char g_unk_71726fede8[];
 extern char g_unk_71726fede9[];
 extern UnkTunable g_unk_71726fedf0;
-void fn_7100136ecc(UnkTunable* self);  // the base constructor
 extern void* g_unk_7101a5dc20[];
 void fn_7100075104(void* self);  // its destructor, as registered
 extern UnkEnumType g_unk_71726fee48;

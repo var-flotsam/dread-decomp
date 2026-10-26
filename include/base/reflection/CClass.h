@@ -12,7 +12,6 @@
 #include "types.h"
 
 // Hash of a type-kind name ("base::reflection::CClass", length 0x18).
-u64 fn_7100001570(const char* str, u64 length);
 
 namespace base::reflection {
 

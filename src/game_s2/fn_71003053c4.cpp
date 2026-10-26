@@ -2,6 +2,7 @@
 // (looked up by the hash of their names), then, when the handle at +0x400 is still current (its
 // serial at +0x8 equals the one at +0x408, which is not -1), runs fn_7100072328 on its target with
 // 0.2 and 0 and clears the handle (copies the null handle).
+#include "base/global/CStrId.h"
 #include "types.h"
 
 struct UnkHandleTarget {
@@ -34,7 +35,6 @@ struct UnkSelf {
 };
 
 extern UnkHandle g_unk_7101d586c0;
-u64 fn_7100001570(const char* str, u64 length);
 void fn_710114fe8c(UnkObject* object, u64 hash, u32 a, u32 b);
 void fn_7100072328(void* target, f32 a, f32 b);
 

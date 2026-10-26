@@ -36,6 +36,8 @@ struct UnkAllocator {
 
 // Returns the allocator new arrays are created with.
 base::UnkAllocator* fn_7100083990();
+// Allocates `size` bytes from that allocator (its vf_0x40, 8-byte aligned) with the given flags.
+void* fn_71000839a0(u64 size, u32 flags);
 
 namespace base {
 
