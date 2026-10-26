@@ -42,7 +42,7 @@ import asmdiff  # noqa: E402
 import callgraph  # noqa: E402
 
 MAX_SIZE = 65536
-CACHE_VERSION = 3  # bump when the analysis changes (AbiFacts.load ignores other versions)
+CACHE_VERSION = 6  # bump when the analysis changes (AbiFacts.load ignores other versions)
 MAX_DEPTH = 48  # callee recursion; deeper chains count as unknown
 INT_ARGS = frozenset(range(9))  # x0-x7 and x8
 FLOAT_ARGS = frozenset(range(100, 108))
@@ -55,7 +55,9 @@ CLIB = {"memcpy": (3, 0), "memmove": (3, 0), "memset": (3, 0), "memcmp": (3, 0),
         "calloc": (2, 0), "realloc": (2, 0), "abort": (0, 0), "sinf": (0, 1), "cosf": (0, 1),
         "tanf": (0, 1), "atan2f": (0, 2), "sqrtf": (0, 1), "powf": (0, 2), "expf": (0, 1),
         "logf": (0, 1), "fmodf": (0, 2), "floorf": (0, 1), "ceilf": (0, 1), "acosf": (0, 1),
-        "asinf": (0, 1), "atanf": (0, 1), "vsnprintf": (4, 0), "snprintf": (3, 0), "sprintf": (2, 0)}
+        "asinf": (0, 1), "atanf": (0, 1), "vsnprintf": (4, 0), "snprintf": (3, 0), "sprintf": (2, 0),
+        "__cxa_guard_acquire": (1, 0), "__cxa_guard_release": (1, 0), "__cxa_guard_abort": (1, 0),
+        "__cxa_atexit": (3, 0), "__cxa_pure_virtual": (0, 0)}
 
 CS = capstone.Cs(capstone.CS_ARCH_ARM64, capstone.CS_MODE_ARM)
 CS.detail = True

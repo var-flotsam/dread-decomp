@@ -373,6 +373,21 @@ when the manifest's generator sources differ from the checked-out ones.
 | inconclusive (time-outs, a return outside the function) | 23 | 6 KB |
 | lifter gaps: `adds`/`ands` carry or overflow conditions, jump tables (`adr`), other conditions, flat-mode register order, float widths, stack arguments, ... | 191 | 262 KB |
 
+After the follow-up step (exact flags and flag locals, jump tables, float pass-through, incoming
+argument registers, four oracle fixes), the same worklist gives:
+
+| Outcome | Functions | Bytes |
+|---|---|---|
+| accepted | **1,941** | 1,042,620 |
+| rejected by the oracle | 104 | 79,236 |
+| inconclusive | 24 | 6,256 |
+| lifter gaps (stack arguments, flat-mode register order, `x8` results in tail position, other jump-table shapes, ...) | 79 | 108,852 |
+
+and the link leaves **216 slice functions (195,924 bytes) without a source**, headed by
+`fn_7100000790` (`L`, 14 callers), `fn_7100076acc` (12, rejected by the oracle) and `fn_71011a2fbc`
+(12, an `x8` result in a tail call). The mutation test then rejects 39% of the faults, 76% on
+completely covered functions.
+
 The link with them (`port_link.py --lifted`): of the slice's 4,211 game functions, 1,777 are
 lifted and **380 (399,148 bytes) still have no source**, down from 2,157 (`boot_unlifted.csv`,
 headed by `fn_710023b580`, 19 callers, an `adds` carry condition, and

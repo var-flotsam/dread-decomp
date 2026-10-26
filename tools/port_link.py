@@ -149,7 +149,7 @@ abort exit atexit free malloc calloc realloc posix_memalign aligned_alloc
 memcpy memmove memset memcmp memchr strlen strnlen strcmp strncmp strcpy strncpy strcat strncat strchr strrchr
 strstr strtok strdup strerror strtol strtoul strtoll strtoull strtod strtof atoi atol atof
 wcslen wcscpy wcsncpy wcscmp wcsncmp wcscat wmemcpy wmemset wmemmove wcschr wcsstr
-printf fprintf sprintf snprintf vprintf vfprintf vsnprintf puts putchar fputs fputc fwrite fread fopen fclose
+printf fprintf sprintf snprintf vprintf vfprintf vsnprintf swprintf puts putchar fputs fputc fwrite fread fopen fclose
 fflush fseek ftell sscanf vsscanf qsort bsearch rand srand abs labs llabs
 toupper tolower isalpha isdigit isalnum isspace isupper islower isprint isxdigit setjmp longjmp getenv
 sinf cosf tanf asinf acosf atanf atan2f sinhf coshf tanhf expf exp2f logf log2f log10f powf sqrtf cbrtf fmodf

@@ -10,10 +10,14 @@ accepts a lift that behaves like the original, whatever its bytes:
      slice), --only, or --top N of it. Functions now defined in src/ are skipped.
   2. Lift every gen_lift variant with opts {"semantic"}: a direct call passes every argument
      register the callee reads (tools/abi_facts.py), so nothing reaches a callee by a register
-     the C call does not name; calls with an x8 result or stack arguments, and carry/overflow
-     conditions after adds/ands, are rejected; string literals stay the game's own addresses;
-     division by zero and shift amounts follow AArch64; flat-mode registers read before their
-     first write in address order are zero-initialised locals.
+     the C call does not name (a float only passed on as f64, which keeps all its bits); a
+     callee's x8 result is placed by C++17 copy elision; calls with stack arguments are
+     rejected; every condition follows the flags exactly (carry and overflow after adds/cmn,
+     C and V clear after ands/tst), and flat mode also keeps NZCV in locals for a condition in
+     another block; Clang's compressed jump tables become a switch; string literals stay the
+     game's own addresses; division by zero and shift amounts follow AArch64; flat-mode argument
+     registers read before their first write in address order are the incoming arguments, other
+     registers zero-initialised locals.
   3. Compile each variant for AArch64 with the project compiler and SEMANTIC_FLAGS (no strict
      aliasing, wrapping signed arithmetic, null checks kept), the C semantics the x86-64 build
      uses too.
@@ -182,6 +186,10 @@ def pcode_db(words: set[int], cache: Path) -> dict:
         print(f"P-code: {len(todo)} new instruction words from Ghidra in {time.time() - t:.0f} s"
               f" ({len(db['ops'])} cached in {port_sweep.rel(cache)})")
     pcode_emu.set_opcodes(db["opcodes"])
+    r = db["registers"]
+    e = pcode_emu
+    if r and (r["x0"][0], r["q0"][0], r["q1"][0], r["sp"][0], r["NG"][0]) != (e.X0, e.Q0, e.Q0 + e.QSTRIDE, e.SP, e.NG):
+        raise SystemExit(f"Ghidra's AArch64 register layout differs from tools/pcode_emu.py's constants: {r}")
     return db
 
 
@@ -262,6 +270,9 @@ class Oracle:
                 why = why or f"lift: {e}"
                 continue
             d = pcode_emu.compare(mo, ml, ret)
+            if d == "skip":
+                why = why or "original faulted where the lift did not"
+                continue
             if d:
                 self.last = (mo, ml)
                 return "fail", f"input {seed}: {d}", agreed, covered
@@ -361,9 +372,10 @@ def mutate(definition: str, rnd) -> str | None:
     def line_of(m) -> str:
         return body[body.rfind("\n", 0, m.start()) + 1:body.find("\n", m.end())]
 
-    # (a flat-mode local's zero initialiser is never read before a write: an equivalent change)
+    # (a flat-mode local's zero initialiser is never read before a write, and most flag locals
+    # are never read at all: changes there are equivalent)
     sites = [(rx, f, m) for rx, f in MUTATIONS for m in rx.finditer(body)
-             if not re.match(r"\s*u64 X\d+ = 0;$", line_of(m))]
+             if not re.match(r"\s*(u64 X\d+ = 0;$|f[NZCV] = )", line_of(m))]
     if not sites:
         return None
     rx, f, m = rnd.choice(sites)
