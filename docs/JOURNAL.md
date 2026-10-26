@@ -86,6 +86,19 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Port M1: `nn::fs` (2026-10-26).** All 22 `nn::fs` imports in `port/runtime/` over host
+directories, from the callers' uses (Ghidra, read only): the engine's file object
+`fn_7101235090`..`fn_71012355b0` (handle at +8, position at +0x20, cached size at +0x18 with
+0xffffffff for unknown), the sound banks (`fn_7100100e74`, `rom:/packs/sounds/<name>.bfgrp` read
+whole), the save system (`fn_7100fc3510` mounts "savedata"; `fn_710002dedc` to `fn_710002f2b8`
+commit after every change; the writer opens with mode 6 and truncates with `SetFileSize`). The
+file object decodes results itself (module 2, description from bit 9; 1, 4000-4999 and 7 get
+codes of its own), so the port returns the console's values. `fn_710002e6e0` fixes
+`DirectoryEntry` at 0x310 bytes with the type at +0x304 (0 = directory). The start-up
+mounts only if the cache allocation succeeds, so `QueryMountRomCacheSize` answers one page, not
+zero. libc++ 9's `<filesystem>` needs `_LIBCPP_HAS_MUSL_LIBC` over musl's headers, which
+`tools/buildcfg.py` already passes.
+
 **Port M1 step 4 (2026-10-26, var-flotsam/dread-decomp#201, #203 and #206).** Stream D taken
 over from the lifter session's notes. (1) `nn::os` and `nn::oe`: every import the boot slice reaches
 (30 and 20 with the GOT slots) and every one a lifted source calls, in `port/runtime/`. Layouts from

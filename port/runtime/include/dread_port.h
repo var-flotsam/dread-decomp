@@ -38,3 +38,8 @@ extern "C" [[noreturn]] void dread_port_missing_import(const char* name);
 // Runs by itself before the game's static initialisers when the game is linked in; aborts with a
 // message if the dump is missing or not the expected build.
 extern "C" void dread_port_map_game_image();
+
+// The user's dump, laid out as orig/<version>/ (exefs/, romfs/): $DREAD_ORIG, else orig/2.1.0
+// under the working directory. The data loader reads exefs/main from it, nn::fs mounts romfs/ as
+// "rom".
+extern "C" const char* dread_port_orig_directory();
