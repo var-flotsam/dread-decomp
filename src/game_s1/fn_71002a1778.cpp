@@ -5,18 +5,8 @@
 #include <new>
 
 #include "base/UnkVector.h"
+#include "game/UnkObject_0x100.h"
 #include "types.h"
-
-struct UnkObject_0x100;
-void fn_71002b58c0(UnkObject_0x100* self, const UnkObject_0x100* other);
-void fn_71002b6094(UnkObject_0x100* self);
-
-struct UnkObject_0x100 {
-    u64 field_0x0[0x20];
-
-    __attribute__((always_inline)) UnkObject_0x100(const UnkObject_0x100& other) { fn_71002b58c0(this, &other); }
-    __attribute__((always_inline)) ~UnkObject_0x100() { fn_71002b6094(this); }
-};
 
 struct UnkWordObject {
     u32 field_0x0;

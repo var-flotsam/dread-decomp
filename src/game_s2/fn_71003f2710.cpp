@@ -6,20 +6,10 @@
 // both close to zero, a virtual call (slot 0xe8) hands over the attack's values, and the timer
 // is reloaded from the entry's word before stepping to the next entry (wrapping at the count).
 #include "game/UnkXformNode.h"
+#include "game_s2/UnkSpitAttack.h"
 #include "types.h"
 
-struct UnkSpitEntry {
-    f32 field_0x0;
-    f32 field_0x4;
-    u32 field_0x8;
-};
-
-struct UnkSpitData {
-    u8 pad_0x0[0x148];
-    UnkSpitEntry* field_0x148;
-    u32 field_0x150;
-};
-
+// The owner actor (UnkActor) with the members this update reads past what UnkActor spells out.
 struct UnkSpitOwner_71003f2710 {
     u8 pad_0x0[0x38];
     UnkXform field_0x38;
@@ -29,37 +19,20 @@ struct UnkSpitOwner_71003f2710 {
     void* field_0x2d0;
 };
 
-struct UnkSpitUpdate {
-    void** vtable;
-    UnkSpitOwner_71003f2710* field_0x8;
-    u8 pad_0x10[0x18];
-    UnkSpitData* field_0x28;
-    u8 pad_0x30[0x2c];
-    u8 field_0x5c[0x18];
-    u8 field_0x74[0x20];
-    u8 pad_0x94[0x40];
-    f32 field_0xd4;
-    f32 field_0xd8;
-    f32 field_0xdc;
-    u8 pad_0xe0[4];
-    f32 field_0xe4;
-    u32 field_0xe8;
-    u8 pad_0xec[0xc];
-    u8 field_0xf8[8];
-};
-
-bool fn_71003f28c8(UnkSpitUpdate* self, f32 delta);
-void fn_71003f24f4(UnkSpitUpdate* self, u32 state);
-void fn_71003f18f8(UnkSpitUpdate* self, bool a, bool b, const UnkVec3f* v);
+void fn_71003f18f8(UnkSpitAttack* self, bool a, bool b, const UnkVec3f* v);
 void fn_71009f92d0(void* object);
+
+static inline UnkSpitOwner_71003f2710* Owner(UnkSpitAttack* self) {
+    return reinterpret_cast<UnkSpitOwner_71003f2710*>(self->field_0x8);
+}
 
 static inline UnkVec3f UnkCachedVec(UnkSpitOwner_71003f2710* owner) {
     return owner->field_0x38.GetAngle();
 }
 // NON_MATCHING(minor): same behaviour; the original loads the table index before the table
 // pointer, and the 0.1f constant is built after the entry's loads.
-void fn_71003f2710(UnkSpitUpdate* self, f32 delta) {
-    void* target = self->field_0x8->field_0x240;
+void fn_71003f2710(UnkSpitAttack* self, f32 delta) {
+    void* target = Owner(self)->field_0x240;
     UnkSpitData* data = self->field_0x28;
     if (!target || !data)
         return;
@@ -75,12 +48,12 @@ void fn_71003f2710(UnkSpitUpdate* self, f32 delta) {
     UnkSpitEntry* entry = &self->field_0x28->field_0x148[self->field_0xe8];
     u32 next = entry->field_0x8;
     bool still = (__builtin_fabsf(entry->field_0x0) < 0.1f) & (__builtin_fabsf(entry->field_0x4) < 0.1f);
-    UnkSpitOwner_71003f2710* owner = self->field_0x8;
+    UnkSpitOwner_71003f2710* owner = Owner(self);
     UnkVec3f v = UnkCachedVec(owner);
     fn_71003f18f8(self, still, still, &v);
-    reinterpret_cast<void (*)(UnkSpitUpdate*, void*, void*, void*, f32, f32)>(self->vtable[0xe8 / 8])(
+    reinterpret_cast<void (*)(UnkSpitAttack*, void*, void*, void*, f32, f32)>(self->vtable[0xe8 / 8])(
         self, self->field_0x5c, self->field_0x74, self->field_0xf8, self->field_0xd4, self->field_0xd8);
-    fn_71009f92d0(self->field_0x8->field_0x2d0);
+    fn_71009f92d0(Owner(self)->field_0x2d0);
     *reinterpret_cast<u32*>(&self->field_0xe4) = next;
     u32 index = self->field_0xe8;
     self->field_0xe8 = index >= self->field_0x28->field_0x150 - 1 ? 0 : index + 1;

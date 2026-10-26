@@ -2,6 +2,7 @@
 // string id, deep-copies the arrays, sets the first flag and leaves the refcounted pointer null.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkObject_0x100.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -84,6 +85,6 @@ struct UnkStruct_71002b58c0 {
           field_0xf8(nullptr) {}
 };
 
-void fn_71002b58c0(UnkStruct_71002b58c0* self, const UnkStruct_71002b58c0* other) {
-    new (self) UnkStruct_71002b58c0(*other);
+void fn_71002b58c0(UnkObject_0x100* self, const UnkObject_0x100* other) {
+    new (self) UnkStruct_71002b58c0(*reinterpret_cast<const UnkStruct_71002b58c0*>(other));
 }

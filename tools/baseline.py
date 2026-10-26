@@ -14,7 +14,9 @@ each source as it was, and puts back the ones whose output changed.
 
 Selection: repository paths (a header expands to its hand-written includers, transitively); @FILE
 with one path per line; --symbol NAME, every hand-written file that declares NAME (tools/decl_check.py);
---includers HEADER, the hand-written includers of HEADER. Generated directories are never included.
+--includers HEADER, the hand-written includers of HEADER; --all, every hand-written source under src/
+(about 1,400, two minutes: the evidence to take before a round of agents edits headers in parallel).
+Generated directories are never included.
 
 Outputs under build/baseline/<tag>/: out/<path>.txt (trymatch stdout and stderr with the exit status)
 and src/<path> (the source as saved). `compare` prints UNCHANGED, CHANGED or NEW per file with the
@@ -102,8 +104,11 @@ def expand(paths: set[str]) -> set[str]:
     return out
 
 
-def select(files: list[str], symbols: list[str], headers: list[str], report: decl_check.Report | None = None) -> list[str]:
+def select(files: list[str], symbols: list[str], headers: list[str], report: decl_check.Report | None = None,
+           everything: bool = False) -> list[str]:
     paths: set[str] = set()
+    if everything:
+        paths |= {f for f in hand_written_files() if f.startswith("src/") and f.endswith(".cpp")}
     for f in files:
         if f.startswith("@"):
             paths |= {ln.strip() for ln in Path(f[1:]).read_text(encoding="utf-8").splitlines() if ln.strip()}
@@ -234,13 +239,14 @@ def main() -> int:
     ap.add_argument("--version", default="2.1.0")
     ap.add_argument("--symbol", action="append", default=[], help="every hand-written file declaring this symbol")
     ap.add_argument("--includers", action="append", default=[], help="hand-written includers of this header")
+    ap.add_argument("--all", action="store_true", help="every hand-written source under src/ (about 2 minutes)")
     ap.add_argument("--jobs", type=int, default=os.cpu_count() or 4)
     ap.add_argument("-q", "--quiet", action="store_true", help="compare: print changed files only")
     args = ap.parse_args()
 
     if args.command != "files" and not args.tag:
         ap.error("--tag is required")
-    paths = select(args.files, args.symbol, args.includers)
+    paths = select(args.files, args.symbol, args.includers, everything=args.all)
     if args.command == "files":
         print("\n".join(paths))
         return 0

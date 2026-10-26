@@ -7,6 +7,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTimelineComponent.h"
 #include "types.h"
 
 struct UnkPlayerObject {
@@ -43,11 +44,10 @@ struct UnkVec {
     u32 z;
 };
 
-extern const char g_unk_7101649988[] __attribute__((visibility("hidden")));
+extern const u64 g_unk_7101649988 __attribute__((visibility("hidden")));
 UnkOwner* fn_7100defcd4(UnkGameManager* manager);
 UnkPlayer* fn_7100dec788(UnkGameManager* manager);
 void fn_710048a070(UnkSelf* self);
-void fn_7100d7c828(UnkPlayer* player, const char* name, u32 flag);
 bool fn_7101053a7c(void* effects);
 bool fn_7101053a0c(void* effects);
 void fn_7101053850(void* effects, UnkVec* position, u32 flag, f32 duration, f32 scale);
@@ -68,7 +68,7 @@ void fn_710048a194(UnkSelf* self, f32 delta) {
                 if (timer < 0.0f) {
                     player = fn_7100dec788(g_unk_7101d47310);
                     if (player)
-                        fn_7100d7c828(player, g_unk_7101649988, 0);
+                        fn_7100d7c828(reinterpret_cast<UnkActor*>(player), &g_unk_7101649988, false);
                     void* effects = g_unk_7101d47310->field_0x1040;
                     if (!fn_7101053a7c(effects) && !fn_7101053a0c(effects)) {
                         self->field_0x13c = 0.33f;

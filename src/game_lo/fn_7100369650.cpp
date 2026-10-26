@@ -1,9 +1,9 @@
 // Runs fn_71010fa290 on the object, then, when both flags at +0x4fc/+0x4fd of the object it
 // holds at +0x146b8 are set, passes a global instance (0x108 bytes, created on first use with
 // allocation flags 0x3f) to fn_71011a710c.
+#include "base/UnkVector.h"
 #include "types.h"
 
-void* fn_71000839a0(u64 size, u32 flags);
 void fn_71010fa290(char* self);
 void fn_71011a664c(char* instance);  // constructs the instance
 void fn_71011a710c(char* instance);

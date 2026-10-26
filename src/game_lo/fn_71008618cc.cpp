@@ -5,37 +5,13 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkCollisionRecord.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
-using base::global::UnkStringData;
 using base::reflection::CClass;
 using base::reflection::UnkReflObject;
 
-// A string id moved by taking the pointer and leaving the source empty.
-struct UnkId_71008618cc {
-    UnkStringData* data;
-
-    UnkId_71008618cc(UnkId_71008618cc&& other) : data(other.data) {
-        other.data = &g_unk_7101d47108->empty;
-    }
-};
-
-struct UnkRecord_71008618cc {
-    UnkId_71008618cc field_0x0;
-    UnkId_71008618cc field_0x8;
-    UnkId_71008618cc field_0x10;
-    u64 field_0x18;
-    u64 field_0x20;
-    UnkReflObject* field_0x28;
-
-    UnkRecord_71008618cc();   // fn_710072676c
-    ~UnkRecord_71008618cc();  // fn_7100726674
-    UnkRecord_71008618cc(UnkRecord_71008618cc&& other) = default;
-};
-
-// UnkVector::GrowAt for these element types, out of line.
-UnkRecord_71008618cc& fn_71007253b8(base::UnkVector<UnkRecord_71008618cc>* self, u32 index);
 UnkReflObject*& fn_7100862088(base::UnkVector<UnkReflObject*>* self, u32 index);
 
 struct UnkTracker_71008618cc;
@@ -45,13 +21,13 @@ void fn_7100d5a304(UnkTracker_71008618cc* self, UnkReflObject* group);
 struct UnkStruct_71008618cc;
 struct UnkVtbl_71008618cc {
     void* pad_0x0[46];
-    void (*vf_0x170)(UnkStruct_71008618cc* self, UnkRecord_71008618cc* record, bool flag);
+    void (*vf_0x170)(UnkStruct_71008618cc* self, UnkCollisionRecord* record, bool flag);
 };
 
 struct UnkStruct_71008618cc {
     UnkVtbl_71008618cc* vtbl;
     u8 unk_0x8[0x40];
-    base::UnkVector<UnkRecord_71008618cc> records;
+    base::UnkVector<UnkCollisionRecord> records;
     u8 unk_0x70[0x28];
     base::UnkVector<UnkReflObject*> objects;
     u8 unk_0xc0[8];
@@ -68,7 +44,7 @@ void fn_71008618cc(UnkStruct_71008618cc* self) {
     if (!tracker)
         return;
     for (u32 i = 0; i < self->records.count; ++i) {
-        UnkRecord_71008618cc& record = fn_71007253b8(&self->records, i);
+        UnkCollisionRecord& record = fn_71007253b8(&self->records, i);
         self->vtbl->vf_0x170(self, &record, true);
     }
     for (u32 i = 0; i < self->objects.count; ++i) {

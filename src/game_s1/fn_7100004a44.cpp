@@ -3,6 +3,7 @@
 // fn_7100004a44.
 #include <new>
 
+#include "base/UnkResType.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
@@ -58,5 +59,5 @@ struct UnkIdsRecord38 {
 };
 static_assert(sizeof(UnkIdsRecord38) == 0x38, "UnkIdsRecord38 layout");
 
-void fn_7100004a44(UnkIdsRecord38* self) { self->~UnkIdsRecord38(); }
+void fn_7100004a44(unk_static_init::UnkResType* self) { reinterpret_cast<UnkIdsRecord38*>(self)->~UnkIdsRecord38(); }
 

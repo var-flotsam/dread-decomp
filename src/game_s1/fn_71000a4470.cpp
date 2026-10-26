@@ -12,7 +12,6 @@
 using base::global::CStrId;
 
 extern CStrId g_unk_7101d5bdb0[2] HIDDEN;
-void fn_710000051c(void*);
 extern u8 g_unk_7101d5b720[];
 extern u8 g_unk_7101d5b838[];
 void fn_71000a2184(void*);

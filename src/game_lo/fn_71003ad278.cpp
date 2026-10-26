@@ -4,6 +4,7 @@
 // zero) and marks the object at +0x30.
 #include "base/UnkVector.h"
 #include "base/math/CVector4D.h"
+#include "game/UnkSlots.h"
 #include "types.h"
 
 using base::math::CVector4D;
@@ -16,7 +17,7 @@ public:
 
 struct UnkTarget_71003ad278 {
     u8 pad_0x0[0x138];
-    void* field_0x138;
+    UnkSlots* field_0x138;
 };
 
 struct UnkLinkSub_71003ad278 {
@@ -80,7 +81,6 @@ struct UnkObject_71003ad278 {
 extern const CVector4D unk_71016491b0 __attribute__((visibility("hidden")));  // zero
 
 void fn_71003695b8(UnkObject_71003ad278* self);  // the base reset
-bool fn_71001c2764(void* target, u32 id, u32 kind, const CVector4D* value, bool a, bool b);
 
 static inline void Apply(UnkTarget_71003ad278* target, u32 id, u32 kind, const CVector4D* value) {
     fn_71001c2764(target->field_0x138, id, kind, value, true, true);

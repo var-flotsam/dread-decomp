@@ -21,8 +21,6 @@
 
 using base::global::CStrId;
 
-void fn_710000051c(void* id);  // a CStrId's destructor
-
 struct UnkReflTypeInfo {
     u8 unk_0x0[0x30];
     void* field_0x30;

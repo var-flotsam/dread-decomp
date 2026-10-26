@@ -2,6 +2,7 @@
 // empty id, and the manager singleton's state is not 6, they call fn_7100fdb9e0 on
 // the manager. The state is the override at 0x38c, or, while that is unset (INT_MAX), the one
 // at +0x10 of the object at 0x2f8 (none skips the test).
+#include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
@@ -21,7 +22,6 @@ struct UnkMgr_0xf18 {
 
 extern UnkMgr_0xf18* g_unk_71726bc560;
 
-void* fn_71000839a0(u64 size, u32 flags);
 void fn_7100fd3804(UnkMgr_0xf18*);
 void fn_7100fdb9e0(UnkMgr_0xf18*, u32, u32, f32, f32);
 

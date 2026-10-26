@@ -4,6 +4,7 @@
 #include "UnkStaticInitS7.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflTypeDtors.h"
+#include "game/UnkTUProperty.h"
 #include "game/UnkTUSymbols.h"
 
 using namespace unk_static_init;
@@ -57,7 +58,6 @@ void fn_7100edf860(UnkEnumType* type, const CStrId& name, void (*factory)(), voi
 void fn_7100edf654();
 extern char g_unk_71729da870[];
 extern UnkTunable g_unk_71729da878;
-void fn_7100136ecc(UnkTunable* self);  // the base constructor
 extern void* g_unk_7101caa168[];
 void fn_7100075104(void* self);  // its destructor, as registered
 extern UnkEnumType g_unk_71729da8b0;

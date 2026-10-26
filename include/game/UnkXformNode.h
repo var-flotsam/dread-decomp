@@ -127,6 +127,10 @@ struct UnkXformTarget {
     void* field_0x78;
 };
 
+// Passes the node's changed transform on to its target, the skinned-model owner whose layout is
+// in src/game_s1/fn_71001c1b70.cpp (where this is defined).
+void fn_71001c2480(UnkXformTarget* target, UnkXform* xform);
+
 struct UnkXformNode {
     u8 pad_0x0[0x18];
     u8 xform_0x18[0x40];

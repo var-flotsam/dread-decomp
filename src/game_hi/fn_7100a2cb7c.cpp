@@ -5,91 +5,46 @@
 #include <new>
 
 #include "base/UnkVector.h"
+#include "game/UnkTimelineComponent.h"
 #include "types.h"
 
-struct UnkPendingAdd {
-    u64 key;
-    u32 value;
-
-    UnkPendingAdd(u64 key, u32 value) : key(key), value(value) {}
-    // The key is copied bitwise (the original reloads the array's count and data pointer
-    // after the copies).
-    UnkPendingAdd(const UnkPendingAdd& other) {
-        __builtin_memcpy(&key, &other.key, sizeof(key));
-        value = other.value;
-    }
-};
-
-// The engine's growable array (same layout as base::UnkVector).
-struct UnkPendingAddArray {
-    UnkPendingAdd* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-
-    void PushBack(const UnkPendingAdd& value) {
-        u32 n = count;
-        u32 old_capacity = capacity;
-        u32 new_capacity = old_capacity;
-        if (old_capacity <= n && step != 0)
-            new_capacity = (n / step + 1) * step;
-        if ((s32)n >= (s32)new_capacity)
-            for (;;) {
-            }
-        UnkPendingAdd* p;
-        if (old_capacity < new_capacity) {
-            p = static_cast<UnkPendingAdd*>(
-                allocator->vf_0x40((u64)new_capacity * sizeof(UnkPendingAdd), 8, flags));
-            if (UnkPendingAdd* old = data) {
-                UnkPendingAdd* src = old;
-                UnkPendingAdd* dst = p;
-                for (u32 i = 0; i < count; ++i, ++src, ++dst)
-                    new (dst) UnkPendingAdd(*src);
-                allocator->vf_0x48(data);
-            }
-            data = p;
-            n = count;
-            capacity = new_capacity;
-        } else {
-            p = data;
+// Appends to the engine's array, copy-constructing the elements one by one.
+static inline void AppendCopy(base::UnkVector<UnkPendingAdd>& a, const UnkPendingAdd& value) {
+    u32 n = a.count;
+    u32 old_capacity = a.capacity;
+    u32 new_capacity = old_capacity;
+    if (old_capacity <= n && a.step != 0)
+        new_capacity = (n / a.step + 1) * a.step;
+    if ((s32)n >= (s32)new_capacity)
+        for (;;) {
         }
-        new (&p[n]) UnkPendingAdd(value);
-        ++count;
+    UnkPendingAdd* p;
+    if (old_capacity < new_capacity) {
+        p = static_cast<UnkPendingAdd*>(
+            a.allocator->vf_0x40((u64)new_capacity * sizeof(UnkPendingAdd), 8, a.flags));
+        if (UnkPendingAdd* old = a.data) {
+            UnkPendingAdd* src = old;
+            UnkPendingAdd* dst = p;
+            for (u32 i = 0; i < a.count; ++i, ++src, ++dst)
+                new (dst) UnkPendingAdd(*src);
+            a.allocator->vf_0x48(a.data);
+        }
+        a.data = p;
+        n = a.count;
+        a.capacity = new_capacity;
+    } else {
+        p = a.data;
     }
-};
+    new (&p[n]) UnkPendingAdd(value);
+    ++a.count;
+}
 
-struct UnkTimedEntry {
-    UnkPendingAdd item;
-    f32 delay;
-    UnkTimedEntry* next;
-};
-
-struct UnkTableOwner {
-    u8 unk_0x0[0x90];
-    bool locked;
-    UnkPendingAddArray pending_add;
-    u8 unk_0xc0[0xc0];
-    // A union member: no type-based alias info, so the count is reloaded after the link
-    // stores.
-    union {
-        u32 timed_count;
-    };
-    UnkTimedEntry* timed_head;
-    UnkTimedEntry* timed_tail;
-    base::UnkAllocator* timed_allocator;
-    u32 timed_flags;
-};
-
-bool fn_7100a2be94(UnkTableOwner* self, const u64* id);
-void* fn_7100a2c13c(UnkTableOwner* self, const u64* id);
-void fn_7100a2c200(UnkTableOwner* self, void* entry, const u32* value);
+void* fn_7100a2c13c(UnkTimelineComponent* self, const u64* id);
+void fn_7100a2c200(UnkTimelineComponent* self, void* entry, const u32* value);
 
 // NON_MATCHING(minor): the duplicate-id scan's two exit tests are merged into one conditional
 // compare; the original branches on each (3 instructions).
-void fn_7100a2cb7c(UnkTableOwner* self, const u64* id, const u32* value, bool unique, f32 delay) {
+void fn_7100a2cb7c(UnkTimelineComponent* self, const u64* id, const u32* value, bool unique, f32 delay) {
     u64 key = *id;
     if (key == (u64)-1)
         return;
@@ -126,7 +81,7 @@ void fn_7100a2cb7c(UnkTableOwner* self, const u64* id, const u32* value, bool un
     if (unique && !fn_7100a2be94(self, id))
         return;
     if (self->locked) {
-        self->pending_add.PushBack(UnkPendingAdd(*id, *value));
+        AppendCopy(self->pending_add, UnkPendingAdd(*id, *value));
         return;
     }
     void* entry = fn_7100a2c13c(self, id);

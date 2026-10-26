@@ -12,8 +12,6 @@ struct UnkNode {
     UnkStrIdTwoStep field_0x0;
 };
 
-void fn_71002b6094(void*);
-
 void fn_7100ffaa88(void*);
 void fn_7101002998(UnkNode* self) {
     fn_7100ffaa88(reinterpret_cast<char*>(self) + 0x8);

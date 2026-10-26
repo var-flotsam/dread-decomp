@@ -9,6 +9,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
+#include "game_s2/UnkSpitAttack.h"
 #include "types.h"
 
 struct UnkSpitOwnerTarget {
@@ -16,28 +17,11 @@ struct UnkSpitOwnerTarget {
     f32 field_0x14f8;
 };
 
-struct UnkSpitConfig {
-    u8 pad_0x0[0xf0];
-    f32 field_0xf0;
-    f32 field_0xf4;
-    f32 field_0xf8;
-    f32 field_0xfc;
-};
-
-struct UnkSpitState1 {
-    u8 pad_0x0[0x8];
-    UnkActor* field_0x8;
-    u8 pad_0x10[0x18];
-    UnkSpitConfig* field_0x28;
-    u8 pad_0x30[0xb0];
-    f32 field_0xe0;
-};
-
 bool fn_7100d7bea0(UnkActor* owner, bool flag);
 
 // NON_MATCHING(minor): same behaviour; the original reads the owner->target vector in another
 // order, tests the owner before the result at the end and shares that end between the paths.
-bool fn_71003f28c8(UnkSpitState1* self, f32 delta) {
+bool fn_71003f28c8(UnkSpitAttack* self, f32 delta) {
     UnkActor* owner = self->field_0x8;
     if (!owner)
         return false;

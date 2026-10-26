@@ -1,5 +1,6 @@
 // For every active entry whose target matches the given id, asks the manager to fade it out over
 // the given time, or over the entry's own time when the given time is negative.
+#include "base/global/CStrId.h"
 #include "types.h"
 
 struct UnkStrBody_0x38 {
@@ -54,7 +55,6 @@ struct UnkStruct_0xd0 {
 
 struct UnkMgr;
 
-extern UnkStrBody_0x38* g_unk_7101d47200;
 extern UnkMgr* g_unk_7101d4d820;
 
 void fn_7100108abc(UnkMgr*, UnkHandle*, f32, f32);

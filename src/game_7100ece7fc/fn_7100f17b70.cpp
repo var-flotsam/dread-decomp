@@ -11,8 +11,6 @@
 using base::global::CRntString;
 using base::global::UnkStrIdBase;
 
-void fn_710000051c(void* id);    // a string id's destructor, as registered
-
 struct UnkStatics_71729dc370 {
     u32 field_0x0;
     UnkStrIdBase ids[12];

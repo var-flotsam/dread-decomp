@@ -4,9 +4,8 @@
 // bytes). The name comes from reflection (fn_710000fd7c describes it); reflected default
 // values build one from a literal.
 
+#include "base/global/CStrId.h"
 #include "types.h"
-
-u64 fn_7100001570(const char* str, u64 length);
 
 namespace base::global {
 

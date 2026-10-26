@@ -3,8 +3,8 @@
 // (listener at +0x38, owner at +0x50), then, when the attack's own owner holds an object at
 // +0x2d0, hands that to fn_71009f92d0.
 #include "../game_5821e4/CAttackDtor.h"
+#include "game/UnkAttack.h"
 
-void fn_71003609b8(void* attack);
 void fn_71009f92d0(void* object);
 
 struct UnkAttackOwnerObject {
@@ -12,10 +12,8 @@ struct UnkAttackOwnerObject {
     void* field_0x2d0;
 };
 
-struct UnkSpitAttackReset {
-    void** vtable;
-    UnkAttackOwnerObject* field_0x8;
-    u8 pad_0x10[0x20];
+struct UnkSpitAttackReset : UnkAttackBase {
+    u8 pad_0x20[0x10];
     u64 field_0x30;
     UnkAttackListenerRaw field_0x38;
     u8 pad_0x58[0x94];
@@ -39,7 +37,7 @@ void fn_71003f38f8(UnkSpitAttackReset* self) {
             listener.owner = nullptr;
         }
     }
-    if (UnkAttackOwnerObject* owner = self->field_0x8) {
+    if (auto* owner = reinterpret_cast<UnkAttackOwnerObject*>(self->field_0x8)) {
         if (owner->field_0x2d0)
             fn_71009f92d0(owner->field_0x2d0);
     }

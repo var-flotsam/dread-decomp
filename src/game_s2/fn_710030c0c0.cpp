@@ -1,6 +1,7 @@
 // Once the global manager exists and isn't ready (0x110 clear), a state at 0x448 of 1 or 2
 // clears the counter at 0x44c; then the counter at 0x484 is cleared, the flag at 0x49b set and
 // fn_71002f9460 called with 0.
+#include "base/UnkVector.h"
 #include "types.h"
 
 struct UnkManager {
@@ -18,7 +19,6 @@ struct UnkSelf {
 };
 
 extern UnkManager* g_unk_7101d47360;
-void* fn_71000839a0(u32 size, u32 align_mask);
 void fn_7100ee1f34(UnkManager* manager);
 void fn_71002f9460(UnkSelf* self, u32 a1);
 

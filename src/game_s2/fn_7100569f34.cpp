@@ -2,6 +2,7 @@
 // (game/UnkNavMeshManager.h; the manager is created on first use) answers true. Skipped when
 // the low 16 bits of the key are all ones or the flag at 0x611 of the owner's linked object is
 // set.
+#include "base/UnkVector.h"
 #include "game/UnkNavMeshManager.h"
 #include "types.h"
 
@@ -15,7 +16,6 @@ struct UnkOwner {
     UnkLinked* field_0x29ee0;
 };
 
-void* fn_71000839a0(u32 size, u32 align_mask);
 void fn_710027a33c(UnkNavMesh* navmesh, u32 key);
 bool fn_71002b005c();
 

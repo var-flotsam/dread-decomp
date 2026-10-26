@@ -63,6 +63,8 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - A function passed as a template argument keeps its relocation target only if the template takes the function's own type (no inline wrapper): [hub batch 3](#session-log-newest-first).
 - A callee without an address (`__cxa_atexit`) is an unchecked relocation; spell it by its `fn_` name (`fn_7100000250`). Compare the relocation totals before and after a header refactor: [TU helper fold](#session-log-newest-first).
 - Store order between two distinct globals is the original's per unit, steered by source order: keep both orders as named helpers rather than one: [TU helper fold](#session-log-newest-first).
+- A field's pointer type can be load-bearing (alias info): a hash kept in a `void*` word stays `void*`, cast at the store: [hub batch 4](#session-log-newest-first).
+- Before an agent round, `baseline.py save --all` (every hand-written source, 2 minutes) is the cheapest complete evidence: [hub batch 4](#session-log-newest-first).
 
 **Port: shaders**
 - `.bshdat` layout, the GLSL in each stage's debug section, and the two rewrites glslang needs (block `location` to the compiler's binding, `GL_NV_explicit_typecast`): [shader packages parsed](#session-log-newest-first).
@@ -116,6 +118,29 @@ section, the reflection's last 0x108 bytes and nine record words, the binary deb
 (`0x0000c0de`), what the two halves of a variant key mean (always equal), header `+0x18`/`+0x20`
 and program slot 0, and where the name tables' IDs come from (one fixed engine enumeration; the
 lists also name uniforms no stage uses).
+
+**Hub batch 4 (2026-10-26, branch `claude/hubs-4`).** Two steps. First, mechanical: the four symbols
+`include/` itself declared in two or three headers got one canonical header each with
+`hub_migrate.py --header` (`fn_71000839a0` into `UnkVector.h` next to the allocator getter;
+`fn_710000051c`, `fn_7100001570` and `g_unk_7101d47200` into `CStrId.h`), and so did the tunable
+base constructor `fn_7100136ecc` (into `UnkTUProperty.h`): 71 files migrated, two by hand. One of
+those (`fn_7100343f7c`) shows a load-bearing type: storing the CRC64 into a `u64` field instead of
+the original `void*` one changes alias info and the code (63.6%), so it casts at the store. The run
+also exposed a `hub_migrate.py` bug: a file whose output changed made the tool undo the
+`--declaration` it had appended to the canonical header while keeping the 29 files it had migrated
+onto it, which then no longer compiled; the fix restores a changed file alone first (its own
+declaration next to the header's usually builds as before) and takes all dependants back when the
+header must go. Second, five sonnet agents on file-disjoint groups gave the 29 conflicting symbols
+with a hand-written definition one declaration with the definition's types; most needed a shared
+type, so the step added 19 headers (`UnkTimelineComponent.h`, `UnkSlots.h`, `UnkCollisionRecord.h`,
+`UnkSpitAttack.h` merging four local views, `UnkFreedVectorPair.h` replacing five identical copies,
+`UnkCallbackSetVector.h` taking about 235 duplicated lines out of two files, `UnkGuiHandle.h`,
+`UnkResType.h` out of `UnkStaticInitS7.h`, and others) and inserted declarations into four existing
+ones. About 13 minutes and 1.15 M agent tokens; every agent finished with nothing kept. A whole-tree
+baseline (all 1,353 hand-written sources, 2 minutes to save or compare) taken before the agents
+started is the batch's evidence, and is cheap enough to take before every agent round: unchanged.
+decl_check: conflicting 286 to 251, extra copies 2,055 to 1,906, header re-declarations 5 to 1.
+What is left has no hand-written definition (39 symbols with a lifted one, 211 with none).
 
 **TU helper fold (2026-10-26, branch `claude/tuinit-fold`).** `include/game/UnkTUInit.h` and
 `unk_static_init` (`src/game_5821e4/UnkStaticInit.h`, `src/game_s7/UnkStaticInitS7.h`) each defined

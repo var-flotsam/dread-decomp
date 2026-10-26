@@ -16,7 +16,10 @@ touched and for the hand-written includers of every header to be touched; after 
 rebuilt and compared. A file whose output changed, or that no longer compiles, is restored from
 the baseline and listed with its first differing line (usually the local declaration's types
 differ from the header's in a way the call needs, or the file used the symbol's placeholder type
-elsewhere). Those files are the next batch's hand work; everything else is done.
+elsewhere), keeping its own declaration next to the header's. If it still differs then, the headers
+it includes go back too (a header is all or nothing), and when that is the canonical header's new
+declaration, every file migrated onto it goes back with it (printed as UNDONE). Those files are the
+next batch's hand work; everything else is done.
 
   python tools/hub_migrate.py --version 2.1.0 SYMBOL [SYMBOL...] [--header include/x.h [--declaration "..."]]
   python tools/hub_migrate.py --version 2.1.0 --header-redeclared        # every symbol include/ declares once
@@ -179,6 +182,7 @@ def migrate(symbols: list[str], version: str, header: str | None, declaration: s
                       + ("" if has_include(read(path)[0], hdr) else f'; add #include "{spelling}"'))
         if dry_run:
             continue
+        baseline._INCLUDE_CACHE = None  # an earlier symbol of this run may have added includes
         verify = sorted(set(baseline.expand(set(targets) | set(touched_headers))))
         tag = f"hub_migrate-{symbol}"
         print(f"  baseline {tag}: {len(verify)} file(s) to rebuild")
@@ -200,23 +204,43 @@ def migrate(symbols: list[str], version: str, header: str | None, declaration: s
             print(f"  {symbol}: nothing migrated")
             worst = max(worst, 1)
             continue
-        try:
+        undo: set[str] = set()
+        still: list[str] = []
+        moved: list[str] = []
+        try:  # every compare and restore inside: an interrupted run leaves the tree as it was
             for path, (text, crlf) in edits.items():
                 write(path, text, crlf)
             result = baseline.compare(tag, verify, version, jobs)
+            changed = [p for p, (st, _) in result.items() if st != "UNCHANGED"]
+            if changed:
+                # First the changed files alone go back: with their own declaration next to the
+                # header's (the same signature, or an overload) they usually build as before.
+                undo = set(changed)
+                baseline.restore(tag, sorted(undo))
+                again = baseline.compare(tag, sorted(changed), version, jobs)
+                still = [p for p, (st, _) in again.items() if st != "UNCHANGED"]
+            if still:
+                # Then a header with an includer that still differs: a header is all or nothing.
+                # Undoing the canonical header's new declaration takes back every file migrated
+                # onto it; undoing another header changes what all its includers see (the files
+                # restored alone too), so all are compared again and the symbol is given up if
+                # any moved.
+                bad = {h for h in touched_headers if any(c in baseline.expand({h}) for c in still)}
+                undo |= bad
+                if hdr in bad:
+                    undo |= set(edits)
+                baseline.restore(tag, sorted(undo))
+                if hdr not in bad:
+                    final = baseline.compare(tag, list(verify), version, jobs)
+                    moved = sorted(p for p, (st, _) in final.items() if st != "UNCHANGED")
+                    if moved:
+                        undo |= set(edits)
+                        baseline.restore(tag, sorted(undo))
         except BaseException:
-            baseline.restore(tag, list(edits))  # an interrupted run leaves the tree as it was
+            baseline.restore(tag, list(edits))
             raise
-        changed = [p for p, (st, _) in result.items() if st != "UNCHANGED"]
-        kept = [p for p in targets if p not in changed]
+        kept = [p for p in targets if p not in undo]
         if changed:
-            # a header edit that changed any includer is undone too: a header is all or nothing
-            undo = set(changed)
-            for h in touched_headers:
-                if any(c in baseline.expand({h}) for c in changed):
-                    undo.add(h)
-            baseline.restore(tag, sorted(undo))
-            kept = [p for p in targets if p not in undo]
             for p in sorted(changed):
                 st, diff = result[p]
                 lines = diff.splitlines()[2:]
@@ -226,7 +250,14 @@ def migrate(symbols: list[str], version: str, header: str | None, declaration: s
                 d = baseline.BASE / tag / "diff" / (p + ".txt")
                 d.parent.mkdir(parents=True, exist_ok=True)
                 d.write_text(diff, encoding="utf-8")
-                print(f"  LEFT  {p}  {st}: {first.strip()[:200]}")
+                if p in still:
+                    print(f"  LEFT  {p}  {st}: {first.strip()[:200]}")
+                else:
+                    print(f"  LEFT  {p}  keeps its own declaration next to the header's (migrated: {first.strip()[:160]})")
+            for p in moved:
+                print(f"  MOVED  {p}  changed once a header went back: the symbol is given up")
+            for p in sorted((set(targets) & undo) - set(changed)):
+                print(f"  UNDONE  {p}  the header edit it relies on went back")
             worst = max(worst, 1)
         for p in kept:
             print(f"  migrated  {p}")

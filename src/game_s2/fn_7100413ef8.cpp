@@ -1,6 +1,7 @@
 // Initialises an entity's two smart-link group handles from the navmesh manager's registry
 // (game/UnkNavMeshManager.h; the manager is created on first use), runs two virtual set-up
 // steps and stores the squares of two floats.
+#include "base/UnkVector.h"
 #include "game/UnkNavMeshManager.h"
 #include "types.h"
 
@@ -21,7 +22,6 @@ struct UnkModelEntity {
     void vf_0xd0() { reinterpret_cast<void (*)(UnkModelEntity*)>(vtable[0xd0 / 8])(this); }
 };
 
-void* fn_71000839a0(u64 size, u32 flags);
 void* fn_7100ec0d20(UnkNavMeshManager* manager, void* key);
 bool fn_71011ace94(UnkModelEntity* self);
 

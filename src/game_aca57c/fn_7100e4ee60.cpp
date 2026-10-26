@@ -5,6 +5,8 @@
 // Also the tables' Begin and End, which point an iterator value at the first key and value or
 // one past the last.
 #include "base/UnkCollectionIter.h"
+#include "base/UnkFreedVectorPair.h"
+#include "base/UnkKeyedStrIds.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
@@ -63,12 +65,12 @@ __attribute__((always_inline)) static inline void Clear(UnkIdRecordTable<Value>*
 }
 
 // An owning pointer: the slot is cleared before the object is destroyed and freed.
-template <void (*Destroy)(void*)>
+template <class T, void (*Destroy)(T*)>
 struct UnkOwned {
-    void* ptr;
+    T* ptr;
 
     __attribute__((always_inline)) ~UnkOwned() {
-        void* p = ptr;
+        T* p = ptr;
         ptr = nullptr;
         if (p) {
             Destroy(p);
@@ -77,14 +79,13 @@ struct UnkOwned {
     }
 };
 
-void fn_7100ae2df8(void* self);  // the owned object's destructor
 void fn_7100aef674(void* self);
 
 // NON_MATCHING(minor): the value array and the count swap registers in the second loop, whose
 // compare takes the count already widened.
-void fn_7100ae31f8(UnkIdRecordTable<UnkOwned<fn_7100ae2df8>>* self) { Clear(self); }
+void fn_7100ae31f8(UnkIdRecordTable<UnkOwned<UnkKeyedStrIds, fn_7100ae2df8>>* self) { Clear(self); }
 // NON_MATCHING(minor): as fn_7100ae31f8.
-void fn_7100aecdc4(UnkIdRecordTable<UnkOwned<fn_7100aef674>>* self) { Clear(self); }
+void fn_7100aecdc4(UnkIdRecordTable<UnkOwned<void, fn_7100aef674>>* self) { Clear(self); }
 
 void fn_7100e4ee60(UnkIdRecordTable<UnkIdRecord28>* self) { Clear(self); }
 void fn_7100e71cc4(UnkIdRecordTable<UnkIdRecord18>* self) { Clear(self); }
@@ -133,17 +134,13 @@ void fn_7100e7232c(const UnkIdRecordTable<UnkIdRecord18>* self, base::UnkIterVal
 }
 
 // Tables whose 0x28-byte values have an out-of-line destructor.
-template <void (*Destroy)(void*)>
-struct UnkOutOfLineValue28 {
-    u64 unk_0x0[5];
-
+template <class T, void (*Destroy)(T*)>
+struct UnkOutOfLineValue28 : T {
     ~UnkOutOfLineValue28() { Destroy(this); }
 };
 
-void fn_71000df388(void* self);
-void fn_7100e493f4(void* self);
-using UnkValue28A = UnkOutOfLineValue28<fn_71000df388>;
-using UnkValue28B = UnkOutOfLineValue28<fn_7100e493f4>;
+using UnkValue28A = UnkOutOfLineValue28<UnkKeyedStrIds, fn_71000df388>;
+using UnkValue28B = UnkOutOfLineValue28<UnkSecondPtrArray<UnkFreedVectorPair>, fn_7100e493f4>;
 
 void fn_7100aef39c(const UnkIdRecordTable<UnkValue28A>* self, base::UnkIterValue<UnkValue28A, UnkReleasedStrId>* out) {
     Begin(self, out);

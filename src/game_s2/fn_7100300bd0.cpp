@@ -4,6 +4,7 @@
 // vector (0, 0, 0, 1.0). Returns the object, or null when it isn't live. With bit 0 of the argument
 // set, first calls fn_71011e49fc on the object at +0x2d0 of the global manager's service.
 #include "game/UnkGameManager.h"
+#include "game/UnkTimelineComponent.h"
 #include "types.h"
 
 struct UnkVec4 {
@@ -39,10 +40,9 @@ struct UnkSelf {
     UnkOwner* field_0x30;
 };
 
-extern char g_unk_7101648d40[];
+extern u64 g_unk_7101648d40;
 UnkService* fn_7100deac84(UnkGameManager* manager);
 void fn_71011e49fc(void* object);
-void fn_7100d7c828(UnkOwner* owner, const char* name, u32 flag);
 UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);
 bool fn_710114e668(UnkWorld* world, u8 id);
 void fn_710114fe8c(UnkWorld* world, u64 hash, u32 a, u32 b);
@@ -52,7 +52,7 @@ UnkPart* fn_7100300bd0(UnkSelf* self, u32 flags) {
         if (void* object = fn_7100deac84(g_unk_7101d47310)->field_0x2d0)
             fn_71011e49fc(object);
     }
-    fn_7100d7c828(self->field_0x30, g_unk_7101648d40, 0);
+    fn_7100d7c828(reinterpret_cast<UnkActor*>(self->field_0x30), &g_unk_7101648d40, false);
     UnkVec4 vector;
     vector.xy = 0;
     vector.zw = 0x3f80000000000000ull;

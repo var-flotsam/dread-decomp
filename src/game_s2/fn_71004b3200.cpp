@@ -2,6 +2,7 @@
 #include "../game_s7/UnkStaticInitS7.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflTypeDtors.h"
+#include "game/UnkTUProperty.h"
 
 using namespace unk_static_init;
 
@@ -19,7 +20,6 @@ struct UnkStatics_71004b3200 {
 extern UnkStatics_71004b3200 g_unk_71726d4d68 __attribute__((visibility("hidden")));
 extern char g_unk_71726d37b0[];
 extern UnkTunable g_unk_71726d37b8;
-void fn_7100136ecc(UnkTunable* self);  // the base constructor
 extern void* g_unk_7101a3e130[];
 void fn_7100075104(void* self);  // its destructor, as registered
 extern UnkEnumType g_unk_71726d37e8;

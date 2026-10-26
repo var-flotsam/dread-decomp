@@ -232,7 +232,9 @@ void fn_71001c21d4(UnkBoneOwner* self, const UnkMatrix44* m) {
 }
 
 // The same from a whole transform, copied when it is another one (fn_71001c2480).
-void fn_71001c2480(UnkBoneOwner* self, UnkXform* x) {
+void fn_71001c2480(UnkXformTarget* target, UnkXform* x) {
+    // The transform nodes know this owner as UnkXformTarget (include/game/UnkXformNode.h).
+    UnkBoneOwner* self = reinterpret_cast<UnkBoneOwner*>(target);
     if (__builtin_memcmp(&x->GetMatrix(), &self->xform.GetMatrix(), sizeof(UnkMatrix44)) == 0)
         return;
     f32 old_largest = Largest(self->xform.GetScale());

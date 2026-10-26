@@ -6,8 +6,6 @@
 
 using base::global::CStrId;
 
-void* fn_71000839a0(u64 size, u32 flags);
-
 struct UnkObj_71007e44b8 {
     virtual void vf_0x0();
     virtual void vf_0x8();

@@ -6,35 +6,14 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkGuiDisplayObject.h"
+#include "game/UnkGuiHandle.h"
+#include "game/UnkHandleMenu.h"
 #include "types.h"
 
 using base::global::CRntString;
 using base::reflection::CClass;
 
-// A reference-counted weak handle to the looked-up object, released through vf_0x10.
-struct UnkGuiHandleObj {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-    s32 ref_count;
-    UnkGuiDisplayObject* target;
-};
-
-struct UnkGuiHandle {
-    UnkGuiHandleObj* ptr;
-
-    UnkGuiDisplayObject* Get() const { return ptr ? ptr->target : nullptr; }
-    ~UnkGuiHandle() {
-        if (UnkGuiHandleObj* p = ptr) {
-            if (--p->ref_count == 0)
-                p->vf_0x10();
-        }
-    }
-};
-
 extern void* g_unk_717271e8f8;
-UnkGuiHandle fn_71011b69d8(void* registry, const CRntString& name);
-void fn_71011cdce8(void* composition, s32 value);
 void fn_71011cf364(void* composition, s32 value);
 void fn_71011cde44(void* composition, s32 value);
 void fn_71011d968c(void* menu, void* composition);
@@ -86,12 +65,6 @@ void fn_7100b2cb44(UnkMenu<0x2b0>* self) { SetUp<0x2b0, -1, true>(self, "Control
 // The mission menu (0x490) and the power description (0x488) are kept as handles (assigned by
 // fn_7100b2c458) and set up the same way through them, once; the power description also gets
 // vf_0x78(-2000, true).
-template <u32 Offset>
-struct UnkHandleMenu {
-    u8 unk_0x0[Offset];
-    UnkGuiHandle menu;
-};
-
 void fn_7100b2c458(UnkGuiHandle* dst, const UnkGuiHandle& src);
 void fn_71011cef74(void* composition, void* owner);
 

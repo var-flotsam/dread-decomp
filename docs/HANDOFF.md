@@ -6,7 +6,7 @@ it needs). History, batch logs and the index of matching findings are in `docs/J
 `docs/recon.md` describes the binary, `docs/compiler.md` the toolchain, `docs/references.md` the
 outside projects. This page is edited in place, never appended to: session notes go to the journal.
 
-**Last updated 2026-10-26** (hub batch 3, var-flotsam/dread-decomp#195; the TU helper fold, branch `claude/tuinit-fold`; the shader packages, branch `claude/port-bshdat`).
+**Last updated 2026-10-26** (hub batches 3 and 4, var-flotsam/dread-decomp#195 and #197; the TU helper fold, #196; the shader packages, branch `claude/port-bshdat`).
 Target: **Metroid Dread 2.1.0**, `main` build ID `646761F643AFEBB379EDD5E6A5151AF2CEF93DC1`.
 
 ## Start here
@@ -14,11 +14,13 @@ Target: **Metroid Dread 2.1.0**, `main` build ID `646761F643AFEBB379EDD5E6A5151A
 - **Open work:** `gh pr list` is the source of truth for what is waiting to merge; the lifter's semantic
   coverage mode (stream M) runs in its own session on a `claude/lifter-semantic-coverage-*` branch.
 - **Next hub batch:** `tools/hub_migrate.py --header-redeclared` has nothing left but one deliberate
-  keep (`src/game_s2/fn_71003f1b00.cpp`; batch 3 and the TU helper fold, 2026-10-26). Next are the four symbols `include/` itself declares in two or three
-  headers (`fn_71000839a0` in 27 files, `fn_710000051c`, `fn_7100001570`, `g_unk_7101d47200`: pick one
-  header, then `hub_migrate.py SYM --header ...`), then `tools/decl_check.py --list`, conflicting
-  signatures first. Work them per `.claude/skills/dread-hubs`: the tool first, agents on disjoint file
-  sets for what it leaves, verified with `tools/baseline.py`.
+  keep (`src/game_s2/fn_71003f1b00.cpp`), and every conflicting symbol with a hand-written definition
+  has one declaration (batch 4). The 250 conflicting symbols left have no hand-written definition:
+  39 a lifted one, 211 none, so the callers' types and `tools/abi_facts.py` decide the signature, and
+  most need a shared type in a new header. `tools/decl_check.py --list` ranks them. Work them per
+  `.claude/skills/dread-hubs`: the tool first (`hub_migrate.py SYM --header H --declaration D` once a
+  signature is chosen), agents on disjoint file sets for what it leaves, verified with
+  `tools/baseline.py` (save a whole-tree tag first: 1,353 sources in 2 minutes).
 - **Port:** `python tools/port_link.py --version 2.1.0` rebuilds `build/port/link/boot_missing.csv`, the
   boot-slice functions without a source (the lifter's worklist) and the runtime stubs still needed.
 - Every number on this page names the command that produced it; rerun the command rather than trust
@@ -51,10 +53,11 @@ clones, tables) and 0.76 MB is hand-written with real types. The `U` bytes are m
 game logic (5.6 MB between 256 B and 2 KB), which needs real types, not generators.
 
 Source hygiene (`tools/decl_check.py`, 2026-10-26): 11,298 `fn_`/`g_unk_` symbols declared in
-1,482 hand-written files (2,355 of them the generated class-getter header); 286 with conflicting
+1,502 hand-written files (2,355 of them the generated class-getter header); 251 with conflicting
 signatures (393 on the morning of 2026-10-24, 337 after the first hub batch, 310 after the second,
-308 after the TU-init symbols); 5 declared in `include/` and again outside it (76, 53, 45, 27, 6);
-1,279 declared in more than one file (2,055 extra copies). Translation units (`tools/tu_map.py`): 2,773 units from 2,760 static initialisers, 2,712
+308 after the TU-init symbols, 286 after the third); 1 declared in `include/` and again outside it
+(76, 53, 45, 27, 6, 5; the one left is deliberate); 1,243 declared in more than one file (1,906 extra
+copies). Translation units (`tools/tu_map.py`): 2,773 units from 2,760 static initialisers, 2,712
 at high confidence; 11,656 `U` functions (6.0 MB) sit in a unit with a reflected class hint.
 
 ## Direction (decided 2026-10-24, owner's goal: clean, readable, playable in a few months)
@@ -293,10 +296,17 @@ property registration (`UnkReflStatics.h`), the AI component's navigation getter
 `fn_71011cf2a4` as `m`). The batch ran six file-disjoint steps in parallel and five overlapping
 ones in sequence (`tools/trymatch.py --obj-dir` keeps parallel objects apart).
 
-Next, by `tools/decl_check.py --list` (at most 4 signatures each now, so rank by file count too):
-`fn_71004f3ea4` (4 in 3), `fn_710007b430`, `fn_7100d7c828`, `fn_71011cdce8` (3 in 5 each). Of the
-286 conflicting symbols, 32 have a hand-written definition (its signature is the canonical one),
-39 only a lifted one and 213 none (the callers' types decide). Follow-ups the batch left:
+Batch 4 (2026-10-26) gave every conflicting symbol with a hand-written definition one declaration
+with the definition's types (29 symbols, 19 new headers such as `UnkTimelineComponent.h`,
+`UnkCollisionRecord.h`, `UnkSpitAttack.h`, `UnkGuiHandle.h`; journal). Next, by
+`tools/decl_check.py --list`: `fn_71004f3ea4` (4 signatures in 3 files), `fn_710007b430`,
+`fn_71000127c8`, `fn_71004f11f8`, the GUI functions `fn_71011b6bbc`, `fn_71011d8e90`, `fn_71011d968c`
+(3 each). Batch 4's own follow-ups: `fn_7100a2c13c`, `fn_7100a2cfe8` and `fn_7100a2cb7c` (whose
+`UnkReflStatics.h` declaration disagrees with its definition) into `UnkTimelineComponent.h`;
+`fn_71001c28f8` into `UnkSlots.h`; the 0x60-byte record's `PushBack` `fn_7100e52cf4` (5 files) into
+`UnkFreedVectorPair.h`; `fn_7100125e78`, `fn_7100125b1c` onto `UnkSegment2D.h`; `UnkAttack.h` and
+`src/game_5821e4/CAttack.h` into one `CAttack`; `gen_tables.py` should use `UnkRenderManager.h`'s
+`fn_7100219ae0` (its video map declares it `void`). Older follow-ups:
 `fn_710021693c` and `fn_7100216d30` into `UnkSphere.h`; `fn_71004fa3b8` (9 identical local
 declarations); the `UnkActor` slots at +0x240 and +0x298 typed `UnkAIComponent*` and
 `UnkNavigation*`; `fn_7100394bd4` (2 signatures); `fn_7100ad3588` into `UnkErasedVector.h` and

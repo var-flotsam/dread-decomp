@@ -2,6 +2,7 @@
 // own statics and registrations (helpers in UnkStaticInitS7.h). Layouts are placeholders.
 #include "UnkStaticInitS7.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/UnkTUProperty.h"
 
 using namespace unk_static_init;
 
@@ -60,7 +61,6 @@ void fn_71008cace8();
 extern char g_unk_7172731360[];
 extern char g_unk_7172731361[];
 extern UnkTunable g_unk_7172731368;
-void fn_7100136ecc(UnkTunable* self);  // the base constructor
 extern void* g_unk_7101a7eab0[];
 void fn_7100075104(void* self);  // its destructor, as registered
 struct UnkStruct_71727313a4 {

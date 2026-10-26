@@ -62,7 +62,6 @@ struct UnkMgr_0xf18 {
 
 extern UnkMgr_0xf18* g_unk_71726bc560;
 
-void* fn_71000839a0(u64 size, u32 flags);
 void fn_7100fd3804(UnkMgr_0xf18*);
 void fn_7100fd7c3c(UnkMgr_0xf18*, u32, UnkRequest*, f32, UnkKind, UnkMask);
 
