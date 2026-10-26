@@ -20,7 +20,11 @@ Target: **Metroid Dread 2.1.0**, `main` build ID `646761F643AFEBB379EDD5E6A5151A
   most need a shared type in a new header. `tools/decl_check.py --list` ranks them. Work them per
   `.claude/skills/dread-hubs`: the tool first (`hub_migrate.py SYM --header H --declaration D` once a
   signature is chosen), agents on disjoint file sets for what it leaves, verified with
-  `tools/baseline.py` (save a whole-tree tag first: 1,353 sources in 2 minutes).
+  `tools/baseline.py` (`save --tag <batch>-full --all` before the agents start: two minutes).
+- **Next boot hubs:** `tools/hubs.py --version 2.1.0 --boot` (round 2's list and round 1's
+  follow-ups are under stream A below). Round 1 ran four agents, one per hub group on disjoint files,
+  each with the brief "match it (`dread-match` loop, time-boxed), one header, migrate the declaring
+  files"; the whole-tree baseline before and `check.py` once after.
 - **Port:** `python tools/port_link.py --version 2.1.0` rebuilds `build/port/link/boot_missing.csv`, the
   boot-slice functions without a source (the lifter's worklist) and the runtime stubs still needed.
 - Every number on this page names the command that produced it; rerun the command rather than trust
