@@ -217,6 +217,21 @@ above.
   integer conversions differ. A function pointer argument whose callee is unknown is compared by
   `x0` and the registers set for it; a float only passed on goes as `f64`, which keeps its bits.
 
+**M1 step 4 (2026-10-26): runtime stubs, the data loader, no strict aliasing.** Every `nn::os` and
+`nn::oe` import the slice reaches is in `port/runtime/` (threads on host threads, events and
+message queues over host objects, the docked operation mode, the exit request as the one
+notification), so `tools/port_link.py`'s residue lists none; the next namespaces in call order are
+`nn::fs` (the start-up `fn_71001325d0` mounts the RomFS next), `nn::account`, `nn::time`, `nv`,
+then `nn::hid` and `movie`. The data loader (`port/runtime/include/dread_port_loader.h`, usage in
+`port/README.md`) maps the dump's main NSO at `0x7100000000` before the game's static
+initialisers, applies its 146,684 relocations and translates the 128,576 code pointers in `.data`
+(vtables, callbacks) to the port's functions through a table `port_link.py` generates from the
+link's definitions, with a trap thunk for an address the port does not define;
+`tools/test_port_loader.py` runs it on the dump without an SDK. What it fixes for the final link: a
+fixed base within 2 GB of the PC-relative data (about 214 MiB free below `0x7100000000`, 235 MiB
+above the `.bss`), and the Itanium C++ ABI (the game's vtables are used as they are), so on Windows
+MinGW-w64 or WSL, not MSVC. `dread_game` and the sweep compile with `-fno-strict-aliasing`.
+
 This is aggressive. M1 is realistic with focus. M2 was budgeted around shader translation as a
 large dependency or a large project; since the `.bshdat` files turned out to carry their GLSL
 sources (2026-10-25), that risk is gone and M2's unknown is the NVN shim itself (the object

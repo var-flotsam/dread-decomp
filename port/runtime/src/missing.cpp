@@ -23,3 +23,10 @@ extern "C" void dread_port_mismatched_call(u64 address) {
     std::fflush(stderr);
     std::abort();
 }
+
+extern "C" void dread_port_missing_import(const char* name) {
+    std::fprintf(stderr, "dread: call to an import the port does not define yet: %s (the game's data points at it)\n",
+                 name);
+    std::fflush(stderr);
+    std::abort();
+}

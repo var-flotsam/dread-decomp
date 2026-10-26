@@ -79,7 +79,38 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - `nvnProgramSetShaders` gets each stage's control section by pointer; key stages by FNV-1a 64 over its first 2,048 bytes. NVN block sizes are the SPIR-V span rounded to 16. The engine selects variants itself (`fn_71001b0f24`): [port M2](#session-log-newest-first).
 - A source fix for one shader is a regular expression over the construct, never the shipped lines (those are game data): same entry.
 
+**Port: runtime and loader**
+- The engine's thread object puts `ThreadType` at +0, light events at +0x1c0 and +0x1cc: the SDK's thread block is 0x1c0 bytes, a light event 12; event clear mode 1 is auto clear: [port M1 step 4](#session-log-newest-first).
+- main's 146,684 dynamic relocations: every slot in `.data`, 128,576 relative ones into `.text` (vtables, callbacks), every symbol relocation an import; the game's vtables are used as they are, so the port needs the Itanium C++ ABI (not MSVC): same entry.
+- A freestanding core builds into a Windows DLL with clang, `lld-link /noentry /nodefaultlib` and a `kernel32.lib` from `llvm-dlltool`: no SDK needed to test it from Python: same entry.
+
 ## Session log (newest first)
+
+**Port M1 step 4 (2026-10-26, var-flotsam/dread-decomp#201, #203 and #206).** Stream D taken
+over from the lifter session's notes. (1) `nn::os` and `nn::oe`: every import the boot slice reaches
+(30 and 20 with the GOT slots) and every one a lifted source calls, in `port/runtime/`. Layouts from
+the engine's thread wrapper `fn_7100066744` (Ghidra, read only): it initialises two light events at
++0x1c0 and +0x1cc of its object and passes +0 to `CreateThread`, so `ThreadType` is 0x1c0 bytes and
+`LightEventType` 12; mode 1 is auto clear. The port keeps a pointer to its host object and a tag
+word in the game's storage, so a call on an uninitialised object stops with its name. `nn::oe`'s
+notification loop `fn_71001327c0` quits on message 4 and re-reads the mode on 30: the runtime sends
+4 once after `dread_port_request_exit()`. `std::thread` brings `pthread_*`/`sched_yield` into the
+link: `port_link.py` counts them as the C library. (2) `-fno-strict-aliasing` for `dread_game` and
+the sweep. (3) The data loader. Measured on 2.1.0's main (`tools/nso2elf.py` parsing): text
+`0x123ac10`, rodata at `0x123b000`, data at `0x1a19000`, `.bss` to `0x72a19000`; 145,813 relative
+relocations (128,576 into `.text`, all slots in `.data`), 489 PLT, 364 absolute (245
+`__cxa_pure_virtual`, the C++ ABI's type-info vtables, a few libc++ stream vtables), 18 GOT, all
+symbol relocations imports; 2,760 `.init_array` entries (the port runs its own compiled
+initialisers, not these). The PC-relative data the link references runs from `0x71015af379` to
+`0x7172a112e8` (5,257 of those symbols in `.bss`), which leaves about 214 MiB below the image or
+235 MiB above it for the port's code. The core is freestanding (its own LZ4 block decoder, two
+passes so the thunks are counted before they are mapped), so `tools/test_port_loader.py` builds it
+into a DLL with clang and lld alone and maps the dump inside the Python process: 26 checks in 2 s,
+and a mutation that skips every 64th code pointer fails 3 of them. With the table `port_link.py`
+writes, 91,166 function addresses can be named; with the test's half-table, 63,278 of the 128,576
+code pointers translate and 65,842 thunks are written. Gotcha: in the Bash tool a Python heredoc
+lost its `\t` and `\n` escapes (they became real tabs and newlines in `port_link.py`); patch
+scripts with escapes go through the Write tool.
 
 **Boot hubs, round 2 (2026-10-26, branch `claude/boot-hubs-2`).** Five sonnet agents, one per group
 of `tools/hubs.py --boot` hubs and round 1's follow-ups, grouped by `tools/tu_map.py` unit on disjoint

@@ -6,7 +6,7 @@ it needs). History, batch logs and the index of matching findings are in `docs/J
 `docs/recon.md` describes the binary, `docs/compiler.md` the toolchain, `docs/references.md` the
 outside projects. This page is edited in place, never appended to: session notes go to the journal.
 
-**Last updated 2026-10-26** (hub batches 3 and 4, var-flotsam/dread-decomp#195 and #197; the TU helper fold, #196; the shader packages, #198; boot hubs round 1, #199; port M2's shader build step and NVN binding layer, #202 and #204; hub batch 5, branch `claude/hub-batch-5`; boot hubs round 2, branch `claude/boot-hubs-2`).
+**Last updated 2026-10-26** (port M1 step 4: runtime stubs and the data loader, #201, #203, #206; hub batches 3 and 4, var-flotsam/dread-decomp#195 and #197; the TU helper fold, #196; the shader packages, #198; boot hubs round 1, #199; port M2's shader build step and NVN binding layer, #202 and #204; hub batch 5, branch `claude/hub-batch-5`; boot hubs round 2, branch `claude/boot-hubs-2`).
 Target: **Metroid Dread 2.1.0**, `main` build ID `646761F643AFEBB379EDD5E6A5151AF2CEF93DC1`.
 
 ## Start here
@@ -28,7 +28,8 @@ Target: **Metroid Dread 2.1.0**, `main` build ID `646761F643AFEBB379EDD5E6A5151A
   then the orchestrator settles the declarations the agents left, runs `check.py` once, and has an
   adversarial review check the headers and every `NON_MATCHING(minor)` claim.
 - **Port:** `python tools/port_link.py --version 2.1.0` rebuilds `build/port/link/boot_missing.csv`, the
-  boot-slice functions without a source (the lifter's worklist) and the runtime stubs still needed.
+  boot-slice functions without a source (the lifter's worklist), the runtime stubs still needed and the
+  data loader's tables; `python tools/test_port_loader.py --version 2.1.0` checks the loader on the dump.
   Graphics (M2): `cmake --build build/port/cmake --target shaders dread_nvn` compiles the dump's
   shaders to SPIR-V with `shaders.manifest` and the NVN shim's binding layer (`port/nvn/README.md`).
 - Every number on this page names the command that produced it; rerun the command rather than trust
@@ -427,13 +428,18 @@ lifts (1.04 MB) and **216 slice functions without a source** (196 KB, `boot_unli
 oracle covers a median 67% of an original's instructions, so the next lifter work is input
 coverage and the remaining gaps: stack arguments (23), flat-mode register order (14), `x8`
 results in tail position (14), other jump-table shapes (9), and the 104 functions the oracle
-rejects (`tools/port_lift.py --debug ADDR` shows the first difference). Next for M1,
-in order: `nn::` stubs in call order (`nn::os` 16 and `nn::oe` 1 still
-needed, then `nn::fs`, `nn::hid`, `movie`, `nv`); the data loader that maps the dump's segments at
-their original addresses (5,467 data symbols are referenced PC-relatively, so the image must sit
-within 2 GB of `0x7100000000`). Producing an executable needs WSL or the MSVC Build Tools. The game code type-puns as the original's
-did (words read as `u64`, storage cast to its layout), so `dread_game` should build with
-`-fno-strict-aliasing` as `dread_libs` does (review of boot hubs round 1).
+rejects (`tools/port_lift.py --debug ADDR` shows the first difference). M1 step 4 (2026-10-26, var-flotsam/dread-decomp#201, #203 and #206): the runtime defines every `nn::os` and
+`nn::oe` import the slice reaches (port_link's residue lists none); `dread_game` and the sweep
+build with `-fno-strict-aliasing`; the data loader (`port/runtime/include/dread_port_loader.h`,
+`port/README.md` "The data loader") maps the dump's main NSO at `0x7100000000` before the game's
+static initialisers and translates the 128,576 code pointers in `.data` through the function table
+`port_link.py` now writes (`image_tables.s`); `python tools/test_port_loader.py --version 2.1.0`
+runs it on the dump in 2 s (26 checks, no SDK). Next for M1, in order: `nn::fs` stubs over the
+dump's RomFS (the start-up `fn_71001325d0` mounts it right after the allocators), then
+`nn::account`, `nn::time`, `nv`, `nn::hid`, `movie`; addresses for the 71 vtables nothing defines
+(they are the game's own, in `.data`); the final link at a fixed base within 2 GB of the image
+(about 214 MiB free below `0x7100000000`, 235 MiB above the `.bss`). That link needs the Itanium
+C++ ABI, so on this PC MinGW-w64 or WSL (ask the owner before installing either), not MSVC.
 M2 groundwork (2026-10-26, branch `claude/port-bshdat`): `tools/bshdat.py --version 2.1.0
 --compile` parses the 478 shader packages, extracts the 671 programs' 1,342 GLSL sources and the
 compiler's reflection to `build/shaders/2.1.0/`, and compiles 1,341 stages to OpenGL and Vulkan
