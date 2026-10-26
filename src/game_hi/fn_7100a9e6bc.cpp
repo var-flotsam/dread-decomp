@@ -1,6 +1,7 @@
 // Destructor body of the object whose state machine fn_7100a9ea64 sets up: detaches its
 // listener, releases its members, destroys the seven states and the state machine, and runs
 // the base destructor.
+#include "base/UnkStrIdTable.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflCast.h"
@@ -55,10 +56,7 @@ struct UnkStateObject {
     UnkState states[7];
     u8 unk_0x4c0[0x8];
     UnkStringData* field_0x4c8;  // CStrId
-    void* field_0x4d0;
-    void* field_0x4d8;
-    u8 unk_0x4e0[0x10];
-    base::UnkAllocator* field_0x4f0;
+    UnkStrIdTable field_0x4d0;
     u8 unk_0x4f8[0x18];
     UnkRefObject* field_0x510;
     void** listener_vtable;  // a listener at +0x518
@@ -73,7 +71,6 @@ extern void* g_unk_7101a77000[];
 extern void* g_unk_7101a946c0[];
 extern void* g_unk_7101a94718[];
 void fn_7100a2d4d0(void* target, void* listener);
-void fn_71004f11f8(void* self);
 void fn_7100431cec(void* self);
 void fn_71010c4194(UnkStateObject* self);
 
@@ -99,10 +96,10 @@ void fn_7100a9e6bc(UnkStateObject* self) {
     Release(self->field_0x530);
     Release(self->field_0x510);
     fn_71004f11f8(&self->field_0x4d0);
-    if (self->field_0x4d8)
-        self->field_0x4f0->vf_0x48(self->field_0x4d8);
-    if (self->field_0x4d0)
-        self->field_0x4f0->vf_0x48(self->field_0x4d0);
+    if (self->field_0x4d0.keys)
+        self->field_0x4d0.allocator->vf_0x48(self->field_0x4d0.keys);
+    if (self->field_0x4d0.values)
+        self->field_0x4d0.allocator->vf_0x48(self->field_0x4d0.values);
     if (UnkStringPool* pool = g_unk_7101d47108) {
         UnkStringData** id = &self->field_0x4c8;
         if (*id && *id != &pool->empty) {

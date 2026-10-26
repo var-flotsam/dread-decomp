@@ -1,6 +1,6 @@
 // CAIGotoPointNavigationState::SEntityTarget (reflection: size 0x20, parent SPointTarget): its
 // copy constructor (fn_7100702a84) and move constructor (fn_7100702b18), both the implicit copy.
-#include "CAttack.h"
+#include "game/CAttack.h"
 
 #include <new>
 

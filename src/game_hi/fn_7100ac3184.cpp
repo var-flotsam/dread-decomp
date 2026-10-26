@@ -3,7 +3,9 @@
 // weak handles, resets its state, re-registers its id with the owner's table (fn_7100a2cddc)
 // and binds its callback to a lazily created global dispatcher.
 #include "base/global/CStrId.h"
+#include "base/UnkStrIdPathPair.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/UnkCollisionRecord.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -29,7 +31,7 @@ struct UnkTransformHolder {
 
 struct UnkOwner {
     u8 unk_0x0[0x2a0];
-    void* field_0x2a0;
+    UnkCollisionContainer* field_0x2a0;
     u8 unk_0x2a8[0x40];
     void* field_0x2e8;
 };
@@ -111,9 +113,7 @@ inline const UnkStaticZero_71726b5354& UnkGetStaticZero_71726b5354() {
 extern void* g_unk_7101d47360;
 extern u8 g_unk_71727556f0 __attribute__((visibility("hidden")));
 void fn_7100ac7628(UnkComponent_0x5d0* self);
-UnkWeakTarget* fn_71008640a4(void* registry, const CStrId* id);
 void fn_7100a2cddc(void* table, void* key, CStrId* id, bool unique, f32 delay);
-void fn_71000267f8(void* self, void* other);
 void fn_7100ee1f34(void* self);
 
 // The global manager, created on first use.
@@ -129,11 +129,11 @@ static inline void* UnkGetManager() {
 __attribute__((always_inline)) static inline void ResolveTarget(UnkComponent_0x5d0* self, const CStrId& id, UnkWeakHandle** out) {
     if (id.data == &g_unk_7101d47108->empty)
         return;
-    void* registry = self->owner->field_0x2a0;
+    UnkCollisionContainer* registry = self->owner->field_0x2a0;
     if (!registry)
         return;
     UnkWeakHandle* handle = nullptr;
-    if (UnkWeakTarget* target = fn_71008640a4(registry, &id))
+    if (UnkWeakTarget* target = reinterpret_cast<UnkWeakTarget*>(fn_71008640a4(registry, &id)))
         handle = GetWeakHandle(target);
     AssignRef(out, handle);
 }
@@ -165,6 +165,7 @@ void fn_7100ac3184(UnkComponent_0x5d0* self) {
         fn_7100a2cddc(table, key, &self->field_0x598, false, -1.0f);
     }
     self->field_0x579 = false;
-    fn_71000267f8(self->field_0x580, &g_unk_71727556f0);
+    fn_71000267f8(reinterpret_cast<UnkStrIdPathResource*>(self->field_0x580),
+                  reinterpret_cast<const UnkStrIdPathPair&>(g_unk_71727556f0));
     self->field_0x5a0.Connect(UnkGetManager());
 }

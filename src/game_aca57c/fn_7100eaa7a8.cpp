@@ -5,6 +5,7 @@
 #include "base/math/CVector.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkTunableRegistry.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -12,7 +13,6 @@ using base::math::CVector3D;
 using base::reflection::UnkReflTypeOf;
 using base::reflection::UnkTunableRegistry;
 
-extern UnkTunableRegistry* g_unk_7101d47350;
 void fn_710013c3c8(void* notifier, void* object, const CStrId* property);
 
 struct UnkMinimapSettings {

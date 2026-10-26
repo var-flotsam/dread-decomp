@@ -1,6 +1,6 @@
 // CGoliathXBurstProjectionBombsAttack (reflection: size 0x90): its copy constructor
 // (fn_7100586240) and move constructor (fn_7100586310), both the implicit copy.
-#include "CAttack.h"
+#include "game/CAttack.h"
 
 #include <new>
 

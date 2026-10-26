@@ -1,11 +1,10 @@
 // Destructor of an object holding a string id, four growable arrays and a refcounted
 // pointer: releases them in reverse order of declaration.
 #include "base/UnkDestructors.h"
+#include "base/UnkEmptyDtorElem.h"
 #include "base/UnkVector.h"
 #include "game/UnkObject_0x100.h"
 #include "types.h"
-
-void fn_71002874dc(void* elem);
 
 struct UnkStruct_71002b6094_Elem {
     u32 field_0x0;

@@ -6,6 +6,7 @@
 #include <new>
 
 #include "base/UnkDestructors.h"
+#include "base/UnkStrIdPathPair.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflCast.h"
@@ -52,12 +53,16 @@ struct UnkIdPairValue_71011dfeb0 {
     }
 };
 
+// fn_71000267f8 on the resource pair stored in `pair`: the value is the ids alone.
+__attribute__((always_inline)) static inline void AssignIds(u8* pair, const UnkIdPairValue_71011dfeb0& value) {
+    fn_71000267f8(reinterpret_cast<UnkStrIdPathResource*>(pair), reinterpret_cast<const UnkStrIdPathPair&>(value));
+}
+
 struct UnkPanel_71011dfeb0;
 UnkGuiObj_71011dfeb0* fn_71011d98ec(UnkPanel_71011dfeb0* self, u64 id);  // finds a child
 void fn_71011d9b3c(UnkPanel_71011dfeb0* self);
 void fn_71011e1404(UnkPanel_71011dfeb0* self);
 void fn_71011ec3fc(UnkLabel_71011dfeb0* label, bool value);
-void fn_71000267f8(void* pair, const UnkIdPairValue_71011dfeb0& value);
 extern CStrId g_unk_71727b9d30;
 
 struct UnkPanel_71011dfeb0 {
@@ -129,9 +134,9 @@ void fn_71011dfeb0(UnkPanel_71011dfeb0* self) {
     self->field_0x330 = self->FindAs<UnkLabel_71011dfeb0>("BossCount", fn_71011e8dfc);
     fn_71011ec3fc(self->field_0x328, true);
     self->field_0x328->field_0x2f8 = 3;
-    fn_71000267f8(self->field_0x4a8,
-                  UnkIdPairValue_71011dfeb0(g_unk_71727b9d30,
-                                            CFilePathStrId(UnkStrIdInline(),
-                                                           "system/snd/presets/gui/timealarm_01", true)));
+    AssignIds(self->field_0x4a8,
+              UnkIdPairValue_71011dfeb0(g_unk_71727b9d30,
+                                        CFilePathStrId(UnkStrIdInline(),
+                                                       "system/snd/presets/gui/timealarm_01", true)));
     fn_71011e1404(self);
 }

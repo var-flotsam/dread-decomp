@@ -3,6 +3,7 @@
 // bones (0x98-byte entries keyed by u64 ids, in the skeleton reached through +0x78 and +0x80) are
 // updated first (fn_710019b9c8). By index (fn_71001c1b70) or by id (fn_71001c1694).
 #include "base/UnkCloneCalls.h"
+#include "base/UnkMatrix44.h"
 #include "game/UnkSphere.h"
 #include "game/UnkXformNode.h"
 
@@ -60,7 +61,6 @@ struct UnkBoneDriver {
 };
 
 void fn_710019b9c8(UnkBoneArray* bones);
-UnkMatrix44 fn_71000127c8(const UnkMatrix44& a, const UnkMatrix44& b);  // a * b
 
 bool fn_71001c1b70(UnkBoneOwner* self, u32 index, UnkMatrix44* out) {
     UnkBoneArray* bones = self->holder->bones;
@@ -98,8 +98,6 @@ struct UnkLinkedBone {
     UnkLinkedBone* parent;
     const UnkMatrix44* matrix;
 };
-
-UnkMatrix44 fn_7100079138(f32 x, f32 y, f32 z);  // scale matrix
 
 __attribute__((always_inline)) static inline void SetIdentity(UnkMatrix44* m) {
     // Zeroes everything, then sets the diagonal from the last element.
@@ -298,4 +296,3 @@ struct UnkMarginBlend {
     u32 b;
     u32 c;
 };
-

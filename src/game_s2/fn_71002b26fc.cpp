@@ -1,6 +1,7 @@
 // Inserts a node for a newly created key at the head of its bucket in a chained hash table:
 // the node (hash, key, next) comes from the allocator at 0x50, the lowest used bucket (0x40)
 // and the first node (0x48) follow, and the node count at 0x5c goes up.
+#include "base/UnkEmptyDtorElem.h"
 #include "types.h"
 
 struct UnkKey {
@@ -45,7 +46,6 @@ struct UnkHashTable {
 
 void fn_71002874d0(UnkKey* key);
 u32 fn_71002874e0(u16 a, u8 b);
-void fn_71002874dc(UnkKey* key);
 UnkNode** fn_71002b288c(void* buckets, u32 index);
 
 void fn_71002b26fc(UnkHashTable* self) {

@@ -3,6 +3,7 @@
 #include "UnkFlagListS7.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "game/UnkActor.h"
+#include "game/UnkTimelineComponent.h"
 
 using unk_flag_list::UnkFlagList;
 using unk_flag_list::UnkFlagListKey;
@@ -54,10 +55,10 @@ void fn_7100600c98(UnkStruct_7100600c98* self) {
         fn_7101176690(p, 0x039363ae10389fa6ull, 0xf4061ff25a2163d6ull, &none, &g_unk_7101cd0898_target,
                       &g_unk_7101cd08a0_target, &all);
     }
-    if (void* q = self->actor->field_0x2e8) {
+    if (auto* q = static_cast<UnkTimelineComponent*>(self->actor->field_0x2e8)) {
         base::reflection::UnkReflTypeIdArg all;
         all.id = UnkAll_7100600c98().value;
-        fn_7100a2cb7c(q, &g_unk_7101ce6100_target, &all, -1.0f, 0);
+        fn_7100a2cb7c(q, reinterpret_cast<const u64*>(&g_unk_7101ce6100_target), &all.id, false, -1.0f);
     }
     if (void* target = fn_7100d7c990(self->actor)->field_0x1d8) {
         UnkFlagList list;

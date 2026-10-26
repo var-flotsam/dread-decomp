@@ -1,7 +1,7 @@
 // CScorpiusMovingPoisonousGasAttack (reflection: size 0x98, parent CScorpiusPoisonousGasAttack,
 // whose parent is CScorpiusAttack): its copy constructor (fn_7100688f90) and move constructor
 // (fn_71006890f0), both the implicit copy.
-#include "CAttack.h"
+#include "game/CAttack.h"
 
 #include <new>
 

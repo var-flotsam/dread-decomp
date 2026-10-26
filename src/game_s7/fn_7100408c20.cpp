@@ -4,6 +4,8 @@
 // of the four SDeathImpactDisplacement fields; those were added by hand), in its typed lambda
 // form: typed values call their type getter after the value is stored (AddTyped), and each
 // function registration sits in its own immediately called lambda.
+#include "base/reflection/CCollectionType.h"
+#include "base/reflection/CEnumType.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
@@ -22,7 +24,6 @@ void fn_7100415cf8();
 void fn_71004115d4(UnkReflFunction* fn, const char* name);
 void fn_7100415d88();
 void fn_7100411750(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_71727952a8;
 void fn_7100415e18();
 void fn_71004118cc(UnkReflFunction* fn, const char* name);
 void fn_7100415ea4();
@@ -52,7 +53,6 @@ extern base::reflection::CType g_unk_71726b1db0;
 extern base::reflection::CType g_unk_71726e36c8;
 const base::reflection::UnkReflAttrKey& fn_7100091d40();
 extern base::reflection::CType g_unk_7172a05520;
-extern base::reflection::CType g_unk_7101d5c998;
 void fn_7100416554();
 void fn_7100412a94(UnkReflFunction* fn, const char* name);
 void fn_71004165e4();

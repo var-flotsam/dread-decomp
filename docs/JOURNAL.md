@@ -58,6 +58,7 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 **Declarations and calling conventions**
 - A caller declared with fewer parameters can rely on an argument register the caller left set (six callers of `fn_7100216978` passed the vector in `x1` unawares); declaring the real signature keeps the bytes: [sixteenth session](#session-log-newest-first).
 - A union-typed scoped reference adds a reload in its destructor; cast at the call instead. A cast that lets Clang tail-merge two paths can be undone by an anonymous-union member: [sixteenth session](#session-log-newest-first).
+- A global the generated sources declare keeps their type in its header (`CType` for reflected type globals), or every generated includer stops compiling; a typed call that changes a minor function's code can go through a function-pointer view of the header's declaration: [hub batch 5](#session-log-newest-first).
 - On the x86-64 port a mismatched declaration is a register mismatch only across argument classes (`float` vs integer or pointer); count and pointee differences are harmless for address-taking references: [sixteenth session](#session-log-newest-first).
 - Clone kinds and the census method; families tried and left: work log items 0 and 2.
 - A function passed as a template argument keeps its relocation target only if the template takes the function's own type (no inline wrapper): [hub batch 3](#session-log-newest-first).
@@ -75,6 +76,8 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 **Port: shaders**
 - `.bshdat` layout, the GLSL in each stage's debug section, and the two rewrites glslang needs (block `location` to the compiler's binding, `GL_NV_explicit_typecast`): [shader packages parsed](#session-log-newest-first).
 - NVN's compiler numbers a stage's active uniform blocks 0..n-1 in declaration order, whatever the source says; take bindings from the reflection, never from the source: same entry.
+- `nvnProgramSetShaders` gets each stage's control section by pointer; key stages by FNV-1a 64 over its first 2,048 bytes. NVN block sizes are the SPIR-V span rounded to 16. The engine selects variants itself (`fn_71001b0f24`): [port M2](#session-log-newest-first).
+- A source fix for one shader is a regular expression over the construct, never the shipped lines (those are game data): same entry.
 
 ## Session log (newest first)
 
@@ -116,6 +119,41 @@ Ghidra's project lock: retry after a pause. The agents' file writes came out CRL
 before baselines. Boot slice 1,889 to 1,903 `O` (24.96% to 25.19%, `O`+`m` 27.49% to 28.09%); whole
 binary 53.909% to 53.930%. About 20 minutes of wall clock for the slowest agent, 1.1 M agent tokens.
 
+**Port M2: shader build step, NVN binding layer, variant selection (2026-10-26, var-flotsam/dread-decomp#202
+and #204).** Three pieces of the graphics stream, each reviewed by an adversarial subagent before its
+PR. (1) `tools/bshdat.py --install DIR` is the port's build step (`shaders` target): every stage
+compiled once for Vulkan with the loader's rewrites, read back by a small SPIR-V reader and checked
+against NVN's reflection (bindings, the `Shader` capability only, block sizes: NVN's size is the
+SPIR-V layout's span rounded up to 16 in all 2,891 active blocks), then `shaders.manifest`. FXAA
+3.11's `FxaaTexOff` passes a parameter as `textureLodOffset`'s offset; every call passes a literal,
+so the fixup turns the function into a macro (`ConstOffset` in the SPIR-V, same texels). The first
+version quoted the two shipped lines in a tracked file; the fixups are now regular expressions over
+the construct. All 1,342 stages compile. (2) Reading the engine: `.bshdat` files are
+`msapi::res::CProgramResource` (`fn_71001b2e60` registers the extension). The engine parses each
+stage blob's reflection itself (`fn_710015c9b0`, including uniform names; NVN has no
+uniform-location API). It copies section 0's code part into GPU memory and passes NVN
+`{code address, control pointer}` per stage (`fn_710015d760`). Section 0's record words +0x30,
++0x34 and +0x38 are the control offset (0), the code offset and the code size. So the shim recognises
+a stage by its control section: FNV-1a 64 over the first 2,048 bytes separates all 1,010 distinct
+ones (1,342 stages; shorter prefixes give 764). Stages with one control section have the same code,
+SPIR-V and interface. The program record's empty slot 0 is the engine's stage type 2, bound as NVN
+stage 2 with bit 4 (geometry). Call sites through the NVN table (code loading each slot's GOT
+entry): 150 of 523 functions are used. Bindings use only
+`BindUniformBuffer(cmd, stage, slot from the reflection, address, size)` (`fn_710015d900`),
+`BindTexture(cmd, stage, slot 0-15, GetTextureHandle(texture id, sampler id))` (`fn_7100161250`),
+`UpdateUniformBuffer` and the two pools. A depth-only pass unbinds the fragment stage with
+`BindProgram(cmd, null, 2)`. `port/nvn/` (`dread_nvn`) holds the manifest reader and the binding
+layer, compile-checked only. (3) Variant selection: `fn_71001b0050` turns the variant map into
+`{key, key & key2, program}` entries and three engine-ID-to-name tables (IDs above 0x11a less
+0x2cd). The header's `+0x18` names the default program, and its `+0x20` list is a third, empty, name
+list. `fn_71001b0f24` returns the last entry from the top down to entry 1 whose `key & key2` equals
+the key, else entry 0, else the default. The renderer keeps the current key at `+0x317af78` of its
+context (`fn_71001cc608` applies it; set by `fn_710014d1a0`, `fn_71001cafa0` and `fn_71001d4be4`,
+reset by `fn_71001cde48`). The shim needs nothing for variants; the loader and selector are `U` and
+belong on the lifter's list. Khronos Vulkan-Headers 1.4.328 are pinned. They were installed into the
+owner's real cache by a one-shot scheduled task; the first attempt unregistered the task before it
+finished, so wait for the task's state instead of sleeping.
+
 **Port decision 3 (2026-10-26, the owner).** Vulkan is the first graphics backend and the shaders
 are compiled to SPIR-V at build time from the user's dump (`tools/bshdat.py --compile`'s Vulkan
 mode, the FXAA rule added there), so the executable carries no shader compiler. OpenGL was set
@@ -143,6 +181,37 @@ aliases the C1/D1 symbols to `fn_<addr>` under `__clang_major__ <= 9`, as
 fails from a worktree under `.claude/` (Ghidra rejects a path element starting with a dot): run it
 from the main checkout. About 70 minutes of wall clock for the slowest agent, 0.96 M agent tokens.
 Boot slice 1,881 to 1,889 `O`.
+
+**Hub batch 5 (2026-10-26, branch `claude/hub-batch-5`).** The first batch of conflicting symbols
+without a hand-written definition: the signature comes from Ghidra's view (read only), the argument
+registers and result use from `tools/abi_facts.py`, and the callers' types. 34 symbols. Procedure as
+the owner set it: a whole-tree baseline (`baseline.py save --tag hb5-full --all`, 1,395 files, 4
+minutes); then `hub_migrate.py SYM --header H --declaration D` for 22 chosen signatures in one
+scripted run (about 40 minutes; 22 file declarations migrated, three symbols done outright:
+`fn_7100e52cf4`, `g_unk_7101d47350`, the empty element destructor `fn_71002874dc`); then five sonnet
+agents on file-disjoint sets for the `LEFT` files (GUI and string ids, math and timeline, reflection
+globals and blackboard, behaviour tree and slots, then `CAttack`), and a sixth for the GUI root
+global the GUI set turned up; then an adversarial review of the headers. Every agent ended with its
+own baseline unchanged; the whole-tree compare stayed unchanged; `check.py --update` clean.
+decl_check: conflicting 249 to 224 (307 to 261 extra signatures), extra copies 1,903 to 1,830,
+header re-declarations 1 to 1. Findings: the GUI "watch set" and "tree" placeholders were all
+`base::UnkDeferredSet<void>` (its out-of-line Remove `fn_71004f3ea4` and Add `fn_71004f3cf0`); the
+"named components" lookup `fn_71008640a4` is the collision container's lookup by name (into
+`UnkCollisionRecord.h`); `fn_71000267f8` reads only the ids of its source, so it takes the pair
+while its target is the pair with the resource; the GUI root (`g_unk_717271e8f8`) got a header with
+its layout and its five root-taking functions, and `fn_71011b69d8` takes it. A global the generated
+reflection sources declare (`g_unk_7101d5c998`, `g_unk_71727952a8`) must keep their type (`CType`)
+in the header, or every generated includer fails to compile: `hub_migrate.py` and `baseline.py`
+rebuild hand-written includers only, so `check.py` caught it. One file
+(`src/game_aca57c/fn_7100b2c6a0.cpp`) changes its `NON_MATCHING(minor)` functions (98.2% to 96.5%,
+an address register no longer reused) when it calls `fn_71011d968c` with the header's typed
+arguments, and also with a `void` cast, a named local or a `static_cast` through `void*`; calling the
+header's function through a `void (*)(void*, void*)` view keeps the bytes and the one declaration.
+The segment constructor `fn_7100125b1c` is bound with an asm label on `UnkSegment2D`'s constructor
+(the `CStrId.h` precedent), so callers construct the segment. The frozen Phase 3 sample
+`src/flag_id/fn_71005a998c.cpp` now derives its object from the header's `UnkBehaviorTreeAI`
+(identical output; `compiler_matrix.py` compiles it with `include/`). Coordinated with boot hubs round
+2 (append-only edits to `CBlackboard.h` on both sides; `g_unk_710164779c` left to that session).
 
 **Shader packages parsed (2026-10-26, branch `claude/port-bshdat`; port M2 groundwork).**
 `tools/bshdat.py` parses all 478 `.bshdat` packages from their bytes and writes every stage's GLSL

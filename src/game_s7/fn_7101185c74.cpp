@@ -3,22 +3,10 @@
 // object at 0x230, whose target is at 0x10), and assignments from another object's handle.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkGuiRoot.h"
 #include "game_s2/UnkWeakHandle.h"
 
 using base::reflection::CClass;
-
-struct UnkGuiFocus {
-    u8 unk_0x0[0x10];
-    UnkWeakTarget* field_0x10;
-};
-
-struct UnkGuiRoot {
-    u8 unk_0x0[0x230];
-    UnkGuiFocus* field_0x230;
-};
-
-extern UnkGuiRoot* g_unk_717271e8f8;
-void fn_71011b6bbc(UnkGuiRoot* root, void* object, s32 value);
 
 // Unless the flag at 0x181 is set, refers to the focused object at 0x318 (or to nothing), passes it
 // 0 and this object 1, then hands this object to the root.
@@ -61,4 +49,3 @@ UnkReportRef* fn_7101185c74(UnkReportRef* self, const UnkReportRef* other) {
     AssignRef(&self->handle, handle);
     return self;
 }
-

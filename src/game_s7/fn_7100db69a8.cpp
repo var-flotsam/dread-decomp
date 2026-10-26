@@ -3,6 +3,7 @@
 // Written from the refl_attrs draft; the two type getters live in this class's translation unit.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkTunableRegistry.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -14,7 +15,6 @@ extern bool g_unk_71727bd260;
 // passes their known return value.
 extern const base::reflection::CType g_unk_71727bdbb8 __attribute__((visibility("hidden")));
 extern const base::reflection::CType g_unk_71727bdcf0 __attribute__((visibility("hidden")));
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71727bd078;
 void fn_7100db78b4(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 

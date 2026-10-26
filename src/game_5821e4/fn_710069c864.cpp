@@ -1,7 +1,7 @@
 // CScourgeTongueSlashAttack (reflection: size 0x70): its copy constructor (fn_710069c864) and move
 // constructor (fn_710069c938), both the implicit copy,
 // and its copy (fn_710069ca18) and move (fn_710069cb90) assignments, both the implicit copy assignment.
-#include "CAttack.h"
+#include "game/CAttack.h"
 
 #include <new>
 

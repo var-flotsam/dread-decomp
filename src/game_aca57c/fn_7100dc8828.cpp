@@ -58,7 +58,6 @@ void fn_7100dc8828() { SetFlag<&g_unk_71727bd270>(); }
 void fn_7100dc8948() { SetFlag<&g_unk_71727bd288>(); }
 void fn_7100dc8a68() { SetFlag<&g_unk_71727bd2a0>(); }
 
-bool fn_710006d11c(CBlackboard::CSection* section, UnkPropertyName* name, bool* out);  // reads a bool
 
 template <UnkPropertyName* Name>
 __attribute__((always_inline)) static inline bool GetFlag() {
@@ -67,7 +66,7 @@ __attribute__((always_inline)) static inline bool GetFlag() {
     {
         CStrId section_name("USER_DATA", true);
         if (CBlackboard::CSection* section = fn_7101047270(data, section_name))
-            fn_710006d11c(section, Name, &value);
+            fn_710006d11c(section, reinterpret_cast<const CStrId*>(Name), &value);
     }
     return value;
 }

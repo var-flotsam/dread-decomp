@@ -79,3 +79,5 @@ CBlackboard::CSection* fn_71010472e0(CBlackboard* self, const base::global::CStr
 // Copies of the same lookup (src/game/CBlackboard.cpp).
 CBlackboard::CSection* fn_7101047414(CBlackboard* self, const base::global::CStrId& key);
 CBlackboard::CSection* fn_7101047484(CBlackboard* self, const base::global::CStrId& key);
+// Reads a bool from the section's value under `name` into `*out`; returns whether it was found.
+bool fn_710006d11c(CBlackboard::CSection* self, const base::global::CStrId* name, bool* out);

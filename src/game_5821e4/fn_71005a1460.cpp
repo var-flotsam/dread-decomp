@@ -1,6 +1,6 @@
 // CGroundShockerAttack (reflection: size 0x60): its copy assignment (fn_71005a1460) and move
 // assignment (fn_71005a15bc), both the implicit copy assignment behind a self check.
-#include "CAttack.h"
+#include "game/CAttack.h"
 
 struct CGroundShockerAttack : CAttack {
     ~CGroundShockerAttack() override;

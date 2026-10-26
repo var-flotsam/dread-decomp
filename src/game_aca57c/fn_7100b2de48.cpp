@@ -4,7 +4,9 @@
 // (vf_0x68), sets it up (vf_0x70) and records two flags, applying each (fn_71011cdc30) that is
 // set. Finally the global at 0x7101d47340 (created on first use) gets 0xfd.
 #include "base/UnkCountedResource.h"
+#include "base/UnkDeferredSet.h"
 #include "base/UnkDestructors.h"
+#include "base/UnkStrIdPathPair.h"
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
@@ -13,6 +15,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
+#include "game/UnkGuiRoot.h"
 #include "game/UnkHandleMenu.h"
 #include "game/UnkRenderManager.h"
 #include "types.h"
@@ -21,9 +24,7 @@ using base::global::CFilePathStrId;
 using base::global::CStrId;
 using base::reflection::CClass;
 
-struct UnkWatchSet {
-    u8 unk_0x0[0x80];
-};
+using UnkWatchSet = base::UnkDeferredSet<void>;
 
 // A child of a composition: a count behind the pointer at 0x30, and through vf_0x1f8 an object
 // whose watch set sits at 0x18.
@@ -156,19 +157,10 @@ extern UnkStateKey g_unk_71729f0178;
 extern UnkStateKey g_unk_71729f0180;
 void fn_7100b2d0a4(UnkStateOwner* self);
 void fn_7100fc9d78(UnkStateSink* sink, UnkStateKey* key, void* state);
-struct UnkGuiRoot {
-    u8 unk_0x0[0x230];
-    struct UnkObjRef* field_0x230;
-    u8 unk_0x238[0xa70];
-    u8 field_0xca8[1];
-};
 struct UnkGuiKey;
-extern UnkGuiRoot* g_unk_717271e8f8;
 extern UnkGuiKey g_unk_7172762fd8 __attribute__((visibility("hidden")));
 void fn_710002fd10(void* list, UnkGuiKey* key);
 void fn_710002ffb4(void* list, UnkGuiKey* key);
-void fn_71004f3cf0(UnkWatchSet* set, UnkWatchSet** slot);
-void fn_71004f3ea4(UnkWatchSet* set, UnkWatchSet** slot);
 void fn_7100e9b464(void* target, bool value);
 void fn_7100e9b1f8(void* target, bool value);
 void fn_7100066a50(void* text, const char32_t* value);
@@ -176,7 +168,6 @@ void fn_7100066e44(void* text);
 void fn_7100b2cb44(UnkStateOwner* self);
 UnkComposition* fn_71011d98ec(UnkComposition* composition, u64 id);
 void fn_71011ec468(UnkComposition* label, void* text, bool value);
-void fn_71011b6bbc(UnkGuiRoot* root, void* object, bool value);
 void fn_7100af1bfc(UnkComposition* composition);
 UnkGuiChild* fn_71011d94d4(UnkComposition* composition, const CStrId& name);
 void fn_7100b2c6a0(UnkStateOwner* self);
@@ -389,7 +380,7 @@ void fn_7100b2dad0(UnkStateOwner* self) {
         RecordFlag<&UnkGameManager::field_0x2258>(&self->field_0x2dd);
         RecordFlag<&UnkGameManager::field_0x2270>(&self->field_0x2de);
     }
-    fn_71011b6bbc(g_unk_717271e8f8, self, false);
+    fn_71011b6bbc(g_unk_717271e8f8, reinterpret_cast<UnkGuiDisplayObject*>(self), false);
     ResetParams();
     PlaySound(0xfd);
     fn_7100e9b1f8(g_unk_7101d47310->field_0x2228, self->field_0x279);
@@ -655,7 +646,6 @@ void fn_7100b2e3b8(UnkStateOwner* self) {
 void fn_71011d8d24(void* self);
 void fn_710002f4e4(void* self);
 void fn_710002f67c(void* self);
-void fn_71011d8e90(void* self);
 extern void* g_unk_7101a9b670[];
 void fn_7100b31440();
 void fn_7100b313bc();
@@ -670,18 +660,30 @@ struct UnkMenuStatesBase {
     u8 unk_0x189[0xa7];
 
     UnkMenuStatesBase() { fn_71011d8d24(this); }
-    ~UnkMenuStatesBase() { fn_71011d8e90(this); }
+    ~UnkMenuStatesBase() { fn_71011d8e90(reinterpret_cast<UnkGuiDisplayObject*>(this)); }
 };
 
 struct UnkMenuStatesVtable : UnkMenuStatesBase {
     UnkMenuStatesVtable() { vtable = &g_unk_7101a9b670[2]; }
 };
 
+// The first parameter of a function pointer type.
+template <class>
+struct ArgumentOfImpl;
+template <class R, class A, class... Rest>
+struct ArgumentOfImpl<R (*)(A, Rest...)> {
+    using Type = A;
+};
+template <class F>
+using ArgumentOf = typename ArgumentOfImpl<F>::Type;
+
 // A callback (owner and function) and the set it is registered with, which its destructor
 // leaves through `Unregister`.
-template <void (*Unregister)(void*, void**), void (*Register)(void*, void**) = nullptr>
+template <auto Unregister, auto Register = nullptr>
 struct UnkCallback {
-    void* set;
+    using Set = ArgumentOf<decltype(Unregister)>;  // the set type: the first parameter
+
+    Set set;
     void* owner;
     void (*fn)();
 
@@ -702,14 +704,12 @@ struct UnkCallback {
             Unregister(set, &set);
             set = nullptr;
         }
-        set = static_cast<char*>(owner) + Offset;
+        set = reinterpret_cast<Set>(static_cast<char*>(owner) + Offset);
         Register(set, &set);
     }
 };
 void fn_71004567dc(void* set, void** slot);
-void fn_71004f3cf0(void* set, void** slot);
 void fn_7100b31900(void* set, void** slot);
-void fn_71004f3ea4(void* set, void** slot);
 void fn_7100b31770(void* set, void** slot);
 
 // Destroyed out of line (fn_7100026f70; the unions keep the members' own destructors out).
@@ -824,8 +824,8 @@ void fn_7100b2eaac(UnkStateOwner* self, s32 state, bool a, bool b);
 void fn_7100b2e978(UnkStateOwner* self, const UnkInputEvent* event) {
     if (event->handled)
         return;
-    UnkObjRef* popup_ref = g_unk_717271e8f8->field_0x230;
-    UnkObject* popup = popup_ref ? popup_ref->obj : nullptr;
+    UnkGuiFocus* popup_ref = g_unk_717271e8f8->field_0x230;
+    UnkObject* popup = popup_ref ? reinterpret_cast<UnkObject*>(popup_ref->field_0x10) : nullptr;
     if (popup && fn_710009d50c(popup->Type(), fn_7100b5e368()))
         return;
     switch (self->field_0x2e0) {
@@ -926,7 +926,7 @@ void fn_7100b2eaac(UnkStateOwner* self, s32 state, bool from_game, bool now) {
     UnkComposition* highlight = GetHolder(g_unk_7101d47310->field_0x2258);
     if (highlight && !reinterpret_cast<UnkHighlight*>(highlight)->field_0x2e1)
         return;
-    fn_71011b6bbc(g_unk_717271e8f8, self->current, false);
+    fn_71011b6bbc(g_unk_717271e8f8, reinterpret_cast<UnkGuiDisplayObject*>(self->current), false);
 }
 
 extern UnkGuiKey g_unk_7172762fe0 __attribute__((visibility("hidden")));
@@ -981,7 +981,11 @@ struct UnkIdPairValue {
         id.~CStrId();
     }
 };
-void fn_71000267f8(UnkIdPair* pair, const UnkIdPairValue& value);
+
+// fn_71000267f8 on the id pair: the pair is the ids and the resource, the value the ids alone.
+__attribute__((always_inline)) static inline void AssignIds(UnkIdPair* pair, const UnkIdPairValue& value) {
+    fn_71000267f8(reinterpret_cast<UnkStrIdPathResource*>(pair), reinterpret_cast<const UnkStrIdPathPair&>(value));
+}
 void fn_71011d931c(UnkMenuStates* self);
 void fn_7100b2f6b0(UnkMenuStates* self);
 extern CStrId g_unk_71727b9d30;
@@ -996,10 +1000,10 @@ extern CFilePathStrId g_unk_7172763000 __attribute__((visibility("hidden")));
 // power description and mission menu are set up.
 void fn_7100b2f250(UnkMenuStates* self) {
     fn_71011d931c(self);
-    fn_71000267f8(&self->field_0x2f0, UnkIdPairValue(g_unk_71727b9d30, g_unk_7172762ff0));
-    fn_71000267f8(&self->field_0x308, UnkIdPairValue(g_unk_71727b9d30, g_unk_7172762ff8));
-    fn_71000267f8(&self->field_0x368, UnkIdPairValue(g_unk_71727b9d30, g_unk_7172762fe8));
-    fn_71000267f8(&self->field_0x320, UnkIdPairValue(g_unk_71727b9d30, g_unk_7172763000));
+    AssignIds(&self->field_0x2f0, UnkIdPairValue(g_unk_71727b9d30, g_unk_7172762ff0));
+    AssignIds(&self->field_0x308, UnkIdPairValue(g_unk_71727b9d30, g_unk_7172762ff8));
+    AssignIds(&self->field_0x368, UnkIdPairValue(g_unk_71727b9d30, g_unk_7172762fe8));
+    AssignIds(&self->field_0x320, UnkIdPairValue(g_unk_71727b9d30, g_unk_7172763000));
     fn_7100b2f6b0(self);
     self->field_0x2e0 = -1;
     self->field_0x2e4 = -1;
