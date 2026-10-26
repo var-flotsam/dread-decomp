@@ -40,3 +40,12 @@ static_assert(__builtin_offsetof(UnkSlots, count) == 0x350, "UnkSlots placeholde
 // and kind past the end of the list (swapping it with the last one and shrinking the count).
 // Returns whether the request was made.
 bool fn_71001c2764(UnkSlots* self, u32 id, u32 kind, const base::math::CVector4D* value, u32 mode, bool remove);
+
+// A 16-byte value passed by copy through the slot requests (defined where it is used, in
+// src/game_lo/fn_71001c28f8.cpp).
+struct UnkSlotBox;
+
+// Like fn_71001c2764, but looks the id up first: resolves the slot registered under `key` and
+// requests it with `box` (unless the global flag blocks it); on success moves the entries with
+// that id and kind past the end of the list. Defined in src/game_lo/fn_71001c28f8.cpp.
+bool fn_71001c28f8(UnkSlots* self, u64 key, u32 kind, const UnkSlotBox* box, u32 mode);
