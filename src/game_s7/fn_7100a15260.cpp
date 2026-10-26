@@ -4,6 +4,7 @@
 // "sources" ids), then registers its reflected types: a class or enum type built from its name
 // (destroyed at exit) and noted in the TU's registry flags, and for enums a pair of converter
 // records (to and from the integer type) registered with fn_71000a16c4.
+#include "base/reflection/CEnumType.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkTUInit.h"
 
@@ -40,7 +41,6 @@ extern UnkConverter g_unk_7172792128;
 extern UnkConverter g_unk_7172792148;
 
 extern UnkTUHeader g_unk_7172795408 __attribute__((visibility("hidden")));
-extern UnkReflType g_unk_71727952a8;
 void fn_7100c94244();
 void fn_7100c94510(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 extern char g_unk_71727953c0;
@@ -434,4 +434,3 @@ void fn_7100ceb4cc() __attribute__((visibility("hidden")));
 void fn_7100ceb4d8() __attribute__((visibility("hidden")));
 extern UnkConverter g_unk_71727a0858;
 extern UnkConverter g_unk_71727a0878;
-

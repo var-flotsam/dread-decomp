@@ -1,6 +1,7 @@
 // Puts an object's state index in a property bag and sends it to the GUI root as a message
 // (built by fn_710120235c around the object's target). Layouts are placeholders.
 #include "../game_s7/UnkPropBagS7.h"
+#include "game/UnkGuiRoot.h"
 
 using namespace unk_prop_bag;
 
@@ -21,8 +22,6 @@ struct UnkMsg_7100af65b4 {
 };
 
 void* fn_71011c068c(UnkObj_7100af65b4* self);
-extern void* g_unk_717271e8f8;
-void fn_71011b6e0c(void* root, UnkMsg_7100af65b4* msg);
 
 void fn_7100af65b4(UnkObj_7100af65b4* self) {
     UnkPropBag bag;

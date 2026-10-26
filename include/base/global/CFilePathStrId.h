@@ -20,7 +20,13 @@ inline void UnkEnsureFilePathPool() {
     fn_710007fdb4();
 }
 
+class CRntString;
+
 }  // namespace base::global
+
+// The empty string the CRntString constructors pass to the pool when the string has no text
+// (also used by fn_7100000850, src/base/global/fn_71000003d4.cpp).
+extern const char g_unk_710162e2ed[] __attribute__((visibility("hidden")));
 
 namespace base::global {
 
@@ -70,6 +76,11 @@ public:
 };
 
 }  // namespace base::global
+
+// The file-path id's constructor from a CRntString (fn_710001a270), out of line: the string's cached
+// CRC-64 (`key`) is the pool hash. The counterpart of fn_7100000850 on the file-path pool
+// (src/base/global/CFilePathStrId.cpp).
+void fn_710001a270(base::global::UnkFilePathStrIdBase* self, const base::global::CRntString& str, bool flag);
 
 // A global CFilePathStrId that default values copy (possibly the empty id).
 extern base::global::CFilePathStrId g_unk_7101d470e8;

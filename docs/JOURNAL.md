@@ -58,6 +58,7 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 **Declarations and calling conventions**
 - A caller declared with fewer parameters can rely on an argument register the caller left set (six callers of `fn_7100216978` passed the vector in `x1` unawares); declaring the real signature keeps the bytes: [sixteenth session](#session-log-newest-first).
 - A union-typed scoped reference adds a reload in its destructor; cast at the call instead. A cast that lets Clang tail-merge two paths can be undone by an anonymous-union member: [sixteenth session](#session-log-newest-first).
+- A global the generated sources declare keeps their type in its header (`CType` for reflected type globals), or every generated includer stops compiling; a typed call that changes a minor function's code can go through a function-pointer view of the header's declaration: [hub batch 5](#session-log-newest-first).
 - On the x86-64 port a mismatched declaration is a register mismatch only across argument classes (`float` vs integer or pointer); count and pointee differences are harmless for address-taking references: [sixteenth session](#session-log-newest-first).
 - Clone kinds and the census method; families tried and left: work log items 0 and 2.
 - A function passed as a template argument keeps its relocation target only if the template takes the function's own type (no inline wrapper): [hub batch 3](#session-log-newest-first).
@@ -67,6 +68,10 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - Before an agent round, `baseline.py save --all` (every hand-written source, 2 minutes) is the cheapest complete evidence: [hub batch 4](#session-log-newest-first).
 - A keyed array's lookup: `Find` returns `&values[i]` or `&values[count]`, the caller compares with `&values[count]`, ids compared as raw `u64`; a `u8` flag with `__builtin_expect(f & 1, 1)` gives `tbz`: [boot hubs, round 1](#session-log-newest-first).
 - Clang 9 ignores an `asm` label on a constructor or destructor: alias the C1/D1 symbols to `fn_<addr>` under `__clang_major__ <= 9`: [boot hubs, round 1](#session-log-newest-first).
+- A const global read as words: reading it through a `reinterpret_cast<const u32*>` of the const object kept the original's reloads, with no barrier: [boot hubs, round 2](#session-log-newest-first).
+- An out-of-line hash-map or vector initialiser: a nested map-head struct makes the stores relative to the map base; an `asm("" : "+r"(p))` on a pointer to a far field hoists its `add` as the original does: [boot hubs, round 2](#session-log-newest-first).
+- An agent's "behaviour identical" on a 10-45% minor is worth an adversarial check (decompile, `abi_facts.py`, the `-v` diff): round 2's ten all held, and the review found a `void` declaration that really returns its first argument: [boot hubs, round 2](#session-log-newest-first).
+- A port hazard in matching code: AArch64 `udiv` by zero gives 0, x86-64 traps; guard the division only off `__aarch64__` so the Switch bytes stay: [boot hubs, round 2](#session-log-newest-first).
 
 **Port: shaders**
 - `.bshdat` layout, the GLSL in each stage's debug section, and the two rewrites glslang needs (block `location` to the compiler's binding, `GL_NV_explicit_typecast`): [shader packages parsed](#session-log-newest-first).
@@ -81,7 +86,7 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
-**Port M1 step 4 (2026-10-26, var-flotsam/dread-decomp#201, #203 and the loader PR).** Stream D taken
+**Port M1 step 4 (2026-10-26, var-flotsam/dread-decomp#201, #203 and #206).** Stream D taken
 over from the lifter session's notes. (1) `nn::os` and `nn::oe`: every import the boot slice reaches
 (30 and 20 with the GOT slots) and every one a lifted source calls, in `port/runtime/`. Layouts from
 the engine's thread wrapper `fn_7100066744` (Ghidra, read only): it initialises two light events at
@@ -106,6 +111,44 @@ writes, 91,166 function addresses can be named; with the test's half-table, 63,2
 code pointers translate and 65,842 thunks are written. Gotcha: in the Bash tool a Python heredoc
 lost its `\t` and `\n` escapes (they became real tabs and newlines in `port_link.py`); patch
 scripts with escapes go through the Write tool.
+
+**Boot hubs, round 2 (2026-10-26, branch `claude/boot-hubs-2`).** Five sonnet agents, one per group
+of `tools/hubs.py --boot` hubs and round 1's follow-ups, grouped by `tools/tu_map.py` unit on disjoint
+files (the `CRntFile` unit and the string pool; path ids and `CType`; the game manager and the
+blackboards; the three large manager constructors; the actor, rumble, file-device, registry and
+sound hubs). 14 `O`, 10 `NON_MATCHING(minor)`, one dropped, about 10 KB; whole-tree baseline
+`bh2-full` unchanged except the five class files that gained functions. Matched: `CRntFile`'s
+begin and write (`UnkHashStream_0x38` is now an alias of `base::global::CRntFile`), the
+`CFilePathStrId` constructors from a `CRntString` and from a C string (`fn_710001a270`,
+`fn_71000166c8`, the latter a delegating constructor aliased under Clang 9), `CType`'s dynamic-type
+getter, the game manager's mode test and target pointer, the two `CBlackboard` lookup twins, the
+`CGameBlackboard` qualified-name builder, the debug model manager's constructor (1,572 B), the
+registry, file-device and rumble-manager constructors. Minor, each checked by an adversarial review
+(decompile, `abi_facts.py`, the diff) as same arguments, memory, calls and results: the string-pool
+set setup (99.1%), `UnkStrIdVec` reserve (98.5%), `CRntFile` reserve (98.4%), the sanitised path
+lookup (76.2%), the `CRntString` prefix assign (43.5%), the music manager's constructor (24.8%;
+matches up to its slot loop), `CRntFile`'s byte-swapping read (23.8%), the game manager's object
+lookup (16.5%), `CType`'s typed assign (16.4%), the actor's weak-reference getter (10.6%). Dropped:
+`fn_7100ee1f34` (2,096 B, the `CSubAreaManager` unit's 0xae8-byte object: a vtable, vectors with
+flags 0xf from +8 in steps of 0x28, a 0x1b-flag file-path-handle vector at +0x388 reserved to 0x12,
+an inline-buffer block at +0x410, maps at +0x8e0 and +0x930). Levers: the rumble constructor
+needed a nested map-head struct (stores relative to the map base), a hand-written guarded static
+and its defaults read as words; the file device an `asm("" : "+r"(p))` on a far field's pointer; the
+string-pool setup a cached old-bucket pointer and the set typed together with its node pool. The
+agents left new conflicting signatures (callees declared locally with their own types); the
+orchestrator settled them: one header each, the other declaring files moved with a cast at the
+call where the file has its own view of the object (`decl_check`: conflicting 249 to 245, extra
+copies 1,903 to 1,892). The read-only zero vector `g_unk_710164779c` got
+`include/base/math/UnkZeroVector3.h` (agreed with hub batch 5); the rumble constructor kept the
+original's reloads reading it through a `const u32*` cast of the const object. The review's fixes:
+one `nn::hid` vibration header instead of two clashing local stand-ins
+(`include/base/input/UnkHidVibration.h`), two type names that clashed with other files'
+(`UnkPooledChainedMap`, `UnkOverlayModel`), the registry's pointer array as a `base::UnkVector`,
+`fn_710007f3b4` returning its string, and `CRntFile`'s element count, a division the port would
+trap on when the size is zero (guarded off AArch64). Agents running `decompile.py` at once hit
+Ghidra's project lock: retry after a pause. The agents' file writes came out CRLF: normalise
+before baselines. Boot slice 1,889 to 1,903 `O` (24.96% to 25.19%, `O`+`m` 27.49% to 28.09%); whole
+binary 53.909% to 53.930%. About 20 minutes of wall clock for the slowest agent, 1.1 M agent tokens.
 
 **Port M2: shader build step, NVN binding layer, variant selection (2026-10-26, var-flotsam/dread-decomp#202
 and #204).** Three pieces of the graphics stream, each reviewed by an adversarial subagent before its
@@ -169,6 +212,37 @@ aliases the C1/D1 symbols to `fn_<addr>` under `__clang_major__ <= 9`, as
 fails from a worktree under `.claude/` (Ghidra rejects a path element starting with a dot): run it
 from the main checkout. About 70 minutes of wall clock for the slowest agent, 0.96 M agent tokens.
 Boot slice 1,881 to 1,889 `O`.
+
+**Hub batch 5 (2026-10-26, branch `claude/hub-batch-5`).** The first batch of conflicting symbols
+without a hand-written definition: the signature comes from Ghidra's view (read only), the argument
+registers and result use from `tools/abi_facts.py`, and the callers' types. 34 symbols. Procedure as
+the owner set it: a whole-tree baseline (`baseline.py save --tag hb5-full --all`, 1,395 files, 4
+minutes); then `hub_migrate.py SYM --header H --declaration D` for 22 chosen signatures in one
+scripted run (about 40 minutes; 22 file declarations migrated, three symbols done outright:
+`fn_7100e52cf4`, `g_unk_7101d47350`, the empty element destructor `fn_71002874dc`); then five sonnet
+agents on file-disjoint sets for the `LEFT` files (GUI and string ids, math and timeline, reflection
+globals and blackboard, behaviour tree and slots, then `CAttack`), and a sixth for the GUI root
+global the GUI set turned up; then an adversarial review of the headers. Every agent ended with its
+own baseline unchanged; the whole-tree compare stayed unchanged; `check.py --update` clean.
+decl_check: conflicting 249 to 224 (307 to 261 extra signatures), extra copies 1,903 to 1,830,
+header re-declarations 1 to 1. Findings: the GUI "watch set" and "tree" placeholders were all
+`base::UnkDeferredSet<void>` (its out-of-line Remove `fn_71004f3ea4` and Add `fn_71004f3cf0`); the
+"named components" lookup `fn_71008640a4` is the collision container's lookup by name (into
+`UnkCollisionRecord.h`); `fn_71000267f8` reads only the ids of its source, so it takes the pair
+while its target is the pair with the resource; the GUI root (`g_unk_717271e8f8`) got a header with
+its layout and its five root-taking functions, and `fn_71011b69d8` takes it. A global the generated
+reflection sources declare (`g_unk_7101d5c998`, `g_unk_71727952a8`) must keep their type (`CType`)
+in the header, or every generated includer fails to compile: `hub_migrate.py` and `baseline.py`
+rebuild hand-written includers only, so `check.py` caught it. One file
+(`src/game_aca57c/fn_7100b2c6a0.cpp`) changes its `NON_MATCHING(minor)` functions (98.2% to 96.5%,
+an address register no longer reused) when it calls `fn_71011d968c` with the header's typed
+arguments, and also with a `void` cast, a named local or a `static_cast` through `void*`; calling the
+header's function through a `void (*)(void*, void*)` view keeps the bytes and the one declaration.
+The segment constructor `fn_7100125b1c` is bound with an asm label on `UnkSegment2D`'s constructor
+(the `CStrId.h` precedent), so callers construct the segment. The frozen Phase 3 sample
+`src/flag_id/fn_71005a998c.cpp` now derives its object from the header's `UnkBehaviorTreeAI`
+(identical output; `compiler_matrix.py` compiles it with `include/`). Coordinated with boot hubs round
+2 (append-only edits to `CBlackboard.h` on both sides; `g_unk_710164779c` left to that session).
 
 **Shader packages parsed (2026-10-26, branch `claude/port-bshdat`; port M2 groundwork).**
 `tools/bshdat.py` parses all 478 `.bshdat` packages from their bytes and writes every stage's GLSL

@@ -1,6 +1,7 @@
 // Looks up an object's entry in a hash map at 0x1a70 (keyed by the object, hashed from two
 // words at 0x30) and, when it has a value and fn_7100decab0 gives a target with an object at
 // 0x248, hands the value to fn_71010e4998.
+#include "game/UnkGameManager.h"
 #include "types.h"
 
 struct UnkKeyObject {
@@ -16,11 +17,6 @@ struct UnkMapNode {
     UnkMapNode* next;
 };
 
-struct UnkTarget {
-    u8 unk_0x0[0x248];
-    void* field_0x248;
-};
-
 struct UnkMapOwner {
     u8 unk_0x0[0x1a70];
     UnkMapNode** buckets;
@@ -28,11 +24,11 @@ struct UnkMapOwner {
     u32 bucket_capacity;
 };
 
-UnkTarget* fn_7100decab0(UnkMapOwner* self);
 bool fn_71010e4998(void* target, void* value);
 
 bool fn_7100e039e4(UnkMapOwner* self, UnkKeyObject* const* key) {
-    UnkTarget* target = fn_7100decab0(self);
+    // the owner is the game manager (its map at +0x1a70)
+    UnkGameManagerTarget* target = fn_7100decab0(reinterpret_cast<UnkGameManager*>(self));
     if (!target || !target->field_0x248 || !self->bucket_count)
         return false;
     UnkKeyObject* object = *key;

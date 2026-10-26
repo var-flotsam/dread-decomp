@@ -7,6 +7,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkGameBlackboard.h"
+#include "game/UnkSuitProperties.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -77,7 +78,6 @@ extern UnkDef_7101147868 g_unk_717275a9d8;
 extern UnkDef_7101147868 g_unk_717275aa58;
 extern UnkDef_7101147868 g_unk_717275a5d8;
 extern UnkDef_7101147868 g_unk_717275a8d8;
-extern UnkDef_7101147868 g_unk_717275a498;
 extern UnkDef_7101147868 g_unk_717275a558;
 extern UnkDef_7101147868 g_unk_717275a4d8;
 extern UnkDef_7101147868 g_unk_717275aad8;
@@ -90,13 +90,11 @@ extern UnkDef_7101147868 g_unk_717275a798;
 extern UnkDef_7101147868 g_unk_717275ab58;
 extern UnkDef_7101147868 g_unk_717275ab98;
 extern UnkDef_7101147868 g_unk_717275a958;
-extern UnkDef_7101147868 g_unk_717275a458;
 extern UnkDef_7101147868 g_unk_717275a918;
 extern UnkDef_7101147868 g_unk_717275a7d8;
 extern UnkDef_7101147868 g_unk_717275a658;
 extern UnkDef_7101147868 g_unk_717275ab18;
 extern UnkDef_7101147868 g_unk_717275a818;
-extern UnkDef_7101147868 g_unk_717275a418;
 extern UnkDef_7101147868 g_unk_717275a718;
 
 void fn_7101147868(UnkInventory_7101147868* self, base::UnkVector<UnkRecord_7101147868>* records) {
@@ -105,7 +103,7 @@ void fn_7101147868(UnkInventory_7101147868* self, base::UnkVector<UnkRecord_7101
     int has_2 = HasItem(self, g_unk_717275aa58);
     int has_3 = HasItem(self, g_unk_717275a5d8);
     int has_4 = HasItem(self, g_unk_717275a8d8);
-    int has_5 = HasItem(self, g_unk_717275a498);
+    int has_5 = HasItem(self, SuitAs<UnkDef_7101147868>(g_unk_717275a498));
     int has_6 = HasItem(self, g_unk_717275a558);
     int has_7 = HasItem(self, g_unk_717275a4d8);
     int has_8 = HasItem(self, g_unk_717275aad8);
@@ -118,13 +116,13 @@ void fn_7101147868(UnkInventory_7101147868* self, base::UnkVector<UnkRecord_7101
     int has_15 = HasItem(self, g_unk_717275ab58);
     int has_16 = HasItem(self, g_unk_717275ab98);
     int has_17 = HasItem(self, g_unk_717275a958);
-    int has_18 = HasItem(self, g_unk_717275a458);
+    int has_18 = HasItem(self, SuitAs<UnkDef_7101147868>(g_unk_717275a458));
     int has_19 = HasItem(self, g_unk_717275a918);
     int has_20 = HasItem(self, g_unk_717275a7d8);
     int has_21 = HasItem(self, g_unk_717275a658);
     int has_22 = HasItem(self, g_unk_717275ab18);
     int has_23 = HasItem(self, g_unk_717275a818);
-    int has_24 = HasItem(self, g_unk_717275a418);
+    int has_24 = HasItem(self, SuitAs<UnkDef_7101147868>(g_unk_717275a418));
     int has_25 = HasItem(self, g_unk_717275a718);
     char str[32];
     sprintf(str, "%i%i%i%i%i%i%i%i%i%i%i%i%i%i%i%i%i%i%i%i%i%i%i%i%i%i", has_0, has_1, has_2, has_3,

@@ -4,10 +4,9 @@
 // the object's facing (the third column of its matrix).
 #include "base/UnkMatrix44.h"
 #include "types.h"
+#include "base/math/UnkZeroVector3.h"
 
-struct UnkVec3f {
-    f32 x, y, z;
-};
+using UnkVec3f = base::math::CVector3D;
 
 struct UnkFacing {
     u8 pad_0x0[0x38];
@@ -27,7 +26,6 @@ struct UnkSelf {
     UnkVec3f field_0x40;
 };
 
-extern const UnkVec3f g_unk_710164779c;
 void fn_710039525c(UnkSelf* self, void* arg, UnkVec3f* out);
 
 #define UNK_NEAR(a, b) ((a) - 0.001f <= (b) && (a) + 0.001f >= (b))

@@ -1,6 +1,6 @@
 // CGoliathXSlamAttack (reflection: size 0x80, parent CGoliathAttack): its copy constructor
 // (fn_71005873d0) and move constructor (fn_71005874e8), both the implicit copy.
-#include "CAttack.h"
+#include "game/CAttack.h"
 #include "base/global/CStrId.h"
 
 #include <new>

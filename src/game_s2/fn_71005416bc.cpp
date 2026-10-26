@@ -47,7 +47,6 @@ struct UnkStepper {
 };
 
 UnkVec3Bits fn_7100979a60(UnkPlace* place);
-void fn_710007b430(CVector2D* out, const CVector3D* in);
 bool fn_71005528fc(UnkStepper* self, const CVector2D* point);
 void fn_7100552a34(UnkStepper* self, bool a, bool b);
 void fn_7100544fb8(UnkStepper* self, u32 arg);

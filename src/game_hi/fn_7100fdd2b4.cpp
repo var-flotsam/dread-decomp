@@ -2,6 +2,7 @@
 // the given time, or over the entry's own time when the given time is negative.
 #include "base/global/CStrId.h"
 #include "types.h"
+#include "game/sound/CMusicManager.h"
 
 struct UnkStrBody_0x38 {
     u8 pad_0x0[0x30];
@@ -34,7 +35,6 @@ struct UnkArray {
     UnkEntry_0x60& operator[](u64 i);
 };
 
-void fn_7100fddcb4(UnkArray*, u32);
 void fn_7100fde4d8(UnkArray*, u32);
 
 inline UnkEntry_0x60& UnkArray::operator[](u64 i) {
@@ -42,7 +42,7 @@ inline UnkEntry_0x60& UnkArray::operator[](u64 i) {
         u32 n = capacity;
         if (i >= capacity && step != 0)
             n = ((u32)i / step + 1) * step;
-        fn_7100fddcb4(this, n);
+        fn_7100fddcb4(reinterpret_cast<base::UnkVector<UnkMusicEntry_0x60>*>(this), n);  // the same array
         fn_7100fde4d8(this, i + 1);
     }
     return data[i];

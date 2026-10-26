@@ -5,6 +5,7 @@
 #include <new>
 
 #include "base/UnkDefaultAllocator.h"
+#include "base/input/UnkHidVibration.h"
 #include "types.h"
 
 namespace nn::hid {
@@ -16,13 +17,6 @@ public:
 
     char* vtable;
     u8 storage_0x8[0xe8];
-};
-
-class VibrationNodeConnection {
-public:
-    ~VibrationNodeConnection();
-
-    u8 storage[0x38];
 };
 
 }  // namespace nn::hid

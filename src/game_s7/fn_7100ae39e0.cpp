@@ -1,7 +1,9 @@
 // Static initialiser of a reflected unit: the header ids, then the unit's own statics and
 // registrations (helpers in UnkStaticInitS7.h). Layouts are placeholders.
 #include "UnkStaticInitS7.h"
+#include "base/reflection/CCollectionType.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/UnkSuitProperties.h"
 
 using namespace unk_static_init;
 
@@ -88,9 +90,6 @@ extern UnkPropertyEx<> g_unk_717275a318;
 extern UnkPropertyEx<> g_unk_717275a358;
 extern UnkPropertyEx<> g_unk_717275a398;
 extern UnkPropertyEx<> g_unk_717275a3d8;
-extern UnkPropertyEx<> g_unk_717275a418;
-extern UnkPropertyEx<> g_unk_717275a458;
-extern UnkPropertyEx<> g_unk_717275a498;
 extern UnkPropertyEx<> g_unk_717275a4d8;
 extern UnkPropertyEx<> g_unk_717275a518;
 extern UnkPropertyEx<> g_unk_717275a558;
@@ -136,7 +135,6 @@ extern void* g_unk_7101a97688[];
 void fn_7100ae272c(void* p);
 void fn_7100ae05a8(void* p);
 extern UnkStrIdBase g_unk_717275ada8;
-extern UnkEnumType g_unk_7101d5c998;
 extern UnkPropertyEx<> g_unk_717275adb0;
 extern void* g_unk_7101a976e0[];
 void fn_7100ae2888(void* p);

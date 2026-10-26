@@ -305,7 +305,6 @@ UnkSecondPtrArray<UnkFreedVectorPair>* fn_7100e54838(UnkSecondPtrArray<UnkFreedV
 
 // Copy-assignment of an array of array pairs through its out-of-line Reserve (fn_7100e52b58) and
 // PushBack.
-void fn_7100e52cf4(UnkPairArray* self, const UnkFreedVectorPair* value);  // PushBack
 
 // Copy-assignments of maps of ids to values (values at 0, keys at 8, sharing one count): both
 // sides are destroyed, the storage is reallocated when the other's count differs from the
@@ -467,4 +466,3 @@ UnkRecord60* fn_7100e4fd1c(UnkRecord60* self, const UnkRecord60* other);
 __attribute__((noinline)) void fn_7100e59d18(UnkIdRecordMap* self, u32 capacity);
 
 void fn_7100e59d18(UnkIdRecordMap* self, u32 capacity);
-

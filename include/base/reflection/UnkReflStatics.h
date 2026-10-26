@@ -8,6 +8,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/UnkTimelineComponent.h"
 
 namespace base::reflection {
 
@@ -181,7 +182,6 @@ struct UnkReflTypeIdArg {
 
 }  // namespace base::reflection
 
-void fn_7100a2cb7c(void* target, const void* key, base::reflection::UnkReflTypeIdArg* arg, float f, u32 flags);
 bool fn_7101176690(void* target, u64 hash, u64 kind, base::reflection::UnkReflTypeIdArg* value, const void* a,
                    const void* b, base::reflection::UnkReflTypeIdArg* id);
 
@@ -207,7 +207,8 @@ void refl_SendTypeId(void* self) {
     if (target) {
         UnkReflTypeIdArg arg;
         arg.id = UnkReflTypeId<UnkReflTypeIdTag>::id();
-        fn_7100a2cb7c(target, UnkReflStatic<G>::key(), &arg, -1.0f, 0);
+        fn_7100a2cb7c(static_cast<UnkTimelineComponent*>(target), static_cast<const u64*>(UnkReflStatic<G>::key()),
+                      &arg.id, false, -1.0f);
     }
 }
 

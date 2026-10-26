@@ -35,3 +35,9 @@ struct UnkDeferredSet {
 static_assert(sizeof(UnkDeferredSet<void>) == 0x80, "UnkDeferredSet layout");
 
 }  // namespace base
+
+// The out-of-line Add and Remove of a set (the item is a registration entry's address). Both are
+// the template members above, instantiated in src/clones (UnkClone_fn_71004f3cf0 and
+// UnkClone_fn_71004f3ea4).
+void fn_71004f3cf0(base::UnkDeferredSet<void>* set, void* item);
+void fn_71004f3ea4(base::UnkDeferredSet<void>* set, void* item);

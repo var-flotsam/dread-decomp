@@ -24,8 +24,6 @@ inline UnkMask& GetDefaultMask_d7c828() {
     return s;
 }
 
-bool fn_7100a2cfe8(UnkTimelineComponent* self, const u64* key);
-
 static inline UnkTimelineComponent* Timeline(UnkActor* actor) {
     return static_cast<UnkTimelineComponent*>(actor->field_0x2e8);
 }
@@ -33,7 +31,7 @@ static inline UnkTimelineComponent* Timeline(UnkActor* actor) {
 static inline void AddDefault(UnkTimelineComponent* comp, const u64* key) {
     base::reflection::UnkReflTypeIdArg mask;
     mask.id = GetDefaultMask_d7c828().value;
-    fn_7100a2cb7c(comp, key, &mask, -1.0f, 0);
+    fn_7100a2cb7c(comp, key, &mask.id, false, -1.0f);
 }
 
 void fn_7100d7c828(UnkActor* self, const u64* key, bool flag) {

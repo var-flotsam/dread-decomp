@@ -1,7 +1,7 @@
 // CHydrogigaBraidAttack (reflection: size 0x90, parent CHydrogigaAttack): its copy constructor,
 // out of line; the descriptor's copy and move constructors (fn_71005b4260, fn_71005b4264)
 // branch to it.
-#include "CAttack.h"
+#include "game/CAttack.h"
 #include "base/UnkCloneRecords.h"
 
 #include <new>

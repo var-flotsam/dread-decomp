@@ -68,3 +68,11 @@ void fn_71011cf2a4(UnkGuiDisplayObject* self, bool value);
 // Sets the flag at +0xb4: marks the object stale and, if its derived visibility changed, sends a
 // change event to the GUI root. Defined in src/game_hi/fn_71011cdce8.cpp.
 void fn_71011cdce8(UnkGuiDisplayObject* self, bool value);
+
+// The destructor of the display-object container (the unit named after GUI::CDisplayObjectContainer).
+// Not decompiled yet.
+void fn_71011d8e90(UnkGuiDisplayObject* self);
+
+// Adds `child` to the container's list at +0x1c8; the first time, vf_0xa0 runs and +0x184 is set,
+// as for the flags above. Returns whether it was added. Not decompiled yet.
+bool fn_71011d968c(UnkGuiDisplayObject* container, UnkGuiDisplayObject* child);

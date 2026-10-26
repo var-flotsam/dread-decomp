@@ -20,6 +20,8 @@ using base::global::UnkStringPool;
 struct UnkPathId {
     UnkStringData* data;
 
+    struct NoInit {};
+    UnkPathId(NoInit) {}
     UnkPathId(UnkPathId&& other) {
         data = other.data;
         other.data = &g_unk_7101d47200->empty;
@@ -62,9 +64,12 @@ struct UnkPathId {
     }
 };
 
-// A path id built from a string (fn_71000166c8, CFilePathStrId's constructor).
+// A path id built from a string: CFilePathStrId's constructor (fn_71000166c8, base/global/CFilePathStrId.h)
+// run on this storage.
 struct UnkNewPathId : UnkPathId {
-    UnkNewPathId(const char* str, bool flag) asm("fn_71000166c8");
+    UnkNewPathId(const char* str, bool flag) : UnkPathId(UnkPathId::NoInit()) {
+        new (static_cast<UnkPathId*>(this)) base::global::CFilePathStrId(str, flag);
+    }
 };
 
 // The engine's vector of path ids, whose growth moves the elements one by one.

@@ -1,7 +1,7 @@
 // CTakumakuDashAttack (reflection: size 0x78): its copy constructor (fn_71006d0908) and move
 // constructor (fn_71006d09d8), both the implicit copy,
 // and its copy (fn_71006d0ab4) and move (fn_71006d0c2c) assignments, both the implicit copy assignment.
-#include "CAttack.h"
+#include "game/CAttack.h"
 
 #include <new>
 

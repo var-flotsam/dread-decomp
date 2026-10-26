@@ -2,6 +2,7 @@
 // vtable 0x7101a9ee50; the nodes are freed through the list's allocator), then the base's
 // destructor (fn_71011d8e90).
 #include "base/UnkVector.h"
+#include "game/UnkGuiDisplayObject.h"
 #include "types.h"
 
 extern void* g_unk_7101a9ebd8[];  // the object's vtable
@@ -38,11 +39,9 @@ struct UnkListScreen {
     UnkNodeList field_0x238;
 };
 
-void fn_71011d8e90(UnkListScreen* self);
-
 void fn_7100b75394(UnkListScreen* self) {
     self->vtable = g_unk_7101a9ebd8 + 2;
     self->field_0x238.~UnkNodeList();
-    fn_71011d8e90(self);
+    fn_71011d8e90(reinterpret_cast<UnkGuiDisplayObject*>(self));
     operator delete(self);
 }

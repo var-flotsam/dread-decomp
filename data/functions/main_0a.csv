@@ -5521,7 +5521,7 @@ address,size,name,name_source,subsystem,status
 0x7100ae9a10,416,fn_7100ae9a10,unknown,unknown,O
 0x7100ae9bb0,280,fn_7100ae9bb0,unknown,unknown,O
 0x7100ae9cc8,180,fn_7100ae9cc8,unknown,unknown,O
-0x7100ae9d7c,252,fn_7100ae9d7c,unknown,unknown,U
+0x7100ae9d7c,252,fn_7100ae9d7c,unknown,unknown,O
 0x7100ae9e78,4,fn_7100ae9e78,unknown,unknown,O
 0x7100ae9e7c,244,CGameBlackboard::refl_GetClass,reflection,game/core,O
 0x7100ae9f70,412,fn_7100ae9f70,unknown,game/core?,O

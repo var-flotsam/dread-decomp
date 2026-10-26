@@ -41,14 +41,13 @@ struct UnkObj_7100bda920 {
 };
 
 struct UnkReceiver;
-UnkReceiver* fn_7100defcec(UnkGameManager* manager);
 void fn_71010e560c(UnkReceiver* receiver, UnkPropBag* bag, void* target, void* info, const UnkPair& a,
                    const UnkPair& b);
 
 void fn_7100bda920(UnkObj_7100bda920* self, UnkHandle_7100bda920* handle) {
     if (!handle->ptr)
         return;
-    UnkReceiver* receiver = fn_7100defcec(g_unk_7101d47310);
+    UnkReceiver* receiver = static_cast<UnkReceiver*>(fn_7100defcec(g_unk_7101d47310));
     if (!receiver)
         return;
     UnkPropBag bag;

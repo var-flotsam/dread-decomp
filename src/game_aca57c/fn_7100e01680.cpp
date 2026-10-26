@@ -3,6 +3,7 @@
 // then the start point registered under the id's hash. Layouts are placeholders.
 #include "../game_s7/UnkPropBagS7.h"
 #include "base/global/CRntString.h"
+#include "game/UnkGameManager.h"
 
 using namespace unk_prop_bag;
 
@@ -20,14 +21,12 @@ extern void* g_unk_7101a1b750[];
 bool fn_7100e03d78(UnkPropBag* bag, const char* function, const char* args);  // runs a script call
 bool fn_7100e03f50(UnkPropBag* bag, const u64* key, UnkInlineString* out, bool flag);  // reads a string
 
-struct UnkStartPoints;
-void* fn_71011a3d74(UnkStartPoints* points, const u64* key);
 
 struct UnkObj_7100e01680 {
     u8 unk_0x0[0x518];
     UnkInlineString field_0x518;
     u8 unk_0x5e0[0x28];
-    UnkStartPoints* field_0x608;
+    UnkGameManagerSub_0x608* field_0x608;  // the start points
 };
 
 // A string id built from a string out of line and released like CStrId.

@@ -1,6 +1,6 @@
 // CSluggerSpitAttack (reflection: size 0xe8): its copy constructor, out of line; the
 // descriptor's copy and move constructors (fn_71006c3c5c, fn_71006c3c60) branch to it.
-#include "CAttack.h"
+#include "game/CAttack.h"
 
 #include <new>
 

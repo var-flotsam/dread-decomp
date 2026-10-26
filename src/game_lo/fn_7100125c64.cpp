@@ -10,16 +10,8 @@
 
 using base::math::CVector2D;
 
-// Returned through x8 in the out-of-line copy (fn_7100125e78).
-struct UnkVec2Result_7100125c64 {
-    f32 x;
-    f32 y;
-    UnkVec2Result_7100125c64(f32 x_, f32 y_) : x(x_), y(y_) {}
-    UnkVec2Result_7100125c64(const UnkVec2Result_7100125c64& o) : x(o.x), y(o.y) {}
-};
-
 // The segment's unit normal (fn_7100125e78, inlined).
-static inline UnkVec2Result_7100125c64 SegmentNormal(const UnkSegment2D* seg) {
+static inline UnkVec2Result SegmentNormal(const UnkSegment2D* seg) {
     f32 dx = seg->end.x - seg->start.x;
     f32 dy = seg->end.y - seg->start.y;
     f32 len2 = dx * dx + dy * dy;
@@ -27,9 +19,9 @@ static inline UnkVec2Result_7100125c64 SegmentNormal(const UnkSegment2D* seg) {
         f32 inv = 1.0f / sqrtf(len2);
         f32 nx = dx * inv;
         f32 ny = dy * inv;
-        return UnkVec2Result_7100125c64(-ny, nx);
+        return UnkVec2Result(-ny, nx);
     }
-    return UnkVec2Result_7100125c64(0.0f, 0.0f);
+    return UnkVec2Result(0.0f, 0.0f);
 }
 
 static inline bool IsNear(f32 a, f32 b) {
@@ -60,7 +52,7 @@ bool fn_7100125c64(const UnkSegment2D* seg, const CVector2D* p, bool extended, f
         if (t < 0.0f)
             return false;
     }
-    UnkVec2Result_7100125c64 n = SegmentNormal(seg);
+    UnkVec2Result n = SegmentNormal(seg);
     f32 d = vx * n.x + vy * n.y;
     return d >= -tolerance && d <= tolerance;
 }

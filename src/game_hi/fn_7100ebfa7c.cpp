@@ -69,8 +69,11 @@ Vec2 fn_7100125a64(Vec2*);
 bool fn_71002afcd8(Cell*, Edge*, u32);
 IdPair fn_71002afe60(Cell*, u8*);
 Vec2* fn_710027a410(Mesh*, u16);
-void fn_7100125b1c(Segment*, Vec2*, Vec2*);
-void fn_710007b430(Vec2*, Vec2*);
+
+// Vec2 has CVector2D's layout (it only adds the out-of-line copy constructor); fn_710007b430 reads
+// only the x and y of its source.
+static inline base::math::CVector2D* AsV2(Vec2* v) { return reinterpret_cast<base::math::CVector2D*>(v); }
+static inline const base::math::CVector3D* AsV3(Vec2* v) { return reinterpret_cast<const base::math::CVector3D*>(v); }
 
 static inline f32 DistSq(const Vec2& a, const Vec2& b) {
     f32 dx = a.x - b.x;
@@ -101,8 +104,7 @@ bool fn_7100ebfa7c(UnkNavMeshManager* self, Vec2* pos, Result* out, f32 a, u32 f
             IdPair ids = fn_71002afe60(cell, &i);
             Vec2* v0 = fn_710027a410(mesh, ids.a);
             Vec2* v1 = fn_710027a410(mesh, ids.b);
-            Segment seg;
-            fn_7100125b1c(&seg, v0, v1);
+            Segment seg(*AsV2(v0), *AsV2(v1));
             // Vec2 has CVector2D's layout (it only adds the out-of-line copy constructor).
             if (!fn_7100125c64(&seg, reinterpret_cast<const base::math::CVector2D*>(&p), false, 0.0f))
                 continue;
@@ -111,10 +113,10 @@ bool fn_7100ebfa7c(UnkNavMeshManager* self, Vec2* pos, Result* out, f32 a, u32 f
                 bool closer = true;
                 if (ret) {
                     Vec2 t0;
-                    fn_710007b430(&t0, &r.field_0x4);
+                    fn_710007b430(AsV2(&t0), AsV3(&r.field_0x4));
                     f32 d0 = DistSq(p, t0);
                     Vec2 t1;
-                    fn_710007b430(&t1, &out->field_0x4);
+                    fn_710007b430(AsV2(&t1), AsV3(&out->field_0x4));
                     closer = d0 < DistSq(p, t1);
                 }
                 if (closer)

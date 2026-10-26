@@ -5251,7 +5251,7 @@ address,size,name,name_source,subsystem,status
 0x7100fd33a8,388,sound::CMusicManager::CTunableMusicManager::refl_InitClass,reflection,audio,O
 0x7100fd352c,696,fn_7100fd352c,unknown,unknown,O
 0x7100fd37f0,20,fn_7100fd37f0,unknown,unknown,O
-0x7100fd3804,1900,fn_7100fd3804,unknown,unknown,U
+0x7100fd3804,1900,fn_7100fd3804,unknown,unknown,m
 0x7100fd3f70,700,fn_7100fd3f70,unknown,unknown,U
 0x7100fd422c,240,fn_7100fd422c,unknown,unknown,O
 0x7100fd431c,240,fn_7100fd431c,unknown,unknown,O
