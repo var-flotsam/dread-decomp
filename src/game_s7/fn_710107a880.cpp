@@ -4,7 +4,7 @@
 #include "base/global/CStrId.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
-#include "game/UnkSuitProperties.h"
+#include "game/UnkItemProperties.h"
 
 using base::global::CStrId;
 

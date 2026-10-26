@@ -9,8 +9,6 @@ struct UnkSelf : UnkAttackBase {
     UnkWeakHandle* field_0x50;
 };
 
-void fn_710117b3f0(UnkWeakTarget* target, void* object);
-
 void fn_710049ece8(UnkSelf* self) {
     fn_71003609b8(self);
     if (UnkWeakHandle* handle = self->field_0x50) {

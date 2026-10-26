@@ -32,3 +32,5 @@ void fn_71003695b8(UnkBehaviorTreeAI* self);
 // the fields at +0x28, +0x2c and +0x30. Called first by the constructors of the concrete nodes
 // (fn_7100398128, fn_71003a3e64, fn_710039d420).
 void fn_71003944e8(UnkBehaviorTreeNode* self);
+void fn_7100393e68(UnkBehaviorTreeNode* self);
+void fn_7100394bd4(void* self);

@@ -76,3 +76,4 @@ void fn_71011d8e90(UnkGuiDisplayObject* self);
 // Adds `child` to the container's list at +0x1c8; the first time, vf_0xa0 runs and +0x184 is set,
 // as for the flags above. Returns whether it was added. Not decompiled yet.
 bool fn_71011d968c(UnkGuiDisplayObject* container, UnkGuiDisplayObject* child);
+UnkGuiDisplayObject* fn_71011d98ec(UnkGuiDisplayObject* container, u64 id);

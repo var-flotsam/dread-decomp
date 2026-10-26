@@ -70,6 +70,9 @@ struct UnkTrackSet {
 static_assert(__builtin_offsetof(UnkTrackSet, field_0xc8) == 0xc8, "UnkTrackSet placeholder layout");
 static_assert(__builtin_offsetof(UnkTrackSet, field_0xf0) == 0xf0, "UnkTrackSet placeholder layout");
 
+// What the track queries (fn_710117b08c) are given; its layout is unknown.
+struct UnkTrackQuery;
+
 struct UnkAnimationComponent {
     u8 pad_0x0[0x40];
     UnkTrackSet* field_0x40;
@@ -91,3 +94,5 @@ bool fn_710117b348(UnkAnimationComponent* self, const base::reflection::CClass* 
 // such entry, track or action (the callers read it as how far along that track is, with the one
 // hash 0xf4061ff25a2163d6). Defined in src/game_hi/CAnimationComponent.cpp.
 f32 fn_7101177ea0(UnkAnimationComponent* self, u64 key);
+bool fn_710117ae38(UnkAnimationComponent* self, u64 id, bool flag);
+bool fn_710117b08c(UnkAnimationComponent* self, UnkTrackQuery* query);

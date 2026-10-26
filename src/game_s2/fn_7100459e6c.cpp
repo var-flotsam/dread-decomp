@@ -43,7 +43,6 @@ struct UnkSelf {
 };
 
 extern char g_unk_71726c9e08[] __attribute__((visibility("hidden")));
-void fn_7100de9540(UnkGameManager* manager, const char* name, UnkSelf* self);
 void fn_7100ac3880(UnkSelf* self);
 
 void fn_7100459e6c(UnkSelf* self) {

@@ -123,7 +123,6 @@ bool fn_71001c1c70(UnkBoneOwner* self, u32 index, UnkMatrix44* out) {
 // Sets the owner's scale, unless it is within 0.001 of the current one: the size of the part at
 // 0x20 follows the largest component (fn_710021693c) and the holder takes the new matrix
 // (fn_71001c1f9c).
-void fn_710021693c(UnkSphere* self, f32 radius);
 
 // By reference, as std::max (by value the compiler orders the loads differently).
 __attribute__((always_inline)) static inline const f32& Larger(const f32& a, const f32& b) { return a < b ? b : a; }

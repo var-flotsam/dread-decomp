@@ -1,6 +1,7 @@
 // Constructor of a widget-like object (0x108+ bytes): sets the base vtable, an empty string id,
 // the default state and flags, then the derived vtable, builds the member at +0x108 from the
 // argument, calls virtual slot 0x50 and then clears one flag and sets two fields.
+#include "base/UnkInitRecord_0x5c.h"
 #include "types.h"
 
 inline void* operator new(unsigned long, void* p) { return p; }
@@ -8,7 +9,6 @@ inline void* operator new(unsigned long, void* p) { return p; }
 extern void* g_unk_7101a1f000[];
 extern void* g_unk_7101a1fa10[];
 void fn_71000003d4(void* self, const char* s, bool flag);
-void fn_7100025624(void* self);
 void fn_710021685c(void* self);
 void fn_710021693c(void* self, f32 v);
 

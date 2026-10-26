@@ -14,8 +14,6 @@ struct UnkPoolEntry {
     u32 field_0xd8;
 };
 
-void fn_7100216d30(UnkSphere* sphere, f32 scale);
-
 bool fn_71001eaf3c(char* self, UnkPoolEntry* entry, UnkXform* x) {
     if (!entry)
         return false;

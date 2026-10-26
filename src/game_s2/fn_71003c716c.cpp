@@ -32,7 +32,6 @@ struct UnkSelf {
 
 void fn_71003c4e64(UnkSelf* self, u32 flag);
 void fn_71003c5b10(UnkSelf* self, u32 flag);
-void fn_710117b3f0(UnkWeakTarget* target, void* object);
 
 bool fn_71003c716c(UnkSelf* self, UnkEvent* event) {
     if (event->field_0x0 == 3 && event->field_0x8->field_0x10->field_0x38->field_0x30 == 0xe3d785cc963782a5ull) {

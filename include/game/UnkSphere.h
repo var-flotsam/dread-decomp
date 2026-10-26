@@ -29,3 +29,5 @@ void fn_7100216978(UnkSphere* self, const UnkVec3f* position);
 inline UnkSphere* UnkXformNodeSphere(UnkXformNode* node) {
     return reinterpret_cast<UnkSphere*>(reinterpret_cast<char*>(node) + 0x80);
 }
+void fn_710021693c(UnkSphere* self, f32 radius);
+void fn_7100216d30(UnkSphere* self, f32 scale);

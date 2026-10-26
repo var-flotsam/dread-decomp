@@ -9,7 +9,6 @@ struct UnkSelf {
 };
 
 void fn_71004936a0(UnkSelf* self);
-void fn_710117b3f0(UnkWeakTarget* target, void* object);
 
 void fn_7100480928(UnkSelf* self) {
     fn_71004936a0(self);

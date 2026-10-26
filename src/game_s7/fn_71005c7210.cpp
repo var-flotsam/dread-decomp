@@ -11,8 +11,6 @@ struct UnkSelf : UnkAttackBase {
     UnkWeakHandle* field_0x50;
 };
 
-void fn_710117b3f0(UnkWeakTarget* target, void* object);
-
 void fn_71005c7210(UnkSelf* self) {
     fn_71003609b8(self);
     if (UnkWeakHandle* handle = self->field_0x50) {
@@ -39,4 +37,3 @@ void fn_71006a9208(UnkSelf* self) {
         ResetRef(&self->field_0x50);
     }
 }
-

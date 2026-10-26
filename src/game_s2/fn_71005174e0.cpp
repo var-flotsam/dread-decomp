@@ -38,7 +38,6 @@ struct UnkComponent {
 };
 
 void fn_710051db44(UnkComponent* self, u32 arg);
-void fn_710117b3f0(UnkWeakTarget* target, void* object);
 
 void fn_71005174e0(UnkComponent* self, u32 arg) {
     self->field_0x30 = ~0ull;

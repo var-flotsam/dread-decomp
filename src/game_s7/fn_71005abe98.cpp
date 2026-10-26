@@ -3,6 +3,7 @@
 // described by): words of the translation unit's globals, a zero, flags of an object and a vector.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkReflTypeGlobals.h"
 #include "base/reflection/UnkReflValue.h"
 #include "types.h"
 #include "game/sound/CMusicManager.h"
@@ -106,7 +107,6 @@ __attribute__((always_inline)) static inline UnkReflValue GetVirtualFlag(UnkArgu
 // getter is called first, so the class (whose reflected data is at the descriptor) is set up.
 extern const CType g_unk_7172794c08 __attribute__((visibility("hidden")));
 extern const CType g_unk_7172794d40 __attribute__((visibility("hidden")));
-extern const CType g_unk_7172794e78 __attribute__((visibility("hidden")));
 
 template <u32 Size>
 struct UnkDefIterValue {
@@ -139,7 +139,6 @@ void fn_7100d8ced8(void* self);
 void fn_7100359118(void* self);
 const CType* fn_7100ad61f8();  // base::reflection::refl_GetType<CSubAreaManager*>
 const CType* fn_7100ad62d4();  // base::reflection::refl_GetType<CEnvironmentManager*>
-const CType* fn_7100ad6568();  // base::reflection::refl_GetType<CLightManager*>
 const CType* fn_7100ad6644();  // base::reflection::refl_GetType<sound::CMusicManager*>
 extern void* g_unk_7101d47360;
 extern void* g_unk_7101d47368;
@@ -164,5 +163,3 @@ struct UnkAngleSource {
     f32 field_0xc8;
     f32 field_0xcc;
 };
-
-

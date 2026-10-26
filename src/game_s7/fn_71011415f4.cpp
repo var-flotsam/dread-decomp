@@ -70,7 +70,6 @@ struct UnkComponent_71011415f4 {
 };
 
 extern char g_unk_7172a092b0[] __attribute__((visibility("hidden")));
-void fn_7100de9540(UnkGameManager* mgr, void* kind, UnkComponent_71011415f4* component);
 
 extern CStrId g_unk_7172a092b8 __attribute__((visibility("hidden")));
 extern CStrId g_unk_7172a092c0 __attribute__((visibility("hidden")));

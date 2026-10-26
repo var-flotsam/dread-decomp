@@ -99,3 +99,4 @@ struct UnkRefPtr {
 // as (directly or through a pointer value), or null (fn_7100ad7cc0 reads the property). Returned in
 // memory. Defined in src/game/CActor.cpp (unit 341).
 UnkRefPtr fn_710023b580(void* member);
+void fn_710117b3f0(UnkWeakTarget* target, void* link);

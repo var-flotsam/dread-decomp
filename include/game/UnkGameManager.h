@@ -149,3 +149,4 @@ void* fn_7100defcec(UnkGameManager* self);
 // +0x2778 (unless bit 3 is set). The fallback, with bit 1 set, is fn_71011a3d74 on +0x608; else null
 // (src/game/CGameManager.cpp).
 void* fn_7100deba8c(UnkGameManager* self, const u64* id, const u32* flags);
+void fn_7100de9540(UnkGameManager* manager, const char* name, void* object);

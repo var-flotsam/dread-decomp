@@ -10,7 +10,6 @@ extern char g_unk_71726ddc48[] __attribute__((visibility("hidden")));
 void fn_7100ac3880(f32 rate);
 void fn_71008618cc(void* object);
 void fn_71005026d0(UnkChargeComponent* self, u32 mode, f32 value);
-void fn_7100de9540(UnkGameManager* manager, void* name, UnkChargeComponent* component);
 
 // NON_MATCHING(minor): the two rate addresses are computed in the other order (the select picks the same one).
 void fn_7100502628(UnkChargeComponent* self) {

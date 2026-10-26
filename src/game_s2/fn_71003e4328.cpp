@@ -1,5 +1,6 @@
 // Destructor body: runs the base destructor (fn_7100394bd4), then, when the weak handle at +0x58 still has a
 // target, hands the target the object at +0x40 (fn_710117b3f0) and drops the handle.
+#include "game/UnkBehaviorTree.h"
 #include "game_s2/UnkWeakHandle.h"
 
 struct UnkSelf {
@@ -7,9 +8,6 @@ struct UnkSelf {
     u8 field_0x40[0x18];
     UnkWeakHandle* field_0x58;
 };
-
-void fn_7100394bd4(UnkSelf* self);
-void fn_710117b3f0(UnkWeakTarget* target, void* object);
 
 void fn_71003e4328(UnkSelf* self) {
     fn_7100394bd4(self);

@@ -6,7 +6,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameBlackboard.h"
-#include "game/UnkSuitProperties.h"
+#include "game/UnkItemProperties.h"
 
 using base::global::CFilePathStrId;
 using base::global::CStrId;

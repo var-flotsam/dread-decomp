@@ -3,7 +3,7 @@
 #include "UnkStaticInitS7.h"
 #include "base/reflection/CCollectionType.h"
 #include "base/reflection/UnkReflStatics.h"
-#include "game/UnkSuitProperties.h"
+#include "game/UnkItemProperties.h"
 
 using namespace unk_static_init;
 
@@ -73,8 +73,6 @@ extern UnkPropertyEx<> g_unk_7172759d90;
 extern UnkPropertyEx<> g_unk_7172759dd0;
 extern UnkPropertyEx<0x160> g_unk_7172759e10;
 extern UnkPropertyEx<> g_unk_7172759f98;
-extern UnkPropertyEx<> g_unk_7172759fd8;
-extern UnkPropertyEx<> g_unk_717275a018;
 extern UnkPropertyEx<> g_unk_717275a058;
 extern UnkPropertyEx<> g_unk_717275a098;
 extern UnkPropertyEx<> g_unk_717275a0d8;
@@ -85,11 +83,6 @@ extern UnkPropertyEx<> g_unk_717275a1d8;
 extern UnkPropertyEx<> g_unk_717275a218;
 extern UnkPropertyEx<> g_unk_717275a258;
 extern UnkPropertyEx<> g_unk_717275a298;
-extern UnkPropertyEx<> g_unk_717275a2d8;
-extern UnkPropertyEx<> g_unk_717275a318;
-extern UnkPropertyEx<> g_unk_717275a358;
-extern UnkPropertyEx<> g_unk_717275a398;
-extern UnkPropertyEx<> g_unk_717275a3d8;
 extern UnkPropertyEx<> g_unk_717275a4d8;
 extern UnkPropertyEx<> g_unk_717275a518;
 extern UnkPropertyEx<> g_unk_717275a558;
@@ -119,7 +112,6 @@ extern UnkPropertyEx<> g_unk_717275ab18;
 extern UnkPropertyEx<> g_unk_717275ab58;
 extern UnkPropertyEx<> g_unk_717275ab98;
 extern UnkPropertyEx<> g_unk_717275abd8;
-extern UnkPropertyEx<> g_unk_717275ac18;
 extern UnkPropertyEx<> g_unk_717275ac58;
 extern UnkPropertyEx<> g_unk_717275ac98;
 extern UnkStrIdBase g_unk_717275acd8;

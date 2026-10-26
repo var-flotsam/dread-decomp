@@ -42,8 +42,6 @@ struct UnkAimOutput {
     f32 field_0x6c;
 };
 
-void fn_710117b08c(UnkAimTarget* target, UnkTrackQuery* query);
-
 void fn_7100352240(UnkAimComponent* self, UnkAimOutput* out) {
     if (!self->field_0x30->field_0x220)
         return;

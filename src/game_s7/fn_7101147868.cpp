@@ -7,7 +7,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkGameBlackboard.h"
-#include "game/UnkSuitProperties.h"
+#include "game/UnkItemProperties.h"
 #include "types.h"
 
 using base::global::CStrId;
