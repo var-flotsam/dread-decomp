@@ -806,7 +806,6 @@ extern char g_unk_71727c94b8;
 extern UnkPropertyEx<> g_unk_71727c94c0;
 extern void* g_unk_7101a45fe8[];
 extern void* g_unk_7101a45f90[];
-void fn_71002ef5bc(void* self);
 void fn_71004fa3b8(void* p);
 
 void fn_7100e7c980() {
@@ -835,7 +834,7 @@ void fn_7100e7c980() {
     fn_710009ec00(&g_unk_71727c9378, &g_unk_71727c9208);
     InitClass(&g_unk_71727c9380, "CMinimapGrid::SGridDef", fn_7100e77d68, fn_7100e77a0c);
     fn_710009ec00(&g_unk_71727c94b8, &g_unk_71727c9380);
-    InitPropertyEx(&g_unk_71727c94c0, g_unk_7101a45fe8, g_unk_7101a45f90, g_unk_71726db788, fn_71002ef5bc,
+    InitPropertyExVtableFirst(&g_unk_71727c94c0, g_unk_7101a45fe8, g_unk_71726db788, g_unk_7101a45f90, fn_71002ef5bc,
                    "MINIMAP_VISIBILITY", &g_unk_71727c9208,
                    reinterpret_cast<void (*)(UnkPropertyEx<>*)>(fn_71004fd2cc), fn_71004fa3b8);
 }
@@ -855,7 +854,7 @@ void fn_7100acb290() {
     InitHeader(g_unk_7172755b78);
     new (&g_unk_7172755b00) CStrId("ACTIVABLE", true);
     fn_7100000250(fn_710000051c, &g_unk_7172755b00, &g_unk_7101a19000);
-    InitProperty(&g_unk_7172755b08, g_unk_7101a97370, g_unk_71726db788, "Opened", refl_TypeOf<fn_710000d228>(), fn_7100acacf8,
+    InitPropertyVtableFirst(&g_unk_7172755b08, g_unk_7101a97370, g_unk_71726db788, "Opened", refl_TypeOf<fn_710000d228>(), fn_7100acacf8,
                  fn_7100ac8db0);
     new (TUAt<CStrId, 0x0>(g_unk_7172755b90)) CStrId("collision_close", true);
     fn_7100000250(fn_710000051c, TUAt<CStrId, 0x0>(g_unk_7172755b90), &g_unk_7101a19000);
@@ -913,7 +912,6 @@ extern UnkPropertyEx<0x160> g_unk_7172796390;
 extern UnkPropertyEx<0x160> g_unk_7172796518;
 extern void* g_unk_7101a889c8[];
 extern void* g_unk_7101aa52d0[];
-void fn_7100ae9cc8(void* self);
 void fn_7100ca9504(UnkPropertyEx<0x160>* p);
 void fn_7100ca3be4(void* p);
 extern CFilePathStrId g_unk_7172796d70[10];
@@ -923,9 +921,9 @@ void fn_7100ca6150() {
     InitHeader(g_unk_7172797460);
     new (&g_unk_7172796388) CStrId("BLEAKABLE", true);
     fn_7100000250(fn_710000051c, &g_unk_7172796388, &g_unk_7101a19000);
-    InitPropertyEx(&g_unk_7172796390, g_unk_7101a889c8, g_unk_7101aa52d0, g_unk_71726db788, fn_7100ae9cc8,
+    InitPropertyExVtableFirst(&g_unk_7172796390, g_unk_7101a889c8, g_unk_71726db788, g_unk_7101aa52d0, fn_7100ae9cc8,
                    "PB_AND_SM", refl_TypeOf<fn_7100005178>(), fn_7100ca9504, fn_7100ca3be4);
-    InitPropertyEx(&g_unk_7172796518, g_unk_7101a889c8, g_unk_7101aa52d0, g_unk_71726db788, fn_7100ae9cc8,
+    InitPropertyExVtableFirst(&g_unk_7172796518, g_unk_7101a889c8, g_unk_71726db788, g_unk_7101aa52d0, fn_7100ae9cc8,
                    "VIGNETTE", refl_TypeOf<fn_7100005178>(), fn_7100ca9504, fn_7100ca3be4);
     InitClass(&g_unk_71727966a0, "CBreakableTileManager", fn_7100ca3e50, fn_7100ca3c84);
     fn_710009ec00(&g_unk_71727967d8, &g_unk_71727966a0);
@@ -979,13 +977,13 @@ void fn_7100e16af0() {
     InitHeader(g_unk_71727c0a38);
     new (&g_unk_71727c0918) CStrId("ARENA", true);
     fn_7100000250(fn_710000051c, &g_unk_71727c0918, &g_unk_7101a19000);
-    InitProperty(&g_unk_71727c0920, g_unk_7101aa9c38, g_unk_71726db788, "PrevSG", refl_TypeOf<fn_7100009658>(), fn_7100e165e8,
+    InitPropertyVtableFirst(&g_unk_71727c0920, g_unk_7101aa9c38, g_unk_71726db788, "PrevSG", refl_TypeOf<fn_7100009658>(), fn_7100e165e8,
                  fn_7100e140c0);
-    InitProperty(&g_unk_71727c0948, g_unk_7101aa9c38, g_unk_71726db788, "SG", refl_TypeOf<fn_7100009658>(), fn_7100e165e8,
+    InitPropertyVtableFirst(&g_unk_71727c0948, g_unk_7101aa9c38, g_unk_71726db788, "SG", refl_TypeOf<fn_7100009658>(), fn_7100e165e8,
                  fn_7100e140c0);
-    InitProperty(&g_unk_71727c0970, g_unk_7101aa9c38, g_unk_71726db788, "AllDead", refl_TypeOf<fn_710000d228>(), fn_7100e165e8,
+    InitPropertyVtableFirst(&g_unk_71727c0970, g_unk_7101aa9c38, g_unk_71726db788, "AllDead", refl_TypeOf<fn_710000d228>(), fn_7100e165e8,
                  fn_7100e140c0);
-    InitProperty(&g_unk_71727c0998, g_unk_7101aa9c38, g_unk_71726db788, "UseIntro", refl_TypeOf<fn_710000d228>(), fn_7100e165e8,
+    InitPropertyVtableFirst(&g_unk_71727c0998, g_unk_7101aa9c38, g_unk_71726db788, "UseIntro", refl_TypeOf<fn_710000d228>(), fn_7100e165e8,
                  fn_7100e140c0);
     fn_7100e1413c();
     fn_710009ec00(&g_unk_71727c09c0, TUType<0x30>(g_unk_71727c0a58));

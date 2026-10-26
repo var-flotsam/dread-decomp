@@ -13,6 +13,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflConverter.h"
+#include "game/UnkTUProperty.h"
 #include "game/UnkTUSymbols.h"
 #include "types.h"
 
@@ -35,9 +36,9 @@ struct HeaderIds {
 __attribute__((always_inline)) inline void InitHeaderIds(HeaderIds* ids) {
     ids->field_0x0 = 6;
     new (&ids->field_0x8) UnkStrIdBase("binaries", true);
-    __cxa_atexit(fn_710000051c, &ids->field_0x8, g_unk_7101a19000);
+    fn_7100000250(fn_710000051c, &ids->field_0x8, g_unk_7101a19000);
     new (&ids->field_0x10) UnkStrIdBase("sources", true);
-    __cxa_atexit(fn_710000051c, &ids->field_0x10, g_unk_7101a19000);
+    fn_7100000250(fn_710000051c, &ids->field_0x10, g_unk_7101a19000);
 }
 
 // A string id built from a class name through fn_7100de8f78.
@@ -46,7 +47,7 @@ __attribute__((always_inline)) inline void InitClassId(UnkStrIdBase* id, const c
         CStrId n(name, true);
         new (id) CStrId(fn_7100de8f78(n));
     }
-    __cxa_atexit(fn_710000051c, id, g_unk_7101a19000);
+    fn_7100000250(fn_710000051c, id, g_unk_7101a19000);
 }
 
 // Storage of a file path id (its destructor is registered separately).
@@ -57,7 +58,7 @@ struct UnkFilePathStrIdBase {
 // A file path id built from a string.
 __attribute__((always_inline)) inline void InitPathId(UnkFilePathStrIdBase* id, const char* str) {
     new (id) base::global::CFilePathStrId(str, true);
-    __cxa_atexit(fn_7100000c7c, id, g_unk_7101a19000);
+    fn_7100000250(fn_7100000c7c, id, g_unk_7101a19000);
 }
 
 // A temporary string id (an element of an initializer list) whose release decrements and tests
@@ -83,7 +84,7 @@ void fn_710058a070(void* self, const UnkStrIdBase* ids, u32 count);
 // A string id built directly from a string.
 __attribute__((always_inline)) inline void InitId(UnkStrIdBase* id, const char* str) {
     new (id) UnkStrIdBase(str, true);
-    __cxa_atexit(fn_710000051c, id, g_unk_7101a19000);
+    fn_7100000250(fn_710000051c, id, g_unk_7101a19000);
 }
 
 // A reflected enum's type object (a global shared between units, so reached through the GOT),
@@ -109,85 +110,8 @@ __attribute__((always_inline)) inline UnkEnumType* TypeOf() {
     return reinterpret_cast<UnkEnumType*>(const_cast<base::reflection::CType*>(Getter()));
 }
 
-// A tunable object (a global reached through the GOT): its base constructor is out of line,
-// then its own vtable is stored and its destructor registered.
-struct UnkTunable {
-    void** vtable;
-};
-
-__attribute__((always_inline)) inline void InitTunable(UnkTunable* tunable, void (*ctor)(UnkTunable*),
-                                                       void** vtable, void (*dtor)(void*)) {
-    ctor(tunable);
-    tunable->vtable = vtable + 2;
-    __cxa_atexit(dtor, tunable, g_unk_7101a19000);
-}
-
-// A named property object (a global reached through the GOT) linked into a global list on
-// construction; once built, it is checked through its vtable (slots 2 and 3) and, if those
-// allow it, handed to the unit's own function. Layout and slot roles are placeholders; the list
-// head g_unk_71726db788 is game/UnkTUSymbols.h's (an UnkPropertyHead*: vtable and next).
-struct UnkProperty {
-    void** vtable;
-    UnkPropertyHead* next;
-    UnkFilePathStrIdBase name;  // storage of a string id
-    const void* type;
-    u32 field_0x20;
-
-    __attribute__((always_inline)) UnkProperty(void** vt, UnkPropertyHead*& head, const char* str, const void* t) {
-        next = head;
-        head = reinterpret_cast<UnkPropertyHead*>(this);
-        vtable = vt + 2;
-        new (&name) UnkStrIdBase(str, true);
-        type = t;
-        field_0x20 = 0;
-    }
-    bool vf_0x10() { return reinterpret_cast<bool (*)(UnkProperty*)>(vtable[2])(this); }
-    bool vf_0x18() { return reinterpret_cast<bool (*)(UnkProperty*)>(vtable[3])(this); }
-};
-
-void fn_71002ef5bc(void* member);  // the base's member constructor
-
-// A property of the same list whose base has an out-of-line member (fn_71002ef5bc) and whose
-// own part holds a name, a pointer to the global it controls and a word.
-struct UnkProperty2 {
-    void** vtable;
-    UnkPropertyHead* next;
-    u64 field_0x10[2];
-    u64 field_0x20;
-    UnkFilePathStrIdBase name;  // storage of a string id
-    void* value;
-    u32 field_0x38;
-
-    bool vf_0x10() { return reinterpret_cast<bool (*)(UnkProperty2*)>(vtable[2])(this); }
-    bool vf_0x18() { return reinterpret_cast<bool (*)(UnkProperty2*)>(vtable[3])(this); }
-};
-
-template <class Init>
-__attribute__((always_inline)) inline void InitProperty2(UnkProperty2* p, void** base_vtable, UnkPropertyHead*& head,
-                                                         void** vtable, const char* name, void* value, Init on_init,
-                                                         void (*dtor)(void*)) {
-    p->next = head;
-    head = reinterpret_cast<UnkPropertyHead*>(p);
-    p->vtable = base_vtable + 2;
-    fn_71002ef5bc(p->field_0x10);
-    p->vtable = vtable + 2;
-    new (&p->name) UnkStrIdBase(name, true);
-    p->value = value;
-    p->field_0x38 = 0;
-    if (p->vf_0x10() && !p->vf_0x18())
-        on_init(p);
-    __cxa_atexit(dtor, p, g_unk_7101a19000);
-}
-
-template <class Ctor>
-__attribute__((always_inline)) inline void InitProperty(UnkProperty* p, void** vtable, UnkPropertyHead*& head,
-                                                        const char* name, const void* type, Ctor on_init,
-                                                        void (*dtor)(void*)) {
-    new (p) UnkProperty(vtable, head, name, type);
-    if (p->vf_0x10() && !p->vf_0x18())
-        on_init(p);
-    __cxa_atexit(dtor, p, g_unk_7101a19000);
-}
+// Tunables and named properties (UnkTunable, UnkProperty, UnkPropertyEx<> and their initialisers)
+// are game/UnkTUProperty.h's, shared with include/game/UnkTUInit.h.
 
 }  // namespace unk_static_init
 
@@ -202,7 +126,7 @@ __attribute__((always_inline)) inline void InitEnum(UnkEnumType* type, const cha
         CStrId n(name, true);
         ctor(type, n, factory, nullptr);
     }
-    __cxa_atexit(fn_7100099468, type, g_unk_7101a19000);
+    fn_7100000250(fn_7100099468, type, g_unk_7101a19000);
     fn_710009ec00(list, type);
     void* from = type->field_0x8->field_0x30;
     *to_int = {from, TypeOf<fn_7100014768>()->field_0x8->field_0x30, to_int_fn, 0};
@@ -223,7 +147,7 @@ __attribute__((always_inline)) inline void InitFlagSet(UnkEnumType* type, const 
         CStrId n(name, true);
         ctor(type, n, nullptr);
     }
-    __cxa_atexit(dtor, type, g_unk_7101a19000);
+    fn_7100000250(dtor, type, g_unk_7101a19000);
     fn_710009ec00(list, type);
     void* from = type->field_0x8->field_0x30;
     *to_int = {from, int_type()->field_0x8->field_0x30, to_int_fn, 0};

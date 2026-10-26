@@ -450,7 +450,6 @@ extern char g_unk_71727c94b8;
 extern UnkPropertyEx<> g_unk_71727c94c0;
 extern void* g_unk_7101a45fe8[];
 extern void* g_unk_7101a45f90[];
-void fn_71002ef5bc(void* self);
 void fn_71004fa3b8(void* p);
 
 extern UnkTUHeader g_unk_7172755b78 __attribute__((visibility("hidden")));
@@ -506,7 +505,6 @@ extern UnkPropertyEx<0x160> g_unk_7172796390;
 extern UnkPropertyEx<0x160> g_unk_7172796518;
 extern void* g_unk_7101a889c8[];
 extern void* g_unk_7101aa52d0[];
-void fn_7100ae9cc8(void* self);
 void fn_7100ca9504(UnkPropertyEx<0x160>* p);
 void fn_7100ca3be4(void* p);
 extern CFilePathStrId g_unk_7172796d70[10];
