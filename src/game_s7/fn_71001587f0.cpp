@@ -4,6 +4,7 @@
 #include <nn/oe.h>
 #include <nn/vi.h>
 #include "game/UnkGraphicsState.h"
+#include "base/UnkDefaultAllocator.h"
 #include "base/UnkVector.h"
 #include "types.h"
 
@@ -129,7 +130,7 @@ extern s32 g_unk_7101a1d7f8;
 extern s32 g_unk_7101a1d7fc;
 extern s32 g_unk_7101a1d808;
 extern u8 g_unk_716e29c190[];
-extern u8 g_unk_716e29bca0[];
+extern nn::os::MutexType g_unk_716e29bca0;
 extern void* g_unk_716e29c180;
 extern UnkHandleSet g_unk_716e29bf30[2];
 extern UnkHandleSet g_unk_716e29c050[2];
@@ -164,7 +165,6 @@ void fn_7100153968(UnkPool* pool, u64 size, u64 align);
 void fn_71001587e0();
 void* fn_71000839a0(u64 size, u32 flags);
 void fn_71001b3dc0();
-void fn_71000668f8(void* object);
 void fn_7100161520();
 void fn_7100153f40();
 void fn_710015f100();
@@ -342,7 +342,7 @@ bool fn_71001587f0() {
         g_unk_716e29c188 = fn_71000839a0(0x180, 8);
 
     fn_71001b3dc0();
-    fn_71000668f8(g_unk_716e29bca0);
+    fn_71000668f8(&g_unk_716e29bca0);
     fn_7100161520();
     fn_7100153f40();
     fn_710015f100();

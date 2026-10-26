@@ -5,6 +5,7 @@
 #include <new>
 
 #include "UnkBufferString.h"
+#include "base/UnkNamedRegistry.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
@@ -27,13 +28,12 @@ struct alignas(Align) UnkBlock {
     __attribute__((always_inline)) UnkBlock(const UnkBlock& other) { __builtin_memcpy(bytes, other.bytes, N); }
 };
 
-struct UnkObject30;
-void fn_710007ea60(UnkObject30* self, const UnkObject30* other);
-
 struct UnkObject30 {
     u64 field_0x0[6];
 
-    __attribute__((always_inline)) UnkObject30(const UnkObject30& other) { fn_710007ea60(this, &other); }
+    __attribute__((always_inline)) UnkObject30(const UnkObject30& other) {
+        fn_710007ea60(reinterpret_cast<base::UnkNamedEntry*>(this), reinterpret_cast<const base::UnkNamedEntry*>(&other));
+    }
     __attribute__((always_inline)) UnkObject30(UnkObject30&& other) {
         fn_710007eab4(reinterpret_cast<base::global::CRntString*>(this),
                       reinterpret_cast<base::global::CRntString*>(&other));

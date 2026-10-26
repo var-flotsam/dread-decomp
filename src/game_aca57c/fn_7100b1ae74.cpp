@@ -4,6 +4,7 @@
 // PushBack, Insert, GrowAt and a shifting Erase).
 #include <new>
 
+#include "base/UnkNamedRegistry.h"
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
 #include "types.h"
@@ -11,7 +12,6 @@
 using base::global::CRntString;
 
 struct UnkString30;
-void fn_710007ea60(UnkString30* self, const UnkString30* other);
 void fn_710007e6c4(UnkString30* self);
 
 // base::global::CRntString's layout, with a move constructor.
@@ -22,7 +22,9 @@ struct UnkString30 {
     };
 
     __attribute__((always_inline)) UnkString30() { fn_710007e6c4(this); }
-    __attribute__((always_inline)) UnkString30(const UnkString30& other) { fn_710007ea60(this, &other); }
+    __attribute__((always_inline)) UnkString30(const UnkString30& other) {
+        fn_710007ea60(reinterpret_cast<base::UnkNamedEntry*>(&str), reinterpret_cast<const base::UnkNamedEntry*>(&other.str));
+    }
     __attribute__((always_inline)) UnkString30(UnkString30&& other) { fn_710007eab4(&str, &other.str); }
     __attribute__((always_inline)) ~UnkString30() { fn_710007ecd4(&str); }
 };

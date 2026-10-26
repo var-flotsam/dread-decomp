@@ -2,9 +2,8 @@
 // Looks up an entry of a hash table of reference-counted objects, keyed by the object at +0x8 of `key`
 // (its hash is the xor of two words at +0x30), and returns a counted reference to it. A missing entry is
 // created through the table's vtable slot at +0x48.
+#include "base/UnkCache.h"
 #include "types.h"
-
-extern void* g_unk_7101a19610[];
 
 struct UnkRefCounted {
     u8 pad_0x0[0x54];
@@ -33,13 +32,6 @@ struct UnkNode {
     UnkNode* field_0x10;
 };
 
-struct UnkVisitor {
-    void** vtable;
-    u64 field_0x8;
-    u32 field_0x10;
-    void* field_0x18;
-};
-
 struct UnkTable {
     virtual void vf_0x0();
     virtual void vf_0x8();
@@ -57,7 +49,7 @@ struct UnkTable {
 };
 
 UnkNode** fn_71002f7a2c(void* buckets, u32 index);
-void fn_7100017390(UnkRefCounted* object, UnkVisitor* visitor);
+void fn_7100017390(UnkRefCounted* object, base::UnkLoadRequest* visitor);
 
 UnkNode** fn_7100020cd0(void* buckets, u32 index);
 UnkNode** fn_7100021a28(void* buckets, u32 index);
@@ -73,7 +65,7 @@ UnkRef fn_7100020790(UnkTable* self, UnkKey* key, u32 a, void* b) {
             while (node) {
                 if (node->field_0x0 == key->field_0x8) {
                     found = node->field_0x8;
-                    UnkVisitor visitor = {g_unk_7101a19610 + 2, 0, a, b};
+                    base::UnkLoadRequest visitor = {g_unk_7101a19610 + 0x10, 0, a, b};
                     fn_7100017390(found, &visitor);
                     goto have;
                 }
@@ -101,7 +93,7 @@ UnkRef fn_71000214ec(UnkTable* self, UnkKey* key, u32 a, void* b) {
             while (node) {
                 if (node->field_0x0 == key->field_0x8) {
                     found = node->field_0x8;
-                    UnkVisitor visitor = {g_unk_7101a19610 + 2, 0, a, b};
+                    base::UnkLoadRequest visitor = {g_unk_7101a19610 + 0x10, 0, a, b};
                     fn_7100017390(found, &visitor);
                     goto have;
                 }
@@ -129,7 +121,7 @@ UnkRef fn_7100022240(UnkTable* self, UnkKey* key, u32 a, void* b) {
             while (node) {
                 if (node->field_0x0 == key->field_0x8) {
                     found = node->field_0x8;
-                    UnkVisitor visitor = {g_unk_7101a19610 + 2, 0, a, b};
+                    base::UnkLoadRequest visitor = {g_unk_7101a19610 + 0x10, 0, a, b};
                     fn_7100017390(found, &visitor);
                     goto have;
                 }
@@ -157,7 +149,7 @@ UnkRef fn_7101025ccc(UnkTable* self, UnkKey* key, u32 a, void* b) {
             while (node) {
                 if (node->field_0x0 == key->field_0x8) {
                     found = node->field_0x8;
-                    UnkVisitor visitor = {g_unk_7101a19610 + 2, 0, a, b};
+                    base::UnkLoadRequest visitor = {g_unk_7101a19610 + 0x10, 0, a, b};
                     fn_7100017390(found, &visitor);
                     goto have;
                 }

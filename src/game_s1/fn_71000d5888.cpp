@@ -6,24 +6,25 @@
 #include "base/UnkCollectionIter.h"
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
+#include "base/reflection/UnkReflCast.h"
 #include "types.h"
 
 using base::UnkVector;
 
-template <u32 Size, void (*Destroy)(void*)>
+// An element of `Size` bytes that is a T, destroyed out of line.
+template <u32 Size, class T, void (*Destroy)(T*)>
 struct UnkOutOfLineElement {
     u64 unk_0x0[Size / 8];
 
-    ~UnkOutOfLineElement() { Destroy(this); }
+    ~UnkOutOfLineElement() { Destroy(static_cast<T*>(static_cast<void*>(this))); }
 };
 
-void fn_71000a1c60(void* self);
 void fn_710026ead0(void* self);
 // The 0x30-byte elements are strings (base/global/CRntString.h).
 inline void DestroyString(void* self) { fn_710007ecd4(static_cast<base::global::CRntString*>(self)); }
-using UnkElement18 = UnkOutOfLineElement<0x18, fn_71000a1c60>;
-using UnkElement30 = UnkOutOfLineElement<0x30, DestroyString>;
-using UnkElement50 = UnkOutOfLineElement<0x50, fn_710026ead0>;
+using UnkElement18 = UnkOutOfLineElement<0x18, base::reflection::UnkReflValue, fn_71000a1c60>;
+using UnkElement30 = UnkOutOfLineElement<0x30, void, DestroyString>;
+using UnkElement50 = UnkOutOfLineElement<0x50, void, fn_710026ead0>;
 
 UnkVector<UnkElement18>& fn_71000d5888(UnkVector<UnkElement18>* self, UnkVector<UnkElement18>&& other) {
     return *self = static_cast<UnkVector<UnkElement18>&&>(other);

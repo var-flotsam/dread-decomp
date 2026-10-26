@@ -41,7 +41,7 @@ struct UnkTokenList_0x70 {
     u32 field_0x28;
     void* vtable2;
     void* field_0x38;
-    u8 field_0x40[0x28];
+    UnkBlockFreeList field_0x40;
     u32 field_0x68;
     u8 field_0x6c;
 };
@@ -61,7 +61,6 @@ struct UnkDisplayObject_71011d9508 {
     UnkChildLink_71011d9508* children;
 };
 
-void fn_710008377c(void* p);
 void fn_71009319dc(const char* str, const char* sep, UnkTokenList_0x70* out);
 void fn_7100931c34(UnkTokenList_0x70* list);
 extern char g_unk_7101a838c8[];
@@ -77,7 +76,7 @@ UnkDisplayObject_71011d9508* fn_71011d9508(UnkDisplayObject_71011d9508* self, co
     list.vtable = g_unk_7101a838c8 + 0x10;
     list.vtable2 = g_unk_7101a1a4c8 + 0x10;
     list.field_0x38 = nullptr;
-    fn_710008377c(list.field_0x40);
+    fn_710008377c(&list.field_0x40);
     list.field_0x68 = 0;
     list.field_0x6c = 0;
     fn_71009319dc(*path, ".", &list);

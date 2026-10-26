@@ -6,11 +6,8 @@
 // finishes in fn_7100225d2c.
 #include <new>
 
+#include "base/UnkDefaultAllocator.h"
 #include "types.h"
-
-struct UnkMutex_7100221938 {
-    u8 data[0x20];
-};
 
 struct UnkMovieBuffer_7100221938 {
     u8 data[0x40];
@@ -93,14 +90,11 @@ struct UnkPlayer_7100221938 {
     u8 unk_0xca8[0x18];
     UnkMovieBuffer_7100221938* field_0xcc0;
     u8 unk_0xcc8[0x10];
-    UnkMutex_7100221938 field_0xcd8;
+    nn::os::MutexType field_0xcd8;
     u8 unk_0xcf8[0x20];
     void* field_0xd18;
 };
 
-void fn_710006691c(UnkMutex_7100221938* mutex);  // nn::os::LockMutex
-void fn_7100066920(UnkMutex_7100221938* mutex);
-void fn_7100066918(UnkMutex_7100221938* mutex);
 void fn_710006686c(void* thread);
 extern "C" void free(void* p);
 u64 fn_7100225d2c(UnkPlayer_7100221938* self);
@@ -134,7 +128,6 @@ u64 fn_7100221938(UnkPlayer_7100221938* self) {
 }
 
 void fn_7100225b84();
-void fn_71000668f8(UnkMutex_7100221938* mutex);
 void fn_7100066744(void* thread, const char* name, void (*entry)(void*), u32 a, u32 b, void* arg);
 void fn_710022162c(void* arg);
 u64 fn_7100221698(UnkPlayer_7100221938* self, u32 a, u32 b, bool c);

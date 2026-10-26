@@ -18,7 +18,9 @@ void fn_7100426b54(UnkStruct_7100426b54* self, u64 id, bool flag) {
     void* target = self->owner->field_0x220;
     if (!target)
         return;
-    UnkMode_SpitSend mode(flag ? 2 : 0);
-    UnkMask_SpitSend mask = UnkAll_SpitSend();
+    base::reflection::UnkReflTypeIdArg mode;
+    mode.id = flag ? 2 : 0;
+    base::reflection::UnkReflTypeIdArg mask;
+    mask.id = UnkAll_SpitSend().value;
     fn_7101176690(target, id, 0x71b15e29dc542a11, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
 }

@@ -1,5 +1,6 @@
 // Resolves a GUI script name to a path, loads it once through the lazily created registry, and returns a handle to the loaded object.
 #include "base/global/CRntString.h"
+#include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 struct UnkTag_71011b69d8 {};
@@ -54,14 +55,12 @@ struct UnkRegistry_0x70 {
 };
 
 UnkScriptPath_0x148 fn_71011b66fc(UnkTag_71011b69d8 tag, const char* const* name);
-void* fn_71000839a0(u64 size, u32 flags);
 void fn_7100087388(UnkRegistry_0x70* r);
 void fn_710008d4c0(UnkStrPair_0x10* s, const UnkEntry_0x30* e);
 void fn_710008d8e8(UnkStrPair_0x10* s);
 bool fn_7100087850(UnkRegistry_0x70* r, const UnkStrPair_0x10* s);
 UnkRefSource_71011b69d8* fn_71011b6208(UnkTag_71011b69d8 tag, const UnkStrPair_0x10* s);
 extern UnkRegistry_0x70* g_unk_7101d4b5a0;
-extern char g_unk_7101a209e0[];
 
 UnkRefHandle_71011b69d8 fn_71011b69d8(UnkTag_71011b69d8 tag, const char* const* name) {
     UnkEntry_0x30 path;
@@ -101,7 +100,7 @@ UnkRefHandle_71011b69d8 fn_71011b69d8(UnkTag_71011b69d8 tag, const char* const* 
                 if (!h) {
                     char* n = static_cast<char*>(fn_71000839a0(0x18, 0x3e));
                     *reinterpret_cast<s32*>(n + 8) = 0;
-                    *reinterpret_cast<char**>(n) = g_unk_7101a209e0 + 0x10;
+                    *reinterpret_cast<void***>(n) = &g_unk_7101a209e0[2];
                     *reinterpret_cast<UnkRefSource_71011b69d8**>(n + 0x10) = src;
                     h = reinterpret_cast<UnkRefCounted_71011b69d8*>(n);
                     slot->Set(h);
