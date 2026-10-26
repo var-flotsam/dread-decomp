@@ -65,8 +65,31 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - Store order between two distinct globals is the original's per unit, steered by source order: keep both orders as named helpers rather than one: [TU helper fold](#session-log-newest-first).
 - A field's pointer type can be load-bearing (alias info): a hash kept in a `void*` word stays `void*`, cast at the store: [hub batch 4](#session-log-newest-first).
 - Before an agent round, `baseline.py save --all` (every hand-written source, 2 minutes) is the cheapest complete evidence: [hub batch 4](#session-log-newest-first).
+- A keyed array's lookup: `Find` returns `&values[i]` or `&values[count]`, the caller compares with `&values[count]`, ids compared as raw `u64`; a `u8` flag with `__builtin_expect(f & 1, 1)` gives `tbz`: [boot hubs, round 1](#session-log-newest-first).
+- Clang 9 ignores an `asm` label on a constructor or destructor: alias the C1/D1 symbols to `fn_<addr>` under `__clang_major__ <= 9`: [boot hubs, round 1](#session-log-newest-first).
 
 ## Session log (newest first)
+
+**Boot hubs, round 1 (2026-10-26, branch `claude/boot-hubs-1`).** Four sonnet agents, one per group
+of `tools/hubs.py --boot` hubs on disjoint files, each matching its functions and declaring them once
+(the `dread-match` loop, time-boxed): nine `O` and one `m`, 2.4 KB, every declaring file moved onto
+the new header and byte-identical (whole-tree baseline `bh1-full`). The string-pool holder's
+destructor `fn_7100080004` is `O` and its constructor `fn_710007fe68` (55 unmatched boot callers)
+`m` at 98.1% (one `mov` scheduled before a pre-indexed store; an `asm("" : "+r"(p))` barrier after
+the first store moved it from 20% to 98.1%); the `CBlackboard` section lookups `fn_7101047270`,
+`fn_71010472e0`, `fn_7101047208`; `base::global::CRntFile`'s seek `fn_710007c00c` (the name is the
+unit initialiser's class string); the navmesh cell's edge lookup and its const twin; the sound
+system's command-queue write; the game manager's id-map lookup. Levers: a keyed array's lookup
+matches when written as `Find` returning `&values[i]` or `&values[count]` and compared with
+`&values[count]` by the caller (two agents found it independently; an index loop, `it == end` or a
+`CStrId::data` compare let LLVM fold or hoist), with the ids compared as raw `u64` words; a flag
+tested as `u8` with `__builtin_expect(flag & 1, 1)` gives `tbz` where `bool` gives `cbz`. Clang 9
+ignores an `asm` label on a constructor or destructor (callers still name C1/D1), so the definition
+aliases the C1/D1 symbols to `fn_<addr>` under `__clang_major__ <= 9`, as
+`src/game_s7/fn_7100442780.cpp` does; the port's compiler honours the label. `tools/ghidra/decompile.py`
+fails from a worktree under `.claude/` (Ghidra rejects a path element starting with a dot): run it
+from the main checkout. About 70 minutes of wall clock for the slowest agent, 0.96 M agent tokens.
+Boot slice 1,881 to 1,889 `O`.
 
 **Hub batch 4 (2026-10-26, branch `claude/hubs-4`).** Two steps. First, mechanical: the four symbols
 `include/` itself declared in two or three headers got one canonical header each with
