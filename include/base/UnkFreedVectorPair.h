@@ -146,3 +146,4 @@ void fn_7100e52b58(UnkPairArray* self, u32 capacity);
 
 // Destroys the elements and frees both arrays.
 void fn_7100e493f4(UnkSecondPtrArray<UnkFreedVectorPair>* self);
+void fn_7100e52cf4(UnkPairArray* self, const UnkFreedVectorPair* value);

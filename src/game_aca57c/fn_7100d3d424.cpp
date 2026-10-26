@@ -429,7 +429,6 @@ UnkSecondPtrArray<UnkFreedVectorPair>* fn_7100e54838(UnkSecondPtrArray<UnkFreedV
 
 // Copy-assignment of an array of array pairs through its out-of-line Reserve (fn_7100e52b58) and
 // PushBack.
-void fn_7100e52cf4(UnkPairArray* self, const UnkFreedVectorPair* value);  // PushBack
 
 // The array's Reserve: moves the pairs into a new array.
 __attribute__((noinline)) void fn_7100e52b58(UnkPairArray* self, u32 capacity) {

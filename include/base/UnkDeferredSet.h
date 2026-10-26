@@ -35,3 +35,4 @@ struct UnkDeferredSet {
 static_assert(sizeof(UnkDeferredSet<void>) == 0x80, "UnkDeferredSet layout");
 
 }  // namespace base
+void fn_71004f3ea4(base::UnkDeferredSet<void>* set, void* item);

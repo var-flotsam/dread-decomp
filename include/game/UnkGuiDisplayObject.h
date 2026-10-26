@@ -68,3 +68,4 @@ void fn_71011cf2a4(UnkGuiDisplayObject* self, bool value);
 // Sets the flag at +0xb4: marks the object stale and, if its derived visibility changed, sends a
 // change event to the GUI root. Defined in src/game_hi/fn_71011cdce8.cpp.
 void fn_71011cdce8(UnkGuiDisplayObject* self, bool value);
+void fn_71011d8e90(UnkGuiDisplayObject* self);

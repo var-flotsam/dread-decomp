@@ -50,3 +50,4 @@ CEnumType::CEnumType(const base::global::CStrId& name, const void* arg, T*)
 }
 
 }  // namespace base::reflection
+extern base::reflection::CEnumType g_unk_71727952a8;

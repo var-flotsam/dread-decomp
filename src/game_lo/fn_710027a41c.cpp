@@ -41,7 +41,6 @@ struct UnkQuery_710027a41c {
     u16 result;
 };
 
-void fn_710007b430(CVector2D* out, const CVector3D* in);  // the x and y of a 3D vector
 bool fn_710027a5f0(UnkOwner_710027a41c* self, const CVector2D* point, u16 index);
 bool fn_71002af6fc(UnkRegion_710027a41c* region, u32 arg);
 

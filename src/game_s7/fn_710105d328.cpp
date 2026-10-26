@@ -6,6 +6,7 @@
 #include <utility>
 
 #include "base/UnkDestructors.h"
+#include "base/math/CVector.h"
 #include "types.h"
 
 using base::UnkStrIdMember;
@@ -85,7 +86,6 @@ struct UnkVec2 {
 struct UnkVec3 {
     f32 x, y, z;
 };
-void fn_710007b430(UnkVec2* out, const UnkVec3* p);
 
 struct UnkPointList {
     UnkVec3* points;
@@ -179,4 +179,3 @@ UnkSetStatus fn_710105d328(void* self, UnkValueHolder* holder, UnkValueArg* cons
     owner->dirty = true;
     return Done();
 }
-

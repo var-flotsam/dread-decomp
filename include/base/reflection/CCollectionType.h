@@ -78,3 +78,4 @@ CCollectionType::CCollectionType(const base::global::CStrId& name, T*, void*)
 }
 
 }  // namespace base::reflection
+extern base::reflection::CCollectionType g_unk_7101d5c998;

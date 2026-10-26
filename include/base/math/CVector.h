@@ -22,3 +22,4 @@ struct CVector3D {
 static_assert(sizeof(CVector3D) == 0xc, "CVector3D layout");
 
 }  // namespace base::math
+void fn_710007b430(base::math::CVector2D* out, const base::math::CVector3D* v);
