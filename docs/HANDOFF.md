@@ -428,7 +428,7 @@ lifts (1.04 MB) and **216 slice functions without a source** (196 KB, `boot_unli
 oracle covers a median 67% of an original's instructions, so the next lifter work is input
 coverage and the remaining gaps: stack arguments (23), flat-mode register order (14), `x8`
 results in tail position (14), other jump-table shapes (9), and the 104 functions the oracle
-rejects (`tools/port_lift.py --debug ADDR` shows the first difference). M1 step 4 (2026-10-26, #201, #203 and the loader PR): the runtime defines every `nn::os` and
+rejects (`tools/port_lift.py --debug ADDR` shows the first difference). M1 step 4 (2026-10-26, var-flotsam/dread-decomp#201, #203 and #206): the runtime defines every `nn::os` and
 `nn::oe` import the slice reaches (port_link's residue lists none); `dread_game` and the sweep
 build with `-fno-strict-aliasing`; the data loader (`port/runtime/include/dread_port_loader.h`,
 `port/README.md` "The data loader") maps the dump's main NSO at `0x7100000000` before the game's
