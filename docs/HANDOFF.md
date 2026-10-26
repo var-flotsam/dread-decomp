@@ -436,8 +436,9 @@ static initialisers and translates the 128,576 code pointers in `.data` through 
 `port_link.py` now writes (`image_tables.s`); `python tools/test_port_loader.py --version 2.1.0`
 runs it on the dump in 2 s (26 checks, no SDK). `nn::fs` is in too (all 22 imports; `rom` is the
 dump's `romfs/`, saves go to `$DREAD_SAVE`). So is the rest of the start-up `fn_71001325d0` (`nn::mem`,
-`nv`, `nn::account`, `nn::util`, `nn::time`, `nn::diag`). Next for M1, in order: `nn::hid` (12
-slice imports: the vibration objects `fn_7100070740`, `fn_71000733e4`), `nn::prepo` (12), `movie` (24); addresses for the 71 vtables nothing defines
+`nv`, `nn::account`, `nn::util`, `nn::time`, `nn::diag`). `nn::hid` too (one handheld pad set by
+`dread_port_set_npad_state`, no vibration devices). Next for M1, in order: `nn::prepo` (12 slice
+imports, the play report), `movie` (24); addresses for the 71 vtables nothing defines
 (they are the game's own, in `.data`); the final link at a fixed base within 2 GB of the image
 (about 214 MiB free below `0x7100000000`, 235 MiB above the `.bss`). That link needs the Itanium
 C++ ABI, so on this PC MinGW-w64 or WSL (ask the owner before installing either), not MSVC.

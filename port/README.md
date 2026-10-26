@@ -415,9 +415,9 @@ were the prologue's saves.
 
 ## The runtime (M1)
 
-Every `nn::os`, `nn::oe`, `nn::fs`, `nn::account`, `nn::mem`, `nn::time`, `nn::util`, `nn::diag`
-and `nv` import the boot slice reaches is defined in `runtime/` (30, 20, 8, 8, 4, 4, 4, 2 and 6
-imports, counting the GOT slots; `port_link.py` aliases each import's four-byte thunk to the
+Every `nn::os`, `nn::oe`, `nn::fs`, `nn::account`, `nn::mem`, `nn::time`, `nn::util`, `nn::diag`,
+`nv` and `nn::hid` import the boot slice reaches is defined in `runtime/` (30, 20, 8, 8, 4, 4, 4, 2,
+6 and 12 imports, counting the GOT slots; `port_link.py` aliases each import's four-byte thunk to the
 runtime's function by name), and so is every one a source calls from outside the slice. Each
 definition's `TODO(M<n>)` names its callers; `runtime/include/nn/os.h` and `oe.h` say where each
 layout comes from.
@@ -456,6 +456,14 @@ layout comes from.
   time into the game's 0xd0-byte `ClockSnapshot`; `nn::diag::detail::AbortImpl` (both forms)
   prints what it was given and aborts. Not yet: `nn::util::DecompressGzip` (needs an inflater;
   its one caller is outside the slice) and `ReferSymbol`.
+- **`nn::hid`** (all 34 functions; the parameter lists from the imports' mangled names, which
+  the dump's dynamic symbols carry): one handheld controller (id 0x20), always connected, whose
+  buttons and sticks the port's window sets with `dread_port_set_npad_state`; the input poll
+  `fn_710006deac` wants exactly one connected. No vibration devices, so the rumble graph is built
+  and connected but never reaches a motor. The vibration classes keep their layouts in
+  `include/base/input/UnkHidVibration.h` (the matching build uses them too; their members are
+  declared there, `nn/hid.h` completes the small types); their vptr points at a table of traps
+  that names the class and slot, since the port's nodes have no virtual functions of their own.
 - **Imports outside `nn::`** (`nv`, `movie`) resolve to the runtime by name like `nn::` ones, and
   an overloaded name (`AbortImpl`) goes to the overload whose parameters fit the caller's
   reference best (`port_link.py`'s `runtime_overload`, the alias ranking).

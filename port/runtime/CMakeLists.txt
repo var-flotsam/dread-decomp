@@ -11,6 +11,7 @@ add_library(dread_runtime STATIC
   src/account.cpp
   src/diag.cpp
   src/fs.cpp
+  src/hid.cpp
   src/image.cpp
   src/loader.cpp
   src/mem.cpp

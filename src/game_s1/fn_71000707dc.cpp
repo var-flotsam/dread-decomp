@@ -8,19 +8,6 @@
 #include "base/input/UnkHidVibration.h"
 #include "types.h"
 
-namespace nn::hid {
-
-// Only the parts used here; the SDK headers in lib/nnsdk don't declare these classes.
-class VibrationPlayer {
-public:
-    ~VibrationPlayer();
-
-    char* vtable;
-    u8 storage_0x8[0xe8];
-};
-
-}  // namespace nn::hid
-
 extern char unk_7101a1a3a8[];
 
 // A mutex finalized on destruction.
