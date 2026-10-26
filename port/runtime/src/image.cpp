@@ -39,11 +39,10 @@ void Log(const char* line) {
     std::abort();
 }
 
-// The whole file, from DREAD_ORIG (a directory laid out as orig/<version>/) or ./orig/2.1.0.
+// The whole file, from dread_port_orig_directory()/exefs/main.
 u8* ReadMain(u64* size) {
-    const char* orig = std::getenv("DREAD_ORIG");
     char path[4096];
-    std::snprintf(path, sizeof(path), "%s/exefs/main", orig && *orig ? orig : kDefaultOrig);
+    std::snprintf(path, sizeof(path), "%s/exefs/main", dread_port_orig_directory());
     std::FILE* f = std::fopen(path, "rb");
     if (!f)
         Fail("cannot open", path);
@@ -64,6 +63,11 @@ u8* ReadMain(u64* size) {
 }
 
 }  // namespace
+
+extern "C" const char* dread_port_orig_directory() {
+    const char* orig = std::getenv("DREAD_ORIG");
+    return orig && *orig ? orig : kDefaultOrig;
+}
 
 extern "C" void dread_port_map_game_image() {
     u64 size = 0;

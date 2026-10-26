@@ -8,6 +8,7 @@
 # tools/test_port_loader.py) and src/image.cpp (the host layer, which maps the dump before the
 # game's static initialisers when the game is linked in).
 add_library(dread_runtime STATIC
+  src/fs.cpp
   src/image.cpp
   src/loader.cpp
   src/missing.cpp

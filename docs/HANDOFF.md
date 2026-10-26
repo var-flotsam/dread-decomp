@@ -434,9 +434,10 @@ build with `-fno-strict-aliasing`; the data loader (`port/runtime/include/dread_
 `port/README.md` "The data loader") maps the dump's main NSO at `0x7100000000` before the game's
 static initialisers and translates the 128,576 code pointers in `.data` through the function table
 `port_link.py` now writes (`image_tables.s`); `python tools/test_port_loader.py --version 2.1.0`
-runs it on the dump in 2 s (26 checks, no SDK). Next for M1, in order: `nn::fs` stubs over the
-dump's RomFS (the start-up `fn_71001325d0` mounts it right after the allocators), then
-`nn::account`, `nn::time`, `nv`, `nn::hid`, `movie`; addresses for the 71 vtables nothing defines
+runs it on the dump in 2 s (26 checks, no SDK). `nn::fs` is in too (all 22 imports; `rom` is the
+dump's `romfs/`, saves go to `$DREAD_SAVE`). Next for M1, in order: the rest of the start-up
+`fn_71001325d0` (`nn::mem::StandardAllocator`, `nv`'s allocator and init, `nn::account`,
+`nn::util::GenerateUuid`, `nn::time`), then `nn::hid`, `movie`; addresses for the 71 vtables nothing defines
 (they are the game's own, in `.data`); the final link at a fixed base within 2 GB of the image
 (about 214 MiB free below `0x7100000000`, 235 MiB above the `.bss`). That link needs the Itanium
 C++ ABI, so on this PC MinGW-w64 or WSL (ask the owner before installing either), not MSVC.

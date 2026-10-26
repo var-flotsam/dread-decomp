@@ -413,10 +413,10 @@ post-indexed load reading the incremented base, a 64-bit read narrowed to the ty
 elsewhere in the function, callee-saved registers spilled into the locals and dropped as if they
 were the prologue's saves.
 
-## The runtime's `nn::os` and `nn::oe` (M1)
+## The runtime's `nn::os`, `nn::oe` and `nn::fs` (M1)
 
-Every `nn::os` and `nn::oe` import the boot slice reaches is defined in `runtime/` (30 and 20
-imports, counting the GOT slots; `port_link.py` aliases each import's four-byte thunk to the
+Every `nn::os`, `nn::oe` and `nn::fs` import the boot slice reaches is defined in `runtime/` (30,
+20 and 8 imports, counting the GOT slots; `port_link.py` aliases each import's four-byte thunk to the
 runtime's function by name), and so is every one a source calls from outside the slice. Each
 definition's `TODO(M<n>)` names its callers; `runtime/include/nn/os.h` and `oe.h` say where each
 layout comes from.
@@ -436,6 +436,16 @@ layout comes from.
   delivers one notification, the exit request (4), after `dread_port_request_exit()`; the
   notification loop `fn_71001327c0` sets the game's quit flag on it.
 - **`GetHostArgc`/`GetHostArgv`** return what `main` passed to `dread_port_set_host_arguments`.
+- **`nn::fs`** (all 22 imports): each mount is a host directory. `rom` is the dump's
+  `romfs/` under `dread_port_orig_directory()` (`$DREAD_ORIG`, default `orig/2.1.0`), read-only;
+  the save mount (`savedata`, from `fn_7100fc3510`) is `$DREAD_SAVE` (default `build/save`),
+  written in place, so `CommitSaveData` has nothing to do (a crash keeps a write the console
+  would roll back). Failures use the console's encoding, which the engine's file object
+  (`fn_7101235090`) decodes itself: module 2, description from bit 9 (1 path not found, 2
+  already exists, 7 target locked, 8 directory not empty; the port's own host failure is 6000).
+  Directory entries keep the game's 0x310-byte layout (`fn_710002e6e0`). Files are `std::FILE`
+  streams and directories `std::filesystem`; on this PC that is compile-checked only (no C++
+  runtime to run it with).
 
 ## The data loader (M1)
 
