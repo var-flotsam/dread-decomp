@@ -4,13 +4,16 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "base/reflection/UnkReflTypeGlobals.h"
 #include "game/UnkTUInit.h"
+
+// The shared helpers see a reflected type through the placeholder layout (UnkReflType).
+static inline UnkReflType* AsUnk(base::reflection::CType* t) { return reinterpret_cast<UnkReflType*>(t); }
 
 extern UnkTUHeader g_unk_71726a1cc0 __attribute__((visibility("hidden")));
 extern char g_unk_71726a03a0;
 extern char g_unk_71726a03a1;
 extern UnkReflType g_unk_71726a03a8;
-extern UnkReflType g_unk_7101d5e2e0;
 extern char g_unk_71726a04e0;
 extern char g_unk_71726a04e1;
 extern UnkReflType g_unk_71726a04e8;
@@ -80,7 +83,7 @@ void fn_7100261530() {
               "CStrId, CActorSublayer>>::TKeyElementIterator::value_type",
               fn_71002578ac,
               fn_7100257528,
-              &g_unk_7101d5e2e0);
+              AsUnk(&g_unk_7101d5e2e0));
     fn_710009ec00(&g_unk_71726a04e0, &g_unk_71726a03a8);
     fn_710009ec00(&g_unk_71726a04e1, fn_7100257a30());
     InitClass(&g_unk_71726a04e8,
@@ -88,7 +91,7 @@ void fn_7100261530() {
               "CStrId, CActorSublayer>>::TKeyElementConstIterator::value_type",
               fn_7100257e90,
               fn_7100257b0c,
-              &g_unk_7101d5e2e0);
+              AsUnk(&g_unk_7101d5e2e0));
     fn_710009ec00(&g_unk_71726a0620, &g_unk_71726a04e8);
     fn_710009ec00(&g_unk_71726a0621, fn_7100258014());
     InitVector(&g_unk_71726a0628,
@@ -108,7 +111,7 @@ void fn_7100261530() {
               "Count, EActorLayer>>::TKeyElementIterator::value_type",
               fn_7100259fa4,
               fn_7100259c20,
-              &g_unk_7101d5e2e0);
+              AsUnk(&g_unk_7101d5e2e0));
     fn_710009ec00(&g_unk_71726a0a18, &g_unk_71726a08e0);
     fn_710009ec00(&g_unk_71726a0a19, fn_710025a128());
     InitClass(&g_unk_71726a0a20,
@@ -116,7 +119,7 @@ void fn_7100261530() {
               "Count, EActorLayer>>::TKeyElementConstIterator::value_type",
               fn_710025a588,
               fn_710025a204,
-              &g_unk_7101d5e2e0);
+              AsUnk(&g_unk_7101d5e2e0));
     fn_710009ec00(&g_unk_71726a0b58, &g_unk_71726a0a20);
     fn_710009ec00(&g_unk_71726a0b59, fn_710025a70c());
     InitVector(&g_unk_71726a0b60,

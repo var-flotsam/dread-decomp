@@ -69,6 +69,10 @@ void fn_71011cf2a4(UnkGuiDisplayObject* self, bool value);
 // change event to the GUI root. Defined in src/game_hi/fn_71011cdce8.cpp.
 void fn_71011cdce8(UnkGuiDisplayObject* self, bool value);
 
+// Sets a 32-bit value on the object (the menus' setup passes 2 before adding it to its menu). Not
+// decompiled yet.
+void fn_71011cde44(UnkGuiDisplayObject* self, s32 value);
+
 // The destructor of the display-object container (the unit named after GUI::CDisplayObjectContainer).
 // Not decompiled yet.
 void fn_71011d8e90(UnkGuiDisplayObject* self);
@@ -76,4 +80,6 @@ void fn_71011d8e90(UnkGuiDisplayObject* self);
 // Adds `child` to the container's list at +0x1c8; the first time, vf_0xa0 runs and +0x184 is set,
 // as for the flags above. Returns whether it was added. Not decompiled yet.
 bool fn_71011d968c(UnkGuiDisplayObject* container, UnkGuiDisplayObject* child);
+
+// The child of the container whose name hash is `id`, from the list at +0x1d0, or null. Not decompiled yet.
 UnkGuiDisplayObject* fn_71011d98ec(UnkGuiDisplayObject* container, u64 id);

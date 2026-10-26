@@ -1,4 +1,5 @@
 // Static initialiser of the unit of the CBreakableTileGroupComponent::STileInfo, CBreakableTileGroupComponent::SMinimapTileState, base::reflection::CollectionTypeMapper<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>>::TKeyElementConstIterator::value_type, base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>, base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TMinimapTileStates>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TMinimapTileStates>::TKeyElementConstIterator::value_type, CBreakableTileGroupComponent::TMinimapTileStates, base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TActorTileStatesMap>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TActorTileStatesMap>::TKeyElementConstIterator::value_type, CBreakableTileGroupComponent::TActorTileStatesMap reflected types.
+#include "base/reflection/UnkReflTypeGlobals.h"
 #include "UnkStaticInit.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflStatics.h"
@@ -36,16 +37,15 @@ extern char g_unk_7172711849[];
 UnkEnumType* fn_7100755378();
 extern char g_unk_717271184a[];
 UnkEnumType* fn_7100755454();
-extern char g_unk_7101d5e2e0[];
 void fn_7100755530();
 extern UnkEnumType g_unk_7172711850;
-void fn_71007558b4(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
+void fn_71007558b4(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 extern char g_unk_7172711988[];
 extern char g_unk_7172711989[];
 UnkEnumType* fn_7100755a38();
 void fn_7100755b14();
 extern UnkEnumType g_unk_7172711990;
-void fn_7100755e98(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
+void fn_7100755e98(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 extern char g_unk_7172711ac8[];
 extern char g_unk_7172711ac9[];
 UnkEnumType* fn_710075601c();
@@ -60,13 +60,13 @@ extern char g_unk_7172711c43[];
 UnkEnumType* fn_7100756494();
 void fn_7100756570();
 extern UnkEnumType g_unk_7172711c48;
-void fn_71007568f4(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
+void fn_71007568f4(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 extern char g_unk_7172711d80[];
 extern char g_unk_7172711d81[];
 UnkEnumType* fn_7100756a78();
 void fn_7100756b54();
 extern UnkEnumType g_unk_7172711d88;
-void fn_7100756ed8(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
+void fn_7100756ed8(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 extern char g_unk_7172711ec0[];
 extern char g_unk_7172711ec1[];
 UnkEnumType* fn_710075705c();
@@ -79,13 +79,13 @@ extern char g_unk_717271203a[];
 UnkEnumType* fn_7100757408();
 void fn_71007574e4();
 extern UnkEnumType g_unk_7172712040;
-void fn_7100757868(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
+void fn_7100757868(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 extern char g_unk_7172712178[];
 extern char g_unk_7172712179[];
 UnkEnumType* fn_71007579ec();
 void fn_7100757ac8();
 extern UnkEnumType g_unk_7172712180;
-void fn_7100757e4c(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
+void fn_7100757e4c(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 extern char g_unk_71727122b8[];
 extern char g_unk_71727122b9[];
 UnkEnumType* fn_7100757fd0();
@@ -119,14 +119,14 @@ void fn_71007618d0() {
     fn_710009ec00(g_unk_717271184a, fn_7100755454());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>>::TKeyElementIterator::value_type", true);
-        fn_71007558b4(&g_unk_7172711850, n, g_unk_7101d5e2e0, nullptr, fn_7100755530, nullptr);
+        fn_71007558b4(&g_unk_7172711850, n, &g_unk_7101d5e2e0, nullptr, fn_7100755530, nullptr);
     }
     __cxa_atexit(fn_7100096604, &g_unk_7172711850, g_unk_7101a19000);
     fn_710009ec00(g_unk_7172711988, &g_unk_7172711850);
     fn_710009ec00(g_unk_7172711989, fn_7100755a38());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>>::TKeyElementConstIterator::value_type", true);
-        fn_7100755e98(&g_unk_7172711990, n, g_unk_7101d5e2e0, nullptr, fn_7100755b14, nullptr);
+        fn_7100755e98(&g_unk_7172711990, n, &g_unk_7101d5e2e0, nullptr, fn_7100755b14, nullptr);
     }
     __cxa_atexit(fn_7100096604, &g_unk_7172711990, g_unk_7101a19000);
     fn_710009ec00(g_unk_7172711ac8, &g_unk_7172711990);
@@ -142,14 +142,14 @@ void fn_71007618d0() {
     fn_710009ec00(g_unk_7172711c43, fn_7100756494());
     {
         CStrId n("base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TMinimapTileStates>::TKeyElementIterator::value_type", true);
-        fn_71007568f4(&g_unk_7172711c48, n, g_unk_7101d5e2e0, nullptr, fn_7100756570, nullptr);
+        fn_71007568f4(&g_unk_7172711c48, n, &g_unk_7101d5e2e0, nullptr, fn_7100756570, nullptr);
     }
     __cxa_atexit(fn_7100096604, &g_unk_7172711c48, g_unk_7101a19000);
     fn_710009ec00(g_unk_7172711d80, &g_unk_7172711c48);
     fn_710009ec00(g_unk_7172711d81, fn_7100756a78());
     {
         CStrId n("base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TMinimapTileStates>::TKeyElementConstIterator::value_type", true);
-        fn_7100756ed8(&g_unk_7172711d88, n, g_unk_7101d5e2e0, nullptr, fn_7100756b54, nullptr);
+        fn_7100756ed8(&g_unk_7172711d88, n, &g_unk_7101d5e2e0, nullptr, fn_7100756b54, nullptr);
     }
     __cxa_atexit(fn_7100096604, &g_unk_7172711d88, g_unk_7101a19000);
     fn_710009ec00(g_unk_7172711ec0, &g_unk_7172711d88);
@@ -164,14 +164,14 @@ void fn_71007618d0() {
     fn_710009ec00(g_unk_717271203a, fn_7100757408());
     {
         CStrId n("base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TActorTileStatesMap>::TKeyElementIterator::value_type", true);
-        fn_7100757868(&g_unk_7172712040, n, g_unk_7101d5e2e0, nullptr, fn_71007574e4, nullptr);
+        fn_7100757868(&g_unk_7172712040, n, &g_unk_7101d5e2e0, nullptr, fn_71007574e4, nullptr);
     }
     __cxa_atexit(fn_7100096604, &g_unk_7172712040, g_unk_7101a19000);
     fn_710009ec00(g_unk_7172712178, &g_unk_7172712040);
     fn_710009ec00(g_unk_7172712179, fn_71007579ec());
     {
         CStrId n("base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TActorTileStatesMap>::TKeyElementConstIterator::value_type", true);
-        fn_7100757e4c(&g_unk_7172712180, n, g_unk_7101d5e2e0, nullptr, fn_7100757ac8, nullptr);
+        fn_7100757e4c(&g_unk_7172712180, n, &g_unk_7101d5e2e0, nullptr, fn_7100757ac8, nullptr);
     }
     __cxa_atexit(fn_7100096604, &g_unk_7172712180, g_unk_7101a19000);
     fn_710009ec00(g_unk_71727122b8, &g_unk_7172712180);

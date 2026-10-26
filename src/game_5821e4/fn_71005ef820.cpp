@@ -1,4 +1,5 @@
 // Static initialiser of the unit of the ESpinningNailsState, ESpinningNailsSpeed, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>::TKeyElementConstIterator::value_type, base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>, base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>>::TKeyElementConstIterator::value_type, base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>> reflected types.
+#include "base/reflection/UnkReflTypeGlobals.h"
 #include "UnkStaticInit.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflTypeDtors.h"
@@ -45,16 +46,15 @@ extern char g_unk_71726f0e03[];
 UnkEnumType* fn_71005e88d4();
 extern char g_unk_71726f0e04[];
 UnkEnumType* fn_71005e89b0();
-extern char g_unk_7101d5e2e0[];
 void fn_71005e8a8c();
 extern UnkEnumType g_unk_71726f0e08;
-void fn_71005e8e10(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
+void fn_71005e8e10(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 extern char g_unk_71726f0f40[];
 extern char g_unk_71726f0f41[];
 UnkEnumType* fn_71005e8f94();
 void fn_71005e9070();
 extern UnkEnumType g_unk_71726f0f48;
-void fn_71005e93f4(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
+void fn_71005e93f4(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 extern char g_unk_71726f1080[];
 extern char g_unk_71726f1081[];
 UnkEnumType* fn_71005e9578();
@@ -67,13 +67,13 @@ extern char g_unk_71726f11fa[];
 UnkEnumType* fn_71005e9910();
 void fn_71005e99ec();
 extern UnkEnumType g_unk_71726f1200;
-void fn_71005e9d70(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
+void fn_71005e9d70(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 extern char g_unk_71726f1338[];
 extern char g_unk_71726f1339[];
 UnkEnumType* fn_71005e9ef4();
 void fn_71005e9fd0();
 extern UnkEnumType g_unk_71726f1340;
-void fn_71005ea354(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
+void fn_71005ea354(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 extern char g_unk_71726f1478[];
 extern char g_unk_71726f1479[];
 UnkEnumType* fn_71005ea4d8();
@@ -101,14 +101,14 @@ void fn_71005ef820() {
     fn_710009ec00(g_unk_71726f0e04, fn_71005e89b0());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>::TKeyElementIterator::value_type", true);
-        fn_71005e8e10(&g_unk_71726f0e08, n, g_unk_7101d5e2e0, nullptr, fn_71005e8a8c, nullptr);
+        fn_71005e8e10(&g_unk_71726f0e08, n, &g_unk_7101d5e2e0, nullptr, fn_71005e8a8c, nullptr);
     }
     __cxa_atexit(fn_7100096604, &g_unk_71726f0e08, g_unk_7101a19000);
     fn_710009ec00(g_unk_71726f0f40, &g_unk_71726f0e08);
     fn_710009ec00(g_unk_71726f0f41, fn_71005e8f94());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>::TKeyElementConstIterator::value_type", true);
-        fn_71005e93f4(&g_unk_71726f0f48, n, g_unk_7101d5e2e0, nullptr, fn_71005e9070, nullptr);
+        fn_71005e93f4(&g_unk_71726f0f48, n, &g_unk_7101d5e2e0, nullptr, fn_71005e9070, nullptr);
     }
     __cxa_atexit(fn_7100096604, &g_unk_71726f0f48, g_unk_7101a19000);
     fn_710009ec00(g_unk_71726f1080, &g_unk_71726f0f48);
@@ -123,14 +123,14 @@ void fn_71005ef820() {
     fn_710009ec00(g_unk_71726f11fa, fn_71005e9910());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>>::TKeyElementIterator::value_type", true);
-        fn_71005e9d70(&g_unk_71726f1200, n, g_unk_7101d5e2e0, nullptr, fn_71005e99ec, nullptr);
+        fn_71005e9d70(&g_unk_71726f1200, n, &g_unk_7101d5e2e0, nullptr, fn_71005e99ec, nullptr);
     }
     __cxa_atexit(fn_7100096604, &g_unk_71726f1200, g_unk_7101a19000);
     fn_710009ec00(g_unk_71726f1338, &g_unk_71726f1200);
     fn_710009ec00(g_unk_71726f1339, fn_71005e9ef4());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>>::TKeyElementConstIterator::value_type", true);
-        fn_71005ea354(&g_unk_71726f1340, n, g_unk_7101d5e2e0, nullptr, fn_71005e9fd0, nullptr);
+        fn_71005ea354(&g_unk_71726f1340, n, &g_unk_7101d5e2e0, nullptr, fn_71005e9fd0, nullptr);
     }
     __cxa_atexit(fn_7100096604, &g_unk_71726f1340, g_unk_7101a19000);
     fn_710009ec00(g_unk_71726f1478, &g_unk_71726f1340);

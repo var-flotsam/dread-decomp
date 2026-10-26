@@ -20,8 +20,8 @@ struct UnkGuiFocusUser318 {
 void fn_7100b021fc(UnkGuiFocusUser318* self) {
     if (self->field_0x181)
         return;
-    UnkGuiFocus* focus = g_unk_717271e8f8->field_0x230;
-    UnkWeakTarget* target = focus ? focus->field_0x10 : nullptr;
+    UnkWeakHandle* focus = g_unk_717271e8f8->field_0x230;
+    UnkWeakTarget* target = focus ? focus->target : nullptr;
     UnkWeakHandle* handle = target ? GetWeakHandle(target) : nullptr;
     AssignRef(&self->field_0x318, handle);
     if (handle && handle->target)
@@ -38,8 +38,8 @@ struct UnkGuiFocusUser238 {
 };
 
 void fn_7100b619b4(UnkGuiFocusUser238* self) {
-    if (UnkGuiFocus* focus = g_unk_717271e8f8->field_0x230) {
-        if (UnkWeakTarget* target = focus->field_0x10) {
+    if (UnkWeakHandle* focus = g_unk_717271e8f8->field_0x230) {
+        if (UnkWeakTarget* target = focus->target) {
             AssignRef(&self->field_0x238, GetWeakHandle(target));
             UnkWeakHandle* handle = self->field_0x238;
             fn_71011cf2a4(reinterpret_cast<UnkGuiDisplayObject*>(handle ? handle->target : nullptr), false);

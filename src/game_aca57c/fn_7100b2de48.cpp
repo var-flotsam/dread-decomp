@@ -157,16 +157,12 @@ extern UnkStateKey g_unk_71729f0178;
 extern UnkStateKey g_unk_71729f0180;
 void fn_7100b2d0a4(UnkStateOwner* self);
 void fn_7100fc9d78(UnkStateSink* sink, UnkStateKey* key, void* state);
-struct UnkGuiKey;
 extern UnkGuiKey g_unk_7172762fd8 __attribute__((visibility("hidden")));
-void fn_710002fd10(void* list, UnkGuiKey* key);
-void fn_710002ffb4(void* list, UnkGuiKey* key);
 void fn_7100e9b464(void* target, bool value);
 void fn_7100e9b1f8(void* target, bool value);
 void fn_7100066a50(void* text, const char32_t* value);
 void fn_7100066e44(void* text);
 void fn_7100b2cb44(UnkStateOwner* self);
-UnkComposition* fn_71011d98ec(UnkComposition* composition, u64 id);
 void fn_71011ec468(UnkComposition* label, void* text, bool value);
 void fn_7100af1bfc(UnkComposition* composition);
 UnkGuiChild* fn_71011d94d4(UnkComposition* composition, const CStrId& name);
@@ -341,10 +337,10 @@ void fn_7100b2d0a4(UnkStateOwner* self) {
         }
         self->current->SendEvent("OnHide", false);
     }
-    fn_710002ffb4(g_unk_717271e8f8->field_0xca8, &g_unk_7172762fd8);
+    fn_710002ffb4(&g_unk_717271e8f8->field_0xca8, &g_unk_7172762fd8);
     UnkGuiChild* content = fn_71011d94d4(self->current, CStrId("Content", true));
     if (content && content->field_0x30 && (*content->field_0x30)->count >= 2 && !self->watch) {
-        fn_710002fd10(g_unk_717271e8f8->field_0xca8, &g_unk_7172762fd8);
+        fn_710002fd10(&g_unk_717271e8f8->field_0xca8, &g_unk_7172762fd8);
         self->field_0x278 = true;
         UnkWatched* watched = content->Watched();
         if (self->watch) {
@@ -388,11 +384,16 @@ void fn_7100b2dad0(UnkStateOwner* self) {
         fn_7100fc9d78(g_unk_717275c380, &g_unk_71729f0178, self);
 }
 
+// A composition is a display object (game/UnkGuiDisplayObject.h); this file keeps its own view of it.
+static inline UnkComposition* FindChildById(UnkComposition* composition, u64 id) {
+    return reinterpret_cast<UnkComposition*>(fn_71011d98ec(reinterpret_cast<UnkGuiDisplayObject*>(composition), id));
+}
+
 // A child of a composition found by name, if it is a label.
 static inline UnkComposition* FindLabel(UnkComposition* composition, const char* name) {
     if (!composition)
         return nullptr;
-    UnkComposition* child = fn_71011d98ec(composition, fn_7100001570(name, __builtin_strlen(name)));
+    UnkComposition* child = FindChildById(composition, fn_7100001570(name, __builtin_strlen(name)));
     if (!child)
         return nullptr;
     return fn_710009d50c(child->Type(), fn_71011e8dfc()) ? child : nullptr;
@@ -824,8 +825,8 @@ void fn_7100b2eaac(UnkStateOwner* self, s32 state, bool a, bool b);
 void fn_7100b2e978(UnkStateOwner* self, const UnkInputEvent* event) {
     if (event->handled)
         return;
-    UnkGuiFocus* popup_ref = g_unk_717271e8f8->field_0x230;
-    UnkObject* popup = popup_ref ? reinterpret_cast<UnkObject*>(popup_ref->field_0x10) : nullptr;
+    UnkWeakHandle* popup_ref = g_unk_717271e8f8->field_0x230;
+    UnkObject* popup = popup_ref ? reinterpret_cast<UnkObject*>(popup_ref->target) : nullptr;
     if (popup && fn_710009d50c(popup->Type(), fn_7100b5e368()))
         return;
     switch (self->field_0x2e0) {
@@ -900,7 +901,7 @@ void fn_7100b2eaac(UnkStateOwner* self, s32 state, bool from_game, bool now) {
         return;
     (self->*fn_7100b2f03c(&self->field_0x380, next)->enter)();
     self->current->SendEvent("Background_Highlight", false);
-    fn_710002ffb4(g_unk_717271e8f8->field_0xca8, &g_unk_7172762fd8);
+    fn_710002ffb4(&g_unk_717271e8f8->field_0xca8, &g_unk_7172762fd8);
     if (self->field_0x2e0 == 7)
         return;
     if (!self->current->field_0xb4) {
@@ -911,7 +912,7 @@ void fn_7100b2eaac(UnkStateOwner* self, s32 state, bool from_game, bool now) {
         fn_71011cdce8(reinterpret_cast<UnkGuiDisplayObject*>(self->current), true);
         UnkGuiChild* content = fn_71011d94d4(self->current, CStrId("Content", true));
         if (content && content->field_0x30 && (*content->field_0x30)->count >= 2 && !self->field_0x260) {
-            fn_710002fd10(g_unk_717271e8f8->field_0xca8, &g_unk_7172762fd8);
+            fn_710002fd10(&g_unk_717271e8f8->field_0xca8, &g_unk_7172762fd8);
             UnkWatched* watched = content->Watched();
             if (self->field_0x260) {
                 fn_71004f3ea4(self->field_0x260, &self->field_0x260);
@@ -949,12 +950,12 @@ __attribute__((always_inline)) static inline void SwitchPage(UnkStateOwner* self
         return;
     switch (self->field_0x2e0) {
     case 7:
-        fn_710002fd10(g_unk_717271e8f8->field_0xca8, &g_unk_7172762fe0);
+        fn_710002fd10(&g_unk_717271e8f8->field_0xca8, &g_unk_7172762fe0);
         self->field_0x2d8 = 0.12f;
         fn_7100b2eaac(self, Next, false, true);
         return;
     case Prev:
-        fn_710002fd10(g_unk_717271e8f8->field_0xca8, &g_unk_7172762fe0);
+        fn_710002fd10(&g_unk_717271e8f8->field_0xca8, &g_unk_7172762fe0);
         self->field_0x2d8 = 0.12f;
         fn_7100b2eaac(self, 7, false, true);
         return;

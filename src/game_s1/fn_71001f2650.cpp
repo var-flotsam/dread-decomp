@@ -3,7 +3,11 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "base/reflection/UnkReflTypeGlobals.h"
 #include "game/UnkTUInit.h"
+
+// The shared helpers see a reflected type through the placeholder layout (UnkReflType).
+static inline UnkReflType* AsUnk(base::reflection::CType* t) { return reinterpret_cast<UnkReflType*>(t); }
 
 extern UnkTUHeader g_unk_716e5977e8 __attribute__((visibility("hidden")));
 extern UnkReflType g_unk_716e596a30;
@@ -12,7 +16,6 @@ extern char g_unk_716e596b69;
 extern char g_unk_716e596b6a;
 extern char g_unk_716e596b6b;
 extern UnkReflType g_unk_716e596b70;
-extern UnkReflType g_unk_7101d5e2e0;
 extern char g_unk_716e596ca8;
 extern char g_unk_716e596ca9;
 extern UnkReflType g_unk_716e596cb0;
@@ -49,7 +52,7 @@ void fn_71001f2650() {
               "scene::sceneItems::CSceneGroup*>>::TKeyElementIterator::value_type",
               fn_71001ed020,
               fn_71001ecc9c,
-              &g_unk_7101d5e2e0);
+              AsUnk(&g_unk_7101d5e2e0));
     fn_710009ec00(&g_unk_716e596ca8, &g_unk_716e596b70);
     fn_710009ec00(&g_unk_716e596ca9, fn_71001ed280());
     InitClass(&g_unk_716e596cb0,
@@ -57,7 +60,7 @@ void fn_71001f2650() {
               "scene::sceneItems::CSceneGroup*>>::TKeyElementConstIterator::value_type",
               fn_71001ed6e0,
               fn_71001ed35c,
-              &g_unk_7101d5e2e0);
+              AsUnk(&g_unk_7101d5e2e0));
     fn_710009ec00(&g_unk_716e596de8, &g_unk_716e596cb0);
     fn_710009ec00(&g_unk_716e596de9, fn_71001ed864());
     InitVector(&g_unk_716e596df0,

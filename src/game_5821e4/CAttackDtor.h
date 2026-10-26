@@ -4,6 +4,7 @@
 // vtables are the original's, reached through the GOT).
 
 #include "base/global/CStrId.h"
+#include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 struct UnkAttackOwner {
@@ -11,10 +12,9 @@ struct UnkAttackOwner {
     virtual void vf_0x8();
     virtual void Delete();
     s32 ref_count;
-    void* field_0x10;
+    UnkWeakTarget* field_0x10;  // the object the listeners are registered with
 };
 
-void fn_710117b3f0(void* owner, void* listener);  // removes a listener from its owner
 void fn_71003606c0(void* attack);                 // CAttack's destructor
 
 extern void* g_unk_7101a22d48[];  // the listener's vtable
@@ -27,7 +27,9 @@ struct UnkAttackListenerRaw {
     u64 field_0x10;
     UnkAttackOwner* owner;
 
-    void Destroy(void** vt = g_unk_7101a22d48, void (*unregister)(void*, void*) = fn_710117b3f0) {
+    // `unregister` is fn_710117b3f0 (game_s2/UnkWeakHandle.h) unless the class has its own.
+    template <class Unregister = void (*)(UnkWeakTarget*, void*)>
+    void Destroy(void** vt = g_unk_7101a22d48, Unregister unregister = fn_710117b3f0) {
         vtable = vt + 2;
         if (UnkAttackOwner* o = owner) {
             if (o->field_0x10)

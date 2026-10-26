@@ -5,15 +5,13 @@
 #include <new>
 
 #include "base/UnkVector.h"
+#include "game/UnkBossAIComponent.h"
 #include "types.h"
 
 typedef void** __attribute__((may_alias)) UnkVtable;
 
-struct UnkNode {
-    UnkVtable vtable;
-};
+struct UnkNode : UnkBossAIComponent {};
 
-void fn_710041a198(UnkNode*);
 void fn_71004a4ffc(void*);
 void fn_71004ae6f4(void*);
 void fn_71004b42b8(void*);

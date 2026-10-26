@@ -6,13 +6,14 @@
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkSwitchObject.h"
 #include "game_s2/UnkChozoCommanderAttack.h"
+#include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 struct UnkCounted {
     void** vtable;
     u32 count;
     u32 pad_0xc;
-    void* field_0x10;
+    UnkWeakTarget* field_0x10;
     void vf_0x10() { reinterpret_cast<void (*)(UnkCounted*)>(vtable[2])(this); }
 };
 
@@ -37,7 +38,6 @@ struct UnkSelf {
 extern __attribute__((visibility("hidden"))) base::global::CStrId g_unk_71726c8da8;
 void fn_710042bb40(UnkSelf* self);
 void** fn_7100443d5c(void* list, u32 index);
-void fn_710117b3f0(void* object, void* list);
 
 void fn_71004468a8(UnkSelf* self) {
     fn_7100426b54(reinterpret_cast<UnkChozoCommanderAttack*>(self), 0xd20a8883f919f07eull, false);

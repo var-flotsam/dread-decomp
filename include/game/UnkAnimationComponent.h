@@ -70,7 +70,8 @@ struct UnkTrackSet {
 static_assert(__builtin_offsetof(UnkTrackSet, field_0xc8) == 0xc8, "UnkTrackSet placeholder layout");
 static_assert(__builtin_offsetof(UnkTrackSet, field_0xf0) == 0xf0, "UnkTrackSet placeholder layout");
 
-// What the track queries (fn_710117b08c) are given; its layout is unknown.
+// What the track queries (fn_710117b08c) are given; the callers each complete it with their own view of the result
+// (first word the class, +0x8 the result record, +0x10 a float).
 struct UnkTrackQuery;
 
 struct UnkAnimationComponent {
@@ -94,5 +95,13 @@ bool fn_710117b348(UnkAnimationComponent* self, const base::reflection::CClass* 
 // such entry, track or action (the callers read it as how far along that track is, with the one
 // hash 0xf4061ff25a2163d6). Defined in src/game_hi/CAnimationComponent.cpp.
 f32 fn_7101177ea0(UnkAnimationComponent* self, u64 key);
+
+// True when one of the tracks now playing has an action whose class id (the word at +0x30 of what
+// fn_710070d7f8 returns) is `id`; with `flag` set, tracks that fn_710070d830 reports with bit 0
+// set are skipped. False without tracks. The definition is generated (src/lifted/).
 bool fn_710117ae38(UnkAnimationComponent* self, u64 id, bool flag);
+
+// Looks for a track now playing whose action fn_7100c979a8 resolves for the class in the query's
+// first word: stores the track's float (fn_710070d89c) at +0x10 and the resolved record at +0x8
+// of the query and returns true on the first hit. The definition is generated (src/lifted/).
 bool fn_710117b08c(UnkAnimationComponent* self, UnkTrackQuery* query);

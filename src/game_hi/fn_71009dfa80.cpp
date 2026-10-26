@@ -5,6 +5,7 @@
 #include "base/global/CRntString.h"
 #include "types.h"
 #include "base/global/CStrId.h"
+#include "game_s2/UnkWeakHandle.h"
 
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
@@ -41,25 +42,18 @@ struct UnkAllocator {
     virtual void Free(void* p);
 };
 
-struct UnkRefCounted {
-    virtual void vf0();
-    virtual void vf8();
-    virtual void Delete();
-    s32 ref_count;
-};
-
-struct UnkRefPtr {
-    UnkRefCounted* ptr;
+// A counted reference whose slot is released in place.
+struct UnkRefSlot {
+    UnkRefObject* ptr;
 
     void Release() {
-        if (UnkRefCounted* p = ptr) {
+        if (UnkRefObject* p = ptr) {
             if (--p->ref_count == 0)
-                p->Delete();
+                p->vf_0x10();
         }
     }
 };
 
-void fn_710117b3f0(void* owner, void* listener);
 void fn_71002aeb9c(void* root, void* tree);
 void fn_710002f67c(void* p);
 void fn_7100872908(void* p, void* handler);
@@ -88,8 +82,8 @@ extern void* g_unk_7101a46040[];
 extern void* g_unk_7101a22858[];
 extern void* g_unk_7101a22878[];
 
-struct UnkListenerOwner : UnkRefCounted {
-    void* field_0x10;
+struct UnkListenerOwner : UnkRefObject {
+    UnkWeakTarget* field_0x10;
 };
 
 struct UnkListener {
@@ -104,7 +98,7 @@ struct UnkListener {
                 fn_710117b3f0(o->field_0x10, this);
             if (UnkListenerOwner* p = owner) {
                 if (--p->ref_count == 0)
-                    p->Delete();
+                    p->vf_0x10();
             }
         }
     }
@@ -131,7 +125,7 @@ struct UnkMulti {
     u8 pad_0x8[0x180];
     void* vtable2;
     u8 pad_0x190[0x28];
-    UnkRefPtr field_0x1b8;
+    UnkRefSlot field_0x1b8;
 
     void Destroy() {
         vtable = g_unk_7101a87000 + 2;
@@ -158,8 +152,8 @@ struct UnkRecord {
 };
 
 struct UnkPair {
-    UnkRefPtr a;
-    UnkRefPtr b;
+    UnkRefSlot a;
+    UnkRefSlot b;
     u8 pad_0x10[0x38];
 
     void Destroy() {
@@ -268,8 +262,8 @@ struct UnkObj_71009dfa80 {
     u8 pad_0x22f8[0x58];
     UnkNodeList field_0x2350;
     u8 pad_0x2378[0x18];
-    UnkRefPtr field_0x2390;
-    UnkRefPtr field_0x2398;
+    UnkRefSlot field_0x2390;
+    UnkRefSlot field_0x2398;
     u8 pad_0x23a0[0x38];
     UnkPairArray field_0x23d8;
     u8 pad_0x2cdc[0x1c];
@@ -303,8 +297,8 @@ struct UnkObj_71009dfa80 {
     u8 pad_0x4cb8[0x338];
     u8 field_0x4ff0[0x10];
     u8 pad_0x5000[0x1d8];
-    UnkRefPtr field_0x51d8;
-    UnkRefPtr field_0x51e0;
+    UnkRefSlot field_0x51d8;
+    UnkRefSlot field_0x51e0;
     u8 pad_0x51e8[0x58];
     UnkTree field_0x5240;
     u8 pad_0x5258[0x8];

@@ -8,7 +8,7 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
-#include "game/UnkTimelineComponent.h"
+#include "game/UnkTimelineCalls.h"
 
 namespace base::reflection {
 

@@ -6,7 +6,11 @@
 #include "base/UnkResType.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "base/reflection/UnkReflTypeGlobals.h"
 #include "game/UnkTUInit.h"
+
+// The shared helpers see a reflected type through the placeholder layout (UnkReflType).
+static inline UnkReflType* AsUnk(base::reflection::CType* t) { return reinterpret_cast<UnkReflType*>(t); }
 
 // The data starts with the header built the other way round ("sources" first, no word stored),
 // three function records after a gap, and the resource class's type.
@@ -25,7 +29,6 @@ extern char g_unk_7101d4bd38;
 extern char g_unk_7101d4bd39;
 extern char g_unk_7101d4bd3a;
 extern UnkReflType g_unk_7101d4bd40;
-extern UnkReflType g_unk_7101d5e2e0;
 extern char g_unk_7101d4be78;
 extern char g_unk_7101d4be79;
 extern UnkReflType g_unk_7101d4be80;
@@ -63,7 +66,7 @@ void fn_71000113b0() {
               "SBlendTarget>>::TKeyElementIterator::value_type",
               fn_7100009d80,
               fn_71000099f0,
-              &g_unk_7101d5e2e0);
+              AsUnk(&g_unk_7101d5e2e0));
     fn_710009ec00(&g_unk_7101d4be78, &g_unk_7101d4bd40);
     fn_710009ec00(&g_unk_7101d4be79, fn_7100009f04());
     InitClass(&g_unk_7101d4be80,
@@ -71,7 +74,7 @@ void fn_71000113b0() {
               "SBlendTarget>>::TKeyElementConstIterator::value_type",
               fn_710000a370,
               fn_7100009fe0,
-              &g_unk_7101d5e2e0);
+              AsUnk(&g_unk_7101d5e2e0));
     fn_710009ec00(&g_unk_7101d4bfb8, &g_unk_7101d4be80);
     fn_710009ec00(&g_unk_7101d4bfb9, fn_710000a4f4());
     InitVector(&g_unk_7101d4bfc0,

@@ -22,7 +22,6 @@ struct UnkMenuScreen {
 };
 
 void fn_71011cf364(void* composition, s32 value);
-void fn_71011cde44(void* composition, s32 value);
 UnkReflObject* fn_7100e033a8(UnkGameManager* manager);
 
 template <s32 Value>

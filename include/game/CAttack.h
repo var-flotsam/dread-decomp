@@ -7,9 +7,8 @@
 
 #include "base/UnkVector.h"
 #include "game/UnkActor.h"
+#include "game_s2/UnkWeakHandle.h"
 #include "types.h"
-
-#include <new>
 
 // CAttack (reflection: size 0x28), the root class. Only its layout and vtable are needed.
 // The subclass views in game/UnkAttack.h (UnkAttackBase) see the same first 0x20 bytes without
@@ -24,104 +23,48 @@ struct CAttack {
 };
 static_assert(sizeof(CAttack) == 0x28, "CAttack layout");
 
-// The reference-counted and weak-handle types below repeat game_s2/UnkWeakHandle.h's (UnkRefObject,
-// UnkWeakHandle with vtable g_unk_7101a209e0, AssignRef) for the attacks' copy constructors; they
-// are to be merged into that header.
+// A counted pointer whose copy starts empty and assigns only when the source holds an object (the
+// reference-counted types are game_s2/UnkWeakHandle.h's).
+template <class T>
+struct UnkAttackCountedRef {
+    T* ptr = nullptr;
 
-struct UnkAttackRefCounted {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void Delete();
-    // A union member (no type-based alias info): after the increment in the assignment the
-    // pointer being replaced is reloaded.
-    union {
-        s32 ref_count;
-    };
-};
-
-// Copying starts empty and assigns only when the source holds an object.
-struct UnkAttackRefPtr {
-    UnkAttackRefCounted* ptr = nullptr;
-
-    UnkAttackRefPtr(const UnkAttackRefPtr& other) {
+    UnkAttackCountedRef(const UnkAttackCountedRef& other) {
         if (other.ptr)
             *this = other;
     }
 
-    UnkAttackRefPtr& operator=(const UnkAttackRefPtr& other) {
-        UnkAttackRefCounted* p = other.ptr;
+    // Unlike AssignRef there is no test for the same object.
+    UnkAttackCountedRef& operator=(const UnkAttackCountedRef& other) {
+        T* p = other.ptr;
         if (p)
             ++p->ref_count;
-        if (UnkAttackRefCounted* old = ptr) {
+        if (T* old = ptr) {
             if (--old->ref_count == 0)
-                old->Delete();
+                old->vf_0x10();
         }
         ptr = p;
         return *this;
     }
 };
 
-// What a listener's owner points at (+0x10): it hands out the slot holding its shared handle.
-struct UnkAttackTarget {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-    virtual void vf_0x18();
-    virtual void vf_0x20();
-    virtual UnkAttackRefPtr* GetHandleSlot();
-};
-
-// The shared handle created for a target that has none yet (vtable 0x7101a209e0).
-struct UnkAttackHandle : UnkAttackRefCounted {
-    UnkAttackTarget* target;
-
-    UnkAttackHandle(UnkAttackTarget* t) {
-        ref_count = 0;
-        target = t;
-    }
-};
-
-// Assigns a ref-counted pointer unless it already holds `p`.
-inline void UnkAttackSetRef(UnkAttackRefPtr& ref, UnkAttackRefCounted* p) {
-    if (ref.ptr != p) {
-        if (p)
-            ++p->ref_count;
-        if (UnkAttackRefCounted* old = ref.ptr) {
-            if (--old->ref_count == 0)
-                old->Delete();
-        }
-        ref.ptr = p;
-    }
-}
+using UnkAttackRefPtr = UnkAttackCountedRef<UnkRefObject>;
 
 // A polymorphic member (vtable 0x7101a22d48 and others) with a ref-counted owner. Its copy
 // constructor is user-written (the words are copied one by one). Assignment takes the source
-// owner's target and shares that target's handle, creating it if needed.
+// owner's target and shares that target's weak handle, creating it if needed.
 struct UnkAttackListener {
     virtual ~UnkAttackListener();
     u64 field_0x8;
     u64 field_0x10;
-    UnkAttackRefPtr owner;
+    UnkAttackCountedRef<UnkWeakHandle> owner;
 
     UnkAttackListener(const UnkAttackListener& other)
         : field_0x8(other.field_0x8), field_0x10(other.field_0x10), owner(other.owner) {}
 
     __attribute__((always_inline)) UnkAttackListener& operator=(const UnkAttackListener& other) {
         __builtin_memcpy(&field_0x8, &other.field_0x8, 0x10);
-        UnkAttackRefCounted* handle = nullptr;
-        if (other.owner.ptr) {
-            auto* target = static_cast<UnkAttackHandle*>(other.owner.ptr)->target;
-            if (target) {
-                if (UnkAttackRefPtr* slot = target->GetHandleSlot()) {
-                    handle = slot->ptr;
-                    if (!handle) {
-                        handle = new (fn_71000839a0(0x18, 0x3e)) UnkAttackHandle(target);
-                        UnkAttackSetRef(*slot, handle);
-                    }
-                }
-            }
-        }
-        UnkAttackSetRef(owner, handle);
+        CopyWeakRef(&owner.ptr, other.owner.ptr);
         return *this;
     }
 };

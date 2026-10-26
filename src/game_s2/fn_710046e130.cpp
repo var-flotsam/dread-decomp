@@ -2,18 +2,14 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "game/UnkBossAIComponent.h"
 #include "game_s2/UnkTwoStepStrId.h"
 #include "types.h"
 
 using base::global::UnkStrId;
 
-struct UnkNode {
-    void** vtable;
-    u8 pad_0x8[0x399];
-    u8 field_0x3a1;
-    u8 pad_0x3a2[0x67];
-    u8 field_0x409;
-    u8 pad_0x40a[0x516];
+struct UnkNode : UnkBossAIComponent {
+    u8 pad_0x528[0x3f8];
     void** field_0x920;
     UnkStrId field_0x928;
     UnkStrId field_0x930;
@@ -24,7 +20,6 @@ struct UnkNode {
     UnkStrId field_0x958;
 };
 
-void fn_710041a198(UnkNode*);
 extern void* g_unk_7101a38b28[];
 void fn_710045ee14(void*);
 void fn_71004623f0(void*);

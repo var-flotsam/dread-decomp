@@ -8,6 +8,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkItemProperties.h"
+#include "game/UnkAnimationComponent.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -27,7 +29,7 @@ struct UnkOwner {
     u8 pad_0x0[0x38];
     u8 field_0x38[1];
     u8 pad_0x39[0x1e7];
-    void* field_0x220;
+    UnkAnimationComponent* field_0x220;
     u8 pad_0x228[0x48];
     void* field_0x270;
     u8 pad_0x278[0x30];
@@ -43,20 +45,11 @@ struct UnkSelf {
     u8 field_0x6a1;
 };
 
-// A blackboard property definition (game/UnkGameBlackboard.h): its qualified id is built on
-// first use.
-struct UnkNamedId : UnkIdSource {
-    u64 field_0x8;
-    UnkQualifiedId qid;
-};
-
-extern UnkNamedId g_unk_717275ac18;
 extern u8 g_unk_71726b16d0[] __attribute__((visibility("hidden")));
 
 void fn_7100350da0(UnkSelf* self);
 void* fn_710083cd30(UnkComponent* component);
 bool fn_71011428bc(void* object, const CStrId* id);
-bool fn_710117ae38(void* attack, u64 hash, bool flag);
 void fn_7100e03a78(UnkGameManager* dispatcher, void* key);
 void fn_7100e038b0(UnkGameManager* dispatcher, void* key, UnkVec* vec, u64 arg);
 
@@ -83,11 +76,12 @@ void fn_710035131c(UnkSelf* self) {
     void* object = owner->field_0x270;
     if (!object)
         return;
-    if (g_unk_717275ac18.qid.id.data == &g_unk_7101d47108->empty)
-        fn_7100ae9a10(&g_unk_717275ac18.qid, &g_unk_717275ac18, g_unk_7101d470e0);
-    if (!fn_71011428bc(object, &g_unk_717275ac18.qid.id))
+    UnkQualifiedId& id = ItemQualifiedId(g_unk_717275ac18);
+    if (id.id.data == &g_unk_7101d47108->empty)
+        fn_7100ae9a10(&id, ItemSource(g_unk_717275ac18), g_unk_7101d470e0);
+    if (!fn_71011428bc(object, &id.id))
         return;
-    void* attack = self->field_0x30->field_0x220;
+    UnkAnimationComponent* attack = self->field_0x30->field_0x220;
     if (!attack)
         return;
     if (!fn_710117ae38(attack, 0x2376ca3f9e17e420ull, false))

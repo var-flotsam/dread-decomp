@@ -3,18 +3,16 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "game/UnkBehaviorTree.h"
 #include "types.h"
 
 using base::global::UnkStrId;
 
-struct UnkNode {
-    void** vtable;
-    u8 pad_0x8[0x24];
+struct UnkNode : UnkBehaviorTreeNodeBase {
     u32 field_0x2c;
     UnkStrId field_0x30;
 };
 
-void fn_7100393e68(UnkNode*);
 extern void* g_unk_7101a24f60[];
 
 void fn_7100372124(UnkNode* self) {

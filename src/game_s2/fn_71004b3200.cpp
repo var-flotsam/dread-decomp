@@ -1,4 +1,5 @@
 // Static initialiser of the unit of the ELavaDropArm, ELavaDropArmPos, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaDropsDef>>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaDropsDef>>>::TKeyElementConstIterator::value_type, base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaDropsDef>>, base::reflection::CollectionTypeMapper<base::global::CRntVector<CCooldownXBossLavaDropsMovementDef>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<CCooldownXBossLavaDropsMovementDef>>::TKeyElementConstIterator::value_type, base::global::CRntVector<CCooldownXBossLavaDropsMovementDef>.
+#include "base/reflection/UnkReflTypeGlobals.h"
 #include "../game_s7/UnkStaticInitS7.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflTypeDtors.h"
@@ -49,15 +50,14 @@ UnkEnumType* fn_71004abe2c();
 extern char g_unk_71726d3aad[];
 UnkEnumType* fn_71004abf08();
 extern UnkEnumType g_unk_71726d3ab0;
-extern char g_unk_7101d5e2e0[];
 void fn_71004abfe4();
-void fn_71004ac368(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
+void fn_71004ac368(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 extern char g_unk_71726d3be8[];
 extern char g_unk_71726d3be9[];
 UnkEnumType* fn_71004ac4ec();
 extern UnkEnumType g_unk_71726d3bf0;
 void fn_71004ac5c8();
-void fn_71004ac94c(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
+void fn_71004ac94c(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 extern char g_unk_71726d3d28[];
 extern char g_unk_71726d3d29[];
 UnkEnumType* fn_71004acad0();
@@ -73,13 +73,13 @@ extern char g_unk_71726d3ec9[];
 UnkEnumType* fn_71004ace68();
 extern UnkEnumType g_unk_71726d3ed0;
 void fn_71004acf44();
-void fn_71004ad2d4(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
+void fn_71004ad2d4(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 extern char g_unk_71726d4008[];
 extern char g_unk_71726d4009[];
 UnkEnumType* fn_71004ad458();
 extern UnkEnumType g_unk_71726d4010;
 void fn_71004ad534();
-void fn_71004ad8c4(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
+void fn_71004ad8c4(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 extern char g_unk_71726d4148[];
 extern char g_unk_71726d4149[];
 UnkEnumType* fn_71004ada48();
@@ -105,14 +105,14 @@ void fn_71004b3200() {
     fn_710009ec00(g_unk_71726d3aad, fn_71004abf08());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaDropsDef>>>::TKeyElementIterator::value_type", true);
-        fn_71004ac368(&g_unk_71726d3ab0, n, g_unk_7101d5e2e0, nullptr, fn_71004abfe4, nullptr);
+        fn_71004ac368(&g_unk_71726d3ab0, n, &g_unk_7101d5e2e0, nullptr, fn_71004abfe4, nullptr);
     }
     __cxa_atexit(fn_7100096604, &g_unk_71726d3ab0, g_unk_7101a19000);
     fn_710009ec00(g_unk_71726d3be8, &g_unk_71726d3ab0);
     fn_710009ec00(g_unk_71726d3be9, fn_71004ac4ec());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaDropsDef>>>::TKeyElementConstIterator::value_type", true);
-        fn_71004ac94c(&g_unk_71726d3bf0, n, g_unk_7101d5e2e0, nullptr, fn_71004ac5c8, nullptr);
+        fn_71004ac94c(&g_unk_71726d3bf0, n, &g_unk_7101d5e2e0, nullptr, fn_71004ac5c8, nullptr);
     }
     __cxa_atexit(fn_7100096604, &g_unk_71726d3bf0, g_unk_7101a19000);
     fn_710009ec00(g_unk_71726d3d28, &g_unk_71726d3bf0);
@@ -128,14 +128,14 @@ void fn_71004b3200() {
     fn_710009ec00(g_unk_71726d3ec9, fn_71004ace68());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<CCooldownXBossLavaDropsMovementDef>>::TKeyElementIterator::value_type", true);
-        fn_71004ad2d4(&g_unk_71726d3ed0, n, g_unk_7101d5e2e0, nullptr, fn_71004acf44, nullptr);
+        fn_71004ad2d4(&g_unk_71726d3ed0, n, &g_unk_7101d5e2e0, nullptr, fn_71004acf44, nullptr);
     }
     __cxa_atexit(fn_7100096604, &g_unk_71726d3ed0, g_unk_7101a19000);
     fn_710009ec00(g_unk_71726d4008, &g_unk_71726d3ed0);
     fn_710009ec00(g_unk_71726d4009, fn_71004ad458());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<CCooldownXBossLavaDropsMovementDef>>::TKeyElementConstIterator::value_type", true);
-        fn_71004ad8c4(&g_unk_71726d4010, n, g_unk_7101d5e2e0, nullptr, fn_71004ad534, nullptr);
+        fn_71004ad8c4(&g_unk_71726d4010, n, &g_unk_7101d5e2e0, nullptr, fn_71004ad534, nullptr);
     }
     __cxa_atexit(fn_7100096604, &g_unk_71726d4010, g_unk_7101a19000);
     fn_710009ec00(g_unk_71726d4148, &g_unk_71726d4010);

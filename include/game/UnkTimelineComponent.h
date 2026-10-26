@@ -11,6 +11,7 @@
 
 #include "base/UnkVector.h"
 #include "game/UnkActor.h"
+#include "game/UnkTimelineCalls.h"
 #include "types.h"
 
 struct UnkTableEntry {
@@ -96,10 +97,7 @@ struct UnkTimelineResourceEntry;
 UnkTimelineResourceEntry* fn_7100a2c13c(UnkTimelineComponent* self, const u64* id);
 // Whether the id is in the table (fn_7100d7c828 skips adding the default then).
 bool fn_7100a2cfe8(UnkTimelineComponent* self, const u64* id);
-// Sets a value for an id (-1 = none): on the timed list when the delay is positive or about
-// zero, else now, or queued while the table is locked; `unique` ignores unknown ids on the
-// immediate path. Defined in src/game_hi/fn_7100a2cb7c.cpp.
-void fn_7100a2cb7c(UnkTimelineComponent* self, const u64* id, const u32* value, bool unique, f32 delay);
+// fn_7100a2cb7c (sets a value for an id) is declared in game/UnkTimelineCalls.h.
 // Gives the actor's component, when it has one, a key it doesn't know yet: removes the key first
 // when `flag` is set, then adds it with the default mask and a delay of -1 unless fn_7100a2cfe8
 // holds for it.

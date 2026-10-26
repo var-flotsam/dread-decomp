@@ -8,11 +8,21 @@
 
 #include "types.h"
 
-// A behaviour-tree node: the vtable and the fields the base constructor sets (up to +0x38); the
-// concrete nodes derive from it and add their own members from +0x38.
-struct UnkBehaviorTreeNode {
+// The part of a tree node that every node shares (the base constructor fn_7100393e68 of the action
+// nodes, fn_7100394a88 below it): the vtable, and the word at +0x28 that the action base sets to 4.
+// It ends at +0x2c, where the members of most action nodes start, so it has a (never used)
+// constructor: that makes the layout let a derived struct use the tail padding.
+struct UnkBehaviorTreeNodeBase {
     void** vtable;
-    u8 unk_0x8[0x30];
+    u8 unk_0x8[0x20];
+    u32 field_0x28;
+    UnkBehaviorTreeNodeBase() {}
+};
+
+// A condition node: the base plus the fields its constructor sets (up to +0x38); the concrete
+// nodes derive from it and add their own members from +0x38.
+struct UnkBehaviorTreeNode : UnkBehaviorTreeNodeBase {
+    u8 unk_0x2c[0xc];
 };
 static_assert(sizeof(UnkBehaviorTreeNode) == 0x38, "UnkBehaviorTreeNode placeholder layout");
 
@@ -28,9 +38,14 @@ struct UnkBehaviorTreeAI {
 // first by the reset functions of the components (fn_71003ad278, fn_7100403a18).
 void fn_71003695b8(UnkBehaviorTreeAI* self);
 
-// The base constructor of a tree node (the unit behaviortree::CBaseCondition): sets the vtable and
-// the fields at +0x28, +0x2c and +0x30. Called first by the constructors of the concrete nodes
+// The base constructor of a condition node (the unit behaviortree::CBaseCondition): sets the vtable
+// and the fields at +0x28, +0x2c and +0x30. Called first by the constructors of the concrete nodes
 // (fn_7100398128, fn_71003a3e64, fn_710039d420).
 void fn_71003944e8(UnkBehaviorTreeNode* self);
-void fn_7100393e68(UnkBehaviorTreeNode* self);
+// The base constructor of an action node (the unit behaviortree::CBaseAction): runs the node base
+// constructor fn_7100394a88, stores its vtable and sets +0x28 to 4. Called first by the
+// constructors of the concrete action nodes (src/game_s2/).
+void fn_7100393e68(UnkBehaviorTreeNodeBase* self);
+// Empty (the unit behaviortree::CBaseAction); called first by the node routines of src/game_s2/
+// (fn_710037b524, fn_7100381764 ...).
 void fn_7100394bd4(void* self);

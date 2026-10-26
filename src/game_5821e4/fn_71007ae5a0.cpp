@@ -1,4 +1,5 @@
 // Static initialiser of the unit of the base::reflection::CollectionTypeMapper<base::global::CRntVector<CCutsceneComponent::SActorInfo>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<CCutsceneComponent::SActorInfo>>::TKeyElementConstIterator::value_type, base::global::CRntVector<CCutsceneComponent::SActorInfo> reflected types.
+#include "base/reflection/UnkReflTypeGlobals.h"
 #include "UnkStaticInit.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflTypeDtors.h"
@@ -20,16 +21,15 @@ extern char g_unk_7172718ee8[];
 UnkEnumType* fn_71007a11ec();
 extern char g_unk_7172718ee9[];
 UnkEnumType* fn_71007a12c8();
-extern char g_unk_7101d5e2e0[];
 void fn_71007a13a4();
 extern UnkEnumType g_unk_7172718ef0;
-void fn_71007a1734(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
+void fn_71007a1734(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 extern char g_unk_7172719028[];
 extern char g_unk_7172719029[];
 UnkEnumType* fn_71007a18b8();
 void fn_71007a1994();
 extern UnkEnumType g_unk_7172719030;
-void fn_71007a1d24(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
+void fn_71007a1d24(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 extern char g_unk_7172719168[];
 extern char g_unk_7172719169[];
 UnkEnumType* fn_71007a1ea8();
@@ -50,14 +50,14 @@ void fn_71007ae5a0() {
     fn_710009ec00(g_unk_7172718ee9, fn_71007a12c8());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<CCutsceneComponent::SActorInfo>>::TKeyElementIterator::value_type", true);
-        fn_71007a1734(&g_unk_7172718ef0, n, g_unk_7101d5e2e0, nullptr, fn_71007a13a4, nullptr);
+        fn_71007a1734(&g_unk_7172718ef0, n, &g_unk_7101d5e2e0, nullptr, fn_71007a13a4, nullptr);
     }
     __cxa_atexit(fn_7100096604, &g_unk_7172718ef0, g_unk_7101a19000);
     fn_710009ec00(g_unk_7172719028, &g_unk_7172718ef0);
     fn_710009ec00(g_unk_7172719029, fn_71007a18b8());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<CCutsceneComponent::SActorInfo>>::TKeyElementConstIterator::value_type", true);
-        fn_71007a1d24(&g_unk_7172719030, n, g_unk_7101d5e2e0, nullptr, fn_71007a1994, nullptr);
+        fn_71007a1d24(&g_unk_7172719030, n, &g_unk_7101d5e2e0, nullptr, fn_71007a1994, nullptr);
     }
     __cxa_atexit(fn_7100096604, &g_unk_7172719030, g_unk_7101a19000);
     fn_710009ec00(g_unk_7172719168, &g_unk_7172719030);

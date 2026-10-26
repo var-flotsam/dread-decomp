@@ -42,7 +42,7 @@ struct UnkTrack_7101105e44 {
     CStrId sources;
 };
 
-struct UnkTrackQuery_7101105e44 {
+struct UnkTrackQuery {
     const base::reflection::CClass* cls;
     UnkTrack_7101105e44* result;
     f32 field_0x10;
@@ -88,7 +88,6 @@ struct UnkStruct_7101105e44 {
 };
 
 void fn_7100d7add4(UnkActor_7101105e44* actor, bool value);
-void fn_710117b08c(void* char_class, UnkTrackQuery_7101105e44* query);
 u32 fn_7100414070(const char* str);
 void fn_71008c1538(UnkDamage_7101105e44* d, f32 amount);
 bool fn_7101161088(UnkShield_7101105e44* shield);
@@ -115,7 +114,7 @@ u32 fn_7101105e44(UnkStruct_7101105e44* self, UnkDamage_7101105e44* d) {
         }
     }
     if (self->actor->char_class) {
-        UnkTrackQuery_7101105e44 q = {fn_7100c135a8(), nullptr, -1.0f};
+        UnkTrackQuery q = {fn_7100c135a8(), nullptr, -1.0f};
         fn_710117b08c(self->actor->char_class, &q);
         if (q.result) {
             u32 mask;
@@ -127,7 +126,7 @@ u32 fn_7101105e44(UnkStruct_7101105e44* self, UnkDamage_7101105e44* d) {
                 return 2;
         }
         if (fn_710117b348(self->actor->char_class, fn_7100c2bcd8())) {
-            UnkTrackQuery_7101105e44 q2 = {fn_7100bf0758(), nullptr, -1.0f};
+            UnkTrackQuery q2 = {fn_7100bf0758(), nullptr, -1.0f};
             fn_710117b08c(self->actor->char_class, &q2);
             if (!q2.result || !(d->flags & 0x800040)) {
                 fn_71008c1538(d, 0.0f);

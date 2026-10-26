@@ -34,7 +34,7 @@ struct UnkFound {
     f32 field_0x14;
 };
 
-struct UnkQuery {
+struct UnkTrackQuery {
     const base::reflection::CClass* class_ptr;
     UnkFound* found;
     f32 field_0x10;
@@ -63,7 +63,6 @@ struct UnkSelf {
 
 void fn_710048fc80(UnkObject* component);
 UnkPlayer* fn_7100dec788(UnkGameManager* manager);
-void fn_710117b08c(UnkAttack* attack, UnkQuery* query);
 
 void fn_710048a474(UnkSelf* self, f32 delta) {
     f32 previous = self->field_0x138;
@@ -87,7 +86,7 @@ void fn_710048a474(UnkSelf* self, f32 delta) {
         return;
     if (!fn_710117b348(attack, fn_7100c63ac8()))
         return;
-    UnkQuery query = {fn_7100c63ac8(), nullptr, -1.0f};
+    UnkTrackQuery query = {fn_7100c63ac8(), nullptr, -1.0f};
     fn_710117b08c(attack, &query);
     if (!query.found)
         return;

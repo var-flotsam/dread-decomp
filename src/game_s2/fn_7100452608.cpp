@@ -4,6 +4,7 @@
 // whether the object found for the handle has its byte at +0x212 other than 1 (true when there is
 // no such object).
 #include "base/UnkRefHandle.h"
+#include "game/UnkAnimationComponent.h"
 #include "types.h"
 
 // The handle the component refers to (base::UnkRefCounted's layout); its target is at +0x10.
@@ -27,7 +28,7 @@ struct UnkFound {
 
 struct UnkOwnerRef {
     u8 pad_0x0[0x220];
-    void* field_0x220;
+    UnkAnimationComponent* field_0x220;
 };
 
 struct UnkSelf {
@@ -42,7 +43,6 @@ struct UnkSelf {
 
 UnkRef fn_7100353be8(void* from);
 UnkFound* fn_71004067a4(void* owner);
-bool fn_710117ae38(void* object, u64 hash, u32 flag);
 
 bool fn_7100452608(UnkSelf* self) {
     if (self->field_0x30->field_0x220 && fn_710117ae38(self->field_0x30->field_0x220, 0xb1908e0ac25fa340ull, 0))

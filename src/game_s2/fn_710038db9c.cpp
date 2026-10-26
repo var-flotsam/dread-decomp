@@ -2,13 +2,13 @@
 // flag and makes the two string ids at +0x48 and +0x50 the empty string (creating the pool first
 // when there is none).
 #include "base/global/CStrId.h"
+#include "game/UnkBehaviorTree.h"
 #include "types.h"
 
 using base::global::UnkStringData;
 
-struct UnkNode {
-    void** vtable;
-    u8 pad_0x8[0x28];
+struct UnkNode : UnkBehaviorTreeNodeBase {
+    u8 pad_0x2c[4];
     u8 field_0x30[0xb];
     u8 field_0x3b;
     u8 pad_0x3c[4];
@@ -18,7 +18,6 @@ struct UnkNode {
     UnkStringData* field_0x50;
 };
 
-void fn_7100393e68(UnkNode*);
 extern void* g_unk_7101a267e0[];
 
 void fn_710038db9c(UnkNode* self) {

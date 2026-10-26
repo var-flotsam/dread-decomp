@@ -1,4 +1,5 @@
 // Static initialiser of the unit of the base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<querysystem::CFilter>>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<querysystem::CFilter>>>::TKeyElementConstIterator::value_type, base::global::CRntVector<std::unique_ptr<querysystem::CFilter>>.
+#include "base/reflection/UnkReflTypeGlobals.h"
 #include "../game_s7/UnkStaticInitS7.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflTypeDtors.h"
@@ -21,15 +22,14 @@ UnkEnumType* fn_71002bdb3c();
 extern char g_unk_71726a5eb3[];
 UnkEnumType* fn_71002bdc18();
 extern UnkEnumType g_unk_71726a5eb8;
-extern char g_unk_7101d5e2e0[];
 void fn_71002bdcf4();
-void fn_71002be078(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
+void fn_71002be078(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 extern char g_unk_71726a5ff0[];
 extern char g_unk_71726a5ff1[];
 UnkEnumType* fn_71002be1fc();
 extern UnkEnumType g_unk_71726a5ff8;
 void fn_71002be2d8();
-void fn_71002be65c(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
+void fn_71002be65c(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 extern char g_unk_71726a6130[];
 extern char g_unk_71726a6131[];
 UnkEnumType* fn_71002be7e0();
@@ -49,14 +49,14 @@ void fn_71002c0f70() {
     fn_710009ec00(g_unk_71726a5eb3, fn_71002bdc18());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<querysystem::CFilter>>>::TKeyElementIterator::value_type", true);
-        fn_71002be078(&g_unk_71726a5eb8, n, g_unk_7101d5e2e0, nullptr, fn_71002bdcf4, nullptr);
+        fn_71002be078(&g_unk_71726a5eb8, n, &g_unk_7101d5e2e0, nullptr, fn_71002bdcf4, nullptr);
     }
     __cxa_atexit(fn_7100096604, &g_unk_71726a5eb8, g_unk_7101a19000);
     fn_710009ec00(g_unk_71726a5ff0, &g_unk_71726a5eb8);
     fn_710009ec00(g_unk_71726a5ff1, fn_71002be1fc());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<querysystem::CFilter>>>::TKeyElementConstIterator::value_type", true);
-        fn_71002be65c(&g_unk_71726a5ff8, n, g_unk_7101d5e2e0, nullptr, fn_71002be2d8, nullptr);
+        fn_71002be65c(&g_unk_71726a5ff8, n, &g_unk_7101d5e2e0, nullptr, fn_71002be2d8, nullptr);
     }
     __cxa_atexit(fn_7100096604, &g_unk_71726a5ff8, g_unk_7101a19000);
     fn_710009ec00(g_unk_71726a6130, &g_unk_71726a5ff8);

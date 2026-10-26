@@ -1,4 +1,5 @@
 // Static initialiser of the unit of the CPlaythrough::SCheckpointData, CPlaythrough::SCheckpointData::SValidationInfo, base::reflection::CollectionTypeMapper<CPlaythrough::TDictCheckpointDatas>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<CPlaythrough::TDictCheckpointDatas>::TKeyElementConstIterator::value_type, CPlaythrough::TDictCheckpointDatas.
+#include "base/reflection/UnkReflTypeGlobals.h"
 #include "../game_s7/UnkStaticInitS7.h"
 #include "base/global/CRntString.h"
 #include "base/reflection/UnkClassGetters.h"
@@ -50,11 +51,11 @@ extern UnkStatics_71002efa40 g_unk_71726ad668 __attribute__((visibility("hidden"
 extern char g_unk_71726ac870[];
 extern UnkEnumType g_unk_71726ac878;
 void fn_71002ea1d0();
-void fn_71002ea320(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
+void fn_71002ea320(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 extern char g_unk_71726ac9b0[];
 extern UnkEnumType g_unk_71726ac9b8;
 void fn_71002ea494();
-void fn_71002ea654(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
+void fn_71002ea654(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 extern char g_unk_71726acaf0[];
 extern char g_unk_71726acaf1[];
 UnkEnumType* fn_71002ea7d8();  // base::reflection::refl_GetType<std::unique_ptr<CPlaythrough::SCheckpointData>>
@@ -65,15 +66,14 @@ UnkEnumType* fn_71002eaab8();
 extern char g_unk_71726acaf4[];
 UnkEnumType* fn_71002eab94();
 extern UnkEnumType g_unk_71726acaf8;
-extern char g_unk_7101d5e2e0[];
 void fn_71002eac70();
-void fn_71002eaff4(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
+void fn_71002eaff4(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 extern char g_unk_71726acc30[];
 extern char g_unk_71726acc31[];
 UnkEnumType* fn_71002eb178();
 extern UnkEnumType g_unk_71726acc38;
 void fn_71002eb254();
-void fn_71002eb5d8(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
+void fn_71002eb5d8(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 extern char g_unk_71726acd70[];
 extern char g_unk_71726acd71[];
 UnkEnumType* fn_71002eb75c();
@@ -106,14 +106,14 @@ void fn_71002efa40() {
     fn_710009ec00(g_unk_71726acaf4, fn_71002eab94());
     {
         CStrId n("base::reflection::CollectionTypeMapper<CPlaythrough::TDictCheckpointDatas>::TKeyElementIterator::value_type", true);
-        fn_71002eaff4(&g_unk_71726acaf8, n, g_unk_7101d5e2e0, nullptr, fn_71002eac70, nullptr);
+        fn_71002eaff4(&g_unk_71726acaf8, n, &g_unk_7101d5e2e0, nullptr, fn_71002eac70, nullptr);
     }
     __cxa_atexit(fn_7100096604, &g_unk_71726acaf8, g_unk_7101a19000);
     fn_710009ec00(g_unk_71726acc30, &g_unk_71726acaf8);
     fn_710009ec00(g_unk_71726acc31, fn_71002eb178());
     {
         CStrId n("base::reflection::CollectionTypeMapper<CPlaythrough::TDictCheckpointDatas>::TKeyElementConstIterator::value_type", true);
-        fn_71002eb5d8(&g_unk_71726acc38, n, g_unk_7101d5e2e0, nullptr, fn_71002eb254, nullptr);
+        fn_71002eb5d8(&g_unk_71726acc38, n, &g_unk_7101d5e2e0, nullptr, fn_71002eb254, nullptr);
     }
     __cxa_atexit(fn_7100096604, &g_unk_71726acc38, g_unk_7101a19000);
     fn_710009ec00(g_unk_71726acd70, &g_unk_71726acc38);
