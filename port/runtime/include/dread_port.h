@@ -28,3 +28,13 @@ extern "C" void dread_port_set_host_arguments(int argc, char** argv);
 // returns the exit request (4), on which the notification loop fn_71001327c0 sets the quit flag.
 // For the port's window (close button) and console (Ctrl+C); safe from any thread.
 extern "C" void dread_port_request_exit();
+
+// Where a game pointer to an import the port has no definition for ends up (a GOT or PLT slot, a
+// vtable entry naming an SDK function): the data loader writes a thunk that loads the import's
+// name and jumps here (dread_port_loader.h).
+extern "C" [[noreturn]] void dread_port_missing_import(const char* name);
+
+// Maps the game's main NSO from the user's dump at its original addresses (dread_port_loader.h).
+// Runs by itself before the game's static initialisers when the game is linked in; aborts with a
+// message if the dump is missing or not the expected build.
+extern "C" void dread_port_map_game_image();

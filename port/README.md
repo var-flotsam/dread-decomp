@@ -16,13 +16,16 @@ imported symbol names recorded in `data/functions/`.
 
 | Path | Contents |
 |---|---|
-| `CMakeLists.txt` | the `dread_port` project: `dread_game`, `dread_libs`, `dread_runtime`, `dread`, `sweep`, `link_report` |
+| `CMakeLists.txt` | the `dread_port` project: `dread_game`, `dread_libs`, `dread_runtime`, `dread`, `sweep`, `link_report`, `loader_test` |
 | `sample_duplicates.txt` | the sources `dread_game` and the whole-program link both leave out (frozen samples that define a function another source defines), with the reason |
 | `main.cpp` | the executable's entry point; at M0 a banner |
 | `runtime/include/nn/` | the port's `nn::` declarations, one header per namespace, each with a note on what the boot path needs from it |
 | `runtime/include/dread_port.h` | the runtime's own surface: `dread_port_missing_function`, the trap behind every function without a source, `dread_port_mismatched_call`, the trap behind a call the link refused to alias, and what `main` and the window call (`dread_port_set_host_arguments`, `dread_port_request_exit`) |
 | `runtime/src/` | stub implementations; every stub carries a `TODO(M<n>)` naming the boot-path function that needs it; `missing.cpp` holds the two traps |
 | `nvn/` | the NVN shim over Vulkan (M2): the shader manifest reader and the binding layer, `dread_nvn`; the binding design and the engine's variant selection in [`nvn/README.md`](nvn/README.md) |
+
+| `runtime/include/dread_port_loader.h`, `runtime/src/loader.cpp`, `runtime/src/image.cpp`, `runtime/src/host_memory.h` | the data loader: maps the dump's main NSO at its original addresses before the game's static initialisers ([The data loader](#the-data-loader-m1)) |
+| `tests/loader_test.cpp`, `../tools/test_port_loader.py` | the loader's test: the core built into a library with clang and lld only, run on the user's dump |
 | `../tools/port_sweep.py` | the compile-only sweep that lists what in `src/` does not port |
 | `../tools/port_link.py` | the whole-program relocatable link and the report of what is missing ([The link (M1)](#the-link-m1)) |
 | `../tools/port_lift.py` | semantic lifts of the boot slice's `U` functions into `build/port/lifted/`, checked by the P-code oracle ([Semantic lifts](#semantic-lifts-m1-step-3)) |
@@ -90,7 +93,9 @@ Linking a Windows executable needs one of: the MSVC Build Tools (then target
 `DREAD_LIBCXX_INCLUDE` and `DREAD_MUSL_INCLUDE` empty), MinGW-w64 (an `x86_64-w64-mingw32`
 toolchain), or WSL (a Linux build, below). A Windows target is LLP64 (`long` is 32-bit):
 `include/types.h` takes `u64` and `s64` from `long long` under `_WIN64` (merged with
-var-flotsam/dread-decomp#184), and its `static_assert` checks the widths on every target.
+var-flotsam/dread-decomp#184), and its `static_assert` checks the widths on every target. Since
+the data loader (below) the game links only with the Itanium C++ ABI, which rules out
+`x86_64-pc-windows-msvc` for `dread_game`: on Windows that leaves MinGW-w64 or WSL.
 
 ### Linux
 
@@ -431,6 +436,67 @@ layout comes from.
   delivers one notification, the exit request (4), after `dread_port_request_exit()`; the
   notification loop `fn_71001327c0` sets the game's quit flag on it.
 - **`GetHostArgc`/`GetHostArgv`** return what `main` passed to `dread_port_set_host_arguments`.
+
+## The data loader (M1)
+
+```sh
+python tools/port_link.py --version 2.1.0              # also writes build/port/link/image_tables.s
+python tools/test_port_loader.py --version 2.1.0       # the loader on the dump, in this process (2 s)
+cmake --build build/port/cmake --target loader_test    # the same with the build's compiler
+```
+
+The game's `.rodata`, `.data` and `.bss` are not in git or in the executable: the runtime maps them
+from the user's dump when the port starts (`runtime/include/dread_port_loader.h` has the design).
+`dread_port_map_game_image` (`runtime/src/image.cpp`) runs as a priority-101 constructor, before
+every unprioritised static initialiser and so before the game's own, reads
+`$DREAD_ORIG/exefs/main` (default `orig/2.1.0/exefs/main` under the working directory), checks the
+module ID against 2.1.0's and calls the core, `dread_port_load_image` (`runtime/src/loader.cpp`):
+
+- **At the original addresses.** The image is mapped at `0x7100000000`, `.text` through the end of
+  the `.bss` (`0x72a19000` bytes, 1.82 GB of it `.bss`), so every absolute `g_unk_<addr>` symbol
+  `port_link.py` defines now points at the game's bytes, and every pointer inside `.data` stays
+  valid. The PC-relative references (5,467 symbols, `0x71015af379` to `0x7172a112e8`) need the
+  port's code within 2 GB of all of them: about 214 MiB below `0x7100000000` or 235 MiB above the
+  `.bss`, so the final executable is linked at a fixed base there (`-no-pie` with a text-segment
+  address on Linux, `/FIXED /BASE` on Windows), never position-independent at a random address.
+- **Relocations as the console applies them**, except code pointers. Of 2.1.0's 146,684 dynamic
+  relocations (145,813 relative, 489 PLT, 364 absolute, 18 GOT), 128,576 relative ones point into
+  `.text`: vtable slots and callbacks. Each is translated to the port's x86-64 function for that
+  address through `dread_port_functions`, a table `port_link.py` writes into `image_tables.s`
+  from the link's own definitions (91,166 addresses on `main` today: the own `fn_<addr>` symbol
+  first, else the alias target, the runtime function or the link's trap or jump thunk), or, for an
+  address with no entry, to a 32-byte trap thunk the loader writes that reports the address
+  (`dread_port_missing_function`). The symbol relocations are all imports; they resolve by name
+  through `dread_port_imports` (the runtime's `nn::` functions by mangled name, the C library names
+  `main` imports, `__cxa_pure_virtual` and the C++ ABI's type-info vtables), else a thunk to
+  `dread_port_missing_import` with the name.
+  On `main` with the loader the import table has 144 names, and link 2's residue is 413: the 21
+  more host names the tables reference (the C library names `main` imports, the C++ ABI's, `mmap`)
+  are all standard library.
+- **The data references** the link defines (`dread_port_data_references`, the 15,453 `g_unk_`
+  addresses) must each lie inside the image, or the load fails before anything is mapped.
+- **Protection**: `.text` and `.rodata` read-only once relocated (they hold no relocation slot),
+  `.data` and `.bss` read-write, the thunks executable and read-only. The `.text` bytes are mapped
+  for reading only: the port never executes AArch64 code.
+
+The tables are generated from our sources' symbols, not from game data; the loader reads the
+relocations from the dump at run time. Besides its fixed base, the final link needs the Itanium C++
+ABI (Linux, macOS, MinGW; not MSVC), because the game's vtables in `.data` are used as they are
+(after translation they are valid x86-64 vtables, which also makes the 71 vtables nothing defines
+in the link the game's own, at addresses still to be named).
+
+**The test** (`tools/test_port_loader.py`): the core is freestanding (no allocation, no standard
+library; the host's memory services are passed in, `runtime/src/host_memory.h`), so it builds with
+nothing but clang and lld: on Windows a DLL linked by `lld-link /noentry /nodefaultlib` against a
+`kernel32.lib` that `llvm-dlltool` makes from five names, no Windows SDK or C runtime; elsewhere a
+shared object. Python loads it with `ctypes`, maps the dump in its own process and checks the
+refusals (not an NSO, wrong module ID, unsorted table, data reference outside the image), every
+byte of `.text`, `.rodata` and `.data` against `tools/nso.py`'s decompression with the relocations
+applied in Python, `.bss` samples, every relocated slot (half of the code targets in the table, the
+rest trap thunks carrying their address; an import thunk carrying its name), calls through a
+thunk and a translated pointer, the protection (Windows `VirtualQuery`) and that a second load
+fails on the taken range. On 2.1.0: 26 of 26 checks in about 2 s; a mutation that skips every 64th
+code pointer is caught (9,264 wrong slots).
 
 ## Shaders (M2)
 

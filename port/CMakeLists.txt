@@ -6,6 +6,7 @@
 #   dread          the executable (main.cpp): the runtime now, the game objects from M1
 #   sweep          tools/port_sweep.py with this build's compiler and target
 #   link_report    tools/port_link.py: the whole-program relocatable link and what is missing
+#   loader_test    tools/test_port_loader.py: the data loader on the user's dump
 #   shaders        tools/bshdat.py --install: the game's shaders as SPIR-V from the dump (decision 3)
 # Configure from the repository root, for example
 #   cmake -S port -B build/port/cmake -G Ninja
@@ -238,6 +239,18 @@ add_custom_target(link_report
   COMMAND "${DREAD_PYTHON}" "${DREAD_ROOT}/tools/port_link.py" ${_dread_sweep_args}
   WORKING_DIRECTORY "${DREAD_ROOT}"
   COMMENT "Whole-program relocatable link of the sweep's objects and the report of what is missing (build/port/link/)"
+  USES_TERMINAL
+  VERBATIM)
+
+# The data loader's test (M1): tools/test_port_loader.py builds runtime/src/loader.cpp into a library
+# with this build's compiler and lld only, maps the user's dump in its own process and checks the
+# image against a decoding in Python. Needs orig/<version>/ (tools/setup.py) and, for the data
+# references, link_report's image_tables.s.
+add_custom_target(loader_test
+  COMMAND "${DREAD_PYTHON}" "${DREAD_ROOT}/tools/test_port_loader.py" --version "${DREAD_GAME_VERSION}"
+          --cxx "${CMAKE_CXX_COMPILER}"
+  WORKING_DIRECTORY "${DREAD_ROOT}"
+  COMMENT "The data loader on the user's dump (tools/test_port_loader.py)"
   USES_TERMINAL
   VERBATIM)
 
