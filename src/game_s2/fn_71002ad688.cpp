@@ -3,9 +3,8 @@
 // takes the weak handle of `target` for that reference, registers the links in the lists at +0x90 and
 // +0x110 of the object the reference points at, and takes the weak handle of `target` again for
 // the reference at +0x11978.
-#include "game_s2/UnkWeakHandle.h"
+#include "game/UnkNavMeshPath.h"
 
-struct UnkLinkList;
 void fn_71002ae87c(UnkLinkList* list, UnkLinkList** slot);
 void fn_71002aeebc(UnkLinkList* list, UnkLinkList** slot);
 
@@ -13,21 +12,6 @@ struct UnkLinkOwner : UnkWeakTarget {
     u8 pad_0x8[0x88];
     u8 field_0x90[0x80];
     u8 field_0x110[0x8];
-};
-
-struct UnkLinks {
-    UnkLinkList* field_0x0;
-    u8 pad_0x8[0x10];
-    UnkLinkList* field_0x18;
-    u8 pad_0x20[0xb8];
-    UnkWeakHandle* field_0xd8;
-};
-
-struct UnkRecord {
-    u8 pad_0x0[0x11978];
-    UnkWeakHandle* field_0x11978;
-    u8 pad_0x11980[0x12988 - 0x11980];
-    UnkLinks field_0x12988;
 };
 
 static inline void Unlink(UnkLinkList** slot) {
@@ -41,8 +25,8 @@ static inline UnkLinkOwner* OwnerOf(UnkWeakHandle* handle) {
     return static_cast<UnkLinkOwner*>(handle->target);
 }
 
-void fn_71002ad688(UnkRecord* self, UnkWeakTarget* target) {
-    UnkLinks* links = &self->field_0x12988;
+void fn_71002ad688(UnkNavMeshPath* self, UnkWeakTarget* target) {
+    UnkNavMeshPathLinks* links = &self->field_0x12988;
     if (links->field_0xd8 && links->field_0xd8->target) {
         Unlink(&links->field_0x0);
         Unlink(&links->field_0x18);

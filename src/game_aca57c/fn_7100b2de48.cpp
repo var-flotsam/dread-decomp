@@ -13,6 +13,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
+#include "game/UnkHandleMenu.h"
 #include "game/UnkRenderManager.h"
 #include "types.h"
 
@@ -170,7 +171,6 @@ void fn_71004f3cf0(UnkWatchSet* set, UnkWatchSet** slot);
 void fn_71004f3ea4(UnkWatchSet* set, UnkWatchSet** slot);
 void fn_7100e9b464(void* target, bool value);
 void fn_7100e9b1f8(void* target, bool value);
-u64 fn_7100001570(const char* text, u64 length);
 void fn_7100066a50(void* text, const char32_t* value);
 void fn_7100066e44(void* text);
 void fn_7100b2cb44(UnkStateOwner* self);
@@ -178,11 +178,9 @@ UnkComposition* fn_71011d98ec(UnkComposition* composition, u64 id);
 void fn_71011ec468(UnkComposition* label, void* text, bool value);
 void fn_71011b6bbc(UnkGuiRoot* root, void* object, bool value);
 void fn_7100af1bfc(UnkComposition* composition);
-void fn_71011cdce8(UnkComposition* composition, s32 value);
 UnkGuiChild* fn_71011d94d4(UnkComposition* composition, const CStrId& name);
 void fn_7100b2c6a0(UnkStateOwner* self);
 void fn_7100b2c784(UnkStateOwner* self);
-void* fn_71000839a0(u64 size, u32 flags);
 void fn_710006cd9c(UnkSoundHolder* holder);
 void fn_710006d2a0(UnkSoundGroup* group, u32 id);
 void fn_710006d4d0(UnkSoundGroup* group, u32 id);
@@ -366,7 +364,7 @@ void fn_7100b2d0a4(UnkStateOwner* self) {
         fn_71004f3cf0(&watched->set, &self->watch);
         return;
     }
-    fn_71011cdce8(self->current, 0);
+    fn_71011cdce8(reinterpret_cast<UnkGuiDisplayObject*>(self->current), false);
 }
 
 // Start of the mission log state: unless already in mode 1 the parameter is set (-1 from mode
@@ -438,7 +436,7 @@ void fn_7100b2d868(UnkStateOwner* self) {
     }
     if (UnkComposition* label = FindLabel(self->current, "Label-Plus")) {
         {
-            fn_71011cdce8(label, 0);
+            fn_71011cdce8(reinterpret_cast<UnkGuiDisplayObject*>(label), false);
             fn_71011cdc30(label, false);
             if (g_unk_71726bc570->field_0xb8) {
                 UnkText text(U"#GUI_BOSSRUSH_CONTROLS_LABEL_PLUS");
@@ -448,7 +446,7 @@ void fn_7100b2d868(UnkStateOwner* self) {
                 fn_71011ec468(label, &text, false);
             }
             fn_71011cdc30(label, true);
-            fn_71011cdce8(label, 1);
+            fn_71011cdce8(reinterpret_cast<UnkGuiDisplayObject*>(label), true);
         }
     }
     UnkLanguage* language = g_unk_7101d47358;
@@ -605,13 +603,11 @@ void fn_7100b2d6d0(UnkStateOwner* self) {
     fn_7100219cb0(g_unk_7101d47300, true, false);
 }
 
-void fn_7100b2cd24(UnkStateOwner* self);
-
 // The mission log, its menu created first when there is none.
 UnkMissionLog* fn_7100b2e338(UnkStateOwner* self) {
     UnkObjRef* ref = self->field_0x490;
     if (!ref || !ref->obj)
-        fn_7100b2cd24(self);
+        fn_7100b2cd24(reinterpret_cast<UnkHandleMenu<0x490>*>(self));
     return GetMissionLog(self->field_0x490);
 }
 
@@ -912,7 +908,7 @@ void fn_7100b2eaac(UnkStateOwner* self, s32 state, bool from_game, bool now) {
         void** vtable = menu->vtable;
         const char* name = !self->field_0x279 ? "OnShow" : "OnShowFromGame";
         reinterpret_cast<void (*)(UnkComposition*, const char*, bool)>(vtable[0x1e8 / 8])(menu, name, false);
-        fn_71011cdce8(self->current, 1);
+        fn_71011cdce8(reinterpret_cast<UnkGuiDisplayObject*>(self->current), true);
         UnkGuiChild* content = fn_71011d94d4(self->current, CStrId("Content", true));
         if (content && content->field_0x30 && (*content->field_0x30)->count >= 2 && !self->field_0x260) {
             fn_710002fd10(g_unk_717271e8f8->field_0xca8, &g_unk_7172762fd8);
@@ -988,8 +984,6 @@ struct UnkIdPairValue {
 void fn_71000267f8(UnkIdPair* pair, const UnkIdPairValue& value);
 void fn_71011d931c(UnkMenuStates* self);
 void fn_7100b2f6b0(UnkMenuStates* self);
-void fn_7100b2c2bc(UnkMenuStates* self);
-void fn_7100b2cd24(UnkMenuStates* self);
 extern CStrId g_unk_71727b9d30;
 extern CFilePathStrId g_unk_7172762ff0 __attribute__((visibility("hidden")));
 extern CFilePathStrId g_unk_7172762ff8 __attribute__((visibility("hidden")));
@@ -1017,6 +1011,6 @@ void fn_7100b2f250(UnkMenuStates* self) {
     }
     self->field_0x3a8.Watch<0x24f8>(g_unk_7101d47310);
     self->field_0x3c0.Watch<0x2128>(g_unk_7101d47310);
-    fn_7100b2c2bc(self);
-    fn_7100b2cd24(self);
+    fn_7100b2c2bc(reinterpret_cast<UnkHandleMenu<0x488>*>(self));
+    fn_7100b2cd24(reinterpret_cast<UnkHandleMenu<0x490>*>(self));
 }

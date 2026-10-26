@@ -8,8 +8,8 @@
 #include "base/global/CStrId.h"
 #include "types.h"
 
-// The file-path string pool (reached through the GOT).
-extern base::global::UnkStringPool* g_unk_7101d47200;
+// The argument the file-path pool's holder is built with; the pool itself, g_unk_7101d47200, is
+// declared in base/global/CStrId.h.
 u32 fn_7100080570();
 
 namespace base::global {

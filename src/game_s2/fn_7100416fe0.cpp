@@ -1,5 +1,6 @@
 // Runs fn_7100413ef8 and, when it succeeds and the path id at 0x500 isn't the empty one,
 // passes that id to the global registry (created on first use).
+#include "base/UnkVector.h"
 #include "game/UnkPathRegistry.h"
 #include "types.h"
 #include "base/global/CStrId.h"
@@ -10,7 +11,6 @@ struct UnkSelf {
 };
 
 bool fn_7100413ef8(UnkSelf* self);
-void* fn_71000839a0(u32 size, u32 align_mask);
 void fn_7100db37ec();
 void fn_7100db3adc(UnkPathRegistry* registry, u64* id);
 

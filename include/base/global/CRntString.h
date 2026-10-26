@@ -58,6 +58,8 @@ void fn_710007ecd4(base::global::CRntString* self);
 // Copies [str, str + length) in (fn_710007ebc8).
 void fn_710007ebc8(base::global::CRntString* self, const char* str, u32 length, s64 key);
 void fn_710007f3e4(base::global::CRntString* self, const char* str, u32 length);  // appends
+// Appends one character (through fn_710007f3e4); returns the string.
+base::global::CRntString* fn_710007f5ac(base::global::CRntString* self, char c);
 
 // Builds an empty string that allocates from `allocator` (fn_710007e6e4): the first step of
 // constructing a string with inline storage, whose allocator object follows the string (the

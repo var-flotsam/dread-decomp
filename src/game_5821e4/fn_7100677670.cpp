@@ -1,6 +1,7 @@
 // Static initialiser of the unit of the CCharClassSabotoruAIComponent::ESubspecies enum.
 #include "UnkStaticInit.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/UnkTUProperty.h"
 
 using namespace unk_static_init;
 
@@ -23,7 +24,6 @@ void fn_71006774a4() __attribute__((visibility("hidden")));
 extern char g_unk_7172700820[];
 extern char g_unk_7172700821[];
 extern UnkTunable g_unk_7172700828;
-void fn_7100136ecc(UnkTunable* self);  // the base constructor
 extern void* g_unk_7101a5e950[];
 void fn_7100075104(void* self);  // its destructor, as registered
 

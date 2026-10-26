@@ -3,10 +3,9 @@
 // navmesh manager's current mesh (game/UnkNavMeshManager.h; the manager is created on first
 // use), and two derived pointers.
 #include "base/UnkMatrix44.h"
+#include "base/UnkVector.h"
 #include "game/UnkNavMeshManager.h"
 #include "types.h"
-
-void* fn_71000839a0(u64 size, u32 flags);
 
 struct UnkEntry_7100286798 {
     u8 unk_0x0[0x28];

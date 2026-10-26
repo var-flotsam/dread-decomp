@@ -11,6 +11,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkGuiDisplayObject.h"
+#include "game/UnkGuiHandle.h"
 
 namespace unk_gui {
 
@@ -20,27 +21,6 @@ using base::reflection::CClass;
 using UnkClass = CClass;  // the name the includers (fn_7100b921e0, fn_7100b94320) still use
 
 using UnkGuiObj = ::UnkGuiDisplayObject;  // game/UnkGuiDisplayObject.h: GetClass() and field_0x190
-
-// A reference-counted weak handle to the looked-up object, released through vf_0x10.
-struct UnkGuiHandleObj {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-    s32 ref_count;
-    UnkGuiObj* target;
-};
-
-struct UnkGuiHandle {
-    UnkGuiHandleObj* ptr;
-
-    UnkGuiObj* Get() const { return ptr ? ptr->target : nullptr; }
-    ~UnkGuiHandle() {
-        if (UnkGuiHandleObj* p = ptr) {
-            if (--p->ref_count == 0)
-                p->vf_0x10();
-        }
-    }
-};
 
 struct UnkGuiRoot {
     u8 unk_0x0[0x68];
@@ -101,12 +81,10 @@ extern UnkGuiRoot* g_unk_717271e8f8;
 extern UnkStats* g_unk_71726bc570;
 extern CStrId g_unk_7172769ca0[2] __attribute__((visibility("hidden")));  // background ids
 
-UnkGuiHandle fn_71011b69d8(UnkGuiRoot* root, const CRntString& name);
 UnkGuiObj* fn_71011d98ec(UnkGuiObj* composition, u64 id);  // finds a child
 UnkGuiObj* fn_71011d9508(UnkGuiObj* self, const char* const* path);
 void fn_71011d968c(void* menu, UnkGuiObj* composition);
 void fn_71011b6bbc(UnkGuiRoot* root, UnkGuiObj* object, bool value);
-void fn_71011cdce8(UnkGuiObj* object, s32 value);
 void fn_71011cde44(UnkGuiObj* object, s32 value);
 void fn_71011cfba8(UnkGuiObj* object, f32 alpha);
 void fn_71011cdc30(UnkGuiObj* object, bool value);

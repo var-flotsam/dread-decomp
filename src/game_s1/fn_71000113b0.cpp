@@ -3,6 +3,7 @@
 // type (two source extensions) added to its registry (as in fn_7100005700.cpp).
 #include <new>
 
+#include "base/UnkResType.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkTUInit.h"
@@ -17,14 +18,7 @@ struct UnkStatics_71000113b0 {
     u8 type[8];
 };
 
-// A resource type's description (as in ../game_s7/UnkStaticInitS7.h), added to a registry.
-struct UnkResType {
-    u8 field_0x0[0x38];
-};
-void fn_7100004578(UnkResType* self, const char* type_name, const char* ext, const char* const* sources, u32 count);
-void fn_7100004698(void* registry, const char* name, UnkResType* types, u32 count);
-void fn_7100004a44(UnkResType* self);
-void fn_7100004b94(void* registry);
+using unk_static_init::UnkResType;
 
 extern UnkStatics_71000113b0 g_unk_7101d4cdc8 __attribute__((visibility("hidden")));
 extern char g_unk_7101d4bd38;

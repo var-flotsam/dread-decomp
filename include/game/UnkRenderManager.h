@@ -30,3 +30,19 @@ static_assert(__builtin_offsetof(UnkRenderManager, field_0x258) == 0x258, "UnkRe
 static_assert(__builtin_offsetof(UnkRenderManager, field_0x268) == 0x268, "UnkRenderManager placeholder layout");
 
 extern UnkRenderManager* g_unk_7101d47300;
+
+// A scene object's node as the render manager sees it, at +8 of the object (after its vtable): a
+// word of flags whose byte 3 is the node's type and whose bits 12 to 15 are its layer, and the
+// payload at +0x10 whose layout depends on the type. fn_7100219ae0 puts a node on a layer, when
+// the manager's pass list knows the layer and it is a different one, and for an enabled node
+// hands its type-specific part to the pass list; the result says whether it did. Only the
+// members the defining file touches are spelled out; the names and the layout are placeholders.
+struct UnkSceneNode {
+    u32 bits;
+    u8 type_at_3() const { return ((const u8*)this)[3]; }
+    u32 field_0x4;
+    u64 field_0x8;
+    void* field_0x10;
+};
+
+bool fn_7100219ae0(UnkRenderManager* self, UnkSceneNode* node, u32 layer);

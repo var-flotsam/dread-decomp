@@ -5,6 +5,7 @@
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkCollisionRecord.h"
 #include "types.h"
 
 using base::reflection::CClass;
@@ -18,32 +19,13 @@ struct UnkStruct_7100861148_Collider : UnkReflObject {
 void fn_7100d5abfc(void* owner, UnkStruct_7100861148_Collider* collider);
 void fn_7100d5ac50(void* owner, UnkStruct_7100861148_Collider* group);
 
-struct UnkStruct_7100861148_Target {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-    virtual void vf_0x18();
-    virtual void vf_0x20();
-    virtual void vf_0x28();
-    virtual void vf_0x30();
-    virtual void vf_0x38();
-    virtual void vf_0x40(u32 value);
-};
-
-struct UnkStruct_7100861148_Entry {
-    u8 pad_0x0[0x28];
-    UnkStruct_7100861148_Target* field_0x28;
-};
-
 using UnkVec_7100861148_A = base::UnkVector<UnkStruct_7100861148_Collider*>;
-using UnkVec_7100861148_B = base::UnkVector<UnkStruct_7100861148_Entry*>;
 
 UnkStruct_7100861148_Collider** fn_7100862088(UnkVec_7100861148_A* vec, u32 index);
-UnkStruct_7100861148_Entry* fn_71007253b8(UnkVec_7100861148_B* vec, u32 index);
 
 struct UnkStruct_7100861148 {
     u8 pad_0x0[0x48];
-    UnkVec_7100861148_B field_0x48;
+    base::UnkVector<UnkCollisionRecord> field_0x48;
     u8 pad_0x70[0x28];
     UnkVec_7100861148_A field_0x98;
     u8 pad_0xc0[0x8];
@@ -64,6 +46,6 @@ void fn_7100861148(UnkStruct_7100861148* self) {
             fn_7100d5abfc(owner, fn_710009d50c(c->vf_0x0(), fn_7100d361c0()) ? c : nullptr);
     }
     for (u32 i = 0; i < self->field_0x48.count; ++i)
-        fn_71007253b8(&self->field_0x48, i)->field_0x28->vf_0x40(4);
+        fn_71007253b8(&self->field_0x48, i).field_0x28->vf_0x40(4);
     self->field_0xc8 = false;
 }

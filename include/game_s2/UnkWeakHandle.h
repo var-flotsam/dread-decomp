@@ -5,10 +5,10 @@
 // its vtable (slot 5). The count is in a union (no type-based alias info: the original reloads the
 // slots after count updates).
 
+#include "base/UnkVector.h"
 #include "types.h"
 
 extern void* g_unk_7101a209e0[];
-void* fn_71000839a0(u64 size, u32 flags);
 
 struct UnkRefObject {
     virtual void vf_0x0();

@@ -5,35 +5,9 @@
 // fixed 64-bit ids) to the sub-object at +0x220 of the owner.
 #include "UnkSpitSend.h"
 #include "game/UnkActor.h"
+#include "game_s2/UnkSpitAttack.h"
 
-struct UnkVec3_71003f24f4 {
-    f32 x;
-    f32 y;
-    f32 z;
-};
-
-struct UnkSpitConfig {
-    u8 pad_0x0[0xec];
-    f32 field_0xec;
-    f32 field_0xf0;
-};
-
-struct UnkSpitStateObject {
-    u8 pad_0x0[0x8];
-    UnkActor* field_0x8;
-    u8 pad_0x10[0x18];
-    UnkSpitConfig* field_0x28;
-    u8 pad_0x30[4];
-    s32 field_0x34;
-    u8 pad_0x38[0xa4];
-    f32 field_0xdc;
-    f32 field_0xe0;
-    f32 field_0xe4;
-    f32 field_0xe8;
-    UnkVec3_71003f24f4 field_0xec;
-};
-
-void fn_71003f24f4(UnkSpitStateObject* self, u32 state) {
+void fn_71003f24f4(UnkSpitAttack* self, u32 state) {
     if (self->field_0x34 == state)
         return;
     self->field_0x34 = state;
@@ -45,10 +19,10 @@ void fn_71003f24f4(UnkSpitStateObject* self, u32 state) {
     case 2:
         if (self->field_0x8) {
             if (UnkActor* target = fn_7100d7c990(self->field_0x8)) {
-                if (UnkSpitConfig* config = self->field_0x28) {
+                if (UnkSpitData* config = self->field_0x28) {
                     self->field_0xdc = config->field_0xec;
                     self->field_0xe4 = 0;
-                    UnkVec3_71003f24f4 position = {target->field_0x44, target->field_0x54, target->field_0x64};
+                    UnkSpitVec3 position = {target->field_0x44, target->field_0x54, target->field_0x64};
                     self->field_0xec = position;
                 }
             }

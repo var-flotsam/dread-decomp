@@ -1,13 +1,12 @@
 // Maps the name hash held in the object (at +0x0) to the index of one of 20 known names: "water" is
 // 1, "speedbooster" 2, "speedbooster45up" 3, "left" 4, "right" 5, "patrol" 6, "search" 7 and so on up
 // to "presetc" 19. Any other name gives 0.
+#include "base/global/CStrId.h"
 #include "types.h"
 
 struct UnkNameHolder {
     u64 hash;
 };
-
-u64 fn_7100001570(const char* str, u64 length);
 
 u32 fn_710050816c(UnkNameHolder* self) {
     if (fn_7100001570("water", 5) == self->hash)

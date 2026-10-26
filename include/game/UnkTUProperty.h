@@ -25,6 +25,9 @@ struct UnkTunable {
     void** vtable;
 };
 
+// The base constructor most tunables pass to InitTunable (src/game_s1/fn_7100138090.cpp).
+void fn_7100136ecc(UnkTunable* self);
+
 __attribute__((always_inline)) inline void InitTunable(UnkTunable* tunable, void (*ctor)(UnkTunable*), void** vtable,
                                                        void (*dtor)(void*)) {
     ctor(tunable);

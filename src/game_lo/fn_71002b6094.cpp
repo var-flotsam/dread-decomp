@@ -2,6 +2,7 @@
 // pointer: releases them in reverse order of declaration.
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
+#include "game/UnkObject_0x100.h"
 #include "types.h"
 
 void fn_71002874dc(void* elem);
@@ -23,7 +24,8 @@ struct UnkStruct_71002b6094 {
     base::UnkRefPtrMember field_0xf8;
 };
 
-void fn_71002b6094(UnkStruct_71002b6094* self) {
+void fn_71002b6094(UnkObject_0x100* object) {
+    auto* self = reinterpret_cast<UnkStruct_71002b6094*>(object);
     self->field_0xf8.base::UnkRefPtrMember::~UnkRefPtrMember();
     self->field_0xd0.Free();
     self->field_0xa8.Free();

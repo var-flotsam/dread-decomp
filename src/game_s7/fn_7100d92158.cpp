@@ -1,11 +1,10 @@
 // Registers a set of descriptors with the registry, three of them with a factory object
 // (created on first use). Names and layouts are placeholders.
+#include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
-
-void* fn_71000839a0(u64 size, u32 flags);  // allocation
 
 // An id released in two steps (the original reloads the id and its count after the decrement).
 template <UnkStringPool** Pool>

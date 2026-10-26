@@ -1,5 +1,7 @@
 // When the owning actor's AI component (a CCharClassAIComponent) has a flag set, hands the
 // actor to a lazily created manager; then pokes two other actor components.
+#include "base/UnkVector.h"
+#include "game/UnkAttack.h"
 #include "game/UnkManager_71726af468.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkReflCast.h"
@@ -9,8 +11,6 @@
 
 using base::reflection::CClass;
 using base::reflection::UnkReflObject;
-
-void* fn_71000839a0(u64 size, u32 flags);
 
 struct UnkStruct_71003609b8_Ai : UnkReflObject {
     u8 pad_0x8[0x169];
@@ -49,26 +49,10 @@ struct UnkStruct_71003609b8_Target {
     virtual void vf_0xa8();
 };
 
-struct UnkStruct_71003609b8_Actor {
-    u8 pad_0x0[0x218];
-    void* field_0x218;
-    u8 pad_0x220[0x20];
-    UnkStruct_71003609b8_Holder* field_0x240;
-    u8 pad_0x248[0xa0];
-    void* field_0x2e8;
-};
-
-void fn_7100daaee4(UnkManager_71726af468* self, UnkStruct_71003609b8_Actor* actor);
+void fn_7100daaee4(UnkManager_71726af468* self, UnkActor* actor);
 
 UnkStruct_71003609b8_Target* fn_71010cc3bc(void* obj);
 void* fn_7100a2c13c(void* obj, void* key);
-
-struct UnkStruct_71003609b8 {
-    u8 pad_0x0[0x8];
-    UnkStruct_71003609b8_Actor* field_0x8;
-    u8 pad_0x10[0x8];
-    u8 field_0x18[0x8];
-};
 
 static inline UnkManager_71726af468* GetManager() {
     if (!g_unk_71726af468) {
@@ -100,9 +84,9 @@ inline const UnkMask_71003609b8& UnkAll_71003609b8() {
     return s_value;
 }
 
-void fn_71003609b8(UnkStruct_71003609b8* self) {
+void fn_71003609b8(UnkAttackBase* self) {
     UnkStruct_71003609b8_Ai* ai = nullptr;
-    if (UnkStruct_71003609b8_Holder* h = self->field_0x8->field_0x240) {
+    if (auto* h = static_cast<UnkStruct_71003609b8_Holder*>(self->field_0x8->field_0x240)) {
         UnkReflObject* c = h->field_0x10;
         if (c && fn_710009d50c(c->vf_0x0(), fn_7100408b2c()))
             ai = static_cast<UnkStruct_71003609b8_Ai*>(c);

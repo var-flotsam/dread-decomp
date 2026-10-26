@@ -2,18 +2,11 @@
 // at a shared endpoint. On a hit, optionally fills a contact: the point (offset by the first
 // segment's start) and the two segments' normals.
 #include "base/math/CVector.h"
+#include "base/math/UnkSegment2D.h"
 #include "types.h"
 
 using base::math::CVector2D;
 using base::math::CVector3D;
-
-struct UnkSegment_710012be70 {
-    CVector2D start;
-    CVector2D end;
-    f32 field_0x10;
-    u32 field_0x14;
-    UnkSegment_710012be70(const CVector2D& s, const CVector2D& e);  // fn_7100125b1c
-};
 
 // Returned through x8, so the original's result type is not trivially copyable.
 struct UnkVec2Result_710012be70 {
@@ -22,9 +15,8 @@ struct UnkVec2Result_710012be70 {
     UnkVec2Result_710012be70(const UnkVec2Result_710012be70& o);
 };
 
-bool fn_7100125c64(const UnkSegment_710012be70* seg, const CVector2D* point, bool flag, f32 tolerance);
-bool fn_7100126018(const UnkSegment_710012be70* seg, const CVector2D* point, CVector2D* out, f32 tolerance);
-UnkVec2Result_710012be70 fn_7100125e78(const UnkSegment_710012be70* seg);
+bool fn_7100126018(const UnkSegment2D* seg, const CVector2D* point, CVector2D* out, f32 tolerance);
+UnkVec2Result_710012be70 fn_7100125e78(const UnkSegment2D* seg);
 
 struct UnkContact_710012be70 {
     CVector3D point;
@@ -67,15 +59,15 @@ static inline CVector2D UnkCopy(const CVector2D& v) {
 
 // NON_MATCHING(minor): the spill of the start point's x is scheduled later, and the two
 // products of the denominator get swapped registers.
-bool fn_710012be70(const UnkSegment_710012be70* a, const UnkSegment_710012be70* b, UnkContact_710012be70* out,
+bool fn_710012be70(const UnkSegment2D* a, const UnkSegment2D* b, UnkContact_710012be70* out,
                    bool collinear, f32 tolerance) {
     CVector2D s = a->start;
     const CVector2D origin = {0.0f, 0.0f};
     const CVector2D da = UnkSub(a->end, s);
     const CVector2D b0 = UnkSub(b->start, s);
     const CVector2D b1 = UnkSub(b->end, s);
-    UnkSegment_710012be70 sa(origin, da);
-    UnkSegment_710012be70 sb(b0, b1);
+    UnkSegment2D sa(origin, da);
+    UnkSegment2D sb(b0, b1);
     f32 dax = da.x;
     f32 day = da.y;
     f32 ny = b1.y - b0.y;

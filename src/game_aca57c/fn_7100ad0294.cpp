@@ -2,6 +2,7 @@
 // be excluded by fn_71002b005c; the other entity must pass fn_7100ad00ac, and both need a model
 // (at 0x68 of their object at 0x18). The answer comes from the navmesh manager
 // (game/UnkNavMeshManager.h), created on first use.
+#include "base/UnkVector.h"
 #include "game/UnkNavMeshManager.h"
 #include "types.h"
 
@@ -15,7 +16,6 @@ struct UnkEntity {
     UnkEntityObj* obj;
 };
 
-void* fn_71000839a0(u64 size, u32 flags);
 bool fn_71002b005c(UnkEntityObj* obj);
 bool fn_7100ad00ac(UnkEntity* entity, u32 mode);
 bool fn_7100ec1454(UnkNavMeshManager* manager, UnkModel* a, UnkModel* b, bool flag_a, bool flag_b);

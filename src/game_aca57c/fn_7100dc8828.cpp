@@ -2,6 +2,7 @@
 // singleton's data (unless that data is locked at 0xe8), then tell the singleton (created on
 // first use) through fn_7101203854. Three getters read the same properties (false when the
 // section is missing).
+#include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "types.h"
@@ -22,7 +23,6 @@ struct UnkTypedValue {
 };
 
 extern UnkUserDataOwner* g_unk_7101d47308;
-void* fn_71000839a0(u64 size, u32 flags);
 void fn_710120320c(UnkUserDataOwner* self);  // constructor
 UnkUserData* fn_710120384c(UnkUserDataOwner* self);
 void fn_7101203854(UnkUserDataOwner* self);

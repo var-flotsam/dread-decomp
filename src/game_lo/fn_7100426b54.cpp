@@ -2,20 +2,11 @@
 // CBigkranXSpitAttack sends, UnkSpitSend.h): the caller's id, a fixed 64-bit one, a mode (2 when
 // `flag` is set, else 0), the two global descriptors and the all-bits mask.
 #include "../game_s2/UnkSpitSend.h"
+#include "game_s2/UnkChozoCommanderAttack.h"
 #include "types.h"
 
-struct UnkOwner_7100426b54 {
-    u8 unk_0x0[0x220];
-    void* field_0x220;
-};
-
-struct UnkStruct_7100426b54 {
-    u8 unk_0x0[0x8];
-    UnkOwner_7100426b54* owner;
-};
-
-void fn_7100426b54(UnkStruct_7100426b54* self, u64 id, bool flag) {
-    void* target = self->owner->field_0x220;
+void fn_7100426b54(UnkChozoCommanderAttack* self, u64 id, bool flag) {
+    void* target = self->field_0x8->field_0x220;
     if (!target)
         return;
     base::reflection::UnkReflTypeIdArg mode;

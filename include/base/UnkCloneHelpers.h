@@ -22,8 +22,6 @@
 #include "base/reflection/UnkReflTypeDtors.h"
 #include "types.h"
 
-void* fn_71000839a0(u64 size, u32 flags);
-
 // A constructor of an object holding a string id at +8 and an array-like block (step 10,
 // flags 0xe, allocator) (fn_71004f112c and its identical copies).
 namespace base {
@@ -1224,7 +1222,6 @@ void refl_PoolListDtor(UnkPoolList<Tag, Next, Elem>* self) {
 
 extern const char g_unk_7101618faa[] __attribute__((visibility("hidden")));  // the ids' strings
 extern const char g_unk_71015ba597[] __attribute__((visibility("hidden")));
-void fn_710000051c(void* id);   // a string id's destructor, as registered
 // fn_7100096604, the type object's destructor, is declared in base/reflection/UnkReflTypeDtors.h.
 
 namespace base {

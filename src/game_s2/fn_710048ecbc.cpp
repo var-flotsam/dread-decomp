@@ -1,6 +1,7 @@
 // Resets the owner's components: looks up four components of the object at +0x280 of the owner by
 // hash (keeping those the kind checks accept), resets them all, then runs fn_7100232c68 on the
 // targets of the two handles at +0x154e8 and +0x154f0 of the object.
+#include "game/UnkSwitchObject.h"
 #include "types.h"
 
 struct UnkComponent {
@@ -36,7 +37,6 @@ UnkComponent* fn_7101152b90(UnkObject* object, u64 hash);
 bool fn_710114e680(UnkObject* object, u8 kind);
 bool fn_710114e668(UnkObject* object, u8 kind);
 void fn_7100145e94(UnkComponent* component, u32 flag);
-void fn_7100146e60(UnkComponent* component, u32 flag);
 void fn_7100232c68(void* target);
 
 void fn_710048ecbc(UnkSelf* self) {
@@ -55,8 +55,8 @@ void fn_710048ecbc(UnkSelf* self) {
             d = fn_710114e668(object, d->field_0xb) ? d : nullptr;
         fn_7100145e94(a, 0);
         fn_7100145e94(b, 0);
-        fn_7100146e60(c, 0);
-        fn_7100146e60(d, 0);
+        fn_7100146e60(reinterpret_cast<UnkSwitchObject*>(c), 0);
+        fn_7100146e60(reinterpret_cast<UnkSwitchObject*>(d), 0);
     }
     if (self->field_0x154e8.field_0x8 && self->field_0x154e8.field_0x8->field_0x10)
         fn_7100232c68(self->field_0x154e8.field_0x8->field_0x10);

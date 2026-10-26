@@ -3,8 +3,6 @@
 // child constructor.
 #include "base/UnkVector.h"
 
-void* fn_71000839a0(u64 size, u32 flags);
-
 struct UnkChild {
     virtual void vf0();
     virtual void vf8();

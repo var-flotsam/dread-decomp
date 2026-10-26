@@ -1,6 +1,7 @@
 // Static initialiser of the unit of the CCharClassGooplotAIComponent::ESubspecies enum.
 #include "UnkStaticInit.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/UnkTUProperty.h"
 
 using namespace unk_static_init;
 
@@ -14,7 +15,6 @@ struct UnkStatics_71005994a0 {
 extern UnkStatics_71005994a0 g_unk_71726e7480 __attribute__((visibility("hidden")));
 extern char g_unk_71726e72b0[];
 extern UnkTunable g_unk_71726e72b8;
-void fn_7100136ecc(UnkTunable* self);  // the base constructor
 extern void* g_unk_7101a4d090[];
 void fn_7100075104(void* self);  // its destructor, as registered
 extern UnkEnumType g_unk_71726e7318;

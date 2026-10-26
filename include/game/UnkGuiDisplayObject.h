@@ -64,3 +64,7 @@ static_assert(__builtin_offsetof(UnkGuiDisplayObject, field_0x190) == 0x190, "Un
 // is told that the object gained (fn_71011b7514) or lost (fn_71011b5d94) it. Defined in
 // src/game_hi/fn_71011cdce8.cpp, the unit's file.
 void fn_71011cf2a4(UnkGuiDisplayObject* self, bool value);
+
+// Sets the flag at +0xb4: marks the object stale and, if its derived visibility changed, sends a
+// change event to the GUI root. Defined in src/game_hi/fn_71011cdce8.cpp.
+void fn_71011cdce8(UnkGuiDisplayObject* self, bool value);

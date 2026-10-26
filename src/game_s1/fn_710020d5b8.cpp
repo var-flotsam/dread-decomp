@@ -4,8 +4,6 @@
 // dirty and passes the transform on to the target (fn_71001c2480).
 #include "game/UnkXformNode.h"
 
-void fn_71001c2480(UnkXformTarget* target, UnkXform* x);
-
 void fn_710020d5b8(UnkXformNode* self, const UnkVec3f* v) {
     UnkVec3f cur = self->GetAngle();
     if (UNK_CHANGED(cur.x, v->x) || UNK_CHANGED(cur.y, v->y) || UNK_CHANGED(cur.z, v->z)) {

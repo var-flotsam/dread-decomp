@@ -5,6 +5,7 @@
 #include <utility>
 
 #include "base/UnkDestructors.h"
+#include "game/UnkTimelineComponent.h"
 #include "types.h"
 
 using base::UnkStrIdMember;
@@ -62,29 +63,24 @@ static inline UnkSetStatus Done() {
 
 struct UnkArgObj;
 
-void fn_7100d7c828(char* owner, const UnkArgObj* obj, bool flag);
-
 UnkSetStatus fn_7100d82864(void* self, UnkValueHolder* holder, UnkValueArg* const* arg) {
     const UnkValueArg* args = *arg;
-    fn_7100d7c828(holder->owner, args[0].GetPtr<UnkArgObj>(), args[1].Get<bool>());
+    fn_7100d7c828(reinterpret_cast<UnkActor*>(holder->owner), args[0].GetPtr<u64>(), args[1].Get<bool>());
     return Done();
 }
 
-struct UnkObjSet;
-void* fn_7100a2c13c(UnkObjSet* set, const UnkArgObj* obj);
-void fn_7100a2b7b8(UnkObjSet* set, const UnkArgObj* obj);
+void* fn_7100a2c13c(UnkTimelineComponent* set, const u64* id);
 
-struct UnkSetOwner {
-    u8 unk_0x0[0x2e8];
-    UnkObjSet* set;
-};
+static inline UnkTimelineComponent* Timeline(UnkActor* actor) {
+    return static_cast<UnkTimelineComponent*>(actor->field_0x2e8);
+}
 
 UnkSetStatus fn_7100d82918(void* self, UnkValueHolder* holder, UnkValueArg* const* arg) {
     const UnkValueArg* args = *arg;
-    UnkSetOwner* owner = reinterpret_cast<UnkSetOwner*>(holder->owner);
-    const UnkArgObj* obj = args[0].GetPtr<UnkArgObj>();
-    if (owner->set && fn_7100a2c13c(owner->set, obj))
-        fn_7100a2b7b8(owner->set, obj);
+    UnkActor* owner = reinterpret_cast<UnkActor*>(holder->owner);
+    const u64* id = args[0].GetPtr<u64>();
+    if (Timeline(owner) && fn_7100a2c13c(Timeline(owner), id))
+        fn_7100a2b7b8(Timeline(owner), id);
     return Done();
 }
 

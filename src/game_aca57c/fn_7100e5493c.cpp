@@ -7,6 +7,7 @@
 #include <new>
 
 #include "base/UnkCollectionIter.h"
+#include "base/UnkFreedVectorPair.h"
 #include "base/UnkVector.h"
 #include "types.h"
 
@@ -183,7 +184,6 @@ struct UnkRecord60List {
     u32 flags;
     base::UnkAllocator* allocator;
 };
-void fn_7100e52b58(UnkRecord60List* self, u32 capacity);
 
 void fn_7100e52cf4(UnkRecord60List* self, const UnkRecord60* value) {
     u32 n = self->count;
@@ -193,7 +193,9 @@ void fn_7100e52cf4(UnkRecord60List* self, const UnkRecord60* value) {
     if ((s32)n >= (s32)new_capacity)
         for (;;) {
         }
-    fn_7100e52b58(self, new_capacity);
+    // The same array of 0x60-byte records as UnkPairArray (include/base/UnkFreedVectorPair.h), typed by its
+    // record here.
+    fn_7100e52b58(reinterpret_cast<UnkPairArray*>(self), new_capacity);
     new (&self->data[self->count]) UnkRecord60(*value);
     ++self->count;
 }

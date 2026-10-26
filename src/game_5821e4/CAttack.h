@@ -5,6 +5,7 @@
 // (descriptor slot 0x30) and a move constructor (0x38); for these classes both are the
 // implicit ones, and their members have no separate moves, so the two are identical.
 
+#include "base/UnkVector.h"
 #include "types.h"
 
 #include <new>
@@ -71,8 +72,6 @@ struct UnkAttackHandle : UnkAttackRefCounted {
         target = t;
     }
 };
-
-void* fn_71000839a0(u64 size, u32 flags);  // allocation
 
 // Assigns a ref-counted pointer unless it already holds `p`.
 inline void UnkAttackSetRef(UnkAttackRefPtr& ref, UnkAttackRefCounted* p) {

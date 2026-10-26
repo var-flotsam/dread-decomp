@@ -11,6 +11,7 @@
 
 #include <initializer_list>
 
+#include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CName.h"
 #include "base/global/CRntString.h"
@@ -92,7 +93,6 @@ void fn_710009ae5c(base::reflection::UnkReflFunction* fn, u32 count);
 
 // Allocation (size, flags; the flags are 0x3f for the tunable registry), and the registry's
 // constructor.
-void* fn_71000839a0(u64 size, u32 flags);
 void fn_710013ac14(base::reflection::UnkTunableRegistry* self);
 
 // The CRntString inside the string the global empty id g_unk_7101d470e0 (base/global/CStrId.h)
