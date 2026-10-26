@@ -1,10 +1,11 @@
 // Passes a value to a menu (at 0x270) and, when the menu is in state 3, drops the GUI object
 // held at 0x18, sets parameter 0xede73d1953baf654 to -1, flags the three panels at 0x28..0x38
 // and clears their two values; then calls fn_7100b364dc on the menu.
+#include "game/UnkGuiRoot.h"
 #include "game/UnkRenderManager.h"
 #include "types.h"
 
-struct UnkRefObject {
+struct UnkMenuRef_7100b4c43c {
     virtual void vf_0x0();
     virtual void vf_0x8();
     virtual void vf_0x10();
@@ -23,7 +24,7 @@ struct UnkMenuSource {
     u8 unk_0x0[0x8];
     u64 field_0x8;
     u8 unk_0x10[0x8];
-    UnkRefObject* field_0x18;
+    UnkMenuRef_7100b4c43c* field_0x18;
     u8 unk_0x20[0x8];
     UnkPanel* field_0x28;
     UnkPanel* field_0x30;
@@ -37,9 +38,6 @@ struct UnkMenuTarget {
     s32 field_0x280;
 };
 
-struct UnkGuiRoot;
-extern UnkGuiRoot* g_unk_717271e8f8;
-void fn_71011b57c4(UnkGuiRoot* root, void* object);
 void fn_7100219294(UnkRenderManager* target, u64 hash, const f32* value, u32 mode);
 void fn_7100b364dc(UnkMenuTarget* menu);
 
@@ -59,7 +57,7 @@ void fn_7100b4c43c(UnkMenuSource* self, UnkMenuTarget* menu) {
     if (menu->field_0x280 == 3) {
         if (self->field_0x18 && self->field_0x18->field_0x10) {
             fn_71011b57c4(g_unk_717271e8f8, self->field_0x18->field_0x10);
-            if (UnkRefObject* p = self->field_0x18) {
+            if (UnkMenuRef_7100b4c43c* p = self->field_0x18) {
                 if (--p->ref_count == 0)
                     p->vf_0x10();
                 self->field_0x18 = nullptr;

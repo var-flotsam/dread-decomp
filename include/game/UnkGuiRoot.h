@@ -33,3 +33,15 @@ extern UnkGuiRoot* g_unk_717271e8f8;
 // Makes `object` the root's focused object (the reference at +0x230, `value` is the flag the
 // menus pass false for). Defined in the unit's generated code.
 void fn_71011b6bbc(UnkGuiRoot* root, UnkGuiDisplayObject* object, bool value);
+
+// Sends a message (a 0x28-byte event built by fn_710120235c) to the root. Defined in the unit's
+// generated code; callers pass their own message type.
+void fn_71011b6e0c(UnkGuiRoot* root, void* message);
+
+// Tells the root that `object` gained (fn_71011b7514) or lost (fn_71011b5d94) the property
+// game/UnkGuiDisplayObject.h describes. Defined in the unit's generated code.
+void fn_71011b7514(UnkGuiRoot* root, UnkGuiDisplayObject* object);
+void fn_71011b5d94(UnkGuiRoot* root, UnkGuiDisplayObject* object);
+
+// Tells the root about an object (the render manager's menu path). Defined in the unit's generated code.
+void fn_71011b57c4(UnkGuiRoot* root, void* object);

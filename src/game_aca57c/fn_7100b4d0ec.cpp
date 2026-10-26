@@ -8,6 +8,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiHandle.h"
+#include "game/UnkGuiRoot.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -20,7 +21,6 @@ struct UnkMenuScreen {
     UnkGuiDisplayObject* composition;
 };
 
-extern void* g_unk_717271e8f8;
 void fn_71011cf364(void* composition, s32 value);
 void fn_71011cde44(void* composition, s32 value);
 UnkReflObject* fn_7100e033a8(UnkGameManager* manager);

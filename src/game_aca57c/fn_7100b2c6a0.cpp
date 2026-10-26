@@ -7,18 +7,21 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiHandle.h"
+#include "game/UnkGuiRoot.h"
 #include "game/UnkHandleMenu.h"
 #include "types.h"
 
 using base::global::CRntString;
 using base::reflection::CClass;
 
-extern void* g_unk_717271e8f8;
 void fn_71011cf364(void* composition, s32 value);
 void fn_71011cde44(void* composition, s32 value);
-// Kept local: with the header's typed signature (UnkGuiDisplayObject*, UnkGuiDisplayObject*) the
-// NON_MATCHING(minor) functions below change (the last reloads of the slot lose the x20 address).
-void fn_71011d968c(void* menu, void* composition);
+// The header's fn_71011d968c (container, child), called through an untyped view: calling it with
+// the typed arguments changes the NON_MATCHING(minor) functions below (the last reloads of the slot
+// lose the x20 address).
+static inline void AddChild(void* menu, void* composition) {
+    reinterpret_cast<void (*)(void*, void*)>(fn_71011d968c)(menu, composition);
+}
 
 template <u32 Offset>
 struct UnkMenu {
@@ -43,7 +46,7 @@ __attribute__((always_inline)) static inline void SetUp(UnkMenu<Offset>* self, c
         if (Vf78)
             CallVf78(self->composition, -1500, true);
         fn_71011cde44(composition, 2);
-        fn_71011d968c(self, composition);
+        AddChild(self, composition);
     }
 }
 
@@ -85,7 +88,7 @@ __attribute__((always_inline)) static inline void SetUpHandle(UnkHandleMenu<Offs
         CallVf78(menu.ptr->target, -2000, true);
     fn_71011cde44(menu.Get(), 2);
     fn_71011cef74(menu.Get(), self);
-    fn_71011d968c(self, self->menu.Get());
+    AddChild(self, self->menu.Get());
 }
 
 void fn_7100b2c2bc(UnkHandleMenu<0x488>* self) { SetUpHandle<0x488, true>(self, "PowerDescComposition"); }
@@ -103,5 +106,5 @@ void fn_7100b2c58c(UnkMenu<0x2d0>* self) {
     fn_71011cf364(self->composition, 0);
     fn_71011cde44(self->composition, 2);
     fn_71011cef74(self->composition, self);
-    fn_71011d968c(self, self->composition);
+    AddChild(self, self->composition);
 }

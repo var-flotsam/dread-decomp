@@ -2,6 +2,7 @@
 // fn_7101053a98 vetoes it, the screen's GUI key is dropped and the script function
 // Init.CreateAndInitNewGame is called for the cave start point, then the request is cleared.
 #include "game/UnkGameManager.h"
+#include "game/UnkGuiRoot.h"
 #include "types.h"
 
 struct UnkNewGameScreen {
@@ -9,13 +10,7 @@ struct UnkNewGameScreen {
     bool field_0x2ac;
 };
 
-struct UnkGuiRoot {
-    u8 unk_0x0[0xca8];
-    u8 field_0xca8[1];
-};
-
 struct UnkGuiKey;
-extern UnkGuiRoot* g_unk_717271e8f8;
 extern UnkGuiKey g_unk_71727659c0 __attribute__((visibility("hidden")));
 
 void fn_71011d8fe4(UnkNewGameScreen* self);

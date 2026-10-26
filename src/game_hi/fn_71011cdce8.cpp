@@ -3,6 +3,7 @@
 // event. fn_71011cf2a4 sets the flag at +0x181: when the object is shown and active and the flag
 // changed, tells the GUI root that the object gained or lost it.
 #include "game/UnkGuiDisplayObject.h"
+#include "game/UnkGuiRoot.h"
 #include "types.h"
 
 struct UnkEvent_0x28 {
@@ -12,10 +13,6 @@ struct UnkEvent_0x28 {
 void fn_71011cee40(UnkGuiDisplayObject* self);
 void fn_710120235c(UnkEvent_0x28* ev, UnkGuiDisplayObject* sender, const s32* type, void* extra);
 void fn_7101202488(UnkEvent_0x28* ev);
-void fn_71011b6e0c(void* mgr, UnkEvent_0x28* ev);
-void fn_71011b5d94(void* root, UnkGuiDisplayObject* object);
-void fn_71011b7514(void* root, UnkGuiDisplayObject* object);
-extern void* g_unk_717271e8f8;
 
 static inline u8 IsShown_71011cdce8(UnkGuiDisplayObject* self) {
     if (!self->field_0x74)
