@@ -15,10 +15,21 @@
 // SetOperationModeChangedNotificationEnabled, SetPerformanceModeChangedNotificationEnabled,
 // SetUserInactivityDetectionTimeExtended, EnterExitRequestHandlingSection,
 // LeaveExitRequestHandlingSection, TryPopNotificationMessage.
-// Declared below: all but FinishStartupLogo and GetDesiredLanguage, which nothing on the boot
-// path calls yet.
+// All declared below. Outside the boot slice: GetDesiredLanguage (fn_710119c41c matches it against
+// the game's 14 language codes) and FinishStartupLogo (fn_7100adfb20).
 
 #include "nn/nn_common.h"
+
+namespace nn::settings {
+
+// A language as a short string ("en-US", "ja"): eight bytes, returned in x0, compared as one
+// word by fn_710119c41c.
+struct LanguageCode {
+    char string[8];
+};
+static_assert(sizeof(LanguageCode) == 8, "one register");
+
+}  // namespace nn::settings
 
 namespace nn::oe {
 
@@ -58,5 +69,8 @@ void SetUserInactivityDetectionTimeExtended(bool extended);
 void SetCpuBoostMode(CpuBoostMode mode);
 // How long the program has run, not counting time spent suspended.
 TimeSpan GetProgramTotalActiveTime();
+// The system language: $DREAD_LANGUAGE (a code the game knows, such as "fr" or "ja"), else en-US.
+settings::LanguageCode GetDesiredLanguage();
+void FinishStartupLogo();
 
 }  // namespace nn::oe

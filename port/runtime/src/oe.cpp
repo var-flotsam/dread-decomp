@@ -8,6 +8,8 @@
 #include "nn/os.h"
 
 #include <atomic>
+#include <cstdlib>
+#include <cstring>
 
 namespace nn::oe {
 
@@ -65,6 +67,20 @@ void SetUserInactivityDetectionTimeExtended(bool) {
 
 void SetCpuBoostMode(CpuBoostMode) {
     // TODO(M1): fn_71001d1fd0 boosts the CPU while it loads. Nothing on PC.
+}
+
+settings::LanguageCode GetDesiredLanguage() {
+    // fn_710119c41c looks the code up in the game's table and falls back when it is not there.
+    settings::LanguageCode code{};
+    const char* language = std::getenv("DREAD_LANGUAGE");
+    if (!language || !*language || std::strlen(language) >= sizeof(code.string))
+        language = "en-US";
+    std::memcpy(code.string, language, std::strlen(language));
+    return code;
+}
+
+void FinishStartupLogo() {
+    // fn_7100adfb20 ends the console's boot logo. The port shows none.
 }
 
 TimeSpan GetProgramTotalActiveTime() {
