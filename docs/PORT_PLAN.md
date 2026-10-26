@@ -29,7 +29,7 @@ provided on PC. From the import table of `main` and the RomFS:
 | Surface | Evidence | PC replacement |
 |---|---|---|
 | Graphics: NVN | Loaded through `nvnBootstrapLoader` + `nvnDeviceGetProcAddress` (a function-pointer table, 600+ `nvn*` names in strings) | An NVN shim over Vulkan (NVN's object model is the closest to Vulkan's). This is the largest single piece |
-| Shaders | 478 `.bshdat` packages: 671 programs, each a vertex and a fragment stage compiled by NVN's compiler, whose debug section carries the stage's **GLSL source** and includes (`#version 440 core`/`450`). `tools/bshdat.py` (2026-10-26) parses the format, extracts the 1,342 sources to `build/shaders/` and decodes each stage's reflection (blocks, samplers, inputs, outputs and their bindings) | glslang 16.6.0 compiles 1,341 of 1,342 stages (670 programs) to OpenGL and Vulkan SPIR-V after two load-time rewrites: uniform blocks declared `layout(location = N)` get the binding NVN's compiler assigned (the stage's active blocks in declaration order, from the reflection), and `GL_NV_explicit_typecast` is enabled for C-style casts. The last stage (FXAA, a non-constant texel offset) needs a hand fix. No 64-bit handles in any source (SPIR-V needs only `Shader`): bindless is the shim's API side. The shim maps NVN's per-stage block and texture slots to one Vulkan set per stage, samplers from binding 16 (`docs/JOURNAL.md`, 2026-10-26). Left: the engine's variant selection by key, and the uniform name tables' engine IDs |
+| Shaders | 478 `.bshdat` packages: 671 programs, each a vertex and a fragment stage compiled by NVN's compiler, whose debug section carries the stage's **GLSL source** and includes (`#version 440 core`/`450`). `tools/bshdat.py` (2026-10-26) parses the format, extracts the 1,342 sources to `build/shaders/` and decodes each stage's reflection (blocks, samplers, inputs, outputs and their bindings) | glslang 16.6.0 compiles 1,341 of 1,342 stages (670 programs) to OpenGL and Vulkan SPIR-V after two rewrites, applied when the port's build compiles them (decision 3: Vulkan, build time): uniform blocks declared `layout(location = N)` get the binding NVN's compiler assigned (the stage's active blocks in declaration order, from the reflection), and `GL_NV_explicit_typecast` is enabled for C-style casts. The last stage (FXAA, a non-constant texel offset) needs a hand fix. No 64-bit handles in any source (SPIR-V needs only `Shader`): bindless is the shim's API side. The shim maps NVN's per-stage block and texture slots to one Vulkan set per stage, samplers from binding 16 (`docs/JOURNAL.md`, 2026-10-26). Left: the engine's variant selection by key, and the uniform name tables' engine IDs |
 | Audio renderer | 149 `nn::audio` imports (the low-level renderer that `nn::atk` drives); `nn::atk` 11.4.3 is statically linked (about 1,150 functions, status `L`, not decompiled by decision) | Either implement `nn::audio` over a PC mixer and keep `nn::atk` as **lifted** code, or replace `nn::atk` with an open player for `bfsar`/`bfstm`/`bfgrp` (1,276 streams, 73 groups, one archive). Lifting `nn::atk` is the shorter path and keeps the decision not to hand-decompile it |
 | OS, threads, time, memory | 55 `nn::os`, 6 `nn::mem`, 5 `nn::time`; the game reserves a 1.82 GB `.bss` and sub-allocates with dlmalloc mspaces (`lib/dlmalloc`) | `std::thread`, mutexes and timers; a reserved virtual range for the `.bss` |
 | File system | 22 `nn::fs`; RomFS with `files.toc` and 72 `.pkg` packs (parsing already in MEDS) | Plain files from the user's own dump |
@@ -246,16 +246,20 @@ months" still requires M2 to go well; say so when planning, and re-estimate afte
    a pinned generator version, like `build/`). Since M1 step 3 they are generated into
    `build/port/lifted/` with the generator's version and source hashes in its manifest; tracking
    them (for example as `port/lifted/`) stays the owner's call.
-3. Graphics backend (Vulkan is the natural target for an NVN shim). ~~The shader translator
+3. ~~Graphics backend and when shaders are compiled.~~ **Decided 2026-10-26 by the owner: Vulkan
+   first, SPIR-V compiled at build time.** The port's build runs `tools/bshdat.py --compile`'s
+   Vulkan mode over the user's own dump (extraction, the two binding rewrites, the FXAA rule) and
+   installs the SPIR-V under `build/` beside the executable: derived from game data, so it is never
+   committed or distributed, like everything else the tools generate. The executable carries no
+   shader compiler; a load-time compile with a cache is not planned. OpenGL is not a target (1,298
+   stages enable the NVIDIA-only `GL_NV_gpu_shader5`, and macOS stops at GL 4.1).
+   ~~The shader translator
    (write, or depend on an emulator's; license check first).~~ Settled 2026-10-25: the shipped
    `.bshdat` files contain the GLSL sources, so the shaders are compiled with glslang and nothing
    is taken from an emulator (the surface table above). The `.bshdat` layout is decoded
    (`tools/bshdat.py`, 2026-10-26), and the sources use no bindless handles: each stage binds at
    most five uniform blocks and samplers at fixed slots (declared 0 to 12, arrays reaching 13), so
    NVN's texture handles become combined image-sampler descriptors, one descriptor set per stage.
-   Open: whether the port
-   compiles SPIR-V at build time from the user's dump (as `bshdat.py --compile` does) or at load
-   time, and Vulkan versus OpenGL for the first backend (glslang compiles the sources for both).
 4. `nn::atk`: lift it for the port (keeps "not decompiled") or replace it.
 5. Pull-request size and review: with the self-hosted check job (`.github/workflows/check-local.yml`)
    the owner can merge on green instead of reading each diff.
