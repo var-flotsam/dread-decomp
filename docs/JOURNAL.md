@@ -86,6 +86,17 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Port M1: `nn::prepo`, `movie`, the language and an import check (2026-10-26).** With these the
+runtime defines every SDK import the boot slice reaches. `movie`'s player
+(`src/game_71001e2acc/`) subclasses the library's Extractor and Decoder and keeps Buffers at a
+0x40-byte stride; the port's Buffer is complete and every source has zero tracks, so
+`fn_71002233c4` reports its code 5 for each. `nn::oe::GetDesiredLanguage` returns an 8-byte code
+that `fn_710119c41c` compares with 14 codes as one word. New `tools/port_imports.py` compares the
+dump's import names (with their mangled parameter types) with the runtime's: every implemented
+namespace matches completely (285 of 547 imports), which confirms the signatures written from
+the callers and the mangled names. Left for later: `nn::audio` 149 and `nn::nfp` 26 (outside the
+slice), `nn::os` memory blocks and multi-waits, `nn::util` math tables and gzip.
+
 **Port M1: `nn::hid` (2026-10-26).** All 34 `nn::hid` functions in `port/runtime/`. The
 parameter lists came from the dump's dynamic symbols (the imports' mangled names: read locally,
 the names only), which settles what Ghidra's pseudocode leaves open (`this`, references,

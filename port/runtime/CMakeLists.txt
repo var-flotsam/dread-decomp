@@ -16,9 +16,11 @@ add_library(dread_runtime STATIC
   src/loader.cpp
   src/mem.cpp
   src/missing.cpp
+  src/movie.cpp
   src/nv.cpp
   src/os.cpp
   src/oe.cpp
+  src/prepo.cpp
   src/time.cpp
   src/util.cpp
   src/vi.cpp)

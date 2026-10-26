@@ -415,9 +415,9 @@ were the prologue's saves.
 
 ## The runtime (M1)
 
-Every `nn::os`, `nn::oe`, `nn::fs`, `nn::account`, `nn::mem`, `nn::time`, `nn::util`, `nn::diag`,
-`nv` and `nn::hid` import the boot slice reaches is defined in `runtime/` (30, 20, 8, 8, 4, 4, 4, 2,
-6 and 12 imports, counting the GOT slots; `port_link.py` aliases each import's four-byte thunk to the
+Every SDK import the boot slice reaches is defined in `runtime/`: `nn::os` 30, `nn::oe` 20,
+`movie` 24, `nn::hid` 12, `nn::prepo` 12, `nn::fs` 8, `nn::account` 8, `nv` 6, `nn::mem` 4,
+`nn::time` 4, `nn::util` 4, `nn::diag` 2 (counting the GOT slots; `port_link.py` aliases each import's four-byte thunk to the
 runtime's function by name), and so is every one a source calls from outside the slice. Each
 definition's `TODO(M<n>)` names its callers; `runtime/include/nn/os.h` and `oe.h` say where each
 layout comes from.
@@ -464,6 +464,22 @@ layout comes from.
   `include/base/input/UnkHidVibration.h` (the matching build uses them too; their members are
   declared there, `nn/hid.h` completes the small types); their vptr points at a table of traps
   that names the class and slot, since the port's nodes have no virtual functions of their own.
+- **`nn::prepo`**: play reports accepted and dropped; nothing is sent anywhere.
+- **`movie`** (all 55 functions): `Buffer` is complete (0x40 bytes, as the player's arrays
+  step); every source has no tracks until the port has a video decoder: `SetDataSource`
+  accepts any file or stream, `GetTrackCount` answers zero, so the player's track reader
+  `fn_71002233c4` reports each track missing, and the rest returns `kStatusNoMedia`. The game's
+  extractor and decoder subclasses write their own vptr; their vtables in `.data` name the
+  library's functions, which the loader resolves by name.
+- **`nn::oe::GetDesiredLanguage`** answers `$DREAD_LANGUAGE` (a code the game knows: `en-US`,
+  `fr`, `ja`, ...), else `en-US`.
+- **Checking a signature** (`tools/port_imports.py --version 2.1.0`): the dump's dynamic symbols
+  name every import with its parameter types; the tool compares them with the names
+  `image_tables.s` can resolve, per namespace (`--list NS` prints the rest). A stub whose
+  mangled name matches has the console's parameter types. On `main` with this change: 285 of
+  547 imports resolve; every implemented namespace completely, except `nn::hid`'s one data
+  symbol. Left: `nn::audio` 149, `nn::nfp` 26, `nn::os` 13 (memory blocks, multi-waits),
+  `nn::util` 11 (math tables and gzip), the C++ ABI's and some C names.
 - **Imports outside `nn::`** (`nv`, `movie`) resolve to the runtime by name like `nn::` ones, and
   an overloaded name (`AbortImpl`) goes to the overload whose parameters fit the caller's
   reference best (`port_link.py`'s `runtime_overload`, the alias ranking).
