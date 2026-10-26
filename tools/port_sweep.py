@@ -48,8 +48,11 @@ import buildcfg  # noqa: E402
 ROOT = Path(__file__).resolve().parent.parent
 RUNTIME_INCLUDE = ROOT / "port" / "runtime" / "include"
 # Host code generation: the same language flags as the matching build (tools/buildcfg.CXX), a
-# plain optimisation level, and none of the AArch64 flags.
-HOST_FLAGS = ["-std=c++1z", "-O2", "-fno-rtti", "-fno-exceptions", "-fPIC", "-c"]
+# plain optimisation level, and none of the AArch64 flags. Without type-based alias analysis: the
+# game code type-puns as the original did (words read as u64, storage cast to its layout), which
+# the original's compiler tolerated at the bytes it produced but a newer one may not; port/CMakeLists.txt
+# compiles dread_game the same way.
+HOST_FLAGS = ["-std=c++1z", "-O2", "-fno-strict-aliasing", "-fno-rtti", "-fno-exceptions", "-fPIC", "-c"]
 # Diagnostics as one line each, errors only; warnings are the port build's business later.
 DIAG_FLAGS = ["-w", "-fno-caret-diagnostics", "-fno-color-diagnostics", "-fno-diagnostics-show-option",
               "-fno-diagnostics-fixit-info", "-fno-show-column"]

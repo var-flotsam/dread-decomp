@@ -18,3 +18,13 @@ extern "C" [[noreturn]] void dread_port_missing_function(u64 address);
 // would compute with the wrong register. The thunk loads the function's address and jumps here;
 // fixing the declaration (tools/decl_check.py) removes the thunk.
 extern "C" [[noreturn]] void dread_port_mismatched_call(u64 address);
+
+// The port's main passes its own arguments before it calls into the game: nn::os::GetHostArgc and
+// GetHostArgv return them (nnMain's first call, fn_71000005d0, walks them). Without a call both
+// report no arguments.
+extern "C" void dread_port_set_host_arguments(int argc, char** argv);
+
+// Asks the game to exit as the console's system does: the next nn::oe::TryPopNotificationMessage
+// returns the exit request (4), on which the notification loop fn_71001327c0 sets the quit flag.
+// For the port's window (close button) and console (Ctrl+C); safe from any thread.
+extern "C" void dread_port_request_exit();

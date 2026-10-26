@@ -1,10 +1,12 @@
 # The PC port build (docs/PORT_PLAN.md, Route B). Targets:
 #   dread_runtime  the port's own nn:: declarations and stubs (runtime/)
+#   dread_nvn      the NVN shim over Vulkan (nvn/): the shader manifest and the binding layer
 #   dread_game     every source under src/, compiled for the host (compile only at M0)
 #   dread_libs     the vendored libraries main links statically: lib/lua and lib/dlmalloc (as C++)
 #   dread          the executable (main.cpp): the runtime now, the game objects from M1
 #   sweep          tools/port_sweep.py with this build's compiler and target
 #   link_report    tools/port_link.py: the whole-program relocatable link and what is missing
+#   shaders        tools/bshdat.py --install: the game's shaders as SPIR-V from the dump (decision 3)
 # Configure from the repository root, for example
 #   cmake -S port -B build/port/cmake -G Ninja
 # port/README.md has the configure line for each platform, including the compile-only one for a
@@ -81,6 +83,47 @@ endif()
 
 add_subdirectory(runtime)
 
+# The NVN shim (nvn/) compiles against the Khronos Vulkan headers: by default the pinned copy
+# tools/fetch_toolchains.py fetches (vulkan-headers-<ver> under the tool cache), else a Vulkan SDK's
+# (VULKAN_SDK). Empty: dread_nvn is not built.
+set(_dread_vulkan_default "")
+# The tool cache, as tools/hostenv.py cache_dir() finds it.
+if(CMAKE_HOST_WIN32)
+  if(DEFINED ENV{LOCALAPPDATA})
+    file(TO_CMAKE_PATH "$ENV{LOCALAPPDATA}/dread-decomp" _dread_cache)
+  else()
+    file(TO_CMAKE_PATH "$ENV{USERPROFILE}/dread-decomp" _dread_cache)
+  endif()
+elseif(CMAKE_HOST_APPLE)
+  set(_dread_cache "$ENV{HOME}/Library/Caches/dread-decomp")
+elseif(IS_DIRECTORY "$ENV{HOME}/dread-decomp")
+  set(_dread_cache "$ENV{HOME}/dread-decomp")
+elseif(DEFINED ENV{XDG_CACHE_HOME} AND NOT "$ENV{XDG_CACHE_HOME}" STREQUAL "")
+  set(_dread_cache "$ENV{XDG_CACHE_HOME}/dread-decomp")
+else()
+  set(_dread_cache "$ENV{HOME}/.cache/dread-decomp")
+endif()
+# Only complete fetches: tools/fetch_toolchains.py renames vulkan-headers-<ver>.tmp into place last.
+file(GLOB _dread_vulkan_candidates LIST_DIRECTORIES true "${_dread_cache}/tools/vulkan-headers-*")
+list(FILTER _dread_vulkan_candidates INCLUDE REGEX "/vulkan-headers-[0-9.]+$")
+list(TRANSFORM _dread_vulkan_candidates APPEND "/include")
+if(_dread_vulkan_candidates)
+  list(SORT _dread_vulkan_candidates COMPARE NATURAL ORDER DESCENDING)
+  list(GET _dread_vulkan_candidates 0 _dread_vulkan_default)
+elseif(DEFINED ENV{VULKAN_SDK} AND EXISTS "$ENV{VULKAN_SDK}/include/vulkan/vulkan_core.h")
+  file(TO_CMAKE_PATH "$ENV{VULKAN_SDK}/include" _dread_vulkan_default)
+endif()
+set(DREAD_VULKAN_INCLUDE "${_dread_vulkan_default}" CACHE PATH "Vulkan headers (python tools/fetch_toolchains.py vulkan-headers-1.4.328); empty: no NVN shim")
+if(DREAD_VULKAN_INCLUDE)
+  if(NOT EXISTS "${DREAD_VULKAN_INCLUDE}/vulkan/vulkan_core.h")
+    message(FATAL_ERROR "dread: DREAD_VULKAN_INCLUDE (${DREAD_VULKAN_INCLUDE}) has no vulkan/vulkan_core.h")
+  endif()
+  message(STATUS "dread: Vulkan headers from ${DREAD_VULKAN_INCLUDE}")
+  add_subdirectory(nvn)
+else()
+  message(STATUS "dread: no Vulkan headers (python tools/fetch_toolchains.py vulkan-headers-1.4.328); dread_nvn not built")
+endif()
+
 # The game: every source under src/, except the sample duplicates and anything matching
 # DREAD_SWEEP_EXCLUDE: regexes over the repository-relative path, for sources the sweep reports
 # as not yet portable. That list is empty because the first sweep (2026-10-24, port/README.md)
@@ -127,8 +170,10 @@ message(STATUS "dread: dread_game has ${_dread_game_count} sources, ${_dread_gam
 add_library(dread_game OBJECT ${_dread_game_sources})
 target_include_directories(dread_game PRIVATE "${DREAD_ROOT}/include")
 target_link_libraries(dread_game PUBLIC dread_runtime)
-# Matched code is held to the original's bytes, not to a newer compiler's warnings.
-target_compile_options(dread_game PRIVATE -w)
+# Matched code is held to the original's bytes, not to a newer compiler's warnings. It type-puns as
+# the original did (words read as u64, storage cast to its layout), so type-based alias analysis is
+# off, as for dread_libs and the sweep (tools/port_sweep.py HOST_FLAGS).
+target_compile_options(dread_game PRIVATE -fno-strict-aliasing -w)
 
 # The vendored libraries main links statically (status L in data/functions/): all of lib/lua and
 # dlmalloc through mspace.c (the game's settings; it includes malloc.c), compiled as C++ without
@@ -195,3 +240,52 @@ add_custom_target(link_report
   COMMENT "Whole-program relocatable link of the sweep's objects and the report of what is missing (build/port/link/)"
   USES_TERMINAL
   VERBATIM)
+
+# Shaders (docs/PORT_PLAN.md, decision 3: Vulkan, SPIR-V compiled at build time). tools/bshdat.py
+# --install extracts the GLSL from the user's own .bshdat packages, compiles every stage with
+# glslang for Vulkan (one descriptor set per stage, samplers from binding 16) and writes the SPIR-V
+# and shaders.manifest, the table the NVN shim loads, to
+# DREAD_SHADER_DIR, beside the executable. Derived from game data: it stays under build/ and is
+# never installed or distributed. The executable carries no shader compiler. Needs glslang
+# (python tools/fetch_toolchains.py glslang-16.6.0) and the dump (tools/setup.py); on by default
+# when the dump's shader folder exists at the first configure (a cache option keeps its value: a
+# dump added later needs -DDREAD_SHADERS=ON).
+set(_dread_shd_dir "${DREAD_ROOT}/orig/${DREAD_GAME_VERSION}/romfs/system/shd")
+if(IS_DIRECTORY "${_dread_shd_dir}")
+  set(_dread_shaders_default ON)
+else()
+  set(_dread_shaders_default OFF)
+endif()
+option(DREAD_SHADERS "Compile the game's shaders to SPIR-V from the dump (tools/bshdat.py --install)" ${_dread_shaders_default})
+set(DREAD_SHADER_DIR "${CMAKE_BINARY_DIR}/shaders" CACHE PATH "Where the SPIR-V and shaders.manifest go (beside the executable)")
+if(DREAD_SHADERS)
+  file(GLOB _dread_bshdat CONFIGURE_DEPENDS "${_dread_shd_dir}/*.bshdat")
+  list(LENGTH _dread_bshdat _dread_bshdat_count)
+  if(_dread_bshdat_count EQUAL 0)
+    message(FATAL_ERROR "dread: DREAD_SHADERS is ON but ${_dread_shd_dir} has no .bshdat files (run tools/setup.py, or set DREAD_SHADERS=OFF)")
+  endif()
+  # The glslang bshdat.py runs (the pinned one in the tool cache, else PATH): a new glslang rebuilds.
+  execute_process(
+    COMMAND "${DREAD_PYTHON}" "${DREAD_ROOT}/tools/bshdat.py" --version "${DREAD_GAME_VERSION}" --glslang-path
+    WORKING_DIRECTORY "${DREAD_ROOT}"
+    OUTPUT_VARIABLE _dread_glslang OUTPUT_STRIP_TRAILING_WHITESPACE
+    ERROR_VARIABLE _dread_glslang_error
+    RESULT_VARIABLE _dread_glslang_result)
+  if(NOT _dread_glslang_result EQUAL 0 OR NOT EXISTS "${_dread_glslang}")
+    message(FATAL_ERROR "dread: no glslang for the shaders (${_dread_glslang_error}); run python tools/fetch_toolchains.py glslang-16.6.0, or set DREAD_SHADERS=OFF")
+  endif()
+  message(STATUS "dread: ${_dread_bshdat_count} shader packages -> ${DREAD_SHADER_DIR} (glslang ${_dread_glslang})")
+  add_custom_command(
+    OUTPUT "${DREAD_SHADER_DIR}/shaders.manifest"
+    COMMAND "${DREAD_PYTHON}" "${DREAD_ROOT}/tools/bshdat.py" --version "${DREAD_GAME_VERSION}" --install "${DREAD_SHADER_DIR}"
+    DEPENDS "${DREAD_ROOT}/tools/bshdat.py" "${DREAD_ROOT}/tools/fetch_toolchains.py" "${DREAD_ROOT}/tools/hostenv.py"
+            "${_dread_glslang}" ${_dread_bshdat}
+    WORKING_DIRECTORY "${DREAD_ROOT}"
+    COMMENT "Compiling the game's shaders to SPIR-V (tools/bshdat.py --install, about a minute)"
+    USES_TERMINAL
+    VERBATIM)
+  add_custom_target(shaders ALL DEPENDS "${DREAD_SHADER_DIR}/shaders.manifest")
+  if(TARGET dread)
+    add_dependencies(dread shaders)
+  endif()
+endif()

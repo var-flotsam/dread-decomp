@@ -5,11 +5,11 @@
 
 #include <cstdio>
 
+#include "dread_port.h"
 #include "nn/os.h"
 
 int main(int argc, char** argv) {
-    (void)argc;
-    (void)argv;
+    dread_port_set_host_arguments(argc, argv);
     std::printf("dread port skeleton (M0): nn:: runtime stubs only, no game code linked.\n");
     std::printf("system tick: %lld (%lld Hz)\n", static_cast<long long>(nn::os::GetSystemTick().value),
                 static_cast<long long>(nn::os::SystemTickFrequency));
