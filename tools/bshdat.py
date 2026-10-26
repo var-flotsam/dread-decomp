@@ -30,8 +30,10 @@ Layout (derived from the 2.1.0 dump's bytes; holds for all 478 packages; little-
 
     List: chain of 16-byte nodes {-> item, -> next node or 0}; a 0 head is an empty list.
     Program record, 0x30 bytes: three stage slots {u32 size, u32 0xffffffff, u64 offset}. Slot 0
-      is empty in every file (purpose unknown), slot 1 is the vertex stage, slot 2 the fragment
-      stage (their assembly listings begin !!NVvp5.0 and !!NVfp5.0).
+      is empty in every file, slot 1 is the vertex stage, slot 2 the fragment stage (their
+      assembly listings begin !!NVvp5.0 and !!NVfp5.0). The engine's program loader
+      (fn_71001b0050) creates slot 0 as its stage type 2, which its program binding
+      (fn_710015d900) binds as NVN stage 2 with stage bit 4: a geometry stage, unused.
     Name entry, 12 bytes (+4 bytes 0xff): {-> name, u32 id}. Both uniform lists use one ID space
       (uView and g_mView are both 0, g_fTime 116) and a name has the same ID in every package.
       Names are expanded as GL program introspection lists them (`g_aLight[0].vPos`,
@@ -46,9 +48,13 @@ Layout (derived from the 2.1.0 dump's bytes; holds for all 478 packages; little-
           unknown).
     Section records, 0x90 bytes each from 0x90: u32 size, u32 offset (from the blob), u32 kind,
       then a kind-specific payload; zeros from the end of the records (0x2d0) to 0x3f0. Sections
-      are contiguous and 8-aligned; the kinds are 0, 1, 3, 4 in that order in every blob. Kinds 0
-      and 1 are not decoded (kind 0's size is always a multiple of 8, so it may hold the machine
-      code; nothing more is known about either).
+      are contiguous and 8-aligned; the kinds are 0, 1, 3, 4 in that order in every blob.
+    Kind 0, the stage as NVN takes it (from the engine's shader loader, fn_710015c9b0, which
+      passes it to nvnProgramSetShaders): record payload +0x2c the stage (0 vertex, 1 fragment),
+      +0x30 the control section's offset (0 in every blob), +0x34 the code's offset (the end of
+      the control section), +0x38 the code's size (the code ends the section). The engine copies
+      the code into GPU memory and hands NVN the control section by pointer; the port's NVN shim
+      recognises a stage by that control section (CONTROL_KEY_BYTES). Kind 1: not decoded.
     Reflection (kind 3, starts u32 0x19292919): the stage's active uniform blocks, uniforms
       (samplers included), inputs and outputs, with the bindings the compiler assigned; layout in
       parse_reflection. Not decoded: the 0x108 bytes after the outputs table, payload words 27-35.
@@ -911,7 +917,30 @@ def spirv_resources(data: bytes, where: str) -> tuple[list[dict], list[int]]:
 
 VK_SET = {"vert": 0, "frag": 1}  # VK_LAYOUT: one descriptor set per stage
 VK_SAMPLER_BASE = 16             # VK_LAYOUT: combined samplers from binding 16
-INSTALL_FORMAT = 1
+INSTALL_FORMAT = 2
+# The shim's key for a stage: FNV-1a 64 over the first CONTROL_KEY_BYTES of its control section,
+# the only part of the stage nvnProgramSetShaders receives by CPU pointer. On 2.1.0 every control
+# section is at least 2,320 bytes, the first 2,048 bytes tell all 1,010 distinct ones apart, and
+# stages with the same control section have the same code (install() checks all three).
+CONTROL_KEY_BYTES = 2048
+
+
+def fnv1a64(data: bytes) -> int:
+    h = 0xCBF29CE484222325
+    for b in data:
+        h = ((h ^ b) * 0x100000001B3) & 0xFFFFFFFFFFFFFFFF
+    return h
+
+
+def stage_control(pkg: bytes, blob_offset: int, where: str) -> tuple[bytes, bytes]:
+    """The stage's (control section, code) from section 0 of its blob (layout in the docstring)."""
+    rec = blob_offset + SECTION_RECORDS
+    size, off, kind = struct.unpack_from("<III", pkg, rec)
+    stage, ctrl, code, code_size = struct.unpack_from("<4I", pkg, rec + 0x2C)
+    if kind != 0 or ctrl != 0 or not ctrl < code <= code + code_size <= size:
+        raise FormatError(f"{where}: section 0 is not a control section followed by code")
+    base = blob_offset + off
+    return pkg[base + ctrl:base + code], pkg[base + code:base + code + code_size]
 INSTALL_MANIFEST = "shaders.manifest"
 INSTALL_MARKER = ".bshdat-install"
 
@@ -977,7 +1006,7 @@ def install(out_root: Path, manifests: list[dict], dest: Path, version: str, job
         uniform <list 1|2> <engine id> <name>    the package's uniform name lists
         program <key> <key2> <index> <define count>
           define <text>                          the engine's variant prefix, in order
-          stage <vert|frag> <spv path> <spv bytes>
+          stage <vert|frag> <spv path> <spv bytes> <control key, 16 hex digits> <control bytes>
             block <nvn slot> <vk binding> <size> <name>
             sampler <nvn slot> <vk binding> <count> <name>
             input <location> <name> / output <location> <name>   (location -1: built-in)
@@ -1017,6 +1046,8 @@ def install(out_root: Path, manifests: list[dict], dest: Path, version: str, job
     lines = [f"dread-shaders {INSTALL_FORMAT} {version} glslang {glslang_version(tool)}",
              f"layout {VK_SET['vert']} {VK_SET['frag']} {VK_SAMPLER_BASE}"]
     nprog = nstage = 0
+    controls: dict[int, tuple[bytes, bytes, list, list, str]] = {}  # key -> first stage with it
+    shd = ROOT / "orig" / version / "romfs" / "system" / "shd"
     errors = []
     for man in manifests:
         lines.append(f"package {man['package']} {len(man['programs'])}")
@@ -1040,7 +1071,20 @@ def install(out_root: Path, manifests: list[dict], dest: Path, version: str, job
                 except FormatError as e:
                     errors.append(str(e))
                     continue
-                lines.append(f"stage {st_name} {rel} {len(data)}")
+                try:
+                    control, code = stage_control((shd / f"{man['package']}.bshdat").read_bytes(), st["blob_offset"], where)
+                    if len(control) < CONTROL_KEY_BYTES:
+                        raise FormatError(f"{where}: control section of {len(control)} bytes, under {CONTROL_KEY_BYTES}")
+                    key = fnv1a64(control[:CONTROL_KEY_BYTES])
+                    seen = controls.setdefault(key, (control, code, blocks, samplers, where))
+                    if seen[:2] != (control, code):
+                        raise FormatError(f"{where}: control key {key:016x} also names {seen[4]}, a different stage")
+                    if (seen[2], seen[3]) != (blocks, samplers):
+                        raise FormatError(f"{where}: same stage as {seen[4]} with a different binding layout")
+                except FormatError as e:
+                    errors.append(str(e))
+                    continue
+                lines.append(f"stage {st_name} {rel} {len(data)} {key:016x} {len(control)}")
                 lines += [f"block {a} {b} {c} {n}" for a, b, c, n in blocks]
                 lines += [f"sampler {a} {b} {c} {n}" for a, b, c, n in samplers]
                 for io in ("inputs", "outputs"):
@@ -1055,7 +1099,7 @@ def install(out_root: Path, manifests: list[dict], dest: Path, version: str, job
     tmp.write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
     tmp.replace(dest / INSTALL_MANIFEST)
     print(f"glslang {glslang_version(tool)}: {nstage} stages of {nprog} programs in {len(manifests)} packages "
-          f"-> {dest} ({INSTALL_MANIFEST})")
+          f"({len(controls)} distinct by control key) -> {dest} ({INSTALL_MANIFEST})")
     return 0
 
 

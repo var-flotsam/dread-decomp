@@ -22,6 +22,7 @@ imported symbol names recorded in `data/functions/`.
 | `runtime/include/nn/` | the port's `nn::` declarations, one header per namespace, each with a note on what the boot path needs from it |
 | `runtime/include/dread_port.h` | the runtime's own surface: `dread_port_missing_function`, the trap behind every function without a source, and `dread_port_mismatched_call`, the trap behind a call the link refused to alias |
 | `runtime/src/` | stub implementations; every stub carries a `TODO(M<n>)` naming the boot-path function that needs it; `missing.cpp` holds the two traps |
+| `nvn/` | the NVN shim over Vulkan (M2): the shader manifest reader and the binding layer, `dread_nvn`; the binding design and the engine's variant selection in [`nvn/README.md`](nvn/README.md) |
 | `../tools/port_sweep.py` | the compile-only sweep that lists what in `src/` does not port |
 | `../tools/port_link.py` | the whole-program relocatable link and the report of what is missing ([The link (M1)](#the-link-m1)) |
 | `../tools/port_lift.py` | semantic lifts of the boot slice's `U` functions into `build/port/lifted/`, checked by the P-code oracle ([Semantic lifts](#semantic-lifts-m1-step-3)) |
@@ -47,6 +48,7 @@ imported symbol names recorded in `data/functions/`.
 - `dread`: `main.cpp` linked with `dread_runtime`. `DREAD_LINK_GAME=ON` adds `dread_game` and
   `dread_libs`, which fail to link until every function the boot path reaches has a source (M1).
   Built only when `DREAD_LINK` is ON.
+- `dread_nvn` (STATIC library): `nvn/`, the NVN shim over Vulkan; only when `DREAD_VULKAN_INCLUDE` is set.
 - `sweep`: runs `tools/port_sweep.py` with this build's compiler, target and standard library.
 - `link_report`: runs `tools/port_link.py` the same way, over the sweep's objects (run `sweep` first).
 - `shaders` (in `ALL`; `dread` depends on it): `tools/bshdat.py --install` compiles the game's shaders to SPIR-V from the dump into `DREAD_SHADER_DIR` ([Shaders](#shaders-m2)). On when the dump's shader folder exists (`DREAD_SHADERS`).
@@ -64,6 +66,7 @@ imported symbol names recorded in `data/functions/`.
 | `DREAD_PYTHON` | the repository's `.venv`, else `find_package(Python3)` | runs the sweep, the link report and the shader build step. A checkout without `.venv` (a worktree, a fresh clone) must set it to an interpreter with `pyelftools`: `tools/port_link.py` imports `tools/asmdiff.py`, which needs it (the sweep itself needs only the standard library) |
 | `DREAD_SHADERS` | ON when `orig/<version>/romfs/system/shd/` exists at the first configure (a dump added later needs `-DDREAD_SHADERS=ON`) | build the `shaders` target (needs glslang: `tools/fetch_toolchains.py glslang-16.6.0`) |
 | `DREAD_SHADER_DIR` | `<build dir>/shaders` | where `tools/bshdat.py --install` writes the SPIR-V and `shaders.manifest` |
+| `DREAD_VULKAN_INCLUDE` | the newest `vulkan-headers-*` in the tool cache (`tools/fetch_toolchains.py vulkan-headers-1.4.328`), else `$VULKAN_SDK/include` | the Vulkan headers `dread_nvn` compiles against; empty: `dread_nvn` is not built |
 
 ## Configuring
 
@@ -429,8 +432,9 @@ read back (`spirv_resources`) and checked against the stage's NVN reflection: ev
 and sampler at the binding the shim expects, and only the `Shader` capability. The result is
 `<package>/p<key>.<stage>.spv` and `shaders.manifest`, a line-per-record table (format in
 `install()`) of packages, variant keys and defines, per-stage blocks and samplers with their NVN
-slot and Vulkan binding, inputs and outputs, and the package's attribute and uniform name tables
-with their engine IDs. The manifest is written last and only when every stage passed, so a failed
+slot and Vulkan binding, inputs and outputs, each stage's control key (how the NVN shim
+recognises the stage `nvnProgramSetShaders` receives; [`nvn/README.md`](nvn/README.md)), and the
+package's attribute and uniform name tables with their engine IDs. The manifest is written last and only when every stage passed, so a failed
 build reruns. On 2.1.0 all 1,342 stages of the 671 programs compile and match (31 MB of SPIR-V).
 The target is on when the dump's `romfs/system/shd/` exists (`DREAD_SHADERS`), and reruns when the dump's packages, the tool or the glslang binary change; the SPIR-V is
 derived from game data, so it stays under `build/` and is never installed or distributed.

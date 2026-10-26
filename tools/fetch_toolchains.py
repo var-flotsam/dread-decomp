@@ -16,10 +16,12 @@ suffix). The first download records the hash; later downloads must match it.
 
 Also fetches objdiff / objdiff-cli (TOOLS) into <cache>/tools/. On request only (not part of the
 default, since matching does not need it): glslang (ARCHIVE_TOOLS, the Khronos GLSL compiler for
-tools/bshdat.py --compile) into <cache>/tools/glslang-<ver>/bin/.
+tools/bshdat.py --compile) into <cache>/tools/glslang-<ver>/bin/; the Khronos Vulkan headers
+(HEADER_ARCHIVES, for the port's NVN shim, port/nvn/) into <cache>/tools/vulkan-headers-<ver>/include/.
 
 Usage: python tools/fetch_toolchains.py [VERSION or TOOL ...]   (default: LLVM candidates + objdiff)
        python tools/fetch_toolchains.py glslang-16.6.0               (glslang, by name only)
+       python tools/fetch_toolchains.py vulkan-headers-1.4.328       (Vulkan headers, by name only)
 """
 
 from __future__ import annotations
@@ -154,6 +156,55 @@ ARCHIVE_TOOLS = {
 }
 
 
+# Khronos Vulkan-Headers (Apache-2.0 OR MIT), the C headers the port's NVN shim compiles against
+# (port/nvn/). Platform-independent: the tag's source archive, of which only include/ is kept. GitHub
+# publishes no digest for tag archives; the pin is the digest of the first download (2026-10-26).
+VULKAN_HEADERS_VERSION = "1.4.328"
+HEADER_ARCHIVES = {
+    f"vulkan-headers-{VULKAN_HEADERS_VERSION}": (
+        f"https://github.com/KhronosGroup/Vulkan-Headers/archive/refs/tags/v{VULKAN_HEADERS_VERSION}.tar.gz",
+        "3ad56d387179b47dd632432ccf989bbb69773e1d732692b7bbad9c4d36aa1304"),
+}
+
+
+def vulkan_include() -> Path:
+    """Where fetch_header_archive puts the Vulkan headers (the port's CMake looks there)."""
+    return DEST.parent / "tools" / f"vulkan-headers-{VULKAN_HEADERS_VERSION}" / "include"
+
+
+def fetch_header_archive(name: str, pins: dict) -> None:
+    target = DEST.parent / "tools" / name
+    if (target / "include").is_dir() and any((target / "include").iterdir()):
+        print(f"{name}: already present at {target}")
+        return
+    url, expected = HEADER_ARCHIVES[name]
+    print(f"{name}: downloading {url}", flush=True)
+    data = urllib.request.urlopen(url, timeout=300).read()
+    digest = hashlib.sha256(data).hexdigest()
+    if digest != expected:
+        raise SystemExit(f"{name}: sha256 {digest} does not match the pinned {expected}")
+    tmp = target.with_name(target.name + ".tmp")
+    if tmp.exists():
+        shutil.rmtree(tmp)
+    count = 0
+    with tarfile.open(fileobj=io.BytesIO(data), mode="r:*") as tar:
+        for m in tar.getmembers():
+            parts = Path(m.name).parts  # <archive root>/include/...
+            if len(parts) < 3 or parts[1] != "include" or not m.isfile() or ".." in parts:
+                continue
+            out = tmp.joinpath(*parts[1:])
+            out.parent.mkdir(parents=True, exist_ok=True)
+            out.write_bytes(tar.extractfile(m).read())
+            count += 1
+    if not count:
+        raise SystemExit(f"{name}: no include/ folder in {url}")
+    if target.exists():
+        shutil.rmtree(target)
+    tmp.rename(target)
+    pins[name] = {"url": url, "sha256": digest}
+    print(f"{name}: {count} headers saved to {target / 'include'}")
+
+
 def tool_path(name: str) -> Path:
     return DEST.parent / "tools" / hostenv.exe(name)
 
@@ -218,7 +269,7 @@ def fetch_tool(name: str, pins: dict) -> None:
 
 
 def main() -> int:
-    versions = sys.argv[1:] or [*CANDIDATES, *TOOLS]  # ARCHIVE_TOOLS by name only
+    versions = sys.argv[1:] or [*CANDIDATES, *TOOLS]  # ARCHIVE_TOOLS, HEADER_ARCHIVES by name only
     pins = json.loads(PINS.read_text()) if PINS.is_file() else {}
     try:
         for v in versions:
@@ -226,6 +277,8 @@ def main() -> int:
                 fetch_tool(v, pins)
             elif v in ARCHIVE_TOOLS:
                 fetch_archive_tool(v, pins)
+            elif v in HEADER_ARCHIVES:
+                fetch_header_archive(v, pins)
             else:
                 fetch(v, pins)
     finally:
