@@ -78,4 +78,7 @@ CCollectionType::CCollectionType(const base::global::CStrId& name, T*, void*)
 }
 
 }  // namespace base::reflection
+
+// The reflected type of base::global::CRntVector<base::global::CStrId> (built by the static
+// initialiser in src/game_s7/fn_71000e2800.cpp).
 extern base::reflection::CCollectionType g_unk_7101d5c998;

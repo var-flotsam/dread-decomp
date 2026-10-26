@@ -4,6 +4,7 @@
 // (destroyed at exit) and noted in the TU's registry flags, and for enums a pair of converter
 // records (to and from the integer type) registered with fn_71000a16c4.
 #include "base/reflection/UnkClassGetters.h"
+#include "base/reflection/CEnumType.h"
 #include "game/UnkTUInit.h"
 
 extern UnkTUHeader g_unk_71727bc230 __attribute__((visibility("hidden")));
@@ -66,7 +67,7 @@ void fn_7100c7a950() {
 }
 
 extern UnkTUHeader g_unk_7172795408 __attribute__((visibility("hidden")));
-extern UnkReflType g_unk_71727952a8;
+// g_unk_71727952a8 (the EInFrustumMode type) is declared in base/reflection/CEnumType.h; InitEnum takes the UnkReflType view.
 void fn_7100c94244();
 void fn_7100c94510(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 extern char g_unk_71727953c0;
@@ -77,9 +78,9 @@ extern UnkConverter g_unk_71727953e8;
 
 void fn_7100c94720() {
     InitHeader(g_unk_7172795408);
-    InitEnum(&g_unk_71727952a8, "EInFrustumMode", fn_7100c94510, fn_7100c94244);
+    InitEnum(reinterpret_cast<UnkReflType*>(&g_unk_71727952a8), "EInFrustumMode", fn_7100c94510, fn_7100c94244);
     fn_710009ec00(&g_unk_71727953c0, &g_unk_71727952a8);
-    InitEnumConverters(&g_unk_71727952a8, g_unk_71727953c8, fn_7100c94690, g_unk_71727953e8, fn_7100c9469c);
+    InitEnumConverters(reinterpret_cast<UnkReflType*>(&g_unk_71727952a8), g_unk_71727953c8, fn_7100c94690, g_unk_71727953e8, fn_7100c9469c);
 }
 
 extern UnkTUHeader g_unk_717277e0f8 __attribute__((visibility("hidden")));

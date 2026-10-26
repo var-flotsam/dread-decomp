@@ -5,6 +5,7 @@
 // registered (helpers in UnkStaticInitS7.h). Every global is reached through the GOT. Layouts are
 // placeholders.
 #include "UnkStaticInitS7.h"
+#include "base/reflection/CCollectionType.h"
 #include "base/reflection/UnkReflTypeDtors.h"
 #include "game/UnkTUInit.h"
 
@@ -168,7 +169,6 @@ void fn_71000a966c(void* obj, const CStrId& name, void* base, void* a, void (*fa
 extern char g_unk_7101d5c990[];
 extern char g_unk_7101d5c991[];
 UnkEnumType* fn_71000a97f0();
-extern char g_unk_7101d5c998[];
 void fn_71000a98cc(void* obj, const CStrId& name, void* a, void* b);
 extern char g_unk_7101d5cb08[];
 extern char g_unk_7101d5cb09[];
@@ -631,10 +631,10 @@ void fn_71000e2800() {
     fn_710009ec00(g_unk_7101d5c991, fn_71000a97f0());
     {
         CStrId n("base::global::CRntVector<base::global::CStrId>", true);
-        fn_71000a98cc(g_unk_7101d5c998, n, nullptr, nullptr);
+        fn_71000a98cc(&g_unk_7101d5c998, n, nullptr, nullptr);
     }
-    __cxa_atexit(fn_710009891c, g_unk_7101d5c998, g_unk_7101a19000);
-    fn_710009ec00(g_unk_7101d5cb08, g_unk_7101d5c998);
+    __cxa_atexit(fn_710009891c, &g_unk_7101d5c998, g_unk_7101a19000);
+    fn_710009ec00(g_unk_7101d5cb08, &g_unk_7101d5c998);
     fn_710009ec00(g_unk_7101d5cb09, fn_71000a9abc());
     fn_710009ec00(g_unk_7101d5cb0a, fn_71000a9b98());
     {

@@ -29,7 +29,6 @@ struct UnkNamedId : UnkIdSource {
 };
 
 extern UnkNamedId g_unk_7172759178;
-void fn_710006d11c(CBlackboard::CSection* target, const CStrId* id, u8* flag);
 
 void fn_71003e7bf8(UnkOwner* self, UnkOther* other) {
     u32 value = other->field_0x1a;
@@ -37,7 +36,7 @@ void fn_71003e7bf8(UnkOwner* self, UnkOther* other) {
         if (self->field_0x14b54) {
             value = 0;
         } else {
-            u8 flag = 0;
+            bool flag = false;
             CBlackboard* blackboard = reinterpret_cast<CBlackboard*>(g_unk_7101d47310->field_0x968);
             const CStrId& id = base::reflection::refl_GetStrIdTable<0x7100031894>().ids[0x22a];
             if (g_unk_7172759178.qid.id.data == &g_unk_7101d47108->empty)

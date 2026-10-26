@@ -4,6 +4,7 @@
 #include "base/global/CStrId.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkSuitProperties.h"
 
 using base::global::CStrId;
 
@@ -28,9 +29,6 @@ extern UnkItemDef g_unk_717275a1d8;
 extern UnkItemDef g_unk_717275a218;
 extern UnkItemDef g_unk_717275a258;
 extern UnkItemDef g_unk_717275a298;
-extern UnkItemDef g_unk_717275a418;
-extern UnkItemDef g_unk_717275a458;
-extern UnkItemDef g_unk_717275a498;
 extern UnkItemDef g_unk_717275a4d8;
 extern UnkItemDef g_unk_717275a518;
 extern UnkItemDef g_unk_717275a558;
@@ -107,9 +105,9 @@ int fn_710107a880(void* /*lua_State*/) {
     fn_7101142a28(inventory, GetQualifiedId(g_unk_717275a218), true, true, true, 150.0f, 0.0f);
     fn_7101142a28(inventory, GetQualifiedId(g_unk_717275a258), true, true, true, 10.0f, 0.0f);
     fn_7101142a28(inventory, GetQualifiedId(g_unk_717275a298), true, true, true, 10.0f, 0.0f);
-    fn_7101142a28(inventory, GetQualifiedId(g_unk_717275a418), true, true, true, 1.0f, 0.0f);
-    fn_7101142a28(inventory, GetQualifiedId(g_unk_717275a458), true, true, true, 1.0f, 0.0f);
-    fn_7101142a28(inventory, GetQualifiedId(g_unk_717275a498), true, true, true, 1.0f, 0.0f);
+    fn_7101142a28(inventory, GetQualifiedId(SuitAs<UnkItemDef>(g_unk_717275a418)), true, true, true, 1.0f, 0.0f);
+    fn_7101142a28(inventory, GetQualifiedId(SuitAs<UnkItemDef>(g_unk_717275a458)), true, true, true, 1.0f, 0.0f);
+    fn_7101142a28(inventory, GetQualifiedId(SuitAs<UnkItemDef>(g_unk_717275a498)), true, true, true, 1.0f, 0.0f);
     fn_7101142a28(inventory, GetQualifiedId(g_unk_717275a4d8), true, true, true, 1.0f, 0.0f);
     fn_7101142a28(inventory, GetQualifiedId(g_unk_717275a518), true, true, true, 1.0f, 0.0f);
     fn_7101142a28(inventory, GetQualifiedId(g_unk_717275a558), true, true, true, 1.0f, 0.0f);
