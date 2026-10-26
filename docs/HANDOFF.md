@@ -6,7 +6,7 @@ it needs). History, batch logs and the index of matching findings are in `docs/J
 `docs/recon.md` describes the binary, `docs/compiler.md` the toolchain, `docs/references.md` the
 outside projects. This page is edited in place, never appended to: session notes go to the journal.
 
-**Last updated 2026-10-26** (hub batches 3 and 4, var-flotsam/dread-decomp#195 and branch `claude/hubs-4`; the TU helper fold, #196).
+**Last updated 2026-10-26** (hub batches 3 and 4, var-flotsam/dread-decomp#195 and #197; the TU helper fold, #196; the shader packages, branch `claude/port-bshdat`).
 Target: **Metroid Dread 2.1.0**, `main` build ID `646761F643AFEBB379EDD5E6A5151AF2CEF93DC1`.
 
 ## Start here
@@ -227,9 +227,9 @@ macOS under Rosetta 2 (`AGENTS.md`).
   growable array. Details and matching facts: `docs/JOURNAL.md` ("Key facts" of earlier sessions
   are kept there verbatim).
 - **Memory:** 1.82 GB `.bss`; the engine reserves its memory statically. **Codename:** "cazadora".
-- **Game data in RomFS:** 5,754 `.bctex` textures, 478 `.bshdat` shader packages (each with its
-  programs' GLSL source beside the compiled Maxwell code: 1,342 programs, vertex and fragment only;
-  the port compiles the sources with glslang, `docs/PORT_PLAN.md`), 1,276
+- **Game data in RomFS:** 5,754 `.bctex` textures, 478 `.bshdat` shader packages (671 programs,
+  each a vertex and a fragment stage whose debug section carries its GLSL source; parsed and
+  extracted by `tools/bshdat.py`, compiled with glslang, `docs/PORT_PLAN.md`), 1,276
   `.bfstm` audio streams, 101 WebM videos, 72 `.pkg` packs; parsing in mercury-engine-data-structures.
 
 ## Decisions made (and why)
@@ -399,6 +399,13 @@ in order: `nn::` stubs in call order (`nn::os` 16 and `nn::oe` 1 still
 needed, then `nn::fs`, `nn::hid`, `movie`, `nv`); the data loader that maps the dump's segments at
 their original addresses (5,467 data symbols are referenced PC-relatively, so the image must sit
 within 2 GB of `0x7100000000`). Producing an executable needs WSL or the MSVC Build Tools.
+M2 groundwork (2026-10-26, branch `claude/port-bshdat`): `tools/bshdat.py --version 2.1.0
+--compile` parses the 478 shader packages, extracts the 671 programs' 1,342 GLSL sources and the
+compiler's reflection to `build/shaders/2.1.0/`, and compiles 1,341 stages to OpenGL and Vulkan
+SPIR-V with glslang 16.6.0 after two rewrites (block bindings from the reflection,
+`GL_NV_explicit_typecast`); FXAA's fragment stage needs a hand fix. Next for M2: the NVN shim's
+binding layer (one Vulkan set per stage, samplers from binding 16) and the engine's variant
+selection by key.
 
 **Stream M (generators).** The bugs above and `--prune`/regeneration after merges. The lifter's
 semantic mode exists (`opts={"semantic"}`, driven by `tools/port_lift.py`; byte mode is unchanged,

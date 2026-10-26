@@ -1,0 +1,845 @@
+#!/usr/bin/env python3
+"""Parse Metroid Dread's `.bshdat` shader packages and extract each program's GLSL source.
+
+Every package under romfs/system/shd/ holds one or more programs, each a vertex and a fragment
+stage compiled by NVN's GLSL compiler; the debug part of each stage carries the GLSL source the
+compiler was given. This tool writes those sources to build/shaders/<version>/<package>/ with a
+manifest.json per package (programs, variant keys, #defines, includes, the compiler's reflection
+of every stage, the package's name tables), and with --compile builds each one with glslang to
+OpenGL and Vulkan SPIR-V (build/shaders/<version>/compile_report.csv and a printed summary).
+The extracted text is game data: it stays in build/.
+
+Layout (derived from the 2.1.0 dump's bytes; holds for all 478 packages; little-endian; every
+"->" is a u64 file offset; names in brackets are ours):
+
+  Package
+    0x00  "MSHD", u16 1, u16 0x13
+    0x08  -> [program list]          list of program records
+    0x10  -> [variant map]           list of {u32 key, u32 key2, u64 -> program record}; key ==
+                                     key2 in every file; the i-th entry names the i-th program
+                                     (keys 0..n-1, reversed in the one four-program package)
+    0x18  -> a program record        the last of the program list in every file (role unknown)
+    0x20  u64 0                      in every file (unknown)
+    0x28  -> [uniform list 1]        names with engine IDs (below)
+    0x30  -> [uniform list 2]        names with engine IDs
+    0x38  -> [attribute list]        vertex attribute names with engine attribute IDs
+    0x40  0xff up to 0x80, then the stage blobs, each 0x80-aligned, gaps filled with 0xff; then,
+          8-aligned, the tables to the end of the file: list nodes, program records, map entries,
+          name entries, NUL-terminated names. The parser accounts for every byte of every package
+          (what it does not explain is 0xff padding; checked per package, `unaccounted_bytes`).
+
+    List: chain of 16-byte nodes {-> item, -> next node or 0}; a 0 head is an empty list.
+    Program record, 0x30 bytes: three stage slots {u32 size, u32 0xffffffff, u64 offset}. Slot 0
+      is empty in every file (purpose unknown), slot 1 is the vertex stage, slot 2 the fragment
+      stage (their assembly listings begin !!NVvp5.0 and !!NVfp5.0).
+    Name entry, 12 bytes (+4 bytes 0xff): {-> name, u32 id}. Both uniform lists use one ID space
+      (uView and g_mView are both 0, g_fTime 116) and a name has the same ID in every package.
+      Names are expanded as GL program introspection lists them (`g_aLight[0].vPos`,
+      `vs_tx[1]`), including names no stage of the package uses. List 1 holds mostly per-object
+      names (u*), list 2 the scene, light and material ones (g_*); what decides the split, and
+      where the IDs come from, is unknown (the engine's own enumeration).
+
+  Stage blob (one compiled stage)
+    0x00  u32 0x19866891, u32 0, u32 0x00200416, u32 0, u32 0x11, u32 0x15, u32 1, u32 0x10,
+          u32 0x58; 0x44 u32 the blob's size, 0x48 u32 the first section's offset (0x3f0),
+          0x4c u32 the section count (4); other words to 0x90 are 0 (meaning of the constants
+          unknown).
+    Section records, 0x90 bytes each from 0x90: u32 size, u32 offset (from the blob), u32 kind,
+      then a kind-specific payload; zeros from the end of the records (0x2d0) to 0x3f0. Sections
+      are contiguous and 8-aligned; the kinds are 0, 1, 3, 4 in that order in every blob. Kinds 0
+      and 1 are not decoded (kind 0's size is always a multiple of 8, so it may hold the machine
+      code; nothing more is known about either).
+    Reflection (kind 3, starts u32 0x19292919): the stage's active uniform blocks, uniforms
+      (samplers included), inputs and outputs, with the bindings the compiler assigned; layout in
+      parse_reflection. Not decoded: the 0x108 bytes after the outputs table, payload words 27-35.
+    Debug (kind 4, starts u32 0x65040891): +0x18 u64 hash (also in the section record payload),
+      +0x28 u32 part count (2), +0x2c u32 the section's size, parts of 0x24 bytes from +0x30:
+      {u32 size, u32 offset, u32 part kind, u32 1 for text/0 for binary, u32 stage (0 vertex,
+      1 fragment), u32 0x00200416, 3 x u32 0}.
+      Part kind 0, text, NUL-terminated: the stage's assembly listing (a cgc-style comment block
+      with "#profile gp5vp"/"gp5fp", "#MSDB: Sloc <n> <file id>:<line>" source-location lines)
+      followed by the source file table: per file, a line
+      `#MSDB: (<name>:<file id>:<length>:SOURCE_FILE|INCLUDED_FILE)` and the file's text as one C
+      string literal (escapes \\r \\n \\t \\\\ \\"), then a newline. The decoded length always
+      equals <length>. The first record is the stage's own source (named `_shader<number>`, file
+      id 13684 in every stage), the others the files it #includes (common_funcs.h, common_ibl.h,
+      common_deferred.h, common_shadows.h, ...). Non-ASCII bytes (Latin-1, UTF-8, U+FFFD) occur
+      in comments only; they are written unchanged.
+      Part kind 1, binary (starts 0x0000c0de): not decoded.
+    The file table is found by scanning the text part for its first line starting "#MSDB: (";
+    this is the parser's only scan, and the records must then run exactly to the end of the text.
+
+Extraction. A stage's own source begins with the engine's variant prefix, "#define HAS_NORMAL"
+lines and a blank line, ahead of "#version 440 core" (or 450): the compiler accepted #version
+after them. The written file is that source with each #include line replaced by the included
+file's text (between `// bshdat.py: begin/end #include` comments), CRLF turned into LF, and the
+first #version line moved to the top, so that the prefix follows it. Fifteen deferred-lighting
+fragment sources take #version from an include (common_deferred.h), and common_ibl.h starts with
+its own `#version 450`: later #version lines are kept as comments. Nothing else is changed.
+Program files are named by variant key: <package>/p<key>.vert and .frag.
+
+Compiling (--compile). As extracted the sources do not compile with glslang: uniform blocks are
+declared `layout(location = N) uniform Block {`, which GLSL does not allow (NVN's compiler took
+it, ignored N, and numbered the stage's active blocks 0, 1, 2, ... in declaration order; the
+reflection has the result), and C-style casts need GL_NV_explicit_typecast. The `_shim` modes
+apply the two rewrites the port's loader would (shim_rewrite: each block gets the binding from the
+reflection; the extension is enabled) and keep the SPIR-V next to the source
+(<program>.<stage>.<gl|vk>.spv). Each failure is classified by glslang's messages (CATEGORIES).
+
+Usage:
+  python tools/bshdat.py --version 2.1.0 [--only NAME[,NAME...]] [--compile] [--jobs N]
+glslang: python tools/fetch_toolchains.py glslang-16.6.0 (Khronos, BSD-3-Clause and others;
+fetched by name only), else glslang or glslangValidator from PATH. Standard library only.
+Exit status 1 when a package fails to parse or has bytes the parser does not account for.
+"""
+
+from __future__ import annotations
+
+import argparse
+import collections
+import concurrent.futures
+import csv
+import json
+import os
+import re
+import shutil
+import struct
+import subprocess
+import sys
+import tempfile
+from dataclasses import dataclass, field
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import hostenv  # noqa: E402
+from fetch_toolchains import GLSLANG_VERSION  # noqa: E402
+
+ROOT = Path(__file__).resolve().parent.parent
+FORMAT_VERSION = (1, 0x13)
+
+PKG_MAGIC = b"MSHD"
+BLOB_MAGIC = 0x19866891
+REFL_MAGIC = 0x19292919
+DEBUG_MAGIC = 0x65040891
+STAGES = {1: "vert", 2: "frag"}  # program record slot -> stage
+SECTION_KINDS = {0: "kind0", 1: "kind1", 3: "reflection", 4: "debug"}
+LIST_LIMIT = 100_000
+
+
+class FormatError(Exception):
+    pass
+
+
+def u32(d: bytes, o: int) -> int:
+    return struct.unpack_from("<I", d, o)[0]
+
+
+def u64(d: bytes, o: int) -> int:
+    return struct.unpack_from("<Q", d, o)[0]
+
+
+class Cover:
+    """Byte ranges the parser has explained, to check that nothing in a package is left over."""
+
+    def __init__(self, size: int):
+        self.size = size
+        self.spans: list[tuple[int, int, str]] = []
+
+    def add(self, off: int, size: int, what: str) -> None:
+        if off < 0 or size < 0 or off + size > self.size:
+            raise FormatError(f"{what} at {off:#x}+{size:#x} runs past the end ({self.size:#x})")
+        self.spans.append((off, size, what))
+
+    def leftover(self, data: bytes) -> tuple[int, int]:
+        """(bytes not explained and not 0xff, bytes explained twice)."""
+        unknown = overlap = pos = 0
+        for off, size, _ in sorted(self.spans):
+            if off < pos:
+                overlap += min(pos, off + size) - off
+            else:
+                gap = data[pos:off]
+                unknown += len(gap) - gap.count(0xFF)
+            pos = max(pos, off + size)
+        tail = data[pos:]
+        return unknown + len(tail) - tail.count(0xFF), overlap
+
+
+def walk_list(d: bytes, head: int, cover: Cover, what: str) -> list[int]:
+    items = []
+    node = head
+    while node:
+        cover.add(node, 16, f"{what} node")
+        items.append(u64(d, node))
+        node = u64(d, node + 8)
+        if len(items) > LIST_LIMIT:
+            raise FormatError(f"{what}: list does not end")
+    return items
+
+
+def cstring(d: bytes, off: int) -> str:
+    end = d.index(b"\0", off)
+    return d[off:end].decode("ascii")
+
+
+# --- stage blob ---------------------------------------------------------------------------------
+
+RECORD = re.compile(rb'#MSDB: \(([^:()\n]*):(\d+):(\d+):(SOURCE_FILE|INCLUDED_FILE)\)"((?:[^"\\\n]|\\.)*)"\n')
+ESCAPES = {b"n": b"\n", b"r": b"\r", b"t": b"\t", b"\\": b"\\", b'"': b'"'}
+
+
+def unescape(esc: bytes) -> bytes:
+    def one(m: re.Match) -> bytes:
+        try:
+            return ESCAPES[m.group(1)]
+        except KeyError:
+            raise FormatError(f"unknown escape \\{m.group(1).decode('latin-1')}") from None
+    return re.sub(rb"\\(.)", one, esc, flags=re.S)
+
+
+@dataclass
+class SourceFile:
+    name: str
+    file_id: int
+    kind: str  # SOURCE_FILE or INCLUDED_FILE
+    text: bytes
+
+
+@dataclass
+class Stage:
+    stage: str
+    offset: int
+    size: int
+    sections: list[dict]
+    reflection: dict
+    debug_hash: str
+    profile: str | None
+    listing_summary: str | None
+    files: list[SourceFile]
+
+    @property
+    def source(self) -> SourceFile:
+        return self.files[0]
+
+
+SECTION_RECORDS = 0x90   # first section record, in the blob
+SECTION_STRIDE = 0x90
+# Reflection tables, in the order of their (count, offset) pairs: name, record size.
+REFL_TABLES = (("blocks", 0x6C), ("uniforms", 0xA4), ("inputs", 0x5C), ("outputs", 0x5C),
+               ("table4", None), ("table5", None), ("table6", None))
+STAGE_SLOT = {"vert": 0, "frag": 1}  # index into the reflection's per-stage arrays
+
+
+def parse_reflection(b: bytes, rec: int, sec: dict, stage: str, where: str) -> dict:
+    """The stage's interface as the compiler reports it (active blocks, uniforms, inputs, outputs).
+
+    Section record payload (u32 words from the record start): 3-10 zero, 11-24 seven (count, offset)
+    pairs (REFL_TABLES), 25 the name table's size, 26 its offset, 27-35 not decoded. Offsets are from
+    the section start. Records begin {u32 name offset, u32 name length + 1}; per-stage arrays hold
+    six u32 (vertex, fragment, then four slots that are -1 in every file).
+      block, 0x6c:   +0x28 size in bytes, +0x2c member count, +0x30 stage mask (1 vertex, 2 fragment),
+                     +0x34 per-stage binding
+      uniform, 0xa4: +0x28 type code, +0x2c block index (-1: none), +0x30 offset in the block,
+                     +0x34 array size, +0x38 array stride, +0x44 stage mask, +0x48 per-stage binding
+                     (samplers)
+      input/output, 0x5c: +0x28 type code, +0x2c array size, +0x30 location (-1: built-in)
+    Type codes are the compiler's own enumeration (not decoded).
+    """
+    s = b[sec["offset"]:sec["offset"] + sec["size"]]
+    w = struct.unpack_from("<36I", b, rec)
+    if any(w[3:11]):
+        raise FormatError(f"{where}: reflection record words 3-10 are not zero")
+    str_size, str_off = w[25], w[26]
+    names = s[str_off:str_off + str_size]
+
+    def name(rec_off: int) -> str:
+        n_off, n_len = u32(s, rec_off), u32(s, rec_off + 4)
+        if n_off + n_len > len(names) or names[n_off + n_len - 1:n_off + n_len] != b"\0":
+            raise FormatError(f"{where}: reflection name at {n_off:#x} malformed")
+        return names[n_off:n_off + n_len - 1].decode("ascii")
+
+    def i32(o: int) -> int:
+        return struct.unpack_from("<i", s, o)[0]
+
+    slot = STAGE_SLOT[stage]
+    out: dict = {}
+    tables = [(w[11 + 2 * i], w[12 + 2 * i]) for i in range(len(REFL_TABLES))]
+    ends = [t[1] for t in tables[1:]] + [str_off]
+    for (tname, stride), (count, t_off), end in zip(REFL_TABLES, tables, ends):
+        if stride is None:
+            if count:
+                raise FormatError(f"{where}: reflection {tname} is not empty ({count})")
+            continue
+        if t_off + count * stride != end:
+            raise FormatError(f"{where}: reflection {tname} table {t_off:#x}+{count}*{stride:#x} != {end:#x}")
+        rows = []
+        for i in range(count):
+            r = t_off + stride * i
+            if tname == "blocks":
+                rows.append({"name": name(r), "size": u32(s, r + 0x28), "members": u32(s, r + 0x2C),
+                             "stages": u32(s, r + 0x30), "binding": i32(r + 0x34 + 4 * slot)})
+            elif tname == "uniforms":
+                rows.append({"name": name(r), "type": u32(s, r + 0x28), "block": i32(r + 0x2C),
+                             "offset": i32(r + 0x30), "array": u32(s, r + 0x34), "stages": u32(s, r + 0x44),
+                             "binding": i32(r + 0x48 + 4 * slot)})
+            else:
+                rows.append({"name": name(r), "type": u32(s, r + 0x28), "array": u32(s, r + 0x2C),
+                             "location": i32(r + 0x30)})
+        out[tname] = rows
+    return out
+
+
+def parse_blob(d: bytes, off: int, size: int, stage: str) -> Stage:
+    b = d[off:off + size]
+    where = f"stage blob at {off:#x}"
+    if len(b) < SECTION_RECORDS or u32(b, 0) != BLOB_MAGIC:
+        raise FormatError(f"{where}: bad magic")
+    if u32(b, 0x44) != size:
+        raise FormatError(f"{where}: size field {u32(b, 0x44):#x} != {size:#x}")
+    count = u32(b, 0x4C)
+    sections = []
+    pos = u32(b, 0x48)
+    for i in range(count):
+        rec = SECTION_RECORDS + SECTION_STRIDE * i
+        s_size, s_off, kind = u32(b, rec), u32(b, rec + 4), u32(b, rec + 8)
+        if s_off < pos or s_off - pos >= 8 or s_off + s_size > size:
+            raise FormatError(f"{where}: section {i} at {s_off:#x}+{s_size:#x} out of order")
+        pos = s_off + s_size
+        sections.append({"kind": kind, "name": SECTION_KINDS.get(kind, f"kind{kind}"),
+                         "offset": s_off, "size": s_size, "record": rec})
+    if size - pos >= 8:
+        raise FormatError(f"{where}: {size - pos} bytes after the last section")
+    debug = [s for s in sections if s["kind"] == 4]
+    refl = [s for s in sections if s["kind"] == 3]
+    if len(debug) != 1 or len(refl) != 1:
+        raise FormatError(f"{where}: expected one debug and one reflection section")
+    if u32(b, refl[0]["offset"]) != REFL_MAGIC:
+        raise FormatError(f"{where}: reflection section magic")
+    reflection = parse_reflection(b, refl[0]["record"], refl[0], stage, where)
+    for sec in sections:
+        del sec["record"]
+    s = b[debug[0]["offset"]:debug[0]["offset"] + debug[0]["size"]]
+    if u32(s, 0) != DEBUG_MAGIC or u32(s, 0x2C) != len(s):
+        raise FormatError(f"{where}: debug section header")
+    parts = [struct.unpack_from("<9I", s, 0x30 + 0x24 * j) for j in range(u32(s, 0x28))]
+    text_parts = [p for p in parts if p[2] == 0]
+    if len(text_parts) != 1:
+        raise FormatError(f"{where}: expected one text part, found {len(text_parts)}")
+    p_size, p_off = text_parts[0][:2]
+    if p_off + p_size > len(s):
+        raise FormatError(f"{where}: text part at {p_off:#x}+{p_size:#x} runs past the debug section")
+    text = s[p_off:p_off + p_size]
+    if not text.endswith(b"\0") or b"\0" in text[:-1]:
+        raise FormatError(f"{where}: text part is not one NUL-terminated string")
+    text = text[:-1]
+    start = text.find(b"\n#MSDB: (") + 1
+    if start == 0:
+        raise FormatError(f"{where}: no source file table")
+    files = []
+    while start < len(text):
+        m = RECORD.match(text, start)
+        if not m:
+            raise FormatError(f"{where}: source table record at {start:#x} not understood")
+        raw = unescape(m.group(5))
+        if len(raw) != int(m.group(3)):
+            raise FormatError(f"{where}: {m.group(1)!r} decodes to {len(raw)} bytes, "
+                              f"record says {m.group(3).decode()}")
+        files.append(SourceFile(m.group(1).decode("ascii"), int(m.group(2)), m.group(4).decode(), raw))
+        start = m.end()
+    if not files or files[0].kind != "SOURCE_FILE" or any(f.kind != "INCLUDED_FILE" for f in files[1:]):
+        raise FormatError(f"{where}: expected one SOURCE_FILE then INCLUDED_FILEs")
+    listing = text[:text.find(b"\n#MSDB: (") + 1]
+    prof = re.search(rb"^#profile (\S+)", listing, re.M)
+    summ = re.search(rb"^# (\d+ instructions[^\n]*)", listing, re.M)
+    return Stage(stage, off, size, sections, reflection, s[0x18:0x20][::-1].hex(),
+                 prof.group(1).decode() if prof else None,
+                 summ.group(1).decode() if summ else None, files)
+
+
+# --- package ------------------------------------------------------------------------------------
+
+@dataclass
+class Program:
+    index: int
+    record: int
+    key: tuple[int, int] | None = None
+    stages: dict[str, Stage] = field(default_factory=dict)
+
+
+@dataclass
+class Package:
+    name: str
+    size: int
+    version: tuple[int, int]
+    programs: list[Program]
+    last_program: int
+    uniforms1: list[tuple[str, int]]
+    uniforms2: list[tuple[str, int]]
+    attributes: list[tuple[str, int]]
+    unaccounted: int
+
+
+def parse_package(path: Path) -> Package:
+    d = path.read_bytes()
+    if d[:4] != PKG_MAGIC:
+        raise FormatError(f"{path.name}: magic {d[:4]!r}")
+    cover = Cover(len(d))
+    cover.add(0, 0x40, "header")
+    version = struct.unpack_from("<HH", d, 4)
+    if version != FORMAT_VERSION:
+        raise FormatError(f"{path.name}: format version {version}, expected {FORMAT_VERSION}")
+    h = [u64(d, 8 + 8 * i) for i in range(7)]
+    if h[3]:
+        raise FormatError(f"{path.name}: header +0x20 is {h[3]:#x}, 0 in every known package")
+    progs = [Program(i, rec) for i, rec in enumerate(walk_list(d, h[0], cover, "program list"))]
+    by_record = {p.record: p for p in progs}
+    if len(by_record) != len(progs):
+        raise FormatError(f"{path.name}: a program record is listed twice")
+    for p in progs:
+        cover.add(p.record, 0x30, "program record")
+        for slot in range(3):
+            size, pad, off = struct.unpack_from("<IIQ", d, p.record + 16 * slot)
+            if slot not in STAGES:
+                if size or off:
+                    raise FormatError(f"{path.name}: program {p.index} uses stage slot {slot}")
+                continue
+            if not size:
+                raise FormatError(f"{path.name}: program {p.index} has no {STAGES[slot]} stage")
+            cover.add(off, size, "stage blob")
+            p.stages[STAGES[slot]] = parse_blob(d, off, size, STAGES[slot])
+    for entry in walk_list(d, h[1], cover, "variant map"):
+        cover.add(entry, 16, "variant map entry")
+        k0, k1, rec = struct.unpack_from("<IIQ", d, entry)
+        if rec not in by_record or by_record[rec].key is not None:
+            raise FormatError(f"{path.name}: variant map entry {entry:#x} names no single program")
+        by_record[rec].key = (k0, k1)
+    if any(p.key is None for p in progs):
+        raise FormatError(f"{path.name}: a program has no variant key")
+    if h[2] not in by_record:
+        raise FormatError(f"{path.name}: header +0x18 does not name a program")
+
+    def names(head: int, what: str) -> list[tuple[str, int]]:
+        out = []
+        for item in walk_list(d, head, cover, what):
+            cover.add(item, 12, f"{what} entry")
+            name_off = u64(d, item)
+            name = cstring(d, name_off)
+            cover.add(name_off, len(name) + 1, f"{what} name")
+            out.append((name, u32(d, item + 8)))
+        return out
+
+    uniforms1 = names(h[4], "uniform list 1")
+    uniforms2 = names(h[5], "uniform list 2")
+    attributes = names(h[6], "attribute list")
+    unknown, overlap = cover.leftover(d)
+    if overlap:
+        raise FormatError(f"{path.name}: {overlap} bytes claimed twice")
+    return Package(path.stem, len(d), version, progs, by_record[h[2]].index,
+                   uniforms1, uniforms2, attributes, unknown)
+
+
+# --- GLSL ---------------------------------------------------------------------------------------
+
+INCLUDE = re.compile(r'^[ \t]*#[ \t]*include[ \t]*"([^"]+)"[^\n]*$', re.M)
+VERSION = re.compile(r"^[ \t]*#[ \t]*version\b[^\n]*$", re.M)
+EXTENSION = re.compile(r"^[ \t]*#[ \t]*extension[ \t]+(\w+)[ \t]*:[ \t]*(\w+)", re.M)
+
+
+def decode(text: bytes) -> str:
+    return text.decode("utf-8", "surrogateescape").replace("\r\n", "\n")
+
+
+def flatten(files: dict[str, str], name: str, depth: int = 0) -> str:
+    if depth > 16:
+        raise FormatError(f"#include nesting too deep at {name}")
+
+    def inline(m: re.Match) -> str:
+        inc = m.group(1)
+        if inc not in files:
+            raise FormatError(f"#include \"{inc}\" has no source record")
+        body = flatten(files, inc, depth + 1).rstrip("\n")
+        return f'// bshdat.py: begin #include "{inc}"\n{body}\n// bshdat.py: end #include "{inc}"'
+
+    return INCLUDE.sub(inline, files[name])
+
+
+def prefix_defines(source: str) -> list[str]:
+    """The engine's variant prefix: the #define lines before the first blank line, ahead of #version."""
+    out = []
+    for line in source.split("\n"):
+        if not line.strip():
+            break
+        if not line.startswith("#define"):
+            return []
+        out.append(line[len("#define"):].strip())
+    return out
+
+
+def glsl_for(stage: Stage) -> tuple[str, dict]:
+    files = {f.name: decode(f.text) for f in stage.files}
+    main = stage.source.name
+    flat = flatten(files, main)
+    versions = list(VERSION.finditer(flat))
+    if not versions:
+        raise FormatError(f"{main}: no #version")
+    first = versions[0]
+    head, tail = flat[:first.start()], flat[first.end():]
+    tail = VERSION.sub(lambda m: f"// bshdat.py: repeated {m.group(0).strip()}", tail)
+    # "<prefix>#version X\n<rest>" -> "#version X\n<prefix><rest>": line count unchanged.
+    text = first.group(0).strip() + "\n" + head + (tail[1:] if tail.startswith("\n") else tail)
+    if not text.endswith("\n"):
+        text += "\n"
+    info = {
+        "version": re.match(r"[ \t]*#[ \t]*version[ \t]*(.*)", first.group(0)).group(1).strip(),
+        "version_from": next((f.name for f in stage.files if VERSION.search(decode(f.text))), main),
+        "defines": prefix_defines(files[main]),
+        "extensions": sorted({f"{m.group(1)}:{m.group(2)}" for m in EXTENSION.finditer(flat)}),
+        "repeated_version_lines": len(versions) - 1,
+    }
+    return text, info
+
+
+BLOCK_DECL = re.compile(r"layout\s*\(([^)]*)\)(\s*uniform\s+)(\w+)(\s*\{)")
+SAMPLER_DECL = re.compile(r"layout\s*\(([^)]*)\)\s*uniform\s+(?:\w+\s+)*?(?:[iu]?sampler\w*|[iu]?image\w*)\s+(\w+)")
+QUALIFIER = re.compile(r"\b(location|binding)\s*=\s*(\d+)")
+COMMENTS = re.compile(r"//[^\n]*|/\*.*?\*/", re.S)
+
+
+def binding_check(text: str, refl: dict) -> dict:
+    """Compare the bindings the compiler assigned (reflection) with the source.
+
+    Uniform blocks are declared `layout(location = N) uniform Block {...}`, a few with binding = N.
+    The compiler ignored those numbers: it gave the stage's active blocks the bindings 0, 1, 2, ...
+    in declaration order (`by_order`), which equals N only when every block declared before is
+    active (`same`). Samplers keep their `layout(binding = N)`.
+    """
+    code = COMMENTS.sub("", text)
+    declared: dict[str, set] = collections.defaultdict(set)
+    order: list[str] = []
+    for m in BLOCK_DECL.finditer(code):
+        declared[m.group(3)].update((q, int(n)) for q, n in QUALIFIER.findall(m.group(1)))
+        if m.group(3) not in order:
+            order.append(m.group(3))
+    for m in SAMPLER_DECL.finditer(code):
+        declared[m.group(2)].update((q, int(n)) for q, n in QUALIFIER.findall(m.group(1)))
+    active_blocks = {b["name"]: b["binding"] for b in refl.get("blocks", []) if b["binding"] >= 0}
+    rank = {name: i for i, name in enumerate(n for n in order if n in active_blocks)}
+    out = {}
+    for kind, rows in (("blocks", refl.get("blocks", [])),
+                       ("samplers", [u for u in refl.get("uniforms", []) if u["block"] == -1])):
+        rows = [r for r in rows if r["binding"] >= 0]
+        same, differ, undeclared = 0, [], []
+        for r in rows:
+            decl = declared.get(r["name"].split("[", 1)[0])
+            if not decl:
+                undeclared.append(r["name"])
+            elif any(n == r["binding"] for _, n in decl):
+                same += 1
+            else:
+                differ.append(f"{r['name']}: {' '.join(f'{q}={n}' for q, n in sorted(decl))} -> binding {r['binding']}")
+        out[kind] = {"active": len(rows), "same": same, "differ": differ, "undeclared": undeclared}
+    out["blocks"]["by_order"] = sum(1 for n, b in active_blocks.items() if rank.get(n) == b)
+    return out
+
+
+# --- extraction ---------------------------------------------------------------------------------
+
+def package_paths(version: str, only: list[str] | None) -> list[Path]:
+    shd = ROOT / "orig" / version / "romfs" / "system" / "shd"
+    paths = sorted(shd.glob("*.bshdat"))
+    if not paths:
+        raise SystemExit(f"no .bshdat files under {shd} (run tools/setup.py first)")
+    if only:
+        wanted = {o.removesuffix(".bshdat") for o in only}
+        paths = [p for p in paths if p.stem in wanted]
+        missing = wanted - {p.stem for p in paths}
+        if missing:
+            raise SystemExit(f"no such package: {', '.join(sorted(missing))}")
+    return paths
+
+
+def program_name(p: Program) -> str:
+    return f"p{p.key[0]}"
+
+
+def extract(path: Path, out_root: Path) -> dict:
+    pkg = parse_package(path)
+    out = out_root / pkg.name
+    if out.exists():
+        shutil.rmtree(out)
+    out.mkdir(parents=True)
+    programs = []
+    for p in pkg.programs:
+        entry = {"name": program_name(p), "index": p.index, "key": list(p.key),
+                 "record_offset": p.record, "stages": {}}
+        defines = None
+        for st_name, st in p.stages.items():
+            text, info = glsl_for(st)
+            fname = f"{program_name(p)}.{st_name}"
+            (out / fname).write_bytes(text.encode("utf-8", "surrogateescape"))
+            if defines is not None and info["defines"] != defines:
+                raise FormatError(f"{pkg.name}: program {p.index}'s stages have different variant prefixes")
+            defines = info["defines"]
+            entry["stages"][st_name] = {
+                "file": fname,
+                "blob_offset": st.offset,
+                "blob_size": st.size,
+                "sections": st.sections,
+                "debug_hash": st.debug_hash,
+                "profile": st.profile,
+                "listing_summary": st.listing_summary,
+                "source": {"name": st.source.name, "file_id": st.source.file_id, "length": len(st.source.text)},
+                "includes": [{"name": f.name, "file_id": f.file_id, "length": len(f.text)} for f in st.files[1:]],
+                **info,
+                "binding_check": binding_check(text, st.reflection),
+                "reflection": st.reflection,
+            }
+        entry["defines"] = defines
+        programs.append(entry)
+    manifest = {
+        "package": pkg.name,
+        "file_size": pkg.size,
+        "format_version": list(pkg.version),
+        "unaccounted_bytes": pkg.unaccounted,
+        "last_program_index": pkg.last_program,
+        "programs": programs,
+        "uniforms1": [{"name": n, "id": i} for n, i in pkg.uniforms1],
+        "uniforms2": [{"name": n, "id": i} for n, i in pkg.uniforms2],
+        "attributes": [{"name": n, "id": i} for n, i in pkg.attributes],
+    }
+    (out / "manifest.json").write_text(json.dumps(manifest, indent=1) + "\n", newline="\n")
+    return manifest
+
+
+# --- compile ------------------------------------------------------------------------------------
+
+def glslang_path() -> str:
+    bin_dir = hostenv.cache_dir() / "tools" / f"glslang-{GLSLANG_VERSION}" / "bin"
+    for name in ("glslang", "glslangValidator"):  # releases since 2023 name it glslang
+        if (bin_dir / hostenv.exe(name)).is_file():
+            return str(bin_dir / hostenv.exe(name))
+    for name in ("glslang", "glslangValidator"):
+        if shutil.which(name):
+            return shutil.which(name)
+    raise SystemExit(f"glslang not found: run python tools/fetch_toolchains.py glslang-{GLSLANG_VERSION}")
+
+
+def glslang_version(tool: str) -> str:
+    """What the binary reports (`Glslang Version: 11:16.6.0`), whichever copy was found."""
+    proc = subprocess.run([tool, "--version"], capture_output=True, text=True, timeout=60)
+    first = (proc.stdout or proc.stderr).strip().splitlines()
+    return first[0].split(":", 1)[-1].strip() if first else "unknown version"
+
+
+# The two rewrites a loader in the port's NVN shim makes (applied in memory, never to the files):
+#  - uniform blocks are declared `layout(location = N) uniform Block {`, which GLSL does not allow;
+#    each block gets `binding = B`, B being the binding the NVN compiler gave it (the stage's
+#    reflection; binding_check). Blocks the compiler found inactive get numbers above those.
+#  - C-style casts (`(int) x`) need GL_NV_explicit_typecast, which glslang implements.
+SHIM_TYPECAST = "#extension GL_NV_explicit_typecast : enable"
+
+
+def shim_rewrite(text: str, blocks: dict[str, int], rewrites: tuple[str, ...]) -> str:
+    """Apply the named rewrites ("blocks", "typecast"); the second adds one line after #version."""
+    if "blocks" in rewrites:
+        spare = iter(range(max(blocks.values(), default=-1) + 1, 1 << 16))
+        assigned: dict[str, int] = {}
+
+        def rebind(m: re.Match) -> str:
+            name = m.group(3)
+            binding = blocks.get(name, -1)
+            if binding < 0:
+                binding = assigned.setdefault(name, next(spare))
+            quals = [q.strip() for q in m.group(1).split(",") if q.strip() and not QUALIFIER.search(q)]
+            return f"layout({', '.join([*quals, f'binding = {binding}'])}){m.group(2)}{name}{m.group(4)}"
+
+        text = BLOCK_DECL.sub(rebind, text)
+    if "typecast" in rewrites:
+        first, _, rest = text.partition("\n")
+        text = f"{first}\n{SHIM_TYPECAST}\n{rest}"
+    return text
+
+
+# Modes: glslang flags and the shim rewrites applied. Plain -G (OpenGL SPIR-V) and -V (Vulkan
+# SPIR-V) compile the rewritten sources (no uniform outside a block, every block bound, every input
+# and output with a location). gl_blocks shows what remains after the block rewrite alone.
+# NVN numbers uniform blocks and textures per stage and separately; Vulkan has one (set, binding)
+# space per pipeline, so vk_shim gives each stage its own descriptor set and moves the combined
+# samplers to bindings 16 and up (blocks stay at the compiler's 0..n-1). With plain -V, 664 of the
+# 670 compiled programs put two differently named resources (block type or sampler names) on one
+# (set, binding): 583 within one stage (a sampler and a block), 81 only across the two stages.
+VK_LAYOUT = ["--resource-set-binding", "vert", "0", "--resource-set-binding", "frag", "1",
+             "--shift-combined-sampler-binding", "16"]
+MODES = {
+    "gl": (["-G"], ()),
+    "vk": (["-V"], ()),
+    "gl_blocks": (["-G"], ("blocks",)),
+    "gl_shim": (["-G"], ("blocks", "typecast")),
+    "vk_shim": (["-V", *VK_LAYOUT], ("blocks", "typecast")),
+}
+
+# Failure categories by glslang message (every error of a stage is classified).
+CATEGORIES = [
+    ("block_location", re.compile(r"'location' : cannot apply to uniform or buffer block")),
+    ("block_binding", re.compile(r"blocks require layout\(binding")),
+    ("loose_uniform", re.compile(r"non-opaque uniforms outside a block")),
+    ("explicit_typecast", re.compile(r"GL_NV_explicit_typecast")),
+    ("nonconstant_texel_offset", re.compile(r"'texel offset' : argument must be compile-time constant")),
+    ("bindless_handle", re.compile(r"uint64|bindless|sampler.*constructor", re.I)),
+    ("undeclared_identifier", re.compile(r"undeclared identifier")),
+    ("no_matching_overload", re.compile(r"no matching overloaded function")),
+    ("io", re.compile(r"(?:cannot|could not|unable to|failed to) (?:open|write|create)", re.I)),
+]
+GLSLANG_TIMEOUT = 300  # seconds per compile; the largest stage takes well under one
+# Errors that only follow another one (glslang stops, or an #if was left open by the stop).
+FOLLOW_ON = re.compile(r"compilation terminated|missing #endif|\d+ compilation errors|^Linking")
+ERROR_LINE = re.compile(r"^ERROR: (?:.*?:\d+: )?(.*?)\s*$", re.M)
+
+
+def categorise(log: str) -> tuple[list[str], str]:
+    errors = [m.group(1) for m in ERROR_LINE.finditer(log) if not FOLLOW_ON.search(m.group(1))]
+    if not errors:
+        return ["other"], log.strip().splitlines()[-1] if log.strip() else "no output"
+    cats = []
+    for e in errors:
+        cat = next((name for name, rx in CATEGORIES if rx.search(e)), "other")
+        if cat not in cats:
+            cats.append(cat)
+    return cats, errors[0]
+
+
+def compile_one(tool: str, src: Path, stage: str, blocks: dict[str, int], mode: str) -> tuple[bool, list[str], str]:
+    flags, rewrites = MODES[mode]
+    text = shim_rewrite(src.read_bytes().decode("utf-8", "surrogateescape"), blocks, rewrites)
+    # SPIR-V is kept for the full shim modes only (<program>.<stage>.<gl|vk>.spv). glslang writes it
+    # to a short temporary path (a long checkout path can pass Windows' MAX_PATH, which glslang does
+    # not handle); Python moves it into place.
+    keep = mode.endswith("_shim")
+    dest = src.with_name(f"{src.name}.{mode.split('_')[0]}.spv")
+    tmp = os.devnull
+    if keep:
+        dest.unlink(missing_ok=True)
+        fd, tmp = tempfile.mkstemp(suffix=".spv")
+        os.close(fd)
+    try:
+        proc = subprocess.run([tool, *flags, "--stdin", "-S", stage, "-o", tmp],
+                              input=text.encode("utf-8", "surrogateescape"), capture_output=True,
+                              timeout=GLSLANG_TIMEOUT)
+        if proc.returncode == 0:
+            if keep:
+                shutil.move(tmp, dest)
+            return True, [], ""
+        cats, first = categorise((proc.stdout + proc.stderr).decode("utf-8", "replace"))
+        return False, cats, first
+    except subprocess.TimeoutExpired:
+        return False, ["timeout"], f"glslang did not finish in {GLSLANG_TIMEOUT} s"
+    except OSError as e:
+        return False, ["io"], str(e)
+    finally:
+        if keep and os.path.exists(tmp):
+            os.unlink(tmp)
+
+
+def compile_all(out_root: Path, manifests: list[dict], jobs: int) -> None:
+    tool = glslang_path()
+    tasks = []
+    for man in manifests:
+        for prog in man["programs"]:
+            for st_name, st in prog["stages"].items():
+                blocks = {b["name"]: b["binding"] for b in st["reflection"]["blocks"] if b["binding"] >= 0}
+                tasks.append((man["package"], prog["name"], st_name, out_root / man["package"] / st["file"], blocks))
+    results: dict[tuple, dict] = {}
+    with concurrent.futures.ThreadPoolExecutor(max_workers=jobs) as pool:
+        futs = {pool.submit(compile_one, tool, t[3], t[2], t[4], mode): (t, mode) for t in tasks for mode in MODES}
+        for fut in concurrent.futures.as_completed(futs):
+            t, mode = futs[fut]
+            results.setdefault(t[:3], {})[mode] = fut.result()
+    report = out_root / "compile_report.csv"
+    with report.open("w", newline="", encoding="utf-8") as fh:
+        w = csv.writer(fh, lineterminator="\n")
+        w.writerow(["package", "program", "stage",
+                    *[c for m in MODES for c in (f"{m}_ok", f"{m}_categories", f"{m}_first_error")]])
+        for key in sorted(results):
+            row = list(key)
+            for mode in MODES:
+                ok, cats, first = results[key][mode]
+                row += [int(ok), ";".join(cats), first[:300]]
+            w.writerow(row)
+    print(f"glslang {glslang_version(tool)} ({tool}): {len(tasks)} stage sources; modes " +
+          ", ".join(f"{m} ({' '.join([*f, *(f'+{r}' for r in rw)])})" for m, (f, rw) in MODES.items()))
+    summarise(results)
+    print(f"report: {report.relative_to(ROOT).as_posix()}")
+
+
+def summarise(results: dict) -> None:
+    programs = collections.defaultdict(dict)
+    for (pkg, prog, stage), modes in results.items():
+        programs[(pkg, prog)][stage] = modes
+    for mode in MODES:
+        stage_ok = sum(1 for r in results.values() if r[mode][0])
+        prog_ok = sum(1 for st in programs.values() if all(m[mode][0] for m in st.values()))
+        print(f"{mode:9} {stage_ok:5}/{len(results)} stages, {prog_ok:4}/{len(programs)} programs compile")
+        by_cat = collections.defaultdict(set)
+        stages_by_cat = collections.Counter()
+        for (pkg, prog, stage), r in results.items():
+            for cat in r[mode][1]:
+                by_cat[cat].add((pkg, prog))
+                stages_by_cat[cat] += 1
+        for cat, progs in sorted(by_cat.items(), key=lambda kv: -len(kv[1])):
+            print(f"         {cat:<26} {len(progs):4} programs {stages_by_cat[cat]:5} stages")
+    for mode in ("gl", "vk"):
+        either = sum(1 for r in results.values() if r[mode][0] or r[f"{mode}_shim"][0])
+        print(f"{mode} as extracted or with the shim rewrites: {either}/{len(results)} stages")
+
+
+# --- main ---------------------------------------------------------------------------------------
+
+def main() -> int:
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--version", required=True)
+    ap.add_argument("--only", action="append",
+                    help="package name(s), comma-separated; repeatable (the compile report then covers only these)")
+    ap.add_argument("--compile", action="store_true", help="compile every extracted source with glslang")
+    ap.add_argument("--jobs", type=int, default=os.cpu_count() or 4)
+    args = ap.parse_args()
+    only = [n for o in args.only for n in o.split(",") if n] if args.only else None
+    out_root = ROOT / "build" / "shaders" / args.version
+    out_root.mkdir(parents=True, exist_ok=True)
+    manifests = []
+    errors = 0
+    for path in package_paths(args.version, only):
+        try:
+            manifests.append(extract(path, out_root))
+        except (FormatError, ValueError, UnicodeDecodeError, struct.error) as e:
+            errors += 1
+            print(f"{path.name}: {e}", file=sys.stderr)
+            continue
+        if manifests[-1]["unaccounted_bytes"]:
+            errors += 1
+            print(f"{path.name}: {manifests[-1]['unaccounted_bytes']} bytes the parser does not account for "
+                  "(extracted anyway)", file=sys.stderr)
+    nprog = sum(len(m["programs"]) for m in manifests)
+    nstage = sum(len(p["stages"]) for m in manifests for p in m["programs"])
+    unaccounted = sum(m["unaccounted_bytes"] for m in manifests)
+    ext = collections.Counter(e for m in manifests for p in m["programs"] for s in p["stages"].values()
+                              for e in s["extensions"])
+    ver = collections.Counter(s["version"] for m in manifests for p in m["programs"] for s in p["stages"].values())
+    print(f"{len(manifests)} packages, {nprog} programs, {nstage} stage sources -> "
+          f"{out_root.relative_to(ROOT).as_posix()} ({errors} packages with errors, {unaccounted} bytes unaccounted)")
+    print("  #version: " + ", ".join(f"{v} {n}" for v, n in ver.most_common()))
+    print("  extensions: " + (", ".join(f"{e} {n}" for e, n in ext.most_common()) or "none"))
+    stages = [s for m in manifests for p in m["programs"] for s in p["stages"].values()]
+    for kind in ("blocks", "samplers"):
+        checks = [s["binding_check"][kind] for s in stages]
+        total = sum(c["active"] for c in checks)
+        same = sum(c["same"] for c in checks)
+        undeclared = sum(len(c["undeclared"]) for c in checks)
+        order = f", {sum(c['by_order'] for c in checks)} numbered in declaration order" if kind == "blocks" else ""
+        print(f"  active {kind}: {total}; binding = the source's layout number {same}, other {total - same - undeclared}, "
+              f"no layout number {undeclared}{order}")
+    if args.compile and manifests:
+        compile_all(out_root, manifests, args.jobs)
+    return 1 if errors else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

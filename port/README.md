@@ -25,6 +25,7 @@ imported symbol names recorded in `data/functions/`.
 | `../tools/port_sweep.py` | the compile-only sweep that lists what in `src/` does not port |
 | `../tools/port_link.py` | the whole-program relocatable link and the report of what is missing ([The link (M1)](#the-link-m1)) |
 | `../tools/port_lift.py` | semantic lifts of the boot slice's `U` functions into `build/port/lifted/`, checked by the P-code oracle ([Semantic lifts](#semantic-lifts-m1-step-3)) |
+| `../tools/bshdat.py` | the `.bshdat` shader packages: GLSL sources, reflection and SPIR-V in `build/shaders/` ([Shaders](#shaders-m2-groundwork)) |
 
 ### Targets
 
@@ -400,3 +401,22 @@ hidden, all fixed in semantic mode: a compare reading a register its own `subs` 
 post-indexed load reading the incremented base, a 64-bit read narrowed to the type of a write
 elsewhere in the function, callee-saved registers spilled into the locals and dropped as if they
 were the prologue's saves.
+
+## Shaders (M2 groundwork)
+
+```sh
+python tools/fetch_toolchains.py glslang-16.6.0       # once, by name (not in the default fetch): Khronos glslang
+python tools/bshdat.py --version 2.1.0 --compile      # build/shaders/2.1.0/, about a minute
+```
+
+`tools/bshdat.py` parses the game's 478 `.bshdat` packages (layout in its docstring) and writes,
+per package, `p<key>.vert` and `p<key>.frag` for each program (the GLSL its debug section carries,
+includes inlined, the engine's variant `#define`s after `#version`) and `manifest.json` (variant
+keys and defines, includes, section offsets, the compiler's reflection of each stage, the
+package's name tables). `--compile` runs glslang on every source as extracted and with the two
+rewrites a loader in the NVN shim makes (`shim_rewrite`: each uniform block gets the binding NVN's
+compiler gave it, taken from the reflection, and `GL_NV_explicit_typecast` is enabled), keeps the
+SPIR-V of the rewritten sources beside them (`.gl.spv`, `.vk.spv`; Vulkan with one descriptor set
+per stage and samplers from binding 16) and writes `compile_report.csv`. On 2.1.0, 1,341 of the
+1,342 stages compile in both targets; the exception and the binding model are recorded in
+`docs/JOURNAL.md` (2026-10-26). Everything under `build/shaders/` is game data and stays local.
