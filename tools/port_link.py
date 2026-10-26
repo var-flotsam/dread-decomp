@@ -117,6 +117,7 @@ import port_sweep  # noqa: E402
 ROOT = Path(__file__).resolve().parent.parent
 SAMPLE_DUPLICATES = ROOT / "port" / "sample_duplicates.txt"  # shared with port/CMakeLists.txt
 RUNTIME_SRC = ROOT / "port" / "runtime" / "src"
+ADDRESSES = ROOT / "build" / "port" / "addresses.json"  # tools/port_addresses.py
 RUNTIME_INCLUDE = port_sweep.RUNTIME_INCLUDE
 # The vendored libraries main links statically (status L in data/functions/), as tools/sigmatch.py's
 # LIBRARIES lists them: all of lib/lua (built as C++, as the game builds Lua) and dlmalloc through
@@ -624,9 +625,12 @@ def runtime_overload(candidates: list[str], reference: str, demangled: dict[str,
 
 
 def classify(lk: Link, runtime_by_name: dict[str, list[str]], runtime_symbols: set[str],
-             alias_mismatch: bool = False) -> list[Entry]:
+             alias_mismatch: bool = False, known: dict[str, int] | None = None) -> list[Entry]:
     """One Entry per undefined symbol of `lk`. A called function alias with a class_mismatch
-    verdict is trapped unless `alias_mismatch`."""
+    verdict is trapped unless `alias_mismatch`. `known` (tools/port_addresses.py) gives the
+    original address of a vtable or a name without one: the vtable becomes an absolute symbol
+    there, the name a reference to that address like any fn_<addr>."""
+    known = known or {}
     res = lk.resolver
     out: list[Entry] = []
     for sym in lk.undefined:
@@ -638,6 +642,9 @@ def classify(lk: Link, runtime_by_name: dict[str, list[str]], runtime_symbols: s
             addr, _ = res.reference(dem)
         elif dem.startswith(VTABLE_PREFIXES):
             e.cls, e.sub = "vtable", dem.split(" for ")[0]
+            if sym in known:
+                e.sub, e.address, e.target = "game vtable (address from matched code)", known[sym], f"0x{known[sym]:x}"
+                e.flags.append("address_from_matched_code")
         elif is_stdlib(sym, dem):
             e.cls, e.sub = "stdlib", is_stdlib(sym, dem)
         elif dem.startswith("nn::"):
@@ -645,6 +652,9 @@ def classify(lk: Link, runtime_by_name: dict[str, list[str]], runtime_symbols: s
             e.sub = "defined by the runtime" if sym in runtime_symbols else "stub needed"
         else:
             addr, _ = res.reference(dem)  # a real name unique in data/functions/ (Lua, ...)
+            if addr is None and sym in known:
+                addr = known[sym]
+                e.flags.append("address_from_matched_code")
             if addr is None:
                 e.cls = "named_without_address"
         if e.cls:
@@ -1012,7 +1022,17 @@ def main() -> int:
                                      "and report the boot slice with and without them")
     ap.add_argument("--no-libraries", action="store_true",
                     help="leave lib/lua and lib/dlmalloc out of the link (their status-L functions become missing)")
+    ap.add_argument("--addresses", default=str(ADDRESSES),
+                    help="tools/port_addresses.py's output: original addresses of vtables and names without one"
+                         " (default build/port/addresses.json, used when present)")
+    ap.add_argument("--no-addresses", action="store_true", help="ignore --addresses")
     args = ap.parse_args()
+    known: dict[str, int] = {}
+    if not args.no_addresses and Path(args.addresses).is_file():
+        placed = json.loads(Path(args.addresses).read_text(encoding="utf-8"))
+        known = {sym: int(e["address"], 16) for sym, e in placed.get("resolved", {}).items()}
+        print(f"addresses: {len(known)} symbols placed from matched code ({rel(Path(args.addresses))};"
+              f" {len(placed.get('conflicts', {}))} left out: their uses disagree)")
 
     cxx = args.cxx or port_sweep.host_cxx()
     target = args.target or port_sweep.default_target(cxx)
@@ -1080,7 +1100,7 @@ def main() -> int:
           f" runtime: {len(runtime_symbols)} functions")
 
     # d. classification
-    entries = classify(lk, runtime_by_name, runtime_symbols, args.alias_mismatch)
+    entries = classify(lk, runtime_by_name, runtime_symbols, args.alias_mismatch, known)
     summary = summarize(entries, args.examples, keep_empty=True)
     assert sum(d["symbols"] for d in summary.values()) == len(entries) == len(lk.undefined)
     print()
@@ -1121,7 +1141,7 @@ def main() -> int:
         if new_names:
             demangled.update(asmdiff.demangle(new_names, strip=False))
         lk = Link(lsyms, demangled, resolver, relocations(objdump, lifted_o))
-        entries = classify(lk, runtime_by_name, runtime_symbols, args.alias_mismatch)
+        entries = classify(lk, runtime_by_name, runtime_symbols, args.alias_mismatch, known)
         game_o = lifted_o
         print()
         lifted_slice = boot_slice(args.version, lk, entries, runtime_by_name, out / "boot_unlifted.csv",
@@ -1133,7 +1153,8 @@ def main() -> int:
                          "boot_slice": lifted_slice}
 
     # f. aliases, traps, the second link
-    aliases = [e for e in entries if e.target and e.trap is None and e.cls in ("function_alias", "data", "import")]
+    aliases = [e for e in entries if e.target and e.trap is None
+               and e.cls in ("function_alias", "data", "import", "vtable")]
     aliases_rsp = out / "aliases.rsp"
     write_rsp(aliases_rsp, [f"--defsym={e.symbol}={e.target}" for e in aliases])
     traps_s, traps_o = out / "traps.s", out / "traps.o"
@@ -1167,7 +1188,7 @@ def main() -> int:
         print("\n".join(r.stderr.splitlines()[:40]))
         return 1
     whole = Link(nm_symbols(nm, whole_o), demangled, resolver, relocations(objdump, whole_o))
-    residue_entries = classify(whole, runtime_by_name, runtime_symbols, args.alias_mismatch)
+    residue_entries = classify(whole, runtime_by_name, runtime_symbols, args.alias_mismatch, known)
     residue = summarize(residue_entries, args.examples, keep_empty=False)
     print(f"link 2: {rel(whole_o)} in {dt2:.1f} s ({whole_o.stat().st_size / 1e6:.1f} MB)")
     print_summary("residue", residue, args.examples)

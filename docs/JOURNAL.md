@@ -86,6 +86,18 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Port M1: addresses from matched code (2026-10-26).** The 71 vtables and 177 names the link had
+no address for are mostly placed by `tools/port_addresses.py`: for each byte-matching function
+the relocation check is asked about each unresolvable symbol as if it were at 0, and the
+mismatch it reports is the original's target (no new decoding code: `asmdiff.check_relocs` does
+the pairing). 9,297 symbols placed from 89,299 functions; with them `port_link.py`'s residue
+is 226 (from 439). The 12 symbols whose uses disagree are real naming problems: placeholder
+classes reused across sources for different classes (one `vtable for UnkCallbackSet` symbol
+would serve two vtables in a whole-program link, an ODR violation the matching build cannot
+see), and `fn_710026ead0`, which calls itself `CRntString::~CRntString` twice. Pitfall met on
+the way: a version that only placed port_link's residue read the residue of a link that
+already used its output and wrote an empty file; it now places every unresolved symbol.
+
 **Port M1: `nn::prepo`, `movie`, the language and an import check (2026-10-26).** With these the
 runtime defines every SDK import the boot slice reaches. `movie`'s player
 (`src/game_71001e2acc/`) subclasses the library's Extractor and Decoder and keeps Buffers at a

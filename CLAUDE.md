@@ -93,6 +93,7 @@ python tools/port_sweep.py --version <ver>       # port: compile every src/ file
 python tools/port_link.py --version <ver>        # port: whole-program relocatable link of the sweep objects, undefined-symbol report, boot_missing.csv -> build/port/link/
 python tools/port_lift.py --version <ver> [--top N | --only ADDR,...] [--debug ADDR] [--mutants N]  # port: semantic lifts of boot_missing.csv's U functions, checked by the P-code oracle -> build/port/lifted/ (never src/)
 python tools/port_link.py --version <ver> --lifted build/port/lifted   # the link with the semantic lifts: boot slice with and without them
+python tools/port_addresses.py --version <ver>   # port: original addresses of vtables and names the link cannot place, from matched code -> build/port/addresses.json (port_link uses it)
 python tools/port_imports.py --version <ver> [--list NS]  # port: the dump's imports the runtime resolves by exact mangled name (checks a stub's signature)
 python tools/abi_facts.py --version <ver> ADDR...  # argument registers a function reads, whether callers use its result (semantic lifts, oracle)
 python tools/fetch_toolchains.py glslang-16.6.0     # Khronos glslang, for bshdat.py --compile (by name only; not in the default fetch)
