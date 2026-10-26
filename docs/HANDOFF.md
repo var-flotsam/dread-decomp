@@ -6,7 +6,7 @@ it needs). History, batch logs and the index of matching findings are in `docs/J
 `docs/recon.md` describes the binary, `docs/compiler.md` the toolchain, `docs/references.md` the
 outside projects. This page is edited in place, never appended to: session notes go to the journal.
 
-**Last updated 2026-10-26** (hub batches 3 and 4, var-flotsam/dread-decomp#195 and #197; the TU helper fold, #196; the shader packages, #198; boot hubs round 1, branch `claude/boot-hubs-1`).
+**Last updated 2026-10-26** (hub batches 3 and 4, var-flotsam/dread-decomp#195 and #197; the TU helper fold, #196; the shader packages, #198; boot hubs round 1, branch `claude/boot-hubs-1`; port M2's shader build step and NVN binding layer, #202 and #204).
 Target: **Metroid Dread 2.1.0**, `main` build ID `646761F643AFEBB379EDD5E6A5151AF2CEF93DC1`.
 
 ## Start here
@@ -27,6 +27,8 @@ Target: **Metroid Dread 2.1.0**, `main` build ID `646761F643AFEBB379EDD5E6A5151A
   files"; the whole-tree baseline before and `check.py` once after.
 - **Port:** `python tools/port_link.py --version 2.1.0` rebuilds `build/port/link/boot_missing.csv`, the
   boot-slice functions without a source (the lifter's worklist) and the runtime stubs still needed.
+  Graphics (M2): `cmake --build build/port/cmake --target shaders dread_nvn` compiles the dump's
+  shaders to SPIR-V with `shaders.manifest` and the NVN shim's binding layer (`port/nvn/README.md`).
 - Every number on this page names the command that produced it; rerun the command rather than trust
   the page.
 
@@ -42,7 +44,7 @@ Target: **Metroid Dread 2.1.0**, `main` build ID `646761F643AFEBB379EDD5E6A5151A
 | Generators: lifted, statics, clones, tables | **In maintenance.** `src/lifted/` 46,380 functions; `src/reflection_statics/`, `src/clones/`, `src/tables/`. The lifter is at its limit for byte-identical output (see the journal); no new variant rounds |
 | 4.4 Core engine types and hand matching | **In progress.** String ids and pool, `UnkVector`, CRC64, allocator getter, reflected-function array; hand slices in `src/game_*/` (0.76 MB typed) |
 | 4.5 Boot to title screen | **Measured, not started as a slice.** 4,441 functions reachable from `nnMain` by direct calls; see the table below |
-| Port | **M0 done** (var-flotsam/dread-decomp#183): `tools/port_sweep.py` compiles all 3,808 `src/` files for x86-64 once `port/runtime/include` stands in for the SDK headers; `port/` CMake project with `dread_game`, `dread_runtime` (our own `nn::` declarations and stubs) and the banner executable. **M1 steps 1 and 2 done** (2026-10-25, var-flotsam/dread-decomp#186 and the vendored-libraries step): `tools/port_link.py` links the whole program, Lua and dlmalloc included, relocatably and lists what is missing (2,157 boot-slice functions without a source). **M1 step 3 done** (2026-10-25): `tools/port_lift.py` gives 1,777 of the slice's 2,148 `U` functions a semantic lift checked by a P-code oracle (`build/port/lifted/`, never `src/`); with them 380 slice functions are left without a source; the gaps step raises that to 1,941 lifts and 216 left. No executable on this PC (no Windows SDK or WSL) |
+| Port | **M0 done** (var-flotsam/dread-decomp#183): `tools/port_sweep.py` compiles all 3,808 `src/` files for x86-64 once `port/runtime/include` stands in for the SDK headers; `port/` CMake project with `dread_game`, `dread_runtime` (our own `nn::` declarations and stubs) and the banner executable. **M1 steps 1 and 2 done** (2026-10-25, var-flotsam/dread-decomp#186 and the vendored-libraries step): `tools/port_link.py` links the whole program, Lua and dlmalloc included, relocatably and lists what is missing (2,157 boot-slice functions without a source). **M1 step 3 done** (2026-10-25): `tools/port_lift.py` gives 1,777 of the slice's 2,148 `U` functions a semantic lift checked by a P-code oracle (`build/port/lifted/`, never `src/`); with them 380 slice functions are left without a source; the gaps step raises that to 1,941 lifts and 216 left. **M2 started** (2026-10-26, #202, #204): the `shaders` build step (all 1,342 stages to SPIR-V, checked against NVN's reflection) and `port/nvn/`, the NVN shim's binding layer over Vulkan, compile-checked. No executable on this PC (no Windows SDK or WSL) |
 
 Numbers from `tools/progress.py` and `tools/progress.py --slice boot` on 2026-10-25 (hub batch 2,
 var-flotsam/dread-decomp#187):
@@ -422,9 +424,20 @@ compiler's reflection to `build/shaders/2.1.0/`, and compiles 1,341 stages to Op
 SPIR-V with glslang 16.6.0 after two rewrites (block bindings from the reflection,
 `GL_NV_explicit_typecast`); FXAA's fragment stage needs a rewrite rule. Decided 2026-10-26: Vulkan
 first, the SPIR-V built from the user's dump by the port's build (`bshdat.py --compile`'s Vulkan
-mode), no compiler in the executable. Next for M2: that build step in `port/` (the FXAA rule, the
-SPIR-V installed under `build/`), the NVN shim's binding layer over Vulkan (one descriptor set per
-stage, samplers from binding 16) and the engine's variant selection by key.
+mode), no compiler in the executable. Done since (#202, #204): the build step is the port's
+`shaders` target (`tools/bshdat.py --install`: the FXAA fixup makes all 1,342 stages compile; each
+module is checked against NVN's reflection; `shaders.manifest` beside the executable), and
+`port/nvn/` (`dread_nvn`) holds the manifest reader and the binding layer: NVN's per-stage slots on
+one Vulkan descriptor set per stage, stages recognised by their control section (the only part
+`nvnProgramSetShaders` gets by pointer). Variant selection is the engine's own (`fn_71001b0f24` on
+`CProgramResource`, `port/nvn/README.md`): the shim needs nothing for it, but the engine's loader
+and selector (`fn_71001b0050`, `fn_71001b0f24`, `fn_71001b0f7c`, the program switch `fn_71001cc608`)
+are `U` and belong on the lifter's graphics worklist. The game calls 150 of its 523 NVN functions.
+Next for M2: the rest of the shim in the order the boot path calls it (device and queue, memory
+pools and buffers with a GPU address space, textures and the texture and sampler pools behind
+`ResourceResolver`, command buffers, programs and pipelines with vertex-only variants for the
+depth-only path, window and present); a Vulkan loader and SDK need the owner's go-ahead (none is
+installed; the headers are pinned in `tools/fetch_toolchains.py`).
 
 **Stream M (generators).** The bugs above and `--prune`/regeneration after merges. The lifter's
 semantic mode exists (`opts={"semantic"}`, driven by `tools/port_lift.py`; byte mode is unchanged,
