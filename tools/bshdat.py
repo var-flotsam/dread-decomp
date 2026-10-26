@@ -852,23 +852,27 @@ def summarise(results: dict) -> None:
 # SPIR-V, as far as the install check reads it: the resource variables of a module and their
 # (set, binding). Opcodes and enumerants from the SPIR-V specification (Khronos, unified 1.6).
 SPV_MAGIC = 0x07230203
-OP_NAME, OP_DECORATE, OP_CAPABILITY = 5, 71, 17
+OP_NAME, OP_DECORATE, OP_MEMBER_DECORATE, OP_CAPABILITY = 5, 71, 72, 17
+OP_TYPE_BOOL, OP_TYPE_INT, OP_TYPE_FLOAT, OP_TYPE_VECTOR, OP_TYPE_MATRIX = 20, 21, 22, 23, 24
 OP_TYPE_IMAGE, OP_TYPE_SAMPLED_IMAGE, OP_TYPE_ARRAY, OP_TYPE_STRUCT, OP_TYPE_POINTER = 25, 27, 28, 30, 32
 OP_CONSTANT, OP_VARIABLE = 43, 59
-DEC_BLOCK, DEC_BINDING, DEC_SET = 2, 33, 34
+DEC_BLOCK, DEC_ROW_MAJOR, DEC_ARRAY_STRIDE, DEC_MATRIX_STRIDE, DEC_BINDING, DEC_SET, DEC_OFFSET = 2, 4, 6, 7, 33, 34, 35
 SC_UNIFORM_CONSTANT, SC_UNIFORM = 0, 2
 CAP_SHADER = 1
 
 
 def spirv_resources(data: bytes, where: str) -> tuple[list[dict], list[int]]:
-    """The module's descriptor-bound variables, [{set, binding, kind, count, type, name}], and its
-    capabilities. kind is "block" (a Uniform struct decorated Block) or "sampler" (a combined
-    image-sampler, or an array of them); anything else bound to a descriptor raises FormatError."""
+    """The module's descriptor-bound variables, [{set, binding, kind, count, type, name, size}], and
+    its capabilities. kind is "block" (a Uniform struct decorated Block; size: the bytes its explicit
+    layout spans) or "sampler" (a combined image-sampler, or an array of them; size 0); anything
+    else bound to a descriptor raises FormatError, and so does an array whose length is not a
+    32-bit constant."""
     if len(data) < 20 or len(data) % 4 or u32(data, 0) != SPV_MAGIC:
         raise FormatError(f"{where}: not a SPIR-V module")
     words = struct.unpack_from(f"<{len(data) // 4}I", data)
     names: dict[int, str] = {}
     decos: dict[int, dict[int, int]] = collections.defaultdict(dict)
+    member_decos: dict[tuple[int, int], dict[int, int]] = collections.defaultdict(dict)
     types: dict[int, tuple] = {}
     consts: dict[int, int] = {}
     variables: list[tuple[int, int, int]] = []  # (pointer type, id, storage class)
@@ -883,15 +887,46 @@ def spirv_resources(data: bytes, where: str) -> tuple[list[dict], list[int]]:
             names[args[0]] = struct.pack(f"<{len(args) - 1}I", *args[1:]).split(b"\0", 1)[0].decode("ascii", "replace")
         elif op == OP_DECORATE:
             decos[args[0]][args[1]] = args[2] if len(args) > 2 else 1
+        elif op == OP_MEMBER_DECORATE:
+            member_decos[(args[0], args[1])][args[2]] = args[3] if len(args) > 3 else 1
         elif op == OP_CAPABILITY:
             caps.append(args[0])
-        elif op in (OP_TYPE_IMAGE, OP_TYPE_SAMPLED_IMAGE, OP_TYPE_ARRAY, OP_TYPE_STRUCT, OP_TYPE_POINTER):
+        elif op in (OP_TYPE_IMAGE, OP_TYPE_SAMPLED_IMAGE, OP_TYPE_ARRAY, OP_TYPE_STRUCT, OP_TYPE_POINTER,
+                    OP_TYPE_BOOL, OP_TYPE_INT, OP_TYPE_FLOAT, OP_TYPE_VECTOR, OP_TYPE_MATRIX):
             types[args[0]] = (op, *args[1:])
         elif op == OP_CONSTANT and len(args) == 3:
             consts[args[1]] = args[2]
         elif op == OP_VARIABLE:
             variables.append((args[0], args[1], args[2]))
         i += count
+    def size_of(tid: int, matrix_stride: int = 0, row_major: bool = False, depth: int = 0) -> int:
+        t = types.get(tid, (None,))
+        if depth > 32:
+            raise FormatError(f"{where}: type nesting too deep")
+        if t[0] == OP_TYPE_BOOL:
+            return 4
+        if t[0] in (OP_TYPE_INT, OP_TYPE_FLOAT):
+            return t[1] // 8
+        if t[0] == OP_TYPE_VECTOR:
+            return t[2] * size_of(t[1], depth=depth + 1)
+        if t[0] == OP_TYPE_MATRIX:  # (column type, column count)
+            column = types.get(t[1], (None, None, 0))
+            if not matrix_stride:
+                return t[2] * size_of(t[1], depth=depth + 1)
+            return (column[2] if row_major else t[2]) * matrix_stride
+        if t[0] == OP_TYPE_ARRAY:
+            if t[2] not in consts or DEC_ARRAY_STRIDE not in decos.get(tid, {}):
+                raise FormatError(f"{where}: array type {tid} without a constant length or a stride")
+            return consts[t[2]] * decos[tid][DEC_ARRAY_STRIDE]
+        if t[0] == OP_TYPE_STRUCT:
+            end = 0
+            for m, mt in enumerate(t[1:]):
+                md = member_decos.get((tid, m), {})
+                end = max(end, md.get(DEC_OFFSET, 0) + size_of(mt, md.get(DEC_MATRIX_STRIDE, 0),
+                                                              DEC_ROW_MAJOR in md, depth + 1))
+            return end
+        raise FormatError(f"{where}: type {tid} in a uniform block has no known size")
+
     out = []
     for ptr, vid, sc in variables:
         d = decos.get(vid, {})
@@ -902,6 +937,8 @@ def spirv_resources(data: bytes, where: str) -> tuple[list[dict], list[int]]:
         t = types.get(pointee, (None,))
         if t[0] == OP_TYPE_ARRAY:
             n = consts.get(t[2], 0)
+            if n < 1:
+                raise FormatError(f"{where}: variable {names.get(vid, vid)} is an array without a constant length")
             pointee, t = t[1], types.get(t[1], (None,))
         if sc == SC_UNIFORM and t[0] == OP_TYPE_STRUCT and DEC_BLOCK in decos.get(pointee, {}):
             kind = "block"
@@ -911,7 +948,8 @@ def spirv_resources(data: bytes, where: str) -> tuple[list[dict], list[int]]:
             raise FormatError(f"{where}: variable {names.get(vid, vid)} is bound but is neither a uniform "
                               "block nor a combined image-sampler")
         out.append({"set": d.get(DEC_SET, 0), "binding": d.get(DEC_BINDING, 0), "kind": kind, "count": n,
-                    "type": names.get(pointee, ""), "name": names.get(vid, "")})
+                    "type": names.get(pointee, ""), "name": names.get(vid, ""),
+                    "size": n * size_of(pointee) if kind == "block" else 0})
     return out, caps
 
 
@@ -945,6 +983,11 @@ INSTALL_MANIFEST = "shaders.manifest"
 INSTALL_MARKER = ".bshdat-install"
 
 
+def round16(n: int) -> int:
+    """NVN's reflection gives a block's size rounded up to 16 bytes (checked for every active block)."""
+    return (n + 15) & ~15
+
+
 def stage_layout(st: dict, resources: list[dict], stage: str, where: str) -> tuple[list, list]:
     """Match the SPIR-V's resources to the NVN reflection: (blocks, samplers) as manifest rows.
 
@@ -953,7 +996,9 @@ def stage_layout(st: dict, resources: list[dict], stage: str, where: str) -> tup
     Samplers: NVN's texture slot is the declared binding (an array of n takes slots b..b+n-1); the
     Vulkan binding is VK_SAMPLER_BASE + b with descriptorCount n. Every active block and sampler of
     the reflection must be in the SPIR-V at that place. A block or sampler only the SPIR-V has (the
-    NVN compiler found it inactive, glslang kept it) is listed with NVN slot -1.
+    NVN compiler found it inactive, glslang kept it) is listed with NVN slot -1; such a block's size
+    is the span of its SPIR-V layout rounded up to 16, as NVN gives an active block's size (checked
+    for every active block), so that the shim can size its placeholder.
     """
     refl = st["reflection"]
     vk = {(r["kind"], r["binding"]): r for r in resources}
@@ -972,6 +1017,9 @@ def stage_layout(st: dict, resources: list[dict], stage: str, where: str) -> tup
             raise FormatError(f"{where}: uniform block {b['name']} (NVN slot {b['binding']}) is not at binding "
                               f"{b['binding']} in the SPIR-V")
         seen.add(("block", b["binding"]))
+        if b["size"] != round16(r["size"]):
+            raise FormatError(f"{where}: uniform block {b['name']} spans {r['size']} bytes in the SPIR-V, "
+                              f"{b['size']} for NVN (expected {r['size']} rounded up to 16)")
         blocks.append((b["binding"], b["binding"], b["size"], b["name"]))
     by_base: dict[int, dict] = {}
     for u in refl["uniforms"]:
@@ -988,7 +1036,8 @@ def stage_layout(st: dict, resources: list[dict], stage: str, where: str) -> tup
         samplers.append((slot, VK_SAMPLER_BASE + slot, r["count"], u["name"]))
     for key, r in sorted(vk.items()):
         if key not in seen:
-            row = (-1, r["binding"], 0, r["type"]) if r["kind"] == "block" else (-1, r["binding"], r["count"], r["name"])
+            row = ((-1, r["binding"], round16(r["size"]), r["type"]) if r["kind"] == "block"
+                   else (-1, r["binding"], r["count"], r["name"]))
             (blocks if r["kind"] == "block" else samplers).append(row)
     return blocks, samplers
 
@@ -1046,7 +1095,7 @@ def install(out_root: Path, manifests: list[dict], dest: Path, version: str, job
     lines = [f"dread-shaders {INSTALL_FORMAT} {version} glslang {glslang_version(tool)}",
              f"layout {VK_SET['vert']} {VK_SET['frag']} {VK_SAMPLER_BASE}"]
     nprog = nstage = 0
-    controls: dict[int, tuple[bytes, bytes, list, list, str]] = {}  # key -> first stage with it
+    controls: dict[int, tuple] = {}  # key -> (control, code, layout and SPIR-V, where) of the first stage with it
     shd = ROOT / "orig" / version / "romfs" / "system" / "shd"
     errors = []
     for man in manifests:
@@ -1076,11 +1125,14 @@ def install(out_root: Path, manifests: list[dict], dest: Path, version: str, job
                     if len(control) < CONTROL_KEY_BYTES:
                         raise FormatError(f"{where}: control section of {len(control)} bytes, under {CONTROL_KEY_BYTES}")
                     key = fnv1a64(control[:CONTROL_KEY_BYTES])
-                    seen = controls.setdefault(key, (control, code, blocks, samplers, where))
+                    shape = (blocks, samplers, st["reflection"]["inputs"], st["reflection"]["outputs"], data)
+                    seen = controls.setdefault(key, (control, code, shape, where))
                     if seen[:2] != (control, code):
-                        raise FormatError(f"{where}: control key {key:016x} also names {seen[4]}, a different stage")
-                    if (seen[2], seen[3]) != (blocks, samplers):
-                        raise FormatError(f"{where}: same stage as {seen[4]} with a different binding layout")
+                        raise FormatError(f"{where}: control key {key:016x} also names {seen[3]}, a different stage")
+                    if seen[2] != shape:
+                        # The shim gives every stage with this key the first one's SPIR-V and layout.
+                        raise FormatError(f"{where}: same stage as {seen[3]} but a different binding layout, "
+                                          "interface or SPIR-V")
                 except FormatError as e:
                     errors.append(str(e))
                     continue

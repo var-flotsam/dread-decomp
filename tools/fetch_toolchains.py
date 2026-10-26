@@ -192,7 +192,9 @@ def fetch_header_archive(name: str, pins: dict) -> None:
             parts = Path(m.name).parts  # <archive root>/include/...
             if len(parts) < 3 or parts[1] != "include" or not m.isfile() or ".." in parts:
                 continue
-            out = tmp.joinpath(*parts[1:])
+            out = tmp.joinpath(*parts[1:]).resolve()
+            if not out.is_relative_to(tmp.resolve()):  # an absolute or drive-relative member name
+                raise SystemExit(f"{name}: archive member {m.name} lands outside {tmp}")
             out.parent.mkdir(parents=True, exist_ok=True)
             out.write_bytes(tar.extractfile(m).read())
             count += 1

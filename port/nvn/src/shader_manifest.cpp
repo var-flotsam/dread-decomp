@@ -3,6 +3,8 @@
 
 #include "nvn_shim/shader_manifest.h"
 
+#include <cctype>
+#include <cerrno>
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
@@ -25,21 +27,35 @@ bool NextField(const char*& rest, std::string* out) {
     return !out->empty();
 }
 
+// Digits only (strtoull alone would take a sign, spaces or a 0x prefix), no overflow.
 bool ParseU64(const std::string& text, int base, std::uint64_t* out) {
-    if (text.empty())
+    if (text.empty() || !std::isxdigit(static_cast<unsigned char>(text[0])) ||
+        (text.size() > 1 && (text[1] == 'x' || text[1] == 'X')))
         return false;
     char* end = nullptr;
+    errno = 0;
     *out = std::strtoull(text.c_str(), &end, base);
-    return *end == '\0';
+    return *end == '\0' && errno == 0;
 }
 
 bool ParseI64(const std::string& text, std::int64_t* out) {
-    if (text.empty())
+    if (text.empty() || !(text[0] == '-' || std::isdigit(static_cast<unsigned char>(text[0]))))
         return false;
     char* end = nullptr;
+    errno = 0;
     *out = std::strtoll(text.c_str(), &end, 10);
-    return *end == '\0';
+    return *end == '\0' && errno == 0;
 }
+
+bool InRange(std::int64_t v, std::int64_t lo, std::int64_t hi) { return v >= lo && v <= hi; }
+
+// Bounds on the manifest's numbers, far above what the dump has (at most 4 programs a package,
+// 5 blocks and texture slots 0-13 a stage, bindings below 32), so that a damaged file fails here
+// instead of in an allocation or a loop.
+constexpr std::int64_t kMaxCount = 1 << 16;
+constexpr std::int64_t kMaxBinding = 255;
+constexpr std::int64_t kMaxSize = std::int64_t(1) << 30;
+constexpr std::int64_t kU32Max = 0xFFFFFFFF;
 
 // Reads `count` decimal fields, then the rest of the line as text (may be empty when no text).
 bool Fields(const char* rest, std::int64_t* values, int count, std::string* text) {
@@ -97,6 +113,16 @@ bool ShaderManifest::Load(const std::string& dir, std::string* error) {
     std::string game_version;
     std::int64_t layout[3] = {0, 1, 16};
     bool header = false, ended = false;
+    // The counts the package and program records announce, checked when the next one starts.
+    std::int64_t want_programs = -1, want_defines = -1;
+    auto counts_ok = [&]() {
+        if (packages.empty())
+            return true;
+        const PackageInfo& p = packages.back();
+        if (static_cast<std::int64_t>(p.programs.size()) != want_programs)
+            return false;
+        return p.programs.empty() || static_cast<std::int64_t>(p.programs.back().defines.size()) == want_defines;
+    };
     std::size_t line_no = 0, pos = 0;
     auto fail = [&](const char* what) {
         *error = path + ":" + std::to_string(line_no) + ": " + what;
@@ -132,37 +158,45 @@ bool ShaderManifest::Load(const std::string& dir, std::string* error) {
         ProgramInfo* prog = pkg && !pkg->programs.empty() ? &pkg->programs.back() : nullptr;
         StageInfo* stage = prog && !prog->stages.empty() ? &prog->stages.back() : nullptr;
         if (tag == "layout") {
-            if (!Fields(rest, layout, 3, nullptr))
+            if (!Fields(rest, layout, 3, nullptr) || !InRange(layout[0], 0, 31) || !InRange(layout[1], 0, 31) ||
+                !InRange(layout[2], 0, kMaxBinding))
                 return fail("malformed layout record");
         } else if (tag == "package") {
             std::string pname;
-            if (!NextField(rest, &pname) || !Fields(rest, v, 1, nullptr))
+            if (!NextField(rest, &pname) || !Fields(rest, v, 1, nullptr) || !InRange(v[0], 0, kMaxCount))
                 return fail("malformed package record");
+            if (!counts_ok())
+                return fail("the previous package has another number of programs or defines than announced");
             packages.push_back(PackageInfo{pname, {}, {}, {}});
             packages.back().programs.reserve(static_cast<std::size_t>(v[0]));
+            want_programs = v[0];
         } else if (tag == "attribute" || tag == "uniform") {
             if (!pkg)
                 return fail("name record outside a package");
             if (tag == "attribute") {
-                if (!Fields(rest, v, 1, &name))
+                if (!Fields(rest, v, 1, &name) || !InRange(v[0], 0, kU32Max))
                     return fail("malformed attribute record");
                 pkg->attributes.push_back(NameId{static_cast<std::uint32_t>(v[0]), name});
             } else {
-                if (!Fields(rest, v, 2, &name) || (v[0] != 1 && v[0] != 2))
+                if (!Fields(rest, v, 2, &name) || (v[0] != 1 && v[0] != 2) || !InRange(v[1], 0, kU32Max))
                     return fail("malformed uniform record");
                 pkg->uniforms[v[0] - 1].push_back(NameId{static_cast<std::uint32_t>(v[1]), name});
             }
         } else if (tag == "program") {
-            if (!pkg || !Fields(rest, v, 4, nullptr))
+            if (!pkg || !Fields(rest, v, 4, nullptr) || !InRange(v[0], 0, kU32Max) || !InRange(v[1], 0, kU32Max) ||
+                !InRange(v[2], 0, kMaxCount) || !InRange(v[3], 0, kMaxCount))
                 return fail("malformed program record");
+            if (!pkg->programs.empty() && static_cast<std::int64_t>(pkg->programs.back().defines.size()) != want_defines)
+                return fail("the previous program has another number of defines than announced");
+            want_defines = v[3];
             ProgramInfo p;
             p.key = static_cast<std::uint32_t>(v[0]);
             p.key2 = static_cast<std::uint32_t>(v[1]);
             p.index = static_cast<std::uint32_t>(v[2]);
             pkg->programs.push_back(std::move(p));
         } else if (tag == "define") {
-            if (!prog)
-                return fail("define outside a program");
+            if (!prog || !prog->stages.empty())
+                return fail("define outside a program's header");
             prog->defines.emplace_back(rest);
         } else if (tag == "stage") {
             // stage <vert|frag> <spv path> <spv bytes> <control key> <control bytes>
@@ -171,7 +205,8 @@ bool ShaderManifest::Load(const std::string& dir, std::string* error) {
             if (!prog || !NextField(rest, &kind) || !NextField(rest, &spv) || !NextField(rest, &size) ||
                 !NextField(rest, &key) || !NextField(rest, &csize) || *rest != '\0' ||
                 !ParseU64(size, 10, &n_size) || !ParseU64(key, 16, &n_key) || !ParseU64(csize, 10, &n_csize) ||
-                (kind != "vert" && kind != "frag"))
+                (kind != "vert" && kind != "frag") || n_size > static_cast<std::uint64_t>(kU32Max) ||
+                n_csize > static_cast<std::uint64_t>(kU32Max))
                 return fail("malformed stage record");
             if (n_csize < kControlKeyBytes)
                 return fail("control section shorter than the key");
@@ -186,13 +221,16 @@ bool ShaderManifest::Load(const std::string& dir, std::string* error) {
                                                static_cast<std::uint32_t>(pkg->programs.size() - 1),
                                                static_cast<std::uint32_t>(prog->stages.size() - 1)});
         } else if (tag == "block" || tag == "sampler") {
-            if (!stage || !Fields(rest, v, 3, &name) || name.empty())
+            // A slot is -1 or 0-15; a block's size is positive and a sampler's count at least 1 (a
+            // descriptor write may not have a descriptorCount of 0).
+            if (!stage || !Fields(rest, v, 3, &name) || name.empty() || !InRange(v[0], -1, kTextureSlots - 1) ||
+                !InRange(v[1], 0, kMaxBinding) || !InRange(v[2], 1, tag == "block" ? kMaxSize : 64))
                 return fail("malformed block or sampler record");
             StageResource r{static_cast<std::int32_t>(v[0]), static_cast<std::uint32_t>(v[1]),
                             static_cast<std::uint32_t>(v[2]), name};
             (tag == "block" ? stage->blocks : stage->samplers).push_back(std::move(r));
         } else if (tag == "input" || tag == "output") {
-            if (!stage || !Fields(rest, v, 1, &name))
+            if (!stage || !Fields(rest, v, 1, &name) || !InRange(v[0], -1, kMaxBinding))
                 return fail("malformed input or output record");
             (tag == "input" ? stage->inputs : stage->outputs).push_back(
                 StageInterface{static_cast<std::int32_t>(v[0]), name});
@@ -203,7 +241,10 @@ bool ShaderManifest::Load(const std::string& dir, std::string* error) {
                 for (const ProgramInfo& q : p.programs)
                     stages += q.stages.size();
             }
-            if (!Fields(rest, v, 3, nullptr) || static_cast<std::size_t>(v[0]) != packages.size() ||
+            if (!counts_ok())
+                return fail("the last package has another number of programs or defines than announced");
+            if (!Fields(rest, v, 3, nullptr) || !InRange(v[0], 0, kMaxSize) || !InRange(v[1], 0, kMaxSize) ||
+                !InRange(v[2], 0, kMaxSize) || static_cast<std::size_t>(v[0]) != packages.size() ||
                 static_cast<std::size_t>(v[1]) != programs || static_cast<std::size_t>(v[2]) != stages)
                 return fail("end record does not match the records read");
             ended = true;

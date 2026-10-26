@@ -39,11 +39,15 @@ call sites of each NVN table slot: code outside the loader loads 150 of the 523 
   `{code address, control pointer}` pair per present stage. The program record's third, always
   empty, slot is the engine's stage type 2, bound as NVN stage 2 with stage bit 4 (a geometry stage).
 - **Uniform buffers.** The program binding (`fn_710015d900`) calls `nvnCommandBufferBindProgram(cmd,
-  program, stage bits)`, then for each active block of each stage
+  program, stage bits)`. For a depth-only pass it then unbinds the fragment stage
+  (`nvnCommandBufferBindProgram(cmd, null, 2)`) and leaves its blocks alone, so the pipeline layer
+  needs vertex-only pipelines. When asked to, and only when the program or that flag changed, it
+  then calls, for each active block of each bound stage,
   `nvnCommandBufferBindUniformBuffer(cmd, stage, slot, address, size)`. The slot is the block's
   binding in the stage's reflection; the address is one of the block's per-frame buffers. Contents are
   written with `nvnCommandBufferUpdateUniformBuffer` (`fn_710015e700`).
-- **Textures.** `fn_7100161250` and `fn_71001606f0` bind texture slots 0 to 15 of each stage with
+- **Textures.** `fn_7100161250` binds texture slots 0 to 15 of each stage (`fn_71001606f0` and
+  `fn_710015f500` bind single slots) with
   `nvnCommandBufferBindTexture(cmd, stage, slot, nvnDeviceGetTextureHandle(device, texture pool
   index, sampler pool index))`. Only those four binding calls are used: no separate textures or
   samplers, no images, no storage buffers, no bindless handles in any shader.
@@ -64,7 +68,7 @@ reflection, so these mappings hold for every stage of the dump:
 | uniform buffer slot `b` | set `S(s)`, binding `b`, `UNIFORM_BUFFER`, descriptorCount 1 |
 | texture slot `t`, in a sampler (array) declared at `t0` with `n` elements | set `S(s)`, binding `16 + t0`, array element `t - t0`, `COMBINED_IMAGE_SAMPLER`, descriptorCount `n` |
 | texture handle `h` | image view of texture pool entry `TextureId(h)` + sampler pool entry `SamplerId(h)` |
-| a block or sampler the NVN compiler found unused but the SPIR-V declares (manifest slot `-1`) | its binding, with a placeholder descriptor |
+| a block or sampler the NVN compiler found unused but the SPIR-V declares (manifest slot `-1`) | its binding, with a placeholder descriptor: a buffer at least as large as the block (the manifest gives its SPIR-V size rounded up to 16, as NVN rounds active blocks), a placeholder image |
 
 - **Finding the stage.** `nvnProgramSetShaders` gives the shim only a code address and a control
   pointer. The manifest keys each stage by FNV-1a 64 over the first 2,048 bytes of its control
@@ -91,7 +95,10 @@ reflection, so these mappings hold for every stage of the dump:
 Not covered yet: the resolver's implementations (memory pools, buffers, texture and sampler pools),
 descriptor pools, pipeline creation, `nvnCommandBufferUpdateUniformBuffer`, and any test that runs.
 Nothing here has been executed: this PC has no linker for the target. The parser and the binding
-layer are compile-checked only, with `-Wall -Wextra -Wconversion -Wshadow` clean.
+layer are compile-checked only (by `dread_nvn`, and once by hand with `-Wall -Wextra -Wconversion
+-Wshadow`, which the target does not set). The manifest itself was cross-checked from Python: every
+stage's control key recomputed from the packages, stages sharing a key with identical SPIR-V and
+interfaces.
 
 ## Variant selection (what the shim needs from the engine)
 

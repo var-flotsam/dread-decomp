@@ -40,6 +40,9 @@ public:
     virtual bool ResolveTexture(std::uint32_t id, VkImageView* view, VkImageLayout* layout) = 0;
     // Sampler pool entry `id` (nvnSamplerPoolRegisterSampler).
     virtual bool ResolveSampler(std::uint32_t id, VkSampler* sampler) = 0;
+    // Placeholders: a uniform buffer at least as large as the largest block of the manifest
+    // (StageResource::size_or_count, unused blocks included, so a shader that reads one stays in
+    // bounds; a range of VK_WHOLE_SIZE is fine), and a 2D image with a sampler.
     virtual VkDescriptorBufferInfo PlaceholderBuffer() = 0;
     virtual VkDescriptorImageInfo PlaceholderImage() = 0;
 };
@@ -50,7 +53,9 @@ std::vector<VkDescriptorSetLayoutBinding> StageLayoutBindings(const StageInfo& s
 // The VkShaderStageFlags of an NVN stage.
 VkShaderStageFlags VulkanStageFlags(Stage stage);
 
-// The descriptor set index of an NVN stage in the manifest's layout.
+// The descriptor set index of an NVN stage in the manifest's layout; kNoDescriptorSet for the
+// geometry stage, which no shader of the game has.
+constexpr std::uint32_t kNoDescriptorSet = 0xFFFFFFFF;
 std::uint32_t DescriptorSetIndex(const ShaderManifest& manifest, Stage stage);
 
 // Descriptor writes for one stage's set, with the infos they point into. Build() fills all three
@@ -64,7 +69,11 @@ struct DescriptorWrites {
 
 // What the game has bound, per NVN stage and slot, as nvnCommandBufferBindUniformBuffer and
 // nvnCommandBufferBindTexture leave it. A command buffer owns one; binding a program does not
-// reset it (NVN keeps bindings across program changes, and fn_710015d900 rebinds the blocks itself).
+// reset it (NVN keeps bindings across program changes). fn_710015d900 rebinds a program's blocks
+// only when asked to and the program or its depth-only flag changed; for a depth-only pass it binds
+// the program and then unbinds the fragment stage (nvnCommandBufferBindProgram(cmd, null, 2)) and
+// binds no fragment blocks, so the pipeline layer needs vertex-only pipelines and the fragment set
+// is then not used.
 class BindingState {
 public:
     // nvnCommandBufferBindUniformBuffer(cmd, stage, slot, address, size).

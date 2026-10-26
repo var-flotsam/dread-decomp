@@ -17,7 +17,15 @@ VkShaderStageFlags VulkanStageFlags(Stage stage) {
 }
 
 std::uint32_t DescriptorSetIndex(const ShaderManifest& manifest, Stage stage) {
-    return stage == Stage::Fragment ? manifest.fragment_set() : manifest.vertex_set();
+    switch (stage) {
+    case Stage::Vertex:
+        return manifest.vertex_set();
+    case Stage::Fragment:
+        return manifest.fragment_set();
+    case Stage::Geometry:
+        break;
+    }
+    return kNoDescriptorSet;
 }
 
 std::vector<VkDescriptorSetLayoutBinding> StageLayoutBindings(const StageInfo& stage) {

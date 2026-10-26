@@ -22,7 +22,8 @@ enum class Stage : std::uint32_t {
 
 // nvnCommandBufferBindProgram's stage mask: fn_710015d900 binds a program with the OR of its stages'
 // bits (the engine's shader loader fn_710015c9b0 gives the vertex stage 1, the fragment stage 2 and
-// the third stage 4) and unbinds with (nullptr, 7).
+// the third stage 4), unbinds everything with (nullptr, 7) and, for a depth-only pass, the
+// fragment stage alone with (nullptr, 2).
 enum StageBits : std::uint32_t {
     kStageBitVertex = 1,
     kStageBitFragment = 2,
@@ -32,7 +33,7 @@ enum StageBits : std::uint32_t {
 
 // A GPU virtual address (nvnBufferGetAddress's result, the uniform-buffer argument of
 // nvnCommandBufferBindUniformBuffer). The shim allocates the address space, so it can resolve one
-// back to a Vulkan buffer and offset (AddressResolver).
+// back to a Vulkan buffer and offset (ResourceResolver::ResolveBuffer).
 using BufferAddress = std::uint64_t;
 
 // What nvnDeviceGetTextureHandle returns and nvnCommandBufferBindTexture takes: a texture pool
@@ -60,8 +61,8 @@ struct ShaderData {
 };
 static_assert(sizeof(ShaderData) == 16, "fn_710015d760 steps through the array 16 bytes at a time");
 
-// The per-stage slot counts the engine uses: fn_7100161250 and fn_710015f500 bind texture slots
-// 0..15 of each stage; a stage of Metroid Dread has at most five active uniform blocks and declares
+// The per-stage slot counts the engine uses: fn_7100161250 binds texture slots 0..15 of each
+// stage; a stage of Metroid Dread has at most five active uniform blocks and declares
 // samplers at bindings 0..12 (an array reaches 13).
 constexpr std::uint32_t kTextureSlots = 16;
 constexpr std::uint32_t kUniformBufferSlots = 16;
