@@ -14,11 +14,12 @@ where <cache> comes from tools/hostenv.py (%LOCALAPPDATA%\\dread-decomp on Windo
 SHA-256 of each download is pinned in data/toolchains.json (macOS entries carry a `-macos`
 suffix). The first download records the hash; later downloads must match it.
 
-Also fetches objdiff / objdiff-cli (TOOLS) into <cache>/tools/, and glslang (ARCHIVE_TOOLS, the
-Khronos GLSL compiler for tools/bshdat.py --compile) into <cache>/tools/glslang-<ver>/bin/.
+Also fetches objdiff / objdiff-cli (TOOLS) into <cache>/tools/. On request only (not part of the
+default, since matching does not need it): glslang (ARCHIVE_TOOLS, the Khronos GLSL compiler for
+tools/bshdat.py --compile) into <cache>/tools/glslang-<ver>/bin/.
 
-Usage: python tools/fetch_toolchains.py [VERSION or TOOL ...]   (default: everything)
-       python tools/fetch_toolchains.py glslang-16.6.0               (glslang only)
+Usage: python tools/fetch_toolchains.py [VERSION or TOOL ...]   (default: LLVM candidates + objdiff)
+       python tools/fetch_toolchains.py glslang-16.6.0               (glslang, by name only)
 """
 
 from __future__ import annotations
@@ -188,6 +189,7 @@ def fetch_archive_tool(name: str, pins: dict) -> None:
                     out.write_bytes(tar.extractfile(m).read())
                     out.chmod(0o755)
     if not members:
+        shutil.rmtree(tmp)
         raise SystemExit(f"{name}: no bin/ folder in {url}")
     if target.exists():
         shutil.rmtree(target)
@@ -216,7 +218,7 @@ def fetch_tool(name: str, pins: dict) -> None:
 
 
 def main() -> int:
-    versions = sys.argv[1:] or [*CANDIDATES, *TOOLS, *ARCHIVE_TOOLS]
+    versions = sys.argv[1:] or [*CANDIDATES, *TOOLS]  # ARCHIVE_TOOLS by name only
     pins = json.loads(PINS.read_text()) if PINS.is_file() else {}
     try:
         for v in versions:

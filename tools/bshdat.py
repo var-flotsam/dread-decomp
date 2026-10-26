@@ -46,8 +46,9 @@ Layout (derived from the 2.1.0 dump's bytes; holds for all 478 packages; little-
           unknown).
     Section records, 0x90 bytes each from 0x90: u32 size, u32 offset (from the blob), u32 kind,
       then a kind-specific payload; zeros from the end of the records (0x2d0) to 0x3f0. Sections
-      are contiguous and 8-aligned; the kinds are 0, 1, 3, 4 in that order in every blob. Kinds 0 and 1 are not decoded (0 is the larger, a multiple
-      of 16 bytes: likely the machine code; 1 has odd sizes).
+      are contiguous and 8-aligned; the kinds are 0, 1, 3, 4 in that order in every blob. Kinds 0
+      and 1 are not decoded (kind 0's size is always a multiple of 8, so it may hold the machine
+      code; nothing more is known about either).
     Reflection (kind 3, starts u32 0x19292919): the stage's active uniform blocks, uniforms
       (samplers included), inputs and outputs, with the bindings the compiler assigned; layout in
       parse_reflection. Not decoded: the 0x108 bytes after the outputs table, payload words 27-35.
@@ -87,8 +88,9 @@ reflection; the extension is enabled) and keep the SPIR-V next to the source
 
 Usage:
   python tools/bshdat.py --version 2.1.0 [--only NAME[,NAME...]] [--compile] [--jobs N]
-glslang comes from tools/fetch_toolchains.py glslang-16.6.0 (Khronos, BSD-3-Clause and others),
-or from PATH. Standard library only.
+glslang: python tools/fetch_toolchains.py glslang-16.6.0 (Khronos, BSD-3-Clause and others;
+fetched by name only), else glslang or glslangValidator from PATH. Standard library only.
+Exit status 1 when a package fails to parse or has bytes the parser does not account for.
 """
 
 from __future__ import annotations
@@ -104,14 +106,16 @@ import shutil
 import struct
 import subprocess
 import sys
+import tempfile
 from dataclasses import dataclass, field
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import hostenv  # noqa: E402
+from fetch_toolchains import GLSLANG_VERSION  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
-GLSLANG_VERSION = "16.6.0"
+FORMAT_VERSION = (1, 0x13)
 
 PKG_MAGIC = b"MSHD"
 BLOB_MAGIC = 0x19866891
@@ -315,32 +319,34 @@ def parse_blob(d: bytes, off: int, size: int, stage: str) -> Stage:
         del sec["record"]
     s = b[debug[0]["offset"]:debug[0]["offset"] + debug[0]["size"]]
     if u32(s, 0) != DEBUG_MAGIC or u32(s, 0x2C) != len(s):
-        raise FormatError(f"{where}:debug section header")
+        raise FormatError(f"{where}: debug section header")
     parts = [struct.unpack_from("<9I", s, 0x30 + 0x24 * j) for j in range(u32(s, 0x28))]
     text_parts = [p for p in parts if p[2] == 0]
     if len(text_parts) != 1:
-        raise FormatError(f"{where}:expected one text part, found {len(text_parts)}")
+        raise FormatError(f"{where}: expected one text part, found {len(text_parts)}")
     p_size, p_off = text_parts[0][:2]
+    if p_off + p_size > len(s):
+        raise FormatError(f"{where}: text part at {p_off:#x}+{p_size:#x} runs past the debug section")
     text = s[p_off:p_off + p_size]
     if not text.endswith(b"\0") or b"\0" in text[:-1]:
-        raise FormatError(f"{where}:text part is not one NUL-terminated string")
+        raise FormatError(f"{where}: text part is not one NUL-terminated string")
     text = text[:-1]
     start = text.find(b"\n#MSDB: (") + 1
     if start == 0:
-        raise FormatError(f"{where}:no source file table")
+        raise FormatError(f"{where}: no source file table")
     files = []
     while start < len(text):
         m = RECORD.match(text, start)
         if not m:
-            raise FormatError(f"{where}:source table record at {start:#x} not understood")
+            raise FormatError(f"{where}: source table record at {start:#x} not understood")
         raw = unescape(m.group(5))
         if len(raw) != int(m.group(3)):
-            raise FormatError(f"{where}:{m.group(1)!r} decodes to {len(raw)} bytes, "
+            raise FormatError(f"{where}: {m.group(1)!r} decodes to {len(raw)} bytes, "
                               f"record says {m.group(3).decode()}")
         files.append(SourceFile(m.group(1).decode("ascii"), int(m.group(2)), m.group(4).decode(), raw))
         start = m.end()
     if not files or files[0].kind != "SOURCE_FILE" or any(f.kind != "INCLUDED_FILE" for f in files[1:]):
-        raise FormatError(f"{where}:expected one SOURCE_FILE then INCLUDED_FILEs")
+        raise FormatError(f"{where}: expected one SOURCE_FILE then INCLUDED_FILEs")
     listing = text[:text.find(b"\n#MSDB: (") + 1]
     prof = re.search(rb"^#profile (\S+)", listing, re.M)
     summ = re.search(rb"^# (\d+ instructions[^\n]*)", listing, re.M)
@@ -366,7 +372,6 @@ class Package:
     version: tuple[int, int]
     programs: list[Program]
     last_program: int
-    unknown_0x20: int
     uniforms1: list[tuple[str, int]]
     uniforms2: list[tuple[str, int]]
     attributes: list[tuple[str, int]]
@@ -380,7 +385,11 @@ def parse_package(path: Path) -> Package:
     cover = Cover(len(d))
     cover.add(0, 0x40, "header")
     version = struct.unpack_from("<HH", d, 4)
+    if version != FORMAT_VERSION:
+        raise FormatError(f"{path.name}: format version {version}, expected {FORMAT_VERSION}")
     h = [u64(d, 8 + 8 * i) for i in range(7)]
+    if h[3]:
+        raise FormatError(f"{path.name}: header +0x20 is {h[3]:#x}, 0 in every known package")
     progs = [Program(i, rec) for i, rec in enumerate(walk_list(d, h[0], cover, "program list"))]
     by_record = {p.record: p for p in progs}
     if len(by_record) != len(progs):
@@ -424,7 +433,7 @@ def parse_package(path: Path) -> Package:
     unknown, overlap = cover.leftover(d)
     if overlap:
         raise FormatError(f"{path.name}: {overlap} bytes claimed twice")
-    return Package(path.stem, len(d), version, progs, by_record[h[2]].index, h[3],
+    return Package(path.stem, len(d), version, progs, by_record[h[2]].index,
                    uniforms1, uniforms2, attributes, unknown)
 
 
@@ -567,7 +576,9 @@ def extract(path: Path, out_root: Path) -> dict:
             text, info = glsl_for(st)
             fname = f"{program_name(p)}.{st_name}"
             (out / fname).write_bytes(text.encode("utf-8", "surrogateescape"))
-            defines = info["defines"] if defines is None else defines
+            if defines is not None and info["defines"] != defines:
+                raise FormatError(f"{pkg.name}: program {p.index}'s stages have different variant prefixes")
+            defines = info["defines"]
             entry["stages"][st_name] = {
                 "file": fname,
                 "blob_offset": st.offset,
@@ -578,8 +589,7 @@ def extract(path: Path, out_root: Path) -> dict:
                 "listing_summary": st.listing_summary,
                 "source": {"name": st.source.name, "file_id": st.source.file_id, "length": len(st.source.text)},
                 "includes": [{"name": f.name, "file_id": f.file_id, "length": len(f.text)} for f in st.files[1:]],
-                **{k: v for k, v in info.items() if k != "defines"},
-                "defines": info["defines"],
+                **info,
                 "binding_check": binding_check(text, st.reflection),
                 "reflection": st.reflection,
             }
@@ -591,7 +601,6 @@ def extract(path: Path, out_root: Path) -> dict:
         "format_version": list(pkg.version),
         "unaccounted_bytes": pkg.unaccounted,
         "last_program_index": pkg.last_program,
-        "header_0x20": pkg.unknown_0x20,
         "programs": programs,
         "uniforms1": [{"name": n, "id": i} for n, i in pkg.uniforms1],
         "uniforms2": [{"name": n, "id": i} for n, i in pkg.uniforms2],
@@ -612,6 +621,13 @@ def glslang_path() -> str:
         if shutil.which(name):
             return shutil.which(name)
     raise SystemExit(f"glslang not found: run python tools/fetch_toolchains.py glslang-{GLSLANG_VERSION}")
+
+
+def glslang_version(tool: str) -> str:
+    """What the binary reports (`Glslang Version: 11:16.6.0`), whichever copy was found."""
+    proc = subprocess.run([tool, "--version"], capture_output=True, text=True, timeout=60)
+    first = (proc.stdout or proc.stderr).strip().splitlines()
+    return first[0].split(":", 1)[-1].strip() if first else "unknown version"
 
 
 # The two rewrites a loader in the port's NVN shim makes (applied in memory, never to the files):
@@ -648,8 +664,9 @@ def shim_rewrite(text: str, blocks: dict[str, int], rewrites: tuple[str, ...]) -
 # and output with a location). gl_blocks shows what remains after the block rewrite alone.
 # NVN numbers uniform blocks and textures per stage and separately; Vulkan has one (set, binding)
 # space per pipeline, so vk_shim gives each stage its own descriptor set and moves the combined
-# samplers to bindings 16 and up (blocks stay at the compiler's 0..n-1). Without that, 665 of the
-# 670 compiled programs put two resources on one (set, binding).
+# samplers to bindings 16 and up (blocks stay at the compiler's 0..n-1). With plain -V, 664 of the
+# 670 compiled programs put two differently named resources (block type or sampler names) on one
+# (set, binding): 583 within one stage (a sampler and a block), 81 only across the two stages.
 VK_LAYOUT = ["--resource-set-binding", "vert", "0", "--resource-set-binding", "frag", "1",
              "--shift-combined-sampler-binding", "16"]
 MODES = {
@@ -670,7 +687,9 @@ CATEGORIES = [
     ("bindless_handle", re.compile(r"uint64|bindless|sampler.*constructor", re.I)),
     ("undeclared_identifier", re.compile(r"undeclared identifier")),
     ("no_matching_overload", re.compile(r"no matching overloaded function")),
+    ("io", re.compile(r"(?:cannot|could not|unable to|failed to) (?:open|write|create)", re.I)),
 ]
+GLSLANG_TIMEOUT = 300  # seconds per compile; the largest stage takes well under one
 # Errors that only follow another one (glslang stops, or an #if was left open by the stop).
 FOLLOW_ON = re.compile(r"compilation terminated|missing #endif|\d+ compilation errors|^Linking")
 ERROR_LINE = re.compile(r"^ERROR: (?:.*?:\d+: )?(.*?)\s*$", re.M)
@@ -691,17 +710,33 @@ def categorise(log: str) -> tuple[list[str], str]:
 def compile_one(tool: str, src: Path, stage: str, blocks: dict[str, int], mode: str) -> tuple[bool, list[str], str]:
     flags, rewrites = MODES[mode]
     text = shim_rewrite(src.read_bytes().decode("utf-8", "surrogateescape"), blocks, rewrites)
-    # SPIR-V is kept for the full shim modes only (<program>.<stage>.<gl|vk>.spv).
+    # SPIR-V is kept for the full shim modes only (<program>.<stage>.<gl|vk>.spv). glslang writes it
+    # to a short temporary path (a long checkout path can pass Windows' MAX_PATH, which glslang does
+    # not handle); Python moves it into place.
     keep = mode.endswith("_shim")
-    out = src.with_name(f"{src.name}.{mode.split('_')[0]}.spv") if keep else Path(os.devnull)
-    proc = subprocess.run([tool, *flags, "--stdin", "-S", stage, "-o", str(out)],
-                          input=text.encode("utf-8", "surrogateescape"), capture_output=True)
-    if proc.returncode == 0:
-        return True, [], ""
+    dest = src.with_name(f"{src.name}.{mode.split('_')[0]}.spv")
+    tmp = os.devnull
     if keep:
-        out.unlink(missing_ok=True)
-    cats, first = categorise((proc.stdout + proc.stderr).decode("utf-8", "replace"))
-    return False, cats, first
+        dest.unlink(missing_ok=True)
+        fd, tmp = tempfile.mkstemp(suffix=".spv")
+        os.close(fd)
+    try:
+        proc = subprocess.run([tool, *flags, "--stdin", "-S", stage, "-o", tmp],
+                              input=text.encode("utf-8", "surrogateescape"), capture_output=True,
+                              timeout=GLSLANG_TIMEOUT)
+        if proc.returncode == 0:
+            if keep:
+                shutil.move(tmp, dest)
+            return True, [], ""
+        cats, first = categorise((proc.stdout + proc.stderr).decode("utf-8", "replace"))
+        return False, cats, first
+    except subprocess.TimeoutExpired:
+        return False, ["timeout"], f"glslang did not finish in {GLSLANG_TIMEOUT} s"
+    except OSError as e:
+        return False, ["io"], str(e)
+    finally:
+        if keep and os.path.exists(tmp):
+            os.unlink(tmp)
 
 
 def compile_all(out_root: Path, manifests: list[dict], jobs: int) -> None:
@@ -729,7 +764,7 @@ def compile_all(out_root: Path, manifests: list[dict], jobs: int) -> None:
                 ok, cats, first = results[key][mode]
                 row += [int(ok), ";".join(cats), first[:300]]
             w.writerow(row)
-    print(f"glslang {GLSLANG_VERSION}: {len(tasks)} stage sources; modes " +
+    print(f"glslang {glslang_version(tool)} ({tool}): {len(tasks)} stage sources; modes " +
           ", ".join(f"{m} ({' '.join([*f, *(f'+{r}' for r in rw)])})" for m, (f, rw) in MODES.items()))
     summarise(results)
     print(f"report: {report.relative_to(ROOT).as_posix()}")
@@ -759,7 +794,7 @@ def summarise(results: dict) -> None:
 # --- main ---------------------------------------------------------------------------------------
 
 def main() -> int:
-    ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--version", required=True)
     ap.add_argument("--only", action="append",
                     help="package name(s), comma-separated; repeatable (the compile report then covers only these)")
@@ -777,6 +812,11 @@ def main() -> int:
         except (FormatError, ValueError, UnicodeDecodeError, struct.error) as e:
             errors += 1
             print(f"{path.name}: {e}", file=sys.stderr)
+            continue
+        if manifests[-1]["unaccounted_bytes"]:
+            errors += 1
+            print(f"{path.name}: {manifests[-1]['unaccounted_bytes']} bytes the parser does not account for "
+                  "(extracted anyway)", file=sys.stderr)
     nprog = sum(len(m["programs"]) for m in manifests)
     nstage = sum(len(p["stages"]) for m in manifests for p in m["programs"])
     unaccounted = sum(m["unaccounted_bytes"] for m in manifests)
@@ -784,7 +824,7 @@ def main() -> int:
                               for e in s["extensions"])
     ver = collections.Counter(s["version"] for m in manifests for p in m["programs"] for s in p["stages"].values())
     print(f"{len(manifests)} packages, {nprog} programs, {nstage} stage sources -> "
-          f"{out_root.relative_to(ROOT).as_posix()} ({errors} packages failed, {unaccounted} bytes unaccounted)")
+          f"{out_root.relative_to(ROOT).as_posix()} ({errors} packages with errors, {unaccounted} bytes unaccounted)")
     print("  #version: " + ", ".join(f"{v} {n}" for v, n in ver.most_common()))
     print("  extensions: " + (", ".join(f"{e} {n}" for e, n in ext.most_common()) or "none"))
     stages = [s for m in manifests for p in m["programs"] for s in p["stages"].values()]

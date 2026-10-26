@@ -103,12 +103,15 @@ constant expression; NVIDIA's compiler folds it), which needs a hand fix. The bi
 NVN shim must reproduce: the compiler ignored the block numbers and gave each stage's active
 blocks bindings 0, 1, 2, ... in declaration order (all 2,891 active blocks; 69 differ from the
 declared number, in the deferred-lighting shaders and where an earlier block is unused); samplers
-keep their explicit `layout(binding = N)` (1,904, bindings 0 to 13); a stage has at most five
-blocks. NVN numbers blocks and textures per stage and separately, Vulkan has one (set, binding)
-space per pipeline: compiled as is, 665 of 670 programs put two resources on one binding, and one
-descriptor set per stage with samplers from binding 16 (`--resource-set-binding`,
-`--shift-combined-sampler-binding`) removes every collision. Not decoded: blob sections 0 and 1
-(by size, the machine code and a control section), the header constants of blob and debug
+keep their explicit `layout(binding = N)` (1,904 active; declared numbers 0 to 12 with 11
+unused, and the arrays at 8 and 12 reach 10 and 13); a stage has at most five blocks. NVN numbers
+blocks and textures per stage and separately, Vulkan has one (set, binding) space per pipeline:
+compiled with plain `-V`, 664 of 670 programs put two differently named resources (block type or
+sampler names) on one (set, binding), 583 of them within one stage (a sampler and a block) and 81
+only across the two stages; one descriptor set per stage with samplers from binding 16
+(`--resource-set-binding`, `--shift-combined-sampler-binding`) removes every collision. Not
+decoded: blob sections 0 and 1 (kind 0's size is always a multiple of 8, so it may be the
+machine code; nothing more is known), the header constants of blob and debug
 section, the reflection's last 0x108 bytes and nine record words, the binary debug part
 (`0x0000c0de`), what the two halves of a variant key mean (always equal), header `+0x18`/`+0x20`
 and program slot 0, and where the name tables' IDs come from (one fixed engine enumeration; the

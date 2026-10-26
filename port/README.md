@@ -405,7 +405,7 @@ were the prologue's saves.
 ## Shaders (M2 groundwork)
 
 ```sh
-python tools/fetch_toolchains.py glslang-16.6.0       # once: Khronos glslang into the tool cache
+python tools/fetch_toolchains.py glslang-16.6.0       # once, by name (not in the default fetch): Khronos glslang
 python tools/bshdat.py --version 2.1.0 --compile      # build/shaders/2.1.0/, about a minute
 ```
 

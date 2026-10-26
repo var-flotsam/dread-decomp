@@ -251,8 +251,9 @@ months" still requires M2 to go well; say so when planning, and re-estimate afte
    `.bshdat` files contain the GLSL sources, so the shaders are compiled with glslang and nothing
    is taken from an emulator (the surface table above). The `.bshdat` layout is decoded
    (`tools/bshdat.py`, 2026-10-26), and the sources use no bindless handles: each stage binds at
-   most five uniform blocks and samplers at fixed slots 0 to 13, so NVN's texture handles become
-   combined image-sampler descriptors, one descriptor set per stage. Open: whether the port
+   most five uniform blocks and samplers at fixed slots (declared 0 to 12, arrays reaching 13), so
+   NVN's texture handles become combined image-sampler descriptors, one descriptor set per stage.
+   Open: whether the port
    compiles SPIR-V at build time from the user's dump (as `bshdat.py --compile` does) or at load
    time, and Vulkan versus OpenGL for the first backend (glslang compiles the sources for both).
 4. `nn::atk`: lift it for the port (keeps "not decompiled") or replace it.
