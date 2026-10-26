@@ -248,7 +248,8 @@ def main() -> int:
         outputs = save(args.tag, paths, args.version, args.jobs)
         for p in paths:
             print(f"saved  {p}  {summary_line(outputs[p])}")
-        print(f"baseline {args.tag}: {len(paths)} files under {rel(BASE / args.tag)}")
+        # Not rel(): in a worktree build/ is often a link to the main checkout's, outside ROOT.
+        print(f"baseline {args.tag}: {len(paths)} files under build/baseline/{args.tag}")
         return 0
     if args.command == "restore":
         targets = paths or [p for p in saved_files(args.tag)]
