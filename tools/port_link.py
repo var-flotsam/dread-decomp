@@ -157,7 +157,8 @@ floorf ceilf roundf truncf fabsf fminf fmaxf hypotf ldexpf frexpf modff copysign
 sin cos tan asin acos atan atan2 sinh cosh tanh exp exp2 log log2 log10 pow sqrt cbrt fmod floor ceil round
 trunc fabs fmin fmax hypot ldexp frexp modf copysign sincos nan
 pthread_mutex_lock pthread_mutex_unlock pthread_mutex_init pthread_mutex_destroy pthread_self pthread_create
-pthread_join clock_gettime gettimeofday time localtime gmtime mktime nanosleep usleep sleep
+pthread_join pthread_detach pthread_key_create pthread_getspecific pthread_setspecific sched_yield
+clock_gettime gettimeofday time localtime gmtime mktime nanosleep usleep sleep bcmp
 stdin stdout stderr errno environ
 clearerr feof ferror fgets freopen fscanf getc ungetc setvbuf tmpfile tmpnam remove rename system
 clock difftime strftime setlocale localeconv strcoll strcspn strpbrk iscntrl ispunct

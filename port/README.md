@@ -20,7 +20,7 @@ imported symbol names recorded in `data/functions/`.
 | `sample_duplicates.txt` | the sources `dread_game` and the whole-program link both leave out (frozen samples that define a function another source defines), with the reason |
 | `main.cpp` | the executable's entry point; at M0 a banner |
 | `runtime/include/nn/` | the port's `nn::` declarations, one header per namespace, each with a note on what the boot path needs from it |
-| `runtime/include/dread_port.h` | the runtime's own surface: `dread_port_missing_function`, the trap behind every function without a source, and `dread_port_mismatched_call`, the trap behind a call the link refused to alias |
+| `runtime/include/dread_port.h` | the runtime's own surface: `dread_port_missing_function`, the trap behind every function without a source, `dread_port_mismatched_call`, the trap behind a call the link refused to alias, and what `main` and the window call (`dread_port_set_host_arguments`, `dread_port_request_exit`) |
 | `runtime/src/` | stub implementations; every stub carries a `TODO(M<n>)` naming the boot-path function that needs it; `missing.cpp` holds the two traps |
 | `../tools/port_sweep.py` | the compile-only sweep that lists what in `src/` does not port |
 | `../tools/port_link.py` | the whole-program relocatable link and the report of what is missing ([The link (M1)](#the-link-m1)) |
@@ -401,6 +401,30 @@ hidden, all fixed in semantic mode: a compare reading a register its own `subs` 
 post-indexed load reading the incremented base, a 64-bit read narrowed to the type of a write
 elsewhere in the function, callee-saved registers spilled into the locals and dropped as if they
 were the prologue's saves.
+
+## The runtime's `nn::os` and `nn::oe` (M1)
+
+Every `nn::os` and `nn::oe` import the boot slice reaches is defined in `runtime/` (30 and 20
+imports, counting the GOT slots; `port_link.py` aliases each import's four-byte thunk to the
+runtime's function by name), and so is every one a source calls from outside the slice. Each
+definition's `TODO(M<n>)` names its callers; `runtime/include/nn/os.h` and `oe.h` say where each
+layout comes from.
+
+- **Threads** (`CreateThread`, `StartThread`, `WaitThread`, `DestroyThread`, `SetThreadCoreMask`,
+  `SetThreadNamePointer`) run on host threads (`std::thread`); the game's stack, priority and core
+  mask are kept but unused. `GetCurrentThread` returns the block `CreateThread` was given, as the
+  engine's thread wrapper `fn_7100066744` expects, and a runtime block on any other thread.
+  `ThreadType` is 0x1c0 bytes and `LightEventType` 12 (that wrapper lays out two light events at
+  +0x1c0 and +0x1cc); `EventType`, `SystemEventType` and `MessageQueueType` stay opaque until a
+  source embeds one.
+- **Events, light events, system events, message queues** are host objects (a mutex and a
+  condition variable) whose pointer the runtime stores in the game's object with a tag word: a call
+  on an object nobody initialised stops with the call's name. System events have no producer in the
+  game: the runtime's own stubs create and signal them (`InitializeSystemEventForPort`).
+- **`nn::oe`** reports the docked operation mode, ignores performance and boost settings, and
+  delivers one notification, the exit request (4), after `dread_port_request_exit()`; the
+  notification loop `fn_71001327c0` sets the game's quit flag on it.
+- **`GetHostArgc`/`GetHostArgv`** return what `main` passed to `dread_port_set_host_arguments`.
 
 ## Shaders (M2 groundwork)
 
