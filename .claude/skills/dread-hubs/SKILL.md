@@ -55,9 +55,16 @@ hand-written includers; objects go to `build/baseline/obj/`, so parallel agents 
 
 ## 3. Rules for several agents in one checkout
 
+- Before the agents start, the orchestrator saves `baseline.py save --tag <batch>-full --all` (every
+  hand-written source, two minutes) and compares it once they are done: the whole batch's evidence,
+  includers of every edited header included.
 - Each agent owns the files that declare its symbols plus the headers it edits; file sets of
   parallel steps must be disjoint (`decl_check.py --symbol` lists them; overlapping steps run in
   sequence). Edit a header under `include/` with a minimal insertion, re-reading it just before.
+  New headers are free. `baseline.py restore` always names the files (only the agent's own): another
+  agent's mid-edit file can show as CHANGED in a compare; check it again later, never restore it.
+- With `hub_migrate.py --declaration`, the tool adds the prototype after its baseline; never add the
+  declaration by hand first (files with a conflicting local copy would no longer compile before the run).
 - Agents never run `check.py`, `verify.py`, a generator, or a git command that changes the tree or
   the index. They report `files_changed`, headers included by generated code
   (`src/clones`, `src/reflection*`, `src/lifted`, `src/tables`) and a commit message.
