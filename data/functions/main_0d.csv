@@ -5680,7 +5680,7 @@ address,size,name,name_source,subsystem,status
 0x7100dfb758,472,fn_7100dfb758,unknown,unknown,O
 0x7100dfb930,632,fn_7100dfb930,unknown,unknown,U
 0x7100dfbba8,508,fn_7100dfbba8,unknown,unknown,U
-0x7100dfbda4,152,fn_7100dfbda4,unknown,unknown,U
+0x7100dfbda4,152,fn_7100dfbda4,unknown,unknown,O
 0x7100dfbe3c,60,fn_7100dfbe3c,unknown,unknown,O
 0x7100dfbe78,592,fn_7100dfbe78,unknown,unknown,U
 0x7100dfc0c8,636,fn_7100dfc0c8,unknown,unknown,U

@@ -5,16 +5,12 @@
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CBlackboard.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkUserDataOwner;
-struct UnkUserData {
-    u8 unk_0x0[0xe8];
-    bool locked;
-};
-struct UnkSection;
 struct UnkPropertyName;
 
 struct UnkTypedValue {
@@ -24,10 +20,9 @@ struct UnkTypedValue {
 
 extern UnkUserDataOwner* g_unk_7101d47308;
 void fn_710120320c(UnkUserDataOwner* self);  // constructor
-UnkUserData* fn_710120384c(UnkUserDataOwner* self);
+CBlackboard* fn_710120384c(UnkUserDataOwner* self);
 void fn_7101203854(UnkUserDataOwner* self);
-UnkSection* fn_71010472e0(UnkUserData* data, const CStrId& name);
-void fn_7100332c80(UnkSection* section, UnkPropertyName* name, const UnkTypedValue* value);
+void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 static inline UnkUserDataOwner* GetOwner() {
     if (!g_unk_7101d47308) {
@@ -40,13 +35,13 @@ static inline UnkUserDataOwner* GetOwner() {
 
 template <UnkPropertyName* Name>
 __attribute__((always_inline)) static inline void SetFlag() {
-    UnkUserData* data = fn_710120384c(GetOwner());
+    CBlackboard* data = fn_710120384c(GetOwner());
     {
         UnkTypedValue v;
         CStrId section_name("USER_DATA", true);
         bool value = true;
-        UnkSection* section = fn_71010472e0(data, section_name);
-        if (section && !data->locked) {
+        CBlackboard::CSection* section = fn_71010472e0(data, section_name);
+        if (section && !data->field_0xe8) {
             v.type = fn_710000d228();
             v.value = &value;
             fn_7100332c80(section, Name, &v);
@@ -63,16 +58,15 @@ void fn_7100dc8828() { SetFlag<&g_unk_71727bd270>(); }
 void fn_7100dc8948() { SetFlag<&g_unk_71727bd288>(); }
 void fn_7100dc8a68() { SetFlag<&g_unk_71727bd2a0>(); }
 
-bool fn_710006d11c(UnkSection* section, UnkPropertyName* name, bool* out);  // reads a bool
-UnkSection* fn_7101047270(UnkUserData* data, const CStrId& name);
+bool fn_710006d11c(CBlackboard::CSection* section, UnkPropertyName* name, bool* out);  // reads a bool
 
 template <UnkPropertyName* Name>
 __attribute__((always_inline)) static inline bool GetFlag() {
-    UnkUserData* data = fn_710120384c(GetOwner());
+    CBlackboard* data = fn_710120384c(GetOwner());
     bool value = false;
     {
         CStrId section_name("USER_DATA", true);
-        if (UnkSection* section = fn_7101047270(data, section_name))
+        if (CBlackboard::CSection* section = fn_7101047270(data, section_name))
             fn_710006d11c(section, Name, &value);
     }
     return value;

@@ -4,6 +4,7 @@
 // manager's constructor.
 #include "base/UnkVector.h"
 #include "base/math/UnkSegment2D.h"
+#include "game/UnkNavMeshCell.h"
 #include "game/UnkNavMeshManager.h"
 #include "types.h"
 
@@ -30,19 +31,8 @@ struct IdPair {
 
 using Segment = UnkSegment2D;
 
-struct Edge {
-    u16 field_0x0;
-    u16 field_0x2;
-    u8 pad_0x4[0x8];
-    f32 field_0xc;
-    f32 field_0x10;
-};
-
-struct Cell {
-    u8 pad_0x0[0x10];
-    u8 field_0x10;
-};
-
+using Edge = UnkNavMeshEdge;
+using Cell = UnkNavMeshCell;
 using Mesh = UnkNavMesh;
 
 struct Result {
@@ -76,7 +66,6 @@ u16 fn_710027a41c(Mesh*, Vec2*, u32);
 bool fn_7100ebfd4c(UnkNavMeshManager*, Vec2*, u16, Result*, u32, f32, f32);
 Cell* fn_710027a328(Mesh*, u16);
 Vec2 fn_7100125a64(Vec2*);
-Edge* fn_71002afbe4(Cell*, u8*);
 bool fn_71002afcd8(Cell*, Edge*, u32);
 IdPair fn_71002afe60(Cell*, u8*);
 Vec2* fn_710027a410(Mesh*, u16);

@@ -4,7 +4,8 @@
 // CRntString's). The constructor, writer, buffer getter and destructor are fn_710007be8c,
 // fn_710007c3f0, fn_710007c1a4 and fn_710007c0e4; the digest is fn_710007b750(dest_0x18, buffer, -1).
 // The same 0x38-byte object, built with the allocation flags 0x3d, sits in the property bag
-// (src/game_s7/UnkPropBagS7.h). Layout is partly known; names are placeholders.
+// (src/game_s7/UnkPropBagS7.h). It is base::global::CRntFile (base/global/CRntFile.h, its seek
+// fn_710007c00c; dest_0x18 there is `data`). Layout is partly known; names are placeholders.
 
 #include "types.h"
 

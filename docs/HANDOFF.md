@@ -6,7 +6,7 @@ it needs). History, batch logs and the index of matching findings are in `docs/J
 `docs/recon.md` describes the binary, `docs/compiler.md` the toolchain, `docs/references.md` the
 outside projects. This page is edited in place, never appended to: session notes go to the journal.
 
-**Last updated 2026-10-26** (hub batches 3 and 4, var-flotsam/dread-decomp#195 and #197; the TU helper fold, #196; the shader packages, branch `claude/port-bshdat`).
+**Last updated 2026-10-26** (hub batches 3 and 4, var-flotsam/dread-decomp#195 and #197; the TU helper fold, #196; the shader packages, #198; boot hubs round 1, branch `claude/boot-hubs-1`).
 Target: **Metroid Dread 2.1.0**, `main` build ID `646761F643AFEBB379EDD5E6A5151AF2CEF93DC1`.
 
 ## Start here
@@ -20,7 +20,11 @@ Target: **Metroid Dread 2.1.0**, `main` build ID `646761F643AFEBB379EDD5E6A5151A
   most need a shared type in a new header. `tools/decl_check.py --list` ranks them. Work them per
   `.claude/skills/dread-hubs`: the tool first (`hub_migrate.py SYM --header H --declaration D` once a
   signature is chosen), agents on disjoint file sets for what it leaves, verified with
-  `tools/baseline.py` (save a whole-tree tag first: 1,353 sources in 2 minutes).
+  `tools/baseline.py` (`save --tag <batch>-full --all` before the agents start: two minutes).
+- **Next boot hubs:** `tools/hubs.py --version 2.1.0 --boot` (round 2's list and round 1's
+  follow-ups are under stream A below). Round 1 ran four agents, one per hub group on disjoint files,
+  each with the brief "match it (`dread-match` loop, time-boxed), one header, migrate the declaring
+  files"; the whole-tree baseline before and `check.py` once after.
 - **Port:** `python tools/port_link.py --version 2.1.0` rebuilds `build/port/link/boot_missing.csv`, the
   boot-slice functions without a source (the lifter's worklist) and the runtime stubs still needed.
 - Every number on this page names the command that produced it; rerun the command rather than trust
@@ -46,7 +50,7 @@ var-flotsam/dread-decomp#187):
 | Scope | Functions counted | Bytes | `O` matching | `O`+`m` usable | `U` left |
 |---|---|---|---|---|---|
 | Whole binary (library `L` excluded) | 102,398 | 18.77 MB | **53.90%** (84,713) | 55.40% | 17,438 functions, 8.37 MB |
-| Boot slice (reachable from `nnMain`, direct calls only) | 4,308 | 1.71 MB | **24.89%** (1,881) | 27.40% | 2,376 functions, 1.24 MB |
+| Boot slice (reachable from `nnMain`, direct calls only) | 4,308 | 1.71 MB | **24.96%** (1,889; boot hubs round 1, 2026-10-26) | 27.49% | 2,366 functions |
 
 Of the 10.1 MB matched, about 9.4 MB is generated (reflection boilerplate, lifted `char*` code,
 clones, tables) and 0.76 MB is hand-written with real types. The `U` bytes are mostly mid-sized
@@ -268,13 +272,20 @@ macOS under Rosetta 2 (`AGENTS.md`).
 
 ## Next steps
 
-**Stream A (boot slice and hubs).** From `tools/hubs.py --version 2.1.0 --boot` (2026-10-25):
-`fn_710007fe68` (412 B, 55 unmatched callers in the slice, 343 binary-wide), `fn_7101047270`
-(112 B, 36), `fn_71010472e0` (308 B, 26), `fn_710007c00c` (116 B, 25), `fn_710000542c` (264 B,
-21), `fn_71000faac4` (296 B, 20), `fn_7100dfbda4` (152 B, 20), `fn_71002afbe4` (80 B, 20),
-`fn_7100ee1f34` (2,096 B, 19), `fn_710023b580` (564 B, 19), `fn_710001a270` (300 B, 19, the
-`CFilePathStrId` constructor). Binary-wide the largest are `fn_71010c0270` (120 B, 354 unmatched
-callers, almost all `lua_bind::*`), `fn_710007fe68`, `fn_71010472e0` (275), `fn_71006f4b0c`
+**Stream A (boot slice and hubs).** Round 1 (2026-10-26, journal) matched the eight top hubs of
+2026-10-25 and two siblings (the string-pool holder, the `CBlackboard` section lookups,
+`CRntFile`'s seek, the navmesh cell's edge lookup, the sound command queue, the game manager's id
+map), four agents on disjoint files, each hub in a file named for its class with one header. Next,
+from `tools/hubs.py --version 2.1.0 --boot` (2026-10-26): `fn_710000542c` (264 B, 21 unmatched
+callers; declared in `UnkCloneRecords.h`), `fn_7100ee1f34` (2,096 B, 19), `fn_710023b580` (564 B,
+19), `fn_710001a270` (300 B, 19, the `CFilePathStrId` constructor), `fn_7100deba8c` (316 B, 18),
+`fn_7100fd3804` (1,900 B, 17), `fn_7100deabe4` (32 B, 16), `fn_710007e7f8` (616 B, 16),
+`fn_7100087388` (272 B, 15), `fn_710009dcd8` (44 B, 15), `fn_7100defcec` (28 B, 15); the round's
+own follow-ups: `fn_7101047414` and `fn_7101047484` (byte-identical to the `CBlackboard` lookup),
+`fn_7100080578` (the string pool's next piece), `UnkHashStream_0x38` is `CRntFile` (its
+functions `fn_710007be8c`, `fn_710007bf9c`, `fn_710007c3f0`, `fn_710007c1a4`, `fn_710007c0e4`),
+`UnkGameManager`'s `field_0x968` is an embedded `CBlackboard`. Binary-wide the largest are
+`fn_71010c0270` (120 B, 354 unmatched callers, almost all `lua_bind::*`) and `fn_71006f4b0c`
 (592 B, 211). 824 boot-slice `U` functions (259 KB) are "ready" (`--ready --boot`); 6,479
 binary-wide (1.9 MB).
 
@@ -366,7 +377,9 @@ guard for files that do not compile before the edit), plus the batch procedure i
 destructor scan now reads each string-id member's pool, `gen_statics`'s fact extractor drops
 stale register state, `gen_tables` reads the video map's globals from the GOT) and `check.py`
 enforces relocation targets everywhere. Next: a dynamic boot trace from Eden's GDB stub to
-replace the static lower bound; directory moves driven by `data/tu_map.csv` once a unit is
+replace the static lower bound; `check.py`'s resolver could map the mangled constructor and
+destructor names of address-bound members (`UnkStringPoolHolder`'s C1/D1) to their addresses, so the
+66 includers' references are checked; directory moves driven by `data/tu_map.csv` once a unit is
 complete (one rename PR per unit); `tools/gen_functions_csv.py` subsystem inference from
 `tu_map.csv` instead of neighbours (68,731 functions are still "unknown"); `trymatch.py`-style
 relocation checking in `tools/nearcopy.py`'s candidates if it compiles anything; `check.py`'s
@@ -398,7 +411,9 @@ rejects (`tools/port_lift.py --debug ADDR` shows the first difference). Next for
 in order: `nn::` stubs in call order (`nn::os` 16 and `nn::oe` 1 still
 needed, then `nn::fs`, `nn::hid`, `movie`, `nv`); the data loader that maps the dump's segments at
 their original addresses (5,467 data symbols are referenced PC-relatively, so the image must sit
-within 2 GB of `0x7100000000`). Producing an executable needs WSL or the MSVC Build Tools.
+within 2 GB of `0x7100000000`). Producing an executable needs WSL or the MSVC Build Tools. The game code type-puns as the original's
+did (words read as `u64`, storage cast to its layout), so `dread_game` should build with
+`-fno-strict-aliasing` as `dread_libs` does (review of boot hubs round 1).
 M2 groundwork (2026-10-26, branch `claude/port-bshdat`): `tools/bshdat.py --version 2.1.0
 --compile` parses the 478 shader packages, extracts the 671 programs' 1,342 GLSL sources and the
 compiler's reflection to `build/shaders/2.1.0/`, and compiles 1,341 stages to OpenGL and Vulkan
@@ -421,6 +436,11 @@ are recorded in `docs/JOURNAL.md` (work log items 0–3).
   shells started before the toolchain install may not see `cmake`/`ninja`; use `.venv/Scripts/python`
   and absolute tool paths, as the scripts do.
 - **Ghidra project lock:** only one process can open `build/ghidra/<ver>/dread.gpr` at a time.
+  `tools/ghidra/decompile.py` fails from a worktree under `.claude/` (Ghidra rejects a path element
+  starting with a dot): run it from the main checkout.
+- **Worktrees on Windows:** a new worktree needs `orig` and `build` linked to the main checkout's.
+  Git Bash's `ln -s` silently copies them (12.6 GB, 2026-10-26) unless native symlinks are on; make
+  junctions instead: `cmd //c mklink /J orig <main>\orig` (and `build`).
 - `llvm-readelf` isn't in the LLVM Windows build; use `llvm-readobj --elf-output-style=GNU`.
 - Constructors compile to two aliased symbols (C1/C2). `check.py` counts them once (by address);
   objdiff counts both.

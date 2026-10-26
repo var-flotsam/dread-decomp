@@ -22,11 +22,13 @@ constexpr Result ResultSuccess() { return Result{0}; }
 constexpr Result ResultNotPorted() { return Result{0xffffffffu}; }
 
 // A signed duration in nanoseconds. The game reads the member directly
-// (src/game_s1/fn_7100080c40.cpp), so it is a plain field, not an accessor, and there are no
-// conversion helpers: nothing in src/ or in the port's own stubs needs one, and nothing the game
-// does forces the SDK's names for them on the port.
+// (src/game_s1/fn_7100080c40.cpp), so it is a plain field, not an accessor. The one conversion
+// helper src/ names is FromNanoSeconds (src/base/snd/CSoundSystemATK.cpp); the struct stays an
+// aggregate.
 struct TimeSpan {
     s64 nanoseconds;
+
+    static constexpr TimeSpan FromNanoSeconds(s64 ns) { return TimeSpan{ns}; }
 };
 static_assert(sizeof(TimeSpan) == 8, "a time span is one 64-bit word in the game's objects");
 

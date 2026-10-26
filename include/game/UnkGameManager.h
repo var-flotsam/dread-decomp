@@ -27,6 +27,22 @@ struct UnkGameManagerSub_0x1af8 {
     bool field_0xdc;
 };
 
+// Two arrays of string ids that share a count: the ids a lookup answers with and, at the same
+// positions, the ids it matches (fn_7100dfbda4). The names are placeholders.
+struct UnkGameManagerIdMap {
+    base::global::CStrId* values;
+    base::global::CStrId* keys;
+    u32 count;
+
+    // The answer for the first matching key, or values + count when there is none.
+    base::global::CStrId* Find(const base::global::CStrId& id) {
+        for (u32 i = 0; i < count; ++i)
+            if (keys[i].data == id.data)
+                return values + i;
+        return values + count;
+    }
+};
+
 struct UnkGameManager {
     u8 pad_0x0[0xc0];
     s32 field_0xc0;  // a mode (1 or 2) that overrides an actor's while fn_7100df5c38 holds (fn_7100bc77ec)
@@ -39,8 +55,10 @@ struct UnkGameManager {
     u8 pad_0x4a0[0x168];
     UnkGameManagerSub_0x608* field_0x608;
     u8 pad_0x610[0x358];
-    u8 field_0x968[1];  // an embedded table keyed by string id (fn_7101047208, fn_71010472e0, fn_7101047270)
-    u8 pad_0x969[0x6d7];
+    u8 field_0x968[1];  // an embedded CBlackboard (game/CBlackboard.h; fn_7101047208, fn_71010472e0, fn_7101047270)
+    u8 pad_0x969[0x697];
+    UnkGameManagerIdMap field_0x1000;  // string ids replaced by others (fn_7100dfbda4)
+    u8 pad_0x1018[0x28];
     u8 field_0x1040[1];  // an embedded effect player (fn_7101053a98, fn_7101053a7c, fn_7101053a0c, fn_7101053850)
     u8 pad_0x1041[0xab7];
     UnkGameManagerSub_0x1af8* field_0x1af8;
@@ -56,8 +74,15 @@ struct UnkGameManager {
     u8 field_0x29c0;       // a flag that blocks fn_71002fe470
 };
 static_assert(__builtin_offsetof(UnkGameManager, field_0x498) == 0x498, "UnkGameManager placeholder layout");
+static_assert(__builtin_offsetof(UnkGameManager, field_0x1000) == 0x1000, "UnkGameManager placeholder layout");
+static_assert(__builtin_offsetof(UnkGameManager, field_0x1040) == 0x1040, "UnkGameManager placeholder layout");
 static_assert(__builtin_offsetof(UnkGameManager, field_0x1af8) == 0x1af8, "UnkGameManager placeholder layout");
 static_assert(__builtin_offsetof(UnkGameManager, field_0x2238) == 0x2238, "UnkGameManager placeholder layout");
 static_assert(__builtin_offsetof(UnkGameManager, field_0x29c0) == 0x29c0, "UnkGameManager placeholder layout");
 
 extern UnkGameManager* g_unk_7101d47310;
+
+// Maps `id` through field_0x1000: the id at the position of the first key equal to `id`, or `id`
+// itself when no key is (src/game/CGameManager.cpp). Called with *g_unk_7101d47310, for example by
+// lua_bind::GetScenarioBlackboardSectionID.
+base::global::CStrId fn_7100dfbda4(UnkGameManager* self, const base::global::CStrId& id);

@@ -7,6 +7,7 @@
 #include "UnkPropS7.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/CBlackboard.h"
 #include "game/UnkGameBlackboard.h"
 
 using namespace unk_prop;
@@ -49,25 +50,22 @@ static inline UnkSubId_7100fc4b34 SubId(UnkNamedDef_7100fc4b34& def, const CStrI
     return fn_71003327a4(&def.name, &name);
 }
 
-struct UnkPropSet_7100fc4b34;
-char* fn_7101047270(UnkPropSet_7100fc4b34* set, const CStrId& section);
-
 // Typed reads of a section's value (refl_GetKeyedValue copies).
-bool fn_7100395b34(char* section, const void* name, f32* out);
-bool fn_710006d11c(char* section, const void* name, bool* out);
-bool fn_7100395a30(char* section, const void* name, s32* out);
-bool fn_7100a68fb0(char* section, const void* name, u32* out);
+bool fn_7100395b34(CBlackboard::CSection* section, const void* name, f32* out);
+bool fn_710006d11c(CBlackboard::CSection* section, const void* name, bool* out);
+bool fn_7100395a30(CBlackboard::CSection* section, const void* name, s32* out);
+bool fn_7100a68fb0(CBlackboard::CSection* section, const void* name, u32* out);
 
 struct UnkString_7100fc4b34 {
     u8 unk_0x0[0x30];
 };
 void fn_710007eba0(UnkString_7100fc4b34* self, u32 size);
-bool fn_7100ec50e4(char* section, const void* name, UnkString_7100fc4b34* out);
+bool fn_7100ec50e4(CBlackboard::CSection* section, const void* name, UnkString_7100fc4b34* out);
 
 template <auto Reader, class T, class N>
-__attribute__((always_inline)) inline void Get(UnkPropSet_7100fc4b34* set, const CStrId& section,
+__attribute__((always_inline)) inline void Get(CBlackboard* set, const CStrId& section,
                                                const N& name, T* out) {
-    if (char* s = fn_7101047270(set, section))
+    if (CBlackboard::CSection* s = fn_7101047270(set, section))
         Reader(s, &name, out);
 }
 
@@ -172,8 +170,7 @@ struct UnkTuning_7100fc4b34 {
 
 struct UnkOwner_7100fc4b34;
 
-bool fn_7100fc4b34(UnkOwner_7100fc4b34* self, UnkPropSet_7100fc4b34* a, UnkPropSet_7100fc4b34* b,
-                   UnkTuning_7100fc4b34* out) {
+bool fn_7100fc4b34(UnkOwner_7100fc4b34* self, CBlackboard* a, CBlackboard* b, UnkTuning_7100fc4b34* out) {
     out->field_0x4 = {};
     Get<fn_7100395b34>(b, Key(0x1bd8), Qid(g_unk_717275a118), &out->field_0x4);
     out->field_0x8 = {};

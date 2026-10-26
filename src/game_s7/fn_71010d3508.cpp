@@ -2,9 +2,11 @@
 // to (position, angles). Unknown keys go to the base handler (fn_71010c4250). Layouts are
 // placeholders.
 #include "UnkPropS7.h"
+#include "base/global/CRntFile.h"
 #include "game/UnkXformNode.h"
 
 using namespace unk_prop;
+using base::global::CRntFile;
 using base::global::CRntString;
 
 struct UnkActor_71010d3508 {
@@ -76,7 +78,6 @@ struct UnkObj_71010d3508 {
 };
 
 bool fn_71010d32ec(UnkObj_71010d3508* self, const CRntString& name);
-void fn_710007c00c(void* stream, void* unk, s32 flags);
 u32 fn_71010c4250(UnkObj_71010d3508* self, UnkProp* p);
 
 u32 fn_71010d3508(UnkObj_71010d3508* self, UnkProp* p) {
@@ -151,7 +152,7 @@ u32 fn_71010d3508(UnkObj_71010d3508* self, UnkProp* p) {
         char buf[0x80];
         fn_710007cf30(p->stream, "s", buf);
         bool result = fn_71010d32ec(self, CRntString(buf));
-        fn_710007c00c(p->stream, nullptr, 0);
+        fn_710007c00c(reinterpret_cast<CRntFile*>(p->stream), 0, 0);
         fn_710007cb4c(p->stream, "b", result);
         return true;
     }
