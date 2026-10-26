@@ -5,14 +5,10 @@
 #include <math.h>
 
 #include "base/math/CVector.h"
+#include "base/math/UnkSegment2D.h"
 #include "types.h"
 
 using base::math::CVector2D;
-
-struct UnkSegment2D_7100125c64 {
-    CVector2D start;
-    CVector2D end;
-};
 
 // Returned through x8 in the out-of-line copy (fn_7100125e78).
 struct UnkVec2Result_7100125c64 {
@@ -23,7 +19,7 @@ struct UnkVec2Result_7100125c64 {
 };
 
 // The segment's unit normal (fn_7100125e78, inlined).
-static inline UnkVec2Result_7100125c64 SegmentNormal(const UnkSegment2D_7100125c64* seg) {
+static inline UnkVec2Result_7100125c64 SegmentNormal(const UnkSegment2D* seg) {
     f32 dx = seg->end.x - seg->start.x;
     f32 dy = seg->end.y - seg->start.y;
     f32 len2 = dx * dx + dy * dy;
@@ -40,7 +36,7 @@ static inline bool IsNear(f32 a, f32 b) {
     return a - 0.001f <= b && a + 0.001f >= b;
 }
 
-bool fn_7100125c64(const UnkSegment2D_7100125c64* seg, const CVector2D* p, bool extended, f32 tolerance) {
+bool fn_7100125c64(const UnkSegment2D* seg, const CVector2D* p, bool extended, f32 tolerance) {
     f32 dx = seg->end.x - seg->start.x;
     f32 dy = seg->end.y - seg->start.y;
     f32 len2 = dx * dx + dy * dy;

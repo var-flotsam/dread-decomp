@@ -7,8 +7,6 @@
 
 extern u32 g_unk_716e598dd8 __attribute__((visibility("hidden")));
 
-void fn_71001c2480(UnkXformTarget* target, UnkXform* x);
-
 void fn_710020d744(UnkXformNode* self, const UnkMatrix44* m) {
     UnkXform* x = self->Xform();
     if (__builtin_memcmp(&x->GetMatrix(), m, sizeof(UnkMatrix44)) == 0)

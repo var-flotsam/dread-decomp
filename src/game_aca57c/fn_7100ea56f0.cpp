@@ -91,7 +91,6 @@ using UnkString80 = UnkBufferString<0x80, g_unk_7101a1b750>;
 struct UnkSuffix {
     const char* data;
 };
-void fn_710007f5ac(void* self, char c);                // appends a character
 void fn_710007f3b4(void* self, const UnkSuffix* str);  // appends a string
 
 struct UnkStringWord {
@@ -109,9 +108,9 @@ void fn_7100ae9bb0(UnkIdWord* self, const UnkStringWord* source, const UnkSuffix
     UnkString80 str;
     fn_710007eaa0(str.Str(), reinterpret_cast<const base::global::CRntString*>(source));
     if (suffix->data && suffix->data[0]) {
-        fn_710007f5ac(&str, '[');
+        fn_710007f5ac(str.Str(), '[');
         fn_710007f3b4(&str, suffix);
-        fn_710007f5ac(&str, ']');
+        fn_710007f5ac(str.Str(), ']');
     }
     UnkTempStrId id;
     fn_7100000850(reinterpret_cast<UnkStrIdBase*>(&id), *str.Str(), true);

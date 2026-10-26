@@ -77,9 +77,6 @@ void fn_71010e7a04(UnkStateList_71010e2278* list, u32 n);  // reserves
 struct UnkSceneBase_71010e2278 {
     virtual void vf_0x0();
 };
-struct UnkSceneNode_71010e2278 {
-    virtual void vf_0x0();
-};
 struct UnkSceneXform_71010e2278 {
     u8 unk_0x0[0x10];
     // fn_7100205f98. Declared with the floats first: with the pointer first, the argument
@@ -88,15 +85,13 @@ struct UnkSceneXform_71010e2278 {
 };
 
 // The scene object the machine drives.
-struct UnkSceneObj_71010e2278 : UnkSceneBase_71010e2278, UnkSceneNode_71010e2278 {
-    u8 unk_0x10[0x10];
+struct UnkSceneObj_71010e2278 : UnkSceneBase_71010e2278, UnkSceneNode {
     UnkSceneXform_71010e2278 xform;
 };
 
 extern char g_unk_7172a045f0[] __attribute__((visibility("hidden")));
 
 void fn_7100e13928(void* unk, void* unk2, UnkSceneObj_71010e2278** out, const CStrId* name);
-void fn_7100219ae0(UnkRenderManager* mgr, UnkSceneNode_71010e2278* node, u32 layer);
 void fn_7100219bb4(UnkRenderManager* mgr, UnkSceneObj_71010e2278* obj, u32 layer);
 void fn_71001453c4(UnkSceneObj_71010e2278* obj, UnkArg2_71010e2278* a2);
 void fn_7100030fc0(void* dst, const void* src, f32 value);

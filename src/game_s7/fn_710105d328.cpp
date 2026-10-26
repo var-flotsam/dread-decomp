@@ -63,17 +63,6 @@ static inline UnkSetStatus Done() {
 
 struct UnkArgObj;
 
-void fn_7100d7c828(char* owner, const UnkArgObj* obj, bool flag);
-
-struct UnkObjSet;
-void* fn_7100a2c13c(UnkObjSet* set, const UnkArgObj* obj);
-void fn_7100a2b7b8(UnkObjSet* set, const UnkArgObj* obj);
-
-struct UnkSetOwner {
-    u8 unk_0x0[0x2e8];
-    UnkObjSet* set;
-};
-
 struct UnkCopyEntry {
     UnkStrIdMember id;
     u8 unk_0x8[0x10];

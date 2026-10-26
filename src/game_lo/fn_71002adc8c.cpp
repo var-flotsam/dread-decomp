@@ -4,10 +4,10 @@
 // three registrations from their set; then releases that handle, clears two words and
 // continues with fn_71002addd4.
 #include "base/UnkDestructors.h"
+#include "game/UnkNavMeshPath.h"
 #include "types.h"
 
 void fn_71002aeb9c(void* set, void* item);
-void fn_71002ad688(void* self, void* arg);
 void fn_71002addd4(void* self);
 
 // A registration in a deferred set (layout as in fn_71002ad0dc).
@@ -69,7 +69,7 @@ void fn_71002adc8c(UnkObject_71002adc8c* self) {
     self->field_0x11978.Reset();
     self->field_0x11980 = 0;
     self->field_0x8 = false;
-    fn_71002ad688(self, nullptr);
+    fn_71002ad688(reinterpret_cast<UnkNavMeshPath*>(self), nullptr);
     if (base::UnkRefCounted* h = self->field_0x12a68.ptr) {
         if (*reinterpret_cast<void**>(reinterpret_cast<char*>(h) + 0x10)) {
             self->field_0x129e8.Unregister();

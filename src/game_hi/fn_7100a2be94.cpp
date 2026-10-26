@@ -1,5 +1,6 @@
 // Whether an id is known to a keyed table: queued for addition, or already in the table.
 // It first initialises two function-local static masks it doesn't use.
+#include "game/UnkTimelineComponent.h"
 #include "types.h"
 
 struct UnkMaskA {
@@ -22,57 +23,20 @@ inline const UnkMaskB& UnkMaskAll_7101d57cb8() {
     return s_all;
 }
 
-struct UnkTableEntry {
-    u64 field_0x0;
-    u8 unk_0x8[0x38];
-};
+// The queued addition with the key, or the end of the queue.
+static inline UnkPendingAdd* FindPending(base::UnkVector<UnkPendingAdd>& list, u64 key) {
+    for (u32 i = 0; i < list.count; ++i)
+        if (list.data[i].key == key)
+            return &list.data[i];
+    return &list.data[list.count];
+}
+static inline UnkPendingAdd* EndPending(base::UnkVector<UnkPendingAdd>& list) { return &list.data[list.count]; }
 
-// Values and keys in parallel arrays.
-struct UnkKeyedTable {
-    UnkTableEntry* values;
-    u64* keys;
-    u32 count;
-
-    UnkTableEntry* Find(const u64& key) {
-        for (u32 i = 0; i < count; ++i)
-            if (keys[i] == key)
-                return &values[i];
-        return &values[count];
-    }
-    UnkTableEntry* End() { return &values[count]; }
-};
-
-struct UnkPendingAdd {
-    u64 key;
-    u32 value;
-};
-
-struct UnkPendingList {
-    UnkPendingAdd* data;
-    u32 count;
-
-    UnkPendingAdd* Find(u64 key) {
-        for (u32 i = 0; i < count; ++i)
-            if (data[i].key == key)
-                return &data[i];
-        return &data[count];
-    }
-    UnkPendingAdd* End() { return &data[count]; }
-};
-
-struct UnkTableOwner {
-    u8 unk_0x0[0x68];
-    UnkKeyedTable table;
-    u8 unk_0x80[0x10];
-    bool locked;
-    UnkPendingList pending_add;
-};
-
-bool fn_7100a2be94(UnkTableOwner* self, const u64* id) {
+bool fn_7100a2be94(UnkTimelineComponent* self, const u64* id) {
     u64 key = *id;
     UnkMaskAll_7101d57cb8();
-    UnkPendingAdd* p = self->pending_add.Find(key);
-    if (p == self->pending_add.End()) {
+    UnkPendingAdd* p = FindPending(self->pending_add, key);
+    if (p == EndPending(self->pending_add)) {
         UnkTableEntry* it = self->table.Find(*id);
         if (it == self->table.End())
             return false;

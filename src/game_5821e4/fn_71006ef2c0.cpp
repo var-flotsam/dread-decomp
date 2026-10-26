@@ -3,11 +3,11 @@
 // (+0x14770, +0x14778) and a member destroyed out of line (+0x147c8, fn_71002b6094); then the
 // base's destructor (fn_7100369380).
 #include "CAttackDtor.h"
+#include "game/UnkObject_0x100.h"
 
 extern void* g_unk_7101a6ae18[];  // the object's vtable
 
 void fn_7100369380(void* self);
-void fn_71002b6094(void* p);
 
 struct UnkRefPtrRaw_71006ef2c0 {
     UnkAttackOwner* ptr;
@@ -28,11 +28,11 @@ struct UnkOwner_71006ef2c0 {
     UnkRefPtrRaw_71006ef2c0 field_0x14770;
     UnkRefPtrRaw_71006ef2c0 field_0x14778;
     u8 pad_0x14780[0x48];
-    u8 field_0x147c8[0x8];
+    UnkObject_0x100 field_0x147c8;
 
     void Destroy() {
         vtable = g_unk_7101a6ae18 + 2;
-        fn_71002b6094(field_0x147c8);
+        fn_71002b6094(&field_0x147c8);
         field_0x14778.Release();
         field_0x14770.Release();
         fn_71003606c0(field_0x146f8);

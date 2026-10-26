@@ -1,11 +1,7 @@
 // Asks the object's optional component at +0x2e8 to handle a key, with a default mask and -1 parameter.
 #include "base/reflection/UnkReflStatics.h"
+#include "game/UnkTimelineComponent.h"
 #include "types.h"
-
-struct UnkKey {
-    u64 value;
-    UnkKey(const UnkKey& o) : value(o.value) {}
-};
 
 struct UnkByteFlags {
     u32 value;
@@ -28,30 +24,27 @@ inline UnkMask& GetDefaultMask_d7c828() {
     return s;
 }
 
-struct UnkComponent;
-bool fn_7100a2be94(UnkComponent* self, UnkKey key);
-void fn_7100a2b7b8(UnkComponent* self, const UnkKey& key);
-bool fn_7100a2cfe8(UnkComponent* self, const UnkKey& key);
+bool fn_7100a2cfe8(UnkTimelineComponent* self, const u64* key);
 
-static inline void AddDefault(UnkComponent* comp, const UnkKey& key) {
-    base::reflection::UnkReflTypeIdArg mask;
-    mask.id = GetDefaultMask_d7c828().value;
-    fn_7100a2cb7c(comp, &key, &mask, -1.0f, 0);
+static inline UnkTimelineComponent* Timeline(UnkActor* actor) {
+    return static_cast<UnkTimelineComponent*>(actor->field_0x2e8);
 }
 
-struct UnkOwner {
-    char pad[0x2e8];
-    UnkComponent* field_0x2e8;
-};
+static inline void AddDefault(UnkTimelineComponent* comp, const u64* key) {
+    base::reflection::UnkReflTypeIdArg mask;
+    mask.id = GetDefaultMask_d7c828().value;
+    fn_7100a2cb7c(comp, key, &mask, -1.0f, 0);
+}
 
-void fn_7100d7c828(UnkOwner* self, const UnkKey& key, bool flag) {
-    if (!self->field_0x2e8)
+void fn_7100d7c828(UnkActor* self, const u64* key, bool flag) {
+    if (!Timeline(self))
         return;
-    if (fn_7100a2be94(self->field_0x2e8, key))
+    u64 copy = *key;  // fn_7100a2be94 gets its own copy of the key
+    if (fn_7100a2be94(Timeline(self), &copy))
         return;
     if (flag)
-        fn_7100a2b7b8(self->field_0x2e8, key);
-    if (fn_7100a2cfe8(self->field_0x2e8, key))
+        fn_7100a2b7b8(Timeline(self), key);
+    if (fn_7100a2cfe8(Timeline(self), key))
         return;
-    AddDefault(self->field_0x2e8, key);
+    AddDefault(Timeline(self), key);
 }

@@ -5,6 +5,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkXformNode.h"
 #include "types.h"
 
 using base::reflection::CClass;
@@ -164,7 +165,6 @@ void fn_71002098a4(UnkUpdater_710020c780* self) {
 // fn_71001c1030; it also calls vtable slot 0xa8 either way).
 void fn_71001bfd5c(UnkSource_710020c780* source, void* state);
 void fn_71001bffc4(UnkSource_710020c780* source, f32 dt);
-void fn_71001c2480(UnkSource_710020c780* source, void* state);
 void fn_71001c1030(UnkSource_710020c780* source, u32 index, f32 dt);
 
 __attribute__((always_inline)) static inline void CopyBack(UnkUpdater_710020c780* self) {
@@ -191,7 +191,9 @@ bool fn_710020da1c(UnkUpdater_710020c780* self, f32 dt) {
     if (self->field_0xf9) {
         if (self->field_0xfa) {
             self->field_0xfa = false;
-            fn_71001c2480(self->field_0x108, self->field_0x18);
+            // The source is the node's target and the state its transform (include/game/UnkXformNode.h).
+            fn_71001c2480(reinterpret_cast<UnkXformTarget*>(self->field_0x108),
+                          reinterpret_cast<UnkXform*>(self->field_0x18));
         }
         fn_71001c1030(self->field_0x108, 0, dt);
         CopyBack(self);

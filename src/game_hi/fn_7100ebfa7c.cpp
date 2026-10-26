@@ -3,6 +3,7 @@
 // edges that the position lies on and keeps the closer of the two results); fn_7100ebf278 is the
 // manager's constructor.
 #include "base/UnkVector.h"
+#include "base/math/UnkSegment2D.h"
 #include "game/UnkNavMeshManager.h"
 #include "types.h"
 
@@ -27,12 +28,7 @@ struct IdPair {
     IdPair(const IdPair&);
 };
 
-struct Segment {
-    Vec2 p0;
-    Vec2 p1;
-    f32 field_0x10;
-    f32 field_0x14;
-};
+using Segment = UnkSegment2D;
 
 struct Edge {
     u16 field_0x0;
@@ -85,7 +81,6 @@ bool fn_71002afcd8(Cell*, Edge*, u32);
 IdPair fn_71002afe60(Cell*, u8*);
 Vec2* fn_710027a410(Mesh*, u16);
 void fn_7100125b1c(Segment*, Vec2*, Vec2*);
-bool fn_7100125c64(Segment*, Vec2*, bool, f32);
 void fn_710007b430(Vec2*, Vec2*);
 
 static inline f32 DistSq(const Vec2& a, const Vec2& b) {
@@ -119,7 +114,8 @@ bool fn_7100ebfa7c(UnkNavMeshManager* self, Vec2* pos, Result* out, f32 a, u32 f
             Vec2* v1 = fn_710027a410(mesh, ids.b);
             Segment seg;
             fn_7100125b1c(&seg, v0, v1);
-            if (!fn_7100125c64(&seg, &p, false, 0.0f))
+            // Vec2 has CVector2D's layout (it only adds the out-of-line copy constructor).
+            if (!fn_7100125c64(&seg, reinterpret_cast<const base::math::CVector2D*>(&p), false, 0.0f))
                 continue;
             Result r;
             if (fn_7100ebfd4c(self, pos, edge->field_0x2, &r, flags, a, b)) {

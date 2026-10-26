@@ -6,6 +6,7 @@
 #include "base/UnkErasedVector.h"
 #include "base/UnkRefHandle.h"
 #include "base/UnkVector.h"
+#include "game/UnkCallbackSetVectorFwd.h"
 
 using base::global::CStrId;
 using base::global::UnkStringData;
@@ -272,10 +273,15 @@ struct UnkEntryVector {
     }
 };
 
-void fn_71011143d8(UnkEntryVector* v, u32 n);
+// Reserve is fn_71011143d8, declared for the callback-set array (game/UnkCallbackSetVector.h).
+// This array has the same header (data, count, capacity, step, flags, allocator), which is all
+// Reserve is passed here.
+static inline void Reserve_71011143d8(UnkEntryVector* v, u32 n) {
+    fn_71011143d8(reinterpret_cast<UnkCallbackSetVector*>(v), n);
+}
 void fn_7101114588(UnkEntryVector* v, const UnkEntry* value);
 void fn_71011141e8(UnkEntryVector* self, const UnkEntryVector* other) {
-    self->CopyConstruct<fn_71011143d8, fn_7101114588>(*other);
+    self->CopyConstruct<Reserve_71011143d8, fn_7101114588>(*other);
 }
 
 struct UnkMovedPair {

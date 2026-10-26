@@ -1,5 +1,7 @@
 // Resolves a GUI script name to a path, loads it once through the lazily created registry, and returns a handle to the loaded object.
+#include "base/UnkStrIdPathPair.h"
 #include "base/global/CRntString.h"
+#include "game/UnkGuiHandle.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -15,6 +17,8 @@ struct UnkScriptPath_0x148 {
     u8 unk_0x30[0x118];
 };
 
+// The id and path pair (base/UnkStrIdPathPair.h) that fn_710008d4c0 builds and fn_710008d8e8
+// destroys, kept as plain words here so the locals have no destructor of their own.
 struct UnkStrPair_0x10 {
     void* a;
     void* b;
@@ -54,18 +58,17 @@ struct UnkRegistry_0x70 {
     u8 data[0x70];
 };
 
-UnkScriptPath_0x148 fn_71011b66fc(UnkTag_71011b69d8 tag, const char* const* name);
+UnkScriptPath_0x148 fn_71011b66fc(void* registry, const char* const* name);
 void fn_7100087388(UnkRegistry_0x70* r);
 void fn_710008d4c0(UnkStrPair_0x10* s, const UnkEntry_0x30* e);
-void fn_710008d8e8(UnkStrPair_0x10* s);
 bool fn_7100087850(UnkRegistry_0x70* r, const UnkStrPair_0x10* s);
 UnkRefSource_71011b69d8* fn_71011b6208(UnkTag_71011b69d8 tag, const UnkStrPair_0x10* s);
 extern UnkRegistry_0x70* g_unk_7101d4b5a0;
 
-UnkRefHandle_71011b69d8 fn_71011b69d8(UnkTag_71011b69d8 tag, const char* const* name) {
+UnkGuiHandle fn_71011b69d8(void* registry, const base::global::CRntString& name) {
     UnkEntry_0x30 path;
     {
-        UnkScriptPath_0x148 sp = fn_71011b66fc(tag, name);
+        UnkScriptPath_0x148 sp = fn_71011b66fc(registry, reinterpret_cast<const char* const*>(&name));
         auto* sp_str = reinterpret_cast<base::global::CRntString*>(&sp.path);
         fn_710007eab4(reinterpret_cast<base::global::CRntString*>(&path), sp_str);
         fn_710007ed40(sp_str);
@@ -77,13 +80,13 @@ UnkRefHandle_71011b69d8 fn_71011b69d8(UnkTag_71011b69d8 tag, const char* const* 
         fn_7100087388(reg);
         g_unk_7101d4b5a0 = reg;
     }
-    UnkRefHandle_71011b69d8 result;
+    UnkGuiHandle result;
     bool ok;
     {
         UnkStrPair_0x10 s;
         fn_710008d4c0(&s, &path);
         ok = fn_7100087850(reg, &s);
-        fn_710008d8e8(&s);
+        fn_710008d8e8(reinterpret_cast<UnkStrIdPathPair*>(&s));
     }
     UnkRefCounted_71011b69d8* h = nullptr;
     if (ok) {
@@ -92,7 +95,7 @@ UnkRefHandle_71011b69d8 fn_71011b69d8(UnkTag_71011b69d8 tag, const char* const* 
             UnkStrPair_0x10 s;
             fn_710008d4c0(&s, &path);
             src = fn_71011b6208(UnkTag_71011b69d8(), &s);
-            fn_710008d8e8(&s);
+            fn_710008d8e8(reinterpret_cast<UnkStrIdPathPair*>(&s));
         }
         if (src) {
             if (UnkRefHandle_71011b69d8* slot = src->vf_0x28()) {
@@ -111,7 +114,7 @@ UnkRefHandle_71011b69d8 fn_71011b69d8(UnkTag_71011b69d8 tag, const char* const* 
     result.ptr = nullptr;
     if (h) {
         ++h->ref_count;
-        result.ptr = h;
+        result.ptr = reinterpret_cast<UnkGuiHandleObj*>(h);
     }
     fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(&path));
     return result;

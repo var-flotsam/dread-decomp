@@ -9,6 +9,7 @@
 #include <new>
 
 #include "base/UnkAtExit.h"
+#include "base/UnkStrIdRegistry.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
@@ -18,7 +19,6 @@
 #include "types.h"
 
 void fn_7100000c7c(void* id);  // a file path id's destructor
-base::global::CStrId fn_7100de8f78(const base::global::CStrId& name);
 
 namespace unk_static_init {
 

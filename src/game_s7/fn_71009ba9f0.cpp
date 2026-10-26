@@ -2,6 +2,7 @@
 // More per-TU static initialisers (helpers in game/UnkTUInit.h; see also fn_7100b04900.cpp):
 // some TUs' data has function records after the header, and collection and vector types are
 // registered for the reflected containers.
+#include "base/UnkStrIdRegistry.h"
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
@@ -527,7 +528,6 @@ void fn_7100075104(void* self);
 
 extern UnkTUHeader g_unk_717273d710 __attribute__((visibility("hidden")));
 extern CStrId g_unk_717273d728 __attribute__((visibility("hidden")));
-CStrId fn_7100de8f78(const CStrId& name);
 extern char g_unk_717273d6f8;
 
 // The id lives in an inline function: its guard and object are reached through the GOT.

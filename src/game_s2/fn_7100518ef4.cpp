@@ -1,6 +1,7 @@
 // Copy constructor of a table of up to 250 records (0x120 bytes each, from +0xc) followed by a
 // small block at +0x1194c: copies the records one by one, then the block, whose last member is a
 // counted reference (released first when it was set, then replaced by the copy of the other's).
+#include "game/UnkObject_0x100.h"
 #include "types.h"
 
 struct __attribute__((packed)) UnkRecord {
@@ -11,7 +12,7 @@ struct __attribute__((packed)) UnkRecord {
     u32 field_0xc;
     u32 field_0x10;
     u32 field_0x14;
-    u8 field_0x18[256];
+    u8 field_0x18[sizeof(UnkObject_0x100)];  // an UnkObject_0x100 at an unaligned address
     u16 field_0x118;
     u8 pad_0x11a[6];
 };
@@ -46,7 +47,6 @@ struct __attribute__((packed)) UnkTable {
 
 extern void* g_unk_7101a21168[];
 extern void* g_unk_7101a21120[];
-void fn_71002b58c0(u8* to, const u8* from);
 
 void fn_7100518ef4(UnkTable* self, const UnkTable* other) {
     self->vtable = g_unk_7101a21168 + 2;
@@ -64,7 +64,8 @@ void fn_7100518ef4(UnkTable* self, const UnkTable* other) {
             to->field_0xc = from->field_0xc;
             to->field_0x10 = from->field_0x10;
             to->field_0x14 = from->field_0x14;
-            fn_71002b58c0(to->field_0x18, from->field_0x18);
+            fn_71002b58c0(reinterpret_cast<UnkObject_0x100*>(to->field_0x18),
+                          reinterpret_cast<const UnkObject_0x100*>(from->field_0x18));
             to->field_0x118 = from->field_0x118;
             count = other->count;
             ++i;

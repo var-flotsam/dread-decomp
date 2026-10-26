@@ -19,7 +19,6 @@ struct UnkInlineString {
 
 extern void* g_unk_7101a1b750[];
 void fn_710007f3b4(UnkInlineString* self, const void* str);  // append a string
-void fn_710007f5ac(UnkInlineString* self, char c);           // append a character
 
 // The string data's use count, a union member like ref_count (no type-based alias info, so
 // the id is reloaded after the increment).
@@ -50,11 +49,11 @@ void fn_7100ae9a10(UnkQualifiedId* self, UnkIdSource* source, const CStrId& pref
     self->source = source;
     if (HasValue(prefix)) {
         fn_710007f3b4(&s, UseStr(prefix));
-        fn_710007f5ac(&s, ':');
+        fn_710007f5ac(str, ':');
     }
     if (HasValue(source->vf_0x20())) {
         fn_710007f3b4(&s, UseStr(source->vf_0x20()));
-        fn_710007f5ac(&s, ':');
+        fn_710007f5ac(str, ':');
     }
     fn_710007f3b4(&s, UseStr(source->vf_0x28()));
     {

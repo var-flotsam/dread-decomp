@@ -4,10 +4,10 @@
 // with the state at `State`: assignment from another variant (taking its state and first 16
 // bytes) and from a pair. Reset releases the second id, then the first.
 #include "base/UnkDestructors.h"
+#include "base/UnkKeyedStrIds.h"
 #include "base/UnkVector.h"
 #include "types.h"
 
-using base::UnkAllocator;
 using base::UnkStrIdMember;
 
 struct UnkWordPair {
@@ -61,15 +61,6 @@ using UnkVariantB = UnkStrIdPairVariant<0x8, 0x20>;
 
 // Frees parallel arrays of keys (at 0) and string ids (at 8) sharing a count and an allocator;
 // the ids are released first (fn_7100ae2df8 and its copies).
-struct UnkKeyedStrIds {
-    void* keys;
-    UnkStrIdMember* ids;
-    u32 count;
-    u32 capacity;
-    u8 unk_0x18[0x8];
-    UnkAllocator* allocator;
-};
-
 __attribute__((always_inline)) static inline void Free(UnkKeyedStrIds* self) {
     if (self->ids && self->count)
         for (u64 i = 0; i < self->count; ++i)
@@ -81,7 +72,6 @@ __attribute__((always_inline)) static inline void Free(UnkKeyedStrIds* self) {
         self->allocator->vf_0x48(self->keys);
 }
 
-void fn_7100ae2df8(UnkKeyedStrIds* self);
 void fn_710021c8dc(UnkKeyedStrIds* self) { Free(self); }
 
 void fn_7100231fd4(UnkKeyedStrIds* self) { Free(self); }
