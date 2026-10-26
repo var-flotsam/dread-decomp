@@ -7,6 +7,7 @@
 // gui/scripts/guimanager.lua. The name and the layout are placeholders.
 
 #include "game/UnkGuiDisplayObject.h"
+#include "game/UnkGuiEvent.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -49,8 +50,8 @@ extern UnkGuiRoot* g_unk_717271e8f8;
 void fn_71011b6bbc(UnkGuiRoot* root, UnkGuiDisplayObject* object, bool value);
 
 // Sends a message (a 0x28-byte event built by fn_710120235c) to the root. Defined in the unit's
-// generated code; callers pass their own message type.
-void fn_71011b6e0c(UnkGuiRoot* root, void* message);
+// generated code.
+void fn_71011b6e0c(UnkGuiRoot* root, UnkGuiEvent* message);
 
 // Tells the root that `object` gained (fn_71011b7514) or lost (fn_71011b5d94) the property
 // game/UnkGuiDisplayObject.h describes. Defined in the unit's generated code.
