@@ -22,4 +22,6 @@ struct CVector3D {
 static_assert(sizeof(CVector3D) == 0xc, "CVector3D layout");
 
 }  // namespace base::math
+
+// Copies the x and y of a 3D vector into a 2D one (the projection).
 void fn_710007b430(base::math::CVector2D* out, const base::math::CVector3D* v);

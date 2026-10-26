@@ -3,6 +3,7 @@
 #include "base/UnkVector.h"
 #include "game/UnkAttack.h"
 #include "game/UnkManager_71726af468.h"
+#include "game/UnkTimelineComponent.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflStatics.h"
@@ -52,7 +53,6 @@ struct UnkStruct_71003609b8_Target {
 void fn_7100daaee4(UnkManager_71726af468* self, UnkActor* actor);
 
 UnkStruct_71003609b8_Target* fn_71010cc3bc(void* obj);
-void* fn_7100a2c13c(void* obj, void* key);
 
 static inline UnkManager_71726af468* GetManager() {
     if (!g_unk_71726af468) {
@@ -97,11 +97,12 @@ void fn_71003609b8(UnkAttackBase* self) {
         if (fn_71010cc3bc(p) && ai->field_0x4d7)
             fn_71010cc3bc(p)->vf_0xa8();
     }
-    if (void* q = self->field_0x8->field_0x2e8) {
-        if (fn_7100a2c13c(q, self->field_0x18)) {
+    if (auto* q = static_cast<UnkTimelineComponent*>(self->field_0x8->field_0x2e8)) {
+        const u64* key = reinterpret_cast<const u64*>(self->field_0x18);
+        if (fn_7100a2c13c(q, key)) {
             base::reflection::UnkReflTypeIdArg mask;
             mask.id = UnkAll_71003609b8().value;
-            fn_7100a2cb7c(q, self->field_0x18, &mask, -1.0f, 0);
+            fn_7100a2cb7c(q, key, &mask.id, false, -1.0f);
         }
     }
 }

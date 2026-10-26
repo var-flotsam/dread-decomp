@@ -61,7 +61,6 @@ struct UnkBoneDriver {
 };
 
 void fn_710019b9c8(UnkBoneArray* bones);
-UnkMatrix44 fn_71000127c8(const UnkMatrix44& a, const UnkMatrix44& b);  // a * b
 
 bool fn_71001c1b70(UnkBoneOwner* self, u32 index, UnkMatrix44* out) {
     UnkBoneArray* bones = self->holder->bones;

@@ -4,7 +4,6 @@
 // fn_71001c34f4 with 0. Returns whether the node is active.
 #include "game/UnkXformNode.h"
 
-UnkMatrix44 fn_71000127c8(const UnkMatrix44& a, const UnkMatrix44& b);  // a * b
 void fn_710019c474(void* target, const UnkMatrix44* m);
 void fn_71001c34f4(void* target, f32 value);
 

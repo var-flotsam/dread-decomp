@@ -5,6 +5,7 @@
 #include <utility>
 
 #include "base/UnkDestructors.h"
+#include "base/math/CVector.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
@@ -69,8 +70,6 @@ UnkSetStatus fn_7100d82864(void* self, UnkValueHolder* holder, UnkValueArg* cons
     return Done();
 }
 
-void* fn_7100a2c13c(UnkTimelineComponent* set, const u64* id);
-
 static inline UnkTimelineComponent* Timeline(UnkActor* actor) {
     return static_cast<UnkTimelineComponent*>(actor->field_0x2e8);
 }
@@ -109,13 +108,8 @@ UnkSetStatus fn_7100e6e850(void* self, UnkValueHolder* holder, UnkValueArg* cons
 
 // Resets the bounds to empty, then grows them by each point of each list (projected by
 // fn_710007b430).
-struct UnkVec2 {
-    f32 x, y;
-};
-struct UnkVec3 {
-    f32 x, y, z;
-};
-void fn_710007b430(UnkVec2* out, const UnkVec3* p);
+using UnkVec2 = base::math::CVector2D;
+using UnkVec3 = base::math::CVector3D;
 
 struct UnkPointList {
     UnkVec3* points;
