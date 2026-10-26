@@ -3,6 +3,7 @@
 // registrations (helpers in UnkStaticInitS7.h). Layouts are placeholders.
 #include "UnkStaticInitS7.h"
 #include "base/reflection/UnkReflTypeDtors.h"
+#include "base/reflection/UnkReflTypeGlobals.h"
 #include "game/UnkTUInit.h"
 
 using namespace unk_static_init;
@@ -32,14 +33,13 @@ UnkEnumType* fn_7100fae6a4();
 extern char g_unk_71729ee3e9[];
 UnkEnumType* fn_7100fae780();
 extern UnkEnumType g_unk_71729ee3f0;
-void fn_7100faebe0(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
-extern char g_unk_7101d5e2e0[];
+void fn_7100faebe0(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 void fn_7100fae85c();
 extern char g_unk_71729ee528[];
 extern char g_unk_71729ee529[];
 UnkEnumType* fn_7100faed64();
 extern UnkEnumType g_unk_71729ee530;
-void fn_7100faf1c4(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
+void fn_7100faf1c4(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 void fn_7100faee40();
 extern char g_unk_71729ee668[];
 extern char g_unk_71729ee669[];
@@ -94,14 +94,14 @@ void fn_7100fb1c80() {
     fn_710009ec00(g_unk_71729ee3e9, fn_7100fae780());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CArray<base::global::CStrId, EnumClass<ESubAreaItem>::Count, ESubAreaItem>>::TKeyElementIterator::value_type", true);
-        fn_7100faebe0(&g_unk_71729ee3f0, n, g_unk_7101d5e2e0, nullptr, fn_7100fae85c, nullptr);
+        fn_7100faebe0(&g_unk_71729ee3f0, n, &g_unk_7101d5e2e0, nullptr, fn_7100fae85c, nullptr);
     }
     __cxa_atexit(fn_7100096604, &g_unk_71729ee3f0, g_unk_7101a19000);
     fn_710009ec00(g_unk_71729ee528, &g_unk_71729ee3f0);
     fn_710009ec00(g_unk_71729ee529, fn_7100faed64());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CArray<base::global::CStrId, EnumClass<ESubAreaItem>::Count, ESubAreaItem>>::TKeyElementConstIterator::value_type", true);
-        fn_7100faf1c4(&g_unk_71729ee530, n, g_unk_7101d5e2e0, nullptr, fn_7100faee40, nullptr);
+        fn_7100faf1c4(&g_unk_71729ee530, n, &g_unk_7101d5e2e0, nullptr, fn_7100faee40, nullptr);
     }
     __cxa_atexit(fn_7100096604, &g_unk_71729ee530, g_unk_7101a19000);
     fn_710009ec00(g_unk_71729ee668, &g_unk_71729ee530);

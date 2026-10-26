@@ -4,6 +4,7 @@
 #include "UnkStaticInitS7.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflTypeDtors.h"
+#include "base/reflection/UnkReflTypeGlobals.h"
 #include "game/UnkTUInit.h"
 
 using namespace unk_static_init;
@@ -52,14 +53,13 @@ UnkEnumType* fn_7100e66954();
 extern char g_unk_71727c77f3[];
 UnkEnumType* fn_7100e66a30();
 extern UnkEnumType g_unk_71727c77f8;
-void fn_7100e66e90(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
-extern char g_unk_7101d5e2e0[];
+void fn_7100e66e90(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 void fn_7100e66b0c();
 extern char g_unk_71727c7930[];
 extern char g_unk_71727c7931[];
 UnkEnumType* fn_7100e67014();
 extern UnkEnumType g_unk_71727c7938;
-void fn_7100e67474(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
+void fn_7100e67474(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 void fn_7100e670f0();
 extern char g_unk_71727c7a70[];
 extern char g_unk_71727c7a71[];
@@ -72,13 +72,13 @@ UnkEnumType* fn_7100e678cc();
 extern char g_unk_71727c7bea[];
 UnkEnumType* fn_7100e679a8();
 extern UnkEnumType g_unk_71727c7bf0;
-void fn_7100e67e08(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
+void fn_7100e67e08(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 void fn_7100e67a84();
 extern char g_unk_71727c7d28[];
 extern char g_unk_71727c7d29[];
 UnkEnumType* fn_7100e67f8c();
 extern UnkEnumType g_unk_71727c7d30;
-void fn_7100e683ec(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
+void fn_7100e683ec(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 void fn_7100e68068();
 extern char g_unk_71727c7e68[];
 extern char g_unk_71727c7e69[];
@@ -260,14 +260,14 @@ void fn_7100e72680() {
     fn_710009ec00(g_unk_71727c77f3, fn_7100e66a30());
     {
         CStrId n("base::reflection::CollectionTypeMapper<CMinimapDef::TMapIconDefs>::TKeyElementIterator::value_type", true);
-        fn_7100e66e90(&g_unk_71727c77f8, n, g_unk_7101d5e2e0, nullptr, fn_7100e66b0c, nullptr);
+        fn_7100e66e90(&g_unk_71727c77f8, n, &g_unk_7101d5e2e0, nullptr, fn_7100e66b0c, nullptr);
     }
     __cxa_atexit(fn_7100096604, &g_unk_71727c77f8, g_unk_7101a19000);
     fn_710009ec00(g_unk_71727c7930, &g_unk_71727c77f8);
     fn_710009ec00(g_unk_71727c7931, fn_7100e67014());
     {
         CStrId n("base::reflection::CollectionTypeMapper<CMinimapDef::TMapIconDefs>::TKeyElementConstIterator::value_type", true);
-        fn_7100e67474(&g_unk_71727c7938, n, g_unk_7101d5e2e0, nullptr, fn_7100e670f0, nullptr);
+        fn_7100e67474(&g_unk_71727c7938, n, &g_unk_7101d5e2e0, nullptr, fn_7100e670f0, nullptr);
     }
     __cxa_atexit(fn_7100096604, &g_unk_71727c7938, g_unk_7101a19000);
     fn_710009ec00(g_unk_71727c7a70, &g_unk_71727c7938);
@@ -282,14 +282,14 @@ void fn_7100e72680() {
     fn_710009ec00(g_unk_71727c7bea, fn_7100e679a8());
     {
         CStrId n("base::reflection::CollectionTypeMapper<CMinimapDef::TMapLabelDefs>::TKeyElementIterator::value_type", true);
-        fn_7100e67e08(&g_unk_71727c7bf0, n, g_unk_7101d5e2e0, nullptr, fn_7100e67a84, nullptr);
+        fn_7100e67e08(&g_unk_71727c7bf0, n, &g_unk_7101d5e2e0, nullptr, fn_7100e67a84, nullptr);
     }
     __cxa_atexit(fn_7100096604, &g_unk_71727c7bf0, g_unk_7101a19000);
     fn_710009ec00(g_unk_71727c7d28, &g_unk_71727c7bf0);
     fn_710009ec00(g_unk_71727c7d29, fn_7100e67f8c());
     {
         CStrId n("base::reflection::CollectionTypeMapper<CMinimapDef::TMapLabelDefs>::TKeyElementConstIterator::value_type", true);
-        fn_7100e683ec(&g_unk_71727c7d30, n, g_unk_7101d5e2e0, nullptr, fn_7100e68068, nullptr);
+        fn_7100e683ec(&g_unk_71727c7d30, n, &g_unk_7101d5e2e0, nullptr, fn_7100e68068, nullptr);
     }
     __cxa_atexit(fn_7100096604, &g_unk_71727c7d30, g_unk_7101a19000);
     fn_710009ec00(g_unk_71727c7e68, &g_unk_71727c7d30);

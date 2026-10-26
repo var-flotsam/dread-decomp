@@ -6,7 +6,12 @@
 // generated reflection sources use for them.
 
 #include "base/reflection/CClass.h"
+
+// base::global::CCollectionKeyElementRefBase, the base class of the collections' key/element types.
 extern base::reflection::CType g_unk_7101d5e2e0;
-extern base::reflection::CType g_unk_7172794e78;
+// Defined in the same image as its users, so they address it directly (hidden), not through the GOT.
+extern base::reflection::CType g_unk_7172794e78 __attribute__((visibility("hidden")));
+// The type of the CBaseGameLink class.
 extern base::reflection::CType g_unk_71727bbe68;
+// refl_GetType<CLightManager*>: the generated getter of the pointer type (defined in generated code).
 const base::reflection::CType* fn_7100ad6568();

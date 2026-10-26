@@ -6,12 +6,19 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "base/reflection/UnkReflTypeGlobals.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "game/UnkTUInit.h"
 #include "game/UnkTUProperty.h"
 
 using base::global::CFilePathStrId;
 using base::global::CRntString;
+
+// The reflected types UnkReflTypeGlobals.h declares are the generated sources' CType; the registration
+// helpers see a type through the placeholder layout (UnkReflType).
+static inline UnkReflType* AsUnk(const base::reflection::CType* t) {
+    return reinterpret_cast<UnkReflType*>(const_cast<base::reflection::CType*>(t));
+}
 
 UnkReflType* fn_7100adc1d8();  // base::reflection::refl_GetType<gameeditor::TPropertyId>
 UnkReflType* fn_7100adc2b4();
@@ -53,7 +60,6 @@ extern char g_unk_7172755faa;
 extern UnkReflType g_unk_7172755fb0;
 void fn_7100acea3c();
 void fn_7100acedc0(UnkReflType* self, const CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
-extern UnkReflType g_unk_7101d5e2e0;
 extern char g_unk_71727560e8;
 UnkReflType* fn_7100acef44();
 extern char g_unk_71727560e9;
@@ -78,13 +84,13 @@ void fn_7100ad28e0() {
     InitClass(&g_unk_7172755fb0,
               "base::reflection::CollectionTypeMapper<base::global::CRntVector<SWorldGraphNode>>::TKeyElementIterator::"
               "value_type",
-              fn_7100acedc0, fn_7100acea3c, &g_unk_7101d5e2e0);
+              fn_7100acedc0, fn_7100acea3c, AsUnk(&g_unk_7101d5e2e0));
     fn_710009ec00(&g_unk_71727560e8, &g_unk_7172755fb0);
     fn_710009ec00(&g_unk_71727560e9, fn_7100acef44());
     InitClass(&g_unk_71727560f0,
               "base::reflection::CollectionTypeMapper<base::global::CRntVector<SWorldGraphNode>>::"
               "TKeyElementConstIterator::value_type",
-              fn_7100acf3a4, fn_7100acf020, &g_unk_7101d5e2e0);
+              fn_7100acf3a4, fn_7100acf020, AsUnk(&g_unk_7101d5e2e0));
     fn_710009ec00(&g_unk_7172756228, &g_unk_71727560f0);
     fn_710009ec00(&g_unk_7172756229, fn_7100acf528());
     InitVector(&g_unk_7172756230, "base::global::CRntVector<SWorldGraphNode>", fn_7100acf604);
@@ -110,7 +116,6 @@ extern char g_unk_717275b702;
 extern UnkReflType g_unk_717275b708;
 void fn_7100aea424();
 void fn_7100aea7a8(UnkReflType* self, const CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
-extern UnkReflType g_unk_7101d5e2e0;
 extern char g_unk_717275b840;
 UnkReflType* fn_7100aea92c();
 extern char g_unk_717275b841;
@@ -137,13 +142,13 @@ void fn_7100aef910() {
     InitClass(&g_unk_717275b708,
               "base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary< base::global::CStrId, "
               "CGameBlackboard::TPropDeltaValues >>::TKeyElementIterator::value_type",
-              fn_7100aea7a8, fn_7100aea424, &g_unk_7101d5e2e0);
+              fn_7100aea7a8, fn_7100aea424, AsUnk(&g_unk_7101d5e2e0));
     fn_710009ec00(&g_unk_717275b840, &g_unk_717275b708);
     fn_710009ec00(&g_unk_717275b841, fn_7100aea92c());
     InitClass(&g_unk_717275b848,
               "base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary< base::global::CStrId, "
               "CGameBlackboard::TPropDeltaValues >>::TKeyElementConstIterator::value_type",
-              fn_7100aead8c, fn_7100aeaa08, &g_unk_7101d5e2e0);
+              fn_7100aead8c, fn_7100aeaa08, AsUnk(&g_unk_7101d5e2e0));
     fn_710009ec00(&g_unk_717275b980, &g_unk_717275b848);
     fn_710009ec00(&g_unk_717275b981, fn_7100aeaf10());
     InitVector(&g_unk_717275b988,
@@ -165,7 +170,6 @@ extern char g_unk_717275e1fc;
 extern UnkReflType g_unk_717275e200;
 void fn_7100b05704();
 void fn_7100b05a88(UnkReflType* self, const CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
-extern UnkReflType g_unk_7101d5e2e0;
 extern char g_unk_717275e338;
 UnkReflType* fn_7100b05c0c();
 extern char g_unk_717275e339;
@@ -190,13 +194,13 @@ void fn_7100b0a100() {
     InitClass(&g_unk_717275e200,
               "base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectDef*>>::"
               "TKeyElementIterator::value_type",
-              fn_7100b05a88, fn_7100b05704, &g_unk_7101d5e2e0);
+              fn_7100b05a88, fn_7100b05704, AsUnk(&g_unk_7101d5e2e0));
     fn_710009ec00(&g_unk_717275e338, &g_unk_717275e200);
     fn_710009ec00(&g_unk_717275e339, fn_7100b05c0c());
     InitClass(&g_unk_717275e340,
               "base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectDef*>>::"
               "TKeyElementConstIterator::value_type",
-              fn_7100b0606c, fn_7100b05ce8, &g_unk_7101d5e2e0);
+              fn_7100b0606c, fn_7100b05ce8, AsUnk(&g_unk_7101d5e2e0));
     fn_710009ec00(&g_unk_717275e478, &g_unk_717275e340);
     fn_710009ec00(&g_unk_717275e479, fn_7100b061f0());
     InitVector(&g_unk_717275e480, "base::global::CRntVector<GUI::CDisplayObjectDef*>", fn_7100b062cc);
@@ -217,7 +221,6 @@ extern char g_unk_717275f08b;
 extern UnkReflType g_unk_717275f090;
 void fn_7100b0ab60();
 void fn_7100b0aee4(UnkReflType* self, const CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
-extern UnkReflType g_unk_7101d5e2e0;
 extern char g_unk_717275f1c8;
 UnkReflType* fn_7100b0b068();
 extern char g_unk_717275f1c9;
@@ -241,13 +244,13 @@ void fn_7100b0d6c0() {
     InitClass(&g_unk_717275f090,
               "base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectStateDef*>>::"
               "TKeyElementIterator::value_type",
-              fn_7100b0aee4, fn_7100b0ab60, &g_unk_7101d5e2e0);
+              fn_7100b0aee4, fn_7100b0ab60, AsUnk(&g_unk_7101d5e2e0));
     fn_710009ec00(&g_unk_717275f1c8, &g_unk_717275f090);
     fn_710009ec00(&g_unk_717275f1c9, fn_7100b0b068());
     InitClass(&g_unk_717275f1d0,
               "base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectStateDef*>>::"
               "TKeyElementConstIterator::value_type",
-              fn_7100b0b4c8, fn_7100b0b144, &g_unk_7101d5e2e0);
+              fn_7100b0b4c8, fn_7100b0b144, AsUnk(&g_unk_7101d5e2e0));
     fn_710009ec00(&g_unk_717275f308, &g_unk_717275f1d0);
     fn_710009ec00(&g_unk_717275f309, fn_7100b0b64c());
     InitVector(&g_unk_717275f310, "base::global::CRntVector<GUI::CDisplayObjectStateDef*>", fn_7100b0b728);
@@ -268,7 +271,6 @@ extern char g_unk_717276626b;
 extern UnkReflType g_unk_7172766270;
 void fn_7100b76544();
 void fn_7100b768c8(UnkReflType* self, const CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
-extern UnkReflType g_unk_7101d5e2e0;
 extern char g_unk_71727663a8;
 UnkReflType* fn_7100b76a4c();
 extern char g_unk_71727663a9;
@@ -292,13 +294,13 @@ void fn_7100b797e0() {
     InitClass(&g_unk_7172766270,
               "base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSkin*>>::TKeyElementIterator::"
               "value_type",
-              fn_7100b768c8, fn_7100b76544, &g_unk_7101d5e2e0);
+              fn_7100b768c8, fn_7100b76544, AsUnk(&g_unk_7101d5e2e0));
     fn_710009ec00(&g_unk_71727663a8, &g_unk_7172766270);
     fn_710009ec00(&g_unk_71727663a9, fn_7100b76a4c());
     InitClass(&g_unk_71727663b0,
               "base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSkin*>>::TKeyElementConstIterator:"
               ":value_type",
-              fn_7100b76eac, fn_7100b76b28, &g_unk_7101d5e2e0);
+              fn_7100b76eac, fn_7100b76b28, AsUnk(&g_unk_7101d5e2e0));
     fn_710009ec00(&g_unk_71727664e8, &g_unk_71727663b0);
     fn_710009ec00(&g_unk_71727664e9, fn_7100b77030());
     InitVector(&g_unk_71727664f0, "base::global::CRntVector<GUI::CSkin*>", fn_7100b7710c);
@@ -319,7 +321,6 @@ extern char g_unk_717276713b;
 extern UnkReflType g_unk_7172767140;
 void fn_7100b7db14();
 void fn_7100b7de98(UnkReflType* self, const CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
-extern UnkReflType g_unk_7101d5e2e0;
 extern char g_unk_7172767278;
 UnkReflType* fn_7100b7e01c();
 extern char g_unk_7172767279;
@@ -343,13 +344,13 @@ void fn_7100b81290() {
     InitClass(&g_unk_7172767140,
               "base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, "
               "GUI::CSpriteSheet*>>::TKeyElementIterator::value_type",
-              fn_7100b7de98, fn_7100b7db14, &g_unk_7101d5e2e0);
+              fn_7100b7de98, fn_7100b7db14, AsUnk(&g_unk_7101d5e2e0));
     fn_710009ec00(&g_unk_7172767278, &g_unk_7172767140);
     fn_710009ec00(&g_unk_7172767279, fn_7100b7e01c());
     InitClass(&g_unk_7172767280,
               "base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, "
               "GUI::CSpriteSheet*>>::TKeyElementConstIterator::value_type",
-              fn_7100b7e47c, fn_7100b7e0f8, &g_unk_7101d5e2e0);
+              fn_7100b7e47c, fn_7100b7e0f8, AsUnk(&g_unk_7101d5e2e0));
     fn_710009ec00(&g_unk_71727673b8, &g_unk_7172767280);
     fn_710009ec00(&g_unk_71727673b9, fn_7100b7e600());
     InitVector(&g_unk_71727673c0, "base::global::CRntDictionary<base::global::CStrId, GUI::CSpriteSheet*>",
@@ -375,7 +376,6 @@ extern char g_unk_7172767e2b;
 extern UnkReflType g_unk_7172767e30;
 void fn_7100b81cf8();
 void fn_7100b8207c(UnkReflType* self, const CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
-extern UnkReflType g_unk_7101d5e2e0;
 extern char g_unk_7172767f68;
 UnkReflType* fn_7100b82200();
 extern char g_unk_7172767f69;
@@ -401,13 +401,13 @@ void fn_7100b84970() {
     InitClass(&g_unk_7172767e30,
               "base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSpriteSheetItem*>>::"
               "TKeyElementIterator::value_type",
-              fn_7100b8207c, fn_7100b81cf8, &g_unk_7101d5e2e0);
+              fn_7100b8207c, fn_7100b81cf8, AsUnk(&g_unk_7101d5e2e0));
     fn_710009ec00(&g_unk_7172767f68, &g_unk_7172767e30);
     fn_710009ec00(&g_unk_7172767f69, fn_7100b82200());
     InitClass(&g_unk_7172767f70,
               "base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSpriteSheetItem*>>::"
               "TKeyElementConstIterator::value_type",
-              fn_7100b82660, fn_7100b822dc, &g_unk_7101d5e2e0);
+              fn_7100b82660, fn_7100b822dc, AsUnk(&g_unk_7101d5e2e0));
     fn_710009ec00(&g_unk_71727680a8, &g_unk_7172767f70);
     fn_710009ec00(&g_unk_71727680a9, fn_7100b827e4());
     InitVector(&g_unk_71727680b0, "base::global::CRntVector<GUI::CSpriteSheetItem*>", fn_7100b828c0);
@@ -424,7 +424,6 @@ extern char g_unk_71727930cb;
 extern UnkReflType g_unk_71727930d0;
 void fn_7100c8398c();
 void fn_7100c83d1c(UnkReflType* self, const CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
-extern UnkReflType g_unk_7101d5e2e0;
 extern char g_unk_7172793208;
 UnkReflType* fn_7100c83ea0();
 extern char g_unk_7172793209;
@@ -459,7 +458,6 @@ extern UnkReflType g_unk_7172793748;
 void fn_7100c85b3c(UnkReflType* self, const CStrId& name, void* a, void* b);
 extern char g_unk_71727938b8;
 extern char g_unk_71727938b9;
-extern UnkReflType g_unk_7172794e78 __attribute__((visibility("hidden")));
 UnkReflType* fn_7100c868ec();
 extern char g_unk_71727938ba;
 UnkReflType* fn_7100c869c8();
@@ -493,13 +491,13 @@ void fn_7100c92b10() {
     InitClass(&g_unk_71727930d0,
               "base::reflection::CollectionTypeMapper<base::global::CRntVector<CCutSceneDef::CActorDef>>::"
               "TKeyElementIterator::value_type",
-              fn_7100c83d1c, fn_7100c8398c, &g_unk_7101d5e2e0);
+              fn_7100c83d1c, fn_7100c8398c, AsUnk(&g_unk_7101d5e2e0));
     fn_710009ec00(&g_unk_7172793208, &g_unk_71727930d0);
     fn_710009ec00(&g_unk_7172793209, fn_7100c83ea0());
     InitClass(&g_unk_7172793210,
               "base::reflection::CollectionTypeMapper<base::global::CRntVector<CCutSceneDef::CActorDef>>::"
               "TKeyElementConstIterator::value_type",
-              fn_7100c8430c, fn_7100c83f7c, &g_unk_7101d5e2e0);
+              fn_7100c8430c, fn_7100c83f7c, AsUnk(&g_unk_7101d5e2e0));
     fn_710009ec00(&g_unk_7172793348, &g_unk_7172793210);
     fn_710009ec00(&g_unk_7172793349, fn_7100c84490());
     InitVector(&g_unk_7172793350, "base::global::CRntVector<CCutSceneDef::CActorDef>", fn_7100c8456c);
@@ -511,13 +509,13 @@ void fn_7100c92b10() {
     InitClass(&g_unk_71727934c8,
               "base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, "
               "CCutSceneDef::CAnimationLayerDef>>::TKeyElementIterator::value_type",
-              fn_7100c852ec, fn_7100c84f5c, &g_unk_7101d5e2e0);
+              fn_7100c852ec, fn_7100c84f5c, AsUnk(&g_unk_7101d5e2e0));
     fn_710009ec00(&g_unk_7172793600, &g_unk_71727934c8);
     fn_710009ec00(&g_unk_7172793601, fn_7100c85470());
     InitClass(&g_unk_7172793608,
               "base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, "
               "CCutSceneDef::CAnimationLayerDef>>::TKeyElementConstIterator::value_type",
-              fn_7100c858dc, fn_7100c8554c, &g_unk_7101d5e2e0);
+              fn_7100c858dc, fn_7100c8554c, AsUnk(&g_unk_7101d5e2e0));
     fn_710009ec00(&g_unk_7172793740, &g_unk_7172793608);
     fn_710009ec00(&g_unk_7172793741, fn_7100c85a60());
     InitVector(&g_unk_7172793748,
@@ -525,19 +523,19 @@ void fn_7100c92b10() {
                fn_7100c85b3c);
     fn_710009ec00(&g_unk_71727938b8, &g_unk_7172793748);
     fn_7100c85d3c();
-    fn_710009ec00(&g_unk_71727938b9, &g_unk_7172794e78);
+    fn_710009ec00(&g_unk_71727938b9, AsUnk(&g_unk_7172794e78));
     fn_710009ec00(&g_unk_71727938ba, fn_7100c868ec());
     fn_710009ec00(&g_unk_71727938bb, fn_7100c869c8());
     InitClass(&g_unk_71727938c0,
               "base::reflection::CollectionTypeMapper<base::global::CRntVector<CCutSceneDef::CTakeDef>>::"
               "TKeyElementIterator::value_type",
-              fn_7100c86e34, fn_7100c86aa4, &g_unk_7101d5e2e0);
+              fn_7100c86e34, fn_7100c86aa4, AsUnk(&g_unk_7101d5e2e0));
     fn_710009ec00(&g_unk_71727939f8, &g_unk_71727938c0);
     fn_710009ec00(&g_unk_71727939f9, fn_7100c86fb8());
     InitClass(&g_unk_7172793a00,
               "base::reflection::CollectionTypeMapper<base::global::CRntVector<CCutSceneDef::CTakeDef>>::"
               "TKeyElementConstIterator::value_type",
-              fn_7100c87424, fn_7100c87094, &g_unk_7101d5e2e0);
+              fn_7100c87424, fn_7100c87094, AsUnk(&g_unk_7101d5e2e0));
     fn_710009ec00(&g_unk_7172793b38, &g_unk_7172793a00);
     fn_710009ec00(&g_unk_7172793b39, fn_7100c875a8());
     InitVector(&g_unk_7172793b40, "base::global::CRntVector<CCutSceneDef::CTakeDef>", fn_7100c87684);
@@ -562,7 +560,6 @@ extern char g_unk_71727b3e01;
 extern UnkReflType g_unk_71727b3e08;
 void fn_7100d6a2f0();
 void fn_7100d6a674(UnkReflType* self, const CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
-extern UnkReflType g_unk_7101d5e2e0;
 extern char g_unk_71727b3f40;
 UnkReflType* fn_7100d6a7f8();
 extern char g_unk_71727b3f41;
@@ -608,13 +605,13 @@ void fn_7100d6ff80() {
     InitClass(&g_unk_71727b3e08,
               "base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, "
               "game::logic::collision::CShape*>>::TKeyElementIterator::value_type",
-              fn_7100d6a674, fn_7100d6a2f0, &g_unk_7101d5e2e0);
+              fn_7100d6a674, fn_7100d6a2f0, AsUnk(&g_unk_7101d5e2e0));
     fn_710009ec00(&g_unk_71727b3f40, &g_unk_71727b3e08);
     fn_710009ec00(&g_unk_71727b3f41, fn_7100d6a7f8());
     InitClass(&g_unk_71727b3f48,
               "base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, "
               "game::logic::collision::CShape*>>::TKeyElementConstIterator::value_type",
-              fn_7100d6ac58, fn_7100d6a8d4, &g_unk_7101d5e2e0);
+              fn_7100d6ac58, fn_7100d6a8d4, AsUnk(&g_unk_7101d5e2e0));
     fn_710009ec00(&g_unk_71727b4080, &g_unk_71727b3f48);
     fn_710009ec00(&g_unk_71727b4081, fn_7100d6addc());
     InitVector(&g_unk_71727b4088, "base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShape*>",
@@ -625,13 +622,13 @@ void fn_7100d6ff80() {
     InitClass(&g_unk_71727b4200,
               "base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, "
               "game::logic::collision::CShape const*>>::TKeyElementIterator::value_type",
-              fn_7100d6b5c4, fn_7100d6b240, &g_unk_7101d5e2e0);
+              fn_7100d6b5c4, fn_7100d6b240, AsUnk(&g_unk_7101d5e2e0));
     fn_710009ec00(&g_unk_71727b4338, &g_unk_71727b4200);
     fn_710009ec00(&g_unk_71727b4339, fn_7100d6b748());
     InitClass(&g_unk_71727b4340,
               "base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, "
               "game::logic::collision::CShape const*>>::TKeyElementConstIterator::value_type",
-              fn_7100d6bba8, fn_7100d6b824, &g_unk_7101d5e2e0);
+              fn_7100d6bba8, fn_7100d6b824, AsUnk(&g_unk_7101d5e2e0));
     fn_710009ec00(&g_unk_71727b4478, &g_unk_71727b4340);
     fn_710009ec00(&g_unk_71727b4479, fn_7100d6bd2c());
     InitVector(&g_unk_71727b4480,
@@ -653,7 +650,6 @@ extern char g_unk_71727ba99c;
 extern UnkReflType g_unk_71727ba9a0;
 void fn_7100d9dce8();
 void fn_7100d9e06c(UnkReflType* self, const CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
-extern UnkReflType g_unk_7101d5e2e0;
 extern char g_unk_71727baad8;
 UnkReflType* fn_7100d9e1f0();
 extern char g_unk_71727baad9;
@@ -682,13 +678,13 @@ void fn_7100da1ce0() {
     InitClass(
         &g_unk_71727ba9a0,
         "base::reflection::CollectionTypeMapper<base::global::CRntVector<CLightInfo>>::TKeyElementIterator::value_type",
-        fn_7100d9e06c, fn_7100d9dce8, &g_unk_7101d5e2e0);
+        fn_7100d9e06c, fn_7100d9dce8, AsUnk(&g_unk_7101d5e2e0));
     fn_710009ec00(&g_unk_71727baad8, &g_unk_71727ba9a0);
     fn_710009ec00(&g_unk_71727baad9, fn_7100d9e1f0());
     InitClass(&g_unk_71727baae0,
               "base::reflection::CollectionTypeMapper<base::global::CRntVector<CLightInfo>>::TKeyElementConstIterator::"
               "value_type",
-              fn_7100d9e650, fn_7100d9e2cc, &g_unk_7101d5e2e0);
+              fn_7100d9e650, fn_7100d9e2cc, AsUnk(&g_unk_7101d5e2e0));
     fn_710009ec00(&g_unk_71727bac18, &g_unk_71727baae0);
     fn_710009ec00(&g_unk_71727bac19, fn_7100d9e7d4());
     InitVector(&g_unk_71727bac20, "base::global::CRntVector<CLightInfo>", fn_7100d9e8b0);
@@ -727,7 +723,6 @@ extern char g_unk_71727bf9b2;
 extern UnkReflType g_unk_71727bf9b8;
 void fn_7100e08768();
 void fn_7100e08aec(UnkReflType* self, const CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
-extern UnkReflType g_unk_7101d5e2e0;
 extern char g_unk_71727bfaf0;
 UnkReflType* fn_7100e08c70();
 extern char g_unk_71727bfaf1;
@@ -740,7 +735,6 @@ extern char g_unk_71727bfc31;
 extern UnkReflType g_unk_71727bfc38;
 void fn_7100e09330(UnkReflType* self, const CStrId& name, void* a, void* b);
 extern char g_unk_71727bfda8;
-UnkReflType* fn_7100ad6568();  // base::reflection::refl_GetType<CLightManager*>
 extern char g_unk_71727bfda9;
 UnkReflType* fn_7100e09500();
 extern char g_unk_71727bfdaa;
@@ -758,19 +752,19 @@ void fn_7100e0ecb0() {
     InitClass(&g_unk_71727bf9b8,
               "base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CFilePathStrId, "
               "CLightsDef>>::TKeyElementIterator::value_type",
-              fn_7100e08aec, fn_7100e08768, &g_unk_7101d5e2e0);
+              fn_7100e08aec, fn_7100e08768, AsUnk(&g_unk_7101d5e2e0));
     fn_710009ec00(&g_unk_71727bfaf0, &g_unk_71727bf9b8);
     fn_710009ec00(&g_unk_71727bfaf1, fn_7100e08c70());
     InitClass(&g_unk_71727bfaf8,
               "base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CFilePathStrId, "
               "CLightsDef>>::TKeyElementConstIterator::value_type",
-              fn_7100e090d0, fn_7100e08d4c, &g_unk_7101d5e2e0);
+              fn_7100e090d0, fn_7100e08d4c, AsUnk(&g_unk_7101d5e2e0));
     fn_710009ec00(&g_unk_71727bfc30, &g_unk_71727bfaf8);
     fn_710009ec00(&g_unk_71727bfc31, fn_7100e09254());
     InitVector(&g_unk_71727bfc38, "base::global::CRntDictionary<base::global::CFilePathStrId, CLightsDef>",
                fn_7100e09330);
     fn_710009ec00(&g_unk_71727bfda8, &g_unk_71727bfc38);
-    fn_710009ec00(&g_unk_71727bfda9, fn_7100ad6568());
+    fn_710009ec00(&g_unk_71727bfda9, AsUnk(fn_7100ad6568()));
     fn_710009ec00(&g_unk_71727bfdaa, fn_7100e09500());
     fn_710009ec00(&g_unk_71727bfdab, fn_7100e095dc());
     fn_710009ec00(&g_unk_71727bfdac, fn_7100e096b8());
@@ -788,7 +782,6 @@ extern char g_unk_71727c8f81;
 extern UnkReflType g_unk_71727c8f88;
 void fn_7100e76c50();
 void fn_7100e76fd4(UnkReflType* self, const CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
-extern UnkReflType g_unk_7101d5e2e0;
 extern char g_unk_71727c90c0;
 UnkReflType* fn_7100e77158();
 extern char g_unk_71727c90c1;
@@ -826,10 +819,10 @@ void fn_7100e7c980() {
     fn_7100000250(fn_7100e76a5c, &g_unk_71727c8f58, &g_unk_7101a19000);
     fn_710009ec00(&g_unk_71727c8f80, fn_7100e76a98());
     fn_710009ec00(&g_unk_71727c8f81, fn_7100e76b74());
-    InitClass(&g_unk_71727c8f88, "base::reflection::CollectionTypeMapper<minimapGrid::TMinimapVisMap>::TKeyElementIterator::value_type", fn_7100e76fd4, fn_7100e76c50, &g_unk_7101d5e2e0);
+    InitClass(&g_unk_71727c8f88, "base::reflection::CollectionTypeMapper<minimapGrid::TMinimapVisMap>::TKeyElementIterator::value_type", fn_7100e76fd4, fn_7100e76c50, AsUnk(&g_unk_7101d5e2e0));
     fn_710009ec00(&g_unk_71727c90c0, &g_unk_71727c8f88);
     fn_710009ec00(&g_unk_71727c90c1, fn_7100e77158());
-    InitClass(&g_unk_71727c90c8, "base::reflection::CollectionTypeMapper<minimapGrid::TMinimapVisMap>::TKeyElementConstIterator::value_type", fn_7100e775b8, fn_7100e77234, &g_unk_7101d5e2e0);
+    InitClass(&g_unk_71727c90c8, "base::reflection::CollectionTypeMapper<minimapGrid::TMinimapVisMap>::TKeyElementConstIterator::value_type", fn_7100e775b8, fn_7100e77234, AsUnk(&g_unk_7101d5e2e0));
     fn_710009ec00(&g_unk_71727c9200, &g_unk_71727c90c8);
     fn_710009ec00(&g_unk_71727c9201, fn_7100e7773c());
     InitVector(&g_unk_71727c9208, "minimapGrid::TMinimapVisMap", fn_7100e77818);
@@ -896,7 +889,6 @@ extern char g_unk_7172796972;
 extern UnkReflType g_unk_7172796978;
 void fn_7100ca50bc();
 void fn_7100ca5440(UnkReflType* self, const CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
-extern UnkReflType g_unk_7101d5e2e0;
 extern char g_unk_7172796ab0;
 UnkReflType* fn_7100ca55c4();
 extern char g_unk_7172796ab1;
@@ -937,10 +929,10 @@ void fn_7100ca6150() {
     InitTunable(&g_unk_7172796920, fn_7100136ecc, g_unk_7101aa5328, fn_7100075104);
     fn_710009ec00(&g_unk_7172796971, fn_7100ca4f04());
     fn_710009ec00(&g_unk_7172796972, fn_7100ca4fe0());
-    InitClass(&g_unk_7172796978, "base::reflection::CollectionTypeMapper<base::global::CRntPooledDictionary<base::global::CStrId, CBreakableTileManager::STileGroupGroup>>::TKeyElementIterator::value_type", fn_7100ca5440, fn_7100ca50bc, &g_unk_7101d5e2e0);
+    InitClass(&g_unk_7172796978, "base::reflection::CollectionTypeMapper<base::global::CRntPooledDictionary<base::global::CStrId, CBreakableTileManager::STileGroupGroup>>::TKeyElementIterator::value_type", fn_7100ca5440, fn_7100ca50bc, AsUnk(&g_unk_7101d5e2e0));
     fn_710009ec00(&g_unk_7172796ab0, &g_unk_7172796978);
     fn_710009ec00(&g_unk_7172796ab1, fn_7100ca55c4());
-    InitClass(&g_unk_7172796ab8, "base::reflection::CollectionTypeMapper<base::global::CRntPooledDictionary<base::global::CStrId, CBreakableTileManager::STileGroupGroup>>::TKeyElementConstIterator::value_type", fn_7100ca5a24, fn_7100ca56a0, &g_unk_7101d5e2e0);
+    InitClass(&g_unk_7172796ab8, "base::reflection::CollectionTypeMapper<base::global::CRntPooledDictionary<base::global::CStrId, CBreakableTileManager::STileGroupGroup>>::TKeyElementConstIterator::value_type", fn_7100ca5a24, fn_7100ca56a0, AsUnk(&g_unk_7101d5e2e0));
     fn_710009ec00(&g_unk_7172796bf0, &g_unk_7172796ab8);
     fn_710009ec00(&g_unk_7172796bf1, fn_7100ca5ba8());
     InitVector(&g_unk_7172796bf8, "base::global::CRntPooledDictionary<base::global::CStrId, CBreakableTileManager::STileGroupGroup>", fn_7100ca5c84);
@@ -1106,7 +1098,6 @@ void fn_7100c77cd0() {
 }
 
 extern UnkTUHeader g_unk_71727bc0f8 __attribute__((visibility("hidden")));
-extern UnkReflType g_unk_71727bbe68;
 void fn_7100da4720();
 void fn_7100da4a08(UnkReflType* self, const CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
 extern char g_unk_71727bbfa0;
@@ -1124,10 +1115,10 @@ extern UnkPair16 g_unk_71727bbfd8;
 
 void fn_7100da54b0() {
     InitHeader(g_unk_71727bc0f8);
-    InitClass(&g_unk_71727bbe68, "CBaseGameLink", fn_7100da4a08, fn_7100da4720);
-    fn_710009ec00(&g_unk_71727bbfa0, &g_unk_71727bbe68);
+    InitClass(AsUnk(&g_unk_71727bbe68), "CBaseGameLink", fn_7100da4a08, fn_7100da4720);
+    fn_710009ec00(&g_unk_71727bbfa0, AsUnk(&g_unk_71727bbe68));
     fn_710009ec00(&g_unk_71727bbfa1, fn_7100da4cf0());
-    InitConverterTo(g_unk_71727bbfa8, &g_unk_71727bbe68, refl_TypeOf<fn_7100009658>, fn_7100da5184);
+    InitConverterTo(g_unk_71727bbfa8, AsUnk(&g_unk_71727bbe68), refl_TypeOf<fn_7100009658>, fn_7100da5184);
     new (&g_unk_71727bbfc8) CStrId("{EMPTY}", true);
     fn_7100000250(fn_710000051c, &g_unk_71727bbfc8, &g_unk_7101a19000);
     new (&g_unk_71727bbfd0) CStrId("{BROKEN}", true);
