@@ -43,3 +43,9 @@ extern "C" void dread_port_map_game_image();
 // under the working directory. The data loader reads exefs/main from it, nn::fs mounts romfs/ as
 // "rom".
 extern "C" const char* dread_port_orig_directory();
+
+// The state of the port's one controller (nn::hid's handheld Npad, id 0x20), set by the port's
+// window from the keyboard or a host game controller; the game's poll fn_710006deac reads it every
+// frame through nn::hid::GetNpadState. Buttons in the console's bit order; sticks from -32767 to
+// 32767. Safe from any thread.
+extern "C" void dread_port_set_npad_state(u64 buttons, s32 left_x, s32 left_y, s32 right_x, s32 right_y);

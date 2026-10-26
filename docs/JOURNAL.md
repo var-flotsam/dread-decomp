@@ -86,6 +86,19 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Port M1: `nn::hid` (2026-10-26).** All 34 `nn::hid` functions in `port/runtime/`. The
+parameter lists came from the dump's dynamic symbols (the imports' mangled names: read locally,
+the names only), which settles what Ghidra's pseudocode leaves open (`this`, references,
+`nn::util::BitFlagSet<32, NpadStyleTag>` by value, the `IntrusiveList` of node connections) and
+is the source to use for every remaining import. From the callers: `fn_710006daf0` supports
+full key and handheld (3) on nine ids starting with 0x20; `fn_710006deac` copies the state as
+five words (0x28 bytes) and reads full key on style bit 0, handheld on bit 1, and wants exactly
+one id connected; `VibrationPlayer::GetFileInfo` returns through x8 and the game reads +0xc.
+`VibrationPlayer` moved from `src/game_s1/fn_71000707dc.cpp` into
+`include/base/input/UnkHidVibration.h` with the classes' member declarations (the two
+destructors and `fn_71000733e4` still match; `check.py` clean). `port_link.py`'s residue no
+longer lists an `nn::` function by name.
+
 **Port M1: the system start-up's services (2026-10-26).** `nn::mem`, `nv`, `nn::account`,
 `nn::util`, `nn::time` and `nn::diag` in `port/runtime/`, so every import `fn_71001325d0` makes
 resolves. From the bytes (capstone over the dump, read only): the start-up initialises the
