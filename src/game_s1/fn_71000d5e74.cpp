@@ -2,6 +2,7 @@
 // fn_71000a1c60: a value and a pointer bound to a pair that refers to them (state 2) while the
 // pointer is set, built from the pointer its first argument holds and assigned to the second:
 // fn_71000d5e74.
+#include "base/reflection/UnkReflCast.h"
 #include "types.h"
 
 template <class X, class Y>
@@ -70,15 +71,13 @@ __attribute__((always_inline)) static inline void AssignBound(Y* const* src, Unk
     *out = UnkBoundRef<Y>(*src);
 }
 
-template <u32 Size, void (*Destroy)(void*)>
+template <u32 Size, class T, void (*Destroy)(T*)>
 struct UnkDestroyed {
     u64 unk_0x0[Size / 8];
 
-    __attribute__((always_inline)) ~UnkDestroyed() { Destroy(this); }
+    __attribute__((always_inline)) ~UnkDestroyed() { Destroy(static_cast<T*>(static_cast<void*>(this))); }
 };
 
-void fn_71000a1c60(void* self);
-
-using UnkBound18 = UnkDestroyed<0x18, fn_71000a1c60>;
+using UnkBound18 = UnkDestroyed<0x18, base::reflection::UnkReflValue, fn_71000a1c60>;
 
 void fn_71000d5e74(UnkBound18* const* src, UnkBoundRef<UnkBound18>* out) { AssignBound(src, out); }

@@ -10,10 +10,9 @@
 using base::global::CStrId;
 using base::math::CVector3D;
 using base::reflection::UnkReflTypeOf;
+using base::reflection::UnkTunableRegistry;
 
-extern void* g_unk_7101d47350;
-void* fn_71000839a0(u64 size, u32 flags);
-void fn_710013ac14(void* notifier);
+extern UnkTunableRegistry* g_unk_7101d47350;
 void fn_710013c3c8(void* notifier, void* object, const CStrId* property);
 
 struct UnkMinimapSettings {
@@ -55,9 +54,9 @@ __attribute__((always_inline)) static inline void SetProperty(UnkMinimapSettings
     if (UnkReflTypeOf<T>::Get()->m_fn_0x58(&(self->*Field), value))
         return;
     Assign(self->*Field, *value);
-    void* notifier = g_unk_7101d47350;
+    UnkTunableRegistry* notifier = g_unk_7101d47350;
     if (!notifier) {
-        notifier = fn_71000839a0(0x58, 0x3f);
+        notifier = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
         fn_710013ac14(notifier);
         g_unk_7101d47350 = notifier;
     }

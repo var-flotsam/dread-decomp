@@ -3,6 +3,7 @@
 // the base destructor.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "base/reflection/UnkReflCast.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -33,7 +34,7 @@ struct UnkDelegate {
 struct UnkState {
     void** vtable;
     u8 unk_0x8[0x10];
-    u8 field_0x18[0x18];
+    base::reflection::UnkReflValue field_0x18;
     UnkDelegate delegates[4];
 };
 static_assert(sizeof(UnkState) == 0x70, "UnkState layout");
@@ -73,7 +74,6 @@ extern void* g_unk_7101a946c0[];
 extern void* g_unk_7101a94718[];
 void fn_7100a2d4d0(void* target, void* listener);
 void fn_71004f11f8(void* self);
-void fn_71000a1c60(void* self);
 void fn_7100431cec(void* self);
 void fn_71010c4194(UnkStateObject* self);
 
@@ -86,7 +86,7 @@ static inline void DestroyState(UnkState* state) {
     for (int i = 3; i >= 0; --i)
         state->delegates[i].~UnkDelegate();
     state->vtable = &g_unk_7101a946c0[2];
-    fn_71000a1c60(state->field_0x18);
+    fn_71000a1c60(&state->field_0x18);
 }
 
 void fn_7100a9e6bc(UnkStateObject* self) {

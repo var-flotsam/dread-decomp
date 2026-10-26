@@ -1,9 +1,9 @@
 // Destructor body: drops a ref-counted pointer, then tears down three nested event-like members
 // (each a vtable'd object holding callback slot arrays and small reset-on-destroy records) and a
 // last record, then runs the base destructor.
+#include "base/reflection/UnkReflCast.h"
 #include "types.h"
 
-void fn_71000a1c60(void* p);
 void fn_710117b3f0(void* owner, void* listener);
 void fn_71009b0800(void* self);
 
@@ -30,11 +30,11 @@ struct UnkRefPtr {
 struct UnkEventBase {
     void* vtable;
     u8 pad_0x8[0x10];
-    u8 field_0x18[0x18];
+    base::reflection::UnkReflValue field_0x18;
 
     void DestroyBase(void** vt) {
         vtable = vt + 2;
-        fn_71000a1c60(field_0x18);
+        fn_71000a1c60(&field_0x18);
     }
 };
 

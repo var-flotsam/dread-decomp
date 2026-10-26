@@ -2,6 +2,7 @@
 // arrays and string ids, resets the five embedded sub-objects, then runs the base destructor.
 #include "types.h"
 #include "base/global/CStrId.h"
+#include "base/reflection/UnkReflCast.h"
 
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
@@ -105,13 +106,12 @@ struct UnkPool {
 
 void fn_71004f11f8(UnkPool* p);
 void fn_710002f67c(void* p);
-void fn_71000a1c60(void* p);
 
 // An embedded sub-object (0x70 bytes) with its own vtable.
 struct UnkSub {
     void* vtable;
     u8 pad_0x8[0x10];
-    u8 field_0x18[0x18];
+    base::reflection::UnkReflValue field_0x18;
     void* field_0x30[8];
 
     void Destroy() {
@@ -124,7 +124,7 @@ struct UnkSub {
         field_0x30[1] = nullptr;
         field_0x30[0] = nullptr;
         vtable = g_unk_7101a82c00 + 2;
-        fn_71000a1c60(field_0x18);
+        fn_71000a1c60(&field_0x18);
     }
 };
 

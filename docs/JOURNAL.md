@@ -60,8 +60,31 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - A union-typed scoped reference adds a reload in its destructor; cast at the call instead. A cast that lets Clang tail-merge two paths can be undone by an anonymous-union member: [sixteenth session](#session-log-newest-first).
 - On the x86-64 port a mismatched declaration is a register mismatch only across argument classes (`float` vs integer or pointer); count and pointee differences are harmless for address-taking references: [sixteenth session](#session-log-newest-first).
 - Clone kinds and the census method; families tried and left: work log items 0 and 2.
+- A function passed as a template argument keeps its relocation target only if the template takes the function's own type (no inline wrapper): [hub batch 3](#session-log-newest-first).
 
 ## Session log (newest first)
+
+**Hub batch 3 (2026-10-26, branch `claude/dread-decomp-hub-batch-3-85bf13`).** The hand pass on
+what `tools/hub_migrate.py --header-redeclared` left: 23 symbols, 52 declarations in 43 files, all
+a placeholder type the header's real type rejects. Five sonnet agents on file-disjoint groups (by
+union of the files that share a symbol, plus the three `src/` headers involved), each verifying with
+its own `baseline.py` tag; the orchestrator's tag `hb3-all` (46 files with the headers' includers)
+confirmed the whole set byte-identical. Wall clock about 7 minutes, 680k agent tokens; 40 files
+migrated, none restored. Fixes were type renames: `nn::os::MutexType` for the mutex wrappers,
+`base::UnkAllocator`, `UnkBlockFreeList`, `base::UnkNamedEntry`, `UnkReflValue`,
+`UnkTunableRegistry`, `UnkReflTypeIdArg` locals for the reflection statics' masks, and
+`UnkWeakHandle.h`'s ref and handle types in place of local copies. One file got better:
+`fn_71003f2710` embeds the header's `UnkXform` and reads the cached angle through `GetAngle()`
+(77.3% to 91.8%). Findings: a function passed as a template argument (`UnkOutOfLineElement<0x18,
+fn_71000a1c60>`) keeps its relocation target only if the template takes the function's own type;
+an inline wrapper names a different function. `CFilePathStrId` has no refcounting copy assignment,
+so `fn_7101037bc0` keeps a derived view with `CStrId`'s `operator=`. Header follow-ups the agents
+reported: the registry setters take `base::UnkNamedEntry*` where two callers hold a `CRntString`
+(cast); `g_unk_7101a1a4c8` is `char[]` in `UnkCloneHelpers.h` (users write `+ 0x10`);
+`g_unk_7101d47350` (3 signatures) wants a header; the local `fn_710013c3c8` declaration in
+`fn_7100eaa7a8.cpp` disagrees with its definition; the reflection statics' `UnkReflTypeIdArg`
+parameters read a `u32`. `baseline.py save` also died on its last line when `build/` is a link
+outside the worktree (fixed). decl_check: conflicting 308 to 286, header re-declarations 27 to 6.
 
 **Port M1, semantic-lifter gaps (2026-10-25, branch `claude/port-lift-gaps`).** On top of the
 semantic lifts: every condition now follows the flags exactly (carry from an unsigned compare of

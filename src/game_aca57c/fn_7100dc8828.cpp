@@ -3,6 +3,7 @@
 // first use) through fn_7101203854. Three getters read the same properties (false when the
 // section is missing).
 #include "base/global/CStrId.h"
+#include "base/reflection/UnkReflAttributes.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -16,7 +17,7 @@ struct UnkSection;
 struct UnkPropertyName;
 
 struct UnkTypedValue {
-    void* type;
+    const base::reflection::CType* type;
     void* value;
 };
 
@@ -26,7 +27,6 @@ void fn_710120320c(UnkUserDataOwner* self);  // constructor
 UnkUserData* fn_710120384c(UnkUserDataOwner* self);
 void fn_7101203854(UnkUserDataOwner* self);
 UnkSection* fn_71010472e0(UnkUserData* data, const CStrId& name);
-void* fn_710000d228();  // bool's reflected type
 void fn_7100332c80(UnkSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
 static inline UnkUserDataOwner* GetOwner() {

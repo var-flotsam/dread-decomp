@@ -5,15 +5,8 @@
 // worked out when it has none, fn_71003f18f8 gets a flag telling whether the entry's floats are
 // both close to zero, a virtual call (slot 0xe8) hands over the attack's values, and the timer
 // is reloaded from the entry's word before stepping to the next entry (wrapping at the count).
+#include "game/UnkXformNode.h"
 #include "types.h"
-
-// Not trivially destructible, so returned in memory like the original's.
-struct UnkVec3_71003f2710 {
-    f32 x;
-    f32 y;
-    f32 z;
-    ~UnkVec3_71003f2710() {}
-};
 
 struct UnkSpitEntry {
     f32 field_0x0;
@@ -29,10 +22,7 @@ struct UnkSpitData {
 
 struct UnkSpitOwner_71003f2710 {
     u8 pad_0x0[0x38];
-    u8 field_0x38[0x40];
-    UnkVec3_71003f2710 field_0x78;
-    u8 pad_0x84[0xc];
-    u32 field_0x90;
+    UnkXform field_0x38;
     u8 pad_0x94[0x1ac];
     void* field_0x240;
     u8 pad_0x248[0x88];
@@ -60,23 +50,14 @@ struct UnkSpitUpdate {
 
 bool fn_71003f28c8(UnkSpitUpdate* self, f32 delta);
 void fn_71003f24f4(UnkSpitUpdate* self, u32 state);
-UnkVec3_71003f2710 fn_7100079b18(void* object, f32 value);
-void fn_71003f18f8(UnkSpitUpdate* self, bool a, bool b, const UnkVec3_71003f2710* v);
+void fn_71003f18f8(UnkSpitUpdate* self, bool a, bool b, const UnkVec3f* v);
 void fn_71009f92d0(void* object);
 
-static inline UnkVec3_71003f2710 UnkCachedVec(UnkSpitOwner_71003f2710* owner) {
-    if (!(owner->field_0x90 & 2)) {
-        UnkVec3_71003f2710 r = fn_7100079b18(owner->field_0x38, owner->field_0x78.z);
-        owner->field_0x78 = r;
-        owner->field_0x90 |= 2;
-        return r;
-    }
-    return owner->field_0x78;
+static inline UnkVec3f UnkCachedVec(UnkSpitOwner_71003f2710* owner) {
+    return owner->field_0x38.GetAngle();
 }
-
-// NON_MATCHING(minor): same behaviour; the original copies the cached vector with 32-bit pairs
-// (ldp/stp) where ours uses a 64-bit and a 32-bit access, and loads the table index before the
-// table pointer.
+// NON_MATCHING(minor): same behaviour; the original loads the table index before the table
+// pointer, and the 0.1f constant is built after the entry's loads.
 void fn_71003f2710(UnkSpitUpdate* self, f32 delta) {
     void* target = self->field_0x8->field_0x240;
     UnkSpitData* data = self->field_0x28;
@@ -95,7 +76,7 @@ void fn_71003f2710(UnkSpitUpdate* self, f32 delta) {
     u32 next = entry->field_0x8;
     bool still = (__builtin_fabsf(entry->field_0x0) < 0.1f) & (__builtin_fabsf(entry->field_0x4) < 0.1f);
     UnkSpitOwner_71003f2710* owner = self->field_0x8;
-    UnkVec3_71003f2710 v = UnkCachedVec(owner);
+    UnkVec3f v = UnkCachedVec(owner);
     fn_71003f18f8(self, still, still, &v);
     reinterpret_cast<void (*)(UnkSpitUpdate*, void*, void*, void*, f32, f32)>(self->vtable[0xe8 / 8])(
         self, self->field_0x5c, self->field_0x74, self->field_0xf8, self->field_0xd4, self->field_0xd8);

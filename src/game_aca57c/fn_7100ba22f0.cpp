@@ -214,17 +214,6 @@ void fn_7100bde12c(UnkMixedRecord* self, const UnkMixedRecord* other) {
 // and appends each id, growing like PushBack (including its hang).
 extern char unk_7101aa5860[];
 
-struct UnkStrIdArray {
-    CStrId* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
-void fn_710000542c(UnkStrIdArray* self, u32 capacity);
-
 struct UnkIdArrayRecord {
     char* vtable;
     u8 unk_0x8[0x4];
@@ -234,7 +223,7 @@ struct UnkIdArrayRecord {
     CStrId id_0x78;
     u8 data_0x80[8];
     CStrId id_0x88;
-    UnkStrIdArray ids;
+    base::UnkStrIdVec ids;
 };
 
 void fn_7100cb8310(UnkIdArrayRecord* self, const UnkIdArrayRecord* other) {
@@ -246,7 +235,7 @@ void fn_7100cb8310(UnkIdArrayRecord* self, const UnkIdArrayRecord* other) {
     new (&self->id_0x78) CStrId(other->id_0x78);
     __builtin_memcpy(self->data_0x80, other->data_0x80, sizeof(self->data_0x80));
     new (&self->id_0x88) CStrId(other->id_0x88);
-    UnkStrIdArray* ids = &self->ids;
+    base::UnkStrIdVec* ids = &self->ids;
     ids->data = nullptr;
     ids->count = 0;
     ids->capacity = 0;

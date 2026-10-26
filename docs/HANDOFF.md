@@ -6,17 +6,19 @@ it needs). History, batch logs and the index of matching findings are in `docs/J
 `docs/recon.md` describes the binary, `docs/compiler.md` the toolchain, `docs/references.md` the
 outside projects. This page is edited in place, never appended to: session notes go to the journal.
 
-**Last updated 2026-10-25** (branches `claude/cheap-progress`: the mechanical hub-migration tools; `claude/lifter-semantic-coverage-225e8f`: port M1 step 3, semantic lifts).
+**Last updated 2026-10-26** (hub batch 3, branch `claude/dread-decomp-hub-batch-3-85bf13`).
 Target: **Metroid Dread 2.1.0**, `main` build ID `646761F643AFEBB379EDD5E6A5151AF2CEF93DC1`.
 
 ## Start here
 
 - **Open work:** `gh pr list` is the source of truth for what is waiting to merge; the lifter's semantic
   coverage mode (stream M) runs in its own session on a `claude/lifter-semantic-coverage-*` branch.
-- **Next hub batch:** `python tools/hub_migrate.py --version 2.1.0 --header-redeclared` (about a minute)
-  prints the `LEFT` files that need a hand (135 declarations in 85 files on 2026-10-25, each with its
-  compile error). Work them per `.claude/skills/dread-hubs`, several agents at once on disjoint file
-  sets, verified with `tools/baseline.py`; then `tools/decl_check.py --list` for the next symbols.
+- **Next hub batch:** `tools/hub_migrate.py --header-redeclared` has nothing left but two deliberate
+  keeps (batch 3, 2026-10-26). Next are the four symbols `include/` itself declares in two or three
+  headers (`fn_71000839a0` in 27 files, `fn_710000051c`, `fn_7100001570`, `g_unk_7101d47200`: pick one
+  header, then `hub_migrate.py SYM --header ...`), then `tools/decl_check.py --list`, conflicting
+  signatures first. Work them per `.claude/skills/dread-hubs`: the tool first, agents on disjoint file
+  sets for what it leaves, verified with `tools/baseline.py`.
 - **Port:** `python tools/port_link.py --version 2.1.0` rebuilds `build/port/link/boot_missing.csv`, the
   boot-slice functions without a source (the lifter's worklist) and the runtime stubs still needed.
 - Every number on this page names the command that produced it; rerun the command rather than trust
@@ -48,11 +50,11 @@ Of the 10.1 MB matched, about 9.4 MB is generated (reflection boilerplate, lifte
 clones, tables) and 0.76 MB is hand-written with real types. The `U` bytes are mostly mid-sized
 game logic (5.6 MB between 256 B and 2 KB), which needs real types, not generators.
 
-Source hygiene (`tools/decl_check.py`, 2026-10-25): 11,298 `fn_`/`g_unk_` symbols declared in
-1,480 hand-written files (2,355 of them the generated class-getter header); 309 with conflicting
-signatures (393 on the morning of 2026-10-24, 337 after the first hub batch, 310 after the second);
-35 declared in `include/` and again in a `.cpp` (76, 53, 45; the mechanical pass of 2026-10-25 took
-ten more); 1,311 declared in more than one file (2,212 extra copies). Translation units (`tools/tu_map.py`): 2,773 units from 2,760 static initialisers, 2,712
+Source hygiene (`tools/decl_check.py`, 2026-10-26): 11,298 `fn_`/`g_unk_` symbols declared in
+1,482 hand-written files (2,355 of them the generated class-getter header); 286 with conflicting
+signatures (393 on the morning of 2026-10-24, 337 after the first hub batch, 310 after the second,
+308 after the TU-init symbols); 6 declared in `include/` and again outside it (76, 53, 45, 27);
+1,282 declared in more than one file (2,060 extra copies). Translation units (`tools/tu_map.py`): 2,773 units from 2,760 static initialisers, 2,712
 at high confidence; 11,656 `U` functions (6.0 MB) sit in a unit with a reflected class hint.
 
 ## Direction (decided 2026-10-24, owner's goal: clean, readable, playable in a few months)
@@ -292,9 +294,9 @@ property registration (`UnkReflStatics.h`), the AI component's navigation getter
 ones in sequence (`tools/trymatch.py --obj-dir` keeps parallel objects apart).
 
 Next, by `tools/decl_check.py --list` (at most 4 signatures each now, so rank by file count too):
-`fn_7100a2cb7c` (4 signatures in 4 files; three of them pass a `float` where the definition takes
-a `bool`, which the port link traps), `fn_71004f3ea4` (4 in 3), `fn_7100083990` (3 in 6),
-`fn_710007b430`, `fn_7100d7c828`, `fn_71011cdce8` (3 in 5 each). Follow-ups the batch left:
+`fn_71004f3ea4` (4 in 3), `fn_710007b430`, `fn_7100d7c828`, `fn_71011cdce8` (3 in 5 each). Of the
+286 conflicting symbols, 32 have a hand-written definition (its signature is the canonical one),
+39 only a lifted one and 213 none (the callers' types decide). Follow-ups the batch left:
 `fn_710021693c` and `fn_7100216d30` into `UnkSphere.h`; `fn_71004fa3b8` (9 identical local
 declarations); the `UnkActor` slots at +0x240 and +0x298 typed `UnkAIComponent*` and
 `UnkNavigation*`; `fn_7100394bd4` (2 signatures); `fn_7100ad3588` into `UnkErasedVector.h` and
@@ -323,18 +325,13 @@ list head `g_unk_71726db788`); `unk_static_init`'s property structs point `next`
 `UnkPropertyHead` and its helpers take the head as `UnkPropertyHead*&` (pointer retypes only; the
 helper bodies and their store order are untouched, because they are load-bearing). That unblocked
 96 files (the class-type destructor alone was declared locally in 57), all 195 includers of the two
-families byte-identical (`baseline.py`, tag `tuinit`). What the tool leaves now: 50 declarations in
-43 files, each with its compile error on record, nearly all a placeholder parameter type the
-header's real type rejects: the mutex wrappers `fn_71000668f8`/`fn_7100066918`/`fn_710006691c`/
-`fn_7100066920` (private `UnkMutex_*` types), the block free list `fn_710008377c`, the registry
-string setters `fn_710007e704`/`fn_710007ea60`, the allocator getter `fn_7100083990` (`UnkAllocator`
-vs `base::UnkAllocator`), `fn_71000a1c60` (6 files), `fn_710013ac14` (3), `fn_7100a2cb7c` (3, a
-`float` where the definition takes `bool`), and the globals `g_unk_7101a1a4c8` (4),
-`g_unk_7101a209e0` (3), `g_unk_7101a19610` (2). `hub_migrate.py --header-redeclared` prints the
-current list; it is the next hand batch (`.claude/skills/dread-hubs`). The two helper families
-themselves still coexist (`unk_static_init`'s and `UnkTUInit.h`'s near-duplicate `UnkTunable`,
-`UnkProperty`, `InitTunable`, `InitProperty`; the global ones have one caller each), so folding one
-into the other is a later readability step, verified the same way.
+families byte-identical (`baseline.py`, tag `tuinit`). Batch 3 (2026-10-26) hand-migrated the 40
+files the tool left (placeholder types renamed to the headers' real ones, five agents on disjoint
+file sets, about 7 minutes; journal). The two helper families themselves still coexist
+(`unk_static_init`'s and `UnkTUInit.h`'s near-duplicate `UnkTunable`, `UnkProperty`, `InitTunable`,
+`InitProperty`; the global ones have two users, `fn_7100adcf10.cpp` and `fn_71009ba9f0.cpp`), so
+folding one into the other is the next readability step, verified the same way; it also unblocks
+`src/game_s7/fn_7100536550.cpp` (`UnkTunable` ambiguous).
 
 **Stream B (core engine types).** Left from the string-id and reflection work: the reflected
 function array's growth (`fn_7100097f80`), the function's constructor and destructor

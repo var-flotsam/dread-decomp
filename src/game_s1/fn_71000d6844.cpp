@@ -8,6 +8,7 @@
 // a value) is destroyed.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
+#include "base/reflection/UnkReflCast.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -31,10 +32,10 @@ struct UnkMapKey {
     }
 };
 
-template <u32 Next, void (*Destroy)(void*)>
+template <class Value, void (*Destroy)(Value*)>
 struct UnkMapNode {
     UnkMapKey key;
-    u8 value[Next - 8];  // destroyed by Destroy
+    Value value;  // destroyed by Destroy
     UnkMapNode* next;  // the map's node list
 };
 
@@ -50,16 +51,16 @@ struct UnkIdMapStorage {
     void* head;
 };
 
-template <u32 Next, void (*Destroy)(void*)>
+template <class Value, void (*Destroy)(Value*)>
 struct UnkIdMap : UnkIdMapStorage {
-    using Node = UnkMapNode<Next, Destroy>;
+    using Node = UnkMapNode<Value, Destroy>;
 
     __attribute__((always_inline)) void Clear() {
         if (!this->count)
             return;
         for (Node* n = static_cast<Node*>(this->head); n;) {
             Node* next = n->next;
-            Destroy(n->value);
+            Destroy(&n->value);
             n->key.~UnkMapKey();
             this->allocator->vf_0x48(n);
             n = next;
@@ -71,17 +72,17 @@ struct UnkIdMap : UnkIdMapStorage {
     }
 };
 
-void fn_71000a1c60(void* value);
+using base::reflection::UnkReflValue;
 
-void fn_71000d6844(UnkIdMap<0x20, fn_71000a1c60>* self) { self->Clear(); }
+void fn_71000d6844(UnkIdMap<UnkReflValue, fn_71000a1c60>* self) { self->Clear(); }
 
-template <u32 ValueSize, void (*Destroy)(void*)>
+template <class Value, void (*Destroy)(Value*)>
 struct UnkMapIter {
     void* node;
     union {
         struct {
             UnkMapKey key;
-            u8 value[ValueSize];  // destroyed by Destroy
+            Value value;  // destroyed by Destroy
         } entry;  // kind 1
     };
     u32 kind;
@@ -91,7 +92,7 @@ struct UnkMapIter {
     __attribute__((always_inline)) ~UnkMapIter() {
         switch (kind) {
         case 1:
-            Destroy(entry.value);
+            Destroy(&entry.value);
             entry.key.~UnkMapKey();
             kind = 0;
             break;
@@ -107,9 +108,9 @@ struct UnkMapHead {
     void* head;
 };
 
-template <u32 ValueSize, void (*Destroy)(void*)>
-__attribute__((always_inline)) inline void Start(void* node, UnkMapIter<ValueSize, Destroy>* out) {
-    UnkMapIter<ValueSize, Destroy> it;
+template <class Value, void (*Destroy)(Value*)>
+__attribute__((always_inline)) inline void Start(void* node, UnkMapIter<Value, Destroy>* out) {
+    UnkMapIter<Value, Destroy> it;
     it.node = node;
     it.kind = 0;
     it.Advance();
@@ -117,10 +118,10 @@ __attribute__((always_inline)) inline void Start(void* node, UnkMapIter<ValueSiz
     out->Advance();
 }
 
-void fn_71000d6f6c(const UnkMapHead* map, UnkMapIter<0x18, fn_71000a1c60>* out) {
+void fn_71000d6f6c(const UnkMapHead* map, UnkMapIter<UnkReflValue, fn_71000a1c60>* out) {
     Start(map->head, out);
 }
 
-void fn_71000d7024(const UnkMapHead* map, UnkMapIter<0x18, fn_71000a1c60>* out) {
-    Start<0x18, fn_71000a1c60>(nullptr, out);
+void fn_71000d7024(const UnkMapHead* map, UnkMapIter<UnkReflValue, fn_71000a1c60>* out) {
+    Start<UnkReflValue, fn_71000a1c60>(nullptr, out);
 }

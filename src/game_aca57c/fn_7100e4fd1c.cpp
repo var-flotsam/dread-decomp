@@ -3,6 +3,7 @@
 // layout, with an out-of-line Reserve, fn_710000542c) copied by appending each id.
 #include <new>
 
+#include "base/UnkCloneRecords.h"
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
@@ -47,8 +48,10 @@ struct UnkReleasedStrIdArray {
             capacity = 0;
         }
     }
+
+    // The out-of-line Reserve takes the header's vector of string ids, which has this layout.
+    void Reserve(u32 n) { fn_710000542c(reinterpret_cast<base::UnkStrIdVec*>(this), n); }
 };
-void fn_710000542c(UnkReleasedStrIdArray* self, u32 capacity);
 
 struct UnkIdsRecord60 {
     u32 field_0x0[10];
@@ -80,7 +83,7 @@ void fn_7100e4fd1c(UnkIdsRecord60* self, const UnkIdsRecord60* other) {
     ids->field_0x14 = other->ids.field_0x14;
     ids->flags = other->ids.flags;
     ids->allocator = other->ids.allocator;
-    fn_710000542c(ids, other->ids.capacity);
+    ids->Reserve(other->ids.capacity);
     for (const UnkReleasedStrId *it = other->ids.data, *end = it + other->ids.count; it != end; ++it) {
         u32 n = ids->count;
         u32 new_capacity = ids->capacity;
@@ -89,7 +92,7 @@ void fn_7100e4fd1c(UnkIdsRecord60* self, const UnkIdsRecord60* other) {
         if ((s32)n >= (s32)new_capacity)
             for (;;) {
             }
-        fn_710000542c(ids, new_capacity);
+        ids->Reserve(new_capacity);
         // A bitwise copy of the id (the original reloads the count after it), then the reference.
         UnkReleasedStrId* slot = &ids->data[ids->count];
         UnkStringData* d = it->data;

@@ -4,34 +4,10 @@
 // and binds its callback to a lazily created global dispatcher.
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-// A reference-counted object released through vf_0x10. The count is a union member (no
-// type-based alias info: the original reloads the slots after count updates).
-struct UnkRefObject {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-    union {
-        s32 ref_count;
-    };
-};
-
-// A weak handle to an object (0x18 bytes, vtable g_unk_7101a209e0).
-struct UnkWeakHandle : UnkRefObject {
-    void* target;
-};
-
-struct UnkTarget {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-    virtual void vf_0x18();
-    virtual void vf_0x20();
-    virtual UnkWeakHandle** vf_0x28();  // the object's weak handle slot
-};
 
 struct UnkVec3 {
     u32 x, y, z;
@@ -132,12 +108,10 @@ inline const UnkStaticZero_71726b5354& UnkGetStaticZero_71726b5354() {
     return s_value;
 }
 
-extern void* g_unk_7101a209e0[];
 extern void* g_unk_7101d47360;
 extern u8 g_unk_71727556f0 __attribute__((visibility("hidden")));
 void fn_7100ac7628(UnkComponent_0x5d0* self);
-UnkTarget* fn_71008640a4(void* registry, const CStrId* id);
-void* fn_71000839a0(u64 size, u32 flags);
+UnkWeakTarget* fn_71008640a4(void* registry, const CStrId* id);
 void fn_7100a2cddc(void* table, void* key, CStrId* id, bool unique, f32 delay);
 void fn_71000267f8(void* self, void* other);
 void fn_7100ee1f34(void* self);
@@ -152,43 +126,6 @@ static inline void* UnkGetManager() {
     return g_unk_7101d47360;
 }
 
-template <class T>
-static inline void AssignRef(T** slot, T* p) {
-    if (*slot != p) {
-        if (p)
-            ++p->ref_count;
-        if (T* old = *slot) {
-            if (--old->ref_count == 0)
-                old->vf_0x10();
-        }
-        *slot = p;
-    }
-}
-
-static inline void ResetRef(UnkRefObject** slot) {
-    if (UnkRefObject* p = *slot) {
-        if (--p->ref_count == 0)
-            p->vf_0x10();
-        *slot = nullptr;
-    }
-}
-
-// The weak handle of `target`, created on first use.
-__attribute__((always_inline)) static inline UnkWeakHandle* GetWeakHandle(UnkTarget* target) {
-    UnkWeakHandle** slot = target->vf_0x28();
-    if (!slot)
-        return nullptr;
-    UnkWeakHandle* handle = *slot;
-    if (!handle) {
-        handle = static_cast<UnkWeakHandle*>(fn_71000839a0(0x18, 0x3e));
-        *reinterpret_cast<void***>(handle) = &g_unk_7101a209e0[2];
-        handle->ref_count = 0;
-        handle->target = target;
-        AssignRef(slot, handle);
-    }
-    return handle;
-}
-
 __attribute__((always_inline)) static inline void ResolveTarget(UnkComponent_0x5d0* self, const CStrId& id, UnkWeakHandle** out) {
     if (id.data == &g_unk_7101d47108->empty)
         return;
@@ -196,7 +133,7 @@ __attribute__((always_inline)) static inline void ResolveTarget(UnkComponent_0x5
     if (!registry)
         return;
     UnkWeakHandle* handle = nullptr;
-    if (UnkTarget* target = fn_71008640a4(registry, &id))
+    if (UnkWeakTarget* target = fn_71008640a4(registry, &id))
         handle = GetWeakHandle(target);
     AssignRef(out, handle);
 }
