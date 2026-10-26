@@ -439,8 +439,10 @@ dump's `romfs/`, saves go to `$DREAD_SAVE`). So is the rest of the start-up `fn_
 `nv`, `nn::account`, `nn::util`, `nn::time`, `nn::diag`). `nn::hid` too (one handheld pad set by
 `dread_port_set_npad_state`, no vibration devices). Every SDK import of the slice is in the runtime
 (`nn::prepo` drops reports, `movie` has no tracks yet); `tools/port_imports.py` checks stubs against
-the dump's mangled import names. Next for M1, in order: addresses for the 71 vtables nothing defines
-(they are the game's own, in `.data`); the final link at a fixed base within 2 GB of the image
+the dump's mangled import names. `tools/port_addresses.py` places the vtables and
+named functions the link had no address for from matched code (residue 439 to 226: 191 host names,
+9 vtables and 26 names, 12 of them a placeholder name the sources reuse for different classes:
+rename them, `port/README.md` "Addresses from matched code"). Next for M1, in order: the final link at a fixed base within 2 GB of the image
 (about 214 MiB free below `0x7100000000`, 235 MiB above the `.bss`). That link needs the Itanium
 C++ ABI, so on this PC MinGW-w64 or WSL (ask the owner before installing either), not MSVC.
 M2 groundwork (2026-10-26, branch `claude/port-bshdat`): `tools/bshdat.py --version 2.1.0

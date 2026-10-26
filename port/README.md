@@ -413,6 +413,33 @@ post-indexed load reading the incremented base, a 64-bit read narrowed to the ty
 elsewhere in the function, callee-saved registers spilled into the locals and dropped as if they
 were the prologue's saves.
 
+## Addresses from matched code (M1)
+
+```sh
+python tools/port_addresses.py --version 2.1.0   # build/check objects -> build/port/addresses.json, about a minute
+python tools/port_link.py --version 2.1.0        # uses it when present (--no-addresses to compare)
+```
+
+The link's residue kept two kinds of names nothing gives an address: vtables of classes whose
+virtual functions are not all defined (`vtable for CAttack`), and functions named other than
+`fn_<addr>` (`base::UnkSubAllocator::UnkSubAllocator()`). The game's own code knows them: a
+function whose bytes match the original loads the vtable or calls the function, and the
+original instruction encodes the address. `tools/port_addresses.py` reads `tools/check.py`'s
+AArch64 objects, diffs each as `check.py` does, and asks its relocation check about every
+symbol it cannot resolve as if it were at 0: the reported mismatch is the original's target
+(calls, page-and-offset pairs and GOT slots; not a lone half). On `main`: 89,299 byte-matching
+functions, 9,297 symbols placed (67 vtables). `port_link.py` then defines a vtable as an
+absolute symbol at the game's own (the data loader makes its slots x86-64 code; the Itanium
+layout is the same) and treats a placed name like any `fn_<addr>` reference (an alias of the
+definition there, or a trap). The residue drops from 439 to **226**: 191 host library names, 9
+vtables and 26 names, all of them either unused by matched code or one of the 12 symbols whose
+uses disagree. Those are naming problems in the sources, left out on purpose and listed with
+the functions behind each address in `addresses.json`: a placeholder class name reused for
+different classes (`UnkCallbackSet` and its vtable at `0x7101a33fa0` and `0x7101a20950`,
+`UnkAttackListener`, `UnkElem50`, `unk_any_props::UnkPropAny` and `UnkPropList` with five
+vtables each, `UnkBase_0x30`, `UnkElem40`, `UnkElem80`), and `base::global::CRntString::~CRntString()`,
+251 uses at `0x710007ecd4` and 2, in `fn_710026ead0` itself, at `0x710026ead0`.
+
 ## The runtime (M1)
 
 Every SDK import the boot slice reaches is defined in `runtime/`: `nn::os` 30, `nn::oe` 20,
