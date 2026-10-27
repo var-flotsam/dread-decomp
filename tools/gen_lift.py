@@ -29,7 +29,7 @@ lifts each one into C++ over `char*` parameters and keeps only the byte-identica
      memcpy ("copy").
 
 Usage: python tools/gen_lift.py --version 2.1.0 [--plain]   (--plain: no pass-through)
-Outputs are deterministic (the facts do not depend on the order they are computed in; their
+Outputs are deterministic (the facts come from one complete table, abi_facts.AbiFacts.complete; its
 cache is build/port/abi_facts.pickle). Regenerate, never edit them. There is one file per 64 KiB of
 address space, and each function follows its own declarations, so
 
@@ -307,10 +307,19 @@ def base_ptr(b: str) -> str:
 
 
 def float_widths(ins) -> dict[int, str]:
-    """The width ("s" or "d") each float register is first used with in the function: a register
-    only passed on to a callee takes it (one variable per register and width in flat mode, and
-    no "float width" clash with a later use in the structured lifter)."""
+    """The width ("s" or "d") each float register is first read with in the function (first used,
+    for one only written): an incoming argument or a register only passed on to a callee takes it
+    (one variable per register and width in flat mode, and no "float width" clash with a later
+    use in the structured lifter). Reads, since a write may come first at the other width
+    (`fcvt d0, s0`)."""
     w: dict[int, str] = {}
+    for x in ins:
+        if x.mnemonic == "fmov" and any(op.type == arm64.ARM64_OP_FP for op in x.operands):
+            continue  # (capstone counts fmov's immediate destination as read)
+        for q in x.regs_access()[0]:
+            name = CS.reg_name(q)
+            if name[0] in "sd" and fkey(name) is not None:
+                w.setdefault(100 + fkey(name), name[0])
     for x in ins:
         for op in x.operands:
             if op.type == arm64.ARM64_OP_REG and regname(op.reg)[0] in "sd" and fkey(regname(op.reg)) is not None:
@@ -555,7 +564,8 @@ class Lifter:
                 # (semantic mode: integers of two types join as the whole register, which is what a
                 # 32-bit write leaves too: zero-extended)
                 va, vc = (f"(u64)({va[0]})", "u64"), (f"(u64)({vc[0]})", "u64")
-            if sem and (va is None) != (vc is None) and n not in m.poison:
+            if sem and (va is None) != (vc is None) and n not in m.poison \
+                    and not (n == 100 and (a if va is None else c).fcall):  # (s0: a call's unread float result)
                 # Semantic mode: one path has no value here (a call clobbered the register, or it was
                 # never set), which is garbage in the original; the other path's value stands. Before
                 # the if, it is in scope already; otherwise a phi that the other path leaves at zero.
@@ -2418,12 +2428,13 @@ FACTS = ROOT / "build" / "port" / "abi_facts.pickle"  # tools/abi_facts.py's cac
 
 
 def load_facts(orig: asmdiff.Original, version: str):
-    """Byte mode's pass-through: every callee's argument registers (tools/abi_facts.py). The facts
-    do not depend on the order they are computed in, so the output does not either."""
+    """Byte mode's pass-through: every callee's argument registers (tools/abi_facts.py), from the
+    complete table (AbiFacts.complete: every function in address order), so the output depends
+    on the binary only, not on what was asked first or on a forked worker's slice."""
     import abi_facts
     af = abi_facts.AbiFacts(orig)
     af.version = version
-    af.load(FACTS)
+    af.complete(FACTS)
     Lifter.facts = af.facts
     return af
 
@@ -2502,7 +2513,8 @@ def main() -> int:
     if not args.version:
         ap.error("--version is required")
     orig = asmdiff.Original(args.version)
-    af = None if args.plain else load_facts(orig, args.version)
+    if not args.plain:
+        load_facts(orig, args.version)
     if args.best:
         write_best(orig, parse_only(args.best))
         return 0
@@ -2531,8 +2543,6 @@ def main() -> int:
 
     reloc_bad: set[int] = set()
     chosen, _, lifted = lift_rounds(orig, cands, ROOT / "build" / "gen_lift", reloc_bad=reloc_bad)
-    if af is not None:
-        af.save(FACTS)
     write_out({a: "\n".join(sorted(chosen[a][1]) + [chosen[a][0]]) for a in chosen})
     ok = sorted(chosen)
     lifted_any = set().union(*lifted)

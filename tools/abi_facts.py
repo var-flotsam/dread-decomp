@@ -37,6 +37,7 @@ import argparse
 import os
 import pickle
 import sys
+import time
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -48,12 +49,13 @@ import asmdiff  # noqa: E402
 import callgraph  # noqa: E402
 
 MAX_SIZE = 65536
-CACHE_VERSION = 8  # bump when the analysis changes (AbiFacts.load ignores other versions)
+CACHE_VERSION = 9  # bump when the analysis changes (AbiFacts.load ignores other versions)
 MAX_DEPTH = 48  # callee recursion; deeper chains count as unknown
 INT_ARGS = frozenset(range(9))  # x0-x7 and x8
 FLOAT_ARGS = frozenset(range(100, 108))
 ARGS = INT_ARGS | FLOAT_ARGS
 CLOBBER = frozenset(range(19)) | frozenset(range(100, 108)) | frozenset(range(116, 132)) | {"nzcv"}
+RESULTS = frozenset({0, 1, 100, 101, 102, 103})  # what a call may return in: x0:x1, an HFA in s0-s3
 # C library imports by name: (integer arguments, float arguments, returns a value).
 CLIB = {"memcpy": (3, 0), "memmove": (3, 0), "memset": (3, 0), "memcmp": (3, 0), "strlen": (1, 0),
         "strcmp": (2, 0), "strncmp": (3, 0), "strcpy": (2, 0), "strncpy": (3, 0), "strchr": (2, 0),
@@ -70,6 +72,9 @@ CS.detail = True
 BRANCHES = ("b", "cbz", "cbnz", "tbz", "tbnz")
 # Corrections to capstone's register access (Insn.of).
 FLAGS_ONLY = frozenset({"cmp", "cmn", "tst"})
+# Vector-register forms that move one float (Clang 9 copies an FPR as `mov v0.16b, v8.16b`): not
+# a vector copy (Insn.vec), so they count as a caller setting a float argument.
+SCALAR_COPIES = frozenset({"mov", "fmov", "dup", "umov", "ins"})
 NO_DEST_READ = frozenset({"lsl", "lsr", "asr", "ror", "ubfx", "sbfx", "ubfiz", "sbfiz", "sxtb", "sxth", "sxtw",
                           "uxtb", "uxth", "fmov", "tbl"})
 
@@ -100,6 +105,20 @@ class Facts:
     @property
     def sret(self) -> bool:
         return 8 in self.args
+
+
+def replace(tmp: Path, path: Path) -> bool:
+    """os.replace for a cache file other processes may be reading: on Windows a reader holding it
+    open makes the replace fail for a moment, so retry, and give up on the save (never the run)."""
+    for _ in range(10):
+        try:
+            os.replace(tmp, path)
+            return True
+        except PermissionError:
+            time.sleep(0.5)
+    tmp.unlink(missing_ok=True)
+    print(f"{path} is in use; not saved", file=sys.stderr)
+    return False
 
 
 _KEYS: dict[int, object] = {}
@@ -140,7 +159,7 @@ class Insn:
     mem: tuple | None    # (base key, displacement, writeback) of the memory operand
     reg_ops: tuple       # keys of the register operands, in order
     xreads: frozenset    # integer registers read in their 64-bit form
-    vec: bool            # a q/v (vector) register operand: a copy, not a float argument
+    vec: bool            # a q register, or a v register outside SCALAR_COPIES: a vector copy, not a float argument
 
     @staticmethod
     def of(x) -> "Insn":
@@ -164,7 +183,8 @@ class Insn:
                     regs[0] if regs else None,
                     (reg_key(mem[0].mem.base), mem[0].mem.disp, bool(x.writeback)) if mem else None, regs,
                     frozenset(reg_key(q) for q in r if CS.reg_name(q)[0] == "x" and isinstance(reg_key(q), int)),
-                    any(CS.reg_name(op.reg)[0] in "qv" for op in ops))
+                    any(CS.reg_name(op.reg)[0] == "q" for op in ops) or (
+                        x.mnemonic not in SCALAR_COPIES and any(CS.reg_name(op.reg)[0] == "v" for op in ops)))
 
 
 class AbiFacts:
@@ -181,20 +201,41 @@ class AbiFacts:
         self._wide = False  # liveness over 64-bit reads only (Facts.wide)
 
     def load(self, path: Path) -> None:
-        """Facts computed by an earlier run (they depend on the binary only)."""
+        """The complete table an earlier run computed (complete()); a partial one is ignored."""
         if path.is_file():
             with path.open("rb") as fh:
                 saved = pickle.load(fh)
-            if saved.get("version") == CACHE_VERSION:
+            if saved.get("version") == CACHE_VERSION and saved.get("complete"):
                 self._facts.update(saved["facts"])
                 self._ret.update(saved["ret"])
+                self.is_complete = True
+
+    def complete(self, path: Path) -> None:
+        """Facts of every function, computed in address order from nothing, unless `path` holds
+        that table already. A call cycle or a chain deeper than MAX_DEPTH leaves the function
+        that closes it without facts at that point (facts()), so lazily computed facts would
+        depend on the order they are asked for; this one order makes them a function of the
+        binary, and tools/gen_lift.py's output with them (about two minutes, then cached)."""
+        self.load(path)
+        if getattr(self, "is_complete", False):
+            return
+        self._facts.clear()
+        self._fwd.clear()
+        for a in sorted(self.orig.sizes):
+            self.facts(a)
+        self.is_complete = True
+        self.save(path)
 
     def save(self, path: Path) -> None:
+        """Write the table (only a complete one is ever loaded again). Several tools share the
+        file: it is replaced in one step, and a reader that holds it open on Windows only costs
+        the save, never the run."""
         path.parent.mkdir(parents=True, exist_ok=True)
-        tmp = path.with_name(f"{path.name}.{os.getpid()}.tmp")  # several tools share the cache
+        tmp = path.with_name(f"{path.name}.{os.getpid()}.tmp")
         with tmp.open("wb") as fh:
-            pickle.dump({"version": CACHE_VERSION, "facts": self._facts, "ret": self._ret}, fh)
-        os.replace(tmp, path)
+            pickle.dump({"version": CACHE_VERSION, "complete": getattr(self, "is_complete", False),
+                         "facts": self._facts, "ret": self._ret}, fh)
+        replace(tmp, path)
 
     # -- decoding -------------------------------------------------------------------------------
 
@@ -268,7 +309,13 @@ class AbiFacts:
     @staticmethod
     def jump_table(ins: list, i: int) -> bool:
         """Whether the br at ins[i] dispatches a switch (Clang's `adr` shortly before), not a call."""
-        return any(y.mnemonic == "adr" for y in ins[max(i - 6, 0):i])
+        return any(y.mnemonic == "adr" for y in ins[max(i - 10, 0):i])
+
+    @staticmethod
+    def cases(ins: list, i: int, starts: set[int], at: dict[int, int]) -> list[int]:
+        """The successors of the switch br at ins[i]: every block after it (its cases and what
+        follows them; more than the table holds, which only adds registers that may be read)."""
+        return [at[t] for t in sorted(starts) if t > ins[i].address and t in at]
 
     def fwd_of(self, addr: int, ins: list) -> frozenset:
         """Facts.fwd: the callers' evidence, for a function with an indirect call."""
@@ -295,6 +342,8 @@ class AbiFacts:
                 if not x.imms or x.imms[-1] != addr or not (
                         x.mnemonic in ("bl", "b") or x.mnemonic in BRANCHES or x.mnemonic.startswith("b.")):
                     continue
+                if x.address in starts and i and ins[i - 1].mnemonic in ("b", "ret", "br"):
+                    continue  # a block nothing falls into: no write before the call in it
                 later: set = set()
                 for y in reversed(ins[:i]):
                     if y.mnemonic in ("bl", "blr"):
@@ -357,10 +406,11 @@ class AbiFacts:
                 reg = x.reg0
                 u = self.call_uses(None, block, len(block) - 1, depth, reg) | fwd
                 d = set(CLOBBER) | {30}
+            elif m == "br" and self.jump_table(ins, i):
+                u, d, fall = {x.reg0}, set(), self.cases(ins, i, starts, at)
             elif m == "br":
                 reg = x.reg0
-                u = self.call_uses(None, block, len(block) - 1, depth, reg) | set(ret_uses)
-                u, d, fall = u if self.jump_table(ins, i) else u | fwd, set(), []
+                u, d, fall = self.call_uses(None, block, len(block) - 1, depth, reg) | set(ret_uses) | fwd, set(), []
             elif m == "b":
                 t = imm[0]
                 if addr <= t < end:
@@ -395,8 +445,9 @@ class AbiFacts:
     def held(self, addr: int) -> dict[int, tuple[int | None, frozenset]]:
         """At each call leaving the function: (its direct target or None, the argument registers
         that may hold something there), by a forward pass: on some path from the entry they still
-        hold the entry's value or the function wrote them since its last call (a call leaves x0
-        and v0, its results). A callee reads garbage in the others, in the original too."""
+        hold the entry's value or the function wrote them since its last call (a call leaves its
+        possible results, RESULTS). A callee reads garbage in the others, in the original too.
+        A switch's br leads to every block after it."""
         ins = self.decode(addr)
         if ins is None:
             return {}
@@ -404,13 +455,16 @@ class AbiFacts:
         end = addr + 4 * len(ins)
         regs = frozenset(range(8)) | FLOAT_ARGS
         n = len(ins)
+        starts = self.block_starts(addr, ins)
         succ: list[list[int]] = []
         calls: dict[int, int | None] = {}
         for i, x in enumerate(ins):
             m, t = x.mnemonic, x.imms[-1] if x.imms else None
             fall = [i + 1] if i + 1 < n else []
-            if m == "ret" or m == "br":
-                if m == "br" and not self.jump_table(ins, i):
+            if m == "br" and self.jump_table(ins, i):
+                fall = self.cases(ins, i, starts, at)
+            elif m == "ret" or m == "br":
+                if m == "br":
                     calls[i] = None
                 fall = []
             elif m in ("bl", "blr"):
@@ -435,7 +489,7 @@ class AbiFacts:
             i = work.pop()
             x, s = ins[i], live_in[i]
             if x.mnemonic in ("bl", "blr"):
-                out = (s - CLOBBER) | {0, 100}
+                out = (s - CLOBBER) | RESULTS
             else:
                 out = s | (x.defs & regs)
             for j in succ[i]:

@@ -12,7 +12,7 @@ accepts a lift that behaves like the original, whatever its bytes:
      (byte-identical on AArch64, where the registers pass through; an x86-64 compile loses them).
      They are listed in build/port/passthrough.json (--passthrough writes just that), added to the
      worklist (--no-overrides leaves them out), and an accepted lift of one is marked in the
-     manifest with "overrides": <its src/lifted file>, so tools/port_link.py links it instead.
+     manifest with "overrides": <its src/lifted file>, for tools/port_link.py to link instead of it.
   2. Lift every gen_lift variant with opts {"semantic"}: a direct call passes every argument
      register the callee reads (tools/abi_facts.py), so nothing reaches a callee by a register
      the C call does not name (a float only passed on as f64, which keeps all its bits); a
@@ -134,7 +134,32 @@ def declared(block: str) -> tuple[int, int]:
     return len(types) - floats, floats
 
 
-CALLEE_DECL = re.compile(r"namespace (?:callee|noret|fret|dret|sret) \{ [^{}]*?\bfn_([0-9a-f]{10})\(([^)]*)\); \}")
+CALLEE_DECL = re.compile(r"namespace (callee|noret|fret|dret|sret) \{ [^{}]*?\bfn_([0-9a-f]{10})\(([^)]*)\); \}")
+CALL_EXPR = re.compile(r"\b(callee|noret|fret|dret|sret)::fn_([0-9a-f]{10})\(")
+
+
+def named_args(block: str) -> dict[int, list[tuple[int, int]]]:
+    """For each direct callee of a src/lifted block, the (integer, float) registers each call to
+    it names, in the order of the calls in the text (the order of the instructions)."""
+    decl: dict[tuple[str, int, int], tuple[int, int]] = {}
+    for m in CALLEE_DECL.finditer(block):
+        ps = [p.strip() for p in m.group(3).split(",") if p.strip()]
+        nf = sum(p in ("f32", "f64") for p in ps)
+        decl[(m.group(1), int(m.group(2), 16), len(ps))] = (len(ps) - nf, nf)
+    out: dict[int, list[tuple[int, int]]] = {}
+    for m in CALL_EXPR.finditer(block):
+        depth, n, j = 1, 0, m.end()
+        empty = block[j:j + 1] == ")"
+        while depth and j < len(block):
+            ch = block[j]
+            depth += ch == "("
+            depth -= ch == ")"
+            n += ch == "," and depth == 1
+            j += 1
+        k = decl.get((m.group(1), int(m.group(2), 16), 0 if empty else n + 1))
+        if k is not None:
+            out.setdefault(int(m.group(2), 16), []).append(k)
+    return out
 
 
 def passthrough(af: abi_facts.AbiFacts, reach: set[int]) -> list[dict]:
@@ -151,17 +176,20 @@ def passthrough(af: abi_facts.AbiFacts, reach: set[int]) -> list[dict]:
         if f is None:
             continue
         ints, floats = declared(block)
-        named: dict[int, tuple[int, int]] = {}  # callee -> fewest (integers, floats) a declaration names
-        for m in CALLEE_DECL.finditer(block):
-            c, ps = int(m.group(1), 16), [p.strip() for p in m.group(2).split(",") if p.strip()]
-            k = (len(ps) - sum(p in ("f32", "f64") for p in ps), sum(p in ("f32", "f64") for p in ps))
-            named[c] = k if c not in named else (min(named[c][0], k[0]), min(named[c][1], k[1]))
+        named = named_args(block)
+        sites = sorted(af.held(a).items())
+        order = {}  # callee -> its call instructions, in order
+        for site, (c, _) in sites:
+            order.setdefault(c, []).append(site)
         calls = []
-        for site, (c, held) in sorted(af.held(a).items()):
+        for site, (c, held) in sites:
             fc = af.facts(c) if c is not None and c in named else None
             if fc is None:
                 continue
-            ni, nf = named[c]
+            ks = named[c]
+            # the k-th call instruction is the k-th call in the text; otherwise the fewest named
+            ni, nf = ks[order[c].index(site)] if len(ks) == len(order[c]) else \
+                (min(k[0] for k in ks), min(k[1] for k in ks))
             lost = sorted(r for r in fc.args & held if (r < 8 and r >= ni) or (100 <= r < 108 and r - 100 >= nf))
             if lost:
                 calls.append({"at": f"{site:#x}", "callee": f"{c:#x}", "lost": [pcode_emu.regname(r) for r in lost]})
@@ -257,7 +285,7 @@ def pcode_db(words: set[int], cache: Path) -> dict:
         tmp = cache.with_suffix(f".{os.getpid()}.tmp")
         with tmp.open("wb") as fh:
             pickle.dump(db, fh)
-        os.replace(tmp, cache)
+        abi_facts.replace(tmp, cache)
         req.unlink()
         res.unlink()
         print(f"P-code: {len(todo)} new instruction words from Ghidra in {time.time() - t:.0f} s"
@@ -598,10 +626,11 @@ def main() -> int:
     rows = callgraph.load_rows()
     af = abi_facts.AbiFacts(orig, rows)
     af.version = args.version
-    af.load(FACTS)
+    af.complete(FACTS)  # (the one table gen_lift uses too)
     overrides: dict[int, str] = {}  # address -> the src/lifted file whose definition a semantic lift replaces
     if args.passthrough or not args.no_overrides:
         pt = passthrough(af, boot_reach(args.version, rows))
+        PASSTHROUGH.parent.mkdir(parents=True, exist_ok=True)
         PASSTHROUGH.write_text(json.dumps(pt, indent=1) + "\n", encoding="utf-8")
         defs = sum(e["reads_ints"] > e["lift_ints"] or e["reads_floats"] > e["lift_floats"] for e in pt)
         print(f"passthrough: {len(pt)} src/lifted definitions lose arguments on x86-64 ({sum(e['boot'] for e in pt)} "
