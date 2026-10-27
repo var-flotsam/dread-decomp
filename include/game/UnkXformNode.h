@@ -63,6 +63,9 @@ struct UnkXform {
 };
 UnkVec3f fn_7100076cec(UnkXform* x);
 UnkVec3f fn_7100079b18(UnkXform* x, f32 hint);
+// The two angle triples of a transform's rotation (src/game/UnkXformAngles.cpp); `z` is the z
+// angle used when the matrix is in gimbal lock.
+void fn_7100077038(const UnkXform* x, UnkVec3f* a, UnkVec3f* b, f32 z);
 
 // Out of line: fn_710002614c (base/UnkMatrix44.h) takes the transform through its matrix.
 const UnkMatrix44& UnkXform::GetMatrix() {

@@ -6,6 +6,7 @@
 // flag of game/UnkGlobal_710b372a98.h is set. The object is defined in src/game_lo/; only the
 // members the callers share are spelled out, and the names and the layout are placeholders.
 
+#include "base/color/CColor4F.h"
 #include "base/math/CVector4D.h"
 #include "types.h"
 
@@ -14,6 +15,16 @@ struct UnkSlotTable {
     u8 unk_0x0[0x2c];
     u32 count;
 };
+
+// Sets the value of the slot `id` and `kind` of the table in set `mode` (0 or 1): stores it in the
+// table and in the slot's record, and in the record's target when there is one. False for another
+// mode.
+bool fn_71001996e0(UnkSlotTable* table, u32 id, u32 kind, base::math::UnkVector4D value, u32 mode);
+
+// The value of the slot `id` and `kind` of the table in set `mode` (0 or 1) into `out`. The table
+// is an untyped pointer here: converting UnkSlots::info to it orders the callers' loads as the
+// original does (src/game/UnkSlotBlend.cpp).
+bool fn_71001997c8(void* table, u32 id, u32 kind, base::math::CVector4D* out, u32 mode);
 
 struct UnkSlotEntry {
     u8 unk_0x0[0x28];
@@ -41,11 +52,7 @@ static_assert(__builtin_offsetof(UnkSlots, count) == 0x350, "UnkSlots placeholde
 // Returns whether the request was made.
 bool fn_71001c2764(UnkSlots* self, u32 id, u32 kind, const base::math::CVector4D* value, u32 mode, bool remove);
 
-// A 16-byte value passed by copy through the slot requests (defined where it is used, in
-// src/game_lo/fn_71001c28f8.cpp).
-struct UnkSlotBox;
-
 // Like fn_71001c2764, but looks the id up first: resolves the slot registered under `key` and
-// requests it with `box` (unless the global flag blocks it); on success moves the entries with
+// requests it with `color` (unless the global flag blocks it); on success moves the entries with
 // that id and kind past the end of the list. Defined in src/game_lo/fn_71001c28f8.cpp.
-bool fn_71001c28f8(UnkSlots* self, u64 key, u32 kind, const UnkSlotBox* box, u32 mode);
+bool fn_71001c28f8(UnkSlots* self, u64 key, u32 kind, const base::color::CColor4F* color, u32 mode);

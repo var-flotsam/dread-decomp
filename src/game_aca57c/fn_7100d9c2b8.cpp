@@ -1,12 +1,13 @@
 // Four setters taking a reflected value (no value without a type): mark the owner dirty
-// (+0x5f), then assign a string id (at +0x8 or +0x10) or a string (at +0x30 or +0x40). They
+// (+0x5f), then assign a string id (at +0x8 or +0x10) or a vector (at +0x30 or +0x40; the
+// reflected parameter type is base::math::CVector4D, src/reflection/function_inits_02.cpp). They
 // return a status record {0, 0, 2, 1}.
-#include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "base/math/CVector4D.h"
 #include "types.h"
 
-using base::global::CRntString;
 using base::global::CStrId;
+using base::math::CVector4D;
 
 struct UnkValueType {
     u8 unk_0x0[0x18];
@@ -52,8 +53,6 @@ static inline UnkSetStatus Done() {
     return status;
 }
 
-void fn_710007b518(CRntString* self, const CRntString* other);  // assignment
-
 template <u32 Offset>
 __attribute__((always_inline)) static inline UnkSetStatus SetStrId(UnkValueHolder* holder, UnkValueArg* const* arg) {
     char* owner = holder->owner;
@@ -64,11 +63,11 @@ __attribute__((always_inline)) static inline UnkSetStatus SetStrId(UnkValueHolde
 }
 
 template <u32 Offset>
-__attribute__((always_inline)) static inline UnkSetStatus SetString(UnkValueHolder* holder, UnkValueArg* const* arg) {
+__attribute__((always_inline)) static inline UnkSetStatus SetVector(UnkValueHolder* holder, UnkValueArg* const* arg) {
     char* owner = holder->owner;
-    const CRntString* value = (*arg)->Get<CRntString>();
+    const CVector4D* value = (*arg)->Get<CVector4D>();
     owner[0x5f] = true;
-    fn_710007b518(reinterpret_cast<CRntString*>(owner + Offset), value);
+    fn_710007b518(reinterpret_cast<CVector4D*>(owner + Offset), value);
     return Done();
 }
 
@@ -79,8 +78,8 @@ UnkSetStatus fn_7100d9c3cc(void* self, UnkValueHolder* holder, UnkValueArg* cons
     return SetStrId<0x10>(holder, arg);
 }
 UnkSetStatus fn_7100d9c638(void* self, UnkValueHolder* holder, UnkValueArg* const* arg) {
-    return SetString<0x30>(holder, arg);
+    return SetVector<0x30>(holder, arg);
 }
 UnkSetStatus fn_7100d9c6ec(void* self, UnkValueHolder* holder, UnkValueArg* const* arg) {
-    return SetString<0x40>(holder, arg);
+    return SetVector<0x40>(holder, arg);
 }

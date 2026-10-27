@@ -4,7 +4,6 @@
 // previously cached z) that one wins, else the one with the smaller sum of absolute angles.
 #include "game/UnkXformNode.h"
 
-void fn_7100077038(UnkXform* x, UnkVec3f* a, UnkVec3f* b);
 UnkVec3f fn_710007a220(const UnkVec3f* v);
 
 static inline f32 AbsSum(const UnkVec3f& v) {
@@ -19,7 +18,7 @@ static inline bool Near(f32 v, f32 hint) {
 UnkVec3f fn_7100079b18(UnkXform* x, f32 hint) {
     UnkVec3f a(0.0f, 0.0f, 0.0f);
     UnkVec3f b(0.0f, 0.0f, 0.0f);
-    fn_7100077038(x, &a, &b);
+    fn_7100077038(x, &a, &b, hint);
     a = fn_710007a220(&a);
     b = fn_710007a220(&b);
     if (!Near(a.z, hint)) {

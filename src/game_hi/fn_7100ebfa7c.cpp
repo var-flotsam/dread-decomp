@@ -62,7 +62,6 @@ struct Result {
 
 
 
-u16 fn_710027a41c(Mesh*, Vec2*, u32);
 bool fn_7100ebfd4c(UnkNavMeshManager*, Vec2*, u16, Result*, u32, f32, f32);
 Cell* fn_710027a328(Mesh*, u16);
 Vec2 fn_7100125a64(Vec2*);
@@ -88,7 +87,7 @@ bool fn_7100ebfa7c(UnkNavMeshManager* self, Vec2* pos, Result* out, f32 a, u32 f
     p.x = pos->x;
     p.y = pos->y;
     s32 ret = 0;
-    u16 cellId = fn_710027a41c(self->navmesh, &p, flags);
+    u16 cellId = fn_710027a41c(self->navmesh, AsV2(&p), flags);
     if (cellId != 0xffff) {
         ret = fn_7100ebfd4c(self, pos, cellId, out, flags, a, b);
         Mesh* mesh = self->navmesh;

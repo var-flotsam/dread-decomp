@@ -3,6 +3,7 @@
 // colours and timings, then runs a follow-up.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkSceneObject.h"
 #include "types.h"
 
 using base::reflection::CClass;
@@ -35,18 +36,11 @@ struct UnkColorIn_710050f26c {
     f32 a;
 };
 
-struct UnkSlots_710050f26c;
-void fn_71001be430(UnkSlots_710050f26c* slots, u32 index, bool enabled);
-
-struct UnkEffect_710050f26c {
-    u8 unk_0x0[0x130];
-    UnkSlots_710050f26c* slots;
-};
-void fn_7100149490(UnkEffect_710050f26c* effect, bool enabled);
-bool fn_710014826c(UnkEffect_710050f26c* effect, u32 mode, u32 flags, UnkColorArg_710050f26c color,
-                   bool restart, f32 time);
-void fn_7100148600(UnkEffect_710050f26c* effect, u32 mode, u32 flags, UnkColor_710050f26c from,
-                   UnkColor_710050f26c to, f32 delay, f32 time);
+// The effects are scene objects (game/UnkSceneObject.h).
+bool fn_710014826c(UnkSceneObject* effect, u32 mode, u32 flags, UnkColorArg_710050f26c color, bool restart,
+                   f32 time);
+void fn_7100148600(UnkSceneObject* effect, u32 mode, u32 flags, UnkColor_710050f26c from, UnkColor_710050f26c to,
+                   f32 delay, f32 time);
 
 struct UnkAIState_710050f26c {
     u8 unk_0x0[0x18c];
@@ -95,8 +89,8 @@ struct UnkStruct_710050f26c {
     u8 unk_0x0[0x8];
     UnkActor_710050f26c* actor;
     u8 unk_0x10[0x6e0];
-    UnkEffect_710050f26c* field_0x6f0;
-    UnkEffect_710050f26c* field_0x6f8;
+    UnkSceneObject* field_0x6f0;
+    UnkSceneObject* field_0x6f8;
     u8 unk_0x700[0xb4];
     u32 field_0x7b4;
     u32 field_0x7b8;
@@ -108,10 +102,10 @@ void fn_710050a1b0(UnkStruct_710050f26c* self);
 // swapped.
 void fn_710050f26c(UnkStruct_710050f26c* self, f32 time, const UnkColorIn_710050f26c* color, f32 time2,
                    const UnkColor_710050f26c* color2, f32 offset) {
-    fn_71001be430(self->field_0x6f8->slots, 0, false);
-    fn_71001be430(self->field_0x6f8->slots, 1, false);
-    fn_71001be430(self->field_0x6f0->slots, 0, false);
-    fn_71001be430(self->field_0x6f0->slots, 1, false);
+    fn_71001be430(self->field_0x6f8->field_0x130, 0, false);
+    fn_71001be430(self->field_0x6f8->field_0x130, 1, false);
+    fn_71001be430(self->field_0x6f0->field_0x130, 0, false);
+    fn_71001be430(self->field_0x6f0->field_0x130, 1, false);
     fn_7100149490(self->field_0x6f8, false);
     fn_7100149490(self->field_0x6f0, false);
 
@@ -124,20 +118,20 @@ void fn_710050f26c(UnkStruct_710050f26c* self, f32 time, const UnkColorIn_710050
     if (cc->vf_0xd8()->state != 1)
         return;
 
-    if (UnkEffect_710050f26c* effect = self->field_0x6f8) {
+    if (UnkSceneObject* effect = self->field_0x6f8) {
         u32 mode = self->field_0x7b8 == 0;
         self->field_0x7b8 = mode;
         fn_710014826c(effect, mode, 0x28, UnkColorArg_710050f26c(color->rgb, 0.5f < color->a ? 0.5f : color->a), true,
                       time);
-        fn_71001be430(self->field_0x6f8->slots, self->field_0x7b8, true);
+        fn_71001be430(self->field_0x6f8->field_0x130, self->field_0x7b8, true);
         fn_7100149490(self->field_0x6f8, true);
     }
-    if (UnkEffect_710050f26c* effect = self->field_0x6f0) {
+    if (UnkSceneObject* effect = self->field_0x6f0) {
         u32 mode = self->field_0x7b4 == 0;
         f32 delay = time2 - offset < 0.0f ? 0.0f : time2 - offset;
         self->field_0x7b4 = mode;
         fn_7100148600(effect, mode, 0x28, *color2, *color2, delay, time2);
-        fn_71001be430(self->field_0x6f0->slots, self->field_0x7b4, true);
+        fn_71001be430(self->field_0x6f0->field_0x130, self->field_0x7b4, true);
         fn_7100149490(self->field_0x6f0, true);
     }
     fn_710050a1b0(self);

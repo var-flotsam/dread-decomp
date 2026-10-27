@@ -1,18 +1,12 @@
-// Inserts a node for a newly created key at the head of its bucket in a chained hash table:
-// the node (hash, key, next) comes from the allocator at 0x50, the lowest used bucket (0x40)
-// and the first node (0x48) follow, and the node count at 0x5c goes up.
-#include "base/UnkEmptyDtorElem.h"
+// Inserts a node for a newly created key (the id and kind, base/UnkIdKindKey.h) at the head of its
+// bucket in a chained hash table: the node (hash, key, next) comes from the allocator at 0x50, the
+// lowest used bucket (0x40) and the first node (0x48) follow, and the node count at 0x5c goes up.
+#include "base/UnkIdKindKey.h"
 #include "types.h"
-
-struct UnkKey {
-    u16 field_0x0;
-    u8 field_0x2;
-    u8 unk_0x3;
-};
 
 struct UnkNode {
     u32 hash;
-    UnkKey key;
+    UnkIdKindKey key;
     UnkNode* next;
 };
 
@@ -44,14 +38,12 @@ struct UnkHashTable {
     u32 inserts;
 };
 
-void fn_71002874d0(UnkKey* key);
 u32 fn_71002874e0(u16 a, u8 b);
 UnkNode** fn_71002b288c(void* buckets, u32 index);
 
-void fn_71002b26fc(UnkHashTable* self) {
-    UnkKey key;
-    fn_71002874d0(&key);
-    u32 hash = fn_71002874e0(key.field_0x0, key.field_0x2);
+void fn_71002b26fc(UnkHashTable* self, u16 id, u8 kind) {
+    UnkIdKindKey key(id, kind);
+    u32 hash = fn_71002874e0(key.id, key.kind);
     self->field_0x60_count++;
     UnkNode* node = static_cast<UnkNode*>(self->allocator->vf_0x40(0x10, 8, self->alloc_flags));
     if (node) {
@@ -68,5 +60,4 @@ void fn_71002b26fc(UnkHashTable* self) {
     node->next = *head;
     *head = node;
     self->count++;
-    fn_71002874dc(&key);
 }

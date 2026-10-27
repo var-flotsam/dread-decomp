@@ -9,6 +9,9 @@
 
 #include "types.h"
 
+namespace base::math {
+struct CVector2D;  // base/math/CVector.h
+}
 namespace base::reflection {
 class CClass;
 }
@@ -58,6 +61,40 @@ static_assert(__builtin_offsetof(UnkGuiDisplayObject, field_0x144) == 0x144, "Un
 static_assert(__builtin_offsetof(UnkGuiDisplayObject, field_0x181) == 0x181, "UnkGuiDisplayObject placeholder layout");
 static_assert(__builtin_offsetof(UnkGuiDisplayObject, field_0x190) == 0x190, "UnkGuiDisplayObject placeholder layout");
 
+// The object's derived state, 0x38 bytes into it, as fn_71011cde14 returns it; the offsets are from
+// there, so +0x3c and +0x3e are the object's +0x74 (active) and +0x76 (shown) above.
+struct UnkGuiObjectState {
+    u8 unk_0x0[0x18];
+    f32 field_0x18;  // with +0x20, the two factors of a list's scroll step (fn_71011ff97c)
+    u8 unk_0x1c[0x4];
+    f32 field_0x20;
+    u8 unk_0x24[0x14];
+    s32 frame;        // the frame the label's refresh works in (0x7fffffff when none)
+    bool field_0x3c;  // tested by the root's update and the screens
+    u8 unk_0x3d;
+    bool field_0x3e;  // the object can take the focus
+};
+static_assert(__builtin_offsetof(UnkGuiObjectState, field_0x18) == 0x18, "UnkGuiObjectState placeholder layout");
+static_assert(__builtin_offsetof(UnkGuiObjectState, frame) == 0x38, "UnkGuiObjectState placeholder layout");
+static_assert(__builtin_offsetof(UnkGuiObjectState, field_0x3e) == 0x3e, "UnkGuiObjectState placeholder layout");
+
+// The object's derived state (its +0x38), first brought up to date (fn_71011cee40) when +0x183 says
+// it is stale. Defined in the unit's generated code.
+UnkGuiObjectState* fn_71011cde14(UnkGuiDisplayObject* self);
+
+// Sets the flag at +0xb5 (the callers pass whether the object is to be seen). On a change, the first
+// change runs vf_0xa0 and sets +0x184, the derived flags go stale (+0x183) and change bit 0x80 is
+// set (+0x144). Defined in the unit's generated code.
+void fn_71011cdc30(UnkGuiDisplayObject* self, bool value);
+
+// Sets the flag at +0x185, as fn_71011cdc30 (change bit 4). Not decompiled yet.
+void fn_71011d0088(UnkGuiDisplayObject* self, bool value);
+
+// Places the object: its position (+0x80) and the two modes it is placed by (+0x78 and +0x7c: the map
+// markers pass the side each coordinate is measured from). On a change the derived flags go stale.
+// Not decompiled yet.
+void fn_71011cde64(UnkGuiDisplayObject* self, const base::math::CVector2D* position, u32 h_mode, u32 v_mode);
+
 // Sets the flag at +0x181 (the menus' focus handling, fn_7100b021fc, gives it to the newly focused
 // object and clears it on the old one). When it changes while the object is shown, after stale
 // derived flags are brought up to date, and the object is active, the GUI root g_unk_717271e8f8
@@ -69,8 +106,8 @@ void fn_71011cf2a4(UnkGuiDisplayObject* self, bool value);
 // change event to the GUI root. Defined in src/game_hi/fn_71011cdce8.cpp.
 void fn_71011cdce8(UnkGuiDisplayObject* self, bool value);
 
-// Sets a 32-bit value on the object (the menus' setup passes 2 before adding it to its menu). Not
-// decompiled yet.
+// Sets a 32-bit value on the object (the menus' setup passes 2 before adding it to its menu). Defined
+// in the unit's generated code.
 void fn_71011cde44(UnkGuiDisplayObject* self, s32 value);
 
 // The destructor of the display-object container (the unit named after GUI::CDisplayObjectContainer).

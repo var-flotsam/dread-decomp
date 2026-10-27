@@ -18,7 +18,10 @@
 
 namespace base {
 struct UnkAllocator;
+namespace math {
+struct CVector2D;
 }
+}  // namespace base
 
 struct UnkNavMesh;  // the navigation mesh (probably navmesh::CNavMesh); opaque here
 
@@ -51,3 +54,8 @@ static_assert(sizeof(UnkNavMeshManager) == 0x62ec8, "UnkNavMeshManager placehold
 
 extern UnkNavMeshManager* g_unk_71726a4510;  // the instance; null until first use
 void fn_7100ebf278(UnkNavMeshManager* self);  // constructor (game_hi/fn_7100ebfa7c.cpp)
+
+// The index of the mesh's cell (0x70-byte entry at +0x290) that contains `point`, found through the
+// bounding-box tree at +0x400 when there is one, if the cell accepts `flags`; 0xffff otherwise.
+// Defined in src/game_lo/fn_710027a41c.cpp.
+u16 fn_710027a41c(UnkNavMesh* self, const base::math::CVector2D* point, u32 flags);

@@ -34,13 +34,16 @@ struct UnkAllocator {
 
 }  // namespace base
 
+// Creates that allocator over [mem, mem + size) the first time it is called (nninitStartup gives
+// it the memory heap's first 0x4e700000 bytes; src/base/UnkDefaultAllocatorGlobal.cpp).
+void fn_7100083870(void* mem, u64 size);
 // Returns the allocator new arrays are created with.
 base::UnkAllocator* fn_7100083990();
 // Allocates `size` bytes from that allocator (its vf_0x40, 8-byte aligned) with the given flags.
 void* fn_71000839a0(u64 size, u32 flags);
-// Allocates `size` bytes from that allocator with the given flags, the alignment its own (the
-// system start-up fn_71001325d0 takes the RomFS cache with flags 0x16).
-void* fn_7100083ba0(u64 size, u32 align);
+// Allocates `size` bytes from that allocator, 8-byte aligned, with the given flags (the system
+// start-up fn_71001325d0 takes the RomFS cache with flags 0x16; src/base/UnkDefaultAllocatorGlobal.cpp).
+void* fn_7100083ba0(u64 size, u32 flags);
 
 namespace base {
 

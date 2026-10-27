@@ -1,6 +1,7 @@
 // Copy constructor of a table of up to 250 records (0x120 bytes each, from +0xc) followed by a
 // small block at +0x1194c: copies the records one by one, then the block, whose last member is a
 // counted reference (released first when it was set, then replaced by the copy of the other's).
+#include "game/UnkNavMeshPath.h"
 #include "game/UnkObject_0x100.h"
 #include "types.h"
 
@@ -46,7 +47,6 @@ struct __attribute__((packed)) UnkTable {
 };
 
 extern void* g_unk_7101a21168[];
-extern void* g_unk_7101a21120[];
 
 void fn_7100518ef4(UnkTable* self, const UnkTable* other) {
     self->vtable = g_unk_7101a21168 + 2;

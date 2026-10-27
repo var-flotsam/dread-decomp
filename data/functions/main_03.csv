@@ -753,7 +753,7 @@ address,size,name,name_source,subsystem,status
 0x7100339900,332,fn_7100339900,unknown,unknown,U
 0x7100339a50,760,fn_7100339a50,unknown,unknown,U
 0x7100339d48,332,fn_7100339d48,unknown,unknown,U
-0x7100339ea0,760,fn_7100339ea0,unknown,unknown,U
+0x7100339ea0,760,fn_7100339ea0,unknown,unknown,O
 0x710033a1a0,376,fn_710033a1a0,unknown,unknown,O
 0x710033a318,4,fn_710033a318,unknown,unknown,O
 0x710033a31c,244,CAbilitySpeedBooster::refl_GetClass,reflection,game,O

@@ -35,6 +35,7 @@ void unk_anchor_71011bc0b0(P first, P last) {
     std::sort(first, last, C());
 }
 
+#if defined(__aarch64__)
 // The instantiations are internal, so their names are set in assembly (an alias would keep the
 // comparator arguments).
 asm(".globl fn_71011bc0b0\n.set fn_71011bc0b0, _ZNSt3__16__sortIRN12_GLOBAL__N_117UnkCmp_71011bc0b0E7UnkIterIP17UnkObj_71011bc0b0EEEvT0_S8_T_");
@@ -42,3 +43,27 @@ asm(".globl fn_71011bc830\n.set fn_71011bc830, _ZNSt3__17__sort3IRN12_GLOBAL__N_
 asm(".globl fn_71011bc9b0\n.set fn_71011bc9b0, _ZNSt3__17__sort4IRN12_GLOBAL__N_117UnkCmp_71011bc0b0E7UnkIterIP17UnkObj_71011bc0b0EEEjT0_S8_S8_S8_T_");
 asm(".globl fn_71011bcb20\n.set fn_71011bcb20, _ZNSt3__17__sort5IRN12_GLOBAL__N_117UnkCmp_71011bc0b0E7UnkIterIP17UnkObj_71011bc0b0EEEjT0_S8_S8_S8_S8_T_");
 asm(".globl fn_71011bcd00\n.set fn_71011bcd00, _ZNSt3__127__insertion_sort_incompleteIRN12_GLOBAL__N_117UnkCmp_71011bc0b0E7UnkIterIP17UnkObj_71011bc0b0EEEbT0_S8_T_");
+#else
+// The port: another target inlines the helpers or keeps the comparator argument, so the names
+// above may not exist. Each name is then a function of its own over the same instantiation, with
+// the arguments the game's callers pass.
+extern "C" void fn_71011bc0b0(P first, P last) {
+    std::sort(first, last, C());
+}
+extern "C" unsigned fn_71011bc830(P a, P b, P c) {
+    C cmp;
+    return std::__sort3<C&>(a, b, c, cmp);
+}
+extern "C" unsigned fn_71011bc9b0(P a, P b, P c, P d) {
+    C cmp;
+    return std::__sort4<C&>(a, b, c, d, cmp);
+}
+extern "C" unsigned fn_71011bcb20(P a, P b, P c, P d, P e) {
+    C cmp;
+    return std::__sort5<C&>(a, b, c, d, e, cmp);
+}
+extern "C" bool fn_71011bcd00(P first, P last) {
+    C cmp;
+    return std::__insertion_sort_incomplete<C&>(first, last, cmp);
+}
+#endif

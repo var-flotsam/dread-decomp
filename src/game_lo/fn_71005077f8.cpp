@@ -62,19 +62,18 @@ struct UnkStrId_71005077f8 {
     }
 };
 
-CRntString fn_710007eee0(const CRntString& a, const CRntString& b);  // concatenation
 UnkStrId_71005077f8 fn_710050a8f8(u32 kind);
 
 inline void UnkStrId_71005077f8::Append(const CRntString& suffix) {
     UnkStringData_71005077f8* old = data;
     ++old->field_0x44;
-    Replace(old, UnkStrId_71005077f8(fn_710007eee0(old->str, suffix), true));
+    Replace(old, UnkStrId_71005077f8(fn_710007eee0(&old->str, &suffix), true));
 }
 
 inline void UnkStrId_71005077f8::Append(const UnkStrId_71005077f8& suffix) {
     UnkStringData_71005077f8* old = data;
     ++old->field_0x44;
-    Replace(old, UnkStrId_71005077f8(fn_710007eee0(old->str, suffix.Str()), true));
+    Replace(old, UnkStrId_71005077f8(fn_710007eee0(&old->str, &suffix.Str()), true));
 }
 
 extern CRntString unk_71726de7d0 __attribute__((visibility("hidden")));

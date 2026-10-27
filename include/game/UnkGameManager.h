@@ -129,6 +129,22 @@ base::global::CStrId fn_7100dfbda4(UnkGameManager* self, const base::global::CSt
 // none (src/game/CGameManager.cpp; called by fn_7100c79a80).
 bool fn_7100deabe4(UnkGameManager* self);
 
+// The object fn_7100deac84 gives: the target of the reference at +0x2240, most likely the in-game
+// menu (GUI::CIngameMenu's unit has fn_7100b30454, which takes it). Its +0x2d0 is an object of
+// GUI::CHUD's unit (fn_71011e49fc takes it) whose flag at +0x236 pauses the minimap
+// (fn_7100ea3f7c).
+struct UnkIngameMenuHud {
+    u8 pad_0x0[0x236];
+    bool field_0x236;
+};
+struct UnkIngameMenu {
+    u8 pad_0x0[0x2d0];
+    UnkIngameMenuHud* field_0x2d0;
+};
+// The target of the reference at +0x2240 (its +0x10), or null when there is none. Not defined by
+// hand.
+UnkIngameMenu* fn_7100deac84(UnkGameManager* self);
+
 // The object fn_7100decab0 gives (also read by fn_7100e039e4); null when there is none.
 struct UnkGameManagerTarget {
     u8 pad_0x0[0x248];
