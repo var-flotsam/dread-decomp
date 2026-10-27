@@ -10,14 +10,20 @@
 // thunk per such function (build/port/link/traps.s) that loads the function's original address and
 // jumps here; the runtime prints the address, to look up in data/functions/, and aborts, so a boot
 // that reaches unported code stops at the call instead of running off into nothing.
-extern "C" [[noreturn]] void dread_port_missing_function(u64 address);
+//
+// With DREAD_TRAP=log in the environment the three traps here report each function or import once
+// and return 0 to the caller of the thunk instead (the thunk jumps, so the return goes straight
+// back): a run then lists, in the order the game reaches them, every missing function until
+// something truly breaks. For finding the boot's work list; the values the game computes from those
+// zeros are wrong. That is why the traps return a word and are not [[noreturn]].
+extern "C" u64 dread_port_missing_function(u64 address);
 
 // Where a call through a declaration the link refused to alias ends up: the function is defined, but
 // the caller's parameter list puts an argument in a different register class than the definition
 // reads (a float where the definition takes a bool: class_mismatch in the link report), so a call
 // would compute with the wrong register. The thunk loads the function's address and jumps here;
 // fixing the declaration (tools/decl_check.py) removes the thunk.
-extern "C" [[noreturn]] void dread_port_mismatched_call(u64 address);
+extern "C" u64 dread_port_mismatched_call(u64 address);
 
 // The port's main passes its own arguments before it calls into the game: nn::os::GetHostArgc and
 // GetHostArgv return them (nnMain's first call, fn_71000005d0, walks them). Without a call both
@@ -32,7 +38,7 @@ extern "C" void dread_port_request_exit();
 // Where a game pointer to an import the port has no definition for ends up (a GOT or PLT slot, a
 // vtable entry naming an SDK function): the data loader writes a thunk that loads the import's
 // name and jumps here (dread_port_loader.h).
-extern "C" [[noreturn]] void dread_port_missing_import(const char* name);
+extern "C" u64 dread_port_missing_import(const char* name);
 
 // Maps the game's main NSO from the user's dump at its original addresses (dread_port_loader.h).
 // Runs by itself before the game's static initialisers when the game is linked in; aborts with a
