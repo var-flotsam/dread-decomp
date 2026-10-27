@@ -1076,8 +1076,8 @@ address,size,name,name_source,subsystem,status
 0x71001323d0,216,realloc,symbol,runtime,L
 0x71001324b0,56,aligned_alloc,symbol,runtime,L
 0x71001324f0,224,nninitStartup,symbol,runtime,L
-0x71001325d0,348,fn_71001325d0,unknown,unknown,U
-0x7100132730,116,fn_7100132730,unknown,unknown,U
+0x71001325d0,348,fn_71001325d0,unknown,unknown,O
+0x7100132730,116,fn_7100132730,unknown,unknown,O
 0x71001327b0,16,fn_71001327b0,unknown,unknown,O
 0x71001327c0,204,fn_71001327c0,unknown,unknown,U
 0x7100132890,132,fn_7100132890,unknown,unknown,U

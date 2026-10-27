@@ -3,6 +3,7 @@
 // given a cleared 1000-byte buffer.
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "base/UnkVector.h"
 #include "game/UnkRenderManager.h"
 #include "types.h"
 
@@ -41,7 +42,6 @@ void fn_71006cae2c(UnkRenderPool* pool, const CFilePathStrId& path, UnkModel** o
 void fn_71001436a0(UnkModel* model, u32 flag);
 void fn_71001c0968(UnkModelData* data, u32 flag);
 void fn_7100ecf978(u64* field, u32 value);
-void* fn_7100083ba0(u64 size, u32 align);
 void fn_7100ed7634(UnkProjectiles* self);
 
 __attribute__((always_inline)) static inline void LoadModel(UnkModel*& slot, const char* path) {

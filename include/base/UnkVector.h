@@ -38,6 +38,9 @@ struct UnkAllocator {
 base::UnkAllocator* fn_7100083990();
 // Allocates `size` bytes from that allocator (its vf_0x40, 8-byte aligned) with the given flags.
 void* fn_71000839a0(u64 size, u32 flags);
+// Allocates `size` bytes from that allocator with the given flags, the alignment its own (the
+// system start-up fn_71001325d0 takes the RomFS cache with flags 0x16).
+void* fn_7100083ba0(u64 size, u32 align);
 
 namespace base {
 

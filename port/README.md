@@ -108,6 +108,45 @@ cmake --build build/port/cmake
 Clang with libc++ or libstdc++; the code is C++17 with `-fno-exceptions -fno-rtti`. The matched
 code uses Clang builtins and attributes throughout, so Clang is the compiler, not GCC.
 
+### Linux in Docker (any host with Docker, including this PC)
+
+```sh
+docker build -t dread-port-linux port/docker                         # Ubuntu 24.04, Clang 18, lld, CMake, Ninja, Python
+port/docker/run.sh python3 tools/fetch_sources.py libcxx-9.0.1.src    # once: libc++ 9.0.1's headers into build/cache
+port/docker/run.sh python3 tools/port_sweep.py --version 2.1.0 --stdlib libcxx9 --objects build/port/linux/sweep
+port/docker/run.sh python3 tools/port_addresses.py --version 2.1.0    # optional: vtables and named functions (needs build/check)
+port/docker/run.sh python3 tools/port_link.py --version 2.1.0 --stdlib libcxx9 --objects build/port/linux/sweep \
+    --out build/port/linux/link --lifted build/port/lifted --executable
+port/docker/run.sh build/port/linux/link/dread                        # maps orig/2.1.0, runs the game until the first trap
+```
+
+`port/docker/run.sh` mounts the checkout at `/src`, `orig/` (read-only) and `build/` from where
+they really are (a worktree's junctions are resolved; Docker does not follow them inside a bind
+mount) and keeps the tools' download cache in `build/cache`. Nothing of the game goes into the
+image. The headers are libc++ 9.0.1's over glibc (`--stdlib libcxx9`): the game's sources
+instantiate libc++ 9's internal `std::__sort3` and its siblings (`lib/libcxx/sort.h`), which
+libc++ 18 renamed, and the host's libstdc++ lacks them; the library linked is the host's libc++,
+whose ABI is unchanged. All 3,830 sources compile so. `port_link.py --executable` then links
+`build/port/linux/link/dread`:
+
+- **At a fixed base above the image** (`--image-base`, default `0x7173000000`, just past the
+  `.bss`): within 2 GB of all the PC-relative data, and above it because Linux starts the `brk`
+  heap a random distance after the executable; below the image the heap landed inside it
+  (`0x7116e6c000`) and the loader could not map. No PIE, but the position-independent start
+  files (`Scrt1.o`, `crtbeginS.o`): the plain `crtbegin.o` uses 32-bit absolute relocations.
+- **The residue gets traps** (`residue.s`): each name still undefined that the host does not
+  define becomes a thunk that reports its name, a vtable 64 slots of one, a data name 0x100 zero
+  bytes. On `main`: 24 functions, 9 vtables, 3 data names.
+
+**First run (2026-10-26).** The loader maps the dump at `0x7100000000` and applies its 146,684
+relocations (115,825 of the 128,576 code pointers translate to the port's functions, with the
+1,941 semantic lifts linked), every static initialiser of the game runs, and `main` calls
+`nnMain` (`src/engine/nnMain.cpp`), which walks the host arguments (`src/engine/HostArguments.cpp`)
+and enters the main loop: the system start-up `fn_71001325d0` (`src/engine/SystemStartup.cpp`)
+initialises the SDK heap, `nv` and `nn::fs`'s allocator, and the first trap is the engine's
+aligned allocation `fn_7100083ba0` (`L` in `data/functions/`, but the game's: the default
+allocator's slot 0x40). Each trap names the next function the boot needs: that is M1's work list.
+
 ### macOS
 
 As Linux, with Apple Clang or Homebrew LLVM (`-DCMAKE_CXX_COMPILER=$(brew --prefix llvm)/bin/clang++`).
