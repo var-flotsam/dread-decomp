@@ -1,5 +1,6 @@
 // Destructor body: destroys the member at +0xc0, drops two ref-counted pointers and releases
 // twelve string ids, then runs the base destructor.
+#include "game/UnkComponent.h"
 #include "types.h"
 #include "base/global/CStrId.h"
 
@@ -42,9 +43,8 @@ struct UnkRefPtr {
     }
 };
 
-struct UnkObj_7100a02c54 {
-    void* vtable;
-    u8 pad_0x8[0x40];
+struct UnkObj_7100a02c54 : UnkBaseComponent {
+    u8 pad_0x40[0x8];
     UnkStrIdField field_0x48;
     UnkStrIdField field_0x50;
     UnkStrIdField field_0x58;
@@ -65,7 +65,6 @@ struct UnkObj_7100a02c54 {
 
 extern void* g_unk_7101a8ad98[];
 void fn_7100431cec(void* p);
-void fn_71010c4194(UnkObj_7100a02c54* self);
 
 void fn_7100a02c54(UnkObj_7100a02c54* self) {
     self->vtable = g_unk_7101a8ad98 + 2;

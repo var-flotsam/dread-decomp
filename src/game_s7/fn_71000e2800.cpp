@@ -7,6 +7,7 @@
 #include "UnkStaticInitS7.h"
 #include "base/reflection/CCollectionType.h"
 #include "base/reflection/UnkReflTypeDtors.h"
+#include "base/reflection/UnkReflTypeGlobals.h"
 #include "game/UnkTUInit.h"
 
 using namespace unk_static_init;
@@ -47,7 +48,6 @@ UnkEnumType* fn_71000a7828();
 extern char g_unk_7101d5bdf0[];
 UnkEnumType* fn_71000a7904();
 extern char g_unk_7101d5bdf8[];
-extern char g_unk_7101d5e2e0[];
 void fn_71000a79e0();
 void fn_71000a7d64(void* obj, const CStrId& name, void* base, void* a, void (*factory)(), void* b);
 extern char g_unk_7101d5bf30[];
@@ -550,14 +550,14 @@ void fn_71000e2800() {
     fn_710009ec00(g_unk_7101d5bdf0, fn_71000a7904());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<base::math::CVector3D>>::TKeyElementIterator::value_type", true);
-        fn_71000a7d64(g_unk_7101d5bdf8, n, g_unk_7101d5e2e0, nullptr, fn_71000a79e0, nullptr);
+        fn_71000a7d64(g_unk_7101d5bdf8, n, &g_unk_7101d5e2e0, nullptr, fn_71000a79e0, nullptr);
     }
     __cxa_atexit(fn_7100096604, g_unk_7101d5bdf8, g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d5bf30, g_unk_7101d5bdf8);
     fn_710009ec00(g_unk_7101d5bf31, fn_71000a7ee8());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<base::math::CVector3D>>::TKeyElementConstIterator::value_type", true);
-        fn_71000a8348(g_unk_7101d5bf38, n, g_unk_7101d5e2e0, nullptr, fn_71000a7fc4, nullptr);
+        fn_71000a8348(g_unk_7101d5bf38, n, &g_unk_7101d5e2e0, nullptr, fn_71000a7fc4, nullptr);
     }
     __cxa_atexit(fn_7100096604, g_unk_7101d5bf38, g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d5c070, g_unk_7101d5bf38);
@@ -617,14 +617,14 @@ void fn_71000e2800() {
     fn_710009ec00(g_unk_7101d5c711, fn_71000a8c28());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CStrId>>::TKeyElementIterator::value_type", true);
-        fn_71000a9088(g_unk_7101d5c718, n, g_unk_7101d5e2e0, nullptr, fn_71000a8d04, nullptr);
+        fn_71000a9088(g_unk_7101d5c718, n, &g_unk_7101d5e2e0, nullptr, fn_71000a8d04, nullptr);
     }
     __cxa_atexit(fn_7100096604, g_unk_7101d5c718, g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d5c850, g_unk_7101d5c718);
     fn_710009ec00(g_unk_7101d5c851, fn_71000a920c());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CStrId>>::TKeyElementConstIterator::value_type", true);
-        fn_71000a966c(g_unk_7101d5c858, n, g_unk_7101d5e2e0, nullptr, fn_71000a92e8, nullptr);
+        fn_71000a966c(g_unk_7101d5c858, n, &g_unk_7101d5e2e0, nullptr, fn_71000a92e8, nullptr);
     }
     __cxa_atexit(fn_7100096604, g_unk_7101d5c858, g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d5c990, g_unk_7101d5c858);
@@ -639,14 +639,14 @@ void fn_71000e2800() {
     fn_710009ec00(g_unk_7101d5cb0a, fn_71000a9b98());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CName>>::TKeyElementIterator::value_type", true);
-        fn_71000a9ff8(g_unk_7101d5cb10, n, g_unk_7101d5e2e0, nullptr, fn_71000a9c74, nullptr);
+        fn_71000a9ff8(g_unk_7101d5cb10, n, &g_unk_7101d5e2e0, nullptr, fn_71000a9c74, nullptr);
     }
     __cxa_atexit(fn_7100096604, g_unk_7101d5cb10, g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d5cc48, g_unk_7101d5cb10);
     fn_710009ec00(g_unk_7101d5cc49, fn_71000aa17c());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CName>>::TKeyElementConstIterator::value_type", true);
-        fn_71000aa5dc(g_unk_7101d5cc50, n, g_unk_7101d5e2e0, nullptr, fn_71000aa258, nullptr);
+        fn_71000aa5dc(g_unk_7101d5cc50, n, &g_unk_7101d5e2e0, nullptr, fn_71000aa258, nullptr);
     }
     __cxa_atexit(fn_7100096604, g_unk_7101d5cc50, g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d5cd88, g_unk_7101d5cc50);
@@ -661,14 +661,14 @@ void fn_71000e2800() {
     fn_710009ec00(g_unk_7101d5cf02, fn_71000aab08());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CFilePathStrId>>::TKeyElementIterator::value_type", true);
-        fn_71000aaf68(g_unk_7101d5cf08, n, g_unk_7101d5e2e0, nullptr, fn_71000aabe4, nullptr);
+        fn_71000aaf68(g_unk_7101d5cf08, n, &g_unk_7101d5e2e0, nullptr, fn_71000aabe4, nullptr);
     }
     __cxa_atexit(fn_7100096604, g_unk_7101d5cf08, g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d5d040, g_unk_7101d5cf08);
     fn_710009ec00(g_unk_7101d5d041, fn_71000ab0ec());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CFilePathStrId>>::TKeyElementConstIterator::value_type", true);
-        fn_71000ab54c(g_unk_7101d5d048, n, g_unk_7101d5e2e0, nullptr, fn_71000ab1c8, nullptr);
+        fn_71000ab54c(g_unk_7101d5d048, n, &g_unk_7101d5e2e0, nullptr, fn_71000ab1c8, nullptr);
     }
     __cxa_atexit(fn_7100096604, g_unk_7101d5d048, g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d5d180, g_unk_7101d5d048);
@@ -683,14 +683,14 @@ void fn_71000e2800() {
     fn_710009ec00(g_unk_7101d5d2fa, fn_71000aba78());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned short>>::TKeyElementIterator::value_type", true);
-        fn_71000abed8(g_unk_7101d5d300, n, g_unk_7101d5e2e0, nullptr, fn_71000abb54, nullptr);
+        fn_71000abed8(g_unk_7101d5d300, n, &g_unk_7101d5e2e0, nullptr, fn_71000abb54, nullptr);
     }
     __cxa_atexit(fn_7100096604, g_unk_7101d5d300, g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d5d438, g_unk_7101d5d300);
     fn_710009ec00(g_unk_7101d5d439, fn_71000ac05c());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned short>>::TKeyElementConstIterator::value_type", true);
-        fn_71000ac4bc(g_unk_7101d5d440, n, g_unk_7101d5e2e0, nullptr, fn_71000ac138, nullptr);
+        fn_71000ac4bc(g_unk_7101d5d440, n, &g_unk_7101d5e2e0, nullptr, fn_71000ac138, nullptr);
     }
     __cxa_atexit(fn_7100096604, g_unk_7101d5d440, g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d5d578, g_unk_7101d5d440);
@@ -705,14 +705,14 @@ void fn_71000e2800() {
     fn_710009ec00(g_unk_7101d5d6f2, fn_71000ac9e8());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned>>::TKeyElementIterator::value_type", true);
-        fn_71000ace48(g_unk_7101d5d6f8, n, g_unk_7101d5e2e0, nullptr, fn_71000acac4, nullptr);
+        fn_71000ace48(g_unk_7101d5d6f8, n, &g_unk_7101d5e2e0, nullptr, fn_71000acac4, nullptr);
     }
     __cxa_atexit(fn_7100096604, g_unk_7101d5d6f8, g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d5d830, g_unk_7101d5d6f8);
     fn_710009ec00(g_unk_7101d5d831, fn_71000acfcc());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned>>::TKeyElementConstIterator::value_type", true);
-        fn_71000ad42c(g_unk_7101d5d838, n, g_unk_7101d5e2e0, nullptr, fn_71000ad0a8, nullptr);
+        fn_71000ad42c(g_unk_7101d5d838, n, &g_unk_7101d5e2e0, nullptr, fn_71000ad0a8, nullptr);
     }
     __cxa_atexit(fn_7100096604, g_unk_7101d5d838, g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d5d970, g_unk_7101d5d838);
@@ -727,14 +727,14 @@ void fn_71000e2800() {
     fn_710009ec00(g_unk_7101d5daea, fn_71000ad958());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<uint64>>::TKeyElementIterator::value_type", true);
-        fn_71000addb8(g_unk_7101d5daf0, n, g_unk_7101d5e2e0, nullptr, fn_71000ada34, nullptr);
+        fn_71000addb8(g_unk_7101d5daf0, n, &g_unk_7101d5e2e0, nullptr, fn_71000ada34, nullptr);
     }
     __cxa_atexit(fn_7100096604, g_unk_7101d5daf0, g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d5dc28, g_unk_7101d5daf0);
     fn_710009ec00(g_unk_7101d5dc29, fn_71000adf3c());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<uint64>>::TKeyElementConstIterator::value_type", true);
-        fn_71000ae39c(g_unk_7101d5dc30, n, g_unk_7101d5e2e0, nullptr, fn_71000ae018, nullptr);
+        fn_71000ae39c(g_unk_7101d5dc30, n, &g_unk_7101d5e2e0, nullptr, fn_71000ae018, nullptr);
     }
     __cxa_atexit(fn_7100096604, g_unk_7101d5dc30, g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d5dd68, g_unk_7101d5dc30);
@@ -749,14 +749,14 @@ void fn_71000e2800() {
     fn_710009ec00(g_unk_7101d5dee2, fn_71000ae8c8());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<float32>>::TKeyElementIterator::value_type", true);
-        fn_71000aed28(g_unk_7101d5dee8, n, g_unk_7101d5e2e0, nullptr, fn_71000ae9a4, nullptr);
+        fn_71000aed28(g_unk_7101d5dee8, n, &g_unk_7101d5e2e0, nullptr, fn_71000ae9a4, nullptr);
     }
     __cxa_atexit(fn_7100096604, g_unk_7101d5dee8, g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d5e020, g_unk_7101d5dee8);
     fn_710009ec00(g_unk_7101d5e021, fn_71000aeeac());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<float32>>::TKeyElementConstIterator::value_type", true);
-        fn_71000af30c(g_unk_7101d5e028, n, g_unk_7101d5e2e0, nullptr, fn_71000aef88, nullptr);
+        fn_71000af30c(g_unk_7101d5e028, n, &g_unk_7101d5e2e0, nullptr, fn_71000aef88, nullptr);
     }
     __cxa_atexit(fn_7100096604, g_unk_7101d5e028, g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d5e160, g_unk_7101d5e028);
@@ -769,10 +769,10 @@ void fn_71000e2800() {
     fn_710009ec00(g_unk_7101d5e2d8, g_unk_7101d5e168);
     {
         CStrId n("base::global::CCollectionKeyElementRefBase", true);
-        fn_71000af760(g_unk_7101d5e2e0, n, nullptr, nullptr, fn_71000af75c, nullptr);
+        fn_71000af760(&g_unk_7101d5e2e0, n, nullptr, nullptr, fn_71000af75c, nullptr);
     }
-    __cxa_atexit(fn_7100096604, g_unk_7101d5e2e0, g_unk_7101a19000);
-    fn_710009ec00(g_unk_7101d5e418, g_unk_7101d5e2e0);
+    __cxa_atexit(fn_7100096604, &g_unk_7101d5e2e0, g_unk_7101a19000);
+    fn_710009ec00(g_unk_7101d5e418, &g_unk_7101d5e2e0);
     InitConversion(&g_unk_7101d5e420, TypeOf<fn_7100009658>, TypeOf<fn_710000fd7c>, fn_71000c18d8);
     fn_710009ec00(g_unk_7101d5e440, fn_710009d884());
     fn_710009ec00(g_unk_7101d5e441, fn_71000af8e0());
@@ -780,14 +780,14 @@ void fn_71000e2800() {
     fn_710009ec00(g_unk_7101d5e443, fn_71000afa98());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<base::reflection::CTypedValue>>::TKeyElementIterator::value_type", true);
-        fn_71000afef8(g_unk_7101d5e448, n, g_unk_7101d5e2e0, nullptr, fn_71000afb74, nullptr);
+        fn_71000afef8(g_unk_7101d5e448, n, &g_unk_7101d5e2e0, nullptr, fn_71000afb74, nullptr);
     }
     __cxa_atexit(fn_7100096604, g_unk_7101d5e448, g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d5e580, g_unk_7101d5e448);
     fn_710009ec00(g_unk_7101d5e581, fn_71000b007c());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<base::reflection::CTypedValue>>::TKeyElementConstIterator::value_type", true);
-        fn_71000b04dc(g_unk_7101d5e588, n, g_unk_7101d5e2e0, nullptr, fn_71000b0158, nullptr);
+        fn_71000b04dc(g_unk_7101d5e588, n, &g_unk_7101d5e2e0, nullptr, fn_71000b0158, nullptr);
     }
     __cxa_atexit(fn_7100096604, g_unk_7101d5e588, g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d5e6c0, g_unk_7101d5e588);
@@ -802,14 +802,14 @@ void fn_71000e2800() {
     fn_710009ec00(g_unk_7101d5e83a, fn_71000b0a08());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, base::reflection::CTypedValue>>::TKeyElementIterator::value_type", true);
-        fn_71000b0e68(g_unk_7101d5e840, n, g_unk_7101d5e2e0, nullptr, fn_71000b0ae4, nullptr);
+        fn_71000b0e68(g_unk_7101d5e840, n, &g_unk_7101d5e2e0, nullptr, fn_71000b0ae4, nullptr);
     }
     __cxa_atexit(fn_7100096604, g_unk_7101d5e840, g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d5e978, g_unk_7101d5e840);
     fn_710009ec00(g_unk_7101d5e979, fn_71000b0fec());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, base::reflection::CTypedValue>>::TKeyElementConstIterator::value_type", true);
-        fn_71000b144c(g_unk_7101d5e980, n, g_unk_7101d5e2e0, nullptr, fn_71000b10c8, nullptr);
+        fn_71000b144c(g_unk_7101d5e980, n, &g_unk_7101d5e2e0, nullptr, fn_71000b10c8, nullptr);
     }
     __cxa_atexit(fn_7100096604, g_unk_7101d5e980, g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d5eab8, g_unk_7101d5e980);
@@ -824,14 +824,14 @@ void fn_71000e2800() {
     fn_710009ec00(g_unk_7101d5ec32, fn_71000b1958());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::reflection::CTypedValue>>::TKeyElementIterator::value_type", true);
-        fn_71000b1db8(g_unk_7101d5ec38, n, g_unk_7101d5e2e0, nullptr, fn_71000b1a34, nullptr);
+        fn_71000b1db8(g_unk_7101d5ec38, n, &g_unk_7101d5e2e0, nullptr, fn_71000b1a34, nullptr);
     }
     __cxa_atexit(fn_7100096604, g_unk_7101d5ec38, g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d5ed70, g_unk_7101d5ec38);
     fn_710009ec00(g_unk_7101d5ed71, fn_71000b1f3c());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::reflection::CTypedValue>>::TKeyElementConstIterator::value_type", true);
-        fn_71000b239c(g_unk_7101d5ed78, n, g_unk_7101d5e2e0, nullptr, fn_71000b2018, nullptr);
+        fn_71000b239c(g_unk_7101d5ed78, n, &g_unk_7101d5e2e0, nullptr, fn_71000b2018, nullptr);
     }
     __cxa_atexit(fn_7100096604, g_unk_7101d5ed78, g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d5eeb0, g_unk_7101d5ed78);
@@ -846,14 +846,14 @@ void fn_71000e2800() {
     fn_710009ec00(g_unk_7101d5f02a, fn_71000b28cc());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::global::CStrId>>::TKeyElementIterator::value_type", true);
-        fn_71000b2d2c(g_unk_7101d5f030, n, g_unk_7101d5e2e0, nullptr, fn_71000b29a8, nullptr);
+        fn_71000b2d2c(g_unk_7101d5f030, n, &g_unk_7101d5e2e0, nullptr, fn_71000b29a8, nullptr);
     }
     __cxa_atexit(fn_7100096604, g_unk_7101d5f030, g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d5f168, g_unk_7101d5f030);
     fn_710009ec00(g_unk_7101d5f169, fn_71000b2eb0());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::global::CStrId>>::TKeyElementConstIterator::value_type", true);
-        fn_71000b3310(g_unk_7101d5f170, n, g_unk_7101d5e2e0, nullptr, fn_71000b2f8c, nullptr);
+        fn_71000b3310(g_unk_7101d5f170, n, &g_unk_7101d5e2e0, nullptr, fn_71000b2f8c, nullptr);
     }
     __cxa_atexit(fn_7100096604, g_unk_7101d5f170, g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d5f2a8, g_unk_7101d5f170);
@@ -868,14 +868,14 @@ void fn_71000e2800() {
     fn_710009ec00(g_unk_7101d5f422, fn_71000b3840());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::global::CFilePathStrId>>::TKeyElementIterator::value_type", true);
-        fn_71000b3ca0(g_unk_7101d5f428, n, g_unk_7101d5e2e0, nullptr, fn_71000b391c, nullptr);
+        fn_71000b3ca0(g_unk_7101d5f428, n, &g_unk_7101d5e2e0, nullptr, fn_71000b391c, nullptr);
     }
     __cxa_atexit(fn_7100096604, g_unk_7101d5f428, g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d5f560, g_unk_7101d5f428);
     fn_710009ec00(g_unk_7101d5f561, fn_71000b3e24());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::global::CFilePathStrId>>::TKeyElementConstIterator::value_type", true);
-        fn_71000b4284(g_unk_7101d5f568, n, g_unk_7101d5e2e0, nullptr, fn_71000b3f00, nullptr);
+        fn_71000b4284(g_unk_7101d5f568, n, &g_unk_7101d5e2e0, nullptr, fn_71000b3f00, nullptr);
     }
     __cxa_atexit(fn_7100096604, g_unk_7101d5f568, g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d5f6a0, g_unk_7101d5f568);
@@ -894,14 +894,14 @@ void fn_71000e2800() {
     fn_710009ec00(g_unk_7101d5f81e, fn_71000b4b24());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CName, base::reflection::CVariable>>::TKeyElementIterator::value_type", true);
-        fn_71000b4f84(g_unk_7101d5f820, n, g_unk_7101d5e2e0, nullptr, fn_71000b4c00, nullptr);
+        fn_71000b4f84(g_unk_7101d5f820, n, &g_unk_7101d5e2e0, nullptr, fn_71000b4c00, nullptr);
     }
     __cxa_atexit(fn_7100096604, g_unk_7101d5f820, g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d5f958, g_unk_7101d5f820);
     fn_710009ec00(g_unk_7101d5f959, fn_71000b5108());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CName, base::reflection::CVariable>>::TKeyElementConstIterator::value_type", true);
-        fn_71000b5568(g_unk_7101d5f960, n, g_unk_7101d5e2e0, nullptr, fn_71000b51e4, nullptr);
+        fn_71000b5568(g_unk_7101d5f960, n, &g_unk_7101d5e2e0, nullptr, fn_71000b51e4, nullptr);
     }
     __cxa_atexit(fn_7100096604, g_unk_7101d5f960, g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d5fa98, g_unk_7101d5f960);
@@ -916,14 +916,14 @@ void fn_71000e2800() {
     fn_710009ec00(g_unk_7101d5fc12, fn_71000b5a9c());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::reflection::CVariable>>::TKeyElementIterator::value_type", true);
-        fn_71000b5efc(g_unk_7101d5fc18, n, g_unk_7101d5e2e0, nullptr, fn_71000b5b78, nullptr);
+        fn_71000b5efc(g_unk_7101d5fc18, n, &g_unk_7101d5e2e0, nullptr, fn_71000b5b78, nullptr);
     }
     __cxa_atexit(fn_7100096604, g_unk_7101d5fc18, g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d5fd50, g_unk_7101d5fc18);
     fn_710009ec00(g_unk_7101d5fd51, fn_71000b6080());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::reflection::CVariable>>::TKeyElementConstIterator::value_type", true);
-        fn_71000b64e0(g_unk_7101d5fd58, n, g_unk_7101d5e2e0, nullptr, fn_71000b615c, nullptr);
+        fn_71000b64e0(g_unk_7101d5fd58, n, &g_unk_7101d5e2e0, nullptr, fn_71000b615c, nullptr);
     }
     __cxa_atexit(fn_7100096604, g_unk_7101d5fd58, g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d5fe90, g_unk_7101d5fd58);
@@ -938,14 +938,14 @@ void fn_71000e2800() {
     fn_710009ec00(g_unk_7101d6000a, fn_71000b6a14());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::reflection::CFunction>>::TKeyElementIterator::value_type", true);
-        fn_71000b6e74(g_unk_7101d60010, n, g_unk_7101d5e2e0, nullptr, fn_71000b6af0, nullptr);
+        fn_71000b6e74(g_unk_7101d60010, n, &g_unk_7101d5e2e0, nullptr, fn_71000b6af0, nullptr);
     }
     __cxa_atexit(fn_7100096604, g_unk_7101d60010, g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d60148, g_unk_7101d60010);
     fn_710009ec00(g_unk_7101d60149, fn_71000b6ff8());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::reflection::CFunction>>::TKeyElementConstIterator::value_type", true);
-        fn_71000b7458(g_unk_7101d60150, n, g_unk_7101d5e2e0, nullptr, fn_71000b70d4, nullptr);
+        fn_71000b7458(g_unk_7101d60150, n, &g_unk_7101d5e2e0, nullptr, fn_71000b70d4, nullptr);
     }
     __cxa_atexit(fn_7100096604, g_unk_7101d60150, g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d60288, g_unk_7101d60150);
@@ -960,14 +960,14 @@ void fn_71000e2800() {
     fn_710009ec00(g_unk_7101d60402, fn_71000b7988());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, float>>::TKeyElementIterator::value_type", true);
-        fn_71000b7de8(g_unk_7101d60408, n, g_unk_7101d5e2e0, nullptr, fn_71000b7a64, nullptr);
+        fn_71000b7de8(g_unk_7101d60408, n, &g_unk_7101d5e2e0, nullptr, fn_71000b7a64, nullptr);
     }
     __cxa_atexit(fn_7100096604, g_unk_7101d60408, g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d60540, g_unk_7101d60408);
     fn_710009ec00(g_unk_7101d60541, fn_71000b7f6c());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, float>>::TKeyElementConstIterator::value_type", true);
-        fn_71000b83cc(g_unk_7101d60548, n, g_unk_7101d5e2e0, nullptr, fn_71000b8048, nullptr);
+        fn_71000b83cc(g_unk_7101d60548, n, &g_unk_7101d5e2e0, nullptr, fn_71000b8048, nullptr);
     }
     __cxa_atexit(fn_7100096604, g_unk_7101d60548, g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d60680, g_unk_7101d60548);
@@ -982,14 +982,14 @@ void fn_71000e2800() {
     fn_710009ec00(g_unk_7101d607fa, fn_71000b88fc());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntString>>::TKeyElementIterator::value_type", true);
-        fn_71000b8d5c(g_unk_7101d60800, n, g_unk_7101d5e2e0, nullptr, fn_71000b89d8, nullptr);
+        fn_71000b8d5c(g_unk_7101d60800, n, &g_unk_7101d5e2e0, nullptr, fn_71000b89d8, nullptr);
     }
     __cxa_atexit(fn_7100096604, g_unk_7101d60800, g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d60938, g_unk_7101d60800);
     fn_710009ec00(g_unk_7101d60939, fn_71000b8ee0());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntString>>::TKeyElementConstIterator::value_type", true);
-        fn_71000b9340(g_unk_7101d60940, n, g_unk_7101d5e2e0, nullptr, fn_71000b8fbc, nullptr);
+        fn_71000b9340(g_unk_7101d60940, n, &g_unk_7101d5e2e0, nullptr, fn_71000b8fbc, nullptr);
     }
     __cxa_atexit(fn_7100096604, g_unk_7101d60940, g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d60a78, g_unk_7101d60940);
@@ -1004,14 +1004,14 @@ void fn_71000e2800() {
     fn_710009ec00(g_unk_7101d60bf2, fn_71000b986c());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<bool>>::TKeyElementIterator::value_type", true);
-        fn_71000b9ccc(g_unk_7101d60bf8, n, g_unk_7101d5e2e0, nullptr, fn_71000b9948, nullptr);
+        fn_71000b9ccc(g_unk_7101d60bf8, n, &g_unk_7101d5e2e0, nullptr, fn_71000b9948, nullptr);
     }
     __cxa_atexit(fn_7100096604, g_unk_7101d60bf8, g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d60d30, g_unk_7101d60bf8);
     fn_710009ec00(g_unk_7101d60d31, fn_71000b9e50());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<bool>>::TKeyElementConstIterator::value_type", true);
-        fn_71000ba2b0(g_unk_7101d60d38, n, g_unk_7101d5e2e0, nullptr, fn_71000b9f2c, nullptr);
+        fn_71000ba2b0(g_unk_7101d60d38, n, &g_unk_7101d5e2e0, nullptr, fn_71000b9f2c, nullptr);
     }
     __cxa_atexit(fn_7100096604, g_unk_7101d60d38, g_unk_7101a19000);
     fn_710009ec00(g_unk_7101d60e70, g_unk_7101d60d38);

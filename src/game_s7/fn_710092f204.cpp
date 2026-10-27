@@ -6,21 +6,17 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameBlackboard.h"
-#include "game/UnkSuitProperties.h"
+#include "game/UnkItemProperties.h"
 
 using base::global::CFilePathStrId;
 using base::global::CStrId;
 
-// An item definition (game/UnkGameBlackboard.h): its qualified id is built on first use.
-struct UnkItemDef : UnkIdSource {
-    u64 field_0x8;
-    UnkQualifiedId qid;
-};
-
-static inline const UnkQualifiedId& GetQualifiedId(UnkItemDef& def) {
-    if ((u64)def.qid.id.data == (u64)g_unk_7101d47108 + 0x10)
-        fn_7100ae9a10(&def.qid, &def, g_unk_7101d470e0);
-    return def.qid;
+// An item's qualified id, built on first use.
+static inline const UnkQualifiedId& GetQualifiedId(UnkPropertyEx<>& item) {
+    UnkQualifiedId& qid = ItemQualifiedId(item);
+    if ((u64)qid.id.data == (u64)g_unk_7101d47108 + 0x10)
+        fn_7100ae9a10(&qid, ItemSource(item), g_unk_7101d470e0);
+    return qid;
 }
 
 
@@ -65,9 +61,9 @@ const CFilePathStrId& fn_710092f204(UnkMelee* self, s32 kind) {
         plain = !fn_710117b348(states, fn_7100c13dd8());
     bool a = false, b = false, c = false;
     if (self->owner->inventory) {
-        a = fn_71011428bc(self->owner->inventory, GetQualifiedId(SuitAs<UnkItemDef>(g_unk_717275a418)));
-        b = a || fn_71011428bc(self->owner->inventory, GetQualifiedId(SuitAs<UnkItemDef>(g_unk_717275a458)));
-        c = b || fn_71011428bc(self->owner->inventory, GetQualifiedId(SuitAs<UnkItemDef>(g_unk_717275a498)));
+        a = fn_71011428bc(self->owner->inventory, GetQualifiedId(g_unk_717275a418));
+        b = a || fn_71011428bc(self->owner->inventory, GetQualifiedId(g_unk_717275a458));
+        c = b || fn_71011428bc(self->owner->inventory, GetQualifiedId(g_unk_717275a498));
     }
     if (kind == 5) {
         if (plain || a)

@@ -9,6 +9,7 @@
 #include "base/global/CStrId.h"
 #include "game/CBlackboard.h"
 #include "game/UnkGameBlackboard.h"
+#include "game/UnkItemProperties.h"
 
 using namespace unk_prop;
 
@@ -22,6 +23,14 @@ static inline const UnkQualifiedId& Qid(UnkDef_7100fc4b34& def) {
     if ((u64)def.qid.id.data == (u64)g_unk_7101d47108 + 0x10)
         fn_7100ae9a10(&def.qid, &def, g_unk_7101d470e0);
     return def.qid;
+}
+
+// An item's qualified id (game/UnkItemProperties.h), built on first use like a definition's.
+static inline const UnkQualifiedId& Qid(UnkPropertyEx<>& item) {
+    UnkQualifiedId& qid = ItemQualifiedId(item);
+    if ((u64)qid.id.data == (u64)g_unk_7101d47108 + 0x10)
+        fn_7100ae9a10(&qid, ItemSource(item), g_unk_7101d470e0);
+    return qid;
 }
 
 // A definition whose qualified id is kept as a string (built by fn_7100ae9d7c), with named
@@ -62,8 +71,6 @@ __attribute__((always_inline)) inline void Get(CBlackboard* set, const CStrId& s
         Reader(s, reinterpret_cast<const CStrId*>(&name), out);  // every name starts with its CStrId
 }
 
-extern UnkDef_7100fc4b34 g_unk_717275a118;
-extern UnkDef_7100fc4b34 g_unk_717275a058;
 extern UnkDef_7100fc4b34 g_unk_7172759ad0;
 extern UnkDef_7100fc4b34 g_unk_7172759c10;
 extern UnkDef_7100fc4b34 g_unk_7172759c50;
@@ -83,18 +90,6 @@ extern UnkDef_7100fc4b34 g_unk_71729dbc00;
 extern UnkDef_7100fc4b34 g_unk_7172759cd0;
 extern UnkDef_7100fc4b34 g_unk_7172759d10;
 extern UnkDef_7100fc4b34 g_unk_7172759dd0;
-extern UnkDef_7100fc4b34 g_unk_717275a1d8;
-extern UnkDef_7100fc4b34 g_unk_717275a218;
-extern UnkDef_7100fc4b34 g_unk_717275a258;
-extern UnkDef_7100fc4b34 g_unk_717275a298;
-extern UnkDef_7100fc4b34 g_unk_717275a818;
-extern UnkDef_7100fc4b34 g_unk_717275a2d8;
-extern UnkDef_7100fc4b34 g_unk_717275a318;
-extern UnkDef_7100fc4b34 g_unk_717275a398;
-extern UnkDef_7100fc4b34 g_unk_717275a358;
-extern UnkDef_7100fc4b34 g_unk_717275a3d8;
-extern UnkDef_7100fc4b34 g_unk_717275a018;
-extern UnkDef_7100fc4b34 g_unk_7172759fd8;
 extern UnkDef_7100fc4b34 g_unk_71727594b8;
 extern UnkDef_7100fc4b34 g_unk_71729dbc40;
 extern UnkDef_7100fc4b34 g_unk_71729dbc80;

@@ -1,4 +1,5 @@
 // Static initialiser of the unit of the CCharClassRodomithonXAIComponent::SFirePillarConfig::EType, CCharClassRodomithonXAIComponent::SFirePillarConfig, base::reflection::CollectionTypeMapper<CCharClassRodomithonXAIComponent::TVFirePillarConfigs>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<CCharClassRodomithonXAIComponent::TVFirePillarConfigs>::TKeyElementConstIterator::value_type, CCharClassRodomithonXAIComponent::TVFirePillarConfigs reflected types.
+#include "base/reflection/UnkReflTypeGlobals.h"
 #include "UnkStaticInit.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflTypeDtors.h"
@@ -30,16 +31,15 @@ extern char g_unk_71726fdeb9[];
 void* fn_7100665b08();  // fn_7100665b08
 extern char g_unk_71726fdeba[];
 void* fn_7100665be4();  // fn_7100665be4
-extern char g_unk_7101d5e2e0[];
 void fn_7100665cc0();
 extern UnkEnumType g_unk_71726fdec0;
-void fn_7100666044(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
+void fn_7100666044(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 extern char g_unk_71726fdff8[];
 extern char g_unk_71726fdff9[];
 void* fn_71006661c8();  // fn_71006661c8
 void fn_71006662a4();
 extern UnkEnumType g_unk_71726fe000;
-void fn_7100666628(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
+void fn_7100666628(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 extern char g_unk_71726fe138[];
 extern char g_unk_71726fe139[];
 void* fn_71006667ac();  // fn_71006667ac
@@ -63,14 +63,14 @@ void fn_7100668660() {
     fn_710009ec00(g_unk_71726fdeba, fn_7100665be4());
     {
         CStrId n("base::reflection::CollectionTypeMapper<CCharClassRodomithonXAIComponent::TVFirePillarConfigs>::TKeyElementIterator::value_type", true);
-        fn_7100666044(&g_unk_71726fdec0, n, g_unk_7101d5e2e0, nullptr, fn_7100665cc0, nullptr);
+        fn_7100666044(&g_unk_71726fdec0, n, &g_unk_7101d5e2e0, nullptr, fn_7100665cc0, nullptr);
     }
     __cxa_atexit(fn_7100096604, &g_unk_71726fdec0, g_unk_7101a19000);
     fn_710009ec00(g_unk_71726fdff8, &g_unk_71726fdec0);
     fn_710009ec00(g_unk_71726fdff9, fn_71006661c8());
     {
         CStrId n("base::reflection::CollectionTypeMapper<CCharClassRodomithonXAIComponent::TVFirePillarConfigs>::TKeyElementConstIterator::value_type", true);
-        fn_7100666628(&g_unk_71726fe000, n, g_unk_7101d5e2e0, nullptr, fn_71006662a4, nullptr);
+        fn_7100666628(&g_unk_71726fe000, n, &g_unk_7101d5e2e0, nullptr, fn_71006662a4, nullptr);
     }
     __cxa_atexit(fn_7100096604, &g_unk_71726fe000, g_unk_7101a19000);
     fn_710009ec00(g_unk_71726fe138, &g_unk_71726fe000);

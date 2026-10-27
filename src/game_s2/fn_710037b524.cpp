@@ -2,6 +2,7 @@
 // that fn_71010fccf8 turns into a target, hands a default parameter block to fn_71006f4b0c with 1 and,
 // if the flag at +0x5a is set, passes the object to fn_71010fa828.
 #include "game/UnkAIComponent.h"
+#include "game/UnkBehaviorTree.h"
 #include "game_s2/UnkParams.h"
 
 struct UnkOwner {
@@ -16,7 +17,6 @@ struct UnkComponent {
     u8 field_0x5a;
 };
 
-void fn_7100394bd4(UnkComponent* self);
 void fn_71010fa828(UnkAIComponent* object);
 
 void fn_710037b524(UnkComponent* self) {

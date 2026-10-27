@@ -58,6 +58,7 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 **Declarations and calling conventions**
 - A caller declared with fewer parameters can rely on an argument register the caller left set (six callers of `fn_7100216978` passed the vector in `x1` unawares); declaring the real signature keeps the bytes: [sixteenth session](#session-log-newest-first).
 - A union-typed scoped reference adds a reload in its destructor; cast at the call instead. A cast that lets Clang tail-merge two paths can be undone by an anonymous-union member: [sixteenth session](#session-log-newest-first).
+- A header type name must not be one that other files define locally (`UnkComponent` had 41 local definitions): the port links one program; a hidden-visibility attribute stays load-bearing in the header: [hub batch 6](#session-log-newest-first).
 - A global the generated sources declare keeps their type in its header (`CType` for reflected type globals), or every generated includer stops compiling; a typed call that changes a minor function's code can go through a function-pointer view of the header's declaration: [hub batch 5](#session-log-newest-first).
 - On the x86-64 port a mismatched declaration is a register mismatch only across argument classes (`float` vs integer or pointer); count and pointee differences are harmless for address-taking references: [sixteenth session](#session-log-newest-first).
 - Clone kinds and the census method; families tried and left: work log items 0 and 2.
@@ -290,6 +291,30 @@ aliases the C1/D1 symbols to `fn_<addr>` under `__clang_major__ <= 9`, as
 fails from a worktree under `.claude/` (Ghidra rejects a path element starting with a dot): run it
 from the main checkout. About 70 minutes of wall clock for the slowest agent, 0.96 M agent tokens.
 Boot slice 1,881 to 1,889 `O`.
+
+**Hub batch 6 (2026-10-26, branch `claude/hub-batch-6`).** Batch 5's procedure again, on about 70
+symbols plus batch 5's review follow-ups: a whole-tree baseline (1,406 files), one scripted
+`hub_migrate.py` run over 65 chosen signatures (about an hour: one symbol per run, since `--header`
+and `--declaration` take one; 61 file declarations migrated), seven sonnet agents on file-disjoint
+sets, an adversarial review and one agent for its fixes. decl_check: conflicting 220 to 156 (256 to
+158 extra signatures), extra copies 1,819 to 1,574, header re-declarations 1 to 1. The 48 `ITEM_`
+properties' names come from their static initialiser's `InitPropertyEx` strings (a small script made
+the list); their readers viewed each property as an item-definition class, now two accessors of the
+property's own qualified id. `g_unk_7101d5e2e0` (57 files, 49 of them `char[]` passed to a local
+registration prototype's `char*`) became one `CType` with `&` at the calls. A hidden-visibility
+attribute is load-bearing in a header like in a local declaration: without it the users load the
+global through the GOT (86% in two functions). The action nodes put members at +0x2c, inside a
+0x38-byte base: a base of 0x2c data bytes with an empty user-provided constructor (never called) is
+non-POD, so the derived struct reuses its tail padding as the polymorphic originals do (reflection
+sizes CBehavior and CBaseAction 0x30); `= default` would make it POD and push members to +0x30. Two
+nodes reorder six zero stores when derived and cast at the call instead. `fn_7100b2c6a0.cpp`'s minor
+functions are sensitive to the parameter type of every call in their inlined set-up: an untyped
+function-pointer view kept `fn_71011d968c`'s bytes (batch 5) but not `fn_71011cde44`'s; an
+asm-labelled block-scope `extern` under another name did, but `decl_check` cannot see it, so the typed
+call stays and the functions dropped from 98.2% to 96.5% (same behaviour, still `m`). The review
+caught a header comment that had a list's add and remove the wrong way round, an id pointer typed as
+a C string, and two placeholder type names (`UnkComponent`, `UnkTrackQuery`) that other files define
+differently (an ODR clash for the one program the port links).
 
 **Hub batch 5 (2026-10-26, branch `claude/hub-batch-5`).** The first batch of conflicting symbols
 without a hand-written definition: the signature comes from Ghidra's view (read only), the argument

@@ -10,6 +10,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkGuiDisplayObject.h"
 #include "UnkHandleS7.h"
 #include "base/reflection/UnkClassGetters.h"
 
@@ -59,7 +60,12 @@ __attribute__((always_inline)) static inline void AssignIds(u8* pair, const UnkI
 }
 
 struct UnkPanel_71011dfeb0;
-UnkGuiObj_71011dfeb0* fn_71011d98ec(UnkPanel_71011dfeb0* self, u64 id);  // finds a child
+
+// The panel is a display-object container and its children are display objects; this file keeps
+// its own views of both, so the call goes through the casts.
+static inline UnkGuiObj_71011dfeb0* FindChildById(UnkPanel_71011dfeb0* self, u64 id) {
+    return reinterpret_cast<UnkGuiObj_71011dfeb0*>(fn_71011d98ec(reinterpret_cast<UnkGuiDisplayObject*>(self), id));
+}
 void fn_71011d9b3c(UnkPanel_71011dfeb0* self);
 void fn_71011e1404(UnkPanel_71011dfeb0* self);
 void fn_71011ec3fc(UnkLabel_71011dfeb0* label, bool value);
@@ -95,14 +101,14 @@ struct UnkPanel_71011dfeb0 {
 
     // Keeps a handle to the child with this name hash, if there is one.
     __attribute__((always_inline)) void Bind(UnkRefPtr& ref, u64 id) {
-        if (UnkGuiObj_71011dfeb0* child = fn_71011d98ec(this, id))
+        if (UnkGuiObj_71011dfeb0* child = FindChildById(this, id))
             SetRef(ref, Handle(child));
     }
 
     // The child with this name when it is of the class `get_class` returns, else null.
     template <class T>
     __attribute__((always_inline)) T* FindAs(const char* name, const CClass* (*get_class)()) {
-        UnkGuiObj_71011dfeb0* child = fn_71011d98ec(this, fn_7100001570(name, __builtin_strlen(name)));
+        UnkGuiObj_71011dfeb0* child = FindChildById(this, fn_7100001570(name, __builtin_strlen(name)));
         return child && fn_710009d50c(child->GetClass(), get_class()) ? static_cast<T*>(child)
                                                                       : nullptr;
     }

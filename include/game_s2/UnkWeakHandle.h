@@ -35,6 +35,10 @@ struct UnkWeakTarget {
     virtual UnkWeakHandle** vf_0x28();  // the object's weak handle slot
 };
 
+// Removes `link` from the list at +0x438 of `target` (it forwards to fn_710117eb1c; the listeners
+// call it when they unregister). The definition is generated (src/lifted/).
+void fn_710117b3f0(UnkWeakTarget* target, void* link);
+
 template <class T>
 static inline void AssignRef(T** slot, T* p) {
     if (*slot != p) {

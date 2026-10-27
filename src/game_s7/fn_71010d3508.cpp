@@ -2,6 +2,7 @@
 // to (position, angles). Unknown keys go to the base handler (fn_71010c4250). Layouts are
 // placeholders.
 #include "UnkPropS7.h"
+#include "game/UnkComponent.h"
 #include "base/global/CRntFile.h"
 #include "game/UnkXformNode.h"
 
@@ -78,7 +79,6 @@ struct UnkObj_71010d3508 {
 };
 
 bool fn_71010d32ec(UnkObj_71010d3508* self, const CRntString& name);
-u32 fn_71010c4250(UnkObj_71010d3508* self, UnkProp* p);
 
 u32 fn_71010d3508(UnkObj_71010d3508* self, UnkProp* p) {
     if (p->set && Is(p, Key(0x10b8)))
@@ -156,5 +156,7 @@ u32 fn_71010d3508(UnkObj_71010d3508* self, UnkProp* p) {
         fn_710007cb4c(p->stream, "b", result);
         return true;
     }
-    return fn_71010c4250(self, p);
+    // The base handler takes the component and the property record: the object's first 0x40
+    // bytes are the component, UnkProp is the record.
+    return fn_71010c4250(reinterpret_cast<UnkBaseComponent*>(self), reinterpret_cast<UnkComponentProp*>(p));
 }

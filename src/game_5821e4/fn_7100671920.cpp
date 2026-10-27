@@ -1,4 +1,5 @@
 // Static initialiser of the unit of the CCharClassRodotukAIComponent::SAbsorbConfig::EType, CCharClassRodotukAIComponent::SAbsorbConfig, base::reflection::CollectionTypeMapper<CCharClassRodotukAIComponent::TVAbsorbConfigs>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<CCharClassRodotukAIComponent::TVAbsorbConfigs>::TKeyElementConstIterator::value_type, CCharClassRodotukAIComponent::TVAbsorbConfigs reflected types.
+#include "base/reflection/UnkReflTypeGlobals.h"
 #include "UnkStaticInit.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflTypeDtors.h"
@@ -35,16 +36,15 @@ extern char g_unk_71726ff0e1[];
 void* fn_710066eb34();  // fn_710066eb34
 extern char g_unk_71726ff0e2[];
 void* fn_710066ec10();  // fn_710066ec10
-extern char g_unk_7101d5e2e0[];
 void fn_710066ecec();
 extern UnkEnumType g_unk_71726ff0e8;
-void fn_710066f070(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
+void fn_710066f070(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 extern char g_unk_71726ff220[];
 extern char g_unk_71726ff221[];
 void* fn_710066f1f4();  // fn_710066f1f4
 void fn_710066f2d0();
 extern UnkEnumType g_unk_71726ff228;
-void fn_710066f654(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
+void fn_710066f654(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 extern char g_unk_71726ff360[];
 extern char g_unk_71726ff361[];
 void* fn_710066f7d8();  // fn_710066f7d8
@@ -71,14 +71,14 @@ void fn_7100671920() {
     fn_710009ec00(g_unk_71726ff0e2, fn_710066ec10());
     {
         CStrId n("base::reflection::CollectionTypeMapper<CCharClassRodotukAIComponent::TVAbsorbConfigs>::TKeyElementIterator::value_type", true);
-        fn_710066f070(&g_unk_71726ff0e8, n, g_unk_7101d5e2e0, nullptr, fn_710066ecec, nullptr);
+        fn_710066f070(&g_unk_71726ff0e8, n, &g_unk_7101d5e2e0, nullptr, fn_710066ecec, nullptr);
     }
     __cxa_atexit(fn_7100096604, &g_unk_71726ff0e8, g_unk_7101a19000);
     fn_710009ec00(g_unk_71726ff220, &g_unk_71726ff0e8);
     fn_710009ec00(g_unk_71726ff221, fn_710066f1f4());
     {
         CStrId n("base::reflection::CollectionTypeMapper<CCharClassRodotukAIComponent::TVAbsorbConfigs>::TKeyElementConstIterator::value_type", true);
-        fn_710066f654(&g_unk_71726ff228, n, g_unk_7101d5e2e0, nullptr, fn_710066f2d0, nullptr);
+        fn_710066f654(&g_unk_71726ff228, n, &g_unk_7101d5e2e0, nullptr, fn_710066f2d0, nullptr);
     }
     __cxa_atexit(fn_7100096604, &g_unk_71726ff228, g_unk_7101a19000);
     fn_710009ec00(g_unk_71726ff360, &g_unk_71726ff228);

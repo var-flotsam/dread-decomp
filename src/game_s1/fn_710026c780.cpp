@@ -4,7 +4,11 @@
 
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "base/reflection/UnkReflTypeGlobals.h"
 #include "game/UnkTUInit.h"
+
+// The shared helpers see a reflected type through the placeholder layout (UnkReflType).
+static inline UnkReflType* AsUnk(base::reflection::CType* t) { return reinterpret_cast<UnkReflType*>(t); }
 
 extern UnkTUHeader g_unk_71726a3680 __attribute__((visibility("hidden")));
 extern char g_unk_71726a2d30;
@@ -12,7 +16,6 @@ extern char g_unk_71726a2d31;
 extern char g_unk_71726a2d32;
 extern char g_unk_71726a2d33;
 extern UnkReflType g_unk_71726a2d38;
-extern UnkReflType g_unk_7101d5e2e0;
 extern char g_unk_71726a2e70;
 extern char g_unk_71726a2e71;
 extern UnkReflType g_unk_71726a2e78;
@@ -43,7 +46,7 @@ void fn_710026c780() {
               "TKeyElementIterator::value_type",
               fn_7100269f60,
               fn_7100269bdc,
-              &g_unk_7101d5e2e0);
+              AsUnk(&g_unk_7101d5e2e0));
     fn_710009ec00(&g_unk_71726a2e70, &g_unk_71726a2d38);
     fn_710009ec00(&g_unk_71726a2e71, fn_710026a0e4());
     InitClass(&g_unk_71726a2e78,
@@ -51,7 +54,7 @@ void fn_710026c780() {
               "TKeyElementConstIterator::value_type",
               fn_710026a544,
               fn_710026a1c0,
-              &g_unk_7101d5e2e0);
+              AsUnk(&g_unk_7101d5e2e0));
     fn_710009ec00(&g_unk_71726a2fb0, &g_unk_71726a2e78);
     fn_710009ec00(&g_unk_71726a2fb1, fn_710026a6c8());
     InitVector(&g_unk_71726a2fb8, "base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>", fn_710026a7a4);

@@ -2,6 +2,7 @@
 // that fn_71010fccf8 turns into a target, builds a parameter block (vtable g_unk_7101a25b10, kind 5) on
 // the stack and hands it to fn_71006f4b0c with 1.
 #include "game/UnkAIComponent.h"
+#include "game/UnkBehaviorTree.h"
 #include "game_s2/UnkParams.h"
 #include "types.h"
 
@@ -15,8 +16,6 @@ struct UnkComponent {
     UnkOwner* field_0x18;
 };
 
-
-void fn_7100394bd4(UnkComponent* self);
 
 void fn_710046b2f0(UnkComponent* self) {
     fn_7100394bd4(self);

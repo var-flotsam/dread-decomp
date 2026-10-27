@@ -1,5 +1,6 @@
 // Per-frame step of a component: runs the base step, then when the owner (+0x18) has a target at +0x298
 // hands a default parameter block with its flag at +0x30 set to fn_71006f4b0c, with 1.
+#include "game/UnkBehaviorTree.h"
 #include "game_s2/UnkParams.h"
 
 struct UnkOwner {
@@ -11,8 +12,6 @@ struct UnkComponent {
     u8 pad_0x0[0x18];
     UnkOwner* field_0x18;
 };
-
-void fn_7100394bd4(UnkComponent* self);
 
 void fn_71003e4ec8(UnkComponent* self) {
     fn_7100394bd4(self);

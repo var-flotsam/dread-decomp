@@ -42,12 +42,11 @@ struct UnkSelf {
     u32 field_0x600;
 };
 
-extern char g_unk_71726c9e08[] __attribute__((visibility("hidden")));
-void fn_7100de9540(UnkGameManager* manager, const char* name, UnkSelf* self);
+extern u64 g_unk_71726c9e08 __attribute__((visibility("hidden")));
 void fn_7100ac3880(UnkSelf* self);
 
 void fn_7100459e6c(UnkSelf* self) {
-    fn_7100de9540(g_unk_7101d47310, g_unk_71726c9e08, self);
+    fn_7100de9540(g_unk_7101d47310, &g_unk_71726c9e08, reinterpret_cast<UnkWeakTarget*>(self));
     fn_7100ac3880(self);
     UnkCollisionContainer* class_def = self->owner->field_0x2a0;
     {

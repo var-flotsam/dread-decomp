@@ -2,29 +2,22 @@
 // (each a vtable'd object holding callback slot arrays and small reset-on-destroy records) and a
 // last record, then runs the base destructor.
 #include "base/reflection/UnkReflCast.h"
+#include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
-void fn_710117b3f0(void* owner, void* listener);
 void fn_71009b0800(void* self);
 
-struct UnkRefCounted {
-    virtual void vf0();
-    virtual void vf8();
-    virtual void Delete();
-    s32 ref_count;
-};
-
-struct UnkRefPtr {
-    UnkRefCounted* ptr;
+// A counted reference whose slot is released in place.
+struct UnkRefSlot {
+    UnkRefObject* ptr;
 
     void Release() {
-        if (UnkRefCounted* p = ptr) {
+        if (UnkRefObject* p = ptr) {
             if (--p->ref_count == 0)
-                p->Delete();
+                p->vf_0x10();
         }
     }
 };
-
 
 // The common base: a vtable and a member at +0x18 (0x30 bytes).
 struct UnkEventBase {
@@ -71,8 +64,8 @@ struct UnkRecord {
     }
 };
 
-struct UnkListenerOwner : UnkRefCounted {
-    void* field_0x10;
+struct UnkListenerOwner : UnkRefObject {
+    UnkWeakTarget* field_0x10;
 };
 
 struct UnkListener {
@@ -129,7 +122,7 @@ struct UnkObj_710099a084 {
     UnkSlots field_0x9c8;
     UnkSlots field_0xa38;
     UnkSlots field_0xaa8;
-    UnkRefPtr field_0xb18;
+    UnkRefSlot field_0xb18;
 };
 
 void fn_710099a084(UnkObj_710099a084* self) {
@@ -148,7 +141,7 @@ void fn_710099a084(UnkObj_710099a084* self) {
             fn_710117b3f0(owner->field_0x10, &self->field_0x8b8);
         if (UnkListenerOwner* o = self->field_0x8b8.owner) {
             if (--o->ref_count == 0)
-                o->Delete();
+                o->vf_0x10();
         }
     }
     self->field_0x820.Destroy(g_unk_7101a85d58);

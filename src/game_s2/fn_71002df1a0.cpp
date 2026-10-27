@@ -1,4 +1,5 @@
 // Static initialiser of the unit of the base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<animtree::CAnimTreeElementDef>>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<animtree::CAnimTreeElementDef>>>::TKeyElementConstIterator::value_type, base::global::CRntVector<std::unique_ptr<animtree::CAnimTreeElementDef>>.
+#include "base/reflection/UnkReflTypeGlobals.h"
 #include "../game_s7/UnkStaticInitS7.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflTypeDtors.h"
@@ -22,15 +23,14 @@ UnkEnumType* fn_71002dc0d8();
 extern char g_unk_71726aa11c[];
 UnkEnumType* fn_71002dc1b4();
 extern UnkEnumType g_unk_71726aa120;
-extern char g_unk_7101d5e2e0[];
 void fn_71002dc290();
-void fn_71002dc614(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
+void fn_71002dc614(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 extern char g_unk_71726aa258[];
 extern char g_unk_71726aa259[];
 UnkEnumType* fn_71002dc798();
 extern UnkEnumType g_unk_71726aa260;
 void fn_71002dc874();
-void fn_71002dcbf8(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
+void fn_71002dcbf8(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 extern char g_unk_71726aa398[];
 extern char g_unk_71726aa399[];
 UnkEnumType* fn_71002dcd7c();
@@ -51,14 +51,14 @@ void fn_71002df1a0() {
     fn_710009ec00(g_unk_71726aa11c, fn_71002dc1b4());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<animtree::CAnimTreeElementDef>>>::TKeyElementIterator::value_type", true);
-        fn_71002dc614(&g_unk_71726aa120, n, g_unk_7101d5e2e0, nullptr, fn_71002dc290, nullptr);
+        fn_71002dc614(&g_unk_71726aa120, n, &g_unk_7101d5e2e0, nullptr, fn_71002dc290, nullptr);
     }
     __cxa_atexit(fn_7100096604, &g_unk_71726aa120, g_unk_7101a19000);
     fn_710009ec00(g_unk_71726aa258, &g_unk_71726aa120);
     fn_710009ec00(g_unk_71726aa259, fn_71002dc798());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<animtree::CAnimTreeElementDef>>>::TKeyElementConstIterator::value_type", true);
-        fn_71002dcbf8(&g_unk_71726aa260, n, g_unk_7101d5e2e0, nullptr, fn_71002dc874, nullptr);
+        fn_71002dcbf8(&g_unk_71726aa260, n, &g_unk_7101d5e2e0, nullptr, fn_71002dc874, nullptr);
     }
     __cxa_atexit(fn_7100096604, &g_unk_71726aa260, g_unk_7101a19000);
     fn_710009ec00(g_unk_71726aa398, &g_unk_71726aa260);

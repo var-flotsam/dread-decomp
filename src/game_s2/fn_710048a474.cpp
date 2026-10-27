@@ -29,17 +29,6 @@ struct UnkPlayerObject {
 
 using UnkAttack = UnkAnimationComponent;
 
-struct UnkFound {
-    u8 pad_0x0[0x14];
-    f32 field_0x14;
-};
-
-struct UnkQuery {
-    const base::reflection::CClass* class_ptr;
-    UnkFound* found;
-    f32 field_0x10;
-};
-
 struct UnkPlayer {
     u8 pad_0x0[0x1c0];
     UnkPlayerObject* field_0x1c0;
@@ -63,7 +52,6 @@ struct UnkSelf {
 
 void fn_710048fc80(UnkObject* component);
 UnkPlayer* fn_7100dec788(UnkGameManager* manager);
-void fn_710117b08c(UnkAttack* attack, UnkQuery* query);
 
 void fn_710048a474(UnkSelf* self, f32 delta) {
     f32 previous = self->field_0x138;
@@ -87,11 +75,11 @@ void fn_710048a474(UnkSelf* self, f32 delta) {
         return;
     if (!fn_710117b348(attack, fn_7100c63ac8()))
         return;
-    UnkQuery query = {fn_7100c63ac8(), nullptr, -1.0f};
+    UnkTrackQuery query = {fn_7100c63ac8(), nullptr, -1.0f};
     fn_710117b08c(attack, &query);
-    if (!query.found)
+    if (!query.result)
         return;
-    f32 limit = query.found->field_0x14;
+    f32 limit = query.result->field_0x14;
     f32 elapsed = fn_7101177ea0(attack, 0xf4061ff25a2163d6ull);
     player = fn_7100dec788(g_unk_7101d47310);
     if (!player)

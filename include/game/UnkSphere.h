@@ -24,6 +24,10 @@ static_assert(sizeof(UnkSphere) == 0x50, "UnkSphere layout");
 
 // Sets the position and its quantised copy. Defined in src/game/UnkSphere.cpp.
 void fn_7100216978(UnkSphere* self, const UnkVec3f* position);
+// Sets the radius (and its copies and quantised form). Not decompiled yet.
+void fn_710021693c(UnkSphere* self, f32 radius);
+// Another setter of the sphere, taking a scale factor (used by src/game_s1/fn_71001eaf3c.cpp). Not decompiled yet.
+void fn_7100216d30(UnkSphere* self, f32 scale);
 
 // The sphere embedded at +0x80 of a transform node (inside UnkXformNode::pad_0x74).
 inline UnkSphere* UnkXformNodeSphere(UnkXformNode* node) {

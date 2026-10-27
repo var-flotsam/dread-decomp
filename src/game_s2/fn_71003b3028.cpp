@@ -2,15 +2,14 @@
 // the two string ids at +0x40 and +0x48 the empty string (creating the pool first when there is
 // none) and finishes in the constructor of the sub-object at +0x50, fn_71002acfe4.
 #include "base/global/CStrId.h"
+#include "game/UnkBehaviorTree.h"
 #include "types.h"
 
 using base::global::UnkStringData;
 
 typedef u64 u64_a4 __attribute__((aligned(4)));
 
-struct UnkNode {
-    void** vtable;
-    u8 pad_0x8[0x24];
+struct UnkNode : UnkBehaviorTreeNodeBase {
     u64_a4 field_0x2c;
     u32 field_0x34;
     u8 pad_0x38[8];
@@ -19,7 +18,6 @@ struct UnkNode {
     u8 field_0x50[1];
 };
 
-void fn_7100393e68(UnkNode*);
 void fn_71002acfe4(void* sub);
 extern void* g_unk_7101a2ad48[];
 

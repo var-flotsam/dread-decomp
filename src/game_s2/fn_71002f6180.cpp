@@ -1,4 +1,5 @@
 // Static initialiser of the unit of the base::reflection::CollectionTypeMapper<base::global::CRntVector< std::unique_ptr<CPlaythroughDef::SCheckpointDef> >>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector< std::unique_ptr<CPlaythroughDef::SCheckpointDef> >>::TKeyElementConstIterator::value_type, base::global::CRntVector< std::unique_ptr<CPlaythroughDef::SCheckpointDef> >.
+#include "base/reflection/UnkReflTypeGlobals.h"
 #include "../game_s7/UnkStaticInitS7.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflTypeDtors.h"
@@ -30,15 +31,14 @@ UnkEnumType* fn_71002f1284();
 extern char g_unk_71726ada13[];
 UnkEnumType* fn_71002f1360();
 extern UnkEnumType g_unk_71726ada18;
-extern char g_unk_7101d5e2e0[];
 void fn_71002f143c();
-void fn_71002f17c0(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
+void fn_71002f17c0(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 extern char g_unk_71726adb50[];
 extern char g_unk_71726adb51[];
 UnkEnumType* fn_71002f1a20();
 extern UnkEnumType g_unk_71726adb58;
 void fn_71002f1afc();
-void fn_71002f1e80(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
+void fn_71002f1e80(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 extern char g_unk_71726adc90[];
 extern char g_unk_71726adc91[];
 UnkEnumType* fn_71002f2004();
@@ -67,14 +67,14 @@ void fn_71002f6180() {
     fn_710009ec00(g_unk_71726ada13, fn_71002f1360());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector< std::unique_ptr<CPlaythroughDef::SCheckpointDef> >>::TKeyElementIterator::value_type", true);
-        fn_71002f17c0(&g_unk_71726ada18, n, g_unk_7101d5e2e0, nullptr, fn_71002f143c, nullptr);
+        fn_71002f17c0(&g_unk_71726ada18, n, &g_unk_7101d5e2e0, nullptr, fn_71002f143c, nullptr);
     }
     __cxa_atexit(fn_7100096604, &g_unk_71726ada18, g_unk_7101a19000);
     fn_710009ec00(g_unk_71726adb50, &g_unk_71726ada18);
     fn_710009ec00(g_unk_71726adb51, fn_71002f1a20());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector< std::unique_ptr<CPlaythroughDef::SCheckpointDef> >>::TKeyElementConstIterator::value_type", true);
-        fn_71002f1e80(&g_unk_71726adb58, n, g_unk_7101d5e2e0, nullptr, fn_71002f1afc, nullptr);
+        fn_71002f1e80(&g_unk_71726adb58, n, &g_unk_7101d5e2e0, nullptr, fn_71002f1afc, nullptr);
     }
     __cxa_atexit(fn_7100096604, &g_unk_71726adb58, g_unk_7101a19000);
     fn_710009ec00(g_unk_71726adc90, &g_unk_71726adb58);

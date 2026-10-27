@@ -1,15 +1,17 @@
 // Constructor of an object derived from fn_7100393e68's: sets its vtable, clears its members and sets
 // a few flags and sentinel values (-1 for an index and a float pair). The same initialisation as
 // fn_710037ca84, without the call that one finishes in.
+#include "game/UnkBehaviorTree.h"
 #include "types.h"
 
 typedef u64 u64_a4 __attribute__((aligned(4)));
 
+// Only the vtable is named; the rest is addressed by offset. It stays a separate view of the node
+// (deriving from UnkBehaviorTreeNodeBase reorders the zero stores), hence the cast at the call.
 struct UnkNode {
     void** vtable;
 };
 
-void fn_7100393e68(UnkNode*);
 extern void* g_unk_7101a25a60[];
 
 template <class T>
@@ -18,7 +20,7 @@ static inline void St(UnkNode* self, u32 off, T value) {
 }
 
 void fn_710037a410(UnkNode* self) {
-    fn_7100393e68(self);
+    fn_7100393e68(reinterpret_cast<UnkBehaviorTreeNodeBase*>(self));
     self->vtable = g_unk_7101a25a60 + 2;
     St<u64_a4>(self, 0x2c, 0);
     St<u64_a4>(self, 0x34, 0);

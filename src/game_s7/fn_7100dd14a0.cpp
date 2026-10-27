@@ -4,6 +4,7 @@
 #include "UnkStaticInitS7.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflTypeDtors.h"
+#include "base/reflection/UnkReflTypeGlobals.h"
 #include "game/UnkTUProperty.h"
 
 using namespace unk_static_init;
@@ -45,14 +46,13 @@ UnkEnumType* fn_7100db4b68();
 extern char g_unk_71727bcc7a[];
 UnkEnumType* fn_7100db4c44();
 extern UnkEnumType g_unk_71727bcc80;
-void fn_7100db50a4(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
-extern char g_unk_7101d5e2e0[];
+void fn_7100db50a4(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 void fn_7100db4d20();
 extern char g_unk_71727bcdb8[];
 extern char g_unk_71727bcdb9[];
 UnkEnumType* fn_7100db5228();
 extern UnkEnumType g_unk_71727bcdc0;
-void fn_7100db5688(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
+void fn_7100db5688(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 void fn_7100db5304();
 extern char g_unk_71727bcef8[];
 extern char g_unk_71727bcef9[];
@@ -141,14 +141,14 @@ void fn_7100dd14a0() {
     fn_710009ec00(g_unk_71727bcc7a, fn_7100db4c44());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<int, float>>::TKeyElementIterator::value_type", true);
-        fn_7100db50a4(&g_unk_71727bcc80, n, g_unk_7101d5e2e0, nullptr, fn_7100db4d20, nullptr);
+        fn_7100db50a4(&g_unk_71727bcc80, n, &g_unk_7101d5e2e0, nullptr, fn_7100db4d20, nullptr);
     }
     __cxa_atexit(fn_7100096604, &g_unk_71727bcc80, g_unk_7101a19000);
     fn_710009ec00(g_unk_71727bcdb8, &g_unk_71727bcc80);
     fn_710009ec00(g_unk_71727bcdb9, fn_7100db5228());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<int, float>>::TKeyElementConstIterator::value_type", true);
-        fn_7100db5688(&g_unk_71727bcdc0, n, g_unk_7101d5e2e0, nullptr, fn_7100db5304, nullptr);
+        fn_7100db5688(&g_unk_71727bcdc0, n, &g_unk_7101d5e2e0, nullptr, fn_7100db5304, nullptr);
     }
     __cxa_atexit(fn_7100096604, &g_unk_71727bcdc0, g_unk_7101a19000);
     fn_710009ec00(g_unk_71727bcef8, &g_unk_71727bcdc0);

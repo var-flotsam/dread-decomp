@@ -15,7 +15,6 @@ using base::global::CRntString;
 using base::reflection::CClass;
 
 void fn_71011cf364(void* composition, s32 value);
-void fn_71011cde44(void* composition, s32 value);
 // The header's fn_71011d968c (container, child), called through an untyped view: calling it with
 // the typed arguments changes the NON_MATCHING(minor) functions below (the last reloads of the slot
 // lose the x20 address).
@@ -51,8 +50,9 @@ __attribute__((always_inline)) static inline void SetUp(UnkMenu<Offset>* self, c
 }
 
 // NON_MATCHING(minor): the original reloads the slot through its address register (x20) for the
-// fn_71011cf2a4 call too; ours addresses that one load from the menu (and, in the vf_0x78 variants,
-// swaps that load's form with the vf_0x78 one). Same behaviour.
+// fn_71011cf2a4 and fn_71011cde44 calls; ours addresses those loads from the menu (and, in the
+// vf_0x78 variants, swaps one load's form with the vf_0x78 one). Same behaviour. (With
+// fn_71011cde44 declared to take a void* the second load kept x20: 98.2%, not 96.5%.)
 void fn_7100b2c6a0(UnkMenu<0x290>* self) { SetUp<0x290, -1>(self, "ConfigMenuComposition"); }
 // NON_MATCHING(minor): as fn_7100b2c6a0.
 void fn_7100b2c784(UnkMenu<0x2c8>* self) { SetUp<0x2c8, -1>(self, "ConfigMenuBossRush"); }

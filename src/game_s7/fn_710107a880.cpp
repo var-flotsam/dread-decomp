@@ -4,56 +4,18 @@
 #include "base/global/CStrId.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
-#include "game/UnkSuitProperties.h"
+#include "game/UnkItemProperties.h"
 
 using base::global::CStrId;
 
-// An item definition (game/UnkGameBlackboard.h): its qualified id is built on first use.
-struct UnkItemDef : UnkIdSource {
-    u64 field_0x8;
-    UnkQualifiedId qid;
-};
-// Compared as integers, as in fn_7100ae9a10.
-static inline const UnkQualifiedId& GetQualifiedId(UnkItemDef& def) {
-    if ((u64)def.qid.id.data == (u64)g_unk_7101d47108 + 0x10)
-        fn_7100ae9a10(&def.qid, &def, g_unk_7101d470e0);
-    return def.qid;
+// An item's qualified id, built on first use. Compared as integers, as in fn_7100ae9a10.
+static inline const UnkQualifiedId& GetQualifiedId(UnkPropertyEx<>& item) {
+    UnkQualifiedId& qid = ItemQualifiedId(item);
+    if ((u64)qid.id.data == (u64)g_unk_7101d47108 + 0x10)
+        fn_7100ae9a10(&qid, ItemSource(item), g_unk_7101d470e0);
+    return qid;
 }
 
-extern UnkItemDef g_unk_717275a058;
-extern UnkItemDef g_unk_717275a098;
-extern UnkItemDef g_unk_717275a118;
-extern UnkItemDef g_unk_717275a158;
-extern UnkItemDef g_unk_717275a198;
-extern UnkItemDef g_unk_717275a1d8;
-extern UnkItemDef g_unk_717275a218;
-extern UnkItemDef g_unk_717275a258;
-extern UnkItemDef g_unk_717275a298;
-extern UnkItemDef g_unk_717275a4d8;
-extern UnkItemDef g_unk_717275a518;
-extern UnkItemDef g_unk_717275a558;
-extern UnkItemDef g_unk_717275a598;
-extern UnkItemDef g_unk_717275a5d8;
-extern UnkItemDef g_unk_717275a618;
-extern UnkItemDef g_unk_717275a658;
-extern UnkItemDef g_unk_717275a698;
-extern UnkItemDef g_unk_717275a6d8;
-extern UnkItemDef g_unk_717275a758;
-extern UnkItemDef g_unk_717275a798;
-extern UnkItemDef g_unk_717275a7d8;
-extern UnkItemDef g_unk_717275a858;
-extern UnkItemDef g_unk_717275a898;
-extern UnkItemDef g_unk_717275a8d8;
-extern UnkItemDef g_unk_717275a918;
-extern UnkItemDef g_unk_717275a958;
-extern UnkItemDef g_unk_717275a998;
-extern UnkItemDef g_unk_717275a9d8;
-extern UnkItemDef g_unk_717275aa18;
-extern UnkItemDef g_unk_717275aa58;
-extern UnkItemDef g_unk_717275aa98;
-extern UnkItemDef g_unk_717275aad8;
-extern UnkItemDef g_unk_717275ab58;
-extern UnkItemDef g_unk_717275ab98;
 
 struct UnkInventory;
 void fn_7101142a28(UnkInventory* inventory, const UnkQualifiedId& item, bool a, bool b, bool c, f32 amount,
@@ -105,9 +67,9 @@ int fn_710107a880(void* /*lua_State*/) {
     fn_7101142a28(inventory, GetQualifiedId(g_unk_717275a218), true, true, true, 150.0f, 0.0f);
     fn_7101142a28(inventory, GetQualifiedId(g_unk_717275a258), true, true, true, 10.0f, 0.0f);
     fn_7101142a28(inventory, GetQualifiedId(g_unk_717275a298), true, true, true, 10.0f, 0.0f);
-    fn_7101142a28(inventory, GetQualifiedId(SuitAs<UnkItemDef>(g_unk_717275a418)), true, true, true, 1.0f, 0.0f);
-    fn_7101142a28(inventory, GetQualifiedId(SuitAs<UnkItemDef>(g_unk_717275a458)), true, true, true, 1.0f, 0.0f);
-    fn_7101142a28(inventory, GetQualifiedId(SuitAs<UnkItemDef>(g_unk_717275a498)), true, true, true, 1.0f, 0.0f);
+    fn_7101142a28(inventory, GetQualifiedId(g_unk_717275a418), true, true, true, 1.0f, 0.0f);
+    fn_7101142a28(inventory, GetQualifiedId(g_unk_717275a458), true, true, true, 1.0f, 0.0f);
+    fn_7101142a28(inventory, GetQualifiedId(g_unk_717275a498), true, true, true, 1.0f, 0.0f);
     fn_7101142a28(inventory, GetQualifiedId(g_unk_717275a4d8), true, true, true, 1.0f, 0.0f);
     fn_7101142a28(inventory, GetQualifiedId(g_unk_717275a518), true, true, true, 1.0f, 0.0f);
     fn_7101142a28(inventory, GetQualifiedId(g_unk_717275a558), true, true, true, 1.0f, 0.0f);

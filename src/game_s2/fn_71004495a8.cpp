@@ -3,6 +3,7 @@
 // listener its vtable.
 #include "base/UnkNamedRegistry.h"
 #include "base/global/CStrId.h"
+#include "game/UnkBehaviorTree.h"
 #include "types.h"
 
 using base::global::UnkStrIdBase;
@@ -17,9 +18,8 @@ struct UnkListener {
     u64 field_0x8;
 };
 
-struct UnkNode {
-    void** vtable;
-    u8 pad_0x8[0x28];
+struct UnkNode : UnkBehaviorTreeNodeBase {
+    u8 pad_0x2c[4];
     base::UnkNamedEntry field_0x30;
     UnkStrIdBase field_0x60;
     u16 field_0x68;
@@ -36,7 +36,6 @@ struct UnkNode {
     u32 field_0xc0;
 };
 
-void fn_7100393e68(UnkNode*);
 extern void* g_unk_7101a36838[];
 extern void* g_unk_7101a22d48[];  // the listener's vtable
 

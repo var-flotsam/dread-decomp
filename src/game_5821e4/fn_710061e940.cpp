@@ -1,4 +1,5 @@
 // Static initialiser of the unit of the base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CShootDCBones>>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CShootDCBones>>>::TKeyElementConstIterator::value_type, base::global::CRntVector<std::unique_ptr<CShootDCBones>>, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<COffset>>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<COffset>>>::TKeyElementConstIterator::value_type, base::global::CRntVector<std::unique_ptr<COffset>>, base::reflection::CollectionTypeMapper<TPatterns>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<TPatterns>::TKeyElementConstIterator::value_type, TPatterns, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPattern>>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPattern>>>::TKeyElementConstIterator::value_type, base::global::CRntVector<std::unique_ptr<CPattern>> reflected types.
+#include "base/reflection/UnkReflTypeGlobals.h"
 #include "UnkStaticInit.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflTypeDtors.h"
@@ -28,16 +29,15 @@ extern char g_unk_71726f4ffb[];
 UnkEnumType* fn_710060f218();
 extern char g_unk_71726f4ffc[];
 UnkEnumType* fn_710060f2f4();
-extern char g_unk_7101d5e2e0[];
 void fn_710060f3d0();
 extern UnkEnumType g_unk_71726f5000;
-void fn_710060f754(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
+void fn_710060f754(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 extern char g_unk_71726f5138[];
 extern char g_unk_71726f5139[];
 UnkEnumType* fn_710060f8d8();
 void fn_710060f9b4();
 extern UnkEnumType g_unk_71726f5140;
-void fn_710060fd38(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
+void fn_710060fd38(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 extern char g_unk_71726f5278[];
 extern char g_unk_71726f5279[];
 UnkEnumType* fn_710060febc();
@@ -57,13 +57,13 @@ extern char g_unk_71726f541c[];
 UnkEnumType* fn_7100610c04();
 void fn_7100610ce0();
 extern UnkEnumType g_unk_71726f5420;
-void fn_7100611064(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
+void fn_7100611064(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 extern char g_unk_71726f5558[];
 extern char g_unk_71726f5559[];
 UnkEnumType* fn_71006111e8();
 void fn_71006112c4();
 extern UnkEnumType g_unk_71726f5560;
-void fn_7100611648(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
+void fn_7100611648(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 extern char g_unk_71726f5698[];
 extern char g_unk_71726f5699[];
 UnkEnumType* fn_71006117cc();
@@ -78,13 +78,13 @@ extern char g_unk_71726f5839[];
 UnkEnumType* fn_7100611b64();
 void fn_7100611c40();
 extern UnkEnumType g_unk_71726f5840;
-void fn_7100611fd0(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
+void fn_7100611fd0(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 extern char g_unk_71726f5978[];
 extern char g_unk_71726f5979[];
 UnkEnumType* fn_7100612154();
 void fn_7100612230();
 extern UnkEnumType g_unk_71726f5980;
-void fn_71006125c0(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
+void fn_71006125c0(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 extern char g_unk_71726f5ab8[];
 extern char g_unk_71726f5ab9[];
 UnkEnumType* fn_7100612744();
@@ -102,13 +102,13 @@ extern char g_unk_71726f5c35[];
 UnkEnumType* fn_71006132fc();
 void fn_71006133d8();
 extern UnkEnumType g_unk_71726f5c38;
-void fn_710061375c(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
+void fn_710061375c(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 extern char g_unk_71726f5d70[];
 extern char g_unk_71726f5d71[];
 UnkEnumType* fn_71006138e0();
 void fn_71006139bc();
 extern UnkEnumType g_unk_71726f5d78;
-void fn_7100613d40(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
+void fn_7100613d40(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 extern char g_unk_71726f5eb0[];
 extern char g_unk_71726f5eb1[];
 UnkEnumType* fn_7100613ec4();
@@ -129,14 +129,14 @@ void fn_710061e940() {
     fn_710009ec00(g_unk_71726f4ffc, fn_710060f2f4());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CShootDCBones>>>::TKeyElementIterator::value_type", true);
-        fn_710060f754(&g_unk_71726f5000, n, g_unk_7101d5e2e0, nullptr, fn_710060f3d0, nullptr);
+        fn_710060f754(&g_unk_71726f5000, n, &g_unk_7101d5e2e0, nullptr, fn_710060f3d0, nullptr);
     }
     __cxa_atexit(fn_7100096604, &g_unk_71726f5000, g_unk_7101a19000);
     fn_710009ec00(g_unk_71726f5138, &g_unk_71726f5000);
     fn_710009ec00(g_unk_71726f5139, fn_710060f8d8());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CShootDCBones>>>::TKeyElementConstIterator::value_type", true);
-        fn_710060fd38(&g_unk_71726f5140, n, g_unk_7101d5e2e0, nullptr, fn_710060f9b4, nullptr);
+        fn_710060fd38(&g_unk_71726f5140, n, &g_unk_7101d5e2e0, nullptr, fn_710060f9b4, nullptr);
     }
     __cxa_atexit(fn_7100096604, &g_unk_71726f5140, g_unk_7101a19000);
     fn_710009ec00(g_unk_71726f5278, &g_unk_71726f5140);
@@ -156,14 +156,14 @@ void fn_710061e940() {
     fn_710009ec00(g_unk_71726f541c, fn_7100610c04());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<COffset>>>::TKeyElementIterator::value_type", true);
-        fn_7100611064(&g_unk_71726f5420, n, g_unk_7101d5e2e0, nullptr, fn_7100610ce0, nullptr);
+        fn_7100611064(&g_unk_71726f5420, n, &g_unk_7101d5e2e0, nullptr, fn_7100610ce0, nullptr);
     }
     __cxa_atexit(fn_7100096604, &g_unk_71726f5420, g_unk_7101a19000);
     fn_710009ec00(g_unk_71726f5558, &g_unk_71726f5420);
     fn_710009ec00(g_unk_71726f5559, fn_71006111e8());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<COffset>>>::TKeyElementConstIterator::value_type", true);
-        fn_7100611648(&g_unk_71726f5560, n, g_unk_7101d5e2e0, nullptr, fn_71006112c4, nullptr);
+        fn_7100611648(&g_unk_71726f5560, n, &g_unk_7101d5e2e0, nullptr, fn_71006112c4, nullptr);
     }
     __cxa_atexit(fn_7100096604, &g_unk_71726f5560, g_unk_7101a19000);
     fn_710009ec00(g_unk_71726f5698, &g_unk_71726f5560);
@@ -179,14 +179,14 @@ void fn_710061e940() {
     fn_710009ec00(g_unk_71726f5839, fn_7100611b64());
     {
         CStrId n("base::reflection::CollectionTypeMapper<TPatterns>::TKeyElementIterator::value_type", true);
-        fn_7100611fd0(&g_unk_71726f5840, n, g_unk_7101d5e2e0, nullptr, fn_7100611c40, nullptr);
+        fn_7100611fd0(&g_unk_71726f5840, n, &g_unk_7101d5e2e0, nullptr, fn_7100611c40, nullptr);
     }
     __cxa_atexit(fn_7100096604, &g_unk_71726f5840, g_unk_7101a19000);
     fn_710009ec00(g_unk_71726f5978, &g_unk_71726f5840);
     fn_710009ec00(g_unk_71726f5979, fn_7100612154());
     {
         CStrId n("base::reflection::CollectionTypeMapper<TPatterns>::TKeyElementConstIterator::value_type", true);
-        fn_71006125c0(&g_unk_71726f5980, n, g_unk_7101d5e2e0, nullptr, fn_7100612230, nullptr);
+        fn_71006125c0(&g_unk_71726f5980, n, &g_unk_7101d5e2e0, nullptr, fn_7100612230, nullptr);
     }
     __cxa_atexit(fn_7100096604, &g_unk_71726f5980, g_unk_7101a19000);
     fn_710009ec00(g_unk_71726f5ab8, &g_unk_71726f5980);
@@ -205,14 +205,14 @@ void fn_710061e940() {
     fn_710009ec00(g_unk_71726f5c35, fn_71006132fc());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPattern>>>::TKeyElementIterator::value_type", true);
-        fn_710061375c(&g_unk_71726f5c38, n, g_unk_7101d5e2e0, nullptr, fn_71006133d8, nullptr);
+        fn_710061375c(&g_unk_71726f5c38, n, &g_unk_7101d5e2e0, nullptr, fn_71006133d8, nullptr);
     }
     __cxa_atexit(fn_7100096604, &g_unk_71726f5c38, g_unk_7101a19000);
     fn_710009ec00(g_unk_71726f5d70, &g_unk_71726f5c38);
     fn_710009ec00(g_unk_71726f5d71, fn_71006138e0());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPattern>>>::TKeyElementConstIterator::value_type", true);
-        fn_7100613d40(&g_unk_71726f5d78, n, g_unk_7101d5e2e0, nullptr, fn_71006139bc, nullptr);
+        fn_7100613d40(&g_unk_71726f5d78, n, &g_unk_7101d5e2e0, nullptr, fn_71006139bc, nullptr);
     }
     __cxa_atexit(fn_7100096604, &g_unk_71726f5d78, g_unk_7101a19000);
     fn_710009ec00(g_unk_71726f5eb0, &g_unk_71726f5d78);

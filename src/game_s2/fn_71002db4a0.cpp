@@ -1,4 +1,5 @@
 // Static initialiser of the unit of the base::reflection::CollectionTypeMapper<base::global::CRntVector<animtree::CAnimTreeDef::TAnimTreeLinkDef>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<animtree::CAnimTreeDef::TAnimTreeLinkDef>>::TKeyElementConstIterator::value_type, base::global::CRntVector<animtree::CAnimTreeDef::TAnimTreeLinkDef>.
+#include "base/reflection/UnkReflTypeGlobals.h"
 #include "../game_s7/UnkStaticInitS7.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflTypeDtors.h"
@@ -20,15 +21,14 @@ UnkEnumType* fn_71002d6b20();
 extern char g_unk_71726a93d2[];
 UnkEnumType* fn_71002d6bfc();
 extern UnkEnumType g_unk_71726a93d8;
-extern char g_unk_7101d5e2e0[];
 void fn_71002d6cd8();
-void fn_71002d7068(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
+void fn_71002d7068(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 extern char g_unk_71726a9510[];
 extern char g_unk_71726a9511[];
 UnkEnumType* fn_71002d71ec();
 extern UnkEnumType g_unk_71726a9518;
 void fn_71002d72c8();
-void fn_71002d7658(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
+void fn_71002d7658(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 extern char g_unk_71726a9650[];
 extern char g_unk_71726a9651[];
 UnkEnumType* fn_71002d77dc();
@@ -45,14 +45,14 @@ void fn_71002db4a0() {
     fn_710009ec00(g_unk_71726a93d2, fn_71002d6bfc());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<animtree::CAnimTreeDef::TAnimTreeLinkDef>>::TKeyElementIterator::value_type", true);
-        fn_71002d7068(&g_unk_71726a93d8, n, g_unk_7101d5e2e0, nullptr, fn_71002d6cd8, nullptr);
+        fn_71002d7068(&g_unk_71726a93d8, n, &g_unk_7101d5e2e0, nullptr, fn_71002d6cd8, nullptr);
     }
     __cxa_atexit(fn_7100096604, &g_unk_71726a93d8, g_unk_7101a19000);
     fn_710009ec00(g_unk_71726a9510, &g_unk_71726a93d8);
     fn_710009ec00(g_unk_71726a9511, fn_71002d71ec());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<animtree::CAnimTreeDef::TAnimTreeLinkDef>>::TKeyElementConstIterator::value_type", true);
-        fn_71002d7658(&g_unk_71726a9518, n, g_unk_7101d5e2e0, nullptr, fn_71002d72c8, nullptr);
+        fn_71002d7658(&g_unk_71726a9518, n, &g_unk_7101d5e2e0, nullptr, fn_71002d72c8, nullptr);
     }
     __cxa_atexit(fn_7100096604, &g_unk_71726a9518, g_unk_7101a19000);
     fn_710009ec00(g_unk_71726a9650, &g_unk_71726a9518);

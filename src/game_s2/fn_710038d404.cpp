@@ -4,6 +4,7 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "game/UnkBehaviorTree.h"
 #include "types.h"
 
 using base::global::UnkStrId;
@@ -12,9 +13,8 @@ typedef u64 u64_a4 __attribute__((aligned(4)));
 
 typedef void** __attribute__((may_alias)) UnkVtable;
 
-struct UnkNode {
-    UnkVtable vtable;
-    u8 pad_0x8[0x28];
+struct UnkNode : UnkBehaviorTreeNodeBase {
+    u8 pad_0x2c[4];
     u64 field_0x30;
     u64 field_0x38;
     u64 field_0x40;
@@ -48,7 +48,6 @@ struct UnkNode {
     }
 };
 
-void fn_7100393e68(UnkNode*);
 extern void* g_unk_7101a26730[];
 extern void* g_unk_7101a22d48[];
 

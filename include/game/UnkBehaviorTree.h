@@ -8,16 +8,33 @@
 
 #include "types.h"
 
-// A behaviour-tree node: the vtable and the fields the base constructor sets (up to +0x38); the
-// concrete nodes derive from it and add their own members from +0x38.
-struct UnkBehaviorTreeNode {
+// The part of a tree node that every node shares (the base constructor fn_7100393e68 of the action
+// nodes, fn_7100394a88 below it): the vtable, and the word at +0x28 that the action base sets to 4.
+// It ends at +0x2c, where the members of most action nodes start. The reflected sizes are 0x30 for
+// behaviortree::CBehavior and CBaseAction and 0x38 for CBaseCondition. The empty user-provided
+// constructor makes the struct non-POD, so a derived struct reuses its tail padding (+0x2c), as the
+// polymorphic originals do (`= default` would not). Our code never calls it.
+struct UnkBehaviorTreeNodeBase {
     void** vtable;
-    u8 unk_0x8[0x30];
+    u8 unk_0x8[0x20];
+    u32 field_0x28;
+    UnkBehaviorTreeNodeBase() {}
 };
+static_assert(sizeof(UnkBehaviorTreeNodeBase) == 0x30, "UnkBehaviorTreeNodeBase placeholder layout");
+
+// A condition node: the base plus the fields its constructor sets (up to +0x38); the concrete
+// nodes derive from it and add their own members from +0x38.
+struct UnkBehaviorTreeNode : UnkBehaviorTreeNodeBase {
+    u8 unk_0x2c[0xc];
+};
+static_assert(__builtin_offsetof(UnkBehaviorTreeNode, unk_0x2c) == 0x2c, "UnkBehaviorTreeNode placeholder layout");
 static_assert(sizeof(UnkBehaviorTreeNode) == 0x38, "UnkBehaviorTreeNode placeholder layout");
 
 // The behaviour-tree AI component: the owner link at +0x30 is the only member the callers share
-// (each types it for itself); the components derive from it and add their own members from +0x38.
+// (each types it for itself); the components derive from it. The derived placeholders continue at
+// +0x38, but the reflected CComponent is 0x40 bytes (game/UnkComponent.h) and CBehaviorTreeAIComponent
+// 0x146c8 (CAIComponent 0x146b0): the real members start at +0x40. (The 0x510 of
+// CCharClassBehaviorTreeAIComponent is the class data, a separate object.)
 struct UnkBehaviorTreeAI {
     u8 unk_0x0[0x30];
     void* field_0x30;
@@ -28,7 +45,14 @@ struct UnkBehaviorTreeAI {
 // first by the reset functions of the components (fn_71003ad278, fn_7100403a18).
 void fn_71003695b8(UnkBehaviorTreeAI* self);
 
-// The base constructor of a tree node (the unit behaviortree::CBaseCondition): sets the vtable and
-// the fields at +0x28, +0x2c and +0x30. Called first by the constructors of the concrete nodes
+// The base constructor of a condition node (the unit behaviortree::CBaseCondition): sets the vtable
+// and the fields at +0x28, +0x2c and +0x30. Called first by the constructors of the concrete nodes
 // (fn_7100398128, fn_71003a3e64, fn_710039d420).
 void fn_71003944e8(UnkBehaviorTreeNode* self);
+// The base constructor of an action node (the unit behaviortree::CBaseAction): runs the node base
+// constructor fn_7100394a88, stores its vtable and sets +0x28 to 4. Called first by the
+// constructors of the concrete action nodes (src/game_s2/).
+void fn_7100393e68(UnkBehaviorTreeNodeBase* self);
+// Empty (the unit behaviortree::CBehavior); called first by the node routines of src/game_s2/
+// (fn_710037b524, fn_7100381764 ...).
+void fn_7100394bd4(void* self);

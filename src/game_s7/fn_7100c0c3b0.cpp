@@ -4,6 +4,7 @@
 #include "UnkStaticInitS7.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflTypeDtors.h"
+#include "base/reflection/UnkReflTypeGlobals.h"
 #include "game/UnkTUInit.h"
 
 using namespace unk_static_init;
@@ -30,14 +31,13 @@ UnkEnumType* fn_7100c009dc();
 extern char g_unk_717277b28d[];
 UnkEnumType* fn_7100c00ab8();
 extern UnkEnumType g_unk_717277b290;
-void fn_7100c00f24(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
-extern char g_unk_7101d5e2e0[];
+void fn_7100c00f24(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 void fn_7100c00b94();
 extern char g_unk_717277b3c8[];
 extern char g_unk_717277b3c9[];
 UnkEnumType* fn_7100c010a8();
 extern UnkEnumType g_unk_717277b3d0;
-void fn_7100c01514(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
+void fn_7100c01514(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 void fn_7100c01184();
 extern char g_unk_717277b508[];
 extern char g_unk_717277b509[];
@@ -50,13 +50,13 @@ UnkEnumType* fn_7100c0196c();
 extern char g_unk_717277b682[];
 UnkEnumType* fn_7100c01a48();
 extern UnkEnumType g_unk_717277b688;
-void fn_7100c01eb4(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
+void fn_7100c01eb4(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 void fn_7100c01b24();
 extern char g_unk_717277b7c0[];
 extern char g_unk_717277b7c1[];
 UnkEnumType* fn_7100c02038();
 extern UnkEnumType g_unk_717277b7c8;
-void fn_7100c024a4(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
+void fn_7100c024a4(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 void fn_7100c02114();
 extern char g_unk_717277b900[];
 extern char g_unk_717277b901[];
@@ -69,13 +69,13 @@ UnkEnumType* fn_7100c028ec();
 extern char g_unk_717277ba7a[];
 UnkEnumType* fn_7100c029c8();
 extern UnkEnumType g_unk_717277ba80;
-void fn_7100c02e28(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
+void fn_7100c02e28(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 void fn_7100c02aa4();
 extern char g_unk_717277bbb8[];
 extern char g_unk_717277bbb9[];
 UnkEnumType* fn_7100c02fac();
 extern UnkEnumType g_unk_717277bbc0;
-void fn_7100c0340c(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
+void fn_7100c0340c(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 void fn_7100c03088();
 extern char g_unk_717277bcf8[];
 extern char g_unk_717277bcf9[];
@@ -102,14 +102,14 @@ void fn_7100c0c3b0() {
     fn_710009ec00(g_unk_717277b28d, fn_7100c00ab8());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<SCameraRailNode>>::TKeyElementIterator::value_type", true);
-        fn_7100c00f24(&g_unk_717277b290, n, g_unk_7101d5e2e0, nullptr, fn_7100c00b94, nullptr);
+        fn_7100c00f24(&g_unk_717277b290, n, &g_unk_7101d5e2e0, nullptr, fn_7100c00b94, nullptr);
     }
     __cxa_atexit(fn_7100096604, &g_unk_717277b290, g_unk_7101a19000);
     fn_710009ec00(g_unk_717277b3c8, &g_unk_717277b290);
     fn_710009ec00(g_unk_717277b3c9, fn_7100c010a8());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<SCameraRailNode>>::TKeyElementConstIterator::value_type", true);
-        fn_7100c01514(&g_unk_717277b3d0, n, g_unk_7101d5e2e0, nullptr, fn_7100c01184, nullptr);
+        fn_7100c01514(&g_unk_717277b3d0, n, &g_unk_7101d5e2e0, nullptr, fn_7100c01184, nullptr);
     }
     __cxa_atexit(fn_7100096604, &g_unk_717277b3d0, g_unk_7101a19000);
     fn_710009ec00(g_unk_717277b508, &g_unk_717277b3d0);
@@ -124,14 +124,14 @@ void fn_7100c0c3b0() {
     fn_710009ec00(g_unk_717277b682, fn_7100c01a48());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<SCameraSubRail>>::TKeyElementIterator::value_type", true);
-        fn_7100c01eb4(&g_unk_717277b688, n, g_unk_7101d5e2e0, nullptr, fn_7100c01b24, nullptr);
+        fn_7100c01eb4(&g_unk_717277b688, n, &g_unk_7101d5e2e0, nullptr, fn_7100c01b24, nullptr);
     }
     __cxa_atexit(fn_7100096604, &g_unk_717277b688, g_unk_7101a19000);
     fn_710009ec00(g_unk_717277b7c0, &g_unk_717277b688);
     fn_710009ec00(g_unk_717277b7c1, fn_7100c02038());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<SCameraSubRail>>::TKeyElementConstIterator::value_type", true);
-        fn_7100c024a4(&g_unk_717277b7c8, n, g_unk_7101d5e2e0, nullptr, fn_7100c02114, nullptr);
+        fn_7100c024a4(&g_unk_717277b7c8, n, &g_unk_7101d5e2e0, nullptr, fn_7100c02114, nullptr);
     }
     __cxa_atexit(fn_7100096604, &g_unk_717277b7c8, g_unk_7101a19000);
     fn_710009ec00(g_unk_717277b900, &g_unk_717277b7c8);
@@ -146,14 +146,14 @@ void fn_7100c0c3b0() {
     fn_710009ec00(g_unk_717277ba7a, fn_7100c029c8());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<CEditorRailSegment>>::TKeyElementIterator::value_type", true);
-        fn_7100c02e28(&g_unk_717277ba80, n, g_unk_7101d5e2e0, nullptr, fn_7100c02aa4, nullptr);
+        fn_7100c02e28(&g_unk_717277ba80, n, &g_unk_7101d5e2e0, nullptr, fn_7100c02aa4, nullptr);
     }
     __cxa_atexit(fn_7100096604, &g_unk_717277ba80, g_unk_7101a19000);
     fn_710009ec00(g_unk_717277bbb8, &g_unk_717277ba80);
     fn_710009ec00(g_unk_717277bbb9, fn_7100c02fac());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<CEditorRailSegment>>::TKeyElementConstIterator::value_type", true);
-        fn_7100c0340c(&g_unk_717277bbc0, n, g_unk_7101d5e2e0, nullptr, fn_7100c03088, nullptr);
+        fn_7100c0340c(&g_unk_717277bbc0, n, &g_unk_7101d5e2e0, nullptr, fn_7100c03088, nullptr);
     }
     __cxa_atexit(fn_7100096604, &g_unk_717277bbc0, g_unk_7101a19000);
     fn_710009ec00(g_unk_717277bcf8, &g_unk_717277bbc0);

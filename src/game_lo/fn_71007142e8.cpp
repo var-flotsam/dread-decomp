@@ -1,6 +1,7 @@
 // Initialises an object: runs the base initialisation, clears four words at 0x5c and sets a
 // three-bit flag set to "all bits" (the complement of a shared empty set, both lazily created
 // statics).
+#include "base/UnkInitRecord_0x5c.h"
 #include "types.h"
 
 struct UnkFlags_71007142e8 {
@@ -28,7 +29,6 @@ struct UnkStruct_71007142e8 {
     u32 field_0x68;
 };
 
-void fn_7100025624(UnkStruct_71007142e8* self);
 void fn_71007143c8(UnkStruct_71007142e8* self, UnkFlags_71007142e8 flags);
 
 void fn_71007142e8(UnkStruct_71007142e8* self) {

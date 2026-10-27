@@ -2,13 +2,13 @@
 // a second vtable-bearing sub-object at +0x70 and makes the two string ids at +0x90 and +0x98 the
 // empty string (creating the pool first when there is none).
 #include "base/global/CStrId.h"
+#include "game/UnkBehaviorTree.h"
 #include "types.h"
 
 using base::global::UnkStringData;
 
-struct UnkNode {
-    void** vtable;
-    u8 pad_0x8[0x28];
+struct UnkNode : UnkBehaviorTreeNodeBase {
+    u8 pad_0x2c[4];
     u64 field_0x30;
     u64 field_0x38;
     u64 field_0x40;
@@ -28,7 +28,6 @@ struct UnkNode {
     UnkStringData* field_0x98;
 };
 
-void fn_7100393e68(UnkNode*);
 extern void* g_unk_7101a265d0[];
 extern void* g_unk_7101a22d48[];
 

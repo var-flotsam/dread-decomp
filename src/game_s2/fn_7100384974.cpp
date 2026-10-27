@@ -1,5 +1,6 @@
 // Per-frame step of a component: runs the base step, clears the flag at +0x7c, then hands a default
 // parameter block with its flag at +0x30 set to fn_71006f4b0c, with the target at +0x38 and 1.
+#include "game/UnkBehaviorTree.h"
 #include "game_s2/UnkParams.h"
 
 struct UnkComponent {
@@ -8,8 +9,6 @@ struct UnkComponent {
     u8 pad_0x40[0x3c];
     u8 field_0x7c;
 };
-
-void fn_7100394bd4(UnkComponent* self);
 
 void fn_7100384974(UnkComponent* self) {
     fn_7100394bd4(self);

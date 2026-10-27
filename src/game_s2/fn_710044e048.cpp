@@ -2,16 +2,14 @@
 // (each by its own constructor) and sets a few defaults (four pairs of tuning floats and two flags).
 //
 // The fields are addressed by offset.
+#include "game/UnkBossAIComponent.h"
 #include "types.h"
 
 extern void* g_unk_7101a369a8[];
 
-// Only the vtable at +0x0 is named; the rest is addressed by offset.
-struct UnkComponent {
-    u8 unk_0x0[1];
-};
+// Only the base is named; the rest is addressed by offset.
+struct UnkComponent : UnkBossAIComponent {};
 
-void fn_710041a198(UnkComponent* self);
 void fn_7100422d7c(void* member);
 void fn_7100420fa4(void* member);
 void fn_71004228f8(void* member);

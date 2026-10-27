@@ -3,6 +3,7 @@
 #include "../game_s7/UnkStaticInitS7.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflTypeDtors.h"
+#include "base/reflection/UnkReflTypeGlobals.h"
 #include "game/UnkTUInit.h"
 
 using namespace unk_static_init;
@@ -21,15 +22,14 @@ UnkEnumType* fn_71002d6b20();
 extern char g_unk_71729fd232[];
 UnkEnumType* fn_71002d6bfc();
 extern UnkEnumType g_unk_71729fd238;
-extern char g_unk_7101d5e2e0[];
 void fn_710104c750();
-void fn_71002d7068(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
+void fn_71002d7068(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 extern char g_unk_71729fd370[];
 extern char g_unk_71729fd371[];
 UnkEnumType* fn_71002d71ec();
 extern UnkEnumType g_unk_71729fd378;
 void fn_710104cd40();
-void fn_71002d7658(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
+void fn_71002d7658(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 extern char g_unk_71729fd4b0[];
 extern char g_unk_71729fd4b1[];
 UnkEnumType* fn_71002d77dc();
@@ -40,9 +40,9 @@ extern char g_unk_71729fd629[];
 
 UnkEnumType* fn_710104c598();
 UnkEnumType* fn_710104c674();
-void fn_710104cae0(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
+void fn_710104cae0(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 UnkEnumType* fn_710104cc64();
-void fn_710104d0d0(UnkEnumType* type, const CStrId& name, char*, void*, void (*)(), void*);
+void fn_710104d0d0(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 UnkEnumType* fn_710104d254();
 void fn_710104d330(UnkEnumType* type, const CStrId& name, void*, void*);
 void fn_7101050570() {
@@ -53,14 +53,14 @@ void fn_7101050570() {
     fn_710009ec00(g_unk_71729fd232, fn_710104c674());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<CFXPool::CDefinition>>::TKeyElementIterator::value_type", true);
-        fn_710104cae0(&g_unk_71729fd238, n, g_unk_7101d5e2e0, nullptr, fn_710104c750, nullptr);
+        fn_710104cae0(&g_unk_71729fd238, n, &g_unk_7101d5e2e0, nullptr, fn_710104c750, nullptr);
     }
     __cxa_atexit(fn_7100096604, &g_unk_71729fd238, g_unk_7101a19000);
     fn_710009ec00(g_unk_71729fd370, &g_unk_71729fd238);
     fn_710009ec00(g_unk_71729fd371, fn_710104cc64());
     {
         CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<CFXPool::CDefinition>>::TKeyElementConstIterator::value_type", true);
-        fn_710104d0d0(&g_unk_71729fd378, n, g_unk_7101d5e2e0, nullptr, fn_710104cd40, nullptr);
+        fn_710104d0d0(&g_unk_71729fd378, n, &g_unk_7101d5e2e0, nullptr, fn_710104cd40, nullptr);
     }
     __cxa_atexit(fn_7100096604, &g_unk_71729fd378, g_unk_7101a19000);
     fn_710009ec00(g_unk_71729fd4b0, &g_unk_71729fd378);
