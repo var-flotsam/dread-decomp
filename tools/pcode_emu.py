@@ -292,8 +292,18 @@ def native(w: int) -> bool:
 
 class Machine:
     def __init__(self, db: dict, image: ImageMemory, seed: int, inside, code_word, lift: LiftObject | None,
-                 imports: dict[int, str], facts, preset: dict[int, int], dictionary: tuple = ()):
+                 imports: dict[int, str], facts, preset: dict[int, int], dictionary: tuple = (),
+                 overrides: dict | None = None, track: bool = False):
         self.dictionary = dictionary  # constants of the original (DICT_PROFILE seeds draw from them)
+        # An input changed from what the seed gives (the oracle's mutations): ("r", key) -> register
+        # value, ("m", address of an 8-byte word) -> memory word; and, with track, the memory words
+        # the run read before writing them, in order (what a mutation can change next).
+        self.overrides = overrides or {}
+        self.mem_ovr: dict[int, list[tuple[int, int]]] = {}
+        for (kind, k), v in self.overrides.items():
+            if kind == "m":
+                self.mem_ovr.setdefault(k // PAGE, []).append((k % PAGE, v))
+        self.track, self.read_words, self._read_seen = track, [], set()
         self.ops_db, self.userops, self.op = db["ops"], db["userops"], db["opcodes"]
         self.image, self.seed, self.inside, self.code_word, self.lift = image, seed, inside, code_word, lift
         self.imports, self.facts = imports, facts
@@ -330,6 +340,9 @@ class Machine:
             p = bytearray(PAGE)
             for k in range(0, PAGE, 8):
                 struct.pack_into("<Q", p, k, self.word(mix(self.seed, a + k)) & 0xFFFFFFFFFFFFFFFF)
+        for off, v in self.mem_ovr.get(n, ()):
+            if not (self.lift is not None and n in self.lift.mem) and not STACK_LO <= a < ENTRY_SP:
+                struct.pack_into("<Q", p, off, v & 0xFFFFFFFFFFFFFFFF)
         self.pages[n] = p
         return p
 
@@ -344,6 +357,12 @@ class Machine:
         a &= 0xFFFFFFFFFFFFFFFF
         if a < NULL_PAGE:
             raise Fault(a)
+        if self.track:
+            w = a & ~7
+            if w not in self._read_seen and not STACK_LO <= w < ENTRY_SP and not self.own[0] <= w < self.own[1]:
+                self._read_seen.add(w)
+                if w not in self.dirty and w not in self.stack_written:
+                    self.read_words.append(w)
         o = a % PAGE
         if o + size <= PAGE:
             return int.from_bytes(self.page(a // PAGE)[o:o + size], "little")
@@ -425,6 +444,11 @@ class Machine:
         self.regs[X0 + 8 * 30:X0 + 8 * 31] = SENTINEL.to_bytes(8, "little")
         self.regs[X0 + 8 * 29:X0 + 8 * 30] = bytes(8)
         self.regs[SP:SP + 8] = ENTRY_SP.to_bytes(8, "little")
+        for (kind, k), v in self.overrides.items():
+            if kind == "r" and k < 100:
+                self.regs[X0 + 8 * k:X0 + 8 * k + 8] = (v & 0xFFFFFFFFFFFFFFFF).to_bytes(8, "little")
+            elif kind == "r":
+                self.regs[Q0 + QSTRIDE * (k - 100):Q0 + QSTRIDE * (k - 100) + 16] = (v & (1 << 128) - 1).to_bytes(16, "little")
         self.state = {k: "entry" for k in list(range(9)) + list(range(100, 108))}
 
     def canonical(self, target: int):
