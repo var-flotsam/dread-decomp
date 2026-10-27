@@ -146,6 +146,12 @@ and enters the main loop: the system start-up `fn_71001325d0` (`src/engine/Syste
 initialises the SDK heap, `nv` and `nn::fs`'s allocator, and the first trap is the engine's
 aligned allocation `fn_7100083ba0` (`L` in `data/functions/`, but the game's: the default
 allocator's slot 0x40). Each trap names the next function the boot needs: that is M1's work list.
+`DREAD_TRAP=log` makes the traps report each missing function or import once and return 0 instead
+of aborting, so one run lists them in the order the game reaches them until something truly
+breaks; useful past functions whose result the caller ignores, useless past an allocation (the
+first run with it segfaults right after `fn_7100083ba0` returns a null block). The whole list
+without running is `build/port/linux/link/boot_unlifted.csv`: the boot slice's functions with no
+source and no semantic lift (213 on 2026-10-26: 206 `U`, 6 `L`, 1 `O`).
 
 ### macOS
 
