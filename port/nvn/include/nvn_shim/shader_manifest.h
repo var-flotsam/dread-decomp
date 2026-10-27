@@ -45,6 +45,7 @@ struct StageInfo {
     std::uint32_t spirv_size;
     std::uint64_t control_key;
     std::uint32_t control_size;
+    std::uint32_t control_offset;  // where the control section starts in <package>.bshdat (diagnostics, checks)
     std::vector<StageResource> blocks;
     std::vector<StageResource> samplers;
     std::vector<StageInterface> inputs;

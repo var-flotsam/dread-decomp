@@ -244,7 +244,7 @@ months" still requires M2 to go well; say so when planning, and re-estimate afte
 
 | Step | State |
 |---|---|
-| Shaders to SPIR-V at build time (decision 3) | **Done.** The `shaders` target runs `tools/bshdat.py --install` over the dump: 1,342 of 1,342 stages (671 programs) compile, with the FXAA fixup; each module's bindings, block sizes and capabilities are checked against NVN's reflection; `shaders.manifest` (format 2) beside the executable, 31 MB of SPIR-V under `build/` |
+| Shaders to SPIR-V at build time (decision 3) | **Done.** The `shaders` target runs `tools/bshdat.py --install` over the dump: 1,342 of 1,342 stages (671 programs) compile, with the FXAA fixup; each module's bindings, block sizes and capabilities are checked against NVN's reflection; `shaders.manifest` (format 3) beside the executable, 31 MB of SPIR-V under `build/` |
 | Binding model | **Done, compile-checked.** `port/nvn/` (`dread_nvn`): uniform-buffer slot `b` of a stage is binding `b` of the stage's set (vertex 0, fragment 1), texture slot `t` is binding `16 + t0` element `t - t0`, a texture handle is a texture pool index and a sampler pool index (combined image-sampler); placeholders for what NVN found unused |
 | Recognising a stage | **Done.** `nvnProgramSetShaders` gets `{code address, control pointer}` per stage (`fn_710015d760`); the manifest keys stages by FNV-1a 64 over the first 2,048 control bytes, which separates all 1,010 distinct control sections |
 | Variant selection | **Understood; no shim work.** The engine's `CProgramResource` loader (`fn_71001b0050`) and selector (`fn_71001b0f24`) choose and build programs from the original `.bshdat` files; they are `U` and go on the lifter's graphics worklist |

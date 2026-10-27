@@ -955,7 +955,7 @@ def spirv_resources(data: bytes, where: str) -> tuple[list[dict], list[int]]:
 
 VK_SET = {"vert": 0, "frag": 1}  # VK_LAYOUT: one descriptor set per stage
 VK_SAMPLER_BASE = 16             # VK_LAYOUT: combined samplers from binding 16
-INSTALL_FORMAT = 2
+INSTALL_FORMAT = 3
 # The shim's key for a stage: FNV-1a 64 over the first CONTROL_KEY_BYTES of its control section,
 # the only part of the stage nvnProgramSetShaders receives by CPU pointer. On 2.1.0 every control
 # section is at least 2,320 bytes, the first 2,048 bytes tell all 1,010 distinct ones apart, and
@@ -970,15 +970,16 @@ def fnv1a64(data: bytes) -> int:
     return h
 
 
-def stage_control(pkg: bytes, blob_offset: int, where: str) -> tuple[bytes, bytes]:
-    """The stage's (control section, code) from section 0 of its blob (layout in the docstring)."""
+def stage_control(pkg: bytes, blob_offset: int, where: str) -> tuple[bytes, bytes, int]:
+    """The stage's (control section, code, the control section's offset in the package file) from
+    section 0 of its blob (layout in the docstring)."""
     rec = blob_offset + SECTION_RECORDS
     size, off, kind = struct.unpack_from("<III", pkg, rec)
     stage, ctrl, code, code_size = struct.unpack_from("<4I", pkg, rec + 0x2C)
     if kind != 0 or ctrl != 0 or not ctrl < code <= code + code_size <= size:
         raise FormatError(f"{where}: section 0 is not a control section followed by code")
     base = blob_offset + off
-    return pkg[base + ctrl:base + code], pkg[base + code:base + code + code_size]
+    return pkg[base + ctrl:base + code], pkg[base + code:base + code + code_size], base + ctrl
 INSTALL_MANIFEST = "shaders.manifest"
 INSTALL_MARKER = ".bshdat-install"
 
@@ -1056,6 +1057,7 @@ def install(out_root: Path, manifests: list[dict], dest: Path, version: str, job
         program <key> <key2> <index> <define count>
           define <text>                          the engine's variant prefix, in order
           stage <vert|frag> <spv path> <spv bytes> <control key, 16 hex digits> <control bytes>
+                <the control section's offset in the package file>
             block <nvn slot> <vk binding> <size> <name>
             sampler <nvn slot> <vk binding> <count> <name>
             input <location> <name> / output <location> <name>   (location -1: built-in)
@@ -1121,7 +1123,7 @@ def install(out_root: Path, manifests: list[dict], dest: Path, version: str, job
                     errors.append(str(e))
                     continue
                 try:
-                    control, code = stage_control((shd / f"{man['package']}.bshdat").read_bytes(), st["blob_offset"], where)
+                    control, code, control_offset = stage_control((shd / f"{man['package']}.bshdat").read_bytes(), st["blob_offset"], where)
                     if len(control) < CONTROL_KEY_BYTES:
                         raise FormatError(f"{where}: control section of {len(control)} bytes, under {CONTROL_KEY_BYTES}")
                     key = fnv1a64(control[:CONTROL_KEY_BYTES])
@@ -1136,7 +1138,7 @@ def install(out_root: Path, manifests: list[dict], dest: Path, version: str, job
                 except FormatError as e:
                     errors.append(str(e))
                     continue
-                lines.append(f"stage {st_name} {rel} {len(data)} {key:016x} {len(control)}")
+                lines.append(f"stage {st_name} {rel} {len(data)} {key:016x} {len(control)} {control_offset}")
                 lines += [f"block {a} {b} {c} {n}" for a, b, c, n in blocks]
                 lines += [f"sampler {a} {b} {c} {n}" for a, b, c, n in samplers]
                 for io in ("inputs", "outputs"):
