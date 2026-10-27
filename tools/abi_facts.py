@@ -48,7 +48,7 @@ import asmdiff  # noqa: E402
 import callgraph  # noqa: E402
 
 MAX_SIZE = 65536
-CACHE_VERSION = 7  # bump when the analysis changes (AbiFacts.load ignores other versions)
+CACHE_VERSION = 8  # bump when the analysis changes (AbiFacts.load ignores other versions)
 MAX_DEPTH = 48  # callee recursion; deeper chains count as unknown
 INT_ARGS = frozenset(range(9))  # x0-x7 and x8
 FLOAT_ARGS = frozenset(range(100, 108))
@@ -68,6 +68,10 @@ CLIB = {"memcpy": (3, 0), "memmove": (3, 0), "memset": (3, 0), "memcmp": (3, 0),
 CS = capstone.Cs(capstone.CS_ARCH_ARM64, capstone.CS_MODE_ARM)
 CS.detail = True
 BRANCHES = ("b", "cbz", "cbnz", "tbz", "tbnz")
+# Corrections to capstone's register access (Insn.of).
+FLAGS_ONLY = frozenset({"cmp", "cmn", "tst"})
+NO_DEST_READ = frozenset({"lsl", "lsr", "asr", "ror", "ubfx", "sbfx", "ubfiz", "sbfiz", "sxtb", "sxth", "sxtw",
+                          "uxtb", "uxth", "fmov", "tbl"})
 
 
 @dataclass(frozen=True)
@@ -142,6 +146,16 @@ class Insn:
     def of(x) -> "Insn":
         r, w = x.regs_access()
         ops = [op for op in x.operands if op.type == arm64.ARM64_OP_REG]
+        # capstone 5.0.7's access lists are wrong for some aliases (a census over main): a compare
+        # reads its first register and writes only NZCV, where capstone writes the register and
+        # does not read it; a shift, extend or bitfield move by immediate, and fmov of an
+        # immediate, do not read their destination. (movk, bfi/bfxil and lane inserts do.)
+        if x.mnemonic in FLAGS_ONLY:
+            r = list(r) + [op.reg for op in ops]
+            w = [q for q in w if CS.reg_name(q) == "nzcv"]
+        elif x.mnemonic in NO_DEST_READ and ops and "[" not in x.op_str.split(",", 1)[0]:  # (not a lane write)
+            sources = {op.reg for op in ops[1:]}
+            r = [q for q in r if q != ops[0].reg or q in sources]
         regs = tuple(reg_key(op.reg) for op in ops)
         mem = [op for op in x.operands if op.type == arm64.ARM64_OP_MEM]
         return Insn(x.address, x.mnemonic, tuple(op.imm for op in x.operands if op.type == arm64.ARM64_OP_IMM),
@@ -377,6 +391,59 @@ class AbiFacts:
                     live_in[i] = new
                     changed = True
         return live_in, at
+
+    def held(self, addr: int) -> dict[int, tuple[int | None, frozenset]]:
+        """At each call leaving the function: (its direct target or None, the argument registers
+        that may hold something there), by a forward pass: on some path from the entry they still
+        hold the entry's value or the function wrote them since its last call (a call leaves x0
+        and v0, its results). A callee reads garbage in the others, in the original too."""
+        ins = self.decode(addr)
+        if ins is None:
+            return {}
+        at = {x.address: i for i, x in enumerate(ins)}
+        end = addr + 4 * len(ins)
+        regs = frozenset(range(8)) | FLOAT_ARGS
+        n = len(ins)
+        succ: list[list[int]] = []
+        calls: dict[int, int | None] = {}
+        for i, x in enumerate(ins):
+            m, t = x.mnemonic, x.imms[-1] if x.imms else None
+            fall = [i + 1] if i + 1 < n else []
+            if m == "ret" or m == "br":
+                if m == "br" and not self.jump_table(ins, i):
+                    calls[i] = None
+                fall = []
+            elif m in ("bl", "blr"):
+                calls[i] = t if m == "bl" else None
+                if m == "bl" and i == n - 1:
+                    fall = []
+            elif m == "b":
+                if addr <= t < end:
+                    fall = [at[t]] if t in at else []
+                else:
+                    calls[i], fall = t, []
+            elif (m.startswith("b.") or m in BRANCHES) and t is not None:
+                if addr <= t < end:
+                    fall = fall + ([at[t]] if t in at else [])
+                else:
+                    calls[i] = t
+            succ.append(fall)
+        live_in: list[frozenset | None] = [None] * n
+        live_in[0] = regs
+        work = [0]
+        while work:
+            i = work.pop()
+            x, s = ins[i], live_in[i]
+            if x.mnemonic in ("bl", "blr"):
+                out = (s - CLOBBER) | {0, 100}
+            else:
+                out = s | (x.defs & regs)
+            for j in succ[i]:
+                new = out if live_in[j] is None else live_in[j] | out
+                if new != live_in[j]:
+                    live_in[j] = new
+                    work.append(j)
+        return {ins[i].address: (t, live_in[i]) for i, t in calls.items() if live_in[i] is not None}
 
     @staticmethod
     def reads_stack(ins: list) -> bool:

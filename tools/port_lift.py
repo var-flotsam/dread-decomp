@@ -134,21 +134,41 @@ def declared(block: str) -> tuple[int, int]:
     return len(types) - floats, floats
 
 
+CALLEE_DECL = re.compile(r"namespace (?:callee|noret|fret|dret|sret) \{ [^{}]*?\bfn_([0-9a-f]{10})\(([^)]*)\); \}")
+
+
 def passthrough(af: abi_facts.AbiFacts, reach: set[int]) -> list[dict]:
-    """src/lifted definitions that read more argument registers (abi_facts) than their parameter
-    list declares. On AArch64 the registers pass through, so the bytes match; compiled for x86-64
-    the values are lost unless the call is a pure tail call. tools/gen_lift.py passes on every
-    register it can (pass-through); these are the ones it cannot express byte-identically, which
-    get a semantic lift that overrides the src/lifted copy (manifest "overrides")."""
+    """src/lifted definitions that lose arguments on x86-64: they read more argument registers
+    (abi_facts) than their parameter list declares, or a call names fewer registers than its callee
+    reads while one of the missing ones holds something there (abi_facts.held: an incoming
+    argument or a value the function wrote; the rest is garbage in the original too). On AArch64
+    the registers pass through, so the bytes match. tools/gen_lift.py passes on every register it
+    can byte-identically (pass-through); these are the rest, which get a semantic lift that
+    overrides the src/lifted copy (manifest "overrides"). Indirect calls are not checked here."""
     out = []
     for a, block in sorted(gen_lift.read_out().items()):
         f = af.facts(a)
         if f is None:
             continue
         ints, floats = declared(block)
-        if f.ints > ints or f.floats > floats:
+        named: dict[int, tuple[int, int]] = {}  # callee -> fewest (integers, floats) a declaration names
+        for m in CALLEE_DECL.finditer(block):
+            c, ps = int(m.group(1), 16), [p.strip() for p in m.group(2).split(",") if p.strip()]
+            k = (len(ps) - sum(p in ("f32", "f64") for p in ps), sum(p in ("f32", "f64") for p in ps))
+            named[c] = k if c not in named else (min(named[c][0], k[0]), min(named[c][1], k[1]))
+        calls = []
+        for site, (c, held) in sorted(af.held(a).items()):
+            fc = af.facts(c) if c is not None and c in named else None
+            if fc is None:
+                continue
+            ni, nf = named[c]
+            lost = sorted(r for r in fc.args & held if (r < 8 and r >= ni) or (100 <= r < 108 and r - 100 >= nf))
+            if lost:
+                calls.append({"at": f"{site:#x}", "callee": f"{c:#x}", "lost": [pcode_emu.regname(r) for r in lost]})
+        if f.ints > ints or f.floats > floats or calls:
             out.append({"address": f"{a:#x}", "file": lifted_file(a), "lift_ints": ints, "lift_floats": floats,
-                        "reads_ints": f.ints, "reads_floats": f.floats, "boot": a in reach})
+                        "reads_ints": f.ints, "reads_floats": f.floats, "boot": a in reach,
+                        **({"calls": calls} if calls else {})})
     return out
 
 
@@ -583,8 +603,10 @@ def main() -> int:
     if args.passthrough or not args.no_overrides:
         pt = passthrough(af, boot_reach(args.version, rows))
         PASSTHROUGH.write_text(json.dumps(pt, indent=1) + "\n", encoding="utf-8")
-        print(f"passthrough: {len(pt)} src/lifted definitions read more argument registers than they declare "
-              f"({sum(e['boot'] for e in pt)} on the boot path) -> {port_sweep.rel(PASSTHROUGH)}")
+        defs = sum(e["reads_ints"] > e["lift_ints"] or e["reads_floats"] > e["lift_floats"] for e in pt)
+        print(f"passthrough: {len(pt)} src/lifted definitions lose arguments on x86-64 ({sum(e['boot'] for e in pt)} "
+              f"on the boot path): {defs} read more argument registers than they declare, "
+              f"{sum('calls' in e for e in pt)} make a call that drops one they hold -> {port_sweep.rel(PASSTHROUGH)}")
         if args.passthrough:
             af.save(FACTS)
             return 0

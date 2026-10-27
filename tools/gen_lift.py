@@ -828,6 +828,55 @@ class Lifter:
             raise Unsupported("call with stack arguments")
         return f.ints, f.floats
 
+    def sret_callee(self, a: int) -> bool:
+        """Whether the callee at a builds its result at x8 (abi_facts), in semantic mode and in
+        byte mode's pass-through (where the call then names x8 too: see sret_call, sret_tail)."""
+        if self.facts is None or ("semantic" not in self.opts and self.plain):
+            return False
+        f = self.facts(a)
+        if f is None or not f.sret:
+            return False
+        self.passed |= "semantic" not in self.opts
+        return True
+
+    def sret_call(self, fn: str) -> None:
+        """A call to a callee that builds its result at x8: C++17 elides the copy, so the result
+        object is the memory x8 points to (x8 on AArch64, the hidden first argument on x86-64)."""
+        x8, _ = self.read("x8")
+        self.sret_ok = True
+        try:
+            args = self.args(self.callee_need(fn))
+        finally:
+            self.sret_ok = False
+        types = ", ".join(t for _, t in args)
+        self.decls.add(f"namespace sret {{ UnkResult {fn}({types}); }}")
+        self.decls.add(LIFT_AT)
+        self.line(f"new ((void*)({x8}), lift_at_t{{}}) UnkResult(sret::{fn}({', '.join(e for e, _ in args)}));")
+
+    def sret_tail(self, fn: str) -> None:
+        """A tail call (`b`) to a callee that builds its result at x8. With x8 untouched since the
+        entry (this function's own result address, passed through) it is `return callee(...)`
+        in a function returning UnkResult: C++17 elides the copy, so the callee builds the result
+        where this function's caller wants it, and AArch64 keeps the tail call with x8 as it
+        was. Otherwise (semantic mode) the result is built where x8 points and the function
+        returns."""
+        incoming = (8 not in self.types) if isinstance(self, FlatLifter) else \
+            (8 not in self.s.vals or self.s.vals[8][0] == "(char*)&ret")
+        if not incoming:
+            if "semantic" not in self.opts:
+                raise Unsupported("tail call with an indirect result (x8)")
+            self.sret_call(fn)
+            self.terminate("value", None)
+            return
+        self.read("x8")  # (this function returns through x8 too)
+        self.sret_ok = True
+        try:
+            args = self.args(self.callee_need(fn))
+        finally:
+            self.sret_ok = False
+        self.decls.add(f"namespace sret {{ UnkResult {fn}({', '.join(t for _, t in args)}); }}")
+        self.terminate("sret_tail", f"sret::{fn}({', '.join(e for e, _ in args)})")
+
     def call(self, fn: str, ptr: str | None = None) -> str:
         """A call expression; declares the callee overload for these argument types."""
         args = self.args(self.callee_need(fn))
@@ -966,6 +1015,8 @@ class Lifter:
                             v = self.s.vals[k]
                             break
                     self.terminate("value", v)
+                elif m == "b" and not addr <= o[0].imm < end and self.sret_callee(o[0].imm):
+                    self.sret_tail(f"fn_{o[0].imm:x}")
                 elif m == "b" and not addr <= o[0].imm < end:
                     self.terminate("tail", self.call(f"fn_{o[0].imm:x}"))
                     self.tails[f"fn_{o[0].imm:x}"] = self.last_call[1]
@@ -1003,7 +1054,7 @@ class Lifter:
                 # A final call (e.g. an initialiser given &ret) stays a tail call: ret is
                 # built in place, so nothing is left to do after it.
                 self.body[ln] = ind + (f"{p};\n{ind}return ret;" if k == "tail" else f"{p};" if k == "noret"
-                                       else "return ret;")
+                                       else f"return {p};" if k == "sret_tail" else "return ret;")
             return self.signature("UnkResult", ["    UnkResult ret;"] + self.body), self.decls
         if self.returns != "void":
             if any(k == "value" and p is None for _, k, p in self.rets):
@@ -1694,22 +1745,8 @@ class Lifter:
             args = self.args(self.callee_need(fn))
             self.decls.add(f"namespace noret {{ [[noreturn]] void {fn}({', '.join(t for _, t in args)}); }}")
             self.terminate("noret", f"noret::{fn}({', '.join(e for e, _ in args)})")
-        elif m == "bl" and "semantic" in self.opts and self.facts is not None \
-                and (self.facts(o[0].imm) or None) is not None and self.facts(o[0].imm).sret:
-            # The callee builds its result at x8: C++17 elides the copy, so the result object is
-            # the memory x8 points to (x8 on AArch64, the hidden first argument on x86-64).
-            fn = f"fn_{o[0].imm:x}"
-            x8, _ = self.read("x8")
-            self.sret_ok = True
-            try:
-                args = self.args(self.callee_need(fn))
-            finally:
-                self.sret_ok = False
-            types = ", ".join(t for _, t in args)
-            self.decls.add(f"namespace sret {{ UnkResult {fn}({types}); }}")
-            self.decls.add("struct lift_at_t {}; inline void* operator new(decltype(sizeof 0), void* p, lift_at_t) "
-                           "noexcept { return p; }")
-            self.line(f"new ((void*)({x8}), lift_at_t{{}}) UnkResult(sret::{fn}({', '.join(e for e, _ in args)}));")
+        elif m == "bl" and self.sret_callee(o[0].imm):
+            self.sret_call(f"fn_{o[0].imm:x}")
             self.clobber()
             self.s.written = set()
         elif m in ("bl", "blr"):
@@ -2016,6 +2053,8 @@ class FlatLifter(Lifter):
                     elif 0 in self.types:
                         v = self.read("x0")
                     self.terminate("value", v)
+                elif m == "b" and not addr <= o[0].imm < end and self.sret_callee(o[0].imm):
+                    self.sret_tail(f"fn_{o[0].imm:x}")
                 elif m == "b" and not addr <= o[0].imm < end:
                     self.terminate("tail", self.call(f"fn_{o[0].imm:x}"))
                     self.tails[f"fn_{o[0].imm:x}"] = self.last_call[1]
@@ -2133,6 +2172,11 @@ HEADER = ['#include "types.h"', '#define HIDDEN __attribute__((visibility("hidde
           *[f"typedef {t} __attribute__((may_alias)) a_{t};"
             for t in ("u8", "u16", "u32", "u64", "s8", "s16", "s32", "f32", "f64")], ""]
 
+
+# Placement new without <new>, for a callee's x8 result built where x8 points (Lifter.sret_call). A
+# definition, so a generated file holds it once (write_out), not once per function using it.
+LIFT_AT = ("struct lift_at_t {}; inline void* operator new(decltype(sizeof 0), void* p, lift_at_t) "
+           "noexcept { return p; }")
 
 _ORIG: asmdiff.Original | None = None  # for forked lifting workers
 
@@ -2404,8 +2448,10 @@ def write_out(blocks: dict[int, str]) -> None:
     for a in sorted(blocks):
         files.setdefault((a - BASE) >> RANGE_BITS, []).append(a)
     for k, addrs in files.items():
+        parts = ["\n".join(ln for ln in blocks[a].split("\n") if ln != LIFT_AT) for a in addrs]
+        head = HEADER + ([LIFT_AT, ""] if any("lift_at_t{}" in p for p in parts) else [])
         (OUT / f"lifted_{k:03x}.cpp").write_text(
-            "\n".join(NOTE + HEADER + [blocks[a] + "\n" for a in addrs]), encoding="utf-8", newline="\n")
+            "\n".join(NOTE + head + [p + "\n" for p in parts]), encoding="utf-8", newline="\n")
 
 
 def read_out() -> dict[int, str]:
