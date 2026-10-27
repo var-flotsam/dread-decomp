@@ -477,11 +477,18 @@ Since then (#217 and the Vulkan check): the binding layer runs in the Linux imag
 `port/docker/vulkan/Dockerfile`, the owner's go-ahead): all 671 programs' modules, layouts,
 descriptor sets and pipelines, no validation message, after two fixes it found (inactive fragment
 inputs the vertex stage does not write are dropped by the build step; the device needs
-`maintenance4`). Next for M2: the rest of the shim in the order the boot path calls it (device and
-queue from the game's own calls, memory pools and buffers with a GPU address space, textures and the
-texture and sampler pools behind `ResourceResolver`, command buffers, programs and pipelines with
-vertex-only variants for the depth-only path, window and present), each checked the same way in the
-Vulkan image.
+`maintenance4`). Then the start-up path of the shim itself: the entry layer (`nvnBootstrapLoader`,
+`nvnDeviceGetProcAddress`, a named trap for every function not written), the device over Vulkan,
+memory pools with a GPU address space and buffers (the binding layer's address resolution), queues
+and syncs, command buffers, the state objects and the window: 102 functions, 74 of the 146 the game
+calls (`data/nvn_procs.csv` from `tools/nvn_procs.py`, which also names every `g_unk_716e29xxxx` of
+the matched start-up). `nvn_startup_check` replays that start-up `fn_71001587f0` and three frames
+against the shim on lavapipe with validation: all checks pass, no message, and it stops at the 11
+texture functions of the render targets. Next for M2: textures and the texture and sampler pools
+(the engine's format numbers need a source before they map to Vulkan formats), then programs,
+pipelines with vertex-only variants, the draws into Vulkan command buffers, and presentation; and,
+once the boot reaches `fn_71001587f0`, `dread_nvn` joins `tools/port_link.py --executable` (agreed
+with the M1 session).
 
 **Stream M (generators).** The bugs above and `--prune`/regeneration after merges. The lifter's
 semantic mode exists (`opts={"semantic"}`, driven by `tools/port_lift.py`; byte mode is unchanged,

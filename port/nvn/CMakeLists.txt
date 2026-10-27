@@ -4,7 +4,14 @@
 # (DREAD_VULKAN_INCLUDE); nothing links against a Vulkan loader yet.
 add_library(dread_nvn STATIC
   src/bindings.cpp
-  src/shader_manifest.cpp)
+  src/command.cpp
+  src/device.cpp
+  src/memory.cpp
+  src/procs.cpp
+  src/queue.cpp
+  src/shader_manifest.cpp
+  src/state.cpp
+  src/window.cpp)
 target_include_directories(dread_nvn PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
 target_include_directories(dread_nvn SYSTEM PUBLIC "${DREAD_VULKAN_INCLUDE}")
 target_link_libraries(dread_nvn PUBLIC dread_stdlib)
@@ -28,7 +35,10 @@ if(DREAD_LINK)
   if(DREAD_VULKAN_LIBRARY)
     add_executable(nvn_vulkan_check check/vulkan_check.cpp)
     target_link_libraries(nvn_vulkan_check PRIVATE dread_nvn "${DREAD_VULKAN_LIBRARY}")
-    message(STATUS "dread: Vulkan loader ${DREAD_VULKAN_LIBRARY}; nvn_vulkan_check is built")
+    # The game's graphics start-up and frame loop replayed against the shim (check/startup_check.cpp).
+    add_executable(nvn_startup_check check/startup_check.cpp)
+    target_link_libraries(nvn_startup_check PRIVATE dread_nvn "${DREAD_VULKAN_LIBRARY}")
+    message(STATUS "dread: Vulkan loader ${DREAD_VULKAN_LIBRARY}; nvn_vulkan_check and nvn_startup_check are built")
   else()
     message(STATUS "dread: no Vulkan loader; nvn_vulkan_check is not built")
   endif()
