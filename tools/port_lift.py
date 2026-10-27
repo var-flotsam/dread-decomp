@@ -8,7 +8,8 @@ accepts a lift that behaves like the original, whatever its bytes:
 
   1. Worklist: --slice boot (the default): the `U` functions reachable by direct calls from nnMain,
      from the run-time roots (nnMain hands main, the per-frame and the shutdown function to the
-     SDK as pointers; main stores four callbacks) and from the graphics functions, by callers in
+     SDK as pointers; main stores four callbacks), from the graphics functions and from four the boot
+     reaches only through pointers (POINTER_ROOTS), by callers in
      the slice, with the roots and graphics functions themselves whatever their status; --slice
      all: every `U` function; --worklist CSV (its `U` rows, e.g. tools/port_link.py's
      boot_missing.csv); --only; --top N of any of them. Functions now defined in src/ are skipped, except the
@@ -108,6 +109,9 @@ RUNTIME_ROOTS = (0x7100000980, 0x7100000d40, 0x7100000cf0, 0x7100015fc0, 0x71010
 # The graphics worklist (M2): the engine's program loader and variant selector on CProgramResource and
 # the program switch (port/nvn/README.md), which the boot reaches through the renderer.
 GRAPHICS = (0x71001b0050, 0x71001b0f24, 0x71001b0f7c, 0x71001cc608)
+# Reached by the boot only through pointers, under fn_7100015c70: the first traps the Linux run hits
+# after the game's main function (port M1, 2026-10-27).
+POINTER_ROOTS = (0x7100075730, 0x710008a460, 0x710002f0dc, 0x71000666b0)
 PASSTHROUGH = ROOT / "build" / "port" / "passthrough.json"
 
 
@@ -134,11 +138,11 @@ def boot_reach(version: str, rows: dict) -> set[int]:
 
 def slice_worklist(version: str, rows: dict, kind: str) -> list[int]:
     """The `U` functions of a slice: "boot", everything reachable by direct calls from nnMain, the
-    run-time roots and the graphics functions; "all", every `U` function in the binary. The roots
+    run-time roots, the graphics functions and POINTER_ROOTS; "all", every `U` function. The roots
     and graphics functions themselves are listed whatever their status (gen_functions_csv infers
     `L` for some game code next to nnMain). Ordered by callers within the slice, most first."""
     graph = callgraph.CallGraph(version, rows)
-    starts = RUNTIME_ROOTS + GRAPHICS
+    starts = RUNTIME_ROOTS + GRAPHICS + POINTER_ROOTS
     members: set[int] = set(graph.funcs)
     if kind == "boot":
         members = set()
