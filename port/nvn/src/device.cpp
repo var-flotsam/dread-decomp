@@ -25,6 +25,8 @@ namespace {
 Backend g_backend;
 std::atomic<bool> g_backend_ready{false};
 std::mutex g_backend_lock;  // CreateBackend and DestroyBackend
+std::mutex g_queue_lock;    // the one VkQueue (Submit)
+std::uint64_t g_submitted = 0;
 int g_errors = 0, g_warnings = 0;
 VkDebugUtilsMessengerEXT g_messenger = VK_NULL_HANDLE;
 
@@ -97,17 +99,19 @@ bool CreateBackend(bool validation) {
     vkEnumeratePhysicalDevices(b.instance, &count, nullptr);
     std::vector<VkPhysicalDevice> devices(count);
     vkEnumeratePhysicalDevices(b.instance, &count, devices.data());
-    // The first device with Vulkan 1.3, the two features and a graphics queue.
+    // The first device with Vulkan 1.3, the three features and a graphics queue.
     for (VkPhysicalDevice pd : devices) {
         VkPhysicalDeviceProperties props;
         vkGetPhysicalDeviceProperties(pd, &props);
         if (props.apiVersion < VK_API_VERSION_1_3)
             continue;
+        VkPhysicalDeviceVulkan12Features f12{VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_2_FEATURES};
         VkPhysicalDeviceVulkan13Features f13{VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_3_FEATURES};
+        f13.pNext = &f12;
         VkPhysicalDeviceFeatures2 f{VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FEATURES_2};
         f.pNext = &f13;
         vkGetPhysicalDeviceFeatures2(pd, &f);
-        if (!f13.dynamicRendering || !f13.maintenance4)
+        if (!f13.dynamicRendering || !f13.maintenance4 || !f12.timelineSemaphore)
             continue;
         std::uint32_t families = 0;
         vkGetPhysicalDeviceQueueFamilyProperties(pd, &families, nullptr);
@@ -125,7 +129,8 @@ bool CreateBackend(bool validation) {
             break;
     }
     if (!b.physical) {
-        std::fprintf(stderr, "nvn shim: no Vulkan 1.3 device with dynamicRendering, maintenance4 and a graphics queue\n");
+        std::fprintf(stderr, "nvn shim: no Vulkan 1.3 device with dynamicRendering, maintenance4, timelineSemaphore and a "
+                             "graphics queue\n");
         vkDestroyInstance(b.instance, nullptr);
         return false;
     }
@@ -135,21 +140,87 @@ bool CreateBackend(bool validation) {
     qci.queueFamilyIndex = b.queue_family;
     qci.queueCount = 1;
     qci.pQueuePriorities = &priority;
+    // The optional extensions (device.h), each with its feature where it has one.
+    std::uint32_t ext_count = 0;
+    vkEnumerateDeviceExtensionProperties(b.physical, nullptr, &ext_count, nullptr);
+    std::vector<VkExtensionProperties> available(ext_count);
+    vkEnumerateDeviceExtensionProperties(b.physical, nullptr, &ext_count, available.data());
+    auto has = [&](const char* name) {
+        for (const VkExtensionProperties& e : available)
+            if (std::strcmp(e.extensionName, name) == 0)
+                return true;
+        return false;
+    };
+    std::vector<const char*> enabled;
+    void* chain = nullptr;
+    VkPhysicalDeviceDepthClipControlFeaturesEXT clip{VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEPTH_CLIP_CONTROL_FEATURES_EXT};
+    VkPhysicalDeviceIndexTypeUint8FeaturesKHR uint8{VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_INDEX_TYPE_UINT8_FEATURES_KHR};
+    VkPhysicalDeviceFeatures2 query{VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FEATURES_2};
+    const bool has_clip = has(VK_EXT_DEPTH_CLIP_CONTROL_EXTENSION_NAME);
+    // The EXT name first: the validation layers of the port's image know it, not the KHR one yet.
+    const char* uint8_name = has(VK_EXT_INDEX_TYPE_UINT8_EXTENSION_NAME)   ? VK_EXT_INDEX_TYPE_UINT8_EXTENSION_NAME
+                             : has(VK_KHR_INDEX_TYPE_UINT8_EXTENSION_NAME) ? VK_KHR_INDEX_TYPE_UINT8_EXTENSION_NAME
+                                                                           : nullptr;
+    if (has_clip) {
+        clip.pNext = query.pNext;
+        query.pNext = &clip;
+    }
+    if (uint8_name) {
+        uint8.pNext = query.pNext;
+        query.pNext = &uint8;  // the KHR and EXT feature structures are the same (promoted)
+    }
+    vkGetPhysicalDeviceFeatures2(b.physical, &query);
+    if (has_clip && clip.depthClipControl) {
+        enabled.push_back(VK_EXT_DEPTH_CLIP_CONTROL_EXTENSION_NAME);
+        clip.pNext = chain;
+        chain = &clip;
+        b.depth_clip_control = true;
+    } else {
+        std::fprintf(stderr, "nvn shim: no VK_EXT_depth_clip_control; the game's -1..1 depth range is clipped to 0..1\n");
+    }
+    if (uint8_name && uint8.indexTypeUint8) {
+        enabled.push_back(uint8_name);
+        uint8.pNext = chain;
+        chain = &uint8;
+        b.index_uint8 = true;
+    }
+    if (has(VK_EXT_EXTERNAL_MEMORY_HOST_EXTENSION_NAME)) {
+        enabled.push_back(VK_EXT_EXTERNAL_MEMORY_HOST_EXTENSION_NAME);
+        VkPhysicalDeviceExternalMemoryHostPropertiesEXT host{
+            VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_MEMORY_HOST_PROPERTIES_EXT};
+        VkPhysicalDeviceProperties2 p2{VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PROPERTIES_2};
+        p2.pNext = &host;
+        vkGetPhysicalDeviceProperties2(b.physical, &p2);
+        b.host_import = true;
+        b.host_import_alignment = host.minImportedHostPointerAlignment;
+    }
+    VkPhysicalDeviceVulkan12Features v12{VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_2_FEATURES};
+    v12.timelineSemaphore = VK_TRUE;
+    v12.pNext = chain;
     VkPhysicalDeviceVulkan13Features v13{VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_3_FEATURES};
     v13.dynamicRendering = VK_TRUE;
     v13.maintenance4 = VK_TRUE;
+    v13.pNext = &v12;
     VkPhysicalDeviceFeatures supported{};
     vkGetPhysicalDeviceFeatures(b.physical, &supported);
     VkPhysicalDeviceFeatures2 features{VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FEATURES_2};
     features.pNext = &v13;
     features.features.textureCompressionBC = supported.textureCompressionBC;
+    features.features.depthBounds = supported.depthBounds;
+    features.features.independentBlend = supported.independentBlend;
+    features.features.fillModeNonSolid = supported.fillModeNonSolid;
     b.bc_textures = supported.textureCompressionBC == VK_TRUE;
+    b.depth_bounds = supported.depthBounds == VK_TRUE;
+    b.independent_blend = supported.independentBlend == VK_TRUE;
+    b.fill_mode_non_solid = supported.fillModeNonSolid == VK_TRUE;
     if (!b.bc_textures)
         std::fprintf(stderr, "nvn shim: the device has no BC texture compression; the game's BC textures will fail\n");
     VkDeviceCreateInfo dci{VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO};
     dci.pNext = &features;
     dci.queueCreateInfoCount = 1;
     dci.pQueueCreateInfos = &qci;
+    dci.enabledExtensionCount = static_cast<std::uint32_t>(enabled.size());
+    dci.ppEnabledExtensionNames = enabled.data();
     if (vkCreateDevice(b.physical, &dci, nullptr, &b.device) != VK_SUCCESS) {
         std::fprintf(stderr, "nvn shim: vkCreateDevice failed\n");
         vkDestroyInstance(b.instance, nullptr);
@@ -160,6 +231,12 @@ bool CreateBackend(bool validation) {
     cpi.flags = VK_COMMAND_POOL_CREATE_TRANSIENT_BIT;
     cpi.queueFamilyIndex = b.queue_family;
     vkCreateCommandPool(b.device, &cpi, nullptr, &b.command_pool);
+    VkSemaphoreTypeCreateInfo sti{VK_STRUCTURE_TYPE_SEMAPHORE_TYPE_CREATE_INFO};
+    sti.semaphoreType = VK_SEMAPHORE_TYPE_TIMELINE;
+    VkSemaphoreCreateInfo sci{VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO};
+    sci.pNext = &sti;
+    vkCreateSemaphore(b.device, &sci, nullptr, &b.timeline);
+    g_submitted = 0;
     g_backend = b;
     g_backend_ready = true;
     std::fprintf(stderr, "nvn shim: Vulkan device %s (Vulkan %u.%u), validation %s\n", b.properties.deviceName,
@@ -175,6 +252,8 @@ void DestroyBackend() {
     vkDeviceWaitIdle(g_backend.device);
     if (g_backend.command_pool)
         vkDestroyCommandPool(g_backend.device, g_backend.command_pool, nullptr);
+    if (g_backend.timeline)
+        vkDestroySemaphore(g_backend.device, g_backend.timeline, nullptr);
     vkDestroyDevice(g_backend.device, nullptr);
     if (g_messenger) {
         auto destroy = reinterpret_cast<PFN_vkDestroyDebugUtilsMessengerEXT>(
@@ -188,9 +267,54 @@ void DestroyBackend() {
     g_backend_ready = false;
 }
 
+std::uint64_t Submit(const VkCommandBuffer* cmds, std::uint32_t count) {
+    const Backend* b = CurrentBackend();
+    if (!b || !b->timeline)
+        return 0;
+    std::lock_guard<std::mutex> lock(g_queue_lock);
+    const std::uint64_t value = g_submitted + 1;
+    VkTimelineSemaphoreSubmitInfo tsi{VK_STRUCTURE_TYPE_TIMELINE_SEMAPHORE_SUBMIT_INFO};
+    tsi.signalSemaphoreValueCount = 1;
+    tsi.pSignalSemaphoreValues = &value;
+    VkSubmitInfo si{VK_STRUCTURE_TYPE_SUBMIT_INFO};
+    si.pNext = &tsi;
+    si.commandBufferCount = count;
+    si.pCommandBuffers = cmds;
+    si.signalSemaphoreCount = 1;
+    si.pSignalSemaphores = &b->timeline;
+    if (vkQueueSubmit(b->queue, 1, &si, VK_NULL_HANDLE) != VK_SUCCESS)
+        return 0;
+    g_submitted = value;
+    return value;
+}
+
+std::uint64_t LastSubmitted() {
+    std::lock_guard<std::mutex> lock(g_queue_lock);
+    return g_submitted;
+}
+
+std::uint64_t Completed() {
+    const Backend* b = CurrentBackend();
+    std::uint64_t value = 0;
+    if (b && b->timeline)
+        vkGetSemaphoreCounterValue(b->device, b->timeline, &value);
+    return value;
+}
+
+bool WaitFor(std::uint64_t value, std::uint64_t timeout_ns) {
+    const Backend* b = CurrentBackend();
+    if (!b || !b->timeline)
+        return false;
+    VkSemaphoreWaitInfo wi{VK_STRUCTURE_TYPE_SEMAPHORE_WAIT_INFO};
+    wi.semaphoreCount = 1;
+    wi.pSemaphores = &b->timeline;
+    wi.pValues = &value;
+    return vkWaitSemaphores(b->device, &wi, timeout_ns) == VK_SUCCESS;
+}
+
 bool ImmediateSubmit(const std::function<void(VkCommandBuffer)>& record) {
-    static std::mutex submit_lock;  // one queue: the shim's own submits do not overlap
-    std::lock_guard<std::mutex> lock(submit_lock);
+    static std::mutex pool_lock;  // the one-off command pool
+    std::lock_guard<std::mutex> lock(pool_lock);
     const Backend* b = CurrentBackend();
     if (!b || !b->command_pool)
         return false;
@@ -206,10 +330,8 @@ bool ImmediateSubmit(const std::function<void(VkCommandBuffer)>& record) {
     vkBeginCommandBuffer(cmd, &begin);
     record(cmd);
     vkEndCommandBuffer(cmd);
-    VkSubmitInfo si{VK_STRUCTURE_TYPE_SUBMIT_INFO};
-    si.commandBufferCount = 1;
-    si.pCommandBuffers = &cmd;
-    const bool ok = vkQueueSubmit(b->queue, 1, &si, VK_NULL_HANDLE) == VK_SUCCESS && vkQueueWaitIdle(b->queue) == VK_SUCCESS;
+    const std::uint64_t value = Submit(&cmd, 1);
+    const bool ok = value && WaitFor(value, UINT64_MAX);
     vkFreeCommandBuffers(b->device, b->command_pool, 1, &cmd);
     return ok;
 }
@@ -279,17 +401,17 @@ detail::Registry<Device> g_devices;
 std::set<std::int32_t> g_unknown_integers;
 
 void DeviceBuilderSetDefaults(void* builder) {
-    std::lock_guard<std::mutex> lock(detail::StateLock());
+    std::lock_guard<std::recursive_mutex> lock(detail::StateLock());
     g_builders.Reset(builder);
 }
 
 void DeviceBuilderSetFlags(void* builder, std::int32_t flags) {
-    std::lock_guard<std::mutex> lock(detail::StateLock());
+    std::lock_guard<std::recursive_mutex> lock(detail::StateLock());
     g_builders.Get(builder).flags = flags;
 }
 
 std::int32_t DeviceBuilderGetFlags(const void* builder) {
-    std::lock_guard<std::mutex> lock(detail::StateLock());
+    std::lock_guard<std::recursive_mutex> lock(detail::StateLock());
     DeviceBuilder* b = g_builders.Find(builder);
     return b ? b->flags : 0;
 }
@@ -298,19 +420,20 @@ std::int32_t DeviceBuilderGetFlags(const void* builder) {
 std::int32_t DeviceInitialize(void* device, const void*) {
     if (!CreateBackend())
         return 0;
-    std::lock_guard<std::mutex> lock(detail::StateLock());
+    std::lock_guard<std::recursive_mutex> lock(detail::StateLock());
     g_devices.Reset(device);
     return 1;
 }
 
 void DeviceFinalize(void* device) {
     {
-        std::lock_guard<std::mutex> lock(detail::StateLock());
+        std::lock_guard<std::recursive_mutex> lock(detail::StateLock());
         g_devices.Erase(device);
     }
     if (const Backend* b = CurrentBackend())
         vkDeviceWaitIdle(b->device);  // nothing of the shim's may be in use when it is destroyed
-    detail::ReleaseTextureVulkanObjects();  // before the device they belong to goes
+    detail::ReleaseDrawVulkanObjects();     // before the device they belong to goes
+    detail::ReleaseTextureVulkanObjects();
     detail::ReleaseMemoryVulkanObjects();
     DestroyBackend();
 }
@@ -323,7 +446,7 @@ void DeviceGetInteger(const void*, std::int32_t name, std::int32_t* value) {
     if (!value)
         return;
     if (!DeviceIntegerValue(name, value)) {
-        std::lock_guard<std::mutex> lock(detail::StateLock());
+        std::lock_guard<std::recursive_mutex> lock(detail::StateLock());
         if (g_unknown_integers.insert(name).second)
             std::fprintf(stderr, "nvn shim: nvnDeviceGetInteger(%#x) is not known (answers 0)\n", static_cast<unsigned>(name));
     }
@@ -332,31 +455,31 @@ void DeviceGetInteger(const void*, std::int32_t name, std::int32_t* value) {
 // The depth range and window origin modes (fn_71001587f0 sets 0 and 1): kept for the pipelines and
 // the viewport transform, which will read them.
 void DeviceSetDepthMode(void* device, std::int32_t mode) {
-    std::lock_guard<std::mutex> lock(detail::StateLock());
+    std::lock_guard<std::recursive_mutex> lock(detail::StateLock());
     g_devices.Get(device).depth_mode = mode;
 }
 void DeviceSetWindowOriginMode(void* device, std::int32_t mode) {
-    std::lock_guard<std::mutex> lock(detail::StateLock());
+    std::lock_guard<std::recursive_mutex> lock(detail::StateLock());
     g_devices.Get(device).window_origin_mode = mode;
 }
 std::int32_t DeviceGetDepthMode(const void* device) {
-    std::lock_guard<std::mutex> lock(detail::StateLock());
+    std::lock_guard<std::recursive_mutex> lock(detail::StateLock());
     Device* d = g_devices.Find(device);
     return d ? d->depth_mode : 0;
 }
 std::int32_t DeviceGetWindowOriginMode(const void* device) {
-    std::lock_guard<std::mutex> lock(detail::StateLock());
+    std::lock_guard<std::recursive_mutex> lock(detail::StateLock());
     Device* d = g_devices.Find(device);
     return d ? d->window_origin_mode : 0;
 }
 
 // Fast-clear registrations are a hint to the console's hardware; Vulkan has nothing to register.
 void DeviceRegisterFastClearColor(void* device, const float*, std::int32_t) {
-    std::lock_guard<std::mutex> lock(detail::StateLock());
+    std::lock_guard<std::recursive_mutex> lock(detail::StateLock());
     g_devices.Get(device).fast_clear_colors++;
 }
 void DeviceRegisterFastClearDepth(void* device, float) {
-    std::lock_guard<std::mutex> lock(detail::StateLock());
+    std::lock_guard<std::recursive_mutex> lock(detail::StateLock());
     g_devices.Get(device).fast_clear_depths++;
 }
 

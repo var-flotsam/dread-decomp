@@ -54,7 +54,16 @@ struct Backend {
     VkPhysicalDeviceMemoryProperties memory{};
     bool validation = false;
     bool bc_textures = false;  // textureCompressionBC: the game's BC1/3/5/6H assets need it
+    // Optional; each is used when the device has it (port/nvn/README.md, "Drawing"):
+    bool depth_clip_control = false;  // VK_EXT_depth_clip_control: the game's -1..1 depth range (draw.h)
+    bool host_import = false;         // VK_EXT_external_memory_host: memory pools over the game's storage
+    VkDeviceSize host_import_alignment = 0;
+    bool index_uint8 = false;         // VK_KHR/EXT_index_type_uint8: 8-bit indices
+    bool depth_bounds = false;        // the depthBounds feature
+    bool independent_blend = false;   // per-target blend state (otherwise target 0's for all)
+    bool fill_mode_non_solid = false; // wireframe polygons
     VkCommandPool command_pool = VK_NULL_HANDLE;  // for the shim's own one-off work (ImmediateSubmit)
+    VkSemaphore timeline = VK_NULL_HANDLE;        // Submit's timeline semaphore
 
     // A memory type with `flags` among `type_bits`, or UINT32_MAX.
     std::uint32_t MemoryType(std::uint32_t type_bits, VkMemoryPropertyFlags flags) const;
@@ -71,8 +80,18 @@ bool CreateBackend(bool validation = false);
 void DestroyBackend();
 
 // Records `record` into a one-off command buffer, submits it and waits for it (image layout
-// transitions, buffer fills). False when there is no backend or the submit fails.
+// transitions, buffer fills, texel uploads). False when there is no backend or the submit fails.
 bool ImmediateSubmit(const std::function<void(VkCommandBuffer)>& record);
+
+// The queue's timeline: every submit of the shim (the game's command buffers and the shim's own
+// one-off work) signals the next value of one timeline semaphore, in submission order. Submit
+// returns the value it signals (0 if it failed); a fence (nvnQueueFenceSync) is the last value
+// submitted, and anything the GPU used is free once Completed() reaches the value that used it.
+std::uint64_t Submit(const VkCommandBuffer* cmds, std::uint32_t count);
+std::uint64_t LastSubmitted();
+std::uint64_t Completed();
+// Waits until the timeline reaches `value`; false on a timeout or a device loss.
+bool WaitFor(std::uint64_t value, std::uint64_t timeout_ns);
 
 // Whether the device can use `format` with these optimal-tiling features.
 bool FormatSupported(VkFormat format, VkFormatFeatureFlags features);

@@ -81,6 +81,8 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - A source fix for one shader is a regular expression over the construct, never the shipped lines (those are game data): same entry.
 - Vulkan rejects fragment inputs the vertex stage does not write (GL allows unread ones): drop those NVN found inactive and the vertex stage does not cover, never all inactive ones (code still names them); enable `maintenance4` for wider outputs: [binding layer against Vulkan](#session-log-newest-first).
 - A check that compares generated data with the generator's own claims passes vacuously; compare with the artefact (the SPIR-V's decorations) and prove it fails on damaged input: same entry.
+- What an NVN number of the drawing side means: find the engine wrapper that converts its own reflected enumeration (`msapi::api::types::*`, `idx::*`; value names in mercury-engine-data-structures' `dread_types.json`) to it; the game's deferred shaders give the depth range and window origin: [port M2 drawing](#session-log-newest-first).
+- NVN's bound state is the queue's, not a command buffer's: the engine rebinds a state only when it changed and alternates two command buffers: same entry.
 - The NVN globals `g_unk_716e29xxxx` are named by the loader's GOT slots and their relative relocations (`data/nvn_procs.csv`); count GOT-slot call sites with a short window, not adjacent pairs; never write into a game-owned NVN object's storage: [NVN shim's start-up path](#session-log-newest-first).
 
 **Port: runtime and loader**
@@ -89,6 +91,33 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - A freestanding core builds into a Windows DLL with clang, `lld-link /noentry /nodefaultlib` and a `kernel32.lib` from `llvm-dlltool`: no SDK needed to test it from Python: same entry.
 
 ## Session log (newest first)
+
+**Port M2: drawing (2026-10-27).** The 38 NVN functions the game calls that the shim lacked were all
+on the drawing side. Each one's arguments come from its call sites (`tools/nvn_procs.py --sites`
+now lists them), read in the engine wrappers around it. The numbers come from the engine itself:
+it keeps render state in reflected enumerations whose value names mercury-engine-data-structures
+lists (`blendFactor::EBlendFactor`, `blendOp::EBlendOp`, `cmpMode::ECmpMode`,
+`stencilOp::EStencilOp`, `cullMode::ECullMode`, `fillMode::EFillMode`, `idx::EPrimitiveType`,
+`idx::EDataType`) and converts each in one place: `fn_710015a500` (blend factors), `fn_710015a680`
+(equations), `fn_710015a8c0` and `fn_710015acf0` (compare), `fn_710015afd0` and the table at
+`0x7101647dc8` (stencil ops), `fn_710015ab00` (cull), `fn_710015aa80` (fill), `fn_7100154020` and
+the table at `0x7101647bac` (primitives), the same function (index types). Vertex formats reuse the
+texture format numbers (`fn_7100161e60`: `0xa`, `0x16`, `0x22`, `0x2e` for one to four floats,
+`0x25` RGBA8). The depth mode 0 and window origin 1 have no names, but the game's deferred shaders
+rebuild clip-space z as `2 * depth - 1` and map row 0 to clip-space y = +1, so the shim uses
+`VK_EXT_depth_clip_control` and flips the viewport. Two readings rest on the engine's names alone:
+SUBDST/SUBSRC as subtract and reverse subtract, INCRSAT/DECRSAT as clamping. The engine binds
+render state only when it changed and alternates two command buffers, so the shim keeps one bound
+state for the queue. Command buffers are Vulkan command buffers (dynamic rendering, Vulkan 1.3
+dynamic state, a pipeline cache keyed by the rest); images stay in the GENERAL layout with a full
+barrier at each render-target change, because the deferred passes sample their targets; pools
+import the game's storage (`VK_EXT_external_memory_host`); uniform updates are shadowed and copied
+per draw; one timeline semaphore carries submits, fences and syncs. Drawing every program found that
+empty and mismatched sampler slots need a placeholder of the declared kind (694 `samplerCube`, 16
+`sampler2DShadow`). `nvn_startup_check` with the shaders: a clear and texel writes read back, all
+671 programs drawn in full and depth-only (1,342 draws, 1,318 pipelines), no validation message on
+lavapipe. Open: the alpha test (Vulkan has none; the build step must add a discard), a surface for
+the window, asset texel upload, the sampler enumerations.
 
 **Port M2: textures, pools and samplers (2026-10-26).** The format numbers come from the engine.
 Its converter `fn_7100161410` turns a texture header's (type, sRGB flag, channel layout) into the
