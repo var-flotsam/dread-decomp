@@ -486,7 +486,7 @@ address,size,name,name_source,subsystem,status
 0x710081aad8,784,fn_710081aad8,unknown,unknown,U
 0x710081ade8,744,fn_710081ade8,unknown,unknown,U
 0x710081b0d0,868,fn_710081b0d0,unknown,unknown,U
-0x710081b434,220,fn_710081b434,unknown,unknown,U
+0x710081b434,220,fn_710081b434,unknown,unknown,O
 0x710081b510,276,fn_710081b510,unknown,unknown,U
 0x710081b624,484,fn_710081b624,unknown,unknown,U
 0x710081b808,280,fn_710081b808,unknown,unknown,U
@@ -1465,7 +1465,7 @@ address,size,name,name_source,subsystem,status
 0x71008439f4,92,fn_71008439f4,unknown,unknown,O
 0x7100843a50,2488,fn_7100843a50,unknown,unknown,U
 0x7100844408,1508,fn_7100844408,unknown,unknown,U
-0x71008449ec,2036,fn_71008449ec,unknown,unknown,U
+0x71008449ec,2036,fn_71008449ec,unknown,unknown,m
 0x71008451e0,92,fn_71008451e0,unknown,unknown,O
 0x710084523c,1724,fn_710084523c,unknown,unknown,U
 0x71008458f8,1716,fn_71008458f8,unknown,unknown,U
@@ -4917,7 +4917,7 @@ address,size,name,name_source,subsystem,status
 0x71008ebb88,100,fn_71008ebb88,unknown,game/components?,U
 0x71008ebbec,88,fn_71008ebbec,unknown,game/components?,U
 0x71008ebc44,100,fn_71008ebc44,unknown,game/components?,U
-0x71008ebca8,404,fn_71008ebca8,unknown,game/components?,U
+0x71008ebca8,404,fn_71008ebca8,unknown,game/components?,O
 0x71008ebe40,160,fn_71008ebe40,unknown,game/components?,O
 0x71008ebee0,4,fn_71008ebee0,unknown,game/components?,O
 0x71008ebee4,244,CBaseLightComponent::refl_GetClass,reflection,game/components,O
@@ -5047,7 +5047,7 @@ address,size,name,name_source,subsystem,status
 0x71008f233c,80,fn_71008f233c,unknown,unknown,U
 0x71008f238c,88,fn_71008f238c,unknown,unknown,O
 0x71008f23e4,96,fn_71008f23e4,unknown,unknown,U
-0x71008f2444,404,fn_71008f2444,unknown,unknown,U
+0x71008f2444,404,fn_71008f2444,unknown,unknown,O
 0x71008f25e0,160,fn_71008f25e0,unknown,unknown,O
 0x71008f2680,4,fn_71008f2680,unknown,unknown,O
 0x71008f2684,244,CSegmentLightComponent::refl_GetClass,reflection,game/components,O
@@ -5117,7 +5117,7 @@ address,size,name,name_source,subsystem,status
 0x71008f4f8c,80,fn_71008f4f8c,unknown,unknown,O
 0x71008f4fdc,88,fn_71008f4fdc,unknown,unknown,O
 0x71008f5034,80,fn_71008f5034,unknown,unknown,O
-0x71008f5084,404,fn_71008f5084,unknown,unknown,U
+0x71008f5084,404,fn_71008f5084,unknown,unknown,O
 0x71008f5220,160,fn_71008f5220,unknown,unknown,O
 0x71008f52c0,4,fn_71008f52c0,unknown,unknown,O
 0x71008f52c4,244,CSpotLightComponent::refl_GetClass,reflection,game/components,O
@@ -5217,7 +5217,7 @@ address,size,name,name_source,subsystem,status
 0x71008fa7d0,100,fn_71008fa7d0,unknown,unknown,O
 0x71008fa834,80,fn_71008fa834,unknown,unknown,O
 0x71008fa884,116,fn_71008fa884,unknown,unknown,O
-0x71008fa8f8,404,fn_71008fa8f8,unknown,unknown,U
+0x71008fa8f8,404,fn_71008fa8f8,unknown,unknown,O
 0x71008faa90,160,fn_71008faa90,unknown,unknown,O
 0x71008fab30,120,fn_71008fab30,unknown,unknown,O
 0x71008faba8,4,fn_71008faba8,unknown,unknown,O

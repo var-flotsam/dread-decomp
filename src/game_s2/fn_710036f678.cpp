@@ -47,7 +47,6 @@ struct UnkNode : UnkBehaviorTreeNodeBase {
 };
 
 extern void* g_unk_7101a24d08[];
-extern void* g_unk_7101a194b8[];
 
 void fn_710036f678(UnkNode* self) {
     fn_7100393e68(self);

@@ -9,8 +9,6 @@
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
 
-extern void* g_unk_7101a1bcd0[];  // derived part's vtable (fn_71000fc7cc)
-extern void* g_unk_7101a1bcf0[];  // base part's vtable (fn_71000fc7cc)
 extern void* g_unk_7101a1a4a8[];  // derived part's vtable (fn_71000732d4)
 extern void* g_unk_7101a1a070[];  // base part's vtable (fn_71000732d4)
 

@@ -498,18 +498,6 @@ u64 fn_7100deac84(char* p0) {
     return r5_0;
 }
 
-namespace callee { char* fn_710007eaa0(char*); }
-char* fn_7100deac9c(char* p0) {
-    char* r0_19 = p0;
-    char* r1_0 = (p0) + 1488;
-    char* r2_0 = callee::fn_710007eaa0(r1_0);
-    u32 r3_8 = 0x1;
-    *(u8*)((char*)(r0_19) + 1480) = (u8)(u64)(r3_8);
-    u64 r5_8 = 0x200000000;
-    *(u64*)((char*)(r0_19) + 1536) = (u64)(u64)(r5_8);
-    return r2_0;
-}
-
 extern char g_unk_7101d47318[];
 char* fn_7100deb770() {
     char* r0_8 = (char*)g_unk_7101d47318;

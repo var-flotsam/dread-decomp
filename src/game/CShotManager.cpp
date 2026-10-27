@@ -4,8 +4,12 @@
 // 125 shots of each type and variant through render instances it creates on demand, and hides last
 // frame's instances first. The names and layouts are placeholders.
 // Holds fn_7100ed6c08 (the update).
+#include <new>
+
 #include "base/UnkMatrix44.h"
+#include "base/UnkStrIdPathPair.h"
 #include "base/UnkVector.h"
+#include "base/global/CFilePathStrId.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkXformNode.h"
@@ -211,5 +215,48 @@ void fn_7100ed6c08(UnkShotManager* self, f32 dt) {
         ClearDrawCounts(self);
         fn_7100ed6c08(self, 0.0f);
         fn_7100ed7144(self);
+    }
+}
+
+// A string id, a file-path id and a resource (base/UnkStrIdPathPair.h's UnkStrIdPathResource),
+// built from the global default ids with no resource. The ids are union members: the record is
+// assigned and destroyed out of line (fn_7100027118, fn_7100026f70).
+struct UnkShotIdRecord {
+    union {
+        base::global::CStrId id;
+    };
+    union {
+        base::global::CFilePathStrId path;
+    };
+    u64 field_0x10;
+
+    UnkShotIdRecord() : id(g_unk_7101d470e0), path(g_unk_7101d470e8), field_0x10(0) {}
+    ~UnkShotIdRecord() {}
+};
+static_assert(sizeof(UnkShotIdRecord) == 0x18, "UnkShotIdRecord placeholder layout");
+
+// Eight records (0xc0 bytes); the manager holds a table of them per shot type.
+struct UnkShotIdRecordSet {
+    UnkShotIdRecord records[8];
+};
+
+struct UnkIdPair;
+void fn_7100026f70(UnkIdPair* pair);
+// Assigns `other` to `self` (move-assignment; out of line, not decompiled yet).
+void fn_7100027118(UnkStrIdPathResource* self, UnkStrIdPathResource* other);
+
+// The record set's constructor.
+void fn_7100ede778(UnkShotIdRecordSet* self) {
+    for (UnkShotIdRecord& r : self->records)
+        new (&r) UnkShotIdRecord;
+}
+
+// Resets each record of the set to a default one.
+void fn_7100ed5f2c(UnkShotIdRecordSet* self) {
+    for (u32 i = 0; i < 8; ++i) {
+        UnkShotIdRecord tmp;
+        fn_7100027118(reinterpret_cast<UnkStrIdPathResource*>(&self->records[i]),
+                      reinterpret_cast<UnkStrIdPathResource*>(&tmp));
+        fn_7100026f70(reinterpret_cast<UnkIdPair*>(&tmp));
     }
 }

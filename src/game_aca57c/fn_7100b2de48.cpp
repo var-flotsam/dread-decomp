@@ -172,7 +172,6 @@ void fn_7100b2c784(UnkStateOwner* self);
 void fn_710006cd9c(UnkSoundHolder* holder);
 void fn_710006d2a0(UnkSoundGroup* group, u32 id);
 void fn_710006d4d0(UnkSoundGroup* group, u32 id);
-void fn_7100219294(UnkRenderManager* target, u64 hash, const f32* value, u32 mode);
 void fn_7100219cb0(UnkRenderManager* target, bool a, bool b);
 void fn_7100219d4c(UnkRenderManager* target, bool a, bool b);
 void fn_7100219da4(UnkRenderManager* target, bool a, bool b, u32 mode);

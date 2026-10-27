@@ -884,3 +884,293 @@ UnkContact fn_7100d5635c(UnkNoContext, UnkShape* a, void* ta, UnkShape* b, void*
         result = Merge(result, fn_7100d54020(UnkNoContext(), point, a, ta, b, tb, sink, &offset, x5, 0));
     return result;
 }
+
+// The pair dispatch of the contact stage (the point-set counterpart of fn_7100d541c0): by the sum
+// of the two shapes' types, the shape of type T goes first and the other second (the pair is
+// swapped when `a` is not of type T, bit 1 of the flags), and the pair's point set is computed and
+// reported. Most pairs place one shape in the other's frame, collect the points and report them
+// through fn_7100d53b2c at the frame's translation; the polygon collection and oriented pairs have
+// their own handlers. Unhandled pairs give an empty result.
+UnkContact fn_7100d52fcc(UnkCollider* self, UnkShape* a, void* ta, UnkShape* b, void* tb, void* sink, u32 x6);
+bool fn_7100129910(const void* b, const UnkShape8Geometry* a, UnkContactBuffer<4>* out, bool flag);
+UnkContact fn_7100d64750(const void* a, const void* b, const base::math::CVector2D* delta, bool flag,
+                         UnkLocalQuery* query);
+struct UnkPathSet2D;
+bool fn_710012c580(const UnkOrientedBox2D* box, const UnkPathSet2D* paths, UnkContactList2D* list);
+
+// NON_MATCHING(minor): self and b swap callee-saved registers (x25/x26) and the result pointer is
+// kept in x27 instead of x20; the early return's store is merged into the common return block; the
+// frame slots are laid out in another order (the fn_7100d53b2c result temporary above the placed
+// shapes instead of below the point buffer, which moves both by 8 bytes); fn_710012c580 is called
+// without the dead fourth argument (w3 = !(flags & 1)) that its three-parameter definition ignores;
+// the fn_7100d64750 delta is stored as two words; loads and selects are scheduled in another order.
+// Same calls with the same arguments otherwise.
+UnkContact fn_7100d51368(UnkCollider* self, UnkShape* a, void* ta, UnkShape* b, void* tb, UnkContactSink* sink,
+                         u32 flags) {
+    if (!a || !b)
+        return NoContact();
+    UnkContact result = NoContact();
+    switch (a->GetType() + b->GetType()) {
+    case 3: {
+        UnkShape* first = a->GetType() == 1 ? a : b;
+        UnkShape* second = a->GetType() == 1 ? b : a;
+        const UnkXform* tf = static_cast<const UnkXform*>(a->GetType() == 1 ? ta : tb);
+        const UnkXform* ts = static_cast<const UnkXform*>(a->GetType() == 1 ? tb : ta);
+        u32 f = flags | (a->GetType() != 1) << 1;
+        CVector3D ps = Translation(ts);
+        CVector3D pf = Translation(tf);
+        UnkCircle2D local = UnkPlacedCircle::Placed(second, ps.x - pf.x, ps.y - pf.y);
+        UnkContactBuffer<2> buf;
+        buf.count = 0;
+        fn_71001271d0(Geometry(first), &local, &buf, !(flags & 1));
+        CVector3D offset = Translation(tf);
+        offset.z = (offset.z + ts->m[2][3]) * 0.5f;
+        UnkContactSpan span = {buf.points, buf.count};
+        result = fn_7100d53b2c(self, &span, first, (void*)tf, second, (void*)ts, sink, &offset, f);
+        break;
+    }
+    case 4: {
+        UnkShape* first = a->GetType() == 2 ? a : b;
+        UnkShape* second = a->GetType() == 2 ? b : a;
+        const UnkXform* tf = static_cast<const UnkXform*>(a->GetType() == 2 ? ta : tb);
+        const UnkXform* ts = static_cast<const UnkXform*>(a->GetType() == 2 ? tb : ta);
+        u32 f = flags | (a->GetType() != 2) << 1;
+        CVector3D pf = Translation(tf);
+        CVector3D ps = Translation(ts);
+        UnkCircle2D local = UnkPlacedCircle::Placed(first, pf.x - ps.x, pf.y - ps.y);
+        UnkContactBuffer<2> buf;
+        buf.count = 0;
+        fn_7100127720(&local, CircleAtOrigin(*static_cast<const f32*>(Geometry(second))), &buf, !(flags & 1));
+        CVector3D offset = Translation(ts);
+        offset.z = (offset.z + tf->m[2][3]) * 0.5f;
+        UnkContactSpan span = {buf.points, buf.count};
+        result = fn_7100d53b2c(self, &span, first, (void*)tf, second, (void*)ts, sink, &offset, f);
+        break;
+    }
+    case 5: {
+        UnkShape* first = a->GetType() == 4 ? a : b;
+        UnkShape* second = a->GetType() == 4 ? b : a;
+        const UnkXform* tf = static_cast<const UnkXform*>(a->GetType() == 4 ? ta : tb);
+        const UnkXform* ts = static_cast<const UnkXform*>(a->GetType() == 4 ? tb : ta);
+        u32 f = flags | (a->GetType() != 4) << 1;
+        CVector3D pf = Translation(tf);
+        CVector3D ps = Translation(ts);
+        UnkBox2D local = UnkBox2D::Placed(first, pf.x - ps.x, pf.y - ps.y);
+        UnkContactBuffer<2> buf;
+        buf.count = 0;
+        fn_7100128510(&local, Geometry(second), &buf, !(flags & 1));
+        CVector3D offset = Translation(ts);
+        offset.z = (offset.z + tf->m[2][3]) * 0.5f;
+        UnkContactSpan span = {buf.points, buf.count};
+        result = fn_7100d53b2c(self, &span, first, (void*)tf, second, (void*)ts, sink, &offset, f);
+        break;
+    }
+    case 6: {
+        UnkShape* first = a->GetType() == 4 ? a : b;
+        UnkShape* second = a->GetType() == 4 ? b : a;
+        const UnkXform* tf = static_cast<const UnkXform*>(a->GetType() == 4 ? ta : tb);
+        const UnkXform* ts = static_cast<const UnkXform*>(a->GetType() == 4 ? tb : ta);
+        u32 f = flags | (a->GetType() != 4) << 1;
+        CVector3D ps = Translation(ts);
+        CVector3D pf = Translation(tf);
+        UnkCircle2D local = UnkPlacedCircle::Placed(second, ps.x - pf.x, ps.y - pf.y);
+        UnkContactBuffer<8> buf;
+        buf.count = 0;
+        fn_7100126bf0(Geometry(first), &local, &buf, !(flags & 1));
+        CVector3D offset = Translation(tf);
+        offset.z = (offset.z + ts->m[2][3]) * 0.5f;
+        UnkContactSpan span = {buf.points, buf.count};
+        result = fn_7100d53b2c(self, &span, first, (void*)tf, second, (void*)ts, sink, &offset, f);
+        break;
+    }
+    case 8: {
+        UnkShape* first = a->GetType() == 4 ? a : b;
+        UnkShape* second = a->GetType() == 4 ? b : a;
+        const UnkXform* tf = static_cast<const UnkXform*>(a->GetType() == 4 ? ta : tb);
+        const UnkXform* ts = static_cast<const UnkXform*>(a->GetType() == 4 ? tb : ta);
+        u32 f = flags | (a->GetType() != 4) << 1;
+        CVector3D pf = Translation(tf);
+        CVector3D ps = Translation(ts);
+        UnkBox2D local = UnkBox2D::Placed(first, pf.x - ps.x, pf.y - ps.y);
+        UnkContactBuffer<4> buf;
+        buf.count = 0;
+        fn_710012b330(&local, Geometry(second), &buf, !(flags & 1));
+        CVector3D offset = Translation(ts);
+        offset.z = (offset.z + tf->m[2][3]) * 0.5f;
+        UnkContactSpan span = {buf.points, buf.count};
+        result = fn_7100d53b2c(self, &span, first, (void*)tf, second, (void*)ts, sink, &offset, f);
+        break;
+    }
+    case 9: {
+        UnkShape* first = a->GetType() == 8 ? a : b;
+        UnkShape* second = a->GetType() == 8 ? b : a;
+        const UnkXform* tf = static_cast<const UnkXform*>(a->GetType() == 8 ? ta : tb);
+        const UnkXform* ts = static_cast<const UnkXform*>(a->GetType() == 8 ? tb : ta);
+        u32 f = flags | (a->GetType() != 8) << 1;
+        CVector3D pf = Translation(tf);
+        CVector3D ps = Translation(ts);
+        UnkShape8Geometry local = UnkShape8Geometry::Placed(first, pf.x - ps.x, pf.y - ps.y);
+        UnkContactBuffer<4> buf;
+        buf.count = 0;
+        fn_7100129910(Geometry(second), &local, &buf, !(flags & 1));
+        CVector3D offset = Translation(ts);
+        offset.z = (offset.z + tf->m[2][3]) * 0.5f;
+        UnkContactSpan span = {buf.points, buf.count};
+        result = fn_7100d53b2c(self, &span, first, (void*)tf, second, (void*)ts, sink, &offset, f);
+        break;
+    }
+    case 10: {
+        UnkShape* first = a->GetType() == 2 ? a : b;
+        UnkShape* second = a->GetType() == 2 ? b : a;
+        const UnkXform* tf = static_cast<const UnkXform*>(a->GetType() == 2 ? ta : tb);
+        const UnkXform* ts = static_cast<const UnkXform*>(a->GetType() == 2 ? tb : ta);
+        u32 f = flags | (a->GetType() != 2) << 1;
+        CVector3D pf = Translation(tf);
+        CVector3D ps = Translation(ts);
+        UnkCircle2D local = UnkPlacedCircle::Placed(first, pf.x - ps.x, pf.y - ps.y);
+        UnkContactBuffer<4> buf;
+        buf.count = 0;
+        fn_710012a9a0(&local, static_cast<const UnkShape8Geometry*>(Geometry(second)), &buf, !(flags & 1));
+        CVector3D offset = Translation(ts);
+        offset.z = (offset.z + tf->m[2][3]) * 0.5f;
+        UnkContactSpan span = {buf.points, buf.count};
+        result = fn_7100d53b2c(self, &span, first, (void*)tf, second, (void*)ts, sink, &offset, f);
+        break;
+    }
+    case 0xc: {
+        UnkShape* first = a->GetType() == 4 ? a : b;
+        UnkShape* second = a->GetType() == 4 ? b : a;
+        const UnkXform* tf = static_cast<const UnkXform*>(a->GetType() == 4 ? ta : tb);
+        const UnkXform* ts = static_cast<const UnkXform*>(a->GetType() == 4 ? tb : ta);
+        u32 f = flags | (a->GetType() != 4) << 1;
+        CVector3D pf = Translation(tf);
+        CVector3D ps = Translation(ts);
+        UnkBox2D local = UnkBox2D::Placed(first, pf.x - ps.x, pf.y - ps.y);
+        UnkContactBuffer<4> buf;
+        buf.count = 0;
+        fn_7100129ff0(&local, static_cast<const UnkShape8Geometry*>(Geometry(second)), &buf, !(flags & 1));
+        CVector3D offset = Translation(ts);
+        offset.z = (offset.z + tf->m[2][3]) * 0.5f;
+        UnkContactSpan span = {buf.points, buf.count};
+        result = fn_7100d53b2c(self, &span, first, (void*)tf, second, (void*)ts, sink, &offset, f);
+        break;
+    }
+    case 0x11: {
+        UnkShape* first = a->GetType() == 0x10 ? a : b;
+        UnkShape* second = a->GetType() == 0x10 ? b : a;
+        void* tf = a->GetType() == 0x10 ? ta : tb;
+        void* ts = a->GetType() == 0x10 ? tb : ta;
+        result = fn_7100d52fcc(self, first, tf, second, ts, sink, flags | (a->GetType() != 0x10) << 1);
+        break;
+    }
+    case 0x12: {
+        UnkShape* first = a->GetType() == 0x10 ? a : b;
+        UnkShape* second = a->GetType() == 0x10 ? b : a;
+        void* tf = a->GetType() == 0x10 ? ta : tb;
+        void* ts = a->GetType() == 0x10 ? tb : ta;
+        result = fn_7100d5283c(self, first, tf, second, ts, sink, flags | (a->GetType() != 0x10) << 1);
+        break;
+    }
+    case 0x14: {
+        UnkShape* first = a->GetType() == 0x10 ? a : b;
+        UnkShape* second = a->GetType() == 0x10 ? b : a;
+        void* tf = a->GetType() == 0x10 ? ta : tb;
+        void* ts = a->GetType() == 0x10 ? tb : ta;
+        result = fn_7100d52bd0(self, first, tf, second, ts, sink, flags | (a->GetType() != 0x10) << 1);
+        break;
+    }
+    case 0x18: {
+        UnkShape* first = a->GetType() == 0x10 ? a : b;
+        UnkShape* second = a->GetType() == 0x10 ? b : a;
+        void* tf = a->GetType() == 0x10 ? ta : tb;
+        void* ts = a->GetType() == 0x10 ? tb : ta;
+        result = fn_7100d5244c(self, first, tf, second, ts, sink, flags | (a->GetType() != 0x10) << 1);
+        break;
+    }
+    case 0x20: {
+        UnkShape* first = a->GetType() == 0x10 ? a : b;
+        UnkShape* second = a->GetType() == 0x10 ? b : a;
+        const UnkXform* tf = static_cast<const UnkXform*>(a->GetType() == 0x10 ? ta : tb);
+        const UnkXform* ts = static_cast<const UnkXform*>(a->GetType() == 0x10 ? tb : ta);
+        u32 f = flags | (a->GetType() != 0x10) << 1;
+        UnkContact r = NoContact();
+        base::math::CVector2D delta;
+        delta.x = tf->m[0][3] - ts->m[0][3];
+        delta.y = tf->m[1][3] - ts->m[1][3];
+        UnkLocalQuery query(MakeVec3(tf->m[0][3], tf->m[1][3], (tf->m[2][3] + ts->m[2][3]) * 0.5f), Geometry(first),
+                            sink);
+        query.field_0x14 = f;
+        r = fn_7100d64750(Geometry(first), Geometry(second), &delta, !(flags & 1), &query);
+        result = r;
+        break;
+    }
+    case 0x41: {
+        UnkShape* first = a->GetType() == 0x40 ? a : b;
+        UnkShape* second = a->GetType() == 0x40 ? b : a;
+        void* tf = a->GetType() == 0x40 ? ta : tb;
+        void* ts = a->GetType() == 0x40 ? tb : ta;
+        result = fn_7100d5337c(self, static_cast<UnkOrientedShape*>(first), tf, second, ts, sink,
+                               flags | (a->GetType() != 0x40) << 1);
+        break;
+    }
+    case 0x42: {
+        UnkShape* first = a->GetType() == 0x40 ? a : b;
+        UnkShape* second = a->GetType() == 0x40 ? b : a;
+        void* tf = a->GetType() == 0x40 ? ta : tb;
+        void* ts = a->GetType() == 0x40 ? tb : ta;
+        result = fn_7100d53624(self, static_cast<UnkOrientedShape*>(first), tf, second, ts, sink,
+                               flags | (a->GetType() != 0x40) << 1);
+        break;
+    }
+    case 0x44: {
+        UnkShape* first = a->GetType() == 0x40 ? a : b;
+        UnkShape* second = a->GetType() == 0x40 ? b : a;
+        void* tf = a->GetType() == 0x40 ? ta : tb;
+        void* ts = a->GetType() == 0x40 ? tb : ta;
+        result = fn_7100d534d0(self, static_cast<UnkOrientedShape*>(first), tf, second, ts, sink,
+                               flags | (a->GetType() != 0x40) << 1);
+        break;
+    }
+    case 0x48: {
+        UnkShape* first = a->GetType() == 0x40 ? a : b;
+        UnkShape* second = a->GetType() == 0x40 ? b : a;
+        void* tf = a->GetType() == 0x40 ? ta : tb;
+        void* ts = a->GetType() == 0x40 ? tb : ta;
+        result = fn_7100d538fc(self, static_cast<UnkOrientedShape*>(first), tf, second, ts, sink,
+                               flags | (a->GetType() != 0x40) << 1);
+        break;
+    }
+    case 0x50: {
+        UnkShape* first = a->GetType() == 0x40 ? a : b;
+        UnkShape* second = a->GetType() == 0x40 ? b : a;
+        const UnkXform* tf = static_cast<const UnkXform*>(a->GetType() == 0x40 ? ta : tb);
+        const UnkXform* ts = static_cast<const UnkXform*>(a->GetType() == 0x40 ? tb : ta);
+        u32 f = flags | (a->GetType() != 0x40) << 1;
+        f32 dx = tf->m[0][3] - ts->m[0][3];
+        f32 dy = tf->m[1][3] - ts->m[1][3];
+        UnkPlacement2D local = static_cast<UnkOrientedShape*>(first)->placement;
+        local.center.x = dx + local.center.x;
+        local.center.y = dy + local.center.y;
+        fn_7100110664(&local, fn_7100076acc(tf).z + local.angle);
+        UnkContactBuffer<16> buf;
+        buf.count = 0;
+        fn_710012c580(reinterpret_cast<const UnkOrientedBox2D*>(&local),
+                      static_cast<const UnkPathSet2D*>(Geometry(second)), reinterpret_cast<UnkContactList2D*>(&buf));
+        CVector3D offset = Translation(ts);
+        offset.z = (offset.z + tf->m[2][3]) * 0.5f;
+        UnkContactSpan span = {buf.points, buf.count};
+        result = fn_7100d53d24(&span, &offset, f, sink);
+        break;
+    }
+    case 0x80: {
+        UnkShape* first = a->GetType() == 0x40 ? a : b;
+        UnkShape* second = a->GetType() == 0x40 ? b : a;
+        void* tf = a->GetType() == 0x40 ? ta : tb;
+        void* ts = a->GetType() == 0x40 ? tb : ta;
+        result = fn_7100d53784(self, static_cast<UnkOrientedShape*>(first), tf, second, ts, sink,
+                               flags | (a->GetType() != 0x40) << 1);
+        break;
+    }
+    }
+    return result;
+}

@@ -146,10 +146,21 @@ as the SDK does before the static initialisers): the memory heap (`nn::os::SetMe
 first 0x4e700000 bytes. Every static initialiser of the game runs, `main` calls `nnMain`
 (`src/engine/nnMain.cpp`), which walks the host arguments and enters the main loop, and the system
 start-up `fn_71001325d0` runs whole (the SDK heap, `nv`, the RomFS mount, the user, `nn::oe`,
-`nn::time`). The trap is then the game's main function `fn_7100000980` (764 B, `L` in
+`nn::time`). Then the game's main function `fn_7100000980` runs (matched; `L` in
 `data/functions/` but the game's: it sets up the string pool and the settings, starts the
-`MAINMENU` scenario and runs the loop). Each trap names the next function the boot needs: that is
-M1's work list.
+`MAINMENU` scenario and runs the loop) into the start-up `fn_7100015c70`. The first trap there is
+`fn_71000a4598`. Each trap names the next function the boot needs: that is M1's work list.
+`nnMain` hands main, the per-frame and the shutdown callback over as function pointers, so the
+direct-call slice from `nnMain` misses most of what they reach. Some of the traps are reached
+only through pointers, so running with `DREAD_TRAP=log` gives the real order.
+
+**Lifted code that loses arguments.** A byte-identical lift may leave an argument register to pass
+through untouched: the AArch64 bytes are the same, but an x86-64 compile drops the value. A lifted
+call to a constructor right after an allocation is the common case: the object is in `x0` on the
+Switch, and on PC the constructor gets a garbage pointer. `build/port/callsite_audit.json` and
+`build/port/passthrough.json` list them, made by `build/port/audits/`. A crash in a constructor
+called from lifted code is the sign. Write the caller by hand (`src/engine/UnkGraphicsApi.cpp`)
+until the lifter names the registers.
 
 **Crashes** print where they happened (`port/runtime/src/fault.cpp`): the signal, the faulting
 address (flagged when it is in the game image or near null), the instruction and the return

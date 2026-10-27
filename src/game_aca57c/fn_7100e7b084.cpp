@@ -5,6 +5,7 @@
 
 #include "UnkBufferString.h"
 #include "base/UnkVector.h"
+#include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
@@ -51,7 +52,6 @@ void fn_7100e7b410(UnkString200IterValue* self, UnkString200IterValue* other) {
 // A text buffer of 0x200 characters, written by fn_71000a1784 from an object and its word at 8,
 // and returned as a string with 0x100 bytes of storage.
 extern void* g_unk_7101a1b958[];
-extern void* g_unk_7101a194b8[];
 using UnkString100 = UnkBufferString<0x100, g_unk_7101a194b8>;
 
 struct UnkTextBuffer200 {

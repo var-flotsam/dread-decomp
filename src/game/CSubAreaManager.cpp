@@ -8,6 +8,7 @@
 #include "base/UnkHashStream.h"
 #include "base/UnkRegistry.h"
 #include "base/UnkStrIdPathPair.h"
+#include "base/file/UnkFileDevice.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CRntString.h"
@@ -16,7 +17,10 @@
 #include "base/reflection/UnkReflObjectRead.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkCameraCtrl.h"
+#include "base/input/UnkRumbleManager.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkModelManager.h"
+#include "game/UnkRenderManager.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -135,6 +139,87 @@ struct UnkSubArea {
     };
 };
 
+// Members the reset (fn_7100ee34f0) empties.
+using UnkPathIdMember = base::UnkStrIdMemberOf<g_unk_7101d47200>;  // a file-path id
+
+// A queued sub-area request (0x10 bytes): an id and three flags (+0x8 picks the handler, +0x9 is
+// passed on).
+struct UnkSubAreaRequestFlags {
+    u8 field_0x0;
+    u8 field_0x1;
+    u8 field_0x2;
+};
+struct UnkSubAreaRequest {
+    base::UnkStrIdMember id;
+    UnkSubAreaRequestFlags flags;
+};
+static_assert(sizeof(UnkSubAreaRequest) == 0x10, "UnkSubAreaRequest placeholder layout");
+
+// A ring buffer of 64 requests.
+struct UnkSubAreaRequestQueue {
+    UnkSubAreaRequest* read;
+    UnkSubAreaRequest* write;
+    u64 count;
+    UnkSubAreaRequest storage[64];
+};
+
+// An owned polymorphic object (slot 0x8 is its deleting destructor), deleted when released.
+struct UnkSubAreaObject {
+    virtual void vf_0x0();
+    virtual void vf_0x8();
+};
+struct UnkSubAreaObjectPtr {
+    UnkSubAreaObject* ptr;
+    ~UnkSubAreaObjectPtr() {
+        UnkSubAreaObject* p = ptr;
+        ptr = nullptr;
+        if (p)
+            p->vf_0x8();
+    }
+};
+
+// A 0x188-byte record destroyed out of line.
+struct UnkSubAreaRecord_0x188;
+void fn_7100faa3d8(UnkSubAreaRecord_0x188* self);
+struct UnkSubAreaRecord_0x188 {
+    u8 data[0x188];
+    ~UnkSubAreaRecord_0x188() { fn_7100faa3d8(this); }
+};
+
+// An owned id set (src/game_s7/fn_7100ef1e1c.cpp destroys one), deleted when released.
+struct UnkNamedIds;
+void fn_7100ef1e1c(UnkNamedIds* self);
+struct UnkNamedIdsPtr {
+    UnkNamedIds* ptr;
+    ~UnkNamedIdsPtr() {
+        UnkNamedIds* p = ptr;
+        ptr = nullptr;
+        if (p) {
+            fn_7100ef1e1c(p);
+            operator delete(p);
+        }
+    }
+};
+
+// A list of collision objects (+0x8 of a node holds one at +0x10).
+struct UnkCollisionObject;
+struct UnkSubAreaColliderRef {
+    u8 pad_0x0[0x10];
+    UnkCollisionObject* field_0x10;
+};
+struct UnkSubAreaColliderNode {
+    u8 pad_0x0[0x8];
+    UnkSubAreaColliderRef* field_0x8;
+    UnkSubAreaColliderNode* next;
+};
+
+// The member at +0x8d8, emptied out of line (fn_7100d418c8): a container whose node list starts
+// at +0x40.
+struct UnkSubAreaColliders {
+    u8 pad_0x0[0x40];
+    UnkSubAreaColliderNode* head;
+};
+
 // The manager (a placeholder for the fields used here).
 struct CSubAreaManager {
     u8 pad_0x0[0x108];
@@ -143,12 +228,37 @@ struct CSubAreaManager {
     u32 field_0x110;
     u8 pad_0x114[0x44];
     UnkIdSet field_0x158;
-    u8 pad_0x248[0x1a8];
+    u8 pad_0x248[0xf0];
+    base::UnkVector<base::UnkStrIdMember> field_0x338;
+    base::UnkVector<UnkPathIdMember> field_0x360;
+    base::UnkVector<UnkPathIdMember> field_0x388;
+    u8 pad_0x3b0[0x40];
     UnkSubArea* field_0x3f0;  // the current sub-area
     UnkSubArea* field_0x3f8;  // the previous one
-    u8 pad_0x400[0x6e1];
+    u8 pad_0x400[0x18];
+    UnkSubAreaRequestQueue field_0x418;
+    base::UnkVector<UnkSubAreaObjectPtr> field_0x830;
+    UnkSubArea* field_0x858;
+    base::UnkVector<UnkSubAreaRecord_0x188> field_0x860;
+    base::UnkVector<UnkNamedIdsPtr> field_0x888;
+    u8 pad_0x8b0[0x28];
+    UnkSubAreaColliders field_0x8d8;
+    u8 pad_0x920[0x10];
+    void* field_0x930;
+    u8 pad_0x938[0x80];
+    bool field_0x9b8;
+    CStrId field_0x9c0;
+    CStrId field_0x9c8;
+    CStrId field_0x9d0;
+    u8 pad_0x9d8[0x109];
     bool field_0xae1;
 };
+static_assert(__builtin_offsetof(CSubAreaManager, field_0x338) == 0x338, "CSubAreaManager placeholder layout");
+static_assert(__builtin_offsetof(CSubAreaManager, field_0x418) == 0x418, "CSubAreaManager placeholder layout");
+static_assert(__builtin_offsetof(CSubAreaManager, field_0x830) == 0x830, "CSubAreaManager placeholder layout");
+static_assert(__builtin_offsetof(CSubAreaManager, field_0x8d8) == 0x8d8, "CSubAreaManager placeholder layout");
+static_assert(__builtin_offsetof(CSubAreaManager, field_0x930) == 0x930, "CSubAreaManager placeholder layout");
+static_assert(__builtin_offsetof(CSubAreaManager, field_0x9c0) == 0x9c0, "CSubAreaManager placeholder layout");
 static_assert(__builtin_offsetof(CSubAreaManager, field_0x3f0) == 0x3f0, "CSubAreaManager placeholder layout");
 static_assert(__builtin_offsetof(CSubAreaManager, field_0xae1) == 0xae1, "CSubAreaManager placeholder layout");
 
@@ -375,4 +485,253 @@ update:
         }
     }
     self->field_0x3f0->field_0x181 = false;
+}
+
+// What the reset (fn_7100ee34f0) calls. Names are placeholders.
+bool fn_7100deac04(UnkGameManager* self);
+extern u32 g_unk_71727bebb8;  // the kind the main camera is looked up with
+base::reflection::UnkReflObject* fn_7100d786c0(void* entity);  // its "CAMERA" component
+UnkCameraCtrl* fn_71010e389c(void* holder, void* key);
+void fn_71010ea4fc(UnkCameraCtrl* ctrl);
+
+// A request taken off the queue: the id moved out of the queued one (released as CStrId is), and
+// the flags.
+struct UnkPoppedRequest {
+    union {
+        CStrId id;
+    };
+    UnkSubAreaRequestFlags flags;
+
+    // The moved-from id is cleared through an untyped store: the original reloads the queue's read
+    // pointer after it.
+    explicit UnkPoppedRequest(UnkSubAreaRequest& r) {
+        typedef base::global::UnkStringData* __attribute__((may_alias)) AnyData;
+        id.data = r.id.data;
+        *reinterpret_cast<AnyData*>(&r.id.data) = &g_unk_7101d47108->empty;
+        flags = r.flags;
+    }
+    ~UnkPoppedRequest() { id.~CStrId(); }
+};
+void fn_7100ee4550(CSubAreaManager* self, const UnkPoppedRequest* request, bool a, bool b);
+void fn_7100ee4704(CSubAreaManager* self, const UnkPoppedRequest* request, bool a, bool b);
+
+// The GUI root (src/game/CCutscene.cpp) and a 0x48-byte singleton created on first use.
+extern void* g_unk_7101d47330;
+struct UnkSubAreaGuiCache;
+extern UnkSubAreaGuiCache* g_unk_71727254f8;
+void fn_710119d484(UnkSubAreaGuiCache* self);  // constructor
+void fn_710119a110(void* root, const UnkPathIdMember* id);
+void fn_710119e684(UnkSubAreaGuiCache* self, const base::UnkStrIdMember* id, bool flag);
+void fn_710119d9b8(UnkSubAreaGuiCache* self, const base::UnkStrIdMember* id, bool flag);
+void fn_710119d910(UnkSubAreaGuiCache* self);
+void fn_7100de6ee8(UnkGameManager* self);
+void fn_71011aa820(UnkModelManager* self);
+
+// The entities whose component (+0x10) of class fn_7101117478 is told about each id.
+struct UnkSubAreaEntity {
+    u8 pad_0x0[0x10];
+    base::reflection::UnkReflObject* field_0x10;
+};
+struct UnkSubAreaEntityList {
+    UnkSubAreaEntity** data;
+    u32 count;
+};
+UnkSubAreaEntityList* fn_7101119514();
+void fn_710111b138(base::reflection::UnkReflObject* component, const base::UnkStrIdMember* id);
+
+// The manager at g_unk_7101d47318 as far as it is called here.
+struct UnkDropTarget;
+extern UnkDropTarget* g_unk_7101d47318;
+struct UnkSubAreaDropTargetView {
+    virtual void vf_0x0();
+    virtual void vf_0x8();
+    virtual void vf_0x10();
+    virtual void vf_0x18();
+    virtual void vf_0x20();
+    virtual void vf_0x28();
+    virtual void vf_0x30();
+    virtual void vf_0x38(u32 a, u32 b);
+};
+
+using base::input::UnkRumbleManager;
+extern UnkRumbleManager* g_unk_7101d47348;
+void fn_7100073f48(UnkRumbleManager* self, u32 a, u32 b);
+void fn_71002191a4(UnkRenderManager* self, u32 value);
+
+// The collision manager singleton (src/game_lo/fn_7100863a8c.cpp).
+struct UnkManager_7100863a8c;
+extern UnkManager_7100863a8c* g_unk_71726a4788;
+void fn_7100d46804(UnkManager_7100863a8c* self);  // constructor
+void fn_7100d46c60(UnkManager_7100863a8c* self, UnkCollisionObject* obj);
+void fn_7100d476e4(UnkManager_7100863a8c* self, void* obj);
+
+// The file device singleton and the sound manager (src/game/CGameManager.cpp).
+extern base::file::UnkFileDevice* g_unk_7101d4d828;
+struct UnkSoundMgr;
+extern UnkSoundMgr* g_unk_7101d4d820;
+void fn_710008987c(base::file::UnkFileDevice* self, const CFilePathStrId* path, u32 flags);
+void fn_7100089894(base::file::UnkFileDevice* self);
+void fn_7100108c94(UnkSoundMgr* self, const CFilePathStrId* path);
+// The file-path id array's element accessor (UnkVector::GrowAt, out of line).
+UnkPathIdMember* fn_710008c174(base::UnkVector<UnkPathIdMember>* self, u32 index);
+
+void fn_7100ee48ec(CSubAreaManager* self);
+void fn_710109d0c0();
+void fn_7100d418c8(UnkSubAreaColliders* self);
+
+static inline UnkManager_7100863a8c* CollisionManager() {
+    if (!g_unk_71726a4788) {
+        UnkManager_7100863a8c* m = static_cast<UnkManager_7100863a8c*>(fn_71000839a0(0x6b0, 0x3f));
+        fn_7100d46804(m);
+        g_unk_71726a4788 = m;
+    }
+    return g_unk_71726a4788;
+}
+
+static inline UnkCollisionObject* ColliderOf(const UnkSubAreaColliderNode* n) {
+    return n->field_0x8 ? n->field_0x8->field_0x10 : nullptr;
+}
+
+// Resets the main camera's controller when it is the CAnimatedCameraCtrl one.
+static inline void ResetMainCameraCtrl() {
+    UnkGameManager* gm = g_unk_7101d47310;
+    u32 kind_value = g_unk_71727bebb8;
+    u64 name = fn_7100001570("MainCamera", 10);
+    alignas(8) u32 kind = kind_value;  // stored after the hash, in an 8-byte slot
+    void* camera = fn_7100deba8c(gm, &name, &kind);
+    bool skip = fn_7100deac04(g_unk_7101d47310);
+    if (camera && !skip) {
+        if (base::reflection::UnkReflObject* component = fn_7100d786c0(camera)) {
+            UnkCameraCtrl* ctrl = fn_71010e389c(component, GameManagerIdTable().pad_0x0 + 0x7c8);
+            if (ctrl && ctrl->vf_0x0() == fn_71010e7f90()) {
+                fn_71010ea4fc(ctrl);
+                reinterpret_cast<void (*)(UnkCameraCtrl*)>(ctrl->vtable[0x38 / 8])(ctrl);
+            }
+        }
+    }
+}
+
+// Resets the manager: releases its ids, leaves the current and previous sub-areas (and the one at
+// +0x858), resets the main camera's controller when it is the CAnimatedCameraCtrl one, handles the
+// queued requests, tells the GUI, the entities and the file device to drop the loaded ids, and
+// empties the arrays.
+// NON_MATCHING(minor): register allocation and block layout only: the collision manager's GOT
+// address is loaded inside the +0x930 branch and again before the collider loop instead of once
+// ahead of that branch (so the sound manager's and the file-path pool's GOT registers differ), the
+// collider loop loads the collider into a scratch register and reloads it for the call instead of
+// keeping it in x1 (8 bytes longer), and the clears of the two owned-pointer arrays (+0x830, +0x888)
+// reload the count at the end of the body instead of at the loop head.
+void fn_7100ee34f0(CSubAreaManager* self) {
+    self->field_0x9b8 = false;
+    self->field_0x9c0.Reset();
+    self->field_0x9c8.Reset();
+    self->field_0x9d0.Reset();
+    if (UnkSubArea* area = self->field_0x858) {
+        fn_7100fac120(area, UnkMaskOf<UnkSubAreaMaskTag>::All(), false, true, nullptr, false);
+        self->field_0x858 = nullptr;
+    }
+
+    ResetMainCameraCtrl();
+
+    if (UnkSubArea* area = self->field_0x3f8) {
+        fn_7100fac120(area, UnkMaskOf<UnkSubAreaMaskTag>::All(), false, true, nullptr, false);
+        self->field_0x3f8 = nullptr;
+    }
+    if (UnkSubArea* area = self->field_0x3f0) {
+        fn_7100fac120(area, UnkMaskOf<UnkSubAreaMaskTag>::All(), false, true, nullptr, false);
+        self->field_0x3f0 = nullptr;
+    }
+
+    UnkSubAreaRequestQueue& queue = self->field_0x418;
+    while (queue.count != 0) {
+        UnkPoppedRequest request(*queue.read);
+        queue.read->~UnkSubAreaRequest();
+        UnkSubAreaRequest* begin = queue.storage;
+        UnkSubAreaRequest* next = queue.read + 1;
+        queue.read = next == begin + 64 ? begin : next;
+        --queue.count;
+        if (request.flags.field_0x0)
+            fn_7100ee4550(self, &request, request.flags.field_0x1 != 0, false);
+        else
+            fn_7100ee4704(self, &request, request.flags.field_0x1 != 0, false);
+    }
+
+    void* gui = g_unk_7101d47330;
+    UnkSubAreaGuiCache* cache = g_unk_71727254f8;
+    if (!cache) {
+        cache = static_cast<UnkSubAreaGuiCache*>(fn_71000839a0(0x48, 0x3f));
+        fn_710119d484(cache);
+        g_unk_71727254f8 = cache;
+    }
+    UnkGameManager* gm = g_unk_7101d47310;
+    UnkModelManager* models = g_unk_71726b0cd8;
+    if (!models) {
+        models = static_cast<UnkModelManager*>(fn_71000839a0(sizeof(UnkModelManager), 0x3f));
+        fn_71011a870c(models);
+        g_unk_71726b0cd8 = models;
+    }
+    for (UnkPathIdMember* it = self->field_0x360.data; it != self->field_0x360.data + self->field_0x360.count; ++it)
+        fn_710119a110(gui, it);
+    for (base::UnkStrIdMember *it = self->field_0x338.data, *end = it + self->field_0x338.count; it != end; ++it)
+        fn_710119e684(cache, it, true);
+    fn_7100de6ee8(gm);
+    for (base::UnkStrIdMember *it = self->field_0x338.data, *end = it + self->field_0x338.count; it != end; ++it)
+        fn_710119d9b8(cache, it, true);
+    fn_7100de6ee8(gm);
+    UnkSubAreaEntityList* entities = fn_7101119514();
+    for (u32 i = 0; i < entities->count; ++i) {
+        UnkSubAreaEntity* e = entities->data[i];
+        base::reflection::UnkReflObject* component = e ? e->field_0x10 : nullptr;
+        if (component && !fn_710009d50c(component->vf_0x0(), fn_7101117478()))
+            component = nullptr;
+        for (base::UnkStrIdMember *it = self->field_0x338.data, *end = it + self->field_0x338.count; it != end;
+             ++it)
+            fn_710111b138(component, it);
+    }
+    fn_71011aa820(models);
+    fn_710119d910(cache);
+    fn_7100de6ee8(gm);
+
+    reinterpret_cast<UnkSubAreaDropTargetView*>(g_unk_7101d47318)->vf_0x38(0, 0);
+    UnkRumbleManager* rumble = g_unk_7101d47348;
+    if (!rumble) {
+        rumble = static_cast<UnkRumbleManager*>(fn_71000839a0(sizeof(UnkRumbleManager), 0x3f));
+        fn_71000733e4(rumble);
+        g_unk_7101d47348 = rumble;
+    }
+    fn_7100073f48(rumble, 0, 0);
+    fn_71002191a4(g_unk_7101d47300, 4);
+    if (self->field_0x930) {
+        fn_7100d476e4(CollisionManager(), self->field_0x930);
+        self->field_0x930 = nullptr;
+    }
+
+    base::file::UnkFileDevice* device = g_unk_7101d4d828;
+    if (!device) {
+        device = static_cast<base::file::UnkFileDevice*>(fn_71000839a0(0x1348, 0x3f));
+        fn_71000893a8(device);
+        g_unk_7101d4d828 = device;
+    }
+    base::UnkVector<UnkPathIdMember>* paths = &self->field_0x388;
+    for (s32 i = (s32)paths->count - 1; i != -1; --i) {
+        fn_710008987c(device, reinterpret_cast<const CFilePathStrId*>(fn_710008c174(paths, i)), 0);
+        fn_7100108c94(g_unk_7101d4d820, reinterpret_cast<const CFilePathStrId*>(fn_710008c174(paths, i)));
+    }
+    fn_7100ee48ec(self);
+    fn_7100089894(device);
+    paths->Clear();
+
+    fn_710109d0c0();
+    UnkSubAreaColliders& colliders = self->field_0x8d8;
+    for (UnkSubAreaColliderNode* n = colliders.head; n; n = n->next) {
+        if (ColliderOf(n))
+            fn_7100d46c60(CollisionManager(), ColliderOf(n));
+    }
+    fn_7100d418c8(&colliders);
+    self->field_0x830.Clear();
+    self->field_0x860.Clear();
+    self->field_0x360.Clear();
+    self->field_0x338.Clear();
+    self->field_0x888.Clear();
+    self->field_0x110 = 0;
 }

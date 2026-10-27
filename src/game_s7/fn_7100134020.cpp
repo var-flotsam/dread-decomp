@@ -13,6 +13,7 @@
 #include <cstring>
 #include "../game_aca57c/UnkBufferString.h"
 #include "UnkIter.h"
+#include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
@@ -39,7 +40,6 @@ struct UnkStr_7100134020 {
     }
 };
 
-extern void* g_unk_7101a194b8[];
 using UnkString100_7100134020 = UnkBufferString<0x100, g_unk_7101a194b8>;
 
 struct UnkEntry_7100134020 {
