@@ -94,6 +94,8 @@ def main() -> int:
             for m in rep.mismatches:
                 if m.symbol not in unknown or m.kind not in FULL_KINDS or m.actual is None:
                     continue
+                if m.actual_name is not None:
+                    continue  # the original reaches an import there (a PLT stub): the runtime's, no game address
                 addr = m.actual - m.addend
                 found[m.symbol][addr] += 1
                 kinds[m.symbol][m.kind] += 1

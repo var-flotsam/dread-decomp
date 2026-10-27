@@ -41,6 +41,11 @@ inline void* MapExecutable(u64 size) {
     return VirtualAlloc(nullptr, size, kMemReserve | kMemCommit, kPageReadWrite);
 }
 
+// Read-write memory anywhere (nn::os's memory heap), committed like the image.
+inline void* MapAnywhere(u64 size) {
+    return VirtualAlloc(nullptr, size, kMemReserve | kMemCommit, kPageReadWrite);
+}
+
 inline bool SealExecutable(void* address, u64 size) {
     unsigned long old;
     return VirtualProtect(address, size, kPageExecuteRead, &old) != 0 &&
@@ -77,6 +82,12 @@ inline void* MapExecutable(u64 size) {
 }
 
 inline bool SealExecutable(void* address, u64 size) { return mprotect(address, size, PROT_READ | PROT_EXEC) == 0; }
+
+// Read-write memory anywhere (nn::os's memory heap), zero-filled and reserved lazily.
+inline void* MapAnywhere(u64 size) {
+    void* got = mmap(nullptr, size, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS | MAP_NORESERVE, -1, 0);
+    return got == MAP_FAILED ? nullptr : got;
+}
 
 }  // namespace dread_port_host_memory
 

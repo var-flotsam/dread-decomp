@@ -136,22 +136,40 @@ whose ABI is unchanged. All 3,830 sources compile so. `port_link.py --executable
   files (`Scrt1.o`, `crtbeginS.o`): the plain `crtbegin.o` uses 32-bit absolute relocations.
 - **The residue gets traps** (`residue.s`): each name still undefined that the host does not
   define becomes a thunk that reports its name, a vtable 64 slots of one, a data name 0x100 zero
-  bytes. On `main`: 24 functions, 9 vtables, 3 data names.
+  bytes. On `main`: 20 functions, 8 vtables, 3 data names.
 
-**First run (2026-10-26).** The loader maps the dump at `0x7100000000` and applies its 146,684
-relocations (115,825 of the 128,576 code pointers translate to the port's functions, with the
-1,941 semantic lifts linked), every static initialiser of the game runs, and `main` calls
-`nnMain` (`src/engine/nnMain.cpp`), which walks the host arguments (`src/engine/HostArguments.cpp`)
-and enters the main loop: the system start-up `fn_71001325d0` (`src/engine/SystemStartup.cpp`)
-initialises the SDK heap, `nv` and `nn::fs`'s allocator, and the first trap is the engine's
-aligned allocation `fn_7100083ba0` (`L` in `data/functions/`, but the game's: the default
-allocator's slot 0x40). Each trap names the next function the boot needs: that is M1's work list.
+**Where the boot is (2026-10-27).** The loader maps the dump at `0x7100000000` and applies its
+146,684 relocations (115,831 of the 128,576 code pointers translate to the port's functions, with
+the semantic lifts linked), then runs the game's `nninitStartup` (`src/engine/SystemStartup.cpp`,
+as the SDK does before the static initialisers): the memory heap (`nn::os::SetMemoryHeapSize`,
+`AllocateMemoryBlock`; 1.4 GiB of lazily committed host memory) and the default allocator over its
+first 0x4e700000 bytes. Every static initialiser of the game runs, `main` calls `nnMain`
+(`src/engine/nnMain.cpp`), which walks the host arguments and enters the main loop, and the system
+start-up `fn_71001325d0` runs whole (the SDK heap, `nv`, the RomFS mount, the user, `nn::oe`,
+`nn::time`). The trap is then the game's main function `fn_7100000980` (764 B, `L` in
+`data/functions/` but the game's: it sets up the string pool and the settings, starts the
+`MAINMENU` scenario and runs the loop). Each trap names the next function the boot needs: that is
+M1's work list.
+
+**Crashes** print where they happened (`port/runtime/src/fault.cpp`): the signal, the faulting
+address (flagged when it is in the game image or near null), the instruction and the return
+addresses; symbolise them with the executable,
+`port/docker/run.sh llvm-symbolizer-18 --obj=build/port/linux/link/dread -f -C <addresses>`.
+
+**Game data defined by the sources.** A matched file that defines a game global itself (a
+`static` or a function-local static) holds it in the executable, while lifted code and files that
+name it `g_unk_<addr>` reach the image's copy: two objects where the game has one. The default
+allocator was the first case (the start-up set the executable's pointer, the lifted entry points
+read the image's null one); `src/base/UnkDefaultAllocatorGlobal.cpp` now keeps its state in the
+image on the port (`#if !defined(__aarch64__)`, the matching build unchanged). A crash at a null
+pointer read from a game global is the sign of another.
 `DREAD_TRAP=log` makes the traps report each missing function or import once and return 0 instead
 of aborting, so one run lists them in the order the game reaches them until something truly
 breaks; useful past functions whose result the caller ignores, useless past an allocation (the
-first run with it segfaults right after `fn_7100083ba0` returns a null block). The whole list
+first run with it segfaulted right after an allocation returned a null block). The whole list
 without running is `build/port/linux/link/boot_unlifted.csv`: the boot slice's functions with no
-source and no semantic lift (213 on 2026-10-26: 206 `U`, 6 `L`, 1 `O`).
+source and no semantic lift (213 on 2026-10-26; 20 on 2026-10-27 after the boot-match batch: 19
+`U` of 2 to 16 KB, and `fn_7100000980`).
 
 ### macOS
 

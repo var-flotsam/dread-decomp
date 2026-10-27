@@ -168,6 +168,7 @@ pthread_mutex_lock pthread_mutex_unlock pthread_mutex_init pthread_mutex_destroy
 pthread_join pthread_detach pthread_key_create pthread_getspecific pthread_setspecific sched_yield
 clock_gettime gettimeofday time localtime localtime_r gmtime mktime nanosleep usleep sleep bcmp mmap munmap mprotect
 fseeko ftello
+sigaction sigaltstack sigemptyset signal raise strsignal backtrace
 stdin stdout stderr errno environ
 clearerr feof ferror fgets freopen fscanf getc ungetc setvbuf tmpfile tmpnam remove rename system
 clock difftime strftime setlocale localeconv strcoll strcspn strpbrk iscntrl ispunct
@@ -659,7 +660,7 @@ def classify(lk: Link, runtime_by_name: dict[str, list[str]], runtime_symbols: s
             e.sub = "defined by the runtime" if sym in runtime_symbols else "stub needed"
         else:
             addr, _ = res.reference(dem)  # a real name unique in data/functions/ (Lua, ...)
-            if addr is None and sym in known:
+            if addr is None and sym in known and sym not in runtime_symbols:  # never an import the runtime defines
                 addr = known[sym]
                 e.flags.append("address_from_matched_code")
             if addr is None:
