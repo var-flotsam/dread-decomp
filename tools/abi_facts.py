@@ -223,6 +223,7 @@ class AbiFacts:
         self._fwd.clear()
         for a in sorted(self.orig.sizes):
             self.facts(a)
+        self._decoded.clear()  # (every function's instructions: gigabytes, decoded again on demand)
         self.is_complete = True
         self.save(path)
 
