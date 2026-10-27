@@ -62,7 +62,11 @@ matching queue.
 With --lifted <dir> (tools/port_lift.py's output, build/port/lifted/), the semantic lifts join the
 game: link 1L, <out>/dread_game_lifted.o = dread_game.o + <dir>/obj/fn_<addr>.o, leaving out any lift
 whose address the sources now define (a stale lift: the tool says so, and also when the manifest's
-generator sources differ from the checked-out ones). The boot slice is reported twice, without the
+generator sources differ from the checked-out ones). A lift the manifest marks `"overrides":
+"src/lifted/<file>.cpp"` replaces that byte-identical lift instead, which on AArch64 relies on argument registers
+an x86-64 compile drops: link 1L then takes the sweep's objects again with a copy of that file's
+object (<out>/overrides/) where the address's definitions are local (llvm-objcopy), so references
+to the address are aliased to the semantic lift. The boot slice is reported twice, without the
 lifts (boot_missing.csv, still the lifter's worklist) and with them (a `lifted` column;
 <out>/boot_unlifted.csv lists what is still missing), and everything after it (aliases, traps, the
 second link) works on the lifted link. Semantic lifts never count as matching: tools/check.py and
@@ -76,7 +80,8 @@ names without an address, runtime stubs not written yet.
 
 Outputs under <out> (default build/port/link/): runtime/*.o, lib/*.o, objects.rsp, dread_game.o, aliases.rsp,
 traps.s, traps.o, dread_whole.o, boot_missing.csv and link.json (everything the report prints, with
-the full lists); with --lifted also objects_lifted.rsp, dread_game_lifted.o and boot_unlifted.csv. Every output is rebuilt on every run. Exit status 0 unless a link fails (1).
+the full lists); with --lifted also objects_lifted.rsp, dread_game_lifted.o and boot_unlifted.csv, and
+with overrides objects_overridden.rsp and overrides/ (the patched objects). Every output is rebuilt on every run. Exit status 0 unless a link fails (1).
 Standard library plus the project's own tools: port_sweep (flags, sources, own_name), asmdiff
 (demangle, strip_params, NAME_RE, TARGET_RE), check (load_csv, csv_by_name), callgraph (the boot
 slice). Needs clang++, ld.lld and llvm-nm (next to the compiler, or on PATH; llvm-objdump there too
@@ -260,11 +265,13 @@ def port_lift_blob(path: str) -> str:
 
 
 def find_tool(cxx: str, name: str) -> str | None:
-    """A binutil next to the compiler, else on PATH."""
-    exe = Path(cxx)
-    cand = exe.parent / (name + exe.suffix)
-    if cand.is_file():
-        return str(cand)
+    """A binutil next to the compiler (as named, or where its symlink leads: /usr/bin/clang++ is
+    /usr/lib/llvm-18/bin's on Ubuntu, which holds all of LLVM's tools), else on PATH."""
+    exe = Path(shutil.which(cxx) or cxx)
+    for d in dict.fromkeys((exe.parent, exe.resolve().parent)):
+        cand = d / (name + exe.suffix)
+        if cand.is_file():
+            return str(cand)
     return shutil.which(name)
 
 
@@ -363,6 +370,97 @@ def relocations(objdump: str | None, path: Path) -> dict[str, Counter[str]] | No
         if sym and not sym.startswith("."):
             counts[sym][parts[1]] += 1
     return counts
+
+
+def manifest_overrides(manifest: dict, lift_addrs: set[int]) -> dict[int, str]:
+    """Address -> the src/lifted file whose definition an accepted semantic lift replaces (the
+    manifest's "overrides", tools/port_lift.py), for the lifts that have an object."""
+    out = {}
+    for key, f in manifest.get("functions", {}).items():
+        if isinstance(f, dict) and f.get("outcome") == "accepted" and f.get("overrides"):
+            a = int(key, 16)
+            if a in lift_addrs:
+                out[a] = f["overrides"]
+    return out
+
+
+def referenced_in_object(objdump: str, path: Path, syms: set[str]) -> set[str]:
+    """The symbols of `syms` that code of the object refers to from outside their own body. A call
+    within one section carries no relocation (the assembler resolves it), so this reads the
+    disassembly (`<sym>` and `<sym+0x..>` operands) as well as the relocations by name."""
+    found = {s for s in (relocations(objdump, path) or {}) if s in syms}
+    r = subprocess.run([objdump, "-d", "--no-show-raw-insn", str(path)], capture_output=True, text=True,
+                       encoding="utf-8", errors="replace")
+    if r.returncode != 0:
+        raise SystemExit(f"{objdump} -d {rel(path)} failed:\n{r.stderr}")
+    current = None
+    for line in r.stdout.splitlines():
+        m = re.match(r"^[0-9a-f]+ <(.+)>:$", line)
+        if m:
+            current = m.group(1)
+            continue
+        for t in re.findall(r"<([^<>+]+)(?:\+0x[0-9a-f]+)?>", line):
+            if t in syms and t != current:
+                found.add(t)
+    return found
+
+
+def override_objects(objcopy: str | None, nm: str, objdump: str | None, overrides: dict[int, str],
+                     objects_dir: Path, resolver: "Resolver", out_dir: Path
+                     ) -> tuple[dict[Path, Path], set[int], dict[str, list[int]]]:
+    """Copies of the sweep objects named by `overrides` with those addresses' definitions made local
+    (llvm-objcopy --localize-symbol): the address then has no global definition, so its lift is
+    linked and every reference to the address is aliased to the lift. A lifted file calls its own
+    functions through `callee::` names, so the local body is left unreferenced; an override whose
+    symbol its own object does reference stays as it is, as does one the file no longer defines (a
+    stale manifest, or a hand-written source took the address over). Returns (object -> patched
+    copy, the addresses replaced, the addresses left as they are by reason)."""
+    patched: dict[Path, Path] = {}
+    replaced: set[int] = set()
+    left: dict[str, list[int]] = defaultdict(list)
+    if not overrides:
+        return patched, replaced, left
+    if not objcopy or not objdump:
+        left["no llvm-objcopy or llvm-objdump next to the compiler"] = sorted(overrides)
+        return patched, replaced, left
+    by_file: dict[str, list[int]] = defaultdict(list)
+    for a, f in overrides.items():
+        by_file[f].append(a)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    for f, addrs in sorted(by_file.items()):
+        obj = port_sweep.obj_path(ROOT / f, objects_dir)
+        if not obj.is_file():
+            left["no object for the named file"] += addrs
+            continue
+        defs = [(k, s) for k, s in nm_symbols(nm, obj) if k in "TW"]
+        dem = asmdiff.demangle([s for _, s in defs], strip=False)
+        by_addr: dict[int, list[str]] = defaultdict(list)
+        for _, s in defs:
+            a, _ = resolver.definition(s, dem.get(s, s))
+            if a is not None:
+                by_addr[a].append(s)
+        refs = referenced_in_object(objdump, obj, {s for a in addrs for s in by_addr.get(a, ())})
+        local = []
+        for a in sorted(addrs):
+            syms = by_addr.get(a)
+            if not syms:
+                left["the named file does not define it"].append(a)
+            elif any(s in refs for s in syms):
+                left["referenced inside its own object"].append(a)
+            else:
+                local += syms
+                replaced.add(a)
+        if not local:
+            continue
+        copy = out_dir / rel(obj).replace("/", "_")
+        rsp = copy.with_suffix(".rsp")
+        rsp.write_text("".join(f"--localize-symbol={s}\n" for s in local), encoding="utf-8")
+        r = subprocess.run([objcopy, f"@{rsp.as_posix()}", str(obj), str(copy)], capture_output=True, text=True,
+                           encoding="utf-8", errors="replace")
+        if r.returncode != 0:
+            raise SystemExit(f"{objcopy} {rel(obj)} failed:\n{r.stderr}")
+        patched[obj] = copy
+    return patched, replaced, left
 
 
 def link(lld: str, output: Path, inputs: list[str]) -> tuple[subprocess.CompletedProcess, float]:
@@ -1204,17 +1302,31 @@ def main() -> int:
         stale = [s for s, h in manifest.get("sources", {}).items()
                  if (ROOT / s).is_file() and port_lift_blob(s) != h]
         lobjs, kept, dropped = sorted((ldir / "obj").glob("fn_*.o")), [], []
+        overrides = manifest_overrides(manifest, {int(o.stem[3:], 16) for o in lobjs})
+        patched, replaced, left = override_objects(find_tool(cxx, "llvm-objcopy"), nm, objdump, overrides,
+                                                   Path(args.objects), resolver, out / "overrides")
         for o in lobjs:
             a = int(o.stem[3:], 16)
-            (dropped if a in lk.code_defs else kept).append((a, o))
+            (dropped if a in lk.code_defs and a not in replaced else kept).append((a, o))
         print()
         print(f"lifted: {len(lobjs)} semantic lifts in {rel(ldir)} ({manifest.get('generator', 'no manifest')}"
               + (f"; generated by older versions of {', '.join(stale)}: rerun tools/port_lift.py" if stale else "")
               + f"); {len(dropped)} left out because the sources now define them")
+        if overrides:
+            print(f"overrides: {len(replaced)} of {len(overrides)} lifts replace their src/lifted definition"
+                  f" ({len(patched)} objects patched under {rel(out / 'overrides')})"
+                  + "".join(f"; {len(v)} left as they are, {k}" for k, v in sorted(left.items())))
         lifted_rsp = out / "objects_lifted.rsp"
         write_rsp(lifted_rsp, [quote(o) for _, o in kept])
         lifted_o = out / "dread_game_lifted.o"
-        r, dtl = link(lld, lifted_o, [str(game_o), f"@{lifted_rsp.as_posix()}"])
+        if patched:
+            # the game again, with the patched copies in place of the objects they replace
+            game_rsp = out / "objects_overridden.rsp"
+            write_rsp(game_rsp, [quote(patched.get(o, o)) for o in [*objs, *lib_objs]])
+            inputs = [f"@{game_rsp.as_posix()}", f"@{lifted_rsp.as_posix()}"]
+        else:
+            inputs = [str(game_o), f"@{lifted_rsp.as_posix()}"]
+        r, dtl = link(lld, lifted_o, inputs)
         if r.returncode != 0:
             print(f"LINK FAILED ({rel(lifted_o)}):")
             print("\n".join(r.stderr.splitlines()[:40]))
@@ -1233,6 +1345,8 @@ def main() -> int:
         lifted_report = {"dir": rel(ldir), "generator": manifest.get("generator"), "stale_sources": stale,
                          "objects": len(lobjs), "linked": len(kept),
                          "left_out_defined_in_sources": [f"0x{a:x}" for a, _ in dropped],
+                         "overrides": {"requested": len(overrides), "replaced": [f"0x{a:x}" for a in sorted(replaced)],
+                                       "left": {k: [f"0x{a:x}" for a in v] for k, v in sorted(left.items())}},
                          "link": {"output": rel(lifted_o), "seconds": round(dtl, 2), "undefined": len(lk.undefined)},
                          "boot_slice": lifted_slice}
 

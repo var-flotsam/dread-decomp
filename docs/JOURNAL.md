@@ -98,6 +98,26 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Port M1: semantic lifts override byte-identical ones in the link (2026-10-27, branch
+`claude/port-lift-overrides`).** The lifter session's pass-through fix marks a semantic lift
+`"overrides": "src/lifted/<file>.cpp"` when byte mode cannot name a register the code relies on.
+`tools/port_link.py --lifted` now links such a lift in place of the `src/lifted/` definition. A copy
+of the file's sweep object gets that address's definitions made local (`llvm-objcopy
+--localize-symbol`), and the lifted link takes the objects again with the copy. The address is then
+left without a global definition, so every reference is aliased to the lift.
+
+Two findings on the way:
+- A call within one section carries no relocation under Clang 18 (the assembler resolves it), so a
+  "still referenced in its own object" check has to read the disassembly as well.
+- `find_tool` now also looks where the compiler's symlink leads (`/usr/lib/llvm-18/bin` in the
+  Docker image), which holds `llvm-objcopy`.
+
+Tested two ways:
+- a hand-made manifest of three stand-in lifts: two replaced, one refused because the named file
+  does not define the address;
+- the real lift set, which has no overrides: every output identical to the original tool's, the
+  executable included.
+
 **Port M1: the boot-match batch, and the boot past the system start-up (2026-10-27).** The Linux
 executable's first run trapped at the allocator, and `boot_unlifted.csv` listed 213 boot-slice
 functions with neither a source nor a semantic lift. A workflow matched them by translation unit
