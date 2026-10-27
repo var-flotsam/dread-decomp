@@ -349,10 +349,15 @@ class Oracle:
         off = a - pcode_emu.BASE
         return int.from_bytes(self.image.data[off:off + 4], "little")
 
-    def machine(self, seed, inside, word, lift, preset, dictionary=(), overrides=None, track=False):
+    def machine(self, seed, inside, word, lift, preset, dictionary=(), overrides=None, track=False, addr=None,
+                guide=None):
         m = pcode_emu.Machine(self.db, self.image, seed, inside, word, lift, self.af.import_name,
                               self.af.facts, preset, dictionary, overrides, track)
         m.setup()
+        if addr is not None:  # the function under test: its stack arguments bound the caller's frame
+            f = self.af.facts(addr)
+            m.arg_slots = f.stack_slots if f is not None else 0
+        m.guide = guide  # (the lift's run: the original's calls, for its out-parameters)
         return m
 
     def originals(self, addr: int) -> list:
@@ -371,7 +376,8 @@ class Oracle:
             runs, seen, idle = [], set(), 0
 
             def run(seed: int, ovr: dict):
-                m = self.machine(seed, inside, self.image_word, None, self.preset_orig, self.dicts[addr], ovr, True)
+                m = self.machine(seed, inside, self.image_word, None, self.preset_orig, self.dicts[addr], ovr, True,
+                                 addr)
                 m.run(addr)
                 return m
 
@@ -439,7 +445,8 @@ class Oracle:
                 why = why or f"original: {mo}"
                 continue
             covered |= mo.visited
-            ml = self.machine(seed, lambda a: text[0] <= a < text[1], word, lo, preset, self.dicts[addr], ovr)
+            ml = self.machine(seed, lambda a: text[0] <= a < text[1], word, lo, preset, self.dicts[addr], ovr,
+                              addr=addr, guide=mo.call_log)
             try:
                 ml.run(start)
             except pcode_emu.Inconclusive as e:

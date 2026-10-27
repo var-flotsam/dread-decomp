@@ -314,7 +314,14 @@ class Machine:
         self.dirty: dict[int, int] = {}
         self.stack_written: set[int] = set()
         self.frame_record: set[int] = set()  # stack words holding the saved return address (store)
+        self.saves: set[int] = set()  # stack words holding a callee-saved register's entry value (store)
+        self.entry_saved: set[int] = set()  # those entry values (setup: x19-x28, d8-d15)
         self.taken: set[int] = set()  # stack addresses the code made (`add xN, sp, #k`): local objects' starts
+        # The original's calls, for the lift's run: which arguments it wrote out-parameters
+        # through and how far (call_log); the lift's Machine gets them as `guide` (port_lift).
+        self.call_log: list[tuple[frozenset, dict]] = []
+        self.guide: list | None = None
+        self.arg_slots: int | None = None  # the function's stack argument slots (load: the caller's frame)
         self.state = {}  # argument register key -> "entry" | "written" | "junk"
         self.events: list = []
         self.calls = 0
@@ -360,6 +367,10 @@ class Machine:
         a &= 0xFFFFFFFFFFFFFFFF
         if a < NULL_PAGE:
             raise Fault(a)
+        if self.arg_slots is not None and ENTRY_SP + 8 * self.arg_slots <= a < STACK_TOP + (1 << 36):
+            # Above the stack arguments: the caller's frame, which the two runs place differently
+            # (an index from a callee's made-up result, a loop run past its array)
+            raise Inconclusive("read in the caller's frame")
         if self.track:
             w = a & ~7
             if w not in self._read_seen and not STACK_LO <= w < ENTRY_SP and not self.own[0] <= w < self.own[1]:
@@ -385,6 +396,8 @@ class Machine:
             self.stack_written.update(range(a, a + size))
             if size == 8 and v & 0xFFFFFFFFFFFFFFFF == SENTINEL:
                 self.frame_record.add(a)  # the saved return address: out-parameters never reach it
+            elif size == 8 and v & 0xFFFFFFFFFFFFFFFF in self.entry_saved:
+                self.saves.add(a)  # a callee-saved register's entry value: a save slot, not a local
         elif not (self.own[0] <= a < self.own[1]):
             for i in range(size):
                 self.dirty[a + i] = b[i]
@@ -455,6 +468,7 @@ class Machine:
             elif kind == "r":
                 self.regs[Q0 + QSTRIDE * (k - 100):Q0 + QSTRIDE * (k - 100) + 16] = (v & (1 << 128) - 1).to_bytes(16, "little")
         self.state = {k: "entry" for k in list(range(9)) + list(range(100, 108))}
+        self.entry_saved = {self.x(i) for i in range(19, 29)} | {self.reg(Q0 + QSTRIDE * i, 8) for i in range(8, 16)}
 
     def canonical(self, target: int):
         name = self.imports(target)
@@ -483,7 +497,10 @@ class Machine:
             if f is not None:  # a known callee: exactly the registers it reads
                 if k not in f.args:
                     continue
-            elif k == 8 or (st == "entry" and k != 0):  # unknown: x0 and what was set for it
+            elif k == 8:  # unknown: x8 when it was set to a local (a result built there)
+                if st != "written" or not STACK_LO <= self.x(8) < ENTRY_SP:
+                    continue
+            elif st in ("entry", "stale") and k != 0:  # unknown: x0 and what this block set for it
                 continue
             elif k >= 100 and isinstance(t, tuple):  # an import of unknown signature: integers only
                 continue
@@ -501,12 +518,18 @@ class Machine:
         self.calls += 1
         n = self.calls
         chosen = {k for k, _ in sel}
+        extent = {k: v[2] for k, v in args if isinstance(v, tuple) and v[0] == "stack"}
+        self.call_log.append((frozenset(chosen), extent))
+        if self.guide is not None and n <= len(self.guide):
+            # (the lift's run: through the arguments the original's call chose, as far as its
+            # objects reach, since this frame's layout and the scratch values it passes differ)
+            chosen, extent = self.guide[n - 1][0], {**extent, **self.guide[n - 1][1]}
         for k, v in args:  # out-parameters: through the arguments only (scratch registers differ)
-            if k in chosen and isinstance(v, tuple) and v[0] == "stack":
+            if k in chosen and isinstance(v, tuple) and v[0] == "stack" and k in extent:
                 p = raw[k]
                 # (within the object, stackref's extent, and never over the frame record: a small
                 # local below it would let the pattern overwrite the saved return address)
-                for j in range(0, max(v[2], 8), 8):
+                for j in range(0, max(extent[k], 8), 8):
                     if p + j >= ENTRY_SP or any(p + j - 7 <= r <= p + j + 7 for r in self.frame_record):
                         break
                     self.store(p + j, 8, mix(n, k, j))
@@ -531,10 +554,10 @@ class Machine:
 
     def stackref(self, v: int):
         """A stack address as the bytes the function wrote from it on, and how far its object may
-        reach: to the next local whose address the code took, or to the frame record (beyond, the
+        reach: to the next local whose address the code took, a save slot or the frame record (beyond, the
         two frames hold different locals); anything else as is."""
         if STACK_LO <= v < ENTRY_SP:
-            end = min([t for t in self.taken | self.frame_record if t > v] + [v + WINDOW])
+            end = min([t for t in self.taken | self.frame_record | self.saves if t > v] + [v + WINDOW])
             return ("stack", tuple(self.load(v + j, 1) if v + j in self.stack_written else None
                                    for j in range(WINDOW) if v + j < ENTRY_SP), end - v)
         return v
@@ -591,10 +614,20 @@ class Machine:
             while True:
                 self.steps += 1
                 if self.steps > MAX_STEPS:
-                    raise Inconclusive("time-out")
+                    # (compare() takes two time-outs as agreeing on what came before: a wait loop or
+                    # a long initialisation runs the same calls and writes in both)
+                    self.finish("time-out")
+                    return
                 self.visited.add(pc)
                 w = self.code_word(pc)
                 kind, target = self.step(pc, w, BRANCH, CBRANCH, BRANCHIND, CALL, CALLIND, RETURN)
+                if (w & 0x7C000000) == 0x14000000 and not w >> 31 or (w & 0xFF000010) == 0x54000000 \
+                        or (w & 0x7C000000) == 0x34000000:
+                    # b, b.cond, cbz/cbnz/tbz/tbnz: what was written for an unknown callee before a
+                    # branch was the other path's (Machine.call's selection)
+                    for k, st in self.state.items():
+                        if st == "written" and k:
+                            self.state[k] = "stale"
                 if kind == "next":
                     # add/sub (immediate, 64-bit) from sp or x29 into another register: a local's address
                     if (w >> 24) in (0x91, 0xD1) and ((w >> 5) & 31) in (29, 31) and (w & 31) != 31:
@@ -891,15 +924,17 @@ class Verdict:
 
 
 def compare(a: Machine, b: Machine, ret: str | None) -> str:
-    """'' when two runs agree, 'skip' when the input decides nothing (the original faulted, the
-    lift did not), else the first difference. `ret` is the lift's result kind:
-    None (not compared), 'x8', 'x16', 'x32', 'x64', 'f32', 'f64'."""
+    """'' when two runs agree, 'skip' when the input decides nothing (the original faulted and
+    the lift did not fault there; one run ran out of steps), else the first difference. Two runs
+    that both ran out of steps agree when everything before agrees. `ret` is the lift's result
+    kind: None (not compared), 'x8', 'x16', 'x32', 'x64', 'f32', 'f64'."""
     ea, eb = a.events, b.events
-    if ea and ea[-1][0] == ("end", "fault") and not (eb and eb[-1][0] == ("end", "fault")):
-        # The original crashed on this input and the lift did not: C lets the compiler drop or
-        # move a load whose value decides nothing, so the end proves nothing. What both did
-        # before the original's crash must still agree (calls and writes, not their memory at the
-        # crash, which the lift may have passed).
+    end_a, end_b = (ea[-1][0] if ea else None), (eb[-1][0] if eb else None)
+    if end_a == ("end", "fault") and ea != eb:
+        # The original crashed on this input, the lift did not crash there: C lets the compiler
+        # drop or move a load whose value decides nothing, so the end proves nothing (the lift
+        # may crash later on what followed). What both did before the original's crash must still
+        # agree (calls and writes, not their memory at the crash, which the lift may have passed).
         for i in range(len(ea) - 1):
             if i >= len(eb) or ea[i] != eb[i]:
                 if i < len(eb) and ea[i][0][0] == eb[i][0][0] == "call" and ea[i][0][1] == eb[i][0][1] \
@@ -908,7 +943,10 @@ def compare(a: Machine, b: Machine, ret: str | None) -> str:
                     continue
                 return f"event {i} before the original's fault"
         return "skip"
-    for i in range(min(len(ea), len(eb))):
+    timed_out = end_a == ("end", "time-out")
+    if timed_out != (end_b == ("end", "time-out")):
+        return "skip"  # one run ran out of steps: the other may just be slower or faster
+    for i in range(min(len(ea), len(eb)) - (1 if timed_out else 0)):  # (two time-outs: what came before)
         (va, ma), (vb, mb) = ea[i], eb[i]
         if va != vb:
             if va[0] == "call" and vb[0] == "call":
@@ -925,7 +963,7 @@ def compare(a: Machine, b: Machine, ret: str | None) -> str:
                 return f"event {i}: {va[0]} {va[1] if len(va) > 1 else ''} vs {vb[0]} {vb[1] if len(vb) > 1 else ''}"
         if ma != mb:
             return f"memory at event {i} ({va[0]}): {mem_diff(ma, mb)}"
-    if len(ea) != len(eb):
+    if len(ea) != len(eb) and not timed_out:
         return f"{len(ea)} events vs {len(eb)}"
     if ea and ea[-1][0] == ("end", "return") and ret:
         if ret[0] == "x":
