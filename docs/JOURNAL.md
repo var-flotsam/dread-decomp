@@ -90,6 +90,21 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Port M2: textures, pools and samplers (2026-10-26).** The format numbers have three sources.
+First, mercury-engine-data-structures' `XTX_Tegra_Format` names the eight formats in the game's
+`.bctex` files (BC3 751, BC5 372, BC1 119, R8 108, BC6H 91, RGBA8 38, BGRA8 11, RG8 10 of 1,500
+sampled). Second, the engine's render-target table at `0x7101647fec` (17 entries, indexed by the
+engine's own number; `fn_7100160f60`) maps them to NVN's: the colour targets' 3 is `0x25`, the
+depth target's `0xe` is `0x35`. Third, the swizzle function `fn_71001604e0` sets one-channel
+`0x1` to R,R,R,1, two-channel `0xd`/`0xe`/`0x12` to R,R,R,G, and the depth formats `0x33`/`0x35`
+to R,R,R,A. The game's strings name no NVN format. The other render-target numbers stay unknown and
+fail by name. The targets come from the game's textures: 1 is 2D; 8 is a cube map, square with six
+faces and BC6H in every case. A sampler is made on the stack, registered and finalised at once
+(`fn_710015e9fc`), so the sampler pool owns a copy. The game's filter, wrap and compare values are
+the engine's packing (it remaps compare 1-7 into NVN's numbering), which nothing names. With
+textures in, the start-up replay reaches no unimplemented function; the 38 called functions still
+missing are all on the drawing side.
+
 **Port M2: the NVN shim's start-up path (2026-10-26).** The graphics start-up `fn_71001587f0` is
 matched in `src/game_s7/`, so its NVN calls are known with their arguments. The 523 names of the
 table loader `fn_7100154770` map to the globals they fill through each GOT slot's relative

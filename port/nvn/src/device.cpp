@@ -205,6 +205,9 @@ bool DeviceIntegerValue(std::int32_t name, std::int32_t* value) {
     case kQueueCommandMemoryDefaultSize:
         *value = 0x10000;
         return true;
+    case kLinearTextureStrideAlignment:
+        *value = 32;  // the shim copies linear texels into its own images; any alignment works
+        return true;
     default:
         *value = 0;
         return false;
@@ -256,7 +259,8 @@ void DeviceFinalize(void* device) {
         std::lock_guard<std::mutex> lock(detail::StateLock());
         g_devices.Erase(device);
     }
-    detail::ReleaseMemoryVulkanObjects();  // before the device they belong to goes
+    detail::ReleaseTextureVulkanObjects();  // before the device they belong to goes
+    detail::ReleaseMemoryVulkanObjects();
     DestroyBackend();
 }
 

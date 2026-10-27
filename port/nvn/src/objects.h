@@ -26,10 +26,13 @@ void RegisterQueueProcs();     // queue.cpp: queues, syncs
 void RegisterCommandProcs();   // command.cpp: command buffers
 void RegisterStateProcs();     // state.cpp: the fixed-function state objects
 void RegisterWindowProcs();    // window.cpp
+void RegisterTextureProcs();   // texture.cpp: textures, texture and sampler pools, samplers
 
 // Releases the Vulkan objects of every memory pool (memory.cpp); nvnDeviceFinalize calls it before
 // it destroys the backend. The pools stay; their Vulkan buffers are made again on next use.
 void ReleaseMemoryVulkanObjects();
+// The same for textures, pool samplers and the resolver's placeholders (texture.cpp).
+void ReleaseTextureVulkanObjects();
 
 template <class T>
 class Registry {

@@ -6,12 +6,13 @@ pointers (`fn_7100154770` asks `nvnDeviceGetProcAddress` for 523 names and store
 The shim provides those functions on Vulkan. This directory holds the parts that exist so far:
 the entry layer (the bootstrap loader and `nvnDeviceGetProcAddress`, a named trap for every
 function not yet written), the device, memory pools and buffers, queues and syncs, command buffers
-(their memory, recording and bindings), the fixed-function state objects and the window; the
-shader manifest and the binding layer. Textures and the texture and sampler pools, programs,
-pipelines and draws, and presentation to a real window come next. `data/nvn_procs.csv`
+(their memory, recording and bindings), the fixed-function state objects, the window, textures
+and the texture and sampler pools and samplers; the shader manifest and the binding layer.
+Programs, vertex state, pipelines and draws, clears and render targets, and presentation to a real
+window come next (the 38 functions the game calls that the shim lacks, all on the drawing side). `data/nvn_procs.csv`
 (`tools/nvn_procs.py`) lists the 523 functions with the global each fills (the `g_unk_716e29xxxx`
 of `src/game_s7/fn_71001587f0.cpp`), the number of game call sites (146 have one) and whether the
-shim implements it (106, 74 of the 146 the game calls).
+shim implements it (143, 108 of the 146 the game calls).
 
 Rules: nothing here comes from NVN's SDK headers or from an emulator. Every NVN type, constant and
 argument order is a placeholder inferred from the game's own calls, and the file that uses it names
@@ -28,6 +29,7 @@ or SDK is needed to compile.
 | `include/nvn_shim/command.h`, `src/command.cpp` | command buffers: memory, recording, viewport and scissor, program, uniform-buffer and texture bindings |
 | `src/state.cpp` | the blend, channel-mask, colour, depth-stencil, multisample and polygon state objects (values kept as given) |
 | `include/nvn_shim/window.h`, `src/window.cpp` | the window: its textures in turn, the present interval |
+| `include/nvn_shim/texture.h`, `src/texture.cpp` | textures as Vulkan images (the format and target table with its evidence), the texture and sampler pools, samplers, texture handles, the binding layer's resolver over all of it |
 | `src/objects.h` | the side tables that hold the shim's state for the game's objects |
 | `include/nvn_shim/nvn_types.h` | the NVN values the binding layer handles: stages, stage bits, buffer addresses, texture handles, `nvnProgramSetShaders`' stage array |
 | `include/nvn_shim/shader_manifest.h`, `src/shader_manifest.cpp` | reads `shaders.manifest` (written by `tools/bshdat.py --install`) and finds a stage by its control section |
@@ -104,9 +106,13 @@ passes (the device and its Vulkan backend, all eleven integers with the pool siz
 no Vulkan buffer until one is used, builders keeping the device set before their defaults, a buffer whose address, map and Vulkan buffer agree, three frames of
 submits, fences and presents, the window's alternating textures, the device finalised with pools
 alive and then everything else, validation counted after the device is gone), no validation
-message (reintroducing the teardown leak or a builder's lost device fails it), and the replay reaches exactly 11 unimplemented functions: the texture builder,
-`TextureInitialize`, `TexturePoolInitialize` and `TexturePoolRegisterTexture` of the render
-targets. They are the next part.
+message (reintroducing the teardown leak or a builder's lost device fails it), and, since the
+texture part, no unimplemented function at all: the texture and sampler pools sized as
+`fn_710015f100` sizes them, a sampler made, registered and finalised at once as `fn_710015e9fc`
+does (the pool keeps its own Vulkan sampler), the depth target (`0x35`, a D32/S8 image) and two
+RGBA8 colour targets as `fn_7100160f60` makes them, a cube target as `fn_710015f880` makes it (six
+layers), an unknown format failing by name, and a texture handle resolving through the binding
+layer's resolver to the target's view and the sampler.
 
 What the parts do so far, and what they do not yet:
 
@@ -127,8 +133,21 @@ What the parts do so far, and what they do not yet:
 - **Command buffers** keep their memory, viewport, scissor, sample mask, pools, program and the
   binding layer's `BindingState`; `EndRecording` hands out a handle. No Vulkan command buffer yet.
 - **State objects** keep NVN's values as the game passes them, to be translated by the pipeline part.
-- **Window** hands out its textures in turn; there is no Vulkan surface yet (the textures are not
-  Vulkan images until the texture part exists, and the port's window is `nn::vi`'s).
+- **Window** hands out its textures in turn (the game's colour targets, Vulkan images now); there is
+  no Vulkan surface yet (the port's window is `nn::vi`'s).
+- **Textures.** Each is a Vulkan image of the format and target the table in `texture.h` maps,
+  with the evidence for each number: the formats of the game's own `.bctex` files are named by
+  mercury-engine-data-structures (`0x1` R8, `0xd` R8G8, `0x25` R8G8B8A8, `0x42` BC1, `0x44` BC3,
+  `0x4b` BC5, `0x50` BC6H, `0x6d` B8G8R8A8); the depth target's `0x35` and `0x33` are depth formats
+  by use (`fn_71001604e0` swizzles both R,R,R,A), provisionally D32 float with 8-bit stencil; the
+  engine's render-target table (`0x7101647fec`, 17 entries) also names `0x19`, `0xa`, `0x29`,
+  `0x2a`, `0x2e`, `0x3f`, `0x32`, `0x34`, `0x36`, which stay unknown and fail by name until a use
+  shows what they are. Target 1 is 2D and 8 a cube map: over 1,500 sampled `.bctex`, 1,411 are
+  target 1 and 89 target 8, every target-8 one square, six faces, BC6H, a cube/IBL/environment
+  map. Swizzles are the game's 0-5 (zero, one, R, G, B, A). Asset (packaged) texture data is kept
+  by pointer, not uploaded yet: it is in the console's tiled layout. Samplers are linear and
+  repeat for now, with the game's LOD clamp, bias and compare: the filter, wrap and compare
+  numbers are the engine's packing of NVN's enumerations, which nothing in the game names yet.
 - **Not joined to the game's link yet.** `tools/port_link.py --executable` compiles `port/runtime/`
   only; the boot traps long before graphics (`port/README.md`). Once it reaches `fn_71001587f0`,
   `dread_nvn` (and `-lvulkan`) joins the executable, and `nvnBootstrapLoader` resolves to the shim's.

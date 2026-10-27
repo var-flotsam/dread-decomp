@@ -11,6 +11,7 @@ add_library(dread_nvn STATIC
   src/queue.cpp
   src/shader_manifest.cpp
   src/state.cpp
+  src/texture.cpp
   src/window.cpp)
 target_include_directories(dread_nvn PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
 target_include_directories(dread_nvn SYSTEM PUBLIC "${DREAD_VULKAN_INCLUDE}")

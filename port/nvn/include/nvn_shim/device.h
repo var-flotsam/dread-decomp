@@ -36,6 +36,8 @@ enum DeviceInteger : std::int32_t {
     kMaxSamplerPoolSize = 0x25,
     // fn_71001587f0: the queue's command memory size and its flush threshold.
     kQueueCommandMemoryDefaultSize = 0x51,
+    // fn_710015fff0 rounds a linear texture's row stride up to a multiple of it.
+    kLinearTextureStrideAlignment = 0x38,
 };
 
 // The shim's answer for a DeviceInteger (0 and false for a name it does not know).
