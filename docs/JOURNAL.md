@@ -95,8 +95,74 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - A game global a matched file defines itself (a `static`, a function-local static) is the executable's on the port, while lifted code and `g_unk_<addr>` users reach the image's: keep such state in the image off `__aarch64__`: same entry.
 - A matched call to an import goes through a PLT stub, so harvesting addresses from matched code must skip those (`actual_name` set) or the import becomes an alias of itself: same entry.
 - Newer Clang (the port's 18) calls an `asm` label on a constructor or destructor declaration, Clang 9 ignores it: a label binds a member to its `fn_<addr>` on the port with the Switch bytes unchanged: same entry.
+- Clang 18 can hang on an `asm` label on an inline constructor: alias the complete-object symbol under `__clang_major__ <= 9` and define a function that runs the constructor otherwise: [port M1 round 2](#session-log-newest-first).
+- Byte-identical lifts drop argument registers at call sites (the file's `namespace callee` declaration names fewer than the callee reads) as well as in definitions; AArch64 keeps them, x86-64 loses them. A lifted constructor call after an allocation is the common case: same entry.
+- capstone 5.0.7's register access is wrong for aliases: `cmp`/`cmn`/`tst` write their first operand instead of reading it, and `fmov #imm`, `lsl #imm` and `sxtw` read their destination. Anything built on `regs_access()` (`tools/abi_facts.py`) under-counts arguments read first by a compare: same entry.
+- The boot's run-time roots are function pointers (`nnMain`'s main, per-frame and shutdown callbacks, main's stored callbacks), and some traps are reached only through pointers: a static worklist from the roots is a lower bound, `DREAD_TRAP=log` gives the order: same entry.
+- Function-local statics of header-inline functions are weak symbols in the executable on the port, while lifted code uses the image's: a split object unless the symbol is bound to the image address: same entry.
 
 ## Session log (newest first)
+
+**Port M1: boot-match round 2, and the boot past the game's main function (2026-10-27, branch
+`claude/port-m1-game-main`).** The game's main function `fn_7100000980` is matched (`src/engine/HostArguments.cpp`), and
+`nn::nfp` has stubs for all 26 imports (no reader: the library initialises and lists no device).
+`nnMain` passes three callbacks as function pointers (main `fn_7100000980`, per frame
+`fn_7100000d40`, shutdown `fn_7100000cf0`) and main stores four more, so the direct-call slice from
+`nnMain` misses their callees. From those seven roots, 139 functions trapped (149 KB). The round-2
+workflow took them, plus `fn_7100deac9c` and `fn_7100219294`, whose lifted copies drop an argument.
+It ran 14 agents by translation unit and a skeptic for each claimed `m` (61 agents, 13.6 M tokens,
+2.9 hours): 95 `O`, 47 `m`, three left (`fn_7100e91f18` 4.7 KB, `fn_7100c9eb08` 3.5 KB,
+`fn_7101100e04` 3.6 KB). Three `m` claims were refuted and fixed:
+- `fn_71000934b8`, the attribute insert behind every `UnkReflAttrs::Add`: it read the value after
+  the slot's destroy, which writes and frees.
+- `fn_710013b0e0` and `fn_710007e7f8`: they stored the GOT slot `g_unk_7101cbb250` plus 0x10 as
+  the string allocator's vtable. The slot holds the vtable `g_unk_7101a194b8`, now declared once in
+  `CRntString.h`.
+- `fn_71011ed1e8`: a `u64` field at +0x30c was aligned to +0x310. It is now two words.
+
+Unit 167 (0x7100150b50) holds the graphics system's entry points. Seven of them are now written by
+hand (all `O`), because their lifted copies drop arguments: the creator called the constructor
+without the object, the scale setter dropped the value, and five factories called their
+constructors without the object. They are in `src/engine/UnkGraphicsApi.cpp`, with
+`include/engine/UnkGraphicsSystem.h`.
+
+The boot now runs through the game's main function into the start-up `fn_7100015c70`. With
+`DREAD_TRAP=log` it reaches six functions without a source (`fn_71000a4598`, `fn_71000a497c`,
+`fn_7100075730`, `fn_710008a460`, `fn_7100087124`, `fn_710002f0dc`), then dereferences null in the
+lifted `fn_710008cbe8`, under `fn_7100015fc0`, after a trap returned 0. Four of the six are reached
+through pointers, which the direct-call graph does not follow. Round 3's static list from the same
+roots holds 127 functions (74 KB).
+
+Findings for the port:
+- **Byte-identical lifts drop arguments at call sites too.** A lifted file declares each callee
+  once (`namespace callee { ... }`). 8,885 of the 37,525 declarations name fewer registers than the
+  callee reads (8,627 integer, 692 float), and 57 call a callee that returns through `x8`; 277
+  boot-path functions make such calls (`build/port/callsite_audit.json`). On the definition side,
+  3,592 of 46,379 lifted definitions read more argument registers than they declare (164 on the
+  boot path; `build/port/passthrough.json`). AArch64 keeps the registers, so the bytes match;
+  x86-64 loses them. The scripts are in `build/port/audits/`, sent to the lifter session for its
+  byte-mode fix.
+- **`tools/abi_facts.py` under-counts arguments where capstone 5.0.7 gets an alias wrong.** `cmp`,
+  `cmn` and `tst` report their first operand as written, not read; `fmov` from an immediate and the
+  `ubfm`/`sbfm` aliases (`lsl`, `sxtw`) report their destination as read. Measured over 101,366
+  functions with a corrected decoder: 216 read more integer arguments than reported, 1,961 fewer,
+  and 959 fewer floats (`build/port/abi_alias_impact.json`). The oracle uses the same facts on both
+  sides, so it cannot see a dropped argument. Sent to the lifter session, which owns the file.
+- **Clang 18 hangs on an `asm` label on an inline constructor.** `src/base/UnkResFactoryRegistry.cpp`
+  aliases the complete-object symbol for Clang 9, and newer Clang gets a function that runs the
+  constructor.
+- **Function-local statics in header-inline functions** (the string-pool and file-path-pool
+  holders, the reflection type ids, `NoContact`'s empty contact, the game manager's id table) are
+  weak symbols in the executable, while lifted code reaches the image's copies. The pool holders
+  are guarded by the pool global, which lives in the image. A type id compared across hand and
+  lifted code would differ. `tools/port_addresses.py` could place these symbols from matched code,
+  and `tools/port_link.py` could bind them with `--defsym`, which overrides an object's definition
+  in lld. Not done yet.
+- **37 functions are `L` through the `runtime?` neighbour inference** of `gen_functions_csv.py`.
+  `nnMain` and `nninitStartup` count as runtime, so the unnamed run around them is too. Ten of them
+  are matched game code (`nnMain`, `nninitStartup`, `fn_7100000980`, ...), and they stay `L` because
+  `check.py` never updates an `L` row. `port_link.py`'s host symbols (`fn_7100000250` is
+  `__cxa_atexit`) depend on that `L`, so fix that first.
 
 **Port M1: the boot-match batch, and the boot past the system start-up (2026-10-27).** The Linux
 executable's first run trapped at the allocator, and `boot_unlifted.csv` listed 213 boot-slice
