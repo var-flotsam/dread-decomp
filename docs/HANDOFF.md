@@ -18,8 +18,8 @@ Target: **Metroid Dread 2.1.0**, `main` build ID `646761F643AFEBB379EDD5E6A5151A
   has one declaration (batch 4). The 156 conflicting symbols left (batch 6, 2026-10-26) have no
   hand-written definition, so the callers' types, `tools/abi_facts.py` and Ghidra's view decide the
   signature, and most need a shared type in a new header. `tools/decl_check.py --list` ranks them. Work them per
-  `.claude/skills/dread-hubs`: the tool first (`hub_migrate.py SYM --header H --declaration D` once a
-  signature is chosen), agents on disjoint file sets for what it leaves, verified with
+  `.claude/skills/dread-hubs`: the tool first (`hub_migrate.py --plan batch.tsv` with every chosen
+  signature, one build for all), agents on disjoint file sets for what it leaves, verified with
   `tools/baseline.py` (`save --tag <batch>-full --all` before the agents start: two minutes).
 - **Next boot hubs:** `tools/hubs.py --version 2.1.0 --boot` (round 3's list and round 2's
   follow-ups are under stream A below). Rounds 1 and 2 ran four and five agents, one per hub group

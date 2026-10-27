@@ -25,6 +25,21 @@ next batch's hand work; everything else is done.
   python tools/hub_migrate.py --version 2.1.0 --header-redeclared        # every symbol include/ declares once
                                                                         # that another file re-declares
   python tools/hub_migrate.py --version 2.1.0 SYMBOL --dry-run             # show the edits, change nothing
+  python tools/hub_migrate.py --version 2.1.0 --plan PLAN.tsv [--generated-sample N] [--dry-run]
+
+--plan takes a file of tab-separated lines `SYMBOL<TAB>include/x.h[<TAB>declaration]` (`#` starts a
+comment line) and does every symbol's edits at once: one baseline of every file to edit and every
+includer of a header to edit, one rebuild and compare, then narrowing down. A changed file goes back
+alone first (keeping its own declarations next to the headers'); when files still differ, every
+symbol whose header edits reach them goes back (its declaration and every file migrated onto it),
+and the rest are tried again from scratch, until nothing differs; symbols that went back together
+(sharing a header edit, so which one is at fault is unknown) are then retried one run each
+(--no-retry skips that). That is what one run per symbol gives, in far fewer builds when the symbols share files (a family of globals in a few files: a
+handful of rebuild rounds instead of one baseline per symbol). The generated sources (src/clones/,
+src/reflection*/, src/lifted/, src/tables/) that include a header to edit are listed (WARN), and the
+smallest --generated-sample of them per header (default 2) are rebuilt with the rest: baseline.py
+otherwise sees hand-written files only, so a header type that clashes with a generated declaration
+showed only in check.py.
 Exit 0 when every file migrated; 1 when some were restored; 2 when a symbol has no usable header.
 Nothing is committed; `git diff --stat` shows the result. Standard library only, plus the project tools.
 """
@@ -267,6 +282,235 @@ def migrate(symbols: list[str], version: str, header: str | None, declaration: s
     return worst
 
 
+GENERATED_EXT = (".cpp",)
+
+
+def generated_includers(headers: list[str]) -> dict[str, list[str]]:
+    """header -> generated sources that include it directly or through a hand-written header,
+    smallest first."""
+    names: dict[str, set[str]] = {}
+    for h in headers:
+        names[h] = {Path(h).name} | {Path(f).name for f in baseline.includers(h) if f.endswith((".h", ".hpp"))}
+    found: dict[str, list[str]] = {h: [] for h in headers}
+    pat = re.compile(r'^[ \t]*#[ \t]*include[ \t]*"([^"]+)"', re.M)
+    for d in decl_check.GENERATED:
+        root = ROOT / d
+        if not root.is_dir():
+            continue
+        for f in sorted(root.rglob("*")):
+            if not f.is_file() or f.suffix not in GENERATED_EXT:
+                continue
+            try:
+                text = f.read_text(encoding="utf-8", errors="replace")
+            except OSError:
+                continue
+            inc = {m.group(1).rsplit("/", 1)[-1] for m in pat.finditer(text)}
+            for h in headers:
+                if inc & names[h]:
+                    found[h].append(baseline.rel(f))
+    for h in found:
+        found[h].sort(key=lambda p: (ROOT / p).stat().st_size)
+    return found
+
+
+def read_plan(path: str) -> list[tuple[str, str, str | None]]:
+    """SYMBOL<TAB>header[<TAB>declaration] lines; blank lines and lines starting with # are skipped."""
+    out = []
+    for n, raw in enumerate(Path(path).read_text(encoding="utf-8").splitlines(), 1):
+        if not raw.strip() or raw.lstrip().startswith("#"):
+            continue
+        parts = raw.rstrip().split("\t")
+        if len(parts) < 2 or not parts[0].strip() or not parts[1].strip():
+            raise SystemExit(f"{path}:{n}: expected SYMBOL<TAB>header[<TAB>declaration]")
+        decl = parts[2].strip() if len(parts) > 2 and parts[2].strip() else None
+        out.append((parts[0].strip(), parts[1].strip(), decl))
+    return out
+
+
+def first_line(diff: str) -> str:
+    lines = diff.splitlines()[2:]
+    return (next((ln for ln in lines if ln.startswith("+") and "error" in ln), None)
+            or next((ln for ln in lines if ln.startswith("+")), None)
+            or next((ln for ln in lines if ln.startswith("-")), "")).strip()
+
+
+def migrate_plan(plan: list[tuple[str, str, str | None]], version: str, dry_run: bool, jobs: int,
+                 sample: int, tag: str, retry_alone: bool = True) -> int:
+    report = decl_check.Report(decl_check.tree_files(None))
+    worst = 0
+    # Per symbol: its header, the declaration to append to it (None when it declares it already)
+    # and the other files that declare it.
+    sym_header: dict[str, str] = {}
+    sym_decl: dict[str, str | None] = {}
+    sym_targets: dict[str, list[str]] = {}
+    for symbol, hdr, declaration in plan:
+        if symbol in sym_header:
+            print(f"SKIP {symbol}: listed twice in the plan")
+            worst = max(worst, 2)
+            continue
+        declared = report.paths.get(symbol, [])
+        if hdr not in declared and not declaration:
+            print(f"SKIP {symbol}: {hdr} does not declare it; give a declaration in the plan")
+            worst = max(worst, 2)
+            continue
+        targets = [p for p in declared if p != hdr]
+        if not targets and hdr in declared:
+            print(f"DONE {symbol}: already declared only in {hdr}")
+            continue
+        sym_header[symbol] = hdr
+        sym_decl[symbol] = None if hdr in declared else declaration
+        sym_targets[symbol] = targets
+    symbols = list(sym_header)
+    if not symbols:
+        return worst
+
+    def edited(symbol: str) -> set[str]:
+        return set(sym_targets[symbol]) | ({sym_header[symbol]} if sym_decl[symbol] else set())
+
+    files = sorted(set().union(*(edited(s) for s in symbols)))
+    original = {p: read(p) for p in files}
+    spans = {p: [d for d in decl_check.scan(original[p][0], p) if d.name in sym_header] for p in files}
+
+    def render(kept: set[str], excluded: set[str]) -> dict[str, str]:
+        """Each edited file's text with the kept symbols' edits; an excluded file keeps its own
+        declarations (a header still gets the new declarations appended)."""
+        out = {}
+        for p in files:
+            text = original[p][0]
+            if p not in excluded:
+                mine = [s for s in kept if p in sym_targets[s]]
+                for d in sorted((d for d in spans[p] if d.name in mine), key=lambda d: d.start, reverse=True):
+                    text = remove_statement(text, d.start, d.end)
+                for hdr in sorted({sym_header[s] for s in mine}):
+                    if not has_include(text, hdr):
+                        text = add_include(text, include_spelling(hdr))
+            extra = [sym_decl[s] for s in symbols if s in kept and sym_decl[s] and sym_header[s] == p]
+            if extra:
+                text = text.rstrip("\n") + "\n" + "".join(d.strip() + "\n" for d in extra)
+            out[p] = text
+        return out
+
+    if dry_run:
+        for s in symbols:
+            print(f"{s}: header {sym_header[s]}" + (" (declaration appended)" if sym_decl[s] else "")
+                  + f"; {len(sym_targets[s])} file(s) to migrate")
+            for p in sym_targets[s]:
+                lines = sorted(d.line for d in spans[p] if d.name == s)
+                print(f"  {p}: remove {len(lines)} declaration(s) at line(s) " + ", ".join(map(str, lines)))
+        return worst
+
+    headers = sorted(p for p in files if p.endswith((".h", ".hpp")))
+    # what each header to touch reaches: hand-written includers, and generated ones
+    reach = {h: {f for f in baseline.includers(h) if not f.endswith((".h", ".hpp"))} for h in headers}
+    gen = generated_includers(headers)
+    sampled: set[str] = set()
+    for h in headers:
+        if gen[h]:
+            take = gen[h][:max(0, sample)]
+            sampled |= set(take)
+            reach[h] |= set(gen[h])
+            print(f"WARN {h}: included by {len(gen[h])} generated source(s); rebuilding {len(take)}"
+                  + (": " + " ".join(take) if take else "") + (" ..." if len(gen[h]) > len(take) else ""))
+    verify = sorted(baseline.expand(set(files)) | sampled)
+    print(f"plan: {len(symbols)} symbol(s), {len(files)} file(s) to edit; baseline {tag}: "
+          f"{len(verify)} file(s) to rebuild")
+    outputs = baseline.save(tag, verify, version, jobs, copies=headers)
+    broken = {p for p in verify if baseline.broken(outputs[p])}
+    for p in sorted(broken):
+        print(f"  BROKEN  {p}  does not compile before the edit: {baseline.summary_line(outputs[p])[:160]}")
+    kept = set(symbols)
+    for s in symbols:  # a symbol whose header edits reach a file that can't be verified waits
+        if any(reach.get(h, set()) & broken for h in edited(s)):
+            print(f"  SKIP    {s}  an includer of a header it edits does not compile; fix that first")
+            kept.discard(s)
+    verify = [p for p in verify if p not in broken]
+    first: dict[str, str] = {}       # file -> first differing line when it first differed
+    dropped_by: dict[str, str] = {}  # symbol -> the file that made it go back
+    ambiguous: set[str] = set()       # symbols that went back together with others
+    excluded: set[str] = set(broken)
+    rounds = 0
+    last: dict[str, str] = {}  # file -> the text written in the last round
+    result: dict[str, tuple[str, str]] = {}  # file -> its latest compare result
+    try:  # an interrupted run leaves the tree as it was
+        while True:
+            rounds += 1
+            texts = render(kept, excluded)
+            # Only what this round's edits can reach is rebuilt: a file whose text changed since the
+            # last round, and the includers of a header whose text changed; the rest keep their result.
+            delta = [p for p in files if texts[p] != last.get(p, original[p][0])]
+            for p in delta:
+                write(p, texts[p], original[p][1])
+            last.update({p: texts[p] for p in delta})
+            todo = set(verify) if not result else (
+                {p for p in delta if p in verify}
+                | {f for h in delta if h in reach for f in reach[h] if f in verify})
+            result.update(baseline.compare(tag, sorted(todo), version, jobs) if todo else {})
+            changed = sorted(p for p, (st, _) in result.items() if st != "UNCHANGED")
+            if not changed:
+                break
+            for p in changed:
+                if p not in first:
+                    first[p] = first_line(result[p][1])
+                    d = baseline.BASE / tag / "diff" / (p + ".txt")
+                    d.parent.mkdir(parents=True, exist_ok=True)
+                    d.write_text(result[p][1], encoding="utf-8")
+            fresh = [p for p in changed if p in files and p not in excluded]
+            if fresh:
+                # First the changed files alone go back: with their own declaration next to the
+                # header's (the same signature, or an overload) they usually build as before.
+                excluded |= set(fresh)
+                continue
+            # The rest differ as they were: a header edit reaches them. Every symbol whose edits
+            # touch such a header goes back, and the others are tried again from scratch.
+            blame = {}
+            for s in kept:
+                for c in changed:
+                    if any(c == h or c in reach.get(h, set()) for h in edited(s)):
+                        blame[s] = c
+                        break
+            if not blame:
+                print("  ABORT  files differ that no symbol's edit reaches: " + " ".join(changed[:5]))
+                kept.clear()
+                break
+            dropped_by.update(blame)
+            if len(blame) > 1:  # which of them is at fault is not known: each is tried alone at the end
+                ambiguous |= set(blame)
+            kept -= set(blame)
+            excluded = set(broken)
+        if not kept:
+            for p in files:
+                write(p, original[p][0], original[p][1])
+    except BaseException:
+        for p in files:
+            write(p, original[p][0], original[p][1])
+        raise
+    print(f"  {rounds} rebuild round(s)")
+    for s in symbols:
+        targets = sym_targets[s]
+        print(f"{s}: header {sym_header[s]}" + (" (declaration appended)" if sym_decl[s] else ""))
+        if s not in kept:
+            why = dropped_by.get(s)
+            print(f"  UNDONE  {s}  " + (f"its header edits change {why}: {first.get(why, '')[:160]}" if why
+                                         else "not migrated"))
+            worst = max(worst, 1)
+            continue
+        migrated = [p for p in targets if p not in excluded]
+        for p in targets:
+            if p in excluded and p not in broken:
+                print(f"  LEFT  {p}  keeps its own declaration next to the header's: {first.get(p, '')[:160]}")
+        for p in migrated:
+            print(f"  migrated  {p}")
+        if len(migrated) < len(targets):
+            worst = max(worst, 1)
+        print(f"  {s}: {len(migrated)} migrated, {len(targets) - len(migrated)} left")
+    retry = [s for s in symbols if s in ambiguous]
+    if retry and retry_alone:
+        print(f"retrying {len(retry)} symbol(s) that went back together with others, one run each")
+        for s in retry:
+            worst = max(worst, migrate([s], version, sym_header[s], sym_decl[s], False, jobs))
+    return worst
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("symbols", nargs="*", help="fn_<addr> / g_unk_<addr>")
@@ -275,10 +519,21 @@ def main() -> int:
     ap.add_argument("--declaration", help="prototype to append to --header when it does not declare the symbol yet")
     ap.add_argument("--header-redeclared", action="store_true",
                     help="migrate every symbol that exactly one header under include/ declares and a file outside it re-declares")
+    ap.add_argument("--plan", help="file of SYMBOL<TAB>header[<TAB>declaration] lines: every symbol in one build")
+    ap.add_argument("--generated-sample", type=int, default=2,
+                    help="with --plan: generated includers rebuilt per header to edit (0: only list them)")
+    ap.add_argument("--no-retry", action="store_true",
+                    help="with --plan: don't retry alone the symbols that went back together with others")
     ap.add_argument("--dry-run", action="store_true", help="print the planned edits and change nothing")
     ap.add_argument("--jobs", type=int, default=os.cpu_count() or 4)
     args = ap.parse_args()
 
+    if args.plan:
+        if args.symbols or args.header or args.declaration or args.header_redeclared:
+            ap.error("--plan takes no symbols, --header, --declaration or --header-redeclared")
+        return migrate_plan(read_plan(args.plan), args.version, args.dry_run, args.jobs,
+                            args.generated_sample, "hub_migrate-plan-" + Path(args.plan).stem,
+                            not args.no_retry)
     symbols = list(args.symbols)
     if args.header_redeclared:
         report = decl_check.Report(decl_check.tree_files(None))

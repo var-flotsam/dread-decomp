@@ -84,6 +84,7 @@ python tools/hubs.py --version <ver> [--boot] [--top N]      # U functions by un
 python tools/hubs.py --version <ver> --ready [--boot]        # U functions whose callees are all matched; --callers <fn> lists callers
 python tools/decl_check.py [--list | --symbol <name> | --json] [--base <ref> [--strict]]  # fn_/g_unk_ declared in several files or with conflicting signatures; --base enforces (CI)
 python tools/hub_migrate.py --version <ver> SYM... | --header-redeclared [--dry-run]  # mechanical hub migration: drop local declarations, include the one header, keep byte-identical files; LEFT lines are the hand work
+python tools/hub_migrate.py --version <ver> --plan PLAN.tsv [--generated-sample N]  # many SYMBOL<TAB>header<TAB>declaration lines in one build; rebuilds a sample of generated includers
 python tools/baseline.py save|compare|restore --tag T [FILES | --symbol SYM | --includers HDR | --all]  # trymatch output snapshot and compare for a file set (the migration evidence; .claude/skills/dread-hubs)
 python tools/asmdiff.py --version <ver> <obj> -v # diff one object against the original (RELOC lines included)
 python tools/trymatch.py --version <ver> <file.cpp> [-v] [--no-reloc] [-- flags]  # build + diff one source
