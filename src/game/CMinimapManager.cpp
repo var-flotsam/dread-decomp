@@ -784,3 +784,399 @@ void fn_7100e9d1f8(UnkMinimapOwner* self, s32 kind) {
         break;
     }
 }
+
+// ---- The owner's constructor (fn_7100e8c114) ----
+// The same object as UnkMinimapOwner, laid out as its constructor builds it.
+
+#include "base/UnkBlockFreeList.h"
+
+void fn_71002f75ac(void* self, void* arg, u32 flags);  // the base class's member at +8
+void fn_710002f4e4(void* self);                       // a timer's constructor
+void fn_7100eb2cc0(void* self, u32 a, u32 b);         // sets up the pooled set at 0xd64210
+
+// The vtables (GOT 0x7101cd03a8, 0x7101d298c8, 0x7101cd05f8, 0x7101cd05f0).
+extern void* g_unk_7101a22398[];
+extern void* g_unk_7101ca9e38[];
+extern void* g_unk_7101a22878[];
+extern void* g_unk_7101a22858[];
+
+// The owner's callbacks (reached through the GOT).
+void fn_7100eb30b0(void* self);
+void fn_7100eb30c8(void* self);
+void fn_7100eb2fd0(void* self);
+void fn_7100eb2fe8(void* self);
+void fn_7100eb30e0(void* self);
+void fn_7100eb30e8(void* self);
+void fn_7100eb3100(void* self);
+void fn_7100eb3108(void* self);
+void fn_7100eb310c(void* self);
+void fn_7100eb3124(void* self);
+void fn_7100eb31c0(void* self);
+void fn_7100eb31d8(void* self);
+void fn_7100eb31f0(void* self);
+void fn_7100eb3278(void* self);
+void fn_7100eb331c(void* self);
+void fn_7100eb2e8c(void* self);
+void fn_7100eb2ea4(void* self);
+void fn_7100eb2eac(void* self);
+void fn_7100eb33c8(void* self);
+void fn_7100eb33a4(void* self);
+void fn_7100eb37d8(void* self);
+void fn_7100eb37fc(void* self);
+
+// A callback: an unknown word, the object and the function.
+struct UnkMinimapCallback {
+    u64 field_0x0;
+    void* object;
+    void (*fn)(void*);
+};
+static_assert(sizeof(UnkMinimapCallback) == 0x18, "UnkMinimapCallback layout");
+
+// Two global callbacks the owner points at itself.
+extern UnkMinimapCallback g_unk_71727cbd60;
+extern UnkMinimapCallback g_unk_71727cbd78;
+
+// A string id built empty (the pointer is cleared first).
+struct UnkMinimapEmptyId {
+    base::global::UnkStringData* data;
+
+    __attribute__((always_inline)) UnkMinimapEmptyId() : data(nullptr) {
+        if (!g_unk_7101d47108)
+            base::global::UnkEnsureStringPool();
+        data = &g_unk_7101d47108->empty;
+    }
+};
+
+// An array without the growth flag (0x20 bytes): data, count, capacity, step, flags, allocator.
+struct UnkMinimapBuffer {
+    void* data = nullptr;
+    u32 count = 0;
+    u32 capacity = 0;
+    u32 step = 10;
+    u32 flags = 0xe;
+    base::UnkAllocator* allocator = fn_7100083990();
+};
+static_assert(sizeof(UnkMinimapBuffer) == 0x20, "UnkMinimapBuffer layout");
+
+// A block of view settings (two copies: 0x98 and 0xd0). UnkMinimapOwner reads the first one's
+// screen position (0xa4), size (0xac) and zoom (0xbc).
+struct UnkMinimapSettings {
+    f32 field_0x0 = 0.0f;
+    f32 field_0x4 = 150.0f;
+    f32 field_0x8 = 1.0f;
+    f32 field_0xc = 0.83f;
+    f32 field_0x10 = -0.43f;
+    f32 field_0x14 = 426.0f;
+    f32 field_0x18 = 256.0f;
+    f32 field_0x1c = 1.0f;
+    f32 field_0x20 = 0.86f;
+    f32 field_0x24 = 1.3f;
+    f32 field_0x28 = 0.5f;
+    f32 field_0x2c = 8.0f;
+    f32 field_0x30 = 3.0f;
+    bool field_0x34 = true;
+};
+static_assert(sizeof(UnkMinimapSettings) == 0x38, "UnkMinimapSettings layout");
+
+// One map cell (0x48 bytes; 195000 of them).
+struct UnkMinimapCell {
+    u64 field_0x0 = 0;
+    bool field_0x8 = false;
+    u32 field_0xc = 0;
+    u32 field_0x10 = 0;
+    u64 field_0x18 = 0;
+    u64 field_0x20 = 0;
+    u64 field_0x28 = 0;
+    u64 field_0x30 = 0;
+    u16 field_0x38 = 0;
+    u8 unk_0x3a[0x5];
+    bool field_0x3f = false;
+    bool field_0x40 = false;
+    bool field_0x41 = true;
+    bool field_0x42 = true;
+};
+static_assert(sizeof(UnkMinimapCell) == 0x48, "UnkMinimapCell layout");
+
+// A rectangle that holds nothing yet (min at FLT_MAX, max at -FLT_MAX).
+struct UnkMinimapEmptyRect {
+    f32 min_x = 3.40282347e+38f;
+    f32 min_y = 3.40282347e+38f;
+    f32 max_x = -3.40282347e+38f;
+    f32 max_y = -3.40282347e+38f;
+};
+
+// The named table at 0xd63ef0: a name and twenty 0x1c-byte entries allocated with a count.
+struct UnkMinimapEntry_0x1c {
+    u8 unk_0x0[0x1c];
+};
+struct UnkMinimapTable {
+    void** vtable;
+    UnkMinimapName name;  // 0x8 (built from "MINIMAP")
+    u64 count;            // 0x38
+    UnkMinimapEntry_0x1c* entries;
+};
+static_assert(sizeof(UnkMinimapTable) == 0x48, "UnkMinimapTable layout");
+
+// The first 0x50 bytes of a modifier (UnkMinimapModifier above) on their own.
+struct UnkMinimapModifierHead {
+    u32 field_0x0[4] = {};
+    u32 field_0x10 = 0;
+    u8 unk_0x14[0x4];
+    UnkMinimapName field_0x18;
+    u32 field_0x48 = 0;
+    u8 unk_0x4c[0x4];
+};
+static_assert(sizeof(UnkMinimapModifierHead) == 0x50, "UnkMinimapModifierHead layout");
+
+// A set over a block pool (as base/UnkHashMap.h's chained set): the buckets, a cursor, the nodes'
+// allocator, flags and counts, then the pool (vtable g_unk_7101a1a4c8).
+struct UnkMinimapPooledSet {
+    base::UnkVector<void*> buckets;  // flags 0xe
+    s32 field_0x28;
+    u64 field_0x30;
+    base::UnkAllocator* allocator;
+    u32 flags;
+    u32 count;
+    u32 field_0x48;
+    char* pool_vtable;  // 0x50
+    base::UnkAllocator* pool_parent;
+    UnkBlockFreeList pool_blocks;  // 0x60
+    u32 pool_field_0x38;
+    bool pool_field_0x3c;
+};
+static_assert(sizeof(UnkMinimapPooledSet) == 0x90, "UnkMinimapPooledSet layout");
+
+struct UnkMinimapManager {
+    void** vtable;
+    u8 field_0x8[0x50];  // the base class's member (fn_71002f75ac)
+    u16 field_0x58;
+    u64 field_0x60;
+    u64 field_0x68;
+    u64 field_0x70;
+    UnkMinimapBuffer field_0x78;
+    UnkMinimapSettings settings[2];  // 0x98, 0xd0
+    u32 field_0x108;
+    UnkMinimapEmptyId field_0x110;
+    UnkMinimapCell cells[195000];  // 0x118
+    u64 field_0xd63cd8;
+    UnkMinimapEmptyId field_0xd63ce0;
+    UnkMinimapEmptyRect field_0xd63ce8;
+    UnkMinimapEmptyRect field_0xd63cf8;
+    base::UnkVector<void*> field_0xd63d08;  // flags 0xf
+    UnkMinimapEmptyRect view;  // 0xd63d30
+    UnkMinimapEmptyRect field_0xd63d40;
+    u64 offset;  // 0xd63d50
+    UnkMinimapEmptyRect field_0xd63d58;
+    u64 field_0xd63d68;
+    u64 field_0xd63d70;
+    f32 camera_pos[3];  // 0xd63d78
+    u32 field_0xd63d84;
+    u64 field_0xd63d88;
+    u8 timer_0xd63d90[0xb0];
+    u8 timer[0xb0];  // 0xd63e40
+    UnkMinimapTable table;  // 0xd63ef0
+    u64 field_0xd63f38;
+    void* field_0xd63f40;
+    void* camera;
+    void* viewport;
+    base::UnkVector<void*> field_0xd63f58;  // flags 0xf, 32 reserved
+    u64 field_0xd63f80[9];
+    u32 field_0xd63fc8;
+    u32 pass_layer;
+    u64 field_0xd63fd0;
+    UnkMinimapCallback callbacks[20];  // 0xd63fd8
+    u32 field_0xd641b8;
+    f32 field_0xd641bc;
+    f32 field_0xd641c0;
+    bool field_0xd641c4;
+    bool field_0xd641c5;
+    bool field_0xd641c6;
+    bool field_0xd641c7;
+    u64 field_0xd641c8;
+    UnkMinimapEmptyId field_0xd641d0;
+    u64 field_0xd641d8;
+    base::UnkVector<void*> markers;  // 0xd641e0, flags 0xf
+    UnkMinimapEmptyId field_0xd64208;
+    UnkMinimapPooledSet field_0xd64210;
+    u64 field_0xd642a0;
+    UnkMinimapBuffer field_0xd642a8;
+    base::UnkVector<void*> hidden_kinds;  // 0xd642c8, flags 0xf
+    base::UnkVector<void*> field_0xd642f0;
+    base::UnkVector<void*> pass_items[2];  // 0xd64318
+    u64 field_0xd64368;
+    UnkMinimapBuffer field_0xd64370;
+    base::UnkVector<void*> field_0xd64390;
+    u64 field_0xd643b8;  // the regions
+    UnkMinimapBuffer field_0xd643c0;
+    u8 unk_0xd643e0[0x4];
+    f32 scale;  // 0xd643e4
+    f32 alt_scale;
+    u64 field_0xd643f0;
+    UnkMinimapBuffer field_0xd643f8;
+    u32 field_0xd64418;
+    base::UnkVector<void*> field_0xd64420;
+    base::UnkVector<void*> field_0xd64448;
+    UnkMinimapModifier field_0xd64470;
+    UnkMinimapModifier field_0xd64548;
+    UnkMinimapModifierHead field_0xd64620;
+    UnkMinimapModifier field_0xd64670;
+    u64 field_0xd64748;
+    u32 field_0xd64750;
+    UnkMinimapEmptyId field_0xd64758;
+};
+static_assert(__builtin_offsetof(UnkMinimapManager, cells) == 0x118, "UnkMinimapManager layout");
+static_assert(__builtin_offsetof(UnkMinimapManager, field_0xd63ce0) == 0xd63ce0, "UnkMinimapManager layout");
+static_assert(__builtin_offsetof(UnkMinimapManager, view) == 0xd63d30, "UnkMinimapManager layout");
+static_assert(__builtin_offsetof(UnkMinimapManager, timer) == 0xd63e40, "UnkMinimapManager layout");
+static_assert(__builtin_offsetof(UnkMinimapManager, table) == 0xd63ef0, "UnkMinimapManager layout");
+static_assert(__builtin_offsetof(UnkMinimapManager, camera) == 0xd63f48, "UnkMinimapManager layout");
+static_assert(__builtin_offsetof(UnkMinimapManager, pass_layer) == 0xd63fcc, "UnkMinimapManager layout");
+static_assert(__builtin_offsetof(UnkMinimapManager, callbacks) == 0xd63fd8, "UnkMinimapManager layout");
+static_assert(__builtin_offsetof(UnkMinimapManager, field_0xd641c0) == 0xd641c0, "UnkMinimapManager layout");
+static_assert(__builtin_offsetof(UnkMinimapManager, markers) == 0xd641e0, "UnkMinimapManager layout");
+static_assert(__builtin_offsetof(UnkMinimapManager, field_0xd64210) == 0xd64210, "UnkMinimapManager layout");
+static_assert(__builtin_offsetof(UnkMinimapManager, hidden_kinds) == 0xd642c8, "UnkMinimapManager layout");
+static_assert(__builtin_offsetof(UnkMinimapManager, pass_items) == 0xd64318, "UnkMinimapManager layout");
+static_assert(__builtin_offsetof(UnkMinimapManager, field_0xd643b8) == 0xd643b8, "UnkMinimapManager layout");
+static_assert(__builtin_offsetof(UnkMinimapManager, scale) == 0xd643e4, "UnkMinimapManager layout");
+static_assert(__builtin_offsetof(UnkMinimapManager, field_0xd64470) == 0xd64470, "UnkMinimapManager layout");
+static_assert(__builtin_offsetof(UnkMinimapManager, field_0xd64620) == 0xd64620, "UnkMinimapManager layout");
+static_assert(__builtin_offsetof(UnkMinimapManager, field_0xd64758) == 0xd64758, "UnkMinimapManager layout");
+
+// The owner's constructor: the base class (its vtable, the member at +8 and five cleared words),
+// then the arrays, settings and map cells, the empty rectangles, the two timers, the "MINIMAP"
+// table, the callbacks bound to the owner, the pooled set (125, 500), the modifiers and the
+// owner's two global callbacks.
+// NON_MATCHING(minor): register allocation and scheduling differ throughout (the same 1861 bytes
+// are stored with the same values between the same 51 calls, compared store by store), and the
+// cell loop steps a pointer where the original steps a byte offset.
+void fn_7100e8c114(UnkMinimapManager* self) {
+    self->vtable = g_unk_7101a22398 + 2;
+    fn_71002f75ac(self->field_0x8, nullptr, 0xe);
+    self->field_0x58 = 0;
+    self->field_0x60 = 0;
+    self->field_0x68 = 0;
+    self->field_0x70 = 0;
+    self->vtable = g_unk_7101ca9e38 + 2;
+    new (&self->field_0x78) UnkMinimapBuffer;
+    new (&self->settings[0]) UnkMinimapSettings;
+    new (&self->settings[1]) UnkMinimapSettings;
+    self->field_0x108 = 0;
+    new (&self->field_0x110) UnkMinimapEmptyId;
+    for (UnkMinimapCell& c : self->cells)
+        new (&c) UnkMinimapCell;
+    self->field_0xd63cd8 = 0;
+    new (&self->field_0xd63ce0) UnkMinimapEmptyId;
+    new (&self->field_0xd63ce8) UnkMinimapEmptyRect;
+    new (&self->field_0xd63cf8) UnkMinimapEmptyRect;
+    new (&self->field_0xd63d08) base::UnkVector<void*>(0xf);
+    new (&self->view) UnkMinimapEmptyRect;
+    new (&self->field_0xd63d40) UnkMinimapEmptyRect;
+    self->offset = 0;
+    new (&self->field_0xd63d58) UnkMinimapEmptyRect;
+    self->field_0xd63d68 = 0;
+    self->field_0xd63d70 = 0;
+    self->camera_pos[0] = 0.0f;
+    self->camera_pos[1] = 0.0f;
+    self->camera_pos[2] = 0.0f;
+    self->field_0xd63d84 = 0;
+    self->field_0xd63d88 = 0;
+    fn_710002f4e4(self->timer_0xd63d90);
+    fn_710002f4e4(self->timer);
+
+    UnkMinimapTable& table = self->table;
+    table.vtable = g_unk_7101a22878 + 2;
+    fn_710007e704(reinterpret_cast<base::UnkNamedEntry*>(&table.name), "MINIMAP");
+    table.count = 20;
+    u64* block = static_cast<u64*>(fn_7100083ba0(8 + 20 * sizeof(UnkMinimapEntry_0x1c), 5));
+    *block = 20;
+    table.entries = reinterpret_cast<UnkMinimapEntry_0x1c*>(block + 1);
+    table.vtable = g_unk_7101a22858 + 2;
+
+    self->field_0xd63f38 = 0;
+    self->field_0xd63f40 = nullptr;
+    self->camera = nullptr;
+    self->viewport = nullptr;
+    new (&self->field_0xd63f58) base::UnkVector<void*>(0xf);
+    self->field_0xd63f58.Reserve(32);
+    for (u64& v : self->field_0xd63f80)
+        v = 0;
+    self->field_0xd63fc8 = 0;
+    UnkMinimapCallback* cb = self->callbacks;
+    cb[0] = {0, self, fn_7100eb30b0};
+    cb[1] = {0, self, fn_7100eb30c8};
+    cb[2] = {0, self, fn_7100eb2fd0};
+    cb[3] = {0, self, fn_7100eb2fe8};
+    cb[4] = {0, self, fn_7100eb30e0};
+    cb[5] = {0, self, fn_7100eb30e8};
+    cb[6] = {0, self, fn_7100eb3100};
+    cb[7] = {0, self, fn_7100eb3108};
+    cb[8] = {0, self, fn_7100eb310c};
+    cb[9] = {0, self, fn_7100eb3124};
+    cb[10] = {0, self, fn_7100eb31c0};
+    cb[11] = {0, self, fn_7100eb31d8};
+    cb[12] = {0, self, fn_7100eb31f0};
+    cb[13] = {0, self, fn_7100eb3278};
+    cb[14] = {0, self, fn_7100eb331c};
+    cb[15] = {0, self, fn_7100eb2e8c};
+    cb[16] = {0, self, fn_7100eb2ea4};
+    cb[17] = {0, self, fn_7100eb2eac};
+    cb[18] = {0, self, fn_7100eb33c8};
+    cb[19] = {0, self, fn_7100eb33a4};
+    self->field_0xd641b8 = 0;
+    self->field_0xd641bc = 1.0f;
+    self->field_0xd641c0 = 1.0f;
+    self->field_0xd641c4 = true;
+    self->field_0xd641c5 = false;
+    self->field_0xd641c6 = false;
+    self->field_0xd641c7 = false;
+    self->field_0xd641c8 = 0;
+    new (&self->field_0xd641d0) UnkMinimapEmptyId;
+    new (&self->markers) base::UnkVector<void*>(0xf);
+    new (&self->field_0xd64208) UnkMinimapEmptyId;
+
+    UnkMinimapPooledSet& set = self->field_0xd64210;
+    new (&set.buckets) base::UnkVector<void*>(0xe);
+    set.field_0x28 = -1;
+    set.field_0x30 = 0;
+    set.allocator = fn_7100083990();
+    set.flags = 0xe;
+    set.count = 0;
+    set.field_0x48 = 1;
+    set.pool_vtable = g_unk_7101a1a4c8 + 0x10;
+    set.pool_parent = nullptr;
+    fn_710008377c(&set.pool_blocks);
+    set.pool_field_0x38 = 0;
+    set.pool_field_0x3c = false;
+    fn_7100eb2cc0(&set, 0x7d, 500);
+
+    self->field_0xd642a0 = 0;
+    new (&self->field_0xd642a8) UnkMinimapBuffer;
+    new (&self->hidden_kinds) base::UnkVector<void*>(0xf);
+    new (&self->field_0xd642f0) base::UnkVector<void*>(0xf);
+    new (&self->pass_items[0]) base::UnkVector<void*>(0xf);
+    new (&self->pass_items[1]) base::UnkVector<void*>(0xf);
+    self->field_0xd64368 = 0;
+    new (&self->field_0xd64370) UnkMinimapBuffer;
+    new (&self->field_0xd64390) base::UnkVector<void*>(0xf);
+    self->field_0xd643b8 = 0;
+    new (&self->field_0xd643c0) UnkMinimapBuffer;
+    self->scale = 1.0f;
+    self->field_0xd643f0 = 0;
+    new (&self->field_0xd643f8) UnkMinimapBuffer;
+    self->field_0xd64418 = 1;
+    new (&self->field_0xd64420) base::UnkVector<void*>(0xf);
+    new (&self->field_0xd64448) base::UnkVector<void*>(0xf);
+    new (&self->field_0xd64470) UnkMinimapModifier;
+    new (&self->field_0xd64548) UnkMinimapModifier;
+    new (&self->field_0xd64620) UnkMinimapModifierHead;
+    new (&self->field_0xd64670) UnkMinimapModifier;
+    self->field_0xd64748 = 0;
+    self->field_0xd64750 = 0;
+    new (&self->field_0xd64758) UnkMinimapEmptyId;
+
+    g_unk_71727cbd60.object = self;
+    g_unk_71727cbd60.fn = fn_7100eb37d8;
+    g_unk_71727cbd78.object = self;
+    g_unk_71727cbd78.fn = fn_7100eb37fc;
+}

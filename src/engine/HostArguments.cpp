@@ -219,3 +219,313 @@ void fn_7100000980() {
     const f32 one = 1.0f;
     fn_7100219294(g_unk_7101d47300, 0x478f99b643ea9c4c, &one, 0);
 }
+
+// ---------------------------------------------------------------------------------------------
+// The shutdown callback nnMain passes to fn_7100132e90 (which calls it before the shutdown
+// fn_7100132730): the scene state's shutdown step, then fn_71000810b0 with 100.
+
+// The scene-state singleton (0x150 bytes, created on first use; src/game/UnkLoadingScreen.cpp's).
+struct UnkStruct_0x128;
+extern UnkStruct_0x128* g_unk_7101d47320;
+void fn_7100ef3494(UnkStruct_0x128* self);
+void fn_7100f00600(UnkStruct_0x128* self);
+void* fn_71000810b0(u32 value);
+
+static inline UnkStruct_0x128* SceneState() {
+    UnkStruct_0x128* s = g_unk_7101d47320;
+    if (!s) {
+        s = static_cast<UnkStruct_0x128*>(fn_71000839a0(0x150, 0x3f));
+        fn_7100ef3494(s);
+        g_unk_7101d47320 = s;
+    }
+    return s;
+}
+
+void fn_7100000cf0() {
+    fn_7100f00600(SceneState());
+    fn_71000810b0(100);
+}
+
+// ---------------------------------------------------------------------------------------------
+// The per-frame system callback nnMain registers (fn_7100000d40; the notification loop
+// fn_71001327c0 calls it every frame): the frame time, the engine's and the game's per-frame
+// updates (each singleton created on first use), the frame statistics, the player's position and
+// morph ball state for the renderer, the render frame, and a periodic step.
+
+#include "base/input/UnkRumbleManager.h"
+#include "base/math/CVector.h"
+#include "base/reflection/UnkTunableRegistry.h"
+#include "game/UnkItemProperties.h"
+
+using base::input::UnkRumbleManager;
+using base::reflection::UnkTunableRegistry;
+
+// Creates the object on first use: storage from the default allocator, built by its constructor
+// function (as src/engine/UnkEngineStart.cpp's).
+template <class T, u64 Size, void (*Ctor)(T*)>
+__attribute__((always_inline)) static inline T* Singleton(T*& instance) {
+    if (!instance) {
+        T* p = static_cast<T*>(fn_71000839a0(Size, 0x3f));
+        Ctor(p);
+        instance = p;
+    }
+    return instance;
+}
+
+// The frame timer (src/engine/UnkEngineStart.cpp): the frame time at +0x30 and the frame rate it
+// aims at at +0x40.
+struct UnkGfxFrameSource;
+extern UnkGfxFrameSource* g_unk_7101d47328;
+struct UnkFrameTimer {
+    u8 unk_0x0[0x30];
+    f32 frame_time;
+    u8 unk_0x34[0xc];
+    f32 target_rate;
+};
+static inline UnkFrameTimer* FrameTimer() {
+    return reinterpret_cast<UnkFrameTimer*>(g_unk_7101d47328);
+}
+// Advances the timer by a frame, the game manager's +0x6a4 being the time scale; the time passed
+// since the last frame.
+void fn_7100080cb8(UnkFrameTimer* timer, f32 scale);
+f32 fn_7100081020(UnkFrameTimer* timer);
+
+// The GUI root (src/game/CCutscene.cpp): whether it runs the frame time, and the time it gives.
+extern void* g_unk_7101d47330;
+struct UnkGuiRootView {
+    u8 unk_0x0[0x58];
+    void* field_0x58;
+};
+bool fn_710119a320(void* root);
+f32 fn_710119a3d0(void* root);
+void fn_71011994e0(void* root, bool value);
+
+// The engine's singletons (src/engine/UnkEngineStart.cpp) and their per-frame updates.
+struct UnkEngineObject_0xf0;
+extern UnkEngineObject_0xf0* g_unk_7101d47338;
+void fn_7100075db8(UnkEngineObject_0xf0* self);
+void fn_7100075e64(UnkEngineObject_0xf0* self, f32 dt);
+struct UnkSoundHolder;
+extern UnkSoundHolder* g_unk_7101d47340;
+void fn_710006cd9c(UnkSoundHolder* holder);
+void fn_710006ce38(UnkSoundHolder* holder, f32 dt);
+extern UnkRumbleManager* g_unk_7101d47348;
+void fn_7100073af8(UnkRumbleManager* self, f32 dt);
+void fn_710013dee8(UnkTunableRegistry* self);
+// The language singleton (src/game/UnkLanguage.cpp); its per-frame step is empty.
+struct UnkLanguage;
+extern UnkLanguage* g_unk_7101d47358;
+void fn_710119c020(UnkLanguage* language);
+void fn_710119d31c(UnkLanguage* language);
+// The game's singletons: the sub-area manager (0xae8 bytes), the environment manager (0x4c8), two
+// more objects (0x150 and 0x60 bytes) and the loading screen (0x220).
+extern void* g_unk_7101d47360;
+extern void* g_unk_7101d47368;
+void fn_7100ee1f34(void* self);
+void fn_7100d8ced8(void* self);
+void fn_7100ee49f0(void* self, f32 dt);
+void fn_7100d8ef04(void* self, f32 dt);
+struct UnkGameObject_0x150;
+extern UnkGameObject_0x150* g_unk_7101d47370;
+void fn_7100dde0c8(UnkGameObject_0x150* self);
+void fn_7100dde21c(UnkGameObject_0x150* self, f32 dt);
+struct UnkGameObject_0x60;
+extern UnkGameObject_0x60* g_unk_7101d47378;
+void fn_7100dde718(UnkGameObject_0x60* self);
+void fn_7100dde7a0(UnkGameObject_0x60* self, f32 dt);
+struct UnkLoadingScreen;
+extern UnkLoadingScreen* g_unk_7101d47380;
+void fn_7100e0f89c(UnkLoadingScreen* self);
+void fn_7100e134a0(UnkLoadingScreen* self, f32 dt);
+void fn_7100f00780(UnkStruct_0x128* self, f32 dt);
+// The statistics object (0x78 bytes) the device's memory size is reported to, in KiB.
+struct UnkStatsObject;
+extern UnkStatsObject* g_unk_7101d47100;
+void fn_7100131f48(UnkStatsObject* self);
+void fn_7100132248(UnkStatsObject* self, const CStrId& name, f32 value);
+
+// The render manager's frame steps (game/UnkRenderManager.h).
+void fn_7100219dcc(UnkRenderManager* self);
+bool fn_7100219c4c(UnkRenderManager* self);
+void fn_7100219db4(UnkRenderManager* self, f32 a, f32 b, f32 c, bool d);
+bool fn_7100219970(UnkRenderManager* self);
+void fn_71002192c8(UnkRenderManager* self, f32 dt);
+void fn_71002194a4(UnkRenderManager* self);
+void fn_71002194e8(UnkRenderManager* self);
+// Sets the pass parameter the hash names to a colour.
+void fn_710021a0b4(UnkRenderManager* self, const u64* hash, const base::math::CVector4D* value);
+extern const base::math::CVector4D g_unk_71016477b4;  // (0, 0, 0, 0)
+extern const base::math::CVector4D g_unk_71016477c4;  // (1, 1, 1, 1)
+
+// The game manager's per-frame steps (game/UnkGameManager.h).
+bool fn_7100ded930(UnkGameManager* self);
+bool fn_7100decc5c(UnkGameManager* self);
+struct UnkPlayer;
+UnkPlayer* fn_7100dec788(UnkGameManager*);
+struct UnkInventory;
+bool fn_71011428bc(UnkInventory* inventory, const UnkQualifiedId& item);
+struct UnkFramePlayer {
+    u8 unk_0x0[0x44];
+    f32 x;
+    u8 unk_0x48[0xc];
+    f32 y;
+    u8 unk_0x58[0xc];
+    f32 z;
+    u8 unk_0x68[0x208];
+    UnkInventory* inventory;
+};
+// A position built from its three values (all read before any is stored).
+struct UnkFramePosition {
+    f32 x;
+    f32 y;
+    f32 z;
+    UnkFramePosition(f32 x, f32 y, f32 z) : x(x), y(y), z(z) {}
+};
+// The object behind the game manager's +0x498: whether the render frame runs while paused.
+struct UnkFramePauseView {
+    virtual void vf_0x0();
+    virtual void vf_0x8();
+    virtual void vf_0x10();
+    virtual void vf_0x18();
+    virtual void vf_0x20();
+    virtual void vf_0x28();
+    virtual void vf_0x30();
+    virtual void vf_0x38();
+    virtual void vf_0x40();
+    virtual void vf_0x48();
+    virtual void vf_0x50();
+    virtual void vf_0x58();
+    virtual bool vf_0x60();
+};
+
+// The default allocator's interface as far as the memory size (slot 0xa0).
+struct UnkSizedAllocator {
+    virtual void vf_0x0();
+    virtual void vf_0x8();
+    virtual void vf_0x10();
+    virtual void vf_0x18();
+    virtual void vf_0x20();
+    virtual void vf_0x28();
+    virtual void vf_0x30();
+    virtual void vf_0x38();
+    virtual void vf_0x40();
+    virtual void vf_0x48();
+    virtual void vf_0x50();
+    virtual void vf_0x58();
+    virtual void vf_0x60();
+    virtual void vf_0x68();
+    virtual void vf_0x70();
+    virtual void vf_0x78();
+    virtual void vf_0x80();
+    virtual void vf_0x88();
+    virtual void vf_0x90();
+    virtual void vf_0x98();
+    virtual u64 vf_0xa0();
+};
+
+void fn_7100132c30();
+void fn_7100132c60();
+void fn_710109d0a0();
+void fn_7100083980(f32 dt);
+void fn_7100001a60(f32 dt);
+void fn_71010e537c();
+struct UnkResRegistry;
+extern UnkResRegistry* g_unk_7101d472f8;
+void fn_71000ebad0(UnkResRegistry* self);
+
+// The frame statistics: a counter, the time accumulated over the last second and its frame count,
+// the time to the next periodic step, and whether the player had the morph ball last frame.
+extern u32 g_unk_7101d47390 __attribute__((visibility("hidden")));
+struct UnkFrameRate {
+    f32 time;
+    u32 frames;
+};
+extern UnkFrameRate g_unk_7101d47398 __attribute__((visibility("hidden")));
+extern f32 g_unk_7101d47394 __attribute__((visibility("hidden")));
+extern bool g_unk_7101d47388 __attribute__((visibility("hidden")));
+
+// NON_MATCHING(minor): the original returns 1 (`mov w0, #1` before the epilogue; nnMain declares the
+// callback void, and its only caller, fn_71001327c0, ignores the result), and it zeroes the frame
+// rate pair through a fresh adrp instead of the pair's address register (the same 64-bit store).
+void fn_7100000d40() {
+    fn_7100132c30();
+    fn_7100219dcc(g_unk_7101d47300);
+    if (!fn_7100deabe4(g_unk_7101d47310))
+        FrameTimer()->target_rate = fn_7100219c4c(g_unk_7101d47300) ? 30.0f : 60.0f;
+    f32 dt;
+    if (fn_710119a320(g_unk_7101d47330)) {
+        dt = fn_710119a3d0(g_unk_7101d47330);
+    } else {
+        fn_7100080cb8(FrameTimer(), *reinterpret_cast<f32*>(reinterpret_cast<char*>(g_unk_7101d47310) + 0x6a4));
+        dt = FrameTimer()->frame_time;
+    }
+    bool paused = fn_710119a320(g_unk_7101d47330);
+    if (dt < 0.0001f && paused)
+        return;
+    fn_7100083980(dt);
+    fn_7100075e64(Singleton<UnkEngineObject_0xf0, 0xf0, fn_7100075db8>(g_unk_7101d47338), dt);
+    fn_710006ce38(Singleton<UnkSoundHolder, 0x48, fn_710006cd9c>(g_unk_7101d47340), dt);
+    fn_7100073af8(Singleton<UnkRumbleManager, 0x2210, fn_71000733e4>(g_unk_7101d47348), dt);
+    fn_7100219db4(g_unk_7101d47300, 0.0f, 0.0f, 0.0f, false);
+    fn_710013dee8(Singleton<UnkTunableRegistry, 0x58, fn_710013ac14>(g_unk_7101d47350));
+    fn_710119d31c(Singleton<UnkLanguage, 0x2068, fn_710119c020>(g_unk_7101d47358));
+    fn_7100ee49f0(Singleton<void, 0xae8, fn_7100ee1f34>(g_unk_7101d47360), dt);
+    fn_7100d8ef04(Singleton<void, 0x4c8, fn_7100d8ced8>(g_unk_7101d47368), dt);
+    fn_7100dde21c(Singleton<UnkGameObject_0x150, 0x150, fn_7100dde0c8>(g_unk_7101d47370), dt);
+    fn_7100dde7a0(Singleton<UnkGameObject_0x60, 0x60, fn_7100dde718>(g_unk_7101d47378), dt);
+    if (fn_7100ded930(g_unk_7101d47310))
+        return;
+    Singleton<UnkSoundHolder, 0x48, fn_710006cd9c>(g_unk_7101d47340);
+    fn_7100e134a0(Singleton<UnkLoadingScreen, 0x220, fn_7100e0f89c>(g_unk_7101d47380), dt);
+    fn_71011994e0(g_unk_7101d47330, false);
+    fn_7100decdfc(g_unk_7101d47310, dt);
+    fn_7100001a60(dt);
+    fn_7100f00780(SceneState(), dt);
+    ++g_unk_7101d47390;
+
+    f32 elapsed = fn_7100081020(FrameTimer());
+    UnkStatsObject* stats = Singleton<UnkStatsObject, 0x78, fn_7100131f48>(g_unk_7101d47100);
+    f32 kib = (f32)reinterpret_cast<UnkSizedAllocator*>(fn_7100083990())->vf_0xa0() * (1.0f / 1024.0f);
+    fn_7100132248(stats, CStrId("DEVICE_SIZE", true), kib);
+    g_unk_7101d47398.time = elapsed + g_unk_7101d47398.time;
+    ++g_unk_7101d47398.frames;
+    if (g_unk_7101d47398.time > 1.0f)
+        g_unk_7101d47398 = {};
+
+    if (UnkFramePlayer* player = reinterpret_cast<UnkFramePlayer*>(fn_7100dec788(g_unk_7101d47310))) {
+        UnkFramePosition pos(player->x, player->y, player->z);
+        fn_7100219294(g_unk_7101d47300, 0xee51cf856cc66bdc, &pos.x, 0);
+        fn_7100219294(g_unk_7101d47300, 0xee51cf856cc66bdc, &pos.x, 3);
+        if (fn_7100defcec(g_unk_7101d47310) && !static_cast<UnkGuiRootView*>(g_unk_7101d47330)->field_0x58)
+            fn_71010e537c();
+        bool morph_ball = false;
+        if (UnkInventory* inventory = player->inventory) {
+            UnkQualifiedId& qid = ItemQualifiedId(g_unk_717275a8d8);
+            if ((u64)qid.id.data == (u64)g_unk_7101d47108 + 0x10)
+                fn_7100ae9a10(&qid, ItemSource(g_unk_717275a8d8), g_unk_7101d470e0);
+            morph_ball = fn_71011428bc(inventory, qid);
+        }
+        if (morph_ball != g_unk_7101d47388) {
+            g_unk_7101d47388 = morph_ball;
+            static const u64 s_hash = 0xce8cd9d5c167d2a1;
+            fn_710021a0b4(g_unk_7101d47300, &s_hash, morph_ball ? &g_unk_71016477c4 : &g_unk_71016477b4);
+        }
+    }
+
+    if (!fn_7100219970(g_unk_7101d47300)) {
+        f32 t = 0.0f;
+        if (!fn_7100decc5c(g_unk_7101d47310) ||
+            static_cast<UnkFramePauseView*>(g_unk_7101d47310->field_0x498)->vf_0x60())
+            t = dt;
+        fn_71002192c8(g_unk_7101d47300, t);
+        fn_71002194a4(g_unk_7101d47300);
+        fn_7100132c60();
+        fn_71002194e8(g_unk_7101d47300);
+    }
+    g_unk_7101d47394 = dt + g_unk_7101d47394;
+    if (g_unk_7101d47394 >= 0.0f) {
+        g_unk_7101d47394 = 0.0f;
+        fn_710109d0a0();
+    }
+    fn_71000ebad0(g_unk_7101d472f8);
+}

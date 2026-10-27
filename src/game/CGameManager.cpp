@@ -102,8 +102,6 @@ bool fn_7100e01f08(const char* name, const char* fmt, ...) {
 
 using base::global::CRntString;
 
-extern void* g_unk_7101a194b8[];
-
 // A string (header of 0x30 bytes) with 0x100 bytes of inline storage.
 struct UnkGameManagerStrStorage {
     void* vtable;
@@ -979,4 +977,406 @@ s32 fn_7100df99f8(UnkGameManager* self, u32 mode, const UnkLoadCallback* callbac
         callback->fn(callback->context, &result);
     }
     return 0x7fffffff;
+}
+
+// Requests a change of the game's mode (fn_7100000980 passes "MAINMENU", fn_7100000610 "INGAME").
+struct UnkGameManagerModeRequest {
+    u8 pad_0x0[0x5c8];
+    bool field_0x5c8;  // a mode change is pending
+    u8 pad_0x5c9[0x7];
+    CRntString field_0x5d0;  // the mode asked for
+    u32 field_0x600;
+    u32 field_0x604;
+};
+static_assert(__builtin_offsetof(UnkGameManagerModeRequest, field_0x600) == 0x600, "UnkGameManagerModeRequest placeholder layout");
+
+void fn_7100deac9c(UnkGameManager* manager, const CRntString& mode) {
+    auto* request = reinterpret_cast<UnkGameManagerModeRequest*>(manager);
+    fn_710007eaa0(&request->field_0x5d0, &mode);
+    request->field_0x5c8 = true;
+    request->field_0x600 = 0;
+    request->field_0x604 = 2;
+}
+
+// The end of an asynchronous profile operation (fn_7100dee46c) and what it reads.
+#include <string.h>
+
+#include "../game_s7/UnkPropBagS7.h"
+#include "base/UnkHashStream.h"
+#include "base/UnkRegistry.h"
+
+using unk_prop_bag::UnkPropBag;
+
+// The registry the operation reports an I/O error to (created on first use) and the empty id it
+// compares the current entry's name with (a static of the registry's unit, built from "").
+extern UnkRegistry_0x70* g_unk_7101d4b5a0;
+extern CStrId g_unk_7101d592c8;
+// The object at the registry's +0x50: its vf_0x18 gives the current entry's name.
+struct UnkRegistryCurrent {
+    virtual void vf_0x0();
+    virtual void vf_0x8();
+    virtual void vf_0x10();
+    virtual const CStrId& vf_0x18();
+};
+void* fn_7100087740(UnkRegistry_0x70* self, const CStrId* name);  // the entry registered under `name`
+void fn_7100087dc8(UnkRegistry_0x70* self, void* entry, u32 kind);  // calls the registry's handler
+
+// A profile slot as the operation lists it (0x208 bytes).
+struct UnkProfileEntry {
+    CRntString id;  // the profile id
+    u8 pad_0x30[0x90];
+    CRntString description;  // +0xc0
+    u8 pad_0xf0[0x60];
+    bool valid;  // +0x150
+    u8 pad_0x151[0x7];
+    u8 field_0x158[0xb0];  // the slot's data (fn_7100e0552c copies it)
+};
+static_assert(sizeof(UnkProfileEntry) == 0x208, "UnkProfileEntry placeholder layout");
+
+// The operation (0xa8 bytes at +0x740 of the game manager; fn_7100dfb050 constructs one with its
+// result): whether it is running and done, the callback told when it ends, its strings, the result,
+// the kind of operation and the slots it listed, under a recursive mutex.
+struct UnkProfileOp {
+    bool active;
+    bool done;
+    u8 pad_0x2[0x6];
+    UnkLoadCallback callback;  // +0x8
+    UnkStrVector strings;      // +0x18
+    s32 result;                // +0x40: 2 and 5 are I/O errors
+    u8 pad_0x44[0x4];
+    s32 kind;  // +0x48: 2 load, 3 delete (also forgets the current profile), 4 save, 5 list the slots
+    u8 pad_0x4c[0xc];
+    UnkProfileEntry* entries;  // +0x58
+    u32 count;                 // +0x60
+    u8 pad_0x64[0x24];
+    nn::os::MutexType mutex;  // +0x88
+};
+static_assert(sizeof(UnkProfileOp) == 0xa8, "UnkProfileOp placeholder layout");
+
+struct UnkGameManagerProfile {
+    u8 pad_0x0[0x740];
+    UnkProfileOp op;
+    u8 pad_0x7e8[0x8];
+    CRntString field_0x7f0;  // the current profile (the scenario fn_7100df99f8 loads)
+};
+static_assert(__builtin_offsetof(UnkGameManagerProfile, field_0x7f0) == 0x7f0, "UnkGameManagerProfile placeholder layout");
+
+// The main menu's three slots (the named object "MAINMENU" on the game manager's list).
+template <class T>
+struct UnkCopiedVector;
+struct UnkWordsValue;
+UnkCopiedVector<UnkWordsValue>* fn_7100e05764(UnkCopiedVector<UnkWordsValue>* self, const UnkCopiedVector<UnkWordsValue>* other);
+struct UnkStruct_0x28;
+void fn_71000ce19c(UnkStruct_0x28* self, const UnkStruct_0x28* other);
+void fn_710007c144(UnkHashStream_0x38* s);
+void fn_7100e0552c(void* self, const void* other);
+struct UnkMainMenuSlot {
+    UnkPropBag bag;
+    u8 field_0x88[0xb8];
+};
+struct UnkMainMenu {
+    u8 pad_0x0[0x8];
+    CRntString name;
+    u8 pad_0x38[0x40];
+    UnkMainMenuSlot slot0;
+    UnkMainMenuSlot slot1;
+    UnkMainMenuSlot slot2;
+};
+
+// The property bag's copy-assignment.
+static inline void AssignBag(UnkPropBag* self, const UnkPropBag* other) {
+    fn_7100e05764(reinterpret_cast<UnkCopiedVector<UnkWordsValue>*>(&self->values),
+                  reinterpret_cast<const UnkCopiedVector<UnkWordsValue>*>(&other->values));
+    if (self != other) {
+        fn_710007c144(&self->lock);
+        fn_710007bf9c(&self->lock, other->lock.size);
+        memcpy(self->lock.data, other->lock.data, other->lock.size);
+        self->lock.size = other->lock.size;
+        fn_710007c00c(&self->lock, 0, 0);
+    }
+    fn_71000ce19c(reinterpret_cast<UnkStruct_0x28*>(&self->names), reinterpret_cast<const UnkStruct_0x28*>(&other->names));
+}
+static inline void AssignSlot(UnkMainMenuSlot* slot, const UnkPropBag* bag, const u8* data) {
+    AssignBag(&slot->bag, bag);
+    fn_7100e0552c(slot->field_0x88, data);
+}
+// Copies a slot's bag and data into the main menu's slot `index`.
+static inline void SetMenuSlot(UnkMainMenu* menu, u32 index, const UnkPropBag* bag, const u8* data) {
+    switch (index) {
+    case 0:
+        AssignSlot(&menu->slot0, bag, data);
+        break;
+    case 1:
+        AssignSlot(&menu->slot1, bag, data);
+        break;
+    case 2:
+        AssignSlot(&menu->slot2, bag, data);
+        break;
+    }
+}
+
+// The named objects at +0x478 (UnkNamedNode) seen as `T`s.
+template <class T>
+struct UnkNamedNodeOf {
+    T* value;
+    UnkNamedNodeOf* next;
+};
+template <class T>
+static inline T* FindNamed(UnkGameManager* manager, const CRntString& name) {
+    auto* n = reinterpret_cast<UnkNamedNodeOf<T>*>(reinterpret_cast<UnkGameManagerLoad*>(manager)->field_0x478);
+    for (; n; n = n->next) {
+        if (Equal(&n->value->name, &name))
+            return n->value;
+    }
+    return nullptr;
+}
+
+// The id at `offset` in the id table.
+static inline const CStrId& TableId(u32 offset) {
+    return *reinterpret_cast<CStrId*>(GameManagerIdTable().pad_0x0 + offset);
+}
+static inline bool EqualText(const CRntString& a, const CRntString& b) {
+    return Equal(&a, &b);
+}
+
+static inline void ResetOp(UnkProfileOp* op) {
+    fn_710006691c(&op->mutex);
+    op->result = 0x7fffffff;
+    op->active = false;
+    op->done = false;
+    op->callback.context = nullptr;
+    op->callback.fn = nullptr;
+    for (u64 i = 0; i < op->strings.count; ++i)
+        fn_710007ecd4(&op->strings.data[i]);
+    op->strings.count = 0;
+    fn_7100066920(&op->mutex);
+}
+
+// Ends the running profile operation once: an I/O error is reported to the script and the
+// registry; otherwise the callback is told and the script hears of the load, delete or save, or
+// gets the three slots (also copied into the main menu's) as tables.
+void fn_7100dee46c(UnkGameManager* self) {
+    UnkProfileOp* op = &reinterpret_cast<UnkGameManagerProfile*>(self)->op;
+    fn_710006691c(&op->mutex);
+    if (!op->active || op->done) {
+        fn_7100066920(&op->mutex);
+        return;
+    }
+    fn_710006691c(&op->mutex);
+    op->done = true;
+    fn_7100066920(&op->mutex);
+    s32 result = op->result;
+    if (result == 5 || result == 2) {
+        fn_7100000790("guicallbacks.OnASyncOpIOError", "ii", op->kind, result);
+        UnkRegistryCurrent* current = reinterpret_cast<UnkRegistryCurrent*>(Singleton<UnkRegistry_0x70, 0x70, fn_7100087388>(g_unk_7101d4b5a0)->field_0x50);
+        CStrId name(current ? current->vf_0x18() : g_unk_7101d592c8);
+        void* entry = name.data == g_unk_7101d592c8.data ? nullptr : fn_7100087740(Singleton<UnkRegistry_0x70, 0x70, fn_7100087388>(g_unk_7101d4b5a0), &name);
+        fn_7100087dc8(Singleton<UnkRegistry_0x70, 0x70, fn_7100087388>(g_unk_7101d4b5a0), entry, 4);
+    } else {
+        if (op->callback.fn)
+            op->callback.fn(op->callback.context, reinterpret_cast<UnkLoadResult*>(op));
+        switch (op->kind) {
+        case 2:
+            fn_7100000790("guicallbacks.OnASyncLoadProfileFinished", "si", CStr(op->entries->id), op->result);
+            break;
+        case 3: {
+            fn_7100000790("slots.SetDirtyByProfileID", "s", CStr(op->entries->id));
+            CRntString* current = &reinterpret_cast<UnkGameManagerProfile*>(self)->field_0x7f0;
+            if (Equal(&op->entries->id, current))
+                fn_710007e77c(current, g_unk_710162e2ed);
+            break;
+        }
+        case 4:
+            fn_7100000790("slots.SetDirtyByProfileID", "s", CStr(op->entries->id));
+            break;
+        case 5: {
+            UnkPropBag bags[4];
+            u32 n = op->count;
+            for (u64 i = 0; i < n; ++i) {
+                UnkProfileEntry* e = &op->entries[i];
+                u32 slot;
+                if (EqualText(e->id, CRntString(IdText(TableId(0x1ca8)))))
+                    slot = 0;
+                else if (EqualText(e->id, CRntString(IdText(TableId(0x1cb0)))))
+                    slot = 1;
+                else if (EqualText(e->id, CRntString(IdText(TableId(0x1cb8)))))
+                    slot = 2;
+                else
+                    continue;
+                UnkPropBag* bag = &bags[slot];
+                unk_prop_bag::fn_710050e4dc(bag, CStrId("ProfileID", true), CStr(e->id));
+                unk_prop_bag::fn_710050e4dc(bag, CStrId("Description", true), CStr(e->description));
+                unk_prop_bag::fn_710050f4ac(bag, CStrId("ValidData", true), e->valid);
+                UnkMainMenu* menu = FindNamed<UnkMainMenu>(g_unk_7101d47310, CRntString("MAINMENU"));
+                if (menu)
+                    SetMenuSlot(menu, slot, bag, e->field_0x158);
+            }
+            fn_7100000790("slots.OnRetrieveSlotsInfoFinished", "t", bags);
+            break;
+        }
+        }
+    }
+    ResetOp(op);
+    fn_7100066920(&op->mutex);
+}
+
+// The profile values written to the blackboard (fn_7100dfc638) and what it reads.
+#include "../game_aca57c/UnkBufferString.h"
+#include "base/global/UnkStringPool.h"
+
+extern void* g_unk_7101a1b750[];
+extern u32 g_unk_7101a20300;  // the build number (fn_7100000980's first store)
+// The definitions of the values written (polymorphic property objects, game/UnkTUProperty.h).
+extern UnkPropertyEx<> g_unk_7172758bb0;  // the build number
+extern UnkPropertyEx<> g_unk_7172759a90;  // a string: `name`
+extern UnkPropertyEx<> g_unk_7172759a50;  // a string: `start`
+extern UnkPropertyEx<> g_unk_7172758cf0;  // three floats
+extern UnkPropertyEx<> g_unk_7172758d30;
+extern UnkPropertyEx<> g_unk_7172758d70;
+extern UnkPropertyEx<> g_unk_7172758db0;  // an int (fn_7100dfb930)
+extern UnkPropertyEx<> g_unk_7172758cb0;  // a string (fn_7100dfb330)
+
+struct UnkEnumType;
+UnkEnumType* fn_710009fb38();  // refl_GetType<base::global::TRntString128>
+bool fn_710007f220(const CRntString* a, const CRntString* b);  // the texts differ
+s32 fn_7100dfb930();
+CRntString fn_7100dfb330(UnkGameManager* self);
+bool fn_7100395c38(CBlackboard::CSection* section, const void* name, CRntString* out);
+bool fn_7100395b34(CBlackboard::CSection* section, const void* name, f32* out);
+CStrId fn_71011a2fbc(UnkGameManagerSub_0x608* self);
+void fn_7100ca7a60(UnkGameManagerSub_0x1af8* self, CBlackboard* blackboard, const CStrId* section);
+
+// The current checkpoint (an object reference at +0x29b8): three words that name its start point.
+struct UnkCheckpoint {
+    u8 pad_0x0[0x44];
+    u32 field_0x44;
+    u8 pad_0x48[0xc];
+    u32 field_0x54;
+    u8 pad_0x58[0xc];
+    u32 field_0x64;
+};
+struct UnkCheckpointRef {
+    u8 pad_0x0[0x10];
+    UnkCheckpoint* obj;
+};
+struct UnkStartPointKey {
+    u32 field_0x0;
+    u32 field_0x4;
+    u32 field_0x8;
+
+    UnkStartPointKey(u32 a, u32 b, u32 c) : field_0x0(a), field_0x4(b), field_0x8(c) {}
+};
+struct UnkStartPoint {
+    u8 pad_0x0[0x30];
+    CStrId name;
+};
+// The start point the key names, or null.
+UnkStartPoint* fn_71011a2e54(UnkGameManagerSub_0x608* points, const UnkStartPointKey* key);
+static inline UnkStartPoint* FindStartPoint(UnkGameManagerSub_0x608* points, const UnkStartPointKey& key) {
+    return fn_71011a2e54(points, &key);
+}
+
+// The game manager's members the pass reads (game/UnkGameManager.h leaves them as padding).
+struct UnkGameManagerProfileValues {
+    u8 pad_0x0[0x730];
+    f32 field_0x730;
+    f32 field_0x734;
+    f32 field_0x738;
+    u8 pad_0x73c[0x227c];
+    UnkCheckpointRef* field_0x29b8;
+};
+static_assert(__builtin_offsetof(UnkGameManagerProfileValues, field_0x29b8) == 0x29b8, "UnkGameManagerProfileValues placeholder layout");
+
+static inline const UnkQualifiedId& DefId(UnkPropertyEx<>& def) {
+    return Qid(reinterpret_cast<UnkGameManagerDef&>(def));
+}
+// Sets the value `name` names in the section `section` names (created when there is none) to
+// `value` of type `type`, unless the blackboard is locked.
+template <class T>
+static inline void SetValue(CBlackboard* blackboard, const CStrId& section, const UnkQualifiedId& name,
+                            const base::reflection::CType* (*type)(), const T& value) {
+    if (CBlackboard::CSection* s = fn_71010472e0(blackboard, section)) {
+        if (!blackboard->field_0xe8) {
+            UnkTypedValue v;
+            v.type = type();
+            v.value = const_cast<T*>(&value);
+            fn_7100332c80(s, reinterpret_cast<UnkPropertyName*>(const_cast<UnkQualifiedId*>(&name)), &v);
+        }
+    }
+}
+static inline const base::reflection::CType* TRntString128Type() {
+    return reinterpret_cast<const base::reflection::CType*>(fn_710009fb38());
+}
+static inline void GetFloat(CBlackboard* blackboard, const CStrId& section, const UnkQualifiedId& name, f32* out) {
+    if (CBlackboard::CSection* s = fn_7101047270(blackboard, section))
+        fn_7100395b34(s, &name, out);
+}
+static inline f32 Value730(UnkGameManager* self) {
+    return reinterpret_cast<UnkGameManagerProfileValues*>(self)->field_0x730;
+}
+static inline f32 Value734(UnkGameManager* self) {
+    return reinterpret_cast<UnkGameManagerProfileValues*>(self)->field_0x734;
+}
+static inline CStrId ScenarioSection(UnkGameManager* self) {
+    return self->field_0x608 ? fn_71011a2fbc(self->field_0x608) : g_unk_7101d470e0;
+}
+
+// Writes values to `blackboard` (callers pass "profilesave" or the scenario's name as `name` and
+// "[MANTAIN]" as `start`): the build number; `name` unless it is "[MANTAIN]" (only when it differs
+// from the stored one); `start`, or without one the start point of the current checkpoint, unless
+// it is "[MANTAIN]"; three floats when they moved by 1 or more (the first not for the CooldownX and
+// Commander boss start points); an int and a string; then lets the object at +0x1af8 add its own.
+// NON_MATCHING(minor): the boss-checkpoint test. The original keeps "not the Commander checkpoint"
+// as a value in a block of its own (tail-duplicated into both arms of the first name test) and
+// branches on it and on "not the CooldownX checkpoint" one after the other; Clang 9 here ORs the
+// second Commander test with the CooldownX result into one branch (7 instructions; the same calls
+// and the same outcome).
+void fn_7100dfc638(UnkGameManager* self, CBlackboard* blackboard, const CRntString* name, const CRntString* start) {
+    if (!blackboard)
+        return;
+    auto* values = reinterpret_cast<UnkGameManagerProfileValues*>(self);
+    SetValue(blackboard, TableId(0x1148), DefId(g_unk_7172758bb0), fn_7100014768, *reinterpret_cast<s32*>(&g_unk_7101a20300));
+    UnkBufferString<0x80, g_unk_7101a1b750> start_name;
+    fn_710007eaa0(start_name.Str(), start);
+    if (!start_name.Str()->data || !start_name.Str()->data[0]) {
+        if (values->field_0x29b8) {
+            if (UnkCheckpoint* checkpoint = values->field_0x29b8->obj) {
+                if (UnkStartPoint* point = FindStartPoint(self->field_0x608, UnkStartPointKey(checkpoint->field_0x44, checkpoint->field_0x54, checkpoint->field_0x64)))
+                    fn_710007eaa0(start_name.Str(), &IdText(point->name));
+            }
+        }
+    }
+    CStrId section = TableId(0x1bd0);
+    if (fn_710007f240(reinterpret_cast<char*>(const_cast<CRntString*>(name)), "[MANTAIN]")) {
+        UnkBufferString<0x100, g_unk_7101a194b8> current(g_unk_710162e2ed);
+        const UnkQualifiedId& id = DefId(g_unk_7172759a90);
+        if (CBlackboard::CSection* s = fn_7101047270(blackboard, section))
+            fn_7100395c38(s, &id, current.Str());
+        if (fn_710007f220(current.Str(), name))
+            SetValue(blackboard, section, DefId(g_unk_7172759a90), fn_7100007f84, *name);
+    }
+    if (fn_710007f240(reinterpret_cast<char*>(start_name.Str()), "[MANTAIN]"))
+        SetValue(blackboard, section, DefId(g_unk_7172759a50), TRntString128Type, start_name);
+    bool cooldown = fn_710007f140(name, "SP_CooldownX_cooldownxboss_startcombat") &&
+                    fn_710007f140(start, "SP_Checkpoint_CooldownX");
+    bool commander = fn_710007f140(name, "SP_ChozoCommander_chozocommander_startcombat") &&
+                     fn_710007f140(start, "SP_Checkpoint_Commander");
+    if (!commander && !cooldown) {
+        f32 stored = 0.0f;
+        GetFloat(blackboard, TableId(0x1148), DefId(g_unk_7172758cf0), &stored);
+        if (__builtin_fabsf(values->field_0x730 - stored) >= 1.0f)
+            SetValue(blackboard, TableId(0x1148), DefId(g_unk_7172758cf0), fn_710000abbc, Value730(self));
+    }
+    f32 stored_0x734 = 0.0f;
+    GetFloat(blackboard, TableId(0x1148), DefId(g_unk_7172758d30), &stored_0x734);
+    if (__builtin_fabsf(values->field_0x734 - stored_0x734) >= 1.0f)
+        SetValue(blackboard, TableId(0x1148), DefId(g_unk_7172758d30), fn_710000abbc, Value734(self));
+    f32 stored_0x738 = 0.0f;
+    GetFloat(blackboard, TableId(0x1148), DefId(g_unk_7172758d70), &stored_0x738);
+    f32 value_0x738 = values->field_0x738;
+    if (__builtin_fabsf(value_0x738 - stored_0x738) >= 1.0f)
+        SetValue(blackboard, TableId(0x1148), DefId(g_unk_7172758d70), fn_710000abbc, value_0x738);
+    SetValue(blackboard, TableId(0x1148), DefId(g_unk_7172758db0), fn_7100014768, fn_7100dfb930());
+    SetValue(blackboard, TableId(0x1148), DefId(g_unk_7172758cb0), fn_7100007f84, fn_7100dfb330(self));
+    fn_7100ca7a60(self->field_0x1af8, blackboard, &static_cast<const CStrId&>(ScenarioSection(self)));
 }

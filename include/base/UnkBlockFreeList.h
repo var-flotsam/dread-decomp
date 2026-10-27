@@ -20,3 +20,8 @@ void fn_710008377c(UnkBlockFreeList* list);                                     
 void fn_71000837f4(UnkBlockFreeList* list);                                     // reset (the buffer stays)
 void fn_710008378c(UnkBlockFreeList* list, void* buffer, u64 size, u64 elem);  // init over a buffer
 extern char g_unk_7101a1a4c8[];  // the block pool's vtable (the pool object: base/UnkCloneHelpers.h)
+// The vtables of a list of nodes over such a pool: its base part's and the derived part's (the
+// destructor fn_71000fc7cc, src/game_s1/fn_71000fc7cc.cpp; the tunables reader's token list,
+// src/base/UnkTunableRegistry.cpp). The address point is `+ 2`.
+extern void* g_unk_7101a1bcf0[];
+extern void* g_unk_7101a1bcd0[];

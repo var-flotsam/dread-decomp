@@ -465,3 +465,279 @@ bool fn_7100ca2978(UnkTileGroup* self, UnkTileQueryShape* shape, void* unused, U
     }
     return any;
 }
+
+// The group's tile grid as fn_7100ca1180 reads it: the grid's origin (+0x18; a tile is 100 units
+// wide), its size in tiles (+0x24, +0x28) and, per cell, the index of the tile there (+0x58; the
+// count at +0x40 or more for none); the collider rebuilt from the outlines (+0xd0) and the outline
+// set (+0xd8).
+struct UnkTileCollider {
+    virtual void vf_0x0();
+    virtual void vf_0x8();
+    virtual void vf_0x10();
+    virtual void vf_0x18();
+    virtual void vf_0x20();
+    virtual void vf_0x28();
+    virtual void vf_0x30();
+    virtual void vf_0x38();
+    virtual void vf_0x40();
+    virtual void vf_0x48();
+};
+struct UnkTileOutlines;
+
+struct UnkTileGrid {
+    u8 pad_0x0[0x18];
+    f32 field_0x18;  // origin x
+    f32 field_0x1c;  // origin y
+    f32 field_0x20;  // z (UnkTileGroup::field_0x20)
+    u32 field_0x24;  // width
+    u32 field_0x28;  // height
+    u8 pad_0x2c[0x14];
+    u32 field_0x40;           // the tile count (UnkTileGroup::field_0x40)
+    UnkQueryObj* field_0x48;  // the tiles (UnkTileGroup::field_0x48)
+    u8 pad_0x50[0x8];
+    u32* field_0x58;
+    u8 pad_0x60[0x70];
+    UnkTileCollider* field_0xd0;
+    UnkTileOutlines* field_0xd8;
+};
+static_assert(__builtin_offsetof(UnkTileGrid, field_0xd8) == 0xd8, "UnkTileGrid placeholder layout");
+
+// An outline: its points (fn_7100118b94 appends one), a z, flags, its bounds and a word; the
+// outline set copies it (0x48 bytes).
+struct UnkTilePoint {
+    f32 x, y, z;
+};
+struct UnkTileOutline {
+    base::UnkVector<UnkTilePoint> points;
+    f32 field_0x28;
+    bool field_0x2c;
+    bool field_0x2d;
+    base::math::CVector2D min;
+    base::math::CVector2D max;
+    u32 field_0x40;
+
+    UnkTileOutline()
+        : points(7), field_0x28(0.0f), field_0x2c(false), field_0x2d(true), min{3.4028235e38f, 3.4028235e38f},
+          max{-3.4028235e38f, -3.4028235e38f}, field_0x40(0) {}
+    ~UnkTileOutline() { points.Free(); }
+};
+static_assert(sizeof(UnkTileOutline) == 0x48, "UnkTileOutline placeholder layout");
+
+// The first cell of each region fn_7100ca2f9c accepted: a count and up to 100 cell positions;
+// reading past the count value-initialises up to the index.
+struct UnkTileSeeds {
+    u32 count;
+    base::math::CVector2D data[100];
+
+    base::math::CVector2D& At(u32 i) {
+        if (count <= i) {
+            __builtin_memset(&data[count], 0, (u64)(i - count) * sizeof(base::math::CVector2D) + sizeof(base::math::CVector2D));
+            count = i + 1;
+        }
+        return data[i];
+    }
+};
+
+// A scratch outline list fn_7100ca1180 builds and destroys (fn_7100123eb4, fn_7100123fb0).
+struct UnkTileOutlineList {
+    u8 data[0x40];
+};
+
+struct UnkEntry;
+struct UnkVec3;
+void fn_7100d35a98(UnkEntry* entry, u32 flag);
+void* fn_7100118b94(void* sink, UnkVec3* point);
+void fn_7100119f98(UnkTileOutline* outline, u32 value);
+void fn_7100123eb4(UnkTileOutlineList* self);
+void fn_7100123fb0(UnkTileOutlineList* self);
+bool fn_7100ca2f9c(UnkTileGroup* self, bool* region, bool* visited, u32 x, u32 y, bool solid);
+void fn_7100d62d40(UnkTileOutlines* self, UnkTileOutline* outline);
+void fn_7100d62e04(UnkTileOutlines* self, UnkTileOutline* outline);
+void fn_7100d633ec(UnkTileOutlines* self);
+
+// Whether the cell holds a tile that is not broken.
+static inline bool IsTileAt(const UnkTileGrid* g, s32 x, s32 y) {
+    if (x < 0 || x >= (s32)g->field_0x24 || y < 0 || y >= (s32)g->field_0x28)
+        return false;
+    u32 i = g->field_0x58[x + y * g->field_0x24];
+    if (i >= g->field_0x40)
+        return false;
+    UnkQueryObj* tile = &g->field_0x48[i];
+    return tile && tile->state != 2;
+}
+
+static inline bool IsTileAt(const UnkTileGrid* g, u32 x, u32 y) {
+    return x < g->field_0x24 && y < g->field_0x28 && IsTileAt(g, (s32)x, (s32)y);
+}
+
+// The cell beside (x, y) on the side `dir` turns towards: 0 -x, 1 +y, 2 +x, 3 -y.
+static inline void SideCell(s32 dir, u32 x, u32 y, u32* sx, u32* sy) {
+    switch (dir) {
+    case 0: *sx = x - 1; *sy = y; break;
+    case 1: *sx = x; *sy = y + 1; break;
+    case 2: *sx = x + 1; *sy = y; break;
+    default: *sx = x; *sy = y - 1; break;
+    }
+}
+
+// A corner of the cell (x, y) in world units: k 0 lower left, 1 upper left, 2 upper right,
+// 3 lower right.
+static inline void CellCorner(const UnkTileGrid* g, f32 x, f32 y, s32 k, f32* px, f32* py) {
+    f32 cx = x * 100.0f + g->field_0x18;
+    f32 cy = y * 100.0f + g->field_0x1c;
+    if (k == 2 || k == 3)
+        cx = cx + 100.0f;
+    if (k == 1 || k == 2)
+        cy = cy + 100.0f;
+    *px = cx;
+    *py = cy;
+}
+
+static inline void AddCorner(UnkTileOutline* outline, f32 x, f32 y) {
+    UnkTilePoint point = {x, y, 0.0f};
+    fn_7100118b94(outline, reinterpret_cast<UnkVec3*>(&point));
+}
+
+static inline bool IsBack(f32 x, f32 y, f32 sx, f32 sy) {
+    return __builtin_fabsf(x - sx) < 0.1f && __builtin_fabsf(y - sy) < 0.1f;
+}
+
+// Rebuilds the group's outlines: finds every region of tiles and every region of empty cells
+// (fn_7100ca2f9c marks a region and says whether it gets an outline), then walks each one's
+// border cell by cell, adding a corner at every turn, until it is back at the start; the tile
+// outlines go to fn_7100d62e04 and the empty ones (at the group's z) to fn_7100d62d40. Ends by
+// refreshing the collider.
+// NON_MATCHING(minor): same calls, conditions and float operations in the same order, laid out
+// differently (2280 bytes instead of 3108): the original unswitches the cell scan on the row's
+// sign, keeps the seed counts in registers and duplicates the corner and point code for each
+// direction; ours shares one corner computation and one point call per walk.
+void fn_7100ca1180(UnkTileGroup* group) {
+    UnkTileGrid* g = reinterpret_cast<UnkTileGrid*>(group);
+    fn_7100d633ec(g->field_0xd8);
+    bool visited[100] = {};
+    UnkTileOutlineList list;
+    fn_7100123eb4(&list);
+    UnkTileSeeds solids;
+    solids.count = 0;
+    UnkTileSeeds empties;
+    empties.count = 0;
+    u32 solid_count = 0;
+    u32 empty_count = 0;
+    for (u32 y = 0; y < g->field_0x28; ++y) {
+        for (u32 x = 0; x < g->field_0x24; ++x) {
+            if (visited[x + y * g->field_0x24])
+                continue;
+            bool solid = IsTileAt(g, (s32)x, (s32)y);
+            bool region[100] = {};
+            if (!fn_7100ca2f9c(group, region, visited, x, y, solid))
+                continue;
+            if (solid)
+                solids.At(solid_count++) = base::math::CVector2D{(f32)x, (f32)y};
+            else
+                empties.At(empty_count++) = base::math::CVector2D{(f32)x, (f32)y};
+        }
+    }
+
+    // Tile regions: keep the region on the left, starting upwards.
+    for (u32 i = 0; i < solid_count; ++i) {
+        UnkTileOutline outline;
+        fn_7100119f98(&outline, 1);
+        outline.field_0x28 = 0.0f;
+        base::math::CVector2D seed = solids.At(i);
+        f32 cx = seed.x;
+        f32 cy = seed.y;
+        f32 sx = g->field_0x18 + cx * 100.0f;
+        f32 sy = g->field_0x1c + cy * 100.0f;
+        f32 px = sx;
+        f32 py = sy;
+        s32 dir = 0;
+        do {
+            do {
+                u32 nx = (u32)cx;
+                u32 ny = (u32)cy;
+                switch (dir) {
+                case 0: ny = ny + 1; break;
+                case 1: nx = nx + 1; break;
+                case 2: ny = ny - 1; break;
+                default: nx = nx - 1; break;
+                }
+                if (!IsTileAt(g, nx, ny)) {
+                    // Turn right round the corner of this cell.
+                    dir = (dir + 1) & 3;
+                    CellCorner(g, cx, cy, dir, &px, &py);
+                    AddCorner(&outline, px, py);
+                    continue;
+                }
+                cx = (f32)nx;
+                cy = (f32)ny;
+                u32 dx, dy;
+                SideCell(dir, (u32)cx, (u32)cy, &dx, &dy);
+                if (IsTileAt(g, dx, dy)) {
+                    // Turn left round the corner of the cell moved into.
+                    CellCorner(g, cx, cy, dir, &px, &py);
+                    cx = (f32)dx;
+                    cy = (f32)dy;
+                    dir = (dir + 3) & 3;
+                    AddCorner(&outline, px, py);
+                }
+            } while (outline.points.count == 0);
+        } while (!IsBack(px, py, sx, sy));
+        fn_7100d62e04(g->field_0xd8, &outline);
+    }
+
+    // Empty regions: keep the tiles on the right, starting along +x.
+    for (u32 i = 0; i < empty_count; ++i) {
+        UnkTileOutline outline;
+        fn_7100119f98(&outline, 1);
+        outline.field_0x28 = g->field_0x20;
+        base::math::CVector2D seed = empties.At(i);
+        f32 cx = seed.x;
+        f32 cy = seed.y;
+        f32 sx = g->field_0x18 + cx * 100.0f;
+        f32 sy = g->field_0x1c + cy * 100.0f;
+        f32 px = sx;
+        f32 py = sy;
+        s32 dir = 3;
+        for (;;) {
+            u32 nx = (u32)cx;
+            u32 ny = (u32)cy;
+            switch (dir) {
+            case 0: ny = ny - 1; break;
+            case 1: nx = nx - 1; break;
+            case 2: ny = ny + 1; break;
+            default: nx = nx + 1; break;
+            }
+            if (IsTileAt(g, nx, ny)) {
+                // Turn left round the corner of this cell.
+                CellCorner(g, cx, cy, dir, &px, &py);
+                dir = (dir + 3) & 3;
+                AddCorner(&outline, px, py);
+            } else {
+                f32 fx = (f32)nx;
+                f32 fy = (f32)ny;
+                u32 dx, dy;
+                SideCell(dir, (u32)fx, (u32)fy, &dx, &dy);
+                if (IsTileAt(g, dx, dy)) {
+                    cx = fx;
+                    cy = fy;
+                } else {
+                    // Turn right round the corner of the cell moved through.
+                    cx = (f32)dx;
+                    cy = (f32)dy;
+                    dir = (dir + 1) & 3;
+                    CellCorner(g, fx, fy, dir, &px, &py);
+                    AddCorner(&outline, px, py);
+                }
+            }
+            if (outline.points.count != 0 && IsBack(px, py, sx, sy))
+                break;
+        }
+        fn_7100d62d40(g->field_0xd8, &outline);
+    }
+
+    if (g->field_0xd0) {
+        g->field_0xd0->vf_0x48();
+        fn_7100d35a98(reinterpret_cast<UnkEntry*>(g->field_0xd0), 1);
+    }
+    fn_7100123fb0(&list);
+}
