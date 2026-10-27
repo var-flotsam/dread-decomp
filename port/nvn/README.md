@@ -18,11 +18,22 @@ or SDK is needed to compile.
 | `include/nvn_shim/nvn_types.h` | the NVN values the binding layer handles: stages, stage bits, buffer addresses, texture handles, `nvnProgramSetShaders`' stage array |
 | `include/nvn_shim/shader_manifest.h`, `src/shader_manifest.cpp` | reads `shaders.manifest` (written by `tools/bshdat.py --install`) and finds a stage by its control section |
 | `include/nvn_shim/bindings.h`, `src/bindings.cpp` | descriptor set layouts per stage; NVN's per-stage slots turned into descriptor writes |
-| `CMakeLists.txt` | `dread_nvn` (static library); built when `DREAD_VULKAN_INCLUDE` is set |
+| `check/manifest_check.cpp` | `nvn_manifest_check`: runs the manifest reader and the binding layer over the real build output (below) |
+| `CMakeLists.txt` | `dread_nvn` (static library), built when `DREAD_VULKAN_INCLUDE` is set; `nvn_manifest_check` when `DREAD_LINK` is on |
 
 ```sh
 python tools/fetch_toolchains.py vulkan-headers-1.4.328    # once; the configure finds them in the tool cache
-cmake --build build/port/cmake --target dread_nvn          # compile only on a PC without a Windows SDK
+cmake --build build/port/cmake --target shaders dread_nvn  # Windows: compile only (no Windows SDK)
+```
+
+In the port's Linux image (`port/README.md`, "Linux in Docker"), which links, after the `shaders`
+target has run on the host (the image has no glslang; `build/` is shared):
+
+```sh
+port/docker/run.sh python3 tools/fetch_toolchains.py vulkan-headers-1.4.328   # once, into build/cache
+port/docker/run.sh cmake -S port -B build/port/linux/cmake-nvn -G Ninja -DCMAKE_CXX_COMPILER=clang++ -DDREAD_SHADERS=OFF
+port/docker/run.sh cmake --build build/port/linux/cmake-nvn --target nvn_manifest_check
+port/docker/run.sh build/port/linux/cmake-nvn/nvn/nvn_manifest_check build/port/cmake/shaders orig/2.1.0/romfs/system/shd
 ```
 
 ## What the game does with NVN (the parts the bindings depend on)
@@ -94,11 +105,18 @@ reflection, so these mappings hold for every stage of the dump:
 
 Not covered yet: the resolver's implementations (memory pools, buffers, texture and sampler pools),
 descriptor pools, pipeline creation, `nvnCommandBufferUpdateUniformBuffer`, and any test that runs.
-Nothing here has been executed: this PC has no linker for the target. The parser and the binding
-layer are compile-checked only (by `dread_nvn`, and once by hand with `-Wall -Wextra -Wconversion
--Wshadow`, which the target does not set). The manifest itself was cross-checked from Python: every
-stage's control key recomputed from the packages, stages sharing a key with identical SPIR-V and
-interfaces.
+**What runs.** `nvn_manifest_check` (Linux image, Clang 18, system libc++) runs the manifest reader
+and the binding layer with no GPU and no Vulkan loader; the binding layer only fills Vulkan structs.
+For every stage it checks four things. The SPIR-V file is there. The control section, read from
+the package at the manifest's offset, hashes to the stage's key, and `FindStage` returns that
+stage. The descriptor set layout has no binding twice and no count of 0. With every NVN slot bound
+through a fake resolver, `BuildWrites` covers the layout and resolves each resource NVN uses to its
+slot (blocks at binding = slot, samplers at 16 + slot). Only the unused resources get placeholders,
+and every info pointer stays in its arrays. On 2.1.0 (2026-10-26) it passes for all 1,342 stages;
+`FindStage` returns the stage itself for 1,010 and an identical stage for the rest. Damaged
+manifests are caught: a sampler or a block moved by one binding, or a missing end record. The code
+compiles without warnings under `-Wall -Wextra -Wconversion -Wshadow` (checked by hand; the target
+does not set them). Not tested yet: anything against a Vulkan driver.
 
 ## Variant selection (what the shim needs from the engine)
 

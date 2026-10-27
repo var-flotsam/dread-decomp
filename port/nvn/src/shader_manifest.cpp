@@ -1,4 +1,4 @@
-// Reads the shader manifest tools/bshdat.py --install writes (format 2; the record list is in that
+// Reads the shader manifest tools/bshdat.py --install writes (format 3; the record list is in that
 // tool's install()). One record per line, fields separated by single spaces, the free text last.
 
 #include "nvn_shim/shader_manifest.h"
@@ -13,7 +13,7 @@ namespace dread::nvn {
 
 namespace {
 
-constexpr int kFormat = 2;
+constexpr int kFormat = 3;
 
 // Splits off the next space-separated field of `rest`.
 bool NextField(const char*& rest, std::string* out) {
@@ -148,7 +148,7 @@ bool ShaderManifest::Load(const std::string& dir, std::string* error) {
             // dread-shaders <format> <game version> glslang <version>
             std::string format, word;
             if (tag != "dread-shaders" || !NextField(rest, &format) || format != std::to_string(kFormat))
-                return fail("not a format-2 shader manifest (rebuild the `shaders` target)");
+                return fail("not a format-3 shader manifest (rebuild the `shaders` target)");
             if (!NextField(rest, &game_version) || !NextField(rest, &word) || word != "glslang")
                 return fail("malformed header");
             header = true;
@@ -199,12 +199,13 @@ bool ShaderManifest::Load(const std::string& dir, std::string* error) {
                 return fail("define outside a program's header");
             prog->defines.emplace_back(rest);
         } else if (tag == "stage") {
-            // stage <vert|frag> <spv path> <spv bytes> <control key> <control bytes>
-            std::string kind, spv, size, key, csize;
-            std::uint64_t n_size, n_key, n_csize;
+            // stage <vert|frag> <spv path> <spv bytes> <control key> <control bytes> <control offset>
+            std::string kind, spv, size, key, csize, coff;
+            std::uint64_t n_size, n_key, n_csize, n_coff;
             if (!prog || !NextField(rest, &kind) || !NextField(rest, &spv) || !NextField(rest, &size) ||
-                !NextField(rest, &key) || !NextField(rest, &csize) || *rest != '\0' ||
+                !NextField(rest, &key) || !NextField(rest, &csize) || !NextField(rest, &coff) || *rest != '\0' ||
                 !ParseU64(size, 10, &n_size) || !ParseU64(key, 16, &n_key) || !ParseU64(csize, 10, &n_csize) ||
+                !ParseU64(coff, 10, &n_coff) || n_coff > static_cast<std::uint64_t>(kU32Max) ||
                 (kind != "vert" && kind != "frag") || n_size > static_cast<std::uint64_t>(kU32Max) ||
                 n_csize > static_cast<std::uint64_t>(kU32Max))
                 return fail("malformed stage record");
@@ -216,6 +217,7 @@ bool ShaderManifest::Load(const std::string& dir, std::string* error) {
             s.spirv_size = static_cast<std::uint32_t>(n_size);
             s.control_key = n_key;
             s.control_size = static_cast<std::uint32_t>(n_csize);
+            s.control_offset = static_cast<std::uint32_t>(n_coff);
             prog->stages.push_back(std::move(s));
             by_control.emplace(n_key, StageRef{static_cast<std::uint32_t>(packages.size() - 1),
                                                static_cast<std::uint32_t>(pkg->programs.size() - 1),
