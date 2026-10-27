@@ -17,11 +17,14 @@ suffix). The first download records the hash; later downloads must match it.
 Also fetches objdiff / objdiff-cli (TOOLS) into <cache>/tools/. On request only (not part of the
 default, since matching does not need it): glslang (ARCHIVE_TOOLS, the Khronos GLSL compiler for
 tools/bshdat.py --compile) into <cache>/tools/glslang-<ver>/bin/; the Khronos Vulkan headers
-(HEADER_ARCHIVES, for the port's NVN shim, port/nvn/) into <cache>/tools/vulkan-headers-<ver>/include/.
+(HEADER_ARCHIVES, for the port's NVN shim, port/nvn/) into <cache>/tools/vulkan-headers-<ver>/include/;
+llvm-mingw (MINGW_TOOLCHAINS, Clang and the MinGW-w64 headers for the port sweep's Windows target,
+tools/port_sweep.py --target x86_64-w64-mingw32) into <cache>/toolchains/llvm-mingw-<ver>/.
 
 Usage: python tools/fetch_toolchains.py [VERSION or TOOL ...]   (default: LLVM candidates + objdiff)
        python tools/fetch_toolchains.py glslang-16.6.0               (glslang, by name only)
        python tools/fetch_toolchains.py vulkan-headers-1.4.328       (Vulkan headers, by name only)
+       python tools/fetch_toolchains.py llvm-mingw-20261006          (llvm-mingw, by name only)
 """
 
 from __future__ import annotations
@@ -207,6 +210,69 @@ def fetch_header_archive(name: str, pins: dict) -> None:
     print(f"{name}: {count} headers saved to {target / 'include'}")
 
 
+# llvm-mingw (mstorsjo/llvm-mingw, Apache-2.0 with LLVM exceptions; MinGW-w64 headers under their
+# own permissive licences): Clang, lld and the MinGW-w64 headers and libraries for x86_64-w64-mingw32,
+# the Windows target with the Itanium C++ ABI. tools/port_sweep.py --target x86_64-w64-mingw32
+# compiles against it (compile only). The whole archive is kept, in <cache>/toolchains/<name>/.
+# The UCRT builds; SHA-256 values are the digests GitHub publishes for the assets. Only the Windows
+# zip has been fetched so far (2026-10-27).
+LLVM_MINGW_VERSION = "20261006"
+_LLVM_MINGW = (f"https://github.com/mstorsjo/llvm-mingw/releases/download/{LLVM_MINGW_VERSION}/"
+               f"llvm-mingw-{LLVM_MINGW_VERSION}-ucrt")
+MINGW_TOOLCHAINS = {
+    f"llvm-mingw-{LLVM_MINGW_VERSION}": {
+        "windows": (f"{_LLVM_MINGW}-x86_64.zip",
+                    "317492c456aa27ee607a5919f1d2d38dcdc1112516a24d0bf4b00d078f52d17a"),
+        "macos": (f"{_LLVM_MINGW}-macos-universal.tar.xz",
+                  "a7a19b11048e89372637d26279cdb7c430ed3cf8c1e224310421312bf986ebf6"),
+        "linux": (f"{_LLVM_MINGW}-ubuntu-22.04-x86_64.tar.xz",
+                  "5f9c6ed95b2d4bdb2869a488c5fd5857fbdabcf288a0aa3eb1da43f6a08d8ab4"),
+    },
+}
+
+
+def llvm_mingw_root() -> Path:
+    """Where fetch_mingw puts llvm-mingw (tools/port_sweep.py looks there)."""
+    return DEST / f"llvm-mingw-{LLVM_MINGW_VERSION}"
+
+
+def fetch_mingw(name: str, pins: dict) -> None:
+    target = DEST / name
+    if (target / "bin" / hostenv.exe("clang++")).is_file():
+        print(f"{name}: already present at {target}")
+        return
+    url, expected = MINGW_TOOLCHAINS[name][hostenv.PLATFORM]
+    DEST.mkdir(parents=True, exist_ok=True)
+    archive = DEST / url.rsplit("/", 1)[1]
+    print(f"{name}: downloading {url}", flush=True)
+    urllib.request.urlretrieve(url, archive)
+    digest = hashlib.sha256(archive.read_bytes()).hexdigest()
+    if digest != expected:
+        archive.unlink()
+        raise SystemExit(f"{name}: sha256 {digest} does not match published {expected}")
+    if url.endswith(".zip"):
+        tmp = target.with_name(target.name + ".tmp")
+        if tmp.exists():
+            shutil.rmtree(tmp)
+        with zipfile.ZipFile(archive) as z:
+            for m in z.infolist():
+                if ".." in Path(m.filename).parts or Path(m.filename).is_absolute():
+                    raise SystemExit(f"{name}: archive member {m.filename} lands outside {tmp}")
+            z.extractall(tmp)
+        tops = list(tmp.iterdir())
+        if len(tops) != 1 or not tops[0].is_dir():
+            raise SystemExit(f"{archive.name}: expected one top-level folder, found {len(tops)} entries")
+        tops[0].rename(target)
+        tmp.rmdir()
+    else:
+        extract_tarball(archive, target)
+    archive.unlink()
+    if not (target / "bin" / hostenv.exe("clang++")).is_file():
+        raise SystemExit(f"{name}: clang++ not found after extraction in {target}")
+    pins[pin_key(name)] = {"url": url, "sha256": digest}
+    print(f"{name}: extracted to {target} (sha256 {digest})")
+
+
 def tool_path(name: str) -> Path:
     return DEST.parent / "tools" / hostenv.exe(name)
 
@@ -271,7 +337,7 @@ def fetch_tool(name: str, pins: dict) -> None:
 
 
 def main() -> int:
-    versions = sys.argv[1:] or [*CANDIDATES, *TOOLS]  # ARCHIVE_TOOLS, HEADER_ARCHIVES by name only
+    versions = sys.argv[1:] or [*CANDIDATES, *TOOLS]  # ARCHIVE_TOOLS, HEADER_ARCHIVES, MINGW_TOOLCHAINS by name only
     pins = json.loads(PINS.read_text()) if PINS.is_file() else {}
     try:
         for v in versions:
@@ -281,6 +347,8 @@ def main() -> int:
                 fetch_archive_tool(v, pins)
             elif v in HEADER_ARCHIVES:
                 fetch_header_archive(v, pins)
+            elif v in MINGW_TOOLCHAINS:
+                fetch_mingw(v, pins)
             else:
                 fetch(v, pins)
     finally:

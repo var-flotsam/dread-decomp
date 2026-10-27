@@ -282,3 +282,142 @@ void fn_710007f3e4(CRntString* self, const char* str, u32 length) {
         }
     }
 }
+
+// Trimming: the kept part is copied into a temporary string (with 0x100 bytes of inline storage
+// when the string is short enough) and assigned back.
+#include "base/global/CRntStringAssign.h"
+
+// A temporary string: CRntString's fields without its out-of-line destructor (the original has
+// the destructor inlined; it is defined in this unit there). Optionally followed by 0x100 bytes of
+// inline storage (as UnkInlineString256 in CRntStringAssign.cpp).
+struct UnkTrimString {
+    char* data;
+    u32 length;
+    base::UnkAllocator* allocator;
+    bool owns_allocator;
+    s64 key;
+    bool borrowed;
+
+    CRntString* Str() { return reinterpret_cast<CRntString*>(this); }
+    base::UnkAllocator* GetAllocator() const { return allocator ? allocator : fn_7100083990(); }
+};
+static_assert(sizeof(UnkTrimString) == sizeof(CRntString), "UnkTrimString layout");
+
+struct UnkTrimStringInline {
+    UnkTrimString str;
+    void** allocator_vtable;  // +0x30
+    u8 buffer[0x100];
+    u64 field_0x138;
+    u32 field_0x140;
+};
+
+static inline bool IsTrimSpace(u8 c) {
+    return c == ' ' || c == '\t' || c == '\n' || c == '\r';
+}
+
+// The string's clear (fn_710007ed40) and destructor (fn_710007ecd4) share one body; a temporary
+// is destroyed with both, inlined one after the other.
+__attribute__((always_inline)) static inline void ClearTemporary(UnkTrimString& s) {
+    if (!s.borrowed) {
+        if (!s.data)
+            return;
+        if (s.data != g_unk_7101647847)
+            s.GetAllocator()->vf_0x48(s.data);
+    }
+    s.data = nullptr;
+    s.length = 0;
+    s.key = -1;
+}
+
+// Assigns `count` characters of `str` to `self` through a temporary on inline storage.
+__attribute__((always_inline)) static inline void AssignShort(CRntString* self, const char* str, u32 count) {
+    UnkTrimStringInline tmp;
+    tmp.str.allocator = reinterpret_cast<base::UnkAllocator*>(&tmp.allocator_vtable);
+    tmp.str.owns_allocator = false;
+    tmp.str.borrowed = false;
+    tmp.str.data = nullptr;
+    tmp.str.length = 0;
+    tmp.str.key = -1;
+    tmp.allocator_vtable = g_unk_7101a194b8 + 2;
+    tmp.field_0x138 = 0;
+    tmp.field_0x140 = 0;
+    fn_710007e7f8(tmp.str.Str(), str, count);
+    fn_710007ebc8(self, tmp.str.data, tmp.str.length, tmp.str.key);
+    ClearTemporary(tmp.str);
+    ClearTemporary(tmp.str);
+}
+
+// The same through a temporary on the default allocator. The original knows that only
+// fn_710007e7f8 writes this temporary (defined in the same unit there, it doesn't keep the
+// pointer), so the text is read once and the second clear folds away.
+__attribute__((always_inline)) static inline void AssignLong(CRntString* self, const char* str, u32 count) {
+    UnkTrimString tmp;
+    tmp.owns_allocator = false;
+    tmp.borrowed = false;
+    tmp.data = nullptr;
+    tmp.length = 0;
+    tmp.key = -1;
+    tmp.allocator = nullptr;
+    fn_710007e7f8(tmp.Str(), str, count);
+    char* data = tmp.data;
+    fn_710007ebc8(self, data, tmp.length, tmp.key);
+    if (!tmp.borrowed) {
+        if (!data)
+            return;
+        if (data != g_unk_7101647847)
+            tmp.GetAllocator()->vf_0x48(data);
+    }
+    tmp.data = nullptr;
+    tmp.key = -1;
+    tmp.length = 0;
+}
+
+// Removes leading spaces, tabs and line breaks (a borrowed string is left alone).
+// NON_MATCHING(minor): block layout and register allocation: the borrowed check returns through
+// a copy of the epilogue (the original branches to the shared one), the scan compares the 64-bit
+// counter for inequality (the original: the low 32 bits, unsigned) and the original reloads the
+// text pointer for the copy; the same loads, stores and calls.
+void fn_710007f700(CRntString* self) {
+    if (self->borrowed)
+        return;
+    u32 length = self->length;
+    if (!length)
+        return;
+    u32 i = 0;
+    do {
+        if (!IsTrimSpace(self->data[i])) {
+            if (i == 0)
+                return;
+            break;
+        }
+        ++i;
+    } while (i < length);
+    if (length < 0x100)
+        AssignShort(self, self->data + i, length - i);
+    else
+        AssignLong(self, self->data + i, length - i);
+}
+
+// Removes trailing spaces, tabs and line breaks (a borrowed string is left alone).
+// NON_MATCHING(minor): scheduling and register allocation; the original addresses the scan from
+// data - 1 and reloads the text pointer for the copy (nothing writes it in between).
+void fn_710007f8e4(CRntString* self) {
+    if (self->borrowed)
+        return;
+    s32 length = self->length;
+    if (length <= 0)
+        return;
+    s64 n = length;
+    do {
+        if (!IsTrimSpace(self->data[n - 1]))
+            break;
+        --n;
+    } while (n > 0);
+    s32 count = (s32)n;
+    if (count == length)
+        return;
+    if (count < 0x100)
+        AssignShort(self, self->data, count == -1 ? length : count);
+    else
+        AssignLong(self, self->data, count);
+}

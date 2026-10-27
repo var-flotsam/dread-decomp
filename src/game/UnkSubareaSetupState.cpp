@@ -307,7 +307,6 @@ static inline UnkSubId_7100fc4b34 SubId(UnkSetupNamedDef& def, const CStrId& nam
 extern UnkSetupNamedDef g_unk_71729ee018;  // the definition the setup chain is read under
 
 // A string (header of 0x30 bytes) with 0x100 bytes of inline storage (as src/game/CGameManager.cpp's).
-extern void* g_unk_7101a194b8[];
 struct UnkSetupStrStorage {
     void* vtable;
     u8 pad_0x8[0x100];

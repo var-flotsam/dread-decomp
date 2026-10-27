@@ -1510,12 +1510,6 @@ L_710021927c:;
     return ((char*)X0);
 }
 
-namespace callee { char* fn_71001fc7bc(u64); }
-char* fn_7100219294(char* p0) {
-    u64 r0_0 = (u64)*(u64*)((char*)(p0) + 544);
-    return callee::fn_71001fc7bc(r0_0);
-}
-
 namespace callee { char* fn_710007b518(u64); }
 char* fn_710021929c(char* p0) {
     u64 r0_8 = (u64)*(u64*)((char*)(p0) + 600);

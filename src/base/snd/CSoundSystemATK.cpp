@@ -431,3 +431,203 @@ bool fn_7100100b1c(UnkSoundSystemATK* self, const CFilePathStrId& path) {
     }
     return found;
 }
+
+// ---- fn_71000fe1f8: a playing stream's position ----
+
+// A stream the sound system plays (placeholder name): fn_71000f4e44 gives the hash of its file's
+// id (0 while it has none), fn_71000f4b14 how far it has played (its position over its rate).
+struct UnkSoundStream;
+u64 fn_71000f4e44(UnkSoundStream* stream);
+f32 fn_71000f4b14(UnkSoundStream* stream);
+
+// A node of the sound system's list of streams.
+struct UnkSoundStreamNode {
+    u8 pad_0x0[0x8];
+    UnkSoundStream* stream;
+    UnkSoundStreamNode* next;
+};
+
+struct UnkSoundSystemStreams {
+    u8 pad_0x0[0x400810];
+    UnkSoundStreamNode* field_0x400810;  // the first node
+};
+
+// How far the first stream of the file `path` names (sanitised by fn_71000f63b0) has played,
+// under the voice mutex; 0 when no stream plays it or while the global flag g_unk_7108b6ab60 is set.
+// The sanitised id is released by hand, as in fn_7100100b1c.
+// NON_MATCHING(minor): block order only: the flag-set path (`fmov s8, wzr`) is placed just before
+// the shared epilogue (the unlock call then branches over it) where the original places it right
+// after the flag test with a branch to the epilogue; the instructions are the same.
+f32 fn_71000fe1f8(UnkSoundSystemATK* self, const CFilePathStrId& path) {
+    f32 position;
+    if (g_unk_7108b6ab60 & 1) {
+        position = 0.0f;
+    } else {
+        fn_7100132cd0();
+        nn::os::MutexType* mutex = &reinterpret_cast<UnkSoundSystemVoices*>(self)->field_0x400568;
+        fn_710006691c(mutex);
+        UnkPathIdSlot slot;
+        new (&slot.id) CFilePathStrId(fn_71000f63b0(path));
+        base::global::UnkStringData* data = slot.id.data;
+        u64 key = *reinterpret_cast<u64*>(reinterpret_cast<char*>(data) + 0x30);
+        if (base::global::UnkStringPool* pool = g_unk_7101d47200) {
+            if (data && data != &pool->empty) {
+                if (--data->ref_count == 0) {
+                    fn_71000803a4(pool, data);
+                    pool = g_unk_7101d47200;
+                }
+            }
+            slot.id.data = &pool->empty;
+        }
+        position = 0.0f;
+        for (UnkSoundStreamNode* node = reinterpret_cast<UnkSoundSystemStreams*>(self)->field_0x400810;
+             node; node = node->next) {
+            UnkSoundStream* stream = node->stream;
+            if (stream && fn_71000f4e44(stream) == key) {
+                position = fn_71000f4b14(stream);
+                break;
+            }
+        }
+        fn_7100066920(mutex);
+    }
+    return position;
+}
+
+// ---- fn_71000f68bc: the sound system's constructor ----
+
+#include "base/UnkBlockFreeList.h"
+#include "base/UnkChainedMap.h"
+#include "base/UnkVector.h"
+
+// A sub-object at 0x278 whose constructor (fn_71001045c0) builds the array at its +8.
+struct UnkSoundSub_0x278 {
+    u8 pad_0x0[0xc8];
+};
+void fn_71001045c0(UnkSoundSub_0x278* self);
+
+// An array of words with a growth step and the room for `n` of them reserved.
+static inline void UnkInitWords(base::UnkVector<u64>* v, u32 step, u32 n) {
+    v->data = nullptr;
+    v->count = 0;
+    v->capacity = 0;
+    v->step = step;
+    v->field_0x14 = true;
+    v->flags = 0xb;
+    v->allocator = fn_7100083990();
+    v->Reserve(n);
+}
+
+// The members from 0x388: a word, the block free list and an array.
+struct UnkSoundSub_0x388 {
+    u64 field_0x0;
+    u8 pad_0x8[8];
+    UnkBlockFreeList list;
+    base::UnkVector<u64> field_0x38;
+};
+
+// What the constructor sets (placeholder names; the command queue of base/snd/UnkSoundSystemATK.h
+// lies between 0x500 and 0x400788 and is left alone).
+struct UnkSoundSystemMembers {
+    UnkChainedMap field_0x0;
+    u8 pad_0x48[0x58];
+    u64 field_0xa0[6];
+    u8 pad_0xd0;
+    bool field_0xd1;
+    u8 pad_0xd2[2];
+    f32 field_0xd4;
+    f32 field_0xd8;
+    u32 field_0xdc;
+    f32 field_0xe0;
+    f32 field_0xe4;
+    u32 field_0xe8;
+    u8 pad_0xec[4];
+    u64 field_0xf0[20];
+    u32 field_0x190;
+    u8 pad_0x194[0xe4];
+    UnkSoundSub_0x278 field_0x278;
+    bool field_0x340[7];
+    u8 pad_0x347;
+    u32 field_0x348;
+    u8 pad_0x34c[0x20];
+    bool field_0x36c;
+    u8 pad_0x36d[3];
+    u32 field_0x370;
+    u8 pad_0x374[4];
+    f32 field_0x378;
+    u8 pad_0x37c[4];
+    u32 field_0x380;
+    u8 pad_0x384[4];
+    UnkSoundSub_0x388 field_0x388;
+    u8 pad_0x3e8[8];
+    base::UnkVector<u64> field_0x3f0;
+    base::UnkVector<u64> field_0x418;
+    base::UnkVector<u64> field_0x440;
+    base::UnkVector<u64> field_0x468;
+    base::UnkVector<u64> field_0x490;
+    UnkChainedMap field_0x4b8;
+    u8 pad_0x500[0x400788 - 0x500];
+    UnkChainedMap field_0x400788;
+    UnkChainedMap field_0x4007d0;  // the streams (fn_71000fe1f8 walks it)
+    base::UnkVector<u64> field_0x400818;
+    base::UnkVector<u64> field_0x400840;
+    u8 pad_0x400868[8];
+    u64 field_0x400870;
+    u64 field_0x400878;
+};
+static_assert(__builtin_offsetof(UnkSoundSystemMembers, field_0x278) == 0x278, "UnkSoundSystemMembers layout");
+static_assert(__builtin_offsetof(UnkSoundSystemMembers, field_0x388) == 0x388, "UnkSoundSystemMembers layout");
+static_assert(__builtin_offsetof(UnkSoundSystemMembers, field_0x4b8) == 0x4b8, "UnkSoundSystemMembers layout");
+static_assert(__builtin_offsetof(UnkSoundSystemMembers, field_0x400818) == 0x400818, "UnkSoundSystemMembers layout");
+static_assert(__builtin_offsetof(UnkSoundSystemMembers, field_0x400870) == 0x400870, "UnkSoundSystemMembers layout");
+
+// Builds the sound system's maps (11 buckets each), arrays (four reserved: three for 32 words
+// growing by 16, one for 0x800 growing by 0x200, and one more of those at the end), the block free
+// list at 0x398 and the sub-object at 0x278, and sets its scalar members (1.0 scales, a 4).
+// NON_MATCHING(minor): the same stores and calls; the original addresses the arrays at 0x3c0-0x468
+// and the maps at 0x4b8 and 0x400788 through a register holding the member's address (and merges the
+// maps' zeroed words into other store pairs), so the instructions from 0x3c0's array on are scheduled
+// and registered differently.
+void fn_71000f68bc(UnkSoundSystemATK* object) {
+    UnkSoundSystemMembers* self = reinterpret_cast<UnkSoundSystemMembers*>(object);
+    new (&self->field_0x0) UnkChainedMap();
+    self->field_0x0.ResizeBuckets(11);
+    for (u32 i = 0; i < 6; ++i)
+        self->field_0xa0[i] = 0;
+    self->field_0xd1 = true;
+    self->field_0xd4 = 1.0f;
+    self->field_0xd8 = 1.0f;
+    self->field_0xdc = 4;
+    self->field_0xe0 = 1.0f;
+    self->field_0xe4 = 1.0f;
+    self->field_0xe8 = 0;
+    for (u32 i = 0; i < 20; ++i)
+        self->field_0xf0[i] = 0;
+    self->field_0x190 = 0;
+    fn_71001045c0(&self->field_0x278);
+    self->field_0x348 = 0;
+    self->field_0x36c = false;
+    self->field_0x370 = 0;
+    for (u32 i = 0; i < 7; ++i)
+        self->field_0x340[i] = false;
+    self->field_0x378 = 1.0f;
+    self->field_0x380 = 1;
+    UnkSoundSub_0x388* sub = &self->field_0x388;
+    sub->field_0x0 = 0;
+    fn_710008377c(&sub->list);
+    new (&sub->field_0x38) base::UnkVector<u64>(0xf);
+    UnkInitWords(&self->field_0x3f0, 0x10, 0x20);
+    UnkInitWords(&self->field_0x418, 0x10, 0x20);
+    UnkInitWords(&self->field_0x440, 0x10, 0x20);
+    UnkInitWords(&self->field_0x468, 0x200, 0x800);
+    new (&self->field_0x490) base::UnkVector<u64>(0xf);
+    new (&self->field_0x4b8) UnkChainedMap();
+    self->field_0x4b8.ResizeBucketsPtrFirst(11);
+    new (&self->field_0x400788) UnkChainedMap();
+    self->field_0x400788.ResizeBucketsPtrFirst(11);
+    new (&self->field_0x4007d0) UnkChainedMap();
+    self->field_0x4007d0.ResizeBucketsPtrFirst(11);
+    UnkInitWords(&self->field_0x400818, 0x200, 0x800);
+    new (&self->field_0x400840) base::UnkVector<u64>(0xf);
+    self->field_0x400870 = 0;
+    self->field_0x400878 = 0;
+}

@@ -5422,7 +5422,7 @@ address,size,name,name_source,subsystem,status
 0x7100adf770,656,fn_7100adf770,unknown,unknown,O
 0x7100adfa00,140,fn_7100adfa00,unknown,unknown,O
 0x7100adfa90,140,fn_7100adfa90,unknown,unknown,O
-0x7100adfb20,1164,fn_7100adfb20,unknown,unknown,U
+0x7100adfb20,1164,fn_7100adfb20,unknown,unknown,O
 0x7100adffac,548,fn_7100adffac,unknown,unknown,U
 0x7100ae01d0,452,fn_7100ae01d0,unknown,unknown,U
 0x7100ae03a0,172,fn_7100ae03a0,unknown,unknown,O

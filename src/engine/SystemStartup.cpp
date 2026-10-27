@@ -825,3 +825,263 @@ void fn_71001306b0(UnkPolygon* self) {
                               fn_7100130ab0(self, i - 1)->pos);
     }
 }
+
+// ---------------------------------------------------------------------------------------------
+// The unit's performance switch (src/game_s7/fn_71001587f0.cpp turns it on once the display is
+// set up): g_unk_710b37106c keeps whether the boosted configuration (0x20004 instead of the
+// normal 0x20003) is active, and the SDK is only called when that changes. The argument is a bool
+// in the original (only its low bit counts); the caller declares it s32.
+// NON_MATCHING(minor): with the s32 parameter the comparison takes its operands in the other order
+// and the configuration is chosen with `cmp` on the masked value instead of `tst w0, #1`.
+void fn_7100132a30(s32 value) {
+    if (g_unk_710b37106c == (value & 1))
+        return;
+    g_unk_710b37106c = value & 1;
+    nn::oe::SetPerformanceConfiguration(nn::oe::PerformanceMode(0), (value & 1) ? 0x20004 : 0x20003);
+}
+
+// ---------------------------------------------------------------------------------------------
+// A box against a vertical capsule (fn_7100129ff0) and a circle against one (fn_710012a9a0): the
+// capsule's two end circles and its two sides are tested one after the other and their contacts
+// merged into the caller's list of four (src/game/UnkCollisionContacts.cpp calls both with its own
+// names for these types: UnkShape8Geometry for the capsule, UnkContactBuffer<4> for the list).
+
+#include <float.h>
+#include <string.h>
+
+// A capsule standing on the y axis: its centre, the half length of its straight part and its radius.
+struct UnkCapsule2D {
+    UnkVec2Result center;
+    f32 half_height;
+    f32 radius;
+};
+
+// The names src/game/UnkCollisionContacts.cpp declares the tests with.
+struct UnkShape8Geometry;
+template <u32 N>
+struct UnkContactBuffer;
+
+// The shape tests the passes use (declared as src/game/UnkCollisionContacts.cpp does): a box
+// against a circle, against a segment.
+bool fn_7100126bf0(const void* b, const UnkCircle2D* a, UnkContactBuffer<8>* out, bool flag);
+bool fn_7100128510(const UnkBox2D* a, const void* b, UnkContactBuffer<2>* out, bool flag);
+// Whether the point lies inside the capsule.
+bool fn_710010f774(const UnkCapsule2D* capsule, const CVector2D* point);
+
+// The contacts of one test: up to N (eight against a circle, two against a segment). Reading an
+// element past the count first clears the new ones and takes the count up to it.
+template <u32 N>
+struct UnkContactArray2D {
+    u32 count;
+    UnkContact2D items[N];
+
+    __attribute__((always_inline)) UnkContact2D& At(u64 index) {
+        if (count <= index) {
+            u32 n = index + 1;
+            memset(&items[count], 0, (u64)(n - count) * sizeof(UnkContact2D));
+            count = n;
+        }
+        return items[index];
+    }
+};
+
+// Whether the list has a contact at the height `y` (within 0.001).
+static inline bool UnkHasContactAt(const UnkContactList2D* list, f32 y) {
+    bool found = false;
+    for (u32 i = 0; i < list->count && !found; ++i)
+        found = fabsf(list->items[i].point.y - y) < 0.001f;
+    return found;
+}
+
+// A contact copied member by member.
+static inline void UnkCopyContact(UnkContact2D* dst, const UnkContact2D& src) {
+    dst->point.x = src.point.x;
+    dst->point.y = src.point.y;
+    dst->point.z = src.point.z;
+    dst->normal_a.x = src.normal_a.x;
+    dst->normal_a.y = src.normal_a.y;
+    dst->normal_a.z = src.normal_a.z;
+    dst->normal_b.x = src.normal_b.x;
+    dst->normal_b.y = src.normal_b.y;
+    dst->normal_b.z = src.normal_b.z;
+    dst->param = src.param;
+    dst->flags = src.flags;
+}
+
+__attribute__((always_inline)) static inline void UnkMergeContact(UnkContactList2D* out, const UnkContact2D& c) {
+    if (!UnkHasContactAt(out, c.point.y))
+        UnkCopyContact(&out->items[out->Add()], c);
+}
+
+// Copies the contacts `keep` accepts into `out` while it has room, skipping a contact at the height
+// of one it already has.
+template <u32 N, class F>
+__attribute__((always_inline)) static inline void UnkMergeContacts(UnkContactList2D* out,
+                                                                   UnkContactArray2D<N>& list, F keep) {
+    for (u32 i = 0; i < list.count; ++i) {
+        if (out->count > 3)
+            break;
+        if (keep(list.At(i)))
+            UnkMergeContact(out, list.At(i));
+    }
+}
+
+template <u32 N>
+__attribute__((always_inline)) static inline void UnkMergeAll(UnkContactList2D* out, UnkContactArray2D<N>& list) {
+    for (u32 i = 0; i < list.count; ++i) {
+        if (out->count > 3)
+            break;
+        UnkMergeContact(out, list.At(i));
+    }
+}
+
+// A box against a capsule: its upper circle (the contacts facing up), its lower circle (those
+// facing down), its left side and its right side, stopping once the list has four contacts. With
+// no contact and `flag` set, a capsule whose centre lies in the box, or that holds the box's centre,
+// gives one contact at that centre. Returns whether any test hit (or the list's count after the
+// centre test).
+// NON_MATCHING(minor): the same calls, tests and stores in the same order; the frame is 0x20 bytes
+// smaller (the original keeps the two lists, the shapes and the segment ends at other offsets),
+// registers and the blocks of the merge loops are allocated and laid out differently, and the copy
+// of a merged contact reads three of its words through the first access's address.
+bool fn_7100129ff0(const UnkBox2D* box, const UnkShape8Geometry* shape, UnkContactBuffer<4>* buffer,
+                   bool flag) {
+    const UnkCapsule2D* a = reinterpret_cast<const UnkCapsule2D*>(shape);
+    UnkContactList2D* out = reinterpret_cast<UnkContactList2D*>(buffer);
+    bool hit = false;
+    UnkContactArray2D<8> list;
+    list.count = 0;
+    {
+        UnkCircle2D top(UnkVec2Result(0.0f + a->center.x, a->half_height + a->center.y), a->radius);
+        if (fn_7100126bf0(box, &top, reinterpret_cast<UnkContactBuffer<8>*>(&list), false)) {
+            hit = true;
+            UnkMergeContacts(out, list, [](const UnkContact2D& c) { return c.normal_b.y > -FLT_MIN; });
+        }
+    }
+    if (out->count == 4)
+        return true;
+    list.count = 0;
+    {
+        UnkCircle2D bottom(UnkVec2Result(a->center.x, a->center.y - a->half_height), a->radius);
+        if (fn_7100126bf0(box, &bottom, reinterpret_cast<UnkContactBuffer<8>*>(&list), false)) {
+            hit = true;
+            UnkMergeContacts(out, list, [](const UnkContact2D& c) { return c.normal_b.y < FLT_MIN; });
+        }
+    }
+    if (out->count == 4)
+        return true;
+    {
+        UnkContactArray2D<2> sides;
+        sides.count = 0;
+        {
+            f32 x = a->center.x - a->radius;
+            f32 y = a->center.y;
+            UnkSegment2D side(UnkVec(x, y - a->half_height), UnkVec(0.0f + x, a->half_height + y));
+            if (fn_7100128510(box, &side, reinterpret_cast<UnkContactBuffer<2>*>(&sides), false)) {
+                hit = true;
+                UnkMergeAll(out, sides);
+            }
+        }
+        if (out->count == 4)
+            return true;
+        sides.count = 0;
+        {
+            f32 x = a->radius + a->center.x;
+            f32 y = 0.0f + a->center.y;
+            UnkSegment2D side(UnkVec(0.0f + x, a->half_height + y), UnkVec(x, y - a->half_height));
+            if (fn_7100128510(box, &side, reinterpret_cast<UnkContactBuffer<2>*>(&sides), false)) {
+                hit = true;
+                UnkMergeAll(out, sides);
+            }
+        }
+    }
+    if (out->count != 0 || !flag)
+        return hit;
+    if (a->center.x >= box->x0 && a->center.x <= box->x1 && a->center.y >= box->y0 && a->center.y <= box->y1) {
+        if (out->count == 0)
+            out->Add();
+        out->items[0].SetPoint(CVector3D{a->center.x, a->center.y, 0.0f});
+    } else {
+        CVector2D mid = UnkVec((box->x0 + box->x1) * 0.5f, (box->y0 + box->y1) * 0.5f);
+        if (!fn_710010f774(a, &mid))
+            return out->count != 0;
+        if (out->count == 0)
+            out->Add();
+        out->items[0].SetPoint(CVector3D{(box->x0 + box->x1) * 0.5f, (box->y0 + box->y1) * 0.5f, 0.0f});
+    }
+    return out->count != 0;
+}
+
+// A circle against two circles, against a segment (declared as src/game/UnkCollisionContacts.cpp
+// does), and whether a circle lies inside a capsule (within `tolerance`).
+bool fn_7100127720(const UnkCircle2D* a, const UnkCircle2D& b, UnkContactBuffer<2>* out, bool flag);
+bool fn_71001271d0(const void* b, const UnkCircle2D* a, UnkContactBuffer<2>* out, bool flag);
+bool fn_710010f838(const UnkCircle2D* circle, const UnkCapsule2D* capsule, f32 tolerance);
+
+// A circle against a capsule, as fn_7100129ff0 (the list is not checked for four contacts after the
+// upper circle). With no contact and `flag` set, a circle inside the capsule gives a contact at the
+// capsule's centre, else a capsule holding the circle's centre one at that centre.
+// NON_MATCHING(minor): as fn_7100129ff0: the same calls, tests and stores in the same order; the
+// frame is 0x20 bytes smaller (the list, the circles and the segments sit at other offsets), and
+// registers and the merge loops' blocks are allocated and laid out differently.
+bool fn_710012a9a0(const UnkCircle2D* circle, const UnkShape8Geometry* shape, UnkContactBuffer<4>* buffer,
+                   bool flag) {
+    const UnkCapsule2D* a = reinterpret_cast<const UnkCapsule2D*>(shape);
+    UnkContactList2D* out = reinterpret_cast<UnkContactList2D*>(buffer);
+    bool hit = false;
+    UnkContactArray2D<2> list;
+    list.count = 0;
+    {
+        UnkCircle2D top(UnkVec2Result(0.0f + a->center.x, a->half_height + a->center.y), a->radius);
+        if (fn_7100127720(circle, top, reinterpret_cast<UnkContactBuffer<2>*>(&list), false)) {
+            hit = true;
+            UnkMergeContacts(out, list, [](const UnkContact2D& c) { return c.normal_b.y > -FLT_MIN; });
+        }
+    }
+    list.count = 0;
+    {
+        UnkCircle2D bottom(UnkVec2Result(a->center.x, a->center.y - a->half_height), a->radius);
+        if (fn_7100127720(circle, bottom, reinterpret_cast<UnkContactBuffer<2>*>(&list), false)) {
+            hit = true;
+            UnkMergeContacts(out, list, [](const UnkContact2D& c) { return c.normal_b.y < FLT_MIN; });
+        }
+    }
+    if (out->count == 4)
+        return true;
+    list.count = 0;
+    {
+        f32 x = a->center.x - a->radius;
+        f32 y = a->center.y;
+        UnkSegment2D side(UnkVec(x, y - a->half_height), UnkVec(0.0f + x, a->half_height + y));
+        if (fn_71001271d0(&side, circle, reinterpret_cast<UnkContactBuffer<2>*>(&list), false)) {
+            hit = true;
+            UnkMergeAll(out, list);
+        }
+    }
+    if (out->count == 4)
+        return true;
+    list.count = 0;
+    {
+        f32 x = a->radius + a->center.x;
+        f32 y = 0.0f + a->center.y;
+        UnkSegment2D side(UnkVec(0.0f + x, a->half_height + y), UnkVec(x, y - a->half_height));
+        if (fn_71001271d0(&side, circle, reinterpret_cast<UnkContactBuffer<2>*>(&list), false)) {
+            hit = true;
+            UnkMergeAll(out, list);
+        }
+    }
+    if (out->count != 0 || !flag)
+        return hit;
+    if (fn_710010f838(circle, a, 0.0f)) {
+        if (out->count == 0)
+            out->Add();
+        out->items[0].SetPoint(CVector3D{a->center.x, a->center.y, 0.0f});
+    } else {
+        if (!fn_710010f774(a, reinterpret_cast<const CVector2D*>(&circle->center)))
+            return out->count != 0;
+        if (out->count == 0)
+            out->Add();
+        out->items[0].SetPoint(CVector3D{circle->center.x, circle->center.y, 0.0f});
+    }
+    return out->count != 0;
+}

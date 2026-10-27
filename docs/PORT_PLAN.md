@@ -253,6 +253,16 @@ months" still requires M2 to go well; say so when planning, and re-estimate afte
 | Programs, vertex state, pipelines, draws, clears, render targets, present | **Done but for the alpha test and a surface** (2026-10-27): all 146 functions the game calls (182 in all). Numbers from the engine's reflected enumerations and the wrappers that convert them (`include/nvn_shim/draw.h`); depth range and window origin from the game's own shaders. `nvn_startup_check` draws all 671 programs, full and depth-only, on lavapipe: 1,342 draws, no validation message. Open: the alpha test (a discard added by the build step), a Vulkan surface for the window |
 | Against Vulkan | **Done for the binding layer** (owner's go-ahead for a Vulkan loader in the Linux image, 2026-10-26). `nvn_vulkan_check` on lavapipe with the validation layers: all 671 programs' modules, set layouts, descriptor sets (written by the binding layer) and full and vertex-only pipelines, 0 validation errors or warnings. It found two interface rules the shim must keep: drop fragment inputs NVN found inactive and the vertex stage does not write (now in the build step, 32 inputs), and enable `maintenance4` (2 programs) |
 
+**Target platforms (decided 2026-10-27 by the owner).** Linux (in Docker, `port/README.md`) stays
+the only target that runs until the title screen works. Windows is compile-checked alongside it,
+so that what breaks only there is found early: `tools/port_sweep.py --target x86_64-w64-mingw32`
+compiles every source with llvm-mingw (the Itanium C++ ABI, which the game's vtables need; not
+MSVC) and lists what compiles but means something else under LLP64 (`long`, `l` literals) or with
+a 16-bit `wchar_t`. On 2026-10-27 all 3,979 sources compile for Windows, and the scan leaves only
+the wide-text calls in two files (`port/README.md`, "Windows (compile only)"). A Windows link, the
+Win64 and COFF versions of `tools/port_link.py`'s generated assembly, and the fault handler as
+structured exception handling wait until Linux reaches the title screen; that section lists them.
+
 ## What this changes for the streams
 
 - **Matching work order:** hubs first (`tools/hubs.py`, boot slice first), then "ready" functions

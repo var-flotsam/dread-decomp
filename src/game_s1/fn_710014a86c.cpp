@@ -180,7 +180,7 @@ struct UnkHashedList_710014c1e8 {
                 allocator->vf_0x48(n);
                 n = next;
             }
-            __builtin_memset(buckets.data, 0, buckets.capacity * 8ul);
+            __builtin_memset(buckets.data, 0, buckets.capacity * u64(8));
             size = 0;
             tail = nullptr;
             head = nullptr;

@@ -46,3 +46,7 @@ struct UnkSceneNode {
 };
 
 bool fn_7100219ae0(UnkRenderManager* self, UnkSceneNode* node, u32 layer);
+
+// Sets the pass parameter `hash` names from `value`, through the pass list at +0x220; the last
+// argument is a count or a mode (6 for a rectangle, 2 or 0 for one value). Not defined by hand.
+void fn_7100219294(UnkRenderManager* self, u64 hash, const f32* value, u32 count);
