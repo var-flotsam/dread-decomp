@@ -15,6 +15,13 @@
 // shim still traps: the next work list. Exit status 0 when every check passes; traps are not
 // failures. Needs a Vulkan device (the port's Vulkan image: lavapipe); $DREAD_NVN_VALIDATION=1 adds
 // the validation layers, whose errors fail the check.
+//
+//   nvn_startup_check [<shader dir> <dump's romfs/system/shd>]
+//
+// With the installed shaders (the `shaders` target's DREAD_SHADER_DIR) and the dump's packages, it
+// also draws (DrawFrames): clears read back, nvnTextureWriteTexels read back, and every program of
+// the manifest drawn with the engine's render state, vertex and uniform setup, in full and as the
+// depth-only pass. Prints counts only.
 
 #include <algorithm>
 #include <cstdint>
@@ -26,9 +33,12 @@
 
 #include "nvn_shim/command.h"
 #include "nvn_shim/device.h"
+#include "nvn_shim/draw.h"
 #include "nvn_shim/memory.h"
+#include "nvn_shim/nvn_types.h"
 #include "nvn_shim/procs.h"
 #include "nvn_shim/queue.h"
+#include "nvn_shim/shader_manifest.h"
 #include "nvn_shim/texture.h"
 #include "nvn_shim/window.h"
 
@@ -72,9 +82,333 @@ void* LargeStorage(std::size_t size) {
     return posix_memalign(&p, 0x1000, size) == 0 ? p : nullptr;
 }
 
+
+// The game's objects the drawing frames use, made by the start-up replay in main.
+struct DrawContext {
+    void* device;
+    void* queue;
+    void* sync;
+    void* window;
+    void* window_sync;
+    void* cmd;
+    void* pool;  // an engine pool (12 MB) for vertex, index and uniform data
+    const void* target;
+    const void* other_target;
+    const void* depth;
+    void* texture_pool;
+    void* texture_builder;
+    void* blend;
+    void* channel_mask;
+    void* color;
+    void* depth_stencil;
+    void* multisample;
+    void* polygon;
+    std::int32_t texture_id, cube_id, sampler_id, next_texture_id;
+};
+
+bool ReadFile(const std::string& path, std::vector<unsigned char>* out) {
+    FILE* f = std::fopen(path.c_str(), "rb");
+    if (!f)
+        return false;
+    std::fseek(f, 0, SEEK_END);
+    const long n = std::ftell(f);
+    std::fseek(f, 0, SEEK_SET);
+    out->resize(n > 0 ? static_cast<std::size_t>(n) : 0);
+    const bool ok = n > 0 && std::fread(out->data(), 1, out->size(), f) == out->size();
+    std::fclose(f);
+    return ok;
+}
+
+// The drawing side, with the game's argument shapes (nvn_shim/draw.h has the call sites): a frame
+// that clears the window's texture and reads it back; nvnTextureWriteTexels read back; then every
+// program of the manifest drawn twice into the window's texture and the depth target, with the
+// render state, vertex and uniform setup of the engine's draw path, once with all its stages and
+// once as the depth-only pass binds it (fragment stage unbound), with an instanced draw.
+void DrawFrames(const char* shader_dir, const char* shd_dir, const DrawContext& x) {
+    ShaderManifest manifest;
+    std::string error;
+    if (!manifest.Load(shader_dir, &error)) {
+        Check(false, ("the shader manifest: " + error).c_str());
+        return;
+    }
+    SetShaderDirectory(shader_dir);
+    auto BeginRecording = Fn<void (*)(void*)>("nvnCommandBufferBeginRecording");
+    auto EndRecording = Fn<std::uint64_t (*)(void*)>("nvnCommandBufferEndRecording");
+    auto SubmitCommands = Fn<void (*)(void*, std::int32_t, const std::uint64_t*)>("nvnQueueSubmitCommands");
+    auto QueueFenceSync = Fn<void (*)(void*, void*, std::int32_t, std::int32_t)>("nvnQueueFenceSync");
+    auto SyncWait = Fn<std::int32_t (*)(const void*, std::uint64_t)>("nvnSyncWait");
+    auto SetRenderTargets =
+        Fn<void (*)(void*, std::int32_t, const void* const*, const void* const*, const void*, const void*)>(
+            "nvnCommandBufferSetRenderTargets");
+    auto SetViewport = Fn<void (*)(void*, std::int32_t, std::int32_t, std::int32_t, std::int32_t)>("nvnCommandBufferSetViewport");
+    auto SetScissor = Fn<void (*)(void*, std::int32_t, std::int32_t, std::int32_t, std::int32_t)>("nvnCommandBufferSetScissor");
+    auto ClearColor = Fn<void (*)(void*, std::int32_t, const float*, std::int32_t)>("nvnCommandBufferClearColor");
+    auto ClearDepthStencil =
+        Fn<void (*)(void*, float, std::uint8_t, std::int32_t, std::int32_t)>("nvnCommandBufferClearDepthStencil");
+    auto BindChannelMaskState = Fn<void (*)(void*, const void*)>("nvnCommandBufferBindChannelMaskState");
+    auto SetChannelMask =
+        Fn<void (*)(void*, std::int32_t, std::uint8_t, std::uint8_t, std::uint8_t, std::uint8_t)>(
+            "nvnChannelMaskStateSetChannelMask");
+    auto MemoryPoolMap = Fn<void* (*)(const void*)>("nvnMemoryPoolMap");
+    auto MemoryPoolGetBufferAddress = Fn<BufferAddress (*)(const void*)>("nvnMemoryPoolGetBufferAddress");
+    auto submit_and_wait = [&]() {
+        const std::uint64_t handle = EndRecording(x.cmd);
+        SubmitCommands(x.queue, 1, &handle);
+        QueueFenceSync(x.queue, x.sync, 0, 0);
+        Check(SyncWait(x.sync, ~0ull) == 0, "nvnSyncWait reaches the fence");
+    };
+
+    // fn_7100159920 and fn_7100159660: render targets, then clears of colour target 0 and depth.
+    const void* targets[1] = {x.target};
+    BeginRecording(x.cmd);
+    SetRenderTargets(x.cmd, 1, targets, nullptr, x.depth, nullptr);
+    Fn<void (*)(void*, const void*, std::int64_t, std::int64_t)>("nvnCommandBufferSetShaderScratchMemory")(x.cmd, x.pool, 0,
+                                                                                                          0x100000);
+    SetViewport(x.cmd, 0, 0, 1280, 720);
+    SetScissor(x.cmd, 0, 0, 1280, 720);
+    for (int t = 0; t < 8; ++t)
+        SetChannelMask(x.channel_mask, t, 1, 1, 1, 1);
+    BindChannelMaskState(x.cmd, x.channel_mask);
+    const float clear[4] = {0.25f, 0.5f, 0.75f, 1.0f};
+    ClearColor(x.cmd, 0, clear, 0xf);
+    ClearDepthStencil(x.cmd, 1.0f, 1, 0, -1);
+    submit_and_wait();
+    std::vector<std::uint8_t> texels;
+    Check(ReadTexels(x.target, &texels) && texels.size() == 1280u * 720u * 4u && texels[0] == 64 && texels[1] == 128 &&
+              texels[2] == 191 && texels[3] == 255 && texels[texels.size() - 1] == 255,
+          "nvnCommandBufferClearColor fills the render target with the colour");
+
+    // fn_7100160ef0 and fn_7100160e80: a level's texels, then one texel.
+    {
+        Storage texture;
+        auto TB = [&](const char* name) { return Fn<void (*)(void*, std::int32_t)>(name); };
+        Fn<void (*)(void*)>("nvnTextureBuilderSetDefaults")(x.texture_builder);
+        TB("nvnTextureBuilderSetTarget")(x.texture_builder, 1);
+        TB("nvnTextureBuilderSetFormat")(x.texture_builder, 0x25);
+        Fn<void (*)(void*, std::int32_t, std::int32_t)>("nvnTextureBuilderSetSize2D")(x.texture_builder, 4, 4);
+        TB("nvnTextureBuilderSetLevels")(x.texture_builder, 1);
+        Fn<void (*)(void*, const void*, std::int64_t)>("nvnTextureBuilderSetStorage")(x.texture_builder, x.pool, 0x100000);
+        Check(Fn<std::int32_t (*)(void*, const void*)>("nvnTextureInitialize")(&texture, x.texture_builder) == 1,
+              "a 4x4 texture for nvnTextureWriteTexels");
+        auto WriteTexels = Fn<void (*)(const void*, const void*, const std::int32_t*, const void*)>("nvnTextureWriteTexels");
+        std::uint32_t level[16];
+        for (std::uint32_t i = 0; i < 16; ++i)
+            level[i] = 0x01010101u * i;
+        const std::int32_t whole[6] = {0, 0, 0, 4, 4, 1}, one[6] = {2, 1, 0, 1, 1, 1};
+        const std::uint32_t texel = 0xdeadbeefu;
+        WriteTexels(&texture, nullptr, whole, level);
+        WriteTexels(&texture, nullptr, one, &texel);
+        std::vector<std::uint8_t> got;
+        level[1 * 4 + 2] = texel;
+        Check(ReadTexels(&texture, &got) && got.size() == sizeof(level) && std::memcmp(got.data(), level, sizeof(level)) == 0,
+              "nvnTextureWriteTexels writes the level, then the texel at (2, 1)");
+        Fn<void (*)(void*)>("nvnTextureFinalize")(&texture);
+    }
+
+    // The vertex, index and uniform data, in the engine pool (its storage is the game's memory).
+    auto* storage = static_cast<unsigned char*>(MemoryPoolMap(x.pool));
+    const BufferAddress base = MemoryPoolGetBufferAddress(x.pool);
+    const float positions[3][4] = {{-1, -1, 0, 1}, {3, -1, 0, 1}, {-1, 3, 0, 1}};
+    std::memset(storage, 0, 0x3000);
+    std::memcpy(storage, positions, sizeof(positions));
+    const std::uint16_t indices[4] = {0, 1, 2, 0};
+    std::memcpy(storage + 0x1000, indices, sizeof(indices));
+    const BufferAddress vertices = base, index_address = base + 0x1000, uniforms = base + 0x2000;
+
+    // fn_7100159ce0's render-state flush: the blend state bound per target, colour, depth-stencil,
+    // multisample and polygon states; the alpha reference; fn_710015acf0's stencil mask and reference;
+    // the draws' depth bounds.
+    auto SetBlendTarget = Fn<void (*)(void*, std::int32_t)>("nvnBlendStateSetBlendTarget");
+    auto BindBlendState = Fn<void (*)(void*, const void*)>("nvnCommandBufferBindBlendState");
+    Fn<void (*)(void*, std::int32_t, std::int32_t, std::int32_t, std::int32_t)>("nvnBlendStateSetBlendFunc")(x.blend, 5, 6, 5, 6);
+    Fn<void (*)(void*, std::int32_t, std::int32_t)>("nvnBlendStateSetBlendEquation")(x.blend, 1, 1);
+    for (int t = 0; t < 8; ++t) {
+        SetBlendTarget(x.blend, t);
+        BindBlendState(x.cmd, x.blend);
+        Fn<void (*)(void*, std::int32_t, std::uint8_t)>("nvnColorStateSetBlendEnable")(x.color, t, 1);
+    }
+    Fn<void (*)(void*, std::int32_t)>("nvnColorStateSetAlphaTest")(x.color, 8);
+    Fn<void (*)(void*, float)>("nvnCommandBufferSetAlphaRef")(x.cmd, 0.5f);
+    Fn<void (*)(void*, const void*)>("nvnCommandBufferBindColorState")(x.cmd, x.color);
+    // Depth and stencil tests on, so their dynamic state is exercised: depth less-or-equal (4),
+    // stencil always (8) replacing (3) where the depth test passes.
+    Fn<void (*)(void*, std::uint8_t)>("nvnDepthStencilStateSetDepthTestEnable")(x.depth_stencil, 1);
+    Fn<void (*)(void*, std::uint8_t)>("nvnDepthStencilStateSetDepthWriteEnable")(x.depth_stencil, 1);
+    Fn<void (*)(void*, std::int32_t)>("nvnDepthStencilStateSetDepthFunc")(x.depth_stencil, 4);
+    Fn<void (*)(void*, std::uint8_t)>("nvnDepthStencilStateSetStencilTestEnable")(x.depth_stencil, 1);
+    Fn<void (*)(void*, std::int32_t, std::int32_t)>("nvnDepthStencilStateSetStencilFunc")(x.depth_stencil, 3, 8);
+    Fn<void (*)(void*, std::int32_t, std::int32_t, std::int32_t, std::int32_t)>("nvnDepthStencilStateSetStencilOp")(
+        x.depth_stencil, 3, 1, 1, 3);
+    Fn<void (*)(void*, const void*)>("nvnCommandBufferBindDepthStencilState")(x.cmd, x.depth_stencil);
+    Fn<void (*)(void*, const void*)>("nvnCommandBufferBindMultisampleState")(x.cmd, x.multisample);
+    Fn<void (*)(void*, const void*)>("nvnCommandBufferBindPolygonState")(x.cmd, x.polygon);
+    for (std::int32_t face : {2, 1}) {
+        Fn<void (*)(void*, std::int32_t, std::int32_t)>("nvnCommandBufferSetStencilRef")(x.cmd, face, 0);
+        Fn<void (*)(void*, std::int32_t, std::int32_t)>("nvnCommandBufferSetStencilMask")(x.cmd, face, 0xff);
+    }
+    Fn<void (*)(void*, std::uint8_t, float, float)>("nvnCommandBufferSetDepthBounds")(x.cmd, 0, 0.0f, 1.0f);
+
+    auto ProgramInitialize = Fn<std::int32_t (*)(void*, const void*)>("nvnProgramInitialize");
+    auto ProgramSetShaders = Fn<std::int32_t (*)(void*, std::int32_t, const ShaderData*)>("nvnProgramSetShaders");
+    auto ProgramFinalize = Fn<void (*)(void*)>("nvnProgramFinalize");
+    auto BindProgram = Fn<void (*)(void*, const void*, std::int32_t)>("nvnCommandBufferBindProgram");
+    auto BindUniformBuffer =
+        Fn<void (*)(void*, std::int32_t, std::int32_t, BufferAddress, std::uint64_t)>("nvnCommandBufferBindUniformBuffer");
+    auto UpdateUniformBuffer =
+        Fn<void (*)(void*, BufferAddress, std::uint64_t, std::int64_t, std::uint64_t, const void*)>(
+            "nvnCommandBufferUpdateUniformBuffer");
+    auto BindTexture = Fn<void (*)(void*, std::int32_t, std::int32_t, TextureHandle)>("nvnCommandBufferBindTexture");
+    auto GetTextureHandle = Fn<TextureHandle (*)(const void*, std::int32_t, std::int32_t)>("nvnDeviceGetTextureHandle");
+    auto AttribSetDefaults = Fn<void (*)(void*)>("nvnVertexAttribStateSetDefaults");
+    auto AttribSetFormat = Fn<void (*)(void*, std::int32_t, std::int32_t)>("nvnVertexAttribStateSetFormat");
+    auto AttribSetStream = Fn<void (*)(void*, std::int32_t)>("nvnVertexAttribStateSetStreamIndex");
+    auto StreamSetDefaults = Fn<void (*)(void*)>("nvnVertexStreamStateSetDefaults");
+    auto StreamSetStride = Fn<void (*)(void*, std::int32_t)>("nvnVertexStreamStateSetStride");
+    auto StreamSetDivisor = Fn<void (*)(void*, std::int32_t)>("nvnVertexStreamStateSetDivisor");
+    auto BindAttribs = Fn<void (*)(void*, std::int32_t, const void*)>("nvnCommandBufferBindVertexAttribState");
+    auto BindStreams = Fn<void (*)(void*, std::int32_t, const void*)>("nvnCommandBufferBindVertexStreamState");
+    auto BindVertexBuffer =
+        Fn<void (*)(void*, std::int32_t, BufferAddress, std::uint32_t)>("nvnCommandBufferBindVertexBuffer");
+    auto DrawElements =
+        Fn<void (*)(void*, std::int32_t, std::int32_t, std::int32_t, BufferAddress)>("nvnCommandBufferDrawElements");
+    auto DrawElementsInstanced =
+        Fn<void (*)(void*, std::int32_t, std::int32_t, std::int32_t, BufferAddress, std::int32_t, std::int32_t, std::int32_t)>(
+            "nvnCommandBufferDrawElementsInstanced");
+    auto Barrier = Fn<void (*)(void*, std::int32_t)>("nvnCommandBufferBarrier");
+    const TextureHandle texture = GetTextureHandle(x.device, x.texture_id, x.sampler_id);
+    const TextureHandle cube = GetTextureHandle(x.device, x.cube_id, x.sampler_id);
+    std::uint32_t attribs[16];  // the engine's 4-byte attribute states and 8-byte stream states
+    std::uint64_t streams[16];
+    std::vector<unsigned char> uniform_data(0x1000, 0);
+
+    const DrawStats before = GetDrawStats();
+    std::size_t programs = 0, failed = 0;
+    BeginRecording(x.cmd);
+    SetRenderTargets(x.cmd, 1, targets, nullptr, x.depth, nullptr);
+    SetViewport(x.cmd, 0, 0, 1280, 720);
+    SetScissor(x.cmd, 0, 0, 1280, 720);
+    for (const PackageInfo& pkg : manifest.packages()) {
+        std::vector<unsigned char> bytes;
+        if (!ReadFile(std::string(shd_dir) + "/" + pkg.name + ".bshdat", &bytes)) {
+            Check(false, ("the package " + pkg.name + ".bshdat").c_str());
+            continue;
+        }
+        for (const ProgramInfo& prog : pkg.programs) {
+            Storage program;
+            ShaderData data[2];
+            std::int32_t count = 0, bits = 0;
+            for (const StageInfo& st : prog.stages) {
+                if (st.control_offset + static_cast<std::uint64_t>(st.control_size) > bytes.size())
+                    continue;
+                data[count++] = {uniforms, bytes.data() + st.control_offset};
+                bits |= st.stage == Stage::Vertex ? kStageBitVertex : kStageBitFragment;
+            }
+            ProgramInitialize(&program, x.device);
+            if (ProgramSetShaders(&program, count, data) != 1) {
+                if (++failed <= 5)
+                    std::fprintf(stderr, "FAIL nvnProgramSetShaders: %s program %u\n", pkg.name.c_str(), prog.index);
+                ProgramFinalize(&program);
+                continue;
+            }
+            programs++;
+            // fn_710015d900: the program, its blocks at their slots; fn_710015e700's updates;
+            // fn_7100161250: texture slots (the cube in every other, mismatches included).
+            BindProgram(x.cmd, &program, bits);
+            for (const StageInfo& st : prog.stages) {
+                const std::int32_t stage = static_cast<std::int32_t>(st.stage);
+                for (const StageResource& b : st.blocks)
+                    if (b.nvn_slot >= 0)
+                        BindUniformBuffer(x.cmd, stage, b.nvn_slot, uniforms, b.size_or_count);
+                for (const StageResource& s : st.samplers)
+                    for (std::uint32_t k = 0; s.nvn_slot >= 0 && k < s.size_or_count; ++k)
+                        BindTexture(x.cmd, stage, s.nvn_slot + static_cast<std::int32_t>(k), k % 2 ? cube : texture);
+            }
+            // Every other program without an update, its depth-only draw first: after the previous
+            // program's full and depth-only draws, that is the sequence "A full, B vertex-only, B
+            // full" with nothing changed in between, which must rebind B's fragment set itself.
+            const bool updates = programs % 2 == 1;  // the 1st, 3rd ... program
+            if (updates) {
+                uniform_data[0] = static_cast<unsigned char>(programs);
+                UpdateUniformBuffer(x.cmd, uniforms, 0x1000, 0, 0x1000, uniform_data.data());
+            }
+            // fn_7100161fd0 and fn_7100161800: every attribute and stream reset, then one stream per
+            // input the vertex stage reads, four floats 16 bytes apart; the second stream steps per
+            // instance (fn_7100162530's instance buffer).
+            std::int32_t streams_used = 0, attrib_count = 0;
+            for (int i = 0; i < 16; ++i) {
+                AttribSetDefaults(&attribs[i]);
+                StreamSetDefaults(&streams[i]);
+            }
+            for (const StageInfo& st : prog.stages) {
+                if (st.stage != Stage::Vertex)
+                    continue;
+                for (const StageInterface& in : st.inputs) {
+                    if (in.location < 0 || in.location >= 16 || streams_used >= 16)
+                        continue;
+                    AttribSetDefaults(&attribs[in.location]);
+                    AttribSetStream(&attribs[in.location], streams_used);
+                    AttribSetFormat(&attribs[in.location], 0x2e, 0);
+                    StreamSetDefaults(&streams[streams_used]);
+                    StreamSetStride(&streams[streams_used], 16);
+                    StreamSetDivisor(&streams[streams_used], streams_used == 1 ? 1 : 0);
+                    BindVertexBuffer(x.cmd, streams_used, vertices, 0x1000);
+                    attrib_count = std::max(attrib_count, in.location + 1);
+                    streams_used++;
+                }
+            }
+            BindAttribs(x.cmd, attrib_count, attribs);
+            BindStreams(x.cmd, streams_used, streams);
+            // In full, and as the depth-only pass binds it (the fragment stage unbound) with an
+            // instanced triangle strip.
+            auto depth_only = [&] {
+                BindProgram(x.cmd, nullptr, kStageBitFragment);
+                DrawElementsInstanced(x.cmd, 5, 1, 4, index_address, 0, 0, 2);
+            };
+            if (!updates) {
+                depth_only();
+                BindProgram(x.cmd, &program, bits);
+            }
+            DrawElements(x.cmd, 4, 1, 3, index_address);
+            if (updates)
+                depth_only();
+            BindProgram(x.cmd, nullptr, kStageBitsAll);
+            ProgramFinalize(&program);
+            if (programs % 64 == 0) {  // a frame's worth: submit, as fn_7100159ac0 does
+                Barrier(x.cmd, 2);
+                submit_and_wait();
+                BeginRecording(x.cmd);
+                SetRenderTargets(x.cmd, 1, targets, nullptr, x.depth, nullptr);
+            }
+        }
+    }
+    // The frame's end, the window's crop and the present (fn_7100159bf0).
+    submit_and_wait();
+    Fn<void (*)(void*, std::int32_t, std::int32_t, std::int32_t, std::int32_t)>("nvnWindowSetCrop")(x.window, 0, 0, 1280, 720);
+    Fn<void (*)(void*, const void*, std::int32_t)>("nvnQueuePresentTexture")(x.queue, x.window, 0);
+    std::int32_t index = -1;
+    Fn<std::int32_t (*)(void*, void*, std::int32_t*)>("nvnWindowAcquireTexture")(x.window, x.window_sync, &index);
+    Check(SyncWait(x.window_sync, ~0ull) == 0, "the acquired texture's sync is reached");
+    const WindowStats ws = GetWindowStats(x.window);
+    Check(ws.presented != nullptr && ws.cropped && ws.crop[2] == 1280, "the present and the window's crop");
+
+    const DrawStats after = GetDrawStats();
+    std::printf("nvn shim: drew %zu programs (%zu failed): %llu draws, %llu skipped, %llu pipelines, %llu render passes, "
+                "%llu uniform updates, %llu submitted\n",
+                programs, failed, static_cast<unsigned long long>(after.draws - before.draws),
+                static_cast<unsigned long long>(after.skipped_draws - before.skipped_draws),
+                static_cast<unsigned long long>(after.pipelines), static_cast<unsigned long long>(after.render_passes),
+                static_cast<unsigned long long>(after.uniform_updates), static_cast<unsigned long long>(after.submitted));
+    Check(failed == 0 && programs > 0, "every program of the manifest initialises");
+    Check(after.draws - before.draws == 2 * programs && after.skipped_draws == before.skipped_draws,
+          "every draw is recorded");
+    Check(after.pipelines > 0 && after.uniform_updates >= programs / 2, "pipelines and uniform updates");
+    std::vector<std::uint8_t> drawn;
+    Check(ReadTexels(x.target, &drawn) && drawn.size() == texels.size(), "the render target reads back after the draws");
+}
+
 }  // namespace
 
-int main() {
+int main(int argc, char** argv) {
     // fn_71001587f0: the bootstrap loader, then the device's entry points.
     auto get_proc = reinterpret_cast<GetProcFn>(nvnBootstrapLoader("nvnDeviceGetProcAddress"));
     Check(get_proc != nullptr, "nvnBootstrapLoader(nvnDeviceGetProcAddress)");
@@ -457,6 +791,13 @@ int main() {
           "command buffer 0 recorded twice with its memory and viewport");
     const WindowStats ws = GetWindowStats(&window);
     Check(ws.textures == 2 && ws.acquires == 4 && ws.native_window == &native_window, "the window's textures and acquires");
+
+    // With the installed shaders and the dump's packages: the drawing side (DrawFrames).
+    if (argc >= 3)
+        DrawFrames(argv[1], argv[2], {&device, &queue, &sync0, &window, &window_sync, &cmd_builders[0], &engine_pools[3],
+                                      &render_targets[0], &render_targets[1], &depth_target, &texture_pool, &texture_builder,
+                                      &blend, &channel_mask, &color, &depth_stencil, &multisample, &polygon, color_ids[1],
+                                      cube_id, sampler_id, next_texture_id});
 
     Check(TrapsCalled().empty(), "the start-up replay reaches no unimplemented NVN function");
     // Every name the game fetches resolves (trapped or not); a duplicate registration is a bug.

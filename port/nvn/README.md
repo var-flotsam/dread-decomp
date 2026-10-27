@@ -3,16 +3,17 @@
 Milestone M2 of the PC port (`docs/PORT_PLAN.md`, decision 3: Vulkan first, shaders compiled to
 SPIR-V at build time). The game drives the GPU through NVN, which it loads as a table of function
 pointers (`fn_7100154770` asks `nvnDeviceGetProcAddress` for 523 names and stores each in a global).
-The shim provides those functions on Vulkan. This directory holds the parts that exist so far:
-the entry layer (the bootstrap loader and `nvnDeviceGetProcAddress`, a named trap for every
-function not yet written), the device, memory pools and buffers, queues and syncs, command buffers
-(their memory, recording and bindings), the fixed-function state objects, the window, textures
-and the texture and sampler pools and samplers; the shader manifest and the binding layer.
-Programs, vertex state, pipelines and draws, clears and render targets, and presentation to a real
-window come next (the 38 functions the game calls that the shim lacks, all on the drawing side). `data/nvn_procs.csv`
-(`tools/nvn_procs.py`) lists the 523 functions with the global each fills (the `g_unk_716e29xxxx`
-of `src/game_s7/fn_71001587f0.cpp`), the number of game call sites (146 have one) and whether the
-shim implements it (143, 108 of the 146 the game calls).
+The shim provides those functions on Vulkan: the entry layer (the bootstrap loader and
+`nvnDeviceGetProcAddress`, a named trap for every function not written), the device, memory pools
+and buffers, queues and syncs, command buffers recorded into Vulkan command buffers, the
+fixed-function and vertex state objects, programs, pipelines, draws, clears, render targets,
+barriers, uniform updates, the window, textures and the texture and sampler pools and samplers; the
+shader manifest and the binding layer. Every NVN function the game calls is implemented.
+Presentation to a real window, the alpha test, asset texel upload and the sampler enumerations
+are what is left ("Drawing", below). `data/nvn_procs.csv` (`tools/nvn_procs.py`; `--sites NAME`
+lists a function's call sites) lists the 523 functions with the global each fills (the
+`g_unk_716e29xxxx` of `src/game_s7/fn_71001587f0.cpp`), the number of game call sites (146 have
+one) and whether the shim implements it (182, all 146 the game calls).
 
 Rules: nothing here comes from NVN's SDK headers or from an emulator. Every NVN type, constant and
 argument order is a placeholder inferred from the game's own calls, and the file that uses it names
@@ -24,20 +25,23 @@ or SDK is needed to compile.
 |---|---|
 | `include/nvn_shim/procs.h`, `src/procs.cpp` | the entry layer: `nvnBootstrapLoader`, the name table, the trap pool |
 | `include/nvn_shim/device.h`, `src/device.cpp` | the device over Vulkan (the shim's one instance, device and queue), `nvnDeviceGetInteger`'s names and answers |
-| `include/nvn_shim/memory.h`, `src/memory.cpp` | memory pools (a GPU address range and a host-visible Vulkan buffer each) and buffers; the binding layer's address resolution |
-| `include/nvn_shim/queue.h`, `src/queue.cpp` | queues, syncs, submit, fence, present (counted) |
-| `include/nvn_shim/command.h`, `src/command.cpp` | command buffers: memory, recording, viewport and scissor, program, uniform-buffer and texture bindings |
-| `src/state.cpp` | the blend, channel-mask, colour, depth-stencil, multisample and polygon state objects (values kept as given) |
-| `include/nvn_shim/window.h`, `src/window.cpp` | the window: its textures in turn, the present interval |
-| `include/nvn_shim/texture.h`, `src/texture.cpp` | textures as Vulkan images (the format and target table with its evidence), the texture and sampler pools, samplers, texture handles, the binding layer's resolver over all of it |
+| `include/nvn_shim/memory.h`, `src/memory.cpp` | memory pools (a GPU address range and a Vulkan buffer each: the game's storage imported, or a host-visible copy) and buffers; the binding layer's address resolution |
+| `include/nvn_shim/queue.h`, `src/queue.cpp` | queues, syncs, submits, fences and sync waits on the queue's timeline, present |
+| `include/nvn_shim/command.h`, `src/command.cpp` | command buffers as Vulkan command buffers: the queue's bound state, render targets, clears, barriers, uniform updates, vertex buffers, draws |
+| `include/nvn_shim/draw.h` | what every number of the drawing side means, with the engine function that converts its own enumeration to it; draw statistics; the shader directory |
+| `src/state.cpp`, `src/draw_state.h` | the blend, channel-mask, colour, depth-stencil, multisample, polygon, vertex attribute and vertex stream state objects |
+| `src/program.cpp`, `src/program.h` | programs: stages found by their control section, shader modules, set and pipeline layouts |
+| `src/pipeline.cpp`, `src/pipeline.h` | pipelines for the draws' state, cached; NVN's numbers in Vulkan's terms |
+| `include/nvn_shim/window.h`, `src/window.cpp` | the window: its textures in turn, the present interval, the crop, the presented texture |
+| `include/nvn_shim/texture.h`, `src/texture.cpp`, `src/texture_internal.h` | textures as Vulkan images (the format and target table with its evidence), render-target views, texel writes, the texture and sampler pools, samplers, texture handles, the binding layer's resolver over all of it, placeholders of each sampler kind |
 | `src/objects.h` | the side tables that hold the shim's state for the game's objects |
 | `include/nvn_shim/nvn_types.h` | the NVN values the binding layer handles: stages, stage bits, buffer addresses, texture handles, `nvnProgramSetShaders`' stage array |
 | `include/nvn_shim/shader_manifest.h`, `src/shader_manifest.cpp` | reads `shaders.manifest` (written by `tools/bshdat.py --install`) and finds a stage by its control section |
 | `include/nvn_shim/bindings.h`, `src/bindings.cpp` | descriptor set layouts per stage; NVN's per-stage slots turned into descriptor writes |
 | `check/manifest_check.cpp` | `nvn_manifest_check`: runs the manifest reader and the binding layer over the real build output (below) |
 | `check/vulkan_check.cpp` | `nvn_vulkan_check`: the same against a real Vulkan implementation (lavapipe), with the validation layers: modules, layouts, descriptor sets, pipelines (below) |
-| `check/startup_check.cpp` | `nvn_startup_check`: the game's graphics start-up and three frames replayed against the shim (below) |
-| `check/spirv_scan.h` | the checks' own SPIR-V reader (bindings, interface variables): the reference the manifest is compared with |
+| `check/startup_check.cpp` | `nvn_startup_check`: the game's graphics start-up and three frames replayed against the shim; with the shaders, a cleared frame read back and every program drawn (below) |
+| `include/nvn_shim/spirv_scan.h` | a SPIR-V reader (bindings, sampler kinds, interface variables): the checks' reference the manifest is compared with, and the shim's for the vertex inputs and sampler kinds |
 | `CMakeLists.txt` | `dread_nvn` (static library), built when `DREAD_VULKAN_INCLUDE` is set; `nvn_manifest_check` when `DREAD_LINK` is on; `nvn_vulkan_check` and `nvn_startup_check` when a Vulkan loader is found too |
 
 ```sh
@@ -65,6 +69,7 @@ docker build -t dread-port-linux-vulkan port/docker/vulkan
 DREAD_PORT_IMAGE=dread-port-linux-vulkan port/docker/run.sh cmake -S port -B build/port/linux/cmake-vk -G Ninja -DCMAKE_CXX_COMPILER=clang++ -DDREAD_SHADERS=OFF
 DREAD_PORT_IMAGE=dread-port-linux-vulkan port/docker/run.sh cmake --build build/port/linux/cmake-vk --target nvn_vulkan_check
 DREAD_PORT_IMAGE=dread-port-linux-vulkan port/docker/run.sh build/port/linux/cmake-vk/nvn/nvn_vulkan_check build/port/cmake/shaders
+DREAD_PORT_IMAGE=dread-port-linux-vulkan port/docker/run.sh env DREAD_NVN_VALIDATION=1 build/port/linux/cmake-vk/nvn/nvn_startup_check build/port/cmake/shaders orig/2.1.0/romfs/system/shd
 ```
 
 ## The start-up and the frame (what the shim's parts are written against)
@@ -113,7 +118,22 @@ does (the pool keeps its own Vulkan sampler), the depth target (`0x35`, a D32/S8
 RGBA8 colour targets as `fn_7100160f60` makes them, a cube target as `fn_710015f880` makes it (six
 layers), the start-up's other fast-cleared colour formats and the sRGB and BC formats of the
 game's textures, a number nothing produces failing by name, and a texture handle resolving through
-the binding layer's resolver to the target's view and the sampler.
+the binding layer's resolver to the target's view and the sampler. Given the shader directory and
+the dump's packages it draws too (2026-10-27, lavapipe, validation on, about two minutes): a frame
+whose colour clear reads back exactly, `nvnTextureWriteTexels` of a level and of one texel read
+back, then all 671 programs of the manifest, each found by its control section from the package
+bytes, drawn with the engine's render-state flush (a blend state bound per target, colour,
+depth-stencil with the depth and stencil tests on, multisample, polygon, stencil mask and
+reference, depth bounds), its uniform-buffer binding and (every other program) update, texture
+slots (a cube in every other slot, so mismatched kinds are exercised), and its vertex setup
+(attribute and stream states, one stream per vertex input, the second one per instance), once in
+full and once as the depth-only pass with an instanced triangle strip, in the order "A full, A
+depth-only, B depth-only, B full" so that a set cached across layouts would show: 1,342 draws, none
+skipped, 1,318 pipelines, no validation message, with the pools imported and again with
+`$DREAD_NVN_NO_HOST_IMPORT=1` (the copy path); then the window's crop, a present and an acquire whose
+sync is reached. It reads back clears and texel writes but no drawn pixel: the game's shaders with
+zeroed uniforms draw nothing predictable, so a flipped viewport or a wrong winding would still
+pass. That waits for the first frame of the game itself.
 
 What the parts do so far, and what they do not yet:
 
@@ -123,19 +143,13 @@ What the parts do so far, and what they do not yet:
   their call sites in `device.h`; the values are the shim's own, chosen for how the game uses them)
   and reports any other name once.
 - **Memory.** A pool gets a 64 KB-aligned range of a GPU address space from 4 GB up and, when
-  the GPU first needs it, a host-visible Vulkan buffer of its size (the engine's own pools of
-  `fn_7100153350` are 1.5 GB together; mirroring them up front would double that).
-  `nvnDeviceFinalize` releases the pools' Vulkan objects before the device goes. A buffer's address is its pool's plus its offset;
-  `nvnBufferMap` is the game's own storage plus the offset. The game writes into its storage;
-  `SyncPoolRange` copies a range into the Vulkan buffer, which the submit will call once draws
-  exist. `ResolveGpuAddress` is the binding layer's buffer resolution.
-- **Queue and sync.** Submits, fences and presents are counted; a fence is signalled when set, since
-  nothing runs on the GPU yet. They become a Vulkan submit and a timeline semaphore with the draws.
-- **Command buffers** keep their memory, viewport, scissor, sample mask, pools, program and the
-  binding layer's `BindingState`; `EndRecording` hands out a handle. No Vulkan command buffer yet.
-- **State objects** keep NVN's values as the game passes them, to be translated by the pipeline part.
-- **Window** hands out its textures in turn (the game's colour targets, Vulkan images now); there is
-  no Vulkan surface yet (the port's window is `nn::vi`'s).
+  the GPU first needs it, a Vulkan buffer: the game's own storage imported
+  (`VK_EXT_external_memory_host`), or else a host-visible copy that each submit refreshes for the
+  ranges its recordings read (the engine's own pools of `fn_7100153350` are 1.5 GB together; nothing
+  is made for a pool the GPU never reads). `nvnDeviceFinalize` releases the pools' Vulkan objects
+  before the device goes. A buffer's address is its pool's plus its offset; `nvnBufferMap` is the
+  game's own storage plus the offset. `ResolveGpuAddress` is the binding layer's buffer resolution.
+- **Queue and sync, command buffers, state objects, programs, window**: see "Drawing", below.
 - **Textures.** Each is a Vulkan image of the format and target the table in `texture.cpp` maps,
   with the evidence for each number. The engine's converter `fn_7100161410` turns a texture header's
   type, sRGB flag and channel layout (its reflected enum `EComponents`, named in `fn_710016468c`)
@@ -148,17 +162,75 @@ What the parts do so far, and what they do not yet:
   device lacks it); `0x3f` is a colour render target by use (a fast clear is registered for it),
   provisionally RGBA16F. The render-target table (`0x7101647fec`) also holds `0x19`, `0x29`, `0x2a`,
   `0x2e`, `0x32`, `0x34`, `0x36`, which fail by name until a use shows them. Every format is checked
-  against the device (BC needs `textureCompressionBC`, enabled when present). New images are moved
-  to the layout the binding layer's resolver reports. Target 1 is 2D and 8 a cube map: of the 5,754 `.bctex`, 5,480 are target 1 and 274 target 8,
+  against the device (BC needs `textureCompressionBC`, enabled when present). Every image keeps the
+  GENERAL layout and starts zeroed. Target 1 is 2D and 8 a cube map: of the 5,754 `.bctex`, 5,480 are target 1 and 274 target 8,
   every target-8 one square with six faces of data, BC6H, a cube/IBL/environment map. Swizzles are the game's 0-5 (zero, one, R, G, B, A). Asset (packaged) texture data is kept
   by pointer, not uploaded yet: it is in the console's tiled layout. Samplers are linear and
   repeat for now, with the game's LOD clamp, bias and compare: the filter, wrap and compare
   numbers are the engine's packing of NVN's enumerations, which nothing in the game names yet.
-  Known gaps: an empty slot gets a 2D placeholder where a shader declares a cube or a shadow
-  sampler; one Vulkan allocation per texture (the asset set will need suballocation).
+  Known gap: one Vulkan allocation per texture (the asset set will need suballocation).
 - **Not joined to the game's link yet.** `tools/port_link.py --executable` compiles `port/runtime/`
   only; the boot traps long before graphics (`port/README.md`). Once it reaches `fn_71001587f0`,
   `dread_nvn` (and `-lvulkan`) joins the executable, and `nvnBootstrapLoader` resolves to the shim's.
+
+## Drawing (programs, state, draws, render targets, presentation)
+
+The 38 functions the game calls on the drawing side, with the call site of each, are in
+`src/command.cpp`, `src/state.cpp`, `src/program.cpp`, `src/queue.cpp`, `src/window.cpp` and
+`src/texture.cpp`; what every number the game passes means, and the evidence, is in
+`include/nvn_shim/draw.h`. The engine keeps its render state in its own reflected enumerations
+(`msapi::api::types::blendFactor::EBlendFactor`, `cmpMode::ECmpMode`, `stencilOp::EStencilOp`,
+`cullMode::ECullMode`, `fillMode::EFillMode`, `idx::EPrimitiveType`, `idx::EDataType`, whose value
+names its reflection registers) and converts each to NVN's number in one wrapper (`fn_710015a500`,
+`fn_710015a8c0`, `fn_710015afd0` ...), so each NVN number means the engine value that becomes it.
+Vertex attribute formats reuse the texture format numbers (`fn_7100161e60`: `0xa` R32 float, `0x16`,
+`0x22`, `0x2e` two to four floats, `0x25` RGBA8). The device's depth mode and window origin are read
+from the game's own deferred shaders, which rebuild clip-space z as `2 * depth - 1` and put row 0 at
+clip-space y = +1: the shim draws with `VK_EXT_depth_clip_control`'s -1..1 range and a viewport
+flipped vertically. Provisional by the engine's names only: SUBDST/SUBSRC as subtract and reverse
+subtract, INCRSAT/DECRSAT as clamping and INCR/DECR as wrapping.
+
+- **Programs.** `nvnProgramSetShaders` finds each stage by its control section in the manifest
+  (`SetShaderDirectory` or `$DREAD_NVN_SHADERS`) and makes, once per stage pair, the shader modules,
+  set layouts and the pipeline layout. The GPU code the engine copied for the console is never read.
+- **State.** State objects keep the game's values; binding one copies them, as NVN's bind does
+  (`fn_7100159ce0` binds one blend state eight times, changing its target in between). The bound
+  state is the queue's, not a command buffer's: the engine binds a state only when it changed and
+  records each frame into one of two command buffers in turn.
+- **Command buffers** are Vulkan command buffers. A draw makes or finds the pipeline for its state
+  (program, vertex attributes and streams, colour and depth formats, blend and channel masks,
+  polygon mode, topology class) and sets the rest as Vulkan 1.3 dynamic state (viewport, scissor,
+  cull mode, front face, primitive, depth and stencil tests). It writes each stage's descriptor set
+  through the binding layer; a sampler slot that is empty or holds a texture of the wrong kind gets
+  a placeholder of the kind the shader declares (2D, cube, or a depth image with a comparing sampler
+  for the 16 `sampler2DShadow`s). A vertex input no attribute feeds reads a zero buffer.
+- **Render targets.** Rendering (dynamic rendering, load and store) begins at the first draw or clear
+  after `nvnCommandBufferSetRenderTargets` and ends at the next SetRenderTargets, Barrier or
+  EndRecording, each followed by a full memory barrier. Every image keeps the GENERAL layout: the
+  game samples its render targets (the deferred passes read the G-buffer), so a texture is a target
+  and a source by turns.
+- **Uniform updates.** `nvnCommandBufferUpdateUniformBuffer` changes a block in command order without
+  touching the game's memory: the shim keeps the block as the updates leave it and points each later
+  draw at a copy taken at that point.
+- **Memory.** Where the device can import host memory (`VK_EXT_external_memory_host`, lavapipe and
+  the desktop drivers), a pool's Vulkan buffer is the game's own storage, so the GPU reads what the
+  game writes, as on the console. Otherwise the submit copies each range a recording read.
+- **Queue.** Submits, fences and sync waits are one Vulkan timeline semaphore; a recording's objects
+  are reused once the GPU has passed the submit that used them. The Vulkan objects of a texture or
+  pool the game finalises go once every recording that may name them is submitted and the GPU has
+  passed it; an imported pool's finalise also waits for the GPU, since the game frees its storage next.
+- **Assumptions.** One render thread records. Once the game updates a uniform buffer in command
+  order, its CPU writes to that buffer are no longer seen (the engine changes those blocks only
+  through `fn_710015e700`, whole, each time). The device needs 17 vertex input bindings (the zero
+  buffer is binding 16; desktop drivers have 32).
+- **Window.** There is no Vulkan surface yet (the port's window is `nn::vi`'s): a present records which
+  texture was shown, an acquire's sync is reached once the GPU finished what came before, and the
+  crop is kept.
+- **Not done yet.** The alpha test (`nvnColorStateSetAlphaTest`, `nvnCommandBufferSetAlphaRef`) is
+  kept but not applied: Vulkan has none, so the fragment shaders need a discard the build step adds
+  (next). Depth bounds need the `depthBounds` feature (lavapipe lacks it; the draw then runs
+  without). Every target has one sample. The sampler enumerations, asset texel upload and the
+  surface are as before.
 
 ## What the game does with NVN (the parts the bindings depend on)
 
@@ -237,9 +309,8 @@ reflection, so these mappings hold for every stage of the dump:
   The engine allocates its uniform buffers in 0x1000-aligned pages (`fn_710015c9b0`), but where it
   suballocates them is not checked yet.
 
-Not covered yet: the resolver's texture side (texture and sampler pools; buffers resolve through
-`ResolveGpuAddress`), descriptor pools and pipelines in the shim itself (the checks create their
-own), `nvnCommandBufferUpdateUniformBuffer`.
+The shim's own descriptor pools, pipelines and uniform updates are covered by `nvn_startup_check`
+("The start-up and the frame", above).
 
 **What runs.** `nvn_manifest_check` (Linux image, Clang 18, system libc++) runs the manifest reader
 and the binding layer with no GPU and no Vulkan loader; the binding layer only fills Vulkan structs.
@@ -273,10 +344,9 @@ interface, so this checks the shaders and the layouts, not the shim's future ver
 render-target mapping. The device features (Vulkan 1.3, `dynamicRendering`, `maintenance4`) are
 queried before they are enabled. The first run
 found the two interface problems above (32 unwritten inputs, 2 wider outputs); the build step and
-the device requirement fix them. Not covered yet: drawing (image layouts and view types are only
-validated at draw time; a 2D view stands in for every sampler, so cube and array textures are not
-exercised), and everything the shim still lacks: device creation from the game's calls, memory,
-textures, command buffers, presentation.
+the device requirement fix them. Drawing, with the shim's own device, memory, textures, command
+buffers and pipelines, is `nvn_startup_check`'s (above): it draws every program, so image layouts and
+sampler kinds (the 694 `samplerCube` and 16 `sampler2DShadow` declarations) are validated there.
 
 ## Variant selection (what the shim needs from the engine)
 

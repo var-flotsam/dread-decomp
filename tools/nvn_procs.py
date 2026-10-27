@@ -19,6 +19,8 @@ the compiler loads a GOT entry; it may schedule other instructions in between). 
 code alone, so a slot reached in another way would be missed; none is known.
 
 Usage: python tools/nvn_procs.py --version 2.1.0 [--check]   (--check: compare with the CSV, write nothing)
+       python tools/nvn_procs.py --version 2.1.0 --sites NAME[,NAME...]
+         (prints each call site of those functions and the function it is in; writes nothing)
 Standard library and pyelftools (already a dependency of tools/asmdiff.py).
 """
 
@@ -113,6 +115,15 @@ def loader_size() -> int:
     raise SystemExit("fn_7100154770 is not in data/functions/")
 
 
+def function_starts() -> list[int]:
+    """Every function's start address from data/functions/, sorted."""
+    starts = []
+    for f in sorted((ROOT / "data" / "functions").glob("main_*.csv")):
+        with f.open(encoding="utf-8") as fh:
+            starts.extend(int(row["address"], 16) for row in csv.DictReader(fh))
+    return sorted(starts)
+
+
 def cstring(data: bytes, off: int) -> str:
     end = data.index(b"\0", off)
     return data[off:end].decode("ascii")
@@ -122,6 +133,7 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--version", required=True)
     ap.add_argument("--check", action="store_true", help="compare with data/nvn_procs.csv instead of writing it")
+    ap.add_argument("--sites", help="comma-separated NVN names: print their call sites, write nothing")
     args = ap.parse_args()
     elf_path = ROOT / "orig" / args.version / "main.elf"
     if not elf_path.is_file():
@@ -176,6 +188,7 @@ def main() -> int:
     # Call sites: an adrp of the slot's page, then the ldr of the slot through that register.
     slot_names = {slot: name for name, slot in procs}
     uses = {slot: 0 for slot in slot_names}
+    sites = {slot: [] for slot in slot_names}
     text_end = BASE + segments[0]["p_filesz"]
     for addr in range(BASE, text_end - 4, 4):
         if LOADER <= addr < loader_end:
@@ -193,9 +206,22 @@ def main() -> int:
                 slot = a[1] + ld[2]
                 if slot in uses:
                     uses[slot] += 1
+                    sites[slot].append(addr)
                 break
             if is_branch(nxt) or writes_register(nxt, a[0]):
                 break
+
+    if args.sites:
+        import bisect
+        starts = function_starts()
+        by_name = {name: slot for name, slot in procs}
+        for name in args.sites.split(","):
+            if name not in by_name:
+                raise SystemExit(f"{name} is not one of the loader's names")
+            for site in sites[by_name[name]]:
+                fn = starts[bisect.bisect_right(starts, site) - 1]
+                print(f"{name} {site:#x} fn_{fn:x}")
+        return 0
 
     implemented = set()
     for src in sorted(SHIM_SRC.glob("*.cpp")):

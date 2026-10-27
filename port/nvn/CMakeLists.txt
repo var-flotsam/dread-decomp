@@ -1,13 +1,15 @@
 # The NVN shim (M2): NVN, as the game uses it, over Vulkan. Written from the game's own calls through
 # its NVN function table (the nvn* names in its strings, the call sites), never from NVN's SDK
 # headers or an emulator; README.md has the design. Compiled against the Khronos Vulkan headers
-# (DREAD_VULKAN_INCLUDE); nothing links against a Vulkan loader yet.
+# (DREAD_VULKAN_INCLUDE); only the check programs link a Vulkan loader so far.
 add_library(dread_nvn STATIC
   src/bindings.cpp
   src/command.cpp
   src/device.cpp
   src/memory.cpp
+  src/pipeline.cpp
   src/procs.cpp
+  src/program.cpp
   src/queue.cpp
   src/shader_manifest.cpp
   src/state.cpp

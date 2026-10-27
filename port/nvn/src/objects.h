@@ -9,6 +9,7 @@
 // the address is reused, which resets it.
 
 #include <cstdint>
+#include <functional>
 #include <map>
 #include <memory>
 #include <mutex>
@@ -16,7 +17,9 @@
 
 namespace dread::nvn::detail {
 
-std::mutex& StateLock();  // one lock for all of the shim's object state (procs.cpp)
+// One lock for all of the shim's object state (procs.cpp). Recursive: recording a draw holds it while
+// the binding layer's resolver, which takes it too, looks up buffers and textures.
+std::recursive_mutex& StateLock();
 
 // Each part registers its functions with RegisterProc; the entry layer calls these once, before the
 // first lookup (a static library would drop a part whose registrations ran from static initialisers).
@@ -27,12 +30,28 @@ void RegisterCommandProcs();   // command.cpp: command buffers
 void RegisterStateProcs();     // state.cpp: the fixed-function state objects
 void RegisterWindowProcs();    // window.cpp
 void RegisterTextureProcs();   // texture.cpp: textures, texture and sampler pools, samplers
+void RegisterProgramProcs();   // program.cpp: programs
 
 // Releases the Vulkan objects of every memory pool (memory.cpp); nvnDeviceFinalize calls it before
 // it destroys the backend. The pools stay; their Vulkan buffers are made again on next use.
 void ReleaseMemoryVulkanObjects();
 // The same for textures, pool samplers and the resolver's placeholders (texture.cpp).
 void ReleaseTextureVulkanObjects();
+// The draw path's objects: command buffers, descriptor pools, pipelines (command.cpp), and the
+// programs' modules and layouts (program.cpp). nvnDeviceFinalize calls it first, after the GPU is idle.
+void ReleaseDrawVulkanObjects();
+
+// nvnQueueSubmitCommands: submits the recordings behind the game's command handles, in order, on the
+// queue's timeline (command.cpp); returns the timeline value it signals, 0 if nothing was submitted.
+std::uint64_t SubmitRecordings(std::int32_t count, const std::uint64_t* handles);
+// Runs `destroy` (it frees Vulkan objects the game finalised) once no recording that may name them
+// is open or unsubmitted and the GPU has passed them (command.cpp); at once when nothing is pending.
+void DeferDestroy(std::function<void()> destroy);
+// nvnQueueFenceSync and nvnWindowAcquireTexture: the sync becomes signalled when the GPU reaches what
+// is submitted now (queue.cpp).
+void FenceSyncAtLastSubmit(void* sync);
+// nvnQueuePresentTexture: the window's texture `index` was presented (window.cpp).
+void WindowPresented(const void* window, std::int32_t index);
 
 template <class T>
 class Registry {

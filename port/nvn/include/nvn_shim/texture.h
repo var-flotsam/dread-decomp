@@ -29,13 +29,16 @@
 // Samplers: the game's filter, wrap and compare numbers are its own packing of NVN's enumerations,
 // which nothing in the game names; until a use shows them, every sampler is linear, repeat, with the
 // game's LOD clamp, bias and anisotropy (numbers, so exact) and a compare op when it asks for one.
-// New images are moved to the layout the resolver reports. Known gaps: a slot the game leaves
+// Every image keeps the GENERAL layout (render targets are sampled too: src/texture_internal.h) and
+// starts zeroed. nvnTextureWriteTexels (fn_7100160e80: one texel; fn_7100160ef0: a level) copies the
+// game's packed texels in after everything submitted. Known gaps: a slot the game leaves
 // empty gets a 2D placeholder even where the shader declares a cube or a shadow sampler; one Vulkan
 // allocation per texture (the asset set will need suballocation).
 // Packaged (asset) texture data is kept by pointer, not uploaded yet: the .bctex data is in the
 // console's tiled layout, which the upload step will untile.
 
 #include <cstdint>
+#include <vector>
 
 #include <vulkan/vulkan_core.h>
 
@@ -73,5 +76,7 @@ TextureInfo GetTextureInfo(const void* texture);
 // The texture registered at `id` in the texture pool (TexturePoolRegisterTexture), else null.
 const void* RegisteredTexture(std::uint32_t id);
 bool RegisteredSampler(std::uint32_t id);
+// Level 0, layer 0 of an uncompressed colour texture, as packed texels (after everything submitted).
+bool ReadTexels(const void* texture, std::vector<std::uint8_t>* out);
 
 }  // namespace dread::nvn
