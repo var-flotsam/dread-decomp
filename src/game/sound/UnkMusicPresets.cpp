@@ -160,7 +160,7 @@ struct UnkPresetMap {
                 allocator->vf_0x48(node);
                 node = next;
             }
-            __builtin_memset(buckets.data, 0, buckets.capacity * 8ul);
+            __builtin_memset(buckets.data, 0, buckets.capacity * u64(8));
             count = 0;
             field_0x38 = nullptr;
             field_0x40 = nullptr;

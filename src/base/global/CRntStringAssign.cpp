@@ -7,8 +7,6 @@
 using base::UnkAllocator;
 using base::global::CRntString;
 
-extern char g_unk_7101cbb250[];  // the vtable of the inline-storage allocator below
-
 // A string with 0x100 bytes of inline storage: its allocator (the object at +0x30, a block of
 // the same sort as the one in src/game_aca57c/fn_7100b2de48.cpp) hands out that storage.
 struct UnkInlineString256 {
@@ -68,7 +66,7 @@ void fn_710007e7f8(CRntString* self, const char* str, u32 length) {
             tmp.str.allocator = reinterpret_cast<UnkAllocator*>(&tmp.allocator_vtable);
             tmp.field_0x138 = 0;
             tmp.field_0x140 = 0;
-            tmp.allocator_vtable = g_unk_7101cbb250 + 0x10;
+            tmp.allocator_vtable = reinterpret_cast<char*>(g_unk_7101a194b8 + 2);
             fn_710007e7f8(&tmp.str, str, n);
             fn_710007ebc8(self, tmp.str.data, tmp.str.length, tmp.str.key);
             ReleaseTemporary(tmp.str);

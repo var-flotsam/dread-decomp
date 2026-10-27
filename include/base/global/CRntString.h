@@ -16,6 +16,10 @@
 
 // The empty string the copies use; never freed.
 extern const char g_unk_7101647847[] __attribute__((visibility("hidden")));
+// The vtable of the allocator object that follows a string with inline storage: callers store
+// `g_unk_7101a194b8 + 2` (the address point) after fn_710007e6e4. Reached through the GOT slot at
+// 0x7101cbb250, which is not itself the vtable.
+extern void* g_unk_7101a194b8[];
 
 namespace base::global {
 
@@ -65,6 +69,8 @@ base::global::CRntString* fn_710007f3b4(base::global::CRntString* self, const ba
 bool fn_710007f140(const base::global::CRntString* self, const char* str);
 // Appends one character (through fn_710007f3e4); returns the string.
 base::global::CRntString* fn_710007f5ac(base::global::CRntString* self, char c);
+// Whether the string contains `str` (fn_710007fb9c).
+bool fn_710007fb9c(const base::global::CRntString* self, const char* str);
 // Concatenation: a new string (returned in memory) with a's text followed by b's
 // (fn_710007eee0, src/base/global/CRntString.cpp).
 base::global::CRntString fn_710007eee0(const base::global::CRntString* a, const base::global::CRntString* b);

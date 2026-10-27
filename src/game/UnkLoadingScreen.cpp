@@ -134,3 +134,139 @@ void fn_7100e10aac(UnkLoadingScreen* self) {
     fn_7100fdca28(MusicManager(), 0);
     fn_71011b6b5c(g_unk_717271e8f8, 0);
 }
+
+// Creating a scene object and keeping it in a set (fn_7100e13928).
+#include "base/UnkCountedResource.h"
+#include "base/global/CStrId.h"
+
+using base::global::CStrId;
+
+// The created object (0x210 bytes), seen through the members used here; the set keys it by its +8
+// (src/game_s7/fn_71010e2278.cpp's UnkSceneObj_71010e2278 is the same object).
+struct UnkSceneObj_71010e2278;
+struct UnkCullView;
+// A counted reference's assignment (the old object is reloaded after the new one's increment).
+static inline void AssignCounted(UnkCountedResource*& self, UnkCountedResource* other) {
+    if (self != other) {
+        if (other)
+            ++other->ref_count;
+        if (UnkCountedResource* old = self) {
+            if (--old->ref_count == 0)
+                fn_710001737c(old);
+        }
+        self = other;
+    }
+}
+
+// The object's part at +0x20: a polymorphic object showing a model.
+struct UnkSceneObjPart {
+    virtual void vf_0x0();
+    virtual void vf_0x8();
+    virtual void vf_0x10();
+    virtual void vf_0x18();
+    virtual void vf_0x20();
+    virtual void vf_0x28();
+    virtual void vf_0x30();
+    virtual void vf_0x38();
+    virtual void vf_0x40();
+    virtual void vf_0x48();
+    virtual void vf_0x50();
+    virtual void vf_0x58();
+    virtual void vf_0x60();
+    virtual void vf_0x68();
+    virtual void vf_0x70();
+    virtual void vf_0x78();
+    virtual void vf_0x80();
+    virtual void vf_0x88();
+    virtual void vf_0x90();  // the model changed
+
+    u8 pad_0x8[0x70];
+    UnkCountedResource* model;  // +0x78
+
+    void SetModel(UnkCountedResource* m) {
+        AssignCounted(model, m);
+        vf_0x90();
+    }
+};
+static_assert(sizeof(UnkSceneObjPart) == 0x80, "UnkSceneObjPart placeholder layout");
+struct UnkCreatedSceneObj {
+    u8 pad_0x0[0x8];
+    u8 key[0x8];  // +0x8: what the set keys
+    UnkCountedResource* field_0x10;
+    u8 pad_0x18[0x8];
+    UnkSceneObjPart part;  // +0x20
+    u8 pad_0xa0[0x88];
+    UnkCullView* field_0x128;
+};
+static_assert(__builtin_offsetof(UnkCreatedSceneObj, field_0x128) == 0x128, "UnkCreatedSceneObj placeholder layout");
+void fn_710014520c(UnkCreatedSceneObj* self, const CStrId* name);  // the constructor
+void fn_71001b7a60(UnkCullView* self);
+
+// The set: buckets of nodes by key, the nodes also in a list in insertion order.
+struct UnkSceneObjNode {
+    void* key;
+    UnkCreatedSceneObj* value;
+    UnkSceneObjNode* next;
+    UnkSceneObjNode* prev;
+    UnkSceneObjNode* bucket_next;
+};
+struct UnkSceneObjSet {
+    base::UnkAllocator* allocator;
+    u32 flags;
+    u32 count;
+    UnkSceneObjNode** buckets;
+    u32 field_0x18;  // the buckets exist
+    u32 capacity;
+    u8 pad_0x20[0x18];
+    // A union member: the original reloads the tail after storing the new node's link to it.
+    union {
+        UnkSceneObjNode* tail;
+    };
+    UnkSceneObjNode* head;
+};
+
+// Creates a scene object named `name` showing `model` (when there is one), adds it to `set` and
+// stores it in `*out` (when given). The original also returns the object's key (its +8; null when
+// the allocation failed), which none of its four callers reads.
+// NON_MATCHING(minor): returns nothing, as the only declaration (src/game_s7/fn_71010e2278.cpp's)
+// has it, so the key is not kept for x0 and the registers around it differ; returning the key as a
+// void* makes the function byte-identical.
+void fn_7100e13928(void* set_, void* model_, UnkSceneObj_71010e2278** out, const CStrId* name) {
+    auto* set = static_cast<UnkSceneObjSet*>(set_);
+    auto* model = static_cast<UnkCountedResource*>(model_);
+    auto* obj = static_cast<UnkCreatedSceneObj*>(fn_71000839a0(0x210, 0x38));
+    fn_710014520c(obj, name);
+    if (obj) {
+        fn_71001b7a60(obj->field_0x128);
+        AssignCounted(obj->field_0x10, model);
+        void* key = obj->key;
+        if (model)
+            obj->part.SetModel(model);
+        UnkSceneObjNode** bucket = nullptr;
+        if (set->field_0x18) {
+            u32 index = (u32)(u64)key % set->capacity;
+            bucket = set->buckets + index;
+        }
+        UnkSceneObjNode* first = *bucket;
+        auto* node = static_cast<UnkSceneObjNode*>(set->allocator->vf_0x40(sizeof(UnkSceneObjNode), 8, set->flags));
+        if (node) {
+            node->key = key;
+            node->value = obj;
+            node->bucket_next = nullptr;
+            node->next = nullptr;
+            node->prev = nullptr;
+        }
+        node->bucket_next = first;
+        *bucket = node;
+        if (!set->head)
+            set->head = node;
+        else if (set->tail) {
+            node->prev = set->tail;
+            set->tail->next = node;
+        }
+        set->tail = node;
+        ++set->count;
+    }
+    if (out)
+        *out = reinterpret_cast<UnkSceneObj_71010e2278*>(obj);
+}

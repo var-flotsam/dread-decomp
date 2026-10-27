@@ -45,7 +45,7 @@ void fn_71004c3590(UnkNode* self) {
     self->field_0x80 = 0;
     self->field_0x88 = 0;
     fn_7100d62b04(reinterpret_cast<char*>(self) + 0xa0);
-    self->field_0x1c0 = 0xffffffff00000000ul;
+    self->field_0x1c0 = 0xffffffff00000000ull;
     self->field_0x1d0 = 0;
     self->field_0x1d8 = 0;
     self->field_0x77c.v = 0;

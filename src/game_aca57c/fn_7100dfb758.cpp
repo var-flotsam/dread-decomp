@@ -9,8 +9,6 @@
 
 using namespace unk_prop_bag;
 
-extern void* g_unk_7101a194b8[];
-
 struct UnkStrStorage {
     void* vtable;
     u8 pad_0x8[0x100];

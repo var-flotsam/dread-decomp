@@ -1,4 +1,5 @@
 // Returns whether any listed object's class name contains the given class's name (optionally skipping objects that report busy).
+#include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
@@ -36,7 +37,6 @@ struct UnkStruct_710117af10 {
 
 UnkCls_710117af10** fn_710070d7f8(UnkObj_710117af10* obj);
 bool fn_710070d830(UnkObj_710117af10* obj);
-bool fn_710007fb9c(const UnkClsStr_710117af10* str, const char* sub);
 
 bool fn_710117af10(UnkStruct_710117af10* self, UnkCls_710117af10** name, bool skipBusy) {
     for (UnkElem_710117af10** it = self->field_0x40->items;
@@ -50,7 +50,7 @@ bool fn_710117af10(UnkStruct_710117af10* self, UnkCls_710117af10** name, bool sk
         const UnkClsStr_710117af10* str = &c->name;
         (*name)->field_0x44++;
         const char* n = (*name)->name.str ? (*name)->name.str : "";
-        if (!fn_710007fb9c(str, n))
+        if (!fn_710007fb9c(reinterpret_cast<const base::global::CRntString*>(str), n))
             continue;
         if (skipBusy && fn_710070d830(obj))
             continue;
