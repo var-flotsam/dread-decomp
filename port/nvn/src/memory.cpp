@@ -37,6 +37,7 @@ struct MemoryPool {
     VkBuffer buffer = VK_NULL_HANDLE;
     VkDeviceMemory memory = VK_NULL_HANDLE;
     void* mapped = nullptr;  // the Vulkan memory, host-visible and mapped
+    bool vulkan_failed = false;  // creating the Vulkan buffer failed; not retried
 };
 
 struct BufferBuilder {
@@ -58,6 +59,23 @@ detail::Registry<BufferBuilder> g_buffer_builders;
 detail::Registry<Buffer> g_buffers;
 std::map<BufferAddress, const void*> g_by_address;  // pool GPU address -> pool storage key
 BufferAddress g_next_address = kAddressBase;
+
+bool CreatePoolBuffer(MemoryPool& pool);
+
+// The pool's Vulkan buffer, made on first use; false if it cannot be (reported once).
+bool EnsurePoolBuffer(MemoryPool& pool) {
+    if (pool.buffer)
+        return true;
+    if (pool.vulkan_failed)
+        return false;
+    if (!CreatePoolBuffer(pool)) {
+        pool.vulkan_failed = true;
+        std::fprintf(stderr, "nvn shim: no Vulkan memory for a %llu-byte memory pool\n",
+                     static_cast<unsigned long long>(pool.size));
+        return false;
+    }
+    return true;
+}
 
 // The pool holding [address, address + size), under the state lock.
 MemoryPool* PoolAt(BufferAddress address, std::uint64_t size) {
@@ -103,19 +121,28 @@ bool CreatePoolBuffer(MemoryPool& pool) {
 
 void DestroyPoolBuffer(MemoryPool& pool) {
     const Backend* b = CurrentBackend();
-    if (!b)
-        return;
-    if (pool.memory)
-        vkFreeMemory(b->device, pool.memory, nullptr);  // unmaps
-    if (pool.buffer)
-        vkDestroyBuffer(b->device, pool.buffer, nullptr);
+    if (b) {
+        if (pool.memory)
+            vkFreeMemory(b->device, pool.memory, nullptr);  // unmaps
+        if (pool.buffer)
+            vkDestroyBuffer(b->device, pool.buffer, nullptr);
+    }
+    pool.buffer = VK_NULL_HANDLE;
+    pool.memory = VK_NULL_HANDLE;
+    pool.mapped = nullptr;
+    pool.vulkan_failed = false;
 }
 
 // --- memory pool builder and pool ---
 
 void MemoryPoolBuilderSetDefaults(void* builder) {
     std::lock_guard<std::mutex> lock(detail::StateLock());
-    g_pool_builders.Reset(builder);
+    g_pool_builders.ResetKeepingDevice(builder);
+}
+const void* MemoryPoolBuilderGetDevice(const void* builder) {
+    std::lock_guard<std::mutex> lock(detail::StateLock());
+    MemoryPoolBuilder* b = g_pool_builders.Find(builder);
+    return b ? b->device : nullptr;
 }
 void MemoryPoolBuilderSetDevice(void* builder, const void* device) {
     std::lock_guard<std::mutex> lock(detail::StateLock());
@@ -147,12 +174,9 @@ std::int32_t MemoryPoolInitialize(void* pool_storage, const void* builder) {
     pool.storage = b->storage;
     pool.size = b->size;
     pool.flags = b->flags;
-    if (!CreatePoolBuffer(pool)) {
-        std::fprintf(stderr, "nvn shim: no Vulkan memory for a %llu-byte memory pool\n",
-                     static_cast<unsigned long long>(pool.size));
-        g_pools.Erase(pool_storage);
-        return 0;
-    }
+    // The Vulkan buffer is made when the GPU first needs the pool (EnsurePoolBuffer): the engine's
+    // own pools (fn_7100153350: 300 MB, 1008 MB, 208 MB, 12 MB, 1 MB) would otherwise double 1.5 GB
+    // of memory whether or not anything the GPU reads ever lands in them.
     pool.address = g_next_address;
     g_next_address += (pool.size + kAddressAlignment - 1) / kAddressAlignment * kAddressAlignment;
     g_by_address[pool.address] = pool_storage;
@@ -203,7 +227,12 @@ void MemoryPoolSetDebugLabel(void*, const char*) {}
 
 void BufferBuilderSetDefaults(void* builder) {
     std::lock_guard<std::mutex> lock(detail::StateLock());
-    g_buffer_builders.Reset(builder);
+    g_buffer_builders.ResetKeepingDevice(builder);
+}
+const void* BufferBuilderGetDevice(const void* builder) {
+    std::lock_guard<std::mutex> lock(detail::StateLock());
+    BufferBuilder* b = g_buffer_builders.Find(builder);
+    return b ? b->device : nullptr;
 }
 void BufferBuilderSetDevice(void* builder, const void* device) {
     std::lock_guard<std::mutex> lock(detail::StateLock());
@@ -266,7 +295,7 @@ void BufferSetDebugLabel(void*, const char*) {}
 bool ResolveGpuAddress(BufferAddress address, std::uint64_t size, VkBuffer* buffer, VkDeviceSize* offset) {
     std::lock_guard<std::mutex> lock(detail::StateLock());
     MemoryPool* pool = PoolAt(address, size);
-    if (!pool)
+    if (!pool || !EnsurePoolBuffer(*pool))
         return false;
     *buffer = pool->buffer;
     *offset = address - pool->address;
@@ -276,7 +305,7 @@ bool ResolveGpuAddress(BufferAddress address, std::uint64_t size, VkBuffer* buff
 bool SyncPoolRange(BufferAddress address, std::uint64_t size) {
     std::lock_guard<std::mutex> lock(detail::StateLock());
     MemoryPool* pool = PoolAt(address, size);
-    if (!pool || !pool->mapped)
+    if (!pool || !EnsurePoolBuffer(*pool) || !pool->mapped)
         return false;
     const std::uint64_t off = address - pool->address;
     std::memcpy(static_cast<char*>(pool->mapped) + off, static_cast<const char*>(pool->storage) + off, size);
@@ -287,6 +316,18 @@ void* GpuAddressToStorage(BufferAddress address) {
     std::lock_guard<std::mutex> lock(detail::StateLock());
     MemoryPool* pool = PoolAt(address, 1);
     return pool ? static_cast<char*>(pool->storage) + (address - pool->address) : nullptr;
+}
+
+void detail::ReleaseMemoryVulkanObjects() {
+    std::lock_guard<std::mutex> lock(detail::StateLock());
+    g_pools.ForEach([](const void*, MemoryPool& pool) { DestroyPoolBuffer(pool); });
+}
+
+std::size_t PoolsWithVulkanBuffer() {
+    std::lock_guard<std::mutex> lock(detail::StateLock());
+    std::size_t n = 0;
+    g_pools.ForEach([&](const void*, MemoryPool& pool) { n += pool.buffer != VK_NULL_HANDLE; });
+    return n;
 }
 
 std::size_t MemoryPoolCount() {
@@ -301,6 +342,7 @@ std::uint64_t GpuAddressSpaceUsed() {
 
 void detail::RegisterMemoryProcs() {
     Register("nvnMemoryPoolBuilderSetDefaults", &MemoryPoolBuilderSetDefaults);
+    Register("nvnMemoryPoolBuilderGetDevice", &MemoryPoolBuilderGetDevice);
     Register("nvnMemoryPoolBuilderSetDevice", &MemoryPoolBuilderSetDevice);
     Register("nvnMemoryPoolBuilderSetFlags", &MemoryPoolBuilderSetFlags);
     Register("nvnMemoryPoolBuilderSetStorage", &MemoryPoolBuilderSetStorage);
@@ -314,6 +356,7 @@ void detail::RegisterMemoryProcs() {
     Register("nvnMemoryPoolInvalidateMappedRange", &MemoryPoolInvalidateMappedRange);
     Register("nvnMemoryPoolSetDebugLabel", &MemoryPoolSetDebugLabel);
     Register("nvnBufferBuilderSetDefaults", &BufferBuilderSetDefaults);
+    Register("nvnBufferBuilderGetDevice", &BufferBuilderGetDevice);
     Register("nvnBufferBuilderSetDevice", &BufferBuilderSetDevice);
     Register("nvnBufferBuilderSetStorage", &BufferBuilderSetStorage);
     Register("nvnBufferInitialize", &BufferInitialize);

@@ -45,7 +45,7 @@ nvnQueueBuilderSetQueueMemory,0x7101cc4dd0,0x716e29ad90,1,implemented
 nvnQueueBuilderSetCommandFlushThreshold,0x7101cc4dd8,0x716e29ad98,1,implemented
 nvnQueueBuilderSetQueuePriority,0x7101cc4de0,0x716e29ada0,0,
 nvnQueueBuilderGetQueuePriority,0x7101cc4de8,0x716e29ada8,0,
-nvnQueueBuilderGetDevice,0x7101cc4df0,0x716e29adb0,0,
+nvnQueueBuilderGetDevice,0x7101cc4df0,0x716e29adb0,0,implemented
 nvnQueueBuilderGetFlags,0x7101cc4df8,0x716e29adb8,0,
 nvnQueueBuilderGetCommandMemorySize,0x7101cc4e00,0x716e29adc0,0,
 nvnQueueBuilderGetComputeMemorySize,0x7101cc4e08,0x716e29adc8,0,
@@ -67,7 +67,7 @@ nvnWindowBuilderSetNativeWindow,0x7101cc4e80,0x716e29ae40,1,implemented
 nvnWindowBuilderSetTextures,0x7101cc4e88,0x716e29ae48,1,implemented
 nvnWindowBuilderSetPresentInterval,0x7101cc4e90,0x716e29ae50,0,implemented
 nvnWindowBuilderSetNumActiveTextures,0x7101cc4e98,0x716e29ae58,0,
-nvnWindowBuilderGetDevice,0x7101cc4ea0,0x716e29ae60,0,
+nvnWindowBuilderGetDevice,0x7101cc4ea0,0x716e29ae60,0,implemented
 nvnWindowBuilderGetNumTextures,0x7101cc4ea8,0x716e29ae68,0,
 nvnWindowBuilderGetTexture,0x7101cc4eb0,0x716e29ae70,0,
 nvnWindowBuilderGetNativeWindow,0x7101cc4eb8,0x716e29ae78,0,
@@ -95,7 +95,7 @@ nvnMemoryPoolBuilderSetDevice,0x7101cc4b18,0x716e29af20,2,implemented
 nvnMemoryPoolBuilderSetDefaults,0x7101cc4b10,0x716e29af28,6,implemented
 nvnMemoryPoolBuilderSetStorage,0x7101cc4b28,0x716e29af30,2,implemented
 nvnMemoryPoolBuilderSetFlags,0x7101cc4b20,0x716e29af38,2,implemented
-nvnMemoryPoolBuilderGetDevice,0x7101cc4f60,0x716e29af40,0,
+nvnMemoryPoolBuilderGetDevice,0x7101cc4f60,0x716e29af40,0,implemented
 nvnMemoryPoolBuilderGetMemory,0x7101cc4f68,0x716e29af48,0,
 nvnMemoryPoolBuilderGetSize,0x7101cc4f70,0x716e29af50,0,
 nvnMemoryPoolBuilderGetFlags,0x7101cc4f78,0x716e29af58,0,
@@ -128,7 +128,7 @@ nvnSamplerPoolGetSize,0x7101cc5038,0x716e29b028,0,
 nvnBufferBuilderSetDevice,0x7101cc5040,0x716e29b030,1,implemented
 nvnBufferBuilderSetDefaults,0x7101cc4c08,0x716e29b038,5,implemented
 nvnBufferBuilderSetStorage,0x7101cc4c20,0x716e29b040,5,implemented
-nvnBufferBuilderGetDevice,0x7101cc5048,0x716e29b048,0,
+nvnBufferBuilderGetDevice,0x7101cc5048,0x716e29b048,0,implemented
 nvnBufferBuilderGetMemoryPool,0x7101cc5050,0x716e29b050,0,
 nvnBufferBuilderGetMemoryOffset,0x7101cc5058,0x716e29b058,0,
 nvnBufferBuilderGetSize,0x7101cc5060,0x716e29b060,0,

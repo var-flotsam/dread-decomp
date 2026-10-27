@@ -11,7 +11,7 @@ shader manifest and the binding layer. Textures and the texture and sampler pool
 pipelines and draws, and presentation to a real window come next. `data/nvn_procs.csv`
 (`tools/nvn_procs.py`) lists the 523 functions with the global each fills (the `g_unk_716e29xxxx`
 of `src/game_s7/fn_71001587f0.cpp`), the number of game call sites (146 have one) and whether the
-shim implements it (102, 74 of the 146 the game calls).
+shim implements it (106, 74 of the 146 the game calls).
 
 Rules: nothing here comes from NVN's SDK headers or from an emulator. Every NVN type, constant and
 argument order is a placeholder inferred from the game's own calls, and the file that uses it names
@@ -99,10 +99,12 @@ acquires the next texture. No caller looks at a sync wait's or an acquire's resu
 `nvn_startup_check` replays all of that against the shim (as far as each part exists) and three
 frames, through `nvnBootstrapLoader` and `nvnDeviceGetProcAddress` as the game does, with the game's
 objects in storage of its own. On lavapipe with the validation layers (2026-10-26): every check
-passes (the device and its Vulkan backend, the integers the pools and command buffers are sized
-with, two 15 MB command pools, a buffer whose address, map and Vulkan buffer agree, three frames of
-submits, fences and presents, the window's alternating textures, everything finalised), no
-validation message, and the replay reaches exactly 11 unimplemented functions: the texture builder,
+passes (the device and its Vulkan backend, all eleven integers with the pool sizes computed as
+`fn_710015f100` does, the engine's five pools of `fn_7100153350` and two 15 MB command pools with
+no Vulkan buffer until one is used, builders keeping the device set before their defaults, a buffer whose address, map and Vulkan buffer agree, three frames of
+submits, fences and presents, the window's alternating textures, the device finalised with pools
+alive and then everything else, validation counted after the device is gone), no validation
+message (reintroducing the teardown leak or a builder's lost device fails it), and the replay reaches exactly 11 unimplemented functions: the texture builder,
 `TextureInitialize`, `TexturePoolInitialize` and `TexturePoolRegisterTexture` of the render
 targets. They are the next part.
 
@@ -113,8 +115,10 @@ What the parts do so far, and what they do not yet:
   validation layers). `nvnDeviceGetInteger` answers the eleven names the game asks (listed with
   their call sites in `device.h`; the values are the shim's own, chosen for how the game uses them)
   and reports any other name once.
-- **Memory.** A pool gets a 64 KB-aligned range of a GPU address space from 4 GB up and a
-  host-visible Vulkan buffer of its size. A buffer's address is its pool's plus its offset;
+- **Memory.** A pool gets a 64 KB-aligned range of a GPU address space from 4 GB up and, when
+  the GPU first needs it, a host-visible Vulkan buffer of its size (the engine's own pools of
+  `fn_7100153350` are 1.5 GB together; mirroring them up front would double that).
+  `nvnDeviceFinalize` releases the pools' Vulkan objects before the device goes. A buffer's address is its pool's plus its offset;
   `nvnBufferMap` is the game's own storage plus the offset. The game writes into its storage;
   `SyncPoolRange` copies a range into the Vulkan buffer, which the submit will call once draws
   exist. `ResolveGpuAddress` is the binding layer's buffer resolution.

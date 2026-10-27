@@ -4,7 +4,9 @@
 
 #include "nvn_shim/device.h"
 
+#include <atomic>
 #include <chrono>
+#include <mutex>
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
@@ -21,7 +23,8 @@ namespace dread::nvn {
 namespace {
 
 Backend g_backend;
-bool g_backend_ready = false;
+std::atomic<bool> g_backend_ready{false};
+std::mutex g_backend_lock;  // CreateBackend and DestroyBackend
 int g_errors = 0, g_warnings = 0;
 VkDebugUtilsMessengerEXT g_messenger = VK_NULL_HANDLE;
 
@@ -55,6 +58,7 @@ int ValidationWarnings() {
 }
 
 bool CreateBackend(bool validation) {
+    std::lock_guard<std::mutex> lock(g_backend_lock);
     if (g_backend_ready)
         return true;
     const char* env = std::getenv("DREAD_NVN_VALIDATION");
@@ -153,6 +157,7 @@ bool CreateBackend(bool validation) {
 }
 
 void DestroyBackend() {
+    std::lock_guard<std::mutex> lock(g_backend_lock);
     if (!g_backend_ready)
         return;
     vkDeviceWaitIdle(g_backend.device);
@@ -195,7 +200,7 @@ bool DeviceIntegerValue(std::int32_t name, std::int32_t* value) {
         *value = 1 << 20;
         return true;
     case kMaxSamplerPoolSize:
-        *value = 4096;
+        *value = 1 << 16;  // above the 0x2000 + reserved the game asks for (fn_710015f100)
         return true;
     case kQueueCommandMemoryDefaultSize:
         *value = 0x10000;
@@ -251,6 +256,7 @@ void DeviceFinalize(void* device) {
         std::lock_guard<std::mutex> lock(detail::StateLock());
         g_devices.Erase(device);
     }
+    detail::ReleaseMemoryVulkanObjects();  // before the device they belong to goes
     DestroyBackend();
 }
 

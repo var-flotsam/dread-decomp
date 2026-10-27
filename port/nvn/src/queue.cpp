@@ -50,7 +50,12 @@ constexpr std::uint64_t kQueueMemorySize = 0x1000;
 
 void QueueBuilderSetDefaults(void* builder) {
     std::lock_guard<std::mutex> lock(detail::StateLock());
-    g_builders.Reset(builder);
+    g_builders.ResetKeepingDevice(builder);
+}
+const void* QueueBuilderGetDevice(const void* builder) {
+    std::lock_guard<std::mutex> lock(detail::StateLock());
+    QueueBuilder* b = g_builders.Find(builder);
+    return b ? b->device : nullptr;
 }
 void QueueBuilderSetDevice(void* builder, const void* device) {
     std::lock_guard<std::mutex> lock(detail::StateLock());
@@ -162,6 +167,7 @@ QueueStats GetQueueStats(const void* queue) {
 
 void detail::RegisterQueueProcs() {
     Register("nvnQueueBuilderSetDefaults", &QueueBuilderSetDefaults);
+    Register("nvnQueueBuilderGetDevice", &QueueBuilderGetDevice);
     Register("nvnQueueBuilderSetDevice", &QueueBuilderSetDevice);
     Register("nvnQueueBuilderSetCommandMemorySize", &QueueBuilderSetCommandMemorySize);
     Register("nvnQueueBuilderSetComputeMemorySize", &QueueBuilderSetComputeMemorySize);

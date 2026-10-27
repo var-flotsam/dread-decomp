@@ -27,6 +27,10 @@ void RegisterCommandProcs();   // command.cpp: command buffers
 void RegisterStateProcs();     // state.cpp: the fixed-function state objects
 void RegisterWindowProcs();    // window.cpp
 
+// Releases the Vulkan objects of every memory pool (memory.cpp); nvnDeviceFinalize calls it before
+// it destroys the backend. The pools stay; their Vulkan buffers are made again on next use.
+void ReleaseMemoryVulkanObjects();
+
 template <class T>
 class Registry {
 public:
@@ -47,6 +51,17 @@ public:
         std::unique_ptr<T>& slot = map_[storage];
         slot = std::make_unique<T>();
         return *slot;
+    }
+    // A builder's SetDefaults: fresh state, but the device it was given stays. The game sets the
+    // device first and the defaults after on the queue, buffer and texture builders
+    // (fn_71001587f0), and the buffer builder's defaults again per buffer (fn_710015c9b0).
+    T& ResetKeepingDevice(const void* storage) {
+        const void* device = nullptr;
+        if (T* old = Find(storage))
+            device = old->device;
+        T& fresh = Reset(storage);
+        fresh.device = device;
+        return fresh;
     }
     void Erase(const void* storage) { map_.erase(storage); }
     template <class F>

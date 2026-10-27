@@ -63,6 +63,13 @@ void* AlignedAlloc(std::size_t size, std::size_t align) {
     return p;
 }
 
+// Storage for a large pool, reserved but never touched (the kernel commits pages on first write),
+// as the engine's own pools are before it fills them.
+void* LargeStorage(std::size_t size) {
+    void* p = nullptr;
+    return posix_memalign(&p, 0x1000, size) == 0 ? p : nullptr;
+}
+
 }  // namespace
 
 int main() {
@@ -115,6 +122,8 @@ int main() {
     auto QueueInitialize = Fn<std::int32_t (*)(void*, const void*)>("nvnQueueInitialize");
     QueueBuilderSetDevice(&queue_builder, &device);
     QueueBuilderSetDefaults(&queue_builder);
+    Check(Fn<const void* (*)(const void*)>("nvnQueueBuilderGetDevice")(&queue_builder) == &device,
+          "the queue builder keeps its device across SetDefaults (fn_71001587f0 sets it first)");
     QueueBuilderSetComputeMemorySize(&queue_builder, 0);
     std::int32_t command_size = 0;
     DeviceGetInteger(&device, 0x51, &command_size);
@@ -137,6 +146,43 @@ int main() {
     auto CommandBufferAddCommandMemory = Fn<void (*)(void*, const void*, std::int64_t, std::uint64_t)>("nvnCommandBufferAddCommandMemory");
     auto CommandBufferAddControlMemory = Fn<void (*)(void*, void*, std::uint64_t)>("nvnCommandBufferAddControlMemory");
     auto CommandBufferSetMemoryCallback = Fn<void (*)(void*, void*)>("nvnCommandBufferSetMemoryCallback");
+    // fn_7100153350: the engine's own pools, 300 MB, 1008 MB, 208 MB, 12 MB and 1 MB, flags 0x22,
+    // 0x21 and 0x24. Their Vulkan buffers are made only when the GPU first needs them.
+    const struct {
+        std::uint64_t size;
+        std::int32_t flags;
+    } kEnginePools[] = {{300ull << 20, 0x22}, {1008ull << 20, 0x21}, {208ull << 20, 0x24}, {12ull << 20, 0x22},
+                        {1ull << 20, 0x22}};
+    Storage engine_pools[5];
+    void* engine_storage[5] = {};
+    for (int i = 0; i < 5; ++i) {
+        Storage builder;
+        engine_storage[i] = LargeStorage(kEnginePools[i].size);
+        Check(engine_storage[i] != nullptr, "storage for an engine pool");
+        MemoryPoolBuilderSetDefaults(&builder);
+        MemoryPoolBuilderSetDevice(&builder, &device);
+        MemoryPoolBuilderSetFlags(&builder, kEnginePools[i].flags);
+        MemoryPoolBuilderSetStorage(&builder, engine_storage[i], kEnginePools[i].size);
+        Check(MemoryPoolInitialize(&engine_pools[i], &builder) == 1, "nvnMemoryPoolInitialize (an engine pool)");
+    }
+    Check(PoolsWithVulkanBuffer() == 0, "no Vulkan buffer before the GPU needs a pool");
+
+    // fn_710015f100's integers and the pools it sizes with them.
+    std::int32_t texture_size = 0, sampler_size = 0, reserved_textures = 0, reserved_samplers = 0, max_textures = 0,
+                 max_samplers = 0;
+    DeviceGetInteger(&device, 0xf, &texture_size);
+    DeviceGetInteger(&device, 0x10, &sampler_size);
+    DeviceGetInteger(&device, 0x11, &reserved_textures);
+    DeviceGetInteger(&device, 0x24, &max_textures);
+    DeviceGetInteger(&device, 0x12, &reserved_samplers);
+    DeviceGetInteger(&device, 0x25, &max_samplers);
+    const std::int32_t textures_n = std::min(reserved_textures + 0x800, max_textures);
+    const std::int32_t samplers_n = std::min(reserved_samplers + 0x2000, max_samplers);
+    Check(texture_size > 0 && sampler_size > 0 && reserved_textures > 0 && reserved_samplers > 0,
+          "descriptor sizes and reserved counts");
+    Check(textures_n == reserved_textures + 0x800 && samplers_n == reserved_samplers + 0x2000,
+          "the pools hold every texture and sampler the game asks for");
+
     std::int32_t command_alignment = 0, control_alignment = 0;
     DeviceGetInteger(&device, 0x13, &command_alignment);
     DeviceGetInteger(&device, 0x14, &control_alignment);
@@ -157,7 +203,7 @@ int main() {
         CommandBufferAddControlMemory(&cmd_builders[i], control_memory[i], kControlSize);
         CommandBufferSetMemoryCallback(&cmd_builders[i], reinterpret_cast<void*>(&AlignedAlloc));
     }
-    Check(MemoryPoolCount() == 2, "two memory pools");
+    Check(MemoryPoolCount() == 7, "seven memory pools (five of the engine's, two of command memory)");
 
     // Syncs and the fixed-function state objects, set as fn_71001587f0 sets them.
     auto SyncInitialize = Fn<std::int32_t (*)(void*, const void*)>("nvnSyncInitialize");
@@ -195,6 +241,8 @@ int main() {
         MemoryPoolBuilderSetStorage(&builder, storage, size);
         Check(MemoryPoolInitialize(&pool, &builder) == 1, "nvnMemoryPoolInitialize (buffer memory)");
         Fn<void (*)(void*)>("nvnBufferBuilderSetDefaults")(&buffer_builder);
+        Check(Fn<const void* (*)(const void*)>("nvnBufferBuilderGetDevice")(&buffer_builder) == &device,
+              "the buffer builder keeps its device across SetDefaults (fn_710015c9b0 sets defaults per buffer)");
         Fn<void (*)(void*, const void*, std::int64_t, std::uint64_t)>("nvnBufferBuilderSetStorage")(&buffer_builder, &pool,
                                                                                                     0x100, 0x200);
         Check(Fn<std::int32_t (*)(void*, const void*)>("nvnBufferInitialize")(&buffer, &buffer_builder) == 1,
@@ -211,6 +259,7 @@ int main() {
               "the binding layer's address resolution");
         Check(!ResolveGpuAddress(address, 0x10000, &vk, &off), "a range past the pool's end does not resolve");
         Check(SyncPoolRange(address, 0x200), "copying the range into the Vulkan buffer");
+        Check(PoolsWithVulkanBuffer() == 1, "a Vulkan buffer only for the pool the GPU used");
         Check(Fn<std::uint64_t (*)(const void*)>("nvnBufferGetSize")(&buffer) == 0x200, "nvnBufferGetSize");
         Fn<void (*)(void*)>("nvnBufferFinalize")(&buffer);
         Fn<void (*)(void*)>("nvnMemoryPoolFinalize")(&pool);
@@ -307,13 +356,28 @@ int main() {
                 Registered().size(), TrapsCalled().size());
     for (const std::string& name : TrapsCalled())
         std::printf("  %s\n", name.c_str());
+    // The engine finalises the device with pools alive (the shutdown fn_7100132730); the shim must
+    // release their Vulkan objects first (validation reports leaks at vkDestroyDevice). One pool
+    // gets a Vulkan buffer first so that there is something to release.
+    {
+        auto MemoryPoolGetBufferAddress = Fn<BufferAddress (*)(const void*)>("nvnMemoryPoolGetBufferAddress");
+        VkBuffer vk = VK_NULL_HANDLE;
+        VkDeviceSize off = 0;
+        Check(ResolveGpuAddress(MemoryPoolGetBufferAddress(&engine_pools[4]), 0x100, &vk, &off),
+              "a 1 MB engine pool resolves");
+    }
+    Fn<void (*)(void*)>("nvnDeviceFinalize")(&device);
+    Check(CurrentBackend() == nullptr, "nvnDeviceFinalize destroys the backend");
+    Check(PoolsWithVulkanBuffer() == 0, "nvnDeviceFinalize released the pools' Vulkan buffers");
     auto MemoryPoolFinalize = Fn<void (*)(void*)>("nvnMemoryPoolFinalize");
     for (Storage& pool : pools)
         MemoryPoolFinalize(&pool);
+    for (int i = 0; i < 5; ++i) {
+        MemoryPoolFinalize(&engine_pools[i]);
+        std::free(engine_storage[i]);
+    }
     Check(MemoryPoolCount() == 0, "every memory pool finalised");
-    const int errors = ValidationErrors();
-    Fn<void (*)(void*)>("nvnDeviceFinalize")(&device);
-    Check(CurrentBackend() == nullptr, "nvnDeviceFinalize destroys the backend");
+    const int errors = ValidationErrors();  // after the device is gone: leaks are reported there
     std::printf("%d failures, %d Vulkan validation errors\n", g_failures, errors);
     return g_failures || errors ? 1 : 0;
 }

@@ -480,7 +480,7 @@ inputs the vertex stage does not write are dropped by the build step; the device
 `maintenance4`). Then the start-up path of the shim itself: the entry layer (`nvnBootstrapLoader`,
 `nvnDeviceGetProcAddress`, a named trap for every function not written), the device over Vulkan,
 memory pools with a GPU address space and buffers (the binding layer's address resolution), queues
-and syncs, command buffers, the state objects and the window: 102 functions, 74 of the 146 the game
+and syncs, command buffers, the state objects and the window: 106 functions, 74 of the 146 the game
 calls (`data/nvn_procs.csv` from `tools/nvn_procs.py`, which also names every `g_unk_716e29xxxx` of
 the matched start-up). `nvn_startup_check` replays that start-up `fn_71001587f0` and three frames
 against the shim on lavapipe with validation: all checks pass, no message, and it stops at the 11

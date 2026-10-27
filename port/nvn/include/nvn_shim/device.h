@@ -26,7 +26,8 @@ enum DeviceInteger : std::int32_t {
     kReservedTextureDescriptors = 0x11,
     kReservedSamplerDescriptors = 0x12,
     // fn_71001587f0: the alignment of the 15 MB command memory pool per command buffer, and of the
-    // 2 MB control memory block it allocates for each.
+    // 2 MB control memory block it allocates for each (the matched source's locals call them the
+    // other way round; these names follow what each value aligns).
     kCommandBufferCommandAlignment = 0x13,
     kCommandBufferControlAlignment = 0x14,
     // fn_710015f100: the pools hold min(reserved + 0x800, this) textures and min(reserved + 0x2000,

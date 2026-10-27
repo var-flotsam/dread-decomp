@@ -74,15 +74,43 @@ def str_x0(w: int) -> int | None:
     return (w >> 5) & 31
 
 
+def is_branch(w: int) -> bool:
+    """B, BL, B.cond, CBZ/CBNZ, TBZ/TBNZ, BR/BLR/RET: the window of a GOT load ends at one (a call
+    also clobbers x0-x18)."""
+    return ((w & 0x7C000000) == 0x14000000 or (w & 0xFF000010) == 0x54000000 or (w & 0x7E000000) == 0x34000000
+            or (w & 0x7E000000) == 0x36000000 or (w & 0xFE000000) == 0xD6000000)
+
+
 def writes_register(w: int, reg: int) -> bool:
-    """Whether an instruction may write register `reg` (conservative: any instruction whose Rd/Rt
-    field is `reg`, except stores, compares and branches, which do not write it)."""
-    if (w & 31) != reg:
-        return False
-    store = (w & 0x0A000000) == 0x08000000 and not (w & 0x00400000)  # load/store class, L bit clear
-    compare = (w & 0x1F000000) in (0x0B000000, 0x11000000, 0x31000000) and reg == 31
-    branch = (w & 0x7C000000) == 0x14000000 or (w & 0xFE000000) == 0xD6000000
-    return not (store or compare or branch)
+    """Whether an instruction may write general register `reg` (conservative: unknown kinds that
+    name it as Rd count). Loads write Rt (Rt and Rt2 for a pair) unless they load a SIMD register;
+    pre- and post-indexed forms write their base; stores write nothing else."""
+    if (w & 0x0A000000) == 0x08000000:  # loads and stores
+        simd = (w >> 26) & 1
+        rt, rn = w & 31, (w >> 5) & 31
+        kind = (w >> 27) & 7
+        if kind == 0b101:  # pairs: LDP/STP and their pre/post-indexed forms
+            if ((w >> 23) & 3) in (1, 3) and rn == reg:
+                return True
+            return bool((w >> 22) & 1) and not simd and reg in (rt, (w >> 10) & 31)
+        if kind == 0b111:  # single register: unsigned offset, register offset, pre/post-index
+            if not (w >> 24) & 1 and not (w >> 21) & 1 and ((w >> 10) & 3) in (1, 3) and rn == reg:
+                return True
+            return ((w >> 22) & 3) != 0 and not simd and rt == reg  # opc 0 is a store
+        if kind == 0b011:  # load literal
+            return not simd and rt == reg
+        return rt == reg  # exclusives and the rest: conservative
+    return (w & 31) == reg
+
+
+def loader_size() -> int:
+    """fn_7100154770's size from data/functions/ (the eh_frame bounds)."""
+    for f in sorted((ROOT / "data" / "functions").glob("main_*.csv")):
+        with f.open(encoding="utf-8") as fh:
+            for row in csv.DictReader(fh):
+                if int(row["address"], 16) == LOADER:
+                    return int(row["size"])
+    raise SystemExit("fn_7100154770 is not in data/functions/")
 
 
 def cstring(data: bytes, off: int) -> str:
@@ -127,8 +155,9 @@ def main() -> int:
         if not a or not b or a[0] != 1 or b[0] != 1 or b[1] != 1:
             break
         name = cstring(data, a[1] + b[2] - BASE)
-        if (word(pc + 8) & 0xFFE0FFE0) != 0xAA0003E0 or (word(pc + 12) & 0xFFFFFC1F) != 0xD63F0000:
-            raise SystemExit(f"loader step at {pc:#x} is not mov/blr")
+        mov = word(pc + 8)  # mov x20, x0 (the first step keeps the device) or mov x0, x20
+        if (mov & 0xFFE0FFE0) != 0xAA0003E0 or ((mov & 31) != 0 and ((mov >> 16) & 31) != 0) or                 (word(pc + 12) & 0xFFFFFC1F) != 0xD63F0000:
+            raise SystemExit(f"loader step at {pc:#x} is not mov x0, xN or mov xN, x0, then blr")
         g = adrp(word(pc + 16), pc + 16)
         ld = ldr_x(word(pc + 20))
         st = str_x0(word(pc + 24))
@@ -136,8 +165,12 @@ def main() -> int:
             raise SystemExit(f"loader step at {pc:#x} ({name}) does not store through a GOT slot")
         procs.append((name, g[1] + ld[2]))
         pc += 28
-    if len(procs) < 100:
-        raise SystemExit(f"only {len(procs)} loader steps decoded")
+    # The steps must run to the epilogue: ldp x29, x30 / ldp x20, x19 / ret at the function's end
+    # (its size from data/functions/).
+    size = loader_size()
+    if pc + 12 != LOADER + size or word(pc + 8) != 0xD65F03C0:
+        raise SystemExit(f"loader decode stopped at {pc:#x} ({len(procs)} names), not at the epilogue before "
+                         f"{LOADER + size:#x}: another build, or a step of another shape")
     loader_end = pc
 
     # Call sites: an adrp of the slot's page, then the ldr of the slot through that register.
@@ -161,7 +194,7 @@ def main() -> int:
                 if slot in uses:
                     uses[slot] += 1
                 break
-            if writes_register(nxt, a[0]):
+            if is_branch(nxt) or writes_register(nxt, a[0]):
                 break
 
     implemented = set()
@@ -187,7 +220,7 @@ def main() -> int:
         if not OUT.is_file() or OUT.read_text(encoding="utf-8") != text:
             print(f"{OUT.relative_to(ROOT).as_posix()} is out of date: run without --check", file=sys.stderr)
             return 1
-        return 0
+        return 1 if unknown else 0
     OUT.write_text(text, encoding="utf-8", newline="\n")
     print(f"wrote {OUT.relative_to(ROOT).as_posix()}")
     return 1 if unknown else 0

@@ -5,7 +5,8 @@
 //
 // The window has no Vulkan surface yet (the textures it is given are not Vulkan images until the
 // texture part exists, and the port's window is nn::vi's): AcquireTexture hands out the textures in
-// turn, signalling the sync it is given, and a present only counts (queue.cpp).
+// turn and leaves the sync it is given alone (every sync wait returns at once, queue.cpp), and a
+// present only counts.
 
 #include <cstdio>
 #include <vector>
@@ -38,7 +39,12 @@ detail::Registry<Window> g_windows;
 
 void WindowBuilderSetDefaults(void* builder) {
     std::lock_guard<std::mutex> lock(detail::StateLock());
-    g_builders.Reset(builder);
+    g_builders.ResetKeepingDevice(builder);
+}
+const void* WindowBuilderGetDevice(const void* builder) {
+    std::lock_guard<std::mutex> lock(detail::StateLock());
+    WindowBuilder* b = g_builders.Find(builder);
+    return b ? b->device : nullptr;
 }
 void WindowBuilderSetDevice(void* builder, const void* device) {
     std::lock_guard<std::mutex> lock(detail::StateLock());
@@ -89,7 +95,7 @@ std::int32_t WindowGetPresentInterval(const void* window) {
 }
 
 // Returns 0 (the shim's success; the game does not look at it). The sync is the one the game waits
-// on before rendering into the texture; nothing is in flight, so it is signalled already.
+// on before rendering into the texture; nothing is in flight, so it needs no signal yet.
 std::int32_t WindowAcquireTexture(void* window, void*, std::int32_t* index) {
     std::lock_guard<std::mutex> lock(detail::StateLock());
     Window* w = g_windows.Find(window);
@@ -130,6 +136,7 @@ WindowStats GetWindowStats(const void* window) {
 
 void detail::RegisterWindowProcs() {
     Register("nvnWindowBuilderSetDefaults", &WindowBuilderSetDefaults);
+    Register("nvnWindowBuilderGetDevice", &WindowBuilderGetDevice);
     Register("nvnWindowBuilderSetDevice", &WindowBuilderSetDevice);
     Register("nvnWindowBuilderSetNativeWindow", &WindowBuilderSetNativeWindow);
     Register("nvnWindowBuilderSetTextures", &WindowBuilderSetTextures);
