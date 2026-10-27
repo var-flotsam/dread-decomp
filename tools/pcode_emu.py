@@ -312,6 +312,7 @@ class Machine:
         self.pages: dict[int, bytearray] = {}
         self.dirty: dict[int, int] = {}
         self.stack_written: set[int] = set()
+        self.frame_record: set[int] = set()  # stack words holding the saved return address (store)
         self.state = {}  # argument register key -> "entry" | "written" | "junk"
         self.events: list = []
         self.calls = 0
@@ -380,6 +381,8 @@ class Machine:
             return
         if STACK_LO <= a < ENTRY_SP:
             self.stack_written.update(range(a, a + size))
+            if size == 8 and v & 0xFFFFFFFFFFFFFFFF == SENTINEL:
+                self.frame_record.add(a)  # the saved return address: out-parameters never reach it
         elif not (self.own[0] <= a < self.own[1]):
             for i in range(size):
                 self.dirty[a + i] = b[i]
@@ -500,8 +503,11 @@ class Machine:
             if k in chosen and isinstance(v, tuple) and v[0] == "stack":
                 p = raw[k]
                 for j in range(0, WINDOW, 8):
-                    if p + j < ENTRY_SP:
-                        self.store(p + j, 8, mix(n, k, j))
+                    # (up to the frame record: a small local below it would otherwise let the
+                    # pattern overwrite the saved return address, and the run return elsewhere)
+                    if p + j >= ENTRY_SP or any(p + j - 7 <= r <= p + j + 7 for r in self.frame_record):
+                        break
+                    self.store(p + j, 8, mix(n, k, j))
         for i in CALLER_SAVED_X:
             self.regs[X0 + 8 * i:X0 + 8 * i + 8] = (mix(n, 7, i) >> 1).to_bytes(8, "little")
             if i <= 8:
@@ -808,6 +814,10 @@ class Machine:
             else:
                 v = float("nan") if math.isnan(a) or math.isnan(b) else (min(a, b) if "min" in name else max(a, b))
             self.write(out, f_to(v, out[2]))
+            return
+        if name == "NEON_ucvtf" and out and out[2] in (4, 8) and len(ins) == 1 and ins[0][2] == out[2]:
+            # scalar unsigned integer to float, in a float register (`ucvtf s0, s0`)
+            self.write(out, f_to(float(self.read(ins[0])), out[2]))
             return
         raise Inconclusive(f"user op {name}")
 
