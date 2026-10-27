@@ -17,6 +17,7 @@
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "engine/UnkGraphicsSystem.h"
 #include "types.h"
 
 using base::color::CColor4F;
@@ -1191,7 +1192,7 @@ extern __attribute__((visibility("hidden"))) u8 g_unk_716e595cd8[];  // its thre
 // rather than off one base, the camera map's remainder is guarded against a zero modulus (where
 // AArch64's udiv gives zero), and the original passes the device configuration to fn_71001587f0,
 // which reads none of it.
-void fn_71001c9718(UnkGraphicsSystem* self, UnkGfxSettings* settings) {
+void fn_71001c9718(UnkGraphicsSystem* self, UnkGfxSettings* settings, void* /*unused*/) {
     using base::global::CFilePathStrId;
     using base::global::CStrId;
 
