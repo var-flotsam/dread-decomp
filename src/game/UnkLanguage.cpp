@@ -157,7 +157,7 @@ void fn_710119c208(UnkLanguage* self, bool keep_texts) {
             self->allocator->vf_0x48(node);
             node = next;
         }
-        memset(self->buckets.data, 0, self->buckets.capacity * 8ul);
+        memset(self->buckets.data, 0, self->buckets.capacity * u64(8));
         self->count = 0;
         self->last = nullptr;
         self->first = nullptr;

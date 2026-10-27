@@ -91,6 +91,7 @@ python tools/trymatch.py --version <ver> <file.cpp> [-v] [--no-reloc] [-- flags]
 python tools/ghidra/decompile.py --version <ver> <addr|name>...    # read Ghidra's pseudocode (never commit it)
 python tools/policy_check.py [--base <ref>]      # content rules (also run by CI on every PR)
 python tools/port_sweep.py --version <ver>       # port: compile every src/ file for x86-64 (compile only) -> build/port/sweep/
+python tools/port_sweep.py --version <ver> --target x86_64-w64-mingw32  # port: the same for Windows (llvm-mingw), plus the LLP64 scan -> build/port/windows/
 python tools/port_link.py --version <ver>        # port: whole-program relocatable link of the sweep objects, undefined-symbol report, boot_missing.csv -> build/port/link/
 python tools/port_lift.py --version <ver> [--top N | --only ADDR,...] [--debug ADDR] [--mutants N]  # port: semantic lifts of boot_missing.csv's U functions, checked by the P-code oracle -> build/port/lifted/ (never src/)
 python tools/port_link.py --version <ver> --lifted build/port/lifted   # the link with the semantic lifts: boot slice with and without them
@@ -100,6 +101,7 @@ python tools/port_imports.py --version <ver> [--list NS]  # port: the dump's imp
 python tools/abi_facts.py --version <ver> ADDR...  # argument registers a function reads, whether callers use its result (semantic lifts, oracle)
 python tools/nvn_procs.py --version <ver> [--check]  # the game's NVN function table -> data/nvn_procs.csv (globals, call sites, what port/nvn/ implements)
 python tools/nvn_procs.py --version <ver> --sites NAME[,NAME]  # each call site of those NVN functions and the function it is in
+python tools/fetch_toolchains.py llvm-mingw-20261006  # llvm-mingw, for port_sweep.py's Windows target (by name only)
 python tools/fetch_toolchains.py glslang-16.6.0     # Khronos glslang, for bshdat.py --compile (by name only; not in the default fetch)
 python tools/bshdat.py --version <ver> [--only NAME] [--compile] [--jobs N]  # port: .bshdat shader packages -> GLSL + manifests in build/shaders/<ver>/; --compile: glslang to SPIR-V, compile_report.csv (~1 min)
 ```

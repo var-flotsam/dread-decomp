@@ -91,7 +91,8 @@ cmake --build build/port/cmake --target dread_game
 Linking a Windows executable needs one of: the MSVC Build Tools (then target
 `x86_64-pc-windows-msvc`, lld-link, and the host's standard library: leave
 `DREAD_LIBCXX_INCLUDE` and `DREAD_MUSL_INCLUDE` empty), MinGW-w64 (an `x86_64-w64-mingw32`
-toolchain), or WSL (a Linux build, below). A Windows target is LLP64 (`long` is 32-bit):
+toolchain: llvm-mingw, which the sweep already compiles with, "Windows (compile only)" below), or
+WSL (a Linux build, below). A Windows target is LLP64 (`long` is 32-bit):
 `include/types.h` takes `u64` and `s64` from `long long` under `_WIN64` (merged with
 var-flotsam/dread-decomp#184), and its `static_assert` checks the widths on every target. Since
 the data loader (below) the game links only with the Itanium C++ ABI, which rules out
@@ -193,6 +194,7 @@ Untested on hardware, like the matching toolchain there.
 python tools/port_sweep.py --version 2.1.0                 # host clang++, x86_64-linux-gnu on Windows
 python tools/port_sweep.py --version 2.1.0 --no-runtime    # without port/runtime/include: the raw list
 python tools/port_sweep.py --version 2.1.0 --only '^src/game_s7/' --jobs 16
+python tools/port_sweep.py --version 2.1.0 --target x86_64-w64-mingw32   # Windows, compile only ("Windows" below)
 ```
 
 It compiles every `src/**/*.cpp` on its own with the project's include setup
@@ -212,6 +214,79 @@ one function, which no linker notices). It takes the own name of each demangled 
 function address inside a template argument does not count as a definition. `tools/check.py`
 reports duplicates too but leaves the Phase 3 sample directories out of that rule; the per-file
 exclusions in `port/CMakeLists.txt` come from this report.
+
+## Windows (compile only)
+
+Linux is the only target that runs until the title screen works (owner's decision, 2026-10-27).
+Alongside it the sweep compiles every source for Windows too, so that what breaks only there is
+found now and kept at zero. The game's vtables are used as they are, so Windows means the Itanium
+C++ ABI through MinGW-w64, not MSVC.
+
+```sh
+python tools/fetch_toolchains.py llvm-mingw-20261006   # once: llvm-mingw, Clang 23.1.3, UCRT (190 MB zip, about 1 GB unpacked)
+python tools/fetch_sources.py libcxx-9.0.1.src         # once, if the libc++ 9.0.1 headers are not there yet
+python tools/port_sweep.py --version 2.1.0 --target x86_64-w64-mingw32
+```
+
+- **Toolchain.** [llvm-mingw](https://github.com/mstorsjo/llvm-mingw) release 20261006 (published
+  2026-10-07), the UCRT build for the host (`llvm-mingw-20261006-ucrt-x86_64.zip` on Windows; the
+  macOS and Linux archives are listed but untested). `tools/fetch_toolchains.py` checks the SHA-256
+  GitHub publishes, records it in `data/toolchains.json` and unpacks the whole archive into
+  `<cache>/toolchains/llvm-mingw-20261006/`. The sweep takes its `clang++` from there (or
+  `x86_64-w64-mingw32-clang++` on `PATH`, or `--cxx`). A Claude Code shell may see a sandboxed
+  `%LOCALAPPDATA%`; to run the sweep from your own terminal, run the fetch there.
+- **Headers.** By default (`--stdlib libcxx9`) libc++ 9.0.1's headers over MinGW-w64's C headers,
+  as the Linux build puts them over glibc, with libc++'s Win32 thread API
+  (`_LIBCPP_HAS_THREAD_API_WIN32`). `--stdlib host` is llvm-mingw's own libc++. `--stdlib
+  project` (musl) is refused: musl does not describe Windows.
+- **Flags.** The Linux sweep's, without `-fPIC` (an ELF code model; Clang rejects it for COFF).
+  Objects go to `build/port/windows/sweep/`, the report to `build/port/windows/sweep.json`.
+- **Definitions.** On COFF, inline functions, their statics, template instantiations and MinGW's
+  `.refptr` stubs are COMDAT, and `llvm-nm` prints them as strong symbols (2,417 false collisions
+  on the first run). The sweep reads the COMDAT sections with `llvm-objdump --syms`, leaves their
+  symbols out, and demangles what is left with `llvm-cxxfilt`.
+- **LLP64 scan.** Code that compiles but means something else on Windows is invisible to the
+  compiler, so the sweep also lists, for this target only, each place in `src/` and `include/`
+  (comments and string contents left out; `include/types.h` exempt) that spells `long` (not `long
+  long` or `long double`), writes an `l` or `ul` literal, or uses `wchar_t`, a wide literal or a
+  wide C function. Generated files are marked, as a generator's to fix.
+
+What it found (2026-10-27, 3,979 sources):
+
+| Issue | Before | Now |
+|---|---|---|
+| Compile errors | 13 files: `operator new(unsigned long, void*)`, a placement `new` that must take `size_t` (`unsigned long long` on Windows) | none: all 3,979 compile |
+| `long` | the 13 above, and two iterators' `difference_type` and offsets (`src/game/CActor.cpp`, `src/game_s7/UnkIter.h`), which would have been 32-bit | spelled `u64`/`s64` |
+| `l`/`ul` literals | `~0ul` stored to a `u64` (`0xffffffff` on Windows), `capacity * 8ul` in four files and `include/base/UnkHashMap.h` (a 32-bit product), two `0xffffffff00000000ul` | `~0ull`, `* u64(8)`, `ull` |
+| `wchar_t` (16-bit on Windows) | 5 places in 2 files | open, below |
+| Generated sources | nothing flagged (`long` in `src/reflection_types/` is a type's name in a string) | no generator change needed |
+| Duplicate definitions | 2,417 false collisions on COFF | as on Linux: `fn_7100227448` and the three `src/lifted` pairs of frozen Phase 3 samples |
+
+All the fixes are byte-identical in the matching build (`tools/check.py --update`, and
+`tools/baseline.py` over the 42 edited files and includers: unchanged), since `u64` and `s64` are
+`unsigned long` and `long` there. The Win64 calling convention (four register arguments, against six
+for SysV) changes no source: the game code is C++ and the compiler follows the target's convention;
+`va_list` is only passed along, and the inline `asm("" : "+r"(x))` barriers name no register. It
+matters to the assembly `tools/port_link.py` writes, below.
+
+Next Windows steps (not started):
+
+1. **Wide text.** `src/game/GUI/CLabel.cpp` (two `swscanf` calls) and
+   `src/game_s1/fn_7100067460.cpp` (`wcsstr`) pass the game's 32-bit `char32_t` text to the C
+   library's wide functions, which take 16-bit units on Windows. They need `char32_t` versions in
+   the port's runtime; that changes the files' callees, so it is a matching question first.
+2. **The runtime's own sources.** The sweep compiles `port/runtime/include` through the game's
+   sources, not `port/runtime/src/`. Imports are resolved by exact mangled name
+   (`tools/port_imports.py`): under LLP64 `long` mangles as `l`, `s64` as `x`, so the names the game
+   imports differ from the runtime's definitions there (`port/runtime/include/movie.h` already notes
+   this).
+3. **The generated assembly.** `tools/port_link.py` writes `traps.s`, `residue.s` and
+   `image_tables.s` for SysV and ELF (argument registers, sections, directives); Windows needs Win64
+   and COFF versions.
+4. **The fault handler** (`port/runtime/src/fault.cpp`): signals become structured exception
+   handling (a vectored exception handler).
+5. **A Windows link and executable**: `ld.lld` in MinGW mode at the fixed base the loader needs
+   (`/FIXED /BASE`, "The data loader" below), with the UCRT.
 
 ## What M0 found (2026-10-24)
 
