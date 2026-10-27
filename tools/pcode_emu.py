@@ -296,8 +296,9 @@ class Machine:
                  overrides: dict | None = None, track: bool = False):
         self.dictionary = dictionary  # constants of the original (DICT_PROFILE seeds draw from them)
         # An input changed from what the seed gives (the oracle's mutations): ("r", key) -> register
-        # value, ("m", address of an 8-byte word) -> memory word; and, with track, the memory words
-        # the run read before writing them, in order (what a mutation can change next).
+        # value, ("m", address of an 8-byte word) -> memory word, ("c", n) -> the n-th call's x0
+        # result; and, with track, the memory words the run read before writing them, in order
+        # (what a mutation can change next).
         self.overrides = overrides or {}
         self.mem_ovr: dict[int, list[tuple[int, int]]] = {}
         for (kind, k), v in self.overrides.items():
@@ -518,8 +519,8 @@ class Machine:
                 self.state[100 + i] = "junk"
         for k in range(NG, OV + 1):
             self.regs[k] = 0
-        ret = self.word(mix(n, 11, self.seed))
-        self.regs[X0:X0 + 8] = ret.to_bytes(8, "little")
+        ret = self.overrides.get(("c", n), self.word(mix(n, 11, self.seed)))  # (a mutation may set it)
+        self.regs[X0:X0 + 8] = (ret & 0xFFFFFFFFFFFFFFFF).to_bytes(8, "little")
         self.regs[Q0:Q0 + 16] = f_to(n + 0.5, 4).to_bytes(16, "little")  # an f32 result (the game's floats)
         self.state[0] = "written"
         # A float argument counts only when the caller's own code set it: a result left in v0 and
