@@ -459,6 +459,12 @@ class Machine:
                 continue
             # A register the callee reads only as w<n> has an unspecified upper half.
             sel.append((k, 32 if f is not None and k < 9 and k not in f.wide else 64))
+        # Arguments beyond the eight registers: the callee's stack slots at [sp + 8i] (key 200 + i),
+        # 32 bits each (a 32-bit argument leaves the upper half of its slot unspecified).
+        sp = self.reg(SP, 8)
+        for i in range(getattr(f, "stack_slots", 0) if f is not None else 0):
+            args.append((200 + i, self.stackref(self.load(sp + 8 * i, 8))))
+            sel.append((200 + i, 32))
         self.checkpoint(("call", t, tuple(sel), tuple(args)))
         self.target_reg = None
         self.calls += 1
@@ -936,4 +942,4 @@ def fmt(t) -> str:
 
 
 def regname(k: int) -> str:
-    return f"x{k}" if k < 100 else f"v{k - 100}"
+    return f"x{k}" if k < 100 else f"v{k - 100}" if k < 200 else f"[sp+{8 * (k - 200):#x}]"

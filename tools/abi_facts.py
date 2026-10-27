@@ -19,7 +19,8 @@ know which registers of a call to compare. This module computes, per function:
             A wrapper `this->vf(0.0f)` reached as fn(this, 0.0f) reads s0 that way. Only for
             functions with an indirect call (empty otherwise).
   stack     whether it reads its caller's frame (a load from [sp, #k] at or above the entry sp):
-            arguments beyond the eight registers.
+            arguments beyond the eight registers; stack_slots counts the 8-byte slots up to the
+            highest one read.
   ret_used  whether some caller reads x0 (or s0/d0) after calling it, before writing it; a tail
             call passes the question on to the caller's callers. None when no direct caller is
             known (a virtual function, a function pointer): the oracle then compares the result.
@@ -85,6 +86,7 @@ class Facts:
     stack: bool
     wide: frozenset = frozenset()  # integer argument registers read as x<n> (else only as w<n>)
     fwd: frozenset = frozenset()   # argument registers the callers set, for an indirect call
+    stack_slots: int = 0           # 8-byte slots of the caller's frame read (stack arguments)
 
     @property
     def ints(self) -> int:
@@ -177,7 +179,9 @@ class Insn:
             r = [q for q in r if q != ops[0].reg or q in sources]
         regs = tuple(reg_key(op.reg) for op in ops)
         mem = [op for op in x.operands if op.type == arm64.ARM64_OP_MEM]
-        return Insn(x.address, x.mnemonic, tuple(op.imm for op in x.operands if op.type == arm64.ARM64_OP_IMM),
+        # (immediates with their lsl shift: `sub sp, sp, #1, lsl #12` moves sp by 4 KiB)
+        return Insn(x.address, x.mnemonic, tuple(op.imm << (op.shift.value if op.shift.type == arm64.ARM64_SFT_LSL else 0)
+                                                 for op in x.operands if op.type == arm64.ARM64_OP_IMM),
                     frozenset(k for k in map(reg_key, r) if k is not None),
                     frozenset(k for k in map(reg_key, w) if k is not None),
                     regs[0] if regs else None,
@@ -287,8 +291,9 @@ class AbiFacts:
             # an argument the function reads whole somewhere before redefining it.
             self._wide = True
             live_wide, _ = self.liveness(addr, ins, depth)
-            f = Facts(args, self.reads_stack(ins), frozenset(k for k in args if k < 9 and k in live_wide[0]),
-                      self.fwd_of(addr, ins))
+            slots = self.stack_slots(ins)
+            f = Facts(args, slots > 0, frozenset(k for k in args if k < 9 and k in live_wide[0]),
+                      self.fwd_of(addr, ins), slots)
         finally:
             self._wide = outer
             self._busy.discard(addr)
@@ -501,10 +506,11 @@ class AbiFacts:
         return {ins[i].address: (t, live_in[i]) for i, t in calls.items() if live_in[i] is not None}
 
     @staticmethod
-    def reads_stack(ins: list) -> bool:
-        """A load from the caller's frame: [sp, #k] (or [x29, #k]) at or above the entry sp, with
-        sp and fp tracked through the prologue (gen_lift.is_frame's instructions)."""
-        delta, fp = 0, None
+    def stack_slots(ins: list) -> int:
+        """Loads from the caller's frame: [sp, #k] (or [x29, #k]) at or above the entry sp, with sp
+        and fp tracked through the prologue (gen_lift.is_frame's instructions). Returns the 8-byte
+        slots up to the highest one read (a pair load reads two), 0 for none."""
+        delta, fp, top = 0, None, -1
         for x in ins:
             m, r, mem = x.mnemonic, x.reg_ops, x.mem
             if m == "sub" and r == ("sp", "sp") and x.imms:
@@ -522,8 +528,8 @@ class AbiFacts:
             if mem and m.startswith("ld"):
                 at = delta if mem[0] == "sp" else fp if mem[0] == 29 else None
                 if at is not None and not mem[2] and at + mem[1] >= 0:
-                    return True
-        return False
+                    top = max(top, at + mem[1] + (8 if m.startswith("ldp") else 0))
+        return top // 8 + 1 if top >= 0 else 0
 
     # -- result use -----------------------------------------------------------------------------
 
@@ -583,7 +589,7 @@ def main() -> int:
             print(f"{a:x}: unknown")
             continue
         print(f"{a:x}: {f.ints} integer, {f.floats} float arguments{', x8 (indirect result)' if f.sret else ''}"
-              f"{', stack arguments' if f.stack else ''}; result used: {af.ret_used(a)}")
+              f"{f', {f.stack_slots} stack argument slots' if f.stack else ''}; result used: {af.ret_used(a)}")
     return 0
 
 
