@@ -103,6 +103,37 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Port: the Windows compile check (2026-10-27, branch `claude/port-windows-sweep`).** The owner
+decided to keep Linux as the only running target until the title screen and to compile-check
+Windows alongside it. Windows means MinGW-w64 (the Itanium C++ ABI the game's vtables need), so the
+toolchain is llvm-mingw 20261006 (Clang 23.1.3, UCRT; published 2026-10-07; SHA-256
+`317492c4…d17a`, GitHub's published digest, in `data/toolchains.json`), fetched by
+`tools/fetch_toolchains.py llvm-mingw-20261006`. `tools/port_sweep.py --target x86_64-w64-mingw32`
+uses its `clang++`, libc++ 9.0.1's headers over MinGW-w64's C headers by default (Win32 thread API),
+no `-fPIC`, and writes to `build/port/windows/`. Findings:
+- **13 files failed**, all one problem: a local `operator new(unsigned long, void*)`. Placement new
+  must take `size_t`, `unsigned long long` on Windows. Spelled `u64`.
+- **COFF definitions.** The first run reported 2,417 symbols defined in several objects: inline
+  functions, their statics and MinGW's `.refptr` stubs are COMDAT on COFF, and `llvm-nm` prints
+  them as strong. The sweep now drops symbols in COMDAT sections (`llvm-objdump --syms`, the
+  section's AUX `comdat` field) and demangles the rest with `llvm-cxxfilt` (`llvm-objdump -C` does
+  not demangle COFF symbol tables). What is left matches the Linux sweep: `fn_7100227448` and the
+  three frozen sample pairs.
+- **Silent LLP64.** The compiler sees none of it, so the sweep now scans `src/` and `include/` (code
+  only) for `long`, `l`/`ul` literals and `wchar_t`. Fixed, all byte-identical (`tools/baseline.py`,
+  42 files unchanged; `check.py --update` clean): two iterators' `long` difference type and offsets
+  (`src/game/CActor.cpp`, `src/game_s7/UnkIter.h`), `u64 crc = ~0ul` (`0xffffffff` on Windows, in
+  `fn_7100001570`), `capacity * 8ul` (a 32-bit product) in four files and `include/base/UnkHashMap.h`,
+  two `0xffffffff00000000ul`. Generated sources had nothing to fix.
+- **Left:** the game's wide text is 32-bit `char32_t`, and `CLabel.cpp` (`swscanf`) and
+  `fn_7100067460` (`wcsstr`) pass it to the C library's 16-bit wide functions on Windows. It needs
+  `char32_t` helpers, not a spelling change.
+- The Win64 calling convention changes no source; it matters to `port_link.py`'s generated
+  assembly. The next Windows steps are listed in `port/README.md`, "Windows (compile only)".
+- Running it: the machine ran short of memory during the session (another session's job held
+  80 GB), and 10 files failed with "insufficient system resources"; rerun with fewer `--jobs`, they
+  compile.
+
 **Port M1: boot-match round 2, and the boot past the game's main function (2026-10-27, branch
 `claude/port-m1-game-main`).** The game's main function `fn_7100000980` is matched (`src/engine/HostArguments.cpp`), and
 `nn::nfp` has stubs for all 26 imports (no reader: the library initialises and lists no device).
