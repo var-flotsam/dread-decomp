@@ -44,6 +44,7 @@ void EnsureRegistered() {
         detail::RegisterCommandProcs();
         detail::RegisterStateProcs();
         detail::RegisterWindowProcs();
+        detail::RegisterTextureProcs();
     });
 }
 

@@ -483,10 +483,13 @@ memory pools with a GPU address space and buffers (the binding layer's address r
 and syncs, command buffers, the state objects and the window: 106 functions, 74 of the 146 the game
 calls (`data/nvn_procs.csv` from `tools/nvn_procs.py`, which also names every `g_unk_716e29xxxx` of
 the matched start-up). `nvn_startup_check` replays that start-up `fn_71001587f0` and three frames
-against the shim on lavapipe with validation: all checks pass, no message, and it stops at the 11
-texture functions of the render targets. Next for M2: textures and the texture and sampler pools
-(the engine's format numbers need a source before they map to Vulkan formats), then programs,
-pipelines with vertex-only variants, the draws into Vulkan command buffers, and presentation; and,
+against the shim on lavapipe with validation: all checks pass, no message. With the texture part
+(textures as Vulkan images, the texture and sampler pools, samplers; formats from
+mercury-engine-data-structures and by use, targets from the game's own textures) the replay reaches
+no unimplemented function: 143 functions, 108 of the 146 the game calls. Next for M2: programs,
+vertex state, pipelines with vertex-only variants, the draws into Vulkan command buffers, clears,
+render targets and presentation (the 38 called functions left), asset texel upload (the console's
+tiled layout) and the sampler enumerations; and,
 once the boot reaches `fn_71001587f0`, `dread_nvn` joins `tools/port_link.py --executable` (agreed
 with the M1 session).
 
