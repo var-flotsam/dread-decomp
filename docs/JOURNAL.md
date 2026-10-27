@@ -81,6 +81,7 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - A source fix for one shader is a regular expression over the construct, never the shipped lines (those are game data): same entry.
 - Vulkan rejects fragment inputs the vertex stage does not write (GL allows unread ones): drop those NVN found inactive and the vertex stage does not cover, never all inactive ones (code still names them); enable `maintenance4` for wider outputs: [binding layer against Vulkan](#session-log-newest-first).
 - A check that compares generated data with the generator's own claims passes vacuously; compare with the artefact (the SPIR-V's decorations) and prove it fails on damaged input: same entry.
+- The NVN globals `g_unk_716e29xxxx` are named by the loader's GOT slots and their relative relocations (`data/nvn_procs.csv`); count GOT-slot call sites with a short window, not adjacent pairs; never write into a game-owned NVN object's storage: [NVN shim's start-up path](#session-log-newest-first).
 
 **Port: runtime and loader**
 - The engine's thread object puts `ThreadType` at +0, light events at +0x1c0 and +0x1cc: the SDK's thread block is 0x1c0 bytes, a light event 12; event clear mode 1 is auto clear: [port M1 step 4](#session-log-newest-first).
@@ -88,6 +89,26 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - A freestanding core builds into a Windows DLL with clang, `lld-link /noentry /nodefaultlib` and a `kernel32.lib` from `llvm-dlltool`: no SDK needed to test it from Python: same entry.
 
 ## Session log (newest first)
+
+**Port M2: the NVN shim's start-up path (2026-10-26).** The graphics start-up `fn_71001587f0` is
+matched in `src/game_s7/`, so its NVN calls are known with their arguments. The 523 names of the
+table loader `fn_7100154770` map to the globals they fill through each GOT slot's relative
+relocation, so every `g_unk_716e29xxxx` the start-up calls is a named NVN function.
+`tools/nvn_procs.py` decodes the loader's seven-instruction steps from `main.elf` and writes
+`data/nvn_procs.csv`, which agrees with the Ghidra reading on all 523. Counting call sites needs a
+window: an adjacent `adrp`/`ldr` pair misses `BindUniformBuffer`, whose `adrp` the compiler
+scheduled earlier. A window of up to 8 instructions that stops when the register is overwritten
+finds 146 functions used. The loose scan's `SamplerPoolInitialize` hits came from a stale register.
+The engine reads its own fields right after the 0x100-byte NVN memory pool object (`+0x100`, the
+storage base, `fn_7100160f60`), so the shim keeps all its state in side tables keyed by the storage
+address and never writes into game storage. The frame loop is `fn_7100159920`, `fn_7100159ac0` and
+`fn_7100159bf0`; no caller reads a sync wait's or an acquire's result. `nvnDeviceGetInteger`
+answers eleven names; their meaning comes from how the game uses each: `0xf`/`0x10` descriptor
+sizes, `0x11`/`0x12` reserved descriptors, `0x24`/`0x25` maximum pool sizes, `0x13`/`0x14` command
+and control alignments, `0x51` the queue's command memory size. `nvn_startup_check` replays the
+start-up and three frames on lavapipe with validation: everything passes, and it stops at 11
+texture functions. A static library drops objects that only register themselves from static
+initialisers, so each part has an explicit `Register…Procs()`, called once by the entry layer.
 
 **Port M2: the binding layer against Vulkan (2026-10-26, var-flotsam/dread-decomp#217 and the Vulkan
 check).** With the Linux image from #214, the binding layer ran for the first time. `nvn_manifest_check`

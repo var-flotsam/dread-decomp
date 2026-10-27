@@ -98,6 +98,7 @@ port/docker/run.sh python3 tools/port_link.py --version <ver> --stdlib libcxx9 -
 python tools/port_addresses.py --version <ver>   # port: original addresses of vtables and names the link cannot place, from matched code -> build/port/addresses.json (port_link uses it)
 python tools/port_imports.py --version <ver> [--list NS]  # port: the dump's imports the runtime resolves by exact mangled name (checks a stub's signature)
 python tools/abi_facts.py --version <ver> ADDR...  # argument registers a function reads, whether callers use its result (semantic lifts, oracle)
+python tools/nvn_procs.py --version <ver> [--check]  # the game's NVN function table -> data/nvn_procs.csv (globals, call sites, what port/nvn/ implements)
 python tools/fetch_toolchains.py glslang-16.6.0     # Khronos glslang, for bshdat.py --compile (by name only; not in the default fetch)
 python tools/bshdat.py --version <ver> [--only NAME] [--compile] [--jobs N]  # port: .bshdat shader packages -> GLSL + manifests in build/shaders/<ver>/; --compile: glslang to SPIR-V, compile_report.csv (~1 min)
 ```
