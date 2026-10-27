@@ -19,7 +19,9 @@ or SDK is needed to compile.
 | `include/nvn_shim/shader_manifest.h`, `src/shader_manifest.cpp` | reads `shaders.manifest` (written by `tools/bshdat.py --install`) and finds a stage by its control section |
 | `include/nvn_shim/bindings.h`, `src/bindings.cpp` | descriptor set layouts per stage; NVN's per-stage slots turned into descriptor writes |
 | `check/manifest_check.cpp` | `nvn_manifest_check`: runs the manifest reader and the binding layer over the real build output (below) |
-| `CMakeLists.txt` | `dread_nvn` (static library), built when `DREAD_VULKAN_INCLUDE` is set; `nvn_manifest_check` when `DREAD_LINK` is on |
+| `check/vulkan_check.cpp` | `nvn_vulkan_check`: the same against a real Vulkan implementation (lavapipe), with the validation layers: modules, layouts, descriptor sets, pipelines (below) |
+| `check/spirv_scan.h` | the checks' own SPIR-V reader (bindings, interface variables): the reference the manifest is compared with |
+| `CMakeLists.txt` | `dread_nvn` (static library), built when `DREAD_VULKAN_INCLUDE` is set; `nvn_manifest_check` when `DREAD_LINK` is on; `nvn_vulkan_check` when a Vulkan loader is found too |
 
 ```sh
 python tools/fetch_toolchains.py vulkan-headers-1.4.328    # once; the configure finds them in the tool cache
@@ -37,6 +39,16 @@ port/docker/run.sh build/port/linux/cmake-nvn/nvn/nvn_manifest_check build/port/
 ```
 
 The first argument is the host build's `DREAD_SHADER_DIR` (`<host build dir>/shaders`).
+
+Against Vulkan, in the port's Vulkan image (`port/docker/vulkan/Dockerfile`: the base image plus
+Ubuntu's Vulkan loader, Mesa's lavapipe and the Khronos validation layers; no GPU needed):
+
+```sh
+docker build -t dread-port-linux-vulkan port/docker/vulkan
+DREAD_PORT_IMAGE=dread-port-linux-vulkan port/docker/run.sh cmake -S port -B build/port/linux/cmake-vk -G Ninja -DCMAKE_CXX_COMPILER=clang++ -DDREAD_SHADERS=OFF
+DREAD_PORT_IMAGE=dread-port-linux-vulkan port/docker/run.sh cmake --build build/port/linux/cmake-vk --target nvn_vulkan_check
+DREAD_PORT_IMAGE=dread-port-linux-vulkan port/docker/run.sh build/port/linux/cmake-vk/nvn/nvn_vulkan_check build/port/cmake/shaders
+```
 
 ## What the game does with NVN (the parts the bindings depend on)
 
@@ -100,13 +112,25 @@ reflection, so these mappings hold for every stage of the dump:
   that case undefined, and the game is not expected to hit it.
 - **Texture handles** are the shim's own encoding: texture index low, sampler index high. The game
   treats them as opaque and only passes them back to `nvnCommandBufferBindTexture`.
+- **Device requirements.** Vulkan 1.3 with `dynamicRendering` (what the checks use) and
+  `maintenance4`: two programs (`pp_fxaa_nx`, `pp_deferredambient_nx`) write a wider vector from the
+  vertex stage than the fragment stage reads, which GL allows and Vulkan only with `maintenance4`.
+- **Interfaces.** GL and NVN let a fragment stage declare inputs the vertex stage does not write, as
+  long as nothing reads them; Vulkan rejects the pipeline. The build step drops those (inactive in
+  NVN's reflection and not covered by a vertex output: 32 inputs in 16 deferred-lighting and ambient
+  packages); the interface is otherwise the compiled shaders' own. The install then reads both
+  modules' interfaces back (`spirv_interface`) and fails if a fragment input is still unwritten,
+  of another component type or wider than the vertex output (`interface_problems`), so the build
+  step, not only `nvn_vulkan_check`, enforces the rule.
 - **Limits.** At most five blocks and fourteen texture slots per stage (slots 0 to 13). The
   uniform-buffer offsets the game binds must meet the device's `minUniformBufferOffsetAlignment`.
   The engine allocates its uniform buffers in 0x1000-aligned pages (`fn_710015c9b0`), but where it
   suballocates them is not checked yet.
 
 Not covered yet: the resolver's implementations (memory pools, buffers, texture and sampler pools),
-descriptor pools, pipeline creation, `nvnCommandBufferUpdateUniformBuffer`, and any test that runs.
+descriptor pools and pipelines in the shim itself (the checks create their own),
+`nvnCommandBufferUpdateUniformBuffer`.
+
 **What runs.** `nvn_manifest_check` (Linux image, Clang 18, system libc++) runs the manifest reader
 and the binding layer with no GPU and no Vulkan loader; the binding layer only fills Vulkan structs.
 For every stage it checks four things. The bindings the SPIR-V module itself declares (read from
@@ -121,7 +145,28 @@ manifests are caught: a block or sampler moved (with or without its NVN slot), d
 second stage under a shared key changed, a control offset off by one, a missing end record. Block
 sizes are checked by `tools/bshdat.py --install`, not here. The code
 compiles without warnings under `-Wall -Wextra -Wconversion -Wshadow` (checked by hand; the target
-does not set them). Not tested yet: anything against a Vulkan driver.
+does not set them; `vulkan_check.cpp` also needs `-Wno-missing-field-initializers` for Vulkan's
+`{VK_STRUCTURE_TYPE_...}` initialisers).
+
+`nvn_vulkan_check` takes the same output to lavapipe (Mesa 25.2, Vulkan 1.4) with the Khronos
+validation layers (1.3.275) on. For every program it creates the two shader modules, each stage's
+descriptor set layout from `StageLayoutBindings` and the program's pipeline layout. It writes one
+descriptor set per stage through `BuildWrites` and `vkUpdateDescriptorSets`, over real buffers, a
+1x1 image and a sampler, every NVN slot bound. Then it creates a graphics pipeline, with vertex
+attributes and colour attachments typed from the SPIR-V's own interface, and a vertex-only pipeline
+as the depth-only pass binds. On 2.1.0 (2026-10-26) all 671 programs pass: 1,342 modules, layouts
+and sets, 671 + 671 pipelines, in 10 to 20 s, with **no validation error or warning**. The layers
+were shown to report what they should (a moved fragment input location, a manifest binding the
+pipeline layout does not match); validation messages are printed as they arrive, and a truncated
+module is a named failure. Vertex attribute and attachment formats come from the shaders' own
+interface, so this checks the shaders and the layouts, not the shim's future vertex-format and
+render-target mapping. The device features (Vulkan 1.3, `dynamicRendering`, `maintenance4`) are
+queried before they are enabled. The first run
+found the two interface problems above (32 unwritten inputs, 2 wider outputs); the build step and
+the device requirement fix them. Not covered yet: drawing (image layouts and view types are only
+validated at draw time; a 2D view stands in for every sampler, so cube and array textures are not
+exercised), and everything the shim still lacks: device creation from the game's calls, memory,
+textures, command buffers, presentation.
 
 ## Variant selection (what the shim needs from the engine)
 

@@ -88,8 +88,10 @@ Compiling (--compile). As extracted the sources do not compile with glslang: uni
 declared `layout(location = N) uniform Block {`, which GLSL does not allow (NVN's compiler took
 it, ignored N, and numbered the stage's active blocks 0, 1, 2, ... in declaration order; the
 reflection has the result), and C-style casts need GL_NV_explicit_typecast. The `_shim` modes
-apply the two rewrites the port's loader would (shim_rewrite: each block gets the binding from the
-reflection; the extension is enabled) and keep the SPIR-V next to the source
+apply the rewrites the port's loader would (shim_rewrite: each block gets the binding from the
+reflection; the extension is enabled; FIXUPS; and in fragment stages the inactive inputs the vertex
+stage does not write are dropped, drop_uncovered_inputs, which Vulkan's pipeline creation needs)
+and keep the SPIR-V next to the source
 (<program>.<stage>.<gl|vk>.spv). Each failure is classified by glslang's messages (CATEGORIES).
 
 Installing (--install DIR, the port's build step; port/CMakeLists.txt runs it). Compiles every
@@ -683,12 +685,62 @@ def apply_fixups(text: str, fixups: tuple[tuple[str, str], ...], where: str) -> 
     return text
 
 
+# A fragment stage's input declaration, `layout(location = N) [qualifiers] in <type> <name>[...];`.
+# Interpolation and precision qualifiers may come before or after `in`; `component = M` is allowed
+# in the layout. A declaration of another shape (several declarators, an `in` block) is left alone:
+# install()'s interface check (spirv_interface) then reports any input it should have dropped.
+_QUALS = r"(?:(?:flat|smooth|noperspective|centroid|sample|highp|mediump|lowp)\s+)*"
+INPUT_DECL = re.compile(r"^([ \t]*)layout\s*\(\s*location\s*=\s*(\d+)\s*(?:,\s*component\s*=\s*\d+\s*)?\)\s*"
+                        + _QUALS + r"in\s+" + _QUALS + r"(\w+)\s+(\w+)\s*(\[[^\]]*\])?\s*;",
+                        re.M)
+# NVN reflection type codes of float vectors: 36 float, 37 vec2, 38 vec3, 39 vec4 (inferred from the
+# declarations they belong to: float2 ps_tx0 is 37, float3 ps_pos 38, gl_Position 39). Other codes
+# are not decoded and count as covering any input.
+FLOAT_COMPONENTS = {36: 1, 37: 2, 38: 3, 39: 4}
+
+
+def declared_components(type_name: str) -> int:
+    """1-4 for a GLSL scalar or vector type name (the engine's float2-style names included), else 0."""
+    m = re.fullmatch(r"(?:float|half|int|uint|bool|double|[biud]?vec|vec)([234]?)", type_name)
+    if not m:
+        return 0
+    return int(m.group(1)) if m.group(1) else (1 if not type_name.endswith("vec") else 0)
+
+
+def drop_uncovered_inputs(text: str, active: set[str], vertex_outputs: dict[int, int]) -> str:
+    """Comment out each fragment input NVN's compiler found inactive and the vertex stage does not
+    cover (no output at its location, or one with fewer components).
+
+    GL and NVN accept such an input as long as nothing reads it; Vulkan rejects the pipeline
+    (VUID-RuntimeSpirv-OpEntryPoint-08743), and glslang keeps every declared input in the SPIR-V.
+    In 2.1.0 these are the deferred-lighting and ambient programs' interpolants (found by
+    port/nvn/check/vulkan_check.cpp). Inactive inputs the vertex stage does cover stay: many are
+    still named in code the compiler removed later. An input dropped and still named would fail to
+    compile rather than miscompile. vertex_outputs: location -> components (FLOAT_COMPONENTS; 4 when
+    the type code is not decoded).
+    """
+    def drop(m: re.Match) -> str:
+        name, loc = m.group(4), int(m.group(2))
+        need = declared_components(m.group(3)) or 4
+        covered = loc in vertex_outputs and vertex_outputs[loc] >= need and not m.group(5)
+        if name in active or covered:
+            return m.group(0)
+        return f"{m.group(1)}// bshdat.py: inactive input {name} (location {loc}) dropped: the vertex stage does not write it"
+
+    return INPUT_DECL.sub(drop, text)
+
+
 def shim_rewrite(text: str, blocks: dict[str, int], rewrites: tuple[str, ...],
-                 fixups: tuple[tuple[str, str], ...] = (), where: str = "") -> str:
-    """Apply the named rewrites ("blocks", "typecast", "fixups"); "typecast" adds one line after
-    #version, and the FXAA fixup one line before the function it replaces."""
+                 fixups: tuple[tuple[str, str], ...] = (), where: str = "",
+                 inputs: tuple[set[str], dict[int, int]] | None = None) -> str:
+    """Apply the named rewrites ("blocks", "typecast", "fixups", "inputs"); "typecast" adds one line
+    after #version, and the FXAA fixup one line before the function it replaces. "inputs" applies
+    to fragment stages only (inputs: the reflection's input names and the vertex stage's outputs,
+    input_rule; None for a vertex stage)."""
     if "fixups" in rewrites and fixups:
         text = apply_fixups(text, fixups, where)
+    if "inputs" in rewrites and inputs is not None:
+        text = drop_uncovered_inputs(text, *inputs)
     if "blocks" in rewrites:
         spare = iter(range(max(blocks.values(), default=-1) + 1, 1 << 16))
         assigned: dict[str, int] = {}
@@ -722,8 +774,8 @@ MODES = {
     "gl": (["-G"], ()),
     "vk": (["-V"], ()),
     "gl_blocks": (["-G"], ("blocks",)),
-    "gl_shim": (["-G"], ("blocks", "typecast", "fixups")),
-    "vk_shim": (["-V", *VK_LAYOUT], ("blocks", "typecast", "fixups")),
+    "gl_shim": (["-G"], ("blocks", "typecast", "fixups", "inputs")),
+    "vk_shim": (["-V", *VK_LAYOUT], ("blocks", "typecast", "fixups", "inputs")),
 }
 
 # Failure categories by glslang message (every error of a stage is classified).
@@ -757,12 +809,24 @@ def categorise(log: str) -> tuple[list[str], str]:
     return cats, errors[0]
 
 
+def input_rule(stage: str, prog: dict) -> tuple[set[str], dict[int, int]] | None:
+    """For a fragment stage, its active inputs by name and the vertex stage's outputs (location ->
+    components) from the two reflections (the "inputs" rewrite); None for a vertex stage."""
+    if stage != "frag":
+        return None
+    active = {r["name"].split("[", 1)[0] for r in prog["stages"]["frag"]["reflection"]["inputs"]}
+    outputs = {r["location"]: FLOAT_COMPONENTS.get(r["type"], 4) for r in prog["stages"]["vert"]["reflection"]["outputs"]
+               if r["location"] >= 0 and r["array"] == 1}
+    return active, outputs
+
+
 def compile_one(tool: str, src: Path, stage: str, blocks: dict[str, int], mode: str,
-                fixups: tuple[tuple[str, str], ...] = (), dest: Path | None = None) -> tuple[bool, list[str], str]:
+                fixups: tuple[tuple[str, str], ...] = (), dest: Path | None = None,
+                inputs: tuple[set[str], dict[int, int]] | None = None) -> tuple[bool, list[str], str]:
     flags, rewrites = MODES[mode]
     try:
         text = shim_rewrite(src.read_bytes().decode("utf-8", "surrogateescape"), blocks, rewrites,
-                            fixups, f"{src.parent.name}/{src.name}")
+                            fixups, f"{src.parent.name}/{src.name}", inputs)
     except FormatError as e:
         return False, ["fixup"], str(e)
     # SPIR-V is kept for the full shim modes only (<program>.<stage>.<gl|vk>.spv, or `dest`). glslang
@@ -801,10 +865,11 @@ def compile_all(out_root: Path, manifests: list[dict], jobs: int) -> None:
         for prog in man["programs"]:
             for st_name, st in prog["stages"].items():
                 blocks = {b["name"]: b["binding"] for b in st["reflection"]["blocks"] if b["binding"] >= 0}
-                tasks.append((man["package"], prog["name"], st_name, out_root / man["package"] / st["file"], blocks))
+                tasks.append((man["package"], prog["name"], st_name, out_root / man["package"] / st["file"], blocks,
+                              input_rule(st_name, prog)))
     results: dict[tuple, dict] = {}
     with concurrent.futures.ThreadPoolExecutor(max_workers=jobs) as pool:
-        futs = {pool.submit(compile_one, tool, t[3], t[2], t[4], mode, FIXUPS.get((t[0], t[2]), ())): (t, mode)
+        futs = {pool.submit(compile_one, tool, t[3], t[2], t[4], mode, FIXUPS.get((t[0], t[2]), ()), None, t[5]): (t, mode)
                 for t in tasks for mode in MODES}
         for fut in concurrent.futures.as_completed(futs):
             t, mode = futs[fut]
@@ -953,6 +1018,101 @@ def spirv_resources(data: bytes, where: str) -> tuple[list[dict], list[int]]:
     return out, caps
 
 
+OP_ENTRY_POINT, OP_FUNCTION = 15, 54
+DEC_LOCATION, DEC_BUILTIN = 30, 11
+SC_INPUT, SC_OUTPUT = 1, 3
+
+
+def spirv_interface(data: bytes, where: str) -> dict[str, dict[int, tuple[str, int]]]:
+    """A module's user inputs and outputs: {"in"|"out": {location: (scalar kind, components)}}, one
+    entry per location an array or matrix spans; built-ins and variables without a Location are left
+    out. Raises FormatError for a module without an entry point or a function (a truncated file)."""
+    words = struct.unpack_from(f"<{len(data) // 4}I", data)
+    loc: dict[int, int] = {}
+    builtin: set[int] = set()
+    scalar: dict[int, tuple[str, int]] = {}
+    vector: dict[int, tuple[int, int]] = {}
+    matrix: dict[int, tuple[int, int]] = {}
+    array: dict[int, tuple[int, int]] = {}
+    pointer: dict[int, int] = {}
+    const: dict[int, int] = {}
+    variables: list[tuple[int, int, int]] = []
+    seen_ops: set[int] = set()
+    i = 5
+    while i < len(words):
+        count, op = words[i] >> 16, words[i] & 0xFFFF
+        if count == 0 or i + count > len(words):
+            raise FormatError(f"{where}: malformed instruction at word {i}")
+        a = words[i + 1:i + count]
+        seen_ops.add(op)
+        if op == OP_DECORATE and len(a) >= 2:
+            if a[1] == DEC_LOCATION and len(a) >= 3:
+                loc[a[0]] = a[2]
+            elif a[1] == DEC_BUILTIN:
+                builtin.add(a[0])
+        elif op == OP_MEMBER_DECORATE and len(a) >= 3 and a[2] == DEC_BUILTIN:
+            builtin.add(a[0])
+        elif op == OP_TYPE_INT and len(a) >= 3:
+            scalar[a[0]] = ("int" if a[2] else "uint", a[1])
+        elif op == OP_TYPE_FLOAT and len(a) >= 2:
+            scalar[a[0]] = ("float", a[1])
+        elif op == OP_TYPE_VECTOR and len(a) >= 3:
+            vector[a[0]] = (a[1], a[2])
+        elif op == OP_TYPE_MATRIX and len(a) >= 3:
+            matrix[a[0]] = (a[1], a[2])
+        elif op == OP_TYPE_ARRAY and len(a) >= 3:
+            array[a[0]] = (a[1], a[2])
+        elif op == OP_TYPE_POINTER and len(a) >= 3:
+            pointer[a[0]] = a[2]
+        elif op == OP_CONSTANT and len(a) == 3:
+            const[a[1]] = a[2]
+        elif op == OP_VARIABLE and len(a) >= 3:
+            variables.append((a[0], a[1], a[2]))
+        i += count
+    if OP_ENTRY_POINT not in seen_ops or OP_FUNCTION not in seen_ops:
+        raise FormatError(f"{where}: SPIR-V module without an entry point or a function")
+    out: dict[str, dict[int, tuple[str, int]]] = {"in": {}, "out": {}}
+    for ptr, vid, sc in variables:
+        if sc not in (SC_INPUT, SC_OUTPUT) or vid in builtin or vid not in loc:
+            continue
+        t, n = pointer.get(ptr, 0), 1
+        if t in array:
+            n = const.get(array[t][1], 1)
+            t = array[t][0]
+        if t in builtin:
+            continue
+        if t in matrix:
+            n *= matrix[t][1]
+            t = matrix[t][0]
+        comps = 1
+        if t in vector:
+            t, comps = vector[t]
+        kind = scalar.get(t, ("other", 32))
+        if kind[1] != 32:
+            kind = (f"{kind[0]}{kind[1]}", 32)
+        side = out["in" if sc == SC_INPUT else "out"]
+        for k in range(n):
+            side[loc[vid] + k] = (kind[0], comps)
+    return out
+
+
+def interface_problems(vert: dict, frag: dict) -> list[str]:
+    """What Vulkan's pipeline creation would reject between the two stages (with maintenance4, which
+    lets the vertex stage write a wider vector than the fragment stage reads): a fragment input at a
+    location the vertex stage does not write, or of another component type, or wider."""
+    problems = []
+    for location, (kind, comps) in sorted(frag["in"].items()):
+        written = vert["out"].get(location)
+        if written is None:
+            problems.append(f"fragment input at location {location} is not written by the vertex stage")
+        elif written[0] != kind:
+            problems.append(f"location {location}: the vertex stage writes {written[0]}, the fragment stage reads {kind}")
+        elif written[1] < comps:
+            problems.append(f"location {location}: the vertex stage writes {written[1]} components, the fragment "
+                            f"stage reads {comps}")
+    return problems
+
+
 VK_SET = {"vert": 0, "frag": 1}  # VK_LAYOUT: one descriptor set per stage
 VK_SAMPLER_BASE = 16             # VK_LAYOUT: combined samplers from binding 16
 INSTALL_FORMAT = 3
@@ -1080,11 +1240,11 @@ def install(out_root: Path, manifests: list[dict], dest: Path, version: str, job
                 blocks = {b["name"]: b["binding"] for b in st["reflection"]["blocks"] if b["binding"] >= 0}
                 spv = dest / man["package"] / f"{prog['name']}.{st_name}.spv"
                 tasks.append(((man["package"], prog["name"], st_name), out_root / man["package"] / st["file"],
-                              blocks, spv))
+                              blocks, spv, input_rule(st_name, prog)))
     failed = []
     with concurrent.futures.ThreadPoolExecutor(max_workers=jobs) as pool:
         futs = {pool.submit(compile_one, tool, src, key[2], blocks, "vk_shim", FIXUPS.get((key[0], key[2]), ()),
-                            spv): key for key, src, blocks, spv in tasks}
+                            spv, inputs): key for key, src, blocks, spv, inputs in tasks}
         for fut in concurrent.futures.as_completed(futs):
             ok, cats, first = fut.result()
             if not ok:
@@ -1109,6 +1269,7 @@ def install(out_root: Path, manifests: list[dict], dest: Path, version: str, job
             nprog += 1
             lines.append(f"program {prog['key'][0]} {prog['key'][1]} {prog['index']} {len(prog['defines'])}")
             lines += [f"define {d}" for d in prog["defines"]]
+            interfaces: dict[str, dict] = {}
             for st_name, st in prog["stages"].items():
                 nstage += 1
                 rel = f"{man['package']}/{prog['name']}.{st_name}.spv"
@@ -1118,6 +1279,7 @@ def install(out_root: Path, manifests: list[dict], dest: Path, version: str, job
                     resources, caps = spirv_resources(data, where)
                     if caps != [CAP_SHADER]:
                         raise FormatError(f"{where}: SPIR-V capabilities {caps}, expected only Shader")
+                    interfaces[st_name] = spirv_interface(data, where)
                     blocks, samplers = stage_layout(st, resources, st_name, where)
                 except FormatError as e:
                     errors.append(str(e))
@@ -1143,10 +1305,14 @@ def install(out_root: Path, manifests: list[dict], dest: Path, version: str, job
                 lines += [f"sampler {a} {b} {c} {n}" for a, b, c, n in samplers]
                 for io in ("inputs", "outputs"):
                     lines += [f"{io[:-1]} {r['location']} {r['name']}" for r in st["reflection"][io]]
+            if len(interfaces) == 2:
+                errors += [f"{man['package']}/{prog['name']}: {p}"
+                           for p in interface_problems(interfaces["vert"], interfaces["frag"])]
     if errors:
         for e in errors:
             print(e, file=sys.stderr)
-        print(f"{len(errors)} stages do not match their reflection; no manifest written", file=sys.stderr)
+        print(f"{len(errors)} problems (stages that do not match their reflection, or stage interfaces Vulkan "
+              "would reject); no manifest written", file=sys.stderr)
         return 1
     lines.append(f"end {len(manifests)} {nprog} {nstage}")
     tmp = dest / f"{INSTALL_MANIFEST}.tmp"

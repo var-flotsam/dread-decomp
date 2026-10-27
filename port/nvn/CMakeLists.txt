@@ -17,3 +17,19 @@ if(DREAD_LINK)
   add_executable(nvn_manifest_check check/manifest_check.cpp)
   target_link_libraries(nvn_manifest_check PRIVATE dread_nvn)
 endif()
+
+# nvn_vulkan_check: the binding layer against a real Vulkan implementation, with the validation
+# layers (check/vulkan_check.cpp). Built when a Vulkan loader is found, as in the port's Vulkan image
+# (port/docker/vulkan/Dockerfile: the Khronos loader, lavapipe, the validation layers):
+#   nvn_vulkan_check <DREAD_SHADER_DIR>
+# Only the loader library is taken from the system; the headers stay the pinned ones.
+if(DREAD_LINK)
+  find_library(DREAD_VULKAN_LIBRARY NAMES vulkan vulkan-1)
+  if(DREAD_VULKAN_LIBRARY)
+    add_executable(nvn_vulkan_check check/vulkan_check.cpp)
+    target_link_libraries(nvn_vulkan_check PRIVATE dread_nvn "${DREAD_VULKAN_LIBRARY}")
+    message(STATUS "dread: Vulkan loader ${DREAD_VULKAN_LIBRARY}; nvn_vulkan_check is built")
+  else()
+    message(STATUS "dread: no Vulkan loader; nvn_vulkan_check is not built")
+  endif()
+endif()

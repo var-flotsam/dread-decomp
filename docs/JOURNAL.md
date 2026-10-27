@@ -79,6 +79,8 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - NVN's compiler numbers a stage's active uniform blocks 0..n-1 in declaration order, whatever the source says; take bindings from the reflection, never from the source: same entry.
 - `nvnProgramSetShaders` gets each stage's control section by pointer; key stages by FNV-1a 64 over its first 2,048 bytes. NVN block sizes are the SPIR-V span rounded to 16. The engine selects variants itself (`fn_71001b0f24`): [port M2](#session-log-newest-first).
 - A source fix for one shader is a regular expression over the construct, never the shipped lines (those are game data): same entry.
+- Vulkan rejects fragment inputs the vertex stage does not write (GL allows unread ones): drop those NVN found inactive and the vertex stage does not cover, never all inactive ones (code still names them); enable `maintenance4` for wider outputs: [binding layer against Vulkan](#session-log-newest-first).
+- A check that compares generated data with the generator's own claims passes vacuously; compare with the artefact (the SPIR-V's decorations) and prove it fails on damaged input: same entry.
 
 **Port: runtime and loader**
 - The engine's thread object puts `ThreadType` at +0, light events at +0x1c0 and +0x1cc: the SDK's thread block is 0x1c0 bytes, a light event 12; event clear mode 1 is auto clear: [port M1 step 4](#session-log-newest-first).
@@ -86,6 +88,21 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - A freestanding core builds into a Windows DLL with clang, `lld-link /noentry /nodefaultlib` and a `kernel32.lib` from `llvm-dlltool`: no SDK needed to test it from Python: same entry.
 
 ## Session log (newest first)
+
+**Port M2: the binding layer against Vulkan (2026-10-26, var-flotsam/dread-decomp#217 and the Vulkan
+check).** With the Linux image from #214, the binding layer ran for the first time. `nvn_manifest_check`
+covers every stage: found by its control bytes, layouts and writes checked against the SPIR-V's own
+decorations. The review showed the first version compared the manifest with itself; seven damaged
+manifests are now caught. With the owner's go-ahead, `port/docker/vulkan/Dockerfile` adds Ubuntu's
+Vulkan loader, Mesa's lavapipe and the validation layers. `nvn_vulkan_check` creates every program's
+modules, set layouts, descriptor sets (through `BuildWrites`) and full and vertex-only pipelines in
+about 10 s. Its first run found two interface rules GL and NVN accept and Vulkan does not.
+32 fragment inputs in 16 deferred-lighting and ambient packages are not written by the vertex stage,
+or are written narrower; all are inactive in NVN's reflection. Dropping every inactive input broke
+628 stages, whose code still names inputs NVN optimised away, so the rewrite drops only those the
+vertex stage does not cover (vertex output widths from NVN's type codes 36-39 = 1-4 floats). Two
+programs write a wider vector than they read, which needs `maintenance4`. After both: 671 of 671,
+no validation message. The install now checks each program's two SPIR-V interfaces itself.
 
 **Port M1: the first executable (2026-10-26).** With WSL 2 and Docker on the PC, the port builds
 in a Docker image (`port/docker/`: Ubuntu 24.04, Clang 18) over the checkout. Findings: the

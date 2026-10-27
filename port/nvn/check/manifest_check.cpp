@@ -21,16 +21,18 @@
 #include <cstdint>
 #include <cstdio>
 #include <cstring>
-#include <map>
 #include <set>
-#include <tuple>
 #include <string>
 #include <vector>
 
 #include "nvn_shim/bindings.h"
 #include "nvn_shim/shader_manifest.h"
+#include "spirv_scan.h"
 
 using namespace dread::nvn;
+using check::ScanSpirv;
+using check::SpirvBindings;
+using check::SpirvScan;
 
 namespace {
 
@@ -61,67 +63,6 @@ Handle FakeHandle(std::uint64_t v) {
     // ones; a C-style cast is a reinterpret_cast for the first and a conversion for the second.
     // Never dereferenced.
     return (Handle)(std::uintptr_t)v;
-}
-
-// What a SPIR-V module binds: (set, binding) -> (is a uniform block, descriptor count). Opcodes and
-// enumerants from the SPIR-V specification (Khronos); only what tools/bshdat.py --install lets
-// through (uniform blocks and combined image-samplers, arrays of constant length) is expected.
-using SpirvBindings = std::map<std::pair<std::uint32_t, std::uint32_t>, std::pair<bool, std::uint32_t>>;
-
-bool ReadSpirvBindings(const std::vector<unsigned char>& data, SpirvBindings* out) {
-    if (data.size() < 20 || data.size() % 4)
-        return false;
-    std::vector<std::uint32_t> w(data.size() / 4);
-    std::memcpy(w.data(), data.data(), data.size());
-    if (w[0] != 0x07230203)
-        return false;
-    std::map<std::uint32_t, std::uint32_t> set, binding, constant;
-    std::set<std::uint32_t> block_types, sampled_image_types;
-    std::map<std::uint32_t, std::pair<std::uint32_t, std::uint32_t>> arrays;  // id -> (element, length id)
-    std::map<std::uint32_t, std::uint32_t> pointers;                          // id -> pointee
-    std::vector<std::tuple<std::uint32_t, std::uint32_t, std::uint32_t>> vars;  // (pointer type, id, storage)
-    for (std::size_t i = 5; i < w.size();) {
-        const std::uint32_t count = w[i] >> 16, op = w[i] & 0xFFFF;
-        if (count == 0 || i + count > w.size())
-            return false;
-        const std::uint32_t* a = &w[i + 1];
-        if (op == 71 && count >= 3) {  // OpDecorate target decoration [value]
-            if (a[1] == 34 && count >= 4)
-                set[a[0]] = a[2];
-            else if (a[1] == 33 && count >= 4)
-                binding[a[0]] = a[2];
-            else if (a[1] == 2)
-                block_types.insert(a[0]);
-        } else if (op == 27 && count >= 2) {  // OpTypeSampledImage
-            sampled_image_types.insert(a[0]);
-        } else if (op == 28 && count >= 4) {  // OpTypeArray result element length
-            arrays[a[0]] = {a[1], a[2]};
-        } else if (op == 32 && count >= 4) {  // OpTypePointer result storage type
-            pointers[a[0]] = a[2];
-        } else if (op == 43 && count == 4) {  // OpConstant type result value (32-bit)
-            constant[a[1]] = a[2];
-        } else if (op == 59 && count >= 4) {  // OpVariable type result storage
-            vars.emplace_back(a[0], a[1], a[2]);
-        }
-        i += count;
-    }
-    for (const auto& [ptr, id, storage] : vars) {
-        if (!binding.count(id) && !set.count(id))
-            continue;
-        std::uint32_t type = pointers.count(ptr) ? pointers[ptr] : 0, n = 1;
-        if (arrays.count(type)) {
-            n = constant.count(arrays[type].second) ? constant[arrays[type].second] : 0;
-            type = arrays[type].first;
-        }
-        const bool block = storage == 2 && block_types.count(type);
-        const bool sampler = storage == 0 && sampled_image_types.count(type);
-        if ((!block && !sampler) || n == 0)
-            return false;
-        if (!out->emplace(std::make_pair(set.count(id) ? set[id] : 0, binding.count(id) ? binding[id] : 0),
-                          std::make_pair(block, n)).second)
-            return false;
-    }
-    return true;
 }
 
 class FakeResolver : public ResourceResolver {
@@ -289,10 +230,10 @@ int main(int argc, char** argv) {
                 ++stages;
                 const std::string where = p.name + "/p" + std::to_string(prog.key) +
                                           (st.stage == Stage::Vertex ? ".vert" : ".frag");
-                SpirvBindings spirv;
+                SpirvScan scan;
                 if (!ReadFile(manifest.dir() + "/" + st.spirv_path, &spv) || spv.size() != st.spirv_size) {
                     Fail(where, "SPIR-V file missing or of another size");
-                } else if (!ReadSpirvBindings(spv, &spirv)) {
+                } else if (!ScanSpirv(spv, &scan)) {
                     Fail(where, "SPIR-V module unreadable or binding something else");
                 } else {
                     SpirvBindings want;
@@ -301,7 +242,7 @@ int main(int argc, char** argv) {
                         want[{set, b.vk_binding}] = {true, 1u};
                     for (const StageResource& r : st.samplers)
                         want[{set, r.vk_binding}] = {false, r.size_or_count};
-                    if (spirv != want || want.size() != st.blocks.size() + st.samplers.size())
+                    if (scan.bindings != want || want.size() != st.blocks.size() + st.samplers.size())
                         Fail(where, "the manifest's blocks and samplers are not what the SPIR-V binds");
                 }
                 if (static_cast<std::uint64_t>(st.control_offset) + st.control_size > pkg.size()) {

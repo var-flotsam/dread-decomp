@@ -472,11 +472,16 @@ one Vulkan descriptor set per stage, stages recognised by their control section 
 `CProgramResource`, `port/nvn/README.md`): the shim needs nothing for it, but the engine's loader
 and selector (`fn_71001b0050`, `fn_71001b0f24`, `fn_71001b0f7c`, the program switch `fn_71001cc608`)
 are `U` and belong on the lifter's graphics worklist. The game calls 150 of its 523 NVN functions.
-Next for M2: the rest of the shim in the order the boot path calls it (device and queue, memory
-pools and buffers with a GPU address space, textures and the texture and sampler pools behind
-`ResourceResolver`, command buffers, programs and pipelines with vertex-only variants for the
-depth-only path, window and present); a Vulkan loader and SDK need the owner's go-ahead (none is
-installed; the headers are pinned in `tools/fetch_toolchains.py`).
+Since then (#217 and the Vulkan check): the binding layer runs in the Linux image
+(`nvn_manifest_check`) and against lavapipe with the validation layers (`nvn_vulkan_check`,
+`port/docker/vulkan/Dockerfile`, the owner's go-ahead): all 671 programs' modules, layouts,
+descriptor sets and pipelines, no validation message, after two fixes it found (inactive fragment
+inputs the vertex stage does not write are dropped by the build step; the device needs
+`maintenance4`). Next for M2: the rest of the shim in the order the boot path calls it (device and
+queue from the game's own calls, memory pools and buffers with a GPU address space, textures and the
+texture and sampler pools behind `ResourceResolver`, command buffers, programs and pipelines with
+vertex-only variants for the depth-only path, window and present), each checked the same way in the
+Vulkan image.
 
 **Stream M (generators).** The bugs above and `--prune`/regeneration after merges. The lifter's
 semantic mode exists (`opts={"semantic"}`, driven by `tools/port_lift.py`; byte mode is unchanged,

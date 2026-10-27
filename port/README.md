@@ -635,7 +635,10 @@ package's name tables) to `build/shaders/<version>/`.
 a dependency of `dread`) runs `tools/bshdat.py --install ${DREAD_SHADER_DIR}`, by default
 `<build dir>/shaders/` beside the executable. It compiles every stage once, for Vulkan, with the
 loader's rewrites (`shim_rewrite`: each uniform block gets the binding NVN's compiler gave it,
-from the reflection; `GL_NV_explicit_typecast` is enabled; the per-stage `FIXUPS`), one descriptor
+from the reflection; `GL_NV_explicit_typecast` is enabled; the per-stage `FIXUPS`; fragment inputs
+NVN found inactive and the vertex stage does not write are dropped, 32 in 16 deferred-lighting
+packages, which Vulkan would otherwise reject at pipeline creation, and each program's two
+interfaces are then checked against each other), one descriptor
 set per stage (vertex 0, fragment 1) and the combined samplers from binding 16. Each module is then
 read back (`spirv_resources`) and checked against the stage's NVN reflection: every active block
 and sampler at the binding the shim expects, and only the `Shader` capability. The result is
