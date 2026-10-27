@@ -105,7 +105,7 @@ UnkSortValue_7100248e50& UnkSortValue_7100248e50::operator=(UnkSortValue_7100248
 struct UnkSortIter_7100248e50 {
     typedef std::random_access_iterator_tag iterator_category;
     typedef UnkSortValue_7100248e50 value_type;
-    typedef long difference_type;
+    typedef s64 difference_type;
     typedef UnkSortValue_7100248e50* pointer;
     typedef UnkSortValue_7100248e50& reference;
 
@@ -134,16 +134,16 @@ struct UnkSortIter_7100248e50 {
         --current.ref.element;
         return *this;
     }
-    UnkSortIter_7100248e50& operator+=(long n) {
+    UnkSortIter_7100248e50& operator+=(s64 n) {
         current.ref.index += n;
         current.ref.element += n;
         return *this;
     }
     // A new iterator at the position, not a copy that is moved.
-    UnkSortIter_7100248e50 operator+(long n) const {
+    UnkSortIter_7100248e50 operator+(s64 n) const {
         return UnkSortIter_7100248e50(current.ref.index + n, current.ref.element + n);
     }
-    long operator-(const UnkSortIter_7100248e50& o) const { return current.ref.index - o.current.ref.index; }
+    s64 operator-(const UnkSortIter_7100248e50& o) const { return current.ref.index - o.current.ref.index; }
     bool operator==(const UnkSortIter_7100248e50& o) const { return current.ref.index == o.current.ref.index; }
     bool operator!=(const UnkSortIter_7100248e50& o) const { return current.ref.index != o.current.ref.index; }
     bool operator<(const UnkSortIter_7100248e50& o) const { return current.ref.index < o.current.ref.index; }

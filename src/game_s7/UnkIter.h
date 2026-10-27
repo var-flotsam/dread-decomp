@@ -5,11 +5,13 @@
 
 #include <iterator>
 
+#include "types.h"
+
 template <class T>
 struct UnkIter {
     typedef std::random_access_iterator_tag iterator_category;
     typedef T value_type;
-    typedef long difference_type;
+    typedef s64 difference_type;
     typedef T* pointer;
     typedef T& reference;
     T* p;
@@ -33,21 +35,21 @@ struct UnkIter {
         --p;
         return t;
     }
-    UnkIter& operator+=(long n) {
+    UnkIter& operator+=(s64 n) {
         p += n;
         return *this;
     }
-    UnkIter operator+(long n) const {
+    UnkIter operator+(s64 n) const {
         UnkIter t = *this;
         t.p += n;
         return t;
     }
-    UnkIter operator-(long n) const {
+    UnkIter operator-(s64 n) const {
         UnkIter t = *this;
         t.p -= n;
         return t;
     }
-    long operator-(const UnkIter& o) const { return p - o.p; }
+    s64 operator-(const UnkIter& o) const { return p - o.p; }
     bool operator==(const UnkIter& o) const { return p == o.p; }
     bool operator!=(const UnkIter& o) const { return p != o.p; }
     bool operator<(const UnkIter& o) const { return p < o.p; }

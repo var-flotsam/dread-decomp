@@ -24,7 +24,7 @@ void refl_HashMapClear(char* self) {
             (*reinterpret_cast<UnkAllocator**>(self))->vf_0x48(node);
             node = next;
         }
-        memset(*reinterpret_cast<void**>(self + 0x10), 0, *reinterpret_cast<u32*>(self + 0x1c) * 8ul);
+        memset(*reinterpret_cast<void**>(self + 0x10), 0, *reinterpret_cast<u32*>(self + 0x1c) * u64(8));
         *reinterpret_cast<u32*>(self + 0xc) = 0;
         *reinterpret_cast<char**>(self + 0x38) = nullptr;
         *reinterpret_cast<char**>(self + 0x40) = nullptr;
@@ -57,7 +57,7 @@ void refl_ChainedSetClear(char* self) {
                 node = next;
             }
         }
-        memset(*reinterpret_cast<void**>(self), 0, *reinterpret_cast<u32*>(self + 0xc) * 8ul);
+        memset(*reinterpret_cast<void**>(self), 0, *reinterpret_cast<u32*>(self + 0xc) * u64(8));
         *reinterpret_cast<u32*>(self + 0x44) = 0;
         *reinterpret_cast<char**>(self + 0x30) = nullptr;
         *reinterpret_cast<s32*>(self + 0x28) = -1;
@@ -81,7 +81,7 @@ void refl_ValueMapClear(char* self) {
             (*reinterpret_cast<UnkAllocator**>(self))->vf_0x48(node);
             node = next;
         }
-        memset(*reinterpret_cast<void**>(self + 0x10), 0, *reinterpret_cast<u32*>(self + 0x1c) * 8ul);
+        memset(*reinterpret_cast<void**>(self + 0x10), 0, *reinterpret_cast<u32*>(self + 0x1c) * u64(8));
         *reinterpret_cast<u32*>(self + 0xc) = 0;
         *reinterpret_cast<char**>(self + 0x38) = nullptr;
         *reinterpret_cast<char**>(self + 0x40) = nullptr;
