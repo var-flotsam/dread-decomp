@@ -48,11 +48,16 @@ inline bool ScanSpirv(const std::vector<unsigned char>& data, SpirvScan* out) {
     std::map<std::uint32_t, std::pair<std::uint32_t, std::uint32_t>> arrays;   // id -> (element, length id)
     std::map<std::uint32_t, std::uint32_t> pointers;                           // id -> pointee
     std::vector<std::tuple<std::uint32_t, std::uint32_t, std::uint32_t>> vars;   // (pointer type, id, storage)
+    bool entry_point = false, function = false;
     for (std::size_t i = 5; i < w.size();) {
         const std::uint32_t count = w[i] >> 16, op = w[i] & 0xFFFF;
         if (count == 0 || i + count > w.size())
             return false;
         const std::uint32_t* a = &w[i + 1];
+        if (op == 15)  // OpEntryPoint
+            entry_point = true;
+        else if (op == 54)  // OpFunction
+            function = true;
         if (op == 71 && count >= 3) {  // OpDecorate target decoration [value]
             if (a[1] == 34 && count >= 4)
                 set[a[0]] = a[2];
@@ -89,6 +94,8 @@ inline bool ScanSpirv(const std::vector<unsigned char>& data, SpirvScan* out) {
         }
         i += count;
     }
+    if (!entry_point || !function)  // a truncated module can end on an instruction boundary
+        return false;
     for (const auto& [ptr, id, storage] : vars) {
         std::uint32_t type = pointers.count(ptr) ? pointers[ptr] : 0, n = 1;
         if (arrays.count(type)) {

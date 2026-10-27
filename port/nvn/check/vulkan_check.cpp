@@ -65,8 +65,13 @@ VKAPI_ATTR VkBool32 VKAPI_CALL OnMessage(VkDebugUtilsMessageSeverityFlagBitsEXT 
                                                                               : nullptr;
     if (table) {
         Message& m = (*table)[data->pMessageIdName ? data->pMessageIdName : "(no id)"];
-        if (m.count++ == 0 && data->pMessage)
+        if (m.count++ == 0 && data->pMessage) {
             m.example = data->pMessage;
+            // Printed as it arrives too, so that a crash later does not lose it.
+            std::fprintf(stderr, "%s (%s): %s\n", table == &g_errors ? "validation error" : "validation warning",
+                         g_current.c_str(), m.example.c_str());
+            std::fflush(stderr);
+        }
         if (m.programs.size() < 8 && (m.programs.empty() || m.programs.back() != g_current))
             m.programs.push_back(g_current);
     }
@@ -233,6 +238,20 @@ bool Checker::Init(bool validation) {
         }
     if (graphics == UINT32_MAX)
         return false;
+    // The features the shim's device needs (port/nvn/README.md): queried, then enabled.
+    VkPhysicalDeviceVulkan13Features have13{VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_3_FEATURES};
+    VkPhysicalDeviceFeatures2 have{VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FEATURES_2};
+    have.pNext = &have13;
+    if (props_.apiVersion < VK_API_VERSION_1_3) {
+        std::fprintf(stderr, "%s supports Vulkan %u.%u; the checks need 1.3\n", props_.deviceName,
+                     VK_API_VERSION_MAJOR(props_.apiVersion), VK_API_VERSION_MINOR(props_.apiVersion));
+        return false;
+    }
+    vkGetPhysicalDeviceFeatures2(physical_, &have);
+    if (!have13.dynamicRendering || !have13.maintenance4) {
+        std::fprintf(stderr, "%s lacks dynamicRendering or maintenance4\n", props_.deviceName);
+        return false;
+    }
     const float priority = 1.0f;
     VkDeviceQueueCreateInfo qci{VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO};
     qci.queueFamilyIndex = graphics;
@@ -586,6 +605,7 @@ int main(int argc, char** argv) {
         for (const ProgramInfo& q : p.programs) {
             checker.CheckProgram(manifest, p, q);
             ++programs;
+            std::fflush(stdout);
         }
     checker.Shutdown();
     const double seconds = std::chrono::duration<double>(std::chrono::steady_clock::now() - start).count();

@@ -118,7 +118,10 @@ reflection, so these mappings hold for every stage of the dump:
 - **Interfaces.** GL and NVN let a fragment stage declare inputs the vertex stage does not write, as
   long as nothing reads them; Vulkan rejects the pipeline. The build step drops those (inactive in
   NVN's reflection and not covered by a vertex output: 32 inputs in 16 deferred-lighting and ambient
-  packages); the interface is otherwise the compiled shaders' own.
+  packages); the interface is otherwise the compiled shaders' own. The install then reads both
+  modules' interfaces back (`spirv_interface`) and fails if a fragment input is still unwritten,
+  of another component type or wider than the vertex output (`interface_problems`), so the build
+  step, not only `nvn_vulkan_check`, enforces the rule.
 - **Limits.** At most five blocks and fourteen texture slots per stage (slots 0 to 13). The
   uniform-buffer offsets the game binds must meet the device's `minUniformBufferOffsetAlignment`.
   The engine allocates its uniform buffers in 0x1000-aligned pages (`fn_710015c9b0`), but where it
@@ -152,7 +155,13 @@ descriptor set per stage through `BuildWrites` and `vkUpdateDescriptorSets`, ove
 1x1 image and a sampler, every NVN slot bound. Then it creates a graphics pipeline, with vertex
 attributes and colour attachments typed from the SPIR-V's own interface, and a vertex-only pipeline
 as the depth-only pass binds. On 2.1.0 (2026-10-26) all 671 programs pass: 1,342 modules, layouts
-and sets, 671 + 671 pipelines, in about 20 s, with **no validation error or warning**. The first run
+and sets, 671 + 671 pipelines, in 10 to 20 s, with **no validation error or warning**. The layers
+were shown to report what they should (a moved fragment input location, a manifest binding the
+pipeline layout does not match); validation messages are printed as they arrive, and a truncated
+module is a named failure. Vertex attribute and attachment formats come from the shaders' own
+interface, so this checks the shaders and the layouts, not the shim's future vertex-format and
+render-target mapping. The device features (Vulkan 1.3, `dynamicRendering`, `maintenance4`) are
+queried before they are enabled. The first run
 found the two interface problems above (32 unwritten inputs, 2 wider outputs); the build step and
 the device requirement fix them. Not covered yet: drawing (image layouts and view types are only
 validated at draw time; a 2D view stands in for every sampler, so cube and array textures are not

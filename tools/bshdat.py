@@ -686,8 +686,12 @@ def apply_fixups(text: str, fixups: tuple[tuple[str, str], ...], where: str) -> 
 
 
 # A fragment stage's input declaration, `layout(location = N) [qualifiers] in <type> <name>[...];`.
-INPUT_DECL = re.compile(r"^([ \t]*)layout\s*\(\s*location\s*=\s*(\d+)\s*\)\s*"
-                        r"(?:(?:flat|smooth|noperspective|centroid|sample)\s+)*in\s+(\w+)\s+(\w+)\s*(\[[^\]]*\])?\s*;",
+# Interpolation and precision qualifiers may come before or after `in`; `component = M` is allowed
+# in the layout. A declaration of another shape (several declarators, an `in` block) is left alone:
+# install()'s interface check (spirv_interface) then reports any input it should have dropped.
+_QUALS = r"(?:(?:flat|smooth|noperspective|centroid|sample|highp|mediump|lowp)\s+)*"
+INPUT_DECL = re.compile(r"^([ \t]*)layout\s*\(\s*location\s*=\s*(\d+)\s*(?:,\s*component\s*=\s*\d+\s*)?\)\s*"
+                        + _QUALS + r"in\s+" + _QUALS + r"(\w+)\s+(\w+)\s*(\[[^\]]*\])?\s*;",
                         re.M)
 # NVN reflection type codes of float vectors: 36 float, 37 vec2, 38 vec3, 39 vec4 (inferred from the
 # declarations they belong to: float2 ps_tx0 is 37, float3 ps_pos 38, gl_Position 39). Other codes
@@ -1014,6 +1018,101 @@ def spirv_resources(data: bytes, where: str) -> tuple[list[dict], list[int]]:
     return out, caps
 
 
+OP_ENTRY_POINT, OP_FUNCTION = 15, 54
+DEC_LOCATION, DEC_BUILTIN = 30, 11
+SC_INPUT, SC_OUTPUT = 1, 3
+
+
+def spirv_interface(data: bytes, where: str) -> dict[str, dict[int, tuple[str, int]]]:
+    """A module's user inputs and outputs: {"in"|"out": {location: (scalar kind, components)}}, one
+    entry per location an array or matrix spans; built-ins and variables without a Location are left
+    out. Raises FormatError for a module without an entry point or a function (a truncated file)."""
+    words = struct.unpack_from(f"<{len(data) // 4}I", data)
+    loc: dict[int, int] = {}
+    builtin: set[int] = set()
+    scalar: dict[int, tuple[str, int]] = {}
+    vector: dict[int, tuple[int, int]] = {}
+    matrix: dict[int, tuple[int, int]] = {}
+    array: dict[int, tuple[int, int]] = {}
+    pointer: dict[int, int] = {}
+    const: dict[int, int] = {}
+    variables: list[tuple[int, int, int]] = []
+    seen_ops: set[int] = set()
+    i = 5
+    while i < len(words):
+        count, op = words[i] >> 16, words[i] & 0xFFFF
+        if count == 0 or i + count > len(words):
+            raise FormatError(f"{where}: malformed instruction at word {i}")
+        a = words[i + 1:i + count]
+        seen_ops.add(op)
+        if op == OP_DECORATE and len(a) >= 2:
+            if a[1] == DEC_LOCATION and len(a) >= 3:
+                loc[a[0]] = a[2]
+            elif a[1] == DEC_BUILTIN:
+                builtin.add(a[0])
+        elif op == OP_MEMBER_DECORATE and len(a) >= 3 and a[2] == DEC_BUILTIN:
+            builtin.add(a[0])
+        elif op == OP_TYPE_INT and len(a) >= 3:
+            scalar[a[0]] = ("int" if a[2] else "uint", a[1])
+        elif op == OP_TYPE_FLOAT and len(a) >= 2:
+            scalar[a[0]] = ("float", a[1])
+        elif op == OP_TYPE_VECTOR and len(a) >= 3:
+            vector[a[0]] = (a[1], a[2])
+        elif op == OP_TYPE_MATRIX and len(a) >= 3:
+            matrix[a[0]] = (a[1], a[2])
+        elif op == OP_TYPE_ARRAY and len(a) >= 3:
+            array[a[0]] = (a[1], a[2])
+        elif op == OP_TYPE_POINTER and len(a) >= 3:
+            pointer[a[0]] = a[2]
+        elif op == OP_CONSTANT and len(a) == 3:
+            const[a[1]] = a[2]
+        elif op == OP_VARIABLE and len(a) >= 3:
+            variables.append((a[0], a[1], a[2]))
+        i += count
+    if OP_ENTRY_POINT not in seen_ops or OP_FUNCTION not in seen_ops:
+        raise FormatError(f"{where}: SPIR-V module without an entry point or a function")
+    out: dict[str, dict[int, tuple[str, int]]] = {"in": {}, "out": {}}
+    for ptr, vid, sc in variables:
+        if sc not in (SC_INPUT, SC_OUTPUT) or vid in builtin or vid not in loc:
+            continue
+        t, n = pointer.get(ptr, 0), 1
+        if t in array:
+            n = const.get(array[t][1], 1)
+            t = array[t][0]
+        if t in builtin:
+            continue
+        if t in matrix:
+            n *= matrix[t][1]
+            t = matrix[t][0]
+        comps = 1
+        if t in vector:
+            t, comps = vector[t]
+        kind = scalar.get(t, ("other", 32))
+        if kind[1] != 32:
+            kind = (f"{kind[0]}{kind[1]}", 32)
+        side = out["in" if sc == SC_INPUT else "out"]
+        for k in range(n):
+            side[loc[vid] + k] = (kind[0], comps)
+    return out
+
+
+def interface_problems(vert: dict, frag: dict) -> list[str]:
+    """What Vulkan's pipeline creation would reject between the two stages (with maintenance4, which
+    lets the vertex stage write a wider vector than the fragment stage reads): a fragment input at a
+    location the vertex stage does not write, or of another component type, or wider."""
+    problems = []
+    for location, (kind, comps) in sorted(frag["in"].items()):
+        written = vert["out"].get(location)
+        if written is None:
+            problems.append(f"fragment input at location {location} is not written by the vertex stage")
+        elif written[0] != kind:
+            problems.append(f"location {location}: the vertex stage writes {written[0]}, the fragment stage reads {kind}")
+        elif written[1] < comps:
+            problems.append(f"location {location}: the vertex stage writes {written[1]} components, the fragment "
+                            f"stage reads {comps}")
+    return problems
+
+
 VK_SET = {"vert": 0, "frag": 1}  # VK_LAYOUT: one descriptor set per stage
 VK_SAMPLER_BASE = 16             # VK_LAYOUT: combined samplers from binding 16
 INSTALL_FORMAT = 3
@@ -1170,6 +1269,7 @@ def install(out_root: Path, manifests: list[dict], dest: Path, version: str, job
             nprog += 1
             lines.append(f"program {prog['key'][0]} {prog['key'][1]} {prog['index']} {len(prog['defines'])}")
             lines += [f"define {d}" for d in prog["defines"]]
+            interfaces: dict[str, dict] = {}
             for st_name, st in prog["stages"].items():
                 nstage += 1
                 rel = f"{man['package']}/{prog['name']}.{st_name}.spv"
@@ -1179,6 +1279,7 @@ def install(out_root: Path, manifests: list[dict], dest: Path, version: str, job
                     resources, caps = spirv_resources(data, where)
                     if caps != [CAP_SHADER]:
                         raise FormatError(f"{where}: SPIR-V capabilities {caps}, expected only Shader")
+                    interfaces[st_name] = spirv_interface(data, where)
                     blocks, samplers = stage_layout(st, resources, st_name, where)
                 except FormatError as e:
                     errors.append(str(e))
@@ -1204,10 +1305,14 @@ def install(out_root: Path, manifests: list[dict], dest: Path, version: str, job
                 lines += [f"sampler {a} {b} {c} {n}" for a, b, c, n in samplers]
                 for io in ("inputs", "outputs"):
                     lines += [f"{io[:-1]} {r['location']} {r['name']}" for r in st["reflection"][io]]
+            if len(interfaces) == 2:
+                errors += [f"{man['package']}/{prog['name']}: {p}"
+                           for p in interface_problems(interfaces["vert"], interfaces["frag"])]
     if errors:
         for e in errors:
             print(e, file=sys.stderr)
-        print(f"{len(errors)} stages do not match their reflection; no manifest written", file=sys.stderr)
+        print(f"{len(errors)} problems (stages that do not match their reflection, or stage interfaces Vulkan "
+              "would reject); no manifest written", file=sys.stderr)
         return 1
     lines.append(f"end {len(manifests)} {nprog} {nstage}")
     tmp = dest / f"{INSTALL_MANIFEST}.tmp"
