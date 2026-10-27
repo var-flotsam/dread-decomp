@@ -2,6 +2,7 @@
 // there is one or by testing every region otherwise, and returns its index if the region
 // accepts the argument (0xffff otherwise).
 #include "base/math/CVector.h"
+#include "game/UnkNavMeshManager.h"
 #include "types.h"
 
 using base::math::CVector2D;
@@ -21,6 +22,7 @@ struct UnkNode_710027a41c {
     s32 link;
 };
 
+// The mesh (UnkNavMesh, opaque in game/UnkNavMeshManager.h) as far as this function reads it.
 struct UnkOwner_710027a41c {
     u8 pad_0x0[0x290];
     UnkRegion_710027a41c* regions;  // 0x290
@@ -44,7 +46,8 @@ struct UnkQuery_710027a41c {
 bool fn_710027a5f0(UnkOwner_710027a41c* self, const CVector2D* point, u16 index);
 bool fn_71002af6fc(UnkRegion_710027a41c* region, u32 arg);
 
-u16 fn_710027a41c(UnkOwner_710027a41c* self, const CVector2D* point, u32 arg) {
+u16 fn_710027a41c(UnkNavMesh* mesh, const CVector2D* point, u32 arg) {
+    UnkOwner_710027a41c* self = reinterpret_cast<UnkOwner_710027a41c*>(mesh);
     if (self->node_count == 0) {
         for (u16 i = 0; i < self->region_count; i++) {
             if (fn_710027a5f0(self, point, i))

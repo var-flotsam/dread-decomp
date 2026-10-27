@@ -6,6 +6,7 @@
 #include "base/UnkMatrix44.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkCameraCtrl.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
@@ -16,10 +17,12 @@ struct UnkObject {
     const CClass* vf_0x0() { return reinterpret_cast<const CClass* (*)(UnkObject*)>(vtable[0])(this); }
 };
 
-struct UnkCamera : UnkObject {
-    u8 pad_0x8[0x33c];
+// The camera controller once it tests as a CBossCameraCtrl (fn_710074eca8): the field written here.
+struct UnkBossCameraCtrl : UnkCameraCtrl {
+    u8 pad_0x28[0x31c];
     f32 field_0x344;
 };
+static_assert(sizeof(UnkCameraCtrl) == 0x28, "UnkCameraCtrl placeholder layout");
 
 struct UnkOwner {
     u8 pad_0x0[0x38];
@@ -42,14 +45,13 @@ struct UnkBox {
     f32 field_0x14;
 };
 
-UnkCamera* fn_71010e2080();
-
 // NON_MATCHING(minor): the last z clamp (fmaxnm) and its store are scheduled before the paired store
 // of the max x/y pair (scheduling only)
 void fn_7100430830(UnkSelf* self, UnkBox* box) {
-    if (!fn_7100defcec(g_unk_7101d47310))
+    void* holder = fn_7100defcec(g_unk_7101d47310);
+    if (!holder)
         return;
-    UnkCamera* camera = fn_71010e2080();
+    UnkCameraCtrl* camera = fn_71010e2080(holder);
     if (!camera)
         return;
     if (!fn_710009d50c(camera->vf_0x0(), fn_710074eca8()))
@@ -60,7 +62,7 @@ void fn_7100430830(UnkSelf* self, UnkBox* box) {
     if (!fn_710009d50c(component->vf_0x0(), fn_710044e708()))
         return;
     f32* region = reinterpret_cast<f32*>(reinterpret_cast<u64>(component) + 0x15d1c);
-    camera->field_0x344 = 3.0f;
+    static_cast<UnkBossCameraCtrl*>(camera)->field_0x344 = 3.0f;
     f32 low = region[0];
     f32 high = region[1];
     if (fn_710002614c(reinterpret_cast<const UnkMatrix44*>(self->field_0x8->field_0x38)).m[2] > 0.0f)

@@ -5,6 +5,7 @@
 #include "nn/os.h"
 
 #include "dread_port.h"
+#include "host_memory.h"
 
 #include <chrono>
 #include <condition_variable>
@@ -66,6 +67,12 @@ void Detach(void* object) {
 
 [[noreturn]] void NotInitialised(const char* call, const void* object) {
     std::fprintf(stderr, "dread: nn::os::%s on an object the port did not initialise (%p)\n", call, object);
+    std::fflush(stderr);
+    std::abort();
+}
+
+[[noreturn]] void Fatal(const char* call, const char* what) {
+    std::fprintf(stderr, "dread: nn::os::%s: %s\n", call, what);
     std::fflush(stderr);
     std::abort();
 }
@@ -486,6 +493,53 @@ bool TimedReceiveMessageQueue(u64* out, MessageQueueType* queue, TimeSpan timeou
     }
     q->not_full.notify_one();
     return true;
+}
+
+namespace {
+
+// A console-like application: 3.2 GiB to spend, of which the image (code, data and the 1.82 GB
+// .bss, 0x72a19000 bytes) and 16 MB of stacks and the rest are used, so the heap nninitStartup
+// asks for is 1.4 GiB, enough for its 0x4e700000-byte default allocator and what follows it.
+constexpr u64 kAvailableMemory = 0xCD500000;
+constexpr u64 kUsedMemory = 0x72a19000 + 0x1000000;
+constexpr u64 kHeapAlignment = 0x200000;  // the console's: the heap and its blocks come in 2 MB units
+
+u64 g_heap_size;
+u64 g_heap_used;
+char* g_heap;
+
+}  // namespace
+
+void QueryMemoryInfo(MemoryInfo* info) {
+    info->total_available_memory_size = kAvailableMemory;
+    info->total_used_memory_size = kUsedMemory;
+}
+
+// The heap is reserved once, lazily committed host memory; a later size only moves its end.
+Result SetMemoryHeapSize(u64 size) {
+    if (size % kHeapAlignment != 0 || size < g_heap_used)
+        Fatal("SetMemoryHeapSize", "a size that is not a 2 MB multiple, or below what is allocated");
+    if (!g_heap && size != 0) {
+        g_heap = static_cast<char*>(dread_port_host_memory::MapAnywhere(kAvailableMemory - kUsedMemory + kHeapAlignment));
+        if (!g_heap)
+            Fatal("SetMemoryHeapSize", "the host has no memory for the heap");
+        // The block addresses are 2 MB aligned, as on the console.
+        g_heap = reinterpret_cast<char*>((reinterpret_cast<u64>(g_heap) + kHeapAlignment - 1) & ~(kHeapAlignment - 1));
+    }
+    if (size > kAvailableMemory - kUsedMemory)
+        Fatal("SetMemoryHeapSize", "more than the application has");
+    g_heap_size = size;
+    return ResultSuccess();
+}
+
+// Blocks are handed out from the heap in order (the game allocates one, the whole heap).
+Result AllocateMemoryBlock(u64* address, u64 size) {
+    size = (size + kHeapAlignment - 1) & ~(kHeapAlignment - 1);
+    if (!g_heap || g_heap_used + size > g_heap_size)
+        Fatal("AllocateMemoryBlock", "the block does not fit in the heap (SetMemoryHeapSize first)");
+    *address = reinterpret_cast<u64>(g_heap + g_heap_used);
+    g_heap_used += size;
+    return ResultSuccess();
 }
 
 }  // namespace nn::os

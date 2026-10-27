@@ -23,8 +23,10 @@ namespace base {
 // fixed range, probably a dlmalloc mspace (fn_71000815b0 creates it over the range; its
 // neighbours look like dlmalloc's).
 struct UnkSubAllocator {
-    UnkSubAllocator();   // fn_7100081304
-    ~UnkSubAllocator();  // fn_7100081328
+    // Bound to their addresses: Clang 9 ignores an asm label on a constructor or destructor (the
+    // matching build calls the mangled names), newer Clang (the port's) calls the label.
+    UnkSubAllocator() asm("fn_7100081304");
+    ~UnkSubAllocator() asm("fn_7100081328");
 
     virtual void vf_0x0();
     virtual void vf_0x8();

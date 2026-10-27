@@ -4,8 +4,14 @@
 // updated first (fn_710019b9c8). By index (fn_71001c1b70) or by id (fn_71001c1694).
 #include "base/UnkCloneCalls.h"
 #include "base/UnkMatrix44.h"
+#include "base/color/CColor4F.h"
+#include "base/math/CVector4D.h"
+#include "game/UnkSlots.h"
 #include "game/UnkSphere.h"
 #include "game/UnkXformNode.h"
+
+using base::color::CColor4F;
+using base::math::CVector4D;
 
 struct UnkBone_0x98 {
     UnkBone_0x98* parent;
@@ -43,7 +49,7 @@ struct UnkBoneOwner {
     struct UnkBoneDriver* driver;
     u8 matrices_by_id[0x28];  // fn_7100015508 looks a matrix up by id
     u8 pad_0x118[0x1f0];
-    struct UnkMarginBlend* blends[9];
+    struct UnkColorBlend* blends[9];
     u32 blend_count;
     u8 pad_0x354[0x5];
     bool field_0x359;
@@ -255,40 +261,36 @@ void fn_71001c1400(UnkBoneOwner* self, UnkBoneDriver* driver) {
     self->field_0x361 = true;
 }
 
-// Four margins of a bone's entry looked up by id (fn_7100199d88), each clamped to be non-negative
-// and stored through fn_7100030728, as fn_71001c287c (src/game_lo/fn_71001c287c.cpp) does by index
+// The colour of a slot of the slot table (the holder; game/UnkSlots.h) looked up by id
+// (fn_7100199d88), each component clamped to be non-negative and stored through the colour's
+// assignment, fn_7100030728, as fn_71001c287c (src/game_lo/fn_71001c287c.cpp) does by index
 // (fn_71001c2bac).
-struct UnkMargins {
-    f32 v[4];
-};
-
 bool fn_7100199d88(UnkBoneArrayHolder* holder, const u64* id, u32* index);
-bool fn_71001997c8(UnkBoneArrayHolder* holder, u32 index, u32 a, UnkMargins* out, u32 mode);
-void fn_7100030728(UnkMargins* dst, const UnkMargins* src);
 
 static inline f32 NonNegative(f32 x) { return x <= 0.0f ? 0.0f : x; }
 
-bool fn_71001c2bac(UnkBoneOwner* self, u64 id, u32 a, UnkMargins* out, u32 mode) {
-    UnkMargins m;
-    UnkMargins clamped;
+bool fn_71001c2bac(UnkBoneOwner* self, u64 id, u32 a, CColor4F* out, u32 mode) {
+    CVector4D m;
+    CColor4F clamped;
     u32 index = 0;
     if (!fn_7100199d88(self->holder, &id, &index))
         return false;
     m = {};
     u32 found = index;
     bool r = fn_71001997c8(self->holder, found, a, &m, mode);
-    clamped.v[0] = NonNegative(m.v[0]);
-    clamped.v[1] = NonNegative(m.v[1]);
-    clamped.v[2] = NonNegative(m.v[2]);
-    clamped.v[3] = NonNegative(m.v[3]);
+    clamped.r = NonNegative(m.x);
+    clamped.g = NonNegative(m.y);
+    clamped.b = NonNegative(m.z);
+    clamped.a = NonNegative(m.w);
     fn_7100030728(out, &clamped);
     return r;
 }
 
-// A blend of margins (up to 9 at 0x308, count at 0x350) for a key of three words.
-struct UnkMarginBlend {
-    UnkMargins from;
-    UnkMargins to;
+// A blend of a slot's colour (up to 9 at 0x308, count at 0x350; src/game/UnkSlotBlend.cpp) for a
+// key of three words.
+struct UnkColorBlend {
+    CColor4F from;
+    CColor4F to;
     f32 time;
     f32 duration;
     u32 a;

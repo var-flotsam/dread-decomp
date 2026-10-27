@@ -5071,7 +5071,7 @@ address,size,name,name_source,subsystem,status
 0x7100ad79f0,220,fn_7100ad79f0,unknown,engine/reflection?,O
 0x7100ad7acc,500,fn_7100ad7acc,unknown,engine/reflection?,O
 0x7100ad7cc0,248,fn_7100ad7cc0,unknown,engine/reflection?,U
-0x7100ad7db8,872,fn_7100ad7db8,unknown,engine/reflection?,U
+0x7100ad7db8,872,fn_7100ad7db8,unknown,engine/reflection?,O
 0x7100ad8120,280,fn_7100ad8120,unknown,engine/reflection?,U
 0x7100ad8238,792,fn_7100ad8238,unknown,engine/reflection?,U
 0x7100ad8550,788,fn_7100ad8550,unknown,engine/reflection?,U

@@ -195,3 +195,239 @@ CFilePathStrId fn_71000f63b0(const CFilePathStrId& id) {
     }
     return made;
 }
+
+// ---- fn_71000ffe2c: the voice commands ----
+
+// A voice the sound system keeps (placeholder names): its id and the values the commands set.
+struct UnkSoundVoice {
+    u8 pad_0x0[0xc4];
+    s32 id;
+    s32 field_0xc8;
+    u8 pad_0xcc[0x48];
+    s32 field_0x114;
+    u8 pad_0x118;
+    bool field_0x119;
+};
+
+// The members of the sound system the voice commands touch (base/snd/UnkSoundSystemATK.h spells
+// out the queue's): a three-word setting per slot, two lists of voices and the mutex that guards
+// them.
+struct UnkSoundSystemVoices {
+    u8 pad_0x0[0x214];
+    s32 field_0x214[1][3];
+    u8 pad_0x220[0x1d0];
+    UnkSoundVoice** field_0x3f0;
+    u32 field_0x3f8;
+    u8 pad_0x3fc[0x1c];
+    UnkSoundVoice** field_0x418;
+    u32 field_0x420;
+    u8 pad_0x424[0x400568 - 0x424];
+    nn::os::MutexType field_0x400568;
+};
+static_assert(__builtin_offsetof(UnkSoundSystemVoices, field_0x420) == 0x420, "UnkSoundSystemVoices placeholder layout");
+static_assert(__builtin_offsetof(UnkSoundSystemVoices, field_0x400568) == 0x400568, "UnkSoundSystemVoices placeholder layout");
+
+// Runs `set` on the first voice of the list with the payload's id (its first word).
+template <class F>
+static inline void ForVoice(UnkSoundVoice** voices, u32 count, const s32* payload, F set) {
+    for (UnkSoundVoice **it = voices, **end = voices + count; it != end; ++it) {
+        if ((*it)->id == payload[0]) {
+            set(*it);
+            break;
+        }
+    }
+}
+
+void fn_7100100088(UnkSoundSystemATK* self, const s32* payload);
+
+// Applies a voice command (a payload of words, the voice's id first) under the voice mutex: 0 sets
+// a voice's flag at +0x119 (payload[1] picks the list), 1 is fn_7100100088's, 2 sets a slot's three
+// words, 3 a voice's +0xc8 (payload[2] picks the list) and 4 a voice's +0x114 in the second list.
+// Nothing happens while the global flag g_unk_7108b6ab60 is set.
+void fn_71000ffe2c(UnkSoundSystemATK* self, u32 command, const s32* payload) {
+    if (!payload)
+        return;
+    UnkSoundSystemVoices* voices = reinterpret_cast<UnkSoundSystemVoices*>(self);
+    switch (command) {
+    case 0: {
+        if (__builtin_expect(g_unk_7108b6ab60 & 1, 1))
+            return;
+        fn_7100132cd0();
+        nn::os::MutexType* mutex = &voices->field_0x400568;
+        fn_710006691c(mutex);
+        auto set = [payload](UnkSoundVoice* voice) { voice->field_0x119 = payload[2] != 0; };
+        if (payload[1])
+            ForVoice(voices->field_0x418, voices->field_0x420, payload, set);
+        else
+            ForVoice(voices->field_0x3f0, voices->field_0x3f8, payload, set);
+        fn_7100066920(mutex);
+        return;
+    }
+    case 1:
+        fn_7100100088(self, payload);
+        return;
+    case 2: {
+        if (__builtin_expect(g_unk_7108b6ab60 & 1, 1))
+            return;
+        fn_7100132cd0();
+        nn::os::MutexType* mutex = &voices->field_0x400568;
+        fn_710006691c(mutex);
+        s32* slot = voices->field_0x214[payload[0]];
+        slot[0] = payload[1];
+        slot[1] = payload[2];
+        slot[2] = payload[3];
+        fn_7100066920(mutex);
+        return;
+    }
+    case 3: {
+        if (__builtin_expect(g_unk_7108b6ab60 & 1, 1))
+            return;
+        fn_7100132cd0();
+        nn::os::MutexType* mutex = &voices->field_0x400568;
+        fn_710006691c(mutex);
+        auto set = [payload](UnkSoundVoice* voice) { voice->field_0xc8 = payload[1]; };
+        if (payload[2])
+            ForVoice(voices->field_0x418, voices->field_0x420, payload, set);
+        else
+            ForVoice(voices->field_0x3f0, voices->field_0x3f8, payload, set);
+        fn_7100066920(mutex);
+        return;
+    }
+    case 4: {
+        if (__builtin_expect(g_unk_7108b6ab60 & 1, 1))
+            return;
+        fn_7100132cd0();
+        nn::os::MutexType* mutex = &voices->field_0x400568;
+        fn_710006691c(mutex);
+        ForVoice(voices->field_0x418, voices->field_0x420, payload,
+                 [payload](UnkSoundVoice* voice) { voice->field_0x114 = payload[1]; });
+        fn_7100066920(mutex);
+        return;
+    }
+    }
+}
+
+// ---- fn_7100100b1c: releasing a sound file ----
+
+// A loaded file of the sound system's map (placeholder names): its id's hash, how many users it
+// has, and the next node of its bucket's chain.
+struct UnkSoundFileNode {
+    u64 key;
+    s32 users;
+    u8 pad_0xc[0x14];
+    UnkSoundFileNode* next;
+};
+
+// The members of the sound system the file functions touch: the keys of the loaded files and the
+// map of them by key.
+struct UnkSoundSystemFiles {
+    u8 pad_0x0[0x490];
+    u64* field_0x490;   // the keys
+    u32 field_0x498;    // their count
+    u8 pad_0x49c[0x2c];
+    UnkSoundFileNode** field_0x4c8;  // the buckets
+    u32 field_0x4d0;                 // nodes in use
+    u32 field_0x4d4;                 // the bucket count
+};
+static_assert(__builtin_offsetof(UnkSoundSystemFiles, field_0x4d4) == 0x4d4, "UnkSoundSystemFiles placeholder layout");
+
+// A file-path id built from a string out of line (fn_710001a270) and released like one.
+struct UnkBuiltPathId {
+    union {
+        CFilePathStrId id;
+    };
+
+    explicit UnkBuiltPathId(const CRntString& str) { fn_710001a270(&id, str, true); }
+    ~UnkBuiltPathId() { id.~CFilePathStrId(); }
+};
+
+void fn_710007f564(void* self, const char* str);  // appends a string
+
+// Storage for a file-path id whose release is written out by hand.
+union UnkPathIdSlot {
+    CFilePathStrId id;
+    UnkPathIdSlot() {}
+    ~UnkPathIdSlot() {}
+};
+
+// The text of a file-path id's pooled data (a CRntString at +0x10), with the count of its reads at
+// +0x44 (a word that may alias the id: the original reloads it after each increment).
+static inline const CRntString& PathString(const CFilePathStrId& id) {
+    typedef s32 __attribute__((may_alias)) alias_s32;
+    ++*reinterpret_cast<alias_s32*>(reinterpret_cast<char*>(id.data) + 0x44);
+    return *reinterpret_cast<const CRntString*>(reinterpret_cast<char*>(id.data) + 0x10);
+}
+static inline const char* PathChars(const CFilePathStrId& id) {
+    const char* s = PathString(id).data;
+    return s ? s : g_unk_710162e2ed;
+}
+
+// Releases the sound file `path` names (made absolute with a leading '/', then sanitised by
+// fn_71000f63b0): when the map knows it, the sound thread is told (command 30 with its key), and
+// the file's last user also takes its key off the list. Whether the map knew it; true while the
+// global flag g_unk_7108b6ab60 is set.
+// NON_MATCHING(minor): block order only: the flag-set path (`mov w20, #1`) is placed just before the
+// shared epilogue (the unlock call then branches over it) where the original places it right after
+// the flag test with a branch to the epilogue; the instructions are the same.
+bool fn_7100100b1c(UnkSoundSystemATK* self, const CFilePathStrId& path) {
+    bool found = true;
+    if (!(g_unk_7108b6ab60 & 1)) {
+        fn_7100132cd0();
+        UnkSoundSystemFiles* files = reinterpret_cast<UnkSoundSystemFiles*>(self);
+        nn::os::MutexType* mutex = &reinterpret_cast<UnkSoundSystemVoices*>(self)->field_0x400568;
+        fn_710006691c(mutex);
+        found = false;
+        {
+            CRntString name(PathString(path));
+            if (path.data != &g_unk_7101d47200->empty && PathChars(path)[0] != '/') {
+                fn_710007e77c(&name, "/");
+                fn_710007f564(&name, PathChars(path));
+            }
+            // The sanitised id, released by hand on its data pointer read once: the original knows
+            // that nothing below changes the id (its fn_71000f63b0 does not keep the address).
+            UnkPathIdSlot slot;
+            new (&slot.id) CFilePathStrId(fn_71000f63b0(UnkBuiltPathId(name).id));
+            base::global::UnkStringData* data = slot.id.data;
+            if (files->field_0x4d0) {
+                u64 key = *reinterpret_cast<u64*>(reinterpret_cast<char*>(data) + 0x30);
+                u32 key32 = key;
+                UnkSoundFileNode** bucket = key32 % files->field_0x4d4 + files->field_0x4c8;
+                if (bucket) {
+                    for (UnkSoundFileNode* node = *bucket; node; node = node->next) {
+                        if (node->key == key) {
+                            u64 command = key;
+                            fn_71000faac4(self, 0x1e, &command);
+                            UnkSoundFileNode* n = *(key32 % files->field_0x4d4 + files->field_0x4c8);
+                            while (n->key != key)
+                                n = n->next;
+                            if (--n->users == 0) {
+                                u32 count = files->field_0x498;
+                                for (u32 i = 0; i < count; ++i) {
+                                    u64* keys = files->field_0x490;
+                                    if (keys[i] == key) {
+                                        memcpy(&keys[i], &keys[i + 1], (count - i - 1) * sizeof(u64));
+                                        --files->field_0x498;
+                                        break;
+                                    }
+                                }
+                            }
+                            found = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            if (base::global::UnkStringPool* pool = g_unk_7101d47200) {
+                if (data && data != &pool->empty) {
+                    if (--data->ref_count == 0) {
+                        fn_71000803a4(pool, data);
+                        pool = g_unk_7101d47200;
+                    }
+                }
+                slot.id.data = &pool->empty;
+            }
+        }
+        fn_7100066920(mutex);
+    }
+    return found;
+}

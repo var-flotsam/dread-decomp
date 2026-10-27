@@ -3,6 +3,7 @@
 // id is handed with the field after it to an update function (a stateless functor passed by
 // value, which takes an argument register). They return a status record {0, 0, 2, 1}.
 #include "base/global/CStrId.h"
+#include "base/spatial/COBox2D.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -137,7 +138,8 @@ UnkSetStatus fn_7100b870d0(void* self, UnkStrIdTargetHolder* holder, UnkValueArg
     return status;
 }
 
-// An angle setter: degrees from the value, converted to radians in double precision.
+// An angle setter: degrees from the value, converted to radians in double precision, set on the
+// owner's oriented box.
 struct UnkAngleOwner {
     virtual void vf_0x0();
     virtual void vf_0x8();
@@ -157,7 +159,7 @@ struct UnkAngleOwner {
     virtual void vf_0x78();
     virtual void vf_0x80();
     u8 unk_0x8[0xa0];
-    u8 field_0xa8[0x10];
+    base::spatial::COBox2D field_0xa8;
 };
 
 struct UnkAngleOwnerHolder {
@@ -165,12 +167,10 @@ struct UnkAngleOwnerHolder {
     UnkAngleOwner* owner;
 };
 
-void fn_7100110664(void* angle, f32 radians);
-
 UnkSetStatus fn_7100d69140(void* self, UnkAngleOwnerHolder* holder, UnkValueArg* const* arg) {
     UnkAngleOwner* owner = holder->owner;
     f32 degrees = (*arg)->Get<f32>();
-    fn_7100110664(owner->field_0xa8, (f32)((f64)degrees * 3.141592653589793 / 180.0));
+    fn_7100110664(&owner->field_0xa8, (f32)((f64)degrees * 3.141592653589793 / 180.0));
     owner->vf_0x80();
     UnkSetStatus status;
     status.field_0x0 = 0;

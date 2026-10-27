@@ -1008,7 +1008,7 @@ address,size,name,name_source,subsystem,status
 0x7100b1b7d0,216,fn_7100b1b7d0,unknown,unknown,U
 0x7100b1b8a8,228,fn_7100b1b8a8,unknown,unknown,U
 0x7100b1b990,3036,fn_7100b1b990,unknown,unknown,O
-0x7100b1c56c,320,fn_7100b1c56c,unknown,unknown,U
+0x7100b1c56c,320,fn_7100b1c56c,unknown,unknown,O
 0x7100b1c6b0,140,fn_7100b1c6b0,unknown,unknown,O
 0x7100b1c73c,4,fn_7100b1c73c,unknown,unknown,O
 0x7100b1c740,244,GUI::CEndingRewardsComposition::refl_GetClass,reflection,gui,O
@@ -1493,7 +1493,7 @@ address,size,name,name_source,subsystem,status
 0x7100b40d00,556,fn_7100b40d00,unknown,unknown,O
 0x7100b40f2c,1468,fn_7100b40f2c,unknown,unknown,U
 0x7100b414e8,16,fn_7100b414e8,unknown,unknown,O
-0x7100b414f8,1044,fn_7100b414f8,unknown,unknown,U
+0x7100b414f8,1044,fn_7100b414f8,unknown,unknown,m
 0x7100b4190c,1360,fn_7100b4190c,unknown,unknown,U
 0x7100b41e5c,40,fn_7100b41e5c,unknown,unknown,O
 0x7100b41e84,296,fn_7100b41e84,unknown,unknown,U
@@ -2836,7 +2836,7 @@ address,size,name,name_source,subsystem,status
 0x7100b8af0c,228,fn_7100b8af0c,unknown,unknown,U
 0x7100b8aff0,236,fn_7100b8aff0,unknown,unknown,U
 0x7100b8b0dc,736,fn_7100b8b0dc,unknown,unknown,U
-0x7100b8b3bc,1068,fn_7100b8b3bc,unknown,unknown,U
+0x7100b8b3bc,1068,fn_7100b8b3bc,unknown,unknown,m
 0x7100b8b7e8,340,fn_7100b8b7e8,unknown,unknown,U
 0x7100b8b93c,12,fn_7100b8b93c,unknown,unknown,O
 0x7100b8b948,8,fn_7100b8b948,unknown,unknown,O

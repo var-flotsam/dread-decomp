@@ -3,6 +3,7 @@
 // handle at +0x98 is still current (its serial at +0x8 equals the one at +0xa0, which is not -1),
 // calls fn_7100105a80 on its target with 0.2 and 0.
 #include "base/global/CStrId.h"
+#include "base/snd/UnkSound.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkSwitchObject.h"
 #include "types.h"
@@ -22,7 +23,7 @@ struct UnkOwner {
 };
 
 struct UnkHandle {
-    void* field_0x0;
+    UnkSound* field_0x0;
     u64 field_0x8;
 };
 
@@ -39,7 +40,6 @@ UnkComponent* fn_7101152b90(UnkObject* object, u64 hash);
 bool fn_710114e680(UnkObject* object, u8 kind);
 bool fn_710114e668(UnkObject* object, u8 kind);
 void fn_7100145e94(UnkComponent* component, u32 flag);
-void fn_7100105a80(void* target, f32 a, f32 b);
 
 void fn_7100484910(UnkSelf* self) {
     if (UnkCollisionContainer* object = self->field_0x8->field_0x2a0) {

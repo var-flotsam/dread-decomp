@@ -14,10 +14,9 @@ struct UnkStrIdHandle {
 
 void* fn_7100df55e4(UnkGameManager* manager);
 void* fn_7100df5440(UnkGameManager* manager);
-void* fn_7100deac84(UnkGameManager* manager);
 void fn_71011437bc(void* service, const UnkStrIdHandle& handle);
 void fn_7100301860(void* service, const UnkStrIdHandle& handle);
-void fn_7100b30454(void* service, const UnkStrIdHandle& handle);
+void fn_7100b30454(UnkIngameMenu* menu, const UnkStrIdHandle& handle);
 
 struct UnkSubject {
     u8 pad_0x0[0x518];

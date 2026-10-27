@@ -34,3 +34,8 @@ static_assert(__builtin_offsetof(UnkNavMeshPath, field_0x12988) == 0x12988, "Unk
 // lists of `target` (null for none) and takes its weak handle for the references at +0x12a60 and
 // +0x11978. Defined in src/game_s2/fn_71002ad688.cpp.
 void fn_71002ad688(UnkNavMeshPath* self, UnkWeakTarget* target);
+
+// The vtable of the path's points (the 0x120-byte records of up to 250 from +0xc, reached through
+// the GOT): their constructors and destructor (src/game/navmesh/SNavMeshPath.cpp) and the copy of
+// the point table (src/game_s2/fn_7100518ef4.cpp) store its address point, entry 2.
+extern void* g_unk_7101a21120[];

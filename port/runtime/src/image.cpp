@@ -19,6 +19,8 @@ extern const DreadPortImport dread_port_imports[] __attribute__((weak));
 extern const u64 dread_port_import_count __attribute__((weak));
 extern const u64 dread_port_data_references[] __attribute__((weak));
 extern const u64 dread_port_data_reference_count __attribute__((weak));
+// The game's start-up hook (src/engine/SystemStartup.cpp), when the game is linked in.
+void nninitStartup() __attribute__((weak));
 }
 
 namespace {
@@ -108,10 +110,15 @@ namespace {
 
 // Priority 101, the first a program may use: before every unprioritised static initialiser, so
 // before the game's own (each writes into the mapped .data or .bss).
+// Then what the SDK runs before the static initialisers on the console: the application's
+// nninitStartup (src/engine/SystemStartup.cpp), which sets up the memory heap and the default
+// allocator the initialisers allocate from.
 __attribute__((constructor(101))) void MapGameImageAtStartup() {
     if (&dread_port_function_count == nullptr)
         return;  // the game is not linked in
     dread_port_map_game_image();
+    if (nninitStartup)
+        nninitStartup();
 }
 
 }  // namespace

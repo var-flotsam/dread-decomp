@@ -65,6 +65,9 @@ base::global::CRntString* fn_710007f3b4(base::global::CRntString* self, const ba
 bool fn_710007f140(const base::global::CRntString* self, const char* str);
 // Appends one character (through fn_710007f3e4); returns the string.
 base::global::CRntString* fn_710007f5ac(base::global::CRntString* self, char c);
+// Concatenation: a new string (returned in memory) with a's text followed by b's
+// (fn_710007eee0, src/base/global/CRntString.cpp).
+base::global::CRntString fn_710007eee0(const base::global::CRntString* a, const base::global::CRntString* b);
 
 // Builds an empty string that allocates from `allocator` (fn_710007e6e4): the first step of
 // constructing a string with inline storage, whose allocator object follows the string (the

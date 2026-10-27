@@ -1,5 +1,6 @@
 // Applies a list selection change: sends "deselected" to the previously selected item and
 // "selected" to the new one, optionally plays the selection sound, and scrolls to the new item.
+#include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiEvent.h"
 #include "types.h"
 
@@ -20,13 +21,6 @@ static inline UnkItemVt_71011ff97c* Vt(UnkItem_71011ff97c* it) {
 struct UnkNode_71011ff97c {
     UnkItem_71011ff97c* item;
     UnkNode_71011ff97c* next;
-};
-
-struct UnkScale_71011ff97c {
-    u8 unk_0x0[0x18];
-    f32 field_0x18;
-    u8 unk_0x1c[0x4];
-    f32 field_0x20;
 };
 
 struct UnkStruct_71011ff97c {
@@ -52,9 +46,8 @@ struct UnkStruct_71011ff97c {
 };
 
 void fn_7100fc9d78(void* mgr, void* sound, UnkStruct_71011ff97c* self);
-void* fn_71011d94d4(void* root, void* name);
-UnkScale_71011ff97c* fn_71011cde14(void* obj);
-void fn_71011cca3c(void* obj, f32 value);
+UnkGuiDisplayObject* fn_71011d94d4(void* root, void* name);
+void fn_71011cca3c(UnkGuiDisplayObject* obj, f32 value);
 extern void* g_unk_717275c380;
 extern char g_unk_71729f0220[];
 extern char g_unk_7172a10de8[] __attribute__((visibility("hidden")));
@@ -86,9 +79,9 @@ void fn_71011ff97c(UnkStruct_71011ff97c* self, bool quiet) {
         fn_7100fc9d78(g_unk_717275c380, g_unk_71729f0220, self);
     if (!self->field_0x258)
         return;
-    void* target = fn_71011d94d4(self->field_0x258, g_unk_7172a10de8);
+    UnkGuiDisplayObject* target = fn_71011d94d4(self->field_0x258, g_unk_7172a10de8);
     if (!target)
         return;
-    UnkScale_71011ff97c* s = fn_71011cde14(target);
+    UnkGuiObjectState* s = fn_71011cde14(target);
     fn_71011cca3c(target, s->field_0x18 * s->field_0x20 * (f32)self->selected);
 }

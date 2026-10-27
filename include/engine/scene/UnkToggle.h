@@ -68,7 +68,9 @@ struct UnkToggle {
     u8 pad_0xf7;
     u8 flag_0xf8;
     u8 flag_0xf9;
-    u8 pad_0xfa[0xe];
+    u8 pad_0xfa;
+    u8 flag_0xfb;  // pending update: set once the view the item shows is moved or resized
+    u8 pad_0xfc[0xc];
     UnkToggleSrc* src_0x108;
 };
 static_assert(sizeof(UnkToggle) == 0x110, "UnkToggle placeholder layout");
@@ -79,3 +81,7 @@ static_assert(sizeof(UnkToggle) == 0x110, "UnkToggle placeholder layout");
 // src/engine/scene/CScene.cpp.
 void fn_71001eef58(UnkToggleListener* owner, UnkToggle* item, bool on);
 void fn_71001eef74(UnkToggleListener* owner, UnkToggle* item, bool on);
+
+// Set `item`'s flag at 0xf9 to `on`; when it changes, report the flags at 0xf8 and 0xf6, gated by
+// it, to the owner (fn_71001eef58, fn_71001eef74). Defined in src/game_s1/fn_710020ac34.cpp.
+void fn_710020ac34(UnkToggle* item, bool on);

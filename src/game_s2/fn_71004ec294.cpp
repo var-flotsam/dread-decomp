@@ -8,6 +8,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkSceneObject.h"
 #include "types.h"
 
 using base::reflection::CClass;
@@ -17,11 +18,6 @@ typedef u64 u64_a4 __attribute__((aligned(4)));
 struct UnkActor {
     void** vtable;
     const CClass* vf_0x0() { return reinterpret_cast<const CClass* (*)(UnkActor*)>(vtable[0])(this); }
-};
-
-struct UnkEffect {
-    u8 pad_0x0[0x130];
-    void* field_0x130;
 };
 
 struct __attribute__((packed)) UnkComponent {
@@ -34,30 +30,30 @@ struct __attribute__((packed)) UnkComponent {
 };
 
 // The actor pointer and the two effect slots, at +0x14738, +0x14890 and +0x14898 of the component.
+// The effects are scene objects (game/UnkSceneObject.h).
 struct UnkActorBlock {
     u64 actor;
     u8 pad_0x8[0x150];
-    UnkEffect* effect_a;
-    UnkEffect* effect_b;
+    UnkSceneObject* effect_a;
+    UnkSceneObject* effect_b;
 };
 
 extern const u64 g_unk_71726db100[] __attribute__((visibility("hidden")));
 extern const u64 g_unk_71726db108[] __attribute__((visibility("hidden")));
 bool fn_7100369490(UnkComponent* self);
 void fn_71004e8ea0(void* state, char* data);
-void fn_7100149930(UnkRenderPool* pool, void* a, UnkEffect** out, base::global::CStrId* name);
-void fn_71001be020(void* target, const u64* key);
-void fn_7100149490(UnkEffect* effect, u32 flag);
+void fn_7100149930(UnkRenderPool* pool, void* a, UnkSceneObject** out, base::global::CStrId* name);
+void fn_71001be020(UnkSceneObjectSub* target, const u64* key);
 
-__attribute__((always_inline)) static inline void CreateEffect(UnkEffect*& slot, const u64* key) {
+__attribute__((always_inline)) static inline void CreateEffect(UnkSceneObject*& slot, const u64* key) {
     UnkRenderManager* manager = g_unk_7101d47300;
-    UnkEffect* effect = nullptr;
+    UnkSceneObject* effect = nullptr;
     fn_7100149930(manager->field_0x218, nullptr, &effect, &g_unk_7101d470e0);
     fn_7100219ae0(manager, effect ? reinterpret_cast<UnkSceneNode*>(reinterpret_cast<char*>(effect) + 8) : nullptr, 0);
     slot = effect;
     if (effect) {
         fn_71001be020(effect->field_0x130, key);
-        fn_7100149490(slot, 0);
+        fn_7100149490(slot, false);
     }
 }
 

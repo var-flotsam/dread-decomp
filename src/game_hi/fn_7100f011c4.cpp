@@ -1,6 +1,7 @@
 // Drops the entries registered under an id from two keyed lists (notifying each entry's object
-// first and resetting two counters for flagged ids), then forwards the id to fn_7100f00f4c.
+// first and hiding two items for flagged ids), then forwards the id to fn_7100f00f4c.
 #include "base/UnkVector.h"
+#include "engine/scene/UnkToggle.h"
 #include "types.h"
 
 struct UnkRefObj {
@@ -81,9 +82,10 @@ struct UnkHashNode {
     UnkHashNode* next;
 };
 
-struct UnkCounter {
+// An object holding a scene item at +0x18 (hidden for flagged ids).
+struct UnkItemHolder {
     u8 pad_0x0[0x18];
-    u8 field_0x18[0x8];
+    UnkToggle item;
 };
 
 struct UnkStruct_0x128 {
@@ -96,8 +98,8 @@ struct UnkStruct_0x128 {
     u8 pad_0xa0[0x10];
     UnkList field_0xb0;
     u8 pad_0xd0[0x38];
-    UnkCounter* field_0x108;
-    UnkCounter* field_0x110;
+    UnkItemHolder* field_0x108;
+    UnkItemHolder* field_0x110;
     u8 pad_0x118[0x9];
     bool field_0x121;
 
@@ -111,7 +113,6 @@ struct UnkStruct_0x128 {
 };
 
 void fn_710021fafc(UnkRefObj*);
-void fn_710020ac34(void*, u32);
 void fn_7100f00f4c(UnkStruct_0x128*, u32, bool);
 
 void fn_7100f011c4(UnkStruct_0x128* self, u32 id) {
@@ -121,8 +122,8 @@ void fn_7100f011c4(UnkStruct_0x128* self, u32 id) {
         UnkRef ref = n->ref;
         fn_710021fafc(ref.ptr);
         if (self->Get(n->key)->field_0x18) {
-            fn_710020ac34(self->field_0x108->field_0x18, 0);
-            fn_710020ac34(self->field_0x110->field_0x18, 0);
+            fn_710020ac34(&self->field_0x108->item, false);
+            fn_710020ac34(&self->field_0x110->item, false);
         }
         self->field_0x80.Remove(n);
     }

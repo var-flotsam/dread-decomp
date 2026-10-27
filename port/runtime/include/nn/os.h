@@ -25,8 +25,8 @@
 //   SetMultiWaitHolderUserData,
 //   ClearSystemEvent, DestroySystemEvent, WaitSystemEvent, TryWaitSystemEvent, TimedWaitSystemEvent,
 //   GetSystemTick, ConvertToTick, ConvertToTimeSpan, GetHostArgc, GetHostArgv.
-// Declared below: everything but the memory calls and the multi-waits, which no boot-path function
-// and no source calls yet. src/ itself names only MutexType, GetCurrentThread, SleepThread,
+// Declared below: everything but the multi-waits, which no boot-path function and no source calls
+// yet. src/ itself names only MutexType, GetCurrentThread, SleepThread,
 // GetSystemTick and ConvertToTimeSpan; the rest is reached through the imports' four-byte thunks
 // (fn_71012...), which tools/port_link.py aliases to these definitions by name. The engine reaches
 // the mutex calls through four-byte wrappers (fn_71000668f8, fn_7100066918, fn_710006691c,
@@ -149,5 +149,19 @@ void JamMessageQueue(MessageQueueType* queue, u64 message);
 void ReceiveMessageQueue(u64* out, MessageQueueType* queue);
 bool TryReceiveMessageQueue(u64* out, MessageQueueType* queue);
 bool TimedReceiveMessageQueue(u64* out, MessageQueueType* queue, TimeSpan timeout);
+
+// The memory heap, as nninitStartup (src/engine/SystemStartup.cpp) sets it up before the static
+// initialisers: the heap takes what the application has not used, one block takes the whole heap,
+// and the default allocator its first 0x4e700000 bytes. The game reads the first two sizes; the
+// port writes only those.
+struct MemoryInfo {
+    u64 total_available_memory_size;
+    u64 total_used_memory_size;
+    u8 rest[0x28];
+};
+static_assert(sizeof(MemoryInfo) == 0x38, "nninitStartup's local");
+void QueryMemoryInfo(MemoryInfo* info);
+Result SetMemoryHeapSize(u64 size);
+Result AllocateMemoryBlock(u64* address, u64 size);
 
 }  // namespace nn::os

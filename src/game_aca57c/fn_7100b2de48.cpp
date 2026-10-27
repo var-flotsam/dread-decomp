@@ -15,8 +15,10 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
+#include "game/UnkGuiLabel.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkHandleMenu.h"
+#include "game/UnkMapMenuController.h"
 #include "game/UnkRenderManager.h"
 #include "types.h"
 
@@ -163,7 +165,6 @@ void fn_7100e9b1f8(void* target, bool value);
 void fn_7100066a50(void* text, const char32_t* value);
 void fn_7100066e44(void* text);
 void fn_7100b2cb44(UnkStateOwner* self);
-void fn_71011ec468(UnkComposition* label, void* text, bool value);
 void fn_7100af1bfc(UnkComposition* composition);
 UnkGuiChild* fn_71011d94d4(UnkComposition* composition, const CStrId& name);
 void fn_7100b2c6a0(UnkStateOwner* self);
@@ -176,7 +177,11 @@ void fn_7100219cb0(UnkRenderManager* target, bool a, bool b);
 void fn_7100219d4c(UnkRenderManager* target, bool a, bool b);
 void fn_7100219da4(UnkRenderManager* target, bool a, bool b, u32 mode);
 void fn_7100b2cc40(UnkStateOwner* self);
-void fn_71011cdc30(UnkComposition* item, bool value);
+
+// The item seen as the display object it is (game/UnkGuiDisplayObject.h), for the GUI setters.
+static inline UnkGuiDisplayObject* AsDisplayObject(UnkComposition* item) {
+    return reinterpret_cast<UnkGuiDisplayObject*>(item);
+}
 
 // The flags are stored as plain bytes: the original reloads the handle after the store.
 static inline void StoreFlag(bool* field, bool value) { *reinterpret_cast<u8*>(field) = value; }
@@ -224,7 +229,7 @@ __attribute__((always_inline)) static inline void RecordFlag(bool* field) {
     bool flag = static_cast<UnkFlagRef*>(manager->*Ref)->holder->flag;
     StoreFlag(field, flag);
     if (flag)
-        fn_71011cdc30(GetHolder(manager->*Ref), false);
+        fn_71011cdc30(AsDisplayObject(GetHolder(manager->*Ref)), false);
 }
 
 void fn_7100b2de48(UnkStateOwner* self) {
@@ -282,9 +287,9 @@ __attribute__((always_inline)) static inline void UndoFlags(UnkStateOwner* self)
     if (placed->vf_0x68()) {
         placed->vf_0x70();
         if (self->field_0x2dd)
-            fn_71011cdc30(GetHolder(g_unk_7101d47310->field_0x2258), true);
+            fn_71011cdc30(AsDisplayObject(GetHolder(g_unk_7101d47310->field_0x2258)), true);
         if (self->field_0x2de)
-            fn_71011cdc30(GetHolder(g_unk_7101d47310->field_0x2270), true);
+            fn_71011cdc30(AsDisplayObject(GetHolder(g_unk_7101d47310->field_0x2270)), true);
     }
 }
 
@@ -399,10 +404,8 @@ static inline UnkComposition* FindLabel(UnkComposition* composition, const char*
     return fn_710009d50c(child->Type(), fn_71011e8dfc()) ? child : nullptr;
 }
 
-// A text string built from UTF-32 text.
-struct UnkText {
-    u8 unk_0x0[0x20];
-
+// A text string built from UTF-32 text: the label's text (game/UnkGuiLabel.h).
+struct UnkText : UnkGuiText {
     UnkText(const char32_t* text) { fn_7100066a50(this, text); }
     ~UnkText() { fn_7100066e44(this); }
 };
@@ -429,15 +432,15 @@ void fn_7100b2d868(UnkStateOwner* self) {
     if (UnkComposition* label = FindLabel(self->current, "Label-Plus")) {
         {
             fn_71011cdce8(reinterpret_cast<UnkGuiDisplayObject*>(label), false);
-            fn_71011cdc30(label, false);
+            fn_71011cdc30(AsDisplayObject(label), false);
             if (g_unk_71726bc570->field_0xb8) {
                 UnkText text(U"#GUI_BOSSRUSH_CONTROLS_LABEL_PLUS");
-                fn_71011ec468(label, &text, false);
+                fn_71011ec468(AsDisplayObject(label), text, false);
             } else {
                 UnkText text(U"#GUI_CONTROLS_LABEL_PLUS");
-                fn_71011ec468(label, &text, false);
+                fn_71011ec468(AsDisplayObject(label), text, false);
             }
-            fn_71011cdc30(label, true);
+            fn_71011cdc30(AsDisplayObject(label), true);
             fn_71011cdce8(reinterpret_cast<UnkGuiDisplayObject*>(label), true);
         }
     }
@@ -491,9 +494,9 @@ void fn_7100b2dfc4(UnkStateOwner* self) {
         placed->vf_0x70();
     fn_7100fc9d78(g_unk_717275c380, &g_unk_71729f0180, self);
     if (self->field_0x2dd)
-        fn_71011cdc30(GetHolder(g_unk_7101d47310->field_0x2258), true);
+        fn_71011cdc30(AsDisplayObject(GetHolder(g_unk_7101d47310->field_0x2258)), true);
     if (self->field_0x2de)
-        fn_71011cdc30(GetHolder(g_unk_7101d47310->field_0x2270), true);
+        fn_71011cdc30(AsDisplayObject(GetHolder(g_unk_7101d47310->field_0x2270)), true);
 }
 
 // A string with 0x80 bytes of inline storage (as in fn_7100ae9a10).
@@ -635,9 +638,9 @@ void fn_7100b2e3b8(UnkStateOwner* self) {
         placed->vf_0x70();
     fn_7100fc9d78(g_unk_717275c380, &g_unk_71729f0180, self);
     if (self->field_0x2dd)
-        fn_71011cdc30(GetHolder(g_unk_7101d47310->field_0x2258), true);
+        fn_71011cdc30(AsDisplayObject(GetHolder(g_unk_7101d47310->field_0x2258)), true);
     if (self->field_0x2de)
-        fn_71011cdc30(GetHolder(g_unk_7101d47310->field_0x2270), true);
+        fn_71011cdc30(AsDisplayObject(GetHolder(g_unk_7101d47310->field_0x2270)), true);
 }
 
 // The constructor. The base part is built by fn_71011d8d24; three callbacks (owner and
@@ -804,9 +807,14 @@ void fn_7100b2e54c(UnkMenuStates* self) { new (self) UnkMenuStates; }
 
 void fn_7100b2e7c4(UnkMenuStates* self) { self->~UnkMenuStates(); }
 
+// The world's reference to the map menu (game/UnkMapMenuController.h).
+struct UnkMapMenuRef {
+    u8 unk_0x0[0x10];
+    UnkMapMenuController* obj;
+};
 struct UnkWorld {
     u8 unk_0x0[0xd63f40];
-    UnkObjRef* field_0xd63f40;
+    UnkMapMenuRef* field_0xd63f40;
 };
 
 // The game manager's world at 0x2228.
@@ -816,7 +824,7 @@ struct UnkInputEvent {
     bool handled;
 };
 bool fn_710118a8d0(UnkPlacedObj* placed);
-bool fn_7100b44a3c(UnkObject* obj);
+bool fn_7100b44a3c(UnkMapMenuController* menu);
 void fn_7100b2eaac(UnkStateOwner* self, s32 state, bool a, bool b);
 
 // Input while no pop-up is shown: from states 8 and 9 (or 7, unless fn_7100b44a3c holds for
@@ -841,7 +849,7 @@ void fn_7100b2e978(UnkStateOwner* self, const UnkInputEvent* event) {
         return;
     }
     case 7: {
-        UnkObjRef* ref = World()->field_0xd63f40;
+        UnkMapMenuRef* ref = World()->field_0xd63f40;
         if (fn_7100b44a3c(ref ? ref->obj : nullptr))
             return;
         fn_7100b2eaac(self, 1, true, true);
@@ -931,19 +939,18 @@ void fn_7100b2eaac(UnkStateOwner* self, s32 state, bool from_game, bool now) {
 }
 
 extern base::global::CStrId g_unk_7172762fe0 __attribute__((visibility("hidden")));
-bool fn_7100b41e5c(UnkObject* obj);
 
-// Page switching between states 7, 8 and 9 (outside boss rush, while the world's object at
+// Page switching between states 7, 8 and 9 (outside boss rush, while the world's map menu at
 // 0xd63f40 allows it): from state 7 to `Next`, from `Prev` back to 7, each with a sound and a
 // 0.12 delay at 0x2d8.
 template <s32 Prev, s32 Next>
 __attribute__((always_inline)) static inline void SwitchPage(UnkStateOwner* self, const UnkInputEvent* event) {
     if (event->handled)
         return;
-    UnkObjRef* ref = World()->field_0xd63f40;
+    UnkMapMenuRef* ref = World()->field_0xd63f40;
     if (!ref)
         return;
-    UnkObject* obj = ref->obj;
+    UnkMapMenuController* obj = ref->obj;
     if (!obj || fn_7100b41e5c(obj) || fn_7100b44a3c(obj))
         return;
     if (g_unk_71726bc570->field_0xb8)

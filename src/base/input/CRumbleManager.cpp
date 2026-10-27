@@ -92,3 +92,253 @@ void fn_71000733e4(UnkRumbleManager* self) {
     self->field_0x2204 = *zero;
     self->field_0x2208 = 0x100;
 }
+
+// The rumble files the manager has loaded, cached by path in its map at +0x20d0.
+#include <new>
+
+#include "base/UnkCountedResource.h"
+#include "base/global/CFilePathStrId.h"
+#include "base/reflection/UnkClassGetters.h"
+#include "base/reflection/UnkReflCast.h"
+
+using base::global::CFilePathStrId;
+using base::global::CStrId;
+using base::global::UnkStringData;
+using base::global::UnkStringPool;
+
+// The resource registry's key and reference types (as src/game/CAbilitySonar.cpp defines them).
+struct UnkResType {
+    CStrId name;
+};
+
+struct UnkResRegistry;
+extern UnkResRegistry* g_unk_7101d472f8;
+
+struct UnkResPathId {
+    UnkStringData* data;
+
+    UnkResPathId(const CFilePathStrId& other) : data(other.data) {
+        if (&g_unk_7101d47200->empty != data)
+            ++data->ref_count;
+    }
+    ~UnkResPathId() {
+        if (UnkStringPool* pool = g_unk_7101d47200) {
+            if (data && data != &pool->empty) {
+                --data->ref_count;
+                if (data->ref_count == 0) {
+                    fn_71000803a4(pool, data);
+                    pool = g_unk_7101d47200;
+                }
+            }
+            data = &pool->empty;
+        }
+    }
+};
+
+struct UnkResKey {
+    CStrId type;
+    UnkResPathId path;
+
+    UnkResKey(const CStrId& t, const CFilePathStrId& p) : type(t), path(p) {}
+};
+
+struct UnkResRef {
+    UnkCountedResource* ptr;
+
+    UnkResRef() : ptr(nullptr) {}
+    UnkResRef& operator=(const UnkResRef& other) {
+        if (ptr != other.ptr) {
+            UnkCountedResource* p = other.ptr;
+            if (p)
+                ++p->ref_count;
+            UnkCountedResource* old = ptr;
+            if (old && --old->ref_count == 0)
+                fn_710001737c(old);
+            ptr = p;
+        }
+        return *this;
+    }
+    ~UnkResRef() {
+        if (ptr && --ptr->ref_count == 0)
+            fn_710001737c(ptr);
+    }
+};
+
+UnkResKey fn_71000ea448(UnkResRegistry* registry, const UnkResKey* key, void* a);
+UnkResRef fn_71000ead80(UnkResRegistry* registry, const UnkResKey* key, u8 flag, void* a);
+
+// The rumble files' resource type.
+extern const UnkResType g_unk_7101d676d8;
+
+// A loaded base::res::CRes as the cache reads it.
+struct UnkRumbleSource {
+    virtual void vf_0x0();
+    virtual void vf_0x8();
+    virtual void vf_0x10();
+    virtual void vf_0x18();
+    virtual void vf_0x20();
+    virtual u64 vf_0x28();
+};
+
+struct UnkRumbleRes : base::reflection::UnkReflObject {
+    u8 unk_0x8[0x50];
+    UnkRumbleSource* source;  // 0x58
+    u8 unk_0x60[8];
+    u64 field_0x68;
+};
+
+// A file-path id that starts empty (making the pool first if needed), assigned as CStrId is.
+struct UnkRumblePath : base::global::UnkFilePathStrIdBase {
+    UnkRumblePath() {
+        data = nullptr;
+        if (!g_unk_7101d47200)
+            base::global::UnkEnsureFilePathPool();
+        data = &g_unk_7101d47200->empty;
+    }
+    ~UnkRumblePath() {
+        if (UnkStringPool* pool = g_unk_7101d47200) {
+            if (data && data != &pool->empty) {
+                if (--data->ref_count == 0) {
+                    fn_71000803a4(pool, data);
+                    pool = g_unk_7101d47200;
+                }
+            }
+            data = &pool->empty;
+        }
+    }
+    UnkRumblePath& operator=(const UnkRumblePath& other) {
+        if (data != other.data) {
+            UnkStringData* d = other.data;
+            UnkStringPool* pool = g_unk_7101d47200;
+            if (d != &pool->empty)
+                ++d->ref_count;
+            if (data != &pool->empty) {
+                --data->ref_count;
+                if (data->ref_count == 0)
+                    fn_71000803a4(pool, data);
+            }
+            data = d;
+        }
+        return *this;
+    }
+    CFilePathStrId* Id() { return reinterpret_cast<CFilePathStrId*>(this); }
+};
+
+// A cached rumble file (0x20 bytes): the resource, two values read from it and its path.
+struct UnkRumbleFile {
+    UnkResRef res;
+    u64 field_0x8;
+    u32 field_0x10;
+    UnkRumblePath path;
+};
+
+// The cache's map nodes (0x28 bytes): the path, the file, the node list links and the bucket chain.
+// The list links are union members: the original reloads them after each link store.
+struct UnkRumbleFileNode {
+    UnkStringData* key;
+    UnkRumbleFile* value;
+    union {
+        UnkRumbleFileNode* next;
+    };
+    union {
+        UnkRumbleFileNode* prev;
+    };
+    UnkRumbleFileNode* chain;
+};
+
+struct UnkRumbleFileMap {
+    base::UnkAllocator* allocator;  // 0x20d0
+    u32 flags;
+    u32 count;
+    UnkRumbleFileNode** buckets;  // 0x20e0
+    u32 bucketCount;
+    u32 bucketCapacity;
+    u8 unk_0x20f0[0x18];
+    UnkRumbleFileNode* last;   // 0x2108
+    UnkRumbleFileNode* first;  // 0x2110
+};
+
+// The halves of the id's 64-bit hash (at +0x30) combined.
+static inline u32 PathHash(const UnkStringData* data) {
+    const char* raw = reinterpret_cast<const char*>(data);
+    return *reinterpret_cast<const u32*>(raw + 0x30) ^ *reinterpret_cast<const u32*>(raw + 0x34);
+}
+
+// The bucket a key hashes to; null while the map has no buckets.
+static inline UnkRumbleFileNode** Bucket(UnkRumbleFileMap* map, const UnkStringData* key) {
+    UnkRumbleFileNode** bucket = nullptr;
+    if (map->bucketCount) {
+        u32 i = PathHash(key) % map->bucketCapacity;
+        bucket = map->buckets + i;
+    }
+    return bucket;
+}
+
+// Builds the rumble file's path for `name` (defined in this unit, which lets the compiler see that
+// it keeps no pointer to `out`).
+void fn_7100072c00(const void* name, CFilePathStrId* out __attribute__((noescape)));
+
+// The cached rumble file for `name`, loaded and cached on first use (a reference to its resource is
+// taken for a cached one); null when it can't be loaded.
+UnkRumbleFile* fn_710007454c(UnkRumbleManager* self, const void* name) {
+    UnkRumblePath path;
+    fn_7100072c00(name, path.Id());
+    UnkRumbleFileMap* map = reinterpret_cast<UnkRumbleFileMap*>(reinterpret_cast<char*>(self) + 0x20d0);
+    if (map->bucketCount) {
+        if (UnkRumbleFileNode** bucket = Bucket(map, path.data)) {
+            for (UnkRumbleFileNode* n = *bucket; n; n = n->chain) {
+                if (n->key == path.data) {
+                    UnkRumbleFileNode* found = *bucket;
+                    while (found->key != path.data)
+                        found = found->chain;
+                    UnkRumbleFile* file = found->value;
+                    ++file->res.ptr->ref_count;
+                    return file;
+                }
+            }
+        }
+    }
+    UnkRumbleFile* file = nullptr;
+    UnkResKey key(g_unk_7101d676d8.name, *path.Id());
+    UnkResKey found = fn_71000ea448(g_unk_7101d472f8, &key, nullptr);
+    if (found.type.data != &g_unk_7101d47108->empty && found.path.data != &g_unk_7101d47200->empty) {
+        UnkResRef res = fn_71000ead80(g_unk_7101d472f8, &found, 1, nullptr);
+        if (res.ptr) {
+            UnkRumbleRes* r = reinterpret_cast<UnkRumbleRes*>(res.ptr);
+            r = fn_710009d50c(r->vf_0x0(), fn_71000e8a5c()) ? r : nullptr;
+            file = new (fn_7100083990()->vf_0x40(sizeof(UnkRumbleFile), 8, 1)) UnkRumbleFile();
+            file->res = res;
+            file->field_0x10 = (u32)r->field_0x68;
+            file->field_0x8 = r->source ? r->source->vf_0x28() : 0;
+            file->path = path;
+            UnkRumbleFileNode** bucket = nullptr;
+            if (map->bucketCount) {
+                u32 i = PathHash(path.data) % map->bucketCapacity;
+                bucket = map->buckets + i;
+            }
+            UnkRumbleFileNode* chain = *bucket;
+            UnkRumbleFileNode* node =
+                static_cast<UnkRumbleFileNode*>(map->allocator->vf_0x40(sizeof(UnkRumbleFileNode), 8, map->flags));
+            if (node) {
+                node->key = path.data;
+                if (&g_unk_7101d47200->empty != path.data)
+                    ++path.data->ref_count;
+                node->value = file;
+                node->next = nullptr;
+                node->prev = nullptr;
+                node->chain = nullptr;
+            }
+            node->chain = chain;
+            *bucket = node;
+            if (!map->first) {
+                map->first = node;
+            } else if (map->last) {
+                node->prev = map->last;
+                map->last->next = node;
+            }
+            map->last = node;
+            ++map->count;
+        }
+    }
+    return file;
+}
