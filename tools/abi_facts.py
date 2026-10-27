@@ -10,9 +10,14 @@ know which registers of a call to compare. This module computes, per function:
   args      argument registers the function may read before writing them, on some path from its
             entry: x0-x7 (keys 0-7), x8 (8, the indirect result register) and v0-v7 (100-107).
             A direct call reads its callee's `args` (recursively, memoized); an indirect call
-            (blr/br) reads its target register, x0 and the argument registers written earlier in
-            the same block (the lifter's own rule for indirect calls); every call clobbers x0-x18
-            and v0-v7/v16-v31.
+            (blr/br) reads its target register, x0, the argument registers written earlier in
+            the same block (the lifter's own rule for indirect calls) and `fwd`; every call
+            clobbers x0-x18 and v0-v7/v16-v31.
+  fwd       argument registers the function's direct callers set for it (written in the block
+            before the call and not read again before it; vector copies through q/v registers
+            do not count): what an indirect call, whose callee nothing names, may be passed on.
+            A wrapper `this->vf(0.0f)` reached as fn(this, 0.0f) reads s0 that way. Only for
+            functions with an indirect call (empty otherwise).
   stack     whether it reads its caller's frame (a load from [sp, #k] at or above the entry sp):
             arguments beyond the eight registers.
   ret_used  whether some caller reads x0 (or s0/d0) after calling it, before writing it; a tail
@@ -29,6 +34,7 @@ Usage: python tools/abi_facts.py --version 2.1.0 ADDR [ADDR...]   (prints the fa
 from __future__ import annotations
 
 import argparse
+import os
 import pickle
 import sys
 from dataclasses import dataclass
@@ -42,7 +48,7 @@ import asmdiff  # noqa: E402
 import callgraph  # noqa: E402
 
 MAX_SIZE = 65536
-CACHE_VERSION = 6  # bump when the analysis changes (AbiFacts.load ignores other versions)
+CACHE_VERSION = 7  # bump when the analysis changes (AbiFacts.load ignores other versions)
 MAX_DEPTH = 48  # callee recursion; deeper chains count as unknown
 INT_ARGS = frozenset(range(9))  # x0-x7 and x8
 FLOAT_ARGS = frozenset(range(100, 108))
@@ -69,6 +75,7 @@ class Facts:
     args: frozenset   # register keys (see the module docstring)
     stack: bool
     wide: frozenset = frozenset()  # integer argument registers read as x<n> (else only as w<n>)
+    fwd: frozenset = frozenset()   # argument registers the callers set, for an indirect call
 
     @property
     def ints(self) -> int:
@@ -78,6 +85,13 @@ class Facts:
     @property
     def floats(self) -> int:
         return max([k - 99 for k in self.args if 100 <= k < 108], default=0)
+
+    @property
+    def fwd_counts(self) -> tuple[int, int]:
+        """(integer, float) argument registers an indirect call of this function is passed, by
+        the rule above: x0 always, then up to the highest of `fwd`."""
+        return (max([k + 1 for k in self.fwd if k < 8], default=1),
+                max([k - 99 for k in self.fwd if 100 <= k < 108], default=0))
 
     @property
     def sret(self) -> bool:
@@ -122,18 +136,21 @@ class Insn:
     mem: tuple | None    # (base key, displacement, writeback) of the memory operand
     reg_ops: tuple       # keys of the register operands, in order
     xreads: frozenset    # integer registers read in their 64-bit form
+    vec: bool            # a q/v (vector) register operand: a copy, not a float argument
 
     @staticmethod
     def of(x) -> "Insn":
         r, w = x.regs_access()
-        regs = tuple(reg_key(op.reg) for op in x.operands if op.type == arm64.ARM64_OP_REG)
+        ops = [op for op in x.operands if op.type == arm64.ARM64_OP_REG]
+        regs = tuple(reg_key(op.reg) for op in ops)
         mem = [op for op in x.operands if op.type == arm64.ARM64_OP_MEM]
         return Insn(x.address, x.mnemonic, tuple(op.imm for op in x.operands if op.type == arm64.ARM64_OP_IMM),
                     frozenset(k for k in map(reg_key, r) if k is not None),
                     frozenset(k for k in map(reg_key, w) if k is not None),
                     regs[0] if regs else None,
                     (reg_key(mem[0].mem.base), mem[0].mem.disp, bool(x.writeback)) if mem else None, regs,
-                    frozenset(reg_key(q) for q in r if CS.reg_name(q)[0] == "x" and isinstance(reg_key(q), int)))
+                    frozenset(reg_key(q) for q in r if CS.reg_name(q)[0] == "x" and isinstance(reg_key(q), int)),
+                    any(CS.reg_name(op.reg)[0] in "qv" for op in ops))
 
 
 class AbiFacts:
@@ -146,6 +163,7 @@ class AbiFacts:
         self._busy: set[int] = set()
         self._decoded: dict[int, list | None] = {}
         self._ret: dict[int, bool | None] = {}
+        self._fwd: dict[int, frozenset] = {}
         self._wide = False  # liveness over 64-bit reads only (Facts.wide)
 
     def load(self, path: Path) -> None:
@@ -159,8 +177,10 @@ class AbiFacts:
 
     def save(self, path: Path) -> None:
         path.parent.mkdir(parents=True, exist_ok=True)
-        with path.open("wb") as fh:
+        tmp = path.with_name(f"{path.name}.{os.getpid()}.tmp")  # several tools share the cache
+        with tmp.open("wb") as fh:
             pickle.dump({"version": CACHE_VERSION, "facts": self._facts, "ret": self._ret}, fh)
+        os.replace(tmp, path)
 
     # -- decoding -------------------------------------------------------------------------------
 
@@ -211,12 +231,66 @@ class AbiFacts:
             # an argument the function reads whole somewhere before redefining it.
             self._wide = True
             live_wide, _ = self.liveness(addr, ins, depth)
-            f = Facts(args, self.reads_stack(ins), frozenset(k for k in args if k < 9 and k in live_wide[0]))
+            f = Facts(args, self.reads_stack(ins), frozenset(k for k in args if k < 9 and k in live_wide[0]),
+                      self.fwd_of(addr, ins))
         finally:
             self._wide = outer
             self._busy.discard(addr)
         self._facts[addr] = f
         return f
+
+    @staticmethod
+    def block_starts(addr: int, ins: list) -> set[int]:
+        """Block starts: the entry, branch targets, and the instruction after a branch or call."""
+        end = addr + 4 * len(ins)
+        starts = {addr}
+        for x in ins:
+            if x.mnemonic in BRANCHES or x.mnemonic.startswith("b."):
+                starts |= {t for t in x.imms if addr <= t < end}
+            if x.mnemonic in BRANCHES or x.mnemonic.startswith("b.") or x.mnemonic in ("bl", "blr", "br", "ret"):
+                starts.add(x.address + 4)
+        return starts
+
+    @staticmethod
+    def jump_table(ins: list, i: int) -> bool:
+        """Whether the br at ins[i] dispatches a switch (Clang's `adr` shortly before), not a call."""
+        return any(y.mnemonic == "adr" for y in ins[max(i - 6, 0):i])
+
+    def fwd_of(self, addr: int, ins: list) -> frozenset:
+        """Facts.fwd: the callers' evidence, for a function with an indirect call."""
+        if addr not in self._fwd:
+            calls = any(x.mnemonic == "blr" or (x.mnemonic == "br" and not self.jump_table(ins, i))
+                        for i, x in enumerate(ins))
+            self._fwd[addr] = self.evidence(addr) if calls else frozenset()
+        return self._fwd[addr]
+
+    def evidence(self, addr: int) -> frozenset:
+        """Argument registers (x0-x7, v0-v7) that addr's direct callers write in the block before
+        calling it and do not read again before the call; a q/v register written by a vector
+        copy does not count. Computed from the callers' instructions alone (no facts), so it does
+        not depend on the order facts are asked for."""
+        if self.graph is None:
+            self.graph = callgraph.CallGraph(self.version, self.rows)
+        ev: set = set()
+        for c in sorted(set(self.graph.callers.get(addr, []))):
+            ins = self.decode(c)
+            if ins is None:
+                continue
+            starts = self.block_starts(c, ins)
+            for i, x in enumerate(ins):
+                if not x.imms or x.imms[-1] != addr or not (
+                        x.mnemonic in ("bl", "b") or x.mnemonic in BRANCHES or x.mnemonic.startswith("b.")):
+                    continue
+                later: set = set()
+                for y in reversed(ins[:i]):
+                    if y.mnemonic in ("bl", "blr"):
+                        break
+                    if not y.vec:
+                        ev |= (y.defs & ARGS) - later - {8}
+                    later |= y.uses
+                    if y.address in starts:
+                        break
+        return frozenset(ev)
 
     def call_uses(self, target: int | None, block: list, k: int, depth: int, reg=None) -> set:
         """Registers a call at block[k] reads: the callee's facts, or the indirect-call rule."""
@@ -243,13 +317,9 @@ class AbiFacts:
         uses: list[set] = [set() for _ in range(n)]
         defs: list[set] = [set() for _ in range(n)]
         succ: list[list[int]] = [[] for _ in range(n)]
+        fwd = self.fwd_of(addr, ins)  # what an indirect call is passed on (Facts.fwd)
         # Blocks for the indirect-call rule: a block starts at a branch target or after a branch.
-        starts = {addr}
-        for x in ins:
-            if x.mnemonic in BRANCHES or x.mnemonic.startswith("b."):
-                starts |= {t for t in x.imms if addr <= t < end}
-            if x.mnemonic in BRANCHES or x.mnemonic.startswith("b.") or x.mnemonic in ("bl", "blr", "br", "ret"):
-                starts.add(x.address + 4)
+        starts = self.block_starts(addr, ins)
         block_of: list[tuple[int, int]] = []
         bstart = 0
         for i, x in enumerate(ins):
@@ -271,11 +341,12 @@ class AbiFacts:
                     fall = []  # code ending in a call: the callee does not return
             elif m == "blr":
                 reg = x.reg0
-                u = self.call_uses(None, block, len(block) - 1, depth, reg)
+                u = self.call_uses(None, block, len(block) - 1, depth, reg) | fwd
                 d = set(CLOBBER) | {30}
             elif m == "br":
                 reg = x.reg0
-                u, d, fall = self.call_uses(None, block, len(block) - 1, depth, reg) | set(ret_uses), set(), []
+                u = self.call_uses(None, block, len(block) - 1, depth, reg) | set(ret_uses)
+                u, d, fall = u if self.jump_table(ins, i) else u | fwd, set(), []
             elif m == "b":
                 t = imm[0]
                 if addr <= t < end:
@@ -339,7 +410,7 @@ class AbiFacts:
         if addr in self._ret:
             return self._ret[addr]
         if self.graph is None:
-            self.graph = callgraph.CallGraph(self.version)
+            self.graph = callgraph.CallGraph(self.version, self.rows)
         callers = self.graph.callers.get(addr, [])
         if not callers or depth > 8:
             return None
