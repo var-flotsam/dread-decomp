@@ -292,6 +292,19 @@ fails from a worktree under `.claude/` (Ghidra rejects a path element starting w
 from the main checkout. About 70 minutes of wall clock for the slowest agent, 0.96 M agent tokens.
 Boot slice 1,881 to 1,889 `O`.
 
+**`hub_migrate.py --plan` (2026-10-27, branch `claude/tools-hub-migrate-plan`).** Batch 6's mechanical
+pass took an hour because `--header`/`--declaration` take one symbol per run. A plan file of
+`SYMBOL<TAB>header<TAB>declaration` lines now runs every symbol at once. Each edited file's text is
+rendered from its original with the kept symbols' edits. One baseline is saved. In each round, only the
+files whose text changed and the includers of headers whose text changed are rebuilt. A changed file
+goes back alone; files that still differ drop the symbols whose header edits reach them, and the rest
+are tried again. Symbols dropped together with others are retried one run each, so the result equals one
+run per symbol. Checked on two plans, from a clean tree each time: three unrelated symbols gave the same
+diff as single runs (70 s against 80 s; the symbols share almost no files), and four vtable globals in the
+same three files took 3 s against 11 s. With a plan, the generated sources that include an edited header
+are listed and the smallest two per header are rebuilt, the check batch 5's reflected-type globals
+needed.
+
 **Hub batch 6 (2026-10-26, branch `claude/hub-batch-6`).** Batch 5's procedure again, on about 70
 symbols plus batch 5's review follow-ups: a whole-tree baseline (1,406 files), one scripted
 `hub_migrate.py` run over 65 chosen signatures (about an hour: one symbol per run, since `--header`

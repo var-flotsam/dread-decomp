@@ -18,7 +18,16 @@ Run Python as `.venv/Scripts/python` from the repository root (Git Bash; forward
 python tools/hub_migrate.py --version 2.1.0 --header-redeclared      # every symbol with one include/ header
 python tools/hub_migrate.py --version 2.1.0 fn_<addr> [fn_<addr>...]  # chosen symbols
 python tools/hub_migrate.py --version 2.1.0 fn_<addr> --header include/base/X.h --declaration "T fn_<addr>(...);"
+python tools/hub_migrate.py --version 2.1.0 --plan batch.tsv           # many chosen signatures at once
 ```
+
+For a batch, write the chosen signatures as a plan (`SYMBOL<TAB>include/x.h<TAB>declaration`, one per
+line; the declaration may be left out when the header declares the symbol already) and run it once:
+one baseline, one rebuild and a few narrowing rounds instead of one run per symbol, with the same
+result. With a plan the tool also lists the generated sources that include a header it edits and
+rebuilds the smallest two per header (`--generated-sample N`): a header type that clashes with a
+generated declaration (reflected type globals are `CType` there) shows there instead of only in
+`check.py`.
 
 For each symbol it deletes every local declaration, adds the `#include`, rebuilds each touched file
 and every hand-written includer of a touched header with `tools/trymatch.py`, and keeps only the
