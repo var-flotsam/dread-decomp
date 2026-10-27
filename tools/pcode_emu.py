@@ -314,6 +314,7 @@ class Machine:
         self.dirty: dict[int, int] = {}
         self.stack_written: set[int] = set()
         self.frame_record: set[int] = set()  # stack words holding the saved return address (store)
+        self.taken: set[int] = set()  # stack addresses the code made (`add xN, sp, #k`): local objects' starts
         self.state = {}  # argument register key -> "entry" | "written" | "junk"
         self.events: list = []
         self.calls = 0
@@ -503,9 +504,9 @@ class Machine:
         for k, v in args:  # out-parameters: through the arguments only (scratch registers differ)
             if k in chosen and isinstance(v, tuple) and v[0] == "stack":
                 p = raw[k]
-                for j in range(0, WINDOW, 8):
-                    # (up to the frame record: a small local below it would otherwise let the
-                    # pattern overwrite the saved return address, and the run return elsewhere)
+                # (within the object, stackref's extent, and never over the frame record: a small
+                # local below it would let the pattern overwrite the saved return address)
+                for j in range(0, max(v[2], 8), 8):
                     if p + j >= ENTRY_SP or any(p + j - 7 <= r <= p + j + 7 for r in self.frame_record):
                         break
                     self.store(p + j, 8, mix(n, k, j))
@@ -529,10 +530,13 @@ class Machine:
         self.state[100] = "junk"
 
     def stackref(self, v: int):
-        """A stack address as the bytes the function wrote around it; anything else as is."""
+        """A stack address as the bytes the function wrote from it on, and how far its object may
+        reach: to the next local whose address the code took, or to the frame record (beyond, the
+        two frames hold different locals); anything else as is."""
         if STACK_LO <= v < ENTRY_SP:
+            end = min([t for t in self.taken | self.frame_record if t > v] + [v + WINDOW])
             return ("stack", tuple(self.load(v + j, 1) if v + j in self.stack_written else None
-                                   for j in range(WINDOW) if v + j < ENTRY_SP))
+                                   for j in range(WINDOW) if v + j < ENTRY_SP), end - v)
         return v
 
     def clib(self, name: str) -> None:
@@ -592,6 +596,9 @@ class Machine:
                 w = self.code_word(pc)
                 kind, target = self.step(pc, w, BRANCH, CBRANCH, BRANCHIND, CALL, CALLIND, RETURN)
                 if kind == "next":
+                    # add/sub (immediate, 64-bit) from sp or x29 into another register: a local's address
+                    if (w >> 24) in (0x91, 0xD1) and ((w >> 5) & 31) in (29, 31) and (w & 31) != 31:
+                        self.taken.add(self.x(w & 31))
                     pc += 4
                 elif kind == "jump":
                     if self.inside(target):
@@ -941,7 +948,7 @@ def same_arg(u, v) -> bool:
         # first word written by one only is a difference. Words that are stack addresses in both
         # (a pointer to another local) agree whatever their value.
         a, b = u[1], v[1]
-        n = min(len(a), len(b))
+        n = min(len(a), len(b), u[2] if len(u) > 2 else WINDOW)  # (u is the original's: its object)
         end = next((j for j in range(n) if a[j] is None or b[j] is None), n)
         if end < min(8, n) and (a[end] is None) != (b[end] is None):
             return False
