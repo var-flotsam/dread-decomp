@@ -306,13 +306,15 @@ def base_ptr(b: str) -> str:
     return "stk" if b == "stk" else f"(char*)({b})"
 
 
-def float_widths(ins) -> dict[int, str]:
+def float_widths(ins, semantic: bool = False) -> dict[int, str]:
     """The width ("s" or "d") each float register is first read with in the function (first used,
     for one only written): an incoming argument or a register only passed on to a callee takes it
     (one variable per register and width in flat mode, and no "float width" clash with a later
     use in the structured lifter). Reads, since a write may come first at the other width
     (`fcvt d0, s0`)."""
     w: dict[int, str] = {}
+    if semantic:
+        ins = [x for x in ins if not is_frame(x)]  # (semantic mode: saves of d8-d15 are not uses)
     for x in ins:
         if x.mnemonic == "fmov" and any(op.type == arm64.ARM64_OP_FP for op in x.operands):
             continue  # (capstone counts fmov's immediate destination as read)
@@ -324,6 +326,18 @@ def float_widths(ins) -> dict[int, str]:
         for op in x.operands:
             if op.type == arm64.ARM64_OP_REG and regname(op.reg)[0] in "sd" and fkey(regname(op.reg)) is not None:
                 w.setdefault(100 + fkey(regname(op.reg)), regname(op.reg)[0])
+    if semantic:
+        # (semantic mode: a register only copied whole, `mov v9.16b, v1.16b`, takes the width its
+        # copy is read with, and the other way round)
+        pairs = [(100 + int(regname(x.operands[0].reg)[1:]), 100 + int(regname(x.operands[1].reg)[1:]))
+                 for x in ins if x.mnemonic == "mov" and len(x.operands) == 2
+                 and all(op.type == arm64.ARM64_OP_REG and regname(op.reg)[0] == "v" for op in x.operands)]
+        for _ in range(4):
+            for d, s in pairs:
+                if s not in w and d in w:
+                    w[s] = w[d]
+                elif d not in w and s in w:
+                    w[d] = w[s]
     return w
 
 
@@ -1024,7 +1038,7 @@ class Lifter:
         if not self.setup_frame(ins):
             return self.fail("stack frame")
         self.cur_delta = 0
-        self.fwidth = float_widths(ins)
+        self.fwidth = float_widths(ins, "semantic" in self.opts)
         try:
             self.find_guards(ins)
             if "semantic" in self.opts:
@@ -2104,7 +2118,7 @@ class FlatLifter(Lifter):
         if not self.setup_frame(ins):
             return self.fail("stack frame")
         self.cur_delta = 0
-        self.fwidth = float_widths(ins)
+        self.fwidth = float_widths(ins, "semantic" in self.opts)
         targets = set()
         for x in ins:
             for op in x.operands:
