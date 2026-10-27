@@ -9,6 +9,7 @@
 // the address is reused, which resets it.
 
 #include <cstdint>
+#include <functional>
 #include <map>
 #include <memory>
 #include <mutex>
@@ -43,6 +44,9 @@ void ReleaseDrawVulkanObjects();
 // nvnQueueSubmitCommands: submits the recordings behind the game's command handles, in order, on the
 // queue's timeline (command.cpp); returns the timeline value it signals, 0 if nothing was submitted.
 std::uint64_t SubmitRecordings(std::int32_t count, const std::uint64_t* handles);
+// Runs `destroy` (it frees Vulkan objects the game finalised) once no recording that may name them
+// is open or unsubmitted and the GPU has passed them (command.cpp); at once when nothing is pending.
+void DeferDestroy(std::function<void()> destroy);
 // nvnQueueFenceSync and nvnWindowAcquireTexture: the sync becomes signalled when the GPU reaches what
 // is submitted now (queue.cpp).
 void FenceSyncAtLastSubmit(void* sync);

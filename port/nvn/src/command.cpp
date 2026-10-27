@@ -33,6 +33,7 @@
 #include <cstdio>
 #include <cstring>
 #include <deque>
+#include <functional>
 #include <map>
 #include <memory>
 #include <set>
@@ -162,8 +163,10 @@ struct CommandBuffer {
     bool rendering = false;
     VkRect2D render_area{};
     VkPipeline bound_pipeline = VK_NULL_HANDLE;
-    VkPipelineLayout bound_layout = VK_NULL_HANDLE;
-    std::uint64_t bound_shadow_version = 0;
+    // Per stage: the pipeline layout its set was bound with (null: none, or disturbed) and the
+    // uniform updates it has seen.
+    VkPipelineLayout bound_layout[2] = {};
+    std::uint64_t bound_shadow_version[2] = {};
 };
 
 detail::Registry<CommandBuffer> g_commands;
@@ -186,6 +189,41 @@ void FreeRecording(const Backend& be, Recording& r) {
     r = Recording();
 }
 
+// Vulkan objects the game finalised (a texture's image and views, a pool's buffer): a recording
+// still open or not submitted yet may name them, so each waits until every recording that existed
+// when it was finalised is submitted, and then for the GPU to pass that submit.
+struct Dying {
+    std::function<void()> destroy;
+    std::uint64_t retire = 0;
+    bool resolved = false;
+};
+std::deque<Dying> g_dying;
+
+bool AnyOpenRecording() {
+    if (!g_recorded.empty())
+        return true;
+    bool open = false;
+    g_commands.ForEach([&](const void*, CommandBuffer& c) { open |= c.rec.vk != VK_NULL_HANDLE; });
+    return open;
+}
+
+void RetireDying() {
+    const bool open = AnyOpenRecording();
+    const std::uint64_t last = LastSubmitted(), done = Completed();
+    for (auto it = g_dying.begin(); it != g_dying.end();) {
+        if (!it->resolved && !open) {
+            it->retire = last;
+            it->resolved = true;
+        }
+        if (it->resolved && it->retire <= done) {
+            it->destroy();
+            it = g_dying.erase(it);
+        } else {
+            ++it;
+        }
+    }
+}
+
 // Reuses the objects of every submit the GPU has finished.
 void Recycle(const Backend& be) {
     const std::uint64_t done = Completed();
@@ -193,6 +231,7 @@ void Recycle(const Backend& be) {
         FreeRecording(be, g_in_flight.front());
         g_in_flight.pop_front();
     }
+    RetireDying();
 }
 
 VkDescriptorPool NewDescriptorPool(const Backend& be) {
@@ -456,7 +495,8 @@ void MakeKey(const detail::ProgramObjects* prog, std::int32_t topology_class, de
         if (key->colors[i] == VK_FORMAT_UNDEFINED || key->vertex_only)
             continue;
         b.mask = g_state.channel_mask.mask[i];
-        b.enable = g_state.color.blend[i];
+        // Only formats that can blend (Vulkan rejects blending into an integer or R32 float target).
+        b.enable = g_state.color.blend[i] && FormatSupported(key->colors[i], VK_FORMAT_FEATURE_COLOR_ATTACHMENT_BLEND_BIT);
         if (b.enable) {
             const detail::BlendTargetState& s = g_state.blend[i];
             b.src = s.src;
@@ -540,10 +580,14 @@ void Draw(void* cmd, std::int32_t primitive, std::int32_t index_type, std::int32
                               0.0f,
                               1.0f};
     vkCmdSetViewport(vk, 0, 1, &viewport);
-    const std::int32_t sx = std::max(g_state.scissor[0], 0), sy = std::max(g_state.scissor[1], 0);
-    const VkRect2D scissor{{sx, sy},
-                           {static_cast<std::uint32_t>(std::max(g_state.scissor[2] - (sx - g_state.scissor[0]), 0)),
-                            static_cast<std::uint32_t>(std::max(g_state.scissor[3] - (sy - g_state.scissor[1]), 0))}};
+    // Clamped to what Vulkan accepts: a non-negative offset, offset + extent within int32.
+    const std::int64_t sx = std::max(g_state.scissor[0], 0), sy = std::max(g_state.scissor[1], 0);
+    const std::int64_t sw = std::clamp<std::int64_t>(std::int64_t(g_state.scissor[2]) - (sx - g_state.scissor[0]), 0,
+                                                     INT32_MAX - sx);
+    const std::int64_t sh = std::clamp<std::int64_t>(std::int64_t(g_state.scissor[3]) - (sy - g_state.scissor[1]), 0,
+                                                     INT32_MAX - sy);
+    const VkRect2D scissor{{static_cast<std::int32_t>(sx), static_cast<std::int32_t>(sy)},
+                           {static_cast<std::uint32_t>(sw), static_cast<std::uint32_t>(sh)}};
     vkCmdSetScissor(vk, 0, 1, &scissor);
     vkCmdSetCullMode(vk, detail::CullMode(g_state.polygon.cull_face));
     vkCmdSetFrontFace(vk, detail::FrontFace(g_state.polygon.front_face));
@@ -565,22 +609,25 @@ void Draw(void* cmd, std::int32_t primitive, std::int32_t index_type, std::int32
     }
     if (be->depth_bounds) {
         vkCmdSetDepthBoundsTestEnable(vk, has_depth && g_state.depth_bounds);
-        vkCmdSetDepthBounds(vk, g_state.depth_bounds_min, g_state.depth_bounds_max);
+        // Within 0..1 even while the test is off (no VK_EXT_depth_range_unrestricted).
+        vkCmdSetDepthBounds(vk, std::clamp(g_state.depth_bounds_min, 0.0f, 1.0f),
+                            std::clamp(g_state.depth_bounds_max, 0.0f, 1.0f));
     } else if (g_state.depth_bounds) {
         ReportOnce("the device has no depth bounds test; draws that ask for one run without it");
     }
     if (g_state.color.alpha_func != kCompareAlways)
         ReportOnce("the alpha test is not applied yet (port/nvn/README.md, \"Drawing\")");
 
-    // Descriptor sets: rewritten when the bindings, the program's layout or a uniform update changed.
+    // Descriptor sets, per stage: rewritten when the bindings, the layout the stage's set was bound
+    // with or a uniform update changed. A set bound with another layout disturbs the other stage's
+    // (their set layouts differ), which is then bound again.
     const ShaderManifest* manifest = detail::LoadedManifest();
-    const bool new_layout = prog->layout != c->bound_layout;
-    const bool updated = c->bound_shadow_version != g_shadow_version;
     for (int i = 0; i < 2; ++i) {
         const Stage stage = static_cast<Stage>(i);
         if (!prog->stages[i] || (i == 1 && key.vertex_only))
             continue;
-        if (!new_layout && !updated && !g_state.bindings.Dirty(stage))
+        if (c->bound_layout[i] == prog->layout && c->bound_shadow_version[i] == g_shadow_version &&
+            !g_state.bindings.Dirty(stage))
             continue;
         const VkDescriptorSet set = AllocateSet(*be, c->rec, prog->set_layouts[i]);
         if (!set)
@@ -595,9 +642,11 @@ void Draw(void* cmd, std::int32_t primitive, std::int32_t index_type, std::int32
         vkCmdBindDescriptorSets(vk, VK_PIPELINE_BIND_POINT_GRAPHICS, prog->layout, DescriptorSetIndex(*manifest, stage), 1,
                                 &set, 0, nullptr);
         g_state.bindings.MarkClean(stage);
+        c->bound_layout[i] = prog->layout;
+        c->bound_shadow_version[i] = g_shadow_version;
+        if (c->bound_layout[1 - i] != prog->layout)
+            c->bound_layout[1 - i] = VK_NULL_HANDLE;
     }
-    c->bound_layout = prog->layout;
-    c->bound_shadow_version = g_shadow_version;
 
     // Vertex streams, and the zero buffer for inputs no attribute feeds.
     VkBuffer buffers[kVertexStreams + 1];
@@ -720,7 +769,7 @@ void CommandBufferBeginRecording(void* cmd) {
     FullBarrier(c.rec.vk);
     c.rendering = false;
     c.bound_pipeline = VK_NULL_HANDLE;
-    c.bound_layout = VK_NULL_HANDLE;  // a new Vulkan command buffer has no sets bound: the next draw writes them
+    c.bound_layout[0] = c.bound_layout[1] = VK_NULL_HANDLE;  // no sets bound yet: the next draw writes them
 }
 
 // The handle nvnQueueSubmitCommands takes: a number of the shim's, never 0.
@@ -1047,8 +1096,9 @@ std::uint64_t detail::SubmitRecordings(std::int32_t count, const std::uint64_t* 
     }
     if (cmds.empty())
         return 0;
-    if (!be->host_import)  // pools are copies: bring in what the recordings read (memory.h)
-        for (const Recording& r : recs)
+    // Pools that are copies (not imported: memory.h) get what the recordings read; an imported pool
+    // returns at once.
+    for (const Recording& r : recs)
             for (const auto& range : r.reads)
                 SyncPoolRange(range.first, range.second);
     const std::uint64_t value = Submit(cmds.data(), static_cast<std::uint32_t>(cmds.size()));
@@ -1064,7 +1114,13 @@ std::uint64_t detail::SubmitRecordings(std::int32_t count, const std::uint64_t* 
         g_in_flight.push_back(std::move(r));
     }
     g_stats.submitted += cmds.size();
+    RetireDying();
     return value;
+}
+
+void detail::DeferDestroy(std::function<void()> destroy) {
+    g_dying.push_back({std::move(destroy)});
+    RetireDying();
 }
 
 void detail::ReleaseDrawVulkanObjects() {
@@ -1077,7 +1133,7 @@ void detail::ReleaseDrawVulkanObjects() {
                     FreeRecording(*be, c.rec);
                 c.rendering = false;
                 c.bound_pipeline = VK_NULL_HANDLE;
-                c.bound_layout = VK_NULL_HANDLE;
+                c.bound_layout[0] = c.bound_layout[1] = VK_NULL_HANDLE;
             });
             for (auto& kv : g_recorded)
                 FreeRecording(*be, kv.second);
@@ -1098,6 +1154,7 @@ void detail::ReleaseDrawVulkanObjects() {
         g_free_chunks.clear();
         g_free_command_buffers.clear();
         g_pool = VK_NULL_HANDLE;
+        RetireDying();  // no recordings are left and the GPU is idle: everything dying goes now
         ReleasePipelines();
     }
     ReleaseProgramVulkanObjects();

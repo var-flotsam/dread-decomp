@@ -111,7 +111,8 @@ bool CreateBackend(bool validation) {
         VkPhysicalDeviceFeatures2 f{VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FEATURES_2};
         f.pNext = &f13;
         vkGetPhysicalDeviceFeatures2(pd, &f);
-        if (!f13.dynamicRendering || !f13.maintenance4 || !f12.timelineSemaphore)
+        // The zero buffer for unfed vertex inputs is binding 16 (pipeline.h): 17 bindings.
+        if (!f13.dynamicRendering || !f13.maintenance4 || !f12.timelineSemaphore || props.limits.maxVertexInputBindings < 17)
             continue;
         std::uint32_t families = 0;
         vkGetPhysicalDeviceQueueFamilyProperties(pd, &families, nullptr);
@@ -129,8 +130,8 @@ bool CreateBackend(bool validation) {
             break;
     }
     if (!b.physical) {
-        std::fprintf(stderr, "nvn shim: no Vulkan 1.3 device with dynamicRendering, maintenance4, timelineSemaphore and a "
-                             "graphics queue\n");
+        std::fprintf(stderr, "nvn shim: no Vulkan 1.3 device with dynamicRendering, maintenance4, timelineSemaphore, 17 "
+                             "vertex bindings and a graphics queue\n");
         vkDestroyInstance(b.instance, nullptr);
         return false;
     }
@@ -430,8 +431,8 @@ void DeviceFinalize(void* device) {
         std::lock_guard<std::recursive_mutex> lock(detail::StateLock());
         g_devices.Erase(device);
     }
-    if (const Backend* b = CurrentBackend())
-        vkDeviceWaitIdle(b->device);  // nothing of the shim's may be in use when it is destroyed
+    if (CurrentBackend())
+        WaitFor(LastSubmitted(), UINT64_MAX);  // nothing of the shim's may be in use when it is destroyed
     detail::ReleaseDrawVulkanObjects();     // before the device they belong to goes
     detail::ReleaseTextureVulkanObjects();
     detail::ReleaseMemoryVulkanObjects();

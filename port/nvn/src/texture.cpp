@@ -230,22 +230,26 @@ void InitializeImage(VkImage image, VkImageAspectFlags aspect, std::uint32_t lev
     });
 }
 
-// The GPU may still use a texture the game finalises: wait for everything submitted (the game
-// finalises textures when it unloads a scenario, not per frame).
+// The GPU, or a recording not submitted yet, may still use a texture the game finalises: its
+// Vulkan objects go once nothing can (detail::DeferDestroy).
 void DestroyTexture(Texture& t) {
     const Backend* be = CurrentBackend();
-    if (be && t.image)
-        WaitFor(LastSubmitted(), UINT64_MAX);
-    g_view_kinds.erase(t.view);
-    if (be) {
-        if (t.attachment_view)
-            vkDestroyImageView(be->device, t.attachment_view, nullptr);
-        if (t.view)
-            vkDestroyImageView(be->device, t.view, nullptr);
-        if (t.image)
-            vkDestroyImage(be->device, t.image, nullptr);
-        if (t.memory)
-            vkFreeMemory(be->device, t.memory, nullptr);
+    g_view_kinds.erase(t.view);  // a later draw that still binds it gets a placeholder
+    if (be && (t.image || t.view)) {
+        const VkDevice device = be->device;
+        const VkImageView attachment_view = t.attachment_view, view = t.view;
+        const VkImage image = t.image;
+        const VkDeviceMemory memory = t.memory;
+        detail::DeferDestroy([=] {
+            if (attachment_view)
+                vkDestroyImageView(device, attachment_view, nullptr);
+            if (view)
+                vkDestroyImageView(device, view, nullptr);
+            if (image)
+                vkDestroyImage(device, image, nullptr);
+            if (memory)
+                vkFreeMemory(device, memory, nullptr);
+        });
     }
     t.view = VK_NULL_HANDLE;
     t.attachment_view = VK_NULL_HANDLE;

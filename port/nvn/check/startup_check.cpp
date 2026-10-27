@@ -230,6 +230,15 @@ void DrawFrames(const char* shader_dir, const char* shd_dir, const DrawContext& 
     Fn<void (*)(void*, std::int32_t)>("nvnColorStateSetAlphaTest")(x.color, 8);
     Fn<void (*)(void*, float)>("nvnCommandBufferSetAlphaRef")(x.cmd, 0.5f);
     Fn<void (*)(void*, const void*)>("nvnCommandBufferBindColorState")(x.cmd, x.color);
+    // Depth and stencil tests on, so their dynamic state is exercised: depth less-or-equal (4),
+    // stencil always (8) replacing (3) where the depth test passes.
+    Fn<void (*)(void*, std::uint8_t)>("nvnDepthStencilStateSetDepthTestEnable")(x.depth_stencil, 1);
+    Fn<void (*)(void*, std::uint8_t)>("nvnDepthStencilStateSetDepthWriteEnable")(x.depth_stencil, 1);
+    Fn<void (*)(void*, std::int32_t)>("nvnDepthStencilStateSetDepthFunc")(x.depth_stencil, 4);
+    Fn<void (*)(void*, std::uint8_t)>("nvnDepthStencilStateSetStencilTestEnable")(x.depth_stencil, 1);
+    Fn<void (*)(void*, std::int32_t, std::int32_t)>("nvnDepthStencilStateSetStencilFunc")(x.depth_stencil, 3, 8);
+    Fn<void (*)(void*, std::int32_t, std::int32_t, std::int32_t, std::int32_t)>("nvnDepthStencilStateSetStencilOp")(
+        x.depth_stencil, 3, 1, 1, 3);
     Fn<void (*)(void*, const void*)>("nvnCommandBufferBindDepthStencilState")(x.cmd, x.depth_stencil);
     Fn<void (*)(void*, const void*)>("nvnCommandBufferBindMultisampleState")(x.cmd, x.multisample);
     Fn<void (*)(void*, const void*)>("nvnCommandBufferBindPolygonState")(x.cmd, x.polygon);
@@ -314,8 +323,14 @@ void DrawFrames(const char* shader_dir, const char* shd_dir, const DrawContext& 
                     for (std::uint32_t k = 0; s.nvn_slot >= 0 && k < s.size_or_count; ++k)
                         BindTexture(x.cmd, stage, s.nvn_slot + static_cast<std::int32_t>(k), k % 2 ? cube : texture);
             }
-            uniform_data[0] = static_cast<unsigned char>(programs);
-            UpdateUniformBuffer(x.cmd, uniforms, 0x1000, 0, 0x1000, uniform_data.data());
+            // Every other program without an update, its depth-only draw first: after the previous
+            // program's full and depth-only draws, that is the sequence "A full, B vertex-only, B
+            // full" with nothing changed in between, which must rebind B's fragment set itself.
+            const bool updates = programs % 2 == 1;  // the 1st, 3rd ... program
+            if (updates) {
+                uniform_data[0] = static_cast<unsigned char>(programs);
+                UpdateUniformBuffer(x.cmd, uniforms, 0x1000, 0, 0x1000, uniform_data.data());
+            }
             // fn_7100161fd0 and fn_7100161800: every attribute and stream reset, then one stream per
             // input the vertex stage reads, four floats 16 bytes apart; the second stream steps per
             // instance (fn_7100162530's instance buffer).
@@ -343,10 +358,19 @@ void DrawFrames(const char* shader_dir, const char* shd_dir, const DrawContext& 
             }
             BindAttribs(x.cmd, attrib_count, attribs);
             BindStreams(x.cmd, streams_used, streams);
+            // In full, and as the depth-only pass binds it (the fragment stage unbound) with an
+            // instanced triangle strip.
+            auto depth_only = [&] {
+                BindProgram(x.cmd, nullptr, kStageBitFragment);
+                DrawElementsInstanced(x.cmd, 5, 1, 4, index_address, 0, 0, 2);
+            };
+            if (!updates) {
+                depth_only();
+                BindProgram(x.cmd, &program, bits);
+            }
             DrawElements(x.cmd, 4, 1, 3, index_address);
-            // The depth-only pass: the fragment stage unbound; an instanced triangle strip.
-            BindProgram(x.cmd, nullptr, kStageBitFragment);
-            DrawElementsInstanced(x.cmd, 5, 1, 4, index_address, 0, 0, 2);
+            if (updates)
+                depth_only();
             BindProgram(x.cmd, nullptr, kStageBitsAll);
             ProgramFinalize(&program);
             if (programs % 64 == 0) {  // a frame's worth: submit, as fn_7100159ac0 does
@@ -377,7 +401,7 @@ void DrawFrames(const char* shader_dir, const char* shd_dir, const DrawContext& 
     Check(failed == 0 && programs > 0, "every program of the manifest initialises");
     Check(after.draws - before.draws == 2 * programs && after.skipped_draws == before.skipped_draws,
           "every draw is recorded");
-    Check(after.pipelines > 0 && after.uniform_updates >= programs, "pipelines and uniform updates");
+    Check(after.pipelines > 0 && after.uniform_updates >= programs / 2, "pipelines and uniform updates");
     std::vector<std::uint8_t> drawn;
     Check(ReadTexels(x.target, &drawn) && drawn.size() == texels.size(), "the render target reads back after the draws");
 }

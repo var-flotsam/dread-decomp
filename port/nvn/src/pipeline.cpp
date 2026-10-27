@@ -173,6 +173,8 @@ VkPipeline MakePipeline(const Backend& be, const PipelineKey& key) {
                 written |= i >= o.location && i < o.location + o.locations;
         VkPipelineColorBlendAttachmentState& a = blend[i];
         a.colorWriteMask = written && key.colors[i] != VK_FORMAT_UNDEFINED ? b.mask : 0;
+        if (!be.independent_blend && i > 0)
+            a.colorWriteMask = blend[0].colorWriteMask;  // every attachment alike without the feature
         a.blendEnable = b.enable ? VK_TRUE : VK_FALSE;
         a.srcColorBlendFactor = BlendFactorOf(b.src);
         a.dstColorBlendFactor = BlendFactorOf(b.dst);

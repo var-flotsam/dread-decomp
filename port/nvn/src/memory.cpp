@@ -6,6 +6,7 @@
 #include "nvn_shim/memory.h"
 
 #include <cstdio>
+#include <cstdlib>
 #include <cstring>
 #include <map>
 
@@ -100,7 +101,13 @@ constexpr VkBufferUsageFlags kPoolBufferUsage =
 // aligned, fn_710015385c): the GPU then reads what the game writes, as on the console, and nothing
 // is copied. False (and nothing made) when it cannot.
 bool ImportPoolStorage(const Backend& b, MemoryPool& pool) {
+    static const bool off = [] {  // $DREAD_NVN_NO_HOST_IMPORT=1: the copy path, for checks
+        const char* env = std::getenv("DREAD_NVN_NO_HOST_IMPORT");
+        return env && std::strcmp(env, "1") == 0;
+    }();
     const VkDeviceSize align = b.host_import_alignment;
+    if (off)
+        return false;
     if (!b.host_import || !align || reinterpret_cast<std::uintptr_t>(pool.storage) % align || pool.size % align)
         return false;
     auto get_properties = reinterpret_cast<PFN_vkGetMemoryHostPointerPropertiesEXT>(
@@ -177,15 +184,22 @@ bool CreatePoolBuffer(MemoryPool& pool) {
     return true;
 }
 
+// The GPU may still read a pool the game finalises. An imported pool's memory is the game's, which
+// it frees after the finalise, so the GPU must be done with what was submitted; the Vulkan objects
+// themselves go once no recording can name them either (detail::DeferDestroy).
 void DestroyPoolBuffer(MemoryPool& pool) {
     const Backend* b = CurrentBackend();
-    if (b && pool.buffer)
-        WaitFor(LastSubmitted(), UINT64_MAX);  // the GPU may still read it (the game finalises pools rarely)
-    if (b) {
-        if (pool.memory)
-            vkFreeMemory(b->device, pool.memory, nullptr);  // unmaps (an imported pool's storage stays the game's)
-        if (pool.buffer)
-            vkDestroyBuffer(b->device, pool.buffer, nullptr);
+    if (b && pool.buffer) {
+        if (pool.imported)
+            WaitFor(LastSubmitted(), UINT64_MAX);
+        const VkDevice device = b->device;
+        const VkBuffer buffer = pool.buffer;
+        const VkDeviceMemory memory = pool.memory;
+        detail::DeferDestroy([=] {
+            vkDestroyBuffer(device, buffer, nullptr);
+            if (memory)
+                vkFreeMemory(device, memory, nullptr);  // unmaps (an imported pool's storage stays the game's)
+        });
     }
     pool.buffer = VK_NULL_HANDLE;
     pool.memory = VK_NULL_HANDLE;

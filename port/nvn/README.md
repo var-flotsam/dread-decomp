@@ -123,12 +123,17 @@ the dump's packages it draws too (2026-10-27, lavapipe, validation on, about two
 whose colour clear reads back exactly, `nvnTextureWriteTexels` of a level and of one texel read
 back, then all 671 programs of the manifest, each found by its control section from the package
 bytes, drawn with the engine's render-state flush (a blend state bound per target, colour,
-depth-stencil, multisample, polygon, stencil mask and reference, depth bounds), its uniform-buffer
-binding and update, texture slots (a cube in every other slot, so mismatched kinds are exercised),
-and its vertex setup (attribute and stream states, one stream per vertex input, the second one per
-instance), once in full and once as the depth-only pass with an instanced triangle strip: 1,342
-draws, none skipped, 1,318 pipelines, no validation message; then the window's crop, a present and
-an acquire whose sync is reached.
+depth-stencil with the depth and stencil tests on, multisample, polygon, stencil mask and
+reference, depth bounds), its uniform-buffer binding and (every other program) update, texture
+slots (a cube in every other slot, so mismatched kinds are exercised), and its vertex setup
+(attribute and stream states, one stream per vertex input, the second one per instance), once in
+full and once as the depth-only pass with an instanced triangle strip, in the order "A full, A
+depth-only, B depth-only, B full" so that a set cached across layouts would show: 1,342 draws, none
+skipped, 1,318 pipelines, no validation message, with the pools imported and again with
+`$DREAD_NVN_NO_HOST_IMPORT=1` (the copy path); then the window's crop, a present and an acquire whose
+sync is reached. It reads back clears and texel writes but no drawn pixel: the game's shaders with
+zeroed uniforms draw nothing predictable, so a flipped viewport or a wrong winding would still
+pass. That waits for the first frame of the game itself.
 
 What the parts do so far, and what they do not yet:
 
@@ -211,8 +216,13 @@ subtract, INCRSAT/DECRSAT as clamping and INCR/DECR as wrapping.
   the desktop drivers), a pool's Vulkan buffer is the game's own storage, so the GPU reads what the
   game writes, as on the console. Otherwise the submit copies each range a recording read.
 - **Queue.** Submits, fences and sync waits are one Vulkan timeline semaphore; a recording's objects
-  are reused once the GPU has passed the submit that used them. A texture or pool the game finalises
-  waits for the GPU first (the game does that on unloads, not per frame).
+  are reused once the GPU has passed the submit that used them. The Vulkan objects of a texture or
+  pool the game finalises go once every recording that may name them is submitted and the GPU has
+  passed it; an imported pool's finalise also waits for the GPU, since the game frees its storage next.
+- **Assumptions.** One render thread records. Once the game updates a uniform buffer in command
+  order, its CPU writes to that buffer are no longer seen (the engine changes those blocks only
+  through `fn_710015e700`, whole, each time). The device needs 17 vertex input bindings (the zero
+  buffer is binding 16; desktop drivers have 32).
 - **Window.** There is no Vulkan surface yet (the port's window is `nn::vi`'s): a present records which
   texture was shown, an acquire's sync is reached once the GPU finished what came before, and the
   crop is kept.
