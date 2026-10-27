@@ -51,6 +51,8 @@ SENTINEL = 0x00007FFFDEAD0000     # the caller's return address
 NULL_PAGE = 0x10000
 PAGE = 4096
 MAX_STEPS = 60000
+MAX_EVENTS = 256                  # calls recorded per run; then it ends as a time-out (checkpoint)
+MAX_SNAPSHOT = 1 << 21            # bytes of written memory copied into its events, in all; the same
 WINDOW = 64                       # bytes compared and written around a stack pointer argument
 
 X0, Q0, SP, NG, ZR, CY, OV = 0x4000, 0x5000, 8, 0x100, 0x101, 0x102, 0x103
@@ -324,6 +326,7 @@ class Machine:
         self.arg_slots: int | None = None  # the function's stack argument slots (load: the caller's frame)
         self.state = {}  # argument register key -> "entry" | "written" | "junk"
         self.events: list = []
+        self.snapshot_bytes = 0  # written bytes copied into events so far (checkpoint)
         self.calls = 0
         self.steps = 0
         self.visited: set[int] = set()
@@ -599,8 +602,19 @@ class Machine:
                     self.state[i] = "junk"
         self.set_reg(X0, 8, r & 0xFFFFFFFFFFFFFFFF)
 
+    def shrink(self) -> None:
+        """Drop what only running needs (memory pages, the write sets): a finished run that is
+        kept for comparison needs its events, registers, coverage and logs."""
+        self.pages, self.dirty, self.stack_written, self.uniq, self._read_seen = {}, {}, set(), {}, set()
+
     def checkpoint(self, event) -> None:
         self.events.append((event, tuple(sorted(self.dirty.items()))))
+        self.snapshot_bytes += len(self.dirty)
+        if len(self.events) >= MAX_EVENTS or self.snapshot_bytes > MAX_SNAPSHOT:
+            # Each event keeps a copy of the memory written so far: a loop calling on every
+            # iteration would hold thousands. The run ends here as a time-out (compare: what came
+            # before must agree).
+            self.steps = MAX_STEPS
 
     # -- execution ------------------------------------------------------------------------------
 

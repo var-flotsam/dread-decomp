@@ -379,6 +379,7 @@ class Oracle:
                 m = self.machine(seed, inside, self.image_word, None, self.preset_orig, self.dicts[addr], ovr, True,
                                  addr)
                 m.run(addr)
+                m.shrink()
                 return m
 
             for seed in range(MAX_SEEDS):
