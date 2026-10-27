@@ -442,9 +442,12 @@ dump's `romfs/`, saves go to `$DREAD_SAVE`). So is the rest of the start-up `fn_
 the dump's mangled import names. `tools/port_addresses.py` places the vtables and
 named functions the link had no address for from matched code (residue 439 to 226: 191 host names,
 9 vtables and 26 names, 12 of them a placeholder name the sources reuse for different classes:
-rename them, `port/README.md` "Addresses from matched code"). Next for M1, in order: the final link at a fixed base within 2 GB of the image
-(about 214 MiB free below `0x7100000000`, 235 MiB above the `.bss`). That link needs the Itanium
-C++ ABI, so on this PC MinGW-w64 or WSL (ask the owner before installing either), not MSVC.
+rename them, `port/README.md` "Addresses from matched code"). **The port links and runs on Linux in Docker** (`port/README.md`,
+"Linux in Docker"; WSL 2 and Docker installed by the owner on 2026-10-26): the dump is mapped,
+every static initialiser runs, `nnMain` and the system start-up (matched, `src/engine/`) run until
+the first trap, the engine allocator `fn_7100083ba0`. Next for M1: follow the traps (each names
+the next function the boot needs; `L` functions next to `nnMain` and the allocator are the game's
+and need sources), with the lifter's lifts linked.
 M2 groundwork (2026-10-26, branch `claude/port-bshdat`): `tools/bshdat.py --version 2.1.0
 --compile` parses the 478 shader packages, extracts the 671 programs' 1,342 GLSL sources and the
 compiler's reflection to `build/shaders/2.1.0/`, and compiles 1,341 stages to OpenGL and Vulkan

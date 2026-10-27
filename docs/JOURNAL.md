@@ -86,6 +86,22 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Port M1: the first executable (2026-10-26).** With WSL 2 and Docker on the PC, the port builds
+in a Docker image (`port/docker/`: Ubuntu 24.04, Clang 18) over the checkout. Findings: the
+host's libstdc++, and libc++ 18's headers, cannot compile the 18 sources that instantiate libc++
+9's internal sort (`std::__sort3` and siblings take a policy parameter since libc++ 15), so the
+link builds with libc++ 9.0.1's headers over glibc (`--stdlib libcxx9`) against the host's
+libc++; GCC's `crtbegin.o` cannot sit above 4 GB (32-bit absolute relocations), so the
+executable uses the PIC start files without being a PIE; and an executable below the image
+gets its `brk` heap inside it (`0x7116e6c000`), so it sits above the `.bss` at `0x7173000000`.
+The first run maps the dump, runs every static initialiser, enters `nnMain` and the system
+start-up, matched for the purpose (`nnMain`, `fn_71000005d0`, `fn_71001325d0`, `fn_7100132730`:
+the start-up's callbacks are this unit's hidden functions, so their addresses come PC-relative,
+and the SDK calls are declared in the form of the imports' mangled names), and stops at
+`fn_7100083ba0`. Several functions `data/functions/` marks `L` with a `runtime?` subsystem next
+to `nnMain` and the allocator are the game's own (`fn_71000005d0`, `fn_7100000610`, which builds
+the game blackboard, `fn_7100083ba0`).
+
 **Port M1: addresses from matched code (2026-10-26).** The 71 vtables and 177 names the link had
 no address for are mostly placed by `tools/port_addresses.py`: for each byte-matching function
 the relocation check is asked about each unresolvable symbol as if it were at 0, and the

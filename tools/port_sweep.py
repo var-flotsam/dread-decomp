@@ -99,6 +99,31 @@ def default_target(cxx: str) -> str:
         return "x86_64-linux-gnu"
 
 
+STDLIBS = ("project", "host", "libcxx9")
+
+
+def stdlib_flags(mode: str) -> list[str]:
+    """The standard library headers to compile against: "project", the matching build's libc++
+    9.0.1 and musl (compile only: nothing links against musl); "host", the compiler's own; "libcxx9",
+    libc++ 9.0.1's headers over the host's C library, for a build that links (the game's sources
+    instantiate libc++ 9's internal std::__sort3 and its siblings, which later libc++ versions
+    renamed, so a newer libc++'s headers do not compile them; the libc++ library itself keeps its
+    ABI, so the host's links). libc++ 9.0.1 comes from tools/fetch_sources.py."""
+    if mode == "project":
+        return buildcfg.system_includes()
+    if mode == "libcxx9":
+        include = buildcfg.libcxx_include()
+        if not include.is_dir():
+            raise SystemExit(f"{include} not found: run tools/fetch_sources.py libcxx-9.0.1 first")
+        return ["-nostdinc++", "-isystem", str(include), "-D_LIBCPP_HAS_THREAD_API_PTHREAD"]
+    return []
+
+
+def stdlib_mode(args) -> str:
+    """--stdlib, with --system-stdlib as the older spelling of --stdlib host."""
+    return "host" if getattr(args, "system_stdlib", False) else args.stdlib
+
+
 def project_includes() -> list[str]:
     """buildcfg.project_includes() without lib/nnsdk (the port must not depend on it) and without
     the Switch target macros."""
@@ -259,10 +284,14 @@ def main() -> int:
     ap.add_argument("--cxx", default=None, help="host clang++ (default: $CXX, the LLVM install, PATH)")
     ap.add_argument("--jobs", type=int, default=os.cpu_count() or 4, help="parallel compiles")
     ap.add_argument("--json", default=str(ROOT / "build" / "port" / "sweep.json"), help="JSON report path")
+    ap.add_argument("--objects", default=str(ROOT / "build" / "port" / "sweep"),
+                    help="object directory (default build/port/sweep; the Linux build in Docker uses its own)")
     ap.add_argument("--only", action="append", default=[], help="regex on the source path (repeatable)")
     ap.add_argument("--no-runtime", action="store_true", help="leave port/runtime/include off the include path")
-    ap.add_argument("--system-stdlib", action="store_true",
-                    help="use the host's standard library headers instead of the project's libc++ 9.0.1 + musl")
+    ap.add_argument("--stdlib", choices=STDLIBS, default="project",
+                    help="standard library headers: project (libc++ 9.0.1 + musl, the default), host, or libcxx9"
+                         " (libc++ 9.0.1 over the host's C library, for a build that links; stdlib_flags)")
+    ap.add_argument("--system-stdlib", action="store_true", help="the same as --stdlib host")
     ap.add_argument("--error-limit", type=int, default=50, help="errors Clang reports per file (default 50)")
     ap.add_argument("--examples", type=int, default=1, help="examples printed per category (default 1)")
     args = ap.parse_args()
@@ -270,15 +299,14 @@ def main() -> int:
     cxx = args.cxx or host_cxx()
     args.target = args.target or default_target(cxx)
     flags = [f"--target={args.target}", *HOST_FLAGS, *DIAG_FLAGS, f"-ferror-limit={args.error_limit}"]
-    if not args.system_stdlib:
-        flags += buildcfg.system_includes()
+    flags += stdlib_flags(stdlib_mode(args))
     flags += project_includes()
     runtime = None
     if not args.no_runtime and RUNTIME_INCLUDE.is_dir():
         runtime = RUNTIME_INCLUDE
         flags += ["-I", str(runtime)]
     srcs = sources(args.only)
-    obj_dir = ROOT / "build" / "port" / "sweep"
+    obj_dir = Path(args.objects)
     version = compiler_version(cxx)
     print(f"port sweep: {len(srcs)} sources, target {args.target}, {version}, {args.jobs} jobs"
           + (f", runtime {rel(runtime)}" if runtime else ", no runtime include"), flush=True)

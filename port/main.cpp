@@ -1,16 +1,23 @@
-// The port's entry point. At M0 it prints a banner and exits: the game sources compile
-// (dread_game) but are not linked in until every function the boot path reaches has a source
-// (M1, docs/PORT_PLAN.md). Until then the executable only proves that the runtime and the
-// toolchain link.
+// The port's entry point. With the game linked in (tools/port_link.py --executable, or
+// DREAD_LINK_GAME), the data loader has already mapped the dump and the game's static initialisers
+// have run by the time main starts (runtime/src/image.cpp); main passes its arguments on and calls
+// nnMain (src/engine/nnMain.cpp), which runs the system start-up and the game. Without the game it
+// prints a banner: the runtime and the toolchain link.
 
 #include <cstdio>
 
 #include "dread_port.h"
 #include "nn/os.h"
 
+extern "C" void nnMain() __attribute__((weak));
+
 int main(int argc, char** argv) {
     dread_port_set_host_arguments(argc, argv);
-    std::printf("dread port skeleton (M0): nn:: runtime stubs only, no game code linked.\n");
+    if (nnMain) {
+        nnMain();
+        return 0;
+    }
+    std::printf("dread port: nn:: runtime only, no game code linked.\n");
     std::printf("system tick: %lld (%lld Hz)\n", static_cast<long long>(nn::os::GetSystemTick().value),
                 static_cast<long long>(nn::os::SystemTickFrequency));
     return 0;
