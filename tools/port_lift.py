@@ -6,8 +6,12 @@ matching cannot cover the 2,148 `U` functions of the boot slice in time, and too
 only byte-identical lifts. This tool lifts them with gen_lift's lifters in **semantic mode** and
 accepts a lift that behaves like the original, whatever its bytes:
 
-  1. Worklist: build/port/link/boot_missing.csv (tools/port_link.py; `U` rows, by callers in the
-     slice), --only, or --top N of it. Functions now defined in src/ are skipped, except the
+  1. Worklist: --slice boot (the default): the `U` functions reachable by direct calls from nnMain,
+     from the run-time roots (nnMain hands main, the per-frame and the shutdown function to the
+     SDK as pointers; main stores four callbacks) and from the graphics functions, by callers in
+     the slice, with the roots and graphics functions themselves whatever their status; --slice
+     all: every `U` function; --worklist CSV (its `U` rows, e.g. tools/port_link.py's
+     boot_missing.csv); --only; --top N of any of them. Functions now defined in src/ are skipped, except the
      overrides: src/lifted definitions that read more argument registers than they declare
      (byte-identical on AArch64, where the registers pass through; an x86-64 compile loses them).
      They are listed in build/port/passthrough.json (--passthrough writes just that), added to the
@@ -43,8 +47,9 @@ does not model), rejected for an x86-64 compile error, or rejected by the lifter
 gen_lift --report gives it).
 
 Usage:
-  python tools/port_lift.py --version 2.1.0                      # the whole worklist
-  python tools/port_lift.py --version 2.1.0 --top 200            # its first 200 entries
+  python tools/port_lift.py --version 2.1.0                      # the boot slice (and the overrides) -> build/port/lifted/
+  python tools/port_lift.py --version 2.1.0 --slice all --out build/port/lifted_all   # every U function
+  python tools/port_lift.py --version 2.1.0 --top 200            # its first 200 entries (-> build/port/lifted_partial/)
   python tools/port_lift.py --version 2.1.0 --only 710007fe68,7101047270 [-v]
 Needs the project compiler, the host clang++ (tools/port_sweep.py), Ghidra with PyGhidra
 (tools/ghidra/pcode.py, run as a subprocess) and build/ghidra_export/<version>/ (callers).
@@ -100,6 +105,9 @@ RET_KIND = {"void": None, "char*": "x64", "char&": "x64", "u64": "x64", "u32": "
 # function pointers, and main stores four callbacks, so the slice by direct calls from nnMain misses
 # what they reach.
 RUNTIME_ROOTS = (0x7100000980, 0x7100000d40, 0x7100000cf0, 0x7100015fc0, 0x710109c880, 0x7100001714, 0x7100001718)
+# The graphics worklist (M2): the engine's program loader and variant selector on CProgramResource and
+# the program switch (port/nvn/README.md), which the boot reaches through the renderer.
+GRAPHICS = (0x71001b0050, 0x71001b0f24, 0x71001b0f7c, 0x71001cc608)
 PASSTHROUGH = ROOT / "build" / "port" / "passthrough.json"
 
 
@@ -122,6 +130,24 @@ def boot_reach(version: str, rows: dict) -> set[int]:
     for r in (callgraph.NNMAIN,) + RUNTIME_ROOTS:
         reach |= graph.reachable(r)
     return reach
+
+
+def slice_worklist(version: str, rows: dict, kind: str) -> list[int]:
+    """The `U` functions of a slice: "boot", everything reachable by direct calls from nnMain, the
+    run-time roots and the graphics functions; "all", every `U` function in the binary. The roots
+    and graphics functions themselves are listed whatever their status (gen_functions_csv infers
+    `L` for some game code next to nnMain). Ordered by callers within the slice, most first."""
+    graph = callgraph.CallGraph(version, rows)
+    starts = RUNTIME_ROOTS + GRAPHICS
+    members: set[int] = set(graph.funcs)
+    if kind == "boot":
+        members = set()
+        for r in (callgraph.NNMAIN,) + starts:
+            members |= graph.reachable(r)
+    wl = {a for a in members if graph.funcs[a]["status"] == "U" and not graph.funcs[a]["name"].startswith(
+        callgraph.IMPORT_PREFIX)} | {a for a in starts if a in graph.funcs}  # (imports: the runtime's)
+    callers = graph.collapsed()[1]
+    return sorted(wl, key=lambda a: (-sum(c in members for c in callers.get(a, [])), a))
 
 
 def declared(block: str) -> tuple[int, int]:
@@ -598,7 +624,11 @@ def table(sizes: dict[int, int], outcome: dict[int, str]) -> list[str]:
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--version", required=True)
-    ap.add_argument("--worklist", default=str(WORKLIST), help="CSV with address and status columns (default: %(default)s)")
+    ap.add_argument("--slice", choices=["boot", "all"], default="boot",
+                    help="the worklist when neither --only nor --worklist is given: boot (default), the U functions "
+                         "reachable from nnMain, the run-time roots and the graphics functions; all, every U function")
+    ap.add_argument("--worklist", help=f"CSV with address and status columns, its U rows (for example "
+                                       f"{port_sweep.rel(WORKLIST)}, tools/port_link.py's) instead of --slice")
     ap.add_argument("--only", help="ADDR[,ADDR...] or @file instead of the worklist")
     ap.add_argument("--top", type=int, help="the first N worklist entries")
     ap.add_argument("--out", help=f"output directory (default: {port_sweep.rel(DEFAULT_OUT)}; with --only, --top or "
@@ -640,7 +670,8 @@ def main() -> int:
             af.save(FACTS)
             return 0
         overrides = {int(e["address"], 16): e["file"] for e in pt}
-    wl = gen_lift.parse_only(args.only) if args.only else worklist(Path(args.worklist))
+    wl = gen_lift.parse_only(args.only) if args.only else worklist(Path(args.worklist)) if args.worklist \
+        else slice_worklist(args.version, rows, args.slice)
     if args.top:
         wl = wl[:args.top]
     elif not args.only:
@@ -779,7 +810,7 @@ def main() -> int:
         "generator": GENERATOR, "sources": {s: blob(s) for s in SOURCES}, "version": args.version,
         "build_id": "646761F643AFEBB379EDD5E6A5151AF2CEF93DC1", "inputs": args.inputs,
         "semantic_flags": SEMANTIC_FLAGS, "host_flags": host_flags()[1],
-        "worklist": args.only or port_sweep.rel(Path(args.worklist)), "seconds": round(time.time() - t0),
+        "worklist": args.only or (port_sweep.rel(Path(args.worklist)) if args.worklist else f"slice {args.slice}"), "seconds": round(time.time() - t0),
         "functions": {f"{a:x}": {"outcome": outcome[a], "size": sizes[a], **info.get(a, {}),
                                  **({"detail": last_fail[a]} if a in last_fail and a not in accepted else {}),
                                  **({"error": errors[a]} if a in errors else {}),
