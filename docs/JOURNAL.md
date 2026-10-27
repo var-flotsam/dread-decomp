@@ -72,6 +72,8 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - A const global read as words: reading it through a `reinterpret_cast<const u32*>` of the const object kept the original's reloads, with no barrier: [boot hubs, round 2](#session-log-newest-first).
 - An out-of-line hash-map or vector initialiser: a nested map-head struct makes the stores relative to the map base; an `asm("" : "+r"(p))` on a pointer to a far field hoists its `add` as the original does: [boot hubs, round 2](#session-log-newest-first).
 - An agent's "behaviour identical" on a 10-45% minor is worth an adversarial check (decompile, `abi_facts.py`, the `-v` diff): round 2's ten all held, and the review found a `void` declaration that really returns its first argument: [boot hubs, round 2](#session-log-newest-first).
+- When the callee is in the same unit the original compiler infers facts about it (nocapture, a by-value argument left alone, a constant result) that change the caller; `__attribute__((noescape))`, `inline __attribute__((noinline))` and definitions kept in address order (dead-argument elimination walks them in order) reproduce some: [port M1 boot-match](#session-log-newest-first).
+- Reassociate ranks commutative float operands by IR order: loading values into locals first, or `Merge(a, b)` helpers, fix `fadd`/`orr` operand order; inlined templates are optimised before inlining and flip it again: same entry.
 - A port hazard in matching code: AArch64 `udiv` by zero gives 0, x86-64 traps; guard the division only off `__aarch64__` so the Switch bytes stay: [boot hubs, round 2](#session-log-newest-first).
 
 **Port: shaders**
@@ -87,8 +89,51 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - The engine's thread object puts `ThreadType` at +0, light events at +0x1c0 and +0x1cc: the SDK's thread block is 0x1c0 bytes, a light event 12; event clear mode 1 is auto clear: [port M1 step 4](#session-log-newest-first).
 - main's 146,684 dynamic relocations: every slot in `.data`, 128,576 relative ones into `.text` (vtables, callbacks), every symbol relocation an import; the game's vtables are used as they are, so the port needs the Itanium C++ ABI (not MSVC): same entry.
 - A freestanding core builds into a Windows DLL with clang, `lld-link /noentry /nodefaultlib` and a `kernel32.lib` from `llvm-dlltool`: no SDK needed to test it from Python: same entry.
+- The SDK runs the application's `nninitStartup` before the static initialisers (Dread's sets up the memory heap and the default allocator), so the port's loader calls it right after mapping the image: [port M1 boot-match](#session-log-newest-first).
+- A game global a matched file defines itself (a `static`, a function-local static) is the executable's on the port, while lifted code and `g_unk_<addr>` users reach the image's: keep such state in the image off `__aarch64__`: same entry.
+- A matched call to an import goes through a PLT stub, so harvesting addresses from matched code must skip those (`actual_name` set) or the import becomes an alias of itself: same entry.
+- Newer Clang (the port's 18) calls an `asm` label on a constructor or destructor declaration, Clang 9 ignores it: a label binds a member to its `fn_<addr>` on the port with the Switch bytes unchanged: same entry.
 
 ## Session log (newest first)
+
+**Port M1: the boot-match batch, and the boot past the system start-up (2026-10-27).** The Linux
+executable's first run trapped at the allocator, and `boot_unlifted.csv` listed 213 boot-slice
+functions with neither a source nor a semantic lift. A workflow matched them by translation unit
+(14 agents over file-disjoint unit groups, `tools/tu_map.py` naming each new file), then sent one
+skeptic per claimed `m` to refute "same behaviour": 112 `O`, 82 `m`, 19 left (2 to 16 KB, not
+attempted in the time-box). Two `m` claims were refuted and fixed:
+- `fn_71000e7b5c`: the accessor's value was scoped inside a branch, so its slot was reused for the
+  walk object.
+- `fn_7100b414f8`: `fn_71004f1748` was declared returning by value, where it constructs in place,
+  so the arguments were in the wrong registers.
+
+The batch had added 40 conflicting declarations. A second workflow (seven file-disjoint groups,
+`hub_migrate.py --plan` first, `baseline.py` as evidence) gave each one header: `CColor4F`,
+`CVector4D`, the GUI label and sprite headers, `UnkReflObjectRead.h`, `COBox2D.h` and others.
+Conflicting symbols went from 156 to 147. A full `baseline.py` compare of the 1,497 hand-written
+sources showed one change, `CGUIManager.cpp` building again after hub batch 6 retyped its event.
+
+The boot then went three traps further:
+- **The allocator.** The new `fn_7100083ba0` sat in a file of its own that read the allocator
+  through `g_unk_7101d58ed0`, while its unit's file kept the allocator in a `static`: two objects
+  on the port. It moved into `UnkDefaultAllocatorGlobal.cpp`, which keeps its state in the image
+  off `__aarch64__`, because the lifted entry points read it there.
+- **`nninitStartup`.** It sets up the heap and the allocator, and the SDK calls it before the
+  static initialisers: matched, given the three `nn::os` memory calls, and called by the loader.
+- **The sub-allocator's constructor.** Its mangled name had no address; the header now binds it
+  with an `asm` label, which Clang 18 calls and Clang 9 ignores.
+
+`tools/port_addresses.py` had placed five SDK imports at their PLT stubs, and they linked as
+aliases of themselves (now skipped). Crashes now print where they happened (`fault.cpp`). Port
+fixes from the agents' notes: x86-64 definitions for the libc++ sort helpers that
+`fn_71011bc0b0.cpp` names by `.set`; a port copy of lauxlib's static `getS` (`fn_71010a57d0`);
+`fn_7100077038`'s float argument, which its caller had passed implicitly.
+
+The boot now runs `nninitStartup`, every static initialiser, `nnMain` and the whole system start-up,
+and traps at the game's main function `fn_7100000980`. Progress: whole binary 54.21% `O`, boot
+slice 28.27% `O` and 34.95% usable (25.19% before). The agents' notes list helper types now
+repeated across files (the object-file reader family in 8 files, the game manager's id table in 4,
+the 2D collision types under three names): a header batch for the next round.
 
 **Port M2: textures, pools and samplers (2026-10-26).** The format numbers come from the engine.
 Its converter `fn_7100161410` turns a texture header's (type, sRGB flag, channel layout) into the
