@@ -28,7 +28,6 @@ void fn_71004d9014(UnkNode* self) {
         base::global::UnkEnsureStringPool();
     self->field_0x558 = &g_unk_7101d47108->empty;
     self->field_0x40b = 1;
-    self->field_0x4fc = 1;
-    self->field_0x4fd = 1;
+    self->field_0x4fc = 0x101;
     self->field_0x409 = 1;
 }

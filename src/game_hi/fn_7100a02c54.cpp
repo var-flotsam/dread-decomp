@@ -43,7 +43,7 @@ struct UnkRefPtr {
     }
 };
 
-struct UnkObj_7100a02c54 : UnkComponent {
+struct UnkObj_7100a02c54 : UnkBaseComponent {
     u8 pad_0x40[0x8];
     UnkStrIdField field_0x48;
     UnkStrIdField field_0x50;

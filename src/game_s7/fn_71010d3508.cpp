@@ -158,5 +158,5 @@ u32 fn_71010d3508(UnkObj_71010d3508* self, UnkProp* p) {
     }
     // The base handler takes the component and the property record: the object's first 0x40
     // bytes are the component, UnkProp is the record.
-    return fn_71010c4250(reinterpret_cast<UnkComponent*>(self), reinterpret_cast<UnkComponentProp*>(p));
+    return fn_71010c4250(reinterpret_cast<UnkBaseComponent*>(self), reinterpret_cast<UnkComponentProp*>(p));
 }

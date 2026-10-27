@@ -12,6 +12,7 @@
 
 #include "base/global/CStrId.h"
 #include "game/CBlackboard.h"
+#include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 // The object behind +0x608: its +0x820 is the collision tracker that fn_7100d59994,
@@ -149,4 +150,8 @@ void* fn_7100defcec(UnkGameManager* self);
 // +0x2778 (unless bit 3 is set). The fallback, with bit 1 set, is fn_71011a3d74 on +0x608; else null
 // (src/game/CGameManager.cpp).
 void* fn_7100deba8c(UnkGameManager* self, const u64* id, const u32* flags);
-void fn_7100de9540(UnkGameManager* manager, const char* name, void* object);
+// Registers `object` under the id `*id` (an 8-byte id from a .bss global, compared with the u64 entries
+// of the array at +0x2458): appends a weak handle to it (the one its vf_0x28 slot gives, created on
+// first use) to the matching entry of the array at +0x2450. Not defined by hand; the components pass
+// themselves.
+void fn_7100de9540(UnkGameManager* manager, const u64* id, UnkWeakTarget* object);

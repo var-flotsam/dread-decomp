@@ -41,7 +41,7 @@ struct UnkState {
 };
 static_assert(sizeof(UnkState) == 0x70, "UnkState layout");
 
-struct UnkStateObject : UnkComponent {
+struct UnkStateObject : UnkBaseComponent {
     u8 field_0x40[0xa0];
     UnkRefObject* field_0xe0;
     UnkRefObject* field_0xe8;

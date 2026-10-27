@@ -37,17 +37,6 @@ struct UnkStrUse_7101105e44 {
     };
 };
 
-struct UnkTrack_7101105e44 {
-    u8 unk_0x0[0x18];
-    CStrId sources;
-};
-
-struct UnkTrackQuery {
-    const base::reflection::CClass* cls;
-    UnkTrack_7101105e44* result;
-    f32 field_0x10;
-};
-
 struct UnkShield_7101105e44;
 
 struct UnkState_7101105e44 {

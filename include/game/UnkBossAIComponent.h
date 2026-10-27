@@ -16,11 +16,14 @@ struct UnkBossAIComponent {
     u8 unk_0x40a;
     u8 field_0x40b;
     u8 unk_0x40c[0xf0];
-    u8 field_0x4fc;
-    u8 field_0x4fd;
+    u16 field_0x4fc;  // two flag bytes, +0x4fc and +0x4fd (the base constructor clears them as one)
     u8 unk_0x4fe[0x2a];
 };
 static_assert(sizeof(UnkBossAIComponent) == 0x528, "UnkBossAIComponent placeholder layout");
+static_assert(__builtin_offsetof(UnkBossAIComponent, field_0x3a1) == 0x3a1, "UnkBossAIComponent placeholder layout");
+static_assert(__builtin_offsetof(UnkBossAIComponent, field_0x409) == 0x409, "UnkBossAIComponent placeholder layout");
+static_assert(__builtin_offsetof(UnkBossAIComponent, field_0x40b) == 0x40b, "UnkBossAIComponent placeholder layout");
+static_assert(__builtin_offsetof(UnkBossAIComponent, field_0x4fc) == 0x4fc, "UnkBossAIComponent placeholder layout");
 
 // The constructor (the base constructor fn_7100416db8, the vtable, then its flags and defaults).
 // Called first by the constructors of the boss components.

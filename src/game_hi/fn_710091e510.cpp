@@ -136,7 +136,7 @@ struct UnkSub2 {
     }
 };
 
-struct UnkObj_710091e510 : UnkComponent {
+struct UnkObj_710091e510 : UnkBaseComponent {
     u8 pad_0x40[0x10];
     UnkSub field_0x50;
     UnkSub field_0xc0;

@@ -9,7 +9,8 @@
 
 // base::global::CCollectionKeyElementRefBase, the base class of the collections' key/element types.
 extern base::reflection::CType g_unk_7101d5e2e0;
-// Defined in the same image as its users, so they address it directly (hidden), not through the GOT.
+// Hidden: the original addresses this global directly (adrp/add on its own address), not through a
+// GOT slot like the other globals here.
 extern base::reflection::CType g_unk_7172794e78 __attribute__((visibility("hidden")));
 // The type of the CBaseGameLink class.
 extern base::reflection::CType g_unk_71727bbe68;

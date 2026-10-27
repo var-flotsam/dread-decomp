@@ -6,18 +6,18 @@
 // the menus register with. tools/tu_map.py puts its functions in the unit of
 // gui/scripts/guimanager.lua. The name and the layout are placeholders.
 
+#include "base/global/CStrId.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiEvent.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
-// A key the menus register with the root (fn_710002ffb4 adds one, fn_710002fd10 sets its value to
-// -1.0f). Only the pointer to it is passed around; the keys are globals (g_unk_7172762fd8, ...).
-struct UnkGuiKey;
-
-// The root's list of keys at +0xca8 (a linked list of nodes: key, value, next), as far as the two
-// functions below use it: the count at +8, the head at +0x10 and tail at +0x18, and the allocator
-// at +0x20. A callback set follows at +0x30 (notified when the list becomes empty or not).
+// The root's list of keys at +0xca8, as far as the two functions below use it: a linked list of
+// 0x18-byte nodes (key, value, next) with the count at +8, the head at +0x10 and tail at +0x18, the
+// allocator at +0x20 (nodes come from its vf_0x40) and the allocation tag at +0x28. A callback set
+// follows at +0x30 (notified when the list becomes empty or non-empty). The keys are string ids
+// (compared by their pooled string, reference-counted by the list); the menus use globals
+// (g_unk_7172762fd8, ...).
 struct UnkGuiKeyList {
     u8 unk_0x0[8];
     s32 count;
@@ -25,7 +25,8 @@ struct UnkGuiKeyList {
     void* head;
     void* tail;
     void* allocator;
-    u8 unk_0x28[8];
+    u32 field_0x28;  // the allocation tag passed to the allocator
+    u8 unk_0x2c[4];
 };
 
 struct UnkGuiRoot {
@@ -37,6 +38,7 @@ struct UnkGuiRoot {
     u8 unk_0x240[0xa68];
     UnkGuiKeyList field_0xca8;
 };
+static_assert(sizeof(UnkGuiKeyList) == 0x30, "UnkGuiKeyList layout");
 static_assert(__builtin_offsetof(UnkGuiRoot, menu) == 0x68, "UnkGuiRoot placeholder layout");
 static_assert(__builtin_offsetof(UnkGuiRoot, field_0x230) == 0x230, "UnkGuiRoot placeholder layout");
 static_assert(__builtin_offsetof(UnkGuiRoot, field_0x238) == 0x238, "UnkGuiRoot placeholder layout");
@@ -61,8 +63,9 @@ void fn_71011b5d94(UnkGuiRoot* root, UnkGuiDisplayObject* object);
 // Tells the root about an object (the render manager's menu path). Defined in the unit's generated code.
 void fn_71011b57c4(UnkGuiRoot* root, void* object);
 
-// Registers `key` with the root's list (fn_710002ffb4, which also notifies the list's callback set
-// when it becomes non-empty) and sets a registered key's value to -1.0f (fn_710002fd10). Not
-// decompiled yet.
-void fn_710002ffb4(UnkGuiKeyList* list, UnkGuiKey* key);
-void fn_710002fd10(UnkGuiKeyList* list, UnkGuiKey* key);
+// Adds `key` to the root's list, or sets the value of the entry it already has to -1.0f
+// (fn_710002fd10; also notifies the list's callback set when the list was empty). Not decompiled yet.
+void fn_710002fd10(UnkGuiKeyList* list, base::global::CStrId* key);
+// Removes `key` from the list (unlinks and frees its node; notifies the callback set when the list
+// becomes empty). Not decompiled yet.
+void fn_710002ffb4(UnkGuiKeyList* list, base::global::CStrId* key);

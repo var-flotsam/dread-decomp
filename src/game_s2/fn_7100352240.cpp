@@ -6,18 +6,6 @@
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
 
-struct UnkTrackQuery {
-    const base::reflection::CClass* field_0x0;
-    struct UnkRange* field_0x8;
-    f32 field_0x10;
-};
-
-struct UnkRange {
-    u8 pad_0x0[0x10];
-    f32 field_0x10;
-    f32 field_0x14;
-};
-
 using UnkAimTarget = UnkAnimationComponent;
 
 struct UnkAimActor {
@@ -48,13 +36,13 @@ void fn_7100352240(UnkAimComponent* self, UnkAimOutput* out) {
     UnkTrackQuery query = {fn_7100c50338(), nullptr, -1.0f};
     fn_710117b08c(self->field_0x30->field_0x220, &query);
     f32 delta;
-    if (query.field_0x8) {
-        f32 value = fn_7101177ea0(self->field_0x30->field_0x220, 0xf4061ff25a2163d6) - query.field_0x8->field_0x10;
+    if (query.result) {
+        f32 value = fn_7101177ea0(self->field_0x30->field_0x220, 0xf4061ff25a2163d6) - query.result->field_0x10;
         if (!(value > 0.0f))
             return;
-        f32 hi = query.field_0x8->field_0x14;
+        f32 hi = query.result->field_0x14;
         f32 total = self->field_0x670;
-        delta = value * (total / (hi - query.field_0x8->field_0x10)) - self->field_0x674;
+        delta = value * (total / (hi - query.result->field_0x10)) - self->field_0x674;
         if (delta + 0.001f >= 0.0f && delta - 0.001f <= 0.0f)
             return;
     } else {

@@ -45,7 +45,7 @@ void fn_71004ce858(UnkNode* self) {
     St<u32>(self, 0xc58, 0xf);
     St<void*>(self, 0xc60, fn_7100083990());
     fn_71008c2da8(At(self, 0xc78));
-    *reinterpret_cast<u16*>(At(self, 0x4fc)) = 0x101;
+    self->field_0x4fc = 0x101;
     *reinterpret_cast<u8*>(At(self, 0x409)) = 0;
     *reinterpret_cast<u8*>(At(self, 0x4dc)) = 1;
     reinterpret_cast<void (*)(UnkNode*)>(self->vtable[3])(self);

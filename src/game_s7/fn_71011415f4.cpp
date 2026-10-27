@@ -69,7 +69,7 @@ struct UnkComponent_71011415f4 {
     void Apply(void* section_data);  // fn_710114433c
 };
 
-extern char g_unk_7172a092b0[] __attribute__((visibility("hidden")));
+extern u64 g_unk_7172a092b0 __attribute__((visibility("hidden")));
 
 extern CStrId g_unk_7172a092b8 __attribute__((visibility("hidden")));
 extern CStrId g_unk_7172a092c0 __attribute__((visibility("hidden")));
@@ -108,7 +108,7 @@ static inline CBlackboard* Table() {
 
 void fn_71011415f4(UnkComponent_71011415f4* self) {
     self->Refresh();
-    fn_7100de9540(g_unk_7101d47310, g_unk_7172a092b0, self);
+    fn_7100de9540(g_unk_7101d47310, &g_unk_7172a092b0, reinterpret_cast<UnkWeakTarget*>(self));
     if (self->id.data != g_unk_7101d470e0.data && fn_7101047208(Table(), self->id))
         self->Apply(&fn_71010472e0(Table(), self->id)->data);
     self->flags.Clear();

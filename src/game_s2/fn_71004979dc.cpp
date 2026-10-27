@@ -25,7 +25,7 @@ void fn_71004979dc(UnkNode* self) {
     fn_71004930c8(reinterpret_cast<char*>(self) + 0x618);
     fn_71004917d0(reinterpret_cast<char*>(self) + 0x708);
     self->field_0x7f8 = 1;
-    *reinterpret_cast<u16*>(&self->field_0x4fc) = 257;
+    self->field_0x4fc = 257;
     self->field_0x409 = 0;
     reinterpret_cast<void (*)(UnkNode*)>(self->vtable[3])(self);
 }

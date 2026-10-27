@@ -10,7 +10,7 @@ struct UnkNewGameScreen {
     bool field_0x2ac;
 };
 
-extern UnkGuiKey g_unk_71727659c0 __attribute__((visibility("hidden")));
+extern base::global::CStrId g_unk_71727659c0 __attribute__((visibility("hidden")));
 
 void fn_71011d8fe4(UnkNewGameScreen* self);
 bool fn_7101053a98(void* state);

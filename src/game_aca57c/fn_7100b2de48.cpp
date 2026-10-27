@@ -157,7 +157,7 @@ extern UnkStateKey g_unk_71729f0178;
 extern UnkStateKey g_unk_71729f0180;
 void fn_7100b2d0a4(UnkStateOwner* self);
 void fn_7100fc9d78(UnkStateSink* sink, UnkStateKey* key, void* state);
-extern UnkGuiKey g_unk_7172762fd8 __attribute__((visibility("hidden")));
+extern base::global::CStrId g_unk_7172762fd8 __attribute__((visibility("hidden")));
 void fn_7100e9b464(void* target, bool value);
 void fn_7100e9b1f8(void* target, bool value);
 void fn_7100066a50(void* text, const char32_t* value);
@@ -930,7 +930,7 @@ void fn_7100b2eaac(UnkStateOwner* self, s32 state, bool from_game, bool now) {
     fn_71011b6bbc(g_unk_717271e8f8, reinterpret_cast<UnkGuiDisplayObject*>(self->current), false);
 }
 
-extern UnkGuiKey g_unk_7172762fe0 __attribute__((visibility("hidden")));
+extern base::global::CStrId g_unk_7172762fe0 __attribute__((visibility("hidden")));
 bool fn_7100b41e5c(UnkObject* obj);
 
 // Page switching between states 7, 8 and 9 (outside boss rush, while the world's object at
