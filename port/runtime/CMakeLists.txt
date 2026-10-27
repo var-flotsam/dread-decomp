@@ -18,6 +18,7 @@ add_library(dread_runtime STATIC
   src/mem.cpp
   src/missing.cpp
   src/movie.cpp
+  src/nfp.cpp
   src/nv.cpp
   src/os.cpp
   src/oe.cpp
