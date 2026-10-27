@@ -249,7 +249,7 @@ months" still requires M2 to go well; say so when planning, and re-estimate afte
 | Recognising a stage | **Done.** `nvnProgramSetShaders` gets `{code address, control pointer}` per stage (`fn_710015d760`); the manifest keys stages by FNV-1a 64 over the first 2,048 control bytes, which separates all 1,010 distinct control sections |
 | Variant selection | **Understood; no shim work.** The engine's `CProgramResource` loader (`fn_71001b0050`) and selector (`fn_71001b0f24`) choose and build programs from the original `.bshdat` files; they are `U` and go on the lifter's graphics worklist |
 | Device, memory, textures, pools, command buffers, pipelines, present | Not started. The game uses 150 of the 523 NVN functions it loads; the binding side only `BindUniformBuffer`, `BindTexture`, `UpdateUniformBuffer`, `GetTextureHandle` and the two pools |
-| Running anything | Blocked on a linker (WSL or the MSVC Build Tools) and a Vulkan loader, both the owner's call |
+| Against Vulkan | **Done for the binding layer** (owner's go-ahead for a Vulkan loader in the Linux image, 2026-10-26). `nvn_vulkan_check` on lavapipe with the validation layers: all 671 programs' modules, set layouts, descriptor sets (written by the binding layer) and full and vertex-only pipelines, 0 validation errors or warnings. It found two interface rules the shim must keep: drop fragment inputs NVN found inactive and the vertex stage does not write (now in the build step, 32 inputs), and enable `maintenance4` (2 programs) |
 
 ## What this changes for the streams
 
