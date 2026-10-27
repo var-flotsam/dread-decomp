@@ -493,7 +493,6 @@ void fn_7100e79fa4(void* field_0x118, const UnkMinimapRect* view, u32 flags, u32
 void fn_7100e951d4(UnkMinimapOwner* self, u32 count, void* items, u32 field_0x3);
 UnkMinimapVec3 fn_7100206154(void* xform);
 bool fn_71001bb54c(UnkMinimapCameraSub* sub, UnkMinimapVec2* size);
-void fn_7100219294(UnkRenderManager* self, u64 hash, const f32* value, u32 count);
 
 // Starts a frame: resets three draw lists, gathers and adds the items in view, and hands the
 // render manager the camera's view rectangle in map cells (x over 1024, y over 512).

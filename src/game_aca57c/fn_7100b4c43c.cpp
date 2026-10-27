@@ -38,7 +38,6 @@ struct UnkMenuTarget {
     s32 field_0x280;
 };
 
-void fn_7100219294(UnkRenderManager* target, u64 hash, const f32* value, u32 mode);
 void fn_7100b364dc(UnkMenuTarget* menu);
 
 // A byte store, which may alias the panel pointer (the original reloads it).

@@ -230,7 +230,6 @@ struct UnkTextureParam {
     u64 flag;
     UnkCountedResource* texture;
 };
-void fn_7100219294(UnkRenderManager* self, u64 hash, const f32* value, u32 arg);
 
 // Sets the texture's path: loads the texture it names (none for the empty path) and passes it to
 // the render manager with the flag at +0x271.
