@@ -1,10 +1,11 @@
 #pragma once
 
-// What the check programs read from a SPIR-V module themselves, as the independent reference the
-// manifest and the shim are compared with: the descriptor bindings, and the stage's user inputs and
-// outputs with their component type. Opcodes and enumerants from the SPIR-V specification
-// (Khronos, unified); only what tools/bshdat.py --install lets through is expected (uniform blocks,
-// combined image-samplers, arrays of constant length, scalar and vector interface variables).
+// What the shim and its checks read from a SPIR-V module themselves: the descriptor bindings, and the
+// stage's user inputs and outputs with their component type. The checks use it as the reference
+// independent of tools/bshdat.py that the manifest is compared with; the shim types the vertex
+// inputs a pipeline must feed with it. Opcodes and enumerants from the SPIR-V specification (Khronos,
+// unified); only what tools/bshdat.py --install lets through is expected (uniform blocks, combined
+// image-samplers, arrays of constant length, scalar and vector interface variables).
 
 #include <cstdint>
 #include <cstring>
@@ -14,7 +15,7 @@
 #include <utility>
 #include <vector>
 
-namespace dread::nvn::check {
+namespace dread::nvn {
 
 // (set, binding) -> (is a uniform block, descriptor count).
 using SpirvBindings = std::map<std::pair<std::uint32_t, std::uint32_t>, std::pair<bool, std::uint32_t>>;
@@ -28,8 +29,13 @@ struct InterfaceVar {
     std::uint32_t locations;   // >1 for an array or a matrix (columns)
 };
 
+// What a combined image-sampler samples (its OpTypeImage): the game's shaders declare sampler2D,
+// samplerCube and sampler2DShadow only.
+enum class ImageKind { Image2D, ImageCube, Image2DShadow, Other };
+
 struct SpirvScan {
     SpirvBindings bindings;
+    std::map<std::pair<std::uint32_t, std::uint32_t>, ImageKind> images;  // (set, binding) of each sampler
     std::vector<InterfaceVar> inputs, outputs;  // user variables with a Location; built-ins left out
 };
 
@@ -41,7 +47,9 @@ inline bool ScanSpirv(const std::vector<unsigned char>& data, SpirvScan* out) {
     if (w[0] != 0x07230203)
         return false;
     std::map<std::uint32_t, std::uint32_t> set, binding, location, constant;
-    std::set<std::uint32_t> block_types, sampled_image_types, builtins;
+    std::set<std::uint32_t> block_types, builtins;
+    std::map<std::uint32_t, std::uint32_t> sampled_image_types;  // id -> image type
+    std::map<std::uint32_t, ImageKind> image_types;
     std::map<std::uint32_t, std::pair<ScalarKind, std::uint32_t>> scalars;    // id -> (kind, 1)
     std::map<std::uint32_t, std::pair<std::uint32_t, std::uint32_t>> vectors;  // id -> (component, n)
     std::map<std::uint32_t, std::pair<std::uint32_t, std::uint32_t>> matrices; // id -> (column, n)
@@ -81,8 +89,15 @@ inline bool ScanSpirv(const std::vector<unsigned char>& data, SpirvScan* out) {
             vectors[a[0]] = {a[1], a[2]};
         } else if (op == 24 && count >= 4) {  // OpTypeMatrix result column count
             matrices[a[0]] = {a[1], a[2]};
-        } else if (op == 27 && count >= 2) {  // OpTypeSampledImage
-            sampled_image_types.insert(a[0]);
+        } else if (op == 25 && count >= 9) {  // OpTypeImage result type Dim Depth Arrayed MS Sampled Format
+            const std::uint32_t dim = a[2], depth = a[3], arrayed = a[4], ms = a[5];
+            image_types[a[0]] = arrayed || ms              ? ImageKind::Other
+                                : dim == 1 && depth == 1   ? ImageKind::Image2DShadow
+                                : dim == 1                 ? ImageKind::Image2D
+                                : dim == 3 && depth != 1   ? ImageKind::ImageCube
+                                                           : ImageKind::Other;
+        } else if (op == 27 && count >= 3) {  // OpTypeSampledImage result image
+            sampled_image_types[a[0]] = a[1];
         } else if (op == 28 && count >= 4) {  // OpTypeArray result element length
             arrays[a[0]] = {a[1], a[2]};
         } else if (op == 32 && count >= 4) {  // OpTypePointer result storage type
@@ -126,11 +141,14 @@ inline bool ScanSpirv(const std::vector<unsigned char>& data, SpirvScan* out) {
         const bool sampler = storage == 0 && sampled_image_types.count(type);
         if ((!block && !sampler) || n == 0)
             return false;
-        if (!out->bindings.emplace(std::make_pair(set.count(id) ? set[id] : 0, binding.count(id) ? binding[id] : 0),
-                                   std::make_pair(block, n)).second)
+        const auto where = std::make_pair(set.count(id) ? set[id] : 0, binding.count(id) ? binding[id] : 0);
+        if (!out->bindings.emplace(where, std::make_pair(block, n)).second)
             return false;
+        if (sampler)
+            out->images[where] = image_types.count(sampled_image_types[type]) ? image_types[sampled_image_types[type]]
+                                                                              : ImageKind::Other;
     }
     return true;
 }
 
-}  // namespace dread::nvn::check
+}  // namespace dread::nvn

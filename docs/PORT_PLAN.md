@@ -239,7 +239,7 @@ model and the function-pointer table; the binding semantics are known since 2026
 `tools/bshdat.py` compiled 1,341 of the 1,342 stages to SPIR-V). "Playable in a few
 months" still requires M2 to go well; say so when planning, and re-estimate after M1.
 
-**M2 status (2026-10-26).** Graphics groundwork, pieces 1 to 3 (var-flotsam/dread-decomp#202,
+**M2 status (2026-10-27).** Graphics groundwork, pieces 1 to 3 (var-flotsam/dread-decomp#202,
 #204; design in `port/nvn/README.md`):
 
 | Step | State |
@@ -250,7 +250,7 @@ months" still requires M2 to go well; say so when planning, and re-estimate afte
 | Variant selection | **Understood; no shim work.** The engine's `CProgramResource` loader (`fn_71001b0050`) and selector (`fn_71001b0f24`) choose and build programs from the original `.bshdat` files; they are `U` and go on the lifter's graphics worklist |
 | Entry layer, device, memory, queue, command buffers, state objects, window | **Done for the start-up path** (2026-10-26). 106 functions, 74 of the 146 the game calls (`data/nvn_procs.csv`, `tools/nvn_procs.py`); the rest trap by name. `nvn_startup_check` replays the matched start-up `fn_71001587f0` and three frames against them on lavapipe: all checks pass, no validation message; it stops at the 11 texture functions of the render targets |
 | Textures, texture and sampler pools, samplers | **Done for the start-up and the asset formats** (2026-10-26): 143 functions, 108 of the 146 the game calls; the start-up replay reaches no unimplemented function. Formats from the engine's own converter and reflected `EComponents` enum (sRGB included; mercury-engine-data-structures agrees for linear files) and by use (depth, a fast-cleared colour target); targets 2D and cube from the game's own textures; seven render-target formats still unknown (they fail by name). Asset texel upload (untiling) and the sampler enumerations are open |
-| Programs, vertex state, pipelines, draws, clears, render targets, present | Next: the 38 functions the game calls that the shim lacks are all here |
+| Programs, vertex state, pipelines, draws, clears, render targets, present | **Done but for the alpha test and a surface** (2026-10-27): all 146 functions the game calls (182 in all). Numbers from the engine's reflected enumerations and the wrappers that convert them (`include/nvn_shim/draw.h`); depth range and window origin from the game's own shaders. `nvn_startup_check` draws all 671 programs, full and depth-only, on lavapipe: 1,342 draws, no validation message. Open: the alpha test (a discard added by the build step), a Vulkan surface for the window |
 | Against Vulkan | **Done for the binding layer** (owner's go-ahead for a Vulkan loader in the Linux image, 2026-10-26). `nvn_vulkan_check` on lavapipe with the validation layers: all 671 programs' modules, set layouts, descriptor sets (written by the binding layer) and full and vertex-only pipelines, 0 validation errors or warnings. It found two interface rules the shim must keep: drop fragment inputs NVN found inactive and the vertex stage does not write (now in the build step, 32 inputs), and enable `maintenance4` (2 programs) |
 
 ## What this changes for the streams

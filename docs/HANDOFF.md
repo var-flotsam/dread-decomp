@@ -6,7 +6,7 @@ it needs). History, batch logs and the index of matching findings are in `docs/J
 `docs/recon.md` describes the binary, `docs/compiler.md` the toolchain, `docs/references.md` the
 outside projects. This page is edited in place, never appended to: session notes go to the journal.
 
-**Last updated 2026-10-27** (port M1: the boot-match batch and the boot past the system start-up, branch `claude/port-m1-boot-match`; port M1 step 4: runtime stubs and the data loader, #201, #203, #206; hub batches 3 and 4, var-flotsam/dread-decomp#195 and #197; the TU helper fold, #196; the shader packages, #198; boot hubs round 1, #199; port M2's shader build step and NVN binding layer, #202 and #204; hub batch 5, #207; hub batch 6, branch `claude/hub-batch-6`; boot hubs round 2, branch `claude/boot-hubs-2`).
+**Last updated 2026-10-27** (port M1: the boot-match batch and the boot past the system start-up, branch `claude/port-m1-boot-match`; port M1 step 4: runtime stubs and the data loader, #201, #203, #206; hub batches 3 and 4, var-flotsam/dread-decomp#195 and #197; the TU helper fold, #196; the shader packages, #198; boot hubs round 1, #199; port M2's shader build step and NVN binding layer, #202 and #204, and its drawing part, branch `claude/port-nvn-draw`; hub batch 5, #207; hub batch 6, branch `claude/hub-batch-6`; boot hubs round 2, branch `claude/boot-hubs-2`).
 Target: **Metroid Dread 2.1.0**, `main` build ID `646761F643AFEBB379EDD5E6A5151AF2CEF93DC1`.
 
 ## Start here
@@ -31,7 +31,8 @@ Target: **Metroid Dread 2.1.0**, `main` build ID `646761F643AFEBB379EDD5E6A5151A
   boot-slice functions without a source (the lifter's worklist), the runtime stubs still needed and the
   data loader's tables; `python tools/test_port_loader.py --version 2.1.0` checks the loader on the dump.
   Graphics (M2): `cmake --build build/port/cmake --target shaders dread_nvn` compiles the dump's
-  shaders to SPIR-V with `shaders.manifest` and the NVN shim's binding layer (`port/nvn/README.md`).
+  shaders to SPIR-V with `shaders.manifest` and the NVN shim (`port/nvn/README.md`), which now
+  implements every NVN function the game calls; `nvn_startup_check` draws every program on lavapipe.
 - Every number on this page names the command that produced it; rerun the command rather than trust
   the page.
 
@@ -494,12 +495,16 @@ the matched start-up). `nvn_startup_check` replays that start-up `fn_71001587f0`
 against the shim on lavapipe with validation: all checks pass, no message. With the texture part
 (textures as Vulkan images, the texture and sampler pools, samplers; formats from
 mercury-engine-data-structures and by use, targets from the game's own textures) the replay reaches
-no unimplemented function: 143 functions, 108 of the 146 the game calls. Next for M2: programs,
-vertex state, pipelines with vertex-only variants, the draws into Vulkan command buffers, clears,
-render targets and presentation (the 38 called functions left), asset texel upload (the console's
-tiled layout) and the sampler enumerations; and,
-once the boot reaches `fn_71001587f0`, `dread_nvn` joins `tools/port_link.py --executable` (agreed
-with the M1 session).
+no unimplemented function: 143 functions, 108 of the 146 the game calls. With the drawing part
+(2026-10-27): all 146 (182 in all). Programs, pipelines, Vulkan command buffers, render targets,
+clears, barriers, uniform updates, vertex streams and draws, each number's meaning taken from the
+engine's own reflected enumerations and the wrapper that converts them (`port/nvn/README.md`,
+"Drawing"; `include/nvn_shim/draw.h`). `nvn_startup_check` with the shaders draws all 671 programs
+in full and depth-only on lavapipe with no validation message. Next for M2: the alpha test (a discard
+the build step adds to the fragment stages, with a push constant), a Vulkan surface for the window,
+asset texel upload (the console's tiled layout) and the sampler enumerations; and, once the boot
+reaches `fn_71001587f0`, `dread_nvn` joins `tools/port_link.py --executable` (agreed with the M1
+session).
 
 **Stream M (generators).** The bugs above and `--prune`/regeneration after merges. The lifter's
 semantic mode exists (`opts={"semantic"}`, driven by `tools/port_lift.py`; byte mode is unchanged,

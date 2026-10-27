@@ -2,14 +2,15 @@
 // builder, QueueInitialize, SyncInitialize, QueueFenceSync, QueueFlush and SyncWait; the frame's end
 // fn_7100159ac0 for QueueSubmitCommands; the present fn_7100159bf0 for QueuePresentTexture.
 //
-// What runs on the GPU is not built yet (the command buffers record no draws so far), so a submit
-// counts the command handles it is given and a fence is signalled at once: the next sync wait finds
-// it signalled. When command buffers turn into Vulkan command buffers, the fence becomes a Vulkan
-// timeline value and SyncWait waits for it. No caller looks at SyncWait's result (fn_71001587f0,
-// fn_7100159ac0 both pass a timeout of -1 and go on).
+// A submit hands the recordings behind the game's command handles to the GPU (command.cpp) on the
+// queue's timeline (device.h). A fence is the timeline value of everything submitted before it;
+// SyncWait waits for the GPU to reach it. No caller looks at SyncWait's result (fn_71001587f0,
+// fn_7100159ac0 both pass a timeout of -1 and go on); the shim returns 0 when the sync was reached
+// and 1 on a timeout, numbers of its own.
 
 #include <cstdio>
 
+#include "nvn_shim/device.h"
 #include "nvn_shim/procs.h"
 #include "nvn_shim/queue.h"
 #include "objects.h"
@@ -36,8 +37,7 @@ struct Queue {
 };
 
 struct Sync {
-    bool signalled = false;
-    std::uint64_t fence_value = 0;
+    std::uint64_t fence_value = 0;  // the timeline value that signals it (0: signalled from the start)
 };
 
 detail::Registry<QueueBuilder> g_builders;
@@ -49,42 +49,42 @@ detail::Registry<Sync> g_syncs;
 constexpr std::uint64_t kQueueMemorySize = 0x1000;
 
 void QueueBuilderSetDefaults(void* builder) {
-    std::lock_guard<std::mutex> lock(detail::StateLock());
+    std::lock_guard<std::recursive_mutex> lock(detail::StateLock());
     g_builders.ResetKeepingDevice(builder);
 }
 const void* QueueBuilderGetDevice(const void* builder) {
-    std::lock_guard<std::mutex> lock(detail::StateLock());
+    std::lock_guard<std::recursive_mutex> lock(detail::StateLock());
     QueueBuilder* b = g_builders.Find(builder);
     return b ? b->device : nullptr;
 }
 void QueueBuilderSetDevice(void* builder, const void* device) {
-    std::lock_guard<std::mutex> lock(detail::StateLock());
+    std::lock_guard<std::recursive_mutex> lock(detail::StateLock());
     g_builders.Get(builder).device = device;
 }
 void QueueBuilderSetCommandMemorySize(void* builder, std::int64_t size) {
-    std::lock_guard<std::mutex> lock(detail::StateLock());
+    std::lock_guard<std::recursive_mutex> lock(detail::StateLock());
     g_builders.Get(builder).command_memory_size = size;
 }
 void QueueBuilderSetComputeMemorySize(void* builder, std::int64_t size) {
-    std::lock_guard<std::mutex> lock(detail::StateLock());
+    std::lock_guard<std::recursive_mutex> lock(detail::StateLock());
     g_builders.Get(builder).compute_memory_size = size;
 }
 void QueueBuilderSetCommandFlushThreshold(void* builder, std::int64_t size) {
-    std::lock_guard<std::mutex> lock(detail::StateLock());
+    std::lock_guard<std::recursive_mutex> lock(detail::StateLock());
     g_builders.Get(builder).flush_threshold = size;
 }
 std::uint64_t QueueBuilderGetQueueMemorySize(const void*) {
     return kQueueMemorySize;
 }
 void QueueBuilderSetQueueMemory(void* builder, void* memory, std::uint64_t size) {
-    std::lock_guard<std::mutex> lock(detail::StateLock());
+    std::lock_guard<std::recursive_mutex> lock(detail::StateLock());
     QueueBuilder& b = g_builders.Get(builder);
     b.memory = memory;
     b.memory_size = size;
 }
 
 std::int32_t QueueInitialize(void* queue, const void* builder) {
-    std::lock_guard<std::mutex> lock(detail::StateLock());
+    std::lock_guard<std::recursive_mutex> lock(detail::StateLock());
     QueueBuilder* b = g_builders.Find(builder);
     if (!b || !b->memory || b->memory_size < kQueueMemorySize) {
         std::fprintf(stderr, "nvn shim: nvnQueueInitialize without queue memory\n");
@@ -95,64 +95,78 @@ std::int32_t QueueInitialize(void* queue, const void* builder) {
 }
 
 void QueueFinalize(void* queue) {
-    std::lock_guard<std::mutex> lock(detail::StateLock());
+    std::lock_guard<std::recursive_mutex> lock(detail::StateLock());
     g_queues.Erase(queue);
 }
 
 void QueueSubmitCommands(void* queue, std::int32_t count, const std::uint64_t* handles) {
-    std::lock_guard<std::mutex> lock(detail::StateLock());
+    std::lock_guard<std::recursive_mutex> lock(detail::StateLock());
     Queue& q = g_queues.Get(queue);
     q.submits++;
     if (count > 0 && handles)
         q.submitted_handles += static_cast<std::uint64_t>(count);
+    detail::SubmitRecordings(count, handles);
 }
 
+// Vulkan submits are flushed as they are made.
 void QueueFlush(void* queue) {
-    std::lock_guard<std::mutex> lock(detail::StateLock());
+    std::lock_guard<std::recursive_mutex> lock(detail::StateLock());
     g_queues.Get(queue).flushes++;
 }
 
 void QueueFinish(void* queue) {
     QueueFlush(queue);
+    WaitFor(LastSubmitted(), UINT64_MAX);
 }
 
 void QueueFenceSync(void* queue, void* sync, std::int32_t, std::int32_t) {
-    std::lock_guard<std::mutex> lock(detail::StateLock());
-    Queue& q = g_queues.Get(queue);
-    Sync& s = g_syncs.Get(sync);
-    s.fence_value = ++q.fences;
-    s.signalled = true;  // nothing is in flight yet (header comment)
+    std::lock_guard<std::recursive_mutex> lock(detail::StateLock());
+    g_queues.Get(queue).fences++;
+    detail::FenceSyncAtLastSubmit(sync);
 }
 
-void QueuePresentTexture(void* queue, const void*, std::int32_t) {
-    std::lock_guard<std::mutex> lock(detail::StateLock());
+// The window has no Vulkan surface yet: a present records which texture was shown (window.cpp).
+void QueuePresentTexture(void* queue, const void* window, std::int32_t index) {
+    std::lock_guard<std::recursive_mutex> lock(detail::StateLock());
     g_queues.Get(queue).presents++;
+    detail::WindowPresented(window, index);
 }
 
 void QueueSetDebugLabel(void*, const char*) {}
 
 std::int32_t SyncInitialize(void* sync, const void*) {
-    std::lock_guard<std::mutex> lock(detail::StateLock());
+    std::lock_guard<std::recursive_mutex> lock(detail::StateLock());
     g_syncs.Reset(sync);
     return 1;
 }
 
 void SyncFinalize(void* sync) {
-    std::lock_guard<std::mutex> lock(detail::StateLock());
+    std::lock_guard<std::recursive_mutex> lock(detail::StateLock());
     g_syncs.Erase(sync);
 }
 
-// Returns 0, the shim's "signalled" (the game never looks at the result).
-std::int32_t SyncWait(const void*, std::uint64_t) {
-    return 0;  // every fence is signalled when it is set (header comment)
+// Returns 0 when the sync was reached, 1 on a timeout (header comment). Waits without the state
+// lock, so the game's other threads go on.
+std::int32_t SyncWait(const void* sync, std::uint64_t timeout_ns) {
+    std::uint64_t value = 0;
+    {
+        std::lock_guard<std::recursive_mutex> lock(detail::StateLock());
+        if (Sync* s = g_syncs.Find(sync))
+            value = s->fence_value;
+    }
+    return !value || WaitFor(value, timeout_ns) ? 0 : 1;
 }
 
 void SyncSetDebugLabel(void*, const char*) {}
 
 }  // namespace
 
+void detail::FenceSyncAtLastSubmit(void* sync) {
+    g_syncs.Get(sync).fence_value = LastSubmitted();
+}
+
 QueueStats GetQueueStats(const void* queue) {
-    std::lock_guard<std::mutex> lock(detail::StateLock());
+    std::lock_guard<std::recursive_mutex> lock(detail::StateLock());
     QueueStats out;
     if (Queue* q = g_queues.Find(queue)) {
         out.submits = q->submits;

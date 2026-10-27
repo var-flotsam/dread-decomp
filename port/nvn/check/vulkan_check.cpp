@@ -32,13 +32,9 @@
 
 #include "nvn_shim/bindings.h"
 #include "nvn_shim/shader_manifest.h"
-#include "spirv_scan.h"
+#include "nvn_shim/spirv_scan.h"
 
 using namespace dread::nvn;
-using check::InterfaceVar;
-using check::ScalarKind;
-using check::ScanSpirv;
-using check::SpirvScan;
 
 namespace {
 

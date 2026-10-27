@@ -14,8 +14,8 @@
 
 namespace dread::nvn {
 
-std::mutex& detail::StateLock() {
-    static std::mutex m;
+std::recursive_mutex& detail::StateLock() {
+    static std::recursive_mutex m;
     return m;
 }
 
@@ -45,6 +45,7 @@ void EnsureRegistered() {
         detail::RegisterStateProcs();
         detail::RegisterWindowProcs();
         detail::RegisterTextureProcs();
+        detail::RegisterProgramProcs();
     });
 }
 
