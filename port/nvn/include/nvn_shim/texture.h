@@ -6,23 +6,32 @@
 // packaged (asset) texture fn_7100160260, the pools fn_710015f100, the samplers fn_710015e9fc, the
 // swizzles fn_71001604e0, the texture handles fn_7100161250.
 //
-// What each NVN number means is taken from evidence, listed in FormatInfo and TargetOf:
-//  - formats: mercury-engine-data-structures names the formats the game's .bctex files use
-//    (XTX_Tegra_Format: 0x1 R8, 0xd R8G8, 0x25 R8G8B8A8, 0x42 BC1, 0x44 BC3, 0x4b BC5, 0x50 BC6H
-//    unsigned float, 0x6d B8G8R8A8, all UNORM but BC6H); the depth target's 0x35 and its neighbour
-//    0x33 are depth formats by use (fn_71001587f0 creates the depth target with it,
-//    fn_71001604e0 gives both the swizzle R,R,R,A), their precision is not known: provisionally
-//    D32 float with 8-bit stencil (the game sets stencil state). Any other number fails
-//    TextureInitialize, naming it, rather than guessing.
-//  - targets: 1 is 2D (1,411 of 1,500 sampled .bctex, and the render targets), 8 a cube map (every
-//    target-8 .bctex is square, six faces, BC6H, named cube/ibl/env; fn_710015f880 makes one with
-//    a depth of 1). Others fail.
+// What each NVN number means is taken from evidence, listed per entry in texture.cpp's table:
+//  - formats: the engine's converter fn_7100161410 turns a texture header's type, sRGB flag and
+//    channel layout into the number it passes to nvnTextureBuilderSetFormat (fn_7100160260); the
+//    layouts are the engine's reflected enum EComponents (fn_710016468c names them: R8_G8_B8,
+//    R8_G8_B8_A8, L8, L8_A8, R5_G6_B5, R5_G5_B5_A1, U16_V16, R32F, ...), and with the sRGB flag the
+//    converter returns the sRGB numbers (0x37, 0x38, 0x46, 0x48: 2,063 of the 5,754 .bctex, the
+//    base colours). For the linear files the result equals the format mercury-engine-data-structures
+//    names (XTX_Tegra_Format). The depth target's 0x35 and its neighbour 0x33 are depth formats by
+//    use (fn_71001587f0's depth target, fn_71001604e0's R,R,R,A swizzle), precision not known:
+//    provisionally D32 float with 8-bit stencil (the game sets stencil state), D24/S8 where a device
+//    lacks it. 0x3f is a colour render target by use (a fast-clear colour is registered for it),
+//    layout not known: provisionally RGBA16 float. Any other number fails TextureInitialize, naming
+//    it, rather than guessing (the render-target table at 0x7101647fec also holds 0x19, 0x29, 0x2a,
+//    0x2e, 0x32, 0x34, 0x36). A format the device cannot use also fails by name.
+//  - targets: 1 is 2D (5,480 of the 5,754 .bctex, and the render targets), 8 a cube map (the other
+//    274: every one square, a header depth of 1, six faces of data, BC6H, a cube/IBL/environment
+//    map; fn_710015f880 makes one with a depth of 1). No .bctex has another target; others fail.
 // The swizzle values are those fn_71001604e0 passes: 2 3 4 5 the identity (R G B A), 1 one;
 // 0 is taken as zero.
 //
 // Samplers: the game's filter, wrap and compare numbers are its own packing of NVN's enumerations,
 // which nothing in the game names; until a use shows them, every sampler is linear, repeat, with the
 // game's LOD clamp, bias and anisotropy (numbers, so exact) and a compare op when it asks for one.
+// New images are moved to the layout the resolver reports. Known gaps: a slot the game leaves
+// empty gets a 2D placeholder even where the shader declares a cube or a shadow sampler; one Vulkan
+// allocation per texture (the asset set will need suballocation).
 // Packaged (asset) texture data is kept by pointer, not uploaded yet: the .bctex data is in the
 // console's tiled layout, which the upload step will untile.
 

@@ -10,6 +10,7 @@
 // the shim answers are its own choices, safe for how the game uses them.
 
 #include <cstdint>
+#include <functional>
 
 #include <vulkan/vulkan_core.h>
 
@@ -52,6 +53,8 @@ struct Backend {
     VkPhysicalDeviceProperties properties{};
     VkPhysicalDeviceMemoryProperties memory{};
     bool validation = false;
+    bool bc_textures = false;  // textureCompressionBC: the game's BC1/3/5/6H assets need it
+    VkCommandPool command_pool = VK_NULL_HANDLE;  // for the shim's own one-off work (ImmediateSubmit)
 
     // A memory type with `flags` among `type_bits`, or UINT32_MAX.
     std::uint32_t MemoryType(std::uint32_t type_bits, VkMemoryPropertyFlags flags) const;
@@ -66,6 +69,13 @@ const Backend* CurrentBackend();
 // device qualifies.
 bool CreateBackend(bool validation = false);
 void DestroyBackend();
+
+// Records `record` into a one-off command buffer, submits it and waits for it (image layout
+// transitions, buffer fills). False when there is no backend or the submit fails.
+bool ImmediateSubmit(const std::function<void(VkCommandBuffer)>& record);
+
+// Whether the device can use `format` with these optimal-tiling features.
+bool FormatSupported(VkFormat format, VkFormatFeatureFlags features);
 
 // Validation messages the backend has seen (counted when validation is on).
 int ValidationErrors();

@@ -90,16 +90,20 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
-**Port M2: textures, pools and samplers (2026-10-26).** The format numbers have three sources.
-First, mercury-engine-data-structures' `XTX_Tegra_Format` names the eight formats in the game's
-`.bctex` files (BC3 751, BC5 372, BC1 119, R8 108, BC6H 91, RGBA8 38, BGRA8 11, RG8 10 of 1,500
-sampled). Second, the engine's render-target table at `0x7101647fec` (17 entries, indexed by the
-engine's own number; `fn_7100160f60`) maps them to NVN's: the colour targets' 3 is `0x25`, the
-depth target's `0xe` is `0x35`. Third, the swizzle function `fn_71001604e0` sets one-channel
-`0x1` to R,R,R,1, two-channel `0xd`/`0xe`/`0x12` to R,R,R,G, and the depth formats `0x33`/`0x35`
-to R,R,R,A. The game's strings name no NVN format. The other render-target numbers stay unknown and
-fail by name. The targets come from the game's textures: 1 is 2D; 8 is a cube map, square with six
-faces and BC6H in every case. A sampler is made on the stack, registered and finalised at once
+**Port M2: textures, pools and samplers (2026-10-26).** The format numbers come from the engine.
+Its converter `fn_7100161410` turns a texture header's (type, sRGB flag, channel layout) into the
+number it passes to `nvnTextureBuilderSetFormat`. The layouts are the engine's reflected enum
+`EComponents` (`fn_710016468c` registers `E_COMPONENTS_R8_G8_B8_A8`, `_R32F`, `_U16_V16` ...).
+That gives `0x1`, `0xd`, `0x12`, `0x25`, `0x6d`, `0x3b`, `0x3c`, `0xa` = R32F, the BC numbers,
+and with the sRGB flag `0x37`/`0x38`/`0x46`/`0x48`. Correction from the review: the first version
+took mercury-engine-data-structures' XTX numbers as NVN's, which holds only for linear files, so
+2,063 sRGB base-colour textures would have failed. The engine's render-target table at
+`0x7101647fec` (17 entries) gives the colour targets `0x25` and the depth target `0x35`. The
+swizzle function `fn_71001604e0` shows one-channel, two-channel and depth (`0x33`/`0x35`: R,R,R,A).
+`0x3f` is a colour render target, since the start-up registers a fast clear for it (provisionally
+RGBA16F). The game's strings name no NVN format. Seven render-target numbers stay unknown and fail
+by name. The targets come from all 5,754 of the game's textures: 1 is 2D (5,480); 8 is a cube map (274,
+square with six faces and BC6H in every case). A sampler is made on the stack, registered and finalised at once
 (`fn_710015e9fc`), so the sampler pool owns a copy. The game's filter, wrap and compare values are
 the engine's packing (it remaps compare 1-7 into NVN's numbering), which nothing names. With
 textures in, the start-up replay reaches no unimplemented function; the 38 called functions still

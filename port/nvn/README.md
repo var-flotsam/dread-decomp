@@ -111,8 +111,9 @@ texture part, no unimplemented function at all: the texture and sampler pools si
 `fn_710015f100` sizes them, a sampler made, registered and finalised at once as `fn_710015e9fc`
 does (the pool keeps its own Vulkan sampler), the depth target (`0x35`, a D32/S8 image) and two
 RGBA8 colour targets as `fn_7100160f60` makes them, a cube target as `fn_710015f880` makes it (six
-layers), an unknown format failing by name, and a texture handle resolving through the binding
-layer's resolver to the target's view and the sampler.
+layers), the start-up's other fast-cleared colour formats and the sRGB and BC formats of the
+game's textures, a number nothing produces failing by name, and a texture handle resolving through
+the binding layer's resolver to the target's view and the sampler.
 
 What the parts do so far, and what they do not yet:
 
@@ -135,19 +136,26 @@ What the parts do so far, and what they do not yet:
 - **State objects** keep NVN's values as the game passes them, to be translated by the pipeline part.
 - **Window** hands out its textures in turn (the game's colour targets, Vulkan images now); there is
   no Vulkan surface yet (the port's window is `nn::vi`'s).
-- **Textures.** Each is a Vulkan image of the format and target the table in `texture.h` maps,
-  with the evidence for each number: the formats of the game's own `.bctex` files are named by
-  mercury-engine-data-structures (`0x1` R8, `0xd` R8G8, `0x25` R8G8B8A8, `0x42` BC1, `0x44` BC3,
-  `0x4b` BC5, `0x50` BC6H, `0x6d` B8G8R8A8); the depth target's `0x35` and `0x33` are depth formats
-  by use (`fn_71001604e0` swizzles both R,R,R,A), provisionally D32 float with 8-bit stencil; the
-  engine's render-target table (`0x7101647fec`, 17 entries) also names `0x19`, `0xa`, `0x29`,
-  `0x2a`, `0x2e`, `0x3f`, `0x32`, `0x34`, `0x36`, which stay unknown and fail by name until a use
-  shows what they are. Target 1 is 2D and 8 a cube map: over 1,500 sampled `.bctex`, 1,411 are
-  target 1 and 89 target 8, every target-8 one square, six faces, BC6H, a cube/IBL/environment
-  map. Swizzles are the game's 0-5 (zero, one, R, G, B, A). Asset (packaged) texture data is kept
+- **Textures.** Each is a Vulkan image of the format and target the table in `texture.cpp` maps,
+  with the evidence for each number. The engine's converter `fn_7100161410` turns a texture header's
+  type, sRGB flag and channel layout (its reflected enum `EComponents`, named in `fn_710016468c`)
+  into the number it passes to `nvnTextureBuilderSetFormat`: `0x1` (L8/A8/L4/A4), `0xd` (L8A8/U8V8),
+  `0x12` (U16V16), `0x25` (RGBA8), `0x6d` (RGB8/RGBX8, as BGRA8), `0x3b`/`0x3c` (RGB5A1/R5G6B5),
+  `0xa` (R32F), the BC numbers `0x42`/`0x44`/`0x4b`/`0x50`, and with the sRGB flag `0x37`, `0x38`,
+  `0x46`, `0x48` (2,063 of the 5,754 `.bctex`, the base colours). For the linear files these equal
+  the numbers mercury-engine-data-structures names. The depth target's `0x35` and `0x33` are depth
+  formats by use (`fn_71001604e0` swizzles both R,R,R,A), provisionally D32F/S8 (D24/S8 where a
+  device lacks it); `0x3f` is a colour render target by use (a fast clear is registered for it),
+  provisionally RGBA16F. The render-target table (`0x7101647fec`) also holds `0x19`, `0x29`, `0x2a`,
+  `0x2e`, `0x32`, `0x34`, `0x36`, which fail by name until a use shows them. Every format is checked
+  against the device (BC needs `textureCompressionBC`, enabled when present). New images are moved
+  to the layout the binding layer's resolver reports. Target 1 is 2D and 8 a cube map: of the 5,754 `.bctex`, 5,480 are target 1 and 274 target 8,
+  every target-8 one square with six faces of data, BC6H, a cube/IBL/environment map. Swizzles are the game's 0-5 (zero, one, R, G, B, A). Asset (packaged) texture data is kept
   by pointer, not uploaded yet: it is in the console's tiled layout. Samplers are linear and
   repeat for now, with the game's LOD clamp, bias and compare: the filter, wrap and compare
   numbers are the engine's packing of NVN's enumerations, which nothing in the game names yet.
+  Known gaps: an empty slot gets a 2D placeholder where a shader declares a cube or a shadow
+  sampler; one Vulkan allocation per texture (the asset set will need suballocation).
 - **Not joined to the game's link yet.** `tools/port_link.py --executable` compiles `port/runtime/`
   only; the boot traps long before graphics (`port/README.md`). Once it reaches `fn_71001587f0`,
   `dread_nvn` (and `-lvulkan`) joins the executable, and `nvnBootstrapLoader` resolves to the shim's.

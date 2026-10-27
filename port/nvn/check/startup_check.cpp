@@ -286,10 +286,11 @@ int main() {
         Fn<void (*)(void*)>("nvnSamplerBuilderSetDefaults")(&sampler_builder);
         Fn<void (*)(void*, std::int32_t, std::int32_t)>("nvnSamplerBuilderSetMinMagFilter")(&sampler_builder, 3, 1);
         Fn<void (*)(void*, std::int32_t, std::int32_t, std::int32_t)>("nvnSamplerBuilderSetWrapMode")(&sampler_builder, 0, 0, 0);
-        Fn<void (*)(void*, float, float)>("nvnSamplerBuilderSetLodClamp")(&sampler_builder, 0.0f, 13.0f);
+        // fn_710015f100's sampler defaults: LOD clamp -16..16, anisotropy 15.
+        Fn<void (*)(void*, float, float)>("nvnSamplerBuilderSetLodClamp")(&sampler_builder, -16.0f, 16.0f);
         Fn<void (*)(void*, float)>("nvnSamplerBuilderSetLodBias")(&sampler_builder, 0.0f);
         Fn<void (*)(void*, const float*)>("nvnSamplerBuilderSetBorderColor")(&sampler_builder, border);
-        Fn<void (*)(void*, float)>("nvnSamplerBuilderSetMaxAnisotropy")(&sampler_builder, 4.0f);
+        Fn<void (*)(void*, float)>("nvnSamplerBuilderSetMaxAnisotropy")(&sampler_builder, 15.0f);
         Fn<void (*)(void*, std::int32_t)>("nvnSamplerBuilderSetReductionFilter")(&sampler_builder, 0);
         Fn<void (*)(void*, std::int32_t, std::int32_t)>("nvnSamplerBuilderSetCompare")(&sampler_builder, 1, 3);
         Check(Fn<std::int32_t (*)(void*, const void*)>("nvnSamplerInitialize")(&sampler, &sampler_builder) == 1,
@@ -332,7 +333,7 @@ int main() {
             TB_SetSwizzle(&texture_builder, swizzle[0], swizzle[1], swizzle[2], swizzle[3]);
         const std::uint64_t align = TB_GetAlignment(&texture_builder);
         const std::uint64_t size = TB_GetSize(&texture_builder);
-        Check(align > 0 && size >= static_cast<std::uint64_t>(w) * static_cast<std::uint64_t>(h) * 4u, "texture storage size and alignment");
+        Check(align > 0 && size > 0 && size % align == 0, "texture storage size and alignment");
         texture_offset = static_cast<std::int64_t>((static_cast<std::uint64_t>(texture_offset) + align - 1) / align * align);
         TB_SetStorage(&texture_builder, &engine_pools[0], texture_offset);
         texture_offset += static_cast<std::int64_t>(size);
@@ -350,7 +351,9 @@ int main() {
         Check(color_ids[i] >= 0, "a colour target (format 0x25)");
     }
     const TextureInfo depth_info = GetTextureInfo(&depth_target);
-    Check(depth_info.exists && depth_info.format == VK_FORMAT_D32_SFLOAT_S8_UINT && depth_info.width == 1280,
+    Check(depth_info.exists &&
+              (depth_info.format == VK_FORMAT_D32_SFLOAT_S8_UINT || depth_info.format == VK_FORMAT_D24_UNORM_S8_UINT) &&
+              depth_info.width == 1280,
           "the depth target is a 1280x720 depth-stencil image");
     const TextureInfo color_info = GetTextureInfo(&render_targets[0]);
     Check(color_info.exists && color_info.format == VK_FORMAT_R8G8B8A8_UNORM && color_info.layers == 1,
@@ -359,8 +362,19 @@ int main() {
     const std::int32_t cube_id = make_target(&cube_target, 0xd, 8, 0x25, 128, 128, 1, identity);
     const TextureInfo cube_info = GetTextureInfo(&cube_target);
     Check(cube_id >= 0 && cube_info.cube && cube_info.layers == 6, "a cube target has six layers");
-    // A format the shim does not know fails (and is reported), rather than being guessed.
-    Check(make_target(&unknown_target, 0xd, 1, 0x3f, 64, 64, 0, identity) < 0, "an unknown format fails");
+    // The other colour formats the start-up registers fast clears for (0xa R32F, 0x3f), and the sRGB
+    // and BC formats of the game's textures (fn_7100161410's numbers).
+    {
+        Storage extra[6];
+        const std::int32_t formats[6] = {0x0a, 0x3f, 0x38, 0x37, 0x46, 0x48};
+        for (int i = 0; i < 6; ++i)
+            Check(make_target(&extra[i], 0xd, 1, formats[i], 64, 64, 0, identity) >= 0,
+                  "a format of the start-up or of the game's textures");
+        for (Storage& e : extra)
+            Fn<void (*)(void*)>("nvnTextureFinalize")(&e);
+    }
+    // A number nothing in the game produces fails (and is reported), rather than being guessed.
+    Check(make_target(&unknown_target, 0xd, 1, 0x7f, 64, 64, 0, identity) < 0, "an unknown format fails");
     Check(RegisteredTexture(static_cast<std::uint32_t>(color_ids[1])) == &render_targets[1], "the pool knows the texture");
 
     // The binding layer's resolver over the shim's objects: a handle from nvnDeviceGetTextureHandle.

@@ -138,8 +138,16 @@ bool CreateBackend(bool validation) {
     VkPhysicalDeviceVulkan13Features v13{VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_3_FEATURES};
     v13.dynamicRendering = VK_TRUE;
     v13.maintenance4 = VK_TRUE;
+    VkPhysicalDeviceFeatures supported{};
+    vkGetPhysicalDeviceFeatures(b.physical, &supported);
+    VkPhysicalDeviceFeatures2 features{VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FEATURES_2};
+    features.pNext = &v13;
+    features.features.textureCompressionBC = supported.textureCompressionBC;
+    b.bc_textures = supported.textureCompressionBC == VK_TRUE;
+    if (!b.bc_textures)
+        std::fprintf(stderr, "nvn shim: the device has no BC texture compression; the game's BC textures will fail\n");
     VkDeviceCreateInfo dci{VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO};
-    dci.pNext = &v13;
+    dci.pNext = &features;
     dci.queueCreateInfoCount = 1;
     dci.pQueueCreateInfos = &qci;
     if (vkCreateDevice(b.physical, &dci, nullptr, &b.device) != VK_SUCCESS) {
@@ -148,6 +156,10 @@ bool CreateBackend(bool validation) {
         return false;
     }
     vkGetDeviceQueue(b.device, b.queue_family, 0, &b.queue);
+    VkCommandPoolCreateInfo cpi{VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO};
+    cpi.flags = VK_COMMAND_POOL_CREATE_TRANSIENT_BIT;
+    cpi.queueFamilyIndex = b.queue_family;
+    vkCreateCommandPool(b.device, &cpi, nullptr, &b.command_pool);
     g_backend = b;
     g_backend_ready = true;
     std::fprintf(stderr, "nvn shim: Vulkan device %s (Vulkan %u.%u), validation %s\n", b.properties.deviceName,
@@ -161,6 +173,8 @@ void DestroyBackend() {
     if (!g_backend_ready)
         return;
     vkDeviceWaitIdle(g_backend.device);
+    if (g_backend.command_pool)
+        vkDestroyCommandPool(g_backend.device, g_backend.command_pool, nullptr);
     vkDestroyDevice(g_backend.device, nullptr);
     if (g_messenger) {
         auto destroy = reinterpret_cast<PFN_vkDestroyDebugUtilsMessengerEXT>(
@@ -172,6 +186,41 @@ void DestroyBackend() {
     vkDestroyInstance(g_backend.instance, nullptr);
     g_backend = Backend();
     g_backend_ready = false;
+}
+
+bool ImmediateSubmit(const std::function<void(VkCommandBuffer)>& record) {
+    static std::mutex submit_lock;  // one queue: the shim's own submits do not overlap
+    std::lock_guard<std::mutex> lock(submit_lock);
+    const Backend* b = CurrentBackend();
+    if (!b || !b->command_pool)
+        return false;
+    VkCommandBufferAllocateInfo cai{VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO};
+    cai.commandPool = b->command_pool;
+    cai.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
+    cai.commandBufferCount = 1;
+    VkCommandBuffer cmd = VK_NULL_HANDLE;
+    if (vkAllocateCommandBuffers(b->device, &cai, &cmd) != VK_SUCCESS)
+        return false;
+    VkCommandBufferBeginInfo begin{VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO};
+    begin.flags = VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT;
+    vkBeginCommandBuffer(cmd, &begin);
+    record(cmd);
+    vkEndCommandBuffer(cmd);
+    VkSubmitInfo si{VK_STRUCTURE_TYPE_SUBMIT_INFO};
+    si.commandBufferCount = 1;
+    si.pCommandBuffers = &cmd;
+    const bool ok = vkQueueSubmit(b->queue, 1, &si, VK_NULL_HANDLE) == VK_SUCCESS && vkQueueWaitIdle(b->queue) == VK_SUCCESS;
+    vkFreeCommandBuffers(b->device, b->command_pool, 1, &cmd);
+    return ok;
+}
+
+bool FormatSupported(VkFormat format, VkFormatFeatureFlags features) {
+    const Backend* b = CurrentBackend();
+    if (!b)
+        return false;
+    VkFormatProperties props;
+    vkGetPhysicalDeviceFormatProperties(b->physical, format, &props);
+    return (props.optimalTilingFeatures & features) == features;
 }
 
 bool DeviceIntegerValue(std::int32_t name, std::int32_t* value) {
@@ -259,6 +308,8 @@ void DeviceFinalize(void* device) {
         std::lock_guard<std::mutex> lock(detail::StateLock());
         g_devices.Erase(device);
     }
+    if (const Backend* b = CurrentBackend())
+        vkDeviceWaitIdle(b->device);  // nothing of the shim's may be in use when it is destroyed
     detail::ReleaseTextureVulkanObjects();  // before the device they belong to goes
     detail::ReleaseMemoryVulkanObjects();
     DestroyBackend();

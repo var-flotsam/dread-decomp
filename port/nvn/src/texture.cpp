@@ -19,15 +19,29 @@ namespace dread::nvn {
 
 namespace {
 
+// The engine's converter fn_7100161410 turns a texture header's (type, sRGB flag, channel layout)
+// into these numbers; the layouts are its reflected enum EComponents (fn_710016468c registers the
+// names). "MEDS" also: mercury-engine-data-structures' XTX_Tegra_Format names the number a .bctex
+// header carries, which equals the converter's output for every linear file.
 const FormatInfo kFormats[] = {
-    {0x01, VK_FORMAT_R8_UNORM, 1, 1, false, false, "MEDS XTX_Tegra_Format R8_UNORM"},
-    {0x0d, VK_FORMAT_R8G8_UNORM, 2, 1, false, false, "MEDS XTX_Tegra_Format R8G8_UNORM"},
-    {0x25, VK_FORMAT_R8G8B8A8_UNORM, 4, 1, false, false, "MEDS XTX_Tegra_Format R8G8B8A8_UNORM"},
-    {0x42, VK_FORMAT_BC1_RGBA_UNORM_BLOCK, 8, 4, false, false, "MEDS XTX_Tegra_Format BC1_UNORM"},
-    {0x44, VK_FORMAT_BC3_UNORM_BLOCK, 16, 4, false, false, "MEDS XTX_Tegra_Format BC3_UNORM"},
-    {0x4b, VK_FORMAT_BC5_UNORM_BLOCK, 16, 4, false, false, "MEDS XTX_Tegra_Format BC5_UNORM"},
-    {0x50, VK_FORMAT_BC6H_UFLOAT_BLOCK, 16, 4, false, false, "MEDS XTX_Tegra_Format BC6H_UF16"},
-    {0x6d, VK_FORMAT_B8G8R8A8_UNORM, 4, 1, false, false, "MEDS XTX_Tegra_Format B8G8R8A8_UNORM"},
+    {0x01, VK_FORMAT_R8_UNORM, 1, 1, false, false, "converter: L8, A8, L4, A4; MEDS R8_UNORM"},
+    {0x0a, VK_FORMAT_R32_SFLOAT, 4, 1, false, false, "converter: type 2, E_COMPONENTS_R32F"},
+    {0x0d, VK_FORMAT_R8G8_UNORM, 2, 1, false, false, "converter: L8_A8, U8_V8, L4_A4; MEDS R8G8_UNORM"},
+    {0x12, VK_FORMAT_R16G16_UNORM, 4, 1, false, true, "converter: E_COMPONENTS_U16_V16 (signedness not known)"},
+    {0x25, VK_FORMAT_R8G8B8A8_UNORM, 4, 1, false, false, "converter: R8_G8_B8_A8; MEDS R8G8B8A8_UNORM"},
+    {0x37, VK_FORMAT_B8G8R8A8_SRGB, 4, 1, false, false, "converter: 0x6d's layout with the sRGB flag"},
+    {0x38, VK_FORMAT_R8G8B8A8_SRGB, 4, 1, false, false, "converter: 0x25's layout with the sRGB flag"},
+    {0x3b, VK_FORMAT_R5G5B5A1_UNORM_PACK16, 2, 1, false, true, "converter: E_COMPONENTS_R5_G5_B5_A1 (bit order not known)"},
+    {0x3c, VK_FORMAT_R5G6B5_UNORM_PACK16, 2, 1, false, true, "converter: E_COMPONENTS_R5_G6_B5 (bit order not known)"},
+    {0x3f, VK_FORMAT_R16G16B16A16_SFLOAT, 8, 1, false, true,
+     "a colour render target by use (fn_71001587f0 registers a fast-clear colour for it); layout not known"},
+    {0x42, VK_FORMAT_BC1_RGBA_UNORM_BLOCK, 8, 4, false, false, "converter: block, R8_G8_B8; MEDS BC1_UNORM"},
+    {0x44, VK_FORMAT_BC3_UNORM_BLOCK, 16, 4, false, false, "converter: block, R8_G8_B8_A8; MEDS BC3_UNORM"},
+    {0x46, VK_FORMAT_BC1_RGBA_SRGB_BLOCK, 8, 4, false, false, "converter: 0x42's layout with the sRGB flag"},
+    {0x48, VK_FORMAT_BC3_SRGB_BLOCK, 16, 4, false, false, "converter: 0x44's layout with the sRGB flag"},
+    {0x4b, VK_FORMAT_BC5_UNORM_BLOCK, 16, 4, false, false, "converter: block default; MEDS BC5_UNORM"},
+    {0x50, VK_FORMAT_BC6H_UFLOAT_BLOCK, 16, 4, false, false, "converter: block, layout 0xf; MEDS BC6H_UF16"},
+    {0x6d, VK_FORMAT_B8G8R8A8_UNORM, 4, 1, false, false, "converter: R8_G8_B8, R8_G8_B8_X8; MEDS B8G8R8A8_UNORM"},
     {0x33, VK_FORMAT_D32_SFLOAT_S8_UINT, 8, 1, true, true, "depth by use (fn_71001604e0's R,R,R,A swizzle)"},
     {0x35, VK_FORMAT_D32_SFLOAT_S8_UINT, 8, 1, true, true, "depth by use (the depth target of fn_71001587f0)"},
 };
@@ -35,6 +49,7 @@ const FormatInfo kFormats[] = {
 constexpr std::int32_t kTarget2D = 1;
 constexpr std::int32_t kTargetCube = 8;
 constexpr std::uint64_t kStorageAlignment = 0x200;
+constexpr VkDeviceSize kPlaceholderBufferSize = 0x4000;
 
 struct TextureBuilder {
     const void* device = nullptr;
@@ -53,6 +68,7 @@ struct Texture {
     VkDeviceMemory memory = VK_NULL_HANDLE;
     VkImageView view = VK_NULL_HANDLE;
     const FormatInfo* format = nullptr;
+    VkFormat vk_format = VK_FORMAT_UNDEFINED;  // the format made (a depth format may fall back)
     std::uint32_t width = 0, height = 0, layers = 1, levels = 1;
     bool cube = false;
     const void* packaged_data = nullptr;  // not uploaded yet (header comment)
@@ -172,6 +188,26 @@ bool CreateImage(const Backend& be, VkFormat format, std::uint32_t w, std::uint3
     return true;
 }
 
+void TransitionForSampling(VkImage image, VkImageAspectFlags aspect, std::uint32_t levels, std::uint32_t layers,
+                           VkImageLayout layout) {
+    ImmediateSubmit([&](VkCommandBuffer cmd) {
+        VkImageMemoryBarrier barrier{VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER};
+        barrier.srcAccessMask = 0;
+        barrier.dstAccessMask = VK_ACCESS_SHADER_READ_BIT;
+        barrier.oldLayout = VK_IMAGE_LAYOUT_UNDEFINED;
+        barrier.newLayout = layout;
+        barrier.srcQueueFamilyIndex = barrier.dstQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED;
+        barrier.image = image;
+        barrier.subresourceRange = {aspect, 0, levels, 0, layers};
+        vkCmdPipelineBarrier(cmd, VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT,
+                             VK_PIPELINE_STAGE_VERTEX_SHADER_BIT | VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT, 0, 0, nullptr, 0,
+                             nullptr, 1, &barrier);
+    });
+}
+
+// Destroying an object the GPU may still use: the shim's own submits wait (ImmediateSubmit), and the
+// game's command buffers do not run on the GPU yet; when they do, destruction is deferred to the
+// frame that last used the object.
 void DestroyTexture(Texture& t) {
     const Backend* be = CurrentBackend();
     if (be) {
@@ -317,21 +353,44 @@ std::int32_t TextureInitialize(void* texture, const void* builder) {
     t.packaged_data = b->packaged_data;
     const bool compressed = f->block_size > 1;
     VkImageUsageFlags usage = VK_IMAGE_USAGE_SAMPLED_BIT | VK_IMAGE_USAGE_TRANSFER_DST_BIT | VK_IMAGE_USAGE_TRANSFER_SRC_BIT;
-    if (f->depth)
+    VkFormatFeatureFlags needed = VK_FORMAT_FEATURE_SAMPLED_IMAGE_BIT;
+    if (f->depth) {
         usage |= VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT;
-    else if (!compressed)
+        needed |= VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT;
+    } else if (!compressed) {
         usage |= VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT;
+        if (FormatSupported(f->vk, VK_FORMAT_FEATURE_COLOR_ATTACHMENT_BIT))
+            needed |= VK_FORMAT_FEATURE_COLOR_ATTACHMENT_BIT;
+        else
+            usage &= ~static_cast<VkImageUsageFlags>(VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT);  // a texture only
+    }
+    VkFormat vk_format = f->vk;
+    if (f->depth && !FormatSupported(vk_format, needed))
+        vk_format = VK_FORMAT_D24_UNORM_S8_UINT;  // the other depth-stencil format devices have
+    if (!FormatSupported(vk_format, needed)) {
+        if (g_reported_formats.insert(b->format).second)
+            std::fprintf(stderr, "nvn shim: the device cannot use texture format %#x (Vulkan %d); nvnTextureInitialize fails\n",
+                         static_cast<unsigned>(b->format), static_cast<int>(vk_format));
+        g_textures.Erase(texture);
+        return 0;
+    }
     const VkImageAspectFlags aspect = f->depth ? VK_IMAGE_ASPECT_DEPTH_BIT : VK_IMAGE_ASPECT_COLOR_BIT;
-    const VkComponentMapping swizzle = f->depth ? VkComponentMapping{}
-                                                : VkComponentMapping{Swizzle(b->swizzle[0]), Swizzle(b->swizzle[1]),
-                                                                     Swizzle(b->swizzle[2]), Swizzle(b->swizzle[3])};
-    if (!CreateImage(*be, f->vk, t.width, t.height, t.layers, t.levels, t.cube, usage, aspect, swizzle, &t.image,
+    // The game's swizzle, depth included (fn_71001604e0 gives depth R,R,R,A; Vulkan applies a view's
+    // swizzle to a sampled depth aspect as well).
+    const VkComponentMapping swizzle{Swizzle(b->swizzle[0]), Swizzle(b->swizzle[1]), Swizzle(b->swizzle[2]),
+                                     Swizzle(b->swizzle[3])};
+    t.vk_format = vk_format;
+    if (!CreateImage(*be, vk_format, t.width, t.height, t.layers, t.levels, t.cube, usage, aspect, swizzle, &t.image,
                      &t.memory, &t.view)) {
         std::fprintf(stderr, "nvn shim: no Vulkan image for a %ux%u texture of format %#x\n", t.width, t.height,
                      static_cast<unsigned>(b->format));
         g_textures.Erase(texture);
         return 0;
     }
+    // Into the layout the binding layer reports (ResolveTexture), so that the first draw that samples
+    // it finds it there; rendering into it will move it and back.
+    TransitionForSampling(t.image, aspect | (f->depth ? VK_IMAGE_ASPECT_STENCIL_BIT : 0), t.levels, t.layers,
+                          f->depth ? VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL : VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
     return 1;
 }
 
@@ -490,7 +549,7 @@ public:
     }
     VkDescriptorBufferInfo PlaceholderBuffer() override {
         EnsurePlaceholders();
-        return {g_placeholders.buffer, 0, VK_WHOLE_SIZE};
+        return {g_placeholders.buffer, 0, kPlaceholderBufferSize};
     }
     VkDescriptorImageInfo PlaceholderImage() override {
         EnsurePlaceholders();
@@ -503,11 +562,11 @@ private:
         const Backend* be = CurrentBackend();
         if (!be || g_placeholders.view)
             return;
-        // 64 KB: at least the largest uniform block of the game's shaders (the manifest's sizes; the
-        // binding layer's PlaceholderBuffer contract).
+        // 16 KB, zeroed: more than the largest uniform block of the game's shaders (1,792 bytes in
+        // the manifest) and within the 16 KB maxUniformBufferRange every Vulkan device has.
         VkBufferCreateInfo bci{VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO};
-        bci.size = 0x10000;
-        bci.usage = VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT;
+        bci.size = kPlaceholderBufferSize;
+        bci.usage = VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT | VK_BUFFER_USAGE_TRANSFER_DST_BIT;
         if (vkCreateBuffer(be->device, &bci, nullptr, &g_placeholders.buffer) == VK_SUCCESS) {
             VkMemoryRequirements req;
             vkGetBufferMemoryRequirements(be->device, g_placeholders.buffer, &req);
@@ -520,6 +579,23 @@ private:
         CreateImage(*be, VK_FORMAT_R8G8B8A8_UNORM, 1, 1, 1, 1, false, VK_IMAGE_USAGE_SAMPLED_BIT, VK_IMAGE_ASPECT_COLOR_BIT,
                     VkComponentMapping{}, &g_placeholders.image, &g_placeholders.image_memory, &g_placeholders.view);
         g_placeholders.sampler = MakeSampler(SamplerBuilder{});
+        const VkBuffer buffer = g_placeholders.buffer;
+        const VkImage image = g_placeholders.image;
+        ImmediateSubmit([&](VkCommandBuffer cmd) {
+            if (buffer)
+                vkCmdFillBuffer(cmd, buffer, 0, kPlaceholderBufferSize, 0);
+            if (image) {
+                VkImageMemoryBarrier barrier{VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER};
+                barrier.dstAccessMask = VK_ACCESS_SHADER_READ_BIT;
+                barrier.oldLayout = VK_IMAGE_LAYOUT_UNDEFINED;
+                barrier.newLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
+                barrier.srcQueueFamilyIndex = barrier.dstQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED;
+                barrier.image = image;
+                barrier.subresourceRange = {VK_IMAGE_ASPECT_COLOR_BIT, 0, 1, 0, 1};
+                vkCmdPipelineBarrier(cmd, VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT, VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT, 0, 0,
+                                     nullptr, 0, nullptr, 1, &barrier);
+            }
+        });
     }
 };
 
@@ -545,7 +621,7 @@ TextureInfo GetTextureInfo(const void* texture) {
         out.exists = true;
         out.image = t->image;
         out.view = t->view;
-        out.format = t->format ? t->format->vk : VK_FORMAT_UNDEFINED;
+        out.format = t->vk_format;
         out.width = t->width;
         out.height = t->height;
         out.layers = t->layers;
