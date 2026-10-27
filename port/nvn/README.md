@@ -36,6 +36,8 @@ port/docker/run.sh cmake --build build/port/linux/cmake-nvn --target nvn_manifes
 port/docker/run.sh build/port/linux/cmake-nvn/nvn/nvn_manifest_check build/port/cmake/shaders orig/2.1.0/romfs/system/shd
 ```
 
+The first argument is the host build's `DREAD_SHADER_DIR` (`<host build dir>/shaders`).
+
 ## What the game does with NVN (the parts the bindings depend on)
 
 Each finding comes from the game's own code, read with `tools/ghidra/decompile.py`, and from the
@@ -107,14 +109,17 @@ Not covered yet: the resolver's implementations (memory pools, buffers, texture 
 descriptor pools, pipeline creation, `nvnCommandBufferUpdateUniformBuffer`, and any test that runs.
 **What runs.** `nvn_manifest_check` (Linux image, Clang 18, system libc++) runs the manifest reader
 and the binding layer with no GPU and no Vulkan loader; the binding layer only fills Vulkan structs.
-For every stage it checks four things. The SPIR-V file is there. The control section, read from
+For every stage it checks four things. The bindings the SPIR-V module itself declares (read from
+its decorations) are exactly the manifest's blocks and samplers. The control section, read from
 the package at the manifest's offset, hashes to the stage's key, and `FindStage` returns that
-stage. The descriptor set layout has no binding twice and no count of 0. With every NVN slot bound
+stage, or one with the same SPIR-V bytes, resources and interface. The descriptor set layout has no binding twice and no count of 0. With every NVN slot bound
 through a fake resolver, `BuildWrites` covers the layout and resolves each resource NVN uses to its
 slot (blocks at binding = slot, samplers at 16 + slot). Only the unused resources get placeholders,
 and every info pointer stays in its arrays. On 2.1.0 (2026-10-26) it passes for all 1,342 stages;
 `FindStage` returns the stage itself for 1,010 and an identical stage for the rest. Damaged
-manifests are caught: a sampler or a block moved by one binding, or a missing end record. The code
+manifests are caught: a block or sampler moved (with or without its NVN slot), deleted or added, a
+second stage under a shared key changed, a control offset off by one, a missing end record. Block
+sizes are checked by `tools/bshdat.py --install`, not here. The code
 compiles without warnings under `-Wall -Wextra -Wconversion -Wshadow` (checked by hand; the target
 does not set them). Not tested yet: anything against a Vulkan driver.
 
