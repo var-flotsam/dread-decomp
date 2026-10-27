@@ -50,7 +50,7 @@ import asmdiff  # noqa: E402
 import callgraph  # noqa: E402
 
 MAX_SIZE = 65536
-CACHE_VERSION = 9  # bump when the analysis changes (AbiFacts.load ignores other versions)
+CACHE_VERSION = 10  # bump when the analysis changes (AbiFacts.load ignores other versions)
 MAX_DEPTH = 48  # callee recursion; deeper chains count as unknown
 INT_ARGS = frozenset(range(9))  # x0-x7 and x8
 FLOAT_ARGS = frozenset(range(100, 108))
