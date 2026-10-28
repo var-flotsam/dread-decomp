@@ -1163,7 +1163,7 @@ void fn_710016a414();
 void fn_710019e088(UnkGfxSceneRegistry* self);
 void fn_710019fe7c(UnkDecalResourceMgr* self);
 void fn_710019bd2c(void* camera);
-void fn_710019c198(void* camera, u32 a);
+void fn_710019c198(void* camera, bool half_pixel);  // src/engine/UnkScreenCorners.cpp
 void fn_710016e75c();
 void fn_710019a16c();
 bool fn_71001587f0();
@@ -1347,7 +1347,7 @@ void fn_71001c9718(UnkGraphicsSystem* self, UnkGfxSettings* settings, void* /*un
         ++cameras->size;
     }
     self->field_0x317aa20 = camera;
-    fn_710019c198(camera, 0);
+    fn_710019c198(camera, false);
     fn_71001c9550(self, settings ? settings->height_shift != 0 : false);
     fn_71001cafa0(reinterpret_cast<UnkStruct_71001cdd74*>(self), 0, 1, 0);
 
