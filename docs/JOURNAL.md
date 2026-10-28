@@ -130,6 +130,17 @@ pull request's job summary with the change's effect on the whole binary, and the
 refreshes the README with `--write` after `progress.py --handoff` (a card committed by every branch
 would conflict, like the handoff's table).
 
+**Boot functions the lifter refuses since #236, by hand (2026-10-28, branch `claude/project-thread-pvyj4u`).**
+#236 stopped accepting void lifts of functions whose callers read a result. On the boot slice that
+refused 13 functions (12 accepted before, and `fn_7100ee5dcc`, inconclusive before). Read in Ghidra,
+only four really return a float in s0: `fn_71000763c0` (a timed curve's step, `src/base/UnkCurveModifiers.cpp`),
+`fn_7100d7ce40` (an entity's factor, `src/game/CEntity.cpp`, `O`) and `fn_7100b8deec`/`fn_7100b8dff0`
+(animation times in frames, seconds or a fraction, new `src/game/UnkAnimTime.cpp`). The three others
+are `m` and behave the same. The other nine are void, so the lifter's result detection was wrong for
+them: `fn_710033187c` and `fn_7100ee4d34` take s0 as a float argument, five return with s0 left by a
+callee that takes a float constant, and `fn_7100eea4c8`'s leftover x0 is passed on unused. They wait
+for the lifter's detection fix.
+
 **Port M1 round 4: every registered type named (2026-10-28, branch `claude/port-m1-round4`).** The
 lifter's newer full set (#236, 15,594 lifts) linked with no trap before round 3's null dereference.
 The null was a class with no name: 2,354 of the 4,581 types on the reflection registry's list

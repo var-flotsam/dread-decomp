@@ -192,3 +192,21 @@ UnkGroundPoint fn_7100d7b540(UnkGroundEntity* self, const UnkGroundPoint* pos) {
     fn_7100d69400(&shape);
     return result;
 }
+
+// The object at the entity's +0x240; its vf_0x188 gives a factor (negative when it has none).
+struct UnkEntityFactorSource {
+    void** vtable;
+
+    f32 GetFactor() { return reinterpret_cast<f32 (*)(UnkEntityFactorSource*)>(vtable[0x188 / 8])(this); }
+};
+
+struct UnkFactorEntity {
+    u8 pad_0x0[0x240];
+    UnkEntityFactorSource* field_0x240;
+};
+
+// The entity's factor: what its +0x240 gives, or 1 when there is none or it is negative.
+f32 fn_7100d7ce40(UnkFactorEntity* self) {
+    f32 f = self->field_0x240 ? self->field_0x240->GetFactor() : -1.0f;
+    return f >= 0.0f ? f : 1.0f;
+}
