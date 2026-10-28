@@ -133,6 +133,24 @@ CMetroidCameraCtrl), both `O` in `src/game/CSubAreaManager.cpp`, and `fn_710109c
 Lua console's scratch stack, `m` in `src/base/UnkLuaDoString.cpp`). The first argument of the two sub-area
 steps is an empty `UnkLeftoverArg`, because their caller leaves x0 as the previous call returned it.
 
+**Dashboard for both goals; README status card (2026-10-28, branch `claude/project-thread-vt2bik`).**
+The private dashboard (see "Status dashboard" below) predated the reorganization: it showed matching
+only, read the handoff's old phase table (every port row came out as an unstarted grey chip) and took
+the workstream table's second column as "Area" when it is now "Files", dropping "Next". It now opens
+with the two goals side by side. Decompilation: matching and usable shares, the boot path, the daily
+trend. PC port: the Linux build's furthest point (handoff), the share of code with an accepted
+semantic lift for every `U` function and for the boot worklist, and what the lifter can't take yet by
+reason. `tools/dashboard_export.py` writes `areas.csv` (with a decomp/port goal per area; replaces
+`phases.csv`), `workstreams.csv` with `next`, `lifts.csv` from the lift manifests, and
+`boot_milestones.csv`/`boot_run.csv` from `build/boot/boot_distance.json` once the nightly has run;
+handoff parsing moved to `tools/dread/handoff.py`. The lift manifests on the owner's PC (2026-10-28)
+read 15,594 of 16,088 accepted (all) and 2,266 of 2,323 (boot worklist, which adds the run-time and
+graphics roots to the boot slice), newer than the handoff's figures. `tools/status_card.py` is a slim
+version for the README (`docs/status.svg`, from tracked files only); the `policy` job writes it to each
+pull request's job summary with the change's effect on the whole binary, and the merging session
+refreshes the README with `--write` after `progress.py --handoff` (a card committed by every branch
+would conflict, like the handoff's table).
+
 **Boot functions the lifter refuses since #236, by hand (2026-10-28, branch `claude/project-thread-pvyj4u`).**
 #236 stopped accepting void lifts of functions whose callers read a result. On the boot slice that
 refused 13 functions (12 accepted before, and `fn_7100ee5dcc`, inconclusive before). Read in Ghidra,
@@ -1561,7 +1579,6 @@ when `B` is undefined, so a jump to a libc name or a trap is an assembly thunk; 
 fit one response file. Of 37,531 alias references, 27,188 only take the address; of the 10,343
 calls 6 pass a `float` where the definition takes an integer or pointer and are trapped instead.
 
-
 **Status dashboard (2026-10-24, branch `claude/task-status-dashboard-9a819f`).** A private dashboard
 artifact (owner's claude.ai account) shows matching progress for the whole binary and the boot slice,
 a daily trend, status by subsystem, and the phase and workstream tables of this handoff.
@@ -1647,7 +1664,6 @@ so the numbers below are current.
 workstreams (below), `AGENTS.md` and `docs/tasks/` for a small local model on a MacBook,
 macOS toolchain support (untested on hardware) and `tools/verify.py`. No matching changes.
 
-
 **Tenth session (2026-10-20, branch `claude/lifter-float-0b96b0`):** lifter fixes (Next steps,
 item 1, "Done (tenth session)"); `gen_lift.py` and `check.py --update` were rerun, so the
 numbers below are current.
@@ -1665,12 +1681,10 @@ done: Next steps, item 2.
 Snapshot as of 2026-10-18 (fifth Phase 4 session; branches `phase-4-4-clones` (var-flotsam/dread-decomp#18, open) and `phase-4-4-skipped-getters` on top of it (not pushed); earlier work merged in var-flotsam/dread-decomp#13–#17). Target: **Metroid Dread 2.1.0**, `main` build ID
 `646761F643AFEBB379EDD5E6A5151AF2CEF93DC1`.
 
-
 ## Work log by stream, through 2026-10-23
 
 The numbered items are the former "Next steps" of the handoff, kept as a record of what each stream did,
 tried and left. The current next steps are in `docs/HANDOFF.md`.
-
 
 0. **Clone generator (`tools/gen_clones.py`), done this session.** Exact-clone families (same
    instructions up to branch targets) were 1.3 MB of `U`. To find more, group `U` functions by
@@ -2039,7 +2053,6 @@ tried and left. The current next steps are in `docs/HANDOFF.md`.
    Lua + GUI bindings, GUI, render front end, input, localisation, save probe. Estimated
    6,000–9,000 functions (static floor: 4,394 reachable from `nnMain`).
 6. Port groundwork: an aurora-style `nn::` + NVN compatibility layer (see `docs/references.md`).
-
 
 ### Giant functions (probe, 2026-10-21, cloud thread "Biggest functions probe")
 

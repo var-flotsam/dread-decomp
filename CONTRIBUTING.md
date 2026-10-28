@@ -40,7 +40,8 @@ to be purged from the history.
    `tools/check.py --compile-only` before and after and `tools/objcompare.py`).
 9. **Logs go to `docs/JOURNAL.md`.** `docs/HANDOFF.md` holds only the current state, fits on one
    screen, and is edited only by the session that merges a round of PRs (its numbers come from
-   `tools/progress.py --slice boot --handoff`); feature branches leave it alone. Batch notes,
+   `tools/progress.py --slice boot --handoff`, then `tools/status_card.py --write` for the README's
+   status card); feature branches leave both alone. Batch notes,
    findings and session summaries go at the top of the journal, and reusable matching findings
    into its index.
 
