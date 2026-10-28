@@ -6,7 +6,7 @@ it needs). History, batch logs and the index of matching findings are in `docs/J
 `docs/recon.md` describes the binary, `docs/compiler.md` the toolchain, `docs/references.md` the
 outside projects. This page is edited in place, never appended to: session notes go to the journal.
 
-**Last updated 2026-10-27** (port: the runtime's import names on Windows, branch `claude/port-windows-imports`; lifter: arguments the byte-identical lifts dropped, branch `claude/lifter-passthrough`; port: the Windows wide-text helpers, #229; the Windows compile check, #225; port M1: boot-match round 2 and the boot past the game's main function, branch `claude/port-m1-game-main`; the boot-match batch and the boot past the system start-up, #223; port M1 step 4: runtime stubs and the data loader, #201, #203, #206; hub batches 3 and 4, var-flotsam/dread-decomp#195 and #197; the TU helper fold, #196; the shader packages, #198; boot hubs round 1, #199; port M2's shader build step and NVN binding layer, #202 and #204, and its drawing part, branch `claude/port-nvn-draw`; hub batch 5, #207; hub batch 6, branch `claude/hub-batch-6`; boot hubs round 2, branch `claude/boot-hubs-2`).
+**Last updated 2026-10-28** (port M1 round 3: the static initialisers, one heap, the full lift set, branch `claude/port-m1-round3`; port: the runtime's import names on Windows, branch `claude/port-windows-imports`; lifter: arguments the byte-identical lifts dropped, branch `claude/lifter-passthrough`; port: the Windows wide-text helpers, #229; the Windows compile check, #225; port M1: boot-match round 2 and the boot past the game's main function, branch `claude/port-m1-game-main`; the boot-match batch and the boot past the system start-up, #223; port M1 step 4: runtime stubs and the data loader, #201, #203, #206; hub batches 3 and 4, var-flotsam/dread-decomp#195 and #197; the TU helper fold, #196; the shader packages, #198; boot hubs round 1, #199; port M2's shader build step and NVN binding layer, #202 and #204, and its drawing part, branch `claude/port-nvn-draw`; hub batch 5, #207; hub batch 6, branch `claude/hub-batch-6`; boot hubs round 2, branch `claude/boot-hubs-2`).
 Target: **Metroid Dread 2.1.0**, `main` build ID `646761F643AFEBB379EDD5E6A5151AF2CEF93DC1`.
 
 ## Start here
@@ -50,14 +50,14 @@ Target: **Metroid Dread 2.1.0**, `main` build ID `646761F643AFEBB379EDD5E6A5151A
 | Generators: lifted, statics, clones, tables | **In maintenance.** `src/lifted/` 46,443 functions (2026-10-27, with argument pass-through); `src/reflection_statics/`, `src/clones/`, `src/tables/`. The lifter is at its limit for byte-identical output (see the journal); no new variant rounds |
 | 4.4 Core engine types and hand matching | **In progress.** String ids and pool, `UnkVector`, CRC64, allocator getter, reflected-function array; hand slices in `src/game_*/` (0.76 MB typed) |
 | 4.5 Boot to title screen | **Measured, not started as a slice.** 4,441 functions reachable from `nnMain` by direct calls; see the table below |
-| Port | **M0 done** (var-flotsam/dread-decomp#183): `tools/port_sweep.py` compiles all 3,808 `src/` files for x86-64 once `port/runtime/include` stands in for the SDK headers; `port/` CMake project with `dread_game`, `dread_runtime` (our own `nn::` declarations and stubs) and the banner executable. **M1 steps 1 and 2 done** (2026-10-25, var-flotsam/dread-decomp#186 and the vendored-libraries step): `tools/port_link.py` links the whole program, Lua and dlmalloc included, relocatably and lists what is missing (2,157 boot-slice functions without a source). **M1 step 3 done** (2026-10-25): `tools/port_lift.py` gives 1,777 of the slice's 2,148 `U` functions a semantic lift checked by a P-code oracle (`build/port/lifted/`, never `src/`); with them 380 slice functions are left without a source; the gaps step raises that to 1,941 lifts and 216 left. **M2 started** (2026-10-26, #202, #204): the `shaders` build step (all 1,342 stages to SPIR-V, checked against NVN's reflection) and `port/nvn/`, the NVN shim's binding layer over Vulkan, compile-checked. **The Linux executable** (2026-10-26, #214, Docker): on 2026-10-27 the boot runs `nninitStartup`, every static initialiser, `nnMain`, the system start-up and the game's main function `fn_7100000980` into the start-up `fn_7100015c70`, where it reaches functions without a source (127 by direct calls from the boot's run-time roots, more through pointers). **Windows: compile only** (2026-10-27): all 3,979 sources compile with llvm-mingw (`port_sweep.py --target x86_64-w64-mingw32`); Linux stays the only running target until the title screen |
+| Port | **M0 done** (var-flotsam/dread-decomp#183): `tools/port_sweep.py` compiles all 3,808 `src/` files for x86-64 once `port/runtime/include` stands in for the SDK headers; `port/` CMake project with `dread_game`, `dread_runtime` (our own `nn::` declarations and stubs) and the banner executable. **M1 steps 1 and 2 done** (2026-10-25, var-flotsam/dread-decomp#186 and the vendored-libraries step): `tools/port_link.py` links the whole program, Lua and dlmalloc included, relocatably and lists what is missing (2,157 boot-slice functions without a source). **M1 step 3 done** (2026-10-25): `tools/port_lift.py` gives 1,777 of the slice's 2,148 `U` functions a semantic lift checked by a P-code oracle (`build/port/lifted/`, never `src/`); with them 380 slice functions are left without a source; the gaps step raises that to 1,941 lifts and 216 left. **M2 started** (2026-10-26, #202, #204): the `shaders` build step (all 1,342 stages to SPIR-V, checked against NVN's reflection) and `port/nvn/`, the NVN shim's binding layer over Vulkan, compile-checked. **The Linux executable** (2026-10-26, #214, Docker): on 2026-10-27 the boot runs `nninitStartup`, every static initialiser, `nnMain`, the system start-up and the game's main function `fn_7100000980` into the start-up `fn_7100015c70`, where it reaches functions without a source; on 2026-10-28, with the lifter's full lift set and the game's static initialisers run before `nnMain` (2,759 of 2,760), it gets there again with traps logged, and `nn::atk`, which the initialisers call, is the open decision. **Windows: compile only** (2026-10-27): all 3,979 sources compile with llvm-mingw (`port_sweep.py --target x86_64-w64-mingw32`); Linux stays the only running target until the title screen |
 
-Numbers from `tools/progress.py` and `tools/progress.py --slice boot` on 2026-10-27 (the lifter's
-pass-through regeneration, branch `claude/lifter-passthrough`, after #224 and #225):
+Numbers from `tools/progress.py` and `tools/progress.py --slice boot` on 2026-10-28 (port M1
+round 3, branch `claude/port-m1-round3`):
 
 | Scope | Functions counted | Bytes | `O` matching | `O`+`m` usable | `U` left |
 |---|---|---|---|---|---|
-| Whole binary (library `L` excluded) | 102,398 | 18.77 MB | **54.54%** (85,005; lifter pass-through, 2026-10-27) | 56.91% | 17,007 functions, 8.09 MB |
+| Whole binary (library `L` excluded) | 102,398 | 18.77 MB | **54.55%** (85,016; port M1 round 3, 2026-10-28) | 56.92% | 16,995 functions, 8.08 MB |
 | Boot slice (reachable from `nnMain`, direct calls only) | 4,308 | 1.71 MB | **29.41%** (2,025; lifter pass-through, 2026-10-27) | 39.31% | 2,126 functions |
 
 Of the 10.1 MB matched, about 9.4 MB is generated (reflection boilerplate, lifted `char*` code,
@@ -483,25 +483,32 @@ print their address and return addresses (`port/runtime/src/fault.cpp`). Boot-ma
 functions the boot then reached by direct calls from its run-time roots (`nnMain`'s three callbacks
 and main's four), 95 `O` and 47 `m`. It also stubbed `nn::nfp` (26 of 26). The boot now runs into
 the start-up `fn_7100015c70`; under `DREAD_TRAP=log` six functions without a source come first,
-then a null dereference in lifted code after one of them returned 0. Next for M1: round 3,
-the 127 functions on the same roots' static list (74 KB, the scratch script of round 2 over the new
-`traps.s`) and the ones reached through pointers (`fn_7100075730`, `fn_710008a460`,
-`fn_710002f0dc`, `fn_71000666b0`, found by running), the same workflow; then follow the traps.
-Two blockers come from the lifted code itself, not from missing functions:
-- **Dropped arguments.** Byte-identical lifts dropped arguments at their call sites (277 boot-path
-  callers) and in their definitions (164 on the boot path), and `tools/abi_facts.py` under-counted
-  216 functions (capstone's alias bug). The lifter's pass-through regeneration (2026-10-27) leaves
-  103 functions, 10 on the boot path (`build/port/passthrough.json`); their semantic lifts carry
-  `"overrides"` in port_lift's manifest, which port_link has to honour (stream M). Until it does,
-  write a trapped path's callers by hand, as unit 167's wrappers were
-  (`src/engine/UnkGraphicsApi.cpp`).
-- **Split statics.** Function-local statics of header-inline functions are executable symbols on
-  the port, while lifted code uses the image's. Bind them to the image with `--defsym` from
-  `tools/port_addresses.py`'s harvest.
+then a null dereference in lifted code after one of them returned 0.
 
-`nn::audio` (6 reached through lifted code) still needs stubs, and also the game globals that a
-matched file defines itself while other code reaches them by address (`port/README.md`, "Game data
-defined by the sources").
+Round 3 (2026-10-28, branch `claude/port-m1-round3`, journal) changed the port's foundations
+rather than adding functions:
+- **The lifts:** linked with `build/port/lifted_all` (the lifter's `--slice all`: 15,447 of the
+  16,105 `U` functions, with 95 overrides of `src/lifted` copies that drop arguments, wired by
+  #226).
+- **Static initialisers:** the game's 2,760 now run before `nnMain` in `.init_array` order
+  (`tools/port_link.py`'s `dread_port_initialisers`); before, nothing ran them.
+- **One heap:** the game's own `operator new`/`delete` and `malloc` family have sources, and the
+  runtime's C++ operators allocate from the game's allocator (`port/runtime/src/heap.cpp`).
+- **Statics:** 4,242 function-local statics of inline functions are bound to the image.
+- **Mangled names:** constructors under mangled names take the address their matched callers use.
+- **Sources:** the pack device unit (`CPackManagerDevice`, 12 functions), and the static
+  initialisers of units 0 to 3 that the `runtime?` inference marked `L`.
+
+With traps logged the boot now runs 2,759 of 2,760 static initialisers and `nnMain` into the
+start-up `fn_7100015c70`, then dereferences null in lifted code (`fn_71000a4b60`). Next for M1:
+- **`nn::atk` (owner's decision, `docs/PORT_PLAN.md`).** The static initialisers call 10 of its
+  functions (`L`, no source or lift: `fn_7101205470`, `fn_7101206894`, ...), and its own
+  initialiser `fn_71012063d0` is skipped. Stub the entry points as a silent sound engine, or lift
+  them.
+- **Two game functions without a lift:** `fn_7100001be8` (728 B, rejected: a register read before
+  definition) and `fn_7100153a90` (44 B, inconclusive). Hand-match them, then follow the traps.
+- `nn::audio`, `nn::detail`, `nn::os` and `nn::util` imports that the full lift set reaches still
+  need stubs (`link.json`).
 M2 groundwork (2026-10-26, branch `claude/port-bshdat`): `tools/bshdat.py --version 2.1.0
 --compile` parses the 478 shader packages, extracts the 671 programs' 1,342 GLSL sources and the
 compiler's reflection to `build/shaders/2.1.0/`, and compiles 1,341 stages to OpenGL and Vulkan

@@ -88,3 +88,29 @@ void* fn_7100083a70(void* ptr, u64 size) {
 void* fn_7100083ba0(u64 size, u32 flags) {
     return s_current->vf_0x40(size, 8, flags);
 }
+
+// operator new and operator new[].
+void* fn_7100083b60(u64 size) {
+    return s_current->vf_0x40(size, 8, 2);
+}
+
+void* fn_7100083b80(u64 size) {
+    return s_current->vf_0x40(size, 8, 2);
+}
+
+// Allocates from `allocator`, or from the default one without it.
+void* fn_7100083bc0(u64 size, u32 flags, u64 align, base::UnkAllocator* allocator) {
+    if (allocator)
+        return allocator->vf_0x40(size, align, flags);
+    return s_current->vf_0x40(size, align, flags);
+}
+
+// operator delete (nothing before the allocator exists) and operator delete[].
+void fn_7100083c00(void* ptr) {
+    if (s_current)
+        s_current->vf_0x48(ptr);
+}
+
+void fn_7100083c30(void* ptr) {
+    s_current->vf_0x48(ptr);
+}

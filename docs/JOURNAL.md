@@ -91,6 +91,9 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - The NVN globals `g_unk_716e29xxxx` are named by the loader's GOT slots and their relative relocations (`data/nvn_procs.csv`); count GOT-slot call sites with a short window, not adjacent pairs; never write into a game-owned NVN object's storage: [NVN shim's start-up path](#session-log-newest-first).
 
 **Port: runtime and loader**
+- The game's static initialisers are plain `fn_<addr>` functions that `.init_array` calls; a port that links them as code runs none of them until something calls the table (`dread_port_initialisers`): [port M1 round 3](#session-log-newest-first).
+- The game defines its own `operator new`/`delete` and `malloc` family over its allocator: route them by address to the game's code and the C++ names to a runtime heap that frees each pointer where it came from: same entry.
+- A constructor or destructor under its mangled C1/D1 name has no address in its name; the byte-matching callers' relocation targets give it: same entry.
 - The engine's thread object puts `ThreadType` at +0, light events at +0x1c0 and +0x1cc: the SDK's thread block is 0x1c0 bytes, a light event 12; event clear mode 1 is auto clear: [port M1 step 4](#session-log-newest-first).
 - main's 146,684 dynamic relocations: every slot in `.data`, 128,576 relative ones into `.text` (vtables, callbacks), every symbol relocation an import; the game's vtables are used as they are, so the port needs the Itanium C++ ABI (not MSVC): same entry.
 - A freestanding core builds into a Windows DLL with clang, `lld-link /noentry /nodefaultlib` and a `kernel32.lib` from `llvm-dlltool`: no SDK needed to test it from Python: same entry.
@@ -174,6 +177,35 @@ This round takes the largest gaps first:
   - median coverage 87%.
 
   Byte mode is unchanged: `gen_lift.py --add` on 6,000 candidates leaves `src/lifted/` as it is.
+
+**Port M1 round 3: the port's foundations (2026-10-28, branch `claude/port-m1-round3`).** The
+lifter's new lifts (#227-#233; `build/port/lifted` for the boot slice, then `lifted_all` for every
+`U` function: 15,447 of 16,105 accepted, 95 overrides) took the boot past round 2's stops. What
+stopped it next was the port, not missing functions:
+- **The pack device.** `base::file::CPackManagerDevice` (unit 66) is reached through its vtable, so
+  no worklist had it: 12 functions matched by a workflow (11 `O`, one `m` checked by a skeptic).
+- **Two heaps.** The game defines its own `operator new`/`delete` and `malloc`/`free` over its
+  default allocator, and the port linked them to the host's, so glibc's `free` got a block of the
+  game's heap (`munmap_chunk(): invalid pointer`, in a deleting destructor). They now have sources
+  (nine `O`, `realloc` `m`), and the runtime's replaceable C++ operators allocate through the game's
+  allocator once it exists and free each pointer where it came from (`port/runtime/src/heap.cpp`).
+- **Statics split.** The link binds 4,242 function-local statics and guards of inline functions to
+  the image (`--defsym` over the weak definition, both or neither; see the README).
+- **Constructors without an address.** A definition under its mangled C1 name (which Clang 9
+  aliased to `fn_<addr>`) now takes the address its byte-matching callers reach it at: 54, among
+  them `CFilePathStrId`'s constructor `fn_71000166c8`.
+- **No static initialisers ran.** The game's 2,760 initialisers are plain `fn_<addr>` functions
+  (none is a C++ `_GLOBAL__sub_I`) that `.init_array` calls on the console. On the port nothing
+  called them, which a null default id showed. The port's main now runs them in order before
+  `nnMain` (`dread_port_initialisers`), skipping the ones without a source. Four of those were the
+  game's, marked `L` by the `runtime?` inference (units 0 to 3: the empty string and file-path ids,
+  the start record "samus"/"StartPoint0"): matched (4 `O`, one `m`).
+
+The fault handler reports aborts and names the C library's frames. With traps logged the boot now
+runs 2,759 of 2,760 initialisers and `nnMain` into the start-up, then dereferences null in lifted
+code. Ten `nn::atk` functions the initialisers call trap (`L`, the owner's decision, M4). So do two
+game functions the lifter could not lift (`fn_7100001be8` rejected, `fn_7100153a90`
+inconclusive).
 
 **Lifter: the oracle's inputs (2026-10-27, branch `claude/lifter-oracle-inputs`).** The first
 oracle ran six seeds per function and accepted a lift when every conclusive run agreed. Its reach

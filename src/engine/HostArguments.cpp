@@ -529,3 +529,33 @@ void fn_7100000d40() {
     }
     fn_71000ebad0(g_unk_7101d472f8);
 }
+
+
+#include "base/UnkAtExit.h"
+
+// The unit's static initialiser (fn_7100001390): the global empty string id g_unk_7101d470e0
+// (base/global/CStrId.h), set to the pool's empty entry behind the guard word after it (an inline
+// variable's: the low byte is tested, the word set to 1), and destroyed by fn_710000051c at exit.
+extern u64 g_unk_7101d470f0;
+
+void fn_7100001390() {
+    if (!(*reinterpret_cast<u8*>(&g_unk_7101d470f0) & 1)) {
+        g_unk_7101d470e0.data = nullptr;
+        if (!g_unk_7101d47108)
+            base::global::UnkEnsureStringPool();
+        g_unk_7101d470e0.data = &g_unk_7101d47108->empty;
+        fn_7100000250(fn_710000051c, &g_unk_7101d470e0, g_unk_7101a19000);
+        g_unk_7101d470f0 = 1;
+    }
+}
+
+#include "game/UnkStartPoint.h"
+
+// The start record's destructor (game/UnkStartPoint.h), which unit 2's initialiser registers.
+void fn_7100000584(UnkStartPoint* self) {
+    fn_710007ecd4(&self->field_0xc8);
+    fn_710007ecd4(&self->start_point);
+    fn_710007ecd4(&self->character);
+    fn_710007ecd4(&self->field_0x38);
+    fn_710007ecd4(&self->field_0x8);
+}
