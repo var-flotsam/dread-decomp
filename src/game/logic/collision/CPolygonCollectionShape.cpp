@@ -315,6 +315,59 @@ UnkContact fn_7100d63c74(UnkShape10* self, const UnkShape8Geometry* shape, UnkLo
     return v.result;
 }
 
+// A tree leaf's edge handle: its polygon and edge, or none (0xfffffff) for an inner node.
+static inline u32 LeafHandle(const UnkTreeNode* node) {
+    return node->next < 0 ? (u32)node->next & 0x7ffffff : 0xfffffff;
+}
+
+// The points a pair test finds (as in src/game/UnkCollisionContacts.cpp).
+template <u32 N>
+struct UnkContactBuffer {
+    u32 count;
+    UnkContactPoint points[N];
+};
+
+// The edge of a handle (fn_710012436c, returned in memory), the type-8 shape's pair test against a segment
+// (fn_7100129910) and the polygon of a handle (fn_710012431c, src/game_s7/fn_710012431c.cpp).
+UnkSegment2D fn_710012436c(const UnkPolygonCollection2D* polygons, u32 handle);
+bool fn_7100129910(const void* b, const UnkShape8Geometry* a, UnkContactBuffer<4>* out, bool flag);
+struct UnkPool_0x48;
+struct UnkStruct_0x48;
+UnkStruct_0x48* fn_710012431c(UnkPool_0x48* pool, u32 handle);
+
+// The type-8 shape against a leaf's edge: every point found is reported to the query's sink (with
+// no sink, the first stops the walk). False when the walk is to stop.
+// NON_MATCHING(minor): the frame is 0x10 bytes larger (the original keeps the edge and the hit in
+// one slot), the result stays in a register through the loop and the loop is rotated.
+bool fn_7100d668d4(UnkLeafVisitor<UnkShape8Geometry, bool>* self, const UnkTreeNode* node) {
+    // Against one segment the test finds at most two points: the buffer has room for two only
+    // (fn_7100129910's declaration in src/game/UnkCollisionContacts.cpp names a four-point one).
+    UnkContactBuffer<2> found;
+    found.count = 0;
+    bool hit;
+    {
+        const auto* polygons = static_cast<const UnkPolygonCollection2D*>(self->query->field_0x18);
+        UnkSegment2D edge = fn_710012436c(polygons, LeafHandle(node));
+        hit = fn_7100129910(&edge, self->shape, reinterpret_cast<UnkContactBuffer<4>*>(&found), self->extra);
+    }
+    if (hit && !(self->result.value & 2)) {
+        for (const UnkContactPoint* p = found.points; p != found.points + found.count; ++p) {
+            UnkLocalQuery* query = self->query;
+            if (!query->field_0x20) {
+                self->result.value |= 3;
+            } else {
+                auto* pool = reinterpret_cast<UnkPool_0x48*>(const_cast<void*>(query->field_0x18));
+                const auto* polygon = reinterpret_cast<const UnkPolygon2D*>(fn_710012431c(pool, LeafHandle(node)));
+                UnkPolygonHit h{polygon, LeafHandle(node), *p};
+                self->result.value |= query->vf_0x10(h).value;
+            }
+            if (self->result.value & 2)
+                break;
+        }
+    }
+    return !(self->result.value & 2);
+}
+
 bool fn_7100d66a4c(UnkLeafVisitor<UnkCircle2D, bool>* self, const UnkTreeNode* node);
 UnkContact fn_7100d64270(UnkPolygonCollection2D* self, const UnkCircle2D* circle, bool flag,
                          UnkLocalQuery* query);
