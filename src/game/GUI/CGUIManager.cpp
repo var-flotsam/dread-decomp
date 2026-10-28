@@ -7,6 +7,7 @@
 // those of src/game/UnkObjectFileRead.cpp (the same names and layouts). Names and layouts are
 // placeholders.
 #include "base/UnkCloneHelpers.h"
+#include "base/UnkParentPoolList.h"
 #include "base/UnkHashStream.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CRntString.h"
@@ -411,52 +412,13 @@ void fn_71011b9ce4(UnkGuiRoot* root, const UnkStrPair_0x10* path) {
 
 // ---- fn_71011b250c: a pooled container's constructor ----
 
-// A container whose 0x18-byte nodes come from an embedded block pool (base/UnkCloneHelpers.h's
-// UnkBlockPool), as UnkPoolList lays it out but with the flags before the allocator and an
-// optional parent for the pool at +0x30. Built by fn_71011b1f30.
-struct UnkGuiPoolList {
-    char* vtable;
-    u32 count;
-    void* head;
-    void* tail;
-    u32 flags;
-    base::UnkAllocator* allocator;
-    base::UnkAllocator* pool_parent;  // the pool's parent when set, else the allocator
-    base::UnkBlockPool pool;
-};
-static_assert(sizeof(UnkGuiPoolList) == 0x78, "UnkGuiPoolList placeholder layout");
-
+// A container of 0x18-byte nodes over an embedded block pool (base/UnkParentPoolList.h). Built by
+// fn_71011b1f30.
 extern char unk_7101cb58a8[];  // the base part's vtable (reached through the GOT)
 extern char unk_7101cb5888[];  // the container's vtable (reached through the GOT)
 
-void fn_71011b250c(UnkGuiPoolList* self, u32 n, u32 /*unused*/, u32 flags, base::UnkAllocator* a) {
-    self->vtable = unk_7101cb58a8 + 0x10;
-    self->count = 0;
-    self->flags = flags;
-    self->head = nullptr;
-    self->tail = nullptr;
-    if (!a)
-        a = fn_7100083990();
-    self->allocator = a;
-    self->pool_parent = nullptr;
-    self->vtable = unk_7101cb5888 + 0x10;
-    self->pool.Init();
-    base::UnkAllocator* parent = self->pool_parent;
-    self->pool.field_0x38 = 0;
-    self->pool.field_0x3c = false;
-    if (!parent)
-        parent = self->allocator;
-    u32 f = self->flags;
-    self->pool.Release();
-    if (n) {
-        if (!parent)
-            parent = fn_7100083990();
-        self->pool.parent = parent;
-        u64 size = (u64)n * 0x18;
-        fn_710008378c(&self->pool.blocks, parent->vf_0x40(size, 8, f), size, 0x18);
-    }
-    // The pool's address, formed as an integer (as in UnkPoolList::Init).
-    self->allocator = reinterpret_cast<base::UnkAllocator*>(reinterpret_cast<u64>(self) + 0x38);
+void fn_71011b250c(UnkParentPoolList* self, u32 n, u32 /*unused*/, u32 flags, base::UnkAllocator* a) {
+    refl_ParentPoolListCtor<0x18, unk_7101cb58a8, unk_7101cb5888>(self, n, flags, a);
 }
 
 // ---- fn_71011ba714: the skin file ----
