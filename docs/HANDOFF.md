@@ -28,6 +28,7 @@ Target: **Metroid Dread 2.1.0**, `main` build ID `646761F643AFEBB379EDD5E6A5151A
 | Generators | **In maintenance.** `src/lifted/` 46,443 functions; the lifter's byte mode is at its limit |
 | Hand matching (Phase 4.4) | **In progress.** Hub-first along the boot path; 156 conflicting declarations left (`tools/decl_check.py --list`) |
 | Port M0, M1 steps 1-4 | **Done.** Compile sweep, whole-program link, semantic lifts with the P-code oracle, runtime stubs, data loader |
+| Semantic lifts (`build/port/lifted`) | **2,134 of the boot slice's 2,220 functions without a source accepted** (1.15 MB of 1.26 MB; oracle median coverage 85%); 86 left, 95 more override `src/lifted` copies that lose arguments (journal, "the oracle's inputs") |
 | Port, Linux executable | **Boots into `fn_7100015c70`.** Through `nninitStartup`, the static initialisers, `nnMain` and the game's main, where it reaches functions without a source |
 | Port M2 (graphics) | **Shim complete for the start-up.** All 1,342 shader stages to SPIR-V; all 146 NVN functions the game calls; all 671 programs drawn on lavapipe |
 | Windows | **Compile only.** All sources compile with llvm-mingw; Linux stays the one running target until the title screen |
@@ -65,7 +66,7 @@ The full per-stream lists as of 2026-10-27 are in the journal, "Handoff next-ste
 | C. Gameplay slice | `src/game/`, `include/game/` | `claude/game-<topic>` | After the title screen |
 | D. Port layer | `port/` | `claude/port-<topic>` | M1 round 3: the 127 functions on the run-time roots' static list, then follow the traps; M2: alpha test, Vulkan surface, texel upload |
 | E. Tooling | `tools/`, `.github/` | `claude/tools-<topic>` | Boot trace from Eden's GDB stub; subsystem inference from `tu_map.csv`; directory moves by unit |
-| M. Generators | `tools/gen_*.py`, generated `src/` directories | `claude/gen-<topic>`, `claude/lifter-<topic>` | The lifter's semantic gaps, the oracle's inputs, both port_lift slices |
+| M. Generators | `tools/gen_*.py`, generated `src/` directories | `claude/gen-<topic>`, `claude/lifter-<topic>` The run over every `U` function (`port_lift.py --slice all`), then its largest gaps: 16-byte results, indirect calls with stack arguments, inputs that crash or loop on every seed |
 
 Merging: merge `main` into the branch, take `main`'s `data/functions/*.csv`, rerun only the generator you
 own, then `tools/check.py --update` (`tools/verify.py --regen <generator>` does both). Before the PR:

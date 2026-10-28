@@ -370,12 +370,13 @@ class State:
         self.cmp: tuple | None = None
         self.retk: int | None = None               # the last written of x0 (0) and s0/d0 (100)
         self.fcall: tuple | None = None            # the last call, while its result may be a float
+        self.x8w = False                           # x8 set to a local since the last call (semantic mode)
 
     def copy(self) -> "State":
         s = State()
         s.vals, s.pages, s.consts = dict(self.vals), dict(self.pages), dict(self.consts)
         s.poison, s.called, s.written, s.cmp = set(self.poison), self.called, set(self.written), self.cmp
-        s.retk, s.fcall = self.retk, self.fcall
+        s.retk, s.fcall, s.x8w = self.retk, self.fcall, self.x8w
         return s
 
 
@@ -457,6 +458,8 @@ class Lifter:
             return "0", width_type(r)
         n = self.key(r)
         s = self.s
+        if n == 8:
+            s.x8w = False  # (x8 read before an indirect call: a value, not a result address)
         if n in s.pages and n not in s.poison and "semantic" in self.opts and r[0] == "x":
             return self.global_ref(s.pages[n], False), "char*"  # a bare page: its address
         if n in s.pages or n in s.poison:
@@ -527,6 +530,8 @@ class Lifter:
             s.consts[n] = const
         if n <= 7 or 100 <= n <= 107:
             s.written.add(n)
+        if n == 8:
+            s.x8w = LOCAL_ADDR.fullmatch(e) is not None  # (an indirect callee may build its result there: Lifter.step)
 
     # -- control flow -------------------------------------------------------------------------
 
@@ -570,6 +575,7 @@ class Lifter:
         m.written = a.written | c.written
         m.cmp = None
         m.fcall = None  # lines are inserted below: recorded line numbers would move
+        m.x8w = a.x8w and c.x8w
         m.retk = a.retk if a.retk == c.retk else None
         m.poison = a.poison | c.poison
         m.pages = {n: p for n, p in a.pages.items() if c.pages.get(n) == p}
@@ -863,6 +869,24 @@ class Lifter:
             elif 100 <= k < 108:
                 self.read(f"{self.fwidth.get(k, 'd')}{k - 100}")
 
+    def stack_args_before(self) -> bool:
+        """A store to [sp] in the straight-line code before this instruction (back to the last
+        call or branch), with sp's own address not taken there: the first stack argument of a
+        call. An indirect callee has no facts, so its stack arguments would be dropped."""
+        for x in reversed(self.ins[:self.pos]):
+            m, o = x.mnemonic, x.operands
+            if m in ("bl", "blr", "b", "br", "ret", "cbz", "cbnz", "tbz", "tbnz") or m.startswith("b."):
+                return False
+            if m in ("mov", "add") and len(o) >= 2 and o[1].type == arm64.ARM64_OP_REG and regname(o[1].reg) == "sp" \
+                    and (len(o) == 2 or (o[2].type == arm64.ARM64_OP_IMM and o[2].imm == 0)):
+                return False  # (a local at sp, passed by its address)
+            mem = [op for op in o if op.type == arm64.ARM64_OP_MEM]
+            if m.startswith(("str", "stp", "stur")) and mem and regname(mem[0].mem.base) == "sp" \
+                    and 0 <= mem[0].mem.disp < 8 and not x.writeback \
+                    and self.cur_delta + mem[0].mem.disp not in self.save_slots:  # (not a register save)
+                return True
+        return False
+
     def callee_need(self, fn: str) -> tuple[int, int]:
         """The argument registers a direct callee reads (abi_facts), so the call names them all.
         Semantic mode does not support a callee that takes its result address in x8 or arguments
@@ -960,6 +984,7 @@ class Lifter:
         s.written = set()
         s.called = True
         s.cmp = None
+        s.x8w = False
 
     # -- driver -------------------------------------------------------------------------------
 
@@ -1855,6 +1880,22 @@ class Lifter:
             self.sret_call(f"fn_{o[0].imm:x}")
             self.clobber()
             self.s.written = set()
+        elif m == "blr" and "semantic" in self.opts and self.stack_args_before():
+            raise Unsupported("indirect call with stack arguments")
+        elif m == "blr" and "semantic" in self.opts and self.s.x8w and regname(o[0].reg) != "x8":
+            # An indirect callee given a local in x8 builds its result there (the original reads it
+            # back): as sret_call, through the pointer.
+            ptr, _ = self.read(regname(o[0].reg))
+            self.s.written.discard(self.key(regname(o[0].reg)))
+            x8, _ = self.read("x8")
+            args = self.args(self.callee_need(""))
+            types, values = ", ".join(t for _, t in args), ", ".join(e for e, _ in args)
+            self.decls.add(LIFT_AT)
+            self.line(f"new ((void*)({x8}), lift_at_t{{}}) UnkResult(((UnkResult (*)({types}))({ptr}))({values}));")
+            self.clobber()
+            self.s.written = set()
+            if hasattr(self, "clob"):
+                self.clob.add(0)  # (x0 holds no result: a read means the callee returned one there)
         elif m in ("bl", "blr"):
             if m == "bl":
                 call = self.call(f"fn_{o[0].imm:x}")
@@ -1886,6 +1927,7 @@ class FlatLifter(Lifter):
         self.vtemps: list[str] = []  # semantic mode: snapshots of values a pending compare reads (their types)
         self.flag_vars = False  # semantic mode: NZCV kept in locals (store_flags)
         self.flags_bad = False  # ... except after a compare whose flags could not be written out
+        self.clob: set[int] = set()  # semantic mode: caller-saved registers a call left, unwritten (clobber)
 
     def store_flags(self) -> None:
         """Semantic mode: NZCV of the compare just made, in locals, for a condition read in another
@@ -2038,6 +2080,10 @@ class FlatLifter(Lifter):
             return "0", width_type(r)
         n = self.key(r)
         s = self.s
+        if n == 8:
+            s.x8w = False  # (x8 read before an indirect call: a value, not a result address)
+        if n in self.clob:
+            raise Unsupported("caller-saved register read after a call")
         if n in s.pages:
             if "semantic" in self.opts and r[0] == "x":
                 return self.global_ref(s.pages[n], False), "char*"  # a bare page: its address
@@ -2089,6 +2135,7 @@ class FlatLifter(Lifter):
             return
         if "semantic" in self.opts:
             self.keep_compare(n)
+        self.clob.discard(n)
         if n >= 100:
             self.line(f"{self.storage(n, t)} = {e};")
         else:
@@ -2106,6 +2153,8 @@ class FlatLifter(Lifter):
             s.consts[n] = const
         if n <= 7 or 100 <= n <= 107:
             s.written.add(n)
+        if n == 8:
+            s.x8w = LOCAL_ADDR.fullmatch(e) is not None  # (an indirect callee may build its result there: Lifter.step)
 
     def has_value(self, n: int) -> bool:
         return n in self.types
@@ -2126,6 +2175,12 @@ class FlatLifter(Lifter):
         s.written = set()
         s.called = True
         s.cmp = None
+        s.x8w = False
+        if "semantic" in self.opts:
+            # The caller-saved registers hold garbage now (or a result the call does not name,
+            # x1 of a 16-byte one), while their locals keep what they held: read() refuses them
+            # until written, in this straight line of code (a label forgets it: other paths).
+            self.clob = set(range(1, 19)) | set(range(101, 108)) | set(range(116, 132))
 
     def lift(self) -> tuple[str, set[str]] | None:
         orig, addr = self.orig, self.addr
@@ -2161,6 +2216,8 @@ class FlatLifter(Lifter):
                     self.body.append(f"L_{x.address:x}:;")
                     self.s.cmp = None if x.address != addr else self.s.cmp
                     self.s.fcall = None
+                    self.clob = set()
+                    self.s.x8w = False
                 if self.pos:
                     self.frame_reset(ins[self.pos - 1])
                 if self.frame_op(x) or self.guard_step(x):
@@ -2170,7 +2227,7 @@ class FlatLifter(Lifter):
                     v = None
                     if 100 in self.types and (self.s.retk == 100 or 0 not in self.types):
                         v = self.read("s0" if self.types[100] == "f32" else "d0")
-                    elif 0 in self.types:
+                    elif 0 in self.types and 0 not in self.clob:  # (x0 after an x8-result call: none)
                         v = self.read("x0")
                     self.terminate("value", v)
                 elif m == "b" and not addr <= o[0].imm < end and self.sret_callee(o[0].imm):
@@ -2295,6 +2352,7 @@ HEADER = ['#include "types.h"', '#define HIDDEN __attribute__((visibility("hidde
 
 # Placement new without <new>, for a callee's x8 result built where x8 points (Lifter.sret_call). A
 # definition, so a generated file holds it once (write_out), not once per function using it.
+LOCAL_ADDR = re.compile(r"\(stk \+ 0x[0-9a-f]+\)")  # Lifter.local's form: a local's address
 LIFT_AT = ("struct lift_at_t {}; inline void* operator new(decltype(sizeof 0), void* p, lift_at_t) "
            "noexcept { return p; }")
 
