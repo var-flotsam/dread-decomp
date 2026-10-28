@@ -51,7 +51,7 @@ import callgraph  # noqa: E402
 
 MAX_SIZE = 65536
 # result_shape's and result_main's analysis (their cache is kept apart: a change does not cost the table)
-SHAPE_VERSION = 3
+SHAPE_VERSION = 4
 CACHE_VERSION = 10  # bump when the analysis changes (AbiFacts.load ignores other versions)
 MAX_DEPTH = 48  # callee recursion; deeper chains count as unknown
 INT_ARGS = frozenset(range(9))  # x0-x7 and x8
