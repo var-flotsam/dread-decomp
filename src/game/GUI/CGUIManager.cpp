@@ -535,3 +535,78 @@ void fn_71011ba714(UnkGuiRoot* root, const UnkStrPair_0x10* path) {
     }
     fn_710007c0e4(&reader.file);
 }
+
+// ---- fn_71011b8dc4: the third container file ----
+
+// The root's third container (a std::unique_ptr at +0x38; its type is fn_71011b1b28): an array of
+// words.
+const base::reflection::CType* fn_71011b1b28();
+using UnkWordArray = base::UnkVector<u64>;
+
+struct UnkOwnedWords {
+    UnkWordArray* ptr = nullptr;
+
+    ~UnkOwnedWords() {
+        UnkWordArray* p = ptr;
+        ptr = nullptr;
+        if (p) {
+            if (p->data) {
+                p->count = 0;
+                p->allocator->vf_0x48(p->data);
+            }
+            operator delete(p);
+        }
+    }
+};
+
+static inline UnkWordArray*& Words(UnkGuiRoot* root) {
+    return *reinterpret_cast<UnkWordArray**>(reinterpret_cast<char*>(root) + 0x38);
+}
+
+// Reads the file `path` names into the third container: the first one read becomes the root's,
+// later ones are appended to it (fn_71011b9ce4's twin).
+// NON_MATCHING(major): written from the original's behaviour, not compared instruction by instruction.
+void fn_71011b8dc4(UnkGuiRoot* root, const UnkStrPair_0x10* path) {
+    UnkOwnedWords loaded;
+    UnkFileReader reader;
+    fn_710007be8c(&reader.file, 0x16, nullptr);
+    reader.field_0x38 = 3;
+    reader.field_0x3c = 2;
+    bool opened;
+    {
+        base::global::CRntString mode("rb");
+        opened = fn_710007c1ac(&reader, path, &mode);
+    }
+    if (opened)
+        fn_710000ccd8(&reader);
+    UnkReadTarget target;
+    {
+        const base::reflection::CType* type = fn_71011b1b28();
+        base::reflection::UnkReflValue value;
+        value.field_0x0 = nullptr;
+        value.type = nullptr;
+        value.kind = 2;
+        fn_71000a18d4(&value, type, &loaded.ptr, true);
+        fn_71000f0568(&target, &value, 0xc);
+        fn_71000a1c60(&value);
+    }
+    if (reader.file.position < reader.file.size && reader.field_0x38 == 0)
+        Parse(&reader, &target);
+    if (!Words(root)) {
+        UnkWordArray* p = loaded.ptr;
+        loaded.ptr = nullptr;
+        Words(root) = p;
+    } else {
+        s32 n = (s32)loaded.ptr->count;
+        for (s32 i = 0; i < n; ++i)
+            Words(root)->PushBack(loaded.ptr->data[i]);
+    }
+    for (u64 i = 0; i < target.count; ++i) {
+        UnkReadEntry& e = target.entries[i];
+        if (e.ops) {
+            e.ops->destroy(e.storage);
+            e.ops = nullptr;
+        }
+    }
+    fn_710007c0e4(&reader.file);
+}
