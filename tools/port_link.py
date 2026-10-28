@@ -370,8 +370,7 @@ def compile_nvn(cxx: str, flags: list[str], vk_include: Path, out_dir: Path) -> 
         r = subprocess.run([cxx, *flags, *inc, str(src), "-o", str(obj)], capture_output=True, text=True,
                            encoding="utf-8", errors="replace", cwd=ROOT)
         if r.returncode != 0:
-            raise SystemExit(f"nvn: {rel(src)} does not compile:
-{r.stderr}")
+            raise SystemExit(f"nvn: {rel(src)} does not compile:\n{r.stderr}")
         objs.append(obj)
     return objs
 
