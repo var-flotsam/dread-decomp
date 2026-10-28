@@ -4,7 +4,7 @@
 // hand-written files pass it as). Its reflected ids are sLevelID (+0x10) and sScenarioID (+0x18);
 // the scenario's blackboard section is named by the second, mapped through the game manager.
 // Names and layouts are placeholders.
-// Holds fn_71011a2fbc (the section's id), fn_71011a2190 (reads an object file through unit
+// Holds fn_71011a2fbc (the section's id), fn_71011a224c (loads the scenario's collision objects), fn_71011a2190 (reads an object file through unit
 // 2660's reader), fn_71011a2500 (switches to the active collider the blackboard names, or to the
 // default one) and fn_71011a4050 (the scenario's start).
 #include "base/UnkStrIdPathPair.h"
@@ -390,4 +390,83 @@ void fn_71011a4050(UnkGameManagerSub_0x608* scenario) {
             }
         }
     }
+}
+
+// ---- fn_71011a224c: loading the scenario's collision objects ----
+
+#include <new>
+
+#include "game/UnkCollisionRecord.h"
+#include "game_s2/UnkWeakHandle.h"
+
+// The collision file's reader (as src/game/CSubAreaManager.cpp declares it).
+struct UnkCollisionFileReader {
+    u8 unk_0x0[0x18];
+};
+void fn_7100d45fc4(UnkCollisionFileReader* self, void* arg);
+void fn_7100d45fd4(UnkCollisionFileReader* self);
+void fn_7100860830(UnkCollisionFileReader* self, const char* path, base::UnkVector<UnkCollisionRecord>* out,
+                   bool a, void* b);
+
+// The scenario's array of weak references to its collision objects (+0x828; base::UnkVector's
+// layout, Reserve out of line as in src/game/logic/collision/CCollider/fn_7100d407c0.cpp).
+template <class Tag>
+struct UnkRefPtrArray {
+    UnkRefPtr* data;
+    u32 count;
+    u32 capacity;
+    u32 step;
+    bool field_0x14;
+    u32 flags;
+    base::UnkAllocator* allocator;
+};
+struct UnkTag_71007ed25c;
+void fn_71007ed25c(UnkRefPtrArray<UnkTag_71007ed25c>* self, u32 capacity);
+
+struct UnkScenarioColliders {
+    u8 pad_0x0[0x828];
+    UnkRefPtrArray<UnkTag_71007ed25c> colliders;
+};
+
+// Appends a counted copy of `value` (PushBack's growth, including its hang).
+static inline void Append(UnkRefPtrArray<UnkTag_71007ed25c>* self, const UnkRefPtr& value) {
+    u32 n = self->count;
+    u32 c = self->capacity;
+    if (c <= n && self->step != 0)
+        c = (n / self->step + 1) * self->step;
+    if ((s32)c <= (s32)n)
+        for (;;) {
+        }
+    fn_71007ed25c(self, c);
+    UnkRefPtr* slot = &self->data[self->count];
+    slot->field_0x0 = nullptr;
+    AssignRef(&slot->field_0x0, value.field_0x0);
+    ++self->count;
+}
+
+void fn_71011a1d00();
+
+// Clears the scenario's collision objects, reads those of the file at `path` and keeps a weak
+// reference to each, then switches to the active collider (fn_71011a2500).
+// NON_MATCHING(minor): registers and scheduling (the original reloads the array's count before each
+// increment and keeps one more callee-saved register).
+void fn_71011a224c(UnkGameManagerSub_0x608* self, const char* path) {
+    fn_71011a1d00();
+    UnkCollisionFileReader reader;
+    fn_7100d45fc4(&reader, self);
+    base::UnkVector<UnkCollisionRecord> records(7);
+    fn_7100860830(&reader, path, &records, false, nullptr);
+    auto* colliders = &reinterpret_cast<UnkScenarioColliders*>(self)->colliders;
+    for (u64 i = 0; i < records.count; ++i) {
+        auto* object = reinterpret_cast<UnkWeakTarget*>(records.data[i].field_0x28);
+        UnkRefPtr ref;
+        UnkWeakHandle* handle = GetWeakHandle(object);
+        if (handle)
+            ++handle->ref_count;
+        ref.field_0x0 = handle;
+        Append(colliders, ref);
+    }
+    fn_71011a2500(self);
+    records.Free();
+    fn_7100d45fd4(&reader);
 }
