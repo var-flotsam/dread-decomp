@@ -5,6 +5,7 @@
 #    Diffing against the original needs the dump and stays on the self-hosted check job.
 #  - port sweep: every src/ file for x86-64 Linux with the runner's Clang (`tools/port_sweep.py`);
 #    fails when a file does not compile.
+#  - tool tests: tools/tests (unittest), including the ones that need the project compiler.
 #
 # Downloads are open-source releases only (LLVM, libc++ headers), hash-pinned and cached. Nothing
 # from orig/ or build/ is read or uploaded. Read-only token; no secrets.
@@ -47,6 +48,8 @@ jobs:
           python tools/fetch_toolchains.py 9.0.1
           python tools/fetch_sources.py libcxx-9.0.1.src
           git diff --exit-code -- data/toolchains.json data/sources.json   # pins must already match
+      - name: Tool tests (tools/tests, with the project compiler)
+        run: python -m unittest discover -s tools/tests -t . -v
       - name: Matching build (tools/check.py --compile-only)
         run: python tools/check.py --compile-only -j 4
       - name: Port sweep, x86-64 Linux (tools/port_sweep.py)
