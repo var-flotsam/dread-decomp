@@ -117,6 +117,28 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Lifter: vectors built lane by lane (2026-10-28, branch `claude/project-thread-zgkpk3`, after #244).**
+The movi and ld1 rejects left after #244 build a vector from 32-bit floats and store it whole: `movi
+v3.2d, #0`, then `mov v3.s[0..2], v<m>.s[0]`, then `str q3, [sp]` (a Vector3 padded to 16 bytes, passed
+by address: `71000f3c7c`, `71000f3ce4`), and `ld1 {v0.s}[0]` then `ld1 {v0.s}[1]` from another address
+(`71000fa05c`; `fn_71000f7800` too, hand-written since). `State.lanes` keeps a register's four lanes
+(semantic mode; dropped at a join, a label and any other write), `Lifter.lane_step` reads the lane
+forms and stores `str q` (four lanes) or `str d` (two) lane by lane; `float_widths` leaves those
+stores out. Also: `port/runtime/src/heap.cpp` includes `<cstddef>` for `std::max_align_t` (the
+Linux image's clang++ with libstdc++ refused it).
+- **An indirect call given this function's own result address in x8** (the boot's next stop after #244:
+  `fn_710001ab24` calls a resource descriptor's callback at +0x40, `fn_71001b2e4c`, which builds an
+  `UnkResult`). Semantic mode made a struct-returning indirect call only when x8 held a local's
+  address, so with x8 set back to the incoming result address the call named neither, and on x86-64
+  every argument moved up a register (the hidden result pointer is rdi). `Lifter.ret_ptrs` and
+  `FlatLifter.ret_regs` now follow copies of that address, and x8 set to one before a `blr` makes the
+  call build its result there, as for a local.
+  The same call made as a tail call (`mov x8, x20; br x2` in `fn_710001ab24`) now returns the
+  callee's result, built in place as for `blr` and followed by `return ret;` (refused if x8 holds
+  anything else). A first try emitted `return ((UnkResult (*)(...))(ptr))(...)`; beside the other
+  paths' `return ret;` that cost Clang's NRVO, ret became a stack local, and the oracle rejected
+  `710001ab24` and `710110f1c8` (their other paths passed or wrote the local, not the caller's buffer).
+
 **Boot functions the lifter rejects, by hand, batch 2 (2026-10-28, branch `claude/project-thread-xllbvf`, second PR).**
 Ten more from the boot-slice list and the boot's next trap, `fn_710006f390` (the vibration thread's loop). All of them
 are written from the original's behaviour, checked against its disassembly, and marked `NON_MATCHING(major)`:
