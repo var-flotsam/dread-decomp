@@ -108,6 +108,15 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Port M1: a silent stand-in for `nn::atk` (2026-10-28, branch `claude/port-atk-silent`).** The
+owner chose a silent stand-in for the sound middleware until M4. `tools/port_link.py` turns every
+status-`L` function in `nn::atk`'s range without a definition into a stub that returns zero
+(`xor eax, eax; xorps xmm0, xmm0; ret`), whether a name reaches it (180) or only the game's code
+pointers do (985, added to the loader's function table). The boot's ten `nn::atk` traps in the
+static initialisers are gone, and the loader's trap thunks went from 1,105 to 674. Two game
+functions without a lift trap next (`fn_7100001be8`, `fn_7100153a90`), then the null dereference in
+`fn_71000a4b60`.
+
 **Port M1 round 3: the port's foundations (2026-10-28, branch `claude/port-m1-round3`).** The
 lifter's new lifts (#227-#233; `build/port/lifted` for the boot slice, then `lifted_all` for every
 `U` function: 15,447 of 16,105 accepted, 95 overrides) took the boot past round 2's stops. What
