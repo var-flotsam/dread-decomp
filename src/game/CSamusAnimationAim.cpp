@@ -11,10 +11,10 @@ using base::global::CStrId;
 // Wraps an angle into (-pi, pi] (as src/game_lo/fn_7100110664.cpp declares it).
 f32 fn_710007a1d0(f32 angle);
 
-// The aim tunables (reached through the GOT; src/reflection/CAimComponent.cpp declares the global so):
+// The aim tunables (reached through the GOT; src/game_s2/fn_7100359310.cpp declares the global so):
 // the limits read at +0xa8..+0xc0.
-struct UnkTunable;
-extern UnkTunable g_unk_71726b1438;
+struct UnkAimTunable;
+extern UnkAimTunable g_unk_71726b1438;
 static inline f32 AimLimit(u64 offset) {
     return *reinterpret_cast<const f32*>(reinterpret_cast<const u8*>(&g_unk_71726b1438) + offset);
 }
