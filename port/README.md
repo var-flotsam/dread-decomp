@@ -748,8 +748,9 @@ layout comes from.
   always open, with a fixed id (so one save directory); `nn::util::GenerateUuid` is a random
   version-4 UUID, `TSNPrintf`/`SNPrintf` are `vsnprintf`; `nn::time` reads the host's local
   time into the game's 0xd0-byte `ClockSnapshot`; `nn::diag::detail::AbortImpl` (both forms)
-  prints what it was given and aborts. Not yet: `nn::util::DecompressGzip` (needs an inflater;
-  its one caller is outside the slice) and `ReferSymbol`.
+  prints what it was given and aborts. `DecompressGzip` is the runtime's own inflater
+  (`port/runtime/src/gzip.cpp`, from RFC 1951 and 1952; the material loader `fn_71001a6644` reaches it). Not yet:
+  `ReferSymbol`.
 - **`nn::hid`** (all 34 functions; the parameter lists from the imports' mangled names, which
   the dump's dynamic symbols carry): one handheld controller (id 0x20), always connected, whose
   buttons and sticks the port's window sets with `dread_port_set_npad_state`; the input poll
