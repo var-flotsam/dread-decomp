@@ -441,20 +441,21 @@ oracle covers a median 67% of an original's instructions. The lifter's second ga
 `x8` results in tail position, jump tables through register copies, shrink-wrapped prologues,
 frames sized by shifted immediates, float widths, and half and byte loads converted to float. On
 the boot slice with the run-time roots (2,366 `U` functions, 1.40 MB at the time) it gets 2,295
-accepted lifts (97%). With the oracle's inputs round (2026-10-27, branch
-`claude/lifter-oracle-inputs`: mutations, a compare-constant sweep, out-parameter bounds, stricter
-rules for runs cut off, two review rounds; journal), the fresh **`build/port/lifted`** holds 2,229
-lifts (1.16 MB). **2,134 of the boot slice's 2,220 functions without a source are accepted**
-(1.15 MB of 1.26 MB; the slice is `port_lift.py --slice boot`: `nnMain`, the run-time roots,
-graphics and the pointer roots, every one of which is in). **86 slice functions are left** (110 KB,
-`manifest.json`): 35 read a caller-saved register after a call (16-byte results), 23 are
-inconclusive (15 crash on every input before anything is compared, 7 loop past the step limit on
-every input), 10 read a register before writing it, 7 make an indirect call with stack arguments,
-6 are rejected by the oracle and 5 hit other lifter gaps. The other 95 lifts override `src/lifted`
-definitions that lose arguments (stream M); port_link links a lift marked `"overrides"` instead of
-that `src/lifted` copy (2026-10-27, `port/README.md` "Overrides"). The oracle covers a median 85%
-of an original's instructions. `tools/port_lift.py --debug ADDR` shows a rejected function's first
-difference. M1 step 4 (2026-10-26, var-flotsam/dread-decomp#201, #203 and #206): the runtime defines every `nn::os` and
+accepted lifts (97%). The oracle's inputs round (#233: mutations, a compare-constant sweep,
+out-parameter bounds, stricter rules for runs cut off) and the third gaps round (2026-10-28, branch
+`claude/lifter-gaps-3`: results in x0:x1 and s0-s3, the result register callers read, no void lift
+of a function whose result is read, crashing inputs repaired; journal) leave the fresh
+**`build/port/lifted`** with 2,266 lifts (1.21 MB). **2,171 of the boot slice's 2,220 functions
+without a source are accepted** (1.20 MB of 1.26 MB; the slice is `port_lift.py --slice boot`:
+`nnMain`, the run-time roots, graphics and the pointer roots, every one of which is in). **49 slice
+functions are left** (60 KB, `manifest.json`): 21 are inconclusive (12 crash on every input
+before anything is compared, 8 loop past the step limit on every input), 17 are rejected by the
+oracle, 7 make an indirect call with stack arguments, 2 have only a void lift while callers read
+the result, 2 hit other lifter gaps. The other 95 lifts override `src/lifted` definitions that lose
+arguments (stream M); port_link links a lift marked `"overrides"` instead of that `src/lifted`
+copy (2026-10-27, `port/README.md` "Overrides"). The oracle covers a median 87% of an original's
+instructions. `tools/port_lift.py --debug ADDR` shows a rejected function's first difference.
+M1 step 4 (2026-10-26, var-flotsam/dread-decomp#201, #203 and #206): the runtime defines every `nn::os` and
 `nn::oe` import the slice reaches (port_link's residue lists none); `dread_game` and the sweep
 build with `-fno-strict-aliasing`; the data loader (`port/runtime/include/dread_port_loader.h`,
 `port/README.md` "The data loader") maps the dump's main NSO at `0x7100000000` before the game's
@@ -578,11 +579,14 @@ port_lift's worklist is now a slice (2026-10-27): `--slice boot` (the default) i
 function reachable by direct calls from `nnMain`, from the seven run-time roots, from the four
 graphics functions and from the four the boot reaches only through pointers (2,226 functions,
 1.26 MB); `--slice all` is every `U` function but the SDK imports (16,002, 8.08 MB);
-`--worklist build/port/link/boot_missing.csv` gives the old one. The semantic gaps (#230) and the
-oracle's inputs (`claude/lifter-oracle-inputs`) are done; the boot slice's numbers are under
-stream D. Next for the lifter: the run over every `U` function, then its largest gaps (16-byte
-results, indirect calls with stack arguments, inputs that crash or loop on every seed). Open
-leftovers of every generator round are recorded in `docs/JOURNAL.md` (work log items 0–3).
+`--worklist build/port/link/boot_missing.csv` gives the old one. **Every `U` function**
+(`--slice all --out build/port/lifted_all`, 71 minutes, 2026-10-28): 15,499 of 15,996 accepted
+(96.9%; 7.43 MB of 8.08 MB). Left, by bytes: inconclusive (100 functions, 177 KB), over the size
+cap (14, 150 KB), indirect calls with stack arguments (105, 124 KB), rejected by the oracle (109,
+93 KB), unsupported instructions (52, 56 KB). Next for the lifter: indirect calls with stack
+arguments (count the call's outgoing slots, and compare them in the oracle), inputs that crash or
+loop on every seed, the oracle's rejections. Open leftovers of every generator round are recorded
+in `docs/JOURNAL.md` (work log items 0–3).
 
 ## Known issues and gotchas
 
