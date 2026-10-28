@@ -134,6 +134,21 @@ code leaves `src/lifted/` as it is.
 - On the boot slice with the run-time roots (2,366 `U` functions, 1.40 MB, before the boot-match
   round 2), 2,295 lifts were accepted (97%).
 
+**Port: the Windows wide-text helpers (2026-10-27, branch `claude/port-wide-text`).** The last five
+places the Windows scan flagged were the game's `char32_t` text handed to the C library's wide
+functions: `CLabel.cpp`'s two `swscanf` calls (`"%x"` for a font glyph's code in a `@N<hex>]` tag,
+`"%f"` for a sprite's scale in `@name:scale]`) and `fn_7100067460`'s `wcsstr`. On Windows those take
+16-bit units. New header `include/base/Char32.h`: `char32_scan_hex`, `char32_scan_f32` and
+`char32_strstr`. Under `__WCHAR_MAX__ > 0xffff` each is the original call, `always_inline` (the
+callers ignore the scans' results, so the `== 1` folds away); otherwise the scans narrow the leading
+ASCII (128 bytes at most) and `sscanf` it with the same format, and the search compares 32-bit units.
+`fn_7100067460`'s string type is now `const char32_t*` (its mangled name changes from `PKw` to `PKDi`;
+`check.py` matches it by address, still `O`). Evidence: `baseline.py` (both files unchanged),
+`check.py --update` (no REGRESSION, DUPLICATE or RELOC; no status change), a native Windows test of
+the helpers built with llvm-mingw (hex, float, a non-ASCII stop, empty input, the search with an
+astral character and an empty needle: all pass), and both sweep targets compile the two files. The
+header joins `include/types.h` in the scan's exemptions; the Windows scan now finds nothing.
+
 **Lifter: port_lift's worklist as a slice (2026-10-27, branch `claude/lifter-worklist`).**
 `tools/port_link.py`'s `boot_missing.csv` follows direct calls from `nnMain` only, so it missed
 what the boot reaches through the pointers `nnMain` hands the SDK (main, the per-frame and the

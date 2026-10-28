@@ -224,7 +224,9 @@ def normalise(msg: str) -> str:
 # and wchar_t and the wide C functions are 16-bit (the game's wide text is 32-bit char32_t).
 GENERATED = ("src/lifted/", "src/reflection/", "src/reflection_types/", "src/reflection_statics/",
              "src/clones/", "src/tables/")
-LLP64_EXEMPT = ("include/types.h",)  # where u64 and s64 are defined from long
+# Where the widths are handled: u64 and s64 are defined from long, and the char32_t helpers call the
+# wide C functions only where wchar_t is 32 bits.
+LLP64_EXEMPT = ("include/types.h", "include/base/Char32.h")
 LLP64_CHECKS = (
     ("long", re.compile(r"\blong\b")),
     ("l literal", re.compile(r"(?<![.\w])(?:0[xX][0-9a-fA-F]+|\d+)(?:[uU][lL]|[lL][uU]?)\b")),
