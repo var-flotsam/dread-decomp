@@ -44,7 +44,7 @@ struct UnkObj_7100161b90 {
 
 struct UnkHeap_7100161b90;
 
-extern UnkObj_7100161b90* unk_716e2aadf8[0x4000];  // the pool's live objects
+extern UnkObj_7100161b90* unk_716e2aadf8[/* 0x4000; unsized: x86-64 would assume 16-byte alignment */];  // the pool's live objects
 extern u32 unk_716e2cadf8;                         // their count
 extern UnkChild_7100161b90* unk_716e2cae08[];      // the children's live objects
 extern u32 unk_716e34ae08;                         // their count
