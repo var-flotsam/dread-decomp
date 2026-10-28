@@ -35,6 +35,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 import callgraph
+from dread import functions
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -124,10 +125,7 @@ def main() -> int:
     ap.add_argument("--out", type=Path, default=ROOT / "build" / "dashboard")
     args = ap.parse_args()
 
-    rows = []
-    for f in sorted((ROOT / "data" / "functions").glob("main_*.csv")):
-        with f.open(newline="", encoding="utf-8") as fh:
-            rows.extend(csv.DictReader(fh))
+    rows = functions.rows()
     graph = callgraph.CallGraph(args.version, rows={int(r["address"], 16): r for r in rows})
     boot = graph.reachable(callgraph.NNMAIN)
     md = (ROOT / "docs" / "HANDOFF.md").read_text(encoding="utf-8")

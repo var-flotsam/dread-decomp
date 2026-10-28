@@ -25,8 +25,11 @@ Output is deterministic. Regenerate, never edit it.
 from __future__ import annotations
 
 import argparse
-import csv
+import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from dread import functions  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "include" / "base" / "reflection" / "UnkClassGetters.h"
@@ -53,15 +56,14 @@ class CClass;
 def getters() -> list[tuple[int, str]]:
     """(address, class name) of every reflected class getter in data/functions/, sorted by address."""
     out = []
-    for path in sorted((ROOT / "data" / "functions").glob("main_*.csv")):
-        with path.open(newline="", encoding="utf-8") as f:
-            for row in csv.DictReader(f):
-                name = row["name"]
-                if row["name_source"] == "reflection" and name.endswith(SUFFIX):
-                    cls = name[: -len(SUFFIX)]
-                    if not cls or "\n" in cls or "\r" in cls:
-                        raise SystemExit(f"{path.name}: unusable class name for {row['address']}: {name!r}")
-                    out.append((int(row["address"], 16), cls))
+    for path in functions.files():
+        for row in functions.read(path):
+            name = row["name"]
+            if row["name_source"] == "reflection" and name.endswith(SUFFIX):
+                cls = name[: -len(SUFFIX)]
+                if not cls or "\n" in cls or "\r" in cls:
+                    raise SystemExit(f"{path.name}: unusable class name for {row['address']}: {name!r}")
+                out.append((int(row["address"], 16), cls))
     out.sort()
     addrs = [a for a, _ in out]
     if len(set(addrs)) != len(addrs):

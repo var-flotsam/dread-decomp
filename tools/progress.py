@@ -27,12 +27,14 @@ Usage: python tools/progress.py [--json build/progress.json] [--top 15]
 from __future__ import annotations
 
 import argparse
-import csv
 import datetime
 import json
 import sys
 from collections import defaultdict
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from dread import functions  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 STATUSES = ["O", "m", "M", "W", "U"]
@@ -40,11 +42,7 @@ LABELS = {"O": "matching", "m": "minor", "M": "major", "W": "wip", "U": "not dec
 
 
 def load() -> list[dict]:
-    rows = []
-    for f in sorted((ROOT / "data" / "functions").glob("main_*.csv")):
-        with f.open(newline="", encoding="utf-8") as fh:
-            rows.extend(csv.DictReader(fh))
-    return rows
+    return functions.rows()
 
 
 def tally(rows: list[dict]) -> dict:

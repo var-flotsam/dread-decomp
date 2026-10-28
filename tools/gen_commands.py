@@ -42,7 +42,7 @@ def tools() -> dict[str, Path]:
     found = {}
     for p in sorted((ROOT / "tools").rglob("*.py")):
         rel = p.relative_to(ROOT / "tools").with_suffix("").as_posix()
-        if rel.startswith(("hooks/", "dread/", "tests/")) or rel.endswith("__init__") or rel in LIBRARIES:
+        if rel.startswith(("hooks/", "dread/", "tests/")) or rel.endswith(("__init__", "__main__")) or rel in LIBRARIES:
             continue
         if "/" in rel and rel.split("/")[0] == "recon" and rel != "recon/run":
             continue

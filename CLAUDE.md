@@ -48,8 +48,10 @@ files over 1 MB, `.nso/.nro/.nca/.nsp/.xci/.nsz/.xcz/.keys/.elf`, and anything u
 
 Every tool's purpose and usage lines are in `docs/commands.md`, generated from the docstrings by
 `tools/gen_commands.py` (CI fails when it is stale); `python tools/<tool>.py --help` has the rest.
-A new clone's full sequence is `docs/reference.md`, "Rebuilding everything from scratch". The ones
-used every day:
+A new clone's full sequence is `docs/reference.md`, "Rebuilding everything from scratch".
+`python -m tools <tool> [args]` runs any of them under the repository's venv from any Python (`python -m
+tools` lists them). Shared helpers (the function list loader, repository paths) are in `tools/dread/`.
+The ones used every day:
 
 ```sh
 git config core.hooksPath tools/hooks && git submodule update --init   # once per clone

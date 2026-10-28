@@ -53,6 +53,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 sys.path.insert(0, str(Path(__file__).resolve().parent / "recon"))
 import policy_check  # noqa: E402
+from dread import functions  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "data" / "tu_map.csv"
@@ -97,12 +98,8 @@ class Unit:
 
 
 def load_functions() -> list[Fn]:
-    out = []
-    for f in sorted((ROOT / "data" / "functions").glob("main_*.csv")):
-        with f.open(newline="", encoding="utf-8") as fh:
-            for r in csv.DictReader(fh):
-                out.append(Fn(int(r["address"], 16), int(r["size"]), r["name"], r["name_source"],
-                              r["subsystem"], r["status"]))
+    out = [Fn(int(r["address"], 16), int(r["size"]), r["name"], r["name_source"], r["subsystem"], r["status"])
+           for r in functions.rows()]
     out.sort(key=lambda x: x.address)
     return out
 

@@ -42,7 +42,6 @@ Usage:
 from __future__ import annotations
 
 import argparse
-import csv
 import re
 import subprocess
 import sys
@@ -50,6 +49,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import asmdiff  # noqa: E402
+from dread import functions  # noqa: E402
 import buildcfg  # noqa: E402
 import hostenv  # noqa: E402
 
@@ -81,12 +81,8 @@ def annotations(src: Path) -> dict[str, str]:
 
 
 def load_csv() -> tuple[dict[str, dict], dict[str, list[dict]]]:
-    rows, files = {}, {}
-    for f in sorted((ROOT / "data" / "functions").glob("main_*.csv")):
-        with f.open(newline="", encoding="utf-8") as fh:
-            files[f.name] = list(csv.DictReader(fh))
-        for r in files[f.name]:
-            rows[r["address"]] = r
+    files = functions.by_file()
+    rows = {r["address"]: r for frows in files.values() for r in frows}
     return rows, files
 
 
@@ -274,10 +270,7 @@ def main() -> int:
                     r["status"] = "U"  # nothing in src/ defines it any more
                     changed = True
             if changed:
-                with (ROOT / "data" / "functions" / name).open("w", newline="", encoding="utf-8") as fh:
-                    w = csv.DictWriter(fh, fieldnames=list(frows[0].keys()), lineterminator="\n")
-                    w.writeheader()
-                    w.writerows(frows)
+                functions.write(name, frows)
         print("statuses written to data/functions/")
     return 1 if failed or regressions or duplicates else 0
 
