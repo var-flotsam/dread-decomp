@@ -21,8 +21,9 @@ accepts a lift that behaves like the original, whatever its bytes:
   2. Lift every gen_lift variant with opts {"semantic"}: a direct call passes every argument
      register the callee reads (tools/abi_facts.py), so nothing reaches a callee by a register
      the C call does not name (a float only passed on as f64, which keeps all its bits); a
-     callee's x8 result is placed by C++17 copy elision; calls with stack arguments are
-     rejected; every condition follows the flags exactly (carry and overflow after adds/cmn,
+     callee's x8 result is placed by C++17 copy elision; a call with stack arguments passes the
+     words stored for them at [sp] (from the callee's facts, or for an indirect call the slots the
+     code before it stores); every condition follows the flags exactly (carry and overflow after adds/cmn,
      C and V clear after ands/tst), and flat mode also keeps NZCV in locals for a condition in
      another block; Clang's compressed jump tables become a switch; string literals stay the
      game's own addresses; division by zero and shift amounts follow AArch64; flat-mode argument
