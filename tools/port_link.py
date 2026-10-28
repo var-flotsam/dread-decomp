@@ -122,6 +122,7 @@ import port_sweep  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 SAMPLE_DUPLICATES = ROOT / "port" / "sample_duplicates.txt"  # shared with port/CMakeLists.txt
+TU_MAP = ROOT / "data" / "tu_map.csv"  # tools/tu_map.py: the units and their static initialisers
 RUNTIME_SRC = ROOT / "port" / "runtime" / "src"
 ADDRESSES = ROOT / "build" / "port" / "addresses.json"  # tools/port_addresses.py
 # The executable's base. The compiled game code reaches 5,467 data symbols PC-relatively, from
@@ -174,7 +175,7 @@ pthread_mutex_lock pthread_mutex_unlock pthread_mutex_init pthread_mutex_destroy
 pthread_join pthread_detach pthread_key_create pthread_getspecific pthread_setspecific sched_yield
 clock_gettime gettimeofday time localtime localtime_r gmtime mktime nanosleep usleep sleep bcmp mmap munmap mprotect
 fseeko ftello
-sigaction sigaltstack sigemptyset signal raise strsignal backtrace
+sigaction sigaltstack sigemptyset signal raise strsignal backtrace backtrace_symbols_fd
 stdin stdout stderr errno environ
 clearerr feof ferror fgets freopen fscanf getc ungetc setvbuf tmpfile tmpnam remove rename system
 clock difftime strftime setlocale localeconv strcoll strcspn strpbrk iscntrl ispunct
@@ -645,7 +646,11 @@ class Link:
     """The symbols of one relocatable link, resolved to addresses."""
 
     def __init__(self, symbols: list[tuple[str, str]], demangled: dict[str, str], resolver: Resolver,
-                 relocs: dict[str, Counter[str]] | None):
+                 relocs: dict[str, Counter[str]] | None, known: dict[str, int] | None = None):
+        # `known` (tools/port_addresses.py): a global definition whose name gives no address (a
+        # constructor or destructor under its mangled C1/D1 name, which Clang 9 aliased to fn_<addr>)
+        # takes the address the byte-matching callers reach it at.
+        known = known or {}
         self.resolver = resolver
         self.demangled = demangled
         self.relocs = relocs
@@ -667,6 +672,8 @@ class Link:
             self.defined_symbols.add(sym)
             if kind in CODE_KINDS:
                 a, rule = resolver.definition(sym, dem)
+                if a is None and kind in "TW" and sym in known:
+                    a, rule = known[sym], "matched_callers"
                 if a is None:
                     self.def_rules["none"] += 1
                     if kind != "t":
@@ -937,6 +944,9 @@ def write_image_tables(path: Path, lk: "Link", entries: list[Entry], runtime_glo
                                   the dump's symbol relocations through it.
       dread_port_data_references  every data address the link defines as an absolute symbol, sorted;
                                   the loader checks each lies in the mapped image.
+      dread_port_initialisers     {address, code or 0}: main's .init_array in order (data/tu_map.csv),
+                                  each static initialiser with the port's definition; the port's
+                                  main runs them before nnMain, as the SDK does.
     Returns the counts."""
     def rank(d) -> tuple:
         return (d.tag != "own", d.kind != "T", d.symbol)
@@ -946,6 +956,7 @@ def write_image_tables(path: Path, lk: "Link", entries: list[Entry], runtime_glo
         cands = lk.alias_candidates(addr)
         if cands:
             functions[addr] = min(cands, key=rank).symbol
+    defined = dict(functions)  # real definitions only (no trap, jump or alias thunk)
     by_entry = 0
     for e in entries:
         if e.address is None or e.address in functions or e.cls not in ("function_alias", "import", "missing_function", "stdlib"):
@@ -969,6 +980,11 @@ def write_image_tables(path: Path, lk: "Link", entries: list[Entry], runtime_glo
     for name in HOST_ABI_IMPORTS:
         imports.setdefault(name, name)
     data = sorted({e.address for e in entries if e.cls == "data" and e.address is not None} | {a for _, a in statics})
+    # main's .init_array in its order (address order: data/tu_map.csv, one initialiser per unit),
+    # with the port's definition of each or 0. On the console the SDK runs them before nnMain; the
+    # port's main does (port/runtime/src/image.cpp), skipping the ones without a definition.
+    with TU_MAP.open(encoding="utf-8", newline="") as fh:
+        inits = sorted({int(r["init_fn"], 16) for r in csv.DictReader(fh) if r.get("init_fn")})
 
     def q(sym: str) -> str:
         return f'"{sym}"'
@@ -979,7 +995,9 @@ def write_image_tables(path: Path, lk: "Link", entries: list[Entry], runtime_glo
              [f"\t.quad\t0x{a:x}, {q(functions[a])}" for a in sorted(functions)]),
             ("dread_port_imports", len(imports),
              [f"\t.quad\t.Limport{i}, {q(sym)}" for i, sym in enumerate(imports.values())]),
-            ("dread_port_data_references", len(data), [f"\t.quad\t0x{a:x}" for a in data])):
+            ("dread_port_data_references", len(data), [f"\t.quad\t0x{a:x}" for a in data]),
+            ("dread_port_initialisers", len(inits),
+             [f"\t.quad\t0x{a:x}, {q(defined[a]) if a in defined else 0}" for a in inits])):
         lines += [f"\t.globl\t{name}", f"{name}:", *body,
                   f"\t.globl\t{COUNT_NAME[name]}", f"{COUNT_NAME[name]}:", f"\t.quad\t{count}"]
     lines.append('\t.section\t.rodata.str1.1,"aMS",@progbits,1')
@@ -987,11 +1005,13 @@ def write_image_tables(path: Path, lk: "Link", entries: list[Entry], runtime_glo
     lines.append('\t.section\t.note.GNU-stack,"",@progbits')
     path.write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
     return {"functions": len(functions), "functions_from_references": by_entry, "imports": len(imports),
+            "initialisers": len(inits), "initialisers_defined": sum(1 for a in inits if a in defined),
             "data_references": len(data)}
 
 
 COUNT_NAME = {"dread_port_functions": "dread_port_function_count", "dread_port_imports": "dread_port_import_count",
-              "dread_port_data_references": "dread_port_data_reference_count"}
+              "dread_port_data_references": "dread_port_data_reference_count",
+              "dread_port_initialisers": "dread_port_initialiser_count"}
 
 
 def write_residue_traps(path: Path, residue: list[Entry]) -> dict:
@@ -1316,7 +1336,7 @@ def main() -> int:
         raise SystemExit(f"llvm-cxxfilt is needed ({asmdiff.cxxfilt()}): {e}")
     rows, _ = check.load_csv()
     resolver = Resolver(rows)
-    lk = Link(symbols, demangled, resolver, relocations(objdump, game_o))
+    lk = Link(symbols, demangled, resolver, relocations(objdump, game_o), known)
     lk1 = lk  # (link 1, before any semantic lifts)
     runtime_symbols = {s for _, syms in rt_symbols for k, s in syms if k in CODE_KINDS}
     runtime_by_name: dict[str, list[str]] = defaultdict(list)
@@ -1386,7 +1406,7 @@ def main() -> int:
         new_names = sorted({s for _, s in lsyms} - set(demangled))
         if new_names:
             demangled.update(asmdiff.demangle(new_names, strip=False))
-        lk = Link(lsyms, demangled, resolver, relocations(objdump, lifted_o))
+        lk = Link(lsyms, demangled, resolver, relocations(objdump, lifted_o), known)
         entries = classify(lk, runtime_by_name, runtime_symbols, args.alias_mismatch, known)
         game_o = lifted_o
         print()
@@ -1430,7 +1450,8 @@ def main() -> int:
           f" {rel(traps_s)} with {traps} traps and {jumps} jumps to the host's library;"
           f" {rel(tables_s)} with the data loader's tables: {tables['functions']} functions"
           f" ({tables['functions_from_references']} through an alias, the runtime or a thunk),"
-          f" {tables['imports']} imports, {tables['data_references']} data references")
+          f" {tables['imports']} imports, {tables['data_references']} data references,"
+          f" {tables['initialisers_defined']} of {tables['initialisers']} static initialisers defined")
     print(f"statics: {len(statics)} function-local statics and guards of inline functions bound to the image"
           + "".join(f"; {len(v)} left in the executable, {k}" for k, v in sorted(statics_left.items())))
     whole_o = out / "dread_whole.o"
@@ -1440,7 +1461,7 @@ def main() -> int:
         print(f"LINK FAILED ({rel(whole_o)}):")
         print("\n".join(r.stderr.splitlines()[:40]))
         return 1
-    whole = Link(nm_symbols(nm, whole_o), demangled, resolver, relocations(objdump, whole_o))
+    whole = Link(nm_symbols(nm, whole_o), demangled, resolver, relocations(objdump, whole_o), known)
     residue_entries = classify(whole, runtime_by_name, runtime_symbols, args.alias_mismatch, known)
     residue = summarize(residue_entries, args.examples, keep_empty=False)
     print(f"link 2: {rel(whole_o)} in {dt2:.1f} s ({whole_o.stat().st_size / 1e6:.1f} MB)")

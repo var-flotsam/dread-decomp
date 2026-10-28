@@ -67,6 +67,9 @@ void OnFault(int sig, siginfo_t* info, void* context) {
         std::fprintf(stderr, " %p", frames[i]);
     std::fprintf(stderr, "\n");
     std::fflush(stderr);
+    // The same frames by module and exported symbol: names the C library's own frames, which the
+    // executable cannot symbolise (the game's are static and print as offsets).
+    backtrace_symbols_fd(frames, n, STDERR_FILENO);
     // Die of the same signal, as without the handler (the exit status says which).
     signal(sig, SIG_DFL);
     raise(sig);
