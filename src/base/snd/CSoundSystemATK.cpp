@@ -792,7 +792,7 @@ extern u8 g_unk_7108b6bd10[] __attribute__((visibility("hidden")));  // the soun
 void fn_710120a2c0(void* params);
 u64 fn_710120a344(void* params);
 bool fn_710120ade0(void* params, void* buffer, u64 size);
-void fn_710120b198(void* heap, void* memory, u64 size);
+void fn_710120b198(void* heap, char* begin, u64 size);  // as src/game_s1/fn_71000f8630.cpp declares it
 void* fn_7101228d6c();
 void fn_7101229134(void* self, void (*callback)(), void* arg);
 void fn_710120b108(void (*callback)(), void* arg);
