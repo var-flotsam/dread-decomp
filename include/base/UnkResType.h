@@ -2,7 +2,7 @@
 
 // A resource type's description (class name, file extension, accepted source extensions), built on
 // the stack by a static initialiser and handed to a registry global (as in fn_7100005700.cpp). The
-// size comes from the stack layout; fn_7100004a44 (src/game_s1/fn_7100004a44.cpp) destroys one.
+// size comes from the stack layout; fn_7100004a44 (src/base/animation/CAnimationResource/fn_7100004a44.cpp) destroys one.
 
 #include "types.h"
 

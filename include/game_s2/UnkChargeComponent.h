@@ -1,7 +1,7 @@
 #pragma once
 
 // A component with a charge and the tunable it reads its rates from (g_unk_71726e0aa8, built by
-// src/game_s7/fn_7100536550.cpp's unit initialiser); only what fn_7100502628 and fn_71005028e4 touch
+// src/game/CEmmyOverrideDeathPositionDef/fn_7100536550.cpp's unit initialiser); only what fn_7100502628 and fn_71005028e4 touch
 // is named.
 
 #include "game/UnkTUProperty.h"

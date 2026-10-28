@@ -4,7 +4,7 @@
 // and four words) and the arrays of it: UnkMovedArray (moved element by element), UnkPairArray (its
 // Reserve is out of line, fn_7100e52b58) and UnkSecondPtrArray (a second pointer array alongside;
 // its Destroy is out of line, fn_7100e493f4). Both functions are defined in
-// src/game_aca57c/fn_7100d3d424.cpp. The element types are placeholders: only their move
+// src/game/logic/collision/CCollider/fn_7100d3d424.cpp. The element types are placeholders: only their move
 // constructors and destructors matter here.
 
 #include <new>

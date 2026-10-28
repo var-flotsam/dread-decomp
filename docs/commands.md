@@ -333,7 +333,7 @@ python tools/gen_commands.py            # rewrite docs/commands.md
 python tools/gen_commands.py --check    # exit 1 if docs/commands.md is out of date (CI)
 ```
 
-## Header migrations
+## Refactoring (header migrations, file moves)
 
 ### `tools/hub_migrate.py`
 
@@ -355,6 +355,23 @@ python tools/baseline.py save    --tag T [FILE...] [@LIST] [--symbol SYM]... [--
 python tools/baseline.py compare --tag T [the same selection; default: every file saved under T]
 python tools/baseline.py restore --tag T [FILE...]          # default: every file compare found changed
 python tools/baseline.py files   [selection]                 # print the resolved file set
+```
+
+### `tools/unit_move.py`
+
+Move hand-written sources out of the address-named directories into directories by unit.
+
+```sh
+python tools/unit_move.py            # the plan: counts and a sample of moves
+python tools/unit_move.py --apply    # move with `git mv` and rewrite the includes
+```
+
+### `tools/objcompare.py`
+
+Compare two trees of compiled objects function by function: code bytes and relocations.
+
+```sh
+python tools/objcompare.py build/units_before build/check/compile-only
 ```
 
 ## Port

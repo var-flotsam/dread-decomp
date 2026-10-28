@@ -36,7 +36,8 @@ tools/policy_check.py, hooks/    content rules (CI and pre-commit)
 src/compiler_id/, flag_id/, atk_id/   Phase 3 samples (frozen)
 src/reflection/, reflection_types/, reflection_statics/, clones/, lifted/, tables/   GENERATED
 src/base/                        hand-written engine code: string ids, pool, CRC64, allocator, reflected functions
-src/game_*/                      hand-written game code by address slice (frozen layout; migrate by unit, no new ones)
+src/game/<unit>/, src/base/...    hand-written files moved by unit from the address slices (tools/unit_move.py, 2026-10-28)
+src/game_*/                      the address-slice files whose unit is not known yet, and their shared local headers (no new ones)
 src/lua/                         game-side Lua changes (luaB_print)
 include/types.h                  u8..f64 without a standard library
 include/base/                    engine headers: reflection (CClass.h, UnkReflCast.h ...), containers, string ids, clone templates

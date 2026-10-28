@@ -1,10 +1,10 @@
 #pragma once
 
 // A collision container (the object at +0x2a0 of an actor's owner) and the records of its array at
-// +0x48 (src/game_lo/fn_71008618cc.cpp registers them, fn_7100863a8c.cpp unregisters one by its
+// +0x48 (src/game/CCollisionComponent/fn_71008618cc.cpp registers them, fn_7100863a8c.cpp unregisters one by its
 // id, fn_7100861148.cpp resets the objects): 0x30 bytes, three string ids, two 8-byte values and
 // the collision object registered under them. UnkVector's out-of-line GrowAt over them is
-// fn_71007253b8 (src/game_lo/fn_71007253b8.cpp). The names and the members past the ids are
+// fn_71007253b8 (src/game/CBillboardCollisionComponent/fn_71007253b8.cpp). The names and the members past the ids are
 // placeholders.
 
 #include "base/UnkDestructors.h"
@@ -41,7 +41,7 @@ struct UnkCollisionRecord {
 static_assert(sizeof(UnkCollisionRecord) == 0x30, "UnkCollisionRecord placeholder layout");
 
 // The element at `index` of the container's records, growing the array to cover it first
-// (UnkVector::GrowAt, out of line). Defined in src/game_lo/fn_71007253b8.cpp.
+// (UnkVector::GrowAt, out of line). Defined in src/game/CBillboardCollisionComponent/fn_71007253b8.cpp.
 UnkCollisionRecord& fn_71007253b8(base::UnkVector<UnkCollisionRecord>* self, u32 index);
 
 // The container as fn_7100863a8c sees it: the records at +0x48 and the registered objects at +0x98.
@@ -53,7 +53,7 @@ struct UnkCollisionContainer {
 };
 
 // Unregisters the object stored under the string id `id`: detaches it from the collision tracker,
-// removes its record and hands it to the manager. Defined in src/game_lo/fn_7100863a8c.cpp.
+// removes its record and hands it to the manager. Defined in src/game/CCollisionComponent/fn_7100863a8c.cpp.
 void fn_7100863a8c(UnkCollisionContainer* self, const base::global::CStrId* id);
 
 // Looks the object registered under the string id `name` up in the records (refreshing the record

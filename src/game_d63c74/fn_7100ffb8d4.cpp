@@ -1,5 +1,5 @@
 // Free of an array (base::UnkVector's layout) of file path ids paired with two words, as
-// fn_71011df574 (src/game_s7/fn_71011df574.cpp) with the ids in CFilePathStrId's pool:
+// fn_71011df574 (src/game/GUI/CHUD/fn_71011df574.cpp) with the ids in CFilePathStrId's pool:
 // fn_7100ffb8d4. Each id is released (and left as the empty id) before the array is freed.
 #include "base/UnkVector.h"
 #include "base/global/CStrId.h"

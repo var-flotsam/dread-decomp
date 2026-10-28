@@ -29,7 +29,7 @@ GROUPS: list[tuple[str, list[str]]] = [
     ("Matching", ["trymatch", "asmdiff", "nearcopy", "hubs", "shape_census", "objdiff_gen"]),
     ("Checks and progress", ["check", "verify", "progress", "policy_check", "decl_check", "dashboard_export",
                              "gen_commands"]),
-    ("Header migrations", ["hub_migrate", "baseline"]),
+    ("Refactoring (header migrations, file moves)", ["hub_migrate", "baseline", "unit_move", "objcompare"]),
     ("Port", ["port_sweep", "port_link", "port_lift", "port_addresses", "port_imports", "test_port_loader",
               "nvn_procs", "bshdat", "pcode_emu", "ghidra/pcode"]),
 ]

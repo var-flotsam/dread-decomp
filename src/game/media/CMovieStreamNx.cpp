@@ -1,7 +1,7 @@
 // The media::CMovieStreamNx unit (tools/tu_map.py: 0x710022561c-0x71002264d0, whose reflected
 // class is media::CMovieStreamNx): the Switch movie stream over the SDK's movie library. The
 // stream holds a movie::Decoder at +0x50 and two ring queues (64 4-byte entries at +0x2c0 and 64
-// 0x18-byte entries at +0x408, each after a mutex; src/game_71001e2acc/fn_7100225ef8.cpp empties
+// 0x18-byte entries at +0x408, each after a mutex; src/game/media/CMovieStreamNx/fn_7100225ef8.cpp empties
 // them). The names and layouts are placeholders.
 // Holds fn_710022586c (the constructor).
 #include <new>

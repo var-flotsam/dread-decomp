@@ -2,7 +2,7 @@
 
 // The camera controller current in the camera holder fn_7100defcec gives (game/UnkGameManager.h):
 // a reflected object (its class at vtable slot 0) that callers test against CBossCameraCtrl
-// (src/game_s2/fn_7100430830.cpp) and CAnimatedCameraCtrl (src/game/CSubAreaManager.cpp), both
+// (src/game/CChozoCommanderKiGrabAttack/fn_7100430830.cpp) and CAnimatedCameraCtrl (src/game/CSubAreaManager.cpp), both
 // CCameraCtrl classes in reflection. Only the fields those callers read are laid out; names are
 // placeholders.
 

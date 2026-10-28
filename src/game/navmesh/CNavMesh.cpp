@@ -57,7 +57,7 @@ struct UnkNavMeshLayout {
     UnkNavMeshCellSlot* cells;  // +0x290
     u32 cell_count;             // +0x298
     u8 pad_0x29c[0x400 - 0x29c];
-    UnkNavMeshTreeNode* nodes;  // +0x400, the bounding-box tree (src/game_lo/fn_710027a41c.cpp)
+    UnkNavMeshTreeNode* nodes;  // +0x400, the bounding-box tree (src/game/navmesh/CNavMesh/fn_710027a41c.cpp)
     u32 node_count;             // +0x408
 };
 
@@ -384,8 +384,8 @@ void fn_710027c134(const UnkNavMeshRayProbe* self, UnkNavMeshBox* box, f32 dx, f
 }
 
 // Types other files define locally, forward-declared so that the declarations below are the same.
-struct UnkRegion_710027a41c;      // a cell record (src/game_lo/fn_710027a41c.cpp)
-struct UnkSegment2D_71001262e0;   // a segment's two points (src/game_lo/fn_71001262e0.cpp)
+struct UnkRegion_710027a41c;      // a cell record (src/game/navmesh/CNavMesh/fn_710027a41c.cpp)
+struct UnkSegment2D_71001262e0;   // a segment's two points (src/game/malloc/fn_71001262e0.cpp)
 
 bool fn_71002af6fc(UnkRegion_710027a41c*, u32);
 f32 fn_71001262e0(const UnkSegment2D_71001262e0* seg, const CVector2D* p, CVector2D* closest, f32* t);
@@ -437,7 +437,7 @@ struct UnkNavMeshSideQuery {
 static_assert(__builtin_offsetof(UnkNavMeshSideQuery, best) == 0x50, "UnkNavMeshSideQuery layout");
 static_assert(sizeof(UnkNavMeshSideQuery) == 0x60, "UnkNavMeshSideQuery layout");
 
-// A node of the bounding-box tree (as in src/game_lo/fn_710027a41c.cpp): leaves have a negative
+// A node of the bounding-box tree (as in src/game/navmesh/CNavMesh/fn_710027a41c.cpp): leaves have a negative
 // link whose low 16 bits are the cell.
 struct UnkNavMeshTreeNode {
     f32 min_x;
@@ -570,7 +570,7 @@ bool fn_710027b780(UnkNavMesh* mesh, const CVector2D* point, u32 flags, u64 filt
 }
 
 struct UnkEntityObj;  // fn_71002b005c's parameter as src/game_aca57c/fn_7100ad0294.cpp declares it
-struct UnkVec3;       // fn_710007b444's source as src/game_s2/fn_71003de7b4.cpp declares it
+struct UnkVec3;       // fn_710007b444's source as src/game/CBatalloonAIComponent/fn_71003de7b4.cpp declares it
 bool fn_71002b005c(UnkEntityObj*);
 void fn_710007b444(void*, const UnkVec3*);
 
@@ -754,7 +754,7 @@ bool fn_710027bbf0(UnkNavMesh* mesh, const CVector2D* point, u32 flags, u64 filt
 // (src/game/navmesh/UnkNavMeshItem.cpp, each read by fn_71002b3524 and linked from the cells it
 // covers), the links between items and last, for every side of every cell, the sides the walks
 // round its two corners end on (fn_7100279fac). The containers are base::UnkVector arrays and maps
-// of two parallel arrays (values, then string-id keys; src/game_s1/fn_71001358e0.cpp reserves most
+// of two parallel arrays (values, then string-id keys; src/base/tunable/CTunable/fn_71001358e0.cpp reserves most
 // of them). Layouts and names are placeholders inferred from the code.
 #include "UnkClone.h"
 #include "base/UnkHashStream.h"
@@ -802,7 +802,7 @@ __attribute__((always_inline)) static inline const char* ReadName(UnkFileReader*
 }
 
 // A map from string ids to values: two arrays of `capacity` entries, grown together by an
-// out-of-line reserve per value type (src/game_s1/fn_71001358e0.cpp's UnkIdMap).
+// out-of-line reserve per value type (src/base/tunable/CTunable/fn_71001358e0.cpp's UnkIdMap).
 template <class V>
 struct UnkNavLoadMap {
     V* values;
@@ -832,7 +832,7 @@ struct UnkNavLoadMap {
 static_assert(sizeof(UnkNavLoadMap<u32>) == 0x28, "UnkNavLoadMap layout");
 
 template <class V>
-struct UnkIdMap;  // src/game_s1/fn_71001358e0.cpp
+struct UnkIdMap;  // src/base/tunable/CTunable/fn_71001358e0.cpp
 template <class V>
 static inline UnkIdMap<UnkOwnedList>* AsIdMap(UnkNavLoadMap<V>* map) {
     return reinterpret_cast<UnkIdMap<UnkOwnedList>*>(map);

@@ -1029,7 +1029,7 @@ void fn_71001c8294(UnkGraphicsSystem* self) {
 }
 
 // Resources (as src/game/CAbilitySonar.cpp and src/game/UnkEnvironmentFade.cpp spell them).
-// A resource type (as src/game_s7/fn_71001b1dd0.cpp registers them): its name first.
+// A resource type (as src/game/msapi/res/CRenderRes/fn_71001b1dd0.cpp registers them): its name first.
 struct UnkResType {
     base::global::CStrId name;
 };

@@ -270,7 +270,7 @@ for SysV) changes no source: the game code is C++ and the compiler follows the t
 matters to the assembly `tools/port_link.py` writes, below.
 
 **Wide text** (done 2026-10-27). `src/game/GUI/CLabel.cpp` (two `swscanf` calls, a glyph's hex
-code and a sprite's scale) and `src/game_s1/fn_7100067460.cpp` (`wcsstr`) passed the game's 32-bit
+code and a sprite's scale) and `src/base/global/timeline/CEvent/fn_7100067460.cpp` (`wcsstr`) passed the game's 32-bit
 `char32_t` text to the C library's wide functions, which take 16-bit units on Windows. They now call
 `char32_scan_hex`, `char32_scan_f32` and `char32_strstr` from `include/base/Char32.h`. Where
 `wchar_t` is 32 bits (the Switch, Linux) these are the original calls, always inlined, so the callees

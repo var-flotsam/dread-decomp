@@ -1,7 +1,7 @@
 // From unit 229 of tools/tu_map.py (0x71001a12f4-0x71001a9f3c, msapi::material::SAlpha and the
 // unit's other material types): reading an array of named value blocks from a file. Each element
 // (vtable unk_7101a1e4d8, destructors fn_71001a98dc and fn_71001a9978 in
-// src/game_s1/fn_710002ddc0.cpp) has a string id at 8, a byte at 0x10, a count at 0x14 and an
+// src/base/file/nx/CDeviceNX/fn_710002ddc0.cpp) has a string id at 8, a byte at 0x10, a count at 0x14 and an
 // allocator-owned block of that many 4-byte values at 0x30. Names and layouts are placeholders.
 // Holds fn_71001a6f54.
 #include <new>

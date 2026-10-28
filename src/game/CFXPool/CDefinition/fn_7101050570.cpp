@@ -1,0 +1,76 @@
+// Copies of fn_71002db4a0 (src/game/animtree/CAnimTreeDef/fn_71002db4a0.cpp) for other types, with their own callees and data (they name their own callees, data and strings; the comments describe the original): fn_7101050570.
+// Static initialiser of the unit of the base::reflection::CollectionTypeMapper<base::global::CRntVector<animtree::CAnimTreeDef::TAnimTreeLinkDef>>::TKeyElementIterator::value_type, base::reflection::CollectionTypeMapper<base::global::CRntVector<animtree::CAnimTreeDef::TAnimTreeLinkDef>>::TKeyElementConstIterator::value_type, base::global::CRntVector<animtree::CAnimTreeDef::TAnimTreeLinkDef>.
+#include "../../../game_s7/UnkStaticInitS7.h"
+#include "base/reflection/UnkClassGetters.h"
+#include "base/reflection/UnkReflTypeDtors.h"
+#include "base/reflection/UnkReflTypeGlobals.h"
+#include "game/UnkTUInit.h"
+
+using namespace unk_static_init;
+
+struct UnkStatics_71002db4a0 {
+    HeaderIds ids;
+    u8 pad_0x18[0x10];
+    u8 field_0x28[8];
+    u8 pad_0x30[0x130];
+    u8 field_0x160[8];
+};
+extern UnkStatics_71002db4a0 g_unk_71729fda70 __attribute__((visibility("hidden")));
+extern char g_unk_71729fd230[];
+extern char g_unk_71729fd231[];
+UnkEnumType* fn_71002d6b20();
+extern char g_unk_71729fd232[];
+UnkEnumType* fn_71002d6bfc();
+extern UnkEnumType g_unk_71729fd238;
+void fn_710104c750();
+void fn_71002d7068(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
+extern char g_unk_71729fd370[];
+extern char g_unk_71729fd371[];
+UnkEnumType* fn_71002d71ec();
+extern UnkEnumType g_unk_71729fd378;
+void fn_710104cd40();
+void fn_71002d7658(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
+extern char g_unk_71729fd4b0[];
+extern char g_unk_71729fd4b1[];
+UnkEnumType* fn_71002d77dc();
+extern UnkEnumType g_unk_71729fd4b8;
+void fn_71002d78b8(UnkEnumType* type, const CStrId& name, void*, void*);
+extern char g_unk_71729fd628[];
+extern char g_unk_71729fd629[];
+
+UnkEnumType* fn_710104c598();
+UnkEnumType* fn_710104c674();
+void fn_710104cae0(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
+UnkEnumType* fn_710104cc64();
+void fn_710104d0d0(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
+UnkEnumType* fn_710104d254();
+void fn_710104d330(UnkEnumType* type, const CStrId& name, void*, void*);
+void fn_7101050570() {
+    InitHeaderIds(&g_unk_71729fda70.ids);
+    fn_710104c290();
+    fn_710009ec00(g_unk_71729fd230, g_unk_71729fda70.field_0x28);
+    fn_710009ec00(g_unk_71729fd231, fn_710104c598());
+    fn_710009ec00(g_unk_71729fd232, fn_710104c674());
+    {
+        CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<CFXPool::CDefinition>>::TKeyElementIterator::value_type", true);
+        fn_710104cae0(&g_unk_71729fd238, n, &g_unk_7101d5e2e0, nullptr, fn_710104c750, nullptr);
+    }
+    __cxa_atexit(fn_7100096604, &g_unk_71729fd238, g_unk_7101a19000);
+    fn_710009ec00(g_unk_71729fd370, &g_unk_71729fd238);
+    fn_710009ec00(g_unk_71729fd371, fn_710104cc64());
+    {
+        CStrId n("base::reflection::CollectionTypeMapper<base::global::CRntVector<CFXPool::CDefinition>>::TKeyElementConstIterator::value_type", true);
+        fn_710104d0d0(&g_unk_71729fd378, n, &g_unk_7101d5e2e0, nullptr, fn_710104cd40, nullptr);
+    }
+    __cxa_atexit(fn_7100096604, &g_unk_71729fd378, g_unk_7101a19000);
+    fn_710009ec00(g_unk_71729fd4b0, &g_unk_71729fd378);
+    fn_710009ec00(g_unk_71729fd4b1, fn_710104d254());
+    {
+        CStrId n("base::global::CRntVector<CFXPool::CDefinition>", true);
+        fn_710104d330(&g_unk_71729fd4b8, n, nullptr, nullptr);
+    }
+    __cxa_atexit(fn_710009891c, &g_unk_71729fd4b8, g_unk_7101a19000);
+    fn_710009ec00(g_unk_71729fd628, &g_unk_71729fd4b8);
+    fn_710104d52c();
+    fn_710009ec00(g_unk_71729fd629, g_unk_71729fda70.field_0x160);
+}

@@ -10,7 +10,7 @@ using base::global::CStrId;
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
-// A resource type (as src/game_s7/fn_71001b1dd0.cpp registers them): its name first.
+// A resource type (as src/game/msapi/res/CRenderRes/fn_71001b1dd0.cpp registers them): its name first.
 struct UnkResType {
     CStrId name;
 };

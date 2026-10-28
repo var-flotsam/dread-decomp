@@ -1,5 +1,5 @@
 // Assignment of a pair of string ids held either in place or by reference (state 2), from
-// another such pair, as fn_7100e70ab4 (src/game_aca57c/fn_7100adae44.cpp) does for an id and four
+// another such pair, as fn_7100e70ab4 (src/base/reflection/fn_7100adae44.cpp) does for an id and four
 // values: read and written through the state-dependent accessors: fn_71000d8a18.
 #include "base/global/CStrId.h"
 #include "types.h"

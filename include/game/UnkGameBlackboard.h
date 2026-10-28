@@ -30,7 +30,7 @@ struct UnkQualifiedId {
 
 // Builds `self` for `source`: joins `prefix`, the source's group id and its own id with ':'
 // (skipping empty parts) into a string, interns it as `self->id` and stores the source
-// (src/game_hi/fn_7100ae9a10.cpp).
+// (src/game/CGameBlackboard/fn_7100ae9a10.cpp).
 void fn_7100ae9a10(UnkQualifiedId* self, UnkIdSource* source, const base::global::CStrId& prefix);
 
 // A qualified id kept as a string with inline storage (0xc8 bytes: the string, whose data pointer

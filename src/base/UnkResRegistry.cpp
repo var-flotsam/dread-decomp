@@ -1,7 +1,7 @@
 // base::res's type registry: the object g_unk_7101d472f8 points at (0x1b8 bytes, created by
 // fn_71000ea018 before the render resource types are registered), its constructor, the record a
 // resource type is described by (UnkResDesc: built by fn_71000e9a7c, copied by fn_71000ec89c;
-// src/game_s7/fn_71001b1dd0.cpp fills them in) and the growth of the registry's two parallel
+// src/game/msapi/res/CRenderRes/fn_71001b1dd0.cpp fills them in) and the growth of the registry's two parallel
 // arrays of records and type names (fn_71000ec708). Names and layouts are placeholders inferred
 // from the code.
 #include <new>

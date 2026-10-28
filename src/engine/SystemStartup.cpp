@@ -169,7 +169,7 @@ void fn_7100132730() {
 
 // ---------------------------------------------------------------------------------------------
 // The same unit's 2D collision tests (the unit starts with the segment helpers of
-// src/game_lo/fn_7100125c64.cpp and its neighbours; src/game/UnkCollisionContacts.cpp calls them):
+// src/game/malloc/fn_7100125c64.cpp and its neighbours; src/game/UnkCollisionContacts.cpp calls them):
 // a moving circle against a box and back (fn_710012deb0, fn_710012e5c0), a segment against an
 // oriented box (fn_7100127bb0, fn_710012bb00, fn_710012d960), an oriented box's edges against a
 // path set (fn_710012c580), and a polygon's corner angles (fn_71001306b0).
@@ -182,7 +182,7 @@ void fn_7100132730() {
 using base::math::CVector2D;
 using base::math::CVector3D;
 
-// What the 2D tests fill on a hit (the layout of src/game_lo/fn_710012be70.cpp's contact): the
+// What the 2D tests fill on a hit (the layout of src/game/malloc/fn_710012be70.cpp's contact): the
 // point, the normal of the first shape, the normal of the second, and which of them are set.
 struct UnkContact2D {
     CVector3D point;

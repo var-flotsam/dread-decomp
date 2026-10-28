@@ -276,7 +276,8 @@ structured exception handling wait until Linux reaches the title screen; that se
   NVN shim, audio. It starts now; it does not wait for matching.
 - **Readability:** new files go under `src/<subsystem>/` named by the owning class or translation
   unit (`tools/tu_map.py --function ADDR`), shared declarations in `include/`, no new address-named
-  directories. Existing `src/game_s7/`-style directories are moved when a unit is complete.
+  directories. Files in the `src/game_s7/`-style directories whose unit is known were moved to
+  `src/game/<unit>/` on 2026-10-28 (`tools/unit_move.py`); the rest follow as their units are named.
 
 ## Open decisions
 

@@ -1,4 +1,4 @@
-// Copies of fn_71005d9dec (src/game_s7/fn_71005d9dec.cpp), which the binary
+// Copies of fn_71005d9dec (src/game/CAcidBlobsLaunchPattern/fn_71005d9dec.cpp), which the binary
 // repeats at other addresses: fn_71004a8988, fn_71004be4e0, fn_71004be9a0, fn_71005da2ac, fn_71005e306c, fn_71005e352c, fn_71005ee558.
 // Equality of two reflected values holding an id and a list of 64-bit ids, each member inline or
 // (mode 2) through a pointer. Used as a type descriptor's compare (fn_71004a84c8, in

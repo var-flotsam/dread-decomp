@@ -28,7 +28,7 @@ Uuid GenerateUuid();
 s32 TSNPrintf(char* buffer, u64 size, const char* format, ...);
 }  // namespace nn::util
 
-// A report record (0x20 bytes, as src/game_s7/fn_7101147868.cpp lays it out): the key, a string
+// A report record (0x20 bytes, as src/game/CInventoryComponent/fn_7101147868.cpp lays it out): the key, a string
 // value, an integer value and the value's kind. Built out of line from a key and a string id
 // (fn_7100ec4240) or an integer (fn_71003afa88); both take the ids by value.
 struct UnkRecord_7101147868 {

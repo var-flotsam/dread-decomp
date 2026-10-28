@@ -31,7 +31,7 @@ static_assert(sizeof(UnkPolygon2D) == 0x48, "UnkPolygon2D layout");
 using UnkPointFilter = std::function<bool(const CVector2D&)>;
 using UnkEdgeVisitor = std::function<void(u32, const UnkSegment2D&)>;
 
-struct UnkSegment2D_71001262e0;  // a segment's two points (src/game_lo/fn_71001262e0.cpp)
+struct UnkSegment2D_71001262e0;  // a segment's two points (src/game/malloc/fn_71001262e0.cpp)
 // The squared distance from `p` to the segment, with the closest point (and where along it).
 f32 fn_71001262e0(const UnkSegment2D_71001262e0* seg, const CVector2D* p, CVector2D* closest, f32* t);
 // The segment's length.

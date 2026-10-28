@@ -1,5 +1,5 @@
 // Destructor of a record of a string id, 8 bytes, two string ids and a string, as fn_7100133be4
-// (src/game_s1/fn_7100133be4.cpp): fn_7100e6c960.
+// (src/base/tunable/CTunable/fn_7100133be4.cpp): fn_7100e6c960.
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/global/UnkStringPool.h"

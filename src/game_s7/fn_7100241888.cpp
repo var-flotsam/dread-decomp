@@ -1,4 +1,4 @@
-// Copies of fn_7100d403b4, fn_7100d3fecc (src/game_aca57c/fn_7100afe1d0.cpp), which the binary
+// Copies of fn_7100d403b4, fn_7100d3fecc (src/game/GUI/CCustomMarkersDialog/fn_7100afe1d0.cpp), which the binary
 // repeats at other addresses: fn_7100241888, fn_7100289098, fn_71002413a0.
 // Reserve of a growable array of reference-counted pointers (base::UnkVector's layout): moves
 // each pointer into the new storage by copying it (taking a reference) and releasing the old

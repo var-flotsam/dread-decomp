@@ -1,4 +1,4 @@
-// Copies of fn_7100d89148 (src/game_aca57c/fn_7100ca9a30.cpp), which the binary repeats at
+// Copies of fn_7100d89148 (src/game/CBTObserverComponent/fn_7100ca9a30.cpp), which the binary repeats at
 // other addresses: fn_71002444f4, fn_71002478e4, fn_710075f714.
 // Move constructors of a variant of a string id and a byte vector (state 1) or a pair of
 // pointers to them (state 2): either way the result holds the id and the vector (state 1),

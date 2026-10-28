@@ -1,4 +1,4 @@
-// Copies of fn_7100d3f5d4 (src/game_aca57c/fn_7100adae44.cpp) for another array type, naming their own callees and data
+// Copies of fn_7100d3f5d4 (src/base/reflection/fn_7100adae44.cpp) for another array type, naming their own callees and data
 // (the comments are adapted from the original's): fn_710011ab88, fn_710011ac48, fn_710011b010, fn_710011b0d0. A value
 // and an optional external array, with a pair referring to both: assignment copies the value and the array pointer and
 // rebinds the pair. The in-place array (followed by 0x20 more bytes) frees its storage.

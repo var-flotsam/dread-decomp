@@ -3,7 +3,7 @@
 // The map menu (most likely GUI::CMapMenuController: tools/tu_map.py unit 1689,
 // 0x7100b37360-0x7100b49730, holds that reflected class and the functions that take it), as its
 // callers see it: the minimap manager's reference at +0xd63f40 points to it (src/game/
-// CMinimapManager.cpp, src/game_aca57c/fn_7100b2de48.cpp), and src/game/GUI/CMapMenuController.cpp
+// CMinimapManager.cpp, src/game/GUI/CIngameMenu/fn_7100b2de48.cpp), and src/game/GUI/CMapMenuController.cpp
 // lays out its markers. Only the members the callers touch are spelled out; the names and the
 // layout are placeholders.
 

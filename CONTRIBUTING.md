@@ -34,8 +34,10 @@ to be purged from the history.
 8. **Files live where the code came from.** New hand-written sources go under
    `src/<subsystem>/`, named for the class or translation unit they belong to
    (`tools/tu_map.py --function <addr>` names the unit; `data/tu_map.csv` has them all). No new
-   address-named directories (`src/game_<addr>/`, `src/game_s<N>/`); the existing ones are moved
-   as their units complete.
+   address-named directories (`src/game_<addr>/`, `src/game_s<N>/`). `tools/unit_move.py` moved
+   every file whose unit is known into `src/game/<unit>/` (2026-10-28); the ones left there move
+   when `data/tu_map.csv` names their unit (rerun it, then prove the move with
+   `tools/check.py --compile-only` before and after and `tools/objcompare.py`).
 9. **Logs go to `docs/JOURNAL.md`.** `docs/HANDOFF.md` holds only the current state, fits on one
    screen, and is edited only by the session that merges a round of PRs (its numbers come from
    `tools/progress.py --slice boot --handoff`); feature branches leave it alone. Batch notes,

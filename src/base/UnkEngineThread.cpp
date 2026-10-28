@@ -1,6 +1,6 @@
 // The engine's thread wrapper (the unit before base::global::timeline::CEvent): an nn::os thread,
 // two light events, a state word and the stack it allocated. fn_7100066744 creates and starts it
-// (the movie player's "MovieAudioStreamNx Thread", src/game_71001e2acc/fn_7100221534.cpp, and
+// (the movie player's "MovieAudioStreamNx Thread", src/game/media/CMovieAudioStreamNx/fn_7100221534.cpp, and
 // the graphics system's "LoadingScreenThread", src/engine/UnkGraphicsSystem.cpp); the states are
 // 1 created, 2 released, 3 stopping and 4 destroyed.
 

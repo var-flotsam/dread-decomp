@@ -65,7 +65,7 @@ The full per-stream lists as of 2026-10-27 are in the journal, "Handoff next-ste
 | B. Core engine types | `src/base/`, `include/base/` | `claude/core-<topic>` | Reflected function array growth and ctor/dtor; allocator functions by `operator new`; string pool's `m` functions; fix the `runtime?` inference that marks matched functions `L` |
 | C. Gameplay slice | `src/game/`, `include/game/` | `claude/game-<topic>` | After the title screen |
 | D. Port layer | `port/` | `claude/port-<topic>` | M1 round 3: the 127 functions on the run-time roots' static list, then follow the traps; M2: alpha test, Vulkan surface, texel upload |
-| E. Tooling | `tools/`, `.github/` | `claude/tools-<topic>` | Boot trace from Eden's GDB stub; subsystem inference from `tu_map.csv`; directory moves by unit |
+| E. Tooling | `tools/`, `.github/` | `claude/tools-<topic>` | Boot trace from Eden's GDB stub; subsystem inference from `tu_map.csv`; the 504 `src/game_*` files with no known unit and their 15 local headers (to `include/`) |
 | M. Generators | `tools/gen_*.py`, generated `src/` directories | `claude/gen-<topic>`, `claude/lifter-<topic>` The run over every `U` function (`port_lift.py --slice all`), then its largest gaps: 16-byte results, indirect calls with stack arguments, inputs that crash or loop on every seed |
 
 Merging: merge `main` into the branch, take `main`'s `data/functions/*.csv`, rerun only the generator you

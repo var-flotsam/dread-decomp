@@ -1,4 +1,4 @@
-// Copies of fn_7100d44810 and fn_7100d4492c (src/game_aca57c/fn_7100d40ba0.cpp) for another element type, naming their
+// Copies of fn_7100d44810 and fn_7100d4492c (src/game/logic/collision/CCollider/fn_7100d40ba0.cpp) for another element type, naming their
 // own callees and data (the comments are adapted from the original's): fn_710011fbf0, fn_710011fd0c. The reflected
 // collection functions Begin and End (base::refl_Begin/refl_End) of an array of records holding a vector of plain
 // values (an owned vector is freed) and 0x20 more bytes.

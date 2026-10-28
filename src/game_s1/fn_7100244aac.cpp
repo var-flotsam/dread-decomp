@@ -1,5 +1,5 @@
 // Equality of two holders of a string id and an array of weak handles, held either in place or
-// by reference (kind 2), as fn_7100a74690 (src/game_s4/fn_71009c2f58.cpp) does for an array of
+// by reference (kind 2), as fn_7100a74690 (src/game/CNavMeshItemComponent/fn_71009c2f58.cpp) does for an array of
 // pointers: the same id and handles to the same targets: fn_7100244aac, fn_71002443e0.
 #include "base/global/CStrId.h"
 #include "game_s2/UnkWeakHandle.h"

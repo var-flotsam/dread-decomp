@@ -1,4 +1,4 @@
-// Copies of fn_7100adad14, fn_7100dd0298, fn_7100dd0338, fn_7100c0af54, fn_7100d3f840, fn_7100c0aeb0, fn_7100b17afc, fn_7100b17a60 (src/game_aca57c/fn_7100adae44.cpp), which the binary
+// Copies of fn_7100adad14, fn_7100dd0298, fn_7100dd0338, fn_7100c0af54, fn_7100d3f840, fn_7100c0aeb0, fn_7100b17afc, fn_7100b17a60 (src/base/reflection/fn_7100adae44.cpp), which the binary
 // repeats at other addresses: fn_71000d1fec, fn_71000d22fc, fn_7100a34d24, fn_7100a35018, fn_7100a35c04, fn_7100a35ef8, fn_71000d211c, fn_71000d3f30, fn_7100a34e54, fn_7100a35d34, fn_71000d21bc, fn_71000d3fd0, fn_7100a34ef4, fn_7100a35dd4, fn_7100121728, fn_710105ff64, fn_7100240d14, fn_71002410f4, fn_7100121684, fn_710105fec0, fn_7100ffe130, fn_7100ffe094.
 // Assignments of a pair of values held either in place or by reference (state 2), from another
 // such pair: read and written through the state-dependent accessors.
@@ -438,7 +438,7 @@ static_assert(sizeof(UnkIdPolyRecord) == 0x138, "");
 
 using UnkU32PolyRecordPair = UnkValuePairRef<u32, UnkIdPolyRecord>;
 
-// A callback set (as in src/game_s4/fn_71008947b8.cpp): a vtable, an array assigned by
+// A callback set (as in src/game/CCharClassShootActivatorComponent/fn_71008947b8.cpp): a vtable, an array assigned by
 // fn_710023b29c, a value and an owner reference assigned by fn_710031d208.
 struct UnkCallbackSet {
     void* vtable;

@@ -105,6 +105,18 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Hand-written files moved by unit (2026-10-28, branch `claude/project-thread-kzc3uy`).**
+`tools/unit_move.py` moved 822 `fn_<addr>.cpp` files out of the eleven address-slice directories
+into 405 unit directories named by `data/tu_map.csv` (high confidence and a class or namespace
+hint only: `src/game/<Class>/`, `src/game/navmesh/<Class>/`, `src/base/<ns>/...`), with `git mv`
+and their relative includes rewritten. 504 stay (300 in unnamed units, 157 medium and 45 low
+confidence, `CAnimationComponent.cpp`, and `src/game_s2/fn_71003f1b00.cpp`, whose deliberate second
+declaration `decl_check --base` would count again under a new path). The 15 local headers stay in
+their directories: moving them to `include/` turned 40 local re-declarations into header
+re-declarations for `decl_check`, which is hub-migration work. Evidence: `tools/check.py
+--compile-only` before and after and `tools/objcompare.py`: all 90,578 functions identical in code
+and relocations; the x86-64 sweep compiles all 3,979 files; `decl_check --base origin/main` PASS.
+
 **Development overhead: docs, CI, shared tool code (2026-10-28, branch `claude/project-thread-kzc3uy`).**
 From the owner-requested peer review, in order of time saved. The handoff (613 lines, edited by 56
 commits in ten days) is one screen: stable sections moved to `docs/reference.md`, the per-stream next

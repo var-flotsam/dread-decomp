@@ -1,4 +1,4 @@
-// Copies of fn_7100c0b7a4, fn_7100b177a4 (src/game_aca57c/fn_7100c0b7a4.cpp), which the binary
+// Copies of fn_7100c0b7a4, fn_7100b177a4 (src/game/SCameraRailNode/fn_7100c0b7a4.cpp), which the binary
 // repeats at other addresses: fn_7100121f78, fn_71010607b4, fn_71000cf3b4.
 // Copy-assignments of growable arrays (base::UnkVector's layout) of plain elements copied one
 // by one: the array is emptied, reserves the other's capacity and appends each element,

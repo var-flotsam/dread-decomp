@@ -12,7 +12,7 @@ using base::global::UnkStringData;
 using base::global::UnkStringPool;
 using base::input::UnkRumbleManager;
 
-// A handle to a playing rumble (as in src/game_s2/fn_71003053c4.cpp): current while the target's
+// A handle to a playing rumble (as in src/game/CAbilityEnergyWave/fn_71003053c4.cpp): current while the target's
 // serial is the handle's.
 struct UnkHandleTarget {
     void* field_0x0;

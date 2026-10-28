@@ -78,7 +78,7 @@ struct UnkResRef {
     }
 };
 
-// A resource type (as src/game_s7/fn_71001b1dd0.cpp registers them): its name first.
+// A resource type (as src/game/msapi/res/CRenderRes/fn_71001b1dd0.cpp registers them): its name first.
 struct UnkResType {
     CStrId name;
 };
@@ -222,7 +222,7 @@ static inline void Assign(UnkResRef* self, const UnkResRef& other) {
     }
 }
 
-// The texture's resource type (registered with type 0x14 by src/game_s7/fn_71001b1dd0.cpp).
+// The texture's resource type (registered with type 0x14 by src/game/msapi/res/CRenderRes/fn_71001b1dd0.cpp).
 extern const UnkResType g_unk_716e4540f8;
 
 // The texture parameter as the render manager takes it: the flag at +0x271 and the texture.

@@ -57,5 +57,5 @@ void fn_7100ebf278(UnkNavMeshManager* self);  // constructor (game_hi/fn_7100ebf
 
 // The index of the mesh's cell (0x70-byte entry at +0x290) that contains `point`, found through the
 // bounding-box tree at +0x400 when there is one, if the cell accepts `flags`; 0xffff otherwise.
-// Defined in src/game_lo/fn_710027a41c.cpp.
+// Defined in src/game/navmesh/CNavMesh/fn_710027a41c.cpp.
 u16 fn_710027a41c(UnkNavMesh* self, const base::math::CVector2D* point, u32 flags);
