@@ -401,7 +401,7 @@ struct UnkTypedValue {
 };
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
-// The world's object reference at +0xd63f40 (as in src/game_aca57c/fn_7100b2de48.cpp).
+// The world's object reference at +0xd63f40 (as in src/game/GUI/CIngameMenu/fn_7100b2de48.cpp).
 struct UnkGameManagerObjRef {
     u8 pad_0x0[0x10];
     void* obj;
@@ -474,7 +474,7 @@ struct UnkLoadingScreen;  // 0x220 bytes
 extern UnkLoadingScreen* g_unk_7101d47380;
 void fn_7100e0f89c(UnkLoadingScreen* self);  // constructor
 void fn_7100e100f8(UnkLoadingScreen* self, bool shown);
-struct UnkSoundHolder;  // 0x48 bytes (src/game_aca57c/fn_7100b2de48.cpp)
+struct UnkSoundHolder;  // 0x48 bytes (src/game/GUI/CIngameMenu/fn_7100b2de48.cpp)
 extern UnkSoundHolder* g_unk_7101d47340;
 void fn_710006cd9c(UnkSoundHolder* holder);  // constructor
 void fn_710006cea8(UnkSoundHolder* holder, bool value);
@@ -485,7 +485,7 @@ extern UnkTunable g_unk_7101d68580;  // base::snd::CSoundSystemATK's tunable; a 
 void fn_710109d0a0();
 void fn_71011a2770(UnkGameManagerSub_0x608* points, void* object);
 void fn_7100df31b8(UnkGameManager* self, u32 a, bool b, bool c, CStrId id, u32 d);
-struct UnkTreeNode;  // src/game_s1/fn_710014be78.cpp
+struct UnkTreeNode;  // src/engine/render/anim/CSkeletalAnimTree/fn_710014be78.cpp
 void fn_710023298c(UnkTreeNode* self);
 struct UnkObj_7100e01680;  // src/game_aca57c/fn_7100e01680.cpp
 void* fn_7100e01680(UnkObj_7100e01680* self);
@@ -500,7 +500,7 @@ void fn_7100fd90d8(f32 a, f32 b, void* music, const CRntString* name, u32 c, con
 bool fn_7101196fd8(void* object);
 struct UnkStruct_71002334fc;  // src/game_lo/fn_71002334fc.cpp
 void fn_71002334fc(UnkStruct_71002334fc* self, bool value);
-struct UnkCameraCtrl;  // src/game_s2/fn_71003ad014.cpp
+struct UnkCameraCtrl;  // src/game/CBossAIComponent/fn_71003ad014.cpp
 UnkCameraCtrl* fn_71010e389c(void* holder, void* key);
 void fn_7100935d40(UnkCameraCtrl* ctrl);
 void fn_7100e0203c(UnkGameManager* self);
@@ -858,7 +858,7 @@ static inline bool Equal(const CRntString* a, const CRntString* b) {
 }
 UnkNamedUser* fn_7101190890(UnkNamedObject* self, CRntString name);
 
-// A flag holder (as src/game_aca57c/fn_7100b2de48.cpp sees it): set, the step callbacks and the
+// A flag holder (as src/game/GUI/CIngameMenu/fn_7100b2de48.cpp sees it): set, the step callbacks and the
 // blackboard pass are skipped.
 struct UnkModeFlags {
     u8 unk_0x0[0xb8];

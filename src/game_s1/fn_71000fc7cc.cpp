@@ -1,4 +1,4 @@
-// Copies of fn_71002f2974 (src/game_s2/fn_71002f2974.cpp) for other node types, naming their own callees and data (the
+// Copies of fn_71002f2974 (src/game/CPlaythroughDef/fn_71002f2974.cpp) for other node types, naming their own callees and data (the
 // comments are adapted from the original's): fn_71000fc7cc (nodes linked at 0x148), fn_71000732d4 (nodes linked at 0x30
 // and destroyed by fn_710007ecd4 alone). Destructor of an object made of a base part (a list of nodes, which it frees
 // through its allocator, at +0x8..) and a derived part that also holds a second, embedded sub-object (vtable

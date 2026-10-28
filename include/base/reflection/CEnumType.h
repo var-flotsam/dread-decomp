@@ -51,6 +51,6 @@ CEnumType::CEnumType(const base::global::CStrId& name, const void* arg, T*)
 
 }  // namespace base::reflection
 
-// The enum type of EInFrustumMode (built in src/game_aca57c/fn_7100b04900.cpp), declared as its
+// The enum type of EInFrustumMode (built in src/base/reflection/fn_7100b04900.cpp), declared as its
 // base CType because the generated reflection sources declare it so.
 extern base::reflection::CType g_unk_71727952a8;

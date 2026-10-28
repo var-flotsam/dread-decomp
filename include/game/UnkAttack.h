@@ -5,7 +5,7 @@
 // as a raw pointer, the actor the attack belongs to (+0x8) and the key the attack registers with
 // the actor's components (+0x18). The subclass views derive from it and pad from +0x20 (CAttack
 // itself has a field there), so they cannot derive from CAttack directly.
-// fn_71003609b8 is defined in src/game_lo/fn_71003609b8.cpp.
+// fn_71003609b8 is defined in src/game/CAttack/fn_71003609b8.cpp.
 
 #include "game/CAttack.h"
 #include "game/UnkActor.h"

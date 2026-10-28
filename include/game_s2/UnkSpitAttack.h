@@ -60,9 +60,9 @@ struct UnkSpitAttack {
 static_assert(__builtin_offsetof(UnkSpitAttack, field_0xf8) == 0xf8, "UnkSpitAttack placeholder layout");
 
 // Switches to the state `state` when it differs and sets up what that state needs. Defined in
-// src/game_s2/fn_71003f24f4.cpp.
+// src/game/CBigkranXSpitAttack/fn_71003f24f4.cpp.
 void fn_71003f24f4(UnkSpitAttack* self, u32 state);
 
 // State 1's update: whether the attack should go on to the next state. Defined in
-// src/game_s2/fn_71003f28c8.cpp.
+// src/game/CBigkranXSpitAttack/fn_71003f28c8.cpp.
 bool fn_71003f28c8(UnkSpitAttack* self, f32 delta);

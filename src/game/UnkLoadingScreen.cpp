@@ -142,7 +142,7 @@ void fn_7100e10aac(UnkLoadingScreen* self) {
 using base::global::CStrId;
 
 // The created object (0x210 bytes), seen through the members used here; the set keys it by its +8
-// (src/game_s7/fn_71010e2278.cpp's UnkSceneObj_71010e2278 is the same object).
+// (src/game/CCameraComponent/fn_71010e2278.cpp's UnkSceneObj_71010e2278 is the same object).
 struct UnkSceneObj_71010e2278;
 struct UnkCullView;
 // A counted reference's assignment (the old object is reloaded after the new one's increment).
@@ -228,7 +228,7 @@ struct UnkSceneObjSet {
 // Creates a scene object named `name` showing `model` (when there is one), adds it to `set` and
 // stores it in `*out` (when given). The original also returns the object's key (its +8; null when
 // the allocation failed), which none of its four callers reads.
-// NON_MATCHING(minor): returns nothing, as the only declaration (src/game_s7/fn_71010e2278.cpp's)
+// NON_MATCHING(minor): returns nothing, as the only declaration (src/game/CCameraComponent/fn_71010e2278.cpp's)
 // has it, so the key is not kept for x0 and the registers around it differ; returning the key as a
 // void* makes the function byte-identical.
 void fn_7100e13928(void* set_, void* model_, UnkSceneObj_71010e2278** out, const CStrId* name) {

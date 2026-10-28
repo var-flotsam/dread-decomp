@@ -1,6 +1,6 @@
 // The translation unit of base::res::CRes (its reflection is generated): the destructor of the
 // record a resource type is registered with (UnkResDesc, 0x90 bytes; src/base/UnkResRegistry.cpp
-// builds and copies it, src/game_s7/fn_71001b1dd0.cpp fills it in). Only the members it releases
+// builds and copies it, src/game/msapi/res/CRenderRes/fn_71001b1dd0.cpp fills it in). Only the members it releases
 // are typed here: the name, two file-path ids, the list of file-path ids and the last file-path id.
 
 #include "base/UnkDestructors.h"

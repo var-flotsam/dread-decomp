@@ -47,7 +47,7 @@ def env() -> bool:
 
     local = Path(os.environ.get("LOCALAPPDATA", ""))
     checks = [
-        ("venv Python", PY.is_file(), "py -3.12 -m venv .venv (see docs/HANDOFF.md)"),
+        ("venv Python", PY.is_file(), "py -3.12 -m venv .venv (see docs/reference.md)"),
         (f"dump orig/{VERSION}/exefs/main", (ROOT / "orig" / VERSION / "exefs" / "main").is_file(),
          "tools/setup.py --version ... --exefs ... --romfs ..."),
         (f"orig/{VERSION}/main.elf", (ROOT / "orig" / VERSION / "main.elf").is_file(),

@@ -1,0 +1,79 @@
+# Boot distance, nightly: builds the port's Linux executable on the owner's PC and runs it
+# (tools/boot_distance.py), failing when the boot no longer reaches the milestone in --expect below.
+# It needs the dump (orig/2.1.0), which never leaves the owner's machines, so it runs on the same
+# self-hosted runner as check-local.yml; read that file's header for how the runner is set up.
+#
+# Inert until the repository variable SELF_HOSTED_CHECK is 'true', like check-local.yml. It runs on a
+# schedule and by hand (workflow_dispatch), never on pull requests: a pull request's own code never
+# reaches this job.
+#
+# The runner's checkout needs, besides check-local.yml's junctions (orig, build\recon), directory
+# junctions to the owner's clone for the link's read-only inputs; port/docker/run.sh mounts each one
+# read-only, since Docker does not follow a junction inside the build/ mount:
+#   - build\ghidra_export   tools/ghidra/analyze.py output (tools/port_link.py's call graph);
+#   - build\port\lifted     tools/port_lift.py output (the semantic lifts the boot runs);
+#   - build\cache           the tools' download cache inside the container, with libc++ 9.0.1's
+#                           headers (port/docker/run.sh python3 tools/fetch_sources.py libcxx-9.0.1.src).
+# build\check, which tools/port_addresses.py reads, is check-local.yml's own output in the same
+# checkout; without it the boot stops in nninitStartup (tools/boot_distance.py's build step).
+# Docker Desktop must be running in the session the runner runs in (the runner is the signed-in
+# user's, check-local.yml). The image is rebuilt from port/docker first (cached; it needs gdb).
+#
+# Never add upload-artifact, upload-pages or any log-shipping step to this job. build/boot/ holds the
+# run's output and the executable linked against the dump; only boot_distance.py's own lines
+# (milestones, counts, addresses) reach the Actions log.
+#
+# Raise --expect when the boot reaches a further milestone (MILESTONES in tools/boot_distance.py).
+
+name: boot distance (self-hosted, nightly)
+
+on:
+  schedule:
+    - cron: "17 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: boot-nightly
+  cancel-in-progress: false
+
+jobs:
+  boot:
+    name: boot distance
+    if: vars.SELF_HOSTED_CHECK == 'true'
+    runs-on: self-hosted
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+          clean: false
+      - name: Dump, inputs and Docker present
+        shell: powershell
+        run: |
+          $missing = @()
+          foreach ($p in 'orig\2.1.0\exefs\main', 'build\ghidra_export\2.1.0\main_functions.jsonl', 'build\check\2.1.0',
+                         'build\port\lifted\manifest.json', 'build\cache') {
+            $ok = Test-Path $p
+            Write-Output "${p}: $(if ($ok) { 'ok' } else { 'MISSING' })"
+            if (-not $ok) { $missing += $p }
+          }
+          docker version --format 'docker: client {{.Client.Version}}, server {{.Server.Version}}'
+          if ($LASTEXITCODE -ne 0) { $missing += 'docker' }
+          if ($missing.Count -ne 0) {
+            Write-Output "::error::missing in the runner's checkout or environment: $($missing -join ', '); see this workflow's header"
+            exit 1
+          }
+      - name: Build image
+        shell: powershell
+        run: |
+          docker build -q -t dread-port-linux port/docker
+          exit $LASTEXITCODE
+      - name: Boot distance
+        shell: powershell
+        run: |
+          $py = if ($env:DREAD_PYTHON) { $env:DREAD_PYTHON } else { '.venv\Scripts\python.exe' }
+          & $py tools/boot_distance.py --version 2.1.0 --expect fn_7100015c70
+          exit $LASTEXITCODE

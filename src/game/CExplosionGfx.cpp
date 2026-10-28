@@ -1,5 +1,5 @@
 // CExplosionGfx (tools/tu_map.py unit 2552, fn_7100dded9c to fn_7100de277c). The field names come
-// from its reflected members (src/game_s7/fn_7100ddf434.cpp). This file holds fn_7100de08f0: the
+// from its reflected members (src/game/CExplosionGfx/fn_7100ddf434.cpp). This file holds fn_7100de08f0: the
 // explosion's spawn at a target, the main burst and then uAmount - 1 extra ones.
 #include <stdlib.h>
 

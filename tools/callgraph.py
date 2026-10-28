@@ -27,10 +27,13 @@ Usage: python tools/callgraph.py --version 2.1.0 [--from nnMain|0x71000018f0]
 from __future__ import annotations
 
 import argparse
-import csv
 import json
 import re
+import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from dread import functions  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 NNMAIN = 0x71000018F0
@@ -56,11 +59,9 @@ def export_path(version: str) -> Path:
 def load_rows() -> dict[int, dict]:
     """data/functions/main_*.csv rows keyed by int address; `size` is converted to int."""
     rows: dict[int, dict] = {}
-    for f in sorted((ROOT / "data" / "functions").glob("main_*.csv")):
-        with f.open(newline="", encoding="utf-8") as fh:
-            for r in csv.DictReader(fh):
-                r["size"] = int(r["size"])
-                rows[int(r["address"], 16)] = r
+    for r in functions.rows():
+        r["size"] = int(r["size"])
+        rows[int(r["address"], 16)] = r
     return rows
 
 

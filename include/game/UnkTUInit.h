@@ -1,6 +1,6 @@
 #pragma once
 
-// Helpers for the per-TU static initialisers (src/game_aca57c/fn_7100b04900.cpp,
+// Helpers for the per-TU static initialisers (src/base/reflection/fn_7100b04900.cpp,
 // fn_7100adcf10.cpp). Destructors are registered with fn_7100000250, the __cxa_atexit stub. Each
 // TU first builds the same header data (a word and the "binaries" and "sources" ids, in some TUs
 // followed by three function records), then registers its reflected types: a class, enum,

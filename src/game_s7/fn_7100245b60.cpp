@@ -1,4 +1,4 @@
-// Copies of fn_7100d87614 (src/game_aca57c/fn_7100adae44.cpp) for other types, with their own callees and data (they name their own callees, data and strings; the comments describe the original): fn_7100245b60, fn_7101130b50.
+// Copies of fn_7100d87614 (src/base/reflection/fn_7100adae44.cpp) for other types, with their own callees and data (they name their own callees, data and strings; the comments describe the original): fn_7100245b60, fn_7101130b50.
 // Assignments of a pair of values held either in place or by reference (state 2), from another
 // such pair: read and written through the state-dependent accessors.
 #include <new>
@@ -409,7 +409,7 @@ static_assert(sizeof(UnkIdPolyRecord) == 0x138, "");
 
 using UnkU32PolyRecordPair = UnkValuePairRef<u32, UnkIdPolyRecord>;
 
-// A callback set (as in src/game_s4/fn_71008947b8.cpp): a vtable, an array assigned by
+// A callback set (as in src/game/CCharClassShootActivatorComponent/fn_71008947b8.cpp): a vtable, an array assigned by
 // fn_710023b29c, a value and an owner reference assigned by AssignOwner.
 // Another copy of the handle assignment (base/UnkRefHandle.h), the one this unit's sets use.
 base::UnkRefHandle* fn_71006eb8cc(base::UnkRefHandle* self, const base::UnkRefHandle* other);

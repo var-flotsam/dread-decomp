@@ -558,7 +558,7 @@ extern UnkRumbleManager* g_unk_7101d47348;
 void fn_7100073f48(UnkRumbleManager* self, u32 a, u32 b);
 void fn_71002191a4(UnkRenderManager* self, u32 value);
 
-// The collision manager singleton (src/game_lo/fn_7100863a8c.cpp).
+// The collision manager singleton (src/game/CCollisionComponent/fn_7100863a8c.cpp).
 struct UnkManager_7100863a8c;
 extern UnkManager_7100863a8c* g_unk_71726a4788;
 void fn_7100d46804(UnkManager_7100863a8c* self);  // constructor

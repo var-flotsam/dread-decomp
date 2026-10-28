@@ -1,4 +1,4 @@
-// Copies of fn_7100d40474 (src/game_aca57c/fn_7100d3d424.cpp), which the binary
+// Copies of fn_7100d40474 (src/game/logic/collision/CCollider/fn_7100d3d424.cpp), which the binary
 // repeats at other addresses: fn_7100241948.
 // Resets and assignments of small holders of string ids: a two-state variant (state 1 holds a
 // string id and a reference; state 2 holds nothing to destroy) reset to state 0, a counted

@@ -1,0 +1,39 @@
+// Copies of fn_710049ece8 (src/game/CChozoZombieXPoisonClawsAttack/fn_710049ece8.cpp), which the binary
+// repeats at other addresses: fn_71005c7210, fn_71006a55e8, fn_71006a9208.
+// Destructor body: runs the base destructor (fn_71003609b8), then, when the weak handle at +0x50 still has a
+// target, hands the target the object at +0x38 (fn_710117b3f0) and drops the handle.
+#include "game/UnkAttack.h"
+#include "game_s2/UnkWeakHandle.h"
+
+struct UnkSelf : UnkAttackBase {
+    u8 pad_0x20[0x18];
+    u8 field_0x38[0x18];
+    UnkWeakHandle* field_0x50;
+};
+
+void fn_71005c7210(UnkSelf* self) {
+    fn_71003609b8(self);
+    if (UnkWeakHandle* handle = self->field_0x50) {
+        if (UnkWeakTarget* target = handle->target)
+            fn_710117b3f0(target, self->field_0x38);
+        ResetRef(&self->field_0x50);
+    }
+}
+
+void fn_71006a55e8(UnkSelf* self) {
+    fn_71003609b8(self);
+    if (UnkWeakHandle* handle = self->field_0x50) {
+        if (UnkWeakTarget* target = handle->target)
+            fn_710117b3f0(target, self->field_0x38);
+        ResetRef(&self->field_0x50);
+    }
+}
+
+void fn_71006a9208(UnkSelf* self) {
+    fn_71003609b8(self);
+    if (UnkWeakHandle* handle = self->field_0x50) {
+        if (UnkWeakTarget* target = handle->target)
+            fn_710117b3f0(target, self->field_0x38);
+        ResetRef(&self->field_0x50);
+    }
+}

@@ -1,2 +1,19 @@
 * text=auto eol=lf
 *.ps1 text eol=crlf
+
+# Generator output: regenerate, never hand-edit (CLAUDE.md, "Status"). GitHub collapses these in
+# pull request diffs. To leave them out of a local diff or log:
+#   git diff main -- ':(attr:!linguist-generated)'
+src/reflection/** linguist-generated=true
+src/reflection_types/** linguist-generated=true
+src/reflection_statics/** linguist-generated=true
+src/clones/** linguist-generated=true
+src/tables/** linguist-generated=true
+src/lifted/** linguist-generated=true
+include/base/reflection/UnkClassGetters.h linguist-generated=true
+docs/commands.md linguist-generated=true
+data/functions/*.csv linguist-generated=true
+data/reflection_types.csv linguist-generated=true
+data/tu_map.csv linguist-generated=true
+data/library_symbols.csv linguist-generated=true
+data/nvn_procs.csv linguist-generated=true

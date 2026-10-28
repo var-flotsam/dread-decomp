@@ -349,7 +349,7 @@ struct UnkLabelLine {
 };
 static_assert(sizeof(UnkLabelLine) == 0x38, "UnkLabelLine placeholder layout");
 
-// The label as its layout sees it (UnkLabel above, src/game_hi/fn_71011ebdb4.cpp's constructor).
+// The label as its layout sees it (UnkLabel above, src/game/GUI/CLabel/fn_71011ebdb4.cpp's constructor).
 struct UnkLabelLayout {
     virtual void vf_0x0();
     virtual void vf_0x8();

@@ -1,7 +1,7 @@
 // A registry of factories for resource categories (unit 27): the object (vtable unk_7101a19590,
 // its destructor fn_710001fa30) holds a keyed array of 0x48-byte entries at +8, keyed by the
 // category's id. An entry names its category (one of the lists the resource units' static
-// initialisers add their types to: "curve", "anim" and "blendspace", src/game_s1/fn_7100005700.cpp
+// initialisers add their types to: "curve", "anim" and "blendspace", src/base/animation/CAnimationResource/fn_7100005700.cpp
 // and fn_71000113b0.cpp) and a factory object, three string ids and two callbacks; fn_710001fc00
 // registers the three, each with a factory created on first use (their deleting destructors are in
 // src/game_s1/fn_7100022518.cpp). Names and layouts are placeholders.
@@ -182,8 +182,8 @@ extern UnkRegistryFactory* g_unk_7101d4e5a8;
 extern char unk_7101a195b0[];
 extern char unk_7101a19630[];
 extern char unk_7101a19690[];
-// The categories: "curve" (src/game_s1/fn_7100005700.cpp), "anim" (the same file) and "blendspace"
-// (src/game_s1/fn_71000113b0.cpp).
+// The categories: "curve" (src/base/animation/CAnimationResource/fn_7100005700.cpp), "anim" (the same file) and "blendspace"
+// (src/base/animation/CBlendSpaceResource/fn_71000113b0.cpp).
 extern char g_unk_7101d4f338[];
 extern char g_unk_7101d4b418[];
 extern char g_unk_7101d4c138[];

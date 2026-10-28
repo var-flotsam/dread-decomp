@@ -1,0 +1,67 @@
+// Copies of fn_710000dc80 (src/base/animation/CBlendSpaceResource/fn_710000dc80.cpp) for another class: getters building a
+// value of kind 2 that refers (flag 1) to a navmesh::CDynamicSmartLinkGroup::SDynamicSmartLinkRulesSet
+// held by an iterator value, in place at 0x8 or through the pointer there when the state (after the
+// 0x10-byte value) is 2. The class getter is called first: fn_71002678c8, fn_7100267b5c. Also, as
+// fn_7100d2c880 (src/game_aca57c/fn_7100ad4b54.cpp), a bool value: whether the word at 0x40 of the
+// argument's object is above 1 (fn_710011e3b8).
+#include "base/reflection/UnkClassGetters.h"
+#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkReflValue.h"
+#include "types.h"
+
+using base::reflection::CType;
+using base::reflection::UnkReflValue;
+
+extern const CType g_unk_71726a2bf8 __attribute__((visibility("hidden")));
+
+template <class T>
+struct UnkArgument {
+    u8 unk_0x0[8];
+    T* field_0x8;
+};
+
+template <u32 Size>
+struct UnkDefIterValue {
+    u64 unk_0x0;
+    union {
+        u8 value[Size];
+        void* ref;
+    };
+    s32 state;
+
+    __attribute__((always_inline)) void* Get() { return state == 2 ? ref : value; }
+};
+
+__attribute__((always_inline)) static inline UnkReflValue GetRulesSet(UnkArgument<UnkDefIterValue<0x10>>* argument) {
+    void* def = argument->field_0x8->Get();
+    fn_7100265b1c();
+    UnkReflValue result;
+    result.field_0x0 = nullptr;
+    result.type = nullptr;
+    result.kind = 2;
+    fn_71000a18d4(&result, &g_unk_71726a2bf8, def, 1);
+    return result;
+}
+
+UnkReflValue fn_71002678c8(void* unused, UnkArgument<UnkDefIterValue<0x10>>* argument) { return GetRulesSet(argument); }
+
+UnkReflValue fn_7100267b5c(void* unused, UnkArgument<UnkDefIterValue<0x10>>* argument) { return GetRulesSet(argument); }
+
+__attribute__((always_inline)) static inline UnkReflValue MakeValue(const CType* type, const void* value) {
+    UnkReflValue result;
+    result.field_0x0 = nullptr;
+    result.type = nullptr;
+    result.kind = 2;
+    fn_71000a18d4(&result, type, value, 0);
+    return result;
+}
+
+struct UnkCountObject {
+    u8 unk_0x0[0x40];
+    u32 field_0x40;
+};
+
+UnkReflValue fn_710011e3b8(void* unused, UnkArgument<UnkCountObject>* argument) {
+    bool value = argument->field_0x8->field_0x40 > 1;
+    return MakeValue(fn_710000d228(), &value);
+}

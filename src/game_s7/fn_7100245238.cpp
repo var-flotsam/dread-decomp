@@ -1,4 +1,4 @@
-// Copies of fn_7100d8a010 (src/game_aca57c/fn_7100d419c0.cpp), which the binary
+// Copies of fn_7100d8a010 (src/game/logic/collision/CCollider/fn_7100d419c0.cpp), which the binary
 // repeats at other addresses: fn_7100245238, fn_71002487ac, fn_7100a75724.
 // Hash map node inserts: a node holding a string id and a value (a reference-counted pointer,
 // assigned, or a vector, moved in) is allocated, pushed onto the front of the key's bucket chain

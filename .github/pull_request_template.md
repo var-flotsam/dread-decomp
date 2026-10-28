@@ -15,5 +15,5 @@
 - [ ] `tools/decl_check.py --base origin/main` passes: shared symbols are declared once, in `include/`.
 - [ ] New files sit under `src/<subsystem>/`, named for their class or unit (`tools/tu_map.py --function <addr>`); no new address-named directories.
 - [ ] New names come from RTTI, reflection data, strings or mercury-engine-data-structures; everything else keeps `fn_<addr>` / `field_0x..` placeholders.
-- [ ] Notes and findings went to the top of `docs/JOURNAL.md`; `docs/HANDOFF.md` was edited only where the current state changed.
+- [ ] Notes and findings went to the top of `docs/JOURNAL.md`; `docs/HANDOFF.md` was left alone (the merging session updates it).
 - [ ] Commit messages start with `Phase 4.x:`.

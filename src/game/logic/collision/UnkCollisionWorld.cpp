@@ -16,7 +16,7 @@ using base::math::CVector2D;
 using base::math::CVector3D;
 using base::reflection::UnkReflObject;
 
-// Assigns a 3D vector's x and y to a 2D one (the source type as src/game_s2/fn_71003de7b4.cpp names it).
+// Assigns a 3D vector's x and y to a 2D one (the source type as src/game/CBatalloonAIComponent/fn_71003de7b4.cpp names it).
 struct UnkVec3;
 void fn_710007b444(void* dst, const UnkVec3* value);
 

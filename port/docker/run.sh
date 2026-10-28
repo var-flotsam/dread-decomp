@@ -6,7 +6,9 @@
 #
 # The checkout is mounted at /src. orig/ (read-only) and build/ are mounted from the paths they
 # resolve to, so a worktree whose orig/ and build/ are Windows junctions to the main checkout works
-# (Docker does not follow junctions inside a bind mount). Set DREAD_PORT_IMAGE to use another tag.
+# (Docker does not follow junctions inside a bind mount), and so does a worktree whose own build/
+# holds junctions to another checkout's inputs (mounted read-only, below). Set DREAD_PORT_IMAGE to
+# use another tag.
 # From Git Bash on Windows the paths are converted with cygpath and MSYS path conversion is off.
 set -euo pipefail
 
@@ -36,6 +38,15 @@ src="$(host_path "$here")"
 mounts=(-v "$src:/src")
 [ -d "$here/orig" ] && mounts+=(-v "$(resolve "$here/orig"):/src/orig:ro")
 [ -d "$here/build" ] && mounts+=(-v "$(resolve "$here/build"):/src/build")
+# Junctions or symlinks inside build/ (one or two levels down: build/recon, build/port/lifted) are
+# not followed through that mount either: each gets a read-only mount of its own. They are another
+# checkout's inputs, which nothing here should write.
+if [ -d "$here/build" ] && [ ! -L "$here/build" ]; then
+    for link in "$here"/build/* "$here"/build/*/*; do
+        [ -L "$link" ] && [ -d "$link" ] || continue
+        mounts+=(-v "$(resolve "$link"):/src/build/${link#"$here/build/"}:ro")
+    done
+fi
 
 tty=()
 [ -t 0 ] && [ -t 1 ] && tty=(-it)

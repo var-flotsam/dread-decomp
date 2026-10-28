@@ -1,0 +1,67 @@
+# Compile checks that need no game data, on GitHub's hosted runners (forks included).
+#
+#  - matching build: every src/ file with the project compiler (upstream Clang 9.0.1, pinned in
+#    data/toolchains.json) and the flags in tools/buildcfg.py (`tools/check.py --compile-only`).
+#    Diffing against the original needs the dump and stays on the self-hosted check job.
+#  - port sweep: every src/ file for x86-64 Linux with the runner's Clang (`tools/port_sweep.py`);
+#    fails when a file does not compile.
+#  - tool tests: tools/tests (unittest), including the ones that need the project compiler.
+#
+# Downloads are open-source releases only (LLVM, libc++ headers), hash-pinned and cached. Nothing
+# from orig/ or build/ is read or uploaded. Read-only token; no secrets.
+name: build
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  compile:
+    name: compile
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Python packages
+        run: python -m pip install --quiet pyelftools capstone lz4
+      - name: Toolchain cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/dread-decomp
+          key: dread-toolchains-${{ hashFiles('data/toolchains.json', 'data/sources.json') }}
+      - name: Project compiler and libc++ 9.0.1 headers
+        run: |
+          python tools/fetch_toolchains.py 9.0.1
+          python tools/fetch_sources.py libcxx-9.0.1.src
+          git diff --exit-code -- data/toolchains.json data/sources.json   # pins must already match
+      - name: Tool tests (tools/tests, with the project compiler)
+        run: python -m unittest discover -s tools/tests -t . -v
+      - name: Matching build (tools/check.py --compile-only)
+        run: python tools/check.py --compile-only -j 4
+      - name: Port sweep, x86-64 Linux (tools/port_sweep.py)
+        run: |
+          python tools/port_sweep.py --version 2.1.0 --jobs 4 --json build/port/sweep.json > build/port_sweep.log 2>&1 || true
+          tail -n 25 build/port_sweep.log
+          python - <<'EOF'
+          import json, sys
+          d = json.load(open("build/port/sweep.json"))
+          files = d["files"]
+          print(f"port sweep: {files['compiled']} of {files['total']} files compiled, {files['failed']} failed")
+          for f in list(d["failed_files"])[:50]:
+              print("FAILED", f)
+          sys.exit(1 if files["failed"] else 0)
+          EOF

@@ -1,4 +1,4 @@
-// Copies of fn_7100e59270 (src/game_aca57c/fn_7100adae44.cpp) for other types, with their own
+// Copies of fn_7100e59270 (src/base/reflection/fn_7100adae44.cpp) for other types, with their own
 // callees and data: fn_7100f78e68.
 // Assignment from an in-place (state 1) or by-reference (state 2) pair of an id and a record: the
 // id is moved (released, taken, the other's left empty) and the record assigned out of line.

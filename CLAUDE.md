@@ -1,11 +1,11 @@
 # dread-decomp
 
-Start with `docs/HANDOFF.md` for current state and next steps (short; edited in place, never appended to),
-`docs/PORT_PLAN.md` for the route to a running PC build, and `docs/JOURNAL.md` for history and the index of
-matching findings (long; search it, don't read it whole). Contributors working from a fork: `CONTRIBUTING.md`;
+Start with `docs/HANDOFF.md` for current state and next steps (one screen; only the merging session edits it),
+`docs/PORT_PLAN.md` for the route to a running PC build, `docs/reference.md` for stable facts (repository map,
+rebuilding, decisions, gotchas), and `docs/JOURNAL.md` for history and the index of matching findings (long;
+search it, don't read it whole). Contributors working from a fork: `CONTRIBUTING.md`;
 the maintainer: `docs/maintaining.md` (publication, branch rules, merging, the self-hosted check job). Outside
 projects are listed in `docs/references.md`. Add any newly used or referenced project there.
-Small local models used `AGENTS.md` and `docs/tasks/` (retired; reference only).
 
 A clean-room-style decompilation of Metroid Dread (Nintendo Switch), aiming for a
 native PC port later. It is modelled on PrimeDecomp and zeldaret/botw.
@@ -41,70 +41,33 @@ files over 1 MB, `.nso/.nro/.nca/.nsp/.xci/.nsz/.xcz/.keys/.elf`, and anything u
 | `src/`, `include/` | yes | reconstructed C++17 game code; shared declarations and layouts live in `include/` (one per symbol) |
 | `lib/` | yes | vendored upstream Lua 5.1.4 (`lib/lua`), dlmalloc 2.8.4, one libc++ sort; submodules `lib/nnsdk`, `lib/musl` (headers only) |
 | `data/` | yes | metadata only: `hashes.json`, `functions/main_XX.csv`, `reflection_types.csv`, `tu_map.csv`, `library_symbols.csv`, `toolchains.json`, `sources.json`; never code bytes |
-| `docs/` | yes | `HANDOFF.md` (state), `PORT_PLAN.md`, `JOURNAL.md` (history), `recon.md`, `compiler.md`, `maintaining.md`, `references.md` |
+| `docs/` | yes | `HANDOFF.md` (state), `PORT_PLAN.md`, `reference.md` (stable facts), `commands.md` (generated), `JOURNAL.md` (history), `recon.md`, `compiler.md`, `maintaining.md`, `references.md` |
 | `port/` | yes | PC port layer (Route B): CMake project (`dread_game`, `dread_libs`, `dread_runtime`, `dread`, `sweep`, `link_report`), the port's own `nn::` runtime under `runtime/`, `sample_duplicates.txt`; `port/README.md` has the layout, the sweep and the link |
 
-## Setup
+## Setup and commands
+
+Every tool's purpose and usage lines are in `docs/commands.md`, generated from the docstrings by
+`tools/gen_commands.py` (CI fails when it is stale); `python tools/<tool>.py --help` has the rest.
+A new clone's full sequence is `docs/reference.md`, "Rebuilding everything from scratch".
+`python -m tools <tool> [args]` runs any of them under the repository's venv from any Python (`python -m
+tools` lists them). Shared helpers (the function list loader, repository paths) are in `tools/dread/`.
+The ones used every day:
 
 ```sh
-git config core.hooksPath tools/hooks          # once per clone
-git submodule update --init                    # lib/nnsdk, lib/musl (needed to build)
-python tools/setup.py --version <ver> --exefs <dir> --romfs <dir>
-python tools/setup.py --version <ver> --confirm   # after checking printed hashes
-python tools/setup.py --version <ver> --verify-only
-python tools/verify_dump.py --version <ver>   # NSO segment hashes, title ID, RomFS vs files.toc
-python tools/nso2elf.py orig/<ver>/exefs/main orig/<ver>/main.elf
-python tools/recon/run.py --version <ver>        # Python-only recon -> build/recon/<ver>/
-python tools/ghidra/analyze.py --version <ver>   # Ghidra import/analysis/export (~8 min)
-python tools/gen_functions_csv.py --version <ver>
-python tools/fetch_toolchains.py                 # candidate upstream LLVM releases + objdiff
-python tools/fetch_sources.py                    # upstream Lua 5.1.x sources
-python tools/compiler_matrix.py --version <ver> --set leaf|nonleaf|atk
-python tools/libcheck_lua.py --version <ver>     # upstream Lua vs the embedded copy
-python tools/sigmatch.py --version <ver> [--library lua]  # name vendored-library functions -> data/library_symbols.csv; then rerun gen_functions_csv.py
-python tools/gen_reflection.py --version <ver>   # regenerate src/reflection/ (uses tools/refl_attrs.py)
-python tools/gen_class_getters.py                # regenerate include/base/reflection/UnkClassGetters.h from data/functions/ (no game data)
-python tools/gen_types.py --version <ver>        # regenerate src/reflection_types/ (non-class type getters)
-python tools/gen_statics.py --version <ver>      # regenerate src/reflection_statics/ (guarded function-local statics)
-python tools/gen_clones.py --version <ver>       # regenerate src/clones/ (repeated template instantiations; ~10 s)
-python tools/gen_lift.py --version <ver>         # regenerate src/lifted/ (small functions; run after the other generators, ~15 min)
-python tools/gen_lift.py --version <ver> --best ADDR,...|@file  # closest lifted attempt per function -> build/lift_best/ (hand-matching start)
-python tools/gen_lift.py --prune                 # drop lifted copies of functions now defined elsewhere (seconds; verify.py runs it)
-python tools/gen_lift.py --version <ver> --sample 500 [--seed S] [--only ADDR,...|@file] [--new] [--examples K]  # outcome table only (build/), ~1 min
-python tools/nearcopy.py --version <ver> LO HI | --refs U O   # U functions closest to an O one (hand-matching starts; .claude/skills/dread-match)
-python tools/shape_census.py --version <ver> [--min 5] [--max-size B] [--top N] [--family ADDR]  # same-shape U families (maintenance)
-python tools/tu_map.py --version <ver>           # translation-unit map from .init_array -> data/tu_map.csv (~10 s)
-python tools/tu_map.py --function <addr|name>    # the unit a function belongs to and a file name for it; --report, --top N
-python tools/check.py --version <ver> [--update] [--no-reloc]  # build src/, derive statuses, regressions, duplicates, relocation targets (RELOC lines)
-python tools/verify.py --version <ver> [--regen gen_statics,...]  # generators + check --update + progress + policy + decl_check (info), ~10 lines
-python tools/objdiff_gen.py --version <ver>      # objdiff targets + objdiff.json
-python tools/progress.py [--slice boot | --slice-from <fn>]  # whole-binary progress (excludes L); the nnMain boot slice
-python tools/dashboard_export.py [--ref HEAD] [--days 30]  # status CSVs for the project dashboard -> build/dashboard/ (refresh: upload them)
-python tools/hubs.py --version <ver> [--boot] [--top N]      # U functions by unmatched callers: what to match next
-python tools/hubs.py --version <ver> --ready [--boot]        # U functions whose callees are all matched; --callers <fn> lists callers
-python tools/decl_check.py [--list | --symbol <name> | --json] [--base <ref> [--strict]]  # fn_/g_unk_ declared in several files or with conflicting signatures; --base enforces (CI)
-python tools/hub_migrate.py --version <ver> SYM... | --header-redeclared [--dry-run]  # mechanical hub migration: drop local declarations, include the one header, keep byte-identical files; LEFT lines are the hand work
-python tools/hub_migrate.py --version <ver> --plan PLAN.tsv [--generated-sample N]  # many SYMBOL<TAB>header<TAB>declaration lines in one build; rebuilds a sample of generated includers
-python tools/baseline.py save|compare|restore --tag T [FILES | --symbol SYM | --includers HDR | --all]  # trymatch output snapshot and compare for a file set (the migration evidence; .claude/skills/dread-hubs)
-python tools/asmdiff.py --version <ver> <obj> -v # diff one object against the original (RELOC lines included)
-python tools/trymatch.py --version <ver> <file.cpp> [-v] [--no-reloc] [-- flags]  # build + diff one source
-python tools/ghidra/decompile.py --version <ver> <addr|name>...    # read Ghidra's pseudocode (never commit it)
-python tools/policy_check.py [--base <ref>]      # content rules (also run by CI on every PR)
-python tools/port_sweep.py --version <ver>       # port: compile every src/ file for x86-64 (compile only) -> build/port/sweep/
-python tools/port_sweep.py --version <ver> --target x86_64-w64-mingw32  # port: the same for Windows (llvm-mingw), plus the LLP64 scan -> build/port/windows/
-python tools/port_link.py --version <ver>        # port: whole-program relocatable link of the sweep objects, undefined-symbol report, boot_missing.csv -> build/port/link/
-python tools/port_lift.py --version <ver> [--top N | --only ADDR,...] [--debug ADDR] [--mutants N]  # port: semantic lifts of boot_missing.csv's U functions, checked by the P-code oracle -> build/port/lifted/ (never src/)
-python tools/port_link.py --version <ver> --lifted build/port/lifted   # the link with the semantic lifts: boot slice with and without them
-port/docker/run.sh python3 tools/port_link.py --version <ver> --stdlib libcxx9 --objects build/port/linux/sweep --out build/port/linux/link --executable  # port: the Linux executable in Docker (port/README.md "Linux in Docker")
-python tools/port_addresses.py --version <ver>   # port: original addresses of vtables and names the link cannot place, from matched code -> build/port/addresses.json (port_link uses it)
-python tools/port_imports.py --version <ver> [--list NS]  # port: the dump's imports the runtime resolves by exact mangled name (checks a stub's signature)
-python tools/port_imports.py --version <ver> --windows [--list NS]  # port: the runtime compiled for Windows (llvm-mingw): imports lost by name under LLP64
-python tools/abi_facts.py --version <ver> ADDR...  # argument registers a function reads, whether callers use its result (semantic lifts, oracle)
-python tools/nvn_procs.py --version <ver> [--check]  # the game's NVN function table -> data/nvn_procs.csv (globals, call sites, what port/nvn/ implements)
-python tools/nvn_procs.py --version <ver> --sites NAME[,NAME]  # each call site of those NVN functions and the function it is in
-python tools/fetch_toolchains.py llvm-mingw-20261006  # llvm-mingw, for port_sweep.py's Windows target (by name only)
-python tools/fetch_toolchains.py glslang-16.6.0     # Khronos glslang, for bshdat.py --compile (by name only; not in the default fetch)
-python tools/bshdat.py --version <ver> [--only NAME] [--compile] [--jobs N]  # port: .bshdat shader packages -> GLSL + manifests in build/shaders/<ver>/; --compile: glslang to SPIR-V, compile_report.csv (~1 min)
+git config core.hooksPath tools/hooks && git submodule update --init   # once per clone
+python tools/check.py --version <ver> [--update]       # build src/, derive statuses; must pass before committing src/
+python tools/verify.py --version <ver> [--regen gen_x] # generators + check --update + progress + policy + decl_check
+python tools/trymatch.py --version <ver> <file.cpp> -v # build and diff one source (RELOC lines included)
+python tools/hubs.py --version <ver> --boot | --ready --boot | --callers <fn>   # what to match next
+python tools/gen_lift.py --version <ver> --best ADDR,...   # closest lifted draft -> build/lift_best/ (hand-matching start)
+python tools/tu_map.py --function <addr|name>          # the unit a function belongs to, and its file name
+python tools/decl_check.py --base origin/main          # one declaration per shared symbol (CI)
+python -m unittest discover -s tools/tests -t .       # tool tests, no game data (CI)
+python tools/hub_migrate.py --version <ver> --plan PLAN.tsv   # mechanical header migration; .claude/skills/dread-hubs
+python tools/ghidra/decompile.py --version <ver> <addr|name>  # read Ghidra's view (never commit it)
+python tools/progress.py --slice boot [--handoff]      # progress; --handoff rewrites docs/HANDOFF.md's table
+python tools/port_link.py --version <ver> [--lifted build/port/lifted]   # port link and boot_missing.csv
+port/docker/run.sh python3 tools/port_link.py --version <ver> --stdlib libcxx9 --objects build/port/linux/sweep --out build/port/linux/link --executable  # Linux executable (port/README.md)
 ```
 
 Target version: **2.1.0** (update v327680). The `main` NSO build ID is
@@ -179,28 +142,23 @@ Toolchain:
   translation unit (`python tools/tu_map.py --function <addr>`); no new address-named directories.
 - **What to match next:** `python tools/hubs.py --version <ver> --boot` (hubs along the boot path by
   unmatched callers), then `--ready`. Progress is reported for the whole binary and the boot slice.
-- **Logs go to `docs/JOURNAL.md`** (newest first, with reusable findings added to its index);
-  `docs/HANDOFF.md` is edited where the state changed, never appended to.
+- **Logs go to `docs/JOURNAL.md`** (newest first, with reusable findings added to its index).
+  Feature branches leave `docs/HANDOFF.md` alone; the session that merges a round updates it and
+  regenerates its numbers with `tools/progress.py --slice boot --handoff`.
 - Commit after each numbered step, with commit messages prefixed by phase and step
   (e.g. `Phase 2.1: ...`). A pull request is a hub cluster or about 30 functions or more.
 
 ## Status
 
-- Phase 1: done. The 2.1.0 dump has been imported. Its hashes are confirmed:
-  `tools/verify_dump.py` passed (all NSO segment hashes match their headers, and all
-  9774 RomFS files plus 62206 pack entries match files.toc sizes). There are no public
-  reference hashes for this dump; No-Intro search and the web turned up nothing.
-- Phase 2: done. See `docs/recon.md`.
-- Phase 3: done, including the non-leaf and library flag pass. See `docs/compiler.md`.
-- Phase 4: in progress (owner-approved). Since 2026-10-24 the goal is a clean, readable tree that
-  runs on PC within months: hub-first matching along the boot path, canonical headers, generators in
-  maintenance. Current state, numbers and next steps: `docs/HANDOFF.md`; the route to a running build
-  and its open decisions: `docs/PORT_PLAN.md`.
+Phases 1-3 are done (`docs/recon.md`, `docs/compiler.md`; the 2.1.0 dump passed `tools/verify_dump.py`).
+Phase 4 is in progress (owner-approved): since 2026-10-24 the goal is a clean, readable tree that runs
+on PC within months, by Route B. Current state and next steps: `docs/HANDOFF.md`; the route and its open
+decisions: `docs/PORT_PLAN.md`.
+
 - Generated sources (`src/reflection/`, `src/reflection_types/`, `src/reflection_statics/`, `src/clones/`,
-  `src/tables/`, `src/lifted/`, and the header `include/base/reflection/UnkClassGetters.h`) are outputs
-  of `tools/gen_reflection.py`, `tools/gen_types.py`, `tools/gen_statics.py`, `tools/gen_clones.py`,
-  `tools/gen_tables.py`, `tools/gen_lift.py` and `tools/gen_class_getters.py`: regenerate, never
-  hand-edit. Every generator verifies relocation targets, so a `RELOC` line in generated code is a
-  generator regression: fix the generator, never its output.
+  `src/tables/`, `src/lifted/`, the header `include/base/reflection/UnkClassGetters.h` and
+  `docs/commands.md`) are outputs of the `tools/gen_*.py` scripts (listed in `.gitattributes`):
+  regenerate, never hand-edit. Every generator verifies relocation targets, so a `RELOC` line in
+  generated code is a generator regression: fix the generator, never its output.
 - Class getters (`T::refl_GetClass`) are declared for every reflected class in
   `include/base/reflection/UnkClassGetters.h`; include it instead of declaring one locally.

@@ -8,7 +8,7 @@ using base::UnkAllocator;
 using base::global::CRntString;
 
 // A string with 0x100 bytes of inline storage: its allocator (the object at +0x30, a block of
-// the same sort as the one in src/game_aca57c/fn_7100b2de48.cpp) hands out that storage.
+// the same sort as the one in src/game/GUI/CIngameMenu/fn_7100b2de48.cpp) hands out that storage.
 struct UnkInlineString256 {
     CRntString str;
     char* allocator_vtable;  // +0x30

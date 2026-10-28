@@ -89,7 +89,7 @@ void fn_7100dfff10(UnkGameManager* self);
 extern void* g_unk_71726af0b0;
 void fn_7100ed4454(void* self);
 
-struct UnkManager_7100863a8c;  // src/game_lo/fn_7100863a8c.cpp
+struct UnkManager_7100863a8c;  // src/game/CCollisionComponent/fn_7100863a8c.cpp
 extern UnkManager_7100863a8c* g_unk_71726a4788;
 void fn_7100d46804(UnkManager_7100863a8c* self);
 

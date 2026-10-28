@@ -48,7 +48,7 @@ void fn_71000faac4(UnkSoundSystemATK* self, s32 command, const void* payload) {
 using base::global::CFilePathStrId;
 using base::global::CRntString;
 
-// A string with 0x80 bytes of inline storage (as in src/game_aca57c/fn_7100b2de48.cpp).
+// A string with 0x80 bytes of inline storage (as in src/game/GUI/CIngameMenu/fn_7100b2de48.cpp).
 struct UnkInlineString {
     u8 str[0x30];
     void** vtable;

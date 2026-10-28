@@ -1,5 +1,5 @@
 // The translation unit of engine::scene::CSceneSlot (its reflection and static initialiser are in
-// src/game_s1/fn_7100205820.cpp; src/game_s1/fn_71001fcd4c.cpp finds slots by id and forwards to
+// src/base/reflection/fn_7100205820.cpp; src/game_s1/fn_71001fcd4c.cpp finds slots by id and forwards to
 // their setters). A slot's flag at 0x140, which it also passes on to the object at 0xa0 (its
 // flag at 0x158). Layouts are placeholders.
 

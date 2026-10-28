@@ -1,4 +1,4 @@
-// Copies of fn_7100e604a8 (src/game_aca57c/fn_7100adae44.cpp) for another record type, naming their own callees and
+// Copies of fn_7100e604a8 (src/base/reflection/fn_7100adae44.cpp) for another record type, naming their own callees and
 // data (the comments are adapted from the original's): fn_71000d6310, fn_71000d73b8. Move-assignment of a pair of an id
 // and a record held either in place or by reference (state 2), from another such pair: the id is moved (released,
 // taken, the other's left empty) and the record assigned out of line (fn_71000a1ba4).

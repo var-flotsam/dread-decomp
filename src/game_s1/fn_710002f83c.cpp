@@ -1,4 +1,4 @@
-// Copies of fn_71011580d4 (src/game_7100ece7fc/fn_7101157b48.cpp) for other types, naming their own callees and data
+// Copies of fn_71011580d4 (src/game/CFXComponent/fn_7101157b48.cpp) for other types, naming their own callees and data
 // (the comments are adapted from the original's): fn_710002f83c, fn_7100030c10, fn_710006c364, fn_7100087cf8; and of
 // fn_7100030300 (src/game_s7/fn_7100030300.cpp): fn_710006c974, fn_710008883c. Destructors (complete, and two deleting)
 // of objects that hold a list of string-id nodes: restore the vtable, release each node's id and free the node through

@@ -1,4 +1,4 @@
-// Copy of fn_7100251f78 (src/game_s7/fn_7100251f78.cpp) for word-sized values, naming its own callees and data (the
+// Copy of fn_7100251f78 (src/game/CActorComponent/fn_7100251f78.cpp) for word-sized values, naming its own callees and data (the
 // comments are adapted from the original's): fn_71000df5ec. Shrink-to-fit of a container of two parallel arrays (values
 // and string ids) sharing a count and capacity: both are reallocated to exactly `count`, the values copied, the ids
 // copied and destroyed one by one, the old arrays freed.

@@ -31,7 +31,7 @@ const char* CStr(const CStrId& id) {
 
 }  // namespace
 
-// The file-path id src/game_s7/fn_71001b1dd0.cpp receives (its own type there: a CFilePathStrId
+// The file-path id src/game/msapi/res/CRenderRes/fn_71001b1dd0.cpp receives (its own type there: a CFilePathStrId
 // held raw); built here by CFilePathStrId's out-of-line constructor (fn_71000166c8).
 struct UnkPathId {
     base::global::UnkStringData* data;

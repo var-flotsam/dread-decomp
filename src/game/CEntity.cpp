@@ -91,7 +91,7 @@ static inline void SetIdentity(UnkMatrix44* m) {
     m->m[0] = 1.0f;
 }
 
-// The entity's movement component at +0x1f8 (declared as src/game_s2/fn_710043c084.cpp does):
+// The entity's movement component at +0x1f8 (declared as src/game/CChozoCommanderTriComboAttack/fn_710043c084.cpp does):
 // fn_7100976588 gives its shape and fn_7100977bec (CCharacterMovement unit) the height to lift a
 // ground point by when it has one; else its vf_0x2a8 may give the movement object, whose shape at
 // +0x158 gives a bounding box.

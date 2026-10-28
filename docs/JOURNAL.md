@@ -244,6 +244,325 @@ code. Ten `nn::atk` functions the initialisers call trap (`L`, the owner's decis
 game functions the lifter could not lift (`fn_7100001be8` rejected, `fn_7100153a90`
 inconclusive).
 
+**Hand-written files moved by unit (2026-10-28, branch `claude/project-thread-kzc3uy`).**
+`tools/unit_move.py` moved 822 `fn_<addr>.cpp` files out of the eleven address-slice directories
+into 405 unit directories named by `data/tu_map.csv` (high confidence and a class or namespace
+hint only: `src/game/<Class>/`, `src/game/navmesh/<Class>/`, `src/base/<ns>/...`), with `git mv`
+and their relative includes rewritten. 504 stay (300 in unnamed units, 157 medium and 45 low
+confidence, `CAnimationComponent.cpp`, and `src/game_s2/fn_71003f1b00.cpp`, whose deliberate second
+declaration `decl_check --base` would count again under a new path). The 15 local headers stay in
+their directories: moving them to `include/` turned 40 local re-declarations into header
+re-declarations for `decl_check`, which is hub-migration work. Evidence: `tools/check.py
+--compile-only` before and after and `tools/objcompare.py`: all 90,578 functions identical in code
+and relocations; the x86-64 sweep compiles all 3,979 files; `decl_check --base origin/main` PASS.
+
+**Development overhead: docs, CI, shared tool code (2026-10-28, branch `claude/project-thread-kzc3uy`).**
+From the owner-requested peer review, in order of time saved. The handoff (613 lines, edited by 56
+commits in ten days) is one screen: stable sections moved to `docs/reference.md`, the per-stream next
+steps to the entry below, and its status table is written by `tools/progress.py --handoff`; only the
+merging session edits it. `CLAUDE.md` keeps the rules and a dozen daily commands; every tool's usage
+is in `docs/commands.md`, generated from the docstrings by `tools/gen_commands.py` (CI checks it).
+`.gitattributes` marks generator output `linguist-generated` (GitHub collapses it; the pathspec
+`':(attr:!linguist-generated)'` drops it from local diffs). A hosted `build` workflow compiles all
+3,979 sources with Clang 9.0.1 (`tools/check.py --compile-only`, the official Linux tarball now
+pinned, about 90 s on 4 cores) and for x86-64 (`tools/port_sweep.py`, about 2 minutes), and runs
+`tools/tests` (24 unittest cases, no game data; asmdiff's tests compile a fixture). `tools/dread/`
+holds the one loader of `data/functions/` (six tools moved to it, outputs compared before and after)
+and `python -m tools <tool>` runs any script under the repository's venv. `AGENTS.md` and
+`docs/tasks/` are retired (macOS steps kept in `docs/reference.md`). The move of `src/game_*` files by unit
+and the boot-distance run followed (entries above, `tools/boot_distance.py`). The status column in
+its own file was dropped (owner, 2026-10-28): both columns are generated, only 5 of 83 merges since
+2026-10-18 had both sides change the same `data/functions/` file, `tools/check.py --update` already
+resolves those, and about 20 tools read the column.
+
+**Handoff next-steps snapshot (2026-10-28, branch `claude/project-thread-kzc3uy`).** The handoff's
+per-stream "Next steps" section as it stood on 2026-10-27, moved here verbatim when the handoff was cut
+to one screen. The handoff now keeps only the next few items per stream and links here.
+
+**Stream A (boot slice and hubs).** Round 1 (2026-10-26, #199) matched the eight top hubs of
+2026-10-25 and two siblings; round 2 (2026-10-26, journal) took the next 18 boot hubs and round 1's
+follow-ups: 14 `O`, 10 `NON_MATCHING(minor)`, one dropped, each in a file named for its class or
+unit with one header (`CRntFile`, `CFilePathStrId`, `CType`, `CGameManager`, `CBlackboard`,
+`CGameBlackboard`, the music, model and rumble managers, the file device, the registry). Next,
+from `tools/hubs.py --version 2.1.0 --boot` (2026-10-26, after round 2): `fn_7100ee1f34` (2,096 B,
+19 unmatched callers; the `CSubAreaManager` unit's 0xae8-byte object, dropped in round 2, layout
+notes in the journal), `fn_71000ead80` (416 B, 13), `fn_71000ea448` (2,032 B, 12),
+`fn_7100076acc` (544 B, 12), `fn_710007c1ac` (476 B, 12, the `CRntFile` unit), `fn_710009d52c`
+(168 B, 12, `CType`'s unit), `fn_7100087850` (160 B, 11, the registry's lookup), `fn_71011a2fbc`
+(20 B, 11), `fn_710027a33c` (204 B, 11), `fn_7101196fd8` (48 B, 11), `fn_7100decab0` (428 B, 10,
+the game manager's target getter, declared in `UnkGameManager.h`). Round 2's own follow-ups: a
+second pass on its low-scoring minors (`fn_710023b580` 10.6%, `fn_710009d7a8` 16.4%,
+`fn_7100deba8c` 16.5%, `fn_710007c714` 23.8%, `fn_7100fd3804` 24.8%, `fn_710007e7f8` 43.5%);
+the music manager singleton `g_unk_71726bc560` still has three local types (five files, two of
+them with their own view of the 0xf18-byte object); `UnkGameManager` lacks the map at +0x1a70 that
+`fn_7100e039e4` reads through its own view; `src/game_aca57c/fn_7100ea56f0.cpp`'s `UnkSuffix` is a
+`CRntString`; `fn_710008b88c` has no header. Binary-wide the largest are `fn_71010c0270` (120 B,
+354 unmatched callers, almost all `lua_bind::*`) and `fn_71006f4b0c` (592 B, 211). 895 boot-slice
+`U` functions (300 KB) are "ready" (`--ready --boot`).
+
+Canonical headers. Batch 1 (2026-10-24, #184): the 13 symbols `include/` declared twice, the
+actor's target getter (`include/game/UnkActor.h`), the matrix getter (`UnkMatrix44.h`), the
+counted-resource free (`UnkCountedResource.h`), the game manager (`UnkGameManager.h`) and every
+class getter (generated `UnkClassGetters.h`). Batch 2 (2026-10-25, #187), 25 symbols: the five
+`CRntString` operations (`CRntString.h`); the `CStrId` constructor from a `CRntString`, the
+global empty id and the string pool (`CStrId.h`); the reflected-value builder (`UnkReflValue.h`)
+and the blackboard qualified id (`include/game/UnkGameBlackboard.h`); the animation component's
+class test and track progress (`include/game/UnkAnimationComponent.h`) and the GUI focus setter
+(`UnkGuiDisplayObject.h`); the type-erased array copy (`include/base/UnkErasedVector.h`), the two
+handle assignments (`UnkRefHandle.h`) and the render manager (`include/game/UnkRenderManager.h`);
+the sphere position setter (`UnkSphere.h`), the scene toggle notifiers
+(`include/engine/scene/UnkToggle.h`), the converter registration (`UnkReflConverter.h`), the
+property registration (`UnkReflStatics.h`), the AI component's navigation getter
+(`UnkAIComponent.h`) and the nav-mesh manager (`UnkNavMeshManager.h`). Five matched on the way:
+`fn_7100216978`, `fn_71001eef58`, `fn_71001eef74`, `fn_7100ebf278`, `fn_7101177ea0` (and
+`fn_71011cf2a4` as `m`). The batch ran six file-disjoint steps in parallel and five overlapping
+ones in sequence (`tools/trymatch.py --obj-dir` keeps parallel objects apart).
+
+Batch 4 (2026-10-26) gave every conflicting symbol with a hand-written definition one declaration
+with the definition's types (29 symbols, 19 new headers such as `UnkTimelineComponent.h`,
+`UnkCollisionRecord.h`, `UnkSpitAttack.h`, `UnkGuiHandle.h`; journal). Batch 5 (2026-10-26, journal)
+chose signatures for 34 symbols without one (Ghidra, `abi_facts.py`, the callers), among them the
+deferred set's add and remove, the GUI root (`UnkGuiRoot.h`: layout, global, five root functions),
+the display-object container, the matrix product and scale, the segment's normal and constructor,
+the timeline component's lookups, reflection type globals, the suit properties, behaviour-tree
+nodes, and moved `CAttack.h` to `include/game/`. Batch 6 (2026-10-26, journal): about 70 symbols and batch
+5's review follow-ups, among them every `ITEM_` property (48, `UnkItemProperties.h`, with
+`ItemQualifiedId`/`ItemSource` instead of `SuitAs`), the reflected type globals
+(`UnkReflTypeGlobals.h`; `g_unk_7101d5e2e0` had 57 copies), the action-node base constructor
+`fn_7100393e68` (27 nodes on `UnkBehaviorTreeNodeBase`), the boss AI component, the sphere's radius
+setter (16 files), the weak-handle unlink, the GUI event, child lookup and key list, and
+`UnkGuiFocus`/`CAttack.h`'s handle types onto `UnkWeakHandle.h`; `UnkReflStatics.h` includes the small
+`UnkTimelineCalls.h`. Next, by `tools/decl_check.py --list`: `g_unk_71726bc570` (the stats global, 3
+views), `g_unk_71727bd078` (a tunable), `fn_7100ee1f34`, `g_unk_7101d47360` and `g_unk_71726bc560`
+(managers; `fn_7100ee1f34` is also a boot hub), `fn_7100010e58`, `fn_7100017390`, `fn_71002aeb9c`,
+`fn_71003ac8f4`, `fn_7100ad61f8`, `g_unk_7172794d40` (2 signatures each). Batch 6's own follow-ups
+(its review): `src/game_5821e4/CAttackDtor.h`'s `UnkAttackOwner` is a second view of
+`UnkWeakHandle` (and `fn_710063904c.cpp`'s `fn_71010cb2fc(void*, void*)` is why
+`UnkAttackListenerRaw::Destroy` is a template); the three `src/game_s7` callers of `fn_71010c4250` cast
+their `UnkProp` (`src/game_s7/UnkPropS7.h`) to `UnkComponentProp`: move it into the header; two action
+nodes (`fn_710037a410`, `fn_710037ca84`) cast to the node base instead of deriving; the lifted
+`fn_7100394bd4` is defined without parameters, the header takes `void*` (port aliasing by address);
+`UnkStrIdTable` and `CBlackboard.h`'s `UnkPropertyArrays` are one parallel-array template with two
+strides; the GUI callers cast their own views to `UnkGuiDisplayObject*` (derive them instead).
+`src/game_aca57c/fn_7100b2c6a0.cpp` calls `fn_71011d968c` through an untyped function pointer and
+`fn_71011cde44` typed (its minor functions went from 98.2% to 96.5% for that; an asm-labelled second
+declaration would have kept the bytes but hides from `decl_check`).
+Older follow-ups:
+`fn_710021693c` and `fn_7100216d30` into `UnkSphere.h`; `fn_71004fa3b8` (9 identical local
+declarations); the `UnkActor` slots at +0x240 and +0x298 typed `UnkAIComponent*` and
+`UnkNavigation*`; `fn_7100394bd4` (2 signatures); `fn_7100ad3588` into `UnkErasedVector.h` and
+`fn_71006eb8cc` into `UnkRefHandle.h`; `fn_710001a270` and the string neighbours `fn_710007ea60`,
+`fn_710007e6c4`; `InitPropertyEx`'s `on_init` parameter type in `UnkTUInit.h` (one caller casts);
+the render manager's accessors into `UnkRenderManager.h`. From the port link: 182 names that
+resolve to no address (`UnkIdTable::UnkIdTable()`, `UnkMapIter<...>::Advance()`, ...) need an
+`fn_<addr>` name; `src/game_s7/fn_71011bc0b0.cpp` defines `fn_71011bc830` by an
+`asm(".set ...")` alias to a libc++ `__sort3` instantiation that an x86-64 compile does not emit.
+Leftovers that keep a second declaration on purpose: `src/game_s2/fn_71003f1b00.cpp`
+(`u32`-returning `fn_710009d50c`, load-bearing for its `m`), ten callers of `fn_7100d7c990` with
+their own word-typed views of the actor's translation, two callers of `fn_710001737c` with a local
+count view; `src/game_s7/UnkGuiS7.h` keeps `using UnkClass = CClass` for two includers.
+
+The mechanical part of a migration is a tool since 2026-10-25: `tools/hub_migrate.py` removes the
+local declarations, includes the header and keeps only byte-identical files (`tools/baseline.py`
+is the per-file evidence, parallel, with copies to restore from). Two passes so far. The first
+(var-flotsam/dread-decomp#190) migrated 66 files for 15 symbols in a minute. The second (branch
+`claude/tuinit-unify`) first moved the symbols both static-initialiser helper families name into
+two small headers they both include: `include/base/reflection/UnkReflTypeDtors.h` (the type
+objects' destructors `fn_7100096604`, `fn_7100099468`, `fn_710009891c`, `fn_710009a368`,
+`fn_710010c424`; `base/UnkCloneHelpers.h` includes it too) and `include/game/UnkTUSymbols.h` (the
+function records `fn_710000cf00`/`fn_710000d470`/`fn_710000d4f4`, `UnkPropertyHead` and the property
+list head `g_unk_71726db788`); `unk_static_init`'s property structs point `next` at
+`UnkPropertyHead` and its helpers take the head as `UnkPropertyHead*&` (pointer retypes only; the
+helper bodies and their store order are untouched, because they are load-bearing). That unblocked
+96 files (the class-type destructor alone was declared locally in 57), all 195 includers of the two
+families byte-identical (`baseline.py`, tag `tuinit`). Batch 3 (2026-10-26) hand-migrated the 40
+files the tool left (placeholder types renamed to the headers' real ones, five agents on disjoint
+file sets, about 7 minutes; journal). The two helper families now share one set of property and
+tunable helpers, `include/game/UnkTUProperty.h` (2026-10-26, branch `claude/tuinit-fold`): each
+property initialiser in both store orders (`InitProperty`/`InitPropertyEx` link first,
+`...VtableFirst` store the vtable first; the source order steers the scheduler). What the families
+still hold apart is the TU header data (`InitHeader*`), the type registrations (`InitEnum`,
+`InitFlagSet`, `InitClass`, `InitVector` vs `unk_static_init`'s) and two placeholder views of a
+type object (`UnkReflType` vs `UnkEnumType`); folding those is the next readability step, verified
+the same way (`baseline.py`, every includer of both families). Cheap follow-up: 729 calls in unit
+files still spell the atexit stub `__cxa_atexit`, which `check.py` cannot resolve; `fn_7100000250`
+makes each a checked relocation (the helper headers' 24 sites added 1,055 checks, 0 mismatched).
+
+**Stream B (core engine types).** Left from the string-id and reflection work: the reflected
+function array's growth (`fn_7100097f80`), the function's constructor and destructor
+(`fn_710009a5b4`, `fn_710009aae8`), the allocator functions next to `operator new`
+(`fn_7100083870`, `fn_71000839c0`, `fn_7100083a10`, `fn_7100083a70`), the string pool's remaining
+`m` functions (insert `fn_71000801e4`, compare `fn_710007f240`, release `fn_71000803a4`). CRC64
+and the string-id constructors sit next to `nnMain`, so `gen_functions_csv.py` infers `runtime?`
+and marks them `L` although they match (`fn_7100000850`, the constructor from a `CRntString`,
+matches since 2026-10-25 and still reads `L`); fix that inference.
+
+**Stream E (tooling).** Done 2026-10-25: `tools/baseline.py` (trymatch snapshots for a file set,
+compare, restore; headers expand to their includers; `--obj-dir` per source so agents never
+collide) and `tools/hub_migrate.py` (the mechanical hub migration on top of it, with a `BROKEN`
+guard for files that do not compile before the edit), plus the batch procedure in
+`.claude/skills/dread-hubs`. Done 2026-10-24: every generator verifies relocation targets
+(`asmdiff.diff_object(strict=True)`), the three generator target bugs are fixed (`gen_clones`'s
+destructor scan now reads each string-id member's pool, `gen_statics`'s fact extractor drops
+stale register state, `gen_tables` reads the video map's globals from the GOT) and `check.py`
+enforces relocation targets everywhere. Next: a dynamic boot trace from Eden's GDB stub to
+replace the static lower bound; `check.py`'s resolver could map the mangled constructor and
+destructor names of address-bound members (`UnkStringPoolHolder`'s C1/D1) to their addresses, so the
+66 includers' references are checked; directory moves driven by `data/tu_map.csv` once a unit is
+complete (one rename PR per unit); `tools/gen_functions_csv.py` subsystem inference from
+`tu_map.csv` instead of neighbours (68,731 functions are still "unknown"); `trymatch.py`-style
+relocation checking in `tools/nearcopy.py`'s candidates if it compiles anything; `check.py`'s
+definition rule counts a function pointer in a template argument (`UnkFoo<&fn_<addr>>`) as a
+definition of that address, which `tools/port_link.py` already excludes.
+
+**Stream D (port).** M0 is done (#183). M1 step 1 is done (2026-10-25, #186): `tools/port_link.py`
+links the 3,804 sweep objects relocatably (`ld.lld -r`, no duplicate symbol, 60,402 undefined),
+classifies what is missing, generates `--defsym` aliases (37,531 references to functions defined
+under another symbol: the declaration debt and the lifter's `callee::` convention), absolute data
+symbols (15,450 `g_unk_` addresses) and trap thunks, and links again to a residue of 304 (71
+vtables, 49 standard library names, 2 `nn::hid` destructors, 182 names without an address).
+M1 step 2 is done (2026-10-25): `lib/lua` and `lib/dlmalloc` are compiled into the link and the
+build (`dread_libs`), and `fn_7100000250` (`__cxa_atexit`) jumps to the host's. On `main` after hub
+batch 2 the boot slice's 4,211 game functions are 1,109 defined, 941 reached through an alias only,
+4 the host's and **2,157 without a source** (1.24 MB; 2,148 `U`, 8 `L`, one `O`), listed by
+callers in `build/port/link/boot_missing.csv`, the lifter's coverage worklist. The residue is 375
+(the 304 above plus Lua's C library calls). M1 step 3 is done (2026-10-25): `tools/port_lift.py`
+lifts the slice's `U` functions in `gen_lift`'s semantic mode and accepts a lift when Ghidra-P-code
+execution of it and of the original agree (`tools/pcode_emu.py`, oracle (b); design and limits in
+`docs/PORT_PLAN.md`, usage in `port/README.md`). 1,777 of 2,148 pass (839 KB); with
+`tools/port_link.py --lifted build/port/lifted` the slice has 380 functions without a source. The
+gaps step (exact flags, jump tables, float pass-through, four oracle fixes) brings it to 1,941
+lifts (1.04 MB) and **216 slice functions without a source** (196 KB, `boot_unlifted.csv`). The
+oracle covers a median 67% of an original's instructions. The lifter's second gaps round
+(2026-10-27, branch `claude/lifter-semantic-gaps`) handles the gaps listed then: stack arguments,
+`x8` results in tail position, jump tables through register copies, shrink-wrapped prologues,
+frames sized by shifted immediates, float widths, and half and byte loads converted to float. On
+the boot slice with the run-time roots (2,366 `U` functions, 1.40 MB at the time) it gets 2,295
+accepted lifts (97%). The oracle's inputs and a fresh `build/port/lifted` follow (stream M);
+`tools/port_lift.py --debug ADDR` shows a rejected function's first difference. A semantic lift the manifest marks `"overrides": "src/lifted/<file>.cpp"` replaces that
+byte-identical lift in the link (2026-10-27, `port/README.md` "Overrides"): the port's fix for
+lifts that drop arguments. M1 step 4 (2026-10-26, var-flotsam/dread-decomp#201, #203 and #206): the runtime defines every `nn::os` and
+`nn::oe` import the slice reaches (port_link's residue lists none); `dread_game` and the sweep
+build with `-fno-strict-aliasing`; the data loader (`port/runtime/include/dread_port_loader.h`,
+`port/README.md` "The data loader") maps the dump's main NSO at `0x7100000000` before the game's
+static initialisers and translates the 128,576 code pointers in `.data` through the function table
+`port_link.py` now writes (`image_tables.s`); `python tools/test_port_loader.py --version 2.1.0`
+runs it on the dump in 2 s (26 checks, no SDK). `nn::fs` is in too (all 22 imports; `rom` is the
+dump's `romfs/`, saves go to `$DREAD_SAVE`). So is the rest of the start-up `fn_71001325d0` (`nn::mem`,
+`nv`, `nn::account`, `nn::util`, `nn::time`, `nn::diag`). `nn::hid` too (one handheld pad set by
+`dread_port_set_npad_state`, no vibration devices). Every SDK import of the slice is in the runtime
+(`nn::prepo` drops reports, `movie` has no tracks yet); `tools/port_imports.py` checks stubs against
+the dump's mangled import names. `tools/port_addresses.py` places the vtables and
+named functions the link had no address for from matched code (residue 439 to 226: 191 host names,
+9 vtables and 26 names, 12 of them a placeholder name the sources reuse for different classes:
+rename them, `port/README.md` "Addresses from matched code"). **The port links and runs on Linux in Docker** (`port/README.md`,
+"Linux in Docker"; WSL 2 and Docker installed by the owner on 2026-10-26). The boot-match batch
+(2026-10-27, branch `claude/port-m1-boot-match`) hand-matched 194 of the 213 boot-slice functions
+that had neither a source nor a lift (112 `O`, 82 `m`, each `m` re-checked by a skeptic; 19 of 2
+to 16 KB left, `build/port/linux/link/boot_unlifted.csv`), gave the 40 declarations it made
+conflicting one header each, and matched `nninitStartup`. The boot now maps the dump, runs
+`nninitStartup` (the memory heap and the default allocator, as the SDK does before the static
+initialisers), every static initialiser, `nnMain` and the whole system start-up, and traps at the
+game's main function `fn_7100000980` (764 B, `L` in `data/functions/` but the game's). Crashes
+print their address and return addresses (`port/runtime/src/fault.cpp`). Boot-match round 2
+(2026-10-27, branch `claude/port-m1-game-main`, journal) matched `fn_7100000980` and the 141
+functions the boot then reached by direct calls from its run-time roots (`nnMain`'s three callbacks
+and main's four), 95 `O` and 47 `m`. It also stubbed `nn::nfp` (26 of 26). The boot now runs into
+the start-up `fn_7100015c70`; under `DREAD_TRAP=log` six functions without a source come first,
+then a null dereference in lifted code after one of them returned 0. Next for M1: round 3,
+the 127 functions on the same roots' static list (74 KB, the scratch script of round 2 over the new
+`traps.s`) and the ones reached through pointers (`fn_7100075730`, `fn_710008a460`,
+`fn_710002f0dc`, `fn_71000666b0`, found by running), the same workflow; then follow the traps.
+Two blockers come from the lifted code itself, not from missing functions:
+- **Dropped arguments.** Byte-identical lifts dropped arguments at their call sites (277 boot-path
+  callers) and in their definitions (164 on the boot path), and `tools/abi_facts.py` under-counted
+  216 functions (capstone's alias bug). The lifter's pass-through regeneration (2026-10-27) leaves
+  103 functions, 10 on the boot path (`build/port/passthrough.json`); their semantic lifts carry
+  `"overrides"` in port_lift's manifest, which port_link has to honour (stream M). Until it does,
+  write a trapped path's callers by hand, as unit 167's wrappers were
+  (`src/engine/UnkGraphicsApi.cpp`).
+- **Split statics.** Function-local statics of header-inline functions are executable symbols on
+  the port, while lifted code uses the image's. Bind them to the image with `--defsym` from
+  `tools/port_addresses.py`'s harvest.
+
+`nn::audio` (6 reached through lifted code) still needs stubs, and also the game globals that a
+matched file defines itself while other code reaches them by address (`port/README.md`, "Game data
+defined by the sources").
+M2 groundwork (2026-10-26, branch `claude/port-bshdat`): `tools/bshdat.py --version 2.1.0
+--compile` parses the 478 shader packages, extracts the 671 programs' 1,342 GLSL sources and the
+compiler's reflection to `build/shaders/2.1.0/`, and compiles 1,341 stages to OpenGL and Vulkan
+SPIR-V with glslang 16.6.0 after two rewrites (block bindings from the reflection,
+`GL_NV_explicit_typecast`); FXAA's fragment stage needs a rewrite rule. Decided 2026-10-26: Vulkan
+first, the SPIR-V built from the user's dump by the port's build (`bshdat.py --compile`'s Vulkan
+mode), no compiler in the executable. Done since (#202, #204): the build step is the port's
+`shaders` target (`tools/bshdat.py --install`: the FXAA fixup makes all 1,342 stages compile; each
+module is checked against NVN's reflection; `shaders.manifest` beside the executable), and
+`port/nvn/` (`dread_nvn`) holds the manifest reader and the binding layer: NVN's per-stage slots on
+one Vulkan descriptor set per stage, stages recognised by their control section (the only part
+`nvnProgramSetShaders` gets by pointer). Variant selection is the engine's own (`fn_71001b0f24` on
+`CProgramResource`, `port/nvn/README.md`): the shim needs nothing for it, but the engine's loader
+and selector (`fn_71001b0050`, `fn_71001b0f24`, `fn_71001b0f7c`, the program switch `fn_71001cc608`)
+are `U` and in port_lift's boot slice. The game calls 150 of its 523 NVN functions.
+Since then (#217 and the Vulkan check): the binding layer runs in the Linux image
+(`nvn_manifest_check`) and against lavapipe with the validation layers (`nvn_vulkan_check`,
+`port/docker/vulkan/Dockerfile`, the owner's go-ahead): all 671 programs' modules, layouts,
+descriptor sets and pipelines, no validation message, after two fixes it found (inactive fragment
+inputs the vertex stage does not write are dropped by the build step; the device needs
+`maintenance4`). Then the start-up path of the shim itself: the entry layer (`nvnBootstrapLoader`,
+`nvnDeviceGetProcAddress`, a named trap for every function not written), the device over Vulkan,
+memory pools with a GPU address space and buffers (the binding layer's address resolution), queues
+and syncs, command buffers, the state objects and the window: 106 functions, 74 of the 146 the game
+calls (`data/nvn_procs.csv` from `tools/nvn_procs.py`, which also names every `g_unk_716e29xxxx` of
+the matched start-up). `nvn_startup_check` replays that start-up `fn_71001587f0` and three frames
+against the shim on lavapipe with validation: all checks pass, no message. With the texture part
+(textures as Vulkan images, the texture and sampler pools, samplers; formats from
+mercury-engine-data-structures and by use, targets from the game's own textures) the replay reaches
+no unimplemented function: 143 functions, 108 of the 146 the game calls. With the drawing part
+(2026-10-27): all 146 (182 in all). Programs, pipelines, Vulkan command buffers, render targets,
+clears, barriers, uniform updates, vertex streams and draws, each number's meaning taken from the
+engine's own reflected enumerations and the wrapper that converts them (`port/nvn/README.md`,
+"Drawing"; `include/nvn_shim/draw.h`). `nvn_startup_check` with the shaders draws all 671 programs
+in full and depth-only on lavapipe with no validation message. Next for M2: the alpha test (a discard
+the build step adds to the fragment stages, with a push constant), a Vulkan surface for the window,
+asset texel upload (the console's tiled layout) and the sampler enumerations; and, once the boot
+reaches `fn_71001587f0`, `dread_nvn` joins `tools/port_link.py --executable` (agreed with the M1
+session).
+Windows (decided 2026-10-27: Linux is the only running target until the title screen; Windows is
+compile-checked alongside, #225): `tools/port_sweep.py --target
+x86_64-w64-mingw32` compiles with llvm-mingw 20261006 (`tools/fetch_toolchains.py
+llvm-mingw-20261006`, Itanium ABI, libc++ 9.0.1 over MinGW-w64's headers) and scans for what LLP64
+and a 16-bit `wchar_t` change silently. All 3,979 sources compile and the scan finds nothing: the
+game's wide text goes through the `char32_t` helpers in `include/base/Char32.h` (the original calls
+where `wchar_t` is 32 bits). Keep both at zero: rerun it when a PR adds hand-written code. Next
+Windows steps, after the title screen on Linux: the runtime's LLP64-mangled import names
+(`tools/port_imports.py --windows`: the runtime compiles; 41 of its 200 imports are lost by name,
+each with one `long long` counterpart, for `image_tables.s` to list under the console's name), Win64/COFF
+versions of `port_link.py`'s `traps.s`, `residue.s` and `image_tables.s`, the fault handler as
+structured exception handling, and a Windows link (`port/README.md`, "Windows (compile only)").
+
+**Stream M (generators).** The bugs above and `--prune`/regeneration after merges. The lifter's
+semantic mode (`opts={"semantic"}`, driven by `tools/port_lift.py`) gives the port oracle-checked
+lifts of `U` functions; its gaps are listed under stream D. Byte mode now names, at each call, the
+argument registers the callee reads that the caller still holds (2026-10-27, journal "Lifter:
+arguments lost in byte-mode lifts"; regenerated, 46,443 lifted, 73 more `O`, none lost). Byte-identical
+lifts had relied on registers their C never named (AArch64 keeps them; an x86-64 compile does not):
+before, 3,220 `src/lifted` definitions read more than they declared and 8,362 made a call that
+dropped one; after, **103** functions lose an argument (36 definitions, 95 callers; 10 on the boot
+path), listed by `tools/port_lift.py --passthrough` in `build/port/passthrough.json`. port_lift
+lifts those in semantic mode and marks each accepted lift `"overrides": "src/lifted/lifted_XXX.cpp"`
+in its manifest, for `tools/port_link.py` to link instead of the `src/lifted` copy (the M1 session's
+change, branch `claude/port-lift-overrides`). 93 of the 103 have an accepted lift, the 10
+boot-path ones included. `tools/abi_facts.py` corrects capstone 5.0.7's register access
+(`cmp`/`cmn`/`tst`, shifts and extends by immediate, `fmov #imm`), sees the cases of a switch, and
+serves every tool from one table computed in address order (`build/port/abi_facts.pickle`).
+port_lift's worklist is now a slice (2026-10-27): `--slice boot` (the default) is every `U`
+function reachable by direct calls from `nnMain`, from the seven run-time roots, from the four
+graphics functions and from the four the boot reaches only through pointers (2,226 functions,
+1.26 MB); `--slice all` is every `U` function but the SDK imports (16,002, 8.08 MB);
+`--worklist build/port/link/boot_missing.csv` gives the old one. Next for the lifter: the semantic
+gaps, the oracle's inputs, and both slices run (branches `claude/lifter-*`). Open leftovers of
+every generator round are recorded in `docs/JOURNAL.md` (work log items 0–3).
+
 **Lifter: the oracle's inputs (2026-10-27, branch `claude/lifter-oracle-inputs`).** The first
 oracle ran six seeds per function and accepted a lift when every conclusive run agreed. Its reach
 was measured with `--mutants`, one-point faults planted in accepted lifts: on 300 boot-slice

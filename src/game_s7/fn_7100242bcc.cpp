@@ -1,4 +1,4 @@
-// Copies of fn_7100d6ea28 (src/game_aca57c/fn_7100b80bbc.cpp), which the binary
+// Copies of fn_7100d6ea28 (src/base/reflection/fn_7100b80bbc.cpp), which the binary
 // repeats at other addresses: fn_7100242bcc, fn_7100120e3c.
 // Clear of a hash map keyed by string ids whose nodes are also chained in a list: unless it is
 // already empty, releases each node's key and frees the node, then empties the buckets and the

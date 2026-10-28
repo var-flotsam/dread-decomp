@@ -1,6 +1,6 @@
 // CDoorLifeComponent's unit (its static initialiser is src/game_s7/fn_71008da6c0.cpp, which
 // registers the CDoorLifeComponent::SState enum and the "NextState" property): fn_71008d586c sends
-// a door's state machine (at +0x420, as in src/game_aca57c/fn_7100acb14c.cpp) to state 3, from
+// a door's state machine (at +0x420, as in src/game/CWeightActivablePropComponent/fn_7100acb14c.cpp) to state 3, from
 // state 1 (when forced or allowed) or 2, and can write the new state to the blackboard section of
 // the current scenario. Names and layouts are placeholders.
 #include "base/global/CStrId.h"

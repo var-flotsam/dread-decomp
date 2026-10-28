@@ -2,7 +2,7 @@
 
 // A menu that keeps the handle of a composition it looked up through the GUI registry at
 // `Offset`: the power description (0x488) and the mission menu (0x490) of the pause menus. The
-// set-up functions (fn_7100b2c2bc, fn_7100b2cd24) are defined in src/game_aca57c/fn_7100b2c6a0.cpp.
+// set-up functions (fn_7100b2c2bc, fn_7100b2cd24) are defined in src/game/GUI/CIngameMenu/fn_7100b2c6a0.cpp.
 
 #include "game/UnkGuiHandle.h"
 #include "types.h"

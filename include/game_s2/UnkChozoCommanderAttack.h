@@ -16,5 +16,5 @@ static_assert(__builtin_offsetof(UnkChozoCommanderAttack, field_0x8) == 0x8, "Un
 
 // When the owner has the sub-object at +0x220, sends it a request under the ids `id` and
 // 0x71b15e29dc542a11 with the mode 2 when `flag` is set, else 0. Defined in
-// src/game_lo/fn_7100426b54.cpp.
+// src/game/CChozoCommanderAttack/fn_7100426b54.cpp.
 void fn_7100426b54(UnkChozoCommanderAttack* self, u64 id, bool flag);

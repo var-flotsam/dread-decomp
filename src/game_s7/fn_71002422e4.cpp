@@ -1,4 +1,4 @@
-// Copies of fn_7100d40cc8, fn_7100d40ba0 (src/game_aca57c/fn_7100d40ba0.cpp), which the binary
+// Copies of fn_7100d40cc8, fn_7100d40ba0 (src/game/logic/collision/CCollider/fn_7100d40ba0.cpp), which the binary
 // repeats at other addresses: fn_71002422e4, fn_71002421bc.
 // The reflected collection functions Begin, End and Erase of arrays of reference-counted pointers
 // (base::refl_Begin/refl_End; the iterator's cached value releases an owned pointer), and the

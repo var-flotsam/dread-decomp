@@ -1,7 +1,7 @@
 #pragma once
 
 // A 2D segment: start and end points, then two more words. fn_7100125b1c builds one from the two
-// points; fn_7100125c64 (defined in src/game_lo/fn_7100125c64.cpp) tests whether a point lies on it.
+// points; fn_7100125c64 (defined in src/game/malloc/fn_7100125c64.cpp) tests whether a point lies on it.
 
 #include "base/math/CVector.h"
 #include "types.h"
@@ -28,7 +28,7 @@ struct UnkVec2Result {
 };
 
 // The segment's unit normal: the direction turned a quarter turn counter-clockwise, or zero for a
-// degenerate segment. Defined in src/game_lo/fn_7100125e78.cpp.
+// degenerate segment. Defined in src/game/malloc/fn_7100125e78.cpp.
 UnkVec2Result fn_7100125e78(const UnkSegment2D* seg);
 
 // Whether the point lies on the segment within the tolerance; `extended` also accepts a point just

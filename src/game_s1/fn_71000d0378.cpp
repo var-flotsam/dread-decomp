@@ -1,5 +1,5 @@
 // Clears of arrays of string ids (destroying the ids, keeping the storage), as fn_710104f600
-// (src/game_s7/fn_710104f600.cpp) does for ids with two values: ids in CFilePathStrId's pool
+// (src/game/CFXPool/CDefinition/fn_710104f600.cpp) does for ids with two values: ids in CFilePathStrId's pool
 // (fn_71000d0378) or the default one (fn_71000cdbbc), and ids at +0x8 of their owner, destroyed
 // only when the array has storage (fn_71000deb68, fn_7100251758). Also move-assignments of arrays
 // of ids, as fn_710104ee34 for ids with two values (CFilePathStrId's pool fn_71000d0860, the
@@ -268,7 +268,7 @@ __attribute__((flatten)) UnkIterValue<UnkWordPathRes>* fn_710000da34(UnkIterValu
     return MoveAssign(self, other);
 }
 
-// Move-assignment of an id and a file path id, as fn_71002db2a0 (src/game_s2/fn_71002db2a0.cpp)
+// Move-assignment of an id and a file path id, as fn_71002db2a0 (src/game/animtree/CAnimTreeDef/fn_71002db2a0.cpp)
 // does for two ids.
 UnkReleasedIdPair* fn_710001d15c(UnkReleasedIdPair* self, UnkReleasedIdPair* other) {
     if (self != other)
@@ -283,7 +283,7 @@ UnkReleasedIdPair* fn_710001cd80(UnkReleasedIdPair* self, UnkReleasedIdPair* oth
 }
 
 // Clear of a table of string ids (fn_71000d99d0) or file path ids (fn_71000db40c) keyed by string
-// ids, as the tables' Clear in src/game_s7/fn_71002520fc.cpp does for records: the keys (at 8),
+// ids, as the tables' Clear in src/game/CActorComponent/fn_71002520fc.cpp does for records: the keys (at 8),
 // then the values (at 0) are released, and the count is zeroed (the arrays are kept).
 template <class Value>
 struct UnkIdTable {

@@ -1,5 +1,5 @@
 // A handler taking reflected values and returning a status record {0, 0, 2, 1}: as
-// fn_710105d328 (src/game_s7/fn_710105d328.cpp), it calls fn_7100122b2c with a value and an
+// fn_710105d328 (src/game/SLogicPathNode/fn_710105d328.cpp), it calls fn_7100122b2c with a value and an
 // optional pointer and marks the owner dirty (another owner layout): fn_710011e1e8.
 #include "types.h"
 

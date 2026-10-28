@@ -1,6 +1,6 @@
 // The records of base::core::CAsset's unit (tools/tu_map.py unit 24): a map of string ids to
 // 0x80-byte records, each holding two maps of ids to id pairs, an array of file-path ids and a
-// file-path id. src/game_s1/fn_7100018558.cpp assigns such maps and names the types; this file
+// file-path id. src/base/core/CAsset/fn_7100018558.cpp assigns such maps and names the types; this file
 // holds the map's reserve (fn_7100017948) and the record's destructor (fn_7100017ce8).
 
 #include <new>
