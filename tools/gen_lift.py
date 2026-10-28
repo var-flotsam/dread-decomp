@@ -1594,6 +1594,25 @@ class Lifter:
             self.write(f"s{d}", lanes[0], "f32")
             s.lanes[100 + d] = lanes
             return True
+        if m == "faddp" and ((g := re.fullmatch(r"v(\d+)\.([24])s, v(\d+)\.\2s, v(\d+)\.\2s", op))
+                             or (g := re.fullmatch(r"s(\d+), v(\d+)\.(2)s", op))):
+            # pairwise: the sums of adjacent lanes of a, then of b (scalar form: of a's two lanes)
+            if g.re.pattern.startswith("s"):
+                d, a, b, k = int(g.group(1)), int(g.group(2)), None, 1
+            else:
+                d, k, a, b = int(g.group(1)), int(g.group(2)), int(g.group(3)), int(g.group(4))
+            if any(100 + r not in s.lanes for r in (a, b) if r is not None):
+                return False
+            pairs = [s.lanes[100 + a]] + ([s.lanes[100 + b]] if b is not None else [])
+            sums = [(v[2 * i], v[2 * i + 1]) for v in pairs for i in range(max(k // 2, 1))]
+            lanes = [self.bind("f32", f"({p}) + ({q})") if p is not None and q is not None else None for p, q in sums]
+            lanes += [None] * (4 - len(lanes)) if b is not None else []
+            if lanes[0] is None:
+                return False
+            self.write(f"s{d}", lanes[0], "f32")
+            if b is not None:
+                s.lanes[100 + d] = lanes
+            return True
         if m == "mov" and (g := re.fullmatch(r"v(\d+)\.d\[1\], v(\d+)\.d\[0\]", op)):
             n, src = int(g.group(1)), int(g.group(2))
             if 100 + n not in s.lanes or 100 + src not in s.lanes:
