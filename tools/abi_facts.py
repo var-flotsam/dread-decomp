@@ -50,6 +50,8 @@ import asmdiff  # noqa: E402
 import callgraph  # noqa: E402
 
 MAX_SIZE = 65536
+# result_shape's and result_main's analysis (their cache is kept apart: a change does not cost the table)
+SHAPE_VERSION = 2
 CACHE_VERSION = 10  # bump when the analysis changes (AbiFacts.load ignores other versions)
 MAX_DEPTH = 48  # callee recursion; deeper chains count as unknown
 INT_ARGS = frozenset(range(9))  # x0-x7 and x8
@@ -201,6 +203,8 @@ class AbiFacts:
         self._busy: set[int] = set()
         self._decoded: dict[int, list | None] = {}
         self._ret: dict[int, bool | None] = {}
+        self._shape: dict[int, tuple | None] = {}  # result_shape
+        self._main: dict[int, frozenset] = {}  # result_main
         self._fwd: dict[int, frozenset] = {}
         self._wide = False  # liveness over 64-bit reads only (Facts.wide)
 
@@ -212,6 +216,9 @@ class AbiFacts:
             if saved.get("version") == CACHE_VERSION and saved.get("complete"):
                 self._facts.update(saved["facts"])
                 self._ret.update(saved["ret"])
+                if saved.get("shape_version") == SHAPE_VERSION:
+                    self._shape.update(saved.get("shape", {}))
+                    self._main.update(saved.get("main", {}))
                 self.is_complete = True
 
     def complete(self, path: Path) -> None:
@@ -239,7 +246,8 @@ class AbiFacts:
         tmp = path.with_name(f"{path.name}.{os.getpid()}.tmp")
         with tmp.open("wb") as fh:
             pickle.dump({"version": CACHE_VERSION, "complete": getattr(self, "is_complete", False),
-                         "facts": self._facts, "ret": self._ret}, fh)
+                         "facts": self._facts, "ret": self._ret, "shape": self._shape, "main": self._main,
+                         "shape_version": SHAPE_VERSION}, fh)
         replace(tmp, path)
 
     # -- decoding -------------------------------------------------------------------------------
@@ -574,6 +582,131 @@ class AbiFacts:
                 if r is None or r:
                     return r
         return False
+
+    def result_shape(self, addr: int, depth: int = 0) -> tuple | None:
+        """A result in more than x0 or s0/d0, from what callers read right after calling: ("x", 2)
+        for a 16-byte result in x0:x1, ("s" or "d", n) for a float aggregate in its first n float
+        registers (a Vector3 in s0-s2); None for one register or none. A forward scan of each
+        caller's straight-line code after `bl addr` for x1 or s1-s3 read before written (a
+        caller-saved register read after a call is a result: compiled code never keeps a value
+        there across one), and through a caller that returns it (`bl addr` then ret, or `b addr`),
+        that caller's own shape."""
+        if addr in self._shape:
+            return self._shape[addr]
+        if self.graph is None:
+            self.graph = callgraph.CallGraph(self.version, self.rows)
+        callers = self.graph.callers.get(addr, [])
+        if not callers or depth > 8:
+            return None
+        self._shape[addr] = None  # breaks cycles
+        regs: set[int] = set()
+        letters: set[str] = set()
+        targets: dict[int, set[int]] = {}
+        for c in sorted(set(callers)):
+            ins = self.decode(c)
+            if ins is None:
+                continue
+            targets[c] = {x.imms[-1] for x in ins if x.imms and x.mnemonic not in ("bl", "blr")
+                          and x.mnemonic.startswith(("b", "cb", "tb"))}
+            for i, x in enumerate(ins):
+                if not x.imms or x.imms[-1] != addr or x.mnemonic not in ("bl", "b"):
+                    continue
+                if x.mnemonic == "b":  # a tail call: the caller's result is this one's
+                    own = self.result_shape(c, depth + 1)
+                    regs |= set(shape_regs(own))
+                    letters |= {own[0]} if own and own[0] != "x" else set()
+                    continue
+                written: set[int] = set()
+                for y in ins[i + 1:]:
+                    if y.address in targets[c]:
+                        break  # (a join: another path may have written the register)
+                    hit = (y.uses & RESULT_EXTRA) - written
+                    if hit:
+                        regs |= hit
+                        if hit - {1}:
+                            letters.add(float_letter(self.orig, y.address))
+                    if y.mnemonic == "ret":
+                        own = self.result_shape(c, depth + 1)
+                        regs |= set(shape_regs(own)) - written
+                        letters |= {own[0]} if own and own[0] != "x" else set()
+                        break
+                    if y.mnemonic in ("bl", "blr", "b", "br"):
+                        break  # (another call or a jump: the straight line ends; it goes on past a test)
+                    written |= y.defs
+        if regs & {1} and regs - {1}:
+            shape = None  # (an integer and a float register: not one AAPCS64 aggregate)
+        elif regs & {1}:
+            shape = ("x", 2)
+        elif regs:
+            shape = ("d" if "d" in letters else "s", max(regs) - 100 + 1)
+        else:
+            shape = None
+        self._shape[addr] = shape
+        return shape
+
+
+    def result_main(self, addr: int, depth: int = 0) -> frozenset:
+        """Which of x0 (0) and s0/d0 (100) callers read after calling: the same forward scan as
+        result_shape, counting x0 passed on to the next call (a function returning `this`) and a
+        caller that returns the result. Empty when no caller says (then the last written wins)."""
+        if addr in self._main:
+            return self._main[addr]
+        if self.graph is None:
+            self.graph = callgraph.CallGraph(self.version, self.rows)
+        callers = self.graph.callers.get(addr, [])
+        if not callers or depth > 8:
+            return frozenset()
+        self._main[addr] = frozenset()  # breaks cycles
+        regs: set[int] = set()
+        for c in sorted(set(callers)):
+            ins = self.decode(c)
+            if ins is None:
+                continue
+            targets = {x.imms[-1] for x in ins if x.imms and x.mnemonic not in ("bl", "blr")
+                       and x.mnemonic.startswith(("b", "cb", "tb"))}
+            for i, x in enumerate(ins):
+                if not x.imms or x.imms[-1] != addr or x.mnemonic not in ("bl", "b"):
+                    continue
+                if x.mnemonic == "b":
+                    regs |= self.result_main(c, depth + 1)
+                    continue
+                written: set[int] = set()
+                for y in ins[i + 1:]:
+                    if y.address in targets:
+                        break
+                    if y.mnemonic in ("bl", "b") and y.imms:
+                        f = self.facts(y.imms[-1])  # (the result passed on as the next call's argument)
+                        regs |= (set(f.args) & {0, 100} if f is not None else set()) - written
+                        if y.mnemonic == "b":
+                            regs |= self.result_main(c, depth + 1) - written
+                        break
+                    regs |= (y.uses & {0, 100}) - written
+                    if y.mnemonic == "ret":
+                        regs |= self.result_main(c, depth + 1) - written
+                        break
+                    if y.mnemonic in ("blr", "br"):
+                        break
+                    written |= y.defs
+        self._main[addr] = frozenset(regs)
+        return self._main[addr]
+
+
+RESULT_EXTRA = frozenset({1, 101, 102, 103})  # result registers beyond x0 and s0/d0 (result_shape)
+
+
+def shape_regs(shape: tuple | None) -> tuple:
+    """The registers beyond x0 and s0/d0 a result_shape occupies."""
+    if not shape:
+        return ()
+    return (1,) if shape[0] == "x" else tuple(100 + i for i in range(1, shape[1]))
+
+
+def float_letter(orig: asmdiff.Original, address: int) -> str:
+    """'d' when the instruction at `address` reads a double register, else 's'."""
+    off = address - asmdiff.BASE
+    x = next(CS.disasm(orig.img.data[off:off + 4], address), None)
+    return "d" if x is not None and any(CS.reg_name(op.reg)[0] == "d" for op in x.operands
+                                        if op.type == arm64.ARM64_OP_REG) else "s"
 
 
 def main() -> int:
