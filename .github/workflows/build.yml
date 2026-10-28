@@ -7,6 +7,10 @@
 #    fails when a file does not compile.
 #  - tool tests: tools/tests (unittest), including the ones that need the project compiler.
 #
+# A pull request that changes only documentation (every changed path under docs/ or ending in .md)
+# skips the compile job; a required check counts the skipped job as passing. The `docs-only` job
+# decides, and if it fails the compile job runs. Pushes to main and manual runs always compile.
+#
 # Downloads are open-source releases only (LLVM, libc++ headers), hash-pinned and cached. Nothing
 # from orig/ or build/ is read or uploaded. Read-only token; no secrets.
 name: build
@@ -25,8 +29,41 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  docs-only:
+    name: docs-only
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    outputs:
+      docs_only: ${{ steps.diff.outputs.docs_only }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: false
+      - id: diff
+        env:
+          BASE: ${{ github.event.pull_request.base.sha }}
+          HEAD: ${{ github.event.pull_request.head.sha }}
+        run: |
+          git diff --name-only "$BASE...$HEAD" > "$RUNNER_TEMP/changed.txt"
+          echo "$(wc -l < "$RUNNER_TEMP/changed.txt") files changed; the ones that are not documentation:"
+          if grep -Ev '^docs/|\.md$' "$RUNNER_TEMP/changed.txt"; then
+            echo "docs_only=false" >> "$GITHUB_OUTPUT"
+          elif [ -s "$RUNNER_TEMP/changed.txt" ]; then
+            echo "(none: the compile job is skipped, which counts as passing)"
+            echo "docs_only=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "(no changed files listed: compiling anyway)"
+            echo "docs_only=false" >> "$GITHUB_OUTPUT"
+          fi
+
   compile:
     name: compile
+    needs: docs-only
+    # On any outcome of `docs-only` but "only documentation changed" (failed, or skipped on push and
+    # workflow_dispatch) the job runs.
+    if: >-
+      !cancelled() && (needs.docs-only.result != 'success' || needs.docs-only.outputs.docs_only != 'true')
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:

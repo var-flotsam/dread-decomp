@@ -114,6 +114,8 @@ manual runs always run it, and a nightly run at 02:17 UTC runs `check.py --no-ca
 and rediffing every source, so a fault in `check.py`'s caches (`build/check/2.1.0/*.inputs.json`,
 `*.diff.json`) shows up within a day. Add a path to `DECOMP_PATHS` when `check.py` starts reading
 a new file. To force a full check on a pull request, run the workflow by hand on its branch.
+The hosted `compile` job (`build.yml`) is skipped the same way, but only on pull requests that change
+nothing outside `docs/` and Markdown files (its `docs-only` job decides).
 
 **The runner as set up on 2026-10-24** (runner `dread-pc`, label `dread`, in
 `%USERPROFILE%\actions-runner`, outside the repository):

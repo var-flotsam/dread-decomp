@@ -145,6 +145,11 @@ the lifter's (diagnosed on the PC, measured there). All semantic mode:
 - `end` is not a function to lift: both symbols of that name lack a size in the image's symbol table
   (a 16-byte entry at `7101238d80`, and the image's end marker), which the size cap reads as too big.
 
+**`compile` skipped on documentation-only pull requests (2026-10-28, branch `claude/project-thread-5d6plu`, after #252).**
+`build.yml` gains a hosted `docs-only` job; when every changed path is under `docs/` or ends in `.md`, the
+`compile` job is skipped (reported as passing to the required check). Any other change, a failure of `docs-only`, a
+push to main or a manual run compiles as before. Narrower filters were not worth it: the job's tool tests cover
+`tools/`, and its matching build and port sweep cover `src/`, `include/`, `lib/` and `port/`.
 
 **Faster `check` and fewer runs of it (2026-10-28, branch `claude/project-thread-5d6plu`).**
 The `check` job took 13 to 15 minutes from push to result, of which `check.py` itself was 4 to 5 (runs 167 and
