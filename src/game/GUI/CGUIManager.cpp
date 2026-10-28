@@ -458,3 +458,80 @@ void fn_71011b250c(UnkGuiPoolList* self, u32 n, u32 /*unused*/, u32 flags, base:
     // The pool's address, formed as an integer (as in UnkPoolList::Init).
     self->allocator = reinterpret_cast<base::UnkAllocator*>(reinterpret_cast<u64>(self) + 0x38);
 }
+
+// ---- fn_71011ba714: the skin file ----
+
+// GUI::CGUIManager::SkinContainer (its std::unique_ptr's type is fn_71011b1924): skins by name, a
+// string-id hash map like the sprite sheets'. fn_7100121268 destroys it.
+struct UnkSkinTag;
+using UnkSkinMap = base::UnkStrIdHashMap<UnkSkinTag>;
+using UnkSkinNode = base::UnkStrIdHashNode<UnkSkinTag>;
+
+const base::reflection::CType* fn_71011b1924();
+void fn_7100121268(UnkSkinMap* self);
+
+// The std::unique_ptr the skin file is read into.
+struct UnkOwnedSkins {
+    UnkSkinMap* ptr = nullptr;
+
+    ~UnkOwnedSkins() {
+        UnkSkinMap* p = ptr;
+        ptr = nullptr;
+        if (p) {
+            fn_7100121268(p);
+            operator delete(p);
+        }
+    }
+};
+
+// The root's skins (a std::unique_ptr at +0x1b0).
+static inline UnkSkinMap*& Skins(UnkGuiRoot* root) {
+    return *reinterpret_cast<UnkSkinMap**>(reinterpret_cast<char*>(root) + 0x1b0);
+}
+
+// Reads the skin file `path` names: the first one read becomes the root's container, later ones
+// add their entries to it (fn_71011b9ce4's twin).
+void fn_71011ba714(UnkGuiRoot* root, const UnkStrPair_0x10* path) {
+    UnkOwnedSkins loaded;
+    UnkFileReader reader;
+    fn_710007be8c(&reader.file, 0x16, nullptr);
+    reader.field_0x38 = 3;
+    reader.field_0x3c = 2;
+    bool opened;
+    {
+        base::global::CRntString mode("rb");
+        opened = fn_710007c1ac(&reader, path, &mode);
+    }
+    if (opened)
+        fn_710000ccd8(&reader);
+    UnkReadTarget target;
+    {
+        const base::reflection::CType* type = fn_71011b1924();
+        base::reflection::UnkReflValue value;
+        value.field_0x0 = nullptr;
+        value.type = nullptr;
+        value.kind = 2;
+        fn_71000a18d4(&value, type, &loaded.ptr, true);
+        fn_71000f0568(&target, &value, 0xc);
+        fn_71000a1c60(&value);
+    }
+    if (reader.file.position < reader.file.size && reader.field_0x38 == 0)
+        Parse(&reader, &target);
+    if (!Skins(root)) {
+        UnkSkinMap* p = loaded.ptr;
+        loaded.ptr = nullptr;
+        Skins(root) = p;
+    } else {
+        for (UnkSkinNode* n = loaded.ptr->head; n; n = n->next)
+            base::refl_StrIdHashInsert(Skins(root), reinterpret_cast<const base::global::CStrId*>(&n->key),
+                                       reinterpret_cast<const u64*>(n->unk_0x8));
+    }
+    for (u64 i = 0; i < target.count; ++i) {
+        UnkReadEntry& e = target.entries[i];
+        if (e.ops) {
+            e.ops->destroy(e.storage);
+            e.ops = nullptr;
+        }
+    }
+    fn_710007c0e4(&reader.file);
+}
