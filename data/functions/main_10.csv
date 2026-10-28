@@ -3429,7 +3429,7 @@ address,size,name,name_source,subsystem,status
 0x710109c64c,132,fn_710109c64c,unknown,unknown,U
 0x710109c6d0,424,fn_710109c6d0,unknown,unknown,U
 0x710109c880,344,fn_710109c880,unknown,unknown,O
-0x710109c9e0,436,fn_710109c9e0,unknown,unknown,U
+0x710109c9e0,436,fn_710109c9e0,unknown,unknown,m
 0x710109cba0,172,fn_710109cba0,unknown,unknown,U
 0x710109cc50,280,fn_710109cc50,unknown,unknown,U
 0x710109cd70,148,fn_710109cd70,unknown,unknown,U

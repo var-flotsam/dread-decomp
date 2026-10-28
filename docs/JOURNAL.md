@@ -112,6 +112,27 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**CActorLayer's reflection by hand: `fn_71002584a0` (2026-10-28, branch `claude/project-thread-pvyj4u`).** The port
+traps in this function just before the bad string id, and the lifter can't verify it: the oracle's made-up
+tables never end its loops. It is `O` in the new `src/game/CActorLayer.cpp`. `gen_reflection` skipped it
+because of its first statement, a class attribute whose value is a list of one reflected value (a string id
+set up by its type's +0x38 hook, listed by `fn_7100ad3404`). Matching findings:
+- The value and the list match as temporaries of one `AddTyped<List, TypeGetter>(key, List(Value(name, type)))`
+  call. With named locals, the stack slots or the destruction order differed.
+- The name has to come before the type in the value's constructor, so the type getter runs after the id is built.
+- A `const char*` handed down through an inline helper is stored early. `static_cast<const char*>(p)` makes a fresh
+  temporary, stored after the key getter as a literal would be.
+
+**The three x0 cases the lifter's fix leaves refused, by hand (2026-10-28, branch `claude/project-thread-pvyj4u`, second PR).**
+The lifter thread's fix (branch `claude/project-thread-zgkpk3`) now checks whether a function writes s0
+itself before it treats s0 as the result, which covers six of the nine void functions above. It does
+not cover the three where x0 was taken for a result, because the same rule would wrongly catch
+functions that return `this`. Those three are now in `src/`: `fn_7100eea4c8` (a sub-area's settings to
+the environment manager) and `fn_7100eea618` (its camera settings to the main camera's
+CMetroidCameraCtrl), both `O` in `src/game/CSubAreaManager.cpp`, and `fn_710109c9e0` (the pop of the
+Lua console's scratch stack, `m` in `src/base/UnkLuaDoString.cpp`). The first argument of the two sub-area
+steps is an empty `UnkLeftoverArg`, because their caller leaves x0 as the previous call returned it.
+
 **Dashboard for both goals; README status card (2026-10-28, branch `claude/project-thread-vt2bik`).**
 The private dashboard (see "Status dashboard" below) predated the reorganization: it showed matching
 only, read the handoff's old phase table (every port row came out as an unstarted grey chip) and took

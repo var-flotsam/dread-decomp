@@ -4,7 +4,9 @@
 // (the same names and layouts; the read target and the parse context are in
 // base/reflection/UnkReflObjectRead.h); names and layouts are placeholders.
 // Holds fn_7100ee30dc (reads the reflected global object from a scenario file), fn_7100ee327c
-// (loads a scenario's files) and fn_7100ee4f84 (makes a sub-area the current one).
+// (loads a scenario's files) and fn_7100ee4f84 (makes a sub-area the current one), and the two steps
+// that hand the new sub-area's settings to the environment manager (fn_7100eea4c8) and the main
+// camera (fn_7100eea618).
 #include "base/UnkHashStream.h"
 #include "base/UnkRegistry.h"
 #include "base/UnkStrIdPathPair.h"
@@ -734,4 +736,88 @@ void fn_7100ee34f0(CSubAreaManager* self) {
     self->field_0x338.Clear();
     self->field_0x888.Clear();
     self->field_0x110 = 0;
+}
+
+// The first argument of the two settings steps below: their caller (fn_7100ee5dcc) leaves x0 as
+// the previous call returned it, and neither reads it.
+struct UnkLeftoverArg {};
+
+// The environment manager singleton (src/engine/UnkStartupManagers.cpp creates it the same way)
+// and the three settings it takes from a sub-area, each from one slot of the sub-area's table.
+// The singleton and its constructor keep the untyped declarations the other files share.
+struct UnkEnvironmentManager;
+extern void* g_unk_7101d47368;
+void fn_7100d8ced8(void* self);  // constructor
+void fn_7100d8e32c(UnkEnvironmentManager* self, const CStrId* id, bool a, bool b);  // slot 6
+void fn_7100d8dac0(UnkEnvironmentManager* self, const CStrId* id, bool a, bool b);  // slot 7
+void fn_7100d8df84(UnkEnvironmentManager* self, const CStrId* id, bool a, bool b);  // slot 8
+// The sub-area's slot `index`: an id in its table at +0x68.
+const CStrId* fn_7100fac818(UnkSubArea* area, u32 index);
+// The id the three settings are reset with when there is no sub-area.
+extern CStrId g_unk_71729daf08 __attribute__((visibility("hidden")));
+
+static inline UnkEnvironmentManager* EnvironmentManager() {
+    if (!g_unk_7101d47368) {
+        void* m = fn_71000839a0(0x4c8, 0x3f);
+        fn_7100d8ced8(m);
+        g_unk_7101d47368 = m;
+    }
+    return static_cast<UnkEnvironmentManager*>(g_unk_7101d47368);
+}
+
+// Hands the sub-area's settings for the slots set in `mask` (6, 8, then 7) to the environment
+// manager; without a sub-area, resets all three (`b` is then false).
+void fn_7100eea4c8(UnkLeftoverArg, UnkSubArea* area, bool a, bool b, const UnkMask* mask) {
+    UnkEnvironmentManager* env = EnvironmentManager();
+    if (!area) {
+        fn_7100d8e32c(env, &g_unk_71729daf08, a, false);
+        fn_7100d8dac0(env, &g_unk_71729daf08, a, false);
+        fn_7100d8df84(env, &g_unk_71729daf08, a, false);
+        return;
+    }
+    u32 bits = mask->bits;
+    if (bits >> 6 & 1) {
+        fn_7100d8e32c(env, fn_7100fac818(area, 6), a, b);
+        bits = mask->bits;
+    }
+    if (bits >> 8 & 1) {
+        fn_7100d8df84(env, fn_7100fac818(area, 8), a, b);
+        bits = mask->bits;
+    }
+    if (bits >> 7 & 1)
+        fn_7100d8dac0(env, fn_7100fac818(area, 7), a, b);
+}
+
+// The sub-area's camera settings as fn_7100eea618 reads them.
+struct UnkSubAreaCameraSettings {
+    u8 pad_0x0[0x100];
+    f32 field_0x100;
+    bool field_0x104;
+};
+
+// What the camera step calls: the CMetroidCameraCtrl controller takes a value and a flag, and a
+// flag with the camera's id.
+void fn_7100935cb8(f32 value, UnkCameraCtrl* ctrl, bool flag);
+void fn_71009349b0(UnkCameraCtrl* ctrl, bool flag, const CStrId* id);
+
+// Hands the sub-area's camera settings to the main camera's controller when it is the
+// CMetroidCameraCtrl one.
+void fn_7100eea618(UnkLeftoverArg, UnkSubArea* area, bool flag) {
+    UnkGameManager* gm = g_unk_7101d47310;
+    u32 kind_value = g_unk_71727bebb8;
+    u64 name = fn_7100001570("MainCamera", 10);
+    alignas(8) u32 kind = kind_value;  // stored after the hash, in an 8-byte slot
+    void* camera = fn_7100deba8c(gm, &name, &kind);
+    if (!camera)
+        return;
+    base::reflection::UnkReflObject* component = fn_7100d786c0(camera);
+    if (!component)
+        return;
+    UnkCameraCtrl* ctrl = fn_71010e389c(component, GameManagerIdTable().field_0x17e0);
+    if (ctrl && ctrl->vf_0x0() == fn_7100932fa4()) {
+        const UnkSubAreaCameraSettings* settings = reinterpret_cast<const UnkSubAreaCameraSettings*>(area);
+        fn_7100935cb8(settings->field_0x100, ctrl, flag);
+        static CStrId s_id("SubareaCamera", true);
+        fn_71009349b0(ctrl, settings->field_0x104, &s_id);
+    }
 }
