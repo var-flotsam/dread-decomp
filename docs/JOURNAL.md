@@ -269,9 +269,11 @@ pinned, about 90 s on 4 cores) and for x86-64 (`tools/port_sweep.py`, about 2 mi
 `tools/tests` (24 unittest cases, no game data; asmdiff's tests compile a fixture). `tools/dread/`
 holds the one loader of `data/functions/` (six tools moved to it, outputs compared before and after)
 and `python -m tools <tool>` runs any script under the repository's venv. `AGENTS.md` and
-`docs/tasks/` are retired (macOS steps kept in `docs/reference.md`). Left for after the lifter and M1
-sessions land: the status column in its own file, the move of `src/game_*` files by unit, and a
-boot-distance run on the self-hosted runner.
+`docs/tasks/` are retired (macOS steps kept in `docs/reference.md`). The move of `src/game_*` files by unit
+and the boot-distance run followed (entries above, `tools/boot_distance.py`). The status column in
+its own file was dropped (owner, 2026-10-28): both columns are generated, only 5 of 83 merges since
+2026-10-18 had both sides change the same `data/functions/` file, `tools/check.py --update` already
+resolves those, and about 20 tools read the column.
 
 **Handoff next-steps snapshot (2026-10-28, branch `claude/project-thread-kzc3uy`).** The handoff's
 per-stream "Next steps" section as it stood on 2026-10-27, moved here verbatim when the handoff was cut
