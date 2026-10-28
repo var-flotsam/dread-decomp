@@ -113,6 +113,45 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Boot functions the lifter rejects, by hand, batch 1 (2026-10-28, branch `claude/project-thread-xllbvf`).** The
+boot-slice manifest (`port_lift.py --slice boot`, lifts of 2026-10-28) left 40 functions outside the accepted set,
+the seven indirect calls with stack arguments and the string-id crash aside. Four of them (`fn_71000763c0`,
+`fn_7100d7ce40`, `fn_7100b8deec`, `fn_7100b8dff0`) were already hand-written in #238, so 36 were open. This batch
+covers 22 of them, plus the new boot trap `fn_71000f7800`:
+- `O`: the eight Lua bindings that push a manager's setting (`src/script/lua_bind.cpp`; their `src/lifted`
+  copies lost arguments on x86-64), `fn_7100219ef4` (render manager), `fn_710019c198` (the screen's corners in
+  clip space, `src/engine/UnkScreenCorners.cpp`), `fn_71001ba864` (a view aimed at a point), `fn_71011b250c`
+  (a GUI pooled list's constructor), `fn_7100e3d8a8` (a minimap rectangle's dashed diagonal),
+  `fn_7100fd51a0` (the music manager's tunables file, `src/game/sound/CMusicManagerFile.cpp`) and
+  `fn_7100fc7920` (the scenario load request, `src/game/UnkScenarioLoadRequest.cpp`).
+- `m`: `fn_71000ffa68` (a sound's stop command), `fn_7100d668d4` (the polygon collection's type-8 leaf
+  visitor), `fn_7100070a28` (the vibration player's update, `src/base/input/UnkRumblePlayer.cpp`),
+  `fn_7100ee2ebc` and `fn_71011a224c` (the sub-area manager's and the scenario's collision file loads),
+  `fn_710086697c` (a collider group from the collision file) and `fn_71001a6644` (reading a material).
+- `M`: `fn_71000f7800`, the sound system's set-up (3,632 bytes, `src/base/snd/CSoundSystemATK.cpp`). It is
+  not in the boot-slice worklist (nothing reaches it by a direct call), but it is where the boot traps after
+  round 5. It is written from the original's behaviour and checked call by call against the disassembly, not
+  byte-matched. On the port it turns sound off cleanly: it sets `g_unk_7108b6ab60` and returns false either when
+  `nn::audio::OpenDefaultAudioOut` fails or when the silent `nn::atk` stand-in's `fn_710120ade0` returns 0.
+  The listener's direction is `nn::util::SinCosEst(0)` inlined, written as its exact result.
+
+Findings:
+- A `RELOC` line's "original" address is the target the original's GOT slot or page holds, not a symbol and
+  an offset: the `+0x..` after it is the instruction's offset. Name the global after that address.
+- A bool read for a variadic push compiles to a plain `ldrb` only through a `bool` lvalue; a `u8` read is
+  normalised with `cmp`/`cset`. The helper must not be a template over the owner's type (one instantiation
+  kept the normalisation).
+- A parameter tested with `tbz w1, #0` and nothing else is a `bool`; with `u32 & 1` Clang inverted the branch
+  layout (`fn_710019c198`).
+- Two identical branch bodies are hoisted by SimplifyCFG unless each branch has its own local; the slots are
+  merged again by stack colouring (`fn_71000ffa68`).
+- The order of member destruction decides where an inlined list destructor lands: give the list its own
+  destructor and let the entry's be empty (`fn_7100fc7920`).
+- A callee that does not read x0 (`tools/abi_facts.py` lists the registers it reads) still takes a first
+  parameter in the existing declarations; passing null there changes nothing but the bytes.
+- `!(a - e <= b && a + e >= b)` and the same test written the other way round give the same compare chain
+  with the operands swapped; `fmax` (not `fmaxnm`) comes from `!(x <= c) ? x : c`.
+
 **Port M1 round 5: the bad string id was a wrong alias (2026-10-28, branch `claude/project-thread-3x0lf8`).** With #240's hand-written `fn_71002584a0` the boot no longer traps there, but it still crashed in the same place, so that function was not the cause. The crash is in the walk over a class's field records (`fn_7100096f30` → lifted `fn_71000e7420` → the attribute handler `fn_710008ef70`, here a field's `CreateElement` attribute holding `CreateNewActor`). A hardware watchpoint on `fn_710008ef70`'s return address caught the write: `refl_MakePrimitiveType<UnkRefl_fn_7100009658>`, called from the lifted `fn_71000979a0`, storing a whole `CType` (0xc8 bytes) over the stack. The handler then returned into the string id type's copy hook (slot 0x48), whose `src` was the type's vtable; its first entry is `fn_710009ecb8`, the "string id holding a function address".
 
 The cause is in `tools/port_link.py`. The lifted callers name the getter `callee::fn_7100009658(unsigned long)`, and two port definitions carry its tag: the getter `refl_GetPrimitiveType<G>()` and its inline helper `refl_MakePrimitiveType<G>(const CStrId&)`, which Clang 9 inlines and Clang 18 keeps out of line. The alias ranking matched parameter counts, so it picked the helper, which returns `CType` by value through a hidden pointer in rdi (x8 on AArch64). Ten lifted getters were aliased this way. Among several tagged candidates, the ranking now puts one returning a class by value last (`returns_class_by_value`, test in `tools/tests/test_port_link.py`). No alias targets the helper any more.

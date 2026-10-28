@@ -5759,7 +5759,7 @@ address,size,name,name_source,subsystem,status
 0x71000f7348,908,fn_71000f7348,unknown,unknown,U
 0x71000f76d4,60,fn_71000f76d4,unknown,unknown,O
 0x71000f7710,240,fn_71000f7710,unknown,unknown,O
-0x71000f7800,3632,fn_71000f7800,unknown,unknown,U
+0x71000f7800,3632,fn_71000f7800,unknown,unknown,M
 0x71000f8630,80,fn_71000f8630,unknown,unknown,O
 0x71000f8680,64,fn_71000f8680,unknown,unknown,U
 0x71000f86c0,504,fn_71000f86c0,unknown,unknown,U
