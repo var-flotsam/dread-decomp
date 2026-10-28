@@ -17,8 +17,8 @@
 
 namespace base {
 
-// Only the slots the array uses are named. vf_0x40 allocates (size, alignment, flags);
-// vf_0x48 frees.
+// Only the slots the array and the C library functions use are named. vf_0x40 allocates (size,
+// alignment, flags); vf_0x48 frees; vf_0x50 is an allocation's usable size.
 struct UnkAllocator {
     virtual void vf_0x0();
     virtual void vf_0x8();
@@ -30,6 +30,7 @@ struct UnkAllocator {
     virtual void vf_0x38();
     virtual void* vf_0x40(u64 size, u64 align, u32 flags);
     virtual void vf_0x48(void* ptr);
+    virtual u64 vf_0x50(void* ptr);
 };
 
 }  // namespace base
@@ -44,6 +45,15 @@ void* fn_71000839a0(u64 size, u32 flags);
 // Allocates `size` bytes from that allocator, 8-byte aligned, with the given flags (the system
 // start-up fn_71001325d0 takes the RomFS cache with flags 0x16; src/base/UnkDefaultAllocatorGlobal.cpp).
 void* fn_7100083ba0(u64 size, u32 flags);
+// The game's own operator new, new[], delete and delete[] (0x7100083b60, 0x7100083b80,
+// 0x7100083c00, 0x7100083c30) and the allocation from a given allocator next to them: all through
+// the default allocator (flags 2). Named by address, because on the port the C++ names are the
+// runtime's (port/runtime/src/heap.cpp, which comes here once the allocator exists).
+void* fn_7100083b60(u64 size);
+void* fn_7100083b80(u64 size);
+void* fn_7100083bc0(u64 size, u32 flags, u64 align, base::UnkAllocator* allocator);
+void fn_7100083c00(void* ptr);
+void fn_7100083c30(void* ptr);
 
 namespace base {
 

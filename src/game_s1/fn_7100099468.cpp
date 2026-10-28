@@ -11,11 +11,11 @@
 // id is released (fn_71000d0f1c, CFilePathStrId's pool; fn_71000ce8b8, the default one).
 #include "UnkClone.h"
 #include "base/UnkCloneCalls.h"
+#include "base/UnkVector.h"
 
 extern char unk_7101a1b3a0[];
 extern char unk_7101a1d8b8[];
 void fn_710009cc04(char*);
-void fn_7100083c00(char*);
 
 struct UnkIdRecordOwner_0xf0;
 using UnkIdRecord = UnkCloneStrIdElem<UnkIdRecordOwner_0xf0, 0, 0x10, UnkCloneStrId<UnkIdRecordOwner_0xf0>>;
