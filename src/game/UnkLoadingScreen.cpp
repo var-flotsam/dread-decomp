@@ -276,29 +276,19 @@ void fn_7100e13928(void* set_, void* model_, UnkSceneObj_71010e2278** out, const
 #include <stdio.h>
 
 #include "base/math/CVector.h"
+#include "../game_s7/UnkGuiS7.h"
 #include "game/UnkGuiDisplayObject.h"
+#include "game/UnkGuiLabel.h"
 
-// A GUI::CLabel's constructor and the display object's setters (as src/game/CScenario.cpp and
-// src/game_s7/UnkGuiS7.h declare them).
+// A GUI::CLabel's constructor and the setters the headers above leave out (as
+// src/game/CScenario.cpp declares them).
 struct UnkStruct_71011ebdb4;
 void fn_71011ebdb4(UnkStruct_71011ebdb4* self);
-UnkGuiObjectState* fn_71011cde14(UnkGuiDisplayObject* self);
 bool fn_71011ceac0(UnkGuiDisplayObject* self);
 bool fn_71011ceb34(UnkGuiDisplayObject* self);
 void fn_71011b5598(UnkGuiRoot* root, UnkGuiDisplayObject* object);
-void fn_71011cdce8(UnkGuiDisplayObject* self, bool value);
-void fn_71011cdc30(UnkGuiDisplayObject* self, bool value);
-void fn_71011d0088(UnkGuiDisplayObject* self, bool value);
 void fn_71011eec50(UnkGuiDisplayObject* label, f32 scale);
 void fn_71011ed150(UnkGuiDisplayObject* label, const CStrId& font);
-void fn_71011ed018(UnkGuiDisplayObject* self, u32 value);
-void fn_71011ed084(UnkGuiDisplayObject* self, u32 value);
-void fn_71011cde44(UnkGuiDisplayObject* self, s32 value);
-void fn_71011cde64(UnkGuiDisplayObject* self, const base::math::CVector2D* position, u32 h_mode, u32 v_mode);
-struct UnkColor {
-    f32 r, g, b, a;
-};
-void fn_71011cfc24(UnkGuiDisplayObject* object, const UnkColor& color, u32 value);
 
 // The label's members set here.
 struct UnkTipLabelView {
@@ -349,8 +339,8 @@ __attribute__((always_inline)) static inline void SetUp(UnkGuiDisplayObject* lab
     pos.x = 0.05f;
     pos.y = -0.007f;
     fn_71011cde64(label, &pos, 1, v_mode);
-    UnkColor white = {1.0f, 1.0f, 1.0f, 1.0f};
-    fn_71011cfc24(label, white, 1);
+    const f32 white[4] = {1.0f, 1.0f, 1.0f, 1.0f};
+    fn_71011cfc24(label, *reinterpret_cast<const unk_gui::UnkColor*>(white), 1);
     auto* v = reinterpret_cast<UnkTipLabelView*>(label);
     v->color = 0xffff3cb1;
     v->field_0x186 = true;
