@@ -37,3 +37,5 @@ jobs:
         run: python tools/decl_check.py --base "origin/${{ github.base_ref }}"
       - name: Python tools compile
         run: python -m compileall -q tools
+      - name: Command index current (docs/commands.md)
+        run: python tools/gen_commands.py --check
