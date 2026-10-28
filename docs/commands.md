@@ -461,6 +461,17 @@ python tools/boot_distance.py --version 2.1.0 --no-build --timeout 300   # rerun
 python tools/boot_distance.py --version 2.1.0 --no-lifted --out build/boot_nolift
 ```
 
+### `tools/recomp_trace.py`
+
+Recomp trace: the order the game enters its functions, from a local build of the Dread recomp.
+
+```sh
+python tools/recomp_trace.py instrument --build "D:/Games/Metroid Dread/Metroid Dread_build"
+python tools/recomp_trace.py instrument --build "D:/Games/Metroid Dread/Metroid Dread_build" --undo
+python tools/recomp_trace.py map --trace recomp_trace.txt [--until fn_7100224de4] [--out build/recomp_trace/order.csv]
+python tools/recomp_trace.py next --order build/recomp_trace/order.csv [--boot build/boot/boot_distance.json] [--limit 40]
+```
+
 ### `tools/nvn_procs.py`
 
 The game's NVN function table: which NVN function each of the loader's globals holds.
