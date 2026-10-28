@@ -109,9 +109,43 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - capstone 5.0.7's register access is wrong for aliases: `cmp`/`cmn`/`tst` write their first operand instead of reading it, and `fmov #imm`, `lsl #imm` and `sxtw` read their destination. Anything built on `regs_access()` (`tools/abi_facts.py`) under-counts arguments read first by a compare: same entry.
 - The boot's run-time roots are function pointers (`nnMain`'s main, per-frame and shutdown callbacks, main's stored callbacks), and some traps are reached only through pointers: a static worklist from the roots is a lower bound, `DREAD_TRAP=log` gives the order: same entry.
 - Function-local statics of header-inline functions are weak symbols in the executable on the port, while lifted code uses the image's: a split object unless the symbol is bound to the image address: same entry.
+- x86-64 assumes 16-byte alignment for any global array of 16 bytes or more, even one only declared, while the image keeps AArch64 alignments: declare such image arrays unsized, or Clang 18 may store into them with `movdqa` (a SIGSEGV at address 0): [port M1 round 6](#session-log-newest-first).
+- Integer and float arguments take separate register sequences on both AArch64 and x86-64: `(int, float, bool)` and `(ptr, ptr, float)` are the same call: same entry.
+- A struct-returning function (x8 on AArch64) called through a pointer from lifted code needs its hidden result pointer passed explicitly on x86-64 (rdi), or every argument shifts by one: same entry.
 - Several templates can carry one address's tag (`refl_GetPrimitiveType<G>` and its inline helper `refl_MakePrimitiveType<G>`, which Clang 18 keeps out of line); an alias to one that returns a class by value puts its hidden result pointer in the caller's rdi and writes the object over the caller's frame. A crash whose return address is a function's start, with a type's hook table on the stack, is the sign: [port M1 round 5](#session-log-newest-first).
 
 ## Session log (newest first)
+
+**Port M1 round 6: through the boot milestones, and the NVN shim linked (2026-10-28, branch `claude/project-thread-3x0lf8`).**
+Boots of main with the hand-writing thread's branch (`fn_71000f7800`, the vibration thread) and the lifter's sets
+(`build/port/lifted_all` with `lifted_insn3` merged over it), each stop's cause found before its fix:
+- **The null read under `fn_7100100804`** was fallout: it locks the sound system's mutex at +0x400568, which
+  `fn_71000f7800` sets up. With that function hand-written, the set-up checks the audio output first. The new
+  `nn::audio` runtime (`port/runtime/src/audio.cpp`) fails `OpenDefaultAudioOut`, so the game sets its sound-off flag and
+  stays silent until M4.
+- **`fn_710006f390`'s data import.** The vibration thread reads `nn::hid::VibrationNode::DefaultVibrationSampleInterval`
+  (5 ms). `port/runtime/src/hid.cpp` defines it, and `tools/port_link.py`'s import table now takes the runtime's data
+  definitions as well as its functions.
+- **`nvnBootstrapLoader`.** `tools/port_link.py --nvn` compiles the NVN shim into the executable and links the Vulkan
+  loader. The Vulkan loader's `vk*` names are left to it, not given residue traps. `tools/boot_distance.py --nvn` runs
+  it in the Vulkan image (which needed rebuilding for gdb). Lavapipe was chosen over a surface because it needs nothing
+  new and the shim's checks already pass on it. The shim creates its device (llvmpipe, Vulkan 1.4).
+- **A `movdqa` to an 8-aligned array.** x86-64 assumes a global array of 16 bytes or more is 16-byte aligned, even an
+  `extern` one, and Clang 18 vectorised `fn_7100161520`'s stores into `unk_716e2aadf8` (0x...df8). The image's arrays
+  have AArch64's alignment. Ten declarations of image arrays at addresses that aren't 16-aligned are now unsized
+  (`T name[/* N; ... */]`), which drops the assumption. `tools/check.py` is unchanged. Two range-for loops became counted ones. `g_unk_71726c2888[2]` stays
+  sized, because unsized it changed `fn_71003f3778`'s bytes.
+- **Two "mismatched call" traps that weren't.** A declaration `(int, float, bool)` against a lift's `(ptr, ptr, float)`
+  lands in the same registers on both CPUs, since integer and float arguments are numbered separately.
+  `signature_class` now compares each class's own sequence when the positions differ and everything fits in registers.
+  175 aliases are affected.
+
+Result (`boot_distance.py --nvn`, merged lifts): all 8 milestones, 0 traps, 297 lifts ran. The stop is in the render
+resource loader. The lifted `fn_710001ab24` calls a resource callback through a pointer (`fn_71001b2e4c`, which returns
+`UnkResult` through x8) and passes x0/x1 but not x8. On x86-64 the hidden result pointer is rdi, so the callee's
+arguments shift and `fn_7100020320` reads a string id at address 7. That is the lifter's to fix (indirect calls
+after an x8 store). Previous stops of this round, in order: `fn_71000f7800` → `nvnBootstrapLoader` → `fn_7100161520`'s
+alignment fault → `fn_71001b27ac` (lifter `rev`, accepted in `lifted_insn3`) → this.
 
 **Lifter: retry for cut-off runs, no float result from a void function, indirect calls with stack
 arguments (2026-10-28, branch `claude/project-thread-zgkpk3`).** Fixes from the port's current stop and
