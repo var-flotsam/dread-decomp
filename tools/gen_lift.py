@@ -1115,8 +1115,75 @@ class Lifter:
                 return False
         return False
 
+    def successors(self, ins) -> list[list[int]]:
+        """Each instruction's successors (indices; a jump-table br its table's targets, a tail
+        call or ret none)."""
+        at = {x.address: k for k, x in enumerate(ins)}
+        tables = getattr(self, "jtables", {})
+        succ: list[list[int]] = []
+        for k, x in enumerate(ins):
+            m = x.mnemonic
+            tgt = [op.imm for op in x.operands if op.type == arm64.ARM64_OP_IMM]
+            if m == "b":
+                succ.append([at[tgt[0]]] if tgt and tgt[0] in at else [])
+            elif m in ("cbz", "cbnz", "tbz", "tbnz") or m.startswith("b."):
+                succ.append([k + 1] + ([at[tgt[-1]]] if tgt and tgt[-1] in at else []))
+            elif m == "br":
+                succ.append([at[t] for t in tables.get(x.address, (0, []))[1] if t in at])
+            elif m == "ret" or (m == "brk" and k == len(ins) - 1):
+                succ.append([])
+            else:
+                succ.append([k + 1] if k + 1 < len(ins) else [])
+        return succ
+
+    def lone_convert(self, k: int, n: int) -> int | None:
+        """The index of `ucvtf|scvtf s<n>, s<n>` when it is the only read of what instruction k
+        loads into v<n>, and that load the only value of v<n> it reads (every path to it passes k):
+        the load and its convert far apart (fn_71012223d4, 150 instructions). A call reads v0-v7
+        (arguments) and ends v16-v31; a tail call or ret reads v0-v7 too."""
+        ins = self.ins
+        succ = self.successors(ins)
+
+        def mine(x, acc: int) -> bool:
+            if acc == 0 and x.mnemonic == "fmov" and any(op.type == arm64.ARM64_OP_FP for op in x.operands):
+                return False  # (capstone counts fmov's immediate destination as read)
+            return any((r := CS.reg_name(q))[0] in "bhsdqv" and r[1:] == str(n) for q in x.regs_access()[acc])
+        reads, seen, work = set(), {k}, list(succ[k])
+        while work:
+            j = work.pop()
+            if j in seen:
+                continue
+            seen.add(j)
+            x = ins[j]
+            exits = not succ[j] and x.mnemonic != "brk"
+            if mine(x, 0) or (n < 8 and (x.mnemonic in ("bl", "blr") or exits)):
+                reads.add(j)
+                continue
+            if mine(x, 1) or (x.mnemonic in ("bl", "blr") and n >= 16):
+                continue
+            work += succ[j]
+        if len(reads) != 1:
+            return None
+        c = reads.pop()
+        if not (ins[c].mnemonic in ("ucvtf", "scvtf") and ins[c].op_str == f"s{n}, s{n}"):
+            return None
+        seen, work = {k}, [0]
+        while work:  # (reached from the entry without the load: another value of v<n>)
+            j = work.pop()
+            if j == c:
+                return None
+            if j in seen:
+                continue
+            seen.add(j)
+            work += succ[j]
+        return c
+
     def small_int_load(self, x, mem, reg: str) -> bool:
         """`ldr h<n>|b<n>` up to the convert of s<n> that uses it (step's comment)."""
+        return self.near_convert(x, mem, reg) or self.far_convert(x, mem, reg)
+
+    def near_convert(self, x, mem, reg: str) -> bool:
+        """small_int_load within a few instructions, with no branch in between."""
         n, ins = reg[1:], self.ins
         branch_targets = {op.imm for y in ins for op in y.operands if op.type == arm64.ARM64_OP_IMM
                           and (y.mnemonic in ("b", "cbz", "cbnz", "tbz", "tbnz") or y.mnemonic.startswith("b."))}
@@ -1156,9 +1223,21 @@ class Lifter:
         self.gskip |= set(skip) | {nx.address}
         return True
 
+    def far_convert(self, x, mem, reg: str) -> bool:
+        """small_int_load's convert past its window (lone_convert): an unsigned load, converted
+        where it is loaded."""
+        c = self.lone_convert(self.pos, int(reg[1:]))
+        if c is None:
+            return False
+        t = "u16" if reg[0] == "h" else "u8"
+        v = self.bind(t, f"*({t}*){self.address(x, mem[0])}")
+        self.write(f"s{reg[1:]}", f"(f32){v}" if self.ins[c].mnemonic == "ucvtf" else f"(f32)(s32){v}", "f32")
+        self.gskip.add(self.ins[c].address)
+        return True
+
     def bind(self, t: str, e: str) -> str:
         """A temporary of type `t` holding `e`."""
-        var = f"m{len(self.body)}"
+        var = f"k{len(self.body)}"  # (not m<n>: the merges name their variables so)
         self.line(f"{t} {var} = {e};")
         return var
 
@@ -1625,6 +1704,40 @@ class Lifter:
             la, lb = s.lanes[100 + a], s.lanes[100 + b]
             lanes = [self.bind("f32", f"({la[i]}) {sym} ({lb[i]})") if i < k and la[i] is not None and lb[i] is not None
                      else None for i in range(4)]
+            if lanes[0] is None:
+                return False
+            self.write(f"s{d}", lanes[0], "f32")
+            s.lanes[100 + d] = lanes
+            return True
+        if m in ("mov", "dup") and (g := re.fullmatch(r"s(\d+), v(\d+)\.s\[([0-3])\]", op)):
+            # a lane extracted to a scalar (the other lanes cleared)
+            d, a, i = int(g.group(1)), int(g.group(2)), int(g.group(3))
+            v = s.lanes.get(100 + a, [None] * 4)[i]
+            if v is None:
+                return False
+            self.write(f"s{d}", v, "f32")
+            s.lanes[100 + d] = [self.snapshot(self.read(f"s{d}")[0], "f32")] + ["0.0f"] * 3
+            return True
+        if m in ("fmul", "fmla", "fmls") and (g := re.fullmatch(r"s(\d+), s(\d+), v(\d+)\.s\[([0-3])\]", op)):
+            # scalar by element
+            d, a, b, i = (int(v) for v in g.groups())
+            e = s.lanes.get(100 + b, [None] * 4)[i]
+            if e is None:
+                return False
+            va, _ = self.read(f"s{a}")
+            if m == "fmul":
+                self.write(f"s{d}", f"({va}) * ({e})", "f32")
+            else:
+                acc, _ = self.read(f"s{d}")
+                self.write(f"s{d}", FTERNARY["fmadd" if m == "fmla" else "fmsub"].format(a=f"({va})", b=f"({e})", c=f"({acc})"), "f32")
+            return True
+        if m in ("fneg", "fabs") and (g := re.fullmatch(r"v(\d+)\.([24])s, v(\d+)\.\2s", op)):
+            d, k, a = int(g.group(1)), int(g.group(2)), int(g.group(3))
+            if 100 + a not in s.lanes:
+                return False
+            la = s.lanes[100 + a]
+            lanes = [self.bind("f32", FUNARY[m].format(a=la[i], s="f")) if i < k and la[i] is not None else None
+                     for i in range(4)]
             if lanes[0] is None:
                 return False
             self.write(f"s{d}", lanes[0], "f32")
@@ -2580,21 +2693,7 @@ class FlatLifter(Lifter):
         and fn_7100095774 keep it in x19 and set x8 from it again before an indirect call, past a
         join; fn_7100095774 reuses x19 as a loop counter later). Any other write, or a call for
         x0-x18, ends one. FlatLifter.ret_regs starts from these at a label."""
-        at = {x.address: k for k, x in enumerate(ins)}
-        succ: list[list[int]] = []
-        for k, x in enumerate(ins):
-            m = x.mnemonic
-            tgt = [op.imm for op in x.operands if op.type == arm64.ARM64_OP_IMM]
-            if m == "b":
-                succ.append([at[tgt[0]]] if tgt and tgt[0] in at else [])
-            elif m in ("cbz", "cbnz", "tbz", "tbnz") or m.startswith("b."):
-                succ.append([k + 1] + ([at[tgt[-1]]] if tgt and tgt[-1] in at else []))
-            elif m == "br":
-                succ.append([at[t] for t in self.jtables.get(x.address, (0, []))[1] if t in at])
-            elif m == "ret" or (m == "brk" and k == len(ins) - 1):
-                succ.append([])
-            else:
-                succ.append([k + 1] if k + 1 < len(ins) else [])
+        succ = self.successors(ins)
         state: list[set[int] | None] = [None] * len(ins)
         state[0] = {8}
         work = [0]

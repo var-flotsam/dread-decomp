@@ -147,6 +147,14 @@ From the trace run's refusals (`lifted_trace1`, 6,007 of 6,070 accepted):
   `ldr`/`ldur`/`ldp` of q registers now give their four 32-bit lanes as f32 values (State.lanes, as
   `ld1` builds them), so the existing `str q` and a new `stp q` store them back bit for bit and the lane
   operations read them.
+- **Lanes read back** (`7101205f54`: `mov s16, v2.s[1]`, `fmul s1, s1, v5.s[0]`; `71000f88b8`:
+  `fneg v0.4s`): a lane extracted to a scalar, scalar `fmul`/`fmla`/`fmls` by element, and lane-wise
+  `fneg`/`fabs`, all on known lanes. The structured lifter's own temporaries are now `k<n>`: `m<n>`
+  could clash with a merge's variable of the same number.
+- **A byte converted far from its load** (`71012223d4`: `ldr b1` at +0x38, `ucvtf s1, s1` 150
+  instructions later, past branches): `lone_convert` accepts it when the convert is the only read of the
+  loaded register on every path from the load (a call counts as reading v0-v7, a ret or tail call too)
+  and no path from the entry reaches the convert without the load; the convert then happens at the load.
 - **The oracle and a struct copy's padding** (`71000ed2b8`, `71000ed608`, `71000ed758`): the original
   copies padding it never wrote, the lift the fields alone. pcode_emu now marks bytes loaded from never-
   written stack as undefined through copies, and compare() leaves out the bytes stored from them.
