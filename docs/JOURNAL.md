@@ -153,7 +153,7 @@ From the trace run's refusals (`lifted_trace1`, 6,007 of 6,070 accepted):
   could clash with a merge's variable of the same number.
 - **A byte converted far from its load** (`71012223d4`: `ldr b1` at +0x38, `ucvtf s1, s1` 150
   instructions later, past branches): `lone_convert` accepts it when the convert is the only read of the
-  loaded register on every path from the load (a call counts as reading v0-v7, a ret or tail call too)
+  loaded register on every path from the load (a call or tail call counts as reading v0-v7, a ret v0, or v0-v3 for a multi-register result)
   and no path from the entry reaches the convert without the load; the convert then happens at the load.
 - **A local zeroed in the prologue** (`7101233e30`: `sub sp, sp, #0x30; stp xzr, x19, [sp, #8]`, then
   the frame record): the prologue stopped at the pair, so fp was never set and the frame was refused.

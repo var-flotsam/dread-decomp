@@ -1152,7 +1152,8 @@ class Lifter:
         """The index of `ucvtf|scvtf s<n>, s<n>` when it is the only read of what instruction k
         loads into v<n>, and that load the only value of v<n> it reads (every path to it passes k):
         the load and its convert far apart (fn_71012223d4, 150 instructions). A call reads v0-v7
-        (arguments) and ends v16-v31; a tail call or ret reads v0-v7 too."""
+        (arguments) and ends v16-v31; a tail call reads v0-v7 too, a ret v0 (v0-v3 for a
+        multi-register result)."""
         ins = self.ins
         succ = self.successors(ins)
 
@@ -1168,7 +1169,10 @@ class Lifter:
             seen.add(j)
             x = ins[j]
             exits = not succ[j] and x.mnemonic != "brk"
-            if mine(x, 0) or (n < 8 and (x.mnemonic in ("bl", "blr") or exits)):
+            # (a ret reads v0, and v1-v3 for a multi-register result; a tail call v0-v7)
+            ret_reads = n == 0 or (n < 4 and self.result_of(self.addr) is not None)
+            if mine(x, 0) or (n < 8 and x.mnemonic in ("bl", "blr")) \
+                    or (exits and (ret_reads if x.mnemonic == "ret" else n < 8)):
                 reads.add(j)
                 continue
             if mine(x, 1) or (x.mnemonic in ("bl", "blr") and n >= 16):
