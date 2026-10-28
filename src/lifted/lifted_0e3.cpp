@@ -137,7 +137,7 @@ char* fn_7100e3eb9c(char* p0) {
     u64 r0_8 = (u64)*(u64*)((char*)(p0) + 0);
     char* r1_19 = p0;
     u64 r2_8 = (u64)*(u64*)((char*)(r0_8) + 40);
-    char* r3_0 = ((char* (*)())(r2_8))();
+    char* r3_0 = ((char* (*)(char*))(r2_8))(p0);
     char* r4_0 = r1_19;
     char* r5_0 = callee::fn_7100e3ec2c(r4_0);
     char* r6_0 = r1_19;

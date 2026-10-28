@@ -54,6 +54,7 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - Alias, sort and copy rewrite rounds; "the generic lifter is near its limit": work log item 1.
 - Semantic mode and its P-code oracle; four flat-mode bugs byte identity hid; the oracle's reach (mutation test): [port M1 step 3](#session-log-newest-first).
 - Parallel agents in one checkout: file-disjoint steps, `trymatch.py --obj-dir`, one `check.py` at the end: [sixteenth session](#session-log-newest-first).
+- Byte-mode argument pass-through (a lift names the registers its callee reads and it still holds); capstone 5.0.7's wrong register access for `cmp`/`tst` and shift/extend aliases: [lifter pass-through](#session-log-newest-first).
 
 **Declarations and calling conventions**
 - A caller declared with fewer parameters can rely on an argument register the caller left set (six callers of `fn_7100216978` passed the vector in `x1` unawares); declaring the real signature keeps the bytes: [sixteenth session](#session-log-newest-first).
@@ -117,6 +118,69 @@ ASCII (128 bytes at most) and `sscanf` it with the same format, and the search c
 the helpers built with llvm-mingw (hex, float, a non-ASCII stop, empty input, the search with an
 astral character and an empty needle: all pass), and both sweep targets compile the two files. The
 header joins `include/types.h` in the scan's exemptions; the Windows scan now finds nothing.
+
+**Lifter: port_lift's worklist as a slice (2026-10-27, branch `claude/lifter-worklist`).**
+`tools/port_link.py`'s `boot_missing.csv` follows direct calls from `nnMain` only, so it missed
+what the boot reaches through the pointers `nnMain` hands the SDK (main, the per-frame and the
+shutdown function) and main's four callbacks: the 127 functions of the port's round 3. port_lift
+now builds its own worklist with `--slice boot` (the default). It takes the `U` functions reachable
+by direct calls from `nnMain`, from those seven run-time roots, from the graphics loader and
+selector (`fn_71001b0050`, `fn_71001b0f24`, `fn_71001b0f7c`, `fn_71001cc608`), and from the four
+functions the Linux run trapped in through pointers (`fn_7100075730`, `fn_710008a460`,
+`fn_710002f0dc`, `fn_71000666b0`). That is 2,226 functions, 1.26 MB, ordered by callers in the
+slice. The roots themselves are listed whatever their status (`fn_7100000d40` and `fn_7100000cf0`
+are game code that `data/functions/` marks `L`). `--slice all` takes every `U` function except
+the SDK imports (16,002, 8.08 MB), and `--worklist CSV` the old way.
+
+**Lifter: arguments lost in byte-mode lifts (2026-10-27, branch `claude/lifter-passthrough`).** A
+byte-identical lift can rely on argument registers its C never names: on AArch64 a register the
+caller leaves set reaches the callee anyway, so the bytes match, but an x86-64 compile passes only
+what a call names. abi_facts' liveness against the definitions found 3,592 lifted definitions that
+read more argument registers than they declare (164 on the boot path), and the port M1 session's
+call-site audit found the other half: 8,885 callee declarations naming fewer registers than the
+callee reads, among them the graphics system's constructor called without its object.
+- **Pass-through.** At each call, byte mode now names every argument register the callee reads
+  (`tools/abi_facts.py`) that the function still holds, its own incoming arguments included, and an
+  indirect call gets what the function's callers set for it (abi_facts' new `fwd`: registers the
+  callers write before the call and do not read again; `fn_7100005c40` takes the float its callers
+  pass and forwards it to its virtual call). A callee returning through `x8` gets
+  `UnkResult f(...) { return sret::callee(...); }` (C++17 elision keeps the tail call) or a
+  placement new at `x8`. Every variant is tried with pass-through first and, where it named more,
+  as before, so nothing that matched stops matching. On a 2,000-function sample (seed 3) 1,455
+  match with pass-through against 1,452 plain. Regenerated: 46,443 byte-identical lifts (46,380
+  before), 73 functions `U` to `O`, none lost; definitions reading more than they declare went
+  from 3,220 to 36 and callers dropping a held register from 8,362 to 95 (103 functions, 10 on
+  the boot path).
+- **capstone 5.0.7's register access is wrong for some aliases** (the M1 session's report, then a
+  census over `main`): `cmp`/`tst`/`cmn` (147,844 sites) mark their first register written and not
+  read, and `lsl`/`lsr`/`asr`, `ubfx`/`sbfx`/`ubfiz`/`sbfiz`, `sxtb`/`sxth`/`sxtw` by immediate and
+  `fmov #imm` mark their destination read. `abi_facts.Insn.of` corrects them by mnemonic (`movk`,
+  `bfi`/`bfxil`, lane inserts and `fmla` really read theirs); `fn_71001d2dcc` reads 2 integer and
+  1 float argument, not 1 and 2.
+- **Review fixes** (three reviewers over the diff, each finding checked): lazily computed facts
+  depend on the order they are asked for (a call cycle leaves the function that closes it
+  without facts, and the caller's result is kept), so every tool now takes them from one table
+  computed for all functions in address order (`AbiFacts.complete`, cached); a switch's `br` had
+  no successors, so registers read only in its cases were never arguments (a bug from before);
+  callers' evidence crossed into a block nothing falls into and missed Clang's FPR copy
+  `mov v0.16b, v8.16b`; float widths come from the first read (`fcvt d0, s0` writes first).
+- **What byte mode cannot express** (an incoming value on one path and a call's garbage on the
+  other, a plain fallback) gets a semantic lift: `tools/port_lift.py` lists the src/lifted
+  functions that still lose arguments (`build/port/passthrough.json`: definitions, and calls that
+  drop a register the caller holds, from abi_facts' new `held`), adds them to its worklist and
+  marks an accepted lift `"overrides": "src/lifted/lifted_XXX.cpp"` in the manifest, for
+  `tools/port_link.py` to link instead (the M1 session's change). Semantic mode itself keeps the
+  function's argument registers from the entry on and joins a value with a clobbered path instead
+  of passing 0. On the 103 left after the regeneration, 93 semantic lifts are accepted, all 10
+  boot-path ones among them; 8 fail at a call's float argument and 2 are inconclusive (a return
+  outside the function).
+- The three "float to `char*`" callers (`fn_7100005c40`, `fn_7100573200`, `fn_7100a1fe98`) never
+  passed `x0`; they do now. The `lift_guard` constructors are placed by `tools/port_addresses.py`
+  (C1/D1 from matched code); the one name left, `lift_guard::Singleton::~Singleton()`, is
+  `fn_71000407f0` (96 KB, `U`, over the lifter's size cap). `fn_7100394bd4` is a bare `ret`: it
+  reads no register, so the link's alias from the header's `void*` is exact.
+- Also: `port_lift.py --only/--top/--debug` write to `build/port/lifted_partial/` (before, a debug
+  run replaced the set the port links); the P-code and facts caches are replaced in one step.
 
 **Port: the Windows compile check (2026-10-27, branch `claude/port-windows-sweep`).** The owner
 decided to keep Linux as the only running target until the title screen and to compile-check

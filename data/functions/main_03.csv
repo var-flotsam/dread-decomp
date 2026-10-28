@@ -29,7 +29,7 @@ address,size,name,name_source,subsystem,status
 0x71003018f4,276,fn_71003018f4,unknown,unknown,U
 0x7100301a08,192,fn_7100301a08,unknown,unknown,U
 0x7100301ac8,284,fn_7100301ac8,unknown,unknown,O
-0x7100301be4,40,fn_7100301be4,unknown,unknown,U
+0x7100301be4,40,fn_7100301be4,unknown,unknown,O
 0x7100301c0c,228,fn_7100301c0c,unknown,unknown,U
 0x7100301cf0,304,fn_7100301cf0,unknown,unknown,O
 0x7100301e20,304,fn_7100301e20,unknown,unknown,O

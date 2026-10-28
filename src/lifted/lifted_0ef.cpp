@@ -39,10 +39,10 @@ typedef f32 __attribute__((may_alias)) a_f32;
 typedef f64 __attribute__((may_alias)) a_f64;
 
 namespace callee { char* fn_7100083c00(char*); }
-namespace callee { char* fn_7100eef7a4(); }
+namespace callee { char* fn_7100eef7a4(char*); }
 char* fn_7100ef003c(char* p0) {
     char* r0_19 = p0;
-    char* r1_0 = callee::fn_7100eef7a4();
+    char* r1_0 = callee::fn_7100eef7a4(p0);
     char* r2_0 = r0_19;
     return callee::fn_7100083c00(r2_0);
 }
@@ -67,11 +67,11 @@ char* fn_7100ef0078() {
     return r1_0;
 }
 
-namespace callee { char* fn_7100075104(); }
+namespace callee { char* fn_7100075104(char*); }
 namespace callee { char* fn_7100083c00(char*); }
 char* fn_7100ef0094(char* p0) {
     char* r0_19 = p0;
-    char* r1_0 = callee::fn_7100075104();
+    char* r1_0 = callee::fn_7100075104(p0);
     char* r2_0 = r0_19;
     return callee::fn_7100083c00(r2_0);
 }
@@ -262,10 +262,10 @@ char* fn_7100ef0580() {
 }
 
 namespace callee { char* fn_7100083c00(char*); }
-namespace callee { char* fn_7101043934(); }
+namespace callee { char* fn_7101043934(char*); }
 char* fn_7100ef0584(char* p0) {
     char* r0_19 = p0;
-    char* r1_0 = callee::fn_7101043934();
+    char* r1_0 = callee::fn_7101043934(p0);
     char* r2_0 = r0_19;
     return callee::fn_7100083c00(r2_0);
 }
@@ -327,7 +327,7 @@ char* fn_7100ef0608(char* p0, char* p1) {
 
 extern char g_unk_7101caa168[];
 namespace callee { char* fn_7100023854(char*); }
-namespace callee { char* fn_7100136ecc(); }
+namespace callee { char* fn_7100136ecc(char*); }
 char* fn_7100ef0648(char* p0) {
     char* r0_19 = p0;
     *(u64*)(((char*)(p0) + 32) + 0) = (u64)(u64)(0);
@@ -336,7 +336,7 @@ char* fn_7100ef0648(char* p0) {
     *(u64*)(((char*)(p0) + 16) + 8) = (u64)(u64)(0);
     *(u64*)(((char*)(p0) + 0) + 0) = (u64)(u64)(0);
     *(u64*)(((char*)(p0) + 0) + 8) = (u64)(u64)(0);
-    char* r7_0 = callee::fn_7100136ecc();
+    char* r7_0 = callee::fn_7100136ecc(p0);
     char* r8_8 = (char*)g_unk_7101caa168;
     char* r9_8 = (r8_8) + 16;
     *(u64*)((char*)(r0_19) + 0) = (u64)(u64)(r9_8);

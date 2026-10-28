@@ -113,7 +113,7 @@ address,size,name,name_source,subsystem,status
 0x7100703cf4,108,fn_7100703cf4,unknown,unknown,U
 0x7100703d60,4,fn_7100703d60,unknown,unknown,O
 0x7100703d64,36,fn_7100703d64,unknown,unknown,O
-0x7100703d88,72,fn_7100703d88,unknown,unknown,U
+0x7100703d88,72,fn_7100703d88,unknown,unknown,O
 0x7100703dd0,4,fn_7100703dd0,unknown,unknown,O
 0x7100703dd4,536,fn_7100703dd4,unknown,unknown,U
 0x7100703fec,432,fn_7100703fec,unknown,unknown,U

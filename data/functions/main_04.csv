@@ -176,7 +176,7 @@ address,size,name,name_source,subsystem,status
 0x7100406ee8,224,fn_7100406ee8,unknown,unknown,O
 0x7100406fc8,80,fn_7100406fc8,unknown,unknown,O
 0x7100407018,236,fn_7100407018,unknown,unknown,U
-0x7100407104,108,fn_7100407104,unknown,unknown,U
+0x7100407104,108,fn_7100407104,unknown,unknown,O
 0x7100407170,220,fn_7100407170,unknown,unknown,O
 0x710040724c,360,fn_710040724c,unknown,unknown,O
 0x71004073b4,88,fn_71004073b4,unknown,unknown,U
@@ -1772,7 +1772,7 @@ address,size,name,name_source,subsystem,status
 0x710045adec,4,fn_710045adec,unknown,game/components?,O
 0x710045adf0,352,CChozoCommanderSentenceSphereLifeComponent::refl_InitClass,reflection,game/components,O
 0x710045af50,140,fn_710045af50,unknown,game/components?,U
-0x710045afdc,156,fn_710045afdc,unknown,game/components?,U
+0x710045afdc,156,fn_710045afdc,unknown,game/components?,O
 0x710045b078,388,fn_710045b078,unknown,game/components?,U
 0x710045b1fc,28,fn_710045b1fc,unknown,game/components?,O
 0x710045b218,36,fn_710045b218,unknown,game/components?,O
@@ -5088,7 +5088,7 @@ address,size,name,name_source,subsystem,status
 0x71004d3aac,1176,fn_71004d3aac,unknown,unknown,U
 0x71004d3f44,272,fn_71004d3f44,unknown,unknown,U
 0x71004d4054,204,fn_71004d4054,unknown,unknown,U
-0x71004d4120,136,fn_71004d4120,unknown,unknown,U
+0x71004d4120,136,fn_71004d4120,unknown,unknown,O
 0x71004d41a8,8,fn_71004d41a8,unknown,unknown,O
 0x71004d41b0,4,fn_71004d41b0,unknown,unknown,O
 0x71004d41b4,68,fn_71004d41b4,unknown,unknown,O
@@ -5433,11 +5433,11 @@ address,size,name,name_source,subsystem,status
 0x71004e1c90,132,fn_71004e1c90,unknown,unknown,U
 0x71004e1d14,564,fn_71004e1d14,unknown,unknown,U
 0x71004e1f48,80,fn_71004e1f48,unknown,unknown,U
-0x71004e1f98,104,fn_71004e1f98,unknown,unknown,U
+0x71004e1f98,104,fn_71004e1f98,unknown,unknown,O
 0x71004e2000,260,fn_71004e2000,unknown,unknown,U
 0x71004e2104,468,fn_71004e2104,unknown,unknown,U
 0x71004e22d8,292,fn_71004e22d8,unknown,unknown,U
-0x71004e23fc,84,fn_71004e23fc,unknown,unknown,U
+0x71004e23fc,84,fn_71004e23fc,unknown,unknown,O
 0x71004e2450,68,fn_71004e2450,unknown,unknown,U
 0x71004e2494,268,fn_71004e2494,unknown,unknown,U
 0x71004e25a0,72,fn_71004e25a0,unknown,unknown,U
