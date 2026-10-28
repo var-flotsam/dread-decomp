@@ -142,6 +142,44 @@ calling a reflected getter's invoker). The boot reaches 501 lifts, all 8 milesto
 devices) and `fn_7100223c2c` (inconclusive; for hand-writing). Render-target formats 0x29 and 0x32 are still unknown to
 the shim, so those targets' `nvnTextureInitialize` fails by name.
 
+**Boot functions from the boot trace, by hand, batch 3 (2026-10-28, branch `claude/project-thread-xllbvf`, third PR).**
+The boot-to-title trace (`order.csv`, every function the console enters, mapped to our addresses) lists 37 `U`
+functions in `main` that run and have no accepted lift in any `build/port/lifted*` manifest. The lifter thread is
+taking 11 of them (instruction gaps and two lift compile errors; `end` is a naming artefact). This batch covers
+16 of the rest, in trace order:
+- `O`: `fn_71011ba714` (the GUI skin file, `src/game/GUI/CGUIManager.cpp`, the sprite-sheet reader's twin) and
+  `fn_71010f8804` (a pooled list's constructor, `src/game/UnkAIPoolList.cpp`). Both use the new
+  `include/base/UnkParentPoolList.h`, which is also where `fn_71011b250c` now comes from (still `O`).
+- `m`: `fn_710016c760` (a scene matrix node's constructor, `src/engine/scene/UnkSceneMatrixNode.cpp`).
+- `M` (written from the behaviour, checked against the disassembly): `fn_710006ddc8` and `fn_710006deac` (the
+  pads' vibration devices and per-frame update with the controller applet, `src/base/input/UnkPadVibration.cpp`),
+  `fn_71011b8dc4` (the GUI's third container file), `fn_710006b6e4` (a timeline's tracks) and `fn_7100068f5c` (a
+  timeline object's events, `src/base/global/`), `fn_710000af7c` (reading a blend space and resolving its
+  animations), `fn_7100d1f764` and `fn_7100cfca0c` (two tracks' comma-separated ids, `src/game/timeline/`, over
+  the new `include/game/UnkStrIdSplit.h`), `fn_71002e0090` (an animation tree resource's file) and
+  `fn_7100713e2c` (Samus's animation aim angle), and `fn_71000f88b8` (the sound listener's look-at matrix, a
+  hand-vectorised routine the lifter thread handed back; plain float math here).
+- From the trace lift's leftovers (`build/port/lifted_trace1`): `fn_7100b8948c` (an array of 12-byte keys read
+  from a file), `M`. The other leftovers are vendored Lua, dlmalloc and `nn::atk` code (`L`), which the port
+  compiles or stubs itself, or functions already in `src/`.
+
+The controller code (`fn_710006deac`) runs on both builds: the matching build's SDK headers have no
+`SetNpadJoyHoldType` or `ControllerSupportArg::SetDefault`, so the file declares them under `NNSDK` (the latter by
+its symbol); the port gets them from `port/runtime/include/nn/hid.h`. Its original reads the buttons of a pad with
+neither style through a null pointer; the source skips that read.
+
+Still open from the trace: `fn_7101191cc0` (the debug menu), the serializer's frame callbacks `fn_71000ed2b8`, `fn_71000ed758` and
+`fn_71000ed608` (they copy uninitialised stack bytes into the writer's frames, which may be why the oracle
+rejects their lifts), `fn_710014d1a0`, `fn_71000f4ebc`, `fn_710122d7f0`, `fn_710122e0c4`, `fn_710122e6f0`,
+`fn_71008626bc` and `fn_71001b83f8`. `fn_71000f8b30` is left out because the port never reaches it: it runs only
+after `nn::atk` starts, and the silent stand-in never lets that happen.
+
+Findings:
+- A function's file can be the near twin of a matched one even when `nearcopy.py` finds nothing (it compares
+  only same-size `O` functions with few reference differences): the three GUI container readers differ only
+  in the container's type and member.
+- When the result of a parse that the other declarations call `void` is needed, call it through a cast function
+  pointer instead of adding a second signature (`decl_check.py` counts that as a new conflict).
 **Lifter: the boot trace's instruction gaps (2026-10-28, branch `claude/project-thread-zgkpk3`, after #250).**
 The recomp's boot trace names 37 unmatched functions the boot runs that no lifted set accepts; 11 were
 the lifter's (diagnosed on the PC, measured there). All semantic mode:
