@@ -201,7 +201,8 @@ address (flagged when it is in the game image or near null), the instruction and
 addresses; symbolise them with the executable,
 `port/docker/run.sh llvm-symbolizer-18 --obj=build/port/linux/link/dread -f -C <addresses>`.
 An abort (a trap, or the C library's own, such as `munmap_chunk(): invalid pointer`) prints the
-return addresses too, which name the caller.
+return addresses too, which name the caller. Then comes every stack word that points into the
+executable's code: the callers the unwinder does not reach, past a frame it cannot step through.
 
 **Game data defined by the sources.** A matched file that defines a game global itself (a
 `static` or a function-local static) holds it in the executable, while lifted code and files that
@@ -224,15 +225,21 @@ A static stays in the executable, and `link.json` (`bound_statics`) says which, 
   original's object would overwrite its neighbours;
 - the harvest did not place it, or placed only one of static and guard.
 
-On 2026-10-28: 4,240 bound, 22 left. A plain `static`, or the static of a function that is not
+The reflected class getters (`DREAD_REFL_CLASS_GETTER`, `include/base/reflection/CClass.h`) are
+ordinary functions on the Switch and `inline __attribute__((used))` on the port. That makes each
+descriptor and its guard weak symbols, so they are bound like the rest: the game's lifted code
+registers and reads the image's descriptor, and before this it found 2,354 classes without a name.
+A descriptor's size is `CClass`'s real one (asserted against the `.bss` stride), so a data name inside
+it is taken as a field rather than a neighbour.
+
+On 2026-10-28: 8,950 bound, 21 left. A plain `static`, or the static of a function that is not
 inline, is a single strong definition and still needs the source-level fix above.
-`DREAD_TRAP=log` makes the traps report each missing function or import once and return 0 instead
-of aborting, so one run lists them in the order the game reaches them until something truly
-breaks; useful past functions whose result the caller ignores, useless past an allocation (the
-first run with it segfaulted right after an allocation returned a null block). The whole list
-without running is `build/port/linux/link/boot_unlifted.csv`: the boot slice's functions with no
-source and no semantic lift (213 on 2026-10-26; 20 on 2026-10-27 after the boot-match batch: 19
-`U` of 2 to 16 KB, and `fn_7100000980`).
+
+**Clang 9's layouts.** The port compiles with `-fclang-abi-compat=9.0` (`tools/port_sweep.py`
+`HOST_FLAGS`, `port/CMakeLists.txt`). The sources' layouts are those of the matching compiler: a
+`packed` struct packs its non-POD members (string ids among them), which Clang 17 stopped doing to
+match GCC. Without the flag a static initialiser's merged statics moved by 4 bytes, and it
+registered a class descriptor 4 bytes off.
 
 ### macOS
 
