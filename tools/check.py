@@ -36,6 +36,7 @@ Usage:
   python tools/check.py --version 2.1.0            # report; exit 1 if an O function regressed or a function is defined in two files
   python tools/check.py --version 2.1.0 --update   # also write O/m/M/W into data/functions/
   python tools/check.py --version 2.1.0 --no-reloc # bytes only, as before the relocation check
+  python tools/check.py --compile-only             # compile every source, no dump needed (hosted CI)
 """
 
 from __future__ import annotations
@@ -165,13 +166,30 @@ def reloc_line(addr: str, m: asmdiff.RelocMismatch, full_names: dict[str, str], 
     return f"RELOC  {addr}  {asmdiff.format_mismatch(m, sym)}  {src.relative_to(ROOT).as_posix()}"
 
 
+def compile_only(version: str, jobs: int) -> int:
+    """Build every source and report failures; nothing is read from orig/ or written to data/."""
+    from concurrent.futures import ThreadPoolExecutor
+    srcs = sources()
+    with ThreadPoolExecutor(jobs) as pool:
+        objects = list(pool.map(lambda s: build(version, s), srcs))
+    failed = sum(1 for o in objects if o is None)
+    print(f"{len(srcs)} sources compiled, {failed} failed")
+    return 1 if failed else 0
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--version", required=True)
+    ap.add_argument("--version", help="dump version to diff against (required unless --compile-only)")
     ap.add_argument("--update", action="store_true", help="write statuses into data/functions/")
     ap.add_argument("-j", "--jobs", type=int, default=8, help="parallel compiles")
     ap.add_argument("--no-reloc", action="store_true", help="skip the relocation target check")
+    ap.add_argument("--compile-only", action="store_true",
+                    help="only compile every source with the project toolchain; needs no dump (hosted CI)")
     args = ap.parse_args()
+    if args.compile_only:
+        return compile_only(args.version or "compile-only", args.jobs)
+    if not args.version:
+        ap.error("--version is required unless --compile-only")
 
     rows, files = load_csv()
     by_name = csv_by_name(rows)

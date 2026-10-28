@@ -68,8 +68,10 @@ To change the ruleset, edit the JSON, then
 
 ## Merging a pull request
 
-Hosted CI checks content policy and declaration consistency (`tools/decl_check.py --base`); it has
-no game data, so it can't build or match. For any PR that touches `src/`, `include/`, `tools/` or
+Hosted CI checks content policy and declaration consistency (`tools/decl_check.py --base`), and
+`.github/workflows/build.yml` compiles every source twice without game data: with the project
+compiler (`tools/check.py --compile-only`, upstream Clang 9.0.1 pinned in `data/toolchains.json`)
+and for x86-64 Linux (`tools/port_sweep.py`). It can't diff or match: that needs the dump. For any PR that touches `src/`, `include/`, `tools/` or
 `data/`, either the self-hosted check job (next section) is green, or run it by hand:
 
 ```sh

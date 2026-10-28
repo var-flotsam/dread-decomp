@@ -10,9 +10,10 @@ where <cache> comes from tools/hostenv.py (%LOCALAPPDATA%\\dread-decomp on Windo
   macOS:   only the project compiler, from the official x86_64 tarball (there is no arm64
            build of LLVM 9); on Apple Silicon it runs under Rosetta 2. Extracted with tarfile.
            Untested on hardware: check.py must reproduce the PC's O count before it is used.
+  Linux:   only the project compiler, from the official x86_64 (Ubuntu 16.04) tarball.
 
-SHA-256 of each download is pinned in data/toolchains.json (macOS entries carry a `-macos`
-suffix). The first download records the hash; later downloads must match it.
+SHA-256 of each download is pinned in data/toolchains.json (macOS and Linux entries carry a
+`-macos` or `-linux` suffix). The first download records the hash; later downloads must match it.
 
 Also fetches objdiff / objdiff-cli (TOOLS) into <cache>/tools/. On request only (not part of the
 default, since matching does not need it): glslang (ARCHIVE_TOOLS, the Khronos GLSL compiler for
@@ -62,7 +63,12 @@ MACOS_CANDIDATES = {
     "9.0.1": "https://github.com/llvm/llvm-project/releases/download/llvmorg-9.0.1/"
              "clang+llvm-9.0.1-x86_64-apple-darwin.tar.xz",
 }
-CANDIDATES = WINDOWS_CANDIDATES if hostenv.WINDOWS else MACOS_CANDIDATES if hostenv.MACOS else {}
+# Linux: the official x86_64 tarball, used by the hosted CI build job (.github/workflows/policy.yml).
+LINUX_CANDIDATES = {
+    "9.0.1": "https://github.com/llvm/llvm-project/releases/download/llvmorg-9.0.1/"
+             "clang+llvm-9.0.1-x86_64-linux-gnu-ubuntu-16.04.tar.xz",
+}
+CANDIDATES = WINDOWS_CANDIDATES if hostenv.WINDOWS else MACOS_CANDIDATES if hostenv.MACOS else LINUX_CANDIDATES
 
 
 def pin_key(name: str) -> str:

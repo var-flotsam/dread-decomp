@@ -35,6 +35,10 @@
     "sha256": "ea59a771d1f1a1948b7fabe74d6da87095296ebabb2ae78cb2075ec44eb57c80",
     "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-9.0.1/LLVM-9.0.1-win64.exe"
   },
+  "9.0.1-linux": {
+    "sha256": "1af280e96fec62acf5f3bb525e36baafe09f95f940dc9806e22809a83dfff4f8",
+    "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-9.0.1/clang+llvm-9.0.1-x86_64-linux-gnu-ubuntu-16.04.tar.xz"
+  },
   "9.0.1-macos": {
     "sha256": "2fdb7c04fefa4cc651a8b96a5d72311efe6b4be845a08c921166dc9883b0c5b9",
     "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-9.0.1/clang+llvm-9.0.1-x86_64-apple-darwin.tar.xz"
