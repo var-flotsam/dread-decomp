@@ -38,9 +38,11 @@ Local AI coding agents (small models with short contexts) start with `AGENTS.md`
    (`tools/tu_map.py --function <addr>` names the unit; `data/tu_map.csv` has them all). No new
    address-named directories (`src/game_<addr>/`, `src/game_s<N>/`); the existing ones are moved
    as their units complete.
-9. **Logs go to `docs/JOURNAL.md`.** `docs/HANDOFF.md` holds only the current state and is
-   edited in place, never appended to. Batch notes, findings and session summaries go at the top
-   of the journal, and reusable matching findings into its index.
+9. **Logs go to `docs/JOURNAL.md`.** `docs/HANDOFF.md` holds only the current state, fits on one
+   screen, and is edited only by the session that merges a round of PRs (its numbers come from
+   `tools/progress.py --slice boot --handoff`); feature branches leave it alone. Batch notes,
+   findings and session summaries go at the top of the journal, and reusable matching findings
+   into its index.
 
 The pre-commit hook and CI enforce part of rules 1, 4 and 7 (paths, file types, sizes,
 declaration growth). The rest is on you and on review.
@@ -63,7 +65,7 @@ git config core.hooksPath tools/hooks      # the pre-commit content check; never
 Python 3.12 in a venv at `.venv`, CMake, Ninja, and the project compiler (upstream Clang 9.0.1,
 fetched by a script; the Nintendo SDK compiler is not used). Ghidra is optional (only for
 reading code). Exact versions and the install commands are in `CLAUDE.md` and
-`docs/HANDOFF.md` ("Rebuilding everything from scratch").
+`docs/reference.md` ("Rebuilding everything from scratch").
 
 ```sh
 python -m venv .venv
@@ -100,7 +102,7 @@ git switch -c <topic> upstream/main
 
 - Pick work with `tools/hubs.py --version 2.1.0 --boot` (the unmatched functions with the most
   unmatched callers along the boot path, then the whole binary), or `--ready` (functions whose
-  callees are all matched). `docs/HANDOFF.md` ("Next steps") says what each stream is on; open
+  callees are all matched). `docs/HANDOFF.md` ("Workstreams and next steps") says what each stream is on; open
   an issue first for anything large (a new generator, a new subsystem, a change to shared
   headers) so two people don't do the same thing.
 - A PR is a hub cluster or about 30 functions or more; keep accumulating on your branch below
@@ -123,7 +125,7 @@ then rerun `check.py --update`, which rederives every status from `src/`. If a g
 output conflicts, regenerate it (the order is in `CLAUDE.md`).
 
 When several machines or people work at once (the owner's workstreams are in
-`docs/HANDOFF.md`, "Workstreams"):
+`docs/HANDOFF.md`, "Workstreams and next steps"):
 
 - Merge `main` into your branch often and keep PRs small.
 - After merging `main`, take `main`'s `data/functions/*.csv`, rerun only the generator you own,

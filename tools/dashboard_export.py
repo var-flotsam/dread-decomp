@@ -139,7 +139,7 @@ def main() -> int:
               history(args.ref, args.days))
     write_csv(args.out / "phases.csv", ["order", "phase", "state", "detail"], phases(md))
     write_csv(args.out / "workstreams.csv", ["stream", "area", "branches"],
-              [[plain(c[0]), plain(c[1]), plain(c[3])] for c in handoff_table(md, "## Workstreams")])
+              [[plain(c[0]), plain(c[1]), plain(c[2])] for c in handoff_table(md, "## Workstreams")])
 
     head, at = git("log", "-1", "--format=%h %cI", "HEAD").split()
     dirty = bool(git("status", "--porcelain", "--", "data/functions", "docs/HANDOFF.md").strip())

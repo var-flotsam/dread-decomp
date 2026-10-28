@@ -23,7 +23,7 @@ lists each prerequisite and the command that creates it when it is missing:
 ```
 
 Every line should say `ok`. Lines marked `optional` (objdiff, the Ghidra project) only gate
-the commands that need them. The full from-scratch rebuild is in `docs/HANDOFF.md`
+the commands that need them. The full from-scratch rebuild is in `docs/reference.md`
 ("Rebuilding everything from scratch").
 
 ## Run (agent path)
