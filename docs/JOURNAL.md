@@ -117,6 +117,15 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Lifter: a data table that starts like a string (2026-10-28, branch `claude/project-thread-zgkpk3`, after #255).**
+The boot's next stop: byte mode lifted `fn_7100167cc0` (`i < 10 ? table[i] : -1` over a u32 table at
+`710164806c`) as `(char*)"Y"` indexed by `i << 2`, because the table's first entry is 0x59. On the Switch the
+bytes match (string relocations are not checked), but the port's copy of the literal is two bytes long, so
+`fn_7100167cc0(1)` read "WALL" from the next literal and `fn_71001b0f7c` faulted on the index. The same
+stand-in was in 15 functions. An address that a later access reads as a table (an index register, or
+reaching past the string's terminator, before the register is written again) is now the image's object
+(`h::g_unk_<addr>`), not a literal; semantic mode already named every address that way.
+
 **Lifter: the boot trace's instruction gaps (2026-10-28, branch `claude/project-thread-zgkpk3`, after #250).**
 The recomp's boot trace names 37 unmatched functions the boot runs that no lifted set accepts; 11 were
 the lifter's (diagnosed on the PC, measured there). All semantic mode:
