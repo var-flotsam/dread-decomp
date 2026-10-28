@@ -66,7 +66,7 @@ The full per-stream lists as of 2026-10-27 are in the journal, "Handoff next-ste
 | C. Gameplay slice | `src/game/`, `include/game/` | `claude/game-<topic>` | After the title screen |
 | D. Port layer | `port/` | `claude/port-<topic>` | M1 round 3: the 127 functions on the run-time roots' static list, then follow the traps; M2: alpha test, Vulkan surface, texel upload |
 | E. Tooling | `tools/`, `.github/` | `claude/tools-<topic>` | Boot trace from Eden's GDB stub; subsystem inference from `tu_map.csv`; the 504 `src/game_*` files with no known unit and their 15 local headers (to `include/`) |
-| M. Generators | `tools/gen_*.py`, generated `src/` directories | `claude/gen-<topic>`, `claude/lifter-<topic>` | The run over every `U` function (`port_lift.py --slice all`), then its largest gaps: 16-byte results, indirect calls with stack arguments, inputs that crash or loop on every seed | |
+| M. Generators | `tools/gen_*.py`, generated `src/` directories | `claude/gen-<topic>`, `claude/lifter-<topic>` | The run over every `U` function (`port_lift.py --slice all`), then its largest gaps: 16-byte results, indirect calls with stack arguments, inputs that crash or loop on every seed |
 
 Merging: merge `main` into the branch, take `main`'s `data/functions/*.csv`, rerun only the generator you
 own, then `tools/check.py --update` (`tools/verify.py --regen <generator>` does both). Before the PR:
