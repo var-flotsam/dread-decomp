@@ -1159,6 +1159,9 @@ class Lifter:
         main = self.main(self.addr) if "semantic" in self.opts and self.main is not None else None
         fshape = (shape := self.result_of(self.addr)) is not None and shape[0] != "x"
 
+        def convert(x) -> bool:
+            return x.mnemonic in ("ucvtf", "scvtf") and re.fullmatch(rf"s\d+, s{n}", x.op_str) is not None
+
         def mine(x, acc: int) -> bool:
             if acc == 0 and x.mnemonic == "fmov" and any(op.type == arm64.ARM64_OP_FP for op in x.operands):
                 return False  # (capstone counts fmov's immediate destination as read)
@@ -1176,14 +1179,16 @@ class Lifter:
             if mine(x, 0) or (n < 8 and x.mnemonic in ("bl", "blr")) \
                     or (exits and (ret_reads if x.mnemonic == "ret" else n < 8)):
                 reads.add(j)
-                continue
-            if mine(x, 1) or (x.mnemonic in ("bl", "blr") and n >= 16):
+                if not convert(x) or x.op_str.startswith(f"s{n},"):
+                    continue
+                # (into another register, fn_71012223d4's `ucvtf s19, s3`: v<n> lives on)
+            elif mine(x, 1) or (x.mnemonic in ("bl", "blr") and n >= 16):
                 continue
             work += succ[j]
         if len(reads) != 1:
             return None
         c = reads.pop()
-        if not (ins[c].mnemonic in ("ucvtf", "scvtf") and ins[c].op_str == f"s{n}, s{n}"):
+        if not convert(ins[c]):
             return None
         seen, work = {k}, [0]
         while work:  # (reached from the entry without the load: another value of v<n>)
@@ -1250,7 +1255,11 @@ class Lifter:
         t = "u16" if reg[0] == "h" else "u8"
         v = self.bind(t, f"*({t}*){self.address(x, mem[0])}")
         self.write(f"s{reg[1:]}", f"(f32){v}" if self.ins[c].mnemonic == "ucvtf" else f"(f32)(s32){v}", "f32")
-        self.gskip.add(self.ins[c].address)
+        dest = self.ins[c].op_str.split(",")[0]
+        if dest == f"s{reg[1:]}":
+            self.gskip.add(self.ins[c].address)
+        else:
+            self.far_copy[self.ins[c].address] = (dest, f"s{reg[1:]}")  # (the convert becomes a copy)
         return True
 
     def bind(self, t: str, e: str) -> str:
@@ -1298,6 +1307,7 @@ class Lifter:
         number of helper calls after the check; self.gskip holds the instructions it stands
         for (the tbz, those calls, and the out-of-line initialisation reached from the tbz)."""
         self.guard, self.gskip = {}, set()
+        self.far_copy: dict[int, tuple[str, str]] = {}  # far_convert: a convert into another register
         if "semantic" in self.opts:
             return  # semantic mode lifts the guard itself (ldarb, the out-of-line initialisation)
         at = {x.address: k for k, x in enumerate(ins)}
@@ -1863,6 +1873,10 @@ class Lifter:
             return True
         if m == "clrex":
             self.excl = None
+            return True
+        if x.address in self.far_copy:
+            d, src = self.far_copy[x.address]
+            self.write(d, self.read(src)[0], "f32")
             return True
         if m in ("ldr", "ldur") and mem and len(regs) == 1 and regs[0][0] in "hb" and regs[0][1:].isdigit():
             # `ldr h<n>|b<n>, [..]; ucvtf|scvtf s<n>, s<n>`: a u16 or u8 loaded into a float register
