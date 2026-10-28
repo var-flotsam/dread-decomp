@@ -32,19 +32,34 @@ line in a generated file is a generator regression (fix the generator and regene
 the output). REPORT_ONLY below can exempt top-level src/ directories temporarily; it is
 empty. `--no-reloc` skips the check.
 
+Caches (build/check/<version>/, next to each object): a source is recompiled only when its
+compile command or the content of any file in its dependency list (clang -MD: the source and
+every header it includes, system headers too) or of the object itself differs from the last
+build (`<obj>.inputs.json`). An object's diff is reused only when the object's bytes and every
+input of the diff (this file, asmdiff.py, the original module and its function sizes, the names
+in data/functions/, --no-reloc) are the same as when it was computed (`<obj>.diff.json`).
+Statuses are always derived afresh from the diff and the source's annotations. `--no-cache`
+rebuilds and rediffs everything (the nightly run does), refreshing both caches.
+
 Usage:
   python tools/check.py --version 2.1.0            # report; exit 1 if an O function regressed or a function is defined in two files
   python tools/check.py --version 2.1.0 --update   # also write O/m/M/W into data/functions/
   python tools/check.py --version 2.1.0 --no-reloc # bytes only, as before the relocation check
+  python tools/check.py --version 2.1.0 --no-cache # rebuild and rediff every source
   python tools/check.py --compile-only             # compile every source, no dump needed (hosted CI)
 """
 
 from __future__ import annotations
 
 import argparse
+import dataclasses
+import hashlib
+import json
+import os
 import re
 import subprocess
 import sys
+from collections import Counter
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -63,6 +78,9 @@ DEFINITION = re.compile(r"^[A-Za-z_][\w:<>,\*& ]*?\b([A-Za-z_][\w:]*)\s*\(")
 # since 2026-10-24: the generators verify relocation targets themselves and the Phase 3 samples
 # were corrected. Name a directory here only as a temporary measure while a generator is fixed.
 REPORT_ONLY: tuple[str, ...] = ()
+# Bump when the layout of <obj>.inputs.json or <obj>.diff.json changes.
+CACHE_VERSION = 1
+DIFF_CHUNK = 256  # objects diffed per llvm-cxxfilt call
 
 
 def annotations(src: Path) -> dict[str, str]:
@@ -96,15 +114,87 @@ def object_path(version: str, src: Path) -> Path:
     return ROOT / "build" / "check" / version / src.relative_to(ROOT / "src").with_suffix(".o")
 
 
-def build(version: str, src: Path) -> Path | None:
-    """Compile one source with the project toolchain. Returns the object, or None on failure."""
+def digest(path: Path) -> str | None:
+    """sha256 of a file's content, None when it cannot be read."""
+    try:
+        return hashlib.sha256(path.read_bytes()).hexdigest()
+    except OSError:
+        return None
+
+
+_input_digests: dict[str, str | None] = {}
+
+
+def input_digest(path: str) -> str | None:
+    """digest() of a compile input, computed once per run: sources and headers do not change
+    while check.py runs (objects do, and use digest())."""
+    if path not in _input_digests:
+        _input_digests[path] = digest(Path(path))
+    return _input_digests[path]
+
+
+DEP_TOKEN = re.compile(r"(?:\\[ #]|\S)+")
+
+
+def depfile_inputs(text: str) -> list[str]:
+    """The prerequisites of a clang -MD depfile (one Make rule; backslash-newline continuations,
+    `\\ ` and `\\#` escapes, `$$`), as absolute paths. Windows paths keep their backslashes."""
+    body = text.replace("\\\r\n", " ").replace("\\\n", " ")
+    _, sep, deps = body.partition(": ")
+    if not sep:
+        return []
+    return [os.path.abspath(re.sub(r"\\([ #])", r"\1", t).replace("$$", "$")) for t in DEP_TOKEN.findall(deps)]
+
+
+def inputs_path(obj: Path) -> Path:
+    return obj.with_name(obj.name + ".inputs.json")
+
+
+def up_to_date(obj: Path, cmd: list[str]) -> bool:
+    """True when obj was built by cmd from inputs that are all unchanged (<obj>.inputs.json)."""
+    try:
+        m = json.loads(inputs_path(obj).read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return False
+    if m.get("cache") != CACHE_VERSION or m.get("cmd") != cmd or not m.get("inputs"):
+        return False
+    if m.get("object") is None or digest(obj) != m["object"]:
+        return False
+    return all(d is not None and input_digest(p) == d for p, d in m["inputs"].items())
+
+
+def build(version: str, src: Path, cache: bool = True) -> Path | None:
+    """Compile one source with the project toolchain. Returns the object, or None on failure.
+
+    With cache, an object whose command and inputs are unchanged is not rebuilt (see the docstring).
+    """
     obj = object_path(version, src)
     obj.parent.mkdir(parents=True, exist_ok=True)
-    r = subprocess.run(buildcfg.cxx_command(src, obj), capture_output=True, text=True)
+    cmd = buildcfg.cxx_command(src, obj)
+    if cache and up_to_date(obj, cmd):
+        return obj
+    dep = obj.with_suffix(".d")
+    inputs_path(obj).unlink(missing_ok=True)
+    # -MD -MF only writes the dependency list; the object is the same as without them.
+    r = subprocess.run([*cmd, "-MD", "-MF", str(dep)], capture_output=True, text=True)
     if r.returncode != 0:
         print(f"BUILD FAILED {src.relative_to(ROOT)}\n{r.stderr}")
         return None
+    try:
+        inputs = {p: input_digest(p) for p in depfile_inputs(dep.read_text(encoding="utf-8"))}
+        dep.unlink()
+    except OSError:
+        inputs = {}
+    if inputs and all(d is not None for d in inputs.values()):
+        write_json(inputs_path(obj), {"cache": CACHE_VERSION, "cmd": cmd, "object": digest(obj), "inputs": inputs})
     return obj
+
+
+def write_json(path: Path, data) -> None:
+    """Write a cache file atomically, so an interrupted run never leaves a half-written one."""
+    tmp = path.with_name(path.name + f".{os.getpid()}.tmp")
+    tmp.write_text(json.dumps(data), encoding="utf-8")
+    os.replace(tmp, path)
 
 
 def resolver(by_name: dict[str, list[int]], names: dict[str, str]):
@@ -141,20 +231,27 @@ def csv_by_name(rows: dict[str, dict]) -> dict[str, list[int]]:
 
 
 def diff_with_targets(functions: list[asmdiff.ObjFunction], original: asmdiff.Original,
-                      by_name: dict[str, list[int]]):
+                      by_name: dict[str, list[int]], full_names: dict[str, str] | None = None):
     """Diff an object's functions and build the resolver for their relocation targets.
 
     Returns (diffs, names, full_names, targets): names maps each function symbol to its
     qualified demangled name, full_names every symbol (functions and relocation targets) to
     its full demangled form, targets(symbol) a relocation's symbol to an original address or None.
+    full_names may be given already demangled (check.py demangles many objects in one call).
     """
-    symbols = {f.symbol for f in functions}
-    symbols.update(r.symbol for f in functions for r in f.relocs.values() if not r.section)
-    full_names = demangle(sorted(symbols), strip=False)
+    if full_names is None:
+        full_names = demangle(object_symbols(functions), strip=False)
     names = {f.symbol: full_names.get(f.symbol, f.symbol).split("(")[0] for f in functions}
     diffs = asmdiff.diff_functions(functions, original, resolver(by_name, names))
     targets = target_resolver(by_name, full_names, {res.symbol: res.address for res in diffs})
     return diffs, names, full_names, targets
+
+
+def object_symbols(functions: list[asmdiff.ObjFunction]) -> list[str]:
+    """The symbols diff_with_targets demangles: every function and named relocation target."""
+    symbols = {f.symbol for f in functions}
+    symbols.update(r.symbol for f in functions for r in f.relocs.values() if not r.section)
+    return sorted(symbols)
 
 
 def reloc_line(addr: str, m: asmdiff.RelocMismatch, full_names: dict[str, str], src: Path) -> str:
@@ -162,12 +259,85 @@ def reloc_line(addr: str, m: asmdiff.RelocMismatch, full_names: dict[str, str], 
     return f"RELOC  {addr}  {asmdiff.format_mismatch(m, sym)}  {src.relative_to(ROOT).as_posix()}"
 
 
-def compile_only(version: str, jobs: int) -> int:
-    """Build every source and report failures; nothing is read from orig/ or written to data/."""
+def diff_entries(src: Path, functions: list[asmdiff.ObjFunction], full_names: dict[str, str],
+                 original: asmdiff.Original, by_name: dict[str, list[int]], no_reloc: bool) -> list[dict]:
+    """One object's diff as plain data (what <obj>.diff.json caches): per function its symbol,
+    qualified name, address, score, whether it matches, and for a match its relocation report
+    and RELOC lines. Statuses are not part of it (main derives them with the annotations)."""
+    diffs, names, full_names, targets = diff_with_targets(functions, original, by_name, full_names)
+    out = []
+    for res in diffs:
+        e = {"symbol": res.symbol, "name": names.get(res.symbol, res.symbol), "address": res.address,
+             "matching": res.matching, "score": res.score, "checked": {}, "unchecked": {},
+             "mismatches": [], "reloc_lines": []}
+        if res.matching and not no_reloc:
+            rep = asmdiff.check_relocs(res, original, targets)
+            e["checked"], e["unchecked"] = dict(rep.checked), dict(rep.unchecked)
+            e["mismatches"] = [dataclasses.asdict(m) for m in rep.mismatches]
+            e["reloc_lines"] = [reloc_line(f"{res.address:#x}", m, full_names, src) for m in rep.mismatches]
+        out.append(e)
+    return out
+
+
+def diff_inputs(version: str, rows: dict[str, dict], no_reloc: bool) -> str:
+    """Digest of everything an object's diff depends on besides the object itself."""
+    names = hashlib.sha256("\n".join(f"{a},{r['name']}" for a, r in sorted(rows.items())).encode()).hexdigest()
+    tools = Path(__file__).resolve().parent
+    parts = [CACHE_VERSION, digest(Path(__file__).resolve()), digest(tools / "asmdiff.py"),
+             digest(ROOT / "orig" / version / "exefs" / "main"),
+             digest(ROOT / "build" / "recon" / version / "main_eh_functions.json"),
+             names, asmdiff.cxxfilt(), no_reloc]
+    return hashlib.sha256(json.dumps(parts).encode()).hexdigest()
+
+
+def diff_path(obj: Path) -> Path:
+    return obj.with_name(obj.name + ".diff.json")
+
+
+def cached_diff(obj: Path, obj_digest: str | None, inputs: str) -> list[dict] | None:
+    try:
+        c = json.loads(diff_path(obj).read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return None
+    if obj_digest is None or c.get("object") != obj_digest or c.get("inputs") != inputs:
+        return None
+    return c.get("entries")
+
+
+def diff_all(pairs: list[tuple[Path, Path]], original: asmdiff.Original, by_name: dict[str, list[int]],
+             inputs: str, no_reloc: bool, cache: bool) -> tuple[dict[Path, list[dict]], int]:
+    """diff_entries for every (source, object), reusing cached diffs; the rest are diffed in
+    chunks with one llvm-cxxfilt call each. Returns (source -> entries, number reused)."""
+    out: dict[Path, list[dict]] = {}
+    pending = []
+    for src, obj in pairs:
+        d = digest(obj)
+        hit = cached_diff(obj, d, inputs) if cache else None
+        if hit is not None:
+            out[src] = hit
+        else:
+            pending.append((src, obj, d))
+    reused = len(out)
+    for i in range(0, len(pending), DIFF_CHUNK):
+        chunk = [(src, obj, d, asmdiff.read_object(obj)) for src, obj, d in pending[i:i + DIFF_CHUNK]]
+        full_names = demangle(sorted({s for *_, fns in chunk for s in object_symbols(fns)}), strip=False)
+        for src, obj, d, fns in chunk:
+            out[src] = diff_entries(src, fns, full_names, original, by_name, no_reloc)
+            if d is not None:
+                write_json(diff_path(obj), {"object": d, "inputs": inputs, "entries": out[src]})
+    return out, reused
+
+
+def compile_all(version: str, srcs: list[Path], jobs: int, cache: bool) -> list[Path | None]:
     from concurrent.futures import ThreadPoolExecutor
-    srcs = sources()
     with ThreadPoolExecutor(jobs) as pool:
-        objects = list(pool.map(lambda s: build(version, s), srcs))
+        return list(pool.map(lambda s: build(version, s, cache), srcs))
+
+
+def compile_only(version: str, jobs: int, cache: bool = True) -> int:
+    """Build every source and report failures; nothing is read from orig/ or written to data/."""
+    srcs = sources()
+    objects = compile_all(version, srcs, jobs, cache)
     failed = sum(1 for o in objects if o is None)
     print(f"{len(srcs)} sources compiled, {failed} failed")
     return 1 if failed else 0
@@ -181,9 +351,12 @@ def main() -> int:
     ap.add_argument("--no-reloc", action="store_true", help="skip the relocation target check")
     ap.add_argument("--compile-only", action="store_true",
                     help="only compile every source with the project toolchain; needs no dump (hosted CI)")
+    ap.add_argument("--no-cache", action="store_true",
+                    help="rebuild and rediff every source, ignoring (and refreshing) the caches")
     args = ap.parse_args()
+    cache = not args.no_cache
     if args.compile_only:
-        return compile_only(args.version or "compile-only", args.jobs)
+        return compile_only(args.version or "compile-only", args.jobs, cache)
     if not args.version:
         ap.error("--version is required unless --compile-only")
 
@@ -198,33 +371,31 @@ def main() -> int:
     demoted: set[str] = set()  # addresses a mismatch demoted
     report = asmdiff.RelocReport()
     srcs = sources()
-    from concurrent.futures import ThreadPoolExecutor
-    with ThreadPoolExecutor(args.jobs) as pool:
-        objects = list(pool.map(lambda s: build(args.version, s), srcs))
+    objects = compile_all(args.version, srcs, args.jobs, cache)
     failed = any(o is None for o in objects)
-    for src, obj in zip(srcs, objects):
-        if obj is None:
-            continue
-        diffs, names, full_names, targets = diff_with_targets(asmdiff.read_object(obj), original, by_name)
+    pairs = [(src, obj) for src, obj in zip(srcs, objects) if obj is not None]
+    entries, reused = diff_all(pairs, original, by_name, diff_inputs(args.version, rows, args.no_reloc),
+                               args.no_reloc, cache)
+    for src, _ in pairs:
         notes = annotations(src)
         report_only = src.relative_to(ROOT / "src").parts[0] in REPORT_ONLY
-        for res in diffs:
-            short = names.get(res.symbol, res.symbol).split("::")[-1]
-            status = "O" if res.matching else notes.get(short, "W")
-            addr = f"{res.address:#x}"
-            if res.matching and not args.no_reloc:
-                rep = asmdiff.check_relocs(res, original, targets)
-                report.merge(rep)
-                if rep.mismatches:
+        for e in entries[src]:
+            short = e["name"].split("::")[-1]
+            status = "O" if e["matching"] else notes.get(short, "W")
+            addr = f"{e['address']:#x}"
+            if e["matching"] and not args.no_reloc:
+                report.merge(asmdiff.RelocReport(Counter(e["checked"]), Counter(e["unchecked"]),
+                                                 [asmdiff.RelocMismatch(**m) for m in e["mismatches"]]))
+                if e["mismatches"]:
                     if report_only:
                         report_only_addrs.add(addr)
                     else:
                         status = notes.get(short, "W")
                         demoted.add(addr)
-                    reloc_lines.setdefault(addr, []).extend(reloc_line(addr, m, full_names, src)
-                                                            for m in rep.mismatches)
-            results[addr] = (status, names.get(res.symbol, res.symbol), res.score)
+                    reloc_lines.setdefault(addr, []).extend(e["reloc_lines"])
+            results[addr] = (status, e["name"], e["score"])
             defined_in.setdefault(addr, set()).add(src)
+    print(f"cache: {len(pairs) - reused} of {len(pairs)} objects diffed, {reused} reused")
 
     regressions = 0
     for addr, (status, name, score) in sorted(results.items()):

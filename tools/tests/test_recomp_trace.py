@@ -45,6 +45,10 @@ ROWS = [
      "subsystem": "engine", "status": "U"},
     {"address": "0x7100000300", "size": "8", "name": "fn_7100000300", "name_source": "unknown",
      "subsystem": "unknown", "status": "M"},
+    {"address": "0x7100000400", "size": "16", "name": "end", "name_source": "symbol",
+     "subsystem": "unknown", "status": "U"},
+    {"address": "0x7100000410", "size": "16", "name": "<EXTERNAL>::strlen", "name_source": "symbol",
+     "subsystem": "unknown", "status": "U"},
 ]
 
 
@@ -73,6 +77,16 @@ class Map(unittest.TestCase):
         lines = rt.next_up(order, {"traps": {"order": []}, "aborting_trap": "CFoo::refl_GetClass"}, 10)
         self.assertEqual(sum("0x71000003" in l for l in lines), 1)
         self.assertFalse(any("0x71000002" in l for l in lines[1:]))
+
+
+    def test_import_stubs_are_marked_and_left_out_of_next(self):
+        index = rt.FunctionIndex(ROWS)
+        order = rt.map_trace(rt.read_trace(["0 0 1 8005400", "1 0 1 8005410", "2 0 1 8005200"]), index, None)
+        self.assertEqual([o["import"] for o in order], [True, True, False])
+        self.assertIn("2 import stubs", rt.summary(order)[0])
+        lines = rt.next_up([{k: str(v) for k, v in o.items()} for o in order], None, 10)
+        self.assertEqual(sum("0x71000004" in l for l in lines), 0)
+        self.assertEqual(sum("0x7100000200" in l for l in lines), 1)
 
 
 if __name__ == "__main__":

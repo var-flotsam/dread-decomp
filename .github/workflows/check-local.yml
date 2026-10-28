@@ -41,6 +41,16 @@
 # when the job is required: run tools/check.py locally on a fork's branch before merging it, and the
 # push run on main covers the merge itself. Keep "Require approval for all outside collaborators"
 # (Settings > Actions > General) on as the second guard for the hosted policy workflow.
+#
+# Which runs check what (the byte-match guarantee is unchanged wherever the decomp can change):
+#   - pull request: the `changes` job (hosted, no data) lists the files the pull request changes.
+#     The check runs when one of them is an input of the matching build or its statuses (DECOMP_PATHS
+#     below: src/, include/, lib/, data/functions/, the toolchain pins, check.py and the tools it
+#     imports, this file). Otherwise it is skipped, which a required check counts as passing, the
+#     same mechanism as for forks above. If `changes` itself fails, the check runs.
+#   - push to main and workflow_dispatch: always, with check.py's caches (build/check/2.1.0).
+#   - nightly (schedule): always, with --no-cache, so every object is rebuilt and rediffed and a
+#     cache fault cannot hide for more than a day. It also refreshes build/check for boot-nightly.yml.
 
 name: check (self-hosted)
 
@@ -49,20 +59,59 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  schedule:
+    - cron: "17 2 * * *"   # an hour before boot-nightly.yml, which reads build/check
 
 permissions:
   contents: read
 
 concurrency:
-  group: check-local-${{ github.ref }}
+  group: check-local-${{ github.event_name }}-${{ github.ref }}
   cancel-in-progress: true
 
+env:
+  # Changed paths (git diff --name-only) that make a pull request run the check: everything the
+  # matching build compiles or includes, the statuses it writes, and the tools that do it.
+  DECOMP_PATHS: >-
+    ^(src|include|lib)/|^data/functions/|^data/(toolchains|sources)\.json$|^tools/dread/|^tools/recon/image\.py$|^tools/(check|asmdiff|nso2elf|nso|buildcfg|hostenv|fetch_toolchains|fetch_sources)\.py$|^\.gitmodules$|^\.github/workflows/check-local\.yml$
+
 jobs:
+  changes:
+    name: changes
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    outputs:
+      decomp: ${{ steps.diff.outputs.decomp }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: false
+      - id: diff
+        env:
+          BASE: ${{ github.event.pull_request.base.sha }}
+          HEAD: ${{ github.event.pull_request.head.sha }}
+        run: |
+          git diff --name-only "$BASE...$HEAD" > "$RUNNER_TEMP/changed.txt"
+          echo "$(wc -l < "$RUNNER_TEMP/changed.txt") files changed; the ones the check depends on:"
+          if grep -E "$DECOMP_PATHS" "$RUNNER_TEMP/changed.txt"; then
+            echo "decomp=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "(none: the check is skipped, which counts as passing)"
+            echo "decomp=false" >> "$GITHUB_OUTPUT"
+          fi
+
   check:
     name: check
+    needs: changes
     # Skipped (reported as passing) unless the repository variable is set and the code under test is this
     # repository's own: a pull request from a fork never reaches the self-hosted runner (see the header).
-    if: vars.SELF_HOSTED_CHECK == 'true' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
+    # A pull request also skips it when it changes nothing in DECOMP_PATHS; on any other outcome of
+    # `changes` (failed, or skipped on push/schedule/dispatch) the check runs.
+    if: >-
+      !cancelled() && vars.SELF_HOSTED_CHECK == 'true' &&
+      (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) &&
+      (needs.changes.result != 'success' || needs.changes.outputs.decomp == 'true')
     runs-on: self-hosted
     timeout-minutes: 120
     steps:
@@ -101,7 +150,8 @@ jobs:
         run: |
           $py = if ($env:DREAD_PYTHON) { $env:DREAD_PYTHON } else { '.venv\Scripts\python.exe' }
           $log = Join-Path $env:RUNNER_TEMP 'check.log'
-          cmd /c "`"$py`" tools/check.py --version 2.1.0 --update > `"$log`" 2>&1"
+          $extra = if ('${{ github.event_name }}' -eq 'schedule') { '--no-cache' } else { '' }
+          cmd /c "`"$py`" tools/check.py --version 2.1.0 --update $extra > `"$log`" 2>&1"
           $rc = $LASTEXITCODE
           Get-Content $log
           $bad = @(Select-String -Path $log -Pattern '^BUILD FAILED |REGRESSION \(was O\)$|^DUPLICATE ').Count
