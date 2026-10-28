@@ -6,7 +6,6 @@ rebuilding, decisions, gotchas), and `docs/JOURNAL.md` for history and the index
 search it, don't read it whole). Contributors working from a fork: `CONTRIBUTING.md`;
 the maintainer: `docs/maintaining.md` (publication, branch rules, merging, the self-hosted check job). Outside
 projects are listed in `docs/references.md`. Add any newly used or referenced project there.
-Small local models used `AGENTS.md` and `docs/tasks/` (retired; reference only).
 
 A clean-room-style decompilation of Metroid Dread (Nintendo Switch), aiming for a
 native PC port later. It is modelled on PrimeDecomp and zeldaret/botw.

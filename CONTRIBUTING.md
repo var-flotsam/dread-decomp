@@ -4,8 +4,6 @@ Thanks for helping. This page is the procedure for working from a fork. The rule
 section are not negotiable: a pull request that breaks one is closed, and its content may have
 to be purged from the history.
 
-Local AI coding agents (small models with short contexts) start with `AGENTS.md` instead.
-
 ## Rules
 
 1. **No game data, ever.** Never commit, paste into an issue or PR, or attach: game files or

@@ -4,7 +4,7 @@ llvm-cxxfilt.
 Windows keeps its original locations (%LOCALAPPDATA%\\dread-decomp, C:\\Program Files\\LLVM).
 macOS uses ~/Library/Caches/dread-decomp; other systems $XDG_CACHE_HOME/dread-decomp (default
 ~/.cache/dread-decomp), or ~/dread-decomp where an older checkout already put its downloads.
-The macOS path is untested on hardware (see AGENTS.md).
+The macOS path is untested on hardware (docs/reference.md, "macOS").
 """
 
 from __future__ import annotations

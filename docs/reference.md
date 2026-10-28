@@ -83,9 +83,25 @@ git submodule update --init                                       # lib/nnsdk, l
 .venv/Scripts/python tools/progress.py --slice boot
 ```
 
-The tools also run on Linux (upstream clang+llvm 9.0.1 with a `bin/clang++.exe` symlink to
-`clang++`, `llvm-cxxfilt` on PATH; results identical to Windows) and, untested on hardware, on
-macOS under Rosetta 2 (`AGENTS.md`).
+The tools also run on Linux: `tools/fetch_toolchains.py 9.0.1` fetches the official x86_64 tarball
+into `~/.cache/dread-decomp` (results identical to Windows; the hosted build job uses it), with
+`.venv/bin/python` in place of `.venv/Scripts/python`.
+
+### macOS (Apple Silicon, untested on hardware)
+
+Clang 9.0.1 has no arm64 macOS build; the x86_64 build runs under Rosetta 2. Before relying on it,
+`tools/check.py --version 2.1.0` must reproduce the PC's `O` count.
+
+1. Install Xcode command line tools (`xcode-select --install`), Python 3.12
+   (`brew install python@3.12`) and Rosetta 2 (`softwareupdate --install-rosetta --agree-to-license`).
+2. Clone, `git config core.hooksPath tools/hooks`, `python3.12 -m venv .venv`, and install the
+   packages above with `.venv/bin/python -m pip install ...`.
+3. Keep the dump in a folder outside the repository (for example `~/dread-dump/` with `exefs/` and
+   `romfs/`), then run `tools/setup.py`, `tools/verify_dump.py`, `tools/nso2elf.py`,
+   `tools/fetch_toolchains.py` (into `~/Library/Caches/dread-decomp`), `tools/fetch_sources.py` and
+   `tools/recon/run.py` as above.
+4. If `git status` shows `data/toolchains.json` or `data/sources.json` changed, a download hash
+   differs: stop and tell the owner.
 
 ## Key facts
 
