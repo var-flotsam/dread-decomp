@@ -556,13 +556,19 @@ class Machine:
         self.state[100] = "junk"
 
     def stackref(self, v: int):
-        """A stack address as the bytes the function wrote from it on, and how far its object may
-        reach: to the next local whose address the code took, a save slot or the frame record (beyond, the
-        two frames hold different locals); anything else as is."""
+        """A stack address as ("stack", the bytes the function wrote from it on, extent, taken,
+        hard); anything else as is. The extent is how far its object may reach: to the next local
+        whose address the code took, a save slot or the frame record (beyond, the two frames hold
+        different locals); the out-parameter pattern stays within it. `taken` holds the offsets
+        from v of the addresses the code took within the window, `hard` the offset of the first
+        save slot or frame record word: same_arg compares past a taken address both runs took at
+        the same offset (a field's address, &s.name, passed before the whole object)."""
         if STACK_LO <= v < ENTRY_SP:
-            end = min([t for t in self.taken | self.frame_record | self.saves if t > v] + [v + WINDOW])
+            hard = min([t for t in self.frame_record | self.saves if t > v] + [v + WINDOW])
+            end = min([t for t in self.taken if t > v] + [hard])
             return ("stack", tuple(self.load(v + j, 1) if v + j in self.stack_written else None
-                                   for j in range(WINDOW) if v + j < ENTRY_SP), end - v)
+                                   for j in range(WINDOW) if v + j < ENTRY_SP), end - v,
+                    frozenset(t - v for t in self.taken if v < t < v + WINDOW), hard - v)
         return v
 
     def clib(self, name: str) -> None:
@@ -635,10 +641,11 @@ class Machine:
                 self.visited.add(pc)
                 w = self.code_word(pc)
                 kind, target = self.step(pc, w, BRANCH, CBRANCH, BRANCHIND, CALL, CALLIND, RETURN)
-                if (w & 0x7C000000) == 0x14000000 and not w >> 31 or (w & 0xFF000010) == 0x54000000 \
-                        or (w & 0x7C000000) == 0x34000000:
-                    # b, b.cond, cbz/cbnz/tbz/tbnz: what was written for an unknown callee before a
-                    # branch was the other path's (Machine.call's selection)
+                if ((w & 0x7C000000) == 0x14000000 and not w >> 31 or (w & 0xFF000010) == 0x54000000
+                        or (w & 0x7C000000) == 0x34000000) and (kind != "jump" or self.inside(target)):
+                    # b, b.cond, cbz/cbnz/tbz/tbnz within the function: what was written for an
+                    # unknown callee before a branch was the other path's (Machine.call's selection);
+                    # a tail call's own branch leaves its arguments as they are
                     for k, st in self.state.items():
                         if st == "written" and k:
                             self.state[k] = "stale"
@@ -957,10 +964,12 @@ def compare(a: Machine, b: Machine, ret: str | None) -> str:
                     continue
                 return f"event {i} before the original's fault"
         return "skip"
-    timed_out = end_a == ("end", "time-out")
-    if timed_out != (end_b == ("end", "time-out")):
-        return "skip"  # one run ran out of steps: the other may just be slower or faster
-    for i in range(min(len(ea), len(eb)) - (1 if timed_out else 0)):  # (two time-outs: what came before)
+    # A run that ran out of steps (or of event and snapshot room) recorded a true prefix of what it
+    # does: what both recorded is compared, the time-out's own end event aside.
+    ta, tb = end_a == ("end", "time-out"), end_b == ("end", "time-out")
+    timed_out = ta and tb
+    shared = min(len(ea) - ta, len(eb) - tb)
+    for i in range(shared):
         (va, ma), (vb, mb) = ea[i], eb[i]
         if va != vb:
             if va[0] == "call" and vb[0] == "call":
@@ -977,6 +986,10 @@ def compare(a: Machine, b: Machine, ret: str | None) -> str:
                 return f"event {i}: {va[0]} {va[1] if len(va) > 1 else ''} vs {vb[0]} {vb[1] if len(vb) > 1 else ''}"
         if ma != mb:
             return f"memory at event {i} ({va[0]}): {mem_diff(ma, mb)}"
+    if ta != tb or (timed_out and not shared):
+        # One run was cut off (the other may just be slower or faster), or both were before any
+        # event: nothing beyond what both recorded can be compared.
+        return "skip"
     if len(ea) != len(eb) and not timed_out:
         return f"{len(ea)} events vs {len(eb)}"
     if ea and ea[-1][0] == ("end", "return") and ret:
@@ -1000,7 +1013,10 @@ def same_arg(u, v) -> bool:
         # first word written by one only is a difference. Words that are stack addresses in both
         # (a pointer to another local) agree whatever their value.
         a, b = u[1], v[1]
-        n = min(len(a), len(b), u[2] if len(u) > 2 else WINDOW)  # (u is the original's: its object)
+        # (u is the original's: its object ends at the first address the original took that the
+        # lift did not take at the same offset, or at either frame's saved registers)
+        n = min([len(a), len(b), u[4], v[4]] + [o for o in u[3] if o not in v[3]]) if len(u) > 4 and len(v) > 4 \
+            else min(len(a), len(b), u[2] if len(u) > 2 else WINDOW)
         end = next((j for j in range(n) if a[j] is None or b[j] is None), n)
         if end < min(8, n) and (a[end] is None) != (b[end] is None):
             return False

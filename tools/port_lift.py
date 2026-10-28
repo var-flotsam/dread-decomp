@@ -402,6 +402,15 @@ class Oracle:
             f = self.af.facts(addr)
             regs = sorted((f.args if f is not None else frozenset(range(8))) - {8})
             guard_words = {g & ~7 for g in self.preset_orig}
+            img = self.orig.img
+
+            def mutable(w: int) -> bool:
+                # A word the lift reads at the same address: not a guard variable's (the lift has
+                # guards of its own, preset like these), a relocated slot (the GOT: the lift reads
+                # its own) or read-only data (jump tables, which the lifter folds into a switch).
+                off = w - pcode_emu.BASE
+                return w not in guard_words and img.relocs.get(off) is None and not img.in_text(off) \
+                    and not img.rodata[0] <= off < img.rodata[1]
             ints, floats = mutation_values(self.dicts[addr])
             idle = 0
             for t in range(FUZZ if self.fuzz else 0):
@@ -409,9 +418,8 @@ class Oracle:
                 if not kept or idle >= FUZZ_PATIENCE or len(seen) * 4 >= size:
                     break
                 seed, ovr, base = kept[t % len(kept)]
-                # (not a guard variable's word: the lift has guards of its own, preset like these)
                 choices = [("r", k) for k in regs] + [("c", n) for n in range(1, base.calls + 1)] \
-                    + [("m", w) for w in base.read_words[:MAX_WORDS] if w not in guard_words]
+                    + [("m", w) for w in [w for w in base.read_words if mutable(w)][:MAX_WORDS]]
                 if not choices:
                     break
                 key = choices[pcode_emu.mix(addr, t, 1) % len(choices)]
@@ -451,10 +459,13 @@ class Oracle:
             try:
                 ml.run(start)
             except pcode_emu.Inconclusive as e:
-                if str(e) == "return outside" and mo.events and mo.events[-1][0] == ("end", "return"):
-                    # The original returned to its caller; the lift's return address was overwritten.
+                # What only the lift does on an input the original ran: its return address was
+                # overwritten where the original returned, or it read the caller's frame beyond the
+                # stack arguments the original reads (Machine.arg_slots, the original's).
+                if (str(e) == "return outside" and mo.events and mo.events[-1][0] == ("end", "return")) \
+                        or str(e) == "read in the caller's frame":
                     self.last = (mo, ml)
-                    return "fail", f"input {seed}: the lift returns outside, the original returned", agreed, covered
+                    return "fail", f"input {seed}: the lift: {e}; the original did not", agreed, covered
                 why = why or f"lift: {e}"
                 continue
             d = pcode_emu.compare(mo, ml, ret)

@@ -458,6 +458,8 @@ class Lifter:
             return "0", width_type(r)
         n = self.key(r)
         s = self.s
+        if n == 8:
+            s.x8w = False  # (x8 read before an indirect call: a value, not a result address)
         if n in s.pages and n not in s.poison and "semantic" in self.opts and r[0] == "x":
             return self.global_ref(s.pages[n], False), "char*"  # a bare page: its address
         if n in s.pages or n in s.poison:
@@ -529,7 +531,7 @@ class Lifter:
         if n <= 7 or 100 <= n <= 107:
             s.written.add(n)
         if n == 8:
-            s.x8w = "stk" in e  # (an indirect callee may build its result there: Lifter.step)
+            s.x8w = LOCAL_ADDR.fullmatch(e) is not None  # (an indirect callee may build its result there: Lifter.step)
 
     # -- control flow -------------------------------------------------------------------------
 
@@ -573,7 +575,7 @@ class Lifter:
         m.written = a.written | c.written
         m.cmp = None
         m.fcall = None  # lines are inserted below: recorded line numbers would move
-        m.x8w = a.x8w or c.x8w
+        m.x8w = a.x8w and c.x8w
         m.retk = a.retk if a.retk == c.retk else None
         m.poison = a.poison | c.poison
         m.pages = {n: p for n, p in a.pages.items() if c.pages.get(n) == p}
@@ -1872,6 +1874,8 @@ class Lifter:
             self.line(f"new ((void*)({x8}), lift_at_t{{}}) UnkResult(((UnkResult (*)({types}))({ptr}))({values}));")
             self.clobber()
             self.s.written = set()
+            if hasattr(self, "clob"):
+                self.clob.add(0)  # (x0 holds no result: a read means the callee returned one there)
         elif m in ("bl", "blr"):
             if m == "bl":
                 call = self.call(f"fn_{o[0].imm:x}")
@@ -2056,6 +2060,8 @@ class FlatLifter(Lifter):
             return "0", width_type(r)
         n = self.key(r)
         s = self.s
+        if n == 8:
+            s.x8w = False  # (x8 read before an indirect call: a value, not a result address)
         if n in self.clob:
             raise Unsupported("caller-saved register read after a call")
         if n in s.pages:
@@ -2128,7 +2134,7 @@ class FlatLifter(Lifter):
         if n <= 7 or 100 <= n <= 107:
             s.written.add(n)
         if n == 8:
-            s.x8w = "stk" in e  # (an indirect callee may build its result there: Lifter.step)
+            s.x8w = LOCAL_ADDR.fullmatch(e) is not None  # (an indirect callee may build its result there: Lifter.step)
 
     def has_value(self, n: int) -> bool:
         return n in self.types
@@ -2191,6 +2197,7 @@ class FlatLifter(Lifter):
                     self.s.cmp = None if x.address != addr else self.s.cmp
                     self.s.fcall = None
                     self.clob = set()
+                    self.s.x8w = False
                 if self.pos:
                     self.frame_reset(ins[self.pos - 1])
                 if self.frame_op(x) or self.guard_step(x):
@@ -2325,6 +2332,7 @@ HEADER = ['#include "types.h"', '#define HIDDEN __attribute__((visibility("hidde
 
 # Placement new without <new>, for a callee's x8 result built where x8 points (Lifter.sret_call). A
 # definition, so a generated file holds it once (write_out), not once per function using it.
+LOCAL_ADDR = re.compile(r"\(stk \+ 0x[0-9a-f]+\)")  # Lifter.local's form: a local's address
 LIFT_AT = ("struct lift_at_t {}; inline void* operator new(decltype(sizeof 0), void* p, lift_at_t) "
            "noexcept { return p; }")
 
