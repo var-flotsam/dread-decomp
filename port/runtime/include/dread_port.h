@@ -40,10 +40,23 @@ extern "C" void dread_port_request_exit();
 // name and jumps here (dread_port_loader.h).
 extern "C" u64 dread_port_missing_import(const char* name);
 
+// Runs the game's static initialisers as the SDK does before nnMain: main's .init_array in order
+// (tools/port_link.py's dread_port_initialisers), each through the port's definition. One without a
+// definition is skipped and counted (DREAD_INIT=list names each); its unit's globals stay as the
+// dump has them. The port's main calls it right before nnMain.
+extern "C" void dread_port_run_game_initialisers();
+
 // Maps the game's main NSO from the user's dump at its original addresses (dread_port_loader.h).
 // Runs by itself before the game's static initialisers when the game is linked in; aborts with a
 // message if the dump is missing or not the expected build.
 extern "C" void dread_port_map_game_image();
+
+// The game's memory block (nn::os::AllocateMemoryBlock, which nninitStartup asks for and gives to
+// the default allocator): whether it exists yet, and whether a pointer lies in it. The port's C++
+// heap (src/heap.cpp) allocates from the game's allocator once it exists and frees each pointer
+// with the allocator it came from.
+extern "C" bool dread_port_game_heap_ready();
+extern "C" bool dread_port_in_game_heap(const void* ptr);
 
 // The user's dump, laid out as orig/<version>/ (exefs/, romfs/): $DREAD_ORIG, else orig/2.1.0
 // under the working directory. The data loader reads exefs/main from it, nn::fs mounts romfs/ as

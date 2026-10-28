@@ -318,6 +318,7 @@ class Machine:
         self.dirty: dict[int, int] = {}
         self.cut: str | None = None  # why the run ended as a time-out: steps, events or snapshot (compare)
         self.clipped = False  # a modelled memset or memcpy stopped at 64 KiB (compare)
+        self.fault: int | None = None  # the address a run faulted on
         self.stack_written: set[int] = set()
         self.frame_record: set[int] = set()  # stack words holding the saved return address (store)
         self.saves: set[int] = set()  # stack words holding a callee-saved register's entry value (store)
@@ -1017,7 +1018,16 @@ def compare(a: Machine, b: Machine, ret: str | None) -> str:
         return f"skip: the {'original' if ta else 'lift'} was cut off ({cut.cut})"
     if len(ea) != len(eb):
         return f"{len(ea)} events vs {len(eb)}"
-    if ea and ea[-1][0] == ("end", "return") and ret:
+    if ea and ea[-1][0] == ("end", "return") and ret and "*" in ret:
+        # A multi-register result (x0:x1, or the first n float registers)
+        kind, n = ret.split("*")
+        size = int(kind[1:]) // 8
+        for i in range(int(n)):
+            if kind == "x64" and a.x(i) != b.x(i):
+                return f"result x{i}"
+            if kind[0] == "f" and a.reg(Q0 + QSTRIDE * i, size) != b.reg(Q0 + QSTRIDE * i, size):
+                return f"result {'s' if kind == 'f32' else 'd'}{i}"
+    elif ea and ea[-1][0] == ("end", "return") and ret:
         if ret[0] == "x":
             bits = int(ret[1:])
             if (a.x(0) ^ b.x(0)) & ((1 << bits) - 1):

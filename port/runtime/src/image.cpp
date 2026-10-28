@@ -19,6 +19,9 @@ extern const DreadPortImport dread_port_imports[] __attribute__((weak));
 extern const u64 dread_port_import_count __attribute__((weak));
 extern const u64 dread_port_data_references[] __attribute__((weak));
 extern const u64 dread_port_data_reference_count __attribute__((weak));
+// main's .init_array in order: each static initialiser's address and the port's code, or null.
+extern const DreadPortFunction dread_port_initialisers[] __attribute__((weak));
+extern const u64 dread_port_initialiser_count __attribute__((weak));
 // The game's start-up hook (src/engine/SystemStartup.cpp), when the game is linked in.
 void nninitStartup() __attribute__((weak));
 }
@@ -122,3 +125,31 @@ __attribute__((constructor(101))) void MapGameImageAtStartup() {
 }
 
 }  // namespace
+
+extern "C" void dread_port_run_game_initialisers() {
+    if (&dread_port_initialiser_count == nullptr)
+        return;  // the game is not linked in
+    const bool list = std::getenv("DREAD_INIT") && std::getenv("DREAD_INIT")[0] == 'l';  // DREAD_INIT=list
+    u64 run = 0, skipped = 0;
+    char first[8][24];
+    for (u64 i = 0; i < dread_port_initialiser_count; ++i) {
+        const DreadPortFunction& init = dread_port_initialisers[i];
+        if (init.code) {
+            reinterpret_cast<void (*)()>(init.code)();
+            ++run;
+            continue;
+        }
+        if (skipped < 8)
+            std::snprintf(first[skipped], sizeof(first[skipped]), "fn_%llx", static_cast<unsigned long long>(init.address));
+        if (list)
+            std::fprintf(stderr, "dread: static initialiser without a source: fn_%llx\n",
+                         static_cast<unsigned long long>(init.address));
+        ++skipped;
+    }
+    std::fprintf(stderr, "dread: %llu of %llu static initialisers run, %llu without a source skipped",
+                 static_cast<unsigned long long>(run), static_cast<unsigned long long>(dread_port_initialiser_count),
+                 static_cast<unsigned long long>(skipped));
+    for (u64 i = 0; i < skipped && i < 8; ++i)
+        std::fprintf(stderr, "%s%s", i ? ", " : " (", first[i]);
+    std::fprintf(stderr, "%s\n", skipped == 0 ? "" : skipped > 8 ? ", ...; DREAD_INIT=list lists them)" : ")");
+}

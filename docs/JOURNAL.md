@@ -56,6 +56,7 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - Parallel agents in one checkout: file-disjoint steps, `trymatch.py --obj-dir`, one `check.py` at the end: [sixteenth session](#session-log-newest-first).
 - Byte-mode argument pass-through (a lift names the registers its callee reads and it still holds); capstone 5.0.7's wrong register access for `cmp`/`tst` and shift/extend aliases: [lifter pass-through](#session-log-newest-first).
 - The P-code oracle's inputs and rules: mutations placed where a word was read, a compare-constant sweep, out-parameter bounds, runs cut off, unknown callees; each rule's measured trade-off: [lifter oracle inputs](#session-log-newest-first).
+- Multi-register results (x0:x1, s0-s3) and the result register, read off what callers do right after a call; a void lift of a function whose result is read; every `U` function's outcome: [lifter gaps round 3](#session-log-newest-first).
 
 **Declarations and calling conventions**
 - A caller declared with fewer parameters can rely on an argument register the caller left set (six callers of `fn_7100216978` passed the vector in `x1` unawares); declaring the real signature keeps the bytes: [sixteenth session](#session-log-newest-first).
@@ -90,6 +91,9 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - The NVN globals `g_unk_716e29xxxx` are named by the loader's GOT slots and their relative relocations (`data/nvn_procs.csv`); count GOT-slot call sites with a short window, not adjacent pairs; never write into a game-owned NVN object's storage: [NVN shim's start-up path](#session-log-newest-first).
 
 **Port: runtime and loader**
+- The game's static initialisers are plain `fn_<addr>` functions that `.init_array` calls; a port that links them as code runs none of them until something calls the table (`dread_port_initialisers`): [port M1 round 3](#session-log-newest-first).
+- The game defines its own `operator new`/`delete` and `malloc` family over its allocator: route them by address to the game's code and the C++ names to a runtime heap that frees each pointer where it came from: same entry.
+- A constructor or destructor under its mangled C1/D1 name has no address in its name; the byte-matching callers' relocation targets give it: same entry.
 - The engine's thread object puts `ThreadType` at +0, light events at +0x1c0 and +0x1cc: the SDK's thread block is 0x1c0 bytes, a light event 12; event clear mode 1 is auto clear: [port M1 step 4](#session-log-newest-first).
 - main's 146,684 dynamic relocations: every slot in `.data`, 128,576 relative ones into `.text` (vtables, callbacks), every symbol relocation an import; the game's vtables are used as they are, so the port needs the Itanium C++ ABI (not MSVC): same entry.
 - A freestanding core builds into a Windows DLL with clang, `lld-link /noentry /nodefaultlib` and a `kernel32.lib` from `llvm-dlltool`: no SDK needed to test it from Python: same entry.
@@ -104,6 +108,113 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - Function-local statics of header-inline functions are weak symbols in the executable on the port, while lifted code uses the image's: a split object unless the symbol is bound to the image address: same entry.
 
 ## Session log (newest first)
+
+**Port M1: a silent stand-in for `nn::atk` (2026-10-28, branch `claude/port-atk-silent`).** The
+owner chose a silent stand-in for the sound middleware until M4. `tools/port_link.py` turns every
+status-`L` function in `nn::atk`'s range without a definition into a stub that returns zero
+(`xor eax, eax; xorps xmm0, xmm0; ret`), whether a name reaches it (180) or only the game's code
+pointers do (985, added to the loader's function table). The boot's ten `nn::atk` traps in the
+static initialisers are gone, and the loader's trap thunks went from 1,105 to 674. Two game
+functions without a lift trap next (`fn_7100001be8`, `fn_7100153a90`), then the null dereference in
+`fn_71000a4b60`.
+
+**Lifter: every `U` function, and semantic gaps round 3 (2026-10-28, branch `claude/lifter-gaps-3`).**
+`port_lift.py --slice all` lifts every `U` function except the SDK imports and checks each with the
+oracle. On main after #233 the run took 75 minutes (the first P-code fetch for 16,000 functions included):
+- **15,352 of the 15,996** functions without a definition in `src/` are accepted (96%; 7.20 MB of
+  8.08 MB).
+- What was left, by bytes:
+  - a caller-saved register read after a call: 138 functions, 203 KB;
+  - inconclusive: 111, 195 KB;
+  - over the size cap: 14, 150 KB;
+  - an indirect call with stack arguments: 104, 122 KB;
+  - unsupported instructions: 72, 83 KB, mostly `adr`;
+  - rejected by the oracle: 75, 64 KB;
+  - a register read before it is written: 37, 18 KB;
+  - undecodable: 65, 2 KB.
+
+This round takes the largest gaps first:
+- **Results in more than one register.** The 138 "caller-saved register read after a call" break
+  down as follows:
+  - 75 read x1 after the call: a 16-byte result in x0:x1;
+  - 36 read s1-s3: a float aggregate, a Vector4 returned in s0-s3;
+  - the rest pass a clobbered register on as an argument.
+
+  `abi_facts.result_shape` reads the shape off the callers: a forward scan of their straight-line
+  code after `bl f`, past tests, up to a join, for x1 or s1-s3 read before written. Compiled code
+  never keeps a value in a caller-saved register across a call, so such a read is a result. A
+  caller that returns it (`bl f` then `ret`, or `b f`) adds its own shape. The scan is not
+  liveness, whose evidence at indirect calls could invent an x1. The callee's semantic lift
+  returns `lift_r2` (two u64) or `lift_f32x<n>`, every call declares it so
+  (`ret_r2::fn_<addr>`, which port_link aliases like `callee::`), and a tail call to the same
+  shape returns it. On AArch64 that is x0:x1 and s0-s3 as in the original, so the oracle
+  compares them; on x86-64 it is rax:rdx and xmm0/xmm1. An argument register a call clobbered is
+  passed as 0, garbage in the original as well. 136 of the 138 are accepted.
+- **The result register.** `abi_facts.result_main` says which of x0 and s0 callers read; x0
+  passed on to the next call counts (a function returning `this`). The lift returns that one where
+  the last register written was the other.
+- **No void lift of a function whose callers read its result.** Before, when the value variant
+  failed the oracle (a wrong result), the void variant was accepted with no result compared, and
+  the x86-64 callers got garbage. The evidence must be direct (`result_main` or a shape):
+  `ret_used`'s liveness also counts a float register a later callee's facts read and nobody
+  wrote (`fn_7100075f78`, a field initialiser). On the boot slice this refuses 13 functions that
+  had been accepted.
+- **Inputs that crash.** 86 of the inconclusive functions crash on every input, nearly always by
+  dereferencing a call's result or a word the run read as a pointer (a small number). The oracle
+  now repairs such a run: each of those values is set to a valid pointer, and again while the run
+  crashes further on (64 runs at most). That recovers 11 of the 111.
+- **Jump tables** whose bound check has a store between the `cmp` and the `b.hi` (20 of the 30
+  `adr` refusals).
+- **Every `U` function after this round** (`--slice all`, 71 minutes): **15,499 of 15,996
+  accepted** (96.9%; 7.43 MB of 8.08 MB, up from 7.20 MB). Median coverage is 89%. The 497 left
+  (0.65 MB):
+  - inconclusive: 100 functions, 177 KB;
+  - over the size cap: 14, 150 KB;
+  - indirect calls with stack arguments: 105, 124 KB;
+  - rejected by the oracle: 109, 93 KB. That is up from 75: these are the value variants of
+    functions whose void lift is no longer accepted;
+  - unsupported instructions: 52, 56 KB;
+  - a tail call to another result shape: 22, 12 KB. A follow-up commit returns the wider
+    result's first field, which accepts 18 of them;
+  - undecodable: 65, 2 KB;
+  - 30 others.
+- **The boot set** (`build/port/lifted`, from this branch's code):
+  - 2,266 lifts (1.21 MB);
+  - 2,171 of the slice's 2,220 functions accepted (1.20 MB of 1.26 MB), up from 2,134;
+  - 49 left (60 KB);
+  - 95 of 103 overrides accepted;
+  - median coverage 87%.
+
+  Byte mode is unchanged: `gen_lift.py --add` on 6,000 candidates leaves `src/lifted/` as it is.
+
+**Port M1 round 3: the port's foundations (2026-10-28, branch `claude/port-m1-round3`).** The
+lifter's new lifts (#227-#233; `build/port/lifted` for the boot slice, then `lifted_all` for every
+`U` function: 15,447 of 16,105 accepted, 95 overrides) took the boot past round 2's stops. What
+stopped it next was the port, not missing functions:
+- **The pack device.** `base::file::CPackManagerDevice` (unit 66) is reached through its vtable, so
+  no worklist had it: 12 functions matched by a workflow (11 `O`, one `m` checked by a skeptic).
+- **Two heaps.** The game defines its own `operator new`/`delete` and `malloc`/`free` over its
+  default allocator, and the port linked them to the host's, so glibc's `free` got a block of the
+  game's heap (`munmap_chunk(): invalid pointer`, in a deleting destructor). They now have sources
+  (nine `O`, `realloc` `m`), and the runtime's replaceable C++ operators allocate through the game's
+  allocator once it exists and free each pointer where it came from (`port/runtime/src/heap.cpp`).
+- **Statics split.** The link binds 4,242 function-local statics and guards of inline functions to
+  the image (`--defsym` over the weak definition, both or neither; see the README).
+- **Constructors without an address.** A definition under its mangled C1 name (which Clang 9
+  aliased to `fn_<addr>`) now takes the address its byte-matching callers reach it at: 54, among
+  them `CFilePathStrId`'s constructor `fn_71000166c8`.
+- **No static initialisers ran.** The game's 2,760 initialisers are plain `fn_<addr>` functions
+  (none is a C++ `_GLOBAL__sub_I`) that `.init_array` calls on the console. On the port nothing
+  called them, which a null default id showed. The port's main now runs them in order before
+  `nnMain` (`dread_port_initialisers`), skipping the ones without a source. Four of those were the
+  game's, marked `L` by the `runtime?` inference (units 0 to 3: the empty string and file-path ids,
+  the start record "samus"/"StartPoint0"): matched (4 `O`, one `m`).
+
+The fault handler reports aborts and names the C library's frames. With traps logged the boot now
+runs 2,759 of 2,760 initialisers and `nnMain` into the start-up, then dereferences null in lifted
+code. Ten `nn::atk` functions the initialisers call trap (`L`, the owner's decision, M4). So do two
+game functions the lifter could not lift (`fn_7100001be8` rejected, `fn_7100153a90`
+inconclusive).
 
 **Hand-written files moved by unit (2026-10-28, branch `claude/project-thread-kzc3uy`).**
 `tools/unit_move.py` moved 822 `fn_<addr>.cpp` files out of the eleven address-slice directories

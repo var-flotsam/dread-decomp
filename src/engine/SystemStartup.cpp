@@ -1085,3 +1085,47 @@ bool fn_710012a9a0(const UnkCircle2D* circle, const UnkShape8Geometry* shape, Un
     }
     return out->count != 0;
 }
+
+// The C library's allocation functions, which the game defines itself over its default allocator
+// (fn_7100083990, flags 0xd): malloc, free, calloc, realloc and aligned_alloc. Named by address,
+// because on the port malloc and free are the host's.
+void* fn_7100132300(u64 size) {
+    return fn_7100083990()->vf_0x40(size, 8, 0xd);
+}
+
+void fn_7100132340(void* ptr) {
+    fn_7100083990()->vf_0x48(ptr);
+}
+
+void* fn_7100132370(u64 count, u64 size) {
+    u64 total = size * count;
+    void* p = fn_7100083990()->vf_0x40(total, 8, 0xd);
+    if (p)
+        memset(p, 0, total);
+    return p;
+}
+
+// Grows by copying into a new block; never shrinks.
+// NON_MATCHING(minor): the allocator getter fn_7100083990 is called once before the null test
+// here and once on each path in the original (the inlined malloc is hoisted with the rest); the
+// same calls with the same arguments on every path.
+void* fn_71001323d0(void* ptr, u64 size) {
+    if (!ptr)
+        return fn_7100132300(size);  // malloc, inlined
+    base::UnkAllocator* allocator = fn_7100083990();
+    if (!size) {
+        allocator->vf_0x48(ptr);
+        return nullptr;
+    }
+    u64 old_size = allocator->vf_0x50(ptr);
+    if (old_size >= size)
+        return ptr;
+    void* p = fn_7100083990()->vf_0x40(size, 8, 0xd);
+    memcpy(p, ptr, old_size);
+    fn_7100083990()->vf_0x48(ptr);
+    return p;
+}
+
+void* fn_71001324b0(u64 align, u64 size) {
+    return fn_7100083990()->vf_0x40(size, align, 0xd);
+}
