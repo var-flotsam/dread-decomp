@@ -134,14 +134,18 @@ taking 11 of them (instruction gaps and two lift compile errors; `end` is a nami
   the new `include/game/UnkStrIdSplit.h`), `fn_71002e0090` (an animation tree resource's file) and
   `fn_7100713e2c` (Samus's animation aim angle), and `fn_71000f88b8` (the sound listener's look-at matrix, a
   hand-vectorised routine the lifter thread handed back; plain float math here).
+- From the trace lift's leftovers (`build/port/lifted_trace1`): `fn_7100b8948c` (an array of 12-byte keys read
+  from a file), `M`. The other leftovers are vendored Lua, dlmalloc and `nn::atk` code (`L`), which the port
+  compiles or stubs itself, or functions already in `src/`.
 
 The controller code (`fn_710006deac`) runs on both builds: the matching build's SDK headers have no
 `SetNpadJoyHoldType` or `ControllerSupportArg::SetDefault`, so the file declares them under `NNSDK` (the latter by
 its symbol); the port gets them from `port/runtime/include/nn/hid.h`. Its original reads the buttons of a pad with
 neither style through a null pointer; the source skips that read.
 
-Still open from the trace: `fn_7101191cc0`, the serializer's frame callbacks `fn_71000ed2b8`, `fn_71000ed758` and
-`fn_71000ed608`, `fn_710014d1a0`, `fn_71000f4ebc`, `fn_710122d7f0`, `fn_710122e0c4`, `fn_710122e6f0`,
+Still open from the trace: `fn_7101191cc0` (the debug menu), the serializer's frame callbacks `fn_71000ed2b8`, `fn_71000ed758` and
+`fn_71000ed608` (they copy uninitialised stack bytes into the writer's frames, which may be why the oracle
+rejects their lifts), `fn_710014d1a0`, `fn_71000f4ebc`, `fn_710122d7f0`, `fn_710122e0c4`, `fn_710122e6f0`,
 `fn_71008626bc` and `fn_71001b83f8`. `fn_71000f8b30` is left out because the port never reaches it: it runs only
 after `nn::atk` starts, and the silent stand-in never lets that happen.
 
