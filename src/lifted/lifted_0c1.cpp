@@ -700,10 +700,10 @@ char* fn_7100c120b0() {
 }
 
 namespace callee { char* fn_7100083c00(char*); }
-namespace callee { char* fn_7100c12a84(); }
+namespace callee { char* fn_7100c12a84(char*); }
 char* fn_7100c12bdc(char* p0) {
     char* r0_19 = p0;
-    char* r1_0 = callee::fn_7100c12a84();
+    char* r1_0 = callee::fn_7100c12a84(p0);
     char* r2_0 = r0_19;
     return callee::fn_7100083c00(r2_0);
 }
@@ -813,9 +813,9 @@ char* fn_7100c13b44() {
     return r1_0;
 }
 
-namespace callee { char* fn_7100c13970(); }
-char* fn_7100c13b90() {
-    return callee::fn_7100c13970();
+namespace callee { char* fn_7100c13970(char*); }
+char* fn_7100c13b90(char* p0) {
+    return callee::fn_7100c13970(p0);
 }
 
 extern char g_unk_7101a1a138[];
@@ -2152,9 +2152,9 @@ char* fn_7100c17e98() {
     return r1_0;
 }
 
-namespace callee { char* fn_7100c17cc4(); }
-char* fn_7100c17ee4() {
-    return callee::fn_7100c17cc4();
+namespace callee { char* fn_7100c17cc4(char*); }
+char* fn_7100c17ee4(char* p0) {
+    return callee::fn_7100c17cc4(p0);
 }
 
 extern char g_unk_7101a1a138[];
@@ -4009,10 +4009,10 @@ char* fn_7100c1d330() {
 }
 
 namespace callee { char* fn_7100083c00(char*); }
-namespace callee { char* fn_7100c1db38(); }
+namespace callee { char* fn_7100c1db38(char*); }
 char* fn_7100c1dc54(char* p0) {
     char* r0_19 = p0;
-    char* r1_0 = callee::fn_7100c1db38();
+    char* r1_0 = callee::fn_7100c1db38(p0);
     char* r2_0 = r0_19;
     return callee::fn_7100083c00(r2_0);
 }
@@ -4340,10 +4340,10 @@ char* fn_7100c1ecf0() {
 }
 
 namespace callee { char* fn_7100083c00(char*); }
-namespace callee { char* fn_7100c1f484(); }
+namespace callee { char* fn_7100c1f484(char*); }
 char* fn_7100c1f548(char* p0) {
     char* r0_19 = p0;
-    char* r1_0 = callee::fn_7100c1f484();
+    char* r1_0 = callee::fn_7100c1f484(p0);
     char* r2_0 = r0_19;
     return callee::fn_7100083c00(r2_0);
 }
@@ -4356,9 +4356,9 @@ char* fn_7100c1f56c() {
     return r1_0;
 }
 
-namespace callee { char* fn_7100c1f318(); }
-char* fn_7100c1f5b8() {
-    return callee::fn_7100c1f318();
+namespace callee { char* fn_7100c1f318(char*); }
+char* fn_7100c1f5b8(char* p0) {
+    return callee::fn_7100c1f318(p0);
 }
 
 extern char g_unk_7172781270[];

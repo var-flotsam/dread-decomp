@@ -38,6 +38,70 @@ typedef s32 __attribute__((may_alias)) a_s32;
 typedef f32 __attribute__((may_alias)) a_f32;
 typedef f64 __attribute__((may_alias)) a_f64;
 
+struct lift_at_t {}; inline void* operator new(decltype(sizeof 0), void* p, lift_at_t) noexcept { return p; }
+
+namespace sret { UnkResult fn_7100110420(char*, u32, f32, f32); }
+namespace sret { UnkResult fn_7100110420(char*, u32, f32, f32, f32); }
+namespace sret { UnkResult fn_7100110420(char*, u32, f32, f32, f32, f32, f64); }
+UnkResult fn_7100110550(char* p0, f32 f0, f32 f1, f32 f2, f32 f3, f64 f4) {
+    alignas(8) char stk[0x8];
+    UnkResult ret;
+    char* r0_19 = (char*)&ret;
+    char* r1_8 = (stk + 0x0);
+    u32 r2_1 = (u32)(u64)(0);
+    char* r3_20 = p0;
+    new ((void*)(r1_8), lift_at_t{}) UnkResult(sret::fn_7100110420(p0, r2_1, f0, f1, f2, f3, f4));
+    u32 r5_8 = 0x7f7fffff;
+    char* a6 = (stk + 0x0);
+    f32 r7_101 = *(f32*)(a6 + 0);
+    f32 r8_100 = *(f32*)(a6 + 4);
+    f32 r9_102 = (0x1.fffffe0000000p+127f);
+    u32 r10_8 = 0xff7fffff;
+    f32 r11_108 = !(r7_101 >= r9_102) ? r7_101 : r9_102;
+    f32 r12_109 = !(r8_100 >= r9_102) ? r8_100 : r9_102;
+    f32 r13_102 = (-0x1.fffffe0000000p+127f);
+    char* r14_8 = (stk + 0x0);
+    char* r15_0 = r3_20;
+    u32 r16_1 = 0x1;
+    f32 r17_110 = !(r7_101 <= r13_102) ? r7_101 : r13_102;
+    f32 r18_111 = !(r8_100 <= r13_102) ? r8_100 : r13_102;
+    new ((void*)(r14_8), lift_at_t{}) UnkResult(sret::fn_7100110420(r15_0, r16_1, r8_100, r7_101, r13_102));
+    char* a20 = (stk + 0x0);
+    f32 r21_101 = *(f32*)(a20 + 0);
+    f32 r22_100 = *(f32*)(a20 + 4);
+    f32 r23_108 = ((f32)(r11_108) < (f32)(r21_101)) ? r11_108 : r21_101;
+    f32 r24_109 = ((f32)(r12_109) < (f32)(r22_100)) ? r12_109 : r22_100;
+    f32 r25_110 = ((f32)(r17_110) > (f32)(r21_101)) ? r17_110 : r21_101;
+    char* r26_8 = (stk + 0x0);
+    char* r27_0 = r3_20;
+    u32 r28_1 = 0x2;
+    f32 r29_111 = ((f32)(r18_111) > (f32)(r22_100)) ? r18_111 : r22_100;
+    new ((void*)(r26_8), lift_at_t{}) UnkResult(sret::fn_7100110420(r27_0, r28_1, r22_100, r21_101));
+    char* a31 = (stk + 0x0);
+    f32 r32_101 = *(f32*)(a31 + 0);
+    f32 r33_100 = *(f32*)(a31 + 4);
+    f32 r34_108 = ((f32)(r23_108) < (f32)(r32_101)) ? r23_108 : r32_101;
+    f32 r35_109 = ((f32)(r24_109) < (f32)(r33_100)) ? r24_109 : r33_100;
+    f32 r36_110 = ((f32)(r25_110) > (f32)(r32_101)) ? r25_110 : r32_101;
+    char* r37_8 = (stk + 0x0);
+    char* r38_0 = r3_20;
+    u32 r39_1 = 0x3;
+    f32 r40_111 = ((f32)(r29_111) > (f32)(r33_100)) ? r29_111 : r33_100;
+    new ((void*)(r37_8), lift_at_t{}) UnkResult(sret::fn_7100110420(r38_0, r39_1, r33_100, r32_101));
+    char* a42 = (stk + 0x0);
+    f32 r43_101 = *(f32*)(a42 + 0);
+    f32 r44_100 = *(f32*)(a42 + 4);
+    f32 r45_102 = ((f32)(r34_108) < (f32)(r43_101)) ? r34_108 : r43_101;
+    f32 r46_103 = ((f32)(r35_109) < (f32)(r44_100)) ? r35_109 : r44_100;
+    f32 r47_101 = ((f32)(r36_110) > (f32)(r43_101)) ? r36_110 : r43_101;
+    f32 r48_100 = ((f32)(r40_111) > (f32)(r44_100)) ? r40_111 : r44_100;
+    *(f32*)((char*)(r0_19) + 0) = r45_102;
+    *(f32*)((char*)(r0_19) + 4) = r46_103;
+    *(f32*)((char*)(r0_19) + 8) = r47_101;
+    *(f32*)((char*)(r0_19) + 12) = r48_100;
+    return ret;
+}
+
 extern char g_unk_7108b6d670[];
 char* fn_71001107fc() {
     char* r0_0 = (char*)g_unk_7108b6d670;
@@ -218,10 +282,10 @@ f32 fn_7100110ca8(char* p0, char* p1) {
     return r15_100;
 }
 
-namespace callee { char* fn_7100118950(); }
+namespace callee { char* fn_7100118950(char*, char*); }
 char* fn_710011892c(char* p0, char* p1, u32 p2) {
     u32 r0_19 = (u32)(u64)(p2);
-    char* r1_0 = callee::fn_7100118950();
+    char* r1_0 = callee::fn_7100118950(p0, p1);
     *(u32*)((char*)(r1_0) + 8) = (u32)(u64)(r0_19);
     return r1_0;
 }
@@ -236,10 +300,10 @@ char* fn_7100118b94(char* p0, char* p1) {
     return r2_0;
 }
 
-namespace callee { char* fn_7100122b2c(); }
-char* fn_7100118bc0(char* p0) {
+namespace callee { char* fn_7100122b2c(char*, char*, char*); }
+char* fn_7100118bc0(char* p0, char* p1, char* p2) {
     char* r0_19 = p0;
-    char* r1_0 = callee::fn_7100122b2c();
+    char* r1_0 = callee::fn_7100122b2c(p0, p1, p2);
     u32 r2_8 = 0x1;
     *(u8*)((char*)(r0_19) + 45) = (u8)(u64)(r2_8);
     return r1_0;
@@ -1447,12 +1511,12 @@ void fn_710011c2e8() {
     return;
 }
 
-namespace callee { char* fn_710011c448(); }
+namespace callee { char* fn_710011c448(char*); }
 char* fn_710011c2ec(char* p0) {
     u64 r0_8 = (u64)*(u64*)((char*)(p0) + 0);
     u64 r1_8 = (u64)*(u64*)((char*)(r0_8) + 16);
     *(u64*)((char*)(p0) + 0) = (u64)(u64)(r1_8);
-    return callee::fn_710011c448();
+    return callee::fn_710011c448(p0);
 }
 
 bool fn_710011c2fc(char* p0, char* p1) {
@@ -1473,27 +1537,27 @@ char& fn_710011c318() {
     return *r0_0;
 }
 
-namespace callee { char* fn_710011c448(); }
+namespace callee { char* fn_710011c448(char*); }
 char* fn_710011c32c(char* p0) {
     *(u64*)((char*)(p0) + 0) = (u64)(u64)(0);
     *(u32*)((char*)(p0) + 24) = (u32)(u64)(0);
-    return callee::fn_710011c448();
+    return callee::fn_710011c448(p0);
 }
 
-namespace callee { char* fn_710011c448(); }
+namespace callee { char* fn_710011c448(char*); }
 char* fn_710011c338(char* p0, char* p1) {
     u64 r0_8 = (u64)*(u64*)((char*)(p1) + 0);
     *(u64*)((char*)(p0) + 0) = (u64)(u64)(r0_8);
     *(u32*)((char*)(p0) + 24) = (u32)(u64)(0);
-    return callee::fn_710011c448();
+    return callee::fn_710011c448(p0);
 }
 
-namespace callee { char* fn_710011c448(); }
+namespace callee { char* fn_710011c448(char*); }
 char* fn_710011c348(char* p0, char* p1) {
     u64 r0_8 = (u64)*(u64*)((char*)(p1) + 0);
     *(u64*)((char*)(p0) + 0) = (u64)(u64)(r0_8);
     *(u32*)((char*)(p0) + 24) = (u32)(u64)(0);
-    return callee::fn_710011c448();
+    return callee::fn_710011c448(p0);
 }
 
 namespace callee { char* fn_710011c448(char*); }
@@ -1546,12 +1610,12 @@ void fn_710011c704() {
     return;
 }
 
-namespace callee { char* fn_710011c864(); }
+namespace callee { char* fn_710011c864(char*); }
 char* fn_710011c708(char* p0) {
     u64 r0_8 = (u64)*(u64*)((char*)(p0) + 0);
     u64 r1_8 = (u64)*(u64*)((char*)(r0_8) + 16);
     *(u64*)((char*)(p0) + 0) = (u64)(u64)(r1_8);
-    return callee::fn_710011c864();
+    return callee::fn_710011c864(p0);
 }
 
 bool fn_710011c718(char* p0, char* p1) {
@@ -1572,27 +1636,27 @@ char& fn_710011c734() {
     return *r0_0;
 }
 
-namespace callee { char* fn_710011c864(); }
+namespace callee { char* fn_710011c864(char*); }
 char* fn_710011c748(char* p0) {
     *(u64*)((char*)(p0) + 0) = (u64)(u64)(0);
     *(u32*)((char*)(p0) + 24) = (u32)(u64)(0);
-    return callee::fn_710011c864();
+    return callee::fn_710011c864(p0);
 }
 
-namespace callee { char* fn_710011c864(); }
+namespace callee { char* fn_710011c864(char*); }
 char* fn_710011c754(char* p0, char* p1) {
     u64 r0_8 = (u64)*(u64*)((char*)(p1) + 0);
     *(u64*)((char*)(p0) + 0) = (u64)(u64)(r0_8);
     *(u32*)((char*)(p0) + 24) = (u32)(u64)(0);
-    return callee::fn_710011c864();
+    return callee::fn_710011c864(p0);
 }
 
-namespace callee { char* fn_710011c864(); }
+namespace callee { char* fn_710011c864(char*); }
 char* fn_710011c764(char* p0, char* p1) {
     u64 r0_8 = (u64)*(u64*)((char*)(p1) + 0);
     *(u64*)((char*)(p0) + 0) = (u64)(u64)(r0_8);
     *(u32*)((char*)(p0) + 24) = (u32)(u64)(0);
-    return callee::fn_710011c864();
+    return callee::fn_710011c864(p0);
 }
 
 namespace callee { char* fn_710011c864(char*); }
@@ -2183,11 +2247,11 @@ char* fn_710011d694(char* p0) {
     return r9_0;
 }
 
-namespace callee { char* fn_710011d8b4(); }
+namespace callee { char* fn_710011d8b4(char*, char*); }
 char* fn_710011d6f4(char* p0, char* p1) {
     char* r0_19 = p1;
     char* r1_20 = p0;
-    char* r2_0 = callee::fn_710011d8b4();
+    char* r2_0 = callee::fn_710011d8b4(p0, p1);
     u32 r3_8 = (u32)*(u32*)((char*)(r0_19) + 40);
     *(u32*)((char*)(r1_20) + 40) = (u32)(u64)(r3_8);
     u8 r5_8 = (u8)*(u8*)((char*)(r0_19) + 44);
@@ -2253,7 +2317,7 @@ void fn_710011d7b8(char* p0) {
     return;
 }
 
-namespace callee { char* fn_710011dac0(char*); }
+namespace callee { char* fn_710011dac0(char*, char*); }
 char* fn_710011d7f4(char* p0, char* p1) {
     char* r0_19 = p0;
     char* m0 = p0;
@@ -2266,7 +2330,7 @@ char* fn_710011d7f4(char* p0, char* p1) {
         char* r7_0 = r0_19;
         char* r8_20 = p1;
         *(u8*)((char*)(r0_19) + 45) = (u8)(u64)(r6_8);
-        char* r10_0 = callee::fn_710011dac0(r7_0);
+        char* r10_0 = callee::fn_710011dac0(r7_0, p1);
         u32 r11_8 = (u32)*(u32*)((char*)(r8_20) + 64);
         *(u32*)((char*)(r0_19) + 64) = (u32)(u64)(r11_8);
         m0 = r10_0;
@@ -2441,9 +2505,9 @@ char* fn_710011e6b8(char* p0) {
     return p0;
 }
 
-namespace callee { char* fn_710011e810(); }
-char* fn_710011e6c0() {
-    return callee::fn_710011e810();
+namespace callee { char* fn_710011e810(char*, char*); }
+char* fn_710011e6c0(char* p0, char* p1) {
+    return callee::fn_710011e810(p0, p1);
 }
 
 void fn_710011e6c4(char* p0) {
@@ -2469,13 +2533,13 @@ L_710011e70c:;
     return;
 }
 
-namespace callee { char* fn_710011e920(char*); }
+namespace callee { char* fn_710011e920(char*, char*); }
 char* fn_710011e7e0(char* p0, char* p1) {
     char* r0_19 = p0;
     char* m0 = p0;
     if ((u64)(u64)(p0) != (u64)(p1)) {
         char* r2_0 = r0_19;
-        char* r3_0 = callee::fn_710011e920(r2_0);
+        char* r3_0 = callee::fn_710011e920(r2_0, p1);
         m0 = r3_0;
     }
     char* r7_0 = r0_19;
@@ -2850,9 +2914,9 @@ char* fn_710011ee9c(char* p0) {
     return r9_0;
 }
 
-namespace callee { char* fn_710011f0d8(); }
-char* fn_710011eedc() {
-    return callee::fn_710011f0d8();
+namespace callee { char* fn_710011f0d8(char*, char*); }
+char* fn_710011eedc(char* p0, char* p1) {
+    return callee::fn_710011f0d8(p0, p1);
 }
 
 char* fn_710011eee0(char* p0, char* p1) {
@@ -2875,13 +2939,13 @@ char* fn_710011eee0(char* p0, char* p1) {
     return p0;
 }
 
-namespace callee { char* fn_710011f340(char*); }
+namespace callee { char* fn_710011f340(char*, char*); }
 char* fn_710011efc4(char* p0, char* p1) {
     char* r0_19 = p0;
     char* m0 = p0;
     if ((u64)(u64)(p0) != (u64)(p1)) {
         char* r2_0 = r0_19;
-        char* r3_0 = callee::fn_710011f340(r2_0);
+        char* r3_0 = callee::fn_710011f340(r2_0, p1);
         m0 = r3_0;
     }
     char* r7_0 = r0_19;

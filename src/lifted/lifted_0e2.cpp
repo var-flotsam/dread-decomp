@@ -38,11 +38,10 @@ typedef s32 __attribute__((may_alias)) a_s32;
 typedef f32 __attribute__((may_alias)) a_f32;
 typedef f64 __attribute__((may_alias)) a_f64;
 
-namespace callee { char* fn_7100f0588c(); }
 namespace callee { char* fn_7100f0588c(char*); }
 char* fn_7100e215c0(char* p0) {
     char* r0_19 = p0;
-    char* r1_0 = callee::fn_7100f0588c();
+    char* r1_0 = callee::fn_7100f0588c(p0);
     char* r2_0 = (r0_19) + 240;
     char* r3_0 = callee::fn_7100f0588c(r2_0);
     char* r4_0 = (r0_19) + 480;

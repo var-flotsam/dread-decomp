@@ -4964,7 +4964,7 @@ address,size,name,name_source,subsystem,status
 0x7100ca719c,112,fn_7100ca719c,unknown,unknown,U
 0x7100ca720c,380,fn_7100ca720c,unknown,unknown,U
 0x7100ca7388,244,fn_7100ca7388,unknown,unknown,U
-0x7100ca747c,24,fn_7100ca747c,unknown,unknown,U
+0x7100ca747c,24,fn_7100ca747c,unknown,unknown,O
 0x7100ca7494,124,fn_7100ca7494,unknown,unknown,U
 0x7100ca7510,292,fn_7100ca7510,unknown,unknown,U
 0x7100ca7634,108,fn_7100ca7634,unknown,unknown,U
