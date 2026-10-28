@@ -33,6 +33,7 @@ Usage:
   python tools/boot_distance.py --version 2.1.0 --expect fn_7100015c70
   python tools/boot_distance.py --version 2.1.0 --no-build --timeout 300   # rerun the boot only
   python tools/boot_distance.py --version 2.1.0 --no-lifted --out build/boot_nolift
+  python tools/boot_distance.py --version 2.1.0 --nvn   # with the NVN shim, in the Vulkan image (lavapipe)
 """
 
 from __future__ import annotations
@@ -51,6 +52,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_OUT = ROOT / "build" / "boot"
 DEFAULT_LIFTED = ROOT / "build" / "port" / "lifted"
+DEFAULT_SHADERS = ROOT / "build" / "port" / "shaders"  # the `shaders` target's output (shaders.manifest)
+VULKAN_IMAGE = "dread-port-linux-vulkan"  # port/docker/vulkan: the loader and lavapipe
 RUN_SH = ROOT / "port" / "docker" / "run.sh"
 
 # (key, label, symbol, when): in boot order. `symbol` is the function's demangled name without its
@@ -331,6 +334,8 @@ def build(args, out: Path) -> bool:
         cmd += ["--lifted", args.lifted]
     if addresses:
         cmd += ["--addresses", addresses]
+    if args.nvn:
+        cmd.append("--nvn")
     else:
         print("addresses: no build/check/<version> (tools/check.py) and no --addresses; the link places fewer names")
     return run_step("link", cmd, out / "link.log")
@@ -364,6 +369,8 @@ def run_boot(args, out: Path) -> dict | None:
     spec.write_text(json.dumps({"events": str(events), "breakpoints": bps}))
     events.unlink(missing_ok=True)
     env = dict(os.environ, DREAD_TRAP="log", DREAD_BOOT_SPEC=str(spec))
+    if args.nvn:
+        env["DREAD_NVN_SHADERS"] = str(Path(args.shaders).resolve())  # the shim's shader manifest
     cmd = ["timeout", "-k", "10", str(args.timeout), "gdb", "-nx", "-batch", "-q", "-x", str(Path(__file__).resolve()),
            "--args", str(exe)]
     log = out / "boot.log"
@@ -406,7 +413,12 @@ def in_docker(args) -> int:
             inner += [flag, value]
     if args.no_build:
         inner.append("--no-build")
-    return subprocess.run([bash, RUN_SH.relative_to(ROOT).as_posix(), *inner], cwd=ROOT).returncode
+    env = None
+    if args.nvn:
+        inner += ["--nvn", "--shaders", rel(Path(os.path.abspath(args.shaders)))]
+        env = dict(os.environ)
+        env.setdefault("DREAD_PORT_IMAGE", VULKAN_IMAGE)
+    return subprocess.run([bash, RUN_SH.relative_to(ROOT).as_posix(), *inner], cwd=ROOT, env=env).returncode
 
 
 def main() -> int:
@@ -420,6 +432,11 @@ def main() -> int:
     ap.add_argument("--addresses", default="", help="passed to tools/port_link.py --addresses")
     ap.add_argument("--no-build", action="store_true", help="run the executable already in <out>/link")
     ap.add_argument("--expect", help="exit 1 unless this milestone (key or label) was reached")
+    ap.add_argument("--nvn", action="store_true",
+                    help="link the NVN shim (tools/port_link.py --nvn) and run in the Vulkan image (lavapipe;"
+                         f" DREAD_PORT_IMAGE, default {VULKAN_IMAGE})")
+    ap.add_argument("--shaders", default=str(DEFAULT_SHADERS),
+                    help="with --nvn: the directory of shaders.manifest (default build/port/shaders)")
     ap.add_argument("--docker", choices=("auto", "yes", "no"), default="auto",
                     help="run inside port/docker/run.sh (auto: on any host but Linux)")
     args = ap.parse_args()

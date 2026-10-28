@@ -48,6 +48,14 @@ before vendoring anything.
 | [obra/superpowers](https://github.com/obra/superpowers) | 7.0.1 (commit `2ce8aa15`), two skills adapted, not the plugin | `.claude/skills/systematic-debugging` (root cause before any fix; a section on this repository's runs) and `.claude/skills/writing-skills` (testing a skill on a subagent before relying on it); notice in `.claude/skills/LICENSE.superpowers`. The plugin's session-start hook and its other skills were left out: the hook loads into every session, and the planning, TDD, subagent and worktree skills duplicate this repository's own process | MIT |
 | Eden (yuzu fork) | 0.2.1, supplied by the user | Dumping ExeFS/RomFS; boot log confirmed the 2.1.0 build ID | GPL-3.0 (not distributed here) |
 
+## Other Dread projects (evaluated, reference only)
+
+| Project | What we take from it | License |
+|---|---|---|
+| [yozander2009-stack/Metroid-Dread-Recomp](https://github.com/yozander2009-stack/Metroid-Dread-Recomp) | A static recompilation of the same 2.1.0 `main` on SwitchRecomp, playable on Windows and Linux. Read on 2026-10-28 (head `c5dfcf0`) for facts about the game on PC, mapped to our addresses (ours = theirs - 0x8005000 + 0x7100000000; journal, "What the Dread recomp found"); `tools/recomp_trace.py` turns a local build of it into a boot trace. No code taken | SwitchRecomp parts Apache-2.0 with a NOTICE that asks for visible credit; its Vulkan renderer (from [scarletnx/ScarletNX](https://github.com/scarletnx/ScarletNX)) GPL-3.0, so never into this repository; the front end's files carry no licence header |
+| SwitchRecomp (MZ Labs) | The translator and runtime under the recomp above; not used directly | Apache-2.0 |
+| [theboy181/switch-ptchtxt-mods](https://github.com/theboy181/switch-ptchtxt-mods) | Cited by the recomp for the FXAA and 60 FPS cutscene addresses; not used | not checked |
+
 ## Planned (approved, not yet vendored into the repo)
 
 | Project | Why | License |

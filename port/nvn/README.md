@@ -34,6 +34,7 @@ or SDK is needed to compile.
 | `src/pipeline.cpp`, `src/pipeline.h` | pipelines for the draws' state, cached; NVN's numbers in Vulkan's terms |
 | `include/nvn_shim/window.h`, `src/window.cpp` | the window: its textures in turn, the present interval, the crop, the presented texture |
 | `include/nvn_shim/texture.h`, `src/texture.cpp`, `src/texture_internal.h` | textures as Vulkan images (the format and target table with its evidence), render-target views, texel writes, the texture and sampler pools, samplers, texture handles, the binding layer's resolver over all of it, placeholders of each sampler kind |
+| `include/nvn_shim/blocklinear.h`, `src/blocklinear.cpp` | the console's block-linear (GOB) layout of packaged texture data, and its conversion to linear rows for the texel upload (not called yet) |
 | `src/objects.h` | the side tables that hold the shim's state for the game's objects |
 | `include/nvn_shim/nvn_types.h` | the NVN values the binding layer handles: stages, stage bits, buffer addresses, texture handles, `nvnProgramSetShaders`' stage array |
 | `include/nvn_shim/shader_manifest.h`, `src/shader_manifest.cpp` | reads `shaders.manifest` (written by `tools/bshdat.py --install`) and finds a stage by its control section |
@@ -41,8 +42,9 @@ or SDK is needed to compile.
 | `check/manifest_check.cpp` | `nvn_manifest_check`: runs the manifest reader and the binding layer over the real build output (below) |
 | `check/vulkan_check.cpp` | `nvn_vulkan_check`: the same against a real Vulkan implementation (lavapipe), with the validation layers: modules, layouts, descriptor sets, pipelines (below) |
 | `check/startup_check.cpp` | `nvn_startup_check`: the game's graphics start-up and three frames replayed against the shim; with the shaders, a cleared frame read back and every program drawn (below) |
+| `check/blocklinear_check.cpp` | `nvn_blocklinear_check`: the block-linear layout against a separate byte-by-byte model, round trips, sizes, mip block heights; no GPU, no game data |
 | `include/nvn_shim/spirv_scan.h` | a SPIR-V reader (bindings, sampler kinds, interface variables): the checks' reference the manifest is compared with, and the shim's for the vertex inputs and sampler kinds |
-| `CMakeLists.txt` | `dread_nvn` (static library), built when `DREAD_VULKAN_INCLUDE` is set; `nvn_manifest_check` when `DREAD_LINK` is on; `nvn_vulkan_check` and `nvn_startup_check` when a Vulkan loader is found too |
+| `CMakeLists.txt` | `dread_nvn` (static library), built when `DREAD_VULKAN_INCLUDE` is set; `nvn_manifest_check` and `nvn_blocklinear_check` when `DREAD_LINK` is on; `nvn_vulkan_check` and `nvn_startup_check` when a Vulkan loader is found too |
 
 ```sh
 python tools/fetch_toolchains.py vulkan-headers-1.4.328    # once; the configure finds them in the tool cache

@@ -91,6 +91,7 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - The NVN globals `g_unk_716e29xxxx` are named by the loader's GOT slots and their relative relocations (`data/nvn_procs.csv`); count GOT-slot call sites with a short window, not adjacent pairs; never write into a game-owned NVN object's storage: [NVN shim's start-up path](#session-log-newest-first).
 
 **Port: runtime and loader**
+- Another Dread project's addresses map to ours by one constant (the recomp: ours = theirs - 0x8005000 + 0x7100000000); the game's PC-side problems it found (a video wait under a lock, per-texel texture uploads, a deserializer growing 10 at a time, frame pacing): [Dread recomp findings](#session-log-newest-first).
 - A function-local static of an ordinary (non-inline) function is a local symbol that its object reaches section-relative: no link step can redirect it. Make the function inline on the port (`inline __attribute__((used))`) so the static is weak and `--defsym` binds it: [port M1 round 4](#session-log-newest-first).
 - Clang 17 stopped packing a packed struct's non-POD members (GCC's rule), so a newer Clang lays out the matching sources differently; `-fclang-abi-compat=9.0` restores the matching compiler's layouts: same entry.
 - A bounds test `cmp #N; b.hs` before a table load is a `switch` turned into a lookup table (an array index gives `cmp #N-1; b.hi`): same entry.
@@ -109,6 +110,9 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - capstone 5.0.7's register access is wrong for aliases: `cmp`/`cmn`/`tst` write their first operand instead of reading it, and `fmov #imm`, `lsl #imm` and `sxtw` read their destination. Anything built on `regs_access()` (`tools/abi_facts.py`) under-counts arguments read first by a compare: same entry.
 - The boot's run-time roots are function pointers (`nnMain`'s main, per-frame and shutdown callbacks, main's stored callbacks), and some traps are reached only through pointers: a static worklist from the roots is a lower bound, `DREAD_TRAP=log` gives the order: same entry.
 - Function-local statics of header-inline functions are weak symbols in the executable on the port, while lifted code uses the image's: a split object unless the symbol is bound to the image address: same entry.
+- x86-64 assumes 16-byte alignment for any global array of 16 bytes or more, even one only declared, while the image keeps AArch64 alignments: declare such image arrays unsized, or Clang 18 may store into them with `movdqa` (a SIGSEGV at address 0): [port M1 round 6](#session-log-newest-first).
+- Integer and float arguments take separate register sequences on both AArch64 and x86-64: `(int, float, bool)` and `(ptr, ptr, float)` are the same call: same entry.
+- A struct-returning function (x8 on AArch64) called through a pointer from lifted code needs its hidden result pointer passed explicitly on x86-64 (rdi), or every argument shifts by one: same entry.
 - Several templates can carry one address's tag (`refl_GetPrimitiveType<G>` and its inline helper `refl_MakePrimitiveType<G>`, which Clang 18 keeps out of line); an alias to one that returns a class by value puts its hidden result pointer in the caller's rdi and writes the object over the caller's frame. A crash whose return address is a function's start, with a type's hook table on the stack, is the sign: [port M1 round 5](#session-log-newest-first).
 
 ## Session log (newest first)
@@ -127,6 +131,74 @@ functions still open (`fn_7100223c2c`, `fn_7100ebcd70`, `fn_71001b83f8`, `fn_710
 are left until a trap needs them. `fn_710007d788` waits for the lifter's generic fix for its instruction gap.
 Finding: `tools/abi_facts.py` gives the exact registers a callee reads (`AbiFacts(...).facts(addr).args`).
 A callee that skips x0 or x2 is called with null in those places, as the existing declarations have them.
+
+**What the Dread recomp found about the game on PC (2026-10-28, branch `claude/project-thread-lrmp48`).** At the
+owner's request, the public [Metroid-Dread-Recomp](https://github.com/yozander2009-stack/Metroid-Dread-Recomp)
+(yozander2009-stack, head `c5dfcf0`; SwitchRecomp by MZ Labs, `docs/references.md`) was read for what it knows about
+the game. It is a static recompilation of the same 2.1.0 build: every ARM64 function translated to C and compiled
+for the PC, on a high-level emulation of the console (kernel, services, a Maxwell GPU over OpenGL or Vulkan). Its
+functions are named `F_<addr>` for a `main` based at `0x8005000`, so **ours = theirs - 0x8005000 + 0x7100000000**
+(checked: function starts agree, and its `F_806B91C` is our `nn::os::LockMutex` thunk). Nothing was copied: these
+are facts read from its comments and patch descriptions, mapped to our addresses. Its patch set edits generated
+code that is not in its repository, so a few places are known only by what they do.
+- **Video completion wait under a lock** (`fn_7100224de4`): when bit 0 of its argument is set it waits with a
+  timeout of 50 (`fn_71002202d8`) while the caller `fn_710021f858` still holds the mutex at `+0x960` of the same
+  object. The recomp drops that mutex around the wait (`fn_7100066920` to unlock, `nn::os::LockMutex` to lock
+  again) or video playback stalls. A wait inside the multimedia module (`subsdk0`), reached from `fn_7100226b70`, has the
+  same pattern with a global rendering lock (the object whose pointer is at `0x7101cc5d58`), released and taken
+  again with `fn_7100159be0` / `fn_7100159bd0` (lock order kept: outer before inner). Relevant once `nn::movie` runs.
+- **Per-texel texture uploads** (`fn_71001e193c`, return address `0x71001e1e38`): a dirty rectangle of a
+  1024-wide RGBA8 texture (format `0x25`) is written with one `nvnTextureWriteTexels` per texel, through the NVN
+  table slot at `0x7101cc5300`. The recomp batches it by row. The shim's texel write should be cheap per call,
+  or batch the same way.
+- **Vector growth in a deserializer**: an array the resource deserializer appends to grows by 10 elements at a
+  time, so big loads copy quadratically. Not located in our addresses yet (the recomp names it by line of its
+  generated code).
+- **Frame pacing**: the loading-screen render thread (elevators, trains, area loads) sleeps 30 ms per frame;
+  cinematics ask the present-interval setter `fn_7100159420` for interval 2 (30 FPS), and `fn_710119a320` is the
+  check that a 60 FPS cutscene patch makes answer yes. The FXAA-enabled flag is stored at renderer `+0xc00` by
+  `fn_710014e86c` (`0x710014e888`). The recomp keeps the 60 Hz tick and changes these only as opt-in settings.
+- **Cutscene skip**: `fn_71010692a0` is the game's can-skip check and `fn_71011986e0` its seen-before lookup;
+  `fn_7100ec9a24` is the intro page controller's finish, called from `fn_7100ec9e38`.
+- The game's inflate (zlib) and `memcpy` are in the SDK module, which our port replaces anyway; the recomp swaps
+  them for native ones for speed.
+
+Findings:
+- Another project's function addresses map to ours by one constant when it loads `main` elsewhere; check it
+  against a few function starts and an import thunk before trusting it.
+- A recomp's patch descriptions name behaviour, and that is fair to record with our addresses. Its generated code,
+  and patch anchors containing it, are game-derived: read for the address only, never copied.
+
+**Port M1 round 6: through the boot milestones, and the NVN shim linked (2026-10-28, branch `claude/project-thread-3x0lf8`).**
+Boots of main with the hand-writing thread's branch (`fn_71000f7800`, the vibration thread) and the lifter's sets
+(`build/port/lifted_all` with `lifted_insn3` merged over it), each stop's cause found before its fix:
+- **The null read under `fn_7100100804`** was fallout: it locks the sound system's mutex at +0x400568, which
+  `fn_71000f7800` sets up. With that function hand-written, the set-up checks the audio output first. The new
+  `nn::audio` runtime (`port/runtime/src/audio.cpp`) fails `OpenDefaultAudioOut`, so the game sets its sound-off flag and
+  stays silent until M4.
+- **`fn_710006f390`'s data import.** The vibration thread reads `nn::hid::VibrationNode::DefaultVibrationSampleInterval`
+  (5 ms). `port/runtime/src/hid.cpp` defines it, and `tools/port_link.py`'s import table now takes the runtime's data
+  definitions as well as its functions.
+- **`nvnBootstrapLoader`.** `tools/port_link.py --nvn` compiles the NVN shim into the executable and links the Vulkan
+  loader. The Vulkan loader's `vk*` names are left to it, not given residue traps. `tools/boot_distance.py --nvn` runs
+  it in the Vulkan image (which needed rebuilding for gdb). Lavapipe was chosen over a surface because it needs nothing
+  new and the shim's checks already pass on it. The shim creates its device (llvmpipe, Vulkan 1.4).
+- **A `movdqa` to an 8-aligned array.** x86-64 assumes a global array of 16 bytes or more is 16-byte aligned, even an
+  `extern` one, and Clang 18 vectorised `fn_7100161520`'s stores into `unk_716e2aadf8` (0x...df8). The image's arrays
+  have AArch64's alignment. Ten declarations of image arrays at addresses that aren't 16-aligned are now unsized
+  (`T name[/* N; ... */]`), which drops the assumption. `tools/check.py` is unchanged. Two range-for loops became counted ones. `g_unk_71726c2888[2]` stays
+  sized, because unsized it changed `fn_71003f3778`'s bytes.
+- **Two "mismatched call" traps that weren't.** A declaration `(int, float, bool)` against a lift's `(ptr, ptr, float)`
+  lands in the same registers on both CPUs, since integer and float arguments are numbered separately.
+  `signature_class` now compares each class's own sequence when the positions differ and everything fits in registers.
+  175 aliases are affected.
+
+Result (`boot_distance.py --nvn`, merged lifts): all 8 milestones, 0 traps, 297 lifts ran. The stop is in the render
+resource loader. The lifted `fn_710001ab24` calls a resource callback through a pointer (`fn_71001b2e4c`, which returns
+`UnkResult` through x8) and passes x0/x1 but not x8. On x86-64 the hidden result pointer is rdi, so the callee's
+arguments shift and `fn_7100020320` reads a string id at address 7. That is the lifter's to fix (indirect calls
+after an x8 store). Previous stops of this round, in order: `fn_71000f7800` → `nvnBootstrapLoader` → `fn_7100161520`'s
+alignment fault → `fn_71001b27ac` (lifter `rev`, accepted in `lifted_insn3`) → this.
 
 **Lifter: retry for cut-off runs, no float result from a void function, indirect calls with stack
 arguments (2026-10-28, branch `claude/project-thread-zgkpk3`).** Fixes from the port's current stop and

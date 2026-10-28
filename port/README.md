@@ -121,6 +121,14 @@ port/docker/run.sh python3 tools/port_link.py --version 2.1.0 --stdlib libcxx9 -
 port/docker/run.sh build/port/linux/link/dread                        # maps orig/2.1.0, runs the game until the first trap
 ```
 
+**With the NVN shim** (`--nvn`, 2026-10-28): `tools/port_link.py --nvn` compiles `port/nvn/src` against the
+pinned Vulkan headers (`tools/fetch_toolchains.py vulkan-headers-1.4.328`) into the executable, so the
+game's one NVN import, `nvnBootstrapLoader`, is the shim's, and links the system's Vulkan loader. Run it
+in the Vulkan image (`docker build -t dread-port-linux-vulkan port/docker/vulkan`, after the base image),
+headless on lavapipe, with `DREAD_NVN_SHADERS` naming the `shaders` target's output:
+`DREAD_PORT_IMAGE=dread-port-linux-vulkan port/docker/run.sh env DREAD_NVN_SHADERS=build/port/shaders build/port/linux/link/dread`.
+`tools/boot_distance.py --nvn [--shaders DIR]` does both. The window has no surface yet, so nothing is shown.
+
 **Boot distance** (`tools/boot_distance.py`, the smoke run): the sweep and the executable link
 above into `build/boot/`, then the executable under gdb with `DREAD_TRAP=log` and a time limit. It
 prints the furthest of an ordered list of milestones (`nninitStartup` done, the static initialisers,

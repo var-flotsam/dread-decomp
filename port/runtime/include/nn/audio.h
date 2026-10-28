@@ -11,4 +11,28 @@
 
 #include "nn/nn_common.h"
 
-namespace nn::audio {}  // namespace nn::audio
+namespace nn::os {
+struct SystemEvent;
+}  // namespace nn::os
+
+namespace nn::audio {
+
+// The audio output check in the sound system's set-up (fn_71000f7800,
+// src/base/snd/CSoundSystemATK.cpp, which spells these types with the console's layout): it opens
+// the default output and closes it again, and leaves sound off when the open fails. The port has
+// no output yet (M4), so the open fails and the game runs silent; nn::atk's own calls are the
+// silent stand-ins of tools/port_link.py.
+struct AudioOutParameter {
+    u32 sample_rate;
+    u16 channel_count;
+    u16 reserved;
+};
+struct AudioOut;
+struct AudioDeviceName;
+
+void InitializeAudioOutParameter(AudioOutParameter* parameter);
+Result OpenDefaultAudioOut(AudioOut* out, os::SystemEvent* event, const AudioOutParameter& parameter);
+void CloseAudioOut(AudioOut* out);
+Result SetAudioDeviceOutputVolume(const AudioDeviceName* device, f32 volume);
+
+}  // namespace nn::audio
