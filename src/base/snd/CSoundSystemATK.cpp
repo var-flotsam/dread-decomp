@@ -1,4 +1,5 @@
-// The sound system of unit 99 (base::snd::CSoundSystemATK): the command queue its setters feed.
+// The sound system of unit 99 (base::snd::CSoundSystemATK): the command queue its setters feed, the
+// stop command (fn_71000ffa68) and the set-up (fn_71000f7800).
 #include <string.h>
 
 #include <new>
@@ -677,4 +678,444 @@ void fn_71000ffa68(UnkSoundSystemATK* self, UnkSoundHandle* sound, bool immediat
         stop.fade = StopFade(fade);
         fn_71000faac4(self, 10, &stop);
     }
+}
+
+// ---- fn_71000f7800: setting up the sound system ----
+
+#include "base/global/CFilePathStrId.h"
+#include "base/global/CStrId.h"
+#include "base/math/UnkZeroVector3.h"
+
+// The audio output types the check at the start uses. The matching build's SDK headers have no
+// audio output; the port's runtime has neither these nor nn::os::SystemEvent, so those are spelled
+// out here with the console's layout (an event and its state byte at +0x28).
+namespace nn::audio {
+struct AudioOutParameter {
+    u32 sample_rate;
+    u16 channel_count;
+    u16 reserved;
+};
+struct AudioOut {
+    u8 storage[0x168];
+};
+void InitializeAudioOutParameter(AudioOutParameter* parameter);
+void CloseAudioOut(AudioOut* out);
+}  // namespace nn::audio
+#ifdef NNSDK
+#include <nn/audio/audio_Common.h>
+#else
+namespace nn::os {
+struct SystemEvent {
+    u8 storage[0x28];
+    u8 state;
+};
+}  // namespace nn::os
+namespace nn::audio {
+struct AudioDeviceName {
+    char raw_name[0x100];
+};
+}  // namespace nn::audio
+#endif
+namespace nn::os {
+void DestroySystemEvent(SystemEventType* event);
+}  // namespace nn::os
+namespace nn::audio {
+s32 OpenDefaultAudioOut(AudioOut* out, nn::os::SystemEvent* event, const AudioOutParameter& parameter);
+s32 SetAudioDeviceOutputVolume(const AudioDeviceName* device, f32 volume);
+}  // namespace nn::audio
+
+// An event the opener may set up, destroyed with the scope.
+struct UnkScopedSystemEvent {
+    nn::os::SystemEvent event;
+    UnkScopedSystemEvent() { reinterpret_cast<u8*>(&event)[0x28] = 0; }
+    ~UnkScopedSystemEvent() {
+        if (reinterpret_cast<u8*>(&event)[0x28])
+            nn::os::DestroySystemEvent(reinterpret_cast<nn::os::SystemEventType*>(&event));
+    }
+};
+
+// Whether the console has an audio output to open (it is opened and closed again).
+static inline bool CanOpenAudioOut() {
+    nn::audio::AudioOut out;
+    UnkScopedSystemEvent event;
+    nn::audio::AudioOutParameter parameter;
+    nn::audio::InitializeAudioOutParameter(&parameter);
+    parameter.sample_rate = 0;
+    parameter.channel_count = 0;
+    s32 result = nn::audio::OpenDefaultAudioOut(&out, &event.event, parameter);
+    if (result == 0)
+        nn::audio::CloseAudioOut(&out);
+    return result == 0;
+}
+
+// The sound engine's heaps: a sub-allocator over a static block, the engine's own heap object over
+// the same memory at +0x40, and a hook run after every allocation (with the heap; it may replace
+// the result at +0x48).
+struct UnkAtkHeap {
+    u64 field_0x0;
+    base::UnkSubAllocator allocator;  // 0x8
+    u8 heap[8];                       // 0x40, nn::atk's
+    void* last;                       // 0x48
+    void (*hook)(void* arg, UnkAtkHeap* heap);
+    void* hook_arg;
+    u64 field_0x60;
+    u64 field_0x68;
+};
+static_assert(__builtin_offsetof(UnkAtkHeap, field_0x68) == 0x68, "UnkAtkHeap placeholder layout");
+
+void* fn_71000813e4(base::UnkSubAllocator* self, u64 size, u64 align, u32 flags);  // src/base/UnkSubAllocator.cpp
+
+static inline void* Allocate(UnkAtkHeap* heap, u64 size, u64 align) {
+    heap->last = fn_71000813e4(&heap->allocator, size, align, 0xb);
+    if (heap->hook)
+        heap->hook(heap->hook_arg, heap);
+    return heap->last;
+}
+
+// The sub-allocator for the engine's work buffers and the two engine heaps, with their memory
+// (0x600000, 0x800000 and 0x6000000 bytes). The sound system is published in g_unk_7101d685c8.
+extern base::UnkSubAllocator g_unk_7108b69000;
+extern char g_unk_7101d69000[];
+extern UnkAtkHeap g_unk_7108b69038;
+extern char g_unk_7102369000[];
+extern UnkAtkHeap g_unk_7108b690a8;
+extern char g_unk_7102b69000[];
+void fn_7100081500(base::UnkSubAllocator* self);  // shuts the sub-allocator down
+
+// The nn::atk objects this sets up (static, in the library's data) and the library functions
+// used, all of them the statically linked library's (status L); names are placeholders.
+extern u8 g_unk_7108b6abc8[] __attribute__((visibility("hidden")));  // the sound archive player's block
+extern u8 g_unk_7108b6acf8[] __attribute__((visibility("hidden")));  // the listeners and effects
+extern u8 g_unk_7108b6ad30[] __attribute__((visibility("hidden")));  // the sound category's registry record
+extern u8 g_unk_7108b6b1c8[] __attribute__((visibility("hidden")));  // the async thread
+extern u8 g_unk_7108b6bd10[] __attribute__((visibility("hidden")));  // the sound archive
+void fn_710120a2c0(void* params);
+u64 fn_710120a344(void* params);
+bool fn_710120ade0(void* params, void* buffer, u64 size);
+void fn_710120b198(void* heap, void* memory, u64 size);
+void* fn_7101228d6c();
+void fn_7101229134(void* self, void (*callback)(), void* arg);
+void fn_710120b108(void (*callback)(), void* arg);
+void fn_710120b148(void (*callback)(), void* arg);
+bool fn_7101204810(void* archive, void* path);
+u32 fn_710120fa40(void* object);
+void fn_7101204aa8(void* archive, void* buffer, u64 size);
+u64 fn_7101208d84(void* manager, void* archive);
+void fn_7101208db0(void* manager, void* archive, void* buffer, u64 size);
+u64 fn_71012079b0(void* player, void* archive);
+s32 fn_71012079b8(void* player, void* archive);
+u64 fn_7101207818(void* archive);
+void fn_7101207598(void* player, void* archive, void* data_manager, void* buffer, u64 size, void* stream_buffer,
+                   u64 stream_size, u64 x7);
+u64 fn_7101206088(void* manager, void* archive);
+void fn_71012060d8(void* manager, void* archive, void* buffer, u64 size);
+void fn_710120621c(void* manager, void* player);
+void fn_7101206010(void* listener, const void* matrix);
+void fn_710120602c(void* listener, f32 value);
+void fn_7101206034(void* listener, f32 value);
+void fn_7101206024(void* listener, f32 value);
+void fn_7101233798(void* effect, u32 value);
+void fn_7101233c4c(void* effect, u32 value);
+void fn_7101233cd4(void* effect, const u32* value, u32 x2);
+void fn_7101233e14(void* effect, u64 value);
+void fn_7101233e30(void* effect, u64 value);
+void fn_7101233ebc(void* effect, f32 value);
+void fn_7101233f2c(void* effect, u32 value);
+u64 fn_7101233880(void* effect);
+void fn_7101234ad0(void* effect, u32 value);
+void fn_7101234be0(void* effect, u32 value);
+void fn_7101234c50(void* effect, u32 value);
+void fn_7101234cc0(void* effect, f32 value);
+void fn_7101234d28(void* effect, u64 value);
+void fn_7101234dcc(void* effect, u32 value);
+u64 fn_71012346b8(void* effect);
+void fn_7101234470(void* effect, u32 value);
+void fn_7101234588(void* effect, u32 value);
+u64 fn_7101234068(void* effect);
+void* fn_710120806c(void* player, u32 id);
+void fn_710120a0ac(void* player, u32 count);
+void* fn_71001039f8();
+void fn_7101214bd0(void* self, u32 mode, u32 x2);
+
+// The engine's callbacks (game code) and the sound archive's path.
+void fn_71000f6770();
+void fn_71000f6880();
+void fn_71000f6890();
+extern void* g_unk_7101a1bb18;  // the archive's path
+
+// This unit's other set-up steps.
+void fn_71000f36f8(void* block);
+void fn_71000f86c0(void* list, u32 count, u32 flags, base::UnkSubAllocator* allocator);
+void fn_71000f88b8(UnkSoundSystemATK* self);
+void fn_71000f8b30(UnkSoundSystemATK* self);
+void fn_71000f9450(UnkSoundSystemATK* self);
+void fn_7100104600(void* self);
+void fn_71000f95b0(void* arg);
+void fn_7100066744(void* thread, const char* name, void (*entry)(void*), u32 a, u32 b, void* arg);
+void fn_7100066828(void* thread, u32 a);
+
+// The resource registry's entry the sound category is added with (as src/game/UnkActorDefFactory.cpp
+// lays it out: the category's record, no factory, three ids and two callbacks).
+struct UnkSoundRegistryEntry {
+    void* desc;
+    void* factory;
+    base::global::CStrId id;
+    base::global::CFilePathStrId path_0x18;
+    base::global::CFilePathStrId path_0x20;
+    void* context_0x28;
+    void (*function_0x30)();
+    void* context_0x38;
+    void (*function_0x40)();
+};
+static_assert(sizeof(UnkSoundRegistryEntry) == 0x48, "UnkSoundRegistryEntry layout");
+struct UnkRegistry_7100d92158;
+struct UnkEntry_7100d92158;
+extern UnkRegistry_7100d92158* g_unk_7101d4bbc0;
+void fn_710002002c(UnkRegistry_7100d92158* registry, const UnkEntry_7100d92158& entry);
+void fn_71000204c4(void* context, void* arg);
+void fn_71000204cc(void* context, void* arg);
+
+// A word set to zero on first use (two of them, header statics).
+struct UnkZeroWord {
+    u32 value;
+    UnkZeroWord() { value = 0; }
+};
+inline UnkZeroWord& SoundZeroWordA() {
+    static UnkZeroWord s_word;
+    return s_word;
+}
+inline UnkZeroWord& SoundZeroWordB() {
+    static UnkZeroWord s_word;
+    return s_word;
+}
+
+template <class T>
+static inline T& Member(UnkSoundSystemATK* self, u64 offset) {
+    return *reinterpret_cast<T*>(reinterpret_cast<u8*>(self) + offset);
+}
+
+
+// Sets up the sound system: checks that an audio output can be opened, creates the engine's heaps
+// and objects (the sound archive, its player and data manager, the listener, four effects), the
+// sound system's own tables and the async thread, and sets the output volumes (the TV at half).
+// False, with sound turned off (g_unk_7108b6ab60), when there is no output or the engine fails.
+// NON_MATCHING(major): written from the original's behaviour, not compared instruction by
+// instruction. The listener's direction is nn::util::SinCosEst of 0 inlined in the original; with
+// a zero angle its polynomial gives exactly 0 and 1, which are written here directly.
+bool fn_71000f7800(UnkSoundSystemATK* self) {
+    if (!CanOpenAudioOut()) {
+        g_unk_7108b6ab60 = 1;
+        return false;
+    }
+    fn_7100081330(&g_unk_7108b69000, g_unk_7101d69000, g_unk_7101d69000 + 0x600000, "DLM", 0);
+    u8 params[0x98];
+    fn_710120a2c0(params);
+    u64 size = fn_710120a344(params);
+    void* work = fn_71000813e4(&g_unk_7108b69000, size, 4, 0xb);
+    Member<void*>(self, 0x48) = work;
+    if (!fn_710120ade0(params, work, size))
+        goto fail;
+    {
+        UnkAtkHeap* heap = &g_unk_7108b69038;
+        fn_7100081330(&heap->allocator, g_unk_7102369000, g_unk_7102369000 + 0x800000, "ATKHeap", 0);
+        fn_710120b198(heap->heap, g_unk_7102369000, 0x800000);
+        heap->field_0x60 = 0;
+        heap->field_0x68 = 0;
+        heap->hook_arg = nullptr;
+        heap->last = nullptr;
+        heap->hook = nullptr;
+        UnkAtkHeap* big = &g_unk_7108b690a8;
+        fn_7100081330(&big->allocator, g_unk_7102b69000, g_unk_7102b69000 + 0x6000000, "ATKHeap", 0);
+        fn_710120b198(big->heap, g_unk_7102b69000, 0x6000000);
+        big->last = nullptr;
+        big->field_0x60 = 0;
+        big->field_0x68 = 0;
+        big->hook = nullptr;
+        big->hook_arg = nullptr;
+        for (u64 i = 0; i < 0x40; ++i) {
+            void* block = Allocate(heap, 0x80, 8);
+            fn_71000f36f8(block);
+            Member<void*>(self, 0x400588 + i * 8) = block;
+        }
+        fn_71000f86c0(reinterpret_cast<u8*>(self) + 0x388, 0x80, 0xb, &heap->allocator);
+        fn_7101229134(fn_7101228d6c(), fn_71000f6770, nullptr);
+        fn_710120b108(fn_71000f6880, nullptr);
+        fn_710120b148(fn_71000f6890, nullptr);
+        {
+            UnkSoundRegistryEntry entry{g_unk_7108b6ad30,
+                                        nullptr,
+                                        g_unk_7101d470e0,
+                                        g_unk_7101d470e8,
+                                        base::global::CFilePathStrId(base::global::UnkStrIdInline(), nullptr, true),
+                                        nullptr,
+                                        reinterpret_cast<void (*)()>(fn_71000204c4),
+                                        nullptr,
+                                        reinterpret_cast<void (*)()>(fn_71000204cc)};
+            fn_710002002c(g_unk_7101d4bbc0, *reinterpret_cast<const UnkEntry_7100d92158*>(&entry));
+        }
+        u8* archive = g_unk_7108b6bd10;
+        if (!fn_7101204810(archive, g_unk_7101a1bb18))
+            goto fail;
+        u8* block = g_unk_7108b6abc8;
+        u32 archive_size = fn_710120fa40(archive + 0x2a0);
+        void* buffer = fn_71000813e4(&g_unk_7108b69000, archive_size, 0x1000, 0xb);
+        Member<void*>(self, 0x58) = buffer;
+        fn_7101204aa8(archive, buffer, archive_size);
+        u8* data_manager = block + 0x7f8;
+        u64 dm_size = fn_7101208d84(data_manager, archive);
+        void* dm_buffer = fn_71000813e4(&g_unk_7108b69000, dm_size, 8, 0xb);
+        Member<void*>(self, 0x68) = dm_buffer;
+        fn_7101208db0(data_manager, archive, dm_buffer, dm_size);
+        u8* player = block + 0xa38;
+        u64 stream_unit = fn_71012079b0(player, archive);
+        s32 stream_count = fn_71012079b8(player, archive);
+        u64 stream_size = stream_unit * stream_count;
+        Member<void*>(self, 0x60) = Allocate(heap, stream_size, 0x1000);
+        u64 player_size = fn_7101207818(archive);
+        void* player_buffer = fn_71000813e4(&g_unk_7108b69000, player_size, 0x1000, 0xb);
+        Member<void*>(self, 0x50) = player_buffer;
+        fn_7101207598(player, archive, data_manager, player_buffer, player_size, Member<void*>(self, 0x60),
+                      stream_size, 0);
+        u8* manager = block + 0x108;
+        u64 manager_size = fn_7101206088(manager, archive);
+        void* manager_buffer = fn_71000813e4(&g_unk_7108b69000, manager_size, 0x1000, 0xb);
+        Member<void*>(self, 0x78) = manager_buffer;
+        fn_71012060d8(manager, archive, manager_buffer, manager_size);
+        fn_710120621c(manager, block);
+        *reinterpret_cast<u32*>(block + 0x148) = 0x20;
+        *reinterpret_cast<f32*>(block + 0x150) = 5.6666665f;
+
+        // The listener: at (0, 0, -3), up (0, 1, 0), facing along -z.
+        Member<f32>(self, 0xa0) = 0.0f;
+        Member<f32>(self, 0xa4) = 1.0f;
+        Member<f32>(self, 0xa8) = 0.0f;
+        Member<f32>(self, 0xac) = 0.0f;
+        Member<f32>(self, 0xb0) = 0.0f;
+        Member<f32>(self, 0xb4) = -3.0f;
+        Member<f32>(self, 0xbc) = 0.0f;
+        Member<f32>(self, 0xb8) = -0.0f;  // -sin(0)
+        Member<f32>(self, 0xc0) = -1.0f;  // -cos(0)
+        Member<f32>(self, 0xc4) = g_unk_710164779c.x;
+        Member<f32>(self, 0xc8) = g_unk_710164779c.y;
+        Member<f32>(self, 0xcc) = g_unk_710164779c.z;
+        Member<bool>(self, 0xd0) = true;
+        fn_71000f88b8(self);
+        u8* listeners = g_unk_7108b6acf8;
+        u8* listener = listeners + 0x1c8;
+        {
+            f32 position[4] = {Member<f32>(self, 0xc4), Member<f32>(self, 0xc8), Member<f32>(self, 0xcc), 0.0f};
+            fn_7101206010(listener, position);
+        }
+        fn_710120602c(listener, 5.0f);
+        fn_7101206034(listener, 5.0f);
+        fn_7101206024(listener, 5.0f);
+        // Swaps the heads of two intrusive lists (at +0x248 and +0), with their back links.
+        {
+            u8** head_a = reinterpret_cast<u8**>(listeners + 0x248);
+            u8** head_b = reinterpret_cast<u8**>(listeners);
+            u8* a = *head_a;
+            *head_a = *head_b;
+            *reinterpret_cast<u8***>(a + 8) = head_b;
+            *reinterpret_cast<u8***>(*head_a + 8) = head_a;
+            *head_b = a;
+        }
+        fn_7100104600(reinterpret_cast<u8*>(self) + 0x278);
+        for (u64 i = 0x194; i < 0x1b4; i += 4)
+            Member<u32>(self, i) = 0;
+        for (u64 i = 0x1b4; i < 0x1d4; i += 4)
+            Member<f32>(self, i) = 2.0f;
+        for (u64 i = 0x1d4; i < 0x214; i += 4)
+            Member<f32>(self, i) = 1.0f;
+
+        // The four effects, each with a buffer from the engine heap.
+        u8* effect = listeners + 0xb8;
+        fn_7101233798(effect, 1);
+        fn_7101233c4c(effect, 1);
+        fn_7101233e14(effect, 3000000000u);
+        fn_7101233ebc(effect, 0.6f);
+        fn_7101233f2c(effect, 0);
+        Member<void*>(self, 0x80) = Allocate(heap, fn_7101233880(effect), 0x40);
+        effect = listeners + 0x140;
+        fn_7101233798(effect, 1);
+        u32 one = 1;
+        fn_7101233cd4(effect, &one, 0);
+        fn_7101233e14(effect, 3000000000u);
+        fn_7101233e30(effect, 400000000);
+        fn_7101233ebc(effect, 0.6f);
+        fn_7101233f2c(effect, 0);
+        Member<void*>(self, 0x88) = Allocate(heap, fn_7101233880(effect), 0x40);
+        effect = listeners + 0x258;
+        fn_7101233798(effect, 1);
+        fn_7101234ad0(effect, 1);
+        fn_7101234be0(effect, 3);
+        fn_7101234c50(effect, 3);
+        fn_7101234cc0(effect, 0.6f);
+        fn_7101234d28(effect, 3000000000u);
+        fn_7101234dcc(effect, 0);
+        Member<void*>(self, 0x90) = Allocate(heap, fn_71012346b8(effect), 0x40);
+        effect = listeners + 0x2f0;
+        fn_7101233798(effect, 1);
+        fn_7101234470(effect, 3);
+        fn_7101234588(effect, 0);
+        Member<void*>(self, 0x98) = Allocate(heap, fn_7101234068(effect), 0x40);
+
+        Member<u32>(self, 0x348) = SoundZeroWordA().value;
+        for (u64 i = 0x34c; i < 0x36c; i += 8)
+            Member<u64>(self, i) = 0;
+        Member<u32>(self, 0xf0) = SoundZeroWordB().value;
+        for (u64 i = 0; i < 8; ++i) {
+            Member<u32>(self, 0xf4 + i * 0x14) = 16000;
+            Member<u32>(self, 0xf8 + i * 0x14) = 16000;
+            Member<u32>(self, 0xfc + i * 0x14) = 16000;
+        }
+        fn_71000f8b30(self);
+        fn_71000f9450(self);
+
+        // The voice counts (the first eight handed to the player by sound kind), then zeroed tallies.
+        static const u32 kCounts[0x13] = {0x20, 6,    8,    0x10, 0x10, 8,    0x10, 0x10, 0x20, 0x10,
+                                          0x10, 0x10, 0x10, 0x10, 0x10, 0x10, 0x10, 0x10, 0x10};
+        for (u64 i = 0; i < 0x13; ++i)
+            Member<u32>(self, 0x2a8 + i * 4) = kCounts[i];
+        for (u64 i = 0x2f4; i < 0x340; i += 4)
+            Member<u32>(self, i) = 0;
+        u8* sound_player = g_unk_7108b6b1c8 + 0x438;
+        for (u32 i = 0; i < 8; ++i)
+            fn_710120a0ac(fn_710120806c(sound_player, 0x4000000 + i), Member<u32>(self, 0x2a8 + i * 4));
+
+        fn_71000668f8(&Member<nn::os::MutexType>(self, 0x400528));
+        fn_71000668f8(&Member<nn::os::MutexType>(self, 0x400548));
+        fn_71000668f8(&Member<nn::os::MutexType>(self, 0x400568));
+        Member<u32>(self, 0x500) = 0;
+        Member<u32>(self, 0x504) = 1;
+        Member<u32>(self, 0x510) = 0;
+        Member<u32>(self, 0x514) = 1;
+        Member<u64>(self, 0x508) = 0;
+        Member<u64>(self, 0x518) = 0;
+        Member<u32>(self, 0x400520) = 0;
+        Member<u32>(self, 0x400524) = 0xffffffff;
+        fn_7100066744(g_unk_7108b6b1c8, "Sound Async Thread", fn_71000f95b0, 1, 4, nullptr);
+        fn_7100066828(g_unk_7108b6b1c8, 0);
+        Member<bool>(self, 0x347) = true;
+        g_unk_7101d685c8 = reinterpret_cast<UnkIdMap*>(self);
+
+        nn::audio::AudioDeviceName tv, jack, speaker, usb;
+        __builtin_memcpy(tv.raw_name, "AudioTvOutput", sizeof("AudioTvOutput"));
+        __builtin_memcpy(jack.raw_name, "AudioStereoJackOutput", sizeof("AudioStereoJackOutput"));
+        __builtin_memcpy(speaker.raw_name, "AudioBuiltInSpeakerOutput", sizeof("AudioBuiltInSpeakerOutput"));
+        __builtin_memcpy(usb.raw_name, "AudioUsbDeviceOutput", sizeof("AudioUsbDeviceOutput"));
+        nn::audio::SetAudioDeviceOutputVolume(&tv, 0.5f);
+        nn::audio::SetAudioDeviceOutputVolume(&jack, 1.0f);
+        nn::audio::SetAudioDeviceOutputVolume(&speaker, 1.0f);
+        nn::audio::SetAudioDeviceOutputVolume(&usb, 1.0f);
+        if (Member<s32>(self, 0xdc) != 2) {
+            Member<s32>(self, 0xdc) = 2;
+            fn_7101214bd0(fn_71001039f8(), 2, 0);
+        }
+        return true;
+    }
+fail:
+    g_unk_7108b6ab60 = 1;
+    fn_7100081500(&g_unk_7108b69000);
+    g_unk_7101d685c8 = nullptr;
+    return false;
 }
