@@ -112,6 +112,28 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Lifter: step-budget retry and no float result from a void function (2026-10-28, branch
+`claude/project-thread-zgkpk3`).** Two fixes from the port's current stop and from the hand-writing
+thread's reading of the 13 boot functions #236 refuses. Written in a cloud session without the dump:
+the oracle numbers below are to be measured on the PC.
+- **Long loops.** `fn_71002584a0` (2.8 KB, the function the port traps in before the bad string id)
+  was inconclusive because both runs hit `MAX_STEPS` on every input. `pcode_emu.Machine.max_steps`
+  is now per run, and `Oracle.check` reruns up to `RETRY_INPUTS` (4) inputs, original and lift, with
+  `RETRY_STEPS` (8) times the budget when no input agreed and the original was cut off by steps. Two
+  cut-off runs still decide nothing; the "lift ran out of steps" rule uses the lift's own budget.
+- **Float results that are not there.** Nine of the 13 refused functions are void (the hand-writing
+  thread, from Ghidra): a float setter whose s0 is its argument, functions whose s0 at return is
+  what a callee taking a float constant left, and three x0 cases. Callers' evidence made them look
+  like float returns, so #236 refused their void lifts. `AbiFacts.defines(addr, 100)` asks the
+  callee: whether s0 at some return was written by its own code or by a callee that defines it
+  (False when only its entry value or a void callee's leftover reaches a return; None for indirect
+  calls and cycles). `result_main` and `result_shape` drop float registers when it is False
+  (`SHAPE_VERSION` 3). Semantic mode only; byte mode does not read either. The three x0 cases
+  (`7100eea4c8`, `7100eea618`, `710109c9e0`) are not covered: x0 is too often a real pass-through
+  (`return this`) for the same rule.
+- Tool tests: `tools/tests/test_abi_facts.py` (hand-assembled functions) and
+  `tools/tests/test_pcode_emu.py` (the step budget in `compare`).
+
 **Port M1 round 4: every registered type named (2026-10-28, branch `claude/port-m1-round4`).** The
 lifter's newer full set (#236, 15,594 lifts) linked with no trap before round 3's null dereference.
 The null was a class with no name: 2,354 of the 4,581 types on the reflection registry's list

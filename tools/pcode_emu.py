@@ -51,6 +51,7 @@ SENTINEL = 0x00007FFFDEAD0000     # the caller's return address
 NULL_PAGE = 0x10000
 PAGE = 4096
 MAX_STEPS = 60000
+RETRY_STEPS = 8                   # a run cut off by steps is retried with this many times the budget (port_lift)
 SLOWER = 20                       # a lift this many times slower than an original that ended is wrong (compare)
 MAX_EVENTS = 256                  # calls recorded per run; then it ends as a time-out (checkpoint)
 MAX_SNAPSHOT = 1 << 21            # bytes of written memory copied into its events, in all; the same
@@ -334,6 +335,7 @@ class Machine:
         self.snapshot_bytes = 0  # written bytes copied into events so far (checkpoint)
         self.calls = 0
         self.steps = 0
+        self.max_steps = MAX_STEPS  # (port_lift raises it to retry a run cut off by steps)
         self.visited: set[int] = set()
         for a, v in preset.items():
             self.store(a, 1, v, track=False)
@@ -629,7 +631,7 @@ class Machine:
             # iteration would hold thousands. The run ends here as a time-out (compare: what came
             # before must agree).
             self.cut = self.cut or ("events" if len(self.events) >= MAX_EVENTS else "snapshot")
-            self.steps = MAX_STEPS
+            self.steps = self.max_steps
 
     # -- execution ------------------------------------------------------------------------------
 
@@ -642,7 +644,7 @@ class Machine:
         try:
             while True:
                 self.steps += 1
-                if self.steps > MAX_STEPS:
+                if self.steps > self.max_steps:
                     self.cut = self.cut or "steps"  # (compare: what came before the cut must agree)
                     self.finish("time-out")
                     return
@@ -1013,7 +1015,7 @@ def compare(a: Machine, b: Machine, ret: str | None) -> str:
             if extra:
                 return f"memory written only by the {'original' if ta else 'lift'}, cut off: byte {min(extra):#x}"
         if tb and b.cut == "steps" and end_a in (("end", "return"), ("end", "fault")) \
-                and a.steps * SLOWER <= MAX_STEPS:
+                and a.steps * SLOWER <= b.max_steps:
             return f"the lift ran out of steps where the original ended after {a.steps}"
         return f"skip: the {'original' if ta else 'lift'} was cut off ({cut.cut})"
     if len(ea) != len(eb):
