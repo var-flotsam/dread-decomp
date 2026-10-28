@@ -112,6 +112,8 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Two skills from obra/superpowers (2026-10-28, branch `claude/project-thread-4k0wen`).** At the owner's request, `.claude/skills/systematic-debugging` and `.claude/skills/writing-skills` are adapted from superpowers 7.0.1 (MIT, notice in `.claude/skills/LICENSE.superpowers`, entry in `docs/references.md`). `systematic-debugging` makes a session find the root cause before it tries a fix, and its new last section maps that onto this repository: the cheapest reproduction per symptom (one trap with `DREAD_TRAP=log`, `port_lift.py --debug ADDR`, `trymatch.py` on one source, one generator), the port's layers (lift or source, sweep, link, runtime, boot), and stream ownership of a fix. It is for traps, oracle rejections, regressions and tool failures, not for an ordinary non-matching function (`dread-match`). `writing-skills` is for creating or tightening a skill such as `dread-match` or `dread-hubs`: run a pressure scenario on a subagent without the skill, then with it. The rest of superpowers was evaluated and left out: its session-start hook loads into every parallel session, brainstorming waits for sign-off, and its plan, TDD, subagent and worktree skills overlap HANDOFF, the byte diff and oracle, and the streams.
+
 **CActorLayer's reflection by hand: `fn_71002584a0` (2026-10-28, branch `claude/project-thread-pvyj4u`).** The port
 traps in this function just before the bad string id, and the lifter can't verify it: the oracle's made-up
 tables never end its loops. It is `O` in the new `src/game/CActorLayer.cpp`. `gen_reflection` skipped it
