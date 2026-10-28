@@ -13,8 +13,9 @@ except ImportError:  # pyelftools missing
     pcode_emu = None
 
 
-def run(end: str, steps: int, scale: int = 1, cut=None):
-    return SimpleNamespace(events=[(("end", end), ())], steps=steps, scale=scale, cut=cut, clipped=False)
+def run(end: str, steps: int, scale: int = 1, cut=None, events=None, undef=()):
+    return SimpleNamespace(events=events or [(("end", end), ())], steps=steps, scale=scale, cut=cut, clipped=False,
+                           undef_mem=set(undef))
 
 
 @unittest.skipIf(pcode_emu is None, "pyelftools is not installed")
@@ -41,3 +42,21 @@ class CutOff(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+@unittest.skipIf(pcode_emu is None, "pyelftools is not installed")
+class UndefinedBytes(unittest.TestCase):
+    """A struct copy's padding, copied from stack the original never wrote, is not compared."""
+
+    def events(self, mem):
+        return [(("call", 0x7100001570, (), ()), tuple(sorted(mem.items()))), (("end", "return"), tuple(sorted(mem.items())))]
+
+    def test_padding_copied_by_the_original_only(self):
+        orig = run("return", 10, events=self.events({0x1000: 1, 0x1001: 0, 0x1002: 0}), undef={0x1001, 0x1002})
+        lift = run("return", 10, events=self.events({0x1000: 1}))
+        self.assertEqual(pcode_emu.compare(orig, lift, None), "")
+
+    def test_a_missing_defined_byte_still_differs(self):
+        orig = run("return", 10, events=self.events({0x1000: 1, 0x1001: 0}), undef={0x1002})
+        lift = run("return", 10, events=self.events({0x1000: 1}))
+        self.assertTrue(pcode_emu.compare(orig, lift, None).startswith("memory at event 0"))

@@ -126,6 +126,18 @@ stand-in was in 15 functions. An address that a later access reads as a table (a
 reaching past the string's terminator, before the register is written again) is now the image's object
 (`h::g_unk_<addr>`), not a literal; semantic mode already named every address that way.
 
+From the trace run's refusals (`lifted_trace1`, 6,007 of 6,070 accepted):
+- **Jump tables bounded further away** (`71000a0660`, `71000a5e00`, `7100256810`, `71011bc0b0`): the only
+  bound is a `cmp xI, #N; b.ls <dispatch>` early on, or one per path reaching the dispatch. The largest
+  such N on the index register, unwritten after the first, bounds the table.
+- **nnMain's compile error** (`71000018f0`): a call passing s0 right after a float-returning call read
+  that call's x0 first, which the float retype then removed. The retype now comes before the integers.
+- **A float parameter passed on at the other width** (the variadic loggers' forwarders `71010a2620`,
+  `71010a3ff0`): passed as it is instead of 0.
+- **The oracle and a struct copy's padding** (`71000ed2b8`, `71000ed608`, `71000ed758`): the original
+  copies padding it never wrote, the lift the fields alone. pcode_emu now marks bytes loaded from never-
+  written stack as undefined through copies, and compare() leaves out the bytes stored from them.
+
 **Lifter: the boot trace's instruction gaps (2026-10-28, branch `claude/project-thread-zgkpk3`, after #250).**
 The recomp's boot trace names 37 unmatched functions the boot runs that no lifted set accepts; 11 were
 the lifter's (diagnosed on the PC, measured there). All semantic mode:

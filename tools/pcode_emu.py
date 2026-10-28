@@ -18,7 +18,8 @@ could observe:
             argument that points into the caller's stack (out-parameters). memcpy, memmove,
             memset, memcmp, strlen and strcmp are executed instead (the lift may inline them).
   memory    every byte written outside the function's own frame and outside the lift's own data
-            (its guard variables), compared at every call and at the end.
+            (its guard variables), compared at every call and at the end. A byte stored from
+            stack the run never wrote (a struct copy's padding) is undefined and not compared.
   result    x0 (by the lift's return width) or s0/d0, when the lift returns a value and callers
             may use it (abi_facts ret_used).
   end       return, a fault (a load or store in the first 64 KiB), or a time-out.
@@ -324,6 +325,12 @@ class Machine:
         self.clipped = False  # a modelled memset or memcpy stopped at 64 KiB (compare)
         self.fault: int | None = None  # the address a run faulted on
         self.stack_written: set[int] = set()
+        # Undefined bytes: loaded from stack the run never wrote (a struct copy's padding), and
+        # where they were stored. Register and unique bytes holding one ((space, offset) keys);
+        # memory bytes stored from one, which compare() leaves out (undefined in C: a lift that
+        # copies the fields alone, or writes the padding, is the same program).
+        self.undef_vn: set[tuple[int, int]] = set()
+        self.undef_mem: set[int] = set()
         self.frame_record: set[int] = set()  # stack words holding the saved return address (store)
         self.saves: set[int] = set()  # stack words holding a callee-saved register's entry value (store)
         self.entry_saved: set[int] = set()  # those entry values (setup: x19-x28, d8-d15)
@@ -422,6 +429,8 @@ class Machine:
 
     def set_reg(self, off: int, size: int, v: int) -> None:
         self.regs[off:off + size] = (v & ((1 << (8 * size)) - 1)).to_bytes(size, "little")
+        if self.undef_vn:
+            self.undef_vn.difference_update((2, off + i) for i in range(size))
         if X0 <= off < X0 + 72:
             self.state[(off - X0) // 8] = "written"
         elif Q0 <= off < Q0 + 8 * QSTRIDE:
@@ -447,6 +456,8 @@ class Machine:
             self.set_reg(off, size, v)
         elif sp == 1:
             self.uniq[off] = v
+            if self.undef_vn:
+                self.undef_vn.difference_update((1, off + i) for i in range(size))
         elif sp == 3:
             self.store(off, size, v)
         else:
@@ -732,6 +743,8 @@ class Machine:
         if ops is None:
             raise Inconclusive(f"undecodable {w:08x}")
         self.uniq.clear()
+        if self.undef_vn:
+            self.undef_vn = {k for k in self.undef_vn if k[0] != 1}
         i, n = 0, len(ops)
         while i < n:
             code, out, ins = ops[i]
@@ -762,15 +775,28 @@ class Machine:
         size = out[2] if out else 0
         if name == "COPY":
             self.write(out, r(ins[0]))
+            self.carry_undef(out, ins[0], 0)
         elif name == "LOAD":
-            self.write(out, self.load(r(ins[1]), size))
+            a = r(ins[1])
+            self.write(out, self.load(a, size))
+            if out[0] in (1, 2):
+                self.undef_vn.update((out[0], out[1] + i) for i in range(size)
+                                     if STACK_LO <= a + i < ENTRY_SP and a + i not in self.stack_written)
         elif name == "STORE":
-            self.store(r(ins[1]), ins[2][2], r(ins[2]))
+            a = r(ins[1])
+            self.store(a, ins[2][2], r(ins[2]))
+            if self.undef_vn and ins[2][0] in (1, 2):
+                for i in range(ins[2][2]):
+                    if (ins[2][0], ins[2][1] + i) in self.undef_vn:
+                        self.undef_mem.add(a + i)
+                        self.dirty.pop(a + i, None)
+                        self.stack_written.discard(a + i)
         elif name in INT_BINARY:
             a, b = r(ins[0]), r(ins[1])
             self.write(out, INT_BINARY[name](a, b, ins[0][2] * 8))
         elif name == "INT_ZEXT":
             self.write(out, r(ins[0]))
+            self.carry_undef(out, ins[0], 0)
         elif name == "INT_SEXT":
             self.write(out, sext(r(ins[0]), ins[0][2] * 8))
         elif name == "INT_2COMP":
@@ -783,6 +809,7 @@ class Machine:
             self.write(out, (r(ins[0]) << (8 * ins[1][2])) | r(ins[1]))
         elif name == "SUBPIECE":
             self.write(out, r(ins[0]) >> (8 * ins[1][1]))
+            self.carry_undef(out, ins[0], ins[1][1])
         elif name == "POPCOUNT":
             self.write(out, bin(r(ins[0])).count("1"))
         elif name == "LZCOUNT":
@@ -795,6 +822,12 @@ class Machine:
             self.userop(self.userops.get(ins[0][1], "?"), out, ins[1:])
         else:
             raise Inconclusive(f"P-code {name}")
+
+    def carry_undef(self, out, src, skip: int) -> None:
+        """A copy (or a zero extension, or a part from byte `skip` on) carries undefined bytes."""
+        if self.undef_vn and src[0] in (1, 2) and out[0] in (1, 2):
+            self.undef_vn.update((out[0], out[1] + i) for i in range(min(out[2], src[2] - skip))
+                                 if (src[0], src[1] + skip + i) in self.undef_vn)
 
     def float_op(self, name: str, out, ins) -> None:
         r = self.read
@@ -967,6 +1000,11 @@ def compare(a: Machine, b: Machine, ret: str | None) -> str:
     else the first difference. `a` is the original's run. `ret` is the lift's result kind: None
     (not compared), 'x8', 'x16', 'x32', 'x64', 'f32', 'f64'."""
     ea, eb = a.events, b.events
+    if a.undef_mem or b.undef_mem:
+        # (bytes either run stored from undefined stack bytes: not compared, in neither run)
+        skip = a.undef_mem | b.undef_mem
+        ea = [(v, tuple(kv for kv in m if kv[0] not in skip)) for v, m in ea]
+        eb = [(v, tuple(kv for kv in m if kv[0] not in skip)) for v, m in eb]
     end_a, end_b = (ea[-1][0] if ea else None), (eb[-1][0] if eb else None)
     if end_a == ("end", "fault") and ea != eb:
         # The original crashed on this input, the lift did not crash there: C lets the compiler

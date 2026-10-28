@@ -839,6 +839,10 @@ class Lifter:
         # Up to the first float register with no value (a higher one was a temporary).
         fl = next((i for i in range(fl) if not self.has_value(100 + i)), fl)
         sem = "semantic" in self.opts
+        if sem and self.s.fcall and len(need) > 1 and need[1] > 0 and 100 not in self.s.vals:
+            # s0 passed on right after a call: the call returns a float, so x0 holds nothing (its
+            # retype first, before the integers below would read the call's x0)
+            self.read(("s" if self.ftype_of(100) == "f32" else "d") + "0")
         floats = []
         for i in range(fl):
             t = self.ftype_of(100 + i)
@@ -877,9 +881,13 @@ class Lifter:
                     # A register only passed on (an incoming argument): as f64, which carries all
                     # of its bits whatever width the callee reads, on AArch64 and x86-64 alike.
                     floats.append(self.read(f"{getattr(self, 'fwidth', {}).get(100 + i, 'd')}{i}"))
-            except Unsupported:
+            except Unsupported as e:
                 if not sem:
                     break
+                if str(e) == "float width" and self.has_value(100 + i):
+                    # (a parameter the function reads at the other width: passed on as it is)
+                    floats.append(self.read(("s" if self.ftype_of(100 + i) == "f32" else "d") + str(i)))
+                    continue
                 floats.append(("(f64)0", "f64"))  # no value here: garbage in the original as well
             self.passed |= not sem
         # Semantic mode: arguments beyond the eight registers (callee_need's third count) are the
@@ -2364,7 +2372,19 @@ class FlatLifter(Lifter):
                         and self.bhi_after(ins, j):
                     bound, cmp_at = y.operands[1].imm, j
                     break
-            if bound is None or any(cmp_at < j < k and j != copy for j in writes.get(ireg, [])) \
+            if bound is None:
+                # The bound checked further away, the dispatch reached by a branch (`cmp xI, #N;
+                # b.ls <dispatch>` early in the function, or several paths each with `cmp; b.gt`):
+                # the largest N of the compares of I with an immediate followed by a conditional
+                # branch, when I is written nowhere after the first of them. A larger table than
+                # the paths use only adds cases nothing reaches.
+                cmps = [j for j, y in enumerate(ins[:adr]) if y.mnemonic == "cmp" and y.operands[0].type == arm64.ARM64_OP_REG
+                        and regname(y.operands[0].reg)[1:] == ireg[1:] and y.operands[1].type == arm64.ARM64_OP_IMM
+                        and any(z.mnemonic in ("b.hi", "b.ls", "b.gt", "b.le") for z in ins[j + 1:j + 3])]
+                if not cmps or any(cmps[0] < j < k for j in writes.get(ireg, [])):
+                    continue
+                bound, cmp_at = max(ins[j].operands[1].imm for j in cmps), cmps[0]
+            elif any(cmp_at < j < k and j != copy for j in writes.get(ireg, [])) \
                     or (copy is not None and any(cmp_at < j < copy for j in writes.get(src, []))):
                 continue
             base = ins[adr].operands[1].imm
