@@ -1084,6 +1084,28 @@ class Lifter:
         self.line(" ".join(f"*(f64*)({a} + {16 * k}) = {v};" for k, v in enumerate(vals)))
         return True
 
+    def table_use(self, reg: str, length: int) -> bool:
+        """Whether the address just put in reg is read as a table rather than a string: a later
+        access through reg (before it is written again, a branch or a call) with an index
+        register or reaching past the string's terminator. Data that starts like a short string (a u32
+        table whose first entry is 0x59 reads as "Y") is then the image's object, not a literal."""
+        key = reg[1:]
+        for y in self.ins[self.pos + 1:]:
+            if y.mnemonic in ("b", "bl", "blr", "br", "ret", "cbz", "cbnz", "tbz", "tbnz") or y.mnemonic.startswith("b."):
+                return False
+            regs = [regname(op.reg) for op in y.operands if op.type == arm64.ARM64_OP_REG]
+            for op in y.operands:
+                if op.type == arm64.ARM64_OP_MEM and op.mem.base and regname(op.mem.base)[1:] == key \
+                        and regname(op.mem.base)[0] == "x":
+                    size = {"b": 1, "h": 2}.get(y.mnemonic[-1]) or \
+                        {"w": 4, "s": 4, "x": 8, "d": 8, "q": 16}.get(regs[0][0] if regs else "", 1)
+                    size *= 2 if y.mnemonic in ("ldp", "stp") else 1
+                    if op.mem.index or op.mem.disp + size > length + 1:
+                        return True
+            if any(regname(q)[1:] == key and regname(q)[0] in "xw" for q in y.regs_access()[1]):
+                return False
+        return False
+
     def small_int_load(self, x, mem, reg: str) -> bool:
         """`ldr h<n>|b<n>` up to the convert of s<n> that uses it (step's comment)."""
         n, ins = reg[1:], self.ins
@@ -1825,7 +1847,8 @@ class Lifter:
             a = s.pages[self.key(regname(o[1].reg))] + o[2].imm
             text = self.orig.img.cstring(a - BASE)
             # Semantic mode keeps the game's own string (one address for every user, as in main).
-            if text is not None and a not in self.orig.sizes and a != DSO_HANDLE and "semantic" not in self.opts:
+            if text is not None and a not in self.orig.sizes and a != DSO_HANDLE and "semantic" not in self.opts \
+                    and not self.table_use(regname(o[0].reg), len(text)):
                 self.write(regname(o[0].reg), f"(char*){refl_attrs.c_string(text)}", "char*")
             else:
                 self.write(regname(o[0].reg), self.global_ref(a, False), "char*")
