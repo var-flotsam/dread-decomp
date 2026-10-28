@@ -337,3 +337,53 @@ void fn_71001b7a60(UnkCullView* self) {
         registry->Insert((u64)cull);
     self->cull = cull;
 }
+
+// ---- fn_71001ba864: aiming the view at a point ----
+
+#include "game/UnkXformNode.h"
+
+// The same view as the eye, its direction and its target: what fn_71001ba864 sets (the transform
+// node of game/UnkXformNode.h hands it its target position).
+struct UnkLookAtView {
+    u8 pad_0x0[0x9c];
+    f32 distance;  // 0x9c, at least 1
+    u8 pad_0xa0[0x8];
+    UnkVec3f eye;  // 0xa8
+    UnkVec3f dir;  // 0xb4, unit length
+    u8 pad_0xc0[0x18];
+    UnkVec3f target;  // 0xd8
+    u8 pad_0xe4[0x198];
+    bool field_0x27c;
+    u8 pad_0x27d;
+    bool field_0x27e;  // with field_0x27c clear, the view keeps its aim
+};
+static_assert(__builtin_offsetof(UnkLookAtView, field_0x27e) == 0x27e, "UnkLookAtView placeholder layout");
+
+void fn_71001b7eb4(UnkLookAtView* self);  // recomputes the view from the aim
+
+// Aims the view at `pos`: the direction from the eye, its length (at least 1) and the target.
+void fn_71001ba864(UnkXformTarget* target, const UnkVec3f* pos) {
+    auto* self = reinterpret_cast<UnkLookAtView*>(target);
+    if (self->field_0x27e && !self->field_0x27c)
+        return;
+    f32 dx = pos->x - self->eye.x;
+    f32 dy = pos->y - self->eye.y;
+    f32 dz = pos->z - self->eye.z;
+    self->dir.x = dx;
+    self->dir.y = dy;
+    self->dir.z = dz;
+    f32 d = sqrtf(dx * dx + dy * dy + dz * dz);
+    self->distance = fmaxf(d, 1.0f);
+    f32 inv = 1.0f / (sqrtf(self->dir.x * self->dir.x + self->dir.y * self->dir.y + self->dir.z * self->dir.z) +
+                      0.0001f);
+    f32 x = self->dir.x * inv;
+    f32 y = self->dir.y * inv;
+    f32 z = inv * self->dir.z;
+    self->dir.x = x;
+    self->dir.y = y;
+    self->dir.z = z;
+    self->target.x = pos->x;
+    self->target.y = pos->y;
+    self->target.z = pos->z;
+    fn_71001b7eb4(self);
+}

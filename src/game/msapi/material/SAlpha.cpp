@@ -101,3 +101,101 @@ void fn_71001a6f54(void*, CRntFile* file, void*, UnkMaterialValuesVector* values
         fn_710007c70c(file, p, size);
     }
 }
+
+// ---- fn_71001a6644: reading a material ----
+
+// A pass of the material (0x60 bytes, vtable unk_7101a1e358 over the base fn_7100023838 builds): its
+// named value blocks at 0x10 and a second array at 0x38.
+struct UnkMaterialPass {
+    char* vtable;
+    u64 field_0x8;
+    UnkMaterialValuesVector values;      // 0x10
+    base::UnkVector<u64> field_0x38;
+};
+static_assert(sizeof(UnkMaterialPass) == 0x60, "UnkMaterialPass placeholder layout");
+extern char unk_7101a1e358[];
+void fn_7100023838(void* self);
+
+// The material as this reads it: the header blocks read in place and their copies, the values at
+// 0x330, the passes at 0x358 and the ids at 0x3a8 that are emptied after the read.
+struct UnkMaterial {
+    u8 pad_0x0[0x358];
+    base::UnkVector<UnkMaterialPass> passes;
+    u8 pad_0x380[0x28];
+    base::UnkVector<CStrId> ids;  // 0x3a8
+};
+static_assert(__builtin_offsetof(UnkMaterial, ids) == 0x3a8, "UnkMaterial placeholder layout");
+
+template <class T>
+static inline T& At(UnkMaterial* self, u64 offset) {
+    return *reinterpret_cast<T*>(reinterpret_cast<u8*>(self) + offset);
+}
+
+// The unit's readers: a block at `dst` (the first argument is not read), the material's own fields,
+// a pass's second array, and the steps after the passes.
+void fn_71001a69a0(void*, CRntFile* file, void* dst);
+void fn_71001a6b5c(UnkMaterial* self);
+void fn_71001a71b8(base::UnkVector<UnkMaterialPass>* passes, u32 n);  // Reserve
+void fn_71001a7310(UnkMaterial* self, CRntFile* file, base::UnkVector<u64>* list);
+void fn_71001a7410(UnkMaterial* self);
+void fn_71001a836c(UnkMaterial* self, base::UnkVector<u64>* list);
+
+// Reads the material from `file`: its header blocks (copied to their places), its values, then
+// each pass with its blocks, values and second array; then empties the ids.
+// NON_MATCHING(minor): the first argument of the block readers, which they do not read, is null
+// here; the original leaves x0 as the previous call returned it.
+void fn_71001a6644(UnkMaterial* self, CRntFile* file) {
+    for (u64 o = 0x2e0; o < 0x330; o += 8)
+        At<u64>(self, o) = 0;
+    for (u64 o = 0x200; o < 0x240; o += 8)
+        At<u64>(self, o) = 0;
+    At<u64>(self, 0x1f0) = 0;
+    At<u64>(self, 0x1f8) = 0;
+    fn_710007c00c(file, 8, 0);
+    fn_71001a69a0(nullptr, file, self);
+    fn_71001a6b5c(self);
+    At<u32>(self, 0x148) = At<u32>(self, 0x18);
+    fn_71001a69a0(nullptr, file, &At<u8>(self, 0xb8));
+    fn_71001a69a0(nullptr, file, &At<u8>(self, 0xd0));
+    fn_71001a69a0(nullptr, file, &At<u8>(self, 0xe0));
+    fn_71001a69a0(nullptr, file, &At<u8>(self, 0x108));
+    fn_71001a69a0(nullptr, file, &At<u8>(self, 0x120));
+    fn_71001a69a0(nullptr, file, &At<u8>(self, 0x130));
+    At<u64>(self, 0x30) = At<u64>(self, 0xc0);
+    At<u64>(self, 0x38) = At<u64>(self, 0xc8);
+    At<u32>(self, 0x48) = At<u32>(self, 0xd8);
+    for (u64 i = 0; i < 0x20; i += 8)
+        At<u64>(self, 0x58 + i) = At<u64>(self, 0xe8 + i);
+    At<u32>(self, 0x88) = At<u32>(self, 0x118);
+    At<u64>(self, 0x80) = At<u64>(self, 0x110);
+    At<u32>(self, 0x98) = At<u32>(self, 0x128);
+    At<u8>(self, 0xb0) = At<u8>(self, 0x140);
+    At<u64>(self, 0xa8) = At<u64>(self, 0x138);
+    At<u32>(self, 0x18) = At<u32>(self, 0x148);
+    fn_71001a6f54(nullptr, file, nullptr, &At<UnkMaterialValuesVector>(self, 0x330));
+    s32 count = 0;
+    fn_710007c714(file, &count, 4, 1);
+    fn_71001a71b8(&self->passes, count);
+    for (s32 i = 0; i < count; ++i) {
+        u32 n = self->passes.count + 1;
+        fn_71001a71b8(&self->passes, n);
+        for (u32 k = self->passes.count; k < n; ++k) {
+            UnkMaterialPass* p = &self->passes.data[k];
+            fn_7100023838(p);
+            p->vtable = unk_7101a1e358 + 0x10;
+            new (&p->values) base::UnkVector<UnkMaterialValues>(0x35);
+            new (&p->field_0x38) base::UnkVector<u64>(0x35);
+        }
+        self->passes.count = n;
+        UnkMaterialPass* pass = n ? &self->passes.data[n - 1] : self->passes.data;
+        fn_71001a69a0(nullptr, file, pass);
+        fn_71001a6f54(nullptr, file, nullptr, &pass->values);
+        fn_71001a7310(self, file, &pass->field_0x38);
+    }
+    fn_71001a7410(self);
+    for (u64 i = 0; i < self->ids.count; ++i)
+        self->ids.data[i].Reset();
+    self->ids.count = 0;
+    for (UnkMaterialPass* p = self->passes.data; p != self->passes.data + self->passes.count; ++p)
+        fn_71001a836c(self, &p->field_0x38);
+}

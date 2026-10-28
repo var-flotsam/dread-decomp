@@ -10,6 +10,7 @@
 #include "base/UnkVector.h"
 #include "base/math/CVector.h"
 #include "base/math/UnkSegment2D.h"
+#include "game_s2/UnkItem50.h"
 #include "types.h"
 
 using base::math::CVector2D;
@@ -129,4 +130,57 @@ void fn_7100e3da0c(UnkMinimapMarker* self) {
         fn_7100125b44(&seg, &r);
     }
     fn_7100ebc7f0(&seg, self->field_0xd8, 50.0f, 500.0f);
+}
+
+// ---- fn_7100e3d8a8: a rectangle's dashed diagonal ----
+
+// A point of a path (0x20 bytes, polymorphic; destroyed through its vtable).
+struct UnkMinimapPathNode {
+    virtual void vf_0x0();
+    virtual ~UnkMinimapPathNode();
+    CVector3D v;
+    f32 field_0x14;
+    f32 field_0x18;
+};
+static_assert(sizeof(UnkMinimapPathNode) == 0x20, "UnkMinimapPathNode placeholder layout");
+
+
+// A path the dashed-line mesh draws (src/game/UnkDashedPathMesh.cpp): its points, whether its
+// bounds are stale and the bounds. Its vtable is game_s2/UnkItem50.h's (the logic path's,
+// src/game/SLogicPathNode/).
+struct UnkMinimapPath {
+    void** vtable;
+    base::UnkVector<UnkMinimapPathNode> nodes;
+    bool dirty;
+    f32 bounds[6];
+
+    UnkMinimapPath() : vtable(g_unk_7101cac938 + 2), nodes(0xf), dirty(true), bounds() {}
+    ~UnkMinimapPath() {
+        vtable = g_unk_7101cac938 + 2;
+        nodes.Free();
+    }
+};
+static_assert(sizeof(UnkMinimapPath) == 0x50, "UnkMinimapPath placeholder layout");
+
+void fn_71010592b0(UnkMinimapPath* path, const CVector3D* point);  // adds a point
+
+// A rectangle (its two corners) and the mesh at +0x18 that draws its diagonal.
+struct UnkMinimapRect {
+    CVector2D min;
+    CVector2D max;
+    u8 unk_0x10[0x8];
+    u8 mesh[1];  // +0x18
+};
+
+// Draws the rectangle's diagonal as a dashed arrow, 300 wide, dashes of 200 with gaps of 100, at a
+// depth of -100.
+void fn_7100e3d8a8(UnkMinimapRect* self) {
+    UnkMinimapPath path;
+    CVector3D p = {self->min.x, self->min.y, 0.0f};
+    fn_71010592b0(&path, &p);
+    f32 y = self->min.y + (self->max.y - self->min.y);
+    f32 x = self->min.x + (self->max.x - self->min.x);
+    p = {x, y, 0.0f};
+    fn_71010592b0(&path, &p);
+    fn_7100ebda30(&path, self->mesh, 1, 300.0f, 200.0f, 100.0f, -100.0f);
 }

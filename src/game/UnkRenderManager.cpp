@@ -104,7 +104,7 @@ void fn_71002182c0(const UnkRenderSetup* setup, const CFilePathStrId* root) {
 // The pass list's forwarders (clones of base::refl_FindByIdCall, src/clones/): they find the
 // pass whose id is the given argument and hand it the rest.
 void fn_71001fc7bc(void* passes, u64 hash, const f32* value, u32 count);
-void fn_71001fd8dc(void* passes, f32* rect, u32* a, u32* b, u32 view);
+void fn_71001fd8dc(void* passes, f32* rect, f32* x, f32* y, u32 view);
 void fn_71001fd868(void* passes, const f32* rect, u32 view, f32 x, f32 y);
 
 void fn_7100219294(UnkRenderManager* self, u64 hash, const f32* value, u32 count) {
@@ -114,9 +114,19 @@ void fn_7100219294(UnkRenderManager* self, u64 hash, const f32* value, u32 count
 // Reads the view's rectangle and sets it again with the two values (the two words the read also
 // gives are dropped).
 void fn_7100219e88(UnkRenderManager* self, u32 view, f32 x, f32 y) {
-    u32 unused;
+    f32 unused;
     f32 rect[4] = {};
     fn_71001fd8dc(self->field_0x220, rect, &unused, &unused, view);
+    fn_71001fd868(self->field_0x220, rect, view, x, y);
+}
+
+// The other way round: sets the view's rectangle to `rect`, keeping the two values it had.
+void fn_7100219ef4(UnkRenderManager* self, const f32* rect, u32 view) {
+    f32 old[4];
+    f32 x = 0;
+    f32 y = 0;
+    __builtin_memset(old, 0, sizeof(old));
+    fn_71001fd8dc(self->field_0x220, old, &x, &y, view);
     fn_71001fd868(self->field_0x220, rect, view, x, y);
 }
 

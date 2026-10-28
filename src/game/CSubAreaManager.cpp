@@ -821,3 +821,57 @@ void fn_7100eea618(UnkLeftoverArg, UnkSubArea* area, bool flag) {
         fn_71009349b0(ctrl, settings->field_0x104, &s_id);
     }
 }
+
+// ---- fn_7100ee2ebc: loading the scenario's collision file ----
+
+#include "game/UnkCollisionRecord.h"
+#include "game_s2/UnkWeakHandle.h"
+
+// The collision file's reader (0x18 bytes; its constructor and destructor), and the read that
+// fills the records (src/game/CCollisionComponent's unit).
+struct UnkCollisionFileReader {
+    u8 unk_0x0[0x18];
+};
+void fn_7100d45fc4(UnkCollisionFileReader* self, void* arg);
+void fn_7100d45fd4(UnkCollisionFileReader* self);
+void fn_7100860830(UnkCollisionFileReader* self, const char* path, base::UnkVector<UnkCollisionRecord>* out,
+                   bool a, void* b);
+
+// A collision object as the sub-area manager keeps it: weakly referenced, owned by the manager's
+// object at +0x920, and named by the id at +0x20.
+struct UnkSubAreaCollision : UnkWeakTarget {
+    void* field_0x8;
+    void* owner;  // 0x10
+    void* field_0x18;
+    CStrId name;  // 0x20
+};
+
+// The colliders' map insert (src/game/logic/collision/CCollider/fn_7100d419c0.cpp).
+template <class Node>
+struct UnkKeyedMap;
+struct UnkKeyedNode;
+UnkKeyedNode* fn_7100d41b00(UnkKeyedMap<UnkKeyedNode>* self, const CStrId& key, const UnkRefPtr& value);
+
+// Reads the collision objects of the file at `path` and adds each one, weakly referenced, to the
+// colliders under its name.
+// NON_MATCHING(minor): the weak handle's branches are laid out differently (the original stores the
+// empty reference in each of them and keeps a separate exit for each).
+void fn_7100ee2ebc(CSubAreaManager* self, const char* path) {
+    UnkCollisionFileReader reader;
+    fn_7100d45fc4(&reader, nullptr);
+    base::UnkVector<UnkCollisionRecord> records(0xf);
+    fn_7100860830(&reader, path, &records, true, nullptr);
+    for (u64 i = 0; i < records.count; ++i) {
+        auto* object = reinterpret_cast<UnkSubAreaCollision*>(records.data[i].field_0x28);
+        object->owner = reinterpret_cast<u8*>(self) + 0x920;
+        const CStrId& name = object->name;
+        UnkRefPtr ref;
+        UnkWeakHandle* handle = GetWeakHandle(object);
+        if (handle)
+            ++handle->ref_count;
+        ref.field_0x0 = handle;
+        fn_7100d41b00(reinterpret_cast<UnkKeyedMap<UnkKeyedNode>*>(&self->field_0x8d8), name, ref);
+    }
+    records.Free();
+    fn_7100d45fd4(&reader);
+}
