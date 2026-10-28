@@ -104,6 +104,19 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Lifter: port_lift's worklist as a slice (2026-10-27, branch `claude/lifter-worklist`).**
+`tools/port_link.py`'s `boot_missing.csv` follows direct calls from `nnMain` only, so it missed
+what the boot reaches through the pointers `nnMain` hands the SDK (main, the per-frame and the
+shutdown function) and main's four callbacks: the 127 functions of the port's round 3. port_lift
+now builds its own worklist with `--slice boot` (the default). It takes the `U` functions reachable
+by direct calls from `nnMain`, from those seven run-time roots, from the graphics loader and
+selector (`fn_71001b0050`, `fn_71001b0f24`, `fn_71001b0f7c`, `fn_71001cc608`), and from the four
+functions the Linux run trapped in through pointers (`fn_7100075730`, `fn_710008a460`,
+`fn_710002f0dc`, `fn_71000666b0`). That is 2,226 functions, 1.26 MB, ordered by callers in the
+slice. The roots themselves are listed whatever their status (`fn_7100000d40` and `fn_7100000cf0`
+are game code that `data/functions/` marks `L`). `--slice all` takes every `U` function except
+the SDK imports (16,002, 8.08 MB), and `--worklist CSV` the old way.
+
 **Lifter: arguments lost in byte-mode lifts (2026-10-27, branch `claude/lifter-passthrough`).** A
 byte-identical lift can rely on argument registers its C never names: on AArch64 a register the
 caller leaves set reaches the callee anyway, so the bytes match, but an x86-64 compile passes only

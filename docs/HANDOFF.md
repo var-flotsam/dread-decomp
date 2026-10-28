@@ -500,7 +500,7 @@ one Vulkan descriptor set per stage, stages recognised by their control section 
 `nvnProgramSetShaders` gets by pointer). Variant selection is the engine's own (`fn_71001b0f24` on
 `CProgramResource`, `port/nvn/README.md`): the shim needs nothing for it, but the engine's loader
 and selector (`fn_71001b0050`, `fn_71001b0f24`, `fn_71001b0f7c`, the program switch `fn_71001cc608`)
-are `U` and belong on the lifter's graphics worklist. The game calls 150 of its 523 NVN functions.
+are `U` and in port_lift's boot slice. The game calls 150 of its 523 NVN functions.
 Since then (#217 and the Vulkan check): the binding layer runs in the Linux image
 (`nvn_manifest_check`) and against lavapipe with the validation layers (`nvn_vulkan_check`,
 `port/docker/vulkan/Dockerfile`, the owner's go-ahead): all 671 programs' modules, layouts,
@@ -547,12 +547,17 @@ dropped one; after, **103** functions lose an argument (36 definitions, 95 calle
 path), listed by `tools/port_lift.py --passthrough` in `build/port/passthrough.json`. port_lift
 lifts those in semantic mode and marks each accepted lift `"overrides": "src/lifted/lifted_XXX.cpp"`
 in its manifest, for `tools/port_link.py` to link instead of the `src/lifted` copy (the M1 session's
-change, branch `claude/port-lift-overrides`). 93 of the 103 have an accepted lift, the 10 boot-path ones included. `tools/abi_facts.py` corrects capstone
-5.0.7's register access (`cmp`/`cmn`/`tst`, shifts and extends by immediate, `fmov #imm`), sees
-the cases of a switch, and serves every tool from one table computed in address order
-(`build/port/abi_facts.pickle`). Next for the lifter: the semantic gaps, the oracle's inputs and a
-worklist over every `U` function (branches `claude/lifter-*`). Open leftovers of every generator
-round are recorded in `docs/JOURNAL.md` (work log items 0–3).
+change, branch `claude/port-lift-overrides`). 93 of the 103 have an accepted lift, the 10
+boot-path ones included. `tools/abi_facts.py` corrects capstone 5.0.7's register access
+(`cmp`/`cmn`/`tst`, shifts and extends by immediate, `fmov #imm`), sees the cases of a switch, and
+serves every tool from one table computed in address order (`build/port/abi_facts.pickle`).
+port_lift's worklist is now a slice (2026-10-27): `--slice boot` (the default) is every `U`
+function reachable by direct calls from `nnMain`, from the seven run-time roots, from the four
+graphics functions and from the four the boot reaches only through pointers (2,226 functions,
+1.26 MB); `--slice all` is every `U` function but the SDK imports (16,002, 8.08 MB);
+`--worklist build/port/link/boot_missing.csv` gives the old one. Next for the lifter: the semantic
+gaps, the oracle's inputs, and both slices run (branches `claude/lifter-*`). Open leftovers of
+every generator round are recorded in `docs/JOURNAL.md` (work log items 0–3).
 
 ## Known issues and gotchas
 
