@@ -109,6 +109,7 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - capstone 5.0.7's register access is wrong for aliases: `cmp`/`cmn`/`tst` write their first operand instead of reading it, and `fmov #imm`, `lsl #imm` and `sxtw` read their destination. Anything built on `regs_access()` (`tools/abi_facts.py`) under-counts arguments read first by a compare: same entry.
 - The boot's run-time roots are function pointers (`nnMain`'s main, per-frame and shutdown callbacks, main's stored callbacks), and some traps are reached only through pointers: a static worklist from the roots is a lower bound, `DREAD_TRAP=log` gives the order: same entry.
 - Function-local statics of header-inline functions are weak symbols in the executable on the port, while lifted code uses the image's: a split object unless the symbol is bound to the image address: same entry.
+- Several templates can carry one address's tag (`refl_GetPrimitiveType<G>` and its inline helper `refl_MakePrimitiveType<G>`, which Clang 18 keeps out of line); an alias to one that returns a class by value puts its hidden result pointer in the caller's rdi and writes the object over the caller's frame. A crash whose return address is a function's start, with a type's hook table on the stack, is the sign: [port M1 round 5](#session-log-newest-first).
 
 ## Session log (newest first)
 
@@ -160,6 +161,64 @@ three x0 ones, the stack arguments the 7 below. Oracle rejections go from 25 to 
   bound (a vtable taken is not a method called).
 - Tool tests: `tools/tests/test_abi_facts.py` (result_main on hand-assembled callers) and
   `tools/tests/test_pcode_emu.py` (the per-run limits in `compare`).
+
+**Port M1 round 5: the bad string id was a wrong alias (2026-10-28, branch `claude/project-thread-3x0lf8`).** With #240's hand-written `fn_71002584a0` the boot no longer traps there, but it still crashed in the same place, so that function was not the cause. The crash is in the walk over a class's field records (`fn_7100096f30` → lifted `fn_71000e7420` → the attribute handler `fn_710008ef70`, here a field's `CreateElement` attribute holding `CreateNewActor`). A hardware watchpoint on `fn_710008ef70`'s return address caught the write: `refl_MakePrimitiveType<UnkRefl_fn_7100009658>`, called from the lifted `fn_71000979a0`, storing a whole `CType` (0xc8 bytes) over the stack. The handler then returned into the string id type's copy hook (slot 0x48), whose `src` was the type's vtable; its first entry is `fn_710009ecb8`, the "string id holding a function address".
+
+The cause is in `tools/port_link.py`. The lifted callers name the getter `callee::fn_7100009658(unsigned long)`, and two port definitions carry its tag: the getter `refl_GetPrimitiveType<G>()` and its inline helper `refl_MakePrimitiveType<G>(const CStrId&)`, which Clang 9 inlines and Clang 18 keeps out of line. The alias ranking matched parameter counts, so it picked the helper, which returns `CType` by value through a hidden pointer in rdi (x8 on AArch64). Ten lifted getters were aliased this way. Among several tagged candidates, the ranking now puts one returning a class by value last (`returns_class_by_value`, test in `tools/tests/test_port_link.py`). No alias targets the helper any more.
+
+The boot (`tools/boot_distance.py`, main plus this fix, lifts of 2026-10-28) now runs 274 lifts instead of 240. It reaches `fn_7100015c70` as before, then traps in `fn_71000f7800` (3,632 bytes, unit 99, the sound system's `CTunableSoundSystemATK`; no accepted lift). After that it hits a null read (0x10) in a C library call under the lifted `fn_7100100804` (from `fn_7100107a04`), probably the trapped function's missing result.
+
+**Two skills from obra/superpowers (2026-10-28, branch `claude/project-thread-4k0wen`).** At the owner's request, `.claude/skills/systematic-debugging` and `.claude/skills/writing-skills` are adapted from superpowers 7.0.1 (MIT, notice in `.claude/skills/LICENSE.superpowers`, entry in `docs/references.md`). `systematic-debugging` makes a session find the root cause before it tries a fix, and its new last section maps that onto this repository: the cheapest reproduction per symptom (one trap with `DREAD_TRAP=log`, `port_lift.py --debug ADDR`, `trymatch.py` on one source, one generator), the port's layers (lift or source, sweep, link, runtime, boot), and stream ownership of a fix. It is for traps, oracle rejections, regressions and tool failures, not for an ordinary non-matching function (`dread-match`). `writing-skills` is for creating or tightening a skill such as `dread-match` or `dread-hubs`: run a pressure scenario on a subagent without the skill, then with it. The rest of superpowers was evaluated and left out: its session-start hook loads into every parallel session, brainstorming waits for sign-off, and its plan, TDD, subagent and worktree skills overlap HANDOFF, the byte diff and oracle, and the streams.
+
+**CActorLayer's reflection by hand: `fn_71002584a0` (2026-10-28, branch `claude/project-thread-pvyj4u`).** The port
+traps in this function just before the bad string id, and the lifter can't verify it: the oracle's made-up
+tables never end its loops. It is `O` in the new `src/game/CActorLayer.cpp`. `gen_reflection` skipped it
+because of its first statement, a class attribute whose value is a list of one reflected value (a string id
+set up by its type's +0x38 hook, listed by `fn_7100ad3404`). Matching findings:
+- The value and the list match as temporaries of one `AddTyped<List, TypeGetter>(key, List(Value(name, type)))`
+  call. With named locals, the stack slots or the destruction order differed.
+- The name has to come before the type in the value's constructor, so the type getter runs after the id is built.
+- A `const char*` handed down through an inline helper is stored early. `static_cast<const char*>(p)` makes a fresh
+  temporary, stored after the key getter as a literal would be.
+
+**The three x0 cases the lifter's fix leaves refused, by hand (2026-10-28, branch `claude/project-thread-pvyj4u`, second PR).**
+The lifter thread's fix (branch `claude/project-thread-zgkpk3`) now checks whether a function writes s0
+itself before it treats s0 as the result, which covers six of the nine void functions above. It does
+not cover the three where x0 was taken for a result, because the same rule would wrongly catch
+functions that return `this`. Those three are now in `src/`: `fn_7100eea4c8` (a sub-area's settings to
+the environment manager) and `fn_7100eea618` (its camera settings to the main camera's
+CMetroidCameraCtrl), both `O` in `src/game/CSubAreaManager.cpp`, and `fn_710109c9e0` (the pop of the
+Lua console's scratch stack, `m` in `src/base/UnkLuaDoString.cpp`). The first argument of the two sub-area
+steps is an empty `UnkLeftoverArg`, because their caller leaves x0 as the previous call returned it.
+
+**Dashboard for both goals; README status card (2026-10-28, branch `claude/project-thread-vt2bik`).**
+The private dashboard (see "Status dashboard" below) predated the reorganization: it showed matching
+only, read the handoff's old phase table (every port row came out as an unstarted grey chip) and took
+the workstream table's second column as "Area" when it is now "Files", dropping "Next". It now opens
+with the two goals side by side. Decompilation: matching and usable shares, the boot path, the daily
+trend. PC port: the Linux build's furthest point (handoff), the share of code with an accepted
+semantic lift for every `U` function and for the boot worklist, and what the lifter can't take yet by
+reason. `tools/dashboard_export.py` writes `areas.csv` (with a decomp/port goal per area; replaces
+`phases.csv`), `workstreams.csv` with `next`, `lifts.csv` from the lift manifests, and
+`boot_milestones.csv`/`boot_run.csv` from `build/boot/boot_distance.json` once the nightly has run;
+handoff parsing moved to `tools/dread/handoff.py`. The lift manifests on the owner's PC (2026-10-28)
+read 15,594 of 16,088 accepted (all) and 2,266 of 2,323 (boot worklist, which adds the run-time and
+graphics roots to the boot slice), newer than the handoff's figures. `tools/status_card.py` is a slim
+version for the README (`docs/status.svg`, from tracked files only); the `policy` job writes it to each
+pull request's job summary with the change's effect on the whole binary, and the merging session
+refreshes the README with `--write` after `progress.py --handoff` (a card committed by every branch
+would conflict, like the handoff's table).
+
+**Boot functions the lifter refuses since #236, by hand (2026-10-28, branch `claude/project-thread-pvyj4u`).**
+#236 stopped accepting void lifts of functions whose callers read a result. On the boot slice that
+refused 13 functions (12 accepted before, and `fn_7100ee5dcc`, inconclusive before). Read in Ghidra,
+only four really return a float in s0: `fn_71000763c0` (a timed curve's step, `src/base/UnkCurveModifiers.cpp`),
+`fn_7100d7ce40` (an entity's factor, `src/game/CEntity.cpp`, `O`) and `fn_7100b8deec`/`fn_7100b8dff0`
+(animation times in frames, seconds or a fraction, new `src/game/UnkAnimTime.cpp`). The three others
+are `m` and behave the same. The other nine are void, so the lifter's result detection was wrong for
+them: `fn_710033187c` and `fn_7100ee4d34` take s0 as a float argument, five return with s0 left by a
+callee that takes a float constant, and `fn_7100eea4c8`'s leftover x0 is passed on unused. They wait
+for the lifter's detection fix.
 
 **Port M1 round 4: every registered type named (2026-10-28, branch `claude/port-m1-round4`).** The
 lifter's newer full set (#236, 15,594 lifts) linked with no trap before round 3's null dereference.

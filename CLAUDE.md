@@ -144,7 +144,8 @@ Toolchain:
   unmatched callers), then `--ready`. Progress is reported for the whole binary and the boot slice.
 - **Logs go to `docs/JOURNAL.md`** (newest first, with reusable findings added to its index).
   Feature branches leave `docs/HANDOFF.md` alone; the session that merges a round updates it and
-  regenerates its numbers with `tools/progress.py --slice boot --handoff`.
+  regenerates its numbers with `tools/progress.py --slice boot --handoff`, then the README's status
+  card with `tools/status_card.py --write` (each pull request shows the card in its `policy` job summary).
 - Commit after each numbered step, with commit messages prefixed by phase and step
   (e.g. `Phase 2.1: ...`). A pull request is a hub cluster or about 30 functions or more.
 

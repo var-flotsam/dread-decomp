@@ -324,6 +324,14 @@ Status tables for the project dashboard, written to build/dashboard/ (counts onl
 python tools/dashboard_export.py [--version 2.1.0] [--ref HEAD] [--days 30] [--out build/dashboard]
 ```
 
+### `tools/status_card.py`
+
+The README's status card: a slim version of the project dashboard, from tracked files only.
+
+```sh
+python tools/status_card.py [--write | --check] [--summary FILE] [--base REF]
+```
+
 ### `tools/gen_commands.py`
 
 Generate docs/commands.md: every tool's one-line purpose and usage lines, from its docstring.

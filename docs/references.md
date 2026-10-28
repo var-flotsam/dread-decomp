@@ -45,6 +45,7 @@ before vendoring anything.
 | [eliben/pyelftools](https://github.com/eliben/pyelftools) | 0.33 | Reading compiled objects | Public domain |
 | [python-lz4/python-lz4](https://github.com/python-lz4/python-lz4) | 4.4.5 | NSO segment decompression | BSD |
 | Python 3.12, Temurin JDK 21, CMake 4.4, Ninja 1.13, 7-Zip | winget | Toolchain | various |
+| [obra/superpowers](https://github.com/obra/superpowers) | 7.0.1 (commit `2ce8aa15`), two skills adapted, not the plugin | `.claude/skills/systematic-debugging` (root cause before any fix; a section on this repository's runs) and `.claude/skills/writing-skills` (testing a skill on a subagent before relying on it); notice in `.claude/skills/LICENSE.superpowers`. The plugin's session-start hook and its other skills were left out: the hook loads into every session, and the planning, TDD, subagent and worktree skills duplicate this repository's own process | MIT |
 | Eden (yuzu fork) | 0.2.1, supplied by the user | Dumping ExeFS/RomFS; boot log confirmed the 2.1.0 build ID | GPL-3.0 (not distributed here) |
 
 ## Planned (approved, not yet vendored into the repo)

@@ -1,7 +1,7 @@
 // From unit 2668 of tools/tu_map.py (0x710109c64c-0x710109d670): the engine's script console next to
 // the embedded Lua. fn_710109c880 runs a string as a chunk (a string that starts with a space is
 // printed: it runs as "print(...)"), with a scratch array pushed for the length of the run, and
-// reports an error message through a callback. The start-up settings hand it to the engine
+// reports an error message through a callback; fn_710109c9e0 pops that array again. The start-up settings hand it to the engine
 // (src/engine/HostArguments.cpp). Names and layouts are placeholders.
 #include <stdio.h>
 #include <string.h>
@@ -9,6 +9,7 @@
 #include "../../lib/lua/lua.h"
 #include "../../lib/lua/lauxlib.h"
 #include "base/UnkVector.h"
+#include "base/reflection/UnkReflCast.h"
 #include "types.h"
 
 extern lua_State* g_unk_7172a01d18;
@@ -25,6 +26,34 @@ struct __attribute__((packed, aligned(4))) UnkLuaScratch {
     u32 flags;
     u32 pad_0x1c;
     base::UnkAllocator* allocator;
+
+    // The array as a new slot of the stack gets it: empty, with room for 400 elements.
+    void Init() {
+        data = nullptr;
+        count = 0;
+        step = 10;
+        field_0x14 = true;
+        flags = 6;
+        allocator = fn_7100083990();
+        if (capacity < 400) {
+            u64* p = static_cast<u64*>(allocator->vf_0x40(400 * sizeof(u64), 8, flags));
+            if (data) {
+                memcpy(p, data, (u64)count * sizeof(u64));
+                allocator->vf_0x48(data);
+            }
+            data = p;
+            capacity = 400;
+        }
+    }
+
+    // Frees the array (the elements need no destruction).
+    void Free() {
+        if (data) {
+            count = 0;
+            allocator->vf_0x48(data);
+            capacity = 0;
+        }
+    }
 };
 static_assert(sizeof(UnkLuaScratch) == 0x28, "UnkLuaScratch layout");
 
@@ -71,4 +100,27 @@ void fn_710109c880(const char* str, UnkLuaReportFn report) {
             report(message ? message : "(error object is not a string)", 2, 2);
     }
     fn_710109c9e0();
+}
+
+// Releases the values in the array the last run pushed, then shrinks the stack by one, freeing the
+// array. The shrink is the stack's general resize, so a pop of an empty stack would build
+// 0xffffffff new slots, as in the original.
+// NON_MATCHING(minor): register allocation and addressing only: the original addresses the slots
+// through a second base (0x7172a01d20) and keeps the slot pointer at the slot's data rather than
+// its count, so the offsets and registers differ.
+void fn_710109c9e0() {
+    UnkLuaScratchStack& stack = g_unk_7172a025a0;
+    UnkLuaScratch& top = (stack.entries + stack.count)[-1];
+    for (u64* it = top.data, *end = top.data + top.count; it != end; ++it)
+        fn_71000a1c60(reinterpret_cast<base::reflection::UnkReflValue*>(*it));
+    u32 old_count = stack.count;
+    u32 new_count = old_count - 1;
+    if (old_count < new_count) {
+        for (u32 i = old_count; i != new_count; ++i)
+            stack.entries[i].Init();
+    } else {
+        for (u64 i = new_count; i < stack.count; ++i)
+            stack.entries[i].Free();
+    }
+    stack.count = new_count;
 }

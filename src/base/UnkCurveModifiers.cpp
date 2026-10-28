@@ -3,7 +3,7 @@
 // callers apply to a 0..1 value. Each letter reshapes the value in turn ('2' squares it, 'i'
 // inverts it, 'q' takes its root, 'R' and 'r' scale it by a random factor ...); some use the
 // parameter itself as well. Letters without a meaning are skipped. Names are placeholders.
-// Holds fn_7100076020.
+// Holds fn_7100076020 and fn_71000763c0 (a timed curve's step).
 #include "types.h"
 
 extern "C" int rand();
@@ -86,4 +86,43 @@ f32 fn_7100076020(f32 t, const char* modifiers) {
             v = 1.0f;
     }
     return v;
+}
+
+// A value that runs from `start` to `start + delta` over `duration`, shaped by `modifiers`; `end`
+// is what it reports once the time has run out.
+struct UnkTimedCurve {
+    f32 start;
+    f32 field_0x4;
+    f32 duration;
+    f32 delta;
+    f32 time;
+    u32 field_0x14;
+    const char* modifiers;
+    u8 field_0x20[0x28];
+    f32 end;
+};
+
+// Advances the curve's time by `dt`, clamped to 0..duration, and returns its value there.
+// NON_MATCHING(minor): the original shares one copy of the shaping tail between the two clamp
+// branches; ours duplicates it for the branch that starts at 0.
+f32 fn_71000763c0(f32 dt, UnkTimedCurve* curve) {
+    f32 t = curve->time + dt;
+    if (t <= 0.0f) {
+        t = 0.0f;
+        curve->time = t;
+        if (t < curve->duration)
+            goto shape;
+    } else {
+        f32 duration = curve->duration;
+        t = t >= duration ? duration : t;
+        curve->time = t;
+        if (t < duration)
+            goto shape;
+    }
+    return curve->end;
+shape:
+    f32 u = t / curve->duration;
+    if (curve->modifiers && *curve->modifiers)
+        u = fn_7100076020(u, curve->modifiers);
+    return curve->start + u * curve->delta;
 }
