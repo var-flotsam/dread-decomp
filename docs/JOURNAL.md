@@ -144,7 +144,11 @@ three x0 ones. Oracle rejections go from 25 to 17, "result s0/d0" verdicts from 
   callee has no facts, so `Lifter.stack_args_before` now counts the 8-byte slots from `[sp]` up that
   the straight-line code before the `blr` stores, and `callee_need("")` passes them as a direct
   callee's are (all eight integers, then `st<i>`). A local stored just above the arguments is passed
-  too; a callee taking fewer ignores it. Semantic mode only.
+  too; a callee taking fewer ignores it. Semantic mode only. Of the 105, 98 are accepted (all 7 on the
+  boot path: `71000f17c8`, `71001ef898`, `710027c298`, `7100d58cfc`, `7100ea39a4`, `7100ee5bc4`,
+  `71011f8bdc`); 3 stop at "stack arguments outside the frame" (`7100148600`, `7100211590`,
+  `710074fd08`), 3 are rejected (two pass a d register where the callee reads it as s, or the reverse:
+  `71003e69e4`, `7100656f3c`; `710096cdec`) and one is inconclusive (`71008626bc`).
 - Tool tests: `tools/tests/test_abi_facts.py` (result_main on hand-assembled callers) and
   `tools/tests/test_pcode_emu.py` (the per-run limits in `compare`).
 
