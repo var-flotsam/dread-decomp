@@ -131,7 +131,8 @@ the lifter's (diagnosed on the PC, measured there). All semantic mode:
   of q0-q7 not written before stores each register's double (the low 64 bits, what `va_arg` reads);
   `setup_frame` counts a q access as 16 bytes.
 - **Lane arithmetic** (`71000f88b8`): `fadd|fsub|fmul|fdiv v.2s|4s` on known lanes, and `mov v.d[1],
-  v.d[0]`.
+  v.d[0]`; a scalar `ldr s<n>` before a lane load into v<n> gives lane 0 (the others zero).
+- **`rev16`** (`710007d788`, past its variadic save): the bytes of each halfword swapped.
 - `end` is not a function to lift: both symbols of that name lack a size in the image's symbol table
   (a 16-byte entry at `7101238d80`, and the image's end marker), which the size cap reads as too big.
 

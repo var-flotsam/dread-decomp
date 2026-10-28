@@ -1562,6 +1562,13 @@ class Lifter:
             else:
                 s.lanes[100 + n][i] = self.bind("f32", e)  # (loaded here, not at the store)
             return True
+        if m in ("ldr", "ldur") and mem and not x.writeback and (g := re.fullmatch(r"s(\d+), \[.*", op)) \
+                and any(y.op_str.startswith((f"{{v{g.group(1)}.s}}[", f"v{g.group(1)}.s[")) for y in self.ins[self.pos + 1:]):
+            # a scalar load clears the other lanes: lane 0 of a vector built on later
+            n = int(g.group(1))
+            self.write(f"s{n}", f"*(f32*){self.address(x, mem[0], 4)}", "f32")
+            s.lanes[100 + n] = [self.snapshot(self.read(f"s{n}")[0], "f32")] + ["0.0f"] * 3
+            return True
         if m == "mov" and (g := re.fullmatch(r"v(\d+)\.s\[([0-3])\], v(\d+)\.s\[0\]", op)):
             n, i, src = int(g.group(1)), int(g.group(2)), int(g.group(3))
             if 100 + n not in s.lanes:
@@ -1654,6 +1661,14 @@ class Lifter:
             t = width_type(regs[0])
             v, _ = self.read(regs[1])
             self.write(regs[0], f"({t})__builtin_bswap{32 if t == 'u32' else 64}(({t})(u64)({v}))", t)
+            return True
+        if m == "rev16" and len(regs) == 2 and regs[0][0] == regs[1][0] and regs[0][0] in "xw":
+            # the bytes of each halfword swapped
+            t = width_type(regs[0])
+            lo, hi = ("0x00ff00ffu", "0xff00ff00u") if t == "u32" else ("0x00ff00ff00ff00ffull", "0xff00ff00ff00ff00ull")
+            v, _ = self.read(regs[1])
+            v = self.snapshot(f"({t})(u64)({v})", t)
+            self.write(regs[0], f"({t})((({v} >> 8) & {lo}) | (({v} << 8) & {hi}))", t)
             return True
         if m == "ldpsw" and mem and len(regs) == 2 and not x.writeback and all(r[0] == "x" for r in regs):
             a = self.temp_ptr(self.address(x, mem[0]))
