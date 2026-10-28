@@ -10,9 +10,14 @@ know which registers of a call to compare. This module computes, per function:
   args      argument registers the function may read before writing them, on some path from its
             entry: x0-x7 (keys 0-7), x8 (8, the indirect result register) and v0-v7 (100-107).
             A direct call reads its callee's `args` (recursively, memoized); an indirect call
-            (blr/br) reads its target register, x0 and the argument registers written earlier in
-            the same block (the lifter's own rule for indirect calls); every call clobbers x0-x18
-            and v0-v7/v16-v31.
+            (blr/br) reads its target register, x0, the argument registers written earlier in
+            the same block (the lifter's own rule for indirect calls) and `fwd`; every call
+            clobbers x0-x18 and v0-v7/v16-v31.
+  fwd       argument registers the function's direct callers set for it (written in the block
+            before the call and not read again before it; vector copies through q/v registers
+            do not count): what an indirect call, whose callee nothing names, may be passed on.
+            A wrapper `this->vf(0.0f)` reached as fn(this, 0.0f) reads s0 that way. Only for
+            functions with an indirect call (empty otherwise).
   stack     whether it reads its caller's frame (a load from [sp, #k] at or above the entry sp):
             arguments beyond the eight registers.
   ret_used  whether some caller reads x0 (or s0/d0) after calling it, before writing it; a tail
@@ -29,8 +34,10 @@ Usage: python tools/abi_facts.py --version 2.1.0 ADDR [ADDR...]   (prints the fa
 from __future__ import annotations
 
 import argparse
+import os
 import pickle
 import sys
+import time
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -42,12 +49,13 @@ import asmdiff  # noqa: E402
 import callgraph  # noqa: E402
 
 MAX_SIZE = 65536
-CACHE_VERSION = 6  # bump when the analysis changes (AbiFacts.load ignores other versions)
+CACHE_VERSION = 9  # bump when the analysis changes (AbiFacts.load ignores other versions)
 MAX_DEPTH = 48  # callee recursion; deeper chains count as unknown
 INT_ARGS = frozenset(range(9))  # x0-x7 and x8
 FLOAT_ARGS = frozenset(range(100, 108))
 ARGS = INT_ARGS | FLOAT_ARGS
 CLOBBER = frozenset(range(19)) | frozenset(range(100, 108)) | frozenset(range(116, 132)) | {"nzcv"}
+RESULTS = frozenset({0, 1, 100, 101, 102, 103})  # what a call may return in: x0:x1, an HFA in s0-s3
 # C library imports by name: (integer arguments, float arguments, returns a value).
 CLIB = {"memcpy": (3, 0), "memmove": (3, 0), "memset": (3, 0), "memcmp": (3, 0), "strlen": (1, 0),
         "strcmp": (2, 0), "strncmp": (3, 0), "strcpy": (2, 0), "strncpy": (3, 0), "strchr": (2, 0),
@@ -62,6 +70,13 @@ CLIB = {"memcpy": (3, 0), "memmove": (3, 0), "memset": (3, 0), "memcmp": (3, 0),
 CS = capstone.Cs(capstone.CS_ARCH_ARM64, capstone.CS_MODE_ARM)
 CS.detail = True
 BRANCHES = ("b", "cbz", "cbnz", "tbz", "tbnz")
+# Corrections to capstone's register access (Insn.of).
+FLAGS_ONLY = frozenset({"cmp", "cmn", "tst"})
+# Vector-register forms that move one float (Clang 9 copies an FPR as `mov v0.16b, v8.16b`): not
+# a vector copy (Insn.vec), so they count as a caller setting a float argument.
+SCALAR_COPIES = frozenset({"mov", "fmov", "dup", "umov", "ins"})
+NO_DEST_READ = frozenset({"lsl", "lsr", "asr", "ror", "ubfx", "sbfx", "ubfiz", "sbfiz", "sxtb", "sxth", "sxtw",
+                          "uxtb", "uxth", "fmov", "tbl"})
 
 
 @dataclass(frozen=True)
@@ -69,6 +84,7 @@ class Facts:
     args: frozenset   # register keys (see the module docstring)
     stack: bool
     wide: frozenset = frozenset()  # integer argument registers read as x<n> (else only as w<n>)
+    fwd: frozenset = frozenset()   # argument registers the callers set, for an indirect call
 
     @property
     def ints(self) -> int:
@@ -80,8 +96,29 @@ class Facts:
         return max([k - 99 for k in self.args if 100 <= k < 108], default=0)
 
     @property
+    def fwd_counts(self) -> tuple[int, int]:
+        """(integer, float) argument registers an indirect call of this function is passed, by
+        the rule above: x0 always, then up to the highest of `fwd`."""
+        return (max([k + 1 for k in self.fwd if k < 8], default=1),
+                max([k - 99 for k in self.fwd if 100 <= k < 108], default=0))
+
+    @property
     def sret(self) -> bool:
         return 8 in self.args
+
+
+def replace(tmp: Path, path: Path) -> bool:
+    """os.replace for a cache file other processes may be reading: on Windows a reader holding it
+    open makes the replace fail for a moment, so retry, and give up on the save (never the run)."""
+    for _ in range(10):
+        try:
+            os.replace(tmp, path)
+            return True
+        except PermissionError:
+            time.sleep(0.5)
+    tmp.unlink(missing_ok=True)
+    print(f"{path} is in use; not saved", file=sys.stderr)
+    return False
 
 
 _KEYS: dict[int, object] = {}
@@ -122,18 +159,32 @@ class Insn:
     mem: tuple | None    # (base key, displacement, writeback) of the memory operand
     reg_ops: tuple       # keys of the register operands, in order
     xreads: frozenset    # integer registers read in their 64-bit form
+    vec: bool            # a q register, or a v register outside SCALAR_COPIES: a vector copy, not a float argument
 
     @staticmethod
     def of(x) -> "Insn":
         r, w = x.regs_access()
-        regs = tuple(reg_key(op.reg) for op in x.operands if op.type == arm64.ARM64_OP_REG)
+        ops = [op for op in x.operands if op.type == arm64.ARM64_OP_REG]
+        # capstone 5.0.7's access lists are wrong for some aliases (a census over main): a compare
+        # reads its first register and writes only NZCV, where capstone writes the register and
+        # does not read it; a shift, extend or bitfield move by immediate, and fmov of an
+        # immediate, do not read their destination. (movk, bfi/bfxil and lane inserts do.)
+        if x.mnemonic in FLAGS_ONLY:
+            r = list(r) + [op.reg for op in ops]
+            w = [q for q in w if CS.reg_name(q) == "nzcv"]
+        elif x.mnemonic in NO_DEST_READ and ops and "[" not in x.op_str.split(",", 1)[0]:  # (not a lane write)
+            sources = {op.reg for op in ops[1:]}
+            r = [q for q in r if q != ops[0].reg or q in sources]
+        regs = tuple(reg_key(op.reg) for op in ops)
         mem = [op for op in x.operands if op.type == arm64.ARM64_OP_MEM]
         return Insn(x.address, x.mnemonic, tuple(op.imm for op in x.operands if op.type == arm64.ARM64_OP_IMM),
                     frozenset(k for k in map(reg_key, r) if k is not None),
                     frozenset(k for k in map(reg_key, w) if k is not None),
                     regs[0] if regs else None,
                     (reg_key(mem[0].mem.base), mem[0].mem.disp, bool(x.writeback)) if mem else None, regs,
-                    frozenset(reg_key(q) for q in r if CS.reg_name(q)[0] == "x" and isinstance(reg_key(q), int)))
+                    frozenset(reg_key(q) for q in r if CS.reg_name(q)[0] == "x" and isinstance(reg_key(q), int)),
+                    any(CS.reg_name(op.reg)[0] == "q" for op in ops) or (
+                        x.mnemonic not in SCALAR_COPIES and any(CS.reg_name(op.reg)[0] == "v" for op in ops)))
 
 
 class AbiFacts:
@@ -146,21 +197,46 @@ class AbiFacts:
         self._busy: set[int] = set()
         self._decoded: dict[int, list | None] = {}
         self._ret: dict[int, bool | None] = {}
+        self._fwd: dict[int, frozenset] = {}
         self._wide = False  # liveness over 64-bit reads only (Facts.wide)
 
     def load(self, path: Path) -> None:
-        """Facts computed by an earlier run (they depend on the binary only)."""
+        """The complete table an earlier run computed (complete()); a partial one is ignored."""
         if path.is_file():
             with path.open("rb") as fh:
                 saved = pickle.load(fh)
-            if saved.get("version") == CACHE_VERSION:
+            if saved.get("version") == CACHE_VERSION and saved.get("complete"):
                 self._facts.update(saved["facts"])
                 self._ret.update(saved["ret"])
+                self.is_complete = True
+
+    def complete(self, path: Path) -> None:
+        """Facts of every function, computed in address order from nothing, unless `path` holds
+        that table already. A call cycle or a chain deeper than MAX_DEPTH leaves the function
+        that closes it without facts at that point (facts()), so lazily computed facts would
+        depend on the order they are asked for; this one order makes them a function of the
+        binary, and tools/gen_lift.py's output with them (about two minutes, then cached)."""
+        self.load(path)
+        if getattr(self, "is_complete", False):
+            return
+        self._facts.clear()
+        self._fwd.clear()
+        for a in sorted(self.orig.sizes):
+            self.facts(a)
+        self._decoded.clear()  # (every function's instructions: gigabytes, decoded again on demand)
+        self.is_complete = True
+        self.save(path)
 
     def save(self, path: Path) -> None:
+        """Write the table (only a complete one is ever loaded again). Several tools share the
+        file: it is replaced in one step, and a reader that holds it open on Windows only costs
+        the save, never the run."""
         path.parent.mkdir(parents=True, exist_ok=True)
-        with path.open("wb") as fh:
-            pickle.dump({"version": CACHE_VERSION, "facts": self._facts, "ret": self._ret}, fh)
+        tmp = path.with_name(f"{path.name}.{os.getpid()}.tmp")
+        with tmp.open("wb") as fh:
+            pickle.dump({"version": CACHE_VERSION, "complete": getattr(self, "is_complete", False),
+                         "facts": self._facts, "ret": self._ret}, fh)
+        replace(tmp, path)
 
     # -- decoding -------------------------------------------------------------------------------
 
@@ -211,12 +287,74 @@ class AbiFacts:
             # an argument the function reads whole somewhere before redefining it.
             self._wide = True
             live_wide, _ = self.liveness(addr, ins, depth)
-            f = Facts(args, self.reads_stack(ins), frozenset(k for k in args if k < 9 and k in live_wide[0]))
+            f = Facts(args, self.reads_stack(ins), frozenset(k for k in args if k < 9 and k in live_wide[0]),
+                      self.fwd_of(addr, ins))
         finally:
             self._wide = outer
             self._busy.discard(addr)
         self._facts[addr] = f
         return f
+
+    @staticmethod
+    def block_starts(addr: int, ins: list) -> set[int]:
+        """Block starts: the entry, branch targets, and the instruction after a branch or call."""
+        end = addr + 4 * len(ins)
+        starts = {addr}
+        for x in ins:
+            if x.mnemonic in BRANCHES or x.mnemonic.startswith("b."):
+                starts |= {t for t in x.imms if addr <= t < end}
+            if x.mnemonic in BRANCHES or x.mnemonic.startswith("b.") or x.mnemonic in ("bl", "blr", "br", "ret"):
+                starts.add(x.address + 4)
+        return starts
+
+    @staticmethod
+    def jump_table(ins: list, i: int) -> bool:
+        """Whether the br at ins[i] dispatches a switch (Clang's `adr` shortly before), not a call."""
+        return any(y.mnemonic == "adr" for y in ins[max(i - 10, 0):i])
+
+    @staticmethod
+    def cases(ins: list, i: int, starts: set[int], at: dict[int, int]) -> list[int]:
+        """The successors of the switch br at ins[i]: every block after it (its cases and what
+        follows them; more than the table holds, which only adds registers that may be read)."""
+        return [at[t] for t in sorted(starts) if t > ins[i].address and t in at]
+
+    def fwd_of(self, addr: int, ins: list) -> frozenset:
+        """Facts.fwd: the callers' evidence, for a function with an indirect call."""
+        if addr not in self._fwd:
+            calls = any(x.mnemonic == "blr" or (x.mnemonic == "br" and not self.jump_table(ins, i))
+                        for i, x in enumerate(ins))
+            self._fwd[addr] = self.evidence(addr) if calls else frozenset()
+        return self._fwd[addr]
+
+    def evidence(self, addr: int) -> frozenset:
+        """Argument registers (x0-x7, v0-v7) that addr's direct callers write in the block before
+        calling it and do not read again before the call; a q/v register written by a vector
+        copy does not count. Computed from the callers' instructions alone (no facts), so it does
+        not depend on the order facts are asked for."""
+        if self.graph is None:
+            self.graph = callgraph.CallGraph(self.version, self.rows)
+        ev: set = set()
+        for c in sorted(set(self.graph.callers.get(addr, []))):
+            ins = self.decode(c)
+            if ins is None:
+                continue
+            starts = self.block_starts(c, ins)
+            for i, x in enumerate(ins):
+                if not x.imms or x.imms[-1] != addr or not (
+                        x.mnemonic in ("bl", "b") or x.mnemonic in BRANCHES or x.mnemonic.startswith("b.")):
+                    continue
+                if x.address in starts and i and ins[i - 1].mnemonic in ("b", "ret", "br"):
+                    continue  # a block nothing falls into: no write before the call in it
+                later: set = set()
+                for y in reversed(ins[:i]):
+                    if y.mnemonic in ("bl", "blr"):
+                        break
+                    if not y.vec:
+                        ev |= (y.defs & ARGS) - later - {8}
+                    later |= y.uses
+                    if y.address in starts:
+                        break
+        return frozenset(ev)
 
     def call_uses(self, target: int | None, block: list, k: int, depth: int, reg=None) -> set:
         """Registers a call at block[k] reads: the callee's facts, or the indirect-call rule."""
@@ -243,13 +381,9 @@ class AbiFacts:
         uses: list[set] = [set() for _ in range(n)]
         defs: list[set] = [set() for _ in range(n)]
         succ: list[list[int]] = [[] for _ in range(n)]
+        fwd = self.fwd_of(addr, ins)  # what an indirect call is passed on (Facts.fwd)
         # Blocks for the indirect-call rule: a block starts at a branch target or after a branch.
-        starts = {addr}
-        for x in ins:
-            if x.mnemonic in BRANCHES or x.mnemonic.startswith("b."):
-                starts |= {t for t in x.imms if addr <= t < end}
-            if x.mnemonic in BRANCHES or x.mnemonic.startswith("b.") or x.mnemonic in ("bl", "blr", "br", "ret"):
-                starts.add(x.address + 4)
+        starts = self.block_starts(addr, ins)
         block_of: list[tuple[int, int]] = []
         bstart = 0
         for i, x in enumerate(ins):
@@ -271,11 +405,13 @@ class AbiFacts:
                     fall = []  # code ending in a call: the callee does not return
             elif m == "blr":
                 reg = x.reg0
-                u = self.call_uses(None, block, len(block) - 1, depth, reg)
+                u = self.call_uses(None, block, len(block) - 1, depth, reg) | fwd
                 d = set(CLOBBER) | {30}
+            elif m == "br" and self.jump_table(ins, i):
+                u, d, fall = {x.reg0}, set(), self.cases(ins, i, starts, at)
             elif m == "br":
                 reg = x.reg0
-                u, d, fall = self.call_uses(None, block, len(block) - 1, depth, reg) | set(ret_uses), set(), []
+                u, d, fall = self.call_uses(None, block, len(block) - 1, depth, reg) | set(ret_uses) | fwd, set(), []
             elif m == "b":
                 t = imm[0]
                 if addr <= t < end:
@@ -306,6 +442,63 @@ class AbiFacts:
                     live_in[i] = new
                     changed = True
         return live_in, at
+
+    def held(self, addr: int) -> dict[int, tuple[int | None, frozenset]]:
+        """At each call leaving the function: (its direct target or None, the argument registers
+        that may hold something there), by a forward pass: on some path from the entry they still
+        hold the entry's value or the function wrote them since its last call (a call leaves its
+        possible results, RESULTS). A callee reads garbage in the others, in the original too.
+        A switch's br leads to every block after it."""
+        ins = self.decode(addr)
+        if ins is None:
+            return {}
+        at = {x.address: i for i, x in enumerate(ins)}
+        end = addr + 4 * len(ins)
+        regs = frozenset(range(8)) | FLOAT_ARGS
+        n = len(ins)
+        starts = self.block_starts(addr, ins)
+        succ: list[list[int]] = []
+        calls: dict[int, int | None] = {}
+        for i, x in enumerate(ins):
+            m, t = x.mnemonic, x.imms[-1] if x.imms else None
+            fall = [i + 1] if i + 1 < n else []
+            if m == "br" and self.jump_table(ins, i):
+                fall = self.cases(ins, i, starts, at)
+            elif m == "ret" or m == "br":
+                if m == "br":
+                    calls[i] = None
+                fall = []
+            elif m in ("bl", "blr"):
+                calls[i] = t if m == "bl" else None
+                if m == "bl" and i == n - 1:
+                    fall = []
+            elif m == "b":
+                if addr <= t < end:
+                    fall = [at[t]] if t in at else []
+                else:
+                    calls[i], fall = t, []
+            elif (m.startswith("b.") or m in BRANCHES) and t is not None:
+                if addr <= t < end:
+                    fall = fall + ([at[t]] if t in at else [])
+                else:
+                    calls[i] = t
+            succ.append(fall)
+        live_in: list[frozenset | None] = [None] * n
+        live_in[0] = regs
+        work = [0]
+        while work:
+            i = work.pop()
+            x, s = ins[i], live_in[i]
+            if x.mnemonic in ("bl", "blr"):
+                out = (s - CLOBBER) | RESULTS
+            else:
+                out = s | (x.defs & regs)
+            for j in succ[i]:
+                new = out if live_in[j] is None else live_in[j] | out
+                if new != live_in[j]:
+                    live_in[j] = new
+                    work.append(j)
+        return {ins[i].address: (t, live_in[i]) for i, t in calls.items() if live_in[i] is not None}
 
     @staticmethod
     def reads_stack(ins: list) -> bool:
@@ -339,7 +532,7 @@ class AbiFacts:
         if addr in self._ret:
             return self._ret[addr]
         if self.graph is None:
-            self.graph = callgraph.CallGraph(self.version)
+            self.graph = callgraph.CallGraph(self.version, self.rows)
         callers = self.graph.callers.get(addr, [])
         if not callers or depth > 8:
             return None

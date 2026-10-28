@@ -38,9 +38,9 @@ typedef s32 __attribute__((may_alias)) a_s32;
 typedef f32 __attribute__((may_alias)) a_f32;
 typedef f64 __attribute__((may_alias)) a_f64;
 
-namespace callee { char* fn_7100083c00(); }
-char* fn_710122c6e4() {
-    return callee::fn_7100083c00();
+namespace callee { char* fn_7100083c00(char*); }
+char* fn_710122c6e4(char* p0) {
+    return callee::fn_7100083c00(p0);
 }
 
 namespace callee { char* fn_7101230250(char*); }
@@ -244,16 +244,16 @@ char* fn_710122dfa0(char* p0, char* p1) {
     return callee::fn_710122d8d8(p0, p1, r0_2);
 }
 
-namespace callee { char* fn_710122db9c(); }
-char* fn_710122e048() {
-    return callee::fn_710122db9c();
+namespace callee { char* fn_710122db9c(char*, char*, char*, char*, char*); }
+char* fn_710122e048(char* p0, char* p1, char* p2, char* p3, char* p4) {
+    return callee::fn_710122db9c(p0, p1, p2, p3, p4);
 }
 
-namespace callee { char* fn_7101230468(); }
+namespace callee { char* fn_7101230468(char*); }
 char* fn_710122eb14(char* p0) {
     u32 r0_8 = (u32)*(u32*)((char*)(p0) + 452);
     if ((s32)(u64)(r0_8) >= (s32)(1)) {
-        return callee::fn_7101230468();
+        return callee::fn_7101230468(p0);
     }
     u64 r4_0 = 0;
     return (char*)(u64)(r4_0);

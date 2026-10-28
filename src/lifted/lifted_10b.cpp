@@ -59,10 +59,10 @@ u32 fn_71010bee20(char* p0, char* p1, u32 p2) {
     return r14_0;
 }
 
-namespace callee { char* fn_71010c0ff0(); }
-u32 fn_71010bef60(char* p0, char* p1) {
+namespace callee { char* fn_71010c0ff0(char*, char*, char*, char*, char*, char*, char*, char*, f64, f64, f64, f64, f64, f64, f64, f64); }
+u32 fn_71010bef60(char* p0, char* p1, char* p2, char* p3, char* p4, char* p5, char* p6, char* p7, f64 f0, f64 f1, f64 f2, f64 f3, f64 f4, f64 f5, f64 f6, f64 f7) {
     char* r0_19 = p1;
-    char* r1_0 = callee::fn_71010c0ff0();
+    char* r1_0 = callee::fn_71010c0ff0(p0, p1, p2, p3, p4, p5, p6, p7, f0, f1, f2, f3, f4, f5, f6, f7);
     u32 r2_8 = (u32)*(u32*)((char*)(r0_19) + 0);
     *(u32*)((char*)(r1_0) + 0) = (u32)(u64)(r2_8);
     u32 r4_8 = (u32)*(u32*)((char*)(r0_19) + 4);
@@ -73,16 +73,16 @@ u32 fn_71010bef60(char* p0, char* p1) {
     return r8_0;
 }
 
-namespace callee { char* fn_7101075ad0(); }
-bool fn_71010befa0() {
-    char* r0_0 = callee::fn_7101075ad0();
+namespace callee { char* fn_7101075ad0(char*, char*, char*, char*, char*, char*, char*, char*, f64, f64, f64, f64, f64, f64, f64, f64); }
+bool fn_71010befa0(char* p0, char* p1, char* p2, char* p3, char* p4, char* p5, char* p6, char* p7, f64 f0, f64 f1, f64 f2, f64 f3, f64 f4, f64 f5, f64 f6, f64 f7) {
+    char* r0_0 = callee::fn_7101075ad0(p0, p1, p2, p3, p4, p5, p6, p7, f0, f1, f2, f3, f4, f5, f6, f7);
     bool r1_0 = (u32)(u64)((u32)(u64)(r0_0)) != (u32)(0);
     return r1_0;
 }
 
-namespace callee { char* fn_7100fbc4e0(); }
-bool fn_71010befc0() {
-    char* r0_0 = callee::fn_7100fbc4e0();
+namespace callee { char* fn_7100fbc4e0(char*, char*, char*, char*, char*, char*, char*, char*, f64, f64, f64, f64, f64, f64, f64, f64); }
+bool fn_71010befc0(char* p0, char* p1, char* p2, char* p3, char* p4, char* p5, char* p6, char* p7, f64 f0, f64 f1, f64 f2, f64 f3, f64 f4, f64 f5, f64 f6, f64 f7) {
+    char* r0_0 = callee::fn_7100fbc4e0(p0, p1, p2, p3, p4, p5, p6, p7, f0, f1, f2, f3, f4, f5, f6, f7);
     bool r1_0 = (u32)(u64)((u32)(u64)(r0_0)) != (u32)(0);
     return r1_0;
 }

@@ -5208,7 +5208,7 @@ address,size,name,name_source,subsystem,status
 0x7100bd589c,388,CCharClassSetEntityAngEvent::refl_InitClass,reflection,game/characters,O
 0x7100bd5a20,4,fn_7100bd5a20,unknown,game/characters?,O
 0x7100bd5a24,36,fn_7100bd5a24,unknown,game/characters?,O
-0x7100bd5a48,204,fn_7100bd5a48,unknown,game/characters?,U
+0x7100bd5a48,204,fn_7100bd5a48,unknown,game/characters?,O
 0x7100bd5b14,28,fn_7100bd5b14,unknown,game/characters?,O
 0x7100bd5b30,12,fn_7100bd5b30,unknown,game/characters?,O
 0x7100bd5b3c,8,fn_7100bd5b3c,unknown,game/characters?,O
