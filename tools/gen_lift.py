@@ -174,6 +174,18 @@ def is_frame(x) -> bool:
     return m == "mov" and len(o) == 2 and regname(o[0].reg) == "x29" and regname(o[1].reg) == "sp"
 
 
+def zero_save(x) -> bool:
+    """`stp xzr, x<n>, [sp, #imm]` (either order, no writeback) with x<n> a register is_frame
+    saves: a local zeroed beside a save in the prologue (Lifter.setup_frame)."""
+    mem = [op for op in x.operands if op.type == arm64.ARM64_OP_MEM]
+    if x.mnemonic != "stp" or not mem or regname(mem[0].mem.base) != "sp" or x.writeback:
+        return False
+    regs = [regname(op.reg) for op in x.operands if op.type == arm64.ARM64_OP_REG]
+    other = [r for r in regs if r != "xzr"]
+    return len(other) == 1 and len(regs) == 2 and (other[0] in ("x29", "x30") or (
+        other[0][0] == "x" and other[0][1:].isdigit() and 19 <= int(other[0][1:]) <= 28))
+
+
 def fkey(r: str) -> int | None:
     """Float register number (s<n>/d<n>), or None."""
     return int(r[1:]) if r[0] in "sd" and r[1:].isdigit() else None
@@ -1552,9 +1564,17 @@ class Lifter:
             if p and not any(touches(x) for x in ins[:p]):
                 k = p
         self.frame_at = k  # the prologue's first instruction (frame_reset)
-        while k < len(ins) and is_frame(ins[k]):
+        zeroed = []  # (semantic mode) prologue pairs that zero a local beside a save: (index, sp)
+        while k < len(ins) and (is_frame(ins[k]) or ("semantic" in self.opts and zero_save(ins[k]))):
             x = ins[k]
             m, o = x.mnemonic, x.operands
+            if not is_frame(x):
+                # `stp xzr, x19, [sp, #8]` (fn_7101233e30): a local cleared in the same store as a
+                # save; the store is lifted as code (the save then a plain store and its restore a
+                # plain load), and the frame goes on past it
+                zeroed.append((k, delta))
+                k += 1
+                continue
             if m == "sub" and regname(o[0].reg) == "sp":
                 delta -= o[2].imm if "semantic" not in self.opts else frame_imm(o[2])
             elif m == "add" and regname(o[0].reg) == "x29":
@@ -1574,6 +1594,10 @@ class Lifter:
         self.save_slots = {s + 8 * i for s, e in saves for i in range((e - s) // 8)}
         self.body_delta = self.cur_delta = delta
         refs = []  # (offset from sp at entry, size)
+        for j, at in zeroed:
+            if at != delta:  # (before an sp adjustment: address() takes the body's sp)
+                return False
+            refs.append((delta + [op for op in ins[j].operands if op.type == arm64.ARM64_OP_MEM][0].mem.disp, 16))
         for x in ins[k:]:
             if self.frame_op(x):
                 continue

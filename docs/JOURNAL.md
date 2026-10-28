@@ -155,6 +155,10 @@ From the trace run's refusals (`lifted_trace1`, 6,007 of 6,070 accepted):
   instructions later, past branches): `lone_convert` accepts it when the convert is the only read of the
   loaded register on every path from the load (a call counts as reading v0-v7, a ret or tail call too)
   and no path from the entry reaches the convert without the load; the convert then happens at the load.
+- **A local zeroed in the prologue** (`7101233e30`: `sub sp, sp, #0x30; stp xzr, x19, [sp, #8]`, then
+  the frame record): the prologue stopped at the pair, so fp was never set and the frame was refused.
+  In semantic mode `zero_save` lets the prologue go on past it; the pair itself is lifted as two plain
+  stores (x19's restore then a plain load), and its 16 bytes count as locals.
 - **The oracle and a struct copy's padding** (`71000ed2b8`, `71000ed608`, `71000ed758`): the original
   copies padding it never wrote, the lift the fields alone. pcode_emu now marks bytes loaded from never-
   written stack as undefined through copies, and compare() leaves out the bytes stored from them.
