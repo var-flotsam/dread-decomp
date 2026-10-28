@@ -82,5 +82,8 @@ public:
 // (src/base/global/CFilePathStrId.cpp).
 void fn_710001a270(base::global::UnkFilePathStrIdBase* self, const base::global::CRntString& str, bool flag);
 
-// A global CFilePathStrId that default values copy (possibly the empty id).
+// The global empty file-path id that default values copy (built by unit 1's static initialiser,
+// fn_7100001480, src/base/global/UnkEmptyFilePathStrId.cpp).
 extern base::global::CFilePathStrId g_unk_7101d470e8;
+// A file-path id's destructor, as the static initialisers register it with __cxa_atexit.
+void fn_7100000c7c(void* id);

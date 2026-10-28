@@ -18,8 +18,6 @@
 #include "game/UnkTUSymbols.h"
 #include "types.h"
 
-void fn_7100000c7c(void* id);  // a file path id's destructor
-
 namespace unk_static_init {
 
 using base::global::CStrId;
