@@ -623,7 +623,8 @@ class Lifter:
                 # 32-bit write leaves too: zero-extended)
                 va, vc = (f"(u64)({va[0]})", "u64"), (f"(u64)({vc[0]})", "u64")
             if sem and (va is None) != (vc is None) and n not in m.poison \
-                    and not (n == 100 and (a if va is None else c).fcall):  # (s0: a call's unread float result)
+                    and not (n == 100 and (a if va is None else c).fcall  # (s0: a call's unread float result,
+                             and (va or vc)[0] != "f0"):                  # unless the other path's is the parameter)
                 # Semantic mode: one path has no value here (a call clobbered the register, or it was
                 # never set), which is garbage in the original; the other path's value stands. Before
                 # the if, it is in scope already; otherwise a phi that the other path leaves at zero.
@@ -2378,10 +2379,24 @@ class FlatLifter(Lifter):
                 # the largest N of the compares of I with an immediate followed by a conditional
                 # branch, when I is written nowhere after the first of them. A larger table than
                 # the paths use only adds cases nothing reaches.
-                cmps = [j for j, y in enumerate(ins[:adr]) if y.mnemonic == "cmp" and y.operands[0].type == arm64.ARM64_OP_REG
-                        and regname(y.operands[0].reg)[1:] == ireg[1:] and y.operands[1].type == arm64.ARM64_OP_IMM
-                        and any(z.mnemonic in ("b.hi", "b.ls", "b.gt", "b.le") for z in ins[j + 1:j + 3])]
-                if not cmps or any(cmps[0] < j < k for j in writes.get(ireg, [])):
+                # The in-range side of each such branch (b.ls/b.le taken, b.hi/b.gt not) must lead
+                # to the dispatch with I unwritten in the straight code from there to the table.
+                cmps = []
+                for j, y in enumerate(ins[:adr]):
+                    if not (y.mnemonic == "cmp" and y.operands[0].type == arm64.ARM64_OP_REG
+                            and regname(y.operands[0].reg)[1:] == ireg[1:] and y.operands[1].type == arm64.ARM64_OP_IMM):
+                        continue
+                    br = next((z for z in ins[j + 1:j + 3] if z.mnemonic in ("b.hi", "b.ls", "b.gt", "b.le")), None)
+                    if br is None:
+                        continue
+                    start = at.get(br.operands[0].imm) if br.mnemonic in ("b.ls", "b.le") else at[br.address] + 1
+                    if start is None or start > adr or any(start <= w < k for w in writes.get(ireg, [])):
+                        continue
+                    if any(z.mnemonic in ("b", "br", "ret") or z.mnemonic.startswith(("b.", "cb", "tb"))
+                           for z in ins[start:adr]):
+                        continue  # (not straight code to the table)
+                    cmps.append(j)
+                if not cmps:
                     continue
                 bound, cmp_at = max(ins[j].operands[1].imm for j in cmps), cmps[0]
             elif any(cmp_at < j < k and j != copy for j in writes.get(ireg, [])) \

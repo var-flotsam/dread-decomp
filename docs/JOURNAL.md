@@ -128,12 +128,14 @@ reaching past the string's terminator, before the register is written again) is 
 
 From the trace run's refusals (`lifted_trace1`, 6,007 of 6,070 accepted):
 - **Jump tables bounded further away** (`71000a0660`, `71000a5e00`, `7100256810`, `71011bc0b0`): the only
-  bound is a `cmp xI, #N; b.ls <dispatch>` early on, or one per path reaching the dispatch. The largest
-  such N on the index register, unwritten after the first, bounds the table.
+  bound is a `cmp xI, #N; b.ls <dispatch>` early on, with x8 reused all over the other paths. The largest
+  such N bounds the table when the in-range side of its branch runs straight into the dispatch with I
+  unwritten.
 - **nnMain's compile error** (`71000018f0`): a call passing s0 right after a float-returning call read
   that call's x0 first, which the float retype then removed. The retype now comes before the integers.
-- **A float parameter passed on at the other width** (the variadic loggers' forwarders `71010a2620`,
-  `71010a3ff0`): passed as it is instead of 0.
+- **A float parameter passed on** (the variadic loggers' forwarders `71010a2620`, `71010a3ff0`): at the
+  other width, as it is instead of 0; and past a join with a path whose call left s0 unread, the
+  parameter (that path's s0 is garbage, or a float result nothing reads).
 - **The result address kept in a callee-saved register** (the boot's stop with `lifted_trace1`, 501 lifts
   in: `fn_710009ad50` keeps x8 in x19 and sets `x8 = x19` before calling the getter invoker, past a join
   that forgot the copy): `FlatLifter.result_copies` finds the registers whose every write copies the
