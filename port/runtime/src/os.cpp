@@ -544,6 +544,15 @@ Result AllocateMemoryBlock(u64* address, u64 size) {
 
 }  // namespace nn::os
 
+extern "C" bool dread_port_game_heap_ready() {
+    return nn::os::g_heap_used != 0;
+}
+
+extern "C" bool dread_port_in_game_heap(const void* ptr) {
+    const char* p = static_cast<const char*>(ptr);
+    return nn::os::g_heap && p >= nn::os::g_heap && p < nn::os::g_heap + nn::os::g_heap_used;
+}
+
 extern "C" void dread_port_set_host_arguments(int argc, char** argv) {
     nn::os::g_host_argc = argc;
     nn::os::g_host_argv = argv;
