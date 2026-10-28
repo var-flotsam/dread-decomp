@@ -282,11 +282,17 @@ as `include/types.h` is; new wide calls go through it.
 
 Next Windows steps (not started):
 
-1. **The runtime's own sources.** The sweep compiles `port/runtime/include` through the game's
-   sources, not `port/runtime/src/`. Imports are resolved by exact mangled name
-   (`tools/port_imports.py`): under LLP64 `long` mangles as `l`, `s64` as `x`, so the names the game
-   imports differ from the runtime's definitions there (`port/runtime/include/movie.h` already notes
-   this).
+1. **The runtime's import names.** Imports are resolved by exact mangled name
+   (`tools/port_imports.py`): under LLP64 `s64` and `u64` are `long long`, which mangle `x`/`y` where
+   the console's names have `l`/`m` (`port/runtime/include/movie.h` already notes this).
+   `tools/port_imports.py --version 2.1.0 --windows [--list NS]` measures it (compile only; objects in
+   `build/port/windows/runtime/`). On 2026-10-27 all 18 runtime sources compile for Windows, and of
+   the 200 imports the runtime answers on Linux, 159 keep their name and 41 are lost: `movie` 11,
+   `nn::fs` 9, `nn::os` 9, `nn::mem` 3, `nn::util` 3, `nn::hid` 2, `nn::prepo` 2, `nv` 2. Every
+   one of the 41 has exactly one Windows definition that differs only by `long long` for `long`, and
+   none resolves at 32 bits through a spelled-out `long`. So the fix is mechanical and belongs in
+   `tools/port_link.py`'s `image_tables.s`, not in the runtime: on a Windows target, list each
+   runtime import under the console's name, pointing at its `long long` definition.
 2. **The generated assembly.** `tools/port_link.py` writes `traps.s`, `residue.s` and
    `image_tables.s` for SysV and ELF (argument registers, sections, directives); Windows needs Win64
    and COFF versions.
@@ -531,6 +537,27 @@ the sweep's compiler and flags:
 None of it is tracked and none of it counts as matching (open decision 2; `tools/check.py` never
 sees it). `port_link.py --lifted` leaves out a lift whose address the sources now define and says
 when the manifest's generator sources differ from the checked-out ones.
+
+**Overrides.** A byte-identical lift in `src/lifted/` can depend on an argument register its code
+never names. AArch64 keeps the register, so the bytes match, but an x86-64 compile loses it. For
+such an address `tools/port_lift.py` writes a semantic lift and marks it in the manifest with
+`"overrides": "src/lifted/<file>.cpp"`. `port_link.py --lifted` then links the semantic lift in
+place of the byte-identical one:
+- the lifted link (1L) takes the sweep's objects again, with a copy of the named file's object
+  (`<out>/overrides/`) in which `llvm-objcopy --localize-symbol` makes that address's definitions
+  local;
+- the address is then left without a global definition, so the lift is linked and every
+  reference to the address is aliased to it.
+
+A lifted file calls its own functions through `callee::` names, so the local body is left
+unreferenced. Two kinds of override are left as they are, and the link says which: one whose symbol
+other code of the same object still refers to (relocations and disassembly are read), and one the
+named file no longer defines (a stale manifest, or a hand-written source took the address over).
+Link 1 (without the lifts) is unchanged. Checked on 2026-10-27 two ways:
+- with a hand-made manifest of three stand-in lifts: two applied, one refused because the named
+  file does not define it;
+- with the real lifts, which have no overrides: every output identical to the link without this
+  step, the executable included.
 
 **Result on `main` after hub batch 2 (2026-10-25).** Of 2,148 `U` functions (1,236,964 bytes):
 

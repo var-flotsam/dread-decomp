@@ -6,7 +6,7 @@ it needs). History, batch logs and the index of matching findings are in `docs/J
 `docs/recon.md` describes the binary, `docs/compiler.md` the toolchain, `docs/references.md` the
 outside projects. This page is edited in place, never appended to: session notes go to the journal.
 
-**Last updated 2026-10-27** (lifter: arguments the byte-identical lifts dropped, branch `claude/lifter-passthrough`; port: the Windows wide-text helpers, branch `claude/port-wide-text`; the Windows compile check, #225; port M1: boot-match round 2 and the boot past the game's main function, branch `claude/port-m1-game-main`; the boot-match batch and the boot past the system start-up, #223; port M1 step 4: runtime stubs and the data loader, #201, #203, #206; hub batches 3 and 4, var-flotsam/dread-decomp#195 and #197; the TU helper fold, #196; the shader packages, #198; boot hubs round 1, #199; port M2's shader build step and NVN binding layer, #202 and #204, and its drawing part, branch `claude/port-nvn-draw`; hub batch 5, #207; hub batch 6, branch `claude/hub-batch-6`; boot hubs round 2, branch `claude/boot-hubs-2`).
+**Last updated 2026-10-27** (port: the runtime's import names on Windows, branch `claude/port-windows-imports`; lifter: arguments the byte-identical lifts dropped, branch `claude/lifter-passthrough`; port: the Windows wide-text helpers, #229; the Windows compile check, #225; port M1: boot-match round 2 and the boot past the game's main function, branch `claude/port-m1-game-main`; the boot-match batch and the boot past the system start-up, #223; port M1 step 4: runtime stubs and the data loader, #201, #203, #206; hub batches 3 and 4, var-flotsam/dread-decomp#195 and #197; the TU helper fold, #196; the shader packages, #198; boot hubs round 1, #199; port M2's shader build step and NVN binding layer, #202 and #204, and its drawing part, branch `claude/port-nvn-draw`; hub batch 5, #207; hub batch 6, branch `claude/hub-batch-6`; boot hubs round 2, branch `claude/boot-hubs-2`).
 Target: **Metroid Dread 2.1.0**, `main` build ID `646761F643AFEBB379EDD5E6A5151AF2CEF93DC1`.
 
 ## Start here
@@ -449,7 +449,8 @@ the run-time roots, graphics and the pointer roots, and every root and graphics 
 **67 slice functions are left** (83 KB, `manifest.json`): 35 read a caller-saved register after
 a call (16-byte results), 11 are inconclusive, 10 read a register before writing it, 6 are
 rejected by the oracle and 5 hit other lifter gaps. The other 94 lifts override `src/lifted`
-definitions that lose arguments (stream M). The oracle covers a median 84% of an original's
+definitions that lose arguments (stream M); port_link links a lift marked `"overrides"` instead of
+that `src/lifted` copy (2026-10-27, `port/README.md` "Overrides"). The oracle covers a median 84% of an original's
 instructions. `tools/port_lift.py --debug ADDR` shows a rejected function's first difference.
 M1 step 4 (2026-10-26, var-flotsam/dread-decomp#201, #203 and #206): the runtime defines every `nn::os` and
 `nn::oe` import the slice reaches (port_link's residue lists none); `dread_game` and the sweep
@@ -544,7 +545,9 @@ llvm-mingw-20261006`, Itanium ABI, libc++ 9.0.1 over MinGW-w64's headers) and sc
 and a 16-bit `wchar_t` change silently. All 3,979 sources compile and the scan finds nothing: the
 game's wide text goes through the `char32_t` helpers in `include/base/Char32.h` (the original calls
 where `wchar_t` is 32 bits). Keep both at zero: rerun it when a PR adds hand-written code. Next
-Windows steps, after the title screen on Linux: `port/runtime/src/` and its LLP64-mangled import names, Win64/COFF
+Windows steps, after the title screen on Linux: the runtime's LLP64-mangled import names
+(`tools/port_imports.py --windows`: the runtime compiles; 41 of its 200 imports are lost by name,
+each with one `long long` counterpart, for `image_tables.s` to list under the console's name), Win64/COFF
 versions of `port_link.py`'s `traps.s`, `residue.s` and `image_tables.s`, the fault handler as
 structured exception handling, and a Windows link (`port/README.md`, "Windows (compile only)").
 

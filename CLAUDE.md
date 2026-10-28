@@ -98,6 +98,7 @@ python tools/port_link.py --version <ver> --lifted build/port/lifted   # the lin
 port/docker/run.sh python3 tools/port_link.py --version <ver> --stdlib libcxx9 --objects build/port/linux/sweep --out build/port/linux/link --executable  # port: the Linux executable in Docker (port/README.md "Linux in Docker")
 python tools/port_addresses.py --version <ver>   # port: original addresses of vtables and names the link cannot place, from matched code -> build/port/addresses.json (port_link uses it)
 python tools/port_imports.py --version <ver> [--list NS]  # port: the dump's imports the runtime resolves by exact mangled name (checks a stub's signature)
+python tools/port_imports.py --version <ver> --windows [--list NS]  # port: the runtime compiled for Windows (llvm-mingw): imports lost by name under LLP64
 python tools/abi_facts.py --version <ver> ADDR...  # argument registers a function reads, whether callers use its result (semantic lifts, oracle)
 python tools/nvn_procs.py --version <ver> [--check]  # the game's NVN function table -> data/nvn_procs.csv (globals, call sites, what port/nvn/ implements)
 python tools/nvn_procs.py --version <ver> --sites NAME[,NAME]  # each call site of those NVN functions and the function it is in
