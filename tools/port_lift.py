@@ -10,7 +10,8 @@ accepts a lift that behaves like the original, whatever its bytes:
      from the run-time roots (nnMain hands main, the per-frame and the shutdown function to the
      SDK as pointers; main stores four callbacks), from the graphics functions and from four the
      boot reaches only through pointers (POINTER_ROOTS), by callers in the slice, with the roots
-     and graphics functions themselves whatever their status; --slice all: every `U` function;
+     and graphics functions themselves whatever their status; --slice pointers: those and what they
+     reach through the vtables and function addresses they take; --slice all: every `U` function;
      --worklist CSV (its `U` rows, e.g. tools/port_link.py's boot_missing.csv); --only; --top N
      of any of them. Functions now defined in src/ are skipped, except the
      overrides: src/lifted definitions that read more argument registers than they declare
@@ -145,18 +146,71 @@ def boot_reach(version: str, rows: dict) -> set[int]:
     return reach
 
 
+def pointed_to(orig: asmdiff.Original, funcs: dict, addr: int) -> set[int]:
+    """The functions whose address the function at `addr` takes: an adrp with an add or a load from
+    the page (a GOT slot is followed to the address it holds) that names a function start, or a
+    table of them there (a vtable: 8-byte slots with RELATIVE relocations to function starts, from
+    the address or 16 bytes on, past offset-to-top and the type info). An approximation, register
+    by register over the whole function: what an indirect call there may reach."""
+    img, out = orig.img, set()
+
+    def table(t: int) -> None:
+        if t in funcs:
+            out.add(t)
+            return
+        for start in (t, t + 16):
+            off, n = start - asmdiff.BASE, 0
+            while n < 1024 and (r := img.relocs.get(off)) is not None and r.type == asmdiff.R_AARCH64_RELATIVE \
+                    and asmdiff.BASE + r.addend in funcs:
+                out.add(asmdiff.BASE + r.addend)
+                off, n = off + 8, n + 1
+            if n:
+                return
+
+    code = orig.function(addr)
+    pages: dict[int, int] = {}
+    for i in range(0, len(code) - 3, 4):
+        insn, pc = int.from_bytes(code[i:i + 4], "little"), addr + i
+        if insn & 0x9F000000 == 0x90000000:  # adrp
+            pages[insn & 31] = asmdiff.adrp_target(insn, pc)
+            continue
+        rn = (insn >> 5) & 31
+        if rn not in pages:
+            continue
+        if insn & 0xFFC00000 == 0x91000000:  # add xd, xn, #lo12
+            table(pages[rn] + ((insn >> 10) & 0xFFF))
+        elif insn & 0xFFC00000 == 0xF9400000:  # ldr xt, [xn, #lo12]: a GOT slot
+            r = img.relocs.get(pages[rn] + ((insn >> 10) & 0xFFF) * 8 - asmdiff.BASE)
+            if r is not None and r.type == asmdiff.R_AARCH64_RELATIVE:
+                table(asmdiff.BASE + r.addend)
+    return out
+
+
 def slice_worklist(version: str, rows: dict, kind: str) -> list[int]:
     """The `U` functions of a slice: "boot", everything reachable by direct calls from nnMain, the
-    run-time roots, the graphics functions and POINTER_ROOTS; "all", every `U` function. The roots
-    and graphics functions themselves are listed whatever their status (gen_functions_csv infers
-    `L` for some game code next to nnMain). Ordered by callers within the slice, most first."""
+    run-time roots, the graphics functions and POINTER_ROOTS; "pointers", the boot slice and what
+    its functions reach through the addresses they take (pointed_to: vtables and function
+    pointers), to a fixed point; "all", every `U` function. The roots and graphics functions
+    themselves are listed whatever their status (gen_functions_csv infers `L` for some game code
+    next to nnMain). Ordered by callers within the slice, most first."""
     graph = callgraph.CallGraph(version, rows)
     starts = RUNTIME_ROOTS + GRAPHICS + POINTER_ROOTS
     members: set[int] = set(graph.funcs)
-    if kind == "boot":
+    if kind in ("boot", "pointers"):
         members = set()
         for r in (callgraph.NNMAIN,) + starts:
             members |= graph.reachable(r)
+    if kind == "pointers":
+        orig, todo, done = asmdiff.Original(version), list(members), set()
+        while todo:
+            a = todo.pop()
+            if a in done or a not in orig.sizes:
+                continue
+            done.add(a)
+            for t in pointed_to(orig, graph.funcs, a) - members:
+                new = graph.reachable(t) - members
+                members |= new
+                todo.extend(new)
     wl = {a for a in members if graph.funcs[a]["status"] == "U" and not graph.funcs[a]["name"].startswith(
         callgraph.IMPORT_PREFIX)} | {a for a in starts if a in graph.funcs}  # (imports: the runtime's)
     callers = graph.collapsed()[1]
@@ -813,10 +867,11 @@ def table(sizes: dict[int, int], outcome: dict[int, str]) -> list[str]:
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--version", required=True)
-    ap.add_argument("--slice", choices=["boot", "all"], default="boot",
+    ap.add_argument("--slice", choices=["boot", "pointers", "all"], default="boot",
                     help="the worklist when neither --only nor --worklist is given: boot (default), the U functions "
-                         "reachable from nnMain, the run-time roots, the graphics functions and POINTER_ROOTS; all, "
-                         "every U function")
+                         "reachable from nnMain, the run-time roots, the graphics functions and POINTER_ROOTS; "
+                         "pointers, those and what they reach through the vtables and function addresses they "
+                         "take; all, every U function")
     ap.add_argument("--worklist", help=f"CSV with address and status columns, its U rows (for example "
                                        f"{port_sweep.rel(WORKLIST)}, tools/port_link.py's) instead of --slice")
     ap.add_argument("--only", help="ADDR[,ADDR...] or @file instead of the worklist")
