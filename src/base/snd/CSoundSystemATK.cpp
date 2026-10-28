@@ -631,3 +631,50 @@ void fn_71000f68bc(UnkSoundSystemATK* object) {
     self->field_0x400870 = 0;
     self->field_0x400878 = 0;
 }
+
+// ---- fn_71000ffa68: stopping a sound ----
+
+// The game's handle on a playing sound, as the stop command reads it: the voice's id, a second
+// id sent after the stop and whether the voice has one.
+struct UnkSoundHandle {
+    u8 pad_0x0[0xc4];
+    s32 id;
+    u8 pad_0xc8[0x24];
+    s32 field_0xec;
+    u8 pad_0xf0[0x30];
+    bool field_0x120;
+};
+static_assert(__builtin_offsetof(UnkSoundHandle, field_0x120) == 0x120, "UnkSoundHandle placeholder layout");
+
+// What the stop commands send: the voice's id, whether to skip the fade-out and the fade's length.
+struct UnkSoundStop {
+    s32 id;
+    u32 immediate;
+    f32 fade;
+};
+
+// The fade, at least 0.06 s (a NaN stays).
+static inline f32 StopFade(f32 fade) { return !(fade <= 0.06f) ? fade : 0.06f; }
+
+// Stops `sound` (command 0x17 when it has the second id, else 10). Unless `immediate` is set, a
+// voice with the second id is then sent command 0x18.
+// NON_MATCHING(minor): the stores of the 0x18 and 10 paths are scheduled after their argument moves.
+void fn_71000ffa68(UnkSoundSystemATK* self, UnkSoundHandle* sound, bool immediate, f32 fade) {
+    fn_7100132cd0();
+    if (!sound)
+        return;
+    if (sound->field_0x120) {
+        UnkSoundStop stop = {sound->id, immediate, StopFade(fade)};
+        fn_71000faac4(self, 0x17, &stop);
+        if (immediate)
+            return;
+        s32 next[2] = {sound->id, sound->field_0xec};
+        fn_71000faac4(self, 0x18, next);
+    } else {
+        UnkSoundStop stop;
+        stop.id = sound->id;
+        stop.immediate = immediate;
+        stop.fade = StopFade(fade);
+        fn_71000faac4(self, 10, &stop);
+    }
+}
