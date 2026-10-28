@@ -50,6 +50,42 @@ u64 InstructionOf(void* context) {
 #endif
 }
 
+u64 StackOf(void* context) {
+#if defined(__linux__) && defined(__x86_64__)
+    return context ? static_cast<u64>(static_cast<ucontext_t*>(context)->uc_mcontext.gregs[REG_RSP]) : 0;
+#else
+    (void)context;
+    return 0;
+#endif
+}
+
+}  // namespace
+
+// The executable's code (the linker's symbols): the stack scan prints the words that point into it.
+extern "C" char __executable_start[] __attribute__((weak));
+extern "C" char etext[] __attribute__((weak));
+
+namespace {
+
+// The words on the faulting stack that point into the executable's code: the return addresses the
+// unwinder may not reach (a frame without unwind information, a thunk), oldest last.
+void ScanStack(void* context) {
+    const u64 sp = StackOf(context);
+    if (!sp || !__executable_start || !etext)
+        return;
+    const u64 lo = reinterpret_cast<u64>(__executable_start), hi = reinterpret_cast<u64>(etext);
+    std::fprintf(stderr, "dread: code addresses on the stack (sp 0x%llx):", static_cast<unsigned long long>(sp));
+    int shown = 0;
+    for (u64 i = 0; i < 512 && shown < 32; ++i) {
+        const u64 w = reinterpret_cast<const u64*>(sp)[i];
+        if (w >= lo && w < hi) {
+            std::fprintf(stderr, " 0x%llx", static_cast<unsigned long long>(w));
+            ++shown;
+        }
+    }
+    std::fprintf(stderr, "\n");
+}
+
 void OnFault(int sig, siginfo_t* info, void* context) {
     if (sig == SIGABRT) {
         std::fprintf(stderr, "dread: %s\n", strsignal(sig));  // no faulting address: abort() was called
@@ -70,6 +106,8 @@ void OnFault(int sig, siginfo_t* info, void* context) {
     // The same frames by module and exported symbol: names the C library's own frames, which the
     // executable cannot symbolise (the game's are static and print as offsets).
     backtrace_symbols_fd(frames, n, STDERR_FILENO);
+    ScanStack(context);
+    std::fflush(stderr);
     // Die of the same signal, as without the handler (the exit status says which).
     signal(sig, SIG_DFL);
     raise(sig);
