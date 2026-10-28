@@ -3067,6 +3067,10 @@ def lift_serial(orig: asmdiff.Original, cands: list[int],
 
     variants(Lifter, cands)
     structured = set().union(*lifted)
+    if "semantic" in opts:
+        # (semantic mode: a function whose only structured lifts are void tries the flat value lifts
+        # too; its callers may read the result, fn_710016c760; one attempt per variant here)
+        structured = set().union(*(d for d, (_, mode) in zip(lifted, VARIANTS) if mode != "void"))
     rest = [a for a in cands if a not in structured]
     variants(FlatLifter, rest)
     # Functions with stack locals: each layout of the locals array, structured then flat.
