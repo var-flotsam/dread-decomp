@@ -117,6 +117,24 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Lifter: the boot trace's instruction gaps (2026-10-28, branch `claude/project-thread-zgkpk3`, after #250).**
+The recomp's boot trace names 37 unmatched functions the boot runs that no lifted set accepts; 11 were
+the lifter's (diagnosed on the PC, measured there). All semantic mode:
+- **Jump table reached from two bounds checks** (`71001af824`, `71008e7708`): an earlier `cmp; b.ls`
+  branches straight to the table's `adr`, which the switch replaces, so its label was never emitted and
+  the lift did not compile. Labels are now emitted on the table's skipped instructions.
+- **Small integers loaded into a float register** (`7100027a7c`, `7100027d08`, `71001bd634`,
+  `71001bd644`): `ldr h|b` then `ucvtf|scvtf s` was taken only when adjacent. Now other instructions not
+  touching the register may sit in between, and `sshll v.4s, v.4h, #0` (after `sshll v.8h, v.8b, #0`
+  for a byte) makes it an s16 or s8.
+- **Variadic save area** (`710007cb4c`, `710007d788`, `71010c0270`, `71010c0b40`): `stp q<n>, q<n+1>`
+  of q0-q7 not written before stores each register's double (the low 64 bits, what `va_arg` reads);
+  `setup_frame` counts a q access as 16 bytes.
+- **Lane arithmetic** (`71000f88b8`): `fadd|fsub|fmul|fdiv v.2s|4s` on known lanes, and `mov v.d[1],
+  v.d[0]`.
+- `end` is not a function to lift: both symbols of that name lack a size in the image's symbol table
+  (a 16-byte entry at `7101238d80`, and the image's end marker), which the size cap reads as too big.
+
 **Lifter: vectors built lane by lane (2026-10-28, branch `claude/project-thread-zgkpk3`, after #244).**
 The movi and ld1 rejects left after #244 build a vector from 32-bit floats and store it whole: `movi
 v3.2d, #0`, then `mov v3.s[0..2], v<m>.s[0]`, then `str q3, [sp]` (a Vector3 padded to 16 bytes, passed

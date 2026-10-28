@@ -1062,6 +1062,64 @@ class Lifter:
                 return (100, 0)
         return order
 
+    def va_save(self, x, mem) -> bool:
+        """Semantic mode: `stp q<n>, q<n+1>, [..]` of incoming argument registers (q0-q7, none
+        written before), a variadic function's register save area. Only the low 64 bits are
+        stored: the double each register carries, which is what va_arg reads. True if x was one."""
+        rts = [regname(op.reg) for op in x.operands[:2]]
+        if not all(r[0] == "q" and int(r[1:]) < 8 for r in rts) or x.writeback:
+            return False
+        nums = {int(r[1:]) for r in rts}
+        for y in self.ins[:self.pos]:
+            if any(regname(q)[0] in "bhsdqv" and regname(q)[1:].isdigit() and int(regname(q)[1:]) in nums
+                   for q in y.regs_access()[1]):
+                return False
+        a = self.temp_ptr(self.address(x, mem[0]))
+        vals = [self.read("d" + r[1:])[0] for r in rts]
+        self.line(" ".join(f"*(f64*)({a} + {16 * k}) = {v};" for k, v in enumerate(vals)))
+        return True
+
+    def small_int_load(self, x, mem, reg: str) -> bool:
+        """`ldr h<n>|b<n>` up to the convert of s<n> that uses it (step's comment)."""
+        n, ins = reg[1:], self.ins
+        branch_targets = {op.imm for y in ins for op in y.operands if op.type == arm64.ARM64_OP_IMM
+                          and (y.mnemonic in ("b", "cbz", "cbnz", "tbz", "tbnz") or y.mnemonic.startswith("b."))}
+        widen = ["8h", "4s"] if reg[0] == "b" else ["4s"]
+        skip, signed = [], False
+        for j in range(self.pos + 1, min(self.pos + 6, len(ins))):
+            nx = ins[j]
+            if nx.address in branch_targets:
+                return False
+            names = [regname(op.reg) for op in nx.operands if op.type == arm64.ARM64_OP_REG]
+            mine = [r for r in names if r[1:] == n and r[0] in "bhsdqv"]
+            if not mine:
+                if nx.mnemonic in ("b", "bl", "blr", "br", "ret", "cbz", "cbnz", "tbz", "tbnz") \
+                        or nx.mnemonic.startswith("b."):
+                    return False
+                continue
+            if nx.mnemonic == "sshll" and widen and (g := re.fullmatch(rf"v{n}\.(\w+), v{n}\.\w+, #0", nx.op_str)) \
+                    and g.group(1) == widen[0]:
+                widen.pop(0)
+                signed = not widen
+                skip.append(nx.address)
+                continue
+            if nx.mnemonic in ("ucvtf", "scvtf") and names == [f"s{n}", f"s{n}"] and (not skip or signed):
+                break
+            return False
+        else:
+            return False
+        if skip == [] and j == self.pos + 1:
+            # (adjacent and unsigned: the form byte mode matched)
+            t = "u16" if reg[0] == "h" else "u8"
+            self.write(f"s{n}", f"(f32)*({t}*){self.address(x, mem[0])}", "f32")
+        else:
+            t = ("s" if signed else "u") + ("16" if reg[0] == "h" else "8")
+            v = self.bind(t, f"*({t}*){self.address(x, mem[0])}")  # (loaded here, not at the convert)
+            cast = "(u32)(s32)" if signed and nx.mnemonic == "ucvtf" else ""
+            self.write(f"s{n}", f"(f32){cast}{v}", "f32")
+        self.gskip |= set(skip) | {nx.address}
+        return True
+
     def bind(self, t: str, e: str) -> str:
         """A temporary of type `t` holding `e`."""
         var = f"m{len(self.body)}"
@@ -1412,6 +1470,8 @@ class Lifter:
                         return False
                     regs = [r for r in o if r.type == arm64.ARM64_OP_REG]
                     w = {"b": 1, "h": 2}.get(x.mnemonic[-1], 8 if regname(regs[0].reg)[0] in "xd" else 4)
+                    if "semantic" in self.opts and regname(regs[0].reg)[0] == "q":
+                        w = 16
                     refs.append((base + op.mem.disp, w * len(regs)))
             if x.mnemonic in ("add", "sub", "mov") and len(o) >= 2 and o[1].type == arm64.ARM64_OP_REG \
                     and regname(o[1].reg) in ("sp", "x29") and regname(o[0].reg) not in ("sp", "x29"):
@@ -1513,6 +1573,26 @@ class Lifter:
             lanes[i] = v
             s.lanes[100 + n] = lanes
             return True
+        if m in ("fadd", "fsub", "fmul", "fdiv") and (g := re.fullmatch(r"v(\d+)\.([24])s, v(\d+)\.\2s, v(\d+)\.\2s", op)):
+            # lane by lane on known lanes (a lane not known on either side is not known after)
+            d, k, a, b = int(g.group(1)), int(g.group(2)), int(g.group(3)), int(g.group(4))
+            if 100 + a not in s.lanes or 100 + b not in s.lanes:
+                return False
+            sym = {"fadd": "+", "fsub": "-", "fmul": "*", "fdiv": "/"}[m]
+            la, lb = s.lanes[100 + a], s.lanes[100 + b]
+            lanes = [self.bind("f32", f"({la[i]}) {sym} ({lb[i]})") if i < k and la[i] is not None and lb[i] is not None
+                     else None for i in range(4)]
+            if lanes[0] is None:
+                return False
+            self.write(f"s{d}", lanes[0], "f32")
+            s.lanes[100 + d] = lanes
+            return True
+        if m == "mov" and (g := re.fullmatch(r"v(\d+)\.d\[1\], v(\d+)\.d\[0\]", op)):
+            n, src = int(g.group(1)), int(g.group(2))
+            if 100 + n not in s.lanes or 100 + src not in s.lanes:
+                return False
+            s.lanes[100 + n] = s.lanes[100 + n][:2] + s.lanes[100 + src][:2]
+            return True
         if m in ("str", "stur") and mem and not x.writeback and (g := re.fullmatch(r"([qd])(\d+), \[.*", op)):
             n, k = int(g.group(2)), 4 if g.group(1) == "q" else 2
             lanes = s.lanes.get(100 + n)
@@ -1564,18 +1644,10 @@ class Lifter:
             return True
         if m in ("ldr", "ldur") and mem and len(regs) == 1 and regs[0][0] in "hb" and regs[0][1:].isdigit():
             # `ldr h<n>|b<n>, [..]; ucvtf|scvtf s<n>, s<n>`: a u16 or u8 loaded into a float register
-            # and converted there (zero-extended, so signed and unsigned agree)
-            n, ins = regs[0][1:], self.ins
-            nx = ins[self.pos + 1] if self.pos + 1 < len(ins) else None
-            if nx is None or nx.mnemonic not in ("ucvtf", "scvtf") or len(nx.operands) != 2 \
-                    or [regname(op.reg) for op in nx.operands if op.type == arm64.ARM64_OP_REG] != [f"s{n}", f"s{n}"] \
-                    or any(op.type == arm64.ARM64_OP_IMM and op.imm == nx.address for y in ins for op in y.operands
-                           if y.mnemonic in ("b", "cbz", "cbnz", "tbz", "tbnz") or y.mnemonic.startswith("b.")):
-                return False
-            t = "u16" if regs[0][0] == "h" else "u8"
-            self.write(f"s{n}", f"(f32)*({t}*){self.address(x, mem[0])}", "f32")
-            self.gskip.add(nx.address)
-            return True
+            # and converted there (zero-extended, so signed and unsigned agree). Other instructions
+            # not touching v<n> may sit in between, and `sshll v<n>.4s, v<n>.4h, #0` (after `sshll
+            # v<n>.8h, v<n>.8b, #0` for a byte) sign-extends it first: an s16 or s8.
+            return self.small_int_load(x, mem, regs[0])
         if self.lane_step(x, mem):
             return True
         if m == "rev" and len(regs) == 2 and regs[0][0] == regs[1][0] and regs[0][0] in "xw":
@@ -1767,6 +1839,8 @@ class Lifter:
             t = STORES[m] or width_type(rt)
             v, _ = self.read(rt)
             self.line(f"*({t}*){self.address(x, mem[0])} = ({t})(u64)({v});")
+        elif m == "stp" and mem and "semantic" in self.opts and self.va_save(x, mem):
+            pass
         elif m == "stp" and mem:
             rts = [regname(o[k].reg) for k in range(2)]
             if any(r[0] not in "xwsd" for r in rts):
@@ -2236,6 +2310,7 @@ class FlatLifter(Lifter):
                 continue
             self.jtables[x.address] = (int(ireg[1:]), tgts)
             self.gskip |= {ins[adr].address, ins[ld].address, ins[add].address}
+            self.jskip |= {ins[adr].address, ins[ld].address, ins[add].address}
 
     @staticmethod
     def bhi_after(ins, j: int) -> bool:
@@ -2432,6 +2507,7 @@ class FlatLifter(Lifter):
                         and addr <= op.imm < end:
                     targets.add(op.imm)
         self.jtables: dict[int, tuple[int, list[int]]] = {}
+        self.jskip: set[int] = set()
         try:
             self.find_guards(ins)
             if "semantic" in self.opts:
@@ -2440,9 +2516,8 @@ class FlatLifter(Lifter):
                     targets |= set(tgts)
                 self.own_args()
             for self.pos, x in enumerate(ins):
-                if x.address in self.gskip:
-                    continue
-                if x.address in targets:
+                if x.address in targets and (x.address not in self.gskip or x.address in self.jskip):
+                    # (a jump table's adr, skipped for the switch, can be a branch target too)
                     self.body.append(f"L_{x.address:x}:;")
                     self.s.cmp = None if x.address != addr else self.s.cmp
                     self.s.fcall = None
@@ -2450,6 +2525,8 @@ class FlatLifter(Lifter):
                     self.s.x8w = False
                     self.s.lanes = {}
                     self.ret_regs = set()
+                if x.address in self.gskip:
+                    continue
                 if self.pos:
                     self.frame_reset(ins[self.pos - 1])
                 if self.frame_op(x) or self.guard_step(x):
