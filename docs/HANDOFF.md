@@ -436,10 +436,13 @@ execution of it and of the original agree (`tools/pcode_emu.py`, oracle (b); des
 `tools/port_link.py --lifted build/port/lifted` the slice has 380 functions without a source. The
 gaps step (exact flags, jump tables, float pass-through, four oracle fixes) brings it to 1,941
 lifts (1.04 MB) and **216 slice functions without a source** (196 KB, `boot_unlifted.csv`). The
-oracle covers a median 67% of an original's instructions, so the next lifter work is input
-coverage and the remaining gaps: stack arguments (23), flat-mode register order (14), `x8`
-results in tail position (14), other jump-table shapes (9), and the 104 functions the oracle
-rejects (`tools/port_lift.py --debug ADDR` shows the first difference). M1 step 4 (2026-10-26, var-flotsam/dread-decomp#201, #203 and #206): the runtime defines every `nn::os` and
+oracle covers a median 67% of an original's instructions. The lifter's second gaps round
+(2026-10-27, branch `claude/lifter-semantic-gaps`) handles the gaps listed then: stack arguments,
+`x8` results in tail position, jump tables through register copies, shrink-wrapped prologues,
+frames sized by shifted immediates, float widths, and half and byte loads converted to float. On
+the boot slice with the run-time roots (2,366 `U` functions, 1.40 MB at the time) it gets 2,295
+accepted lifts (97%). The oracle's inputs and a fresh `build/port/lifted` follow (stream M);
+`tools/port_lift.py --debug ADDR` shows a rejected function's first difference. M1 step 4 (2026-10-26, var-flotsam/dread-decomp#201, #203 and #206): the runtime defines every `nn::os` and
 `nn::oe` import the slice reaches (port_link's residue lists none); `dread_game` and the sweep
 build with `-fno-strict-aliasing`; the data loader (`port/runtime/include/dread_port_loader.h`,
 `port/README.md` "The data loader") maps the dump's main NSO at `0x7100000000` before the game's

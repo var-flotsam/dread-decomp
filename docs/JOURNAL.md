@@ -104,6 +104,36 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Lifter: semantic gaps, round 2 (2026-10-27, branch `claude/lifter-semantic-gaps`).** These are
+the gaps the first round left on the boot slice, each with the lifter change that closes it in
+semantic mode. Byte mode is unchanged: `gen_lift.py --add` on 6,000 random candidates with this
+code leaves `src/lifted/` as it is.
+- **`x8` results in tail position.** `b callee` to a function returning through `x8` becomes
+  `return sret::callee(...)` when `x8` is the function's own incoming result address. Otherwise
+  it becomes a placement new at `x8` followed by a return.
+- **Stack arguments.** abi_facts counts the 8-byte slots of the caller's frame that a function
+  reads (`stack_slots`; cache version 10). A semantic definition declares them as `u64 st0, ...`
+  after `p0`-`p7`, padding the integers to eight, and a call passes the caller's outgoing slots
+  `*(u64*)(stk + off)`. The pcode oracle compares those slots as arguments 200+i. Review fixes:
+  - a definition declares as many slots as abi_facts tells callers to pass, and `ldp`/`stp` name
+    each slot (an `ldp` of two slots had declared one);
+  - the oracle's out-parameter pattern took a stack slot's pointer from a register that does not
+    exist, so every call passing a local's address on the stack faulted in both runs and nothing
+    after it was compared.
+- **Frames.** `sub sp, sp, #1, lsl #12` counts its shift (481 functions had fake stack slots).
+  A shrink-wrapped prologue (an early check, then the frame) starts at the first frame
+  instruction, and an exit before it keeps the entry's sp (a review fix: the adjustment was
+  counted twice, and `stp x29, x30` was lifted as a store past the locals).
+- **Jump tables** whose index or base reaches the `br` through `mov` copies are found.
+- **Float widths.** A float register's width is its first read, ignoring frame saves
+  (`stp d9, d8`) and following `mov vD.16b, vS.16b`. Flat-mode float locals read before any write
+  start at 0. `ldr h`/`ldr b` + `ucvtf` is lifted as one integer-to-float conversion. A page
+  address used as a value (`adrp` alone) is a global.
+- **The oracle** fails a lift whose return address was overwritten ("return outside") where the
+  original returned. Before, that input counted as inconclusive.
+- On the boot slice with the run-time roots (2,366 `U` functions, 1.40 MB, before the boot-match
+  round 2), 2,295 lifts were accepted (97%).
+
 **Lifter: port_lift's worklist as a slice (2026-10-27, branch `claude/lifter-worklist`).**
 `tools/port_link.py`'s `boot_missing.csv` follows direct calls from `nnMain` only, so it missed
 what the boot reaches through the pointers `nnMain` hands the SDK (main, the per-frame and the
