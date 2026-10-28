@@ -961,11 +961,19 @@ def main() -> int:
         if r["name"].startswith(callgraph.IMPORT_PREFIX):
             import_by_name.setdefault(r["name"][len(callgraph.IMPORT_PREFIX):], a)
 
+    # Data imports a lift names (gen_lift: a GOT slot holding a symbol): the value the original reads
+    # from its slot in the emulator's image (unrelocated, as pcode_emu.ImageMemory leaves it).
+    data_imports = {r.sym: int.from_bytes(orig.img.data[off:off + 8], "little")
+                    for off, r in orig.img.relocs.items() if r.sym and r.type in (257, 1025)}  # ABS64, GLOB_DAT
+    mangled = {d: m for m, d in demangled.items()}
+
     def resolve(name: str) -> int | None:
         m = asmdiff.TARGET_RE.match(asmdiff.strip_params(name))
         if m:
             return int(m.group(1), 16)
-        return import_by_name.get(name.split("(")[0])
+        if name.split("(")[0] in import_by_name:
+            return import_by_name[name.split("(")[0]]
+        return data_imports.get(mangled.get(name, name))
 
     lo_paths: list[Path | None] = []
     words = set()

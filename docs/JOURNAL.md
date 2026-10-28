@@ -164,8 +164,15 @@ three x0 ones, the stack arguments the 7 below. Oracle rejections go from 25 to 
   and one function's last word) as `__builtin_trap()`; a GOT load whose slot names a symbol rather
   than a RELATIVE address (`fn_71000f7800`, the boot's next trap, and `710006f390`), as the module's
   own definition or the import by name; `fmov s, w` of an inf or NaN constant; `movi v<n>.2d, #0`;
-  `rev`; `ldpsw`. Still refused: `ldr b/h` not followed by a conversion (13), `adr` (9, local code
-  addresses), `stp q` (7, variadic saves), far `cbz` (2), `ld1` lane loads (1).
+  `rev`; `ldpsw`; `ld1 {v<n>.s}[0]` (as s<n>); `str q<n>` of a zeroed register. Measured on the 79
+  functions: fmov 8/8, rev, ldpsw and the function ending in the trap word accepted. The oracle now
+  ends a run at the trap word or a `brk` (`pcode_emu`, end "trap"), for the 49 stubs, and resolves a
+  lift's data import to the value the original reads from its GOT slot (`port_lift`, GLOB_DAT and
+  ABS64 symbols). The port runtime defines `nn::util::detail::Float1Divided2Pi` (1/(2 pi)), which
+  `fn_71000f7800` reads. Its other data import seen, `nn::hid::VibrationNode::
+  DefaultVibrationSampleInterval` (`710006f390`), stays undefined: its type and value are not known.
+  Still refused: `ldr b/h` not followed by a conversion (13), `adr` (9, local code addresses),
+  `stp q` (7, variadic saves), far `cbz` (2).
 - Tool tests: `tools/tests/test_abi_facts.py` (result_main on hand-assembled callers) and
   `tools/tests/test_pcode_emu.py` (the per-run limits in `compare`), `tools/tests/test_port_lift.py`
   (`pointed_to`). `progress.py --handoff` now writes LF on Windows too (it wrote CRLF, a whole-file diff).

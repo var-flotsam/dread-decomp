@@ -91,7 +91,7 @@ VARIANTS = [(n, mode) for n in range(3) for mode in ("value", "void", "ref")]
 STACK_LAYOUTS = [("gap", 16), ("gap", 8), ("tight", 8)]
 
 CS = capstone.Cs(capstone.CS_ARCH_ARM64, capstone.CS_MODE_ARM)
-TRAP_WORD = 0xE7FFDEFE  # LLVM's trap (__builtin_trap, unreachable code): unallocated in A64, capstone stops at it
+TRAP_WORD = 0xE7FFDEFE  # the trap word of this binary's unreachable code: unallocated in A64, capstone stops at it
 BRK = 0xD4200000        # brk #0, which semantic mode decodes it as (Lifter.step: __builtin_trap())
 
 
@@ -1501,6 +1501,16 @@ class Lifter:
             t = "u16" if regs[0][0] == "h" else "u8"
             self.write(f"s{n}", f"(f32)*({t}*){self.address(x, mem[0])}", "f32")
             self.gskip.add(nx.address)
+            return True
+        if m == "ld1" and mem and not x.writeback and (lane := re.fullmatch(r"\{v(\d+)\.s\}\[0\], \[x\d+\]", x.op_str)):
+            # One 32-bit lane, the first: as s<n> (a later use of the other lanes is refused there).
+            self.write(f"s{lane.group(1)}", f"*(f32*){self.address(x, mem[0], 4)}", "f32")
+            return True
+        if m in ("str", "stur") and mem and len(regs) == 1 and re.fullmatch(r"q\d+", regs[0]) \
+                and s.consts.get(100 + int(regs[0][1:])) == 0:
+            # A zeroed vector register (movi, or a write of 0 to its s/d part, which clears the rest).
+            a = self.temp_ptr(self.address(x, mem[0]))
+            self.line(f"*(u64*)({a} + 0) = 0; *(u64*)({a} + 8) = 0;")
             return True
         if m == "rev" and len(regs) == 2 and regs[0][0] == regs[1][0] and regs[0][0] in "xw":
             t = width_type(regs[0])

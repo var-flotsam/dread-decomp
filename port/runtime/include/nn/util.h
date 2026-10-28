@@ -26,4 +26,9 @@ s32 SNPrintf(char* buffer, u64 size, const char* format, ...);
 // The size a gzip stream unpacks to: its trailer's last word.
 u64 GetGzipDecompressedSize(const void* data, u64 size);
 
+namespace detail {
+// Data import: 1/(2*pi), which fn_71000f7800 (CSoundSystemATK) reads through its GOT slot.
+extern float Float1Divided2Pi;
+}  // namespace detail
+
 }  // namespace nn::util

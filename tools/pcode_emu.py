@@ -68,6 +68,9 @@ NOOP_USEROPS = frozenset({"DataMemoryBarrier", "DataSynchronizationBarrier", "In
                           "WaitForEvent", "ClearExclusiveLocal", "LOAcquire", "LORelease"})
 
 
+TRAP_WORD = 0xE7FFDEFE  # the trap word of this binary's unreachable code (unallocated in A64)
+
+
 class Fault(Exception):
     pass
 
@@ -650,6 +653,9 @@ class Machine:
                     return
                 self.visited.add(pc)
                 w = self.code_word(pc)
+                if w == TRAP_WORD or (w & 0xFFE0001F) == 0xD4200000:  # LLVM's trap word, brk (__builtin_trap)
+                    self.finish("trap")  # (an end both runs must reach after the same events)
+                    return
                 kind, target = self.step(pc, w, BRANCH, CBRANCH, BRANCHIND, CALL, CALLIND, RETURN)
                 if ((w & 0xFF000010) == 0x54000000 or (w & 0x7C000000) == 0x34000000) \
                         and (kind != "jump" or self.inside(target)):
