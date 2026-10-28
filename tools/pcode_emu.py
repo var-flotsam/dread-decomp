@@ -308,6 +308,7 @@ class Machine:
             if kind == "m":
                 self.mem_ovr.setdefault(k // PAGE, []).append((k % PAGE, v))
         self.track, self.read_words, self._read_seen = track, [], set()
+        self.read_at: dict[int, int] = {}  # each read word's byte where it was first read (a mutation goes there)
         self.ops_db, self.userops, self.op = db["ops"], db["userops"], db["opcodes"]
         self.image, self.seed, self.inside, self.code_word, self.lift = image, seed, inside, code_word, lift
         self.imports, self.facts = imports, facts
@@ -383,6 +384,7 @@ class Machine:
                 self._read_seen.add(w)
                 if w not in self.dirty and w not in self.stack_written:
                     self.read_words.append(w)
+                    self.read_at[w] = a - w
         o = a % PAGE
         if o + size <= PAGE:
             return int.from_bytes(self.page(a // PAGE)[o:o + size], "little")
