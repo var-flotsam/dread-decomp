@@ -11,16 +11,18 @@ and beyond, which our port's boot (tools/boot_distance.py) can be compared with.
   `code_zz_trace.c`, which defines that function (setup compiles every `code_*.c` it finds). The
   instrumented build writes `<seq> <microseconds> <thread> <address>` lines to the file named by
   DREAD_TRACE (default `recomp_trace.txt` in the game's working directory), flushed per line so a crash
-  keeps them. Rerun the recomp's setup on its own `_data` folder to rebuild the DLL. `--undo` takes the
+  keeps them. Rerun the recomp's setup with the same --out and --base (the original game folder: it keeps the
+  RomFS and the generated code and compiles the changed files; its own `_data` folder as --base fails). `--undo` takes the
   lines out again and deletes `code_zz_trace.c`. The generated C stays in that folder: it is game code,
   never copied into this repository.
 - `map --trace FILE` turns the log into our addresses (ours = theirs - 0x8005000 + 0x7100000000, checked
   on function starts and an import thunk; journal, "What the Dread recomp found") and joins each with
   data/functions: name, status, subsystem. `--until NAME|ADDR` cuts the order at the first entry of that
   function (a milestone such as the title screen). Writes build/recomp_trace/order.csv. Other modules'
-  addresses (the SDK, the multimedia module) are kept, labelled by module.
+  addresses (the SDK, the multimedia module) are kept, labelled by module. Import stubs (the PLT entries
+  data/functions names `<EXTERNAL>::...`) are marked `import`: the port's runtime provides those.
 - `next --order CSV [--boot JSON]` lists what our port meets next: the functions in recomp order that are
-  not usable yet (status U, W or M). With boot_distance.json, it starts after the furthest of our boot's
+  not usable yet (status U, W or M), import stubs left out. With boot_distance.json, it starts after the furthest of our boot's
   traps in that order.
 
 Only addresses, names, statuses and counts are written or printed, never game bytes.
@@ -146,7 +148,7 @@ def instrument(build: Path, undo: bool) -> int:
     else:
         trace.write_text(TRACE_C, encoding="ascii")
         print(f"recomp_trace: {total} functions hooked in {changed} files; {TRACE_FILE} written. "
-              f"Rebuild with the recomp's setup on its own _data folder.")
+              f"Rebuild with the recomp's setup, same --out and --base as the first build.")
     return 0
 
 
@@ -179,6 +181,21 @@ class FunctionIndex:
         self.starts = [int(r["address"], 16) for r in self.rows]
         last = self.rows[-1]
         self.end = int(last["address"], 16) + int(last["size"])
+        # The PLT: the span of the 16-byte import stubs, plus 16-byte symbol entries right before it (the
+        # function list gives the PLT's first entry a linker symbol, `end` on 2.1.0, not an <EXTERNAL> name).
+        plt = [int(r["address"], 16) for r in self.rows
+               if r["name"].startswith("<EXTERNAL>::") and int(r["size"]) == 16]
+        self.plt = (min(plt), max(plt) + 16) if plt else (0, 0)
+        if plt:
+            i = self.starts.index(self.plt[0])
+            while i > 0 and int(self.rows[i - 1]["size"]) == 16 and self.rows[i - 1]["name_source"] == "symbol" \
+                    and self.starts[i - 1] + 16 == self.starts[i]:
+                i -= 1
+            self.plt = (self.starts[i], self.plt[1])
+
+    def is_import(self, row: dict) -> bool:
+        a = int(row["address"], 16)
+        return row["name"].startswith("<EXTERNAL>::") or self.plt[0] <= a < self.plt[1]
 
     def find(self, addr: int) -> dict | None:
         i = bisect.bisect_right(self.starts, addr) - 1
@@ -221,6 +238,7 @@ def map_trace(hits, index: FunctionIndex, until: int | None) -> list[dict]:
             "status": row["status"] if row else "",
             "subsystem": row["subsystem"] if row else "",
             "start": bool(row) and int(row["address"], 16) == a,
+            "import": bool(row) and index.is_import(row),
         })
         if until is not None and module == "main" and a == until:
             break
@@ -229,7 +247,7 @@ def map_trace(hits, index: FunctionIndex, until: int | None) -> list[dict]:
 
 def write_order(order: list[dict], out: Path) -> None:
     out.parent.mkdir(parents=True, exist_ok=True)
-    cols = ["order", "seq", "us", "thread", "module", "address", "name", "status", "subsystem", "start"]
+    cols = ["order", "seq", "us", "thread", "module", "address", "name", "status", "subsystem", "start", "import"]
     with out.open("w", newline="", encoding="utf-8") as fh:
         w = csv.DictWriter(fh, fieldnames=cols)
         w.writeheader()
@@ -237,14 +255,16 @@ def write_order(order: list[dict], out: Path) -> None:
 
 
 def summary(order: list[dict]) -> list[str]:
-    main = [o for o in order if o["module"] == "main"]
+    imports = sum(1 for o in order if o["module"] == "main" and o["import"])
+    main = [o for o in order if o["module"] == "main" and not o["import"]]
     by: dict[str, int] = {}
     for o in main:
         by[o["status"] or "?"] = by.get(o["status"] or "?", 0) + 1
     off = sum(1 for o in main if not o["start"])
     threads = len({o["thread"] for o in order})
-    lines = [f"recomp trace: {len(order)} functions entered ({len(main)} in main, {len(order) - len(main)} in other "
-             f"modules), {threads} threads; main by status: "
+    others = sum(1 for o in order if o["module"] != "main")
+    lines = [f"recomp trace: {len(order)} functions entered ({len(main)} in main, {imports} import stubs, {others} in "
+             f"other modules), {threads} threads; main by status: "
              + ", ".join(f"{k} {v}" for k, v in sorted(by.items()))]
     if off:
         lines.append(f"  {off} main addresses are not a function start in data/functions (the recomp split or "
@@ -276,7 +296,7 @@ def next_up(order: list[dict], boot: dict | None, limit: int) -> list[str]:
             lines.append(f"our boot's furthest trap in recomp order: {n} at {i + 1} of {len(main)}")
         else:
             lines.append("none of our boot's traps is in the recomp order; listing from the start")
-    todo = [o for o in main[start:] if o["status"] in ("U", "W", "M")]
+    todo = [o for o in main[start:] if o["status"] in ("U", "W", "M") and o.get("import") not in ("True", True)]
     lines.append(f"{len(todo)} functions not usable yet after that point; the next {min(limit, len(todo))}:")
     for o in todo[:limit]:
         lines.append(f"  {int(o['order']) + 1:6d}  {o['address']}  {o['status']}  {o['name']}"
