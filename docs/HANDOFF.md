@@ -441,8 +441,17 @@ oracle covers a median 67% of an original's instructions. The lifter's second ga
 `x8` results in tail position, jump tables through register copies, shrink-wrapped prologues,
 frames sized by shifted immediates, float widths, and half and byte loads converted to float. On
 the boot slice with the run-time roots (2,366 `U` functions, 1.40 MB at the time) it gets 2,295
-accepted lifts (97%). The oracle's inputs and a fresh `build/port/lifted` follow (stream M);
-`tools/port_lift.py --debug ADDR` shows a rejected function's first difference. M1 step 4 (2026-10-26, var-flotsam/dread-decomp#201, #203 and #206): the runtime defines every `nn::os` and
+accepted lifts (97%). With the oracle's inputs round (2026-10-27, branch
+`claude/lifter-oracle-inputs`: mutations, out-parameter bounds, review fixes; journal), the fresh
+**`build/port/lifted`** holds 2,247 lifts. **2,153 of the boot slice's 2,220 functions without a
+source are accepted** (1.18 MB of 1.26 MB). The slice is `port_lift.py --slice boot`: `nnMain`,
+the run-time roots, graphics and the pointer roots, and every root and graphics function is in.
+**67 slice functions are left** (83 KB, `manifest.json`): 35 read a caller-saved register after
+a call (16-byte results), 11 are inconclusive, 10 read a register before writing it, 6 are
+rejected by the oracle and 5 hit other lifter gaps. The other 94 lifts override `src/lifted`
+definitions that lose arguments (stream M). The oracle covers a median 84% of an original's
+instructions. `tools/port_lift.py --debug ADDR` shows a rejected function's first difference.
+M1 step 4 (2026-10-26, var-flotsam/dread-decomp#201, #203 and #206): the runtime defines every `nn::os` and
 `nn::oe` import the slice reaches (port_link's residue lists none); `dread_game` and the sweep
 build with `-fno-strict-aliasing`; the data loader (`port/runtime/include/dread_port_loader.h`,
 `port/README.md` "The data loader") maps the dump's main NSO at `0x7100000000` before the game's
