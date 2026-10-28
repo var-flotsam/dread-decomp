@@ -326,6 +326,11 @@ def float_widths(ins, semantic: bool = False) -> dict[int, str]:
     w: dict[int, str] = {}
     if semantic:
         ins = [x for x in ins if not is_frame(x)]  # (semantic mode: saves of d8-d15 are not uses)
+        # (and a register built lane by lane is stored whole, not read at d or q: Lifter.lane_step)
+        lanes = {m.group(1) for x in ins if x.mnemonic in ("ld1", "mov")
+                 and (m := re.match(r"\{?v(\d+)\.s\}?\[[0-3]\], ", x.op_str))}
+        ins = [x for x in ins if not (x.mnemonic in ("str", "stur") and re.match(r"[qd](\d+), ", x.op_str)
+                                      and re.match(r"[qd](\d+), ", x.op_str).group(1) in lanes)]
     for x in ins:
         if x.mnemonic == "fmov" and any(op.type == arm64.ARM64_OP_FP for op in x.operands):
             continue  # (capstone counts fmov's immediate destination as read)
@@ -382,12 +387,14 @@ class State:
         self.retk: int | None = None               # the last written of x0 (0) and s0/d0 (100)
         self.fcall: tuple | None = None            # the last call, while its result may be a float
         self.x8w = False                           # x8 set to a local since the last call (semantic mode)
+        self.lanes: dict[int, list] = {}           # semantic mode: 100 + n -> v<n>'s four 32-bit lanes (f32 values or None)
 
     def copy(self) -> "State":
         s = State()
         s.vals, s.pages, s.consts = dict(self.vals), dict(self.pages), dict(self.consts)
         s.poison, s.called, s.written, s.cmp = set(self.poison), self.called, set(self.written), self.cmp
         s.retk, s.fcall, s.x8w = self.retk, self.fcall, self.x8w
+        s.lanes = {n: list(v) for n, v in self.lanes.items()}
         return s
 
 
@@ -426,6 +433,7 @@ class Lifter:
         self.rets: list[tuple[int, str, tuple | None]] = []  # (line, "value"|"tail", payload)
         self.phis = 0
         self.sret = False
+        self.ret_ptrs = {"(char*)&ret"}  # semantic mode: expressions holding this function's own result address
         self.last_call: tuple[str | None, str] = (None, "")  # (callee or None, argument types)
         self.tails: dict[str, str] = {}  # direct tail callee -> argument types
         self.flagsrc: dict[int, tuple] = {}  # id(State.cmp) -> (cmp, "add" | "logic"): flags of adds/ands
@@ -532,6 +540,7 @@ class Lifter:
         var = f"r{len(self.body)}_{n}"
         self.line(f"{t} {var} = {e};")
         s = self.s
+        s.lanes.pop(n, None)
         if n in (0, 100):
             s.retk = n
         if n == 100:
@@ -545,8 +554,12 @@ class Lifter:
             s.consts[n] = const
         if n <= 7 or 100 <= n <= 107:
             s.written.add(n)
+        if e in self.ret_ptrs:
+            self.ret_ptrs.add(var)  # (a copy of this function's own result address)
         if n == 8:
-            s.x8w = LOCAL_ADDR.fullmatch(e) is not None  # (an indirect callee may build its result there: Lifter.step)
+            # (an indirect callee may build its result there: Lifter.step; a local, or the result
+            # address this function was given, set again)
+            s.x8w = LOCAL_ADDR.fullmatch(e) is not None or e in self.ret_ptrs
 
     # -- control flow -------------------------------------------------------------------------
 
@@ -591,6 +604,7 @@ class Lifter:
         m.cmp = None
         m.fcall = None  # lines are inserted below: recorded line numbers would move
         m.x8w = a.x8w and c.x8w
+        m.lanes = {}  # (vector lanes are not merged: a later lane use is refused)
         m.retk = a.retk if a.retk == c.retk else None
         m.poison = a.poison | c.poison
         m.pages = {n: p for n, p in a.pages.items() if c.pages.get(n) == p}
@@ -953,6 +967,25 @@ class Lifter:
             return 8, f.floats, f.stack_slots  # (stack arguments follow all eight integers)
         return f.ints, f.floats
 
+    def sret_indirect_tail(self, reg: str) -> None:
+        """Semantic mode: an indirect tail call (`br`) with x8 set to this function's own result
+        address again (Lifter.ret_ptrs, FlatLifter.ret_regs): the callee builds the result in
+        place, then `return ret;`. Not `return callee(...)` as in sret_tail: beside another
+        path's `return ret;` that stops Clang's NRVO, so ret becomes a local and x8 on the other
+        paths no longer the caller's buffer. With x8 at a local, refused (the result is not this
+        function's)."""
+        ptr, _ = self.read(reg)
+        self.s.written.discard(self.key(reg))
+        x8, _ = self.read("x8")
+        own = (8 in self.ret_regs) if isinstance(self, FlatLifter) else x8 in self.ret_ptrs
+        if not own:
+            raise Unsupported("indirect tail call with an indirect result (x8)")
+        args = self.args(self.callee_need(""))
+        types, values = ", ".join(t for _, t in args), ", ".join(e for e, _ in args)
+        self.decls.add(LIFT_AT)
+        self.line(f"new ((void*)({x8}), lift_at_t{{}}) UnkResult(((UnkResult (*)({types}))({ptr}))({values}));")
+        self.terminate("value", None)
+
     def sret_callee(self, a: int) -> bool:
         """Whether the callee at a builds its result at x8 (abi_facts), in semantic mode and in
         byte mode's pass-through (where the call then names x8 too: see sret_call, sret_tail)."""
@@ -1201,6 +1234,8 @@ class Lifter:
                 elif m == "b" and not addr <= o[0].imm < end:
                     self.terminate("tail", self.call(f"fn_{o[0].imm:x}"))
                     self.tails[f"fn_{o[0].imm:x}"] = self.last_call[1]
+                elif m == "br" and "semantic" in self.opts and self.s.x8w and regname(o[0].reg) != "x8":
+                    self.sret_indirect_tail(regname(o[0].reg))
                 elif m == "br":
                     ptr, _ = self.read(regname(o[0].reg))
                     self.s.written.discard(self.key(regname(o[0].reg)))  # the target isn't an argument
@@ -1449,6 +1484,45 @@ class Lifter:
         ct = st if signed else t
         return f"({ct})(u64)({a}) {opr} ({ct})({b})"
 
+    def lane_step(self, x, mem) -> bool:
+        """Semantic mode: a vector register built lane by lane from 32-bit floats (State.lanes) and
+        stored whole: `movi v<n>.2d, #0` or `ld1 {v<n>.s}[0], [x]`, then `ld1 {v<n>.s}[i]` and
+        `mov v<n>.s[i], v<m>.s[0]`, then `str q<n>` (four lanes) or `str d<n>` (two). Lane 0 is
+        also s<n>. Lanes not known are refused at the store. True if x was one."""
+        m, op, s = x.mnemonic, x.op_str, self.s
+        if m == "ld1" and mem and not x.writeback and (g := re.fullmatch(r"\{v(\d+)\.s\}\[([0-3])\], \[x\d+\]", op)):
+            n, i = int(g.group(1)), int(g.group(2))
+            if i and 100 + n not in s.lanes:
+                return False
+            e = f"*(f32*){self.address(x, mem[0], 4)}"
+            if i == 0:
+                lanes = s.lanes.get(100 + n, [None] * 4)
+                self.write(f"s{n}", e, "f32")
+                s.lanes[100 + n] = [self.snapshot(self.read(f"s{n}")[0], "f32")] + lanes[1:]
+            else:
+                s.lanes[100 + n][i] = self.bind("f32", e)  # (loaded here, not at the store)
+            return True
+        if m == "mov" and (g := re.fullmatch(r"v(\d+)\.s\[([0-3])\], v(\d+)\.s\[0\]", op)):
+            n, i, src = int(g.group(1)), int(g.group(2)), int(g.group(3))
+            if 100 + n not in s.lanes:
+                return False
+            v = self.snapshot(self.read(f"s{src}")[0], "f32")
+            lanes = s.lanes[100 + n]
+            if i == 0:
+                self.write(f"s{n}", v, "f32")
+            lanes[i] = v
+            s.lanes[100 + n] = lanes
+            return True
+        if m in ("str", "stur") and mem and not x.writeback and (g := re.fullmatch(r"([qd])(\d+), \[.*", op)):
+            n, k = int(g.group(2)), 4 if g.group(1) == "q" else 2
+            lanes = s.lanes.get(100 + n)
+            if lanes is None or any(v is None for v in lanes[:k]):
+                return False
+            a = self.temp_ptr(self.address(x, mem[0]))
+            self.line(" ".join(f"*(f32*)({a} + {4 * i}) = {v};" for i, v in enumerate(lanes[:k])))
+            return True
+        return False
+
     def semantic_step(self, x, mem) -> bool:
         """Instructions only semantic mode lifts (their byte-identical form is unknown or the
         lifter's shortcut for them is not exact). True if x was one."""
@@ -1502,15 +1576,7 @@ class Lifter:
             self.write(f"s{n}", f"(f32)*({t}*){self.address(x, mem[0])}", "f32")
             self.gskip.add(nx.address)
             return True
-        if m == "ld1" and mem and not x.writeback and (lane := re.fullmatch(r"\{v(\d+)\.s\}\[0\], \[x\d+\]", x.op_str)):
-            # One 32-bit lane, the first: as s<n> (a later use of the other lanes is refused there).
-            self.write(f"s{lane.group(1)}", f"*(f32*){self.address(x, mem[0], 4)}", "f32")
-            return True
-        if m in ("str", "stur") and mem and len(regs) == 1 and re.fullmatch(r"q\d+", regs[0]) \
-                and s.consts.get(100 + int(regs[0][1:])) == 0:
-            # A zeroed vector register (movi, or a write of 0 to its s/d part, which clears the rest).
-            a = self.temp_ptr(self.address(x, mem[0]))
-            self.line(f"*(u64*)({a} + 0) = 0; *(u64*)({a} + 8) = 0;")
+        if self.lane_step(x, mem):
             return True
         if m == "rev" and len(regs) == 2 and regs[0][0] == regs[1][0] and regs[0][0] in "xw":
             t = width_type(regs[0])
@@ -1787,8 +1853,9 @@ class Lifter:
             self.write(regname(o[0].reg), "0.0", "f64", 0)
         elif m == "movi" and len(o) == 2 and "semantic" in self.opts and o[1].type == arm64.ARM64_OP_IMM \
                 and o[1].imm == 0 and re.fullmatch(r"v\d+", regname(o[0].reg)) and x.op_str.endswith(".2d, #0000000000000000"):
-            # The whole vector register zeroed: as its d<n> (a later q<n> use is refused there).
+            # The whole vector register zeroed: as its d<n>, and its lanes (Lifter.lane_step).
             self.write(f"d{regname(o[0].reg)[1:]}", "0.0", "f64", 0)
+            self.s.lanes[100 + int(regname(o[0].reg)[1:])] = ["0.0f"] * 4
         elif (m in FBINARY and len(o) == 3) or (m in FUNARY and len(o) == 2) or (m in FTERNARY and len(o) == 4):
             rd = regname(o[0].reg)
             t = ftype(rd)
@@ -2066,6 +2133,7 @@ class FlatLifter(Lifter):
         self.flag_vars = False  # semantic mode: NZCV kept in locals (store_flags)
         self.flags_bad = False  # ... except after a compare whose flags could not be written out
         self.clob: set[int] = set()  # semantic mode: caller-saved registers a call left, unwritten (clobber)
+        self.ret_regs = {8}  # semantic mode: registers holding this function's own result address (x8 at entry)
 
     def store_flags(self) -> None:
         """Semantic mode: NZCV of the compare just made, in locals, for a condition read in another
@@ -2291,6 +2359,7 @@ class FlatLifter(Lifter):
             self.line(f"X{n} = (u64)({e});")
         self.types[n] = t
         s = self.s
+        s.lanes.pop(n, None)
         if n in (0, 100):
             s.retk = n
         if n == 100:
@@ -2302,8 +2371,14 @@ class FlatLifter(Lifter):
             s.consts[n] = const
         if n <= 7 or 100 <= n <= 107:
             s.written.add(n)
+        holds = (g := FLAT_REG.fullmatch(e)) is not None and int(g.group(1)) in self.ret_regs
+        self.ret_regs.discard(n)
+        if holds:
+            self.ret_regs.add(n)  # (a copy of this function's own result address)
         if n == 8:
-            s.x8w = LOCAL_ADDR.fullmatch(e) is not None  # (an indirect callee may build its result there: Lifter.step)
+            # (an indirect callee may build its result there: Lifter.step; a local, or the result
+            # address this function was given, set again)
+            s.x8w = LOCAL_ADDR.fullmatch(e) is not None or holds
 
     def has_value(self, n: int) -> bool:
         return n in self.types
@@ -2373,6 +2448,8 @@ class FlatLifter(Lifter):
                     self.s.fcall = None
                     self.clob = set()
                     self.s.x8w = False
+                    self.s.lanes = {}
+                    self.ret_regs = set()
                 if self.pos:
                     self.frame_reset(ins[self.pos - 1])
                 if self.frame_op(x) or self.guard_step(x):
@@ -2410,6 +2487,8 @@ class FlatLifter(Lifter):
                     v, _ = self.read(f"x{idx}")
                     cases = " ".join(f"case {k}: goto L_{t:x};" for k, t in enumerate(tgts))
                     self.line(f"switch ((u64)({v})) {{ {cases} default: __builtin_unreachable(); }}")
+                elif m == "br" and "semantic" in self.opts and self.s.x8w and regname(o[0].reg) != "x8":
+                    self.sret_indirect_tail(regname(o[0].reg))
                 elif m == "br":
                     ptr, _ = self.read(regname(o[0].reg))
                     self.s.written.discard(self.key(regname(o[0].reg)))  # the target isn't an argument
@@ -2543,6 +2622,7 @@ def shape_ns(shape: tuple) -> str:
 
 
 LOCAL_ADDR = re.compile(r"\(stk \+ 0x[0-9a-f]+\)")  # Lifter.local's form: a local's address
+FLAT_REG = re.compile(r"\(?(?:\(char\*\))?X(\d+)\)?")  # FlatLifter.read's form of a whole register
 LIFT_AT = ("struct lift_at_t {}; inline void* operator new(decltype(sizeof 0), void* p, lift_at_t) "
            "noexcept { return p; }")
 

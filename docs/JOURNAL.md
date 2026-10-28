@@ -91,6 +91,7 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - The NVN globals `g_unk_716e29xxxx` are named by the loader's GOT slots and their relative relocations (`data/nvn_procs.csv`); count GOT-slot call sites with a short window, not adjacent pairs; never write into a game-owned NVN object's storage: [NVN shim's start-up path](#session-log-newest-first).
 
 **Port: runtime and loader**
+- Another Dread project's addresses map to ours by one constant (the recomp: ours = theirs - 0x8005000 + 0x7100000000); the game's PC-side problems it found (a video wait under a lock, per-texel texture uploads, a deserializer growing 10 at a time, frame pacing): [Dread recomp findings](#session-log-newest-first).
 - A function-local static of an ordinary (non-inline) function is a local symbol that its object reaches section-relative: no link step can redirect it. Make the function inline on the port (`inline __attribute__((used))`) so the static is weak and `--defsym` binds it: [port M1 round 4](#session-log-newest-first).
 - Clang 17 stopped packing a packed struct's non-POD members (GCC's rule), so a newer Clang lays out the matching sources differently; `-fclang-abi-compat=9.0` restores the matching compiler's layouts: same entry.
 - A bounds test `cmp #N; b.hs` before a table load is a `switch` turned into a lookup table (an array index gives `cmp #N-1; b.hi`): same entry.
@@ -135,6 +136,79 @@ sources: compiling 100 s, reading the objects with pyelftools 26 s, and one `llv
   (`DECOMP_PATHS`); others report it as skipped, which a required check counts as passing. A nightly uncached run
   backs up the caches. `docs/maintaining.md`, "The self-hosted check job", has the rules.
 - `docs/JOURNAL.md merge=union` in `.gitattributes` for local merges of main into a branch.
+**Lifter: vectors built lane by lane (2026-10-28, branch `claude/project-thread-zgkpk3`, after #244).**
+The movi and ld1 rejects left after #244 build a vector from 32-bit floats and store it whole: `movi
+v3.2d, #0`, then `mov v3.s[0..2], v<m>.s[0]`, then `str q3, [sp]` (a Vector3 padded to 16 bytes, passed
+by address: `71000f3c7c`, `71000f3ce4`), and `ld1 {v0.s}[0]` then `ld1 {v0.s}[1]` from another address
+(`71000fa05c`; `fn_71000f7800` too, hand-written since). `State.lanes` keeps a register's four lanes
+(semantic mode; dropped at a join, a label and any other write), `Lifter.lane_step` reads the lane
+forms and stores `str q` (four lanes) or `str d` (two) lane by lane; `float_widths` leaves those
+stores out. Also: `port/runtime/src/heap.cpp` includes `<cstddef>` for `std::max_align_t` (the
+Linux image's clang++ with libstdc++ refused it).
+- **An indirect call given this function's own result address in x8** (the boot's next stop after #244:
+  `fn_710001ab24` calls a resource descriptor's callback at +0x40, `fn_71001b2e4c`, which builds an
+  `UnkResult`). Semantic mode made a struct-returning indirect call only when x8 held a local's
+  address, so with x8 set back to the incoming result address the call named neither, and on x86-64
+  every argument moved up a register (the hidden result pointer is rdi). `Lifter.ret_ptrs` and
+  `FlatLifter.ret_regs` now follow copies of that address, and x8 set to one before a `blr` makes the
+  call build its result there, as for a local.
+  The same call made as a tail call (`mov x8, x20; br x2` in `fn_710001ab24`) now returns the
+  callee's result, built in place as for `blr` and followed by `return ret;` (refused if x8 holds
+  anything else). A first try emitted `return ((UnkResult (*)(...))(ptr))(...)`; beside the other
+  paths' `return ret;` that cost Clang's NRVO, ret became a stack local, and the oracle rejected
+  `710001ab24` and `710110f1c8` (their other paths passed or wrote the local, not the caller's buffer).
+
+**Boot functions the lifter rejects, by hand, batch 2 (2026-10-28, branch `claude/project-thread-xllbvf`, second PR).**
+Ten more from the boot-slice list and the boot's next trap, `fn_710006f390` (the vibration thread's loop). All of them
+are written from the original's behaviour, checked against its disassembly, and marked `NON_MATCHING(major)`:
+`fn_71000f01d0` (binding a reflected call's leading arguments, `src/base/reflection/UnkReflCallArgs.cpp`),
+`fn_710010d9fc` (building the box tree, next to its sort in `src/game_s7/fn_710010e470.cpp`), `fn_7100ee6d00` and
+`fn_7100ee8044` (what a change of sub-area loads and unloads), `fn_7100fd6f74` (whether a music request is
+already playing), `fn_7100ed5a04` (the shots' audio presets), `fn_7100e0fc00` (the loading screen's tip labels),
+`fn_7100ebc7f0` (a minimap segment as a quad) and `fn_710006f390` (`src/base/input/UnkVibrationThread.cpp`). The
+loop reads the SDK data import `nn::hid::VibrationNode::DefaultVibrationSampleInterval` through its symbol name,
+so the port's runtime has to define it (5 ms on the console). The boot reaches none of the five largest
+functions still open (`fn_7100223c2c`, `fn_7100ebcd70`, `fn_71001b83f8`, `fn_7100ea1d78` and `fn_7100e9e164`), so they
+are left until a trap needs them. `fn_710007d788` waits for the lifter's generic fix for its instruction gap.
+Finding: `tools/abi_facts.py` gives the exact registers a callee reads (`AbiFacts(...).facts(addr).args`).
+A callee that skips x0 or x2 is called with null in those places, as the existing declarations have them.
+
+**What the Dread recomp found about the game on PC (2026-10-28, branch `claude/project-thread-lrmp48`).** At the
+owner's request, the public [Metroid-Dread-Recomp](https://github.com/yozander2009-stack/Metroid-Dread-Recomp)
+(yozander2009-stack, head `c5dfcf0`; SwitchRecomp by MZ Labs, `docs/references.md`) was read for what it knows about
+the game. It is a static recompilation of the same 2.1.0 build: every ARM64 function translated to C and compiled
+for the PC, on a high-level emulation of the console (kernel, services, a Maxwell GPU over OpenGL or Vulkan). Its
+functions are named `F_<addr>` for a `main` based at `0x8005000`, so **ours = theirs - 0x8005000 + 0x7100000000**
+(checked: function starts agree, and its `F_806B91C` is our `nn::os::LockMutex` thunk). Nothing was copied: these
+are facts read from its comments and patch descriptions, mapped to our addresses. Its patch set edits generated
+code that is not in its repository, so a few places are known only by what they do.
+- **Video completion wait under a lock** (`fn_7100224de4`): when bit 0 of its argument is set it waits with a
+  timeout of 50 (`fn_71002202d8`) while the caller `fn_710021f858` still holds the mutex at `+0x960` of the same
+  object. The recomp drops that mutex around the wait (`fn_7100066920` to unlock, `nn::os::LockMutex` to lock
+  again) or video playback stalls. A wait inside the multimedia module (`subsdk0`), reached from `fn_7100226b70`, has the
+  same pattern with a global rendering lock (the object whose pointer is at `0x7101cc5d58`), released and taken
+  again with `fn_7100159be0` / `fn_7100159bd0` (lock order kept: outer before inner). Relevant once `nn::movie` runs.
+- **Per-texel texture uploads** (`fn_71001e193c`, return address `0x71001e1e38`): a dirty rectangle of a
+  1024-wide RGBA8 texture (format `0x25`) is written with one `nvnTextureWriteTexels` per texel, through the NVN
+  table slot at `0x7101cc5300`. The recomp batches it by row. The shim's texel write should be cheap per call,
+  or batch the same way.
+- **Vector growth in a deserializer**: an array the resource deserializer appends to grows by 10 elements at a
+  time, so big loads copy quadratically. Not located in our addresses yet (the recomp names it by line of its
+  generated code).
+- **Frame pacing**: the loading-screen render thread (elevators, trains, area loads) sleeps 30 ms per frame;
+  cinematics ask the present-interval setter `fn_7100159420` for interval 2 (30 FPS), and `fn_710119a320` is the
+  check that a 60 FPS cutscene patch makes answer yes. The FXAA-enabled flag is stored at renderer `+0xc00` by
+  `fn_710014e86c` (`0x710014e888`). The recomp keeps the 60 Hz tick and changes these only as opt-in settings.
+- **Cutscene skip**: `fn_71010692a0` is the game's can-skip check and `fn_71011986e0` its seen-before lookup;
+  `fn_7100ec9a24` is the intro page controller's finish, called from `fn_7100ec9e38`.
+- The game's inflate (zlib) and `memcpy` are in the SDK module, which our port replaces anyway; the recomp swaps
+  them for native ones for speed.
+
+Findings:
+- Another project's function addresses map to ours by one constant when it loads `main` elsewhere; check it
+  against a few function starts and an import thunk before trusting it.
+- A recomp's patch descriptions name behaviour, and that is fair to record with our addresses. Its generated code,
+  and patch anchors containing it, are game-derived: read for the address only, never copied.
 
 **Port M1 round 6: through the boot milestones, and the NVN shim linked (2026-10-28, branch `claude/project-thread-3x0lf8`).**
 Boots of main with the hand-writing thread's branch (`fn_71000f7800`, the vibration thread) and the lifter's sets

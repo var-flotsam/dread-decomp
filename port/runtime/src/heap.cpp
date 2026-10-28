@@ -13,6 +13,7 @@
 //
 // The game's functions are weak references, so the runtime still links without the game.
 
+#include <cstddef>
 #include <cstdio>
 #include <cstdlib>
 #include <new>
