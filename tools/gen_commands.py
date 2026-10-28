@@ -31,7 +31,7 @@ GROUPS: list[tuple[str, list[str]]] = [
                              "gen_commands"]),
     ("Refactoring (header migrations, file moves)", ["hub_migrate", "baseline", "unit_move", "objcompare"]),
     ("Port", ["port_sweep", "port_link", "port_lift", "port_addresses", "port_imports", "test_port_loader",
-              "boot_distance", "nvn_procs", "bshdat", "pcode_emu", "ghidra/pcode"]),
+              "boot_distance", "recomp_trace", "nvn_procs", "bshdat", "pcode_emu", "ghidra/pcode"]),
 ]
 # Modules imported by other tools, not run on their own.
 LIBRARIES = {"buildcfg", "hostenv", "nso", "refl_attrs", "ghidra/common"}
