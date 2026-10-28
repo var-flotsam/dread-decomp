@@ -122,12 +122,14 @@ import asmdiff  # noqa: E402
 import buildcfg  # noqa: E402
 import callgraph  # noqa: E402
 import check  # noqa: E402
+import hostenv  # noqa: E402
 import port_sweep  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 SAMPLE_DUPLICATES = ROOT / "port" / "sample_duplicates.txt"  # shared with port/CMakeLists.txt
 TU_MAP = ROOT / "data" / "tu_map.csv"  # tools/tu_map.py: the units and their static initialisers
 RUNTIME_SRC = ROOT / "port" / "runtime" / "src"
+NVN_DIR = ROOT / "port" / "nvn"  # the NVN shim over Vulkan (M2), linked with --nvn
 ADDRESSES = ROOT / "build" / "port" / "addresses.json"  # tools/port_addresses.py
 # The executable's base. The compiled game code reaches 5,467 data symbols PC-relatively, from
 # 0x71015af379 to 0x7172a112e8, so its code must lie within 2 GB of both ends: between about
@@ -340,6 +342,36 @@ def compile_runtime(cxx: str, flags: list[str], out_dir: Path) -> list[Path]:
                            encoding="utf-8", errors="replace", cwd=ROOT)
         if r.returncode != 0:
             raise SystemExit(f"runtime: {rel(src)} does not compile:\n{r.stderr}")
+        objs.append(obj)
+    return objs
+
+
+def vulkan_include(given: str | None) -> Path | None:
+    """The Khronos Vulkan headers the NVN shim compiles against: `given`, else the newest pinned copy
+    tools/fetch_toolchains.py fetched (vulkan-headers-<ver> in the tool cache, as port/CMakeLists.txt
+    finds it), else None."""
+    if given:
+        return Path(given)
+    found = sorted((hostenv.cache_dir() / "tools").glob("vulkan-headers-*/include"),
+                   key=lambda p: [int(x) for x in re.findall(r"\d+", p.parent.name)])
+    found = [p for p in found if re.fullmatch(r"vulkan-headers-[\d.]+", p.parent.name)]
+    return found[-1] if found else None
+
+
+def compile_nvn(cxx: str, flags: list[str], vk_include: Path, out_dir: Path) -> list[Path]:
+    """The NVN shim (port/nvn/src) with the runtime's flags, its own headers and the Vulkan headers.
+    Its `nvnBootstrapLoader` is the game's one NVN import; the executable then links the system's
+    Vulkan loader (-lvulkan), which the port's Vulkan image has (port/docker/vulkan)."""
+    out_dir.mkdir(parents=True, exist_ok=True)
+    inc = ["-I", str(NVN_DIR / "include"), "-isystem", str(vk_include)]
+    objs = []
+    for src in sorted((NVN_DIR / "src").glob("*.cpp")):
+        obj = out_dir / (src.stem + ".o")
+        r = subprocess.run([cxx, *flags, *inc, str(src), "-o", str(obj)], capture_output=True, text=True,
+                           encoding="utf-8", errors="replace", cwd=ROOT)
+        if r.returncode != 0:
+            raise SystemExit(f"nvn: {rel(src)} does not compile:
+{r.stderr}")
         objs.append(obj)
     return objs
 
@@ -1028,8 +1060,8 @@ def write_image_tables(path: Path, lk: "Link", entries: list[Entry], runtime_glo
     for row in rows.values():
         if row["name"].startswith(IMPORT_PREFIX):
             group, gname = import_group(row["name"])
-            if group == "c" and gname in C_LIBRARY:
-                imports.setdefault(gname, gname)
+            if group == "c" and (gname in C_LIBRARY or gname in runtime_globals):
+                imports.setdefault(gname, gname)  # a C library name, or the NVN shim's nvnBootstrapLoader
     for name in HOST_ABI_IMPORTS:
         imports.setdefault(name, name)
     data = sorted({e.address for e in entries if e.cls == "data" and e.address is not None} | {a for _, a in statics})
@@ -1098,7 +1130,7 @@ def write_residue_traps(path: Path, residue: list[Entry]) -> dict:
 
 
 def link_executable(cxx: str, target: str, flags: list[str], out: Path, whole_o: Path, residue: list[Entry],
-                    image_base: int) -> dict | None:
+                    image_base: int, libs: tuple[str, ...] = ()) -> dict | None:
     """<out>/dread: port/main.cpp, link 2's dread_whole.o and residue.s, linked by lld at a fixed
     base (no PIE: the game's data sit at fixed addresses and the code must stay within 2 GB of
     them) against the host's libc++ and C library. None (after printing why) when it fails."""
@@ -1121,7 +1153,7 @@ def link_executable(cxx: str, target: str, flags: list[str], out: Path, whole_o:
         crt[name] = r.stdout.strip()
     cmd = [cxx, f"--target={target}", "-fuse-ld=lld", "-stdlib=libc++", "-no-pie", "-nostartfiles",
            f"-Wl,--image-base=0x{image_base:x}", "-o", str(exe), crt["Scrt1.o"], crt["crti.o"], crt["crtbeginS.o"],
-           str(main_o), str(whole_o), str(residue_o), "-lpthread", "-lm", crt["crtendS.o"], crt["crtn.o"]]
+           str(main_o), str(whole_o), str(residue_o), *libs, "-lpthread", "-lm", crt["crtendS.o"], crt["crtn.o"]]
     t0 = time.time()
     r = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", cwd=ROOT)
     dt = time.time() - t0
@@ -1329,6 +1361,12 @@ def main() -> int:
     ap.add_argument("--executable", action="store_true",
                     help="after link 2, link <out>/dread: port/main.cpp, dread_whole.o and a trap for every name"
                          " still undefined that is not the host's (an ELF target only; see write_residue_traps)")
+    ap.add_argument("--nvn", action="store_true",
+                    help="link the NVN shim (port/nvn) as the game's NVN and the system's Vulkan loader: run it in"
+                         " the Vulkan image (DREAD_PORT_IMAGE=dread-port-linux-vulkan); without it the game's"
+                         " nvnBootstrapLoader is a trap")
+    ap.add_argument("--vulkan-include", help="Vulkan headers for --nvn (default: the pinned copy in the tool cache,"
+                                             " python tools/fetch_toolchains.py vulkan-headers-1.4.328)")
     ap.add_argument("--image-base", default=f"0x{IMAGE_BASE:x}",
                     help=f"the executable's fixed base (default 0x{IMAGE_BASE:x}: within 2 GB of all the"
                          " game's PC-relative data, above the image's .bss)")
@@ -1355,6 +1393,14 @@ def main() -> int:
 
     # a. the runtime, compiled as the sweep compiles, the vendored libraries and the sweep's objects
     runtime_objs = compile_runtime(cxx, flags, out / "runtime")
+    if args.nvn:
+        vk = vulkan_include(args.vulkan_include)
+        if not vk or not (vk / "vulkan" / "vulkan_core.h").is_file():
+            raise SystemExit("--nvn needs the Vulkan headers: python tools/fetch_toolchains.py vulkan-headers-1.4.328"
+                             " or --vulkan-include")
+        nvn_objs = compile_nvn(cxx, flags, vk, out / "nvn")
+        print(f"nvn: {len(nvn_objs)} objects of the NVN shim compiled to {rel(out / 'nvn')} (Vulkan headers {vk})")
+        runtime_objs += nvn_objs
     lib_objs = [] if args.no_libraries else compile_libraries(cxx, flags, out / "lib")
     objs, missing_objs, skipped = collect_objects(Path(args.objects), read_sample_duplicates())
     if not objs:
@@ -1538,7 +1584,8 @@ def main() -> int:
     # f2. the executable
     exe_report = None
     if args.executable:
-        exe_report = link_executable(cxx, target, flags, out, whole_o, residue_entries, int(args.image_base, 16))
+        exe_report = link_executable(cxx, target, flags, out, whole_o, residue_entries, int(args.image_base, 16),
+                                     ("-lvulkan",) if args.nvn else ())
         if exe_report is None:
             return 1
 
@@ -1557,7 +1604,7 @@ def main() -> int:
         "inputs": {"objects": len(objs), "objects_dir": rel(Path(args.objects)), "sources_without_object": missing_objs,
                    "sample_duplicates": skipped, "runtime_objects": [rel(o) for o in runtime_objs],
                    "library_objects": [rel(o) for o in lib_objs], "library_flags": LIBRARY_FLAGS},
-        "options": {"alias_mismatch": args.alias_mismatch, "no_libraries": args.no_libraries},
+        "options": {"alias_mismatch": args.alias_mismatch, "no_libraries": args.no_libraries, "nvn": args.nvn},
         "link1": {"output": rel(out / 'dread_game.o'), "bytes": (out / 'dread_game.o').stat().st_size, "seconds": round(dt1, 2),
                   "defined_entries": lk1.defined_entries, "defined_names": len(lk1.defined_symbols),
                   "undefined": len(lk1.undefined)},
