@@ -6,9 +6,8 @@
 // fn_71001409a0 unpack gzip data.
 //
 // `main` imports (data/functions/): GenerateUuid, TSNPrintf, SNPrintf, GetGzipDecompressedSize,
-// DecompressGzip, ReferSymbol. Declared below: all but DecompressGzip (it needs an inflater; its
-// one caller is outside the boot slice) and ReferSymbol (a debug-symbol lookup with one caller,
-// fn_710120a6bc, outside the slice).
+// DecompressGzip, ReferSymbol. Declared below: all but ReferSymbol (a debug-symbol lookup with one
+// caller, fn_710120a6bc, outside the slice).
 
 #include "nn/nn_common.h"
 
@@ -25,6 +24,9 @@ s32 TSNPrintf(char* buffer, u64 size, const char* format, ...);
 s32 SNPrintf(char* buffer, u64 size, const char* format, ...);
 // The size a gzip stream unpacks to: its trailer's last word.
 u64 GetGzipDecompressedSize(const void* data, u64 size);
+// Unpacks a gzip stream into `out` (port/runtime/src/gzip.cpp); false when it is damaged or does not
+// fit. The work buffer is the console library's; the port's inflater does not use it.
+bool DecompressGzip(void* out, u64 out_size, const void* data, u64 size, void* work, u64 work_size);
 
 namespace detail {
 // Data import: 1/(2*pi), which fn_71000f7800 (CSoundSystemATK) reads through its GOT slot.

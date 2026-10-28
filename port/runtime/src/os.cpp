@@ -15,6 +15,7 @@
 #include <mutex>
 #include <new>
 #include <thread>
+#include <vector>
 
 namespace nn::os {
 
@@ -51,6 +52,8 @@ enum Tag : u32 {
     kTagEvent = 0x44524556,         // 'DREV'
     kTagSystemEvent = 0x44525345,   // 'DRSE'
     kTagMessageQueue = 0x44524d51,  // 'DRMQ'
+    kTagMultiWait = 0x44524d57,     // 'DRMW'
+    kTagWaitHolder = 0x44524d48,    // 'DRMH'
 };
 
 void Attach(void* object, void* impl, Tag tag) {
@@ -99,16 +102,7 @@ struct HostEvent {
 
     HostEvent(bool s, EventClearMode mode) : signaled(s), auto_clear(mode == EventClearMode_AutoClear) {}
 
-    void Signal() {
-        {
-            std::lock_guard<std::mutex> hold(lock);
-            signaled = true;
-        }
-        if (auto_clear)
-            changed.notify_one();
-        else
-            changed.notify_all();
-    }
+    void Signal();
 
     void Clear() {
         std::lock_guard<std::mutex> hold(lock);
@@ -137,6 +131,36 @@ struct HostEvent {
         std::unique_lock<std::mutex> hold(lock);
         return changed.wait_for(hold, Duration(timeout), [this] { return signaled; }) && Consume();
     }
+};
+
+// Multi-waits wake on any event's signal: one process-wide condition, notified by every signal; a
+// waiter rechecks its holders' events (under each event's own lock) when it wakes.
+std::mutex g_multi_wait_lock;
+std::condition_variable g_multi_wait_changed;
+
+void HostEvent::Signal() {
+    {
+        std::lock_guard<std::mutex> hold(lock);
+        signaled = true;
+    }
+    if (auto_clear)
+        changed.notify_one();
+    else
+        changed.notify_all();
+    std::lock_guard<std::mutex> hold(g_multi_wait_lock);
+    g_multi_wait_changed.notify_all();
+}
+
+struct HostMultiWait;
+
+struct HostWaitHolder {
+    HostEvent* event;
+    u64 user_data = 0;
+    HostMultiWait* linked = nullptr;
+};
+
+struct HostMultiWait {
+    std::vector<MultiWaitHolderType*> holders;  // in link order
 };
 
 HostEvent* NewEvent(bool signaled, EventClearMode mode) {
@@ -390,6 +414,73 @@ void WaitEvent(EventType* event) {
 bool TryWaitEvent(EventType* event) {
     // TODO(M1): the lifted fn_710002a6b0 and fn_710002b0b0 poll one.
     return Find<HostEvent>(event, kTagEvent, "TryWaitEvent")->TryWait();
+}
+
+void InitializeMultiWait(MultiWaitType* multi_wait) {
+    Attach(multi_wait, new HostMultiWait, kTagMultiWait);
+}
+
+void FinalizeMultiWait(MultiWaitType* multi_wait) {
+    delete Find<HostMultiWait>(multi_wait, kTagMultiWait, "FinalizeMultiWait");
+    Detach(multi_wait);
+}
+
+void InitializeMultiWaitHolder(MultiWaitHolderType* holder, EventType* event) {
+    Attach(holder, new HostWaitHolder{Find<HostEvent>(event, kTagEvent, "InitializeMultiWaitHolder")}, kTagWaitHolder);
+}
+
+void FinalizeMultiWaitHolder(MultiWaitHolderType* holder) {
+    auto* h = Find<HostWaitHolder>(holder, kTagWaitHolder, "FinalizeMultiWaitHolder");
+    if (h->linked)
+        Fatal("FinalizeMultiWaitHolder", "the holder is still linked");
+    delete h;
+    Detach(holder);
+}
+
+void LinkMultiWaitHolder(MultiWaitType* multi_wait, MultiWaitHolderType* holder) {
+    auto* m = Find<HostMultiWait>(multi_wait, kTagMultiWait, "LinkMultiWaitHolder");
+    auto* h = Find<HostWaitHolder>(holder, kTagWaitHolder, "LinkMultiWaitHolder");
+    std::lock_guard<std::mutex> hold(g_multi_wait_lock);
+    if (h->linked)
+        Fatal("LinkMultiWaitHolder", "the holder is already linked");
+    h->linked = m;
+    m->holders.push_back(holder);
+}
+
+void UnlinkMultiWaitHolder(MultiWaitHolderType* holder) {
+    auto* h = Find<HostWaitHolder>(holder, kTagWaitHolder, "UnlinkMultiWaitHolder");
+    std::lock_guard<std::mutex> hold(g_multi_wait_lock);
+    if (HostMultiWait* m = h->linked) {
+        for (auto it = m->holders.begin(); it != m->holders.end(); ++it)
+            if (*it == holder) {
+                m->holders.erase(it);
+                break;
+            }
+    }
+    h->linked = nullptr;
+}
+
+MultiWaitHolderType* WaitAny(MultiWaitType* multi_wait) {
+    auto* m = Find<HostMultiWait>(multi_wait, kTagMultiWait, "WaitAny");
+    std::unique_lock<std::mutex> hold(g_multi_wait_lock);
+    for (;;) {
+        for (MultiWaitHolderType* holder : m->holders) {
+            HostEvent* e = Find<HostWaitHolder>(holder, kTagWaitHolder, "WaitAny")->event;
+            std::lock_guard<std::mutex> event_hold(e->lock);
+            if (e->signaled && e->Consume())
+                return holder;
+        }
+        // A signal between the check and the wait notifies under g_multi_wait_lock, which is held.
+        g_multi_wait_changed.wait(hold);
+    }
+}
+
+u64 GetMultiWaitHolderUserData(const MultiWaitHolderType* holder) {
+    return Find<HostWaitHolder>(holder, kTagWaitHolder, "GetMultiWaitHolderUserData")->user_data;
+}
+
+void SetMultiWaitHolderUserData(MultiWaitHolderType* holder, u64 user_data) {
+    Find<HostWaitHolder>(holder, kTagWaitHolder, "SetMultiWaitHolderUserData")->user_data = user_data;
 }
 
 void InitializeSystemEventForPort(SystemEventType* event, bool signaled, EventClearMode clear_mode) {

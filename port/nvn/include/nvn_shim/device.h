@@ -20,6 +20,10 @@ enum DeviceInteger : std::int32_t {
     // fn_71001587f0 reads both into locals it never uses.
     kApiMajorVersion = 0x00,
     kApiMinorVersion = 0x01,
+    // fn_710015c9b0 (a shader program's load, from CProgramResource's fn_71001b0050) rounds each
+    // program's buffer sizes and its code size plus 0x2000 up to a multiple of it before it places
+    // them in its memory pools; a divisor, so never 0.
+    kProgramMemoryAlignment = 0x04,
     // fn_710015f100 sizes its texture and sampler pools with them: descriptor size times count.
     kTextureDescriptorSize = 0x0f,
     kSamplerDescriptorSize = 0x10,
