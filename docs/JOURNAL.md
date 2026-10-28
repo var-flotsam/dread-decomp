@@ -117,6 +117,12 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**`compile` skipped on documentation-only pull requests (2026-10-28, branch `claude/project-thread-5d6plu`, after #252).**
+`build.yml` gains a hosted `docs-only` job; when every changed path is under `docs/` or ends in `.md`, the
+`compile` job is skipped (reported as passing to the required check). Any other change, a failure of `docs-only`, a
+push to main or a manual run compiles as before. Narrower filters were not worth it: the job's tool tests cover
+`tools/`, and its matching build and port sweep cover `src/`, `include/`, `lib/` and `port/`.
+
 **Faster `check` and fewer runs of it (2026-10-28, branch `claude/project-thread-5d6plu`).**
 The `check` job took 13 to 15 minutes from push to result, of which `check.py` itself was 4 to 5 (runs 167 and
 171): the rest was waiting for the one self-hosted runner. Measured on a 4-core Linux container over all 3990
