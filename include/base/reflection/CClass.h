@@ -162,6 +162,18 @@ void fn_710009ec00(void* list, void* type);
 // constructor instantiation (T::refl_InitClass), so that instantiation's symbol carries it.
 #define DREAD_REFL_TAG(INIT) struct UnkRefl_fn_##INIT
 
+// The getter's linkage. On the Switch an ordinary function (the bytes are the original's). On the
+// port it is inline (and `used`, so each unit still emits it): its descriptor and the descriptor's
+// guard then become weak symbols, which tools/port_link.py binds to the game image's ("bound
+// statics"). The game's lifted code registers and reads the image's descriptor; with an ordinary
+// function the descriptor is a local symbol of the executable, which the link cannot redirect, and
+// the image's stays unconstructed (2,354 classes without a name).
+#if defined(__aarch64__)
+#define DREAD_REFL_GETTER_LINKAGE
+#else
+#define DREAD_REFL_GETTER_LINKAGE inline __attribute__((used))
+#endif
+
 // Defines the class getter for one reflected type (data/functions: T::refl_GetClass): a
 // guarded static descriptor built from the type name, the parent's descriptor and the
 // type's attribute and member-field functions (CType+0x70, CClass+0xe0). Arguments are bare
@@ -170,7 +182,7 @@ void fn_710009ec00(void* list, void* type);
 // constructor out of line (implicit instantiation would inline it into the getter). Whether
 // it did so with an explicit instantiation or a noinline attribute is unknown; both produce
 // the same code.
-#define DREAD_REFL_GETTER_IMPL_(ADDR, INIT, NAME_ID, PARENT_EXPR, FN_0x70, FN_0xE0)                     void fn_##FN_0x70(base::reflection::CClass*);                                                      void fn_##FN_0xE0(base::reflection::CClass*);                                                      const base::reflection::CClass* fn_##ADDR() {                                                          static base::reflection::CClass s_class(NAME_ID, PARENT_EXPR, &fn_##FN_0x70, &fn_##FN_0xE0,                                                 static_cast<UnkRefl_fn_##INIT*>(nullptr));                 return &s_class;                                                                               }                                                                                                  template base::reflection::CClass::CClass(const base::global::CStrId&,                                                                       const base::reflection::CClass*,                                                                   base::reflection::UnkFn_0x70,                                                                      base::reflection::UnkFn_0x70, UnkRefl_fn_##INIT*)
+#define DREAD_REFL_GETTER_IMPL_(ADDR, INIT, NAME_ID, PARENT_EXPR, FN_0x70, FN_0xE0)                     void fn_##FN_0x70(base::reflection::CClass*);                                                      void fn_##FN_0xE0(base::reflection::CClass*);                                                      DREAD_REFL_GETTER_LINKAGE const base::reflection::CClass* fn_##ADDR() {                                                          static base::reflection::CClass s_class(NAME_ID, PARENT_EXPR, &fn_##FN_0x70, &fn_##FN_0xE0,                                                 static_cast<UnkRefl_fn_##INIT*>(nullptr));                 return &s_class;                                                                               }                                                                                                  template base::reflection::CClass::CClass(const base::global::CStrId&,                                                                       const base::reflection::CClass*,                                                                   base::reflection::UnkFn_0x70,                                                                      base::reflection::UnkFn_0x70, UnkRefl_fn_##INIT*)
 
 #define DREAD_REFL_CLASS_GETTER(ADDR, INIT, NAME, PARENT, FN_0x70, FN_0xE0)                            const base::reflection::CClass* fn_##PARENT();                                                     DREAD_REFL_GETTER_IMPL_(ADDR, INIT, base::global::CStrId(NAME, true), fn_##PARENT(), FN_0x70, FN_0xE0)
 

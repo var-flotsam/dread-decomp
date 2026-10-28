@@ -91,6 +91,9 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - The NVN globals `g_unk_716e29xxxx` are named by the loader's GOT slots and their relative relocations (`data/nvn_procs.csv`); count GOT-slot call sites with a short window, not adjacent pairs; never write into a game-owned NVN object's storage: [NVN shim's start-up path](#session-log-newest-first).
 
 **Port: runtime and loader**
+- A function-local static of an ordinary (non-inline) function is a local symbol that its object reaches section-relative: no link step can redirect it. Make the function inline on the port (`inline __attribute__((used))`) so the static is weak and `--defsym` binds it: [port M1 round 4](#session-log-newest-first).
+- Clang 17 stopped packing a packed struct's non-POD members (GCC's rule), so a newer Clang lays out the matching sources differently; `-fclang-abi-compat=9.0` restores the matching compiler's layouts: same entry.
+- A bounds test `cmp #N; b.hs` before a table load is a `switch` turned into a lookup table (an array index gives `cmp #N-1; b.hi`): same entry.
 - The game's static initialisers are plain `fn_<addr>` functions that `.init_array` calls; a port that links them as code runs none of them until something calls the table (`dread_port_initialisers`): [port M1 round 3](#session-log-newest-first).
 - The game defines its own `operator new`/`delete` and `malloc` family over its allocator: route them by address to the game's code and the C++ names to a runtime heap that frees each pointer where it came from: same entry.
 - A constructor or destructor under its mangled C1/D1 name has no address in its name; the byte-matching callers' relocation targets give it: same entry.
@@ -108,6 +111,31 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - Function-local statics of header-inline functions are weak symbols in the executable on the port, while lifted code uses the image's: a split object unless the symbol is bound to the image address: same entry.
 
 ## Session log (newest first)
+
+**Port M1 round 4: every registered type named (2026-10-28, branch `claude/port-m1-round4`).** The
+lifter's newer full set (#236, 15,594 lifts) linked with no trap before round 3's null dereference.
+The null was a class with no name: 2,354 of the 4,581 types on the reflection registry's list
+(`fn_710009ec00`, head `0x7101d5bdc0`) had none. A class getter's descriptor is a function-local
+static of an ordinary function, which on the port is a local symbol in the executable, reached
+section-relative, so the link cannot bind it. Meanwhile the game's lifted code registers and reads
+the image's copy, which nothing constructed. `DREAD_REFL_CLASS_GETTER` now makes the getter
+`inline __attribute__((used))` off `__aarch64__`; its descriptor and guard become weak symbols, and
+the round-3 binding takes them (8,950 statics bound). Found and fixed on the way:
+- **The size check misread fields as neighbours.** It refused four descriptors that `g_unk_` field
+  names point into. A descriptor's size is asserted, so only another static counts there.
+- **Clang 17 stopped packing a packed struct's non-POD members**, to match GCC. A static
+  initialiser's merged statics then shifted by 4 bytes on the port, and one class was registered at
+  its descriptor plus 4. The port compiles with `-fclang-abi-compat=9.0` (the sources' layouts are
+  Clang 9's).
+- **`CRntString`'s destructor** had 278 uses at `fn_710007ecd4` and two at one function's own
+  address. `tools/port_addresses.py` now ignores a self-reference when the uses disagree.
+- **`fn_7100153a90`** (the five NVN heaps by index) is a `switch` that Clang turns into a table:
+  `cmp #5; b.hs` rather than the `cmp #4; b.hi` of an array index. Matched.
+- **The fault handler scans the stack** for code addresses, which names callers the unwinder
+  cannot reach.
+
+The boot now writes through a string id whose data word is a code address, under `fn_7100096f30` (the
+walk over a class's attribute and field records).
 
 **Port M1: a silent stand-in for `nn::atk` (2026-10-28, branch `claude/port-atk-silent`).** The
 owner chose a silent stand-in for the sound middleware until M4. `tools/port_link.py` turns every

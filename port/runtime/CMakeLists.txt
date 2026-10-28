@@ -31,3 +31,5 @@ target_include_directories(dread_runtime PUBLIC
   "${CMAKE_CURRENT_SOURCE_DIR}/include"
   "${DREAD_ROOT}/include")
 target_link_libraries(dread_runtime PUBLIC dread_stdlib)
+# The game's layouts are Clang 9's (port/CMakeLists.txt, dread_game): the runtime shares its types.
+target_compile_options(dread_runtime PRIVATE -fclang-abi-compat=9.0)

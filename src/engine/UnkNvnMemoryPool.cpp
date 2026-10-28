@@ -5,6 +5,8 @@
 // then initialise); a counter keeps the number of pools made and its peak. fn_7100153350 makes
 // the five fixed heaps, each also a dlmalloc mspace over its pool's storage. Names and layouts
 // are placeholders.
+#include <stdlib.h>
+
 #include "base/UnkDefaultAllocator.h"
 #include "types.h"
 
@@ -132,4 +134,22 @@ void fn_7100153350() {
     InitHeap(&g_unk_716e275400, 0xd001000, 0xa1, fn_7100153cd0());
     InitHeap(&g_unk_716e2751a0, 0xc01000, 0x62, fn_7100153cd0());
     InitHeap(&g_unk_716e275660, 0x101000, 0x24, fn_7100153cd0());
+}
+
+// The five heaps by index (the compiler turns the switch into a table of their addresses at
+// 0x7101a1d790); any other index ends the program.
+UnkObject_0x130* fn_7100153a90(s32 index) {
+    switch (index) {
+    case 0:
+        return &g_unk_716e275660;
+    case 1:
+        return &g_unk_716e2752d0;
+    case 2:
+        return &g_unk_716e275530;
+    case 3:
+        return &g_unk_716e275400;
+    case 4:
+        return &g_unk_716e2751a0;
+    }
+    exit(-1);
 }
