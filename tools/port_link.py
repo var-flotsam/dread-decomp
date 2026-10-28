@@ -931,7 +931,8 @@ def bound_statics(symbols: list[tuple[str, str]], sizes: dict[str, int], known: 
     weak = {s for k, s in symbols if k in "Vu"}
     cand = {s for s in weak if s.startswith(("_ZZ", "_ZGVZ"))}
     left: dict[str, list[str]] = defaultdict(list)
-    bounds = sorted(data_addresses | {a for s, a in known.items() if s.startswith(("_ZZ", "_ZGVZ"))})
+    static_bounds = sorted({a for s, a in known.items() if s.startswith(("_ZZ", "_ZGVZ"))})
+    bounds = sorted(data_addresses | set(static_bounds))
     groups: dict[str, list[str]] = defaultdict(list)  # the static's name -> it and its guard
     for s in cand:
         groups["_Z" + s[len("_ZGV"):] if s.startswith("_ZGVZ") else s].append(s)
@@ -940,14 +941,19 @@ def bound_statics(symbols: list[tuple[str, str]], sizes: dict[str, int], known: 
         if any(m not in known for m in members):
             left["not placed by tools/port_addresses.py (or only one of static and guard)"] += members
             continue
-        ok = True
+        blocked = []
         for m in members:
             a, size = known[m], sizes.get(m, 0)
-            i = bisect.bisect_right(bounds, a)
-            if i < len(bounds) and a + size > bounds[i]:
-                ok = False
-        if not ok:
-            left["larger than the gap to the next known image address"] += members
+            # A class getter's descriptor has CClass's real size (asserted against the .bss stride
+            # in base/reflection/CClass.h), so a data name inside it is one of its fields, not a
+            # neighbour; only another static or guard there means a wrong placement.
+            exact = m.startswith("_ZZ13fn_71") and m.endswith("vE7s_class")
+            bs = static_bounds if exact else bounds
+            i = bisect.bisect_right(bs, a)
+            if i < len(bs) and a + size > bs[i]:
+                blocked.append(f"{m} (0x{a:x}, 0x{size:x} bytes; next known address 0x{bs[i]:x})")
+        if blocked:
+            left["larger than the gap to the next known image address"] += blocked
             continue
         out += [(m, known[m]) for m in sorted(members)]
     return out, left
