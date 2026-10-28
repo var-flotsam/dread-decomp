@@ -5763,7 +5763,7 @@ address,size,name,name_source,subsystem,status
 0x71000f8630,80,fn_71000f8630,unknown,unknown,O
 0x71000f8680,64,fn_71000f8680,unknown,unknown,U
 0x71000f86c0,504,fn_71000f86c0,unknown,unknown,U
-0x71000f88b8,632,fn_71000f88b8,unknown,unknown,U
+0x71000f88b8,632,fn_71000f88b8,unknown,unknown,M
 0x71000f8b30,2336,fn_71000f8b30,unknown,unknown,U
 0x71000f9450,340,fn_71000f9450,unknown,unknown,U
 0x71000f95b0,264,fn_71000f95b0,unknown,unknown,U

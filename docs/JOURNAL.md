@@ -132,7 +132,8 @@ taking 11 of them (instruction gaps and two lift compile errors; `end` is a nami
   timeline object's events, `src/base/global/`), `fn_710000af7c` (reading a blend space and resolving its
   animations), `fn_7100d1f764` and `fn_7100cfca0c` (two tracks' comma-separated ids, `src/game/timeline/`, over
   the new `include/game/UnkStrIdSplit.h`), `fn_71002e0090` (an animation tree resource's file) and
-  `fn_7100713e2c` (Samus's animation aim angle).
+  `fn_7100713e2c` (Samus's animation aim angle), and `fn_71000f88b8` (the sound listener's look-at matrix, a
+  hand-vectorised routine the lifter thread handed back; plain float math here).
 
 The controller code (`fn_710006deac`) runs on both builds: the matching build's SDK headers have no
 `SetNpadJoyHoldType` or `ControllerSupportArg::SetDefault`, so the file declares them under `NNSDK` (the latter by
