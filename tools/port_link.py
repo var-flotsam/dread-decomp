@@ -1542,7 +1542,8 @@ def main() -> int:
         print(f"LINK FAILED: {rel(traps_s)} does not assemble:\n" + "\n".join(r.stderr.splitlines()[:20]))
         return 1
     tables_s, tables_o = out / "image_tables.s", out / "image_tables.o"
-    runtime_globals = {s for _, syms in rt_symbols for k, s in syms if k in "TW"}  # a local one cannot be named
+    # a local one cannot be named; data too (an SDK data import such as nn::hid's sampling interval)
+    runtime_globals = {s for _, syms in rt_symbols for k, s in syms if k in "TWDR"}
     tables = write_image_tables(tables_s, lk, entries, runtime_globals, demangled, rows, tuple(statics),
                                 silent_extra)
     r = subprocess.run([cxx, f"--target={target}", "-c", str(tables_s), "-o", str(tables_o)],
