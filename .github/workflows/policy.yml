@@ -39,3 +39,11 @@ jobs:
         run: python -m compileall -q tools
       - name: Command index current (docs/commands.md)
         run: python tools/gen_commands.py --check
+      # The README's status card (tools/status_card.py) for this commit, in the job summary; on a pull
+      # request with what the change does to the whole binary. Tracked files only, never fails the job.
+      - name: Status card (job summary)
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: |
+          if [ -n "$BASE_REF" ]; then base="--base=origin/$BASE_REF"; else base=""; fi
+          python tools/status_card.py --summary "$GITHUB_STEP_SUMMARY" $base || echo "::warning::status card failed"
