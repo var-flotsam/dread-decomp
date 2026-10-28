@@ -1163,11 +1163,17 @@ class Lifter:
                 elif m == "b" and not addr <= o[0].imm < end and self.sret_callee(o[0].imm):
                     self.sret_tail(f"fn_{o[0].imm:x}")
                 elif m == "b" and not addr <= o[0].imm < end and (self.result_of(addr) or self.result_of(o[0].imm)):
-                    # A tail call to a callee with this function's result shape returns its struct.
-                    shape = self.result_of(addr)
-                    if shape != self.result_of(o[0].imm):
+                    # A tail call to a callee with this function's result shape returns its struct;
+                    # to one with a wider result than this function's callers read, its first field.
+                    shape, theirs = self.result_of(addr), self.result_of(o[0].imm)
+                    if shape == theirs:
+                        self.terminate("value", (self.shape_call(f"fn_{o[0].imm:x}", shape), shape_type(shape)))
+                    elif shape is None:
+                        call = self.shape_call(f"fn_{o[0].imm:x}", theirs)
+                        t = "char*" if theirs[0] == "x" else shape_elem(theirs)
+                        self.terminate("value", (f"({t})({call}).r[0]", t))
+                    else:
                         raise Unsupported("tail call to another result shape")
-                    self.terminate("value", (self.shape_call(f"fn_{o[0].imm:x}", shape), shape_type(shape)))
                 elif m == "b" and not addr <= o[0].imm < end:
                     self.terminate("tail", self.call(f"fn_{o[0].imm:x}"))
                     self.tails[f"fn_{o[0].imm:x}"] = self.last_call[1]
@@ -2324,11 +2330,17 @@ class FlatLifter(Lifter):
                 elif m == "b" and not addr <= o[0].imm < end and self.sret_callee(o[0].imm):
                     self.sret_tail(f"fn_{o[0].imm:x}")
                 elif m == "b" and not addr <= o[0].imm < end and (self.result_of(addr) or self.result_of(o[0].imm)):
-                    # A tail call to a callee with this function's result shape returns its struct.
-                    shape = self.result_of(addr)
-                    if shape != self.result_of(o[0].imm):
+                    # A tail call to a callee with this function's result shape returns its struct;
+                    # to one with a wider result than this function's callers read, its first field.
+                    shape, theirs = self.result_of(addr), self.result_of(o[0].imm)
+                    if shape == theirs:
+                        self.terminate("value", (self.shape_call(f"fn_{o[0].imm:x}", shape), shape_type(shape)))
+                    elif shape is None:
+                        call = self.shape_call(f"fn_{o[0].imm:x}", theirs)
+                        t = "char*" if theirs[0] == "x" else shape_elem(theirs)
+                        self.terminate("value", (f"({t})({call}).r[0]", t))
+                    else:
                         raise Unsupported("tail call to another result shape")
-                    self.terminate("value", (self.shape_call(f"fn_{o[0].imm:x}", shape), shape_type(shape)))
                 elif m == "b" and not addr <= o[0].imm < end:
                     self.terminate("tail", self.call(f"fn_{o[0].imm:x}"))
                     self.tails[f"fn_{o[0].imm:x}"] = self.last_call[1]
