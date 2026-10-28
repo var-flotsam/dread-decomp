@@ -1910,7 +1910,10 @@ class Lifter:
                 else getattr(self, "types", {}).get(src, "f32")
             letter = "s" if t == "f32" else "d"
             v, _ = self.read(f"{letter}{src - 100}")
+            lanes = self.s.lanes.get(src)
             self.write(f"{letter}{regname(o[0].reg)[1:]}", v, t)
+            if "semantic" in self.opts and lanes is not None:
+                self.s.lanes[100 + int(regname(o[0].reg)[1:])] = list(lanes)  # (and its lanes)
         elif m in ("mov", "movz") and len(o) == 2:
             rd = regname(o[0].reg)
             if o[1].type == arm64.ARM64_OP_IMM:
@@ -1964,6 +1967,8 @@ class Lifter:
                 return False
         elif m == "movi" and len(o) == 2 and ftype(regname(o[0].reg)) == "f64" and o[1].imm == 0:
             self.write(regname(o[0].reg), "0.0", "f64", 0)
+            if "semantic" in self.opts:
+                self.s.lanes[100 + int(regname(o[0].reg)[1:])] = ["0.0f"] * 4  # (the whole register zeroed)
         elif m == "movi" and len(o) == 2 and "semantic" in self.opts and o[1].type == arm64.ARM64_OP_IMM \
                 and o[1].imm == 0 and re.fullmatch(r"v\d+", regname(o[0].reg)) and x.op_str.endswith(".2d, #0000000000000000"):
             # The whole vector register zeroed: as its d<n>, and its lanes (Lifter.lane_step).

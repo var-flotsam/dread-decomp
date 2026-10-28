@@ -133,7 +133,9 @@ the lifter's (diagnosed on the PC, measured there). All semantic mode:
 - **Lane arithmetic** (`71000f88b8`): `fadd|fsub|fmul|fdiv v.2s|4s` on known lanes, and `mov v.d[1],
   v.d[0]`; a scalar `ldr s<n>` before a lane load into v<n> gives lane 0 (the others zero).
 - **`rev16`** (`710007d788`, past its variadic save): the bytes of each halfword swapped.
-- **`faddp`** (`71000f88b8`, next): pairwise sums of known lanes, vector and scalar forms.
+- **`faddp`** (`71000f88b8`, next): pairwise sums of known lanes, vector and scalar forms. Its vectors
+  start from `movi d<n>, #0` (all lanes zero) and whole-register copies `mov v<a>.16b, v<b>.16b`, which
+  now carry the lanes.
 - **A virtual forwarder's pass-through registers** (the boot's next stop after #250): `fn_71000e8fa8`
   calls slot 0x28 with seven arguments; the target `fn_7100087ecc` (lifted with four) forwards to its
   items' slot 0x40 as `(x0, x1 + 8, x2, x3 & 1)` and leaves x4-x6 as they came, and x4 is the
