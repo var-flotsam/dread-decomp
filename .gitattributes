@@ -17,3 +17,9 @@ data/reflection_types.csv linguist-generated=true
 data/tu_map.csv linguist-generated=true
 data/library_symbols.csv linguist-generated=true
 data/nvn_procs.csv linguist-generated=true
+
+# Every branch adds its journal entry at the top of the session log, so two branches always touch
+# the same lines. The union driver keeps both sides' lines in a local `git merge` instead of
+# stopping on a conflict (check the order of the two entries afterwards). GitHub's own conflict
+# check may still report the conflict; merging main into the branch locally then resolves it.
+docs/JOURNAL.md merge=union

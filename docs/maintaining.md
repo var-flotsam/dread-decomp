@@ -105,6 +105,16 @@ while the repository variable `SELF_HOSTED_CHECK` is `true` (set on 2026-10-24) 
 pull requests from this repository, never from forks. The job never uploads artifacts or logs;
 only `check.py`'s own status lines reach GitHub.
 
+**When it runs (since 2026-10-28).** A pull request runs it only when it changes an input of the
+matching build: `src/`, `include/`, `lib/`, `data/functions/`, the toolchain pins, `check.py` and
+the tools it imports, or the workflow itself (`DECOMP_PATHS` in the workflow; a hosted `changes`
+job decides). Any other pull request (docs, `port/`, most of `tools/`) shows `check` as skipped,
+which the required check counts as passing; if `changes` fails, the check runs. Pushes to main and
+manual runs always run it, and a nightly run at 02:17 UTC runs `check.py --no-cache`, rebuilding
+and rediffing every source, so a fault in `check.py`'s caches (`build/check/2.1.0/*.inputs.json`,
+`*.diff.json`) shows up within a day. Add a path to `DECOMP_PATHS` when `check.py` starts reading
+a new file. To force a full check on a pull request, run the workflow by hand on its branch.
+
 **The runner as set up on 2026-10-24** (runner `dread-pc`, label `dread`, in
 `%USERPROFILE%\actions-runner`, outside the repository):
 - The runner package `actions-runner-win-x64-2.338.1.zip` was verified against GitHub's
