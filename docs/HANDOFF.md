@@ -442,7 +442,9 @@ oracle covers a median 67% of an original's instructions. The lifter's second ga
 frames sized by shifted immediates, float widths, and half and byte loads converted to float. On
 the boot slice with the run-time roots (2,366 `U` functions, 1.40 MB at the time) it gets 2,295
 accepted lifts (97%). The oracle's inputs and a fresh `build/port/lifted` follow (stream M);
-`tools/port_lift.py --debug ADDR` shows a rejected function's first difference. M1 step 4 (2026-10-26, var-flotsam/dread-decomp#201, #203 and #206): the runtime defines every `nn::os` and
+`tools/port_lift.py --debug ADDR` shows a rejected function's first difference. A semantic lift the manifest marks `"overrides": "src/lifted/<file>.cpp"` replaces that
+byte-identical lift in the link (2026-10-27, `port/README.md` "Overrides"): the port's fix for
+lifts that drop arguments. M1 step 4 (2026-10-26, var-flotsam/dread-decomp#201, #203 and #206): the runtime defines every `nn::os` and
 `nn::oe` import the slice reaches (port_link's residue lists none); `dread_game` and the sweep
 build with `-fno-strict-aliasing`; the data loader (`port/runtime/include/dread_port_loader.h`,
 `port/README.md` "The data loader") maps the dump's main NSO at `0x7100000000` before the game's
