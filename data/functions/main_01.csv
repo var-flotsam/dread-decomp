@@ -2312,7 +2312,7 @@ address,size,name,name_source,subsystem,status
 0x7100153998,120,fn_7100153998,unknown,unknown,U
 0x7100153a10,120,fn_7100153a10,unknown,unknown,U
 0x7100153a88,8,fn_7100153a88,unknown,unknown,O
-0x7100153a90,44,fn_7100153a90,unknown,unknown,U
+0x7100153a90,44,fn_7100153a90,unknown,unknown,O
 0x7100153abc,4,operator.delete,symbol,unknown,O
 0x7100153ac0,352,fn_7100153ac0,unknown,unknown,O
 0x7100153c20,140,fn_7100153c20,unknown,unknown,O
