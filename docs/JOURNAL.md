@@ -1579,6 +1579,7 @@ when `B` is undefined, so a jump to a libc name or a trap is an assembly thunk; 
 fit one response file. Of 37,531 alias references, 27,188 only take the address; of the 10,343
 calls 6 pass a `float` where the definition takes an integer or pointer and are trapped instead.
 
+
 **Status dashboard (2026-10-24, branch `claude/task-status-dashboard-9a819f`).** A private dashboard
 artifact (owner's claude.ai account) shows matching progress for the whole binary and the boot slice,
 a daily trend, status by subsystem, and the phase and workstream tables of this handoff.
@@ -1664,6 +1665,7 @@ so the numbers below are current.
 workstreams (below), `AGENTS.md` and `docs/tasks/` for a small local model on a MacBook,
 macOS toolchain support (untested on hardware) and `tools/verify.py`. No matching changes.
 
+
 **Tenth session (2026-10-20, branch `claude/lifter-float-0b96b0`):** lifter fixes (Next steps,
 item 1, "Done (tenth session)"); `gen_lift.py` and `check.py --update` were rerun, so the
 numbers below are current.
@@ -1681,10 +1683,12 @@ done: Next steps, item 2.
 Snapshot as of 2026-10-18 (fifth Phase 4 session; branches `phase-4-4-clones` (var-flotsam/dread-decomp#18, open) and `phase-4-4-skipped-getters` on top of it (not pushed); earlier work merged in var-flotsam/dread-decomp#13–#17). Target: **Metroid Dread 2.1.0**, `main` build ID
 `646761F643AFEBB379EDD5E6A5151AF2CEF93DC1`.
 
+
 ## Work log by stream, through 2026-10-23
 
 The numbered items are the former "Next steps" of the handoff, kept as a record of what each stream did,
 tried and left. The current next steps are in `docs/HANDOFF.md`.
+
 
 0. **Clone generator (`tools/gen_clones.py`), done this session.** Exact-clone families (same
    instructions up to branch targets) were 1.3 MB of `U`. To find more, group `U` functions by
@@ -2053,6 +2057,7 @@ tried and left. The current next steps are in `docs/HANDOFF.md`.
    Lua + GUI bindings, GUI, render front end, input, localisation, save probe. Estimated
    6,000–9,000 functions (static floor: 4,394 reachable from `nnMain`).
 6. Port groundwork: an aurora-style `nn::` + NVN compatibility layer (see `docs/references.md`).
+
 
 ### Giant functions (probe, 2026-10-21, cloud thread "Biggest functions probe")
 
