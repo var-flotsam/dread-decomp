@@ -433,6 +433,7 @@ class Lifter:
         self.rets: list[tuple[int, str, tuple | None]] = []  # (line, "value"|"tail", payload)
         self.phis = 0
         self.sret = False
+        self.ret_ptrs = {"(char*)&ret"}  # semantic mode: expressions holding this function's own result address
         self.last_call: tuple[str | None, str] = (None, "")  # (callee or None, argument types)
         self.tails: dict[str, str] = {}  # direct tail callee -> argument types
         self.flagsrc: dict[int, tuple] = {}  # id(State.cmp) -> (cmp, "add" | "logic"): flags of adds/ands
@@ -553,8 +554,12 @@ class Lifter:
             s.consts[n] = const
         if n <= 7 or 100 <= n <= 107:
             s.written.add(n)
+        if e in self.ret_ptrs:
+            self.ret_ptrs.add(var)  # (a copy of this function's own result address)
         if n == 8:
-            s.x8w = LOCAL_ADDR.fullmatch(e) is not None  # (an indirect callee may build its result there: Lifter.step)
+            # (an indirect callee may build its result there: Lifter.step; a local, or the result
+            # address this function was given, set again)
+            s.x8w = LOCAL_ADDR.fullmatch(e) is not None or e in self.ret_ptrs
 
     # -- control flow -------------------------------------------------------------------------
 
@@ -2107,6 +2112,7 @@ class FlatLifter(Lifter):
         self.flag_vars = False  # semantic mode: NZCV kept in locals (store_flags)
         self.flags_bad = False  # ... except after a compare whose flags could not be written out
         self.clob: set[int] = set()  # semantic mode: caller-saved registers a call left, unwritten (clobber)
+        self.ret_regs = {8}  # semantic mode: registers holding this function's own result address (x8 at entry)
 
     def store_flags(self) -> None:
         """Semantic mode: NZCV of the compare just made, in locals, for a condition read in another
@@ -2344,8 +2350,14 @@ class FlatLifter(Lifter):
             s.consts[n] = const
         if n <= 7 or 100 <= n <= 107:
             s.written.add(n)
+        holds = (g := FLAT_REG.fullmatch(e)) is not None and int(g.group(1)) in self.ret_regs
+        self.ret_regs.discard(n)
+        if holds:
+            self.ret_regs.add(n)  # (a copy of this function's own result address)
         if n == 8:
-            s.x8w = LOCAL_ADDR.fullmatch(e) is not None  # (an indirect callee may build its result there: Lifter.step)
+            # (an indirect callee may build its result there: Lifter.step; a local, or the result
+            # address this function was given, set again)
+            s.x8w = LOCAL_ADDR.fullmatch(e) is not None or holds
 
     def has_value(self, n: int) -> bool:
         return n in self.types
@@ -2416,6 +2428,7 @@ class FlatLifter(Lifter):
                     self.clob = set()
                     self.s.x8w = False
                     self.s.lanes = {}
+                    self.ret_regs = set()
                 if self.pos:
                     self.frame_reset(ins[self.pos - 1])
                 if self.frame_op(x) or self.guard_step(x):
@@ -2586,6 +2599,7 @@ def shape_ns(shape: tuple) -> str:
 
 
 LOCAL_ADDR = re.compile(r"\(stk \+ 0x[0-9a-f]+\)")  # Lifter.local's form: a local's address
+FLAT_REG = re.compile(r"\(?(?:\(char\*\))?X(\d+)\)?")  # FlatLifter.read's form of a whole register
 LIFT_AT = ("struct lift_at_t {}; inline void* operator new(decltype(sizeof 0), void* p, lift_at_t) "
            "noexcept { return p; }")
 

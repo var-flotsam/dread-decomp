@@ -122,6 +122,13 @@ by address: `71000f3c7c`, `71000f3ce4`), and `ld1 {v0.s}[0]` then `ld1 {v0.s}[1]
 forms and stores `str q` (four lanes) or `str d` (two) lane by lane; `float_widths` leaves those
 stores out. Also: `port/runtime/src/heap.cpp` includes `<cstddef>` for `std::max_align_t` (the
 Linux image's clang++ with libstdc++ refused it).
+- **An indirect call given this function's own result address in x8** (the boot's next stop after #244:
+  `fn_710001ab24` calls a resource descriptor's callback at +0x40, `fn_71001b2e4c`, which builds an
+  `UnkResult`). Semantic mode made a struct-returning indirect call only when x8 held a local's
+  address, so with x8 set back to the incoming result address the call named neither, and on x86-64
+  every argument moved up a register (the hidden result pointer is rdi). `Lifter.ret_ptrs` and
+  `FlatLifter.ret_regs` now follow copies of that address, and x8 set to one before a `blr` makes the
+  call build its result there, as for a local.
 
 **Lifter: retry for cut-off runs, no float result from a void function, indirect calls with stack
 arguments (2026-10-28, branch `claude/project-thread-zgkpk3`).** Fixes from the port's current stop and
