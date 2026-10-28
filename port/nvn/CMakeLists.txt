@@ -4,6 +4,7 @@
 # (DREAD_VULKAN_INCLUDE); only the check programs link a Vulkan loader so far.
 add_library(dread_nvn STATIC
   src/bindings.cpp
+  src/blocklinear.cpp
   src/command.cpp
   src/device.cpp
   src/memory.cpp
@@ -26,6 +27,14 @@ target_link_libraries(dread_nvn PUBLIC dread_stdlib)
 if(DREAD_LINK)
   add_executable(nvn_manifest_check check/manifest_check.cpp)
   target_link_libraries(nvn_manifest_check PRIVATE dread_nvn)
+endif()
+
+# nvn_blocklinear_check: the block-linear (tiled) layout the texel upload untiles, against a
+# separate model of it (check/blocklinear_check.cpp). No GPU, no game data:
+#   nvn_blocklinear_check
+if(DREAD_LINK)
+  add_executable(nvn_blocklinear_check check/blocklinear_check.cpp)
+  target_link_libraries(nvn_blocklinear_check PRIVATE dread_nvn)
 endif()
 
 # nvn_vulkan_check: the binding layer against a real Vulkan implementation, with the validation
