@@ -2542,6 +2542,48 @@ class FlatLifter(Lifter):
             # address this function was given, set again)
             s.x8w = LOCAL_ADDR.fullmatch(e) is not None or holds
 
+    @staticmethod
+    def result_copies(ins) -> set[int]:
+        """Registers holding this function's own result address wherever they are read: those
+        whose every write is `mov xD, x8` while x8 still holds it from the entry (before any call,
+        label or write of x8), or `mov xD, xS` from another of them (fn_710009ad50 keeps it in
+        x19 and sets x8 from it again before an indirect call, past a join). FlatLifter.ret_regs
+        starts from these at a label; a call clobbers x0-x18, so those are never among them."""
+        targets = {op.imm for y in ins for op in y.operands if op.type == arm64.ARM64_OP_IMM
+                   and (y.mnemonic in ("b", "cbz", "cbnz", "tbz", "tbnz") or y.mnemonic.startswith("b."))}
+        writes: dict[int, list] = {}
+        entry = True  # x8 still the incoming result address
+        for x in ins:
+            if x.address in targets and x.address != ins[0].address:
+                entry = False
+            if is_frame(x):
+                continue  # (saves and restores of x19-x30)
+            o = x.operands
+            src = None
+            if x.mnemonic == "mov" and len(o) == 2 and o[1].type == arm64.ARM64_OP_REG \
+                    and regname(o[0].reg)[0] == "x" and regname(o[1].reg)[0] == "x" and regname(o[1].reg)[1:].isdigit():
+                k = int(regname(o[1].reg)[1:])
+                src = "ret" if k == 8 and entry else k
+            for q in x.regs_access()[1]:
+                r = regname(q)
+                if r[0] in "xw" and r[1:].isdigit():
+                    writes.setdefault(int(r[1:]), []).append(src)
+                    if int(r[1:]) == 8:
+                        entry = False
+            if x.mnemonic in ("bl", "blr"):
+                entry = False
+                for n in range(19):
+                    writes.setdefault(n, []).append(None)  # (clobbered by the call)
+        held = {n for n, w in writes.items() if None not in w}
+        changed = True
+        while changed:
+            changed = False
+            for n in list(held):
+                if any(v != "ret" and v not in held for v in writes[n]):
+                    held.discard(n)
+                    changed = True
+        return held
+
     def has_value(self, n: int) -> bool:
         return n in self.types
 
@@ -2595,6 +2637,7 @@ class FlatLifter(Lifter):
                     targets.add(op.imm)
         self.jtables: dict[int, tuple[int, list[int]]] = {}
         self.jskip: set[int] = set()
+        self.ret_static = self.result_copies(ins) if "semantic" in self.opts else set()
         try:
             self.find_guards(ins)
             if "semantic" in self.opts:
@@ -2611,7 +2654,7 @@ class FlatLifter(Lifter):
                     self.clob = set()
                     self.s.x8w = False
                     self.s.lanes = {}
-                    self.ret_regs = set()
+                    self.ret_regs = set(self.ret_static)
                 if x.address in self.gskip:
                     continue
                 if self.pos:
