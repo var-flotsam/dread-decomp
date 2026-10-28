@@ -442,6 +442,17 @@ python tools/test_port_loader.py --version 2.1.0
 python tools/test_port_loader.py --version 2.1.0 --tables build/port/link_m1/image_tables.s
 ```
 
+### `tools/boot_distance.py`
+
+Boot distance: build the port's Linux executable, run it, and report how far the boot gets.
+
+```sh
+python tools/boot_distance.py --version 2.1.0
+python tools/boot_distance.py --version 2.1.0 --expect fn_7100015c70
+python tools/boot_distance.py --version 2.1.0 --no-build --timeout 300   # rerun the boot only
+python tools/boot_distance.py --version 2.1.0 --no-lifted --out build/boot_nolift
+```
+
 ### `tools/nvn_procs.py`
 
 The game's NVN function table: which NVN function each of the loader's globals holds.

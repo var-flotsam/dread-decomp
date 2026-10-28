@@ -121,6 +121,24 @@ port/docker/run.sh python3 tools/port_link.py --version 2.1.0 --stdlib libcxx9 -
 port/docker/run.sh build/port/linux/link/dread                        # maps orig/2.1.0, runs the game until the first trap
 ```
 
+**Boot distance** (`tools/boot_distance.py`, the smoke run): the sweep and the executable link
+above into `build/boot/`, then the executable under gdb with `DREAD_TRAP=log` and a time limit. It
+prints the furthest of an ordered list of milestones (`nninitStartup` done, the static initialisers,
+`nnMain`, the RomFS mount, the system start-up, the game's main function, `fn_7100015c70`, ...),
+the distinct traps and how many of the linked lifts ran; one-shot breakpoints see all of it, so the
+game and the runtime log nothing extra. From Windows it runs itself in the image (which needs gdb:
+rebuild it). `--expect <milestone>` fails a run that falls short, which the nightly job
+(`.github/workflows/boot-nightly.yml`, the self-hosted runner) uses. `run.sh` mounts junctions
+inside `build/` read-only, so a worktree can junction another checkout's `build/ghidra_export`,
+`build/recon`, `build/cache` and `build/port/lifted` and keep its outputs in its own `build/`.
+First run (2026-10-28, `main` plus the tools round, lifts of 2026-10-25, addresses from
+`build/check`): `fn_7100015c70` entered (7 of 8 milestones), 2 traps (`fn_7100089af8`,
+`fn_710008a648`, in either order: they are on different threads), 18 of 2,227 linked lifts ran,
+then glibc aborts with `munmap_chunk(): invalid pointer` (the host's `free` given a pointer it did
+not allocate). Without `build/check` the link places fewer names and the boot stops in
+`nninitStartup` (the default allocator's constructor is a residue trap). A full run takes about 17
+minutes on the PC (sweep 4, `port_addresses.py` 8, link 5).
+
 `port/docker/run.sh` mounts the checkout at `/src`, `orig/` (read-only) and `build/` from where
 they really are (a worktree's junctions are resolved; Docker does not follow them inside a bind
 mount) and keeps the tools' download cache in `build/cache`. Nothing of the game goes into the

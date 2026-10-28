@@ -1,5 +1,6 @@
-# The port's Linux build environment: Clang, lld and the LLVM tools, CMake, Ninja, and the Python
-# the port's tools need (tools/port_sweep.py, tools/port_link.py, tools/test_port_loader.py). No
+# The port's Linux build environment: Clang, lld and the LLVM tools, CMake, Ninja, the Python the
+# port's tools need (tools/port_sweep.py, tools/port_link.py, tools/test_port_loader.py), and gdb,
+# which tools/boot_distance.py runs the executable under to see how far the boot gets. No
 # game data and no repository content goes into the image: the checkout, orig/ and build/ are
 # mounted at run time (port/docker/run.sh, port/README.md "Linux in Docker").
 #
@@ -16,6 +17,10 @@ RUN apt-get update \
  && rm -rf /var/lib/apt/lists/* \
  && for t in clang clang++ ld.lld llvm-nm llvm-objdump llvm-cxxfilt llvm-readobj llvm-ar llvm-ranlib; do \
       ln -sf /usr/bin/$t-${LLVM} /usr/local/bin/$t; done
+# A layer of its own, so adding it left the toolchain layer above (and its Clang) as it was.
+RUN apt-get update \
+ && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends gdb \
+ && rm -rf /var/lib/apt/lists/*
 
 ENV CC=clang CXX=clang++
 WORKDIR /src
