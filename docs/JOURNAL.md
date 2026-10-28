@@ -113,6 +113,21 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Boot functions the lifter rejects, by hand, batch 2 (2026-10-28, branch `claude/project-thread-xllbvf`, second PR).**
+Ten more from the boot-slice list and the boot's next trap, `fn_710006f390` (the vibration thread's loop). All of them
+are written from the original's behaviour, checked against its disassembly, and marked `NON_MATCHING(major)`:
+`fn_71000f01d0` (binding a reflected call's leading arguments, `src/base/reflection/UnkReflCallArgs.cpp`),
+`fn_710010d9fc` (building the box tree, next to its sort in `src/game_s7/fn_710010e470.cpp`), `fn_7100ee6d00` and
+`fn_7100ee8044` (what a change of sub-area loads and unloads), `fn_7100fd6f74` (whether a music request is
+already playing), `fn_7100ed5a04` (the shots' audio presets), `fn_7100e0fc00` (the loading screen's tip labels),
+`fn_7100ebc7f0` (a minimap segment as a quad) and `fn_710006f390` (`src/base/input/UnkVibrationThread.cpp`). The
+loop reads the SDK data import `nn::hid::VibrationNode::DefaultVibrationSampleInterval` through its symbol name,
+so the port's runtime has to define it (5 ms on the console). The boot reaches none of the five largest
+functions still open (`fn_7100223c2c`, `fn_7100ebcd70`, `fn_71001b83f8`, `fn_7100ea1d78` and `fn_7100e9e164`), so they
+are left until a trap needs them. `fn_710007d788` waits for the lifter's generic fix for its instruction gap.
+Finding: `tools/abi_facts.py` gives the exact registers a callee reads (`AbiFacts(...).facts(addr).args`).
+A callee that skips x0 or x2 is called with null in those places, as the existing declarations have them.
+
 **Boot functions the lifter rejects, by hand, batch 1 (2026-10-28, branch `claude/project-thread-xllbvf`).** The
 boot-slice manifest (`port_lift.py --slice boot`, lifts of 2026-10-28) left 40 functions outside the accepted set,
 the seven indirect calls with stack arguments and the string-id crash aside. Four of them (`fn_71000763c0`,
