@@ -396,6 +396,10 @@ class Lifter:
     # address -> abi_facts.Facts or None (callee argument registers): semantic mode, and byte mode's
     # pass-through (calls also name the callee's argument registers this function still holds).
     facts = None
+    # address -> abi_facts.AbiFacts.result_shape (a result in x0:x1 or s0-s3): semantic mode only.
+    shape = None
+    # address -> abi_facts.AbiFacts.result_main (which of x0 and s0 callers read): semantic mode only.
+    main = None
 
     def __init__(self, orig: asmdiff.Original, addr: int, extra: int, returns: bool,
                  stack: tuple[str, int] | None = None):
@@ -809,15 +813,27 @@ class Lifter:
         fl = max([k - 100 for k in w if k >= 100], default=-1) + 1
         # Up to the first float register with no value (a higher one was a temporary).
         fl = next((i for i in range(fl) if not self.has_value(100 + i)), fl)
+        sem = "semantic" in self.opts
         floats = []
         for i in range(fl):
             t = self.ftype_of(100 + i)
-            floats.append(self.read(("s" if t == "f32" else "d") + str(i)))
-        ints = [self.read(f"x{i}") for i in range(n)]
+            try:
+                floats.append(self.read(("s" if t == "f32" else "d") + str(i)))
+            except Unsupported:
+                if not sem:
+                    raise
+                floats.append((f"({t})0", t))  # (clobbered by a call: garbage in the original as well)
+        ints = []
+        for i in range(n):
+            try:
+                ints.append(self.read(f"x{i}"))
+            except Unsupported:
+                if not sem:
+                    raise
+                ints.append(("(u64)0", "u64"))  # (clobbered by a call: garbage in the original as well)
         # Also the registers the callee reads (callee_need). One the caller holds is passed on; one
         # with no value here (clobbered by a call) held garbage in the original: semantic mode
         # passes 0, byte mode stops there (a constant would cost an instruction).
-        sem = "semantic" in self.opts
         for i in range(n, need[0]):
             try:
                 ints.append(self.read(f"x{i}"))
@@ -973,6 +989,47 @@ class Lifter:
         self.decls.add(f"namespace callee {{ char* {fn}({types}); }}")
         return f"callee::{fn}({values})"
 
+    def result_of(self, addr: int) -> tuple | None:
+        """Semantic mode: the result shape of the function at `addr` (abi_facts.result_shape:
+        x0:x1, or s0-s3), which its own lift returns and every call reads (shape_call)."""
+        return self.shape(addr) if "semantic" in self.opts and self.shape is not None else None
+
+    def result_order(self, order: tuple) -> tuple:
+        """Semantic mode: x0 or s0 first at a return as callers read it (abi_facts.result_main),
+        when they read just one; otherwise `order` (the last written first)."""
+        if "semantic" in self.opts and self.main is not None:
+            read = self.main(self.addr)
+            if read == {0}:
+                return (0, 100)
+            if read == {100}:
+                return (100, 0)
+        return order
+
+    def bind(self, t: str, e: str) -> str:
+        """A temporary of type `t` holding `e`."""
+        var = f"m{len(self.body)}"
+        self.line(f"{t} {var} = {e};")
+        return var
+
+    def shape_call(self, fn: str, shape: tuple) -> str:
+        """The call expression of a callee with a multi-register result, declared returning its
+        shape's struct (the same in every file, so the x86-64 calls agree with the definition)."""
+        args = self.args(self.callee_need(fn))
+        t = shape_type(shape)
+        self.decls.add(shape_struct(shape))
+        # (the struct declared ahead: the declarations are sorted, its definition comes later)
+        self.decls.add(f"struct {t}; namespace {shape_ns(shape)} {{ {t} {fn}({', '.join(t for _, t in args)}); }}")
+        return f"{shape_ns(shape)}::{fn}({', '.join(e for e, _ in args)})"
+
+    def shape_value(self, shape: tuple) -> tuple[str, str]:
+        """This function's multi-register result at a return, as its shape's struct."""
+        t = shape_type(shape)
+        self.decls.add(shape_struct(shape))
+        elem = shape_elem(shape)
+        regs = ["x0", "x1"] if shape[0] == "x" else [f"{shape[0]}{i}" for i in range(shape[1])]
+        vals = [self.read(r)[0] for r in regs]
+        return t + "{{" + ", ".join(f"({elem})({v})" for v in vals) + "}}", t
+
     def clobber(self) -> None:
         s = self.s
         for n in list(s.vals):
@@ -1096,13 +1153,27 @@ class Lifter:
                 if m == "ret":
                     v = None
                     # x0, unless s0/d0 was written after it.
-                    for k in ((100, 0) if self.s.retk == 100 else (0, 100)):
+                    for k in self.result_order((100, 0) if self.s.retk == 100 else (0, 100)):
                         if k in self.s.vals and k not in self.s.poison:
                             v = self.s.vals[k]
                             break
+                    if (shape := self.result_of(addr)):
+                        v = self.shape_value(shape)
                     self.terminate("value", v)
                 elif m == "b" and not addr <= o[0].imm < end and self.sret_callee(o[0].imm):
                     self.sret_tail(f"fn_{o[0].imm:x}")
+                elif m == "b" and not addr <= o[0].imm < end and (self.result_of(addr) or self.result_of(o[0].imm)):
+                    # A tail call to a callee with this function's result shape returns its struct;
+                    # to one with a wider result than this function's callers read, its first field.
+                    shape, theirs = self.result_of(addr), self.result_of(o[0].imm)
+                    if shape == theirs:
+                        self.terminate("value", (self.shape_call(f"fn_{o[0].imm:x}", shape), shape_type(shape)))
+                    elif shape is None:
+                        call = self.shape_call(f"fn_{o[0].imm:x}", theirs)
+                        t = "char*" if theirs[0] == "x" else shape_elem(theirs)
+                        self.terminate("value", (f"({t})({call}).r[0]", t))
+                    else:
+                        raise Unsupported("tail call to another result shape")
                 elif m == "b" and not addr <= o[0].imm < end:
                     self.terminate("tail", self.call(f"fn_{o[0].imm:x}"))
                     self.tails[f"fn_{o[0].imm:x}"] = self.last_call[1]
@@ -1880,6 +1951,12 @@ class Lifter:
             self.sret_call(f"fn_{o[0].imm:x}")
             self.clobber()
             self.s.written = set()
+        elif m == "bl" and (shape := self.result_of(o[0].imm)):
+            v = self.bind(shape_type(shape), self.shape_call(f"fn_{o[0].imm:x}", shape))
+            self.clobber()
+            self.s.written = set()
+            for i in range(2 if shape[0] == "x" else shape[1]):
+                self.write(f"{shape[0]}{i}", f"{v}.r[{i}]", shape_elem(shape))
         elif m == "blr" and "semantic" in self.opts and self.stack_args_before():
             raise Unsupported("indirect call with stack arguments")
         elif m == "blr" and "semantic" in self.opts and self.s.x8w and regname(o[0].reg) != "x8":
@@ -2014,7 +2091,7 @@ class FlatLifter(Lifter):
                     continue
                 if y.mnemonic == "cmp" and y.operands[0].type == arm64.ARM64_OP_REG \
                         and regname(y.operands[0].reg)[1:] == src[1:] and y.operands[1].type == arm64.ARM64_OP_IMM \
-                        and j + 1 < len(ins) and ins[j + 1].mnemonic == "b.hi":
+                        and self.bhi_after(ins, j):
                     bound, cmp_at = y.operands[1].imm, j
                     break
             if bound is None or any(cmp_at < j < k and j != copy for j in writes.get(ireg, [])) \
@@ -2030,6 +2107,17 @@ class FlatLifter(Lifter):
                 continue
             self.jtables[x.address] = (int(ireg[1:]), tgts)
             self.gskip |= {ins[adr].address, ins[ld].address, ins[add].address}
+
+    @staticmethod
+    def bhi_after(ins, j: int) -> bool:
+        """A b.hi on the flags of the compare at ins[j], within the next four instructions (a store
+        may sit in between) and with no other flag write or branch before it."""
+        for y in ins[j + 1:j + 5]:
+            if y.mnemonic == "b.hi":
+                return True
+            if y.mnemonic.startswith(("b", "cb", "tb")) or any(regname(q) == "nzcv" for q in y.regs_access()[1]):
+                return False
+        return False
 
     def snapshot(self, e: str, t: str) -> str:
         """The value of `e` now, in a temporary (registers are mutable locals here). Semantic
@@ -2159,6 +2247,12 @@ class FlatLifter(Lifter):
     def has_value(self, n: int) -> bool:
         return n in self.types
 
+    def bind(self, t: str, e: str) -> str:
+        var = f"v{len(self.vtemps)}"  # (function scope: gotos must not jump over initialisations)
+        self.vtemps.append(t)
+        self.line(f"{var} = {e};")
+        return var
+
     def temp_ptr(self, e: str) -> str:
         var = f"t{self.temps}"
         self.temps += 1
@@ -2225,13 +2319,28 @@ class FlatLifter(Lifter):
                 m, o = x.mnemonic, x.operands
                 if m == "ret":
                     v = None
-                    if 100 in self.types and (self.s.retk == 100 or 0 not in self.types):
+                    first = self.result_order((100, 0) if self.s.retk == 100 or 0 not in self.types else (0, 100))[0]
+                    if 100 in self.types and first == 100:
                         v = self.read("s0" if self.types[100] == "f32" else "d0")
                     elif 0 in self.types and 0 not in self.clob:  # (x0 after an x8-result call: none)
                         v = self.read("x0")
+                    if (shape := self.result_of(addr)):
+                        v = self.shape_value(shape)
                     self.terminate("value", v)
                 elif m == "b" and not addr <= o[0].imm < end and self.sret_callee(o[0].imm):
                     self.sret_tail(f"fn_{o[0].imm:x}")
+                elif m == "b" and not addr <= o[0].imm < end and (self.result_of(addr) or self.result_of(o[0].imm)):
+                    # A tail call to a callee with this function's result shape returns its struct;
+                    # to one with a wider result than this function's callers read, its first field.
+                    shape, theirs = self.result_of(addr), self.result_of(o[0].imm)
+                    if shape == theirs:
+                        self.terminate("value", (self.shape_call(f"fn_{o[0].imm:x}", shape), shape_type(shape)))
+                    elif shape is None:
+                        call = self.shape_call(f"fn_{o[0].imm:x}", theirs)
+                        t = "char*" if theirs[0] == "x" else shape_elem(theirs)
+                        self.terminate("value", (f"({t})({call}).r[0]", t))
+                    else:
+                        raise Unsupported("tail call to another result shape")
                 elif m == "b" and not addr <= o[0].imm < end:
                     self.terminate("tail", self.call(f"fn_{o[0].imm:x}"))
                     self.tails[f"fn_{o[0].imm:x}"] = self.last_call[1]
@@ -2352,6 +2461,26 @@ HEADER = ['#include "types.h"', '#define HIDDEN __attribute__((visibility("hidde
 
 # Placement new without <new>, for a callee's x8 result built where x8 points (Lifter.sret_call). A
 # definition, so a generated file holds it once (write_out), not once per function using it.
+def shape_type(shape: tuple) -> str:
+    """The struct a multi-register result is returned as (abi_facts.result_shape): lift_r2 for
+    x0:x1, lift_f32x<n>/lift_f64x<n> for a float aggregate (AArch64 returns both in those registers,
+    x86-64 in rax:rdx and xmm0/xmm1)."""
+    return "lift_r2" if shape[0] == "x" else f"lift_f{32 if shape[0] == 's' else 64}x{shape[1]}"
+
+
+def shape_elem(shape: tuple) -> str:
+    return "u64" if shape[0] == "x" else "f32" if shape[0] == "s" else "f64"
+
+
+def shape_struct(shape: tuple) -> str:
+    n = 2 if shape[0] == "x" else shape[1]
+    return f"struct {shape_type(shape)} {{ {shape_elem(shape)} r[{n}]; }};"
+
+
+def shape_ns(shape: tuple) -> str:
+    return f"ret_{shape_type(shape)[len('lift_'):]}"  # (callers' declarations: ret_r2::fn_<addr>)
+
+
 LOCAL_ADDR = re.compile(r"\(stk \+ 0x[0-9a-f]+\)")  # Lifter.local's form: a local's address
 LIFT_AT = ("struct lift_at_t {}; inline void* operator new(decltype(sizeof 0), void* p, lift_at_t) "
            "noexcept { return p; }")

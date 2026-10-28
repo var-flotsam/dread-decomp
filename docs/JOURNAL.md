@@ -56,6 +56,7 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - Parallel agents in one checkout: file-disjoint steps, `trymatch.py --obj-dir`, one `check.py` at the end: [sixteenth session](#session-log-newest-first).
 - Byte-mode argument pass-through (a lift names the registers its callee reads and it still holds); capstone 5.0.7's wrong register access for `cmp`/`tst` and shift/extend aliases: [lifter pass-through](#session-log-newest-first).
 - The P-code oracle's inputs and rules: mutations placed where a word was read, a compare-constant sweep, out-parameter bounds, runs cut off, unknown callees; each rule's measured trade-off: [lifter oracle inputs](#session-log-newest-first).
+- Multi-register results (x0:x1, s0-s3) and the result register, read off what callers do right after a call; a void lift of a function whose result is read; every `U` function's outcome: [lifter gaps round 3](#session-log-newest-first).
 
 **Declarations and calling conventions**
 - A caller declared with fewer parameters can rely on an argument register the caller left set (six callers of `fn_7100216978` passed the vector in `x1` unawares); declaring the real signature keeps the bytes: [sixteenth session](#session-log-newest-first).
@@ -116,6 +117,75 @@ pointers do (985, added to the loader's function table). The boot's ten `nn::atk
 static initialisers are gone, and the loader's trap thunks went from 1,105 to 674. Two game
 functions without a lift trap next (`fn_7100001be8`, `fn_7100153a90`), then the null dereference in
 `fn_71000a4b60`.
+
+**Lifter: every `U` function, and semantic gaps round 3 (2026-10-28, branch `claude/lifter-gaps-3`).**
+`port_lift.py --slice all` lifts every `U` function except the SDK imports and checks each with the
+oracle. On main after #233 the run took 75 minutes (the first P-code fetch for 16,000 functions included):
+- **15,352 of the 15,996** functions without a definition in `src/` are accepted (96%; 7.20 MB of
+  8.08 MB).
+- What was left, by bytes:
+  - a caller-saved register read after a call: 138 functions, 203 KB;
+  - inconclusive: 111, 195 KB;
+  - over the size cap: 14, 150 KB;
+  - an indirect call with stack arguments: 104, 122 KB;
+  - unsupported instructions: 72, 83 KB, mostly `adr`;
+  - rejected by the oracle: 75, 64 KB;
+  - a register read before it is written: 37, 18 KB;
+  - undecodable: 65, 2 KB.
+
+This round takes the largest gaps first:
+- **Results in more than one register.** The 138 "caller-saved register read after a call" break
+  down as follows:
+  - 75 read x1 after the call: a 16-byte result in x0:x1;
+  - 36 read s1-s3: a float aggregate, a Vector4 returned in s0-s3;
+  - the rest pass a clobbered register on as an argument.
+
+  `abi_facts.result_shape` reads the shape off the callers: a forward scan of their straight-line
+  code after `bl f`, past tests, up to a join, for x1 or s1-s3 read before written. Compiled code
+  never keeps a value in a caller-saved register across a call, so such a read is a result. A
+  caller that returns it (`bl f` then `ret`, or `b f`) adds its own shape. The scan is not
+  liveness, whose evidence at indirect calls could invent an x1. The callee's semantic lift
+  returns `lift_r2` (two u64) or `lift_f32x<n>`, every call declares it so
+  (`ret_r2::fn_<addr>`, which port_link aliases like `callee::`), and a tail call to the same
+  shape returns it. On AArch64 that is x0:x1 and s0-s3 as in the original, so the oracle
+  compares them; on x86-64 it is rax:rdx and xmm0/xmm1. An argument register a call clobbered is
+  passed as 0, garbage in the original as well. 136 of the 138 are accepted.
+- **The result register.** `abi_facts.result_main` says which of x0 and s0 callers read; x0
+  passed on to the next call counts (a function returning `this`). The lift returns that one where
+  the last register written was the other.
+- **No void lift of a function whose callers read its result.** Before, when the value variant
+  failed the oracle (a wrong result), the void variant was accepted with no result compared, and
+  the x86-64 callers got garbage. The evidence must be direct (`result_main` or a shape):
+  `ret_used`'s liveness also counts a float register a later callee's facts read and nobody
+  wrote (`fn_7100075f78`, a field initialiser). On the boot slice this refuses 13 functions that
+  had been accepted.
+- **Inputs that crash.** 86 of the inconclusive functions crash on every input, nearly always by
+  dereferencing a call's result or a word the run read as a pointer (a small number). The oracle
+  now repairs such a run: each of those values is set to a valid pointer, and again while the run
+  crashes further on (64 runs at most). That recovers 11 of the 111.
+- **Jump tables** whose bound check has a store between the `cmp` and the `b.hi` (20 of the 30
+  `adr` refusals).
+- **Every `U` function after this round** (`--slice all`, 71 minutes): **15,499 of 15,996
+  accepted** (96.9%; 7.43 MB of 8.08 MB, up from 7.20 MB). Median coverage is 89%. The 497 left
+  (0.65 MB):
+  - inconclusive: 100 functions, 177 KB;
+  - over the size cap: 14, 150 KB;
+  - indirect calls with stack arguments: 105, 124 KB;
+  - rejected by the oracle: 109, 93 KB. That is up from 75: these are the value variants of
+    functions whose void lift is no longer accepted;
+  - unsupported instructions: 52, 56 KB;
+  - a tail call to another result shape: 22, 12 KB. A follow-up commit returns the wider
+    result's first field, which accepts 18 of them;
+  - undecodable: 65, 2 KB;
+  - 30 others.
+- **The boot set** (`build/port/lifted`, from this branch's code):
+  - 2,266 lifts (1.21 MB);
+  - 2,171 of the slice's 2,220 functions accepted (1.20 MB of 1.26 MB), up from 2,134;
+  - 49 left (60 KB);
+  - 95 of 103 overrides accepted;
+  - median coverage 87%.
+
+  Byte mode is unchanged: `gen_lift.py --add` on 6,000 candidates leaves `src/lifted/` as it is.
 
 **Port M1 round 3: the port's foundations (2026-10-28, branch `claude/port-m1-round3`).** The
 lifter's new lifts (#227-#233; `build/port/lifted` for the boot slice, then `lifted_all` for every
