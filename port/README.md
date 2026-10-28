@@ -149,8 +149,28 @@ first 0x4e700000 bytes. Every static initialiser of the game runs, `main` calls 
 start-up `fn_71001325d0` runs whole (the SDK heap, `nv`, the RomFS mount, the user, `nn::oe`,
 `nn::time`). Then the game's main function `fn_7100000980` runs (matched; `L` in
 `data/functions/` but the game's: it sets up the string pool and the settings, starts the
-`MAINMENU` scenario and runs the loop) into the start-up `fn_7100015c70`. The first trap there is
-`fn_71000a4598`. Each trap names the next function the boot needs: that is M1's work list.
+`MAINMENU` scenario and runs the loop) into the start-up `fn_7100015c70`. Each trap names the next
+function the boot needs: that is M1's work list. On 2026-10-28, linked with the lifter's full lift set
+(`--lifted build/port/lifted_all`, every `U` function it could lift) and with traps logged, the boot
+runs 2,759 of the 2,760 static initialisers and `nnMain` into the start-up, then dereferences null in
+lifted code (`fn_71000a4b60`). Ten `nn::atk` functions the initialisers call trap before that (`L`,
+no source; the sound engine's port is open).
+
+**Static initialisers.** The game's 2,760 static initialisers (one per unit, `data/tu_map.csv`)
+are plain `fn_<addr>` functions that main's `.init_array` calls on the console before `nnMain`.
+None is a C++ initialiser of its own, so the executable would never call them.
+`tools/port_link.py` writes the table in that order with the port's definition of each
+(`dread_port_initialisers` in `image_tables.s`), and the port's main runs it before `nnMain`
+(`dread_port_run_game_initialisers`). An initialiser without a definition is skipped and counted;
+`DREAD_INIT=list` names each.
+
+**One heap.** The game allocates through its own default allocator: its own `operator new` and
+`delete` and its own `malloc` family (`src/base/UnkDefaultAllocatorGlobal.cpp`,
+`src/engine/SystemStartup.cpp`), and most of its code calls the allocator directly. What reaches
+those functions by address is the game's code. Matched code that names the C++ operators reaches
+the runtime's replacements (`port/runtime/src/heap.cpp`): they allocate from the game's allocator
+once it exists, and give each pointer back to the allocator it came from (the game's memory block,
+`dread_port_in_game_heap`, or the host's `malloc`).
 `nnMain` hands main, the per-frame and the shutdown callback over as function pointers, so the
 direct-call slice from `nnMain` misses most of what they reach. Some of the traps are reached
 only through pointers, so running with `DREAD_TRAP=log` gives the real order.
