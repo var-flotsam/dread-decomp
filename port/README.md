@@ -282,11 +282,17 @@ as `include/types.h` is; new wide calls go through it.
 
 Next Windows steps (not started):
 
-1. **The runtime's own sources.** The sweep compiles `port/runtime/include` through the game's
-   sources, not `port/runtime/src/`. Imports are resolved by exact mangled name
-   (`tools/port_imports.py`): under LLP64 `long` mangles as `l`, `s64` as `x`, so the names the game
-   imports differ from the runtime's definitions there (`port/runtime/include/movie.h` already notes
-   this).
+1. **The runtime's import names.** Imports are resolved by exact mangled name
+   (`tools/port_imports.py`): under LLP64 `s64` and `u64` are `long long`, which mangle `x`/`y` where
+   the console's names have `l`/`m` (`port/runtime/include/movie.h` already notes this).
+   `tools/port_imports.py --version 2.1.0 --windows [--list NS]` measures it (compile only; objects in
+   `build/port/windows/runtime/`). On 2026-10-27 all 18 runtime sources compile for Windows, and of
+   the 200 imports the runtime answers on Linux, 159 keep their name and 41 are lost: `movie` 11,
+   `nn::fs` 9, `nn::os` 9, `nn::mem` 3, `nn::util` 3, `nn::hid` 2, `nn::prepo` 2, `nv` 2. Every
+   one of the 41 has exactly one Windows definition that differs only by `long long` for `long`, and
+   none resolves at 32 bits through a spelled-out `long`. So the fix is mechanical and belongs in
+   `tools/port_link.py`'s `image_tables.s`, not in the runtime: on a Windows target, list each
+   runtime import under the console's name, pointing at its `long long` definition.
 2. **The generated assembly.** `tools/port_link.py` writes `traps.s`, `residue.s` and
    `image_tables.s` for SysV and ELF (argument registers, sections, directives); Windows needs Win64
    and COFF versions.

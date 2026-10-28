@@ -104,6 +104,21 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Port: the runtime's import names on Windows (2026-10-27, branch `claude/port-windows-imports`).**
+A report only (the owner chose it over runtime or `port_link.py` changes, which wait for the Linux
+title screen). `tools/port_imports.py --windows` compiles `port/runtime/src/` for
+`x86_64-w64-mingw32` with llvm-mingw (the sweep's Windows flags, libc++ 9.0.1 headers) and compares
+the runtime's definitions there with the imports it answers on Linux (`image_tables.s`'s `nn::`,
+`nv::` and `movie::` names). All 18 sources compile. Of 200 imports, 159 keep their name and 41 are
+lost (`movie` 11, `nn::fs` 9, `nn::os` 9, `nn::mem` 3, `nn::util` 3, `nn::hid` 2, `nn::prepo` 2,
+`nv` 2): each is a `u64`/`s64` parameter, mangled `y`/`x` where the console has `m`/`l`
+(`nn::fs::ReadFile`, `nn::os::CreateThread`, `nn::mem::StandardAllocator::Allocate`, the message
+queues, `nv::InitializeGraphics`). Each has exactly one Windows definition that reads the same with
+`long long` taken as `long`, and no runtime import keeps the console's name through a spelled-out
+32-bit `long`. The fix is therefore one rule in `image_tables.s` on a Windows target (the console's
+name pointing at the `long long` definition), not 41 runtime edits. The C library names and the
+C++ ABI names the loader resolves are the same on both and are not compared.
+
 **Lifter: semantic gaps, round 2 (2026-10-27, branch `claude/lifter-semantic-gaps`).** These are
 the gaps the first round left on the boot slice, each with the lifter change that closes it in
 semantic mode. Byte mode is unchanged: `gen_lift.py --add` on 6,000 random candidates with this
