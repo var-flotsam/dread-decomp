@@ -192,8 +192,8 @@ void fn_71011ee5a8(UnkLabel* self) {
 // placeholders.
 
 #include <new>
-#include <wchar.h>
 
+#include "base/Char32.h"
 #include "base/UnkSList.h"
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
@@ -750,7 +750,7 @@ void fn_71011ed1e8(UnkLabelLayout* self, bool only_if_shown) {
                         u32 code;
                         {
                             UnkLayoutText hex = fn_7100067484(&tag_name, 1, (u32)-1);
-                            swscanf(reinterpret_cast<const wchar_t*>(hex.chars ? hex.chars : U""), L"%x", &code);
+                            char32_scan_hex(hex.chars ? hex.chars : U"", &code);
                         }
                         UnkGlyphMetrics metrics = {};
                         g.code = (u16)code;
@@ -767,7 +767,7 @@ void fn_71011ed1e8(UnkLabelLayout* self, bool only_if_shown) {
                         }
                         g.scale = -1.0f;
                         if (tag_value.chars && tag_value.chars[0] != 0)
-                            swscanf(reinterpret_cast<const wchar_t*>(tag_value.chars), L"%f", &g.scale);
+                            char32_scan_f32(tag_value.chars, &g.scale);
                         UnkLabelSource* sprite = nullptr;
                         if (name.data && name.data[0] != 0) {
                             UnkLabelStrId full;
