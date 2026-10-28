@@ -160,7 +160,8 @@ three x0 ones, the stack arguments the 7 below. Oracle rejections go from 25 to 
   undecodable. `--slice boot` stays the default and the progress figure; `pointers` is an upper
   bound (a vtable taken is not a method called).
 - Tool tests: `tools/tests/test_abi_facts.py` (result_main on hand-assembled callers) and
-  `tools/tests/test_pcode_emu.py` (the per-run limits in `compare`).
+  `tools/tests/test_pcode_emu.py` (the per-run limits in `compare`), `tools/tests/test_port_lift.py`
+  (`pointed_to`). `progress.py --handoff` now writes LF on Windows too (it wrote CRLF, a whole-file diff).
 
 **Port M1 round 5: the bad string id was a wrong alias (2026-10-28, branch `claude/project-thread-3x0lf8`).** With #240's hand-written `fn_71002584a0` the boot no longer traps there, but it still crashed in the same place, so that function was not the cause. The crash is in the walk over a class's field records (`fn_7100096f30` → lifted `fn_71000e7420` → the attribute handler `fn_710008ef70`, here a field's `CreateElement` attribute holding `CreateNewActor`). A hardware watchpoint on `fn_710008ef70`'s return address caught the write: `refl_MakePrimitiveType<UnkRefl_fn_7100009658>`, called from the lifted `fn_71000979a0`, storing a whole `CType` (0xc8 bytes) over the stack. The handler then returned into the string id type's copy hook (slot 0x48), whose `src` was the type's vtable; its first entry is `fn_710009ecb8`, the "string id holding a function address".
 
