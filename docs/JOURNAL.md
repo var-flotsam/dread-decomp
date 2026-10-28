@@ -91,6 +91,7 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - The NVN globals `g_unk_716e29xxxx` are named by the loader's GOT slots and their relative relocations (`data/nvn_procs.csv`); count GOT-slot call sites with a short window, not adjacent pairs; never write into a game-owned NVN object's storage: [NVN shim's start-up path](#session-log-newest-first).
 
 **Port: runtime and loader**
+- Another Dread project's addresses map to ours by one constant (the recomp: ours = theirs - 0x8005000 + 0x7100000000); the game's PC-side problems it found (a video wait under a lock, per-texel texture uploads, a deserializer growing 10 at a time, frame pacing): [Dread recomp findings](#session-log-newest-first).
 - A function-local static of an ordinary (non-inline) function is a local symbol that its object reaches section-relative: no link step can redirect it. Make the function inline on the port (`inline __attribute__((used))`) so the static is weak and `--defsym` binds it: [port M1 round 4](#session-log-newest-first).
 - Clang 17 stopped packing a packed struct's non-POD members (GCC's rule), so a newer Clang lays out the matching sources differently; `-fclang-abi-compat=9.0` restores the matching compiler's layouts: same entry.
 - A bounds test `cmp #N; b.hs` before a table load is a `switch` turned into a lookup table (an array index gives `cmp #N-1; b.hi`): same entry.
@@ -112,6 +113,43 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - Several templates can carry one address's tag (`refl_GetPrimitiveType<G>` and its inline helper `refl_MakePrimitiveType<G>`, which Clang 18 keeps out of line); an alias to one that returns a class by value puts its hidden result pointer in the caller's rdi and writes the object over the caller's frame. A crash whose return address is a function's start, with a type's hook table on the stack, is the sign: [port M1 round 5](#session-log-newest-first).
 
 ## Session log (newest first)
+
+**What the Dread recomp found about the game on PC (2026-10-28, branch `claude/project-thread-lrmp48`).** At the
+owner's request, the public [Metroid-Dread-Recomp](https://github.com/yozander2009-stack/Metroid-Dread-Recomp)
+(yozander2009-stack, head `c5dfcf0`; SwitchRecomp by MZ Labs, `docs/references.md`) was read for what it knows about
+the game. It is a static recompilation of the same 2.1.0 build: every ARM64 function translated to C and compiled
+for the PC, on a high-level emulation of the console (kernel, services, a Maxwell GPU over OpenGL or Vulkan). Its
+functions are named `F_<addr>` for a `main` based at `0x8005000`, so **ours = theirs - 0x8005000 + 0x7100000000**
+(checked: function starts agree, and its `F_806B91C` is our `nn::os::LockMutex` thunk). Nothing was copied: these
+are facts read from its comments and patch descriptions, mapped to our addresses. Its patch set edits generated
+code that is not in its repository, so a few places are known only by what they do.
+- **Video completion wait under a lock** (`fn_7100224de4`): when bit 0 of its argument is set it waits with a
+  timeout of 50 (`fn_71002202d8`) while the caller `fn_710021f858` still holds the mutex at `+0x960` of the same
+  object. The recomp drops that mutex around the wait (`fn_7100066920` to unlock, `nn::os::LockMutex` to lock
+  again) or video playback stalls. A wait inside the multimedia module (`subsdk0`), reached from `fn_7100226b70`, has the
+  same pattern with a global rendering lock (the object whose pointer is at `0x7101cc5d58`), released and taken
+  again with `fn_7100159be0` / `fn_7100159bd0` (lock order kept: outer before inner). Relevant once `nn::movie` runs.
+- **Per-texel texture uploads** (`fn_71001e193c`, return address `0x71001e1e38`): a dirty rectangle of a
+  1024-wide RGBA8 texture (format `0x25`) is written with one `nvnTextureWriteTexels` per texel, through the NVN
+  table slot at `0x7101cc5300`. The recomp batches it by row. The shim's texel write should be cheap per call,
+  or batch the same way.
+- **Vector growth in a deserializer**: an array the resource deserializer appends to grows by 10 elements at a
+  time, so big loads copy quadratically. Not located in our addresses yet (the recomp names it by line of its
+  generated code).
+- **Frame pacing**: the loading-screen render thread (elevators, trains, area loads) sleeps 30 ms per frame;
+  cinematics ask the present-interval setter `fn_7100159420` for interval 2 (30 FPS), and `fn_710119a320` is the
+  check that a 60 FPS cutscene patch makes answer yes. The FXAA-enabled flag is stored at renderer `+0xc00` by
+  `fn_710014e86c` (`0x710014e888`). The recomp keeps the 60 Hz tick and changes these only as opt-in settings.
+- **Cutscene skip**: `fn_71010692a0` is the game's can-skip check and `fn_71011986e0` its seen-before lookup;
+  `fn_7100ec9a24` is the intro page controller's finish, called from `fn_7100ec9e38`.
+- The game's inflate (zlib) and `memcpy` are in the SDK module, which our port replaces anyway; the recomp swaps
+  them for native ones for speed.
+
+Findings:
+- Another project's function addresses map to ours by one constant when it loads `main` elsewhere; check it
+  against a few function starts and an import thunk before trusting it.
+- A recomp's patch descriptions name behaviour, and that is fair to record with our addresses. Its generated code,
+  and patch anchors containing it, are game-derived: read for the address only, never copied.
 
 **Boot functions the lifter rejects, by hand, batch 1 (2026-10-28, branch `claude/project-thread-xllbvf`).** The
 boot-slice manifest (`port_lift.py --slice boot`, lifts of 2026-10-28) left 40 functions outside the accepted set,
