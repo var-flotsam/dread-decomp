@@ -25,8 +25,7 @@
 //   SetMultiWaitHolderUserData,
 //   ClearSystemEvent, DestroySystemEvent, WaitSystemEvent, TryWaitSystemEvent, TimedWaitSystemEvent,
 //   GetSystemTick, ConvertToTick, ConvertToTimeSpan, GetHostArgc, GetHostArgv.
-// Declared below: everything but the multi-waits, which no boot-path function and no source calls
-// yet. src/ itself names only MutexType, GetCurrentThread, SleepThread,
+// Declared below: all of them. src/ itself names only MutexType, GetCurrentThread, SleepThread,
 // GetSystemTick and ConvertToTimeSpan; the rest is reached through the imports' four-byte thunks
 // (fn_71012...), which tools/port_link.py aliases to these definitions by name. The engine reaches
 // the mutex calls through four-byte wrappers (fn_71000668f8, fn_7100066918, fn_710006691c,
@@ -118,6 +117,24 @@ void SignalEvent(EventType* event);
 void ClearEvent(EventType* event);
 void WaitEvent(EventType* event);
 bool TryWaitEvent(EventType* event);
+
+// A multi-wait and its holders: the resource loader's threads wait on several events at once (the
+// boot reaches InitializeMultiWaitHolder, SetMultiWaitHolderUserData and LinkMultiWaitHolder from the
+// render resource load under fn_7101022d54). Opaque, with the same first 16 bytes as an event; a
+// holder watches one EventType.
+struct MultiWaitType;
+struct MultiWaitHolderType;
+
+void InitializeMultiWait(MultiWaitType* multi_wait);
+void FinalizeMultiWait(MultiWaitType* multi_wait);
+void InitializeMultiWaitHolder(MultiWaitHolderType* holder, EventType* event);
+void FinalizeMultiWaitHolder(MultiWaitHolderType* holder);
+void LinkMultiWaitHolder(MultiWaitType* multi_wait, MultiWaitHolderType* holder);
+void UnlinkMultiWaitHolder(MultiWaitHolderType* holder);
+// The first linked holder whose event is signaled (consuming an auto-clear signal), waiting until one is.
+MultiWaitHolderType* WaitAny(MultiWaitType* multi_wait);
+u64 GetMultiWaitHolderUserData(const MultiWaitHolderType* holder);
+void SetMultiWaitHolderUserData(MultiWaitHolderType* holder, u64 user_data);
 
 // A system event: on the console an event a service signals (a kernel handle pair); on PC the
 // runtime's own stubs create and signal them. Opaque like EventType, with the same first 16 bytes.

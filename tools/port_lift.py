@@ -890,6 +890,10 @@ def main() -> int:
                                     "the first disagreeing input")
     ap.add_argument("--passthrough", action="store_true",
                     help=f"only list the src/lifted definitions that lose arguments on x86-64 -> {port_sweep.rel(PASSTHROUGH)}")
+    ap.add_argument("--override", default="",
+                    help="ADDR[,ADDR...]: also override these src/lifted definitions with a semantic lift (for a byte-mode"
+                         " lift that is wrong on x86-64 for another reason, such as a data table read through a string"
+                         " literal; until gen_lift is fixed)")
     ap.add_argument("--no-overrides", action="store_true",
                     help="leave those definitions alone (by default each gets a semantic lift that overrides it, "
                          "added to the worklist unless --only or --top is given)")
@@ -917,6 +921,9 @@ def main() -> int:
             af.save(FACTS)
             return 0
         overrides = {int(e["address"], 16): e["file"] for e in pt}
+    forced = gen_lift.parse_only(args.override) if args.override else []
+    for a in forced:
+        overrides.setdefault(a, lifted_file(a))
     wl = gen_lift.parse_only(args.only) if args.only else worklist(Path(args.worklist)) if args.worklist \
         else slice_worklist(args.version, rows, args.slice)
     if args.top:
@@ -924,6 +931,7 @@ def main() -> int:
     elif not args.only:
         listed = set(wl)
         wl += [a for a in sorted(overrides) if a not in listed]
+    wl += [a for a in forced if a not in set(wl)]
     skip = gen_lift.defined_outside(Path("/nonexistent"))  # every definition in src/, src/lifted included
     hand = gen_lift.defined_outside(gen_lift.OUT)  # ... and outside src/lifted: never overridden
     outcome: dict[int, str] = {}
