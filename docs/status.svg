@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="316" viewBox="0 0 760 316" role="img"><style>.h{font:600 13px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#1f2328}.l,.n,.s{font:13px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#1f2328}.n{fill:#59636e}.s{fill:#1f2328;font-weight:500}.t{fill:#e6e8eb}.m{fill:#9fd8b0}.o{fill:#2f9e5a}@media (prefers-color-scheme:dark){.h,.l,.s{fill:#e6edf3}.n{fill:#9198a1}.t{fill:#2b3138}.m{fill:#2c6e45}.o{fill:#4cc27a}}</style>
+<text class="h" x="0" y="22">Decompilation</text>
+<text class="l" x="0" y="49" dy="0.35em">Whole binary</text>
+<rect class="t" x="180" y="43" width="340" height="12" rx="6"/>
+<rect class="m" x="180" y="43" width="193.6" height="12" rx="6"/>
+<rect class="o" x="180" y="43" width="185.5" height="12" rx="6"/>
+<text class="n" x="534" y="49" dy="0.35em">54.6% matching · 56.9% usable</text>
+<text class="l" x="0" y="79" dy="0.35em">Boot path</text>
+<rect class="t" x="180" y="73" width="340" height="12" rx="6"/>
+<rect class="m" x="180" y="73" width="133.7" height="12" rx="6"/>
+<rect class="o" x="180" y="73" width="100.0" height="12" rx="6"/>
+<text class="n" x="534" y="79" dy="0.35em">29.4% matching · 39.3% usable</text>
+<text class="h" x="0" y="116">PC port</text>
+<text class="l" x="0" y="143" dy="0.35em">Lifts, every U function</text>
+<rect class="t" x="180" y="137" width="340" height="12" rx="6"/>
+<rect class="o" x="180" y="137" width="329.4" height="12" rx="6"/>
+<text class="n" x="534" y="143" dy="0.35em">15,499 of 15,996 accepted</text>
+<text class="l" x="0" y="173" dy="0.35em">Port M0, M1 steps 1-4</text>
+<text class="s" x="180" y="173" dy="0.35em">Done</text>
+<text class="l" x="0" y="203" dy="0.35em">Lifts, boot slice</text>
+<rect class="t" x="180" y="197" width="340" height="12" rx="6"/>
+<rect class="o" x="180" y="197" width="332.5" height="12" rx="6"/>
+<text class="n" x="534" y="203" dy="0.35em">2,171 of 2,220 accepted</text>
+<text class="l" x="0" y="233" dy="0.35em">Port, Linux executable</text>
+<text class="s" x="180" y="233" dy="0.35em">Boots past fn_71000a4b60</text>
+<text class="l" x="0" y="263" dy="0.35em">Port M2 (graphics)</text>
+<text class="s" x="180" y="263" dy="0.35em">Shim complete for the start-up</text>
+<text class="l" x="0" y="293" dy="0.35em">Windows</text>
+<text class="s" x="180" y="293" dy="0.35em">Compile only</text>
+</svg>

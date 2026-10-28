@@ -20,7 +20,8 @@ tools/trymatch.py                build + diff one source, RELOC lines included
 tools/check.py                   build src/, derive O/m/M/W, regressions, duplicates, relocation targets
 tools/verify.py                  one-command gate: generators, check --update, progress, policy, decl_check (info)
 tools/progress.py                whole-binary progress; --slice boot for the nnMain slice; --slice-from <fn>
-tools/dashboard_export.py        status, daily history, phases and workstreams as CSVs for the project dashboard (build/dashboard/)
+tools/dashboard_export.py        status, history, areas, workstreams, lifts, boot distance as CSVs for the dashboard (build/dashboard/)
+tools/status_card.py             README's status card (docs/status.svg) from tracked files; --write, --check, --summary (PR job summary)
 tools/callgraph.py, hubs.py      direct-call graph (Ghidra export); hubs by unmatched callers, --ready, --callers
 tools/decl_check.py              fn_/g_unk_ declarations in several files or with conflicting signatures; --base enforces
 tools/baseline.py                trymatch output snapshot, compare and restore for a file set (headers expand to includers)

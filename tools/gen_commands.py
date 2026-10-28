@@ -27,7 +27,7 @@ GROUPS: list[tuple[str, list[str]]] = [
     ("Generators (maintenance)", ["gen_reflection", "gen_types", "gen_statics", "gen_clones", "gen_tables",
                                   "gen_lift", "gen_class_getters"]),
     ("Matching", ["trymatch", "asmdiff", "nearcopy", "hubs", "shape_census", "objdiff_gen"]),
-    ("Checks and progress", ["check", "verify", "progress", "policy_check", "decl_check", "dashboard_export",
+    ("Checks and progress", ["check", "verify", "progress", "policy_check", "decl_check", "dashboard_export", "status_card",
                              "gen_commands"]),
     ("Refactoring (header migrations, file moves)", ["hub_migrate", "baseline", "unit_move", "objcompare"]),
     ("Port", ["port_sweep", "port_link", "port_lift", "port_addresses", "port_imports", "test_port_loader",

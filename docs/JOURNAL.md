@@ -112,6 +112,24 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Dashboard for both goals; README status card (2026-10-28, branch `claude/project-thread-vt2bik`).**
+The private dashboard (see "Status dashboard" below) predated the reorganization: it showed matching
+only, read the handoff's old phase table (every port row came out as an unstarted grey chip) and took
+the workstream table's second column as "Area" when it is now "Files", dropping "Next". It now opens
+with the two goals side by side. Decompilation: matching and usable shares, the boot path, the daily
+trend. PC port: the Linux build's furthest point (handoff), the share of code with an accepted
+semantic lift for every `U` function and for the boot worklist, and what the lifter can't take yet by
+reason. `tools/dashboard_export.py` writes `areas.csv` (with a decomp/port goal per area; replaces
+`phases.csv`), `workstreams.csv` with `next`, `lifts.csv` from the lift manifests, and
+`boot_milestones.csv`/`boot_run.csv` from `build/boot/boot_distance.json` once the nightly has run;
+handoff parsing moved to `tools/dread/handoff.py`. The lift manifests on the owner's PC (2026-10-28)
+read 15,594 of 16,088 accepted (all) and 2,266 of 2,323 (boot worklist, which adds the run-time and
+graphics roots to the boot slice), newer than the handoff's figures. `tools/status_card.py` is a slim
+version for the README (`docs/status.svg`, from tracked files only); the `policy` job writes it to each
+pull request's job summary with the change's effect on the whole binary, and the merging session
+refreshes the README with `--write` after `progress.py --handoff` (a card committed by every branch
+would conflict, like the handoff's table).
+
 **Boot functions the lifter refuses since #236, by hand (2026-10-28, branch `claude/project-thread-pvyj4u`).**
 #236 stopped accepting void lifts of functions whose callers read a result. On the boot slice that
 refused 13 functions (12 accepted before, and `fn_7100ee5dcc`, inconclusive before). Read in Ghidra,

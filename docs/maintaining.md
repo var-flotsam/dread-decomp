@@ -85,6 +85,12 @@ git status --short data/functions                               # should match w
 generator. For generator changes, also rerun the generator and confirm its output is unchanged
 (`git status` clean). Then merge on GitHub with a merge commit.
 
+After a round of merges, the merging session refreshes `docs/HANDOFF.md`
+(`tools/progress.py --slice boot --handoff`), then the README's status card and `docs/status.svg`
+(`tools/status_card.py --write`, which reads the handoff, so it runs second). Each pull request's
+`policy` job writes the same card to its job summary, with what the change does to the whole binary.
+To refresh the private dashboard as well: `tools/dashboard_export.py`, then upload `build/dashboard/`.
+
 **Size of a pull request.** Each PR costs a session start and a review. Prefer one hub cluster
 (a hub and the callers it unblocks) or at least about 30 functions per PR; a branch under that
 keeps accumulating. The exception is a tool or header change that other streams wait on.
