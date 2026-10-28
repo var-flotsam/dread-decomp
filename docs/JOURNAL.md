@@ -112,6 +112,16 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**The three x0 cases the lifter's fix leaves refused, by hand (2026-10-28, branch `claude/project-thread-pvyj4u`, second PR).**
+The lifter thread's fix (branch `claude/project-thread-zgkpk3`) now checks whether a function writes s0
+itself before it treats s0 as the result, which covers six of the nine void functions above. It does
+not cover the three where x0 was taken for a result, because the same rule would wrongly catch
+functions that return `this`. Those three are now in `src/`: `fn_7100eea4c8` (a sub-area's settings to
+the environment manager) and `fn_7100eea618` (its camera settings to the main camera's
+CMetroidCameraCtrl), both `O` in `src/game/CSubAreaManager.cpp`, and `fn_710109c9e0` (the pop of the
+Lua console's scratch stack, `m` in `src/base/UnkLuaDoString.cpp`). The first argument of the two sub-area
+steps is an empty `UnkLeftoverArg`, because their caller leaves x0 as the previous call returned it.
+
 **Boot functions the lifter refuses since #236, by hand (2026-10-28, branch `claude/project-thread-pvyj4u`).**
 #236 stopped accepting void lifts of functions whose callers read a result. On the boot slice that
 refused 13 functions (12 accepted before, and `fn_7100ee5dcc`, inconclusive before). Read in Ghidra,
