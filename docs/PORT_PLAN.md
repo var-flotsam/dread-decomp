@@ -258,8 +258,9 @@ the only target that runs until the title screen works. Windows is compile-check
 so that what breaks only there is found early: `tools/port_sweep.py --target x86_64-w64-mingw32`
 compiles every source with llvm-mingw (the Itanium C++ ABI, which the game's vtables need; not
 MSVC) and lists what compiles but means something else under LLP64 (`long`, `l` literals) or with
-a 16-bit `wchar_t`. On 2026-10-27 all 3,979 sources compile for Windows, and the scan leaves only
-the wide-text calls in two files (`port/README.md`, "Windows (compile only)"). A Windows link, the
+a 16-bit `wchar_t`. On 2026-10-27 all 3,979 sources compile for Windows and the scan finds nothing
+(the wide text goes through `include/base/Char32.h`; `port/README.md`, "Windows (compile only)"). A
+Windows link, the
 Win64 and COFF versions of `tools/port_link.py`'s generated assembly, and the fault handler as
 structured exception handling wait until Linux reaches the title screen; that section lists them.
 

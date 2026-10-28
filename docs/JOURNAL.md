@@ -103,6 +103,21 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Port: the Windows wide-text helpers (2026-10-27, branch `claude/port-wide-text`).** The last five
+places the Windows scan flagged were the game's `char32_t` text handed to the C library's wide
+functions: `CLabel.cpp`'s two `swscanf` calls (`"%x"` for a font glyph's code in a `@N<hex>]` tag,
+`"%f"` for a sprite's scale in `@name:scale]`) and `fn_7100067460`'s `wcsstr`. On Windows those take
+16-bit units. New header `include/base/Char32.h`: `char32_scan_hex`, `char32_scan_f32` and
+`char32_strstr`. Under `__WCHAR_MAX__ > 0xffff` each is the original call, `always_inline` (the
+callers ignore the scans' results, so the `== 1` folds away); otherwise the scans narrow the leading
+ASCII (128 bytes at most) and `sscanf` it with the same format, and the search compares 32-bit units.
+`fn_7100067460`'s string type is now `const char32_t*` (its mangled name changes from `PKw` to `PKDi`;
+`check.py` matches it by address, still `O`). Evidence: `baseline.py` (both files unchanged),
+`check.py --update` (no REGRESSION, DUPLICATE or RELOC; no status change), a native Windows test of
+the helpers built with llvm-mingw (hex, float, a non-ASCII stop, empty input, the search with an
+astral character and an empty needle: all pass), and both sweep targets compile the two files. The
+header joins `include/types.h` in the scan's exemptions; the Windows scan now finds nothing.
+
 **Port: the Windows compile check (2026-10-27, branch `claude/port-windows-sweep`).** The owner
 decided to keep Linux as the only running target until the title screen and to compile-check
 Windows alongside it. Windows means MinGW-w64 (the Itanium C++ ABI the game's vtables need), so the

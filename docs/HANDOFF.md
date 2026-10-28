@@ -6,7 +6,7 @@ it needs). History, batch logs and the index of matching findings are in `docs/J
 `docs/recon.md` describes the binary, `docs/compiler.md` the toolchain, `docs/references.md` the
 outside projects. This page is edited in place, never appended to: session notes go to the journal.
 
-**Last updated 2026-10-27** (port: the Windows compile check, branch `claude/port-windows-sweep`; port M1: boot-match round 2 and the boot past the game's main function, branch `claude/port-m1-game-main`; the boot-match batch and the boot past the system start-up, #223; port M1 step 4: runtime stubs and the data loader, #201, #203, #206; hub batches 3 and 4, var-flotsam/dread-decomp#195 and #197; the TU helper fold, #196; the shader packages, #198; boot hubs round 1, #199; port M2's shader build step and NVN binding layer, #202 and #204, and its drawing part, branch `claude/port-nvn-draw`; hub batch 5, #207; hub batch 6, branch `claude/hub-batch-6`; boot hubs round 2, branch `claude/boot-hubs-2`).
+**Last updated 2026-10-27** (port: the Windows wide-text helpers, branch `claude/port-wide-text`; the Windows compile check, #225; port M1: boot-match round 2 and the boot past the game's main function, branch `claude/port-m1-game-main`; the boot-match batch and the boot past the system start-up, #223; port M1 step 4: runtime stubs and the data loader, #201, #203, #206; hub batches 3 and 4, var-flotsam/dread-decomp#195 and #197; the TU helper fold, #196; the shader packages, #198; boot hubs round 1, #199; port M2's shader build step and NVN binding layer, #202 and #204, and its drawing part, branch `claude/port-nvn-draw`; hub batch 5, #207; hub batch 6, branch `claude/hub-batch-6`; boot hubs round 2, branch `claude/boot-hubs-2`).
 Target: **Metroid Dread 2.1.0**, `main` build ID `646761F643AFEBB379EDD5E6A5151AF2CEF93DC1`.
 
 ## Start here
@@ -524,13 +524,13 @@ asset texel upload (the console's tiled layout) and the sampler enumerations; an
 reaches `fn_71001587f0`, `dread_nvn` joins `tools/port_link.py --executable` (agreed with the M1
 session).
 Windows (decided 2026-10-27: Linux is the only running target until the title screen; Windows is
-compile-checked alongside, branch `claude/port-windows-sweep`): `tools/port_sweep.py --target
+compile-checked alongside, #225): `tools/port_sweep.py --target
 x86_64-w64-mingw32` compiles with llvm-mingw 20261006 (`tools/fetch_toolchains.py
 llvm-mingw-20261006`, Itanium ABI, libc++ 9.0.1 over MinGW-w64's headers) and scans for what LLP64
-and a 16-bit `wchar_t` change silently. All 3,979 sources compile; the scan leaves only the wide-text
-calls in `src/game/GUI/CLabel.cpp` and `src/game_s1/fn_7100067460.cpp`. Keep both at zero: rerun it
-when a PR adds hand-written code. Next Windows steps, after the title screen on Linux: `char32_t`
-helpers for that wide text, `port/runtime/src/` and its LLP64-mangled import names, Win64/COFF
+and a 16-bit `wchar_t` change silently. All 3,979 sources compile and the scan finds nothing: the
+game's wide text goes through the `char32_t` helpers in `include/base/Char32.h` (the original calls
+where `wchar_t` is 32 bits). Keep both at zero: rerun it when a PR adds hand-written code. Next
+Windows steps, after the title screen on Linux: `port/runtime/src/` and its LLP64-mangled import names, Win64/COFF
 versions of `port_link.py`'s `traps.s`, `residue.s` and `image_tables.s`, the fault handler as
 structured exception handling, and a Windows link (`port/README.md`, "Windows (compile only)").
 
