@@ -139,7 +139,10 @@ From the trace run's refusals (`lifted_trace1`, 6,007 of 6,070 accepted):
 - **The result address kept in a callee-saved register** (the boot's stop with `lifted_trace1`, 501 lifts
   in: `fn_710009ad50` keeps x8 in x19 and sets `x8 = x19` before calling the getter invoker, past a join
   that forgot the copy): `FlatLifter.result_copies` finds the registers whose every write copies the
-  entry x8 or another of them, and a label keeps those.
+  entry x8 or another of them, and a label keeps those. That static rule failed on `fn_7100095774`,
+  which reuses x19 as a loop counter after the call: `result_copies` is now a forward dataflow per
+  instruction (entry {x8}; a `mov` from a holder adds, any other write or a call's clobber drops; the
+  meet is the intersection), and a label keeps the set that reaches it.
 - **The oracle and a struct copy's padding** (`71000ed2b8`, `71000ed608`, `71000ed758`): the original
   copies padding it never wrote, the lift the fields alone. pcode_emu now marks bytes loaded from never-
   written stack as undefined through copies, and compare() leaves out the bytes stored from them.
