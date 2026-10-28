@@ -8,11 +8,11 @@ accepts a lift that behaves like the original, whatever its bytes:
 
   1. Worklist: --slice boot (the default): the `U` functions reachable by direct calls from nnMain,
      from the run-time roots (nnMain hands main, the per-frame and the shutdown function to the
-     SDK as pointers; main stores four callbacks), from the graphics functions and from four the boot
-     reaches only through pointers (POINTER_ROOTS), by callers in
-     the slice, with the roots and graphics functions themselves whatever their status; --slice
-     all: every `U` function; --worklist CSV (its `U` rows, e.g. tools/port_link.py's
-     boot_missing.csv); --only; --top N of any of them. Functions now defined in src/ are skipped, except the
+     SDK as pointers; main stores four callbacks), from the graphics functions and from four the
+     boot reaches only through pointers (POINTER_ROOTS), by callers in the slice, with the roots
+     and graphics functions themselves whatever their status; --slice all: every `U` function;
+     --worklist CSV (its `U` rows, e.g. tools/port_link.py's boot_missing.csv); --only; --top N
+     of any of them. Functions now defined in src/ are skipped, except the
      overrides: src/lifted definitions that read more argument registers than they declare
      (byte-identical on AArch64, where the registers pass through; an x86-64 compile loses them).
      They are listed in build/port/passthrough.json (--passthrough writes just that), added to the
@@ -630,7 +630,8 @@ def main() -> int:
     ap.add_argument("--version", required=True)
     ap.add_argument("--slice", choices=["boot", "all"], default="boot",
                     help="the worklist when neither --only nor --worklist is given: boot (default), the U functions "
-                         "reachable from nnMain, the run-time roots and the graphics functions; all, every U function")
+                         "reachable from nnMain, the run-time roots, the graphics functions and POINTER_ROOTS; all, "
+                         "every U function")
     ap.add_argument("--worklist", help=f"CSV with address and status columns, its U rows (for example "
                                        f"{port_sweep.rel(WORKLIST)}, tools/port_link.py's) instead of --slice")
     ap.add_argument("--only", help="ADDR[,ADDR...] or @file instead of the worklist")
@@ -814,7 +815,8 @@ def main() -> int:
         "generator": GENERATOR, "sources": {s: blob(s) for s in SOURCES}, "version": args.version,
         "build_id": "646761F643AFEBB379EDD5E6A5151AF2CEF93DC1", "inputs": args.inputs,
         "semantic_flags": SEMANTIC_FLAGS, "host_flags": host_flags()[1],
-        "worklist": args.only or (port_sweep.rel(Path(args.worklist)) if args.worklist else f"slice {args.slice}"), "seconds": round(time.time() - t0),
+        "worklist": args.only or (port_sweep.rel(Path(args.worklist)) if args.worklist else f"slice {args.slice}"),
+        "seconds": round(time.time() - t0),
         "functions": {f"{a:x}": {"outcome": outcome[a], "size": sizes[a], **info.get(a, {}),
                                  **({"detail": last_fail[a]} if a in last_fail and a not in accepted else {}),
                                  **({"error": errors[a]} if a in errors else {}),
