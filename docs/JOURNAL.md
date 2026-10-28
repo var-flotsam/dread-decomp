@@ -113,9 +113,34 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - x86-64 assumes 16-byte alignment for any global array of 16 bytes or more, even one only declared, while the image keeps AArch64 alignments: declare such image arrays unsized, or Clang 18 may store into them with `movdqa` (a SIGSEGV at address 0): [port M1 round 6](#session-log-newest-first).
 - Integer and float arguments take separate register sequences on both AArch64 and x86-64: `(int, float, bool)` and `(ptr, ptr, float)` are the same call: same entry.
 - A struct-returning function (x8 on AArch64) called through a pointer from lifted code needs its hidden result pointer passed explicitly on x86-64 (rdi), or every argument shifts by one: same entry.
+- gen_lift byte mode can turn a data table into a string literal when its first bytes look like one (check.py does not check string relocations): on the port the literal is the executable's, and indexed reads walk into other strings. A scan of `src/lifted` for an indexed literal finds them: [port M1 round 7](#session-log-newest-first).
 - Several templates can carry one address's tag (`refl_GetPrimitiveType<G>` and its inline helper `refl_MakePrimitiveType<G>`, which Clang 18 keeps out of line); an alias to one that returns a class by value puts its hidden result pointer in the caller's rdi and writes the object over the caller's frame. A crash whose return address is a function's start, with a type's hook table on the stack, is the sign: [port M1 round 5](#session-log-newest-first).
 
 ## Session log (newest first)
+
+**Port M1 round 7: four runtime gaps on the way to the render resources (2026-10-28, branch `claude/project-thread-3x0lf8`).**
+Boots of main with the lifter thread's sets (`lifted_all`, then `lifted_insn3`, `lifted_f88b8` and `lifted_trace1` layered over
+it; `lifted_trace1` covers every function the recomp's boot trace enters), on lavapipe with `boot_distance.py --nvn`:
+- **`nvnDeviceGetInteger(0x4)`** was answered 0, and `fn_710015c9b0` (a shader program's load) divides by it: it rounds each
+  program's buffer and code sizes up to a multiple of it. The shim answers 256 (`kProgramMemoryAlignment`).
+- **`nn::util::DecompressGzip`** (the material loader `fn_71001a6644`, through `fn_71001409a0`) is
+  `port/runtime/src/gzip.cpp`, an inflater written from RFC 1951 and 1952 with no zlib. It was checked against gzip's output for stored, fixed
+  and dynamic blocks and against the CRC and size in the trailer.
+- **A data table read through a string literal.** gen_lift's byte mode emitted `fn_7100167cc0`'s 10-entry table at
+  0x710164806c as the string `"Y"` (its first bytes are 59 00 00 00). `tools/check.py` counts it `O`, because string relocations
+  are not checked. On the port, the literal is the executable's, and index 1 read `"WALL"` from the next string, so
+  `fn_71001b0f7c` faulted. A scan of `src/lifted` finds 15 functions that index a literal. gen_lift's fix is being regenerated.
+  Until then, `tools/port_lift.py --override ADDR,...` gives such functions a semantic lift that replaces the
+  `src/lifted` copy (the existing override mechanism). The semantic lifts name image data `h::g_unk_<addr>` and have none of these.
+- **`nn::os` multi-waits** (`InitializeMultiWaitHolder`, `SetMultiWaitHolderUserData`, `LinkMultiWaitHolder`, `WaitAny`, ...): the
+  render resource load under `fn_7101022d54` reaches them. Every event signal also notifies one process-wide condition, and
+  `WaitAny` rechecks its holders' events under each event's lock (tested with two threads).
+
+The lifter's fixes found on the way (its thread has the details): an indirect call that drops x8, a forwarder that passes x4-x7
+through untouched (`fn_7100087ecc`), and now x8 copied through another register before an indirect call (`fn_710009ad50`
+calling a reflected getter's invoker). The boot reaches 501 lifts, all 8 milestones. It traps on `fn_710006ddc8` (vibration
+devices) and `fn_7100223c2c` (inconclusive; for hand-writing). Render-target formats 0x29 and 0x32 are still unknown to
+the shim, so those targets' `nvnTextureInitialize` fails by name.
 
 **Lifter: the boot trace's instruction gaps (2026-10-28, branch `claude/project-thread-zgkpk3`, after #250).**
 The recomp's boot trace names 37 unmatched functions the boot runs that no lifted set accepts; 11 were
