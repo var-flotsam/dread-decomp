@@ -20,7 +20,11 @@ run) and leaves a set of undefined symbols, which this tool sorts by what each o
                    are safe and which need the declaration fixed. A called alias whose classes
                    differ (class_mismatch) is not emitted: the call gets a trap of its own
                    (dread_port_mismatched_call) so it fails at the call instead of computing with
-                   the wrong register; --alias-mismatch emits the alias anyway.
+                   the wrong register; --alias-mismatch emits the alias anyway. When several
+                   templates carry one address's tag, one returning a class by value (an inline
+                   helper Clang 18 kept out of line, such as refl_MakePrimitiveType<G> beside the
+                   getter refl_GetPrimitiveType<G>) is taken last: its hidden result pointer would
+                   take the caller's first argument register.
   MISSING FUNCTION an address in data/functions/ with no definition at all, by status: the lifter's
                    coverage work (U) and the matching queue. Each gets a trap thunk that reports the
                    address (port/runtime/src/missing.cpp).
@@ -546,6 +550,21 @@ def class_qualified(demangled: str) -> bool:
     return scope[:1].isupper()
 
 
+def returns_class_by_value(demangled: str) -> bool:
+    """Whether a demangled template function's return type (which only template names spell) is
+    a class by value: on x86-64 that is usually a hidden result pointer in rdi (AArch64 uses x8),
+    so a caller that expects a register result or passes arguments from rdi writes the object over
+    whatever its first argument pointed to. Pointers, references, void and scalars are not."""
+    own = port_sweep.own_name(demangled)
+    if " " not in own:
+        return False
+    ret, name = own.rsplit(" ", 1)
+    if name.rsplit("::", 1)[-1].startswith("operator") or ret.endswith("operator"):
+        return False  # operator new, operator delete: the space is the name's own
+    ret = ret.strip()
+    return not (ret == "void" or ret.endswith(("*", "&")) or SCALAR_RE.match(ret) or FLOAT_RE.match(ret))
+
+
 def signature_class(ref: list[str] | None, dfn: list[str] | None, dfn_qualified: bool) -> tuple[str, list[str]]:
     """How a call through the reference's signature lands on the definition's (ABI_NOTE)."""
     flags: list[str] = []
@@ -817,9 +836,11 @@ def classify(lk: Link, runtime_by_name: dict[str, list[str]], runtime_symbols: s
             ranked = []
             for d in cands:
                 sig, flags = signature_class(ref_params, param_list(d.demangled), class_qualified(d.demangled))
-                ranked.append((SIGNATURE_ORDER.index(sig), 0 if d.kind == "T" else 1, d.symbol, sig, flags, d))
-            ranked.sort(key=lambda t: t[:3])
-            _, _, _, e.signature, flags, best = ranked[0]
+                by_value = len(cands) > 1 and d.tag == "tag" and returns_class_by_value(d.demangled)
+                ranked.append((sig == "class_mismatch", by_value, SIGNATURE_ORDER.index(sig), 0 if d.kind == "T" else 1,
+                               d.symbol, sig, flags, d))
+            ranked.sort(key=lambda t: t[:5])
+            *_, e.signature, flags, best = ranked[0]
             e.flags += flags
             e.sub = e.signature if called else "address_taken_only"
             e.target = best.symbol
