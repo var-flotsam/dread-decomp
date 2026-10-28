@@ -116,6 +116,26 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Faster `check` and fewer runs of it (2026-10-28, branch `claude/project-thread-5d6plu`).**
+The `check` job took 13 to 15 minutes from push to result, of which `check.py` itself was 4 to 5 (runs 167 and
+171): the rest was waiting for the one self-hosted runner. Measured on a 4-core Linux container over all 3990
+sources: compiling 100 s, reading the objects with pyelftools 26 s, and one `llvm-cxxfilt` process per object
+44 s (0.6 s for the same 160,784 names in one call). Changes:
+- `check.py` demangles up to 256 objects per `llvm-cxxfilt` call instead of one call per object.
+- An object cache: each object records its compile command and the sha256 of every file in its clang `-MD`
+  dependency list, system headers included, plus its own bytes (`<obj>.inputs.json`); an unchanged source is not
+  recompiled. The dependency flags leave the objects as they were (`tools/objcompare.py` over all 3990: 90,630
+  functions, 0 changed). A warm compile of everything takes 4 s; a change to `UnkClassGetters.h` rebuilds the 264
+  sources that include it in 9 s.
+- A diff cache (`<obj>.diff.json`): an object's diff and relocation report are reused when its bytes and every
+  input of the diff (`check.py`, `asmdiff.py`, the original module, its function sizes, the CSV names,
+  `--no-reloc`) are unchanged. Statuses are still derived on every run from the diff and the annotations.
+  `--no-cache` ignores both caches; the nightly run uses it. Tests: `tools/tests/test_check_cache.py`.
+- `check-local.yml`: pull requests run the check only when they change an input of the matching build
+  (`DECOMP_PATHS`); others report it as skipped, which a required check counts as passing. A nightly uncached run
+  backs up the caches. `docs/maintaining.md`, "The self-hosted check job", has the rules.
+- `docs/JOURNAL.md merge=union` in `.gitattributes` for local merges of main into a branch.
+
 **Port M1 round 6: through the boot milestones, and the NVN shim linked (2026-10-28, branch `claude/project-thread-3x0lf8`).**
 Boots of main with the hand-writing thread's branch (`fn_71000f7800`, the vibration thread) and the lifter's sets
 (`build/port/lifted_all` with `lifted_insn3` merged over it), each stop's cause found before its fix:
