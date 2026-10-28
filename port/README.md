@@ -164,6 +164,19 @@ None is a C++ initialiser of its own, so the executable would never call them.
 (`dread_port_run_game_initialisers`). An initialiser without a definition is skipped and counted;
 `DREAD_INIT=list` names each.
 
+**Sound: a silent stand-in for `nn::atk` (2026-10-28, the owner's choice until M4).** The game
+links Nintendo's sound middleware `nn::atk` statically (status `L`, no source and no lift). Every
+`nn::atk` function without a definition becomes a stub that returns zero instead of a trap
+(`tools/port_link.py`, `SILENT_RANGES`):
+- the integer and float results are 0;
+- a function that returns through `x8` leaves the caller's buffer as it was;
+- the function table lists the stubs too, so the game's vtables and callbacks into the library
+  reach them.
+
+1,165 functions: 180 that the game names, 985 that only its code pointers reach. The game runs
+without sound. The real choice (lift `nn::atk`, or replace it over a PC mixer) is M4's
+(`docs/PORT_PLAN.md`).
+
 **One heap.** The game allocates through its own default allocator: its own `operator new` and
 `delete` and its own `malloc` family (`src/base/UnkDefaultAllocatorGlobal.cpp`,
 `src/engine/SystemStartup.cpp`), and most of its code calls the allocator directly. What reaches

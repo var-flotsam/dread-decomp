@@ -501,10 +501,8 @@ rather than adding functions:
 
 With traps logged the boot now runs 2,759 of 2,760 static initialisers and `nnMain` into the
 start-up `fn_7100015c70`, then dereferences null in lifted code (`fn_71000a4b60`). Next for M1:
-- **`nn::atk` (owner's decision, `docs/PORT_PLAN.md`).** The static initialisers call 10 of its
-  functions (`L`, no source or lift: `fn_7101205470`, `fn_7101206894`, ...), and its own
-  initialiser `fn_71012063d0` is skipped. Stub the entry points as a silent sound engine, or lift
-  them.
+- **`nn::atk`: silent stand-in** (owner, 2026-10-28; `port/README.md`, "Sound"): its 1,165 functions
+  without a source return zero, so the boot runs without sound until M4.
 - **Two game functions without a lift:** `fn_7100001be8` (728 B, rejected: a register read before
   definition) and `fn_7100153a90` (44 B, inconclusive). Hand-match them, then follow the traps.
 - `nn::audio`, `nn::detail`, `nn::os` and `nn::util` imports that the full lift set reaches still
