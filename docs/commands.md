@@ -273,6 +273,7 @@ Build every source in src/ with the project toolchain and check it against the o
 python tools/check.py --version 2.1.0            # report; exit 1 if an O function regressed or a function is defined in two files
 python tools/check.py --version 2.1.0 --update   # also write O/m/M/W into data/functions/
 python tools/check.py --version 2.1.0 --no-reloc # bytes only, as before the relocation check
+python tools/check.py --version 2.1.0 --no-cache # rebuild and rediff every source
 python tools/check.py --compile-only             # compile every source, no dump needed (hosted CI)
 ```
 
