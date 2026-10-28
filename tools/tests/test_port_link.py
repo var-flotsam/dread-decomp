@@ -22,6 +22,16 @@ class ReturnType(unittest.TestCase):
             self.assertFalse(pl.returns_class_by_value(dem), dem)
 
 
+class ArgumentClasses(unittest.TestCase):
+    def test_each_class_in_its_own_registers(self):
+        self.assertEqual(pl.signature_class(["int", "float", "bool"], ["char*", "char*", "float"], False)[0], "same")
+        self.assertEqual(pl.signature_class(["int", "float"], ["char*", "char*", "float"], False)[0], "ref_fewer_args")
+
+    def test_a_float_for_an_integer_is_still_a_mismatch(self):
+        self.assertEqual(pl.signature_class(["float"], ["char*"], False)[0], "class_mismatch")
+        self.assertEqual(pl.signature_class(["int", "float"], ["float", "float"], False)[0], "class_mismatch")
+
+
 class TaggedTemplates(unittest.TestCase):
     def test_getter_over_inline_helper(self):
         # The lifted caller's declaration passes one (leftover) argument, which matches the helper's

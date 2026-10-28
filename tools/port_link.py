@@ -619,6 +619,21 @@ def signature_class(ref: list[str] | None, dfn: list[str] | None, dfn_qualified:
         return "same_with_this", flags
     n = min(len(cr), len(cd))
     if not agree(cr[:n], cd[:n]):
+        # Integer and float arguments take their own registers in order (rdi, rsi, ... and xmm0,
+        # xmm1, ...; x0-x7 and s0-s7 on AArch64), so (int, float, bool) lands as (ptr, ptr, float)
+        # does: what counts is each class's own sequence, while all of them fit in registers.
+        if "A" in cr or "A" in cd:
+            return "class_mismatch", flags
+        ri, rf, di, df = cr.count("I"), cr.count("F"), cd.count("I"), cd.count("F")
+        if max(ri, di) > 6 or max(rf, df) > 8:
+            return "class_mismatch", flags
+        flags.append("interleaved_classes")
+        if (ri, rf) == (di, df):
+            return "same", flags
+        if ri >= di and rf >= df:
+            return "ref_more_args", flags
+        if ri <= di and rf <= df:
+            return "ref_fewer_args", flags
         return "class_mismatch", flags
     return ("ref_more_args" if len(cr) > len(cd) else "ref_fewer_args"), flags
 
