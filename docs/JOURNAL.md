@@ -155,6 +155,39 @@ Findings:
   in the container's type and member.
 - When the result of a parse that the other declarations call `void` is needed, call it through a cast function
   pointer instead of adding a second signature (`decl_check.py` counts that as a new conflict).
+**Lifter: the boot trace's instruction gaps (2026-10-28, branch `claude/project-thread-zgkpk3`, after #250).**
+The recomp's boot trace names 37 unmatched functions the boot runs that no lifted set accepts; 11 were
+the lifter's (diagnosed on the PC, measured there). All semantic mode:
+- **Jump table reached from two bounds checks** (`71001af824`, `71008e7708`): an earlier `cmp; b.ls`
+  branches straight to the table's `adr`, which the switch replaces, so its label was never emitted and
+  the lift did not compile. Labels are now emitted on the table's skipped instructions.
+- **Small integers loaded into a float register** (`7100027a7c`, `7100027d08`, `71001bd634`,
+  `71001bd644`): `ldr h|b` then `ucvtf|scvtf s` was taken only when adjacent. Now other instructions not
+  touching the register may sit in between, and `sshll v.4s, v.4h, #0` (after `sshll v.8h, v.8b, #0`
+  for a byte) makes it an s16 or s8.
+- **Variadic save area** (`710007cb4c`, `710007d788`, `71010c0270`, `71010c0b40`): `stp q<n>, q<n+1>`
+  of q0-q7 not written before stores each register's double (the low 64 bits, what `va_arg` reads);
+  `setup_frame` counts a q access as 16 bytes.
+- **Lane arithmetic** (`71000f88b8`): `fadd|fsub|fmul|fdiv v.2s|4s` on known lanes, and `mov v.d[1],
+  v.d[0]`; a scalar `ldr s<n>` before a lane load into v<n> gives lane 0 (the others zero).
+- **`rev16`** (`710007d788`, past its variadic save): the bytes of each halfword swapped.
+- **`faddp`** (`71000f88b8`, next): pairwise sums of known lanes, vector and scalar forms. Its vectors
+  start from `movi d<n>, #0` (all lanes zero) and whole-register copies `mov v<a>.16b, v<b>.16b`, which
+  now carry the lanes.
+- **A virtual forwarder's pass-through registers** (the boot's next stop after #250): `fn_71000e8fa8`
+  calls slot 0x28 with seven arguments; the target `fn_7100087ecc` (lifted with four) forwards to its
+  items' slot 0x40 as `(x0, x1 + 8, x2, x3 & 1)` and leaves x4-x6 as they came, and x4 is the
+  allocator of a buffer three calls down. With no direct caller `fwd` had no evidence, so on x86-64
+  x4-x6 were lost. abi_facts' new `open` (an indirect call and no direct caller) counts every integer
+  argument register as read by an indirect call (cache version 11), and semantic mode passes them on.
+- `end` is not a function to lift: both symbols of that name lack a size in the image's symbol table
+  (a 16-byte entry at `7101238d80`, and the image's end marker), which the size cap reads as too big.
+
+**`compile` skipped on documentation-only pull requests (2026-10-28, branch `claude/project-thread-5d6plu`, after #252).**
+`build.yml` gains a hosted `docs-only` job; when every changed path is under `docs/` or ends in `.md`, the
+`compile` job is skipped (reported as passing to the required check). Any other change, a failure of `docs-only`, a
+push to main or a manual run compiles as before. Narrower filters were not worth it: the job's tool tests cover
+`tools/`, and its matching build and port sweep cover `src/`, `include/`, `lib/` and `port/`.
 
 **Faster `check` and fewer runs of it (2026-10-28, branch `claude/project-thread-5d6plu`).**
 The `check` job took 13 to 15 minutes from push to result, of which `check.py` itself was 4 to 5 (runs 167 and
