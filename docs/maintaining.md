@@ -57,11 +57,13 @@ gh api repos/var-flotsam/dread-decomp/rulesets --method POST --input .github/rul
 |---|---|
 | Restrict deletions | `main` can't be deleted |
 | Block force pushes | History on `main` can't be rewritten |
-| Require a pull request | No direct pushes; 1 approving review, from a code owner (`.github/CODEOWNERS`); approvals are dismissed by new pushes; the last push must be approved by someone else; all review threads resolved; merge commits only |
-| Require status checks | The `policy` job (`.github/workflows/policy.yml`) must pass |
+| Require a pull request | No direct pushes; no approving review required (every PR is opened under the maintainer's account, so a code-owner approval could never be given); all review threads resolved; merge commits only |
+| Require status checks | `policy` (`.github/workflows/policy.yml`), `compile` (`build.yml`) and `check` (`check-local.yml`, self-hosted: it stays pending while the runner is offline, and reports as passing when `SELF_HOSTED_CHECK` is unset) must pass |
 | Bypass | Repository admins, **through a pull request only**: the maintainer can merge their own PR without a second reviewer, but still can't push to `main` directly |
 
-When there are other maintainers, remove the bypass so every change gets a second pair of eyes.
+When there are other maintainers, require one approving code-owner review again and remove the bypass, so
+every change gets a second pair of eyes. Until then the user's "merge" in the thread is the review (`CLAUDE.md`,
+"Pushing and merging").
 To change the ruleset, edit the JSON, then
 `gh api repos/var-flotsam/dread-decomp/rulesets/<id> --method PUT --input .github/rulesets/main.json`
 (`gh api repos/var-flotsam/dread-decomp/rulesets` lists the id).

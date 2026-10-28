@@ -76,8 +76,18 @@ Target version: **2.1.0** (update v327680). The `main` NSO build ID is
 Remote: https://github.com/var-flotsam/dread-decomp (private until the owner publishes it; MIT
 license; see `docs/maintaining.md`). The pre-2026-10-18
 history, with the original PRs, is kept in the private var-flotsam/dread-decomp-archive (rollback
-only; don't push there). Ask the user before pushing. (var-flotsam/MPT-Decomp is a separate project, a Metroid
+only; don't push there). (var-flotsam/MPT-Decomp is a separate project, a Metroid
 Prime Trilogy recomp. Never push this repo there.)
+
+**Pushing and merging.**
+- Pushing a `claude/*` feature branch to this repository and opening, editing or assigning its pull
+  request is allowed without asking. Any other branch, and every other repository, still needs the user's OK.
+- Never merge to `main` without the user's explicit OK in the thread ("merge"). Once they have said it and
+  the required checks (`policy`, `compile`, `check`) are green, run `gh pr merge <n> --merge` yourself
+  (add `--admin` only if the ruleset still blocks it). The gates don't change: `check.py` must pass and a
+  function is `O` only when its bytes match.
+- `.claude/settings.json` allowlists these commands so they don't prompt; a user-level or
+  `.claude/settings.local.json` deny or ask rule overrides it.
 
 ## Local environment
 
