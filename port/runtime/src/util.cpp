@@ -49,4 +49,6 @@ u64 GetGzipDecompressedSize(const void* data, u64 size) {
     return u64(p[0]) | u64(p[1]) << 8 | u64(p[2]) << 16 | u64(p[3]) << 24;
 }
 
+float detail::Float1Divided2Pi = 0.159154943091895335768883763372514362f;  // 1 / (2 * pi)
+
 }  // namespace nn::util

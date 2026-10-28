@@ -113,6 +113,70 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Lifter: retry for cut-off runs, no float result from a void function, indirect calls with stack
+arguments (2026-10-28, branch `claude/project-thread-zgkpk3`).** Fixes from the port's current stop and
+from the hand-writing thread's reading of the 13 boot functions #236 refuses. Written in a cloud
+session without the dump and measured on the PC: the boot slice (2,329 functions) goes from 2,266
+accepted (main's manifest) to 2,283, none lost; the retry alone gains `71001ea42c`, `passed_on` the six
+s0 voids (`710033187c`, `7100ee4d34`, `7100d8d854`, `7100d8db30`, `7100e10150`, `7100ee5dcc`) and the
+three x0 ones, the stack arguments the 7 below. Oracle rejections go from 25 to 17, "result s0/d0" verdicts from 10 to 3.
+- **Long loops.** `fn_71002584a0` (2.8 KB, the function the port traps in before the bad string id)
+  was inconclusive: "both runs were cut off" on every input. They were cut by events, not steps (a
+  loop past `MAX_EVENTS`, 256 calls; the finished inputs end in 20-43 steps). `pcode_emu.Machine.scale`
+  now multiplies the step, event and snapshot limits of one run, and `Oracle.check` reruns up to
+  `RETRY_INPUTS` (4) cut-off inputs, original and lift, with `RETRY_SCALE` (8) times the limits when
+  no input agreed. Two cut-off runs still decide nothing; the "lift ran out of steps" rule uses the
+  lift's own limit.
+  `fn_71002584a0` itself stays inconclusive: its loop calls through a table read from the input
+  (1,203 distinct targets in 2,048 calls at 8x), so made-up memory never ends it; it needs a
+  hand-written source.
+- **Float results that are not there.** Nine of the 13 refused functions are void (the hand-writing
+  thread, from Ghidra), yet `result_main` gave s0 for all nine, so #236 refused their void lifts. A
+  trace of its evidence on the PC: no caller reads s0 itself. All of it is "passed on to the next
+  call", where the next callee is variadic (its prologue saves every argument register, so its
+  `args` holds all of v0-v7) or a callee none of whose direct callers ever sets s0 (`71004e4a38`);
+  the rest reaches them through tail calls and returns from such callers. `AbiFacts.passed_on` drops
+  s0 from that evidence in both cases (`SHAPE_VERSION` 4). Semantic mode only; byte mode does not
+  read `result_main`. A first try, a callee-side check of whether the function writes s0 itself,
+  could not tell a void function doing float arithmetic in s0 from one returning it, and was dropped.
+  The three x0-side cases (`7100eea4c8`, `7100eea618`, `710109c9e0`) are hand-written in #240; the
+  lifter now accepts them as well (a source in `src/` wins).
+- **Indirect calls with stack arguments** (105 functions refused, 7 on the boot path). An indirect
+  callee has no facts, so `Lifter.stack_args_before` now counts the 8-byte slots from `[sp]` up that
+  the straight-line code before the `blr` stores, and `callee_need("")` passes them as a direct
+  callee's are (all eight integers, then `st<i>`). A local stored just above the arguments is passed
+  too; a callee taking fewer ignores it. Semantic mode only. Of the 105, 98 are accepted (all 7 on the
+  boot path: `71000f17c8`, `71001ef898`, `710027c298`, `7100d58cfc`, `7100ea39a4`, `7100ee5bc4`,
+  `71011f8bdc`); 3 stop at "stack arguments outside the frame" (`7100148600`, `7100211590`,
+  `710074fd08`), 3 are rejected (two pass a d register where the callee reads it as s, or the reverse:
+  `71003e69e4`, `7100656f3c`; `710096cdec`) and one is inconclusive (`71008626bc`).
+- **What the boot reaches through pointers.** The boot's next trap after the string id fix,
+  `fn_71000f7800` (`CSoundSystemATK`), is outside the boot slice: only an indirect call reaches it.
+  `port_lift.py --slice pointers` adds what the slice's functions reach through the addresses they
+  take (`pointed_to`: an adrp with an add or a GOT load naming a function or a vtable), to a fixed
+  point: 12,404 functions against the boot slice's 2,226 (3 s). `fn_71000f7800` is in it. Of the
+  10,178 added, the slice-all set `lifted_r5a` accepts 9,826 already; 86 more are indirect calls with
+  stack arguments (from before the fix above), 75 oracle rejections, 58 inconclusive, 50
+  undecodable. `--slice boot` stays the default and the progress figure; `pointers` is an upper
+  bound (a vtable taken is not a method called).
+- **Instructions semantic mode now lifts**, from the forms the pointer-reached rejects stop at (one
+  per function): LLVM's trap word `0xe7ffdefe` (unallocated, so capstone stopped: 49 four-byte stubs
+  and one function's last word) as `__builtin_trap()`; a GOT load whose slot names a symbol rather
+  than a RELATIVE address (`fn_71000f7800`, the boot's next trap, and `710006f390`), as the module's
+  own definition or the import by name; `fmov s, w` of an inf or NaN constant; `movi v<n>.2d, #0`;
+  `rev`; `ldpsw`; `ld1 {v<n>.s}[0]` (as s<n>); `str q<n>` of a zeroed register. Measured on the 79
+  functions: fmov 8/8, rev, ldpsw and the function ending in the trap word accepted. The oracle now
+  ends a run at the trap word or a `brk` (`pcode_emu`, end "trap"), for the 49 stubs, and resolves a
+  lift's data import to the value the original reads from its GOT slot (`port_lift`, GLOB_DAT and
+  ABS64 symbols). The port runtime defines `nn::util::detail::Float1Divided2Pi` (1/(2 pi)), which
+  `fn_71000f7800` reads. Its other data import seen, `nn::hid::VibrationNode::
+  DefaultVibrationSampleInterval` (`710006f390`), stays undefined: its type and value are not known.
+  Still refused: `ldr b/h` not followed by a conversion (13), `adr` (9, local code addresses),
+  `stp q` (7, variadic saves), far `cbz` (2).
+- Tool tests: `tools/tests/test_abi_facts.py` (result_main on hand-assembled callers) and
+  `tools/tests/test_pcode_emu.py` (the per-run limits in `compare`), `tools/tests/test_port_lift.py`
+  (`pointed_to`). `progress.py --handoff` now writes LF on Windows too (it wrote CRLF, a whole-file diff).
+
 **Boot functions the lifter rejects, by hand, batch 1 (2026-10-28, branch `claude/project-thread-xllbvf`).** The
 boot-slice manifest (`port_lift.py --slice boot`, lifts of 2026-10-28) left 40 functions outside the accepted set,
 the seven indirect calls with stack arguments and the string-id crash aside. Four of them (`fn_71000763c0`,

@@ -51,7 +51,7 @@ import callgraph  # noqa: E402
 
 MAX_SIZE = 65536
 # result_shape's and result_main's analysis (their cache is kept apart: a change does not cost the table)
-SHAPE_VERSION = 2
+SHAPE_VERSION = 4
 CACHE_VERSION = 10  # bump when the analysis changes (AbiFacts.load ignores other versions)
 MAX_DEPTH = 48  # callee recursion; deeper chains count as unknown
 INT_ARGS = frozenset(range(9))  # x0-x7 and x8
@@ -205,6 +205,7 @@ class AbiFacts:
         self._ret: dict[int, bool | None] = {}
         self._shape: dict[int, tuple | None] = {}  # result_shape
         self._main: dict[int, frozenset] = {}  # result_main
+        self._evidence: dict[int, frozenset] = {}  # evidence, for result_main's next calls
         self._fwd: dict[int, frozenset] = {}
         self._wide = False  # liveness over 64-bit reads only (Facts.wide)
 
@@ -675,8 +676,7 @@ class AbiFacts:
                     if y.address in targets:
                         break
                     if y.mnemonic in ("bl", "b") and y.imms:
-                        f = self.facts(y.imms[-1])  # (the result passed on as the next call's argument)
-                        regs |= (set(f.args) & {0, 100} if f is not None else set()) - written
+                        regs |= self.passed_on(y.imms[-1]) - written  # (the result as the next call's argument)
                         if y.mnemonic == "b":
                             regs |= self.result_main(c, depth + 1) - written
                         break
@@ -689,6 +689,23 @@ class AbiFacts:
                     written |= y.defs
         self._main[addr] = frozenset(regs)
         return self._main[addr]
+
+    def passed_on(self, callee: int) -> set:
+        """Which of x0 and s0/d0 a call to `callee` reads as an argument, for result_main: its facts,
+        less s0 when that is no evidence of a float result. A variadic callee's prologue saves
+        every argument register (args holds all of v0-v7), and a callee none of whose direct
+        callers sets s0 before calling it (Facts.evidence) does not take a float: a void call
+        followed by either is not a caller reading a float result."""
+        f = self.facts(callee)
+        if f is None:
+            return set()
+        regs = set(f.args) & {0, 100}
+        if 100 in regs:
+            if callee not in self._evidence:
+                self._evidence[callee] = self.evidence(callee)
+            if FLOAT_ARGS <= f.args or 100 not in self._evidence[callee]:
+                regs.discard(100)
+        return regs
 
 
 RESULT_EXTRA = frozenset({1, 101, 102, 103})  # result registers beyond x0 and s0/d0 (result_shape)
