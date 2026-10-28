@@ -3,7 +3,7 @@
 // Each dash is a quad across the path's direction, or with `flags` bit 0 an arrow (a quad and a
 // tip), its vertices at the given depth; the mesh keeps the path's bounds grown by half the width.
 // Names and layouts are placeholders.
-// Holds fn_7100ebda30.
+// Holds fn_7100ebda30 and fn_7100ebc7f0 (a segment as a quad).
 #include "base/UnkVector.h"
 #include "base/math/CVector.h"
 #include "base/math/UnkSegment2D.h"
@@ -158,4 +158,33 @@ void fn_7100ebda30(void* path_, void* mesh_, u32 flags, f32 width, f32 dash, f32
     mesh->min_y = box[0].y - half;
     mesh->max_x = half + box[1].x;
     mesh->max_y = half + box[1].y;
+}
+
+// ---- fn_7100ebc7f0: a segment as a quad ----
+
+
+#include "base/math/UnkSegment2D.h"
+
+// Brings the mesh's bounds up to date with its vertices.
+void fn_7100e3e1c0(UnkDashMesh* mesh);
+
+// Adds the segment as a quad `width` wide across it, at depth `z`: four vertices (the start and
+// end, each moved half the width either way along the normal) and two triangles.
+// NON_MATCHING(major): written from the original's behaviour, not compared instruction by instruction.
+void fn_7100ebc7f0(const UnkSegment2D* seg, void* mesh_, f32 width, f32 z) {
+    auto* mesh = static_cast<UnkDashMesh*>(mesh_);
+    UnkVec2Result n = fn_7100125e78(seg);
+    f32 dx = seg->end.x - seg->start.x;
+    f32 dy = seg->end.y - seg->start.y;
+    (void)sqrtf(dx * dx + dy * dy);  // the length, unused
+    f32 ox = width * 0.5f * n.x;
+    f32 oy = width * 0.5f * n.y;
+    Push(mesh, UnkMeshVertex(ox + seg->start.x, oy + seg->start.y, z));
+    Push(mesh, UnkMeshVertex(seg->start.x - ox, seg->start.y - oy, z));
+    Push(mesh, UnkMeshVertex(ox + seg->end.x, oy + seg->end.y, z));
+    Push(mesh, UnkMeshVertex(seg->end.x - ox, seg->end.y - oy, z));
+    static const u16 kQuad[6] = {0, 1, 3, 0, 3, 2};
+    for (u16 i : kQuad)
+        mesh->indices.PushBack(i);
+    fn_7100e3e1c0(mesh);
 }

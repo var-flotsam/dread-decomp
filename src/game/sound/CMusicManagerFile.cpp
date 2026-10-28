@@ -3,7 +3,7 @@
 // src/game/sound/CMusicManager.cpp): reading the music manager's reflected object from its file.
 // The file reader's types repeat src/game/sound/UnkMusicPresets.cpp's (the same names and
 // layouts); names and layouts are placeholders.
-// Holds fn_7100fd51a0.
+// Holds fn_7100fd51a0 and fn_7100fd6f74 (whether a music request is already playing).
 #include "base/UnkHashStream.h"
 #include "base/UnkStrIdPathPair.h"
 #include "base/global/CFilePathStrId.h"
@@ -86,4 +86,85 @@ void fn_7100fd51a0() {
         }
     }
     fn_710007c0e4(&reader.file);
+}
+
+// ---- fn_7100fd6f74: whether a music request is already playing ----
+
+#include <new>
+
+#include "base/global/CStrId.h"
+#include "game/sound/CMusicManager.h"
+
+using base::global::CFilePathStrId;
+using base::global::CStrId;
+
+// A track of a music request: its file and two words (0x18 bytes).
+struct UnkMusicFile {
+    CFilePathStrId path;
+    u64 field_0x8;
+    u64 field_0x10;
+};
+
+// The files, released before the request's name.
+struct UnkMusicFiles : base::UnkVector<UnkMusicFile> {
+    explicit UnkMusicFiles(u32 flags) : base::UnkVector<UnkMusicFile>(flags) {}
+    ~UnkMusicFiles() { Free(); }
+};
+
+// A music request (0x60 bytes; the manager's request array at +0xb8 holds the playing ones): the
+// channel it plays on, volumes, its files and its name.
+struct UnkMusicRequest {
+    u32 channel = 0;
+    u32 field_0x4 = 1;
+    f32 field_0x8 = 1.0f;
+    u32 field_0xc = 0;
+    u32 field_0x10 = 0;
+    f32 field_0x14 = 1.0f;
+    u8 field_0x18[6] = {};
+    u16 field_0x1e = 0;
+    u8 field_0x20[6] = {};
+    bool field_0x26 = true;
+    UnkMusicFiles files{0xf};  // 0x28
+    u64 field_0x50 = 0;
+    CStrId name{"", true};  // 0x58
+};
+static_assert(sizeof(UnkMusicRequest) == 0x60, "UnkMusicRequest placeholder layout");
+
+// Fills the two requests a music id stands for.
+void fn_7100fd73a4(UnkMusicManager* self, const CStrId* id, UnkMusicRequest* first, UnkMusicRequest* second);
+
+// Whether the music `name` stands for is already what plays (on the channels in `mask`).
+// NON_MATCHING(major): written from the original's behaviour, not compared instruction by instruction.
+bool fn_7100fd6f74(UnkMusicManager* self, const base::global::CRntString* name, const u32* mask) {
+    UnkMusicRequest first;
+    UnkMusicRequest second;
+    {
+        union UnkBuiltId {
+            CStrId id;
+            UnkBuiltId() {}
+            ~UnkBuiltId() { id.~CStrId(); }
+        } built;
+        fn_7100000850(&built.id, *name, true);
+        fn_7100fd73a4(self, &built.id, &first, &second);
+    }
+    if (first.files.count == 0 && second.files.count == 0)
+        return false;
+    const UnkMusicRequest* playing = reinterpret_cast<const UnkMusicRequest*>(self->entries.data);
+    if (first.name.data != g_unk_7101d470e0.data && first.name.data == playing[0].name.data)
+        return true;
+    bool result = false;
+    if (first.files.count != 0 && playing[0].files.count != 0) {
+        if (first.files.data[0].path.data == &g_unk_7101d47200->empty || !(*mask & (1u << (playing[0].channel & 0x1f))) ||
+            playing[0].files.data[0].path.data != first.files.data[0].path.data)
+            return false;
+        result = true;
+    }
+    if (second.name.data != g_unk_7101d470e0.data && second.name.data == playing[1].name.data)
+        return true;
+    if (second.files.count == 0 || playing[1].files.count == 0)
+        return result;
+    if (second.files.data[0].path.data == &g_unk_7101d47200->empty ||
+        !(*mask & (1u << (playing[1].channel & 0x1f))) || playing[1].files.data[0].path.data != second.files.data[0].path.data)
+        return false;
+    return true;
 }

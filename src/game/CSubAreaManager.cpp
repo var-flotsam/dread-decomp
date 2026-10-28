@@ -875,3 +875,116 @@ void fn_7100ee2ebc(CSubAreaManager* self, const char* path) {
     records.Free();
     fn_7100d45fd4(&reader);
 }
+
+// ---- fn_7100ee6d00 and fn_7100ee8044: what a change of sub-area loads and unloads ----
+
+// A list of file-path ids (src/base/UnkResRegistry.cpp's UnkResPathVec, the same layout), reserved
+// out of line by fn_7100018450 and assigned by fn_71000d0958.
+struct UnkResPathVec {
+    CFilePathStrId* data;
+    u32 count;
+    u32 capacity;
+    u32 step;
+    bool field_0x14;
+    u32 flags;
+    base::UnkAllocator* allocator;
+
+    explicit UnkResPathVec(u32 flags)
+        : data(nullptr), count(0), capacity(0), step(10), field_0x14(true), flags(flags),
+          allocator(fn_7100083990()) {}
+    UnkResPathVec(const UnkResPathVec& other);
+};
+void fn_7100018450(UnkResPathVec* vec, u32 capacity);  // reserve
+void fn_71000d0958(UnkResPathVec* self, const UnkResPathVec* other);
+
+// The file-path ids of a sub-area's resources (or of the same list in another object).
+void fn_7100ee7e74(void* source, UnkResPathVec* out);
+
+// The two steps before the files: one fills the set's first two lists and says whether everything
+// is to be reloaded, the other the next two.
+bool fn_7100ee7438(CSubAreaManager* self, UnkSubArea* prev, UnkSubArea* cur, UnkIdList* list, UnkIdSet* set,
+                   bool flag);
+void fn_7100ee7808(CSubAreaManager* self, UnkSubArea* prev, UnkSubArea* cur, UnkIdList* a, UnkIdList* b,
+                   bool all);
+bool fn_7100ee8470(CSubAreaManager* self, void* prev, void* cur, UnkIdList* list, UnkIdSet* set, bool flag);
+void fn_7100ee8838(CSubAreaManager* self, void* prev, void* cur, UnkIdList* a, UnkIdList* b, bool all);
+
+static inline UnkResPathVec* AsPaths(UnkIdList* list) { return reinterpret_cast<UnkResPathVec*>(list); }
+
+// Appends a counted copy of `id` (PushBack's growth, including its hang).
+static inline void Append(UnkResPathVec* v, const CFilePathStrId& id) {
+    u32 n = v->count;
+    u32 c = v->capacity;
+    if (c <= n && v->step != 0)
+        c = (n / v->step + 1) * v->step;
+    if ((s32)c <= (s32)n)
+        for (;;) {
+        }
+    fn_7100018450(v, c);
+    new (&v->data[v->count]) CFilePathStrId(id);
+    ++v->count;
+}
+
+static inline bool Contains(const UnkResPathVec& v, const CFilePathStrId& id) {
+    for (u32 i = 0; i < v.count; ++i)
+        if (v.data[i].data == id.data)
+            return true;
+    return false;
+}
+
+static inline void Release(UnkResPathVec* v) {
+    if (v->data) {
+        for (u64 i = 0; i < v->count; ++i)
+            reinterpret_cast<CFilePathStrId*>(&v->data[i])->~CFilePathStrId();
+        v->count = 0;
+        v->allocator->vf_0x48(v->data);
+        v->capacity = 0;
+    }
+}
+
+// The files the previous sub-area had and the current one does not go to the set's list at 0xa0
+// (to unload); those the current one has and the previous did not go to 0xc8 (to load). When the
+// current one has none, or everything is reloaded, the two lists are the whole of each.
+__attribute__((always_inline)) static inline void DiffFiles(UnkIdSet* set, UnkResPathVec& prev, UnkResPathVec& cur, bool all) {
+    if (cur.count != 0 && !all) {
+        for (u32 i = 0; i < prev.count; ++i)
+            if (!Contains(cur, prev.data[i]))
+                Append(AsPaths(&set->field_0xa0), prev.data[i]);
+        for (u32 i = 0; i < cur.count; ++i)
+            if (!Contains(prev, cur.data[i]))
+                Append(AsPaths(&set->field_0xc8), cur.data[i]);
+    } else {
+        fn_71000d0958(AsPaths(&set->field_0xa0), &prev);
+        fn_71000d0958(AsPaths(&set->field_0xc8), &cur);
+    }
+    Release(&prev);
+    Release(&cur);
+}
+
+// What changes from sub-area `prev` to `cur` (either may be null): the id lists and the files.
+// NON_MATCHING(major): written from the original's behaviour, not compared instruction by instruction.
+void fn_7100ee6d00(CSubAreaManager* self, UnkSubArea* prev, UnkSubArea* cur, UnkIdSet* set, bool flag) {
+    fn_7100ee7134(set);
+    bool all = fn_7100ee7438(self, prev, cur, &set->field_0x28, set, false);
+    fn_7100ee7808(self, prev, cur, &set->field_0x50, &set->field_0x78, all);
+    UnkResPathVec cur_files(0xf);
+    if (cur)
+        fn_7100ee7e74(reinterpret_cast<u8*>(cur) + 0x38, &cur_files);
+    UnkResPathVec prev_files(0xf);
+    if (prev)
+        fn_7100ee7e74(reinterpret_cast<u8*>(prev) + 0x38, &prev_files);
+    DiffFiles(set, prev_files, cur_files, all);
+}
+
+// The same for two other file lists (`prev` and `cur` are the lists' owners themselves).
+// NON_MATCHING(major): written from the original's behaviour, not compared instruction by instruction.
+void fn_7100ee8044(CSubAreaManager* self, void* prev, void* cur, UnkIdSet* set) {
+    fn_7100ee7134(set);
+    bool all = fn_7100ee8470(self, prev, cur, &set->field_0x28, set, false);
+    fn_7100ee8838(self, prev, cur, &set->field_0x50, &set->field_0x78, all);
+    UnkResPathVec cur_files(0xf);
+    fn_7100ee7e74(cur, &cur_files);
+    UnkResPathVec prev_files(0xf);
+    fn_7100ee7e74(prev, &prev_files);
+    DiffFiles(set, prev_files, cur_files, all);
+}
