@@ -941,7 +941,8 @@ class Lifter:
         Semantic mode does not support a callee that takes its result address in x8 or arguments
         on the stack. Byte mode (pass-through, unless plain) names those of them it holds. An
         indirect call (fn "") is passed x0 and what this function's callers set for it
-        (abi_facts' `fwd`). On AArch64 they are there either way; an x86-64 compile passes only
+        (abi_facts' `fwd`), in semantic mode every incoming integer register for a function with
+        no direct caller (abi_facts' `open`). On AArch64 they are there either way; an x86-64 compile passes only
         what the call names."""
         if self.facts is None:
             return 0, 0
@@ -951,6 +952,10 @@ class Lifter:
         if not fn:
             own = self.facts(self.addr)
             ints, floats = own.fwd_counts if own is not None else (1, 0)
+            if sem and own is not None and own.open:
+                # (no direct caller: the incoming x0-x7 not written since are passed on, as own_args
+                # made them parameters; a written one holds its value, a clobbered one 0)
+                ints = max(ints, own.ints)
             if sem and (stack := self.stack_args_before()):
                 if not self.frame:
                     raise Unsupported("indirect call with stack arguments")

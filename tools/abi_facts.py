@@ -18,6 +18,11 @@ know which registers of a call to compare. This module computes, per function:
             do not count): what an indirect call, whose callee nothing names, may be passed on.
             A wrapper `this->vf(0.0f)` reached as fn(this, 0.0f) reads s0 that way. Only for
             functions with an indirect call (empty otherwise).
+  open      a function with an indirect call and no direct caller (a virtual function, a
+            function pointer): nothing tells what its callers set, so an indirect call reads every
+            integer argument register x0-x7 still holding its incoming value. A forwarder
+            `this->items->vf(this, a + 8, b, c & 1)` reached through a vtable with seven arguments
+            passes x4-x6 on untouched (the allocator of a buffer three calls down).
   stack     whether it reads its caller's frame (a load from [sp, #k] at or above the entry sp):
             arguments beyond the eight registers; stack_slots counts the 8-byte slots up to the
             highest one read.
@@ -52,7 +57,7 @@ import callgraph  # noqa: E402
 MAX_SIZE = 65536
 # result_shape's and result_main's analysis (their cache is kept apart: a change does not cost the table)
 SHAPE_VERSION = 4
-CACHE_VERSION = 10  # bump when the analysis changes (AbiFacts.load ignores other versions)
+CACHE_VERSION = 11  # bump when the analysis changes (AbiFacts.load ignores other versions)
 MAX_DEPTH = 48  # callee recursion; deeper chains count as unknown
 INT_ARGS = frozenset(range(9))  # x0-x7 and x8
 FLOAT_ARGS = frozenset(range(100, 108))
@@ -89,6 +94,7 @@ class Facts:
     wide: frozenset = frozenset()  # integer argument registers read as x<n> (else only as w<n>)
     fwd: frozenset = frozenset()   # argument registers the callers set, for an indirect call
     stack_slots: int = 0           # 8-byte slots of the caller's frame read (stack arguments)
+    open: bool = False             # an indirect call and no direct caller (module docstring)
 
     @property
     def ints(self) -> int:
@@ -302,7 +308,7 @@ class AbiFacts:
             live_wide, _ = self.liveness(addr, ins, depth)
             slots = self.stack_slots(ins)
             f = Facts(args, slots > 0, frozenset(k for k in args if k < 9 and k in live_wide[0]),
-                      self.fwd_of(addr, ins), slots)
+                      self.fwd_of(addr, ins), slots, self.is_open(addr, ins))
         finally:
             self._wide = outer
             self._busy.discard(addr)
@@ -339,6 +345,16 @@ class AbiFacts:
                         for i, x in enumerate(ins))
             self._fwd[addr] = self.evidence(addr) if calls else frozenset()
         return self._fwd[addr]
+
+    def is_open(self, addr: int, ins: list) -> bool:
+        """Facts.open: an indirect call, and no direct caller in the call graph."""
+        calls = any(x.mnemonic == "blr" or (x.mnemonic == "br" and not self.jump_table(ins, i))
+                    for i, x in enumerate(ins))
+        if not calls:
+            return False
+        if self.graph is None:
+            self.graph = callgraph.CallGraph(self.version, self.rows)
+        return not self.graph.callers.get(addr)
 
     def evidence(self, addr: int) -> frozenset:
         """Argument registers (x0-x7, v0-v7) that addr's direct callers write in the block before
@@ -396,6 +412,8 @@ class AbiFacts:
         defs: list[set] = [set() for _ in range(n)]
         succ: list[list[int]] = [[] for _ in range(n)]
         fwd = self.fwd_of(addr, ins)  # what an indirect call is passed on (Facts.fwd)
+        if self.is_open(addr, ins):
+            fwd = fwd | frozenset(range(8))  # (Facts.open: every integer argument register)
         # Blocks for the indirect-call rule: a block starts at a branch target or after a branch.
         starts = self.block_starts(addr, ins)
         block_of: list[tuple[int, int]] = []
