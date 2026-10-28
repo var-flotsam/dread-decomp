@@ -885,23 +885,31 @@ class Lifter:
             elif 100 <= k < 108:
                 self.read(f"{self.fwidth.get(k, 'd')}{k - 100}")
 
-    def stack_args_before(self) -> bool:
-        """A store to [sp] in the straight-line code before this instruction (back to the last
-        call or branch), with sp's own address not taken there: the first stack argument of a
-        call. An indirect callee has no facts, so its stack arguments would be dropped."""
+    def stack_args_before(self) -> int:
+        """The 8-byte stack argument slots of the call at this instruction: the slots from [sp]
+        up that the straight-line code before it (back to the last call or branch) stores to,
+        with sp's own address not taken there (0 when [sp] is not stored). An indirect callee
+        has no facts, so these stores are all that tells its stack arguments; a local stored
+        just above them is passed as well, which a callee taking fewer ignores."""
+        slots: set[int] = set()
         for x in reversed(self.ins[:self.pos]):
             m, o = x.mnemonic, x.operands
             if m in ("bl", "blr", "b", "br", "ret", "cbz", "cbnz", "tbz", "tbnz") or m.startswith("b."):
-                return False
+                break
             if m in ("mov", "add") and len(o) >= 2 and o[1].type == arm64.ARM64_OP_REG and regname(o[1].reg) == "sp" \
                     and (len(o) == 2 or (o[2].type == arm64.ARM64_OP_IMM and o[2].imm == 0)):
-                return False  # (a local at sp, passed by its address)
+                return 0  # (a local at sp, passed by its address)
             mem = [op for op in o if op.type == arm64.ARM64_OP_MEM]
             if m.startswith(("str", "stp", "stur")) and mem and regname(mem[0].mem.base) == "sp" \
-                    and 0 <= mem[0].mem.disp < 8 and not x.writeback \
+                    and mem[0].mem.disp >= 0 and not x.writeback \
                     and self.cur_delta + mem[0].mem.disp not in self.save_slots:  # (not a register save)
-                return True
-        return False
+                slots.add(mem[0].mem.disp // 8)
+                if m.startswith("stp"):
+                    slots.add((mem[0].mem.disp + {"x": 8, "d": 8, "q": 16}.get(regname(o[0].reg)[0], 4)) // 8)
+        n = 0
+        while n in slots:
+            n += 1
+        return n
 
     def callee_need(self, fn: str) -> tuple[int, int]:
         """The argument registers a direct callee reads (abi_facts), so the call names them all.
@@ -917,7 +925,12 @@ class Lifter:
             return 0, 0
         if not fn:
             own = self.facts(self.addr)
-            return own.fwd_counts if own is not None else (1, 0)
+            ints, floats = own.fwd_counts if own is not None else (1, 0)
+            if sem and (stack := self.stack_args_before()):
+                if not self.frame:
+                    raise Unsupported("indirect call with stack arguments")
+                return 8, floats, stack  # (as for a direct callee's: after all eight integers)
+            return ints, floats
         f = self.facts(int(fn[3:], 16))
         if f is None:
             return 0, 0
@@ -1957,8 +1970,6 @@ class Lifter:
             self.s.written = set()
             for i in range(2 if shape[0] == "x" else shape[1]):
                 self.write(f"{shape[0]}{i}", f"{v}.r[{i}]", shape_elem(shape))
-        elif m == "blr" and "semantic" in self.opts and self.stack_args_before():
-            raise Unsupported("indirect call with stack arguments")
         elif m == "blr" and "semantic" in self.opts and self.s.x8w and regname(o[0].reg) != "x8":
             # An indirect callee given a local in x8 builds its result there (the original reads it
             # back): as sret_call, through the pointer.

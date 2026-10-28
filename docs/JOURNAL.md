@@ -112,10 +112,13 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
-**Lifter: retry for cut-off runs, and no float result from a void function (2026-10-28, branch
-`claude/project-thread-zgkpk3`).** Two fixes from the port's current stop and from the hand-writing
-thread's reading of the 13 boot functions #236 refuses. Written in a cloud session without the dump:
-the oracle numbers below are to be measured on the PC.
+**Lifter: retry for cut-off runs, no float result from a void function, indirect calls with stack
+arguments (2026-10-28, branch `claude/project-thread-zgkpk3`).** Fixes from the port's current stop and
+from the hand-writing thread's reading of the 13 boot functions #236 refuses. Written in a cloud
+session without the dump and measured on the PC: the boot slice (2,329 functions) goes from 2,266
+accepted (main's manifest) to 2,276, none lost; the retry alone gains `71001ea42c`, `passed_on` the six
+s0 voids (`710033187c`, `7100ee4d34`, `7100d8d854`, `7100d8db30`, `7100e10150`, `7100ee5dcc`) and the
+three x0 ones. Oracle rejections go from 25 to 17, "result s0/d0" verdicts from 10 to 3.
 - **Long loops.** `fn_71002584a0` (2.8 KB, the function the port traps in before the bad string id)
   was inconclusive: "both runs were cut off" on every input. They were cut by events, not steps (a
   loop past `MAX_EVENTS`, 256 calls; the finished inputs end in 20-43 steps). `pcode_emu.Machine.scale`
@@ -132,10 +135,16 @@ the oracle numbers below are to be measured on the PC.
   call", where the next callee is variadic (its prologue saves every argument register, so its
   `args` holds all of v0-v7) or a callee none of whose direct callers ever sets s0 (`71004e4a38`);
   the rest reaches them through tail calls and returns from such callers. `AbiFacts.passed_on` drops
-  s0 from that evidence in both cases (`SHAPE_VERSION` 3). Semantic mode only; byte mode does not
+  s0 from that evidence in both cases (`SHAPE_VERSION` 4). Semantic mode only; byte mode does not
   read `result_main`. A first try, a callee-side check of whether the function writes s0 itself,
   could not tell a void function doing float arithmetic in s0 from one returning it, and was dropped.
-  The three x0-side cases (`7100eea4c8`, `7100eea618`, `710109c9e0`) are hand-written in #240.
+  The three x0-side cases (`7100eea4c8`, `7100eea618`, `710109c9e0`) are hand-written in #240; the
+  lifter now accepts them as well (a source in `src/` wins).
+- **Indirect calls with stack arguments** (105 functions refused, 7 on the boot path). An indirect
+  callee has no facts, so `Lifter.stack_args_before` now counts the 8-byte slots from `[sp]` up that
+  the straight-line code before the `blr` stores, and `callee_need("")` passes them as a direct
+  callee's are (all eight integers, then `st<i>`). A local stored just above the arguments is passed
+  too; a callee taking fewer ignores it. Semantic mode only.
 - Tool tests: `tools/tests/test_abi_facts.py` (result_main on hand-assembled callers) and
   `tools/tests/test_pcode_emu.py` (the per-run limits in `compare`).
 
