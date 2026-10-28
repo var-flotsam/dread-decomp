@@ -967,6 +967,21 @@ class Lifter:
             return 8, f.floats, f.stack_slots  # (stack arguments follow all eight integers)
         return f.ints, f.floats
 
+    def sret_indirect_tail(self, reg: str) -> None:
+        """Semantic mode: an indirect tail call (`br`) with x8 set to this function's own result
+        address again (Lifter.ret_ptrs, FlatLifter.ret_regs): the callee builds the result, as
+        sret_tail's `return callee(...)`. With x8 at a local, refused (the result is not this
+        function's)."""
+        ptr, _ = self.read(reg)
+        self.s.written.discard(self.key(reg))
+        x8, _ = self.read("x8")
+        own = (8 in self.ret_regs) if isinstance(self, FlatLifter) else x8 in self.ret_ptrs
+        if not own:
+            raise Unsupported("indirect tail call with an indirect result (x8)")
+        args = self.args(self.callee_need(""))
+        types, values = ", ".join(t for _, t in args), ", ".join(e for e, _ in args)
+        self.terminate("sret_tail", f"((UnkResult (*)({types}))({ptr}))({values})")
+
     def sret_callee(self, a: int) -> bool:
         """Whether the callee at a builds its result at x8 (abi_facts), in semantic mode and in
         byte mode's pass-through (where the call then names x8 too: see sret_call, sret_tail)."""
@@ -1215,6 +1230,8 @@ class Lifter:
                 elif m == "b" and not addr <= o[0].imm < end:
                     self.terminate("tail", self.call(f"fn_{o[0].imm:x}"))
                     self.tails[f"fn_{o[0].imm:x}"] = self.last_call[1]
+                elif m == "br" and "semantic" in self.opts and self.s.x8w and regname(o[0].reg) != "x8":
+                    self.sret_indirect_tail(regname(o[0].reg))
                 elif m == "br":
                     ptr, _ = self.read(regname(o[0].reg))
                     self.s.written.discard(self.key(regname(o[0].reg)))  # the target isn't an argument
@@ -2466,6 +2483,8 @@ class FlatLifter(Lifter):
                     v, _ = self.read(f"x{idx}")
                     cases = " ".join(f"case {k}: goto L_{t:x};" for k, t in enumerate(tgts))
                     self.line(f"switch ((u64)({v})) {{ {cases} default: __builtin_unreachable(); }}")
+                elif m == "br" and "semantic" in self.opts and self.s.x8w and regname(o[0].reg) != "x8":
+                    self.sret_indirect_tail(regname(o[0].reg))
                 elif m == "br":
                     ptr, _ = self.read(regname(o[0].reg))
                     self.s.written.discard(self.key(regname(o[0].reg)))  # the target isn't an argument

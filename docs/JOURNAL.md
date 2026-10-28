@@ -129,6 +129,8 @@ Linux image's clang++ with libstdc++ refused it).
   every argument moved up a register (the hidden result pointer is rdi). `Lifter.ret_ptrs` and
   `FlatLifter.ret_regs` now follow copies of that address, and x8 set to one before a `blr` makes the
   call build its result there, as for a local.
+  The same call made as a tail call (`mov x8, x20; br x2` in `fn_710001ab24`) now returns the
+  callee's result: `return ((UnkResult (*)(...))(ptr))(...)`, refused if x8 holds anything else.
 
 **Lifter: retry for cut-off runs, no float result from a void function, indirect calls with stack
 arguments (2026-10-28, branch `claude/project-thread-zgkpk3`).** Fixes from the port's current stop and
