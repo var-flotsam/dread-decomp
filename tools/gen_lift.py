@@ -969,8 +969,10 @@ class Lifter:
 
     def sret_indirect_tail(self, reg: str) -> None:
         """Semantic mode: an indirect tail call (`br`) with x8 set to this function's own result
-        address again (Lifter.ret_ptrs, FlatLifter.ret_regs): the callee builds the result, as
-        sret_tail's `return callee(...)`. With x8 at a local, refused (the result is not this
+        address again (Lifter.ret_ptrs, FlatLifter.ret_regs): the callee builds the result in
+        place, then `return ret;`. Not `return callee(...)` as in sret_tail: beside another
+        path's `return ret;` that stops Clang's NRVO, so ret becomes a local and x8 on the other
+        paths no longer the caller's buffer. With x8 at a local, refused (the result is not this
         function's)."""
         ptr, _ = self.read(reg)
         self.s.written.discard(self.key(reg))
@@ -980,7 +982,9 @@ class Lifter:
             raise Unsupported("indirect tail call with an indirect result (x8)")
         args = self.args(self.callee_need(""))
         types, values = ", ".join(t for _, t in args), ", ".join(e for e, _ in args)
-        self.terminate("sret_tail", f"((UnkResult (*)({types}))({ptr}))({values})")
+        self.decls.add(LIFT_AT)
+        self.line(f"new ((void*)({x8}), lift_at_t{{}}) UnkResult(((UnkResult (*)({types}))({ptr}))({values}));")
+        self.terminate("value", None)
 
     def sret_callee(self, a: int) -> bool:
         """Whether the callee at a builds its result at x8 (abi_facts), in semantic mode and in

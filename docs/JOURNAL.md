@@ -130,7 +130,10 @@ Linux image's clang++ with libstdc++ refused it).
   `FlatLifter.ret_regs` now follow copies of that address, and x8 set to one before a `blr` makes the
   call build its result there, as for a local.
   The same call made as a tail call (`mov x8, x20; br x2` in `fn_710001ab24`) now returns the
-  callee's result: `return ((UnkResult (*)(...))(ptr))(...)`, refused if x8 holds anything else.
+  callee's result, built in place as for `blr` and followed by `return ret;` (refused if x8 holds
+  anything else). A first try emitted `return ((UnkResult (*)(...))(ptr))(...)`; beside the other
+  paths' `return ret;` that cost Clang's NRVO, ret became a stack local, and the oracle rejected
+  `710001ab24` and `710110f1c8` (their other paths passed or wrote the local, not the caller's buffer).
 
 **Lifter: retry for cut-off runs, no float result from a void function, indirect calls with stack
 arguments (2026-10-28, branch `claude/project-thread-zgkpk3`).** Fixes from the port's current stop and
