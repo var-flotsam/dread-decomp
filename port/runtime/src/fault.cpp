@@ -1,7 +1,8 @@
 // A crash report for the port: on a fault (SIGSEGV, SIGBUS, SIGILL, SIGFPE) print the faulting
-// address, the instruction and the return addresses, then die with the signal as before. The
-// traps (missing.cpp) name the next function the boot needs; a fault names nothing, so this says
-// where it happened. Symbolise the addresses with the executable:
+// address, the instruction and the return addresses, then die with the signal as before. On
+// SIGABRT (a trap's abort, or the C library's: "munmap_chunk(): invalid pointer") only the return
+// addresses, which say who called. The traps (missing.cpp) name the next function the boot needs;
+// a fault names nothing, so this says where it happened. Symbolise the addresses with the executable:
 //   llvm-symbolizer --obj=build/port/linux/link/dread -f -C 0x... 0x...
 // Installed before the data loader and the game's static initialisers (constructor priority 100;
 // image.cpp maps the image at 101). Linux and macOS only; elsewhere it does nothing.
@@ -21,7 +22,7 @@ namespace {
 
 constexpr u64 kImageBase = 0x7100000000;
 constexpr u64 kImageEnd = 0x7172a19000;  // the end of main's .bss (image.cpp)
-constexpr int kSignals[] = {SIGSEGV, SIGBUS, SIGILL, SIGFPE};
+constexpr int kSignals[] = {SIGSEGV, SIGBUS, SIGILL, SIGFPE, SIGABRT};
 
 alignas(16) char g_alt_stack[64 * 1024];  // a stack overflow still gets its report
 
@@ -50,11 +51,15 @@ u64 InstructionOf(void* context) {
 }
 
 void OnFault(int sig, siginfo_t* info, void* context) {
-    const u64 address = reinterpret_cast<u64>(info ? info->si_addr : nullptr);
-    const u64 pc = InstructionOf(context);
-    std::fprintf(stderr, "dread: %s at address 0x%llx%s, instruction 0x%llx%s\n", strsignal(sig),
-                 static_cast<unsigned long long>(address), Where(address), static_cast<unsigned long long>(pc),
-                 Where(pc));
+    if (sig == SIGABRT) {
+        std::fprintf(stderr, "dread: %s\n", strsignal(sig));  // no faulting address: abort() was called
+    } else {
+        const u64 address = reinterpret_cast<u64>(info ? info->si_addr : nullptr);
+        const u64 pc = InstructionOf(context);
+        std::fprintf(stderr, "dread: %s at address 0x%llx%s, instruction 0x%llx%s\n", strsignal(sig),
+                     static_cast<unsigned long long>(address), Where(address),
+                     static_cast<unsigned long long>(pc), Where(pc));
+    }
     void* frames[64];
     const int n = backtrace(frames, 64);
     std::fprintf(stderr, "dread: return addresses (llvm-symbolizer --obj=<the executable> -f -C <addresses>):");

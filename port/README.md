@@ -167,6 +167,8 @@ until the lifter names the registers.
 address (flagged when it is in the game image or near null), the instruction and the return
 addresses; symbolise them with the executable,
 `port/docker/run.sh llvm-symbolizer-18 --obj=build/port/linux/link/dread -f -C <addresses>`.
+An abort (a trap, or the C library's own, such as `munmap_chunk(): invalid pointer`) prints the
+return addresses too, which name the caller.
 
 **Game data defined by the sources.** A matched file that defines a game global itself (a
 `static` or a function-local static) holds it in the executable, while lifted code and files that
@@ -175,6 +177,22 @@ allocator was the first case (the start-up set the executable's pointer, the lif
 read the image's null one); `src/base/UnkDefaultAllocatorGlobal.cpp` now keeps its state in the
 image on the port (`#if !defined(__aarch64__)`, the matching build unchanged). A crash at a null
 pointer read from a game global is the sign of another.
+
+The link binds the function-local statics of inline functions to the image itself, together with
+their guard variables (2026-10-28). These are the string-pool and file-path-pool holders, the
+reflection type ids and the lifted code's own `lift_guard` statics: weak objects in every object
+that uses them. `tools/port_addresses.py` places each one from the byte-matching code, and
+`tools/port_link.py` gives it a `--defsym` at the image address, which overrides the weak
+definition, so hand-written, lifted and `g_unk_` code share the game's one copy. A static and its
+guard are bound both or neither, or the static could be constructed twice.
+
+A static stays in the executable, and `link.json` (`bound_statics`) says which, in two cases:
+- its size reaches past the next known image address: a placeholder type larger than the
+  original's object would overwrite its neighbours;
+- the harvest did not place it, or placed only one of static and guard.
+
+On 2026-10-28: 4,240 bound, 22 left. A plain `static`, or the static of a function that is not
+inline, is a single strong definition and still needs the source-level fix above.
 `DREAD_TRAP=log` makes the traps report each missing function or import once and return 0 instead
 of aborting, so one run lists them in the order the game reaches them until something truly
 breaks; useful past functions whose result the caller ignores, useless past an allocation (the
