@@ -116,6 +116,13 @@ void GetVibrationDeviceInfo(VibrationDeviceInfo*, const VibrationDeviceHandle&) 
     // Never called: as InitializeVibrationDevice.
 }
 
+// The sampling period the vibration thread (fn_710006f390, src/base/input/UnkVibrationThread.cpp)
+// waits between updates: 5 ms, as on the console. A data import, named by its symbol here because
+// include/base/input/UnkHidVibration.h's VibrationNode declares only Update.
+extern const TimeSpan g_default_vibration_sample_interval asm(
+    "_ZN2nn3hid13VibrationNode30DefaultVibrationSampleIntervalE");
+const TimeSpan g_default_vibration_sample_interval = TimeSpan::FromNanoSeconds(5'000'000);
+
 void VibrationNode::Update() {
     // TODO(M2): fn_710006f390, each frame. No devices, so nothing to sample.
 }

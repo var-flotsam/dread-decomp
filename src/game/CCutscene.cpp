@@ -14,7 +14,7 @@
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
 
-extern const f32 g_unk_710164c384[256];  // byte -> linear colour component
+extern const f32 g_unk_710164c384[/* 256; unsized: x86-64 would assume 16-byte alignment */];  // byte -> linear colour component
 
 // A colour packed as 0xAARRGGBB.
 struct UnkColor32 {
