@@ -39,9 +39,9 @@ struct UnkMutexLock {
 void fn_7100066698(nn::os::LightEventType* event);
 
 // The load itself, run on the loader at +0x8, with the three strings this builds.
-s32 fn_7100fc7920(void* loader, u32 kind, const CRntString* scenario, const CRntString* name,
-                  UnkPtrList* blackboards, bool a, void (*fn)(), const CRntString* c, CRntString* project,
-                  CRntString* s2, CRntString* s3);
+void fn_7100fc7920(void* loader, u32 kind, const CRntString* scenario, const CRntString* name,
+                   UnkPtrList* blackboards, bool a, void (*fn)(), const CRntString* c, CRntString* project,
+                   CRntString* s2, CRntString* s3);  // src/game/UnkScenarioLoadRequest.cpp
 s32 fn_7101203620(UnkUserDataOwner* self);
 
 // Starts a load of `kind` (for kinds 1 and 4 the first string passed on is "Project") and marks the
