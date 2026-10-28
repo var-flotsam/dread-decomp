@@ -19,6 +19,12 @@ class Log(unittest.TestCase):
         self.assertEqual(log["fault"], {"signal": "Segmentation fault", "address": "0x10"})
         self.assertNotIn("0x1234", str(log))  # the instruction word is never kept
 
+    def test_line_inside_gdbs(self):
+        log = bd.parse_log(["Breakpoint -109, 0dread: trap 1 (continuing): fn_71002584a0",
+                            "Breakpoint -509, 0x000000717dread: Segmentation fault at address 0x717363a398, instruction 0x1"])
+        self.assertEqual(log["traps"], [{"name": "fn_71002584a0", "kind": "function"}])
+        self.assertEqual(log["fault"], {"signal": "Segmentation fault", "address": "0x717363a398"})
+
     def test_libc_abort_message(self):
         log = bd.parse_log(["dread: trap 1 (continuing): fn_710008a648", "munmap_chunk(): invalid pointer"])
         self.assertEqual(log["libc"], "munmap_chunk(): invalid pointer")

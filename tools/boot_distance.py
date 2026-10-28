@@ -98,6 +98,11 @@ def parse_log(lines: list[str]) -> dict:
     stop = fault = libc = None
     for line in lines:
         line = line.rstrip()
+        # (the runtime writes to stderr and gdb to stdout: a runtime line may start in the middle of
+        # one of gdb's, "Breakpoint 7, 0dread: trap 1 ...")
+        i = line.find("dread: ")
+        if i > 0:
+            line = line[i:]
         m = TRAP.match(line)
         if m:
             key = (m.group(1), bool(m.group(2)))
