@@ -65,14 +65,14 @@ struct UnkGfxHeap {
 struct UnkPool;  // the memory pool type of src/game_s7/fn_71001587f0.cpp: its NVN pool at +0x8
 
 // The records and the descriptor pools (all reached through the GOT).
-extern UnkGfxTexture* g_unk_716e2a3568[0x800];
+extern UnkGfxTexture* g_unk_716e2a3568[/* 0x800; unsized: x86-64 would assume 16-byte alignment */];
 extern u32 g_unk_716e2a7568;   // live records
 extern UnkGfxHeap* g_unk_716e2a76a8;  // the heap for textures
 extern UnkGfxHeap* g_unk_716e2a76b0;  // the heap for render targets
 extern u32 g_unk_7101a1d814;   // free texture descriptor ids (2048 at start)
 extern s32 g_unk_716e2a7574;   // reserved texture descriptors (device info 0x11)
 extern s32 g_unk_716e2a7578;   // reserved sampler descriptors (device info 0x12)
-extern s32 g_unk_716e2a7708[0x800];  // free texture descriptor ids, a stack
+extern s32 g_unk_716e2a7708[/* 0x800; unsized: x86-64 would assume 16-byte alignment */];  // free texture descriptor ids, a stack
 extern s32 g_unk_716e2a756c;   // the next free sampler id
 extern s32 g_unk_716e2a7570;   // the last sampler id
 extern s32 g_unk_716e2a76e0;   // the first sampler id (the reserved ones come before it)
@@ -203,8 +203,8 @@ static inline void ResetGroup(u32 group) {
 // +0x54 of the slot) are scheduled and allocated the other way round; the stores are the same.
 void fn_710015f100() {
     GfxTextureAllocator()->vf_0x90();
-    for (UnkGfxTexture*& t : g_unk_716e2a3568)
-        t = new (fn_71000839a0(sizeof(UnkGfxTexture), 0x46)) UnkGfxTexture;
+    for (u32 i = 0; i < 0x800; ++i)
+        g_unk_716e2a3568[i] = new (fn_71000839a0(sizeof(UnkGfxTexture), 0x46)) UnkGfxTexture;
     g_unk_716e2a7568 = 0;
     GfxTextureAllocator()->vf_0x90();
     s32 texture_size = 0;
@@ -448,7 +448,7 @@ void fn_7100160f60(UnkGfxTexture** out, s32 width, s32 height, s32 format, const
 // pointers whose first entries (as many as the count) are the live ones.
 struct UnkObj_7100161b90;
 struct UnkChild_7100161b90;
-extern UnkObj_7100161b90* unk_716e2aadf8[0x4000];  // as src/game_lo/fn_7100161b90.cpp declares them
+extern UnkObj_7100161b90* unk_716e2aadf8[/* 0x4000; unsized: x86-64 would assume 16-byte alignment */];  // as src/game_lo/fn_7100161b90.cpp declares them
 extern u32 unk_716e2cadf8;
 extern UnkChild_7100161b90* unk_716e2cae08[];
 extern u32 unk_716e34ae08;

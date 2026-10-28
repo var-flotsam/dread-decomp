@@ -7,7 +7,7 @@
 #include "game/UnkStartPoint.h"
 #include "types.h"
 
-extern const u64 g_unk_7101646d68[256];  // the CRC table (reached through the GOT)
+extern const u64 g_unk_7101646d68[/* 256; unsized: x86-64 would assume 16-byte alignment */];  // the CRC table (reached through the GOT)
 
 #define CRC64_STEP(i) crc = g_unk_7101646d68[(crc ^ (u8)str[i]) & 0xff] ^ (crc >> 8)
 

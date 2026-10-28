@@ -73,7 +73,7 @@ static_assert(sizeof(UnkGfxProgram) == 0x150, "UnkGfxProgram placeholder layout"
 struct UnkPool;  // the memory pool type of src/game_s7/fn_71001587f0.cpp
 
 // The pools (all reached through the GOT).
-extern UnkGfxRecord_0xc0* g_unk_716e29d438[0x800];
+extern UnkGfxRecord_0xc0* g_unk_716e29d438[/* 0x800; unsized: x86-64 would assume 16-byte alignment */];
 extern u32 g_unk_716e2a1438;  // live records of the first table
 extern UnkGfxProgram* g_unk_716e2a1440[0x400];
 extern u32 g_unk_716e2a3440;           // live programs
@@ -94,8 +94,8 @@ static inline void InitializeSync(void* sync, void* device) {
 // Creates the pools. The free size is read before and after (the results are unused).
 void fn_710015c520() {
     GfxObjectPoolAllocator()->vf_0x90();
-    for (UnkGfxRecord_0xc0*& r : g_unk_716e29d438)
-        r = new (fn_71000839a0(sizeof(UnkGfxRecord_0xc0), 0x47)) UnkGfxRecord_0xc0;
+    for (u32 i = 0; i < 0x800; ++i)
+        g_unk_716e29d438[i] = new (fn_71000839a0(sizeof(UnkGfxRecord_0xc0), 0x47)) UnkGfxRecord_0xc0;
     g_unk_716e2a1438 = 0;
     for (UnkGfxProgram*& p : g_unk_716e2a1440)
         p = new (fn_71000839a0(sizeof(UnkGfxProgram), 0x47)) UnkGfxProgram;
