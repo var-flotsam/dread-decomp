@@ -149,6 +149,15 @@ three x0 ones, the stack arguments the 7 below. Oracle rejections go from 25 to 
   `71011f8bdc`); 3 stop at "stack arguments outside the frame" (`7100148600`, `7100211590`,
   `710074fd08`), 3 are rejected (two pass a d register where the callee reads it as s, or the reverse:
   `71003e69e4`, `7100656f3c`; `710096cdec`) and one is inconclusive (`71008626bc`).
+- **What the boot reaches through pointers.** The boot's next trap after the string id fix,
+  `fn_71000f7800` (`CSoundSystemATK`), is outside the boot slice: only an indirect call reaches it.
+  `port_lift.py --slice pointers` adds what the slice's functions reach through the addresses they
+  take (`pointed_to`: an adrp with an add or a GOT load naming a function or a vtable), to a fixed
+  point: 12,404 functions against the boot slice's 2,226 (3 s). `fn_71000f7800` is in it. Of the
+  10,178 added, the slice-all set `lifted_r5a` accepts 9,826 already; 86 more are indirect calls with
+  stack arguments (from before the fix above), 75 oracle rejections, 58 inconclusive, 50
+  undecodable. `--slice boot` stays the default and the progress figure; `pointers` is an upper
+  bound (a vtable taken is not a method called).
 - Tool tests: `tools/tests/test_abi_facts.py` (result_main on hand-assembled callers) and
   `tools/tests/test_pcode_emu.py` (the per-run limits in `compare`).
 
