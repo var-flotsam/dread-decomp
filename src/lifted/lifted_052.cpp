@@ -105,10 +105,10 @@ char* fn_710052d860() {
     return r1_0;
 }
 
-namespace callee { char* fn_710052d200(); }
+namespace callee { char* fn_710052d200(char*); }
 char* fn_710052d8a8(char* p0) {
     char* r0_19 = p0;
-    char* r1_0 = callee::fn_710052d200();
+    char* r1_0 = callee::fn_710052d200(p0);
     u64 r2_8 = (u64)*(u64*)((char*)(r0_19) + 0);
     char* r3_0 = r0_19;
     u64 r4_1 = (u64)*(u64*)((char*)(r2_8) + 24);

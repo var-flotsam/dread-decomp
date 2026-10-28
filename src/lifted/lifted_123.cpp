@@ -75,12 +75,12 @@ void fn_7101230314(char* p0) {
     return;
 }
 
-namespace callee { char* fn_710122f5a4(u64); }
+namespace callee { char* fn_710122f5a4(u64, u32); }
 char* fn_7101230354(char* p0, u32 p1) {
     *(u32*)((char*)(p0) + 0) = (u32)(u64)(p1);
     u64 r1_0 = (u64)*(u64*)((char*)(p0) + 216);
     if ((u64)(u64)(r1_0) != 0) {
-        return callee::fn_710122f5a4(r1_0);
+        return callee::fn_710122f5a4(r1_0, p1);
     }
     return (char*)(u64)(r1_0);
 }
@@ -136,11 +136,11 @@ L_71012303dc:;
     return callee::fn_710122f730(X0, ((u32)X1));
 }
 
-namespace callee { char* fn_710122f578(u64); }
-char* fn_71012303f0(char* p0) {
+namespace callee { char* fn_710122f578(u64, char*); }
+char* fn_71012303f0(char* p0, char* p1) {
     u64 r0_0 = (u64)*(u64*)((char*)(p0) + 216);
     if ((u64)(u64)(r0_0) != 0) {
-        return callee::fn_710122f578(r0_0);
+        return callee::fn_710122f578(r0_0, p1);
     }
     return (char*)(u64)(r0_0);
 }
@@ -259,16 +259,16 @@ void fn_71012304b4(char* p0, char* p1) {
 }
 
 namespace callee { char* fn_7101230724(u64, u32); }
-namespace callee { char* fn_7101230774(); }
+namespace callee { char* fn_7101230774(char*); }
 namespace callee { char* fn_71012307c4(char*); }
 namespace callee { char* fn_71012307dc(char*); }
-namespace callee { char* fn_71012307f8(); }
+namespace callee { char* fn_71012307f8(char*); }
 namespace callee { char* fn_7101230818(char*, char*, char*, u32); }
 namespace callee { char* fn_710123093c(char*); }
 namespace callee { char* fn_71012309ac(char*); }
 namespace callee { char* fn_71012309d4(char*); }
 namespace callee { char* fn_7101230a00(char*); }
-namespace fret { f32 fn_71012307f8(); }
+namespace fret { f32 fn_71012307f8(char*); }
 u32 fn_7101230530(char* p0, char* p1, u32 p2) {
     u64 X0 = (u64)p0;
     u64 X1 = (u64)p1;
@@ -285,9 +285,9 @@ u32 fn_7101230530(char* p0, char* p1, u32 p2) {
     X19 = (u64)(((char*)X1));
     X1 = (u64)((u32)(u64)((u32)X2));
     X0 = (u64)(callee::fn_7101230724(X0, ((u32)X1)));
-    X0 = (u64)(callee::fn_7101230774());
+    X0 = (u64)(callee::fn_7101230774(((char*)X0)));
     X20 = (u64)(((char*)X0));
-    S0 = fret::fn_71012307f8();
+    S0 = fret::fn_71012307f8(((char*)X0));
     X0 = (u64)(((char*)X20));
     *(f32*)((char*)(((char*)X19)) + 0) = S0;
     X0 = (u64)(callee::fn_71012307c4(((char*)X0)));

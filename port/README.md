@@ -258,7 +258,7 @@ What it found (2026-10-27, 3,979 sources):
 | Compile errors | 13 files: `operator new(unsigned long, void*)`, a placement `new` that must take `size_t` (`unsigned long long` on Windows) | none: all 3,979 compile |
 | `long` | the 13 above, and two iterators' `difference_type` and offsets (`src/game/CActor.cpp`, `src/game_s7/UnkIter.h`), which would have been 32-bit | spelled `u64`/`s64` |
 | `l`/`ul` literals | `~0ul` stored to a `u64` (`0xffffffff` on Windows), `capacity * 8ul` in four files and `include/base/UnkHashMap.h` (a 32-bit product), two `0xffffffff00000000ul` | `~0ull`, `* u64(8)`, `ull` |
-| `wchar_t` (16-bit on Windows) | 5 places in 2 files | open, below |
+| `wchar_t` (16-bit on Windows) | 5 places in 2 files: `swscanf` and `wcsstr` on the game's `char32_t` text | `char32_t` helpers in `include/base/Char32.h` (below) |
 | Generated sources | nothing flagged (`long` in `src/reflection_types/` is a type's name in a string) | no generator change needed |
 | Duplicate definitions | 2,417 false collisions on COFF | as on Linux: `fn_7100227448` and the three `src/lifted` pairs of frozen Phase 3 samples |
 
@@ -269,23 +269,36 @@ for SysV) changes no source: the game code is C++ and the compiler follows the t
 `va_list` is only passed along, and the inline `asm("" : "+r"(x))` barriers name no register. It
 matters to the assembly `tools/port_link.py` writes, below.
 
+**Wide text** (done 2026-10-27). `src/game/GUI/CLabel.cpp` (two `swscanf` calls, a glyph's hex
+code and a sprite's scale) and `src/game_s1/fn_7100067460.cpp` (`wcsstr`) passed the game's 32-bit
+`char32_t` text to the C library's wide functions, which take 16-bit units on Windows. They now call
+`char32_scan_hex`, `char32_scan_f32` and `char32_strstr` from `include/base/Char32.h`. Where
+`wchar_t` is 32 bits (the Switch, Linux) these are the original calls, always inlined, so the callees
+and bytes are unchanged (`tools/check.py --update`, `tools/baseline.py`). On Windows they work on the
+`char32_t` text: the scans copy its leading ASCII to a narrow buffer and `sscanf` it with the same
+format; the search compares 32-bit units. The one difference from `swscanf` is a non-ASCII wide
+space before a number, which the game's tags don't have. The header is exempt from the LLP64 scan,
+as `include/types.h` is; new wide calls go through it.
+
 Next Windows steps (not started):
 
-1. **Wide text.** `src/game/GUI/CLabel.cpp` (two `swscanf` calls) and
-   `src/game_s1/fn_7100067460.cpp` (`wcsstr`) pass the game's 32-bit `char32_t` text to the C
-   library's wide functions, which take 16-bit units on Windows. They need `char32_t` versions in
-   the port's runtime; that changes the files' callees, so it is a matching question first.
-2. **The runtime's own sources.** The sweep compiles `port/runtime/include` through the game's
-   sources, not `port/runtime/src/`. Imports are resolved by exact mangled name
-   (`tools/port_imports.py`): under LLP64 `long` mangles as `l`, `s64` as `x`, so the names the game
-   imports differ from the runtime's definitions there (`port/runtime/include/movie.h` already notes
-   this).
-3. **The generated assembly.** `tools/port_link.py` writes `traps.s`, `residue.s` and
+1. **The runtime's import names.** Imports are resolved by exact mangled name
+   (`tools/port_imports.py`): under LLP64 `s64` and `u64` are `long long`, which mangle `x`/`y` where
+   the console's names have `l`/`m` (`port/runtime/include/movie.h` already notes this).
+   `tools/port_imports.py --version 2.1.0 --windows [--list NS]` measures it (compile only; objects in
+   `build/port/windows/runtime/`). On 2026-10-27 all 18 runtime sources compile for Windows, and of
+   the 200 imports the runtime answers on Linux, 159 keep their name and 41 are lost: `movie` 11,
+   `nn::fs` 9, `nn::os` 9, `nn::mem` 3, `nn::util` 3, `nn::hid` 2, `nn::prepo` 2, `nv` 2. Every
+   one of the 41 has exactly one Windows definition that differs only by `long long` for `long`, and
+   none resolves at 32 bits through a spelled-out `long`. So the fix is mechanical and belongs in
+   `tools/port_link.py`'s `image_tables.s`, not in the runtime: on a Windows target, list each
+   runtime import under the console's name, pointing at its `long long` definition.
+2. **The generated assembly.** `tools/port_link.py` writes `traps.s`, `residue.s` and
    `image_tables.s` for SysV and ELF (argument registers, sections, directives); Windows needs Win64
    and COFF versions.
-4. **The fault handler** (`port/runtime/src/fault.cpp`): signals become structured exception
+3. **The fault handler** (`port/runtime/src/fault.cpp`): signals become structured exception
    handling (a vectored exception handler).
-5. **A Windows link and executable**: `ld.lld` in MinGW mode at the fixed base the loader needs
+4. **A Windows link and executable**: `ld.lld` in MinGW mode at the fixed base the loader needs
    (`/FIXED /BASE`, "The data loader" below), with the UCRT.
 
 ## What M0 found (2026-10-24)

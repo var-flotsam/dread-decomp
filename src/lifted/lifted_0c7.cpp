@@ -221,7 +221,7 @@ char* fn_7100c79950(u32 p0, char* p1) {
     char* r0_8 = (char*)"";
     u64 r1_2 = (u64)*(u64*)((char*)(r0_8) + (u64)((u64)(s32)(u64)(p0) << 3));
     char* r2_0 = p1;
-    return ((char* (*)(char*))(r1_2))(r2_0);
+    return ((char* (*)(char*, char*))(r1_2))(r2_0, p1);
 }
 
 char* fn_7100c7a8c0(char* p0, char* p1) {

@@ -356,7 +356,7 @@ address,size,name,name_source,subsystem,status
 0x710000cc44,148,fn_710000cc44,unknown,unknown,O
 0x710000ccd8,288,fn_710000ccd8,unknown,unknown,m
 0x710000ce00,12,fn_710000ce00,unknown,unknown,O
-0x710000ce10,240,fn_710000ce10,unknown,unknown,U
+0x710000ce10,240,fn_710000ce10,unknown,unknown,O
 0x710000cf00,8,fn_710000cf00,unknown,unknown,O
 0x710000cf10,524,fn_710000cf10,unknown,unknown,U
 0x710000d120,264,fn_710000d120,unknown,unknown,O
@@ -370,8 +370,8 @@ address,size,name,name_source,subsystem,status
 0x710000d444,4,fn_710000d444,unknown,unknown,O
 0x710000d448,20,fn_710000d448,unknown,unknown,O
 0x710000d45c,20,fn_710000d45c,unknown,unknown,O
-0x710000d470,132,fn_710000d470,unknown,unknown,U
-0x710000d4f4,132,fn_710000d4f4,unknown,unknown,U
+0x710000d470,132,fn_710000d470,unknown,unknown,O
+0x710000d4f4,132,fn_710000d4f4,unknown,unknown,O
 0x710000d578,8,fn_710000d578,unknown,unknown,O
 0x710000d580,8,fn_710000d580,unknown,unknown,O
 0x710000d588,28,fn_710000d588,unknown,unknown,O
@@ -1840,7 +1840,7 @@ address,size,name,name_source,subsystem,status
 0x710007a450,460,fn_710007a450,unknown,unknown,U
 0x710007a620,460,fn_710007a620,unknown,unknown,U
 0x710007a7f0,116,fn_710007a7f0,unknown,unknown,U
-0x710007a870,88,fn_710007a870,unknown,unknown,U
+0x710007a870,88,fn_710007a870,unknown,unknown,O
 0x710007a8d0,76,fn_710007a8d0,unknown,unknown,U
 0x710007a91c,428,fn_710007a91c,unknown,unknown,O
 0x710007aac8,384,fn_710007aac8,unknown,unknown,O
@@ -2234,7 +2234,7 @@ address,size,name,name_source,subsystem,status
 0x71000878f0,540,fn_71000878f0,unknown,engine/base?,U
 0x7100087b0c,492,fn_7100087b0c,unknown,engine/base?,U
 0x7100087cf8,208,fn_7100087cf8,unknown,engine/base?,O
-0x7100087dc8,20,fn_7100087dc8,unknown,engine/base?,U
+0x7100087dc8,20,fn_7100087dc8,unknown,engine/base?,O
 0x7100087ddc,240,fn_7100087ddc,unknown,engine/base?,U
 0x7100087ecc,244,fn_7100087ecc,unknown,engine/base?,U
 0x7100087fc0,256,fn_7100087fc0,unknown,engine/base?,U
@@ -2529,7 +2529,7 @@ address,size,name,name_source,subsystem,status
 0x7100096100,244,base::reflection::CClass::refl_GetClass,reflection,engine/reflection,O
 0x71000961f4,476,fn_71000961f4,unknown,engine/reflection?,U
 0x71000963d0,340,base::reflection::CClass::refl_InitClass,reflection,engine/reflection,O
-0x7100096524,224,fn_7100096524,unknown,engine/reflection?,U
+0x7100096524,224,fn_7100096524,unknown,engine/reflection?,O
 0x7100096604,452,fn_7100096604,unknown,engine/reflection?,U
 0x71000967c8,36,fn_71000967c8,unknown,engine/reflection?,O
 0x71000967ec,148,fn_71000967ec,unknown,engine/reflection?,U
