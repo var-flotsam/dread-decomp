@@ -3,7 +3,7 @@
 // manager keeps its shots (0x290 bytes each) and effects (0xfc bytes each) in vectors, draws up to
 // 125 shots of each type and variant through render instances it creates on demand, and hides last
 // frame's instances first. The names and layouts are placeholders.
-// Holds fn_7100ed6c08 (the update).
+// Holds fn_7100ed6c08 (the update) and fn_7100ed5a04 (the shots' audio presets).
 #include <new>
 
 #include "base/UnkMatrix44.h"
@@ -259,4 +259,133 @@ void fn_7100ed5f2c(UnkShotIdRecordSet* self) {
                       reinterpret_cast<UnkStrIdPathResource*>(&tmp));
         fn_7100026f70(reinterpret_cast<UnkIdPair*>(&tmp));
     }
+}
+
+// ---- fn_7100ed5a04: the shots' audio presets ----
+
+#include "../game_aca57c/UnkBufferString.h"
+#include "base/UnkHashStream.h"
+#include "base/global/CRntFile.h"
+#include "base/global/CRntString.h"
+#include "base/global/CRntStringAssign.h"
+#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkReflCast.h"
+#include "base/reflection/UnkReflObjectRead.h"
+#include "base/reflection/UnkReflValue.h"
+
+// The file reader (as src/game/sound/UnkMusicPresets.cpp spells it).
+struct UnkStrPair_0x10 {
+    void* a;
+    void* b;
+};
+void fn_710008d2ec(UnkStrPair_0x10* self, const base::global::CFilePathStrId* path);
+struct UnkFileReader {
+    base::global::CRntFile file;
+    u32 field_0x38;
+    u32 field_0x3c;
+};
+bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base::global::CRntString* mode);
+void fn_710000ccd8(UnkFileReader* self);
+void fn_710000f750(UnkParseContext* self, void* root);
+extern UnkParseCallbacks g_unk_71729da548 __attribute__((visibility("hidden")));  // this unit's callbacks
+extern base::reflection::CType g_unk_7172756e50;
+extern u8 g_unk_7172757530[];
+
+// The shot kinds (15) and the presets of each kind (8), as indices.
+extern const u32 g_unk_710164bec0[15];
+extern const u32 g_unk_710164befc[8];
+
+// A path string's ids (src/game/GUI/CIngameMenu/fn_7100b2de48.cpp declares the builder so).
+struct UnkPathIds;
+struct UnkInlineString;
+void fn_710001f074(UnkPathIds* out, const UnkInlineString* path);
+
+using UnkPresetText = UnkBufferString<0x100, g_unk_7101a194b8>;
+
+// Finds a character backwards from `start` (from the end when negative); -1 when absent.
+s32 fn_710007fb10(const base::global::CRntString* self, char c, s32 start);
+
+// The ids the builder fills in place (released with the scope).
+union UnkBuiltPathIds {
+    UnkStrIdPathPair ids;
+    UnkBuiltPathIds() {}
+    ~UnkBuiltPathIds() { ids.~UnkStrIdPathPair(); }
+};
+
+// The managers' preset names (string ids at +0x308, by kind and preset) and the resolved presets
+// (+0x6c8, 0x18 bytes each).
+struct UnkShotPresets {
+    u8 pad_0x0[0x308];
+    base::global::CStrId names[15][8];
+    u8 pad_0x6c8_fill[0x6c8 - 0x308 - sizeof(base::global::CStrId) * 15 * 8];
+    UnkStrIdPathResource presets[15][8];
+};
+static_assert(__builtin_offsetof(UnkShotPresets, presets) == 0x6c8, "UnkShotPresets placeholder layout");
+
+// Reads system/snd/shotpresetdef.brspd and resolves every shot preset's audio preset: the part of
+// its name before the last '.', as "audiopreset:<name>".
+// NON_MATCHING(major): written from the original's behaviour, not compared instruction by instruction.
+void fn_7100ed5a04(UnkShotPresets* self) {
+    for (u32 k = 0; k < 15; ++k)
+        for (u32 j = 0; j < 8; ++j)
+            fn_7100027044(&self->presets[g_unk_710164bec0[k]][j]);
+    base::global::CFilePathStrId path("system/snd/shotpresetdef.brspd", true);
+    UnkFileReader reader;
+    {
+        UnkStrPair_0x10 s;
+        fn_710008d2ec(&s, &path);
+        fn_710007be8c(&reader.file, 0x16, nullptr);
+        reader.field_0x38 = 3;
+        reader.field_0x3c = 2;
+        bool opened;
+        {
+            base::global::CRntString mode("rb");
+            opened = fn_710007c1ac(&reader, &s, &mode);
+        }
+        if (opened)
+            fn_710000ccd8(&reader);
+        fn_710008d8e8(reinterpret_cast<UnkStrIdPathPair*>(&s));
+    }
+    UnkReadTarget target;
+    {
+        base::reflection::UnkReflValue value;
+        value.field_0x0 = nullptr;
+        value.type = nullptr;
+        value.kind = 2;
+        fn_71000a18d4(&value, &g_unk_7172756e50, g_unk_7172757530, true);
+        fn_71000f0568(&target, &value, 5);
+        fn_71000a1c60(&value);
+    }
+    if (reader.file.position < reader.file.size && reader.field_0x38 == 0) {
+        UnkParseContext ctx(g_unk_71729da548, &reader, &target);
+        UnkReadEntry* end = target.entries + target.count;
+        fn_710000f750(&ctx, target.count ? end[-1].field_0x0->field_0x10 : nullptr);
+    }
+    for (u32 k = 0; k < 15; ++k) {
+        u32 kind = g_unk_710164bec0[k];
+        for (u32 j = 0; j < 8; ++j) {
+            u32 preset = g_unk_710164befc[j];
+            const base::global::CStrId& name = self->names[kind][preset];
+            s32 dot = fn_710007fb10(&base::reflection::refl_RntStringOf(name), '.', -1);
+            if (dot <= 0)
+                continue;
+            UnkPresetText text("audiopreset:");
+            {
+                UnkPresetText stem;
+                fn_710007e7f8(stem.Str(), base::reflection::refl_RntStringOf(name).data, dot);
+                fn_710007f3b4(text.Str(), stem.Str());
+            }
+            UnkBuiltPathIds built;
+            fn_710001f074(reinterpret_cast<UnkPathIds*>(&built.ids), reinterpret_cast<const UnkInlineString*>(&text));
+            fn_71000267f8(&self->presets[kind][preset], built.ids);
+        }
+    }
+    for (u64 i = 0; i < target.count; ++i) {
+        UnkReadEntry& e = target.entries[i];
+        if (e.ops) {
+            e.ops->destroy(e.storage);
+            e.ops = nullptr;
+        }
+    }
+    fn_710007c0e4(&reader.file);
 }

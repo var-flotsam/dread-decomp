@@ -1,7 +1,7 @@
 // From unit 2557 of tools/tu_map.py (0x7100e0f028-0x7100e140c0, no reflected class; it reflects the
 // ELoadingScreen enum and names "LoadingScreen", "LoadinScreenTip%d" and the loading animations):
 // the loading screen. Names and layouts are placeholders.
-// Holds fn_7100e10aac (closes the loading screen).
+// Holds fn_7100e10aac (closes the loading screen) and fn_7100e0fc00 (the tips' labels).
 #include "base/UnkVector.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkRenderManager.h"
@@ -269,4 +269,106 @@ void fn_7100e13928(void* set_, void* model_, UnkSceneObj_71010e2278** out, const
     }
     if (out)
         *out = reinterpret_cast<UnkSceneObj_71010e2278*>(obj);
+}
+
+// ---- fn_7100e0fc00: the loading screen's tip labels ----
+
+#include <stdio.h>
+
+#include "base/math/CVector.h"
+#include "../game_s7/UnkGuiS7.h"
+#include "game/UnkGuiDisplayObject.h"
+#include "game/UnkGuiLabel.h"
+
+// A GUI::CLabel's constructor and the setters the headers above leave out (as
+// src/game/CScenario.cpp declares them).
+struct UnkStruct_71011ebdb4;
+void fn_71011ebdb4(UnkStruct_71011ebdb4* self);
+bool fn_71011ceac0(UnkGuiDisplayObject* self);
+bool fn_71011ceb34(UnkGuiDisplayObject* self);
+void fn_71011b5598(UnkGuiRoot* root, UnkGuiDisplayObject* object);
+void fn_71011eec50(UnkGuiDisplayObject* label, f32 scale);
+void fn_71011ed150(UnkGuiDisplayObject* label, const CStrId& font);
+
+// The label's members set here.
+struct UnkTipLabelView {
+    u8 pad_0x0[0x130];
+    CStrId name;
+    u32 field_0x138;
+    u32 color;  // 0x13c
+    u8 pad_0x140[0x44];
+    bool field_0x184;
+    u8 pad_0x185;
+    bool field_0x186;
+    bool field_0x187;
+    bool field_0x188;
+};
+static_assert(__builtin_offsetof(UnkTipLabelView, field_0x188) == 0x188, "UnkTipLabelView placeholder layout");
+
+// A label named `name`, handed to the root when it is to be shown.
+__attribute__((always_inline)) static inline UnkGuiDisplayObject* NewLabel(UnkGuiRoot* root, const char* name) {
+    CStrId id(name, true);
+    auto* label = static_cast<UnkGuiDisplayObject*>(fn_71000839a0(0x340, 0xc));
+    fn_71011ebdb4(reinterpret_cast<UnkStruct_71011ebdb4*>(label));
+    if (label) {
+        label->vf_0x18();
+        auto* v = reinterpret_cast<UnkTipLabelView*>(label);
+        v->name = id;
+        if (!v->field_0x187 &&
+            (v->field_0x188 || v->field_0x184 ||
+             (fn_71011cde14(label)->field_0x3c && (fn_71011ceac0(label) || fn_71011ceb34(label)))))
+            fn_71011b5598(root, label);
+    }
+    return label;
+}
+
+// Sets a tip label up: hidden, in `font`, aligned by `align`, at (0.05, -0.007), white.
+__attribute__((always_inline)) static inline void SetUp(UnkGuiDisplayObject* label, const char* font, u32 align, u32 v_mode) {
+    fn_71011cdce8(label, true);
+    fn_71011cdc30(label, true);
+    fn_71011d0088(label, false);
+    fn_71011eec50(label, 0.9f);
+    {
+        CStrId f(font, true);
+        fn_71011ed150(label, f);
+    }
+    fn_71011ed018(label, 0);
+    fn_71011ed084(label, align);
+    fn_71011cde44(label, 3);
+    base::math::CVector2D pos;
+    pos.x = 0.05f;
+    pos.y = -0.007f;
+    fn_71011cde64(label, &pos, 1, v_mode);
+    const f32 white[4] = {1.0f, 1.0f, 1.0f, 1.0f};
+    fn_71011cfc24(label, *reinterpret_cast<const unk_gui::UnkColor*>(white), 1);
+    auto* v = reinterpret_cast<UnkTipLabelView*>(label);
+    v->color = 0xffff3cb1;
+    v->field_0x186 = true;
+}
+
+// The tips' labels at +0x30 (three words each: the tip and its help, then a word not set here).
+struct UnkLoadingTips {
+    u8 pad_0x0[0x30];
+    struct {
+        UnkGuiDisplayObject* tip;
+        UnkGuiDisplayObject* help;
+        u64 field_0x10;
+    } tips[16];
+};
+
+// Creates the 16 tips' labels ("LoadinScreenTip%d" in digital_medium, and "LoadinScreenTipHelp%d"
+// in digital_small, right-aligned).
+// NON_MATCHING(major): written from the original's behaviour, not compared instruction by instruction.
+void fn_7100e0fc00(UnkLoadingTips* self) {
+    char name[64];
+    for (u32 i = 0; i < 16; ++i) {
+        sprintf(name, "LoadinScreenTip%d", i);
+        self->tips[i].tip = NewLabel(g_unk_717271e8f8, name);
+        SetUp(self->tips[i].tip, "digital_medium", 0, 1);
+        fn_71011cdce8(self->tips[i].tip, false);
+        fn_71011cdc30(self->tips[i].tip, false);
+        sprintf(name, "LoadinScreenTipHelp%d", i);
+        self->tips[i].help = NewLabel(g_unk_717271e8f8, name);
+        SetUp(self->tips[i].help, "digital_small", 2, 3);
+    }
 }
