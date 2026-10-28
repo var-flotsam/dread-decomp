@@ -1655,6 +1655,23 @@ class Lifter:
                 return False
             s.lanes[100 + n] = s.lanes[100 + n][:2] + s.lanes[100 + src][:2]
             return True
+        if m in ("ldr", "ldur", "ldp") and mem and not x.writeback \
+                and (g := re.fullmatch(r"q(\d+), (?:q(\d+), )?\[.*", op)) and (m == "ldp") == bool(g.group(2)):
+            # A whole q register (or a pair) loaded: its four 32-bit lanes, as f32 values (copied
+            # bit for bit; a store of them is the copy, a lane operation reads them)
+            a = self.temp_ptr(self.address(x, mem[0]))
+            for k, r in enumerate(v for v in g.groups() if v is not None):
+                lanes = [self.bind("f32", f"*(f32*)({a} + {16 * k + 4 * i})") for i in range(4)]
+                self.write(f"s{r}", lanes[0], "f32")
+                s.lanes[100 + int(r)] = lanes
+            return True
+        if m == "stp" and mem and not x.writeback and (g := re.fullmatch(r"q(\d+), q(\d+), \[.*", op)):
+            pair = [s.lanes.get(100 + int(r)) for r in g.groups()]
+            if any(v is None or None in v for v in pair):
+                return False
+            a = self.temp_ptr(self.address(x, mem[0]))
+            self.line(" ".join(f"*(f32*)({a} + {4 * i}) = {v};" for i, v in enumerate(pair[0] + pair[1])))
+            return True
         if m in ("str", "stur") and mem and not x.writeback and (g := re.fullmatch(r"([qd])(\d+), \[.*", op)):
             n, k = int(g.group(2)), 4 if g.group(1) == "q" else 2
             lanes = s.lanes.get(100 + n)

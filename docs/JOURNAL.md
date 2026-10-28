@@ -143,6 +143,10 @@ From the trace run's refusals (`lifted_trace1`, 6,007 of 6,070 accepted):
   which reuses x19 as a loop counter after the call: `result_copies` is now a forward dataflow per
   instruction (entry {x8}; a `mov` from a holder adds, any other write or a call's clobber drops; the
   meet is the intersection), and a label keeps the set that reaches it.
+- **A whole q register loaded** (`7101205f54`, `ldp q1, q2, [x1]`): semantic mode had no q load at all.
+  `ldr`/`ldur`/`ldp` of q registers now give their four 32-bit lanes as f32 values (State.lanes, as
+  `ld1` builds them), so the existing `str q` and a new `stp q` store them back bit for bit and the lane
+  operations read them.
 - **The oracle and a struct copy's padding** (`71000ed2b8`, `71000ed608`, `71000ed758`): the original
   copies padding it never wrote, the lift the fields alone. pcode_emu now marks bytes loaded from never-
   written stack as undefined through copies, and compare() leaves out the bytes stored from them.
