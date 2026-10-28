@@ -159,6 +159,13 @@ three x0 ones, the stack arguments the 7 below. Oracle rejections go from 25 to 
   stack arguments (from before the fix above), 75 oracle rejections, 58 inconclusive, 50
   undecodable. `--slice boot` stays the default and the progress figure; `pointers` is an upper
   bound (a vtable taken is not a method called).
+- **Instructions semantic mode now lifts**, from the forms the pointer-reached rejects stop at (one
+  per function): LLVM's trap word `0xe7ffdefe` (unallocated, so capstone stopped: 49 four-byte stubs
+  and one function's last word) as `__builtin_trap()`; a GOT load whose slot names a symbol rather
+  than a RELATIVE address (`fn_71000f7800`, the boot's next trap, and `710006f390`), as the module's
+  own definition or the import by name; `fmov s, w` of an inf or NaN constant; `movi v<n>.2d, #0`;
+  `rev`; `ldpsw`. Still refused: `ldr b/h` not followed by a conversion (13), `adr` (9, local code
+  addresses), `stp q` (7, variadic saves), far `cbz` (2), `ld1` lane loads (1).
 - Tool tests: `tools/tests/test_abi_facts.py` (result_main on hand-assembled callers) and
   `tools/tests/test_pcode_emu.py` (the per-run limits in `compare`), `tools/tests/test_port_lift.py`
   (`pointed_to`). `progress.py --handoff` now writes LF on Windows too (it wrote CRLF, a whole-file diff).

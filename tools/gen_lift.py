@@ -91,6 +91,17 @@ VARIANTS = [(n, mode) for n in range(3) for mode in ("value", "void", "ref")]
 STACK_LAYOUTS = [("gap", 16), ("gap", 8), ("tight", 8)]
 
 CS = capstone.Cs(capstone.CS_ARCH_ARM64, capstone.CS_MODE_ARM)
+TRAP_WORD = 0xE7FFDEFE  # LLVM's trap (__builtin_trap, unreachable code): unallocated in A64, capstone stops at it
+BRK = 0xD4200000        # brk #0, which semantic mode decodes it as (Lifter.step: __builtin_trap())
+
+
+def decode(code: bytes, addr: int, semantic: bool) -> list:
+    """The instructions of `code`; semantic mode reads the trap word as a brk."""
+    if semantic and len(code) % 4 == 0:
+        words = struct.unpack(f"<{len(code) // 4}I", code)
+        if TRAP_WORD in words:
+            code = struct.pack(f"<{len(words)}I", *(BRK if w == TRAP_WORD else w for w in words))
+    return list(CS.disasm(code, addr))
 CS.detail = True
 
 LOADS = {"ldr": None, "ldrb": "u8", "ldrh": "u16", "ldrsb": "s8", "ldrsh": "s16", "ldrsw": "s32",
@@ -1137,7 +1148,7 @@ class Lifter:
     def lift(self) -> tuple[str, set[str]] | None:
         orig, addr = self.orig, self.addr
         code = orig.function(addr)
-        ins = self.ins = list(CS.disasm(code, addr))
+        ins = self.ins = decode(code, addr, "semantic" in self.opts)
         if not ins or len(ins) * 4 != len(code):
             return self.fail("undecodable instruction")
         end = addr + len(code)
@@ -1491,6 +1502,16 @@ class Lifter:
             self.write(f"s{n}", f"(f32)*({t}*){self.address(x, mem[0])}", "f32")
             self.gskip.add(nx.address)
             return True
+        if m == "rev" and len(regs) == 2 and regs[0][0] == regs[1][0] and regs[0][0] in "xw":
+            t = width_type(regs[0])
+            v, _ = self.read(regs[1])
+            self.write(regs[0], f"({t})__builtin_bswap{32 if t == 'u32' else 64}(({t})(u64)({v}))", t)
+            return True
+        if m == "ldpsw" and mem and len(regs) == 2 and not x.writeback and all(r[0] == "x" for r in regs):
+            a = self.temp_ptr(self.address(x, mem[0]))
+            for k, r in enumerate(regs):
+                self.write(r, f"(u64)(s64)*(s32*)({a} + {4 * k})", "u64")
+            return True
         if m in ("ldursb", "ldursh", "ldursw") and mem and regs and regs[0][0] in "xw":
             t = {"ldursb": "s8", "ldursh": "s16", "ldursw": "s32"}[m]
             dest = width_type(regs[0])
@@ -1628,6 +1649,17 @@ class Lifter:
             rt = regname(o[0].reg)
             if r is not None:
                 target = self.orig.img.pointer(slot - BASE)
+                if target is None and "semantic" in self.opts and rt[0] == "x":
+                    # A symbol's slot (GLOB_DAT/ABS64): the module's own definition, else the import by name.
+                    a, name = self.orig.got_slot(slot)
+                    if a is not None:
+                        self.write(rt, self.global_ref(a, True), "char*")
+                        return True
+                    if name is None or not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_$.]*", name):
+                        return False
+                    self.decls.add(f'extern char lift_import_{slot:x}[] __asm__("{name}");')
+                    self.write(rt, f"(char*)lift_import_{slot:x}", "char*")
+                    return True
                 if target is None or rt[0] != "x":
                     return False
                 self.write(rt, self.global_ref(BASE + target, True), "char*")
@@ -1731,6 +1763,8 @@ class Lifter:
                 n = self.key(src)
                 if n in s.consts:
                     lit = float_literal(s.consts[n], t)
+                    if lit is None and "semantic" in self.opts:  # inf or NaN: its bits
+                        lit = f"lift_{t}(({width_type(src)}){s.consts[n] & (0xFFFFFFFF if t == 'f32' else 0xFFFFFFFFFFFFFFFF):#x})"
                     if lit is None:
                         return False
                     self.write(rd, lit, t)
@@ -1741,6 +1775,10 @@ class Lifter:
                 return False
         elif m == "movi" and len(o) == 2 and ftype(regname(o[0].reg)) == "f64" and o[1].imm == 0:
             self.write(regname(o[0].reg), "0.0", "f64", 0)
+        elif m == "movi" and len(o) == 2 and "semantic" in self.opts and o[1].type == arm64.ARM64_OP_IMM \
+                and o[1].imm == 0 and re.fullmatch(r"v\d+", regname(o[0].reg)) and x.op_str.endswith(".2d, #0000000000000000"):
+            # The whole vector register zeroed: as its d<n> (a later q<n> use is refused there).
+            self.write(f"d{regname(o[0].reg)[1:]}", "0.0", "f64", 0)
         elif (m in FBINARY and len(o) == 3) or (m in FUNARY and len(o) == 2) or (m in FTERNARY and len(o) == 4):
             rd = regname(o[0].reg)
             t = ftype(rd)
@@ -1954,6 +1992,8 @@ class Lifter:
         elif m in ("tbz", "tbnz") and self.branch_ok(x.address, o[2].imm, last):
             v, _ = self.read(regname(o[0].reg))
             self.open_if(f"((u64)({v}) >> {o[1].imm} & 1) {'!=' if m == 'tbz' else '=='} 0", o[2].imm)
+        elif m == "brk" and "semantic" in self.opts:
+            self.terminate("noret", "__builtin_trap()")
         elif m == "bl" and x.address == last:
             # Code ends with a call, so the callee doesn't return (declared [[noreturn]]).
             fn = f"fn_{o[0].imm:x}"
@@ -2290,7 +2330,7 @@ class FlatLifter(Lifter):
     def lift(self) -> tuple[str, set[str]] | None:
         orig, addr = self.orig, self.addr
         code = orig.function(addr)
-        ins = self.ins = list(CS.disasm(code, addr))
+        ins = self.ins = decode(code, addr, "semantic" in self.opts)
         if not ins or len(ins) * 4 != len(code):
             return self.fail("undecodable instruction")
         end = addr + len(code)
@@ -2375,7 +2415,7 @@ class FlatLifter(Lifter):
         except Unsupported as e:
             return self.unsupported(e)
         self.pos = len(ins)
-        if ins[-1].mnemonic not in ("ret", "b", "br", "bl"):
+        if ins[-1].mnemonic not in ("ret", "b", "br", "bl") and not (ins[-1].mnemonic == "brk" and "semantic" in self.opts):
             return self.fail("falls off the end")
         # Declarations go first: gotos must not jump over initialisations.
         pre = []
