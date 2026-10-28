@@ -459,6 +459,7 @@ python tools/boot_distance.py --version 2.1.0
 python tools/boot_distance.py --version 2.1.0 --expect fn_7100015c70
 python tools/boot_distance.py --version 2.1.0 --no-build --timeout 300   # rerun the boot only
 python tools/boot_distance.py --version 2.1.0 --no-lifted --out build/boot_nolift
+python tools/boot_distance.py --version 2.1.0 --nvn   # with the NVN shim, in the Vulkan image (lavapipe)
 ```
 
 ### `tools/nvn_procs.py`
