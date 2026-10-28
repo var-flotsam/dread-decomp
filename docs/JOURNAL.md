@@ -55,6 +55,7 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - Semantic mode and its P-code oracle; four flat-mode bugs byte identity hid; the oracle's reach (mutation test): [port M1 step 3](#session-log-newest-first).
 - Parallel agents in one checkout: file-disjoint steps, `trymatch.py --obj-dir`, one `check.py` at the end: [sixteenth session](#session-log-newest-first).
 - Byte-mode argument pass-through (a lift names the registers its callee reads and it still holds); capstone 5.0.7's wrong register access for `cmp`/`tst` and shift/extend aliases: [lifter pass-through](#session-log-newest-first).
+- The P-code oracle's inputs and rules: mutations placed where a word was read, a compare-constant sweep, out-parameter bounds, runs cut off, unknown callees; each rule's measured trade-off: [lifter oracle inputs](#session-log-newest-first).
 
 **Declarations and calling conventions**
 - A caller declared with fewer parameters can rely on an argument register the caller left set (six callers of `fn_7100216978` passed the vector in `x1` unawares); declaring the real signature keeps the bytes: [sixteenth session](#session-log-newest-first).
@@ -103,6 +104,94 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - Function-local statics of header-inline functions are weak symbols in the executable on the port, while lifted code uses the image's: a split object unless the symbol is bound to the image address: same entry.
 
 ## Session log (newest first)
+
+**Lifter: the oracle's inputs (2026-10-27, branch `claude/lifter-oracle-inputs`).** The first
+oracle ran six seeds per function and accepted a lift when every conclusive run agreed. Its reach
+was measured with `--mutants`, one-point faults planted in accepted lifts: on 300 boot-slice
+functions it caught 46% of them. This round gives it more inputs, fixes what a triage of the boot
+slice's rejected and inconclusive lifts found (36 of 40 were oracle artifacts, 4 lifter bugs), and
+fixes what two review workflows over the diff found. Every review finding was checked by two
+skeptics, and where a fix trades soundness for false rejects, the variants were measured.
+- **Mutations.** After the seeds, `Oracle.originals` changes one input at a time and keeps the run
+  when it reaches an instruction no run reached before. The input is an argument register, the
+  result of one of the first 16 calls (`("c", n)` overrides) or a memory word the run read. The
+  value comes from `mutation_values`: the function's own constants and their neighbours, 0, -1,
+  boundaries and pointers. The value is placed where the run read the word, so a 32-bit field in
+  the upper half of its 8-byte word can change. Before the random search, a sweep sets each of the
+  first 8 words read to each constant the function compares with. A thread loop like `while (state
+  != 3)` (the pointer root `fn_71000666b0`) had run into the event cap on every input. The search
+  stops after 64 tries, or 24 tries in a row that find nothing (`--no-fuzz` turns both off; the
+  manifest records `fuzz`). Guard words, relocated words
+  (the GOT), read-only data and text are never mutated. The lift reads its own GOT and folds jump
+  tables into a switch, so mutating them sent only the original elsewhere and rejected correct
+  lifts (`fn_71001604e0` and `fn_7100d8ced8` are accepted now).
+- **Out-parameters.** A pointer to a local passed to a call gets a pattern written through it.
+  The pattern stops at the saved return address (`frame_record`), at callee-saved save slots and
+  at the next local whose address the code takes, and the lift's run follows the original's
+  choice of arguments and extents (`call_log`, `guide`). An object passed on the stack is
+  compared up to the next address the original took that the lift did not take at the same
+  offset, so a field's address passed earlier (`&s.name`) no longer ends the comparison.
+- **Unknown callees** (imports outside the modelled C library, cycle-closers, indirect targets)
+  are compared on x0, on what the call's block set, and on `x8` when it holds a local. A register
+  written before a conditional branch is not compared, since it may be the other path's. Without
+  that rule the boot slice rejects 2 correct lifts, e.g. `fn_7101059794`, whose vtable getters
+  see the previous iteration's float temporaries. An unconditional `b` and a tail call's own
+  branch keep what was written.
+- **Runs that end early.** A run is cut off after 60,000 steps, 256 events or 2 MB of memory
+  snapshots, and `Machine.cut` records which. One boot-slice function had made a worker reach
+  23 GB; kept runs now drop their pages. The comparison rules are:
+  - both runs cut off: the input decides nothing. On the review's example, a 300-call loop against
+    a 280-call one had agreed at the event cap;
+  - one run cut off: what both recorded must agree. Memory the cut-off run wrote that the other
+    run had not written by its next call or return is a difference (addresses only; not after a
+    fault, nor after a modelled `memset` clipped at 64 KiB);
+  - a lift that runs out of steps where the original ended within a twentieth of them fails;
+  - an original that faults is compared up to its fault, whatever the lift did; a lift cut off
+    before that point is skipped;
+  - a lift that reads the caller's frame beyond the original's stack arguments, or returns
+    outside where the original returned, fails;
+  - a skip names its reason, and an inconclusive verdict shows it.
+- **Lifter fixes** (semantic mode):
+  - an indirect call given a local in `x8` builds its result there (a placement new through the
+    pointer), but only when `x8` is exactly a local's address, not read since, and set on both
+    paths of a join;
+  - an indirect call after a store to `[sp]` is refused. That store is a stack argument, which an
+    indirect callee's lift would drop; 7 lifts on the boot slice had been accepted that way;
+  - flat mode refuses a caller-saved register read after a call before it is written (`x1` of a
+    16-byte result).
+- **Left as they are, measured:**
+  - writing the out-parameter pattern up to the save slots instead of the next taken address
+    rejects a correct lift: the lift's save slots sit elsewhere;
+  - relocated `.data` words both runs read stay unmutated (a narrower rule needs the GOT's range).
+- **Measured** on the 300 boot-slice functions of the first test (`--only` that list, `--mutants
+  300`):
+  - seeds only (`--no-fuzz`): 291 accepted, median coverage 77% of the original's instructions,
+    80 functions run completely, 46% of one-point faults caught (77% on functions run completely);
+  - with mutations, before the review fixes: 292 accepted, 86%, 104 complete, 51% (78%);
+  - final, on the 288 still `U`: 282 accepted of 283 compiled, 85%, 96 complete, 51 below half,
+    53% (78%).
+
+  On the same 288 functions the review fixes moved coverage from 85% to 83% (mutated GOT slots
+  had reached paths the program cannot take), and the sweep and the placed values brought it back
+  to 85%.
+- **The fresh `build/port/lifted`** (`port_lift.py --version 2.1.0`, the boot slice and the
+  overrides; 10 minutes with warm caches): 2,229 of 2,329 accepted (1.16 MB).
+  - On the slice, 2,134 of the 2,220 functions without a source are accepted (1.15 MB of
+    1.26 MB). Every run-time root, graphics function and pointer root is either accepted or
+    defined in `src/`.
+  - Of the 86 left:
+    - 35 read a caller-saved register after a call (16-byte results);
+    - 23 are inconclusive: 15 crash on every input before anything is compared, 7 loop past the
+      step limit on every input, 1 reads its caller's frame;
+    - 10 read a register before writing it;
+    - 7 make an indirect call with stack arguments;
+    - 6 are rejected and 5 hit other lifter gaps.
+  - Against the set built before the review rounds (2,247), 19 functions that had been accepted
+    are not:
+    - 7 dropped stack arguments;
+    - 12 had agreed only on runs cut off (7) or on inputs the original crashed on (5).
+  - Overrides: 95 of 103 accepted. All 8 others differ at a call's float argument.
+  - Median coverage is 85%.
 
 **Port M1: semantic lifts override byte-identical ones in the link (2026-10-27, branch
 `claude/port-lift-overrides`).** The lifter session's pass-through fix marks a semantic lift
