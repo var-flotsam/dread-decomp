@@ -326,6 +326,11 @@ def float_widths(ins, semantic: bool = False) -> dict[int, str]:
     w: dict[int, str] = {}
     if semantic:
         ins = [x for x in ins if not is_frame(x)]  # (semantic mode: saves of d8-d15 are not uses)
+        # (and a register built lane by lane is stored whole, not read at d or q: Lifter.lane_step)
+        lanes = {m.group(1) for x in ins if x.mnemonic in ("ld1", "mov")
+                 and (m := re.match(r"\{?v(\d+)\.s\}?\[[0-3]\], ", x.op_str))}
+        ins = [x for x in ins if not (x.mnemonic in ("str", "stur") and re.match(r"[qd](\d+), ", x.op_str)
+                                      and re.match(r"[qd](\d+), ", x.op_str).group(1) in lanes)]
     for x in ins:
         if x.mnemonic == "fmov" and any(op.type == arm64.ARM64_OP_FP for op in x.operands):
             continue  # (capstone counts fmov's immediate destination as read)
@@ -382,12 +387,14 @@ class State:
         self.retk: int | None = None               # the last written of x0 (0) and s0/d0 (100)
         self.fcall: tuple | None = None            # the last call, while its result may be a float
         self.x8w = False                           # x8 set to a local since the last call (semantic mode)
+        self.lanes: dict[int, list] = {}           # semantic mode: 100 + n -> v<n>'s four 32-bit lanes (f32 values or None)
 
     def copy(self) -> "State":
         s = State()
         s.vals, s.pages, s.consts = dict(self.vals), dict(self.pages), dict(self.consts)
         s.poison, s.called, s.written, s.cmp = set(self.poison), self.called, set(self.written), self.cmp
         s.retk, s.fcall, s.x8w = self.retk, self.fcall, self.x8w
+        s.lanes = {n: list(v) for n, v in self.lanes.items()}
         return s
 
 
@@ -532,6 +539,7 @@ class Lifter:
         var = f"r{len(self.body)}_{n}"
         self.line(f"{t} {var} = {e};")
         s = self.s
+        s.lanes.pop(n, None)
         if n in (0, 100):
             s.retk = n
         if n == 100:
@@ -591,6 +599,7 @@ class Lifter:
         m.cmp = None
         m.fcall = None  # lines are inserted below: recorded line numbers would move
         m.x8w = a.x8w and c.x8w
+        m.lanes = {}  # (vector lanes are not merged: a later lane use is refused)
         m.retk = a.retk if a.retk == c.retk else None
         m.poison = a.poison | c.poison
         m.pages = {n: p for n, p in a.pages.items() if c.pages.get(n) == p}
@@ -1449,6 +1458,45 @@ class Lifter:
         ct = st if signed else t
         return f"({ct})(u64)({a}) {opr} ({ct})({b})"
 
+    def lane_step(self, x, mem) -> bool:
+        """Semantic mode: a vector register built lane by lane from 32-bit floats (State.lanes) and
+        stored whole: `movi v<n>.2d, #0` or `ld1 {v<n>.s}[0], [x]`, then `ld1 {v<n>.s}[i]` and
+        `mov v<n>.s[i], v<m>.s[0]`, then `str q<n>` (four lanes) or `str d<n>` (two). Lane 0 is
+        also s<n>. Lanes not known are refused at the store. True if x was one."""
+        m, op, s = x.mnemonic, x.op_str, self.s
+        if m == "ld1" and mem and not x.writeback and (g := re.fullmatch(r"\{v(\d+)\.s\}\[([0-3])\], \[x\d+\]", op)):
+            n, i = int(g.group(1)), int(g.group(2))
+            if i and 100 + n not in s.lanes:
+                return False
+            e = f"*(f32*){self.address(x, mem[0], 4)}"
+            if i == 0:
+                lanes = s.lanes.get(100 + n, [None] * 4)
+                self.write(f"s{n}", e, "f32")
+                s.lanes[100 + n] = [self.snapshot(self.read(f"s{n}")[0], "f32")] + lanes[1:]
+            else:
+                s.lanes[100 + n][i] = self.bind("f32", e)  # (loaded here, not at the store)
+            return True
+        if m == "mov" and (g := re.fullmatch(r"v(\d+)\.s\[([0-3])\], v(\d+)\.s\[0\]", op)):
+            n, i, src = int(g.group(1)), int(g.group(2)), int(g.group(3))
+            if 100 + n not in s.lanes:
+                return False
+            v = self.snapshot(self.read(f"s{src}")[0], "f32")
+            lanes = s.lanes[100 + n]
+            if i == 0:
+                self.write(f"s{n}", v, "f32")
+            lanes[i] = v
+            s.lanes[100 + n] = lanes
+            return True
+        if m in ("str", "stur") and mem and not x.writeback and (g := re.fullmatch(r"([qd])(\d+), \[.*", op)):
+            n, k = int(g.group(2)), 4 if g.group(1) == "q" else 2
+            lanes = s.lanes.get(100 + n)
+            if lanes is None or any(v is None for v in lanes[:k]):
+                return False
+            a = self.temp_ptr(self.address(x, mem[0]))
+            self.line(" ".join(f"*(f32*)({a} + {4 * i}) = {v};" for i, v in enumerate(lanes[:k])))
+            return True
+        return False
+
     def semantic_step(self, x, mem) -> bool:
         """Instructions only semantic mode lifts (their byte-identical form is unknown or the
         lifter's shortcut for them is not exact). True if x was one."""
@@ -1502,15 +1550,7 @@ class Lifter:
             self.write(f"s{n}", f"(f32)*({t}*){self.address(x, mem[0])}", "f32")
             self.gskip.add(nx.address)
             return True
-        if m == "ld1" and mem and not x.writeback and (lane := re.fullmatch(r"\{v(\d+)\.s\}\[0\], \[x\d+\]", x.op_str)):
-            # One 32-bit lane, the first: as s<n> (a later use of the other lanes is refused there).
-            self.write(f"s{lane.group(1)}", f"*(f32*){self.address(x, mem[0], 4)}", "f32")
-            return True
-        if m in ("str", "stur") and mem and len(regs) == 1 and re.fullmatch(r"q\d+", regs[0]) \
-                and s.consts.get(100 + int(regs[0][1:])) == 0:
-            # A zeroed vector register (movi, or a write of 0 to its s/d part, which clears the rest).
-            a = self.temp_ptr(self.address(x, mem[0]))
-            self.line(f"*(u64*)({a} + 0) = 0; *(u64*)({a} + 8) = 0;")
+        if self.lane_step(x, mem):
             return True
         if m == "rev" and len(regs) == 2 and regs[0][0] == regs[1][0] and regs[0][0] in "xw":
             t = width_type(regs[0])
@@ -1787,8 +1827,9 @@ class Lifter:
             self.write(regname(o[0].reg), "0.0", "f64", 0)
         elif m == "movi" and len(o) == 2 and "semantic" in self.opts and o[1].type == arm64.ARM64_OP_IMM \
                 and o[1].imm == 0 and re.fullmatch(r"v\d+", regname(o[0].reg)) and x.op_str.endswith(".2d, #0000000000000000"):
-            # The whole vector register zeroed: as its d<n> (a later q<n> use is refused there).
+            # The whole vector register zeroed: as its d<n>, and its lanes (Lifter.lane_step).
             self.write(f"d{regname(o[0].reg)[1:]}", "0.0", "f64", 0)
+            self.s.lanes[100 + int(regname(o[0].reg)[1:])] = ["0.0f"] * 4
         elif (m in FBINARY and len(o) == 3) or (m in FUNARY and len(o) == 2) or (m in FTERNARY and len(o) == 4):
             rd = regname(o[0].reg)
             t = ftype(rd)
@@ -2291,6 +2332,7 @@ class FlatLifter(Lifter):
             self.line(f"X{n} = (u64)({e});")
         self.types[n] = t
         s = self.s
+        s.lanes.pop(n, None)
         if n in (0, 100):
             s.retk = n
         if n == 100:
@@ -2373,6 +2415,7 @@ class FlatLifter(Lifter):
                     self.s.fcall = None
                     self.clob = set()
                     self.s.x8w = False
+                    self.s.lanes = {}
                 if self.pos:
                     self.frame_reset(ins[self.pos - 1])
                 if self.frame_op(x) or self.guard_step(x):

@@ -113,6 +113,16 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Lifter: vectors built lane by lane (2026-10-28, branch `claude/project-thread-zgkpk3`, after #244).**
+The movi and ld1 rejects left after #244 build a vector from 32-bit floats and store it whole: `movi
+v3.2d, #0`, then `mov v3.s[0..2], v<m>.s[0]`, then `str q3, [sp]` (a Vector3 padded to 16 bytes, passed
+by address: `71000f3c7c`, `71000f3ce4`), and `ld1 {v0.s}[0]` then `ld1 {v0.s}[1]` from another address
+(`71000fa05c`; `fn_71000f7800` too, hand-written since). `State.lanes` keeps a register's four lanes
+(semantic mode; dropped at a join, a label and any other write), `Lifter.lane_step` reads the lane
+forms and stores `str q` (four lanes) or `str d` (two) lane by lane; `float_widths` leaves those
+stores out. Also: `port/runtime/src/heap.cpp` includes `<cstddef>` for `std::max_align_t` (the
+Linux image's clang++ with libstdc++ refused it).
+
 **Lifter: retry for cut-off runs, no float result from a void function, indirect calls with stack
 arguments (2026-10-28, branch `claude/project-thread-zgkpk3`).** Fixes from the port's current stop and
 from the hand-writing thread's reading of the 13 boot functions #236 refuses. Written in a cloud
