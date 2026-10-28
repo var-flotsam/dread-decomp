@@ -51,6 +51,7 @@ SENTINEL = 0x00007FFFDEAD0000     # the caller's return address
 NULL_PAGE = 0x10000
 PAGE = 4096
 MAX_STEPS = 60000
+SLOWER = 20                       # a lift this many times slower than an original that ended is wrong (compare)
 MAX_EVENTS = 256                  # calls recorded per run; then it ends as a time-out (checkpoint)
 MAX_SNAPSHOT = 1 << 21            # bytes of written memory copied into its events, in all; the same
 WINDOW = 64                       # bytes compared and written around a stack pointer argument
@@ -314,6 +315,8 @@ class Machine:
         self.uniq: dict[int, int] = {}
         self.pages: dict[int, bytearray] = {}
         self.dirty: dict[int, int] = {}
+        self.cut: str | None = None  # why the run ended as a time-out: steps, events or snapshot (compare)
+        self.clipped = False  # a modelled memset or memcpy stopped at 64 KiB (compare)
         self.stack_written: set[int] = set()
         self.frame_record: set[int] = set()  # stack words holding the saved return address (store)
         self.saves: set[int] = set()  # stack words holding a callee-saved register's entry value (store)
@@ -573,6 +576,8 @@ class Machine:
 
     def clib(self, name: str) -> None:
         a0, a1, a2 = self.x(0), self.x(1), self.x(2)
+        if name in ("memcpy", "memmove", "memset") and a2 > 1 << 16:
+            self.clipped = True
         if name in ("memcpy", "memmove"):
             data = [self.load(a1 + i, 1) for i in range(min(a2, 1 << 16))]
             for i, b in enumerate(data):
@@ -620,6 +625,7 @@ class Machine:
             # Each event keeps a copy of the memory written so far: a loop calling on every
             # iteration would hold thousands. The run ends here as a time-out (compare: what came
             # before must agree).
+            self.cut = self.cut or ("events" if len(self.events) >= MAX_EVENTS else "snapshot")
             self.steps = MAX_STEPS
 
     # -- execution ------------------------------------------------------------------------------
@@ -634,18 +640,18 @@ class Machine:
             while True:
                 self.steps += 1
                 if self.steps > MAX_STEPS:
-                    # (compare() takes two time-outs as agreeing on what came before: a wait loop or
-                    # a long initialisation runs the same calls and writes in both)
+                    self.cut = self.cut or "steps"  # (compare: what came before the cut must agree)
                     self.finish("time-out")
                     return
                 self.visited.add(pc)
                 w = self.code_word(pc)
                 kind, target = self.step(pc, w, BRANCH, CBRANCH, BRANCHIND, CALL, CALLIND, RETURN)
-                if ((w & 0x7C000000) == 0x14000000 and not w >> 31 or (w & 0xFF000010) == 0x54000000
-                        or (w & 0x7C000000) == 0x34000000) and (kind != "jump" or self.inside(target)):
-                    # b, b.cond, cbz/cbnz/tbz/tbnz within the function: what was written for an
-                    # unknown callee before a branch was the other path's (Machine.call's selection);
-                    # a tail call's own branch leaves its arguments as they are
+                if ((w & 0xFF000010) == 0x54000000 or (w & 0x7C000000) == 0x34000000) \
+                        and (kind != "jump" or self.inside(target)):
+                    # b.cond, cbz/cbnz/tbz/tbnz within the function: what was written for an unknown
+                    # callee before a conditional branch may be the other path's (Machine.call's
+                    # selection). An unconditional b carries what was written along its one path, and
+                    # a tail call's own branch leaves its arguments as they are.
                     for k, st in self.state.items():
                         if st == "written" and k:
                             self.state[k] = "stale"
@@ -945,10 +951,10 @@ class Verdict:
 
 
 def compare(a: Machine, b: Machine, ret: str | None) -> str:
-    """'' when two runs agree, 'skip' when the input decides nothing (the original faulted and
-    the lift did not fault there; one run ran out of steps), else the first difference. Two runs
-    that both ran out of steps agree when everything before agrees. `ret` is the lift's result
-    kind: None (not compared), 'x8', 'x16', 'x32', 'x64', 'f32', 'f64'."""
+    """'' when two runs agree, 'skip: <why>' when the input decides nothing (the original faulted
+    and the lift did not fault there; a run was cut off and nothing that was recorded differs),
+    else the first difference. `a` is the original's run. `ret` is the lift's result kind: None
+    (not compared), 'x8', 'x16', 'x32', 'x64', 'f32', 'f64'."""
     ea, eb = a.events, b.events
     end_a, end_b = (ea[-1][0] if ea else None), (eb[-1][0] if eb else None)
     if end_a == ("end", "fault") and ea != eb:
@@ -962,12 +968,13 @@ def compare(a: Machine, b: Machine, ret: str | None) -> str:
                         and ea[i][1] == eb[i][1] and all(same_arg(dict(ea[i][0][3]).get(k), dict(eb[i][0][3]).get(k))
                                                          for k, _ in ea[i][0][2]):
                     continue
+                if i == len(eb) - 1 and end_b == ("end", "time-out"):
+                    return "skip: the lift was cut off before the original's fault"
                 return f"event {i} before the original's fault"
-        return "skip"
-    # A run that ran out of steps (or of event and snapshot room) recorded a true prefix of what it
-    # does: what both recorded is compared, the time-out's own end event aside.
+        return "skip: the original faulted where the lift did not"
+    # A run cut off (Machine.cut: out of steps, events or snapshot room) recorded a true prefix of
+    # what it does: what both recorded is compared, the cut run's own end event aside.
     ta, tb = end_a == ("end", "time-out"), end_b == ("end", "time-out")
-    timed_out = ta and tb
     shared = min(len(ea) - ta, len(eb) - tb)
     for i in range(shared):
         (va, ma), (vb, mb) = ea[i], eb[i]
@@ -986,11 +993,27 @@ def compare(a: Machine, b: Machine, ret: str | None) -> str:
                 return f"event {i}: {va[0]} {va[1] if len(va) > 1 else ''} vs {vb[0]} {vb[1] if len(vb) > 1 else ''}"
         if ma != mb:
             return f"memory at event {i} ({va[0]}): {mem_diff(ma, mb)}"
-    if ta != tb or (timed_out and not shared):
-        # One run was cut off (the other may just be slower or faster), or both were before any
-        # event: nothing beyond what both recorded can be compared.
-        return "skip"
-    if len(ea) != len(eb) and not timed_out:
+    if ta and tb:
+        # Both cut off: what came after the cut was never compared (a long loop of the same calls in
+        # both, or not), so the input decides nothing.
+        return "skip: both runs were cut off"
+    if ta or tb:
+        cut, done = (a, b) if ta else (b, a)
+        # The run that ended reached its next call (or returned) at index `shared`; the cut run
+        # wrote, before it was cut, only memory an equivalent program writes before that event too.
+        # Addresses only: the cut run may hold an intermediate value. Not a fault (C lets a compiler
+        # move a store past a load that faults), nor when a modelled memset or memcpy was clipped at
+        # 64 KiB in either run.
+        if shared < len(done.events) and done.events[shared][0] != ("end", "fault") \
+                and not (cut.clipped or done.clipped):
+            extra = {k for k, _ in cut.events[-1][1]} - {k for k, _ in done.events[shared][1]}
+            if extra:
+                return f"memory written only by the {'original' if ta else 'lift'}, cut off: byte {min(extra):#x}"
+        if tb and b.cut == "steps" and end_a in (("end", "return"), ("end", "fault")) \
+                and a.steps * SLOWER <= MAX_STEPS:
+            return f"the lift ran out of steps where the original ended after {a.steps}"
+        return f"skip: the {'original' if ta else 'lift'} was cut off ({cut.cut})"
+    if len(ea) != len(eb):
         return f"{len(ea)} events vs {len(eb)}"
     if ea and ea[-1][0] == ("end", "return") and ret:
         if ret[0] == "x":

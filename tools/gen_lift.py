@@ -869,6 +869,24 @@ class Lifter:
             elif 100 <= k < 108:
                 self.read(f"{self.fwidth.get(k, 'd')}{k - 100}")
 
+    def stack_args_before(self) -> bool:
+        """A store to [sp] in the straight-line code before this instruction (back to the last
+        call or branch), with sp's own address not taken there: the first stack argument of a
+        call. An indirect callee has no facts, so its stack arguments would be dropped."""
+        for x in reversed(self.ins[:self.pos]):
+            m, o = x.mnemonic, x.operands
+            if m in ("bl", "blr", "b", "br", "ret", "cbz", "cbnz", "tbz", "tbnz") or m.startswith("b."):
+                return False
+            if m in ("mov", "add") and len(o) >= 2 and o[1].type == arm64.ARM64_OP_REG and regname(o[1].reg) == "sp" \
+                    and (len(o) == 2 or (o[2].type == arm64.ARM64_OP_IMM and o[2].imm == 0)):
+                return False  # (a local at sp, passed by its address)
+            mem = [op for op in o if op.type == arm64.ARM64_OP_MEM]
+            if m.startswith(("str", "stp", "stur")) and mem and regname(mem[0].mem.base) == "sp" \
+                    and 0 <= mem[0].mem.disp < 8 and not x.writeback \
+                    and self.cur_delta + mem[0].mem.disp not in self.save_slots:  # (not a register save)
+                return True
+        return False
+
     def callee_need(self, fn: str) -> tuple[int, int]:
         """The argument registers a direct callee reads (abi_facts), so the call names them all.
         Semantic mode does not support a callee that takes its result address in x8 or arguments
@@ -1862,6 +1880,8 @@ class Lifter:
             self.sret_call(f"fn_{o[0].imm:x}")
             self.clobber()
             self.s.written = set()
+        elif m == "blr" and "semantic" in self.opts and self.stack_args_before():
+            raise Unsupported("indirect call with stack arguments")
         elif m == "blr" and "semantic" in self.opts and self.s.x8w and regname(o[0].reg) != "x8":
             # An indirect callee given a local in x8 builds its result there (the original reads it
             # back): as sret_call, through the pointer.
@@ -2207,7 +2227,7 @@ class FlatLifter(Lifter):
                     v = None
                     if 100 in self.types and (self.s.retk == 100 or 0 not in self.types):
                         v = self.read("s0" if self.types[100] == "f32" else "d0")
-                    elif 0 in self.types:
+                    elif 0 in self.types and 0 not in self.clob:  # (x0 after an x8-result call: none)
                         v = self.read("x0")
                     self.terminate("value", v)
                 elif m == "b" and not addr <= o[0].imm < end and self.sret_callee(o[0].imm):
