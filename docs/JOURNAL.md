@@ -116,9 +116,9 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 arguments (2026-10-28, branch `claude/project-thread-zgkpk3`).** Fixes from the port's current stop and
 from the hand-writing thread's reading of the 13 boot functions #236 refuses. Written in a cloud
 session without the dump and measured on the PC: the boot slice (2,329 functions) goes from 2,266
-accepted (main's manifest) to 2,276, none lost; the retry alone gains `71001ea42c`, `passed_on` the six
+accepted (main's manifest) to 2,283, none lost; the retry alone gains `71001ea42c`, `passed_on` the six
 s0 voids (`710033187c`, `7100ee4d34`, `7100d8d854`, `7100d8db30`, `7100e10150`, `7100ee5dcc`) and the
-three x0 ones. Oracle rejections go from 25 to 17, "result s0/d0" verdicts from 10 to 3.
+three x0 ones, the stack arguments the 7 below. Oracle rejections go from 25 to 17, "result s0/d0" verdicts from 10 to 3.
 - **Long loops.** `fn_71002584a0` (2.8 KB, the function the port traps in before the bad string id)
   was inconclusive: "both runs were cut off" on every input. They were cut by events, not steps (a
   loop past `MAX_EVENTS`, 256 calls; the finished inputs end in 20-43 steps). `pcode_emu.Machine.scale`
