@@ -62,6 +62,7 @@ python tools/hubs.py --version <ver> --boot | --ready --boot | --callers <fn>   
 python tools/gen_lift.py --version <ver> --best ADDR,...   # closest lifted draft -> build/lift_best/ (hand-matching start)
 python tools/tu_map.py --function <addr|name>          # the unit a function belongs to, and its file name
 python tools/decl_check.py --base origin/main          # one declaration per shared symbol (CI)
+python -m unittest discover -s tools/tests -t .       # tool tests, no game data (CI)
 python tools/hub_migrate.py --version <ver> --plan PLAN.tsv   # mechanical header migration; .claude/skills/dread-hubs
 python tools/ghidra/decompile.py --version <ver> <addr|name>  # read Ghidra's view (never commit it)
 python tools/progress.py --slice boot [--handoff]      # progress; --handoff rewrites docs/HANDOFF.md's table

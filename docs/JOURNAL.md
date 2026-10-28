@@ -104,6 +104,23 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Development overhead: docs, CI, shared tool code (2026-10-28, branch `claude/project-thread-kzc3uy`).**
+From the owner-requested peer review, in order of time saved. The handoff (613 lines, edited by 56
+commits in ten days) is one screen: stable sections moved to `docs/reference.md`, the per-stream next
+steps to the entry below, and its status table is written by `tools/progress.py --handoff`; only the
+merging session edits it. `CLAUDE.md` keeps the rules and a dozen daily commands; every tool's usage
+is in `docs/commands.md`, generated from the docstrings by `tools/gen_commands.py` (CI checks it).
+`.gitattributes` marks generator output `linguist-generated` (GitHub collapses it; the pathspec
+`':(attr:!linguist-generated)'` drops it from local diffs). A hosted `build` workflow compiles all
+3,979 sources with Clang 9.0.1 (`tools/check.py --compile-only`, the official Linux tarball now
+pinned, about 90 s on 4 cores) and for x86-64 (`tools/port_sweep.py`, about 2 minutes), and runs
+`tools/tests` (24 unittest cases, no game data; asmdiff's tests compile a fixture). `tools/dread/`
+holds the one loader of `data/functions/` (six tools moved to it, outputs compared before and after)
+and `python -m tools <tool>` runs any script under the repository's venv. `AGENTS.md` and
+`docs/tasks/` are retired (macOS steps kept in `docs/reference.md`). Left for after the lifter and M1
+sessions land: the status column in its own file, the move of `src/game_*` files by unit, and a
+boot-distance run on the self-hosted runner.
+
 **Handoff next-steps snapshot (2026-10-28, branch `claude/project-thread-kzc3uy`).** The handoff's
 per-stream "Next steps" section as it stood on 2026-10-27, moved here verbatim when the handoff was cut
 to one screen. The handoff now keeps only the next few items per stream and links here.
