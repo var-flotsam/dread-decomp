@@ -117,10 +117,12 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 thread's reading of the 13 boot functions #236 refuses. Written in a cloud session without the dump:
 the oracle numbers below are to be measured on the PC.
 - **Long loops.** `fn_71002584a0` (2.8 KB, the function the port traps in before the bad string id)
-  was inconclusive because both runs hit `MAX_STEPS` on every input. `pcode_emu.Machine.max_steps`
-  is now per run, and `Oracle.check` reruns up to `RETRY_INPUTS` (4) inputs, original and lift, with
-  `RETRY_STEPS` (8) times the budget when no input agreed and the original was cut off by steps. Two
-  cut-off runs still decide nothing; the "lift ran out of steps" rule uses the lift's own budget.
+  was inconclusive: "both runs were cut off" on every input. They were cut by events, not steps (a
+  loop past `MAX_EVENTS`, 256 calls; the finished inputs end in 20-43 steps). `pcode_emu.Machine.scale`
+  now multiplies the step, event and snapshot limits of one run, and `Oracle.check` reruns up to
+  `RETRY_INPUTS` (4) cut-off inputs, original and lift, with `RETRY_SCALE` (8) times the limits when
+  no input agreed. Two cut-off runs still decide nothing; the "lift ran out of steps" rule uses the
+  lift's own limit.
 - **Float results that are not there.** Nine of the 13 refused functions are void (the hand-writing
   thread, from Ghidra): a float setter whose s0 is its argument, functions whose s0 at return is
   what a callee taking a float constant left, and three x0 cases. Callers' evidence made them look
