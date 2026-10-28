@@ -112,7 +112,7 @@ def update_handoff(path: Path, overall: dict, boot: dict | None) -> None:
              "|---|---|---|---|---|---|", table_row(WHOLE, overall)]
     if boot_row:
         lines.append(boot_row)
-    path.write_text(head + BEGIN + "\n" + "\n".join(lines) + "\n" + END + tail, encoding="utf-8")
+    path.write_text(head + BEGIN + "\n" + "\n".join(lines) + "\n" + END + tail, encoding="utf-8", newline="\n")
 
 
 def main() -> int:
