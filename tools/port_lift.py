@@ -402,6 +402,10 @@ class Oracle:
             try:
                 ml.run(start)
             except pcode_emu.Inconclusive as e:
+                if str(e) == "return outside" and mo.events and mo.events[-1][0] == ("end", "return"):
+                    # The original returned to its caller; the lift's return address was overwritten.
+                    self.last = (mo, ml)
+                    return "fail", f"input {seed}: the lift returns outside, the original returned", agreed, covered
                 why = why or f"lift: {e}"
                 continue
             d = pcode_emu.compare(mo, ml, ret)

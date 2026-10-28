@@ -306,13 +306,15 @@ def base_ptr(b: str) -> str:
     return "stk" if b == "stk" else f"(char*)({b})"
 
 
-def float_widths(ins) -> dict[int, str]:
+def float_widths(ins, semantic: bool = False) -> dict[int, str]:
     """The width ("s" or "d") each float register is first read with in the function (first used,
     for one only written): an incoming argument or a register only passed on to a callee takes it
     (one variable per register and width in flat mode, and no "float width" clash with a later
     use in the structured lifter). Reads, since a write may come first at the other width
     (`fcvt d0, s0`)."""
     w: dict[int, str] = {}
+    if semantic:
+        ins = [x for x in ins if not is_frame(x)]  # (semantic mode: saves of d8-d15 are not uses)
     for x in ins:
         if x.mnemonic == "fmov" and any(op.type == arm64.ARM64_OP_FP for op in x.operands):
             continue  # (capstone counts fmov's immediate destination as read)
@@ -324,7 +326,25 @@ def float_widths(ins) -> dict[int, str]:
         for op in x.operands:
             if op.type == arm64.ARM64_OP_REG and regname(op.reg)[0] in "sd" and fkey(regname(op.reg)) is not None:
                 w.setdefault(100 + fkey(regname(op.reg)), regname(op.reg)[0])
+    if semantic:
+        # (semantic mode: a register only copied whole, `mov v9.16b, v1.16b`, takes the width its
+        # copy is read with, and the other way round)
+        pairs = [(100 + int(regname(x.operands[0].reg)[1:]), 100 + int(regname(x.operands[1].reg)[1:]))
+                 for x in ins if x.mnemonic == "mov" and len(x.operands) == 2
+                 and all(op.type == arm64.ARM64_OP_REG and regname(op.reg)[0] == "v" for op in x.operands)]
+        for _ in range(4):
+            for d, s in pairs:
+                if s not in w and d in w:
+                    w[s] = w[d]
+                elif d not in w and s in w:
+                    w[d] = w[s]
     return w
+
+
+def frame_imm(op) -> int:
+    """An add/sub immediate with its shift (`sub sp, sp, #1, lsl #12`); semantic mode's frame
+    code uses it (byte mode keeps the unshifted value its matched lifts were made with)."""
+    return op.imm << (op.shift.value if op.shift.type == arm64.ARM64_SFT_LSL else 0)
 
 
 def nzcv_holds(nzcv: int, cc: int) -> bool | None:
@@ -396,6 +416,7 @@ class Lifter:
         # Byte mode with facts: plain=True lifts as before pass-through existed; passed is set when a
         # call named a register only pass-through gave it (the plain lift's text then differs).
         self.plain, self.passed = False, False
+        self.stack_params = 0  # semantic mode: 8-byte stack argument slots read (parameters st<i>)
         # Why lift() gave up (for --report), and how far it got: the instruction index, -1
         # before the first, the instruction count after the last.
         self.reason, self.pos = "", -1
@@ -436,6 +457,8 @@ class Lifter:
             return "0", width_type(r)
         n = self.key(r)
         s = self.s
+        if n in s.pages and n not in s.poison and "semantic" in self.opts and r[0] == "x":
+            return self.global_ref(s.pages[n], False), "char*"  # a bare page: its address
         if n in s.pages or n in s.poison:
             raise Unsupported("unknown value")
         if n == 100 and n not in s.vals and s.fcall:
@@ -643,6 +666,21 @@ class Lifter:
         self.decls.add(f"namespace h {{ extern HIDDEN char g_unk_{a:x}[]; }}")
         return f"(char*)h::g_unk_{a:x}"
 
+    def arg_slot(self, x, op) -> int | None:
+        """Semantic mode: the offset from the entry sp of a memory operand at or above it (the
+        caller's frame, where the arguments beyond the eight registers are), else None."""
+        if "semantic" not in self.opts or not self.frame or x.writeback or op.mem.index or op.shift.type \
+                or regname(op.mem.base) not in ("sp", "x29"):
+            return None
+        base = self.frame["sp"] if regname(op.mem.base) == "sp" else self.frame["fp"]
+        return base + op.mem.disp if base is not None and base + op.mem.disp >= 0 else None
+
+    def stack_arg(self, off: int, size: int = 1) -> str:
+        """The address `off` bytes above the entry sp: in stack argument slot st<off/8>, a
+        parameter declared after p0-p7 (signature); `size` bytes from there are read or written."""
+        self.stack_params = max(self.stack_params, (off + size - 1) // 8 + 1)
+        return f"((char*)&st{off // 8} + {off % 8})"
+
     def address(self, x, op, align: int = 1) -> str:
         """The memory operand's address; applies pre/post-index writeback to the base."""
         base_reg = regname(op.mem.base)
@@ -659,7 +697,10 @@ class Lifter:
             if x.writeback or not self.frame:
                 raise Unsupported("stack writeback")
             base = self.frame["sp"] if base_reg == "sp" else self.frame["fp"]
-            return self.local(base + op.mem.disp)
+            off = base + op.mem.disp
+            if off >= 0 and "semantic" in self.opts:
+                return self.stack_arg(off)
+            return self.local(off)
         n = self.key(base_reg)
         if n in self.s.pages:
             if x.writeback:
@@ -755,7 +796,7 @@ class Lifter:
     def has_value(self, n: int) -> bool:
         return n in self.s.vals and n not in self.s.poison
 
-    def args(self, need: tuple[int, int] = (0, 0)) -> list[tuple[str, str]]:
+    def args(self, need: tuple = (0, 0)) -> list[tuple[str, str]]:
         w = self.s.written
         n = max([k for k in w if k < 100], default=-1) + 1
         n = max(n, self.extra)
@@ -794,7 +835,15 @@ class Lifter:
                     break
                 floats.append(("(f64)0", "f64"))  # no value here: garbage in the original as well
             self.passed |= not sem
-        return ints + floats
+        # Semantic mode: arguments beyond the eight registers (callee_need's third count) are the
+        # words this function stored at [sp + 8i] for the call; C passes them after the integers.
+        stack = []
+        for i in range(need[2] if len(need) > 2 else 0):
+            at = self.cur_delta + 8 * i - self.frame["start"]
+            if not 0 <= at <= self.frame["size"] - 8:
+                raise Unsupported("stack arguments outside the frame")
+            stack.append((f"*(u64*)(stk + {at:#x})", "u64"))
+        return ints + stack + floats
 
     def ftype_of(self, n: int) -> str:
         """The C type of float register key n's current value (f32 when unknown)."""
@@ -835,7 +884,9 @@ class Lifter:
         if sem and f.sret and not getattr(self, "sret_ok", False):
             raise Unsupported("call with an indirect result (x8)")
         if sem and f.stack:
-            raise Unsupported("call with stack arguments")
+            if not self.frame:
+                raise Unsupported("call with stack arguments")
+            return 8, f.floats, f.stack_slots  # (stack arguments follow all eight integers)
         return f.ints, f.floats
 
     def sret_callee(self, a: int) -> bool:
@@ -991,7 +1042,7 @@ class Lifter:
     def lift(self) -> tuple[str, set[str]] | None:
         orig, addr = self.orig, self.addr
         code = orig.function(addr)
-        ins = list(CS.disasm(code, addr))
+        ins = self.ins = list(CS.disasm(code, addr))
         if not ins or len(ins) * 4 != len(code):
             return self.fail("undecodable instruction")
         end = addr + len(code)
@@ -999,7 +1050,7 @@ class Lifter:
         if not self.setup_frame(ins):
             return self.fail("stack frame")
         self.cur_delta = 0
-        self.fwidth = float_widths(ins)
+        self.fwidth = float_widths(ins, "semantic" in self.opts)
         try:
             self.find_guards(ins)
             if "semantic" in self.opts:
@@ -1113,11 +1164,15 @@ class Lifter:
 
     def signature(self, rtype: str, body: list[str]) -> str:
         # A parameter first read as w<n> is 32-bit (u32), otherwise a pointer.
+        stack = self.stack_params
+        if "semantic" in self.opts and self.facts is not None and (f := self.facts(self.addr)) is not None:
+            stack = max(stack, f.stack_slots)  # what every caller passes (callee_need)
         ints = [f"{self.params.get(n, 'char*')} p{n}"
-                for n in range(max([k for k in self.params if k < 100], default=-1) + 1)]
+                for n in range(max([k for k in self.params if k < 100] + [7 if stack else -1]) + 1)]
+        ints += [f"u64 st{i}" for i in range(stack)]  # stack arguments, after all eight
         floats = [f"{self.params.get(100 + n, 'f32')} f{n}"
                   for n in range(max([k - 100 for k in self.params if k >= 100], default=-1) + 1)]
-        if self.frame:
+        if self.frame and self.frame["size"]:
             f = self.frame
             body = [f"    alignas({f['align']}) char stk[{f['size']:#x}];"] + body
         return "\n".join([f"{rtype} fn_{self.addr:x}({', '.join(ints + floats)}) {{", *filter(None, body), "}"])
@@ -1136,7 +1191,7 @@ class Lifter:
         mem = [op for op in o if op.type == arm64.ARM64_OP_MEM]
         if not mem:
             if m in ("add", "sub") and regname(o[0].reg) == "sp":
-                self.cur_delta += o[2].imm if m == "add" else -o[2].imm
+                self.cur_delta += frame_imm(o[2]) if m == "add" else -frame_imm(o[2])
             return True
         if x.writeback:
             post = [op for op in o if op.type == arm64.ARM64_OP_IMM]
@@ -1147,8 +1202,9 @@ class Lifter:
         return all(at + 8 * i in self.save_slots for i in range(n))
 
     def frame_reset(self, x) -> None:
+        # (An exit before a shrink-wrapped prologue leaves sp at the entry's value.)
         if x.mnemonic in ("ret", "b", "br"):
-            self.cur_delta = self.body_delta
+            self.cur_delta = self.body_delta if self.pos > self.frame_at else 0
 
     def setup_frame(self, ins) -> bool:
         """Stack locals: the prologue gives sp and fp (offsets from sp at entry) and the save
@@ -1156,13 +1212,25 @@ class Lifter:
         lowest local ("gap"), or over just the bytes accessed ("tight")."""
         delta, fp, saves = 0, None, []
         k = 0
+        if "semantic" in self.opts:
+            # A shrink-wrapped prologue (an early check, then the frame): it starts at the first
+            # frame instruction, when nothing before it touches sp or x29; frame_op tracks sp from
+            # the entry, so the instructions before it run with the entry's sp.
+            def touches(x) -> bool:
+                return any((op.type == arm64.ARM64_OP_REG and regname(op.reg) in ("sp", "x29"))
+                           or (op.type == arm64.ARM64_OP_MEM and regname(op.mem.base) in ("sp", "x29"))
+                           for op in x.operands)
+            p = next((j for j, x in enumerate(ins[:12]) if is_frame(x)), None)
+            if p and not any(touches(x) for x in ins[:p]):
+                k = p
+        self.frame_at = k  # the prologue's first instruction (frame_reset)
         while k < len(ins) and is_frame(ins[k]):
             x = ins[k]
             m, o = x.mnemonic, x.operands
             if m == "sub" and regname(o[0].reg) == "sp":
-                delta -= o[2].imm
+                delta -= o[2].imm if "semantic" not in self.opts else frame_imm(o[2])
             elif m == "add" and regname(o[0].reg) == "x29":
-                fp = delta + o[2].imm
+                fp = delta + (o[2].imm if "semantic" not in self.opts else frame_imm(o[2]))
             elif m == "mov" and regname(o[0].reg) == "x29":
                 fp = delta
             elif m in ("stp", "str"):
@@ -1195,8 +1263,14 @@ class Lifter:
                 base = delta if regname(o[1].reg) == "sp" else fp
                 if base is None or (len(o) == 3 and o[2].type != arm64.ARM64_OP_IMM):
                     return False
-                imm = o[2].imm if len(o) == 3 else 0
+                imm = (o[2].imm if "semantic" not in self.opts else frame_imm(o[2])) if len(o) == 3 else 0
                 refs.append((base + (-imm if x.mnemonic == "sub" else imm), 1))
+        if "semantic" in self.opts and any(r[0] >= 0 for r in refs):
+            # The caller's frame (stack arguments) holds parameters, not locals (address()).
+            refs = [r for r in refs if r[0] < 0]
+            if not refs:
+                self.frame = {"sp": delta, "fp": fp, "start": 0, "size": 0, "align": 8}
+                return True
         if not refs:
             self.frame = None
             return True
@@ -1293,6 +1367,20 @@ class Lifter:
             return True
         if m == "clrex":
             self.excl = None
+            return True
+        if m in ("ldr", "ldur") and mem and len(regs) == 1 and regs[0][0] in "hb" and regs[0][1:].isdigit():
+            # `ldr h<n>|b<n>, [..]; ucvtf|scvtf s<n>, s<n>`: a u16 or u8 loaded into a float register
+            # and converted there (zero-extended, so signed and unsigned agree)
+            n, ins = regs[0][1:], self.ins
+            nx = ins[self.pos + 1] if self.pos + 1 < len(ins) else None
+            if nx is None or nx.mnemonic not in ("ucvtf", "scvtf") or len(nx.operands) != 2 \
+                    or [regname(op.reg) for op in nx.operands if op.type == arm64.ARM64_OP_REG] != [f"s{n}", f"s{n}"] \
+                    or any(op.type == arm64.ARM64_OP_IMM and op.imm == nx.address for y in ins for op in y.operands
+                           if y.mnemonic in ("b", "cbz", "cbnz", "tbz", "tbnz") or y.mnemonic.startswith("b.")):
+                return False
+            t = "u16" if regs[0][0] == "h" else "u8"
+            self.write(f"s{n}", f"(f32)*({t}*){self.address(x, mem[0])}", "f32")
+            self.gskip.add(nx.address)
             return True
         if m in ("ldursb", "ldursh", "ldursw") and mem and regs and regs[0][0] in "xw":
             t = {"ldursb": "s8", "ldursh": "s16", "ldursw": "s32"}[m]
@@ -1393,8 +1481,12 @@ class Lifter:
         if self.frame and m in ("add", "sub", "mov") and len(o) >= 2 and o[1].type == arm64.ARM64_OP_REG \
                 and regname(o[1].reg) in ("sp", "x29") and regname(o[0].reg) not in ("sp", "x29"):
             base = self.frame["sp"] if regname(o[1].reg) == "sp" else self.frame["fp"]
-            imm = o[2].imm if len(o) == 3 else 0
-            self.write(regname(o[0].reg), self.local(base + (-imm if m == "sub" else imm)), "char*")
+            imm = (o[2].imm if "semantic" not in self.opts else frame_imm(o[2])) if len(o) == 3 else 0
+            off = base + (-imm if m == "sub" else imm)
+            if off >= 0 and "semantic" in self.opts:  # a stack argument's address
+                self.write(regname(o[0].reg), self.stack_arg(off), "char*")
+                return True
+            self.write(regname(o[0].reg), self.local(off), "char*")
             return True
         if any(op.type == arm64.ARM64_OP_REG and regname(op.reg) == "sp" for op in o) or \
                 (not self.frame and any(op.type == arm64.ARM64_OP_MEM and regname(op.mem.base) in ("sp", "x29")
@@ -1463,19 +1555,23 @@ class Lifter:
             if any(r[0] not in "xwsd" for r in rts):
                 return False
             vals = [self.read(r)[0] for r in rts]
-            a = self.address(x, mem[0], {"s": 4, "d": 8}.get(rts[0][0], 1))
+            size = 8 if rts[0][0] in "xd" else 4
+            arg = self.arg_slot(x, mem[0])
+            a = self.address(x, mem[0], {"s": 4, "d": 8}.get(rts[0][0], 1)) if arg is None else None
             for k, (rt, v) in enumerate(zip(rts, vals)):
                 t = ftype(rt) or width_type(rt)
-                size = 8 if rt[0] in "xd" else 4
-                self.line(f"*({t}*)({a} + {k * size}) = {v};" if rt[0] in "sd" else
-                          f"*({t}*)({a} + {k * size}) = ({t})(u64)({v});")
+                at = f"({a} + {k * size})" if arg is None else self.stack_arg(arg + k * size, size)
+                self.line(f"*({t}*){at} = {v};" if rt[0] in "sd" else f"*({t}*){at} = ({t})(u64)({v});")
         elif m == "ldp" and mem and regname(o[0].reg)[0] in "xwsd":
-            a = self.address(x, mem[0], {"s": 4, "d": 8}.get(regname(o[0].reg)[0], 1))
-            tmp = self.temp_ptr(a)
+            size = 8 if regname(o[0].reg)[0] in "xd" else 4
+            arg = self.arg_slot(x, mem[0])
+            if arg is None:
+                tmp = self.temp_ptr(self.address(x, mem[0], {"s": 4, "d": 8}.get(regname(o[0].reg)[0], 1)))
             for k in range(2):
                 rt = regname(o[k].reg)
                 t = ftype(rt) or width_type(rt)
-                self.write(rt, f"*({t}*)({tmp} + {k * (8 if rt[0] in 'xd' else 4)})", t)
+                at = f"({tmp} + {k * size})" if arg is None else self.stack_arg(arg + k * size, size)
+                self.write(rt, f"*({t}*){at}", t)
         elif m == "mov" and len(o) == 2 and regname(o[0].reg)[0] == "v" and o[1].type == arm64.ARM64_OP_REG \
                 and regname(o[1].reg)[0] == "v":
             # A whole-register float copy (mov vD.16b, vS.16b): keep the source's width.
@@ -1824,8 +1920,9 @@ class FlatLifter(Lifter):
 
     def find_jump_tables(self, ins) -> None:
         """Semantic mode: Clang's compressed jump tables, `adr xL, base; ldrb|ldrh wE, [xT, xI{, lsl
-        #1}]; add xL, xL, xE, lsl #2; br xL` (a `mov` may sit in between), with `cmp wI, #N; b.hi`
-        shortly before and xT last set by `adrp`+`add`. self.jtables maps the br to (index
+        #1}]; add xL, xL, xE, lsl #2; br xL` (other instructions may sit in between), with `cmp wI,
+        #N; b.hi` up to 16 instructions before (or the compare on J and `mov wI, wJ` after it) and
+        xT last set by `adrp`+`add`. self.jtables maps the br to (index
         register, targets read from the image's table); gskip takes the adr, the load and the add,
         which the switch replaces."""
         img = self.orig.img
@@ -1841,7 +1938,7 @@ class FlatLifter(Lifter):
                 continue
             rr = regname(x.operands[0].reg)
             add = ld = adr = None
-            for j in range(k - 1, max(k - 6, -1), -1):
+            for j in range(k - 1, max(k - 10, -1), -1):
                 y = ins[j]
                 ops = y.operands
                 if add is None and y.mnemonic == "add" and len(ops) == 3 and regname(ops[0].reg) == rr \
@@ -1863,15 +1960,23 @@ class FlatLifter(Lifter):
                     or ins[tw[1]].operands[2].type != arm64.ARM64_OP_IMM:
                 continue
             table = ins[tw[0]].operands[1].imm + ins[tw[1]].operands[2].imm
-            bound, cmp_at = None, None  # cmp wI, #N; b.hi shortly before, I unwritten until the br
-            for j in range(min(adr, ld) - 1, max(min(adr, ld) - 8, -1), -1):
+            # cmp wI, #N; b.hi shortly before, I unwritten until the br; or the compare is on J and
+            # `mov wI, wJ` copies it in between (J then unwritten from the compare to the copy)
+            bound, cmp_at, copy, src = None, None, None, ireg
+            for j in range(min(adr, ld) - 1, max(min(adr, ld) - 16, -1), -1):
                 y = ins[j]
+                if copy is None and y.mnemonic == "mov" and len(y.operands) == 2 \
+                        and y.operands[1].type == arm64.ARM64_OP_REG and regname(y.operands[0].reg)[1:] == ireg[1:] \
+                        and regname(y.operands[1].reg)[0] in "xw" and regname(y.operands[1].reg)[1:].isdigit():
+                    copy, src = j, "x" + regname(y.operands[1].reg)[1:]
+                    continue
                 if y.mnemonic == "cmp" and y.operands[0].type == arm64.ARM64_OP_REG \
-                        and regname(y.operands[0].reg)[1:] == ireg[1:] and y.operands[1].type == arm64.ARM64_OP_IMM \
+                        and regname(y.operands[0].reg)[1:] == src[1:] and y.operands[1].type == arm64.ARM64_OP_IMM \
                         and j + 1 < len(ins) and ins[j + 1].mnemonic == "b.hi":
                     bound, cmp_at = y.operands[1].imm, j
                     break
-            if bound is None or any(cmp_at < j < k for j in writes.get(ireg, [])):
+            if bound is None or any(cmp_at < j < k and j != copy for j in writes.get(ireg, [])) \
+                    or (copy is not None and any(cmp_at < j < copy for j in writes.get(src, []))):
                 continue
             base = ins[adr].operands[1].imm
             tgts = []
@@ -1934,6 +2039,8 @@ class FlatLifter(Lifter):
         n = self.key(r)
         s = self.s
         if n in s.pages:
+            if "semantic" in self.opts and r[0] == "x":
+                return self.global_ref(s.pages[n], False), "char*"  # a bare page: its address
             raise Unsupported("bare page")
         if n == 100 and s.fcall:
             t = ftype(r)
@@ -1945,10 +2052,13 @@ class FlatLifter(Lifter):
         if n not in self.types:
             semantic_param = "semantic" in self.opts and (n <= 7 or 100 <= n <= 107)
             if (s.called or (n > 8 and not 100 <= n <= 107)) and not semantic_param:
-                if "semantic" not in self.opts or n >= 100:
+                if "semantic" not in self.opts:
                     raise Unsupported(r)
                 # Read before its first write in address order (a loop, or a block placed before
                 # the one that sets it): every path that reaches here wrote it; zero-initialised.
+                if n >= 100:
+                    self.types[n] = ftype(r)
+                    return self.storage(n, self.types[n]), self.types[n]
                 self.types[n] = "u64"
                 return (f"(u32)X{n}", "u32") if r[0] == "w" else (f"X{n}", "u64")
             # (semantic mode: an argument register unwritten in address order holds the incoming
@@ -2020,7 +2130,7 @@ class FlatLifter(Lifter):
     def lift(self) -> tuple[str, set[str]] | None:
         orig, addr = self.orig, self.addr
         code = orig.function(addr)
-        ins = list(CS.disasm(code, addr))
+        ins = self.ins = list(CS.disasm(code, addr))
         if not ins or len(ins) * 4 != len(code):
             return self.fail("undecodable instruction")
         end = addr + len(code)
@@ -2028,7 +2138,7 @@ class FlatLifter(Lifter):
         if not self.setup_frame(ins):
             return self.fail("stack frame")
         self.cur_delta = 0
-        self.fwidth = float_widths(ins)
+        self.fwidth = float_widths(ins, "semantic" in self.opts)
         targets = set()
         for x in ins:
             for op in x.operands:
@@ -2104,7 +2214,7 @@ class FlatLifter(Lifter):
                 # variable for each (the parameter initialises the one it arrives as).
                 pt = self.params.get(n)
                 for w in ("f32", "f64"):
-                    pre.append(f"    {w} {self.storage(n, w)}{' = f%d' % (n - 100) if pt == w else ''};")
+                    pre.append(f"    {w} {self.storage(n, w)} = {'f%d' % (n - 100) if pt == w else '0'};")
                 continue
             pre.append(f"    {t} {self.storage(n, t)}{init};")
         pre += [f"    char* t{i};" for i in range(self.temps)]

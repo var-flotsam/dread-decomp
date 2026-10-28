@@ -441,11 +441,12 @@ class Machine:
         # compare() takes the original's selection, so registers the lift's compiled code used as
         # scratch do not count, and one the original set must hold the same value in the lift.
         f = self.facts(target)
-        args, sel = [], []
+        args, sel, raw = [], [], {}  # (raw: the integer arguments' values, for the out-parameters)
         for k in list(range(9)) + list(range(100, 108)):
             st = self.state.get(k, "junk")
             if k < 100:
-                args.append((k, self.stackref(self.x(k))))
+                raw[k] = self.x(k)
+                args.append((k, self.stackref(raw[k])))
             else:
                 args.append((k, self.reg(Q0 + QSTRIDE * (k - 100), 8)))
             if st == "junk" or k == self.target_reg:
@@ -459,6 +460,13 @@ class Machine:
                 continue
             # A register the callee reads only as w<n> has an unspecified upper half.
             sel.append((k, 32 if f is not None and k < 9 and k not in f.wide else 64))
+        # Arguments beyond the eight registers: the callee's stack slots at [sp + 8i] (key 200 + i),
+        # 32 bits each (a 32-bit argument leaves the upper half of its slot unspecified).
+        sp = self.reg(SP, 8)
+        for i in range(getattr(f, "stack_slots", 0) if f is not None else 0):
+            raw[200 + i] = self.load(sp + 8 * i, 8)
+            args.append((200 + i, self.stackref(raw[200 + i])))
+            sel.append((200 + i, 32))
         self.checkpoint(("call", t, tuple(sel), tuple(args)))
         self.target_reg = None
         self.calls += 1
@@ -466,7 +474,7 @@ class Machine:
         chosen = {k for k, _ in sel}
         for k, v in args:  # out-parameters: through the arguments only (scratch registers differ)
             if k in chosen and isinstance(v, tuple) and v[0] == "stack":
-                p = self.x(k)
+                p = raw[k]
                 for j in range(0, WINDOW, 8):
                     if p + j < ENTRY_SP:
                         self.store(p + j, 8, mix(n, k, j))
@@ -936,4 +944,4 @@ def fmt(t) -> str:
 
 
 def regname(k: int) -> str:
-    return f"x{k}" if k < 100 else f"v{k - 100}"
+    return f"x{k}" if k < 100 else f"v{k - 100}" if k < 200 else f"[sp+{8 * (k - 200):#x}]"
