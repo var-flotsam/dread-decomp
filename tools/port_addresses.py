@@ -103,6 +103,12 @@ def main() -> int:
                 users[(m.symbol, addr)].add(res.address)
                 demangled_of[m.symbol] = full_names.get(m.symbol, m.symbol)
 
+    # A function whose own address is where its reference lands (a branch back to its own start)
+    # names something else for what the original does in place; that use says nothing about where
+    # the name's function is, so it does not count against the other uses.
+    for sym, addrs in found.items():
+        for a in [a for a in addrs if users[(sym, a)] == {a} and len(addrs) > 1]:
+            del addrs[a]
     resolved, conflicts = {}, {}
     for sym, addrs in sorted(found.items()):
         entry = {"demangled": demangled_of[sym], "uses": sum(addrs.values()), "functions": len(functions[sym]),

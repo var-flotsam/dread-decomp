@@ -173,8 +173,10 @@ target_include_directories(dread_game PRIVATE "${DREAD_ROOT}/include")
 target_link_libraries(dread_game PUBLIC dread_runtime)
 # Matched code is held to the original's bytes, not to a newer compiler's warnings. It type-puns as
 # the original did (words read as u64, storage cast to its layout), so type-based alias analysis is
-# off, as for dread_libs and the sweep (tools/port_sweep.py HOST_FLAGS).
-target_compile_options(dread_game PRIVATE -fno-strict-aliasing -w)
+# off, as for dread_libs and the sweep (tools/port_sweep.py HOST_FLAGS). Its layouts are Clang 9's,
+# the matching compiler's (a packed struct packs its non-POD members, which Clang 17 stopped doing),
+# so the port's compiler follows Clang 9's ABI rules, as the runtime does (runtime/CMakeLists.txt).
+target_compile_options(dread_game PRIVATE -fno-strict-aliasing -fclang-abi-compat=9.0 -w)
 
 # The vendored libraries main links statically (status L in data/functions/): all of lib/lua and
 # dlmalloc through mspace.c (the game's settings; it includes malloc.c), compiled as C++ without
@@ -185,7 +187,7 @@ set(_dread_lib_sources ${_dread_lua_sources} "${DREAD_ROOT}/lib/dlmalloc/mspace.
 set_source_files_properties(${_dread_lib_sources} PROPERTIES LANGUAGE CXX)
 add_library(dread_libs OBJECT ${_dread_lib_sources})
 target_link_libraries(dread_libs PUBLIC dread_stdlib)
-target_compile_options(dread_libs PRIVATE -fno-strict-aliasing -w)
+target_compile_options(dread_libs PRIVATE -fno-strict-aliasing -fclang-abi-compat=9.0 -w)
 
 if(DREAD_LINK)
   add_executable(dread main.cpp)

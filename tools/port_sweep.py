@@ -63,7 +63,10 @@ RUNTIME_INCLUDE = ROOT / "port" / "runtime" / "include"
 # game code type-puns as the original did (words read as u64, storage cast to its layout), which
 # the original's compiler tolerated at the bytes it produced but a newer one may not; port/CMakeLists.txt
 # compiles dread_game the same way.
-HOST_FLAGS = ["-std=c++1z", "-O2", "-fno-strict-aliasing", "-fno-rtti", "-fno-exceptions", "-fPIC", "-c"]
+# -fclang-abi-compat=9.0: the sources' layouts are Clang 9's, the matching compiler's (Clang 17
+# stopped packing a packed struct's non-POD members, which moved fields of the static initialisers'
+# merged statics; port/CMakeLists.txt).
+HOST_FLAGS = ["-std=c++1z", "-fclang-abi-compat=9.0", "-O2", "-fno-strict-aliasing", "-fno-rtti", "-fno-exceptions", "-fPIC", "-c"]
 # Diagnostics as one line each, errors only; warnings are the port build's business later.
 DIAG_FLAGS = ["-w", "-fno-caret-diagnostics", "-fno-color-diagnostics", "-fno-diagnostics-show-option",
               "-fno-diagnostics-fixit-info", "-fno-show-column"]
