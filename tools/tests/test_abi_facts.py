@@ -1,7 +1,7 @@
-"""tools/abi_facts.py's callee-side result check (AbiFacts.defines) on hand-assembled AArch64.
-
-No game data: each function is a few instruction words written here. Skipped when capstone is
-not installed; the hosted build job has it.
+"""tools/abi_facts.py's result_main on hand-assembled AArch64: which evidence of a caller reading
+x0 or s0 after a call counts. No game data: each function is a few instruction words written
+here, and the next callee's facts are given. Skipped when capstone is not installed; the hosted
+build job has it.
 """
 
 import struct
@@ -15,18 +15,11 @@ except ImportError:  # capstone missing
     abi_facts = None
 
 RET = 0xD65F03C0
-FMOV_S0_1 = 0x1E2E1000       # fmov s0, #1.0
-FADD_S0 = 0x1E212800         # fadd s0, s0, s1
 STR_S0_X19 = 0xBD000260      # str s0, [x19]
-BLR_X8 = 0xD63F0100
 
 
 def bl(at: int, target: int) -> int:
     return 0x94000000 | (((target - at) >> 2) & 0x3FFFFFF)
-
-
-def b(at: int, target: int) -> int:
-    return 0x14000000 | (((target - at) >> 2) & 0x3FFFFFF)
 
 
 def code(at: int, *words) -> bytes:
@@ -34,19 +27,13 @@ def code(at: int, *words) -> bytes:
     return b"".join(struct.pack("<I", w(at + 4 * i) if callable(w) else w) for i, w in enumerate(words))
 
 
-SETTER, STORE, FLOAT, CALLS_FLOAT, TAIL_STORE, INDIRECT, CALLER_SETTER, CALLER_FLOAT, SINF = (
-    0x1000, 0x2000, 0x3000, 0x4000, 0x5000, 0x6000, 0x7000, 0x8000, 0x9000)
+VOID, NEXT, CALLER, READER, FLOAT = 0x1000, 0x2000, 0x3000, 0x4000, 0x5000
 FUNCTIONS = {
-    # a void setter: s0 is an argument for a callee that stores it and defines nothing
-    SETTER: code(SETTER, FMOV_S0_1, lambda a: bl(a, STORE), RET),
-    STORE: code(STORE, STR_S0_X19, RET),
-    FLOAT: code(FLOAT, FADD_S0, RET),
-    CALLS_FLOAT: code(CALLS_FLOAT, lambda a: bl(a, FLOAT), RET),
-    TAIL_STORE: code(TAIL_STORE, lambda a: b(a, STORE)),
-    INDIRECT: code(INDIRECT, BLR_X8, RET),
-    # callers that read s0 right after the call
-    CALLER_SETTER: code(CALLER_SETTER, lambda a: bl(a, SETTER), STR_S0_X19, RET),
-    CALLER_FLOAT: code(CALLER_FLOAT, lambda a: bl(a, FLOAT), STR_S0_X19, RET),
+    VOID: code(VOID, RET),
+    NEXT: code(NEXT, RET),
+    FLOAT: code(FLOAT, RET),
+    CALLER: code(CALLER, lambda a: bl(a, VOID), lambda a: bl(a, NEXT), RET),   # passes x0, s0 on
+    READER: code(READER, lambda a: bl(a, FLOAT), STR_S0_X19, RET),             # reads s0 itself
 }
 
 
@@ -59,38 +46,36 @@ class FakeOriginal:
         return self.code[address]
 
     def plt_import(self, address: int):
-        return "sinf" if address == SINF else None
+        return None
 
 
 class FakeGraph:
-    callers = {SETTER: [CALLER_SETTER], FLOAT: [CALLER_FLOAT, CALLS_FLOAT]}
+    callers = {VOID: [CALLER], FLOAT: [READER]}
 
 
 @unittest.skipIf(abi_facts is None, "capstone is not installed")
-class Defines(unittest.TestCase):
-    def setUp(self):
-        self.af = abi_facts.AbiFacts(FakeOriginal(FUNCTIONS), rows={}, graph=FakeGraph())
+class ResultMain(unittest.TestCase):
+    def facts(self, args: set, evidence: set):
+        af = abi_facts.AbiFacts(FakeOriginal(FUNCTIONS), rows={}, graph=FakeGraph())
+        af._facts[NEXT] = abi_facts.Facts(frozenset(args), False)
+        af._evidence[NEXT] = frozenset(evidence)
+        return af
 
-    def test_own_write(self):
-        self.assertIs(self.af.defines(FLOAT, 100), True)
+    def test_passed_on_float(self):
+        af = self.facts({0, 100}, {0, 100})
+        self.assertEqual(af.result_main(VOID), frozenset({0, 100}))
 
-    def test_through_a_call(self):
-        self.assertIs(self.af.defines(CALLS_FLOAT, 100), True)
+    def test_next_callee_no_caller_sets_s0(self):
+        af = self.facts({0, 100}, {0})
+        self.assertEqual(af.result_main(VOID), frozenset({0}))
 
-    def test_argument_and_leftover(self):
-        self.assertIs(self.af.defines(STORE, 100), False)    # its entry s0 only
-        self.assertIs(self.af.defines(SETTER, 100), False)   # what a void callee left
-        self.assertIs(self.af.defines(TAIL_STORE, 100), False)
+    def test_next_callee_variadic(self):
+        af = self.facts({0} | set(abi_facts.FLOAT_ARGS), {0, 100})
+        self.assertEqual(af.result_main(VOID), frozenset({0}))
 
-    def test_unknown(self):
-        self.assertIsNone(self.af.defines(INDIRECT, 100))
-
-    def test_import(self):
-        self.assertIs(self.af.defines(SINF, 100), True)
-
-    def test_result_main_drops_a_read_of_no_result(self):
-        self.assertEqual(self.af.result_main(SETTER), frozenset())
-        self.assertEqual(self.af.result_main(FLOAT), frozenset({100}))
+    def test_direct_read(self):
+        af = self.facts(set(), set())
+        self.assertEqual(af.result_main(FLOAT), frozenset({100}))
 
 
 if __name__ == "__main__":

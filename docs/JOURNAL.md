@@ -112,7 +112,7 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
-**Lifter: step-budget retry and no float result from a void function (2026-10-28, branch
+**Lifter: retry for cut-off runs, and no float result from a void function (2026-10-28, branch
 `claude/project-thread-zgkpk3`).** Two fixes from the port's current stop and from the hand-writing
 thread's reading of the 13 boot functions #236 refuses. Written in a cloud session without the dump:
 the oracle numbers below are to be measured on the PC.
@@ -123,18 +123,21 @@ the oracle numbers below are to be measured on the PC.
   `RETRY_INPUTS` (4) cut-off inputs, original and lift, with `RETRY_SCALE` (8) times the limits when
   no input agreed. Two cut-off runs still decide nothing; the "lift ran out of steps" rule uses the
   lift's own limit.
+  `fn_71002584a0` itself stays inconclusive: its loop calls through a table read from the input
+  (1,203 distinct targets in 2,048 calls at 8x), so made-up memory never ends it; it needs a
+  hand-written source.
 - **Float results that are not there.** Nine of the 13 refused functions are void (the hand-writing
-  thread, from Ghidra): a float setter whose s0 is its argument, functions whose s0 at return is
-  what a callee taking a float constant left, and three x0 cases. Callers' evidence made them look
-  like float returns, so #236 refused their void lifts. `AbiFacts.defines(addr, 100)` asks the
-  callee: whether s0 at some return was written by its own code or by a callee that defines it
-  (False when only its entry value or a void callee's leftover reaches a return; None for indirect
-  calls and cycles). `result_main` and `result_shape` drop float registers when it is False
-  (`SHAPE_VERSION` 3). Semantic mode only; byte mode does not read either. The three x0 cases
-  (`7100eea4c8`, `7100eea618`, `710109c9e0`) are not covered: x0 is too often a real pass-through
-  (`return this`) for the same rule.
-- Tool tests: `tools/tests/test_abi_facts.py` (hand-assembled functions) and
-  `tools/tests/test_pcode_emu.py` (the step budget in `compare`).
+  thread, from Ghidra), yet `result_main` gave s0 for all nine, so #236 refused their void lifts. A
+  trace of its evidence on the PC: no caller reads s0 itself. All of it is "passed on to the next
+  call", where the next callee is variadic (its prologue saves every argument register, so its
+  `args` holds all of v0-v7) or a callee none of whose direct callers ever sets s0 (`71004e4a38`);
+  the rest reaches them through tail calls and returns from such callers. `AbiFacts.passed_on` drops
+  s0 from that evidence in both cases (`SHAPE_VERSION` 3). Semantic mode only; byte mode does not
+  read `result_main`. A first try, a callee-side check of whether the function writes s0 itself,
+  could not tell a void function doing float arithmetic in s0 from one returning it, and was dropped.
+  The three x0-side cases (`7100eea4c8`, `7100eea618`, `710109c9e0`) are hand-written in #240.
+- Tool tests: `tools/tests/test_abi_facts.py` (result_main on hand-assembled callers) and
+  `tools/tests/test_pcode_emu.py` (the per-run limits in `compare`).
 
 **Port M1 round 4: every registered type named (2026-10-28, branch `claude/port-m1-round4`).** The
 lifter's newer full set (#236, 15,594 lifts) linked with no trap before round 3's null dereference.

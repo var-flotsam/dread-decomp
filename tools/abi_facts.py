@@ -205,8 +205,7 @@ class AbiFacts:
         self._ret: dict[int, bool | None] = {}
         self._shape: dict[int, tuple | None] = {}  # result_shape
         self._main: dict[int, frozenset] = {}  # result_main
-        self._defines: dict[tuple[int, int], bool | None] = {}  # defines
-        self._busy_def: set[tuple[int, int]] = set()
+        self._evidence: dict[int, frozenset] = {}  # evidence, for result_main's next calls
         self._fwd: dict[int, frozenset] = {}
         self._wide = False  # liveness over 64-bit reads only (Facts.wide)
 
@@ -635,8 +634,6 @@ class AbiFacts:
                     if y.mnemonic in ("bl", "blr", "b", "br"):
                         break  # (another call or a jump: the straight line ends; it goes on past a test)
                     written |= y.defs
-        if regs - {1} and self.defines(addr, 100) is False:
-            regs -= RESULT_EXTRA - {1}  # (no float result: what callers read is something else)
         if regs & {1} and regs - {1}:
             shape = None  # (an integer and a float register: not one AAPCS64 aggregate)
         elif regs & {1}:
@@ -679,8 +676,7 @@ class AbiFacts:
                     if y.address in targets:
                         break
                     if y.mnemonic in ("bl", "b") and y.imms:
-                        f = self.facts(y.imms[-1])  # (the result passed on as the next call's argument)
-                        regs |= (set(f.args) & {0, 100} if f is not None else set()) - written
+                        regs |= self.passed_on(y.imms[-1]) - written  # (the result as the next call's argument)
                         if y.mnemonic == "b":
                             regs |= self.result_main(c, depth + 1) - written
                         break
@@ -691,104 +687,25 @@ class AbiFacts:
                     if y.mnemonic in ("blr", "br"):
                         break
                     written |= y.defs
-        if 100 in regs and self.defines(addr, 100) is False:
-            regs.discard(100)  # (a caller's read of s0 is its own argument, or another call's leftover)
         self._main[addr] = frozenset(regs)
         return self._main[addr]
 
-    def defines(self, addr: int, reg: int, depth: int = 0) -> bool | None:
-        """Whether the function can return a value in `reg` (100: s0/d0): True when, at some
-        return, the register was last written by its own instructions or by a call to a callee
-        that defines it; False when at every return it still holds its entry value (an argument
-        passed through) or what a call to a callee that never defines it left (AAPCS64 keeps no
-        float register across a call); None when unknown (an indirect call, a cycle, a callee
-        that cannot be decoded). The callee-side check result_main and result_shape apply to
-        their callers' evidence: a caller that reads s0 after a void setter is reading its own
-        argument's register, not a result."""
-        key = (addr, reg)
-        if key in self._defines:
-            return self._defines[key]
-        name = self.import_name(addr)
-        if name is not None:
-            c = CLIB.get(name)
-            v = None if c is None else (reg == 100 and c[1] > 0 and name.endswith("f"))
-            self._defines[key] = v
-            return v
-        if key in self._busy_def or depth > MAX_DEPTH:
-            return None
-        ins = self.decode(addr)
-        if ins is None:
-            self._defines[key] = None
-            return None
-        self._busy_def.add(key)
-        try:
-            v = self._defines_scan(addr, ins, reg, depth)
-        finally:
-            self._busy_def.discard(key)
-        self._defines[key] = v
-        return v
-
-    def _defines_scan(self, addr: int, ins: list, reg: int, depth: int) -> bool | None:
-        # Forward reaching definitions of `reg`: "entry", "own", or ("call", target or None).
-        at = {x.address: i for i, x in enumerate(ins)}
-        end = addr + 4 * len(ins)
-        starts = self.block_starts(addr, ins)
-        n = len(ins)
-        reach: list[set | None] = [None] * n
-        reach[0] = {"entry"}
-        work, ends = [0], []
-        while work:
-            i = work.pop()
-            x, cur = ins[i], set(reach[i])
-            m = x.mnemonic
-            succ = [i + 1] if i + 1 < n else []
-            if m == "ret":
-                ends.append(cur)
-                continue
-            if m == "bl":
-                cur = {("call", x.imms[0] if x.imms else None)}
-                if i == n - 1:
-                    succ = []
-            elif m == "blr":
-                cur = {("call", None)}
-            elif m == "br":
-                if self.jump_table(ins, i):
-                    succ = self.cases(ins, i, starts, at)
-                else:  # a tail call through a register
-                    ends.append({("call", None)})
-                    continue
-            elif m == "b":
-                t = x.imms[0] if x.imms else None
-                if t is not None and addr <= t < end:
-                    succ = [at[t]] if t in at else []
-                else:  # a tail call: the callee's result is ours
-                    ends.append({("call", t)})
-                    continue
-            elif m.startswith("b.") or m in ("cbz", "cbnz", "tbz", "tbnz"):
-                t = x.imms[-1] if x.imms else None
-                if t is not None and addr <= t < end:
-                    succ = succ + ([at[t]] if t in at else [])
-                else:  # a conditional tail call
-                    ends.append({("call", t)})
-            elif reg in x.defs:
-                cur = {"own"}
-            for j in succ:
-                if reach[j] is None or not cur <= reach[j]:
-                    reach[j] = (reach[j] or set()) | cur
-                    work.append(j)
-        unknown = False
-        for d in set().union(*ends) if ends else set():
-            if d == "own":
-                return True
-            if d == "entry":
-                continue
-            t = d[1]
-            v = None if t is None else self.defines(t, reg, depth + 1)
-            if v:
-                return True
-            if v is None:
-                unknown = True
-        return None if unknown else False
+    def passed_on(self, callee: int) -> set:
+        """Which of x0 and s0/d0 a call to `callee` reads as an argument, for result_main: its facts,
+        less s0 when that is no evidence of a float result. A variadic callee's prologue saves
+        every argument register (args holds all of v0-v7), and a callee none of whose direct
+        callers sets s0 before calling it (Facts.evidence) does not take a float: a void call
+        followed by either is not a caller reading a float result."""
+        f = self.facts(callee)
+        if f is None:
+            return set()
+        regs = set(f.args) & {0, 100}
+        if 100 in regs:
+            if callee not in self._evidence:
+                self._evidence[callee] = self.evidence(callee)
+            if FLOAT_ARGS <= f.args or 100 not in self._evidence[callee]:
+                regs.discard(100)
+        return regs
 
 
 RESULT_EXTRA = frozenset({1, 101, 102, 103})  # result registers beyond x0 and s0/d0 (result_shape)
