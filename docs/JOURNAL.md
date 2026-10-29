@@ -144,7 +144,11 @@ From the trace run's refusals (`lifted_trace1`, 6,007 of 6,070 accepted):
   which reuses x19 as a loop counter after the call: `result_copies` is now a forward dataflow per
   instruction (entry {x8}; a `mov` from a holder adds, any other write or a call's clobber drops; the
   meet is the intersection), and a label keeps the set that reaches it.
-- **A page dropped at a label** (`71011eeab4` called through a stale X8; d36fc58's constant meet): flat
+- **frint in the oracle** (`7100e79fa4` and four more, lost to d36fc58): Ghidra's P-code for scalar
+  frintm/frintp/... is a float-to-integer TRUNC, so `frintm s2, s0` of 649.0 left the integer bits 0x289
+  in s2. The old `(u32)floorf(x)` compiled to one fcvtmu and never met it; the saturating form compiles
+  to frintm then fcvtzu. `tools/pcode_emu.py` now runs every scalar frint itself (signed zero kept).
+- **A page dropped at a label** (found while chasing `71011eeab4`, whose cause was frint; d36fc58's constant meet): flat
   semantic lifts kept an `adrp` page only in the lifter's state, so where the ways into a label disagreed
   and the meet dropped it, a read there took X<n> as last written (the sret address, or the first
   iteration's page in a loop). `adrp` now also sets X<n> to the page, and a loop head drops pages as it

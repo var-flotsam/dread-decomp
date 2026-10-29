@@ -91,3 +91,15 @@ class FloatToInt(unittest.TestCase):
         self.assertEqual(self.convert(fcvtas, 2.5), 3)
         self.assertEqual(self.convert(fcvtns, 2.5), 2)
         self.assertEqual(self.convert(fcvtzu | 1 << 31 | 1 << 22, 1e20, True), 0xFFFFFFFFFFFFFFFF)  # fcvtzu x0, d1
+
+    def test_rounding_stays_float(self):
+        import struct
+        m = pcode_emu.Machine.__new__(pcode_emu.Machine)
+        m.regs, m.undef_vn, m.state, m.lift = bytearray(0x10000), set(), {}, None
+        q1, q2 = pcode_emu.Q0 + pcode_emu.QSTRIDE, pcode_emu.Q0 + 2 * pcode_emu.QSTRIDE
+        for rmode, value, want in ((2, 649.7, 649.0), (1, -0.5, -0.0), (0, 2.5, 2.0), (4, 2.5, 3.0), (3, -1.7, -1.0)):
+            m.regs[q1:q1 + 4] = struct.pack("<f", value)
+            self.assertEqual(m.step(0x7100000000, 0x1E244022 | rmode << 15, *range(6)), ("next", 0))  # frint* s2, s1
+            got = struct.unpack("<f", bytes(m.regs[q2:q2 + 4]))[0]
+            self.assertEqual((got, str(got)), (want, str(want)), (rmode, value))
+

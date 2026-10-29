@@ -6,7 +6,8 @@ lift compiled for AArch64 by the project compiler run side by side from the same
 instruction executed as the raw P-code Ghidra's AArch64 specification gives it
 (tools/ghidra/pcode.py), so the lifter under test never decides what an instruction means. Only
 `b`, `bl`, `adr`, `adrp`, the scalar fmax/fmin forms (whose P-code is wrong when Rd is Rm) and the
-scalar float-to-integer converts (whose TRUNC saturates signed, also for fcvt*u) are executed here directly, and P-code is cached per instruction word (branch targets relative to the
+scalar float-to-integer converts (whose TRUNC saturates signed, also for fcvt*u) and roundings (frint*,
+whose P-code is a float-to-integer TRUNC) are executed here directly, and P-code is cached per instruction word (branch targets relative to the
 word's address are relocated when it runs).
 
 A run starts from registers and memory derived from a seed, and records what a caller or callee
@@ -774,6 +775,22 @@ class Machine:
                 v = (a if math.copysign(1, a) > 0 else b) if op in (0, 2) else (a if math.copysign(1, a) < 0 else b)
             else:
                 v = max(a, b) if op in (0, 2) else min(a, b)
+            d = Q0 + QSTRIDE * (w & 31)
+            self.set_reg(d, 16, 0)
+            self.set_reg(d, size, f_to(v, size))
+            return "next", 0
+        if (w & 0xFF3C7C00) == 0x1E244000 and (w >> 22) & 3 in (0, 1) and (w >> 15) & 7 != 5:
+            # scalar frint{n,p,m,z,a,x,i}: Ghidra's P-code is a float-to-integer TRUNC, so frintm of
+            # 649.0 gave the integer bits 0x289 (7100e79fa4's lift; floorf compiles to it)
+            size = 8 if (w >> 22) & 1 else 4
+            a = f_from(self.reg(Q0 + QSTRIDE * ((w >> 5) & 31), size), size)
+            mode = (w >> 15) & 7  # 0 nearest-even, 1 +inf, 2 -inf, 3 zero, 4 away, 6 and 7 current (nearest)
+            if math.isnan(a) or math.isinf(a) or a == 0:
+                v = a
+            else:
+                v = float({0: round(a), 1: math.ceil(a), 2: math.floor(a), 3: int(a), 6: round(a), 7: round(a),
+                           4: math.floor(abs(a) + 0.5) * (1 if a >= 0 else -1)}[mode])
+                v = math.copysign(v, a) if v == 0 else v  # (ceil(-0.5) is -0.0)
             d = Q0 + QSTRIDE * (w & 31)
             self.set_reg(d, 16, 0)
             self.set_reg(d, size, f_to(v, size))
