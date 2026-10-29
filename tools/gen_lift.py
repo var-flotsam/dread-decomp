@@ -3086,6 +3086,14 @@ LIFT_AT = ("struct lift_at_t {}; inline void* operator new(decltype(sizeof 0), v
 _ORIG: asmdiff.Original | None = None  # for forked lifting workers
 
 
+def _init_spawned(version: str, module: str, facts: bool) -> None:
+    """A spawned lifting worker (Windows has no fork): the binary and, as the parent had them, the facts."""
+    global _ORIG
+    _ORIG = asmdiff.Original(version, module)
+    if facts:
+        load_facts(_ORIG, version)
+
+
 def _lift_part(job: tuple[list[int], bool, frozenset]):
     part, want_why, opts = job
     why: dict[int, tuple[int, str]] | None = {} if want_why else None
@@ -3101,12 +3109,21 @@ def lift_all(orig: asmdiff.Original, cands: list[int],
     import multiprocessing
     import os
     n = os.cpu_count() or 1
-    if n == 1 or len(cands) < 200 or "fork" not in multiprocessing.get_all_start_methods():
+    fork = "fork" in multiprocessing.get_all_start_methods()
+    # (spawned workers rebuild the binary and the facts; only the facts load_facts sets carry over)
+    spawn = not fork and hasattr(orig, "version") and Lifter.shape is None and Lifter.main is None
+    if n == 1 or len(cands) < 200 or not (fork or spawn):
         return lift_serial(orig, cands, why, opts)
     _ORIG = orig
     parts = [cands[k::n * 4] for k in range(n * 4)]
-    with multiprocessing.get_context("fork").Pool(n) as pool:
-        results = pool.map(_lift_part, [(p, why is not None, opts) for p in parts])
+    jobs = [(p, why is not None, opts) for p in parts]
+    if fork:
+        with multiprocessing.get_context("fork").Pool(n) as pool:
+            results = pool.map(_lift_part, jobs)
+    else:
+        init = (orig.version, orig.module, Lifter.facts is not None)
+        with multiprocessing.get_context("spawn").Pool(n, _init_spawned, init) as pool:
+            results = pool.map(_lift_part, jobs)
     lifted: list[dict[int, tuple[str, set[str]]]] = []
     for part_lifted, part_why in results:
         for k, defs in enumerate(part_lifted):

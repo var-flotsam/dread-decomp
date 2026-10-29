@@ -181,6 +181,10 @@ From the trace run's refusals (`lifted_trace1`, 6,007 of 6,070 accepted):
   a memory difference after a memset or memcpy clipped at 64 KiB is skipped at any event (`710122e6f0`).
   So does a store in the 64 GiB below the stack (`71010b98d0`: a stack histogram indexed by a made-up
   result, each run's store relative to its own sp).
+- **gen_lift's lifting on Windows**: lift_all forked its workers, and Windows has no fork, so a full run
+  lifted 62,700 candidates in one process (about 2 h on the PC). Where fork is missing it now spawns them;
+  each rebuilds the binary and, as the parent had them, the facts (byte mode only: semantic mode's
+  result facts are not carried, so a run with them stays serial).
 - **A whole q register loaded** (`7101205f54`, `ldp q1, q2, [x1]`): semantic mode had no q load at all.
   `ldr`/`ldur`/`ldp` of q registers now give their four 32-bit lanes as f32 values (State.lanes, as
   `ld1` builds them), so the existing `str q` and a new `stp q` store them back bit for bit and the lane
