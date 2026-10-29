@@ -118,6 +118,18 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Real inputs for the last boot lifts (2026-10-29, branch `claude/project-thread-zgkpk3`, after #258).**
+Of the 11 boot-trace functions #258 left, 5 are status L (two Lua functions sigmatch already matched, the
+ELF init stub, two nn::atk functions the port's shim replaces): the trace list took every address src/
+does not define, L included. The other 6 are U and fail only on made-up input.
+- **Real entry states for the oracle** (the boot trace's last 6 U functions fault, overrun or loop on made-up
+  input: a u16 length read into a 128-byte buffer, a widget's properties, a minimap's counts).
+  `tools/recomp_trace.py instrument --snapshot ADDR,... --cpu-h FILE` makes the recomp capture, at a
+  function's first entry, x0-x30, q0-q31, the stack above sp and every page the thread touches until it
+  returns (each copied before its first access), by redefining the runtime's MP() address macro.
+  `pcode_emu.load_snapshot` reads the file (the recomp's module addresses moved to ours), and
+  `tools/port_lift.py` runs a function from build/port/snapshots/fn_<addr>.snap first and mutates from it.
+
 **Lifter: a data table that starts like a string (2026-10-28, branch `claude/project-thread-zgkpk3`, after #255).**
 The boot's next stop: byte mode lifted `fn_7100167cc0` (`i < 10 ? table[i] : -1` over a u32 table at
 `710164806c`) as `(char*)"Y"` indexed by `i << 2`, because the table's first entry is 0x59. On the Switch the

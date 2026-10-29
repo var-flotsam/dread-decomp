@@ -470,6 +470,7 @@ Recomp trace: the order the game enters its functions, from a local build of the
 ```sh
 python tools/recomp_trace.py instrument --build "D:/Games/Metroid Dread/Metroid Dread_build"
 python tools/recomp_trace.py instrument --build "D:/Games/Metroid Dread/Metroid Dread_build" --undo
+python tools/recomp_trace.py instrument --build DIR --snapshot 7100b89f84,7101191cc0 --cpu-h DIR/../recompiler/runtime/cpu.h
 python tools/recomp_trace.py map --trace recomp_trace.txt [--until fn_7100224de4] [--out build/recomp_trace/order.csv]
 python tools/recomp_trace.py next --order build/recomp_trace/order.csv [--boot build/boot/boot_distance.json] [--limit 40]
 ```
