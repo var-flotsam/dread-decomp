@@ -527,7 +527,6 @@ static inline UnkWordArray*& Words(UnkGuiRoot* root) {
 
 // Reads the file `path` names into the third container: the first one read becomes the root's,
 // later ones are appended to it (fn_71011b9ce4's twin).
-// NON_MATCHING(major): written from the original's behaviour, not compared instruction by instruction.
 void fn_71011b8dc4(UnkGuiRoot* root, const UnkStrPair_0x10* path) {
     UnkOwnedWords loaded;
     UnkFileReader reader;
@@ -554,14 +553,16 @@ void fn_71011b8dc4(UnkGuiRoot* root, const UnkStrPair_0x10* path) {
     }
     if (reader.file.position < reader.file.size && reader.field_0x38 == 0)
         Parse(&reader, &target);
-    if (!Words(root)) {
+    UnkWordArray* words = Words(root);
+    if (!words) {
         UnkWordArray* p = loaded.ptr;
         loaded.ptr = nullptr;
         Words(root) = p;
     } else {
-        s32 n = (s32)loaded.ptr->count;
+        UnkWordArray* src = loaded.ptr;
+        s32 n = (s32)src->count;
         for (s32 i = 0; i < n; ++i)
-            Words(root)->PushBack(loaded.ptr->data[i]);
+            words->PushBack(src->data[i]);
     }
     for (u64 i = 0; i < target.count; ++i) {
         UnkReadEntry& e = target.entries[i];

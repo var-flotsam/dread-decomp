@@ -39,14 +39,18 @@ static_assert(__builtin_offsetof(UnkPadSet, handles) == 0x6c, "UnkPadSet placeho
 static_assert(__builtin_offsetof(UnkPadSet, infos) == 0x1b0, "UnkPadSet placeholder layout");
 static_assert(__builtin_offsetof(UnkPadSet, styles) == 0x45c, "UnkPadSet placeholder layout");
 
+static inline nn::hid::NpadStyleSet StyleSet(const u32& bits) {
+    nn::hid::NpadStyleSet styles;
+    __builtin_memcpy(&styles, &bits, sizeof(u32));
+    return styles;
+}
+
 // Gets each pad's vibration devices and initialises them, keeping their information.
 // NON_MATCHING(major): written from the original's behaviour, not compared instruction by instruction.
 void fn_710006ddc8(UnkPadSet* self) {
     for (u64 i = 0; i < self->count; ++i) {
-        nn::hid::NpadStyleSet styles;
-        __builtin_memcpy(&styles, &self->styles[i], sizeof(u32));
-        s32 n = nn::hid::GetVibrationDeviceHandles(self->handles[i], 9, self->ids[i], styles);
-        for (s32 j = 0; j < n; ++j) {
+        u32 n = nn::hid::GetVibrationDeviceHandles(self->handles[i], 9, self->ids[i], StyleSet(self->styles[i]));
+        for (u32 j = 0; j < n; ++j) {
             nn::hid::VibrationDeviceHandle handle = self->handles[i][j];
             nn::hid::InitializeVibrationDevice(handle);
             nn::hid::GetVibrationDeviceInfo(reinterpret_cast<nn::hid::VibrationDeviceInfo*>(self->infos[i][j]), handle);

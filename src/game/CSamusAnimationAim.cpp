@@ -53,7 +53,6 @@ static_assert(__builtin_offsetof(UnkAimSource, field_0x340) == 0x340, "UnkAimSou
 
 // Sets the animation's "Angle" (degrees) from the aim: the aim angle, clamped to the vertical or
 // faded out over time depending on the mode, or the second angle in the aim's modes 2 and 3.
-// NON_MATCHING(major): written from the original's behaviour, not compared instruction by instruction.
 void fn_7100713e2c(UnkSamusAnimation* self, f32 dt) {
     static CStrId s_angle("Angle", true);
     UnkAimSource* aim = self->owner->aim;
@@ -64,11 +63,13 @@ void fn_7100713e2c(UnkSamusAnimation* self, f32 dt) {
         angle = fn_710007a1d0(aim->field_0x340);
         f32 blend;
         if (self->mode == 3) {
-            if (!(angle < AimLimit(0xbc)) || angle <= AimLimit(0xc0)) {
-                blend = self->blend + dt / -0.2f;
-                blend = blend <= 0.0f ? 0.0f : blend;
+            bool raised = (angle < AimLimit(0xbc)) & (angle > AimLimit(0xc0));
+            blend = self->blend;
+            if (!raised) {
+                blend = blend + dt / -0.2f;
+                blend = blend < 0.0f ? 0.0f : blend;
             } else {
-                blend = dt + dt + self->blend;
+                blend = blend + (dt + dt);
                 blend = 1.0f < blend ? 1.0f : blend;
             }
             self->blend = blend;
@@ -85,5 +86,5 @@ void fn_7100713e2c(UnkSamusAnimation* self, f32 dt) {
         angle = fn_710007a1d0(aim->field_0x2b8);
         self->blend = 0.0f;
     }
-    unk_prop_bag::fn_710033187c(&self->params, s_angle, (angle * 180.0f) / 3.1415927f);
+    unk_prop_bag::fn_710033187c(&self->params, s_angle, (f32)((angle * 180.0f) / 3.141592653589793));
 }

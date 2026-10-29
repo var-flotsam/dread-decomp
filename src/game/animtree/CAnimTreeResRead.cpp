@@ -32,6 +32,13 @@ static inline s32 ParseRoot(UnkParseContext* ctx, void* root) {
 }
 extern UnkParseCallbacks g_unk_71726aade8 __attribute__((visibility("hidden")));  // this unit's callbacks
 
+// Parses the file into the target, starting from its last entry's node; whether it succeeded.
+static inline bool Parse(UnkFileReader* reader, UnkReadTarget* target) {
+    UnkParseContext ctx(g_unk_71726aade8, reader, target);
+    UnkReadEntry* end = target->entries + target->count;
+    return ParseRoot(&ctx, target->count ? end[-1].field_0x0->field_0x10 : nullptr) != 0;
+}
+
 struct UnkAnimTreeRes {
     virtual const base::reflection::CType* vf_0x0();  // its reflected type
     u8 pad_0x8[0x8];
@@ -39,7 +46,6 @@ struct UnkAnimTreeRes {
 };
 
 // Reads the resource from its file; whether the file could be parsed.
-// NON_MATCHING(major): written from the original's behaviour, not compared instruction by instruction.
 bool fn_71002e0090(UnkAnimTreeRes* self) {
     UnkFileReader reader;
     {
@@ -69,11 +75,8 @@ bool fn_71002e0090(UnkAnimTreeRes* self) {
         fn_71000a1c60(&value);
     }
     bool ok = false;
-    if (reader.file.position < reader.file.size && reader.field_0x38 == 0) {
-        UnkParseContext ctx(g_unk_71726aade8, &reader, &target);
-        UnkReadEntry* end = target.entries + target.count;
-        ok = ParseRoot(&ctx, target.count ? end[-1].field_0x0->field_0x10 : nullptr) != 0;
-    }
+    if (reader.file.position < reader.file.size && reader.field_0x38 == 0)
+        ok = Parse(&reader, &target);
     for (u64 i = 0; i < target.count; ++i) {
         UnkReadEntry& e = target.entries[i];
         if (e.ops) {

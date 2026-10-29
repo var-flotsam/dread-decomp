@@ -36,6 +36,22 @@ struct UnkStrPieceList {
     UnkBlockFreeList blocks;  // 0x40
     u32 field_0x68;
     bool field_0x6c;
+
+    // The piece at `i` (null past the end), found by walking the links.
+    UnkStrPiece* At(u64 i) const {
+        if (i >= count)
+            return nullptr;
+        UnkStrPiece* piece = head;
+        u64 k = 0;
+        u32 j = 0;
+        do {
+            if (k == i)
+                return piece;
+            piece = piece->next;
+            ++k;
+        } while (++j != count);
+        return nullptr;
+    }
 };
 static_assert(__builtin_offsetof(UnkStrPieceList, blocks) == 0x40, "UnkStrPieceList placeholder layout");
 
@@ -66,25 +82,30 @@ __attribute__((always_inline)) inline void UnkSplitStrIds(const base::global::CS
     u32 n = list.count;
     if (n) {
         fn_71007fd04c(out, n);
-        for (u32 i = 0; i < n; ++i) {
-            UnkStrPiece* piece = list.head;
-            for (u32 k = 0; piece && k < i; ++k)
-                piece = piece->next;
+        for (u64 i = 0; i != n; ++i) {
+            UnkStrPiece* piece = list.At(i);
             alignas(8) u8 raw[sizeof(base::global::CStrId)];
             auto* built = reinterpret_cast<base::global::CStrId*>(raw);
             fn_7100000850(built, *reinterpret_cast<const base::global::CRntString*>(piece), true);
             if (out->field_0x14 && out->count <= i) {
                 u32 cap = out->capacity;
                 if (cap <= i && out->step != 0)
-                    cap = (i / out->step + 1) * out->step;
+                    cap = ((u32)i / out->step + 1) * out->step;
                 out->Reserve(cap);
                 out->Reserve(i + 1);
-                for (u32 k = out->count; k <= i; ++k)
-                    new (&out->data[k]) base::global::CStrId(base::global::UnkStrIdInline(), nullptr, true);
+                for (u64 k = out->count; k <= i; ++k) {
+                    // An empty id, constructed in place.
+                    base::global::CStrId& id = out->data[k];
+                    id.data = nullptr;
+                    if (!g_unk_7101d47108)
+                        base::global::UnkEnsureStringPool();
+                    id.data = &g_unk_7101d47108->empty;
+                }
                 out->count = i + 1;
             }
-            out->data[i].Reset();
-            out->data[i].data = built->data;  // moved in (the built id is never destroyed)
+            base::global::CStrId& slot = out->data[i];
+            slot.Reset();
+            slot.data = built->data;  // moved in (the built id is never destroyed)
         }
     }
     fn_71007fd1dc(&list);

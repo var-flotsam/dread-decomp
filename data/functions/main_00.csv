@@ -265,7 +265,7 @@ address,size,name,name_source,subsystem,status
 0x710000aa38,388,base::animation::CBlendSpaceResource::SBlendTarget::refl_InitClass,reflection,engine/base,O
 0x710000abbc,480,base::reflection::refl_GetType<float>,reflection,engine/reflection,O
 0x710000ad9c,480,base::reflection::refl_GetType<base::global::CFilePathStrId>,reflection,engine/reflection,O
-0x710000af7c,1348,fn_710000af7c,unknown,unknown,M
+0x710000af7c,1348,fn_710000af7c,unknown,unknown,m
 0x710000b4c0,196,fn_710000b4c0,unknown,unknown,O
 0x710000b584,204,fn_710000b584,unknown,unknown,O
 0x710000b650,28,fn_710000b650,unknown,unknown,O
@@ -354,7 +354,7 @@ address,size,name,name_source,subsystem,status
 0x710000cb54,104,fn_710000cb54,unknown,unknown,O
 0x710000cbbc,136,fn_710000cbbc,unknown,unknown,O
 0x710000cc44,148,fn_710000cc44,unknown,unknown,O
-0x710000ccd8,288,fn_710000ccd8,unknown,unknown,m
+0x710000ccd8,288,fn_710000ccd8,unknown,unknown,O
 0x710000ce00,12,fn_710000ce00,unknown,unknown,O
 0x710000ce10,240,fn_710000ce10,unknown,unknown,O
 0x710000cf00,8,fn_710000cf00,unknown,unknown,O
@@ -1527,7 +1527,7 @@ address,size,name,name_source,subsystem,status
 0x710006b668,12,fn_710006b668,unknown,unknown,O
 0x710006b680,36,fn_710006b680,unknown,unknown,O
 0x710006b6a4,64,fn_710006b6a4,unknown,unknown,O
-0x710006b6e4,684,fn_710006b6e4,unknown,unknown,M
+0x710006b6e4,684,fn_710006b6e4,unknown,unknown,O
 0x710006b990,200,fn_710006b990,unknown,unknown,U
 0x710006ba58,116,fn_710006ba58,unknown,unknown,U
 0x710006bacc,180,fn_710006bacc,unknown,unknown,U
@@ -1574,7 +1574,7 @@ address,size,name,name_source,subsystem,status
 0x710006daf0,312,fn_710006daf0,unknown,unknown,U
 0x710006dc28,212,fn_710006dc28,unknown,unknown,U
 0x710006dcfc,204,fn_710006dcfc,unknown,unknown,U
-0x710006ddc8,224,fn_710006ddc8,unknown,unknown,M
+0x710006ddc8,224,fn_710006ddc8,unknown,unknown,O
 0x710006dea8,4,fn_710006dea8,unknown,unknown,O
 0x710006deac,1756,fn_710006deac,unknown,unknown,M
 0x710006e588,8,fn_710006e588,unknown,unknown,O

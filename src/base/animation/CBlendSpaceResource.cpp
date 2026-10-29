@@ -31,36 +31,34 @@ bool fn_71000e6ce0(UnkVersionEntry* self, u16* major, u16* minor);
 
 // Reads the file's id and, when it is registered, its version; sets field_0x38 from the comparison
 // (a file without an id is taken as current). True when the version is the registered one.
-// NON_MATCHING(minor): on the early exit the store of field_0x38 and the setting of the return value
-// are scheduled the other way round.
 bool fn_710000ccd8(UnkFileReader* self) {
     u64 id = (u64)-1;
     fn_710007c714(&self->file, &id, 8, 1);
-    if (id == (u64)-1) {
-        self->field_0x38 = 0;
-        return true;
-    }
-    UnkVersionEntry* entry = fn_71000a5118(g_unk_7101d4c8d0, &id);
-    u16 major = 0;
-    u16 minor = 0;
-    if (entry && fn_71000e6ce0(entry, &major, &minor)) {
-        u16 file_major = 0;
-        u16 file_minor = 0;
-        fn_710007c714(&self->file, &file_major, 2, 1);
-        fn_710007c714(&self->file, &file_minor, 2, 1);
-        u32 status;
-        if (file_major == major && file_minor == minor) {
-            status = 0;
-        } else if (file_major > major) {
-            status = 2;
-        } else {
-            status = 1;
-            if (file_major >= major && file_minor >= minor)
+    if (id != (u64)-1) {
+        UnkVersionEntry* entry = fn_71000a5118(g_unk_7101d4c8d0, &id);
+        u16 major = 0;
+        u16 minor = 0;
+        if (entry && fn_71000e6ce0(entry, &major, &minor)) {
+            u16 file_major = 0;
+            u16 file_minor = 0;
+            fn_710007c714(&self->file, &file_major, 2, 1);
+            fn_710007c714(&self->file, &file_minor, 2, 1);
+            u32 status;
+            if (file_major == major && file_minor == minor) {
+                status = 0;
+            } else if (file_major > major) {
                 status = 2;
+            } else {
+                status = 1;
+                if (file_major >= major && file_minor >= minor)
+                    status = 2;
+            }
+            self->field_0x38 = status;
         }
-        self->field_0x38 = status;
+        return self->field_0x38 == 0;
     }
-    return self->field_0x38 == 0;
+    self->field_0x38 = 0;
+    return true;
 }
 
 // The void type (src/base/reflection/UnkReflFunction.cpp).
@@ -143,6 +141,13 @@ extern char g_unk_7101d4b418[];
 
 extern "C" [[noreturn]] void fn_710000ce00();  // abort: a name too short for its suffix
 
+// Parses the file into the target, starting from its last entry's node; whether it succeeded.
+static inline bool Parse(UnkFileReader* reader, UnkReadTarget* target) {
+    UnkParseContext ctx(g_unk_7101d4cde8, reader, target);
+    UnkReadEntry* end = target->entries + target->count;
+    return ParseRoot(&ctx, target->count ? end[-1].field_0x0->field_0x10 : nullptr) != 0;
+}
+
 // A blend space's animation: its path and the resource it resolves to.
 struct UnkBlendSpaceAnim {
     u64 field_0x0;
@@ -165,9 +170,37 @@ struct UnkAnimIds {
     CFilePathStrId path;
 };
 
+// Looks the animation up in `category` and keeps the resource when it is an asset.
+__attribute__((always_inline)) static inline void Resolve(UnkBlendSpaceAnim* a, const CStrId& category) {
+    UnkAnimIds ids{category, a->path};
+    UnkAssetResRef found =
+        fn_710002038c(g_unk_7101d4bbc0, reinterpret_cast<const UnkStrIdPathPair*>(&ids), true, nullptr);
+    // The resource, kept (counted) only when it is an asset.
+    UnkAssetResRef kept{nullptr};
+    if (UnkCountedResource* r = found.ptr) {
+        auto* obj = reinterpret_cast<UnkBlendSpace*>(r);
+        if (fn_710009d50c(obj->vf_0x0(), reinterpret_cast<const CType*>(fn_7100016894()))) {
+            ++r->ref_count;
+            kept.ptr = r;
+        }
+    }
+    UnkCountedResource* res = kept.ptr;
+    if (a->resource != res) {
+        if (res)
+            ++res->ref_count;
+        if (UnkCountedResource* old = a->resource) {
+            if (--old->ref_count == 0)
+                fn_710001737c(old);
+        }
+        a->resource = res;
+    }
+}
+
 // Reads the blend space from its file, then resolves each animation in the registry (keeping it only
 // when it is an asset). False when the file could not be parsed.
-// NON_MATCHING(major): written from the original's behaviour, not compared instruction by instruction.
+// NON_MATCHING(minor): same instructions and control flow (two inlined copies of the lookup with
+// their tails merged), but the lookup's result gets the frame's top slot where the original keeps it
+// at the bottom (below the read target), so every stack offset differs, and two registers swap.
 bool fn_710000af7c(UnkBlendSpace* self) {
     UnkFileReader reader;
     {
@@ -198,9 +231,7 @@ bool fn_710000af7c(UnkBlendSpace* self) {
     }
     bool ok = false;
     if (reader.file.position < reader.file.size && reader.field_0x38 == 0) {
-        UnkParseContext ctx(g_unk_7101d4cde8, &reader, &target);
-        UnkReadEntry* end = target.entries + target.count;
-        if (ParseRoot(&ctx, target.count ? end[-1].field_0x0->field_0x10 : nullptr)) {
+        if (Parse(&reader, &target)) {
             for (UnkBlendSpaceAnim* a = self->anims, *e = a + self->anim_count; a != e; ++a) {
                 const char* name =
                     base::reflection::refl_RntStringOf(*reinterpret_cast<const CStrId*>(&a->path)).data;
@@ -210,26 +241,10 @@ bool fn_710000af7c(UnkBlendSpace* self) {
                 if (len < 4)
                     fn_710000ce00();
                 bool blend = __builtin_memcmp(name + len - 4, "mbls", 4) == 0;
-                const CStrId& category =
-                    *reinterpret_cast<const CStrId*>(blend ? g_unk_7101d4c138 : g_unk_7101d4b418);
-                UnkAnimIds ids{category, a->path};
-                UnkAssetResRef found =
-                    fn_710002038c(g_unk_7101d4bbc0, reinterpret_cast<const UnkStrIdPathPair*>(&ids), true, nullptr);
-                UnkCountedResource* res = found.ptr;
-                if (res) {
-                    auto* obj = reinterpret_cast<UnkBlendSpace*>(res);
-                    if (!fn_710009d50c(obj->vf_0x0(), reinterpret_cast<const CType*>(fn_7100016894())))
-                        res = nullptr;
-                }
-                if (a->resource != res) {
-                    if (res)
-                        ++res->ref_count;
-                    if (UnkCountedResource* old = a->resource) {
-                        if (--old->ref_count == 0)
-                            fn_710001737c(old);
-                    }
-                    a->resource = res;
-                }
+                if (blend)
+                    Resolve(a, *reinterpret_cast<const CStrId*>(g_unk_7101d4c138));
+                else
+                    Resolve(a, *reinterpret_cast<const CStrId*>(g_unk_7101d4b418));
             }
             ok = true;
         }

@@ -2823,7 +2823,7 @@ address,size,name,name_source,subsystem,status
 0x7100b891f0,228,fn_7100b891f0,unknown,unknown,O
 0x7100b892d4,88,fn_7100b892d4,unknown,unknown,O
 0x7100b8932c,352,fn_7100b8932c,unknown,unknown,O
-0x7100b8948c,640,fn_7100b8948c,unknown,unknown,M
+0x7100b8948c,640,fn_7100b8948c,unknown,unknown,O
 0x7100b8970c,328,fn_7100b8970c,unknown,unknown,U
 0x7100b89854,1840,fn_7100b89854,unknown,unknown,U
 0x7100b89f84,432,fn_7100b89f84,unknown,unknown,U

@@ -20,6 +20,8 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - A list passed as a reference parameter lets the step load before the first capacity test; each branch pushes its own last value: [Hash lists by height](#hash-lists-by-height).
 - List fields as union members so they reload after node stores; `alignas(16)` for the stack slot: [Flag lists](#flag-lists).
 - An array of non-trivially-destructible members becomes a loop: declare separate members: [Link groups](#link-groups).
+- Owning-pointer arrays whose count reloads after each slot store: write the slots as raw words; grow loops walk by pointer with a 32-bit counter beside a 64-bit index: [port functions round 1](#session-log-newest-first).
+- A parse context belongs in an inlined helper (its alloca takes the frame's top slot); per-branch `always_inline` copies give tail-merged duplicates: same entry.
 
 **Iterators and iterator values**
 - Elements copied member by member need a user-written move constructor; `flatten` wrappers reproduce inlined template moves: [batch 15](#slice-1-near-copies-batch-15).
@@ -121,6 +123,32 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - Several templates can carry one address's tag (`refl_GetPrimitiveType<G>` and its inline helper `refl_MakePrimitiveType<G>`, which Clang 18 keeps out of line); an alias to one that returns a class by value puts its hidden result pointer in the caller's rdi and writes the object over the caller's frame. A crash whose return address is a function's start, with a type's hook table on the stack, is the sign: [port M1 round 5](#session-log-newest-first).
 
 ## Session log (newest first)
+
+**Matching the port's hand-written boot functions, round 1 (2026-10-29, branch `claude/project-thread-lths9k`).**
+The functions PRs #256, #259 and #261 wrote for the port from the original's behaviour (all `NON_MATCHING`), compared
+instruction by instruction now. None is in the direct-call boot slice (the boot reaches them through vtables and
+pointers), so the boot slice gains one function (fn_710000ccd8, `m` to `O`). Whole binary: `O` 85,035 to 85,044
+(+4,308 bytes), `M` 27 to 19. Now `O`: fn_710006ddc8, fn_710016c760, fn_710000ccd8, fn_71008626bc, fn_7100713e2c,
+fn_71011b8dc4, fn_710006b6e4, fn_7100b8948c, fn_71002e0090. fn_710000af7c goes from major to minor, fn_71001b76ec
+from 84% to 97% (minor), and the string-id split shared by fn_7100cfca0c and fn_7100d1f764 from 40% to 70% (major).
+What made the difference:
+- **Owning-pointer slots alias the array header.** The track and key arrays (fn_710006b6e4, fn_7100b8948c) re-read
+  their count after every slot store, in the grow loop and on append. Writing the slots as raw words
+  (`__builtin_memcpy`) gives the same reloads. Their grow loops walk the old array by pointer with a 32-bit counter,
+  plus a 64-bit index for the new array (one counter alone is widened and compared in 64 bits).
+- **A parse context declared in an inlined helper** gets the frame's top slot (inlined allocas go first), shared with
+  the path pair and the reflected value, as in the matched twins in src/game/GUI/CGUIManager.cpp. Declared in the
+  function itself, it shifts every stack offset (fn_71002e0090).
+- **Two inlined copies with merged tails.** fn_710000af7c looks the animation up separately per category: an
+  `always_inline` helper called in each branch. Branch folding then merges the identical destructor tails.
+- **Block order from the source's order.** fn_710000ccd8's early exit matched only when written last (`if (id != -1)
+  {...} return ...;` then the exit). fn_710016c760 zeroes its entries with an array new's do-while of constructors.
+- **`(a < x) & (b > y)`** (no short circuit) gives fn_7100713e2c's `fccmp`, and reading the limits before the blend
+  value fixes the load order. Its degree conversion is in double.
+- Still `NON_MATCHING`, with the reasons in their comments: fn_710109ce10 (variadic save order), fn_71001bab30 and
+  fn_71000ffa68 (scheduling only), fn_71000f88b8 and fn_71001b83f8 (hand-vectorised NEON; the tree has no vector-math
+  helpers yet), fn_71000f4ebc (inlines nn::atk's StartInfo constructor field by field). fn_710006deac, fn_7100068f5c and
+  fn_7100223c2c are next.
 
 **Real inputs for the last boot lifts (2026-10-29, branch `claude/project-thread-zgkpk3`, after #258).**
 Of the 11 boot-trace functions #258 left, 5 are status L (two Lua functions sigmatch already matched, the

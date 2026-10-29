@@ -53,7 +53,6 @@ struct UnkColliderContainer {
 
 // Reads a collider's five strings (its name, its group, a type name, its shape kind's name and one
 // more), creates it, reads its shape and, when the file has more, its flag. Always true.
-// NON_MATCHING(major): written from the original's behaviour, not compared instruction by instruction.
 bool fn_71008626bc(UnkColliderContainer* self, base::global::CRntFile* stream) {
     const char* name;
     const char* group;
@@ -80,7 +79,7 @@ bool fn_71008626bc(UnkColliderContainer* self, base::global::CRntFile* stream) {
     }
     collider->shape->vf_0x20(stream);
     if (stream->position < stream->size) {
-        u8 flag = 0;
+        bool flag = false;
         fn_710007c714(stream, &flag, 1, 1);
         collider->vf_0x30(flag);
     }
