@@ -156,7 +156,8 @@ From the trace run's refusals (`lifted_trace1`, 6,007 of 6,070 accepted):
   loaded register on every path from the load (a call or tail call counts as reading v0-v7, a ret v0-v3 only when callers are known to read a float result there)
   and no path from the entry reaches the convert without the load; the convert then happens at the load.
   A convert into another register (`ldr b3; ...; ucvtf s19, s3`, the next byte reloaded into v3 at once)
-  becomes a copy there, and then no later read of v3 may see the converted value.
+  becomes a copy there, and then no later read of v3 may see the converted value. A folded convert that is a
+  branch target keeps its label (FlatLifter.jskip, as for a jump table's skipped instructions).
 - **A local zeroed in the prologue** (`7101233e30`: `sub sp, sp, #0x30; stp xzr, x19, [sp, #8]`, then
   the frame record): the prologue stopped at the pair, so fp was never set and the frame was refused.
   In semantic mode `zero_save` lets the prologue go on past it; the pair itself is lifted as two plain

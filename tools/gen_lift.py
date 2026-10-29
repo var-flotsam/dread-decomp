@@ -1258,6 +1258,8 @@ class Lifter:
         dest = self.ins[c].op_str.split(",")[0]
         if dest == f"s{reg[1:]}":
             self.gskip.add(self.ins[c].address)
+            if hasattr(self, "jskip"):
+                self.jskip.add(self.ins[c].address)  # (FlatLifter: a branch target keeps its label)
         else:
             self.far_copy[self.ins[c].address] = (dest, f"s{reg[1:]}")  # (the convert becomes a copy)
         return True
