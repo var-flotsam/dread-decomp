@@ -35,7 +35,9 @@ accepts a lift that behaves like the original, whatever its bytes:
      uses too.
   4. Oracle (b): run the original and each compiled variant, in variant order, as Ghidra P-code on
      --inputs seeds (tools/pcode_emu.py); the first variant whose calls, memory writes and result
-     agree with the original's on every conclusive input is accepted.
+     agree with the original's on every conclusive input is accepted. A function with a snapshot
+     in build/port/snapshots/fn_<addr>.snap (a real run's state at its entry, from the Dread recomp:
+     tools/recomp_trace.py snapshot) is also run from that state, first, and mutated from it.
   5. Compile the accepted lifts for x86-64 (tools/port_sweep.py's compiler and flags, plus
      SEMANTIC_FLAGS): one source and one object per function under <out>/, which
      tools/port_link.py --lifted <out> links.
@@ -88,6 +90,7 @@ ROOT = Path(__file__).resolve().parent.parent
 GENERATOR = "port_lift 2"  # 2: "overrides" entries
 SOURCES = ["tools/port_lift.py", "tools/gen_lift.py", "tools/abi_facts.py", "tools/pcode_emu.py", "tools/ghidra/pcode.py"]
 DEFAULT_OUT = ROOT / "build" / "port" / "lifted"
+SNAPSHOTS = ROOT / "build" / "port" / "snapshots"  # fn_<addr>.snap: real entry states (pcode_emu.load_snapshot)
 PARTIAL_OUT = ROOT / "build" / "port" / "lifted_partial"
 WORKLIST = ROOT / "build" / "port" / "link" / "boot_missing.csv"
 FACTS = ROOT / "build" / "port" / "abi_facts.pickle"  # abi_facts.AbiFacts cache (depends on the binary only)
@@ -438,6 +441,15 @@ class Oracle:
             def run(seed: int, ovr: dict):
                 return self.run_original(addr, seed, ovr)
 
+            snap = SNAPSHOTS / f"fn_{addr:x}.snap"
+            if snap.is_file():
+                o = {("s", str(snap)): 0}
+                try:
+                    m = run(0, o)
+                    runs.append((0, o, m))
+                    seen |= m.visited
+                except pcode_emu.Inconclusive as e:
+                    runs.append((0, o, f"snapshot: {e}"))
             for seed in range(MAX_SEEDS):
                 if seed >= self.inputs and (idle >= PATIENCE or len(seen) * 4 >= size):
                     break

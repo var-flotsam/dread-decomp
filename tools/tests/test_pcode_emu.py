@@ -103,3 +103,34 @@ class FloatToInt(unittest.TestCase):
             got = struct.unpack("<f", bytes(m.regs[q2:q2 + 4]))[0]
             self.assertEqual((got, str(got)), (want, str(want)), (rmode, value))
 
+
+
+@unittest.skipIf(pcode_emu is None, "pyelftools is not installed")
+class Snapshots(unittest.TestCase):
+    def test_module_addresses_move_to_ours(self):
+        import json
+        import os
+        import tempfile
+        import zlib
+        page = bytearray(pcode_emu.PAGE)
+        page[8:16] = (pcode_emu.RECOMP_MAIN + 0x1230).to_bytes(8, "little")  # a pointer into the module
+        page[16:24] = (0x123456789).to_bytes(8, "little")  # a heap pointer stays
+        head = {"x": [hex(pcode_emu.RECOMP_MAIN + 0x40)] + ["0x0"] * 30, "q": ["0x0"] * 32,
+                "sp": "0x1000", "stack": "0102", "pages": 2}
+        raw = pcode_emu.SNAP_MAGIC + json.dumps(head).encode() + b"\n"
+        raw += (pcode_emu.RECOMP_MAIN + 0x2000).to_bytes(8, "little") + bytes(page)  # a module page
+        raw += (0x200000000).to_bytes(8, "little") + bytes(page)
+        fd, path = tempfile.mkstemp(suffix=".snap")
+        os.write(fd, zlib.compress(raw))
+        os.close(fd)
+        try:
+            s = pcode_emu.load_snapshot(path, 0x100000)
+        finally:
+            os.unlink(path)
+        B = pcode_emu.BASE
+        self.assertEqual(s.x[0], B + 0x40)
+        self.assertEqual(sorted(s.pages), [0x200000000 // pcode_emu.PAGE, (B + 0x2000) // pcode_emu.PAGE])
+        p = s.pages[0x200000000 // pcode_emu.PAGE]
+        self.assertEqual(int.from_bytes(p[8:16], "little"), B + 0x1230)
+        self.assertEqual(int.from_bytes(p[16:24], "little"), 0x123456789)
+        self.assertEqual(s.stack, b"\x01\x02")

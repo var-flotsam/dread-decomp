@@ -31,6 +31,11 @@ from the address and the seed: small integers, pointers to more such memory, or 
 address passed to a callee is compared by the bytes the function wrote around it, since the two
 frames are laid out differently.
 
+A snapshot (load_snapshot: the registers and memory pages a real run held at the function's entry, captured
+from the Dread recomp by tools/recomp_trace.py) can stand in for the seed's made-up state: its pages read as
+they were (the module's own pages too), anything it did not capture as the seed gives, and the recomp's
+addresses of the module are moved to ours.
+
 Standard library and pyelftools; the P-code comes from a pickle tools/ghidra/pcode.py writes.
 """
 
@@ -154,6 +159,60 @@ class ImageMemory:
         self.text = (BASE + img.text[0], BASE + img.text[1])
         self.end = BASE + len(self.data)
         self.bss_end = BASE + img.rwdata[1]
+
+
+RECOMP_MAIN = 0x8005000  # where the Dread recomp places the module (tools/recomp_trace.py)
+SNAP_MAGIC = b"DSNAP1\n"
+
+
+@dataclass
+class Snapshot:
+    """A real run's state at a function's entry, in our addresses: x0-x28, q0-q31, the bytes above
+    sp (stack arguments) and memory pages by page number."""
+    x: list
+    q: list
+    stack: bytes
+    pages: dict
+
+
+_snapshots: dict[str, Snapshot] = {}
+
+
+def load_snapshot(path: str, module_size: int) -> Snapshot:
+    """A capture file (tools/recomp_trace.py snapshot): the magic, one JSON header line ({"x": 31
+    values, "q": 32, "sp", "stack": hex bytes above sp, "pages": n}), then n records of an 8-byte page
+    address and PAGE bytes, all in the recomp's addresses. Module addresses (page keys, registers and
+    every aligned word that falls in the recomp's module) become ours."""
+    if path in _snapshots:
+        return _snapshots[path]
+    import json
+    import zlib
+    raw = open(path, "rb").read()
+    if raw[:2] == b"\x78\x9c" or raw[:2] == b"\x78\xda":
+        raw = zlib.decompress(raw)
+    if not raw.startswith(SNAP_MAGIC):
+        raise ValueError(f"{path}: not a snapshot")
+    nl = raw.index(b"\n", len(SNAP_MAGIC))
+    head = json.loads(raw[len(SNAP_MAGIC):nl])
+    lo, hi = RECOMP_MAIN, RECOMP_MAIN + module_size
+
+    def tr(v: int) -> int:
+        return v - lo + BASE if lo <= v < hi else v
+
+    pages, off = {}, nl + 1
+    for _ in range(head["pages"]):
+        a = int.from_bytes(raw[off:off + 8], "little")
+        p = bytearray(raw[off + 8:off + 8 + PAGE])
+        for k in range(0, PAGE, 8):
+            w = int.from_bytes(p[k:k + 8], "little")
+            if lo <= w < hi:
+                p[k:k + 8] = tr(w).to_bytes(8, "little")
+        pages[tr(a) // PAGE] = bytes(p)
+        off += 8 + PAGE
+    snap = Snapshot([tr(int(v, 16)) for v in head["x"]], [int(v, 16) for v in head["q"]],
+                    bytes.fromhex(head.get("stack", "")), pages)
+    _snapshots[path] = snap
+    return snap
 
 
 @dataclass
@@ -314,6 +373,9 @@ class Machine:
         # result; and, with track, the memory words the run read before writing them, in order
         # (what a mutation can change next).
         self.overrides = overrides or {}
+        # ("s", path): the input starts from that snapshot instead of the seed's registers and memory
+        path = next((k for kind, k in self.overrides if kind == "s"), None)
+        self.snap = load_snapshot(path, image.end - BASE) if path else None
         self.mem_ovr: dict[int, list[tuple[int, int]]] = {}
         for (kind, k), v in self.overrides.items():
             if kind == "m":
@@ -367,6 +429,8 @@ class Machine:
         a = n * PAGE
         if self.lift is not None and n in self.lift.mem:
             p = bytearray(self.lift.mem[n])
+        elif self.snap is not None and n in self.snap.pages and not STACK_LO <= a < STACK_TOP:
+            p = bytearray(self.snap.pages[n])
         elif self.image.text[0] <= a < self.image.end:
             off = a - BASE
             p = bytearray(self.image.data[off:off + PAGE].ljust(PAGE, b"\0"))
@@ -500,6 +564,13 @@ class Machine:
             else:
                 bits = f_to(rnd.uniform(-100, 100), 8)
             self.regs[Q0 + QSTRIDE * i:Q0 + QSTRIDE * i + 16] = bits.to_bytes(16, "little")
+        if self.snap is not None:
+            for i in range(29):
+                self.regs[X0 + 8 * i:X0 + 8 * i + 8] = (self.snap.x[i] & 0xFFFFFFFFFFFFFFFF).to_bytes(8, "little")
+            for i in range(32):
+                self.regs[Q0 + QSTRIDE * i:Q0 + QSTRIDE * i + 16] = (self.snap.q[i] & (1 << 128) - 1).to_bytes(16, "little")
+            for k, b in enumerate(self.snap.stack):  # (the stack arguments, at our entry sp)
+                self.page((ENTRY_SP + k) // PAGE)[(ENTRY_SP + k) % PAGE] = b
         self.regs[X0 + 8 * 30:X0 + 8 * 31] = SENTINEL.to_bytes(8, "little")
         self.regs[X0 + 8 * 29:X0 + 8 * 30] = bytes(8)
         self.regs[SP:SP + 8] = ENTRY_SP.to_bytes(8, "little")
