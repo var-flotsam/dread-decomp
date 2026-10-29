@@ -235,9 +235,9 @@ static_assert(sizeof(UnkCullView) == 0x4e0, "UnkCullView layout");
 
 // The constructor: defaults, the sphere and three members, zeroed planes, nine empty boxes with
 // their quantised corners, then the half field of view's sine, cosine and tangent.
-// NON_MATCHING(minor): the fourteen 8-byte zero stores to +0x268..+0x2d8 (before the first box
-// is built) come out in descending address order where the original has them mostly ascending,
-// with their address registers (x8/x9/x10) assigned differently; same stores, nothing between them.
+// NON_MATCHING(minor): of the fourteen 8-byte zero stores to +0x268..+0x2d8, the one to +0x270 gets
+// its address register (x10) before the others where the original computes it second (in x8); same
+// stores, nothing between them.
 void fn_71001b76ec(UnkCullView* self) {
     self->field_0x0 = 0;
     self->field_0x4 = 0;
@@ -290,8 +290,18 @@ void fn_71001b76ec(UnkCullView* self) {
     self->cosHalfFov = 0.0f;
     self->invCosHalfFov = 0.0f;
     self->cosHalfFovSq = 0.0f;
-    for (void*& v : self->field_0x280)
-        v = nullptr;
+    self->field_0x280[0] = nullptr;
+    self->field_0x280[1] = nullptr;
+    self->field_0x280[2] = nullptr;
+    self->field_0x280[3] = nullptr;
+    self->field_0x280[4] = nullptr;
+    self->field_0x280[5] = nullptr;
+    self->field_0x280[6] = nullptr;
+    self->field_0x280[7] = nullptr;
+    self->field_0x280[8] = nullptr;
+    self->field_0x280[9] = nullptr;
+    self->field_0x280[10] = nullptr;
+    self->field_0x280[11] = nullptr;
     self->field_0x2e0 = true;
     for (UnkViewBox& b : self->boxes) {
         UnkPoolBox* box = &b.box;

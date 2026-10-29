@@ -31,36 +31,34 @@ bool fn_71000e6ce0(UnkVersionEntry* self, u16* major, u16* minor);
 
 // Reads the file's id and, when it is registered, its version; sets field_0x38 from the comparison
 // (a file without an id is taken as current). True when the version is the registered one.
-// NON_MATCHING(minor): on the early exit the store of field_0x38 and the setting of the return value
-// are scheduled the other way round.
 bool fn_710000ccd8(UnkFileReader* self) {
     u64 id = (u64)-1;
     fn_710007c714(&self->file, &id, 8, 1);
-    if (id == (u64)-1) {
-        self->field_0x38 = 0;
-        return true;
-    }
-    UnkVersionEntry* entry = fn_71000a5118(g_unk_7101d4c8d0, &id);
-    u16 major = 0;
-    u16 minor = 0;
-    if (entry && fn_71000e6ce0(entry, &major, &minor)) {
-        u16 file_major = 0;
-        u16 file_minor = 0;
-        fn_710007c714(&self->file, &file_major, 2, 1);
-        fn_710007c714(&self->file, &file_minor, 2, 1);
-        u32 status;
-        if (file_major == major && file_minor == minor) {
-            status = 0;
-        } else if (file_major > major) {
-            status = 2;
-        } else {
-            status = 1;
-            if (file_major >= major && file_minor >= minor)
+    if (id != (u64)-1) {
+        UnkVersionEntry* entry = fn_71000a5118(g_unk_7101d4c8d0, &id);
+        u16 major = 0;
+        u16 minor = 0;
+        if (entry && fn_71000e6ce0(entry, &major, &minor)) {
+            u16 file_major = 0;
+            u16 file_minor = 0;
+            fn_710007c714(&self->file, &file_major, 2, 1);
+            fn_710007c714(&self->file, &file_minor, 2, 1);
+            u32 status;
+            if (file_major == major && file_minor == minor) {
+                status = 0;
+            } else if (file_major > major) {
                 status = 2;
+            } else {
+                status = 1;
+                if (file_major >= major && file_minor >= minor)
+                    status = 2;
+            }
+            self->field_0x38 = status;
         }
-        self->field_0x38 = status;
+        return self->field_0x38 == 0;
     }
-    return self->field_0x38 == 0;
+    self->field_0x38 = 0;
+    return true;
 }
 
 // The void type (src/base/reflection/UnkReflFunction.cpp).

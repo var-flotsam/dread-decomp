@@ -37,17 +37,21 @@ struct UnkSceneMatrixNode {
 };
 static_assert(sizeof(UnkSceneMatrixNode) == 0x58, "UnkSceneMatrixNode placeholder layout");
 
-// NON_MATCHING(minor): the original zeroes the entries as a loop over them (a memset of the same
-// size computed from the last entry's offset), and so keeps one more register.
+// The entries are zeroed by constructing each one (an array new's loop, run only when n != 0).
 void fn_710016c760(UnkSceneMatrixNode* self, UnkSceneEntryOwner* owner, const void* value, f32 angle) {
     self->vtable = unk_7101a1db18 + 0x10;
     self->owner = owner;
     if (!owner->entries) {
         u32 n = *reinterpret_cast<const u32*>(owner->scene + 0x38c);
         u64 size = (u64)n * sizeof(UnkSceneEntry);
-        void* p = fn_7100083ba0(size, 0x1a);
-        if (n)
-            __builtin_memset(p, 0, size);
+        UnkSceneEntry* p = static_cast<UnkSceneEntry*>(fn_7100083ba0(size, 0x1a));
+        if (n) {
+            UnkSceneEntry* e = p;
+            do {
+                new (e) UnkSceneEntry;
+                ++e;
+            } while (e != p + n);
+        }
         owner->entries = p;
     }
     self->vtable = unk_7101a1d9f8 + 0x10;
