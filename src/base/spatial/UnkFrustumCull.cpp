@@ -426,16 +426,18 @@ struct UnkQuantPlane {
 };
 static_assert(sizeof(UnkQuantPlane) == 0x18, "UnkQuantPlane placeholder layout");
 
-inline s32 Quantise(f32 v, f32 scale) { return (s32)(f32)(s32)(v * scale); }
+// Rounded toward zero by floor or ceiling, as the original does.
+inline s32 Quantise(f32 v, f32 scale) {
+    f32 x = v * scale;
+    return (s32)(x > 0.0f ? floorf(x) : ceilf(x));
+}
 
-// A cross-section's four corners at the given distance along the view's forward axis, the right
-// and up axes scaled by the half sizes: (+right, -up), (+right, +up), (-right, -up), (-right, +up).
-__attribute__((always_inline)) inline void Corners(UnkCullView* self, V3* out, f32 distance, f32 half_right, f32 half_up) {
+// A cross-section's four corners at the given distance along the view's forward axis, from the
+// right and up axes scaled to the half sizes (r, u): (+r, -u), (+r, +u), (-r, -u), (-r, +u).
+__attribute__((always_inline)) inline void Corners(UnkCullView* self, V3* out, f32 distance, V3 r, V3 u) {
     V3 eye = Vec(self, 0xa8);
     V3 forward = Vec(self, 0xb4);
     V3 c = {eye.x + forward.x * distance, eye.y + forward.y * distance, eye.z + forward.z * distance};
-    V3 r = Scale(Vec(self, 0xc0), half_right);
-    V3 u = Scale(Vec(self, 0xcc), half_up);
     V3 cr = Add(c, r);
     V3 cl = Sub(c, r);
     out[0] = Sub(cr, u);
@@ -445,7 +447,7 @@ __attribute__((always_inline)) inline void Corners(UnkCullView* self, V3* out, f
 }
 
 // The plane through p0, a and b (its normal cross(a - p0, b - p0), normalised).
-__attribute__((always_inline)) inline void PlaneFrom(UnkPlane* plane, V3 p0, V3 a, V3 b) {
+__attribute__((always_inline)) inline void PlaneFrom(UnkPlane* plane, const V3& p0, const V3& a, const V3& b) {
     V3 v1 = Sub(a, p0);
     V3 v2 = Sub(b, p0);
     f32 nx = v1.y * v2.z - v1.z * v2.y;
@@ -466,10 +468,9 @@ __attribute__((always_inline)) inline void PlaneFrom(UnkPlane* plane, V3 p0, V3 
 // The corners, planes and boxes from the two cross-sections' distances and half sizes (inlined
 // into both of the update's branches).
 __attribute__((always_inline)) static inline void Rebuild(UnkCullView* self, V3* near, V3* far, f32 near_d,
-                                                          f32 far_d, f32 near_right, f32 near_up, f32 far_right,
-                                                          f32 far_up) {
-    Corners(self, near, near_d, near_right, near_up);
-    Corners(self, far, far_d, far_right, far_up);
+                                                          f32 far_d, V3 near_r, V3 near_u, V3 far_r, V3 far_u) {
+    Corners(self, near, near_d, near_r, near_u);
+    Corners(self, far, far_d, far_r, far_u);
 
     PlaneFrom(&self->planes[0], far[0], near[1], near[0]);
     PlaneFrom(&self->planes[1], far[2], near[2], near[3]);
@@ -496,17 +497,25 @@ __attribute__((always_inline)) static inline void Rebuild(UnkCullView* self, V3*
             points[4 + k] = Add(Scale(step[k], (f32)(i + 1)), far[k]);
         }
         UnkPoolBox* box = &self->boxes[i].box;
-        UnkVec3f lo(__FLT_MAX__, __FLT_MAX__, __FLT_MAX__);
-        UnkVec3f hi(-__FLT_MAX__, -__FLT_MAX__, -__FLT_MAX__);
-        box->SetMin(&lo);
-        box->SetMax(&hi);
-        for (const V3& p : points) {
-            UnkVec3f m = box->GetMin();
-            lo = UnkVec3f(p.x < m.x ? p.x : m.x, p.y < m.y ? p.y : m.y, p.z < m.z ? p.z : m.z);
+        {
+            UnkVec3f lo(__FLT_MAX__, __FLT_MAX__, __FLT_MAX__);
+            UnkVec3f hi(-__FLT_MAX__, -__FLT_MAX__, -__FLT_MAX__);
             box->SetMin(&lo);
-            m = box->GetMax();
-            hi = UnkVec3f(p.x > m.x ? p.x : m.x, p.y > m.y ? p.y : m.y, p.z > m.z ? p.z : m.z);
             box->SetMax(&hi);
+        }
+        // The box's value wins a comparison with a NaN.
+        for (u64 k = 0; k < 8; ++k) {
+            const V3& p = points[k];
+            {
+                UnkVec3f m = box->GetMin();
+                UnkVec3f grown(m.x < p.x ? m.x : p.x, m.y < p.y ? m.y : p.y, m.z < p.z ? m.z : p.z);
+                box->SetMin(&grown);
+            }
+            {
+                UnkVec3f m = box->GetMax();
+                UnkVec3f grown(m.x > p.x ? m.x : p.x, m.y > p.y ? m.y : p.y, m.z > p.z ? m.z : p.z);
+                box->SetMax(&grown);
+            }
         }
     }
 }
@@ -515,20 +524,24 @@ __attribute__((always_inline)) static inline void Rebuild(UnkCullView* self, V3*
 // distances at +0x88 and +0x8c and the half-size factors at +0x78/+0x7c; orthographic when the cull
 // object's flag at +0xb0 is set, from the size at +0x15c), the six planes and their quantised copies,
 // then the nine boxes, each bounding a ninth of the frustum along its depth.
-// NON_MATCHING(major): the original's shape (scalar, the whole rebuild inlined into each branch,
-// orthographic first, plane normals stored before they are scaled), 6540 bytes against 7024; not
-// yet compared instruction by instruction.
+// NON_MATCHING(minor): the same blocks, calls, arithmetic, compares, constants and stores (compared
+// block by block), 6980 bytes against 7024: the original reloads more of the stored corners and
+// plane terms instead of keeping them in registers (and multiplies one reloaded plane distance by
+// 10000 where we fold its negation into -10000), so the scheduling and registers differ.
 void fn_71001b83f8(UnkCullView* self) {
     V3* far = &Vec(self, 0x280);
     V3* near = &Vec(self, 0x2b0);
-    f32 near_d = self->field_0x88;
-    f32 far_d = self->field_0x8c;
     if (reinterpret_cast<const u8*>(self->cull)[0xb0]) {
-        f32 half_right = Word(self, 0x160) * 0.5f;
-        f32 half_up = Word(self, 0x15c) * 0.5f;
-        Rebuild(self, near, far, near_d, far_d, half_right, half_up, half_right, half_up);
+        f32 near_d = self->field_0x88;
+        // The size times the axis, halved.
+        V3 r = Scale(Scale(Vec(self, 0xc0), Word(self, 0x160)), 0.5f);
+        V3 u = Scale(Scale(Vec(self, 0xcc), Word(self, 0x15c)), 0.5f);
+        Rebuild(self, near, far, near_d, self->field_0x8c, r, u, r, u);
     } else {
-        Rebuild(self, near, far, near_d, far_d, near_d * self->field_0x78, near_d * self->field_0x7c,
-                self->field_0x78 * far_d, self->field_0x7c * far_d);
+        f32 near_d = self->field_0x88;
+        f32 far_d = self->field_0x8c;
+        Rebuild(self, near, far, near_d, far_d, Scale(Vec(self, 0xc0), near_d * self->field_0x78),
+                Scale(Vec(self, 0xcc), near_d * self->field_0x7c), Scale(Vec(self, 0xc0), self->field_0x78 * far_d),
+                Scale(Vec(self, 0xcc), self->field_0x7c * far_d));
     }
 }
