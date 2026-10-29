@@ -3729,7 +3729,7 @@ address,size,name,name_source,subsystem,status
 0x71001b7eb4,484,fn_71001b7eb4,unknown,unknown,U
 0x71001b8098,420,fn_71001b8098,unknown,unknown,U
 0x71001b823c,444,fn_71001b823c,unknown,unknown,U
-0x71001b83f8,7024,fn_71001b83f8,unknown,unknown,M
+0x71001b83f8,7024,fn_71001b83f8,unknown,unknown,m
 0x71001b9f68,544,fn_71001b9f68,unknown,unknown,U
 0x71001ba188,492,fn_71001ba188,unknown,unknown,U
 0x71001ba374,1264,fn_71001ba374,unknown,unknown,U

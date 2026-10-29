@@ -170,11 +170,8 @@ struct UnkAnimIds {
     CFilePathStrId path;
 };
 
-// Looks the animation up in `category` and keeps the resource when it is an asset.
-__attribute__((always_inline)) static inline void Resolve(UnkBlendSpaceAnim* a, const CStrId& category) {
-    UnkAnimIds ids{category, a->path};
-    UnkAssetResRef found =
-        fn_710002038c(g_unk_7101d4bbc0, reinterpret_cast<const UnkStrIdPathPair*>(&ids), true, nullptr);
+// Keeps the resource the lookup found when it is an asset.
+__attribute__((always_inline)) static inline void Resolve(UnkBlendSpaceAnim* a, UnkAssetResRef& found) {
     // The resource, kept (counted) only when it is an asset.
     UnkAssetResRef kept{nullptr};
     if (UnkCountedResource* r = found.ptr) {
@@ -198,9 +195,10 @@ __attribute__((always_inline)) static inline void Resolve(UnkBlendSpaceAnim* a, 
 
 // Reads the blend space from its file, then resolves each animation in the registry (keeping it only
 // when it is an asset). False when the file could not be parsed.
-// NON_MATCHING(minor): same instructions and control flow (two inlined copies of the lookup with
-// their tails merged), but the lookup's result gets the frame's top slot where the original keeps it
-// at the bottom (below the read target), so every stack offset differs, and two registers swap.
+// NON_MATCHING(minor): same instructions, control flow and frame (two copies of the lookup with
+// their tails merged; the lookup's ids and result are this function's own locals, which puts them
+// below the read target as in the original), but the original loads the registry before the ids'
+// reference counts are raised, and two registers swap.
 bool fn_710000af7c(UnkBlendSpace* self) {
     UnkFileReader reader;
     {
@@ -241,10 +239,17 @@ bool fn_710000af7c(UnkBlendSpace* self) {
                 if (len < 4)
                     fn_710000ce00();
                 bool blend = __builtin_memcmp(name + len - 4, "mbls", 4) == 0;
-                if (blend)
-                    Resolve(a, *reinterpret_cast<const CStrId*>(g_unk_7101d4c138));
-                else
-                    Resolve(a, *reinterpret_cast<const CStrId*>(g_unk_7101d4b418));
+                if (blend) {
+                    UnkAnimIds ids{*reinterpret_cast<const CStrId*>(g_unk_7101d4c138), a->path};
+                    UnkAssetResRef found = fn_710002038c(g_unk_7101d4bbc0,
+                                                         reinterpret_cast<const UnkStrIdPathPair*>(&ids), true, nullptr);
+                    Resolve(a, found);
+                } else {
+                    UnkAnimIds ids{*reinterpret_cast<const CStrId*>(g_unk_7101d4b418), a->path};
+                    UnkAssetResRef found = fn_710002038c(g_unk_7101d4bbc0,
+                                                         reinterpret_cast<const UnkStrIdPathPair*>(&ids), true, nullptr);
+                    Resolve(a, found);
+                }
             }
             ok = true;
         }

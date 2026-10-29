@@ -7739,7 +7739,7 @@ address,size,name,name_source,subsystem,status
 0x7100cfc67c,380,fn_7100cfc67c,unknown,game/characters?,O
 0x7100cfc7f8,496,fn_7100cfc7f8,unknown,game/characters?,U
 0x7100cfc9e8,36,fn_7100cfc9e8,unknown,game/characters?,O
-0x7100cfca0c,784,fn_7100cfca0c,unknown,game/characters?,M
+0x7100cfca0c,784,fn_7100cfca0c,unknown,game/characters?,m
 0x7100cfcd1c,28,fn_7100cfcd1c,unknown,game/characters?,O
 0x7100cfcd38,12,fn_7100cfcd38,unknown,game/characters?,O
 0x7100cfcd44,8,fn_7100cfcd44,unknown,game/characters?,O
