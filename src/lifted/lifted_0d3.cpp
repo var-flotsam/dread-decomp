@@ -1888,13 +1888,14 @@ void fn_7100d35a70() {
 }
 
 namespace callee { char* fn_7100d5c868(u64, char*, char*); }
+namespace h { extern HIDDEN char g_unk_710164ba80[]; }
 char* fn_7100d35a74(char* p0) {
     u32 r0_8 = 0x1;
     char* r1_1 = p0;
     *(u8*)((char*)(p0) + 96) = (u8)(u64)(r0_8);
     u64 r3_0 = (u64)*(u64*)((char*)(p0) + 48);
     if ((u64)(u64)(r3_0) != 0) {
-        char* r5_2 = (char*)"";
+        char* r5_2 = (char*)h::g_unk_710164ba80;
         return callee::fn_7100d5c868(r3_0, r1_1, r5_2);
     }
     return (char*)(u64)(r3_0);

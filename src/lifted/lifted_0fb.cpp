@@ -1984,9 +1984,10 @@ char* fn_7100fb95f0() {
 }
 
 namespace callee { char* fn_71010a4d10(char*, char*, char*, u32); }
+namespace h { extern HIDDEN char g_unk_7101cab488[]; }
 char* fn_7100fb96a0(char* p0) {
     char* r0_1 = (char*)"AI";
-    char* r1_2 = (char*)"";
+    char* r1_2 = (char*)h::g_unk_7101cab488;
     u32 r2_3 = (u32)(u64)(0);
     return callee::fn_71010a4d10(p0, r0_1, r1_2, r2_3);
 }
@@ -2145,12 +2146,13 @@ char* fn_7100fbc470(char* p0, u32 p1) {
 namespace callee { char* fn_71010a3290(char*, u32, char*); }
 namespace callee { char* fn_71010a45e0(char*, char*); }
 namespace callee { char* fn_71010a4d10(char*, u64, char*, u32); }
+namespace h { extern HIDDEN char g_unk_7101cab588[]; }
 char* fn_7100fbc760(char* p0) {
     char* r0_20 = (char*)"__GameObjectType";
     char* r1_1 = r0_20;
     char* r2_19 = p0;
     char* r3_0 = callee::fn_71010a45e0(p0, r1_1);
-    char* r4_2 = (char*)"";
+    char* r4_2 = (char*)h::g_unk_7101cab588;
     char* r5_0 = r2_19;
     u64 r6_1 = 0;
     u32 r7_3 = (u32)(u64)(0);
@@ -2322,6 +2324,7 @@ char* fn_7100fbd260() {
 }
 
 namespace callee { char* fn_71000a1784(char*, char*); }
+namespace h { extern HIDDEN char g_unk_7101cab7c0[]; }
 bool fn_7100fbded0(char* p0, char* p1, u32 p2) {
     alignas(16) char stk[0x20];
     u64 X0 = (u64)p0;
@@ -2330,7 +2333,7 @@ bool fn_7100fbded0(char* p0, char* p1, u32 p2) {
     u64 X8;
     u64 X9;
     X8 = (u64)(((char*)X1));
-    X9 = (u64)((char*)"");
+    X9 = (u64)((char*)h::g_unk_7101cab7c0);
     X1 = (u64)((stk + 0x0));
     *(u32*)(stk + 0x8) = (u32)(u64)(0);
     *(u64*)(stk + 0x10) = (u64)(u64)(((char*)X0));
@@ -2345,12 +2348,13 @@ bool fn_7100fbded0(char* p0, char* p1, u32 p2) {
 namespace callee { char* fn_71010a3290(char*, u32, char*); }
 namespace callee { char* fn_71010a45e0(char*, char*); }
 namespace callee { char* fn_71010a4d10(char*, u64, char*, u32); }
+namespace h { extern HIDDEN char g_unk_7101cab5d8[]; }
 char* fn_7100fbf270(char* p0) {
     char* r0_20 = (char*)"__TypedValueType";
     char* r1_1 = r0_20;
     char* r2_19 = p0;
     char* r3_0 = callee::fn_71010a45e0(p0, r1_1);
-    char* r4_2 = (char*)"";
+    char* r4_2 = (char*)h::g_unk_7101cab5d8;
     char* r5_0 = r2_19;
     u64 r6_1 = 0;
     u32 r7_3 = (u32)(u64)(0);
