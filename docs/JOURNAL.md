@@ -143,6 +143,11 @@ From the trace run's refusals (`lifted_trace1`, 6,007 of 6,070 accepted):
   which reuses x19 as a loop counter after the call: `result_copies` is now a forward dataflow per
   instruction (entry {x8}; a `mov` from a holder adds, any other write or a call's clobber drops; the
   meet is the intersection), and a label keeps the set that reaches it.
+- **A table whose first pointer reads as ""** (`fn_71010c10c0` and nine more pass a `luaL_Reg` table to
+  `luaL_openlib`; found by the boot with `--nvn`): the table's first name pointer is zero in the file and
+  filled by a relocation, so byte mode emitted the literal `""` and native Lua read garbage entries from
+  it. Bytes a relocation fills are never a string literal now: the address becomes `g_unk_<addr>`
+  (byte-identical, and check.py then sees the relocation).
 - **A whole q register loaded** (`7101205f54`, `ldp q1, q2, [x1]`): semantic mode had no q load at all.
   `ldr`/`ldur`/`ldp` of q registers now give their four 32-bit lanes as f32 values (State.lanes, as
   `ld1` builds them), so the existing `str q` and a new `stp q` store them back bit for bit and the lane
