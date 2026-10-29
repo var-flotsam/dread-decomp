@@ -660,7 +660,8 @@ static inline f32 StopFade(f32 fade) { return !(fade <= 0.06f) ? fade : 0.06f; }
 
 // Stops `sound` (command 0x17 when it has the second id, else 10). Unless `immediate` is set, a
 // voice with the second id is then sent command 0x18.
-// NON_MATCHING(minor): the stores of the 0x18 and 10 paths are scheduled after their argument moves.
+// The early return keeps the 0x18 and 10 calls apart until the branch folder merges them, which
+// gives the original's schedule (a shared call block from the start schedules their stores early).
 void fn_71000ffa68(UnkSoundSystemATK* self, UnkSoundHandle* sound, bool immediate, f32 fade) {
     fn_7100132cd0();
     if (!sound)
@@ -672,13 +673,10 @@ void fn_71000ffa68(UnkSoundSystemATK* self, UnkSoundHandle* sound, bool immediat
             return;
         s32 next[2] = {sound->id, sound->field_0xec};
         fn_71000faac4(self, 0x18, next);
-    } else {
-        UnkSoundStop stop;
-        stop.id = sound->id;
-        stop.immediate = immediate;
-        stop.fade = StopFade(fade);
-        fn_71000faac4(self, 10, &stop);
+        return;
     }
+    UnkSoundStop stop = {sound->id, immediate, StopFade(fade)};
+    fn_71000faac4(self, 10, &stop);
 }
 
 // ---- fn_71000f7800: setting up the sound system ----
