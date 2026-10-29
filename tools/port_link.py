@@ -623,11 +623,13 @@ def signature_class(ref: list[str] | None, dfn: list[str] | None, dfn_qualified:
     if not agree(cr[:n], cd[:n]):
         # Integer and float arguments take their own registers in order (rdi, rsi, ... and xmm0,
         # xmm1, ...; x0-x7 and s0-s7 on AArch64), so (int, float, bool) lands as (ptr, ptr, float)
-        # does: what counts is each class's own sequence, while all of them fit in registers.
+        # does: what counts is each class's own sequence. Integers past the sixth go to the stack in
+        # their own order too, wherever the floats sit, as long as every float has a register (the
+        # variadic lifts' eight integers, a word and eight doubles, against a caller's mix).
         if "A" in cr or "A" in cd:
             return "class_mismatch", flags
         ri, rf, di, df = cr.count("I"), cr.count("F"), cd.count("I"), cd.count("F")
-        if max(ri, di) > 6 or max(rf, df) > 8:
+        if max(rf, df) > 8:
             return "class_mismatch", flags
         flags.append("interleaved_classes")
         if (ri, rf) == (di, df):
