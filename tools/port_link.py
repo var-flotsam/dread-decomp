@@ -1174,7 +1174,10 @@ def link_executable(cxx: str, target: str, flags: list[str], out: Path, whole_o:
     for name in ("Scrt1.o", "crti.o", "crtbeginS.o", "crtendS.o", "crtn.o"):
         r = subprocess.run([cxx, f"--target={target}", f"-print-file-name={name}"], capture_output=True, text=True)
         crt[name] = r.stdout.strip()
-    cmd = [cxx, f"--target={target}", "-fuse-ld=lld", "-stdlib=libc++", "-no-pie", "-nostartfiles",
+    # --no-relax: lld turns a GOT-relative `add sym@GOTPCREL(%rip), %reg` into `add $sym, %reg` in a
+    # non-PIE program, a sign-extended 32-bit immediate that cannot hold an address above 2 GB; the
+    # executable lives at 0x7173000000, so unk_prop::Key's table address came out truncated.
+    cmd = [cxx, f"--target={target}", "-fuse-ld=lld", "-stdlib=libc++", "-no-pie", "-nostartfiles", "-Wl,--no-relax",
            f"-Wl,--image-base=0x{image_base:x}", "-o", str(exe), crt["Scrt1.o"], crt["crti.o"], crt["crtbeginS.o"],
            str(main_o), str(whole_o), str(residue_o), *libs, "-lpthread", "-lm", crt["crtendS.o"], crt["crtn.o"]]
     t0 = time.time()
