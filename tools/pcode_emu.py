@@ -426,6 +426,10 @@ class Machine:
                 self.saves.add(a)  # a callee-saved register's entry value: a save slot, not a local
         elif self.arg_slots and ENTRY_SP <= a < ENTRY_SP + 8 * self.arg_slots:
             pass  # (the function's own stack arguments: the callee's to change, which the lift keeps elsewhere)
+        elif self.arg_slots is not None and ENTRY_SP <= a < STACK_TOP:
+            # Past its frame into the caller's: a local array overrun on a made-up count (fn_710014d1a0),
+            # undefined, and the two frames are laid out differently (as load: the caller's frame)
+            raise Inconclusive("store in the caller's frame")
         elif not (self.own[0] <= a < self.own[1]):
             for i in range(size):
                 self.dirty[a + i] = b[i]
@@ -1052,6 +1056,8 @@ def compare(a: Machine, b: Machine, ret: str | None) -> str:
                     continue
                 if i == len(eb) - 1 and end_b == ("end", "time-out"):
                     return "skip: the lift was cut off before the original's fault"
+                if (a.clipped or b.clipped) and i < len(eb) and ea[i][0] == eb[i][0]:
+                    return "skip: a memset or memcpy was clipped at 64 KiB"
                 return f"event {i} before the original's fault"
         return "skip: the original faulted where the lift did not"
     # A run cut off (Machine.cut: out of steps, events or snapshot room) recorded a true prefix of
@@ -1074,6 +1080,8 @@ def compare(a: Machine, b: Machine, ret: str | None) -> str:
             else:
                 return f"event {i}: {va[0]} {va[1] if len(va) > 1 else ''} vs {vb[0]} {vb[1] if len(vb) > 1 else ''}"
         if ma != mb:
+            if a.clipped or b.clipped:
+                return "skip: a memset or memcpy was clipped at 64 KiB"  # (each run's own base: fn_710122e6f0)
             return f"memory at event {i} ({va[0]}): {mem_diff(ma, mb)}"
     if ta and tb:
         # Both cut off: what came after the cut was never compared (a long loop of the same calls in
