@@ -129,7 +129,8 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 **Matching the port's hand-written boot functions, round 3 (2026-10-29, branch `claude/project-thread-lths9k`).**
 The eleven functions the port wrote that were still not `O` after rounds 1 and 2, and the NEON helpers round. Whole
-binary: `O` 85,044 to 85,045, `m` 399 to 402, `M` 15 to 11. Now `O`: fn_71000ffa68 (the sound stop command). Major to
+binary (`tools/progress.py`): `O` 85,046 to 85,047, `m` 399 to 402, `M` 15 to 11; usable (`O`+`m`) 57.06% to 57.11%. The
+boot slice is unchanged (the boot reaches these through vtables and pointers). Now `O`: fn_71000ffa68 (the sound stop command). Major to
 minor: the string-id split shared by fn_7100cfca0c and fn_7100d1f764 (70% to 98%), fn_71000f4ebc (starting a voice),
 and fn_71001b83f8 (the frustum update, 7 KB). fn_710000af7c gets the original's frame (48% to 59%). The rest stay
 minor after a time-boxed pass: fn_710109ce10 (the variadic register saves come out in another order whatever the
