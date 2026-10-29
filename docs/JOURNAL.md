@@ -144,6 +144,12 @@ From the trace run's refusals (`lifted_trace1`, 6,007 of 6,070 accepted):
   which reuses x19 as a loop counter after the call: `result_copies` is now a forward dataflow per
   instruction (entry {x8}; a `mov` from a holder adds, any other write or a call's clobber drops; the
   meet is the intersection), and a label keeps the set that reaches it.
+- **Unsigned converts in the oracle** (trace6 lost 14 lifts to d36fc58's saturating converts,
+  `71001c9550`: argument 0x7fffffff vs 0xffffffff): Ghidra's P-code gives fcvtzu (and fcvtmu, fcvtpu, ...)
+  the signed TRUNC, so the emulated original saturated a large float to 0x7fffffff and a negative one to
+  0x80000000, and agreed with the old plain-cast lift only because that compiled to the same fcvtzu.
+  `tools/pcode_emu.py` now runs every scalar fcvt{n,p,m,z,a}{s,u} itself, rounding by its mode and
+  saturating by its signedness and width.
 - **A va_list across the lifted/hand-written line** (`fn_71010c0b40` -> `fn_71010bf400`, found by the boot):
   a lifted variadic function builds the AArch64 va_list in its frame, and a hand-written callee reads it
   as the host's (`__va_list_tag*` on x86-64). `tools/port_link.py` now lists every reference from lifted

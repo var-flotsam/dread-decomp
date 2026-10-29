@@ -5,8 +5,8 @@ The oracle of tools/port_lift.py (docs/PORT_PLAN.md, oracle (b)): the original i
 lift compiled for AArch64 by the project compiler run side by side from the same inputs, every
 instruction executed as the raw P-code Ghidra's AArch64 specification gives it
 (tools/ghidra/pcode.py), so the lifter under test never decides what an instruction means. Only
-`b`, `bl`, `adr`, `adrp` and the scalar fmax/fmin forms (whose P-code is wrong when Rd is Rm) are
-executed here directly, and P-code is cached per instruction word (branch targets relative to the
+`b`, `bl`, `adr`, `adrp`, the scalar fmax/fmin forms (whose P-code is wrong when Rd is Rm) and the
+scalar float-to-integer converts (whose TRUNC saturates signed, also for fcvt*u) are executed here directly, and P-code is cached per instruction word (branch targets relative to the
 word's address are relocated when it runs).
 
 A run starts from registers and memory derived from a seed, and records what a caller or callee
@@ -777,6 +777,27 @@ class Machine:
             d = Q0 + QSTRIDE * (w & 31)
             self.set_reg(d, 16, 0)
             self.set_reg(d, size, f_to(v, size))
+            return "next", 0
+        if (w & 0x7F20FC00) == 0x1E200000 and (w >> 22) & 3 in (0, 1) and (w >> 16) & 7 in (0, 1, 4, 5):
+            # scalar fcvt{n,p,m,z,a}{s,u} to a general register: Ghidra's TRUNC saturates signed,
+            # so fcvtzu of a large float came out 0x7fffffff where the instruction gives all ones
+            # (71001c9550; the lift's saturating convert is right)
+            size = 8 if (w >> 22) & 1 else 4
+            bits = 64 if w >> 31 else 32
+            a = f_from(self.reg(Q0 + QSTRIDE * ((w >> 5) & 31), size), size)
+            unsigned = (w >> 16) & 1
+            mode = 4 if (w >> 16) & 4 else (w >> 19) & 3  # 0 nearest-even, 1 +inf, 2 -inf, 3 zero, 4 away
+            lo, hi = (0, (1 << bits) - 1) if unsigned else (-(1 << (bits - 1)), (1 << (bits - 1)) - 1)
+            if math.isnan(a):
+                v = 0
+            elif math.isinf(a):
+                v = hi if a > 0 else lo
+            else:
+                v = (round(a), math.ceil(a), math.floor(a), int(a),
+                     int(math.floor(abs(a) + 0.5)) * (1 if a >= 0 else -1))[mode]
+                v = max(lo, min(hi, v))
+            if (w & 31) != 31:
+                self.set_reg(X0 + 8 * (w & 31), 8, v & ((1 << bits) - 1))
             return "next", 0
         ops = self.ops_db.get(w, False)
         if ops is False:

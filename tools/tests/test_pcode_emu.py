@@ -60,3 +60,34 @@ class UndefinedBytes(unittest.TestCase):
         orig = run("return", 10, events=self.events({0x1000: 1, 0x1001: 0}), undef={0x1002})
         lift = run("return", 10, events=self.events({0x1000: 1}))
         self.assertTrue(pcode_emu.compare(orig, lift, None).startswith("memory at event 0"))
+
+
+@unittest.skipIf(pcode_emu is None, "pyelftools is not installed")
+class FloatToInt(unittest.TestCase):
+    """Scalar fcvt*s/fcvt*u run directly: unsigned forms saturate to 0 and all ones."""
+
+    def convert(self, w: int, value: float, double: bool = False) -> int:
+        import struct
+        m = pcode_emu.Machine.__new__(pcode_emu.Machine)
+        m.regs, m.undef_vn, m.state, m.lift = bytearray(0x10000), set(), {}, None
+        q1 = pcode_emu.Q0 + pcode_emu.QSTRIDE
+        m.regs[q1:q1 + 8] = struct.pack("<d", value) if double else struct.pack("<f", value) + bytes(4)
+        m.set_reg(pcode_emu.X0, 8, 0xDEADBEEFDEADBEEF)
+        self.assertEqual(m.step(0x7100000000, w, *range(6)), ("next", 0))
+        return m.x(0)
+
+    def test_saturation_and_rounding(self):
+        base = 0x1E200020  # w0 <- s1
+        fcvtzu, fcvtzs, fcvtmu, fcvtps, fcvtas, fcvtns = (base | 3 << 19 | 1 << 16, base | 3 << 19, base | 2 << 19 | 1 << 16,
+                                                          base | 1 << 19, base | 4 << 16, base)
+        self.assertEqual(self.convert(fcvtzu, 5e9), 0xFFFFFFFF)  # (Ghidra's TRUNC: 0x7fffffff)
+        self.assertEqual(self.convert(fcvtzu, -3.0), 0)
+        self.assertEqual(self.convert(fcvtzu, float("nan")), 0)
+        self.assertEqual(self.convert(fcvtzs, -1.5), 0xFFFFFFFF)
+        self.assertEqual(self.convert(fcvtzs, 5e9), 0x7FFFFFFF)
+        self.assertEqual(self.convert(fcvtzs, float("-inf")), 0x80000000)
+        self.assertEqual(self.convert(fcvtmu, 2.7), 2)
+        self.assertEqual(self.convert(fcvtps, -2.5), 0xFFFFFFFE)
+        self.assertEqual(self.convert(fcvtas, 2.5), 3)
+        self.assertEqual(self.convert(fcvtns, 2.5), 2)
+        self.assertEqual(self.convert(fcvtzu | 1 << 31 | 1 << 22, 1e20, True), 0xFFFFFFFFFFFFFFFF)  # fcvtzu x0, d1
