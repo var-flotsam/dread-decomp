@@ -18,8 +18,8 @@ and beyond, which our port's boot (tools/boot_distance.py) can be compared with.
 - `instrument --build DIR --snapshot ADDR[,ADDR...] --cpu-h FILE` also captures, at the first entry of each
   of those functions (our addresses), the state a real run gives it: x0-x30, q0-q31 and the 256 bytes above
   sp, then every guest page the thread touches until the function returns (each copied before its first
-  access, so as it was at entry). It redefines the runtime's MP() address macro at the end of FILE (the
-  recomp's runtime cpu.h, which every generated file includes) and writes
+  access, so as it was at entry). It redefines the runtime's MP() address macro right after its definition
+  in FILE (the recomp's runtime cpu.h, which every generated file includes) and writes
   `fn_<addr>.snap` into DREAD_SNAPSHOTS (default: the working directory), the file
   tools/pcode_emu.py's load_snapshot reads; copy them to build/port/snapshots/ for tools/port_lift.py.
   They hold game memory: they stay in build/, never in the repository. `--undo` restores FILE too.
@@ -157,12 +157,15 @@ void dread_snap_end(int* g){
 }
 """
 
-# appended to the runtime's cpu.h: every RD*/WR* goes through MP(), so a snapshot sees each page
-CPU_H = """/*DREAD_TRACE*/ extern __thread int dread_snap_on; u8* dread_snap_touch(u8* M, unsigned long long a);
-/*DREAD_TRACE*/ int dread_snap_begin(CPU* c, unsigned long long addr); void dread_snap_end(int* g);
+# Into the runtime's cpu.h: right after its MP() (every RD*/WR* macro and the inline exclusive and DC ZVA
+# helpers defined below it go through MP(), so a snapshot sees each page), and the guard's functions at the end.
+CPU_H_MP = """/*DREAD_TRACE*/ extern __thread int dread_snap_on; u8* dread_snap_touch(u8* M, unsigned long long a);
 /*DREAD_TRACE*/ #undef MP
 /*DREAD_TRACE*/ #define MP(a) (dread_snap_on ? dread_snap_touch(M, (u64)(a)) : M + (u64)(a))
 """
+CPU_H_END = """/*DREAD_TRACE*/ int dread_snap_begin(CPU* c, unsigned long long addr); void dread_snap_end(int* g);
+"""
+MP_DEFINE = re.compile(r"^[ \t]*#[ \t]*define[ \t]+MP\(.*(?:\r?\n)", re.M)
 
 
 # --- instrument ----------------------------------------------------------------------------------
@@ -229,7 +232,13 @@ def instrument(build: Path, undo: bool, snapshot: frozenset = frozenset(), cpu_h
     if cpu_h is not None:
         text = cpu_h.read_bytes().decode("latin-1")
         base = undo_text(text)
-        new = base if undo or not theirs else base.rstrip("\r\n") + "\n" + CPU_H
+        new = base
+        if not undo and theirs:
+            m = MP_DEFINE.search(base)
+            if m is None or m.group(0).rstrip("\r\n").endswith("\\"):
+                print(f"recomp_trace: no one-line #define MP( in {cpu_h}", file=sys.stderr)
+                return 2
+            new = base[:m.end()] + CPU_H_MP + base[m.end():].rstrip("\r\n") + "\n" + CPU_H_END
         if new != text:
             cpu_h.write_bytes(new.encode("latin-1"))
             print(f"recomp_trace: {cpu_h} {'restored' if undo or not theirs else 'patched (MP)'}")
