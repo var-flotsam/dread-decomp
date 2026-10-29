@@ -1226,17 +1226,104 @@ void fn_710120e648(void* sound, u32 value);
 void fn_710120e650(void* sound, f32 value);
 bool fn_7100132d20();
 
-template <class T>
-static inline void Put(u8* p, u64 offset, T value) {
-    __builtin_memcpy(p + offset, &value, sizeof(T));
-}
+// nn::atk's start info (0x168 bytes), as the start's inlined constructor sets it: only the fields
+// below are written (the rest stay as the stack had them). The lib/nnsdk headers have no audio
+// toolkit, so the layout is read off the original's stores; names are placeholders.
+struct UnkAtkOutput {
+    u8 field_0x0;
+    u8 field_0x1;
+    u8 field_0x2;
+    u8 field_0x3;
+    u16 field_0x4;
+    u16 field_0x6;
+    u16 field_0x8;
+    u16 field_0xa;
+    u8 field_0xc;
+    u8 pad_0xd;
+
+    UnkAtkOutput()
+        : field_0x0(0x7f), field_0x1(0), field_0x2(0), field_0x3(0), field_0x4(0x40), field_0x6(0),
+          field_0x8(0xffff), field_0xa(0), field_0xc(0) {}
+};
+static_assert(sizeof(UnkAtkOutput) == 0xe, "UnkAtkOutput layout");
+
+struct UnkAtkStartInfo {
+    u32 flags;  // 0x0, which of the fields below apply
+    u32 field_0x4;
+    u32 field_0x8;
+    u32 field_0xc;
+    u8 pad_0x10[0x8];
+    u64 field_0x18;
+    u64 field_0x20;
+    s64 field_0x28;
+    s64 field_0x30;
+    u64 field_0x38;
+    u64 field_0x40;
+    u64 field_0x48;
+    u64 field_0x50;
+    u64 field_0x58;
+    u64 field_0x60;
+    u8 field_0x68;
+    u8 pad_0x69[0x7];
+    u64 field_0x70;
+    u32 field_0x78;
+    f32 field_0x7c;
+    u8 field_0x80;
+    u8 field_0x81;
+    u8 field_0x82;
+    u8 field_0x83;
+    u8 field_0x84;
+    u8 field_0x85;
+    u8 field_0x86;
+    u8 pad_0x87;
+    UnkAtkOutput outputs[8];  // 0x88
+    u32 field_0xf8;
+    s32 field_0xfc;
+    u64 field_0x100;
+    u8 field_0x108;
+    u8 pad_0x109[0x3];
+    s32 field_0x10c;
+    u32 field_0x110;
+    u8 pad_0x114[0x4];
+    u64 field_0x118;
+    u8 field_0x120;
+    u8 pad_0x121[0x3];
+    u32 field_0x124;
+    u32 field_0x128;
+    u8 field_0x12c;
+    u8 pad_0x12d[0x3];
+    u32 flags2;  // 0x130
+    bool field_0x134;
+    u8 pad_0x135[0x3];
+    u8 field_0x138;
+    u8 pad_0x139[0x7];
+    u64 field_0x140;
+    u64 field_0x148;
+    u64 field_0x150;
+    u64 field_0x158;
+    u8 field_0x160;
+    u8 pad_0x161[0x7];
+
+    UnkAtkStartInfo()
+        : flags(0), field_0x18(0), field_0x20(0), field_0x28(-1), field_0x30(-1), field_0x38(0),
+          field_0x40(0), field_0x48(0), field_0x50(0), field_0x58(0), field_0x60(0), field_0x68(0),
+          field_0x70(0), field_0x78(0), field_0x7c(1.0f), field_0x80(0x7f), field_0x81(0), field_0x82(0),
+          field_0x83(0), field_0x84(0), field_0x85(0), field_0x86(0), field_0xf8(0), field_0xfc(-1),
+          field_0x100(0), field_0x108(0), field_0x118(0), field_0x120(0), field_0x124(0), field_0x128(0x7f),
+          field_0x12c(0), flags2(0), field_0x138(0), field_0x140(0), field_0x148(0), field_0x150(0),
+          field_0x158(0), field_0x160(1) {}
+};
+static_assert(sizeof(UnkAtkStartInfo) == 0x168, "UnkAtkStartInfo layout");
+static_assert(__builtin_offsetof(UnkAtkStartInfo, field_0xf8) == 0xf8, "UnkAtkStartInfo layout");
+static_assert(__builtin_offsetof(UnkAtkStartInfo, flags2) == 0x130, "UnkAtkStartInfo layout");
 
 // Starts the voice's current entry (when the voice is enabled and has one): records the arguments,
-// fills the engine's start info (0x168 bytes, its defaults spelled out below), starts the sound and
-// sets its volumes; then a fade of 0.2 for start id 1 off the sound thread, else of -2. Whether the
-// start succeeded; false when there is no sound afterwards.
-// NON_MATCHING(major): written from the original's behaviour, not compared instruction by instruction.
-// The start info's fields the original leaves unset are zero here.
+// grows the entries to it, fills the engine's start info, starts the sound and sets its volumes;
+// then a fade of 0.2 for start id 1 off the sound thread, else of -2. Whether the start succeeded;
+// false when there is no sound afterwards.
+// NON_MATCHING(minor): the same stores of the same values, but the original merges fewer of the start
+// info's constant stores (each output's bytes and halves separately), reloads its two flag words
+// before OR-ing them (ours folds the constructor's zero), and also zeroes the last output's spare byte.
 bool fn_71000f4ebc(UnkSoundStart* self, u32 id, u32 c, f32 a, f32 b) {
     if (!self->enabled)
         return false;
@@ -1247,47 +1334,34 @@ bool fn_71000f4ebc(UnkSoundStart* self, u32 id, u32 c, f32 a, f32 b) {
     self->start_a = a;
     self->start_b = b;
     self->start_c = c;
-    if (self->entry_count <= (u32)index) {
-        __builtin_memset(&self->entries[self->entry_count], 0, ((u64)index + 1 - self->entry_count) * 0x20);
-        self->entry_count = index + 1;
+    u32 count = self->entry_count;
+    if (count <= (u32)index) {
+        u64 n = (u64)(u32)index + 1;
+        __builtin_memset(&self->entries[count], 0,
+                         reinterpret_cast<char*>(&self->entries[n]) - reinterpret_cast<char*>(&self->entries[count]));
+        self->entry_count = n;
     }
     self->field_0x140 = 0;
     self->field_0x148 = 0;
-    self->field_0x150 = 0;
     self->field_0x158 = false;
 
-    alignas(8) u8 info[0x168] = {};
-    Put<u32>(info, 0x0, 0x20803);
-    Put<u32>(info, 0x4, 2);
-    Put<u32>(info, 0x8, c);
-    Put<u32>(info, 0xc, id + 0x4000000);
-    Put<u64>(info, 0x28, ~0ull);
-    Put<u64>(info, 0x30, ~0ull);
-    Put<f32>(info, 0x7c, 1.0f);
-    info[0x80] = 0x7f;
-    // Eight output settings, 0xe bytes apart from +0x88: a 0x7f, a word of 0x40 and a 0xffff each.
-    for (u32 i = 0; i < 8; ++i) {
-        u64 o = 0x88 + i * 0xe;
-        info[o] = 0x7f;
-        Put<u32>(info, o + 4, 0x40);
-        Put<u16>(info, o + 8, 0xffff);
-    }
-    Put<s32>(info, 0xfc, -1);
-    info[0x128] = 0x7f;
-    info[0x160] = 1;
-    const UnkSoundEntry& e = self->entries[index];
-    Put<s32>(info, 0x10c, e.field_0x10 < 0 ? 0 : e.field_0x10);
-    Put<u32>(info, 0x110, (u32)((f32)e.field_0x14 * 0.5f));
-    Put<u32>(info, 0x130, 1);
-    info[0x134] = e.field_0x18 > 1;
-
+    UnkAtkStartInfo info;
     f32 level = self->level;
     self->field_0x4 = level;
     self->field_0x8 = b;
     self->field_0xc = a;
     self->field_0x10 = 0;
-    *reinterpret_cast<f32*>(self->player + 0xb0) = __builtin_fmaxf(level, 0.0f);
-    bool ok = fn_710120a274(self->player, self->handle, e.id, nullptr, info) == 0;
+    *reinterpret_cast<f32*>(self->player + 0xb0) = !(level <= 0.0f) ? level : 0.0f;
+    const UnkSoundEntry& e = self->entries[(u32)index];
+    info.flags |= 0x20803;
+    info.field_0x4 = 2;
+    info.field_0x8 = c;
+    info.field_0xc = id + 0x4000000;
+    info.field_0x10c = e.field_0x10 < 0 ? 0 : e.field_0x10;
+    info.field_0x110 = (u32)((f32)e.field_0x14 * 0.5f);
+    info.flags2 |= 1;
+    info.field_0x134 = e.field_0x18 > 1;
+    bool ok = fn_710120a274(self->player, self->handle, e.id, nullptr, reinterpret_cast<const u8*>(&info)) == 0;
     void* sound = *self->handle;
     if (!sound)
         return false;
@@ -1295,7 +1369,7 @@ bool fn_71000f4ebc(UnkSoundStart* self, u32 id, u32 c, f32 a, f32 b) {
     if (fn_710120e5c8(sound) > 0.1f) {
         f32 v = fn_710120e5c8(sound);
         if (self->enabled && *self->handle)
-            fn_710120e5d0(*self->handle, __builtin_fmaxf(v, 0.0f), 0);
+            fn_710120e5d0(*self->handle, !(v <= 0.0f) ? v : 0.0f, 0);
     }
     fn_710120e5d0(sound, 1.0f, 0);
     fn_710120e5b8(sound, 1.0f);
