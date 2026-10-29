@@ -483,7 +483,7 @@ address,size,name,name_source,subsystem,status
 0x7100713ca4,4,fn_7100713ca4,unknown,game/player?,O
 0x7100713ca8,352,CSamusAnimationComponent::refl_InitClass,reflection,game/player,O
 0x7100713e08,36,fn_7100713e08,unknown,unknown,O
-0x7100713e2c,448,fn_7100713e2c,unknown,unknown,M
+0x7100713e2c,448,fn_7100713e2c,unknown,unknown,O
 0x7100713fec,28,fn_7100713fec,unknown,unknown,O
 0x7100714008,36,fn_7100714008,unknown,unknown,O
 0x710071402c,132,fn_710071402c,unknown,unknown,O
