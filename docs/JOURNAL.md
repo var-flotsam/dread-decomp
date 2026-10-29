@@ -148,7 +148,10 @@ From the trace run's refusals (`lifted_trace1`, 6,007 of 6,070 accepted):
   `luaL_openlib`; found by the boot with `--nvn`): the table's first name pointer is zero in the file and
   filled by a relocation, so byte mode emitted the literal `""` and native Lua read garbage entries from
   it. Bytes a relocation fills are never a string literal now: the address becomes `g_unk_<addr>`
-  (byte-identical, and check.py then sees the relocation).
+  (byte-identical, and check.py then sees the relocation). Then a wide one: `fn_7100066a50` passes `L""`
+  (four zero bytes) to `wcscpy`, emitted as the one-byte `""`, so wcscpy ran on through the next rodata and
+  overran the heap. Every wide string reads as at most one narrow character, so text of 0 or 1 characters
+  is the image's object too.
 - **Constants across a label** (`7100713e2c`: w8 is +pi/2 on the path that branches to +0x104 and -pi/2
   falling into it; the `fmov s0, w8` there was folded to the fall-through's constant, 90 degrees became
   -90): FlatLifter kept its known constants and adrp pages through labels. In semantic mode a label now

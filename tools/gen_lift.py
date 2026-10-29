@@ -2044,9 +2044,12 @@ class Lifter:
             # Semantic mode keeps the game's own string (one address for every user, as in main).
             if text is not None and a not in self.orig.sizes and a != DSO_HANDLE and "semantic" not in self.opts \
                     and not self.table_use(regname(o[0].reg), len(text)) \
-                    and not any(a - BASE + i in self.orig.img.relocs for i in range(len(text) + 1)):
+                    and not any(a - BASE + i in self.orig.img.relocs for i in range(len(text) + 1)) \
+                    and len(text) > 1:
                 # (bytes a relocation fills are data: a luaL_Reg table whose first name pointer
-                # reads as "" in the file, fn_71010c10c0)
+                # reads as "" in the file, fn_71010c10c0; and every wide string reads as at most one
+                # narrow character, L"" as "", fn_7100066a50's wcscpy: so "" and one-character text
+                # stay the image's bytes too)
                 self.write(regname(o[0].reg), f"(char*){refl_attrs.c_string(text)}", "char*")
             else:
                 self.write(regname(o[0].reg), self.global_ref(a, False), "char*")
