@@ -236,6 +236,20 @@ From the trace run's refusals (`lifted_trace1`, 6,007 of 6,070 accepted):
 - **The oracle and a struct copy's padding** (`71000ed2b8`, `71000ed608`, `71000ed758`): the original
   copies padding it never wrote, the lift the fields alone. pcode_emu now marks bytes loaded from never-
   written stack as undefined through copies, and compare() leaves out the bytes stored from them.
+**Boot functions from the boot trace and its traps, by hand, batch 4 (2026-10-29, branch `claude/project-thread-xllbvf`).**
+The functions the port's boot stopped at, or that the lift oracle rejected on the way, once batch 3 was in:
+- `M` (written from the behaviour, checked against the disassembly): `fn_7100223c2c` (the second render singleton's
+  eight render-target slots, `src/engine/render/UnkRenderTargetSlots.cpp`), `fn_71008626bc` (a collider read from the
+  collision file, created through the container's slot 0x168 with 17 arguments,
+  `src/game/CCollisionComponent/fn_71008626bc.cpp`), `fn_71000f4ebc` (a sound voice's start, in
+  `src/base/snd/CSoundSystemATK.cpp`: its 0x168-byte start info compared store by store with the original; the
+  lifted draft passed 3.5f where the original passes the caller's second float argument) and `fn_71001b83f8` (the
+  view frustum's update, in `src/base/spatial/UnkFrustumCull.cpp`: both cross-sections' corners, perspective or
+  orthographic, the six planes and their quantised copies, and nine depth-slab boxes).
+- `m`: `fn_710109ce10` (the script console's formatted print, `src/base/UnkLuaDoString.cpp`; the variadic saves are
+  scheduled differently). The lifter now accepts it too; the source definition wins.
+- The boot thread's 600 s run (before the last two) had no crash; `fn_71001b83f8` and `fn_710109ce10` were the two
+  traps it still listed for hand-writing.
 
 **Port M1 round 7: four runtime gaps on the way to the render resources (2026-10-28, branch `claude/project-thread-3x0lf8`).**
 Boots of main with the lifter thread's sets (`lifted_all`, then `lifted_insn3`, `lifted_f88b8` and `lifted_trace1` layered over
