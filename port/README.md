@@ -127,7 +127,8 @@ game's one NVN import, `nvnBootstrapLoader`, is the shim's, and links the system
 in the Vulkan image (`docker build -t dread-port-linux-vulkan port/docker/vulkan`, after the base image),
 headless on lavapipe, with `DREAD_NVN_SHADERS` naming the `shaders` target's output:
 `DREAD_PORT_IMAGE=dread-port-linux-vulkan port/docker/run.sh env DREAD_NVN_SHADERS=build/port/shaders build/port/linux/link/dread`.
-`tools/boot_distance.py --nvn [--shaders DIR]` does both. The window has no surface yet, so nothing is shown.
+`tools/boot_distance.py --nvn [--shaders DIR]` does both. The executable is linked with `-Wl,--no-relax`: lld's GOT relaxation would
+turn `add sym@GOTPCREL(%rip)` into a 32-bit immediate, which cannot hold the executable's addresses above 2 GB. The window has no surface yet, so nothing is shown.
 
 **Boot distance** (`tools/boot_distance.py`, the smoke run): the sweep and the executable link
 above into `build/boot/`, then the executable under gdb with `DREAD_TRAP=log` and a time limit. It
