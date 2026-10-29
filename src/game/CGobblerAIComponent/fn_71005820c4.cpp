@@ -5,6 +5,7 @@
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
+#include "../../game_s7/UnkPropBagS7.h"
 
 using UnkActorTarget = UnkAnimationComponent;
 
@@ -27,7 +28,6 @@ void fn_7100369c44(UnkGobblerComponent* self);
 void fn_710117662c(UnkActorTarget* target, u32 a, u32 b, u32 c, u32 d, f32 value);
 void fn_7101178e08(UnkActorTarget* target, u32 a, u32 b, u32 c, f32 value);
 extern char g_unk_71726e5148[] __attribute__((visibility("hidden")));
-void fn_710033187c(void* dest, void* key, f32 value, f32 one, f32 hi, f32 mid);
 
 void fn_71005820c4(UnkGobblerComponent* self) {
     fn_7100369c44(self);
@@ -55,5 +55,10 @@ void fn_71005820c4(UnkGobblerComponent* self) {
     f32 lo = range->field_0x620;
     f32 m = d >= hi ? hi : d;
     f32 c = (__builtin_isgreater(d, lo) || __builtin_isunordered(d, lo)) ? m : lo;
-    fn_710033187c(target2->field_0x80, g_unk_71726e5148, 1.0f - (c - lo) / (hi - lo), 1.0f, hi, m);
+    // fn_710033187c takes one float; the original leaves 1, hi and m in s1-s3 at the call, which only
+    // these three unused extra arguments reproduce (the port's callee ignores them).
+    using Set = void (*)(unk_prop_bag::UnkPropBag*, const unk_prop_bag::CStrId&, f32, f32, f32, f32);
+    reinterpret_cast<Set>(&unk_prop_bag::fn_710033187c)(
+        reinterpret_cast<unk_prop_bag::UnkPropBag*>(target2->field_0x80),
+        *reinterpret_cast<const unk_prop_bag::CStrId*>(g_unk_71726e5148), 1.0f - (c - lo) / (hi - lo), 1.0f, hi, m);
 }
