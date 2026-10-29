@@ -17,19 +17,29 @@ struct UnkTimelineEvent {
 // Reads one event (created by its class id) from the file.
 UnkTimelineEvent* fn_7100067848(base::global::CRntFile* file);
 
+// The arrays' slots are written as raw words (the original's stores may alias the arrays' own
+// fields: their counts are read again after each one).
+template <class T>
+static inline void StoreSlot(T* slot, T value) {
+    __builtin_memcpy(slot, &value, sizeof(value));
+}
+
 // An array of owning event pointers (base::UnkVector's layout), moved when it grows.
 struct UnkEventArray : base::UnkVector<UnkTimelineEvent*> {
-    void Grow(u32 n) {
+    __attribute__((always_inline)) void Grow(u32 n) {
         if (capacity < n) {
             auto** p = static_cast<UnkTimelineEvent**>(allocator->vf_0x40((u64)n * 8, 8, flags));
             if (data) {
-                for (u32 i = 0; i < count; ++i) {
-                    p[i] = data[i];
-                    data[i] = nullptr;
-                    if (UnkTimelineEvent* old = data[i]) {
-                        data[i] = nullptr;
+                UnkTimelineEvent** src = data;
+                u64 k = 0;
+                for (u32 i = 0; i < count; ++i, ++k, ++src) {
+                    UnkTimelineEvent* t = *src;
+                    StoreSlot<UnkTimelineEvent*>(src, nullptr);
+                    StoreSlot(&p[k], t);
+                    UnkTimelineEvent* old = *src;
+                    StoreSlot<UnkTimelineEvent*>(src, nullptr);
+                    if (old)
                         old->vf_0x10();
-                    }
                 }
                 allocator->vf_0x48(data);
             }
@@ -37,16 +47,16 @@ struct UnkEventArray : base::UnkVector<UnkTimelineEvent*> {
             capacity = n;
         }
     }
-    void Append(UnkTimelineEvent* e) {
+    __attribute__((always_inline)) void Append(UnkTimelineEvent* e) {
         u32 c = count;
         u32 cap = capacity;
         if (cap <= c && step != 0)
             cap = (c / step + 1) * step;
-        if ((s32)cap <= (s32)c)
+        if (!((s32)c < (s32)cap))
             for (;;) {
             }
         Grow(cap);
-        data[count] = e;
+        StoreSlot(&data[count], e);
         ++count;
     }
 };
@@ -69,27 +79,36 @@ struct UnkTimelineEvents {
 static_assert(__builtin_offsetof(UnkTimelineEvents, lists) == 0x28, "UnkTimelineEvents placeholder layout");
 
 // Reads the five counts, reserves each list, then the timed events and the four untimed lists.
-// NON_MATCHING(major): written from the original's behaviour, not compared instruction by instruction.
 void fn_7100068f5c(UnkTimelineEvents* self, base::global::CRntFile* file) {
-    u16 counts[5];
-    for (u32 i = 0; i < 5; ++i)
-        fn_710007c714(file, &counts[i], 2, 1);
-    fn_710006981c(&self->timed, counts[0]);
-    for (u32 i = 0; i < 4; ++i)
-        self->lists[i].Grow(counts[i + 1]);
-    for (u32 i = 0; i < counts[0]; ++i) {
+    u16 timed_count, count0, count1, count2, count3;
+    fn_710007c714(file, &timed_count, 2, 1);
+    fn_710007c714(file, &count0, 2, 1);
+    fn_710007c714(file, &count1, 2, 1);
+    fn_710007c714(file, &count2, 2, 1);
+    fn_710007c714(file, &count3, 2, 1);
+    fn_710006981c(&self->timed, timed_count);
+    self->lists[0].Grow(count0);
+    self->lists[1].Grow(count1);
+    self->lists[2].Grow(count2);
+    self->lists[3].Grow(count3);
+    for (u32 i = 0; i < timed_count; ++i) {
         u32 tenths;
         fn_710007c714(file, &tenths, 4, 1);
-        f32 time = (f32)tenths;
+        f32 time = (f32)tenths * 0.1f;
         UnkTimelineEvent* e = fn_7100067848(file);
         UnkTimedEvents& t = self->timed;
         if (t.count == t.capacity)
             fn_710006981c(&t, t.step + t.count);
-        t.times[t.count] = time * 0.1f;
-        t.events[t.count] = e;
+        StoreSlot(&t.times[t.count], time);
+        StoreSlot(&t.events[t.count], e);
         ++t.count;
     }
-    for (u32 l = 0; l < 4; ++l)
-        for (u32 i = 0; i < counts[l + 1]; ++i)
-            self->lists[l].Append(fn_7100067848(file));
+    for (u32 i = 0; i < count0; ++i)
+        self->lists[0].Append(fn_7100067848(file));
+    for (u32 i = 0; i < count1; ++i)
+        self->lists[1].Append(fn_7100067848(file));
+    for (u32 i = 0; i < count2; ++i)
+        self->lists[2].Append(fn_7100067848(file));
+    for (u32 i = 0; i < count3; ++i)
+        self->lists[3].Append(fn_7100067848(file));
 }
