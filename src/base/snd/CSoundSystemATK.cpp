@@ -1123,50 +1123,56 @@ fail:
 
 // ---- fn_71000f88b8: the listener's matrix ----
 
-#include <math.h>
+#include "base/math/UnkSimd.h"
 
 // Hands the listener its view matrix (nn::atk's Sound3DListener, a 4x3 matrix as four rows of four
 // floats).
 void fn_7101205f54(void* listener, const f32 (*matrix)[4]);
+// The listener (inside the listeners and effects at g_unk_7108b6acf8, at +0x1c8), addressed directly.
+extern u8 g_unk_7108b6aec0[] __attribute__((visibility("hidden")));
 
-static inline void Normalize3(f32* v) {
-    f32 s = 1.0f / sqrtf(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]);
-    v[0] *= s;
-    v[1] *= s;
-    v[2] *= s;
+// Two rows of a matrix from the interleaved halves of two vectors: {a.x, b.x, a.y, b.y}.
+__attribute__((always_inline)) static inline base::math::simd::Vec4 Interleave(base::math::simd::Vec2 a,
+                                                                                base::math::simd::Vec2 b) {
+    return __builtin_shufflevector(a, b, 0, 2, 1, 3);
 }
 
 // When the listener moved (+0xd0), rebuilds its view matrix: a right-handed look-at from the
 // position at +0xac to the target at +0xb8 (both in centimetres, so scaled by 0.01) with the up
-// vector at +0xa0, and hands it to the engine's listener.
-// NON_MATCHING(major): written from the original's behaviour. The original is hand-vectorised: it
-// normalises with two Newton steps on the reciprocal square root estimate (frsqrte/frsqrts), which
-// can differ from 1/sqrtf in the last bits, and transposes the axes into the rows with zips and st2
-// stores.
+// vector at +0xa0, and hands it to the engine's listener. The axes are the matrix's columns, each
+// with its translation (the dot product with the negated position) in its w.
+// NON_MATCHING(minor): the same instructions (base/math/UnkSimd.h reproduces the original's NEON
+// shapes), but the normalisations of the up vector and the view direction and the first cross
+// product are scheduled in another order, so the vector registers from there on are numbered
+// differently.
 void fn_71000f88b8(UnkSoundSystemATK* self) {
+    using namespace base::math::simd;
     if (!Member<bool>(self, 0xd0))
         return;
-    f32 p[3] = {Member<f32>(self, 0xac) * 0.01f, Member<f32>(self, 0xb0) * 0.01f, Member<f32>(self, 0xb4) * 0.01f};
-    f32 t[3] = {Member<f32>(self, 0xb8) * 0.01f, Member<f32>(self, 0xbc) * 0.01f, Member<f32>(self, 0xc0) * 0.01f};
-    f32 up[3] = {Member<f32>(self, 0xa0), Member<f32>(self, 0xa4), Member<f32>(self, 0xa8)};
-    f32 z[3] = {p[0] - t[0], p[1] - t[1], p[2] - t[2]};
-    Normalize3(up);
-    Normalize3(z);
-    f32 x[3] = {up[1] * z[2] - up[2] * z[1], up[2] * z[0] - up[0] * z[2], up[0] * z[1] - up[1] * z[0]};
-    Normalize3(x);
-    f32 y[3] = {z[1] * x[2] - z[2] * x[1], z[2] * x[0] - z[0] * x[2], z[0] * x[1] - z[1] * x[0]};
-    f32 m[4][4];
-    for (u32 i = 0; i < 3; ++i) {
-        m[i][0] = x[i];
-        m[i][1] = y[i];
-        m[i][2] = z[i];
-        m[i][3] = 0.0f;
-    }
-    m[3][0] = -(x[0] * p[0] + x[1] * p[1] + x[2] * p[2]);
-    m[3][1] = -(y[0] * p[0] + y[1] * p[1] + y[2] * p[2]);
-    m[3][2] = -(z[0] * p[0] + z[1] * p[1] + z[2] * p[2]);
-    m[3][3] = 0.0f;
-    fn_7101205f54(g_unk_7108b6acf8 + 0x1c8, m);
+    Vec4 position = Make3(Member<f32>(self, 0xac) * 0.01f, Member<f32>(self, 0xb0) * 0.01f,
+                          Member<f32>(self, 0xb4) * 0.01f);
+    Vec4 up = Make3(Member<f32>(self, 0xa0), Member<f32>(self, 0xa4), Member<f32>(self, 0xa8));
+    Vec4 target = Make3(Member<f32>(self, 0xb8) * 0.01f, Member<f32>(self, 0xbc) * 0.01f,
+                        Member<f32>(self, 0xc0) * 0.01f);
+    up = Normalize(up);
+    Vec4 z = Normalize(position - target);
+    Vec4 neg_position = -position;
+    Vec4 x = Normalize(Cross(up, z));
+    Vec4 y = Cross(z, x);
+    z.w = Dot(z, neg_position).y;
+    x.w = Dot(x, neg_position).y;
+    y.w = Dot(y, neg_position).y;
+    Vec4 zero = {0.0f, 0.0f, 0.0f, 0.0f};
+    Vec4 xz_lo = __builtin_shufflevector(x, z, 0, 4, 1, 5);
+    Vec4 xz_hi = __builtin_shufflevector(x, z, 2, 6, 3, 7);
+    Vec4 y0_lo = __builtin_shufflevector(y, zero, 0, 4, 1, 5);
+    Vec4 y0_hi = __builtin_shufflevector(y, zero, 2, 6, 3, 7);
+    Vec4 m[4];
+    m[0] = Interleave(Low(xz_lo), Low(y0_lo));
+    m[1] = Interleave(High(xz_lo), High(y0_lo));
+    m[2] = Interleave(Low(xz_hi), Low(y0_hi));
+    m[3] = Interleave(High(xz_hi), High(y0_hi));
+    fn_7101205f54(g_unk_7108b6aec0, reinterpret_cast<const f32(*)[4]>(m));
     Member<bool>(self, 0xd0) = false;
 }
 
