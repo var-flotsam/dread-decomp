@@ -144,6 +144,11 @@ From the trace run's refusals (`lifted_trace1`, 6,007 of 6,070 accepted):
   which reuses x19 as a loop counter after the call: `result_copies` is now a forward dataflow per
   instruction (entry {x8}; a `mov` from a holder adds, any other write or a call's clobber drops; the
   meet is the intersection), and a label keeps the set that reaches it.
+- **A va_list across the lifted/hand-written line** (`fn_71010c0b40` -> `fn_71010bf400`, found by the boot):
+  a lifted variadic function builds the AArch64 va_list in its frame, and a hand-written callee reads it
+  as the host's (`__va_list_tag*` on x86-64). `tools/port_link.py` now lists every reference from lifted
+  code (src/lifted and `--lifted`) that resolves to a definition taking a va_list (`va_list:` line,
+  `va_list_handoffs` in link.json): lift the callee too, or hand-write the caller.
 - **A table whose first pointer reads as ""** (`fn_71010c10c0` and nine more pass a `luaL_Reg` table to
   `luaL_openlib`; found by the boot with `--nvn`): the table's first name pointer is zero in the file and
   filled by a relocation, so byte mode emitted the literal `""` and native Lua read garbage entries from
