@@ -217,8 +217,9 @@ void fn_7100c79940() {
     return;
 }
 
+namespace h { extern HIDDEN char g_unk_7101aa5020[]; }
 char* fn_7100c79950(u32 p0, char* p1) {
-    char* r0_8 = (char*)"";
+    char* r0_8 = (char*)h::g_unk_7101aa5020;
     u64 r1_2 = (u64)*(u64*)((char*)(r0_8) + (u64)((u64)(s32)(u64)(p0) << 3));
     char* r2_0 = p1;
     return ((char* (*)(char*, char*))(r1_2))(r2_0, p1);

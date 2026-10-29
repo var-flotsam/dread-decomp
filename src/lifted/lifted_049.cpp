@@ -2091,13 +2091,14 @@ f32 fn_710049b3c4() {
 }
 
 extern char g_unk_7101d470e0[];
+namespace h { extern HIDDEN char g_unk_7101a3d428[]; }
 u64 fn_710049b3cc(char* p0) {
     u32 r0_8 = 0x49cc;
     u32 r1_8 = 0x149cc;
     u32 r2_8 = (u32)*(u32*)((char*)(p0) + (u64)(u64)(r1_8));
     u32 r3_8 = (u32)(u64)(r2_8) - (u32)(1);
     if ((u32)(u64)(r3_8) <= (u32)(2)) {
-        char* r5_9 = (char*)"";
+        char* r5_9 = (char*)h::g_unk_7101a3d428;
         u64 r6_0 = (u64)*(u64*)((char*)(r5_9) + (u64)((u64)(s32)(u64)(r3_8) << 3));
         return r6_0;
     }

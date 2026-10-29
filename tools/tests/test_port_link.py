@@ -58,5 +58,30 @@ class TaggedTemplates(unittest.TestCase):
         self.assertEqual(e.candidates, 2)
 
 
+class VaListHandoffs(unittest.TestCase):
+    def test_lifted_reference_to_a_va_list_definition(self):
+        # fn_71010c0b40 (lifted, variadic) calls fn_71010bf400, hand-written with a va_list: its
+        # AArch64 va_list would be read as the host's. A call to a plain definition is fine.
+        rows = {f"0x{a:x}": {"address": f"0x{a:x}", "size": "4", "name": f"fn_{a:x}", "name_source": "unknown",
+                             "subsystem": "", "status": "O"} for a in (0x71010BF400, 0x7100000010)}
+        lk = pl.Link.__new__(pl.Link)
+        lk.resolver = pl.Resolver(rows)
+        vdef = "fn_71010bf400(char*, char const*, __va_list_tag*)"
+        lk.demangled = {"_Zref": "fn_71010bf400(unsigned long, unsigned long, unsigned long)",
+                        "_Zplain": "fn_7100000010(int)"}
+        lk.code_defs = {0x71010BF400: [pl.Definition("T", "_Zdef", vdef, "fn_in_symbol", "own")],
+                        0x7100000010: [pl.Definition("T", "_Zp", "fn_7100000010(int)", "fn_in_symbol", "own")]}
+        obj = pl.Path("lifted/lifted_000.o")
+        saved = pl.undefined_by_object
+        pl.undefined_by_object = lambda nm, paths: {obj: ["_Zref", "_Zplain"]}
+        try:
+            (h,) = pl.va_list_handoffs("nm", lk, [obj])
+        finally:
+            pl.undefined_by_object = saved
+        self.assertEqual((h["callee"], h["definition"]), ("0x71010bf400", vdef))
+        self.assertTrue(pl.takes_va_list("f(std::__va_list)"))
+        self.assertFalse(pl.takes_va_list("f(int, ...)"))
+
+
 if __name__ == "__main__":
     unittest.main()

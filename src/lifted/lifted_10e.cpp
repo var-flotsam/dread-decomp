@@ -585,6 +585,7 @@ char* fn_71010e7098(char* p0) {
 
 namespace callee { char* fn_71000246e4(); }
 namespace callee { char* fn_71000a18d4(char*, char*, u64, u32); }
+namespace h { extern HIDDEN char g_unk_710164cf20[]; }
 UnkResult fn_71010e711c(char* p0, char* p1) {
     UnkResult ret;
     u64 X0;
@@ -597,7 +598,7 @@ UnkResult fn_71010e711c(char* p0, char* p1) {
     u64 X20;
     X19 = (u64)(((char*)X8));
     X8 = (u64)((u64)*(u64*)((char*)(((char*)X1)) + 8));
-    X20 = (u64)((char*)"");
+    X20 = (u64)((char*)h::g_unk_710164cf20);
     X8 = (u64)((u64)*(u64*)((char*)(X8) + 96));
     if (!((u64)(u64)(X8) != 0)) goto L_71010e7150;
     X8 = (u64)((u64)*(u64*)((char*)(X8) + 0));
@@ -619,6 +620,7 @@ L_71010e7150:;
 
 namespace callee { char* fn_71000246e4(); }
 namespace callee { char* fn_71000a18d4(char*, char*, u64, u32); }
+namespace h { extern HIDDEN char g_unk_710164cf20[]; }
 UnkResult fn_71010e7218(char* p0, char* p1) {
     UnkResult ret;
     u64 X0;
@@ -631,7 +633,7 @@ UnkResult fn_71010e7218(char* p0, char* p1) {
     u64 X20;
     X19 = (u64)(((char*)X8));
     X8 = (u64)((u64)*(u64*)((char*)(((char*)X1)) + 8));
-    X20 = (u64)((char*)"");
+    X20 = (u64)((char*)h::g_unk_710164cf20);
     X8 = (u64)((u64)*(u64*)((char*)(X8) + 96));
     if (!((u64)(u64)(X8) != 0)) goto L_71010e724c;
     X8 = (u64)((u64)*(u64*)((char*)(X8) + 0));

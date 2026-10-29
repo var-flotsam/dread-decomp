@@ -13,8 +13,9 @@ except ImportError:  # pyelftools missing
     pcode_emu = None
 
 
-def run(end: str, steps: int, scale: int = 1, cut=None):
-    return SimpleNamespace(events=[(("end", end), ())], steps=steps, scale=scale, cut=cut, clipped=False)
+def run(end: str, steps: int, scale: int = 1, cut=None, events=None, undef=()):
+    return SimpleNamespace(events=events or [(("end", end), ())], steps=steps, scale=scale, cut=cut, clipped=False,
+                           undef_mem=set(undef))
 
 
 @unittest.skipIf(pcode_emu is None, "pyelftools is not installed")
@@ -41,3 +42,64 @@ class CutOff(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+@unittest.skipIf(pcode_emu is None, "pyelftools is not installed")
+class UndefinedBytes(unittest.TestCase):
+    """A struct copy's padding, copied from stack the original never wrote, is not compared."""
+
+    def events(self, mem):
+        return [(("call", 0x7100001570, (), ()), tuple(sorted(mem.items()))), (("end", "return"), tuple(sorted(mem.items())))]
+
+    def test_padding_copied_by_the_original_only(self):
+        orig = run("return", 10, events=self.events({0x1000: 1, 0x1001: 0, 0x1002: 0}), undef={0x1001, 0x1002})
+        lift = run("return", 10, events=self.events({0x1000: 1}))
+        self.assertEqual(pcode_emu.compare(orig, lift, None), "")
+
+    def test_a_missing_defined_byte_still_differs(self):
+        orig = run("return", 10, events=self.events({0x1000: 1, 0x1001: 0}), undef={0x1002})
+        lift = run("return", 10, events=self.events({0x1000: 1}))
+        self.assertTrue(pcode_emu.compare(orig, lift, None).startswith("memory at event 0"))
+
+
+@unittest.skipIf(pcode_emu is None, "pyelftools is not installed")
+class FloatToInt(unittest.TestCase):
+    """Scalar fcvt*s/fcvt*u run directly: unsigned forms saturate to 0 and all ones."""
+
+    def convert(self, w: int, value: float, double: bool = False) -> int:
+        import struct
+        m = pcode_emu.Machine.__new__(pcode_emu.Machine)
+        m.regs, m.undef_vn, m.state, m.lift = bytearray(0x10000), set(), {}, None
+        q1 = pcode_emu.Q0 + pcode_emu.QSTRIDE
+        m.regs[q1:q1 + 8] = struct.pack("<d", value) if double else struct.pack("<f", value) + bytes(4)
+        m.set_reg(pcode_emu.X0, 8, 0xDEADBEEFDEADBEEF)
+        self.assertEqual(m.step(0x7100000000, w, *range(6)), ("next", 0))
+        return m.x(0)
+
+    def test_saturation_and_rounding(self):
+        base = 0x1E200020  # w0 <- s1
+        fcvtzu, fcvtzs, fcvtmu, fcvtps, fcvtas, fcvtns = (base | 3 << 19 | 1 << 16, base | 3 << 19, base | 2 << 19 | 1 << 16,
+                                                          base | 1 << 19, base | 4 << 16, base)
+        self.assertEqual(self.convert(fcvtzu, 5e9), 0xFFFFFFFF)  # (Ghidra's TRUNC: 0x7fffffff)
+        self.assertEqual(self.convert(fcvtzu, -3.0), 0)
+        self.assertEqual(self.convert(fcvtzu, float("nan")), 0)
+        self.assertEqual(self.convert(fcvtzs, -1.5), 0xFFFFFFFF)
+        self.assertEqual(self.convert(fcvtzs, 5e9), 0x7FFFFFFF)
+        self.assertEqual(self.convert(fcvtzs, float("-inf")), 0x80000000)
+        self.assertEqual(self.convert(fcvtmu, 2.7), 2)
+        self.assertEqual(self.convert(fcvtps, -2.5), 0xFFFFFFFE)
+        self.assertEqual(self.convert(fcvtas, 2.5), 3)
+        self.assertEqual(self.convert(fcvtns, 2.5), 2)
+        self.assertEqual(self.convert(fcvtzu | 1 << 31 | 1 << 22, 1e20, True), 0xFFFFFFFFFFFFFFFF)  # fcvtzu x0, d1
+
+    def test_rounding_stays_float(self):
+        import struct
+        m = pcode_emu.Machine.__new__(pcode_emu.Machine)
+        m.regs, m.undef_vn, m.state, m.lift = bytearray(0x10000), set(), {}, None
+        q1, q2 = pcode_emu.Q0 + pcode_emu.QSTRIDE, pcode_emu.Q0 + 2 * pcode_emu.QSTRIDE
+        for rmode, value, want in ((2, 649.7, 649.0), (1, -0.5, -0.0), (0, 2.5, 2.0), (4, 2.5, 3.0), (3, -1.7, -1.0)):
+            m.regs[q1:q1 + 4] = struct.pack("<f", value)
+            self.assertEqual(m.step(0x7100000000, 0x1E244022 | rmode << 15, *range(6)), ("next", 0))  # frint* s2, s1
+            got = struct.unpack("<f", bytes(m.regs[q2:q2 + 4]))[0]
+            self.assertEqual((got, str(got)), (want, str(want)), (rmode, value))
+

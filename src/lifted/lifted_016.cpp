@@ -693,9 +693,10 @@ char* fn_7100162ff0() {
     return callee::fn_7100000250(r20_0, r21_1, r22_2);
 }
 
+namespace h { extern HIDDEN char g_unk_710164806c[]; }
 u32 fn_7100167cc0(u32 p0) {
     if ((u32)(u64)(p0) <= (u32)(9)) {
-        char* r1_8 = (char*)"Y";
+        char* r1_8 = (char*)h::g_unk_710164806c;
         u32 r2_0 = (u32)*(u32*)((char*)(r1_8) + (u64)((u64)(s32)(u64)(p0) << 2));
         return r2_0;
     }

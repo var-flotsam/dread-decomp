@@ -558,6 +558,59 @@ def param_list(demangled: str) -> list[str] | None:
     return split_top(inner, ",")
 
 
+VA_LIST_RE = re.compile(r"__va_list_tag|\bva_list\b|std::__va_list|__builtin_va_list")
+
+
+def takes_va_list(demangled: str) -> bool:
+    """Whether a demangled C++ function takes a va_list (the host's: __va_list_tag* on x86-64)."""
+    return any(VA_LIST_RE.search(p) for p in param_list(demangled) or [])
+
+
+def undefined_by_object(nm: str, paths: list[Path], batch: int = 200) -> dict[Path, list[str]]:
+    """Each object's undefined symbols (llvm-nm -u, many objects per call)."""
+    out: dict[Path, list[str]] = {}
+    for k in range(0, len(paths), batch):
+        chunk = paths[k:k + batch]
+        r = subprocess.run([nm, "-u", *map(str, chunk)], capture_output=True, text=True, encoding="utf-8",
+                           errors="replace")
+        if r.returncode != 0:
+            raise SystemExit(f"{nm} -u failed:\n{r.stderr}")
+        by_name = {str(p): p for p in chunk}
+        current = chunk[0] if len(chunk) == 1 else None
+        for line in r.stdout.splitlines():
+            if line.endswith(":") and line[:-1] in by_name:
+                current = by_name[line[:-1]]
+                continue
+            parts = line.split()
+            if current is not None and len(parts) == 2:
+                out.setdefault(current, []).append(parts[1])
+    return out
+
+
+def va_list_handoffs(nm: str, lk: "Link", lifted_objs: list[Path]) -> list[dict]:
+    """Calls from lifted code to a definition that takes a va_list. A lifted variadic function
+    builds the AArch64 va_list (gr_top, vr_top and offsets) in its frame, which a host-compiled
+    definition reads as the host's va_list (fn_71010c0b40 -> fn_71010bf400): the callee has to be
+    lifted too, or the caller hand-written. Lifted code never names a va_list itself, so any of
+    its references that resolve to such a definition is one of these. (C definitions carry no
+    parameter types and are not seen.)"""
+    hosts = {a: [d for d in defs if takes_va_list(d.demangled)] for a, defs in lk.code_defs.items()}
+    hosts = {a: d for a, d in hosts.items() if d}
+    if not hosts:
+        return []
+    out = []
+    for obj, syms in sorted(undefined_by_object(nm, lifted_objs).items()):
+        for sym in syms:
+            dem = lk.demangled.get(sym, sym)
+            if not asmdiff.TARGET_RE.match(asmdiff.strip_params(dem)):
+                continue
+            a, _ = lk.resolver.reference(dem)
+            if a in hosts:
+                out.append({"object": rel(obj), "reference": dem, "callee": f"0x{a:x}",
+                            "definition": hosts[a][0].demangled})
+    return out
+
+
 def arg_class(param: str) -> str:
     """x86-64 SysV class of one by-value parameter from its spelling: I (integer register:
     integers, pointers, references, arrays, function pointers), F (float or double), V (...),
@@ -1550,6 +1603,18 @@ def main() -> int:
                          "link": {"output": rel(lifted_o), "seconds": round(dtl, 2), "undefined": len(lk.undefined)},
                          "boot_slice": lifted_slice}
 
+    # e3. lifted code passing its AArch64 va_list to a host definition (va_list_handoffs)
+    objects_dir = Path(args.objects)
+    lifted_objs = [o for o in objs if o.relative_to(objects_dir).parts[0] == "lifted"]
+    if args.lifted:
+        lifted_objs += [o for _, o in kept]
+    handoffs = va_list_handoffs(nm, lk, lifted_objs)
+    print()
+    print(f"va_list: {len(handoffs)} references from lifted code to a definition that takes a va_list"
+          + (" (lift the callee too, or hand-write the caller):" if handoffs else ""))
+    for h in handoffs[:args.examples]:
+        print(f"    {h['object']}: {h['reference']} -> {h['definition']}")
+
     # f. aliases, traps, the second link
     aliases = [e for e in entries if e.target and e.trap is None
                and e.cls in ("function_alias", "data", "import", "vtable")]
@@ -1656,6 +1721,7 @@ def main() -> int:
                      "flags": e.flags, "target": e.target or e.jump} for e in entries if e.cls == "import"],
         "boot_slice": slice_,
         "lifted": lifted_report,
+        "va_list_handoffs": handoffs,
         "link_inputs": {"aliases": rel(aliases_rsp), "defsyms": len(aliases), "defsyms_by_class": dict(alias_counts),
                         "traps": rel(traps_s), "trap_thunks": traps, "jump_thunks": jumps,
                         "image_tables": rel(tables_s), "image_table_counts": tables,

@@ -1900,8 +1900,9 @@ char* fn_7100c9fdd8(char* p0) {
 extern char g_unk_7101d47310[];
 extern char g_unk_7172796920[];
 namespace callee { char* fn_7100c9e6ac(char*, u32, u32, u32, f32, f32, f32); }
+namespace h { extern HIDDEN char g_unk_71016478e8[]; }
 void fn_7100c9feac(char* p0, u32 p1, u32 p2, f32 f0) {
-    char* r0_8 = (char*)"";
+    char* r0_8 = (char*)h::g_unk_71016478e8;
     f32 r1_101 = *(f32*)((char*)(r0_8) + (u64)((u64)(s32)(u64)(p1) << 2));
     f32 r2_100 = r1_101 + f0;
     f32 r3_101 = *(f32*)((char*)(p0) + 64);

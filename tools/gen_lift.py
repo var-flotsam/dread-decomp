@@ -174,6 +174,25 @@ def is_frame(x) -> bool:
     return m == "mov" and len(o) == 2 and regname(o[0].reg) == "x29" and regname(o[1].reg) == "sp"
 
 
+def zero_save(x) -> bool:
+    """`stp xzr, x<n>, [sp, #imm]` (either order, no writeback) with x<n> a register is_frame
+    saves: a local zeroed beside a save in the prologue (Lifter.setup_frame)."""
+    mem = [op for op in x.operands if op.type == arm64.ARM64_OP_MEM]
+    if x.mnemonic != "stp" or not mem or regname(mem[0].mem.base) != "sp" or x.writeback:
+        return False
+    regs = [regname(op.reg) for op in x.operands if op.type == arm64.ARM64_OP_REG]
+    other = [r for r in regs if r != "xzr"]
+    return len(other) == 1 and len(regs) == 2 and (other[0] in ("x29", "x30") or (
+        other[0][0] == "x" and other[0][1:].isdigit() and 19 <= int(other[0][1:]) <= 28))
+
+
+def wide_text(data: bytes, a: int, n: int) -> bool:
+    """Whether the n-character (0 or 1) narrow text at a is really a wide string's start: a is
+    4-aligned and the rest of the first 4-byte character is zero (L"" is four zero bytes, L"Y" is
+    'Y' and three). A narrow "" or "x" in the packed string pool is followed by the next string."""
+    return n <= 1 and a % 4 == 0 and data[a + n + 1:a + 4] == bytes(3 - n)
+
+
 def fkey(r: str) -> int | None:
     """Float register number (s<n>/d<n>), or None."""
     return int(r[1:]) if r[0] in "sd" and r[1:].isdigit() else None
@@ -623,7 +642,8 @@ class Lifter:
                 # 32-bit write leaves too: zero-extended)
                 va, vc = (f"(u64)({va[0]})", "u64"), (f"(u64)({vc[0]})", "u64")
             if sem and (va is None) != (vc is None) and n not in m.poison \
-                    and not (n == 100 and (a if va is None else c).fcall):  # (s0: a call's unread float result)
+                    and not (n == 100 and (a if va is None else c).fcall  # (s0: a call's unread float result,
+                             and (va or vc)[0] != "f0"):                  # unless the other path's is the parameter)
                 # Semantic mode: one path has no value here (a call clobbered the register, or it was
                 # never set), which is garbage in the original; the other path's value stands. Before
                 # the if, it is in scope already; otherwise a phi that the other path leaves at zero.
@@ -839,6 +859,10 @@ class Lifter:
         # Up to the first float register with no value (a higher one was a temporary).
         fl = next((i for i in range(fl) if not self.has_value(100 + i)), fl)
         sem = "semantic" in self.opts
+        if sem and self.s.fcall and len(need) > 1 and need[1] > 0 and 100 not in self.s.vals:
+            # s0 passed on right after a call: the call returns a float, so x0 holds nothing (its
+            # retype first, before the integers below would read the call's x0)
+            self.read(("s" if self.ftype_of(100) == "f32" else "d") + "0")
         floats = []
         for i in range(fl):
             t = self.ftype_of(100 + i)
@@ -877,9 +901,13 @@ class Lifter:
                     # A register only passed on (an incoming argument): as f64, which carries all
                     # of its bits whatever width the callee reads, on AArch64 and x86-64 alike.
                     floats.append(self.read(f"{getattr(self, 'fwidth', {}).get(100 + i, 'd')}{i}"))
-            except Unsupported:
+            except Unsupported as e:
                 if not sem:
                     break
+                if str(e) == "float width" and self.has_value(100 + i):
+                    # (a parameter the function reads at the other width: passed on as it is)
+                    floats.append(self.read(("s" if self.ftype_of(100 + i) == "f32" else "d") + str(i)))
+                    continue
                 floats.append(("(f64)0", "f64"))  # no value here: garbage in the original as well
             self.passed |= not sem
         # Semantic mode: arguments beyond the eight registers (callee_need's third count) are the
@@ -891,6 +919,20 @@ class Lifter:
                 raise Unsupported("stack arguments outside the frame")
             stack.append((f"*(u64*)(stk + {at:#x})", "u64"))
         return ints + stack + floats
+
+    def next_v0_read(self) -> str | None:
+        """The first read of s0 or d0 after this instruction in address order ("s0" or "d0"),
+        None when v0 is written first, read as another width, or never read."""
+        for y in self.ins[self.pos + 1:]:
+            reads, writes = (sorted(regname(q) for q in r) for r in y.regs_access())
+            if y.mnemonic in ("fmov", "movi") and y.operands[-1].type != arm64.ARM64_OP_REG:
+                reads = []  # (capstone counts an immediate fmov's destination as read)
+            got = [r for r in reads if r in ("s0", "d0", "q0", "v0", "h0", "b0")]
+            if got:
+                return got[0] if got[0] in ("s0", "d0") and len(set(got)) == 1 else None
+            if any(r in ("s0", "d0", "q0", "v0", "h0", "b0") for r in writes):
+                return None
+        return None
 
     def ftype_of(self, n: int) -> str:
         """The C type of float register key n's current value (f32 when unknown)."""
@@ -985,7 +1027,7 @@ class Lifter:
         own = (8 in self.ret_regs) if isinstance(self, FlatLifter) else x8 in self.ret_ptrs
         if not own:
             raise Unsupported("indirect tail call with an indirect result (x8)")
-        args = self.args(self.callee_need(""))
+        args = self.indirect_args(self.args(self.callee_need("")))
         types, values = ", ".join(t for _, t in args), ", ".join(e for e, _ in args)
         self.decls.add(LIFT_AT)
         self.line(f"new ((void*)({x8}), lift_at_t{{}}) UnkResult(((UnkResult (*)({types}))({ptr}))({values}));")
@@ -1043,6 +1085,8 @@ class Lifter:
     def call(self, fn: str, ptr: str | None = None) -> str:
         """A call expression; declares the callee overload for these argument types."""
         args = self.args(self.callee_need(fn))
+        if ptr is not None:
+            args = self.indirect_args(args)
         types = ", ".join(t for _, t in args)
         values = ", ".join(e for e, _ in args)
         self.last_call = (fn if ptr is None else None, types)
@@ -1050,6 +1094,14 @@ class Lifter:
             return f"((char* (*)({types}))({ptr}))({values})"
         self.decls.add(f"namespace callee {{ char* {fn}({types}); }}")
         return f"callee::{fn}({values})"
+
+    def indirect_args(self, args: list) -> list:
+        """Semantic mode: an indirect call's 32-bit argument passed as u64, zero-extended as the
+        `mov w<n>` that set it (fn_710016da74): the callee is unknown, and one that reads x<n> sees
+        what the original's did."""
+        if "semantic" not in self.opts:
+            return args
+        return [(f"(u64)(u32)({e})", "u64") if t == "u32" else (e, t) for e, t in args]
 
     def result_of(self, addr: int) -> tuple | None:
         """Semantic mode: the result shape of the function at `addr` (abi_facts.result_shape:
@@ -1084,8 +1136,108 @@ class Lifter:
         self.line(" ".join(f"*(f64*)({a} + {16 * k}) = {v};" for k, v in enumerate(vals)))
         return True
 
+    def table_use(self, reg: str, length: int) -> bool:
+        """Whether the address just put in reg is read as a table rather than a string: a later
+        access through reg (before it is written again, a branch or a call) with an index
+        register or reaching past the string's terminator. Data that starts like a short string (a u32
+        table whose first entry is 0x59 reads as "Y") is then the image's object, not a literal."""
+        key = reg[1:]
+        for y in self.ins[self.pos + 1:]:
+            if y.mnemonic in ("b", "bl", "blr", "br", "ret", "cbz", "cbnz", "tbz", "tbnz") or y.mnemonic.startswith("b."):
+                return False
+            regs = [regname(op.reg) for op in y.operands if op.type == arm64.ARM64_OP_REG]
+            for op in y.operands:
+                if op.type == arm64.ARM64_OP_MEM and op.mem.base and regname(op.mem.base)[1:] == key \
+                        and regname(op.mem.base)[0] == "x":
+                    size = {"b": 1, "h": 2}.get(y.mnemonic[-1]) or \
+                        {"w": 4, "s": 4, "x": 8, "d": 8, "q": 16}.get(regs[0][0] if regs else "", 1)
+                    size *= 2 if y.mnemonic in ("ldp", "stp") else 1
+                    if op.mem.index or op.mem.disp + size > length + 1:
+                        return True
+            if any(regname(q)[1:] == key and regname(q)[0] in "xw" for q in y.regs_access()[1]):
+                return False
+        return False
+
+    def successors(self, ins) -> list[list[int]]:
+        """Each instruction's successors (indices; a jump-table br its table's targets, a tail
+        call or ret none)."""
+        at = {x.address: k for k, x in enumerate(ins)}
+        tables = getattr(self, "jtables", {})
+        succ: list[list[int]] = []
+        for k, x in enumerate(ins):
+            m = x.mnemonic
+            tgt = [op.imm for op in x.operands if op.type == arm64.ARM64_OP_IMM]
+            if m == "b":
+                succ.append([at[tgt[0]]] if tgt and tgt[0] in at else [])
+            elif m in ("cbz", "cbnz", "tbz", "tbnz") or m.startswith("b."):
+                succ.append([k + 1] + ([at[tgt[-1]]] if tgt and tgt[-1] in at else []))
+            elif m == "br":
+                succ.append([at[t] for t in tables.get(x.address, (0, []))[1] if t in at])
+            elif m == "ret" or (m == "brk" and k == len(ins) - 1):
+                succ.append([])
+            else:
+                succ.append([k + 1] if k + 1 < len(ins) else [])
+        return succ
+
+    def lone_convert(self, k: int, n: int) -> int | None:
+        """The index of `ucvtf|scvtf s<n>, s<n>` when it is the only read of what instruction k
+        loads into v<n>, and that load the only value of v<n> it reads (every path to it passes k):
+        the load and its convert far apart (fn_71012223d4, 150 instructions). A call reads v0-v7
+        (arguments) and ends v16-v31; a tail call reads v0-v7 too, a ret v0-v3 only on evidence
+        that callers read a float result there (abi_facts.result_main, result_shape)."""
+        ins = self.ins
+        succ = self.successors(ins)
+        main = self.main(self.addr) if "semantic" in self.opts and self.main is not None else None
+        fshape = (shape := self.result_of(self.addr)) is not None and shape[0] != "x"
+
+        def convert(x) -> bool:
+            return x.mnemonic in ("ucvtf", "scvtf") and re.fullmatch(rf"s\d+, s{n}", x.op_str) is not None
+
+        def mine(x, acc: int) -> bool:
+            if acc == 0 and x.mnemonic == "fmov" and any(op.type == arm64.ARM64_OP_FP for op in x.operands):
+                return False  # (capstone counts fmov's immediate destination as read)
+            return any((r := CS.reg_name(q))[0] in "bhsdqv" and r[1:] == str(n) for q in x.regs_access()[acc])
+        reads, seen, work = set(), {k}, list(succ[k])
+        while work:
+            j = work.pop()
+            if j in seen:
+                continue
+            seen.add(j)
+            x = ins[j]
+            exits = not succ[j] and x.mnemonic != "brk"
+            # (a ret reads v0, and v1-v3 for a multi-register result; a tail call v0-v7)
+            ret_reads = (n == 0 and bool(main) and 100 in main) or (n < 4 and fshape)
+            if mine(x, 0) or (n < 8 and x.mnemonic in ("bl", "blr")) \
+                    or (exits and (ret_reads if x.mnemonic == "ret" else n < 8)):
+                reads.add(j)
+                if not convert(x) or x.op_str.startswith(f"s{n},"):
+                    continue
+                # (into another register, fn_71012223d4's `ucvtf s19, s3`: v<n> lives on)
+            elif mine(x, 1) or (x.mnemonic in ("bl", "blr") and n >= 16):
+                continue
+            work += succ[j]
+        if len(reads) != 1:
+            return None
+        c = reads.pop()
+        if not convert(ins[c]):
+            return None
+        seen, work = {k}, [0]
+        while work:  # (reached from the entry without the load: another value of v<n>)
+            j = work.pop()
+            if j == c:
+                return None
+            if j in seen:
+                continue
+            seen.add(j)
+            work += succ[j]
+        return c
+
     def small_int_load(self, x, mem, reg: str) -> bool:
         """`ldr h<n>|b<n>` up to the convert of s<n> that uses it (step's comment)."""
+        return self.near_convert(x, mem, reg) or self.far_convert(x, mem, reg)
+
+    def near_convert(self, x, mem, reg: str) -> bool:
+        """small_int_load within a few instructions, with no branch in between."""
         n, ins = reg[1:], self.ins
         branch_targets = {op.imm for y in ins for op in y.operands if op.type == arm64.ARM64_OP_IMM
                           and (y.mnemonic in ("b", "cbz", "cbnz", "tbz", "tbnz") or y.mnemonic.startswith("b."))}
@@ -1125,9 +1277,27 @@ class Lifter:
         self.gskip |= set(skip) | {nx.address}
         return True
 
+    def far_convert(self, x, mem, reg: str) -> bool:
+        """small_int_load's convert past its window (lone_convert): an unsigned load, converted
+        where it is loaded."""
+        c = self.lone_convert(self.pos, int(reg[1:]))
+        if c is None:
+            return False
+        t = "u16" if reg[0] == "h" else "u8"
+        v = self.bind(t, f"*({t}*){self.address(x, mem[0])}")
+        self.write(f"s{reg[1:]}", f"(f32){v}" if self.ins[c].mnemonic == "ucvtf" else f"(f32)(s32){v}", "f32")
+        dest = self.ins[c].op_str.split(",")[0]
+        if dest == f"s{reg[1:]}":
+            self.gskip.add(self.ins[c].address)
+            if hasattr(self, "jskip"):
+                self.jskip.add(self.ins[c].address)  # (FlatLifter: a branch target keeps its label)
+        else:
+            self.far_copy[self.ins[c].address] = (dest, f"s{reg[1:]}")  # (the convert becomes a copy)
+        return True
+
     def bind(self, t: str, e: str) -> str:
         """A temporary of type `t` holding `e`."""
-        var = f"m{len(self.body)}"
+        var = f"k{len(self.body)}"  # (not m<n>: the merges name their variables so)
         self.line(f"{t} {var} = {e};")
         return var
 
@@ -1170,6 +1340,7 @@ class Lifter:
         number of helper calls after the check; self.gskip holds the instructions it stands
         for (the tbz, those calls, and the out-of-line initialisation reached from the tbz)."""
         self.guard, self.gskip = {}, set()
+        self.far_copy: dict[int, tuple[str, str]] = {}  # far_convert: a convert into another register
         if "semantic" in self.opts:
             return  # semantic mode lifts the guard itself (ldarb, the out-of-line initialisation)
         at = {x.address: k for k, x in enumerate(ins)}
@@ -1442,9 +1613,17 @@ class Lifter:
             if p and not any(touches(x) for x in ins[:p]):
                 k = p
         self.frame_at = k  # the prologue's first instruction (frame_reset)
-        while k < len(ins) and is_frame(ins[k]):
+        zeroed = []  # (semantic mode) prologue pairs that zero a local beside a save: (index, sp)
+        while k < len(ins) and (is_frame(ins[k]) or ("semantic" in self.opts and zero_save(ins[k]))):
             x = ins[k]
             m, o = x.mnemonic, x.operands
+            if not is_frame(x):
+                # `stp xzr, x19, [sp, #8]` (fn_7101233e30): a local cleared in the same store as a
+                # save; the store is lifted as code (the save then a plain store and its restore a
+                # plain load), and the frame goes on past it
+                zeroed.append((k, delta))
+                k += 1
+                continue
             if m == "sub" and regname(o[0].reg) == "sp":
                 delta -= o[2].imm if "semantic" not in self.opts else frame_imm(o[2])
             elif m == "add" and regname(o[0].reg) == "x29":
@@ -1464,6 +1643,10 @@ class Lifter:
         self.save_slots = {s + 8 * i for s, e in saves for i in range((e - s) // 8)}
         self.body_delta = self.cur_delta = delta
         refs = []  # (offset from sp at entry, size)
+        for j, at in zeroed:
+            if at != delta:  # (before an sp adjustment: address() takes the body's sp)
+                return False
+            refs.append((delta + [op for op in ins[j].operands if op.type == arm64.ARM64_OP_MEM][0].mem.disp, 16))
         for x in ins[k:]:
             if self.frame_op(x):
                 continue
@@ -1599,6 +1782,40 @@ class Lifter:
             self.write(f"s{d}", lanes[0], "f32")
             s.lanes[100 + d] = lanes
             return True
+        if m in ("mov", "dup") and (g := re.fullmatch(r"s(\d+), v(\d+)\.s\[([0-3])\]", op)):
+            # a lane extracted to a scalar (the other lanes cleared)
+            d, a, i = int(g.group(1)), int(g.group(2)), int(g.group(3))
+            v = s.lanes.get(100 + a, [None] * 4)[i]
+            if v is None:
+                return False
+            self.write(f"s{d}", v, "f32")
+            s.lanes[100 + d] = [self.snapshot(self.read(f"s{d}")[0], "f32")] + ["0.0f"] * 3
+            return True
+        if m in ("fmul", "fmla", "fmls") and (g := re.fullmatch(r"s(\d+), s(\d+), v(\d+)\.s\[([0-3])\]", op)):
+            # scalar by element
+            d, a, b, i = (int(v) for v in g.groups())
+            e = s.lanes.get(100 + b, [None] * 4)[i]
+            if e is None:
+                return False
+            va, _ = self.read(f"s{a}")
+            if m == "fmul":
+                self.write(f"s{d}", f"({va}) * ({e})", "f32")
+            else:
+                acc, _ = self.read(f"s{d}")
+                self.write(f"s{d}", FTERNARY["fmadd" if m == "fmla" else "fmsub"].format(a=f"({va})", b=f"({e})", c=f"({acc})"), "f32")
+            return True
+        if m in ("fneg", "fabs") and (g := re.fullmatch(r"v(\d+)\.([24])s, v(\d+)\.\2s", op)):
+            d, k, a = int(g.group(1)), int(g.group(2)), int(g.group(3))
+            if 100 + a not in s.lanes:
+                return False
+            la = s.lanes[100 + a]
+            lanes = [self.bind("f32", FUNARY[m].format(a=la[i], s="f")) if i < k and la[i] is not None else None
+                     for i in range(4)]
+            if lanes[0] is None:
+                return False
+            self.write(f"s{d}", lanes[0], "f32")
+            s.lanes[100 + d] = lanes
+            return True
         if m == "faddp" and ((g := re.fullmatch(r"v(\d+)\.([24])s, v(\d+)\.\2s, v(\d+)\.\2s", op))
                              or (g := re.fullmatch(r"s(\d+), v(\d+)\.(2)s", op))):
             # pairwise: the sums of adjacent lanes of a, then of b (scalar form: of a's two lanes)
@@ -1623,6 +1840,23 @@ class Lifter:
             if 100 + n not in s.lanes or 100 + src not in s.lanes:
                 return False
             s.lanes[100 + n] = s.lanes[100 + n][:2] + s.lanes[100 + src][:2]
+            return True
+        if m in ("ldr", "ldur", "ldp") and mem and not x.writeback \
+                and (g := re.fullmatch(r"q(\d+), (?:q(\d+), )?\[.*", op)) and (m == "ldp") == bool(g.group(2)):
+            # A whole q register (or a pair) loaded: its four 32-bit lanes, as f32 values (copied
+            # bit for bit; a store of them is the copy, a lane operation reads them)
+            a = self.temp_ptr(self.address(x, mem[0]))
+            for k, r in enumerate(v for v in g.groups() if v is not None):
+                lanes = [self.bind("f32", f"*(f32*)({a} + {16 * k + 4 * i})") for i in range(4)]
+                self.write(f"s{r}", lanes[0], "f32")
+                s.lanes[100 + int(r)] = lanes
+            return True
+        if m == "stp" and mem and not x.writeback and (g := re.fullmatch(r"q(\d+), q(\d+), \[.*", op)):
+            pair = [s.lanes.get(100 + int(r)) for r in g.groups()]
+            if any(v is None or None in v for v in pair):
+                return False
+            a = self.temp_ptr(self.address(x, mem[0]))
+            self.line(" ".join(f"*(f32*)({a} + {4 * i}) = {v};" for i, v in enumerate(pair[0] + pair[1])))
             return True
         if m in ("str", "stur") and mem and not x.writeback and (g := re.fullmatch(r"([qd])(\d+), \[.*", op)):
             n, k = int(g.group(2)), 4 if g.group(1) == "q" else 2
@@ -1672,6 +1906,10 @@ class Lifter:
             return True
         if m == "clrex":
             self.excl = None
+            return True
+        if x.address in self.far_copy:
+            d, src = self.far_copy[x.address]
+            self.write(d, self.read(src)[0], "f32")
             return True
         if m in ("ldr", "ldur") and mem and len(regs) == 1 and regs[0][0] in "hb" and regs[0][1:].isdigit():
             # `ldr h<n>|b<n>, [..]; ucvtf|scvtf s<n>, s<n>`: a u16 or u8 loaded into a float register
@@ -1817,6 +2055,13 @@ class Lifter:
         s = self.s
         if m == "adrp":
             n = self.key(regname(o[0].reg))
+            if "semantic" in self.opts and isinstance(self, FlatLifter):
+                # The register holds the page too: a label where the ways in disagree drops the
+                # page (join_consts), and reads there take X<n>, not the value it held before
+                self.line(f"X{n} = (u64)({self.global_ref(o[1].imm, False)});")
+                self.types[n] = "char*"
+                self.clob.discard(n)
+                s.lanes.pop(n, None)
             s.pages[n] = o[1].imm
             s.vals.pop(n, None)
             s.poison.discard(n)
@@ -1825,7 +2070,15 @@ class Lifter:
             a = s.pages[self.key(regname(o[1].reg))] + o[2].imm
             text = self.orig.img.cstring(a - BASE)
             # Semantic mode keeps the game's own string (one address for every user, as in main).
-            if text is not None and a not in self.orig.sizes and a != DSO_HANDLE and "semantic" not in self.opts:
+            if text is not None and a not in self.orig.sizes and a != DSO_HANDLE and "semantic" not in self.opts \
+                    and not self.table_use(regname(o[0].reg), len(text)) \
+                    and not any(a - BASE + i in self.orig.img.relocs for i in range(len(text) + 1)) \
+                    and not wide_text(self.orig.img.data, a - BASE, len(text)):
+                # (bytes a relocation fills are data: a luaL_Reg table whose first name pointer
+                # reads as "" in the file, fn_71010c10c0; and a wide string reads as at most one
+                # narrow character, L"" as "", fn_7100066a50's wcscpy, so short text that starts a
+                # wide character stays the image's bytes too; a plain "" argument stays a literal,
+                # which 7100382f48 needs to match)
                 self.write(regname(o[0].reg), f"(char*){refl_attrs.c_string(text)}", "char*")
             else:
                 self.write(regname(o[0].reg), self.global_ref(a, False), "char*")
@@ -2017,6 +2270,19 @@ class Lifter:
             if FTOINT[m]:
                 v = f"{FTOINT[m].format(s='f' if ft == 'f32' else '')}({v})"
             it = ("s" if m[-1] == "s" else "u") + ("64" if rd[0] == "x" else "32")
+            if "semantic" in self.opts:
+                # Saturating, NaN to 0, as the instruction does (a C cast out of range is undefined)
+                bits = 64 if rd[0] == "x" else 32
+                sfx = "f" if ft == "f32" else ""
+                lo, hi = (f"-{2.0 ** (bits - 1)!r}{sfx}", f"{2.0 ** (bits - 1)!r}{sfx}") if it[0] == "s" \
+                    else (f"0.0{sfx}", f"{2.0 ** bits!r}{sfx}")
+                u = "u" + it[1:]
+                mn, mx = (f"(({u})1 << {bits - 1})", f"(({it})~(({u})1 << {bits - 1}))") if it[0] == "s" \
+                    else ("0", f"(({it})~({it})0)")
+                v = (f"({{ {ft} lift_v = {v}; lift_v != lift_v ? ({it})0 : lift_v >= {hi} ? {mx} : "
+                     f"lift_v <= {lo} ? ({it}){mn} : ({it})lift_v; }})")
+                self.write(rd, f"({width_type(rd)})({v})", width_type(rd))
+                return True
             self.write(rd, f"({width_type(rd)})({it})({v})", width_type(rd))
         elif m == "fcvt" and len(o) == 2:
             rd, rn = regname(o[0].reg), regname(o[1].reg)
@@ -2211,7 +2477,7 @@ class Lifter:
             ptr, _ = self.read(regname(o[0].reg))
             self.s.written.discard(self.key(regname(o[0].reg)))
             x8, _ = self.read("x8")
-            args = self.args(self.callee_need(""))
+            args = self.indirect_args(self.args(self.callee_need("")))
             types, values = ", ".join(t for _, t in args), ", ".join(e for e, _ in args)
             self.decls.add(LIFT_AT)
             self.line(f"new ((void*)({x8}), lift_at_t{{}}) UnkResult(((UnkResult (*)({types}))({ptr}))({values}));")
@@ -2232,6 +2498,11 @@ class Lifter:
             # Until s0/d0 is read (then the callee returns a float; see retype_call).
             var = self.s.vals[0][0] if 0 in self.s.vals else "X0"
             self.s.fcall = (len(self.body) - 1, var, call) + self.last_call
+            if m == "bl" and "semantic" in self.opts and self.main is not None and self.main(o[0].imm) == {100}:
+                # Every caller reads the float result: typed so here too, even where the result is
+                # read only past a branch (fn_7100713e2c's call at +0x50, read at the join +0x110)
+                # The width is the next read's in address order (strtod's d0, 71010b2500)
+                self.read(self.next_v0_read() or ("s" if self.ftype_of(100) == "f32" else "d") + "0")
         else:
             return False
         return True
@@ -2341,7 +2612,33 @@ class FlatLifter(Lifter):
                         and self.bhi_after(ins, j):
                     bound, cmp_at = y.operands[1].imm, j
                     break
-            if bound is None or any(cmp_at < j < k and j != copy for j in writes.get(ireg, [])) \
+            if bound is None:
+                # The bound checked further away, the dispatch reached by a branch (`cmp xI, #N;
+                # b.ls <dispatch>` early in the function, or several paths each with `cmp; b.gt`):
+                # the largest N of the compares of I with an immediate followed by a conditional
+                # branch, when I is written nowhere after the first of them. A larger table than
+                # the paths use only adds cases nothing reaches.
+                # The in-range side of each such branch (b.ls/b.le taken, b.hi/b.gt not) must lead
+                # to the dispatch with I unwritten in the straight code from there to the table.
+                cmps = []
+                for j, y in enumerate(ins[:adr]):
+                    if not (y.mnemonic == "cmp" and y.operands[0].type == arm64.ARM64_OP_REG
+                            and regname(y.operands[0].reg)[1:] == ireg[1:] and y.operands[1].type == arm64.ARM64_OP_IMM):
+                        continue
+                    br = next((z for z in ins[j + 1:j + 3] if z.mnemonic in ("b.hi", "b.ls", "b.gt", "b.le")), None)
+                    if br is None:
+                        continue
+                    start = at.get(br.operands[0].imm) if br.mnemonic in ("b.ls", "b.le") else at[br.address] + 1
+                    if start is None or start > adr or any(start <= w < k for w in writes.get(ireg, [])):
+                        continue
+                    if any(z.mnemonic in ("b", "br", "ret") or z.mnemonic.startswith(("b.", "cb", "tb"))
+                           for z in ins[start:adr]):
+                        continue  # (not straight code to the table)
+                    cmps.append(j)
+                if not cmps:
+                    continue
+                bound, cmp_at = max(ins[j].operands[1].imm for j in cmps), cmps[0]
+            elif any(cmp_at < j < k and j != copy for j in writes.get(ireg, [])) \
                     or (copy is not None and any(cmp_at < j < copy for j in writes.get(src, []))):
                 continue
             base = ins[adr].operands[1].imm
@@ -2499,6 +2796,42 @@ class FlatLifter(Lifter):
             # address this function was given, set again)
             s.x8w = LOCAL_ADDR.fullmatch(e) is not None or holds
 
+    def result_copies(self, ins) -> dict[int, set[int]]:
+        """The registers holding this function's own result address on entry to each instruction
+        (by index), on every path: x8 at the entry, and copies `mov xD, xS` of one (fn_710009ad50
+        and fn_7100095774 keep it in x19 and set x8 from it again before an indirect call, past a
+        join; fn_7100095774 reuses x19 as a loop counter later). Any other write, or a call for
+        x0-x18, ends one. FlatLifter.ret_regs starts from these at a label."""
+        succ = self.successors(ins)
+        state: list[set[int] | None] = [None] * len(ins)
+        state[0] = {8}
+        work = [0]
+        while work:
+            k = work.pop()
+            x, held = ins[k], set(state[k])
+            o = x.operands
+            src = None
+            if x.mnemonic == "mov" and len(o) == 2 and o[1].type == arm64.ARM64_OP_REG \
+                    and regname(o[0].reg)[0] == "x" and regname(o[1].reg)[0] == "x" and regname(o[1].reg)[1:].isdigit():
+                src = int(regname(o[1].reg)[1:])
+            if not (is_frame(x) and x.mnemonic.startswith("st")):
+                for q in x.regs_access()[1]:
+                    r = regname(q)
+                    if r[0] in "xw" and r[1:].isdigit():
+                        n = int(r[1:])
+                        if src is not None and src in state[k] and r[0] == "x":
+                            held.add(n)
+                        else:
+                            held.discard(n)
+            if x.mnemonic in ("bl", "blr"):
+                held -= set(range(19))
+            for j in succ[k]:
+                new = held if state[j] is None else state[j] & held
+                if new != state[j]:
+                    state[j] = new
+                    work.append(j)
+        return {k: v for k, v in enumerate(state) if v is not None}
+
     def has_value(self, n: int) -> bool:
         return n in self.types
 
@@ -2515,7 +2848,28 @@ class FlatLifter(Lifter):
         return var
 
     def open_if(self, cond: str, target: int) -> None:
+        self.edge(target)
         self.line(f"if (!({cond})) goto L_{target:x};")
+
+    def edge(self, target: int) -> None:
+        self.edges.setdefault(target, []).append((dict(self.s.consts), dict(self.s.pages)))
+
+    def join_consts(self, a: int, prev) -> None:
+        """Semantic mode, at a label: the known constants and pages are those every way in agrees
+        on (fn_7100713e2c sets w8 to +pi/2 before a `b` to the label and to -pi/2 falling into it,
+        and an `fmov s0, w8` there must read the register); none for a loop's head (a branch from
+        below, not seen yet). A dropped page is still in its register (step, adrp)."""
+        ways = self.edges.pop(a, [])
+        if prev is not None and prev.mnemonic not in ("b", "br", "ret", "brk"):
+            ways.append((self.s.consts, self.s.pages))
+        if any(src >= a for src in self.sources.get(a, [])):
+            self.s.consts, self.s.pages = {}, {}
+            return
+        if not ways:
+            return
+        meet = lambda ds: {n: v for n, v in ds[0].items() if all(d.get(n) == v for d in ds[1:])}
+        self.s.consts = meet([c for c, _ in ways])
+        self.s.pages = meet([p for _, p in ways])
 
     def clobber(self) -> None:
         s = self.s
@@ -2544,20 +2898,27 @@ class FlatLifter(Lifter):
         self.cur_delta = 0
         self.fwidth = float_widths(ins, "semantic" in self.opts)
         targets = set()
+        self.sources: dict[int, list[int]] = {}  # branch target -> the branches' addresses
         for x in ins:
             for op in x.operands:
                 if op.type == arm64.ARM64_OP_IMM and (x.mnemonic in ("b", "cbz", "cbnz", "tbz", "tbnz")
                                                       or x.mnemonic.startswith("b.")) \
                         and addr <= op.imm < end:
                     targets.add(op.imm)
+                    self.sources.setdefault(op.imm, []).append(x.address)
+        self.edges: dict[int, list[tuple[dict, dict]]] = {}  # (semantic mode) constants and pages at each goto
         self.jtables: dict[int, tuple[int, list[int]]] = {}
         self.jskip: set[int] = set()
+        self.ret_static: dict[int, set[int]] = {}
         try:
             self.find_guards(ins)
             if "semantic" in self.opts:
                 self.find_jump_tables(ins)
-                for _, tgts in self.jtables.values():
+                for br, (_, tgts) in self.jtables.items():
                     targets |= set(tgts)
+                    for t in tgts:
+                        self.sources.setdefault(t, []).append(br)
+                self.ret_static = self.result_copies(ins)
                 self.own_args()
             for self.pos, x in enumerate(ins):
                 if x.address in targets and (x.address not in self.gskip or x.address in self.jskip):
@@ -2568,7 +2929,9 @@ class FlatLifter(Lifter):
                     self.clob = set()
                     self.s.x8w = False
                     self.s.lanes = {}
-                    self.ret_regs = set()
+                    self.ret_regs = set(self.ret_static.get(self.pos, ()))
+                    if "semantic" in self.opts:
+                        self.join_consts(x.address, ins[self.pos - 1] if self.pos else None)
                 if x.address in self.gskip:
                     continue
                 if self.pos:
@@ -2606,6 +2969,8 @@ class FlatLifter(Lifter):
                 elif m == "br" and x.address in self.jtables:
                     idx, tgts = self.jtables[x.address]
                     v, _ = self.read(f"x{idx}")
+                    for t in tgts:
+                        self.edge(t)
                     cases = " ".join(f"case {k}: goto L_{t:x};" for k, t in enumerate(tgts))
                     self.line(f"switch ((u64)({v})) {{ {cases} default: __builtin_unreachable(); }}")
                 elif m == "br" and "semantic" in self.opts and self.s.x8w and regname(o[0].reg) != "x8":
@@ -2615,6 +2980,7 @@ class FlatLifter(Lifter):
                     self.s.written.discard(self.key(regname(o[0].reg)))  # the target isn't an argument
                     self.terminate("tail", self.call("", ptr))
                 elif m == "b":
+                    self.edge(o[0].imm)
                     self.line(f"goto L_{o[0].imm:x};")
                 else:
                     before = self.s.cmp
@@ -2629,8 +2995,11 @@ class FlatLifter(Lifter):
             return self.fail("falls off the end")
         # Declarations go first: gotos must not jump over initialisations.
         pre = []
+        # (semantic mode: every declared parameter seeds its register, also one below the highest the
+        # function writes before reading on some path: another path passes it on, fn_71010ab810)
+        declared = max([k for k in self.params if k < 100], default=-1) if "semantic" in self.opts else -1
         for n in sorted(k for k in self.types if k < 100):
-            init = f" = (u64)p{n}" if n in self.params else (" = (u64)&ret" if n == 8 and self.sret else
+            init = f" = (u64)p{n}" if n in self.params or n < declared else (" = (u64)&ret" if n == 8 and self.sret else
                                                              " = 0" if "semantic" in self.opts else "")
             pre.append(f"    u64 X{n}{init};")
         for n in sorted(k for k in self.types if k >= 100):
@@ -2750,6 +3119,14 @@ LIFT_AT = ("struct lift_at_t {}; inline void* operator new(decltype(sizeof 0), v
 _ORIG: asmdiff.Original | None = None  # for forked lifting workers
 
 
+def _init_spawned(version: str, module: str, facts: bool) -> None:
+    """A spawned lifting worker (Windows has no fork): the binary and, as the parent had them, the facts."""
+    global _ORIG
+    _ORIG = asmdiff.Original(version, module)
+    if facts:
+        load_facts(_ORIG, version)
+
+
 def _lift_part(job: tuple[list[int], bool, frozenset]):
     part, want_why, opts = job
     why: dict[int, tuple[int, str]] | None = {} if want_why else None
@@ -2765,12 +3142,21 @@ def lift_all(orig: asmdiff.Original, cands: list[int],
     import multiprocessing
     import os
     n = os.cpu_count() or 1
-    if n == 1 or len(cands) < 200 or "fork" not in multiprocessing.get_all_start_methods():
+    fork = "fork" in multiprocessing.get_all_start_methods()
+    # (spawned workers rebuild the binary and the facts; only the facts load_facts sets carry over)
+    spawn = not fork and hasattr(orig, "version") and Lifter.shape is None and Lifter.main is None
+    if n == 1 or len(cands) < 200 or not (fork or spawn):
         return lift_serial(orig, cands, why, opts)
     _ORIG = orig
     parts = [cands[k::n * 4] for k in range(n * 4)]
-    with multiprocessing.get_context("fork").Pool(n) as pool:
-        results = pool.map(_lift_part, [(p, why is not None, opts) for p in parts])
+    jobs = [(p, why is not None, opts) for p in parts]
+    if fork:
+        with multiprocessing.get_context("fork").Pool(n) as pool:
+            results = pool.map(_lift_part, jobs)
+    else:
+        init = (orig.version, orig.module, Lifter.facts is not None)
+        with multiprocessing.get_context("spawn").Pool(n, _init_spawned, init) as pool:
+            results = pool.map(_lift_part, jobs)
     lifted: list[dict[int, tuple[str, set[str]]]] = []
     for part_lifted, part_why in results:
         for k, defs in enumerate(part_lifted):
@@ -2817,6 +3203,10 @@ def lift_serial(orig: asmdiff.Original, cands: list[int],
 
     variants(Lifter, cands)
     structured = set().union(*lifted)
+    if "semantic" in opts:
+        # (semantic mode: a function whose only structured lifts are void tries the flat value lifts
+        # too; its callers may read the result, fn_710016c760; one attempt per variant here)
+        structured = set().union(*(d for d, (_, mode) in zip(lifted, VARIANTS) if mode != "void"))
     rest = [a for a in cands if a not in structured]
     variants(FlatLifter, rest)
     # Functions with stack locals: each layout of the locals array, structured then flat.

@@ -5,8 +5,10 @@ The oracle of tools/port_lift.py (docs/PORT_PLAN.md, oracle (b)): the original i
 lift compiled for AArch64 by the project compiler run side by side from the same inputs, every
 instruction executed as the raw P-code Ghidra's AArch64 specification gives it
 (tools/ghidra/pcode.py), so the lifter under test never decides what an instruction means. Only
-`b`, `bl`, `adr` and `adrp` are executed here directly, and P-code is cached per instruction word
-(branch targets relative to the word's address are relocated when it runs).
+`b`, `bl`, `adr`, `adrp`, the scalar fmax/fmin forms (whose P-code is wrong when Rd is Rm) and the
+scalar float-to-integer converts (whose TRUNC saturates signed, also for fcvt*u) and roundings (frint*,
+whose P-code is a float-to-integer TRUNC) are executed here directly, and P-code is cached per instruction word (branch targets relative to the
+word's address are relocated when it runs).
 
 A run starts from registers and memory derived from a seed, and records what a caller or callee
 could observe:
@@ -18,7 +20,8 @@ could observe:
             argument that points into the caller's stack (out-parameters). memcpy, memmove,
             memset, memcmp, strlen and strcmp are executed instead (the lift may inline them).
   memory    every byte written outside the function's own frame and outside the lift's own data
-            (its guard variables), compared at every call and at the end.
+            (its guard variables), compared at every call and at the end. A byte stored from
+            stack the run never wrote (a struct copy's padding) is undefined and not compared.
   result    x0 (by the lift's return width) or s0/d0, when the lift returns a value and callers
             may use it (abi_facts ret_used).
   end       return, a fault (a load or store in the first 64 KiB), or a time-out.
@@ -62,6 +65,10 @@ QSTRIDE = 0x20  # Ghidra spaces q<n> 32 bytes apart (room for SVE z<n>): q1 is a
 REG_SIZE = 0x6000
 CALLER_SAVED_X = range(19)
 CALLER_SAVED_Q = list(range(8)) + list(range(16, 32))
+# Imports that read and write no memory (their arguments and result are registers)
+PURE_MATH = frozenset(f + sfx for f in ("sqrt", "sin", "cos", "tan", "asin", "acos", "atan", "atan2", "exp", "exp2",
+                                        "log", "log2", "log10", "pow", "fmod", "floor", "ceil", "round", "trunc",
+                                        "fabs", "hypot", "sinh", "cosh", "tanh") for sfx in ("", "f"))
 MODELED = frozenset({"memcpy", "memmove", "memset", "memcmp", "strlen", "strcmp"})
 NOOP_USEROPS = frozenset({"DataMemoryBarrier", "DataSynchronizationBarrier", "InstructionSynchronizationBarrier",
                           "Hint_Prefetch", "SpeculationBarrier", "Yield", "SendEvent", "SendEventLocally",
@@ -324,6 +331,12 @@ class Machine:
         self.clipped = False  # a modelled memset or memcpy stopped at 64 KiB (compare)
         self.fault: int | None = None  # the address a run faulted on
         self.stack_written: set[int] = set()
+        # Undefined bytes: loaded from stack the run never wrote (a struct copy's padding), and
+        # where they were stored. Register and unique bytes holding one ((space, offset) keys);
+        # memory bytes stored from one, which compare() leaves out (undefined in C: a lift that
+        # copies the fields alone, or writes the padding, is the same program).
+        self.undef_vn: set[tuple[int, int]] = set()
+        self.undef_mem: set[int] = set()
         self.frame_record: set[int] = set()  # stack words holding the saved return address (store)
         self.saves: set[int] = set()  # stack words holding a callee-saved register's entry value (store)
         self.entry_saved: set[int] = set()  # those entry values (setup: x19-x28, d8-d15)
@@ -412,6 +425,16 @@ class Machine:
                 self.frame_record.add(a)  # the saved return address: out-parameters never reach it
             elif size == 8 and v & 0xFFFFFFFFFFFFFFFF in self.entry_saved:
                 self.saves.add(a)  # a callee-saved register's entry value: a save slot, not a local
+        elif self.arg_slots and ENTRY_SP <= a < ENTRY_SP + 8 * self.arg_slots:
+            pass  # (the function's own stack arguments: the callee's to change, which the lift keeps elsewhere)
+        elif self.arg_slots is not None and STACK_TOP - (1 << 36) <= a < STACK_LO:
+            # Below the stack, an sp-based index gone wild (fn_71010b98d0: a histogram indexed by a
+            # made-up result, 4 GiB down): each run's lands relative to its own sp
+            raise Inconclusive("store below the stack")
+        elif self.arg_slots is not None and ENTRY_SP <= a < STACK_TOP:
+            # Past its frame into the caller's: a local array overrun on a made-up count (fn_710014d1a0),
+            # undefined, and the two frames are laid out differently (as load: the caller's frame)
+            raise Inconclusive("store in the caller's frame")
         elif not (self.own[0] <= a < self.own[1]):
             for i in range(size):
                 self.dirty[a + i] = b[i]
@@ -422,6 +445,8 @@ class Machine:
 
     def set_reg(self, off: int, size: int, v: int) -> None:
         self.regs[off:off + size] = (v & ((1 << (8 * size)) - 1)).to_bytes(size, "little")
+        if self.undef_vn:
+            self.undef_vn.difference_update((2, off + i) for i in range(size))
         if X0 <= off < X0 + 72:
             self.state[(off - X0) // 8] = "written"
         elif Q0 <= off < Q0 + 8 * QSTRIDE:
@@ -447,6 +472,8 @@ class Machine:
             self.set_reg(off, size, v)
         elif sp == 1:
             self.uniq[off] = v
+            if self.undef_vn:
+                self.undef_vn.difference_update((1, off + i) for i in range(size))
         elif sp == 3:
             self.store(off, size, v)
         else:
@@ -619,6 +646,8 @@ class Machine:
                 self.regs[X0 + 8 * i:X0 + 8 * i + 8] = bytes(8)
                 if i <= 8:
                     self.state[i] = "junk"
+        for i in range(8):  # (a real one may use the vector registers: v0-v7 hold nothing for a later call)
+            self.state[100 + i] = "junk"
         self.set_reg(X0, 8, r & 0xFFFFFFFFFFFFFFFF)
 
     def shrink(self) -> None:
@@ -627,6 +656,11 @@ class Machine:
         self.pages, self.dirty, self.stack_written, self.uniq, self._read_seen = {}, {}, set(), {}, set()
 
     def checkpoint(self, event) -> None:
+        if event[0] == "call" and isinstance(event[1], tuple) and event[1][1] in PURE_MATH:
+            # (a libm function reads no memory: the compiler may move stores past it, fn_71001b83f8;
+            # the next event compares them)
+            self.events.append((event, ()))
+            return
         self.events.append((event, tuple(sorted(self.dirty.items()))))
         self.snapshot_bytes += len(self.dirty)
         if len(self.events) >= MAX_EVENTS * self.scale or self.snapshot_bytes > MAX_SNAPSHOT * self.scale:
@@ -726,12 +760,70 @@ class Machine:
             return ("ret" if opc == 2 else "jump"), t
         if (w & 0x3B000000) == 0x18000000:
             raise Inconclusive("literal load")
+        if (w & 0xFFA0CC00) == 0x1E204800 and (w >> 12) & 0xF in (4, 5, 6, 7):
+            # scalar fmax, fmin, fmaxnm, fminnm: Ghidra's P-code writes Rd = Rn before comparing Rd
+            # with Rm, so `fmax s2, s0, s2` compares s0 with itself (fn_710122b164)
+            size = 8 if (w >> 22) & 1 else 4
+            op = (w >> 12) & 3  # 0 fmax, 1 fmin, 2 fmaxnm, 3 fminnm
+            a = f_from(self.reg(Q0 + QSTRIDE * ((w >> 5) & 31), size), size)
+            b = f_from(self.reg(Q0 + QSTRIDE * ((w >> 16) & 31), size), size)
+            if op >= 2 and math.isnan(a) != math.isnan(b):
+                v = b if math.isnan(a) else a
+            elif math.isnan(a) or math.isnan(b):
+                v = float("nan")
+            elif a == b == 0:
+                v = (a if math.copysign(1, a) > 0 else b) if op in (0, 2) else (a if math.copysign(1, a) < 0 else b)
+            else:
+                v = max(a, b) if op in (0, 2) else min(a, b)
+            d = Q0 + QSTRIDE * (w & 31)
+            self.set_reg(d, 16, 0)
+            self.set_reg(d, size, f_to(v, size))
+            return "next", 0
+        if (w & 0xFF3C7C00) == 0x1E244000 and (w >> 22) & 3 in (0, 1) and (w >> 15) & 7 != 5:
+            # scalar frint{n,p,m,z,a,x,i}: Ghidra's P-code is a float-to-integer TRUNC, so frintm of
+            # 649.0 gave the integer bits 0x289 (7100e79fa4's lift; floorf compiles to it)
+            size = 8 if (w >> 22) & 1 else 4
+            a = f_from(self.reg(Q0 + QSTRIDE * ((w >> 5) & 31), size), size)
+            mode = (w >> 15) & 7  # 0 nearest-even, 1 +inf, 2 -inf, 3 zero, 4 away, 6 and 7 current (nearest)
+            if math.isnan(a) or math.isinf(a) or a == 0:
+                v = a
+            else:
+                v = float({0: round(a), 1: math.ceil(a), 2: math.floor(a), 3: int(a), 6: round(a), 7: round(a),
+                           4: math.floor(abs(a) + 0.5) * (1 if a >= 0 else -1)}[mode])
+                v = math.copysign(v, a) if v == 0 else v  # (ceil(-0.5) is -0.0)
+            d = Q0 + QSTRIDE * (w & 31)
+            self.set_reg(d, 16, 0)
+            self.set_reg(d, size, f_to(v, size))
+            return "next", 0
+        if (w & 0x7F20FC00) == 0x1E200000 and (w >> 22) & 3 in (0, 1) and (w >> 16) & 7 in (0, 1, 4, 5):
+            # scalar fcvt{n,p,m,z,a}{s,u} to a general register: Ghidra's TRUNC saturates signed,
+            # so fcvtzu of a large float came out 0x7fffffff where the instruction gives all ones
+            # (71001c9550; the lift's saturating convert is right)
+            size = 8 if (w >> 22) & 1 else 4
+            bits = 64 if w >> 31 else 32
+            a = f_from(self.reg(Q0 + QSTRIDE * ((w >> 5) & 31), size), size)
+            unsigned = (w >> 16) & 1
+            mode = 4 if (w >> 16) & 4 else (w >> 19) & 3  # 0 nearest-even, 1 +inf, 2 -inf, 3 zero, 4 away
+            lo, hi = (0, (1 << bits) - 1) if unsigned else (-(1 << (bits - 1)), (1 << (bits - 1)) - 1)
+            if math.isnan(a):
+                v = 0
+            elif math.isinf(a):
+                v = hi if a > 0 else lo
+            else:
+                v = (round(a), math.ceil(a), math.floor(a), int(a),
+                     int(math.floor(abs(a) + 0.5)) * (1 if a >= 0 else -1))[mode]
+                v = max(lo, min(hi, v))
+            if (w & 31) != 31:
+                self.set_reg(X0 + 8 * (w & 31), 8, v & ((1 << bits) - 1))
+            return "next", 0
         ops = self.ops_db.get(w, False)
         if ops is False:
             raise Inconclusive(f"no P-code for {w:08x}")
         if ops is None:
             raise Inconclusive(f"undecodable {w:08x}")
         self.uniq.clear()
+        if self.undef_vn:
+            self.undef_vn = {k for k in self.undef_vn if k[0] != 1}
         i, n = 0, len(ops)
         while i < n:
             code, out, ins = ops[i]
@@ -762,15 +854,28 @@ class Machine:
         size = out[2] if out else 0
         if name == "COPY":
             self.write(out, r(ins[0]))
+            self.carry_undef(out, ins[0], 0)
         elif name == "LOAD":
-            self.write(out, self.load(r(ins[1]), size))
+            a = r(ins[1])
+            self.write(out, self.load(a, size))
+            if out[0] in (1, 2):
+                self.undef_vn.update((out[0], out[1] + i) for i in range(size)
+                                     if STACK_LO <= a + i < ENTRY_SP and a + i not in self.stack_written)
         elif name == "STORE":
-            self.store(r(ins[1]), ins[2][2], r(ins[2]))
+            a = r(ins[1])
+            self.store(a, ins[2][2], r(ins[2]))
+            if self.undef_vn and ins[2][0] in (1, 2):
+                for i in range(ins[2][2]):
+                    if (ins[2][0], ins[2][1] + i) in self.undef_vn:
+                        self.undef_mem.add(a + i)
+                        self.dirty.pop(a + i, None)
+                        self.stack_written.discard(a + i)
         elif name in INT_BINARY:
             a, b = r(ins[0]), r(ins[1])
             self.write(out, INT_BINARY[name](a, b, ins[0][2] * 8))
         elif name == "INT_ZEXT":
             self.write(out, r(ins[0]))
+            self.carry_undef(out, ins[0], 0)
         elif name == "INT_SEXT":
             self.write(out, sext(r(ins[0]), ins[0][2] * 8))
         elif name == "INT_2COMP":
@@ -783,6 +888,7 @@ class Machine:
             self.write(out, (r(ins[0]) << (8 * ins[1][2])) | r(ins[1]))
         elif name == "SUBPIECE":
             self.write(out, r(ins[0]) >> (8 * ins[1][1]))
+            self.carry_undef(out, ins[0], ins[1][1])
         elif name == "POPCOUNT":
             self.write(out, bin(r(ins[0])).count("1"))
         elif name == "LZCOUNT":
@@ -795,6 +901,12 @@ class Machine:
             self.userop(self.userops.get(ins[0][1], "?"), out, ins[1:])
         else:
             raise Inconclusive(f"P-code {name}")
+
+    def carry_undef(self, out, src, skip: int) -> None:
+        """A copy (or a zero extension, or a part from byte `skip` on) carries undefined bytes."""
+        if self.undef_vn and src[0] in (1, 2) and out[0] in (1, 2):
+            self.undef_vn.update((out[0], out[1] + i) for i in range(min(out[2], src[2] - skip))
+                                 if (src[0], src[1] + skip + i) in self.undef_vn)
 
     def float_op(self, name: str, out, ins) -> None:
         r = self.read
@@ -967,6 +1079,11 @@ def compare(a: Machine, b: Machine, ret: str | None) -> str:
     else the first difference. `a` is the original's run. `ret` is the lift's result kind: None
     (not compared), 'x8', 'x16', 'x32', 'x64', 'f32', 'f64'."""
     ea, eb = a.events, b.events
+    if a.undef_mem or b.undef_mem:
+        # (bytes either run stored from undefined stack bytes: not compared, in neither run)
+        skip = a.undef_mem | b.undef_mem
+        ea = [(v, tuple(kv for kv in m if kv[0] not in skip)) for v, m in ea]
+        eb = [(v, tuple(kv for kv in m if kv[0] not in skip)) for v, m in eb]
     end_a, end_b = (ea[-1][0] if ea else None), (eb[-1][0] if eb else None)
     if end_a == ("end", "fault") and ea != eb:
         # The original crashed on this input, the lift did not crash there: C lets the compiler
@@ -981,6 +1098,8 @@ def compare(a: Machine, b: Machine, ret: str | None) -> str:
                     continue
                 if i == len(eb) - 1 and end_b == ("end", "time-out"):
                     return "skip: the lift was cut off before the original's fault"
+                if (a.clipped or b.clipped) and i < len(eb) and ea[i][0] == eb[i][0]:
+                    return "skip: a memset or memcpy was clipped at 64 KiB"
                 return f"event {i} before the original's fault"
         return "skip: the original faulted where the lift did not"
     # A run cut off (Machine.cut: out of steps, events or snapshot room) recorded a true prefix of
@@ -1003,6 +1122,8 @@ def compare(a: Machine, b: Machine, ret: str | None) -> str:
             else:
                 return f"event {i}: {va[0]} {va[1] if len(va) > 1 else ''} vs {vb[0]} {vb[1] if len(vb) > 1 else ''}"
         if ma != mb:
+            if a.clipped or b.clipped:
+                return "skip: a memset or memcpy was clipped at 64 KiB"  # (each run's own base: fn_710122e6f0)
             return f"memory at event {i} ({va[0]}): {mem_diff(ma, mb)}"
     if ta and tb:
         # Both cut off: what came after the cut was never compared (a long loop of the same calls in

@@ -2258,6 +2258,7 @@ UnkResult fn_7100eaa264(char* p0, char* p1) {
 }
 
 namespace callee { char* fn_7100e9405c(u64, char*); }
+namespace h { extern HIDDEN char g_unk_710164be60[]; }
 UnkResult fn_7100eaa64c(char* p0, char* p1, char* p2) {
     UnkResult ret;
     u64 X0;
@@ -2282,7 +2283,7 @@ L_7100eaa684:;
     X9 = (u64)(0xd641c5);
     *(u8*)((char*)(X0) + (u64)(u64)(((u32)X9))) = (u8)(u64)((u32)X8);
     if (!((u32)(u64)((u32)X8) == 0)) goto L_7100eaa6a4;
-    X1 = (u64)((char*)"");
+    X1 = (u64)((char*)h::g_unk_710164be60);
     X0 = (u64)(callee::fn_7100e9405c(X0, ((char*)X1)));
 L_7100eaa6a4:;
     X8 = (u64)(0x2);

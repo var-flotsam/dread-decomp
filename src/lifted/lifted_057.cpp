@@ -427,8 +427,9 @@ char* fn_7100571a50() {
     return callee::fn_710009ec00(r34_0, r35_1);
 }
 
+namespace h { extern HIDDEN char g_unk_7101649f20[]; }
 u64 fn_7100572110(u32 p0) {
-    char* r0_8 = (char*)"";
+    char* r0_8 = (char*)h::g_unk_7101649f20;
     u32 r1_9 = 0xc;
     u64 r2_0 = (u64)(r0_8) + (u64)(s32)(u64)(p0) * (u64)(s32)(u64)(r1_9);
     return r2_0;

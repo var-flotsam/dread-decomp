@@ -232,9 +232,10 @@ char* fn_7100071030() {
     return callee::fn_7100000250(r16_0, r17_1, r18_2);
 }
 
+namespace h { extern HIDDEN char g_unk_710164770c[]; }
 u32 fn_7100071680(u32 p0) {
     if ((u32)(u64)(p0) <= (u32)(6)) {
-        char* r1_8 = (char*)"";
+        char* r1_8 = (char*)h::g_unk_710164770c;
         u32 r2_0 = (u32)*(u32*)((char*)(r1_8) + (u64)((u64)(s32)(u64)(p0) << 2));
         return r2_0;
     }

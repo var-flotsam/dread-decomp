@@ -2019,6 +2019,7 @@ char* fn_7100ba6d38(char* p0) {
 
 namespace callee { char* fn_710110e278(u64, u64, char*, char*, u32); }
 namespace callee { char* fn_710110e554(u64); }
+namespace h { extern HIDDEN char g_unk_710164b990[]; }
 void fn_7100ba6d5c(char* p0, char* p1) {
     u64 r0_8 = (u64)*(u64*)((char*)(p1) + 0);
     if ((u64)(u64)(r0_8) != 0) {
@@ -2028,7 +2029,7 @@ void fn_7100ba6d5c(char* p0, char* p1) {
             char* r5_19 = p1;
             char* r6_0 = callee::fn_710110e554(r4_0);
             u64 r7_1 = (u64)*(u64*)((char*)(r5_19) + 0);
-            char* r8_2 = (char*)"";
+            char* r8_2 = (char*)h::g_unk_710164b990;
             u64 r9_0 = r2_20;
             char* r10_3 = r8_2;
             u32 r11_4 = (u32)(u64)(0);

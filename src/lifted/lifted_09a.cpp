@@ -219,11 +219,12 @@ char* fn_71009a2d78(char* p0) {
 extern char g_unk_7101a22c88[];
 namespace callee { char* fn_7100125b1c(char*, char*, char*); }
 namespace callee { char* fn_710098db28(char*); }
+namespace h { extern HIDDEN char g_unk_710164b39c[]; }
 char* fn_71009a2dcc(char* p0) {
     char* r0_19 = p0;
     char* r1_0 = callee::fn_710098db28(p0);
     char* r2_8 = (char*)g_unk_7101a22c88;
-    char* r3_1 = (char*)"";
+    char* r3_1 = (char*)h::g_unk_710164b39c;
     char* r4_0 = (r0_19) + 132;
     char* r8_8 = (r2_8) + 16;
     char* r9_2 = r3_1;

@@ -258,8 +258,9 @@ char* fn_71006a12c8(char* p0) {
     return callee::fn_7100083c00(p0);
 }
 
+namespace h { extern HIDDEN char g_unk_7101a62700[]; }
 char* fn_71006a1304(char* p0, char* p1) {
-    char* r0_8 = (char*)"";
+    char* r0_8 = (char*)h::g_unk_7101a62700;
     *(u64*)((char*)(p1) + 0) = (u64)(u64)(r0_8);
     u64 r2_8 = (u64)*(u64*)((char*)(p0) + 8);
     *(u64*)((char*)(p1) + 8) = (u64)(u64)(r2_8);

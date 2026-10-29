@@ -1044,10 +1044,11 @@ char* fn_7100aaa000(char* p0) {
 
 namespace callee { char* fn_7100ac7628(char*); }
 namespace callee { char* fn_71010d08d4(char*, char*, u32); }
+namespace h { extern HIDDEN char g_unk_710164b678[]; }
 void fn_7100aaa024(char* p0) {
     char* r0_19 = p0;
     char* r1_0 = callee::fn_7100ac7628(p0);
-    char* r2_1 = (char*)"";
+    char* r2_1 = (char*)h::g_unk_710164b678;
     char* r3_0 = r0_19;
     u32 r4_2 = 0x1;
     char* r5_0 = callee::fn_71010d08d4(r3_0, r2_1, r4_2);

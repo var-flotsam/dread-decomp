@@ -3,6 +3,7 @@
 // printed: it runs as "print(...)"), with a scratch array pushed for the length of the run, and
 // reports an error message through a callback; fn_710109c9e0 pops that array again. The start-up settings hand it to the engine
 // (src/engine/HostArguments.cpp). Names and layouts are placeholders.
+#include <stdarg.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -123,4 +124,21 @@ void fn_710109c9e0() {
             stack.entries[i].Free();
     }
     stack.count = new_count;
+}
+
+// Formats into a buffer (vsnprintf's arguments), and the console's line output.
+s32 fn_710007ba20(char* out, u64 size, const char* format, va_list args);
+void fn_710109d4f0(const char* line);
+
+// Prints a formatted line to the console, unless the format is a bare newline.
+// NON_MATCHING(minor): the variadic saves and the va_list set-up are scheduled differently (one more move).
+void fn_710109ce10(const char* format, ...) {
+    if (*format == '\n')
+        return;
+    char line[0x200];
+    va_list args;
+    va_start(args, format);
+    fn_710007ba20(line, sizeof(line), format, args);
+    va_end(args);
+    fn_710109d4f0(line);
 }
