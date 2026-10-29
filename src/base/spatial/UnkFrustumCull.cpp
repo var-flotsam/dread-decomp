@@ -2,7 +2,7 @@
 // frustum's six planes (at +0x178 of the view object) tested against a bounding sphere. The sphere
 // remembers the plane that last rejected it and the test starts there, walking the planes in the
 // order a next-plane table gives. Names and layouts are placeholders.
-// Holds fn_71001bab30.
+// Holds fn_71001bab30 and the frustum's update, fn_71001b83f8.
 #include "types.h"
 
 // A plane: its normal and its distance term.
@@ -386,4 +386,126 @@ void fn_71001ba864(UnkXformTarget* target, const UnkVec3f* pos) {
     self->target.y = pos->y;
     self->target.z = pos->z;
     fn_71001b7eb4(self);
+}
+
+// ---- The frustum's update (fn_71001b83f8) ----
+
+namespace {
+
+struct V3 {
+    f32 x, y, z;
+};
+
+inline V3 Add(V3 a, V3 b) { return {a.x + b.x, a.y + b.y, a.z + b.z}; }
+inline V3 Sub(V3 a, V3 b) { return {a.x - b.x, a.y - b.y, a.z - b.z}; }
+inline V3 Scale(V3 a, f32 s) { return {a.x * s, a.y * s, a.z * s}; }
+
+// The view's fields this update reads and writes, by offset (the constructor's layout above keeps
+// them as raw words): the eye at +0xa8, its forward, right and up axes after it, the corners of the
+// two cross-sections at +0x280 (the one at +0x8c's distance) and +0x2b0 (+0x88's), the quantised
+// planes at +0x1d8 and the orthographic size at +0x15c.
+inline V3& Vec(UnkCullView* v, u32 offset) { return *reinterpret_cast<V3*>(reinterpret_cast<u8*>(v) + offset); }
+inline f32 Word(const UnkCullView* v, u32 offset) {
+    return *reinterpret_cast<const f32*>(reinterpret_cast<const u8*>(v) + offset);
+}
+
+struct UnkQuantPlane {
+    s32 x, y, z;  // the normal, in thousandths
+    u32 pad_0xc;
+    s64 d;        // the distance term, in ten-thousandths
+};
+static_assert(sizeof(UnkQuantPlane) == 0x18, "UnkQuantPlane placeholder layout");
+
+inline s32 Quantise(f32 v, f32 scale) { return (s32)(f32)(s32)(v * scale); }
+
+// A cross-section's four corners at the given distance along the view's forward axis, the right
+// and up axes scaled by the half sizes: (+right, -up), (+right, +up), (-right, -up), (-right, +up).
+void Corners(UnkCullView* self, V3* out, f32 distance, f32 half_right, f32 half_up) {
+    V3 eye = Vec(self, 0xa8);
+    V3 forward = Vec(self, 0xb4);
+    V3 c = {eye.x + forward.x * distance, eye.y + forward.y * distance, eye.z + forward.z * distance};
+    V3 r = Scale(Vec(self, 0xc0), half_right);
+    V3 u = Scale(Vec(self, 0xcc), half_up);
+    V3 cr = Add(c, r);
+    V3 cl = Sub(c, r);
+    out[0] = Sub(cr, u);
+    out[1] = Add(u, cr);
+    out[2] = Sub(cl, u);
+    out[3] = Add(u, cl);
+}
+
+// The plane through p0, a and b (its normal cross(a - p0, b - p0), normalised).
+void PlaneFrom(UnkPlane* plane, V3 p0, V3 a, V3 b) {
+    V3 v1 = Sub(a, p0);
+    V3 v2 = Sub(b, p0);
+    f32 nx = v1.y * v2.z - v1.z * v2.y;
+    f32 ny = v1.z * v2.x - v1.x * v2.z;
+    f32 nz = v1.x * v2.y - v1.y * v2.x;
+    f32 inv = 1.0f / (__builtin_sqrtf(nx * nx + ny * ny + nz * nz) + 0.0001f);
+    plane->x = nx * inv;
+    plane->y = ny * inv;
+    plane->z = nz * inv;
+    plane->d = -(plane->x * p0.x + plane->y * p0.y + plane->z * p0.z);
+}
+
+}  // namespace
+
+// Rebuilds the frustum from the view: the two cross-sections' corners (perspective, from the
+// distances at +0x88 and +0x8c and the half-size factors at +0x78/+0x7c; orthographic when the cull
+// object's flag at +0xb0 is set, from the size at +0x15c), the six planes and their quantised copies,
+// then the nine boxes, each bounding a ninth of the frustum along its depth.
+// NON_MATCHING(major): written from the original's behaviour, not compared instruction by instruction.
+void fn_71001b83f8(UnkCullView* self) {
+    V3* far = &Vec(self, 0x280);
+    V3* near = &Vec(self, 0x2b0);
+    f32 near_d = self->field_0x88;
+    f32 far_d = self->field_0x8c;
+    if (!reinterpret_cast<const u8*>(self->cull)[0xb0]) {
+        Corners(self, near, near_d, near_d * self->field_0x78, near_d * self->field_0x7c);
+        Corners(self, far, far_d, self->field_0x78 * far_d, self->field_0x7c * far_d);
+    } else {
+        f32 half_right = Word(self, 0x160) * 0.5f;
+        f32 half_up = Word(self, 0x15c) * 0.5f;
+        Corners(self, near, near_d, half_right, half_up);
+        Corners(self, far, far_d, half_right, half_up);
+    }
+
+    PlaneFrom(&self->planes[0], far[0], near[1], near[0]);
+    PlaneFrom(&self->planes[1], far[2], near[2], near[3]);
+    PlaneFrom(&self->planes[2], far[2], near[0], near[2]);
+    PlaneFrom(&self->planes[3], far[1], near[3], near[1]);
+    PlaneFrom(&self->planes[4], near[0], near[1], near[3]);
+    PlaneFrom(&self->planes[5], far[1], far[0], far[2]);
+    auto* quant = reinterpret_cast<UnkQuantPlane*>(reinterpret_cast<u8*>(self) + 0x1d8);
+    for (u32 i = 0; i < 6; ++i) {
+        quant[i].x = Quantise(self->planes[i].x, 1000.0f);
+        quant[i].y = Quantise(self->planes[i].y, 1000.0f);
+        quant[i].z = Quantise(self->planes[i].z, 1000.0f);
+        quant[i].d = Quantise(self->planes[i].d, 10000.0f);
+    }
+
+    // The frustum's four edges, from the far corners to the near ones, cut into nine slabs.
+    V3 step[4];
+    for (u32 k = 0; k < 4; ++k)
+        step[k] = Scale(Sub(near[k], far[k]), 0.11111111f);
+    for (u32 i = 0; i < 9; ++i) {
+        V3 points[8];
+        for (u32 k = 0; k < 4; ++k) {
+            points[k] = Add(Scale(step[k], (f32)i), far[k]);
+            points[4 + k] = Add(Scale(step[k], (f32)(i + 1)), far[k]);
+        }
+        UnkPoolBox* box = &self->boxes[i].box;
+        UnkVec3f lo(__FLT_MAX__, __FLT_MAX__, __FLT_MAX__);
+        UnkVec3f hi(-__FLT_MAX__, -__FLT_MAX__, -__FLT_MAX__);
+        box->SetMin(&lo);
+        box->SetMax(&hi);
+        for (const V3& p : points) {
+            UnkVec3f m = box->GetMin();
+            lo = UnkVec3f(p.x < m.x ? p.x : m.x, p.y < m.y ? p.y : m.y, p.z < m.z ? p.z : m.z);
+            box->SetMin(&lo);
+            m = box->GetMax();
+            hi = UnkVec3f(p.x > m.x ? p.x : m.x, p.y > m.y ? p.y : m.y, p.z > m.z ? p.z : m.z);
+            box->SetMax(&hi);
+        }
+    }
 }
