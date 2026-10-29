@@ -162,6 +162,13 @@ From the trace run's refusals (`lifted_trace1`, 6,007 of 6,070 accepted):
   after `strlen`): the emulator runs memcpy, strlen and the rest itself and left v0-v7 as they were, so the
   original's untouched v1 was compared with the lift's 0. A real one may use the vector registers: v0-v7
   now count as junk after it, as after any other call.
+- **The oracle's fmax** (`710122b164`, `710122b204`: `fmov s2, wzr; fmax s2, s0, s2`): Ghidra's P-code
+  for scalar fmax/fmin/fmaxnm/fminnm copies Rn into Rd before comparing Rd with Rm, so with Rd = Rm it
+  compares s0 with itself and returns s0. pcode_emu now executes those four itself (NaN and signed-zero
+  rules as the instructions have them).
+- **A call typed by its callee's float result** (`7100713e2c`: `bl fn_710007a1d0` at +0x50, its s0 read
+  only at the join +0x110 after a `b`): the call stayed `char*` because nothing read s0 before the branch.
+  In semantic mode a callee whose callers all read s0 alone (result_main {s0}) is called as returning it.
 - **A whole q register loaded** (`7101205f54`, `ldp q1, q2, [x1]`): semantic mode had no q load at all.
   `ldr`/`ldur`/`ldp` of q registers now give their four 32-bit lanes as f32 values (State.lanes, as
   `ld1` builds them), so the existing `str q` and a new `stp q` store them back bit for bit and the lane

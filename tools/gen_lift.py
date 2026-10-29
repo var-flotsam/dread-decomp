@@ -2466,6 +2466,10 @@ class Lifter:
             # Until s0/d0 is read (then the callee returns a float; see retype_call).
             var = self.s.vals[0][0] if 0 in self.s.vals else "X0"
             self.s.fcall = (len(self.body) - 1, var, call) + self.last_call
+            if m == "bl" and "semantic" in self.opts and self.main is not None and self.main(o[0].imm) == {100}:
+                # Every caller reads the float result: typed so here too, even where the result is
+                # read only past a branch (fn_7100713e2c's call at +0x50, read at the join +0x110)
+                self.read(("s" if self.ftype_of(100) == "f32" else "d") + "0")
         else:
             return False
         return True

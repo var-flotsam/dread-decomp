@@ -5,8 +5,9 @@ The oracle of tools/port_lift.py (docs/PORT_PLAN.md, oracle (b)): the original i
 lift compiled for AArch64 by the project compiler run side by side from the same inputs, every
 instruction executed as the raw P-code Ghidra's AArch64 specification gives it
 (tools/ghidra/pcode.py), so the lifter under test never decides what an instruction means. Only
-`b`, `bl`, `adr` and `adrp` are executed here directly, and P-code is cached per instruction word
-(branch targets relative to the word's address are relocated when it runs).
+`b`, `bl`, `adr`, `adrp` and the scalar fmax/fmin forms (whose P-code is wrong when Rd is Rm) are
+executed here directly, and P-code is cached per instruction word (branch targets relative to the
+word's address are relocated when it runs).
 
 A run starts from registers and memory derived from a seed, and records what a caller or callee
 could observe:
@@ -739,6 +740,25 @@ class Machine:
             return ("ret" if opc == 2 else "jump"), t
         if (w & 0x3B000000) == 0x18000000:
             raise Inconclusive("literal load")
+        if (w & 0xFFA0CC00) == 0x1E204800 and (w >> 12) & 0xF in (4, 5, 6, 7):
+            # scalar fmax, fmin, fmaxnm, fminnm: Ghidra's P-code writes Rd = Rn before comparing Rd
+            # with Rm, so `fmax s2, s0, s2` compares s0 with itself (fn_710122b164)
+            size = 8 if (w >> 22) & 1 else 4
+            op = (w >> 12) & 3  # 0 fmax, 1 fmin, 2 fmaxnm, 3 fminnm
+            a = f_from(self.reg(Q0 + QSTRIDE * ((w >> 5) & 31), size), size)
+            b = f_from(self.reg(Q0 + QSTRIDE * ((w >> 16) & 31), size), size)
+            if op >= 2 and math.isnan(a) != math.isnan(b):
+                v = b if math.isnan(a) else a
+            elif math.isnan(a) or math.isnan(b):
+                v = float("nan")
+            elif a == b == 0:
+                v = (a if math.copysign(1, a) > 0 else b) if op in (0, 2) else (a if math.copysign(1, a) < 0 else b)
+            else:
+                v = max(a, b) if op in (0, 2) else min(a, b)
+            d = Q0 + QSTRIDE * (w & 31)
+            self.set_reg(d, 16, 0)
+            self.set_reg(d, size, f_to(v, size))
+            return "next", 0
         ops = self.ops_db.get(w, False)
         if ops is False:
             raise Inconclusive(f"no P-code for {w:08x}")
