@@ -425,7 +425,7 @@ class Machine:
         self.overrides = overrides or {}
         # ("s", path): the input starts from that snapshot instead of the seed's registers and memory
         path = next((k for kind, k in self.overrides if kind == "s"), None)
-        self.snap = load_snapshot(path, image.end - BASE) if path else None
+        self.snap = load_snapshot(path, max(image.end, image.bss_end) - BASE) if path else None  # (.bss too)
         # The snapshot's recorded calls, replayed in order while each call goes where the recorded one
         # went (replay_end: why replaying stopped, the calls after it made up as without a snapshot)
         self.replay_i, self.replay_end = 0, None
