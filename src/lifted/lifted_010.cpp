@@ -2318,9 +2318,10 @@ char* fn_710010cffc(u32 p0) {
     return r1_0;
 }
 
+namespace h { extern HIDDEN char g_unk_7101647bbc[]; }
 u32 fn_710010d00c(u32 p0) {
     if ((u32)(u64)(p0) <= (u32)(3)) {
-        char* r1_8 = (char*)"\001";
+        char* r1_8 = (char*)h::g_unk_7101647bbc;
         u32 r2_0 = (u32)*(u32*)((char*)(r1_8) + (u64)((u64)(s32)(u64)(p0) << 2));
         return r2_0;
     }

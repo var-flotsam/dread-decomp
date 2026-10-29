@@ -160,6 +160,7 @@ class RelocReport:
 
 class Original:
     def __init__(self, version: str, module: str = "main"):
+        self.version, self.module = version, module  # (gen_lift.lift_all's spawned workers rebuild it)
         self.img = Image(ROOT / "orig" / version / "exefs" / module)
         fdes = json.loads((ROOT / "build" / "recon" / version / f"{module}_eh_functions.json").read_text())
         self.sizes = {int(a, 16): n for a, n in fdes}

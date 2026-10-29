@@ -642,9 +642,10 @@ char* fn_7101074120() {
 }
 
 namespace callee { char* fn_71010a4d10(char*, char*, char*, u32); }
+namespace h { extern HIDDEN char g_unk_7101caca08[]; }
 char* fn_71010741b0(char* p0) {
     char* r0_1 = (char*)"Blackboard";
-    char* r1_2 = (char*)"";
+    char* r1_2 = (char*)h::g_unk_7101caca08;
     u32 r2_3 = (u32)(u64)(0);
     return callee::fn_71010a4d10(p0, r0_1, r1_2, r2_3);
 }
@@ -823,12 +824,13 @@ char* fn_71010758e0(char* p0, u32 p1) {
 namespace callee { char* fn_71010a3290(char*, u32, char*); }
 namespace callee { char* fn_71010a45e0(char*, char*); }
 namespace callee { char* fn_71010a4d10(char*, u64, char*, u32); }
+namespace h { extern HIDDEN char g_unk_7101cacb08[]; }
 char* fn_7101075e40(char* p0) {
     char* r0_20 = (char*)"__DisplayObjectType";
     char* r1_1 = r0_20;
     char* r2_19 = p0;
     char* r3_0 = callee::fn_71010a45e0(p0, r1_1);
-    char* r4_2 = (char*)"";
+    char* r4_2 = (char*)h::g_unk_7101cacb08;
     char* r5_0 = r2_19;
     u64 r6_1 = 0;
     u32 r7_3 = (u32)(u64)(0);
@@ -1044,9 +1046,10 @@ void fn_7101076e20(char* p0, char* p1, char* p2, char* p3, char* p4, char* p5, c
 }
 
 namespace callee { char* fn_71010a4d10(char*, char*, char*, u32); }
+namespace h { extern HIDDEN char g_unk_7101cacb58[]; }
 char* fn_7101076ed0(char* p0) {
     char* r0_1 = (char*)"Game";
-    char* r1_2 = (char*)"";
+    char* r1_2 = (char*)h::g_unk_7101cacb58;
     u32 r2_3 = (u32)(u64)(0);
     return callee::fn_71010a4d10(p0, r0_1, r1_2, r2_3);
 }

@@ -1392,10 +1392,11 @@ u32 fn_710113912c(char* p0) {
 }
 
 extern char g_unk_7172a08c28[];
+namespace h { extern HIDDEN char g_unk_7101cb3098[]; }
 u64 fn_7101139134(u32 p0) {
     u32 r0_8 = (u32)(u64)(p0) - (u32)(1);
     if ((u32)(u64)(r0_8) <= (u32)(3)) {
-        char* r2_9 = (char*)"";
+        char* r2_9 = (char*)h::g_unk_7101cb3098;
         u64 r3_0 = (u64)*(u64*)((char*)(r2_9) + (u64)((u64)(s32)(u64)(r0_8) << 3));
         return r3_0;
     }

@@ -845,9 +845,10 @@ char* fn_7100e62f3c(char* p0, char* p1) {
 }
 
 extern char g_unk_71727c82d0[];
+namespace h { extern HIDDEN char g_unk_7101aa9d98[]; }
 u64 fn_7100e68f20(u32 p0) {
     if ((u32)(u64)(p0) <= (u32)(7)) {
-        char* r1_8 = (char*)"";
+        char* r1_8 = (char*)h::g_unk_7101aa9d98;
         u64 r2_0 = (u64)*(u64*)((char*)(r1_8) + (u64)((u64)(s32)(u64)(p0) << 3));
         return r2_0;
     }

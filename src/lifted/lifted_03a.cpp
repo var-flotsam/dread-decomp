@@ -1755,6 +1755,40 @@ char* fn_71003a6ae4(char* p0) {
     return callee::fn_71003aac0c(r2_0, r0_1, r3_2);
 }
 
+namespace callee { char* fn_710007e704(char*, char*); }
+namespace callee { char* fn_710007f564(char*, char*); }
+namespace callee { char* fn_710007f564(char*, u64); }
+namespace h { extern HIDDEN char g_unk_7101a29060[]; }
+UnkResult fn_71003a6af8(char* p0) {
+    UnkResult ret;
+    u64 X0 = (u64)p0;
+    u64 X1;
+    u64 X8 = (u64)&ret;
+    u64 X9;
+    u64 X19;
+    u64 X20;
+    u64 X21;
+    X20 = (u64)((char*)"");
+    X21 = (u64)(((char*)X0));
+    X0 = (u64)(((char*)X8));
+    X1 = (u64)(((char*)X20));
+    X19 = (u64)(((char*)X8));
+    X0 = (u64)(callee::fn_710007e704(((char*)X0), ((char*)X1)));
+    X1 = (u64)((char*)"Suppress with ");
+    X0 = (u64)(((char*)X19));
+    X0 = (u64)(callee::fn_710007f564(((char*)X0), ((char*)X1)));
+    X8 = (u64)((u32)*(u32*)((char*)(((char*)X21)) + 56));
+    X8 = (u64)((u32)(u64)((u32)X8) - (u32)(1));
+    if (!((u32)(u64)((u32)X8) <= (u32)(6))) goto L_71003a6b50;
+    X9 = (u64)((char*)h::g_unk_7101a29060);
+    X20 = (u64)((u64)*(u64*)((char*)(((char*)X9)) + (u64)((u64)(s32)(u64)((u32)X8) << 3)));
+L_71003a6b50:;
+    X0 = (u64)(((char*)X19));
+    X1 = (u64)(X20);
+    callee::fn_710007f564(((char*)X0), X1);
+    return ret;
+}
+
 namespace callee { char* fn_71003a6684(); }
 namespace h { extern HIDDEN char g_unk_71726bb918[]; }
 char* fn_71003a6b68() {

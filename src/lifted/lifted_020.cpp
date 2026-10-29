@@ -2868,11 +2868,12 @@ char* fn_710020c300() {
 }
 
 namespace callee { char* fn_71001bd9b4(u64, u32); }
+namespace h { extern HIDDEN char g_unk_7101647bcc[]; }
 char* fn_710020c46c(char* p0, u32 p1) {
     u32 r0_8 = (u32)(u64)(p1) - (u32)(1);
     *(u32*)((char*)(p0) + 272) = (u32)(u64)(p1);
     if ((u32)(u64)(r0_8) <= (u32)(3)) {
-        char* r3_9 = (char*)"";
+        char* r3_9 = (char*)h::g_unk_7101647bcc;
         u64 r4_0 = (u64)*(u64*)((char*)(p0) + 264);
         u32 r5_1 = (u32)*(u32*)((char*)(r3_9) + (u64)((u64)(s32)(u64)(r0_8) << 2));
         return callee::fn_71001bd9b4(r4_0, r5_1);

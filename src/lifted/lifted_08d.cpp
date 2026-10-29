@@ -1004,11 +1004,12 @@ char* fn_71008de5a4() {
 }
 
 namespace callee { char* fn_7100d7c828(u64, u64, u32); }
+namespace h { extern HIDDEN char g_unk_7101a7ee00[]; }
 char* fn_71008de628(char* p0) {
     u64 r0_8 = (u64)*(u64*)((char*)(p0) + 1160);
     u64 r1_8 = (u64)*(s32*)((char*)(r0_8) + 292);
     if ((u32)(u64)((u32)(u64)(r1_8)) <= (u32)(4)) {
-        char* r3_9 = (char*)"";
+        char* r3_9 = (char*)h::g_unk_7101a7ee00;
         u64 r4_0 = (u64)*(u64*)((char*)(p0) + 48);
         u64 r5_1 = (u64)*(u64*)((char*)(r3_9) + (u64)((u64)(u64)(r1_8) << 3));
         u32 r6_2 = (u32)(u64)(0);

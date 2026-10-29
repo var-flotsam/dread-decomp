@@ -118,6 +118,127 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Lifter: a data table that starts like a string (2026-10-28, branch `claude/project-thread-zgkpk3`, after #255).**
+The boot's next stop: byte mode lifted `fn_7100167cc0` (`i < 10 ? table[i] : -1` over a u32 table at
+`710164806c`) as `(char*)"Y"` indexed by `i << 2`, because the table's first entry is 0x59. On the Switch the
+bytes match (string relocations are not checked), but the port's copy of the literal is two bytes long, so
+`fn_7100167cc0(1)` read "WALL" from the next literal and `fn_71001b0f7c` faulted on the index. The same
+stand-in was in 15 functions. An address that a later access reads as a table (an index register, or
+reaching past the string's terminator, before the register is written again) is now the image's object
+(`h::g_unk_<addr>`), not a literal; semantic mode already named every address that way.
+
+From the trace run's refusals (`lifted_trace1`, 6,007 of 6,070 accepted):
+- **Jump tables bounded further away** (`71000a0660`, `71000a5e00`, `7100256810`, `71011bc0b0`): the only
+  bound is a `cmp xI, #N; b.ls <dispatch>` early on, with x8 reused all over the other paths. The largest
+  such N bounds the table when the in-range side of its branch runs straight into the dispatch with I
+  unwritten.
+- **nnMain's compile error** (`71000018f0`): a call passing s0 right after a float-returning call read
+  that call's x0 first, which the float retype then removed. The retype now comes before the integers.
+- **A float parameter passed on** (the variadic loggers' forwarders `71010a2620`, `71010a3ff0`): at the
+  other width, as it is instead of 0; and past a join with a path whose call left s0 unread, the
+  parameter (that path's s0 is garbage, or a float result nothing reads).
+- **The result address kept in a callee-saved register** (the boot's stop with `lifted_trace1`, 501 lifts
+  in: `fn_710009ad50` keeps x8 in x19 and sets `x8 = x19` before calling the getter invoker, past a join
+  that forgot the copy): `FlatLifter.result_copies` finds the registers whose every write copies the
+  entry x8 or another of them, and a label keeps those. That static rule failed on `fn_7100095774`,
+  which reuses x19 as a loop counter after the call: `result_copies` is now a forward dataflow per
+  instruction (entry {x8}; a `mov` from a holder adds, any other write or a call's clobber drops; the
+  meet is the intersection), and a label keeps the set that reaches it.
+- **A float call's width** (`71010b2500`, lost to 717a423's retype of calls whose callers read only s0):
+  the call to strtod was typed f32 (the fallback), and the `fcvt s0, d0` after it then read d0 as f64,
+  "float width". The width now comes from the next read of s0 or d0 in address order.
+- **frint in the oracle** (`7100e79fa4` and four more, lost to d36fc58): Ghidra's P-code for scalar
+  frintm/frintp/... is a float-to-integer TRUNC, so `frintm s2, s0` of 649.0 left the integer bits 0x289
+  in s2. The old `(u32)floorf(x)` compiled to one fcvtmu and never met it; the saturating form compiles
+  to frintm then fcvtzu. `tools/pcode_emu.py` now runs every scalar frint itself (signed zero kept).
+- **A page dropped at a label** (found while chasing `71011eeab4`, whose cause was frint; d36fc58's constant meet): flat
+  semantic lifts kept an `adrp` page only in the lifter's state, so where the ways into a label disagreed
+  and the meet dropped it, a read there took X<n> as last written (the sret address, or the first
+  iteration's page in a loop). `adrp` now also sets X<n> to the page, and a loop head drops pages as it
+  drops constants.
+- **Unsigned converts in the oracle** (trace6 lost 14 lifts to d36fc58's saturating converts,
+  `71001c9550`: argument 0x7fffffff vs 0xffffffff): Ghidra's P-code gives fcvtzu (and fcvtmu, fcvtpu, ...)
+  the signed TRUNC, so the emulated original saturated a large float to 0x7fffffff and a negative one to
+  0x80000000, and agreed with the old plain-cast lift only because that compiled to the same fcvtzu.
+  `tools/pcode_emu.py` now runs every scalar fcvt{n,p,m,z,a}{s,u} itself, rounding by its mode and
+  saturating by its signedness and width.
+- **A va_list across the lifted/hand-written line** (`fn_71010c0b40` -> `fn_71010bf400`, found by the boot):
+  a lifted variadic function builds the AArch64 va_list in its frame, and a hand-written callee reads it
+  as the host's (`__va_list_tag*` on x86-64). `tools/port_link.py` now lists every reference from lifted
+  code (src/lifted and `--lifted`) that resolves to a definition taking a va_list (`va_list:` line,
+  `va_list_handoffs` in link.json): lift the callee too, or hand-write the caller.
+- **A table whose first pointer reads as ""** (`fn_71010c10c0` and nine more pass a `luaL_Reg` table to
+  `luaL_openlib`; found by the boot with `--nvn`): the table's first name pointer is zero in the file and
+  filled by a relocation, so byte mode emitted the literal `""` and native Lua read garbage entries from
+  it. Bytes a relocation fills are never a string literal now: the address becomes `g_unk_<addr>`
+  (byte-identical, and check.py then sees the relocation). Then a wide one: `fn_7100066a50` passes `L""`
+  (four zero bytes) to `wcscpy`, emitted as the one-byte `""`, so wcscpy ran on through the next rodata and
+  overran the heap. A wide string reads as at most one narrow character, so short text that starts a wide
+  character (4-aligned, the rest of the first four bytes zero) is the image's object too. Treating all
+  0- and 1-character text that way cost 8 byte matches (`7100382f48` passes a real `""` from the packed
+  string pool, and `(char*)h::g_unk_<addr>` schedules the address differently), so plain `""` stays a literal.
+- **Constants across a label** (`7100713e2c`: w8 is +pi/2 on the path that branches to +0x104 and -pi/2
+  falling into it; the `fmov s0, w8` there was folded to the fall-through's constant, 90 degrees became
+  -90): FlatLifter kept its known constants and adrp pages through labels. In semantic mode a label now
+  keeps those every way in agrees on (each goto records them), and no constants at a loop head.
+- **An indirect call's 32-bit argument** (`710016da74`: `mov w2, w19; blr x8`): the prototype said u32,
+  so x2's upper half was whatever the x86-64 or AArch64 compile left there; the original's is zero. In
+  semantic mode an indirect call passes it as `(u64)(u32)v`.
+- **Float to integer conversions saturate** (`fcvtzs`/`fcvtzu` and the rounding forms; a suspect for
+  `710122b164`): out of range the C cast is undefined, the instruction saturates and gives 0 for NaN.
+  Semantic mode spells that out in a statement expression.
+- **The oracle after a modelled strlen** (`71010a2aa0`, `71010a3290`: v1 passed on to the variadic logger
+  after `strlen`): the emulator runs memcpy, strlen and the rest itself and left v0-v7 as they were, so the
+  original's untouched v1 was compared with the lift's 0. A real one may use the vector registers: v0-v7
+  now count as junk after it, as after any other call.
+- **The oracle's fmax** (`710122b164`, `710122b204`: `fmov s2, wzr; fmax s2, s0, s2`): Ghidra's P-code
+  for scalar fmax/fmin/fmaxnm/fminnm copies Rn into Rd before comparing Rd with Rm, so with Rd = Rm it
+  compares s0 with itself and returns s0. pcode_emu now executes those four itself (NaN and signed-zero
+  rules as the instructions have them).
+- **A call typed by its callee's float result** (`7100713e2c`: `bl fn_710007a1d0` at +0x50, its s0 read
+  only at the join +0x110 after a `b`): the call stayed `char*` because nothing read s0 before the branch.
+  In semantic mode a callee whose callers all read s0 alone (result_main {s0}) is called as returning it.
+- **A parameter written on another path** (`71010ab810`: x2 and x3 set before one call, passed on
+  untouched to another on the `b.lt` path): FlatLifter seeded only the registers abi_facts lists as
+  arguments, so the declared `p2`, `p3` went unused and X2, X3 started at 0. In semantic mode every
+  declared parameter below the highest seeds its register.
+- **Oracle: stack arguments and libm calls.** A function's stores into its own incoming stack arguments
+  are not compared (the callee's to change; the lift keeps them as parameters). At a call to a libm
+  function (sqrtf, sinf, ...) memory is not compared: it reads none, and Clang moves stores past it
+  (`71001b83f8`); the next event compares them. A store past the frame into the caller's (a local array
+  overrun on a made-up count, `710014d1a0`) makes the input inconclusive, as a load there already did, and
+  a memory difference after a memset or memcpy clipped at 64 KiB is skipped at any event (`710122e6f0`).
+  So does a store in the 64 GiB below the stack (`71010b98d0`: a stack histogram indexed by a made-up
+  result, each run's store relative to its own sp).
+- **gen_lift's lifting on Windows**: lift_all forked its workers, and Windows has no fork, so a full run
+  lifted 62,700 candidates in one process (about 2 h on the PC). Where fork is missing it now spawns them;
+  each rebuilds the binary and, as the parent had them, the facts (byte mode only: semantic mode's
+  result facts are not carried, so a run with them stays serial).
+- **A whole q register loaded** (`7101205f54`, `ldp q1, q2, [x1]`): semantic mode had no q load at all.
+  `ldr`/`ldur`/`ldp` of q registers now give their four 32-bit lanes as f32 values (State.lanes, as
+  `ld1` builds them), so the existing `str q` and a new `stp q` store them back bit for bit and the lane
+  operations read them.
+- **Lanes read back** (`7101205f54`: `mov s16, v2.s[1]`, `fmul s1, s1, v5.s[0]`; `71000f88b8`:
+  `fneg v0.4s`): a lane extracted to a scalar, scalar `fmul`/`fmla`/`fmls` by element, and lane-wise
+  `fneg`/`fabs`, all on known lanes. The structured lifter's own temporaries are now `k<n>`: `m<n>`
+  could clash with a merge's variable of the same number.
+- **A byte converted far from its load** (`71012223d4`: `ldr b1` at +0x38, `ucvtf s1, s1` 150
+  instructions later, past branches): `lone_convert` accepts it when the convert is the only read of the
+  loaded register on every path from the load (a call or tail call counts as reading v0-v7, a ret v0-v3 only when callers are known to read a float result there)
+  and no path from the entry reaches the convert without the load; the convert then happens at the load.
+  A convert into another register (`ldr b3; ...; ucvtf s19, s3`, the next byte reloaded into v3 at once)
+  becomes a copy there, and then no later read of v3 may see the converted value. A folded convert that is a
+  branch target keeps its label (FlatLifter.jskip, as for a jump table's skipped instructions).
+- **A local zeroed in the prologue** (`7101233e30`: `sub sp, sp, #0x30; stp xzr, x19, [sp, #8]`, then
+  the frame record): the prologue stopped at the pair, so fp was never set and the frame was refused.
+  In semantic mode `zero_save` lets the prologue go on past it; the pair itself is lifted as two plain
+  stores (x19's restore then a plain load), and its 16 bytes count as locals.
+- **Only void structured lifts** (`710016c760`: the structured value lift refuses at the ret, where x0 is
+  a callee's leftover result, and its callers read it): the flat variants ran only for functions no
+  structured variant lifted. In semantic mode a function whose structured lifts are all void tries them too.
+- **The oracle and a struct copy's padding** (`71000ed2b8`, `71000ed608`, `71000ed758`): the original
+  copies padding it never wrote, the lift the fields alone. pcode_emu now marks bytes loaded from never-
+  written stack as undefined through copies, and compare() leaves out the bytes stored from them.
 **Boot functions from the boot trace and its traps, by hand, batch 4 (2026-10-29, branch `claude/project-thread-xllbvf`).**
 The functions the port's boot stopped at, or that the lift oracle rejected on the way, once batch 3 was in:
 - `M` (written from the behaviour, checked against the disassembly): `fn_7100223c2c` (the second render singleton's

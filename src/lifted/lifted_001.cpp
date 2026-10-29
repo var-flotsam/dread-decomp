@@ -235,22 +235,46 @@ char* fn_7100011398(char* p0, char* p1) {
     return p0;
 }
 
+namespace callee { char* fn_7100000250(char*, u64, char*); }
+namespace h { extern HIDDEN char g_unk_7101a19000[]; }
+namespace h { extern HIDDEN char g_unk_7101a19300[]; }
+namespace h { extern HIDDEN char g_unk_7101a19348[]; }
+namespace h { extern HIDDEN char g_unk_7101d4d0f0[]; }
+namespace hf { HIDDEN void fn_7100011760(); }
+char* fn_71000117e0() {
+    char* r0_8 = (char*)h::g_unk_7101d4d0f0;
+    *(u64*)((char*)(r0_8) + 32) = (u64)(u64)(r0_8);
+    char* r2_9 = (char*)h::g_unk_7101a19300;
+    *(u64*)((char*)(r0_8) + 0) = (u64)(u64)(r2_9);
+    char* r4_10 = (char*)h::g_unk_7101a19348;
+    char* r5_9 = r0_8;
+    char* r6_9 = (char*)(r5_9) + 48;
+    *(u64*)((char*)(r5_9) + 48) = (u64)(u64)(r4_10);
+    char* r8_0 = (char*)&hf::fn_7100011760;
+    *(u64*)((char*)(r0_8) + 80) = (u64)(u64)(r6_9);
+    char* r10_2 = (char*)h::g_unk_7101a19000;
+    u64 r11_1 = 0;
+    return callee::fn_7100000250(r8_0, r11_1, r10_2);
+}
+
 namespace callee { char* fn_7100083c00(char*); }
 char* fn_71000118cc(char* p0) {
     return callee::fn_7100083c00(p0);
 }
 
 namespace callee { char* fn_7100083b60(u32); }
+namespace h { extern HIDDEN char g_unk_7101a19300[]; }
 char* fn_71000118d0() {
     u32 r0_0 = 0x10;
     char* r1_0 = callee::fn_7100083b60(r0_0);
-    char* r2_8 = (char*)"";
+    char* r2_8 = (char*)h::g_unk_7101a19300;
     *(u64*)((char*)(r1_0) + 0) = (u64)(u64)(r2_8);
     return r1_0;
 }
 
+namespace h { extern HIDDEN char g_unk_7101a19300[]; }
 void fn_71000118f4(char* p0, char* p1) {
-    char* r0_8 = (char*)"";
+    char* r0_8 = (char*)h::g_unk_7101a19300;
     *(u64*)((char*)(p1) + 0) = (u64)(u64)(r0_8);
     return;
 }
@@ -274,16 +298,18 @@ char* fn_7100011934(char* p0) {
 }
 
 namespace callee { char* fn_7100083b60(u32); }
+namespace h { extern HIDDEN char g_unk_7101a19348[]; }
 char* fn_7100011938() {
     u32 r0_0 = 0x10;
     char* r1_0 = callee::fn_7100083b60(r0_0);
-    char* r2_8 = (char*)"";
+    char* r2_8 = (char*)h::g_unk_7101a19348;
     *(u64*)((char*)(r1_0) + 0) = (u64)(u64)(r2_8);
     return r1_0;
 }
 
+namespace h { extern HIDDEN char g_unk_7101a19348[]; }
 void fn_710001195c(char* p0, char* p1) {
-    char* r0_8 = (char*)"";
+    char* r0_8 = (char*)h::g_unk_7101a19348;
     *(u64*)((char*)(p1) + 0) = (u64)(u64)(r0_8);
     return;
 }

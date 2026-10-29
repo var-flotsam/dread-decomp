@@ -122,12 +122,13 @@ namespace callee { char* fn_71010a2840(char*, char*, u32); }
 namespace callee { char* fn_71010a3290(char*, u32, char*); }
 namespace callee { char* fn_71010a45e0(char*, char*); }
 namespace callee { char* fn_71010a4d10(char*, u64, char*, u32); }
+namespace h { extern HIDDEN char g_unk_7101cafff0[]; }
 namespace hf { HIDDEN void fn_71010c1130(); }
 char* fn_71010c10c0(char* p0) {
     char* r0_1 = (char*)"base::math::CVector3D";
     char* r1_19 = p0;
     char* r2_0 = callee::fn_71010a45e0(p0, r0_1);
-    char* r3_2 = (char*)"";
+    char* r3_2 = (char*)h::g_unk_7101cafff0;
     char* r4_0 = r1_19;
     u64 r5_1 = 0;
     u32 r6_3 = (u32)(u64)(0);
