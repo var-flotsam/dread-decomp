@@ -105,35 +105,35 @@ SNAP_C = r"""/*DREAD_TRACE*/ /* entry snapshots (instrument --snapshot): registe
 #define DSNAP_MAX 8192
 #define DSNAP_PAGE 4096ull
 __thread int dread_snap_on;
-static __thread u8* s_buf;
-static __thread unsigned long long s_page[DSNAP_MAX], s_set[2 * DSNAP_MAX], s_addr, s_x[32];
-static __thread V128 s_v[32];
-static __thread u8 s_stack[256];
-static __thread int s_n;
-static unsigned long long s_done[64];
-static int s_ndone;
-static void s_touch(u8* M, unsigned long long p){
+static __thread u8* dsnap_buf;
+static __thread unsigned long long dsnap_page[DSNAP_MAX], dsnap_set[2 * DSNAP_MAX], dsnap_addr, dsnap_x[32];
+static __thread V128 dsnap_v[32];
+static __thread u8 dsnap_stack[256];
+static __thread int dsnap_n;
+static unsigned long long dsnap_done[64];
+static int dsnap_ndone;
+static void dsnap_touch(u8* M, unsigned long long p){
   unsigned long long h = (p >> 12) * 0x9E3779B97F4A7C15ull, k = h % (2 * DSNAP_MAX);
-  while(s_set[k]){ if(s_set[k] == p + 1) return; k = (k + 1) % (2 * DSNAP_MAX); }
-  if(s_n >= DSNAP_MAX) return;
-  s_set[k] = p + 1;
-  memcpy(s_buf + (unsigned long long)s_n * DSNAP_PAGE, M + p, DSNAP_PAGE);
-  s_page[s_n++] = p;
+  while(dsnap_set[k]){ if(dsnap_set[k] == p + 1) return; k = (k + 1) % (2 * DSNAP_MAX); }
+  if(dsnap_n >= DSNAP_MAX) return;
+  dsnap_set[k] = p + 1;
+  memcpy(dsnap_buf + (unsigned long long)dsnap_n * DSNAP_PAGE, M + p, DSNAP_PAGE);
+  dsnap_page[dsnap_n++] = p;
 }
 u8* dread_snap_touch(u8* M, unsigned long long a){
-  s_touch(M, a & ~(DSNAP_PAGE - 1));
-  s_touch(M, (a + 15) & ~(DSNAP_PAGE - 1));
+  dsnap_touch(M, a & ~(DSNAP_PAGE - 1));
+  dsnap_touch(M, (a + 15) & ~(DSNAP_PAGE - 1));
   return M + a;
 }
 int dread_snap_begin(CPU* c, unsigned long long addr){
   if(dread_snap_on) return 0;
-  for(int i = 0; i < s_ndone; i++) if(s_done[i] == addr) return 0;
-  if(s_ndone < 64) s_done[s_ndone++] = addr;
-  if(!s_buf) s_buf = (u8*)malloc(DSNAP_MAX * DSNAP_PAGE);
-  if(!s_buf) return 0;
-  memset(s_set, 0, sizeof s_set); s_n = 0; s_addr = addr;
-  memcpy(s_x, c->x, sizeof s_x); memcpy(s_v, c->v, sizeof s_v);
-  memcpy(s_stack, c->mem + c->x[31], sizeof s_stack);
+  for(int i = 0; i < dsnap_ndone; i++) if(dsnap_done[i] == addr) return 0;
+  if(dsnap_ndone < 64) dsnap_done[dsnap_ndone++] = addr;
+  if(!dsnap_buf) dsnap_buf = (u8*)malloc(DSNAP_MAX * DSNAP_PAGE);
+  if(!dsnap_buf) return 0;
+  memset(dsnap_set, 0, sizeof dsnap_set); dsnap_n = 0; dsnap_addr = addr;
+  memcpy(dsnap_x, c->x, sizeof dsnap_x); memcpy(dsnap_v, c->v, sizeof dsnap_v);
+  memcpy(dsnap_stack, c->mem + c->x[31], sizeof dsnap_stack);
   dread_snap_on = 1;
   return 1;
 }
@@ -142,17 +142,17 @@ void dread_snap_end(int* g){
   dread_snap_on = 0;
   const char* d = getenv("DREAD_SNAPSHOTS");
   char path[1024];
-  snprintf(path, sizeof path, "%s/fn_%llx.snap", d && *d ? d : ".", s_addr - 0x8005000ull + 0x7100000000ull);
+  snprintf(path, sizeof path, "%s/fn_%llx.snap", d && *d ? d : ".", dsnap_addr - 0x8005000ull + 0x7100000000ull);
   FILE* f = fopen(path, "wb");
   if(!f) return;
   fputs("DSNAP1\n{\"x\": [", f);
-  for(int i = 0; i < 31; i++) fprintf(f, "%s\"0x%llx\"", i ? ", " : "", s_x[i]);
+  for(int i = 0; i < 31; i++) fprintf(f, "%s\"0x%llx\"", i ? ", " : "", dsnap_x[i]);
   fputs("], \"q\": [", f);
-  for(int i = 0; i < 32; i++) fprintf(f, "%s\"0x%016llx%016llx\"", i ? ", " : "", (unsigned long long)s_v[i].d[1], (unsigned long long)s_v[i].d[0]);
-  fprintf(f, "], \"sp\": \"0x%llx\", \"stack\": \"", s_x[31]);
-  for(int i = 0; i < 256; i++) fprintf(f, "%02x", s_stack[i]);
-  fprintf(f, "\", \"pages\": %d}\n", s_n);
-  for(int i = 0; i < s_n; i++){ fwrite(&s_page[i], 8, 1, f); fwrite(s_buf + (unsigned long long)i * DSNAP_PAGE, 1, DSNAP_PAGE, f); }
+  for(int i = 0; i < 32; i++) fprintf(f, "%s\"0x%016llx%016llx\"", i ? ", " : "", (unsigned long long)dsnap_v[i].d[1], (unsigned long long)dsnap_v[i].d[0]);
+  fprintf(f, "], \"sp\": \"0x%llx\", \"stack\": \"", dsnap_x[31]);
+  for(int i = 0; i < 256; i++) fprintf(f, "%02x", dsnap_stack[i]);
+  fprintf(f, "\", \"pages\": %d}\n", dsnap_n);
+  for(int i = 0; i < dsnap_n; i++){ fwrite(&dsnap_page[i], 8, 1, f); fwrite(dsnap_buf + (unsigned long long)i * DSNAP_PAGE, 1, DSNAP_PAGE, f); }
   fclose(f);
 }
 """
