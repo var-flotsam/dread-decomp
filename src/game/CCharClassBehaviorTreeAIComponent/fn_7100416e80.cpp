@@ -10,7 +10,6 @@ using base::global::CFilePathStrId;
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
-void fn_7100db37ec(UnkPathRegistry* self);
 void fn_7100db3f24(UnkPathRegistry* self, CFilePathStrId* id);
 // The registry and the vtable come from UnkPathRegistry.h, the shared id g_unk_7101d470e8 from
 // CFilePathStrId.h; all three are reached through the GOT.
