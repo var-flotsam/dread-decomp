@@ -40,3 +40,10 @@ extern UnkNavMeshEdge g_unk_71726a4ae8;
 // with the read-only twin fn_71002afc34 (the same code).
 UnkNavMeshEdge* fn_71002afbe4(UnkNavMeshCell* cell, const u8* index);
 const UnkNavMeshEdge* fn_71002afc34(const UnkNavMeshCell* cell, const u8* index);
+
+// A test on a cell (unit 367 too); callers skip cells it rejects.
+bool fn_71002b005c(UnkNavMeshCell* cell);
+
+// The mesh's cell for a key (navmesh::CNavMesh, next to fn_710027a328), growing its tables to reach it.
+struct UnkNavMesh;
+UnkNavMeshCell* fn_710027a33c(UnkNavMesh* mesh, u32 key);

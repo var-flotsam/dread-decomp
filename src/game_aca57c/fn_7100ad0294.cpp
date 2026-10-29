@@ -3,6 +3,7 @@
 // (at 0x68 of their object at 0x18). The answer comes from the navmesh manager
 // (game/UnkNavMeshManager.h), created on first use.
 #include "base/UnkVector.h"
+#include "game/UnkNavMeshCell.h"
 #include "game/UnkNavMeshManager.h"
 #include "types.h"
 
@@ -16,11 +17,10 @@ struct UnkEntity {
     UnkEntityObj* obj;
 };
 
-bool fn_71002b005c(UnkEntityObj* obj);
 bool fn_7100ad00ac(UnkEntity* entity, u32 mode);
 bool fn_7100ec1454(UnkNavMeshManager* manager, UnkModel* a, UnkModel* b, bool flag_a, bool flag_b);
 
-static inline bool IsExcluded(UnkEntity* entity) { return entity->obj && fn_71002b005c(entity->obj); }
+static inline bool IsExcluded(UnkEntity* entity) { return entity->obj && fn_71002b005c(reinterpret_cast<UnkNavMeshCell*>(entity->obj)); }
 
 bool fn_7100ad0294(UnkEntity* self, bool force, u32 mode, UnkEntity* other) {
     if (!other)

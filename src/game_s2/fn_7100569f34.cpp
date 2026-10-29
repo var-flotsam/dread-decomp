@@ -3,6 +3,7 @@
 // the low 16 bits of the key are all ones or the flag at 0x611 of the owner's linked object is
 // set.
 #include "base/UnkVector.h"
+#include "game/UnkNavMeshCell.h"
 #include "game/UnkNavMeshManager.h"
 #include "types.h"
 
@@ -16,8 +17,6 @@ struct UnkOwner {
     UnkLinked* field_0x29ee0;
 };
 
-void fn_710027a33c(UnkNavMesh* navmesh, u32 key);
-bool fn_71002b005c();
 
 f32 fn_7100569f34(UnkOwner* self, void* unused, u32 key, f32 value) {
     if ((~key & 0xffff) == 0)
@@ -30,8 +29,7 @@ f32 fn_7100569f34(UnkOwner* self, void* unused, u32 key, f32 value) {
         fn_7100ebf278(global);
         g_unk_71726a4510 = global;
     }
-    fn_710027a33c(global->navmesh, key);
-    if (fn_71002b005c())
+    if (fn_71002b005c(fn_710027a33c(global->navmesh, key)))
         value = value * 5.0f;
     return value;
 }
