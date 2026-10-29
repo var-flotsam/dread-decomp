@@ -13,6 +13,7 @@ add_library(dread_runtime STATIC
   src/diag.cpp
   src/fault.cpp
   src/fs.cpp
+  src/gzip.cpp
   src/heap.cpp
   src/hid.cpp
   src/image.cpp
