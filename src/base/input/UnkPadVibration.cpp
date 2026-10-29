@@ -26,15 +26,43 @@ static inline void UnkControllerSupportArgSetDefault(nn::hid::ControllerSupportA
 
 // The pads (up to eight): their ids and styles, and up to nine vibration devices each with their
 // information (8 bytes each).
+// A controller sample as both SDKs lay it out (nn::hid's NpadFullKeyState and NpadHandheldState).
+struct UnkPadState {
+    s64 sampling_number;
+    u64 buttons;
+    s32 stick_l[2];
+    s32 stick_r[2];
+    u32 attributes;
+};
+static_assert(sizeof(UnkPadState) == 0x28, "UnkPadState layout");
+
+// A pad's sticks as the game reads them: whether each axis moved, then the deadzoned axes.
+struct UnkPadSticks {
+    bool moved[4];
+    f32 axes[4];
+};
+static_assert(sizeof(UnkPadSticks) == 0x14, "UnkPadSticks layout");
+
 struct UnkPadSet {
-    u8 pad_0x0[0x44];
+    u8 pad_0x0[0x40];
+    s32 active;  // 0x40, the pad input comes from (-1: none)
     u32 count;
     nn::hid::NpadIdType ids[9];                     // 0x48
     nn::hid::VibrationDeviceHandle handles[9][9];  // 0x6c
     u8 infos[9][9][8];                              // 0x1b0
-    u8 pad_0x438[0x24];
-    u32 styles[8];  // 0x45c
+    u32 prev_styles[9];                             // 0x438
+    u32 styles[9];                                  // 0x45c
+    UnkPadState prev_handheld;                      // 0x480
+    UnkPadState handheld;                           // 0x4a8
+    UnkPadState prev_full[9];                       // 0x4d0
+    UnkPadState full[9];                            // 0x638
+    UnkPadSticks prev_sticks[9];                    // 0x7a0
+    UnkPadSticks sticks[9];                         // 0x854
+    s32 prev_l[2][9];                               // 0x908: each axis's last raw value
+    s32 prev_r[2][9];                               // 0x950
 };
+static_assert(__builtin_offsetof(UnkPadSet, full) == 0x638, "UnkPadSet placeholder layout");
+static_assert(__builtin_offsetof(UnkPadSet, prev_l) == 0x908, "UnkPadSet placeholder layout");
 static_assert(__builtin_offsetof(UnkPadSet, handles) == 0x6c, "UnkPadSet placeholder layout");
 static_assert(__builtin_offsetof(UnkPadSet, infos) == 0x1b0, "UnkPadSet placeholder layout");
 static_assert(__builtin_offsetof(UnkPadSet, styles) == 0x45c, "UnkPadSet placeholder layout");
@@ -46,7 +74,6 @@ static inline nn::hid::NpadStyleSet StyleSet(const u32& bits) {
 }
 
 // Gets each pad's vibration devices and initialises them, keeping their information.
-// NON_MATCHING(major): written from the original's behaviour, not compared instruction by instruction.
 void fn_710006ddc8(UnkPadSet* self) {
     for (u64 i = 0; i < self->count; ++i) {
         u32 n = nn::hid::GetVibrationDeviceHandles(self->handles[i], 9, self->ids[i], StyleSet(self->styles[i]));
@@ -93,11 +120,6 @@ static inline UnkStruct_0x128* PadSceneState() {
     return g_unk_7101d47320;
 }
 
-template <class T>
-static inline T& PadField(UnkPadSet* self, u64 offset) {
-    return *reinterpret_cast<T*>(reinterpret_cast<u8*>(self) + offset);
-}
-
 static inline u32 StyleBits(const nn::hid::NpadStyleSet& s) {
     u32 v;
     __builtin_memcpy(&v, &s, sizeof(v));
@@ -112,12 +134,11 @@ static inline bool IsSuccess(const R& r) {
 }
 
 // Makes `pad` the active pad and points the rumble at its devices (pads 0 and 1 only).
-static inline void SetActivePad(UnkPadSet* self, u32 pad) {
-    s32& active = PadField<s32>(self, 0x40);
-    if ((u32)active == pad)
+static inline void SetActivePad(UnkPadSet* self, s32 pad) {
+    if (self->active == pad)
         return;
-    active = pad;
-    if (pad >= 2)
+    self->active = pad;
+    if ((u32)pad > 1)
         return;
     if (!g_unk_7101d47348) {
         auto* m = static_cast<UnkRumbleManager*>(fn_71000839a0(0x2210, 0x3f));
@@ -129,126 +150,116 @@ static inline void SetActivePad(UnkPadSet* self, u32 pad) {
 
 // A stick: its raw axes (and the previous ones, which a change of sign resets), the deadzoned
 // value (radius 0.3 to 0.97 mapped to 0 to 1) and whether each axis is moved.
-static inline void ReadStick(const s32* raw, s32* prev_x, s32* prev_y, f32* out, bool* moved_x, bool* moved_y) {
-    s32 x = raw[0];
-    s32 y = raw[1];
-    s32 px = x * *prev_x;
-    s32 py = y * *prev_y;
-    *prev_x = px < 0 ? 0 : x;
-    *prev_y = py < 0 ? 0 : y;
+static inline void ReadStick(const s32* raw, s32* prev_x, s32* prev_y, f32* out, bool* moved) {
+    s32 px = raw[0] * *prev_x;
+    s32 py = raw[1] * *prev_y;
+    *prev_x = px >= 0 ? raw[0] : 0;
+    *prev_y = py < 0 ? 0 : raw[1];
     out[0] = 0.0f;
     out[1] = 0.0f;
-    f32 fx = (f32)x / 32767.0f;
-    f32 fy = (f32)y / 32767.0f;
+    f32 fx = (f32)raw[0] / 32767.0f;
+    f32 fy = (f32)raw[1] / 32767.0f;
     f32 m2 = fx * fx + fy * fy;
-    f32 vy = 0.0f;
     if (m2 >= 0.09f) {
+        f32 root = sqrtf(m2);
+        f32 r = 0.97f < root ? 0.97f : root;
         f32 m = sqrtf(m2);
-        f32 r = m > 0.97f ? 0.97f : m;
         if (m != 0.0f) {
-            fx = fx * (1.0f / m);
-            fy = fy * (1.0f / m);
+            f32 inv = 1.0f / m;
+            fx = fx * inv;
+            fy = fy * inv;
         }
         f32 s = (r - 0.3f) * 1.4925373f;
         if (px >= 0)
             out[0] = s * fx;
-        if (py < 0) {
-            vy = out[1];
-        } else {
-            vy = s * fy;
-            out[1] = vy;
-        }
+        if (py >= 0)
+            out[1] = s * fy;
     }
-    *moved_x = out[0] != 0.0f;
-    *moved_y = vy != 0.0f;
+    moved[0] = out[0] != 0.0f;
+    moved[1] = out[1] != 0.0f;
 }
 
 // Each frame: picks the active pad (the only connected one, or the one input comes from), reads the
 // pads' states and sticks, and when no pad is active shows the controller applet (with the game,
-// its sound and the scene paused) and takes the pad it chooses.
-// NON_MATCHING(major): written from the original's behaviour, not compared instruction by instruction.
-// The original reads the buttons of a pad with neither style through a null pointer; that read is
-// skipped here.
+// its sound and the scene paused) and takes the pad it chooses. As in the original, a pad with
+// neither style bit has its buttons read through a null pointer (the port's one pad is handheld).
+// NON_MATCHING(minor): the same loads, stores, calls and tests, but the pad loop's induction
+// variables are assigned differently (the original addresses the previous styles from the index
+// and everything else from one running offset), which shifts registers, spills a stick product
+// around the sqrtf calls and adds a few moves; the frame is 0x10 bytes larger.
+static inline void ShowApplet(UnkPadSet* self);
+
 void fn_710006deac(UnkPadSet* self) {
-    s32& active = PadField<s32>(self, 0x40);
-    bool loop = false;
-    if (active < 0) {
-        if (self->count != 0) {
-            s32 first = -1;
-            s32 connected = 0;
-            for (u32 i = 0; i < self->count; ++i) {
-                u32 s = StyleBits(nn::hid::GetNpadStyleSet(self->ids[i]));
-                self->styles[i] = s;
-                if (s) {
-                    if (first < 0)
-                        first = i;
-                    ++connected;
-                }
-            }
-            if (connected == 1)
-                SetActivePad(self, first);
-        }
-    }
-    if (active >= 0) {
-        u32 s = StyleBits(nn::hid::GetNpadStyleSet(self->ids[active]));
-        self->styles[active] = s;
-        if (s)
-            loop = true;
-        else
-            active = -1;
-    }
-    if (loop) {
-        if (self->count == 0) {
-            fn_710006d55c(self);
-            return;
-        }
-        for (u32 i = 0; i < self->count; ++i) {
-            u8* stick = reinterpret_cast<u8*>(self) + 0x854 + i * 0x14;  // 4 moved flags, then 4 axes
-            __builtin_memcpy(reinterpret_cast<u8*>(self) + 0x7a0 + i * 0x14, stick, 0x14);
-            PadField<u32>(self, 0x438 + i * 4) = self->styles[i];
+    if (self->active < 0 && self->count != 0) {
+        s32 connected = 0;
+        s32 first = -1;
+        for (u64 i = 0; i < self->count; ++i) {
             u32 s = StyleBits(nn::hid::GetNpadStyleSet(self->ids[i]));
             self->styles[i] = s;
-            if (!s)
-                continue;
-            u8* full = reinterpret_cast<u8*>(self) + 0x638 + i * 0x28;
-            u8* handheld = reinterpret_cast<u8*>(self) + 0x4a8;
-            if (s & 1) {
-                __builtin_memcpy(reinterpret_cast<u8*>(self) + 0x4d0 + i * 0x28, full, 0x28);
-                nn::hid::GetNpadState(reinterpret_cast<nn::hid::NpadFullKeyState*>(full), self->ids[i]);
-                s = self->styles[i];
+            if (s) {
+                if (first < 0)
+                    first = i;
+                ++connected;
             }
-            if (s & 2) {
-                __builtin_memcpy(reinterpret_cast<u8*>(self) + 0x480, handheld, 0x28);
-                nn::hid::GetNpadState(reinterpret_cast<nn::hid::NpadHandheldState*>(handheld), self->ids[i]);
-                s = self->styles[i];
-            }
-            bool* moved = reinterpret_cast<bool*>(stick);
-            f32* axes = reinterpret_cast<f32*>(stick + 4);
-            const u8* state = (s & 1) ? full : (s & 2) ? handheld : nullptr;
-            if (state) {
-                ReadStick(reinterpret_cast<const s32*>(state + 0x10), &PadField<s32>(self, 0x908 + i * 4),
-                          &PadField<s32>(self, 0x92c + i * 4), axes, &moved[0], &moved[1]);
-                s = self->styles[i];
-                state = (s & 1) ? full : (s & 2) ? handheld : nullptr;
-            }
-            if (state) {
-                ReadStick(reinterpret_cast<const s32*>(state + 0x18), &PadField<s32>(self, 0x950 + i * 4),
-                          &PadField<s32>(self, 0x974 + i * 4), axes + 2, &moved[2], &moved[3]);
-                s = self->styles[i];
-                state = (s & 1) ? full : (s & 2) ? handheld : nullptr;
-            }
-            const u64* buttons = state ? reinterpret_cast<const u64*>(state + 8) : nullptr;
-            bool input = moved[0] || moved[1] || moved[2] || moved[3] || (buttons && *buttons != 0);
-            if (input && i != (u32)active && active != -1)
-                active = -1;
         }
-        if (active >= 0) {
-            fn_710006d55c(self);
-            return;
+        if (connected == 1)
+            SetActivePad(self, first);
+    }
+    if (self->active >= 0) {
+        s32 a = self->active;
+        u32 s = StyleBits(nn::hid::GetNpadStyleSet(self->ids[a]));
+        self->styles[a] = s;
+        if (!s) {
+            if (self->active != -1)
+                self->active = -1;
+        } else if (self->active >= 0) {
+            for (u64 i = 0; i < self->count; ++i) {
+                self->prev_sticks[i] = self->sticks[i];
+                self->prev_styles[i] = self->styles[i];
+                u32 st = StyleBits(nn::hid::GetNpadStyleSet(self->ids[i]));
+                self->styles[i] = st;
+                if (!st)
+                    continue;
+                if (st & 1) {
+                    self->prev_full[i] = self->full[i];
+                    nn::hid::GetNpadState(reinterpret_cast<nn::hid::NpadFullKeyState*>(&self->full[i]), self->ids[i]);
+                    st = self->styles[i];
+                }
+                if (st & 2) {
+                    self->prev_handheld = self->handheld;
+                    nn::hid::GetNpadState(reinterpret_cast<nn::hid::NpadHandheldState*>(&self->handheld),
+                                          self->ids[i]);
+                    st = self->styles[i];
+                }
+                UnkPadSticks& sticks = self->sticks[i];
+                const s32* stick_l = (st & 1) ? self->full[i].stick_l : (st & 2) ? self->handheld.stick_l : nullptr;
+                if (stick_l) {
+                    ReadStick(stick_l, &self->prev_l[0][i], &self->prev_l[1][i], &sticks.axes[0], &sticks.moved[0]);
+                    st = self->styles[i];
+                }
+                const s32* stick_r = (st & 1) ? self->full[i].stick_r : (st & 2) ? self->handheld.stick_r : nullptr;
+                if (stick_r) {
+                    ReadStick(stick_r, &self->prev_r[0][i], &self->prev_r[1][i], &sticks.axes[2], &sticks.moved[2]);
+                    st = self->styles[i];
+                }
+                const u64* buttons = (st & 1) ? &self->full[i].buttons : (st & 2) ? &self->handheld.buttons : nullptr;
+                if (sticks.moved[0] || sticks.moved[1] || sticks.moved[2] || sticks.moved[3] || *buttons != 0) {
+                    if (i != (u32)self->active && self->active != -1)
+                        self->active = -1;
+                }
+            }
         }
     }
+    if (self->active < 0)
+        ShowApplet(self);
+    fn_710006d55c(self);
+}
+
+// Shows the controller applet (with the game, its sound and the scene paused) and takes the pad
+// it chooses.
+static inline void ShowApplet(UnkPadSet* self) {
     nn::hid::SetNpadJoyHoldType(static_cast<nn::hid::NpadJoyHoldType>(1));
-    alignas(8) u8 arg[0x4a0];
+    alignas(8) u8 arg[0x438];
     auto& support = *reinterpret_cast<nn::hid::ControllerSupportArg*>(arg);
     UnkControllerSupportArgSetDefault(&support);
     arg[0] = 1;  // the minimum and maximum player counts
@@ -258,19 +269,19 @@ void fn_710006deac(UnkPadSet* self) {
     fn_7100132a70(true);
     fn_7100108b48(g_unk_7101d4d820, true);
     fn_7100f022c4(PadSceneState(), true);
-    alignas(8) u8 result[0x10];
+    alignas(8) u8 result[0x8];
     auto r = nn::hid::ShowControllerSupport(reinterpret_cast<nn::hid::ControllerSupportResultInfo*>(result), support);
     fn_7100132a70(false);
     fn_7100f022c4(PadSceneState(), false);
     fn_7100108b48(g_unk_7101d4d820, false);
     if (IsSuccess(r)) {
         u32 chosen = *reinterpret_cast<const u32*>(result + 4);
-        for (u32 i = 0; i < self->count; ++i) {
-            if (self->ids[i] == chosen) {
-                SetActivePad(self, i);
+        u64 k = 0;
+        for (u32 i = 0; i < self->count; ++i, ++k) {
+            if (self->ids[k] == chosen) {
+                SetActivePad(self, k);
                 break;
             }
         }
     }
-    fn_710006d55c(self);
 }
