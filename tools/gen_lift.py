@@ -186,6 +186,13 @@ def zero_save(x) -> bool:
         other[0][0] == "x" and other[0][1:].isdigit() and 19 <= int(other[0][1:]) <= 28))
 
 
+def wide_text(data: bytes, a: int, n: int) -> bool:
+    """Whether the n-character (0 or 1) narrow text at a is really a wide string's start: a is
+    4-aligned and the rest of the first 4-byte character is zero (L"" is four zero bytes, L"Y" is
+    'Y' and three). A narrow "" or "x" in the packed string pool is followed by the next string."""
+    return n <= 1 and a % 4 == 0 and data[a + n + 1:a + 4] == bytes(3 - n)
+
+
 def fkey(r: str) -> int | None:
     """Float register number (s<n>/d<n>), or None."""
     return int(r[1:]) if r[0] in "sd" and r[1:].isdigit() else None
@@ -2045,11 +2052,12 @@ class Lifter:
             if text is not None and a not in self.orig.sizes and a != DSO_HANDLE and "semantic" not in self.opts \
                     and not self.table_use(regname(o[0].reg), len(text)) \
                     and not any(a - BASE + i in self.orig.img.relocs for i in range(len(text) + 1)) \
-                    and len(text) > 1:
+                    and not wide_text(self.orig.img.data, a - BASE, len(text)):
                 # (bytes a relocation fills are data: a luaL_Reg table whose first name pointer
-                # reads as "" in the file, fn_71010c10c0; and every wide string reads as at most one
-                # narrow character, L"" as "", fn_7100066a50's wcscpy: so "" and one-character text
-                # stay the image's bytes too)
+                # reads as "" in the file, fn_71010c10c0; and a wide string reads as at most one
+                # narrow character, L"" as "", fn_7100066a50's wcscpy, so short text that starts a
+                # wide character stays the image's bytes too; a plain "" argument stays a literal,
+                # which 7100382f48 needs to match)
                 self.write(regname(o[0].reg), f"(char*){refl_attrs.c_string(text)}", "char*")
             else:
                 self.write(regname(o[0].reg), self.global_ref(a, False), "char*")
