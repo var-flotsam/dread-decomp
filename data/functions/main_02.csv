@@ -5235,7 +5235,7 @@ address,size,name,name_source,subsystem,status
 0x71002dfda8,244,animtree::CAnimTreeRes::refl_GetClass,reflection,animation,O
 0x71002dfe9c,148,fn_71002dfe9c,unknown,animation?,O
 0x71002dff30,352,animtree::CAnimTreeRes::refl_InitClass,reflection,animation,O
-0x71002e0090,448,fn_71002e0090,unknown,animation?,U
+0x71002e0090,448,fn_71002e0090,unknown,animation?,M
 0x71002e0250,28,fn_71002e0250,unknown,animation?,O
 0x71002e026c,52,fn_71002e026c,unknown,animation?,O
 0x71002e02a0,60,fn_71002e02a0,unknown,animation?,O

@@ -354,6 +354,9 @@ bool DeviceIntegerValue(std::int32_t name, std::int32_t* value) {
     case kApiMinorVersion:
         *value = 0;
         return true;
+    case kProgramMemoryAlignment:
+        *value = 256;  // Vulkan's largest minUniformBufferOffsetAlignment; the pools align to 0x1000 anyway
+        return true;
     case kTextureDescriptorSize:
     case kSamplerDescriptorSize:
         *value = 32;  // the pools are memory the game sizes; the shim keeps descriptors itself

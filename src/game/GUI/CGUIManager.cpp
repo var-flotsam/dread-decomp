@@ -7,6 +7,7 @@
 // those of src/game/UnkObjectFileRead.cpp (the same names and layouts). Names and layouts are
 // placeholders.
 #include "base/UnkCloneHelpers.h"
+#include "base/UnkParentPoolList.h"
 #include "base/UnkHashStream.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CRntString.h"
@@ -411,50 +412,163 @@ void fn_71011b9ce4(UnkGuiRoot* root, const UnkStrPair_0x10* path) {
 
 // ---- fn_71011b250c: a pooled container's constructor ----
 
-// A container whose 0x18-byte nodes come from an embedded block pool (base/UnkCloneHelpers.h's
-// UnkBlockPool), as UnkPoolList lays it out but with the flags before the allocator and an
-// optional parent for the pool at +0x30. Built by fn_71011b1f30.
-struct UnkGuiPoolList {
-    char* vtable;
-    u32 count;
-    void* head;
-    void* tail;
-    u32 flags;
-    base::UnkAllocator* allocator;
-    base::UnkAllocator* pool_parent;  // the pool's parent when set, else the allocator
-    base::UnkBlockPool pool;
-};
-static_assert(sizeof(UnkGuiPoolList) == 0x78, "UnkGuiPoolList placeholder layout");
-
+// A container of 0x18-byte nodes over an embedded block pool (base/UnkParentPoolList.h). Built by
+// fn_71011b1f30.
 extern char unk_7101cb58a8[];  // the base part's vtable (reached through the GOT)
 extern char unk_7101cb5888[];  // the container's vtable (reached through the GOT)
 
-void fn_71011b250c(UnkGuiPoolList* self, u32 n, u32 /*unused*/, u32 flags, base::UnkAllocator* a) {
-    self->vtable = unk_7101cb58a8 + 0x10;
-    self->count = 0;
-    self->flags = flags;
-    self->head = nullptr;
-    self->tail = nullptr;
-    if (!a)
-        a = fn_7100083990();
-    self->allocator = a;
-    self->pool_parent = nullptr;
-    self->vtable = unk_7101cb5888 + 0x10;
-    self->pool.Init();
-    base::UnkAllocator* parent = self->pool_parent;
-    self->pool.field_0x38 = 0;
-    self->pool.field_0x3c = false;
-    if (!parent)
-        parent = self->allocator;
-    u32 f = self->flags;
-    self->pool.Release();
-    if (n) {
-        if (!parent)
-            parent = fn_7100083990();
-        self->pool.parent = parent;
-        u64 size = (u64)n * 0x18;
-        fn_710008378c(&self->pool.blocks, parent->vf_0x40(size, 8, f), size, 0x18);
+void fn_71011b250c(UnkParentPoolList* self, u32 n, u32 /*unused*/, u32 flags, base::UnkAllocator* a) {
+    refl_ParentPoolListCtor<0x18, unk_7101cb58a8, unk_7101cb5888>(self, n, flags, a);
+}
+
+// ---- fn_71011ba714: the skin file ----
+
+// GUI::CGUIManager::SkinContainer (its std::unique_ptr's type is fn_71011b1924): skins by name, a
+// string-id hash map like the sprite sheets'. fn_7100121268 destroys it.
+struct UnkSkinTag;
+using UnkSkinMap = base::UnkStrIdHashMap<UnkSkinTag>;
+using UnkSkinNode = base::UnkStrIdHashNode<UnkSkinTag>;
+
+const base::reflection::CType* fn_71011b1924();
+void fn_7100121268(UnkSkinMap* self);
+
+// The std::unique_ptr the skin file is read into.
+struct UnkOwnedSkins {
+    UnkSkinMap* ptr = nullptr;
+
+    ~UnkOwnedSkins() {
+        UnkSkinMap* p = ptr;
+        ptr = nullptr;
+        if (p) {
+            fn_7100121268(p);
+            operator delete(p);
+        }
     }
-    // The pool's address, formed as an integer (as in UnkPoolList::Init).
-    self->allocator = reinterpret_cast<base::UnkAllocator*>(reinterpret_cast<u64>(self) + 0x38);
+};
+
+// The root's skins (a std::unique_ptr at +0x1b0).
+static inline UnkSkinMap*& Skins(UnkGuiRoot* root) {
+    return *reinterpret_cast<UnkSkinMap**>(reinterpret_cast<char*>(root) + 0x1b0);
+}
+
+// Reads the skin file `path` names: the first one read becomes the root's container, later ones
+// add their entries to it (fn_71011b9ce4's twin).
+void fn_71011ba714(UnkGuiRoot* root, const UnkStrPair_0x10* path) {
+    UnkOwnedSkins loaded;
+    UnkFileReader reader;
+    fn_710007be8c(&reader.file, 0x16, nullptr);
+    reader.field_0x38 = 3;
+    reader.field_0x3c = 2;
+    bool opened;
+    {
+        base::global::CRntString mode("rb");
+        opened = fn_710007c1ac(&reader, path, &mode);
+    }
+    if (opened)
+        fn_710000ccd8(&reader);
+    UnkReadTarget target;
+    {
+        const base::reflection::CType* type = fn_71011b1924();
+        base::reflection::UnkReflValue value;
+        value.field_0x0 = nullptr;
+        value.type = nullptr;
+        value.kind = 2;
+        fn_71000a18d4(&value, type, &loaded.ptr, true);
+        fn_71000f0568(&target, &value, 0xc);
+        fn_71000a1c60(&value);
+    }
+    if (reader.file.position < reader.file.size && reader.field_0x38 == 0)
+        Parse(&reader, &target);
+    if (!Skins(root)) {
+        UnkSkinMap* p = loaded.ptr;
+        loaded.ptr = nullptr;
+        Skins(root) = p;
+    } else {
+        for (UnkSkinNode* n = loaded.ptr->head; n; n = n->next)
+            base::refl_StrIdHashInsert(Skins(root), reinterpret_cast<const base::global::CStrId*>(&n->key),
+                                       reinterpret_cast<const u64*>(n->unk_0x8));
+    }
+    for (u64 i = 0; i < target.count; ++i) {
+        UnkReadEntry& e = target.entries[i];
+        if (e.ops) {
+            e.ops->destroy(e.storage);
+            e.ops = nullptr;
+        }
+    }
+    fn_710007c0e4(&reader.file);
+}
+
+// ---- fn_71011b8dc4: the third container file ----
+
+// The root's third container (a std::unique_ptr at +0x38; its type is fn_71011b1b28): an array of
+// words.
+const base::reflection::CType* fn_71011b1b28();
+using UnkWordArray = base::UnkVector<u64>;
+
+struct UnkOwnedWords {
+    UnkWordArray* ptr = nullptr;
+
+    ~UnkOwnedWords() {
+        UnkWordArray* p = ptr;
+        ptr = nullptr;
+        if (p) {
+            if (p->data) {
+                p->count = 0;
+                p->allocator->vf_0x48(p->data);
+            }
+            operator delete(p);
+        }
+    }
+};
+
+static inline UnkWordArray*& Words(UnkGuiRoot* root) {
+    return *reinterpret_cast<UnkWordArray**>(reinterpret_cast<char*>(root) + 0x38);
+}
+
+// Reads the file `path` names into the third container: the first one read becomes the root's,
+// later ones are appended to it (fn_71011b9ce4's twin).
+// NON_MATCHING(major): written from the original's behaviour, not compared instruction by instruction.
+void fn_71011b8dc4(UnkGuiRoot* root, const UnkStrPair_0x10* path) {
+    UnkOwnedWords loaded;
+    UnkFileReader reader;
+    fn_710007be8c(&reader.file, 0x16, nullptr);
+    reader.field_0x38 = 3;
+    reader.field_0x3c = 2;
+    bool opened;
+    {
+        base::global::CRntString mode("rb");
+        opened = fn_710007c1ac(&reader, path, &mode);
+    }
+    if (opened)
+        fn_710000ccd8(&reader);
+    UnkReadTarget target;
+    {
+        const base::reflection::CType* type = fn_71011b1b28();
+        base::reflection::UnkReflValue value;
+        value.field_0x0 = nullptr;
+        value.type = nullptr;
+        value.kind = 2;
+        fn_71000a18d4(&value, type, &loaded.ptr, true);
+        fn_71000f0568(&target, &value, 0xc);
+        fn_71000a1c60(&value);
+    }
+    if (reader.file.position < reader.file.size && reader.field_0x38 == 0)
+        Parse(&reader, &target);
+    if (!Words(root)) {
+        UnkWordArray* p = loaded.ptr;
+        loaded.ptr = nullptr;
+        Words(root) = p;
+    } else {
+        s32 n = (s32)loaded.ptr->count;
+        for (s32 i = 0; i < n; ++i)
+            Words(root)->PushBack(loaded.ptr->data[i]);
+    }
+    for (u64 i = 0; i < target.count; ++i) {
+        UnkReadEntry& e = target.entries[i];
+        if (e.ops) {
+            e.ops->destroy(e.storage);
+            e.ops = nullptr;
+        }
+    }
+    fn_710007c0e4(&reader.file);
 }
