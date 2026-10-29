@@ -67,6 +67,8 @@ MILESTONES: list[tuple[str, str, str, str]] = [
     ("game-main", "game main fn_7100000980 entered", "fn_7100000980", "enter"),
     ("fn_7100015c70", "fn_7100015c70 entered", "fn_7100015c70", "enter"),
     ("fn_7100015c70-done", "fn_7100015c70 done", "fn_7100015c70", "return"),
+    ("frame", "first frame: the per-frame callback fn_7100000d40 entered", "fn_7100000d40", "enter"),
+    ("frame-done", "first frame done", "fn_7100000d40", "return"),
 ]
 
 TRAP = re.compile(r"^dread: trap \d+ \(continuing\): (\S+?)(, mismatched call)?$")

@@ -1,5 +1,7 @@
 // Returns a new reference to a ref-counted handle's object and records the object once in a
 // function-local static registry (a fixed array of handles behind a u32 count).
+#include <new>
+
 #include "base/UnkStrIdRegistry.h"
 #include "base/global/CStrId.h"
 #include "types.h"
@@ -28,10 +30,27 @@ struct UnkRefRegistry {
     }
 };
 
+#if defined(__aarch64__)
 static UnkRefRegistry& GetRegistry_de8f78() {
     static UnkRefRegistry s;
     return s;
 }
+#else
+// On the port the registry is the image's (0x71727bf4d8, its guard 0x71727bee30), which the lifted
+// fn_7100de917c copies into the game manager's id table: a function-local static here would be the
+// executable's own copy, and the manager would find no ids (fn_7100de9540 then indexed an empty table).
+extern "C" int __cxa_guard_acquire(u64* guard);
+extern "C" void __cxa_guard_release(u64* guard);
+extern UnkRefRegistry g_unk_71727bf4d8 __attribute__((visibility("hidden")));
+extern u64 g_unk_71727bee30 __attribute__((visibility("hidden")));
+static UnkRefRegistry& GetRegistry_de8f78() {
+    if (!(*reinterpret_cast<volatile u8*>(&g_unk_71727bee30) & 1) && __cxa_guard_acquire(&g_unk_71727bee30)) {
+        new (&g_unk_71727bf4d8) UnkRefRegistry;
+        __cxa_guard_release(&g_unk_71727bee30);
+    }
+    return g_unk_71727bf4d8;
+}
+#endif
 
 CStrId fn_7100de8f78(const CStrId& src) {
     CStrId r(src);

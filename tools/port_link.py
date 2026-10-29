@@ -146,9 +146,10 @@ LIBRARY_SOURCES = [*sorted((ROOT / "lib" / "lua").glob("*.c")), ROOT / "lib" / "
 LIBRARY_FLAGS = ["-x", "c++", *buildcfg.LUA_FLAGS]
 TRAP = "dread_port_missing_function"  # port/runtime/src/missing.cpp, declared in dread_port.h
 MISMATCH_TRAP = "dread_port_mismatched_call"  # same file: a called alias whose argument classes differ
-# Library code the port stands in for silently (the owner's decision, 2026-10-28): every status-L
-# function in the range that has no definition becomes a stub that returns zero (integer and float
-# results; a function returning through x8 leaves the caller's buffer as it was) instead of a trap.
+# Library code the port stands in for silently (the owner's decision, 2026-10-28): every function in
+# the range that src/ does not define (status L or U) becomes a stub that returns zero (integer and
+# float results; a function returning through x8 leaves the caller's buffer as it was) instead of a
+# trap. A semantic lift in the range is left out, so the library never runs half real, half stubbed.
 # nn::atk, the statically linked sound middleware, so the game runs without sound until M4.
 SILENT_RANGES = ((0x71012046C0, 0x7101238000, "nn::atk"),)
 SILENT_BODY = ["\txorl\t%eax, %eax", "\txorps\t%xmm0, %xmm0", "\tret"]
@@ -178,7 +179,8 @@ STDLIB_PREFIXES = ("std::", "operator new", "operator delete", "__cxa_", "__cxxa
                    "__stack_chk", "__dso_handle", "__tls_get_addr")
 # C library names the game's code calls directly or through import thunks. An unmangled name that
 # resolves to nothing, or to a copy statically linked into main (status L), is the host's when it
-# is listed here or starts with `__` (a C runtime or compiler-rt builtin).
+# is listed here or starts with `__` (a C runtime or compiler-rt builtin). `_setjmp`/`_longjmp` are what
+# glibc's setjmp macro expands to in the natively built lib/lua (its error handling).
 C_LIBRARY = frozenset("""
 abort exit atexit free malloc calloc realloc posix_memalign aligned_alloc
 memcpy memmove memset memcmp memchr strlen strnlen strcmp strncmp strcpy strncpy strcat strncat strchr strrchr
@@ -186,7 +188,7 @@ strstr strtok strdup strerror strtol strtoul strtoll strtoull strtod strtof atoi
 wcslen wcscpy wcsncpy wcscmp wcsncmp wcscat wmemcpy wmemset wmemmove wcschr wcsstr
 printf fprintf sprintf snprintf vprintf vfprintf vsnprintf swprintf puts putchar fputs fputc fwrite fread fopen fclose
 fflush fseek ftell sscanf vsscanf qsort bsearch rand srand abs labs llabs
-toupper tolower isalpha isdigit isalnum isspace isupper islower isprint isxdigit setjmp longjmp getenv
+toupper tolower isalpha isdigit isalnum isspace isupper islower isprint isxdigit setjmp longjmp _setjmp _longjmp getenv
 sinf cosf tanf asinf acosf atanf atan2f sinhf coshf tanhf expf exp2f logf log2f log10f powf sqrtf cbrtf fmodf
 floorf ceilf roundf truncf fabsf fminf fmaxf hypotf ldexpf frexpf modff copysignf sincosf nanf
 sin cos tan asin acos atan atan2 sinh cosh tanh exp exp2 log log2 log10 pow sqrt cbrt fmod floor ceil round
@@ -674,11 +676,13 @@ def signature_class(ref: list[str] | None, dfn: list[str] | None, dfn_qualified:
     if not agree(cr[:n], cd[:n]):
         # Integer and float arguments take their own registers in order (rdi, rsi, ... and xmm0,
         # xmm1, ...; x0-x7 and s0-s7 on AArch64), so (int, float, bool) lands as (ptr, ptr, float)
-        # does: what counts is each class's own sequence, while all of them fit in registers.
+        # does: what counts is each class's own sequence. Integers past the sixth go to the stack in
+        # their own order too, wherever the floats sit, as long as every float has a register (the
+        # variadic lifts' eight integers, a word and eight doubles, against a caller's mix).
         if "A" in cr or "A" in cd:
             return "class_mismatch", flags
         ri, rf, di, df = cr.count("I"), cr.count("F"), cd.count("I"), cd.count("F")
-        if max(ri, di) > 6 or max(rf, df) > 8:
+        if max(rf, df) > 8:
             return "class_mismatch", flags
         flags.append("interleaved_classes")
         if (ri, rf) == (di, df):
@@ -1223,7 +1227,10 @@ def link_executable(cxx: str, target: str, flags: list[str], out: Path, whole_o:
     for name in ("Scrt1.o", "crti.o", "crtbeginS.o", "crtendS.o", "crtn.o"):
         r = subprocess.run([cxx, f"--target={target}", f"-print-file-name={name}"], capture_output=True, text=True)
         crt[name] = r.stdout.strip()
-    cmd = [cxx, f"--target={target}", "-fuse-ld=lld", "-stdlib=libc++", "-no-pie", "-nostartfiles",
+    # --no-relax: lld turns a GOT-relative `add sym@GOTPCREL(%rip), %reg` into `add $sym, %reg` in a
+    # non-PIE program, a sign-extended 32-bit immediate that cannot hold an address above 2 GB; the
+    # executable lives at 0x7173000000, so unk_prop::Key's table address came out truncated.
+    cmd = [cxx, f"--target={target}", "-fuse-ld=lld", "-stdlib=libc++", "-no-pie", "-nostartfiles", "-Wl,--no-relax",
            f"-Wl,--image-base=0x{image_base:x}", "-o", str(exe), crt["Scrt1.o"], crt["crti.o"], crt["crtbeginS.o"],
            str(main_o), str(whole_o), str(residue_o), *libs, "-lpthread", "-lm", crt["crtendS.o"], crt["crtn.o"]]
     t0 = time.time()
@@ -1542,17 +1549,22 @@ def main() -> int:
             if (ldir / "manifest.json").is_file() else {}
         stale = [s for s, h in manifest.get("sources", {}).items()
                  if (ROOT / s).is_file() and port_lift_blob(s) != h]
-        lobjs, kept, dropped = sorted((ldir / "obj").glob("fn_*.o")), [], []
+        lobjs, kept, dropped, silenced = sorted((ldir / "obj").glob("fn_*.o")), [], [], []
         overrides = manifest_overrides(manifest, {int(o.stem[3:], 16) for o in lobjs})
         patched, replaced, left = override_objects(find_tool(cxx, "llvm-objcopy"), nm, objdump, overrides,
                                                    Path(args.objects), resolver, out / "overrides")
         for o in lobjs:
             a = int(o.stem[3:], 16)
+            if silent_range(a) and a not in lk.code_defs:
+                silenced.append(a)  # a library the port stands in for silently: never half lifted
+                continue
             (dropped if a in lk.code_defs and a not in replaced else kept).append((a, o))
         print()
         print(f"lifted: {len(lobjs)} semantic lifts in {rel(ldir)} ({manifest.get('generator', 'no manifest')}"
               + (f"; generated by older versions of {', '.join(stale)}: rerun tools/port_lift.py" if stale else "")
-              + f"); {len(dropped)} left out because the sources now define them")
+              + f"); {len(dropped)} left out because the sources now define them"
+              + (f", {len(silenced)} because they are in a silent range ({', '.join(sorted({silent_range(a) for a in silenced}))})"
+                 if silenced else ""))
         if overrides:
             print(f"overrides: {len(replaced)} of {len(overrides)} lifts replace their src/lifted definition"
                   f" ({len(patched)} objects patched under {rel(out / 'overrides')})"
@@ -1617,7 +1629,7 @@ def main() -> int:
             e.silent = True
     named = {e.address for e in entries if e.address is not None}
     silent_extra = [(f"dread_silent_{int(r['address'], 16):x}", int(r["address"], 16)) for r in rows.values()
-                    if r["status"] == "L" and silent_range(int(r["address"], 16))
+                    if r["status"] in ("L", "U") and silent_range(int(r["address"], 16))
                     and not r["name"].startswith(IMPORT_PREFIX) and int(r["address"], 16) not in named
                     and not lk.alias_candidates(int(r["address"], 16))]
     traps, jumps = write_traps(traps_s, entries, silent_extra)

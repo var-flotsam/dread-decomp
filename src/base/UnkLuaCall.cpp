@@ -1,6 +1,7 @@
 // The engine's script-call helpers, next to the embedded Lua: push the arguments a format string
 // describes and call a script function by name.
-// Holds fn_71010bf400 (push the arguments) and fn_71010c0e70 (call, discarding the result).
+// Holds fn_71010bf400 (push the arguments), fn_71010c0b40 (its variadic form) and fn_71010c0e70 (call,
+// discarding the result).
 #include <stdarg.h>
 
 #include "../../lib/lua/lua.h"
@@ -58,6 +59,16 @@ s32 fn_71010bf400(lua_State* L, const char* fmt, va_list args) {
         }
     }
     return (s32)i;
+}
+
+// fn_71010bf400 with the arguments passed directly. On the port it must be compiled code, not a
+// lift: a lifted variadic function hands on an AArch64 va_list, which the host's fn_71010bf400 cannot read.
+s32 fn_71010c0b40(lua_State* L, const char* fmt, ...) {
+    va_list args;
+    va_start(args, fmt);
+    s32 n = fn_71010bf400(L, fmt, args);
+    va_end(args);
+    return n;
 }
 
 // Calls the script function `name` with the arguments `fmt` describes; whether the call succeeded.

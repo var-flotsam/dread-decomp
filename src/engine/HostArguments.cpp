@@ -428,7 +428,7 @@ void fn_7100132c60();
 void fn_710109d0a0();
 void fn_7100083980(f32 dt);
 void fn_7100001a60(f32 dt);
-void fn_71010e537c();
+void fn_71010e537c(void* object);
 struct UnkResRegistry;
 extern UnkResRegistry* g_unk_7101d472f8;
 void fn_71000ebad0(UnkResRegistry* self);
@@ -496,8 +496,10 @@ void fn_7100000d40() {
         UnkFramePosition pos(player->x, player->y, player->z);
         fn_7100219294(g_unk_7101d47300, 0xee51cf856cc66bdc, &pos.x, 0);
         fn_7100219294(g_unk_7101d47300, 0xee51cf856cc66bdc, &pos.x, 3);
-        if (fn_7100defcec(g_unk_7101d47310) && !static_cast<UnkGuiRootView*>(g_unk_7101d47330)->field_0x58)
-            fn_71010e537c();
+        // The object fn_7100defcec returns is fn_71010e537c's argument (x0 on the console).
+        void* object = fn_7100defcec(g_unk_7101d47310);
+        if (object && !static_cast<UnkGuiRootView*>(g_unk_7101d47330)->field_0x58)
+            fn_71010e537c(object);
         bool morph_ball = false;
         if (UnkInventory* inventory = player->inventory) {
             UnkQualifiedId& qid = ItemQualifiedId(g_unk_717275a8d8);
