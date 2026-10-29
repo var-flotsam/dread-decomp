@@ -2041,6 +2041,13 @@ class Lifter:
         s = self.s
         if m == "adrp":
             n = self.key(regname(o[0].reg))
+            if "semantic" in self.opts and isinstance(self, FlatLifter):
+                # The register holds the page too: a label where the ways in disagree drops the
+                # page (join_consts), and reads there take X<n> (71011eeab4 called a stale X8)
+                self.line(f"X{n} = (u64)({self.global_ref(o[1].imm, False)});")
+                self.types[n] = "char*"
+                self.clob.discard(n)
+                s.lanes.pop(n, None)
             s.pages[n] = o[1].imm
             s.vals.pop(n, None)
             s.poison.discard(n)
@@ -2836,12 +2843,12 @@ class FlatLifter(Lifter):
         """Semantic mode, at a label: the known constants and pages are those every way in agrees
         on (fn_7100713e2c sets w8 to +pi/2 before a `b` to the label and to -pi/2 falling into it,
         and an `fmov s0, w8` there must read the register); none for a loop's head (a branch from
-        below, not seen yet), and the pages as they were then."""
+        below, not seen yet). A dropped page is still in its register (step, adrp)."""
         ways = self.edges.pop(a, [])
         if prev is not None and prev.mnemonic not in ("b", "br", "ret", "brk"):
             ways.append((self.s.consts, self.s.pages))
         if any(src >= a for src in self.sources.get(a, [])):
-            self.s.consts = {}
+            self.s.consts, self.s.pages = {}, {}
             return
         if not ways:
             return

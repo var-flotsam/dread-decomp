@@ -144,6 +144,11 @@ From the trace run's refusals (`lifted_trace1`, 6,007 of 6,070 accepted):
   which reuses x19 as a loop counter after the call: `result_copies` is now a forward dataflow per
   instruction (entry {x8}; a `mov` from a holder adds, any other write or a call's clobber drops; the
   meet is the intersection), and a label keeps the set that reaches it.
+- **A page dropped at a label** (`71011eeab4` called through a stale X8; d36fc58's constant meet): flat
+  semantic lifts kept an `adrp` page only in the lifter's state, so where the ways into a label disagreed
+  and the meet dropped it, a read there took X<n> as last written (the sret address, or the first
+  iteration's page in a loop). `adrp` now also sets X<n> to the page, and a loop head drops pages as it
+  drops constants.
 - **Unsigned converts in the oracle** (trace6 lost 14 lifts to d36fc58's saturating converts,
   `71001c9550`: argument 0x7fffffff vs 0xffffffff): Ghidra's P-code gives fcvtzu (and fcvtmu, fcvtpu, ...)
   the signed TRUNC, so the emulated original saturated a large float to 0x7fffffff and a negative one to
