@@ -426,6 +426,10 @@ class Machine:
                 self.saves.add(a)  # a callee-saved register's entry value: a save slot, not a local
         elif self.arg_slots and ENTRY_SP <= a < ENTRY_SP + 8 * self.arg_slots:
             pass  # (the function's own stack arguments: the callee's to change, which the lift keeps elsewhere)
+        elif self.arg_slots is not None and STACK_TOP - (1 << 36) <= a < STACK_LO:
+            # Below the stack, an sp-based index gone wild (fn_71010b98d0: a histogram indexed by a
+            # made-up result, 4 GiB down): each run's lands relative to its own sp
+            raise Inconclusive("store below the stack")
         elif self.arg_slots is not None and ENTRY_SP <= a < STACK_TOP:
             # Past its frame into the caller's: a local array overrun on a made-up count (fn_710014d1a0),
             # undefined, and the two frames are laid out differently (as load: the caller's frame)

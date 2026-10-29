@@ -179,6 +179,8 @@ From the trace run's refusals (`lifted_trace1`, 6,007 of 6,070 accepted):
   (`71001b83f8`); the next event compares them. A store past the frame into the caller's (a local array
   overrun on a made-up count, `710014d1a0`) makes the input inconclusive, as a load there already did, and
   a memory difference after a memset or memcpy clipped at 64 KiB is skipped at any event (`710122e6f0`).
+  So does a store in the 64 GiB below the stack (`71010b98d0`: a stack histogram indexed by a made-up
+  result, each run's store relative to its own sp).
 - **A whole q register loaded** (`7101205f54`, `ldp q1, q2, [x1]`): semantic mode had no q load at all.
   `ldr`/`ldur`/`ldp` of q registers now give their four 32-bit lanes as f32 values (State.lanes, as
   `ld1` builds them), so the existing `str q` and a new `stp q` store them back bit for bit and the lane
