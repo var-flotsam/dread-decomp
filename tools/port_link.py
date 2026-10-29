@@ -179,7 +179,8 @@ STDLIB_PREFIXES = ("std::", "operator new", "operator delete", "__cxa_", "__cxxa
                    "__stack_chk", "__dso_handle", "__tls_get_addr")
 # C library names the game's code calls directly or through import thunks. An unmangled name that
 # resolves to nothing, or to a copy statically linked into main (status L), is the host's when it
-# is listed here or starts with `__` (a C runtime or compiler-rt builtin).
+# is listed here or starts with `__` (a C runtime or compiler-rt builtin). `_setjmp`/`_longjmp` are what
+# glibc's setjmp macro expands to in the natively built lib/lua (its error handling).
 C_LIBRARY = frozenset("""
 abort exit atexit free malloc calloc realloc posix_memalign aligned_alloc
 memcpy memmove memset memcmp memchr strlen strnlen strcmp strncmp strcpy strncpy strcat strncat strchr strrchr
@@ -187,7 +188,7 @@ strstr strtok strdup strerror strtol strtoul strtoll strtoull strtod strtof atoi
 wcslen wcscpy wcsncpy wcscmp wcsncmp wcscat wmemcpy wmemset wmemmove wcschr wcsstr
 printf fprintf sprintf snprintf vprintf vfprintf vsnprintf swprintf puts putchar fputs fputc fwrite fread fopen fclose
 fflush fseek ftell sscanf vsscanf qsort bsearch rand srand abs labs llabs
-toupper tolower isalpha isdigit isalnum isspace isupper islower isprint isxdigit setjmp longjmp getenv
+toupper tolower isalpha isdigit isalnum isspace isupper islower isprint isxdigit setjmp longjmp _setjmp _longjmp getenv
 sinf cosf tanf asinf acosf atanf atan2f sinhf coshf tanhf expf exp2f logf log2f log10f powf sqrtf cbrtf fmodf
 floorf ceilf roundf truncf fabsf fminf fmaxf hypotf ldexpf frexpf modff copysignf sincosf nanf
 sin cos tan asin acos atan atan2 sinh cosh tanh exp exp2 log log2 log10 pow sqrt cbrt fmod floor ceil round
