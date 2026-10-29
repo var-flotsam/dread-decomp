@@ -31,12 +31,20 @@ from the address and the seed: small integers, pointers to more such memory, or 
 address passed to a callee is compared by the bytes the function wrote around it, since the two
 frames are laid out differently.
 
+A snapshot (load_snapshot: the registers and memory pages a real run held at the function's entry, captured
+from the Dread recomp by tools/recomp_trace.py) can stand in for the seed's made-up state: its pages read as
+they were (the module's own pages too), anything it did not capture as the seed gives, and the recomp's
+addresses of the module are moved to ours. Its calls file (load_calls) replays the real calls in order:
+their results, the out-parameters they wrote in the frame and their other memory writes, while each call
+goes where the recorded one went; from the first that does not, calls are made up as usual.
+
 Standard library and pyelftools; the P-code comes from a pickle tools/ghidra/pcode.py writes.
 """
 
 from __future__ import annotations
 
 import math
+import os
 import random
 import struct
 from dataclasses import dataclass, field
@@ -58,6 +66,7 @@ RETRY_SCALE = 8                   # a cut-off run is retried with this many time
 SLOWER = 20                       # a lift this many times slower than an original that ended is wrong (compare)
 MAX_EVENTS = 256                  # calls recorded per run; then it ends as a time-out (checkpoint)
 MAX_SNAPSHOT = 1 << 21            # bytes of written memory copied into its events, in all; the same
+STEPS_PER_CALL = 2000             # a run from a snapshot's recorded calls: this many more steps per call
 WINDOW = 64                       # bytes compared and written around a stack pointer argument
 
 X0, Q0, SP, NG, ZR, CY, OV = 0x4000, 0x5000, 8, 0x100, 0x101, 0x102, 0x103
@@ -154,6 +163,107 @@ class ImageMemory:
         self.text = (BASE + img.text[0], BASE + img.text[1])
         self.end = BASE + len(self.data)
         self.bss_end = BASE + img.rwdata[1]
+
+
+RECOMP_MAIN = 0x8005000  # where the Dread recomp places the module (tools/recomp_trace.py)
+SNAP_MAGIC = b"DSNAP1\n"
+CALLS_MAGIC = b"DCALLS1\n"
+
+
+@dataclass
+class CallRecord:
+    """One of the function's calls in that run: where it went, x0, x1 and q0-q3 when it returned, and
+    the memory it changed: in the function's frame by offset from its entry sp, elsewhere by address."""
+    target: int
+    x: list
+    q: list
+    frame: list  # (offset from the entry sp, bytes)
+    mem: list    # (address, bytes)
+
+
+@dataclass
+class Snapshot:
+    """A real run's state at a function's entry, in our addresses: x0-x28, q0-q31, the bytes above
+    sp (stack arguments), memory pages by page number, sp itself, and (from the .calls file beside
+    it) its direct calls in order."""
+    x: list
+    q: list
+    stack: bytes
+    pages: dict
+    sp: int = 0
+    calls: list = field(default_factory=list)
+
+
+_snapshots: dict[str, Snapshot] = {}
+
+
+def load_snapshot(path: str, module_size: int) -> Snapshot:
+    """A capture file (tools/recomp_trace.py snapshot): the magic, one JSON header line ({"x": 31
+    values, "q": 32, "sp", "stack": hex bytes above sp, "pages": n}), then n records of an 8-byte page
+    address and PAGE bytes, all in the recomp's addresses. Module addresses (page keys, registers and
+    every aligned word that falls in the recomp's module) become ours."""
+    if path in _snapshots:
+        return _snapshots[path]
+    import json
+    import zlib
+    raw = open(path, "rb").read()
+    if raw[:2] == b"\x78\x9c" or raw[:2] == b"\x78\xda":
+        raw = zlib.decompress(raw)
+    if not raw.startswith(SNAP_MAGIC):
+        raise ValueError(f"{path}: not a snapshot")
+    nl = raw.index(b"\n", len(SNAP_MAGIC))
+    head = json.loads(raw[len(SNAP_MAGIC):nl])
+    lo, hi = RECOMP_MAIN, RECOMP_MAIN + module_size
+
+    def tr(v: int) -> int:
+        return v - lo + BASE if lo <= v < hi else v
+
+    pages, off = {}, nl + 1
+    for _ in range(head["pages"]):
+        a = int.from_bytes(raw[off:off + 8], "little")
+        p = bytearray(raw[off + 8:off + 8 + PAGE])
+        for k in range(0, PAGE, 8):
+            w = int.from_bytes(p[k:k + 8], "little")
+            if lo <= w < hi:
+                p[k:k + 8] = tr(w).to_bytes(8, "little")
+        pages[tr(a) // PAGE] = bytes(p)
+        off += 8 + PAGE
+    snap = Snapshot([tr(int(v, 16)) for v in head["x"]], [int(v, 16) for v in head["q"]],
+                    bytes.fromhex(head.get("stack", "")), pages, int(head.get("sp", "0"), 16))
+    calls = path[:-5] + ".calls" if path.endswith(".snap") else path + ".calls"
+    if os.path.isfile(calls):
+        snap.calls = load_calls(calls, tr)
+    _snapshots[path] = snap
+    return snap
+
+
+def load_calls(path: str, tr) -> list:
+    """The calls file beside a snapshot: the magic, then one JSON line per direct call, in order
+    ({"target", "x": [x0, x1], "q": [q0-q3], "frame": [[offset, hex]], "mem": [[address, hex]]}; each
+    run covers whole aligned words, so module addresses in it become ours as in the pages). A line
+    cut short (the game closed during the call) ends the list."""
+    import json
+    raw = open(path, "rb").read()
+    if not raw.startswith(CALLS_MAGIC):
+        raise ValueError(f"{path}: not a calls file")
+
+    def words(b: bytes) -> bytes:
+        b = bytearray(b)
+        for k in range(0, len(b) - 7, 8):
+            b[k:k + 8] = tr(int.from_bytes(b[k:k + 8], "little")).to_bytes(8, "little")
+        return bytes(b)
+
+    out = []
+    for line in raw[len(CALLS_MAGIC):].split(b"\n"):
+        try:
+            r = json.loads(line)
+        except ValueError:
+            break
+        out.append(CallRecord(tr(int(r["target"], 16)), [tr(int(v, 16)) for v in r["x"]],
+                              [int(v, 16) for v in r["q"]],
+                              [(off, words(bytes.fromhex(h))) for off, h in r["frame"]],
+                              [(tr(int(a, 16)), words(bytes.fromhex(h))) for a, h in r["mem"]]))
+    return out
 
 
 @dataclass
@@ -314,6 +424,14 @@ class Machine:
         # result; and, with track, the memory words the run read before writing them, in order
         # (what a mutation can change next).
         self.overrides = overrides or {}
+        # ("s", path): the input starts from that snapshot instead of the seed's registers and memory
+        path = next((k for kind, k in self.overrides if kind == "s"), None)
+        self.snap = load_snapshot(path, max(image.end, image.bss_end) - BASE) if path else None  # (.bss too)
+        # The snapshot's recorded calls, replayed in order while each call goes where the recorded one
+        # went (replay_end: why replaying stopped, the calls after it made up as without a snapshot)
+        self.replay_i, self.replay_end = 0, None
+        # (room for every recorded call: the real run made them all, the last before its return)
+        self.calls_room = len(self.snap.calls) if self.snap is not None else 0
         self.mem_ovr: dict[int, list[tuple[int, int]]] = {}
         for (kind, k), v in self.overrides.items():
             if kind == "m":
@@ -327,6 +445,8 @@ class Machine:
         self.uniq: dict[int, int] = {}
         self.pages: dict[int, bytearray] = {}
         self.dirty: dict[int, int] = {}
+        self._ckpt: dict[int, int] = {}  # dirty as the last checkpoint saw it, and the bytes touched since
+        self._touched: set[int] = set()
         self.cut: str | None = None  # why the run ended as a time-out: steps, events or snapshot (compare)
         self.clipped = False  # a modelled memset or memcpy stopped at 64 KiB (compare)
         self.fault: int | None = None  # the address a run faulted on
@@ -367,6 +487,8 @@ class Machine:
         a = n * PAGE
         if self.lift is not None and n in self.lift.mem:
             p = bytearray(self.lift.mem[n])
+        elif self.snap is not None and n in self.snap.pages and not STACK_LO <= a < STACK_TOP:
+            p = bytearray(self.snap.pages[n])
         elif self.image.text[0] <= a < self.image.end:
             off = a - BASE
             p = bytearray(self.image.data[off:off + PAGE].ljust(PAGE, b"\0"))
@@ -438,6 +560,7 @@ class Machine:
         elif not (self.own[0] <= a < self.own[1]):
             for i in range(size):
                 self.dirty[a + i] = b[i]
+            self._touched.update(range(a, a + size))
 
     # registers
     def reg(self, off: int, size: int) -> int:
@@ -500,6 +623,13 @@ class Machine:
             else:
                 bits = f_to(rnd.uniform(-100, 100), 8)
             self.regs[Q0 + QSTRIDE * i:Q0 + QSTRIDE * i + 16] = bits.to_bytes(16, "little")
+        if self.snap is not None:
+            for i in range(29):
+                self.regs[X0 + 8 * i:X0 + 8 * i + 8] = (self.snap.x[i] & 0xFFFFFFFFFFFFFFFF).to_bytes(8, "little")
+            for i in range(32):
+                self.regs[Q0 + QSTRIDE * i:Q0 + QSTRIDE * i + 16] = (self.snap.q[i] & (1 << 128) - 1).to_bytes(16, "little")
+            for k, b in enumerate(self.snap.stack):  # (the stack arguments, at our entry sp)
+                self.page((ENTRY_SP + k) // PAGE)[(ENTRY_SP + k) % PAGE] = b
         self.regs[X0 + 8 * 30:X0 + 8 * 31] = SENTINEL.to_bytes(8, "little")
         self.regs[X0 + 8 * 29:X0 + 8 * 30] = bytes(8)
         self.regs[SP:SP + 8] = ENTRY_SP.to_bytes(8, "little")
@@ -518,7 +648,9 @@ class Machine:
     def call(self, target: int) -> None:
         """A call leaving the function: modeled C library functions run; others are recorded."""
         t = self.canonical(target)
-        if isinstance(t, tuple) and t[1] in MODELED:
+        modeled = isinstance(t, tuple) and t[1] in MODELED
+        rec = self.recorded(target, t, modeled)
+        if modeled:
             self.clib(t[1])
             return
         # Every argument register's value; `sel` the ones this run's caller meant for the callee.
@@ -560,14 +692,30 @@ class Machine:
         n = self.calls
         chosen = {k for k, _ in sel}
         extent = {k: v[2] for k, v in args if isinstance(v, tuple) and v[0] == "stack"}
-        self.call_log.append((frozenset(chosen), extent))
+        # A recorded call's out-parameters: the bytes it changed in this frame, by argument and offset
+        # from it (the original's run lays its frame out as the real one did; the lift's takes them from
+        # the guide, as it does the arguments)
+        outs: dict = {}
+        if rec is not None and self.lift is None:
+            fb = {off + i: b for off, run in rec.frame for i, b in enumerate(run)}
+            for k, v in args:
+                if k in chosen and isinstance(v, tuple) and v[0] == "stack" and k in extent:
+                    o = raw[k] - ENTRY_SP
+                    outs[k] = [(j, fb[o + j]) for j in range(max(extent[k], 8)) if o + j in fb and o + j < 0]
+        self.call_log.append((frozenset(chosen), extent, outs))
         if self.guide is not None and n <= len(self.guide):
             # (the lift's run: through the arguments the original's call chose, as far as its
             # objects reach, since this frame's layout and the scratch values it passes differ)
             chosen, extent = self.guide[n - 1][0], {**extent, **self.guide[n - 1][1]}
+            outs = self.guide[n - 1][2] if len(self.guide[n - 1]) > 2 else {}
         for k, v in args:  # out-parameters: through the arguments only (scratch registers differ)
             if k in chosen and isinstance(v, tuple) and v[0] == "stack" and k in extent:
                 p = raw[k]
+                if rec is not None:  # (what the real callee wrote, in place of the pattern)
+                    for j, b in outs.get(k, ()):
+                        if p + j < ENTRY_SP and not any(p + j - 7 <= r <= p + j + 7 for r in self.frame_record):
+                            self.store(p + j, 1, b)
+                    continue
                 # (within the object, stackref's extent, and never over the frame record: a small
                 # local below it would let the pattern overwrite the saved return address)
                 for j in range(0, max(extent[k], 8), 8):
@@ -584,14 +732,43 @@ class Machine:
                 self.state[100 + i] = "junk"
         for k in range(NG, OV + 1):
             self.regs[k] = 0
-        ret = self.overrides.get(("c", n), self.word(mix(n, 11, self.seed)))  # (a mutation may set it)
+        # (a mutation may set it)
+        ret = self.overrides.get(("c", n), rec.x[0] if rec is not None else self.word(mix(n, 11, self.seed)))
         self.regs[X0:X0 + 8] = (ret & 0xFFFFFFFFFFFFFFFF).to_bytes(8, "little")
-        self.regs[Q0:Q0 + 16] = f_to(n + 0.5, 4).to_bytes(16, "little")  # an f32 result (the game's floats)
+        if rec is not None:
+            self.regs[X0 + 8:X0 + 16] = (rec.x[1] & 0xFFFFFFFFFFFFFFFF).to_bytes(8, "little")
+            for i, q in enumerate(rec.q):
+                self.regs[Q0 + QSTRIDE * i:Q0 + QSTRIDE * i + 16] = (q & (1 << 128) - 1).to_bytes(16, "little")
+            for a, run in rec.mem:  # (the callee's writes: not the function's, though they replace its bytes)
+                for i, b in enumerate(run):
+                    x = a + i
+                    if x >= NULL_PAGE and not STACK_LO <= x < STACK_TOP:
+                        self.page(x // PAGE)[x % PAGE] = b
+                        if x in self.dirty:
+                            self.dirty[x] = b
+                            self._touched.add(x)
+        else:
+            self.regs[Q0:Q0 + 16] = f_to(n + 0.5, 4).to_bytes(16, "little")  # an f32 result (the game's floats)
         self.state[0] = "written"
         # A float argument counts only when the caller's own code set it: a result left in v0 and
         # read by the next callee is indistinguishable from garbage it does not read (liveness
         # over-approximates), so a float result passed straight on is not compared.
         self.state[100] = "junk"
+
+    def recorded(self, target: int, t, modeled: bool):
+        """The snapshot's next recorded call when it went to this target (and is taken), else None.
+        A modelled C function the real run did not record (inlined, or run outside the recomp's code)
+        leaves the list where it is; any other call elsewhere ends the replay."""
+        calls = self.snap.calls if self.snap is not None else ()
+        if self.replay_end is not None or self.replay_i >= len(calls):
+            return None
+        r = calls[self.replay_i]
+        if r.target != target and self.canonical(r.target) != t:
+            if not modeled:
+                self.replay_end = f"call {self.calls + 1} to {target:#x}, the real run's to {r.target:#x}"
+            return None
+        self.replay_i += 1
+        return r
 
     def stackref(self, v: int):
         """A stack address as ("stack", the bytes the function wrote from it on, extent, taken,
@@ -654,6 +831,7 @@ class Machine:
         """Drop what only running needs (memory pages, the write sets): a finished run that is
         kept for comparison needs its events, registers, coverage and logs."""
         self.pages, self.dirty, self.stack_written, self.uniq, self._read_seen = {}, {}, set(), {}, set()
+        self._ckpt, self._touched = {}, set()
 
     def checkpoint(self, event) -> None:
         if event[0] == "call" and isinstance(event[1], tuple) and event[1][1] in PURE_MATH:
@@ -661,14 +839,33 @@ class Machine:
             # the next event compares them)
             self.events.append((event, ()))
             return
-        self.events.append((event, tuple(sorted(self.dirty.items()))))
-        self.snapshot_bytes += len(self.dirty)
-        if len(self.events) >= MAX_EVENTS * self.scale or self.snapshot_bytes > MAX_SNAPSHOT * self.scale:
+        # The bytes the function's writes changed since the last checkpoint (None: no longer counted, an
+        # undefined byte): the memory at an event is what all events up to it hold (written()), and
+        # two runs agree at every event when they agree on each event's changes.
+        d, ck = self.dirty, self._ckpt
+        delta = tuple((k, d.get(k)) for k in sorted(self._touched) if d.get(k) != ck.get(k))
+        for k, v in delta:
+            if v is None:
+                ck.pop(k, None)
+            else:
+                ck[k] = v
+        self._touched = set()
+        self.events.append((event, delta))
+        # (the budget counts a copy of all written memory per event, as the runs were limited before
+        # events held changes; a run replaying recorded calls counts the changes)
+        self.snapshot_bytes += len(delta) if self.calls_room else len(self.dirty)
+        if len(self.events) >= self.max_events() or self.snapshot_bytes > MAX_SNAPSHOT * self.scale:
             # Each event keeps a copy of the memory written so far: a loop calling on every
             # iteration would hold thousands. The run ends here as a time-out (compare: what came
             # before must agree).
-            self.cut = self.cut or ("events" if len(self.events) >= MAX_EVENTS * self.scale else "snapshot")
-            self.steps = MAX_STEPS * self.scale
+            self.cut = self.cut or ("events" if len(self.events) >= self.max_events() else "snapshot")
+            self.steps = self.max_steps()
+
+    def max_steps(self) -> int:
+        return MAX_STEPS * self.scale + STEPS_PER_CALL * self.calls_room
+
+    def max_events(self) -> int:
+        return MAX_EVENTS * self.scale + self.calls_room
 
     # -- execution ------------------------------------------------------------------------------
 
@@ -681,7 +878,7 @@ class Machine:
         try:
             while True:
                 self.steps += 1
-                if self.steps > MAX_STEPS * self.scale:
+                if self.steps > self.max_steps():
                     self.cut = self.cut or "steps"  # (compare: what came before the cut must agree)
                     self.finish("time-out")
                     return
@@ -869,6 +1066,7 @@ class Machine:
                     if (ins[2][0], ins[2][1] + i) in self.undef_vn:
                         self.undef_mem.add(a + i)
                         self.dirty.pop(a + i, None)
+                        self._touched.add(a + i)
                         self.stack_written.discard(a + i)
         elif name in INT_BINARY:
             a, b = r(ins[0]), r(ins[1])
@@ -1138,11 +1336,11 @@ def compare(a: Machine, b: Machine, ret: str | None) -> str:
         # 64 KiB in either run.
         if shared < len(done.events) and done.events[shared][0] != ("end", "fault") \
                 and not (cut.clipped or done.clipped):
-            extra = {k for k, _ in cut.events[-1][1]} - {k for k, _ in done.events[shared][1]}
+            extra = written(cut.events, len(cut.events) - 1) - written(done.events, shared)
             if extra:
                 return f"memory written only by the {'original' if ta else 'lift'}, cut off: byte {min(extra):#x}"
         if tb and b.cut == "steps" and end_a in (("end", "return"), ("end", "fault")) \
-                and a.steps * SLOWER <= MAX_STEPS * b.scale:
+                and a.steps * SLOWER <= Machine.max_steps(b):
             return f"the lift ran out of steps where the original ended after {a.steps}"
         return f"skip: the {'original' if ta else 'lift'} was cut off ({cut.cut})"
     if len(ea) != len(eb):
@@ -1203,6 +1401,15 @@ def arg_text(v) -> str:
     if isinstance(v, tuple):
         return "stack[" + " ".join("--" if b is None else f"{b:02x}" for b in v[1][:24]) + "]"
     return "?" if v is None else f"{v:#x}"
+
+
+def written(events, upto: int) -> set:
+    """The bytes a run's writes hold at event `upto` (its events carry changes, checkpoint)."""
+    held: set = set()
+    for _, m in events[:upto + 1]:
+        for k, v in m:
+            (held.discard if v is None else held.add)(k)
+    return held
 
 
 def mem_diff(ma, mb) -> str:

@@ -34,6 +34,17 @@ class Instrument(unittest.TestCase):
         text, _ = rt.instrument_text(GENERATED)
         self.assertEqual(rt.undo_text(text), GENERATED)
 
+    def test_snapshot_guard_only_on_the_chosen_function(self):
+        text, n = rt.instrument_text(GENERATED, frozenset({0x8005100}))
+        self.assertEqual(n, 2)
+        self.assertEqual(text.count("dread_snap_begin(c, 0x8005100ull)"), 1)
+        self.assertNotIn("dread_snap_begin(c, 0x8005200ull)", text)
+        # every function records its result when a snapshot's function calls it, after the guard
+        self.assertEqual(text.count("dread_snap_call(c, e)"), 2)
+        self.assertIn("dread_snap_call", text[text.index("dread_snap_begin"):].splitlines()[1])
+        self.assertEqual(rt.undo_text(text), GENERATED)
+        self.assertNotIn("dread_snap_call", rt.instrument_text(GENERATED)[0])
+
     def test_a_file_without_functions_is_left_alone(self):
         self.assertEqual(rt.instrument_text("#include \"cpu.h\"\n"), ("#include \"cpu.h\"\n", 0))
 
