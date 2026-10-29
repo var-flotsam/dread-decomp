@@ -430,7 +430,7 @@ inline s32 Quantise(f32 v, f32 scale) { return (s32)(f32)(s32)(v * scale); }
 
 // A cross-section's four corners at the given distance along the view's forward axis, the right
 // and up axes scaled by the half sizes: (+right, -up), (+right, +up), (-right, -up), (-right, +up).
-void Corners(UnkCullView* self, V3* out, f32 distance, f32 half_right, f32 half_up) {
+__attribute__((always_inline)) inline void Corners(UnkCullView* self, V3* out, f32 distance, f32 half_right, f32 half_up) {
     V3 eye = Vec(self, 0xa8);
     V3 forward = Vec(self, 0xb4);
     V3 c = {eye.x + forward.x * distance, eye.y + forward.y * distance, eye.z + forward.z * distance};
@@ -445,40 +445,31 @@ void Corners(UnkCullView* self, V3* out, f32 distance, f32 half_right, f32 half_
 }
 
 // The plane through p0, a and b (its normal cross(a - p0, b - p0), normalised).
-void PlaneFrom(UnkPlane* plane, V3 p0, V3 a, V3 b) {
+__attribute__((always_inline)) inline void PlaneFrom(UnkPlane* plane, V3 p0, V3 a, V3 b) {
     V3 v1 = Sub(a, p0);
     V3 v2 = Sub(b, p0);
     f32 nx = v1.y * v2.z - v1.z * v2.y;
     f32 ny = v1.z * v2.x - v1.x * v2.z;
     f32 nz = v1.x * v2.y - v1.y * v2.x;
-    f32 inv = 1.0f / (__builtin_sqrtf(nx * nx + ny * ny + nz * nz) + 0.0001f);
-    plane->x = nx * inv;
-    plane->y = ny * inv;
-    plane->z = nz * inv;
+    plane->x = nx;
+    plane->y = ny;
+    plane->z = nz;
+    f32 inv = 1.0f / (sqrtf(nx * nx + ny * ny + nz * nz) + 0.0001f);
+    plane->x = plane->x * inv;
+    plane->y = plane->y * inv;
+    plane->z = plane->z * inv;
     plane->d = -(plane->x * p0.x + plane->y * p0.y + plane->z * p0.z);
 }
 
 }  // namespace
 
-// Rebuilds the frustum from the view: the two cross-sections' corners (perspective, from the
-// distances at +0x88 and +0x8c and the half-size factors at +0x78/+0x7c; orthographic when the cull
-// object's flag at +0xb0 is set, from the size at +0x15c), the six planes and their quantised copies,
-// then the nine boxes, each bounding a ninth of the frustum along its depth.
-// NON_MATCHING(major): written from the original's behaviour, not compared instruction by instruction.
-void fn_71001b83f8(UnkCullView* self) {
-    V3* far = &Vec(self, 0x280);
-    V3* near = &Vec(self, 0x2b0);
-    f32 near_d = self->field_0x88;
-    f32 far_d = self->field_0x8c;
-    if (!reinterpret_cast<const u8*>(self->cull)[0xb0]) {
-        Corners(self, near, near_d, near_d * self->field_0x78, near_d * self->field_0x7c);
-        Corners(self, far, far_d, self->field_0x78 * far_d, self->field_0x7c * far_d);
-    } else {
-        f32 half_right = Word(self, 0x160) * 0.5f;
-        f32 half_up = Word(self, 0x15c) * 0.5f;
-        Corners(self, near, near_d, half_right, half_up);
-        Corners(self, far, far_d, half_right, half_up);
-    }
+// The corners, planes and boxes from the two cross-sections' distances and half sizes (inlined
+// into both of the update's branches).
+__attribute__((always_inline)) static inline void Rebuild(UnkCullView* self, V3* near, V3* far, f32 near_d,
+                                                          f32 far_d, f32 near_right, f32 near_up, f32 far_right,
+                                                          f32 far_up) {
+    Corners(self, near, near_d, near_right, near_up);
+    Corners(self, far, far_d, far_right, far_up);
 
     PlaneFrom(&self->planes[0], far[0], near[1], near[0]);
     PlaneFrom(&self->planes[1], far[2], near[2], near[3]);
@@ -517,5 +508,27 @@ void fn_71001b83f8(UnkCullView* self) {
             hi = UnkVec3f(p.x > m.x ? p.x : m.x, p.y > m.y ? p.y : m.y, p.z > m.z ? p.z : m.z);
             box->SetMax(&hi);
         }
+    }
+}
+
+// Rebuilds the frustum from the view: the two cross-sections' corners (perspective, from the
+// distances at +0x88 and +0x8c and the half-size factors at +0x78/+0x7c; orthographic when the cull
+// object's flag at +0xb0 is set, from the size at +0x15c), the six planes and their quantised copies,
+// then the nine boxes, each bounding a ninth of the frustum along its depth.
+// NON_MATCHING(major): the original's shape (scalar, the whole rebuild inlined into each branch,
+// orthographic first, plane normals stored before they are scaled), 6540 bytes against 7024; not
+// yet compared instruction by instruction.
+void fn_71001b83f8(UnkCullView* self) {
+    V3* far = &Vec(self, 0x280);
+    V3* near = &Vec(self, 0x2b0);
+    f32 near_d = self->field_0x88;
+    f32 far_d = self->field_0x8c;
+    if (reinterpret_cast<const u8*>(self->cull)[0xb0]) {
+        f32 half_right = Word(self, 0x160) * 0.5f;
+        f32 half_up = Word(self, 0x15c) * 0.5f;
+        Rebuild(self, near, far, near_d, far_d, half_right, half_up, half_right, half_up);
+    } else {
+        Rebuild(self, near, far, near_d, far_d, near_d * self->field_0x78, near_d * self->field_0x7c,
+                self->field_0x78 * far_d, self->field_0x7c * far_d);
     }
 }
