@@ -920,6 +920,20 @@ class Lifter:
             stack.append((f"*(u64*)(stk + {at:#x})", "u64"))
         return ints + stack + floats
 
+    def next_v0_read(self) -> str | None:
+        """The first read of s0 or d0 after this instruction in address order ("s0" or "d0"),
+        None when v0 is written first, read as another width, or never read."""
+        for y in self.ins[self.pos + 1:]:
+            reads, writes = (sorted(regname(q) for q in r) for r in y.regs_access())
+            if y.mnemonic in ("fmov", "movi") and y.operands[-1].type != arm64.ARM64_OP_REG:
+                reads = []  # (capstone counts an immediate fmov's destination as read)
+            got = [r for r in reads if r in ("s0", "d0", "q0", "v0", "h0", "b0")]
+            if got:
+                return got[0] if got[0] in ("s0", "d0") and len(set(got)) == 1 else None
+            if any(r in ("s0", "d0", "q0", "v0", "h0", "b0") for r in writes):
+                return None
+        return None
+
     def ftype_of(self, n: int) -> str:
         """The C type of float register key n's current value (f32 when unknown)."""
         return self.s.vals.get(n, ("", "f32"))[1]
@@ -2487,7 +2501,8 @@ class Lifter:
             if m == "bl" and "semantic" in self.opts and self.main is not None and self.main(o[0].imm) == {100}:
                 # Every caller reads the float result: typed so here too, even where the result is
                 # read only past a branch (fn_7100713e2c's call at +0x50, read at the join +0x110)
-                self.read(("s" if self.ftype_of(100) == "f32" else "d") + "0")
+                # The width is the next read's in address order (strtod's d0, 71010b2500)
+                self.read(self.next_v0_read() or ("s" if self.ftype_of(100) == "f32" else "d") + "0")
         else:
             return False
         return True

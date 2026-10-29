@@ -144,6 +144,9 @@ From the trace run's refusals (`lifted_trace1`, 6,007 of 6,070 accepted):
   which reuses x19 as a loop counter after the call: `result_copies` is now a forward dataflow per
   instruction (entry {x8}; a `mov` from a holder adds, any other write or a call's clobber drops; the
   meet is the intersection), and a label keeps the set that reaches it.
+- **A float call's width** (`71010b2500`, lost to 717a423's retype of calls whose callers read only s0):
+  the call to strtod was typed f32 (the fallback), and the `fcvt s0, d0` after it then read d0 as f64,
+  "float width". The width now comes from the next read of s0 or d0 in address order.
 - **frint in the oracle** (`7100e79fa4` and four more, lost to d36fc58): Ghidra's P-code for scalar
   frintm/frintp/... is a float-to-integer TRUNC, so `frintm s2, s0` of 649.0 left the integer bits 0x289
   in s2. The old `(u32)floorf(x)` compiled to one fcvtmu and never met it; the saturating form compiles
