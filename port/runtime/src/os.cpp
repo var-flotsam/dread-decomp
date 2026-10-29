@@ -30,6 +30,25 @@ struct MutexImpl {
 };
 static_assert(sizeof(MutexImpl) <= sizeof(MutexType), "must fit the game's 32-byte mutex");
 
+// The runtime's own host objects (locks, events, threads, queues, multi-waits) live in the host's
+// heap, never the game's: the global operator new hands out the game's memory once its allocator
+// exists (heap.cpp), and the default allocator's own lock was then allocated from the allocator it
+// guards, where later reuse corrupted it (the boot deadlocked on a lock with a recursion count of 113
+// and no owner).
+template <typename T, typename... Args>
+T* HostNew(Args&&... args) {
+    void* p = std::malloc(sizeof(T));
+    return p ? new (p) T{static_cast<Args&&>(args)...} : nullptr;
+}
+
+template <typename T>
+void HostDelete(T* p) {
+    if (p) {
+        p->~T();
+        std::free(p);
+    }
+}
+
 MutexImpl& Impl(MutexType* mutex) { return *reinterpret_cast<MutexImpl*>(mutex->storage); }
 
 s64 MonotonicNanoseconds() {
@@ -164,7 +183,7 @@ struct HostMultiWait {
 };
 
 HostEvent* NewEvent(bool signaled, EventClearMode mode) {
-    auto* event = new (std::nothrow) HostEvent(signaled, mode);
+    auto* event = HostNew<HostEvent>(signaled, mode);
     if (!event)
         __builtin_trap();
     return event;
@@ -256,14 +275,14 @@ void InitializeMutex(MutexType* mutex, bool recursive, s32 lock_level) {
     // include/base/UnkDefaultAllocator.h), which the default allocator uses around every
     // allocation. A non-recursive mutex gets the same host lock until a caller needs the
     // difference: re-locking one is an error on the console, not a feature.
-    Impl(mutex) = MutexImpl{new (std::nothrow) std::recursive_mutex, recursive, lock_level};
+    Impl(mutex) = MutexImpl{HostNew<std::recursive_mutex>(), recursive, lock_level};
     if (!Impl(mutex).lock)
         __builtin_trap();
 }
 
 void FinalizeMutex(MutexType* mutex) {
     // TODO(M1): fn_7100066918, the finalize wrapper, from destructors such as fn_71000707dc.
-    delete Impl(mutex).lock;
+    HostDelete(Impl(mutex).lock);
     Impl(mutex).lock = nullptr;
 }
 
@@ -283,7 +302,7 @@ Result CreateThread(ThreadType* thread, ThreadFunction function, void* argument,
     // stack of its own; the host thread uses the host's stack, so stack and size are unused.
     (void)stack;
     (void)stack_size;
-    auto* host = new (std::nothrow) HostThread{{}, thread, function, argument, priority, -1, 0, nullptr};
+    auto* host = HostNew<HostThread>(std::thread{}, thread, function, argument, priority, -1, u64{0}, nullptr);
     if (!host)
         return ResultNotPorted();
     Attach(thread, host, kTagThread);
@@ -308,7 +327,7 @@ void DestroyThread(ThreadType* thread) {
     HostThread* host = Find<HostThread>(thread, kTagThread, "DestroyThread");
     if (host->thread.joinable())
         host->thread.join();
-    delete host;
+    HostDelete(host);
     Detach(thread);
 }
 
@@ -363,7 +382,7 @@ void InitializeLightEvent(LightEventType* event, bool signaled, EventClearMode c
 
 void FinalizeLightEvent(LightEventType* event) {
     // TODO(M1): the wrapper fn_7100066694, from fn_710021ea60.
-    delete Find<HostEvent>(event, kTagLightEvent, "FinalizeLightEvent");
+    HostDelete(Find<HostEvent>(event, kTagLightEvent, "FinalizeLightEvent"));
     Detach(event);
 }
 
@@ -394,7 +413,7 @@ void InitializeEvent(EventType* event, bool signaled, EventClearMode clear_mode)
 
 void FinalizeEvent(EventType* event) {
     // TODO(M1): fn_710002d298, after the thread is destroyed.
-    delete Find<HostEvent>(event, kTagEvent, "FinalizeEvent");
+    HostDelete(Find<HostEvent>(event, kTagEvent, "FinalizeEvent"));
     Detach(event);
 }
 
@@ -417,23 +436,23 @@ bool TryWaitEvent(EventType* event) {
 }
 
 void InitializeMultiWait(MultiWaitType* multi_wait) {
-    Attach(multi_wait, new HostMultiWait, kTagMultiWait);
+    Attach(multi_wait, HostNew<HostMultiWait>(), kTagMultiWait);
 }
 
 void FinalizeMultiWait(MultiWaitType* multi_wait) {
-    delete Find<HostMultiWait>(multi_wait, kTagMultiWait, "FinalizeMultiWait");
+    HostDelete(Find<HostMultiWait>(multi_wait, kTagMultiWait, "FinalizeMultiWait"));
     Detach(multi_wait);
 }
 
 void InitializeMultiWaitHolder(MultiWaitHolderType* holder, EventType* event) {
-    Attach(holder, new HostWaitHolder{Find<HostEvent>(event, kTagEvent, "InitializeMultiWaitHolder")}, kTagWaitHolder);
+    Attach(holder, HostNew<HostWaitHolder>(Find<HostEvent>(event, kTagEvent, "InitializeMultiWaitHolder")), kTagWaitHolder);
 }
 
 void FinalizeMultiWaitHolder(MultiWaitHolderType* holder) {
     auto* h = Find<HostWaitHolder>(holder, kTagWaitHolder, "FinalizeMultiWaitHolder");
     if (h->linked)
         Fatal("FinalizeMultiWaitHolder", "the holder is still linked");
-    delete h;
+    HostDelete(h);
     Detach(holder);
 }
 
@@ -497,7 +516,7 @@ void ClearSystemEvent(SystemEventType* event) {
 }
 
 void DestroySystemEvent(SystemEventType* event) {
-    delete Find<HostEvent>(event, kTagSystemEvent, "DestroySystemEvent");
+    HostDelete(Find<HostEvent>(event, kTagSystemEvent, "DestroySystemEvent"));
     Detach(event);
 }
 
@@ -516,7 +535,7 @@ bool TimedWaitSystemEvent(SystemEventType* event, TimeSpan timeout) {
 
 void InitializeMessageQueue(MessageQueueType* queue, u64* buffer, u64 count) {
     // No caller with a source yet; the movie player's queues need it first.
-    auto* host = new (std::nothrow) HostQueue;
+    auto* host = HostNew<HostQueue>();
     if (!host || count == 0)
         __builtin_trap();
     host->buffer = buffer;
@@ -527,7 +546,7 @@ void InitializeMessageQueue(MessageQueueType* queue, u64* buffer, u64 count) {
 }
 
 void FinalizeMessageQueue(MessageQueueType* queue) {
-    delete Find<HostQueue>(queue, kTagMessageQueue, "FinalizeMessageQueue");
+    HostDelete(Find<HostQueue>(queue, kTagMessageQueue, "FinalizeMessageQueue"));
     Detach(queue);
 }
 
