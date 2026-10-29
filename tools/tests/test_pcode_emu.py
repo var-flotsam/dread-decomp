@@ -134,3 +134,42 @@ class Snapshots(unittest.TestCase):
         self.assertEqual(int.from_bytes(p[8:16], "little"), B + 0x1230)
         self.assertEqual(int.from_bytes(p[16:24], "little"), 0x123456789)
         self.assertEqual(s.stack, b"\x01\x02")
+
+    def test_calls_beside_the_snapshot(self):
+        import json
+        import os
+        import tempfile
+        from types import SimpleNamespace
+        R, B = pcode_emu.RECOMP_MAIN, pcode_emu.BASE
+        head = {"x": ["0x0"] * 31, "q": ["0x0"] * 32, "sp": "0x7fff0000", "stack": "", "pages": 0}
+        vtable = (R + 0x5000).to_bytes(8, "little").hex()
+        calls = [{"target": hex(R + 0x100), "x": ["0x5", hex(R + 0x40)], "q": ["0x1"] * 4,
+                  "frame": [[-0x34, "0700000000000000"]], "mem": [["0x200000010", vtable]]},
+                 {"target": hex(R + 0x200), "x": ["0x0", "0x0"], "q": ["0x0"] * 4, "frame": [], "mem": []}]
+        d = tempfile.mkdtemp()
+        snap = os.path.join(d, "fn_7100000000.snap")
+        with open(snap, "wb") as f:
+            f.write(pcode_emu.SNAP_MAGIC + json.dumps(head).encode() + b"\n")
+        with open(snap[:-5] + ".calls", "wb") as f:  # (the second line cut short: the game closed)
+            f.write(pcode_emu.CALLS_MAGIC + b"\n".join(json.dumps(c).encode() for c in calls)[:-10])
+        try:
+            s = pcode_emu.load_snapshot(snap, 0x100000)
+        finally:
+            for n in os.listdir(d):
+                os.unlink(os.path.join(d, n))
+            os.rmdir(d)
+        self.assertEqual(len(s.calls), 1)
+        c = s.calls[0]
+        self.assertEqual((c.target, c.x), (B + 0x100, [5, B + 0x40]))
+        self.assertEqual(c.frame, [(-0x34, bytes([7]) + bytes(7))])
+        self.assertEqual(c.mem, [(0x200000010, (B + 0x5000).to_bytes(8, "little"))])
+        # Replayed in order while the targets agree; a call elsewhere ends it, a modelled one waits
+        m = SimpleNamespace(snap=s, replay_i=0, replay_end=None, calls=0, canonical=lambda a: a)
+        rec = pcode_emu.Machine.recorded
+        self.assertIsNone(rec(m, B + 0x900, ("import", "memcpy"), True))
+        self.assertIsNone(m.replay_end)
+        self.assertIs(rec(m, B + 0x100, B + 0x100, False), c)
+        self.assertIsNone(rec(m, B + 0x100, B + 0x100, False))
+        m.replay_i = 0
+        self.assertIsNone(rec(m, B + 0x300, B + 0x300, False))
+        self.assertIn("the real run's", m.replay_end)

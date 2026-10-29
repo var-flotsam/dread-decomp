@@ -22,6 +22,10 @@ and beyond, which our port's boot (tools/boot_distance.py) can be compared with.
   in FILE (the recomp's runtime cpu.h, which every generated file includes) and writes
   `fn_<addr>.snap` into DREAD_SNAPSHOTS (default: the working directory), the file
   tools/pcode_emu.py's load_snapshot reads; copy them to build/port/snapshots/ for tools/port_lift.py.
+  Every function also gets a guard that, while a snapshot runs, records each of its direct calls in
+  `fn_<addr>.calls` beside it: the target, x0, x1 and q0-q3 on return, and the bytes the call changed
+  (in the function's frame by offset from its entry sp, elsewhere by address), which the oracle replays
+  in place of made-up results.
   They hold game memory: they stay in build/, never in the repository. `--undo` restores FILE too.
 - `map --trace FILE` turns the log into our addresses (ours = theirs - 0x8005000 + 0x7100000000, checked
   on function starts and an import thunk; journal, "What the Dread recomp found") and joins each with
@@ -120,10 +124,77 @@ static void dsnap_touch(u8* M, unsigned long long p){
   memcpy(dsnap_buf + (unsigned long long)dsnap_n * DSNAP_PAGE, M + p, DSNAP_PAGE);
   dsnap_page[dsnap_n++] = p;
 }
+/* The function's direct callees (depth 2): what each returned and the memory it changed, for the oracle
+   to replay in place of made-up call results. Each page a callee touches is copied before its first touch
+   in that call; when the call returns, the bytes that differ (in aligned 8-byte words) are written out. */
+#define DSNAP_CALL_MAX 4096
+static __thread int dsnap_depth, dsnap_cn, dsnap_ctrunc;
+static __thread unsigned long long *dsnap_cpage, *dsnap_cset, dsnap_csp, dsnap_ctarget, dsnap_cx[8];
+static __thread u8 *dsnap_cbuf, *dsnap_cframe;
+static __thread FILE* dsnap_calls;
+static __thread CPU* dsnap_cpu;  /* (the thread's CPU: the cleanup gets only its guard) */
+#define DSNAP_FRAME 65536ull
+static void dsnap_ctouch(u8* M, unsigned long long p){
+  unsigned long long h = (p >> 12) * 0x9E3779B97F4A7C15ull, k = h % (2 * DSNAP_CALL_MAX);
+  while(dsnap_cset[k]){ if(dsnap_cset[k] == p + 1) return; k = (k + 1) % (2 * DSNAP_CALL_MAX); }
+  if(dsnap_cn >= DSNAP_CALL_MAX){ dsnap_ctrunc = 1; return; }
+  dsnap_cset[k] = p + 1;
+  memcpy(dsnap_cbuf + (unsigned long long)dsnap_cn * DSNAP_PAGE, M + p, DSNAP_PAGE);
+  dsnap_cpage[dsnap_cn++] = p;
+}
 u8* dread_snap_touch(u8* M, unsigned long long a){
   dsnap_touch(M, a & ~(DSNAP_PAGE - 1));
   dsnap_touch(M, (a + 15) & ~(DSNAP_PAGE - 1));
+  if(dsnap_depth >= 2 && dsnap_calls){
+    dsnap_ctouch(M, a & ~(DSNAP_PAGE - 1));
+    dsnap_ctouch(M, (a + 15) & ~(DSNAP_PAGE - 1));
+  }
   return M + a;
+}
+/* Runs of changed bytes between old and now (n bytes at address base), widened to aligned 8-byte words;
+   with skip_lo..skip_hi left out (the function's frame and its callees', written as "frame"). */
+static void dsnap_runs(FILE* f, const u8* old, const u8* now, unsigned long long base, unsigned long long n,
+                       unsigned long long skip_lo, unsigned long long skip_hi, int* first, long long rel){
+  for(unsigned long long i = 0; i < n; i += 8){
+    if(!memcmp(old + i, now + i, 8) || (base + i < skip_hi && base + i + 8 > skip_lo)) continue;
+    unsigned long long j = i + 8;
+    while(j < n && memcmp(old + j, now + j, 8) && !(base + j < skip_hi && base + j + 8 > skip_lo)) j += 8;
+    if(rel) fprintf(f, "%s[%lld, \"", *first ? "" : ", ", (long long)(base + i) - rel);
+    else fprintf(f, "%s[\"0x%llx\", \"", *first ? "" : ", ", base + i);
+    for(unsigned long long k = i; k < j; k++) fprintf(f, "%02x", now[k]);
+    fputs("\"]", f);
+    *first = 0;
+    i = j - 8;
+  }
+}
+int dread_snap_call(CPU* c, unsigned long long e){
+  if(++dsnap_depth != 2 || !dsnap_calls) return 1;
+  dsnap_cpu = c; dsnap_ctarget = e; dsnap_csp = c->x[31]; dsnap_cn = 0; dsnap_ctrunc = 0;
+  memcpy(dsnap_cx, c->x, sizeof dsnap_cx);
+  memset(dsnap_cset, 0, 2 * DSNAP_CALL_MAX * sizeof *dsnap_cset);
+  unsigned long long top = dsnap_x[31] + 256, lo = dsnap_csp < top - DSNAP_FRAME ? top - DSNAP_FRAME : dsnap_csp;
+  if(lo < top) memcpy(dsnap_cframe, c->mem + lo, top - lo);
+  return 1;
+}
+void dread_snap_ret(int* g){
+  if(!*g) return;
+  if(dsnap_depth-- != 2 || !dsnap_calls) return;
+  FILE* f = dsnap_calls;
+  CPU* c = dsnap_cpu;
+  fprintf(f, "{\"target\": \"0x%llx\", \"x_in\": [", dsnap_ctarget);
+  for(int i = 0; i < 8; i++) fprintf(f, "%s\"0x%llx\"", i ? ", " : "", dsnap_cx[i]);
+  fprintf(f, "], \"x\": [\"0x%llx\", \"0x%llx\"], \"q\": [", (unsigned long long)c->x[0], (unsigned long long)c->x[1]);
+  for(int i = 0; i < 4; i++) fprintf(f, "%s\"0x%016llx%016llx\"", i ? ", " : "", (unsigned long long)c->v[i].d[1], (unsigned long long)c->v[i].d[0]);
+  fprintf(f, "], \"sp\": \"0x%llx\", \"truncated\": %d, \"frame\": [", dsnap_csp, dsnap_ctrunc);
+  unsigned long long top = dsnap_x[31] + 256, lo = dsnap_csp < top - DSNAP_FRAME ? top - DSNAP_FRAME : dsnap_csp;
+  int first = 1;
+  if(lo < top) dsnap_runs(f, dsnap_cframe, c->mem + lo, lo, top - lo, 0, 0, &first, (long long)dsnap_x[31]);
+  fputs("], \"mem\": [", f);
+  first = 1;
+  for(int i = 0; i < dsnap_cn; i++)
+    dsnap_runs(f, dsnap_cbuf + (unsigned long long)i * DSNAP_PAGE, c->mem + dsnap_cpage[i], dsnap_cpage[i], DSNAP_PAGE,
+               top > 0x1000000ull ? top - 0x1000000ull : 0, top, &first, 0);
+  fputs("]}\n", f);
 }
 int dread_snap_begin(CPU* c, unsigned long long addr){
   if(dread_snap_on) return 0;
@@ -131,15 +202,29 @@ int dread_snap_begin(CPU* c, unsigned long long addr){
   if(dsnap_ndone < 64) dsnap_done[dsnap_ndone++] = addr;
   if(!dsnap_buf) dsnap_buf = (u8*)malloc(DSNAP_MAX * DSNAP_PAGE);
   if(!dsnap_buf) return 0;
+  if(!dsnap_cbuf){
+    dsnap_cbuf = (u8*)malloc(DSNAP_CALL_MAX * DSNAP_PAGE); dsnap_cframe = (u8*)malloc(DSNAP_FRAME);
+    dsnap_cpage = (unsigned long long*)malloc(DSNAP_CALL_MAX * sizeof *dsnap_cpage);
+    dsnap_cset = (unsigned long long*)malloc(2 * DSNAP_CALL_MAX * sizeof *dsnap_cset);
+  }
   memset(dsnap_set, 0, sizeof dsnap_set); dsnap_n = 0; dsnap_addr = addr;
   memcpy(dsnap_x, c->x, sizeof dsnap_x); memcpy(dsnap_v, c->v, sizeof dsnap_v);
   memcpy(dsnap_stack, c->mem + c->x[31], sizeof dsnap_stack);
+  dsnap_depth = 0; dsnap_calls = 0;
+  if(dsnap_cbuf && dsnap_cframe && dsnap_cpage && dsnap_cset){
+    const char* d = getenv("DREAD_SNAPSHOTS");
+    char path[1024];
+    snprintf(path, sizeof path, "%s/fn_%llx.calls", d && *d ? d : ".", addr - 0x8005000ull + 0x7100000000ull);
+    dsnap_calls = fopen(path, "wb");
+    if(dsnap_calls) fputs("DCALLS1\n", dsnap_calls);
+  }
   dread_snap_on = 1;
   return 1;
 }
 void dread_snap_end(int* g){
   if(!*g) return;
   dread_snap_on = 0;
+  if(dsnap_calls){ fclose(dsnap_calls); dsnap_calls = 0; }
   const char* d = getenv("DREAD_SNAPSHOTS");
   char path[1024];
   snprintf(path, sizeof path, "%s/fn_%llx.snap", d && *d ? d : ".", dsnap_addr - 0x8005000ull + 0x7100000000ull);
@@ -164,6 +249,7 @@ CPU_H_MP = """/*DREAD_TRACE*/ extern __thread int dread_snap_on; u8* dread_snap_
 /*DREAD_TRACE*/ #define MP(a) (dread_snap_on ? dread_snap_touch(M, (u64)(a)) : M + (u64)(a))
 """
 CPU_H_END = """/*DREAD_TRACE*/ int dread_snap_begin(CPU* c, unsigned long long addr); void dread_snap_end(int* g);
+/*DREAD_TRACE*/ int dread_snap_call(CPU* c, unsigned long long e); void dread_snap_ret(int* g);
 """
 MP_DEFINE = re.compile(r"^[ \t]*#[ \t]*define[ \t]+MP\(.*(?:\r?\n)", re.M)
 
@@ -177,6 +263,9 @@ def hook(name: str, eol: str, snapshot: frozenset = frozenset()) -> str:
     if addr in snapshot:  # (recomp addresses; the guard writes the snapshot when the function returns)
         out += (f"{eol} int dread_snap_g_ __attribute__((cleanup(dread_snap_end))) = "
                 f"e=={addr:#x}ull ? dread_snap_begin(c, {addr:#x}ull) : 0; {TAG}")
+    if snapshot:  # (every function: a snapshot's direct callees record their results; after the guard above)
+        out += (f"{eol} int dread_snap_c_ __attribute__((cleanup(dread_snap_ret))) = "
+                f"dread_snap_on ? dread_snap_call(c, e) : 0; {TAG}")
     return out
 
 

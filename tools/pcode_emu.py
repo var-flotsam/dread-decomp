@@ -34,7 +34,9 @@ frames are laid out differently.
 A snapshot (load_snapshot: the registers and memory pages a real run held at the function's entry, captured
 from the Dread recomp by tools/recomp_trace.py) can stand in for the seed's made-up state: its pages read as
 they were (the module's own pages too), anything it did not capture as the seed gives, and the recomp's
-addresses of the module are moved to ours.
+addresses of the module are moved to ours. Its calls file (load_calls) replays the real calls in order:
+their results, the out-parameters they wrote in the frame and their other memory writes, while each call
+goes where the recorded one went; from the first that does not, calls are made up as usual.
 
 Standard library and pyelftools; the P-code comes from a pickle tools/ghidra/pcode.py writes.
 """
@@ -42,6 +44,7 @@ Standard library and pyelftools; the P-code comes from a pickle tools/ghidra/pco
 from __future__ import annotations
 
 import math
+import os
 import random
 import struct
 from dataclasses import dataclass, field
@@ -163,16 +166,31 @@ class ImageMemory:
 
 RECOMP_MAIN = 0x8005000  # where the Dread recomp places the module (tools/recomp_trace.py)
 SNAP_MAGIC = b"DSNAP1\n"
+CALLS_MAGIC = b"DCALLS1\n"
+
+
+@dataclass
+class CallRecord:
+    """One of the function's calls in that run: where it went, x0, x1 and q0-q3 when it returned, and
+    the memory it changed: in the function's frame by offset from its entry sp, elsewhere by address."""
+    target: int
+    x: list
+    q: list
+    frame: list  # (offset from the entry sp, bytes)
+    mem: list    # (address, bytes)
 
 
 @dataclass
 class Snapshot:
     """A real run's state at a function's entry, in our addresses: x0-x28, q0-q31, the bytes above
-    sp (stack arguments) and memory pages by page number."""
+    sp (stack arguments), memory pages by page number, sp itself, and (from the .calls file beside
+    it) its direct calls in order."""
     x: list
     q: list
     stack: bytes
     pages: dict
+    sp: int = 0
+    calls: list = field(default_factory=list)
 
 
 _snapshots: dict[str, Snapshot] = {}
@@ -210,9 +228,41 @@ def load_snapshot(path: str, module_size: int) -> Snapshot:
         pages[tr(a) // PAGE] = bytes(p)
         off += 8 + PAGE
     snap = Snapshot([tr(int(v, 16)) for v in head["x"]], [int(v, 16) for v in head["q"]],
-                    bytes.fromhex(head.get("stack", "")), pages)
+                    bytes.fromhex(head.get("stack", "")), pages, int(head.get("sp", "0"), 16))
+    calls = path[:-5] + ".calls" if path.endswith(".snap") else path + ".calls"
+    if os.path.isfile(calls):
+        snap.calls = load_calls(calls, tr)
     _snapshots[path] = snap
     return snap
+
+
+def load_calls(path: str, tr) -> list:
+    """The calls file beside a snapshot: the magic, then one JSON line per direct call, in order
+    ({"target", "x": [x0, x1], "q": [q0-q3], "frame": [[offset, hex]], "mem": [[address, hex]]}; each
+    run covers whole aligned words, so module addresses in it become ours as in the pages). A line
+    cut short (the game closed during the call) ends the list."""
+    import json
+    raw = open(path, "rb").read()
+    if not raw.startswith(CALLS_MAGIC):
+        raise ValueError(f"{path}: not a calls file")
+
+    def words(b: bytes) -> bytes:
+        b = bytearray(b)
+        for k in range(0, len(b) - 7, 8):
+            b[k:k + 8] = tr(int.from_bytes(b[k:k + 8], "little")).to_bytes(8, "little")
+        return bytes(b)
+
+    out = []
+    for line in raw[len(CALLS_MAGIC):].split(b"\n"):
+        try:
+            r = json.loads(line)
+        except ValueError:
+            break
+        out.append(CallRecord(tr(int(r["target"], 16)), [tr(int(v, 16)) for v in r["x"]],
+                              [int(v, 16) for v in r["q"]],
+                              [(off, words(bytes.fromhex(h))) for off, h in r["frame"]],
+                              [(tr(int(a, 16)), words(bytes.fromhex(h))) for a, h in r["mem"]]))
+    return out
 
 
 @dataclass
@@ -376,6 +426,9 @@ class Machine:
         # ("s", path): the input starts from that snapshot instead of the seed's registers and memory
         path = next((k for kind, k in self.overrides if kind == "s"), None)
         self.snap = load_snapshot(path, image.end - BASE) if path else None
+        # The snapshot's recorded calls, replayed in order while each call goes where the recorded one
+        # went (replay_end: why replaying stopped, the calls after it made up as without a snapshot)
+        self.replay_i, self.replay_end = 0, None
         self.mem_ovr: dict[int, list[tuple[int, int]]] = {}
         for (kind, k), v in self.overrides.items():
             if kind == "m":
@@ -589,7 +642,9 @@ class Machine:
     def call(self, target: int) -> None:
         """A call leaving the function: modeled C library functions run; others are recorded."""
         t = self.canonical(target)
-        if isinstance(t, tuple) and t[1] in MODELED:
+        modeled = isinstance(t, tuple) and t[1] in MODELED
+        rec = self.recorded(target, t, modeled)
+        if modeled:
             self.clib(t[1])
             return
         # Every argument register's value; `sel` the ones this run's caller meant for the callee.
@@ -631,14 +686,30 @@ class Machine:
         n = self.calls
         chosen = {k for k, _ in sel}
         extent = {k: v[2] for k, v in args if isinstance(v, tuple) and v[0] == "stack"}
-        self.call_log.append((frozenset(chosen), extent))
+        # A recorded call's out-parameters: the bytes it changed in this frame, by argument and offset
+        # from it (the original's run lays its frame out as the real one did; the lift's takes them from
+        # the guide, as it does the arguments)
+        outs: dict = {}
+        if rec is not None and self.lift is None:
+            fb = {off + i: b for off, run in rec.frame for i, b in enumerate(run)}
+            for k, v in args:
+                if k in chosen and isinstance(v, tuple) and v[0] == "stack" and k in extent:
+                    o = raw[k] - ENTRY_SP
+                    outs[k] = [(j, fb[o + j]) for j in range(max(extent[k], 8)) if o + j in fb and o + j < 0]
+        self.call_log.append((frozenset(chosen), extent, outs))
         if self.guide is not None and n <= len(self.guide):
             # (the lift's run: through the arguments the original's call chose, as far as its
             # objects reach, since this frame's layout and the scratch values it passes differ)
             chosen, extent = self.guide[n - 1][0], {**extent, **self.guide[n - 1][1]}
+            outs = self.guide[n - 1][2] if len(self.guide[n - 1]) > 2 else {}
         for k, v in args:  # out-parameters: through the arguments only (scratch registers differ)
             if k in chosen and isinstance(v, tuple) and v[0] == "stack" and k in extent:
                 p = raw[k]
+                if rec is not None:  # (what the real callee wrote, in place of the pattern)
+                    for j, b in outs.get(k, ()):
+                        if p + j < ENTRY_SP and not any(p + j - 7 <= r <= p + j + 7 for r in self.frame_record):
+                            self.store(p + j, 1, b)
+                    continue
                 # (within the object, stackref's extent, and never over the frame record: a small
                 # local below it would let the pattern overwrite the saved return address)
                 for j in range(0, max(extent[k], 8), 8):
@@ -655,14 +726,42 @@ class Machine:
                 self.state[100 + i] = "junk"
         for k in range(NG, OV + 1):
             self.regs[k] = 0
-        ret = self.overrides.get(("c", n), self.word(mix(n, 11, self.seed)))  # (a mutation may set it)
+        # (a mutation may set it)
+        ret = self.overrides.get(("c", n), rec.x[0] if rec is not None else self.word(mix(n, 11, self.seed)))
         self.regs[X0:X0 + 8] = (ret & 0xFFFFFFFFFFFFFFFF).to_bytes(8, "little")
-        self.regs[Q0:Q0 + 16] = f_to(n + 0.5, 4).to_bytes(16, "little")  # an f32 result (the game's floats)
+        if rec is not None:
+            self.regs[X0 + 8:X0 + 16] = (rec.x[1] & 0xFFFFFFFFFFFFFFFF).to_bytes(8, "little")
+            for i, q in enumerate(rec.q):
+                self.regs[Q0 + QSTRIDE * i:Q0 + QSTRIDE * i + 16] = (q & (1 << 128) - 1).to_bytes(16, "little")
+            for a, run in rec.mem:  # (the callee's writes: not the function's, though they replace its bytes)
+                for i, b in enumerate(run):
+                    x = a + i
+                    if x >= NULL_PAGE and not STACK_LO <= x < STACK_TOP:
+                        self.page(x // PAGE)[x % PAGE] = b
+                        if x in self.dirty:
+                            self.dirty[x] = b
+        else:
+            self.regs[Q0:Q0 + 16] = f_to(n + 0.5, 4).to_bytes(16, "little")  # an f32 result (the game's floats)
         self.state[0] = "written"
         # A float argument counts only when the caller's own code set it: a result left in v0 and
         # read by the next callee is indistinguishable from garbage it does not read (liveness
         # over-approximates), so a float result passed straight on is not compared.
         self.state[100] = "junk"
+
+    def recorded(self, target: int, t, modeled: bool):
+        """The snapshot's next recorded call when it went to this target (and is taken), else None.
+        A modelled C function the real run did not record (inlined, or run outside the recomp's code)
+        leaves the list where it is; any other call elsewhere ends the replay."""
+        calls = self.snap.calls if self.snap is not None else ()
+        if self.replay_end is not None or self.replay_i >= len(calls):
+            return None
+        r = calls[self.replay_i]
+        if r.target != target and self.canonical(r.target) != t:
+            if not modeled:
+                self.replay_end = f"call {self.calls + 1} to {target:#x}, the real run's to {r.target:#x}"
+            return None
+        self.replay_i += 1
+        return r
 
     def stackref(self, v: int):
         """A stack address as ("stack", the bytes the function wrote from it on, extent, taken,
