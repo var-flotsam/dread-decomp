@@ -2043,7 +2043,7 @@ class Lifter:
             n = self.key(regname(o[0].reg))
             if "semantic" in self.opts and isinstance(self, FlatLifter):
                 # The register holds the page too: a label where the ways in disagree drops the
-                # page (join_consts), and reads there take X<n> (71011eeab4 called a stale X8)
+                # page (join_consts), and reads there take X<n>, not the value it held before
                 self.line(f"X{n} = (u64)({self.global_ref(o[1].imm, False)});")
                 self.types[n] = "char*"
                 self.clob.discard(n)
