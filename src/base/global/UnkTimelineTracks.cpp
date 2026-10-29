@@ -34,19 +34,28 @@ struct UnkTypeView {
 // Reads the rest of a track from the file.
 void fn_710006afd4(UnkTrack* track, base::global::CRntFile* file);
 
+// The array's slots are written as raw words (the original's stores may alias the array's own
+// fields: its count is read again after each one).
+static inline void StoreSlot(UnkTrack** slot, UnkTrack* value) {
+    __builtin_memcpy(slot, &value, sizeof(value));
+}
+
 // The tracks' array: owning pointers, moved when it grows.
 struct UnkTrackArray : base::UnkVector<UnkTrack*> {
     void Grow(u32 n) {
         if (capacity < n) {
             auto** p = static_cast<UnkTrack**>(allocator->vf_0x40((u64)n * 8, 8, flags));
             if (data) {
-                for (u32 i = 0; i < count; ++i) {
-                    p[i] = data[i];
-                    data[i] = nullptr;
-                    if (UnkTrack* old = data[i]) {
-                        data[i] = nullptr;
+                UnkTrack** src = data;
+                u64 k = 0;
+                for (u32 i = 0; i < count; ++i, ++k, ++src) {
+                    UnkTrack* t = *src;
+                    StoreSlot(src, nullptr);
+                    StoreSlot(&p[k], t);
+                    UnkTrack* old = *src;
+                    StoreSlot(src, nullptr);
+                    if (old)
                         old->vf_0x10();
-                    }
                 }
                 allocator->vf_0x48(data);
             }
@@ -58,7 +67,6 @@ struct UnkTrackArray : base::UnkVector<UnkTrack*> {
 
 // Reads the track count, then each track: its class id, and the track itself when the class is a
 // CTrack the registry can create.
-// NON_MATCHING(major): written from the original's behaviour, not compared instruction by instruction.
 void fn_710006b6e4(UnkTrackArray* self, base::global::CRntFile* file) {
     u32 n;
     fn_710007c714(file, &n, 4, 1);
@@ -66,8 +74,9 @@ void fn_710006b6e4(UnkTrackArray* self, base::global::CRntFile* file) {
     for (u32 i = 0; i < n; ++i) {
         u64 raw;
         fn_710007c714(file, &raw, 8, 1);
+        UnkVersionRegistry* registry = g_unk_7101d4c8d0;
         u64 id = raw;
-        auto* type = reinterpret_cast<const base::reflection::CType*>(fn_71000a5118(g_unk_7101d4c8d0, &id));
+        auto* type = reinterpret_cast<const base::reflection::CType*>(fn_71000a5118(registry, &id));
         if (!type)
             continue;
         if (!fn_710009d50c(type, reinterpret_cast<const base::reflection::CType*>(fn_710006ad5c())))
@@ -83,11 +92,11 @@ void fn_710006b6e4(UnkTrackArray* self, base::global::CRntFile* file) {
         u32 cap = self->capacity;
         if (cap <= c && self->step != 0)
             cap = (c / self->step + 1) * self->step;
-        if ((s32)cap <= (s32)c)
+        if (!((s32)c < (s32)cap))
             for (;;) {
             }
         self->Grow(cap);
-        self->data[self->count] = static_cast<UnkTrack*>(p);
+        StoreSlot(&self->data[self->count], static_cast<UnkTrack*>(p));
         ++self->count;
         fn_710006afd4(static_cast<UnkTrack*>(p), file);
     }

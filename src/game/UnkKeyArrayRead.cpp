@@ -18,8 +18,10 @@ struct UnkKey12Array : base::UnkVector<UnkKey12> {
     void Grow(u32 n) {
         auto* p = static_cast<UnkKey12*>(allocator->vf_0x40((u64)n * sizeof(UnkKey12), 8, flags));
         if (data) {
+            UnkKey12* dst = p;
+            const UnkKey12* src = data;
             for (u32 i = 0; i < count; ++i)
-                __builtin_memcpy(&p[i], &data[i], sizeof(UnkKey12));
+                __builtin_memcpy(dst++, src++, sizeof(UnkKey12));
             allocator->vf_0x48(data);
         }
         data = p;
@@ -28,12 +30,12 @@ struct UnkKey12Array : base::UnkVector<UnkKey12> {
 };
 
 // Reads the key count, then each key's 12 bytes into a new default key at the end.
-// NON_MATCHING(major): written from the original's behaviour, not compared instruction by instruction.
 void fn_7100b8948c(UnkKey12Array* self, base::global::CRntFile* file) {
     u32 n;
     fn_710007c714(file, &n, 4, 1);
-    if (self->capacity < n)
-        self->Grow(n);
+    u32 want = n;
+    if (self->capacity < want)
+        self->Grow(want);
     for (u32 i = 0; i < n; ++i) {
         u32 c = self->count + 1;
         if (self->capacity < c)
@@ -41,6 +43,8 @@ void fn_7100b8948c(UnkKey12Array* self, base::global::CRntFile* file) {
         for (u32 k = self->count; k < c; ++k)
             new (&self->data[k]) UnkKey12();
         self->count = c;
-        fn_710007c714(file, &self->data[c - 1], sizeof(UnkKey12), 1);
+        // The last key (the array's back(), which allows for an empty array).
+        UnkKey12* end = self->data + self->count;
+        fn_710007c714(file, self->count == 0 ? end : end - 1, sizeof(UnkKey12), 1);
     }
 }
