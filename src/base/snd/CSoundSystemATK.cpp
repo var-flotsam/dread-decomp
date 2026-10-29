@@ -1,5 +1,6 @@
 // The sound system of unit 99 (base::snd::CSoundSystemATK): the command queue its setters feed, the
-// stop command (fn_71000ffa68), the set-up (fn_71000f7800) and the listener's matrix (fn_71000f88b8).
+// stop command (fn_71000ffa68), the set-up (fn_71000f7800), the listener's matrix (fn_71000f88b8)
+// and a voice's start (fn_71000f4ebc).
 #include <string.h>
 
 #include <new>
@@ -1167,4 +1168,139 @@ void fn_71000f88b8(UnkSoundSystemATK* self) {
     m[3][3] = 0.0f;
     fn_7101205f54(g_unk_7108b6acf8 + 0x1c8, m);
     Member<bool>(self, 0xd0) = false;
+}
+
+// ---- fn_71000f4ebc: starting a voice ----
+
+// A sound the engine plays (nn::atk's handle at +0x28's target), as the start reads and sets it: a
+// level copied over, the engine's player at +0x30 (its +0xb0 takes the level), the per-sound entries
+// at +0x3c (32 bytes each, grown on demand) and the start's arguments at +0x15c.
+struct UnkSoundEntry {
+    u32 id;  // the sound archive's id
+    u8 pad_0x4[0xc];
+    s32 field_0x10;
+    s32 field_0x14;  // halved for the start
+    u32 field_0x18;
+    u8 pad_0x1c[0x4];
+};
+static_assert(sizeof(UnkSoundEntry) == 0x20, "UnkSoundEntry placeholder layout");
+
+struct UnkSoundStart {
+    f32 level;  // copied to +0x4 and the player
+    f32 field_0x4;
+    f32 field_0x8;
+    f32 field_0xc;
+    u32 field_0x10;
+    u8 pad_0x14[0x14];
+    void** handle;  // 0x28: the engine's handle (its sound at *handle)
+    u8* player;     // 0x30
+    u32 entry_count;           // 0x38
+    UnkSoundEntry entries[8];  // 0x3c
+    s32 entry;                 // 0x13c, the one to start
+    u32 field_0x140;
+    u8 pad_0x144[0x4];
+    u64 field_0x148;
+    u64 field_0x150;
+    bool field_0x158;
+    u8 pad_0x159[0x3];
+    u32 start_id;    // 0x15c
+    f32 start_a;     // 0x160
+    f32 start_b;     // 0x164
+    u32 start_c;     // 0x168
+    bool enabled;    // 0x16c
+};
+static_assert(__builtin_offsetof(UnkSoundStart, entry) == 0x13c, "UnkSoundStart placeholder layout");
+static_assert(__builtin_offsetof(UnkSoundStart, enabled) == 0x16c, "UnkSoundStart placeholder layout");
+
+// The engine's start (the archive player, the handle, the sound id, and the start info) and the
+// handle's sound's setters (nn::atk, stubbed on the port).
+s32 fn_710120a274(u8* player, void** handle, u32 sound, void* x3, const u8* info);
+void fn_710120e5d0(void* sound, f32 value, u32 x1);
+f32 fn_710120e5c8(void* sound);
+void fn_710120e5b8(void* sound, f32 value);
+void fn_710120e648(void* sound, u32 value);
+void fn_710120e650(void* sound, f32 value);
+bool fn_7100132d20();
+
+template <class T>
+static inline void Put(u8* p, u64 offset, T value) {
+    __builtin_memcpy(p + offset, &value, sizeof(T));
+}
+
+// Starts the voice's current entry (when the voice is enabled and has one): records the arguments,
+// fills the engine's start info (0x168 bytes, its defaults spelled out below), starts the sound and
+// sets its volumes; then a fade of 0.2 for start id 1 off the sound thread, else of -2. Whether the
+// start succeeded; false when there is no sound afterwards.
+// NON_MATCHING(major): written from the original's behaviour, not compared instruction by instruction.
+// The start info's fields the original leaves unset are zero here.
+bool fn_71000f4ebc(UnkSoundStart* self, u32 id, u32 c, f32 a, f32 b) {
+    if (!self->enabled)
+        return false;
+    s32 index = self->entry;
+    if (index < 0)
+        return false;
+    self->start_id = id;
+    self->start_a = a;
+    self->start_b = b;
+    self->start_c = c;
+    if (self->entry_count <= (u32)index) {
+        __builtin_memset(&self->entries[self->entry_count], 0, ((u64)index + 1 - self->entry_count) * 0x20);
+        self->entry_count = index + 1;
+    }
+    self->field_0x140 = 0;
+    self->field_0x148 = 0;
+    self->field_0x150 = 0;
+    self->field_0x158 = false;
+
+    alignas(8) u8 info[0x168] = {};
+    Put<u32>(info, 0x0, 0x20803);
+    Put<u32>(info, 0x4, 2);
+    Put<u32>(info, 0x8, c);
+    Put<u32>(info, 0xc, id + 0x4000000);
+    Put<u64>(info, 0x28, ~0ull);
+    Put<u64>(info, 0x30, ~0ull);
+    Put<f32>(info, 0x7c, 1.0f);
+    info[0x80] = 0x7f;
+    // Eight output settings, 0xe bytes apart from +0x88: a 0x7f, a word of 0x40 and a 0xffff each.
+    for (u32 i = 0; i < 8; ++i) {
+        u64 o = 0x88 + i * 0xe;
+        info[o] = 0x7f;
+        Put<u32>(info, o + 4, 0x40);
+        Put<u16>(info, o + 8, 0xffff);
+    }
+    Put<s32>(info, 0xfc, -1);
+    info[0x128] = 0x7f;
+    info[0x160] = 1;
+    const UnkSoundEntry& e = self->entries[index];
+    Put<s32>(info, 0x10c, e.field_0x10 < 0 ? 0 : e.field_0x10);
+    Put<u32>(info, 0x110, (u32)((f32)e.field_0x14 * 0.5f));
+    Put<u32>(info, 0x130, 1);
+    info[0x134] = e.field_0x18 > 1;
+
+    f32 level = self->level;
+    self->field_0x4 = level;
+    self->field_0x8 = b;
+    self->field_0xc = a;
+    self->field_0x10 = 0;
+    *reinterpret_cast<f32*>(self->player + 0xb0) = __builtin_fmaxf(level, 0.0f);
+    bool ok = fn_710120a274(self->player, self->handle, e.id, nullptr, info) == 0;
+    void* sound = *self->handle;
+    if (!sound)
+        return false;
+    fn_710120e5d0(sound, b, 0);
+    if (fn_710120e5c8(sound) > 0.1f) {
+        f32 v = fn_710120e5c8(sound);
+        if (self->enabled && *self->handle)
+            fn_710120e5d0(*self->handle, __builtin_fmaxf(v, 0.0f), 0);
+    }
+    fn_710120e5d0(sound, 1.0f, 0);
+    fn_710120e5b8(sound, 1.0f);
+    if (*self->handle)
+        fn_710120e648(*self->handle, 0);
+    bool on_thread = fn_7100132d20();
+    void* current = *self->handle;
+    if (!current)
+        return ok;
+    fn_710120e650(current, !on_thread && self->start_id == 1 ? 0.2f : -2.0f);
+    return ok;
 }
