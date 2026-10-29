@@ -22,6 +22,7 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - An array of non-trivially-destructible members becomes a loop: declare separate members: [Link groups](#link-groups).
 - Owning-pointer arrays whose count reloads after each slot store: write the slots as raw words; grow loops walk by pointer with a 32-bit counter beside a 64-bit index: [port functions round 1](#session-log-newest-first).
 - A parse context belongs in an inlined helper (its alloca takes the frame's top slot); per-branch `always_inline` copies give tail-merged duplicates: same entry.
+- An empty-element loop that should widen its counter and compare it with a 64-bit `i + 1`: `s32` counter, `!=`, `u64 n = i + 1` shared with the reserve: [port functions round 3](#session-log-newest-first).
 
 **Iterators and iterator values**
 - Elements copied member by member need a user-written move constructor; `flatten` wrappers reproduce inlined template moves: [batch 15](#slice-1-near-copies-batch-15).
@@ -49,6 +50,8 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - Taking both ids by reference in a comparison keeps the owner load from being hoisted; a loop over a matrix becomes memcpy, so write `UnkCopyMatrix` out: [hubs batch 3](#slice-1-hubs-batch-3).
 
 **Switches and block layout**
+- Two calls to one callee on two paths: an early `return` after the first keeps them in separate blocks until the branch folder merges them (if/else merges them in the IR and the stores before them move): [port functions round 3](#session-log-newest-first).
+- A 7 KB function compared block by block (per-block counts of loads, stores and arithmetic, then stored addresses and constants as sets) finds behaviour differences that a percentage hides: same entry.
 - Write switch cases in the order of their bodies in the binary to get Clang's compare tree: [Above 2 KB](#above-2-kb-outside-the-six-hand-slices-srcgame_s7-2026-10-21) (music volume overrides).
 - `__builtin_expect`, `always_inline` and early returns do not change register allocation in long inlined destructor runs: [Exact copies of matched functions](#exact-copies-of-matched-functions).
 
@@ -123,6 +126,37 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - Several templates can carry one address's tag (`refl_GetPrimitiveType<G>` and its inline helper `refl_MakePrimitiveType<G>`, which Clang 18 keeps out of line); an alias to one that returns a class by value puts its hidden result pointer in the caller's rdi and writes the object over the caller's frame. A crash whose return address is a function's start, with a type's hook table on the stack, is the sign: [port M1 round 5](#session-log-newest-first).
 
 ## Session log (newest first)
+
+**Matching the port's hand-written boot functions, round 3 (2026-10-29, branch `claude/project-thread-lths9k`).**
+The eleven functions the port wrote that were still not `O` after rounds 1 and 2, and the NEON helpers round. Whole
+binary: `O` 85,044 to 85,045, `m` 399 to 402, `M` 15 to 11. Now `O`: fn_71000ffa68 (the sound stop command). Major to
+minor: the string-id split shared by fn_7100cfca0c and fn_7100d1f764 (70% to 98%), fn_71000f4ebc (starting a voice),
+and fn_71001b83f8 (the frustum update, 7 KB). fn_710000af7c gets the original's frame (48% to 59%). The rest stay
+minor after a time-boxed pass: fn_710109ce10 (the variadic register saves come out in another order whatever the
+body), fn_71001bab30 (the and chain of the six inside tests), fn_71001b76ec (one address register), fn_71000f88b8
+(vector scheduling; no form of the helpers moved it) and fn_710006deac (not retried). What made the difference:
+- **Keeping two calls apart for the branch folder.** fn_71000ffa68 calls the same function on two paths. Written as
+  if/else, the IR merges the two calls into one block and the stores before them get scheduled early. With an early
+  `return` after the first, each call keeps its own block until the branch folder merges them, which gives the
+  original's order.
+- **A signed counter compared with `!=`.** The split helper's empty-id loop is `for (s32 k = count; k != n; ++k)` with
+  `u64 n = i + 1`. The `nsw` increment lets the counter widen to 64 bits, and `n` is computed once in 64 bits and
+  shared with the reserve. Unsigned counters, `<` and `<=` all either keep a 32-bit compare or move `i + 1` into an
+  induction variable of the outer loop.
+- **A start-info constructor read off the stores.** lib/nnsdk has no audio toolkit, so `UnkAtkStartInfo`'s layout
+  is the set of fields the original's inlined constructor writes. Fields it never writes stay unset, as they are
+  there, and +0x150 of the voice is not cleared. Both level clamps are `!(x <= 0) ? x : 0`, which keeps a NaN the
+  way the original's `fmax` does; `__builtin_fmaxf` would return 0.
+- **Comparing a large function block by block.** For the frustum, split both listings at every branch and call and
+  compare the counts of loads, stores, multiplies and adds per block, then the sets of stored addresses, constants,
+  conversions and compare conditions. That found one real difference: the slab boxes now grow from the box's own
+  value first (`m < p ? m : p`, so a NaN point keeps the box value), with scoped temporaries that give the original's
+  0x150 frame. The orthographic half axes are `(axis * size) * 0.5`, as in the original. The quantisation is written as the original's
+  floor-or-ceiling, which gives the same values as the double truncation it replaces. Also: the plane builder takes
+  its points by reference (they are reloaded after each `sqrtf` call), and only the near distance is read before the
+  branch. The bytes still differ because the original reloads more stored values than ours does.
+- **A lookup's locals in the caller.** Declaring fn_710000af7c's lookup ids and result in each branch, instead of in
+  the inlined helper, puts them below the read target, as in the original.
 
 **NEON vector-math helpers (2026-10-29, branch `claude/project-thread-lths9k-2`).** `include/base/math/UnkSimd.h`
 reproduces the original's hand-vectorised shapes with Clang vector extensions and, on AArch64, NEON intrinsics. A 3D

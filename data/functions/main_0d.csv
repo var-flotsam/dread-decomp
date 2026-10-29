@@ -1193,7 +1193,7 @@ address,size,name,name_source,subsystem,status
 0x7100d1ee94,456,fn_7100d1ee94,unknown,game/characters?,m
 0x7100d1f05c,1764,fn_7100d1f05c,unknown,game/characters?,U
 0x7100d1f740,36,fn_7100d1f740,unknown,game/characters?,O
-0x7100d1f764,784,fn_7100d1f764,unknown,game/characters?,M
+0x7100d1f764,784,fn_7100d1f764,unknown,game/characters?,m
 0x7100d1fa74,212,fn_7100d1fa74,unknown,game/characters?,O
 0x7100d1fb48,212,fn_7100d1fb48,unknown,game/characters?,O
 0x7100d1fc1c,212,fn_7100d1fc1c,unknown,game/characters?,O
