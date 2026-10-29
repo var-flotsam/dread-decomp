@@ -5732,7 +5732,7 @@ address,size,name,name_source,subsystem,status
 0x71000f4dc0,132,fn_71000f4dc0,unknown,unknown,O
 0x71000f4e44,24,fn_71000f4e44,unknown,unknown,O
 0x71000f4e5c,96,fn_71000f4e5c,unknown,unknown,U
-0x71000f4ebc,932,fn_71000f4ebc,unknown,unknown,U
+0x71000f4ebc,932,fn_71000f4ebc,unknown,unknown,M
 0x71000f5260,232,fn_71000f5260,unknown,unknown,U
 0x71000f5348,24,fn_71000f5348,unknown,unknown,O
 0x71000f5360,24,fn_71000f5360,unknown,unknown,O
