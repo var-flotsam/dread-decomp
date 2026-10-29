@@ -15,7 +15,7 @@ except ImportError:  # pyelftools missing
 
 def run(end: str, steps: int, scale: int = 1, cut=None, events=None, undef=()):
     return SimpleNamespace(events=events or [(("end", end), ())], steps=steps, scale=scale, cut=cut, clipped=False,
-                           undef_mem=set(undef))
+                           undef_mem=set(undef), calls_room=0)
 
 
 @unittest.skipIf(pcode_emu is None, "pyelftools is not installed")
@@ -42,6 +42,27 @@ class CutOff(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+@unittest.skipIf(pcode_emu is None, "pyelftools is not installed")
+class Changes(unittest.TestCase):
+    """Events carry the bytes changed since the one before; the memory at an event is all of them."""
+
+    def test_written_follows_the_changes(self):
+        events = [(("call", 1, (), ()), ((0x10, 1), (0x11, 2))), (("call", 2, (), ()), ((0x11, None), (0x12, 3))),
+                  (("end", "return"), ((0x10, 4),))]
+        self.assertEqual(pcode_emu.written(events, 0), {0x10, 0x11})
+        self.assertEqual(pcode_emu.written(events, 2), {0x10, 0x12})
+
+    def test_a_byte_written_back_before_the_next_event_is_no_change(self):
+        m = SimpleNamespace(dirty={0x10: 5}, _ckpt={0x10: 5}, _touched={0x10}, events=[], snapshot_bytes=0,
+                            calls_room=0, scale=1, cut=None, steps=0)
+        m.max_events = lambda: 99
+        pcode_emu.Machine.checkpoint(m, ("call", 1, (), ()))
+        m.dirty[0x11] = 7
+        m._touched = {0x11}
+        pcode_emu.Machine.checkpoint(m, ("end", "return"))
+        self.assertEqual([e[1] for e in m.events], [(), ((0x11, 7),)])
 
 
 @unittest.skipIf(pcode_emu is None, "pyelftools is not installed")

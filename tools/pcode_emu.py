@@ -66,6 +66,7 @@ RETRY_SCALE = 8                   # a cut-off run is retried with this many time
 SLOWER = 20                       # a lift this many times slower than an original that ended is wrong (compare)
 MAX_EVENTS = 256                  # calls recorded per run; then it ends as a time-out (checkpoint)
 MAX_SNAPSHOT = 1 << 21            # bytes of written memory copied into its events, in all; the same
+STEPS_PER_CALL = 2000             # a run from a snapshot's recorded calls: this many more steps per call
 WINDOW = 64                       # bytes compared and written around a stack pointer argument
 
 X0, Q0, SP, NG, ZR, CY, OV = 0x4000, 0x5000, 8, 0x100, 0x101, 0x102, 0x103
@@ -429,6 +430,8 @@ class Machine:
         # The snapshot's recorded calls, replayed in order while each call goes where the recorded one
         # went (replay_end: why replaying stopped, the calls after it made up as without a snapshot)
         self.replay_i, self.replay_end = 0, None
+        # (room for every recorded call: the real run made them all, the last before its return)
+        self.calls_room = len(self.snap.calls) if self.snap is not None else 0
         self.mem_ovr: dict[int, list[tuple[int, int]]] = {}
         for (kind, k), v in self.overrides.items():
             if kind == "m":
@@ -442,6 +445,8 @@ class Machine:
         self.uniq: dict[int, int] = {}
         self.pages: dict[int, bytearray] = {}
         self.dirty: dict[int, int] = {}
+        self._ckpt: dict[int, int] = {}  # dirty as the last checkpoint saw it, and the bytes touched since
+        self._touched: set[int] = set()
         self.cut: str | None = None  # why the run ended as a time-out: steps, events or snapshot (compare)
         self.clipped = False  # a modelled memset or memcpy stopped at 64 KiB (compare)
         self.fault: int | None = None  # the address a run faulted on
@@ -555,6 +560,7 @@ class Machine:
         elif not (self.own[0] <= a < self.own[1]):
             for i in range(size):
                 self.dirty[a + i] = b[i]
+            self._touched.update(range(a, a + size))
 
     # registers
     def reg(self, off: int, size: int) -> int:
@@ -740,6 +746,7 @@ class Machine:
                         self.page(x // PAGE)[x % PAGE] = b
                         if x in self.dirty:
                             self.dirty[x] = b
+                            self._touched.add(x)
         else:
             self.regs[Q0:Q0 + 16] = f_to(n + 0.5, 4).to_bytes(16, "little")  # an f32 result (the game's floats)
         self.state[0] = "written"
@@ -824,6 +831,7 @@ class Machine:
         """Drop what only running needs (memory pages, the write sets): a finished run that is
         kept for comparison needs its events, registers, coverage and logs."""
         self.pages, self.dirty, self.stack_written, self.uniq, self._read_seen = {}, {}, set(), {}, set()
+        self._ckpt, self._touched = {}, set()
 
     def checkpoint(self, event) -> None:
         if event[0] == "call" and isinstance(event[1], tuple) and event[1][1] in PURE_MATH:
@@ -831,14 +839,33 @@ class Machine:
             # the next event compares them)
             self.events.append((event, ()))
             return
-        self.events.append((event, tuple(sorted(self.dirty.items()))))
-        self.snapshot_bytes += len(self.dirty)
-        if len(self.events) >= MAX_EVENTS * self.scale or self.snapshot_bytes > MAX_SNAPSHOT * self.scale:
+        # The bytes the function's writes changed since the last checkpoint (None: no longer counted, an
+        # undefined byte): the memory at an event is what all events up to it hold (written()), and
+        # two runs agree at every event when they agree on each event's changes.
+        d, ck = self.dirty, self._ckpt
+        delta = tuple((k, d.get(k)) for k in sorted(self._touched) if d.get(k) != ck.get(k))
+        for k, v in delta:
+            if v is None:
+                ck.pop(k, None)
+            else:
+                ck[k] = v
+        self._touched = set()
+        self.events.append((event, delta))
+        # (the budget counts a copy of all written memory per event, as the runs were limited before
+        # events held changes; a run replaying recorded calls counts the changes)
+        self.snapshot_bytes += len(delta) if self.calls_room else len(self.dirty)
+        if len(self.events) >= self.max_events() or self.snapshot_bytes > MAX_SNAPSHOT * self.scale:
             # Each event keeps a copy of the memory written so far: a loop calling on every
             # iteration would hold thousands. The run ends here as a time-out (compare: what came
             # before must agree).
-            self.cut = self.cut or ("events" if len(self.events) >= MAX_EVENTS * self.scale else "snapshot")
-            self.steps = MAX_STEPS * self.scale
+            self.cut = self.cut or ("events" if len(self.events) >= self.max_events() else "snapshot")
+            self.steps = self.max_steps()
+
+    def max_steps(self) -> int:
+        return MAX_STEPS * self.scale + STEPS_PER_CALL * self.calls_room
+
+    def max_events(self) -> int:
+        return MAX_EVENTS * self.scale + self.calls_room
 
     # -- execution ------------------------------------------------------------------------------
 
@@ -851,7 +878,7 @@ class Machine:
         try:
             while True:
                 self.steps += 1
-                if self.steps > MAX_STEPS * self.scale:
+                if self.steps > self.max_steps():
                     self.cut = self.cut or "steps"  # (compare: what came before the cut must agree)
                     self.finish("time-out")
                     return
@@ -1039,6 +1066,7 @@ class Machine:
                     if (ins[2][0], ins[2][1] + i) in self.undef_vn:
                         self.undef_mem.add(a + i)
                         self.dirty.pop(a + i, None)
+                        self._touched.add(a + i)
                         self.stack_written.discard(a + i)
         elif name in INT_BINARY:
             a, b = r(ins[0]), r(ins[1])
@@ -1308,11 +1336,11 @@ def compare(a: Machine, b: Machine, ret: str | None) -> str:
         # 64 KiB in either run.
         if shared < len(done.events) and done.events[shared][0] != ("end", "fault") \
                 and not (cut.clipped or done.clipped):
-            extra = {k for k, _ in cut.events[-1][1]} - {k for k, _ in done.events[shared][1]}
+            extra = written(cut.events, len(cut.events) - 1) - written(done.events, shared)
             if extra:
                 return f"memory written only by the {'original' if ta else 'lift'}, cut off: byte {min(extra):#x}"
         if tb and b.cut == "steps" and end_a in (("end", "return"), ("end", "fault")) \
-                and a.steps * SLOWER <= MAX_STEPS * b.scale:
+                and a.steps * SLOWER <= Machine.max_steps(b):
             return f"the lift ran out of steps where the original ended after {a.steps}"
         return f"skip: the {'original' if ta else 'lift'} was cut off ({cut.cut})"
     if len(ea) != len(eb):
@@ -1373,6 +1401,15 @@ def arg_text(v) -> str:
     if isinstance(v, tuple):
         return "stack[" + " ".join("--" if b is None else f"{b:02x}" for b in v[1][:24]) + "]"
     return "?" if v is None else f"{v:#x}"
+
+
+def written(events, upto: int) -> set:
+    """The bytes a run's writes hold at event `upto` (its events carry changes, checkpoint)."""
+    held: set = set()
+    for _, m in events[:upto + 1]:
+        for k, v in m:
+            (held.discard if v is None else held.add)(k)
+    return held
 
 
 def mem_diff(ma, mb) -> str:

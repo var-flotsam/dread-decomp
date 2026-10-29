@@ -676,7 +676,7 @@ def _check(job: tuple[int, list]) -> tuple[int, int | None, dict, str, str]:
             if verdict == "fail":
                 for name, m in zip(("original", "lift"), oracle.last):
                     debug.append(f"  {name}: {m.steps} steps, x0={m.x(0):#x}")
-                    debug += [f"    {ev}  [{len(mem)} bytes written]" for ev, mem in m.events]
+                    debug += [f"    {ev}  [{len(mem)} bytes changed]" for ev, mem in m.events]
         if verdict == "pass":
             size = oracle.orig.sizes[a]
             return a, k, {"attempt": k, "oracle_inputs": runs, "coverage": len(covered) * 4 / max(size, 1),
