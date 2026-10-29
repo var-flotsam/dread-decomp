@@ -124,6 +124,21 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Matching the port's hand-written boot functions, round 2 (2026-10-29, branch `claude/project-thread-lths9k-2`).**
+Two more `O`: fn_7100068f5c (the timeline events read, 2240 B) and fn_7100223c2c (the render-target slots, 2496 B).
+Both followed from round 1's array finding. The events' five owning-pointer lists use the tracks' grow loop and
+raw-word slot stores, with `Grow`/`Append` forced inline (the original inlines all eight). The counts are five
+separate locals, which gives the original's stack slots. The render slots' array copies its 0x18-byte elements as raw
+words too, and its describe call takes a ninth argument on the stack (a zero). fn_710006deac (the pads' per-frame
+update) goes from 2% to 35% and from major to minor. It now does what the original does: a typed layout
+(`UnkPadState`, `UnkPadSticks`), two `sqrtf` calls per stick (the clamp and the normalisation each call it), the moved
+flags read back from memory, stick and button pointers chosen per access (a pad with neither style bit reads its
+buttons through null, as the original does; the port reports only a handheld pad), and one call to fn_710006d55c at
+the end. What still differs is how the pad loop's induction variables are assigned. A stale `NON_MATCHING` line above
+fn_710006ddc8 (`O` since round 1) is gone. Left as they were: fn_71000f88b8 and fn_71001b83f8 (NEON), fn_71000f4ebc
+(StartInfo), and the split helper of fn_7100cfca0c/fn_7100d1f764 (70%: its construct loop compares a 32-bit counter
+with a 64-bit `i + 1`, which no form tried reproduces).
+
 **Matching the port's hand-written boot functions, round 1 (2026-10-29, branch `claude/project-thread-lths9k`).**
 The functions PRs #256, #259 and #261 wrote for the port from the original's behaviour (all `NON_MATCHING`), compared
 instruction by instruction now. None is in the direct-call boot slice (the boot reaches them through vtables and
