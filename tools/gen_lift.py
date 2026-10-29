@@ -2962,8 +2962,11 @@ class FlatLifter(Lifter):
             return self.fail("falls off the end")
         # Declarations go first: gotos must not jump over initialisations.
         pre = []
+        # (semantic mode: every declared parameter seeds its register, also one below the highest the
+        # function writes before reading on some path: another path passes it on, fn_71010ab810)
+        declared = max([k for k in self.params if k < 100], default=-1) if "semantic" in self.opts else -1
         for n in sorted(k for k in self.types if k < 100):
-            init = f" = (u64)p{n}" if n in self.params else (" = (u64)&ret" if n == 8 and self.sret else
+            init = f" = (u64)p{n}" if n in self.params or n < declared else (" = (u64)&ret" if n == 8 and self.sret else
                                                              " = 0" if "semantic" in self.opts else "")
             pre.append(f"    u64 X{n}{init};")
         for n in sorted(k for k in self.types if k >= 100):

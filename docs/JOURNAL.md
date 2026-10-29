@@ -169,6 +169,14 @@ From the trace run's refusals (`lifted_trace1`, 6,007 of 6,070 accepted):
 - **A call typed by its callee's float result** (`7100713e2c`: `bl fn_710007a1d0` at +0x50, its s0 read
   only at the join +0x110 after a `b`): the call stayed `char*` because nothing read s0 before the branch.
   In semantic mode a callee whose callers all read s0 alone (result_main {s0}) is called as returning it.
+- **A parameter written on another path** (`71010ab810`: x2 and x3 set before one call, passed on
+  untouched to another on the `b.lt` path): FlatLifter seeded only the registers abi_facts lists as
+  arguments, so the declared `p2`, `p3` went unused and X2, X3 started at 0. In semantic mode every
+  declared parameter below the highest seeds its register.
+- **Oracle: stack arguments and libm calls.** A function's stores into its own incoming stack arguments
+  are not compared (the callee's to change; the lift keeps them as parameters). At a call to a libm
+  function (sqrtf, sinf, ...) memory is not compared: it reads none, and Clang moves stores past it
+  (`71001b83f8`); the next event compares them.
 - **A whole q register loaded** (`7101205f54`, `ldp q1, q2, [x1]`): semantic mode had no q load at all.
   `ldr`/`ldur`/`ldp` of q registers now give their four 32-bit lanes as f32 values (State.lanes, as
   `ld1` builds them), so the existing `str q` and a new `stp q` store them back bit for bit and the lane

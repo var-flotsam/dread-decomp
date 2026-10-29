@@ -64,6 +64,10 @@ QSTRIDE = 0x20  # Ghidra spaces q<n> 32 bytes apart (room for SVE z<n>): q1 is a
 REG_SIZE = 0x6000
 CALLER_SAVED_X = range(19)
 CALLER_SAVED_Q = list(range(8)) + list(range(16, 32))
+# Imports that read and write no memory (their arguments and result are registers)
+PURE_MATH = frozenset(f + sfx for f in ("sqrt", "sin", "cos", "tan", "asin", "acos", "atan", "atan2", "exp", "exp2",
+                                        "log", "log2", "log10", "pow", "fmod", "floor", "ceil", "round", "trunc",
+                                        "fabs", "hypot", "sinh", "cosh", "tanh") for sfx in ("", "f"))
 MODELED = frozenset({"memcpy", "memmove", "memset", "memcmp", "strlen", "strcmp"})
 NOOP_USEROPS = frozenset({"DataMemoryBarrier", "DataSynchronizationBarrier", "InstructionSynchronizationBarrier",
                           "Hint_Prefetch", "SpeculationBarrier", "Yield", "SendEvent", "SendEventLocally",
@@ -420,6 +424,8 @@ class Machine:
                 self.frame_record.add(a)  # the saved return address: out-parameters never reach it
             elif size == 8 and v & 0xFFFFFFFFFFFFFFFF in self.entry_saved:
                 self.saves.add(a)  # a callee-saved register's entry value: a save slot, not a local
+        elif self.arg_slots and ENTRY_SP <= a < ENTRY_SP + 8 * self.arg_slots:
+            pass  # (the function's own stack arguments: the callee's to change, which the lift keeps elsewhere)
         elif not (self.own[0] <= a < self.own[1]):
             for i in range(size):
                 self.dirty[a + i] = b[i]
@@ -641,6 +647,11 @@ class Machine:
         self.pages, self.dirty, self.stack_written, self.uniq, self._read_seen = {}, {}, set(), {}, set()
 
     def checkpoint(self, event) -> None:
+        if event[0] == "call" and isinstance(event[1], tuple) and event[1][1] in PURE_MATH:
+            # (a libm function reads no memory: the compiler may move stores past it, fn_71001b83f8;
+            # the next event compares them)
+            self.events.append((event, ()))
+            return
         self.events.append((event, tuple(sorted(self.dirty.items()))))
         self.snapshot_bytes += len(self.dirty)
         if len(self.events) >= MAX_EVENTS * self.scale or self.snapshot_bytes > MAX_SNAPSHOT * self.scale:
