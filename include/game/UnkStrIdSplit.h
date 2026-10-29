@@ -92,8 +92,11 @@ __attribute__((always_inline)) inline void UnkSplitStrIds(const base::global::CS
                 if (cap <= i && out->step != 0)
                     cap = ((u32)i / out->step + 1) * out->step;
                 out->Reserve(cap);
-                out->Reserve(i + 1);
-                for (u64 k = out->count; k <= i; ++k) {
+                u64 n = i + 1;
+                out->Reserve(n);
+                // A signed counter compared for inequality, as in the original (its slots are
+                // addressed through the widened counter).
+                for (s32 k = out->count; k != n; ++k) {
                     // An empty id, constructed in place.
                     base::global::CStrId& id = out->data[k];
                     id.data = nullptr;
@@ -101,7 +104,7 @@ __attribute__((always_inline)) inline void UnkSplitStrIds(const base::global::CS
                         base::global::UnkEnsureStringPool();
                     id.data = &g_unk_7101d47108->empty;
                 }
-                out->count = i + 1;
+                out->count = n;
             }
             base::global::CStrId& slot = out->data[i];
             slot.Reset();
