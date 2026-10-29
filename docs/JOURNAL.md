@@ -148,6 +148,16 @@ From the trace run's refusals (`lifted_trace1`, 6,007 of 6,070 accepted):
   filled by a relocation, so byte mode emitted the literal `""` and native Lua read garbage entries from
   it. Bytes a relocation fills are never a string literal now: the address becomes `g_unk_<addr>`
   (byte-identical, and check.py then sees the relocation).
+- **Constants across a label** (`7100713e2c`: w8 is +pi/2 on the path that branches to +0x104 and -pi/2
+  falling into it; the `fmov s0, w8` there was folded to the fall-through's constant, 90 degrees became
+  -90): FlatLifter kept its known constants and adrp pages through labels. In semantic mode a label now
+  keeps those every way in agrees on (each goto records them), and no constants at a loop head.
+- **An indirect call's 32-bit argument** (`710016da74`: `mov w2, w19; blr x8`): the prototype said u32,
+  so x2's upper half was whatever the x86-64 or AArch64 compile left there; the original's is zero. In
+  semantic mode an indirect call passes it as `(u64)(u32)v`.
+- **Float to integer conversions saturate** (`fcvtzs`/`fcvtzu` and the rounding forms; a suspect for
+  `710122b164`): out of range the C cast is undefined, the instruction saturates and gives 0 for NaN.
+  Semantic mode spells that out in a statement expression.
 - **A whole q register loaded** (`7101205f54`, `ldp q1, q2, [x1]`): semantic mode had no q load at all.
   `ldr`/`ldur`/`ldp` of q registers now give their four 32-bit lanes as f32 values (State.lanes, as
   `ld1` builds them), so the existing `str q` and a new `stp q` store them back bit for bit and the lane

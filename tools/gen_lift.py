@@ -1006,7 +1006,7 @@ class Lifter:
         own = (8 in self.ret_regs) if isinstance(self, FlatLifter) else x8 in self.ret_ptrs
         if not own:
             raise Unsupported("indirect tail call with an indirect result (x8)")
-        args = self.args(self.callee_need(""))
+        args = self.indirect_args(self.args(self.callee_need("")))
         types, values = ", ".join(t for _, t in args), ", ".join(e for e, _ in args)
         self.decls.add(LIFT_AT)
         self.line(f"new ((void*)({x8}), lift_at_t{{}}) UnkResult(((UnkResult (*)({types}))({ptr}))({values}));")
@@ -1064,6 +1064,8 @@ class Lifter:
     def call(self, fn: str, ptr: str | None = None) -> str:
         """A call expression; declares the callee overload for these argument types."""
         args = self.args(self.callee_need(fn))
+        if ptr is not None:
+            args = self.indirect_args(args)
         types = ", ".join(t for _, t in args)
         values = ", ".join(e for e, _ in args)
         self.last_call = (fn if ptr is None else None, types)
@@ -1071,6 +1073,14 @@ class Lifter:
             return f"((char* (*)({types}))({ptr}))({values})"
         self.decls.add(f"namespace callee {{ char* {fn}({types}); }}")
         return f"callee::{fn}({values})"
+
+    def indirect_args(self, args: list) -> list:
+        """Semantic mode: an indirect call's 32-bit argument passed as u64, zero-extended as the
+        `mov w<n>` that set it (fn_710016da74): the callee is unknown, and one that reads x<n> sees
+        what the original's did."""
+        if "semantic" not in self.opts:
+            return args
+        return [(f"(u64)(u32)({e})", "u64") if t == "u32" else (e, t) for e, t in args]
 
     def result_of(self, addr: int) -> tuple | None:
         """Semantic mode: the result shape of the function at `addr` (abi_facts.result_shape:
@@ -2228,6 +2238,19 @@ class Lifter:
             if FTOINT[m]:
                 v = f"{FTOINT[m].format(s='f' if ft == 'f32' else '')}({v})"
             it = ("s" if m[-1] == "s" else "u") + ("64" if rd[0] == "x" else "32")
+            if "semantic" in self.opts:
+                # Saturating, NaN to 0, as the instruction does (a C cast out of range is undefined)
+                bits = 64 if rd[0] == "x" else 32
+                sfx = "f" if ft == "f32" else ""
+                lo, hi = (f"-{2.0 ** (bits - 1)!r}{sfx}", f"{2.0 ** (bits - 1)!r}{sfx}") if it[0] == "s" \
+                    else (f"0.0{sfx}", f"{2.0 ** bits!r}{sfx}")
+                u = "u" + it[1:]
+                mn, mx = (f"(({u})1 << {bits - 1})", f"(({it})~(({u})1 << {bits - 1}))") if it[0] == "s" \
+                    else ("0", f"(({it})~({it})0)")
+                v = (f"({{ {ft} lift_v = {v}; lift_v != lift_v ? ({it})0 : lift_v >= {hi} ? {mx} : "
+                     f"lift_v <= {lo} ? ({it}){mn} : ({it})lift_v; }})")
+                self.write(rd, f"({width_type(rd)})({v})", width_type(rd))
+                return True
             self.write(rd, f"({width_type(rd)})({it})({v})", width_type(rd))
         elif m == "fcvt" and len(o) == 2:
             rd, rn = regname(o[0].reg), regname(o[1].reg)
@@ -2422,7 +2445,7 @@ class Lifter:
             ptr, _ = self.read(regname(o[0].reg))
             self.s.written.discard(self.key(regname(o[0].reg)))
             x8, _ = self.read("x8")
-            args = self.args(self.callee_need(""))
+            args = self.indirect_args(self.args(self.callee_need("")))
             types, values = ", ".join(t for _, t in args), ", ".join(e for e, _ in args)
             self.decls.add(LIFT_AT)
             self.line(f"new ((void*)({x8}), lift_at_t{{}}) UnkResult(((UnkResult (*)({types}))({ptr}))({values}));")
@@ -2788,7 +2811,28 @@ class FlatLifter(Lifter):
         return var
 
     def open_if(self, cond: str, target: int) -> None:
+        self.edge(target)
         self.line(f"if (!({cond})) goto L_{target:x};")
+
+    def edge(self, target: int) -> None:
+        self.edges.setdefault(target, []).append((dict(self.s.consts), dict(self.s.pages)))
+
+    def join_consts(self, a: int, prev) -> None:
+        """Semantic mode, at a label: the known constants and pages are those every way in agrees
+        on (fn_7100713e2c sets w8 to +pi/2 before a `b` to the label and to -pi/2 falling into it,
+        and an `fmov s0, w8` there must read the register); none for a loop's head (a branch from
+        below, not seen yet), and the pages as they were then."""
+        ways = self.edges.pop(a, [])
+        if prev is not None and prev.mnemonic not in ("b", "br", "ret", "brk"):
+            ways.append((self.s.consts, self.s.pages))
+        if any(src >= a for src in self.sources.get(a, [])):
+            self.s.consts = {}
+            return
+        if not ways:
+            return
+        meet = lambda ds: {n: v for n, v in ds[0].items() if all(d.get(n) == v for d in ds[1:])}
+        self.s.consts = meet([c for c, _ in ways])
+        self.s.pages = meet([p for _, p in ways])
 
     def clobber(self) -> None:
         s = self.s
@@ -2817,12 +2861,15 @@ class FlatLifter(Lifter):
         self.cur_delta = 0
         self.fwidth = float_widths(ins, "semantic" in self.opts)
         targets = set()
+        self.sources: dict[int, list[int]] = {}  # branch target -> the branches' addresses
         for x in ins:
             for op in x.operands:
                 if op.type == arm64.ARM64_OP_IMM and (x.mnemonic in ("b", "cbz", "cbnz", "tbz", "tbnz")
                                                       or x.mnemonic.startswith("b.")) \
                         and addr <= op.imm < end:
                     targets.add(op.imm)
+                    self.sources.setdefault(op.imm, []).append(x.address)
+        self.edges: dict[int, list[tuple[dict, dict]]] = {}  # (semantic mode) constants and pages at each goto
         self.jtables: dict[int, tuple[int, list[int]]] = {}
         self.jskip: set[int] = set()
         self.ret_static: dict[int, set[int]] = {}
@@ -2830,8 +2877,10 @@ class FlatLifter(Lifter):
             self.find_guards(ins)
             if "semantic" in self.opts:
                 self.find_jump_tables(ins)
-                for _, tgts in self.jtables.values():
+                for br, (_, tgts) in self.jtables.items():
                     targets |= set(tgts)
+                    for t in tgts:
+                        self.sources.setdefault(t, []).append(br)
                 self.ret_static = self.result_copies(ins)
                 self.own_args()
             for self.pos, x in enumerate(ins):
@@ -2844,6 +2893,8 @@ class FlatLifter(Lifter):
                     self.s.x8w = False
                     self.s.lanes = {}
                     self.ret_regs = set(self.ret_static.get(self.pos, ()))
+                    if "semantic" in self.opts:
+                        self.join_consts(x.address, ins[self.pos - 1] if self.pos else None)
                 if x.address in self.gskip:
                     continue
                 if self.pos:
@@ -2881,6 +2932,8 @@ class FlatLifter(Lifter):
                 elif m == "br" and x.address in self.jtables:
                     idx, tgts = self.jtables[x.address]
                     v, _ = self.read(f"x{idx}")
+                    for t in tgts:
+                        self.edge(t)
                     cases = " ".join(f"case {k}: goto L_{t:x};" for k, t in enumerate(tgts))
                     self.line(f"switch ((u64)({v})) {{ {cases} default: __builtin_unreachable(); }}")
                 elif m == "br" and "semantic" in self.opts and self.s.x8w and regname(o[0].reg) != "x8":
@@ -2890,6 +2943,7 @@ class FlatLifter(Lifter):
                     self.s.written.discard(self.key(regname(o[0].reg)))  # the target isn't an argument
                     self.terminate("tail", self.call("", ptr))
                 elif m == "b":
+                    self.edge(o[0].imm)
                     self.line(f"goto L_{o[0].imm:x};")
                 else:
                     before = self.s.cmp
