@@ -114,6 +114,10 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - Integer and float arguments take separate register sequences on both AArch64 and x86-64: `(int, float, bool)` and `(ptr, ptr, float)` are the same call: same entry.
 - A struct-returning function (x8 on AArch64) called through a pointer from lifted code needs its hidden result pointer passed explicitly on x86-64 (rdi), or every argument shifts by one: same entry.
 - gen_lift byte mode can turn a data table into a string literal when its first bytes look like one (check.py does not check string relocations): on the port the literal is the executable's, and indexed reads walk into other strings. A scan of `src/lifted` for an indexed literal finds them: [port M1 round 7](#session-log-newest-first).
+- A hand-written call that leaves an argument in x0 (a constructor right after the allocation, a function given the previous call's result) is byte-identical on AArch64 and garbage on x86-64: declare and pass the argument. Conflicting declarations with different parameter counts point to them: [port M1 round 8](#session-log-newest-first).
+- lld relaxes `add sym@GOTPCREL(%rip), %reg` to `add $imm32, %reg` in a non-PIE program, wrong above 2 GB: link the port with `--no-relax`: same entry.
+- The static of a non-inline (or `static`) function is the executable's own copy on the port, while lifted code uses the image's: keep such state in the image off AArch64; `port_addresses.py` lists the unbindable ones: same entry.
+- A lifted variadic function hands on an AArch64 va_list: a hand-written callee taking a va_list must not be called from one (write the variadic caller by hand): same entry.
 - Several templates can carry one address's tag (`refl_GetPrimitiveType<G>` and its inline helper `refl_MakePrimitiveType<G>`, which Clang 18 keeps out of line); an alias to one that returns a class by value puts its hidden result pointer in the caller's rdi and writes the object over the caller's frame. A crash whose return address is a function's start, with a type's hook table on the stack, is the sign: [port M1 round 5](#session-log-newest-first).
 
 ## Session log (newest first)
@@ -149,6 +153,43 @@ does not define, L included. The other 6 are U and fail only on made-up input.
   their old budget. A replaying run counts changes, and gets one more event and 2,000 more steps for each
   recorded call. All 4 are accepted (38 s for `71000f8b30`). A regression sample of 311 functions (300
   that trace10 accepted, plus the 11 it did not) changed only those 4 verdicts.
+**Port M1 round 8: the Linux boot reaches the frame loop (2026-10-28 to 29, branch `claude/project-thread-3x0lf8`).**
+`tools/boot_distance.py --nvn`, main with the lifter's trace sets (`lifted_all`, then `lifted_trace5`, plus semantic overrides of the
+byte-mode lifts listed below): **all 10 milestones, including the new "first frame" and "first frame done"** (the notification
+loop fn_71001327c0 calling the per-frame callback fn_7100000d40). 2,165 lifts ran, no crash in 900 s. Each stop's cause, in boot order:
+- **nn::atk half real.** 522 semantic lifts in nn::atk's range were linked beside the silent stubs. A pointer-only stub
+  existed for status L only. `port_link.py` now leaves out every lift in a silent range and stubs U functions there too.
+- **`_setjmp`/`_longjmp`** (glibc's setjmp macro in the natively built Lua) were trapped as residue. They are the host's now.
+- **Variadic lifts refused as mismatched calls.** `(8 × ptr, u64, 8 × double)` against a caller's mixed list. Integers past the
+  sixth go to the stack in their own order wherever the floats are, so `signature_class` compares the classes' sequences
+  whenever every float has a register.
+- **gen_lift byte mode: data as string literals** (fixed in gen_lift by the lifter thread, #258). Ten luaL_Reg tables
+  became `""`, so native Lua read garbage names. `fn_7100066a50`'s `L""` became a 1-byte narrow literal, so the host's
+  `wcscpy` overran a heap block and corrupted dlmalloc's bins (found with hardware watchpoints on a no-ASLR run:
+  `port/docker/run.sh` with `--security-opt seccomp=unconfined` lets gdb disable ASLR). Until src/lifted is regenerated,
+  `port_lift.py --override` gives those 11 a semantic lift.
+- **A va_list across the lift boundary.** The lifted variadic `fn_71010c0b40` built an AArch64 va_list for the
+  hand-written `fn_71010bf400`, which read it as the host's. `fn_71010c0b40` is now hand-written (`O`, src/base/UnkLuaCall.cpp).
+- **A deadlock on the default allocator's lock.** `fn_7100416fe0` declared the path registry's constructor `fn_7100db37ec()`
+  with no parameter and called it right after the allocation. On AArch64, x0 still held the object; on x86-64, `this` was
+  rdi's leftover, the allocator's host mutex, which the constructor overwrote. The declaration is in
+  include/game/UnkPathRegistry.h now, and both callers still match. decl_check's conflicts list three more with differing
+  parameter counts (fixed in #261). The runtime's own objects (locks, events, threads) now also live in the host heap.
+- **lld's GOT relaxation truncated addresses.** In the non-PIE executable at 0x7173000000, lld rewrote
+  `add sym@GOTPCREL(%rip), %reg` as `add $imm32, %reg`, which can't hold an address above 2 GB (`unk_prop::Key` returned
+  0x74946db0). The executable is now linked with `-Wl,--no-relax`.
+- **A split function-local static.** `fn_7100de8f78`'s id registry is the static of a `static` function, so the executable
+  had its own copy, while the lifted `fn_7100de917c` copied the image's (0x71727bf4d8) into the game manager's id table.
+  The manager had no ids, so `fn_7100de9540` indexed an empty table. Off AArch64 the registry is the image's object and guard.
+  `port_addresses.py` places 26 such statics that the link cannot bind (statics of non-inline functions):
+  `fn_710007fdb4::s_heap`, `fn_7100083870::s_default` (handled), the `s_7172...` statics of `fn_710045f04c`, `fn_71005fcdc4`,
+  `fn_71008fa708` and `fn_7100906208`, `nninitStartup::s_available`/`s_used`, `unk_prop::IdTable::s_table` (sized past its
+  neighbour) and 14 cached string ids (`s_id`). Each can split the same way; the cached ids are probably harmless.
+- **Per frame:** `fn_71010e537c` takes the object `fn_7100defcec` returns (x0 on the console). The per-frame callback now passes it.
+
+Also: `nvnDeviceGetInteger(0x4)` (program memory alignment) and `DecompressGzip` and multi-waits in the runtime (round 7);
+`nn::os` host objects in the host heap. Next: `fn_7101191cc0` (main menu; accepted in the lifter's lifted_snap3) and
+`fn_710014d1a0` (1,688 B, no lift).
 
 **Lifter: a data table that starts like a string (2026-10-28, branch `claude/project-thread-zgkpk3`, after #255).**
 The boot's next stop: byte mode lifted `fn_7100167cc0` (`i < 10 ? table[i] : -1` over a u32 table at

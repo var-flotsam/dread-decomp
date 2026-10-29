@@ -96,8 +96,8 @@ struct UnkMotionTracks {
     u32 count;
 };
 
-// Which motions were applied (bit 1: the first, bit 2: the second). It is passed by value with a
-// non-trivial copy, so in memory.
+// Which motions were applied (bit 1: the first, bit 2: the second). fn_7100714700 reads it through a
+// pointer to a copy (the original's by-value pass of a type with a non-trivial copy, spelled out).
 struct UnkMotionMode {
     u32 bits;
 
@@ -105,7 +105,7 @@ struct UnkMotionMode {
     UnkMotionMode(const UnkMotionMode& other) : bits(other.bits) {}
 };
 
-void fn_7100714700(f32 frames, void* target, const UnkMatrix44* motion, UnkMotionMode mode);
+void fn_7100714700(f32 frames, void* target, const UnkMatrix44* motion, const UnkMotionMode* mode);
 
 static inline f32 Clamp(f32 x, f32 lo, f32 hi) {
     return x <= lo ? lo : (x >= hi ? hi : x);
@@ -201,5 +201,6 @@ void fn_7100b8b3bc(UnkTimeline* self, void* target, UnkMotionTracks* tracks, con
         mode.bits |= 4;
     f32 to_frame = FrameAt(self, to);
     f32 from_frame = FrameAt(self, from);
-    fn_7100714700(to_frame - from_frame, target, &motion, mode);
+    UnkMotionMode copy(mode);
+    fn_7100714700(to_frame - from_frame, target, &motion, &copy);
 }

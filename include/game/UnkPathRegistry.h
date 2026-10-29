@@ -10,3 +10,5 @@
 struct UnkPathRegistry;  // 0x70 bytes, opaque
 extern UnkPathRegistry* g_unk_71726b3240;  // the registry instance
 extern char g_unk_7101a34218[];            // the class's vtable
+
+void fn_7100db37ec(UnkPathRegistry* self);  // the registry's constructor

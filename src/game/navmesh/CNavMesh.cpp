@@ -569,9 +569,7 @@ bool fn_710027b780(UnkNavMesh* mesh, const CVector2D* point, u32 flags, u64 filt
     return out->count != 0;
 }
 
-struct UnkEntityObj;  // fn_71002b005c's parameter as src/game_aca57c/fn_7100ad0294.cpp declares it
 struct UnkVec3;       // fn_710007b444's source as src/game/CBatalloonAIComponent/fn_71003de7b4.cpp declares it
-bool fn_71002b005c(UnkEntityObj*);
 void fn_710007b444(void*, const UnkVec3*);
 
 // A read-only zero 2D vector (the widths fn_710027dab8 walks corners with).
@@ -601,7 +599,7 @@ bool fn_710027dab8(UnkNavMesh* mesh, const CVector2D* point, u16 cell, u32 flags
     if (cell == 0xffff)
         return false;
     Cell* c = &L(mesh)->cells[cell].cell;
-    if (!fn_71002b005c(reinterpret_cast<UnkEntityObj*>(c)))
+    if (!fn_71002b005c(c))
         return false;
     for (u8 side = 0; side < c->field_0x10; ++side) {
         bool known = false;

@@ -11,7 +11,6 @@ struct UnkSelf {
 };
 
 bool fn_7100413ef8(UnkSelf* self);
-void fn_7100db37ec();
 void fn_7100db3adc(UnkPathRegistry* registry, u64* id);
 
 bool fn_7100416fe0(UnkSelf* self) {
@@ -20,7 +19,7 @@ bool fn_7100416fe0(UnkSelf* self) {
         UnkPathRegistry* registry = g_unk_71726b3240;
         if (!registry) {
             registry = static_cast<UnkPathRegistry*>(fn_71000839a0(0x70, 0x3f));
-            fn_7100db37ec();
+            fn_7100db37ec(registry);
             g_unk_71726b3240 = registry;
         }
         fn_7100db3adc(registry, &self->field_0x500);

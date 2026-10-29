@@ -27,6 +27,13 @@ class ArgumentClasses(unittest.TestCase):
         self.assertEqual(pl.signature_class(["int", "float", "bool"], ["char*", "char*", "float"], False)[0], "same")
         self.assertEqual(pl.signature_class(["int", "float"], ["char*", "char*", "float"], False)[0], "ref_fewer_args")
 
+    def test_integers_on_the_stack_keep_their_order(self):
+        ref = ["char*"] * 8 + ["double", "float"] + ["double"] * 6
+        dfn = ["char*"] * 8 + ["unsigned long"] + ["double"] * 8
+        self.assertEqual(pl.signature_class(ref, dfn, False)[0], "ref_fewer_args")
+        mixed = ["char*", "char*", "float", "char*", "char*", "char*", "char*", "char*", "char*"]
+        self.assertEqual(pl.signature_class(mixed, ["char*"] * 8 + ["float"], False)[0], "same")
+
     def test_a_float_for_an_integer_is_still_a_mismatch(self):
         self.assertEqual(pl.signature_class(["float"], ["char*"], False)[0], "class_mismatch")
         self.assertEqual(pl.signature_class(["int", "float"], ["float", "float"], False)[0], "class_mismatch")

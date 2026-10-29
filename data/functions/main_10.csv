@@ -3890,7 +3890,7 @@ address,size,name,name_source,subsystem,status
 0x71010c0270,120,fn_71010c0270,unknown,unknown,U
 0x71010c02f0,2016,fn_71010c02f0,unknown,unknown,U
 0x71010c0ad0,104,fn_71010c0ad0,unknown,unknown,U
-0x71010c0b40,104,fn_71010c0b40,unknown,unknown,U
+0x71010c0b40,104,fn_71010c0b40,unknown,unknown,O
 0x71010c0bb0,284,fn_71010c0bb0,unknown,unknown,U
 0x71010c0cd0,172,fn_71010c0cd0,unknown,unknown,U
 0x71010c0d80,228,fn_71010c0d80,unknown,unknown,U
