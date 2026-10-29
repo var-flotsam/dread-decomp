@@ -158,6 +158,10 @@ From the trace run's refusals (`lifted_trace1`, 6,007 of 6,070 accepted):
 - **Float to integer conversions saturate** (`fcvtzs`/`fcvtzu` and the rounding forms; a suspect for
   `710122b164`): out of range the C cast is undefined, the instruction saturates and gives 0 for NaN.
   Semantic mode spells that out in a statement expression.
+- **The oracle after a modelled strlen** (`71010a2aa0`, `71010a3290`: v1 passed on to the variadic logger
+  after `strlen`): the emulator runs memcpy, strlen and the rest itself and left v0-v7 as they were, so the
+  original's untouched v1 was compared with the lift's 0. A real one may use the vector registers: v0-v7
+  now count as junk after it, as after any other call.
 - **A whole q register loaded** (`7101205f54`, `ldp q1, q2, [x1]`): semantic mode had no q load at all.
   `ldr`/`ldur`/`ldp` of q registers now give their four 32-bit lanes as f32 values (State.lanes, as
   `ld1` builds them), so the existing `str q` and a new `stp q` store them back bit for bit and the lane

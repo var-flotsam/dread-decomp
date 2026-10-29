@@ -630,6 +630,8 @@ class Machine:
                 self.regs[X0 + 8 * i:X0 + 8 * i + 8] = bytes(8)
                 if i <= 8:
                     self.state[i] = "junk"
+        for i in range(8):  # (a real one may use the vector registers: v0-v7 hold nothing for a later call)
+            self.state[100 + i] = "junk"
         self.set_reg(X0, 8, r & 0xFFFFFFFFFFFFFFFF)
 
     def shrink(self) -> None:
