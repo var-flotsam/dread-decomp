@@ -15,6 +15,18 @@ and beyond, which our port's boot (tools/boot_distance.py) can be compared with.
   RomFS and the generated code and compiles the changed files; its own `_data` folder as --base fails). `--undo` takes the
   lines out again and deletes `code_zz_trace.c`. The generated C stays in that folder: it is game code,
   never copied into this repository.
+- `instrument --build DIR --snapshot ADDR[,ADDR...] --cpu-h FILE` also captures, at the first entry of each
+  of those functions (our addresses), the state a real run gives it: x0-x30, q0-q31 and the 256 bytes above
+  sp, then every guest page the thread touches until the function returns (each copied before its first
+  access, so as it was at entry). It redefines the runtime's MP() address macro right after its definition
+  in FILE (the recomp's runtime cpu.h, which every generated file includes) and writes
+  `fn_<addr>.snap` into DREAD_SNAPSHOTS (default: the working directory), the file
+  tools/pcode_emu.py's load_snapshot reads; copy them to build/port/snapshots/ for tools/port_lift.py.
+  Every function also gets a guard that, while a snapshot runs, records each of its direct calls in
+  `fn_<addr>.calls` beside it: the target, x0, x1 and q0-q3 on return, and the bytes the call changed
+  (in the function's frame by offset from its entry sp, elsewhere by address), which the oracle replays
+  in place of made-up results.
+  They hold game memory: they stay in build/, never in the repository. `--undo` restores FILE too.
 - `map --trace FILE` turns the log into our addresses (ours = theirs - 0x8005000 + 0x7100000000, checked
   on function starts and an import thunk; journal, "What the Dread recomp found") and joins each with
   data/functions: name, status, subsystem. `--until NAME|ADDR` cuts the order at the first entry of that
@@ -30,6 +42,7 @@ Only addresses, names, statuses and counts are written or printed, never game by
 Usage:
   python tools/recomp_trace.py instrument --build "D:/Games/Metroid Dread/Metroid Dread_build"
   python tools/recomp_trace.py instrument --build "D:/Games/Metroid Dread/Metroid Dread_build" --undo
+  python tools/recomp_trace.py instrument --build DIR --snapshot 7100b89f84,7101191cc0 --cpu-h DIR/../recompiler/runtime/cpu.h
   python tools/recomp_trace.py map --trace recomp_trace.txt [--until fn_7100224de4] [--out build/recomp_trace/order.csv]
   python tools/recomp_trace.py next --order build/recomp_trace/order.csv [--boot build/boot/boot_distance.json] [--limit 40]
 """
@@ -91,15 +104,172 @@ void dread_trace_hit(unsigned long long addr){
 """
 
 
+SNAP_C = r"""/*DREAD_TRACE*/ /* entry snapshots (instrument --snapshot): registers, then each page as first touched */
+#include <string.h>
+#define DSNAP_MAX 8192
+#define DSNAP_PAGE 4096ull
+__thread int dread_snap_on;
+static __thread u8* dsnap_buf;
+static __thread unsigned long long dsnap_page[DSNAP_MAX], dsnap_set[2 * DSNAP_MAX], dsnap_addr, dsnap_x[32];
+static __thread V128 dsnap_v[32];
+static __thread u8 dsnap_stack[256];
+static __thread int dsnap_n;
+static unsigned long long dsnap_done[64];
+static int dsnap_ndone;
+static void dsnap_touch(u8* M, unsigned long long p){
+  unsigned long long h = (p >> 12) * 0x9E3779B97F4A7C15ull, k = h % (2 * DSNAP_MAX);
+  while(dsnap_set[k]){ if(dsnap_set[k] == p + 1) return; k = (k + 1) % (2 * DSNAP_MAX); }
+  if(dsnap_n >= DSNAP_MAX) return;
+  dsnap_set[k] = p + 1;
+  memcpy(dsnap_buf + (unsigned long long)dsnap_n * DSNAP_PAGE, M + p, DSNAP_PAGE);
+  dsnap_page[dsnap_n++] = p;
+}
+/* The function's direct callees (depth 2): what each returned and the memory it changed, for the oracle
+   to replay in place of made-up call results. Each page a callee touches is copied before its first touch
+   in that call; when the call returns, the bytes that differ (in aligned 8-byte words) are written out. */
+#define DSNAP_CALL_MAX 4096
+static __thread int dsnap_depth, dsnap_cn, dsnap_ctrunc;
+static __thread unsigned long long *dsnap_cpage, *dsnap_cset, dsnap_csp, dsnap_ctarget, dsnap_cx[8];
+static __thread u8 *dsnap_cbuf, *dsnap_cframe;
+static __thread FILE* dsnap_calls;
+static __thread CPU* dsnap_cpu;  /* (the thread's CPU: the cleanup gets only its guard) */
+#define DSNAP_FRAME 65536ull
+static void dsnap_ctouch(u8* M, unsigned long long p){
+  unsigned long long h = (p >> 12) * 0x9E3779B97F4A7C15ull, k = h % (2 * DSNAP_CALL_MAX);
+  while(dsnap_cset[k]){ if(dsnap_cset[k] == p + 1) return; k = (k + 1) % (2 * DSNAP_CALL_MAX); }
+  if(dsnap_cn >= DSNAP_CALL_MAX){ dsnap_ctrunc = 1; return; }
+  dsnap_cset[k] = p + 1;
+  memcpy(dsnap_cbuf + (unsigned long long)dsnap_cn * DSNAP_PAGE, M + p, DSNAP_PAGE);
+  dsnap_cpage[dsnap_cn++] = p;
+}
+u8* dread_snap_touch(u8* M, unsigned long long a){
+  dsnap_touch(M, a & ~(DSNAP_PAGE - 1));
+  dsnap_touch(M, (a + 15) & ~(DSNAP_PAGE - 1));
+  if(dsnap_depth >= 2 && dsnap_calls){
+    dsnap_ctouch(M, a & ~(DSNAP_PAGE - 1));
+    dsnap_ctouch(M, (a + 15) & ~(DSNAP_PAGE - 1));
+  }
+  return M + a;
+}
+/* Runs of changed bytes between old and now (n bytes at address base), widened to aligned 8-byte words;
+   with skip_lo..skip_hi left out (the function's frame and its callees', written as "frame"). */
+static void dsnap_runs(FILE* f, const u8* old, const u8* now, unsigned long long base, unsigned long long n,
+                       unsigned long long skip_lo, unsigned long long skip_hi, int* first, long long rel){
+  for(unsigned long long i = 0; i < n; i += 8){
+    if(!memcmp(old + i, now + i, 8) || (base + i < skip_hi && base + i + 8 > skip_lo)) continue;
+    unsigned long long j = i + 8;
+    while(j < n && memcmp(old + j, now + j, 8) && !(base + j < skip_hi && base + j + 8 > skip_lo)) j += 8;
+    if(rel) fprintf(f, "%s[%lld, \"", *first ? "" : ", ", (long long)(base + i) - rel);
+    else fprintf(f, "%s[\"0x%llx\", \"", *first ? "" : ", ", base + i);
+    for(unsigned long long k = i; k < j; k++) fprintf(f, "%02x", now[k]);
+    fputs("\"]", f);
+    *first = 0;
+    i = j - 8;
+  }
+}
+int dread_snap_call(CPU* c, unsigned long long e){
+  if(++dsnap_depth != 2 || !dsnap_calls) return 1;
+  dsnap_cpu = c; dsnap_ctarget = e; dsnap_csp = c->x[31]; dsnap_cn = 0; dsnap_ctrunc = 0;
+  memcpy(dsnap_cx, c->x, sizeof dsnap_cx);
+  memset(dsnap_cset, 0, 2 * DSNAP_CALL_MAX * sizeof *dsnap_cset);
+  unsigned long long top = dsnap_x[31] + 256, lo = dsnap_csp < top - DSNAP_FRAME ? top - DSNAP_FRAME : dsnap_csp;
+  if(lo < top) memcpy(dsnap_cframe, c->mem + lo, top - lo);
+  return 1;
+}
+void dread_snap_ret(int* g){
+  if(!*g) return;
+  if(dsnap_depth-- != 2 || !dsnap_calls) return;
+  FILE* f = dsnap_calls;
+  CPU* c = dsnap_cpu;
+  fprintf(f, "{\"target\": \"0x%llx\", \"x_in\": [", dsnap_ctarget);
+  for(int i = 0; i < 8; i++) fprintf(f, "%s\"0x%llx\"", i ? ", " : "", dsnap_cx[i]);
+  fprintf(f, "], \"x\": [\"0x%llx\", \"0x%llx\"], \"q\": [", (unsigned long long)c->x[0], (unsigned long long)c->x[1]);
+  for(int i = 0; i < 4; i++) fprintf(f, "%s\"0x%016llx%016llx\"", i ? ", " : "", (unsigned long long)c->v[i].d[1], (unsigned long long)c->v[i].d[0]);
+  fprintf(f, "], \"sp\": \"0x%llx\", \"truncated\": %d, \"frame\": [", dsnap_csp, dsnap_ctrunc);
+  unsigned long long top = dsnap_x[31] + 256, lo = dsnap_csp < top - DSNAP_FRAME ? top - DSNAP_FRAME : dsnap_csp;
+  int first = 1;
+  if(lo < top) dsnap_runs(f, dsnap_cframe, c->mem + lo, lo, top - lo, 0, 0, &first, (long long)dsnap_x[31]);
+  fputs("], \"mem\": [", f);
+  first = 1;
+  for(int i = 0; i < dsnap_cn; i++)
+    dsnap_runs(f, dsnap_cbuf + (unsigned long long)i * DSNAP_PAGE, c->mem + dsnap_cpage[i], dsnap_cpage[i], DSNAP_PAGE,
+               top > 0x1000000ull ? top - 0x1000000ull : 0, top, &first, 0);
+  fputs("]}\n", f);
+}
+int dread_snap_begin(CPU* c, unsigned long long addr){
+  if(dread_snap_on) return 0;
+  for(int i = 0; i < dsnap_ndone; i++) if(dsnap_done[i] == addr) return 0;
+  if(dsnap_ndone < 64) dsnap_done[dsnap_ndone++] = addr;
+  if(!dsnap_buf) dsnap_buf = (u8*)malloc(DSNAP_MAX * DSNAP_PAGE);
+  if(!dsnap_buf) return 0;
+  if(!dsnap_cbuf){
+    dsnap_cbuf = (u8*)malloc(DSNAP_CALL_MAX * DSNAP_PAGE); dsnap_cframe = (u8*)malloc(DSNAP_FRAME);
+    dsnap_cpage = (unsigned long long*)malloc(DSNAP_CALL_MAX * sizeof *dsnap_cpage);
+    dsnap_cset = (unsigned long long*)malloc(2 * DSNAP_CALL_MAX * sizeof *dsnap_cset);
+  }
+  memset(dsnap_set, 0, sizeof dsnap_set); dsnap_n = 0; dsnap_addr = addr;
+  memcpy(dsnap_x, c->x, sizeof dsnap_x); memcpy(dsnap_v, c->v, sizeof dsnap_v);
+  memcpy(dsnap_stack, c->mem + c->x[31], sizeof dsnap_stack);
+  dsnap_depth = 0; dsnap_calls = 0;
+  if(dsnap_cbuf && dsnap_cframe && dsnap_cpage && dsnap_cset){
+    const char* d = getenv("DREAD_SNAPSHOTS");
+    char path[1024];
+    snprintf(path, sizeof path, "%s/fn_%llx.calls", d && *d ? d : ".", addr - 0x8005000ull + 0x7100000000ull);
+    dsnap_calls = fopen(path, "wb");
+    if(dsnap_calls) fputs("DCALLS1\n", dsnap_calls);
+  }
+  dread_snap_on = 1;
+  return 1;
+}
+void dread_snap_end(int* g){
+  if(!*g) return;
+  dread_snap_on = 0;
+  if(dsnap_calls){ fclose(dsnap_calls); dsnap_calls = 0; }
+  const char* d = getenv("DREAD_SNAPSHOTS");
+  char path[1024];
+  snprintf(path, sizeof path, "%s/fn_%llx.snap", d && *d ? d : ".", dsnap_addr - 0x8005000ull + 0x7100000000ull);
+  FILE* f = fopen(path, "wb");
+  if(!f) return;
+  fputs("DSNAP1\n{\"x\": [", f);
+  for(int i = 0; i < 31; i++) fprintf(f, "%s\"0x%llx\"", i ? ", " : "", dsnap_x[i]);
+  fputs("], \"q\": [", f);
+  for(int i = 0; i < 32; i++) fprintf(f, "%s\"0x%016llx%016llx\"", i ? ", " : "", (unsigned long long)dsnap_v[i].d[1], (unsigned long long)dsnap_v[i].d[0]);
+  fprintf(f, "], \"sp\": \"0x%llx\", \"stack\": \"", dsnap_x[31]);
+  for(int i = 0; i < 256; i++) fprintf(f, "%02x", dsnap_stack[i]);
+  fprintf(f, "\", \"pages\": %d}\n", dsnap_n);
+  for(int i = 0; i < dsnap_n; i++){ fwrite(&dsnap_page[i], 8, 1, f); fwrite(dsnap_buf + (unsigned long long)i * DSNAP_PAGE, 1, DSNAP_PAGE, f); }
+  fclose(f);
+}
+"""
+
+# Into the runtime's cpu.h: right after its MP() (every RD*/WR* macro and the inline exclusive and DC ZVA
+# helpers defined below it go through MP(), so a snapshot sees each page), and the guard's functions at the end.
+CPU_H_MP = """/*DREAD_TRACE*/ extern __thread int dread_snap_on; u8* dread_snap_touch(u8* M, unsigned long long a);
+/*DREAD_TRACE*/ #undef MP
+/*DREAD_TRACE*/ #define MP(a) (dread_snap_on ? dread_snap_touch(M, (u64)(a)) : M + (u64)(a))
+"""
+CPU_H_END = """/*DREAD_TRACE*/ int dread_snap_begin(CPU* c, unsigned long long addr); void dread_snap_end(int* g);
+/*DREAD_TRACE*/ int dread_snap_call(CPU* c, unsigned long long e); void dread_snap_ret(int* g);
+"""
+MP_DEFINE = re.compile(r"^[ \t]*#[ \t]*define[ \t]+MP\(.*(?:\r?\n)", re.M)
+
+
 # --- instrument ----------------------------------------------------------------------------------
 
-def hook(name: str, eol: str) -> str:
+def hook(name: str, eol: str, snapshot: frozenset = frozenset()) -> str:
     addr = int(name[2:], 16)
-    return (f"{eol} {{ static int t_; if(UNLIKELY(!t_) && e=={addr:#x}ull){{ t_=1; dread_trace_hit({addr:#x}ull); }} }}"
-            f" {TAG}")
+    out = (f"{eol} {{ static int t_; if(UNLIKELY(!t_) && e=={addr:#x}ull){{ t_=1; dread_trace_hit({addr:#x}ull); }} }}"
+           f" {TAG}")
+    if addr in snapshot:  # (recomp addresses; the guard writes the snapshot when the function returns)
+        out += (f"{eol} int dread_snap_g_ __attribute__((cleanup(dread_snap_end))) = "
+                f"e=={addr:#x}ull ? dread_snap_begin(c, {addr:#x}ull) : 0; {TAG}")
+    if snapshot:  # (every function: a snapshot's direct callees record their results; after the guard above)
+        out += (f"{eol} int dread_snap_c_ __attribute__((cleanup(dread_snap_ret))) = "
+                f"dread_snap_on ? dread_snap_call(c, e) : 0; {TAG}")
+    return out
 
 
-def instrument_text(text: str) -> tuple[str, int]:
+def instrument_text(text: str, snapshot: frozenset = frozenset()) -> tuple[str, int]:
     """One generated file with a hook after every prologue and the declaration on its first line."""
     if TAG in text:
         return text, 0
@@ -108,7 +278,7 @@ def instrument_text(text: str) -> tuple[str, int]:
     def add(m: re.Match) -> str:
         nonlocal n
         n += 1
-        return m.group(1) + hook(m.group(2), m.group(3)) + m.group(3)
+        return m.group(1) + hook(m.group(2), m.group(3), snapshot) + m.group(3)
 
     text = PROLOGUE.sub(add, text)
     text = PROLOGUE_MACRO.sub(add, text)
@@ -127,26 +297,47 @@ def undo_text(text: str) -> str:
     return "".join(line for line in lines if TAG not in line)
 
 
-def instrument(build: Path, undo: bool) -> int:
+def instrument(build: Path, undo: bool, snapshot: frozenset = frozenset(), cpu_h: Path | None = None) -> int:
+    """snapshot: our addresses."""
     files = sorted(p for p in build.glob("code_*.c") if p.name != TRACE_FILE)
     if not files:
         print(f"recomp_trace: no code_*.c in {build} (the recomp's <name>_build folder)", file=sys.stderr)
         return 2
+    if snapshot and not undo and cpu_h is None:
+        print("recomp_trace: --snapshot needs --cpu-h (the runtime's cpu.h)", file=sys.stderr)
+        return 2
+    theirs = frozenset(a - OUR_MAIN + RECOMP_MAIN for a in snapshot)
     total = changed = 0
+    includes = ""
     for p in files:
         text = p.read_bytes().decode("latin-1")
-        new, n = (undo_text(text), 0) if undo else instrument_text(text)
+        if not includes:
+            includes = "".join(line + "\n" for line in text.splitlines() if line.startswith("#include"))
+        new, n = (undo_text(text), 0) if undo else instrument_text(undo_text(text) if theirs else text, theirs)
         if new != text:
             p.write_bytes(new.encode("latin-1"))
             changed += 1
         total += n
+    if cpu_h is not None:
+        text = cpu_h.read_bytes().decode("latin-1")
+        base = undo_text(text)
+        new = base
+        if not undo and theirs:
+            m = MP_DEFINE.search(base)
+            if m is None or m.group(0).rstrip("\r\n").endswith("\\"):
+                print(f"recomp_trace: no one-line #define MP( in {cpu_h}", file=sys.stderr)
+                return 2
+            new = base[:m.end()] + CPU_H_MP + base[m.end():].rstrip("\r\n") + "\n" + CPU_H_END
+        if new != text:
+            cpu_h.write_bytes(new.encode("latin-1"))
+            print(f"recomp_trace: {cpu_h} {'restored' if undo or not theirs else 'patched (MP)'}")
     trace = build / TRACE_FILE
     if undo:
         if trace.exists():
             trace.unlink()
         print(f"recomp_trace: {changed} files restored, {TRACE_FILE} removed")
     else:
-        trace.write_text(TRACE_C, encoding="ascii")
+        trace.write_text(TRACE_C + ("/*DREAD_TRACE*/\n" + includes + SNAP_C if theirs else ""), encoding="ascii")
         print(f"recomp_trace: {total} functions hooked in {changed} files; {TRACE_FILE} written. "
               f"Rebuild with the recomp's setup, same --out and --base as the first build.")
     return 0
@@ -310,6 +501,8 @@ def main() -> int:
     a = sub.add_parser("instrument", help="add (or with --undo remove) the trace hooks in the recomp's generated C")
     a.add_argument("--build", required=True, type=Path, help="the recomp's '<name>_build' folder")
     a.add_argument("--undo", action="store_true")
+    a.add_argument("--snapshot", default="", help="ADDR[,ADDR...] (ours): capture each one's entry state (needs --cpu-h)")
+    a.add_argument("--cpu-h", type=Path, help="the recomp runtime's cpu.h (MP() is redefined at its end)")
     m = sub.add_parser("map", help="the trace in our addresses, joined with data/functions")
     m.add_argument("--trace", required=True, type=Path)
     m.add_argument("--until", help="stop at the first entry of this function (name, fn_<addr> or address)")
@@ -321,7 +514,8 @@ def main() -> int:
     args = ap.parse_args()
 
     if args.cmd == "instrument":
-        return instrument(args.build, args.undo)
+        snap = frozenset(int(a, 16) for a in args.snapshot.split(",") if a)
+        return instrument(args.build, args.undo, snap, args.cpu_h)
     if args.cmd == "map":
         index = FunctionIndex(functions.rows())
         until = None

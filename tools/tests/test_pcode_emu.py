@@ -15,7 +15,7 @@ except ImportError:  # pyelftools missing
 
 def run(end: str, steps: int, scale: int = 1, cut=None, events=None, undef=()):
     return SimpleNamespace(events=events or [(("end", end), ())], steps=steps, scale=scale, cut=cut, clipped=False,
-                           undef_mem=set(undef))
+                           undef_mem=set(undef), calls_room=0)
 
 
 @unittest.skipIf(pcode_emu is None, "pyelftools is not installed")
@@ -42,6 +42,27 @@ class CutOff(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+@unittest.skipIf(pcode_emu is None, "pyelftools is not installed")
+class Changes(unittest.TestCase):
+    """Events carry the bytes changed since the one before; the memory at an event is all of them."""
+
+    def test_written_follows_the_changes(self):
+        events = [(("call", 1, (), ()), ((0x10, 1), (0x11, 2))), (("call", 2, (), ()), ((0x11, None), (0x12, 3))),
+                  (("end", "return"), ((0x10, 4),))]
+        self.assertEqual(pcode_emu.written(events, 0), {0x10, 0x11})
+        self.assertEqual(pcode_emu.written(events, 2), {0x10, 0x12})
+
+    def test_a_byte_written_back_before_the_next_event_is_no_change(self):
+        m = SimpleNamespace(dirty={0x10: 5}, _ckpt={0x10: 5}, _touched={0x10}, events=[], snapshot_bytes=0,
+                            calls_room=0, scale=1, cut=None, steps=0)
+        m.max_events = lambda: 99
+        pcode_emu.Machine.checkpoint(m, ("call", 1, (), ()))
+        m.dirty[0x11] = 7
+        m._touched = {0x11}
+        pcode_emu.Machine.checkpoint(m, ("end", "return"))
+        self.assertEqual([e[1] for e in m.events], [(), ((0x11, 7),)])
 
 
 @unittest.skipIf(pcode_emu is None, "pyelftools is not installed")
@@ -103,3 +124,73 @@ class FloatToInt(unittest.TestCase):
             got = struct.unpack("<f", bytes(m.regs[q2:q2 + 4]))[0]
             self.assertEqual((got, str(got)), (want, str(want)), (rmode, value))
 
+
+
+@unittest.skipIf(pcode_emu is None, "pyelftools is not installed")
+class Snapshots(unittest.TestCase):
+    def test_module_addresses_move_to_ours(self):
+        import json
+        import os
+        import tempfile
+        import zlib
+        page = bytearray(pcode_emu.PAGE)
+        page[8:16] = (pcode_emu.RECOMP_MAIN + 0x1230).to_bytes(8, "little")  # a pointer into the module
+        page[16:24] = (0x123456789).to_bytes(8, "little")  # a heap pointer stays
+        head = {"x": [hex(pcode_emu.RECOMP_MAIN + 0x40)] + ["0x0"] * 30, "q": ["0x0"] * 32,
+                "sp": "0x1000", "stack": "0102", "pages": 2}
+        raw = pcode_emu.SNAP_MAGIC + json.dumps(head).encode() + b"\n"
+        raw += (pcode_emu.RECOMP_MAIN + 0x2000).to_bytes(8, "little") + bytes(page)  # a module page
+        raw += (0x200000000).to_bytes(8, "little") + bytes(page)
+        fd, path = tempfile.mkstemp(suffix=".snap")
+        os.write(fd, zlib.compress(raw))
+        os.close(fd)
+        try:
+            s = pcode_emu.load_snapshot(path, 0x100000)
+        finally:
+            os.unlink(path)
+        B = pcode_emu.BASE
+        self.assertEqual(s.x[0], B + 0x40)
+        self.assertEqual(sorted(s.pages), [0x200000000 // pcode_emu.PAGE, (B + 0x2000) // pcode_emu.PAGE])
+        p = s.pages[0x200000000 // pcode_emu.PAGE]
+        self.assertEqual(int.from_bytes(p[8:16], "little"), B + 0x1230)
+        self.assertEqual(int.from_bytes(p[16:24], "little"), 0x123456789)
+        self.assertEqual(s.stack, b"\x01\x02")
+
+    def test_calls_beside_the_snapshot(self):
+        import json
+        import os
+        import tempfile
+        from types import SimpleNamespace
+        R, B = pcode_emu.RECOMP_MAIN, pcode_emu.BASE
+        head = {"x": ["0x0"] * 31, "q": ["0x0"] * 32, "sp": "0x7fff0000", "stack": "", "pages": 0}
+        vtable = (R + 0x5000).to_bytes(8, "little").hex()
+        calls = [{"target": hex(R + 0x100), "x": ["0x5", hex(R + 0x40)], "q": ["0x1"] * 4,
+                  "frame": [[-0x34, "0700000000000000"]], "mem": [["0x200000010", vtable]]},
+                 {"target": hex(R + 0x200), "x": ["0x0", "0x0"], "q": ["0x0"] * 4, "frame": [], "mem": []}]
+        d = tempfile.mkdtemp()
+        snap = os.path.join(d, "fn_7100000000.snap")
+        with open(snap, "wb") as f:
+            f.write(pcode_emu.SNAP_MAGIC + json.dumps(head).encode() + b"\n")
+        with open(snap[:-5] + ".calls", "wb") as f:  # (the second line cut short: the game closed)
+            f.write(pcode_emu.CALLS_MAGIC + b"\n".join(json.dumps(c).encode() for c in calls)[:-10])
+        try:
+            s = pcode_emu.load_snapshot(snap, 0x100000)
+        finally:
+            for n in os.listdir(d):
+                os.unlink(os.path.join(d, n))
+            os.rmdir(d)
+        self.assertEqual(len(s.calls), 1)
+        c = s.calls[0]
+        self.assertEqual((c.target, c.x), (B + 0x100, [5, B + 0x40]))
+        self.assertEqual(c.frame, [(-0x34, bytes([7]) + bytes(7))])
+        self.assertEqual(c.mem, [(0x200000010, (B + 0x5000).to_bytes(8, "little"))])
+        # Replayed in order while the targets agree; a call elsewhere ends it, a modelled one waits
+        m = SimpleNamespace(snap=s, replay_i=0, replay_end=None, calls=0, canonical=lambda a: a)
+        rec = pcode_emu.Machine.recorded
+        self.assertIsNone(rec(m, B + 0x900, ("import", "memcpy"), True))
+        self.assertIsNone(m.replay_end)
+        self.assertIs(rec(m, B + 0x100, B + 0x100, False), c)
+        self.assertIsNone(rec(m, B + 0x100, B + 0x100, False))
+        m.replay_i = 0
+        self.assertIsNone(rec(m, B + 0x300, B + 0x300, False))
+        self.assertIn("the real run's", m.replay_end)
