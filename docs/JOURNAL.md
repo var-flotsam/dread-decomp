@@ -150,6 +150,37 @@ What made the difference:
   helpers yet), fn_71000f4ebc (inlines nn::atk's StartInfo constructor field by field). fn_710006deac, fn_7100068f5c and
   fn_7100223c2c are next.
 
+**Real inputs for the last boot lifts (2026-10-29, branch `claude/project-thread-zgkpk3`, after #258).**
+Of the 11 boot-trace functions #258 left, 5 are status L (two Lua functions sigmatch already matched, the
+ELF init stub, two nn::atk functions the port's shim replaces): the trace list took every address src/
+does not define, L included. The other 6 are U and fail only on made-up input.
+- **Real entry states for the oracle** (the boot trace's last 6 U functions fault, overrun or loop on made-up
+  input: a u16 length read into a 128-byte buffer, a widget's properties, a minimap's counts).
+  `tools/recomp_trace.py instrument --snapshot ADDR,... --cpu-h FILE` makes the recomp capture, at a
+  function's first entry, x0-x30, q0-q31, the stack above sp and every page the thread touches until it
+  returns (each copied before its first access), by redefining the runtime's MP() address macro.
+  `pcode_emu.load_snapshot` reads the file (the recomp's module addresses moved to ours), and
+  `tools/port_lift.py` runs a function from build/port/snapshots/fn_<addr>.snap first and mutates from it.
+- **Recorded calls.** Real entry states alone accepted none of the 4 the boot reaches (`7100ebcd70` and
+  `7100e9e164` came from the boot slice and never run before the title screen): the oracle does not run
+  callees, so each call's result and out-parameters were still made up (the twins' length comes from
+  `fn_710007c714` through `[x29-0x34]`). With `--snapshot`, every function now also gets a guard: while a
+  snapshot runs, each direct call of the function appends a line to `fn_<addr>.calls` (target, x0, x1 and
+  q0-q3 on return, and the bytes the call changed, in the frame by offset from the entry sp and elsewhere by
+  address). `Machine.call` replays them in order while each call goes where the recorded one went: the
+  results, the out-parameters through the original's stack arguments (handed to the lift's run with the
+  guide), and the callee's other writes.
+- **The module's addresses include .bss.** The first replay rejected all 4 on a pointer argument: recomp
+  addresses in main's .bss (`0x9d4c208`, the string pool near `g_unk_7101d47108`) were not moved to ours,
+  because load_snapshot took the module's size as its file-backed end (`0x1d46060`) instead of the end of
+  .bss (`0x72a19000`).
+- **Events carry changes.** `71000f8b30` (the sound-definitions loader) makes 9,608 calls, and each event
+  held a copy of all the memory written so far, so even 64 times the budget covered a quarter of the run.
+  Events now hold the bytes changed since the previous event (two runs agree at every event exactly when
+  each event's changes agree; `written()` rebuilds the memory at an event). Runs without recorded calls keep
+  their old budget. A replaying run counts changes, and gets one more event and 2,000 more steps for each
+  recorded call. All 4 are accepted (38 s for `71000f8b30`). A regression sample of 311 functions (300
+  that trace10 accepted, plus the 11 it did not) changed only those 4 verdicts.
 **Port M1 round 8: the Linux boot reaches the frame loop (2026-10-28 to 29, branch `claude/project-thread-3x0lf8`).**
 `tools/boot_distance.py --nvn`, main with the lifter's trace sets (`lifted_all`, then `lifted_trace5`, plus semantic overrides of the
 byte-mode lifts listed below): **all 10 milestones, including the new "first frame" and "first frame done"** (the notification
