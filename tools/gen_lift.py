@@ -2209,9 +2209,17 @@ class Lifter:
         elif m == "movk" and len(o) == 2:
             rd = regname(o[0].reg)
             n = self.key(rd)
-            if n not in s.consts:
-                return False
             shift = o[1].shift.value if o[1].shift.type else 0
+            if n not in s.consts:
+                if "semantic" not in self.opts:
+                    return False
+                # A movk at a label where the ways in do not agree on the constant (7100499f78:
+                # several paths share the `movk` after their own `mov`): the instruction itself.
+                t = width_type(rd)
+                e, _ = self.read(rd)
+                keep = (0xFFFFFFFF if rd[0] == "w" else 0xFFFFFFFFFFFFFFFF) & ~(0xFFFF << shift)
+                self.write(rd, f"(({t})({e}) & {keep:#x}) | {o[1].imm << shift:#x}", t)
+                return True
             v = (s.consts[n] & ~(0xFFFF << shift)) | (o[1].imm << shift)
             self.write(rd, f"{v:#x}", width_type(rd), v)
         elif m == "fmov" and len(o) == 2:
