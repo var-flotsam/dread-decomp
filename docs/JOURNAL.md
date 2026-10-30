@@ -131,6 +131,19 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Night round 9: boot-slice leaves, continued (2026-10-30, branch `claude/project-thread-lths9k-night9`).**
+7 boot-slice functions to `O` and 4 to minor. Boot slice: `O` 2,078 to 2,085 functions, 30.09% to 30.13%; usable 40.29% to
+40.34%. `O`: the GUI root's frame lookup (fn_71011b7a4c), two box shapes' moves, the render manager's view rectangle read
+(fn_7100219fa0), an entry by id in unit 2613, the floor slide state's animation check, the input component's state reset.
+Minor: two root-based frame scales (registers), a position's offset from its parent (registers), a point's projection on a
+segment (the operand order of two additions).
+- **Plain loops over the drafts' shapes.** fn_7100fb534c matched as `for (u32 i = 0; i < count; ++i)` with an early return;
+  the do-while shapes from the draft either merged the two null returns or hoisted the increment.
+- **Inputs read as plain floats are reread.** The box moves reread the delta after each store (its components are plain
+  floats, which may alias the box's); the capsule's single store per component matched either way.
+- **Keeping an address.** The input reset clears five flags through the address of the first, computed once:
+  `asm("" : "+r"(flags))` keeps it from being folded into the stores' offsets.
+
 **Night round 8: more boot-slice leaves (2026-10-30, branch `claude/project-thread-lths9k-night8`).**
 8 boot-slice functions to `O` and 2 to minor. Boot slice: `O` 2,070 to 2,078 functions, 30.05% to 30.09%; usable 40.24% to 40.29%.
 `O`: the broadphase object's flag setter (fn_7100d35a98; its flag is a `bool`, declared once in game/UnkBroadphaseObject.h for its
