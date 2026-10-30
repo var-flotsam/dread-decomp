@@ -4500,8 +4500,8 @@ address,size,name,name_source,subsystem,status
 0x71006b8744,244,CCharClassShelmitAIComponent::refl_GetClass,reflection,game/characters,O
 0x71006b8838,2064,fn_71006b8838,unknown,game/characters?,O
 0x71006b9048,352,CCharClassShelmitAIComponent::refl_InitClass,reflection,game/characters,O
-0x71006b91a8,132,fn_71006b91a8,unknown,unknown,U
-0x71006b922c,140,fn_71006b922c,unknown,unknown,U
+0x71006b91a8,132,fn_71006b91a8,unknown,unknown,O
+0x71006b922c,140,fn_71006b922c,unknown,unknown,O
 0x71006b92b8,412,fn_71006b92b8,unknown,unknown,U
 0x71006b9454,44,fn_71006b9454,unknown,unknown,O
 0x71006b9480,28,fn_71006b9480,unknown,unknown,O
@@ -4756,8 +4756,8 @@ address,size,name,name_source,subsystem,status
 0x71006c53a8,212,fn_71006c53a8,unknown,unknown,U
 0x71006c547c,68,fn_71006c547c,unknown,unknown,U
 0x71006c54c0,28,fn_71006c54c0,unknown,unknown,O
-0x71006c54dc,132,fn_71006c54dc,unknown,unknown,U
-0x71006c5560,140,fn_71006c5560,unknown,unknown,U
+0x71006c54dc,132,fn_71006c54dc,unknown,unknown,O
+0x71006c5560,140,fn_71006c5560,unknown,unknown,O
 0x71006c55ec,8,fn_71006c55ec,unknown,unknown,O
 0x71006c55f4,8,fn_71006c55f4,unknown,unknown,O
 0x71006c55fc,28,fn_71006c55fc,unknown,unknown,O
