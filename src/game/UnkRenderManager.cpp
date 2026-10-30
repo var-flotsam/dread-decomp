@@ -216,3 +216,15 @@ void fn_7100219340(UnkRenderManager* self) {
         }
     }
 }
+
+// The items' scene nodes taken off their layers (game/UnkRenderManager.h).
+bool fn_71001fc69c(void* passes, u32 layer);
+
+bool fn_71002199d8(UnkRenderManager* self, UnkItemBase_71011a91c4* item, u32 layer) {
+    UnkSceneNode* node = reinterpret_cast<UnkSceneNode*>(item);
+    if (!node || !fn_71001fc69c(self->field_0x220, layer))
+        return false;
+    fn_7100219a34(self, node);
+    // The original passes a third argument (0) that fn_710014239c doesn't read.
+    return reinterpret_cast<bool (*)(void*, UnkSceneNode*, u32)>(fn_710014239c)(self->field_0x218, node, 0);
+}

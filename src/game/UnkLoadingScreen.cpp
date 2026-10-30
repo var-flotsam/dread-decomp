@@ -87,7 +87,6 @@ static inline void* MusicManager() {
 }
 
 struct UnkItemBase_71011a91c4;
-bool fn_71002199d8(UnkRenderManager* self, UnkItemBase_71011a91c4* item, u32 pool);
 void fn_71002199b0(UnkRenderManager* self);
 void fn_71002199b4(UnkRenderManager* self);
 void fn_7100219974(UnkRenderManager* self, u32 value);

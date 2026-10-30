@@ -31,6 +31,11 @@ static_assert(__builtin_offsetof(UnkRenderManager, field_0x268) == 0x268, "UnkRe
 
 extern UnkRenderManager* g_unk_7101d47300;
 
+// Takes an item's scene node off its layer and drops it from the pool when the pass list knows
+// `layer`; says whether it was dropped (src/game/UnkRenderManager.cpp). Callers pass their items.
+struct UnkItemBase_71011a91c4;
+bool fn_71002199d8(UnkRenderManager* self, UnkItemBase_71011a91c4* item, u32 layer);
+
 // A scene object's node as the render manager sees it, at +8 of the object (after its vtable): a
 // word of flags whose byte 3 is the node's type and whose bits 12 to 15 are its layer, and the
 // payload at +0x10 whose layout depends on the type. fn_7100219ae0 puts a node on a layer, when
