@@ -23,11 +23,7 @@ struct Vec2 {
     }
 };
 
-struct IdPair {
-    u16 a;
-    u16 b;
-    IdPair(const IdPair&);
-};
+using IdPair = UnkNavMeshSidePair;
 
 using Segment = UnkSegment2D;
 
@@ -66,7 +62,6 @@ bool fn_7100ebfd4c(UnkNavMeshManager*, Vec2*, u16, Result*, u32, f32, f32);
 Cell* fn_710027a328(Mesh*, u16);
 Vec2 fn_7100125a64(Vec2*);
 bool fn_71002afcd8(Cell*, Edge*, u32);
-IdPair fn_71002afe60(Cell*, u8*);
 Vec2* fn_710027a410(Mesh*, u16);
 
 // Vec2 has CVector2D's layout (it only adds the out-of-line copy constructor); fn_710007b430 reads
