@@ -46,7 +46,6 @@ struct UnkStruct_71011ff97c {
 };
 
 void fn_7100fc9d78(void* mgr, void* sound, UnkStruct_71011ff97c* self);
-UnkGuiDisplayObject* fn_71011d94d4(void* root, void* name);
 void fn_71011cca3c(UnkGuiDisplayObject* obj, f32 value);
 extern void* g_unk_717275c380;
 extern char g_unk_71729f0220[];
@@ -79,7 +78,8 @@ void fn_71011ff97c(UnkStruct_71011ff97c* self, bool quiet) {
         fn_7100fc9d78(g_unk_717275c380, g_unk_71729f0220, self);
     if (!self->field_0x258)
         return;
-    UnkGuiDisplayObject* target = fn_71011d94d4(self->field_0x258, g_unk_7172a10de8);
+    UnkGuiDisplayObject* target = fn_71011d94d4(static_cast<UnkGuiDisplayObject*>(self->field_0x258),
+                                                   *reinterpret_cast<const base::global::CStrId*>(g_unk_7172a10de8));
     if (!target)
         return;
     UnkGuiObjectState* s = fn_71011cde14(target);

@@ -104,3 +104,54 @@ UnkDisplayObject_71011d9508* fn_71011d9508(UnkDisplayObject_71011d9508* self, co
     fn_7100931c34(&list);
     return cur;
 }
+
+// ---- Lookups among a container's children (the list at +0x1d0) ----
+
+#include "game/UnkGuiDisplayObject.h"
+
+static inline UnkDisplayObject_71011d9508* AsContainer(UnkGuiDisplayObject* object) {
+    return reinterpret_cast<UnkDisplayObject_71011d9508*>(object);
+}
+
+// The direct child named `name`, or null.
+// NON_MATCHING(minor): the loop's exit test compares the link before the result (the original tests
+// the result first in its conditional compare); the behaviour is the same.
+UnkGuiDisplayObject* fn_71011d94d4(UnkGuiDisplayObject* container, const CStrId& name) {
+    UnkChildLink_71011d9508* l = AsContainer(container)->children;
+    if (!l)
+        return nullptr;
+    UnkDisplayObject_71011d9508* found;
+    do {
+        found = l->child;
+        l = l->next;
+        if (found->name != name.data)
+            found = nullptr;
+    } while (!found && l);
+    return reinterpret_cast<UnkGuiDisplayObject*>(found);
+}
+
+// The child whose name's hash is `id`: first among the direct children, then, depth first, inside
+// the children that are containers themselves.
+// NON_MATCHING(minor): the original walks the first pass through the address of each link and
+// reloads the list's head for the second; Clang keeps the head in a register and walks the links
+// themselves, which lays the passes out differently. The behaviour is the same.
+UnkGuiDisplayObject* fn_71011d98ec(UnkGuiDisplayObject* container, u64 id) {
+    UnkDisplayObject_71011d9508* self = AsContainer(container);
+    for (UnkChildLink_71011d9508* l = self->children; l; l = l->next) {
+        UnkDisplayObject_71011d9508* child = l->child;
+        if (child && *reinterpret_cast<const u64*>(reinterpret_cast<const char*>(child->name) + 0x30) == id)
+            return reinterpret_cast<UnkGuiDisplayObject*>(child);
+    }
+    for (UnkChildLink_71011d9508* l = self->children; l; l = l->next) {
+        UnkDisplayObject_71011d9508* child = l->child;
+        if (!child)
+            continue;
+        const CClass* type = child->vf_0x0();
+        fn_71011d7b84();
+        if (fn_710009d50c(type, reinterpret_cast<const base::reflection::CType*>(g_unk_7172a0f120))) {
+            if (UnkGuiDisplayObject* found = fn_71011d98ec(reinterpret_cast<UnkGuiDisplayObject*>(child), id))
+                return found;
+        }
+    }
+    return nullptr;
+}
