@@ -1302,7 +1302,7 @@ address,size,name,name_source,subsystem,status
 0x710002f67c,448,fn_710002f67c,unknown,unknown,U
 0x710002f83c,208,fn_710002f83c,unknown,unknown,O
 0x710002f90c,388,fn_710002f90c,unknown,unknown,U
-0x710002fa90,224,fn_710002fa90,unknown,unknown,U
+0x710002fa90,224,fn_710002fa90,unknown,unknown,O
 0x710002fb70,16,fn_710002fb70,unknown,unknown,O
 0x710002fb80,400,fn_710002fb80,unknown,unknown,U
 0x710002fd10,340,fn_710002fd10,unknown,unknown,U

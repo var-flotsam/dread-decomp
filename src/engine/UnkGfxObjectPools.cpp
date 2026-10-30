@@ -1,7 +1,8 @@
 // The device layer's object pools (unit 180 of tools/tu_map.py, 0x710015c520-0x710015e4ac): two
 // tables of pre-allocated records (2048 of 0xc0 bytes, 1024 of 0x150 bytes, the second holding
 // shader programs: fn_710015c690 releases one), a sync object and a memory pool, all created by
-// fn_710015c520 during the device set-up (fn_71001587f0). Names and layouts are placeholders.
+// fn_710015c520 during the device set-up (fn_71001587f0); and the uniform setter fn_710015e1f0.
+// Names and layouts are placeholders.
 #include "base/UnkVector.h"
 #include "types.h"
 
@@ -126,4 +127,77 @@ void* fn_710015d720(const UnkGfxTriple* self, s32 which) {
         return self->field_0x10;
     }
     return nullptr;
+}
+
+// ---- fn_710015e1f0: setting a uniform's values ----
+
+#include <string.h>
+
+u32 fn_7100153da0();          // the current frame's buffer index
+extern u8 g_unk_716e2a3450;   // set when any uniform block changed
+
+// A uniform block: one buffer per frame (from +0x40), the size checked at +0x38, a dirty flag.
+struct UnkGfxUniformBlock {
+    u8 pad_0x0[0x38];
+    void* field_0x38;
+    u8* buffers[0x12];  // 0x40
+    bool dirty;         // 0xd0
+    u8 pad_0xd1[0x7];
+};
+static_assert(sizeof(UnkGfxUniformBlock) == 0xd8, "UnkGfxUniformBlock layout");
+
+// A uniform: its offset (+0x30) and size (+0x34) in its block, and the block's index (+0x38).
+struct UnkGfxUniform {
+    u8 pad_0x0[0x30];
+    u32 offset;
+    u32 size;
+    u32 block;
+    u8 pad_0x3c[0x4];
+};
+
+struct UnkGfxStageProgram {
+    u8 pad_0x0[0xa8];
+    UnkGfxUniform* uniforms;      // 0xa8, by location - 15
+    UnkGfxUniformBlock* blocks;   // 0xb0
+    bool dirty;                   // 0xb8
+};
+
+// Copies `count` vectors (up to the uniform's size) into the current frame's buffer of the uniform
+// at `location` of the stage's program (0 to 2 select it in the state), and marks it dirty.
+// NON_MATCHING(minor): the original tests the location before the state, selects the stage's slot by
+// address (stages 2, 1, then 0) and computes the index before the selection; Clang orders and
+// schedules these differently. The behaviour is the same.
+void fn_710015e1f0(void* state, u32 stage, u64 location, u32 count, const f32* values) {
+    if (!location || !state)
+        return;
+    u64 index = (location - 15) & 0xffffffff;
+    UnkGfxStageProgram* const* slot = static_cast<UnkGfxStageProgram* const*>(state);
+    UnkGfxStageProgram* program;
+    switch (stage) {
+    case 2:
+        program = slot[2];
+        break;
+    case 1:
+        program = slot[1];
+        break;
+    case 0:
+        program = slot[0];
+        break;
+    default:
+        program = nullptr;
+        break;
+    }
+    asm("" : "+r"(program));  // the original reads it unchecked
+    UnkGfxUniformBlock* blocks = program->blocks;
+    UnkGfxUniform* uniform = &program->uniforms[index];
+    u32 b = uniform->block;
+    if (blocks[b].field_0x38) {
+        u32 frame = fn_7100153da0();
+        UnkGfxUniformBlock* block = &blocks[b];
+        u32 bytes = count << 2;
+        memcpy(block->buffers[frame] + uniform->offset, values, bytes < uniform->size ? bytes : uniform->size);
+        block->dirty = true;
+        program->dirty = true;
+        g_unk_716e2a3450 = 1;
+    }
 }
