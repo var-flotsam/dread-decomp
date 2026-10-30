@@ -1,5 +1,6 @@
 // The lookups of a blackboard's sections by id: whether there is one, the section itself, and the
 // section created when it is missing (the search is inlined into each).
+#include "base/UnkParallelFind.h"
 #include "game/CBlackboard.h"
 
 using base::global::CStrId;
@@ -90,4 +91,27 @@ void fn_7101046974(CBlackboard* blackboard) {
     fn_710007e704(&self->field_0xb0, g_unk_710162e2ed);
     self->field_0xe0 = 0;
     self->field_0xe8 = false;
+}
+
+// A section's property values (24 bytes each) as the lookup below walks them.
+struct UnkPropertyValue_0x18 {
+    u8 data[0x18];
+};
+
+// The same arrays with the value type spelled out, for base/UnkParallelFind.h.
+struct UnkPropertyMap {
+    UnkPropertyValue_0x18* values;
+    CStrId* ids;
+    u32 count;
+};
+
+// Whether the section `section` names has a property named `name`.
+bool fn_71010474f4(CBlackboard* self, const CStrId& section, const CStrId& name) {
+    CBlackboard::CSection** slot = UnkBlackboardFindSlot(self, section);
+    CBlackboard::CSection* found = slot != &self->sections[self->count] ? *slot : nullptr;
+    if (!found)
+        return false;
+    UnkPropertyArrays& properties = found->data.properties;
+    UnkPropertyValue_0x18* it = UnkParallelFindSlot(reinterpret_cast<UnkPropertyMap*>(&properties), name);
+    return it != &static_cast<UnkPropertyValue_0x18*>(properties.values)[properties.count];
 }

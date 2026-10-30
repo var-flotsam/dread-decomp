@@ -34,5 +34,7 @@ inline void UnkCopyMatrix(UnkMatrix44* dst, const UnkMatrix44& src) {
 const UnkMatrix44& fn_710002614c(const UnkMatrix44* m);
 // The scale matrix for the three factors. The result is returned through x8.
 UnkMatrix44 fn_7100079138(f32 x, f32 y, f32 z);
+// The rotation about z by `angle` (radians), returned through x8 (src/game_s1/fn_7100078c9c.cpp).
+UnkMatrix44 fn_7100078d8c(f32 angle);
 // The matrix product a * b, returned through x8.
 UnkMatrix44 fn_71000127c8(const UnkMatrix44& a, const UnkMatrix44& b);

@@ -15,6 +15,7 @@
 #include "base/math/CVector.h"
 #include "base/math/CVector4D.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkXformNode.h"
 #include "game/UnkGlobal_710b372a98.h"
 #include "game/UnkMapMenuController.h"
 #include "game/UnkMinimapIconKinds.h"
@@ -491,7 +492,6 @@ extern u8 g_unk_71727cc99c[] HIDDEN;
 
 void fn_7100e79fa4(void* field_0x118, const UnkMinimapRect* view, u32 flags, u32* count, void* out);
 void fn_7100e951d4(UnkMinimapOwner* self, u32 count, void* items, u32 field_0x3);
-UnkMinimapVec3 fn_7100206154(void* xform);
 bool fn_71001bb54c(UnkMinimapCameraSub* sub, UnkMinimapVec2* size);
 
 // Starts a frame: resets three draw lists, gathers and adds the items in view, and hands the
@@ -515,7 +515,7 @@ void fn_7100e91d68(UnkMinimapOwner* self) {
         fn_7100e951d4(self, count, g_unk_71727cc99c, 0);
     }
     const UnkMinimapMap* map = self->map;
-    UnkMinimapVec3 pos = fn_7100206154(self->camera->field_0x20);
+    UnkVec3f pos = fn_7100206154(reinterpret_cast<UnkXformNode*>(self->camera->field_0x20));
     UnkMinimapCameraSub* sub = self->camera->field_0x130;
     f32 scale_y = sub->field_0xc4;
     f32 scale_x = sub->field_0xcc;

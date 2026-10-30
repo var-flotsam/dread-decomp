@@ -548,17 +548,6 @@ char* fn_71011ce97c(char* p0, char* p1) {
     return ((char* (*)(char*, u64, u32))(r10_3))(p0, r8_1, r1_2);
 }
 
-bool fn_71011ceb34(char* p0) {
-    u64 r0_8 = (u64)*(u64*)((char*)(p0) + 48);
-    if ((u64)(u64)(r0_8) != 0) {
-        u8 r2_8 = (u8)*(u8*)((char*)(r0_8) + 17);
-        bool r3_0 = (u32)(u64)((u32)(u64)(r2_8)) == (u32)(0);
-        return r3_0;
-    }
-    u32 r6_0 = (u32)(u64)(0);
-    return (bool)(u64)(r6_0);
-}
-
 namespace callee { char* fn_71011ce24c(char*); }
 char* fn_71011ceb54(char* p0, f32 f0) {
     f32 r0_108 = f0;

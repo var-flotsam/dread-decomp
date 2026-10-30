@@ -396,3 +396,27 @@ void fn_7100faba64(UnkSubareaSetupState* self, CBlackboard* blackboard) {
     }
     fn_71000732d4(&parts);
 }
+
+// A list of setups by name: the first entry whose id (+0x18) is `*id`, or null; empty entries are
+// skipped.
+struct UnkSubareaNamedEntry {
+    u8 pad_0x0[0x18];
+    CStrId id;
+};
+struct UnkSubareaNamedList {
+    u8 pad_0x0[0x10];
+    UnkSubareaNamedEntry** data;
+    u32 count;
+};
+
+UnkSubareaNamedEntry* fn_7100fab838(UnkSubareaNamedList* self, const CStrId* id) {
+    UnkSubareaNamedEntry** it = self->data;
+    UnkSubareaNamedEntry** end = it + self->count;
+    const base::global::UnkStringData* want = id->data;
+    for (; it != end; ++it) {
+        UnkSubareaNamedEntry* entry = *it;
+        if (entry && entry->id.data == want)
+            return entry;
+    }
+    return nullptr;
+}

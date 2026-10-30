@@ -34,8 +34,6 @@ using UnkEdgeVisitor = std::function<void(u32, const UnkSegment2D&)>;
 struct UnkSegment2D_71001262e0;  // a segment's two points (src/game/malloc/fn_71001262e0.cpp)
 // The squared distance from `p` to the segment, with the closest point (and where along it).
 f32 fn_71001262e0(const UnkSegment2D_71001262e0* seg, const CVector2D* p, CVector2D* closest, f32* t);
-// The segment's length.
-f32 fn_7100125fbc(const UnkSegment2D* seg);
 UnkSegment2D* fn_7100125b44(UnkSegment2D* self, const UnkSegment2D* other);
 
 static inline u32 EdgeCount(const UnkPolygon2D* p) {

@@ -1498,7 +1498,7 @@ address,size,name,name_source,subsystem,status
 0x71010472e0,308,fn_71010472e0,unknown,unknown,O
 0x7101047414,112,fn_7101047414,unknown,unknown,O
 0x7101047484,112,fn_7101047484,unknown,unknown,O
-0x71010474f4,220,fn_71010474f4,unknown,unknown,U
+0x71010474f4,220,fn_71010474f4,unknown,unknown,O
 0x71010475d0,208,fn_71010475d0,unknown,unknown,U
 0x71010476a0,336,fn_71010476a0,unknown,unknown,U
 0x71010477f0,408,fn_71010477f0,unknown,unknown,U
@@ -4246,7 +4246,7 @@ address,size,name,name_source,subsystem,status
 0x71010d03e8,488,fn_71010d03e8,unknown,game/components?,O
 0x71010d05d0,388,CMovementComponent::refl_InitClass,reflection,game/components,O
 0x71010d0754,384,fn_71010d0754,unknown,unknown,U
-0x71010d08d4,88,fn_71010d08d4,unknown,unknown,U
+0x71010d08d4,88,fn_71010d08d4,unknown,unknown,O
 0x71010d092c,236,fn_71010d092c,unknown,unknown,O
 0x71010d0a18,232,fn_71010d0a18,unknown,unknown,O
 0x71010d0b00,120,fn_71010d0b00,unknown,unknown,U
@@ -4515,7 +4515,7 @@ address,size,name,name_source,subsystem,status
 0x71010e51e4,296,fn_71010e51e4,unknown,unknown,U
 0x71010e530c,56,fn_71010e530c,unknown,unknown,O
 0x71010e5344,56,fn_71010e5344,unknown,unknown,O
-0x71010e537c,48,fn_71010e537c,unknown,unknown,U
+0x71010e537c,48,fn_71010e537c,unknown,unknown,O
 0x71010e53ac,48,fn_71010e53ac,unknown,unknown,U
 0x71010e53dc,280,fn_71010e53dc,unknown,unknown,U
 0x71010e54f4,280,fn_71010e54f4,unknown,unknown,U

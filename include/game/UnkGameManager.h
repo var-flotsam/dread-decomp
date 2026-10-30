@@ -71,6 +71,28 @@ struct UnkGameManagerListNode {
     UnkGameManagerListNode* next;
 };
 
+// The weak handles of the objects registered under one id (0x28 bytes; fn_7100de9540 appends).
+struct UnkGameManagerIdList {
+    void** data;
+    u32 count;
+    u8 pad_0xc[0x1c];
+};
+
+// The lists by id, looked up as UnkGameManagerIdMap is.
+struct UnkGameManagerIdLists {
+    UnkGameManagerIdList* values;
+    u64* keys;
+    u32 count;
+
+    // The list for the first matching key, or values + count when there is none.
+    UnkGameManagerIdList* Find(const u64& id) {
+        for (u32 i = 0; i < count; ++i)
+            if (keys[i] == id)
+                return values + i;
+        return values + count;
+    }
+};
+
 struct UnkGameManager {
     u8 pad_0x0[0xc0];
     s32 field_0xc0;  // a mode (1 or 2) that overrides an actor's while fn_7100df5c38 holds (fn_7100bc77ec)
@@ -98,7 +120,9 @@ struct UnkGameManager {
     void* field_0x2258;  // a GUI flag reference: its +0x10 holds the composition (fn_7100b2de48)
     u8 pad_0x2260[0x10];
     void* field_0x2270;    // another
-    u8 pad_0x2278[0x390];  // +0x24f8: a callback set that fn_7100b2de48's states watch
+    u8 pad_0x2278[0x1d8];
+    UnkGameManagerIdLists field_0x2450;  // objects by the id they register under (fn_7100de9540)
+    u8 pad_0x2468[0x1a0];  // +0x24f8: a callback set that fn_7100b2de48's states watch
     UnkGameManagerHashMap field_0x2608;  // objects by id (fn_7100deba8c)
     UnkGameManagerHashMap field_0x2650;  // more of them
     UnkGameManagerListNode* field_0x2698;  // entries whose +0x30 refers to an object with the id
@@ -112,6 +136,7 @@ static_assert(__builtin_offsetof(UnkGameManager, field_0x1000) == 0x1000, "UnkGa
 static_assert(__builtin_offsetof(UnkGameManager, field_0x1040) == 0x1040, "UnkGameManager placeholder layout");
 static_assert(__builtin_offsetof(UnkGameManager, field_0x1af8) == 0x1af8, "UnkGameManager placeholder layout");
 static_assert(__builtin_offsetof(UnkGameManager, field_0x2238) == 0x2238, "UnkGameManager placeholder layout");
+static_assert(__builtin_offsetof(UnkGameManager, field_0x2450) == 0x2450, "UnkGameManager placeholder layout");
 static_assert(__builtin_offsetof(UnkGameManager, field_0x2608) == 0x2608, "UnkGameManager placeholder layout");
 static_assert(__builtin_offsetof(UnkGameManager, field_0x2650) == 0x2650, "UnkGameManager placeholder layout");
 static_assert(__builtin_offsetof(UnkGameManager, field_0x2698) == 0x2698, "UnkGameManager placeholder layout");
@@ -128,6 +153,8 @@ base::global::CStrId fn_7100dfbda4(UnkGameManager* self, const base::global::CSt
 // Whether the object behind +0x498 (the game's mode holder) is named "EDITOR"; false when there is
 // none (src/game/CGameManager.cpp; called by fn_7100c79a80).
 bool fn_7100deabe4(UnkGameManager* self);
+// Whether that object is named "INGAME" and its word at +0x260 is set (src/game/CGameManager.cpp).
+bool fn_7100df5c94(UnkGameManager* self);
 
 // The object fn_7100deac84 gives: the target of the reference at +0x2240, most likely the in-game
 // menu (GUI::CIngameMenu's unit has fn_7100b30454, which takes it). Its +0x2d0 is an object of
@@ -171,3 +198,6 @@ void* fn_7100deba8c(UnkGameManager* self, const u64* id, const u32* flags);
 // first use) to the matching entry of the array at +0x2450. Not defined by hand; the components pass
 // themselves.
 void fn_7100de9540(UnkGameManager* manager, const u64* id, UnkWeakTarget* object);
+// The list of the objects registered under `*id`, or an empty one when no object is
+// (src/game/CGameManager.cpp).
+UnkGameManagerIdList* fn_7100de94cc(UnkGameManager* self, const u64* id);

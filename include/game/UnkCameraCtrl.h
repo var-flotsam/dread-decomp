@@ -24,3 +24,7 @@ struct UnkCameraCtrl {
 // The holder's current camera controller (the first word of what its +0x60 points to), or null
 // when +0x60 is. Not decompiled yet.
 UnkCameraCtrl* fn_71010e2080(void* holder);
+
+// The block at +0x38 of the object the camera holder's reference at +0x60 points to, or a constant
+// default one (src/game/CCameraComponent/fn_71010e537c.cpp).
+const void* fn_71010e537c(void* holder);

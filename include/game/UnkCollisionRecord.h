@@ -59,5 +59,5 @@ void fn_7100863a8c(UnkCollisionContainer* self, const base::global::CStrId* id);
 // Looks the object registered under the string id `name` up in the records (refreshing the record
 // through the container's vf_0x170 when its flag at +0x18 is set) and returns it. The callers reach
 // the container through their owner's +0x2a0 and look components up by name ("damage").
-// tools/tu_map.py puts it in the CCollisionComponent unit. Not decompiled yet.
+// tools/tu_map.py puts it in the CCollisionComponent unit (src/game/CCollisionComponent/fn_71008640a4.cpp).
 UnkCollisionObject* fn_71008640a4(UnkCollisionContainer* self, const base::global::CStrId* name);

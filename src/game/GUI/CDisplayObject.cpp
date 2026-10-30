@@ -45,3 +45,44 @@ void fn_71011d0088(UnkGuiDisplayObject* self, bool flag) {
         self->field_0x144 |= 4;
     }
 }
+
+// The conditions an object checks (+0x100: how many, from +0x104, an unaligned array of pointers),
+// each through its vf_0x20; and its state object at +0x30. Only these fields are laid out here.
+struct UnkGuiCondition {
+    virtual void vf_0x0();
+    virtual void vf_0x8();
+    virtual void vf_0x10();
+    virtual void vf_0x18();
+    virtual bool vf_0x20();
+};
+struct UnkGuiObjectSub_0x30 {
+    u8 pad_0x0[0x11];
+    bool field_0x11;
+};
+struct UnkGuiConditionView {
+    u8 pad_0x0[0x30];
+    UnkGuiObjectSub_0x30* field_0x30;
+    u8 pad_0x38[0xc8];
+    u32 condition_count;  // 0x100
+    u8 conditions[1];     // 0x104
+
+    UnkGuiCondition** begin() { return reinterpret_cast<UnkGuiCondition**>(conditions); }
+    UnkGuiCondition** end() { return begin() + condition_count; }
+};
+
+// Whether any of the object's conditions fails.
+bool fn_71011ceac0(UnkGuiDisplayObject* self) {
+    UnkGuiConditionView* view = reinterpret_cast<UnkGuiConditionView*>(self);
+    for (UnkGuiCondition** it = view->begin(); it != view->end(); ++it)
+        if (!(*it)->vf_0x20())
+            return true;
+    return false;
+}
+
+// Whether the object has a state object at +0x30 whose flag at +0x11 is clear.
+bool fn_71011ceb34(UnkGuiDisplayObject* self) {
+    UnkGuiConditionView* view = reinterpret_cast<UnkGuiConditionView*>(self);
+    if (view->field_0x30)
+        return !view->field_0x30->field_0x11;
+    return false;
+}

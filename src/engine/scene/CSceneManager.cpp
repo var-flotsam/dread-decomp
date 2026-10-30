@@ -97,6 +97,16 @@ bool fn_71001fc844(UnkSceneManager* self, s32 id, f32 x, f32 y, f32 z) {
     return true;
 }
 
+// Whether an item with the id `layer` is registered (the render manager's callers know the manager as
+// a pass list, src/game/UnkRenderManager.cpp).
+bool fn_71001fc69c(void* passes, u32 layer) {
+    UnkSceneManager* self = static_cast<UnkSceneManager*>(passes);
+    for (UnkSceneSlot *it = self->items.data, *end = it + self->items.count; it != end; ++it)
+        if ((*reinterpret_cast<UnkSceneItem**>(it->data))->id == (s32)layer)
+            return true;
+    return false;
+}
+
 // The flag at +0x142 (the declaration is src/game_s1/fn_71001fcd4c.cpp's, over its item view).
 struct UnkItem;
 bool fn_7100200144(UnkItem* item);
