@@ -3,7 +3,7 @@
 // offset; 1 centres in the area; 2 and 3 subtract one of the item's two extents, from twice the
 // offset and from the area's size) and an offset; the extents come from fn_71011f638c. Names and
 // layouts are placeholders.
-// Holds fn_71011f6044 and fn_71011f61bc.
+// Holds fn_71011f6044, fn_71011f61bc, fn_71011f6240 and fn_71011f6344.
 #include "base/math/CVector.h"
 #include "base/math/UnkSegment2D.h"
 #include "types.h"
@@ -101,6 +101,60 @@ UnkGuiPos fn_71011f61bc(const UnkGuiItemState* state, const UnkGuiPos* pos) {
         r.x = t.x;
         r.y = t.y;
         r.y = fn_7100132fe0() * r.y;
+    }
+    return r;
+}
+
+// A default display state (as the display object's constructor sets one up): no anchoring, no
+// angle, unit size and scale, depth 0, white. Only its size is read as an area here.
+struct UnkGuiDefaultState {
+    u32 anchor[4] = {};
+    f32 angle = 0.0f;
+    f32 width = 1.0f;
+    f32 height = 1.0f;
+    f32 scale_x = 1.0f;
+    f32 scale_y = 1.0f;
+    f32 depth = 0.0f;
+    f32 color[4] = {1.0f, 1.0f, 1.0f, 1.0f};
+};
+
+// The anchored position inside a unit area.
+UnkGuiPos fn_71011f6344(const UnkGuiAnchor* self) {
+    UnkGuiDefaultState state;
+    return fn_71011f6044(self, reinterpret_cast<const UnkGuiArea*>(&state));
+}
+
+// The state's position re-anchored by the modes `h` and `v` (as its own when they are its own):
+// anchored inside a unit area, then moved by the scaled size for modes 1 (half of it) and 3 (all of
+// it); modes 0 and 2 keep the anchored coordinate.
+// NON_MATCHING(minor): the original tests the vertical mode against 1 before 3; the behaviour is the
+// same.
+UnkGuiPos fn_71011f6240(const UnkGuiItemState* state, u32 h, u32 v) {
+    UnkGuiPos r(0.0f, 0.0f);
+    if (state->anchor.horizontal == h && state->anchor.vertical == v) {
+        r.x = state->anchor.offset.x;
+        r.y = state->anchor.offset.y;
+        return r;
+    }
+    UnkGuiDefaultState area;
+    UnkGuiPos p = fn_71011f6044(&state->anchor, reinterpret_cast<const UnkGuiArea*>(&area));
+    r.x = p.x;
+    r.y = p.y;
+    f32 height = state->height;
+    f32 scale_y = state->scale_y;
+    f32 w = state->width * state->scale_x;
+    if (h == 3)
+        r.x = w + p.x;
+    else if (h == 1)
+        r.x = w * 0.5f + p.x;
+    f32 hh = height * scale_y;
+    switch (v) {
+    case 1:
+        hh = hh * 0.5f;
+        [[fallthrough]];
+    case 3:
+        r.y = hh + p.y;
+        break;
     }
     return r;
 }

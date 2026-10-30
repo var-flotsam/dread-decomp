@@ -221,34 +221,6 @@ struct UnkGuiPlacement {
     f32 scale_y;  // 0x98
 };
 
-// Whether `x` lies outside 1 +- `eps` (false for NaN).
-static inline bool AwayFromOne(f32 x, f32 eps) {
-    return !(x - eps <= 1.0f) || x + eps < 1.0f;
-}
-
-// NON_MATCHING(minor): the original repeats the first-change call in each of the two branches of the
-// scale test and loads the tolerance after the x scale; the behaviour is the same.
-void fn_71011cde64(UnkGuiDisplayObject* self, const base::math::CVector2D* position, u32 h_mode, u32 v_mode) {
-    UnkGuiPlacement* p = reinterpret_cast<UnkGuiPlacement*>(self);
-    if (p->h_mode == h_mode && p->v_mode == v_mode && position->x - p->position.x == 0.0f &&
-        position->y - p->position.y == 0.0f)
-        return;
-    p->position.x = position->x;
-    p->position.y = position->y;
-    p->h_mode = h_mode;
-    p->v_mode = v_mode;
-    // A unit scale (within the tolerance) changes only the position (bit 0); any other also the
-    // size (bit 4).
-    f32 eps = g_unk_7101647774;
-    u32 bits = AwayFromOne(p->scale_x, eps) || AwayFromOne(p->scale_y, eps) ? 0x11 : 1;
-    if (!self->field_0x184) {
-        self->field_0x184 = true;
-        self->vf_0xa0();
-    }
-    self->field_0x183 = true;
-    self->field_0x144 |= bits;
-}
-
 // Marks the object changed: a unit scale (within the tolerance) changes only the position (bit 0),
 // any other also the size (bit 4); the first change runs vf_0xa0.
 static inline void MarkPlaced(UnkGuiDisplayObject* self, const UnkGuiPlacement* p) {
@@ -270,6 +242,19 @@ static inline void MarkPlaced(UnkGuiDisplayObject* self, const UnkGuiPlacement* 
     }
     self->field_0x183 = true;
     self->field_0x144 |= bits;
+}
+
+// NON_MATCHING(minor): the first-change call laid out in other blocks; same behaviour.
+void fn_71011cde64(UnkGuiDisplayObject* self, const base::math::CVector2D* position, u32 h_mode, u32 v_mode) {
+    UnkGuiPlacement* p = reinterpret_cast<UnkGuiPlacement*>(self);
+    if (p->h_mode == h_mode && p->v_mode == v_mode && position->x - p->position.x == 0.0f &&
+        position->y - p->position.y == 0.0f)
+        return;
+    p->position.x = position->x;
+    p->position.y = position->y;
+    p->h_mode = h_mode;
+    p->v_mode = v_mode;
+    MarkPlaced(self, p);
 }
 
 // Sets one coordinate and the mode it is measured by (the other coordinate is kept as it is; the
@@ -311,3 +296,47 @@ void fn_71011ccd20(f32 y, UnkGuiDisplayObject* self) { SetY<1>(y, self); }
 void fn_71011ccb28(f32 y, UnkGuiDisplayObject* self) { SetY<2>(y, self); }
 // NON_MATCHING(minor): the first-change call laid out in other blocks; same behaviour.
 void fn_71011ccc24(f32 y, UnkGuiDisplayObject* self) { SetY<3>(y, self); }
+
+// ---- fn_71011cd4b4: resetting the display state ----
+
+struct UnkGuiResetView {
+    u8 pad_0x0[0x88];
+    f32 angle;  // 0x88
+    u8 pad_0x8c[0x8];
+    f32 scale[2];  // 0x94
+    u8 pad_0x9c[0x4];
+    f32 color[4];  // 0xa0
+    u8 pad_0xb0[0x4];
+    bool field_0xb4;
+    u8 pad_0xb5[0x83];
+    s32 field_0x138;
+    u32 field_0x13c;
+    s32 field_0x140;
+    s32 field_0x144;
+    u8 pad_0x148[0x39];
+    bool field_0x181;
+    u8 pad_0x182[0x3];
+    bool field_0x185;
+    bool field_0x186;
+};
+static_assert(__builtin_offsetof(UnkGuiResetView, field_0x186) == 0x186, "UnkGuiResetView layout");
+
+// Back to the defaults: no angle, unit scale, white, flags as constructed, all change bits set.
+void fn_71011cd4b4(UnkGuiDisplayObject* object) {
+    UnkGuiResetView* self = reinterpret_cast<UnkGuiResetView*>(object);
+    self->field_0xb4 = true;
+    self->scale[0] = 1.0f;
+    self->scale[1] = 1.0f;
+    self->color[0] = 1.0f;
+    self->color[1] = 1.0f;
+    self->color[2] = 1.0f;
+    self->color[3] = 1.0f;
+    self->angle = 0.0f;
+    self->field_0x181 = false;
+    self->field_0x138 = -1;
+    self->field_0x185 = false;
+    self->field_0x186 = true;
+    self->field_0x13c = 0;
+    self->field_0x140 = 0x7fffffff;
+    self->field_0x144 = -1;
+}
