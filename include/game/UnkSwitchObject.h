@@ -27,3 +27,5 @@ static_assert(__builtin_offsetof(UnkSwitchObject, field_0x244) == 0x244, "UnkSwi
 
 // Switches `self` on or off. Defined in src/game_lo/fn_7100146e60.cpp.
 void fn_7100146e60(UnkSwitchObject* self, bool enable);
+// Unit 133's switch of the same object (src/game_lo/fn_7100145e94.cpp).
+void fn_7100145e94(UnkSwitchObject* self, bool enable);

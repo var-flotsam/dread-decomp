@@ -4520,7 +4520,7 @@ address,size,name,name_source,subsystem,status
 0x7100faca00,132,fn_7100faca00,unknown,unknown,U
 0x7100faca84,132,fn_7100faca84,unknown,unknown,U
 0x7100facb08,100,fn_7100facb08,unknown,unknown,O
-0x7100facb6c,124,fn_7100facb6c,unknown,unknown,U
+0x7100facb6c,124,fn_7100facb6c,unknown,unknown,O
 0x7100facbe8,744,fn_7100facbe8,unknown,unknown,O
 0x7100faced0,52,fn_7100faced0,unknown,unknown,U
 0x7100facf04,440,fn_7100facf04,unknown,unknown,U
