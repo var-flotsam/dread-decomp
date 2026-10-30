@@ -5312,7 +5312,7 @@ address,size,name,name_source,subsystem,status
 0x71007f9910,620,fn_71007f9910,unknown,unknown,U
 0x71007f9b7c,512,fn_71007f9b7c,unknown,unknown,O
 0x71007f9d7c,420,fn_71007f9d7c,unknown,unknown,U
-0x71007f9f20,144,fn_71007f9f20,unknown,unknown,U
+0x71007f9f20,144,fn_71007f9f20,unknown,unknown,m
 0x71007f9fb0,32,fn_71007f9fb0,unknown,unknown,O
 0x71007f9fd0,32,fn_71007f9fd0,unknown,unknown,O
 0x71007f9ff0,8,fn_71007f9ff0,unknown,unknown,O

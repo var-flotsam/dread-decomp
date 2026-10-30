@@ -1,6 +1,8 @@
-// Returns whether any listed object's class name contains the given class's name (optionally skipping objects that report busy).
+// Returns whether any listed object's class name contains the given class's name (optionally skipping
+// objects that report busy); and the name id of a track by its name hash (fn_7101177ae8).
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/UnkAnimationComponent.h"
 #include "types.h"
 
 struct UnkClsStr_710117af10 {
@@ -57,4 +59,18 @@ bool fn_710117af10(UnkStruct_710117af10* self, UnkCls_710117af10** name, bool sk
         return true;
     }
     return false;
+}
+
+// The name id of the track whose name hash is `key` (what fn_710070d7f8 gives for it), or the
+// global empty id when there is no such entry or track.
+const base::global::CStrId* fn_7101177ae8(UnkAnimationComponent* self, u64 key) {
+    UnkTrackSet* set = self->field_0x40;
+    UnkTrackEntry** it = set->field_0xc8.Find(key);
+    if (it == set->field_0xc8.End())
+        return &g_unk_7101d470e0;
+    UnkTrackEntry* entry = *it;
+    if (entry && entry->field_0x70)
+        return reinterpret_cast<const base::global::CStrId*>(
+            fn_710070d7f8(reinterpret_cast<UnkObj_710117af10*>(entry->field_0x70)));
+    return &g_unk_7101d470e0;
 }
