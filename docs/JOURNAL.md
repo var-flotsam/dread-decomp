@@ -131,6 +131,17 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Night round 20: a render-target stack, collision and effect lookups (2026-10-30, branch `claude/project-thread-lths9k-night20`, on round 19).**
+4 functions to `O` and 1 to minor. Boot slice: `O` 2,156 (30.62%), usable 40.96% to 40.98%; whole binary `O` 85,399 to 85,402
+(54.95%), usable 57.45% to 57.46%. `O`: the render-target stack's pop (fn_71001cdd18, 21 callers), a bound target's texture
+(fn_710015c450, 16), the collision container's lookup by the record's second id (fn_7100864194, 19; declared in
+game/UnkCollisionRecord.h, its two callers unchanged). Minor: CFXComponent's effect switch (fn_710114fe8c, 59 callers).
+- **A destructor's store that may alias.** The stack's pop clears the dropped entry's count and the original then reloads
+  the array pointer; writing the clear through a `may_alias` word reproduces the reload (the entry's own destructor does not).
+- Left: the resource registry's call of a type's create function (fn_710001ab24; it returns a reference through the
+  registry's own types), a swarm controller's two-level hash lookup (fn_7100e1cb50) and an asset link's list removal
+  (fn_710002572c).
+
 **Night round 19: two wrong declarations, and more hubs (2026-10-30, branch `claude/project-thread-lths9k-night19`, on round 18).**
 3 functions to `O` and 2 to minor. Boot slice: `O` 2,153 to 2,156 (30.62%), usable 40.93% to 40.96%; whole binary `O` 85,396
 to 85,399 (54.95%), usable 57.45%. `O`: a reflected value's assignment of an object of a type (fn_71000a1cc8, 94 callers), the game manager's test
