@@ -14,6 +14,7 @@
 // base/UnkCloneHelpers.h; fn_7100ebf2fc constructs it with 100 nodes). Names and layouts are
 // placeholders; only what the hand-written files touch is spelled out.
 
+#include "base/global/CStrId.h"
 #include "types.h"
 
 namespace base {
@@ -48,6 +49,11 @@ struct UnkNavMeshManager {
     UnkNavMeshNodePool_0x70 pool;   // +0x62e58
 };
 static_assert(__builtin_offsetof(UnkNavMeshManager, reach) == 0x5ddf8, "UnkNavMeshManager placeholder layout");
+
+// The two pointers of the smart-link group registered under `name` (the first, and the group
+// itself), or null (src/game_hi/fn_7100ebfa7c.cpp).
+void* fn_7100ec1344(UnkNavMeshManager* self, const base::global::CStrId* name);
+void* fn_7100ec13cc(UnkNavMeshManager* self, const base::global::CStrId* name);
 static_assert(__builtin_offsetof(UnkNavMeshManager, field_0x62e30) == 0x62e30, "UnkNavMeshManager placeholder layout");
 static_assert(__builtin_offsetof(UnkNavMeshManager, pool) == 0x62e58, "UnkNavMeshManager placeholder layout");
 static_assert(sizeof(UnkNavMeshManager) == 0x62ec8, "UnkNavMeshManager placeholder layout");

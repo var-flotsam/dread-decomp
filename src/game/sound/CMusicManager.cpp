@@ -1,7 +1,7 @@
 // The music manager's constructor (include/game/sound/CMusicManager.h): sets its vtable, sizes the
 // request, slot and activity arrays from the sound manager's slot count, builds four chained maps
 // and the channel, bank and track sub-objects, then gives every slot a list and a 0x10-byte data
-// object and clears its activity flag.
+// object and clears its activity flag. Also a request's flag setter (fn_7100fd63b0).
 #include <new>
 
 #define UNK_VECTOR_GROW_AT_ATTR __attribute__((always_inline))
@@ -110,4 +110,34 @@ void fn_7100fd3804(void* block) {
         }
         active.data[i] = 0;
     }
+}
+
+// An entry of the request array (+0xb8) as the flag setter below reads it.
+struct UnkMusicEntryView {
+    u8 pad_0x0[0xc];
+    f32 field_0xc;  // passed to the sound manager
+    u8 pad_0x10[0x14];
+    bool flag;  // 0x24
+    u8 pad_0x25[0x3];
+    u64 handle;  // 0x28
+    s32 active;  // 0x30
+    u8 pad_0x34[0x2c];
+};
+static_assert(sizeof(UnkMusicEntryView) == 0x60, "UnkMusicEntryView layout");
+
+void fn_7100108a98(UnkSoundMgr* mgr, u64 handle, bool flag, f32 value);
+
+// Sets the flag of request `index` when it is active and the flag changes, and tells the sound
+// manager; returns whether it did.
+bool fn_7100fd63b0(UnkMusicManager* self, u32 index, bool flag) {
+    if (index < self->entries.count) {
+        UnkMusicEntryView* entry = reinterpret_cast<UnkMusicEntryView*>(self->entries.data) + index;
+        if (entry->active != 0 && entry->flag != flag) {
+            u64 handle = entry->handle;
+            entry->flag = flag;
+            fn_7100108a98(g_unk_7101d4d820, handle, flag, entry->field_0xc);
+            return true;
+        }
+    }
+    return false;
 }

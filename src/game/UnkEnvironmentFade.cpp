@@ -4,8 +4,8 @@
 // channel has its duration, its progress (0 while it runs, 1 when it is done at once) and a flag,
 // in three arrays of 29; the values faded live before them. fn_7100d8e398 applies a preset with
 // these setters (the object at +0x28 of its first argument). Names and layouts are placeholders.
-// Holds fn_7100f97f64, fn_7100f9819c, fn_7100f98244, fn_7100f98370 and fn_7100f98410 (start a
-// channel's fade) and fn_7100f989f0 (sets the texture by its path).
+// Holds fn_7100f97f64, fn_7100f9800c, fn_7100f9819c, fn_7100f98244, fn_7100f98370 and
+// fn_7100f98410 (start a channel's fade) and fn_7100f989f0 (sets the texture by its path).
 #include "base/UnkResKey.h"
 #include "base/color/CColor4F.h"
 #include "base/global/CFilePathStrId.h"
@@ -36,7 +36,10 @@ struct UnkEnvironmentFade {
     UnkEnvFadeColor field_0x0;   // channel 0: where it starts
     UnkEnvFadeColor field_0x10;  // channel 0: the value now
     UnkEnvFadeColor field_0x20;  // channel 0: where it goes
-    u8 pad_0x30[0x54];
+    f32 field_0x30;              // channel 1: where it starts
+    f32 field_0x34;              // channel 1: the value now
+    f32 field_0x38;              // channel 1: where it goes
+    u8 pad_0x3c[0x48];
     UnkEnvFadeColor field_0x84;  // channel 4: where it starts
     UnkEnvFadeColor field_0x94;  // channel 4: where it goes
     UnkFadePair field_0xa4[8];  // channel 5: two sets of four floats, interleaved
@@ -79,6 +82,18 @@ void fn_7100f97f64(f32 time, UnkEnvironmentFade* self, const UnkEnvFadeColor* to
     fn_710007b518(&self->field_0x0, &now);
     fn_710007b518(&self->field_0x10, &self->field_0x0);
     fn_710007b518(&self->field_0x20, to);
+}
+
+// The render manager's current value for channel 1 (generated, src/lifted/: it forwards to the
+// pass list's fn_71001fd94c).
+f32 fn_7100219fd4(UnkRenderManager* self, u32 arg);
+
+void fn_7100f9800c(f32 to, f32 time, UnkEnvironmentFade* self) {
+    self->Start(1, time);
+    f32 now = fn_7100219fd4(g_unk_7101d47300, 0);
+    self->field_0x30 = now;
+    self->field_0x34 = now;
+    self->field_0x38 = to;
 }
 
 void fn_7100219e74(UnkRenderManager* self, CColor4F* inout);

@@ -90,6 +90,10 @@ CBlackboard::CSection* fn_7101047270(CBlackboard* self, const base::global::CStr
 // (fn_71010472e0, src/game/CBlackboard.cpp).
 CBlackboard::CSection* fn_71010472e0(CBlackboard* self, const base::global::CStrId& key);
 
+// Clears every section's flag and the flags of the objects on the list at +0x70
+// (src/game/CBlackboard.cpp).
+void fn_7101047178(CBlackboard* self);
+
 // Copies of the same lookup (src/game/CBlackboard.cpp).
 CBlackboard::CSection* fn_7101047414(CBlackboard* self, const base::global::CStrId& key);
 CBlackboard::CSection* fn_7101047484(CBlackboard* self, const base::global::CStrId& key);

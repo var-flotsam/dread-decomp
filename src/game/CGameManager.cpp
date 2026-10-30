@@ -520,7 +520,6 @@ void fn_71000fbe1c(void* self, u32 a, f32 b, f32 c);
 void fn_7101048af8(CBlackboard* self);
 void fn_7100dfc638(UnkGameManager* self, CBlackboard* blackboard, const CRntString* name, const CRntString* tag);
 void fn_7101046e78(CBlackboard* self, CBlackboard* other, bool a, bool b);
-void fn_7101047178(CBlackboard* self);
 struct UnkHandleList {
     UnkGameManagerObjRef** data;
     u32 count;
