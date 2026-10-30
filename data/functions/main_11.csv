@@ -3292,7 +3292,7 @@ address,size,name,name_source,subsystem,status
 0x71011d968c,244,fn_71011d968c,unknown,unknown,U
 0x71011d9780,364,fn_71011d9780,unknown,unknown,U
 0x71011d98ec,192,fn_71011d98ec,unknown,unknown,m
-0x71011d99ac,52,fn_71011d99ac,unknown,unknown,U
+0x71011d99ac,52,fn_71011d99ac,unknown,unknown,m
 0x71011d99e0,4,fn_71011d99e0,unknown,unknown,O
 0x71011d99e4,96,fn_71011d99e4,unknown,unknown,O
 0x71011d9a44,112,fn_71011d9a44,unknown,unknown,O
