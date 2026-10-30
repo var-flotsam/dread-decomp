@@ -1,6 +1,6 @@
 // Prepares an entry (a count-prefixed list of up to 16 pairs of 32-bit values and one 64-bit
 // value) and appends a copy of it to the array at +0x317a9e0, growing the array as
-// UnkVector::EmplaceBack does but with copy construction.
+// UnkVector::EmplaceBack does but with copy construction; fn_71001cdd18 drops the last one.
 #include "base/UnkVector.h"
 #include "types.h"
 
@@ -59,4 +59,23 @@ void fn_71001cdba4(UnkOwner_71001cdba4* self, UnkEntry_71001cdba4* entry) {
     }
     new (&v.data[n]) UnkEntry_71001cdba4(*entry);
     ++v.count;
+}
+
+// The default set (generated, src/lifted/).
+UnkEntry_71001cdba4* fn_7100159aa0();
+
+// Drops the last entry and binds the one before it, or the default set when none is left.
+void fn_71001cdd18(UnkOwner_71001cdba4* self) {
+    base::UnkVector<UnkEntry_71001cdba4>& v = self->entries;
+    u32 n = v.count - 1;
+    // The entry's destructor (its count cleared), as a word that may alias the array's fields: the
+    // original reloads the array after it.
+    typedef u32 __attribute__((may_alias)) UnkAliasCount;
+    *reinterpret_cast<UnkAliasCount*>(&v.data[(s32)n].count) = 0;
+    v.count = n;
+    if (n != 0) {
+        fn_710015c2d0(v.data + n - 1);
+        return;
+    }
+    fn_710015c2d0(fn_7100159aa0());
 }
