@@ -3183,7 +3183,7 @@ address,size,name,name_source,subsystem,status
 0x7100eb6ccc,1292,fn_7100eb6ccc,unknown,unknown,O
 0x7100eb71d8,384,fn_7100eb71d8,unknown,unknown,O
 0x7100eb7358,280,fn_7100eb7358,unknown,unknown,U
-0x7100eb7470,192,fn_7100eb7470,unknown,unknown,U
+0x7100eb7470,192,fn_7100eb7470,unknown,unknown,O
 0x7100eb7530,96,fn_7100eb7530,unknown,unknown,U
 0x7100eb7590,240,fn_7100eb7590,unknown,unknown,U
 0x7100eb7680,128,fn_7100eb7680,unknown,unknown,O

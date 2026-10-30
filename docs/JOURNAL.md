@@ -131,6 +131,21 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Night round 7: thirteen boot-slice leaves (2026-10-30, branch `claude/project-thread-lths9k-night7`).**
+13 boot-slice functions from `U` to `O` (all "ready": their callees were already matched), picked by the closest `gen_lift.py --best`
+draft and rewritten with real types. Boot slice: `O` 2,057 to 2,070 functions, 29.97% to 30.05%; usable 40.15% to 40.24%. Whole
+binary: `O` 85,284 to 85,297. CRntFile's element write and fill (fn_710007c450, fn_710007c4b8), Lua's protected call with a
+scratch array (fn_710109cef0), a reflected value reset to a type (fn_71000a2014), a display object's flag setter (fn_71011d0088),
+a bouncing timed curve's step (fn_7100eb7470; base/UnkTimedCurve.h now holds the curve), a breakable tile group's per-tile
+update, the aim component's animation check and the GUI's five frame scale helpers (game/UnkGuiFrames.h).
+- **A caller that relied on a register.** fn_71000a2014 takes the type as its second argument; its one hand-written caller
+  declared it with one parameter and left the type in x1 by chance. The caller now passes it (same bytes); on the port this is
+  a real fix: an x86-64 build passes only what a call names.
+- **The draft's float is an int.** Ghidra typed the frame helpers' key as a float (compared in a float register's view); the
+  original compares it as a word. The declarations in src/game/GUI/CLabel.cpp had it right.
+- **A switch, not ifs.** fn_7100eb7470's compare tree matched only as `switch (mode) { case 1: ... case 2: ... }`, the bodies
+  in the original's order; `!(t <= 0)` gives its `b.hi`.
+
 **Night round 6: two boot hubs and more near copies (2026-10-30, branch `claude/project-thread-lths9k-night6`).**
 15 functions to `O` and 2 boot hubs to minor, 2,780 bytes `O`. Whole binary: `O` 85,269 to 85,284, 54.87% to 54.88%; usable 57.34% to
 57.35%; boot slice usable 40.13% to 40.15%. Minor: fn_710027a33c (a nav mesh's cell by key, 11 boot callers; its key turned out to
