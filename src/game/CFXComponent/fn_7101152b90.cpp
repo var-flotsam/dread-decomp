@@ -49,7 +49,7 @@ struct UnkFXEffect {
     u8 pad_0x8[0x3];
     u8 kind;  // 0xb
     u8 pad_0xc[0x10d];
-    bool on;  // 0x119
+    u8 on;  // 0x119, tested as a byte
 };
 
 struct UnkFXOwnerScene {
@@ -60,6 +60,29 @@ struct UnkFXOwner {
     u8 pad_0x0[0x228];
     UnkFXOwnerScene* field_0x228;
 };
+
+// Switches `effect` on or off (attaching a scene-bound effect to the owner's scene when turning it on,
+// detaching it when turning it off), and restarts it when `restart` is set.
+static inline void Switch(UnkObject* self, UnkFXEffect* effect, u32 on, u32 restart) {
+    if (effect && effect->kind == 4 && (((effect->on != 0) ^ on) & 1)) {
+        void* scene = reinterpret_cast<UnkFXOwner*>(reinterpret_cast<char**>(self)[6])->field_0x228->scene;
+        if (!scene || !(on & 1)) {
+            if (scene)
+                fn_710014580c(effect);
+        } else {
+            fn_71001457fc(effect, scene, 1);
+        }
+    }
+    reinterpret_cast<void (*)(UnkFXEffect*, bool)>(effect->vtable[0x40 / 8])(effect, on & 1);
+    if (restart & 1)
+        reinterpret_cast<void (*)(UnkFXEffect*)>(effect->vtable[0x118 / 8])(effect);
+}
+
+// NON_MATCHING(minor): the original compares the kind shifted into the top byte and keeps the flag
+// test as an exclusive or; the order of the scene tests differs too. Same behaviour.
+void fn_7101152c0c(UnkObject* self, void* effect, u32 on, u32 restart) {
+    Switch(self, static_cast<UnkFXEffect*>(effect), on, restart);
+}
 
 // Switches the effect `hash` names on or off (attaching a scene-bound effect to the owner's scene
 // when turning it on, detaching it when turning it off), and restarts it when `restart` is set.
@@ -74,15 +97,5 @@ void fn_710114fe8c(UnkObject* self, u64 hash, u32 on, u32 restart) {
     }();
     if (slot == &self->values[self->count] || !slot)
         return;
-    UnkFXEffect* effect = reinterpret_cast<UnkFXEffect*>(slot->effect);
-    if (effect && effect->kind == 4 && effect->on != (bool)(on & 1)) {
-        void* scene = reinterpret_cast<UnkFXOwner*>(reinterpret_cast<char**>(self)[6])->field_0x228->scene;
-        if (scene && (on & 1))
-            fn_71001457fc(effect, scene, 1);
-        else if (scene)
-            fn_710014580c(effect);
-    }
-    reinterpret_cast<void (*)(UnkFXEffect*, bool)>(effect->vtable[0x40 / 8])(effect, on & 1);
-    if (restart & 1)
-        reinterpret_cast<void (*)(UnkFXEffect*)>(effect->vtable[0x118 / 8])(effect);
+    Switch(self, reinterpret_cast<UnkFXEffect*>(slot->effect), on, restart);
 }

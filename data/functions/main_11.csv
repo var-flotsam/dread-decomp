@@ -1249,7 +1249,7 @@ address,size,name,name_source,subsystem,status
 0x7101152988,412,fn_7101152988,unknown,unknown,U
 0x7101152b24,108,fn_7101152b24,unknown,unknown,U
 0x7101152b90,124,fn_7101152b90,unknown,unknown,m
-0x7101152c0c,188,fn_7101152c0c,unknown,unknown,U
+0x7101152c0c,188,fn_7101152c0c,unknown,unknown,m
 0x7101152cc8,704,fn_7101152cc8,unknown,unknown,U
 0x7101152f88,476,fn_7101152f88,unknown,unknown,U
 0x7101153164,104,fn_7101153164,unknown,unknown,O
