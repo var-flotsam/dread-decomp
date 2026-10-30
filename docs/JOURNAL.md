@@ -132,7 +132,7 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 ## Session log (newest first)
 
 **Night round 21: component leaves with a dozen callers each (2026-10-30, branch `claude/project-thread-lths9k-night21`).**
-4 functions to `O` and 5 to minor. Boot slice: `O` 2,156 to 2,158 (30.63%), usable 40.98% to 40.99%; whole binary `O` 85,402 to
+4 functions to `O` and 4 to minor. Boot slice: `O` 2,156 to 2,158 (30.63%), usable 40.98% to 40.99%; whole binary `O` 85,402 to
 85,406 (54.96%), usable 57.46%. `O`: the collision object by record index (fn_710086420c), the melee component's track test
 (fn_710092b604), the navigation query's start setter (fn_7100286920) and an AI path's first leg (fn_71010fc31c). Minor: the gun
 component's current id (fn_71008407fc), the animation component's action-set search (fn_7101176e0c), unit 36's request post
