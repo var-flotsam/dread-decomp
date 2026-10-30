@@ -4893,8 +4893,8 @@ address,size,name,name_source,subsystem,status
 0x71010fc090,196,fn_71010fc090,unknown,unknown,U
 0x71010fc154,160,fn_71010fc154,unknown,unknown,U
 0x71010fc1f4,144,fn_71010fc1f4,unknown,unknown,U
-0x71010fc284,152,fn_71010fc284,unknown,unknown,U
-0x71010fc31c,128,fn_71010fc31c,unknown,unknown,U
+0x71010fc284,152,fn_71010fc284,unknown,unknown,m
+0x71010fc31c,128,fn_71010fc31c,unknown,unknown,O
 0x71010fc39c,220,fn_71010fc39c,unknown,unknown,U
 0x71010fc478,220,fn_71010fc478,unknown,unknown,U
 0x71010fc554,168,fn_71010fc554,unknown,unknown,U
