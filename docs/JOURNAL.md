@@ -131,6 +131,21 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Night round 15: GUI hubs (2026-10-30, branch `claude/project-thread-lths9k-night15`).**
+3 functions to `O` and 12 to minor, the most-called unmatched functions of the GUI's display object and container units (the
+ready list without the boot filter). Boot slice: `O` 2,148 to 2,150 (30.57%), usable 40.83% to 40.88%; whole binary `O`
+85,381 to 85,384 (54.94%), usable 57.42% to 57.44%. `O`: CLabel's font setter, the display state's reset, the anchoring
+inside a unit area. Minor (block layout or compare order; same behaviour, readable for the port): the container's child by
+name (fn_71011d94d4, 52 callers) and its recursive lookup by name hash (fn_71011d98ec, 26), the placement setter
+(fn_71011cde64, 35) and its eight one-coordinate siblings (a template over x or y and the measuring mode), the re-anchoring
+by other modes.
+- **Ordered compares from the original's `fccmp ... le`.** The unit-scale test is `x - eps > 1 || x + eps < 1` (ordered on
+  both sides); `!(x - eps <= 1)` gives `ls`.
+- **One NON_MATCHING note per definition.** A note above a group of one-line definitions leaves the others `W`; each needs its
+  own line directly above it.
+- Not reached: the placement setters' first-change call is laid out inline in one branch and at the end in the other; no
+  source shape tried here reproduces that.
+
 **Night round 14: the GUI display object's constructor and three built on it (2026-10-30, branch `claude/project-thread-lths9k-night14`).**
 7 functions to `O`. Boot slice: `O` 2,144 to 2,148 (30.56%), usable 40.80% to 40.83%; whole binary `O` 85,374 to 85,381
 (54.94%). `O`: GUI::CDisplayObject's constructor (fn_71011cce1c: the base, two empty ids, the display state and its derived
