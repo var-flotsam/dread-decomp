@@ -749,3 +749,23 @@ void fn_7100ca0aec(UnkTileGroup* self) {
     for (s64 i = 0; i < (s32)self->field_0x40; ++i)
         fn_7100c9f904(&self->field_0x48[i]);
 }
+
+// Keeps `v` while more than 90% of the timer at +0x18/+0x1c of `self` is left and scales it to zero
+// after: the fraction run (clamped to 1) is turned into what remains, which counts as all of it
+// before the timer starts.
+struct UnkTileTimer {
+    u8 pad_0x0[0x18];
+    f32 duration;
+    f32 time;
+};
+
+void fn_7100ca0038(UnkTileTimer* self, void* /*unused*/, f32* v) {
+    f32 run = self->time / self->duration;
+    f32 left = 1.0f - (run > 1.0f ? 1.0f : run);
+    if (run <= 0.0f)
+        left = 1.0f;
+    f32 scale = left > 0.9f ? 1.0f : 0.0f;
+    v[0] = v[0] * scale;
+    v[1] = v[1] * scale;
+    v[2] = v[2] * scale;
+}
