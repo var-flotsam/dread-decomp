@@ -91,3 +91,23 @@ void fn_71011d2a74(UnkNodeList_7100219134* self) {
     self->head = nullptr;
     self->tail = nullptr;
 }
+
+// The same destructor in three other units, for lists linked through 0x88, 0x120 and 0x20, with their
+// own vtables and node destructors.
+#include "base/UnkEmptyDtorElem.h"
+
+extern char unk_7101a6f558[];
+extern char unk_7101aa4fb0[];
+extern char unk_7101cb2618[];
+void fn_7100431cec(void* node);
+void fn_7100d62bd8(void* node);
+
+static inline void DestroyNode_7100790f50(char* node) { fn_7100431cec(node); }
+static inline void DestroyNode_7100c75d5c(char* node) { fn_7100d62bd8(node); }
+static inline void DestroyNode_7101115e70(char* node) { fn_71002874dc(node); }
+
+void fn_7100790f50(UnkNodeList_7100219134* self) { DestroyList<unk_7101a6f558, 0x88, DestroyNode_7100790f50>(self); }
+
+void fn_7100c75d5c(UnkNodeList_7100219134* self) { DestroyList<unk_7101aa4fb0, 0x120, DestroyNode_7100c75d5c>(self); }
+
+void fn_7101115e70(UnkNodeList_7100219134* self) { DestroyList<unk_7101cb2618, 0x20, DestroyNode_7101115e70>(self); }
