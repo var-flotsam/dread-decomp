@@ -1687,6 +1687,23 @@ char* fn_710013c7e0(char* p0, char* p1, char* p2, char* p3) {
     return r11_0;
 }
 
+namespace callee { char* fn_710013caac(char*, char*); }
+namespace h { extern HIDDEN char g_unk_710b372708[]; }
+namespace wret { u32 fn_710013caac(char*, char*); }
+u32 fn_710013d310(char* p0) {
+    char* r0_20 = (char*)h::g_unk_710b372708;
+    char* r1_1 = r0_20;
+    char* r2_19 = p0;
+    u32 r3_0 = wret::fn_710013caac(p0, r1_1);
+    u32 r4_21 = (u32)(u64)(r3_0);
+    char* r5_1 = (r0_20) + 16;
+    char* r6_0 = r2_19;
+    u32 r7_0 = wret::fn_710013caac(r6_0, r5_1);
+    u32 r8_8 = (u32)(u64)(r4_21) & (u32)(r7_0);
+    u32 r9_0 = (u32)(u64)(r8_8) & (u32)(1);
+    return r9_0;
+}
+
 void fn_710013dee8() {
     return;
 }

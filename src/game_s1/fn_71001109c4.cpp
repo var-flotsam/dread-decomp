@@ -150,3 +150,37 @@ UnkReflValue fn_71011328d8(void*, char* obj) {
     return MakeValue<fn_7100014768, s32>(1);
 }
 UnkReflValue fn_71010c57bc(void*, char* obj) { return MakeValue<fn_710000d228, bool>(fn_710024fbc8(Target(obj))); }
+
+// Hand the first argument's value to a method of the object and return what it returns as an int,
+// or 0 for a method that returns nothing (four units' copies, each calling its own method).
+void fn_710117b3f8(void* self, const void* value);
+void fn_7100873bf8(void* self, const void* value);
+s32 fn_7101173ddc(void* self, const void* value);
+void fn_710117a018(void* self, const void* value);
+
+template <void (*Method)(void*, const void*)>
+__attribute__((always_inline)) static inline s32 ReturningZero(void* self, const void* value) {
+    Method(self, value);
+    return 0;
+}
+
+// The value: none without a type, else held in place unless stored out of line or too big. A macro
+// defines each invoker (an inline helper changes how the result is returned).
+#define UNK_CALL_WITH_ARG(name, method)                                                          \
+    UnkReflValue name(void*, char* obj, UnkReflValue* const* args) {                             \
+        char* target = Target(obj);                                                              \
+        UnkReflValue* arg = args[0];                                                             \
+        const void* value;                                                                       \
+        if (!arg->type)                                                                          \
+            value = nullptr;                                                                     \
+        else if (arg->field_0x14 == 1 || *reinterpret_cast<const u64*>(arg->type + 0x18) > 8)    \
+            value = arg->field_0x0;                                                              \
+        else                                                                                     \
+            value = arg;                                                                         \
+        return MakeValue<fn_7100014768, s32>(method(target, value));                             \
+    }
+
+UNK_CALL_WITH_ARG(fn_710117bba0, ReturningZero<fn_710117b3f8>)
+UNK_CALL_WITH_ARG(fn_7100874214, ReturningZero<fn_7100873bf8>)
+UNK_CALL_WITH_ARG(fn_71011746a4, fn_7101173ddc)
+UNK_CALL_WITH_ARG(fn_710117bc1c, ReturningZero<fn_710117a018>)

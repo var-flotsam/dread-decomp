@@ -1564,6 +1564,20 @@ void fn_71003ea504(char* p0) {
     return;
 }
 
+namespace callee { char* fn_7100360b84(char*, char*, char*); }
+namespace callee { char* fn_7100d7c990(u64); }
+namespace wret { u32 fn_7100360b84(char*, char*, char*); }
+u32 fn_71003ea5b8(char* p0, char* p1, char* p2) {
+    char* r0_19 = p0;
+    u32 r1_0 = wret::fn_7100360b84(p0, p1, p2);
+    u32 r2_20 = (u32)(u64)(r1_0);
+    u64 r3_0 = (u64)*(u64*)((char*)(r0_19) + 8);
+    char* r4_0 = callee::fn_7100d7c990(r3_0);
+    bool r5_8 = (u64)(u64)(r4_0) != (u64)(0);
+    u32 r6_0 = (u32)(u64)(r2_20) & (u32)((u32)(u64)(r5_8));
+    return r6_0;
+}
+
 namespace h { extern HIDDEN char g_unk_71726c1820[]; }
 char* fn_71003ea5f0() {
     char* r0_0 = (char*)h::g_unk_71726c1820;

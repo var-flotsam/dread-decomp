@@ -1286,6 +1286,28 @@ L_71000272ac:;
     return ret;
 }
 
+namespace h { extern HIDDEN char g_unk_7101d4ee20[]; }
+namespace noret { [[noreturn]] void fn_7100028ae0(u64, char*, char*); }
+char* fn_7100027910(char* p0, char* p1, f32 f0) {
+    alignas(4) char stk[0x4];
+    u32 r0_8 = (u32)*(u32*)((char*)(p0) + 0);
+    *(f32*)(stk + 0x0) = f0;
+    u64 r2_8 = (u64)(u64)(r0_8) & (u64)(15);
+    char* r3_9 = (char*)h::g_unk_7101d4ee20;
+    u32 r4_10 = 0x30;
+    u64 r5_8 = (u64)(u64)(r3_9) + (u64)(u64)(r2_8) * (u64)(u64)(r4_10);
+    char* r6_2 = p0;
+    u64 r7_0 = (u64)*(u64*)((char*)(r5_8) + 32);
+    if ((u64)(u64)(r7_0) != 0) {
+        u64 r9_8 = (u64)*(u64*)((char*)(r7_0) + 0);
+        char* r10_1 = (stk + 0x0);
+        u64 r11_8 = (u64)*(u64*)((char*)(r9_8) + 48);
+        char* r12_0 = ((char* (*)(u64, char*, char*, f32))(r11_8))(r7_0, r10_1, r6_2, f0);
+        return r12_0;
+    }
+    noret::fn_7100028ae0(r7_0, p1, r6_2);
+}
+
 namespace callee { char* fn_7100083c00(char*); }
 char* fn_710002860c(char* p0) {
     return callee::fn_7100083c00(p0);

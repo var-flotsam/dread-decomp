@@ -40,6 +40,33 @@ typedef f64 __attribute__((may_alias)) a_f64;
 
 struct lift_at_t {}; inline void* operator new(decltype(sizeof 0), void* p, lift_at_t) noexcept { return p; }
 
+namespace callee { char* fn_71005d0530(char*); }
+namespace callee { char* fn_7101105e44(char*, char*); }
+namespace wret { u32 fn_7101105e44(char*, char*); }
+u32 fn_71005d04b8(char* p0, char* p1) {
+    char* r0_20 = p1;
+    char* r1_19 = p0;
+    u32 r2_0 = wret::fn_7101105e44(p0, p1);
+    if ((u32)(u64)(r2_0) != 0) {
+        return r2_0;
+    }
+    u32 r6_8 = (u32)*(u32*)((char*)(r0_20) + 180);
+    u32 r7_9 = 0x800;
+    u32 r8_9 = 0x40800;
+    if ((u32)(u64)((u32)((u32)(u64)(r6_8) & (u32)(r8_9))) != (u32)(0)) {
+        u32 r10_8 = 0x40000;
+        u32 r11_9 = 0x800;
+        u32 r12_8 = ((u32)(u64)((u32)((u32)(u64)(r6_8) & (u32)(262144))) == (u32)(0)) ? (u32)(u64)(r11_9) : (u32)((u32)(u64)(r10_8));
+        *(u32*)((char*)(r0_20) + 180) = (u32)(u64)(r12_8);
+        char* r14_0 = r1_19;
+        char* r15_0 = callee::fn_71005d0530(r14_0);
+        u32 r16_0 = 0x1;
+        return r16_0;
+    }
+    u32 r19_0 = (u32)(u64)(0);
+    return r19_0;
+}
+
 namespace sret { UnkResult fn_7100079b18(u64, f32); }
 char* fn_71005d1e84(char* p0) {
     alignas(16) char stk[0x10];

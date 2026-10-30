@@ -25,8 +25,9 @@ lifts each one into C++ over `char*` parameters and keeps only the byte-identica
      Each variant is tried with pass-through first and, where that named more, as before.
   4. Functions that compile but don't match get a second round per ROUND2 rewrite of the
      statements: field stores in ascending offset order ("sort"), accesses through may_alias
-     types so stores force reloads as in the original ("alias"), and load/store copies as
-     memcpy ("copy").
+     types so stores force reloads as in the original ("alias"), load/store copies as
+     memcpy ("copy"), and a call whose result is first read as w0 declared to return 32 bits
+     ("w32"; else clang moves all 64 bits on, `mov x2, x0` for `mov w2, w0`).
 
 Usage: python tools/gen_lift.py --version 2.1.0 [--plain]   (--plain: no pass-through)
 Outputs are deterministic (the facts come from one complete table, abi_facts.AbiFacts.complete; its
@@ -87,8 +88,9 @@ TAG_RE = re.compile(r"(?:UnkRefl_fn_|UnkClone_fn_|UnkTable_fn_|DREAD_REFL_\w*GET
 # doesn't turn a final call into a tail call, as in the original's `bl; ret`).
 VARIANTS = [(n, mode) for n in range(3) for mode in ("value", "void", "ref")]
 # The same, through FlatLifter, for functions no structured variant can lift.
-# Layouts of the stack-locals array, (span, alignment), for functions with locals.
-STACK_LAYOUTS = [("gap", 16), ("gap", 8), ("tight", 8)]
+# Layouts of the stack-locals array, (span, alignment), for functions with locals. ("tight", 4)
+# is a lone 4-byte local, which clang places at the top of the frame (sp + 0xc, not sp + 8).
+STACK_LAYOUTS = [("gap", 16), ("gap", 8), ("tight", 8), ("tight", 4)]
 
 CS = capstone.Cs(capstone.CS_ARCH_ARM64, capstone.CS_MODE_ARM)
 TRAP_WORD = 0xE7FFDEFE  # the trap word of this binary's unreachable code: unallocated in A64, capstone stops at it
@@ -511,6 +513,11 @@ class Lifter:
             self.retype_call(t, f"r{s.fcall[0]}_100")
             s.vals[100] = (f"r{s.fcall[0]}_100", t)
             s.fcall = None
+        if n == 0 and r[0] == "w" and "w32" in self.opts and s.fcall and s.vals.get(0, ("", ""))[0] == s.fcall[1] \
+                and s.vals[0][1] == "char*":
+            # ("w32") w0 read first after a call: the callee returns 32 bits
+            self.retype_call("u32", s.fcall[1])
+            s.fcall = None
         if n not in s.vals:
             if s.called or (n > 8 and not 100 <= n <= 107):
                 raise Unsupported(r)
@@ -541,13 +548,16 @@ class Lifter:
         if var != "X0" and any(re.search(rf"\b{var}\b", s) for s in self.body[ln + 1:]):
             raise Unsupported("call result used as both")
         if fn:
-            ns = "fret" if t == "f32" else "dret"
+            ns = {"f32": "fret", "f64": "dret", "u32": "wret"}[t]
             self.decls.add(f"namespace {ns} {{ {t} {fn}({types}); }}")
             expr = expr.replace("callee::", f"{ns}::", 1)
         else:
             expr = expr.replace("((char* (*)(", f"(({t} (*)(", 1)
         ind = self.body[ln][:len(self.body[ln]) - len(self.body[ln].lstrip())]
         self.body[ln] = ind + (f"{t} {dest} = {expr};" if dest[0] == "r" else f"{dest} = {expr};")
+        if t == "u32":  # ("w32") an integer result: x0 holds it, 32 bits wide
+            self.s.vals[0] = (dest, "u32")
+            return
         if self.s.vals.get(0, ("",))[0] == var:
             del self.s.vals[0]
         self.s.retk = 100
@@ -1686,7 +1696,7 @@ class Lifter:
             start = max([e for s, e in saves if e <= lo] + [delta])
             end = min([s for s, e in saves if s > lo] + [max(hi, 0)])
         else:
-            start, end = lo, lo + ((hi - lo + 7) & ~7)
+            start, end = lo, lo + ((hi - lo + align - 1) & ~(align - 1))  # (a multiple of 8 for 8 and 16)
         if not (start <= lo and hi <= end):
             return False
         self.frame = {"sp": delta, "fp": fp, "start": start, "size": end - start, "align": align}
@@ -3281,7 +3291,8 @@ def build_all(orig: asmdiff.Original, lifted: list[dict[int, tuple[str, set[str]
 
 # Rewrites tried, in order, on functions that compile but don't match as lifted. Each is a
 # separate round (all variants again), so a rewrite never costs a function that matched.
-ROUND2 = [frozenset({"copy", "sort"}), frozenset({"copy", "alias"}), frozenset({"copy", "sort", "alias"})]
+ROUND2 = [frozenset({"copy", "sort"}), frozenset({"copy", "alias"}), frozenset({"copy", "sort", "alias"}),
+          frozenset({"copy", "w32"})]
 
 
 def lift_rounds(orig: asmdiff.Original, cands: list[int], work: Path,
