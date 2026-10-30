@@ -715,13 +715,14 @@ void refl_KeyedIterSync(UnkKeyedIter<T, K>* it) {
 // their identical copies).
 namespace base {
 
-template <class Tag>
-using UnkStrKeyWordValue = UnkIterValue<UnkCloneWord<Tag>, UnkCloneStrId<Tag>>;
+// T is the element (a word unless a clone says otherwise).
+template <class Tag, class T = UnkCloneWord<Tag>>
+using UnkStrKeyWordValue = UnkIterValue<T, UnkCloneStrId<Tag>>;
 
 // Resets this value, then copies the other's state and its pair or reference bitwise
 // (fn_71000c9490).
-template <class Tag>
-UnkStrKeyWordValue<Tag>* refl_IterValueAssignRaw(UnkStrKeyWordValue<Tag>* self, const UnkStrKeyWordValue<Tag>* other) {
+template <class Tag, class T>
+UnkStrKeyWordValue<Tag, T>* refl_IterValueAssignRaw(UnkStrKeyWordValue<Tag, T>* self, const UnkStrKeyWordValue<Tag, T>* other) {
     if (self != other) {
         self->Reset();
         self->state = other->state;
@@ -734,9 +735,9 @@ UnkStrKeyWordValue<Tag>* refl_IterValueAssignRaw(UnkStrKeyWordValue<Tag>* self, 
 }
 
 // Makes this value refer to the (index, element) a reference holds (fn_71000c93ec).
-template <class Tag>
-UnkStrKeyWordValue<Tag>* refl_IterValueAssignRef(UnkStrKeyWordValue<Tag>* self,
-                                                 const typename UnkStrKeyWordValue<Tag>::Ref* r) {
+template <class Tag, class T>
+UnkStrKeyWordValue<Tag, T>* refl_IterValueAssignRef(UnkStrKeyWordValue<Tag, T>* self,
+                                                    const typename UnkStrKeyWordValue<Tag, T>::Ref* r) {
     if (r != static_cast<const void*>(self))
         self->SetRef(r->index, r->element);
     return self;

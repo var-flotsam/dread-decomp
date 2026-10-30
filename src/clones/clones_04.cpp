@@ -18,6 +18,18 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "base/reflection/UnkReflValue.h"
+struct UnkClone_fn_7100b805c8;
+template base::UnkIterValue<UnkCloneWord<UnkClone_fn_7100b805c8>, base::global::CStrId>& base::refl_IterValueCopyAssign(base::UnkIterValue<UnkCloneWord<UnkClone_fn_7100b805c8>, base::global::CStrId>*, const base::UnkIterValue<UnkCloneWord<UnkClone_fn_7100b805c8>, base::global::CStrId>*);
+struct UnkClone_fn_7100b80704;
+template base::UnkIterValue<UnkCloneWord<UnkClone_fn_7100b80704>, base::UnkStrIdKey<UnkClone_fn_7100b80704>>& base::refl_IterValueMoveAssign(base::UnkIterValue<UnkCloneWord<UnkClone_fn_7100b80704>, base::UnkStrIdKey<UnkClone_fn_7100b80704>>*, base::UnkIterValue<UnkCloneWord<UnkClone_fn_7100b80704>, base::UnkStrIdKey<UnkClone_fn_7100b80704>>*);
+struct UnkClone_fn_7100b808e8;
+const base::reflection::CType* fn_7100b7d880();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_7100b808e8> {
+    static const CType* type() { return fn_7100b7d880(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetIterElementValue<UnkClone_fn_7100b808e8, UnkCloneBlock<UnkClone_fn_7100b808e8, 0x8>>(void*, char*);
+struct UnkClone_fn_7100b8093c;
+template bool base::refl_IterValueEqualByValue(const base::UnkIterValue<UnkCloneWord<UnkClone_fn_7100b8093c>, UnkCloneStrId<UnkClone_fn_7100b8093c>>&, const base::UnkIterValue<UnkCloneWord<UnkClone_fn_7100b8093c>, UnkCloneStrId<UnkClone_fn_7100b8093c>>&);
 struct UnkClone_fn_7100b80a80;
 template void base::refl_IterValueDestroy<UnkCloneWord<UnkClone_fn_7100b80a80>, UnkCloneStrId<UnkClone_fn_7100b80a80>>(void*);
 struct UnkClone_fn_7100b80b60;
@@ -4834,17 +4846,17 @@ template void base::refl_IterValueFromRef(base::UnkIterValue<UnkCloneBlock<UnkCl
 struct UnkClone_fn_7100d7fd48;
 template void base::refl_IterValueDestroy<UnkCloneWord<UnkClone_fn_7100d7fd48>, UnkCloneStrId<UnkClone_fn_7100d7fd48>>(void*);
 struct UnkClone_fn_7100d7fdc8;
-template base::UnkStrKeyWordValue<UnkClone_fn_7100d7fdc8>* base::refl_IterValueAssignRef(base::UnkStrKeyWordValue<UnkClone_fn_7100d7fdc8>*, const base::UnkStrKeyWordValue<UnkClone_fn_7100d7fdc8>::Ref*);
+template base::UnkStrKeyWordValue<UnkClone_fn_7100d7fdc8, UnkCloneWord<UnkClone_fn_7100d7fdc8>>* base::refl_IterValueAssignRef(base::UnkStrKeyWordValue<UnkClone_fn_7100d7fdc8, UnkCloneWord<UnkClone_fn_7100d7fdc8>>*, const base::UnkStrKeyWordValue<UnkClone_fn_7100d7fdc8, UnkCloneWord<UnkClone_fn_7100d7fdc8>>::Ref*);
 struct UnkClone_fn_7100d7fe6c;
-template base::UnkStrKeyWordValue<UnkClone_fn_7100d7fe6c>* base::refl_IterValueAssignRaw(base::UnkStrKeyWordValue<UnkClone_fn_7100d7fe6c>*, const base::UnkStrKeyWordValue<UnkClone_fn_7100d7fe6c>*);
+template base::UnkStrKeyWordValue<UnkClone_fn_7100d7fe6c, UnkCloneWord<UnkClone_fn_7100d7fe6c>>* base::refl_IterValueAssignRaw(base::UnkStrKeyWordValue<UnkClone_fn_7100d7fe6c, UnkCloneWord<UnkClone_fn_7100d7fe6c>>*, const base::UnkStrKeyWordValue<UnkClone_fn_7100d7fe6c, UnkCloneWord<UnkClone_fn_7100d7fe6c>>*);
 struct UnkClone_fn_7100d80110;
 template void base::refl_IterValueFromRef(base::UnkIterValue<UnkCloneBlock<UnkClone_fn_7100d80110, 0x8>>*, const base::UnkIterValue<UnkCloneBlock<UnkClone_fn_7100d80110, 0x8>>::Ref*);
 struct UnkClone_fn_7100d80140;
 template void base::refl_IterValueDestroy<UnkCloneWord<UnkClone_fn_7100d80140>, UnkCloneStrId<UnkClone_fn_7100d80140>>(void*);
 struct UnkClone_fn_7100d801c0;
-template base::UnkStrKeyWordValue<UnkClone_fn_7100d801c0>* base::refl_IterValueAssignRef(base::UnkStrKeyWordValue<UnkClone_fn_7100d801c0>*, const base::UnkStrKeyWordValue<UnkClone_fn_7100d801c0>::Ref*);
+template base::UnkStrKeyWordValue<UnkClone_fn_7100d801c0, UnkCloneWord<UnkClone_fn_7100d801c0>>* base::refl_IterValueAssignRef(base::UnkStrKeyWordValue<UnkClone_fn_7100d801c0, UnkCloneWord<UnkClone_fn_7100d801c0>>*, const base::UnkStrKeyWordValue<UnkClone_fn_7100d801c0, UnkCloneWord<UnkClone_fn_7100d801c0>>::Ref*);
 struct UnkClone_fn_7100d80264;
-template base::UnkStrKeyWordValue<UnkClone_fn_7100d80264>* base::refl_IterValueAssignRaw(base::UnkStrKeyWordValue<UnkClone_fn_7100d80264>*, const base::UnkStrKeyWordValue<UnkClone_fn_7100d80264>*);
+template base::UnkStrKeyWordValue<UnkClone_fn_7100d80264, UnkCloneWord<UnkClone_fn_7100d80264>>* base::refl_IterValueAssignRaw(base::UnkStrKeyWordValue<UnkClone_fn_7100d80264, UnkCloneWord<UnkClone_fn_7100d80264>>*, const base::UnkStrKeyWordValue<UnkClone_fn_7100d80264, UnkCloneWord<UnkClone_fn_7100d80264>>*);
 struct UnkClone_fn_7100d80a0c;
 extern char g_unk_7101a33fa0[];
 extern char g_unk_7101a20998[];
@@ -5784,42 +5796,3 @@ template <> struct base::UnkDtorTraits<UnkClone_fn_7100e140c0> {
     static char* vtable() { return g_unk_7101aa9c38; }
 };
 template void base::refl_DtorNoBase<UnkClone_fn_7100e140c0, base::UnkStrIdAt<0x10>>(char*);
-struct UnkClone_fn_7100e14514;
-template base::UnkNamedObject* base::refl_RegisterNamed<UnkClone_fn_7100e14514>(base::UnkNamedRegistry*, base::UnkNamedObject*, const char*);
-struct UnkClone_fn_7100e162f0;
-extern char g_unk_7101aa9c38[];
-template <> struct base::UnkDtorTraits<UnkClone_fn_7100e162f0> {
-    static char* vtable() { return g_unk_7101aa9c38; }
-};
-template void base::refl_DeletingDtorNoBase<UnkClone_fn_7100e162f0, base::UnkStrIdAt<0x10>>(char*);
-struct UnkClone_fn_7100e16444;
-namespace hash_key { extern base::global::CStrId g_unk_71727c0918; }
-template <> struct UnkHashKeyTraits<UnkClone_fn_7100e16444> {
-    static const base::global::CStrId& source() { return hash_key::g_unk_71727c0918; }
-};
-template u32 refl_HashKeyFields<UnkClone_fn_7100e16444, 0x10>(char*);
-struct UnkClone_fn_7100e16e60;
-void fn_7100014948(void* e, const base::global::CStrId& name, u32 value);
-void fn_7100e16e60(void* e) {
-    fn_7100014948(e, base::global::CStrId("Bomb", true), 0x0);
-    fn_7100014948(e, base::global::CStrId("CentralUnit", true), 0x1);
-    fn_7100014948(e, base::global::CStrId("ChargeBeam", true), 0x2);
-    fn_7100014948(e, base::global::CStrId("ChozoWarrior", true), 0x3);
-    fn_7100014948(e, base::global::CStrId("DiscoveredEmmyCave", true), 0x4);
-    fn_7100014948(e, base::global::CStrId("DiscoveredEmmyZone", true), 0x5);
-    fn_7100014948(e, base::global::CStrId("DiscoveredEmmyDoors", true), 0x6);
-    fn_7100014948(e, base::global::CStrId("GhostDash", true), 0x7);
-    fn_7100014948(e, base::global::CStrId("HiddenItemTutorial", true), 0x8);
-    fn_7100014948(e, base::global::CStrId("IceMissile", true), 0x9);
-    fn_7100014948(e, base::global::CStrId("LineBomb", true), 0xa);
-    fn_7100014948(e, base::global::CStrId("Magnet", true), 0xb);
-    fn_7100014948(e, base::global::CStrId("MapRoomUsed", true), 0xc);
-    fn_7100014948(e, base::global::CStrId("MorphBall", true), 0xd);
-    fn_7100014948(e, base::global::CStrId("OpticCamouflage", true), 0xe);
-    fn_7100014948(e, base::global::CStrId("SpaceJump", true), 0xf);
-    fn_7100014948(e, base::global::CStrId("SpeedBooster", true), 0x10);
-    fn_7100014948(e, base::global::CStrId("TeleportUsed", true), 0x11);
-    fn_7100014948(e, base::global::CStrId("TeleportWorldUnlocked", true), 0x12);
-    fn_7100014948(e, base::global::CStrId("XParasite", true), 0x13);
-    fn_7100014948(e, base::global::CStrId("Count", true), 0x14);
-}

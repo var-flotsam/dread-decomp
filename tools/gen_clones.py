@@ -2898,11 +2898,11 @@ KINDS = {
     "resize_sub_vecs": Kind(0x710065B1B0, "base/UnkCloneHelpers.h", lambda tag, _: (
         f"template void base::refl_ResizeSubVecs(base::UnkVector<base::UnkCloneSubVec<{tag}>>*, u32);")),
     "iter_value_assign_raw_strkey": Kind(0x71000C9490, "base/UnkCloneHelpers.h", lambda tag, _: (
-        f"template base::UnkStrKeyWordValue<{tag}>* base::refl_IterValueAssignRaw(base::UnkStrKeyWordValue<{tag}>*, "
-        f"const base::UnkStrKeyWordValue<{tag}>*);")),
+        f"template base::UnkStrKeyWordValue<{tag}, UnkCloneWord<{tag}>>* base::refl_IterValueAssignRaw("
+        f"base::UnkStrKeyWordValue<{tag}, UnkCloneWord<{tag}>>*, const base::UnkStrKeyWordValue<{tag}, UnkCloneWord<{tag}>>*);")),
     "iter_value_assign_ref_strkey": Kind(0x71000C93EC, "base/UnkCloneHelpers.h", lambda tag, _: (
-        f"template base::UnkStrKeyWordValue<{tag}>* base::refl_IterValueAssignRef(base::UnkStrKeyWordValue<{tag}>*, "
-        f"const base::UnkStrKeyWordValue<{tag}>::Ref*);")),
+        f"template base::UnkStrKeyWordValue<{tag}, UnkCloneWord<{tag}>>* base::refl_IterValueAssignRef("
+        f"base::UnkStrKeyWordValue<{tag}, UnkCloneWord<{tag}>>*, const base::UnkStrKeyWordValue<{tag}, UnkCloneWord<{tag}>>::Ref*);")),
     "iter_value_assign_word": Kind(0x71000D3038, "base/UnkCloneHelpers.h", lambda tag, _: (
         f"template void base::refl_IterValueAssign(base::UnkIterValue<UnkCloneWord<{tag}>, u32>*, "
         f"const base::UnkIterValue<UnkCloneWord<{tag}>, u32>*);")),
