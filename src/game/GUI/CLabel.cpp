@@ -410,7 +410,6 @@ CRntString fn_71011b8790(UnkGuiRoot* root, const CStrId* id);
 u32 fn_7100147960(void* font, u32 c);
 u32 fn_71001479dc(void* font, u32 c);
 // Scales a size into the frame's units.
-UnkLabelVec2 fn_71011b7e7c(UnkGuiRoot* root, s32 frame, const CVector2D* size);
 UnkLabelVec2 fn_71011b800c(UnkGuiRoot* root, s32 frame, const UnkLabelVec2* size);
 // A font glyph's metrics (the advance at +0x8); false when the font has no such glyph.
 struct UnkGlyphMetrics {

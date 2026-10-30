@@ -2793,7 +2793,7 @@ address,size,name,name_source,subsystem,status
 0x710099674c,292,fn_710099674c,unknown,game/player?,U
 0x7100996870,124,fn_7100996870,unknown,game/player?,U
 0x71009968ec,728,fn_71009968ec,unknown,game/player?,U
-0x7100996bc4,76,fn_7100996bc4,unknown,game/player?,U
+0x7100996bc4,76,fn_7100996bc4,unknown,game/player?,O
 0x7100996c10,444,fn_7100996c10,unknown,game/player?,U
 0x7100996dcc,52,fn_7100996dcc,unknown,game/player?,U
 0x7100996e00,220,fn_7100996e00,unknown,game/player?,U

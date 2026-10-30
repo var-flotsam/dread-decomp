@@ -30,3 +30,20 @@ UnkVec3Result fn_71007455dc(UnkStruct_71007455dc* self) {
     }
     return self->offset;
 }
+
+// The other way round: stores `pos` as the offset from the parent's position (or as it is, as above).
+// NON_MATCHING(minor): register allocation only.
+void fn_710074566c(UnkStruct_71007455dc* self, const f32* pos) {
+    if (self->parent && self->mode != 1) {
+        UnkVec3Result p = fn_7100745e24(self->parent);
+        f32 px = p.x, py = p.y, pz = p.z;
+        f32 x = pos[0], y = pos[1], z = pos[2];
+        self->offset.x = x - px;
+        self->offset.y = y - py;
+        self->offset.z = z - pz;
+        return;
+    }
+    self->offset.x = pos[0];
+    self->offset.y = pos[1];
+    self->offset.z = pos[2];
+}
