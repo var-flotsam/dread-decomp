@@ -212,6 +212,16 @@ def ftype(r: str) -> str | None:
     return {"s": "f32", "d": "f64"}.get(r[0]) if fkey(r) is not None else None
 
 
+def reinterpret_float(e: str, t: str) -> str:
+    """A float register's value of type t read at the other width, as the hardware does: s<n> is
+    the low 32 bits of d<n>, and a scalar write of s<n> zeroes the rest, so d<n> is its bits
+    zero-extended (semantic mode: a callee-saved d8 saved as a double and kept as a float,
+    7100711fe8; a parameter of unknown width copied with `mov v8.16b, v1.16b`)."""
+    if t == "f64":
+        return f"lift_f32((u32)lift_bits((f64)({e})))"
+    return f"lift_f64((u64)lift_bits((f32)({e})))"
+
+
 def float_literal(bits: int, t: str) -> str | None:
     """A float constant with these bits, as an exact hex literal (None for inf/NaN)."""
     v = struct.unpack("<f", struct.pack("<I", bits & 0xFFFFFFFF))[0] if t == "f32" \
@@ -541,6 +551,8 @@ class Lifter:
         if r[0] == "w" and t != "u32":
             return f"(u32)(u64)({e})", "u32"
         if r[0] in "sd" and t != ("f32" if r[0] == "s" else "f64"):
+            if "semantic" in self.opts and t in ("f32", "f64"):
+                return reinterpret_float(e, t), ftype(r)
             raise Unsupported("float width")
         return e, t
 
@@ -2822,6 +2834,8 @@ class FlatLifter(Lifter):
         t = self.types[n]
         if n >= 100:
             if t != ("f32" if r[0] == "s" else "f64"):
+                if "semantic" in self.opts and t in ("f32", "f64") and r[0] in "sd":
+                    return reinterpret_float(self.storage(n, t), t), ftype(r)
                 raise Unsupported("float width")
             return self.storage(n, t), t
         if r[0] == "w":
