@@ -134,6 +134,28 @@ UnkReflValue fn_7100d60ae0(void* unused, UnkArgument<UnkFlagSource>* argument) {
 UnkReflValue fn_7100d61c30(void* unused, UnkArgument<UnkFlagSource>* argument) { return GetVirtualFlag(argument); }
 UnkReflValue fn_7100d691e0(void* unused, UnkArgument<UnkFlagSource>* argument) { return GetVirtualFlag(argument); }
 
+// The same getters in the CBaseLightComponent unit (unit 1389 of tools/tu_map.py), calling other virtual
+// slots: the slot is read off the object's vtable.
+template <class R, u32 Slot>
+__attribute__((always_inline)) static inline R CallSlot(void* object) {
+    return (*reinterpret_cast<R (***)(void*)>(object))[Slot / 8](object);
+}
+
+template <u32 Slot>
+__attribute__((always_inline)) static inline UnkReflValue GetVirtualFlagAt(UnkArgument<UnkFlagSource>* argument) {
+    bool value = CallSlot<bool, Slot>(argument->field_0x8);
+    return MakeValue(fn_710000d228(), &value);
+}
+
+UnkReflValue fn_71008ef0bc(void* unused, UnkArgument<UnkVectorSource>* argument) {
+    UnkVector3 value = CallSlot<UnkVector3, 0x170>(argument->field_0x8);
+    return MakeValue(fn_71000246e4(), &value);
+}
+UnkReflValue fn_71008ef69c(void* unused, UnkArgument<UnkFlagSource>* argument) { return GetVirtualFlagAt<0x1f0>(argument); }
+UnkReflValue fn_71008ef8cc(void* unused, UnkArgument<UnkFlagSource>* argument) { return GetVirtualFlagAt<0x220>(argument); }
+UnkReflValue fn_71008ef988(void* unused, UnkArgument<UnkFlagSource>* argument) { return GetVirtualFlagAt<0x230>(argument); }
+UnkReflValue fn_71008efa44(void* unused, UnkArgument<UnkFlagSource>* argument) { return GetVirtualFlagAt<0x240>(argument); }
+
 // Values of kind 2 referring (flag 1) to a cutscene definition held by an iterator value: in place
 // at 0x8, or through the pointer there when the state (after the Size-byte value) is 2. The class
 // getter is called first, so the class (whose reflected data is at the descriptor) is set up.
