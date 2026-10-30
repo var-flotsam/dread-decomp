@@ -131,6 +131,27 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Night round 23: a whole-binary near-copy pass (2026-10-30, branch `claude/project-thread-lths9k-night23`).**
+87 functions to `O` and 1 to minor, all copies of functions already matched, found by `tools/nearcopy.py` over the whole
+address range. Boot slice: `O` 2,158 to 2,166 (30.67%), usable 40.99% to 41.04%; whole binary `O` 85,407 to 85,494
+(55.03%), usable 57.46% to 57.53%. Each original became a template (or macro) over what its copies change, and the copies
+are one line each next to it: iterator-value moves (15), switches, tagged, named, link-owner and poly-array destructors,
+id-list clears and ends, record copy-assignments, array copy-constructs, reflected setters, query-filter constructors and the
+animation component's track lookups. Minor: the Daivo spit attack's weak-reference setter copy (fn_71006eb484).
+- **A 100% row still differs.** `nearcopy` masks offsets, element sizes and callees; most copies needed a layout template
+  (`At`/`Offset` parameters, or a struct with the same member names at other offsets), a different element type, or the
+  callee and vtable as template arguments. Run `nearcopy.py --refs U O` and resolve GOT slots (`asmdiff.Original.got_slot`)
+  to name the copy's own vtables and globals.
+- **When a helper must not be inlined.** Two originals stopped matching once their body moved into a `static inline`
+  (a merged default return, a struct return); a macro that defines the function keeps each copy's code identical.
+- **A template argument with internal linkage makes the copy internal.** A `static` function passed as a template argument
+  hid `fn_7100b1b7d0` from the build; pass the callee with its own type instead (`template <class T, void (*)(T*)>`).
+- **File-path ids hoist the pool.** A destructor over path ids in both key and elements loads the pool's GOT slot once at
+  entry; with a string-id key it loads it in the loop, so a copy that differs only there has both as path ids.
+- Left for later: the display-object track copies (fn_7100812a80, fn_71008129e0), the string bound assignment
+  (fn_7100b1b7d0, a different key layout), fn_7100ea5c40, fn_7100b6f3c0, fn_71009f3a60, fn_7101157c08, fn_7100589b94 and
+  the copies of generated originals (`src/clones/`), which need a `tools/gen_clones.py` kind.
+
 **Night round 22: the query filters' base constructor and an effect switch (2026-10-30, branch `claude/project-thread-lths9k-night22`).**
 1 function to `O` and 1 to minor. Boot slice unchanged: `O` 2,158 (30.63%), usable 40.99%; whole binary `O` 85,406 to 85,407
 (54.96%), usable 57.46%. `O`: querysystem::CFilter's constructor (fn_71002bedc8, 13 callers). Minor: CFXComponent's switch of an
