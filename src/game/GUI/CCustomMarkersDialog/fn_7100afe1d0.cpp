@@ -98,6 +98,13 @@ static inline void Free(UnkRefPtrArray* self) {
 void fn_7100d403b4(UnkRefPtrArray* self) { Free(self); }
 void fn_7100d84420(UnkRefPtrArray* self) { Free(self); }
 void fn_7100da2060(UnkRefPtrArray* self) { Free(self); }
+// A copy in another unit, on an array after a word.
+struct UnkWordRefPtrArray {
+    u64 field_0x0;
+    UnkRefPtrArray array;  // 0x8
+};
+
+void fn_71007051f0(UnkWordRefPtrArray* self) { Free(&self->array); }
 void fn_7100de49cc(UnkRefPtrArray* self) { Free(self); }
 
 // Clear: releases each pointer, keeping the storage. Three identical copies.

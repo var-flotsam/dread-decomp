@@ -86,7 +86,14 @@ struct UnkName_0x10 {
     u8 unk_0x0[0x10];
 };
 
-#define UNK_NAMED_DTORS(complete, deleting, vtable, Self, Name, name_dtor, Base, base_dtor)           void fn_##complete(Self* self) { DestroyNamed<vtable, Self, Name, name_dtor, Base, base_dtor>(self); }     void fn_##deleting(Self* self) {                                                                      DestroyNamed<vtable, Self, Name, name_dtor, Base, base_dtor>(self);                               fn_7100083c00(self);                                                                          }
+#define UNK_NAMED_DTORS(complete, deleting, vtable, Self, Name, name_dtor, Base, base_dtor) \
+    void fn_##complete(Self* self) {                                                       \
+        DestroyNamed<vtable, Self, Name, name_dtor, Base, base_dtor>(self);                \
+    }                                                                                      \
+    void fn_##deleting(Self* self) {                                                       \
+        DestroyNamed<vtable, Self, Name, name_dtor, Base, base_dtor>(self);                \
+        fn_7100083c00(self);                                                               \
+    }
 
 using UnkNamedObject_71006b91a8 = UnkNamedObject<0x510, 0x6a8, UnkName_0x10>;
 using UnkNamedObject_71006c54dc = UnkNamedObject<0x510, 0x640, UnkName_0x10>;

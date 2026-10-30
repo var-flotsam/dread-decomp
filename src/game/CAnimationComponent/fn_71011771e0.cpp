@@ -23,7 +23,11 @@ struct UnkAnimHandle {
     UnkAnimEntryMap* map;
 };
 
-UnkTrack* fn_71011771e0(void* handle, u64 key) {
+static inline UnkTrack* FindTrack(void* handle, u64 key) {
     UnkAnimEntry* entry = UnkParallelFindByValue(static_cast<UnkAnimHandle*>(handle)->map, key);
     return entry ? entry->track : nullptr;
 }
+
+UnkTrack* fn_71011771e0(void* handle, u64 key) { return FindTrack(handle, key); }
+// A copy next door.
+UnkTrack* fn_7101177b68(void* handle, u64 key) { return FindTrack(handle, key); }

@@ -1053,7 +1053,7 @@ address,size,name,name_source,subsystem,status
 0x7100430df0,632,fn_7100430df0,unknown,unknown,U
 0x7100431068,556,fn_7100431068,unknown,unknown,O
 0x7100431294,2648,fn_7100431294,unknown,unknown,U
-0x7100431cec,248,fn_7100431cec,unknown,unknown,U
+0x7100431cec,248,fn_7100431cec,unknown,unknown,O
 0x7100431de4,956,fn_7100431de4,unknown,unknown,U
 0x71004321a0,892,fn_71004321a0,unknown,unknown,U
 0x710043251c,528,fn_710043251c,unknown,unknown,U
@@ -3979,8 +3979,8 @@ address,size,name,name_source,subsystem,status
 0x71004ab5ac,240,CCooldownXBossLavaDropsDef::refl_GetClass,reflection,game,O
 0x71004ab69c,764,fn_71004ab69c,unknown,game?,O
 0x71004ab998,388,CCooldownXBossLavaDropsDef::refl_InitClass,reflection,game,O
-0x71004abb1c,172,fn_71004abb1c,unknown,unknown,U
-0x71004abbc8,172,fn_71004abbc8,unknown,unknown,U
+0x71004abb1c,172,fn_71004abb1c,unknown,unknown,O
+0x71004abbc8,172,fn_71004abbc8,unknown,unknown,O
 0x71004abc74,220,fn_71004abc74,unknown,unknown,O
 0x71004abd50,220,base::reflection::refl_GetType<std::unique_ptr<CCooldownXBossLavaDropsDef>>,reflection,engine/reflection,O
 0x71004abe2c,220,fn_71004abe2c,unknown,unknown,O
@@ -4361,8 +4361,8 @@ address,size,name,name_source,subsystem,status
 0x71004b5628,240,CCooldownXBossFireWallDef::refl_GetClass,reflection,game,O
 0x71004b5718,972,fn_71004b5718,unknown,game?,O
 0x71004b5ae4,388,CCooldownXBossFireWallDef::refl_InitClass,reflection,game,O
-0x71004b5c68,172,fn_71004b5c68,unknown,unknown,U
-0x71004b5d14,172,fn_71004b5d14,unknown,unknown,U
+0x71004b5c68,172,fn_71004b5c68,unknown,unknown,O
+0x71004b5d14,172,fn_71004b5d14,unknown,unknown,O
 0x71004b5dc0,220,fn_71004b5dc0,unknown,unknown,O
 0x71004b5e9c,220,base::reflection::refl_GetType<std::unique_ptr<CCooldownXBossFireWallDef>>,reflection,engine/reflection,O
 0x71004b5f78,220,fn_71004b5f78,unknown,unknown,O

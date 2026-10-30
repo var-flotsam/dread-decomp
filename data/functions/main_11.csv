@@ -1675,7 +1675,7 @@ address,size,name,name_source,subsystem,status
 0x7101170b2c,628,fn_7101170b2c,unknown,unknown,U
 0x7101170da0,508,fn_7101170da0,unknown,unknown,U
 0x7101170f9c,740,fn_7101170f9c,unknown,unknown,U
-0x7101171280,248,fn_7101171280,unknown,unknown,U
+0x7101171280,248,fn_7101171280,unknown,unknown,O
 0x7101171378,208,fn_7101171378,unknown,unknown,U
 0x7101171448,36,fn_7101171448,unknown,unknown,O
 0x710117146c,132,fn_710117146c,unknown,unknown,O
@@ -1704,7 +1704,7 @@ address,size,name,name_source,subsystem,status
 0x71011735d0,24,fn_71011735d0,unknown,unknown,U
 0x71011735e8,100,fn_71011735e8,unknown,unknown,O
 0x710117364c,148,fn_710117364c,unknown,unknown,O
-0x71011736e0,148,fn_71011736e0,unknown,unknown,U
+0x71011736e0,148,fn_71011736e0,unknown,unknown,O
 0x7101173774,96,fn_7101173774,unknown,unknown,O
 0x71011737d4,80,fn_71011737d4,unknown,unknown,O
 0x7101173824,192,fn_7101173824,unknown,unknown,U
@@ -1789,9 +1789,9 @@ address,size,name,name_source,subsystem,status
 0x7101177898,472,fn_7101177898,unknown,unknown,U
 0x7101177a70,120,fn_7101177a70,unknown,unknown,U
 0x7101177ae8,128,fn_7101177ae8,unknown,unknown,O
-0x7101177b68,120,fn_7101177b68,unknown,unknown,U
+0x7101177b68,120,fn_7101177b68,unknown,unknown,O
 0x7101177be0,204,fn_7101177be0,unknown,unknown,U
-0x7101177cac,128,fn_7101177cac,unknown,unknown,U
+0x7101177cac,128,fn_7101177cac,unknown,unknown,O
 0x7101177d2c,124,fn_7101177d2c,unknown,unknown,O
 0x7101177da8,124,fn_7101177da8,unknown,unknown,U
 0x7101177e24,124,fn_7101177e24,unknown,unknown,U
@@ -1803,7 +1803,7 @@ address,size,name,name_source,subsystem,status
 0x71011781f4,128,fn_71011781f4,unknown,unknown,U
 0x7101178274,120,fn_7101178274,unknown,unknown,U
 0x71011782ec,84,fn_71011782ec,unknown,unknown,O
-0x7101178340,84,fn_7101178340,unknown,unknown,U
+0x7101178340,84,fn_7101178340,unknown,unknown,O
 0x7101178394,400,fn_7101178394,unknown,unknown,U
 0x7101178524,64,fn_7101178524,unknown,unknown,U
 0x7101178564,68,fn_7101178564,unknown,unknown,U
@@ -2130,7 +2130,7 @@ address,size,name,name_source,subsystem,status
 0x710119368c,8,fn_710119368c,unknown,unknown,O
 0x7101193694,112,fn_7101193694,unknown,unknown,O
 0x7101193704,112,fn_7101193704,unknown,unknown,O
-0x7101193774,320,fn_7101193774,unknown,unknown,U
+0x7101193774,320,fn_7101193774,unknown,unknown,O
 0x71011938b4,8,fn_71011938b4,unknown,unknown,O
 0x71011938bc,176,fn_71011938bc,unknown,unknown,U
 0x710119396c,112,fn_710119396c,unknown,unknown,O

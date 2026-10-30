@@ -1657,8 +1657,8 @@ address,size,name,name_source,subsystem,status
 0x710084e40c,388,CMissileBaseGun::CTunableSPR::refl_InitClass,reflection,game,O
 0x710084e590,696,fn_710084e590,unknown,game?,O
 0x710084e848,180,fn_710084e848,unknown,game?,O
-0x710084e8fc,288,fn_710084e8fc,unknown,game?,U
-0x710084ea1c,296,fn_710084ea1c,unknown,game?,U
+0x710084e8fc,288,fn_710084e8fc,unknown,game?,O
+0x710084ea1c,296,fn_710084ea1c,unknown,game?,O
 0x710084eb44,264,fn_710084eb44,unknown,game?,U
 0x710084ec4c,1504,fn_710084ec4c,unknown,game?,U
 0x710084f22c,224,fn_710084f22c,unknown,game?,U

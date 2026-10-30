@@ -259,7 +259,8 @@ struct UnkIdPairCopy {
     u32 field_0x10;
 };
 
-UnkIdPairCopy* fn_7100c8f87c(UnkIdPairCopy* self, const UnkIdPairCopy* other) {
+template <class Self>
+static inline Self* Assign(Self* self, const Self* other) {
     if (self != other) {
         self->first = other->first;
         self->second = other->second;
@@ -267,6 +268,18 @@ UnkIdPairCopy* fn_7100c8f87c(UnkIdPairCopy* self, const UnkIdPairCopy* other) {
     }
     return self;
 }
+
+UnkIdPairCopy* fn_7100c8f87c(UnkIdPairCopy* self, const UnkIdPairCopy* other) { return Assign(self, other); }
+// Copies in another unit, on the same members after a word.
+struct UnkWordIdPairCopy {
+    u64 field_0x0;
+    CStrId first;  // 0x8
+    CStrId second;
+    u32 field_0x10;  // at 0x18
+};
+
+UnkWordIdPairCopy* fn_71007f1fb0(UnkWordIdPairCopy* self, const UnkWordIdPairCopy* other) { return Assign(self, other); }
+UnkWordIdPairCopy* fn_71007f20a4(UnkWordIdPairCopy* self, const UnkWordIdPairCopy* other) { return Assign(self, other); }
 
 // Move-assignment of a value, an id and an array of ids.
 struct UnkValueIdIdArrayRecord {

@@ -94,3 +94,6 @@ void fn_710105b904(char* self) { SetArrayVariant<unk_7101cac938, UnkRecord20>(se
 void fn_710105be08(char* self) { SetArrayVariant<unk_7101cac938, UnkRecord20>(self); }
 void fn_710105e6ec(char* self) { ResetArrayVariant<0x8, unk_7101cac938, false, UnkRecord20>(self); }
 void fn_710105ebac(char* self) { ResetArrayVariant<0x8, unk_7101cac938, false, UnkRecord20>(self); }
+// Copies next door, with the array at 0x18.
+void fn_710105b7c0(char* self) { ResetArrayVariant<0x18, unk_7101cac938, false, UnkRecord20>(self); }
+void fn_710105bcc4(char* self) { ResetArrayVariant<0x18, unk_7101cac938, false, UnkRecord20>(self); }

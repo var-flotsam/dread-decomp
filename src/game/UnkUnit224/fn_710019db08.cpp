@@ -32,7 +32,8 @@ struct UnkBlendLayer224 {
 };
 static_assert(__builtin_offsetof(UnkBlendLayer224, additive) == 0x1af, "UnkBlendLayer224 layout");
 
-void fn_710019dbf4(UnkBlendLayer224* self) {
+template <class Self>
+static inline void SetMode(Self* self) {
     u32 mode;
     if (self->additive)
         mode = self->kind != 1;
@@ -40,3 +41,28 @@ void fn_710019dbf4(UnkBlendLayer224* self) {
         mode = self->kind != 1 ? 3 : 2;
     self->mode = mode;
 }
+
+void fn_710019dbf4(UnkBlendLayer224* self) { SetMode(self); }
+// Copies in two neighbouring units, on their own layouts (the same member names).
+struct UnkBlendLayer_710019639c {
+    u8 pad_0x0[0xd8];
+    s32 kind;  // 0xd8
+    u8 pad_0xdc[0x54];
+    u32 mode;  // 0x130
+    u8 pad_0x134[0x2];
+    bool additive;  // 0x136
+};
+static_assert(__builtin_offsetof(UnkBlendLayer_710019639c, additive) == 0x136, "UnkBlendLayer_710019639c layout");
+
+struct UnkBlendLayer_710019c284 {
+    u8 pad_0x0[0xf0];
+    s32 kind;  // 0xf0
+    u8 pad_0xf4[0x54];
+    u32 mode;  // 0x148
+    u8 pad_0x14c[0x35];
+    bool additive;  // 0x181
+};
+static_assert(__builtin_offsetof(UnkBlendLayer_710019c284, additive) == 0x181, "UnkBlendLayer_710019c284 layout");
+
+void fn_710019639c(UnkBlendLayer_710019639c* self) { SetMode(self); }
+void fn_710019c284(UnkBlendLayer_710019c284* self) { SetMode(self); }

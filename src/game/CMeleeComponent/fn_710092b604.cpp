@@ -14,10 +14,15 @@ struct UnkMeleeComponent {
     UnkMeleeOwner* owner;
 };
 
-bool fn_710092b604(UnkMeleeComponent* self) {
+template <const base::reflection::CClass* (*Class)()>
+static inline bool HasTrack(UnkMeleeComponent* self) {
     if (self->owner) {
         if (UnkAnimationComponent* animation = self->owner->animation)
-            return fn_710117b348(animation, fn_7100d1ab58());
+            return fn_710117b348(animation, Class());
     }
     return false;
 }
+
+bool fn_710092b604(UnkMeleeComponent* self) { return HasTrack<fn_7100d1ab58>(self); }
+// The same for CCharClassMeleeCameraAllowedTrack, next door.
+bool fn_710092b648(UnkMeleeComponent* self) { return HasTrack<fn_7100d18d48>(self); }

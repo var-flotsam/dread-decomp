@@ -409,16 +409,36 @@ struct UnkSubareaNamedList {
     u32 count;
 };
 
-UnkSubareaNamedEntry* fn_7100fab838(UnkSubareaNamedList* self, const CStrId* id) {
-    UnkSubareaNamedEntry** it = self->data;
-    UnkSubareaNamedEntry** end = it + self->count;
+template <class Entry, class List>
+static inline Entry* FindNamed(List* self, const CStrId* id) {
+    Entry** it = self->data;
+    Entry** end = it + self->count;
     const base::global::UnkStringData* want = id->data;
     for (; it != end; ++it) {
-        UnkSubareaNamedEntry* entry = *it;
+        Entry* entry = *it;
         if (entry && entry->id.data == want)
             return entry;
     }
     return nullptr;
+}
+
+UnkSubareaNamedEntry* fn_7100fab838(UnkSubareaNamedList* self, const CStrId* id) {
+    return FindNamed<UnkSubareaNamedEntry>(self, id);
+}
+
+// A copy in another unit, on a list at 0x610 of entries with the id at 0x8.
+struct UnkNamedEntry_7100772cb0 {
+    u8 pad_0x0[0x8];
+    CStrId id;
+};
+struct UnkNamedList_7100772cb0 {
+    u8 pad_0x0[0x610];
+    UnkNamedEntry_7100772cb0** data;
+    u32 count;
+};
+
+UnkNamedEntry_7100772cb0* fn_7100772cb0(UnkNamedList_7100772cb0* self, const CStrId* id) {
+    return FindNamed<UnkNamedEntry_7100772cb0>(self, id);
 }
 
 // Two membership tests on objects of the unit: an id in the list at +0x150 (count at +0x158), and,
