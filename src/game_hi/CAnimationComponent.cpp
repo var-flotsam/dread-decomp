@@ -36,16 +36,27 @@ UnkCutsceneTimeline* fn_710070d4e8(UnkTrack* track);
 
 // The word at +0x10 of the action of the track whose name hash is `key`, or null when there is no
 // such entry or track.
-void* fn_7101177d2c(UnkAnimationComponent* self, u64 key) {
+// What `Get` reads from the track whose name hash is `key`, or zero.
+template <class T, T (*Get)(UnkTrack*)>
+static inline T TrackValue(UnkAnimationComponent* self, u64 key) {
     UnkTrackSet* set = self->field_0x40;
     UnkTrackEntry** it = set->field_0xc8.Find(key);
     if (it == set->field_0xc8.End())
-        return nullptr;
+        return T();
     UnkTrackEntry* entry = *it;
     if (entry && entry->field_0x70)
-        return fn_710070d4e8(entry->field_0x70);
-    return nullptr;
+        return Get(entry->field_0x70);
+    return T();
 }
+
+void* fn_7101177d2c(UnkAnimationComponent* self, u64 key) { return TrackValue<UnkCutsceneTimeline*, fn_710070d4e8>(self, key); }
+
+// The same through two other getters of the track (a word and a float), next door.
+u32 fn_710070d840(UnkTrack* track);
+f32 fn_710070d850(UnkTrack* track);
+
+u32 fn_7101177da8(UnkAnimationComponent* self, u64 key) { return TrackValue<u32, fn_710070d840>(self, key); }
+f32 fn_7101177e24(UnkAnimationComponent* self, u64 key) { return TrackValue<f32, fn_710070d850>(self, key); }
 
 // The first entry any of the component's action sets (+0x48, count at +0x50) holds under the pair
 // of keys, or null (the action set's lookup is src/game/CActionSet.cpp's).

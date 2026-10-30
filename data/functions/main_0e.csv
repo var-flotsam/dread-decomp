@@ -2812,7 +2812,7 @@ address,size,name,name_source,subsystem,status
 0x7100eaa1c4,84,fn_7100eaa1c4,unknown,unknown,O
 0x7100eaa218,76,fn_7100eaa218,unknown,unknown,O
 0x7100eaa264,76,fn_7100eaa264,unknown,unknown,O
-0x7100eaa2b0,76,fn_7100eaa2b0,unknown,unknown,U
+0x7100eaa2b0,76,fn_7100eaa2b0,unknown,unknown,O
 0x7100eaa2fc,76,fn_7100eaa2fc,unknown,unknown,O
 0x7100eaa348,68,fn_7100eaa348,unknown,unknown,O
 0x7100eaa38c,76,fn_7100eaa38c,unknown,unknown,O

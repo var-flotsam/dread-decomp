@@ -4223,7 +4223,7 @@ address,size,name,name_source,subsystem,status
 0x7100d8e32c,108,fn_7100d8e32c,unknown,engine/reflection?,U
 0x7100d8e398,2924,fn_7100d8e398,unknown,engine/reflection?,m
 0x7100d8ef04,8,fn_7100d8ef04,unknown,engine/reflection?,O
-0x7100d8ef0c,180,fn_7100d8ef0c,unknown,engine/reflection?,U
+0x7100d8ef0c,180,fn_7100d8ef0c,unknown,engine/reflection?,O
 0x7100d8efc0,8,fn_7100d8efc0,unknown,engine/reflection?,O
 0x7100d8efc8,8,fn_7100d8efc8,unknown,engine/reflection?,O
 0x7100d8efd0,228,fn_7100d8efd0,unknown,engine/reflection?,U

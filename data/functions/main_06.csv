@@ -3296,7 +3296,7 @@ address,size,name,name_source,subsystem,status
 0x710068009c,800,fn_710068009c,unknown,game/characters?,O
 0x71006803bc,388,CCharClassScorpiusMovingPoisonousGasAttack::CTunableCharClassScorpiusMovingPoisonousGasAttack::refl_InitClass,reflection,game/characters,O
 0x7100680540,696,fn_7100680540,unknown,game/characters?,O
-0x71006807f8,176,fn_71006807f8,unknown,game/characters?,U
+0x71006807f8,176,fn_71006807f8,unknown,game/characters?,O
 0x71006808a8,4,fn_71006808a8,unknown,game/characters?,O
 0x71006808ac,36,fn_71006808ac,unknown,game/characters?,O
 0x71006808d0,28,fn_71006808d0,unknown,game/characters?,O
@@ -3306,7 +3306,7 @@ address,size,name,name_source,subsystem,status
 0x710068094c,12,fn_710068094c,unknown,game/characters?,O
 0x7100680958,8,fn_7100680958,unknown,game/characters?,O
 0x7100680960,28,fn_7100680960,unknown,game/characters?,O
-0x710068097c,176,fn_710068097c,unknown,game/characters?,U
+0x710068097c,176,fn_710068097c,unknown,game/characters?,O
 0x7100680a2c,12,fn_7100680a2c,unknown,game/characters?,O
 0x7100680a38,8,fn_7100680a38,unknown,game/characters?,O
 0x7100680a40,8,fn_7100680a40,unknown,game/characters?,O

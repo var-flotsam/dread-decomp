@@ -3485,7 +3485,7 @@ address,size,name,name_source,subsystem,status
 0x71008a0044,76,fn_71008a0044,unknown,unknown,O
 0x71008a0090,68,fn_71008a0090,unknown,unknown,O
 0x71008a00d4,68,fn_71008a00d4,unknown,unknown,O
-0x71008a0118,76,fn_71008a0118,unknown,unknown,U
+0x71008a0118,76,fn_71008a0118,unknown,unknown,O
 0x71008a0170,248,fn_71008a0170,unknown,unknown,O
 0x71008a0268,4,fn_71008a0268,unknown,unknown,O
 0x71008a026c,244,CCharClassWaterNozzleComponent::refl_GetClass,reflection,game/characters,O

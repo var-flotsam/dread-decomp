@@ -32,16 +32,18 @@ __attribute__((always_inline)) static inline bool Equal(const UnkRecord80IterVal
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
-struct UnkEmptiedStrId {
+// A string id (or, with the file-path pool, a path id) left as the empty string once released.
+template <UnkStringPool** Pool>
+struct UnkEmptiedStrIdT {
     UnkStringData* data;
 
-    __attribute__((always_inline)) ~UnkEmptiedStrId() {
-        if (UnkStringPool* pool = g_unk_7101d47108) {
+    __attribute__((always_inline)) ~UnkEmptiedStrIdT() {
+        if (UnkStringPool* pool = *Pool) {
             if (data && data != &pool->empty) {
                 --data->ref_count;
                 if (data->ref_count == 0) {
                     fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
+                    pool = *Pool;
                 }
             }
             data = &pool->empty;
@@ -49,18 +51,36 @@ struct UnkEmptiedStrId {
     }
 };
 
+using UnkEmptiedStrId = UnkEmptiedStrIdT<&g_unk_7101d47108>;
+
 struct UnkIdWordPair {
     UnkEmptiedStrId id;
     u64 field_0x8;
 };
 
-void fn_71011df574(base::UnkVector<UnkIdWordPair>* self) {
+template <class T>
+static inline void Clear(base::UnkVector<T>* self) {
     if (self->data) {
         for (u64 i = 0; i < self->count; ++i)
-            self->data[i].~UnkIdWordPair();
+            self->data[i].~T();
         self->count = 0;
         self->allocator->vf_0x48(self->data);
         self->capacity = 0;
     }
 }
+
+void fn_71011df574(base::UnkVector<UnkIdWordPair>* self) { Clear(self); }
+// The same for an array of 0x18-byte records led by a path id, after a word, in another unit.
+struct UnkPathIdRecord_0x18 {
+    UnkEmptiedStrIdT<&g_unk_7101d47200> path;
+    u64 field_0x8;
+    u64 field_0x10;
+};
+
+struct UnkWordPathIdRecords {
+    u64 field_0x0;
+    base::UnkVector<UnkPathIdRecord_0x18> records;  // 0x8
+};
+
+void fn_7100ffc598(UnkWordPathIdRecords* self) { Clear(&self->records); }
 

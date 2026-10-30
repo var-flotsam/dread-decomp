@@ -4417,7 +4417,7 @@ address,size,name,name_source,subsystem,status
 0x7100ab7ffc,40,fn_7100ab7ffc,unknown,unknown,O
 0x7100ab8024,40,fn_7100ab8024,unknown,unknown,O
 0x7100ab804c,16,fn_7100ab804c,unknown,unknown,O
-0x7100ab805c,352,fn_7100ab805c,unknown,unknown,U
+0x7100ab805c,352,fn_7100ab805c,unknown,unknown,O
 0x7100ab81bc,2508,fn_7100ab81bc,unknown,unknown,U
 0x7100ab8b88,404,fn_7100ab8b88,unknown,unknown,U
 0x7100ab8d1c,28,fn_7100ab8d1c,unknown,unknown,O
