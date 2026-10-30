@@ -132,8 +132,8 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 ## Session log (newest first)
 
 **Night round 19: two wrong declarations, and more hubs (2026-10-30, branch `claude/project-thread-lths9k-night19`, on round 18).**
-3 functions to `O` and 2 to minor. Boot slice: `O` 2,153 (30.59%), usable 40.93%; whole binary `O` 85,396 to 85,399 (54.95%),
-usable 57.45%. `O`: a reflected value's assignment of an object of a type (fn_71000a1cc8, 94 callers), the game manager's test
+3 functions to `O` and 2 to minor. Boot slice: `O` 2,153 to 2,156 (30.62%), usable 40.93% to 40.96%; whole binary `O` 85,396
+to 85,399 (54.95%), usable 57.45%. `O`: a reflected value's assignment of an object of a type (fn_71000a1cc8, 94 callers), the game manager's test
 of an object against its four handles (fn_7100df5c38, 27) and a string-id list's clear (fn_710002fa90, 30). Minor: a navmesh
 cell side's segment (fn_71002afea8, 50) and the graphics uniform setter (fn_710015e1f0, 29).
 - **A declaration missing a parameter.** fn_7100df5c38 compares its second argument, which its one caller already had in x1;
