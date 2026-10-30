@@ -9,6 +9,7 @@
 // same unit. Only the members the hand-written files touch are spelled out; names and layouts are
 // placeholders inferred from the code.
 
+#include "base/math/CVector.h"
 #include "types.h"
 
 struct UnkNavMeshEdge {
@@ -68,3 +69,15 @@ struct UnkNavMesh;
 UnkNavMeshCell* fn_710027a33c(UnkNavMesh* mesh, u16 key);
 // The mesh's cell for a key, without growing anything (navmesh::CNavMesh; generated, src/lifted/).
 UnkNavMeshCell* fn_710027a328(UnkNavMesh* mesh, u16 cell);
+
+// The segment of a cell side: its two points and a word that starts at -1.
+struct UnkNavMeshSideSegment {
+    base::math::CVector2D start;
+    base::math::CVector2D end;
+    f32 field_0x10;
+};
+
+// Fills `out` with side `*side` of the cell (from its vertex and the next one, wrapping round) and
+// returns true; false for no side (0xff), a side past the cell's count, or a cell without a mesh
+// (src/game/UnkNavMeshCell.cpp).
+bool fn_71002afea8(const UnkNavMeshCell* cell, const u8* side, UnkNavMeshSideSegment* out);

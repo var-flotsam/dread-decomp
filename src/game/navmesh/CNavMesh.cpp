@@ -392,13 +392,6 @@ f32 fn_71001262e0(const UnkSegment2D_71001262e0* seg, const CVector2D* p, CVecto
 bool fn_71006f379c(const UnkDirectionFilter* self, const UnkSegment2D* seg);
 bool fn_71002afc84(const Cell* cell, const u8* side, u32 flags);
 
-// The segment of a cell side (fn_71002afea8 fills the two points; the word after them starts at -1).
-struct UnkNavMeshSideSegment {
-    CVector2D start;
-    CVector2D end;
-    f32 field_0x10;
-};
-void fn_71002afea8(const Cell* cell, const u8* side, UnkNavMeshSideSegment* out);
 
 // A callback with its context: the function is called with the context first.
 template <class R, class... A>

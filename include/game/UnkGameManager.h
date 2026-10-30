@@ -153,6 +153,8 @@ base::global::CStrId fn_7100dfbda4(UnkGameManager* self, const base::global::CSt
 // Whether the object behind +0x498 (the game's mode holder) is named "EDITOR"; false when there is
 // none (src/game/CGameManager.cpp; called by fn_7100c79a80).
 bool fn_7100deabe4(UnkGameManager* self);
+// Whether `object` is the target (+0x10) of one of the four handles at +0x2998 (src/game/CGameManager.cpp).
+bool fn_7100df5c38(UnkGameManager* self, const void* object);
 // Whether that object is named "VIEWER" (src/game/CGameManager.cpp).
 bool fn_7100deac04(UnkGameManager* self);
 // Whether that object is named "INGAME" and its word at +0x260 is set (src/game/CGameManager.cpp).
