@@ -1059,7 +1059,7 @@ address,size,name,name_source,subsystem,status
 0x7100a2c020,244,fn_7100a2c020,unknown,unknown,U
 0x7100a2c114,36,fn_7100a2c114,unknown,unknown,O
 0x7100a2c138,4,fn_7100a2c138,unknown,unknown,O
-0x7100a2c13c,196,fn_7100a2c13c,unknown,unknown,U
+0x7100a2c13c,196,fn_7100a2c13c,unknown,unknown,O
 0x7100a2c200,800,fn_7100a2c200,unknown,unknown,U
 0x7100a2c520,304,fn_7100a2c520,unknown,unknown,U
 0x7100a2c650,8,fn_7100a2c650,unknown,unknown,O
