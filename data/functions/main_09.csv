@@ -3339,7 +3339,7 @@ address,size,name,name_source,subsystem,status
 0x71009b7450,8,fn_71009b7450,unknown,unknown,O
 0x71009b7458,8,fn_71009b7458,unknown,unknown,O
 0x71009b7460,28,fn_71009b7460,unknown,unknown,O
-0x71009b747c,88,fn_71009b747c,unknown,unknown,U
+0x71009b747c,88,fn_71009b747c,unknown,unknown,O
 0x71009b74d4,4,fn_71009b74d4,unknown,unknown,O
 0x71009b74d8,4,fn_71009b74d8,unknown,unknown,O
 0x71009b74dc,12,fn_71009b74dc,unknown,unknown,O

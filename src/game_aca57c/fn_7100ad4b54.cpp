@@ -282,3 +282,40 @@ UnkReflValue fn_71007a0938(void* unused, UnkArgument<bool>* argument) { return G
 UnkReflValue fn_71007a0b28(void* unused, UnkArgument<bool>* argument) { return GetChainedFloatWord<0x50, 0x128, 0x7c>(argument); }
 UnkReflValue fn_71008ebb34(void* unused, UnkArgument<bool>* argument) { return GetChainedFloatWord<0x58, 0x138, 0x88>(argument); }
 UnkReflValue fn_71008fa23c(void* unused, UnkArgument<bool>* argument) { return GetChainedFloatWord<0x58, 0x138, 0x88>(argument); }
+
+// Getters that call something on the argument's object and give 1 as an int: a virtual slot of it
+// (fn_7100a05720, fn_7100a05778, fn_7100a057d0), or fn_7100f10bf4 on a part of it (fn_7100f0f32c,
+// fn_7100f0f380, fn_7100f0f3d4).
+template <u32 Slot>
+__attribute__((always_inline)) static inline UnkReflValue CallSlotGetOne(UnkArgument<UnkFlagSource>* argument) {
+    CallSlot<void, Slot>(argument->field_0x8);
+    s32 value = 1;
+    return MakeValue(fn_7100014768(), &value);
+}
+
+void fn_7100f10bf4(void* part);
+
+template <u32 Offset>
+__attribute__((always_inline)) static inline UnkReflValue CallPartGetOne(UnkArgument<bool>* argument) {
+    fn_7100f10bf4(argument->field_0x8 + Offset);
+    s32 value = 1;
+    return MakeValue(fn_7100014768(), &value);
+}
+
+UnkReflValue fn_7100a05720(void* unused, UnkArgument<UnkFlagSource>* argument) { return CallSlotGetOne<0x1a8>(argument); }
+UnkReflValue fn_7100a05778(void* unused, UnkArgument<UnkFlagSource>* argument) { return CallSlotGetOne<0x1b0>(argument); }
+UnkReflValue fn_7100a057d0(void* unused, UnkArgument<UnkFlagSource>* argument) { return CallSlotGetOne<0x1b8>(argument); }
+UnkReflValue fn_7100f0f32c(void* unused, UnkArgument<bool>* argument) { return CallPartGetOne<0x150>(argument); }
+UnkReflValue fn_7100f0f380(void* unused, UnkArgument<bool>* argument) { return CallPartGetOne<0x180>(argument); }
+UnkReflValue fn_7100f0f3d4(void* unused, UnkArgument<bool>* argument) { return CallPartGetOne<0x1b8>(argument); }
+
+// Whether the argument's object has a non-zero word at +0x710 (fn_71010dced0).
+struct UnkCountObject {
+    u8 unk_0x0[0x710];
+    s32 field_0x710;
+};
+
+UnkReflValue fn_71010dced0(void* unused, UnkArgument<UnkCountObject>* argument) {
+    bool value = argument->field_0x8->field_0x710 != 0;
+    return MakeValue(fn_710000d228(), &value);
+}

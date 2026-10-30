@@ -5,8 +5,9 @@
 
 extern char g_unk_7101a1afb0[];  // the registry's vtable (GOT 0x7101cbc3d8)
 
-void fn_7100087388(UnkRegistry_0x70* self) {
-    self->vtable = g_unk_7101a1afb0 + 0x10;
+template <char* Vtable, bool CountedTail>
+__attribute__((always_inline)) static inline void Construct(UnkRegistry_0x70* self) {
+    self->vtable = Vtable + 0x10;
     base::UnkAllocator* alloc = fn_7100083990();
     typedef u64 __attribute__((may_alias)) word;
     char* base = reinterpret_cast<char*>(self);
@@ -36,10 +37,25 @@ void fn_7100087388(UnkRegistry_0x70* self) {
     }
     self->entries.count = 11;
 tail:
-    self->field_0x60 = 0;
-    self->field_0x68 = 0;
-    self->field_0x50 = 0;
-    self->field_0x58 = 0;
+    if (CountedTail) {
+        // Only a word set to 1 at +0x50 (unit 204's registry).
+        *reinterpret_cast<u32*>(base + 0x50) = 1;
+    } else {
+        self->field_0x60 = 0;
+        self->field_0x68 = 0;
+        self->field_0x50 = 0;
+        self->field_0x58 = 0;
+    }
+}
+
+void fn_7100087388(UnkRegistry_0x70* self) {
+    Construct<g_unk_7101a1afb0, false>(self);
+}
+
+// The same constructor in unit 204 of tools/tu_map.py, with its own vtable and a counter at +0x50 set to 1.
+extern char g_unk_7101a1d878[];
+void fn_710016999c(UnkRegistry_0x70* self) {
+    Construct<g_unk_7101a1d878, true>(self);
 }
 
 // ---- fn_7100087850: whether the registry has an entry for a path ----

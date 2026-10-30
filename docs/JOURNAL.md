@@ -131,6 +131,18 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Night round 5: near copies from 60% (2026-10-30, branch `claude/project-thread-lths9k-night5`).**
+24 functions from `U` to `O`, 2,680 bytes. Whole binary: `O` 85,245 to 85,269, 54.85% to 54.87%; usable 57.32% to 57.34%. The
+near-copy triage at 60% (196 candidates) gave no direct matches; these are the families whose difference was one parameter:
+- Templates from earlier rounds took more copies: the block pool at 0x70-byte blocks, the string list with nodes destroyed
+  by `fn_71002874dc`, list destructors with a word before the allocator, reflected getters and invokers that call a slot or
+  a function and give 1 as an int (or the call's flag), and the registry constructor whose unit-204 copy sets only a
+  counter at +0x50 (a `bool` template parameter keeps both in one body).
+- New small families: three GUI renderers' resets after their display object's routine, the lighting component's child
+  loops, two node-like constructors and two layered copy constructors.
+- Callees that other files declare with their own placeholder types keep those declarations (a forward-declared struct and
+  a cast at the call), so `decl_check.py` sees no new signature.
+
 **Night round 4: boot hubs by hand (2026-10-30, branch `claude/project-thread-lths9k-night4`).**
 13 boot-slice hubs from `U`: 7 to `O`, 6 to minor. Boot slice: `O` 2,050 to 2,057 functions (29.92% to 29.97%), usable 40.04% to
 40.13%. Whole binary: `O` 85,238 to 85,245. `O`: fn_71002199d8 (the render manager's drop of an item's node), fn_7101196fd8 (a
