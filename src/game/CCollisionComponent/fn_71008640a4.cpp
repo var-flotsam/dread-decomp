@@ -50,3 +50,14 @@ UnkCollisionObject* fn_7100864194(UnkCollisionContainer* self, const base::globa
     }
     return nullptr;
 }
+
+// The object of record `index` (refreshed first as above), or null past the last record.
+UnkCollisionObject* fn_710086420c(UnkCollisionContainer* self, u32 index) {
+    if (index < self->records.count) {
+        UnkCollisionRecord* record = &self->records.data[index];
+        if (static_cast<u8>(record->field_0x18))
+            (*reinterpret_cast<UnkCollisionRefresh**>(self))[0x170 / 8](self, record, 0);
+        return record->field_0x28;
+    }
+    return nullptr;
+}

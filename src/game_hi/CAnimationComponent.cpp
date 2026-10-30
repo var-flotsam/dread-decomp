@@ -46,3 +46,24 @@ void* fn_7101177d2c(UnkAnimationComponent* self, u64 key) {
         return fn_710070d4e8(entry->field_0x70);
     return nullptr;
 }
+
+// The first entry any of the component's action sets (+0x48, count at +0x50) holds under the pair
+// of keys, or null (the action set's lookup is src/game/CActionSet.cpp's).
+struct UnkActionSetMap;
+void* fn_7100b8c61c(UnkActionSetMap* self, const u64* key1, const u64* key2);
+
+struct UnkAnimationActionSets {
+    u8 pad_0x0[0x48];
+    UnkActionSetMap** sets;
+    u32 count;
+};
+
+// NON_MATCHING(minor): the original counts the remaining bytes down before each call and returns the
+// last call's result at the end (with its own null return for no sets); same behaviour.
+void* fn_7101176e0c(UnkAnimationComponent* self, u64 key1, u64 key2) {
+    UnkAnimationActionSets* a = reinterpret_cast<UnkAnimationActionSets*>(self);
+    for (UnkActionSetMap **it = a->sets, **end = it + a->count; it != end; ++it)
+        if (void* entry = fn_7100b8c61c(*it, &key1, &key2))
+            return entry;
+    return nullptr;
+}
