@@ -85,7 +85,9 @@ ELEMENTS = {"ptr": "{tag}*", "elem": "UnkCloneElem<{tag}, {size}>", "owner": "Un
             "owner_a": "UnkCloneOwner<{tag}, UnkClonePolyA>",
             "handle": "UnkCloneHandle<{tag}>", "word": "UnkCloneWord<{tag}>", "strid": "UnkCloneStrId<{tag}>",
             # Two template arguments: a word element keyed by a string id (keyed collections).
-            "word_strkey": "UnkCloneWord<{tag}>, UnkCloneStrId<{tag}>", "strid_b": "UnkCloneStrIdB<{tag}>"}
+            "word_strkey": "UnkCloneWord<{tag}>, UnkCloneStrId<{tag}>", "strid_b": "UnkCloneStrIdB<{tag}>",
+            # A pointer with an 8-byte index (keyed by a word, not a 4-byte index).
+            "ptr_u64": "{tag}*, u64"}
 
 # Collection templates: header, explicit instantiation ({T} is the element type), verified
 # reference per element type, and whether the element size is read from the code ("elem" only).
@@ -2921,6 +2923,8 @@ for _name, (_header, _fmt, _refs) in COLLECTIONS.items():
     for _el in ("owner", "owner_a", "handle") + (() if trivial else ("ptr",)):
         if _el not in _refs and (_name, _el) not in NO_PROBE:
             KINDS[f"{_name}_{_el}"] = Kind(None, _header, collection(_fmt, _el), exact=False)
+KINDS["iter_value_equal_ptr_u64"] = Kind(None, COLLECTIONS["iter_value_equal"][0],
+                                         collection(COLLECTIONS["iter_value_equal"][1], "ptr_u64"), exact=False)
 
 # Every instantiation over an 8-byte word element (UnkCloneWord) also tried with a 4- or 1-byte
 # value in the slot and with 16-byte elements: tried in turn on a function that has the base
@@ -3028,20 +3032,27 @@ def main() -> int:
             size, code = refs[k.late]
             refs[name] = (size, [widthless(c if isinstance(c, str) else c[0]) for c in code])
     found: dict[int, tuple[str, str]] = {}  # address -> (kind, instantiation)
-    # address -> the further word variants to try, in order, when the one in `found` doesn't match
+    # address -> the further kinds to try, in order, when the one in `found` doesn't match: the other
+    # probe kinds of the same shape (mnemonics alone can't tell them apart), or the word variants
     later: dict[int, list[tuple[str, str]]] = {}
     for a in rows:
         if a in taken or a not in orig.sizes:
             continue
         ins = instructions(orig, a)
         tag = f"UnkClone_fn_{a:x}"
+        mnemonics = [m for m, _ in ins]
         for name, (size, code) in refs.items():
             if KINDS[name].late or orig.sizes[a] != size:
                 continue
-            if (ins if KINDS[name].exact and KINDS[name].ref is not None else [m for m, _ in ins]) == code:
+            verified = KINDS[name].exact and KINDS[name].ref is not None
+            if (ins if verified else mnemonics) == code:
                 line = KINDS[name].instantiate(tag, ins)
                 if line:
                     found[a] = (name, f"struct {tag};\n{line}")
+                    if KINDS[name].ref is None:
+                        later[a] = [(n, f"struct {tag};\n{t}") for n, (sz, c) in refs.items()
+                                    if n != name and KINDS[n].ref is None and not KINDS[n].late
+                                    and sz == size and c == mnemonics and (t := KINDS[n].instantiate(tag, ins))]
                 break
         if a not in found:
             for name, k in KINDS.items():

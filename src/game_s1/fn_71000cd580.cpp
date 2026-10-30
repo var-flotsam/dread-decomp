@@ -9,7 +9,7 @@
 // with elements holding a string id and a file path id (moved in fn_710001d334, copied in
 // fn_710001d9ac), with reflected-value elements (fn_71000d5178; string-id keys fn_71000d6698,
 // fn_71000d7740); copies with string-id elements (fn_71000cda10; CFilePathStrId's
-// pool fn_71000d01cc). Eleven more 8-byte-element moves and four more two-word ones are copies in
+// pool fn_71000d01cc; with 8-byte indices fn_7100edb124, fn_7100fb0fd0). Eleven more 8-byte-element moves and four more two-word ones are copies in
 // other units (listed with their originals below).
 #include <new>
 
@@ -184,12 +184,21 @@ UNK_ITER_MOVE(71000da8dc, UnkCopiedFilePathStrId, UnkMovedStrId)
 UNK_ITER_MOVE(71000d887c, UnkMovedStrId, UnkMovedStrId)
 UNK_ITER_MOVE(710001d334, UnkMovedIdPair, u32)
 UNK_ITER_MOVE(710001d9ac, UnkCopiedIdPair, u32)
+UNK_ITER_MOVE(7100edac94, UnkMovedFilePathStrId, u64)
+UNK_ITER_MOVE(7100fb0b40, UnkMovedStrId, u64)
 
 void fn_71000cda10(UnkIterValue<UnkCopiedStrId>* self, const UnkIterValue<UnkCopiedStrId>* other) {
     CopyConstruct(self, other);
 }
 
 void fn_71000d01cc(UnkIterValue<UnkCopiedFilePathStrId>* self, const UnkIterValue<UnkCopiedFilePathStrId>* other) {
+    CopyConstruct(self, other);
+}
+// The same with 8-byte indices, in other units.
+void fn_7100edb124(UnkIterValue<UnkCopiedFilePathStrId, u64>* self, const UnkIterValue<UnkCopiedFilePathStrId, u64>* other) {
+    CopyConstruct(self, other);
+}
+void fn_7100fb0fd0(UnkIterValue<UnkCopiedStrId, u64>* self, const UnkIterValue<UnkCopiedStrId, u64>* other) {
     CopyConstruct(self, other);
 }
 

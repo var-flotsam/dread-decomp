@@ -48,3 +48,28 @@ void fn_7100141c8c(UnkTaggedObject* self) { DestroyTagged<fn_71001f864c, fn_7100
 void fn_7100141d7c(UnkTaggedObject* self) { DestroyTagged<fn_71001fabb8, fn_71001faa40>(self); }
 void fn_71001429bc(UnkTaggedObject* self) { DestroyTagged<fn_71001b3fb0, fn_71001b3f44>(self); }
 void fn_7100147900(UnkTaggedObject* self) { DestroyTagged<fn_71001bcd98, fn_71001bccc8>(self); }
+
+// Three more whose first call takes the pointer 0x108 into the sub-object instead (the last one's
+// sub-object is at +0x20).
+void fn_71001b4fa4(void* p);
+void fn_71001f2ae4(void* sub);
+void fn_71001c343c(void* p);
+void fn_71002095dc(void* sub);
+void fn_71001c3e8c(void* p);
+void fn_710020b9cc(void* sub);
+
+template <void (*Release)(void*), void (*Destroy)(void*), u32 At = 0x18>
+static inline void DestroyTaggedHeld(UnkTaggedObject* self) {
+    char* sub = reinterpret_cast<char*>(self) + At;
+    Release(*reinterpret_cast<void**>(sub + 0x108));
+    Destroy(sub);
+    self->tag = 0xdeaddead;
+    if (UnkCountedResource* r = self->resource) {
+        if (--r->ref_count == 0)
+            fn_710001737c(r);
+    }
+}
+
+void fn_7100143244(UnkTaggedObject* self) { DestroyTaggedHeld<fn_71001b4fa4, fn_71001f2ae4>(self); }
+void fn_7100147b5c(UnkTaggedObject* self) { DestroyTaggedHeld<fn_71001c343c, fn_71002095dc>(self); }
+void fn_7100147f48(UnkTaggedObject* self) { DestroyTaggedHeld<fn_71001c3e8c, fn_710020b9cc, 0x20>(self); }

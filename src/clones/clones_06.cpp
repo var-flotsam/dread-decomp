@@ -17,6 +17,30 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "base/reflection/UnkReflValue.h"
+struct UnkClone_fn_710101bb48;
+extern char* g_unk_71726bc560;
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_710101bb48> {
+    static char* target() { return g_unk_71726bc560; }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldMinNotify<UnkClone_fn_710101bb48, 0x88, 0x9ea8f9c8cbc22e0c>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_710101bbe0;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_710101bbe0> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_710101bbe0, u32, 0x8c>(void*, char*);
+struct UnkClone_fn_710101bc2c;
+extern char* g_unk_71726bc560;
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_710101bc2c> {
+    static char* target() { return g_unk_71726bc560; }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldMinNotify<UnkClone_fn_710101bc2c, 0x8c, 0xe36526bd337a31e6>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_710101bcc4;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_710101bcc4> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_710101bcc4, u32, 0x90>(void*, char*);
 struct UnkClone_fn_710101bd10;
 extern char* g_unk_71726bc560;
 template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_710101bd10> {
