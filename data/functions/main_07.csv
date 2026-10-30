@@ -4519,7 +4519,7 @@ address,size,name,name_source,subsystem,status
 0x71007d59b8,388,CEscapeSequenceExplosionComponent::refl_InitClass,reflection,game/components,O
 0x71007d5b3c,4,fn_71007d5b3c,unknown,unknown,O
 0x71007d5b40,36,fn_71007d5b40,unknown,unknown,O
-0x71007d5b64,120,fn_71007d5b64,unknown,unknown,U
+0x71007d5b64,120,fn_71007d5b64,unknown,unknown,O
 0x71007d5bdc,216,fn_71007d5bdc,unknown,unknown,U
 0x71007d5cb4,216,fn_71007d5cb4,unknown,unknown,U
 0x71007d5d8c,300,fn_71007d5d8c,unknown,unknown,U

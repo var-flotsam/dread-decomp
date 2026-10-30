@@ -4249,7 +4249,7 @@ address,size,name,name_source,subsystem,status
 0x71010d08d4,88,fn_71010d08d4,unknown,unknown,O
 0x71010d092c,236,fn_71010d092c,unknown,unknown,O
 0x71010d0a18,232,fn_71010d0a18,unknown,unknown,O
-0x71010d0b00,120,fn_71010d0b00,unknown,unknown,U
+0x71010d0b00,120,fn_71010d0b00,unknown,unknown,O
 0x71010d0b78,48,fn_71010d0b78,unknown,unknown,O
 0x71010d0ba8,88,fn_71010d0ba8,unknown,unknown,O
 0x71010d0c00,4,fn_71010d0c00,unknown,unknown,O

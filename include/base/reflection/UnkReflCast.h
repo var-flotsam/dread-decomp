@@ -46,6 +46,38 @@ bool refl_CallAndCastField(char* self) {
     return r;
 }
 
+// The same, true only when the base method succeeded and the object was of the target class.
+template <class Tag, u32 Src, u32 Dst>
+bool refl_CallAndCastFieldBoth(char* self) {
+    bool r = UnkCastTraits<Tag>::base(self);
+    UnkReflObject* o = *reinterpret_cast<UnkReflObject**>(self + Src);
+    UnkReflObject* p = o ? refl_CastTo<Tag>(o) : nullptr;
+    *reinterpret_cast<UnkReflObject**>(self + Dst) = p;
+    return r & (p != nullptr);
+}
+
+// The same as refl_CallAndCastField, then copies the word at `From` of the cast object to `To`
+// (read even when the cast gave null, as in the original).
+template <class Tag, u32 Src, u32 Dst, u32 From, u32 To>
+bool refl_CallAndCastFieldWord(char* self) {
+    bool r = UnkCastTraits<Tag>::base(self);
+    UnkReflObject* o = *reinterpret_cast<UnkReflObject**>(self + Src);
+    UnkReflObject* p = o ? refl_CastTo<Tag>(o) : nullptr;
+    *reinterpret_cast<UnkReflObject**>(self + Dst) = p;
+    *reinterpret_cast<u32*>(self + To) = *reinterpret_cast<u32*>(reinterpret_cast<char*>(p) + From);
+    return r;
+}
+
+// The same, then clears the flag at `Flags` and sets the one after it (one halfword store).
+template <class Tag, u32 Src, u32 Dst, u32 Flags>
+bool refl_CallAndCastFieldFlags(char* self) {
+    bool r = UnkCastTraits<Tag>::base(self);
+    UnkReflObject* o = *reinterpret_cast<UnkReflObject**>(self + Src);
+    *reinterpret_cast<UnkReflObject**>(self + Dst) = o ? refl_CastTo<Tag>(o) : nullptr;
+    *reinterpret_cast<u16*>(self + Flags) = 0x100;
+    return r;
+}
+
 // Stores `obj` with its dynamic type in the reflected value at +0x18: in place when the value
 // already holds a compatible type (fn_71000a1cc8), else by resetting and rebuilding it
 // (fn_71002fa764 and its identical copies).

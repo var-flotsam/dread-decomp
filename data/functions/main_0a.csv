@@ -2751,7 +2751,7 @@ address,size,name,name_source,subsystem,status
 0x7100a6d3d8,28,fn_7100a6d3d8,unknown,unknown,O
 0x7100a6d3f4,36,fn_7100a6d3f4,unknown,unknown,O
 0x7100a6d418,272,fn_7100a6d418,unknown,unknown,U
-0x7100a6d528,120,fn_7100a6d528,unknown,unknown,U
+0x7100a6d528,120,fn_7100a6d528,unknown,unknown,O
 0x7100a6d5a0,56,fn_7100a6d5a0,unknown,unknown,O
 0x7100a6d5d8,68,fn_7100a6d5d8,unknown,unknown,O
 0x7100a6d61c,632,fn_7100a6d61c,unknown,unknown,U
@@ -3312,7 +3312,7 @@ address,size,name,name_source,subsystem,status
 0x7100a85228,36,fn_7100a85228,unknown,unknown,O
 0x7100a8524c,276,fn_7100a8524c,unknown,unknown,U
 0x7100a85360,100,fn_7100a85360,unknown,unknown,O
-0x7100a853c4,120,fn_7100a853c4,unknown,unknown,U
+0x7100a853c4,120,fn_7100a853c4,unknown,unknown,O
 0x7100a8543c,92,fn_7100a8543c,unknown,unknown,O
 0x7100a85498,100,fn_7100a85498,unknown,unknown,O
 0x7100a854fc,632,fn_7100a854fc,unknown,unknown,U

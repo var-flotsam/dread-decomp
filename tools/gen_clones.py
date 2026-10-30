@@ -763,9 +763,11 @@ def call_and_cast_arg(orig: asmdiff.Original, addr: int, tag: str, insns: Insns)
 
 
 def call_and_cast_field(orig: asmdiff.Original, addr: int, tag: str, insns: Insns) -> str | None:
-    """refl_CallAndCastField (UnkReflCast.h): the base method, type getter and both offsets."""
-    if len(insns) > 32 or ("mov", "x19, x0") not in insns[:8] or ("and", "w0, w20, #1") not in insns \
-            or not (calls := cast_calls(insns)):
+    """refl_CallAndCastField (UnkReflCast.h): the base method, type getter and both offsets; or
+    refl_CallAndCastFieldBoth, which also requires the cast to succeed."""
+    both = ("and", "w0, w20, w8") in insns and ("cset", "w8, ne") in insns
+    if len(insns) > 32 or ("mov", "x19, x0") not in insns[:8] \
+            or (("and", "w0, w20, #1") not in insns and not both) or not (calls := cast_calls(insns)):
         return None
     srcs = [int(h.group(1), 16) for m, o in insns if m == "ldr" and (h := re.fullmatch(r"x21, \[x19, #(0x[0-9a-f]+|\d)\]", o))]
     dsts = [int(h.group(1), 16) for m, o in insns if m == "str" and (h := re.fullmatch(r"x8, \[x19, #(0x[0-9a-f]+|\d)\]", o))]
@@ -773,8 +775,18 @@ def call_and_cast_field(orig: asmdiff.Original, addr: int, tag: str, insns: Insn
         dsts = [wide]
     if len(srcs) != 1 or len(dsts) != 1:
         return None
+    # what follows the store: a word copied out of the cast object, or a halfword of flags
+    name, extra = "Both" if both else "", ""
+    word_from = [int(h.group(1), 16) for m, o in insns if m == "ldr" and (h := re.fullmatch(r"w8, \[x8, #(0x[0-9a-f]+|\d)\]", o))]
+    word_to = [int(h.group(1), 16) for m, o in insns if m == "str" and (h := re.fullmatch(r"w8, \[x19, #(0x[0-9a-f]+|\d)\]", o))]
+    flags = [int(h.group(1), 16) for m, o in insns if m == "strh" and (h := re.fullmatch(r"w8, \[x19, #(0x[0-9a-f]+|\d)\]", o))]
+    if len(word_from) == 1 and len(word_to) == 1 and not both:
+        name, extra = "Word", f", {word_from[0]:#x}, {word_to[0]:#x}"
+    elif len(flags) == 1 and ("mov", "w8, #0x100") in insns and not both:
+        name, extra = "Flags", f", {flags[0]:#x}"
     return "\n".join(cast_traits(tag, calls, "bool", "char* s", "s", static_desc(insns)) +
-                     [f"template bool base::reflection::refl_CallAndCastField<{tag}, {srcs[0]:#x}, {dsts[0]:#x}>(char*);"])
+                     [f"template bool base::reflection::refl_CallAndCastField{name}<{tag}, "
+                      f"{srcs[0]:#x}, {dsts[0]:#x}{extra}>(char*);"])
 
 
 def got_target(orig: asmdiff.Original, insns: Insns, i: int) -> int | None:
@@ -2108,14 +2120,18 @@ def keyed_set_iter_value_copy(orig, addr, tag, insns):
         return None
     state = re.fullmatch(r"w8, \[x1, #(0x[0-9a-f]+)\]", insns[7][1])
     off = re.fullmatch(r"x8, \[x21(?:, #(0x[0-9a-f]+|\d))?\]", insns[32][1])
-    val = re.fullmatch(r"([wx])8, \[x20, #(0x[0-9a-f]+|\d)\]", insns[67][1])
+    # the value: a word or doubleword (ldr), or two doublewords (ldp)
+    val = re.fullmatch(r"([wx])8, (?:x9, )?\[x20, #(0x[0-9a-f]+|\d)\]", insns[67][1])
     pool = got_target(orig, insns, 47)
-    if not state or not off or not val or insns[67][0] != "ldr" or pool not in (STRID_POOL, FILE_PATH_POOL):
+    if not state or not off or not val or insns[67][0] not in ("ldr", "ldp") or pool not in (STRID_POOL, FILE_PATH_POOL):
+        return None
+    pair = insns[67][0] == "ldp"
+    if pair != insns[67][1].startswith("x8, x9,"):
         return None
     state, off = int(state.group(1), 16), int(off.group(1) or "0", 16)
-    if int(val.group(2), 16) != off + 8 or off % 8 or state != off + 0x18:
+    if int(val.group(2), 16) != off + 8 or off % 8 or state != off + (0x20 if pair else 0x18):
         return None
-    t = "u32" if val.group(1) == "w" else "u64"
+    t = f"UnkCloneWord2<{tag}>" if pair else "u32" if val.group(1) == "w" else "u64"
     ident = f"UnkCloneStrIdB<{tag}>" if pool == FILE_PATH_POOL else f"UnkCloneStrId<{tag}>"
     entry = f"base::UnkKeyedSetEntry<{tag}, {ident}, {t}, {off:#x}>"
     return f"template void* base::refl_IterValueCopy<{entry}>(void*, const void*);"
