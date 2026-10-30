@@ -1238,7 +1238,6 @@ extern UnkPropertyEx<> g_unk_7172758cb0;  // a string (fn_7100dfb330)
 
 struct UnkEnumType;
 UnkEnumType* fn_710009fb38();  // refl_GetType<base::global::TRntString128>
-bool fn_710007f220(const CRntString* a, const CRntString* b);  // the texts differ
 s32 fn_7100dfb930();
 CRntString fn_7100dfb330(UnkGameManager* self);
 bool fn_7100395c38(CBlackboard::CSection* section, const void* name, CRntString* out);

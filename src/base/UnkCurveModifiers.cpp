@@ -131,9 +131,6 @@ shape:
 
 #include "base/global/CRntString.h"
 
-// Whether two strings differ (by their keys).
-bool fn_710007f220(const base::global::CRntString* a, const base::global::CRntString* b);
-
 // Sets the curve to run from `start` to `target` over `duration`, taking the modifier letters from
 // `modifiers` when they differ, and works out the value it ends at.
 // NON_MATCHING(minor): the stores of the duration and the difference come out in the other order.
