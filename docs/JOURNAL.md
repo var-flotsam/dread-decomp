@@ -131,6 +131,22 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Night round 25: two lifter shapes, mostly the Lua bindings (2026-10-30, branch `claude/project-thread-lths9k-night25`).**
+214 functions to `O`. Boot slice: `O` 2,173 to 2,176 (30.80%), usable 41.13% to 41.17%; whole binary `O` 85,559 to 85,773
+(55.22%), usable 57.60% to 57.72%. The near-copy rows of lifted originals were mostly in unit 2666 (the Lua bindings,
+`lua_bind::*`, 388 of 635 unmatched), whose best lifted drafts missed by one or two instructions in the same few ways.
+Fixing two of them in `tools/gen_lift.py` brings 214 functions binary-wide (70 of them bindings; unit 2666 is now 317 `O`).
+- **32-bit call results ("w32").** A call whose result is first read as w0 is declared to return u32; with a `char*`
+  result clang passes all 64 bits on (`mov x2, x0` where the original has `mov w2, w0`). A second-round rewrite, so it only
+  applies to functions that compiled without matching.
+- **A lone 4-byte stack local ("tight", 4).** Clang puts it at the top of the frame (sp + 0xc); the lifter's 8-aligned
+  array went to sp + 8. Tight layouts now round their size to their alignment. Tried after every other layout.
+- **gen_lift sees definitions by their header line.** A function whose `fn_<addr>(` is produced by a macro is invisible to
+  `defined_outside`, so the lift wrote it again (a DUPLICATE in check.py). Keep the header line in the source and put only
+  the body in the macro (the four `UNK_CALL_WITH_ARG` invokers in src/game_s1/fn_71001109c4.cpp).
+- Left in unit 2666: frame-pointer-relative locals (`sub x2, x29, #4`), stores in another order, and 194 bindings whose
+  drafts are under 60%.
+
 **Night round 24: copies of generated clones, mostly through `tools/gen_clones.py` (2026-10-30, branch `claude/project-thread-lths9k-night24`).**
 65 functions to `O` and 1 to minor. Boot slice: `O` 2,166 to 2,173 (30.77%), usable 41.04% to 41.13%; whole binary `O` 85,494 to
 85,559 (55.09%), usable 57.53% to 57.60%. Most rows left by round 23's near-copy pass were copies of generated originals
