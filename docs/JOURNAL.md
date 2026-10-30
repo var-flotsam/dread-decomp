@@ -131,6 +131,27 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Night round 24: copies of generated clones, mostly through `tools/gen_clones.py` (2026-10-30, branch `claude/project-thread-lths9k-night24`).**
+65 functions to `O` and 1 to minor. Boot slice: `O` 2,166 to 2,173 (30.77%), usable 41.04% to 41.13%; whole binary `O` 85,494 to
+85,559 (55.09%), usable 57.53% to 57.60%. Most rows left by round 23's near-copy pass were copies of generated originals
+(`src/clones/`); 52 of the 65 come from teaching the generator their differences, the rest are hand-written next to their originals.
+- **Generator:** `UnkCloneOwner` takes the object it deletes (`owner_a`, deleting destructor in slot 0x8); the pool-list scan
+  reads block sizes that aren't powers of two; word variants (a 4- or 1-byte value in an 8-byte slot, `UnkCloneSlot32/8`, and
+  16-byte `UnkCloneWord2`) are tried on every kind over `UnkCloneWord`, by the base kind's shape with load and store widths
+  ignored; a probe kind keeps every other probe of the same shape as alternatives, compiled in rounds until one matches; the
+  deep getter and setter take a value type (byte flags); keyed-set values of two words; `refl_CallAndCastField` variants
+  `Both`, `Word` and `Flags`; `UnkStrKeyWordValue` takes an element type.
+- **By hand:** tagged-object destructors that release the sub-object's pointer first, iterator moves and copies with 8-byte
+  indices, a value pair over a 0x30-byte block, invokers that step a word or read a sub-object's flag, and a collider id move
+  (minor: the original loads the block before clearing the moved-from id).
+- **Probe shapes by mangled name.** `probe_shapes` matched a probe by substring of the symbol, so a probe whose name begins
+  another's took the other's shape; it now looks for the tag with its mangled length prefix.
+- **A 4-byte value in an 8-byte slot.** An element copied with `ldr w`/`str w` inside a 16-byte pair is not `UnkCloneU32` (that
+  changes the pair's layout and code) but an 8-aligned struct holding a u32 with a member-wise copy assignment.
+- Left for later: vectors embedded at an offset (`vector_clear_dtor`, `vector_free_dtor`, the poly-element clears), counted
+  members with their count elsewhere (the `dtor` copies), list owners shifted by 8, the pointer-vector begins with another stack
+  layout, and the 1-byte equality copies (operand order).
+
 **Night round 23: a whole-binary near-copy pass (2026-10-30, branch `claude/project-thread-lths9k-night23`).**
 87 functions to `O` and 1 to minor, all copies of functions already matched, found by `tools/nearcopy.py` over the whole
 address range. Boot slice: `O` 2,158 to 2,166 (30.67%), usable 40.99% to 41.04%; whole binary `O` 85,407 to 85,494
