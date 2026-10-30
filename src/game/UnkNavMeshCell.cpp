@@ -1,5 +1,5 @@
 // A navigation-mesh cell (include/game/UnkNavMeshCell.h), translation unit 367 of
-// data/tu_map.csv. Only the edge lookups are defined here so far.
+// data/tu_map.csv. The edge lookups and a side's segment (fn_71002afea8).
 #include "game/UnkNavMeshCell.h"
 
 // The first edge record tagged with side `*index`. Naming the record matters: without it Clang
@@ -46,4 +46,49 @@ UnkNavMeshSidePair fn_71002afe60(UnkNavMeshCell* cell, u8* index) {
     }
     side.raw = 0xffffffff;
     return side;
+}
+
+// ---- fn_71002afea8: a side's segment ----
+
+struct UnkNavMesh;
+struct Vec2;
+using Mesh = UnkNavMesh;
+Vec2* fn_710027a410(Mesh* mesh, u16 index);  // the mesh's vertex (src/game/navmesh/CNavMesh/fn_710027a410.cpp)
+
+// The cell as the side lookup reads it: the vertex ids, their count and the mesh.
+struct UnkNavMeshCellSides {
+    u8 pad_0x0[0x8];
+    u16* vertices;
+    u32 count;
+    u8 pad_0x14[0x44];
+    Mesh* mesh;  // 0x58
+};
+
+// NON_MATCHING(minor): the original keeps the result in a register from the start and orders the
+// first point's copies and the -1 store differently; same behaviour.
+bool fn_71002afea8(const UnkNavMeshCell* cell, const u8* side, UnkNavMeshSideSegment* out) {
+    const UnkNavMeshCellSides* c = reinterpret_cast<const UnkNavMeshCellSides*>(cell);
+    bool ok = false;
+    if (c->mesh) {
+        u8 i = *side;
+        if (i != 0xff) {
+            u32 count = c->count;
+            if (i < count) {
+                u32 n = i + 1;
+                const base::math::CVector2D* a =
+                    reinterpret_cast<const base::math::CVector2D*>(fn_710027a410(c->mesh, c->vertices[i]));
+                out->start.x = a->x;
+                out->field_0x10 = -1.0f;
+                out->start.y = a->y;
+                u64 next = n < count ? (u64)i + 1 : 0;
+                const base::math::CVector2D* b =
+                    reinterpret_cast<const base::math::CVector2D*>(fn_710027a410(c->mesh, c->vertices[next]));
+                out->end.x = b->x;
+                out->end.y = b->y;
+                out->field_0x10 = -1.0f;
+                ok = true;
+            }
+        }
+    }
+    return ok;
 }

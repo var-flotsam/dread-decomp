@@ -3813,7 +3813,7 @@ address,size,name,name_source,subsystem,status
 0x71002afc84,84,fn_71002afc84,unknown,unknown,U
 0x71002afcd8,392,fn_71002afcd8,unknown,unknown,U
 0x71002afe60,72,fn_71002afe60,unknown,unknown,m
-0x71002afea8,180,fn_71002afea8,unknown,unknown,U
+0x71002afea8,180,fn_71002afea8,unknown,unknown,m
 0x71002aff5c,256,fn_71002aff5c,unknown,unknown,U
 0x71002b005c,16,fn_71002b005c,unknown,unknown,O
 0x71002b006c,16,fn_71002b006c,unknown,unknown,O
