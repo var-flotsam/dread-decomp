@@ -29,6 +29,14 @@ bool fn_7100df5c94(UnkGameManager* self) {
     return false;
 }
 
+// Whether the object behind +0x498 is named "VIEWER"; false when there is none.
+bool fn_7100deac04(UnkGameManager* self) {
+    char* object = static_cast<char*>(self->field_0x498);
+    if (object)
+        return fn_710007f140(reinterpret_cast<const base::global::CRntString*>(object + 8), "VIEWER");
+    return false;
+}
+
 void* fn_7100defcec(UnkGameManager* self) {
     UnkGameManagerTarget* target = fn_7100decab0(self);
     return target ? target->field_0x248 : nullptr;

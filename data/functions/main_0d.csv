@@ -5550,7 +5550,7 @@ address,size,name,name_source,subsystem,status
 0x7100deab70,84,fn_7100deab70,unknown,unknown,O
 0x7100deabc4,32,fn_7100deabc4,unknown,unknown,U
 0x7100deabe4,32,fn_7100deabe4,unknown,unknown,O
-0x7100deac04,32,fn_7100deac04,unknown,unknown,U
+0x7100deac04,32,fn_7100deac04,unknown,unknown,O
 0x7100deac24,32,fn_7100deac24,unknown,unknown,U
 0x7100deac44,32,fn_7100deac44,unknown,unknown,U
 0x7100deac64,32,fn_7100deac64,unknown,unknown,U

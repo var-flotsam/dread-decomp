@@ -365,10 +365,8 @@ struct UnkMinimapDrawList {
 };
 
 // A list's entries as a pointer and a 64-bit count, as the scene objects take them.
-struct UnkMinimapSpan {
-    void* data;
-    u64 count;
-    UnkMinimapSpan(const UnkMinimapDrawList& list) : data(list.data), count(list.count) {}
+struct UnkMinimapSpan : UnkSceneSpan {
+    UnkMinimapSpan(const UnkMinimapDrawList& list) : UnkSceneSpan{list.data, list.count} {}
 };
 
 // The unit's statics, which the compiler merged into one block (addressed from one base): the map
@@ -540,7 +538,6 @@ void fn_7100e91d68(UnkMinimapOwner* self) {
 
 void fn_7100148160(UnkMinimapCamera* object, u32 layer, const UnkMinimapSpan& a, const UnkMinimapSpan& b,
                    const UnkMinimapSpan& c);
-void fn_7100148178(UnkMinimapCamera* object, u32 layer, const UnkMinimapSpan& a, bool flag);
 
 // Draws the two passes: each scene object's two slots off, then every item of the pass into the
 // emptied draw lists, which go to the object with the pass layer.
@@ -560,7 +557,7 @@ void fn_7100e93e04(UnkMinimapOwner* self) {
         for (UnkMinimapItem* item : self->pass_items[pass])
             fn_7100e964fc(self, item, 900.0f);
         fn_7100148160(self->pass_objects[pass], self->pass_layer, lists[0], lists[1], lists[2]);
-        fn_7100148178(self->pass_objects[pass], self->pass_layer, lists[3], true);
+        fn_7100148178(self->pass_objects[pass], self->pass_layer, UnkMinimapSpan(lists[3]), true);
         fn_71001be430(self->pass_objects[pass]->field_0x130, self->pass_layer, true);
         fn_7100149490(self->pass_objects[pass], true);
     }
