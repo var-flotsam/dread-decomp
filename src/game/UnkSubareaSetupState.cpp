@@ -420,3 +420,75 @@ UnkSubareaNamedEntry* fn_7100fab838(UnkSubareaNamedList* self, const CStrId* id)
     }
     return nullptr;
 }
+
+// Two membership tests on objects of the unit: an id in the list at +0x150 (count at +0x158), and,
+// unless the flag at +0x105 is set, in the list at +0xb0 (count at +0xb8).
+struct UnkSubareaIdLists {
+    u8 pad_0x0[0xb0];
+    CStrId* ids_0xb0;
+    u32 count_0xb8;
+    u8 pad_0xbc[0x49];
+    bool field_0x105;
+    u8 pad_0x106[0x4a];
+    CStrId* ids_0x150;
+    u32 count_0x158;
+};
+static_assert(__builtin_offsetof(UnkSubareaIdLists, ids_0x150) == 0x150, "UnkSubareaIdLists layout");
+
+bool fn_7100fad994(UnkSubareaIdLists* self, const CStrId* id) {
+    for (CStrId *it = self->ids_0x150, *end = it + self->count_0x158; it != end; ++it)
+        if (it->data == id->data)
+            return true;
+    return false;
+}
+
+bool fn_7100fad66c(UnkSubareaIdLists* self, const CStrId* id) {
+    if (self->field_0x105)
+        return false;
+    u64 n = self->count_0xb8;
+    if (n == 0)
+        return false;
+    const CStrId* it = self->ids_0xb0;
+    do {
+        if (it->data == id->data)
+            return true;
+        --n;
+        ++it;
+    } while (n != 0);
+    return false;
+}
+
+// Hands a kind-1 or kind-3 setting to the render manager: the value at +0x30 of the setup's object
+// (+0x110 or +0x120) and of this object's (+0x70 or +0x80), with `out` (its count at +0x8 cleared
+// first). Other kinds, and no setup, do nothing.
+struct UnkSubareaRenderSub {
+    u8 pad_0x0[0x30];
+    void* field_0x30;
+};
+struct UnkSubareaRenderSetup {
+    u8 pad_0x0[0x110];
+    UnkSubareaRenderSub* field_0x110;
+    u8 pad_0x118[0x8];
+    UnkSubareaRenderSub* field_0x120;
+};
+struct UnkSubareaRenderOwner {
+    u8 pad_0x0[0x70];
+    UnkSubareaRenderSub* field_0x70;
+    u8 pad_0x78[0x8];
+    UnkSubareaRenderSub* field_0x80;
+};
+struct UnkSubareaRenderOut {
+    void* data;
+    u32 count;
+};
+
+void fn_7100facb08(UnkSubareaRenderOwner* self, s32 kind, UnkSubareaRenderSetup* setup, bool flag,
+                   UnkSubareaRenderOut* out) {
+    out->count = 0;
+    if (!setup)
+        return;
+    if (kind == 3)
+        fn_7100219c98(g_unk_7101d47300, flag, setup->field_0x120->field_0x30, self->field_0x80->field_0x30, out, 0);
+    else if (kind == 1)
+        fn_7100219c98(g_unk_7101d47300, flag, setup->field_0x110->field_0x30, self->field_0x70->field_0x30, out, 0);
+}
