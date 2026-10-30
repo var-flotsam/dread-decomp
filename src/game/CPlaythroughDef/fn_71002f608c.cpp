@@ -16,10 +16,11 @@ struct UnkNodeList_71002f608c {
     base::UnkAllocator* allocator;
 };
 
-void fn_71002f608c(UnkNodeList_71002f608c* self) {
-    self->vtable = unk_7101a222c8 + 0x10;
+template <char* Vtable, u32 Next>
+__attribute__((always_inline)) inline void DestroyStrList(UnkNodeList_71002f608c* self) {
+    self->vtable = Vtable + 0x10;
     for (char* n = self->head; n;) {
-        char* next = *reinterpret_cast<char**>(n + 0x68);
+        char* next = *reinterpret_cast<char**>(n + Next);
         auto* str = reinterpret_cast<base::global::CRntString*>(n);
         fn_710007ed40(str);
         fn_710007ecd4(str);
@@ -29,4 +30,21 @@ void fn_71002f608c(UnkNodeList_71002f608c* self) {
     self->count = 0;
     self->head = nullptr;
     self->tail = nullptr;
+}
+
+void fn_71002f608c(UnkNodeList_71002f608c* self) {
+    DestroyStrList<unk_7101a222c8, 0x68>(self);
+}
+
+// The base-part destructors of the string lists of the CCharClassFrozenAsPlatformComponent and
+// CMeleeComponent units (base/UnkNodeOwner.h has their derived parts), linked through 0xc8 and 0x88.
+extern char unk_7101a74478[];
+extern char unk_7101a838e8[];
+
+void fn_71007fd4c8(UnkNodeList_71002f608c* self) {
+    DestroyStrList<unk_7101a74478, 0xc8>(self);
+}
+
+void fn_7100932010(UnkNodeList_71002f608c* self) {
+    DestroyStrList<unk_7101a838e8, 0x88>(self);
 }
