@@ -120,6 +120,22 @@ struct UnkResHolder {
     UnkResHolderNotified* Notified() { return reinterpret_cast<UnkResHolderNotified*>(notified); }
 };
 
+// The layout of the copies with the flag at +2 (unit 441's and three more): the same members 8 bytes
+// earlier, the second holder 0x10 bytes earlier.
+struct UnkResHolder2 {
+    u8 pad_0x0[0x2];
+    u8 flag;  // 0x2, passed to the resource lookup
+    u8 pad_0x3[0x5];
+    UnkResRef first;  // 0x8
+    u8 pad_0x10[0x8];
+    u8 notified[0x8];  // 0x18, an object told about the change
+    u8 pad_0x20[0x70];
+    UnkResRef second;  // 0x90
+
+    UnkResHolderNotified* Notified() { return reinterpret_cast<UnkResHolderNotified*>(notified); }
+};
+static_assert(__builtin_offsetof(UnkResHolder2, second) == 0x90, "UnkResHolder2 layout");
+
 // Loads the resource of type `Type` at `path`; when there is one, keeps it in both holders
 // (field_0x10 and field_0xa0 in UnkResHolder's layout), tells the notified object (vf_0x90) and
 // returns true. Each user is its own copy, with its own layout `Self` (the same member names).

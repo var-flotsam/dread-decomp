@@ -11,6 +11,7 @@
 #include "base/UnkResKey.h"
 #include "base/UnkResPathVec.h"
 #include "base/UnkVector.h"
+#include "base/file/UnkFileCacheSet.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "types.h"
@@ -187,7 +188,12 @@ struct UnkResSet {
     UnkBlockPool nodes;
 };
 static_assert(sizeof(UnkResSet) == 0x90, "");
-void fn_71000ec184(UnkResSet* set, u32 buckets, u32 nodes);
+
+// Sets the set up with `nodes` pooled nodes of 0x60 bytes and `buckets` buckets (the file cache set's
+// set-up, base/file/UnkFileCacheSet.h, with the same layout).
+void fn_71000ec184(UnkResSet* set, u32 buckets, u32 nodes) {
+    UnkFileCacheSetSetUp<0x60>(reinterpret_cast<UnkFileCacheSet*>(set), buckets, nodes);
+}
 
 struct UnkResRegistry {
     char* vtable;
