@@ -9,7 +9,7 @@
 using base::global::CStrId;
 
 extern char g_unk_7101cb5908[];  // CButton's vtable
-void fn_71011d8d24(char*);       // the container's constructor
+void fn_71011d8d24(void*);       // the container's constructor
 void fn_71011c14e0();            // the bound callback
 
 struct UnkGuiButton {
@@ -34,7 +34,7 @@ struct UnkGuiButton {
 static_assert(__builtin_offsetof(UnkGuiButton, field_0x28c) == 0x28c, "UnkGuiButton layout");
 
 void fn_71011bf0ec(UnkGuiButton* self) {
-    fn_71011d8d24(reinterpret_cast<char*>(self));
+    fn_71011d8d24(self);
     self->vtable = g_unk_7101cb5908 + 0x10;
     new (&self->field_0x230) CStrId("", true);
     new (&self->field_0x238) CStrId("", true);
