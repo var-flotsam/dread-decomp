@@ -492,3 +492,8 @@ void fn_7100facb08(UnkSubareaRenderOwner* self, s32 kind, UnkSubareaRenderSetup*
     else if (kind == 1)
         fn_7100219c98(g_unk_7101d47300, flag, setup->field_0x110->field_0x30, self->field_0x70->field_0x30, out, 0);
 }
+
+// The state's own id of kind `index` becomes `*id`.
+void fn_7100facb6c(UnkSubareaSetupState* self, u32 index, const CStrId* id) {
+    self->ids[index] = *id;
+}

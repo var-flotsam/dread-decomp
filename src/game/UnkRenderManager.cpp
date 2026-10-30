@@ -111,6 +111,13 @@ void fn_7100219294(UnkRenderManager* self, u64 hash, const f32* value, u32 count
     fn_71001fc7bc(self->field_0x220, hash, value, count);
 }
 
+// Zeroes the two pass parameters with these hashes.
+void fn_710021a210(UnkRenderManager* self) {
+    f32 zero = 0.0f;
+    fn_71001fc7bc(self->field_0x220, 0x38bb3d82ecfaffaa, &zero, 0);
+    fn_71001fc7bc(self->field_0x220, 0xcc53b066013b1983, &zero, 0);
+}
+
 // Reads the view's rectangle and sets it again with the two values (the two words the read also
 // gives are dropped).
 void fn_7100219e88(UnkRenderManager* self, u32 view, f32 x, f32 y) {

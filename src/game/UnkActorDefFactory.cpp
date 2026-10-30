@@ -3,12 +3,15 @@
 // first use by fn_710119307c into g_unk_71726a0220. Its interface for the resource registry is a
 // second base at +8 (the vtable's offset-to-top there is -8); three chained maps with node pools
 // follow. fn_71011930c8 registers it with the registry for the category, and fn_7101193370 sets a
-// flag on every item of its first map. Names and layouts are placeholders inferred from the code.
+// flag on every item of its first map; fn_7101193ee0 looks a CCharClass up in that map. Names and
+// layouts are placeholders inferred from the code.
 #include <new>
 
 #include "base/UnkBlockFreeList.h"
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkVector.h"
+#include "base/reflection/UnkClassGetters.h"
+#include "base/reflection/UnkReflCast.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "types.h"
@@ -236,4 +239,27 @@ struct UnkActorDefMapIter {
 void fn_7101193370(UnkActorDefFactory* self, bool flag) {
     for (UnkActorDefMapIter it(&self->map_0x10); it.node; it.Next())
         it.node->value->SetField_0xc8(flag);
+}
+
+// The item the first map holds under the string id `*id` when it is a CCharClass, else null. The
+// bucket is the id's 64-bit hash (+0x30 of its pool entry), its halves xor-ed, modulo the bucket
+// array's capacity; a bucket past the count is empty.
+base::reflection::UnkReflObject* fn_7101193ee0(UnkActorDefFactory* self, const CStrId* id) {
+    UnkActorDefMap& map = self->map_0x10;
+    if (map.buckets.count == 0)
+        return nullptr;
+    const UnkStringData* data = id->data;
+    const u32* hash = reinterpret_cast<const u32*>(reinterpret_cast<const char*>(data) + 0x30);
+    u32 bucket = (hash[0] ^ hash[1]) % map.buckets.capacity;
+    if (bucket >= map.buckets.count)
+        return nullptr;
+    for (UnkActorDefMapNode* node = map.buckets.data[bucket]; node; node = node->next) {
+        if (node->key == reinterpret_cast<u64>(data)) {
+            auto* item = reinterpret_cast<base::reflection::UnkReflObject*>(node->value);
+            if (!item)
+                return nullptr;
+            return fn_710009d50c(item->vf_0x0(), fn_71011abbd4()) ? item : nullptr;
+        }
+    }
+    return nullptr;
 }
