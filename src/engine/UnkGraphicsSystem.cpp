@@ -471,9 +471,10 @@ bool fn_71001d2dcc(UnkGraphicsSystem* self, u32 index, f32 value) {
     return false;
 }
 
-// Sets the value of the named vector with the given key (the entry past the end when there is
-// none, as in the original).
-bool fn_71001d7024(UnkGraphicsSystem* self, const u64* key, const CVector4D* value) {
+// Sets (or, for the getter, reads) the value of the named vector with the given key (the entry past
+// the end when there is none, as in the original).
+template <bool Get, class Value>
+static inline bool NamedVector(UnkGraphicsSystem* self, const u64* key, Value* value) {
     UnkGfxNamedVectors& t = self->named_vectors;
     u64 n = t.count;
     u64 i = n;
@@ -486,9 +487,19 @@ bool fn_71001d7024(UnkGraphicsSystem* self, const u64* key, const CVector4D* val
     UnkGfxNamedVector* found = &t.values[i];
     if (!found)
         return false;
-    fn_710007b518(&t.values[i].value, value);
+    if (Get)
+        fn_710007b518(const_cast<CVector4D*>(value), &t.values[i].value);
+    else
+        fn_710007b518(&t.values[i].value, value);
     return true;
 }
+
+bool fn_71001d7024(UnkGraphicsSystem* self, const u64* key, const CVector4D* value) {
+    return NamedVector<false>(self, key, value);
+}
+
+// The getter: copies the named vector's value out (fn_71001cec80).
+bool fn_71001cec80(UnkGraphicsSystem* self, const u64* key, CVector4D* out) { return NamedVector<true>(self, key, out); }
 
 // The display size closest to 16:9 (its index in `index`), stopping at the first one larger than
 // 1280x720 once one was seen; false when there is none.

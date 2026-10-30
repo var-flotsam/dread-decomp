@@ -5660,7 +5660,7 @@ address,size,name,name_source,subsystem,status
 0x71006eb1f0,220,fn_71006eb1f0,unknown,unknown,O
 0x71006eb2cc,220,fn_71006eb2cc,unknown,unknown,O
 0x71006eb3a8,220,fn_71006eb3a8,unknown,unknown,O
-0x71006eb484,268,fn_71006eb484,unknown,unknown,U
+0x71006eb484,268,fn_71006eb484,unknown,unknown,m
 0x71006eb590,152,fn_71006eb590,unknown,unknown,U
 0x71006eb628,212,fn_71006eb628,unknown,unknown,U
 0x71006eb6fc,4,fn_71006eb6fc,unknown,unknown,O

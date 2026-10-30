@@ -1402,7 +1402,7 @@ address,size,name,name_source,subsystem,status
 0x7100e52844,8,fn_7100e52844,unknown,unknown,O
 0x7100e5284c,12,fn_7100e5284c,unknown,unknown,O
 0x7100e52858,64,fn_7100e52858,unknown,unknown,O
-0x7100e52898,128,fn_7100e52898,unknown,unknown,U
+0x7100e52898,128,fn_7100e52898,unknown,unknown,O
 0x7100e52918,64,fn_7100e52918,unknown,unknown,O
 0x7100e52958,208,fn_7100e52958,unknown,unknown,U
 0x7100e52a28,48,fn_7100e52a28,unknown,unknown,O

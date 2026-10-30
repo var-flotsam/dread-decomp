@@ -50,7 +50,7 @@ address,size,name,name_source,subsystem,status
 0x7101001280,8,fn_7101001280,unknown,unknown,O
 0x7101001288,12,fn_7101001288,unknown,unknown,O
 0x7101001294,64,fn_7101001294,unknown,unknown,O
-0x71010012d4,128,fn_71010012d4,unknown,unknown,U
+0x71010012d4,128,fn_71010012d4,unknown,unknown,O
 0x7101001354,64,fn_7101001354,unknown,unknown,O
 0x7101001394,4,fn_7101001394,unknown,unknown,O
 0x7101001398,116,fn_7101001398,unknown,unknown,U

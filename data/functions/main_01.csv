@@ -3980,7 +3980,7 @@ address,size,name,name_source,subsystem,status
 0x71001ce704,360,fn_71001ce704,unknown,unknown,U
 0x71001ce86c,436,fn_71001ce86c,unknown,unknown,U
 0x71001cea20,608,fn_71001cea20,unknown,unknown,U
-0x71001cec80,136,fn_71001cec80,unknown,unknown,U
+0x71001cec80,136,fn_71001cec80,unknown,unknown,O
 0x71001ced08,20,fn_71001ced08,unknown,unknown,O
 0x71001ced1c,612,fn_71001ced1c,unknown,unknown,U
 0x71001cef80,1636,fn_71001cef80,unknown,unknown,U
