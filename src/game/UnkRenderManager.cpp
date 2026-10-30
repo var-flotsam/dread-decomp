@@ -120,6 +120,15 @@ void fn_7100219e88(UnkRenderManager* self, u32 view, f32 x, f32 y) {
     fn_71001fd868(self->field_0x220, rect, view, x, y);
 }
 
+// Reads the view's rectangle into `rect` (the two words the read also gives are dropped). The
+// environment fade (src/game/UnkEnvironmentFade.cpp) reads it into a colour vector.
+#include "base/math/CVector4D.h"
+using UnkEnvFadeColor = base::math::UnkVector4D;
+void fn_7100219fa0(UnkRenderManager* self, UnkEnvFadeColor* rect, u32 view) {
+    f32 unused;
+    fn_71001fd8dc(self->field_0x220, reinterpret_cast<f32*>(rect), &unused, &unused, view);
+}
+
 // The other way round: sets the view's rectangle to `rect`, keeping the two values it had.
 void fn_7100219ef4(UnkRenderManager* self, const f32* rect, u32 view) {
     f32 old[4];
