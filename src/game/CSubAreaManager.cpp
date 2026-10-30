@@ -489,7 +489,6 @@ update:
 }
 
 // What the reset (fn_7100ee34f0) calls. Names are placeholders.
-bool fn_7100deac04(UnkGameManager* self);
 extern u32 g_unk_71727bebb8;  // the kind the main camera is looked up with
 base::reflection::UnkReflObject* fn_7100d786c0(void* entity);  // its "CAMERA" component
 UnkCameraCtrl* fn_71010e389c(void* holder, void* key);

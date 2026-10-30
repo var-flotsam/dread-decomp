@@ -1979,7 +1979,7 @@ address,size,name,name_source,subsystem,status
 0x7100148130,24,fn_7100148130,unknown,unknown,U
 0x7100148148,24,fn_7100148148,unknown,unknown,U
 0x7100148160,24,fn_7100148160,unknown,unknown,U
-0x7100148178,24,fn_7100148178,unknown,unknown,U
+0x7100148178,24,fn_7100148178,unknown,unknown,O
 0x7100148190,220,fn_7100148190,unknown,unknown,U
 0x710014826c,88,fn_710014826c,unknown,unknown,O
 0x71001482c4,828,fn_71001482c4,unknown,unknown,U

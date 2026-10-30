@@ -3423,7 +3423,7 @@ address,size,name,name_source,subsystem,status
 0x710027a328,20,fn_710027a328,unknown,unknown,O
 0x710027a33c,204,fn_710027a33c,unknown,unknown,m
 0x710027a408,8,fn_710027a408,unknown,unknown,O
-0x710027a410,12,fn_710027a410,unknown,unknown,U
+0x710027a410,12,fn_710027a410,unknown,unknown,O
 0x710027a41c,468,fn_710027a41c,unknown,unknown,O
 0x710027a5f0,288,fn_710027a5f0,unknown,unknown,U
 0x710027a710,540,fn_710027a710,unknown,unknown,U

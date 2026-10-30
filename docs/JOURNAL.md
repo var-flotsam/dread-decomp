@@ -131,6 +131,19 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Night round 14: the GUI display object's constructor and three built on it (2026-10-30, branch `claude/project-thread-lths9k-night14`).**
+7 functions to `O`. Boot slice: `O` 2,144 to 2,148 (30.56%), usable 40.80% to 40.83%; whole binary `O` 85,374 to 85,381
+(54.94%). `O`: GUI::CDisplayObject's constructor (fn_71011cce1c: the base, two empty ids, the display state and its derived
+copy, the render slots, an empty id from the pool and the name; nine callers, now declared in game/UnkGuiDisplayObject.h),
+CModel3D's two constructor copies and CSpriteGrid's, the game manager's VIEWER test, the navmesh's vertex getter and the scene
+object's draw list hand-off.
+- **A memset gives a block's store order.** CSpriteGrid clears 0x23 bytes from +0x1c0 (four words and an unaligned word at
+  +0x1df); `__builtin_memset` lowers to the original's stur-then-stp order, which separate stores never give.
+- **A null path first.** Its empty file path is stored as null with the word before it, then set to the pool's empty entry
+  after the pool check (the inline `CFilePathStrId` constructor adds a test the original does not have).
+- **A shared span type.** The scene object's slot hand-off takes `UnkSceneSpan` (game/UnkSceneObject.h); the minimap's
+  `UnkMinimapSpan` now derives from it, so its call passes the same temporary and compiles as before.
+
 **Night round 13: boot leaves and lifted near-misses (2026-10-30, branch `claude/project-thread-lths9k-night13`).**
 11 functions to `O`, boot-slice leaves and the unmatched functions whose lifted drafts scored highest. Boot slice: `O` 2,133
 to 2,144 (30.53%), usable 40.72% to 40.80%; whole binary `O` 85,363 to 85,374 (54.94%). `O`: the graphics system's pair
