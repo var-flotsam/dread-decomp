@@ -22,3 +22,14 @@ UnkLabelVec2 fn_71011b7f88(s32 key, const UnkLabelVec2& v);
 UnkLabelVec2 fn_71011b8078(s32 key, const UnkLabelVec2& v);
 UnkLabelVec2 fn_71011b810c(s32 key, const UnkLabelVec2& v);
 UnkLabelVec2 fn_71011b8160(s32 key, const UnkLabelVec2& v);
+
+// The same over a given root (game/UnkGuiRoot.h): the frame `key` names or null (fn_71011b7a4c), and a
+// size scaled by one of two root-wide scales and the frame's (fn_71011b7e7c, fn_71011b7fc8).
+struct UnkGuiRoot;
+struct UnkGuiFrame;
+namespace base::math {
+struct CVector2D;
+}
+UnkGuiFrame* fn_71011b7a4c(UnkGuiRoot* root, s32 key);
+UnkLabelVec2 fn_71011b7e7c(UnkGuiRoot* root, s32 key, const base::math::CVector2D* v);
+UnkLabelVec2 fn_71011b7fc8(UnkGuiRoot* root, s32 key, const base::math::CVector2D* v);
