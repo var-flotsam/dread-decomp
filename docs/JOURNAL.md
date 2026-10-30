@@ -131,6 +131,21 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Night round 13: boot leaves and lifted near-misses (2026-10-30, branch `claude/project-thread-lths9k-night13`).**
+11 functions to `O`, boot-slice leaves and the unmatched functions whose lifted drafts scored highest. Boot slice: `O` 2,133
+to 2,144 (30.53%), usable 40.72% to 40.80%; whole binary `O` 85,363 to 85,374 (54.94%). `O`: the graphics system's pair
+lookup, a material's state restore by flag bits, unit 137's tagged object destructor, unit 133's switch, a polygon's bounding
+box, the device heap's reallocation, a sub-area state's id setter, the render manager's reset of two pass parameters, the GUI
+root's lookup by path, the actor def factory's CCharClass lookup and the scene's flag pass to a group's items.
+- **Stores that may alias the vertices.** The polygon box is stored corner by corner on every pass and the vertex read again
+  for the second corner: written through `CVector2D&` references (same base type, so the stores may alias the vertex reads),
+  with each corner computed from one pair of loads before its two stores.
+- **The original's RntVector assertion.** The scene's group lookup keeps `__assert_fail("i < m_iSize", ...)` on the bucket
+  index, as src/base/spatial/UnkModelInstanceSet.cpp already does.
+- **A byte read of a bool.** Unit 133's switch tests its state as a byte (`cmp`/`cset`), so it is read through a `u8` view.
+- Left: unit 1122's derived constructor (store order, as logged before), the display object's constructor (fn_71011cce1c, 9
+  callers, long; worth its own attempt) and the navmesh query's constructor.
+
 **Night round 12: more boot leaves (2026-10-30, branch `claude/project-thread-lths9k-night12`).**
 20 functions to `O` and 4 to minor, all boot-slice leaves from `tools/hubs.py --ready --boot`. Boot slice: `O` 2,113 to
 2,133, usable 40.58% to 40.72%; whole binary `O` 85,343 to 85,363. `O`: the pooled chained map's constructor (fn_710109d810,
