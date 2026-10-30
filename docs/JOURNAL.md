@@ -131,6 +131,23 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Night round 17: hubs outside the boot slice (2026-10-30, branch `claude/project-thread-lths9k-night17`, on round 16).**
+4 functions to `O` and 3 to minor, chosen by caller count from the whole-binary ready list (`tools/hubs.py --ready`, no boot
+filter). Boot slice: `O` 2,150 to 2,151 (30.58%), usable 40.91%; whole binary `O` 85,384 to 85,390 (54.95%), usable 57.44%.
+`O`: the reflection registry's type registration (fn_710009ec00, 2,212 callers: every reflected type's static initialiser; in
+editor builds the type first gets `_EditorOnly`), the translation matrix from a vector (fn_7100078cd8, 57 callers), the
+entity's position from its +0x1f0 object (fn_7100d7be08, 31) and the collision container's id of an object (fn_7100864018, 31).
+Minor: CFXComponent's effect by name hash (fn_7101152b90, 103 callers), the life component's alive test (fn_7101161088, 39)
+and the container's direct child by name hash (fn_71011d99ac).
+- **The ready list without `--boot` has the big hubs.** The boot filter hides callers outside the slice; the registry's
+  registration alone has 2,212.
+- **A key before the value.** The registration's attribute call matched only with the key getter called before the bool
+  value is stored on the stack.
+- **The record's second id.** fn_7100864018 returns +0x8 of the record (the original's `sub x0, x10, #0x20` from the
+  object field at +0x28); an index loop gives the original's counter compare.
+- Fix for #282: CButton's local declaration of the container's constructor now uses the in-game menu's signature, so
+  `decl_check` passes against the main that includes #281.
+
 **Night round 16: CButton's constructor and the GUI's derived state (2026-10-30, branch `claude/project-thread-lths9k-night16`, on round 15).**
 2 functions to `O` and 2 to minor. Boot slice: `O` 2,150 (30.57%), usable 40.88% to 40.90%; whole binary `O` 85,384 to 85,386
 (54.94%), usable 57.44%. `O`: GUI::CButton's constructor (fn_71011bf0ec, 17 callers), a GUI render layer's release
