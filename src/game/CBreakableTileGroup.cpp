@@ -741,3 +741,11 @@ void fn_7100ca1180(UnkTileGroup* group) {
     }
     fn_7100123fb0(&list);
 }
+
+// Runs fn_7100c9f904 on every tile of the group (the count read as signed, again for each tile).
+void fn_7100c9f904(UnkQueryObj* tile);
+
+void fn_7100ca0aec(UnkTileGroup* self) {
+    for (s64 i = 0; i < (s32)self->field_0x40; ++i)
+        fn_7100c9f904(&self->field_0x48[i]);
+}
