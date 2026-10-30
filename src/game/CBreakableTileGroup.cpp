@@ -545,7 +545,7 @@ struct UnkTileOutlineList {
 
 struct UnkEntry;
 struct UnkVec3;
-void fn_7100d35a98(UnkEntry* entry, u32 flag);
+#include "game/UnkBroadphaseObject.h"
 void* fn_7100118b94(void* sink, UnkVec3* point);
 void fn_7100119f98(UnkTileOutline* outline, u32 value);
 void fn_7100123eb4(UnkTileOutlineList* self);

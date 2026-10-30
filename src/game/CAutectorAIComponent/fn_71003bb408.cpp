@@ -28,7 +28,7 @@ extern u64 g_unk_71726bd8d0[2] __attribute__((visibility("hidden")));
 
 void fn_7100369650();
 UnkEntry* fn_7100864194(UnkComponent* component, const u64* key);
-void fn_7100d35a98(UnkEntry* entry, u32 flag);
+#include "game/UnkBroadphaseObject.h"
 
 void fn_71003bb408(UnkSelf* self) {
     fn_7100369650();

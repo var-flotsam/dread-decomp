@@ -27,7 +27,7 @@ struct UnkEntry;
 extern u64 g_unk_71726bd8d0[2] __attribute__((visibility("hidden")));
 
 UnkEntry* fn_7100864194(UnkComponent* component, const u64* key);
-void fn_7100d35a98(UnkEntry* entry, u32 flag);
+#include "game/UnkBroadphaseObject.h"
 
 void fn_71003bb754(UnkSelf* self) {
     UnkComponent* object = self->field_0x30->field_0x2a0;
