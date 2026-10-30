@@ -519,9 +519,8 @@ void fn_7100ee4704(CSubAreaManager* self, const UnkPoppedRequest* request, bool 
 
 // The GUI root (src/game/CCutscene.cpp) and a 0x48-byte singleton created on first use.
 extern void* g_unk_7101d47330;
-struct UnkSubAreaGuiCache;
+#include "game/UnkSubAreaGuiCache.h"
 extern UnkSubAreaGuiCache* g_unk_71727254f8;
-void fn_710119d484(UnkSubAreaGuiCache* self);  // constructor
 void fn_710119a110(void* root, const UnkPathIdMember* id);
 void fn_710119e684(UnkSubAreaGuiCache* self, const base::UnkStrIdMember* id, bool flag);
 void fn_710119d9b8(UnkSubAreaGuiCache* self, const base::UnkStrIdMember* id, bool flag);

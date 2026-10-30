@@ -332,70 +332,9 @@ struct UnkSetupStr {
 };
 
 // A list of strings (nodes of a CRntString and the next link at +0x30) with an embedded block
-// pool, destroyed out of line (fn_71000732d4). The templates are the same definitions as
-// src/game_s1/fn_71000fc7cc.cpp's, which defines the destructor; the constructor is inlined.
-extern void* g_unk_7101a1a4a8[];  // derived part's vtable (fn_71000732d4)
-
-template <u32 Next>
-struct UnkListNode {
-    u8 pad_0x0[Next];
-    UnkListNode* next;
-};
-
-template <class Node, void (*DestroyNode)(Node*)>
-struct UnkNodeOwner {
-    void** vtable;
-    u32 field_0x8;
-    u32 pad_0xc;
-    Node* field_0x10;
-    Node* field_0x18;
-    base::UnkAllocator* field_0x20;
-    u8 pad_0x28[8];
-    void* field_0x30;
-    base::UnkAllocator* field_0x38;
-    UnkBlockFreeList field_0x40;  // the sub-object's free list; its buffer is at +0x60
-    u8 pad_0x68[4];
-    u8 field_0x6c;
-
-    __attribute__((always_inline)) void FreeNodes() {
-        for (Node* node = field_0x10; node;) {
-            Node* next = node->next;
-            DestroyNode(node);
-            field_0x20->vf_0x48(node);
-            node = next;
-        }
-    }
-
-    __attribute__((always_inline)) void Destroy(void** derived_vtable, void** base_vtable) {
-        vtable = derived_vtable + 2;
-        field_0x6c = 1;
-        FreeNodes();
-        field_0x8 = 0;
-        field_0x10 = nullptr;
-        field_0x18 = nullptr;
-        field_0x20 = nullptr;
-        field_0x30 = g_unk_7101a1a4c8 + 0x10;
-        if (void* block = field_0x40.buffer) {
-            fn_71000837f4(&field_0x40);
-            field_0x38->vf_0x48(block);
-            field_0x38 = nullptr;
-        }
-        vtable = base_vtable + 2;
-        FreeNodes();
-        field_0x8 = 0;
-        field_0x10 = nullptr;
-        field_0x18 = nullptr;
-    }
-};
-
-__attribute__((always_inline)) inline void DestroyNode30(UnkListNode<0x30>* node) {
-    fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(node));
-}
-
-using UnkSetupStrList = UnkNodeOwner<UnkListNode<0x30>, DestroyNode30>;
-static_assert(sizeof(UnkSetupStrList) == 0x70, "UnkSetupStrList placeholder layout");
-
-void fn_71000732d4(UnkNodeOwner<UnkListNode<0x30>, DestroyNode30>* self);
+// pool (base/UnkNodeOwner.h), destroyed out of line (fn_71000732d4); the constructor is inlined.
+#include "base/UnkNodeOwner.h"
+using UnkSetupStrList = UnkStrList30;
 
 // The list's constructor: no pool block, so the nodes come from the default allocator; 0x13 is
 // the allocation flags (at +0x28), and +0x68 is cleared with the flag at +0x6c.
