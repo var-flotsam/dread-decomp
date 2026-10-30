@@ -4903,7 +4903,7 @@ address,size,name,name_source,subsystem,status
 0x7100ca2bac,792,fn_7100ca2bac,unknown,game?,U
 0x7100ca2ec4,216,fn_7100ca2ec4,unknown,game?,U
 0x7100ca2f9c,1276,fn_7100ca2f9c,unknown,game?,U
-0x7100ca3498,88,fn_7100ca3498,unknown,game?,U
+0x7100ca3498,88,fn_7100ca3498,unknown,game?,O
 0x7100ca34f0,4,fn_7100ca34f0,unknown,game?,O
 0x7100ca34f4,36,fn_7100ca34f4,unknown,game?,O
 0x7100ca3518,212,fn_7100ca3518,unknown,game?,U

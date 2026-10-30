@@ -3067,7 +3067,7 @@ address,size,name,name_source,subsystem,status
 0x7100d687f4,20,fn_7100d687f4,unknown,unknown,O
 0x7100d68808,8,fn_7100d68808,unknown,unknown,O
 0x7100d68810,20,fn_7100d68810,unknown,unknown,O
-0x7100d68824,40,fn_7100d68824,unknown,unknown,U
+0x7100d68824,40,fn_7100d68824,unknown,unknown,O
 0x7100d6884c,8,fn_7100d6884c,unknown,unknown,O
 0x7100d68854,28,fn_7100d68854,unknown,unknown,O
 0x7100d68870,8,fn_7100d68870,unknown,unknown,O

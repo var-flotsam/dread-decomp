@@ -623,7 +623,7 @@ address,size,name,name_source,subsystem,status
 0x71000152b8,140,fn_71000152b8,unknown,unknown,O
 0x7100015344,44,fn_7100015344,unknown,unknown,O
 0x7100015370,8,fn_7100015370,unknown,unknown,O
-0x7100015378,392,fn_7100015378,unknown,unknown,U
+0x7100015378,392,fn_7100015378,unknown,unknown,O
 0x7100015500,8,fn_7100015500,unknown,unknown,O
 0x7100015508,104,fn_7100015508,unknown,unknown,O
 0x7100015570,92,fn_7100015570,unknown,unknown,U
