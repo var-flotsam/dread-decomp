@@ -25,7 +25,6 @@ struct UnkModeActor {
     UnkModeSource* source;
 };
 
-bool fn_7100df5c38(UnkGameManager* manager);
 UnkModeComponent* fn_7100bc7938(UnkModeActor* actor);
 
 template <u32 Offset>
@@ -50,7 +49,7 @@ struct UnkModeCondition {
     __attribute__((always_inline)) bool Check(UnkModeActor* actor) const {
         if (mode == 0)
             return true;
-        if (fn_7100df5c38(g_unk_7101d47310)) {
+        if (fn_7100df5c38(g_unk_7101d47310, actor)) {
             UnkGameManager* manager = g_unk_7101d47310;
             if (manager->field_0xc8 == 0 && !manager->field_0x10c)
                 return false;

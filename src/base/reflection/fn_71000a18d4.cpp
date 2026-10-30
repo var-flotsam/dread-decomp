@@ -66,3 +66,30 @@ void fn_71000a2014(UnkReflValue* value, const CType* type) {
         reinterpret_cast<void (*)(void*)>(type->m_fn_0x28)(value);
     }
 }
+
+// ---- fn_71000a1cc8: assigning an object of a type into a value ----
+
+#include "base/UnkCloneHelpers.h"
+#include "base/reflection/UnkReflCast.h"
+
+// Assigns `object` (of `type`, its dynamic type looked up through the type's getter) into the
+// value's storage, converted to the value's type (fn_710009d7a8). The value's storage is its first
+// word when it is stored by reference or larger than 8 bytes, else the value itself; none when it
+// has no type.
+void fn_71000a1cc8(base::reflection::UnkReflValue* value, const base::reflection::CType* type, const void* object) {
+    using base::reflection::UnkTypedRef;
+    const char* vt = value->type;
+    UnkTypedRef dst;
+    dst.type = reinterpret_cast<const base::reflection::CType*>(vt);
+    void* p;
+    if (!vt)
+        p = nullptr;
+    else if (value->field_0x14 == 1 || *reinterpret_cast<const u64*>(vt + 0x18) > 8)
+        p = value->field_0x0;
+    else
+        p = value;
+    dst.ptr = p;
+    UnkTypedRef src;
+    fn_71000a16e0(&src, reinterpret_cast<const char*>(type), const_cast<void*>(object));
+    fn_710009d7a8(reinterpret_cast<const base::reflection::CType*>(vt), &dst, &src);
+}

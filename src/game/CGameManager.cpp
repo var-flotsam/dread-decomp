@@ -37,6 +37,23 @@ bool fn_7100deac04(UnkGameManager* self) {
     return false;
 }
 
+// The four handles at +0x2998 (their target at +0x10).
+struct UnkGameManagerHandle {
+    u8 pad_0x0[0x10];
+    const void* target;
+};
+struct UnkGameManagerHandles {
+    u8 pad_0x0[0x2998];
+    UnkGameManagerHandle* handles[4];
+};
+
+bool fn_7100df5c38(UnkGameManager* self, const void* object) {
+    UnkGameManagerHandle* const* h = reinterpret_cast<UnkGameManagerHandles*>(self)->handles;
+    if ((h[0] && h[0]->target == object) || (h[1] && h[1]->target == object) || (h[2] && h[2]->target == object))
+        return true;
+    return (h[3] ? h[3]->target : nullptr) == object;
+}
+
 void* fn_7100defcec(UnkGameManager* self) {
     UnkGameManagerTarget* target = fn_7100decab0(self);
     return target ? target->field_0x248 : nullptr;

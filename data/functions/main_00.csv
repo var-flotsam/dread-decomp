@@ -2920,7 +2920,7 @@ address,size,name,name_source,subsystem,status
 0x71000a1ae4,192,fn_71000a1ae4,unknown,unknown,U
 0x71000a1ba4,188,fn_71000a1ba4,unknown,unknown,O
 0x71000a1c60,104,fn_71000a1c60,unknown,unknown,O
-0x71000a1cc8,108,fn_71000a1cc8,unknown,unknown,U
+0x71000a1cc8,108,fn_71000a1cc8,unknown,unknown,O
 0x71000a1d34,416,fn_71000a1d34,unknown,unknown,U
 0x71000a1ed4,108,fn_71000a1ed4,unknown,unknown,U
 0x71000a1f40,212,fn_71000a1f40,unknown,unknown,O
