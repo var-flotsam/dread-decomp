@@ -185,8 +185,9 @@ struct UnkStruct_0x128 {
 
 struct UnkPathKey {
     u8 data[0x10];
-    UnkPathKey(const UnkPathId* path);  // fn_710008d2ec
-    ~UnkPathKey();                      // fn_710008d8e8
+    // The labels bind them to their functions on the port (Clang 9 ignores a label on a constructor).
+    UnkPathKey(const UnkPathId* path) asm("fn_710008d2ec");
+    ~UnkPathKey() asm("fn_710008d8e8");
 };
 
 struct UnkPlayer;
