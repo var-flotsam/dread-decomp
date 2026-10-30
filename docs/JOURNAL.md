@@ -131,6 +131,13 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Night round 22: the query filters' base constructor and an effect switch (2026-10-30, branch `claude/project-thread-lths9k-night22`).**
+1 function to `O` and 1 to minor. Boot slice unchanged: `O` 2,158 (30.63%), usable 40.99%; whole binary `O` 85,406 to 85,407
+(54.96%), usable 57.46%. `O`: querysystem::CFilter's constructor (fn_71002bedc8, 13 callers). Minor: CFXComponent's switch of an
+effect (fn_7101152c0c), whose body is now a shared inline also used by the switch by name hash (fn_710114fe8c).
+- **One inline for a repeated body.** When two functions inline the same tail, write it once as a `static inline` in the file
+  and call it from both; the smaller one then differs only where the larger one's register choices leak in.
+
 **Night round 21: component leaves with a dozen callers each (2026-10-30, branch `claude/project-thread-lths9k-night21`).**
 4 functions to `O` and 4 to minor. Boot slice: `O` 2,156 to 2,158 (30.63%), usable 40.98% to 40.99%; whole binary `O` 85,402 to
 85,406 (54.96%), usable 57.46%. `O`: the collision object by record index (fn_710086420c), the melee component's track test
