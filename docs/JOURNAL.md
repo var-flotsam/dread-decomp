@@ -131,6 +131,17 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Night round 21: component leaves with a dozen callers each (2026-10-30, branch `claude/project-thread-lths9k-night21`).**
+4 functions to `O` and 5 to minor. Boot slice: `O` 2,156 to 2,158 (30.63%), usable 40.98% to 40.99%; whole binary `O` 85,402 to
+85,406 (54.96%), usable 57.46%. `O`: the collision object by record index (fn_710086420c), the melee component's track test
+(fn_710092b604), the navigation query's start setter (fn_7100286920) and an AI path's first leg (fn_71010fc31c). Minor: the gun
+component's current id (fn_71008407fc), the animation component's action-set search (fn_7101176e0c), unit 36's request post
+(fn_710002d3e0) and an AI path's last leg (fn_71010fc284).
+- **A test without branches.** The AI path's open test is `(flag == 0) & (count != 0)` on a byte flag (`cmp`/`cset`, then
+  `and`); a `bool` flag gives `bic`, and `&&` gives branches.
+- **Keeping two loads apart.** The gun's id getter loads one of two pointers by a flag; Clang loads through a select of the
+  two offsets unless one branch holds an `asm` pin, which leaves only the final select's registers different.
+
 **Night round 20: a render-target stack, collision and effect lookups (2026-10-30, branch `claude/project-thread-lths9k-night20`, on round 19).**
 4 functions to `O` and 1 to minor. Boot slice: `O` 2,156 (30.62%), usable 40.96% to 40.98%; whole binary `O` 85,399 to 85,402
 (54.95%), usable 57.45% to 57.46%. `O`: the render-target stack's pop (fn_71001cdd18, 21 callers), a bound target's texture
