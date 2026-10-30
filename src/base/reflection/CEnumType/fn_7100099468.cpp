@@ -60,6 +60,13 @@ void fn_71000cdfb0(base::UnkVector<UnkIdElem>* self) { self->Free(); }
 // The same in the CCollisionComponent unit.
 void fn_71008600a8(base::UnkVector<UnkIdElem>* self) { self->Free(); }
 
+// And of such an array held at 8 in another object (fn_7100e503ac).
+struct UnkIdArrayAt8 {
+    u64 field_0x0;
+    base::UnkVector<UnkIdElem> ids;
+};
+void fn_7100e503ac(UnkIdArrayAt8* self) { self->ids.Free(); }
+
 template <class Elem, void (*Sync)(void*)>
 __attribute__((always_inline)) static inline void Begin(const base::UnkVector<Elem>* v,
                                                         base::UnkCollectionIter<Elem>* out) {

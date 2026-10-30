@@ -93,3 +93,27 @@ void fn_71011bbd2c(UnkOwnerC& self) {
 void fn_71011bbdc0(UnkOwnerC& self) {
     delete &self;
 }
+
+// The same destructors in two other units, the allocator right after the tail, with their own
+// vtables: fn_710059d82c and fn_710059d8c0, fn_710066a41c and fn_710066cad0.
+extern void* g_unk_7101a4d918[];
+extern void* g_unk_7101a5db18[];
+
+using UnkOwnerD = UnkRefListOwner<g_unk_7101a4d918, UnkRefNode_0x10, 0>;
+using UnkOwnerE = UnkRefListOwner<g_unk_7101a5db18, UnkRefNode_0x10, 0>;
+
+void fn_710059d82c(UnkOwnerD& self) {
+    self.~UnkOwnerD();
+}
+
+void fn_710059d8c0(UnkOwnerD& self) {
+    delete &self;
+}
+
+void fn_710066a41c(UnkOwnerE& self) {
+    self.~UnkOwnerE();
+}
+
+void fn_710066cad0(UnkOwnerE& self) {
+    delete &self;
+}

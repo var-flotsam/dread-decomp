@@ -4659,7 +4659,7 @@ address,size,name,name_source,subsystem,status
 0x7100ac5b8c,1852,fn_7100ac5b8c,unknown,game?,U
 0x7100ac62c8,216,fn_7100ac62c8,unknown,game?,U
 0x7100ac63a0,36,fn_7100ac63a0,unknown,game?,O
-0x7100ac63c4,264,fn_7100ac63c4,unknown,game?,U
+0x7100ac63c4,264,fn_7100ac63c4,unknown,game?,O
 0x7100ac64cc,116,fn_7100ac64cc,unknown,game?,U
 0x7100ac6540,452,fn_7100ac6540,unknown,game?,U
 0x7100ac6704,332,fn_7100ac6704,unknown,game?,U

@@ -247,3 +247,38 @@ UnkReflValue fn_7100d690c4(void* unused, UnkArgument<UnkAngleSource>* argument) 
     f32 value = (source->field_0xcc + source->field_0xc8) * 180.0f / 3.141592653589793;
     return MakeValue(fn_710000abbc(), &value);
 }
+
+// The same getters in the CEmmyAIComponent unit (unit 811 of tools/tu_map.py): flags, and floats
+// copied as words, of the argument's object.
+template <u32 Offset>
+__attribute__((always_inline)) static inline UnkReflValue GetFloatWord(UnkArgument<bool>* argument) {
+    u32 value = *reinterpret_cast<u32*>(argument->field_0x8 + Offset);
+    return MakeValue(fn_710000abbc(), &value);
+}
+
+UnkReflValue fn_7100565114(void* unused, UnkArgument<bool>* argument) { return GetFlag<0x14779>(argument); }
+UnkReflValue fn_71005651f8(void* unused, UnkArgument<bool>* argument) { return GetFlag<0x14778>(argument); }
+UnkReflValue fn_71005654e4(void* unused, UnkArgument<bool>* argument) { return GetFlag<0x14c20>(argument); }
+UnkReflValue fn_7100565888(void* unused, UnkArgument<bool>* argument) { return GetFlag<0x14c14>(argument); }
+UnkReflValue fn_7100565954(void* unused, UnkArgument<bool>* argument) { return GetFlag<0x14c35>(argument); }
+UnkReflValue fn_71005652f8(void* unused, UnkArgument<bool>* argument) { return GetFloatWord<0x14c08>(argument); }
+UnkReflValue fn_71005653dc(void* unused, UnkArgument<bool>* argument) { return GetFloatWord<0x14c1c>(argument); }
+UnkReflValue fn_71005655dc(void* unused, UnkArgument<bool>* argument) { return GetFloatWord<0x14c10>(argument); }
+UnkReflValue fn_71005656c0(void* unused, UnkArgument<bool>* argument) { return GetFloatWord<0x14c2c>(argument); }
+UnkReflValue fn_71005657a4(void* unused, UnkArgument<bool>* argument) { return GetFloatWord<0x14c30>(argument); }
+
+// Floats two pointers away from the argument's object (copied as words), in the units at
+// 0x71007a.. and 0x71008e.. / 0x71008f...
+template <u32 First, u32 Second, u32 Offset>
+__attribute__((always_inline)) static inline UnkReflValue GetChainedFloatWord(UnkArgument<bool>* argument) {
+    u8* p = *reinterpret_cast<u8**>(argument->field_0x8 + First);
+    p = *reinterpret_cast<u8**>(p + Second);
+    u32 value = *reinterpret_cast<u32*>(p + Offset);
+    return MakeValue(fn_710000abbc(), &value);
+}
+
+UnkReflValue fn_71007a088c(void* unused, UnkArgument<bool>* argument) { return GetChainedFloatWord<0x50, 0x128, 0x78>(argument); }
+UnkReflValue fn_71007a0938(void* unused, UnkArgument<bool>* argument) { return GetChainedFloatWord<0x50, 0x128, 0x74>(argument); }
+UnkReflValue fn_71007a0b28(void* unused, UnkArgument<bool>* argument) { return GetChainedFloatWord<0x50, 0x128, 0x7c>(argument); }
+UnkReflValue fn_71008ebb34(void* unused, UnkArgument<bool>* argument) { return GetChainedFloatWord<0x58, 0x138, 0x88>(argument); }
+UnkReflValue fn_71008fa23c(void* unused, UnkArgument<bool>* argument) { return GetChainedFloatWord<0x58, 0x138, 0x88>(argument); }

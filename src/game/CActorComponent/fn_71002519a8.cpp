@@ -107,3 +107,39 @@ bool fn_71001c147c(char* self, const u64* key) {
         p = nullptr;
     return p != nullptr;
 }
+
+// The lookup and the removal over 0x10-byte values (fn_71009046bc, fn_7100904644) and 0x80-byte values
+// (fn_7100e6095c, fn_7100e608e0), each removal with its own out-of-line removal.
+struct UnkValue_0x10 {
+    u64 words[2];
+};
+struct UnkValue_0x80 {
+    u64 words[16];
+};
+struct UnkKeyedValues_71009046bc;
+struct UnkKeyedValues_7100e6095c;
+using UnkValues10ByKey = base::UnkKeyedArray<UnkKeyedValues_71009046bc, u64, UnkValue_0x10>;
+using UnkValues80ByKey = base::UnkKeyedArray<UnkKeyedValues_7100e6095c, u64, UnkValue_0x80>;
+void fn_7100901264(UnkValues10ByKey* a, UnkValue_0x10* value);
+void fn_7100e6164c(UnkValues80ByKey* a, UnkValue_0x80* value);
+
+template <class A>
+__attribute__((always_inline)) static inline auto FindOrNull(A* a, const u64* key) -> decltype(a->End()) {
+    auto* p = a->Find(*key);
+    return p == a->End() ? nullptr : p;
+}
+
+UnkValue_0x10* fn_71009046bc(UnkValues10ByKey* a, const u64* key) { return FindOrNull(a, key); }
+UnkValue_0x80* fn_7100e6095c(UnkValues80ByKey* a, const u64* key) { return FindOrNull(a, key); }
+
+void fn_7100904644(UnkValues10ByKey* a, const u64* key) {
+    UnkValue_0x10* p = a->Find(*key);
+    if (p != a->End())
+        fn_7100901264(a, p);
+}
+
+void fn_7100e608e0(UnkValues80ByKey* a, const u64* key) {
+    UnkValue_0x80* p = a->Find(*key);
+    if (p != a->End())
+        fn_7100e6164c(a, p);
+}
