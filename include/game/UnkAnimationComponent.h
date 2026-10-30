@@ -110,6 +110,7 @@ bool fn_710117b348(UnkAnimationComponent* self, const base::reflection::CClass* 
 // such entry, track or action (the callers read it as how far along that track is, with the one
 // hash 0xf4061ff25a2163d6). Defined in src/game_hi/CAnimationComponent.cpp.
 f32 fn_7101177ea0(UnkAnimationComponent* self, u64 key);
+f32 fn_7101177f58(UnkAnimationComponent* self, u64 key);  // an identical copy
 
 // True when one of the tracks now playing has an action whose class id (the word at +0x30 of the
 // object the pointer fn_710070d7f8 returns refers to) is `id`; with `flag` set, tracks that fn_710070d830 reports with bit 0

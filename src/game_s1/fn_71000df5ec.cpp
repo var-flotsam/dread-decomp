@@ -62,3 +62,6 @@ __attribute__((always_inline)) static inline void ShrinkToFit(UnkStrIdTable<V>* 
 }
 
 void fn_71000df5ec(UnkStrIdTable<u32>* self) { ShrinkToFit(self); }
+
+// An identical copy (fn_710079cb54).
+void fn_710079cb54(UnkStrIdTable<u32>* self) { ShrinkToFit(self); }

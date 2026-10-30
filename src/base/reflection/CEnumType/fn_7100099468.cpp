@@ -57,6 +57,9 @@ void fn_71000d076c(base::UnkVector<UnkFilePathIdElem>* self) { self->Free(); }
 
 void fn_71000cdfb0(base::UnkVector<UnkIdElem>* self) { self->Free(); }
 
+// The same in the CCollisionComponent unit.
+void fn_71008600a8(base::UnkVector<UnkIdElem>* self) { self->Free(); }
+
 template <class Elem, void (*Sync)(void*)>
 __attribute__((always_inline)) static inline void Begin(const base::UnkVector<Elem>* v,
                                                         base::UnkCollectionIter<Elem>* out) {

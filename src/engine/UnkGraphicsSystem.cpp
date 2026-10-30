@@ -1028,59 +1028,8 @@ void fn_71001c8294(UnkGraphicsSystem* self) {
         self->field_0x31836f4[i] = 0;
 }
 
-// Resources (as src/game/CAbilitySonar.cpp and src/game/UnkEnvironmentFade.cpp spell them).
-// A resource type (as src/game/msapi/res/CRenderRes/fn_71001b1dd0.cpp registers them): its name first.
-struct UnkResType {
-    base::global::CStrId name;
-};
-extern const UnkResType g_unk_716e4540f8;  // textures
-extern const UnkResType g_unk_716e453ff8;  // models
-
-struct UnkResRegistry;
-extern UnkResRegistry* g_unk_7101d472f8;
-
-// A path id whose release decrements and tests the count in two steps.
-struct UnkResPathId {
-    UnkStringData* data;
-
-    UnkResPathId(const base::global::CFilePathStrId& other) : data(other.data) {
-        if (&g_unk_7101d47200->empty != data)
-            ++data->ref_count;
-    }
-    ~UnkResPathId() {
-        if (UnkStringPool* pool = g_unk_7101d47200) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47200;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
-
-// A resource's key: its type's name and its path.
-struct UnkResKey {
-    base::global::CStrId type;
-    UnkResPathId path;
-
-    UnkResKey(const base::global::CStrId& t, const base::global::CFilePathStrId& p) : type(t), path(p) {}
-};
-
-// A counted reference to a resource (base/UnkCountedResource.h).
-struct UnkResRef {
-    UnkCountedResource* ptr;
-
-    UnkResRef() : ptr(nullptr) {}
-    ~UnkResRef() {
-        if (ptr && --ptr->ref_count == 0)
-            fn_710001737c(ptr);
-    }
-};
-
-UnkResRef fn_71000ead80(UnkResRegistry* registry, const UnkResKey* key, u8 flag, void* a);
+// Resources: the registry's keys and references.
+#include "base/UnkResKey.h"
 
 // The resource if it is a render resource (msapi::res::CRenderRes), else null.
 static inline UnkCountedResource* AsRenderRes(UnkCountedResource* res) {

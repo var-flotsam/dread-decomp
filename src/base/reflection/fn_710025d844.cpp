@@ -21,4 +21,8 @@ static_assert(sizeof(UnkVector_0xf) == 0x28, "UnkVector_0xf layout");
 
 void fn_710025d844(void* p) { new (p) UnkVector_0xf(); }
 
+// Identical copies: fn_7100ca96d8, fn_710104eca8.
+void fn_7100ca96d8(void* p) { new (p) UnkVector_0xf(); }
+void fn_710104eca8(void* p) { new (p) UnkVector_0xf(); }
+
 void fn_71000e20d0(void* p) { new (p) UnkVector_0xf(); }

@@ -519,9 +519,8 @@ void fn_7100ee4704(CSubAreaManager* self, const UnkPoppedRequest* request, bool 
 
 // The GUI root (src/game/CCutscene.cpp) and a 0x48-byte singleton created on first use.
 extern void* g_unk_7101d47330;
-struct UnkSubAreaGuiCache;
+#include "game/UnkSubAreaGuiCache.h"
 extern UnkSubAreaGuiCache* g_unk_71727254f8;
-void fn_710119d484(UnkSubAreaGuiCache* self);  // constructor
 void fn_710119a110(void* root, const UnkPathIdMember* id);
 void fn_710119e684(UnkSubAreaGuiCache* self, const base::UnkStrIdMember* id, bool flag);
 void fn_710119d9b8(UnkSubAreaGuiCache* self, const base::UnkStrIdMember* id, bool flag);
@@ -878,23 +877,8 @@ void fn_7100ee2ebc(CSubAreaManager* self, const char* path) {
 
 // ---- fn_7100ee6d00 and fn_7100ee8044: what a change of sub-area loads and unloads ----
 
-// A list of file-path ids (src/base/UnkResRegistry.cpp's UnkResPathVec, the same layout), reserved
-// out of line by fn_7100018450 and assigned by fn_71000d0958.
-struct UnkResPathVec {
-    CFilePathStrId* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-
-    explicit UnkResPathVec(u32 flags)
-        : data(nullptr), count(0), capacity(0), step(10), field_0x14(true), flags(flags),
-          allocator(fn_7100083990()) {}
-    UnkResPathVec(const UnkResPathVec& other);
-};
-void fn_7100018450(UnkResPathVec* vec, u32 capacity);  // reserve
+// A list of file-path ids (base/UnkResPathVec.h), assigned by fn_71000d0958.
+#include "base/UnkResPathVec.h"
 void fn_71000d0958(UnkResPathVec* self, const UnkResPathVec* other);
 
 // The file-path ids of a sub-area's resources (or of the same list in another object).

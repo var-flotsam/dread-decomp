@@ -18,3 +18,9 @@ static inline void Increment(UnkRefPtrIter* it) {
 void fn_7100236ff4(UnkRefPtrIter* it) { Increment(it); }
 
 void fn_7100237494(UnkRefPtrIter* it) { Increment(it); }
+
+// Identical copies: fn_7100d3c610, fn_7100d3cab0, fn_7100d7e3a8, fn_7100d7e848.
+void fn_7100d3c610(UnkRefPtrIter* it) { Increment(it); }
+void fn_7100d3cab0(UnkRefPtrIter* it) { Increment(it); }
+void fn_7100d7e3a8(UnkRefPtrIter* it) { Increment(it); }
+void fn_7100d7e848(UnkRefPtrIter* it) { Increment(it); }

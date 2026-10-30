@@ -7,6 +7,7 @@
 
 #include "../game_aca57c/UnkBufferString.h"
 #include "base/UnkDestructors.h"
+#include "base/UnkResPathVec.h"
 #include "base/UnkStrIdPathPair.h"
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
@@ -138,10 +139,6 @@ struct UnkPathListTable {
 
 // Appends the key with an empty record and returns the record.
 UnkPathListRecord* fn_710001ab7c(UnkPathListTable* self, const CStrId* key);
-// Grows a list of file-path ids (an UnkVector of CFilePathStrId) to at least `capacity` elements
-// (declared as in src/base/UnkResRegistry.cpp).
-struct UnkResPathVec;
-void fn_7100018450(UnkResPathVec* vec, u32 capacity);
 
 static inline UnkPathListRecord* UnkFindOrAdd(UnkPathListTable* self, const CStrId* key) {
     UnkPathListRecord* record = self->Find(*key);

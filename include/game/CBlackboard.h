@@ -66,6 +66,20 @@ struct CBlackboard::CSection {
 };
 static_assert(sizeof(CBlackboard::CSection) == 0x58, "CBlackboard::CSection placeholder layout");
 
+// The slot of the section `key` names, or the slot past the last one, inlined into each lookup
+// (base/UnkParallelFind.h has the same search for other maps of this shape). The ids are compared
+// as raw 64-bit words (the original loads the key after the array); the slot is returned, and
+// compared with the end by the callers, as the keyed arrays of base/UnkCloneCalls.h do (written
+// otherwise the compiler folds the comparison away).
+__attribute__((always_inline)) inline CBlackboard::CSection** UnkBlackboardFindSlot(CBlackboard* self,
+                                                                                   const base::global::CStrId& key) {
+    for (u64 i = 0; i < self->count; ++i) {
+        if (*reinterpret_cast<const u64*>(&self->ids[i]) == *reinterpret_cast<const u64*>(&key))
+            return &self->sections[i];
+    }
+    return &self->sections[self->count];
+}
+
 // Whether a section is named by `key` (src/game/CBlackboard.cpp).
 bool fn_7101047208(CBlackboard* self, const base::global::CStrId& key);
 

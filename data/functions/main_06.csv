@@ -2544,8 +2544,8 @@ address,size,name,name_source,subsystem,status
 0x71006678e8,8,fn_71006678e8,unknown,unknown,O
 0x71006678f0,84,fn_71006678f0,unknown,unknown,U
 0x7100667944,24,fn_7100667944,unknown,unknown,O
-0x710066795c,156,fn_710066795c,unknown,unknown,U
-0x71006679f8,152,fn_71006679f8,unknown,unknown,U
+0x710066795c,156,fn_710066795c,unknown,unknown,O
+0x71006679f8,152,fn_71006679f8,unknown,unknown,O
 0x7100667a90,80,fn_7100667a90,unknown,unknown,O
 0x7100667ae0,60,fn_7100667ae0,unknown,unknown,O
 0x7100667b1c,12,fn_7100667b1c,unknown,unknown,O
@@ -4912,7 +4912,7 @@ address,size,name,name_source,subsystem,status
 0x71006cade8,56,fn_71006cade8,unknown,unknown,O
 0x71006cae20,12,fn_71006cae20,unknown,unknown,O
 0x71006cae2c,332,fn_71006cae2c,unknown,unknown,U
-0x71006caf80,760,fn_71006caf80,unknown,unknown,U
+0x71006caf80,760,fn_71006caf80,unknown,unknown,O
 0x71006cb280,244,fn_71006cb280,unknown,unknown,O
 0x71006cb374,4,fn_71006cb374,unknown,unknown,O
 0x71006cb378,244,CCharClassSunnapAIComponent::refl_GetClass,reflection,game/characters,O

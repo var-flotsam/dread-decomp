@@ -8,6 +8,8 @@
 
 #include "base/UnkBlockFreeList.h"
 #include "base/UnkCloneHelpers.h"
+#include "base/UnkResKey.h"
+#include "base/UnkResPathVec.h"
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
@@ -20,36 +22,14 @@ using base::global::CFilePathStrId;
 using base::global::CStrId;
 using base::global::UnkStringPool;
 
-// A resource type (its first member is its name).
-struct UnkResType {
-    CStrId name;
-};
 struct UnkResFactory;
-struct UnkResRegistry;
-extern UnkResRegistry* g_unk_7101d472f8;
 
 // The record's default callbacks: each forwards its second argument (fn_710001a0ac, fn_710001a39c).
 void fn_71000204c4(void* context, void* arg);
 void fn_71000204cc(void* context, void* arg);
 
-// The record's list of file-path ids, laid out as an UnkVector of CFilePathStrId; its copy reserves
-// the source's capacity (fn_7100018450) and appends the ids one by one.
-struct UnkResPathVec {
-    CFilePathStrId* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    UnkAllocator* allocator;
-
-    explicit UnkResPathVec(u32 flags)
-        : data(nullptr), count(0), capacity(0), step(10), field_0x14(true), flags(flags),
-          allocator(fn_7100083990()) {}
-    UnkResPathVec(const UnkResPathVec& other);
-};
-void fn_7100018450(UnkResPathVec* vec, u32 capacity);  // reserve
-
+// The record's list of file-path ids (base/UnkResPathVec.h): its copy reserves the source's
+// capacity (fn_7100018450) and appends the ids one by one.
 __attribute__((always_inline)) inline UnkResPathVec::UnkResPathVec(const UnkResPathVec& other)
     : data(nullptr), count(0), capacity(0), step(other.step), field_0x14(other.field_0x14),
       flags(other.flags), allocator(other.allocator) {

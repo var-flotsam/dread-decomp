@@ -69,3 +69,25 @@ void fn_710023fe88(UnkNodeList_7100219134* self) {
     self->head = nullptr;
     self->tail = nullptr;
 }
+
+// Identical copies: fn_7100d82e8c, fn_71011d2a74.
+void fn_7100d82e8c(UnkNodeList_7100219134* self) {
+    for (char* n = self->head; n;) {
+        char* next = *reinterpret_cast<char**>(n + 8);
+        self->allocator->vf_0x48(n);
+        n = next;
+    }
+    self->count = 0;
+    self->head = nullptr;
+    self->tail = nullptr;
+}
+void fn_71011d2a74(UnkNodeList_7100219134* self) {
+    for (char* n = self->head; n;) {
+        char* next = *reinterpret_cast<char**>(n + 8);
+        self->allocator->vf_0x48(n);
+        n = next;
+    }
+    self->count = 0;
+    self->head = nullptr;
+    self->tail = nullptr;
+}

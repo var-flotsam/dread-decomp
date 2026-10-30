@@ -1029,7 +1029,7 @@ address,size,name,name_source,subsystem,status
 0x7100b1de0c,100,fn_7100b1de0c,unknown,gui?,O
 0x7100b1de70,12,fn_7100b1de70,unknown,gui?,O
 0x7100b1de80,200,fn_7100b1de80,unknown,gui?,O
-0x7100b1df48,256,fn_7100b1df48,unknown,gui?,U
+0x7100b1df48,256,fn_7100b1df48,unknown,gui?,O
 0x7100b1e048,136,fn_7100b1e048,unknown,gui?,O
 0x7100b1e0d0,292,fn_7100b1e0d0,unknown,gui?,U
 0x7100b1e1f4,344,fn_7100b1e1f4,unknown,gui?,U

@@ -55,6 +55,10 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - Write switch cases in the order of their bodies in the binary to get Clang's compare tree: [Above 2 KB](#above-2-kb-outside-the-six-hand-slices-srcgame_s7-2026-10-21) (music volume overrides).
 - `__builtin_expect`, `always_inline` and early returns do not change register allocation in long inlined destructor runs: [Exact copies of matched functions](#exact-copies-of-matched-functions).
 
+**Near copies**
+- `tools/nearcopy.py` over the whole binary, then each original's definition compiled under the copy's name: 75 of 313 candidates at 80% or more matched as they were or with their own targets: [night round 1](#session-log-newest-first).
+- A counter compared in 32 bits beside a 64-bit array index: a separate `u64` index for the destination: same entry.
+
 **Lifter and generators**
 - Alias, sort and copy rewrite rounds; "the generic lifter is near its limit": work log item 1.
 - Semantic mode and its P-code oracle; four flat-mode bugs byte identity hid; the oracle's reach (mutation test): [port M1 step 3](#session-log-newest-first).
@@ -126,6 +130,31 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - Several templates can carry one address's tag (`refl_GetPrimitiveType<G>` and its inline helper `refl_MakePrimitiveType<G>`, which Clang 18 keeps out of line); an alias to one that returns a class by value puts its hidden result pointer in the caller's rdi and writes the object over the caller's frame. A crash whose return address is a function's start, with a type's hook table on the stack, is the sign: [port M1 round 5](#session-log-newest-first).
 
 ## Session log (newest first)
+
+**Night round 1: boot-path copies and near copies over the whole binary (2026-10-30, branch `claude/project-thread-lths9k-night1`).**
+90 functions from `U` (89) or `m` (1) to `O`, 20,296 bytes. Whole binary (`tools/progress.py`): `O` 85,047 to 85,137 functions,
+54.64% to 54.75% of the bytes; usable (`O`+`m`) 57.11% to 57.22%. Boot slice: `O` 2,031 to 2,050 functions (29.52% to 29.92%). How:
+- **Boot hubs that are copies.** `tools/nearcopy.py` run over the whole address range (10 minutes; `--top 100000`) and
+  filtered to the boot slice found 14 `U` functions within a few relocations of an `O` one. Each family became a header:
+  base/UnkResKey.h (the resource registry's key, reference and type declarations that four files defined, and the sonar's
+  loader as a template on the resource type and the holder layout: four copies), base/UnkResPathVec.h (the path list and
+  its reserve, `fn_7100018450`, 10 boot callers), game/UnkRenderPassSlots.h and game/UnkSubAreaGuiCache.h (the slots
+  object's constructor in two more units), base/UnkParallelFind.h (the lookup of a map of parallel arrays inlined into an
+  owner's method, with string-id or 32-bit keys), base/UnkNodeOwner.h (the string list's destructor that two files
+  defined locally) and base/file/UnkFileCacheSet.h (the cache set's set-up as a template on the node size).
+- **A 64-bit index beside a 32-bit counter.** The path list's reserve and its string-id twin `fn_710000542c` (minor at
+  98.5% since its first pass) compare the loop counter in 32 bits while indexing the new array with a 64-bit register.
+  `for (u32 i = 0; i < count; ++i, ++j, ++old)` with `u64 j` for the destination gives that; a `u64` counter truncated in
+  the test gives the right compare with its operands swapped.
+- **Identical copies by script.** For every `U` function at 80% or more from an `O` one in a hand-written file, the
+  original's definition was compiled under the copy's name next to it (`trymatch.py --obj-dir`, eight at a time; 34 s for
+  313 candidates). 51 matched with every relocation target the original's and were added after their originals; 24
+  more matched with their own callees, vtables or globals, and their families now take those as template parameters.
+- **Inlining that changes with the number of users.** A constructor and destructor inlined into one registration were
+  outlined once there were three (`src/game/UnkActorDefFactory.cpp`); `always_inline` on the entry's constructor, an
+  empty user-written destructor and the ids' constructors and destructor keep all three at the original's 572 bytes.
+- `python -m unittest discover -s tools/tests -t .` fails one test on Windows only (`test_check_cache.Depfile.test_posix`
+  expects POSIX paths), as on `main`; CI runs on Linux.
 
 **Matching the port's hand-written boot functions, round 3 (2026-10-29, branch `claude/project-thread-lths9k`).**
 The eleven functions the port wrote that were still not `O` after rounds 1 and 2, and the NEON helpers round. Whole

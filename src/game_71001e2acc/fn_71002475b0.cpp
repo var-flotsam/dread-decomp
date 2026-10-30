@@ -243,3 +243,14 @@ void fn_71002475b0(const UnkCallbackSetVector* v, UnkIter<fn_710023ac4c>* out) {
     Begin(v, out);
 }
 
+
+// Two more copies, each with its own sync function.
+void fn_7100d80b84(void* self);
+void fn_7100d88e14(const UnkCallbackSetVector* v, UnkIter<fn_7100d80b84>* out) {
+    Begin(v, out);
+}
+
+void fn_710112e7e0(void* self);
+void fn_7101132350(const UnkCallbackSetVector* v, UnkIter<fn_710112e7e0>* out) {
+    Begin(v, out);
+}

@@ -58,6 +58,11 @@ bool fn_71005da2ac(const void* a, const void* b) {
     return Equal(a, b);
 }
 
+// An identical copy (fn_71004a84c8).
+bool fn_71004a84c8(const void* a, const void* b) {
+    return Equal(a, b);
+}
+
 bool fn_71005e306c(const void* a, const void* b) {
     return Equal(a, b);
 }

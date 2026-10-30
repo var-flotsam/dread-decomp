@@ -100,7 +100,7 @@ struct UnkActorDefEntryId {
     UnkStringData* data;
 
     // Empty: the pointer is cleared before the pool is made sure of.
-    UnkActorDefEntryId() : data(nullptr) {
+    __attribute__((always_inline)) UnkActorDefEntryId() : data(nullptr) {
         if (!*Pool) {
             if (Pool == &g_unk_7101d47200)
                 base::global::UnkEnsureFilePathPool();
@@ -109,16 +109,17 @@ struct UnkActorDefEntryId {
         }
         data = &(*Pool)->empty;
     }
-    explicit UnkActorDefEntryId(const CStrId& other) : data(other.data) {
+    __attribute__((always_inline)) explicit UnkActorDefEntryId(const CStrId& other) : data(other.data) {
         if (&(*Pool)->empty != data)
             ++data->ref_count;
     }
-    explicit UnkActorDefEntryId(const CFilePathStrId& other) : data(other.data) {
+    __attribute__((always_inline)) explicit UnkActorDefEntryId(const CFilePathStrId& other)
+        : data(other.data) {
         if (&(*Pool)->empty != data)
             ++data->ref_count;
     }
     // Released in two steps (the original reloads the id and its count after the decrement).
-    ~UnkActorDefEntryId() {
+    __attribute__((always_inline)) ~UnkActorDefEntryId() {
         if (UnkStringPool* pool = *Pool) {
             if (data && data != &pool->empty) {
                 --data->ref_count;
@@ -149,10 +150,12 @@ struct UnkActorDefEntry {
     UnkActorDefEntryCallback field_0x28;
     UnkActorDefEntryCallback field_0x38;
 
-    UnkActorDefEntry(void* desc, void* factory)
+    __attribute__((always_inline)) UnkActorDefEntry(void* desc, void* factory)
         : desc(desc), factory(factory), id(g_unk_7101d470e0), path_0x18(g_unk_7101d470e8),
           field_0x28{nullptr, reinterpret_cast<void (*)()>(fn_71000204c4)},
           field_0x38{nullptr, reinterpret_cast<void (*)()>(fn_71000204cc)} {}
+    // Inlined into each registration, as the implicit destructor is when there is only one.
+    __attribute__((always_inline)) ~UnkActorDefEntry() {}
 };
 static_assert(sizeof(UnkActorDefEntry) == 0x48, "UnkActorDefEntry layout");
 
@@ -177,6 +180,28 @@ static inline UnkActorDefResFactory* ResFactory() {
 // Registers the factory for the "actordef" category.
 void fn_71011930c8() {
     fn_710002002c(g_unk_7101d4bbc0, AsRegistryEntry(UnkActorDefEntry(g_unk_71727b9530, ResFactory())));
+}
+
+// The same registration in units 2542 and 2624 of tools/tu_map.py, for factories of the same shape (the
+// registry interface at +8) held in their own singletons, each with its category's record. The
+// startup (src/engine/UnkStartupManagers.cpp) passes fn_7100db256c its singleton, which it ignores.
+extern void* g_unk_7172758b18;     // unit 2542's factory
+extern void* g_unk_71729f0148;     // unit 2624's factory
+extern char g_unk_71726aad48[];    // the "animtree" category (src/game/animtree/CAnimTreeRes/fn_71002e0370.cpp)
+extern CStrId g_unk_71727b9d30;    // unit 2624's category
+
+static inline UnkActorDefResFactory* ResFactoryOf(void* factory) {
+    return factory ? &static_cast<UnkActorDefFactory*>(factory)->res_factory : nullptr;
+}
+
+void fn_7100db256c(void* /*unused*/) {
+    fn_710002002c(g_unk_7101d4bbc0,
+                  AsRegistryEntry(UnkActorDefEntry(g_unk_71726aad48, ResFactoryOf(g_unk_7172758b18))));
+}
+
+void fn_7100fc8024() {
+    fn_710002002c(g_unk_7101d4bbc0,
+                  AsRegistryEntry(UnkActorDefEntry(&g_unk_71727b9d30, ResFactoryOf(g_unk_71729f0148))));
 }
 
 // An iterator over a map: the node, the bucket it is in and the map's version when it started; it

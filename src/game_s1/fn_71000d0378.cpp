@@ -107,6 +107,56 @@ void fn_7100251758(UnkIdArrayOwner* self) {
     ids->count = 0;
 }
 
+// Identical copies: fn_710079c1c8, fn_7100904430, fn_710091623c, fn_7100d862b4, fn_710104a8fc, fn_71010c60fc.
+void fn_710079c1c8(UnkIdArrayOwner* self) {
+    UnkClearedArray<UnkReleasedStrId>* ids = &self->ids;
+    if (ids->data) {
+        for (u64 i = 0; i < ids->count; ++i)
+            ids->data[i].~UnkReleasedStrId();
+    }
+    ids->count = 0;
+}
+void fn_7100904430(UnkIdArrayOwner* self) {
+    UnkClearedArray<UnkReleasedStrId>* ids = &self->ids;
+    if (ids->data) {
+        for (u64 i = 0; i < ids->count; ++i)
+            ids->data[i].~UnkReleasedStrId();
+    }
+    ids->count = 0;
+}
+void fn_710091623c(UnkIdArrayOwner* self) {
+    UnkClearedArray<UnkReleasedStrId>* ids = &self->ids;
+    if (ids->data) {
+        for (u64 i = 0; i < ids->count; ++i)
+            ids->data[i].~UnkReleasedStrId();
+    }
+    ids->count = 0;
+}
+void fn_7100d862b4(UnkIdArrayOwner* self) {
+    UnkClearedArray<UnkReleasedStrId>* ids = &self->ids;
+    if (ids->data) {
+        for (u64 i = 0; i < ids->count; ++i)
+            ids->data[i].~UnkReleasedStrId();
+    }
+    ids->count = 0;
+}
+void fn_710104a8fc(UnkIdArrayOwner* self) {
+    UnkClearedArray<UnkReleasedStrId>* ids = &self->ids;
+    if (ids->data) {
+        for (u64 i = 0; i < ids->count; ++i)
+            ids->data[i].~UnkReleasedStrId();
+    }
+    ids->count = 0;
+}
+void fn_71010c60fc(UnkIdArrayOwner* self) {
+    UnkClearedArray<UnkReleasedStrId>* ids = &self->ids;
+    if (ids->data) {
+        for (u64 i = 0; i < ids->count; ++i)
+            ids->data[i].~UnkReleasedStrId();
+    }
+    ids->count = 0;
+}
+
 // Move-assignment of an array: the old ids are released (the storage is kept), the other's array
 // is taken and left empty.
 template <class T>
@@ -374,8 +424,21 @@ void fn_71000df938(const UnkIdTable<u32>* self, UnkIterValue<u32, UnkReleasedStr
     out->SetRef(self->keys + self->count, self->values + self->count);
 }
 
+// An identical copy (fn_710079cea0).
+void fn_710079cea0(const UnkIdTable<u32>* self, UnkIterValue<u32, UnkReleasedStrId>* out) {
+    out->SetRef(self->keys + self->count, self->values + self->count);
+}
+
 // The same over 8-byte values: fn_7100252194.
 void fn_7100252194(const UnkIdTable<u64>* self, UnkIterValue<u64, UnkReleasedStrId>* out) {
+    out->SetRef(self->keys + self->count, self->values + self->count);
+}
+
+// Identical copies: fn_710104b498, fn_71010c6ec8.
+void fn_710104b498(const UnkIdTable<u64>* self, UnkIterValue<u64, UnkReleasedStrId>* out) {
+    out->SetRef(self->keys + self->count, self->values + self->count);
+}
+void fn_71010c6ec8(const UnkIdTable<u64>* self, UnkIterValue<u64, UnkReleasedStrId>* out) {
     out->SetRef(self->keys + self->count, self->values + self->count);
 }
 

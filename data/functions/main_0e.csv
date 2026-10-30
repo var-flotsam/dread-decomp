@@ -3127,7 +3127,7 @@ address,size,name,name_source,subsystem,status
 0x7100eb2338,36,fn_7100eb2338,unknown,unknown,O
 0x7100eb235c,40,fn_7100eb235c,unknown,unknown,O
 0x7100eb2384,40,fn_7100eb2384,unknown,unknown,O
-0x7100eb23ac,76,fn_7100eb23ac,unknown,unknown,U
+0x7100eb23ac,76,fn_7100eb23ac,unknown,unknown,O
 0x7100eb23f8,8,fn_7100eb23f8,unknown,unknown,O
 0x7100eb2400,12,fn_7100eb2400,unknown,unknown,O
 0x7100eb240c,64,fn_7100eb240c,unknown,unknown,O
