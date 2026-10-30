@@ -1528,8 +1528,8 @@ class Lifter:
                 return self.fail("variant")  # only no-return calls: the "void" variant
             # Tail calls return what the other paths return when that is a float.
             rtype = types[0] if types and types[0][0] == "f" else "char*" if tails else types[0]
-            if "w32" in self.opts and tails and types and all(t == "u32" for t in types):
-                rtype = "u32"  # ("w32") and so do the tail calls (declared so below)
+            if self.opts & {"w32", "bool"} and tails and types and all(t == "u32" for t in types):
+                rtype = "u32"  # ("w32", "bool") and so do the tail calls (declared so below)
             if self.returns == "ref":
                 if rtype != "char*" or tails:
                     return self.fail("variant")
@@ -2067,6 +2067,10 @@ class Lifter:
         if x.writeback and not (mem and m in tuple(LOADS) + tuple(STORES) + ("stp", "ldp")):
             return False
         if "semantic" in self.opts and self.semantic_step(x, mem):
+            return True
+        # A conditional compare (`a == x && b == y`) lifts as semantic mode lifts it; a function
+        # with one was rejected before, so this costs no match.
+        if m in ("ccmp", "ccmn") and self.semantic_step(x, mem):
             return True
         s = self.s
         if m == "adrp":

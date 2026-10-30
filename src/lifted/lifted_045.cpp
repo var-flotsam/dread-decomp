@@ -1202,7 +1202,8 @@ namespace callee { char* fn_710009d50c(char*, char*); }
 namespace callee { char* fn_710045b404(); }
 namespace callee { char* fn_710045c5e8(u64, u32); }
 namespace callee { char* fn_71008a3c48(char*, char*); }
-char* fn_710045af50(char* p0, char* p1) {
+namespace wret { u32 fn_71008a3c48(char*, char*); }
+u32 fn_710045af50(char* p0, char* p1) {
     u8 r0_8 = (u8)*(u8*)((char*)(p1) + 180);
     char* r1_19 = p1;
     char* r2_20 = p0;
@@ -1224,13 +1225,13 @@ char* fn_710045af50(char* p0, char* p1) {
                 u32 r18_1 = 0x1;
                 char* r19_0 = callee::fn_710045c5e8(r17_0, r18_1);
                 u32 r20_0 = 0x2;
-                return (char*)(u64)(r20_0);
+                return r20_0;
             }
         }
     }
     char* r25_0 = r2_20;
     char* r26_1 = r1_19;
-    return callee::fn_71008a3c48(r25_0, r26_1);
+    return wret::fn_71008a3c48(r25_0, r26_1);
 }
 
 namespace callee { char* fn_71012395d0(f32, f32); }

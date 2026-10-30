@@ -611,6 +611,60 @@ L_710054b2a0:;
     return ((u32)X0);
 }
 
+namespace bret { bool fn_710002fb70(char*); }
+namespace bret { bool fn_710117b348(u64, char*); }
+namespace callee { char* fn_710002fb70(char*); }
+namespace callee { char* fn_7100572908(char*, char*, u64); }
+namespace callee { char* fn_7100c78d04(); }
+namespace callee { char* fn_710117b348(u64, char*); }
+namespace wret { u32 fn_7100572908(char*, char*, u64); }
+u32 fn_710054b390(char* p0, char* p1) {
+    u64 X0 = (u64)p0;
+    u64 X1 = (u64)p1;
+    u64 X2;
+    u64 X8;
+    u64 X19;
+    u64 X20;
+    u64 X21;
+    X8 = (u64)(0x7720);
+    X8 = (u64)(0x27720);
+    X8 = (u64)((u8)*(u8*)((char*)(((char*)X0)) + (u64)(u64)(((u32)X8))));
+    if (!((u32)(u64)((u32)X8) != 0)) goto L_710054b414;
+    X8 = (u64)(0x4c14);
+    X8 = (u64)(0x14c14);
+    X8 = (u64)((((char*)X0)) + ((u32)X8));
+    X8 = (u64)((u8)*(u8*)((char*)(((char*)X8)) + 0));
+    X20 = (u64)(((char*)X0));
+    if (!((u32)(u64)((u32)X8) != 0)) goto L_710054b400;
+    X8 = (u64)(0x9350);
+    X8 = (u64)(0x29350);
+    X0 = (u64)((((char*)X20)) + ((u32)X8));
+    X19 = (u64)(((char*)X1));
+    X0 = bret::fn_710002fb70(((char*)X0));
+    if (!(((u64)((u32)X0) >> 0 & 1) == 0)) goto L_710054b400;
+    X8 = (u64)((u64)*(u64*)((char*)(((char*)X20)) + 48));
+    X21 = (u64)((u64)*(u64*)((char*)(X8) + 544));
+    if (!((u64)(u64)(X21) != 0)) goto L_710054b400;
+    X0 = (u64)(callee::fn_7100c78d04());
+    X1 = (u64)(((char*)X0));
+    X0 = (u64)(X21);
+    X0 = bret::fn_710117b348(X0, ((char*)X1));
+    if (!(((u64)((u32)X0) >> 0 & 1) != 0)) goto L_710054b428;
+L_710054b400:;
+    X0 = (u64)((u32)(u64)(0));
+    return ((u32)X0);
+L_710054b414:;
+    X0 = (u64)(0x1);
+    return ((u32)X0);
+L_710054b428:;
+    X8 = (u64)(0x4ad0);
+    X8 = (u64)(0x14ad0);
+    X1 = (u64)(((char*)X19));
+    X0 = (u64)((((char*)X20)) + ((u32)X8));
+    X2 = (u64)(0);
+    return wret::fn_7100572908(((char*)X0), ((char*)X1), X2);
+}
+
 extern char g_unk_7101d47310[];
 namespace callee { char* fn_7100566480(u64, char*); }
 char* fn_710054b44c(char* p0) {

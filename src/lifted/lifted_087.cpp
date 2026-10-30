@@ -317,7 +317,8 @@ namespace bret { bool fn_710117b348(u64, char*); }
 namespace callee { char* fn_7100870200(char*, u32); }
 namespace callee { char* fn_7100d0d6d8(); }
 namespace callee { char* fn_710117b348(u64, char*); }
-char* fn_71008723fc(char* p0, u32 p1) {
+namespace wret { u32 fn_7100870200(char*, u32); }
+u32 fn_71008723fc(char* p0, u32 p1) {
     u64 r0_8 = (u64)*(u64*)((char*)(p0) + 48);
     u32 r1_19 = (u32)(u64)(p1);
     char* r2_20 = p0;
@@ -329,12 +330,12 @@ char* fn_71008723fc(char* p0, u32 p1) {
         bool r8_0 = bret::fn_710117b348(r7_0, r6_1);
         if (((u64)(r8_0) >> 0 & 1) != 0) {
             u32 r10_0 = 0x1;
-            return (char*)(u64)(r10_0);
+            return r10_0;
         }
     }
     char* r14_0 = (r2_20) + 2768;
     u32 r15_1 = (u32)(u64)(r1_19);
-    return callee::fn_7100870200(r14_0, r15_1);
+    return wret::fn_7100870200(r14_0, r15_1);
 }
 
 namespace callee { char* fn_710086fb24(char*, char*, f32); }

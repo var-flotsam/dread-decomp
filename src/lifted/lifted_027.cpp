@@ -1121,6 +1121,56 @@ L_710027c8c0:;
     goto L_710027c8a8;
 }
 
+namespace bret { bool fn_71002b007c(u64); }
+namespace callee { char* fn_71002afc34(u64, char*); }
+namespace callee { char* fn_71002b007c(u64); }
+namespace wret { u32 fn_71002b007c(u64); }
+u32 fn_710027df74(char* p0, char* p1) {
+    u16 r0_8 = (u16)*(u16*)((char*)(p1) + 0);
+    u32 r1_9 = 0xffff;
+    char* m2 = p0;
+    u16 m3 = r0_8;
+    if ((u64)(u64)(r0_8) != (u64)(r1_9)) {
+        char* r3_21 = p1;
+        char* r4_21 = (char*)(r3_21) + 2;
+        u8 r5_9 = (u8)*(u8*)((char*)(r3_21) + 2);
+        char* r6_20 = p1;
+        char* m0 = p0;
+        u16 m1 = r0_8;
+        if ((u32)(u64)((u32)(u64)(r5_9)) != (u32)(255)) {
+            u64 r8_9 = (u64)*(u64*)((char*)(p0) + 656);
+            u32 r9_10 = 0x70;
+            char* r10_19 = p0;
+            u64 r11_0 = (u64)(u64)(r8_9) + (u64)(u64)(r0_8) * (u64)(u64)(r9_10);
+            bool r12_0 = bret::fn_71002b007c(r11_0);
+            if (((u64)(r12_0) >> 0 & 1) != 0) {
+                u32 r14_0 = 0x1;
+                return r14_0;
+            }
+            u16 r17_8 = (u16)*(u16*)((char*)(r6_20) + 0);
+            u32 r18_10 = 0x70;
+            char* r19_1 = r4_21;
+            u64 r20_9 = (u64)*(u64*)((char*)(r10_19) + 656);
+            u64 r21_0 = (u64)(u64)(r20_9) + (u64)(u64)(r17_8) * (u64)(u64)(r18_10);
+            char* r22_0 = callee::fn_71002afc34(r21_0, r19_1);
+            u16 r23_8 = (u16)*(u16*)((char*)(r22_0) + 2);
+            u32 r24_9 = 0xffff;
+            if ((u64)(u64)(r23_8) != (u64)(r24_9)) {
+                u64 r26_9 = (u64)*(u64*)((char*)(r10_19) + 656);
+                u32 r27_10 = 0x70;
+                u64 r28_0 = (u64)(u64)(r26_9) + (u64)(u64)(r23_8) * (u64)(u64)(r27_10);
+                return wret::fn_71002b007c(r28_0);
+            }
+            m0 = r22_0;
+            m1 = r23_8;
+        }
+        m2 = m0;
+        m3 = m1;
+    }
+    u32 r41_0 = (u32)(u64)(0);
+    return r41_0;
+}
+
 namespace callee { char* fn_71002745a0(); }
 namespace h { extern HIDDEN char g_unk_71726a4538[]; }
 char* fn_710027e23c() {
