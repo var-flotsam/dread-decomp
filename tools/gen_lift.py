@@ -85,6 +85,7 @@ SCRATCH_CHUNK = 8000
 NAME_RE = re.compile(r"^[A-Za-z_][\w:<>,*& ]*\bfn_([0-9a-f]{10})\(")  # a declaration or definition
 TAGGED_DIRS = ("reflection", "reflection_types", "reflection_statics", "clones", "tables")  # generator outputs
 TAG_RE = re.compile(r"(?:UnkRefl_fn_|UnkClone_fn_|UnkTable_fn_|DREAD_REFL_\w*GETTER\()([0-9a-f]{10})\b")  # tagged definitions
+ALIAS_RE = re.compile(r"\.set fn_([0-9a-f]{10}),")  # asm aliases naming a template instance's code
 # (minimum call arguments, return mode): tried in this order. Return modes: "value" returns x0
 # (or s0) as set, "void" returns nothing, "ref" returns a pointer as a reference (Clang 9 then
 # doesn't turn a final call into a tail call, as in the original's `bl; ret`).
@@ -3061,6 +3062,8 @@ def defined_outside(out: Path) -> set[int]:
                     brace, semi = rest.find("{"), rest.find(";")
                     if brace >= 0 and (semi < 0 or brace < semi):
                         skip.add(int(m.group(1), 16))
+            # Names given to a template instance's code: asm(".globl fn_X\n.set fn_X, <symbol>").
+            skip |= {int(a, 16) for a in ALIAS_RE.findall("\n".join(lines))}
             # Template instantiations and macro-defined getters, named by their tags. Only the
             # generators define functions that way; hand-written code may just use a tag.
             if any(ROOT / "src" / d in f.parents for d in TAGGED_DIRS):

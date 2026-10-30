@@ -1838,7 +1838,7 @@ address,size,name,name_source,subsystem,status
 0x71010522b4,48,fn_71010522b4,unknown,unknown,O
 0x71010522e4,48,fn_71010522e4,unknown,unknown,O
 0x7101052314,308,fn_7101052314,unknown,unknown,O
-0x7101052448,120,fn_7101052448,unknown,unknown,U
+0x7101052448,120,fn_7101052448,unknown,unknown,O
 0x71010524c0,336,fn_71010524c0,unknown,unknown,U
 0x7101052610,8,fn_7101052610,unknown,unknown,O
 0x7101052618,8,fn_7101052618,unknown,unknown,O
@@ -2766,7 +2766,7 @@ address,size,name,name_source,subsystem,status
 0x7101078b20,196,lua_bind::SaveSnapshotToCheckpoint,string,script/bindings,U
 0x7101078bf0,60,lua_bind::SaveDataToNewDevice,string,script/bindings,O
 0x7101078c30,36,lua_bind::InitSaveData,string,script/bindings,O
-0x7101078c60,100,lua_bind::GetRequiredDiskSpaceKB,string,script/bindings,U
+0x7101078c60,100,lua_bind::GetRequiredDiskSpaceKB,string,script/bindings,O
 0x7101078cd0,76,lua_bind::CommitSaveDataDeviceSelection,string,script/bindings,O
 0x7101078d20,92,lua_bind::IsSaveDataInDummyMode,string,script/bindings,O
 0x7101078d80,108,lua_bind::SetSaveDataDummyMode,string,script/bindings,O
@@ -2810,7 +2810,7 @@ address,size,name,name_source,subsystem,status
 0x710107a0f0,36,lua_bind::ReinitPlayerFromBlackboard,string,script/bindings,O
 0x710107a120,68,lua_bind::GetPlayer,string,script/bindings,O
 0x710107a170,68,lua_bind::GetDefaultPlayer,string,script/bindings,O
-0x710107a1c0,40,lua_bind::GetSecondaryPlayer,string,script/bindings,U
+0x710107a1c0,40,lua_bind::GetSecondaryPlayer,string,script/bindings,O
 0x710107a1f0,112,lua_bind::GetDefaultPlayerName,string,script/bindings,O
 0x710107a260,20,lua_bind::GetPlayerInfo,string,script/bindings,O
 0x710107a280,112,lua_bind::GetPlayerName,string,script/bindings,O
@@ -2896,7 +2896,7 @@ address,size,name,name_source,subsystem,status
 0x710107fd30,8,lua_bind::DEBUG_TEST_SetKeepKillingPlayer,string,script/bindings,O
 0x710107fd40,8,lua_bind::DEBUG_TEST_GetKeepKillingPlayer,string,script/bindings,O
 0x710107fd50,88,lua_bind::DEBUG_TEST_MakePlayerInvulnerableToEnvironment,string,script/bindings,O
-0x710107fdb0,88,lua_bind::DEBUG_TEST_IsPlayerInvulnerableToEnvironment,string,script/bindings,U
+0x710107fdb0,88,lua_bind::DEBUG_TEST_IsPlayerInvulnerableToEnvironment,string,script/bindings,O
 0x710107fe10,68,lua_bind::KillPlayer,string,script/bindings,O
 0x710107fe60,260,lua_bind::KillAllEnemies,string,script/bindings,U
 0x710107ff70,236,lua_bind::KillEmmy,string,script/bindings,O
@@ -2961,7 +2961,7 @@ address,size,name,name_source,subsystem,status
 0x71010838a0,244,lua_bind::SetCollisionCameraLocked,string,script/bindings,U
 0x71010839a0,280,lua_bind::SetCollisionCameraTransitionOverride,string,script/bindings,U
 0x7101083ac0,216,lua_bind::SetCurrentEnvironmentPreset,string,script/bindings,U
-0x7101083ba0,132,lua_bind::SetSubAreasPreferredTransitionType,string,script/bindings,U
+0x7101083ba0,132,lua_bind::SetSubAreasPreferredTransitionType,string,script/bindings,O
 0x7101083c30,376,lua_bind::SetSubAreaEnabled,string,script/bindings,U
 0x7101083db0,136,lua_bind::SetSubAreaEnvironmentLocked,string,script/bindings,U
 0x7101083e40,368,lua_bind::SetSubAreaLocked,string,script/bindings,U
@@ -3469,7 +3469,7 @@ address,size,name,name_source,subsystem,status
 0x710109e614,12,fn_710109e614,unknown,unknown,O
 0x710109e620,180,fn_710109e620,unknown,unknown,U
 0x710109e6e0,140,fn_710109e6e0,unknown,unknown,O
-0x710109e770,216,fn_710109e770,unknown,unknown,U
+0x710109e770,216,fn_710109e770,unknown,unknown,O
 0x710109e850,140,fn_710109e850,unknown,unknown,O
 0x710109e8dc,24,fn_710109e8dc,unknown,unknown,U
 0x710109e8f4,20,fn_710109e8f4,unknown,unknown,O
@@ -3946,7 +3946,7 @@ address,size,name,name_source,subsystem,status
 0x71010c4194,4,fn_71010c4194,unknown,unknown,O
 0x71010c4198,36,fn_71010c4198,unknown,unknown,O
 0x71010c41bc,4,fn_71010c41bc,unknown,unknown,O
-0x71010c41c0,104,fn_71010c41c0,unknown,unknown,U
+0x71010c41c0,104,fn_71010c41c0,unknown,unknown,O
 0x71010c4228,4,fn_71010c4228,unknown,unknown,O
 0x71010c422c,4,fn_71010c422c,unknown,unknown,O
 0x71010c4230,4,fn_71010c4230,unknown,unknown,O
@@ -4143,7 +4143,7 @@ address,size,name,name_source,subsystem,status
 0x71010caa64,168,fn_71010caa64,unknown,unknown,U
 0x71010cab0c,64,fn_71010cab0c,unknown,unknown,O
 0x71010cab4c,1436,fn_71010cab4c,unknown,unknown,U
-0x71010cb0e8,104,fn_71010cb0e8,unknown,unknown,U
+0x71010cb0e8,104,fn_71010cb0e8,unknown,unknown,O
 0x71010cb150,92,fn_71010cb150,unknown,unknown,U
 0x71010cb1ac,24,fn_71010cb1ac,unknown,unknown,O
 0x71010cb1c4,304,fn_71010cb1c4,unknown,unknown,U
@@ -4172,7 +4172,7 @@ address,size,name,name_source,subsystem,status
 0x71010cd330,24,fn_71010cd330,unknown,unknown,O
 0x71010cd348,340,fn_71010cd348,unknown,unknown,U
 0x71010cd49c,148,fn_71010cd49c,unknown,unknown,O
-0x71010cd530,164,fn_71010cd530,unknown,unknown,U
+0x71010cd530,164,fn_71010cd530,unknown,unknown,O
 0x71010cd5d4,60,fn_71010cd5d4,unknown,unknown,O
 0x71010cd610,228,fn_71010cd610,unknown,unknown,U
 0x71010cd6f4,236,fn_71010cd6f4,unknown,unknown,U
@@ -4206,7 +4206,7 @@ address,size,name,name_source,subsystem,status
 0x71010ce5f8,28,fn_71010ce5f8,unknown,unknown,O
 0x71010ce614,44,fn_71010ce614,unknown,unknown,O
 0x71010ce640,12,fn_71010ce640,unknown,unknown,O
-0x71010ce64c,168,fn_71010ce64c,unknown,unknown,U
+0x71010ce64c,168,fn_71010ce64c,unknown,unknown,O
 0x71010ce6f4,140,fn_71010ce6f4,unknown,unknown,O
 0x71010ce780,24,fn_71010ce780,unknown,unknown,O
 0x71010ce798,404,fn_71010ce798,unknown,unknown,U
@@ -4253,7 +4253,7 @@ address,size,name,name_source,subsystem,status
 0x71010d0b78,48,fn_71010d0b78,unknown,unknown,O
 0x71010d0ba8,88,fn_71010d0ba8,unknown,unknown,O
 0x71010d0c00,4,fn_71010d0c00,unknown,unknown,O
-0x71010d0c04,84,fn_71010d0c04,unknown,unknown,U
+0x71010d0c04,84,fn_71010d0c04,unknown,unknown,O
 0x71010d0c58,12,fn_71010d0c58,unknown,unknown,O
 0x71010d0c64,184,fn_71010d0c64,unknown,unknown,O
 0x71010d0d1c,140,fn_71010d0d1c,unknown,unknown,U
@@ -4314,7 +4314,7 @@ address,size,name,name_source,subsystem,status
 0x71010d4980,12,fn_71010d4980,unknown,unknown,O
 0x71010d498c,8,fn_71010d498c,unknown,unknown,O
 0x71010d4994,8,fn_71010d4994,unknown,unknown,O
-0x71010d499c,128,fn_71010d499c,unknown,unknown,U
+0x71010d499c,128,fn_71010d499c,unknown,unknown,O
 0x71010d4a20,160,fn_71010d4a20,unknown,unknown,O
 0x71010d4ac0,4,fn_71010d4ac0,unknown,unknown,O
 0x71010d4ac4,244,CPlayerMovement::CTunablePlayerMovement::refl_GetClass,reflection,game/player,O
@@ -4354,7 +4354,7 @@ address,size,name,name_source,subsystem,status
 0x71010d8798,8,fn_71010d8798,unknown,unknown,O
 0x71010d87a0,180,fn_71010d87a0,unknown,unknown,U
 0x71010d8854,1820,fn_71010d8854,unknown,unknown,U
-0x71010d8f70,92,fn_71010d8f70,unknown,unknown,U
+0x71010d8f70,92,fn_71010d8f70,unknown,unknown,O
 0x71010d8fcc,140,fn_71010d8fcc,unknown,unknown,U
 0x71010d9058,1180,fn_71010d9058,unknown,unknown,U
 0x71010d94f4,120,fn_71010d94f4,unknown,unknown,U
