@@ -164,7 +164,7 @@ address,size,name,name_source,subsystem,status
 0x7100406080,640,fn_7100406080,unknown,unknown,U
 0x7100406300,628,fn_7100406300,unknown,unknown,U
 0x7100406574,76,fn_7100406574,unknown,unknown,O
-0x71004065c0,52,fn_71004065c0,unknown,unknown,U
+0x71004065c0,52,fn_71004065c0,unknown,unknown,O
 0x71004065f4,432,fn_71004065f4,unknown,unknown,U
 0x71004067a4,220,fn_71004067a4,unknown,unknown,O
 0x7100406880,560,fn_7100406880,unknown,unknown,U
@@ -2300,7 +2300,7 @@ address,size,name,name_source,subsystem,status
 0x710046c87c,388,behaviortree::CChozoRobotSoldierPathToTargetWithSmartLinksCondition::refl_InitClass,reflection,ai/behaviortree,O
 0x710046ca00,4,fn_710046ca00,unknown,unknown,O
 0x710046ca04,36,fn_710046ca04,unknown,unknown,O
-0x710046ca28,100,fn_710046ca28,unknown,unknown,U
+0x710046ca28,100,fn_710046ca28,unknown,unknown,O
 0x710046ca8c,28,fn_710046ca8c,unknown,unknown,O
 0x710046caa8,8,fn_710046caa8,unknown,unknown,O
 0x710046cab0,8,fn_710046cab0,unknown,unknown,O
@@ -5076,7 +5076,7 @@ address,size,name,name_source,subsystem,status
 0x71004d2258,632,fn_71004d2258,unknown,unknown,U
 0x71004d24d0,348,fn_71004d24d0,unknown,unknown,m
 0x71004d262c,672,fn_71004d262c,unknown,unknown,U
-0x71004d28cc,272,fn_71004d28cc,unknown,unknown,U
+0x71004d28cc,272,fn_71004d28cc,unknown,unknown,O
 0x71004d29dc,744,fn_71004d29dc,unknown,unknown,U
 0x71004d2cc4,336,fn_71004d2cc4,unknown,unknown,U
 0x71004d2e14,392,fn_71004d2e14,unknown,unknown,U
@@ -5106,7 +5106,7 @@ address,size,name,name_source,subsystem,status
 0x71004d4e18,172,fn_71004d4e18,unknown,unknown,O
 0x71004d4ec4,1216,fn_71004d4ec4,unknown,unknown,U
 0x71004d5384,128,fn_71004d5384,unknown,unknown,O
-0x71004d5404,76,fn_71004d5404,unknown,unknown,U
+0x71004d5404,76,fn_71004d5404,unknown,unknown,O
 0x71004d5450,28,fn_71004d5450,unknown,unknown,O
 0x71004d546c,132,fn_71004d546c,unknown,unknown,O
 0x71004d54f0,8,fn_71004d54f0,unknown,unknown,O
@@ -5319,7 +5319,7 @@ address,size,name,name_source,subsystem,status
 0x71004dd95c,388,behaviortree::CDaivoEnoughAttackSpaceCondition::refl_InitClass,reflection,ai/behaviortree,O
 0x71004ddae0,4,fn_71004ddae0,unknown,ai/behaviortree?,O
 0x71004ddae4,36,fn_71004ddae4,unknown,ai/behaviortree?,O
-0x71004ddb08,100,fn_71004ddb08,unknown,ai/behaviortree?,U
+0x71004ddb08,100,fn_71004ddb08,unknown,ai/behaviortree?,O
 0x71004ddb6c,28,fn_71004ddb6c,unknown,ai/behaviortree?,O
 0x71004ddb88,8,fn_71004ddb88,unknown,ai/behaviortree?,O
 0x71004ddb90,8,fn_71004ddb90,unknown,ai/behaviortree?,O
@@ -5672,7 +5672,7 @@ address,size,name,name_source,subsystem,status
 0x71004e8ccc,388,CDropterDiveAttack::refl_InitClass,reflection,game/ai,O
 0x71004e8e50,80,fn_71004e8e50,unknown,unknown,O
 0x71004e8ea0,96,fn_71004e8ea0,unknown,unknown,O
-0x71004e8f00,132,fn_71004e8f00,unknown,unknown,U
+0x71004e8f00,132,fn_71004e8f00,unknown,unknown,O
 0x71004e8f84,1468,fn_71004e8f84,unknown,unknown,U
 0x71004e9540,1056,fn_71004e9540,unknown,unknown,U
 0x71004e9960,28,fn_71004e9960,unknown,unknown,O

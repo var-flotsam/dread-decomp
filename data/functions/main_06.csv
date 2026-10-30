@@ -1314,7 +1314,7 @@ address,size,name,name_source,subsystem,status
 0x710062f7d4,232,fn_710062f7d4,unknown,unknown,U
 0x710062f8bc,172,fn_710062f8bc,unknown,unknown,O
 0x710062f968,4,fn_710062f968,unknown,unknown,O
-0x710062f96c,92,fn_710062f96c,unknown,unknown,U
+0x710062f96c,92,fn_710062f96c,unknown,unknown,O
 0x710062f9c8,644,fn_710062f9c8,unknown,unknown,U
 0x710062fc4c,44,fn_710062fc4c,unknown,unknown,O
 0x710062fc78,28,fn_710062fc78,unknown,unknown,O
@@ -1881,7 +1881,7 @@ address,size,name,name_source,subsystem,status
 0x710064755c,772,fn_710064755c,unknown,ai/behaviortree?,U
 0x7100647860,4,fn_7100647860,unknown,ai/behaviortree?,O
 0x7100647864,1220,fn_7100647864,unknown,ai/behaviortree?,U
-0x7100647d28,148,fn_7100647d28,unknown,ai/behaviortree?,U
+0x7100647d28,148,fn_7100647d28,unknown,ai/behaviortree?,O
 0x7100647dbc,28,fn_7100647dbc,unknown,ai/behaviortree?,O
 0x7100647dd8,36,fn_7100647dd8,unknown,ai/behaviortree?,O
 0x7100647dfc,8,fn_7100647dfc,unknown,ai/behaviortree?,O
@@ -2654,7 +2654,7 @@ address,size,name,name_source,subsystem,status
 0x710066ab68,896,fn_710066ab68,unknown,unknown,U
 0x710066aee8,236,fn_710066aee8,unknown,unknown,U
 0x710066afd4,1420,fn_710066afd4,unknown,unknown,U
-0x710066b560,216,fn_710066b560,unknown,unknown,U
+0x710066b560,216,fn_710066b560,unknown,unknown,O
 0x710066b638,4096,fn_710066b638,unknown,unknown,U
 0x710066c638,308,fn_710066c638,unknown,unknown,U
 0x710066c76c,68,fn_710066c76c,unknown,unknown,O
@@ -3515,7 +3515,7 @@ address,size,name,name_source,subsystem,status
 0x7100686d3c,388,CScorpiusDefensiveSpikeBallPrickAttack::refl_InitClass,reflection,game/ai,O
 0x7100686ec0,68,fn_7100686ec0,unknown,game/ai?,O
 0x7100686f04,96,fn_7100686f04,unknown,game/ai?,O
-0x7100686f64,164,fn_7100686f64,unknown,game/ai?,U
+0x7100686f64,164,fn_7100686f64,unknown,game/ai?,O
 0x7100687008,212,fn_7100687008,unknown,game/ai?,U
 0x71006870dc,148,fn_71006870dc,unknown,game/ai?,U
 0x7100687170,264,fn_7100687170,unknown,game/ai?,U
@@ -3541,7 +3541,7 @@ address,size,name,name_source,subsystem,status
 0x7100687bac,388,CScorpiusDraggedBallPrickAttack::refl_InitClass,reflection,game/ai,O
 0x7100687d30,48,fn_7100687d30,unknown,game/ai?,O
 0x7100687d60,96,fn_7100687d60,unknown,game/ai?,O
-0x7100687dc0,80,fn_7100687dc0,unknown,game/ai?,U
+0x7100687dc0,80,fn_7100687dc0,unknown,game/ai?,O
 0x7100687e10,4,fn_7100687e10,unknown,game/ai?,O
 0x7100687e14,4,fn_7100687e14,unknown,game/ai?,O
 0x7100687e18,4,fn_7100687e18,unknown,game/ai?,O
@@ -3593,7 +3593,7 @@ address,size,name,name_source,subsystem,status
 0x71006898fc,388,CScorpiusPoisonousGasAttack::refl_InitClass,reflection,game/ai,O
 0x7100689a80,72,fn_7100689a80,unknown,game/ai?,O
 0x7100689ac8,96,fn_7100689ac8,unknown,game/ai?,O
-0x7100689b28,224,fn_7100689b28,unknown,game/ai?,U
+0x7100689b28,224,fn_7100689b28,unknown,game/ai?,O
 0x7100689c08,4,fn_7100689c08,unknown,game/ai?,O
 0x7100689c0c,316,fn_7100689c0c,unknown,game/ai?,U
 0x7100689d48,60,fn_7100689d48,unknown,game/ai?,O
@@ -3646,7 +3646,7 @@ address,size,name,name_source,subsystem,status
 0x710068b66c,388,CScorpiusSpikeBallPrickAttack::refl_InitClass,reflection,game/ai,O
 0x710068b7f0,56,fn_710068b7f0,unknown,game/ai?,O
 0x710068b828,96,fn_710068b828,unknown,game/ai?,O
-0x710068b888,56,fn_710068b888,unknown,game/ai?,U
+0x710068b888,56,fn_710068b888,unknown,game/ai?,O
 0x710068b8c0,108,fn_710068b8c0,unknown,game/ai?,O
 0x710068b92c,4,fn_710068b92c,unknown,game/ai?,O
 0x710068b930,112,fn_710068b930,unknown,game/ai?,O
@@ -3696,7 +3696,7 @@ address,size,name,name_source,subsystem,status
 0x710068c69c,388,CScorpiusWhiplashAttack::refl_InitClass,reflection,game/ai,O
 0x710068c820,48,fn_710068c820,unknown,unknown,O
 0x710068c850,96,fn_710068c850,unknown,unknown,O
-0x710068c8b0,80,fn_710068c8b0,unknown,unknown,U
+0x710068c8b0,80,fn_710068c8b0,unknown,unknown,O
 0x710068c900,76,fn_710068c900,unknown,unknown,O
 0x710068c94c,4,fn_710068c94c,unknown,unknown,O
 0x710068c950,4,fn_710068c950,unknown,unknown,O
@@ -5224,7 +5224,7 @@ address,size,name,name_source,subsystem,status
 0x71006d6964,388,behaviortree::CIsVulkranFrenziedCondition::refl_InitClass,reflection,ai/behaviortree,O
 0x71006d6ae8,4,fn_71006d6ae8,unknown,ai/behaviortree?,O
 0x71006d6aec,36,fn_71006d6aec,unknown,ai/behaviortree?,O
-0x71006d6b10,164,fn_71006d6b10,unknown,ai/behaviortree?,U
+0x71006d6b10,164,fn_71006d6b10,unknown,ai/behaviortree?,O
 0x71006d6bb4,28,fn_71006d6bb4,unknown,ai/behaviortree?,O
 0x71006d6bd0,8,fn_71006d6bd0,unknown,ai/behaviortree?,O
 0x71006d6bd8,8,fn_71006d6bd8,unknown,ai/behaviortree?,O
@@ -6030,7 +6030,7 @@ address,size,name,name_source,subsystem,status
 0x71006fbc80,36,fn_71006fbc80,unknown,unknown,O
 0x71006fbca4,12,fn_71006fbca4,unknown,unknown,O
 0x71006fbcb0,324,fn_71006fbcb0,unknown,unknown,U
-0x71006fbdf4,96,fn_71006fbdf4,unknown,unknown,U
+0x71006fbdf4,96,fn_71006fbdf4,unknown,unknown,O
 0x71006fbe54,1328,fn_71006fbe54,unknown,unknown,U
 0x71006fc384,4,fn_71006fc384,unknown,unknown,O
 0x71006fc388,4,fn_71006fc388,unknown,unknown,O

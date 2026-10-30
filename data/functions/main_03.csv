@@ -2984,7 +2984,7 @@ address,size,name,name_source,subsystem,status
 0x710039a84c,388,behaviortree::CPathToTargetWithSmartLinksCondition::refl_InitClass,reflection,ai/behaviortree,O
 0x710039a9d0,4,fn_710039a9d0,unknown,ai/behaviortree?,O
 0x710039a9d4,36,fn_710039a9d4,unknown,ai/behaviortree?,O
-0x710039a9f8,100,fn_710039a9f8,unknown,ai/behaviortree?,U
+0x710039a9f8,100,fn_710039a9f8,unknown,ai/behaviortree?,O
 0x710039aa5c,28,fn_710039aa5c,unknown,ai/behaviortree?,O
 0x710039aa78,8,fn_710039aa78,unknown,ai/behaviortree?,O
 0x710039aa80,8,fn_710039aa80,unknown,ai/behaviortree?,O
@@ -3310,7 +3310,7 @@ address,size,name,name_source,subsystem,status
 0x71003a18b4,244,behaviortree::CIsGrappled::refl_GetClass,reflection,ai/behaviortree,O
 0x71003a19a8,4,fn_71003a19a8,unknown,ai/behaviortree?,O
 0x71003a19ac,388,behaviortree::CIsGrappled::refl_InitClass,reflection,ai/behaviortree,O
-0x71003a1b30,108,fn_71003a1b30,unknown,ai/behaviortree?,U
+0x71003a1b30,108,fn_71003a1b30,unknown,ai/behaviortree?,O
 0x71003a1b9c,28,fn_71003a1b9c,unknown,ai/behaviortree?,O
 0x71003a1bb8,36,fn_71003a1bb8,unknown,ai/behaviortree?,O
 0x71003a1bdc,8,fn_71003a1bdc,unknown,ai/behaviortree?,O
