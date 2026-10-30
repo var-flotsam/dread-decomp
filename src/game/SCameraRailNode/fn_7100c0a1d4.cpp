@@ -34,3 +34,36 @@ UnkIndexedEntry* fn_7100c07b70(UnkIndexedEntry* self, UnkIndexedEntry&& other) {
         *self = static_cast<UnkIndexedEntry&&>(other);
     return self;
 }
+
+// The same for entries whose array holds 0x20-byte polymorphic elements: fn_710105ef34 (stored under
+// an index, fn_710105f810 finds or makes it) and fn_710105cfe8.
+struct UnkElem20 {
+    virtual void vf_0x0();
+    virtual ~UnkElem20();
+    u8 unk_0x8[0x18];
+};
+
+struct UnkIndexedEntry20 {
+    u64 field_0x0;
+    base::UnkVector<UnkElem20> items;
+    bool field_0x30;
+
+    UnkIndexedEntry20& operator=(UnkIndexedEntry20&& other) {
+        items = static_cast<base::UnkVector<UnkElem20>&&>(other.items);
+        field_0x30 = other.field_0x30;
+        return *this;
+    }
+};
+
+struct UnkIndexedTable20;
+UnkIndexedEntry20* fn_710105f810(UnkIndexedTable20* self, u32 index);
+
+void fn_710105ef34(UnkIndexedTable20* self, const u32* index, UnkIndexedEntry20&& value) {
+    *fn_710105f810(self, *index) = static_cast<UnkIndexedEntry20&&>(value);
+}
+
+UnkIndexedEntry20* fn_710105cfe8(UnkIndexedEntry20* self, UnkIndexedEntry20&& other) {
+    if (self != &other)
+        *self = static_cast<UnkIndexedEntry20&&>(other);
+    return self;
+}

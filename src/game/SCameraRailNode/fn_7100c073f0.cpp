@@ -56,3 +56,15 @@ void fn_7100c04134(UnkElem50Owner* self, u32 n) {
     self->elems.Reserve(n);
     self->field_0x44 = true;
 }
+
+// The same reserve for an owner whose flag follows the array (at 0x38): fn_7101059e5c.
+struct UnkElem50Owner38 {
+    u8 unk_0x0[0x10];
+    base::UnkVector<UnkElem50> elems;
+    bool field_0x38;
+};
+
+void fn_7101059e5c(UnkElem50Owner38* self, u32 n) {
+    self->elems.Reserve(n);
+    self->field_0x38 = true;
+}
