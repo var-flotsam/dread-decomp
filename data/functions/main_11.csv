@@ -2312,7 +2312,7 @@ address,size,name,name_source,subsystem,status
 0x71011a3574,416,fn_71011a3574,unknown,unknown,U
 0x71011a3714,840,fn_71011a3714,unknown,unknown,U
 0x71011a3a5c,792,fn_71011a3a5c,unknown,unknown,U
-0x71011a3d74,188,fn_71011a3d74,unknown,unknown,U
+0x71011a3d74,188,fn_71011a3d74,unknown,unknown,m
 0x71011a3e30,108,fn_71011a3e30,unknown,unknown,O
 0x71011a3e9c,80,fn_71011a3e9c,unknown,unknown,O
 0x71011a3eec,244,fn_71011a3eec,unknown,unknown,O

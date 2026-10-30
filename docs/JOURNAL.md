@@ -131,6 +131,17 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Night round 10: a keyed reserve and copies of round 9 (2026-10-30, branch `claude/project-thread-lths9k-night10`).**
+4 functions to `O` and 2 boot hubs to minor. Boot slice: `O` 2,085 to 2,086, usable 40.34% to 40.39%. `O`: fn_7100015378 (the
+reserve of a keyed array of 0x40-byte records) and three copies a fresh `tools/nearcopy.py` pass found of round 9's functions
+(the input reset, the capsule move, the tile update with its own callee). Minor: the scenario's start-point search
+(fn_71011a3d74, a duplicated epilogue) and the input component's listener append (fn_7100872860, block layout).
+- **Words that may alias.** The keyed reserve copies each record as sixteen words and rereads the array's fields after
+  them; typing the words `__attribute__((may_alias))` gives both the reloads and the original's registers (a plain `u32`
+  rereads only the count).
+- Tried and left (`build/stuck.txt` on the machine that ran it): derived constructors over unit 1124's base and a box array
+  resize, where the stores and copies come out in another order.
+
 **Night round 9: boot-slice leaves, continued (2026-10-30, branch `claude/project-thread-lths9k-night9`).**
 7 boot-slice functions to `O` and 4 to minor. Boot slice: `O` 2,078 to 2,085 functions, 30.09% to 30.13%; usable 40.29% to
 40.34%. `O`: the GUI root's frame lookup (fn_71011b7a4c), two box shapes' moves, the render manager's view rectangle read
