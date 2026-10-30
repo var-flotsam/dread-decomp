@@ -2430,8 +2430,8 @@ address,size,name,name_source,subsystem,status
 0x7100664c94,8,fn_7100664c94,unknown,unknown,O
 0x7100664c9c,28,fn_7100664c9c,unknown,unknown,O
 0x7100664cb8,48,fn_7100664cb8,unknown,unknown,O
-0x7100664ce8,68,fn_7100664ce8,unknown,unknown,U
-0x7100664d2c,68,fn_7100664d2c,unknown,unknown,U
+0x7100664ce8,68,fn_7100664ce8,unknown,unknown,O
+0x7100664d2c,68,fn_7100664d2c,unknown,unknown,O
 0x7100664d70,12,fn_7100664d70,unknown,unknown,O
 0x7100664d7c,44,fn_7100664d7c,unknown,unknown,U
 0x7100664da8,44,fn_7100664da8,unknown,unknown,U
