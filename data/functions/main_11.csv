@@ -2726,7 +2726,7 @@ address,size,name,name_source,subsystem,status
 0x71011be400,244,GUI::CButton::refl_GetClass,reflection,gui,O
 0x71011be4f4,2712,fn_71011be4f4,unknown,gui?,O
 0x71011bef8c,352,GUI::CButton::refl_InitClass,reflection,gui,O
-0x71011bf0ec,184,fn_71011bf0ec,unknown,unknown,U
+0x71011bf0ec,184,fn_71011bf0ec,unknown,unknown,O
 0x71011bf1a4,420,fn_71011bf1a4,unknown,unknown,O
 0x71011bf348,36,fn_71011bf348,unknown,unknown,O
 0x71011bf36c,52,fn_71011bf36c,unknown,unknown,O
