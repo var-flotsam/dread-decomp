@@ -1,6 +1,8 @@
 // GUI::CDisplayObject's unit (the class name from reflection; layout in game/UnkGuiDisplayObject.h):
 // applying a list of 0x18-byte entries to an object one by one, each through an iterator over the
 // list, and telling the object once if any of them changed it. Names are placeholders.
+#include <new>
+
 #include "game/UnkGuiDisplayObject.h"
 #include "types.h"
 
@@ -85,4 +87,119 @@ bool fn_71011ceb34(UnkGuiDisplayObject* self) {
     if (view->field_0x30)
         return !view->field_0x30->field_0x11;
     return false;
+}
+
+// ---- fn_71011cce1c: the constructor ----
+
+#include "base/global/CStrId.h"
+
+using base::global::CStrId;
+
+// A display state (the 0x40 bytes of src/game/UnkGuiItemState.cpp): no anchoring, no angle, unit
+// size and scale, depth 0, white, the parent's frame (INT32_MAX), active and shown.
+struct UnkGuiStateInit {
+    u32 anchor[4];
+    f32 angle;
+    f32 width;
+    f32 height;
+    f32 scale_x;
+    f32 scale_y;
+    f32 depth;
+    f32 color[4];
+    s32 frame;
+    bool field_0x3c;
+    bool field_0x3d;
+    bool field_0x3e;
+    u8 pad_0x3f;
+};
+
+extern char g_unk_7101cb5b90[];  // CDisplayObject's vtable
+void fn_7101043904(void* self);  // the base's constructor
+void fn_7100b1df48(void* slots);  // the slots at +0xb8 (game/UnkRenderPassSlots.h)
+void fn_710007e6c4(void* self);  // an empty CRntString
+
+struct UnkGuiDisplayObjectInit {
+    char* vtable;
+    u8 base_0x8[0x8];
+    bool field_0x10;
+    u8 pad_0x11[0x7];
+    CStrId field_0x18;
+    CStrId field_0x20;
+    u64 field_0x28[2];
+    UnkGuiStateInit state;    // 0x38
+    UnkGuiStateInit derived;  // 0x78
+    u8 slots[0x48];           // 0xb8
+    u32 field_0x100;
+    u8 pad_0x104[0x1c];
+    u64 field_0x120;
+    u64 field_0x128;
+    base::global::UnkStringData* field_0x130;  // an empty string id
+    u8 pad_0x138[0x4];
+    u32 field_0x13c;
+    u8 pad_0x140[0x4];
+    s32 field_0x144;
+    u64 field_0x148;
+    u8 name[0x30];  // 0x150
+    u8 field_0x180;
+    u8 field_0x181;
+    u8 field_0x182;
+    u8 field_0x183;
+    u8 field_0x184;
+    u8 pad_0x185;
+    u16 field_0x186;
+    u8 field_0x188;
+};
+static_assert(__builtin_offsetof(UnkGuiDisplayObjectInit, field_0x188) == 0x188, "UnkGuiDisplayObjectInit layout");
+
+static inline void InitState(UnkGuiStateInit* s) {
+    s->anchor[0] = 0;
+    s->anchor[1] = 0;
+    s->anchor[2] = 0;
+    s->anchor[3] = 0;
+    s->angle = 0.0f;
+    s->width = 1.0f;
+    s->height = 1.0f;
+    s->scale_x = 1.0f;
+    s->scale_y = 1.0f;
+    s->depth = 0.0f;
+    s->color[0] = 1.0f;
+    s->color[1] = 1.0f;
+    s->color[2] = 1.0f;
+    s->color[3] = 1.0f;
+    s->frame = 0x7fffffff;
+    s->field_0x3c = true;
+    s->field_0x3d = true;
+    s->field_0x3e = false;
+}
+
+void fn_71011cce1c(UnkGuiDisplayObject* object) {
+    auto* self = reinterpret_cast<UnkGuiDisplayObjectInit*>(object);
+    fn_7101043904(self);
+    self->vtable = g_unk_7101cb5b90 + 0x10;
+    self->field_0x10 = false;
+    new (&self->field_0x18) CStrId("", true);
+    new (&self->field_0x20) CStrId("", true);
+    self->field_0x28[0] = 0;
+    self->field_0x28[1] = 0;
+    InitState(&self->state);
+    InitState(&self->derived);
+    fn_7100b1df48(self->slots);
+    self->field_0x100 = 0;
+    self->field_0x130 = nullptr;
+    self->field_0x120 = 0;
+    self->field_0x128 = 0;
+    if (!g_unk_7101d47108)
+        base::global::UnkEnsureStringPool();
+    self->field_0x13c = 0;
+    self->field_0x130 = &g_unk_7101d47108->empty;
+    self->field_0x144 = -1;
+    self->field_0x148 = 0;
+    fn_710007e6c4(self->name);
+    self->field_0x180 = 0;
+    self->field_0x181 = 0;
+    self->field_0x182 = 0;
+    self->field_0x183 = 1;
+    self->field_0x184 = 1;
+    self->field_0x186 = 1;
+    self->field_0x188 = 0;
 }

@@ -121,3 +121,9 @@ bool fn_71011d968c(UnkGuiDisplayObject* container, UnkGuiDisplayObject* child);
 
 // The child of the container whose name hash is `id`, from the list at +0x1d0, or null. Not decompiled yet.
 UnkGuiDisplayObject* fn_71011d98ec(UnkGuiDisplayObject* container, u64 id);
+
+// GUI::CDisplayObject's constructor: the base's, the vtable, two empty ids, the display state and its
+// derived copy (unit sizes and scale, white, active and shown), the render slots at +0xb8, an empty
+// id at +0x130 and the name at +0x150 (src/game/GUI/CDisplayObject.cpp). The other display objects'
+// constructors start with it.
+void fn_71011cce1c(UnkGuiDisplayObject* self);
