@@ -3514,7 +3514,7 @@ address,size,name,name_source,subsystem,status
 0x7100d7babc,436,fn_7100d7babc,unknown,unknown,U
 0x7100d7bc70,88,fn_7100d7bc70,unknown,unknown,U
 0x7100d7bcc8,320,fn_7100d7bcc8,unknown,unknown,U
-0x7100d7be08,44,fn_7100d7be08,unknown,unknown,U
+0x7100d7be08,44,fn_7100d7be08,unknown,unknown,O
 0x7100d7be34,24,fn_7100d7be34,unknown,unknown,O
 0x7100d7be4c,84,fn_7100d7be4c,unknown,unknown,O
 0x7100d7bea0,884,fn_7100d7bea0,unknown,unknown,U

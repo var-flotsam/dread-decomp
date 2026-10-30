@@ -25,3 +25,15 @@ s32 fn_710086427c(UnkCollisionContainer* self, const UnkCollisionObject* object)
             return i;
     return -1;
 }
+
+// The second id of the object's record, or the global empty id.
+const base::global::CStrId* fn_7100864018(UnkCollisionContainer* self, const UnkCollisionObject* object) {
+    if (object) {
+        for (u32 i = 0; i < self->records.count; ++i) {
+            UnkCollisionRecord& record = self->records.data[i];
+            if (record.field_0x28 == object)
+                return reinterpret_cast<const base::global::CStrId*>(&record.field_0x8);
+        }
+    }
+    return &g_unk_7101d470e0;
+}
