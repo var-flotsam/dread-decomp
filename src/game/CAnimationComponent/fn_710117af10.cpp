@@ -1,6 +1,9 @@
-// Returns whether any listed object's class name contains the given class's name (optionally skipping objects that report busy).
+// Returns whether any listed object's class name contains the given class's name (optionally skipping
+// objects that report busy); the name id of a track by its name hash (fn_7101177ae8) and whether that
+// track reports busy (fn_71011782ec).
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/UnkAnimationComponent.h"
 #include "types.h"
 
 struct UnkClsStr_710117af10 {
@@ -57,4 +60,30 @@ bool fn_710117af10(UnkStruct_710117af10* self, UnkCls_710117af10** name, bool sk
         return true;
     }
     return false;
+}
+
+// The name id of the track whose name hash is `key` (what fn_710070d7f8 gives for it), or the
+// global empty id when there is no such entry or track.
+const base::global::CStrId* fn_7101177ae8(UnkAnimationComponent* self, u64 key) {
+    UnkTrackSet* set = self->field_0x40;
+    UnkTrackEntry** it = set->field_0xc8.Find(key);
+    if (it == set->field_0xc8.End())
+        return &g_unk_7101d470e0;
+    UnkTrackEntry* entry = *it;
+    if (entry && entry->field_0x70)
+        return reinterpret_cast<const base::global::CStrId*>(
+            fn_710070d7f8(reinterpret_cast<UnkObj_710117af10*>(entry->field_0x70)));
+    return &g_unk_7101d470e0;
+}
+
+// Whether the track whose name hash is `key` reports busy (fn_710070d830). The entry is not checked:
+// a missing key reads the slot past the last one, as in the original.
+bool fn_71011782ec(UnkAnimationComponent* self, u64 key) {
+    UnkTrackLookup& lookup = self->field_0x40->field_0xc8;
+    u32 count = lookup.count;
+    u64 i = 0;
+    for (; i != count; ++i)
+        if (lookup.keys[i] == key)
+            break;
+    return fn_710070d830(reinterpret_cast<UnkObj_710117af10*>(lookup.values[i]->field_0x70));
 }

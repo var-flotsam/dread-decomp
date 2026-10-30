@@ -131,6 +131,18 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Night round 18: more widely called hubs (2026-10-30, branch `claude/project-thread-lths9k-night18`, on round 17).**
+6 functions to `O` and 1 to minor, from the whole-binary ready list by caller count. Boot slice: `O` 2,151 to 2,153 (30.59%),
+usable 40.93%; whole binary `O` 85,390 to 85,396 (54.95%), usable 57.45%. `O`: the animation component's track name id
+(fn_7101177ae8, 53 callers) and action word (fn_7101177d2c, 44) by name hash and whether a track reports busy
+(fn_71011782ec, 24), the timeline component's resource entry for an id (fn_7100a2c13c, 35), the rotation of a vector about z
+keeping its z (fn_710007a390, 27) and the movement component's flying-track test (fn_71010d0e38, 24). Minor: CFrozenComponent's
+frozen test (fn_71007f9f20, 86 callers; the original keeps the owner load in each arm).
+- **A cast used unchecked.** The timeline lookup dereferences the result of a class cast that may be null; without an `asm`
+  pin Clang drops the cast's select (the same pin as round 12's GUI frame search).
+- **A missing key read past the end.** fn_71011782ec indexes the entry it found or the slot past the last one; an index loop
+  with `!=` against the count loaded once gives the original's shape.
+
 **Night round 17: hubs outside the boot slice (2026-10-30, branch `claude/project-thread-lths9k-night17`, on round 16).**
 4 functions to `O` and 3 to minor, chosen by caller count from the whole-binary ready list (`tools/hubs.py --ready`, no boot
 filter). Boot slice: `O` 2,150 to 2,151 (30.58%), usable 40.91%; whole binary `O` 85,384 to 85,390 (54.95%), usable 57.44%.
