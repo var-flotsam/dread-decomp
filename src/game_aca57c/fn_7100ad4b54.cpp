@@ -308,3 +308,14 @@ UnkReflValue fn_7100a057d0(void* unused, UnkArgument<UnkFlagSource>* argument) {
 UnkReflValue fn_7100f0f32c(void* unused, UnkArgument<bool>* argument) { return CallPartGetOne<0x150>(argument); }
 UnkReflValue fn_7100f0f380(void* unused, UnkArgument<bool>* argument) { return CallPartGetOne<0x180>(argument); }
 UnkReflValue fn_7100f0f3d4(void* unused, UnkArgument<bool>* argument) { return CallPartGetOne<0x1b8>(argument); }
+
+// Whether the argument's object has a non-zero word at +0x710 (fn_71010dced0).
+struct UnkCountObject {
+    u8 unk_0x0[0x710];
+    s32 field_0x710;
+};
+
+UnkReflValue fn_71010dced0(void* unused, UnkArgument<UnkCountObject>* argument) {
+    bool value = argument->field_0x8->field_0x710 != 0;
+    return MakeValue(fn_710000d228(), &value);
+}
