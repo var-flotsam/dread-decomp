@@ -34,3 +34,35 @@ void fn_71000a18d4(UnkReflValue* out, const CType* type, const void* value, u32 
         type->m_fn_0x30(out, value);
     }
 }
+
+// Makes `value` a default-constructed value of `type`: the old value is destroyed first (CType slot
+// 0x40; a block from the default allocator is freed after), then the type's constructor (slot 0x28)
+// runs inline when the value fits in 8 bytes, else in a new block. A type without a constructor
+// leaves the value empty.
+void fn_71000a2014(UnkReflValue* value, const CType* type) {
+    if (auto* old = reinterpret_cast<const CType*>(value->type)) {
+        if (value->field_0x14 == 0) {
+            if (old->m_size > 8) {
+                old->m_fn_0x40(value->field_0x0);
+                fn_7100083990()->vf_0x48(value->field_0x0);
+            } else {
+                old->m_fn_0x40(value);
+            }
+        }
+        value->type = nullptr;
+    }
+    if (!type->m_fn_0x28)
+        return;
+    // Stored as a plain pointer: the constructor is reloaded after this store.
+    *reinterpret_cast<const CType**>(&value->type) = type;
+    value->field_0x14 = 0;
+    u64 size = type->m_size;
+    if (size > 8) {
+        void* block = fn_7100083990()->vf_0x40(size, 8, value->kind);
+        value->field_0x0 = block;
+        if (block)
+            reinterpret_cast<void (*)(void*)>(type->m_fn_0x28)(block);
+    } else {
+        reinterpret_cast<void (*)(void*)>(type->m_fn_0x28)(value);
+    }
+}
