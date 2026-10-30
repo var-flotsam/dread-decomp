@@ -23,7 +23,8 @@ struct UnkNavMeshEdge {
 static_assert(sizeof(UnkNavMeshEdge) == 0x38, "UnkNavMeshEdge layout");
 
 struct UnkNavMeshCell {
-    u8 pad_0x0[0x10];
+    u8 pad_0x0[0x8];
+    u16* vertices;  // +0x8, the vertex ids
     u8 field_0x10;  // the number of sides (fn_71002afe60 reads the whole word)
     u8 pad_0x11[0x1f];
     UnkNavMeshEdge* edges;  // +0x30
@@ -40,6 +41,23 @@ extern UnkNavMeshEdge g_unk_71726a4ae8;
 // with the read-only twin fn_71002afc34 (the same code).
 UnkNavMeshEdge* fn_71002afbe4(UnkNavMeshCell* cell, const u8* index);
 const UnkNavMeshEdge* fn_71002afc34(const UnkNavMeshCell* cell, const u8* index);
+
+// The vertex ids at either end of a side (0xffff, 0xffff when there is no such side). Returned in
+// memory, as the callers' copy constructor makes it.
+struct UnkNavMeshSidePair {
+    union {
+        u32 raw;  // both ids at once (all ones when there is no side)
+        struct {
+            u16 a;
+            u16 b;
+        };
+    };
+    UnkNavMeshSidePair() {}
+    UnkNavMeshSidePair(const UnkNavMeshSidePair&);
+};
+
+// The vertex pair of side `*index` (src/game/UnkNavMeshCell.cpp).
+UnkNavMeshSidePair fn_71002afe60(UnkNavMeshCell* cell, u8* index);
 
 // A test on a cell (unit 367 too); callers skip cells it rejects.
 bool fn_71002b005c(UnkNavMeshCell* cell);

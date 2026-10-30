@@ -41,3 +41,37 @@ tail:
     self->field_0x50 = 0;
     self->field_0x58 = 0;
 }
+
+// ---- fn_7100087850: whether the registry has an entry for a path ----
+
+// A word set to zero on first use (a header static: guard and word reached through the GOT).
+struct UnkRegistryZeroWord {
+    u32 value;
+    UnkRegistryZeroWord() { value = 0; }
+};
+inline UnkRegistryZeroWord& UnkRegistryDefaultWord() {
+    static UnkRegistryZeroWord s_word;
+    return s_word;
+}
+
+// What the registry's lookup (vf_0x20) fills in: whether the key was found, a word, and more the
+// caller leaves unset (0x30 bytes in all).
+struct UnkRegistryLookup {
+    bool found;
+    u32 field_0x4;
+    u8 unk_0x8[0x28];
+};
+
+struct UnkRegistryVtable {
+    void* slots[4];
+    void (*lookup)(UnkRegistry_0x70* self, const UnkStrPair_0x10* key, UnkRegistryLookup* out, const u32* in);
+};
+
+bool fn_7100087850(UnkRegistry_0x70* self, const UnkStrPair_0x10* key) {
+    UnkRegistryLookup result;
+    result.found = false;
+    result.field_0x4 = 0;
+    alignas(8) u32 in = UnkRegistryDefaultWord().value;
+    static_cast<UnkRegistryVtable*>(self->vtable)->lookup(self, key, &result, &in);
+    return result.found;
+}

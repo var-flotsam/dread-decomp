@@ -26,7 +26,6 @@ struct UnkStrPair_0x10 {
 };
 
 void fn_710008d4c0(UnkStrPair_0x10* s, const UnkEntry_0x30* e);
-bool fn_7100087850(UnkRegistry_0x70* r, const UnkStrPair_0x10* s);
 extern UnkRegistry_0x70* g_unk_7101d4b5a0;
 
 // The file read into memory: the in-memory file (constructed by fn_710007be8c, destroyed by

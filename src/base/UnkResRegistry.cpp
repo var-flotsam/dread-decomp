@@ -240,3 +240,77 @@ void fn_71000e9c78(UnkResRegistry* self) {
     fn_7100016b80(self->field_0x118);
     fn_71000e9f00(self->field_0x148, 10, 0, 0x13, nullptr);
 }
+
+// ---- fn_71000ead80: the resource a key names ----
+
+// A counted resource (base/UnkCountedResource.h) whose count is accessed as a plain word.
+struct UnkPlainCountedRes {
+    u8 unk_0x0[0x54];
+    s32 ref_count;
+};
+
+// The resource already loaded under `key`, counted (null when there is none).
+UnkResRef fn_71000eac38(UnkResRegistry* self, const UnkResKey* key);
+// Loads the resource `key` names (null when it can't), uncounted.
+UnkCountedResource* fn_71000eaf20(UnkResRegistry* self, const UnkResKey* key, u8 flag, void* a);
+
+// The record of `key`'s type, or the slot past the last one: the names and the records walked
+// together.
+static inline UnkResDesc* FindDesc(UnkResRegistry* self, const UnkResKey* key) {
+    UnkResDescArrays& d = self->descs;
+    for (u64 i = 0; i < d.count; ++i)
+        if (d.names[i].data == key->type.data)
+            return &d.descs[i];
+    return &d.descs[d.count];
+}
+
+// The index of `key`'s type's record, or the count.
+static inline u64 FindDescIndex(UnkResRegistry* self, const UnkResKey* key) {
+    UnkResDescArrays& d = self->descs;
+    u64 i = 0;
+    for (; i < d.count; ++i)
+        if (d.names[i].data == key->type.data)
+            break;
+    return i;
+}
+
+// The resource `key` names: the loaded one, else a newly loaded one, else (when the type's record
+// names another key) that key's resource.
+// NON_MATCHING(minor): same behaviour; when the other key's resource is taken, the original stores
+// the incremented count before storing the result and then the decremented one; ours drops the
+// first store (93%, one store and the register holding the incremented count).
+UnkResRef fn_71000ead80(UnkResRegistry* self, const UnkResKey* key, u8 flag, void* a) {
+    UnkResRef result = fn_71000eac38(self, key);
+    if (!result.ptr) {
+        if (UnkCountedResource* res = fn_71000eaf20(self, key, flag, a)) {
+            ++res->ref_count;
+            result.ptr = res;
+        } else {
+            UnkResDesc* desc = FindDesc(self, key);
+            if (desc->name.data != &g_unk_7101d47108->empty && desc->field_0x18.data != &g_unk_7101d47200->empty) {
+                desc = &self->descs.descs[FindDescIndex(self, key)];
+                if (desc->name.data != key->type.data || desc->field_0x18.data != key->path.data) {
+                    // The other key's resource, copied into the result and released as the temporary.
+                    // In this unit the count is a plain word: it is not reread after the result is
+                    // stored. The temporary is held in a union so that its destructor (which reads the
+                    // count as a union member) does not run.
+                    union Temporary {
+                        UnkResRef ref;
+                        Temporary() {}
+                        ~Temporary() {}
+                    } temporary;
+                    UnkResRef& other = temporary.ref;
+                    new (&other) UnkResRef(fn_71000ead80(self, reinterpret_cast<const UnkResKey*>(&desc->name), flag, a));
+                    auto* p = reinterpret_cast<UnkPlainCountedRes*>(other.ptr);
+                    if (p) {
+                        ++p->ref_count;
+                        result.ptr = other.ptr;
+                    }
+                    if (p && --p->ref_count == 0)
+                        fn_710001737c(other.ptr);
+                }
+            }
+        }
+    }
+    return result;
+}

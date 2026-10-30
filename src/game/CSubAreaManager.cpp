@@ -274,7 +274,6 @@ CFilePathStrId fn_7100e01d98(UnkGameManager* self, const CStrId& scenario, const
 // The extension of the file read last.
 extern CStrId g_unk_71729daef0 __attribute__((visibility("hidden")));
 
-bool fn_7100087850(UnkRegistry_0x70* r, const UnkStrPair_0x10* s);
 extern UnkRegistry_0x70* g_unk_7101d4b5a0;
 
 // An id built from a string out of line, released like CStrId.
