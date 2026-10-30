@@ -143,6 +143,9 @@ FTOINT = {"fcvtzs": "", "fcvtzu": "", "fcvtms": "__builtin_floor{s}", "fcvtmu": 
 # right after the check that belong to the helper. Their definitions are in HEADER (namespace
 # lift_guard), written like those in include/ (UnkReflStatics.h, CStrId.h).
 GUARD_ACQUIRE = 0x7101238da0  # __cxa_guard_acquire
+# Imports (mangled) that return a class object through x8: no facts (abi_facts knows the C
+# library by name only), yet the caller passes the result's address in x8 (71007ab7d8).
+SRET_IMPORTS = frozenset(f"_ZNSt3__19to_stringE{c}" for c in "ijlmxyfde")
 DSO_HANDLE = 0x7101a19000  # __dso_handle (passed to __cxa_atexit): an address, not the string ""
 GUARDS = {
     0x7101cba070: ("lift_guard::EnsureStringPool();", [0x710007fdb4]),
@@ -1065,6 +1068,8 @@ class Lifter:
         if self.facts is None or ("semantic" not in self.opts and self.plain):
             return False
         f = self.facts(a)
+        if f is None and "semantic" in self.opts and self.orig.plt_import(a) in SRET_IMPORTS:
+            return True  # (an import that returns a class object: std::to_string's std::string)
         if f is None or not f.sret:
             return False
         self.passed |= "semantic" not in self.opts
