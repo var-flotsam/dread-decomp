@@ -131,6 +131,26 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Night round 11: boot leaves, small lookups and helpers (2026-10-30, branch `claude/project-thread-lths9k-night11`).**
+27 functions to `O` and 2 to minor, all boot-slice leaves from `tools/hubs.py --ready --boot`. Boot slice: `O` 2,086 to
+2,113, usable 40.39% to 40.58%; whole binary `O` 85,316 to 85,343. `O`: the game manager's id lists (fn_7100de94cc, 21 callers)
+and INGAME test, the GUI event's constructor and destructor, a display object's two condition tests, the collision container's
+and the animation component's lookups by name, the blackboard's property test, the user data owner's constructor, the prime
+test and next prime of unit 41, the pickable's flag setter, four math helpers of unit 54 (z rotation, plane rotation, a vector
+through a matrix's rotation part, a direction to angles), a segment's cached length, a tree depth and more. Minor: the in-place
+string read of CRntFile (fn_710007cee4) and the action set's two-key hash lookup (fn_7100b8c61c), both scheduling.
+- **A lookup's helper shape decides the code.** Three lookups matched only once written as the code base's existing find
+  helpers: a member `Find` returning `values + i` (fn_7100de94cc, as `UnkGameManagerIdMap`), `UnkParallelFindByValue`
+  (fn_71011771e0) and `UnkParallelFindSlot` for a section's properties (fn_71010474f4); open-coded loops fold the end
+  comparison or load the key at another point.
+- **Union members for reloads.** The pickable's count and flag are reloaded after each part's flag store; putting each in
+  an anonymous union (no type-based alias information) gives the reloads, as `UnkSList::count` does.
+- **An empty-map test inside the find.** The action set's lookup shares its final select between the empty map, the empty
+  bucket and the miss only when the count test is part of the inlined find.
+- Header moves: `fn_7100125fbc` (base/math/UnkSegment2D.h), `fn_7100206154` (game/UnkXformNode.h), `fn_7100078d8c`
+  (base/UnkMatrix44.h), `fn_71010e537c` (game/UnkCameraCtrl.h), `fn_7100de94cc` and `fn_7100df5c94` (game/UnkGameManager.h);
+  their callers' local declarations are gone and their scores are unchanged.
+
 **Night round 10: a keyed reserve and copies of round 9 (2026-10-30, branch `claude/project-thread-lths9k-night10`).**
 4 functions to `O` and 2 boot hubs to minor. Boot slice: `O` 2,085 to 2,086, usable 40.34% to 40.39%. `O`: fn_7100015378 (the
 reserve of a keyed array of 0x40-byte records) and three copies a fresh `tools/nearcopy.py` pass found of round 9's functions
