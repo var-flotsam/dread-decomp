@@ -36,3 +36,54 @@ UnkReflValue fn_7100110a98(void*, char* obj) {
     fn_71000a18d4(&r, type, &value, false);
     return r;
 }
+
+// Invokers of the same shape in other units: a value built after the work, with its type's getter.
+template <const base::reflection::CType* (*Getter)(), class T>
+__attribute__((always_inline)) static inline UnkReflValue MakeValue(T value) {
+    const base::reflection::CType* type = Getter();
+    UnkReflValue r;
+    r.kind = 2;
+    r.field_0x0 = nullptr;
+    r.type = nullptr;
+    fn_71000a18d4(&r, type, &value, false);
+    return r;
+}
+
+static inline char* Target(char* obj) { return *reinterpret_cast<char**>(obj + 8); }
+
+// Clear a word of the object and return 1 as an int.
+template <u32 Offset>
+__attribute__((always_inline)) static inline UnkReflValue ClearWord(char* obj) {
+    *reinterpret_cast<u32*>(Target(obj) + Offset) = 0;
+    return MakeValue<fn_7100014768, s32>(1);
+}
+
+UnkReflValue fn_7100f0f090(void*, char* obj) { return ClearWord<0x144>(obj); }
+UnkReflValue fn_7100f0f1dc(void*, char* obj) { return ClearWord<0x148>(obj); }
+UnkReflValue fn_7100f0f2dc(void*, char* obj) { return ClearWord<0xf0>(obj); }
+
+// A flag of the object, and one two pointers away.
+UnkReflValue fn_7101115c1c(void*, char* obj) {
+    return MakeValue<fn_710000d228, bool>(*reinterpret_cast<bool*>(Target(obj) + 0x178d));
+}
+UnkReflValue fn_71007a0bdc(void*, char* obj) {
+    char* p = *reinterpret_cast<char**>(Target(obj) + 0x50);
+    return MakeValue<fn_710000d228, bool>(*reinterpret_cast<bool*>(p + 0x10f));
+}
+
+// Calls on the object: one returning nothing (the value is 1 as an int), one returning a flag.
+void fn_71006004d4(void* self);
+void fn_71008d5200(void* self);
+bool fn_71007aa610(void* self);
+bool fn_71008d0ef4(void* self);
+
+UnkReflValue fn_71006020c0(void*, char* obj) {
+    fn_71006004d4(Target(obj));
+    return MakeValue<fn_7100014768, s32>(1);
+}
+UnkReflValue fn_71008dcbb8(void*, char* obj) {
+    fn_71008d5200(Target(obj));
+    return MakeValue<fn_7100014768, s32>(1);
+}
+UnkReflValue fn_71007adbe8(void*, char* obj) { return MakeValue<fn_710000d228, bool>(fn_71007aa610(Target(obj))); }
+UnkReflValue fn_71008dcc08(void*, char* obj) { return MakeValue<fn_710000d228, bool>(fn_71008d0ef4(Target(obj))); }
