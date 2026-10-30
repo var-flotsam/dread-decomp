@@ -3,6 +3,7 @@
 // handed to the registry and destroyed. Names and layouts are placeholders.
 #include <new>
 
+#include "base/UnkResKey.h"
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
@@ -129,10 +130,6 @@ struct UnkPathVec {
     }
 };
 
-// A resource type (its first member is its name).
-struct UnkResType {
-    CStrId name;
-};
 struct UnkResFactory;
 
 // The record a type is registered with.
@@ -156,8 +153,6 @@ struct UnkResDesc {
 };
 static_assert(sizeof(UnkResDesc) == 0x90, "");
 
-struct UnkResRegistry;
-extern UnkResRegistry* g_unk_7101d472f8;
 void fn_71000ea29c(UnkResRegistry* registry, UnkResDesc* desc);
 UnkPathId fn_7100169c74(const CStrId& name);
 void fn_71001b2e44();
@@ -174,8 +169,9 @@ struct UnkResStatics {
 extern UnkResStatics g_unk_716e5543a0 __attribute__((visibility("hidden")));
 #define FACTORY reinterpret_cast<UnkResFactory*>(&g_unk_716e5543a0.factory)
 
-extern const UnkResType g_unk_716e453ff8, g_unk_716e454078, g_unk_716e453ef8, g_unk_716e453f78,
-    g_unk_716e454178, g_unk_716e4542f8, g_unk_716e4541f8, g_unk_716e454278, g_unk_716e4540f8;
+// The other registered types (models, textures and the sonar's in base/UnkResKey.h).
+extern const UnkResType g_unk_716e453ef8, g_unk_716e453f78, g_unk_716e454178, g_unk_716e4542f8, g_unk_716e4541f8,
+    g_unk_716e454278;
 
 // NON_MATCHING(minor): in the last type's copy loop the original keeps the vector's count in a
 // register across iterations (one load before the loop); ours reloads it with the capacity at the

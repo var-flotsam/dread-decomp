@@ -96,7 +96,7 @@ void fn_71000733e4(UnkRumbleManager* self) {
 // The rumble files the manager has loaded, cached by path in its map at +0x20d0.
 #include <new>
 
-#include "base/UnkCountedResource.h"
+#include "base/UnkResKey.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
@@ -105,67 +105,6 @@ using base::global::CFilePathStrId;
 using base::global::CStrId;
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
-
-// The resource registry's key and reference types (as src/game/CAbilitySonar.cpp defines them).
-struct UnkResType {
-    CStrId name;
-};
-
-struct UnkResRegistry;
-extern UnkResRegistry* g_unk_7101d472f8;
-
-struct UnkResPathId {
-    UnkStringData* data;
-
-    UnkResPathId(const CFilePathStrId& other) : data(other.data) {
-        if (&g_unk_7101d47200->empty != data)
-            ++data->ref_count;
-    }
-    ~UnkResPathId() {
-        if (UnkStringPool* pool = g_unk_7101d47200) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47200;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
-
-struct UnkResKey {
-    CStrId type;
-    UnkResPathId path;
-
-    UnkResKey(const CStrId& t, const CFilePathStrId& p) : type(t), path(p) {}
-};
-
-struct UnkResRef {
-    UnkCountedResource* ptr;
-
-    UnkResRef() : ptr(nullptr) {}
-    UnkResRef& operator=(const UnkResRef& other) {
-        if (ptr != other.ptr) {
-            UnkCountedResource* p = other.ptr;
-            if (p)
-                ++p->ref_count;
-            UnkCountedResource* old = ptr;
-            if (old && --old->ref_count == 0)
-                fn_710001737c(old);
-            ptr = p;
-        }
-        return *this;
-    }
-    ~UnkResRef() {
-        if (ptr && --ptr->ref_count == 0)
-            fn_710001737c(ptr);
-    }
-};
-
-UnkResKey fn_71000ea448(UnkResRegistry* registry, const UnkResKey* key, void* a);
-UnkResRef fn_71000ead80(UnkResRegistry* registry, const UnkResKey* key, u8 flag, void* a);
 
 // The rumble files' resource type.
 extern const UnkResType g_unk_7101d676d8;

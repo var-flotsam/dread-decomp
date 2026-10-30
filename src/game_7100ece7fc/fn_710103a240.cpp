@@ -1,5 +1,6 @@
 // Copy constructor of a pair of path-id lists: each list copies its settings, reserves the
 // source's capacity and appends a copy of every id.
+#include "base/UnkResPathVec.h"
 #include "base/UnkVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "types.h"
@@ -7,7 +8,7 @@
 using base::global::CFilePathStrId;
 
 struct UnkPathIdList_710103a240 : base::UnkVector<CFilePathStrId> {
-    void Reserve(u32 capacity);  // fn_7100018450
+    void Reserve(u32 capacity) { fn_7100018450(reinterpret_cast<UnkResPathVec*>(this), capacity); }
 
     __attribute__((always_inline)) void Append(const CFilePathStrId& id) {
         u32 n = count;

@@ -878,23 +878,8 @@ void fn_7100ee2ebc(CSubAreaManager* self, const char* path) {
 
 // ---- fn_7100ee6d00 and fn_7100ee8044: what a change of sub-area loads and unloads ----
 
-// A list of file-path ids (src/base/UnkResRegistry.cpp's UnkResPathVec, the same layout), reserved
-// out of line by fn_7100018450 and assigned by fn_71000d0958.
-struct UnkResPathVec {
-    CFilePathStrId* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-
-    explicit UnkResPathVec(u32 flags)
-        : data(nullptr), count(0), capacity(0), step(10), field_0x14(true), flags(flags),
-          allocator(fn_7100083990()) {}
-    UnkResPathVec(const UnkResPathVec& other);
-};
-void fn_7100018450(UnkResPathVec* vec, u32 capacity);  // reserve
+// A list of file-path ids (base/UnkResPathVec.h), assigned by fn_71000d0958.
+#include "base/UnkResPathVec.h"
 void fn_71000d0958(UnkResPathVec* self, const UnkResPathVec* other);
 
 // The file-path ids of a sub-area's resources (or of the same list in another object).
