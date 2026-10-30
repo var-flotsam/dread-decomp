@@ -1,5 +1,5 @@
-// game::logic::collision::CBroadphaseObject's unit: sets the object's flag at +0x6a ; a change runs vf_0x98 and then vf_0x48. The callers name the object UnkEntry (for example
-// src/game/CCollisionComponent/fn_710086697c.cpp). Names and layouts are placeholders.
+// game::logic::collision::CBroadphaseObject's unit: sets the object's flag at +0x6a; a change runs
+// vf_0x98 and then vf_0x48 (game/UnkBroadphaseObject.h). Names and layouts are placeholders.
 #include "game/UnkBroadphaseObject.h"
 #include "types.h"
 
