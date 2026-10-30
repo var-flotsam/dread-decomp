@@ -2686,8 +2686,9 @@ class FlatLifter(Lifter):
 
     def snapshot(self, e: str, t: str) -> str:
         """The value of `e` now, in a temporary (registers are mutable locals here). Semantic
-        mode only; the byte-identical output stays as it was."""
-        if "semantic" not in self.opts:
+        mode, and the "keep" rewrite (a compare reads the value an instruction overwrites:
+        `subs w9, w9, #1` then `b.lo`); the first round's output stays as it was."""
+        if not self.opts & {"semantic", "keep"}:
             return e
         self.vtemps.append(t)
         self.line(f"v{len(self.vtemps) - 1} = ({t})({e});")
@@ -2790,7 +2791,7 @@ class FlatLifter(Lifter):
         n = self.key(r)
         if n < 0:
             return
-        if "semantic" in self.opts:
+        if self.opts & {"semantic", "keep"}:
             self.keep_compare(n)
         self.clob.discard(n)
         if n >= 100:
@@ -3308,7 +3309,7 @@ def build_all(orig: asmdiff.Original, lifted: list[dict[int, tuple[str, set[str]
 # Rewrites tried, in order, on functions that compile but don't match as lifted. Each is a
 # separate round (all variants again), so a rewrite never costs a function that matched.
 ROUND2 = [frozenset({"copy", "sort"}), frozenset({"copy", "alias"}), frozenset({"copy", "sort", "alias"}),
-          frozenset({"copy", "w32"}), frozenset({"copy", "bool"})]
+          frozenset({"copy", "w32"}), frozenset({"copy", "bool"}), frozenset({"copy", "keep"})]
 
 
 def lift_rounds(orig: asmdiff.Original, cands: list[int], work: Path,
