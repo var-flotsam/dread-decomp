@@ -88,12 +88,12 @@ UnkGuiObjectState* fn_71011cde14(UnkGuiDisplayObject* self);
 // set (+0x144). Defined in the unit's generated code.
 void fn_71011cdc30(UnkGuiDisplayObject* self, bool value);
 
-// Sets the flag at +0x185, as fn_71011cdc30 (change bit 4). Not decompiled yet.
+// Sets the flag at +0x185, as fn_71011cdc30 (change bit 4; src/game/GUI/CDisplayObject.cpp).
 void fn_71011d0088(UnkGuiDisplayObject* self, bool value);
 
 // Places the object: its position (+0x80) and the two modes it is placed by (+0x78 and +0x7c: the map
-// markers pass the side each coordinate is measured from). On a change the derived flags go stale.
-// Not decompiled yet.
+// markers pass the side each coordinate is measured from). On a change the derived flags go stale
+// (src/game/GUI/CDisplayObject.cpp).
 void fn_71011cde64(UnkGuiDisplayObject* self, const base::math::CVector2D* position, u32 h_mode, u32 v_mode);
 
 // Sets the flag at +0x181 (the menus' focus handling, fn_7100b021fc, gives it to the newly focused
@@ -119,7 +119,8 @@ void fn_71011d8e90(UnkGuiDisplayObject* self);
 // as for the flags above. Returns whether it was added. Not decompiled yet.
 bool fn_71011d968c(UnkGuiDisplayObject* container, UnkGuiDisplayObject* child);
 
-// The child of the container whose name hash is `id`, from the list at +0x1d0, or null. Not decompiled yet.
+// The child of the container whose name hash is `id`, from the list at +0x1d0 (searching the child
+// containers too), or null (src/game/GUI/CDisplayObjectContainer/fn_71011d9508.cpp).
 UnkGuiDisplayObject* fn_71011d98ec(UnkGuiDisplayObject* container, u64 id);
 
 // GUI::CDisplayObject's constructor: the base's, the vtable, two empty ids, the display state and its
@@ -127,3 +128,10 @@ UnkGuiDisplayObject* fn_71011d98ec(UnkGuiDisplayObject* container, u64 id);
 // id at +0x130 and the name at +0x150 (src/game/GUI/CDisplayObject.cpp). The other display objects'
 // constructors start with it.
 void fn_71011cce1c(UnkGuiDisplayObject* self);
+
+namespace base::global {
+class CStrId;
+}
+// The container's direct child named `name`, from the list at +0x1d0, or null
+// (src/game/GUI/CDisplayObjectContainer/fn_71011d9508.cpp).
+UnkGuiDisplayObject* fn_71011d94d4(UnkGuiDisplayObject* container, const base::global::CStrId& name);

@@ -203,3 +203,48 @@ void fn_71011cce1c(UnkGuiDisplayObject* object) {
     self->field_0x186 = 1;
     self->field_0x188 = 0;
 }
+
+// ---- fn_71011cde64: placing the object ----
+
+#include "base/math/CVector.h"
+
+extern const f32 g_unk_7101647774;  // the tolerance the scale is compared to 1 with
+
+// The placement as the setter sees it: the two modes and the position, and the scale after them.
+struct UnkGuiPlacement {
+    u8 pad_0x0[0x78];
+    u32 h_mode;  // 0x78
+    u32 v_mode;  // 0x7c
+    base::math::CVector2D position;  // 0x80
+    u8 pad_0x88[0xc];
+    f32 scale_x;  // 0x94
+    f32 scale_y;  // 0x98
+};
+
+// Whether `x` lies outside 1 +- `eps` (false for NaN).
+static inline bool AwayFromOne(f32 x, f32 eps) {
+    return !(x - eps <= 1.0f) || x + eps < 1.0f;
+}
+
+// NON_MATCHING(minor): the original repeats the first-change call in each of the two branches of the
+// scale test and loads the tolerance after the x scale; the behaviour is the same.
+void fn_71011cde64(UnkGuiDisplayObject* self, const base::math::CVector2D* position, u32 h_mode, u32 v_mode) {
+    UnkGuiPlacement* p = reinterpret_cast<UnkGuiPlacement*>(self);
+    if (p->h_mode == h_mode && p->v_mode == v_mode && position->x - p->position.x == 0.0f &&
+        position->y - p->position.y == 0.0f)
+        return;
+    p->position.x = position->x;
+    p->position.y = position->y;
+    p->h_mode = h_mode;
+    p->v_mode = v_mode;
+    // A unit scale (within the tolerance) changes only the position (bit 0); any other also the
+    // size (bit 4).
+    f32 eps = g_unk_7101647774;
+    u32 bits = AwayFromOne(p->scale_x, eps) || AwayFromOne(p->scale_y, eps) ? 0x11 : 1;
+    if (!self->field_0x184) {
+        self->field_0x184 = true;
+        self->vf_0xa0();
+    }
+    self->field_0x183 = true;
+    self->field_0x144 |= bits;
+}
