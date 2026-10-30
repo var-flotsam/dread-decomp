@@ -21,6 +21,12 @@ __attribute__((always_inline)) static inline bool Equal(const base::UnkVector<T>
 
 bool fn_71000d25f0(const base::UnkVector<u32>* a, const base::UnkVector<u32>* b) { return Equal(a, b); }
 
+// Identical copies: fn_7100a352f0, fn_7100a361d0, fn_7100adb2e0, fn_7100eb23ac.
+bool fn_7100a352f0(const base::UnkVector<u32>* a, const base::UnkVector<u32>* b) { return Equal(a, b); }
+bool fn_7100a361d0(const base::UnkVector<u32>* a, const base::UnkVector<u32>* b) { return Equal(a, b); }
+bool fn_7100adb2e0(const base::UnkVector<u32>* a, const base::UnkVector<u32>* b) { return Equal(a, b); }
+bool fn_7100eb23ac(const base::UnkVector<u32>* a, const base::UnkVector<u32>* b) { return Equal(a, b); }
+
 bool fn_71000d16d8(const base::UnkVector<u16>* a, const base::UnkVector<u16>* b) { return Equal(a, b); }
 
 bool fn_71000d4404(const base::UnkVector<f32>* a, const base::UnkVector<f32>* b) { return Equal(a, b); }
@@ -39,3 +45,7 @@ __attribute__((always_inline)) static inline void Set(UnkWordsByKey* a, const u6
 void fn_71000dee28(UnkWordsByKey* a, const u64* key, const u32* value) { Set(a, key, value); }
 
 void fn_71000dee9c(UnkWordsByKey* a, const u64* key, const u32* value) { Set(a, key, value); }
+
+// Identical copies: fn_710079c488, fn_710079c4fc.
+void fn_710079c488(UnkWordsByKey* a, const u64* key, const u32* value) { Set(a, key, value); }
+void fn_710079c4fc(UnkWordsByKey* a, const u64* key, const u32* value) { Set(a, key, value); }

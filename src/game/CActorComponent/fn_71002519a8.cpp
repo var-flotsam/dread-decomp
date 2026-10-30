@@ -45,6 +45,12 @@ u32* fn_71000dedbc(UnkWordsByKey* a, const u64* key) {
     return p == a->End() ? nullptr : p;
 }
 
+// An identical copy (fn_710079c41c).
+u32* fn_710079c41c(UnkWordsByKey* a, const u64* key) {
+    u32* p = a->Find(*key);
+    return p == a->End() ? nullptr : p;
+}
+
 void fn_71000df750(UnkWordsByKey* a, u32* value);
 
 // Removal over 4-byte values (fn_71000ded44).

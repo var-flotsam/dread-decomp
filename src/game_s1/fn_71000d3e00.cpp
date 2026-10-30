@@ -30,3 +30,7 @@ using UnkU32FloatPair = UnkValuePairRef<u32, f32>;
 
 bool fn_71000d3e00(UnkU32FloatPair* a, UnkU32FloatPair* b) { return Equals(a, b); }
 bool fn_71000d4110(UnkU32FloatPair* a, UnkU32FloatPair* b) { return Equals(a, b); }
+
+// Identical copies: fn_7100dd0168, fn_7100dd0478.
+bool fn_7100dd0168(UnkU32FloatPair* a, UnkU32FloatPair* b) { return Equals(a, b); }
+bool fn_7100dd0478(UnkU32FloatPair* a, UnkU32FloatPair* b) { return Equals(a, b); }

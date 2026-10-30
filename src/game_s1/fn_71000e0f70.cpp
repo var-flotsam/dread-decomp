@@ -107,6 +107,12 @@ bool fn_7100121508(UnkU32Vec2Pair* a, UnkU32Vec2Pair* b) { return Equals(a, b); 
 
 bool fn_710012187c(UnkU32Vec2Pair* a, UnkU32Vec2Pair* b) { return Equals(a, b); }
 
+// Identical copies: fn_7100c0ad34, fn_7100c0b0a8, fn_710105fd44, fn_71010600b8.
+bool fn_7100c0ad34(UnkU32Vec2Pair* a, UnkU32Vec2Pair* b) { return Equals(a, b); }
+bool fn_7100c0b0a8(UnkU32Vec2Pair* a, UnkU32Vec2Pair* b) { return Equals(a, b); }
+bool fn_710105fd44(UnkU32Vec2Pair* a, UnkU32Vec2Pair* b) { return Equals(a, b); }
+bool fn_71010600b8(UnkU32Vec2Pair* a, UnkU32Vec2Pair* b) { return Equals(a, b); }
+
 bool fn_71000cb0c8(UnkU32Vec3Pair* a, UnkU32Vec3Pair* b) { return Equals(a, b); }
 
 bool fn_71000cb4dc(UnkU32Vec3Pair* a, UnkU32Vec3Pair* b) { return Equals(a, b); }
