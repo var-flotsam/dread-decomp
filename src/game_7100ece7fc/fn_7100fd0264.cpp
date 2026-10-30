@@ -8,13 +8,13 @@
 
 struct UnkEntry_0x150 {
     u64 data[0x150 / 8];
-    ~UnkEntry_0x150();  // fn_7100fd11e8
+    ~UnkEntry_0x150() asm("fn_7100fd11e8");  // fn_7100fd11e8
 };
 
 struct UnkBase_0x30 {
     void** vtable;
     u8 unk_0x8[0x28];
-    ~UnkBase_0x30();  // fn_7100fe1050
+    ~UnkBase_0x30() asm("fn_7100fe1050");  // fn_7100fe1050
 };
 
 extern void* g_unk_7101cac080[];

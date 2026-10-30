@@ -13,7 +13,7 @@ struct UnkNameHash {
     union {
         u64 value;
     };
-    explicit UnkNameHash(const char* str);  // fn_710006663c
+    explicit UnkNameHash(const char* str) asm("fn_710006663c");  // fn_710006663c
     UnkNameHash(UnkNameHash&& other) : value(other.value) {}
 };
 

@@ -10,17 +10,17 @@ using base::global::UnkStringPool;
 struct UnkBase_0x40 {
     void** vtable;
     u8 unk_0x8[0x38];
-    ~UnkBase_0x40();  // fn_71010c4194
+    ~UnkBase_0x40() asm("fn_71010c4194");  // fn_71010c4194
 };
 
 struct UnkMember_0x48 {
     u8 unk_0x0[0x48];
-    ~UnkMember_0x48();  // fn_7101141468
+    ~UnkMember_0x48() asm("fn_7101141468");  // fn_7101141468
 };
 
 struct UnkMember_0x90 {
     u8 unk_0x0[0x10];
-    ~UnkMember_0x90();  // fn_71009168e0
+    ~UnkMember_0x90() asm("fn_71009168e0");  // fn_71009168e0
 };
 
 // A string id whose release decrements and tests the count in two steps.

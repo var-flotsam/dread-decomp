@@ -18,7 +18,7 @@ struct UnkRefRegistry {
     u32 count;
     u8 data[256 * sizeof(CStrId)];  // capacity unknown
     UnkRefRegistry() : count(0) {}
-    ~UnkRefRegistry();  // fn_7100de4928
+    ~UnkRefRegistry() asm("fn_7100de4928");  // fn_7100de4928
     CStrId* begin() { return reinterpret_cast<CStrId*>(data); }
     CStrId* end() { return begin() + count; }
     void Add(const CStrId& r) {

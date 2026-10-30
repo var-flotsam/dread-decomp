@@ -39,7 +39,7 @@ struct UnkEntry_7100d92158 {
     u64 field_0x38;
     void* field_0x40;
 
-    UnkEntry_7100d92158(UnkDesc_7100d92158* desc, void* factory);  // fn_710002003c
+    UnkEntry_7100d92158(UnkDesc_7100d92158* desc, void* factory) asm("fn_710002003c");  // fn_710002003c
 };
 
 struct UnkRegistry_7100d92158;

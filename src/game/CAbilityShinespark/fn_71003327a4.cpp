@@ -23,7 +23,7 @@ struct UnkStruct_71003327a4;
 struct UnkStruct_71003327a4_Value {
     CStrId field_0x0;
     u64 field_0x8;
-    UnkStruct_71003327a4_Value(UnkStruct_71003327a4* owner, void* src);  // fn_71003328ac
+    UnkStruct_71003327a4_Value(UnkStruct_71003327a4* owner, void* src) asm("fn_71003328ac");  // fn_71003328ac
 };
 
 struct UnkStruct_71003327a4_Node {

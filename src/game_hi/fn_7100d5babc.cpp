@@ -15,7 +15,7 @@ struct Vec3 {
 
 struct Vec2 {
     f32 x, y;
-    Vec2(const Vec3& v);  // fn_710007b430
+    Vec2(const Vec3& v) asm("fn_710007b430");  // fn_710007b430
     Vec2(const Vec2& o) : x(o.x), y(o.y) {}
 };
 

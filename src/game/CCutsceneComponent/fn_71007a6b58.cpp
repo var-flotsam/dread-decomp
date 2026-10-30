@@ -4,7 +4,7 @@
 #include "base/UnkVector.h"
 
 struct UnkElem_0x88 {
-    UnkElem_0x88(UnkElem_0x88&& other);  // fn_71007abba4
+    UnkElem_0x88(UnkElem_0x88&& other) asm("fn_71007abba4");  // fn_71007abba4
     virtual void vf_0x0();
     virtual ~UnkElem_0x88();
 

@@ -34,7 +34,7 @@ struct UnkCameraCtrl {
 
 // A large object built once, with an id at +0x998.
 struct UnkIdTable {
-    UnkIdTable();  // fn_7100031894
+    UnkIdTable() asm("fn_7100031894");  // fn_7100031894
     ~UnkIdTable();
     u8 pad_0x0[0x998];
     u8 field_0x998[8];

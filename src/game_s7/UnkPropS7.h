@@ -49,7 +49,7 @@ struct UnkProp {
 // the key's pointer is not reloaded.
 struct UnkIdTable {
     u8 unk_0x0[0x2800];
-    UnkIdTable();  // fn_7100031894
+    UnkIdTable() asm("fn_7100031894");  // fn_7100031894
     ~UnkIdTable();
 };
 

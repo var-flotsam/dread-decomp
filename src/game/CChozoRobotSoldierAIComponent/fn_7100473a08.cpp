@@ -26,7 +26,7 @@ struct UnkValue {
     u32 x;
     u32 y;
     u32 z;
-    UnkValue();  // fn_7100287598
+    UnkValue() asm("fn_7100287598");  // fn_7100287598
     UnkValue(const UnkValue& other) : x(other.x), y(other.y), z(other.z) {}
 };
 

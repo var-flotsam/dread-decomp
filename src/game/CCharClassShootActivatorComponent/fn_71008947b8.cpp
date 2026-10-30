@@ -80,7 +80,7 @@ struct UnkCallbackSet : UnkCallbackBase {
         }
     }
 
-    UnkCallbackSet(UnkCallbackSet&& other);  // fn_71007b1928
+    UnkCallbackSet(UnkCallbackSet&& other) asm("fn_71007b1928");  // fn_71007b1928
 
     __attribute__((always_inline)) UnkCallbackSet& operator=(const UnkCallbackSet& other) {
         const base::UnkRefHandle* from = &other.owner;  // evaluated first, as `owner = other.owner` would be

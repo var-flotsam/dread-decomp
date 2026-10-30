@@ -50,7 +50,7 @@ struct UnkEntry_7100134020 {
 
     UnkEntry_7100134020(UnkEntry_7100134020&&) = default;
     UnkEntry_7100134020& operator=(UnkEntry_7100134020&& o);  // fn_7100133054
-    ~UnkEntry_7100134020();                                    // fn_7100133be4
+    ~UnkEntry_7100134020() asm("fn_7100133be4");                                    // fn_7100133be4
 };
 
 namespace {

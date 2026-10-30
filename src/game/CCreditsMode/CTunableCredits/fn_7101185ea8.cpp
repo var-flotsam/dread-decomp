@@ -24,12 +24,12 @@ struct UnkRef {
 struct UnkBase_0x90 {
     void** vtable;
     u8 unk_0x8[0x88];
-    ~UnkBase_0x90();  // fn_71011867d4
+    ~UnkBase_0x90() asm("fn_71011867d4");  // fn_71011867d4
 };
 
 struct UnkMember_0x9a0 {
     u64 data[0x9a0 / 8];
-    ~UnkMember_0x9a0();  // fn_710119ad3c
+    ~UnkMember_0x9a0() asm("fn_710119ad3c");  // fn_710119ad3c
 };
 
 struct UnkNode {

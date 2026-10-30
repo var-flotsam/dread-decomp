@@ -214,7 +214,7 @@ void refl_SendTypeId(void* self) {
 
 // A large object built once (fn_7100031894); getters return one of its parts.
 struct UnkReflSingleton {
-    UnkReflSingleton();  // fn_7100031894
+    UnkReflSingleton() asm("fn_7100031894");  // fn_7100031894
     ~UnkReflSingleton();
 };
 

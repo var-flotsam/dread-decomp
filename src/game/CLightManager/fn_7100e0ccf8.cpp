@@ -9,7 +9,7 @@
 struct UnkBase_0x58 {
     void** vtable;
     u8 unk_0x8[0x50];
-    ~UnkBase_0x58();  // fn_7100016f88
+    ~UnkBase_0x58() asm("fn_7100016f88");  // fn_7100016f88
 };
 
 struct UnkClearedArray;

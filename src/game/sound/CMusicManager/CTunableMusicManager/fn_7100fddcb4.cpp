@@ -37,7 +37,7 @@ struct UnkPathEntry_0x18 {
 };
 
 struct UnkPathList : base::UnkVector<UnkPathEntry_0x18> {
-    UnkPathList(const UnkPathList& other);  // fn_7100fddf18
+    UnkPathList(const UnkPathList& other) asm("fn_7100fddf18");  // fn_7100fddf18
     ~UnkPathList() { Free(); }
 };
 

@@ -12,7 +12,7 @@ using base::global::UnkStringPool;
 struct UnkBase_0x20 {
     void** vtable;
     u8 unk_0x8[0x18];
-    ~UnkBase_0x20();  // fn_710026a9fc
+    ~UnkBase_0x20() asm("fn_710026a9fc");  // fn_710026a9fc
 };
 
 void fn_710026ead0(void* self);

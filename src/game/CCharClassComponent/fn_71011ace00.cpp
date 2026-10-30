@@ -7,12 +7,12 @@
 struct UnkBase_0x30 {
     void** vtable;
     u8 unk_0x8[0x28];
-    ~UnkBase_0x30();  // fn_710025373c
+    ~UnkBase_0x30() asm("fn_710025373c");  // fn_710025373c
 };
 
 struct UnkEntry_0x98 {
     u8 unk_0x0[0x98];
-    ~UnkEntry_0x98();  // fn_71011ad580
+    ~UnkEntry_0x98() asm("fn_71011ad580");  // fn_71011ad580
 };
 
 extern void* g_unk_7101cb5818[];

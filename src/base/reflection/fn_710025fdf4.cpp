@@ -42,7 +42,7 @@ struct UnkId_710025fdf4 {
 // A polymorphic 0x60-byte entry: copied out of line, destroyed through its vtable.
 struct UnkEntry_710025fdf4 {
     virtual ~UnkEntry_710025fdf4();
-    UnkEntry_710025fdf4(const UnkEntry_710025fdf4& other);  // fn_7100262f74
+    UnkEntry_710025fdf4(const UnkEntry_710025fdf4& other) asm("fn_7100262f74");  // fn_7100262f74
     u8 unk_0x8[0x58];
 };
 

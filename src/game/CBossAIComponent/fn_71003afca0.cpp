@@ -9,7 +9,7 @@ using base::global::CStrId;
 struct UnkStrIdHandle {
     CStrId id;
     void* field_0x8;
-    UnkStrIdHandle(const CStrId& id);  // fn_7100ae986c
+    UnkStrIdHandle(const CStrId& id) asm("fn_7100ae986c");  // fn_7100ae986c
 };
 
 void* fn_7100df55e4(UnkGameManager* manager);

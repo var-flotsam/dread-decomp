@@ -113,8 +113,8 @@ struct UnkReflFunctionData {
         };
     };
 
-    UnkReflFunctionData();   // fn_710009a5b4
-    ~UnkReflFunctionData();  // fn_710009aae8
+    UnkReflFunctionData() asm("fn_710009a5b4");   // fn_710009a5b4
+    ~UnkReflFunctionData() asm("fn_710009aae8");  // fn_710009aae8
     UnkReflFunctionData(UnkReflFunctionData&& other)
         : vtbl(g_unk_7101a1b460 + 0x10), params(static_cast<UnkVectorView<const CType*>&&>(other.params)),
           name(static_cast<Name&&>(other.name)), return_type(other.return_type), field_0x40(other.field_0x40),

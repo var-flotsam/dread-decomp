@@ -37,7 +37,7 @@ struct UnkStruct_71002b58c0_U16Vec {
 // The other arrays, copied out of line.
 struct UnkStruct_71002b58c0_Vec {
     u8 raw[0x28];
-    UnkStruct_71002b58c0_Vec(const UnkStruct_71002b58c0_Vec& o);  // fn_710027e258
+    UnkStruct_71002b58c0_Vec(const UnkStruct_71002b58c0_Vec& o) asm("fn_710027e258");  // fn_710027e258
 };
 
 struct UnkStruct_71002b58c0 {

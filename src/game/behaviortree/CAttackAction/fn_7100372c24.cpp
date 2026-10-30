@@ -31,13 +31,13 @@ struct UnkEntryId {
 struct UnkBase_7100393ea0 {
     void** vtable;
     u8 unk_0x8[0x28];
-    ~UnkBase_7100393ea0();  // fn_7100393ea0
+    ~UnkBase_7100393ea0() asm("fn_7100393ea0");  // fn_7100393ea0
 };
 
 struct UnkBase_7100394530 {
     void** vtable;
     u8 unk_0x8[0x30];
-    ~UnkBase_7100394530();  // fn_7100394530
+    ~UnkBase_7100394530() asm("fn_7100394530");  // fn_7100394530
 };
 
 extern void* g_unk_7101a25010[];

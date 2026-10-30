@@ -10,7 +10,7 @@ using base::global::CStrId;
 
 struct UnkList {
     base::UnkVector<void*> list;
-    UnkList(const UnkList& other);  // fn_71002cbc20
+    UnkList(const UnkList& other) asm("fn_71002cbc20");  // fn_71002cbc20
     ~UnkList() { list.Free(); }
 };
 

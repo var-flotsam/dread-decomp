@@ -33,9 +33,9 @@ public:
         key = -1;
         allocator = nullptr;
     }
-    CRntString(const char* str);           // fn_710007e704
-    CRntString(const CRntString& other);   // fn_710007ea60
-    ~CRntString();                         // fn_710007ecd4
+    CRntString(const char* str) asm("fn_710007e704");           // fn_710007e704
+    CRntString(const CRntString& other) asm("fn_710007ea60");   // fn_710007ea60
+    ~CRntString() asm("fn_710007ecd4");                         // fn_710007ecd4
 
     UnkAllocator* GetAllocator() const {
         UnkAllocator* a = allocator;

@@ -28,7 +28,7 @@ using UnkGuiObj = ::UnkGuiDisplayObject;  // game/UnkGuiDisplayObject.h: GetClas
 
 // A text string built from a number: the label's text (game/UnkGuiLabel.h).
 struct UnkText : ::UnkGuiText {
-    ~UnkText();  // fn_7100066e44
+    ~UnkText() asm("fn_7100066e44");  // fn_7100066e44
 };
 
 // Times per boss id (the layout of base::UnkKeyedValueLookup).

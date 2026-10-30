@@ -43,7 +43,7 @@ struct UnkCallbackSet : UnkCallbackBase {
         fn_710023b29c(&callbacks, &other.callbacks);
     }
 
-    UnkCallbackSet(UnkCallbackSet&& other);  // fn_71007b1928
+    UnkCallbackSet(UnkCallbackSet&& other) asm("fn_71007b1928");  // fn_71007b1928
 
     __attribute__((always_inline)) ~UnkCallbackSet() {
         if (UnkRefCounted* p = owner) {

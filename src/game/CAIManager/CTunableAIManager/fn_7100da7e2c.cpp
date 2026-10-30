@@ -10,64 +10,64 @@
 using base::global::CStrId;
 
 struct UnkMember_0x10 {
-    UnkMember_0x10(u32 a, u32 b, u32 c, void* d);  // fn_71003fa9fc
+    UnkMember_0x10(u32 a, u32 b, u32 c, void* d) asm("fn_71003fa9fc");  // fn_71003fa9fc
     alignas(8) u8 unk[0x70];
 };
 struct UnkMember_0x80 {
-    UnkMember_0x80();  // fn_7100639cf8
+    UnkMember_0x80() asm("fn_7100639cf8");  // fn_7100639cf8
     alignas(8) u8 unk[0xb8];
 };
 struct UnkMember_0x138 {
-    UnkMember_0x138();  // fn_710059c5d8
+    UnkMember_0x138() asm("fn_710059c5d8");  // fn_710059c5d8
     alignas(8) u8 unk[0xf0];
 };
 struct UnkMember_0x228 {
-    UnkMember_0x228();  // fn_71004751f8
+    UnkMember_0x228() asm("fn_71004751f8");  // fn_71004751f8
     alignas(8) u8 unk[0x90];
 };
 struct UnkMember_0x2b8 {
-    UnkMember_0x2b8();  // fn_71005ac6e0
+    UnkMember_0x2b8() asm("fn_71005ac6e0");  // fn_71005ac6e0
     alignas(8) u8 unk[0x78];
 };
 struct UnkMember_0x330 {
-    UnkMember_0x330();  // fn_71003f8b30
+    UnkMember_0x330() asm("fn_71003f8b30");  // fn_71003f8b30
     alignas(8) u8 unk[0x38];
 };
 struct UnkMember_0x368 {
-    UnkMember_0x368();  // fn_71006de790
+    UnkMember_0x368() asm("fn_71006de790");  // fn_71006de790
     alignas(8) u8 unk[0x88];
 };
 struct UnkMember_0x3f0 {
-    UnkMember_0x3f0();  // fn_71006bcf84
+    UnkMember_0x3f0() asm("fn_71006bcf84");  // fn_71006bcf84
     alignas(8) u8 unk[0x80];
 };
 struct UnkMember_0x4f0 {
-    UnkMember_0x4f0();  // fn_710057a010
+    UnkMember_0x4f0() asm("fn_710057a010");  // fn_710057a010
     alignas(8) u8 unk[0x78];
 };
 struct UnkMember_0x568 {
-    UnkMember_0x568();  // fn_71005cce80
+    UnkMember_0x568() asm("fn_71005cce80");  // fn_71005cce80
     alignas(8) u8 unk[0x78];
 };
 struct UnkMember_0x5e0 {
-    UnkMember_0x5e0();  // fn_71006a1cc0
+    UnkMember_0x5e0() asm("fn_71006a1cc0");  // fn_71006a1cc0
     alignas(8) u8 unk[0x348];
 };
 struct UnkMember_0x928 {
-    UnkMember_0x928();  // fn_71003dbf20
+    UnkMember_0x928() asm("fn_71003dbf20");  // fn_71003dbf20
     alignas(8) u8 unk[0x260];
 };
 struct UnkStateMachinePool {
-    UnkStateMachinePool();                // fn_7100f11ce8
+    UnkStateMachinePool() asm("fn_7100f11ce8");                // fn_7100f11ce8
     void SetName(const CStrId& name);     // fn_7100f11e48
     alignas(8) u8 unk[0x40];
 };
 struct UnkMember_0x2528 {
-    UnkMember_0x2528(u32 a, u32 b, u32 c, void* d);  // fn_7100da809c
+    UnkMember_0x2528(u32 a, u32 b, u32 c, void* d) asm("fn_7100da809c");  // fn_7100da809c
     alignas(8) u8 unk[0x70];
 };
 struct UnkMember_0x25a0 {
-    UnkMember_0x25a0(u32 a, u32 b, u32 c, void* d);  // fn_7100da81b4
+    UnkMember_0x25a0(u32 a, u32 b, u32 c, void* d) asm("fn_7100da81b4");  // fn_7100da81b4
     alignas(8) u8 unk[0x70];
 };
 

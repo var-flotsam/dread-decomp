@@ -10,7 +10,7 @@ using base::global::CRntString;
 
 struct UnkElem80 {
     u8 unk_0x0[0x80];
-    ~UnkElem80();  // fn_7100ad04c4
+    ~UnkElem80() asm("fn_7100ad04c4");  // fn_7100ad04c4
 };
 
 struct UnkNamedElem38 {
@@ -21,17 +21,17 @@ struct UnkNamedElem38 {
 
 struct UnkElemA0 {
     u8 unk_0x0[0xa0];
-    ~UnkElemA0();  // fn_7100c886c0
+    ~UnkElemA0() asm("fn_7100c886c0");  // fn_7100c886c0
 };
 
 struct UnkElem40 {
     u8 unk_0x0[0x40];
-    ~UnkElem40();  // fn_7100c8a490
+    ~UnkElem40() asm("fn_7100c8a490");  // fn_7100c8a490
 };
 
 struct UnkElem138 {
     u8 unk_0x0[0x138];
-    ~UnkElem138();  // fn_7100e4e310
+    ~UnkElem138() asm("fn_7100e4e310");  // fn_7100e4e310
 };
 
 UnkVector<UnkElem80>& fn_710077a478(UnkVector<UnkElem80>* self, UnkVector<UnkElem80>&& other) {

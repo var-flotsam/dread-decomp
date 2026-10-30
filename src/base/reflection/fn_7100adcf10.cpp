@@ -1081,7 +1081,7 @@ extern UnkTUHeader g_unk_7172791e70 __attribute__((visibility("hidden")));
 struct UnkElem188 {
     virtual void vf_0x0();
     virtual ~UnkElem188();
-    UnkElem188(UnkElem188&& other);  // fn_7100d36688
+    UnkElem188(UnkElem188&& other) asm("fn_7100d36688");  // fn_7100d36688
     u8 unk_0x8[0x180];
 };
 extern base::UnkVector<UnkElem188> g_unk_7172791e48;

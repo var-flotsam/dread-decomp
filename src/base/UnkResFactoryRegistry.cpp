@@ -89,7 +89,7 @@ struct UnkRegistryEntry : UnkRegistryEntryHead {
     UnkRegistryCallback field_0x28;
     UnkRegistryCallback field_0x38;
 
-    UnkRegistryEntry(UnkRegistryDesc* desc, void* factory);  // fn_710002003c
+    UnkRegistryEntry(UnkRegistryDesc* desc, void* factory) asm("fn_710002003c");  // fn_710002003c
     UnkRegistryEntry(const UnkRegistryEntry& other) = default;
 };
 

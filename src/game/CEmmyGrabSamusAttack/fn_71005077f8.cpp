@@ -29,7 +29,7 @@ struct UnkStringData_71005077f8 {
 struct UnkStrId_71005077f8 {
     UnkStringData_71005077f8* data;
 
-    UnkStrId_71005077f8(const CRntString& str, bool flag);  // fn_7100000850
+    UnkStrId_71005077f8(const CRntString& str, bool flag) asm("fn_7100000850");  // fn_7100000850
     UnkStrId_71005077f8(const UnkStrId_71005077f8& other);
 
     // Releases `old` (the current id) and takes next's, leaving it the pool's empty id.

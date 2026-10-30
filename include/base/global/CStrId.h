@@ -71,7 +71,7 @@ class UnkStrIdBase {
 public:
     UnkStringData* data;
 
-    UnkStrIdBase(const char* str, bool flag);  // fn_71000003d4
+    UnkStrIdBase(const char* str, bool flag) asm("fn_71000003d4");  // fn_71000003d4
     // The same constructor, defined inline (matches fn_71000003d4 out of line).
     __attribute__((always_inline)) UnkStrIdBase(UnkStrIdInline, const char* str, bool flag) {
         data = nullptr;

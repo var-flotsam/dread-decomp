@@ -161,7 +161,7 @@ UnkSetStatus fn_7100e51c54(void* self, UnkValueHolder* holder, UnkValueArg* cons
 // 0x18 out of line). Erasing at the index given destroys it and moves the rest down.
 struct UnkMovable {
     u8 unk_0x0[0x40];
-    UnkMovable(UnkMovable&& other);  // fn_71002458a4
+    UnkMovable(UnkMovable&& other) asm("fn_71002458a4");  // fn_71002458a4
 };
 
 struct UnkRecord58 {
