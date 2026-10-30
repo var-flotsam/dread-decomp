@@ -1909,9 +1909,33 @@ char* fn_71000ed0e4(char* p0, char* p1) {
     return p0;
 }
 
+namespace callee { char* fn_710007c3f0(u64, char*, u32); }
+u32 fn_71000ed720(char* p0, char* p1, u32 p2) {
+    alignas(4) char stk[0x4];
+    *(u32*)(stk + 0x0) = (u32)(u64)(p2);
+    u64 r1_0 = (u64)*(u64*)((char*)(p0) + 3208);
+    char* r2_1 = (stk + 0x0);
+    u32 r3_2 = 0x4;
+    char* r4_0 = callee::fn_710007c3f0(r1_0, r2_1, r3_2);
+    u32 r5_0 = 0x1;
+    return r5_0;
+}
+
 u32 fn_71000ed750() {
     u32 r0_0 = 0x1;
     return r0_0;
+}
+
+namespace callee { char* fn_710007c3f0(u64, char*, u32); }
+u32 fn_71000edb14(char* p0, char* p1, u32 p2) {
+    alignas(4) char stk[0x4];
+    *(u32*)(stk + 0x0) = (u32)(u64)(p2);
+    u64 r1_0 = (u64)*(u64*)((char*)(p0) + 3208);
+    char* r2_1 = (stk + 0x0);
+    u32 r3_2 = 0x4;
+    char* r4_0 = callee::fn_710007c3f0(r1_0, r2_1, r3_2);
+    u32 r5_0 = 0x1;
+    return r5_0;
 }
 
 u32 fn_71000edb44() {

@@ -71,7 +71,7 @@ address,size,name,name_source,subsystem,status
 0x7100a051fc,100,fn_7100a051fc,unknown,unknown,O
 0x7100a05260,76,fn_7100a05260,unknown,unknown,O
 0x7100a052ac,68,fn_7100a052ac,unknown,unknown,O
-0x7100a052f0,124,fn_7100a052f0,unknown,unknown,U
+0x7100a052f0,124,fn_7100a052f0,unknown,unknown,O
 0x7100a0536c,220,fn_7100a0536c,unknown,unknown,O
 0x7100a05448,360,fn_7100a05448,unknown,unknown,O
 0x7100a055b0,88,fn_7100a055b0,unknown,unknown,O
@@ -408,7 +408,7 @@ address,size,name,name_source,subsystem,status
 0x7100a116e0,4,fn_7100a116e0,unknown,game/components?,O
 0x7100a116e4,36,fn_7100a116e4,unknown,game/components?,O
 0x7100a11708,44,fn_7100a11708,unknown,game/components?,O
-0x7100a11734,48,fn_7100a11734,unknown,game/components?,U
+0x7100a11734,48,fn_7100a11734,unknown,game/components?,O
 0x7100a11764,64,fn_7100a11764,unknown,game/components?,O
 0x7100a117a4,208,fn_7100a117a4,unknown,game/components?,U
 0x7100a11874,48,fn_7100a11874,unknown,game/components?,O
@@ -442,7 +442,7 @@ address,size,name,name_source,subsystem,status
 0x7100a128f0,564,fn_7100a128f0,unknown,game/components?,U
 0x7100a12b24,212,fn_7100a12b24,unknown,game/components?,U
 0x7100a12bf8,1084,fn_7100a12bf8,unknown,game/components?,U
-0x7100a13034,48,fn_7100a13034,unknown,game/components?,U
+0x7100a13034,48,fn_7100a13034,unknown,game/components?,O
 0x7100a13064,104,fn_7100a13064,unknown,game/components?,O
 0x7100a130cc,4,fn_7100a130cc,unknown,game/components?,O
 0x7100a130d0,256,fn_7100a130d0,unknown,game/components?,U
@@ -791,7 +791,7 @@ address,size,name,name_source,subsystem,status
 0x7100a20100,28,fn_7100a20100,unknown,unknown,O
 0x7100a2011c,196,fn_7100a2011c,unknown,unknown,O
 0x7100a201e0,12,fn_7100a201e0,unknown,unknown,O
-0x7100a201ec,100,fn_7100a201ec,unknown,unknown,U
+0x7100a201ec,100,fn_7100a201ec,unknown,unknown,O
 0x7100a20250,76,fn_7100a20250,unknown,unknown,O
 0x7100a2029c,92,fn_7100a2029c,unknown,unknown,O
 0x7100a202f8,76,fn_7100a202f8,unknown,unknown,O
@@ -4516,9 +4516,9 @@ address,size,name,name_source,subsystem,status
 0x7100abadac,144,fn_7100abadac,unknown,game?,O
 0x7100abae3c,172,fn_7100abae3c,unknown,game?,U
 0x7100abaee8,168,fn_7100abaee8,unknown,game?,U
-0x7100abaf90,112,fn_7100abaf90,unknown,game?,U
+0x7100abaf90,112,fn_7100abaf90,unknown,game?,O
 0x7100abb000,656,fn_7100abb000,unknown,game?,U
-0x7100abb290,88,fn_7100abb290,unknown,game?,U
+0x7100abb290,88,fn_7100abb290,unknown,game?,O
 0x7100abb2e8,352,fn_7100abb2e8,unknown,game?,U
 0x7100abb448,1680,fn_7100abb448,unknown,game?,U
 0x7100abbad8,164,fn_7100abbad8,unknown,game?,U

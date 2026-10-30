@@ -4619,7 +4619,7 @@ address,size,name,name_source,subsystem,status
 0x7100da09f0,8,fn_7100da09f0,unknown,unknown,O
 0x7100da09f8,240,fn_7100da09f8,unknown,unknown,O
 0x7100da0ae8,180,fn_7100da0ae8,unknown,unknown,U
-0x7100da0b9c,144,fn_7100da0b9c,unknown,unknown,U
+0x7100da0b9c,144,fn_7100da0b9c,unknown,unknown,O
 0x7100da0c2c,12,fn_7100da0c2c,unknown,unknown,O
 0x7100da0c38,8,fn_7100da0c38,unknown,unknown,O
 0x7100da0c40,12,fn_7100da0c40,unknown,unknown,O

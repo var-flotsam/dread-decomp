@@ -125,6 +125,22 @@ void fn_71009b0ce0() {
     return;
 }
 
+namespace callee { char* fn_7100997128(char*, char*); }
+char* fn_71009b0ce4(char* p0, char* p1) {
+    alignas(4) char stk[0x4];
+    char* r0_19 = p0;
+    char* r1_19 = (char*)(r0_19) + 200;
+    u64 r2_8 = (u64)*(u64*)((char*)(r0_19) + 0);
+    u64 r3_8 = (u64)*(u64*)((char*)(r2_8) + 56);
+    char* r4_0 = ((char* (*)(char*, char*))(r3_8))(p0, p1);
+    u32 r5_8 = 0xf;
+    char* r6_1 = (stk + 0x0);
+    *(u32*)(stk + 0x0) = (u32)(u64)(r5_8);
+    char* r8_0 = r1_19;
+    char* r9_0 = callee::fn_7100997128(r8_0, r6_1);
+    return r9_0;
+}
+
 void fn_71009b0d20() {
     return;
 }

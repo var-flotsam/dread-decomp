@@ -749,6 +749,57 @@ u8 fn_7100150c30() {
 }
 
 extern char g_unk_710b372a98[];
+namespace callee { char* fn_7100132fc0(); }
+namespace callee { char* fn_7100132fd0(); }
+namespace callee { char* fn_71001cc550(u64, u32, u32, u32); }
+namespace callee { char* fn_71001cc570(u64); }
+namespace callee { char* fn_71001cdd74(u64, char*); }
+namespace callee { char* fn_71001cde48(u64); }
+namespace callee { char* fn_71001d1e78(u64, f32, f32, f32, f32); }
+namespace callee { char* fn_71001d1ec8(u64, f32); }
+namespace wret { u32 fn_7100132fc0(); }
+namespace wret { u32 fn_7100132fd0(); }
+char* fn_7100150c50(f32 f0, f32 f1, f32 f2, f32 f3, f32 f4) {
+    alignas(8) char stk[0x18];
+    char* r0_20 = (char*)g_unk_710b372a98;
+    u64 r1_0 = (u64)*(u64*)((char*)(r0_20) + 0);
+    u32 r2_1 = 0x1;
+    u32 r3_2 = 0x1;
+    u32 r4_3 = (u32)(u64)(0);
+    f32 r5_108 = f4;
+    f32 r6_109 = f3;
+    f32 r7_110 = f2;
+    f32 r8_111 = f1;
+    f32 r9_112 = f0;
+    char* r10_0 = callee::fn_71001cc550(r1_0, r2_1, r3_2, r4_3);
+    u64 r11_0 = (u64)*(u64*)((char*)(r0_20) + 0);
+    f32 r12_100 = r9_112;
+    f32 r13_101 = r8_111;
+    f32 r14_102 = r7_110;
+    f32 r15_103 = r6_109;
+    char* r16_0 = callee::fn_71001d1e78(r11_0, r12_100, r13_101, r14_102, r15_103);
+    u64 r17_0 = (u64)*(u64*)((char*)(r0_20) + 0);
+    f32 r18_100 = r5_108;
+    char* r19_0 = callee::fn_71001d1ec8(r17_0, r18_100);
+    u32 r20_0 = wret::fn_7100132fc0();
+    u32 r21_19 = (u32)(u64)(r20_0);
+    u32 r22_0 = wret::fn_7100132fd0();
+    *(u32*)((stk + 0x8) + 0) = (u32)(u64)(r21_19);
+    *(u32*)((stk + 0x8) + 4) = (u32)(u64)(r22_0);
+    u64 r25_0 = (u64)*(u64*)((char*)(r0_20) + 0);
+    u64 r26_8 = 0x3f80000000000000;
+    char* r27_1 = (stk + 0x0);
+    *(u64*)(stk + 0x0) = (u64)(u64)(0);
+    *(u64*)(stk + 0x10) = (u64)(u64)(r26_8);
+    char* r30_0 = callee::fn_71001cdd74(r25_0, r27_1);
+    u64 r31_0 = (u64)*(u64*)((char*)(r0_20) + 0);
+    char* r32_0 = callee::fn_71001cc570(r31_0);
+    u64 r33_0 = (u64)*(u64*)((char*)(r0_20) + 0);
+    char* r34_0 = callee::fn_71001cde48(r33_0);
+    return r34_0;
+}
+
+extern char g_unk_710b372a98[];
 namespace callee { char* fn_71001cc464(u64); }
 char* fn_7100150d20() {
     char* r0_8 = (char*)g_unk_710b372a98;

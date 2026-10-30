@@ -205,6 +205,26 @@ char* fn_71004743ec() {
     return callee::fn_710110fbb4();
 }
 
+extern char g_unk_7101d47310[];
+namespace callee { char* fn_7100de94cc(u64, char*); }
+namespace callee { char* fn_7101107e84(char*); }
+namespace h { extern HIDDEN char g_unk_71726cca00[]; }
+namespace wret { u32 fn_7101107e84(char*); }
+u32 fn_710047445c(char* p0) {
+    u32 r0_0 = wret::fn_7101107e84(p0);
+    if ((u32)(u64)(r0_0) != 0) {
+        return r0_0;
+    }
+    char* r4_8 = (char*)g_unk_7101d47310;
+    u64 r5_0 = (u64)*(u64*)((char*)(r4_8) + 0);
+    char* r6_1 = (char*)h::g_unk_71726cca00;
+    char* r7_0 = callee::fn_7100de94cc(r5_0, r6_1);
+    u32 r8_8 = (u32)*(u32*)((char*)(r7_0) + 8);
+    bool r9_8 = (u32)(u64)(r8_8) > (u32)(1);
+    u32 r10_0 = (u32)((u32)(u64)((u32)(u64)(r9_8)) << 1);
+    return r10_0;
+}
+
 namespace callee { char* fn_71004708e8(char*, u32); }
 char* fn_7100474d30(char* p0) {
     u32 r0_8 = 0xbf800000;

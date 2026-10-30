@@ -652,6 +652,67 @@ bool fn_71006d44a0(char* p0) {
     return (bool)(u64)(r8_0);
 }
 
+extern char g_unk_7101d470e0[];
+extern char g_unk_7101d47108[];
+extern char g_unk_7101d47310[];
+extern char g_unk_7101d552d0[];
+extern char g_unk_7101d57848[];
+extern char g_unk_7172759178[];
+namespace callee { char* fn_710006d11c(char*, char*, char*); }
+namespace callee { char* fn_7100ae9a10(char*, char*, char*); }
+namespace callee { char* fn_7101047270(u64, char*); }
+bool fn_71006d44c8(char* p0) {
+    alignas(4) char stk[0x4];
+    u64 X0 = (u64)p0;
+    u64 X1;
+    u64 X2;
+    u64 X8;
+    u64 X9;
+    u64 X19;
+    u64 X20;
+    X8 = (u64)(0x46c8);
+    X8 = (u64)(0x146c8);
+    X8 = (u64)((u64)*(u64*)((char*)(((char*)X0)) + (u64)(u64)(((u32)X8))));
+    if (!((u64)(u64)(X8) != 0)) goto L_71006d44f4;
+    X8 = (u64)((u32)*(u32*)((char*)(X8) + 1536));
+    if (!((u32)(u64)((u32)X8) == (u32)(2))) goto L_71006d4594;
+L_71006d44f4:;
+    X8 = (u64)((char*)g_unk_7101d47310);
+    X8 = (u64)((u64)*(u64*)((char*)(((char*)X8)) + 0));
+    *(u8*)(stk + 0x0) = (u8)(u64)(0);
+    X19 = (u64)((u64)(u64)(X8) + (u64)(2408));
+    X8 = (u64)((char*)g_unk_7101d57848);
+    (void)lift_guard::GetSingleton();
+L_71006d4518:;
+    X20 = (u64)((char*)g_unk_7172759178);
+    X8 = (u64)((u64)*(u64*)((char*)(((char*)X20)) + 16));
+    X9 = (u64)((char*)g_unk_7101d47108);
+    X9 = (u64)((u64)*(u64*)((char*)(((char*)X9)) + 0));
+    X9 = (u64)((u64)(u64)(X9) + (u64)(16));
+    if (!((u64)(u64)(X8) == (u64)(X9))) goto L_71006d4550;
+    X2 = (u64)((char*)g_unk_7101d470e0);
+    X0 = (u64)((((char*)X20)) + 16);
+    X1 = (u64)(((char*)X20));
+    X0 = (u64)(callee::fn_7100ae9a10(((char*)X0), ((char*)X1), ((char*)X2)));
+L_71006d4550:;
+    X8 = (u64)((char*)g_unk_7101d552d0);
+    X9 = (u64)(0x1150);
+    X1 = (u64)((((char*)X8)) + ((u32)X9));
+    X0 = (u64)(X19);
+    X0 = (u64)(callee::fn_7101047270(X0, ((char*)X1)));
+    if (!((u64)(u64)(((char*)X0)) != 0)) goto L_71006d4578;
+    X1 = (u64)((((char*)X20)) + 16);
+    X2 = (u64)((stk + 0x0));
+    X0 = (u64)(callee::fn_710006d11c(((char*)X0), ((char*)X1), ((char*)X2)));
+L_71006d4578:;
+    X8 = (u64)((u8)*(u8*)(stk + 0x0));
+    X0 = (u64)((u32)(u64)((u32)X8) == (u32)(0));
+    return ((bool)X0);
+L_71006d4594:;
+    X0 = (u64)((u32)(u64)(0));
+    return (bool)(u64)(((u32)X0));
+}
+
 char* fn_71006d4fac(char* p0, char* p1) {
     if ((u64)(u64)(p1) != 0) {
         u32 r1_8 = 0x46c8;

@@ -3605,6 +3605,28 @@ char* fn_710021e4a4(char* p0) {
     return r11_0;
 }
 
+extern char g_unk_716e599948[];
+namespace callee { char* fn_71000a18d4(char*, char*, char*, u32); }
+namespace callee { char* fn_710021f858(u64); }
+UnkResult fn_710021e50c(char* p0, char* p1) {
+    alignas(4) char stk[0x4];
+    UnkResult ret;
+    u64 r0_0 = (u64)*(u64*)((char*)(p1) + 8);
+    char* r1_19 = (char*)&ret;
+    char* r2_0 = callee::fn_710021f858(r0_0);
+    u32 r3_8 = 0x2;
+    *(u32*)(stk + 0x0) = (u32)(u64)((u32)(u64)(r2_0));
+    *(u64*)(((char*)(r1_19) + 0) + 0) = (u64)(u64)(0);
+    *(u64*)(((char*)(r1_19) + 0) + 8) = (u64)(u64)(0);
+    char* r7_2 = (stk + 0x0);
+    char* r8_0 = r1_19;
+    u32 r9_3 = (u32)(u64)(0);
+    *(u32*)((char*)(r1_19) + 16) = (u32)(u64)(r3_8);
+    char* r11_1 = (char*)g_unk_716e599948;
+    char* r12_0 = callee::fn_71000a18d4(r8_0, r11_1, r7_2, r9_3);
+    return ret;
+}
+
 namespace callee { char* fn_710021fafc(u64); }
 UnkResult fn_710021e558(char* p0, char* p1) {
     UnkResult ret;
@@ -3616,6 +3638,50 @@ UnkResult fn_710021e558(char* p0, char* p1) {
     *(u64*)(((char*)(r1_19) + 0) + 0) = (u64)(u64)(0);
     *(u64*)(((char*)(r1_19) + 0) + 8) = (u64)(u64)(0);
     *(u64*)((char*)(r1_19) + 16) = (u64)(u64)(r4_8);
+    return ret;
+}
+
+extern char g_unk_716e599948[];
+namespace callee { char* fn_71000a18d4(char*, char*, char*, u32); }
+namespace callee { char* fn_710021f950(u64); }
+UnkResult fn_710021e58c(char* p0, char* p1) {
+    alignas(4) char stk[0x4];
+    UnkResult ret;
+    u64 r0_0 = (u64)*(u64*)((char*)(p1) + 8);
+    char* r1_19 = (char*)&ret;
+    char* r2_0 = callee::fn_710021f950(r0_0);
+    u32 r3_8 = 0x2;
+    *(u32*)(stk + 0x0) = (u32)(u64)((u32)(u64)(r2_0));
+    *(u64*)(((char*)(r1_19) + 0) + 0) = (u64)(u64)(0);
+    *(u64*)(((char*)(r1_19) + 0) + 8) = (u64)(u64)(0);
+    char* r7_2 = (stk + 0x0);
+    char* r8_0 = r1_19;
+    u32 r9_3 = (u32)(u64)(0);
+    *(u32*)((char*)(r1_19) + 16) = (u32)(u64)(r3_8);
+    char* r11_1 = (char*)g_unk_716e599948;
+    char* r12_0 = callee::fn_71000a18d4(r8_0, r11_1, r7_2, r9_3);
+    return ret;
+}
+
+extern char g_unk_716e599948[];
+namespace callee { char* fn_71000a18d4(char*, char*, char*, u32); }
+namespace callee { char* fn_710021fa20(u64); }
+UnkResult fn_710021e5d8(char* p0, char* p1) {
+    alignas(4) char stk[0x4];
+    UnkResult ret;
+    u64 r0_0 = (u64)*(u64*)((char*)(p1) + 8);
+    char* r1_19 = (char*)&ret;
+    char* r2_0 = callee::fn_710021fa20(r0_0);
+    u32 r3_8 = 0x2;
+    *(u32*)(stk + 0x0) = (u32)(u64)((u32)(u64)(r2_0));
+    *(u64*)(((char*)(r1_19) + 0) + 0) = (u64)(u64)(0);
+    *(u64*)(((char*)(r1_19) + 0) + 8) = (u64)(u64)(0);
+    char* r7_2 = (stk + 0x0);
+    char* r8_0 = r1_19;
+    u32 r9_3 = (u32)(u64)(0);
+    *(u32*)((char*)(r1_19) + 16) = (u32)(u64)(r3_8);
+    char* r11_1 = (char*)g_unk_716e599948;
+    char* r12_0 = callee::fn_71000a18d4(r8_0, r11_1, r7_2, r9_3);
     return ret;
 }
 

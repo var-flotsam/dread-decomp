@@ -508,6 +508,21 @@ char* fn_71010d7874(char* p0) {
     return callee::fn_7100975f10(r22_0);
 }
 
+namespace callee { char* fn_71010d0c04(char*); }
+namespace wret { u32 fn_71010d0c04(char*); }
+u32 fn_71010d7a28(char* p0) {
+    char* r0_19 = p0;
+    u32 r1_0 = wret::fn_71010d0c04(p0);
+    u64 r2_8 = (u64)*(u64*)((char*)(r0_19) + 0);
+    u32 r3_20 = (u32)(u64)(r1_0);
+    char* r4_0 = r0_19;
+    u32 r5_1 = 0x1;
+    u64 r6_8 = (u64)*(u64*)((char*)(r2_8) + 488);
+    char* r7_0 = ((char* (*)(char*, u32))(r6_8))(r4_0, r5_1);
+    u32 r8_0 = (u32)(u64)(r3_20) & (u32)(1);
+    return r8_0;
+}
+
 namespace callee { char* fn_71010d0b78(char*); }
 char* fn_71010d7a64(char* p0) {
     return callee::fn_71010d0b78(p0);

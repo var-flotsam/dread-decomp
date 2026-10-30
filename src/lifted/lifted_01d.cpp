@@ -336,6 +336,68 @@ L_71001d2ce0:;
     noret::fn_7101239950(((char*)X0), ((char*)X1), ((u32)X2), ((char*)X3));
 }
 
+namespace callee { char* fn_71001d7cf0(char*, char*, char*); }
+namespace noret { [[noreturn]] void fn_7101239950(char*, char*, u32, char*); }
+u32 fn_71001d2d00(char* p0, char* p1, u32 p2) {
+    alignas(4) char stk[0x4];
+    u64 X0 = (u64)p0;
+    u64 X1 = (u64)p1;
+    u64 X2 = (u64)p2;
+    u64 X3;
+    u64 X8;
+    u64 X9;
+    u64 X10;
+    u64 X11;
+    u64 X12;
+    u64 X13;
+    char* t0;
+    *(u32*)(stk + 0x0) = (u32)(u64)((u32)X2);
+    X8 = (u64)(0xaa88);
+    X8 = (u64)(0x317aa88);
+    X9 = (u64)((u32)*(u32*)((char*)(((char*)X0)) + (u64)(u64)(((u32)X8))));
+    if (!((u32)(u64)((u32)X9) != 0)) goto L_71001d2d74;
+    X8 = (u64)(0xaa80);
+    X8 = (u64)(0x317aa80);
+    X10 = (u64)((((char*)X0)) + ((u32)X8));
+    X8 = (u64)((u64)*(u64*)((char*)(((char*)X1)) + 0));
+    t0 = ((char*)(X8) + 48);
+    X11 = (u64)(*(u32*)(t0 + 0));
+    X12 = (u64)(*(u32*)(t0 + 4));
+    X11 = (u64)((u32)(u64)((u32)X12) ^ (u32)((u32)X11));
+    X12 = (u64)((u32)*(u32*)((char*)(((char*)X10)) + 12));
+    X13 = (u64)((u32)(u64)((u32)X11) / (u32)(u64)((u32)X12));
+    X11 = (u64)((u32)(u64)((u32)X11) - (u32)(u64)((u32)X13) * (u32)(u64)((u32)X12));
+    if (!((u32)(u64)((u32)X9) > (u32)((u32)X11))) goto L_71001d2dac;
+    X9 = (u64)((u64)*(u64*)((char*)(((char*)X10)) + 0));
+    X9 = (u64)((u64)(u64)(X9) + (u64)((u64)((u64)(u32)(u64)((u32)X11) << 3)));
+    if (!((u64)(u64)(X9) != (u64)(0))) goto L_71001d2d74;
+    X9 = (u64)((u64)*(u64*)((char*)(X9) + 0));
+    if (!((u64)(u64)(X9) != 0)) goto L_71001d2d74;
+L_71001d2d60:;
+    X10 = (u64)((u64)*(u64*)((char*)(X9) + 0));
+    if (!((u64)(u64)(X10) != (u64)(X8))) goto L_71001d2d98;
+    X9 = (u64)((u64)*(u64*)((char*)(X9) + 32));
+    if (!((u64)(u64)(X9) == 0)) goto L_71001d2d60;
+L_71001d2d74:;
+    X8 = (u64)(0xaa70);
+    X8 = (u64)(0x317aa70);
+    X0 = (u64)((((char*)X0)) + ((u32)X8));
+    X2 = (u64)((stk + 0x0));
+    X0 = (u64)(callee::fn_71001d7cf0(((char*)X0), ((char*)X1), ((char*)X2)));
+    X0 = (u64)(0x1);
+    return ((u32)X0);
+L_71001d2d98:;
+    *(u32*)((char*)(X9) + 8) = (u32)(u64)((u32)X2);
+    X0 = (u64)(0x1);
+    return ((u32)X0);
+L_71001d2dac:;
+    X0 = (u64)((char*)"i < m_iSize");
+    X1 = (u64)((char*)"..\\Base/global/RntVector.h");
+    X3 = (u64)((char*)"operator[]");
+    X2 = (u64)(0x15b);
+    noret::fn_7101239950(((char*)X0), ((char*)X1), ((u32)X2), ((char*)X3));
+}
+
 namespace callee { char* fn_710007b518(char*, char*); }
 u32 fn_71001d2ea4(char* p0, u32 p1, char* p2, char* p3) {
     if ((u32)(u64)(p1) <= (u32)(1)) {

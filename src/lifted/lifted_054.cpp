@@ -349,6 +349,25 @@ L_710054b2a0:;
     return ((u32)X0);
 }
 
+extern char g_unk_7101d47310[];
+namespace callee { char* fn_7100566480(u64, char*); }
+char* fn_710054b44c(char* p0) {
+    alignas(4) char stk[0x4];
+    char* r0_8 = (char*)g_unk_7101d47310;
+    u64 r1_8 = (u64)*(u64*)((char*)(r0_8) + 0);
+    u32 r2_9 = 0x1f28;
+    char* r3_19 = p0;
+    u32 r4_20 = 0x1;
+    char* r5_1 = (stk + 0x0);
+    *(u32*)(stk + 0x0) = (u32)(u64)(r4_20);
+    u64 r7_0 = (u64)(u64)(r1_8) + (u64)(r2_9);
+    char* r8_0 = callee::fn_7100566480(r7_0, r5_1);
+    u32 r9_8 = 0x9eec;
+    u32 r10_8 = 0x29eec;
+    *(u32*)((char*)(r3_19) + (u64)(u64)(r10_8)) = (u32)(u64)(r4_20);
+    return r8_0;
+}
+
 u32 fn_710054b4a0() {
     u32 r0_0 = (u32)(u64)(0);
     return r0_0;

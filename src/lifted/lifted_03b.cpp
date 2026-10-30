@@ -1964,6 +1964,20 @@ char* fn_71003bdac4(char* p0) {
     return callee::fn_7100083c00(r2_0);
 }
 
+namespace callee { char* fn_7100360b84(char*, char*, char*); }
+namespace callee { char* fn_7100d7c990(u64); }
+namespace wret { u32 fn_7100360b84(char*, char*, char*); }
+u32 fn_71003bdb48(char* p0, char* p1, char* p2) {
+    char* r0_19 = p0;
+    u32 r1_0 = wret::fn_7100360b84(p0, p1, p2);
+    u32 r2_20 = (u32)(u64)(r1_0);
+    u64 r3_0 = (u64)*(u64*)((char*)(r0_19) + 8);
+    char* r4_0 = callee::fn_7100d7c990(r3_0);
+    bool r5_8 = (u64)(u64)(r4_0) != (u64)(0);
+    u32 r6_0 = (u32)(u64)(r2_20) & (u32)((u32)(u64)(r5_8));
+    return r6_0;
+}
+
 namespace callee { char* fn_71003be154(u64); }
 namespace callee { char* fn_71007d24cc(char*); }
 namespace callee { char* fn_71007d29d4(char*); }

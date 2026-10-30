@@ -1420,6 +1420,26 @@ char* fn_71010c7dc0(char* p0) {
     return callee::fn_7100083c00(r2_0);
 }
 
+bool fn_71010c8f4c(char* p0) {
+    alignas(4) char stk[0x4];
+    u64 r0_8 = (u64)*(u64*)((char*)(p0) + 7192);
+    u8 r1_8 = (u8)*(u8*)((char*)(r0_8) + 432);
+    *(u8*)(stk + 0x0) = (u8)(u64)((u32)(u64)(r1_8));
+    u64 r3_9 = (u64)*(u64*)((char*)(p0) + 48);
+    u64 r4_0 = (u64)*(u64*)((char*)(r3_9) + 576);
+    u8 m0 = r1_8;
+    if ((u64)(u64)(r4_0) != 0) {
+        u64 r6_8 = (u64)*(u64*)((char*)(r4_0) + 0);
+        char* r7_1 = (stk + 0x0);
+        u64 r8_8 = (u64)*(u64*)((char*)(r6_8) + 416);
+        char* r9_0 = ((char* (*)(u64, char*))(r8_8))(r4_0, r7_1);
+        u8 r10_8 = (u8)*(u8*)(stk + 0x0);
+        m0 = r10_8;
+    }
+    bool r14_0 = (u32)(u64)((u32)(u64)(m0)) != (u32)(0);
+    return r14_0;
+}
+
 namespace callee { char* fn_710097613c(); }
 char* fn_71010c903c() {
     return callee::fn_710097613c();

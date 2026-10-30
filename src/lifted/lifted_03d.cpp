@@ -1599,6 +1599,18 @@ char* fn_71003dddfc(char* p0) {
     return callee::fn_71005a2554(p0);
 }
 
+namespace callee { char* fn_7101110ca4(char*); }
+namespace wret { u32 fn_7101110ca4(char*); }
+u32 fn_71003dde00(char* p0) {
+    char* r0_19 = p0;
+    u32 r1_0 = wret::fn_7101110ca4(p0);
+    u32 r2_8 = 0x121e;
+    u8 r3_8 = (u8)*(u8*)((char*)(r0_19) + (u64)(u64)(r2_8));
+    bool r4_8 = (u32)(u64)((u32)(u64)(r3_8)) == (u32)(0);
+    u32 r5_0 = (u32)(u64)(r1_0) & (u32)((u32)(u64)(r4_8));
+    return r5_0;
+}
+
 u32 fn_71003ded44() {
     u32 r0_0 = 0x1;
     return r0_0;
