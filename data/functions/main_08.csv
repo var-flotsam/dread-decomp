@@ -2080,7 +2080,7 @@ address,size,name,name_source,subsystem,status
 0x710085fd38,312,fn_710085fd38,unknown,game/components?,O
 0x710085fe70,388,CCollisionComponent::refl_InitClass,reflection,game/components,O
 0x710085fff4,180,fn_710085fff4,unknown,unknown,O
-0x71008600a8,196,fn_71008600a8,unknown,unknown,U
+0x71008600a8,196,fn_71008600a8,unknown,unknown,O
 0x710086016c,208,fn_710086016c,unknown,unknown,U
 0x710086023c,296,fn_710086023c,unknown,unknown,U
 0x7100860364,448,fn_7100860364,unknown,unknown,U

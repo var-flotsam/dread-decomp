@@ -1223,8 +1223,8 @@ address,size,name,name_source,subsystem,status
 0x71002332e0,308,fn_71002332e0,unknown,unknown,U
 0x7100233414,4,fn_7100233414,unknown,unknown,O
 0x7100233418,4,fn_7100233418,unknown,unknown,O
-0x710023341c,112,fn_710023341c,unknown,unknown,U
-0x710023348c,112,fn_710023348c,unknown,unknown,U
+0x710023341c,112,fn_710023341c,unknown,unknown,O
+0x710023348c,112,fn_710023348c,unknown,unknown,O
 0x71002334fc,136,fn_71002334fc,unknown,unknown,O
 0x7100233584,80,fn_7100233584,unknown,unknown,O
 0x71002335d4,176,fn_71002335d4,unknown,unknown,U
