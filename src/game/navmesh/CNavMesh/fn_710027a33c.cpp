@@ -3,6 +3,7 @@
 // past the end grows the array (the reserve fn_7100279600 is called twice: to the next multiple of
 // the step, then to the key) and constructs the new cells (fn_71002af630). Only the low 16 bits of the
 // key are the index. Names and layouts are placeholders.
+#include "base/UnkVector.h"
 #include "game/UnkNavMeshCell.h"
 
 // A cell's whole record (game/UnkNavMeshCell.h lays out its start).
@@ -20,7 +21,9 @@ struct UnkNavMeshCellArray {
     bool grow;
 };
 
-void fn_7100279600(UnkNavMeshCellArray* cells, u32 capacity);  // reserve
+// The reserve, declared as src/game/navmesh/CNavMesh.cpp does (its cells by their load layout).
+struct UnkNavLoadCell;
+void fn_7100279600(base::UnkVector<UnkNavLoadCell>* cells, u32 capacity);
 void fn_71002af630(UnkNavMeshCell* cell);                       // a cell's constructor
 
 // NON_MATCHING(minor): same behaviour; the original counts the new cells down from (key - count) + 1,
@@ -33,8 +36,9 @@ UnkNavMeshCell* fn_710027a33c(UnkNavMesh* mesh, u16 key) {
             u32 capacity = cells->capacity;
             if (capacity <= index && cells->step != 0)
                 capacity = (index / cells->step + 1) * cells->step;
-            fn_7100279600(cells, capacity);
-            fn_7100279600(cells, index + 1);
+            auto* vector = reinterpret_cast<base::UnkVector<UnkNavLoadCell>*>(cells);
+            fn_7100279600(vector, capacity);
+            fn_7100279600(vector, index + 1);
             u32 count = cells->count;
             if (count <= index) {
                 // Counted down from the number of new cells.
