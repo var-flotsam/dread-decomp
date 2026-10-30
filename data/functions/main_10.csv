@@ -3442,7 +3442,7 @@ address,size,name,name_source,subsystem,status
 0x710109d0e0,684,fn_710109d0e0,unknown,unknown,U
 0x710109d390,184,fn_710109d390,unknown,unknown,U
 0x710109d450,160,fn_710109d450,unknown,unknown,U
-0x710109d4f0,160,fn_710109d4f0,unknown,unknown,U
+0x710109d4f0,160,fn_710109d4f0,unknown,unknown,m
 0x710109d590,224,fn_710109d590,unknown,unknown,O
 0x710109d670,88,fn_710109d670,unknown,unknown,O
 0x710109d6c8,328,fn_710109d6c8,unknown,unknown,O
