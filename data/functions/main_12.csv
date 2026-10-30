@@ -540,7 +540,7 @@ address,size,name,name_source,subsystem,status
 0x710121072c,8,fn_710121072c,unknown,unknown,O
 0x7101210734,12,fn_7101210734,unknown,unknown,O
 0x7101210740,28,fn_7101210740,unknown,unknown,O
-0x710121075c,76,fn_710121075c,unknown,unknown,U
+0x710121075c,76,fn_710121075c,unknown,unknown,O
 0x71012107a8,8,fn_71012107a8,unknown,unknown,O
 0x71012107b0,8,fn_71012107b0,unknown,unknown,O
 0x71012107b8,28,fn_71012107b8,unknown,unknown,O

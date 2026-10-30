@@ -165,22 +165,20 @@ __attribute__((always_inline)) static inline s32 ReturningZero(void* self, const
 }
 
 // The value: none without a type, else held in place unless stored out of line or too big. A macro
-// defines each invoker (an inline helper changes how the result is returned).
-#define UNK_CALL_WITH_ARG(name, method)                                                          \
-    UnkReflValue name(void*, char* obj, UnkReflValue* const* args) {                             \
-        char* target = Target(obj);                                                              \
-        UnkReflValue* arg = args[0];                                                             \
-        const void* value;                                                                       \
-        if (!arg->type)                                                                          \
-            value = nullptr;                                                                     \
-        else if (arg->field_0x14 == 1 || *reinterpret_cast<const u64*>(arg->type + 0x18) > 8)    \
-            value = arg->field_0x0;                                                              \
-        else                                                                                     \
-            value = arg;                                                                         \
-        return MakeValue<fn_7100014768, s32>(method(target, value));                             \
-    }
+// writes each invoker's body (an inline helper changes how the result is returned).
+#define UNK_CALL_WITH_ARG(method)                                                                \
+    char* target = Target(obj);                                                                  \
+    UnkReflValue* arg = args[0];                                                                 \
+    const void* value;                                                                           \
+    if (!arg->type)                                                                              \
+        value = nullptr;                                                                         \
+    else if (arg->field_0x14 == 1 || *reinterpret_cast<const u64*>(arg->type + 0x18) > 8)        \
+        value = arg->field_0x0;                                                                  \
+    else                                                                                         \
+        value = arg;                                                                             \
+    return MakeValue<fn_7100014768, s32>(method(target, value));
 
-UNK_CALL_WITH_ARG(fn_710117bba0, ReturningZero<fn_710117b3f8>)
-UNK_CALL_WITH_ARG(fn_7100874214, ReturningZero<fn_7100873bf8>)
-UNK_CALL_WITH_ARG(fn_71011746a4, fn_7101173ddc)
-UNK_CALL_WITH_ARG(fn_710117bc1c, ReturningZero<fn_710117a018>)
+UnkReflValue fn_710117bba0(void*, char* obj, UnkReflValue* const* args) { UNK_CALL_WITH_ARG(ReturningZero<fn_710117b3f8>) }
+UnkReflValue fn_7100874214(void*, char* obj, UnkReflValue* const* args) { UNK_CALL_WITH_ARG(ReturningZero<fn_7100873bf8>) }
+UnkReflValue fn_71011746a4(void*, char* obj, UnkReflValue* const* args) { UNK_CALL_WITH_ARG(fn_7101173ddc) }
+UnkReflValue fn_710117bc1c(void*, char* obj, UnkReflValue* const* args) { UNK_CALL_WITH_ARG(ReturningZero<fn_710117a018>) }
