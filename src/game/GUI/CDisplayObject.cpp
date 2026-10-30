@@ -340,3 +340,74 @@ void fn_71011cd4b4(UnkGuiDisplayObject* object) {
     self->field_0x140 = 0x7fffffff;
     self->field_0x144 = -1;
 }
+
+// ---- fn_71011cee40: bringing the derived state up to date ----
+
+// The display state as src/game/UnkGuiItemState.cpp lays it out; its position has a user-written
+// copy constructor, so the state's copy constructor goes member by member.
+struct UnkGuiStatePos {
+    f32 x;
+    f32 y;
+    UnkGuiStatePos(const UnkGuiStatePos& other) : x(other.x), y(other.y) {}
+};
+struct UnkGuiStateCopy {
+    u32 horizontal;
+    u32 vertical;
+    UnkGuiStatePos offset;
+    f32 angle;
+    f32 width;
+    f32 height;
+    f32 scale[2];
+    f32 depth;
+    f32 color[4];
+    s32 field_0x38;
+    bool field_0x3c;
+    u8 field_0x3d;
+    u8 field_0x3e;
+};
+static_assert(sizeof(UnkGuiStateCopy) == 0x40, "UnkGuiStateCopy layout");
+
+struct UnkGuiItemState;
+// The child's state under the parent's (src/game/UnkGuiItemState.cpp).
+void fn_7100b1c56c(const UnkGuiItemState* parent, UnkGuiItemState* out, const UnkGuiItemState* child, u32 mode,
+                   u32 changes);
+
+struct UnkGuiDerivedView {
+    u8 pad_0x0[0x38];
+    UnkGuiStateCopy derived;  // 0x38
+    UnkGuiStateCopy local;    // 0x78
+    u8 pad_0xb8[0x68];
+    UnkGuiDerivedView* parent;  // 0x120
+    u8 pad_0x128[0x1c];
+    u32 changes;  // 0x144
+    u8 pad_0x148[0x3b];
+    bool stale;  // 0x183
+};
+static_assert(__builtin_offsetof(UnkGuiDerivedView, stale) == 0x183, "UnkGuiDerivedView layout");
+
+static inline UnkGuiItemState* AsState(UnkGuiStateCopy* s) { return reinterpret_cast<UnkGuiItemState*>(s); }
+
+// The derived state is the object's own without a parent; otherwise its own composed with the
+// parent's (brought up to date first). A placed parent (change bits 0x12, not anchored at the
+// top left) or a placed child that is not anchored there either moves the child (bit 0).
+// NON_MATCHING(minor): without a parent, the state's copy pairs its members differently (the
+// original copies the position's x on its own and pairs y with the angle); the rest matches.
+void fn_71011cee40(UnkGuiDisplayObject* object) {
+    UnkGuiDerivedView* self = reinterpret_cast<UnkGuiDerivedView*>(object);
+    UnkGuiDerivedView* parent = self->parent;
+    if (!parent) {
+        new (&self->derived) UnkGuiStateCopy(self->local);
+        self->stale = false;
+        return;
+    }
+    u32 bits = parent->changes & ~4u;
+    if (((parent->changes & 0x12) && (parent->local.horizontal != 1 || parent->local.vertical != 1)) ||
+        ((self->changes & 0x16) && (self->local.horizontal != 0 || self->local.vertical != 0)))
+        bits |= 1;
+    self->changes |= bits;
+    if (parent->stale)
+        fn_71011cee40(reinterpret_cast<UnkGuiDisplayObject*>(parent));
+    fn_7100b1c56c(AsState(&parent->derived), AsState(&self->derived), AsState(&self->local), self->parent->changes,
+                  self->changes);
+    self->stale = false;
+}

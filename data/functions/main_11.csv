@@ -2894,7 +2894,7 @@ address,size,name,name_source,subsystem,status
 0x71011cedec,8,fn_71011cedec,unknown,unknown,O
 0x71011cedf4,28,fn_71011cedf4,unknown,unknown,O
 0x71011cee10,48,fn_71011cee10,unknown,unknown,O
-0x71011cee40,284,fn_71011cee40,unknown,unknown,U
+0x71011cee40,284,fn_71011cee40,unknown,unknown,m
 0x71011cef5c,24,fn_71011cef5c,unknown,unknown,O
 0x71011cef74,308,fn_71011cef74,unknown,unknown,U
 0x71011cf0a8,132,fn_71011cf0a8,unknown,unknown,U
