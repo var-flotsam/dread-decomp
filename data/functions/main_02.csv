@@ -4156,7 +4156,7 @@ address,size,name,name_source,subsystem,status
 0x71002beaa0,240,querysystem::CFilter::refl_GetClass,reflection,ai/querysystem,O
 0x71002beb90,204,fn_71002beb90,unknown,ai/querysystem?,O
 0x71002bec5c,364,querysystem::CFilter::refl_InitClass,reflection,ai/querysystem,O
-0x71002bedc8,64,fn_71002bedc8,unknown,unknown,U
+0x71002bedc8,64,fn_71002bedc8,unknown,unknown,O
 0x71002bee08,120,fn_71002bee08,unknown,unknown,O
 0x71002bee80,4,fn_71002bee80,unknown,unknown,U
 0x71002bee84,60,fn_71002bee84,unknown,unknown,O
