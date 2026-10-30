@@ -294,13 +294,20 @@ __attribute__((always_inline)) inline void SetY(f32 y, UnkGuiDisplayObject* self
     MarkPlaced(self, p);
 }
 
-// NON_MATCHING(minor), each of the eight: the original lays out the first-change call of the
-// non-unit-scale branch inline and its other copy at the end; the behaviour is the same.
+// The eight setters (x or y, modes 0 to 3).
+// NON_MATCHING(minor): the first-change call laid out in other blocks; same behaviour.
 void fn_71011cc65c(f32 x, UnkGuiDisplayObject* self) { SetX<0>(x, self); }
+// NON_MATCHING(minor): the first-change call laid out in other blocks; same behaviour.
 void fn_71011cc940(f32 x, UnkGuiDisplayObject* self) { SetX<1>(x, self); }
+// NON_MATCHING(minor): the first-change call laid out in other blocks; same behaviour.
 void fn_71011cc748(f32 x, UnkGuiDisplayObject* self) { SetX<2>(x, self); }
+// NON_MATCHING(minor): the first-change call laid out in other blocks; same behaviour.
 void fn_71011cc844(f32 x, UnkGuiDisplayObject* self) { SetX<3>(x, self); }
+// NON_MATCHING(minor): the first-change call laid out in other blocks; same behaviour.
 void fn_71011cca3c(f32 y, UnkGuiDisplayObject* self) { SetY<0>(y, self); }
+// NON_MATCHING(minor): the first-change call laid out in other blocks; same behaviour.
 void fn_71011ccd20(f32 y, UnkGuiDisplayObject* self) { SetY<1>(y, self); }
+// NON_MATCHING(minor): the first-change call laid out in other blocks; same behaviour.
 void fn_71011ccb28(f32 y, UnkGuiDisplayObject* self) { SetY<2>(y, self); }
+// NON_MATCHING(minor): the first-change call laid out in other blocks; same behaviour.
 void fn_71011ccc24(f32 y, UnkGuiDisplayObject* self) { SetY<3>(y, self); }
