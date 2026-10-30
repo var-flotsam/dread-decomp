@@ -83,5 +83,18 @@ class VaListHandoffs(unittest.TestCase):
         self.assertFalse(pl.takes_va_list("f(int, ...)"))
 
 
+class SplitStatics(unittest.TestCase):
+    """A placed static of a non-inline function (a local symbol) cannot be bound: reported, not bound."""
+
+    def test_local_static_is_reported(self):
+        symbols = [("V", "_ZZ13fn_7100000100vE1s"), ("V", "_ZGVZ13fn_7100000100vE1s"),
+                   ("b", "_ZZ13fn_7100000200vE6s_heap"), ("b", "_ZZ13fn_7100000300vE6s_free")]
+        known = {"_ZZ13fn_7100000100vE1s": 0x7101000000, "_ZGVZ13fn_7100000100vE1s": 0x7101000010,
+                 "_ZZ13fn_7100000200vE6s_heap": 0x7101000100}
+        bound, left = pl.bound_statics(symbols, {}, known, set())
+        self.assertEqual([s for s, _ in bound], ["_ZGVZ13fn_7100000100vE1s", "_ZZ13fn_7100000100vE1s"])
+        self.assertEqual(left[pl.SPLIT_STATIC], ["_ZZ13fn_7100000200vE6s_heap"])
+
+
 if __name__ == "__main__":
     unittest.main()
