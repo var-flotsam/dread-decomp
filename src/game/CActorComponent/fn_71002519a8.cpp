@@ -143,3 +143,47 @@ void fn_7100e608e0(UnkValues80ByKey* a, const u64* key) {
     if (p != a->End())
         fn_7100e6164c(a, p);
 }
+
+// The reserve of a keyed array of 0x40-byte records with its storage (fn_7100015378): both arrays
+// grow to `capacity`, the records copied word by word (the count reread for each) and the keys
+// copied by a 64-bit index beside a 32-bit counter.
+// Words that may alias anything: the array's fields are reread after the copies.
+typedef u32 __attribute__((may_alias)) UnkAliasWord;
+
+struct UnkWordRecord_0x40 {
+    UnkAliasWord words[16];
+};
+
+struct UnkRecordsByKeyStore {
+    UnkWordRecord_0x40* values;
+    u64* keys;
+    u32 count;
+    u32 capacity;
+    u32 step;
+    u32 flags;
+    base::UnkAllocator* allocator;
+};
+
+void fn_7100015378(UnkRecordsByKeyStore* self, u32 capacity) {
+    if (self->capacity < capacity) {
+        auto* values = static_cast<UnkWordRecord_0x40*>(
+            self->allocator->vf_0x40((u64)capacity * sizeof(UnkWordRecord_0x40), 8, self->flags));
+        auto* keys = static_cast<u64*>(self->allocator->vf_0x40((u64)capacity * sizeof(u64), 8, self->flags));
+        if (UnkWordRecord_0x40* src = self->values) {
+            UnkWordRecord_0x40* dst = values;
+            for (u32 i = 0; i < self->count; ++i, ++src, ++dst)
+                for (u32 w = 0; w < 16; ++w)
+                    dst->words[w] = src->words[w];
+            self->allocator->vf_0x48(self->values);
+        }
+        if (u64* src = self->keys) {
+            u64 j = 0;
+            for (u32 i = 0; i < self->count; ++i, ++j)
+                __builtin_memcpy(&keys[j], &src[j], sizeof(u64));
+            self->allocator->vf_0x48(self->keys);
+        }
+        self->values = values;
+        self->keys = keys;
+        self->capacity = capacity;
+    }
+}
