@@ -60,6 +60,14 @@ void fn_71000ded44(UnkWordsByKey* a, const u64* key) {
         fn_71000df750(a, p);
 }
 
+// The same removal in another unit, with its own out-of-line removal (fn_710079c3a4).
+void fn_710079ccb8(UnkWordsByKey* a, u32* value);
+void fn_710079c3a4(UnkWordsByKey* a, const u64* key) {
+    u32* p = a->Find(*key);
+    if (p != a->End())
+        fn_710079ccb8(a, p);
+}
+
 // And over 0x40-byte records held at 8 in an object, with the key passed by value
 // (fn_7100015250, fn_7100015508).
 struct UnkRecord_0x40 {

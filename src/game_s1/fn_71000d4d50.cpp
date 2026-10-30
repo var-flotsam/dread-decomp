@@ -66,3 +66,15 @@ bool fn_71000d75f0(const UnkIterValueKey64_0x18& a, const UnkIterValueKey64_0x18
 bool fn_7100247830(const UnkIterValueKey64_0x28& a, const UnkIterValueKey64_0x28& b) { return a == b; }
 
 bool fn_7100247f10(const UnkIterValueKey64_0x28& a, const UnkIterValueKey64_0x28& b) { return a == b; }
+
+// 0x28-byte elements compared by fn_7100d883f0 with 64-bit keys (fn_7100d89094, fn_7100d89774).
+struct UnkCompared_0x28b {
+    u64 words[5];
+};
+bool fn_7100d883f0(const UnkCompared_0x28b* a, const UnkCompared_0x28b* b);
+inline bool operator==(const UnkCompared_0x28b& a, const UnkCompared_0x28b& b) { return fn_7100d883f0(&a, &b); }
+using UnkIterValueKey64_0x28b = UnkIterValue<UnkCompared_0x28b, UnkKey64>;
+
+bool fn_7100d89094(const UnkIterValueKey64_0x28b& a, const UnkIterValueKey64_0x28b& b) { return a == b; }
+
+bool fn_7100d89774(const UnkIterValueKey64_0x28b& a, const UnkIterValueKey64_0x28b& b) { return a == b; }

@@ -41,3 +41,14 @@ __attribute__((always_inline)) static inline void RemoveKey(UnkValuesByKey* a, c
 void fn_7100251934(UnkValuesByKey* a, const u64* key) { RemoveKey<fn_71002332e0>(a, key); }
 
 void fn_71002eeef8(UnkValuesByKey* a, const u64* key) { RemoveKey<fn_71002ec674>(a, key); }
+
+// The same removal in three other units, each with its own out-of-line removal.
+void fn_7100d86e94(UnkValuesByKey* a, u64* value);
+void fn_7101048588(UnkValuesByKey* a, u64* value);
+void fn_71010c6cdc(UnkValuesByKey* a, u64* value);
+
+void fn_7100d86490(UnkValuesByKey* a, const u64* key) { RemoveKey<fn_7100d86e94>(a, key); }
+
+void fn_710104aad8(UnkValuesByKey* a, const u64* key) { RemoveKey<fn_7101048588>(a, key); }
+
+void fn_71010c62d8(UnkValuesByKey* a, const u64* key) { RemoveKey<fn_71010c6cdc>(a, key); }
