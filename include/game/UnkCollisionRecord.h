@@ -61,3 +61,6 @@ void fn_7100863a8c(UnkCollisionContainer* self, const base::global::CStrId* id);
 // the container through their owner's +0x2a0 and look components up by name ("damage").
 // tools/tu_map.py puts it in the CCollisionComponent unit (src/game/CCollisionComponent/fn_71008640a4.cpp).
 UnkCollisionObject* fn_71008640a4(UnkCollisionContainer* self, const base::global::CStrId* name);
+
+// The same lookup by the record's second id (src/game/CCollisionComponent/fn_71008640a4.cpp).
+UnkCollisionObject* fn_7100864194(UnkCollisionContainer* self, const base::global::CStrId* name);
