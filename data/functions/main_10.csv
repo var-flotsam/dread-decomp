@@ -4860,7 +4860,7 @@ address,size,name,name_source,subsystem,status
 0x71010f7fc0,380,fn_71010f7fc0,unknown,unknown,O
 0x71010f813c,1736,fn_71010f813c,unknown,unknown,U
 0x71010f8804,300,fn_71010f8804,unknown,unknown,O
-0x71010f8930,280,fn_71010f8930,unknown,unknown,U
+0x71010f8930,280,fn_71010f8930,unknown,unknown,O
 0x71010f8a48,336,fn_71010f8a48,unknown,unknown,U
 0x71010f8b98,1740,fn_71010f8b98,unknown,unknown,U
 0x71010f9264,748,fn_71010f9264,unknown,unknown,U

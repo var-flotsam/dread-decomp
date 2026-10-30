@@ -1424,6 +1424,10 @@ template <> struct base::UnkCallTraits<UnkClone_fn_71000ddc54> {
 template void base::refl_KeyedArrayCopy(base::UnkKeyedCopyArray<UnkClone_fn_71000ddc54, 0xb8>*, const base::UnkKeyedCopyArray<UnkClone_fn_71000ddc54, 0xb8>*);
 struct UnkClone_fn_71000de4f4;
 template void base::refl_IterValueDestroy<UnkCloneWord<UnkClone_fn_71000de4f4>, UnkCloneStrId<UnkClone_fn_71000de4f4>>(void*);
+struct UnkClone_fn_71000de574;
+template base::UnkIterValue<UnkCloneSlot32<UnkClone_fn_71000de574>, base::global::CStrId>& base::refl_IterValueCopyAssign(base::UnkIterValue<UnkCloneSlot32<UnkClone_fn_71000de574>, base::global::CStrId>*, const base::UnkIterValue<UnkCloneSlot32<UnkClone_fn_71000de574>, base::global::CStrId>*);
+struct UnkClone_fn_71000de6b0;
+template base::UnkIterValue<UnkCloneSlot32<UnkClone_fn_71000de6b0>, base::UnkStrIdKey<UnkClone_fn_71000de6b0>>& base::refl_IterValueMoveAssign(base::UnkIterValue<UnkCloneSlot32<UnkClone_fn_71000de6b0>, base::UnkStrIdKey<UnkClone_fn_71000de6b0>>*, base::UnkIterValue<UnkCloneSlot32<UnkClone_fn_71000de6b0>, base::UnkStrIdKey<UnkClone_fn_71000de6b0>>*);
 struct UnkClone_fn_71000de894;
 const base::reflection::CType* fn_710000abbc();
 template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71000de894> {
@@ -4666,12 +4670,3 @@ template <> struct base::UnkPushNextTraits<UnkClone_fn_7100302b38> {
     static void next(char* p) { fn_7100302d14(p); }
 };
 template void base::refl_PushThenNext<UnkClone_fn_7100302b38>(char*);
-struct UnkClone_fn_7100302d14;
-namespace push_pair { void* fn_710000d228(); void* fn_710000d228(); }
-template <> struct base::UnkPushPairTraits<UnkClone_fn_7100302d14> {
-    static void* first() { return push_pair::fn_710000d228(); }
-    static void* second() { return push_pair::fn_710000d228(); }
-};
-template void base::refl_PushPair<UnkClone_fn_7100302d14>(char*);
-struct UnkClone_fn_7100303a94;
-template base::UnkNamedObject* base::refl_RegisterNamed<UnkClone_fn_7100303a94>(base::UnkNamedRegistry*, base::UnkNamedObject*, const char*);

@@ -253,19 +253,19 @@ void refl_CopyCtor2(char* self, const char* other) {
 // A reflected property of an object three pointers away (+0x58, `Mid`, +0x78 from the one `obj`
 // points to at +8): writes its u32 at `Offset` from the argument (fn_71008f1fb4 and its copies)
 // or returns it as a value of type() (fn_71008f20d8 and its copies).
-template <class Tag, u32 Mid, u32 Offset>
+template <class Tag, u32 Mid, u32 Offset, class T = u32>
 reflection::UnkReflValue refl_SetDeepU32(void*, char* obj, reflection::UnkReflValue* const* args) {
     char* t = *reinterpret_cast<char**>(obj + 8);
-    u32 v = *reflection::refl_ArgValue<u32>(args[0]);
-    *reinterpret_cast<u32*>(*reinterpret_cast<char**>(*reinterpret_cast<char**>(
+    T v = *reflection::refl_ArgValue<T>(args[0]);
+    *reinterpret_cast<T*>(*reinterpret_cast<char**>(*reinterpret_cast<char**>(
         *reinterpret_cast<char**>(t + 0x58) + Mid) + 0x78) + Offset) = v;
     return reflection::refl_EmptyValue();
 }
 
-template <class Tag, u32 Mid, u32 Offset>
+template <class Tag, u32 Mid, u32 Offset, class T = u32>
 reflection::UnkReflValue refl_GetDeepU32(void*, char* obj) {
     char* t = *reinterpret_cast<char**>(obj + 8);
-    u32 v = *reinterpret_cast<u32*>(*reinterpret_cast<char**>(*reinterpret_cast<char**>(
+    T v = *reinterpret_cast<T*>(*reinterpret_cast<char**>(*reinterpret_cast<char**>(
         *reinterpret_cast<char**>(t + 0x58) + Mid) + 0x78) + Offset);
     const reflection::CType* type = UnkCallTraits<Tag>::type();
     reflection::UnkReflValue r;

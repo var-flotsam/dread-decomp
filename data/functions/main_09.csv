@@ -670,9 +670,9 @@ address,size,name,name_source,subsystem,status
 0x7100915b48,8,fn_7100915b48,unknown,unknown,O
 0x7100915b50,116,fn_7100915b50,unknown,unknown,U
 0x7100915bc4,128,fn_7100915bc4,unknown,unknown,O
-0x7100915c44,268,fn_7100915c44,unknown,unknown,U
+0x7100915c44,268,fn_7100915c44,unknown,unknown,O
 0x7100915d50,48,fn_7100915d50,unknown,unknown,O
-0x7100915d80,404,fn_7100915d80,unknown,unknown,U
+0x7100915d80,404,fn_7100915d80,unknown,unknown,O
 0x7100915f14,80,fn_7100915f14,unknown,unknown,O
 0x7100915f64,84,fn_7100915f64,unknown,unknown,O
 0x7100915fb8,176,fn_7100915fb8,unknown,unknown,U

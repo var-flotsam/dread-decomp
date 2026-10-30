@@ -5252,9 +5252,9 @@ address,size,name,name_source,subsystem,status
 0x71000de47c,8,fn_71000de47c,unknown,unknown,O
 0x71000de484,112,fn_71000de484,unknown,unknown,O
 0x71000de4f4,128,fn_71000de4f4,unknown,unknown,O
-0x71000de574,268,fn_71000de574,unknown,unknown,U
+0x71000de574,268,fn_71000de574,unknown,unknown,O
 0x71000de680,48,fn_71000de680,unknown,unknown,O
-0x71000de6b0,404,fn_71000de6b0,unknown,unknown,U
+0x71000de6b0,404,fn_71000de6b0,unknown,unknown,O
 0x71000de844,80,fn_71000de844,unknown,unknown,O
 0x71000de894,84,fn_71000de894,unknown,unknown,O
 0x71000de8e8,176,fn_71000de8e8,unknown,unknown,U

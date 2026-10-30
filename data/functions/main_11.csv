@@ -2363,7 +2363,7 @@ address,size,name,name_source,subsystem,status
 0x71011a6210,388,CTeamManager::CTunableTeamManager::refl_InitClass,reflection,game,O
 0x71011a6394,696,fn_71011a6394,unknown,unknown,O
 0x71011a664c,84,fn_71011a664c,unknown,unknown,O
-0x71011a66a0,280,fn_71011a66a0,unknown,unknown,U
+0x71011a66a0,280,fn_71011a66a0,unknown,unknown,O
 0x71011a67b8,320,fn_71011a67b8,unknown,unknown,U
 0x71011a68f8,120,fn_71011a68f8,unknown,unknown,O
 0x71011a6970,72,fn_71011a6970,unknown,unknown,O

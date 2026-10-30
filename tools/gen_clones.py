@@ -64,6 +64,9 @@ class Kind:
     # A scan kind (ref None) tries every candidate: scan(orig, addr, tag, instructions) returns
     # the declarations and instantiation, or None when the function doesn't fit.
     scan: Callable[[asmdiff.Original, int, str, Insns], str | None] | None = None
+    # A word variant: the base kind it varies, whose shape it takes with load and store widths
+    # ignored; tried only after every other kind and scan.
+    late: str | None = None
 
 
 def elem_size(insns: Insns) -> int | None:
@@ -78,6 +81,8 @@ def elem_size(insns: Insns) -> int | None:
 # Element types for collection templates (see UnkClone.h): a pointer, trivially copyable bytes
 # (sized from the code), an owning pointer and a copyable handle.
 ELEMENTS = {"ptr": "{tag}*", "elem": "UnkCloneElem<{tag}, {size}>", "owner": "UnkCloneOwner<{tag}>",
+            # An owner of an object whose deleting destructor is in vtable slot 0x8, not 0x10.
+            "owner_a": "UnkCloneOwner<{tag}, UnkClonePolyA>",
             "handle": "UnkCloneHandle<{tag}>", "word": "UnkCloneWord<{tag}>", "strid": "UnkCloneStrId<{tag}>",
             # Two template arguments: a word element keyed by a string id (keyed collections).
             "word_strkey": "UnkCloneWord<{tag}>, UnkCloneStrId<{tag}>", "strid_b": "UnkCloneStrIdB<{tag}>"}
@@ -1507,15 +1512,27 @@ def pool_list_ctor(orig, addr, tag, insns):
             or insns[62] != ("bl", "#0x710008378c") or insns[63] != ("add", "x8, x19, #0x30") \
             or got_target(orig, insns, 21) != 0x7101A1A4C8:
         return None
+    # The block size: a shift for a power of two, else a multiply by the size loaded just before
+    # (or, for a larger size, kept in x24 for the allocation too).
     shift = re.fullmatch(r"x20, x8, #(\d)", insns[50][1])
     elem = re.fullmatch(r"w3, #(0x[0-9a-f]+|\d)", insns[61][1])
-    if insns[50][0] != "lsl" or not shift or insns[61][0] != "mov" or not elem \
-            or int(elem.group(1), 0) != 1 << int(shift.group(1)):
+    kept = re.fullmatch(r"w24, #(0x[0-9a-f]+)", insns[50][1])
+    if insns[50][0] == "mov" and kept:
+        if insns[51] != ("umull", "x20, w20, w24") or insns[61] != ("mov", "x3, x24"):
+            return None
+        e = int(kept.group(1), 0)
+    elif insns[61][0] == "mov" and elem:
+        e = int(elem.group(1), 0)
+        if insns[50][0] == "lsl" and shift:
+            if e != 1 << int(shift.group(1)):
+                return None
+        elif insns[50] != ("umull", "x20, w20, w8") or insns[49] != ("mov", f"w8, #{elem.group(1)}"):
+            return None
+    else:
         return None
     base_vtable, vtable = got_target(orig, insns, 5), got_target(orig, insns, 18)
     if base_vtable is None or vtable is None:
         return None
-    e = 1 << int(shift.group(1))
     t = f"base::UnkPoolList<{tag}, 0, {e:#x}>"
     return "\n".join(_traits_e9f00(tag, vtable, base_vtable) + [
         f"template void base::refl_PoolListCtor<{tag}, 0, {e:#x}>({t}*, u32, u32, u32, base::UnkAllocator*);"])
@@ -2382,10 +2399,11 @@ def set_deep_u32(orig, addr, tag, insns):
         return None
     mid = DEEP_RE.fullmatch(insns[11][1])
     off = re.fullmatch(rf"w10, \[x9, {OFF}\]", insns[14][1])
-    if insns[14][0] != "str" or not mid or not off:
+    if insns[14][0] not in ("str", "strb") or not mid or not off:
         return None
+    ty = ", bool" if insns[14][0] == "strb" else ""  # a flag
     return (f"template base::reflection::UnkReflValue base::refl_SetDeepU32<{tag}, {int(mid.group(1), 0):#x}, "
-            f"{int(off.group(1), 0):#x}>(void*, char*, base::reflection::UnkReflValue* const*);")
+            f"{int(off.group(1), 0):#x}{ty}>(void*, char*, base::reflection::UnkReflValue* const*);")
 
 
 def get_deep_u32(orig, addr, tag, insns):
@@ -2395,13 +2413,14 @@ def get_deep_u32(orig, addr, tag, insns):
         return None
     mid = re.fullmatch(rf"x8, \[x8, {OFF}\]", insns[6][1])
     off = re.fullmatch(rf"w8, \[x8, {OFF}\]", insns[8][1])
-    if not mid or not off or insns[8][0] != "ldr":
+    if not mid or not off or insns[8][0] not in ("ldr", "ldrb"):
         return None
     ty = target(insns[10][1])
+    flag = ", bool" if insns[8][0] == "ldrb" else ""
     return "\n".join(call_traits(tag, [f"const base::reflection::CType* fn_{ty:x}();"], [
         f"    static const base::reflection::CType* type() {{ return fn_{ty:x}(); }}"]) +
         [f"template base::reflection::UnkReflValue base::refl_GetDeepU32<{tag}, {int(mid.group(1), 0):#x}, "
-         f"{int(off.group(1), 0):#x}>(void*, char*);"])
+         f"{int(off.group(1), 0):#x}{flag}>(void*, char*);"])
 
 
 def set_bool(orig, addr, tag, insns):
@@ -2895,12 +2914,46 @@ KINDS = {
 for _name, (_header, _fmt, _refs) in COLLECTIONS.items():
     for _el, _ref in _refs.items():
         KINDS[f"{_name}_{_el}"] = Kind(_ref, _header, collection(_fmt, _el), exact=_el != "elem")
-NO_PROBE = {("iter_value_copy", "owner"), ("iter_value_equal_by_value", "owner")}  # owners can't be copied
+NO_PROBE = {("iter_value_copy", "owner"), ("iter_value_equal_by_value", "owner"),  # owners can't be copied
+            ("iter_value_copy", "owner_a"), ("iter_value_equal_by_value", "owner_a")}
 for _name, (_header, _fmt, _refs) in COLLECTIONS.items():
     trivial = "ptr" in _refs or "elem" in _refs or "word" in _refs
-    for _el in ("owner", "handle") + (() if trivial else ("ptr",)):
+    for _el in ("owner", "owner_a", "handle") + (() if trivial else ("ptr",)):
         if _el not in _refs and (_name, _el) not in NO_PROBE:
             KINDS[f"{_name}_{_el}"] = Kind(None, _header, collection(_fmt, _el), exact=False)
+
+# Every instantiation over an 8-byte word element (UnkCloneWord) also tried with a 4- or 1-byte
+# value in the slot and with 16-byte elements: tried in turn on a function that has the base
+# kind's shape with load and store widths ignored, after every other kind (only byte-identical
+# candidates are kept).
+WORD_VARIANTS = {"u32": "UnkCloneSlot32<{tag}>", "u8": "UnkCloneSlot8<{tag}>", "word2": "UnkCloneWord2<{tag}>"}
+NO_WORD_VARIANTS = {"vector_equal_word"}  # templates written for UnkCloneWord only
+
+
+def _word_variant(k: Kind, element: str) -> Callable[[str, Insns], str | None]:
+    def build(tag: str, insns: Insns) -> str | None:
+        line = k.instantiate(tag, insns)
+        return line and line.replace(f"UnkCloneWord<{tag}>", element.format(tag=tag))
+    return build
+
+
+def widthless(mnemonic: str) -> str:
+    """A load or store mnemonic without its width suffix (ldrb -> ldr, sturh -> stur)."""
+    return re.sub(r"^((?:ld|st)u?r)[bh]$", r"\1", mnemonic)
+
+
+def _plain_text(k: Kind) -> str:
+    """The kind's instantiation when it reads nothing from the candidate's code, else ""."""
+    try:
+        return k.instantiate("UnkProbeTag", [("lsl", "x1, x8, #3")]) or ""
+    except (IndexError, TypeError, AttributeError):
+        return ""
+
+
+for _name, _k in list(KINDS.items()):
+    if _k.scan is None and _name not in NO_WORD_VARIANTS and "UnkCloneWord<" in _plain_text(_k):
+        for _el, _fmt in WORD_VARIANTS.items():
+            KINDS[f"{_name}_{_el}"] = Kind(None, _k.header, _word_variant(_k, _fmt), exact=False, late=_name)
 
 
 def instructions(orig: asmdiff.Original, addr: int) -> Insns:
@@ -2944,7 +2997,9 @@ def probe_shapes() -> dict[str, tuple[int, list[str]]]:
     out = {}
     for sym, code, _ in asmdiff.object_functions(obj):
         for name in probes:
-            if f"UnkProbe_{name}" in sym and (name not in out or len(code) > out[name][0]):
+            # the whole tag, by its mangled length prefix: one probe's name can begin another's
+            tag = f"UnkProbe_{name}"
+            if f"{len(tag)}{tag}" in sym and (name not in out or len(code) > out[name][0]):
                 out[name] = (len(code), [m for _, _, m, _ in CS.disasm_lite(code, 0)])
     return out
 
@@ -2968,42 +3023,66 @@ def main() -> int:
             refs[name] = (orig.sizes[k.ref], ins if k.exact else [m for m, _ in ins])
         elif name in probes:
             refs[name] = probes[name]
+    for name, k in KINDS.items():  # a word variant has its base kind's shape, widths aside
+        if k.late and k.late in refs:
+            size, code = refs[k.late]
+            refs[name] = (size, [widthless(c if isinstance(c, str) else c[0]) for c in code])
     found: dict[int, tuple[str, str]] = {}  # address -> (kind, instantiation)
+    # address -> the further word variants to try, in order, when the one in `found` doesn't match
+    later: dict[int, list[tuple[str, str]]] = {}
     for a in rows:
         if a in taken or a not in orig.sizes:
             continue
-        ins = None
+        ins = instructions(orig, a)
+        tag = f"UnkClone_fn_{a:x}"
         for name, (size, code) in refs.items():
-            if orig.sizes[a] != size:
+            if KINDS[name].late or orig.sizes[a] != size:
                 continue
-            ins = ins or instructions(orig, a)
             if (ins if KINDS[name].exact and KINDS[name].ref is not None else [m for m, _ in ins]) == code:
-                tag = f"UnkClone_fn_{a:x}"
                 line = KINDS[name].instantiate(tag, ins)
                 if line:
                     found[a] = (name, f"struct {tag};\n{line}")
                 break
         if a not in found:
-            ins = ins or instructions(orig, a)
             for name, k in KINDS.items():
-                if k.scan and (block := k.scan(orig, a, f"UnkClone_fn_{a:x}", ins)):
-                    found[a] = (name, f"struct UnkClone_fn_{a:x};\n{block}")
+                if k.scan and (block := k.scan(orig, a, tag, ins)):
+                    found[a] = (name, f"struct {tag};\n{block}")
                     break
+        if a not in found:
+            shape = [widthless(m) for m, _ in ins]
+            variants = [(name, f"struct {tag};\n{line}") for name, (size, code) in refs.items()
+                        if KINDS[name].late and orig.sizes[a] == size and shape == code
+                        and (line := KINDS[name].instantiate(tag, ins))]
+            if variants:
+                found[a], later[a] = variants[0], variants[1:]
 
     def includes(addrs: list[int]) -> list[str]:
         return PRELUDE + [f'#include "{h}"' for h in sorted({KINDS[found[a][0]].header for a in addrs})]
 
     WORK.mkdir(parents=True, exist_ok=True)
-    src, obj = WORK / "candidates.cpp", WORK / "candidates.o"
-    src.write_text("\n".join(includes(list(found)) + [found[a][1] for a in sorted(found)]) + "\n",
-                   encoding="utf-8")
-    r = subprocess.run(buildcfg.cxx_command(src, obj), capture_output=True, text=True)
-    if r.returncode != 0:
-        raise SystemExit(f"candidates failed to compile:\n{r.stderr[:4000]}")
-    # strict: a copy whose bytes match but whose relocations name another string pool, callee or
-    # global is rejected, not emitted
-    results = asmdiff.diff_object(obj, orig, strict=True)
-    ok = sorted({res.address for res in results if res.matching} & set(found))
+
+    def compile_round(addrs: list[int], n: int) -> tuple[set[int], list]:
+        """Compile the candidates at `addrs`; the byte-identical ones and the round's results."""
+        src, obj = WORK / f"candidates{n or ''}.cpp", WORK / f"candidates{n or ''}.o"
+        src.write_text("\n".join(includes(addrs) + [found[a][1] for a in sorted(addrs)]) + "\n", encoding="utf-8")
+        r = subprocess.run(buildcfg.cxx_command(src, obj), capture_output=True, text=True)
+        if r.returncode != 0:
+            raise SystemExit(f"candidates failed to compile:\n{r.stderr[:4000]}")
+        # strict: a copy whose bytes match but whose relocations name another string pool, callee or
+        # global is rejected, not emitted
+        results = asmdiff.diff_object(obj, orig, strict=True)
+        return {res.address for res in results if res.matching} & set(addrs), results
+
+    matched, results = compile_round(list(found), 0)
+    # word variants that didn't match: the next one, a round each
+    n = 0
+    while retry := [a for a in later if a not in matched and later[a]]:
+        n += 1
+        for a in retry:
+            found[a] = later[a].pop(0)
+        more, _ = compile_round(retry, n)
+        matched |= more
+    ok = sorted(matched)
     rejected = asmdiff.reloc_rejects([res for res in results if res.address in found])
 
     if OUT.exists():

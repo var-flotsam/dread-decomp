@@ -4810,7 +4810,7 @@ address,size,name,name_source,subsystem,status
 0x7100da79f0,388,CAIManager::CTunableAIManager::refl_InitClass,reflection,game/ai,O
 0x7100da7b74,696,fn_7100da7b74,unknown,unknown,O
 0x7100da7e2c,624,fn_7100da7e2c,unknown,unknown,O
-0x7100da809c,280,fn_7100da809c,unknown,unknown,U
+0x7100da809c,280,fn_7100da809c,unknown,unknown,O
 0x7100da81b4,280,fn_7100da81b4,unknown,unknown,O
 0x7100da82cc,616,fn_7100da82cc,unknown,unknown,U
 0x7100da8534,332,fn_7100da8534,unknown,unknown,U
@@ -4957,7 +4957,7 @@ address,size,name,name_source,subsystem,status
 0x7100db35dc,384,fn_7100db35dc,unknown,unknown,O
 0x7100db3760,140,fn_7100db3760,unknown,unknown,O
 0x7100db37ec,20,fn_7100db37ec,unknown,unknown,O
-0x7100db3800,280,fn_7100db3800,unknown,unknown,U
+0x7100db3800,280,fn_7100db3800,unknown,unknown,O
 0x7100db3918,452,fn_7100db3918,unknown,unknown,U
 0x7100db3adc,76,fn_7100db3adc,unknown,unknown,O
 0x7100db3b28,1020,fn_7100db3b28,unknown,unknown,U
