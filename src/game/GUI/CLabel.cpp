@@ -8,6 +8,7 @@
 #include "engine/scene/UnkToggle.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkGuiFrames.h"
 #include "types.h"
 
 using base::math::CVector2D;
@@ -34,12 +35,6 @@ struct UnkLabelViewport {
 };
 static_assert(__builtin_offsetof(UnkLabelViewport, view) == 0x178, "UnkLabelViewport placeholder layout");
 
-// A 2D value the scale helpers hand back in memory (copied member by member).
-struct UnkLabelVec2 {
-    f32 x;
-    f32 y;
-    UnkLabelVec2(const UnkLabelVec2& other) : x(other.x), y(other.y) {}
-};
 
 // What the GUI root finds for an entry's key: its rectangle and the object at +0x18 whose +0x8 the
 // viewport is built from.
@@ -104,8 +99,6 @@ void fn_71001c4418(void* self, const s32* value);
 UnkLabelSource* fn_71011b9fac(UnkGuiRoot* root, const void* key);
 void fn_71011baa38(UnkGuiRoot* root, char* source, UnkLabelViewport** out, s32 frame);
 UnkLabelVec2 fn_7100b82b18(const UnkLabelSource* source, s32 frame);
-UnkLabelVec2 fn_71011b8160(s32 frame, const UnkLabelVec2& v);
-UnkLabelVec2 fn_71011b7f48(s32 frame, const UnkLabelVec2& v);
 
 // The label's depth: field_0x140, or field_0x13c while it is unset.
 static inline s32 Depth(const UnkLabel* self) {

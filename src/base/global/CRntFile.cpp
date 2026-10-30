@@ -158,3 +158,22 @@ u64 fn_710007c714(CRntFile* file, void* dest, u64 size, u64 count) {
     }
     return 0;
 }
+
+// Writes `count` elements of `size` bytes at the position (growing the file), moves the position
+// on; returns the bytes written.
+u64 fn_710007c450(CRntFile* file, const void* data, u64 size, u64 count) {
+    fn_710007c514(file, size, count);
+    u64 bytes = count * size;
+    __builtin_memcpy(file->data + file->position, data, bytes);
+    file->position += bytes;
+    return bytes;
+}
+
+// Writes `size` bytes of `value` at the position (growing the file), moves the position on; returns
+// `size`.
+u64 fn_710007c4b8(CRntFile* file, s32 value, u64 size) {
+    fn_710007c514(file, 1, size);
+    __builtin_memset(file->data + file->position, value, size);
+    file->position += size;
+    return size;
+}

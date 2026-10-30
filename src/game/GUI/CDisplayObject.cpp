@@ -31,3 +31,17 @@ void fn_71011cd424(UnkGuiDisplayObject* self, const UnkGuiEntryList* list) {
     if (changed)
         self->vf_0x80();
 }
+
+// Sets the flag at +0x185; a change runs vf_0xa0 the first time, marks the derived flags stale and
+// sets change bit 4.
+void fn_71011d0088(UnkGuiDisplayObject* self, bool flag) {
+    if (self->field_0x185 != flag) {
+        self->field_0x185 = flag;
+        if (!self->field_0x184) {
+            self->field_0x184 = true;
+            self->vf_0xa0();
+        }
+        self->field_0x183 = true;
+        self->field_0x144 |= 4;
+    }
+}

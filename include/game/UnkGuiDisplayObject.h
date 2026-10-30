@@ -52,7 +52,8 @@ struct UnkGuiDisplayObject {
     u8 pad_0x182;
     bool field_0x183;  // the derived flags are stale: fn_71011cee40 brings them up to date
     bool field_0x184;  // vf_0xa0 has run
-    u8 pad_0x185[0xb];
+    bool field_0x185;  // the flag fn_71011d0088 sets
+    u8 pad_0x186[0xa];
     const char* field_0x190;  // a name the game_s7 screens look children up by (fn_71011d9508)
 };
 static_assert(__builtin_offsetof(UnkGuiDisplayObject, field_0x74) == 0x74, "UnkGuiDisplayObject placeholder layout");

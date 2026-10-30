@@ -64,8 +64,6 @@ bool fn_710000ccd8(UnkFileReader* self) {
 // The void type (src/base/reflection/UnkReflFunction.cpp).
 extern base::reflection::CType g_unk_7101d5af48;
 
-void fn_71000a2014(UnkReflValue* self);
-
 // Parses a value of `type` (nothing for void) with the context's callbacks and file into a target of
 // its own (with `Parse`), and destroys what was read.
 template <s32 (*Parse)(UnkParseContext*, const CType*, void*)>
@@ -77,7 +75,7 @@ __attribute__((always_inline)) static inline void SkipValue(const UnkParseContex
     value.type = nullptr;
     value.kind = 2;
     value.field_0x14 = 1;
-    fn_71000a2014(&value);
+    fn_71000a2014(&value, type);
     UnkReadTarget target;
     fn_71000f0568(&target, &value, 5);
     target.field_0x5468 = 0;

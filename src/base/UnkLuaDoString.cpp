@@ -142,3 +142,24 @@ void fn_710109ce10(const char* format, ...) {
     va_end(args);
     fn_710109d4f0(line);
 }
+
+// lua_pcall with a scratch array pushed for the call's reflected values and popped after it, as
+// fn_710109c880 runs a string. The state is the caller's.
+s32 fn_710109cef0(lua_State* L, s32 nargs, s32 nresults, s32 errfunc) {
+    base::UnkAllocator* allocator = fn_7100083990();
+    u32 flags = 6;
+    u64* data = static_cast<u64*>(allocator->vf_0x40(0x190 * sizeof(u64), 8, flags));
+    u32 top = g_unk_7172a025a0.count;
+    UnkLuaScratch& scratch = g_unk_7172a025a0.entries[top];
+    scratch.data = data;
+    scratch.count = 0;
+    scratch.capacity = 0x190;
+    scratch.step = 10;
+    scratch.field_0x14 = true;
+    scratch.flags = flags;
+    scratch.allocator = allocator;
+    g_unk_7172a025a0.count = top + 1;
+    s32 result = lua_pcall(L, nargs, nresults, errfunc);
+    fn_710109c9e0();
+    return result;
+}

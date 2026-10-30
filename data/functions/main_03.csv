@@ -953,7 +953,7 @@ address,size,name,name_source,subsystem,status
 0x710034f544,8,fn_710034f544,unknown,unknown,O
 0x710034f54c,908,fn_710034f54c,unknown,unknown,U
 0x710034f8d8,4,fn_710034f8d8,unknown,unknown,O
-0x710034f8dc,88,fn_710034f8dc,unknown,unknown,U
+0x710034f8dc,88,fn_710034f8dc,unknown,unknown,O
 0x710034f934,1616,fn_710034f934,unknown,unknown,U
 0x710034ff84,3288,fn_710034ff84,unknown,unknown,U
 0x7100350c5c,324,fn_7100350c5c,unknown,unknown,U
