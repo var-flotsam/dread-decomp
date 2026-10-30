@@ -3595,8 +3595,8 @@ address,size,name,name_source,subsystem,status
 0x710049fb64,244,CChozoZombieXAIComponent::refl_GetClass,reflection,game/ai,O
 0x710049fc58,4,fn_710049fc58,unknown,game/ai?,O
 0x710049fc5c,356,CChozoZombieXAIComponent::refl_InitClass,reflection,game/ai,O
-0x710049fdc0,164,fn_710049fdc0,unknown,unknown,U
-0x710049fe64,172,fn_710049fe64,unknown,unknown,U
+0x710049fdc0,164,fn_710049fdc0,unknown,unknown,O
+0x710049fe64,172,fn_710049fe64,unknown,unknown,O
 0x710049ff10,172,fn_710049ff10,unknown,unknown,O
 0x710049ffbc,44,fn_710049ffbc,unknown,unknown,O
 0x710049ffe8,4,fn_710049ffe8,unknown,unknown,O

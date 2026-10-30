@@ -2207,7 +2207,7 @@ address,size,name,name_source,subsystem,status
 0x7100b75060,244,GUI::CScrollMenuEntryItemRenderer::refl_GetClass,reflection,gui,O
 0x7100b75154,4,fn_7100b75154,unknown,gui?,O
 0x7100b75158,352,GUI::CScrollMenuEntryItemRenderer::refl_InitClass,reflection,gui,O
-0x7100b752b8,120,fn_7100b752b8,unknown,unknown,U
+0x7100b752b8,120,fn_7100b752b8,unknown,unknown,O
 0x7100b75330,100,fn_7100b75330,unknown,unknown,O
 0x7100b75394,128,fn_7100b75394,unknown,unknown,O
 0x7100b75414,52,fn_7100b75414,unknown,unknown,O

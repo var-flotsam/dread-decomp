@@ -1518,7 +1518,7 @@ address,size,name,name_source,subsystem,status
 0x710093b0e8,12,fn_710093b0e8,unknown,unknown,O
 0x710093b0f4,8,fn_710093b0f4,unknown,unknown,O
 0x710093b0fc,8,fn_710093b0fc,unknown,unknown,O
-0x710093b104,80,fn_710093b104,unknown,unknown,U
+0x710093b104,80,fn_710093b104,unknown,unknown,O
 0x710093b160,160,fn_710093b160,unknown,unknown,O
 0x710093b200,4,fn_710093b200,unknown,unknown,O
 0x710093b204,244,CMorphBallMovement::refl_GetClass,reflection,game,O

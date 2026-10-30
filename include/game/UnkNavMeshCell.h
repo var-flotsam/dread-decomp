@@ -62,6 +62,7 @@ UnkNavMeshSidePair fn_71002afe60(UnkNavMeshCell* cell, u8* index);
 // A test on a cell (unit 367 too); callers skip cells it rejects.
 bool fn_71002b005c(UnkNavMeshCell* cell);
 
-// The mesh's cell for a key (navmesh::CNavMesh, next to fn_710027a328), growing its tables to reach it.
+// The mesh's cell for a key (navmesh::CNavMesh, next to fn_710027a328), growing its tables to reach it
+// (src/game/navmesh/CNavMesh/fn_710027a33c.cpp). The key is 16 bits: the callee widens it itself.
 struct UnkNavMesh;
-UnkNavMeshCell* fn_710027a33c(UnkNavMesh* mesh, u32 key);
+UnkNavMeshCell* fn_710027a33c(UnkNavMesh* mesh, u16 key);

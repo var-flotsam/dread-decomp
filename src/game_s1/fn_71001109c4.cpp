@@ -96,3 +96,23 @@ UnkReflValue fn_7101132928(void*, char* obj) {
     return MakeValue<fn_7100014768, s32>(1);
 }
 UnkReflValue fn_71011329bc(void*, char* obj) { return MakeValue<fn_710000d228, bool>(fn_710112c3dc(Target(obj))); }
+
+// More of the same in other units.
+void fn_710093aad0(void* self);
+void fn_7100a03118(void* self);
+void fn_71011269c0(void* self);
+bool fn_710024fbc8(void* self);
+
+UnkReflValue fn_710093b104(void*, char* obj) {
+    fn_710093aad0(Target(obj));
+    return MakeValue<fn_7100014768, s32>(1);
+}
+UnkReflValue fn_7100a05828(void*, char* obj) {
+    fn_7100a03118(Target(obj));
+    return MakeValue<fn_7100014768, s32>(1);
+}
+UnkReflValue fn_71011328d8(void*, char* obj) {
+    fn_71011269c0(Target(obj));
+    return MakeValue<fn_7100014768, s32>(1);
+}
+UnkReflValue fn_71010c57bc(void*, char* obj) { return MakeValue<fn_710000d228, bool>(fn_710024fbc8(Target(obj))); }

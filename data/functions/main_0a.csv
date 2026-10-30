@@ -90,7 +90,7 @@ address,size,name,name_source,subsystem,status
 0x7100a05720,88,fn_7100a05720,unknown,unknown,O
 0x7100a05778,88,fn_7100a05778,unknown,unknown,O
 0x7100a057d0,88,fn_7100a057d0,unknown,unknown,O
-0x7100a05828,80,fn_7100a05828,unknown,unknown,U
+0x7100a05828,80,fn_7100a05828,unknown,unknown,O
 0x7100a05880,392,fn_7100a05880,unknown,unknown,U
 0x7100a05a08,4,fn_7100a05a08,unknown,unknown,O
 0x7100a05a0c,244,CReturnAreaSmartObjectComponent::refl_GetClass,reflection,game/components,O

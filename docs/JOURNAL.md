@@ -131,6 +131,19 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Night round 6: two boot hubs and more near copies (2026-10-30, branch `claude/project-thread-lths9k-night6`).**
+15 functions to `O` and 2 boot hubs to minor, 2,780 bytes `O`. Whole binary: `O` 85,269 to 85,284, 54.87% to 54.88%; usable 57.34% to
+57.35%; boot slice usable 40.13% to 40.15%. Minor: fn_710027a33c (a nav mesh's cell by key, 11 boot callers; its key turned out to
+be 16 bits, so its header declaration now says `u16`) and fn_7100703814 (unit 1124's constructor, store order). `O`: four more
+reflected invokers, the AI components' initialisation in three more units (the step is now an `auto` template parameter called
+through a cast, so a unit that declares it returning a flag keeps its declaration), four rail-node array variants of 0x20-byte
+records (the variant's record type is a template parameter), the Chozo zombie X component's two destructors, the Vulkran chase
+action's and the scroll menu entry renderer's destructors.
+- **A narrow parameter shows in the callee.** fn_710027a33c keeps the raw key and masks it with `and x, #0xffff` where it indexes:
+  the parameter is a `u16` the callee widens itself; declared `u32`, the mask moves to the entry.
+- **The loop the original counts down.** Its constructor loop counts `(key - count) + 1` down with a 64-bit offset beside it;
+  every source form tried (`do`/`while` with `u32` or `s32`, `for` up to the key) gives LLVM's negated counter instead (92%).
+
 **Night round 5: near copies from 60% (2026-10-30, branch `claude/project-thread-lths9k-night5`).**
 24 functions from `U` to `O`, 2,680 bytes. Whole binary: `O` 85,245 to 85,269, 54.85% to 54.87%; usable 57.32% to 57.34%. The
 near-copy triage at 60% (196 candidates) gave no direct matches; these are the families whose difference was one parameter:
