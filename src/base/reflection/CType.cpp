@@ -66,3 +66,56 @@ bool fn_710009d7a8(const base::reflection::CType* type, base::reflection::UnkTyp
     }
     return false;
 }
+
+// ---- fn_710009ec00: registering a type ----
+
+#include "base/reflection/UnkReflAttributes.h"
+
+extern u32 g_unk_7101d5bdd8;    // set in editor builds: types get the "_EditorOnly" attribute
+extern void* g_unk_7101d5bdc0;  // the registry's list of types (linked through CType+0x88)
+using base::reflection::UnkReflAttrKey;
+const UnkReflAttrKey& fn_710000d120();  // "_EditorOnly"
+
+// The type's attribute container (CType+0x80), created on first use (fn_710009dd6c inlined).
+struct UnkReflAttrsInit {
+    void* values;
+    void* keys;
+    u32 count;
+    u32 capacity;
+    u32 step;
+    u32 flags;
+    base::UnkAllocator* allocator;
+    void* field_0x28;
+    u32 field_0x30;
+};
+static inline base::reflection::UnkReflAttrs* AttrsOf(base::reflection::CType* type) {
+    auto* attrs = static_cast<UnkReflAttrsInit*>(type->field_0x80);
+    if (!attrs) {
+        attrs = static_cast<UnkReflAttrsInit*>(fn_71000839a0(0x38, 0x3e));
+        attrs->values = nullptr;
+        attrs->keys = nullptr;
+        attrs->count = 0;
+        attrs->capacity = 0;
+        attrs->step = 10;
+        attrs->flags = 0x3e;
+        attrs->allocator = fn_7100083990();
+        attrs->field_0x28 = nullptr;
+        attrs->field_0x30 = 0;
+        type->field_0x80 = attrs;
+    }
+    return reinterpret_cast<base::reflection::UnkReflAttrs*>(attrs);
+}
+
+// Adds `type` to the front of the registry's list; in editor builds it is first marked "_EditorOnly".
+void fn_710009ec00(void* list, void* object) {
+    auto* type = static_cast<base::reflection::CType*>(object);
+    if (g_unk_7101d5bdd8) {
+        base::reflection::UnkReflAttrs* attrs = AttrsOf(type);
+        const base::reflection::UnkReflAttrKey& key = fn_710000d120();
+        bool value = true;
+        attrs->Add(key, value);
+    }
+    if (g_unk_7101d5bdc0)
+        type->field_0x88 = g_unk_7101d5bdc0;
+    g_unk_7101d5bdc0 = type;
+}

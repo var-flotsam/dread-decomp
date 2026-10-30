@@ -4,9 +4,9 @@
 // channel has its duration, its progress (0 while it runs, 1 when it is done at once) and a flag,
 // in three arrays of 29; the values faded live before them. fn_7100d8e398 applies a preset with
 // these setters (the object at +0x28 of its first argument). Names and layouts are placeholders.
-// Holds fn_7100f97f64, fn_7100f9819c, fn_7100f98244, fn_7100f98370 and fn_7100f98410 (start a
-// channel's fade) and fn_7100f989f0 (sets the texture by its path).
-#include "base/UnkCountedResource.h"
+// Holds fn_7100f97f64, fn_7100f9800c, fn_7100f9819c, fn_7100f98244, fn_7100f98370 and
+// fn_7100f98410 (start a channel's fade) and fn_7100f989f0 (sets the texture by its path).
+#include "base/UnkResKey.h"
 #include "base/color/CColor4F.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/math/CVector4D.h"
@@ -24,72 +24,6 @@ using base::global::UnkStringPool;
 // original's CVector4D is (so one returned by value comes back in memory).
 using UnkEnvFadeColor = base::math::UnkVector4D;
 
-// A path id whose release decrements and tests the count in two steps (as
-// src/game/CAbilitySonar.cpp's).
-struct UnkResPathId {
-    UnkStringData* data;
-
-    UnkResPathId(const CFilePathStrId& other) : data(other.data) {
-        if (&g_unk_7101d47200->empty != data)
-            ++data->ref_count;
-    }
-    ~UnkResPathId() {
-        if (UnkStringPool* pool = g_unk_7101d47200) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47200;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
-
-// A resource's key: its type's name and its path (as src/game/CAbilitySonar.cpp's).
-struct UnkResKey {
-    CStrId type;
-    UnkResPathId path;
-
-    UnkResKey(const CStrId& t, const CFilePathStrId& p) : type(t), path(p) {}
-};
-
-// A counted reference to a resource (base/UnkCountedResource.h; as src/game/CAbilitySonar.cpp's).
-struct UnkResRef {
-    UnkCountedResource* ptr;
-
-    UnkResRef() : ptr(nullptr) {}
-    UnkResRef& operator=(const UnkResRef& other) {
-        if (ptr != other.ptr) {
-            UnkCountedResource* p = other.ptr;
-            if (p)
-                ++p->ref_count;
-            UnkCountedResource* old = ptr;
-            if (old && --old->ref_count == 0)
-                fn_710001737c(old);
-            ptr = p;
-        }
-        return *this;
-    }
-    ~UnkResRef() {
-        if (ptr && --ptr->ref_count == 0)
-            fn_710001737c(ptr);
-    }
-};
-
-// A resource type (as src/game/msapi/res/CRenderRes/fn_71001b1dd0.cpp registers them): its name first.
-struct UnkResType {
-    CStrId name;
-};
-
-struct UnkResRegistry;
-extern UnkResRegistry* g_unk_7101d472f8;
-
-// The registered key for `key` (its parts empty when there is none), and the resource it names.
-UnkResKey fn_71000ea448(UnkResRegistry* registry, const UnkResKey* key, void* a);
-UnkResRef fn_71000ead80(UnkResRegistry* registry, const UnkResKey* key, u8 flag, void* a);
-
 // A float faded from `from` to `to`.
 struct UnkFadePair {
     f32 from;
@@ -102,7 +36,10 @@ struct UnkEnvironmentFade {
     UnkEnvFadeColor field_0x0;   // channel 0: where it starts
     UnkEnvFadeColor field_0x10;  // channel 0: the value now
     UnkEnvFadeColor field_0x20;  // channel 0: where it goes
-    u8 pad_0x30[0x54];
+    f32 field_0x30;              // channel 1: where it starts
+    f32 field_0x34;              // channel 1: the value now
+    f32 field_0x38;              // channel 1: where it goes
+    u8 pad_0x3c[0x48];
     UnkEnvFadeColor field_0x84;  // channel 4: where it starts
     UnkEnvFadeColor field_0x94;  // channel 4: where it goes
     UnkFadePair field_0xa4[8];  // channel 5: two sets of four floats, interleaved
@@ -145,6 +82,18 @@ void fn_7100f97f64(f32 time, UnkEnvironmentFade* self, const UnkEnvFadeColor* to
     fn_710007b518(&self->field_0x0, &now);
     fn_710007b518(&self->field_0x10, &self->field_0x0);
     fn_710007b518(&self->field_0x20, to);
+}
+
+// The render manager's current value for channel 1 (generated, src/lifted/: it forwards to the
+// pass list's fn_71001fd94c).
+f32 fn_7100219fd4(UnkRenderManager* self, u32 arg);
+
+void fn_7100f9800c(f32 to, f32 time, UnkEnvironmentFade* self) {
+    self->Start(1, time);
+    f32 now = fn_7100219fd4(g_unk_7101d47300, 0);
+    self->field_0x30 = now;
+    self->field_0x34 = now;
+    self->field_0x38 = to;
 }
 
 void fn_7100219e74(UnkRenderManager* self, CColor4F* inout);
@@ -221,9 +170,6 @@ static inline void Assign(UnkResRef* self, const UnkResRef& other) {
         self->ptr = p;
     }
 }
-
-// The texture's resource type (registered with type 0x14 by src/game/msapi/res/CRenderRes/fn_71001b1dd0.cpp).
-extern const UnkResType g_unk_716e4540f8;
 
 // The texture parameter as the render manager takes it: the flag at +0x271 and the texture.
 struct UnkTextureParam {

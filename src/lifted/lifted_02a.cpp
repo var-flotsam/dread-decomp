@@ -1171,6 +1171,28 @@ u32 fn_71002ae818(char* p0) {
     return r1_0;
 }
 
+namespace callee { char* fn_71002874dc(char*); }
+u32 fn_71002ae824(char* p0, char* p1) {
+    alignas(4) char stk[0x4];
+    u32 r0_8 = (u32)*(u32*)((char*)(p1) + 0);
+    char* r1_0 = (stk + 0x0);
+    *(u32*)(stk + 0x0) = (u32)(u64)(r0_8);
+    char* r3_0 = callee::fn_71002874dc(r1_0);
+    u32 r4_0 = (u32)(u64)(0);
+    return r4_0;
+}
+
+namespace callee { char* fn_71002874dc(char*); }
+u32 fn_71002ae850(char* p0, char* p1) {
+    alignas(4) char stk[0x4];
+    u32 r0_8 = (u32)*(u32*)((char*)(p1) + 0);
+    char* r1_0 = (stk + 0x0);
+    *(u32*)(stk + 0x0) = (u32)(u64)(r0_8);
+    char* r3_0 = callee::fn_71002874dc(r1_0);
+    u32 r4_0 = (u32)(u64)(0);
+    return r4_0;
+}
+
 extern char g_unk_71726a4988[];
 namespace callee { char* fn_7100000250(char*, char*, char*); }
 namespace callee { char* fn_71000003d4(char*, char*, u32); }

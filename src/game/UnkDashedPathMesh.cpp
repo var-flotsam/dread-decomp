@@ -38,7 +38,6 @@ UnkMinimapPathPoint fn_71010596ac(void* path, u32 index, f32 t);
 // Assigns the x and y of a 3D vector to a 2D one.
 struct UnkVec3;
 void fn_710007b444(void* self, const UnkVec3* v);
-f32 fn_7100125fbc(const UnkSegment2D* seg);
 
 static inline void Project(CVector2D* out, const UnkMinimapPathPoint& point) {
     fn_710007b430(out, &point.v);

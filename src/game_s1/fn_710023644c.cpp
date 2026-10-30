@@ -29,3 +29,9 @@ static inline void Increment(UnkListIter_710023644c* it) {
 void fn_710023644c(UnkListIter_710023644c* it) { Increment(it); }
 
 void fn_71002367c8(UnkListIter_710023644c* it) { Increment(it); }
+
+// Identical copies: fn_7100d7d800, fn_7100d7db7c, fn_71011d1298, fn_71011d1614.
+void fn_7100d7d800(UnkListIter_710023644c* it) { Increment(it); }
+void fn_7100d7db7c(UnkListIter_710023644c* it) { Increment(it); }
+void fn_71011d1298(UnkListIter_710023644c* it) { Increment(it); }
+void fn_71011d1614(UnkListIter_710023644c* it) { Increment(it); }

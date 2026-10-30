@@ -25,6 +25,9 @@ struct UnkReflValue {
 
 void fn_71000a18d4(base::reflection::UnkReflValue* out, const base::reflection::CType* type, const void* value,
                    u32 by_ref);
+// Makes the value a default-constructed value of `type`, destroying the old one first
+// (src/base/reflection/fn_71000a18d4.cpp).
+void fn_71000a2014(base::reflection::UnkReflValue* value, const base::reflection::CType* type);
 
 namespace base::reflection {
 

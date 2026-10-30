@@ -38,6 +38,55 @@ typedef s32 __attribute__((may_alias)) a_s32;
 typedef f32 __attribute__((may_alias)) a_f32;
 typedef f64 __attribute__((may_alias)) a_f64;
 
+extern char g_unk_7101d47108[];
+namespace bret { bool fn_710009d50c(char*, char*); }
+namespace callee { char* fn_710009d50c(char*, char*); }
+namespace callee { char* fn_7100264814(); }
+namespace callee { char* fn_7100ec0dc4(); }
+namespace callee { char* fn_7100ec0ec4(char*, char*); }
+u64 fn_7100ec0d20(char* p0, char* p1) {
+    u64 X0 = (u64)p0;
+    u64 X1 = (u64)p1;
+    u64 X8;
+    u64 X9;
+    u64 X19;
+    u64 X20;
+    X8 = (u64)((u64)*(u64*)((char*)(((char*)X1)) + 0));
+    X9 = (u64)((char*)g_unk_7101d47108);
+    X9 = (u64)((u64)*(u64*)((char*)(((char*)X9)) + 0));
+    X9 = (u64)((u64)(u64)(X9) + (u64)(16));
+    if (!((u64)(u64)(X8) != (u64)(X9))) goto L_7100ec0db4;
+    X19 = (u64)(((char*)X1));
+    X20 = (u64)(((char*)X0));
+    X0 = (u64)(callee::fn_7100ec0dc4());
+    if (!((u64)(u64)(((char*)X0)) == 0)) goto L_7100ec0d68;
+    X0 = (u64)(((char*)X20));
+    X1 = (u64)(((char*)X19));
+    X0 = (u64)(callee::fn_7100ec0ec4(((char*)X0), ((char*)X1)));
+    if (!((u64)(u64)(((char*)X0)) != 0)) goto L_7100ec0da8;
+L_7100ec0d68:;
+    X8 = (u64)((u32)*(u32*)((char*)(((char*)X0)) + 0));
+    X8 = (u64)((u32)(u64)((u32)X8) + (u32)(1));
+    X19 = (u64)((u64)*(u64*)((char*)(((char*)X0)) + 8));
+    *(u32*)((char*)(((char*)X0)) + 0) = (u32)(u64)((u32)X8);
+    if (!((u64)(u64)(X19) != 0)) goto L_7100ec0db4;
+    X8 = (u64)((u64)*(u64*)((char*)(X19) + 0));
+    X0 = (u64)(X19);
+    X8 = (u64)((u64)*(u64*)((char*)(X8) + 0));
+    X0 = (u64)(((char* (*)(u64))(X8))(X0));
+    X20 = (u64)(((char*)X0));
+    X0 = (u64)(callee::fn_7100264814());
+    X1 = (u64)(((char*)X0));
+    X0 = (u64)(((char*)X20));
+    X0 = bret::fn_710009d50c(((char*)X0), ((char*)X1));
+    X0 = (u64)(((u32)(u64)((u32)((u32)(u64)((u32)X0) & (u32)(1))) != (u32)(0)) ? (u64)(u64)(X19) : (u64)((u64)(u64)(0)));
+L_7100ec0da8:;
+    return X0;
+L_7100ec0db4:;
+    X0 = (u64)(0);
+    return X0;
+}
+
 namespace callee { char* fn_7100083c00(char*); }
 namespace callee { char* fn_7100ebf414(char*); }
 char* fn_7100ec2f34(char* p0) {
@@ -511,6 +560,51 @@ char* fn_7100ec73c4() {
     char* r0_8 = (char*)g_unk_7101d47310;
     u64 r1_0 = (u64)*(u64*)((char*)(r0_8) + 0);
     return callee::fn_7100dfd16c(r1_0);
+}
+
+extern char g_unk_7101d470e0[];
+extern char g_unk_7101d47108[];
+extern char g_unk_7101d47310[];
+extern char g_unk_7101d552d0[];
+extern char g_unk_7101d57848[];
+extern char g_unk_717275a058[];
+namespace callee { char* fn_7100395b34(char*, char*, char*); }
+namespace callee { char* fn_7100ae9a10(char*, char*, char*); }
+namespace callee { char* fn_7101047270(u64, char*); }
+u32 fn_7100ec73d4() {
+    alignas(4) char stk[0x4];
+    char* r0_8 = (char*)g_unk_7101d47310;
+    u64 r1_8 = (u64)*(u64*)((char*)(r0_8) + 0);
+    *(u32*)(stk + 0x0) = (u32)(u64)(0);
+    u64 r3_19 = (u64)(u64)(r1_8) + (u64)(2408);
+    char* r4_8 = (char*)g_unk_7101d57848;
+    (void)lift_guard::GetSingleton();
+    char* r6_20 = (char*)g_unk_717275a058;
+    u64 r7_8 = (u64)*(u64*)((char*)(r6_20) + 16);
+    char* r8_9 = (char*)g_unk_7101d47108;
+    u64 r9_9 = (u64)*(u64*)((char*)(r8_9) + 0);
+    u64 r10_9 = (u64)(u64)(r9_9) + (u64)(16);
+    if ((u64)(u64)(r7_8) == (u64)(r10_9)) {
+        char* r12_2 = (char*)g_unk_7101d470e0;
+        char* r13_0 = (r6_20) + 16;
+        char* r14_1 = r6_20;
+        char* r15_0 = callee::fn_7100ae9a10(r13_0, r14_1, r12_2);
+    }
+    char* r17_8 = (char*)g_unk_7101d552d0;
+    u32 r18_9 = 0x1bd8;
+    char* r19_1 = (r17_8) + r18_9;
+    u64 r20_0 = r3_19;
+    char* r21_0 = callee::fn_7101047270(r20_0, r19_1);
+    char* m0 = r21_0;
+    if ((u64)(u64)(r21_0) != 0) {
+        char* r23_1 = (r6_20) + 16;
+        char* r24_2 = (stk + 0x0);
+        char* r25_0 = callee::fn_7100395b34(r21_0, r23_1, r24_2);
+        m0 = r25_0;
+    }
+    f32 r29_100 = *(f32*)(stk + 0x0);
+    u32 r30_0 = (u32)(u32)(r29_100);
+    return r30_0;
 }
 
 namespace callee { char* fn_7100ec5a30(); }

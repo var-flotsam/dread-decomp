@@ -20,7 +20,7 @@ struct UnkGuiEvent {
 static_assert(sizeof(UnkGuiEvent) == 0x28, "UnkGuiEvent placeholder layout");
 
 // Builds the event in `self` for `object`, an event kind (0 and 1: shown or hidden, 2 and 3:
-// selected or deselected, 4: a state index) and an optional property bag. Not decompiled yet.
+// selected or deselected, 4: a state index) and an optional property bag (src/game/GUI/UnkGuiEvent.cpp).
 void fn_710120235c(UnkGuiEvent* self, UnkGuiDisplayObject* object, const s32* kind, unk_prop_bag::UnkPropBag* bag);
-// Destroys the event (frees an owned bag). Not decompiled yet.
+// Destroys the event (frees an owned bag; src/game/GUI/UnkGuiEvent.cpp).
 void fn_7101202488(UnkGuiEvent* self);

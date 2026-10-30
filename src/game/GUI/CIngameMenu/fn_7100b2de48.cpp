@@ -166,14 +166,11 @@ void fn_7100066a50(void* text, const char32_t* value);
 void fn_7100066e44(void* text);
 void fn_7100b2cb44(UnkStateOwner* self);
 void fn_7100af1bfc(UnkComposition* composition);
-UnkGuiChild* fn_71011d94d4(UnkComposition* composition, const CStrId& name);
 void fn_7100b2c6a0(UnkStateOwner* self);
 void fn_7100b2c784(UnkStateOwner* self);
 void fn_710006cd9c(UnkSoundHolder* holder);
 void fn_710006d2a0(UnkSoundGroup* group, u32 id);
 void fn_710006d4d0(UnkSoundGroup* group, u32 id);
-void fn_7100219cb0(UnkRenderManager* target, bool a, bool b);
-void fn_7100219d4c(UnkRenderManager* target, bool a, bool b);
 void fn_7100219da4(UnkRenderManager* target, bool a, bool b, u32 mode);
 void fn_7100b2cc40(UnkStateOwner* self);
 
@@ -216,8 +213,8 @@ __attribute__((always_inline)) static inline void PlaySound(u32 id) {
 
 // Resets three settings of the global object.
 __attribute__((always_inline)) static inline void ResetParams() {
-    fn_7100219d4c(g_unk_7101d47300, false, false);
-    fn_7100219cb0(g_unk_7101d47300, false, false);
+    fn_7100219d4c(g_unk_7101d47300, false, 0);
+    fn_7100219cb0(g_unk_7101d47300, false, 0);
     fn_7100219da4(g_unk_7101d47300, true, true, 2);
 }
 
@@ -342,7 +339,8 @@ void fn_7100b2d0a4(UnkStateOwner* self) {
         self->current->SendEvent("OnHide", false);
     }
     fn_710002ffb4(&g_unk_717271e8f8->field_0xca8, &g_unk_7172762fd8);
-    UnkGuiChild* content = fn_71011d94d4(self->current, CStrId("Content", true));
+    UnkGuiChild* content = reinterpret_cast<UnkGuiChild*>(
+        fn_71011d94d4(reinterpret_cast<UnkGuiDisplayObject*>(self->current), CStrId("Content", true)));
     if (content && content->field_0x30 && (*content->field_0x30)->count >= 2 && !self->watch) {
         fn_710002fd10(&g_unk_717271e8f8->field_0xca8, &g_unk_7172762fd8);
         self->field_0x278 = true;
@@ -917,7 +915,8 @@ void fn_7100b2eaac(UnkStateOwner* self, s32 state, bool from_game, bool now) {
         const char* name = !self->field_0x279 ? "OnShow" : "OnShowFromGame";
         reinterpret_cast<void (*)(UnkComposition*, const char*, bool)>(vtable[0x1e8 / 8])(menu, name, false);
         fn_71011cdce8(reinterpret_cast<UnkGuiDisplayObject*>(self->current), true);
-        UnkGuiChild* content = fn_71011d94d4(self->current, CStrId("Content", true));
+        UnkGuiChild* content = reinterpret_cast<UnkGuiChild*>(
+        fn_71011d94d4(reinterpret_cast<UnkGuiDisplayObject*>(self->current), CStrId("Content", true)));
         if (content && content->field_0x30 && (*content->field_0x30)->count >= 2 && !self->field_0x260) {
             fn_710002fd10(&g_unk_717271e8f8->field_0xca8, &g_unk_7172762fd8);
             UnkWatched* watched = content->Watched();

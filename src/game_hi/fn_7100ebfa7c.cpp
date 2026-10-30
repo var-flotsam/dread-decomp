@@ -2,6 +2,7 @@
 // point for a position on its current mesh (queries the start cell, then probes the cell's crossable
 // edges that the position lies on and keeps the closer of the two results); fn_7100ebf278 is the
 // manager's constructor.
+#include "base/UnkParallelFind.h"
 #include "base/UnkVector.h"
 #include "base/math/UnkSegment2D.h"
 #include "game/UnkNavMeshCell.h"
@@ -23,11 +24,7 @@ struct Vec2 {
     }
 };
 
-struct IdPair {
-    u16 a;
-    u16 b;
-    IdPair(const IdPair&);
-};
+using IdPair = UnkNavMeshSidePair;
 
 using Segment = UnkSegment2D;
 
@@ -63,10 +60,8 @@ struct Result {
 
 
 bool fn_7100ebfd4c(UnkNavMeshManager*, Vec2*, u16, Result*, u32, f32, f32);
-Cell* fn_710027a328(Mesh*, u16);
 Vec2 fn_7100125a64(Vec2*);
 bool fn_71002afcd8(Cell*, Edge*, u32);
-IdPair fn_71002afe60(Cell*, u8*);
 Vec2* fn_710027a410(Mesh*, u16);
 
 // Vec2 has CVector2D's layout (it only adds the out-of-line copy constructor); fn_710007b430 reads
@@ -146,4 +141,30 @@ void fn_7100ebf278(UnkNavMeshManager* self) {
     self->field_0x62e4c = 0x57;
     self->allocator = fn_7100083990();
     fn_7100ebf2fc(&self->pool, 100, 0, 0x57, nullptr);
+}
+
+// The smart-link group registry at +0x62e30 as parallel arrays: 16-byte entries (two pointers) and
+// the names that key them.
+struct UnkNavGroupEntry {
+    void* first;
+    void* second;
+};
+struct UnkNavGroupRegistry {
+    u8 pad_0x0[0x62e30];
+    UnkNavGroupEntry* values;
+    base::global::CStrId* ids;
+    u32 count;
+};
+static_assert(__builtin_offsetof(UnkNavGroupRegistry, values) == 0x62e30, "UnkNavGroupRegistry layout");
+
+void* fn_7100ec1344(UnkNavMeshManager* self, const base::global::CStrId* name) {
+    UnkNavGroupRegistry* r = reinterpret_cast<UnkNavGroupRegistry*>(self);
+    UnkNavGroupEntry* slot = UnkParallelFindSlot(r, *name);
+    return slot != &r->values[r->count] ? slot->first : nullptr;
+}
+
+void* fn_7100ec13cc(UnkNavMeshManager* self, const base::global::CStrId* name) {
+    UnkNavGroupRegistry* r = reinterpret_cast<UnkNavGroupRegistry*>(self);
+    UnkNavGroupEntry* slot = UnkParallelFindSlot(r, *name);
+    return slot != &r->values[r->count] ? slot->second : nullptr;
 }

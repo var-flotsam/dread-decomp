@@ -116,7 +116,6 @@ void fn_7100089eec(base::file::UnkFileDevice* self, const CFilePathStrId* path, 
 
 // A scene object of the set: the render manager's node is its base at +8.
 struct UnkItemBase_71011a91c4;
-bool fn_71002199d8(UnkRenderManager* self, UnkItemBase_71011a91c4* item, u32 pool);
 
 struct UnkResourceObject {
     void* vtable;

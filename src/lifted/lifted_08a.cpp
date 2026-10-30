@@ -855,6 +855,16 @@ bool fn_71008a3e50(char* p0, char* p1, char* p2) {
     return r2_0;
 }
 
+u32 fn_71008a4090(char* p0, char* p1) {
+    u64 r0_2 = (u64)*(u64*)((char*)(p0) + 592);
+    if ((u64)(u64)(r0_2) != 0) {
+        u64 r2_0 = (u64)*(u64*)((char*)(p0) + 584);
+        return ((u32 (*)(u64, char*))(r0_2))(r2_0, p1);
+    }
+    u32 r5_0 = (u32)(u64)(0);
+    return r5_0;
+}
+
 void fn_71008a40a8() {
     return;
 }

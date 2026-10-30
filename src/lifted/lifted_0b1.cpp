@@ -3772,6 +3772,57 @@ char* fn_7100b1d7c4(char* p0, char* p1) {
     return ((char* (*)(char*))(r4_1))(r3_0);
 }
 
+extern char g_unk_7101d47300[];
+extern char g_unk_7101d47310[];
+namespace bret { bool fn_710009d50c(char*, char*); }
+namespace callee { char* fn_710009d50c(char*, char*); }
+namespace callee { char* fn_7100219294(u64, u64, char*, u32); }
+namespace callee { char* fn_7100b34230(); }
+namespace callee { char* fn_7100b35704(u64, u32, u32); }
+namespace callee { char* fn_7100e033a8(u64); }
+namespace callee { char* fn_71011cf730(); }
+char* fn_7100b1d7f0() {
+    alignas(4) char stk[0x4];
+    u64 X0;
+    u64 X1;
+    u64 X2;
+    u64 X3;
+    u64 X8;
+    u64 X19;
+    u64 X20;
+    X0 = (u64)(callee::fn_71011cf730());
+    X8 = (u64)((char*)g_unk_7101d47310);
+    X0 = (u64)((u64)*(u64*)((char*)(((char*)X8)) + 0));
+    X0 = (u64)(callee::fn_7100e033a8(X0));
+    if (!((u64)(u64)(((char*)X0)) != 0)) goto L_7100b1d844;
+    X8 = (u64)((u64)*(u64*)((char*)(((char*)X0)) + 0));
+    X19 = (u64)(((char*)X0));
+    X8 = (u64)((u64)*(u64*)((char*)(X8) + 0));
+    X0 = (u64)(((char* (*)(char*))(X8))(((char*)X0)));
+    X20 = (u64)(((char*)X0));
+    X0 = (u64)(callee::fn_7100b34230());
+    X1 = (u64)(((char*)X0));
+    X0 = (u64)(((char*)X20));
+    X0 = bret::fn_710009d50c(((char*)X0), ((char*)X1));
+    X0 = (u64)(((u32)(u64)((u32)((u32)(u64)((u32)X0) & (u32)(1))) != (u32)(0)) ? (u64)(u64)(((char*)X19)) : (u64)((u64)(u64)(0)));
+L_7100b1d844:;
+    X1 = (u64)(0xa);
+    X2 = (u64)(0x1);
+    X0 = (u64)(callee::fn_7100b35704(X0, ((u32)X1), ((u32)X2)));
+    X8 = (u64)(0xbf800000);
+    *(u32*)(stk + 0x0) = (u32)(u64)((u32)X8);
+    X8 = (u64)((char*)g_unk_7101d47300);
+    X0 = (u64)((u64)*(u64*)((char*)(((char*)X8)) + 0));
+    X1 = (u64)(0xf654);
+    X1 = (u64)(0x53baf654);
+    X1 = (u64)(0x3d1953baf654);
+    X1 = (u64)(0xede73d1953baf654);
+    X2 = (u64)((stk + 0x0));
+    X3 = (u64)(0x2);
+    X0 = (u64)(callee::fn_7100219294(X0, X1, ((char*)X2), ((u32)X3)));
+    return ((char*)X0);
+}
+
 extern char g_unk_717271e8f8[];
 namespace callee { char* fn_710002ffb4(u64, char*); }
 namespace callee { char* fn_7100af999c(char*, u32); }

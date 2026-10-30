@@ -8,7 +8,10 @@
 
 #include "base/UnkBlockFreeList.h"
 #include "base/UnkCloneHelpers.h"
+#include "base/UnkResKey.h"
+#include "base/UnkResPathVec.h"
 #include "base/UnkVector.h"
+#include "base/file/UnkFileCacheSet.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "types.h"
@@ -20,36 +23,14 @@ using base::global::CFilePathStrId;
 using base::global::CStrId;
 using base::global::UnkStringPool;
 
-// A resource type (its first member is its name).
-struct UnkResType {
-    CStrId name;
-};
 struct UnkResFactory;
-struct UnkResRegistry;
-extern UnkResRegistry* g_unk_7101d472f8;
 
 // The record's default callbacks: each forwards its second argument (fn_710001a0ac, fn_710001a39c).
 void fn_71000204c4(void* context, void* arg);
 void fn_71000204cc(void* context, void* arg);
 
-// The record's list of file-path ids, laid out as an UnkVector of CFilePathStrId; its copy reserves
-// the source's capacity (fn_7100018450) and appends the ids one by one.
-struct UnkResPathVec {
-    CFilePathStrId* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    UnkAllocator* allocator;
-
-    explicit UnkResPathVec(u32 flags)
-        : data(nullptr), count(0), capacity(0), step(10), field_0x14(true), flags(flags),
-          allocator(fn_7100083990()) {}
-    UnkResPathVec(const UnkResPathVec& other);
-};
-void fn_7100018450(UnkResPathVec* vec, u32 capacity);  // reserve
-
+// The record's list of file-path ids (base/UnkResPathVec.h): its copy reserves the source's
+// capacity (fn_7100018450) and appends the ids one by one.
 __attribute__((always_inline)) inline UnkResPathVec::UnkResPathVec(const UnkResPathVec& other)
     : data(nullptr), count(0), capacity(0), step(other.step), field_0x14(other.field_0x14),
       flags(other.flags), allocator(other.allocator) {
@@ -207,7 +188,12 @@ struct UnkResSet {
     UnkBlockPool nodes;
 };
 static_assert(sizeof(UnkResSet) == 0x90, "");
-void fn_71000ec184(UnkResSet* set, u32 buckets, u32 nodes);
+
+// Sets the set up with `nodes` pooled nodes of 0x60 bytes and `buckets` buckets (the file cache set's
+// set-up, base/file/UnkFileCacheSet.h, with the same layout).
+void fn_71000ec184(UnkResSet* set, u32 buckets, u32 nodes) {
+    UnkFileCacheSetSetUp<0x60>(reinterpret_cast<UnkFileCacheSet*>(set), buckets, nodes);
+}
 
 struct UnkResRegistry {
     char* vtable;
@@ -253,4 +239,78 @@ void fn_71000e9c78(UnkResRegistry* self) {
     self->descs.allocator = fn_7100083990();
     fn_7100016b80(self->field_0x118);
     fn_71000e9f00(self->field_0x148, 10, 0, 0x13, nullptr);
+}
+
+// ---- fn_71000ead80: the resource a key names ----
+
+// A counted resource (base/UnkCountedResource.h) whose count is accessed as a plain word.
+struct UnkPlainCountedRes {
+    u8 unk_0x0[0x54];
+    s32 ref_count;
+};
+
+// The resource already loaded under `key`, counted (null when there is none).
+UnkResRef fn_71000eac38(UnkResRegistry* self, const UnkResKey* key);
+// Loads the resource `key` names (null when it can't), uncounted.
+UnkCountedResource* fn_71000eaf20(UnkResRegistry* self, const UnkResKey* key, u8 flag, void* a);
+
+// The record of `key`'s type, or the slot past the last one: the names and the records walked
+// together.
+static inline UnkResDesc* FindDesc(UnkResRegistry* self, const UnkResKey* key) {
+    UnkResDescArrays& d = self->descs;
+    for (u64 i = 0; i < d.count; ++i)
+        if (d.names[i].data == key->type.data)
+            return &d.descs[i];
+    return &d.descs[d.count];
+}
+
+// The index of `key`'s type's record, or the count.
+static inline u64 FindDescIndex(UnkResRegistry* self, const UnkResKey* key) {
+    UnkResDescArrays& d = self->descs;
+    u64 i = 0;
+    for (; i < d.count; ++i)
+        if (d.names[i].data == key->type.data)
+            break;
+    return i;
+}
+
+// The resource `key` names: the loaded one, else a newly loaded one, else (when the type's record
+// names another key) that key's resource.
+// NON_MATCHING(minor): same behaviour; when the other key's resource is taken, the original stores
+// the incremented count before storing the result and then the decremented one; ours drops the
+// first store (93%, one store and the register holding the incremented count).
+UnkResRef fn_71000ead80(UnkResRegistry* self, const UnkResKey* key, u8 flag, void* a) {
+    UnkResRef result = fn_71000eac38(self, key);
+    if (!result.ptr) {
+        if (UnkCountedResource* res = fn_71000eaf20(self, key, flag, a)) {
+            ++res->ref_count;
+            result.ptr = res;
+        } else {
+            UnkResDesc* desc = FindDesc(self, key);
+            if (desc->name.data != &g_unk_7101d47108->empty && desc->field_0x18.data != &g_unk_7101d47200->empty) {
+                desc = &self->descs.descs[FindDescIndex(self, key)];
+                if (desc->name.data != key->type.data || desc->field_0x18.data != key->path.data) {
+                    // The other key's resource, copied into the result and released as the temporary.
+                    // In this unit the count is a plain word: it is not reread after the result is
+                    // stored. The temporary is held in a union so that its destructor (which reads the
+                    // count as a union member) does not run.
+                    union Temporary {
+                        UnkResRef ref;
+                        Temporary() {}
+                        ~Temporary() {}
+                    } temporary;
+                    UnkResRef& other = temporary.ref;
+                    new (&other) UnkResRef(fn_71000ead80(self, reinterpret_cast<const UnkResKey*>(&desc->name), flag, a));
+                    auto* p = reinterpret_cast<UnkPlainCountedRes*>(other.ptr);
+                    if (p) {
+                        ++p->ref_count;
+                        result.ptr = other.ptr;
+                    }
+                    if (p && --p->ref_count == 0)
+                        fn_710001737c(other.ptr);
+                }
+            }
+        }
+    }
+    return result;
 }

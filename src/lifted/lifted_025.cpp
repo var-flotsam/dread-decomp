@@ -862,6 +862,23 @@ f32 fn_7100253ad4(char* p0) {
     return m0;
 }
 
+namespace callee { char* fn_7100253b80(char*, char*); }
+namespace callee { char* fn_710025435c(char*, char*); }
+namespace wret { u32 fn_7100253b80(char*, char*); }
+namespace wret { u32 fn_710025435c(char*, char*); }
+u32 fn_7100254318(char* p0, char* p1) {
+    char* r0_19 = p1;
+    char* r1_20 = p0;
+    u32 r2_0 = wret::fn_710025435c(p0, p1);
+    u32 r3_21 = (u32)(u64)(r2_0);
+    char* r4_0 = r0_19;
+    char* r5_1 = r1_20;
+    u32 r6_0 = wret::fn_7100253b80(r4_0, r5_1);
+    u32 r7_8 = (u32)(u64)(r3_21) & (u32)(r6_0);
+    u32 r8_0 = (u32)(u64)(r7_8) & (u32)(1);
+    return r8_0;
+}
+
 namespace callee { char* fn_71002525c0(); }
 namespace h { extern HIDDEN char g_unk_71726a00e8[]; }
 char* fn_7100254534() {

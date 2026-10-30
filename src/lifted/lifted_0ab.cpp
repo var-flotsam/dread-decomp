@@ -1646,6 +1646,50 @@ char* fn_7100abadac(char* p0) {
     return callee::fn_710114fe8c(r28_0, r26_1, r27_2, r29_3);
 }
 
+namespace callee { char* fn_7100abb000(char*, char*, char*, char*); }
+namespace callee { char* fn_7100ac4c60(char*, char*, char*, char*); }
+namespace wret { u32 fn_7100ac4c60(char*, char*, char*, char*); }
+u32 fn_7100abaf90(char* p0, char* p1, char* p2, char* p3) {
+    char* r0_19 = p3;
+    char* r1_20 = p2;
+    char* r2_21 = p1;
+    char* r3_22 = p0;
+    u32 r4_0 = wret::fn_7100ac4c60(p0, p1, p2, p3);
+    u64 r5_8 = (u64)*(u64*)((char*)(r3_22) + 0);
+    u32 r6_23 = (u32)(u64)(r4_0);
+    char* r7_1 = (r0_19) + 20;
+    char* r8_2 = (r0_19) + 44;
+    char* r9_0 = r3_22;
+    u64 r10_8 = (u64)*(u64*)((char*)(r5_8) + 872);
+    char* r11_0 = ((char* (*)(char*, char*, char*))(r10_8))(r9_0, r7_1, r8_2);
+    char* r12_0 = r3_22;
+    char* r13_1 = r2_21;
+    char* r14_2 = r1_20;
+    char* r15_3 = r0_19;
+    char* r16_0 = callee::fn_7100abb000(r12_0, r13_1, r14_2, r15_3);
+    u32 r17_0 = (u32)(u64)(r6_23) & (u32)(1);
+    return r17_0;
+}
+
+namespace callee { char* fn_7100abb000(char*, char*, char*, char*); }
+namespace callee { char* fn_7100ac4ec0(char*, char*, char*, char*, char*, char*); }
+namespace wret { u32 fn_7100ac4ec0(char*, char*, char*, char*, char*, char*); }
+u32 fn_7100abb290(char* p0, char* p1, char* p2, char* p3, char* p4, char* p5) {
+    char* r0_19 = p4;
+    char* r1_20 = p3;
+    char* r2_21 = p2;
+    char* r3_22 = p0;
+    u32 r4_0 = wret::fn_7100ac4ec0(p0, p1, p2, p3, p4, p5);
+    u32 r5_23 = (u32)(u64)(r4_0);
+    char* r6_0 = r3_22;
+    char* r7_1 = r2_21;
+    char* r8_2 = r1_20;
+    char* r9_3 = r0_19;
+    char* r10_0 = callee::fn_7100abb000(r6_0, r7_1, r8_2, r9_3);
+    u32 r11_0 = (u32)(u64)(r5_23) & (u32)(1);
+    return r11_0;
+}
+
 namespace callee { char* fn_7100ab9ae0(); }
 namespace h { extern HIDDEN char g_unk_7172754e70[]; }
 char* fn_7100abbb7c() {

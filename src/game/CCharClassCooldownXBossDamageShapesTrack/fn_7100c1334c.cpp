@@ -224,3 +224,9 @@ UnkSetStatus fn_7100b08704(void* self, void* holder, UnkValueArg* const* arg) {
     status.field_0x14 = 1;
     return status;
 }
+
+// The same setter for the id at 0xd0 of another class, with its own update (fn_71007fcae4).
+void fn_71007fcae4(UnkUpdateFn, const CStrId* id, void* next);
+UnkSetStatus fn_71007fd3d8(void* self, UnkValueHolder* holder, UnkValueArg* const* arg) {
+    return SetStrId<0xd0, fn_71007fcae4>(self, holder, arg);
+}

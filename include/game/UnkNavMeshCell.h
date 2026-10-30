@@ -9,6 +9,7 @@
 // same unit. Only the members the hand-written files touch are spelled out; names and layouts are
 // placeholders inferred from the code.
 
+#include "base/math/CVector.h"
 #include "types.h"
 
 struct UnkNavMeshEdge {
@@ -23,7 +24,8 @@ struct UnkNavMeshEdge {
 static_assert(sizeof(UnkNavMeshEdge) == 0x38, "UnkNavMeshEdge layout");
 
 struct UnkNavMeshCell {
-    u8 pad_0x0[0x10];
+    u8 pad_0x0[0x8];
+    u16* vertices;  // +0x8, the vertex ids
     u8 field_0x10;  // the number of sides (fn_71002afe60 reads the whole word)
     u8 pad_0x11[0x1f];
     UnkNavMeshEdge* edges;  // +0x30
@@ -41,9 +43,41 @@ extern UnkNavMeshEdge g_unk_71726a4ae8;
 UnkNavMeshEdge* fn_71002afbe4(UnkNavMeshCell* cell, const u8* index);
 const UnkNavMeshEdge* fn_71002afc34(const UnkNavMeshCell* cell, const u8* index);
 
+// The vertex ids at either end of a side (0xffff, 0xffff when there is no such side). Returned in
+// memory, as the callers' copy constructor makes it.
+struct UnkNavMeshSidePair {
+    union {
+        u32 raw;  // both ids at once (all ones when there is no side)
+        struct {
+            u16 a;
+            u16 b;
+        };
+    };
+    UnkNavMeshSidePair() {}
+    UnkNavMeshSidePair(const UnkNavMeshSidePair&);
+};
+
+// The vertex pair of side `*index` (src/game/UnkNavMeshCell.cpp).
+UnkNavMeshSidePair fn_71002afe60(UnkNavMeshCell* cell, u8* index);
+
 // A test on a cell (unit 367 too); callers skip cells it rejects.
 bool fn_71002b005c(UnkNavMeshCell* cell);
 
-// The mesh's cell for a key (navmesh::CNavMesh, next to fn_710027a328), growing its tables to reach it.
+// The mesh's cell for a key (navmesh::CNavMesh, next to fn_710027a328), growing its tables to reach it
+// (src/game/navmesh/CNavMesh/fn_710027a33c.cpp). The key is 16 bits: the callee widens it itself.
 struct UnkNavMesh;
-UnkNavMeshCell* fn_710027a33c(UnkNavMesh* mesh, u32 key);
+UnkNavMeshCell* fn_710027a33c(UnkNavMesh* mesh, u16 key);
+// The mesh's cell for a key, without growing anything (navmesh::CNavMesh; generated, src/lifted/).
+UnkNavMeshCell* fn_710027a328(UnkNavMesh* mesh, u16 cell);
+
+// The segment of a cell side: its two points and a word that starts at -1.
+struct UnkNavMeshSideSegment {
+    base::math::CVector2D start;
+    base::math::CVector2D end;
+    f32 field_0x10;
+};
+
+// Fills `out` with side `*side` of the cell (from its vertex and the next one, wrapping round) and
+// returns true; false for no side (0xff), a side past the cell's count, or a cell without a mesh
+// (src/game/UnkNavMeshCell.cpp).
+bool fn_71002afea8(const UnkNavMeshCell* cell, const u8* side, UnkNavMeshSideSegment* out);

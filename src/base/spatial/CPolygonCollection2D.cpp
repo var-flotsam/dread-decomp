@@ -119,3 +119,15 @@ bool fn_71001244ac(UnkPolygonCollection2D* self, u32 handle, const UnkPolygonPro
         return false;
     return sign * (edge.x * nx + edge.y * ny) <= MaxAbs(edge.x, edge.y) * 0.1f;
 }
+
+// The edge a handle names (its polygon unchecked).
+// NON_MATCHING(minor): same behaviour; register allocation and the order of the two vertex addresses.
+UnkSegment2D fn_710012436c(const UnkPolygonCollection2D* self, u32 handle) {
+    const UnkPolygon2D* polygon = &self->polygons[(handle >> 16) & 0x7fff];
+    u32 i = handle & 0xffff;
+    UnkPolygonVertex* v = polygon->vertices;
+    const UnkPolygonVertex* next = v;
+    if (polygon->count - 1 != i)
+        next = &v[i + 1];
+    return UnkSegment2D(v[i].pos, next->pos);
+}

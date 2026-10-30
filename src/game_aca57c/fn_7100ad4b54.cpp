@@ -134,6 +134,28 @@ UnkReflValue fn_7100d60ae0(void* unused, UnkArgument<UnkFlagSource>* argument) {
 UnkReflValue fn_7100d61c30(void* unused, UnkArgument<UnkFlagSource>* argument) { return GetVirtualFlag(argument); }
 UnkReflValue fn_7100d691e0(void* unused, UnkArgument<UnkFlagSource>* argument) { return GetVirtualFlag(argument); }
 
+// The same getters in the CBaseLightComponent unit (unit 1389 of tools/tu_map.py), calling other virtual
+// slots: the slot is read off the object's vtable.
+template <class R, u32 Slot>
+__attribute__((always_inline)) static inline R CallSlot(void* object) {
+    return (*reinterpret_cast<R (***)(void*)>(object))[Slot / 8](object);
+}
+
+template <u32 Slot>
+__attribute__((always_inline)) static inline UnkReflValue GetVirtualFlagAt(UnkArgument<UnkFlagSource>* argument) {
+    bool value = CallSlot<bool, Slot>(argument->field_0x8);
+    return MakeValue(fn_710000d228(), &value);
+}
+
+UnkReflValue fn_71008ef0bc(void* unused, UnkArgument<UnkVectorSource>* argument) {
+    UnkVector3 value = CallSlot<UnkVector3, 0x170>(argument->field_0x8);
+    return MakeValue(fn_71000246e4(), &value);
+}
+UnkReflValue fn_71008ef69c(void* unused, UnkArgument<UnkFlagSource>* argument) { return GetVirtualFlagAt<0x1f0>(argument); }
+UnkReflValue fn_71008ef8cc(void* unused, UnkArgument<UnkFlagSource>* argument) { return GetVirtualFlagAt<0x220>(argument); }
+UnkReflValue fn_71008ef988(void* unused, UnkArgument<UnkFlagSource>* argument) { return GetVirtualFlagAt<0x230>(argument); }
+UnkReflValue fn_71008efa44(void* unused, UnkArgument<UnkFlagSource>* argument) { return GetVirtualFlagAt<0x240>(argument); }
+
 // Values of kind 2 referring (flag 1) to a cutscene definition held by an iterator value: in place
 // at 0x8, or through the pointer there when the state (after the Size-byte value) is 2. The class
 // getter is called first, so the class (whose reflected data is at the descriptor) is set up.
@@ -224,4 +246,76 @@ UnkReflValue fn_7100d690c4(void* unused, UnkArgument<UnkAngleSource>* argument) 
     UnkAngleSource* source = argument->field_0x8;
     f32 value = (source->field_0xcc + source->field_0xc8) * 180.0f / 3.141592653589793;
     return MakeValue(fn_710000abbc(), &value);
+}
+
+// The same getters in the CEmmyAIComponent unit (unit 811 of tools/tu_map.py): flags, and floats
+// copied as words, of the argument's object.
+template <u32 Offset>
+__attribute__((always_inline)) static inline UnkReflValue GetFloatWord(UnkArgument<bool>* argument) {
+    u32 value = *reinterpret_cast<u32*>(argument->field_0x8 + Offset);
+    return MakeValue(fn_710000abbc(), &value);
+}
+
+UnkReflValue fn_7100565114(void* unused, UnkArgument<bool>* argument) { return GetFlag<0x14779>(argument); }
+UnkReflValue fn_71005651f8(void* unused, UnkArgument<bool>* argument) { return GetFlag<0x14778>(argument); }
+UnkReflValue fn_71005654e4(void* unused, UnkArgument<bool>* argument) { return GetFlag<0x14c20>(argument); }
+UnkReflValue fn_7100565888(void* unused, UnkArgument<bool>* argument) { return GetFlag<0x14c14>(argument); }
+UnkReflValue fn_7100565954(void* unused, UnkArgument<bool>* argument) { return GetFlag<0x14c35>(argument); }
+UnkReflValue fn_71005652f8(void* unused, UnkArgument<bool>* argument) { return GetFloatWord<0x14c08>(argument); }
+UnkReflValue fn_71005653dc(void* unused, UnkArgument<bool>* argument) { return GetFloatWord<0x14c1c>(argument); }
+UnkReflValue fn_71005655dc(void* unused, UnkArgument<bool>* argument) { return GetFloatWord<0x14c10>(argument); }
+UnkReflValue fn_71005656c0(void* unused, UnkArgument<bool>* argument) { return GetFloatWord<0x14c2c>(argument); }
+UnkReflValue fn_71005657a4(void* unused, UnkArgument<bool>* argument) { return GetFloatWord<0x14c30>(argument); }
+
+// Floats two pointers away from the argument's object (copied as words), in the units at
+// 0x71007a.. and 0x71008e.. / 0x71008f...
+template <u32 First, u32 Second, u32 Offset>
+__attribute__((always_inline)) static inline UnkReflValue GetChainedFloatWord(UnkArgument<bool>* argument) {
+    u8* p = *reinterpret_cast<u8**>(argument->field_0x8 + First);
+    p = *reinterpret_cast<u8**>(p + Second);
+    u32 value = *reinterpret_cast<u32*>(p + Offset);
+    return MakeValue(fn_710000abbc(), &value);
+}
+
+UnkReflValue fn_71007a088c(void* unused, UnkArgument<bool>* argument) { return GetChainedFloatWord<0x50, 0x128, 0x78>(argument); }
+UnkReflValue fn_71007a0938(void* unused, UnkArgument<bool>* argument) { return GetChainedFloatWord<0x50, 0x128, 0x74>(argument); }
+UnkReflValue fn_71007a0b28(void* unused, UnkArgument<bool>* argument) { return GetChainedFloatWord<0x50, 0x128, 0x7c>(argument); }
+UnkReflValue fn_71008ebb34(void* unused, UnkArgument<bool>* argument) { return GetChainedFloatWord<0x58, 0x138, 0x88>(argument); }
+UnkReflValue fn_71008fa23c(void* unused, UnkArgument<bool>* argument) { return GetChainedFloatWord<0x58, 0x138, 0x88>(argument); }
+
+// Getters that call something on the argument's object and give 1 as an int: a virtual slot of it
+// (fn_7100a05720, fn_7100a05778, fn_7100a057d0), or fn_7100f10bf4 on a part of it (fn_7100f0f32c,
+// fn_7100f0f380, fn_7100f0f3d4).
+template <u32 Slot>
+__attribute__((always_inline)) static inline UnkReflValue CallSlotGetOne(UnkArgument<UnkFlagSource>* argument) {
+    CallSlot<void, Slot>(argument->field_0x8);
+    s32 value = 1;
+    return MakeValue(fn_7100014768(), &value);
+}
+
+void fn_7100f10bf4(void* part);
+
+template <u32 Offset>
+__attribute__((always_inline)) static inline UnkReflValue CallPartGetOne(UnkArgument<bool>* argument) {
+    fn_7100f10bf4(argument->field_0x8 + Offset);
+    s32 value = 1;
+    return MakeValue(fn_7100014768(), &value);
+}
+
+UnkReflValue fn_7100a05720(void* unused, UnkArgument<UnkFlagSource>* argument) { return CallSlotGetOne<0x1a8>(argument); }
+UnkReflValue fn_7100a05778(void* unused, UnkArgument<UnkFlagSource>* argument) { return CallSlotGetOne<0x1b0>(argument); }
+UnkReflValue fn_7100a057d0(void* unused, UnkArgument<UnkFlagSource>* argument) { return CallSlotGetOne<0x1b8>(argument); }
+UnkReflValue fn_7100f0f32c(void* unused, UnkArgument<bool>* argument) { return CallPartGetOne<0x150>(argument); }
+UnkReflValue fn_7100f0f380(void* unused, UnkArgument<bool>* argument) { return CallPartGetOne<0x180>(argument); }
+UnkReflValue fn_7100f0f3d4(void* unused, UnkArgument<bool>* argument) { return CallPartGetOne<0x1b8>(argument); }
+
+// Whether the argument's object has a non-zero word at +0x710 (fn_71010dced0).
+struct UnkCountObject {
+    u8 unk_0x0[0x710];
+    s32 field_0x710;
+};
+
+UnkReflValue fn_71010dced0(void* unused, UnkArgument<UnkCountObject>* argument) {
+    bool value = argument->field_0x8->field_0x710 != 0;
+    return MakeValue(fn_710000d228(), &value);
 }

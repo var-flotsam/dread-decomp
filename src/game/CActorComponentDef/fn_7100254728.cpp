@@ -23,3 +23,7 @@ static inline UnkReflValue ReturnTrue() {
 UnkReflValue fn_7100254728() { return ReturnTrue(); }
 
 UnkReflValue fn_7100254784() { return ReturnTrue(); }
+
+// Identical copies: fn_710094fe70, fn_71009f0f7c.
+UnkReflValue fn_710094fe70() { return ReturnTrue(); }
+UnkReflValue fn_71009f0f7c() { return ReturnTrue(); }

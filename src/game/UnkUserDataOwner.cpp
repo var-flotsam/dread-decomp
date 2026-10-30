@@ -15,18 +15,38 @@ using base::global::CRntString;
 struct UnkPtrList;
 
 struct UnkUserDataOwner {
-    u8 unk_0x0[8];
+    bool field_0x0;
+    u8 unk_0x1[7];
     u8 loader[0x40];  // 0x8
     bool field_0x48;
     bool loading;  // 0x49
-    u8 unk_0x4a[0x248 - 0x4a];
+    u8 unk_0x4a[0x234 - 0x4a];
+    u8 field_0x234[0x14];  // cleared by the constructor
     nn::os::LightEventType event;  // 0x248
     u8 unk_0x254[0xc];
     nn::os::MutexType stateMutex;  // 0x260
     nn::os::MutexType mutex;       // 0x280
-    u8 unk_0x2a0[0x18];
+    u8 unk_0x2a0[0x8];
+    bool field_0x2a8;
+    u8 unk_0x2a9[7];
+    void* field_0x2b0;
 };
 static_assert(sizeof(UnkUserDataOwner) == 0x2b8, "UnkUserDataOwner layout");
+
+// The loader's constructor (src/game/UnkScenarioLoadRequest.cpp's unit).
+void fn_7100fc71ac(void* loader);
+
+// Clears the flags and the fields the owner tests before its first load; the event and the mutexes
+// are set up elsewhere.
+void fn_710120320c(UnkUserDataOwner* self) {
+    self->field_0x0 = false;
+    fn_7100fc71ac(self->loader);
+    self->field_0x48 = false;
+    self->loading = false;
+    __builtin_memset(self->field_0x234, 0, sizeof(self->field_0x234));
+    self->field_0x2a8 = false;
+    self->field_0x2b0 = nullptr;
+}
 
 // Holds a mutex for its scope (through the engine's lock and unlock helpers).
 struct UnkMutexLock {

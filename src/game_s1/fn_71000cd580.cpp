@@ -9,7 +9,8 @@
 // with elements holding a string id and a file path id (moved in fn_710001d334, copied in
 // fn_710001d9ac), with reflected-value elements (fn_71000d5178; string-id keys fn_71000d6698,
 // fn_71000d7740); copies with string-id elements (fn_71000cda10; CFilePathStrId's
-// pool fn_71000d01cc).
+// pool fn_71000d01cc; with 8-byte indices fn_7100edb124, fn_7100fb0fd0). Eleven more 8-byte-element moves and four more two-word ones are copies in
+// other units (listed with their originals below).
 #include <new>
 
 #include "base/UnkCollectionIter.h"
@@ -159,8 +160,23 @@ UNK_ITER_MOVE(71002424e8, u64, UnkMovedStrId)
 UNK_ITER_MOVE(7100242a20, u64, UnkMovedStrId)
 UNK_ITER_MOVE(7100251208, u64, UnkMovedStrId)
 UNK_ITER_MOVE(71002515ac, u64, UnkMovedStrId)
+UNK_ITER_MOVE(7100b804d8, u64, UnkMovedStrId)
+UNK_ITER_MOVE(7100b80a10, u64, UnkMovedStrId)
+UNK_ITER_MOVE(7100d6e87c, u64, UnkMovedStrId)
+UNK_ITER_MOVE(7100d6f1c8, u64, UnkMovedStrId)
+UNK_ITER_MOVE(7100d6f700, u64, UnkMovedStrId)
+UNK_ITER_MOVE(7100d85bd0, u64, UnkMovedStrId)
+UNK_ITER_MOVE(7100d86108, u64, UnkMovedStrId)
+UNK_ITER_MOVE(710104a218, u64, UnkMovedStrId)
+UNK_ITER_MOVE(710104a750, u64, UnkMovedStrId)
+UNK_ITER_MOVE(71010c5a18, u64, UnkMovedStrId)
+UNK_ITER_MOVE(71010c5f50, u64, UnkMovedStrId)
 UNK_ITER_MOVE(7100121610, UnkWordPair, u32)
 UNK_ITER_MOVE(7100121984, UnkWordPair, u32)
+UNK_ITER_MOVE(7100c0ae3c, UnkWordPair, u32)
+UNK_ITER_MOVE(7100c0b1b0, UnkWordPair, u32)
+UNK_ITER_MOVE(710105fe4c, UnkWordPair, u32)
+UNK_ITER_MOVE(71010601c0, UnkWordPair, u32)
 UNK_ITER_MOVE(71001f1cd8, u64, u64)
 UNK_ITER_MOVE(71001f1fc8, u64, u64)
 UNK_ITER_MOVE(71000da264, UnkMovedFilePathStrId, UnkMovedStrId)
@@ -168,12 +184,21 @@ UNK_ITER_MOVE(71000da8dc, UnkCopiedFilePathStrId, UnkMovedStrId)
 UNK_ITER_MOVE(71000d887c, UnkMovedStrId, UnkMovedStrId)
 UNK_ITER_MOVE(710001d334, UnkMovedIdPair, u32)
 UNK_ITER_MOVE(710001d9ac, UnkCopiedIdPair, u32)
+UNK_ITER_MOVE(7100edac94, UnkMovedFilePathStrId, u64)
+UNK_ITER_MOVE(7100fb0b40, UnkMovedStrId, u64)
 
 void fn_71000cda10(UnkIterValue<UnkCopiedStrId>* self, const UnkIterValue<UnkCopiedStrId>* other) {
     CopyConstruct(self, other);
 }
 
 void fn_71000d01cc(UnkIterValue<UnkCopiedFilePathStrId>* self, const UnkIterValue<UnkCopiedFilePathStrId>* other) {
+    CopyConstruct(self, other);
+}
+// The same with 8-byte indices, in other units.
+void fn_7100edb124(UnkIterValue<UnkCopiedFilePathStrId, u64>* self, const UnkIterValue<UnkCopiedFilePathStrId, u64>* other) {
+    CopyConstruct(self, other);
+}
+void fn_7100fb0fd0(UnkIterValue<UnkCopiedStrId, u64>* self, const UnkIterValue<UnkCopiedStrId, u64>* other) {
     CopyConstruct(self, other);
 }
 

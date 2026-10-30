@@ -493,6 +493,16 @@ char* fn_71008c65e4(char* p0) {
     return callee::fn_7100874460(r19_0, r20_1);
 }
 
+u32 fn_71008c86c8(char* p0, char* p1) {
+    u64 r0_2 = (u64)*(u64*)((char*)(p0) + 592);
+    if ((u64)(u64)(r0_2) != 0) {
+        u64 r2_0 = (u64)*(u64*)((char*)(p0) + 584);
+        return ((u32 (*)(u64, char*))(r0_2))(r2_0, p1);
+    }
+    u32 r5_0 = (u32)(u64)(0);
+    return r5_0;
+}
+
 void fn_71008c86e0() {
     return;
 }

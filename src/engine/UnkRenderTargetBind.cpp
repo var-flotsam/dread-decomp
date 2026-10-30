@@ -65,3 +65,8 @@ void fn_710015c2d0(UnkEntry_71001cdba4* entry) {
     g_unk_716e29ba88(cmd, n, colors, nullptr, depth, nullptr);
     g_unk_716e29d270 = *set;
 }
+
+// A target's texture (+0x8), or null without a target.
+void* fn_710015c450(UnkBoundTarget* target) {
+    return target ? target->field_0x8 : nullptr;
+}

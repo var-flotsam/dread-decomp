@@ -16,7 +16,15 @@ using UnkU32Values3Pair = UnkValuePairRef<u32, UnkValues3>;
 
 UnkU32Values4Pair* fn_71002cb6b8(UnkU32Values4Pair* self, UnkU32Values4Pair* other) { return Assign(self, other); }
 
+// Identical copies: fn_710066795c, fn_710075e9e8.
+UnkU32Values4Pair* fn_710066795c(UnkU32Values4Pair* self, UnkU32Values4Pair* other) { return Assign(self, other); }
+UnkU32Values4Pair* fn_710075e9e8(UnkU32Values4Pair* self, UnkU32Values4Pair* other) { return Assign(self, other); }
+
 UnkU32Values4Pair* fn_71002cb754(UnkU32Values4Pair* self, UnkU32Values4Pair* other) { return AssignSet(self, other); }
+
+// Identical copies: fn_71006679f8, fn_710075ea84.
+UnkU32Values4Pair* fn_71006679f8(UnkU32Values4Pair* self, UnkU32Values4Pair* other) { return AssignSet(self, other); }
+UnkU32Values4Pair* fn_710075ea84(UnkU32Values4Pair* self, UnkU32Values4Pair* other) { return AssignSet(self, other); }
 
 UnkU32Values3Pair* fn_71003ed8fc(UnkU32Values3Pair* self, UnkU32Values3Pair* other) { return Assign(self, other); }
 

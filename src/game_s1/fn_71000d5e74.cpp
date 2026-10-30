@@ -81,3 +81,9 @@ struct UnkDestroyed {
 using UnkBound18 = UnkDestroyed<0x18, base::reflection::UnkReflValue, fn_71000a1c60>;
 
 void fn_71000d5e74(UnkBound18* const* src, UnkBoundRef<UnkBound18>* out) { AssignBound(src, out); }
+
+// The same for 0x88-byte values destroyed by fn_71007a8eec, in another unit.
+void fn_71007a8eec(void* self);
+using UnkBound88 = UnkDestroyed<0x88, void, fn_71007a8eec>;
+
+void fn_71007ace64(UnkBound88* const* src, UnkBoundRef<UnkBound88>* out) { AssignBound(src, out); }

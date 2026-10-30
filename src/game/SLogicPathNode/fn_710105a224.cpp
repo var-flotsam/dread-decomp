@@ -32,3 +32,31 @@ void fn_710105a178(UnkPolyArrayOwner_710105a224& self) {
 void fn_710105a224(UnkPolyArrayOwner_710105a224& self) {
     delete &self;
 }
+
+// The same destructors for an array of 0x58-byte polymorphic elements, with another vtable
+// (fn_7100c04570, fn_7100c0461c).
+extern void* g_unk_7101aa28d8[];
+
+struct UnkPolyElem_0x58 {
+    virtual void vf_0x0();
+    virtual ~UnkPolyElem_0x58();
+    u8 unk_0x8[0x50];
+};
+
+struct UnkPolyArrayOwner_7100c0461c {
+    void** vtable;
+    base::UnkVector<UnkPolyElem_0x58> elems;
+
+    ~UnkPolyArrayOwner_7100c0461c() {
+        vtable = &g_unk_7101aa28d8[2];
+        elems.Free();
+    }
+};
+
+void fn_7100c04570(UnkPolyArrayOwner_7100c0461c& self) {
+    self.~UnkPolyArrayOwner_7100c0461c();
+}
+
+void fn_7100c0461c(UnkPolyArrayOwner_7100c0461c& self) {
+    delete &self;
+}

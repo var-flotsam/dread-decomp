@@ -45,7 +45,7 @@ struct UnkOwner {
 extern u32 g_unk_71727bebb8;
 extern char g_unk_71726a4bc0[] __attribute__((visibility("hidden")));
 
-void* fn_7100ca719c(void* manager, u16 id);
+void* fn_7100ca719c(void* manager, u32 id);
 UnkEntryInfo* fn_7100ca1ea8(void* entry, u8 sub);
 void fn_71002b3aa0(UnkOwner* self, bool flag, void* arg);
 UnkLinkList* fn_7100ca7a64(void* manager, u16 id);

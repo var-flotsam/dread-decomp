@@ -111,6 +111,13 @@ void fn_7100219294(UnkRenderManager* self, u64 hash, const f32* value, u32 count
     fn_71001fc7bc(self->field_0x220, hash, value, count);
 }
 
+// Zeroes the two pass parameters with these hashes.
+void fn_710021a210(UnkRenderManager* self) {
+    f32 zero = 0.0f;
+    fn_71001fc7bc(self->field_0x220, 0x38bb3d82ecfaffaa, &zero, 0);
+    fn_71001fc7bc(self->field_0x220, 0xcc53b066013b1983, &zero, 0);
+}
+
 // Reads the view's rectangle and sets it again with the two values (the two words the read also
 // gives are dropped).
 void fn_7100219e88(UnkRenderManager* self, u32 view, f32 x, f32 y) {
@@ -118,6 +125,15 @@ void fn_7100219e88(UnkRenderManager* self, u32 view, f32 x, f32 y) {
     f32 rect[4] = {};
     fn_71001fd8dc(self->field_0x220, rect, &unused, &unused, view);
     fn_71001fd868(self->field_0x220, rect, view, x, y);
+}
+
+// Reads the view's rectangle into `rect` (the two words the read also gives are dropped). The
+// environment fade (src/game/UnkEnvironmentFade.cpp) reads it into a colour vector.
+#include "base/math/CVector4D.h"
+using UnkEnvFadeColor = base::math::UnkVector4D;
+void fn_7100219fa0(UnkRenderManager* self, UnkEnvFadeColor* rect, u32 view) {
+    f32 unused;
+    fn_71001fd8dc(self->field_0x220, reinterpret_cast<f32*>(rect), &unused, &unused, view);
 }
 
 // The other way round: sets the view's rectangle to `rect`, keeping the two values it had.
@@ -215,4 +231,31 @@ void fn_7100219340(UnkRenderManager* self) {
             n = n->next;
         }
     }
+}
+
+// The items' scene nodes taken off their layers (game/UnkRenderManager.h).
+bool fn_71001fc69c(void* passes, u32 layer);
+
+// The pass list's flag setters (src/game_s1/fn_71001fcd4c.cpp), on the item of a layer.
+struct UnkPtrArray;
+void fn_71001fc904(const UnkPtrArray* items, bool value, s32 id);
+void fn_71001fc88c(const UnkPtrArray* items, bool value, s32 id);
+
+void fn_7100219cb0(UnkRenderManager* self, bool flag, u32 layer) {
+    if (fn_71001fc69c(self->field_0x220, layer))
+        fn_71001fc88c(static_cast<const UnkPtrArray*>(self->field_0x220), flag, layer);
+}
+
+void fn_7100219d4c(UnkRenderManager* self, bool flag, u32 layer) {
+    if (fn_71001fc69c(self->field_0x220, layer))
+        fn_71001fc904(static_cast<const UnkPtrArray*>(self->field_0x220), flag, layer);
+}
+
+bool fn_71002199d8(UnkRenderManager* self, UnkItemBase_71011a91c4* item, u32 layer) {
+    UnkSceneNode* node = reinterpret_cast<UnkSceneNode*>(item);
+    if (!node || !fn_71001fc69c(self->field_0x220, layer))
+        return false;
+    fn_7100219a34(self, node);
+    // The original passes a third argument (0) that fn_710014239c doesn't read.
+    return reinterpret_cast<bool (*)(void*, UnkSceneNode*, u32)>(fn_710014239c)(self->field_0x218, node, 0);
 }

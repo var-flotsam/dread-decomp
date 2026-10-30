@@ -164,6 +164,25 @@ char* fn_7101210740(char* p0, char* p1) {
     return (char*)(u64)(r6_0);
 }
 
+namespace callee { char* fn_710120fae8(u64, u32); }
+namespace callee { char* fn_710120ffc8(u64, char*); }
+namespace wret { u32 fn_710120ffc8(u64, char*); }
+char* fn_710121075c(char* p0, char* p1) {
+    u64 r0_8 = (u64)*(u64*)((char*)(p0) + 56);
+    if ((u64)(u64)(r0_8) != 0) {
+        char* r2_19 = p0;
+        u64 r3_0 = (u64)*(u64*)((char*)(p0) + 64);
+        u32 r4_0 = wret::fn_710120ffc8(r3_0, p1);
+        if ((u32)(u64)((u32)((u32)(u64)(r4_0) + (u32)(1))) != (u32)(0)) {
+            u32 r6_1 = (u32)(u64)(r4_0);
+            u64 r7_0 = (u64)*(u64*)((char*)(r2_19) + 56);
+            return callee::fn_710120fae8(r7_0, r6_1);
+        }
+    }
+    u64 r11_0 = 0;
+    return (char*)(u64)(r11_0);
+}
+
 namespace callee { char* fn_710120fe24(u64, char*); }
 char* fn_71012107a8(char* p0, char* p1) {
     u64 r0_0 = (u64)*(u64*)((char*)(p0) + 64);

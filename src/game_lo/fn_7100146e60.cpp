@@ -26,3 +26,7 @@ void fn_7100146e60(UnkSwitchObject* self, bool enable) {
     if (self->field_0x244 == 0 && !enable)
         self->field_0x244 = 2;
 }
+
+// Unit 134's own copies of the switch (game/UnkSwitchObject.h).
+void fn_7100146dac(UnkSwitchObject* self, bool enable) { UnkSwitchSet<fn_7100208bb4>(self, enable); }
+void fn_7100147000(UnkSwitchObject* self, bool enable) { UnkSwitchSet<fn_7100208bb4>(self, enable); }

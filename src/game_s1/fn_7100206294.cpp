@@ -24,3 +24,19 @@ void fn_7100206294(UnkXformNode* self, const UnkMatrix44* m) {
     UnkVec3f pos = (*reinterpret_cast<UnkXformNodeVtbl**>(self))->vf_0x98(self);
     fn_7100216978(sphere, &pos);
 }
+
+// The target's position and the two flags that make it the node's.
+struct UnkXformTargetPosition {
+    u8 pad_0x0[0xa8];
+    UnkVec3f position_0xa8;
+    u8 pad_0xb4[0x1c9];
+    bool field_0x27d;
+    bool field_0x27e;
+};
+
+UnkVec3f fn_7100206154(UnkXformNode* self) {
+    auto* target = reinterpret_cast<UnkXformTargetPosition*>(self->target_0x108);
+    if (target->field_0x27d && target->field_0x27e)
+        return target->position_0xa8;
+    return self->Xform()->GetTranslation();
+}

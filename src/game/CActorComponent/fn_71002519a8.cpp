@@ -45,6 +45,12 @@ u32* fn_71000dedbc(UnkWordsByKey* a, const u64* key) {
     return p == a->End() ? nullptr : p;
 }
 
+// An identical copy (fn_710079c41c).
+u32* fn_710079c41c(UnkWordsByKey* a, const u64* key) {
+    u32* p = a->Find(*key);
+    return p == a->End() ? nullptr : p;
+}
+
 void fn_71000df750(UnkWordsByKey* a, u32* value);
 
 // Removal over 4-byte values (fn_71000ded44).
@@ -52,6 +58,14 @@ void fn_71000ded44(UnkWordsByKey* a, const u64* key) {
     u32* p = a->Find(*key);
     if (p != a->End())
         fn_71000df750(a, p);
+}
+
+// The same removal in another unit, with its own out-of-line removal (fn_710079c3a4).
+void fn_710079ccb8(UnkWordsByKey* a, u32* value);
+void fn_710079c3a4(UnkWordsByKey* a, const u64* key) {
+    u32* p = a->Find(*key);
+    if (p != a->End())
+        fn_710079ccb8(a, p);
 }
 
 // And over 0x40-byte records held at 8 in an object, with the key passed by value
@@ -92,4 +106,84 @@ bool fn_71001c147c(char* self, const u64* key) {
     if (p == holder->records.End())
         p = nullptr;
     return p != nullptr;
+}
+
+// The lookup and the removal over 0x10-byte values (fn_71009046bc, fn_7100904644) and 0x80-byte values
+// (fn_7100e6095c, fn_7100e608e0), each removal with its own out-of-line removal.
+struct UnkValue_0x10 {
+    u64 words[2];
+};
+struct UnkValue_0x80 {
+    u64 words[16];
+};
+struct UnkKeyedValues_71009046bc;
+struct UnkKeyedValues_7100e6095c;
+using UnkValues10ByKey = base::UnkKeyedArray<UnkKeyedValues_71009046bc, u64, UnkValue_0x10>;
+using UnkValues80ByKey = base::UnkKeyedArray<UnkKeyedValues_7100e6095c, u64, UnkValue_0x80>;
+void fn_7100901264(UnkValues10ByKey* a, UnkValue_0x10* value);
+void fn_7100e6164c(UnkValues80ByKey* a, UnkValue_0x80* value);
+
+template <class A>
+__attribute__((always_inline)) static inline auto FindOrNull(A* a, const u64* key) -> decltype(a->End()) {
+    auto* p = a->Find(*key);
+    return p == a->End() ? nullptr : p;
+}
+
+UnkValue_0x10* fn_71009046bc(UnkValues10ByKey* a, const u64* key) { return FindOrNull(a, key); }
+UnkValue_0x80* fn_7100e6095c(UnkValues80ByKey* a, const u64* key) { return FindOrNull(a, key); }
+
+void fn_7100904644(UnkValues10ByKey* a, const u64* key) {
+    UnkValue_0x10* p = a->Find(*key);
+    if (p != a->End())
+        fn_7100901264(a, p);
+}
+
+void fn_7100e608e0(UnkValues80ByKey* a, const u64* key) {
+    UnkValue_0x80* p = a->Find(*key);
+    if (p != a->End())
+        fn_7100e6164c(a, p);
+}
+
+// The reserve of a keyed array of 0x40-byte records with its storage (fn_7100015378): both arrays
+// grow to `capacity`, the records copied word by word (the count reread for each) and the keys
+// copied by a 64-bit index beside a 32-bit counter.
+// Words that may alias anything: the array's fields are reread after the copies.
+typedef u32 __attribute__((may_alias)) UnkAliasWord;
+
+struct UnkWordRecord_0x40 {
+    UnkAliasWord words[16];
+};
+
+struct UnkRecordsByKeyStore {
+    UnkWordRecord_0x40* values;
+    u64* keys;
+    u32 count;
+    u32 capacity;
+    u32 step;
+    u32 flags;
+    base::UnkAllocator* allocator;
+};
+
+void fn_7100015378(UnkRecordsByKeyStore* self, u32 capacity) {
+    if (self->capacity < capacity) {
+        auto* values = static_cast<UnkWordRecord_0x40*>(
+            self->allocator->vf_0x40((u64)capacity * sizeof(UnkWordRecord_0x40), 8, self->flags));
+        auto* keys = static_cast<u64*>(self->allocator->vf_0x40((u64)capacity * sizeof(u64), 8, self->flags));
+        if (UnkWordRecord_0x40* src = self->values) {
+            UnkWordRecord_0x40* dst = values;
+            for (u32 i = 0; i < self->count; ++i, ++src, ++dst)
+                for (u32 w = 0; w < 16; ++w)
+                    dst->words[w] = src->words[w];
+            self->allocator->vf_0x48(self->values);
+        }
+        if (u64* src = self->keys) {
+            u64 j = 0;
+            for (u32 i = 0; i < self->count; ++i, ++j)
+                __builtin_memcpy(&keys[j], &src[j], sizeof(u64));
+            self->allocator->vf_0x48(self->keys);
+        }
+        self->values = values;
+        self->keys = keys;
+        self->capacity = capacity;
+    }
 }
