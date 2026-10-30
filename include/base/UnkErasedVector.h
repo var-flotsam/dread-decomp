@@ -80,6 +80,9 @@ struct UnkOwnedErasedVector : UnkErasedVector {
     }
 };
 
+// Destroys the values and empties the array, keeping its buffer (src/base/UnkErasedVector.cpp).
+void fn_7100ad3588(UnkErasedVector* self);
+
 // Appends a copy of `value` (not matched yet; fn_710023b29c calls it).
 void fn_710023b424(UnkErasedVector* self, const UnkErasedValue_0x10* value);
 

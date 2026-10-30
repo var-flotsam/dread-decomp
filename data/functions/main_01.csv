@@ -3299,7 +3299,7 @@ address,size,name,name_source,subsystem,status
 0x710019daf0,24,fn_710019daf0,unknown,unknown,O
 0x710019db08,108,fn_710019db08,unknown,unknown,O
 0x710019db74,128,fn_710019db74,unknown,unknown,O
-0x710019dbf4,40,fn_710019dbf4,unknown,unknown,U
+0x710019dbf4,40,fn_710019dbf4,unknown,unknown,O
 0x710019dc20,140,fn_710019dc20,unknown,unknown,O
 0x710019dcac,380,fn_710019dcac,unknown,unknown,U
 0x710019de28,164,fn_710019de28,unknown,unknown,O

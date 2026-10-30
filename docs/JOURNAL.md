@@ -131,6 +131,27 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Night round 12: more boot leaves (2026-10-30, branch `claude/project-thread-lths9k-night12`).**
+20 functions to `O` and 4 to minor, all boot-slice leaves from `tools/hubs.py --ready --boot`. Boot slice: `O` 2,113 to
+2,133, usable 40.58% to 40.72%; whole binary `O` 85,343 to 85,363. `O`: the pooled chained map's constructor (fn_710109d810,
+17 callers: `UnkChainedMap` and `UnkBlockPool` back to back), the navmesh manager's two smart-link group lookups, the
+navmesh search node's constructor and place setter, the render manager's two layer flag forwards, the type-erased array's
+clear, the environment fade's channel 1 start, the minimap item visibility test, the music manager's request flag setter,
+the blackboard's flag clear, the GUI item's position transform and more. Minor (scheduling or store pairing only): a spawn
+group countdown, two GUI frame scalers and the polygon collection shape's constructor.
+- **Raw storage keeps an emptiness test.** The minimap item's modifier arrays are tested as `begin() != end()` (a multiply
+  by the element size and a compare) only when the array is raw bytes reinterpreted, as `UnkMinimapModifiers` already does;
+  a typed array folds the test to `count != 0`. Its alpha test is `!(alpha > 0.0f)` (the original's `b.le`).
+- **An array reached past its count.** The navmesh path's id append matched only with the ids' address formed as
+  `&count + 1`; the member address gives other arithmetic.
+- **A pinned search result.** The GUI frame scalers use a frame lookup that can return null and dereference the result
+  unchecked; without an `asm` pin of the result Clang treats the miss as impossible and drops the loop's bound.
+- **Argument order from the original's registers.** fn_7100108a98 takes the sound manager, a handle, a flag and a float
+  (s0), not the word Ghidra shows first; fn_7100219c98 forwards three pointers the pass list ignores.
+- Declarations moved to headers: `fn_7100ad3588` (base/UnkErasedVector.h, eight local copies dropped), `fn_710027a328`
+  (game/UnkNavMeshCell.h), `fn_7101047178` (game/CBlackboard.h), the navmesh group lookups (game/UnkNavMeshManager.h), the
+  render manager's layer setters and the GUI frame scalers.
+
 **Night round 11: boot leaves, small lookups and helpers (2026-10-30, branch `claude/project-thread-lths9k-night11`).**
 27 functions to `O` and 2 to minor, all boot-slice leaves from `tools/hubs.py --ready --boot`. Boot slice: `O` 2,086 to
 2,113, usable 40.39% to 40.58%; whole binary `O` 85,316 to 85,343. `O`: the game manager's id lists (fn_7100de94cc, 21 callers)

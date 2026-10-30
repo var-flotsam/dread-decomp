@@ -105,8 +105,6 @@ struct UnkNavGroupInfo {
     CStrId name;
 };
 UnkNavGroupInfo* fn_710110c3d8(UnkNavComponent* component);
-// The manager's smart-link group of that name.
-void* fn_7100ec13cc(UnkNavMeshManager* self, const CStrId* name);
 
 struct UnkNavActor {
     u8 pad_0x0[0x240];

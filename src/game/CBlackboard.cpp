@@ -115,3 +115,29 @@ bool fn_71010474f4(CBlackboard* self, const CStrId& section, const CStrId& name)
     UnkPropertyValue_0x18* it = UnkParallelFindSlot(reinterpret_cast<UnkPropertyMap*>(&properties), name);
     return it != &static_cast<UnkPropertyValue_0x18*>(properties.values)[properties.count];
 }
+
+// The list at +0x70 of a blackboard: nodes holding an object whose flag at +0x60 is cleared below.
+struct UnkBlackboardListed {
+    u8 pad_0x0[0x60];
+    bool field_0x60;
+};
+struct UnkBlackboardListNode {
+    u8 pad_0x0[0x8];
+    UnkBlackboardListed* object;
+    UnkBlackboardListNode* next;
+};
+struct UnkBlackboardList {
+    u8 pad_0x0[0x70];
+    UnkBlackboardListNode* head;
+};
+
+// Clears every section's flag (its data's field_0x38) and the flag of every object on the list at
+// +0x70.
+void fn_7101047178(CBlackboard* self) {
+    for (CBlackboard::CSection **it = self->sections, **end = it + self->count; it != end; ++it)
+        if (*it)
+            (*it)->data.field_0x38 = false;
+    for (UnkBlackboardListNode* node = reinterpret_cast<UnkBlackboardList*>(self)->head; node; node = node->next)
+        if (node->object)
+            node->object->field_0x60 = false;
+}

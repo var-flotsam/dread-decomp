@@ -33,3 +33,7 @@ struct CVector2D;
 UnkGuiFrame* fn_71011b7a4c(UnkGuiRoot* root, s32 key);
 UnkLabelVec2 fn_71011b7e7c(UnkGuiRoot* root, s32 key, const base::math::CVector2D* v);
 UnkLabelVec2 fn_71011b7fc8(UnkGuiRoot* root, s32 key, const base::math::CVector2D* v);
+// A size in the frame's units back to the root's (divided by its scales at +0xd98), and a point in
+// the frame's -1..1 space to its pixels (src/game/GUI/CGUIManager/fn_71011b7f48.cpp).
+UnkLabelVec2 fn_71011b800c(UnkGuiRoot* root, s32 frame, const UnkLabelVec2* size);
+UnkLabelVec2 fn_71011b7ec0(s32 key, const UnkLabelVec2* v);

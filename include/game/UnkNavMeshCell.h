@@ -66,3 +66,5 @@ bool fn_71002b005c(UnkNavMeshCell* cell);
 // (src/game/navmesh/CNavMesh/fn_710027a33c.cpp). The key is 16 bits: the callee widens it itself.
 struct UnkNavMesh;
 UnkNavMeshCell* fn_710027a33c(UnkNavMesh* mesh, u16 key);
+// The mesh's cell for a key, without growing anything (navmesh::CNavMesh; generated, src/lifted/).
+UnkNavMeshCell* fn_710027a328(UnkNavMesh* mesh, u16 cell);

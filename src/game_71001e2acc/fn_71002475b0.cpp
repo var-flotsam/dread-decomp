@@ -3,7 +3,6 @@
 #include "base/UnkErasedVector.h"
 #include "base/UnkVector.h"
 
-void fn_7100ad3588(UnkErasedVector* self);  // clear
 
 struct UnkRefCounted {
     virtual void vf0();

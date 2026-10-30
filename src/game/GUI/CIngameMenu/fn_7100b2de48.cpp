@@ -172,8 +172,6 @@ void fn_7100b2c784(UnkStateOwner* self);
 void fn_710006cd9c(UnkSoundHolder* holder);
 void fn_710006d2a0(UnkSoundGroup* group, u32 id);
 void fn_710006d4d0(UnkSoundGroup* group, u32 id);
-void fn_7100219cb0(UnkRenderManager* target, bool a, bool b);
-void fn_7100219d4c(UnkRenderManager* target, bool a, bool b);
 void fn_7100219da4(UnkRenderManager* target, bool a, bool b, u32 mode);
 void fn_7100b2cc40(UnkStateOwner* self);
 
@@ -216,8 +214,8 @@ __attribute__((always_inline)) static inline void PlaySound(u32 id) {
 
 // Resets three settings of the global object.
 __attribute__((always_inline)) static inline void ResetParams() {
-    fn_7100219d4c(g_unk_7101d47300, false, false);
-    fn_7100219cb0(g_unk_7101d47300, false, false);
+    fn_7100219d4c(g_unk_7101d47300, false, 0);
+    fn_7100219cb0(g_unk_7101d47300, false, 0);
     fn_7100219da4(g_unk_7101d47300, true, true, 2);
 }
 

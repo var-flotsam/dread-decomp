@@ -5008,7 +5008,7 @@ address,size,name,name_source,subsystem,status
 0x7100ad3118,440,fn_7100ad3118,unknown,unknown,U
 0x7100ad32d0,308,fn_7100ad32d0,unknown,unknown,U
 0x7100ad3404,388,fn_7100ad3404,unknown,unknown,U
-0x7100ad3588,140,fn_7100ad3588,unknown,unknown,U
+0x7100ad3588,140,fn_7100ad3588,unknown,unknown,O
 0x7100ad3614,248,fn_7100ad3614,unknown,unknown,U
 0x7100ad370c,180,fn_7100ad370c,unknown,unknown,U
 0x7100ad37c0,172,fn_7100ad37c0,unknown,unknown,U

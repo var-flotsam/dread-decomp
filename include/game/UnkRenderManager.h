@@ -55,3 +55,10 @@ bool fn_7100219ae0(UnkRenderManager* self, UnkSceneNode* node, u32 layer);
 // Sets the pass parameter `hash` names from `value`, through the pass list at +0x220; the last
 // argument is a count or a mode (6 for a rectangle, 2 or 0 for one value). Not defined by hand.
 void fn_7100219294(UnkRenderManager* self, u64 hash, const f32* value, u32 count);
+// Switch one of a known layer's flags in the pass list (src/game/UnkRenderManager.cpp); nothing for
+// a layer the list does not know.
+void fn_7100219cb0(UnkRenderManager* self, bool flag, u32 layer);
+void fn_7100219d4c(UnkRenderManager* self, bool flag, u32 layer);
+// Sets a flag on the pass list's item `id` (fn_71001fd6c0, which ignores the three pointers between);
+// generated (src/lifted/).
+void fn_7100219c98(UnkRenderManager* self, bool flag, void* a, void* b, void* c, s32 id);

@@ -229,6 +229,21 @@ void fn_7100219340(UnkRenderManager* self) {
 // The items' scene nodes taken off their layers (game/UnkRenderManager.h).
 bool fn_71001fc69c(void* passes, u32 layer);
 
+// The pass list's flag setters (src/game_s1/fn_71001fcd4c.cpp), on the item of a layer.
+struct UnkPtrArray;
+void fn_71001fc904(const UnkPtrArray* items, bool value, s32 id);
+void fn_71001fc88c(const UnkPtrArray* items, bool value, s32 id);
+
+void fn_7100219cb0(UnkRenderManager* self, bool flag, u32 layer) {
+    if (fn_71001fc69c(self->field_0x220, layer))
+        fn_71001fc88c(static_cast<const UnkPtrArray*>(self->field_0x220), flag, layer);
+}
+
+void fn_7100219d4c(UnkRenderManager* self, bool flag, u32 layer) {
+    if (fn_71001fc69c(self->field_0x220, layer))
+        fn_71001fc904(static_cast<const UnkPtrArray*>(self->field_0x220), flag, layer);
+}
+
 bool fn_71002199d8(UnkRenderManager* self, UnkItemBase_71011a91c4* item, u32 layer) {
     UnkSceneNode* node = reinterpret_cast<UnkSceneNode*>(item);
     if (!node || !fn_71001fc69c(self->field_0x220, layer))
