@@ -46,6 +46,22 @@ void fn_7100871d7c(UnkInputComponentState* self) {
     }
 }
 
+// An identical copy (fn_71008721e4).
+void fn_71008721e4(UnkInputComponentState* self) {
+    UnkInputListenerNode* node = self->listeners;
+    self->field_0x9e8 = 0;
+    self->field_0x9e0 = 0;
+    for (; node; node = node->next)
+        node->listener->field_0x3c = 0;
+    bool* flags = self->flags;
+    if (flags[0] || flags[4] || flags[3] || flags[1] || flags[2]) {
+        // The flags' address is kept: the five are cleared through it (the last one first).
+        asm("" : "+r"(flags));
+        flags[4] = false;
+        *reinterpret_cast<u32*>(flags) = 0;
+    }
+}
+
 // Adds `listener` to the end of the list unless it is there already; says whether it was added.
 // NON_MATCHING(minor): same behaviour; the original joins the two branches at one store of the count
 // and lays the not-found return out first.

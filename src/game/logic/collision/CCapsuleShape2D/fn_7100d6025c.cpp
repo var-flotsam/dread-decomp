@@ -21,3 +21,10 @@ void fn_7100d6025c(UnkCapsuleShape2D* self, const UnkShapeDelta2D* delta) {
     self->y = delta->y + self->y;
     self->vf_0x80();
 }
+
+// An identical copy (fn_7100d68824).
+void fn_7100d68824(UnkCapsuleShape2D* self, const UnkShapeDelta2D* delta) {
+    self->x = delta->x + self->x;
+    self->y = delta->y + self->y;
+    self->vf_0x80();
+}

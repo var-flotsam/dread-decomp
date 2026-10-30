@@ -745,10 +745,17 @@ void fn_7100ca1180(UnkTileGroup* group) {
 // Runs fn_7100c9f904 on every tile of the group (the count read as signed, again for each tile).
 void fn_7100c9f904(UnkQueryObj* tile);
 
-void fn_7100ca0aec(UnkTileGroup* self) {
+template <void (*Update)(UnkQueryObj*)>
+__attribute__((always_inline)) static inline void UpdateTiles(UnkTileGroup* self) {
     for (s64 i = 0; i < (s32)self->field_0x40; ++i)
-        fn_7100c9f904(&self->field_0x48[i]);
+        Update(&self->field_0x48[i]);
 }
+
+void fn_7100ca0aec(UnkTileGroup* self) { UpdateTiles<fn_7100c9f904>(self); }
+
+// The same with fn_7100c9fc08 for each tile.
+void fn_7100c9fc08(UnkQueryObj* tile);
+void fn_7100ca3498(UnkTileGroup* self) { UpdateTiles<fn_7100c9fc08>(self); }
 
 // Keeps `v` while more than 90% of the timer at +0x18/+0x1c of `self` is left and scales it to zero
 // after: the fraction run (clamped to 1) is turned into what remains, which counts as all of it
