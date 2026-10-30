@@ -131,6 +131,19 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Night round 8: more boot-slice leaves (2026-10-30, branch `claude/project-thread-lths9k-night8`).**
+8 boot-slice functions to `O` and 2 to minor. Boot slice: `O` 2,070 to 2,078 functions, 30.05% to 30.09%; usable 40.24% to 40.29%.
+`O`: the broadphase object's flag setter (fn_7100d35a98; its flag is a `bool`, declared once in game/UnkBroadphaseObject.h for its
+four callers), a breakable tile's timer scale, two layers' colour setters (units 223 and 224), CBaseObject's walk over its
+class's entries (fn_7100023854), an FX pool's take, the game manager's class-checked lookup (fn_7100debbc8), a capsule shape's
+move. Minor: unit 254's constructor (two pairs of zero stores swapped) and a point transformed by a matrix (registers only).
+- **`bool` versus `u32 & 1`.** fn_7100d35a98 masks its flag with `and w, #1` either way, but compares it with the stored flag
+  in the original's operand order only when the parameter is a `bool`; the callers' bytes are the same with the new type.
+- **A local whose slot is 8-aligned.** fn_7100debbc8 copies the caller's flags into a local it passes on; the original's slot
+  is at +8, which `alignas(8)` gives (as for fn_7100087850 in round 4).
+- **A pointer walk where the draft counted bytes down.** fn_7100023854's loop over 0xb0-byte entries matched as
+  `for (e = data, end = data + count; e != end; ++e)`; a byte counter counted down gave LLVM's negated form.
+
 **Night round 7: thirteen boot-slice leaves (2026-10-30, branch `claude/project-thread-lths9k-night7`).**
 13 boot-slice functions from `U` to `O` (all "ready": their callees were already matched), picked by the closest `gen_lift.py --best`
 draft and rewritten with real types. Boot slice: `O` 2,057 to 2,070 functions, 29.97% to 30.05%; usable 40.15% to 40.24%. Whole
