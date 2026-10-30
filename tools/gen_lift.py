@@ -2615,18 +2615,32 @@ class FlatLifter(Lifter):
             table = ins[tw[0]].operands[1].imm + ins[tw[1]].operands[2].imm
             # cmp wI, #N; b.hi shortly before, I unwritten until the br; or the compare is on J and
             # `mov wI, wJ` copies it in between (J then unwritten from the compare to the copy)
-            bound, cmp_at, copy, src = None, None, None, ireg
-            for j in range(min(adr, ld) - 1, max(min(adr, ld) - 16, -1), -1):
+            bound, cmp_at, src = None, None, ireg
+            # The registers holding I's value at the load: I, and the sources of the zero-extending
+            # copies (`mov wI, wJ`, `and xI, xJ, #0xff|0xffff|0xffffffff`) that last wrote them in
+            # the window, before or after the compare (7100daf6dc: `mov w28, w22; cmp w22, #7`;
+            # 71001d54e0: `cmp w21, #0xf; b.hi; and x8, x21, #0xffffffff`)
+            lo = max(min(adr, ld) - 16, 0)
+            copies = {j: cp for j in range(lo, min(adr, ld)) if (cp := self.zext_copy(ins[j])) is not None}
+            alias, grown = {ireg[1:]}, True
+            while grown:
+                grown = False
+                for j, (d, s_) in copies.items():
+                    if d in alias and s_ not in alias and j == max(w for w in writes.get("x" + d, [j]) if w < ld):
+                        alias.add(s_)
+                        grown = True
+            for j in range(min(adr, ld) - 1, lo - 1, -1):
                 y = ins[j]
-                if copy is None and y.mnemonic == "mov" and len(y.operands) == 2 \
-                        and y.operands[1].type == arm64.ARM64_OP_REG and regname(y.operands[0].reg)[1:] == ireg[1:] \
-                        and regname(y.operands[1].reg)[0] in "xw" and regname(y.operands[1].reg)[1:].isdigit():
-                    copy, src = j, "x" + regname(y.operands[1].reg)[1:]
-                    continue
                 if y.mnemonic == "cmp" and y.operands[0].type == arm64.ARM64_OP_REG \
-                        and regname(y.operands[0].reg)[1:] == src[1:] and y.operands[1].type == arm64.ARM64_OP_IMM \
+                        and regname(y.operands[0].reg)[1:] in alias and y.operands[1].type == arm64.ARM64_OP_IMM \
                         and self.bhi_after(ins, j):
-                    bound, cmp_at = y.operands[1].imm, j
+                    r = regname(y.operands[0].reg)[1:]
+                    # J unwritten from the compare to the load but by the copies, and I's last
+                    # value before the load one of the copies (71004ec714 reuses w8 in between)
+                    idef = max((w for w in writes.get(ireg, []) if w < ld), default=-1)
+                    if all(w in copies for w in writes.get("x" + r, []) if j < w < ld) \
+                            and (r == ireg[1:] or idef in copies):
+                        bound, cmp_at, src = y.operands[1].imm, max(j, idef), "x" + r
                     break
             if bound is None:
                 # The bound checked further away, the dispatch reached by a branch (`cmp xI, #N;
@@ -2651,11 +2665,29 @@ class FlatLifter(Lifter):
                            for z in ins[start:adr]):
                         continue  # (not straight code to the table)
                     cmps.append(j)
-                if not cmps:
+                if not cmps and not any(
+                        y.mnemonic == "cmp" and y.operands[0].type == arm64.ARM64_OP_REG
+                        and regname(y.operands[0].reg)[1:] in alias for y in ins[:adr]):
+                    # No bound in the function at all (a switch over an enum the compiler trusts:
+                    # 71004ec714, 7100594d5c): the table's leading entries that land on this
+                    # function's instructions. Entries past the real table only add cases that
+                    # nothing reaches.
+                    base, n = ins[adr].operands[1].imm, 0
+                    while n < 256:
+                        off = table - BASE + n * size
+                        v = img.data[off] if size == 1 else int.from_bytes(img.data[off:off + 2], "little")
+                        if not (self.addr <= base + 4 * v < end and base + 4 * v in at):
+                            break
+                        n += 1
+                    if n == 0:
+                        continue
+                    bound, cmp_at = n - 1, adr
+                elif not cmps:
                     continue
-                bound, cmp_at = max(ins[j].operands[1].imm for j in cmps), cmps[0]
-            elif any(cmp_at < j < k and j != copy for j in writes.get(ireg, [])) \
-                    or (copy is not None and any(cmp_at < j < copy for j in writes.get(src, []))):
+                else:
+                    bound, cmp_at = max(ins[j].operands[1].imm for j in cmps), cmps[0]
+            elif any(cmp_at < j < k and j not in copies for j in writes.get(ireg, [])) \
+                    or any(cmp_at < j < ld and j not in copies for j in writes.get(src, [])):
                 continue
             base = ins[adr].operands[1].imm
             tgts = []
@@ -2668,6 +2700,24 @@ class FlatLifter(Lifter):
             self.jtables[x.address] = (int(ireg[1:]), tgts)
             self.gskip |= {ins[adr].address, ins[ld].address, ins[add].address}
             self.jskip |= {ins[adr].address, ins[ld].address, ins[add].address}
+
+    @staticmethod
+    def zext_copy(y) -> tuple[str, str] | None:
+        """(destination, source) register numbers of a copy that keeps a jump-table index's value:
+        `mov wD, wS`, `mov xD, xS`, `and xD, xS, #0xff|0xffff|0xffffffff` (and the w forms)."""
+        o = y.operands
+        if y.mnemonic not in ("mov", "and") or len(o) < 2 or o[0].type != arm64.ARM64_OP_REG \
+                or o[1].type != arm64.ARM64_OP_REG:
+            return None
+        d, s = regname(o[0].reg), regname(o[1].reg)
+        if d[0] not in "xw" or s[0] not in "xw" or not d[1:].isdigit() or not s[1:].isdigit():
+            return None
+        if y.mnemonic == "mov" and len(o) == 2:
+            return d[1:], s[1:]
+        if y.mnemonic == "and" and len(o) == 3 and o[2].type == arm64.ARM64_OP_IMM \
+                and o[2].imm in (0xFF, 0xFFFF, 0xFFFFFFFF):
+            return d[1:], s[1:]
+        return None
 
     @staticmethod
     def bhi_after(ins, j: int) -> bool:
