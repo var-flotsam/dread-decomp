@@ -35,6 +35,22 @@ UnkVec3f fn_710007a400(const UnkVec3f& v, const UnkMatrix44& m) {
     return fn_7100077c04(fn_7100078fc8(m), v);
 }
 
+// The same translation matrix from a vector (its three components read first).
+UnkMatrix44_7100078c9c fn_7100078cd8(const UnkVec3f& t) {
+    f32 x = t.x;
+    f32 y = t.y;
+    f32 z = t.z;
+    UnkMatrix44_7100078c9c r = {};
+    r.m[5] = 1.0f;
+    r.m[10] = 1.0f;
+    r.m[15] = 1.0f;
+    r.m[0] = 1.0f;
+    r.m[3] = x;
+    r.m[7] = y;
+    r.m[11] = z;
+    return r;
+}
+
 // The rotation about z by `angle` (radians): the 4x4 identity with cos and sin in the upper-left
 // 2x2 block.
 UnkMatrix44 fn_7100078d8c(f32 angle) {

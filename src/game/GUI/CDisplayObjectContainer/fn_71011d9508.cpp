@@ -130,6 +130,22 @@ UnkGuiDisplayObject* fn_71011d94d4(UnkGuiDisplayObject* container, const CStrId&
     return reinterpret_cast<UnkGuiDisplayObject*>(found);
 }
 
+// The direct child whose name's hash is `id`, or null.
+// NON_MATCHING(minor): as fn_71011d94d4, the exit test compares the link first; same behaviour.
+UnkGuiDisplayObject* fn_71011d99ac(UnkGuiDisplayObject* container, u64 id) {
+    UnkChildLink_71011d9508* l = AsContainer(container)->children;
+    if (!l)
+        return nullptr;
+    UnkDisplayObject_71011d9508* found;
+    do {
+        found = l->child;
+        l = l->next;
+        if (*reinterpret_cast<const u64*>(reinterpret_cast<const char*>(found->name) + 0x30) != id)
+            found = nullptr;
+    } while (!found && l);
+    return reinterpret_cast<UnkGuiDisplayObject*>(found);
+}
+
 // The child whose name's hash is `id`: first among the direct children, then, depth first, inside
 // the children that are containers themselves.
 // NON_MATCHING(minor): the original walks the first pass through the address of each link and
