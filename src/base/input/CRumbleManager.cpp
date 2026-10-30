@@ -282,42 +282,9 @@ UnkRumbleFile* fn_710007454c(UnkRumbleManager* self, const void* name) {
     return file;
 }
 
-// A pool of 0xa8-byte blocks in one allocation (the manager's at +0x2180): the free list over the
-// buffer, and an array with an entry per block.
-struct UnkRumbleBlockEntry {
-    void* block;
-    u64 field_0x8;
-};
+// The manager's pool of 0xa8-byte blocks at +0x2180 (base/UnkBlockArrayPool.h).
+#include "base/UnkBlockArrayPool.h"
 
-struct UnkRumbleBlockPool {
-    base::UnkAllocator* allocator;  // owns the buffer
-    u32 flags;
-    UnkBlockFreeList list;                          // +0x10
-    base::UnkVector<UnkRumbleBlockEntry> entries;  // +0x38
-    u64 count;                                      // +0x60
-};
-
-// (Re)creates the pool with `n` blocks from `allocator` (the default one when null), freeing the
-// previous buffer.
-void fn_7100073900(UnkRumbleBlockPool* self, u64 n, u32 flags, base::UnkAllocator* allocator) {
-    // The list's buffer, read as a word at +0x30: the original recomputes the list's address for
-    // each call instead of keeping it from this read.
-    if (void* buffer = *reinterpret_cast<void**>(reinterpret_cast<char*>(self) + 0x30)) {
-        fn_71000837f4(&self->list);
-        self->entries.Clear();
-        self->allocator->vf_0x48(buffer);
-        self->allocator = nullptr;
-    }
-    self->flags = flags;
-    if (!allocator)
-        allocator = fn_7100083990();
-    self->allocator = allocator;
-    u8* mem = static_cast<u8*>(allocator->vf_0x40(n * 0xa8, 8, flags));
-    fn_710008378c(&self->list, mem, n * 0xa8, 0xa8);
-    self->entries.Reserve(n);
-    for (u64 i = 0; i < n; ++i) {
-        UnkRumbleBlockEntry e = {mem + i * 0xa8, 0};
-        self->entries.PushBack(e);
-    }
-    self->count = n;
+void fn_7100073900(UnkBlockArrayPool* self, u64 n, u32 flags, base::UnkAllocator* allocator) {
+    UnkBlockArrayPoolCreate<0xa8>(self, n, flags, allocator);
 }

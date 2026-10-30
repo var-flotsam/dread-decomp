@@ -844,7 +844,7 @@ extern void* g_unk_7101a1bb18;  // the archive's path
 
 // This unit's other set-up steps.
 void fn_71000f36f8(void* block);
-void fn_71000f86c0(void* list, u32 count, u32 flags, base::UnkSubAllocator* allocator);
+void fn_71000f86c0(void* list, u64 count, u32 flags, base::UnkSubAllocator* allocator);  // base/UnkBlockArrayPool.h
 void fn_71000f88b8(UnkSoundSystemATK* self);
 void fn_71000f8b30(UnkSoundSystemATK* self);
 void fn_71000f9450(UnkSoundSystemATK* self);

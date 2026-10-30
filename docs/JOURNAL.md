@@ -131,6 +131,22 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Night round 2: near copies at other offsets, sizes and slots (2026-10-30, branch `claude/project-thread-lths9k-night2`).**
+43 functions from `U` to `O`, 11,056 bytes. Whole binary (`tools/progress.py`): `O` 85,137 to 85,180 functions, 54.75% to 54.81%
+of the bytes; usable 57.22% to 57.27%. The boot slice is unchanged (these copies sit in gameplay units). Round 1's near copies
+that differed in an immediate: the family's template gained the parameter and each copy names its own value.
+- **What the differences were.** Holder layouts (base/UnkResKey.h's `UnkResHolder2`: three more texture loaders), node and
+  block sizes (the file cache set's set-up at 0x60, 0x20 and 0x1600; base/UnkBlockArrayPool.h, the rumble manager's block
+  pool as a template on the block size, three copies), field offsets (eleven reflected word getters, four GUI id getters),
+  record and element sizes (id-record move assignments, record clears, rail-node arrays, id-list destructors, an End over
+  bytes) and virtual slots (light component getters call `(*vtable)[slot / 8]` through a small `CallSlot` template).
+- **Types follow their callers.** Where another file already declares a global or callee with its own type (an enum
+  type as `UnkEnumType`, a descriptor as non-const `CType`, a sound pool's count), the copy uses that declaration's
+  type and casts inside, so `decl_check.py` sees no new signature; the word getter takes its descriptor as an argument
+  instead of a template parameter so that one template serves all of them.
+- Left: `fn_7101029308` (66%; the id-record move assignment whose record is the shot manager's 0x18-byte resource,
+  assigned through a cast call: the branches come out in another order).
+
 **Night round 1: boot-path copies and near copies over the whole binary (2026-10-30, branch `claude/project-thread-lths9k-night1`).**
 90 functions from `U` (89) or `m` (1) to `O`, 20,296 bytes. Whole binary (`tools/progress.py`): `O` 85,047 to 85,137 functions,
 54.64% to 54.75% of the bytes; usable (`O`+`m`) 57.11% to 57.22%. Boot slice: `O` 2,031 to 2,050 functions (29.52% to 29.92%). How:

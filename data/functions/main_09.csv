@@ -711,7 +711,7 @@ address,size,name,name_source,subsystem,status
 0x7100916dc8,12,fn_7100916dc8,unknown,unknown,O
 0x7100916dd4,20,fn_7100916dd4,unknown,unknown,O
 0x7100916de8,152,fn_7100916de8,unknown,unknown,O
-0x7100916e80,164,fn_7100916e80,unknown,unknown,U
+0x7100916e80,164,fn_7100916e80,unknown,unknown,O
 0x7100916f30,1076,fn_7100916f30,unknown,unknown,U
 0x7100917364,4,fn_7100917364,unknown,unknown,O
 0x7100917368,244,CMagmaKraidScenarioControllerComponent::refl_GetClass,reflection,game/components,O

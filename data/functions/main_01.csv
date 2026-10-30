@@ -4090,7 +4090,7 @@ address,size,name,name_source,subsystem,status
 0x71001d7548,396,fn_71001d7548,unknown,unknown,U
 0x71001d76d4,332,fn_71001d76d4,unknown,unknown,U
 0x71001d7820,332,fn_71001d7820,unknown,unknown,U
-0x71001d796c,504,fn_71001d796c,unknown,unknown,U
+0x71001d796c,504,fn_71001d796c,unknown,unknown,O
 0x71001d7b64,396,fn_71001d7b64,unknown,unknown,U
 0x71001d7cf0,296,fn_71001d7cf0,unknown,unknown,U
 0x71001d7e18,488,fn_71001d7e18,unknown,unknown,U

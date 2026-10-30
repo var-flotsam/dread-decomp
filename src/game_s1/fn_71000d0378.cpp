@@ -429,6 +429,11 @@ void fn_710079cea0(const UnkIdTable<u32>* self, UnkIterValue<u32, UnkReleasedStr
     out->SetRef(self->keys + self->count, self->values + self->count);
 }
 
+// The same End over bytes (fn_7100916e80).
+void fn_7100916e80(const UnkIdTable<u8>* self, UnkIterValue<u8, UnkReleasedStrId>* out) {
+    out->SetRef(self->keys + self->count, self->values + self->count);
+}
+
 // The same over 8-byte values: fn_7100252194.
 void fn_7100252194(const UnkIdTable<u64>* self, UnkIterValue<u64, UnkReleasedStrId>* out) {
     out->SetRef(self->keys + self->count, self->values + self->count);

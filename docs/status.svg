@@ -2,9 +2,9 @@
 <text class="h" x="0" y="22">Decompilation</text>
 <text class="l" x="0" y="49" dy="0.35em">Whole binary</text>
 <rect class="t" x="180" y="43" width="340" height="12" rx="6"/>
-<rect class="m" x="180" y="43" width="194.5" height="12" rx="6"/>
-<rect class="o" x="180" y="43" width="186.2" height="12" rx="6"/>
-<text class="n" x="534" y="49" dy="0.35em">54.8% matching · 57.2% usable</text>
+<rect class="m" x="180" y="43" width="194.7" height="12" rx="6"/>
+<rect class="o" x="180" y="43" width="186.4" height="12" rx="6"/>
+<text class="n" x="534" y="49" dy="0.35em">54.8% matching · 57.3% usable</text>
 <text class="l" x="0" y="79" dy="0.35em">Boot path</text>
 <rect class="t" x="180" y="73" width="340" height="12" rx="6"/>
 <rect class="m" x="180" y="73" width="136.1" height="12" rx="6"/>
