@@ -53,7 +53,7 @@ static inline UnkManager_7100863a8c* GetManager() {
 // The file's reads: a string (its address in the file's buffer) and raw bytes.
 s64 fn_710007cee4(void* stream, const char** out);
 struct UnkEntry;
-void fn_7100d35a98(UnkEntry* entry, u32 flag);  // as src/game/CAutectorAIComponent/fn_71003bb408.cpp declares it
+#include "game/UnkBroadphaseObject.h"
 
 struct UnkCollisionComponentOwner {
     u8 pad_0x0[0x10];
