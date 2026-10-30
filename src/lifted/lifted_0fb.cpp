@@ -2448,6 +2448,23 @@ u32 fn_7100fbf4dc(char* p0, char* p1) {
     return r7_0;
 }
 
+namespace bret { bool fn_71010bef60(u64, char*, char*, char*, char*, char*, char*, char*, f64, f64, f64, f64, f64, f64, f64, f64); }
+namespace callee { char* fn_71010bef60(u64, char*, char*, char*, char*, char*, char*, char*, f64, f64, f64, f64, f64, f64, f64, f64); }
+u32 fn_7100fbf514(char* p0, char* p1, char* p2, char* p3, char* p4, char* p5, char* p6, char* p7, f64 f0, f64 f1, f64 f2, f64 f3, f64 f4, f64 f5, f64 f6, f64 f7) {
+    char* r0_19 = p0;
+    u64 r1_0 = (u64)*(u64*)((char*)(p0) + 16);
+    bool r2_0 = bret::fn_71010bef60(r1_0, p1, p2, p3, p4, p5, p6, p7, f0, f1, f2, f3, f4, f5, f6, f7);
+    if (((u64)(r2_0) >> 0 & 1) != 0) {
+        u32 r4_8 = (u32)*(u32*)((char*)(r0_19) + 32);
+        u32 r5_8 = (u32)(u64)(r4_8) + (u32)(1);
+        u32 r6_0 = 0x1;
+        *(u32*)((char*)(r0_19) + 32) = (u32)(u64)(r5_8);
+        return r6_0;
+    }
+    u32 r10_0 = (u32)(u64)(0);
+    return r10_0;
+}
+
 char* fn_7100fbf678(char* p0, char* p1) {
     u64 r0_8 = (u64)*(u64*)((char*)(p0) + 0);
     u64 r1_2 = (u64)*(u64*)((char*)(r0_8) + 312);

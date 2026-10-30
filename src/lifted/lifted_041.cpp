@@ -100,6 +100,320 @@ void fn_7100414be8() {
     return;
 }
 
+namespace bret { bool fn_710007f140(char*, char*); }
+namespace callee { char* fn_710007f140(char*, char*); }
+u32 fn_7100414bec(char* p0) {
+    char* r0_1 = (char*)"POWER_BEAM";
+    char* r1_19 = p0;
+    bool r2_0 = bret::fn_710007f140(p0, r0_1);
+    if (((u64)(r2_0) >> 0 & 1) != 0) {
+        u32 r4_0 = 0x1;
+        return r4_0;
+    }
+    char* r7_1 = (char*)"ICE_MISSILE";
+    char* r8_0 = r1_19;
+    bool r9_0 = bret::fn_710007f140(r8_0, r7_1);
+    if (((u64)(r9_0) >> 0 & 1) != 0) {
+        u32 r11_0 = 0x2;
+        return r11_0;
+    }
+    char* r14_1 = (char*)"MISSILE";
+    char* r15_0 = r1_19;
+    bool r16_0 = bret::fn_710007f140(r15_0, r14_1);
+    if (((u64)(r16_0) >> 0 & 1) != 0) {
+        u32 r18_0 = 0x4;
+        return r18_0;
+    }
+    char* r21_1 = (char*)"SUPER_MISSILE";
+    char* r22_0 = r1_19;
+    bool r23_0 = bret::fn_710007f140(r22_0, r21_1);
+    if (((u64)(r23_0) >> 0 & 1) != 0) {
+        u32 r25_0 = 0x8;
+        return r25_0;
+    }
+    char* r28_1 = (char*)"BOMB";
+    char* r29_0 = r1_19;
+    bool r30_0 = bret::fn_710007f140(r29_0, r28_1);
+    if (((u64)(r30_0) >> 0 & 1) != 0) {
+        u32 r32_0 = 0x10;
+        return r32_0;
+    }
+    char* r35_1 = (char*)"POWER_BOMB";
+    char* r36_0 = r1_19;
+    bool r37_0 = bret::fn_710007f140(r36_0, r35_1);
+    if (((u64)(r37_0) >> 0 & 1) != 0) {
+        u32 r39_0 = 0x20;
+        return r39_0;
+    }
+    char* r42_1 = (char*)"SCREW_ATTACK";
+    char* r43_0 = r1_19;
+    bool r44_0 = bret::fn_710007f140(r43_0, r42_1);
+    if (((u64)(r44_0) >> 0 & 1) != 0) {
+        u32 r46_0 = 0x40;
+        return r46_0;
+    }
+    char* r49_1 = (char*)"SPECIAL_ENERGY";
+    char* r50_0 = r1_19;
+    bool r51_0 = bret::fn_710007f140(r50_0, r49_1);
+    if (((u64)(r51_0) >> 0 & 1) != 0) {
+        u32 r53_0 = 0x80;
+        return r53_0;
+    }
+    char* r56_1 = (char*)"MELEE_CHARGE_BEAM";
+    char* r57_0 = r1_19;
+    bool r58_0 = bret::fn_710007f140(r57_0, r56_1);
+    if (((u64)(r58_0) >> 0 & 1) != 0) {
+        u32 r60_0 = 0x100;
+        return r60_0;
+    }
+    char* r63_1 = (char*)"MULTI_LOCKON_MISSILE";
+    char* r64_0 = r1_19;
+    bool r65_0 = bret::fn_710007f140(r64_0, r63_1);
+    if (((u64)(r65_0) >> 0 & 1) != 0) {
+        u32 r67_0 = 0x200;
+        return r67_0;
+    }
+    char* r70_1 = (char*)"CHARGE_BEAM";
+    char* r71_0 = r1_19;
+    bool r72_0 = bret::fn_710007f140(r71_0, r70_1);
+    if (((u64)(r72_0) >> 0 & 1) != 0) {
+        u32 r74_0 = 0x400;
+        return r74_0;
+    }
+    char* r77_1 = (char*)"MELEE";
+    char* r78_0 = r1_19;
+    bool r79_0 = bret::fn_710007f140(r78_0, r77_1);
+    if (((u64)(r79_0) >> 0 & 1) != 0) {
+        u32 r81_0 = 0x800;
+        return r81_0;
+    }
+    char* r84_1 = (char*)"WAVE_BEAM";
+    char* r85_0 = r1_19;
+    bool r86_0 = bret::fn_710007f140(r85_0, r84_1);
+    if (((u64)(r86_0) >> 0 & 1) != 0) {
+        u32 r88_0 = 0x1000;
+        return r88_0;
+    }
+    char* r91_1 = (char*)"WIDE_BEAM";
+    char* r92_0 = r1_19;
+    bool r93_0 = bret::fn_710007f140(r92_0, r91_1);
+    if (((u64)(r93_0) >> 0 & 1) != 0) {
+        u32 r95_0 = 0x2000;
+        return r95_0;
+    }
+    char* r98_1 = (char*)"PLASMA_BEAM";
+    char* r99_0 = r1_19;
+    bool r100_0 = bret::fn_710007f140(r99_0, r98_1);
+    if (((u64)(r100_0) >> 0 & 1) != 0) {
+        u32 r102_0 = 0x4000;
+        return r102_0;
+    }
+    char* r105_1 = (char*)"SHINE_SPARK";
+    char* r106_0 = r1_19;
+    bool r107_0 = bret::fn_710007f140(r106_0, r105_1);
+    if (((u64)(r107_0) >> 0 & 1) != 0) {
+        u32 r109_0 = 0x8000;
+        return r109_0;
+    }
+    char* r112_1 = (char*)"HYPER_BEAM";
+    char* r113_0 = r1_19;
+    bool r114_0 = bret::fn_710007f140(r113_0, r112_1);
+    if (((u64)(r114_0) >> 0 & 1) != 0) {
+        u32 r116_0 = 0x10000;
+        return r116_0;
+    }
+    char* r119_1 = (char*)"HEAT";
+    char* r120_0 = r1_19;
+    bool r121_0 = bret::fn_710007f140(r120_0, r119_1);
+    if (((u64)(r121_0) >> 0 & 1) != 0) {
+        u32 r123_0 = 0x20000;
+        return r123_0;
+    }
+    char* r126_1 = (char*)"DASH_MELEE";
+    char* r127_0 = r1_19;
+    bool r128_0 = bret::fn_710007f140(r127_0, r126_1);
+    if (((u64)(r128_0) >> 0 & 1) != 0) {
+        u32 r130_0 = 0x40000;
+        return r130_0;
+    }
+    char* r133_1 = (char*)"EMMY";
+    char* r134_0 = r1_19;
+    bool r135_0 = bret::fn_710007f140(r134_0, r133_1);
+    if (((u64)(r135_0) >> 0 & 1) != 0) {
+        u32 r137_0 = 0x80000;
+        return r137_0;
+    }
+    char* r140_1 = (char*)"LAVA";
+    char* r141_0 = r1_19;
+    bool r142_0 = bret::fn_710007f140(r141_0, r140_1);
+    if (((u64)(r142_0) >> 0 & 1) != 0) {
+        u32 r144_0 = 0x100000;
+        return r144_0;
+    }
+    char* r147_1 = (char*)"GRAPPLE_BEAM";
+    char* r148_0 = r1_19;
+    bool r149_0 = bret::fn_710007f140(r148_0, r147_1);
+    if (((u64)(r149_0) >> 0 & 1) != 0) {
+        u32 r151_0 = 0x200000;
+        return r151_0;
+    }
+    char* r154_1 = (char*)"LASER";
+    char* r155_0 = r1_19;
+    bool r156_0 = bret::fn_710007f140(r155_0, r154_1);
+    if (((u64)(r156_0) >> 0 & 1) != 0) {
+        u32 r158_0 = 0x400000;
+        return r158_0;
+    }
+    char* r161_1 = (char*)"SPIN_ATTACK";
+    char* r162_0 = r1_19;
+    bool r163_0 = bret::fn_710007f140(r162_0, r161_1);
+    if (((u64)(r163_0) >> 0 & 1) != 0) {
+        u32 r165_0 = 0x800000;
+        return r165_0;
+    }
+    char* r168_1 = (char*)"FREEZE";
+    char* r169_0 = r1_19;
+    bool r170_0 = bret::fn_710007f140(r169_0, r168_1);
+    if (((u64)(r170_0) >> 0 & 1) != 0) {
+        u32 r172_0 = 0x1000000;
+        return r172_0;
+    }
+    char* r175_1 = (char*)"SPEED_BOOSTER";
+    char* r176_0 = r1_19;
+    bool r177_0 = bret::fn_710007f140(r176_0, r175_1);
+    if (((u64)(r177_0) >> 0 & 1) != 0) {
+        u32 r179_0 = 0x2000000;
+        return r179_0;
+    }
+    char* r182_1 = (char*)"ANTI_SCREW_ATTACK";
+    char* r183_0 = r1_19;
+    bool r184_0 = bret::fn_710007f140(r183_0, r182_1);
+    if (((u64)(r184_0) >> 0 & 1) != 0) {
+        u32 r186_0 = 0x4000000;
+        return r186_0;
+    }
+    char* r189_1 = (char*)"DIFFUSION_BEAM";
+    char* r190_0 = r1_19;
+    bool r191_0 = bret::fn_710007f140(r190_0, r189_1);
+    if (((u64)(r191_0) >> 0 & 1) != 0) {
+        u32 r193_0 = 0x8000000;
+        return r193_0;
+    }
+    char* r196_1 = (char*)"CONTINUOUS";
+    char* r197_0 = r1_19;
+    bool r198_0 = bret::fn_710007f140(r197_0, r196_1);
+    if (((u64)(r198_0) >> 0 & 1) != 0) {
+        u32 r200_0 = 0x10000000;
+        return r200_0;
+    }
+    char* r203_1 = (char*)"LINE_BOMB";
+    char* r204_0 = r1_19;
+    bool r205_0 = bret::fn_710007f140(r204_0, r203_1);
+    if (((u64)(r205_0) >> 0 & 1) != 0) {
+        u32 r207_0 = 0x20000000;
+        return r207_0;
+    }
+    char* r210_1 = (char*)"ALL";
+    char* r211_0 = r1_19;
+    bool r212_0 = bret::fn_710007f140(r211_0, r210_1);
+    u32 r213_0 = (u32)((((s32)((u32)(u64)(r212_0) << 31)) >> 31));
+    return r213_0;
+}
+
+namespace bret { bool fn_710007f140(char*, char*); }
+namespace callee { char* fn_710007f140(char*, char*); }
+u32 fn_71004157f4(char* p0) {
+    char* r0_1 = (char*)"StaticItems";
+    char* r1_19 = p0;
+    bool r2_0 = bret::fn_710007f140(p0, r0_1);
+    if (((u64)(r2_0) >> 0 & 1) != 0) {
+        u32 r4_0 = 0x1;
+        return r4_0;
+    }
+    char* r7_1 = (char*)"DynamicItems";
+    char* r8_0 = r1_19;
+    bool r9_0 = bret::fn_710007f140(r8_0, r7_1);
+    if (((u64)(r9_0) >> 0 & 1) != 0) {
+        u32 r11_0 = 0x2;
+        return r11_0;
+    }
+    char* r14_1 = (char*)"BreakableTilesPowerBeam";
+    char* r15_0 = r1_19;
+    bool r16_0 = bret::fn_710007f140(r15_0, r14_1);
+    if (((u64)(r16_0) >> 0 & 1) != 0) {
+        u32 r18_0 = 0x4;
+        return r18_0;
+    }
+    char* r21_1 = (char*)"BreakableTilesBomb";
+    char* r22_0 = r1_19;
+    bool r23_0 = bret::fn_710007f140(r22_0, r21_1);
+    if (((u64)(r23_0) >> 0 & 1) != 0) {
+        u32 r25_0 = 0x8;
+        return r25_0;
+    }
+    char* r28_1 = (char*)"BreakableTilesMissile";
+    char* r29_0 = r1_19;
+    bool r30_0 = bret::fn_710007f140(r29_0, r28_1);
+    if (((u64)(r30_0) >> 0 & 1) != 0) {
+        u32 r32_0 = 0x10;
+        return r32_0;
+    }
+    char* r35_1 = (char*)"BreakableTilesSuperMissile";
+    char* r36_0 = r1_19;
+    bool r37_0 = bret::fn_710007f140(r36_0, r35_1);
+    if (((u64)(r37_0) >> 0 & 1) != 0) {
+        u32 r39_0 = 0x20;
+        return r39_0;
+    }
+    char* r42_1 = (char*)"BreakableTilesPowerBomb";
+    char* r43_0 = r1_19;
+    bool r44_0 = bret::fn_710007f140(r43_0, r42_1);
+    if (((u64)(r44_0) >> 0 & 1) != 0) {
+        u32 r46_0 = 0x40;
+        return r46_0;
+    }
+    char* r49_1 = (char*)"BreakableTilesScrewAttack";
+    char* r50_0 = r1_19;
+    bool r51_0 = bret::fn_710007f140(r50_0, r49_1);
+    if (((u64)(r51_0) >> 0 & 1) != 0) {
+        u32 r53_0 = 0x80;
+        return r53_0;
+    }
+    char* r56_1 = (char*)"BreakableTilesWeight";
+    char* r57_0 = r1_19;
+    bool r58_0 = bret::fn_710007f140(r57_0, r56_1);
+    if (((u64)(r58_0) >> 0 & 1) != 0) {
+        u32 r60_0 = 0x100;
+        return r60_0;
+    }
+    char* r63_1 = (char*)"BreakableTilesBabyHatchling";
+    char* r64_0 = r1_19;
+    bool r65_0 = bret::fn_710007f140(r64_0, r63_1);
+    if (((u64)(r65_0) >> 0 & 1) != 0) {
+        u32 r67_0 = 0x200;
+        return r67_0;
+    }
+    char* r70_1 = (char*)"BreakableTilesSpeedBooster";
+    char* r71_0 = r1_19;
+    bool r72_0 = bret::fn_710007f140(r71_0, r70_1);
+    if (((u64)(r72_0) >> 0 & 1) != 0) {
+        u32 r74_0 = 0x400;
+        return r74_0;
+    }
+    char* r77_1 = (char*)"DestructibleItems";
+    char* r78_0 = r1_19;
+    bool r79_0 = bret::fn_710007f140(r78_0, r77_1);
+    if (((u64)(r79_0) >> 0 & 1) != 0) {
+        u32 r81_0 = 0x800;
+        return r81_0;
+    }
+    char* r84_1 = (char*)"All";
+    char* r85_0 = r1_19;
+    bool r86_0 = bret::fn_710007f140(r85_0, r84_1);
+    u32 r87_0 = (u32)((((s32)((u32)(u64)(r86_0) << 31)) >> 31));
+    return r87_0;
+}
+
 namespace callee { char* fn_7100413084(char*); }
 char* fn_7100415b10(char* p0) {
     char* r0_19 = p0;
@@ -736,6 +1050,36 @@ u32 fn_710041a330(char* p0, char* p1) {
     *(u8*)((char*)(r0_19) + 198) = (u8)(u64)(0);
     u32 r8_0 = (u32)(u64)((u32)(u64)(r1_0)) & (u32)(1);
     return r8_0;
+}
+
+namespace bret { bool fn_710009d50c(char*, char*); }
+namespace callee { char* fn_710009d50c(char*, char*); }
+namespace callee { char* fn_71003ab524(); }
+f32 fn_710041a370(char* p0, char* p1) {
+    u64 r0_19 = (u64)*(u64*)((char*)(p1) + 576);
+    u64 r1_8 = (u64)*(u64*)((char*)(r0_19) + 0);
+    f32 r2_108 = *(f32*)((char*)(p0) + 288);
+    u64 r3_0 = r0_19;
+    u64 r4_8 = (u64)*(u64*)((char*)(r1_8) + 0);
+    char* r5_0 = ((char* (*)(u64, char*))(r4_8))(r3_0, p1);
+    char* r6_20 = r5_0;
+    char* r7_0 = callee::fn_71003ab524();
+    char* r8_1 = r7_0;
+    char* r9_0 = r6_20;
+    bool r10_0 = bret::fn_710009d50c(r9_0, r8_1);
+    u64 r11_8 = ((u32)(u64)((u32)((u32)(u64)(r10_0) & (u32)(1))) != (u32)(0)) ? (u64)(u64)(r0_19) : (u64)((u64)(u64)(0));
+    u64 r12_0 = (u64)*(u64*)((char*)(r11_8) + 4424);
+    f32 m0 = r2_108;
+    if ((u64)(u64)(r12_0) != 0) {
+        u64 r14_8 = (u64)*(u64*)((char*)(r12_0) + 0);
+        u64 r15_8 = (u64)*(u64*)((char*)(r14_8) + 216);
+        f32 r16_100 = ((f32 (*)(u64))(r15_8))(r12_0);
+        f32 r17_101 = -1.0f;
+        f32 r18_108 = ((f32)(r16_100) != (f32)(r17_101)) ? r16_100 : r2_108;
+        m0 = r18_108;
+    }
+    f32 r22_100 = m0;
+    return r22_100;
 }
 
 namespace callee { char* fn_71004186ec(); }

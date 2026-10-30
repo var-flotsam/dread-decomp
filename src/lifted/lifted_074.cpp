@@ -218,6 +218,18 @@ char* fn_71007456fc(char* p0, u32 p1) {
     return p0;
 }
 
+u32 fn_7100745714(char* p0, char* p1) {
+    u64 r0_3 = (u64)*(u64*)((char*)(p0) + 256);
+    if ((u64)(u64)(r0_3) != 0) {
+        char* r2_2 = p1;
+        char* r3_1 = p0;
+        u64 r4_0 = (u64)*(u64*)((char*)(p0) + 248);
+        return ((u32 (*)(u64, char*, char*))(r0_3))(r4_0, r3_1, r2_2);
+    }
+    u32 r7_0 = (u32)(u64)(0);
+    return r7_0;
+}
+
 namespace callee { char* fn_7100000250(char*, char*, char*); }
 namespace callee { char* fn_71000003d4(char*, char*, u32); }
 namespace fp { void fn_710000051c(); }
