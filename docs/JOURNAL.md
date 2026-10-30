@@ -131,6 +131,24 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Night round 3: the second near-copy pass (2026-10-30, branch `claude/project-thread-lths9k-night3`, on night round 2).**
+58 functions from `U` to `O`, 7,508 bytes. Whole binary: `O` 85,180 to 85,238 functions, 54.81% to 54.85%; usable 57.27% to
+57.31%. `tools/nearcopy.py` rerun over the whole binary after rounds 1 and 2 (9,397 candidates; 201 at 75% or more with a
+hand-written original). None matched as they were; the families that differ in one or two parameters now take them:
+- **Reflected getters and invokers.** Flags and floats of an object (the Emmy AI unit's at 0x147xx-0x14cxx, floats copied
+  as words with the float type's getter), floats two pointers away, invokers that clear a word or call a function and
+  return 1 as an int or the call's flag. The invokers match only when the value's type getter is called after the work,
+  as in the original's `fn_7100110a98`, so `MakeValue` takes the getter as a template parameter.
+- **Destructors and lists.** List destructors linked through other offsets with their own vtables and node destructors,
+  the string lists' base parts, a polymorphic array owner, hand-off destructor bodies with their own base destructors
+  (the base type as a template parameter, so each callee keeps the type other files declare).
+- **Containers.** Keyed arrays of 0x10- and 0x80-byte values, iterator equalities of 0x248- and 0x48-byte elements (the
+  former compares only its first 0x30 bytes, with the 0x30-byte element's function), an id array's Free at offset 8,
+  the AI components' initialisation (a template on the step, the class getter, the two entry initialisers and five offsets).
+- Left (`build/stuck.txt`): three more AI initialisations whose step `fn_7100369490` another file declares as
+  `bool(UnkComponent*)` (a `u32` result is what the copies mask), the pair setter's copies (a templated setter loses the
+  original's return-value placement), and families that differ in a base class with an out-of-line destructor.
+
 **Night round 2: near copies at other offsets, sizes and slots (2026-10-30, branch `claude/project-thread-lths9k-night2`).**
 43 functions from `U` to `O`, 11,056 bytes. Whole binary (`tools/progress.py`): `O` 85,137 to 85,180 functions, 54.75% to 54.81%
 of the bytes; usable 57.22% to 57.27%. The boot slice is unchanged (these copies sit in gameplay units). Round 1's near copies
