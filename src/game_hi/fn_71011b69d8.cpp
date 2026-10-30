@@ -58,7 +58,6 @@ struct UnkRefSource_71011b69d8 {
 
 UnkScriptPath_0x148 fn_71011b66fc(void* registry, const base::global::CRntString& name);
 void fn_710008d4c0(UnkStrPair_0x10* s, const UnkEntry_0x30* e);
-bool fn_7100087850(UnkRegistry_0x70* r, const UnkStrPair_0x10* s);
 UnkRefSource_71011b69d8* fn_71011b6208(UnkTag_71011b69d8 tag, const UnkStrPair_0x10* s);
 extern UnkRegistry_0x70* g_unk_7101d4b5a0;
 

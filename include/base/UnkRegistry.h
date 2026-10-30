@@ -27,3 +27,8 @@ static_assert(sizeof(UnkRegistry_0x70) == 0x70, "UnkRegistry_0x70 placeholder la
 // Its constructor (a plain function: callers pass the object they allocated).
 // Defined in src/base/UnkRegistry.cpp.
 void fn_7100087388(UnkRegistry_0x70* self);
+
+// Whether the registry has an entry for an id and path pair (base/UnkStrIdPathPair.h; its vf_0x20
+// looks it up). Defined in src/base/UnkRegistry.cpp.
+struct UnkStrPair_0x10;
+bool fn_7100087850(UnkRegistry_0x70* self, const UnkStrPair_0x10* key);
