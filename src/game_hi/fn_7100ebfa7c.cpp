@@ -60,7 +60,6 @@ struct Result {
 
 
 bool fn_7100ebfd4c(UnkNavMeshManager*, Vec2*, u16, Result*, u32, f32, f32);
-Cell* fn_710027a328(Mesh*, u16);
 Vec2 fn_7100125a64(Vec2*);
 bool fn_71002afcd8(Cell*, Edge*, u32);
 Vec2* fn_710027a410(Mesh*, u16);

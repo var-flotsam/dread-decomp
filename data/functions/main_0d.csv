@@ -2957,7 +2957,7 @@ address,size,name,name_source,subsystem,status
 0x7100d627c8,388,game::logic::collision::CPolygonCollectionShape::refl_InitClass,reflection,game,O
 0x7100d6294c,220,fn_7100d6294c,unknown,unknown,O
 0x7100d62a28,220,fn_7100d62a28,unknown,unknown,O
-0x7100d62b04,100,fn_7100d62b04,unknown,unknown,U
+0x7100d62b04,100,fn_7100d62b04,unknown,unknown,m
 0x7100d62b68,112,fn_7100d62b68,unknown,unknown,U
 0x7100d62bd8,100,fn_7100d62bd8,unknown,unknown,U
 0x7100d62c3c,108,fn_7100d62c3c,unknown,unknown,U
