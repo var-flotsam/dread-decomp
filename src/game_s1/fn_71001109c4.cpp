@@ -69,6 +69,20 @@ UnkReflValue fn_7100f0f090(void*, char* obj) { return ClearWord<0x144>(obj); }
 UnkReflValue fn_7100f0f1dc(void*, char* obj) { return ClearWord<0x148>(obj); }
 UnkReflValue fn_7100f0f2dc(void*, char* obj) { return ClearWord<0xf0>(obj); }
 
+// Step the same words up or down by one (and return 1 as an int).
+template <u32 Offset, s32 Delta>
+__attribute__((always_inline)) static inline UnkReflValue StepWord(char* obj) {
+    *reinterpret_cast<s32*>(Target(obj) + Offset) += Delta;
+    return MakeValue<fn_7100014768, s32>(1);
+}
+
+UnkReflValue fn_7100f0efe0(void*, char* obj) { return StepWord<0x144, 1>(obj); }
+UnkReflValue fn_7100f0f038(void*, char* obj) { return StepWord<0x144, -1>(obj); }
+UnkReflValue fn_7100f0f12c(void*, char* obj) { return StepWord<0x148, 1>(obj); }
+UnkReflValue fn_7100f0f184(void*, char* obj) { return StepWord<0x148, -1>(obj); }
+UnkReflValue fn_7100f0f22c(void*, char* obj) { return StepWord<0xf0, 1>(obj); }
+UnkReflValue fn_7100f0f284(void*, char* obj) { return StepWord<0xf0, -1>(obj); }
+
 // A flag of the object, and one two pointers away.
 UnkReflValue fn_7101115c1c(void*, char* obj) {
     return MakeValue<fn_710000d228, bool>(*reinterpret_cast<bool*>(Target(obj) + 0x178d));
@@ -77,6 +91,19 @@ UnkReflValue fn_71007a0bdc(void*, char* obj) {
     char* p = *reinterpret_cast<char**>(Target(obj) + 0x50);
     return MakeValue<fn_710000d228, bool>(*reinterpret_cast<bool*>(p + 0x10f));
 }
+
+// A flag fn_710020c4a8 reports for a sub-object of the object at +0x58.
+bool fn_710020c4a8(void* self);
+
+template <u32 Offset>
+__attribute__((always_inline)) static inline UnkReflValue SubFlag(char* obj) {
+    char* p = *reinterpret_cast<char**>(Target(obj) + 0x58);
+    return MakeValue<fn_710000d228, bool>(fn_710020c4a8(p + Offset));
+}
+
+UnkReflValue fn_71008ebbec(void*, char* obj) { return SubFlag<0x20>(obj); }
+UnkReflValue fn_71008f2228(void*, char* obj) { return SubFlag<0x28>(obj); }
+UnkReflValue fn_71008fa2f4(void*, char* obj) { return SubFlag<0x20>(obj); }
 
 // Calls on the object: one returning nothing (the value is 1 as an int), one returning a flag.
 void fn_71006004d4(void* self);
