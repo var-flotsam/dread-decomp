@@ -1374,8 +1374,8 @@ address,size,name,name_source,subsystem,status
 0x7100066918,4,fn_7100066918,unknown,unknown,O
 0x710006691c,4,<EXTERNAL>::nn::os::LockMutex,symbol,unknown,O
 0x7100066920,4,fn_7100066920,unknown,unknown,O
-0x7100066930,112,fn_7100066930,unknown,unknown,U
-0x71000669a0,116,fn_71000669a0,unknown,unknown,U
+0x7100066930,112,fn_7100066930,unknown,unknown,O
+0x71000669a0,116,fn_71000669a0,unknown,unknown,O
 0x7100066a14,28,fn_7100066a14,unknown,unknown,O
 0x7100066a30,32,fn_7100066a30,unknown,unknown,O
 0x7100066a50,160,fn_7100066a50,unknown,unknown,O

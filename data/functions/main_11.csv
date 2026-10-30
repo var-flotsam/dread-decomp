@@ -1703,7 +1703,7 @@ address,size,name,name_source,subsystem,status
 0x71011735b8,24,fn_71011735b8,unknown,unknown,O
 0x71011735d0,24,fn_71011735d0,unknown,unknown,U
 0x71011735e8,100,fn_71011735e8,unknown,unknown,O
-0x710117364c,148,fn_710117364c,unknown,unknown,U
+0x710117364c,148,fn_710117364c,unknown,unknown,O
 0x71011736e0,148,fn_71011736e0,unknown,unknown,U
 0x7101173774,96,fn_7101173774,unknown,unknown,O
 0x71011737d4,80,fn_71011737d4,unknown,unknown,O

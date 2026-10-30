@@ -126,7 +126,7 @@ address,size,name,name_source,subsystem,status
 0x7100f05ce0,636,fn_7100f05ce0,unknown,unknown,U
 0x7100f05f5c,52,fn_7100f05f5c,unknown,unknown,O
 0x7100f05f90,36,fn_7100f05f90,unknown,unknown,O
-0x7100f05fb4,128,fn_7100f05fb4,unknown,unknown,U
+0x7100f05fb4,128,fn_7100f05fb4,unknown,unknown,O
 0x7100f06034,188,fn_7100f06034,unknown,unknown,U
 0x7100f060f0,56,fn_7100f060f0,unknown,unknown,O
 0x7100f06128,36,fn_7100f06128,unknown,unknown,O
