@@ -36,7 +36,6 @@ struct UnkSelf {
 UnkComponent* fn_7101152b90(UnkObject* object, u64 hash);
 bool fn_710114e680(UnkObject* object, u8 kind);
 bool fn_710114e668(UnkObject* object, u8 kind);
-void fn_7100145e94(UnkComponent* component, u32 flag);
 void fn_7100232c68(void* target);
 
 void fn_710048ecbc(UnkSelf* self) {
@@ -53,8 +52,8 @@ void fn_710048ecbc(UnkSelf* self) {
         UnkComponent* d = fn_7101152b90(object, 0xa5a377e0a0458614ull);
         if (d)
             d = fn_710114e668(object, d->field_0xb) ? d : nullptr;
-        fn_7100145e94(a, 0);
-        fn_7100145e94(b, 0);
+        fn_7100145e94(reinterpret_cast<UnkSwitchObject*>(a), false);
+        fn_7100145e94(reinterpret_cast<UnkSwitchObject*>(b), false);
         fn_7100146e60(reinterpret_cast<UnkSwitchObject*>(c), 0);
         fn_7100146e60(reinterpret_cast<UnkSwitchObject*>(d), 0);
     }

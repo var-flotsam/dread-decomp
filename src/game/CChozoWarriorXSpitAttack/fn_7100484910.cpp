@@ -39,7 +39,6 @@ extern const base::global::CStrId g_unk_71726cf1e0[] __attribute__((visibility("
 UnkComponent* fn_7101152b90(UnkObject* object, u64 hash);
 bool fn_710114e680(UnkObject* object, u8 kind);
 bool fn_710114e668(UnkObject* object, u8 kind);
-void fn_7100145e94(UnkComponent* component, u32 flag);
 
 void fn_7100484910(UnkSelf* self) {
     if (UnkCollisionContainer* object = self->field_0x8->field_0x2a0) {
@@ -50,11 +49,11 @@ void fn_7100484910(UnkSelf* self) {
         UnkComponent* a = fn_7101152b90(object, 0x8db4647a121a9a23ull);
         if (a)
             a = fn_710114e680(object, a->field_0xb) ? a : nullptr;
-        fn_7100145e94(a, 0);
+        fn_7100145e94(reinterpret_cast<UnkSwitchObject*>(a), false);
         UnkComponent* b = fn_7101152b90(object, 0x8f81a6f5f469556bull);
         if (b)
             b = fn_710114e680(object, b->field_0xb) ? b : nullptr;
-        fn_7100145e94(b, 0);
+        fn_7100145e94(reinterpret_cast<UnkSwitchObject*>(b), false);
         UnkComponent* c = fn_7101152b90(object, 0x99b1c49dad0a0ac2ull);
         if (c)
             c = fn_710114e668(object, c->field_0xb) ? c : nullptr;

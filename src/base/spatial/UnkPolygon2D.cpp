@@ -2,7 +2,8 @@
 // hint), next to base::spatial::CPolygonCollection2D's: the nearest edge of a 2D polygon (its
 // 0x48-byte layout is the one in src/base/spatial/CPolygonCollection2D.cpp) to a point, with an
 // optional filter on the closest points and a callback for every edge measured.
-// Holds fn_7100117f98 (the distance) and fn_7100117ba0 (the squared distance).
+// Holds fn_7100117f98 (the distance) and fn_7100117ba0 (the squared distance), and the bounding box
+// update fn_7100119b88.
 #include <math.h>
 
 #include <functional>
@@ -23,7 +24,11 @@ struct UnkPolygon2D {
     u32 count;
     u8 unk_0xc[0x20];
     u8 closed;
-    u8 unk_0x2d[0x1b];
+    bool box_dirty;  // 0x2d: the box below is stale
+    u8 unk_0x2e[0x2];
+    CVector2D box_min;  // 0x30
+    CVector2D box_max;  // 0x38
+    u8 unk_0x40[0x8];
 };
 static_assert(sizeof(UnkPolygon2D) == 0x48, "UnkPolygon2D layout");
 
@@ -103,4 +108,33 @@ void fn_7100117f98(const UnkPolygon2D* polygon, const CVector2D* point, s32* edg
     fn_7100117ba0(polygon, point, edge, t, closest, distance, flag, filter, visit);
     if (distance)
         *distance = sqrtf(*distance);
+}
+
+// Recomputes the polygon's bounding box from its vertices (an empty polygon gets an inverted one) and
+// marks it current.
+void fn_7100119b88(UnkPolygon2D* self) {
+    self->box_min.x = 3.4028235e+38f;
+    self->box_min.y = 3.4028235e+38f;
+    self->box_max.x = -3.4028235e+38f;
+    self->box_max.y = -3.4028235e+38f;
+    // Each corner is rebuilt from the vertex and stored whole on every pass; the stores may alias the
+    // vertices (through references to the vectors), so the vertex is read again for the second.
+    CVector2D& lo = self->box_min;
+    CVector2D& hi = self->box_max;
+    for (UnkPolygonVertex *v = self->vertices, *end = v + self->count; v != end; ++v) {
+        const CVector2D& p = v->pos;
+        f32 px = p.x;
+        f32 py = p.y;
+        f32 lx = lo.x < px ? lo.x : px;
+        f32 ly = lo.y < py ? lo.y : py;
+        lo.x = lx;
+        lo.y = ly;
+        px = p.x;
+        py = p.y;
+        f32 hx = hi.x > px ? hi.x : px;
+        f32 hy = hi.y > py ? hi.y : py;
+        hi.x = hx;
+        hi.y = hy;
+    }
+    self->box_dirty = false;
 }

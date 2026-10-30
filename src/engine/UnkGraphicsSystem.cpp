@@ -9,6 +9,7 @@
 #include "base/UnkCountedResource.h"
 #include "base/UnkDefaultAllocator.h"
 #include "base/UnkMatrix44.h"
+#include "base/UnkParallelFind.h"
 #include "base/UnkVector.h"
 #include "base/color/CColor4F.h"
 #include "base/global/CFilePathStrId.h"
@@ -1637,4 +1638,24 @@ void fn_71001cb604(UnkGraphicsSystem* self, u32 mode, const f32* a, const f32* b
         break;
     }
     fn_710015b160();
+}
+
+// The map at +0x3183628 as a lookup sees it: 16-byte entries whose second word it returns, keyed by
+// string ids.
+struct UnkGfxPairEntry {
+    u64 first;
+    void* second;
+};
+struct UnkGfxPairMap {
+    u8 pad_0x0[0x3183628];
+    UnkGfxPairEntry* values;
+    base::global::CStrId* ids;
+    u32 count;
+};
+
+// The second word of the entry `key` names, or null.
+void* fn_71001d086c(UnkGraphicsSystem* self, const base::global::CStrId* key) {
+    UnkGfxPairMap* map = reinterpret_cast<UnkGfxPairMap*>(self);
+    UnkGfxPairEntry* slot = UnkParallelFindSlot(map, *key);
+    return slot != &map->values[map->count] ? slot->second : nullptr;
 }
