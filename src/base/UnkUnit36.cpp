@@ -15,7 +15,9 @@ struct UnkUnit36Object {
     u8 pad_0x454[0xc];
     nn::os::EventType* done;  // 0x460
     u8 pad_0x468[0x1c0];
-    nn::os::EventType wake;  // 0x628
+    // The worker's event (+0x628), as raw storage: the port's runtime declares nn::os::EventType
+    // without defining it.
+    u8 wake[0x28];
 };
 static_assert(__builtin_offsetof(UnkUnit36Object, wake) == 0x628, "UnkUnit36Object layout");
 
@@ -25,5 +27,5 @@ void fn_710002d3e0(UnkUnit36Object* self, nn::os::EventType* done) {
     self->result = 0;
     self->done = done;
     nn::os::ClearEvent(done);
-    nn::os::SignalEvent(&self->wake);
+    nn::os::SignalEvent(reinterpret_cast<nn::os::EventType*>(self->wake));
 }
