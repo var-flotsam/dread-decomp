@@ -48,6 +48,8 @@ u64 fn_710007c3f0(base::global::CRntFile* file, const void* data, u64 size);
 // Writes `count` elements of `size` bytes at the position (growing the file), moves the position on;
 // returns the bytes written.
 u64 fn_710007c450(base::global::CRntFile* file, const void* data, u64 size, u64 count);
+// Writes `size` bytes of `value` at the position (growing the file); returns `size`.
+u64 fn_710007c4b8(base::global::CRntFile* file, s32 value, u64 size);
 // Reads `count` elements of `size` bytes from the position into `dest`, or what is left of the
 // contents when that is less, swapping each element's bytes when `swap` is set (sizes 2, 4, 8);
 // moves the position on and returns the bytes read (0 at the end or when there is no block).
