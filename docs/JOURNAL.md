@@ -131,6 +131,21 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Night round 26: more lifter rewrites (2026-10-30, branch `claude/project-thread-lths9k-night26`).**
+411 functions to `O`. Boot slice: `O` 2,176 to 2,197 (30.92%), usable 41.17% to 41.28%; whole binary `O` 85,773 to 86,184
+(55.50%), usable 57.72% to 58.01%. A 522-function sample of unmatched small functions, lifted with `--best` and grouped by
+the first differing instruction, showed which lifter shapes miss most; two more second-round rewrites in
+`tools/gen_lift.py` (the sample went from 0 to 43 matched) give 409 functions binary-wide.
+- **"bool".** A call whose result is first read as w0 declared to return a bool: a select on it keeps the original's sense
+  (`csel x, y, xzr, ne`, not `csel x, xzr, y, eq`). Mostly the reflected cast checks (`IsKindOf`, then the object or null).
+- **32-bit returns with tail calls.** Under "w32", a function whose other paths return only 32-bit values returns u32 and
+  declares its tail callees so (`mov w0, wzr`, not `mov x0, xzr`).
+- **The flat lifter applies both** (it dropped the pending call when x0 was read).
+- **asm aliases count as definitions.** `defined_outside` now recognises `asm(".set fn_X, <symbol>")`, which names a
+  template instance's code (src/game_s7/fn_7101072a80.cpp); the lift wrote two of them again.
+- Measuring a lifter change: `--best @sample` then classify the first `!!` line of each draft's `trymatch -v`, normalised
+  (registers and immediates masked). The next groups were statement order around a vtable store and `ldrb`/`ldr` widths.
+
 **Night round 25: two lifter shapes, mostly the Lua bindings (2026-10-30, branch `claude/project-thread-lths9k-night25`).**
 214 functions to `O`. Boot slice: `O` 2,173 to 2,176 (30.80%), usable 41.13% to 41.17%; whole binary `O` 85,559 to 85,773
 (55.22%), usable 57.60% to 57.72%. The near-copy rows of lifted originals were mostly in unit 2666 (the Lua bindings,
