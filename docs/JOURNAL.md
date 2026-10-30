@@ -131,6 +131,26 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Night round 4: boot hubs by hand (2026-10-30, branch `claude/project-thread-lths9k-night4`).**
+13 boot-slice hubs from `U`: 7 to `O`, 6 to minor. Boot slice: `O` 2,050 to 2,057 functions (29.92% to 29.97%), usable 40.04% to
+40.13%. Whole binary: `O` 85,238 to 85,245. `O`: fn_71002199d8 (the render manager's drop of an item's node), fn_7101196fd8 (a
+state test), fn_7100072328 and fn_71000723cc (unit 50's value timer), fn_710010f838 (a circle-contains-point test),
+fn_710009d52c (the kind-of test that also follows a type's links), fn_7100087850 (the registry's has-entry test). Minor, with
+the difference in their comments: fn_71000ead80 (the resource registry's lookup), fn_71002afe60 (a nav-mesh cell's side),
+fn_710008378c (the block free list's set-up), fn_710006cd9c (the sound holder's constructor), fn_710012436c (a polygon
+edge by handle), fn_7100075f78 (a timed curve's set-up). Each hub's scattered declarations went to its header
+(game/UnkRenderManager.h, base/UnkRegistry.h, game/UnkNavMeshCell.h, base/global/CRntString.h). What helped:
+- **A loop the original enters without a null test.** fn_710009d52c's second walk up the parent chain is a do-while: the
+  original reads a null type's array (it never gets one), so a `for` adds a test.
+- **A lookup result larger than what is set.** fn_7100087850's out-structure is 0x30 bytes of which two fields are set, and the
+  word it passes is 8-byte aligned: the frame size and slots followed only with both.
+- **Evaluation order for floats.** fn_710010f838 matched with the distance summed first and the comparison written
+  `r * r - distance >= -(tolerance * tolerance)`; other orders schedule the multiply of the tolerance first.
+- **A callee's definition next to its callers changes them.** Defining fn_710010f838 in src/engine/SystemStartup.cpp let Clang
+  infer attributes that changed a caller's code even with `noinline`; it lives in its own unit file instead.
+- **A value returned through x8.** fn_71002afe60's pair has a user-declared copy constructor (so it is returned in memory)
+  and a union with a word, which gives the single all-ones store of the failure path.
+
 **Night round 3: the second near-copy pass (2026-10-30, branch `claude/project-thread-lths9k-night3`, on night round 2).**
 58 functions from `U` to `O`, 7,508 bytes. Whole binary: `O` 85,180 to 85,238 functions, 54.81% to 54.85%; usable 57.27% to
 57.31%. `tools/nearcopy.py` rerun over the whole binary after rounds 1 and 2 (9,397 candidates; 201 at 75% or more with a
