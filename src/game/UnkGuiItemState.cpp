@@ -69,10 +69,11 @@ static inline void UnkSetPos(UnkGuiPos* dst, const UnkGuiPos& src) {
 // The state of `child` under `parent` into `out` (which may be either): the byte at 0x3e from the
 // parent, the flags at 0x3c and 0x3d where both have them, the s32 at 0x38 from the child unless it
 // is INT32_MAX, colours and scales multiplied, angles and depths added, the size the child's. With
-// `place` set the child's anchored position inside the parent (scaled and rotated by the parent
-// when `mode` has 0x2 or 0x10) is offset by the parent's, and the result is no longer anchored.
+// bit 0 of `changes` (the child object's change bits, its +0x144) set, the child's anchored position
+// inside the parent (scaled and rotated by the parent when `mode` has 0x2 or 0x10) is offset by the
+// parent's, and the result is no longer anchored.
 void fn_7100b1c56c(const UnkGuiItemState* parent, UnkGuiItemState* out, const UnkGuiItemState* child, u32 mode,
-                   bool place) {
+                   u32 changes) {
     out->field_0x3e = parent->field_0x3e;
     out->field_0x3c = parent->field_0x3c && child->field_0x3c;
     out->field_0x3d = UnkBothSet(parent->field_0x3d, child->field_0x3d);
@@ -83,7 +84,7 @@ void fn_7100b1c56c(const UnkGuiItemState* parent, UnkGuiItemState* out, const Un
     out->width = child->width;
     out->height = child->height;
     out->scale = child->scale * parent->scale;
-    if (place) {
+    if (changes & 1) {
         out->anchor.horizontal = 0;
         out->anchor.vertical = 0;
         UnkSetPos(&out->anchor.offset, fn_71011f6044(&child->anchor, reinterpret_cast<const UnkGuiArea*>(parent)));

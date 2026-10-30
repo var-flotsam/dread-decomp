@@ -190,9 +190,6 @@ struct UnkMediaRef {
     }
 };
 
-struct UnkItemBase_71011a91c4;
-// Hands an object to the render manager's pool (as src/game/UnkResourceGroup.cpp declares it).
-bool fn_71002199d8(UnkRenderManager* self, UnkItemBase_71011a91c4* item, u32 mode);
 // Erases the pair at `key` (the key's id released); returns the position that follows it.
 u64* fn_710021d6ec(base::UnkPairArrays* pairs, u64* key);
 

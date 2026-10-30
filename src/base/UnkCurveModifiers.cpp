@@ -88,19 +88,7 @@ f32 fn_7100076020(f32 t, const char* modifiers) {
     return v;
 }
 
-// A value that runs from `start` to `start + delta` over `duration`, shaped by `modifiers`; `end`
-// is what it reports once the time has run out.
-struct UnkTimedCurve {
-    f32 start;
-    f32 field_0x4;
-    f32 duration;
-    f32 delta;
-    f32 time;
-    u32 field_0x14;
-    const char* modifiers;
-    u8 field_0x20[0x28];
-    f32 end;
-};
+#include "base/UnkTimedCurve.h"
 
 // Advances the curve's time by `dt`, clamped to 0..duration, and returns its value there.
 // NON_MATCHING(minor): the original shares one copy of the shaping tail between the two clamp
@@ -125,4 +113,30 @@ shape:
     if (curve->modifiers && *curve->modifiers)
         u = fn_7100076020(u, curve->modifiers);
     return curve->start + u * curve->delta;
+}
+
+// ---- fn_7100075f78: setting a timed curve up ----
+
+#include "base/global/CRntString.h"
+
+// Sets the curve to run from `start` to `target` over `duration`, taking the modifier letters from
+// `modifiers` when they differ, and works out the value it ends at.
+// NON_MATCHING(minor): the stores of the duration and the difference come out in the other order.
+void fn_7100075f78(f32 start, f32 target, f32 duration, UnkTimedCurve* curve,
+                   const base::global::CRntString* modifiers) {
+    // The modifier letters are the data of a string held at +0x18.
+    auto* letters = reinterpret_cast<base::global::CRntString*>(&curve->modifiers);
+    curve->start = start;
+    curve->field_0x4 = target;
+    curve->duration = duration;
+    curve->delta = target - start;
+    curve->time = 0.0f;
+    if (fn_710007f220(letters, modifiers))
+        fn_710007eaa0(letters, modifiers);
+    if (curve->modifiers && *curve->modifiers) {
+        f32 f = fn_7100076020(1.0f, curve->modifiers);
+        curve->end = curve->start + f * curve->delta;
+        return;
+    }
+    curve->end = curve->field_0x4;
 }

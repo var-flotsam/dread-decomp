@@ -1001,6 +1001,59 @@ L_71005b2d04:;
     return ((char*)X0);
 }
 
+namespace bret { bool fn_710009d50c(char*, char*); }
+namespace bret { bool fn_7100360b84(char*, char*, char*); }
+namespace callee { char* fn_710009d50c(char*, char*); }
+namespace callee { char* fn_7100360b84(char*, char*, char*); }
+namespace callee { char* fn_71005ba098(); }
+namespace callee { char* fn_71005befec(u64); }
+namespace fret { f32 fn_71005befec(u64); }
+bool fn_71005b2ec4(char* p0, char* p1, char* p2) {
+    u64 X0 = (u64)p0;
+    u64 X1 = (u64)p1;
+    u64 X2 = (u64)p2;
+    u64 X8;
+    u64 X19;
+    u64 X20;
+    f32 S0;
+    f32 S1;
+    X19 = (u64)(((char*)X0));
+    X0 = bret::fn_7100360b84(((char*)X0), ((char*)X1), ((char*)X2));
+    if (!(((u64)((u32)X0) >> 0 & 1) != 0)) goto L_71005b2f54;
+    X8 = (u64)((u64)*(u64*)((char*)(((char*)X19)) + 8));
+    X19 = (u64)((u64)*(u64*)((char*)(X8) + 576));
+    if (!((u64)(u64)(X19) != 0)) goto L_71005b2f64;
+    X8 = (u64)((u64)*(u64*)((char*)(X19) + 0));
+    X0 = (u64)(X19);
+    X8 = (u64)((u64)*(u64*)((char*)(X8) + 0));
+    X0 = (u64)(((char* (*)(u64))(X8))(X0));
+    X20 = (u64)(((char*)X0));
+    X0 = (u64)(callee::fn_71005ba098());
+    X1 = (u64)(((char*)X0));
+    X0 = (u64)(((char*)X20));
+    X0 = bret::fn_710009d50c(((char*)X0), ((char*)X1));
+    if (!(((u64)((u32)X0) >> 0 & 1) != 0)) goto L_71005b2f64;
+    X8 = (u64)(0x4cb8);
+    X8 = (u64)(0x14cb8);
+    X8 = (u64)((u64)*(u64*)((char*)(X19) + (u64)(u64)(((u32)X8))));
+    if (!((u64)(u64)(X8) != 0)) goto L_71005b2f54;
+    X8 = (u64)((u32)*(u32*)((char*)(X8) + 16));
+    if (!((u32)(u64)((u32)X8) == (u32)(1))) goto L_71005b2f54;
+    X0 = (u64)(X19);
+    S0 = fret::fn_71005befec(X0);
+    X8 = (u64)(0x6666);
+    X8 = (u64)(0x3f666666);
+    S1 = (0x1.cccccc0000000p-1f);
+    X0 = (u64)((f32)(S0) >= (f32)(S1));
+    return ((bool)X0);
+L_71005b2f54:;
+    X0 = (u64)((u32)(u64)(0));
+    return (bool)(u64)(((u32)X0));
+L_71005b2f64:;
+    X0 = (u64)(0x1);
+    return (bool)(u64)(((u32)X0));
+}
+
 namespace callee { char* fn_710009d50c(char*, char*); }
 namespace callee { char* fn_71000ce740(char*, u32); }
 namespace callee { char* fn_71005ba098(); }

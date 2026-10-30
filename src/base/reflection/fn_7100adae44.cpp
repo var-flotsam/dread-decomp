@@ -670,3 +670,28 @@ UnkIdRecordPair_e51a60* fn_7100e604a8(UnkIdRecordPair_e51a60* self, UnkIdRecordP
 UnkIdRecordPair_e6e320* fn_7100e6eccc(UnkIdRecordPair_e6e320* self, UnkIdRecordPair_e6e320* other) {
     return MoveAssignSet(self, other);
 }
+
+// The same move-assignment in other units, for records of their own sizes assigned by their own
+// functions.
+UNK_ASSIGNED_RECORD(UnkAssignedRecord_f86348, 0x68, fn_7100f86348)
+UNK_ASSIGNED_RECORD(UnkAssignedRecord_f8e8f8, 0x78, fn_7100f8e8f8)
+UNK_ASSIGNED_RECORD(UnkAssignedRecord_fee9f0, 0x50, fn_7100fee9f0)
+UNK_ASSIGNED_RECORD(UnkAssignedRecord_1037484, 0x5d0, fn_7101037484)
+
+using UnkIdRecordPair_f86348 = UnkValuePairRef<UnkPairReleasedStrId, UnkAssignedRecord_f86348>;
+using UnkIdRecordPair_f8e8f8 = UnkValuePairRef<UnkPairReleasedStrId, UnkAssignedRecord_f8e8f8>;
+using UnkIdRecordPair_fee9f0 = UnkValuePairRef<UnkPairReleasedStrId, UnkAssignedRecord_fee9f0>;
+using UnkIdRecordPair_1037484 = UnkValuePairRef<UnkPairReleasedStrId, UnkAssignedRecord_1037484>;
+
+UnkIdRecordPair_f86348* fn_7100f86a38(UnkIdRecordPair_f86348* self, UnkIdRecordPair_f86348* other) {
+    return MoveAssignSet(self, other);
+}
+UnkIdRecordPair_f8e8f8* fn_7100f96a14(UnkIdRecordPair_f8e8f8* self, UnkIdRecordPair_f8e8f8* other) {
+    return MoveAssignSet(self, other);
+}
+UnkIdRecordPair_fee9f0* fn_71010053c4(UnkIdRecordPair_fee9f0* self, UnkIdRecordPair_fee9f0* other) {
+    return MoveAssignSet(self, other);
+}
+UnkIdRecordPair_1037484* fn_7101041e94(UnkIdRecordPair_1037484* self, UnkIdRecordPair_1037484* other) {
+    return MoveAssignSet(self, other);
+}

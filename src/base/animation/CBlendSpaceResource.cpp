@@ -64,11 +64,10 @@ bool fn_710000ccd8(UnkFileReader* self) {
 // The void type (src/base/reflection/UnkReflFunction.cpp).
 extern base::reflection::CType g_unk_7101d5af48;
 
-void fn_71000a2014(UnkReflValue* self);
-
 // Parses a value of `type` (nothing for void) with the context's callbacks and file into a target of
-// its own, and destroys what was read.
-void fn_7100010c60(const UnkParseContext* ctx, const CType* type) {
+// its own (with `Parse`), and destroys what was read.
+template <s32 (*Parse)(UnkParseContext*, const CType*, void*)>
+__attribute__((always_inline)) static inline void SkipValue(const UnkParseContext* ctx, const CType* type) {
     if (type == &g_unk_7101d5af48)
         return;
     UnkReflValue value;
@@ -76,12 +75,12 @@ void fn_7100010c60(const UnkParseContext* ctx, const CType* type) {
     value.type = nullptr;
     value.kind = 2;
     value.field_0x14 = 1;
-    fn_71000a2014(&value);
+    fn_71000a2014(&value, type);
     UnkReadTarget target;
     fn_71000f0568(&target, &value, 5);
     target.field_0x5468 = 0;
     UnkParseContext sub(*ctx, &target);
-    fn_710000f850(&sub, type, nullptr);
+    Parse(&sub, type, nullptr);
     for (u64 i = 0; i < target.count; ++i) {
         UnkReadEntry& e = target.entries[i];
         if (e.ops) {
@@ -90,6 +89,16 @@ void fn_7100010c60(const UnkParseContext* ctx, const CType* type) {
         }
     }
     fn_71000a1c60(&value);
+}
+
+void fn_7100010c60(const UnkParseContext* ctx, const CType* type) {
+    SkipValue<fn_710000f850>(ctx, type);
+}
+
+// A copy in unit 2620 of tools/tu_map.py (0x7100fc22a0-0x7100fc350c), with its own parser.
+s32 fn_7100fc2700(UnkParseContext* self, const CType* type, void* x2);
+void fn_7100fc3320(const UnkParseContext* ctx, const CType* type) {
+    SkipValue<fn_7100fc2700>(ctx, type);
 }
 
 // ---- fn_710000af7c: reading a blend space and resolving its animations ----

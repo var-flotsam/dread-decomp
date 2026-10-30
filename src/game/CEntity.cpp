@@ -210,3 +210,34 @@ f32 fn_7100d7ce40(UnkFactorEntity* self) {
     f32 f = self->field_0x240 ? self->field_0x240->GetFactor() : -1.0f;
     return f >= 0.0f ? f : 1.0f;
 }
+
+// ---- fn_7100d7be08: the position of the entity's +0x1f0 object ----
+
+// A vector returned in memory, copied word by word (its copy constructor is user-written).
+typedef u32 __attribute__((may_alias)) UnkEntityWord;
+struct UnkEntityVec3 {
+    f32 x, y, z;
+    UnkEntityVec3(f32 x_, f32 y_, f32 z_) : x(x_), y(y_), z(z_) {}
+    UnkEntityVec3(const UnkEntityVec3& o) {
+        reinterpret_cast<UnkEntityWord*>(this)[0] = reinterpret_cast<const UnkEntityWord*>(&o)[0];
+        reinterpret_cast<UnkEntityWord*>(this)[1] = reinterpret_cast<const UnkEntityWord*>(&o)[1];
+        reinterpret_cast<UnkEntityWord*>(this)[2] = reinterpret_cast<const UnkEntityWord*>(&o)[2];
+    }
+};
+
+struct UnkEntityPlaced {
+    u8 pad_0x0[0x10c];
+    UnkEntityVec3 position;
+};
+
+struct UnkEntityWithPlaced {
+    u8 pad_0x0[0x1f0];
+    UnkEntityPlaced* field_0x1f0;
+};
+
+// The position (+0x10c) of the object at +0x1f0, or zero when there is none.
+UnkEntityVec3 fn_7100d7be08(UnkEntityWithPlaced* self) {
+    if (UnkEntityPlaced* p = self->field_0x1f0)
+        return p->position;
+    return UnkEntityVec3(0.0f, 0.0f, 0.0f);
+}

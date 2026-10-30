@@ -70,6 +70,7 @@ struct UnkIdList {
 extern void* g_unk_7101cb38a8[];
 extern void* g_unk_7101cb38e8[];
 extern void* g_unk_7101cb46a0[];
+extern void* g_unk_7101aa9ae0[];
 
 template <void** Vtable, class Node, u32 Pad>
 struct UnkIdListOwner {
@@ -93,4 +94,22 @@ void fn_71011580d4(UnkIdListOwner<g_unk_7101cb38e8, UnkIdNode_0x10, 8>& self) {
 
 void fn_7101174a64(UnkIdListOwner<g_unk_7101cb46a0, UnkIdNode_0x30, 0>& self) {
     delete &self;
+}
+
+// The same destructors in other units, with their own vtables and the allocator right after the tail.
+void fn_7100de8d24(UnkIdListOwner<g_unk_7101aa9ae0, UnkIdNode_0x10, 0>& self) {
+    self.~UnkIdListOwner();
+}
+
+void fn_7100e05e44(UnkIdListOwner<g_unk_7101aa9ae0, UnkIdNode_0x10, 0>& self) {
+    delete &self;
+}
+
+void fn_710114e408(UnkIdListOwner<g_unk_7101cb38a8, UnkIdNode_0x18, 0>& self) {
+    self.~UnkIdListOwner();
+}
+
+// The complete destructor of fn_7101174a64's class, in another unit.
+void fn_7101171378(UnkIdListOwner<g_unk_7101cb46a0, UnkIdNode_0x30, 0>& self) {
+    self.~UnkIdListOwner();
 }

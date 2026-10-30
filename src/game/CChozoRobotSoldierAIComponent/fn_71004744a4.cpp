@@ -25,7 +25,6 @@ struct UnkEntryList {
 };
 
 extern char g_unk_71726cca00[] __attribute__((visibility("hidden")));
-UnkEntryList* fn_7100de94cc(UnkGameManager* manager, const void* key);
 
 // NON_MATCHING(minor): the height band test (+-10) is a conditional-compare chain with its two operands
 // swapped, and the two constants are materialised in the other order
@@ -33,7 +32,8 @@ bool fn_71004744a4(UnkEntity* self) {
     UnkActor* target = fn_7100d7c990(self->field_0x30);
     if (!target)
         return false;
-    UnkEntryList* list = fn_7100de94cc(g_unk_7101d47310, g_unk_71726cca00);
+    UnkEntryList* list = reinterpret_cast<UnkEntryList*>(
+        fn_7100de94cc(g_unk_7101d47310, reinterpret_cast<const u64*>(g_unk_71726cca00)));
     for (UnkEntry* entry : *list) {
         UnkEntity* other = entry ? entry->field_0x10 : nullptr;
         if (other == self)

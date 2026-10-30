@@ -45,7 +45,6 @@ struct UnkId : CStrId {
     }
 };
 
-void fn_7100ad3588(UnkErasedVector* self);  // clear
 
 struct UnkCallbackBase {
     virtual void vf0();

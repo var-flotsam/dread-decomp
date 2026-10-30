@@ -1,5 +1,6 @@
 // The default allocator's own functions: construction, the memory split between its four
 // sub-allocators, and the slots that look a pointer up in them (newest sub-allocator first).
+#include "base/UnkBlockFreeList.h"
 #include "base/UnkDefaultAllocator.h"
 
 using base::UnkDefaultAllocator;
@@ -95,4 +96,29 @@ u32 fn_7100083374(UnkDefaultAllocator* self) {
 bool fn_71000835a0(UnkDefaultAllocator* self, void* ptr) {
     return self->subs[0]->vf_0x58(ptr) || self->subs[1]->vf_0x58(ptr) || self->subs[2]->vf_0x58(ptr) ||
            self->subs[3]->vf_0x58(ptr);
+}
+
+// ---- fn_710008378c: a block free list over a buffer (base/UnkBlockFreeList.h) ----
+
+// Sets the list up over `size` bytes of `buffer` in blocks of `elem` bytes: the buffer is cleared and
+// each block starts with the (1-based) index of the block after it.
+// NON_MATCHING(minor): same behaviour; the original stores the count and buffer as a pair after
+// the clear word and the sizes (ours stores the buffer first), and keeps the next index in its own
+// register from 1 (ours adds 1 to a counter from 0); 104 bytes either way.
+void fn_710008378c(UnkBlockFreeList* list, void* buffer, u64 size, u64 elem) {
+    list->field_0x10 = 0;
+    list->size = size;
+    list->elem = elem;
+    list->count = size / elem;
+    list->buffer = buffer;
+    __builtin_memset(buffer, 0, size);
+    if (list->count) {
+        u64 offset = 0;
+        u64 i = 1;
+        do {
+            // Stored bytewise: the list's count and buffer are reread for each block.
+            __builtin_memcpy(static_cast<char*>(list->buffer) + offset, &i, sizeof(i));
+            offset += elem;
+        } while (i++ < list->count);
+    }
 }

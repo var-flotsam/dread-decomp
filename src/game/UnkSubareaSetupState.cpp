@@ -332,70 +332,9 @@ struct UnkSetupStr {
 };
 
 // A list of strings (nodes of a CRntString and the next link at +0x30) with an embedded block
-// pool, destroyed out of line (fn_71000732d4). The templates are the same definitions as
-// src/game_s1/fn_71000fc7cc.cpp's, which defines the destructor; the constructor is inlined.
-extern void* g_unk_7101a1a4a8[];  // derived part's vtable (fn_71000732d4)
-
-template <u32 Next>
-struct UnkListNode {
-    u8 pad_0x0[Next];
-    UnkListNode* next;
-};
-
-template <class Node, void (*DestroyNode)(Node*)>
-struct UnkNodeOwner {
-    void** vtable;
-    u32 field_0x8;
-    u32 pad_0xc;
-    Node* field_0x10;
-    Node* field_0x18;
-    base::UnkAllocator* field_0x20;
-    u8 pad_0x28[8];
-    void* field_0x30;
-    base::UnkAllocator* field_0x38;
-    UnkBlockFreeList field_0x40;  // the sub-object's free list; its buffer is at +0x60
-    u8 pad_0x68[4];
-    u8 field_0x6c;
-
-    __attribute__((always_inline)) void FreeNodes() {
-        for (Node* node = field_0x10; node;) {
-            Node* next = node->next;
-            DestroyNode(node);
-            field_0x20->vf_0x48(node);
-            node = next;
-        }
-    }
-
-    __attribute__((always_inline)) void Destroy(void** derived_vtable, void** base_vtable) {
-        vtable = derived_vtable + 2;
-        field_0x6c = 1;
-        FreeNodes();
-        field_0x8 = 0;
-        field_0x10 = nullptr;
-        field_0x18 = nullptr;
-        field_0x20 = nullptr;
-        field_0x30 = g_unk_7101a1a4c8 + 0x10;
-        if (void* block = field_0x40.buffer) {
-            fn_71000837f4(&field_0x40);
-            field_0x38->vf_0x48(block);
-            field_0x38 = nullptr;
-        }
-        vtable = base_vtable + 2;
-        FreeNodes();
-        field_0x8 = 0;
-        field_0x10 = nullptr;
-        field_0x18 = nullptr;
-    }
-};
-
-__attribute__((always_inline)) inline void DestroyNode30(UnkListNode<0x30>* node) {
-    fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(node));
-}
-
-using UnkSetupStrList = UnkNodeOwner<UnkListNode<0x30>, DestroyNode30>;
-static_assert(sizeof(UnkSetupStrList) == 0x70, "UnkSetupStrList placeholder layout");
-
-void fn_71000732d4(UnkNodeOwner<UnkListNode<0x30>, DestroyNode30>* self);
+// pool (base/UnkNodeOwner.h), destroyed out of line (fn_71000732d4); the constructor is inlined.
+#include "base/UnkNodeOwner.h"
+using UnkSetupStrList = UnkStrList30;
 
 // The list's constructor: no pool block, so the nodes come from the default allocator; 0x13 is
 // the allocation flags (at +0x28), and +0x68 is cleared with the flag at +0x6c.
@@ -456,4 +395,125 @@ void fn_7100faba64(UnkSubareaSetupState* self, CBlackboard* blackboard) {
         fn_7100fabd60(self, id.id, false, false);
     }
     fn_71000732d4(&parts);
+}
+
+// A list of setups by name: the first entry whose id (+0x18) is `*id`, or null; empty entries are
+// skipped.
+struct UnkSubareaNamedEntry {
+    u8 pad_0x0[0x18];
+    CStrId id;
+};
+struct UnkSubareaNamedList {
+    u8 pad_0x0[0x10];
+    UnkSubareaNamedEntry** data;
+    u32 count;
+};
+
+template <class Entry, class List>
+static inline Entry* FindNamed(List* self, const CStrId* id) {
+    Entry** it = self->data;
+    Entry** end = it + self->count;
+    const base::global::UnkStringData* want = id->data;
+    for (; it != end; ++it) {
+        Entry* entry = *it;
+        if (entry && entry->id.data == want)
+            return entry;
+    }
+    return nullptr;
+}
+
+UnkSubareaNamedEntry* fn_7100fab838(UnkSubareaNamedList* self, const CStrId* id) {
+    return FindNamed<UnkSubareaNamedEntry>(self, id);
+}
+
+// A copy in another unit, on a list at 0x610 of entries with the id at 0x8.
+struct UnkNamedEntry_7100772cb0 {
+    u8 pad_0x0[0x8];
+    CStrId id;
+};
+struct UnkNamedList_7100772cb0 {
+    u8 pad_0x0[0x610];
+    UnkNamedEntry_7100772cb0** data;
+    u32 count;
+};
+
+UnkNamedEntry_7100772cb0* fn_7100772cb0(UnkNamedList_7100772cb0* self, const CStrId* id) {
+    return FindNamed<UnkNamedEntry_7100772cb0>(self, id);
+}
+
+// Two membership tests on objects of the unit: an id in the list at +0x150 (count at +0x158), and,
+// unless the flag at +0x105 is set, in the list at +0xb0 (count at +0xb8).
+struct UnkSubareaIdLists {
+    u8 pad_0x0[0xb0];
+    CStrId* ids_0xb0;
+    u32 count_0xb8;
+    u8 pad_0xbc[0x49];
+    bool field_0x105;
+    u8 pad_0x106[0x4a];
+    CStrId* ids_0x150;
+    u32 count_0x158;
+};
+static_assert(__builtin_offsetof(UnkSubareaIdLists, ids_0x150) == 0x150, "UnkSubareaIdLists layout");
+
+bool fn_7100fad994(UnkSubareaIdLists* self, const CStrId* id) {
+    for (CStrId *it = self->ids_0x150, *end = it + self->count_0x158; it != end; ++it)
+        if (it->data == id->data)
+            return true;
+    return false;
+}
+
+bool fn_7100fad66c(UnkSubareaIdLists* self, const CStrId* id) {
+    if (self->field_0x105)
+        return false;
+    u64 n = self->count_0xb8;
+    if (n == 0)
+        return false;
+    const CStrId* it = self->ids_0xb0;
+    do {
+        if (it->data == id->data)
+            return true;
+        --n;
+        ++it;
+    } while (n != 0);
+    return false;
+}
+
+// Hands a kind-1 or kind-3 setting to the render manager: the value at +0x30 of the setup's object
+// (+0x110 or +0x120) and of this object's (+0x70 or +0x80), with `out` (its count at +0x8 cleared
+// first). Other kinds, and no setup, do nothing.
+struct UnkSubareaRenderSub {
+    u8 pad_0x0[0x30];
+    void* field_0x30;
+};
+struct UnkSubareaRenderSetup {
+    u8 pad_0x0[0x110];
+    UnkSubareaRenderSub* field_0x110;
+    u8 pad_0x118[0x8];
+    UnkSubareaRenderSub* field_0x120;
+};
+struct UnkSubareaRenderOwner {
+    u8 pad_0x0[0x70];
+    UnkSubareaRenderSub* field_0x70;
+    u8 pad_0x78[0x8];
+    UnkSubareaRenderSub* field_0x80;
+};
+struct UnkSubareaRenderOut {
+    void* data;
+    u32 count;
+};
+
+void fn_7100facb08(UnkSubareaRenderOwner* self, s32 kind, UnkSubareaRenderSetup* setup, bool flag,
+                   UnkSubareaRenderOut* out) {
+    out->count = 0;
+    if (!setup)
+        return;
+    if (kind == 3)
+        fn_7100219c98(g_unk_7101d47300, flag, setup->field_0x120->field_0x30, self->field_0x80->field_0x30, out, 0);
+    else if (kind == 1)
+        fn_7100219c98(g_unk_7101d47300, flag, setup->field_0x110->field_0x30, self->field_0x70->field_0x30, out, 0);
+}
+
+// The state's own id of kind `index` becomes `*id`.
+void fn_7100facb6c(UnkSubareaSetupState* self, u32 index, const CStrId* id) {
+    self->ids[index] = *id;
 }

@@ -171,7 +171,6 @@ bool fn_710007c9e8(base::global::CRntFile* file, char* buffer, u32 size);
 // Rewinds the file opened for writing to its buffer (fn_710007c1a4).
 void fn_710007c610(base::global::CRntFile* file, u64 buffer);
 // Writes `count` blocks of `size` bytes.
-u64 fn_710007c450(base::global::CRntFile* file, const void* data, u32 size, u32 count);
 // Saves the file to the path.
 bool fn_710007c388(base::global::CRntFile* file, const UnkStrPair_0x10* path);
 extern UnkStrPair_0x10 g_unk_710b372708 __attribute__((visibility("hidden")));  // the tunables file

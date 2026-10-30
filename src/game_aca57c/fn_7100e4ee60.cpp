@@ -44,6 +44,11 @@ struct UnkIdRecord18 {
     u64 field_0x8[2];
 };
 
+struct UnkIdRecord10 {
+    UnkReleasedStrId id;
+    u64 field_0x8;
+};
+
 template <class Value>
 struct UnkIdRecordTable {
     Value* values;
@@ -89,6 +94,7 @@ void fn_7100aecdc4(UnkIdRecordTable<UnkOwned<void, fn_7100aef674>>* self) { Clea
 
 void fn_7100e4ee60(UnkIdRecordTable<UnkIdRecord28>* self) { Clear(self); }
 void fn_7100e71cc4(UnkIdRecordTable<UnkIdRecord18>* self) { Clear(self); }
+void fn_71004f11f8(UnkIdRecordTable<UnkIdRecord10>* self) { Clear(self); }
 
 // Begin and End: the iterator value is pointed at the first key and value, or one past the last.
 template <class Value>
@@ -192,6 +198,15 @@ void fn_7100e573b0(const UnkIdRecordTable<UnkArrayRecord60>* self,
 
 // A table of words.
 void fn_7100d86fe8(const UnkIdRecordTable<u64>* self, base::UnkIterValue<u64, UnkReleasedStrId>* out) {
+    Begin(self, out);
+}
+// The same for a table of two-word values, in another unit.
+struct UnkTwoWords {
+    u64 first;
+    u64 second;
+};
+
+void fn_7100905138(const UnkIdRecordTable<UnkTwoWords>* self, base::UnkIterValue<UnkTwoWords, UnkReleasedStrId>* out) {
     Begin(self, out);
 }
 // NON_MATCHING(minor): the two end pointers swap registers.

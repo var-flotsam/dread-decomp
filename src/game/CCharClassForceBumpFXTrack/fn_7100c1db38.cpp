@@ -9,24 +9,27 @@
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
-// A string id whose destructor decrements and tests in two steps (the original reloads the id
-// after the decrement).
-struct UnkReleasedStrId {
+// A string id (or, with the file-path pool, a path id) whose destructor decrements and tests in two
+// steps (the original reloads the id after the decrement).
+template <UnkStringPool** Pool>
+struct UnkReleasedStrIdT {
     UnkStringData* data;
 
-    __attribute__((always_inline)) ~UnkReleasedStrId() {
-        if (UnkStringPool* pool = g_unk_7101d47108) {
+    __attribute__((always_inline)) ~UnkReleasedStrIdT() {
+        if (UnkStringPool* pool = *Pool) {
             if (data && data != &pool->empty) {
                 --data->ref_count;
                 if (data->ref_count == 0) {
                     fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
+                    pool = *Pool;
                 }
             }
             data = &pool->empty;
         }
     }
 };
+
+using UnkReleasedStrId = UnkReleasedStrIdT<&g_unk_7101d47108>;
 
 template <class T>
 struct UnkReleasedArray {
@@ -85,6 +88,19 @@ struct UnkIdWordList {
 
 void fn_7100b480a0(UnkIdWordList* self) { self->~UnkIdWordList(); }
 void fn_7100ea8cd4(UnkIdWordList* self) { self->~UnkIdWordList(); }
+
+// The same with path ids (the entries' after a word), in another unit.
+struct UnkPathIdWord {
+    u64 field_0x0;
+    UnkReleasedStrIdT<&g_unk_7101d47200> id;
+};
+
+struct UnkPathIdWordList {
+    UnkReleasedStrIdT<&g_unk_7101d47200> key;
+    UnkReleasedArray<UnkPathIdWord> entries;
+};
+
+void fn_71011aa9d8(UnkPathIdWordList* self) { self->~UnkPathIdWordList(); }
 
 // The same with a second string id at 0x48 and a word (released first).
 template <void** Vtable>

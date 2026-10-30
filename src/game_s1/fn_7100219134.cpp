@@ -24,8 +24,8 @@ struct UnkNodeList_7100219134 {
     base::UnkAllocator* allocator;
 };
 
-template <char* Vtable, u32 Next, void (*DestroyNode)(char*)>
-static inline void DestroyList(UnkNodeList_7100219134* self) {
+template <char* Vtable, u32 Next, void (*DestroyNode)(char*), class List = UnkNodeList_7100219134>
+static inline void DestroyList(List* self) {
     self->vtable = Vtable + 0x10;
     for (char* n = self->head; n;) {
         char* next = *reinterpret_cast<char**>(n + Next);
@@ -68,4 +68,72 @@ void fn_710023fe88(UnkNodeList_7100219134* self) {
     self->count = 0;
     self->head = nullptr;
     self->tail = nullptr;
+}
+
+// Identical copies: fn_7100d82e8c, fn_71011d2a74.
+void fn_7100d82e8c(UnkNodeList_7100219134* self) {
+    for (char* n = self->head; n;) {
+        char* next = *reinterpret_cast<char**>(n + 8);
+        self->allocator->vf_0x48(n);
+        n = next;
+    }
+    self->count = 0;
+    self->head = nullptr;
+    self->tail = nullptr;
+}
+void fn_71011d2a74(UnkNodeList_7100219134* self) {
+    for (char* n = self->head; n;) {
+        char* next = *reinterpret_cast<char**>(n + 8);
+        self->allocator->vf_0x48(n);
+        n = next;
+    }
+    self->count = 0;
+    self->head = nullptr;
+    self->tail = nullptr;
+}
+
+// The same destructor in three other units, for lists linked through 0x88, 0x120 and 0x20, with their
+// own vtables and node destructors.
+#include "base/UnkEmptyDtorElem.h"
+
+extern char unk_7101a6f558[];
+extern char unk_7101aa4fb0[];
+extern char unk_7101cb2618[];
+void fn_7100431cec(void* node);
+void fn_7100d62bd8(void* node);
+
+static inline void DestroyNode_7100790f50(char* node) { fn_7100431cec(node); }
+static inline void DestroyNode_7100c75d5c(char* node) { fn_7100d62bd8(node); }
+static inline void DestroyNode_7101115e70(char* node) { fn_71002874dc(node); }
+
+void fn_7100790f50(UnkNodeList_7100219134* self) { DestroyList<unk_7101a6f558, 0x88, DestroyNode_7100790f50>(self); }
+
+void fn_7100c75d5c(UnkNodeList_7100219134* self) { DestroyList<unk_7101aa4fb0, 0x120, DestroyNode_7100c75d5c>(self); }
+
+void fn_7101115e70(UnkNodeList_7100219134* self) { DestroyList<unk_7101cb2618, 0x20, DestroyNode_7101115e70>(self); }
+
+// The same for lists with a word between the tail and the allocator (at 0x28): strings linked through
+// 0x30 (fn_7100b6fe14) and nodes destroyed by fn_7100fde6c4 linked through 0x60 (fn_7100fde39c).
+struct UnkNodeList28 {
+    char* vtable;
+    u32 count;
+    char* head;
+    char* tail;
+    u64 field_0x20;
+    base::UnkAllocator* allocator;
+};
+
+extern char unk_7101a9e948[];
+extern char unk_7101cac270[];
+struct UnkNode_0x68;
+void fn_7100fde6c4(UnkNode_0x68* node);  // as src/game/sound/CMusicManager/CTunableMusicManager/fn_7100fd8720.cpp declares it
+
+static inline void DestroyNode_7100fde39c(char* node) { fn_7100fde6c4(reinterpret_cast<UnkNode_0x68*>(node)); }
+
+void fn_7100b6fe14(UnkNodeList28* self) {
+    DestroyList<unk_7101a9e948, 0x30, DestroyNode_710002e3f8, UnkNodeList28>(self);
+}
+
+void fn_7100fde39c(UnkNodeList28* self) {
+    DestroyList<unk_7101cac270, 0x60, DestroyNode_7100fde39c, UnkNodeList28>(self);
 }

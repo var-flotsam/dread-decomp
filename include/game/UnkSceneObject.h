@@ -42,6 +42,16 @@ struct UnkSceneObject {
 };
 static_assert(__builtin_offsetof(UnkSceneObject, field_0x130) == 0x130, "UnkSceneObject placeholder layout");
 
+// A draw list as the slots take it: a pointer and a count.
+struct UnkSceneSpan {
+    void* data;
+    u64 count;
+};
+
+// Hands a draw list to slot `slot` of the sub-object; false for a slot past the fifth
+// (src/game/UnkSceneObject.cpp).
+bool fn_7100148178(UnkSceneObject* self, u32 slot, const UnkSceneSpan& list, u32 flag);
+
 // Switches the object on or off when the flag at +0x118 differs from `enabled`: the member at
 // +0x20 gets the flag, and switching on also runs fn_7100025a88 on +0x138. Defined in src/clones/
 // (base::refl_SetFlagCall, base/UnkCloneCalls.h).

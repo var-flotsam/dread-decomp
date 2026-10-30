@@ -3,6 +3,7 @@
 // explosion's spawn at a target, the main burst and then uAmount - 1 extra ones.
 #include <stdlib.h>
 
+#include "base/UnkMatrix44.h"
 #include "types.h"
 
 // The vector and matrix types of fn_7100078170 (src/game_s1/fn_7100078170.cpp).
@@ -16,7 +17,6 @@ struct UnkMat4f {
     f32 m[4][4];
 };
 UnkVec3f fn_7100078170(const UnkMat4f* m, const UnkVec3f* v);
-UnkMat4f fn_7100078d8c(f32 angle);  // the rotation about z by angle
 
 struct CExplosionGfx {
     u8 pad_0x0[0xb8];
@@ -70,8 +70,8 @@ void fn_7100de08f0(CExplosionGfx* self, UnkExplosionTarget* target) {
         f32 turn = RandRange(arc * -kTwoPi, arc * kTwoPi);
         UnkVec3f offset(distance, 0.0f, 0.0f);
         if (!IsNearZero(distance)) {
-            UnkMat4f rotation = fn_7100078d8c(even + turn);
-            offset = fn_7100078170(&rotation, &offset);
+            UnkMatrix44 rotation = fn_7100078d8c(even + turn);
+            offset = fn_7100078170(reinterpret_cast<const UnkMat4f*>(&rotation), &offset);
         }
         f32 min_delay = self->vRandomDelay[0];
         f32 max_delay = self->vRandomDelay[1];

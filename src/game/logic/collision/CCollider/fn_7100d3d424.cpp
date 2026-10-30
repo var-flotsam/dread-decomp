@@ -259,7 +259,8 @@ struct UnkIdPairCopy {
     u32 field_0x10;
 };
 
-UnkIdPairCopy* fn_7100c8f87c(UnkIdPairCopy* self, const UnkIdPairCopy* other) {
+template <class Self>
+static inline Self* Assign(Self* self, const Self* other) {
     if (self != other) {
         self->first = other->first;
         self->second = other->second;
@@ -267,6 +268,18 @@ UnkIdPairCopy* fn_7100c8f87c(UnkIdPairCopy* self, const UnkIdPairCopy* other) {
     }
     return self;
 }
+
+UnkIdPairCopy* fn_7100c8f87c(UnkIdPairCopy* self, const UnkIdPairCopy* other) { return Assign(self, other); }
+// Copies in another unit, on the same members after a word.
+struct UnkWordIdPairCopy {
+    u64 field_0x0;
+    CStrId first;  // 0x8
+    CStrId second;
+    u32 field_0x10;  // at 0x18
+};
+
+UnkWordIdPairCopy* fn_71007f1fb0(UnkWordIdPairCopy* self, const UnkWordIdPairCopy* other) { return Assign(self, other); }
+UnkWordIdPairCopy* fn_71007f20a4(UnkWordIdPairCopy* self, const UnkWordIdPairCopy* other) { return Assign(self, other); }
 
 // Move-assignment of a value, an id and an array of ids.
 struct UnkValueIdIdArrayRecord {
@@ -619,4 +632,26 @@ void fn_7100e59d18(UnkIdRecordMap* self, u32 capacity) { Reserve<UnkRecord60, fn
 
 UnkIdRecordMap* fn_7100e59f50(UnkIdRecordMap* self, const UnkIdRecordMap* other) {
     return Assign<UnkRecord60, fn_7100e4a1d0, fn_7100e5a114, fn_7100e59d18, fn_7100e4fd1c>(self, other);
+}
+
+// The same for an id, a 16-byte block (copied whole) and a word, in another unit (fn_7100f90c50).
+struct UnkIdBlockWord {
+    UnkReleasedStrId id;
+    struct {
+        u64 a, b;
+    } block;  // 0x8
+    u32 field_0x18;
+
+    UnkIdBlockWord(UnkIdBlockWord&& other)
+        : id(static_cast<UnkReleasedStrId&&>(other.id)), block(other.block), field_0x18(other.field_0x18) {}
+};
+
+// NON_MATCHING(minor): the original loads the other's block before leaving its id empty; same
+// behaviour.
+UnkIdBlockWord* fn_7100f90c50(UnkIdBlockWord* self, UnkIdBlockWord* other) {
+    if (self != other) {
+        self->~UnkIdBlockWord();
+        new (self) UnkIdBlockWord(static_cast<UnkIdBlockWord&&>(*other));
+    }
+    return self;
 }

@@ -96,7 +96,7 @@ void fn_71000733e4(UnkRumbleManager* self) {
 // The rumble files the manager has loaded, cached by path in its map at +0x20d0.
 #include <new>
 
-#include "base/UnkCountedResource.h"
+#include "base/UnkResKey.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
@@ -105,67 +105,6 @@ using base::global::CFilePathStrId;
 using base::global::CStrId;
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
-
-// The resource registry's key and reference types (as src/game/CAbilitySonar.cpp defines them).
-struct UnkResType {
-    CStrId name;
-};
-
-struct UnkResRegistry;
-extern UnkResRegistry* g_unk_7101d472f8;
-
-struct UnkResPathId {
-    UnkStringData* data;
-
-    UnkResPathId(const CFilePathStrId& other) : data(other.data) {
-        if (&g_unk_7101d47200->empty != data)
-            ++data->ref_count;
-    }
-    ~UnkResPathId() {
-        if (UnkStringPool* pool = g_unk_7101d47200) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47200;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
-
-struct UnkResKey {
-    CStrId type;
-    UnkResPathId path;
-
-    UnkResKey(const CStrId& t, const CFilePathStrId& p) : type(t), path(p) {}
-};
-
-struct UnkResRef {
-    UnkCountedResource* ptr;
-
-    UnkResRef() : ptr(nullptr) {}
-    UnkResRef& operator=(const UnkResRef& other) {
-        if (ptr != other.ptr) {
-            UnkCountedResource* p = other.ptr;
-            if (p)
-                ++p->ref_count;
-            UnkCountedResource* old = ptr;
-            if (old && --old->ref_count == 0)
-                fn_710001737c(old);
-            ptr = p;
-        }
-        return *this;
-    }
-    ~UnkResRef() {
-        if (ptr && --ptr->ref_count == 0)
-            fn_710001737c(ptr);
-    }
-};
-
-UnkResKey fn_71000ea448(UnkResRegistry* registry, const UnkResKey* key, void* a);
-UnkResRef fn_71000ead80(UnkResRegistry* registry, const UnkResKey* key, u8 flag, void* a);
 
 // The rumble files' resource type.
 extern const UnkResType g_unk_7101d676d8;
@@ -343,42 +282,9 @@ UnkRumbleFile* fn_710007454c(UnkRumbleManager* self, const void* name) {
     return file;
 }
 
-// A pool of 0xa8-byte blocks in one allocation (the manager's at +0x2180): the free list over the
-// buffer, and an array with an entry per block.
-struct UnkRumbleBlockEntry {
-    void* block;
-    u64 field_0x8;
-};
+// The manager's pool of 0xa8-byte blocks at +0x2180 (base/UnkBlockArrayPool.h).
+#include "base/UnkBlockArrayPool.h"
 
-struct UnkRumbleBlockPool {
-    base::UnkAllocator* allocator;  // owns the buffer
-    u32 flags;
-    UnkBlockFreeList list;                          // +0x10
-    base::UnkVector<UnkRumbleBlockEntry> entries;  // +0x38
-    u64 count;                                      // +0x60
-};
-
-// (Re)creates the pool with `n` blocks from `allocator` (the default one when null), freeing the
-// previous buffer.
-void fn_7100073900(UnkRumbleBlockPool* self, u64 n, u32 flags, base::UnkAllocator* allocator) {
-    // The list's buffer, read as a word at +0x30: the original recomputes the list's address for
-    // each call instead of keeping it from this read.
-    if (void* buffer = *reinterpret_cast<void**>(reinterpret_cast<char*>(self) + 0x30)) {
-        fn_71000837f4(&self->list);
-        self->entries.Clear();
-        self->allocator->vf_0x48(buffer);
-        self->allocator = nullptr;
-    }
-    self->flags = flags;
-    if (!allocator)
-        allocator = fn_7100083990();
-    self->allocator = allocator;
-    u8* mem = static_cast<u8*>(allocator->vf_0x40(n * 0xa8, 8, flags));
-    fn_710008378c(&self->list, mem, n * 0xa8, 0xa8);
-    self->entries.Reserve(n);
-    for (u64 i = 0; i < n; ++i) {
-        UnkRumbleBlockEntry e = {mem + i * 0xa8, 0};
-        self->entries.PushBack(e);
-    }
-    self->count = n;
+void fn_7100073900(UnkBlockArrayPool* self, u64 n, u32 flags, base::UnkAllocator* allocator) {
+    UnkBlockArrayPoolCreate<0xa8>(self, n, flags, allocator);
 }

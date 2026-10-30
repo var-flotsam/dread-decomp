@@ -1,47 +1,32 @@
 // The lookups of a blackboard's sections by id: whether there is one, the section itself, and the
 // section created when it is missing (the search is inlined into each).
+#include "base/UnkParallelFind.h"
 #include "game/CBlackboard.h"
 
 using base::global::CStrId;
 
-namespace {
-
-// The slot of the section `key` names, or the slot past the last one. The ids are compared as raw
-// 64-bit words (the original loads the key after the array); the slot is returned, and compared
-// with the end by the callers, as the keyed arrays of base/UnkCloneCalls.h do (written otherwise
-// the compiler folds the comparison away).
-__attribute__((always_inline)) inline CBlackboard::CSection** FindSlot(CBlackboard* self, const CStrId& key) {
-    for (u64 i = 0; i < self->count; ++i) {
-        if (*reinterpret_cast<const u64*>(&self->ids[i]) == *reinterpret_cast<const u64*>(&key))
-            return &self->sections[i];
-    }
-    return &self->sections[self->count];
-}
-
-}  // namespace
-
 bool fn_7101047208(CBlackboard* self, const CStrId& key) {
-    return FindSlot(self, key) != &self->sections[self->count];
+    return UnkBlackboardFindSlot(self, key) != &self->sections[self->count];
 }
 
 CBlackboard::CSection* fn_7101047270(CBlackboard* self, const CStrId& key) {
-    CBlackboard::CSection** slot = FindSlot(self, key);
+    CBlackboard::CSection** slot = UnkBlackboardFindSlot(self, key);
     return slot != &self->sections[self->count] ? *slot : nullptr;
 }
 
 // Two more copies of the lookup above (identical code, other translation units' instantiations).
 CBlackboard::CSection* fn_7101047414(CBlackboard* self, const CStrId& key) {
-    CBlackboard::CSection** slot = FindSlot(self, key);
+    CBlackboard::CSection** slot = UnkBlackboardFindSlot(self, key);
     return slot != &self->sections[self->count] ? *slot : nullptr;
 }
 
 CBlackboard::CSection* fn_7101047484(CBlackboard* self, const CStrId& key) {
-    CBlackboard::CSection** slot = FindSlot(self, key);
+    CBlackboard::CSection** slot = UnkBlackboardFindSlot(self, key);
     return slot != &self->sections[self->count] ? *slot : nullptr;
 }
 
 CBlackboard::CSection* fn_71010472e0(CBlackboard* self, const CStrId& key) {
-    CBlackboard::CSection** slot = FindSlot(self, key);
+    CBlackboard::CSection** slot = UnkBlackboardFindSlot(self, key);
     if (slot != &self->sections[self->count])
         return *slot;
     CBlackboard::CSection* section = static_cast<CBlackboard::CSection*>(fn_71000839a0(sizeof(CBlackboard::CSection), 0x15));
@@ -106,4 +91,53 @@ void fn_7101046974(CBlackboard* blackboard) {
     fn_710007e704(&self->field_0xb0, g_unk_710162e2ed);
     self->field_0xe0 = 0;
     self->field_0xe8 = false;
+}
+
+// A section's property values (24 bytes each) as the lookup below walks them.
+struct UnkPropertyValue_0x18 {
+    u8 data[0x18];
+};
+
+// The same arrays with the value type spelled out, for base/UnkParallelFind.h.
+struct UnkPropertyMap {
+    UnkPropertyValue_0x18* values;
+    CStrId* ids;
+    u32 count;
+};
+
+// Whether the section `section` names has a property named `name`.
+bool fn_71010474f4(CBlackboard* self, const CStrId& section, const CStrId& name) {
+    CBlackboard::CSection** slot = UnkBlackboardFindSlot(self, section);
+    CBlackboard::CSection* found = slot != &self->sections[self->count] ? *slot : nullptr;
+    if (!found)
+        return false;
+    UnkPropertyArrays& properties = found->data.properties;
+    UnkPropertyValue_0x18* it = UnkParallelFindSlot(reinterpret_cast<UnkPropertyMap*>(&properties), name);
+    return it != &static_cast<UnkPropertyValue_0x18*>(properties.values)[properties.count];
+}
+
+// The list at +0x70 of a blackboard: nodes holding an object whose flag at +0x60 is cleared below.
+struct UnkBlackboardListed {
+    u8 pad_0x0[0x60];
+    bool field_0x60;
+};
+struct UnkBlackboardListNode {
+    u8 pad_0x0[0x8];
+    UnkBlackboardListed* object;
+    UnkBlackboardListNode* next;
+};
+struct UnkBlackboardList {
+    u8 pad_0x0[0x70];
+    UnkBlackboardListNode* head;
+};
+
+// Clears every section's flag (its data's field_0x38) and the flag of every object on the list at
+// +0x70.
+void fn_7101047178(CBlackboard* self) {
+    for (CBlackboard::CSection **it = self->sections, **end = it + self->count; it != end; ++it)
+        if (*it)
+            (*it)->data.field_0x38 = false;
+    for (UnkBlackboardListNode* node = reinterpret_cast<UnkBlackboardList*>(self)->head; node; node = node->next)
+        if (node->object)
+            node->object->field_0x60 = false;
 }

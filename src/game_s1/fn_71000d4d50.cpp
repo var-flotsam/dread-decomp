@@ -66,3 +66,41 @@ bool fn_71000d75f0(const UnkIterValueKey64_0x18& a, const UnkIterValueKey64_0x18
 bool fn_7100247830(const UnkIterValueKey64_0x28& a, const UnkIterValueKey64_0x28& b) { return a == b; }
 
 bool fn_7100247f10(const UnkIterValueKey64_0x28& a, const UnkIterValueKey64_0x28& b) { return a == b; }
+
+// 0x28-byte elements compared by fn_7100d883f0 with 64-bit keys (fn_7100d89094, fn_7100d89774).
+struct UnkCompared_0x28b {
+    u64 words[5];
+};
+bool fn_7100d883f0(const UnkCompared_0x28b* a, const UnkCompared_0x28b* b);
+inline bool operator==(const UnkCompared_0x28b& a, const UnkCompared_0x28b& b) { return fn_7100d883f0(&a, &b); }
+using UnkIterValueKey64_0x28b = UnkIterValue<UnkCompared_0x28b, UnkKey64>;
+
+bool fn_7100d89094(const UnkIterValueKey64_0x28b& a, const UnkIterValueKey64_0x28b& b) { return a == b; }
+
+bool fn_7100d89774(const UnkIterValueKey64_0x28b& a, const UnkIterValueKey64_0x28b& b) { return a == b; }
+
+// 0x248-byte elements whose first 0x30 bytes are compared by fn_710007f120 (fn_7100e7afd0,
+// fn_7100e7b35c), and 0x48-byte elements compared by fn_71011136b8 (fn_7101113398, fn_7101113980).
+struct UnkCompared_0x248 {
+    UnkCompared_0x30 head;
+    u64 words[(0x248 - 0x30) / 8];
+};
+inline bool operator==(const UnkCompared_0x248& a, const UnkCompared_0x248& b) {
+    return fn_710007f120(&a.head, &b.head);
+}
+struct UnkCompared_0x48 {
+    u64 words[9];
+};
+bool fn_71011136b8(const UnkCompared_0x48* a, const UnkCompared_0x48* b);
+inline bool operator==(const UnkCompared_0x48& a, const UnkCompared_0x48& b) { return fn_71011136b8(&a, &b); }
+
+using UnkIterValue_0x248 = UnkIterValue<UnkCompared_0x248>;
+using UnkIterValue_0x48 = UnkIterValue<UnkCompared_0x48>;
+
+bool fn_7100e7afd0(const UnkIterValue_0x248& a, const UnkIterValue_0x248& b) { return a == b; }
+
+bool fn_7100e7b35c(const UnkIterValue_0x248& a, const UnkIterValue_0x248& b) { return a == b; }
+
+bool fn_7101113398(const UnkIterValue_0x48& a, const UnkIterValue_0x48& b) { return a == b; }
+
+bool fn_7101113980(const UnkIterValue_0x48& a, const UnkIterValue_0x48& b) { return a == b; }

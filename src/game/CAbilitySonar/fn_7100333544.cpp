@@ -19,3 +19,12 @@ struct UnkIdPathPairAt18_710034e0b8 {
 };
 
 void fn_710034e0b8(UnkIdPathPairAt18_710034e0b8* self) { self->~UnkIdPathPairAt18_710034e0b8(); }
+
+// The pair the other way round (the path id first), at 8 in another unit.
+struct UnkPathIdPairAt8_7100d8ef0c {
+    u8 field_0x0[0x8];
+    base::UnkStrIdMemberOf<g_unk_7101d47200> path;
+    base::UnkStrIdMember id;
+};
+
+void fn_7100d8ef0c(UnkPathIdPairAt8_7100d8ef0c* self) { self->~UnkPathIdPairAt8_7100d8ef0c(); }

@@ -184,3 +184,32 @@ bool fn_7100e2d93c(void* self, const base::math::CVector2D* a, const base::math:
     fn_7100d69400(&shape);
     return result;
 }
+
+// An identical copy (fn_71007bae10).
+bool fn_71007bae10(void* self, const base::math::CVector2D* a, const base::math::CVector2D* b) {
+    if (a->x == b->x && a->y == b->y)
+        return false;
+    UnkSegmentShape shape;
+    {
+        base::math::CVector2D start;
+        start.x = a->x;
+        start.y = a->y;
+        base::math::CVector2D end;
+        end.x = b->x;
+        end.y = b->y;
+        UnkSegment2D seg(start, end);
+        fn_7100d693ac(&shape, &seg);
+    }
+    bool result;
+    {
+        UnkDropHitList hits;
+        UnkTree* tree = static_cast<UnkTree*>(g_unk_7101d47310->field_0x608->field_0x820);
+        UnkMatrix44 identity;
+        SetIdentity(&identity);
+        fn_7100d5b484(tree, 1, reinterpret_cast<UnkShape*>(&shape), reinterpret_cast<const UnkMtx44*>(&identity),
+                      &hits, 0);
+        result = (hits.count & 1) != 0;
+    }
+    fn_7100d69400(&shape);
+    return result;
+}

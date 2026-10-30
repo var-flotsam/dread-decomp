@@ -31,6 +31,11 @@ static_assert(__builtin_offsetof(UnkRenderManager, field_0x268) == 0x268, "UnkRe
 
 extern UnkRenderManager* g_unk_7101d47300;
 
+// Takes an item's scene node off its layer and drops it from the pool when the pass list knows
+// `layer`; says whether it was dropped (src/game/UnkRenderManager.cpp). Callers pass their items.
+struct UnkItemBase_71011a91c4;
+bool fn_71002199d8(UnkRenderManager* self, UnkItemBase_71011a91c4* item, u32 layer);
+
 // A scene object's node as the render manager sees it, at +8 of the object (after its vtable): a
 // word of flags whose byte 3 is the node's type and whose bits 12 to 15 are its layer, and the
 // payload at +0x10 whose layout depends on the type. fn_7100219ae0 puts a node on a layer, when
@@ -50,3 +55,10 @@ bool fn_7100219ae0(UnkRenderManager* self, UnkSceneNode* node, u32 layer);
 // Sets the pass parameter `hash` names from `value`, through the pass list at +0x220; the last
 // argument is a count or a mode (6 for a rectangle, 2 or 0 for one value). Not defined by hand.
 void fn_7100219294(UnkRenderManager* self, u64 hash, const f32* value, u32 count);
+// Switch one of a known layer's flags in the pass list (src/game/UnkRenderManager.cpp); nothing for
+// a layer the list does not know.
+void fn_7100219cb0(UnkRenderManager* self, bool flag, u32 layer);
+void fn_7100219d4c(UnkRenderManager* self, bool flag, u32 layer);
+// Sets a flag on the pass list's item `id` (fn_71001fd6c0, which ignores the three pointers between);
+// generated (src/lifted/).
+void fn_7100219c98(UnkRenderManager* self, bool flag, void* a, void* b, void* c, s32 id);

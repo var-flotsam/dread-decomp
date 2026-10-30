@@ -9,6 +9,7 @@
 // type-8 shape moved along a direction) and fn_7100d65b70 (query box), and the edge loops
 // fn_7100d644d0, fn_7100d64f70, fn_7100d65410 and fn_7100d658e0. Names and layouts are
 // placeholders.
+#include "base/UnkVector.h"
 #include "base/math/CVector.h"
 #include "base/math/UnkSegment2D.h"
 #include "types.h"
@@ -552,4 +553,36 @@ UnkContact fn_7100d65410(UnkPolygonCollection2D* self, const UnkBox2D* box, cons
 UnkContact fn_7100d658e0(UnkPolygonCollection2D* self, const UnkShape8Geometry* shape, const CVector3D* dir,
                          UnkLocalQuery* query) {
     return SweepEdges<UnkShape8Geometry, UnkContactPoint>(self, shape, dir, query, fn_710012f750);
+}
+
+// ---- fn_7100d62b04: the shape's constructor ----
+
+// The polygon list it builds at +0xa8 (constructed by fn_7100123eb4, as src/game/CBreakableTileGroup.cpp's
+// scratch list).
+struct UnkTileOutlineList {
+    u8 data[0x40];
+};
+void fn_7100123eb4(UnkTileOutlineList* self);
+
+struct UnkPolygonCollectionShapeView {
+    char* vtable;
+    u8 base_0x8[0xa0];  // the shape base, built by fn_7100d6bfd8
+    UnkTileOutlineList outlines;      // 0xa8
+    bool field_0xe8;
+    base::UnkVector<u64> field_0xf0;  // allocation flags 7
+};
+static_assert(__builtin_offsetof(UnkPolygonCollectionShapeView, field_0xf0) == 0xf0, "UnkPolygonCollectionShapeView layout");
+
+extern char g_unk_7101aa8b80[];  // the shape's vtable
+void fn_7100d6bfd8(void* self);  // the shape base's constructor
+
+// NON_MATCHING(minor): the same stores, paired and ordered differently (the original stores the
+// array pointer alone and the flag at +0xe8 among the array's fields). The behaviour is the same.
+void fn_7100d62b04(void* block) {
+    UnkPolygonCollectionShapeView* self = static_cast<UnkPolygonCollectionShapeView*>(block);
+    fn_7100d6bfd8(self);
+    self->vtable = g_unk_7101aa8b80 + 0x10;
+    fn_7100123eb4(&self->outlines);
+    self->field_0xe8 = false;
+    new (&self->field_0xf0) base::UnkVector<u64>(7);
 }

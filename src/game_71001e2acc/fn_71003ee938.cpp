@@ -11,3 +11,11 @@ struct UnkElem_0xc {
 };
 
 void fn_71003ee938(const UnkVector<UnkElem_0xc>* v, UnkCollectionIter<UnkElem_0xc>* out) { base::refl_End(v, out); }
+
+// The same for 24-byte elements, in two other units.
+struct UnkElem_0x18 {
+    u64 words[3];
+};
+
+void fn_71004b3040(const UnkVector<UnkElem_0x18>* v, UnkCollectionIter<UnkElem_0x18>* out) { base::refl_End(v, out); }
+void fn_71004c0c54(const UnkVector<UnkElem_0x18>* v, UnkCollectionIter<UnkElem_0x18>* out) { base::refl_End(v, out); }

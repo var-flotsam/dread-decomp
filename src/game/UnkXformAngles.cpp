@@ -128,3 +128,14 @@ void fn_7100077038(const UnkXform* x, UnkVec3f* a, UnkVec3f* b, f32 z) {
     b->y = by;
     b->z = bz;
 }
+
+// A point transformed by a matrix (its rows with the translation in the fourth column).
+// NON_MATCHING(minor): register allocation only (the same instructions in the same order).
+UnkVec3f fn_7100077c70(const UnkMatrix44& m, const UnkVec3f& v) {
+    f32 x = v.x, y = v.y;
+    UnkVec3f r;
+    r.x = m.m[3] + (x * m.m[0] + y * m.m[1] + v.z * m.m[2]);
+    r.y = m.m[7] + (x * m.m[4] + y * m.m[5] + v.z * m.m[6]);
+    r.z = m.m[11] + (x * m.m[8] + y * m.m[9] + v.z * m.m[10]);
+    return r;
+}

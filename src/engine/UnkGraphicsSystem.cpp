@@ -9,6 +9,7 @@
 #include "base/UnkCountedResource.h"
 #include "base/UnkDefaultAllocator.h"
 #include "base/UnkMatrix44.h"
+#include "base/UnkParallelFind.h"
 #include "base/UnkVector.h"
 #include "base/color/CColor4F.h"
 #include "base/global/CFilePathStrId.h"
@@ -470,9 +471,10 @@ bool fn_71001d2dcc(UnkGraphicsSystem* self, u32 index, f32 value) {
     return false;
 }
 
-// Sets the value of the named vector with the given key (the entry past the end when there is
-// none, as in the original).
-bool fn_71001d7024(UnkGraphicsSystem* self, const u64* key, const CVector4D* value) {
+// Sets (or, for the getter, reads) the value of the named vector with the given key (the entry past
+// the end when there is none, as in the original).
+template <bool Get, class Value>
+static inline bool NamedVector(UnkGraphicsSystem* self, const u64* key, Value* value) {
     UnkGfxNamedVectors& t = self->named_vectors;
     u64 n = t.count;
     u64 i = n;
@@ -485,9 +487,19 @@ bool fn_71001d7024(UnkGraphicsSystem* self, const u64* key, const CVector4D* val
     UnkGfxNamedVector* found = &t.values[i];
     if (!found)
         return false;
-    fn_710007b518(&t.values[i].value, value);
+    if (Get)
+        fn_710007b518(const_cast<CVector4D*>(value), &t.values[i].value);
+    else
+        fn_710007b518(&t.values[i].value, value);
     return true;
 }
+
+bool fn_71001d7024(UnkGraphicsSystem* self, const u64* key, const CVector4D* value) {
+    return NamedVector<false>(self, key, value);
+}
+
+// The getter: copies the named vector's value out (fn_71001cec80).
+bool fn_71001cec80(UnkGraphicsSystem* self, const u64* key, CVector4D* out) { return NamedVector<true>(self, key, out); }
 
 // The display size closest to 16:9 (its index in `index`), stopping at the first one larger than
 // 1280x720 once one was seen; false when there is none.
@@ -1028,59 +1040,8 @@ void fn_71001c8294(UnkGraphicsSystem* self) {
         self->field_0x31836f4[i] = 0;
 }
 
-// Resources (as src/game/CAbilitySonar.cpp and src/game/UnkEnvironmentFade.cpp spell them).
-// A resource type (as src/game/msapi/res/CRenderRes/fn_71001b1dd0.cpp registers them): its name first.
-struct UnkResType {
-    base::global::CStrId name;
-};
-extern const UnkResType g_unk_716e4540f8;  // textures
-extern const UnkResType g_unk_716e453ff8;  // models
-
-struct UnkResRegistry;
-extern UnkResRegistry* g_unk_7101d472f8;
-
-// A path id whose release decrements and tests the count in two steps.
-struct UnkResPathId {
-    UnkStringData* data;
-
-    UnkResPathId(const base::global::CFilePathStrId& other) : data(other.data) {
-        if (&g_unk_7101d47200->empty != data)
-            ++data->ref_count;
-    }
-    ~UnkResPathId() {
-        if (UnkStringPool* pool = g_unk_7101d47200) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47200;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
-
-// A resource's key: its type's name and its path.
-struct UnkResKey {
-    base::global::CStrId type;
-    UnkResPathId path;
-
-    UnkResKey(const base::global::CStrId& t, const base::global::CFilePathStrId& p) : type(t), path(p) {}
-};
-
-// A counted reference to a resource (base/UnkCountedResource.h).
-struct UnkResRef {
-    UnkCountedResource* ptr;
-
-    UnkResRef() : ptr(nullptr) {}
-    ~UnkResRef() {
-        if (ptr && --ptr->ref_count == 0)
-            fn_710001737c(ptr);
-    }
-};
-
-UnkResRef fn_71000ead80(UnkResRegistry* registry, const UnkResKey* key, u8 flag, void* a);
+// Resources: the registry's keys and references.
+#include "base/UnkResKey.h"
 
 // The resource if it is a render resource (msapi::res::CRenderRes), else null.
 static inline UnkCountedResource* AsRenderRes(UnkCountedResource* res) {
@@ -1688,4 +1649,24 @@ void fn_71001cb604(UnkGraphicsSystem* self, u32 mode, const f32* a, const f32* b
         break;
     }
     fn_710015b160();
+}
+
+// The map at +0x3183628 as a lookup sees it: 16-byte entries whose second word it returns, keyed by
+// string ids.
+struct UnkGfxPairEntry {
+    u64 first;
+    void* second;
+};
+struct UnkGfxPairMap {
+    u8 pad_0x0[0x3183628];
+    UnkGfxPairEntry* values;
+    base::global::CStrId* ids;
+    u32 count;
+};
+
+// The second word of the entry `key` names, or null.
+void* fn_71001d086c(UnkGraphicsSystem* self, const base::global::CStrId* key) {
+    UnkGfxPairMap* map = reinterpret_cast<UnkGfxPairMap*>(self);
+    UnkGfxPairEntry* slot = UnkParallelFindSlot(map, *key);
+    return slot != &map->values[map->count] ? slot->second : nullptr;
 }

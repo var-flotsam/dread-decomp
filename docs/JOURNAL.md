@@ -55,6 +55,10 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - Write switch cases in the order of their bodies in the binary to get Clang's compare tree: [Above 2 KB](#above-2-kb-outside-the-six-hand-slices-srcgame_s7-2026-10-21) (music volume overrides).
 - `__builtin_expect`, `always_inline` and early returns do not change register allocation in long inlined destructor runs: [Exact copies of matched functions](#exact-copies-of-matched-functions).
 
+**Near copies**
+- `tools/nearcopy.py` over the whole binary, then each original's definition compiled under the copy's name: 75 of 313 candidates at 80% or more matched as they were or with their own targets: [night round 1](#session-log-newest-first).
+- A counter compared in 32 bits beside a 64-bit array index: a separate `u64` index for the destination: same entry.
+
 **Lifter and generators**
 - Alias, sort and copy rewrite rounds; "the generic lifter is near its limit": work log item 1.
 - Semantic mode and its P-code oracle; four flat-mode bugs byte identity hid; the oracle's reach (mutation test): [port M1 step 3](#session-log-newest-first).
@@ -126,6 +130,401 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - Several templates can carry one address's tag (`refl_GetPrimitiveType<G>` and its inline helper `refl_MakePrimitiveType<G>`, which Clang 18 keeps out of line); an alias to one that returns a class by value puts its hidden result pointer in the caller's rdi and writes the object over the caller's frame. A crash whose return address is a function's start, with a type's hook table on the stack, is the sign: [port M1 round 5](#session-log-newest-first).
 
 ## Session log (newest first)
+
+**Night round 26: more lifter rewrites (2026-10-30, branch `claude/project-thread-lths9k-night26`).**
+411 functions to `O`. Boot slice: `O` 2,176 to 2,197 (30.92%), usable 41.17% to 41.28%; whole binary `O` 85,773 to 86,184
+(55.50%), usable 57.72% to 58.01%. A 522-function sample of unmatched small functions, lifted with `--best` and grouped by
+the first differing instruction, showed which lifter shapes miss most; two more second-round rewrites in
+`tools/gen_lift.py` (the sample went from 0 to 43 matched) give 409 functions binary-wide.
+- **"bool".** A call whose result is first read as w0 declared to return a bool: a select on it keeps the original's sense
+  (`csel x, y, xzr, ne`, not `csel x, xzr, y, eq`). Mostly the reflected cast checks (`IsKindOf`, then the object or null).
+- **32-bit returns with tail calls.** Under "w32", a function whose other paths return only 32-bit values returns u32 and
+  declares its tail callees so (`mov w0, wzr`, not `mov x0, xzr`).
+- **The flat lifter applies both** (it dropped the pending call when x0 was read).
+- **asm aliases count as definitions.** `defined_outside` now recognises `asm(".set fn_X, <symbol>")`, which names a
+  template instance's code (src/game_s7/fn_7101072a80.cpp); the lift wrote two of them again.
+- Measuring a lifter change: `--best @sample` then classify the first `!!` line of each draft's `trymatch -v`, normalised
+  (registers and immediates masked). The next groups were statement order around a vtable store and `ldrb`/`ldr` widths.
+
+**Night round 25: two lifter shapes, mostly the Lua bindings (2026-10-30, branch `claude/project-thread-lths9k-night25`).**
+214 functions to `O`. Boot slice: `O` 2,173 to 2,176 (30.80%), usable 41.13% to 41.17%; whole binary `O` 85,559 to 85,773
+(55.22%), usable 57.60% to 57.72%. The near-copy rows of lifted originals were mostly in unit 2666 (the Lua bindings,
+`lua_bind::*`, 388 of 635 unmatched), whose best lifted drafts missed by one or two instructions in the same few ways.
+Fixing two of them in `tools/gen_lift.py` brings 214 functions binary-wide (70 of them bindings; unit 2666 is now 317 `O`).
+- **32-bit call results ("w32").** A call whose result is first read as w0 is declared to return u32; with a `char*`
+  result clang passes all 64 bits on (`mov x2, x0` where the original has `mov w2, w0`). A second-round rewrite, so it only
+  applies to functions that compiled without matching.
+- **A lone 4-byte stack local ("tight", 4).** Clang puts it at the top of the frame (sp + 0xc); the lifter's 8-aligned
+  array went to sp + 8. Tight layouts now round their size to their alignment. Tried after every other layout.
+- **gen_lift sees definitions by their header line.** A function whose `fn_<addr>(` is produced by a macro is invisible to
+  `defined_outside`, so the lift wrote it again (a DUPLICATE in check.py). Keep the header line in the source and put only
+  the body in the macro (the four `UNK_CALL_WITH_ARG` invokers in src/game_s1/fn_71001109c4.cpp).
+- Left in unit 2666: frame-pointer-relative locals (`sub x2, x29, #4`), stores in another order, and 194 bindings whose
+  drafts are under 60%.
+
+**Night round 24: copies of generated clones, mostly through `tools/gen_clones.py` (2026-10-30, branch `claude/project-thread-lths9k-night24`).**
+65 functions to `O` and 1 to minor. Boot slice: `O` 2,166 to 2,173 (30.77%), usable 41.04% to 41.13%; whole binary `O` 85,494 to
+85,559 (55.09%), usable 57.53% to 57.60%. Most rows left by round 23's near-copy pass were copies of generated originals
+(`src/clones/`); 52 of the 65 come from teaching the generator their differences, the rest are hand-written next to their originals.
+- **Generator:** `UnkCloneOwner` takes the object it deletes (`owner_a`, deleting destructor in slot 0x8); the pool-list scan
+  reads block sizes that aren't powers of two; word variants (a 4- or 1-byte value in an 8-byte slot, `UnkCloneSlot32/8`, and
+  16-byte `UnkCloneWord2`) are tried on every kind over `UnkCloneWord`, by the base kind's shape with load and store widths
+  ignored; a probe kind keeps every other probe of the same shape as alternatives, compiled in rounds until one matches; the
+  deep getter and setter take a value type (byte flags); keyed-set values of two words; `refl_CallAndCastField` variants
+  `Both`, `Word` and `Flags`; `UnkStrKeyWordValue` takes an element type.
+- **By hand:** tagged-object destructors that release the sub-object's pointer first, iterator moves and copies with 8-byte
+  indices, a value pair over a 0x30-byte block, invokers that step a word or read a sub-object's flag, and a collider id move
+  (minor: the original loads the block before clearing the moved-from id).
+- **Probe shapes by mangled name.** `probe_shapes` matched a probe by substring of the symbol, so a probe whose name begins
+  another's took the other's shape; it now looks for the tag with its mangled length prefix.
+- **A 4-byte value in an 8-byte slot.** An element copied with `ldr w`/`str w` inside a 16-byte pair is not `UnkCloneU32` (that
+  changes the pair's layout and code) but an 8-aligned struct holding a u32 with a member-wise copy assignment.
+- Left for later: vectors embedded at an offset (`vector_clear_dtor`, `vector_free_dtor`, the poly-element clears), counted
+  members with their count elsewhere (the `dtor` copies), list owners shifted by 8, the pointer-vector begins with another stack
+  layout, and the 1-byte equality copies (operand order).
+
+**Night round 23: a whole-binary near-copy pass (2026-10-30, branch `claude/project-thread-lths9k-night23`).**
+87 functions to `O` and 1 to minor, all copies of functions already matched, found by `tools/nearcopy.py` over the whole
+address range. Boot slice: `O` 2,158 to 2,166 (30.67%), usable 40.99% to 41.04%; whole binary `O` 85,407 to 85,494
+(55.03%), usable 57.46% to 57.53%. Each original became a template (or macro) over what its copies change, and the copies
+are one line each next to it: iterator-value moves (15), switches, tagged, named, link-owner and poly-array destructors,
+id-list clears and ends, record copy-assignments, array copy-constructs, reflected setters, query-filter constructors and the
+animation component's track lookups. Minor: the Daivo spit attack's weak-reference setter copy (fn_71006eb484).
+- **A 100% row still differs.** `nearcopy` masks offsets, element sizes and callees; most copies needed a layout template
+  (`At`/`Offset` parameters, or a struct with the same member names at other offsets), a different element type, or the
+  callee and vtable as template arguments. Run `nearcopy.py --refs U O` and resolve GOT slots (`asmdiff.Original.got_slot`)
+  to name the copy's own vtables and globals.
+- **When a helper must not be inlined.** Two originals stopped matching once their body moved into a `static inline`
+  (a merged default return, a struct return); a macro that defines the function keeps each copy's code identical.
+- **A template argument with internal linkage makes the copy internal.** A `static` function passed as a template argument
+  hid `fn_7100b1b7d0` from the build; pass the callee with its own type instead (`template <class T, void (*)(T*)>`).
+- **File-path ids hoist the pool.** A destructor over path ids in both key and elements loads the pool's GOT slot once at
+  entry; with a string-id key it loads it in the loop, so a copy that differs only there has both as path ids.
+- Left for later: the display-object track copies (fn_7100812a80, fn_71008129e0), the string bound assignment
+  (fn_7100b1b7d0, a different key layout), fn_7100ea5c40, fn_7100b6f3c0, fn_71009f3a60, fn_7101157c08, fn_7100589b94 and
+  the copies of generated originals (`src/clones/`), which need a `tools/gen_clones.py` kind.
+
+**Night round 22: the query filters' base constructor and an effect switch (2026-10-30, branch `claude/project-thread-lths9k-night22`).**
+1 function to `O` and 1 to minor. Boot slice unchanged: `O` 2,158 (30.63%), usable 40.99%; whole binary `O` 85,406 to 85,407
+(54.96%), usable 57.46%. `O`: querysystem::CFilter's constructor (fn_71002bedc8, 13 callers). Minor: CFXComponent's switch of an
+effect (fn_7101152c0c), whose body is now a shared inline also used by the switch by name hash (fn_710114fe8c).
+- **One inline for a repeated body.** When two functions inline the same tail, write it once as a `static inline` in the file
+  and call it from both; the smaller one then differs only where the larger one's register choices leak in.
+
+**Night round 21: component leaves with a dozen callers each (2026-10-30, branch `claude/project-thread-lths9k-night21`).**
+4 functions to `O` and 4 to minor. Boot slice: `O` 2,156 to 2,158 (30.63%), usable 40.98% to 40.99%; whole binary `O` 85,402 to
+85,406 (54.96%), usable 57.46%. `O`: the collision object by record index (fn_710086420c), the melee component's track test
+(fn_710092b604), the navigation query's start setter (fn_7100286920) and an AI path's first leg (fn_71010fc31c). Minor: the gun
+component's current id (fn_71008407fc), the animation component's action-set search (fn_7101176e0c), unit 36's request post
+(fn_710002d3e0) and an AI path's last leg (fn_71010fc284).
+- **A test without branches.** The AI path's open test is `(flag == 0) & (count != 0)` on a byte flag (`cmp`/`cset`, then
+  `and`); a `bool` flag gives `bic`, and `&&` gives branches.
+- **Keeping two loads apart.** The gun's id getter loads one of two pointers by a flag; Clang loads through a select of the
+  two offsets unless one branch holds an `asm` pin, which leaves only the final select's registers different.
+
+**Night round 20: a render-target stack, collision and effect lookups (2026-10-30, branch `claude/project-thread-lths9k-night20`, on round 19).**
+4 functions to `O` and 1 to minor. Boot slice: `O` 2,156 (30.62%), usable 40.96% to 40.98%; whole binary `O` 85,399 to 85,402
+(54.95%), usable 57.45% to 57.46%. `O`: the render-target stack's pop (fn_71001cdd18, 21 callers), a bound target's texture
+(fn_710015c450, 16), the collision container's lookup by the record's second id (fn_7100864194, 19; declared in
+game/UnkCollisionRecord.h, its two callers unchanged). Minor: CFXComponent's effect switch (fn_710114fe8c, 59 callers).
+- **A destructor's store that may alias.** The stack's pop clears the dropped entry's count and the original then reloads
+  the array pointer; writing the clear through a `may_alias` word reproduces the reload (the entry's own destructor does not).
+- Left: the resource registry's call of a type's create function (fn_710001ab24; it returns a reference through the
+  registry's own types), a swarm controller's two-level hash lookup (fn_7100e1cb50) and an asset link's list removal
+  (fn_710002572c).
+
+**Night round 19: two wrong declarations, and more hubs (2026-10-30, branch `claude/project-thread-lths9k-night19`, on round 18).**
+3 functions to `O` and 2 to minor. Boot slice: `O` 2,153 to 2,156 (30.62%), usable 40.93% to 40.96%; whole binary `O` 85,396
+to 85,399 (54.95%), usable 57.45%. `O`: a reflected value's assignment of an object of a type (fn_71000a1cc8, 94 callers), the game manager's test
+of an object against its four handles (fn_7100df5c38, 27) and a string-id list's clear (fn_710002fa90, 30). Minor: a navmesh
+cell side's segment (fn_71002afea8, 50) and the graphics uniform setter (fn_710015e1f0, 29).
+- **A declaration missing a parameter.** fn_7100df5c38 compares its second argument, which its one caller already had in x1;
+  the declaration in game/UnkGameManager.h now takes it and the caller passes the actor, with unchanged code.
+- **A declaration returning void.** fn_71002afea8 returns whether it filled the segment; the declaration (now in
+  game/UnkNavMeshCell.h, with the segment type) says so, and its caller is unchanged.
+- **A register passed through.** fn_71000a1cc8's header declaration is right although Ghidra shows one parameter: the type
+  and object go straight on to fn_71000a16e0 in x1 and x2.
+
+**Night round 18: more widely called hubs (2026-10-30, branch `claude/project-thread-lths9k-night18`, on round 17).**
+6 functions to `O` and 1 to minor, from the whole-binary ready list by caller count. Boot slice: `O` 2,151 to 2,153 (30.59%),
+usable 40.93%; whole binary `O` 85,390 to 85,396 (54.95%), usable 57.45%. `O`: the animation component's track name id
+(fn_7101177ae8, 53 callers) and action word (fn_7101177d2c, 44) by name hash and whether a track reports busy
+(fn_71011782ec, 24), the timeline component's resource entry for an id (fn_7100a2c13c, 35), the rotation of a vector about z
+keeping its z (fn_710007a390, 27) and the movement component's flying-track test (fn_71010d0e38, 24). Minor: CFrozenComponent's
+frozen test (fn_71007f9f20, 86 callers; the original keeps the owner load in each arm).
+- **A cast used unchecked.** The timeline lookup dereferences the result of a class cast that may be null; without an `asm`
+  pin Clang drops the cast's select (the same pin as round 12's GUI frame search).
+- **A missing key read past the end.** fn_71011782ec indexes the entry it found or the slot past the last one; an index loop
+  with `!=` against the count loaded once gives the original's shape.
+
+**Night round 17: hubs outside the boot slice (2026-10-30, branch `claude/project-thread-lths9k-night17`, on round 16).**
+4 functions to `O` and 3 to minor, chosen by caller count from the whole-binary ready list (`tools/hubs.py --ready`, no boot
+filter). Boot slice: `O` 2,150 to 2,151 (30.58%), usable 40.91%; whole binary `O` 85,384 to 85,390 (54.95%), usable 57.44%.
+`O`: the reflection registry's type registration (fn_710009ec00, 2,212 callers: every reflected type's static initialiser; in
+editor builds the type first gets `_EditorOnly`), the translation matrix from a vector (fn_7100078cd8, 57 callers), the
+entity's position from its +0x1f0 object (fn_7100d7be08, 31) and the collision container's id of an object (fn_7100864018, 31).
+Minor: CFXComponent's effect by name hash (fn_7101152b90, 103 callers), the life component's alive test (fn_7101161088, 39)
+and the container's direct child by name hash (fn_71011d99ac).
+- **The ready list without `--boot` has the big hubs.** The boot filter hides callers outside the slice; the registry's
+  registration alone has 2,212.
+- **A key before the value.** The registration's attribute call matched only with the key getter called before the bool
+  value is stored on the stack.
+- **The record's second id.** fn_7100864018 returns +0x8 of the record (the original's `sub x0, x10, #0x20` from the
+  object field at +0x28); an index loop gives the original's counter compare.
+- Fix for #282: CButton's local declaration of the container's constructor now uses the in-game menu's signature, so
+  `decl_check` passes against the main that includes #281.
+
+**Night round 16: CButton's constructor and the GUI's derived state (2026-10-30, branch `claude/project-thread-lths9k-night16`, on round 15).**
+2 functions to `O` and 2 to minor. Boot slice: `O` 2,150 (30.57%), usable 40.88% to 40.90%; whole binary `O` 85,384 to 85,386
+(54.94%), usable 57.44%. `O`: GUI::CButton's constructor (fn_71011bf0ec, 17 callers), a GUI render layer's release
+(fn_71011f5eb4). Minor: the display object's derived-state update (fn_71011cee40, 17 callers; the parent branch matches, the
+no-parent copy pairs its members differently) and the GUI event kind by name (fn_7101202300).
+- **A store before the stores around it.** CButton's bound callback matched only with its function pointer stored before the
+  two zero words between the object and it; storing it last leaves the GOT load late.
+- **A bool parameter that is a word.** fn_7100b1c56c's last argument is the child's change bits (+0x144), passed whole by
+  fn_71011cee40; it is a `u32` tested with `& 1` (still `O`).
+- **Member-wise copies.** A state whose position has a user-written copy constructor is copied member by member (with
+  `new (&dst) T(src)`), which gives the original's mixed 4- and 8-byte copies; the exact pairing was not reached.
+
+**Night round 15: GUI hubs (2026-10-30, branch `claude/project-thread-lths9k-night15`).**
+3 functions to `O` and 12 to minor, the most-called unmatched functions of the GUI's display object and container units (the
+ready list without the boot filter). Boot slice: `O` 2,148 to 2,150 (30.57%), usable 40.83% to 40.88%; whole binary `O`
+85,381 to 85,384 (54.94%), usable 57.42% to 57.44%. `O`: CLabel's font setter, the display state's reset, the anchoring
+inside a unit area. Minor (block layout or compare order; same behaviour, readable for the port): the container's child by
+name (fn_71011d94d4, 52 callers) and its recursive lookup by name hash (fn_71011d98ec, 26), the placement setter
+(fn_71011cde64, 35) and its eight one-coordinate siblings (a template over x or y and the measuring mode), the re-anchoring
+by other modes.
+- **Ordered compares from the original's `fccmp ... le`.** The unit-scale test is `x - eps > 1 || x + eps < 1` (ordered on
+  both sides); `!(x - eps <= 1)` gives `ls`.
+- **One NON_MATCHING note per definition.** A note above a group of one-line definitions leaves the others `W`; each needs its
+  own line directly above it.
+- Not reached: the placement setters' first-change call is laid out inline in one branch and at the end in the other; no
+  source shape tried here reproduces that.
+
+**Night round 14: the GUI display object's constructor and three built on it (2026-10-30, branch `claude/project-thread-lths9k-night14`).**
+7 functions to `O`. Boot slice: `O` 2,144 to 2,148 (30.56%), usable 40.80% to 40.83%; whole binary `O` 85,374 to 85,381
+(54.94%). `O`: GUI::CDisplayObject's constructor (fn_71011cce1c: the base, two empty ids, the display state and its derived
+copy, the render slots, an empty id from the pool and the name; nine callers, now declared in game/UnkGuiDisplayObject.h),
+CModel3D's two constructor copies and CSpriteGrid's, the game manager's VIEWER test, the navmesh's vertex getter and the scene
+object's draw list hand-off.
+- **A memset gives a block's store order.** CSpriteGrid clears 0x23 bytes from +0x1c0 (four words and an unaligned word at
+  +0x1df); `__builtin_memset` lowers to the original's stur-then-stp order, which separate stores never give.
+- **A null path first.** Its empty file path is stored as null with the word before it, then set to the pool's empty entry
+  after the pool check (the inline `CFilePathStrId` constructor adds a test the original does not have).
+- **A shared span type.** The scene object's slot hand-off takes `UnkSceneSpan` (game/UnkSceneObject.h); the minimap's
+  `UnkMinimapSpan` now derives from it, so its call passes the same temporary and compiles as before.
+
+**Night round 13: boot leaves and lifted near-misses (2026-10-30, branch `claude/project-thread-lths9k-night13`).**
+11 functions to `O`, boot-slice leaves and the unmatched functions whose lifted drafts scored highest. Boot slice: `O` 2,133
+to 2,144 (30.53%), usable 40.72% to 40.80%; whole binary `O` 85,363 to 85,374 (54.94%). `O`: the graphics system's pair
+lookup, a material's state restore by flag bits, unit 137's tagged object destructor, unit 133's switch, a polygon's bounding
+box, the device heap's reallocation, a sub-area state's id setter, the render manager's reset of two pass parameters, the GUI
+root's lookup by path, the actor def factory's CCharClass lookup and the scene's flag pass to a group's items.
+- **Stores that may alias the vertices.** The polygon box is stored corner by corner on every pass and the vertex read again
+  for the second corner: written through `CVector2D&` references (same base type, so the stores may alias the vertex reads),
+  with each corner computed from one pair of loads before its two stores.
+- **The original's RntVector assertion.** The scene's group lookup keeps `__assert_fail("i < m_iSize", ...)` on the bucket
+  index, as src/base/spatial/UnkModelInstanceSet.cpp already does.
+- **A byte read of a bool.** Unit 133's switch tests its state as a byte (`cmp`/`cset`), so it is read through a `u8` view.
+- Left: unit 1122's derived constructor (store order, as logged before), the display object's constructor (fn_71011cce1c, 9
+  callers, long; worth its own attempt) and the navmesh query's constructor.
+
+**Night round 12: more boot leaves (2026-10-30, branch `claude/project-thread-lths9k-night12`).**
+20 functions to `O` and 4 to minor, all boot-slice leaves from `tools/hubs.py --ready --boot`. Boot slice: `O` 2,113 to
+2,133, usable 40.58% to 40.72%; whole binary `O` 85,343 to 85,363. `O`: the pooled chained map's constructor (fn_710109d810,
+17 callers: `UnkChainedMap` and `UnkBlockPool` back to back), the navmesh manager's two smart-link group lookups, the
+navmesh search node's constructor and place setter, the render manager's two layer flag forwards, the type-erased array's
+clear, the environment fade's channel 1 start, the minimap item visibility test, the music manager's request flag setter,
+the blackboard's flag clear, the GUI item's position transform and more. Minor (scheduling or store pairing only): a spawn
+group countdown, two GUI frame scalers and the polygon collection shape's constructor.
+- **Raw storage keeps an emptiness test.** The minimap item's modifier arrays are tested as `begin() != end()` (a multiply
+  by the element size and a compare) only when the array is raw bytes reinterpreted, as `UnkMinimapModifiers` already does;
+  a typed array folds the test to `count != 0`. Its alpha test is `!(alpha > 0.0f)` (the original's `b.le`).
+- **An array reached past its count.** The navmesh path's id append matched only with the ids' address formed as
+  `&count + 1`; the member address gives other arithmetic.
+- **A pinned search result.** The GUI frame scalers use a frame lookup that can return null and dereference the result
+  unchecked; without an `asm` pin of the result Clang treats the miss as impossible and drops the loop's bound.
+- **Argument order from the original's registers.** fn_7100108a98 takes the sound manager, a handle, a flag and a float
+  (s0), not the word Ghidra shows first; fn_7100219c98 forwards three pointers the pass list ignores.
+- Declarations moved to headers: `fn_7100ad3588` (base/UnkErasedVector.h, eight local copies dropped), `fn_710027a328`
+  (game/UnkNavMeshCell.h), `fn_7101047178` (game/CBlackboard.h), the navmesh group lookups (game/UnkNavMeshManager.h), the
+  render manager's layer setters and the GUI frame scalers.
+
+**Night round 11: boot leaves, small lookups and helpers (2026-10-30, branch `claude/project-thread-lths9k-night11`).**
+27 functions to `O` and 2 to minor, all boot-slice leaves from `tools/hubs.py --ready --boot`. Boot slice: `O` 2,086 to
+2,113, usable 40.39% to 40.58%; whole binary `O` 85,316 to 85,343. `O`: the game manager's id lists (fn_7100de94cc, 21 callers)
+and INGAME test, the GUI event's constructor and destructor, a display object's two condition tests, the collision container's
+and the animation component's lookups by name, the blackboard's property test, the user data owner's constructor, the prime
+test and next prime of unit 41, the pickable's flag setter, four math helpers of unit 54 (z rotation, plane rotation, a vector
+through a matrix's rotation part, a direction to angles), a segment's cached length, a tree depth and more. Minor: the in-place
+string read of CRntFile (fn_710007cee4) and the action set's two-key hash lookup (fn_7100b8c61c), both scheduling.
+- **A lookup's helper shape decides the code.** Three lookups matched only once written as the code base's existing find
+  helpers: a member `Find` returning `values + i` (fn_7100de94cc, as `UnkGameManagerIdMap`), `UnkParallelFindByValue`
+  (fn_71011771e0) and `UnkParallelFindSlot` for a section's properties (fn_71010474f4); open-coded loops fold the end
+  comparison or load the key at another point.
+- **Union members for reloads.** The pickable's count and flag are reloaded after each part's flag store; putting each in
+  an anonymous union (no type-based alias information) gives the reloads, as `UnkSList::count` does.
+- **An empty-map test inside the find.** The action set's lookup shares its final select between the empty map, the empty
+  bucket and the miss only when the count test is part of the inlined find.
+- Header moves: `fn_7100125fbc` (base/math/UnkSegment2D.h), `fn_7100206154` (game/UnkXformNode.h), `fn_7100078d8c`
+  (base/UnkMatrix44.h), `fn_71010e537c` (game/UnkCameraCtrl.h), `fn_7100de94cc` and `fn_7100df5c94` (game/UnkGameManager.h);
+  their callers' local declarations are gone and their scores are unchanged.
+
+**Night round 10: a keyed reserve and copies of round 9 (2026-10-30, branch `claude/project-thread-lths9k-night10`).**
+4 functions to `O` and 2 boot hubs to minor. Boot slice: `O` 2,085 to 2,086, usable 40.34% to 40.39%. `O`: fn_7100015378 (the
+reserve of a keyed array of 0x40-byte records) and three copies a fresh `tools/nearcopy.py` pass found of round 9's functions
+(the input reset, the capsule move, the tile update with its own callee). Minor: the scenario's start-point search
+(fn_71011a3d74, a duplicated epilogue) and the input component's listener append (fn_7100872860, block layout).
+- **Words that may alias.** The keyed reserve copies each record as sixteen words and rereads the array's fields after
+  them; typing the words `__attribute__((may_alias))` gives both the reloads and the original's registers (a plain `u32`
+  rereads only the count).
+- Tried and left (`build/stuck.txt` on the machine that ran it): derived constructors over unit 1124's base and a box array
+  resize, where the stores and copies come out in another order.
+
+**Night round 9: boot-slice leaves, continued (2026-10-30, branch `claude/project-thread-lths9k-night9`).**
+7 boot-slice functions to `O` and 4 to minor. Boot slice: `O` 2,078 to 2,085 functions, 30.09% to 30.13%; usable 40.29% to
+40.34%. `O`: the GUI root's frame lookup (fn_71011b7a4c), two box shapes' moves, the render manager's view rectangle read
+(fn_7100219fa0), an entry by id in unit 2613, the floor slide state's animation check, the input component's state reset.
+Minor: two root-based frame scales (registers), a position's offset from its parent (registers), a point's projection on a
+segment (the operand order of two additions).
+- **Plain loops over the drafts' shapes.** fn_7100fb534c matched as `for (u32 i = 0; i < count; ++i)` with an early return;
+  the do-while shapes from the draft either merged the two null returns or hoisted the increment.
+- **Inputs read as plain floats are reread.** The box moves reread the delta after each store (its components are plain
+  floats, which may alias the box's); the capsule's single store per component matched either way.
+- **Keeping an address.** The input reset clears five flags through the address of the first, computed once:
+  `asm("" : "+r"(flags))` keeps it from being folded into the stores' offsets.
+
+**Night round 8: more boot-slice leaves (2026-10-30, branch `claude/project-thread-lths9k-night8`).**
+8 boot-slice functions to `O` and 2 to minor. Boot slice: `O` 2,070 to 2,078 functions, 30.05% to 30.09%; usable 40.24% to 40.29%.
+`O`: the broadphase object's flag setter (fn_7100d35a98; its flag is a `bool`, declared once in game/UnkBroadphaseObject.h for its
+four callers), a breakable tile's timer scale, two layers' colour setters (units 223 and 224), CBaseObject's walk over its
+class's entries (fn_7100023854), an FX pool's take, the game manager's class-checked lookup (fn_7100debbc8), a capsule shape's
+move. Minor: unit 254's constructor (two pairs of zero stores swapped) and a point transformed by a matrix (registers only).
+- **`bool` versus `u32 & 1`.** fn_7100d35a98 masks its flag with `and w, #1` either way, but compares it with the stored flag
+  in the original's operand order only when the parameter is a `bool`; the callers' bytes are the same with the new type.
+- **A local whose slot is 8-aligned.** fn_7100debbc8 copies the caller's flags into a local it passes on; the original's slot
+  is at +8, which `alignas(8)` gives (as for fn_7100087850 in round 4).
+- **A pointer walk where the draft counted bytes down.** fn_7100023854's loop over 0xb0-byte entries matched as
+  `for (e = data, end = data + count; e != end; ++e)`; a byte counter counted down gave LLVM's negated form.
+
+**Night round 7: thirteen boot-slice leaves (2026-10-30, branch `claude/project-thread-lths9k-night7`).**
+13 boot-slice functions from `U` to `O` (all "ready": their callees were already matched), picked by the closest `gen_lift.py --best`
+draft and rewritten with real types. Boot slice: `O` 2,057 to 2,070 functions, 29.97% to 30.05%; usable 40.15% to 40.24%. Whole
+binary: `O` 85,284 to 85,297. CRntFile's element write and fill (fn_710007c450, fn_710007c4b8), Lua's protected call with a
+scratch array (fn_710109cef0), a reflected value reset to a type (fn_71000a2014), a display object's flag setter (fn_71011d0088),
+a bouncing timed curve's step (fn_7100eb7470; base/UnkTimedCurve.h now holds the curve), a breakable tile group's per-tile
+update, the aim component's animation check and the GUI's five frame scale helpers (game/UnkGuiFrames.h).
+- **A caller that relied on a register.** fn_71000a2014 takes the type as its second argument; its one hand-written caller
+  declared it with one parameter and left the type in x1 by chance. The caller now passes it (same bytes); on the port this is
+  a real fix: an x86-64 build passes only what a call names.
+- **The draft's float is an int.** Ghidra typed the frame helpers' key as a float (compared in a float register's view); the
+  original compares it as a word. The declarations in src/game/GUI/CLabel.cpp had it right.
+- **A switch, not ifs.** fn_7100eb7470's compare tree matched only as `switch (mode) { case 1: ... case 2: ... }`, the bodies
+  in the original's order; `!(t <= 0)` gives its `b.hi`.
+
+**Night round 6: two boot hubs and more near copies (2026-10-30, branch `claude/project-thread-lths9k-night6`).**
+15 functions to `O` and 2 boot hubs to minor, 2,780 bytes `O`. Whole binary: `O` 85,269 to 85,284, 54.87% to 54.88%; usable 57.34% to
+57.35%; boot slice usable 40.13% to 40.15%. Minor: fn_710027a33c (a nav mesh's cell by key, 11 boot callers; its key turned out to
+be 16 bits, so its header declaration now says `u16`) and fn_7100703814 (unit 1124's constructor, store order). `O`: four more
+reflected invokers, the AI components' initialisation in three more units (the step is now an `auto` template parameter called
+through a cast, so a unit that declares it returning a flag keeps its declaration), four rail-node array variants of 0x20-byte
+records (the variant's record type is a template parameter), the Chozo zombie X component's two destructors, the Vulkran chase
+action's and the scroll menu entry renderer's destructors.
+- **A narrow parameter shows in the callee.** fn_710027a33c keeps the raw key and masks it with `and x, #0xffff` where it indexes:
+  the parameter is a `u16` the callee widens itself; declared `u32`, the mask moves to the entry.
+- **The loop the original counts down.** Its constructor loop counts `(key - count) + 1` down with a 64-bit offset beside it;
+  every source form tried (`do`/`while` with `u32` or `s32`, `for` up to the key) gives LLVM's negated counter instead (92%).
+
+**Night round 5: near copies from 60% (2026-10-30, branch `claude/project-thread-lths9k-night5`).**
+24 functions from `U` to `O`, 2,680 bytes. Whole binary: `O` 85,245 to 85,269, 54.85% to 54.87%; usable 57.32% to 57.34%. The
+near-copy triage at 60% (196 candidates) gave no direct matches; these are the families whose difference was one parameter:
+- Templates from earlier rounds took more copies: the block pool at 0x70-byte blocks, the string list with nodes destroyed
+  by `fn_71002874dc`, list destructors with a word before the allocator, reflected getters and invokers that call a slot or
+  a function and give 1 as an int (or the call's flag), and the registry constructor whose unit-204 copy sets only a
+  counter at +0x50 (a `bool` template parameter keeps both in one body).
+- New small families: three GUI renderers' resets after their display object's routine, the lighting component's child
+  loops, two node-like constructors and two layered copy constructors.
+- Callees that other files declare with their own placeholder types keep those declarations (a forward-declared struct and
+  a cast at the call), so `decl_check.py` sees no new signature.
+
+**Night round 4: boot hubs by hand (2026-10-30, branch `claude/project-thread-lths9k-night4`).**
+13 boot-slice hubs from `U`: 7 to `O`, 6 to minor. Boot slice: `O` 2,050 to 2,057 functions (29.92% to 29.97%), usable 40.04% to
+40.13%. Whole binary: `O` 85,238 to 85,245. `O`: fn_71002199d8 (the render manager's drop of an item's node), fn_7101196fd8 (a
+state test), fn_7100072328 and fn_71000723cc (unit 50's value timer), fn_710010f838 (a circle-contains-point test),
+fn_710009d52c (the kind-of test that also follows a type's links), fn_7100087850 (the registry's has-entry test). Minor, with
+the difference in their comments: fn_71000ead80 (the resource registry's lookup), fn_71002afe60 (a nav-mesh cell's side),
+fn_710008378c (the block free list's set-up), fn_710006cd9c (the sound holder's constructor), fn_710012436c (a polygon
+edge by handle), fn_7100075f78 (a timed curve's set-up). Each hub's scattered declarations went to its header
+(game/UnkRenderManager.h, base/UnkRegistry.h, game/UnkNavMeshCell.h, base/global/CRntString.h). What helped:
+- **A loop the original enters without a null test.** fn_710009d52c's second walk up the parent chain is a do-while: the
+  original reads a null type's array (it never gets one), so a `for` adds a test.
+- **A lookup result larger than what is set.** fn_7100087850's out-structure is 0x30 bytes of which two fields are set, and the
+  word it passes is 8-byte aligned: the frame size and slots followed only with both.
+- **Evaluation order for floats.** fn_710010f838 matched with the distance summed first and the comparison written
+  `r * r - distance >= -(tolerance * tolerance)`; other orders schedule the multiply of the tolerance first.
+- **A callee's definition next to its callers changes them.** Defining fn_710010f838 in src/engine/SystemStartup.cpp let Clang
+  infer attributes that changed a caller's code even with `noinline`; it lives in its own unit file instead.
+- **A value returned through x8.** fn_71002afe60's pair has a user-declared copy constructor (so it is returned in memory)
+  and a union with a word, which gives the single all-ones store of the failure path.
+
+**Night round 3: the second near-copy pass (2026-10-30, branch `claude/project-thread-lths9k-night3`, on night round 2).**
+58 functions from `U` to `O`, 7,508 bytes. Whole binary: `O` 85,180 to 85,238 functions, 54.81% to 54.85%; usable 57.27% to
+57.31%. `tools/nearcopy.py` rerun over the whole binary after rounds 1 and 2 (9,397 candidates; 201 at 75% or more with a
+hand-written original). None matched as they were; the families that differ in one or two parameters now take them:
+- **Reflected getters and invokers.** Flags and floats of an object (the Emmy AI unit's at 0x147xx-0x14cxx, floats copied
+  as words with the float type's getter), floats two pointers away, invokers that clear a word or call a function and
+  return 1 as an int or the call's flag. The invokers match only when the value's type getter is called after the work,
+  as in the original's `fn_7100110a98`, so `MakeValue` takes the getter as a template parameter.
+- **Destructors and lists.** List destructors linked through other offsets with their own vtables and node destructors,
+  the string lists' base parts, a polymorphic array owner, hand-off destructor bodies with their own base destructors
+  (the base type as a template parameter, so each callee keeps the type other files declare).
+- **Containers.** Keyed arrays of 0x10- and 0x80-byte values, iterator equalities of 0x248- and 0x48-byte elements (the
+  former compares only its first 0x30 bytes, with the 0x30-byte element's function), an id array's Free at offset 8,
+  the AI components' initialisation (a template on the step, the class getter, the two entry initialisers and five offsets).
+- Left (`build/stuck.txt`): three more AI initialisations whose step `fn_7100369490` another file declares as
+  `bool(UnkComponent*)` (a `u32` result is what the copies mask), the pair setter's copies (a templated setter loses the
+  original's return-value placement), and families that differ in a base class with an out-of-line destructor.
+
+**Night round 2: near copies at other offsets, sizes and slots (2026-10-30, branch `claude/project-thread-lths9k-night2`).**
+43 functions from `U` to `O`, 11,056 bytes. Whole binary (`tools/progress.py`): `O` 85,137 to 85,180 functions, 54.75% to 54.81%
+of the bytes; usable 57.22% to 57.27%. The boot slice is unchanged (these copies sit in gameplay units). Round 1's near copies
+that differed in an immediate: the family's template gained the parameter and each copy names its own value.
+- **What the differences were.** Holder layouts (base/UnkResKey.h's `UnkResHolder2`: three more texture loaders), node and
+  block sizes (the file cache set's set-up at 0x60, 0x20 and 0x1600; base/UnkBlockArrayPool.h, the rumble manager's block
+  pool as a template on the block size, three copies), field offsets (eleven reflected word getters, four GUI id getters),
+  record and element sizes (id-record move assignments, record clears, rail-node arrays, id-list destructors, an End over
+  bytes) and virtual slots (light component getters call `(*vtable)[slot / 8]` through a small `CallSlot` template).
+- **Types follow their callers.** Where another file already declares a global or callee with its own type (an enum
+  type as `UnkEnumType`, a descriptor as non-const `CType`, a sound pool's count), the copy uses that declaration's
+  type and casts inside, so `decl_check.py` sees no new signature; the word getter takes its descriptor as an argument
+  instead of a template parameter so that one template serves all of them.
+- Left: `fn_7101029308` (66%; the id-record move assignment whose record is the shot manager's 0x18-byte resource,
+  assigned through a cast call: the branches come out in another order).
+
+**Night round 1: boot-path copies and near copies over the whole binary (2026-10-30, branch `claude/project-thread-lths9k-night1`).**
+90 functions from `U` (89) or `m` (1) to `O`, 20,296 bytes. Whole binary (`tools/progress.py`): `O` 85,047 to 85,137 functions,
+54.64% to 54.75% of the bytes; usable (`O`+`m`) 57.11% to 57.22%. Boot slice: `O` 2,031 to 2,050 functions (29.52% to 29.92%). How:
+- **Boot hubs that are copies.** `tools/nearcopy.py` run over the whole address range (10 minutes; `--top 100000`) and
+  filtered to the boot slice found 14 `U` functions within a few relocations of an `O` one. Each family became a header:
+  base/UnkResKey.h (the resource registry's key, reference and type declarations that four files defined, and the sonar's
+  loader as a template on the resource type and the holder layout: four copies), base/UnkResPathVec.h (the path list and
+  its reserve, `fn_7100018450`, 10 boot callers), game/UnkRenderPassSlots.h and game/UnkSubAreaGuiCache.h (the slots
+  object's constructor in two more units), base/UnkParallelFind.h (the lookup of a map of parallel arrays inlined into an
+  owner's method, with string-id or 32-bit keys), base/UnkNodeOwner.h (the string list's destructor that two files
+  defined locally) and base/file/UnkFileCacheSet.h (the cache set's set-up as a template on the node size).
+- **A 64-bit index beside a 32-bit counter.** The path list's reserve and its string-id twin `fn_710000542c` (minor at
+  98.5% since its first pass) compare the loop counter in 32 bits while indexing the new array with a 64-bit register.
+  `for (u32 i = 0; i < count; ++i, ++j, ++old)` with `u64 j` for the destination gives that; a `u64` counter truncated in
+  the test gives the right compare with its operands swapped.
+- **Identical copies by script.** For every `U` function at 80% or more from an `O` one in a hand-written file, the
+  original's definition was compiled under the copy's name next to it (`trymatch.py --obj-dir`, eight at a time; 34 s for
+  313 candidates). 51 matched with every relocation target the original's and were added after their originals; 24
+  more matched with their own callees, vtables or globals, and their families now take those as template parameters.
+- **Inlining that changes with the number of users.** A constructor and destructor inlined into one registration were
+  outlined once there were three (`src/game/UnkActorDefFactory.cpp`); `always_inline` on the entry's constructor, an
+  empty user-written destructor and the ids' constructors and destructor keep all three at the original's 572 bytes.
+- `python -m unittest discover -s tools/tests -t .` fails one test on Windows only (`test_check_cache.Depfile.test_posix`
+  expects POSIX paths), as on `main`; CI runs on Linux.
 
 **Matching the port's hand-written boot functions, round 3 (2026-10-29, branch `claude/project-thread-lths9k`).**
 The eleven functions the port wrote that were still not `O` after rounds 1 and 2, and the NEON helpers round. Whole

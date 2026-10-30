@@ -15,6 +15,7 @@
 #include "base/math/CVector.h"
 #include "base/math/CVector4D.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkXformNode.h"
 #include "game/UnkGlobal_710b372a98.h"
 #include "game/UnkMapMenuController.h"
 #include "game/UnkMinimapIconKinds.h"
@@ -364,10 +365,8 @@ struct UnkMinimapDrawList {
 };
 
 // A list's entries as a pointer and a 64-bit count, as the scene objects take them.
-struct UnkMinimapSpan {
-    void* data;
-    u64 count;
-    UnkMinimapSpan(const UnkMinimapDrawList& list) : data(list.data), count(list.count) {}
+struct UnkMinimapSpan : UnkSceneSpan {
+    UnkMinimapSpan(const UnkMinimapDrawList& list) : UnkSceneSpan{list.data, list.count} {}
 };
 
 // The unit's statics, which the compiler merged into one block (addressed from one base): the map
@@ -491,7 +490,6 @@ extern u8 g_unk_71727cc99c[] HIDDEN;
 
 void fn_7100e79fa4(void* field_0x118, const UnkMinimapRect* view, u32 flags, u32* count, void* out);
 void fn_7100e951d4(UnkMinimapOwner* self, u32 count, void* items, u32 field_0x3);
-UnkMinimapVec3 fn_7100206154(void* xform);
 bool fn_71001bb54c(UnkMinimapCameraSub* sub, UnkMinimapVec2* size);
 
 // Starts a frame: resets three draw lists, gathers and adds the items in view, and hands the
@@ -515,7 +513,7 @@ void fn_7100e91d68(UnkMinimapOwner* self) {
         fn_7100e951d4(self, count, g_unk_71727cc99c, 0);
     }
     const UnkMinimapMap* map = self->map;
-    UnkMinimapVec3 pos = fn_7100206154(self->camera->field_0x20);
+    UnkVec3f pos = fn_7100206154(reinterpret_cast<UnkXformNode*>(self->camera->field_0x20));
     UnkMinimapCameraSub* sub = self->camera->field_0x130;
     f32 scale_y = sub->field_0xc4;
     f32 scale_x = sub->field_0xcc;
@@ -540,7 +538,6 @@ void fn_7100e91d68(UnkMinimapOwner* self) {
 
 void fn_7100148160(UnkMinimapCamera* object, u32 layer, const UnkMinimapSpan& a, const UnkMinimapSpan& b,
                    const UnkMinimapSpan& c);
-void fn_7100148178(UnkMinimapCamera* object, u32 layer, const UnkMinimapSpan& a, bool flag);
 
 // Draws the two passes: each scene object's two slots off, then every item of the pass into the
 // emptied draw lists, which go to the object with the pass layer.
@@ -560,7 +557,7 @@ void fn_7100e93e04(UnkMinimapOwner* self) {
         for (UnkMinimapItem* item : self->pass_items[pass])
             fn_7100e964fc(self, item, 900.0f);
         fn_7100148160(self->pass_objects[pass], self->pass_layer, lists[0], lists[1], lists[2]);
-        fn_7100148178(self->pass_objects[pass], self->pass_layer, lists[3], true);
+        fn_7100148178(self->pass_objects[pass], self->pass_layer, UnkMinimapSpan(lists[3]), true);
         fn_71001be430(self->pass_objects[pass]->field_0x130, self->pass_layer, true);
         fn_7100149490(self->pass_objects[pass], true);
     }

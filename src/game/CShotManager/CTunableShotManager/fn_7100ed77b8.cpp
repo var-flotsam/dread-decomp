@@ -8,3 +8,11 @@ struct UnkWeakRef1268 {
 };
 
 void fn_7100ed77b8(UnkWeakRef1268* self, UnkWeakTarget* other) { AssignRef(&self->field_0x1268, GetWeakHandle(other)); }
+
+// The same with the reference at +0x4d0 (fn_7100ac63c4).
+struct UnkWeakRef4d0 {
+    u8 unk_0x0[0x4d0];
+    UnkWeakHandle* field_0x4d0;
+};
+
+void fn_7100ac63c4(UnkWeakRef4d0* self, UnkWeakTarget* other) { AssignRef(&self->field_0x4d0, GetWeakHandle(other)); }

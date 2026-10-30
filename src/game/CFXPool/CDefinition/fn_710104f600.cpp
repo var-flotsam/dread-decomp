@@ -158,6 +158,14 @@ struct UnkIdArrayOwner {
 
 void fn_710104f600(UnkClearedArray<UnkIdValues>* self) { self->Clear(); }
 
+// The same Clear for 0x18-byte elements (a path id and four values) in another unit: fn_7100ffb5c8.
+struct UnkIdValues18 {
+    UnkFilePathReleasedStrId id;
+    u32 field_0x8[4];
+};
+
+void fn_7100ffb5c8(UnkClearedArray<UnkIdValues18>* self) { self->Clear(); }
+
 struct UnkIdPairValue {
     UnkReleasedStrId first;
     UnkReleasedStrId second;

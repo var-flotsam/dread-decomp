@@ -19,6 +19,41 @@ bool fn_7100deabe4(UnkGameManager* self) {
     return false;
 }
 
+// Whether the object behind +0x498 is named "INGAME" and its word at +0x260 is set; false when
+// there is none.
+bool fn_7100df5c94(UnkGameManager* self) {
+    if (self->field_0x498 &&
+        fn_710007f140(reinterpret_cast<const base::global::CRntString*>(static_cast<char*>(self->field_0x498) + 8),
+                      "INGAME"))
+        return *reinterpret_cast<s32*>(static_cast<char*>(self->field_0x498) + 0x260) != 0;
+    return false;
+}
+
+// Whether the object behind +0x498 is named "VIEWER"; false when there is none.
+bool fn_7100deac04(UnkGameManager* self) {
+    char* object = static_cast<char*>(self->field_0x498);
+    if (object)
+        return fn_710007f140(reinterpret_cast<const base::global::CRntString*>(object + 8), "VIEWER");
+    return false;
+}
+
+// The four handles at +0x2998 (their target at +0x10).
+struct UnkGameManagerHandle {
+    u8 pad_0x0[0x10];
+    const void* target;
+};
+struct UnkGameManagerHandles {
+    u8 pad_0x0[0x2998];
+    UnkGameManagerHandle* handles[4];
+};
+
+bool fn_7100df5c38(UnkGameManager* self, const void* object) {
+    UnkGameManagerHandle* const* h = reinterpret_cast<UnkGameManagerHandles*>(self)->handles;
+    if ((h[0] && h[0]->target == object) || (h[1] && h[1]->target == object) || (h[2] && h[2]->target == object))
+        return true;
+    return (h[3] ? h[3]->target : nullptr) == object;
+}
+
 void* fn_7100defcec(UnkGameManager* self) {
     UnkGameManagerTarget* target = fn_7100decab0(self);
     return target ? target->field_0x248 : nullptr;
@@ -510,7 +545,6 @@ void fn_71000fbe1c(void* self, u32 a, f32 b, f32 c);
 void fn_7101048af8(CBlackboard* self);
 void fn_7100dfc638(UnkGameManager* self, CBlackboard* blackboard, const CRntString* name, const CRntString* tag);
 void fn_7101046e78(CBlackboard* self, CBlackboard* other, bool a, bool b);
-void fn_7101047178(CBlackboard* self);
 struct UnkHandleList {
     UnkGameManagerObjRef** data;
     u32 count;
@@ -1238,7 +1272,6 @@ extern UnkPropertyEx<> g_unk_7172758cb0;  // a string (fn_7100dfb330)
 
 struct UnkEnumType;
 UnkEnumType* fn_710009fb38();  // refl_GetType<base::global::TRntString128>
-bool fn_710007f220(const CRntString* a, const CRntString* b);  // the texts differ
 s32 fn_7100dfb930();
 CRntString fn_7100dfb330(UnkGameManager* self);
 bool fn_7100395c38(CBlackboard::CSection* section, const void* name, CRntString* out);
@@ -1379,4 +1412,23 @@ void fn_7100dfc638(UnkGameManager* self, CBlackboard* blackboard, const CRntStri
     SetValue(blackboard, TableId(0x1148), DefId(g_unk_7172758db0), fn_7100014768, fn_7100dfb930());
     SetValue(blackboard, TableId(0x1148), DefId(g_unk_7172758cb0), fn_7100007f84, fn_7100dfb330(self));
     fn_7100ca7a60(self->field_0x1af8, blackboard, &static_cast<const CStrId&>(ScenarioSection(self)));
+}
+
+// The object fn_7100deba8c finds for `id` (with a copy of the flags), if it is of the class
+// fn_7100d70c20 gives; else null.
+UnkWeakTarget* fn_7100debbc8(UnkGameManager* self, const u64* id, const u32* flags) {
+    alignas(8) u32 copy = *flags;
+    auto* object = static_cast<base::reflection::UnkReflObject*>(fn_7100deba8c(self, id, &copy));
+    if (object && !fn_710009d50c(object->vf_0x0(), fn_7100d70c20()))
+        object = nullptr;
+    return reinterpret_cast<UnkWeakTarget*>(object);
+}
+
+// The empty list returned for an id no object is registered under.
+extern UnkGameManagerIdList g_unk_71727bebc0;
+
+UnkGameManagerIdList* fn_7100de94cc(UnkGameManager* self, const u64* id) {
+    UnkGameManagerIdLists& lists = self->field_0x2450;
+    UnkGameManagerIdList* found = lists.Find(*id);
+    return found != lists.values + lists.count ? found : &g_unk_71727bebc0;
 }
