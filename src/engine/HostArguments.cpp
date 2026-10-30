@@ -47,6 +47,7 @@ bool fn_7100000790(const char* name, const char* fmt, ...) {
 
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/UnkCameraCtrl.h"
 #include "game/UnkGameManager.h"
 
 using base::global::CRntString;
@@ -429,7 +430,6 @@ void fn_7100132c60();
 void fn_710109d0a0();
 void fn_7100083980(f32 dt);
 void fn_7100001a60(f32 dt);
-void fn_71010e537c(void* object);
 void fn_71000ebad0(UnkResRegistry* self);
 
 // The frame statistics: a counter, the time accumulated over the last second and its frame count,

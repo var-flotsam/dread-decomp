@@ -34,3 +34,6 @@ UnkVec2Result fn_7100125e78(const UnkSegment2D* seg);
 // Whether the point lies on the segment within the tolerance; `extended` also accepts a point just
 // past either end.
 bool fn_7100125c64(const UnkSegment2D* seg, const base::math::CVector2D* point, bool extended, f32 tolerance);
+
+// The segment's length, computed on first use and cached in field_0x10 (src/game/malloc/fn_7100125fbc.cpp).
+f32 fn_7100125fbc(const UnkSegment2D* seg);

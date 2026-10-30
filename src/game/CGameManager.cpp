@@ -19,6 +19,16 @@ bool fn_7100deabe4(UnkGameManager* self) {
     return false;
 }
 
+// Whether the object behind +0x498 is named "INGAME" and its word at +0x260 is set; false when
+// there is none.
+bool fn_7100df5c94(UnkGameManager* self) {
+    if (self->field_0x498 &&
+        fn_710007f140(reinterpret_cast<const base::global::CRntString*>(static_cast<char*>(self->field_0x498) + 8),
+                      "INGAME"))
+        return *reinterpret_cast<s32*>(static_cast<char*>(self->field_0x498) + 0x260) != 0;
+    return false;
+}
+
 void* fn_7100defcec(UnkGameManager* self) {
     UnkGameManagerTarget* target = fn_7100decab0(self);
     return target ? target->field_0x248 : nullptr;
@@ -1388,4 +1398,13 @@ UnkWeakTarget* fn_7100debbc8(UnkGameManager* self, const u64* id, const u32* fla
     if (object && !fn_710009d50c(object->vf_0x0(), fn_7100d70c20()))
         object = nullptr;
     return reinterpret_cast<UnkWeakTarget*>(object);
+}
+
+// The empty list returned for an id no object is registered under.
+extern UnkGameManagerIdList g_unk_71727bebc0;
+
+UnkGameManagerIdList* fn_7100de94cc(UnkGameManager* self, const u64* id) {
+    UnkGameManagerIdLists& lists = self->field_0x2450;
+    UnkGameManagerIdList* found = lists.Find(*id);
+    return found != lists.values + lists.count ? found : &g_unk_71727bebc0;
 }

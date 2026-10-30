@@ -186,3 +186,7 @@ struct UnkXformNode {
     }
 };
 static_assert(sizeof(UnkXformNode) == 0x110, "UnkXformNode layout");
+
+// The node's position: its target's while the target has both flags set, else the translation of
+// its own matrix (src/game_s1/fn_7100206294.cpp).
+UnkVec3f fn_7100206154(UnkXformNode* self);

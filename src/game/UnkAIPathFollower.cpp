@@ -48,8 +48,6 @@ using UnkPointFilter = std::function<bool(const CVector2D&)>;
 using UnkEdgeVisitor = std::function<void(u32, const UnkSegment2D&)>;
 void fn_7100117f98(const UnkPolygon2D* polygon, const CVector2D* point, s32* edge, f32* t, CVector2D* closest,
                    f32* distance, bool flag, UnkPointFilter filter, UnkEdgeVisitor visit);
-// The segment's length.
-f32 fn_7100125fbc(const UnkSegment2D* seg);
 UnkSegment2D* fn_7100125b44(UnkSegment2D* self, const UnkSegment2D* other);
 // The distance along an open path from (edge_from, t_from) to (edge_to, t_to).
 f32 fn_710035e5f8(const UnkAIPath* self, u32 edge_from, u32 edge_to, f32 t_from, f32 t_to);
