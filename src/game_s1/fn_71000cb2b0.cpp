@@ -93,3 +93,12 @@ UnkU32Values3Pair* fn_710011feec(UnkU32Values3Pair* self, UnkU32Values3Pair* oth
 
 UnkU32Values3Pair* fn_71000cb35c(UnkU32Values3Pair* self, UnkU32Values3Pair* other) { return AssignSet(self, other); }
 UnkU32Values3Pair* fn_710011ff98(UnkU32Values3Pair* self, UnkU32Values3Pair* other) { return AssignSet(self, other); }
+
+// The same for a 0x30-byte block of words, copied whole (fn_7100670aec, another unit).
+struct UnkWords12 {
+    u32 words[12];
+};
+
+UnkValuePairRef<u32, UnkWords12>* fn_7100670aec(UnkValuePairRef<u32, UnkWords12>* self, UnkValuePairRef<u32, UnkWords12>* other) {
+    return Assign(self, other);
+}

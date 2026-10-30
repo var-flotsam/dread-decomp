@@ -38,25 +38,37 @@ struct UnkCloneObject {
     virtual ~UnkCloneObject();
 };
 
+// Polymorphic elements of the given size destroyed through their vtable: the destructor in slot
+// 0 (UnkClonePolyA) or slot 1 (UnkClonePolyB).
+struct UnkClonePolyA {
+    virtual ~UnkClonePolyA();
+};
+
+struct UnkClonePolyB {
+    virtual void vf_0x0();
+    virtual ~UnkClonePolyB();
+};
+
 // An owning pointer with unique_ptr's moves and reset-style destructor. The pointer is a union
 // member: the original reloads the array's data pointer after each element store, which a
-// typed field store wouldn't force.
-template <class Tag>
+// typed field store wouldn't force. Object is what it deletes (UnkClonePolyA for an object whose
+// deleting destructor is in slot 0x8).
+template <class Tag, class Object = UnkCloneObject>
 struct UnkCloneOwner {
     union {
-        UnkCloneObject* ptr;
+        Object* ptr;
     };
 
     UnkCloneOwner() : ptr(nullptr) {}
     UnkCloneOwner(UnkCloneOwner&& other) {
-        UnkCloneObject* p = other.ptr;
+        Object* p = other.ptr;
         other.ptr = nullptr;
         ptr = p;
     }
     UnkCloneOwner& operator=(UnkCloneOwner&& other) {
-        UnkCloneObject* p = other.ptr;
+        Object* p = other.ptr;
         other.ptr = nullptr;
-        UnkCloneObject* old = ptr;
+        Object* old = ptr;
         ptr = p;
         if (old)
             delete old;
@@ -64,7 +76,7 @@ struct UnkCloneOwner {
     }
     bool operator==(const UnkCloneOwner& other) const { return ptr == other.ptr; }
     ~UnkCloneOwner() {
-        UnkCloneObject* p = ptr;
+        Object* p = ptr;
         ptr = nullptr;
         if (p)
             delete p;
@@ -100,6 +112,39 @@ struct UnkCloneU32 {
     bool operator==(const UnkCloneU32& other) const { return value == other.value; }
 };
 
+// A 4-byte and a 1-byte value in an 8-byte slot, copied member by member (the copy loads and
+// stores the value's width, not the slot's).
+template <class Tag>
+struct alignas(8) UnkCloneSlot32 {
+    u32 value;
+
+    UnkCloneSlot32& operator=(const UnkCloneSlot32& other) {
+        value = other.value;
+        return *this;
+    }
+    bool operator==(const UnkCloneSlot32& other) const { return value == other.value; }
+};
+
+template <class Tag>
+struct alignas(8) UnkCloneSlot8 {
+    u8 value;
+
+    UnkCloneSlot8& operator=(const UnkCloneSlot8& other) {
+        value = other.value;
+        return *this;
+    }
+    bool operator==(const UnkCloneSlot8& other) const { return value == other.value; }
+};
+
+// A 16-byte, 8-aligned trivially copyable element.
+template <class Tag>
+struct UnkCloneWord2 {
+    u64 first;
+    u64 second;
+
+    bool operator==(const UnkCloneWord2& other) const { return first == other.first && second == other.second; }
+};
+
 // A string id released in two steps (base::UnkStrIdMember).
 template <class Tag>
 struct UnkCloneStrId : base::UnkStrIdMember {};
@@ -117,16 +162,6 @@ struct UnkCloneStrIdElem {
     ~UnkCloneStrIdElem() { reinterpret_cast<Id*>(reinterpret_cast<char*>(words) + Off)->~Id(); }
 };
 
-// Polymorphic elements of the given size destroyed through their vtable: the destructor in slot
-// 0 (UnkClonePolyA) or slot 1 (UnkClonePolyB).
-struct UnkClonePolyA {
-    virtual ~UnkClonePolyA();
-};
-
-struct UnkClonePolyB {
-    virtual void vf_0x0();
-    virtual ~UnkClonePolyB();
-};
 
 template <class Tag, class Base, u64 Size>
 struct UnkClonePolyElem : Base {

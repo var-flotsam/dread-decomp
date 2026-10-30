@@ -2655,7 +2655,7 @@ address,size,name,name_source,subsystem,status
 0x7100599794,4,fn_7100599794,unknown,game/ai?,O
 0x7100599798,356,CGooplotAIComponent::refl_InitClass,reflection,game/ai,O
 0x71005998fc,196,fn_71005998fc,unknown,unknown,U
-0x71005999c0,280,fn_71005999c0,unknown,unknown,U
+0x71005999c0,280,fn_71005999c0,unknown,unknown,O
 0x7100599ad8,328,fn_7100599ad8,unknown,unknown,U
 0x7100599c20,248,fn_7100599c20,unknown,unknown,O
 0x7100599d18,36,fn_7100599d18,unknown,unknown,O

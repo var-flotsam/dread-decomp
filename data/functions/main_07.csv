@@ -3054,9 +3054,9 @@ address,size,name,name_source,subsystem,status
 0x710079bb0c,8,fn_710079bb0c,unknown,unknown,O
 0x710079bb14,116,fn_710079bb14,unknown,unknown,U
 0x710079bb88,128,fn_710079bb88,unknown,unknown,O
-0x710079bc08,268,fn_710079bc08,unknown,unknown,U
+0x710079bc08,268,fn_710079bc08,unknown,unknown,O
 0x710079bd14,48,fn_710079bd14,unknown,unknown,O
-0x710079bd44,404,fn_710079bd44,unknown,unknown,U
+0x710079bd44,404,fn_710079bd44,unknown,unknown,O
 0x710079bed8,80,fn_710079bed8,unknown,unknown,O
 0x710079bf28,56,fn_710079bf28,unknown,unknown,O
 0x710079bf60,176,fn_710079bf60,unknown,unknown,U
@@ -4519,7 +4519,7 @@ address,size,name,name_source,subsystem,status
 0x71007d59b8,388,CEscapeSequenceExplosionComponent::refl_InitClass,reflection,game/components,O
 0x71007d5b3c,4,fn_71007d5b3c,unknown,unknown,O
 0x71007d5b40,36,fn_71007d5b40,unknown,unknown,O
-0x71007d5b64,120,fn_71007d5b64,unknown,unknown,U
+0x71007d5b64,120,fn_71007d5b64,unknown,unknown,O
 0x71007d5bdc,216,fn_71007d5bdc,unknown,unknown,U
 0x71007d5cb4,216,fn_71007d5cb4,unknown,unknown,U
 0x71007d5d8c,300,fn_71007d5d8c,unknown,unknown,U
