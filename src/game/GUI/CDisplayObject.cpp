@@ -248,3 +248,59 @@ void fn_71011cde64(UnkGuiDisplayObject* self, const base::math::CVector2D* posit
     self->field_0x183 = true;
     self->field_0x144 |= bits;
 }
+
+// Marks the object changed: a unit scale (within the tolerance) changes only the position (bit 0),
+// any other also the size (bit 4); the first change runs vf_0xa0.
+static inline void MarkPlaced(UnkGuiDisplayObject* self, const UnkGuiPlacement* p) {
+    f32 sx = p->scale_x;
+    f32 eps = g_unk_7101647774;
+    u32 bits;
+    if (sx - eps > 1.0f || sx + eps < 1.0f || p->scale_y - eps > 1.0f || eps + p->scale_y < 1.0f) {
+        if (!self->field_0x184) {
+            self->field_0x184 = true;
+            self->vf_0xa0();
+        }
+        bits = 0x11;
+    } else {
+        bits = 1;
+        if (!self->field_0x184) {
+            self->field_0x184 = true;
+            self->vf_0xa0();
+        }
+    }
+    self->field_0x183 = true;
+    self->field_0x144 |= bits;
+}
+
+// Sets one coordinate and the mode it is measured by (the other coordinate is kept as it is; the
+// unchanged test compares it with itself, so a NaN there always counts as a change).
+template <u32 Mode>
+__attribute__((always_inline)) inline void SetX(f32 x, UnkGuiDisplayObject* self) {
+    UnkGuiPlacement* p = reinterpret_cast<UnkGuiPlacement*>(self);
+    if (p->h_mode == Mode && p->position.y - p->position.y == 0.0f && x - p->position.x == 0.0f)
+        return;
+    p->position.x = x;
+    p->h_mode = Mode;
+    MarkPlaced(self, p);
+}
+
+template <u32 Mode>
+__attribute__((always_inline)) inline void SetY(f32 y, UnkGuiDisplayObject* self) {
+    UnkGuiPlacement* p = reinterpret_cast<UnkGuiPlacement*>(self);
+    if (p->v_mode == Mode && p->position.x - p->position.x == 0.0f && y - p->position.y == 0.0f)
+        return;
+    p->position.y = y;
+    p->v_mode = Mode;
+    MarkPlaced(self, p);
+}
+
+// NON_MATCHING(minor), each of the eight: the original lays out the first-change call of the
+// non-unit-scale branch inline and its other copy at the end; the behaviour is the same.
+void fn_71011cc65c(f32 x, UnkGuiDisplayObject* self) { SetX<0>(x, self); }
+void fn_71011cc940(f32 x, UnkGuiDisplayObject* self) { SetX<1>(x, self); }
+void fn_71011cc748(f32 x, UnkGuiDisplayObject* self) { SetX<2>(x, self); }
+void fn_71011cc844(f32 x, UnkGuiDisplayObject* self) { SetX<3>(x, self); }
+void fn_71011cca3c(f32 y, UnkGuiDisplayObject* self) { SetY<0>(y, self); }
+void fn_71011ccd20(f32 y, UnkGuiDisplayObject* self) { SetY<1>(y, self); }
+void fn_71011ccb28(f32 y, UnkGuiDisplayObject* self) { SetY<2>(y, self); }
+void fn_71011ccc24(f32 y, UnkGuiDisplayObject* self) { SetY<3>(y, self); }
