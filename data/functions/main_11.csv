@@ -1802,7 +1802,7 @@ address,size,name,name_source,subsystem,status
 0x7101178134,192,fn_7101178134,unknown,unknown,U
 0x71011781f4,128,fn_71011781f4,unknown,unknown,U
 0x7101178274,120,fn_7101178274,unknown,unknown,U
-0x71011782ec,84,fn_71011782ec,unknown,unknown,U
+0x71011782ec,84,fn_71011782ec,unknown,unknown,O
 0x7101178340,84,fn_7101178340,unknown,unknown,U
 0x7101178394,400,fn_7101178394,unknown,unknown,U
 0x7101178524,64,fn_7101178524,unknown,unknown,U

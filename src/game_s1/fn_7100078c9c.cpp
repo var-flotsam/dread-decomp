@@ -82,3 +82,16 @@ UnkVec3f fn_710007a7f0(UnkVec3f dir) {
     r.x = atan2f(-dir.y, sqrtf(dir.x * dir.x + dir.z * dir.z));
     return r;
 }
+
+// `v` turned by `angle` (radians) about z, its z kept.
+UnkVec3f fn_710007a390(const UnkVec3f& v, f32 angle) {
+    f32 s = sinf(angle);
+    f32 c = cosf(angle);
+    f32 x = v.x;
+    f32 y = v.y;
+    UnkVec3f r;
+    r.z = v.z;
+    r.x = c * x - s * y;
+    r.y = s * x + c * y;
+    return r;
+}
