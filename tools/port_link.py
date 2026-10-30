@@ -1672,7 +1672,12 @@ def main() -> int:
     print(f"silent: {silent_named + len(silent_extra)} nn::atk functions return zero ({silent_named} named, {len(silent_extra)} reached only through the game's code pointers)")
     print(f"statics: {len(statics)} function-local statics and guards of inline functions bound to the image"
           + "".join(f"; {len(v)} left in the executable, {k}" for k, v in sorted(statics_left.items())))
-    for s in statics_left.get(SPLIT_STATIC, ())[:args.examples]:
+    # Every split static (the risky class: the game and the port each keep their own copy), once:
+    # a guard only when its static is not listed too.
+    split = statics_left.get(SPLIT_STATIC, ())
+    for s in split:
+        if s.startswith("_ZGVZ") and "_ZZ" + s[len("_ZGVZ"):] in split:
+            continue
         print(f"    split: {demangled.get(s, s)} (image 0x{known[s]:x})")
     whole_o = out / "dread_whole.o"
     r, dt2 = link(lld, whole_o, [str(game_o), *map(str, runtime_objs), str(traps_o), str(tables_o),
