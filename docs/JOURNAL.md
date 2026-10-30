@@ -131,6 +131,18 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Night round 16: CButton's constructor and the GUI's derived state (2026-10-30, branch `claude/project-thread-lths9k-night16`, on round 15).**
+2 functions to `O` and 2 to minor. Boot slice: `O` 2,150 (30.57%), usable 40.88% to 40.90%; whole binary `O` 85,384 to 85,386
+(54.94%), usable 57.44%. `O`: GUI::CButton's constructor (fn_71011bf0ec, 17 callers), a GUI render layer's release
+(fn_71011f5eb4). Minor: the display object's derived-state update (fn_71011cee40, 17 callers; the parent branch matches, the
+no-parent copy pairs its members differently) and the GUI event kind by name (fn_7101202300).
+- **A store before the stores around it.** CButton's bound callback matched only with its function pointer stored before the
+  two zero words between the object and it; storing it last leaves the GOT load late.
+- **A bool parameter that is a word.** fn_7100b1c56c's last argument is the child's change bits (+0x144), passed whole by
+  fn_71011cee40; it is a `u32` tested with `& 1` (still `O`).
+- **Member-wise copies.** A state whose position has a user-written copy constructor is copied member by member (with
+  `new (&dst) T(src)`), which gives the original's mixed 4- and 8-byte copies; the exact pairing was not reached.
+
 **Night round 15: GUI hubs (2026-10-30, branch `claude/project-thread-lths9k-night15`).**
 3 functions to `O` and 12 to minor, the most-called unmatched functions of the GUI's display object and container units (the
 ready list without the boot filter). Boot slice: `O` 2,148 to 2,150 (30.57%), usable 40.83% to 40.88%; whole binary `O`

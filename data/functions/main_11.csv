@@ -2726,7 +2726,7 @@ address,size,name,name_source,subsystem,status
 0x71011be400,244,GUI::CButton::refl_GetClass,reflection,gui,O
 0x71011be4f4,2712,fn_71011be4f4,unknown,gui?,O
 0x71011bef8c,352,GUI::CButton::refl_InitClass,reflection,gui,O
-0x71011bf0ec,184,fn_71011bf0ec,unknown,unknown,U
+0x71011bf0ec,184,fn_71011bf0ec,unknown,unknown,O
 0x71011bf1a4,420,fn_71011bf1a4,unknown,unknown,O
 0x71011bf348,36,fn_71011bf348,unknown,unknown,O
 0x71011bf36c,52,fn_71011bf36c,unknown,unknown,O
@@ -2894,7 +2894,7 @@ address,size,name,name_source,subsystem,status
 0x71011cedec,8,fn_71011cedec,unknown,unknown,O
 0x71011cedf4,28,fn_71011cedf4,unknown,unknown,O
 0x71011cee10,48,fn_71011cee10,unknown,unknown,O
-0x71011cee40,284,fn_71011cee40,unknown,unknown,U
+0x71011cee40,284,fn_71011cee40,unknown,unknown,m
 0x71011cef5c,24,fn_71011cef5c,unknown,unknown,O
 0x71011cef74,308,fn_71011cef74,unknown,unknown,U
 0x71011cf0a8,132,fn_71011cf0a8,unknown,unknown,U
@@ -3906,7 +3906,7 @@ address,size,name,name_source,subsystem,status
 0x71011f5cd0,176,fn_71011f5cd0,unknown,unknown,U
 0x71011f5d80,272,fn_71011f5d80,unknown,unknown,O
 0x71011f5e90,36,fn_71011f5e90,unknown,unknown,O
-0x71011f5eb4,160,fn_71011f5eb4,unknown,unknown,U
+0x71011f5eb4,160,fn_71011f5eb4,unknown,unknown,O
 0x71011f5f54,60,fn_71011f5f54,unknown,unknown,U
 0x71011f5f90,180,fn_71011f5f90,unknown,unknown,O
 0x71011f6044,376,fn_71011f6044,unknown,unknown,O

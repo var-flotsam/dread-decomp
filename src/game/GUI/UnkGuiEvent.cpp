@@ -57,3 +57,20 @@ void fn_7101202488(UnkGuiEvent* self) {
             handle->vf_0x10();
     }
 }
+
+// ---- fn_7101202300: an event's kind from its name ----
+
+#include "base/global/CRntString.h"
+
+extern const char* g_unk_7101cb6fd8[];  // the 43 event names, by kind
+
+// The kind named `name` (the index of its name in the table), or 0x2c when there is none
+// (lua_bind::DispatchEvent and lua_bind::AddLuaEventHandler pass the script's names).
+// NON_MATCHING(minor): the original selects the index or 0x2c in the loop and tests the selection
+// (csel, cmp); Clang branches on the comparison. The behaviour is the same.
+s32 fn_7101202300(const base::global::CRntString* name) {
+    for (u32 i = 0; i < 0x2b; ++i)
+        if (fn_710007f140(name, g_unk_7101cb6fd8[i]))
+            return i;
+    return 0x2c;
+}
