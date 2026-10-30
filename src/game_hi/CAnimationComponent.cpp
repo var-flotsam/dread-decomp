@@ -4,7 +4,7 @@
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
 
-f32 fn_7101177ea0(UnkAnimationComponent* self, u64 key) {
+static inline f32 ActionValue(UnkAnimationComponent* self, u64 key) {
     UnkTrackSet* set = self->field_0x40;
     UnkTrackEntry** it = set->field_0xc8.Find(key);
     if (it == set->field_0xc8.End())
@@ -18,4 +18,13 @@ f32 fn_7101177ea0(UnkAnimationComponent* self, u64 key) {
     if (!fn_710070d500(track))
         return 0.0f;
     return fn_710070d500(track)->field_0x60;
+}
+
+f32 fn_7101177ea0(UnkAnimationComponent* self, u64 key) {
+    return ActionValue(self, key);
+}
+
+// An identical copy next to it.
+f32 fn_7101177f58(UnkAnimationComponent* self, u64 key) {
+    return ActionValue(self, key);
 }
