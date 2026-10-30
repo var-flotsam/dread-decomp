@@ -1379,3 +1379,13 @@ void fn_7100dfc638(UnkGameManager* self, CBlackboard* blackboard, const CRntStri
     SetValue(blackboard, TableId(0x1148), DefId(g_unk_7172758cb0), fn_7100007f84, fn_7100dfb330(self));
     fn_7100ca7a60(self->field_0x1af8, blackboard, &static_cast<const CStrId&>(ScenarioSection(self)));
 }
+
+// The object fn_7100deba8c finds for `id` (with a copy of the flags), if it is of the class
+// fn_7100d70c20 gives; else null.
+UnkWeakTarget* fn_7100debbc8(UnkGameManager* self, const u64* id, const u32* flags) {
+    alignas(8) u32 copy = *flags;
+    auto* object = static_cast<base::reflection::UnkReflObject*>(fn_7100deba8c(self, id, &copy));
+    if (object && !fn_710009d50c(object->vf_0x0(), fn_7100d70c20()))
+        object = nullptr;
+    return reinterpret_cast<UnkWeakTarget*>(object);
+}
