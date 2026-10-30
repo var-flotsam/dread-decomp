@@ -64,7 +64,8 @@ bool fn_710117af10(UnkStruct_710117af10* self, UnkCls_710117af10** name, bool sk
 
 // The name id of the track whose name hash is `key` (what fn_710070d7f8 gives for it), or the
 // global empty id when there is no such entry or track.
-const base::global::CStrId* fn_7101177ae8(UnkAnimationComponent* self, u64 key) {
+template <UnkCls_710117af10** (*Name)(UnkObj_710117af10*)>
+static inline const base::global::CStrId* TrackName(UnkAnimationComponent* self, u64 key) {
     UnkTrackSet* set = self->field_0x40;
     UnkTrackEntry** it = set->field_0xc8.Find(key);
     if (it == set->field_0xc8.End())
@@ -72,18 +73,29 @@ const base::global::CStrId* fn_7101177ae8(UnkAnimationComponent* self, u64 key) 
     UnkTrackEntry* entry = *it;
     if (entry && entry->field_0x70)
         return reinterpret_cast<const base::global::CStrId*>(
-            fn_710070d7f8(reinterpret_cast<UnkObj_710117af10*>(entry->field_0x70)));
+            Name(reinterpret_cast<UnkObj_710117af10*>(entry->field_0x70)));
     return &g_unk_7101d470e0;
 }
 
+const base::global::CStrId* fn_7101177ae8(UnkAnimationComponent* self, u64 key) { return TrackName<fn_710070d7f8>(self, key); }
+// The same through fn_710070d818, next door.
+UnkCls_710117af10** fn_710070d818(UnkObj_710117af10* obj);
+const base::global::CStrId* fn_7101177cac(UnkAnimationComponent* self, u64 key) { return TrackName<fn_710070d818>(self, key); }
+
 // Whether the track whose name hash is `key` reports busy (fn_710070d830). The entry is not checked:
 // a missing key reads the slot past the last one, as in the original.
-bool fn_71011782ec(UnkAnimationComponent* self, u64 key) {
+template <bool (*Test)(UnkObj_710117af10*)>
+static inline bool TrackTest(UnkAnimationComponent* self, u64 key) {
     UnkTrackLookup& lookup = self->field_0x40->field_0xc8;
     u32 count = lookup.count;
     u64 i = 0;
     for (; i != count; ++i)
         if (lookup.keys[i] == key)
             break;
-    return fn_710070d830(reinterpret_cast<UnkObj_710117af10*>(lookup.values[i]->field_0x70));
+    return Test(reinterpret_cast<UnkObj_710117af10*>(lookup.values[i]->field_0x70));
 }
+
+bool fn_71011782ec(UnkAnimationComponent* self, u64 key) { return TrackTest<fn_710070d830>(self, key); }
+// The same test through fn_710070df1c, next door.
+bool fn_710070df1c(UnkObj_710117af10* obj);
+bool fn_7101178340(UnkAnimationComponent* self, u64 key) { return TrackTest<fn_710070df1c>(self, key); }

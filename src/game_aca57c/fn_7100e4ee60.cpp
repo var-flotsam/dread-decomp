@@ -200,6 +200,15 @@ void fn_7100e573b0(const UnkIdRecordTable<UnkArrayRecord60>* self,
 void fn_7100d86fe8(const UnkIdRecordTable<u64>* self, base::UnkIterValue<u64, UnkReleasedStrId>* out) {
     Begin(self, out);
 }
+// The same for a table of two-word values, in another unit.
+struct UnkTwoWords {
+    u64 first;
+    u64 second;
+};
+
+void fn_7100905138(const UnkIdRecordTable<UnkTwoWords>* self, base::UnkIterValue<UnkTwoWords, UnkReleasedStrId>* out) {
+    Begin(self, out);
+}
 // NON_MATCHING(minor): the two end pointers swap registers.
 void fn_7100d87080(const UnkIdRecordTable<u64>* self, base::UnkIterValue<u64, UnkReleasedStrId>* out) {
     End(self, out);

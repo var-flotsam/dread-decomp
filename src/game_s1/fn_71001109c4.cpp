@@ -13,15 +13,22 @@ struct UnkF32Pair_71001109c4 {
     f32 y;
 };
 
-UnkReflValue fn_71001109c4(void*, char* obj, UnkReflValue* const* args) {
-    char* target = *reinterpret_cast<char**>(obj + 8);
-    UnkReflValue* arg = args[0];
-    auto* field = reinterpret_cast<UnkF32Pair_71001109c4*>(target);
-    const UnkF32Pair_71001109c4* value = base::reflection::refl_ArgValue<UnkF32Pair_71001109c4>(arg);
-    field->x = value->x;
-    field->y = value->y;
-    return base::reflection::refl_EmptyValue();
-}
+// Defined three times: fn_71001109c4 and its copies in two other units, whose pairs sit at 0xb0c and
+// 0xa4 (an inline helper changes how the value is returned).
+#define UNK_SET_F32_PAIR(name, at)                                                                          \
+    UnkReflValue name(void*, char* obj, UnkReflValue* const* args) {                                        \
+        char* target = *reinterpret_cast<char**>(obj + 8);                                                  \
+        UnkReflValue* arg = args[0];                                                                        \
+        auto* field = reinterpret_cast<UnkF32Pair_71001109c4*>(target + at);                                \
+        const UnkF32Pair_71001109c4* value = base::reflection::refl_ArgValue<UnkF32Pair_71001109c4>(arg); \
+        field->x = value->x;                                                                                \
+        field->y = value->y;                                                                                \
+        return base::reflection::refl_EmptyValue();                                                        \
+    }
+
+UNK_SET_F32_PAIR(fn_71001109c4, 0)
+UNK_SET_F32_PAIR(fn_71008a0118, 0xb0c)
+UNK_SET_F32_PAIR(fn_7100eaa2b0, 0xa4)
 
 // A getter (an invoker) returning the sum of the floats at 0x24 and 0x20 as a reflected float
 // (fn_7100110a98).

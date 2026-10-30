@@ -366,6 +366,14 @@ struct UnkPolyValue_0xb8 {
 
 void fn_71000dd850(UnkIdTable<UnkPolyValue_0xb8>* self) { self->Clear(); }
 
+// And of 0x60-byte ones, in another unit: fn_710025f6fc.
+struct UnkPolyValue_0x60 {
+    virtual ~UnkPolyValue_0x60();
+    u8 unk_0x8[0x58];
+};
+
+void fn_710025f6fc(UnkIdTable<UnkPolyValue_0x60>* self) { self->Clear(); }
+
 // The same for a table of counted resources paired with 8 plain bytes, whose value loop is
 // written as a do-while (the count is already known to be nonzero): fn_71001d7444.
 struct UnkResWord {
@@ -431,6 +439,16 @@ void fn_710079cea0(const UnkIdTable<u32>* self, UnkIterValue<u32, UnkReleasedStr
 
 // The same End over bytes (fn_7100916e80).
 void fn_7100916e80(const UnkIdTable<u8>* self, UnkIterValue<u8, UnkReleasedStrId>* out) {
+    out->SetRef(self->keys + self->count, self->values + self->count);
+}
+
+// Over two-word values, in another unit (fn_71009051d0).
+struct UnkTwoWords {
+    u64 first;
+    u64 second;
+};
+
+void fn_71009051d0(const UnkIdTable<UnkTwoWords>* self, UnkIterValue<UnkTwoWords, UnkReleasedStrId>* out) {
     out->SetRef(self->keys + self->count, self->values + self->count);
 }
 

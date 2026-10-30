@@ -108,3 +108,8 @@ void fn_7100e05e44(UnkIdListOwner<g_unk_7101aa9ae0, UnkIdNode_0x10, 0>& self) {
 void fn_710114e408(UnkIdListOwner<g_unk_7101cb38a8, UnkIdNode_0x18, 0>& self) {
     self.~UnkIdListOwner();
 }
+
+// The complete destructor of fn_7101174a64's class, in another unit.
+void fn_7101171378(UnkIdListOwner<g_unk_7101cb46a0, UnkIdNode_0x30, 0>& self) {
+    self.~UnkIdListOwner();
+}

@@ -97,3 +97,5 @@ UnkPathIdList_7100d94220 fn_7100d94220(char* self) { return CopyIds<8>(self); }
 UnkPathIdList_7100d94220 fn_7100d94f74(char* self) { return CopyIds<8>(self); }
 UnkPathIdList_7100d94220 fn_7100d95cc8(char* self) { return CopyIds<8>(self); }
 UnkPathIdList_7100d94220 fn_7100db2c28(char* self) { return CopyIds<8>(self); }
+// A copy in another unit, with the map 8 bytes further on.
+UnkPathIdList_7100d94220 fn_7101193774(char* self) { return CopyIds<0x10>(self); }

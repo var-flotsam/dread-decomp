@@ -9,11 +9,17 @@ struct UnkCameraHolder {
     u8** field_0x60;
 };
 
-const void* fn_71010e537c(void* holder) {
-    if (u8** ref = static_cast<UnkCameraHolder*>(holder)->field_0x60) {
-        if (u8* object = *ref)
-            return object + 0x38;
-        return g_unk_710164cf20;
+// Defined twice (fn_71010e537c and its copy next door, fn_71010e53ac, which returns the block at
+// +0x44); an inline helper would merge the two default returns.
+#define UNK_CAMERA_OBJECT(name, at)                                         \
+    const void* name(void* holder) {                                        \
+        if (u8** ref = static_cast<UnkCameraHolder*>(holder)->field_0x60) { \
+            if (u8* object = *ref)                                          \
+                return object + at;                                         \
+            return g_unk_710164cf20;                                        \
+        }                                                                   \
+        return g_unk_710164cf20;                                            \
     }
-    return g_unk_710164cf20;
-}
+
+UNK_CAMERA_OBJECT(fn_71010e537c, 0x38)
+UNK_CAMERA_OBJECT(fn_71010e53ac, 0x44)

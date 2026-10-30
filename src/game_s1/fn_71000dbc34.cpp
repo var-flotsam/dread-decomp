@@ -32,3 +32,15 @@ __attribute__((flatten)) void fn_7100260bd0(void* dst, const void* src) {
 __attribute__((flatten)) void fn_7100260df8(void* dst, const void* src) {
     base::refl_IterValueMove<UnkMovedElem<fn_7100260718, 0xc8>, u64>(dst, src);
 }
+
+// The same move for elements copied by fn_710103a240 (a pair of path id lists), in another unit.
+struct UnkPathIdListPair_710103a240;
+void fn_710103a240(UnkPathIdListPair_710103a240* self, const UnkPathIdListPair_710103a240* other);
+
+static void CopyPathIdListPair(void* self, void* other) {
+    fn_710103a240(static_cast<UnkPathIdListPair_710103a240*>(self), static_cast<const UnkPathIdListPair_710103a240*>(other));
+}
+
+__attribute__((flatten)) void fn_710103c0d4(void* dst, const void* src) {
+    base::refl_IterValueMove<UnkMovedElem<CopyPathIdListPair, 0x50>, u64>(dst, src);
+}

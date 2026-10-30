@@ -9,7 +9,8 @@
 // with elements holding a string id and a file path id (moved in fn_710001d334, copied in
 // fn_710001d9ac), with reflected-value elements (fn_71000d5178; string-id keys fn_71000d6698,
 // fn_71000d7740); copies with string-id elements (fn_71000cda10; CFilePathStrId's
-// pool fn_71000d01cc).
+// pool fn_71000d01cc). Eleven more 8-byte-element moves and four more two-word ones are copies in
+// other units (listed with their originals below).
 #include <new>
 
 #include "base/UnkCollectionIter.h"
@@ -159,8 +160,23 @@ UNK_ITER_MOVE(71002424e8, u64, UnkMovedStrId)
 UNK_ITER_MOVE(7100242a20, u64, UnkMovedStrId)
 UNK_ITER_MOVE(7100251208, u64, UnkMovedStrId)
 UNK_ITER_MOVE(71002515ac, u64, UnkMovedStrId)
+UNK_ITER_MOVE(7100b804d8, u64, UnkMovedStrId)
+UNK_ITER_MOVE(7100b80a10, u64, UnkMovedStrId)
+UNK_ITER_MOVE(7100d6e87c, u64, UnkMovedStrId)
+UNK_ITER_MOVE(7100d6f1c8, u64, UnkMovedStrId)
+UNK_ITER_MOVE(7100d6f700, u64, UnkMovedStrId)
+UNK_ITER_MOVE(7100d85bd0, u64, UnkMovedStrId)
+UNK_ITER_MOVE(7100d86108, u64, UnkMovedStrId)
+UNK_ITER_MOVE(710104a218, u64, UnkMovedStrId)
+UNK_ITER_MOVE(710104a750, u64, UnkMovedStrId)
+UNK_ITER_MOVE(71010c5a18, u64, UnkMovedStrId)
+UNK_ITER_MOVE(71010c5f50, u64, UnkMovedStrId)
 UNK_ITER_MOVE(7100121610, UnkWordPair, u32)
 UNK_ITER_MOVE(7100121984, UnkWordPair, u32)
+UNK_ITER_MOVE(7100c0ae3c, UnkWordPair, u32)
+UNK_ITER_MOVE(7100c0b1b0, UnkWordPair, u32)
+UNK_ITER_MOVE(710105fe4c, UnkWordPair, u32)
+UNK_ITER_MOVE(71010601c0, UnkWordPair, u32)
 UNK_ITER_MOVE(71001f1cd8, u64, u64)
 UNK_ITER_MOVE(71001f1fc8, u64, u64)
 UNK_ITER_MOVE(71000da264, UnkMovedFilePathStrId, UnkMovedStrId)

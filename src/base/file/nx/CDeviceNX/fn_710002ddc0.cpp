@@ -10,6 +10,7 @@
 #include "base/UnkDestructors.h"
 #include "base/UnkVector.h"
 #include "base/global/CRntString.h"
+#include "game/UnkComponent.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -76,18 +77,37 @@ struct UnkIdValues_710026cd30 {
     base::UnkVector<u32> values;
 };
 
-__attribute__((always_inline)) static inline void Destroy(UnkIdValues_710026cd30* self) {
-    *reinterpret_cast<char**>(self) = unk_7101a20d68 + 0x10;
+template <char* Vtable = unk_7101a20d68, class Base = void, void (*BaseDtor)(Base*) = fn_7100016f88, class Self>
+__attribute__((always_inline)) static inline void Destroy(Self* self) {
+    *reinterpret_cast<char**>(self) = Vtable + 0x10;
     self->values.Free();
     using Id = base::UnkStrIdMember;
     self->id.~Id();
-    fn_7100016f88(self);
+    BaseDtor(reinterpret_cast<Base*>(self));
 }
 
 void fn_710026cd30(UnkIdValues_710026cd30* self) { Destroy(self); }
 
 void fn_710026cdcc(UnkIdValues_710026cd30* self) {
     Destroy(self);
+    operator delete(self);
+}
+
+// The same pair for a component (vtable unk_7101a700c8, base destructor fn_71010c4194), with the
+// id at 0x40 and the array at 0x50.
+extern char unk_7101a700c8[];
+
+struct UnkIdValues_71007aef88 {
+    char base[0x40];
+    base::UnkStrIdMember id;
+    u64 field_0x48;
+    base::UnkVector<u32> values;
+};
+
+void fn_71007aef88(UnkIdValues_71007aef88* self) { Destroy<unk_7101a700c8, UnkBaseComponent, fn_71010c4194>(self); }
+
+void fn_71007af024(UnkIdValues_71007aef88* self) {
+    Destroy<unk_7101a700c8, UnkBaseComponent, fn_71010c4194>(self);
     operator delete(self);
 }
 

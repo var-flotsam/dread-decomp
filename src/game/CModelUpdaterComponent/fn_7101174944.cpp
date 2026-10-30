@@ -44,11 +44,12 @@ UnkReflValue fn_7101174944(void*, char* obj, UnkReflValue* const* args) {
 
 // The same lookup on the component itself: the translation of the named entry's transform into
 // `out` (copied bitwise), and whether there was one.
-bool fn_710117364c(char* self, const void* name, u32* out) {
+template <class Owner, class Key, class Matrix, bool (*Lookup)(Owner*, const Key*, Matrix*)>
+static inline bool Translation(char* self, const Key* name, u32* out) {
     f32 m[16] = {};
     m[0] = m[5] = m[10] = m[15] = 1;
     char* c = *reinterpret_cast<char**>(self + 0x50);
-    if (c && fn_71001c1694(*reinterpret_cast<char**>(c + 0x138), name, m)) {
+    if (c && Lookup(*reinterpret_cast<Owner**>(c + 0x138), name, reinterpret_cast<Matrix*>(m))) {
         u32 x = reinterpret_cast<u32*>(m)[3];
         u32 y = reinterpret_cast<u32*>(m)[7];
         u32 z = reinterpret_cast<u32*>(m)[11];
@@ -58,4 +59,17 @@ bool fn_710117364c(char* self, const void* name, u32* out) {
         return true;
     }
     return false;
+}
+
+bool fn_710117364c(char* self, const void* name, u32* out) {
+    return Translation<char, void, f32, fn_71001c1694>(self, name, out);
+}
+
+// The same by id (the bone owner's lookup fn_71001c1920), next door.
+struct UnkBoneOwner;
+struct UnkMatrix44;
+bool fn_71001c1920(UnkBoneOwner* self, const u64* id, UnkMatrix44* out);
+
+bool fn_71011736e0(char* self, const u64* id, u32* out) {
+    return Translation<UnkBoneOwner, u64, UnkMatrix44, fn_71001c1920>(self, id, out);
 }
