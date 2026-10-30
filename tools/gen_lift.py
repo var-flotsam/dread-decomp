@@ -27,7 +27,9 @@ lifts each one into C++ over `char*` parameters and keeps only the byte-identica
      statements: field stores in ascending offset order ("sort"), accesses through may_alias
      types so stores force reloads as in the original ("alias"), load/store copies as
      memcpy ("copy"), and a call whose result is first read as w0 declared to return 32 bits
-     ("w32"; else clang moves all 64 bits on, `mov x2, x0` for `mov w2, w0`).
+     ("w32"; else clang moves all 64 bits on, `mov x2, x0` for `mov w2, w0`; a function with
+     tail calls that returns only such values returns 32 bits too) or a bool ("bool"; a select
+     on a bool keeps the original's sense, `csel x, y, xzr, ne` for `csel x, xzr, y, eq`).
 
 Usage: python tools/gen_lift.py --version 2.1.0 [--plain]   (--plain: no pass-through)
 Outputs are deterministic (the facts come from one complete table, abi_facts.AbiFacts.complete; its
@@ -83,6 +85,7 @@ SCRATCH_CHUNK = 8000
 NAME_RE = re.compile(r"^[A-Za-z_][\w:<>,*& ]*\bfn_([0-9a-f]{10})\(")  # a declaration or definition
 TAGGED_DIRS = ("reflection", "reflection_types", "reflection_statics", "clones", "tables")  # generator outputs
 TAG_RE = re.compile(r"(?:UnkRefl_fn_|UnkClone_fn_|UnkTable_fn_|DREAD_REFL_\w*GETTER\()([0-9a-f]{10})\b")  # tagged definitions
+ALIAS_RE = re.compile(r"\.set fn_([0-9a-f]{10}),")  # asm aliases naming a template instance's code
 # (minimum call arguments, return mode): tried in this order. Return modes: "value" returns x0
 # (or s0) as set, "void" returns nothing, "ref" returns a pointer as a reference (Clang 9 then
 # doesn't turn a final call into a tail call, as in the original's `bl; ret`).
@@ -513,10 +516,11 @@ class Lifter:
             self.retype_call(t, f"r{s.fcall[0]}_100")
             s.vals[100] = (f"r{s.fcall[0]}_100", t)
             s.fcall = None
-        if n == 0 and r[0] == "w" and "w32" in self.opts and s.fcall and s.vals.get(0, ("", ""))[0] == s.fcall[1] \
-                and s.vals[0][1] == "char*":
-            # ("w32") w0 read first after a call: the callee returns 32 bits
-            self.retype_call("u32", s.fcall[1])
+        if n == 0 and r[0] == "w" and self.opts & {"w32", "bool"} and s.fcall \
+                and s.vals.get(0, ("", ""))[0] == s.fcall[1] and s.vals[0][1] == "char*":
+            # ("w32") w0 read first after a call: the callee returns 32 bits; ("bool") a bool, so
+            # that a select on it keeps the original's sense (csel x, y, xzr, ne)
+            self.retype_call("bool" if "bool" in self.opts else "u32", s.fcall[1])
             s.fcall = None
         if n not in s.vals:
             if s.called or (n > 8 and not 100 <= n <= 107):
@@ -548,14 +552,14 @@ class Lifter:
         if var != "X0" and any(re.search(rf"\b{var}\b", s) for s in self.body[ln + 1:]):
             raise Unsupported("call result used as both")
         if fn:
-            ns = {"f32": "fret", "f64": "dret", "u32": "wret"}[t]
+            ns = {"f32": "fret", "f64": "dret", "u32": "wret", "bool": "bret"}[t]
             self.decls.add(f"namespace {ns} {{ {t} {fn}({types}); }}")
             expr = expr.replace("callee::", f"{ns}::", 1)
         else:
             expr = expr.replace("((char* (*)(", f"(({t} (*)(", 1)
         ind = self.body[ln][:len(self.body[ln]) - len(self.body[ln].lstrip())]
         self.body[ln] = ind + (f"{t} {dest} = {expr};" if dest[0] == "r" else f"{dest} = {expr};")
-        if t == "u32":  # ("w32") an integer result: x0 holds it, 32 bits wide
+        if t in ("u32", "bool"):  # ("w32", "bool") an integer result: x0 holds it, 32 bits wide
             self.s.vals[0] = (dest, "u32")
             return
         if self.s.vals.get(0, ("",))[0] == var:
@@ -1524,6 +1528,8 @@ class Lifter:
                 return self.fail("variant")  # only no-return calls: the "void" variant
             # Tail calls return what the other paths return when that is a float.
             rtype = types[0] if types and types[0][0] == "f" else "char*" if tails else types[0]
+            if "w32" in self.opts and tails and types and all(t == "u32" for t in types):
+                rtype = "u32"  # ("w32") and so do the tail calls (declared so below)
             if self.returns == "ref":
                 if rtype != "char*" or tails:
                     return self.fail("variant")
@@ -1537,10 +1543,10 @@ class Lifter:
             ind = self.body[ln][:len(self.body[ln]) - len(self.body[ln].lstrip())]
             if k == "noret":
                 s = f"{p};"
-            elif k == "tail" and rtype[0] == "f":
+            elif k == "tail" and (rtype[0] == "f" or (rtype == "u32" and tails)):
                 if p.startswith("callee::"):
                     fn = p[len("callee::"):p.index("(")]
-                    ns = "fret" if rtype == "f32" else "dret"
+                    ns = {"f32": "fret", "f64": "dret", "u32": "wret"}[rtype]
                     self.decls.add(f"namespace {ns} {{ {rtype} {fn}({self.tails[fn]}); }}")
                     s = f"return {ns}::{p[len('callee::'):]};"
                 else:
@@ -2736,6 +2742,10 @@ class FlatLifter(Lifter):
             self.retype_call(t, self.storage(100, t))
             self.types[100] = t
             s.fcall = None
+        elif n == 0 and r[0] == "w" and self.opts & {"w32", "bool"} and s.fcall:
+            # ("w32", "bool") as Lifter.read: the callee returns 32 bits, or a bool
+            self.retype_call("bool" if "bool" in self.opts else "u32", s.fcall[1])
+            s.fcall = None
         elif n == 0:
             s.fcall = None  # the call's x0 result is used
         if n not in self.types:
@@ -3052,6 +3062,8 @@ def defined_outside(out: Path) -> set[int]:
                     brace, semi = rest.find("{"), rest.find(";")
                     if brace >= 0 and (semi < 0 or brace < semi):
                         skip.add(int(m.group(1), 16))
+            # Names given to a template instance's code: asm(".globl fn_X\n.set fn_X, <symbol>").
+            skip |= {int(a, 16) for a in ALIAS_RE.findall("\n".join(lines))}
             # Template instantiations and macro-defined getters, named by their tags. Only the
             # generators define functions that way; hand-written code may just use a tag.
             if any(ROOT / "src" / d in f.parents for d in TAGGED_DIRS):
@@ -3292,7 +3304,7 @@ def build_all(orig: asmdiff.Original, lifted: list[dict[int, tuple[str, set[str]
 # Rewrites tried, in order, on functions that compile but don't match as lifted. Each is a
 # separate round (all variants again), so a rewrite never costs a function that matched.
 ROUND2 = [frozenset({"copy", "sort"}), frozenset({"copy", "alias"}), frozenset({"copy", "sort", "alias"}),
-          frozenset({"copy", "w32"})]
+          frozenset({"copy", "w32"}), frozenset({"copy", "bool"})]
 
 
 def lift_rounds(orig: asmdiff.Original, cands: list[int], work: Path,

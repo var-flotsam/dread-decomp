@@ -4733,8 +4733,8 @@ address,size,name,name_source,subsystem,status
 0x7100c97324,960,fn_7100c97324,unknown,unknown,U
 0x7100c976e4,388,fn_7100c976e4,unknown,unknown,U
 0x7100c97868,116,fn_7100c97868,unknown,unknown,O
-0x7100c978dc,84,fn_7100c978dc,unknown,unknown,U
-0x7100c97930,120,fn_7100c97930,unknown,unknown,U
+0x7100c978dc,84,fn_7100c978dc,unknown,unknown,O
+0x7100c97930,120,fn_7100c97930,unknown,unknown,O
 0x7100c979a8,116,fn_7100c979a8,unknown,unknown,O
 0x7100c97a1c,120,fn_7100c97a1c,unknown,unknown,U
 0x7100c97a94,28,fn_7100c97a94,unknown,unknown,O
@@ -6910,7 +6910,7 @@ address,size,name,name_source,subsystem,status
 0x7100ce8134,388,CCharClassWantsMissileVisibleEvent::refl_InitClass,reflection,game/characters,O
 0x7100ce82b8,4,fn_7100ce82b8,unknown,game/characters?,O
 0x7100ce82bc,36,fn_7100ce82bc,unknown,game/characters?,O
-0x7100ce82e0,116,fn_7100ce82e0,unknown,game/characters?,U
+0x7100ce82e0,116,fn_7100ce82e0,unknown,game/characters?,O
 0x7100ce8354,28,fn_7100ce8354,unknown,game/characters?,O
 0x7100ce8370,12,fn_7100ce8370,unknown,game/characters?,O
 0x7100ce837c,8,fn_7100ce837c,unknown,game/characters?,O

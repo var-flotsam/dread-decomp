@@ -386,6 +386,20 @@ char* fn_7100762c98(char* p0) {
     return callee::fn_7100762cac(p0, r2_1);
 }
 
+namespace bret { bool fn_710024fb2c(char*); }
+namespace callee { char* fn_710024fb2c(char*); }
+namespace callee { char* fn_7100762f64(char*); }
+void fn_7100762f30(char* p0) {
+    char* r0_19 = p0;
+    bool r1_0 = bret::fn_710024fb2c(p0);
+    if (((u64)(r1_0) >> 0 & 1) != 0) {
+        char* r3_0 = r0_19;
+        callee::fn_7100762f64(r3_0);
+        return;
+    }
+    return;
+}
+
 namespace callee { char* fn_71005c4828(u64, char*); }
 void fn_71007633e4(char* p0) {
     char* r0_19 = p0;

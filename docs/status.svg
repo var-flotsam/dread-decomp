@@ -2,14 +2,14 @@
 <text class="h" x="0" y="22">Decompilation</text>
 <text class="l" x="0" y="49" dy="0.35em">Whole binary</text>
 <rect class="t" x="180" y="43" width="340" height="12" rx="6"/>
-<rect class="m" x="180" y="43" width="196.3" height="12" rx="6"/>
-<rect class="o" x="180" y="43" width="187.7" height="12" rx="6"/>
-<text class="n" x="534" y="49" dy="0.35em">55.2% matching · 57.7% usable</text>
+<rect class="m" x="180" y="43" width="197.2" height="12" rx="6"/>
+<rect class="o" x="180" y="43" width="188.7" height="12" rx="6"/>
+<text class="n" x="534" y="49" dy="0.35em">55.5% matching · 58.0% usable</text>
 <text class="l" x="0" y="79" dy="0.35em">Boot path</text>
 <rect class="t" x="180" y="73" width="340" height="12" rx="6"/>
-<rect class="m" x="180" y="73" width="140.0" height="12" rx="6"/>
-<rect class="o" x="180" y="73" width="104.7" height="12" rx="6"/>
-<text class="n" x="534" y="79" dy="0.35em">30.8% matching · 41.2% usable</text>
+<rect class="m" x="180" y="73" width="140.4" height="12" rx="6"/>
+<rect class="o" x="180" y="73" width="105.1" height="12" rx="6"/>
+<text class="n" x="534" y="79" dy="0.35em">30.9% matching · 41.3% usable</text>
 <text class="h" x="0" y="116">PC port</text>
 <text class="l" x="0" y="143" dy="0.35em">Lifts, every U function</text>
 <rect class="t" x="180" y="137" width="340" height="12" rx="6"/>

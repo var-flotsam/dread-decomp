@@ -1383,6 +1383,56 @@ char* fn_710056add0(char* p0, char* p1) {
     return callee::fn_710056ace0(r0_0, p1);
 }
 
+namespace bret { bool fn_710009d50c(char*, char*); }
+namespace callee { char* fn_710009d50c(char*, char*); }
+namespace callee { char* fn_7100ca0484(); }
+u32 fn_710056add8(char* p0, char* p1) {
+    u64 r0_8 = (u64)*(u64*)((char*)(p1) + 16);
+    u64 r1_8 = (u64)*(u64*)((char*)(r0_8) + 16);
+    u64 r2_0 = (u64)*(u64*)((char*)(r1_8) + 16);
+    if ((u64)(u64)(r2_0) != 0) {
+        u64 r4_8 = (u64)*(u64*)((char*)(r2_0) + 0);
+        u64 r5_8 = (u64)*(u64*)((char*)(r4_8) + 0);
+        char* r6_0 = ((char* (*)(u64))(r5_8))(r2_0);
+        char* r7_19 = r6_0;
+        char* r8_0 = callee::fn_7100ca0484();
+        char* r9_1 = r8_0;
+        char* r10_0 = r7_19;
+        bool r11_0 = bret::fn_710009d50c(r10_0, r9_1);
+        if (((u64)(r11_0) >> 0 & 1) != 0) {
+            u32 r13_0 = 0x1;
+            return r13_0;
+        }
+    }
+    u32 r17_0 = (u32)(u64)(0);
+    return r17_0;
+}
+
+namespace bret { bool fn_710009d50c(char*, char*); }
+namespace callee { char* fn_710009d50c(char*, char*); }
+namespace callee { char* fn_7100ca0484(); }
+u32 fn_710056ae38(char* p0, char* p1) {
+    u64 r0_8 = (u64)*(u64*)((char*)(p1) + 16);
+    u64 r1_8 = (u64)*(u64*)((char*)(r0_8) + 16);
+    u64 r2_0 = (u64)*(u64*)((char*)(r1_8) + 16);
+    if ((u64)(u64)(r2_0) != 0) {
+        u64 r4_8 = (u64)*(u64*)((char*)(r2_0) + 0);
+        u64 r5_8 = (u64)*(u64*)((char*)(r4_8) + 0);
+        char* r6_0 = ((char* (*)(u64))(r5_8))(r2_0);
+        char* r7_19 = r6_0;
+        char* r8_0 = callee::fn_7100ca0484();
+        char* r9_1 = r8_0;
+        char* r10_0 = r7_19;
+        bool r11_0 = bret::fn_710009d50c(r10_0, r9_1);
+        if (((u64)(r11_0) >> 0 & 1) != 0) {
+            u32 r13_0 = 0x1;
+            return r13_0;
+        }
+    }
+    u32 r17_0 = (u32)(u64)(0);
+    return r17_0;
+}
+
 namespace callee { char* fn_710056a37c(); }
 namespace h { extern HIDDEN char g_unk_71726e2ab0[]; }
 char* fn_710056ae98() {

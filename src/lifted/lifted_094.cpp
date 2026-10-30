@@ -199,6 +199,21 @@ L_710094b154:;
     return;
 }
 
+namespace bret { bool fn_71010d8f70(char*); }
+namespace callee { char* fn_71010d8f70(char*); }
+u32 fn_710094b4c4(char* p0) {
+    char* r0_19 = p0;
+    bool r1_0 = bret::fn_71010d8f70(p0);
+    if (((u64)(r1_0) >> 0 & 1) != 0) {
+        u32 r3_0 = 0x1;
+        return r3_0;
+    }
+    u32 r6_8 = 0x2608;
+    u8 r7_8 = (u8)*(u8*)((char*)(r0_19) + (u64)(u64)(r6_8));
+    bool r8_0 = (u32)(u64)((u32)(u64)(r7_8)) != (u32)(0);
+    return (u32)(u64)(r8_0);
+}
+
 namespace callee { char* fn_710093fd88(char*, char*, char*, f32); }
 char* fn_710094b508(char* p0) {
     f32 r0_100 = 0.0f;

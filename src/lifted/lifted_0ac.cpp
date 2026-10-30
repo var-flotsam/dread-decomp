@@ -236,6 +236,57 @@ void fn_7100ac1d60(char* p0) {
     return;
 }
 
+namespace bret { bool fn_710024fbc8(u64); }
+namespace bret { bool fn_7100ac43ec(char*, f64); }
+namespace callee { char* fn_710024fbc8(u64); }
+namespace callee { char* fn_71008642c4(u64, u32); }
+namespace callee { char* fn_7100ac43ec(char*, f64); }
+bool fn_7100ac1f90(char* p0, f64 f0) {
+    char* r0_19 = p0;
+    bool r1_0 = bret::fn_7100ac43ec(p0, f0);
+    u32 m5 = r1_0;
+    if (((u64)(r1_0) >> 0 & 1) == 0) {
+        u64 r3_8 = (u64)*(u64*)((char*)(r0_19) + 1496);
+        u32 m4 = r1_0;
+        if ((u64)(u64)(r3_8) != 0) {
+            u64 r5_8 = (u64)*(u64*)((char*)(r3_8) + 16);
+            u32 m3 = r1_0;
+            if ((u64)(u64)(r5_8) != 0) {
+                u64 r7_9 = (u64)*(u64*)((char*)(r5_8) + 440);
+                u32 m2 = r1_0;
+                if ((u64)(u64)(r7_9) != 0) {
+                    u32 r9_9 = (u32)*(u32*)((char*)(r7_9) + 112);
+                    u32 m1 = r1_0;
+                    if ((u32)(u64)(r9_9) != (u32)(2)) {
+                        u64 r11_20 = (u64)*(u64*)((char*)(r5_8) + 672);
+                        u32 m0 = r1_0;
+                        if ((u64)(u64)(r11_20) != 0) {
+                            u64 r13_0 = r11_20;
+                            bool r14_0 = bret::fn_710024fbc8(r13_0);
+                            if (((u64)(r14_0) >> 0 & 1) != 0) {
+                                u64 r16_8 = (u64)*(u64*)((char*)(r0_19) + 1528);
+                                u64 r17_0 = r11_20;
+                                u32 r18_1 = (u32)*(u32*)((char*)(r16_8) + 224);
+                                char* r19_0 = callee::fn_71008642c4(r17_0, r18_1);
+                                bool r20_0 = (u64)(u64)(r19_0) == (u64)(0);
+                                return r20_0;
+                            }
+                            m0 = r14_0;
+                        }
+                        m1 = m0;
+                    }
+                    m2 = m1;
+                }
+                m3 = m2;
+            }
+            m4 = m3;
+        }
+        m5 = m4;
+    }
+    u32 r41_0 = 0x1;
+    return (bool)(u64)(r41_0);
+}
+
 namespace callee { char* fn_7100ac1b08(); }
 namespace h { extern HIDDEN char g_unk_7172755550[]; }
 char* fn_7100ac2198() {

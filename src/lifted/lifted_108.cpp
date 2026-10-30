@@ -709,6 +709,62 @@ u32 fn_7101083240() {
     return r0_0;
 }
 
+extern char g_unk_7101d47360[];
+extern char g_unk_71729da710[];
+namespace callee { char* fn_71000839a0(u32, u32); }
+namespace callee { char* fn_71000997b4(char*, u64); }
+namespace callee { char* fn_7100ee1f34(char*); }
+namespace callee { char* fn_71010c0270(char*, char*, char*, char*, char*, char*, char*, char*, f64, f64, f64, f64, f64, f64, f64, f64); }
+namespace wret { u32 fn_71000997b4(char*, u64); }
+namespace wret { u32 fn_71010c0270(char*, char*, char*, char*, char*, char*, char*, char*, f64, f64, f64, f64, f64, f64, f64, f64); }
+u32 fn_7101083ba0(char* p0, char* p1, char* p2, char* p3, char* p4, char* p5, char* p6, char* p7, f64 f0, f64 f1, f64 f2, f64 f3, f64 f4, f64 f5, f64 f6, f64 f7) {
+    alignas(8) char stk[0x8];
+    u64 X0 = (u64)p0;
+    u64 X1;
+    u64 X2;
+    u64 X3 = (u64)p3;
+    u64 X4 = (u64)p4;
+    u64 X5 = (u64)p5;
+    u64 X6 = (u64)p6;
+    u64 X7 = (u64)p7;
+    u64 X8;
+    u64 X19;
+    u64 X20;
+    u64 X21;
+    f64 D0 = f0;
+    f64 D1 = f1;
+    f64 D2 = f2;
+    f64 D3 = f3;
+    f64 D4 = f4;
+    f64 D5 = f5;
+    f64 D6 = f6;
+    f64 D7 = f7;
+    X1 = (u64)((char*)"s");
+    X2 = (u64)((stk + 0x0));
+    X0 = wret::fn_71010c0270(((char*)X0), ((char*)X1), ((char*)X2), ((char*)X3), ((char*)X4), ((char*)X5), ((char*)X6), ((char*)X7), D0, D1, D2, D3, D4, D5, D6, D7);
+    if (!((u32)(u64)((u32)X0) != 0)) goto L_7101083c10;
+    X1 = (u64)((u64)*(u64*)(stk + 0x0));
+    X0 = (u64)((char*)g_unk_71729da710);
+    X0 = wret::fn_71000997b4(((char*)X0), X1);
+    X8 = (u64)(0x7fffffff);
+    if (!((u32)(u64)((u32)X0) != (u32)((u32)X8))) goto L_7101083c10;
+    X21 = (u64)((char*)g_unk_7101d47360);
+    X20 = (u64)((u64)*(u64*)((char*)(((char*)X21)) + 0));
+    X19 = (u64)((u32)(u64)((u32)X0));
+    if (!((u64)(u64)(X20) == 0)) goto L_7101083c0c;
+    X0 = (u64)(0xae8);
+    X1 = (u64)(0x3f);
+    X0 = (u64)(callee::fn_71000839a0(((u32)X0), ((u32)X1)));
+    X20 = (u64)(((char*)X0));
+    X0 = (u64)(callee::fn_7100ee1f34(((char*)X0)));
+    *(u64*)((char*)(((char*)X21)) + 0) = (u64)(u64)(((char*)X20));
+L_7101083c0c:;
+    *(u32*)((char*)(((char*)X20)) + 264) = (u32)(u64)((u32)X19);
+L_7101083c10:;
+    X0 = (u64)((u32)(u64)(0));
+    return ((u32)X0);
+}
+
 extern char g_unk_7101d47310[];
 namespace callee { char* fn_7100e00f74(u64, u8); }
 namespace callee { char* fn_71010c0270(char*, char*, char*, char*, char*, char*, char*, char*, f64, f64, f64, f64, f64, f64, f64, f64); }

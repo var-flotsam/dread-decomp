@@ -870,6 +870,23 @@ char* fn_710115bd10(char* p0) {
     return callee::fn_71011610b4(p0);
 }
 
+u32 fn_710115bd28(char* p0, char* p1) {
+    u32 r0_8 = (u32)*(u32*)((char*)(p0) + 112);
+    if ((u32)(u64)(r0_8) == (u32)(2)) {
+        u32 r2_0 = (u32)(u64)(0);
+        return r2_0;
+    }
+    u64 r5_8 = (u64)*(u64*)((char*)(p0) + 48);
+    u64 r6_0 = (u64)*(u64*)((char*)(r5_8) + 576);
+    if ((u64)(u64)(r6_0) != 0) {
+        u64 r8_8 = (u64)*(u64*)((char*)(r6_0) + 0);
+        u64 r9_2 = (u64)*(u64*)((char*)(r8_8) + 1656);
+        return ((u32 (*)(u64, char*))(r9_2))(r6_0, p1);
+    }
+    u32 r12_0 = 0x1;
+    return r12_0;
+}
+
 namespace callee { char* fn_7101158f44(char*, char*); }
 char* fn_710115bd5c(char* p0, char* p1) {
     return callee::fn_7101158f44(p0, p1);
