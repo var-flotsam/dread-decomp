@@ -86,6 +86,9 @@ NAME_RE = re.compile(r"^[A-Za-z_][\w:<>,*& ]*\bfn_([0-9a-f]{10})\(")  # a declar
 TAGGED_DIRS = ("reflection", "reflection_types", "reflection_statics", "clones", "tables")  # generator outputs
 TAG_RE = re.compile(r"(?:UnkRefl_fn_|UnkClone_fn_|UnkTable_fn_|DREAD_REFL_\w*GETTER\()([0-9a-f]{10})\b")  # tagged definitions
 ALIAS_RE = re.compile(r"\.set fn_([0-9a-f]{10}),")  # asm aliases naming a template instance's code
+ATTR_RE = re.compile(r"^(?:__attribute__\(\(.*?\)\)\s*)+")  # leading attributes of a definition
+MACRO_USE_RE = re.compile(r"^([A-Z][A-Z0-9_]*)\((?:fn_)?([0-9a-f]{10})\b")  # a macro given an address first
+MACRO_RE = re.compile(r"^#define ([A-Z][A-Z0-9_]*)\(((?:[^\n]*\\\n)*[^\n]*)", re.M)  # a #define and its body
 # (minimum call arguments, return mode): tried in this order. Return modes: "value" returns x0
 # (or s0) as set, "void" returns nothing, "ref" returns a pointer as a reference (Clang 9 then
 # doesn't turn a final call into a tail call, as in the original's `bl; ret`).
@@ -1545,8 +1548,8 @@ class Lifter:
                 return self.fail("variant")  # only no-return calls: the "void" variant
             # Tail calls return what the other paths return when that is a float.
             rtype = types[0] if types and types[0][0] == "f" else "char*" if tails else types[0]
-            if "w32" in self.opts and tails and types and all(t == "u32" for t in types):
-                rtype = "u32"  # ("w32") and so do the tail calls (declared so below)
+            if self.opts & {"w32", "bool"} and tails and types and all(t == "u32" for t in types):
+                rtype = "u32"  # ("w32", "bool") and so do the tail calls (declared so below)
             if self.returns == "ref":
                 if rtype != "char*" or tails:
                     return self.fail("variant")
@@ -2084,6 +2087,10 @@ class Lifter:
         if x.writeback and not (mem and m in tuple(LOADS) + tuple(STORES) + ("stp", "ldp")):
             return False
         if "semantic" in self.opts and self.semantic_step(x, mem):
+            return True
+        # A conditional compare (`a == x && b == y`) lifts as semantic mode lifts it; a function
+        # with one was rejected before, so this costs no match.
+        if m in ("ccmp", "ccmn") and self.semantic_step(x, mem):
             return True
         s = self.s
         if m == "adrp":
@@ -2765,8 +2772,9 @@ class FlatLifter(Lifter):
 
     def snapshot(self, e: str, t: str) -> str:
         """The value of `e` now, in a temporary (registers are mutable locals here). Semantic
-        mode only; the byte-identical output stays as it was."""
-        if "semantic" not in self.opts:
+        mode, and the "keep" rewrite (a compare reads the value an instruction overwrites:
+        `subs w9, w9, #1` then `b.lo`); the first round's output stays as it was."""
+        if not self.opts & {"semantic", "keep"}:
             return e
         self.vtemps.append(t)
         self.line(f"v{len(self.vtemps) - 1} = ({t})({e});")
@@ -2871,7 +2879,7 @@ class FlatLifter(Lifter):
         n = self.key(r)
         if n < 0:
             return
-        if "semantic" in self.opts:
+        if self.opts & {"semantic", "keep"}:
             self.keep_compare(n)
         self.clob.discard(n)
         if n >= 100:
@@ -3132,6 +3140,17 @@ def defined_elsewhere() -> set[int]:
     return defined_outside(OUT)
 
 
+def defining_macros(text: str) -> set[str]:
+    """Macros of a file whose body defines a function named by pasting, `fn_##addr(...) {`."""
+    names = set()
+    for m in MACRO_RE.finditer(text):
+        body = re.sub(r"/\*.*?\*/", "", m.group(2), flags=re.S)
+        d = re.search(r"\bfn_##\w+\s*\(", body)
+        if d and re.search(r"\)[^;]*\{", body[d.end():]):
+            names.add(m.group(1))
+    return names
+
+
 def defined_outside(out: Path) -> set[int]:
     """Functions defined in src/ outside `out`, by name or by tag."""
     skip = set()
@@ -3139,14 +3158,23 @@ def defined_outside(out: Path) -> set[int]:
         if out not in f.parents:
             text = f.read_text(encoding="utf-8")
             lines = [ln.split("//", 1)[0] for ln in text.splitlines()]  # comments don't count
+            macros = defining_macros(text)
             for i, line in enumerate(lines):
-                m = NAME_RE.match(line)
+                m = NAME_RE.match(ATTR_RE.sub("", line))
                 if m:
-                    # A definition reaches `{` before `;` (declarations may span several lines).
+                    # A definition reaches `{` before `;` (declarations may span several lines);
+                    # an alias attribute before the `;` defines it too.
                     rest = " ".join(lines[i:i + 20])
                     brace, semi = rest.find("{"), rest.find(";")
-                    if brace >= 0 and (semi < 0 or brace < semi):
+                    alias = rest.find("__attribute__((alias(")
+                    if (brace >= 0 and (semi < 0 or brace < semi)) or 0 <= alias < semi:
                         skip.add(int(m.group(1), 16))
+                else:
+                    # A macro given the address first, whose body defines `fn_##addr(...) {`
+                    # (src/game_s1/fn_71000cd580.cpp's iterator moves).
+                    m = MACRO_USE_RE.match(line)
+                    if m and m.group(1) in macros:
+                        skip.add(int(m.group(2), 16))
             # Names given to a template instance's code: asm(".globl fn_X\n.set fn_X, <symbol>").
             skip |= {int(a, 16) for a in ALIAS_RE.findall("\n".join(lines))}
             # Template instantiations and macro-defined getters, named by their tags. Only the
@@ -3389,7 +3417,7 @@ def build_all(orig: asmdiff.Original, lifted: list[dict[int, tuple[str, set[str]
 # Rewrites tried, in order, on functions that compile but don't match as lifted. Each is a
 # separate round (all variants again), so a rewrite never costs a function that matched.
 ROUND2 = [frozenset({"copy", "sort"}), frozenset({"copy", "alias"}), frozenset({"copy", "sort", "alias"}),
-          frozenset({"copy", "w32"}), frozenset({"copy", "bool"})]
+          frozenset({"copy", "w32"}), frozenset({"copy", "bool"}), frozenset({"copy", "keep"})]
 
 
 def lift_rounds(orig: asmdiff.Original, cands: list[int], work: Path,

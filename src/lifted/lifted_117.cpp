@@ -677,6 +677,58 @@ L_71011745bc:;
     return ret;
 }
 
+namespace callee { char* fn_7100014768(); }
+namespace callee { char* fn_71000257e0(u64, u32); }
+namespace callee { char* fn_71000a18d4(char*, char*, char*, u32); }
+UnkResult fn_7101174720(char* p0, char* p1) {
+    alignas(4) char stk[0x4];
+    UnkResult ret;
+    u64 X0;
+    u64 X1 = (u64)p1;
+    u64 X2;
+    u64 X3;
+    u64 X8 = (u64)&ret;
+    u64 X19;
+    u64 X20;
+    u64 v0;
+    X20 = (u64)((u64)*(u64*)((char*)(((char*)X1)) + 8));
+    X19 = (u64)(((char*)X8));
+    X8 = (u64)((u64)*(u64*)((char*)(X20) + 336));
+    if (!((u64)(u64)(X8) != 0)) goto L_7101174780;
+    X8 = (u64)((u64)*(u64*)((char*)(X8) + 16));
+    if (!((u64)(u64)(X8) != 0)) goto L_7101174780;
+    X8 = (u64)((u64)*(u64*)((char*)(X20) + 80));
+    X0 = (u64)((u64)(u64)(X8) + (u64)(320));
+    X1 = (u64)(0x1);
+    X0 = (u64)(callee::fn_71000257e0(X0, ((u32)X1)));
+    X0 = (u64)((u64)*(u64*)((char*)(X20) + 336));
+    if (!((u64)(u64)(X0) != 0)) goto L_7101174780;
+    X8 = (u64)((u32)*(u32*)((char*)(X0) + 8));
+    v0 = (u64)(X8);
+    X8 = (u64)((u32)(u64)((u32)X8) - (u32)(1));
+    *(u32*)((char*)(X0) + 8) = (u32)(u64)((u32)X8);
+    if (!((u32)(u64)((u32)v0) == (u32)(1))) goto L_710117477c;
+    X8 = (u64)((u64)*(u64*)((char*)(X0) + 0));
+    X8 = (u64)((u64)*(u64*)((char*)(X8) + 16));
+    X0 = (u64)(((char* (*)(u64))(X8))(X0));
+L_710117477c:;
+    *(u64*)((char*)(X20) + 336) = (u64)(u64)(0);
+L_7101174780:;
+    X8 = (u64)(0x1);
+    *(u32*)(stk + 0x0) = (u32)(u64)((u32)X8);
+    X0 = (u64)(callee::fn_7100014768());
+    X1 = (u64)(((char*)X0));
+    X8 = (u64)(0x2);
+    *(u32*)((char*)(((char*)X19)) + 16) = (u32)(u64)((u32)X8);
+    X2 = (u64)((stk + 0x0));
+    X0 = (u64)(((char*)X19));
+    X3 = (u64)((u32)(u64)(0));
+    *(u64*)(((char*)(((char*)X19)) + 0) + 0) = (u64)(u64)(0);
+    *(u64*)(((char*)(((char*)X19)) + 0) + 8) = (u64)(u64)(0);
+    X0 = (u64)(callee::fn_71000a18d4(((char*)X0), ((char*)X1), ((char*)X2), ((u32)X3)));
+    return ret;
+}
+
 namespace callee { char* fn_71011729b4(u64, u32, f32); }
 UnkResult fn_7101174a28(char* p0, char* p1) {
     UnkResult ret;

@@ -79,7 +79,8 @@ L_71009a00f0:;
 
 namespace bret { bool fn_710117ae38(u64, u64, u32); }
 namespace callee { char* fn_710117ae38(u64, u64, u32); }
-char* fn_71009a1414(char* p0) {
+namespace wret { u32 fn_710117ae38(u64, u64, u32); }
+u32 fn_71009a1414(char* p0) {
     u64 r0_8 = (u64)*(u64*)((char*)(p0) + 48);
     char* r1_19 = p0;
     u64 r2_1 = 0x801c;
@@ -91,7 +92,7 @@ char* fn_71009a1414(char* p0) {
     bool r8_0 = bret::fn_710117ae38(r7_0, r5_1, r6_2);
     if (((u64)(r8_0) >> 0 & 1) != 0) {
         u32 r10_0 = 0x1;
-        return (char*)(u64)(r10_0);
+        return r10_0;
     }
     u64 r13_8 = (u64)*(u64*)((char*)(r1_19) + 48);
     u64 r14_1 = 0x916;
@@ -100,7 +101,7 @@ char* fn_71009a1414(char* p0) {
     u64 r17_1 = 0xdee0a0eeb0240916;
     u64 r18_0 = (u64)*(u64*)((char*)(r13_8) + 544);
     u32 r19_2 = (u32)(u64)(0);
-    return callee::fn_710117ae38(r18_0, r17_1, r19_2);
+    return wret::fn_710117ae38(r18_0, r17_1, r19_2);
 }
 
 extern char g_unk_7101d552d0[];

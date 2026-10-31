@@ -651,7 +651,8 @@ extern char g_unk_7101d57848[];
 namespace bret { bool fn_710117ae38(u64, u64, u32); }
 namespace callee { char* fn_7100dec788(u64); }
 namespace callee { char* fn_710117ae38(u64, u64, u32); }
-char* fn_7100a06334(char* p0, u32 p1) {
+namespace wret { u32 fn_710117ae38(u64, u64, u32); }
+u32 fn_7100a06334(char* p0, u32 p1) {
     u64 X0;
     u64 X1 = (u64)p1;
     u64 X2;
@@ -678,7 +679,7 @@ L_7100a06374:;
     if (!(((u64)((u32)X0) >> 0 & 1) != 0)) goto L_7100a063a8;
 L_7100a06394:;
     X0 = (u64)(0x1);
-    return (char*)(u64)(((u32)X0));
+    return ((u32)X0);
 L_7100a063a8:;
     (void)lift_guard::GetSingleton();
 L_7100a063b0:;
@@ -686,7 +687,7 @@ L_7100a063b0:;
     X0 = (u64)(X19);
     X2 = (u64)((u32)(u64)(0));
     X1 = (u64)((u64)*(u64*)((char*)(X8) + 48));
-    return callee::fn_710117ae38(X0, X1, ((u32)X2));
+    return wret::fn_710117ae38(X0, X1, ((u32)X2));
 }
 
 void fn_7100a06468() {

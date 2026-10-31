@@ -445,11 +445,55 @@ L_7100d7be80:;
     goto L_7100d7be7c;
 }
 
+namespace callee { char* fn_7100719894(u64, u64, u64, f64, f64); }
+char* fn_7100d7c510(char* p0, char* p1, f64 f0, f64 f1) {
+    u64 r0_0 = (u64)*(u64*)((char*)(p0) + 696);
+    if ((u64)(u64)(r0_0) != 0) {
+        char* r2_8 = p1;
+        u64 r3_1 = (u64)*(u64*)((char*)(p1) + 0);
+        if ((u64)(u64)(r3_1) != 0) {
+            u64 r5_2 = (u64)*(u64*)((char*)(r3_1) + 8);
+            u64 r6_8 = (u64)*(u64*)((char*)(r2_8) + 8);
+            u64 m0 = r6_8;
+            if (((u64)(u64)(r5_2) == (u64)(r6_8)) && ((u64)((u64)(u64)(r6_8) + (u64)(u64)(1)) != 0)) {
+                u64 r8_8 = (u64)*(u64*)((char*)(r3_1) + 0);
+                if ((u64)(u64)(r8_8) != 0) {
+                    return callee::fn_7100719894(r0_0, r3_1, r5_2, f0, f1);
+                }
+                m0 = r8_8;
+            }
+        }
+    }
+    return (char*)(u64)(r0_0);
+}
+
 namespace callee { char* fn_7100719e40(u64, char*, f64, f64); }
 char* fn_7100d7c548(char* p0, char* p1, f64 f0, f64 f1) {
     u64 r0_0 = (u64)*(u64*)((char*)(p0) + 696);
     if ((u64)(u64)(r0_0) != 0) {
         return callee::fn_7100719e40(r0_0, p1, f0, f1);
+    }
+    return (char*)(u64)(r0_0);
+}
+
+namespace callee { char* fn_7100719af0(u64, u64, u64, f64, f64); }
+char* fn_7100d7c558(char* p0, char* p1, f64 f0, f64 f1) {
+    u64 r0_0 = (u64)*(u64*)((char*)(p0) + 696);
+    if ((u64)(u64)(r0_0) != 0) {
+        char* r2_8 = p1;
+        u64 r3_1 = (u64)*(u64*)((char*)(p1) + 0);
+        if ((u64)(u64)(r3_1) != 0) {
+            u64 r5_2 = (u64)*(u64*)((char*)(r3_1) + 8);
+            u64 r6_8 = (u64)*(u64*)((char*)(r2_8) + 8);
+            u64 m0 = r6_8;
+            if (((u64)(u64)(r5_2) == (u64)(r6_8)) && ((u64)((u64)(u64)(r6_8) + (u64)(u64)(1)) != 0)) {
+                u64 r8_8 = (u64)*(u64*)((char*)(r3_1) + 0);
+                if ((u64)(u64)(r8_8) != 0) {
+                    return callee::fn_7100719af0(r0_0, r3_1, r5_2, f0, f1);
+                }
+                m0 = r8_8;
+            }
+        }
     }
     return (char*)(u64)(r0_0);
 }

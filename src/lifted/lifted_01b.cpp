@@ -665,7 +665,7 @@ void fn_71001b7b80(char* p0) {
 
 namespace bret { bool fn_7100211bd8(char*, char*); }
 namespace callee { char* fn_7100211bd8(char*, char*); }
-char* fn_71001b823c(char* p0, char* p1) {
+u32 fn_71001b823c(char* p0, char* p1) {
     u64 X0 = (u64)p0;
     u64 X1 = (u64)p1;
     u64 X2;
@@ -769,13 +769,13 @@ char* fn_71001b823c(char* p0, char* p1) {
     if (!(((u64)((u32)X0) >> 0 & 1) != 0)) goto L_71001b83d8;
 L_71001b83c4:;
     X0 = (u64)(0x1);
-    return (char*)(u64)(((u32)X0));
+    return ((u32)X0);
 L_71001b83d8:;
     X8 = (u64)((u64)*(u64*)((char*)(((char*)X20)) + 0));
     X0 = (u64)(((char*)X20));
     X1 = (u64)(((char*)X19));
     X2 = (u64)((u64)*(u64*)((char*)(X8) + 184));
-    return ((char* (*)(char*, char*, u64))(X2))(((char*)X0), ((char*)X1), X2);
+    return ((u32 (*)(char*, char*, u64))(X2))(((char*)X0), ((char*)X1), X2);
 }
 
 char* fn_71001bab1c(char* p0, f32 f0) {
