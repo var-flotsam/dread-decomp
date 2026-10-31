@@ -62,6 +62,7 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 **Lifter and generators**
 - Alias, sort and copy rewrite rounds; "the generic lifter is near its limit": work log item 1.
 - Semantic mode and its P-code oracle; four flat-mode bugs byte identity hid; the oracle's reach (mutation test): [port M1 step 3](#session-log-newest-first).
+- Five hand-matching agents at once on address slices (about 15 functions per agent-hour); gen_lift must see macro, attribute and alias definitions: [round 27](#session-log-newest-first).
 - Parallel agents in one checkout: file-disjoint steps, `trymatch.py --obj-dir`, one `check.py` at the end: [sixteenth session](#session-log-newest-first).
 - Byte-mode argument pass-through (a lift names the registers its callee reads and it still holds); capstone 5.0.7's wrong register access for `cmp`/`tst` and shift/extend aliases: [lifter pass-through](#session-log-newest-first).
 - The P-code oracle's inputs and rules: mutations placed where a word was read, a compare-constant sweep, out-parameter bounds, runs cut off, unknown callees; each rule's measured trade-off: [lifter oracle inputs](#session-log-newest-first).
@@ -130,6 +131,35 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - Several templates can carry one address's tag (`refl_GetPrimitiveType<G>` and its inline helper `refl_MakePrimitiveType<G>`, which Clang 18 keeps out of line); an alias to one that returns a class by value puts its hidden result pointer in the caller's rdi and writes the object over the caller's frame. A crash whose return address is a function's start, with a type's hook table on the stack, is the sign: [port M1 round 5](#session-log-newest-first).
 
 ## Session log (newest first)
+
+**Round 27: two lifter rewrites and a five-agent fan-out (2026-10-31, branches `claude/project-thread-lths9k-night27`, then `claude/project-thread-czsmeu`).**
+367 functions to `O`. Boot slice: `O` 2,197 to 2,258 (31.43%), usable 41.28% to 41.80%; whole binary `O` 86,184 to 86,551
+(55.80%), usable 58.01% to 58.31%. Three parts:
+- **Lifter, 215 functions.** 32-bit tail returns under "bool" and conditional compares (65, the single-agent session), then
+  a "keep" second-round rewrite: a compare that reads a register its own instruction overwrites (`subs w9, w9, #1` then
+  `b.lo`) keeps the old value in a temporary, as semantic mode does (150 after a full regeneration).
+- **Five matching agents at once, 150 functions by hand.** One checkout, one address slice each (`U` bytes split evenly,
+  `.claude/skills/dread-match`), new files only, their own `trymatch --obj-dir`, no `check.py`, generators or git; capped at
+  2.5 hours or 30 functions. They took 82-116 minutes and 235-342 k tokens each (1.43 M in all) for 29-31 functions each:
+  76 functions an hour together, about 15 per agent-hour, against about 12 an hour for the single session before it.
+  Near copies of matched functions first, then `gen_lift --best` drafts given types. 15 were dropped as stuck (93% median).
+- **gen_lift saw some hand-written definitions as missing.** The regeneration lifted 32 functions again that `src/` already
+  defines: through a macro whose body pastes `fn_##addr(...) {` (src/game_s1/fn_71000cd580.cpp's iterator moves), with a
+  leading `__attribute__((flatten))`, or as an `alias` attribute. `defined_outside` now recognises all three; a macro counts
+  only when its own `#define` defines a function, so a macro that only declares one (`STATE` in
+  src/game/CCameraComponent/fn_71010e2278.cpp) doesn't hide its address.
+- **Fan-out costs.** The agents' compiles, the full regeneration (2 h 40 min instead of about an hour) and another thread's
+  whole-game lift ran together on the 8-core PC, which ran out of memory and CPU. Run one heavy job at a time, and give
+  agents fewer cores or fewer agents. Each agent declares the callees it needs, so two files can declare one with different
+  signatures (11 here); align them with the existing declaration before merging (`decl_check.py --base origin/main`).
+  Where the other caller passes fewer arguments than the function takes (fn_7100286ad4, fn_7100360b84), keep the old
+  declaration and call through a cast: casting a declaration with more parameters makes Clang zero the ones not passed.
+- Levers the agents found more than once: search loops over (data, count) as `for (T *it = data, *end = data + count; it
+  != end; ++it)`, or a count-down `for (u64 n = count; n; --n, ++it)`, never an index; constructors store the vtable right
+  after the base constructor, clear contiguous runs with `__builtin_memset` (emitted before plain stores), then the rest in
+  address order; words all loaded then all stored are one struct member copied as a block; a value returned through x8
+  with field-by-field stores has a user-provided copy constructor; `&` instead of `&&` between two compares flips a csel's
+  operands; a type in a function's signature must not be in an anonymous namespace (internal linkage, trymatch 0/0).
 
 **Night round 26: more lifter rewrites (2026-10-30, branch `claude/project-thread-lths9k-night26`).**
 411 functions to `O`. Boot slice: `O` 2,176 to 2,197 (30.92%), usable 41.17% to 41.28%; whole binary `O` 85,773 to 86,184
