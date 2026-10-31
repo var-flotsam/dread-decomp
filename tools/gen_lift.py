@@ -194,6 +194,15 @@ def zero_save(x) -> bool:
         other[0][0] == "x" and other[0][1:].isdigit() and 19 <= int(other[0][1:]) <= 28))
 
 
+def push_local(x) -> bool:
+    """`str|stp <regs>, [sp, #-imm]!` of registers is_frame does not save: a store of a local
+    that also makes the frame (Lifter.setup_frame)."""
+    mem = [op for op in x.operands if op.type == arm64.ARM64_OP_MEM]
+    if x.mnemonic not in ("str", "stp", "strb", "strh") or not mem or regname(mem[0].mem.base) != "sp"             or not x.writeback or mem[0].mem.disp >= 0 or is_frame(x):
+        return False
+    return not any(op.type == arm64.ARM64_OP_IMM for op in x.operands)  # (pre-indexed: no post imm)
+
+
 def wide_text(data: bytes, a: int, n: int) -> bool:
     """Whether the n-character (0 or 1) narrow text at a is really a wide string's start: a is
     4-aligned and the rest of the first 4-byte character is zero (L"" is four zero bytes, L"Y" is
@@ -777,7 +786,11 @@ class Lifter:
             return f"((char*)({base}) + {self.extend(idx, op, 'u64')})"
         if op.shift.type:
             raise Unsupported("indexed")
-        if base_reg in ("sp", "x29"):
+        if base_reg == "sp" or (base_reg == "x29" and not (
+                "semantic" in self.opts and (not self.frame or self.frame["fp"] is None))):
+            if x.writeback and x.address == getattr(self, "push_at", None) and self.frame:
+                self.cur_delta = self.frame["sp"]  # (setup_frame's push_local: the store, then sp)
+                return self.local(self.frame["sp"])
             if x.writeback or not self.frame:
                 raise Unsupported("stack writeback")
             base = self.frame["sp"] if base_reg == "sp" else self.frame["fp"]
@@ -1657,11 +1670,23 @@ class Lifter:
                 return any((op.type == arm64.ARM64_OP_REG and regname(op.reg) in ("sp", "x29"))
                            or (op.type == arm64.ARM64_OP_MEM and regname(op.mem.base) in ("sp", "x29"))
                            for op in x.operands)
-            p = next((j for j, x in enumerate(ins[:12]) if is_frame(x)), None)
-            if p and not any(touches(x) for x in ins[:p]):
+            p = next((j for j, x in enumerate(ins[:12]) if is_frame(x) or push_local(x)), None)
+            if p is not None and not any(touches(x) for x in ins[:p]):
                 k = p
         self.frame_at = k  # the prologue's first instruction (frame_reset)
+        self.push_at = None
         zeroed = []  # (semantic mode) prologue pairs that zero a local beside a save: (index, sp)
+        pushed = []  # (semantic mode) the local a push_local stores: (offset, size)
+        if "semantic" in self.opts and k < len(ins) and push_local(ins[k]):
+            # `str w10, [sp, #-0x30]!` (fn_71002cc5dc): a leaf's frame made by storing a local, not
+            # a save; the store is lifted as code (address()) to the body's sp
+            x = ins[k]
+            delta = [op for op in x.operands if op.type == arm64.ARM64_OP_MEM][0].mem.disp
+            regs = [regname(op.reg) for op in x.operands if op.type == arm64.ARM64_OP_REG]
+            w = {"b": 1, "h": 2}.get(x.mnemonic[-1], {"x": 8, "d": 8, "q": 16}.get(regs[0][0], 4))
+            pushed.append((delta, w * len(regs)))
+            self.push_at = x.address
+            k += 1
         while k < len(ins) and (is_frame(ins[k]) or ("semantic" in self.opts and zero_save(ins[k]))):
             x = ins[k]
             m, o = x.mnemonic, x.operands
@@ -1690,17 +1715,19 @@ class Lifter:
             k += 1
         self.save_slots = {s + 8 * i for s, e in saves for i in range((e - s) // 8)}
         self.body_delta = self.cur_delta = delta
-        refs = []  # (offset from sp at entry, size)
+        refs = list(pushed)  # (offset from sp at entry, size)
         for j, at in zeroed:
             if at != delta:  # (before an sp adjustment: address() takes the body's sp)
                 return False
             refs.append((delta + [op for op in ins[j].operands if op.type == arm64.ARM64_OP_MEM][0].mem.disp, 16))
+        # (semantic mode: without a frame pointer, x29 is an ordinary register, fn_71001d1880)
+        fregs = ("sp", "x29") if fp is not None or "semantic" not in self.opts else ("sp",)
         for x in ins[k:]:
             if self.frame_op(x):
                 continue
             o = x.operands
             for op in o:
-                if op.type == arm64.ARM64_OP_MEM and regname(op.mem.base) in ("sp", "x29"):
+                if op.type == arm64.ARM64_OP_MEM and regname(op.mem.base) in fregs:
                     base = delta if regname(op.mem.base) == "sp" else fp
                     if base is None or x.writeback:
                         return False
@@ -1710,7 +1737,7 @@ class Lifter:
                         w = 16
                     refs.append((base + op.mem.disp, w * len(regs)))
             if x.mnemonic in ("add", "sub", "mov") and len(o) >= 2 and o[1].type == arm64.ARM64_OP_REG \
-                    and regname(o[1].reg) in ("sp", "x29") and regname(o[0].reg) not in ("sp", "x29"):
+                    and regname(o[1].reg) in fregs and regname(o[0].reg) not in ("sp", "x29"):
                 base = delta if regname(o[1].reg) == "sp" else fp
                 if base is None or (len(o) == 3 and o[2].type != arm64.ARM64_OP_IMM):
                     return False
