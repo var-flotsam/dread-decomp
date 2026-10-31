@@ -3071,6 +3071,28 @@ class FlatLifter(Lifter):
                 elif m == "b" and not addr <= o[0].imm < end:
                     self.terminate("tail", self.call(f"fn_{o[0].imm:x}"))
                     self.tails[f"fn_{o[0].imm:x}"] = self.last_call[1]
+                elif "semantic" in self.opts and (m in ("cbz", "cbnz", "tbz", "tbnz") or m.startswith("b.")) \
+                        and o and o[-1].type == arm64.ARM64_OP_IMM and not addr <= o[-1].imm < end \
+                        and o[-1].imm in self.orig.sizes and not self.sret_callee(o[-1].imm) \
+                        and not self.result_of(addr) and not self.result_of(o[-1].imm):
+                    # A conditional tail call: the branch goes to another function's entry (the
+                    # next one, 710106b490's `cbz x10, <end>`). The call is made where the branch
+                    # is taken, with the registers as they are there.
+                    if m.startswith("b."):
+                        taken = self.cond(x.cc, False)
+                    else:
+                        v, _ = self.read(regname(o[0].reg))
+                        if m in ("cbz", "cbnz"):
+                            taken = f"({width_type(regname(o[0].reg))})(u64)({v}) {'==' if m == 'cbz' else '!='} 0"
+                        else:
+                            taken = f"((u64)({v}) >> {o[1].imm} & 1) {'==' if m == 'tbz' else '!='} 0"
+                    self.line(f"if ({taken}) {{")
+                    saved = (self.s.copy(), set(self.clob))
+                    self.terminate("tail", self.call(f"fn_{o[-1].imm:x}"))
+                    self.tails[f"fn_{o[-1].imm:x}"] = self.last_call[1]
+                    self.line("}")
+                    self.s, self.clob = saved  # (the call is on the taken side only)
+                    self.live = True
                 elif m == "br" and x.address in self.jtables:
                     idx, tgts = self.jtables[x.address]
                     v, _ = self.read(f"x{idx}")
