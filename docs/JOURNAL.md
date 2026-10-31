@@ -131,6 +131,38 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Lifter: the whole-binary refusals, round 1 (2026-10-31, branch `claude/project-thread-zgkpk3`).** A
+whole-binary run on main (`port_lift --slice all`, build/port/lifted_all2) accepted 17,352 of 17,534;
+of the 176 left, 59 were refusals of the lifter, 54 oracle rejections and 63 inconclusive. This round
+takes the refusals with a shared shape, semantic mode only (byte mode: 4,506 of 5,941 sampled
+candidates byte-identical, `src/lifted` unchanged; check.py clean). Rerun on the round
+(build/port/lifted_all3, a worklist 1,062 shorter because main hand-wrote them since): 16,315 of
+16,470, 25 newly accepted and none lost.
+- **Jump tables** ("insn: adr", 10). The bound search follows the zero-extending copies of the
+  index (`mov wI, wJ`, `and xI, xJ, #0xff|0xffff|0xffffffff`) before or after the compare
+  (7100daf6dc: `mov w28, w22; cmp w22, #7`), and J may be reused once its copy is made (710094b8b0:
+  `mov w8, w9; adrp x9`, a regression of the first version, caught by the rerun). A switch with no
+  bound in the function at all (an enum the compiler trusts, 71004ec714) takes the table's leading
+  entries that land on the function's instructions. 8 of 10 lift; all 226 jump-table functions of
+  the run do.
+- **Float width** (8). A float register read at the other width is the hardware's bits: s<n> is
+  the low half of d<n>, d<n> of a scalar write is zero-extended (`reinterpret_float`). The usual
+  source: a callee-saved d8-d15 saved as a double in the prologue, or a parameter of unknown width
+  copied with `mov v8.16b, v1.16b`, then used as a float. 6 of 8 lift.
+- **movk at a label** (6): several paths share one movk after their own mov, so the constants do not
+  meet; the movk becomes the instruction on the register's value. All 6.
+- **std::to_string** (3 of 4 x8 rejections): the import has no facts (abi_facts knows the C library
+  by name), so the call did not pass its result address; the mangled `_ZNSt3__19to_stringE<c>`
+  imports are struct-returning calls now (`SRET_IMPORTS`).
+- Left, with their causes: the oracle's float-argument width (the lift passes `S0` as f32 and the
+  original's d0 differs only in the upper half: a per-argument s/d width in abi_facts would settle
+  71006ffce4 and kin); `cbz` to the function's own end (a conditional tail call into the next
+  function, 710106b490); two small-integer loads joined at one convert (`ldr h2` on both arms, the
+  far-convert rule wants one load); the size cap; the 63 inconclusive (snapshots help only where the
+  recomp reaches).
+- port_link prints every split static now, each once (a guard only without its static): 25 on the
+  current boot link, among them `fn_710007fdb4()::s_heap` and `nninitStartup::s_available`/`s_used`.
+
 **Night round 26: more lifter rewrites (2026-10-30, branch `claude/project-thread-lths9k-night26`).**
 411 functions to `O`. Boot slice: `O` 2,176 to 2,197 (30.92%), usable 41.17% to 41.28%; whole binary `O` 85,773 to 86,184
 (55.50%), usable 57.72% to 58.01%. A 522-function sample of unmatched small functions, lifted with `--best` and grouped by
