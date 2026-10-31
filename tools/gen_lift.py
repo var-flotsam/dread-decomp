@@ -2660,11 +2660,20 @@ class FlatLifter(Lifter):
                         and regname(y.operands[0].reg)[1:] in alias and y.operands[1].type == arm64.ARM64_OP_IMM \
                         and self.bhi_after(ins, j):
                     r = regname(y.operands[0].reg)[1:]
-                    # J unwritten from the compare to the load but by the copies, and I's last
-                    # value before the load one of the copies (71004ec714 reuses w8 in between)
+                    # I's last value before the load one of the copies (71004ec714 reuses w8 in
+                    # between), and J unchanged between the compare and the copy that passes it on
+                    # (after it, J may be reused: 710094b8b0's `mov w8, w9; adrp x9`)
                     idef = max((w for w in writes.get(ireg, []) if w < ld), default=-1)
-                    if all(w in copies for w in writes.get("x" + r, []) if j < w < ld) \
-                            and (r == ireg[1:] or idef in copies):
+                    if r == ireg[1:]:
+                        ok = all(w in copies for w in writes.get("x" + r, []) if j < w < ld)
+                        src_span = (j, ld)
+                    else:
+                        cs = [c for c, (_, s_) in copies.items() if s_ == r]
+                        c = min(cs, key=lambda c: abs(c - j)) if cs else None
+                        src_span = (min(j, c), max(j, c)) if c is not None else (j, ld)
+                        ok = c is not None and idef in copies \
+                            and not any(src_span[0] < w < src_span[1] for w in writes.get("x" + r, []))
+                    if ok:
                         bound, cmp_at, src = y.operands[1].imm, max(j, idef), "x" + r
                     break
             if bound is None:
@@ -2711,9 +2720,8 @@ class FlatLifter(Lifter):
                     continue
                 else:
                     bound, cmp_at = max(ins[j].operands[1].imm for j in cmps), cmps[0]
-            elif any(cmp_at < j < k and j not in copies for j in writes.get(ireg, [])) \
-                    or any(cmp_at < j < ld and j not in copies for j in writes.get(src, [])):
-                continue
+            elif any(cmp_at < j < k and j not in copies for j in writes.get(ireg, [])):
+                continue  # (J itself was checked against its copy above)
             base = ins[adr].operands[1].imm
             tgts = []
             for e in range(bound + 1):
