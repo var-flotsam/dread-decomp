@@ -86,6 +86,9 @@ NAME_RE = re.compile(r"^[A-Za-z_][\w:<>,*& ]*\bfn_([0-9a-f]{10})\(")  # a declar
 TAGGED_DIRS = ("reflection", "reflection_types", "reflection_statics", "clones", "tables")  # generator outputs
 TAG_RE = re.compile(r"(?:UnkRefl_fn_|UnkClone_fn_|UnkTable_fn_|DREAD_REFL_\w*GETTER\()([0-9a-f]{10})\b")  # tagged definitions
 ALIAS_RE = re.compile(r"\.set fn_([0-9a-f]{10}),")  # asm aliases naming a template instance's code
+ATTR_RE = re.compile(r"^(?:__attribute__\(\(.*?\)\)\s*)+")  # leading attributes of a definition
+MACRO_USE_RE = re.compile(r"^([A-Z][A-Z0-9_]*)\((?:fn_)?([0-9a-f]{10})\b")  # a macro given an address first
+MACRO_RE = re.compile(r"^#define ([A-Z][A-Z0-9_]*)\(((?:[^\n]*\\\n)*[^\n]*)", re.M)  # a #define and its body
 # (minimum call arguments, return mode): tried in this order. Return modes: "value" returns x0
 # (or s0) as set, "void" returns nothing, "ref" returns a pointer as a reference (Clang 9 then
 # doesn't turn a final call into a tail call, as in the original's `bl; ret`).
@@ -3052,6 +3055,17 @@ def defined_elsewhere() -> set[int]:
     return defined_outside(OUT)
 
 
+def defining_macros(text: str) -> set[str]:
+    """Macros of a file whose body defines a function named by pasting, `fn_##addr(...) {`."""
+    names = set()
+    for m in MACRO_RE.finditer(text):
+        body = re.sub(r"/\*.*?\*/", "", m.group(2), flags=re.S)
+        d = re.search(r"\bfn_##\w+\s*\(", body)
+        if d and re.search(r"\)[^;]*\{", body[d.end():]):
+            names.add(m.group(1))
+    return names
+
+
 def defined_outside(out: Path) -> set[int]:
     """Functions defined in src/ outside `out`, by name or by tag."""
     skip = set()
@@ -3059,14 +3073,23 @@ def defined_outside(out: Path) -> set[int]:
         if out not in f.parents:
             text = f.read_text(encoding="utf-8")
             lines = [ln.split("//", 1)[0] for ln in text.splitlines()]  # comments don't count
+            macros = defining_macros(text)
             for i, line in enumerate(lines):
-                m = NAME_RE.match(line)
+                m = NAME_RE.match(ATTR_RE.sub("", line))
                 if m:
-                    # A definition reaches `{` before `;` (declarations may span several lines).
+                    # A definition reaches `{` before `;` (declarations may span several lines);
+                    # an alias attribute before the `;` defines it too.
                     rest = " ".join(lines[i:i + 20])
                     brace, semi = rest.find("{"), rest.find(";")
-                    if brace >= 0 and (semi < 0 or brace < semi):
+                    alias = rest.find("__attribute__((alias(")
+                    if (brace >= 0 and (semi < 0 or brace < semi)) or 0 <= alias < semi:
                         skip.add(int(m.group(1), 16))
+                else:
+                    # A macro given the address first, whose body defines `fn_##addr(...) {`
+                    # (src/game_s1/fn_71000cd580.cpp's iterator moves).
+                    m = MACRO_USE_RE.match(line)
+                    if m and m.group(1) in macros:
+                        skip.add(int(m.group(2), 16))
             # Names given to a template instance's code: asm(".globl fn_X\n.set fn_X, <symbol>").
             skip |= {int(a, 16) for a in ALIAS_RE.findall("\n".join(lines))}
             # Template instantiations and macro-defined getters, named by their tags. Only the
