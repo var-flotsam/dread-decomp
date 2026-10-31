@@ -1238,6 +1238,8 @@ class Lifter:
             exits = not succ[j] and x.mnemonic != "brk"
             # (a ret reads v0, and v1-v3 for a multi-register result; a tail call v0-v7)
             ret_reads = (n == 0 and bool(main) and 100 in main) or (n < 4 and fshape)
+            if n < 8 and x.mnemonic == "bl" and (f := self.callee_floats(x)) is not None and n >= f:
+                continue  # (a callee that takes fewer float arguments: the call ends v<n>, 710065922c)
             if mine(x, 0) or (n < 8 and x.mnemonic in ("bl", "blr")) \
                     or (exits and (ret_reads if x.mnemonic == "ret" else n < 8)):
                 reads.add(j)
@@ -1252,16 +1254,29 @@ class Lifter:
         c = reads.pop()
         if not convert(ins[c]):
             return None
+        # (reached from the entry without the load: another value of v<n>, unless it passes
+        # another load of the same width into v<n>, which far_convert lifts the same way: a load on
+        # each path to one convert, 7100027b7c)
+        width = ins[k].op_str.split(",")[0][0]
         seen, work = {k}, [0]
-        while work:  # (reached from the entry without the load: another value of v<n>)
+        while work:
             j = work.pop()
             if j == c:
                 return None
             if j in seen:
                 continue
             seen.add(j)
+            if ins[j].mnemonic in ("ldr", "ldur") and ins[j].op_str.split(",")[0] == f"{width}{n}":
+                continue
             work += succ[j]
         return c
+
+    def callee_floats(self, x) -> int | None:
+        """Semantic mode: how many float arguments the direct callee of `bl` x reads (abi_facts)."""
+        if "semantic" not in self.opts or self.facts is None or x.operands[0].type != arm64.ARM64_OP_IMM:
+            return None
+        f = self.facts(x.operands[0].imm)
+        return None if f is None else f.floats
 
     def small_int_load(self, x, mem, reg: str) -> bool:
         """`ldr h<n>|b<n>` up to the convert of s<n> that uses it (step's comment)."""
