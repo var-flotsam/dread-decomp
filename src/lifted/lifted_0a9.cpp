@@ -1708,6 +1708,30 @@ u64 fn_7100a9f6f8(char* p0) {
     return r1_0;
 }
 
+extern char g_unk_7101d58d10[];
+namespace callee { char* fn_710007ea60(char*, u64); }
+UnkResult fn_7100a9f704(char* p0) {
+    UnkResult ret;
+    u64 X0 = (u64)p0;
+    u64 X1;
+    u64 X8 = (u64)&ret;
+    u64 X9;
+    u64 v0;
+    X9 = (u64)(((char*)X0));
+    X0 = (u64)(((char*)X8));
+    X8 = (u64)((u64)*(u64*)((char*)(((char*)X9)) + 1280));
+    v0 = (u64)(X8);
+    X8 = (u64)((char*)(v0) + 88);
+    X9 = (u64)((u64)*(u64*)((char*)(v0) + 88));
+    X1 = (u64)((char*)g_unk_7101d58d10);
+    if (!((u64)(u64)(X9) != 0)) goto L_7100a9f72c;
+    X9 = (u64)((u8)*(u8*)((char*)(X9) + 0));
+    X1 = (u64)(((u32)(u64)((u32)X9) == (u32)(0)) ? (u64)(u64)(((char*)X1)) : (u64)((u64)(u64)(((char*)X8))));
+L_7100a9f72c:;
+    callee::fn_710007ea60(((char*)X0), X1);
+    return ret;
+}
+
 namespace callee { char* fn_710007ea60(char*, u64); }
 UnkResult fn_7100a9f730(char* p0) {
     UnkResult ret;

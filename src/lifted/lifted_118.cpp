@@ -1133,6 +1133,40 @@ void fn_710118971c(char* p0) {
     return;
 }
 
+namespace callee { char* fn_7100000790(char*, char*, u64); }
+namespace callee { char* fn_710007eaa0(char*, char*); }
+char* fn_710118aa54(char* p0, char* p1, char* p2) {
+    u64 X0 = (u64)p0;
+    u64 X1 = (u64)p1;
+    u64 X2 = (u64)p2;
+    u64 X8;
+    u64 X19;
+    u64 X20;
+    u64 X21;
+    u64 X22;
+    u64 v0;
+    X20 = (u64)(((char*)X0));
+    X19 = (u64)(((char*)X2));
+    X21 = (u64)(((char*)X1));
+    v0 = (u64)(((char*)X20));
+    X20 = (u64)((char*)(v0) + 136);
+    X2 = (u64)((u64)*(u64*)((char*)(v0) + 136));
+    X22 = (u64)(((char*)X0));
+    if (!((u64)(u64)(X2) != 0)) goto L_710118aa98;
+    X8 = (u64)((u8)*(u8*)((char*)(X2) + 0));
+    if (!((u32)(u64)((u32)X8) != 0)) goto L_710118aa98;
+    X0 = (u64)((char*)"menu_root.Destroy");
+    X1 = (u64)((char*)"s");
+    X0 = (u64)(callee::fn_7100000790(((char*)X0), ((char*)X1), X2));
+L_710118aa98:;
+    X0 = (u64)((((char*)X22)) + 88);
+    X1 = (u64)(((char*)X21));
+    X0 = (u64)(callee::fn_710007eaa0(((char*)X0), ((char*)X1)));
+    X0 = (u64)(((char*)X20));
+    X1 = (u64)(((char*)X19));
+    return callee::fn_710007eaa0(((char*)X0), ((char*)X1));
+}
+
 extern char g_unk_717271e8f8[];
 extern char g_unk_71727bed90[];
 namespace callee { char* fn_710007e704(char*, char*); }
