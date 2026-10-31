@@ -1042,6 +1042,9 @@ def symbol_sizes(nm: str, path: Path) -> dict[str, int]:
     return sizes
 
 
+SPLIT_STATIC = "a static of a non-inline function, which the link cannot bind (it splits from the image's)"
+
+
 def bound_statics(symbols: list[tuple[str, str]], sizes: dict[str, int], known: dict[str, int],
                   data_addresses: set[int]) -> tuple[list[tuple[str, int]], dict[str, list[str]]]:
     """The function-local statics of inline functions (and their guard variables) to bind to the
@@ -1051,10 +1054,18 @@ def bound_statics(symbols: list[tuple[str, str]], sizes: dict[str, int], known: 
     the weak definition), together with its guard: both or neither, or the static could be
     constructed twice. One whose size reaches past the next known image address is left as it is
     (a placeholder type larger than the original's object would overwrite its neighbours).
+    A placed static that the object defines as a local symbol (the static of a function that is not
+    inline) cannot be bound at all: the executable keeps its own copy while lifted code and `g_unk_`
+    users reach the image's, and the two split (fn_7100de8f78's id registry). Those are left under
+    SPLIT_STATIC; the fix is in the source (make the function inline on the port, or keep the
+    object in the image off __aarch64__).
     Returns ((symbol, address) to bind, the ones left as they are by reason)."""
     weak = {s for k, s in symbols if k in "Vu"}
+    local = sorted({s for k, s in symbols if k in "bdrs" and s.startswith(("_ZZ", "_ZGVZ")) and s in known})
     cand = {s for s in weak if s.startswith(("_ZZ", "_ZGVZ"))}
     left: dict[str, list[str]] = defaultdict(list)
+    if local:
+        left[SPLIT_STATIC] = local
     static_bounds = sorted({a for s, a in known.items() if s.startswith(("_ZZ", "_ZGVZ"))})
     bounds = sorted(data_addresses | set(static_bounds))
     groups: dict[str, list[str]] = defaultdict(list)  # the static's name -> it and its guard
@@ -1661,6 +1672,13 @@ def main() -> int:
     print(f"silent: {silent_named + len(silent_extra)} nn::atk functions return zero ({silent_named} named, {len(silent_extra)} reached only through the game's code pointers)")
     print(f"statics: {len(statics)} function-local statics and guards of inline functions bound to the image"
           + "".join(f"; {len(v)} left in the executable, {k}" for k, v in sorted(statics_left.items())))
+    # Every split static (the risky class: the game and the port each keep their own copy), once:
+    # a guard only when its static is not listed too.
+    split = statics_left.get(SPLIT_STATIC, ())
+    for s in split:
+        if s.startswith("_ZGVZ") and "_ZZ" + s[len("_ZGVZ"):] in split:
+            continue
+        print(f"    split: {demangled.get(s, s)} (image 0x{known[s]:x})")
     whole_o = out / "dread_whole.o"
     r, dt2 = link(lld, whole_o, [str(game_o), *map(str, runtime_objs), str(traps_o), str(tables_o),
                                  f"@{aliases_rsp.as_posix()}"])

@@ -146,6 +146,9 @@ FTOINT = {"fcvtzs": "", "fcvtzu": "", "fcvtms": "__builtin_floor{s}", "fcvtmu": 
 # right after the check that belong to the helper. Their definitions are in HEADER (namespace
 # lift_guard), written like those in include/ (UnkReflStatics.h, CStrId.h).
 GUARD_ACQUIRE = 0x7101238da0  # __cxa_guard_acquire
+# Imports (mangled) that return a class object through x8: no facts (abi_facts knows the C
+# library by name only), yet the caller passes the result's address in x8 (71007ab7d8).
+SRET_IMPORTS = frozenset(f"_ZNSt3__19to_stringE{c}" for c in "ijlmxyfde")
 DSO_HANDLE = 0x7101a19000  # __dso_handle (passed to __cxa_atexit): an address, not the string ""
 GUARDS = {
     0x7101cba070: ("lift_guard::EnsureStringPool();", [0x710007fdb4]),
@@ -213,6 +216,16 @@ def is_int(t: str) -> bool:
 def ftype(r: str) -> str | None:
     """C type of a float register name (s<n>: f32, d<n>: f64), or None."""
     return {"s": "f32", "d": "f64"}.get(r[0]) if fkey(r) is not None else None
+
+
+def reinterpret_float(e: str, t: str) -> str:
+    """A float register's value of type t read at the other width, as the hardware does: s<n> is
+    the low 32 bits of d<n>, and a scalar write of s<n> zeroes the rest, so d<n> is its bits
+    zero-extended (semantic mode: a callee-saved d8 saved as a double and kept as a float,
+    7100711fe8; a parameter of unknown width copied with `mov v8.16b, v1.16b`)."""
+    if t == "f64":
+        return f"lift_f32((u32)lift_bits((f64)({e})))"
+    return f"lift_f64((u64)lift_bits((f32)({e})))"
 
 
 def float_literal(bits: int, t: str) -> str | None:
@@ -544,6 +557,8 @@ class Lifter:
         if r[0] == "w" and t != "u32":
             return f"(u32)(u64)({e})", "u32"
         if r[0] in "sd" and t != ("f32" if r[0] == "s" else "f64"):
+            if "semantic" in self.opts and t in ("f32", "f64"):
+                return reinterpret_float(e, t), ftype(r)
             raise Unsupported("float width")
         return e, t
 
@@ -1056,6 +1071,8 @@ class Lifter:
         if self.facts is None or ("semantic" not in self.opts and self.plain):
             return False
         f = self.facts(a)
+        if f is None and "semantic" in self.opts and self.orig.plt_import(a) in SRET_IMPORTS:
+            return True  # (an import that returns a class object: std::to_string's std::string)
         if f is None or not f.sret:
             return False
         self.passed |= "semantic" not in self.opts
@@ -2204,9 +2221,17 @@ class Lifter:
         elif m == "movk" and len(o) == 2:
             rd = regname(o[0].reg)
             n = self.key(rd)
-            if n not in s.consts:
-                return False
             shift = o[1].shift.value if o[1].shift.type else 0
+            if n not in s.consts:
+                if "semantic" not in self.opts:
+                    return False
+                # A movk at a label where the ways in do not agree on the constant (7100499f78:
+                # several paths share the `movk` after their own `mov`): the instruction itself.
+                t = width_type(rd)
+                e, _ = self.read(rd)
+                keep = (0xFFFFFFFF if rd[0] == "w" else 0xFFFFFFFFFFFFFFFF) & ~(0xFFFF << shift)
+                self.write(rd, f"(({t})({e}) & {keep:#x}) | {o[1].imm << shift:#x}", t)
+                return True
             v = (s.consts[n] & ~(0xFFFF << shift)) | (o[1].imm << shift)
             self.write(rd, f"{v:#x}", width_type(rd), v)
         elif m == "fmov" and len(o) == 2:
@@ -2622,18 +2647,41 @@ class FlatLifter(Lifter):
             table = ins[tw[0]].operands[1].imm + ins[tw[1]].operands[2].imm
             # cmp wI, #N; b.hi shortly before, I unwritten until the br; or the compare is on J and
             # `mov wI, wJ` copies it in between (J then unwritten from the compare to the copy)
-            bound, cmp_at, copy, src = None, None, None, ireg
-            for j in range(min(adr, ld) - 1, max(min(adr, ld) - 16, -1), -1):
+            bound, cmp_at, src = None, None, ireg
+            # The registers holding I's value at the load: I, and the sources of the zero-extending
+            # copies (`mov wI, wJ`, `and xI, xJ, #0xff|0xffff|0xffffffff`) that last wrote them in
+            # the window, before or after the compare (7100daf6dc: `mov w28, w22; cmp w22, #7`;
+            # 71001d54e0: `cmp w21, #0xf; b.hi; and x8, x21, #0xffffffff`)
+            lo = max(min(adr, ld) - 16, 0)
+            copies = {j: cp for j in range(lo, min(adr, ld)) if (cp := self.zext_copy(ins[j])) is not None}
+            alias, grown = {ireg[1:]}, True
+            while grown:
+                grown = False
+                for j, (d, s_) in copies.items():
+                    if d in alias and s_ not in alias and j == max(w for w in writes.get("x" + d, [j]) if w < ld):
+                        alias.add(s_)
+                        grown = True
+            for j in range(min(adr, ld) - 1, lo - 1, -1):
                 y = ins[j]
-                if copy is None and y.mnemonic == "mov" and len(y.operands) == 2 \
-                        and y.operands[1].type == arm64.ARM64_OP_REG and regname(y.operands[0].reg)[1:] == ireg[1:] \
-                        and regname(y.operands[1].reg)[0] in "xw" and regname(y.operands[1].reg)[1:].isdigit():
-                    copy, src = j, "x" + regname(y.operands[1].reg)[1:]
-                    continue
                 if y.mnemonic == "cmp" and y.operands[0].type == arm64.ARM64_OP_REG \
-                        and regname(y.operands[0].reg)[1:] == src[1:] and y.operands[1].type == arm64.ARM64_OP_IMM \
+                        and regname(y.operands[0].reg)[1:] in alias and y.operands[1].type == arm64.ARM64_OP_IMM \
                         and self.bhi_after(ins, j):
-                    bound, cmp_at = y.operands[1].imm, j
+                    r = regname(y.operands[0].reg)[1:]
+                    # I's last value before the load one of the copies (71004ec714 reuses w8 in
+                    # between), and J unchanged between the compare and the copy that passes it on
+                    # (after it, J may be reused: 710094b8b0's `mov w8, w9; adrp x9`)
+                    idef = max((w for w in writes.get(ireg, []) if w < ld), default=-1)
+                    if r == ireg[1:]:
+                        ok = all(w in copies for w in writes.get("x" + r, []) if j < w < ld)
+                        src_span = (j, ld)
+                    else:
+                        cs = [c for c, (_, s_) in copies.items() if s_ == r]
+                        c = min(cs, key=lambda c: abs(c - j)) if cs else None
+                        src_span = (min(j, c), max(j, c)) if c is not None else (j, ld)
+                        ok = c is not None and idef in copies \
+                            and not any(src_span[0] < w < src_span[1] for w in writes.get("x" + r, []))
+                    if ok:
+                        bound, cmp_at, src = y.operands[1].imm, max(j, idef), "x" + r
                     break
             if bound is None:
                 # The bound checked further away, the dispatch reached by a branch (`cmp xI, #N;
@@ -2658,12 +2706,29 @@ class FlatLifter(Lifter):
                            for z in ins[start:adr]):
                         continue  # (not straight code to the table)
                     cmps.append(j)
-                if not cmps:
+                if not cmps and not any(
+                        y.mnemonic == "cmp" and y.operands[0].type == arm64.ARM64_OP_REG
+                        and regname(y.operands[0].reg)[1:] in alias for y in ins[:adr]):
+                    # No bound in the function at all (a switch over an enum the compiler trusts:
+                    # 71004ec714, 7100594d5c): the table's leading entries that land on this
+                    # function's instructions. Entries past the real table only add cases that
+                    # nothing reaches.
+                    base, n = ins[adr].operands[1].imm, 0
+                    while n < 256:
+                        off = table - BASE + n * size
+                        v = img.data[off] if size == 1 else int.from_bytes(img.data[off:off + 2], "little")
+                        if not (self.addr <= base + 4 * v < end and base + 4 * v in at):
+                            break
+                        n += 1
+                    if n == 0:
+                        continue
+                    bound, cmp_at = n - 1, adr
+                elif not cmps:
                     continue
-                bound, cmp_at = max(ins[j].operands[1].imm for j in cmps), cmps[0]
-            elif any(cmp_at < j < k and j != copy for j in writes.get(ireg, [])) \
-                    or (copy is not None and any(cmp_at < j < copy for j in writes.get(src, []))):
-                continue
+                else:
+                    bound, cmp_at = max(ins[j].operands[1].imm for j in cmps), cmps[0]
+            elif any(cmp_at < j < k and j not in copies for j in writes.get(ireg, [])):
+                continue  # (J itself was checked against its copy above)
             base = ins[adr].operands[1].imm
             tgts = []
             for e in range(bound + 1):
@@ -2675,6 +2740,24 @@ class FlatLifter(Lifter):
             self.jtables[x.address] = (int(ireg[1:]), tgts)
             self.gskip |= {ins[adr].address, ins[ld].address, ins[add].address}
             self.jskip |= {ins[adr].address, ins[ld].address, ins[add].address}
+
+    @staticmethod
+    def zext_copy(y) -> tuple[str, str] | None:
+        """(destination, source) register numbers of a copy that keeps a jump-table index's value:
+        `mov wD, wS`, `mov xD, xS`, `and xD, xS, #0xff|0xffff|0xffffffff` (and the w forms)."""
+        o = y.operands
+        if y.mnemonic not in ("mov", "and") or len(o) < 2 or o[0].type != arm64.ARM64_OP_REG \
+                or o[1].type != arm64.ARM64_OP_REG:
+            return None
+        d, s = regname(o[0].reg), regname(o[1].reg)
+        if d[0] not in "xw" or s[0] not in "xw" or not d[1:].isdigit() or not s[1:].isdigit():
+            return None
+        if y.mnemonic == "mov" and len(o) == 2:
+            return d[1:], s[1:]
+        if y.mnemonic == "and" and len(o) == 3 and o[2].type == arm64.ARM64_OP_IMM \
+                and o[2].imm in (0xFF, 0xFFFF, 0xFFFFFFFF):
+            return d[1:], s[1:]
+        return None
 
     @staticmethod
     def bhi_after(ins, j: int) -> bool:
@@ -2780,6 +2863,8 @@ class FlatLifter(Lifter):
         t = self.types[n]
         if n >= 100:
             if t != ("f32" if r[0] == "s" else "f64"):
+                if "semantic" in self.opts and t in ("f32", "f64") and r[0] in "sd":
+                    return reinterpret_float(self.storage(n, t), t), ftype(r)
                 raise Unsupported("float width")
             return self.storage(n, t), t
         if r[0] == "w":
