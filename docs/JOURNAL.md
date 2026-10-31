@@ -131,6 +131,35 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Lifter: the whole-binary refusals, round 2 (2026-10-31, branch `claude/project-thread-zgkpk3-r2`).** The
+156 functions lifted_all3 left, relifted with 500 of its accepted ones (build/port/lifted_r2): 23 newly
+accepted, none lost; 6 more were hand-written in src/ meanwhile, 127 remain (61 inconclusive, 50 oracle,
+14 size cap, 1 stack frame, 1 only-void). Byte mode unchanged (4,506 of 5,941 sampled candidates
+byte-identical, `src/lifted` unchanged; check.py clean). Semantic mode only, except the oracle change.
+- **A conditional branch to another function** (`cbz`/`cbnz`/`tbz`/`tbnz`/`b.cond` past the end,
+  710106b490, 71010e9324): a conditional tail call in FlatLifter, `if (cond) { return fn(...); }`. Both.
+- **A small-integer load on each path to one convert** (`ldr h2` on both arms, 7100027b7c and 3 kin):
+  lone_convert's walk from the entry may pass another load of the same width into v<n>, which
+  far_convert lifts the same way. And a direct call whose callee takes fewer float arguments ends
+  v<n> instead of reading it (710065922c: `ldr b0` converted into s9, then calls). All 5.
+- **Stack frame** (7): a leaf's frame made by storing a local, `str w10, [sp, #-0x30]!` (5, e.g.
+  71002cc5dc), is the frame and that store; and without a frame pointer x29 is an ordinary register
+  (71001d1880). 6; left is 710109e620, a variadic save area (`stp q0, q1, [sp, #-0x1f0]!`).
+- **Stack arguments outside the frame** (7): a call at the entry's sp, a tail call, passes this
+  function's own stack arguments on (st<i>: 7100569fd8's `ldr w8, [sp]; str w8, [sp]; br x9`,
+  7100270448 after its epilogue); and a tight frame starts at an 8-byte boundary, so an outgoing
+  argument stored at `[sp, #4]` lies inside it (7100148600). All 7.
+- **Oracle float-argument widths.** abi_facts' wide pass follows d/q/v<n> reads as well, so
+  Facts.wide records which of v0-v7 a callee reads wider than s<n>; a whole-register copy
+  (`mov v8.16b, v0.16b`, the usual save of a float argument) reads its source as wide as its
+  destination is read. pcode_emu masks the others to 32 bits, as for w<n>. Facts.args, the only part
+  byte mode reads, does not change (CACHE_VERSION 13). 71006ffce4 lifts; the rest of that group differ
+  otherwise (the lift passes 0 where the original holds a value: 7100659a30, 71009cf8f8; a value
+  passed on to an indirect call keeps the copy wide: 7100656f3c).
+- The oracle's "event before the original's fault" (2 looked at, no shared cause): 710096cdec
+  diverges at an indirect call the original makes with x8 at a local (an indirect result the lift
+  does not pass); 7100318808 differs later in a loop of acosf calls. 7100909538 of that group lifts now.
+
 **Lifter: the whole-binary refusals, round 1 (2026-10-31, branch `claude/project-thread-zgkpk3`).** A
 whole-binary run on main (`port_lift --slice all`, build/port/lifted_all2) accepted 17,352 of 17,534;
 of the 176 left, 59 were refusals of the lifter, 54 oracle rejections and 63 inconclusive. This round
