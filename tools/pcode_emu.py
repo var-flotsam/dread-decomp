@@ -677,8 +677,8 @@ class Machine:
                 continue
             elif k >= 100 and isinstance(t, tuple):  # an import of unknown signature: integers only
                 continue
-            # A register the callee reads only as w<n> has an unspecified upper half.
-            sel.append((k, 32 if f is not None and k < 9 and k not in f.wide else 64))
+            # A register the callee reads only as w<n> or s<n> has an unspecified upper half.
+            sel.append((k, 32 if f is not None and (k < 9 or 100 <= k < 108) and k not in f.wide else 64))
         # Arguments beyond the eight registers: the callee's stack slots at [sp + 8i] (key 200 + i),
         # 32 bits each (a 32-bit argument leaves the upper half of its slot unspecified).
         sp = self.reg(SP, 8)
