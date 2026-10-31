@@ -956,6 +956,10 @@ class Lifter:
         # words this function stored at [sp + 8i] for the call; C passes them after the integers.
         stack = []
         for i in range(need[2] if len(need) > 2 else 0):
+            if self.cur_delta + 8 * i >= 0:
+                # (at the entry's sp, a tail call: this function's own stack arguments, passed on)
+                stack.append((f"*(u64*){self.stack_arg(self.cur_delta + 8 * i, 8)}", "u64"))
+                continue
             at = self.cur_delta + 8 * i - self.frame["start"]
             if not 0 <= at <= self.frame["size"] - 8:
                 raise Unsupported("stack arguments outside the frame")
@@ -1761,7 +1765,10 @@ class Lifter:
             start = max([e for s, e in saves if e <= lo] + [delta])
             end = min([s for s, e in saves if s > lo] + [max(hi, 0)])
         else:
-            start, end = lo, lo + ((hi - lo + align - 1) & ~(align - 1))  # (a multiple of 8 for 8 and 16)
+            # (semantic mode: from an 8-byte slot, so a stack argument stored at [sp, #4] for a call
+            # is passed whole, fn_7100148600)
+            start = lo & ~7 if "semantic" in self.opts else lo
+            end = start + ((hi - start + align - 1) & ~(align - 1))  # (a multiple of 8 for 8 and 16)
         if not (start <= lo and hi <= end):
             return False
         self.frame = {"sp": delta, "fp": fp, "start": start, "size": end - start, "align": align}
