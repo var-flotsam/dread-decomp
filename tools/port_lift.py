@@ -535,6 +535,8 @@ class Oracle:
                         if key in ovr:
                             continue
                         budget -= 1
+                        if value == POINTER:  # (each repair its own object: two would alias, 71006c3e40)
+                            value += 0x100000 * len(ovr)
                         o = {**ovr, key: placed(base, key[1], value) if key[0] == "m" else value}
                         try:
                             m = run(seed, o)

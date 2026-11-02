@@ -77,7 +77,7 @@ CALLER_SAVED_Q = list(range(8)) + list(range(16, 32))
 # Imports that read and write no memory (their arguments and result are registers)
 PURE_MATH = frozenset(f + sfx for f in ("sqrt", "sin", "cos", "tan", "asin", "acos", "atan", "atan2", "exp", "exp2",
                                         "log", "log2", "log10", "pow", "fmod", "floor", "ceil", "round", "trunc",
-                                        "fabs", "hypot", "sinh", "cosh", "tanh") for sfx in ("", "f"))
+                                        "fabs", "hypot", "sinh", "cosh", "tanh", "nextafter") for sfx in ("", "f"))
 MODELED = frozenset({"memcpy", "memmove", "memset", "memcmp", "strlen", "strcmp"})
 NOOP_USEROPS = frozenset({"DataMemoryBarrier", "DataSynchronizationBarrier", "InstructionSynchronizationBarrier",
                           "Hint_Prefetch", "SpeculationBarrier", "Yield", "SendEvent", "SendEventLocally",
@@ -136,6 +136,18 @@ def f_from(bits: int, size: int) -> float:
     if size == 8:
         return struct.unpack("<d", struct.pack("<Q", bits & 0xFFFFFFFFFFFFFFFF))[0]
     raise Inconclusive(f"float of {size} bytes")
+
+
+def nextafterf(a: float, b: float) -> float:
+    """C's nextafterf: the next single-precision value after a towards b."""
+    if math.isnan(a) or math.isnan(b):
+        return math.nan
+    if a == b:
+        return b
+    if a == 0:
+        return f_from(1, 4) if b > 0 else -f_from(1, 4)
+    bits = f_to(a, 4)
+    return f_from(bits + 1 if (a < b) == (a > 0) else bits - 1, 4)
 
 
 def f_to(v: float, size: int) -> int:
@@ -648,10 +660,13 @@ class Machine:
     def call(self, target: int) -> None:
         """A call leaving the function: modeled C library functions run; others are recorded."""
         t = self.canonical(target)
-        modeled = isinstance(t, tuple) and t[1] in MODELED
+        modeled = isinstance(t, tuple) and (t[1] in MODELED or t[1] in PURE_MATH)
         rec = self.recorded(target, t, modeled)
         if modeled:
-            self.clib(t[1])
+            if t[1] in PURE_MATH:
+                self.math(t[1])
+            else:
+                self.clib(t[1])
             return
         # Every argument register's value; `sel` the ones this run's caller meant for the callee.
         # compare() takes the original's selection, so registers the lift's compiled code used as
@@ -719,10 +734,13 @@ class Machine:
                 # (within the object, stackref's extent, and never over the frame record: a small
                 # local below it would let the pattern overwrite the saved return address). Words of
                 # the seed's memory profile: a returned {pointer, count} gets a count a loop ends on.
-                for j in range(0, max(extent[k], 8), 8):
+                # (x8, a result built in place: the whole window, the struct may be larger than the
+                # extent the frame suggests, and the function copies all of it out, 7100128810)
+                for j in range(0, max(extent[k], WINDOW if k == 8 else 8), 8):
                     if p + j >= ENTRY_SP or any(p + j - 7 <= r <= p + j + 7 for r in self.frame_record):
                         break
-                    self.store(p + j, 8, self.word(mix(self.seed, n, k, j)))  # (each seed its own)
+                    # (every other seed 64 random bits a slot, as before: a run that ends on those)
+                    self.store(p + j, 8, self.word(mix(self.seed, n, k, j)) if self.seed % 2 else mix(n, k, j))
         for i in CALLER_SAVED_X:
             self.regs[X0 + 8 * i:X0 + 8 * i + 8] = (mix(n, 7, i) >> 1).to_bytes(8, "little")
             if i <= 8:
@@ -786,6 +804,34 @@ class Machine:
                                    for j in range(WINDOW) if v + j < ENTRY_SP), end - v,
                     frozenset(t - v for t in self.taken if v < t < v + WINDOW), hard - v)
         return v
+
+    def math(self, name: str) -> None:
+        """A libm function computed from its arguments (s0/s1, d0/d1 without the f), as the C
+        library does: no event, so a call the compiler merged, inlined (sqrtf as fsqrt) or moved
+        does not shift the made-up results of the calls after it (fn_710069f728)."""
+        size = 4 if name.endswith("f") else 8
+        base = name[:-1] if size == 4 else name
+        a, b = (f_from(self.reg(Q0 + QSTRIDE * i, size), size) for i in (0, 1))
+        two = {"atan2": math.atan2, "pow": math.pow, "fmod": math.fmod, "hypot": math.hypot,
+               "nextafter": math.nextafter if size == 8 else nextafterf}
+        one = {"sqrt": math.sqrt, "sin": math.sin, "cos": math.cos, "tan": math.tan, "asin": math.asin,
+               "acos": math.acos, "atan": math.atan, "exp": math.exp, "exp2": lambda v: 2.0 ** v,
+               "log": math.log, "log2": math.log2, "log10": math.log10, "floor": math.floor,
+               "ceil": math.ceil, "round": lambda v: math.floor(abs(v) + 0.5) * (1 if v >= 0 else -1),
+               "trunc": math.trunc, "fabs": abs, "sinh": math.sinh, "cosh": math.cosh, "tanh": math.tanh}
+        try:
+            v = float(two[base](a, b) if base in two else one[base](a))
+        except OverflowError:
+            v = math.inf
+        except (ValueError, ZeroDivisionError):
+            v = math.nan
+        for i in CALLER_SAVED_X:
+            self.regs[X0 + 8 * i:X0 + 8 * i + 8] = bytes(8)
+            if i <= 8:
+                self.state[i] = "junk"
+        for i in range(8):
+            self.state[100 + i] = "junk"
+        self.regs[Q0:Q0 + 16] = f_to(v, size).to_bytes(16, "little")
 
     def clib(self, name: str) -> None:
         a0, a1, a2 = self.x(0), self.x(1), self.x(2)
