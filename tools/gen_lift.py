@@ -1069,6 +1069,12 @@ class Lifter:
                 # (no direct caller: the incoming x0-x7 not written since are passed on, as own_args
                 # made them parameters; a written one holds its value, a clobbered one 0)
                 ints = max(ints, own.ints)
+            if sem:
+                # (and every argument register written since the last call, abi_facts' rule for an
+                # indirect call: the original's s2 computed before a `blr`, fn_7100900c44)
+                w = self.s.written
+                ints = max(ints, max([k + 1 for k in w if k < 8], default=0))
+                floats = max(floats, max([k - 99 for k in w if 100 <= k < 108], default=0))
             if sem and (stack := self.stack_args_before()):
                 if not self.frame:
                     raise Unsupported("indirect call with stack arguments")
