@@ -132,6 +132,33 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Lifter: the whole-binary refusals, round 3: the oracle's inconclusive (2026-11-02, branch
+`claude/project-thread-zgkpk3-r3`).** First, round 2's whole-binary run (build/port/lifted_all4, on r2's
+head): 16,337 of 16,470 accepted, against lifted_all3's 16,314, with no function lost. This round changes
+the oracle and port_lift only; gen_lift and src/ are untouched, so byte mode and check.py cannot move.
+Relift of all4's 133 not accepted plus 500 of its accepted (build/port/lifted_r3, with the last fix
+below applied to the one it lost): 38 newly accepted, none lost; 17 hand-written in src/ meanwhile; 11
+rows found not to be functions. Left: 43 oracle, 33 inconclusive, 1 size cap, 1 only-void, 1 stack frame.
+- **Out-parameters** (most of the gain). An unknown callee's writes through a stack-pointer argument
+  were 64 random bits a slot, the same for every seed. A returned {pointer, count} so had a count no
+  loop ends on (71004f0ab8: `cmp x20, w8, uxtw` over billions: "both runs were cut off" even with 32x
+  the limits), and a slot that happened to hash to zero was null in every seed. They are words of the
+  seed's memory profile now (Machine.word of a hash with the seed). 26 of the 58 inconclusive lift.
+- **Crash repair** ("the original faulted where the lift did not", 27). The repair of a made-up pointer
+  tries the words holding a small number first, then call results as a pointer and as true (1: a
+  cast check's `tst w0, #1; csel x8, x21, xzr, ne` selects null, 71000ef764), then the integer
+  argument registers. It follows the run that got further first, keeps a repaired run that ends
+  without a fault although it reaches nothing new, and coverage does not stop it until some run ends.
+  71000ef764 needed five repairs in a row. A loop over an array of made-up pointers (7100da5184)
+  stays inconclusive.
+- **Size cap** (14). 9 rows are a branch's 4-byte alignment `nop` and 2 a linker `end` symbol, with no
+  unwind entry: "skipped: not a function". The semantic cap is port_lift's own, 32 KB (byte mode keeps
+  gen_lift.MAX_SIZE); 7100b66018 (28 KB) and 7100c66c60 (30 KB) lift; 71000407f0 (96 KB) stays.
+- **The lift reading the caller's frame** after the original faulted was a failure; it decides nothing
+  (7100abb000, accepted in all4, was rejected so on an input the new out-parameters found).
+- "Event before the original's fault" (8): 7100318808 lifts; in 71001cf9ec the lift faults with no
+  event where the original makes 9 calls first, a lift difference, not the oracle's; the rest vary.
+
 **Lifter: the whole-binary refusals, round 2 (2026-10-31, branch `claude/project-thread-zgkpk3-r2`).** The
 156 functions lifted_all3 left, relifted with 500 of its accepted ones (build/port/lifted_r2): 23 newly
 accepted, none lost; 6 more were hand-written in src/ meanwhile, 127 remain (61 inconclusive, 50 oracle,
