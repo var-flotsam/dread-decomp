@@ -734,9 +734,13 @@ class Machine:
                 # (within the object, stackref's extent, and never over the frame record: a small
                 # local below it would let the pattern overwrite the saved return address). Words of
                 # the seed's memory profile: a returned {pointer, count} gets a count a loop ends on.
-                # (x8, a result built in place: the whole window, the struct may be larger than the
-                # extent the frame suggests, and the function copies all of it out, 7100128810)
-                for j in range(0, max(extent[k], WINDOW if k == 8 else 8), 8):
+                # (x8, a result built in place: the struct may be larger than the extent the frame
+                # suggests, and the function copies all of it out, 7100128810. The window past the
+                # extent holds what the callee wrote there, unknown: undefined, so what is copied
+                # from it is not compared; filling it would overwrite locals placed differently.)
+                if k == 8:
+                    self.stack_written.difference_update(range(p + max(extent[k], 8), min(p + WINDOW, ENTRY_SP)))
+                for j in range(0, max(extent[k], 8), 8):
                     if p + j >= ENTRY_SP or any(p + j - 7 <= r <= p + j + 7 for r in self.frame_record):
                         break
                     # (every other seed 64 random bits a slot, as before: a run that ends on those)
@@ -819,19 +823,31 @@ class Machine:
                "log": math.log, "log2": math.log2, "log10": math.log10, "floor": math.floor,
                "ceil": math.ceil, "round": lambda v: math.floor(abs(v) + 0.5) * (1 if v >= 0 else -1),
                "trunc": math.trunc, "fabs": abs, "sinh": math.sinh, "cosh": math.cosh, "tanh": math.tanh}
-        try:
-            v = float(two[base](a, b) if base in two else one[base](a))
-        except OverflowError:
-            v = math.inf
-        except (ValueError, ZeroDivisionError):
-            v = math.nan
+        # A NaN argument comes back with its payload, quieted (an inlined fsqrt keeps it, then calls
+        # sqrtf only for the NaN: fn_7100118274), and the rounding functions return +-inf as is.
+        quiet = 0x00400000 if size == 4 else 0x0008000000000000
+        args = (0, 1) if base in two else (0,)
+        nan = next((i for i in args if math.isnan((a, b)[i])), None)
+        bits = None
+        if nan is not None:
+            bits = self.reg(Q0 + QSTRIDE * nan, size) | quiet
+        elif base in ("floor", "ceil", "round", "trunc") and math.isinf(a):
+            bits = f_to(a, size)
+        else:
+            try:
+                v = float(two[base](a, b) if base in two else one[base](a))
+            except OverflowError:
+                v = math.inf
+            except (ValueError, ZeroDivisionError):
+                v = -math.inf if base in ("log", "log2", "log10") and a == 0 else math.nan
+            bits = f_to(v, size)
         for i in CALLER_SAVED_X:
             self.regs[X0 + 8 * i:X0 + 8 * i + 8] = bytes(8)
             if i <= 8:
                 self.state[i] = "junk"
         for i in range(8):
             self.state[100 + i] = "junk"
-        self.regs[Q0:Q0 + 16] = f_to(v, size).to_bytes(16, "little")
+        self.regs[Q0:Q0 + 16] = bits.to_bytes(16, "little")
 
     def clib(self, name: str) -> None:
         a0, a1, a2 = self.x(0), self.x(1), self.x(2)
