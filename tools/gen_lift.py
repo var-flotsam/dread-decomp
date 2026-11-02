@@ -149,6 +149,10 @@ GUARD_ACQUIRE = 0x7101238da0  # __cxa_guard_acquire
 # Imports (mangled) that return a class object through x8: no facts (abi_facts knows the C
 # library by name only), yet the caller passes the result's address in x8 (71007ab7d8).
 SRET_IMPORTS = frozenset(f"_ZNSt3__19to_stringE{c}" for c in "ijlmxyfde")
+# libm imports that return a float (semantic mode types their call so: Lifter.step's bl)
+LIBM_IMPORTS = frozenset(f + s for f in ("sqrt", "sin", "cos", "tan", "asin", "acos", "atan", "atan2", "exp",
+                                         "log", "log10", "pow", "fmod", "floor", "ceil", "sinh", "cosh",
+                                         "tanh", "nextafter") for s in ("", "f"))
 DSO_HANDLE = 0x7101a19000  # __dso_handle (passed to __cxa_atexit): an address, not the string ""
 GUARDS = {
     0x7101cba070: ("lift_guard::EnsureStringPool();", [0x710007fdb4]),
@@ -2595,7 +2599,12 @@ class Lifter:
             # Until s0/d0 is read (then the callee returns a float; see retype_call).
             var = self.s.vals[0][0] if 0 in self.s.vals else "X0"
             self.s.fcall = (len(self.body) - 1, var, call) + self.last_call
-            if m == "bl" and "semantic" in self.opts and self.main is not None and self.main(o[0].imm) == {100}:
+            if m == "bl" and "semantic" in self.opts and self.orig.plt_import(o[0].imm) in LIBM_IMPORTS:
+                # A libm import returns its float in s0/d0 (an inlined fsqrt's sqrtf fallback for a
+                # NaN, its result passed on past the join: fn_71010c1da0)
+                name = self.orig.plt_import(o[0].imm)
+                self.read(("s" if name.endswith("f") else "d") + "0")
+            elif m == "bl" and "semantic" in self.opts and self.main is not None and self.main(o[0].imm) == {100}:
                 # Every caller reads the float result: typed so here too, even where the result is
                 # read only past a branch (fn_7100713e2c's call at +0x50, read at the join +0x110)
                 # The width is the next read's in address order (strtod's d0, 71010b2500)
