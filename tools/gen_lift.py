@@ -973,6 +973,24 @@ class Lifter:
             stack.append((f"*(u64*)(stk + {at:#x})", "u64"))
         return ints + stack + floats
 
+    def type_pending_float(self, j: int) -> None:
+        """Semantic mode: the pending call's result as a float when s0 or d0 is read from
+        instruction j on (address order) before it is written; a whole-register copy of v0
+        (`mov v8.16b, v0.16b`, fn_71009e754c) reads it at the width its copy is read next."""
+        y = self.ins[j]
+        if y.mnemonic == "mov" and (g := re.fullmatch(r"v(\d+)\.16b, v0\.16b", y.op_str)):
+            for z in self.ins[j + 1:]:
+                got = re.findall(rf"\b([sd]){g.group(1)}\b", z.op_str)
+                if got:
+                    self.read(got[0] + "0")
+                    return
+            return
+        saved, self.pos = self.pos, j - 1
+        r = self.next_v0_read()
+        self.pos = saved
+        if r:
+            self.read(r)
+
     def next_v0_read(self) -> str | None:
         """The first read of s0 or d0 after this instruction in address order ("s0" or "d0"),
         None when v0 is written first, read as another width, or never read."""
@@ -3097,11 +3115,7 @@ class FlatLifter(Lifter):
                         # A call's float result read past the label (the label forgets the call):
                         # typed before it, so this path's S0 is the result (fn_71010ee560's
                         # fmax after the call, joined by a path that sets s0 itself)
-                        self.pos -= 1
-                        r = self.next_v0_read()
-                        self.pos += 1
-                        if r:
-                            self.read(r)
+                        self.type_pending_float(self.pos)
                     # (a jump table's adr, skipped for the switch, can be a branch target too)
                     self.body.append(f"L_{x.address:x}:;")
                     self.s.cmp = None if x.address != addr else self.s.cmp
@@ -3182,6 +3196,8 @@ class FlatLifter(Lifter):
                     self.s.written.discard(self.key(regname(o[0].reg)))  # the target isn't an argument
                     self.terminate("tail", self.call("", ptr))
                 elif m == "b":
+                    if "semantic" in self.opts and self.s.fcall and addr <= o[0].imm < end:
+                        self.type_pending_float((o[0].imm - addr) // 4)  # (as at a label, above)
                     self.edge(o[0].imm)
                     self.line(f"goto L_{o[0].imm:x};")
                 else:
