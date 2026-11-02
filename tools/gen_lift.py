@@ -3093,6 +3093,15 @@ class FlatLifter(Lifter):
                 self.own_args()
             for self.pos, x in enumerate(ins):
                 if x.address in targets and (x.address not in self.gskip or x.address in self.jskip):
+                    if "semantic" in self.opts and self.s.fcall and self.live:
+                        # A call's float result read past the label (the label forgets the call):
+                        # typed before it, so this path's S0 is the result (fn_71010ee560's
+                        # fmax after the call, joined by a path that sets s0 itself)
+                        self.pos -= 1
+                        r = self.next_v0_read()
+                        self.pos += 1
+                        if r:
+                            self.read(r)
                     # (a jump table's adr, skipped for the switch, can be a branch target too)
                     self.body.append(f"L_{x.address:x}:;")
                     self.s.cmp = None if x.address != addr else self.s.cmp
