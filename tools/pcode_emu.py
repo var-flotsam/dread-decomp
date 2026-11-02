@@ -717,11 +717,12 @@ class Machine:
                             self.store(p + j, 1, b)
                     continue
                 # (within the object, stackref's extent, and never over the frame record: a small
-                # local below it would let the pattern overwrite the saved return address)
+                # local below it would let the pattern overwrite the saved return address). Words of
+                # the seed's memory profile: a returned {pointer, count} gets a count a loop ends on.
                 for j in range(0, max(extent[k], 8), 8):
                     if p + j >= ENTRY_SP or any(p + j - 7 <= r <= p + j + 7 for r in self.frame_record):
                         break
-                    self.store(p + j, 8, mix(n, k, j))
+                    self.store(p + j, 8, self.word(mix(self.seed, n, k, j)))  # (each seed its own)
         for i in CALLER_SAVED_X:
             self.regs[X0 + 8 * i:X0 + 8 * i + 8] = (mix(n, 7, i) >> 1).to_bytes(8, "little")
             if i <= 8:
