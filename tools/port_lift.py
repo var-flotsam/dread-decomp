@@ -608,8 +608,9 @@ class Oracle:
                 # What only the lift does on an input the original ran: its return address was
                 # overwritten where the original returned, or it read the caller's frame beyond the
                 # stack arguments the original reads (Machine.arg_slots, the original's).
+                # (not past the original's own fault: what the lift does after it decides nothing)
                 if (str(e) == "return outside" and mo.events and mo.events[-1][0] == ("end", "return")) \
-                        or str(e) == "read in the caller's frame":
+                        or (str(e) == "read in the caller's frame" and not (mo.events and mo.events[-1][0] == ("end", "fault"))):
                     self.last = (mo, ml)
                     return "fail", f"input {seed}: the lift: {e}; the original did not"
                 return "skip", f"lift: {e}"
