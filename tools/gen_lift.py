@@ -197,6 +197,15 @@ def zero_save(x) -> bool:
         other[0][0] == "x" and other[0][1:].isdigit() and 19 <= int(other[0][1:]) <= 28))
 
 
+def push_local(x) -> bool:
+    """`str|stp <regs>, [sp, #-imm]!` of registers is_frame does not save: a store of a local
+    that also makes the frame (Lifter.setup_frame)."""
+    mem = [op for op in x.operands if op.type == arm64.ARM64_OP_MEM]
+    if x.mnemonic not in ("str", "stp", "strb", "strh") or not mem or regname(mem[0].mem.base) != "sp"             or not x.writeback or mem[0].mem.disp >= 0 or is_frame(x):
+        return False
+    return not any(op.type == arm64.ARM64_OP_IMM for op in x.operands)  # (pre-indexed: no post imm)
+
+
 def wide_text(data: bytes, a: int, n: int) -> bool:
     """Whether the n-character (0 or 1) narrow text at a is really a wide string's start: a is
     4-aligned and the rest of the first 4-byte character is zero (L"" is four zero bytes, L"Y" is
@@ -780,7 +789,11 @@ class Lifter:
             return f"((char*)({base}) + {self.extend(idx, op, 'u64')})"
         if op.shift.type:
             raise Unsupported("indexed")
-        if base_reg in ("sp", "x29"):
+        if base_reg == "sp" or (base_reg == "x29" and not (
+                "semantic" in self.opts and (not self.frame or self.frame["fp"] is None))):
+            if x.writeback and x.address == getattr(self, "push_at", None) and self.frame:
+                self.cur_delta = self.frame["sp"]  # (setup_frame's push_local: the store, then sp)
+                return self.local(self.frame["sp"])
             if x.writeback or not self.frame:
                 raise Unsupported("stack writeback")
             base = self.frame["sp"] if base_reg == "sp" else self.frame["fp"]
@@ -946,6 +959,10 @@ class Lifter:
         # words this function stored at [sp + 8i] for the call; C passes them after the integers.
         stack = []
         for i in range(need[2] if len(need) > 2 else 0):
+            if self.cur_delta + 8 * i >= 0:
+                # (at the entry's sp, a tail call: this function's own stack arguments, passed on)
+                stack.append((f"*(u64*){self.stack_arg(self.cur_delta + 8 * i, 8)}", "u64"))
+                continue
             at = self.cur_delta + 8 * i - self.frame["start"]
             if not 0 <= at <= self.frame["size"] - 8:
                 raise Unsupported("stack arguments outside the frame")
@@ -1241,6 +1258,8 @@ class Lifter:
             exits = not succ[j] and x.mnemonic != "brk"
             # (a ret reads v0, and v1-v3 for a multi-register result; a tail call v0-v7)
             ret_reads = (n == 0 and bool(main) and 100 in main) or (n < 4 and fshape)
+            if n < 8 and x.mnemonic == "bl" and (f := self.callee_floats(x)) is not None and n >= f:
+                continue  # (a callee that takes fewer float arguments: the call ends v<n>, 710065922c)
             if mine(x, 0) or (n < 8 and x.mnemonic in ("bl", "blr")) \
                     or (exits and (ret_reads if x.mnemonic == "ret" else n < 8)):
                 reads.add(j)
@@ -1255,16 +1274,29 @@ class Lifter:
         c = reads.pop()
         if not convert(ins[c]):
             return None
+        # (reached from the entry without the load: another value of v<n>, unless it passes
+        # another load of the same width into v<n>, which far_convert lifts the same way: a load on
+        # each path to one convert, 7100027b7c)
+        width = ins[k].op_str.split(",")[0][0]
         seen, work = {k}, [0]
-        while work:  # (reached from the entry without the load: another value of v<n>)
+        while work:
             j = work.pop()
             if j == c:
                 return None
             if j in seen:
                 continue
             seen.add(j)
+            if ins[j].mnemonic in ("ldr", "ldur") and ins[j].op_str.split(",")[0] == f"{width}{n}":
+                continue
             work += succ[j]
         return c
+
+    def callee_floats(self, x) -> int | None:
+        """Semantic mode: how many float arguments the direct callee of `bl` x reads (abi_facts)."""
+        if "semantic" not in self.opts or self.facts is None or x.operands[0].type != arm64.ARM64_OP_IMM:
+            return None
+        f = self.facts(x.operands[0].imm)
+        return None if f is None else f.floats
 
     def small_int_load(self, x, mem, reg: str) -> bool:
         """`ldr h<n>|b<n>` up to the convert of s<n> that uses it (step's comment)."""
@@ -1645,11 +1677,23 @@ class Lifter:
                 return any((op.type == arm64.ARM64_OP_REG and regname(op.reg) in ("sp", "x29"))
                            or (op.type == arm64.ARM64_OP_MEM and regname(op.mem.base) in ("sp", "x29"))
                            for op in x.operands)
-            p = next((j for j, x in enumerate(ins[:12]) if is_frame(x)), None)
-            if p and not any(touches(x) for x in ins[:p]):
+            p = next((j for j, x in enumerate(ins[:12]) if is_frame(x) or push_local(x)), None)
+            if p is not None and not any(touches(x) for x in ins[:p]):
                 k = p
         self.frame_at = k  # the prologue's first instruction (frame_reset)
+        self.push_at = None
         zeroed = []  # (semantic mode) prologue pairs that zero a local beside a save: (index, sp)
+        pushed = []  # (semantic mode) the local a push_local stores: (offset, size)
+        if "semantic" in self.opts and k < len(ins) and push_local(ins[k]):
+            # `str w10, [sp, #-0x30]!` (fn_71002cc5dc): a leaf's frame made by storing a local, not
+            # a save; the store is lifted as code (address()) to the body's sp
+            x = ins[k]
+            delta = [op for op in x.operands if op.type == arm64.ARM64_OP_MEM][0].mem.disp
+            regs = [regname(op.reg) for op in x.operands if op.type == arm64.ARM64_OP_REG]
+            w = {"b": 1, "h": 2}.get(x.mnemonic[-1], {"x": 8, "d": 8, "q": 16}.get(regs[0][0], 4))
+            pushed.append((delta, w * len(regs)))
+            self.push_at = x.address
+            k += 1
         while k < len(ins) and (is_frame(ins[k]) or ("semantic" in self.opts and zero_save(ins[k]))):
             x = ins[k]
             m, o = x.mnemonic, x.operands
@@ -1678,17 +1722,19 @@ class Lifter:
             k += 1
         self.save_slots = {s + 8 * i for s, e in saves for i in range((e - s) // 8)}
         self.body_delta = self.cur_delta = delta
-        refs = []  # (offset from sp at entry, size)
+        refs = list(pushed)  # (offset from sp at entry, size)
         for j, at in zeroed:
             if at != delta:  # (before an sp adjustment: address() takes the body's sp)
                 return False
             refs.append((delta + [op for op in ins[j].operands if op.type == arm64.ARM64_OP_MEM][0].mem.disp, 16))
+        # (semantic mode: without a frame pointer, x29 is an ordinary register, fn_71001d1880)
+        fregs = ("sp", "x29") if fp is not None or "semantic" not in self.opts else ("sp",)
         for x in ins[k:]:
             if self.frame_op(x):
                 continue
             o = x.operands
             for op in o:
-                if op.type == arm64.ARM64_OP_MEM and regname(op.mem.base) in ("sp", "x29"):
+                if op.type == arm64.ARM64_OP_MEM and regname(op.mem.base) in fregs:
                     base = delta if regname(op.mem.base) == "sp" else fp
                     if base is None or x.writeback:
                         return False
@@ -1698,7 +1744,7 @@ class Lifter:
                         w = 16
                     refs.append((base + op.mem.disp, w * len(regs)))
             if x.mnemonic in ("add", "sub", "mov") and len(o) >= 2 and o[1].type == arm64.ARM64_OP_REG \
-                    and regname(o[1].reg) in ("sp", "x29") and regname(o[0].reg) not in ("sp", "x29"):
+                    and regname(o[1].reg) in fregs and regname(o[0].reg) not in ("sp", "x29"):
                 base = delta if regname(o[1].reg) == "sp" else fp
                 if base is None or (len(o) == 3 and o[2].type != arm64.ARM64_OP_IMM):
                     return False
@@ -1722,7 +1768,10 @@ class Lifter:
             start = max([e for s, e in saves if e <= lo] + [delta])
             end = min([s for s, e in saves if s > lo] + [max(hi, 0)])
         else:
-            start, end = lo, lo + ((hi - lo + align - 1) & ~(align - 1))  # (a multiple of 8 for 8 and 16)
+            # (semantic mode: from an 8-byte slot, so a stack argument stored at [sp, #4] for a call
+            # is passed whole, fn_7100148600)
+            start = lo & ~7 if "semantic" in self.opts else lo
+            end = start + ((hi - start + align - 1) & ~(align - 1))  # (a multiple of 8 for 8 and 16)
         if not (start <= lo and hi <= end):
             return False
         self.frame = {"sp": delta, "fp": fp, "start": start, "size": end - start, "align": align}
@@ -3079,6 +3128,28 @@ class FlatLifter(Lifter):
                 elif m == "b" and not addr <= o[0].imm < end:
                     self.terminate("tail", self.call(f"fn_{o[0].imm:x}"))
                     self.tails[f"fn_{o[0].imm:x}"] = self.last_call[1]
+                elif "semantic" in self.opts and (m in ("cbz", "cbnz", "tbz", "tbnz") or m.startswith("b.")) \
+                        and o and o[-1].type == arm64.ARM64_OP_IMM and not addr <= o[-1].imm < end \
+                        and o[-1].imm in self.orig.sizes and not self.sret_callee(o[-1].imm) \
+                        and not self.result_of(addr) and not self.result_of(o[-1].imm):
+                    # A conditional tail call: the branch goes to another function's entry (the
+                    # next one, 710106b490's `cbz x10, <end>`). The call is made where the branch
+                    # is taken, with the registers as they are there.
+                    if m.startswith("b."):
+                        taken = self.cond(x.cc, False)
+                    else:
+                        v, _ = self.read(regname(o[0].reg))
+                        if m in ("cbz", "cbnz"):
+                            taken = f"({width_type(regname(o[0].reg))})(u64)({v}) {'==' if m == 'cbz' else '!='} 0"
+                        else:
+                            taken = f"((u64)({v}) >> {o[1].imm} & 1) {'==' if m == 'tbz' else '!='} 0"
+                    self.line(f"if ({taken}) {{")
+                    saved = (self.s.copy(), set(self.clob))
+                    self.terminate("tail", self.call(f"fn_{o[-1].imm:x}"))
+                    self.tails[f"fn_{o[-1].imm:x}"] = self.last_call[1]
+                    self.line("}")
+                    self.s, self.clob = saved  # (the call is on the taken side only)
+                    self.live = True
                 elif m == "br" and x.address in self.jtables:
                     idx, tgts = self.jtables[x.address]
                     v, _ = self.read(f"x{idx}")

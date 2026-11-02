@@ -57,7 +57,7 @@ import callgraph  # noqa: E402
 MAX_SIZE = 65536
 # result_shape's and result_main's analysis (their cache is kept apart: a change does not cost the table)
 SHAPE_VERSION = 4
-CACHE_VERSION = 11  # bump when the analysis changes (AbiFacts.load ignores other versions)
+CACHE_VERSION = 13  # bump when the analysis changes (AbiFacts.load ignores other versions)
 MAX_DEPTH = 48  # callee recursion; deeper chains count as unknown
 INT_ARGS = frozenset(range(9))  # x0-x7 and x8
 FLOAT_ARGS = frozenset(range(100, 108))
@@ -91,7 +91,7 @@ NO_DEST_READ = frozenset({"lsl", "lsr", "asr", "ror", "ubfx", "sbfx", "ubfiz", "
 class Facts:
     args: frozenset   # register keys (see the module docstring)
     stack: bool
-    wide: frozenset = frozenset()  # integer argument registers read as x<n> (else only as w<n>)
+    wide: frozenset = frozenset()  # argument registers read as x<n> (else only as w<n>), d<n> or wider (else s<n>)
     fwd: frozenset = frozenset()   # argument registers the callers set, for an indirect call
     stack_slots: int = 0           # 8-byte slots of the caller's frame read (stack arguments)
     open: bool = False             # an indirect call and no direct caller (module docstring)
@@ -168,8 +168,9 @@ class Insn:
     reg0: object         # key of the first register operand (the br/blr target)
     mem: tuple | None    # (base key, displacement, writeback) of the memory operand
     reg_ops: tuple       # keys of the register operands, in order
-    xreads: frozenset    # integer registers read in their 64-bit form
+    xreads: frozenset    # registers read in their 64-bit form or wider: x<n>, and d/q/v<n> (Facts.wide)
     vec: bool            # a q register, or a v register outside SCALAR_COPIES: a vector copy, not a float argument
+    vcopy: bool = False  # a whole-register copy `mov v<d>.16b, v<s>.16b` or `fmov d<d>, d<s>` (Facts.wide)
 
     @staticmethod
     def of(x) -> "Insn":
@@ -194,9 +195,12 @@ class Insn:
                     frozenset(k for k in map(reg_key, w) if k is not None),
                     regs[0] if regs else None,
                     (reg_key(mem[0].mem.base), mem[0].mem.disp, bool(x.writeback)) if mem else None, regs,
-                    frozenset(reg_key(q) for q in r if CS.reg_name(q)[0] == "x" and isinstance(reg_key(q), int)),
+                    frozenset(reg_key(q) for q in r if CS.reg_name(q)[0] in "xdqv" and isinstance(reg_key(q), int)),
                     any(CS.reg_name(op.reg)[0] == "q" for op in ops) or (
-                        x.mnemonic not in SCALAR_COPIES and any(CS.reg_name(op.reg)[0] == "v" for op in ops)))
+                        x.mnemonic not in SCALAR_COPIES and any(CS.reg_name(op.reg)[0] == "v" for op in ops)),
+                    x.mnemonic in ("mov", "fmov") and len(ops) == 2 and "[" not in x.op_str
+                    and all(isinstance(k, int) and k >= 100 for k in regs)
+                    and len({CS.reg_name(op.reg)[0] for op in ops}) == 1 and CS.reg_name(ops[0].reg)[0] in "vd")
 
 
 class AbiFacts:
@@ -307,7 +311,7 @@ class AbiFacts:
             self._wide = True
             live_wide, _ = self.liveness(addr, ins, depth)
             slots = self.stack_slots(ins)
-            f = Facts(args, slots > 0, frozenset(k for k in args if k < 9 and k in live_wide[0]),
+            f = Facts(args, slots > 0, frozenset(k for k in args if (k < 9 or 100 <= k < 108) and k in live_wide[0]),
                       self.fwd_of(addr, ins), slots, self.is_open(addr, ins))
         finally:
             self._wide = outer
@@ -422,9 +426,13 @@ class AbiFacts:
             if x.address in starts:
                 bstart = i
             block_of.append((bstart, i))
+        copies = {}  # (the wide pass: a whole-register copy reads its source as wide as its destination is read)
         for i, x in enumerate(ins):
             m = x.mnemonic
             u, d = set(x.xreads if self._wide else x.uses), set(x.defs)
+            if self._wide and x.vcopy:
+                copies[i] = (x.reg_ops[0], x.reg_ops[1])
+                u = set()
             fall = [i + 1] if i + 1 < n else []
             imm = x.imms
             block = ins[block_of[i][0]:i + 1]
@@ -470,6 +478,8 @@ class AbiFacts:
                 for s in succ[i]:
                     out |= live_in[s]
                 new = uses[i] | (out - defs[i])
+                if i in copies and copies[i][0] in out:
+                    new.add(copies[i][1])
                 if new != live_in[i]:
                     live_in[i] = new
                     changed = True
