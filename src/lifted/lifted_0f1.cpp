@@ -117,6 +117,32 @@ char* fn_7100f10bf4(char* p0) {
     return callee::fn_7100f10b00(p0, r0_1);
 }
 
+extern char g_unk_7101d47310[];
+namespace bret { bool fn_7100ded930(u64); }
+namespace bret { bool fn_7100f10960(char*); }
+namespace callee { char* fn_7100ded930(u64); }
+namespace callee { char* fn_7100f10960(char*); }
+namespace callee { char* fn_7100f10a2c(char*); }
+namespace wret { u32 fn_7100f10a2c(char*); }
+u32 fn_7100f10bfc(char* p0) {
+    char* r0_8 = (char*)g_unk_7101d47310;
+    char* r1_19 = p0;
+    u64 r2_0 = (u64)*(u64*)((char*)(r0_8) + 0);
+    bool r3_0 = bret::fn_7100ded930(r2_0);
+    u32 m0 = r3_0;
+    if (((u64)(r3_0) >> 0 & 1) == 0) {
+        char* r5_0 = r1_19;
+        bool r6_0 = bret::fn_7100f10960(r5_0);
+        if (((u64)(r6_0) >> 0 & 1) != 0) {
+            char* r8_0 = r1_19;
+            return wret::fn_7100f10a2c(r8_0);
+        }
+        m0 = r6_0;
+    }
+    u32 r14_0 = (u32)(u64)(0);
+    return r14_0;
+}
+
 namespace callee { char* fn_7100f0fdbc(); }
 namespace h { extern HIDDEN char g_unk_71729dbe28[]; }
 char* fn_7100f11024() {

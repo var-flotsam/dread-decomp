@@ -394,6 +394,28 @@ L_710065cb94:;
     return S0;
 }
 
+u32 fn_710065cbac(char* p0, char* p1, char* p2, char* p3) {
+    u64 X0;
+    u64 X3 = (u64)p3;
+    u64 X8;
+    u64 v0;
+    X8 = (u64)((u8)*(u8*)((char*)(((char*)X3)) + 182));
+    if (!(((u64)((u32)X8) >> 2 & 1) == 0)) goto L_710065cbd0;
+    X8 = (u64)((u64)*(u64*)((char*)(((char*)X3)) + 8));
+    if (!((u64)(u64)(X8) != 0)) goto L_710065cbd8;
+    X8 = (u64)((u64)*(u64*)((char*)(X8) + 16));
+    v0 = (u64)(X8);
+    X8 = (u64)(0x7);
+    X0 = (u64)(((u64)(u64)(v0) == (u64)(0)) ? (u32)(u64)(0) : (u32)((u32)(u64)((u32)X8)));
+    return ((u32)X0);
+L_710065cbd0:;
+    X0 = (u64)(0x3);
+    return ((u32)X0);
+L_710065cbd8:;
+    X0 = (u64)((u32)(u64)(0));
+    return ((u32)X0);
+}
+
 namespace callee { char* fn_710065c868(); }
 namespace h { extern HIDDEN char g_unk_71726fc8b8[]; }
 char* fn_710065cbe0() {

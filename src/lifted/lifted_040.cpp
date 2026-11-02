@@ -828,6 +828,22 @@ char* fn_7100406574(char* p0, char* p1, char* p2) {
     return r2_0;
 }
 
+namespace callee { char* fn_71011061ac(); }
+char* fn_71004065c0(char* p0, char* p1, char* p2, char* p3) {
+    u32 r0_8 = (u32)*(u32*)((char*)(p3) + 180);
+    u32 r1_9 = 0x5000;
+    u32 r2_9 = (u32)(u64)(r0_8) & (u32)(r1_9);
+    u32 r3_10 = 0x400;
+    u32 r4_10 = 0x8000400;
+    u32 r5_8 = (u32)(u64)(r0_8) & (u32)(r4_10);
+    if (!((u32)(u64)(r2_9) != (u32)(0)) || ((u32)((u32)(u64)(r5_8) - (u32)(u64)(0)) != 0)) {
+        return callee::fn_71011061ac();
+    }
+    u32 r9_0 = 0x1;
+    *(u32*)((char*)(p1) + 0) = (u32)(u64)(0);
+    return (char*)(u64)(r9_0);
+}
+
 namespace callee { char* fn_71004030f4(); }
 namespace h { extern HIDDEN char g_unk_71726c4160[]; }
 char* fn_7100406e30() {

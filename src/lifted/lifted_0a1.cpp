@@ -1887,6 +1887,59 @@ char* fn_7100a1c3a4(char* p0) {
     return callee::fn_7100083c00(r2_0);
 }
 
+namespace callee { char* fn_71002af860(u64); }
+namespace callee { char* fn_710031d208(char*, char*); }
+namespace callee { char* fn_71008db6c4(char*, u8); }
+namespace sret { UnkResult fn_7100353be8(char*); }
+char* fn_7100a1c3c8(char* p0) {
+    alignas(8) char stk[0x8];
+    u64 X0 = (u64)p0;
+    u64 X1;
+    u64 X8;
+    u64 X19;
+    u64 v0;
+    u64 v1;
+    X8 = (u64)((u32)*(u32*)((char*)(((char*)X0)) + 1000));
+    X19 = (u64)(((char*)X0));
+    if (!((u32)(u64)((u32)X8) == (u32)(1))) goto L_7100a1c428;
+    X0 = (u64)((((char*)X19)) + 960);
+    v0 = (u64)(X8);
+    X8 = (u64)((stk + 0x0));
+    new ((void*)(((char*)X8)), lift_at_t{}) UnkResult(sret::fn_7100353be8(((char*)X0)));
+    X0 = (u64)((((char*)X19)) + 1008);
+    X1 = (u64)((stk + 0x0));
+    X0 = (u64)(callee::fn_710031d208(((char*)X0), ((char*)X1)));
+    X0 = (u64)((u64)*(u64*)(stk + 0x0));
+    if (!((u64)(u64)(X0) != 0)) goto L_7100a1c420;
+    X8 = (u64)((u32)*(u32*)((char*)(X0) + 8));
+    v1 = (u64)(X8);
+    X8 = (u64)((u32)(u64)((u32)X8) - (u32)(1));
+    *(u32*)((char*)(X0) + 8) = (u32)(u64)((u32)X8);
+    if (!((u32)(u64)((u32)v1) == (u32)(1))) goto L_7100a1c420;
+    X8 = (u64)((u64)*(u64*)((char*)(X0) + 0));
+    X8 = (u64)((u64)*(u64*)((char*)(X8) + 16));
+    X0 = (u64)(((char* (*)(u64))(X8))(X0));
+L_7100a1c420:;
+    X8 = (u64)(0x2);
+    *(u32*)((char*)(((char*)X19)) + 1000) = (u32)(u64)((u32)X8);
+L_7100a1c428:;
+    X8 = (u64)((u64)*(u64*)((char*)(((char*)X19)) + 1008));
+    if (!((u64)(u64)(X8) != 0)) goto L_7100a1c450;
+    X0 = (u64)((u64)*(u64*)((char*)(X8) + 16));
+    X0 = (u64)(callee::fn_71002af860(X0));
+    if (!((u64)(u64)(((char*)X0)) != 0)) goto L_7100a1c444;
+L_7100a1c43c:;
+    X1 = (u64)((u8)*(u8*)((char*)(((char*)X19)) + 1080));
+    X0 = (u64)(callee::fn_71008db6c4(((char*)X0), ((u8)X1)));
+L_7100a1c444:;
+    return ((char*)X0);
+L_7100a1c450:;
+    X0 = (u64)(0);
+    X0 = (u64)(callee::fn_71002af860(X0));
+    if (!((u64)(u64)(((char*)X0)) == 0)) goto L_7100a1c43c;
+    goto L_7100a1c444;
+}
+
 namespace callee { char* fn_7100a1b7b4(); }
 namespace h { extern HIDDEN char g_unk_7172745210[]; }
 char* fn_7100a1c460() {

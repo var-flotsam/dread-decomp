@@ -1502,6 +1502,24 @@ char* fn_71011acd10(char* p0) {
     return callee::fn_71011ad054(r17_0, r18_1);
 }
 
+namespace bret { bool fn_7100253824(char*, char*); }
+namespace callee { char* fn_7100023d00(char*, char*); }
+namespace callee { char* fn_7100253824(char*, char*); }
+namespace callee { char* fn_71011abbd4(); }
+namespace wret { u32 fn_7100023d00(char*, char*); }
+u32 fn_71011ace94(char* p0, char* p1) {
+    char* r0_19 = p1;
+    bool r1_0 = bret::fn_7100253824(p0, p1);
+    if (((u64)(r1_0) >> 0 & 1) != 0) {
+        char* r3_0 = callee::fn_71011abbd4();
+        char* r4_1 = r3_0;
+        char* r5_0 = r0_19;
+        return wret::fn_7100023d00(r5_0, r4_1);
+    }
+    u32 r8_0 = (u32)(u64)(0);
+    return r8_0;
+}
+
 namespace bret { bool fn_7100254318(char*, char*); }
 namespace callee { char* fn_7100254318(char*, char*); }
 namespace callee { char* fn_71011acf1c(char*, char*); }

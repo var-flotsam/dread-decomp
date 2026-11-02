@@ -2100,15 +2100,16 @@ char* fn_71007ff76c(char* p0, u32 p1) {
 namespace bret { bool fn_71007f9f20(char*); }
 namespace callee { char* fn_71007f9f20(char*); }
 namespace callee { char* fn_71007f9fd0(char*); }
-char* fn_71007ff8dc(char* p0) {
+namespace wret { u32 fn_71007f9fd0(char*); }
+u32 fn_71007ff8dc(char* p0) {
     char* r0_19 = p0;
     bool r1_0 = bret::fn_71007f9f20(p0);
     if (((u64)(r1_0) >> 0 & 1) != 0) {
         char* r3_0 = r0_19;
-        return callee::fn_71007f9fd0(r3_0);
+        return wret::fn_71007f9fd0(r3_0);
     }
     u32 r6_0 = 0x1;
-    return (char*)(u64)(r6_0);
+    return r6_0;
 }
 
 namespace bret { bool fn_71007f9f20(char*); }
@@ -2116,7 +2117,8 @@ namespace bret { bool fn_71007f9fd0(char*); }
 namespace callee { char* fn_71007f9f20(char*); }
 namespace callee { char* fn_71007f9fd0(char*); }
 namespace callee { char* fn_71007f9ff8(char*, char*, char*); }
-char* fn_71007ffa10(char* p0, char* p1, char* p2) {
+namespace wret { u32 fn_71007f9ff8(char*, char*, char*); }
+u32 fn_71007ffa10(char* p0, char* p1, char* p2) {
     u64 X0 = (u64)p0;
     u64 X1 = (u64)p1;
     u64 X2 = (u64)p2;
@@ -2135,8 +2137,8 @@ L_71007ffa40:;
     X1 = (u64)(((char*)X20));
     X2 = (u64)(((char*)X19));
     X0 = (u64)(((char*)X21));
-    return callee::fn_71007f9ff8(((char*)X0), ((char*)X1), ((char*)X2));
+    return wret::fn_71007f9ff8(((char*)X0), ((char*)X1), ((char*)X2));
 L_71007ffa5c:;
     X0 = (u64)(0x3);
-    return (char*)(u64)(((u32)X0));
+    return ((u32)X0);
 }

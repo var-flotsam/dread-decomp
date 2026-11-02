@@ -843,7 +843,8 @@ char* fn_7100605704(char* p0, char* p1, char* p2, char* p3, char* p4, char* p5) 
 namespace bret { bool fn_7100605790(char*, char*, char*, char*); }
 namespace callee { char* fn_7100605790(char*, char*, char*, char*); }
 namespace callee { char* fn_7100ac4c60(char*, char*, char*, char*, char*); }
-char* fn_7100605720(char* p0, char* p1, char* p2, char* p3, char* p4) {
+namespace wret { u32 fn_7100ac4c60(char*, char*, char*, char*, char*); }
+u32 fn_7100605720(char* p0, char* p1, char* p2, char* p3, char* p4) {
     char* r0_19 = p4;
     char* r1_20 = p3;
     char* r2_21 = p2;
@@ -852,14 +853,14 @@ char* fn_7100605720(char* p0, char* p1, char* p2, char* p3, char* p4) {
     bool r5_0 = bret::fn_7100605790(p0, p1, p2, p3);
     if (((u64)(r5_0) >> 0 & 1) != 0) {
         u32 r7_0 = 0x1;
-        return (char*)(u64)(r7_0);
+        return r7_0;
     }
     char* r10_1 = r3_22;
     char* r11_2 = r2_21;
     char* r12_3 = r1_20;
     char* r13_4 = r0_19;
     char* r14_0 = r4_23;
-    return callee::fn_7100ac4c60(r14_0, r10_1, r11_2, r12_3, r13_4);
+    return wret::fn_7100ac4c60(r14_0, r10_1, r11_2, r12_3, r13_4);
 }
 
 namespace callee { char* fn_7100604f54(); }
