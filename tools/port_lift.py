@@ -505,28 +505,46 @@ class Oracle:
                 # number): each of those as a valid pointer instead (an original that crashes on
                 # every input decides nothing).
                 # A repaired run that crashes further on is repaired again, keeping what was set.
+                # The words holding a small number go first (the made-up pointer is one of them), and
+                # an integer argument register is one too. Until some run of the original ends
+                # without a fault, coverage does not end the repairs, and a repaired run that ends
+                # without one is kept though it reaches nothing new (a comparison needs a run that ends).
+                def ended() -> bool:
+                    return any(not isinstance(r[2], str) and r[2].fault is None for r in runs)
+
+                def small(base, w: int) -> bool:
+                    try:
+                        return base.load(w, 8) < 0x10000
+                    except (pcode_emu.Fault, pcode_emu.Inconclusive):
+                        return False
                 todo = [r for r in runs if not isinstance(r[2], str) and getattr(r[2], "fault", None) is not None][:2]
                 budget = REPAIRS
                 while todo and budget > 0:
                     seed, ovr, base = todo.pop(0)
-                    keys = [("c", n) for n in range(min(base.calls, MAX_RESULTS), 0, -1)] \
-                        + [("m", w) for w in [w for w in base.read_words if mutable(w)][-SWEEP_WORDS:]]
-                    for key in keys:
-                        if len(seen) * 4 >= size or budget <= 0:
+                    words = [w for w in base.read_words if mutable(w)]
+                    near = [w for w in reversed(words) if small(base, w)][:SWEEP_WORDS]
+                    # (a call's result also as true: a cast check's `tst w0, #1` that selects null)
+                    calls = range(min(base.calls, MAX_RESULTS), 0, -1)
+                    keys = [(("m", w), POINTER) for w in near] + [(("c", n), POINTER) for n in calls] \
+                        + [(("c", n), 1) for n in calls] + [(("r", k), POINTER) for k in regs if k < 8] \
+                        + [(("m", w), POINTER) for w in words[-SWEEP_WORDS:] if w not in near]
+                    for key, value in keys:
+                        if (len(seen) * 4 >= size and ended()) or budget <= 0:
                             break
                         if key in ovr:
                             continue
                         budget -= 1
-                        o = {**ovr, key: placed(base, key[1], POINTER) if key[0] == "m" else POINTER}
+                        o = {**ovr, key: placed(base, key[1], value) if key[0] == "m" else value}
                         try:
                             m = run(seed, o)
                         except pcode_emu.Inconclusive:
                             continue
-                        if m.visited - seen:
+                        if m.visited - seen or (m.fault is None and not ended()):
                             runs.append((seed, o, m))
                             seen |= m.visited
                             if m.fault is not None:
-                                todo.append((seed, o, m))
+                                todo.insert(0, (seed, o, m))  # (depth first: the run that got further)
+                                break
             idle = 0
             for t in range(FUZZ if self.fuzz else 0):
                 kept = [r for r in runs if not isinstance(r[2], str)]
