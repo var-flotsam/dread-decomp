@@ -1267,8 +1267,53 @@ class Lifter:
             return False
         fn = fcall[3] if len(fcall) > 3 else None
         if "semantic" in self.opts and self.main is not None and fn and re.fullmatch(r"fn_[0-9a-f]{10}", fn):
-            return 100 in self.main(int(fn[3:], 16))
+            return 100 in self.main(int(fn[3:], 16)) or self.join_reads_s0(fcall)
         return True
+
+    def join_reads_s0(self, fcall) -> bool:
+        """Whether this function itself may read the call's s0/d0 where result_main does not look:
+        its forward scan from the call stops at the first branch target, so a call falling into a
+        join with s0 neither read nor written (`fmov s0, #1.0; cbz w0, L; bl F; L: fadd s0, s0, s0`)
+        is no evidence from this caller, and when s0/d0 is read from that join on before it is
+        written, F's result may be the float read there (F's only caller, or all alike)."""
+        j = getattr(self, "call_pos", {}).get(fcall[0])
+        if j is None:
+            return True  # (no record of the call: as before result_main was consulted)
+        targets = set()
+        for y in self.ins:
+            if y.mnemonic.startswith(("b", "cb", "tb")) and y.mnemonic not in ("bl", "blr", "br") and y.operands \
+                    and y.operands[-1].type == arm64.ARM64_OP_IMM:
+                targets.add(y.operands[-1].imm)
+        at = {y.address: k for k, y in enumerate(self.ins)}
+        f0 = {"s0", "d0", "q0", "v0", "h0", "b0"}
+        for k in range(j + 1, len(self.ins)):
+            y = self.ins[k]
+            if y.address in targets:
+                return self.v0_read_from(k)
+            reads, writes = ({regname(q) for q in r} for r in y.regs_access())
+            if y.mnemonic in ("fmov", "movi") and y.operands[-1].type != arm64.ARM64_OP_REG:
+                reads = set()
+            if reads & f0:
+                return True  # (result_main has this read: not reached when it says void)
+            if y.mnemonic == "b" and y.operands and y.operands[-1].type == arm64.ARM64_OP_IMM \
+                    and y.operands[-1].imm in at:
+                # (`bl F; b L2`: result_main takes a b for a tail call and looks no further)
+                return self.v0_read_from(at[y.operands[-1].imm])
+            if writes & f0 or y.mnemonic in ("bl", "blr", "b", "br", "ret"):
+                return False
+        return False
+
+    def v0_read_from(self, k: int) -> bool:
+        """Whether instruction k on (address order) reads v0 at any width before writing it."""
+        for y in self.ins[k:]:
+            reads, writes = ({regname(q) for q in r} for r in y.regs_access())
+            if y.mnemonic in ("fmov", "movi") and y.operands[-1].type != arm64.ARM64_OP_REG:
+                reads = set()
+            if reads & {"s0", "d0", "q0", "v0", "h0", "b0"}:
+                return True
+            if writes & {"s0", "d0", "q0", "v0", "h0", "b0"}:
+                return False
+        return False
 
     def va_save(self, x, mem) -> bool:
         """Semantic mode: `stp q<n>, q<n+1>, [..]` of incoming argument registers (q0-q7, none
@@ -2705,6 +2750,9 @@ class Lifter:
             # Until s0/d0 is read (then the callee returns a float; see retype_call).
             var = self.s.vals[0][0] if 0 in self.s.vals else "X0"
             self.s.fcall = (len(self.body) - 1, var, call) + self.last_call
+            if not hasattr(self, "call_pos"):
+                self.call_pos = {}
+            self.call_pos[len(self.body) - 1] = self.pos  # (the call's instruction, float_result)
             if m == "bl" and "semantic" in self.opts and self.orig.plt_import(o[0].imm) in LIBM_IMPORTS:
                 # A libm import returns its float in s0/d0 (an inlined fsqrt's sqrtf fallback for a
                 # NaN, its result passed on past the join: fn_71010c1da0)
