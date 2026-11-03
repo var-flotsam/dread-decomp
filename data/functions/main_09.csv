@@ -455,7 +455,7 @@ address,size,name,name_source,subsystem,status
 0x7100910804,56,fn_7100910804,unknown,engine/reflection?,O
 0x710091083c,128,fn_710091083c,unknown,engine/reflection?,O
 0x71009108bc,60,fn_71009108bc,unknown,engine/reflection?,O
-0x71009108f8,112,fn_71009108f8,unknown,engine/reflection?,U
+0x71009108f8,112,fn_71009108f8,unknown,engine/reflection?,O
 0x7100910968,28,fn_7100910968,unknown,engine/reflection?,O
 0x7100910984,232,fn_7100910984,unknown,engine/reflection?,U
 0x7100910a6c,240,fn_7100910a6c,unknown,engine/reflection?,U
