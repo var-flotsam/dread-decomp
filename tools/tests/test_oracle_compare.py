@@ -107,6 +107,24 @@ class CallerFrame(unittest.TestCase):
         self.assertFalse(same_arg(1, 2))
         self.assertTrue(same_arg(7, 7))
 
+    def test_stack_argument_slots_compare_exactly(self):
+        """&stack_arg10 for &stack_arg9 is a different argument, not two caller-frame addresses."""
+        frame = ENTRY_SP + 8 * 2
+        self.assertFalse(same_arg(ENTRY_SP, ENTRY_SP + 8, frame))
+        self.assertFalse(same_arg(ENTRY_SP + 8, ENTRY_SP + 0x40, frame))
+        self.assertTrue(same_arg(ENTRY_SP + 8, ENTRY_SP + 8, frame))
+        self.assertTrue(same_arg(frame, ENTRY_SP + 0x40, frame))
+
+    def test_compare_bounds_by_the_larger_arg_slots(self):
+        """compare passes ENTRY_SP + 8 * max(arg_slots): a call given the next stack slot differs."""
+        def run(x0, slots):
+            call = ("call", 0x7100001570, ((0, 64),), ((0, x0),))
+            return types.SimpleNamespace(events=[(call, ()), (("end", "return"), ())], undef_mem=set(),
+                                         clipped=False, cut=None, steps=1, scale=1, arg_slots=slots)
+        self.assertTrue(pcode_emu.compare(run(ENTRY_SP, 2), run(ENTRY_SP + 8, 0), None).startswith("call 0"))
+        self.assertEqual(pcode_emu.compare(run(ENTRY_SP + 0x10, 2), run(ENTRY_SP + 0x40, 0), None), "")
+        self.assertEqual(pcode_emu.compare(run(ENTRY_SP, None), run(ENTRY_SP + 8, None), None), "")
+
 
 class X8Window(unittest.TestCase):
     """call: an x8 result's window past the guide's extent is undefined only up to this frame's

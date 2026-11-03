@@ -1378,6 +1378,9 @@ def compare(a: Machine, b: Machine, ret: str | None) -> str:
     else the first difference. `a` is the original's run. `ret` is the lift's result kind: None
     (not compared), 'x8', 'x16', 'x32', 'x64', 'f32', 'f64'."""
     ea, eb = a.events, b.events
+    # (the caller's frame past both functions' own stack arguments: an address into the argument
+    # slots names one argument, compared exactly)
+    frame = ENTRY_SP + 8 * max(getattr(a, "arg_slots", None) or 0, getattr(b, "arg_slots", None) or 0, 0)
     if a.undef_mem or b.undef_mem:
         # (bytes either run stored from undefined stack bytes: not compared, in neither run)
         skip = a.undef_mem | b.undef_mem
@@ -1392,7 +1395,7 @@ def compare(a: Machine, b: Machine, ret: str | None) -> str:
         for i in range(len(ea) - 1):
             if i >= len(eb) or ea[i] != eb[i]:
                 if i < len(eb) and ea[i][0][0] == eb[i][0][0] == "call" and ea[i][0][1] == eb[i][0][1] \
-                        and ea[i][1] == eb[i][1] and all(same_arg(dict(ea[i][0][3]).get(k), dict(eb[i][0][3]).get(k))
+                        and ea[i][1] == eb[i][1] and all(same_arg(dict(ea[i][0][3]).get(k), dict(eb[i][0][3]).get(k), frame)
                                                          for k, _ in ea[i][0][2]):
                     continue
                 if i == len(eb) - 1 and end_b == ("end", "time-out"):
@@ -1416,7 +1419,7 @@ def compare(a: Machine, b: Machine, ret: str | None) -> str:
                     u, v = da.get(k), db.get(k)
                     if bits == 32 and isinstance(u, int) and isinstance(v, int):
                         u, v = u & 0xFFFFFFFF, v & 0xFFFFFFFF
-                    if not same_arg(u, v):
+                    if not same_arg(u, v, frame):
                         return f"call {i} to {fmt(va[1])}: argument {regname(k)} ({arg_text(u)} vs {arg_text(v)})"
             else:
                 return f"event {i}: {va[0]} {va[1] if len(va) > 1 else ''} vs {vb[0]} {vb[1] if len(vb) > 1 else ''}"
@@ -1467,12 +1470,15 @@ def compare(a: Machine, b: Machine, ret: str | None) -> str:
     return ""
 
 
-def same_arg(u, v) -> bool:
+def same_arg(u, v, frame: int = ENTRY_SP) -> bool:
+    """`frame`: where the caller's frame starts past the stack arguments (compare: ENTRY_SP + 8 *
+    the larger arg_slots; ENTRY_SP when unknown)."""
     if u == v:
         return True
-    if isinstance(u, int) and isinstance(v, int) and ENTRY_SP <= u < STACK_TOP and ENTRY_SP <= v < STACK_TOP:
-        # (both above the entry sp, in the caller's frame: an address computed from made-up words
-        # and each run's own frame, which the two lay out differently, 71002842e4)
+    if isinstance(u, int) and isinstance(v, int) and frame <= u < STACK_TOP and frame <= v < STACK_TOP:
+        # (both above the entry sp and the stack arguments, in the caller's frame: an address
+        # computed from made-up words and each run's own frame, which the two lay out differently,
+        # 71002842e4)
         return True
     if isinstance(u, tuple) and isinstance(v, tuple):
         # Stack windows: the object starts at the pointer and ends where either function stops
