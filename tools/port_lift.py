@@ -1116,6 +1116,9 @@ def main() -> int:
             void_only.add(a)
     af.save(FACTS)
     print(f"facts: callers' use of {len(jobs)} results ({time.time() - t0:.0f} s)")
+    # The longest first (size by attempts: a function no attempt passes runs them all), so the pool
+    # does not end on a few long ones started last; results are keyed by address, the order is free.
+    jobs.sort(key=lambda j: -orig.sizes.get(j[0], 0) * len(j[1]))
     ctx = (args.version, lo_paths, db_path, args.inputs, bool(args.debug), not args.no_fuzz)
     accepted: dict[int, tuple[str, set[str]]] = {}
     info: dict[int, dict] = {}
@@ -1128,7 +1131,7 @@ def main() -> int:
     else:
         import multiprocessing
         pool = multiprocessing.get_context("spawn").Pool(nproc, _init_worker, ctx)
-        results = pool.imap_unordered(_check, jobs, chunksize=4)
+        results = pool.imap_unordered(_check, jobs, chunksize=1)  # (one at a time: four long ones would share a worker)
     for n, (a, k, inf, fail, debug) in enumerate(results):
         if debug:
             print(debug)
