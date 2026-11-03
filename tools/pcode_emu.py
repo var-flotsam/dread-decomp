@@ -431,6 +431,9 @@ class Machine:
     res_read: set | None = None  # (__init__; a Machine built bare, as the tests do, tracks nothing)
     res_written: set = frozenset()
     res_sret = False  # the last call returned through x8
+    # The function under test's own abi_facts (port_lift.machine, the original's run): an indirect
+    # call with x8 still as it came in is passed x8 when the function's callers set it (Facts.fwd).
+    own_facts = None
 
     def __init__(self, db: dict, image: ImageMemory, seed: int, inside, code_word, lift: LiftObject | None,
                  imports: dict[int, str], facts, preset: dict[int, int], dictionary: tuple = (),
@@ -742,6 +745,7 @@ class Machine:
         # scratch do not count, and one the original set must hold the same value in the lift.
         f = self.facts(target)
         args, sel, raw = [], [], {}  # (raw: the integer arguments' values, for the out-parameters)
+        compare_only = set()  # (selected to be compared, never written through: see x8 below)
         for k in list(range(9)) + list(range(100, 108)):
             st = self.state.get(k, "junk")
             if k < 100:
@@ -755,7 +759,12 @@ class Machine:
                 if k not in f.args:
                     continue
             elif k == 8:  # unknown: x8 when it was set to a local (a result built there)
-                if st != "written" or not STACK_LO <= self.x(8) < ENTRY_SP:
+                if st == "entry" and 8 in getattr(self.own_facts, "fwd", ()):
+                    # (or x8 as the function was given it, when its callers point it at their frame:
+                    # a virtual-call wrapper's indirect result, passed on. Compared only: the
+                    # out-parameters, the guide and res_sret stay as without it.)
+                    compare_only.add(8)
+                elif st != "written" or not STACK_LO <= self.x(8) < ENTRY_SP:
                     continue
             elif st in ("entry", "stale") and k != 0:  # unknown: x0 and what this block set for it
                 continue
@@ -777,7 +786,7 @@ class Machine:
         self.target_reg = None
         self.calls += 1
         n = self.calls
-        chosen = {k for k, _ in sel}
+        chosen = {k for k, _ in sel} - compare_only
         extent = {k: v[2] for k, v in args if isinstance(v, tuple) and v[0] == "stack"}
         # A recorded call's out-parameters: the bytes it changed in this frame, by argument and offset
         # from it (the original's run lays its frame out as the real one did; the lift's takes them from

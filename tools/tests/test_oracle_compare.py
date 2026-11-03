@@ -223,5 +223,71 @@ class X8Window(unittest.TestCase):
         self.assertTrue(self.kept(m, 0x18, 0x20))
 
 
+class WrapperX8(unittest.TestCase):
+    """call: an indirect callee (no facts) is passed x8 as the function was given it when the
+    function's own callers set x8 (its Facts.fwd holds 8, a virtual-call wrapper's indirect result):
+    selected to be compared, never written through or taken as the call's result kind."""
+
+    X8 = pcode_emu.ARENA + 0x900100  # (Machine.setup's x8 object: not in the stack)
+
+    def machine(self, fwd, x8_state="entry"):
+        m = machine()
+        m.own_facts = types.SimpleNamespace(fwd=frozenset(fwd), args=frozenset({0} | (set(fwd) & {8})))
+        m.set_reg(pcode_emu.X0 + 64, 8, self.X8)
+        m.state = {0: "entry", 8: x8_state}  # (after set_reg, which marks a write)
+        return m
+
+    def test_fwd_x8_entry_is_selected(self):
+        self.assertEqual(selection(self.machine({0, 8}), None).get(8), 64)
+
+    def test_without_fwd_x8_entry_is_not(self):
+        self.assertNotIn(8, selection(self.machine({0}), None))
+
+    def test_no_own_facts_is_not(self):
+        m = self.machine({0, 8})
+        m.own_facts = None
+        self.assertNotIn(8, selection(m, None))
+
+    def test_x8_after_a_call_is_not(self):
+        """x8 a call left (junk) is not the function's incoming result address."""
+        self.assertNotIn(8, selection(self.machine({0, 8}, "junk"), None))
+
+    def test_known_callee_keeps_its_args(self):
+        """A callee with facts: exactly the registers it reads, fwd or not."""
+        facts = types.SimpleNamespace(args=frozenset({0}), wide=frozenset({0}), stack_slots=0)
+        self.assertNotIn(8, selection(self.machine({0, 8}), facts))
+
+    def test_compared_only(self):
+        """The call's log (the lift's guide), out-parameters and res_sret stay as without x8."""
+        logs = []
+        for fwd in ({0, 8}, {0}):
+            m = self.machine(fwd)
+            m.seed, m.overrides, m.dictionary, m.calls, m.call_log, m.out_words = 0, {}, None, 0, [], []
+            m.results, m.guide, m.frame_record, m.out_at = [], None, set(), {}
+            m.canonical = lambda target: target
+            m.recorded = lambda target, t, modeled: None
+            m.facts = lambda target: None
+            events = []
+            m.checkpoint = events.append
+            m.stored = {}
+            m.store = lambda a, size, v, track=True, m=m: m.stored.__setitem__(a, v)
+            m.call(0x7100001000)
+            self.assertFalse(m.res_sret)
+            self.assertEqual(m.stored, {})
+            logs.append(m.call_log)
+            self.assertEqual(8 in dict(events[0][2]), 8 in fwd)
+        self.assertEqual(logs[0], logs[1])
+
+    def test_lift_losing_x8_fails(self):
+        """The original passed x8 on; a lift whose x8 differs at the call is a different program."""
+        def run(x8, sel):
+            call = ("call", 0x7100001570, sel, ((0, 1), (8, x8)))
+            return types.SimpleNamespace(events=[(call, ()), (("end", "return"), ())], undef_mem=set(),
+                                         clipped=False, cut=None, steps=1, scale=1, arg_slots=0)
+        orig = run(self.X8, ((0, 64), (8, 64)))
+        self.assertIn("argument x8", pcode_emu.compare(orig, run(0x1234, ((0, 64),)), None))
+        self.assertEqual(pcode_emu.compare(orig, run(self.X8, ((0, 64),)), None), "")
+
+
 if __name__ == "__main__":
     unittest.main()

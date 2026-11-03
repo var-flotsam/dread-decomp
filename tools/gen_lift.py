@@ -1153,6 +1153,27 @@ class Lifter:
         self.line(f"new ((void*)({x8}), lift_at_t{{}}) UnkResult(((UnkResult (*)({types}))({ptr}))({values}));")
         self.terminate("value", None)
 
+    def own_sret(self) -> bool:
+        """Semantic mode: this function's own facts give it an indirect result (x8 in its args):
+        its callers point x8 at the result they want built (a virtual-call wrapper, abi_facts.fwd)."""
+        if self.facts is None or "semantic" not in self.opts:
+            return False
+        f = self.facts(self.addr)
+        return f is not None and f.sret
+
+    def x8_incoming(self) -> bool:
+        """x8 still holds the result address this function was given (no call or write since)."""
+        s = self.s
+        if 8 in s.vals:
+            return s.vals[8][0] in self.ret_ptrs
+        return not s.called and 8 not in s.poison and 8 not in s.pages
+
+    def x8_result(self) -> bool:
+        """Semantic mode: an indirect call here builds its result where x8 points: x8 set to a
+        local (State.x8w), or x8 as it came in when the function's own facts read it (its callers
+        set it: the result is passed on, sret_indirect_tail)."""
+        return "semantic" in self.opts and (self.s.x8w or (self.own_sret() and self.x8_incoming()))
+
     def sret_callee(self, a: int) -> bool:
         """Whether the callee at a builds its result at x8 (abi_facts), in semantic mode and in
         byte mode's pass-through (where the call then names x8 too: see sret_call, sret_tail)."""
@@ -1605,7 +1626,7 @@ class Lifter:
                 elif m == "b" and not addr <= o[0].imm < end:
                     self.terminate("tail", self.call(f"fn_{o[0].imm:x}"))
                     self.tails[f"fn_{o[0].imm:x}"] = self.last_call[1]
-                elif m == "br" and "semantic" in self.opts and self.s.x8w and regname(o[0].reg) != "x8":
+                elif m == "br" and self.x8_result() and regname(o[0].reg) != "x8":
                     self.sret_indirect_tail(regname(o[0].reg))
                 elif m == "br":
                     ptr, _ = self.read(regname(o[0].reg))
@@ -1626,6 +1647,10 @@ class Lifter:
         return self.finish()
 
     def finish(self) -> tuple[str, set[str]] | None:
+        if self.own_sret() and not self.sret:
+            # (the facts give this function an indirect result its lift never passes on: its
+            # callers build the result through x8, the lift would leave it unbuilt)
+            return self.fail("indirect result (x8) not passed on")
         if "copy" in self.opts:
             self.body = copy_runs(self.body)
         if "sort" in self.opts:
@@ -2645,7 +2670,7 @@ class Lifter:
             self.s.written = set()
             for i in range(2 if shape[0] == "x" else shape[1]):
                 self.write(f"{shape[0]}{i}", f"{v}.r[{i}]", shape_elem(shape))
-        elif m == "blr" and "semantic" in self.opts and self.s.x8w and regname(o[0].reg) != "x8":
+        elif m == "blr" and self.x8_result() and regname(o[0].reg) != "x8":
             # An indirect callee given a local in x8 builds its result there (the original reads it
             # back): as sret_call, through the pointer.
             ptr, _ = self.read(regname(o[0].reg))
@@ -2945,6 +2970,9 @@ class FlatLifter(Lifter):
         if n < 100:
             return f"X{n}"
         return f"{'S' if t == 'f32' else 'D'}{n - 100}"
+
+    def x8_incoming(self) -> bool:
+        return 8 in self.ret_regs and 8 not in self.clob and 8 not in self.s.pages
 
     def read(self, r: str) -> tuple[str, str]:
         if r in ("xzr", "wzr"):
@@ -3272,7 +3300,7 @@ class FlatLifter(Lifter):
                         self.edge(t)
                     cases = " ".join(f"case {k}: goto L_{t:x};" for k, t in enumerate(tgts))
                     self.line(f"switch ((u64)({v})) {{ {cases} default: __builtin_unreachable(); }}")
-                elif m == "br" and "semantic" in self.opts and self.s.x8w and regname(o[0].reg) != "x8":
+                elif m == "br" and self.x8_result() and regname(o[0].reg) != "x8":
                     self.sret_indirect_tail(regname(o[0].reg))
                 elif m == "br":
                     ptr, _ = self.read(regname(o[0].reg))
