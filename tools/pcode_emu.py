@@ -427,6 +427,9 @@ def native(w: int) -> bool:
 # --- the machine -----------------------------------------------------------------------------------
 
 class Machine:
+    res_read: set | None = None  # (__init__; a Machine built bare, as the tests do, tracks nothing)
+    res_written: set = frozenset()
+
     def __init__(self, db: dict, image: ImageMemory, seed: int, inside, code_word, lift: LiftObject | None,
                  imports: dict[int, str], facts, preset: dict[int, int], dictionary: tuple = (),
                  overrides: dict | None = None, track: bool = False):
@@ -484,6 +487,11 @@ class Machine:
         self.guide: list | None = None
         self.arg_slots: int | None = None  # the function's stack argument slots (load: the caller's frame)
         self.state = {}  # argument register key -> "entry" | "written" | "junk"
+        # Since the last call: which of its result registers (x0: 0, v0: 100) the run read while they
+        # still held what the call left, and which it has written since (None before any call).
+        # compare(): a result in the class the function itself did not read is garbage (AAPCS64).
+        self.res_read: set | None = None
+        self.res_written: set = set()
         self.vnarrow: dict[int, bool] = {}  # v<n> -> its last write was s<n> (4 bytes at its start)
         self.out_words: list = []  # ((call, argument, offset), word): the out-parameter words written
         self.events: list = []
@@ -601,8 +609,12 @@ class Machine:
             self.undef_vn.difference_update((2, off + i) for i in range(size))
         if X0 <= off < X0 + 72:
             self.state[(off - X0) // 8] = "written"
+            if off < X0 + 8 and self.res_read is not None:
+                self.res_written.add(0)
         elif Q0 <= off < Q0 + 8 * QSTRIDE:
             self.state[100 + (off - Q0) // QSTRIDE] = "written"
+            if off < Q0 + QSTRIDE and self.res_read is not None:
+                self.res_written.add(100)
             n, rel = divmod(off - Q0, QSTRIDE)
             if rel == 0:
                 self.vnarrow[n] = size == 4
@@ -620,6 +632,11 @@ class Machine:
         if sp == 0:
             return off
         if sp == 2:
+            if self.res_read is not None and X0 <= off < Q0 + QSTRIDE:
+                if off < X0 + 8 and 0 not in self.res_written:
+                    self.res_read.add(0)
+                elif off >= Q0 and 100 not in self.res_written:
+                    self.res_read.add(100)
             return int.from_bytes(self.regs[off:off + size], "little")
         if sp == 1:
             return self.uniq.get(off, 0) & ((1 << (8 * size)) - 1)
@@ -692,6 +709,7 @@ class Machine:
                 self.math(t[1])
             else:
                 self.clib(t[1])
+            self.res_read, self.res_written = set(), set()
             return
         # Every argument register's value; `sel` the ones this run's caller meant for the callee.
         # compare() takes the original's selection, so registers the lift's compiled code used as
@@ -821,6 +839,7 @@ class Machine:
         # read by the next callee is indistinguishable from garbage it does not read (liveness
         # over-approximates), so a float result passed straight on is not compared.
         self.state[100] = "junk"
+        self.res_read, self.res_written = set(), set()
 
     def recorded(self, target: int, t, modeled: bool):
         """The snapshot's next recorded call when it went to this target (and is taken), else None.
@@ -1498,6 +1517,8 @@ def compare(a: Machine, b: Machine, ret: str | None) -> str:
                 return f"result x{i}"
             if kind[0] == "f" and a.reg(Q0 + QSTRIDE * i, size) != b.reg(Q0 + QSTRIDE * i, size):
                 return f"result {'s' if kind == 'f32' else 'd'}{i}"
+    elif ea and ea[-1][0] == ("end", "return") and ret and abi_garbage(a, 0 if ret[0] == "x" else 100):
+        pass
     elif ea and ea[-1][0] == ("end", "return") and ret:
         if ret[0] == "x":
             bits = int(ret[1:])
@@ -1508,6 +1529,18 @@ def compare(a: Machine, b: Machine, ret: str | None) -> str:
             if a.reg(Q0, n) != b.reg(Q0, n):
                 return "result s0/d0"
     return ""
+
+
+def abi_garbage(m: Machine, reg: int) -> bool:
+    """Whether the original's result register (x0: 0, s0/d0: 100) still holds what its last call left
+    while the function read that call's result in the other class (w0 after a bool callee, s0 after
+    a float one) and never this one: AAPCS64 returns a value in x0-x1 or in v0-v3, never both, so
+    this register is the callee's scratch, garbage in the game too (ret_used over-approximates a
+    void function's callers: 71006ea9a4 returns x0 after a float callee, 7100c95f74 s0 after a bool
+    one). Nothing a lift returns there differs from the original's behaviour."""
+    other = 100 - reg
+    return getattr(m, "res_read", None) is not None and reg not in m.res_written \
+        and other in m.res_read and reg not in m.res_read
 
 
 def same_arg(u, v, frame: int = ENTRY_SP) -> bool:

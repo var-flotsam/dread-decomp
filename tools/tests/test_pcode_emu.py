@@ -194,3 +194,16 @@ class Snapshots(unittest.TestCase):
         m.replay_i = 0
         self.assertIsNone(rec(m, B + 0x300, B + 0x300, False))
         self.assertIn("the real run's", m.replay_end)
+
+
+@unittest.skipIf(pcode_emu is None, "pyelftools is not installed")
+class AbiGarbage(unittest.TestCase):
+    def test_result_in_the_class_the_function_did_not_read(self):
+        # x0 left by a call whose s0 the function read (a float callee): garbage, whatever it holds
+        m = SimpleNamespace(res_read={100}, res_written=set())
+        self.assertTrue(pcode_emu.abi_garbage(m, 0))
+        self.assertFalse(pcode_emu.abi_garbage(m, 100))
+        # read in both classes, written since, or no call made: compared
+        self.assertFalse(pcode_emu.abi_garbage(SimpleNamespace(res_read={0, 100}, res_written=set()), 0))
+        self.assertFalse(pcode_emu.abi_garbage(SimpleNamespace(res_read={100}, res_written={0}), 0))
+        self.assertFalse(pcode_emu.abi_garbage(SimpleNamespace(res_read=None, res_written=set()), 0))
