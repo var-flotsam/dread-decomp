@@ -84,6 +84,32 @@ class Budget(unittest.TestCase):
         self.assertEqual(k, 0)
         self.assertEqual(fail, "")
 
+    def budget_spent_pass(self, **ctx):
+        """A pass whose check found the budget spent (the original's runs were cut short)."""
+        o = self.oracle(1.0, verdict="pass")
+        check = o.check
+
+        def spent(addr, lo, ret):
+            o.over = "seeds"
+            return check(addr, lo, ret)
+        o.check = spent
+        port_lift._CTX.update(ctx)
+        return port_lift._check((0x100, [(0, "a")]))
+
+    def test_a_pass_past_the_budget_is_inconclusive(self):
+        a, k, info, fail, debug, (secs, over) = self.budget_spent_pass()
+        self.assertIsNone(k)
+        self.assertIn("oracle budget reached before the check finished (in seeds)", fail)
+
+    def test_a_pass_past_the_budget_is_kept_for_a_kept_function(self):
+        a, k, info, fail, debug, (secs, over) = self.budget_spent_pass(budget_keep=frozenset({0x100}))
+        self.assertEqual(k, 0)
+        self.assertIn("oracle budget reached in seeds", info["note"])
+
+    def test_budget_pass_accept(self):
+        a, k, info, fail, debug, (secs, over) = self.budget_spent_pass(budget_pass="accept")
+        self.assertEqual(k, 0)
+
 
 if __name__ == "__main__":
     unittest.main()

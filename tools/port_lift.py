@@ -761,7 +761,7 @@ _CTX: dict = {}
 
 
 def _init_worker(version: str, lo_paths: list, db_path: Path, inputs: int, debug: bool, fuzz: bool = True,
-                 budget: float = None) -> None:
+                 budget: float = None, budget_pass: str = "inconclusive", budget_keep: frozenset = frozenset()) -> None:
     """An oracle process: the image, the P-code, the facts cache; objects load on first use."""
     orig = asmdiff.Original(version)
     af = abi_facts.AbiFacts(orig, callgraph.load_rows())
@@ -771,7 +771,7 @@ def _init_worker(version: str, lo_paths: list, db_path: Path, inputs: int, debug
         db = pickle.load(fh)
     pcode_emu.set_opcodes(db["opcodes"])
     _CTX.update(oracle=Oracle(orig, af, db, inputs, fuzz), lo_paths=lo_paths, los={}, debug=debug,
-                budget=ORACLE_BUDGET if budget is None else budget)
+                budget=ORACLE_BUDGET if budget is None else budget, budget_pass=budget_pass, budget_keep=budget_keep)
 
 
 def _lift_object(k: int) -> pcode_emu.LiftObject:
@@ -807,6 +807,11 @@ def _check(job: tuple[int, list]) -> tuple[int, int | None, dict, str, str, tupl
                 for name, m in zip(("original", "lift"), oracle.last):
                     debug.append(f"  {name}: {m.steps} steps, x0={m.x(0):#x}")
                     debug += [f"    {ev}  [{len(mem)} bytes changed]" for ev, mem in m.events]
+        if verdict == "pass" and oracle.over and _CTX.get("budget_pass", "inconclusive") == "inconclusive" \
+                and a not in _CTX.get("budget_keep", ()):
+            # (checked on fewer inputs than the oracle would use: not an accept, unless a fully checked
+            # run accepted it before, --budget-keep)
+            verdict, detail = "inconclusive", f"oracle budget reached before the check finished (in {oracle.over})"
         if verdict == "pass":
             size = oracle.orig.sizes[a]
             note = detail + (f" (oracle budget reached in {oracle.over})" if oracle.over else "")
@@ -1028,6 +1033,10 @@ def main() -> int:
     ap.add_argument("--jobs", type=int, default=12, help="oracle processes (default: up to %(default)s)")
     ap.add_argument("--oracle-budget", type=float, default=ORACLE_BUDGET,
                     help="wall-clock seconds the oracle spends on one function (default %(default)s)")
+    ap.add_argument("--budget-pass", choices=["inconclusive", "accept"], default="inconclusive",
+                    help="a lift that passed only after the budget cut the original's runs short (default %(default)s)")
+    ap.add_argument("--budget-keep", help="manifest.json of a fully checked run: its accepted functions keep a pass "
+                                          "that hit the budget")
     ap.add_argument("--mutants", type=int, default=0,
                     help="test the oracle: inject one fault into N accepted lifts and count how many it rejects")
     ap.add_argument("--no-fuzz", action="store_true",
@@ -1173,7 +1182,12 @@ def main() -> int:
     # The longest first (size by attempts: a function no attempt passes runs them all), so the pool
     # does not end on a few long ones started last; results are keyed by address, the order is free.
     jobs.sort(key=lambda j: -orig.sizes.get(j[0], 0) * len(j[1]))
-    ctx = (args.version, lo_paths, db_path, args.inputs, bool(args.debug), not args.no_fuzz, args.oracle_budget)
+    keep = frozenset()
+    if args.budget_keep:
+        keep = frozenset(int(a, 16) for a, v in json.loads(Path(args.budget_keep).read_text(encoding="utf-8"))
+                         ["functions"].items() if v["outcome"] == "accepted")
+    ctx = (args.version, lo_paths, db_path, args.inputs, bool(args.debug), not args.no_fuzz, args.oracle_budget,
+           args.budget_pass, keep)
     accepted: dict[int, tuple[str, set[str]]] = {}
     info: dict[int, dict] = {}
     last_fail: dict[int, str] = {}
