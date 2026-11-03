@@ -493,6 +493,7 @@ class Machine:
         self.entry_saved: set[int] = set()  # those entry values (setup: x19-x28, d8-d15)
         self.taken: set[int] = set()  # stack addresses the code made (`add xN, sp, #k`): local objects' starts
         self.out_at: dict[int, int] = {}  # stack bytes an out-parameter filled: the argument's address (call)
+        self.own_stack: set[int] = set()  # stack bytes the function's own code stored (exec)
         # The original's calls, for the lift's run: which arguments it wrote out-parameters
         # through and how far (call_log); the lift's Machine gets them as `guide` (port_lift).
         self.call_log: list[tuple[frozenset, dict]] = []
@@ -823,11 +824,14 @@ class Machine:
                 # stops where this run's own frame holds another object: the next taken address, a save
                 # slot or the frame record (the guide's extent is the other frame's), or a byte this run
                 # filled as another argument's out-parameter: cleared, a lift's different store to a
-                # local placed there would go uncompared.)
+                # local placed there would go uncompared. Nor past a byte this run's own code stored
+                # with nothing filled through x8 over it since: a local whose address is taken only
+                # later, 710082a500's float passed by pointer after the call, sits there in the lift.)
                 if k == 8:
                     stop = min([t for t in self.taken | self.frame_record | self.saves if t > p] + [p + WINDOW, ENTRY_SP])
+                    own = getattr(self, "own_stack", ())
                     for q in range(p + max(extent[k], 8), stop):
-                        if self.out_at.get(q, p) != p:
+                        if self.out_at.get(q, p) != p or (q in own and q not in self.out_at):
                             break
                         self.stack_written.discard(q)
                 for j in range(0, max(extent[k], 8), 8):
@@ -1261,9 +1265,25 @@ class Machine:
             if out[0] in (1, 2):
                 self.undef_vn.update((out[0], out[1] + i) for i in range(size)
                                      if STACK_LO <= a + i < ENTRY_SP and a + i not in self.stack_written)
+                # (and from a save slot still holding a callee-saved register's entry value: the
+                # caller's, which no C code reads as data. Only an index past a local reaches it, a
+                # made-up count run past the array (7100128810: an entry past a callee-filled table
+                # copied out), and the lift's frame holds its own locals there. The epilogue's
+                # restore loads it too, into the register: undefined there only until written.)
+                if self.saves and STACK_LO <= a < ENTRY_SP:
+                    hit = [s for s in self.saves if s < a + size and a < s + 8
+                           and int.from_bytes(bytes(self.page((s + i) // PAGE)[(s + i) % PAGE] for i in range(8)),
+                                              "little") in self.entry_saved]
+                    if hit:
+                        self.undef_vn.update((out[0], out[1] + i) for i in range(size)
+                                             if any(s <= a + i < s + 8 for s in hit))
         elif name == "STORE":
             a = r(ins[1])
             self.store(a, ins[2][2], r(ins[2]))
+            if STACK_LO <= a < ENTRY_SP:
+                self.own_stack.update(range(a, a + ins[2][2]))
+                for x in range(a, a + ins[2][2]):
+                    self.out_at.pop(x, None)  # (the function's own now, not an out-parameter's)
             if self.undef_vn and ins[2][0] in (1, 2):
                 for i in range(ins[2][2]):
                     if (ins[2][0], ins[2][1] + i) in self.undef_vn:
