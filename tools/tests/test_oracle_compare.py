@@ -17,7 +17,7 @@ def machine() -> pcode_emu.Machine:
     m.regs, m.undef_vn, m.state, m.lift, m.vnarrow = bytearray(0x10000), set(), {}, None, {}
     m.vnarrow_at, m.steps = {}, 0
     m.target_reg = None
-    m._loaded = None  # (no call event yet: load)
+    m._loaded, m._all_loads = None, set()  # (no call event yet: load)
     return m
 
 

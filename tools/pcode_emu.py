@@ -475,6 +475,17 @@ class Machine:
         # loaded before a call and stored back after it is a write: the callee may have changed the
         # byte in between (store).
         self._loaded: set[int] | None = None
+        # The bytes a put-back after a call left unchanged, with the value stored (one run may have
+        # loaded a byte and stored a constant equal to it, the other only stored the constant: store
+        # cannot tell a put-back from a coincidence), and those held at each event (compare).
+        self.putback: dict[int, int] = {}
+        self.putback_ev: dict[int, dict[int, int]] = {}
+        # Every byte the function loaded, and the bytes written this stretch that it loaded only before
+        # the last call (perhaps a stale value stored back), at each event: such a write is no match
+        # for the other run's put-back (compare).
+        self._all_loads: set[int] = set()
+        self.stale: set[int] = set()
+        self.stale_ev: dict[int, set[int]] = {}
         self._ckpt: dict[int, int] = {}  # dirty as the last checkpoint saw it, and the bytes touched since
         self._touched: set[int] = set()
         self.cut: str | None = None  # why the run ended as a time-out: steps, events or snapshot (compare)
@@ -563,6 +574,7 @@ class Machine:
             # Above the stack arguments: the caller's frame, which the two runs place differently
             # (an index from a callee's made-up result, a loop run past its array)
             raise Inconclusive("read in the caller's frame")
+        self._all_loads.update(range(a, a + size))
         if self._loaded is not None:
             self._loaded.update(range(a, a + size))
         if self.track:
@@ -634,10 +646,16 @@ class Machine:
                 if whole and ref is not None and b[i] == ref:
                     if was is None:
                         self.dirty.pop(x, None)
+                        if self._loaded is not None:
+                            self.putback[x] = b[i]
                     else:
                         self.dirty[x] = was
+                        self.putback.pop(x, None)
                 else:
                     self.dirty[x] = b[i]
+                    self.putback.pop(x, None)
+                    if self._loaded is not None and x in self._all_loads and x not in self._loaded:
+                        self.stale.add(x)
             self._touched.update(range(a, a + size))
 
     # registers
@@ -885,6 +903,7 @@ class Machine:
                     if x >= NULL_PAGE and not STACK_LO <= x < STACK_TOP:
                         self.page(x // PAGE)[x % PAGE] = b
                         self.before.pop(x, None)  # (a later write of the function's compares with this)
+                        self.putback.pop(x, None)
                         if x in self.dirty:
                             self.dirty[x] = b
                             self._touched.add(x)
@@ -1033,7 +1052,7 @@ class Machine:
         """Drop what only running needs (memory pages, the write sets): a finished run that is
         kept for comparison needs its events, registers, coverage and logs."""
         self.pages, self.dirty, self.stack_written, self.uniq, self._read_seen = {}, {}, set(), {}, set()
-        self.before, self._loaded = {}, None
+        self.before, self._loaded, self._all_loads, self.putback, self.stale = {}, None, set(), {}, set()
         self._ckpt, self._touched = {}, set()
 
     def checkpoint(self, event) -> None:
@@ -1057,6 +1076,13 @@ class Machine:
             else:
                 ck[k] = v
         self._touched = set()
+        if self.putback:
+            # (a put-back in this stretch; the next one starts after a call, which may change the byte)
+            self.putback_ev[len(self.events)] = self.putback
+            self.putback = {}
+        if self.stale:
+            self.stale_ev[len(self.events)] = self.stale
+            self.stale = set()
         self.events.append((event, delta))
         # (the budget counts a copy of all written memory per event, as the runs were limited before
         # events held changes; a run replaying recorded calls counts the changes)
@@ -1572,6 +1598,8 @@ def compare(a: Machine, b: Machine, ret: str | None) -> str:
         if ma != mb:
             if a.clipped or b.clipped:
                 return "skip: a memset or memcpy was clipped at 64 KiB"  # (each run's own base: fn_710122e6f0)
+            if putback_only(a, b, ea, eb, i):
+                return "skip: a byte one run put back after a call, the other wrote with the same value"
             return f"memory at event {i} ({va[0]}): {mem_diff(ma, mb)}"
     if ta and tb:
         # Both cut off: what came after the cut was never compared (a long loop of the same calls in
@@ -1688,6 +1716,32 @@ def written(events, upto: int) -> set:
         for k, v in m:
             (held.discard if v is None else held.add)(k)
     return held
+
+
+def putback_only(a: Machine, b: Machine, ea, eb, i: int) -> bool:
+    """Whether the runs' memory at event `i` differs only in bytes one run left unchanged by storing,
+    after a call, the value it had loaded since (Machine.putback) and the other wrote with that same
+    value: `f(); (void)p->n; p->n = 0` against `f(); p->n = 0` with p->n loaded as 0 (710002a074).
+    store cannot tell such a put-back from a constant that equals what was loaded, so the input decides
+    nothing (a skip, never an agreement). Not where the writer loaded the byte only before the call:
+    `x = *p; f(); *p = x` stores a value stale if the callee changed *p, a real difference that no
+    input shows, as the emulated callee leaves *p alone (Machine.stale)."""
+    pa, pb = getattr(a, "putback_ev", {}).get(i, {}), getattr(b, "putback_ev", {}).get(i, {})
+    if not (pa or pb):
+        return False
+    sa, sb = {}, {}
+    for s, ev in ((sa, ea), (sb, eb)):
+        for _, m in ev[:i + 1]:
+            for k, v in m:
+                if v is None:
+                    s.pop(k, None)
+                else:
+                    s[k] = v
+    # (the writer's byte must not be one it loaded only before the call: `x = *p; f(); *p = x`)
+    xa, xb = getattr(a, "stale_ev", {}).get(i, set()), getattr(b, "stale_ev", {}).get(i, set())
+    diff = [k for k in set(sa) | set(sb) if sa.get(k) != sb.get(k)]
+    return bool(diff) and all((k not in sa and k not in xb and pa.get(k) == sb.get(k))
+                              or (k not in sb and k not in xa and pb.get(k) == sa.get(k)) for k in diff)
 
 
 def mem_diff(ma, mb) -> str:

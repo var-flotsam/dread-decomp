@@ -86,7 +86,7 @@ class Changes(unittest.TestCase):
 
     def test_a_byte_written_back_before_the_next_event_is_no_change(self):
         m = SimpleNamespace(dirty={0x10: 5}, _ckpt={0x10: 5}, _touched={0x10}, events=[], snapshot_bytes=0,
-                            calls_room=0, scale=1, cut=None, steps=0)
+                            calls_room=0, scale=1, cut=None, steps=0, putback={}, stale=set())
         m.max_events = lambda: 99
         pcode_emu.Machine.checkpoint(m, ("call", 1, (), ()))
         m.dirty[0x11] = 7

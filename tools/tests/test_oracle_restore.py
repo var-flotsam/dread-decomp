@@ -14,6 +14,8 @@ def machine() -> pcode_emu.Machine:
     m.pages = {P // pcode_emu.PAGE: bytearray(pcode_emu.PAGE)}
     m.pages[P // pcode_emu.PAGE][P % pcode_emu.PAGE:P % pcode_emu.PAGE + 4] = (0x11223344).to_bytes(4, "little")
     m.dirty, m.before, m._loaded, m._ckpt, m._touched = {}, {}, None, {}, set()
+    m._all_loads, m.putback, m.putback_ev, m.stale, m.stale_ev = set(), {}, {}, set(), {}
+    m.undef_mem, m.clipped, m.arg_slots = set(), False, None
     m.stack_written, m.frame_record, m.saves, m.entry_saved = set(), set(), set(), set()
     m.arg_slots, m.own, m.track, m.lift = None, (0, 0), False, None
     m.events, m.snapshot_bytes, m.calls_room, m.scale, m.cut, m.steps = [], 0, 0, 1, None, 0
@@ -115,6 +117,32 @@ class Restore(unittest.TestCase):
         self.assertEqual(end(orig), set(range(P, P + 4)))
         self.assertEqual(end(lift), set(range(P, P + 4)))
         self.assertEqual(orig.events[-1][1], lift.events[-1][1])
+
+    def test_a_put_back_against_an_equal_constant_decides_nothing(self):
+        # f(); (void)*p; *p = 0 against f(); *p = 0 with *p loaded as 0: store cannot tell the
+        # original's constant from a put-back, so the input is a skip (710002a074)
+        q = P + 16  # (a word holding 0)
+        orig, lift = machine(), machine()
+        call(orig), call(lift)
+        orig.load(q, 4)
+        orig.store(q, 4, 0)
+        lift.store(q, 4, 0)
+        end(orig), end(lift)
+        self.assertTrue(pcode_emu.compare(orig, lift, None).startswith("skip"))
+        # (without the put-back: a write only the lift made)
+        orig = machine()
+        call(orig), end(orig)
+        self.assertTrue(pcode_emu.compare(orig, lift, None).startswith("memory at event"))
+
+    def test_a_put_back_against_a_stale_store_differs(self):
+        # f(); x = *p; *p = x against x = *p; f(); *p = x: the lift's value predates the call
+        orig, lift = machine(), machine()
+        x = lift.load(P, 4)
+        call(orig), call(lift)
+        orig.store(P, 4, orig.load(P, 4))
+        lift.store(P, 4, x)
+        end(orig), end(lift)
+        self.assertTrue(pcode_emu.compare(orig, lift, None).startswith("memory at event"))
 
     def test_a_math_call_keeps_the_reference(self):
         m = machine()
