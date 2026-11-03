@@ -665,6 +665,7 @@ class Machine:
                     self.putback.pop(x, None)
                     self.unsure.add(x)
                 elif whole and ref is not None and b[i] == ref:
+                    self.unsure.discard(x)
                     if was is None:
                         self.dirty.pop(x, None)
                         if self._loaded is not None:
@@ -677,6 +678,14 @@ class Machine:
                     self.putback.pop(x, None)
                     if self._loaded is not None and x in self._all_loads and x not in self._loaded:
                         self.stale.add(x)
+                    if self._loaded is not None and ref is not None and b[i] == ref and was is None:
+                        # (a byte stored back as loaded since the call, in a store that changed
+                        # others: `ldr w; orr #1; str w` against a lift's ldrb/orrb/strb, or a constant
+                        # sharing a loaded byte, 710073ee48. A write, but the other run's leaving the
+                        # byte alone is no difference an input can show: unsure, compare.)
+                        self.unsure.add(x)
+                    else:
+                        self.unsure.discard(x)
             self._touched.update(range(a, a + size))
 
     # registers

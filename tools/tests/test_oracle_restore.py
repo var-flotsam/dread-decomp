@@ -170,6 +170,37 @@ class Restore(unittest.TestCase):
         self.assertNotEqual(pcode_emu.compare(dropping(), restoring(), None), "")
         self.assertEqual(pcode_emu.compare(restoring(), restoring(), None), "")
 
+    def test_a_word_wide_rmw_against_a_byte_wide_lift_is_no_difference(self):
+        # f(); p->flags |= 1 as ldr/orr/str w against ldrb/orr/strb: bytes 1..3 stored back as loaded
+        # are no write the other run must match (a skip at worst, never a "memory at event")
+        orig, lift = machine(), machine()
+        call(orig), call(lift)
+        orig.store(P, 4, orig.load(P, 4) | 1)
+        lift.store(P, 1, lift.load(P, 1) | 1)
+        end(orig), end(lift)
+        self.assertFalse(pcode_emu.compare(orig, lift, None).startswith("memory at event"))
+        self.assertFalse(pcode_emu.compare(lift, orig, None).startswith("memory at event"))
+
+    def test_a_later_write_of_a_stored_back_byte_is_compared(self):
+        orig, lift = machine(), machine()
+        call(orig), call(lift)
+        orig.store(P, 4, orig.load(P, 4) | 1)
+        orig.store(P + 1, 1, 9)
+        lift.store(P, 1, lift.load(P, 1) | 1)
+        end(orig), end(lift)
+        self.assertTrue(pcode_emu.compare(orig, lift, None).startswith("memory at event"))
+
+    def test_a_wide_store_back_over_an_unreferenced_byte(self):
+        # f(); p->b0 = 1; p->w |= 2 (ldr/orr/str w) against strb 1; ldrb/orr/strb at byte 0
+        orig, lift = machine(), machine()
+        call(orig), call(lift)
+        orig.store(P, 1, 1)
+        orig.store(P, 4, orig.load(P, 4) | 2)
+        lift.store(P, 1, 1)
+        lift.store(P, 1, lift.load(P, 1) | 2)
+        end(orig), end(lift)
+        self.assertFalse(pcode_emu.compare(orig, lift, None).startswith("memory at event"))
+
     def test_a_math_call_keeps_the_reference(self):
         m = machine()
         v = m.load(P, 4)
