@@ -132,6 +132,22 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Cloud matching, one short round (2026-11-03, branch `claude/project-thread-mkfe08`).** First hand-matching in a
+Linux cloud container: the owner's `main.elf`, `exefs/main` and Ghidra export were copied into the container (never
+git), Clang 9.0.1 from `fetch_toolchains.py`; `check.py` runs in 3 minutes on 4 cores. Four agents, non-boot `U`
+functions at 0x7101000000 and up (the PC kept the rest), about 25 minutes before the owner's wrap-up: 16 functions
+to `O` (4.0 KB) in CFactionComponent, CSpawnPointComponent, CAttackComponent, CTargetComponent, CPlayerLifeComponent,
+CMovementComponent, CPlayerMovement, nn::atk parameter lookups and three unknown units. Notes:
+- **Candidate lists go stale within the hour**: three functions were also matched by #298 when it merged (dropped
+  here as `DUPLICATE`), and 30-130 addresses a slice were already defined in tracked files while the CSVs still said
+  `U`. Filter a list against `git grep fn_<addr> -- src/` (outside `src/lifted`) right before starting.
+- **`gen_lift.py --best` takes about 5 minutes a call here**: batch 20-40 addresses into one call.
+- **A callee another file declares over a different type**: use that file's signature with casts at the call
+  (fn_71006eb8cc), or define the new function beside the existing one in the same file (fn_7101131d60 next to its
+  copy constructor in `CSpawnPointComponent_b42.cpp`); both kept the bytes and decl_check's count.
+- Stuck: 0x7101029308 (a near copy whose callee fn_7100027118 needs another signature), 0x710122f380 (96%, one
+  skipped compare), 0x7101230180 (58%, load order).
+
 **Tool tests for 32 untested tools (2026-11-03, branch `claude/project-thread-mkfe08`).** Written in a cloud
 container with no game data: tools/tests/ grows from 15 to 47 files and from 75 to 566 tests (1.7 s, Python 3.12
 and 3.13), every fixture synthetic (invented addresses, hand-encoded AArch64 words, lz4-built NSOs, temp CSVs,
