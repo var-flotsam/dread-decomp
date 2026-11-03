@@ -689,8 +689,8 @@ class Lifter:
                 # 32-bit write leaves too: zero-extended)
                 va, vc = (f"(u64)({va[0]})", "u64"), (f"(u64)({vc[0]})", "u64")
             if sem and (va is None) != (vc is None) and n not in m.poison \
-                    and not (n == 100 and (a if va is None else c).fcall  # (s0: a call's unread float result,
-                             and (va or vc)[0] != "f0"):                  # unless the other path's is the parameter)
+                    and not (n == 100 and self.float_result((a if va is None else c).fcall)  # (s0: a call's unread
+                             and (va or vc)[0] != "f0"):  # float result, unless the other path's is the parameter)
                 # Semantic mode: one path has no value here (a call clobbered the register, or it was
                 # never set), which is garbage in the original; the other path's value stands. Before
                 # the if, it is in scope already; otherwise a phi that the other path leaves at zero.
@@ -1257,6 +1257,18 @@ class Lifter:
             if read == {100}:
                 return (100, 0)
         return order
+
+    def float_result(self, fcall) -> bool:
+        """Whether a call's unread s0/d0 (State.fcall) may be its float result: not when the
+        callee is direct and no caller reads s0/d0 right after it (abi_facts.result_main without
+        100), so that a merge keeps the other path's float in s0 (fn_7100900c44: a float computed
+        on one path and passed on at the join, the skip path's v0 the void callee's garbage)."""
+        if not fcall:
+            return False
+        fn = fcall[3] if len(fcall) > 3 else None
+        if "semantic" in self.opts and self.main is not None and fn and re.fullmatch(r"fn_[0-9a-f]{10}", fn):
+            return 100 in self.main(int(fn[3:], 16))
+        return True
 
     def va_save(self, x, mem) -> bool:
         """Semantic mode: `stp q<n>, q<n+1>, [..]` of incoming argument registers (q0-q7, none
