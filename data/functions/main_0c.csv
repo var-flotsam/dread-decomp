@@ -5230,7 +5230,7 @@ address,size,name,name_source,subsystem,status
 0x7100cad668,388,CCharClassBindLightToConstantAlphaEvent::refl_InitClass,reflection,game/characters,O
 0x7100cad7ec,196,fn_7100cad7ec,unknown,game/characters?,O
 0x7100cad8b0,36,fn_7100cad8b0,unknown,game/characters?,O
-0x7100cad8d4,120,fn_7100cad8d4,unknown,game/characters?,U
+0x7100cad8d4,120,fn_7100cad8d4,unknown,game/characters?,O
 0x7100cad94c,28,fn_7100cad94c,unknown,game/characters?,O
 0x7100cad968,12,fn_7100cad968,unknown,game/characters?,O
 0x7100cad974,8,fn_7100cad974,unknown,game/characters?,O
