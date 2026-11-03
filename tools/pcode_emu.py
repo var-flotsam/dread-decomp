@@ -1376,7 +1376,10 @@ def compare(a: Machine, b: Machine, ret: str | None) -> str:
                 da, db = dict(va[3]), dict(vb[3])
                 for k, bits in va[2]:  # the original's arguments
                     u, v = da.get(k), db.get(k)
-                    if bits == 32 and isinstance(u, int) and isinstance(v, int):
+                    # (a float register the original wrote as s<n>, its upper half zero: the lift's
+                    # f32 argument may carry anything there, which C leaves unspecified, 7100656f3c)
+                    if (bits == 32 or (100 <= k < 108 and isinstance(u, int) and u >> 32 == 0)) \
+                            and isinstance(u, int) and isinstance(v, int):
                         u, v = u & 0xFFFFFFFF, v & 0xFFFFFFFF
                     if not same_arg(u, v):
                         return f"call {i} to {fmt(va[1])}: argument {regname(k)} ({arg_text(u)} vs {arg_text(v)})"
