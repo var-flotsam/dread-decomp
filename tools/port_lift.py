@@ -552,8 +552,13 @@ class Oracle:
                     # (a call's result also as true: a cast check's `tst w0, #1` that selects null)
                     calls = range(min(base.calls, MAX_RESULTS), 0, -1)
                     if base.fault is not None:
-                        keys = [(("o", o), POINTER) for o, v in outs if v < 0x10000][:SWEEP_WORDS] \
-                            + [(("m", w), POINTER) for w in near] + [(("c", n), POINTER) for n in calls] \
+                        # (first a call whose result the crash was near, the latest first: a virtual
+                        # call's object read at [x0, #0xf8], 7100a03a14)
+                        hits = [n + 1 for n, r in enumerate(getattr(base, "results", ()))
+                                if 0 <= base.fault - r < 0x1000][::-1][:SWEEP_WORDS // 2]
+                        keys = [(("c", n), POINTER) for n in hits] \
+                            + [(("o", o), POINTER) for o, v in outs if v < 0x10000][:SWEEP_WORDS] \
+                            + [(("m", w), POINTER) for w in near] + [(("c", n), POINTER) for n in calls if n not in hits] \
                             + [(("c", n), 1) for n in calls] + [(("r", k), POINTER) for k in regs if k < 8] \
                             + [(("m", w), POINTER) for w in words[-SWEEP_WORDS:] if w not in near]
                         # (in a loop whose elements are being repaired one by one: its count first, a
@@ -561,8 +566,16 @@ class Oracle:
                         if getattr(base, "looped", 0):
                             keys = [(("o", o), 1) for o, v in outs if v >= 0x10000][:SWEEP_WORDS] + keys
                     else:
+                        # (the loop's bound first: a word read before the run's last new instruction,
+                        # an array's length read once and the scan's own words read after it, 7100a03a14)
+                        cov: dict = {}  # (the first read's: small() above reads the words again)
+                        for w, c in zip(base.read_words, getattr(base, "read_cov", ())):
+                            cov.setdefault(w, c)
+                        final = len(base.visited)
+                        early = [w for w in reversed(words) if cov.get(w, final) < final and w not in near][:SWEEP_WORDS]
+                        late = [w for w in reversed(words) if w not in near and w not in early][:SWEEP_WORDS]
                         keys = [(("o", o), 1) for o, v in outs if v >= 0x10000][:SWEEP_WORDS] \
-                            + [(("m", w), 1) for w in reversed(words) if w not in near][:SWEEP_WORDS] \
+                            + [(("m", w), 1) for w in early + late] \
                             + [(("c", n), 1) for n in calls]
                     # (a pointer at either base, the second when the first changed nothing: the arena
                     # words each object reads decide whether the run goes on, and neither base wins

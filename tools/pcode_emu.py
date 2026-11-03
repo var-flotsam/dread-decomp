@@ -66,6 +66,7 @@ RETRY_SCALE = 8                   # a cut-off run is retried with this many time
 SLOWER = 20                       # a lift this many times slower than an original that ended is wrong (compare)
 MAX_EVENTS = 256                  # calls recorded per run; then it ends as a time-out (checkpoint)
 MAX_SNAPSHOT = 1 << 21            # bytes of written memory copied into its events, in all; the same
+MAX_RESULTS_KEPT = 64             # call results a run keeps (Machine.results)
 STEPS_PER_CALL = 2000             # a run from a snapshot's recorded calls: this many more steps per call
 WINDOW = 64                       # bytes compared and written around a stack pointer argument
 
@@ -454,6 +455,9 @@ class Machine:
                 self.mem_ovr.setdefault(k // PAGE, []).append((k % PAGE, v))
         self.track, self.read_words, self._read_seen = track, [], set()
         self.read_at: dict[int, int] = {}  # each read word's byte where it was first read (a mutation goes there)
+        # (each read word's coverage when it was first read: a run cut off in a loop read its bound
+        # before its last new instruction, the loop's own reads after it, Oracle.originals)
+        self.read_cov: list[int] = []
         self.ops_db, self.userops, self.op = db["ops"], db["userops"], db["opcodes"]
         self.image, self.seed, self.inside, self.code_word, self.lift = image, seed, inside, code_word, lift
         self.imports, self.facts = imports, facts
@@ -495,6 +499,7 @@ class Machine:
         self.res_written: set = set()
         self.vnarrow: dict[int, bool] = {}  # v<n> -> its last write was s<n> (4 bytes at its start)
         self.out_words: list = []  # ((call, argument, offset), word): the out-parameter words written
+        self.results: list = []  # each call's x0, the first MAX_RESULTS_KEPT (a crash on one: Oracle.originals)
         self.events: list = []
         self.snapshot_bytes = 0  # written bytes copied into events so far (checkpoint)
         self.calls = 0
@@ -554,6 +559,7 @@ class Machine:
                 if w not in self.dirty and w not in self.stack_written:
                     self.read_words.append(w)
                     self.read_at[w] = a - w
+                    self.read_cov.append(len(self.visited))
         o = a % PAGE
         if o + size <= PAGE:
             return int.from_bytes(self.page(a // PAGE)[o:o + size], "little")
@@ -820,6 +826,8 @@ class Machine:
         # (a mutation may set it)
         ret = self.overrides.get(("c", n), rec.x[0] if rec is not None else self.word(mix(n, 11, self.seed)))
         self.regs[X0:X0 + 8] = (ret & 0xFFFFFFFFFFFFFFFF).to_bytes(8, "little")
+        if len(self.results) < MAX_RESULTS_KEPT:
+            self.results.append(ret & 0xFFFFFFFFFFFFFFFF)
         if rec is not None:
             self.regs[X0 + 8:X0 + 16] = (rec.x[1] & 0xFFFFFFFFFFFFFFFF).to_bytes(8, "little")
             for i, q in enumerate(rec.q):
@@ -1034,6 +1042,12 @@ class Machine:
                     self.finish("trap")  # (an end both runs must reach after the same events)
                     return
                 kind, target = self.step(pc, w, BRANCH, CBRANCH, BRANCHIND, CALL, CALLIND, RETURN)
+                if kind == "jump" and target == pc and w == 0x14000000:
+                    # b . (a container's overflow check spins forever: 71001e7ec4): an end too, the
+                    # lift's `L: goto L;` compiles to the same. (The target as resolved: a lift's
+                    # tail call is the same word before its relocation, lift.branch.)
+                    self.finish("hang")
+                    return
                 if ((w & 0xFF000010) == 0x54000000 or (w & 0x7C000000) == 0x34000000) \
                         and (kind != "jump" or self.inside(target)):
                     # b.cond, cbz/cbnz/tbz/tbnz within the function: what was written for an unknown
