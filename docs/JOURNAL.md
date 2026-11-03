@@ -132,6 +132,24 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Tool tests for 32 untested tools (2026-11-03, branch `claude/project-thread-mkfe08`).** Written in a cloud
+container with no game data: tools/tests/ grows from 15 to 47 files and from 75 to 566 tests (1.7 s, Python 3.12
+and 3.13), every fixture synthetic (invented addresses, hand-encoded AArch64 words, lz4-built NSOs, temp CSVs,
+mocked compilers and child tools). Left out: `port_addresses` (all of it is `main()` over compiled objects and the
+binary), `gen_lift`, `pcode_emu` and `port_lift` (owned by the lifter session). Three real bugs are pinned as
+`expectedFailure` and left for their owners:
+- **`hub_migrate.read()` never sees CRLF** (`tools/hub_migrate.py:66`): `read_text` has already folded `\r\n`,
+  so `write()` turns CRLF files into LF. Fix: `open(..., newline="")`. Test `ReadWrite.test_read_detects_crlf`.
+- **`sigmatch.signature` takes `rd` from B/BL** (`tools/sigmatch.py:54`, `:72`): the low bits of a branch offset
+  can end a callee-saved register's adrp page, so the object (offset 0) and the binary mask differently and exact
+  matches are missed. Test `test_call_does_not_end_a_callee_saved_page`.
+- **`nearcopy.refs` scales `ldr q` by 1** (`tools/nearcopy.py:66`): the scale comes only from the size bits,
+  so a 128-bit load gets the wrong data address (it should be 16). Test `test_simd_q_load_scaled_by_16`.
+Quirks pinned as they are: `hostenv.cxxfilt` sorts toolchain folders by name (`llvm-9` before `llvm-10`);
+`gen_reflection.file_name` folds `A::B_C` and `A_B::C` to one base name (the `_2` suffix separates them);
+`gen_tables.rush_float` spells -100.0 as `-1e+02f`. `gen_functions_csv.main()` does its sharding and status
+merge inline, so only its rules are tested; moving that into a function would make it testable.
+
 **Lifter and oracle: round 5's second batch and round 6 (2026-11-03, branches `claude/project-thread-zgkpk3-r5`
 and `-r6`).** Whole-binary runs: lifted_all8 (r5's e401d554) 16,062 of 16,141 accepted against lifted_all7's
 16,047 (22 gained, 7 lost), and lifted_all9 (r6's bf08b68a) 16,063, with none lost against all8. All8's 7 losses are
