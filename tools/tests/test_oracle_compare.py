@@ -166,6 +166,7 @@ class X8Window(unittest.TestCase):
         m.stack_written, m.taken = set(range(self.OBJ, self.OBJ + 0x40)), {self.OBJ, *taken}
         m.saves, m.frame_record, m.out_at = set(saves), set(frame_record), dict(out_at or {})
         m.seed, m.overrides, m.dictionary, m.calls, m.call_log, m.out_words = 0, {}, None, 0, [], []
+        m.results = []
         m.guide = [(frozenset({8}), {8: 8}, {})]  # (the lift's run: the original passed x8, extent 8)
         m.canonical = lambda target: target
         m.recorded = lambda target, t, modeled: None
