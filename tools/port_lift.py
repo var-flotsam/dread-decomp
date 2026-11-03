@@ -440,6 +440,7 @@ class Oracle:
         if addr is not None:  # the function under test: its stack arguments bound the caller's frame
             f = self.af.facts(addr)
             m.arg_slots = f.stack_slots if f is not None else 0
+            m.own_facts = f  # (an indirect call is passed the x8 the callers set: Machine.call)
         m.guide = guide  # (the lift's run: the original's calls, for its out-parameters)
         return m
 
