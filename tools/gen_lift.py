@@ -3008,6 +3008,13 @@ class FlatLifter(Lifter):
         self.clob.discard(n)
         if n >= 100:
             self.line(f"{self.storage(n, t)} = {e};")
+            if n in getattr(self, "dual", ()) and t in ("f32", "f64"):
+                # (semantic mode: a register used as both s<n> and d<n> keeps both variables in step,
+                # as the hardware's one register: a read at either width, wherever the linear type
+                # left off, sees this path's bits. fn_7100659a30: `mov v8.16b, v0.16b` from an f32
+                # parameter, d8 a constant on another path, then `mov v0.16b, v8.16b` read D8.)
+                o = "f64" if t == "f32" else "f32"
+                self.line(f"{self.storage(n, o)} = {reinterpret_float(self.storage(n, t), t)};")
         else:
             self.line(f"X{n} = (u64)({e});")
         self.types[n] = t
@@ -3134,6 +3141,17 @@ class FlatLifter(Lifter):
             return self.fail("stack frame")
         self.cur_delta = 0
         self.fwidth = float_widths(ins, "semantic" in self.opts)
+        if "semantic" in self.opts:
+            # Float registers the function uses at both widths (frame saves aside): write() keeps
+            # their S and D variables in step.
+            seen: dict[int, set[str]] = {}
+            for x in ins:
+                if is_frame(x):
+                    continue
+                for op in x.operands:
+                    if op.type == arm64.ARM64_OP_REG and (k := fkey(regname(op.reg))) is not None:
+                        seen.setdefault(100 + k, set()).add(regname(op.reg)[0])
+            self.dual = {n for n, ls in seen.items() if len(ls) > 1}
         targets = set()
         self.sources: dict[int, list[int]] = {}  # branch target -> the branches' addresses
         for x in ins:
@@ -3276,7 +3294,9 @@ class FlatLifter(Lifter):
                 # variable for each (the parameter initialises the one it arrives as).
                 pt = self.params.get(n)
                 for w in ("f32", "f64"):
-                    pre.append(f"    {w} {self.storage(n, w)} = {'f%d' % (n - 100) if pt == w else '0'};")
+                    v = f"f{n - 100}" if pt == w else reinterpret_float(f"f{n - 100}", pt) \
+                        if pt and n in self.dual else "0"  # (both widths in step: write())
+                    pre.append(f"    {w} {self.storage(n, w)} = {v};")
                 continue
             pre.append(f"    {t} {self.storage(n, t)}{init};")
         pre += [f"    char* t{i};" for i in range(self.temps)]
