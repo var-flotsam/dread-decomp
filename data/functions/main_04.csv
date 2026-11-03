@@ -1846,8 +1846,8 @@ address,size,name,name_source,subsystem,status
 0x710045ec20,148,fn_710045ec20,unknown,game/characters?,O
 0x710045ecb4,352,CCharClassChozoRobotSoldierCannonShotAttack::refl_InitClass,reflection,game/characters,O
 0x710045ee14,96,fn_710045ee14,unknown,unknown,O
-0x710045ee74,164,fn_710045ee74,unknown,unknown,U
-0x710045ef18,172,fn_710045ef18,unknown,unknown,U
+0x710045ee74,164,fn_710045ee74,unknown,unknown,O
+0x710045ef18,172,fn_710045ef18,unknown,unknown,O
 0x710045efc4,136,fn_710045efc4,unknown,unknown,O
 0x710045f04c,236,fn_710045f04c,unknown,unknown,O
 0x710045f138,28,fn_710045f138,unknown,unknown,O
@@ -3911,7 +3911,7 @@ address,size,name,name_source,subsystem,status
 0x71004a85b0,12,fn_71004a85b0,unknown,unknown,O
 0x71004a85bc,8,fn_71004a85bc,unknown,unknown,O
 0x71004a85c4,4,fn_71004a85c4,unknown,unknown,O
-0x71004a85c8,128,fn_71004a85c8,unknown,unknown,U
+0x71004a85c8,128,fn_71004a85c8,unknown,unknown,O
 0x71004a8648,168,fn_71004a8648,unknown,unknown,O
 0x71004a86f0,8,fn_71004a86f0,unknown,unknown,O
 0x71004a86f8,48,fn_71004a86f8,unknown,unknown,O
@@ -4243,7 +4243,7 @@ address,size,name,name_source,subsystem,status
 0x71004b1fb8,12,fn_71004b1fb8,unknown,unknown,O
 0x71004b1fc4,8,fn_71004b1fc4,unknown,unknown,O
 0x71004b1fcc,8,fn_71004b1fcc,unknown,unknown,O
-0x71004b1fd4,128,fn_71004b1fd4,unknown,unknown,U
+0x71004b1fd4,128,fn_71004b1fd4,unknown,unknown,O
 0x71004b2054,24,fn_71004b2054,unknown,unknown,O
 0x71004b206c,136,fn_71004b206c,unknown,unknown,O
 0x71004b20f4,180,fn_71004b20f4,unknown,unknown,O
@@ -4254,7 +4254,7 @@ address,size,name,name_source,subsystem,status
 0x71004b226c,12,fn_71004b226c,unknown,unknown,O
 0x71004b2278,8,fn_71004b2278,unknown,unknown,O
 0x71004b2280,8,fn_71004b2280,unknown,unknown,O
-0x71004b2288,128,fn_71004b2288,unknown,unknown,U
+0x71004b2288,128,fn_71004b2288,unknown,unknown,O
 0x71004b2308,24,fn_71004b2308,unknown,unknown,O
 0x71004b2320,8,fn_71004b2320,unknown,unknown,O
 0x71004b2328,8,fn_71004b2328,unknown,unknown,O
@@ -4663,7 +4663,7 @@ address,size,name,name_source,subsystem,status
 0x71004be5c8,12,fn_71004be5c8,unknown,unknown,O
 0x71004be5d4,8,fn_71004be5d4,unknown,unknown,O
 0x71004be5dc,4,fn_71004be5dc,unknown,unknown,O
-0x71004be5e0,128,fn_71004be5e0,unknown,unknown,U
+0x71004be5e0,128,fn_71004be5e0,unknown,unknown,O
 0x71004be660,168,fn_71004be660,unknown,unknown,O
 0x71004be708,8,fn_71004be708,unknown,unknown,O
 0x71004be710,48,fn_71004be710,unknown,unknown,O
@@ -4711,7 +4711,7 @@ address,size,name,name_source,subsystem,status
 0x71004bfbc8,12,fn_71004bfbc8,unknown,unknown,O
 0x71004bfbd4,8,fn_71004bfbd4,unknown,unknown,O
 0x71004bfbdc,8,fn_71004bfbdc,unknown,unknown,O
-0x71004bfbe4,128,fn_71004bfbe4,unknown,unknown,U
+0x71004bfbe4,128,fn_71004bfbe4,unknown,unknown,O
 0x71004bfc64,24,fn_71004bfc64,unknown,unknown,O
 0x71004bfc7c,136,fn_71004bfc7c,unknown,unknown,O
 0x71004bfd04,180,fn_71004bfd04,unknown,unknown,O
@@ -4722,7 +4722,7 @@ address,size,name,name_source,subsystem,status
 0x71004bfe7c,12,fn_71004bfe7c,unknown,unknown,O
 0x71004bfe88,8,fn_71004bfe88,unknown,unknown,O
 0x71004bfe90,8,fn_71004bfe90,unknown,unknown,O
-0x71004bfe98,128,fn_71004bfe98,unknown,unknown,U
+0x71004bfe98,128,fn_71004bfe98,unknown,unknown,O
 0x71004bff18,24,fn_71004bff18,unknown,unknown,O
 0x71004bff30,8,fn_71004bff30,unknown,unknown,O
 0x71004bff38,8,fn_71004bff38,unknown,unknown,O

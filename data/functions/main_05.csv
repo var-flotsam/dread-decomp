@@ -2274,9 +2274,9 @@ address,size,name,name_source,subsystem,status
 0x7100589b70,8,fn_7100589b70,unknown,unknown,O
 0x7100589b78,28,fn_7100589b78,unknown,unknown,O
 0x7100589b94,140,fn_7100589b94,unknown,unknown,O
-0x7100589c20,148,fn_7100589c20,unknown,unknown,U
+0x7100589c20,148,fn_7100589c20,unknown,unknown,O
 0x7100589cb4,4,fn_7100589cb4,unknown,unknown,O
-0x7100589cb8,148,fn_7100589cb8,unknown,unknown,U
+0x7100589cb8,148,fn_7100589cb8,unknown,unknown,O
 0x7100589d50,160,fn_7100589d50,unknown,unknown,O
 0x7100589df0,4,fn_7100589df0,unknown,unknown,O
 0x7100589df4,244,CGoliathXBurstProjectionBombMovement::refl_GetClass,reflection,game,O
@@ -4272,7 +4272,7 @@ address,size,name,name_source,subsystem,status
 0x71005d9ed4,12,fn_71005d9ed4,unknown,unknown,O
 0x71005d9ee0,8,fn_71005d9ee0,unknown,unknown,O
 0x71005d9ee8,4,fn_71005d9ee8,unknown,unknown,O
-0x71005d9eec,128,fn_71005d9eec,unknown,unknown,U
+0x71005d9eec,128,fn_71005d9eec,unknown,unknown,O
 0x71005d9f6c,168,fn_71005d9f6c,unknown,unknown,O
 0x71005da014,8,fn_71005da014,unknown,unknown,O
 0x71005da01c,48,fn_71005da01c,unknown,unknown,O
@@ -4606,7 +4606,7 @@ address,size,name,name_source,subsystem,status
 0x71005e3154,12,fn_71005e3154,unknown,unknown,O
 0x71005e3160,8,fn_71005e3160,unknown,unknown,O
 0x71005e3168,4,fn_71005e3168,unknown,unknown,O
-0x71005e316c,128,fn_71005e316c,unknown,unknown,U
+0x71005e316c,128,fn_71005e316c,unknown,unknown,O
 0x71005e31ec,168,fn_71005e31ec,unknown,unknown,O
 0x71005e3294,8,fn_71005e3294,unknown,unknown,O
 0x71005e329c,48,fn_71005e329c,unknown,unknown,O
@@ -5020,7 +5020,7 @@ address,size,name,name_source,subsystem,status
 0x71005ee180,12,fn_71005ee180,unknown,unknown,O
 0x71005ee18c,8,fn_71005ee18c,unknown,unknown,O
 0x71005ee194,4,fn_71005ee194,unknown,unknown,O
-0x71005ee198,128,fn_71005ee198,unknown,unknown,U
+0x71005ee198,128,fn_71005ee198,unknown,unknown,O
 0x71005ee218,168,fn_71005ee218,unknown,unknown,O
 0x71005ee2c0,8,fn_71005ee2c0,unknown,unknown,O
 0x71005ee2c8,48,fn_71005ee2c8,unknown,unknown,O

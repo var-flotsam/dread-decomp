@@ -524,7 +524,7 @@ address,size,name,name_source,subsystem,status
 0x7100715df8,124,fn_7100715df8,unknown,unknown,O
 0x7100715e74,132,fn_7100715e74,unknown,unknown,O
 0x7100715ef8,176,fn_7100715ef8,unknown,unknown,O
-0x7100715fa8,136,fn_7100715fa8,unknown,unknown,U
+0x7100715fa8,136,fn_7100715fa8,unknown,unknown,O
 0x7100716030,28,fn_7100716030,unknown,unknown,O
 0x710071604c,132,fn_710071604c,unknown,unknown,O
 0x71007160d0,28,fn_71007160d0,unknown,unknown,O
@@ -1434,7 +1434,7 @@ address,size,name,name_source,subsystem,status
 0x71007582a4,228,fn_71007582a4,unknown,unknown,O
 0x7100758388,312,fn_7100758388,unknown,unknown,O
 0x71007584c0,244,fn_71007584c0,unknown,unknown,O
-0x71007585b4,252,fn_71007585b4,unknown,unknown,U
+0x71007585b4,252,fn_71007585b4,unknown,unknown,O
 0x71007586b0,364,fn_71007586b0,unknown,unknown,U
 0x710075881c,36,fn_710075881c,unknown,unknown,O
 0x7100758840,156,fn_7100758840,unknown,unknown,O
@@ -1878,7 +1878,7 @@ address,size,name,name_source,subsystem,status
 0x71007654a8,8,fn_71007654a8,unknown,game?,O
 0x71007654b0,1352,fn_71007654b0,unknown,game?,U
 0x71007659f8,3900,fn_71007659f8,unknown,game?,U
-0x7100766934,308,fn_7100766934,unknown,game?,U
+0x7100766934,308,fn_7100766934,unknown,game?,O
 0x7100766a68,1080,fn_7100766a68,unknown,game?,U
 0x7100766ea0,28,fn_7100766ea0,unknown,game?,O
 0x7100766ebc,8,fn_7100766ebc,unknown,game?,O
@@ -4592,7 +4592,7 @@ address,size,name,name_source,subsystem,status
 0x71007d71e0,28,fn_71007d71e0,unknown,unknown,O
 0x71007d71fc,64,fn_71007d71fc,unknown,unknown,O
 0x71007d723c,400,fn_71007d723c,unknown,unknown,U
-0x71007d73cc,228,fn_71007d73cc,unknown,unknown,U
+0x71007d73cc,228,fn_71007d73cc,unknown,unknown,O
 0x71007d74b0,220,fn_71007d74b0,unknown,unknown,O
 0x71007d758c,28,fn_71007d758c,unknown,unknown,O
 0x71007d75a8,132,fn_71007d75a8,unknown,unknown,O
@@ -4955,7 +4955,7 @@ address,size,name,name_source,subsystem,status
 0x71007e70b4,244,CFootstepPlatformComponent::refl_GetClass,reflection,game/components,O
 0x71007e71a8,1128,fn_71007e71a8,unknown,game/components?,O
 0x71007e7610,388,CFootstepPlatformComponent::refl_InitClass,reflection,game/components,O
-0x71007e7794,276,fn_71007e7794,unknown,game/components?,U
+0x71007e7794,276,fn_71007e7794,unknown,game/components?,O
 0x71007e78a8,580,fn_71007e78a8,unknown,game/components?,U
 0x71007e7aec,36,fn_71007e7aec,unknown,game/components?,O
 0x71007e7b10,76,fn_71007e7b10,unknown,game/components?,O
@@ -5445,7 +5445,7 @@ address,size,name,name_source,subsystem,status
 0x71007ff540,168,fn_71007ff540,unknown,game/components?,O
 0x71007ff5e8,64,fn_71007ff5e8,unknown,game/components?,O
 0x71007ff628,44,fn_71007ff628,unknown,game/components?,O
-0x71007ff654,280,fn_71007ff654,unknown,game/components?,U
+0x71007ff654,280,fn_71007ff654,unknown,game/components?,O
 0x71007ff76c,80,fn_71007ff76c,unknown,game/components?,O
 0x71007ff7bc,288,fn_71007ff7bc,unknown,game/components?,O
 0x71007ff8dc,56,fn_71007ff8dc,unknown,game/components?,O

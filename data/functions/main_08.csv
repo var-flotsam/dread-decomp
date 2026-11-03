@@ -263,7 +263,7 @@ address,size,name,name_source,subsystem,status
 0x71008119a4,380,fn_71008119a4,unknown,game/components?,O
 0x7100811b20,380,fn_7100811b20,unknown,game/components?,O
 0x7100811c9c,380,fn_7100811c9c,unknown,game/components?,O
-0x7100811e18,272,fn_7100811e18,unknown,game/components?,U
+0x7100811e18,272,fn_7100811e18,unknown,game/components?,O
 0x7100811f28,412,fn_7100811f28,unknown,game/components?,U
 0x71008120c4,4,fn_71008120c4,unknown,game/components?,O
 0x71008120c8,244,CStandaloneFXComponent::refl_GetClass,reflection,game/components,O
@@ -471,7 +471,7 @@ address,size,name,name_source,subsystem,status
 0x7100818978,44,fn_7100818978,unknown,unknown,O
 0x71008189a4,276,fn_71008189a4,unknown,unknown,U
 0x7100818ab8,264,fn_7100818ab8,unknown,unknown,U
-0x7100818bc0,304,fn_7100818bc0,unknown,unknown,U
+0x7100818bc0,304,fn_7100818bc0,unknown,unknown,O
 0x7100818cf0,1268,fn_7100818cf0,unknown,unknown,U
 0x71008191e4,260,fn_71008191e4,unknown,unknown,U
 0x71008192e8,512,fn_71008192e8,unknown,unknown,O
@@ -575,7 +575,7 @@ address,size,name,name_source,subsystem,status
 0x710082248c,456,fn_710082248c,unknown,unknown,O
 0x7100822654,120,fn_7100822654,unknown,unknown,O
 0x71008226cc,4,fn_71008226cc,unknown,unknown,O
-0x71008226d0,316,fn_71008226d0,unknown,unknown,U
+0x71008226d0,316,fn_71008226d0,unknown,unknown,O
 0x710082280c,124,fn_710082280c,unknown,unknown,O
 0x7100822888,404,fn_7100822888,unknown,unknown,O
 0x7100822a1c,20,fn_7100822a1c,unknown,unknown,O
@@ -1909,9 +1909,9 @@ address,size,name,name_source,subsystem,status
 0x71008585a8,488,fn_71008585a8,unknown,unknown,U
 0x7100858790,136,fn_7100858790,unknown,unknown,O
 0x7100858818,3372,fn_7100858818,unknown,unknown,U
-0x7100859544,216,fn_7100859544,unknown,unknown,U
+0x7100859544,216,fn_7100859544,unknown,unknown,O
 0x710085961c,380,fn_710085961c,unknown,unknown,U
-0x7100859798,296,fn_7100859798,unknown,unknown,U
+0x7100859798,296,fn_7100859798,unknown,unknown,O
 0x71008598c0,120,fn_71008598c0,unknown,unknown,O
 0x7100859938,232,fn_7100859938,unknown,unknown,O
 0x7100859a20,268,fn_7100859a20,unknown,unknown,U
@@ -2308,7 +2308,7 @@ address,size,name,name_source,subsystem,status
 0x710086d530,392,fn_710086d530,unknown,unknown,U
 0x710086d6b8,536,fn_710086d6b8,unknown,unknown,O
 0x710086d8d0,336,fn_710086d8d0,unknown,unknown,O
-0x710086da20,400,fn_710086da20,unknown,unknown,U
+0x710086da20,400,fn_710086da20,unknown,unknown,O
 0x710086dbb0,592,fn_710086dbb0,unknown,unknown,U
 0x710086de00,328,fn_710086de00,unknown,unknown,O
 0x710086df48,356,fn_710086df48,unknown,unknown,U
@@ -2599,7 +2599,7 @@ address,size,name,name_source,subsystem,status
 0x7100879c9c,36,fn_7100879c9c,unknown,unknown,O
 0x7100879cc0,116,fn_7100879cc0,unknown,unknown,O
 0x7100879d34,44,fn_7100879d34,unknown,unknown,O
-0x7100879d60,244,fn_7100879d60,unknown,unknown,U
+0x7100879d60,244,fn_7100879d60,unknown,unknown,O
 0x7100879e54,348,fn_7100879e54,unknown,unknown,U
 0x7100879fb0,164,fn_7100879fb0,unknown,unknown,O
 0x710087a054,28,fn_710087a054,unknown,unknown,O
@@ -4693,7 +4693,7 @@ address,size,name,name_source,subsystem,status
 0x71008e4b24,304,fn_71008e4b24,unknown,unknown,U
 0x71008e4c54,456,fn_71008e4c54,unknown,unknown,U
 0x71008e4e1c,36,fn_71008e4e1c,unknown,unknown,O
-0x71008e4e40,240,fn_71008e4e40,unknown,unknown,U
+0x71008e4e40,240,fn_71008e4e40,unknown,unknown,O
 0x71008e4f30,180,fn_71008e4f30,unknown,unknown,O
 0x71008e4fe4,44,fn_71008e4fe4,unknown,unknown,O
 0x71008e5010,60,fn_71008e5010,unknown,unknown,O
@@ -4845,7 +4845,7 @@ address,size,name,name_source,subsystem,status
 0x71008e99ac,716,fn_71008e99ac,unknown,unknown,U
 0x71008e9c78,660,fn_71008e9c78,unknown,unknown,U
 0x71008e9f0c,100,fn_71008e9f0c,unknown,unknown,U
-0x71008e9f70,284,fn_71008e9f70,unknown,unknown,U
+0x71008e9f70,284,fn_71008e9f70,unknown,unknown,O
 0x71008ea08c,24,fn_71008ea08c,unknown,unknown,O
 0x71008ea0a4,24,fn_71008ea0a4,unknown,unknown,O
 0x71008ea0bc,24,fn_71008ea0bc,unknown,unknown,O
@@ -5244,7 +5244,7 @@ address,size,name,name_source,subsystem,status
 0x71008fc2fc,308,fn_71008fc2fc,unknown,unknown,O
 0x71008fc430,4,fn_71008fc430,unknown,unknown,O
 0x71008fc434,4,fn_71008fc434,unknown,unknown,O
-0x71008fc438,236,fn_71008fc438,unknown,unknown,U
+0x71008fc438,236,fn_71008fc438,unknown,unknown,O
 0x71008fc524,340,fn_71008fc524,unknown,unknown,O
 0x71008fc678,80,fn_71008fc678,unknown,unknown,U
 0x71008fc6c8,60,fn_71008fc6c8,unknown,unknown,O

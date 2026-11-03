@@ -890,8 +890,8 @@ address,size,name,name_source,subsystem,status
 0x710061d2c8,612,fn_710061d2c8,unknown,unknown,U
 0x710061d52c,12,fn_710061d52c,unknown,unknown,O
 0x710061d538,20,fn_710061d538,unknown,unknown,O
-0x710061d54c,232,fn_710061d54c,unknown,unknown,U
-0x710061d634,240,fn_710061d634,unknown,unknown,U
+0x710061d54c,232,fn_710061d54c,unknown,unknown,O
+0x710061d634,240,fn_710061d634,unknown,unknown,O
 0x710061d724,12,fn_710061d724,unknown,unknown,O
 0x710061d730,8,fn_710061d730,unknown,unknown,O
 0x710061d738,28,fn_710061d738,unknown,unknown,O
@@ -2583,7 +2583,7 @@ address,size,name,name_source,subsystem,status
 0x71006684e4,12,fn_71006684e4,unknown,unknown,O
 0x71006684f0,20,fn_71006684f0,unknown,unknown,O
 0x7100668504,168,fn_7100668504,unknown,unknown,U
-0x71006685ac,172,fn_71006685ac,unknown,unknown,U
+0x71006685ac,172,fn_71006685ac,unknown,unknown,O
 0x7100668660,1216,fn_7100668660,unknown,unknown,O
 0x7100668b20,4,fn_7100668b20,unknown,unknown,O
 0x7100668b24,244,CRodomithonXAIComponent::refl_GetClass,reflection,game/ai,O
@@ -5890,8 +5890,8 @@ address,size,name,name_source,subsystem,status
 0x71006f3ea0,244,CAINavigationComponent::refl_GetClass,reflection,game/ai,O
 0x71006f3f94,4,fn_71006f3f94,unknown,game/ai?,O
 0x71006f3f98,388,CAINavigationComponent::refl_InitClass,reflection,game/ai,O
-0x71006f411c,268,fn_71006f411c,unknown,unknown,U
-0x71006f4228,284,fn_71006f4228,unknown,unknown,U
+0x71006f411c,268,fn_71006f411c,unknown,unknown,O
+0x71006f4228,284,fn_71006f4228,unknown,unknown,O
 0x71006f4344,116,fn_71006f4344,unknown,unknown,O
 0x71006f43b8,36,fn_71006f43b8,unknown,unknown,O
 0x71006f43dc,112,fn_71006f43dc,unknown,unknown,O

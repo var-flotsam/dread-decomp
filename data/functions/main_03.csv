@@ -554,7 +554,7 @@ address,size,name,name_source,subsystem,status
 0x7100331288,32,fn_7100331288,unknown,unknown,O
 0x71003312a8,168,fn_71003312a8,unknown,unknown,O
 0x7100331350,188,fn_7100331350,unknown,unknown,U
-0x710033140c,312,fn_710033140c,unknown,unknown,U
+0x710033140c,312,fn_710033140c,unknown,unknown,O
 0x7100331544,444,fn_7100331544,unknown,unknown,U
 0x7100331700,192,fn_7100331700,unknown,unknown,O
 0x71003317c0,28,fn_71003317c0,unknown,unknown,O

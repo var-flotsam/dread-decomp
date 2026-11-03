@@ -244,7 +244,7 @@ address,size,name,name_source,subsystem,status
 0x7100f0f698,248,fn_7100f0f698,unknown,unknown,U
 0x7100f0f790,36,fn_7100f0f790,unknown,unknown,O
 0x7100f0f7b4,460,fn_7100f0f7b4,unknown,unknown,U
-0x7100f0f980,400,fn_7100f0f980,unknown,unknown,U
+0x7100f0f980,400,fn_7100f0f980,unknown,unknown,O
 0x7100f0fb10,680,fn_7100f0fb10,unknown,unknown,O
 0x7100f0fdb8,4,fn_7100f0fdb8,unknown,unknown,O
 0x7100f0fdbc,244,CReserveTankInfo::refl_GetClass,reflection,game,O
