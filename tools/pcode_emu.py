@@ -462,6 +462,7 @@ class Machine:
         self.cut: str | None = None  # why the run ended as a time-out: steps, events or snapshot (compare)
         self.clipped = False  # a modelled memset or memcpy stopped at 64 KiB (compare)
         self.fault: int | None = None  # the address a run faulted on
+        self.fault_pc: int | None = None  # and the instruction that did (the oracle's repairs)
         self.noret_call: int | None = None  # the call (its number) the run ended on, a callee that never returns
         self.noret_at: int | None = None  # the lift's run: the original's noret_call
         self.stack_written: set[int] = set()
@@ -1046,6 +1047,7 @@ class Machine:
         except Fault as e:
             self.events.append((("end", "fault"), ()))
             self.fault = e.args[0]
+            self.fault_pc = pc
 
     def finish(self, kind: str) -> None:
         self.checkpoint(("end", kind))

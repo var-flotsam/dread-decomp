@@ -107,6 +107,7 @@ SWEEP_WORDS = 8     # before them, each of the first words read is set to each c
 POINTER = pcode_emu.ARENA + 0x7000100  # a valid pointer into the arena (mutation_values' too)
 REPAIRS = 96        # runs that set a crashing run's made-up pointers to POINTER, at most
 CUT_REPAIRS = 16    # of them, repairs of a run cut off in a loop (each may run to the step limit)
+LOOP_REPAIRS = 4    # of them in a row, a loop's elements repaired one by one (each faulting at the same instruction)
 # The repairs' objects, one per repair, POINTER + 1 MiB * k: that is Machine.setup's argument object
 # x(k-1) of seed 7 (ARENA + 1 MiB * (seed * 16 + i + 1)), so seed 7's start here instead, above every
 # seed's. (Only seed 7's moved: the arena words the others' repairs read are the ones they ended on.)
@@ -555,6 +556,10 @@ class Oracle:
                             + [(("m", w), POINTER) for w in near] + [(("c", n), POINTER) for n in calls] \
                             + [(("c", n), 1) for n in calls] + [(("r", k), POINTER) for k in regs if k < 8] \
                             + [(("m", w), POINTER) for w in words[-SWEEP_WORDS:] if w not in near]
+                        # (in a loop whose elements are being repaired one by one: its count first, a
+                        # callee's out-parameter (a returned {pointer, count}) as 1, 710063fbec)
+                        if getattr(base, "looped", 0):
+                            keys = [(("o", o), 1) for o, v in outs if v >= 0x10000][:SWEEP_WORDS] + keys
                     else:
                         keys = [(("o", o), 1) for o, v in outs if v >= 0x10000][:SWEEP_WORDS] \
                             + [(("m", w), 1) for w in reversed(words) if w not in near][:SWEEP_WORDS] \
@@ -587,8 +592,16 @@ class Oracle:
                             continue
                         # (progress is against the run repaired, not every run: another seed may have
                         # covered the instructions past the fault, 71008194e8)
+                        # (or the same instruction faulting later in the run: a loop over an array
+                        # of pointers, each element made up, reaches no new instruction past the
+                        # first; the next element is repaired then)
                         if m.visited - seen or (not stuck(m) and not ended()) \
-                                or (m.visited - base.visited and not ended()):
+                                or (m.visited - base.visited and not ended()) \
+                                or (not ended() and m.fault is not None and base.fault is not None
+                                    and m.fault_pc == base.fault_pc and m.steps > base.steps
+                                    and getattr(base, "looped", 0) < LOOP_REPAIRS):
+                            if m.fault is not None and base.fault is not None and m.fault_pc == base.fault_pc:
+                                m.looped = getattr(base, "looped", 0) + 1
                             hit.add(key)
                             runs.append((seed, o, m))
                             seen |= m.visited
