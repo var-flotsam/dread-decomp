@@ -1674,7 +1674,10 @@ class Lifter:
                 s = f"{p};\n{ind}return;" if rtype == "void" else \
                     f"return {p};" if rtype == "char*" else f"return ({rtype})(u64)({p});"
             elif rtype == "void":
-                s = "return;"
+                # (a value's expression still runs: a tail call to a callee with a result shape is
+                # one, fn_7100ecf3d4, whose void lift dropped the call)
+                s = f"(void)({p[0]});\n{ind}return;" if "semantic" in self.opts and k == "value" \
+                    and p is not None and "(" in p[0] else "return;"
             elif rtype == "char&":
                 if p[1] != "char*":
                     return self.fail("variant")
