@@ -589,8 +589,13 @@ class Machine:
             self.state[(off - X0) // 8] = "written"
         elif Q0 <= off < Q0 + 8 * QSTRIDE:
             self.state[100 + (off - Q0) // QSTRIDE] = "written"
-            if (off - Q0) % QSTRIDE == 0:  # (not the zeroing of the upper part that follows an s<n> write)
-                self.vnarrow[(off - Q0) // QSTRIDE] = size == 4
+            n, rel = divmod(off - Q0, QSTRIDE)
+            if rel == 0:
+                self.vnarrow[n] = size == 4
+            elif not (rel == 4 and size == 12 and v == 0):
+                # A lane insert after s<n> (ld1 {v0.s}[1], ins v0.d[1]) makes v<n> wide again; only the
+                # zeroing of the upper part that follows an s<n> write keeps it narrow (after d<n> it is False)
+                self.vnarrow[n] = False
 
     def x(self, n: int) -> int:
         return self.reg(X0 + 8 * n, 8)

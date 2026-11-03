@@ -61,6 +61,23 @@ class VNarrow(unittest.TestCase):
         m.set_reg(Q0 + QSTRIDE, 8, 1)
         self.assertFalse(m.vnarrow[1])
 
+    def test_lane_insert_clears(self):
+        """A lane insert after an s<n> write (ld1 {v0.s}[1], ins v0.d[1], x8) makes v<n> wide."""
+        for rel, size in ((4, 4), (8, 8), (4, 12)):
+            m = machine()
+            m.set_reg(Q0 + QSTRIDE, 4, 1)
+            m.set_reg(Q0 + QSTRIDE + 4, 12, 0)
+            m.set_reg(Q0 + QSTRIDE + rel, size, 5)
+            self.assertFalse(m.vnarrow[1], (rel, size))
+            self.assertEqual(selection(m, types.SimpleNamespace(args=frozenset({101}), wide=frozenset({101}),
+                                                               stack_slots=0))[101], 64)
+
+    def test_d_upper_zeroing_keeps_wide(self):
+        m = machine()
+        m.set_reg(Q0, 8, 1)
+        m.set_reg(Q0 + 8, 8, 0)
+        self.assertFalse(m.vnarrow[0])
+
     def test_q_write_clears(self):
         m = machine()
         m.set_reg(Q0 + QSTRIDE, 4, 1)
