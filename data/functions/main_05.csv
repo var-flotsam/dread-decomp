@@ -830,7 +830,7 @@ address,size,name,name_source,subsystem,status
 0x7100541974,1108,fn_7100541974,unknown,unknown,U
 0x7100541dc8,28,fn_7100541dc8,unknown,unknown,O
 0x7100541de4,80,fn_7100541de4,unknown,unknown,O
-0x7100541e34,48,fn_7100541e34,unknown,unknown,U
+0x7100541e34,48,fn_7100541e34,unknown,unknown,O
 0x7100541e64,368,fn_7100541e64,unknown,unknown,U
 0x7100541fd4,512,fn_7100541fd4,unknown,unknown,U
 0x71005421d4,4,fn_71005421d4,unknown,unknown,O
@@ -1505,7 +1505,7 @@ address,size,name,name_source,subsystem,status
 0x71005657a4,84,fn_71005657a4,unknown,unknown,O
 0x71005657f8,144,fn_71005657f8,unknown,unknown,U
 0x7100565888,84,fn_7100565888,unknown,unknown,O
-0x71005658dc,120,fn_71005658dc,unknown,unknown,U
+0x71005658dc,120,fn_71005658dc,unknown,unknown,O
 0x7100565954,84,fn_7100565954,unknown,unknown,O
 0x71005659a8,412,fn_71005659a8,unknown,unknown,O
 0x7100565b44,216,fn_7100565b44,unknown,unknown,U
@@ -2220,8 +2220,8 @@ address,size,name,name_source,subsystem,status
 0x710058793c,244,CCharClassGoliathXAIComponent::refl_GetClass,reflection,game/characters,O
 0x7100587a30,268,fn_7100587a30,unknown,game/characters?,O
 0x7100587b3c,352,CCharClassGoliathXAIComponent::refl_InitClass,reflection,game/characters,O
-0x7100587c9c,88,fn_7100587c9c,unknown,unknown,U
-0x7100587cf4,96,fn_7100587cf4,unknown,unknown,U
+0x7100587c9c,88,fn_7100587c9c,unknown,unknown,O
+0x7100587cf4,96,fn_7100587cf4,unknown,unknown,O
 0x7100587d54,8,fn_7100587d54,unknown,unknown,O
 0x7100587d5c,28,fn_7100587d5c,unknown,unknown,O
 0x7100587d78,8,fn_7100587d78,unknown,unknown,O
@@ -2615,7 +2615,7 @@ address,size,name,name_source,subsystem,status
 0x7100598ca0,244,CCharClassGooplotAIComponent::refl_GetClass,reflection,game/characters,O
 0x7100598d94,604,fn_7100598d94,unknown,game/characters?,O
 0x7100598ff0,352,CCharClassGooplotAIComponent::refl_InitClass,reflection,game/characters,O
-0x7100599150,76,fn_7100599150,unknown,unknown,U
+0x7100599150,76,fn_7100599150,unknown,unknown,O
 0x710059919c,64,fn_710059919c,unknown,unknown,O
 0x71005991dc,72,fn_71005991dc,unknown,unknown,O
 0x7100599224,4,fn_7100599224,unknown,unknown,O
@@ -5120,8 +5120,8 @@ address,size,name,name_source,subsystem,status
 0x71005f1ab8,100,fn_71005f1ab8,unknown,game/ai?,U
 0x71005f1b1c,100,fn_71005f1b1c,unknown,game/ai?,U
 0x71005f1b80,12,fn_71005f1b80,unknown,game/ai?,O
-0x71005f1b8c,60,fn_71005f1b8c,unknown,game/ai?,U
-0x71005f1bc8,60,fn_71005f1bc8,unknown,game/ai?,U
+0x71005f1b8c,60,fn_71005f1b8c,unknown,game/ai?,O
+0x71005f1bc8,60,fn_71005f1bc8,unknown,game/ai?,O
 0x71005f1c10,240,fn_71005f1c10,unknown,game/ai?,O
 0x71005f1d00,4,fn_71005f1d00,unknown,game/ai?,O
 0x71005f1d04,244,CKraidAttack::refl_GetClass,reflection,game/ai,O

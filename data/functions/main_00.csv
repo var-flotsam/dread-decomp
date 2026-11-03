@@ -4943,7 +4943,7 @@ address,size,name,name_source,subsystem,status
 0x71000d6910,4,fn_71000d6910,unknown,unknown,O
 0x71000d6914,264,fn_71000d6914,unknown,unknown,O
 0x71000d6a1c,4,fn_71000d6a1c,unknown,unknown,O
-0x71000d6a20,48,fn_71000d6a20,unknown,unknown,U
+0x71000d6a20,48,fn_71000d6a20,unknown,unknown,O
 0x71000d6a50,88,fn_71000d6a50,unknown,unknown,O
 0x71000d6aa8,108,fn_71000d6aa8,unknown,unknown,O
 0x71000d6b14,108,fn_71000d6b14,unknown,unknown,O

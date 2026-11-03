@@ -5224,7 +5224,7 @@ address,size,name,name_source,subsystem,status
 0x71003ef9b4,244,CCharClassBigkranXSpitAttack::refl_GetClass,reflection,game/characters,O
 0x71003efaa8,3748,fn_71003efaa8,unknown,game/characters?,O
 0x71003f094c,352,CCharClassBigkranXSpitAttack::refl_InitClass,reflection,game/characters,O
-0x71003f0aac,256,fn_71003f0aac,unknown,unknown,U
+0x71003f0aac,256,fn_71003f0aac,unknown,unknown,O
 0x71003f0bac,156,fn_71003f0bac,unknown,unknown,U
 0x71003f0c48,164,fn_71003f0c48,unknown,unknown,U
 0x71003f0cec,28,fn_71003f0cec,unknown,unknown,O
