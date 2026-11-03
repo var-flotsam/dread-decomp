@@ -4945,11 +4945,11 @@ address,size,name,name_source,subsystem,status
 0x7100fbf968,80,fn_7100fbf968,unknown,unknown,O
 0x7100fbf9b8,80,fn_7100fbf9b8,unknown,unknown,O
 0x7100fbfa08,80,fn_7100fbfa08,unknown,unknown,O
-0x7100fbfa58,84,fn_7100fbfa58,unknown,unknown,U
+0x7100fbfa58,84,fn_7100fbfa58,unknown,unknown,O
 0x7100fbfaac,80,fn_7100fbfaac,unknown,unknown,O
 0x7100fbfafc,80,fn_7100fbfafc,unknown,unknown,O
 0x7100fbfb4c,80,fn_7100fbfb4c,unknown,unknown,O
-0x7100fbfb9c,84,fn_7100fbfb9c,unknown,unknown,U
+0x7100fbfb9c,84,fn_7100fbfb9c,unknown,unknown,O
 0x7100fbfbf0,80,fn_7100fbfbf0,unknown,unknown,O
 0x7100fbfc40,104,fn_7100fbfc40,unknown,unknown,O
 0x7100fbfca8,120,fn_7100fbfca8,unknown,unknown,O

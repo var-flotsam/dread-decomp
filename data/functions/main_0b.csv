@@ -5445,7 +5445,7 @@ address,size,name,name_source,subsystem,status
 0x7100be005c,388,CCharClassShowMessageEvent::refl_InitClass,reflection,game/characters,O
 0x7100be01e0,196,fn_7100be01e0,unknown,game/characters?,O
 0x7100be02a4,36,fn_7100be02a4,unknown,game/characters?,O
-0x7100be02c8,84,fn_7100be02c8,unknown,game/characters?,U
+0x7100be02c8,84,fn_7100be02c8,unknown,game/characters?,O
 0x7100be031c,28,fn_7100be031c,unknown,game/characters?,O
 0x7100be0338,12,fn_7100be0338,unknown,game/characters?,O
 0x7100be0344,8,fn_7100be0344,unknown,game/characters?,O

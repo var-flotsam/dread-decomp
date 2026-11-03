@@ -35,4 +35,9 @@ Result OpenDefaultAudioOut(AudioOut* out, os::SystemEvent* event, const AudioOut
 void CloseAudioOut(AudioOut* out);
 Result SetAudioDeviceOutputVolume(const AudioDeviceName* device, f32 volume);
 
+// Voices (nn::atk's voice priority, src/atk_id/nn_atk_VoicePriority_b48a3.cpp); opaque to the port.
+struct VoiceType;
+bool IsVoiceValid(const VoiceType* voice);
+void SetVoicePriority(VoiceType* voice, s32 priority);
+
 }  // namespace nn::audio
