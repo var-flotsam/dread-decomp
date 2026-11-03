@@ -977,6 +977,21 @@ class Lifter:
         """Semantic mode: the pending call's result as a float when s0 or d0 is read from
         instruction j on (address order) before it is written; a whole-register copy of v0
         (`mov v8.16b, v0.16b`, fn_71009e754c) reads it at the width its copy is read next."""
+        # Only a read in the straight line from j, before x0 is read or either is written and before
+        # any branch or call: address order past them found an unrelated s0 (fn_7100013734, whose
+        # calls then lost their x0 results to the retype)
+        for z in self.ins[j:]:
+            reads, writes = ({regname(q) for q in r} for r in z.regs_access())
+            if z.mnemonic in ("fmov", "movi") and z.operands[-1].type != arm64.ARM64_OP_REG:
+                reads = set()  # (capstone counts an immediate fmov's destination as read)
+            if reads & {"s0", "d0", "q0", "v0"}:
+                break
+            if reads & {"x0", "w0"} or writes & {"x0", "w0", "s0", "d0", "q0", "v0"} \
+                    or z.mnemonic in ("bl", "blr", "b", "br", "ret", "cbz", "cbnz", "tbz", "tbnz") \
+                    or z.mnemonic.startswith("b."):
+                return
+        else:
+            return
         y = self.ins[j]
         if y.mnemonic == "mov" and (g := re.fullmatch(r"v(\d+)\.16b, v0\.16b", y.op_str)):
             for z in self.ins[j + 1:]:
