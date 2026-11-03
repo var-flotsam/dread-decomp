@@ -96,6 +96,23 @@ class Changes(unittest.TestCase):
 
 
 @unittest.skipIf(pcode_emu is None, "pyelftools is not installed")
+class BeforeTheFault(unittest.TestCase):
+    """Calls before the original's fault compare a 32-bit argument by its low half, as elsewhere."""
+
+    def runs(self, lift_s0):
+        call = lambda v: (("call", 0x71006589cc, ((0, 64), (100, 32)), ((0, 0x5000), (100, v))), ())
+        orig = run("fault", 10, events=[call(0xc042a4356d779ff2), (("end", "fault"), ())])
+        lift = run("return", 10, events=[call(lift_s0), (("call", 0x7100744e1c, (), ()), ()), (("end", "return"), ())])
+        return orig, lift
+
+    def test_upper_half_of_a_32_bit_argument(self):
+        self.assertTrue(pcode_emu.compare(*self.runs(0x6d779ff2), None).startswith("skip: "))
+
+    def test_low_half_still_differs(self):
+        self.assertEqual(pcode_emu.compare(*self.runs(0x6d779ff3), None), "event 0 before the original's fault")
+
+
+@unittest.skipIf(pcode_emu is None, "pyelftools is not installed")
 class UndefinedBytes(unittest.TestCase):
     """A struct copy's padding, copied from stack the original never wrote, is not compared."""
 

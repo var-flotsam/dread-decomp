@@ -1564,11 +1564,17 @@ def compare(a: Machine, b: Machine, ret: str | None) -> str:
         # drop or move a load whose value decides nothing, so the end proves nothing (the lift
         # may crash later on what followed). What both did before the original's crash must still
         # agree (calls and writes, not their memory at the crash, which the lift may have passed).
+        def arg(e, k, bits):
+            # (a 32-bit argument compares its low half, as below: fn_710064fb5c's s0, a whole v8
+            # copy of the incoming float in the original, an f32 in the lift)
+            v = dict(e[3]).get(k)
+            return v & 0xFFFFFFFF if bits == 32 and isinstance(v, int) else v
+
         for i in range(len(ea) - 1):
             if i >= len(eb) or ea[i] != eb[i]:
                 if i < len(eb) and ea[i][0][0] == eb[i][0][0] == "call" and ea[i][0][1] == eb[i][0][1] \
-                        and ea[i][1] == eb[i][1] and all(same_arg(dict(ea[i][0][3]).get(k), dict(eb[i][0][3]).get(k), frame)
-                                                         for k, _ in ea[i][0][2]):
+                        and ea[i][1] == eb[i][1] and all(same_arg(arg(ea[i][0], k, bits), arg(eb[i][0], k, bits), frame)
+                                                         for k, bits in ea[i][0][2]):
                     continue
                 if i == len(eb) - 1 and end_b == ("end", "time-out"):
                     return "skip: the lift was cut off before the original's fault"
