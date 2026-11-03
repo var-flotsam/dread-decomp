@@ -4696,7 +4696,7 @@ address,size,name,name_source,subsystem,status
 0x7100c94b28,352,CItemDestructionLogicAction::refl_InitClass,reflection,game/ai,O
 0x7100c94c88,480,fn_7100c94c88,unknown,unknown,U
 0x7100c94e68,36,fn_7100c94e68,unknown,unknown,O
-0x7100c94e8c,320,fn_7100c94e8c,unknown,unknown,U
+0x7100c94e8c,320,fn_7100c94e8c,unknown,unknown,O
 0x7100c94fcc,80,fn_7100c94fcc,unknown,unknown,O
 0x7100c9501c,28,fn_7100c9501c,unknown,unknown,O
 0x7100c95038,12,fn_7100c95038,unknown,unknown,O

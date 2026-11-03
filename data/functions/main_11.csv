@@ -3779,7 +3779,7 @@ address,size,name,name_source,subsystem,status
 0x71011eec70,352,fn_71011eec70,unknown,unknown,U
 0x71011eedd0,292,fn_71011eedd0,unknown,unknown,O
 0x71011eeef4,468,fn_71011eeef4,unknown,unknown,U
-0x71011ef0c8,156,fn_71011ef0c8,unknown,unknown,U
+0x71011ef0c8,156,fn_71011ef0c8,unknown,unknown,O
 0x71011ef164,388,fn_71011ef164,unknown,unknown,U
 0x71011ef2e8,156,fn_71011ef2e8,unknown,unknown,U
 0x71011ef384,20,fn_71011ef384,unknown,unknown,O
@@ -3914,7 +3914,7 @@ address,size,name,name_source,subsystem,status
 0x71011f6240,260,fn_71011f6240,unknown,unknown,m
 0x71011f6344,72,fn_71011f6344,unknown,unknown,O
 0x71011f638c,664,fn_71011f638c,unknown,unknown,U
-0x71011f6624,472,fn_71011f6624,unknown,unknown,U
+0x71011f6624,472,fn_71011f6624,unknown,unknown,O
 0x71011f6800,140,fn_71011f6800,unknown,unknown,O
 0x71011f688c,4,fn_71011f688c,unknown,unknown,O
 0x71011f6890,244,GUI::CSprite::refl_GetClass,reflection,gui,O
