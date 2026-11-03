@@ -603,6 +603,14 @@ class Machine:
             return int.from_bytes(self.page(a // PAGE)[o:o + size], "little")
         return int.from_bytes(bytes(self.page((a + i) // PAGE)[(a + i) % PAGE] for i in range(size)), "little")
 
+    def peek(self, a: int, size: int) -> int:
+        """Memory as load reads it, recording nothing: the oracle's repairs look at a finished run's
+        words (port_lift), whose read_at, read_words and read_cov must stay as the run left them."""
+        a &= 0xFFFFFFFFFFFFFFFF
+        if a < NULL_PAGE:
+            raise Fault(a)
+        return int.from_bytes(bytes(self.page((a + i) // PAGE)[(a + i) % PAGE] for i in range(size)), "little")
+
     def store(self, a: int, size: int, v: int, track: bool = True) -> None:
         a &= 0xFFFFFFFFFFFFFFFF
         if a < NULL_PAGE:
@@ -1088,6 +1096,7 @@ class Machine:
         self.pages, self.dirty, self.stack_written, self.uniq, self._read_seen = {}, {}, set(), {}, set()
         self.before, self._loaded, self._all_loads, self.putback, self.stale = {}, None, set(), {}, set()
         self._ckpt, self._touched, self._loaded_before, self.unsure = {}, set(), set(), set()
+        self.track = False  # (a later load, a repair's look at a word, must not move read_at: peek)
 
     def checkpoint(self, event) -> None:
         if event[0] == "call" and isinstance(event[1], tuple) and event[1][1] in PURE_MATH:
