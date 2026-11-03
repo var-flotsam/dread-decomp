@@ -1293,7 +1293,7 @@ address,size,name,name_source,subsystem,status
 0x71012307dc,28,fn_71012307dc,unknown,unknown,O
 0x71012307f8,32,fn_71012307f8,unknown,unknown,U
 0x7101230818,292,fn_7101230818,unknown,unknown,U
-0x710123093c,112,fn_710123093c,unknown,unknown,U
+0x710123093c,112,fn_710123093c,unknown,unknown,O
 0x71012309ac,40,fn_71012309ac,unknown,unknown,U
 0x71012309d4,44,fn_71012309d4,unknown,unknown,U
 0x7101230a00,40,fn_7101230a00,unknown,unknown,U
@@ -1302,7 +1302,7 @@ address,size,name,name_source,subsystem,status
 0x7101230a60,40,fn_7101230a60,unknown,unknown,U
 0x7101230a88,44,fn_7101230a88,unknown,unknown,U
 0x7101230ab4,48,fn_7101230ab4,unknown,unknown,O
-0x7101230ae4,116,fn_7101230ae4,unknown,unknown,U
+0x7101230ae4,116,fn_7101230ae4,unknown,unknown,O
 0x7101230b58,128,fn_7101230b58,unknown,unknown,U
 0x7101230bd8,84,nn::atk::detail::driver::WaveSoundPlayer::vf_0x0,rtti,middleware/nn-atk,L
 0x7101230c2c,92,fn_7101230c2c,unknown,middleware/nn-atk?,L

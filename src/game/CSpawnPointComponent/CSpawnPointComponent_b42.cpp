@@ -42,3 +42,32 @@ void fn_7101131a84(base::UnkVector<UnkEntry_b42a3>* self, const base::UnkVector<
     for (const UnkEntry_b42a3 *it = other->data, *end = other->data + other->count; it != end; ++it)
         fn_7101131b98(self, it);
 }
+
+// The copy assignment beside it: destroy the entries, reserve the other's capacity (entries moved
+// with fn_710111fd80), then append a copy of each entry (fn_7101131b98).
+base::UnkVector<UnkEntry_b42a3>* fn_7101131d60(base::UnkVector<UnkEntry_b42a3>* self,
+                                               const base::UnkVector<UnkEntry_b42a3>* other) {
+    if (self == other)
+        return self;
+    for (u64 i = 0; i < self->count; ++i)
+        self->data[i].~UnkEntry_b42a3();
+    self->count = 0;
+    u32 n = other->capacity;
+    if (self->capacity < n) {
+        UnkEntry_b42a3* p = static_cast<UnkEntry_b42a3*>(self->allocator->vf_0x40((u64)n * sizeof(UnkEntry_b42a3), 8, self->flags));
+        if (UnkEntry_b42a3* src = self->data) {
+            UnkEntry_b42a3* dst = p;
+            for (u32 i = 0; i < self->count; ++i) {
+                fn_710111fd80(dst, src);
+                (src++)->~UnkEntry_b42a3();
+                ++dst;
+            }
+            self->allocator->vf_0x48(self->data);
+        }
+        self->data = p;
+        self->capacity = n;
+    }
+    for (const UnkEntry_b42a3 *it = other->data, *end = other->data + other->count; it != end; ++it)
+        fn_7101131b98(self, it);
+    return self;
+}
