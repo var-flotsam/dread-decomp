@@ -205,7 +205,8 @@ def push_local(x) -> bool:
     """`str|stp <regs>, [sp, #-imm]!` of registers is_frame does not save: a store of a local
     that also makes the frame (Lifter.setup_frame)."""
     mem = [op for op in x.operands if op.type == arm64.ARM64_OP_MEM]
-    if x.mnemonic not in ("str", "stp", "strb", "strh") or not mem or regname(mem[0].mem.base) != "sp"             or not x.writeback or mem[0].mem.disp >= 0 or is_frame(x):
+    if x.mnemonic not in ("str", "stp", "strb", "strh") or not mem or regname(mem[0].mem.base) != "sp" \
+            or not x.writeback or mem[0].mem.disp >= 0 or is_frame(x):
         return False
     return not any(op.type == arm64.ARM64_OP_IMM for op in x.operands)  # (pre-indexed: no post imm)
 
@@ -908,6 +909,8 @@ class Lifter:
         # Up to the first float register with no value (a higher one was a temporary).
         fl = next((i for i in range(fl) if not self.has_value(100 + i)), fl)
         sem = "semantic" in self.opts
+        if sem and self.s.fcall and self.x0_result():
+            self.s.fcall = None  # (its result is x0's: v0 holds nothing for the callee)
         if sem and self.s.fcall and len(need) > 1 and need[1] > 0 and 100 not in self.s.vals:
             # s0 passed on right after a call: the call returns a float, so x0 holds nothing (its
             # retype first, before the integers below would read the call's x0)
@@ -971,7 +974,19 @@ class Lifter:
             if not 0 <= at <= self.frame["size"] - 8:
                 raise Unsupported("stack arguments outside the frame")
             stack.append((f"*(u64*)(stk + {at:#x})", "u64"))
+        if sem:
+            # (a 32-bit value goes as 64 bits, zero-extended as a w<n> write leaves x<n>: as a u32
+            # parameter its upper half is unspecified, and a callee that reads x<n> whole sees it,
+            # fn_7101089170's `mov w2, w0` before the tail call)
+            ints = [(f"(u64)({e})", "u64") if t == "u32" else (e, t) for e, t in ints]
         return ints + stack + floats
+
+    def x0_result(self) -> bool:
+        """Semantic mode: the pending call's callee returns in x0 by its callers' evidence
+        (abi_facts.result_main {0}): its result passed straight on to a callee taking both x0 and
+        s0 is x0's, not a float (fn_710109ceb0)."""
+        fn = self.s.fcall[3] if self.s.fcall and len(self.s.fcall) > 3 else None
+        return bool(fn) and self.main is not None and self.main(int(fn[3:], 16)) == {0}
 
     def type_pending_float(self, j: int) -> None:
         """Semantic mode: the pending call's result as a float when s0 or d0 is read from
