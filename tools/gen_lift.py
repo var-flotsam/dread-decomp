@@ -3149,24 +3149,28 @@ class FlatLifter(Lifter):
         self.line(f"if (!({cond})) goto L_{target:x};")
 
     def edge(self, target: int) -> None:
-        self.edges.setdefault(target, []).append((dict(self.s.consts), dict(self.s.pages)))
+        self.edges.setdefault(target, []).append((dict(self.s.consts), dict(self.s.pages), set(self.s.written)))
 
     def join_consts(self, a: int, prev) -> None:
         """Semantic mode, at a label: the known constants and pages are those every way in agrees
         on (fn_7100713e2c sets w8 to +pi/2 before a `b` to the label and to -pi/2 falling into it,
         and an `fmov s0, w8` there must read the register); none for a loop's head (a branch from
-        below, not seen yet). A dropped page is still in its register (step, adrp)."""
+        below, not seen yet). A dropped page is still in its register (step, adrp). The argument
+        registers written since the last call are those any forward way in wrote (an indirect
+        call passes them: fn_710096db24's s2 = 1.0 on one way into the join before a `blr`)."""
         ways = self.edges.pop(a, [])
         if prev is not None and prev.mnemonic not in ("b", "br", "ret", "brk"):
-            ways.append((self.s.consts, self.s.pages))
+            ways.append((self.s.consts, self.s.pages, self.s.written))
+        if ways:
+            self.s.written = set().union(*(w for _, _, w in ways))
         if any(src >= a for src in self.sources.get(a, [])):
             self.s.consts, self.s.pages = {}, {}
             return
         if not ways:
             return
         meet = lambda ds: {n: v for n, v in ds[0].items() if all(d.get(n) == v for d in ds[1:])}
-        self.s.consts = meet([c for c, _ in ways])
-        self.s.pages = meet([p for _, p in ways])
+        self.s.consts = meet([c for c, _, _ in ways])
+        self.s.pages = meet([p for _, p, _ in ways])
 
     def clobber(self) -> None:
         s = self.s
