@@ -3,6 +3,7 @@ data). Skipped when pyelftools is not installed."""
 
 import math
 import struct
+import types
 import unittest
 
 from tools.tests import _path  # noqa: F401
@@ -23,7 +24,7 @@ class MathCall(unittest.TestCase):
 
     def machine(self, size: int, a: float, b: float = 0.0):
         m = pcode_emu.Machine.__new__(pcode_emu.Machine)
-        m.regs, m.state, m.undef_vn = bytearray(pcode_emu.REG_SIZE), {}, set()
+        m.regs, m.state, m.undef_vn, m.vnarrow = bytearray(pcode_emu.REG_SIZE), {}, set(), {}
         q0, q1 = pcode_emu.Q0, pcode_emu.Q0 + pcode_emu.QSTRIDE
         m.regs[q0:q0 + size] = pack(a, size)
         m.regs[q1:q1 + size] = pack(b, size)
@@ -70,7 +71,68 @@ class MathCall(unittest.TestCase):
         m.math("cos")
         self.assertTrue(all(m.x(i) == 0 for i in pcode_emu.CALLER_SAVED_X))
         self.assertTrue(all(m.state[i] == "junk" for i in range(9)))
-        self.assertTrue(all(m.state[100 + i] == "junk" for i in range(8)))
+        self.assertTrue(all(m.state[100 + i] == "junk" for i in range(1, 8)))
+
+    def test_result_is_written(self):
+        """v0 holds the result, an argument a later call compares (s0 on 32 bits for sqrtf); v1-v7
+        stay junk."""
+        m = self.machine(4, 4.0)
+        m.math("sqrtf")
+        self.assertEqual(m.state[100], "written")
+        self.assertTrue(m.vnarrow[0])
+        m = self.machine(8, 4.0)
+        m.math("sqrt")
+        self.assertEqual(m.state[100], "written")
+        self.assertFalse(m.vnarrow[0])
+
+    def test_result_compared_by_next_call(self):
+        """A later call's v0 argument from atan2f is selected: a lift passing a wrong value to
+        atan2f, then the result on, differs at that call."""
+        m = self.machine(4, 1.0, 1.0)
+        m.lift, m.target_reg = None, None
+        m.math("atan2f")
+        m.canonical = lambda target: target
+        m.recorded = lambda target, t, modeled: None
+        m.facts = lambda target: types.SimpleNamespace(args=frozenset({100}), wide=frozenset(), stack_slots=0)
+        seen = []
+
+        def checkpoint(event):
+            seen.append(event)
+            raise StopIteration
+
+        m.checkpoint = checkpoint
+        with self.assertRaises(StopIteration):
+            m.call(0x7100001000)
+        self.assertEqual(dict(seen[0][2]), {100: 32})
+
+    def test_rounding_keeps_negative_zero(self):
+        """floor, ceil, trunc and round of a value that rounds to 0 keep its sign."""
+        for name, v in (("ceil", -0.5), ("trunc", -0.5), ("round", -0.4), ("floor", -0.0),
+                        ("ceilf", -0.5), ("roundf", -0.0)):
+            r = self.call(name, v)
+            self.assertEqual(r, 0.0, name)
+            self.assertEqual(math.copysign(1.0, r), -1.0, name)
+        self.assertEqual(math.copysign(1.0, self.call("floor", 0.5)), 1.0)
+
+    def test_overflow_sign(self):
+        """An overflow has the true result's sign: sinh(-1000) and pow(-10, 1001) are -inf."""
+        self.assertEqual(self.call("sinh", -1000.0), -math.inf)
+        self.assertEqual(self.call("pow", -10.0, 1001.0), -math.inf)
+        self.assertEqual(self.call("pow", -10.0, 1000.0), math.inf)
+        self.assertEqual(self.call("cosh", -1000.0), math.inf)
+
+    def test_pow_of_zero_negative_exponent(self):
+        """pow(+-0, y < 0) is +inf; -inf for -0 and an odd integer y."""
+        self.assertEqual(self.call("pow", 0.0, -1.0), math.inf)
+        self.assertEqual(self.call("pow", -0.0, -2.0), math.inf)
+        self.assertEqual(self.call("pow", -0.0, -3.0), -math.inf)
+        self.assertEqual(self.call("powf", -0.0, -0.5), math.inf)
+
+    def test_nan_argument_two_argument_c99(self):
+        """pow(1, NaN) = 1 and hypot(inf, NaN) = inf, as C99 gives."""
+        self.assertEqual(self.call("pow", 1.0, math.nan), 1.0)
+        self.assertEqual(self.call("powf", math.nan, 0.0), 1.0)
+        self.assertEqual(self.call("hypot", math.inf, math.nan), math.inf)
 
     def test_nan_argument_keeps_payload_quieted(self):
         """A signalling NaN comes back quiet with its payload (fn_7100118274)."""
@@ -169,7 +231,7 @@ class PureMath(unittest.TestCase):
         for name in sorted(pcode_emu.PURE_MATH):
             size = 4 if name.endswith("f") else 8
             m = pcode_emu.Machine.__new__(pcode_emu.Machine)
-            m.regs, m.state, m.undef_vn = bytearray(pcode_emu.REG_SIZE), {}, set()
+            m.regs, m.state, m.undef_vn, m.vnarrow = bytearray(pcode_emu.REG_SIZE), {}, set(), {}
             m.regs[pcode_emu.Q0:pcode_emu.Q0 + size] = pack(0.5, size)
             m.regs[pcode_emu.Q0 + pcode_emu.QSTRIDE:pcode_emu.Q0 + pcode_emu.QSTRIDE + size] = pack(0.25, size)
             m.math(name)

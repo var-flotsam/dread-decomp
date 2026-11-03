@@ -837,28 +837,43 @@ class Machine:
                "trunc": math.trunc, "fabs": abs, "sinh": math.sinh, "cosh": math.cosh, "tanh": math.tanh}
         # A NaN argument comes back with its payload, quieted (an inlined fsqrt keeps it, then calls
         # sqrtf only for the NaN: fn_7100118274), and the rounding functions return +-inf as is.
+        # A two-argument function runs first: C99 gives pow(1, NaN) = 1 and hypot(inf, NaN) = inf.
         quiet = 0x00400000 if size == 4 else 0x0008000000000000
         args = (0, 1) if base in two else (0,)
         nan = next((i for i in args if math.isnan((a, b)[i])), None)
+        odd = base == "pow" and math.isfinite(b) and b == int(b) and int(b) % 2 == 1
         bits = None
-        if nan is not None:
+        if nan is not None and base not in two:
             bits = self.reg(Q0 + QSTRIDE * nan, size) | quiet
         elif base in ("floor", "ceil", "round", "trunc") and math.isinf(a):
             bits = f_to(a, size)
         else:
             try:
                 v = float(two[base](a, b) if base in two else one[base](a))
-            except OverflowError:
-                v = math.inf
+            except OverflowError:  # (the true result's sign: sinh, tan by a's, pow(-x, odd) negative)
+                neg = (base in ("sinh", "tan") and a < 0) or (odd and a < 0)
+                v = -math.inf if neg else math.inf
             except (ValueError, ZeroDivisionError):
-                v = -math.inf if base in ("log", "log2", "log10") and a == 0 else math.nan
-            bits = f_to(v, size)
+                if base in ("log", "log2", "log10") and a == 0:
+                    v = -math.inf
+                elif base == "pow" and a == 0 and b < 0:  # pow(+-0, y < 0): +inf, -inf for -0 and odd y
+                    v = math.copysign(math.inf, a) if odd else math.inf
+                else:
+                    v = math.nan
+            if base in ("floor", "ceil", "round", "trunc") and v == 0:  # (Python ints lose -0)
+                v = math.copysign(0.0, a)
+            bits = (self.reg(Q0 + QSTRIDE * nan, size) | quiet if nan is not None and math.isnan(v)
+                    else f_to(v, size))
         for i in CALLER_SAVED_X:
             self.regs[X0 + 8 * i:X0 + 8 * i + 8] = bytes(8)
             if i <= 8:
                 self.state[i] = "junk"
-        for i in range(8):
+        for i in range(1, 8):
             self.state[100 + i] = "junk"
+        # The result is computed the same way in both runs: a later call's argument (atan2f's
+        # result passed on must be the same value in the lift).
+        self.state[100] = "written"
+        self.vnarrow[0] = size == 4
         self.regs[Q0:Q0 + 16] = bits.to_bytes(16, "little")
 
     def clib(self, name: str) -> None:
