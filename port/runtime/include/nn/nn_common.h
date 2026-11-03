@@ -23,12 +23,13 @@ constexpr Result ResultNotPorted() { return Result{0xffffffffu}; }
 
 // A signed duration in nanoseconds. The game reads the member directly
 // (src/game_s1/fn_7100080c40.cpp), so it is a plain field, not an accessor. The one conversion
-// helper src/ names is FromNanoSeconds (src/base/snd/CSoundSystemATK.cpp); the struct stays an
-// aggregate.
+// helpers src/ names are FromNanoSeconds (src/base/snd/CSoundSystemATK.cpp) and FromMilliSeconds
+// (src/game/media/UnkPlayer329/); the struct stays an aggregate.
 struct TimeSpan {
     s64 nanoseconds;
 
     static constexpr TimeSpan FromNanoSeconds(s64 ns) { return TimeSpan{ns}; }
+    static constexpr TimeSpan FromMilliSeconds(s64 ms) { return TimeSpan{ms * 1000 * 1000}; }
 };
 static_assert(sizeof(TimeSpan) == 8, "a time span is one 64-bit word in the game's objects");
 
