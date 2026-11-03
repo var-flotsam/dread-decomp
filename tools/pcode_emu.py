@@ -473,6 +473,7 @@ class Machine:
         self.saves: set[int] = set()  # stack words holding a callee-saved register's entry value (store)
         self.entry_saved: set[int] = set()  # those entry values (setup: x19-x28, d8-d15)
         self.taken: set[int] = set()  # stack addresses the code made (`add xN, sp, #k`): local objects' starts
+        self.out_at: dict[int, int] = {}  # stack bytes an out-parameter filled: the argument's address (call)
         # The original's calls, for the lift's run: which arguments it wrote out-parameters
         # through and how far (call_log); the lift's Machine gets them as `guide` (port_lift).
         self.call_log: list[tuple[frozenset, dict]] = []
@@ -737,6 +738,7 @@ class Machine:
                     for j, b in outs.get(k, ()):
                         if p + j < ENTRY_SP and not any(p + j - 7 <= r <= p + j + 7 for r in self.frame_record):
                             self.store(p + j, 1, b)
+                            self.out_at[p + j] = p
                     continue
                 # (within the object, stackref's extent, and never over the frame record: a small
                 # local below it would let the pattern overwrite the saved return address). Words of
@@ -744,9 +746,17 @@ class Machine:
                 # (x8, a result built in place: the struct may be larger than the extent the frame
                 # suggests, and the function copies all of it out, 7100128810. The window past the
                 # extent holds what the callee wrote there, unknown: undefined, so what is copied
-                # from it is not compared; filling it would overwrite locals placed differently.)
+                # from it is not compared; filling it would overwrite locals placed differently. It
+                # stops where this run's own frame holds another object: the next taken address, a save
+                # slot or the frame record (the guide's extent is the other frame's), or a byte this run
+                # filled as another argument's out-parameter: cleared, a lift's different store to a
+                # local placed there would go uncompared.)
                 if k == 8:
-                    self.stack_written.difference_update(range(p + max(extent[k], 8), min(p + WINDOW, ENTRY_SP)))
+                    stop = min([t for t in self.taken | self.frame_record | self.saves if t > p] + [p + WINDOW, ENTRY_SP])
+                    for q in range(p + max(extent[k], 8), stop):
+                        if self.out_at.get(q, p) != p:
+                            break
+                        self.stack_written.discard(q)
                 for j in range(0, max(extent[k], 8), 8):
                     if p + j >= ENTRY_SP or any(p + j - 7 <= r <= p + j + 7 for r in self.frame_record):
                         break
@@ -755,6 +765,7 @@ class Machine:
                     v = self.overrides.get(("o", (n, k, j)),
                                            self.word(mix(self.seed, n, k, j)) if self.seed % 2 else mix(n, k, j))
                     self.store(p + j, 8, v)
+                    self.out_at.update((p + j + i, p) for i in range(8))
                     if len(self.out_words) < 64:
                         self.out_words.append(((n, k, j), v))
         for i in CALLER_SAVED_X:
