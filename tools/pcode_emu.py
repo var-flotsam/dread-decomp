@@ -457,6 +457,7 @@ class Machine:
         self.uniq: dict[int, int] = {}
         self.pages: dict[int, bytearray] = {}
         self.dirty: dict[int, int] = {}
+        self.before: dict[int, int] = {}  # a dirty byte's value before the function first wrote it (store)
         self._ckpt: dict[int, int] = {}  # dirty as the last checkpoint saw it, and the bytes touched since
         self._touched: set[int] = set()
         self.cut: str | None = None  # why the run ended as a time-out: steps, events or snapshot (compare)
@@ -554,6 +555,7 @@ class Machine:
         if a < NULL_PAGE:
             raise Fault(a)
         b = (v & ((1 << (8 * size)) - 1)).to_bytes(size, "little")
+        prior = [self.page(x // PAGE)[x % PAGE] for x in range(a, a + size)]
         for i in range(size):
             x = a + i
             self.page(x // PAGE)[x % PAGE] = b[i]
@@ -576,8 +578,17 @@ class Machine:
             # undefined, and the two frames are laid out differently (as load: the caller's frame)
             raise Inconclusive("store in the caller's frame")
         elif not (self.own[0] <= a < self.own[1]):
+            # A byte holding again what it held before the function's first write to it is
+            # unchanged: no write at all as far as anything after can tell. C lets a compiler drop a
+            # store of the value just loaded from the same place (`ldp s0, s1, [x11, #4]` ...
+            # `str s0, [x8, #4]` at the same address, fn_71002aa518), so a write counts only where
+            # it changed the byte.
             for i in range(size):
-                self.dirty[a + i] = b[i]
+                x = a + i
+                if b[i] == self.before.setdefault(x, prior[i]):
+                    self.dirty.pop(x, None)
+                else:
+                    self.dirty[x] = b[i]
             self._touched.update(range(a, a + size))
 
     # registers
@@ -799,6 +810,7 @@ class Machine:
                     x = a + i
                     if x >= NULL_PAGE and not STACK_LO <= x < STACK_TOP:
                         self.page(x // PAGE)[x % PAGE] = b
+                        self.before.pop(x, None)  # (a later write of the function's compares with this)
                         if x in self.dirty:
                             self.dirty[x] = b
                             self._touched.add(x)
@@ -941,6 +953,7 @@ class Machine:
         """Drop what only running needs (memory pages, the write sets): a finished run that is
         kept for comparison needs its events, registers, coverage and logs."""
         self.pages, self.dirty, self.stack_written, self.uniq, self._read_seen = {}, {}, set(), {}, set()
+        self.before = {}
         self._ckpt, self._touched = {}, set()
 
     def checkpoint(self, event) -> None:
