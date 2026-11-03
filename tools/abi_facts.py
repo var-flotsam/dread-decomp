@@ -16,8 +16,10 @@ know which registers of a call to compare. This module computes, per function:
   fwd       argument registers the function's direct callers set for it (written in the block
             before the call and not read again before it; vector copies through q/v registers
             do not count): what an indirect call, whose callee nothing names, may be passed on.
-            A wrapper `this->vf(0.0f)` reached as fn(this, 0.0f) reads s0 that way. Only for
-            functions with an indirect call (empty otherwise).
+            A wrapper `this->vf(0.0f)` reached as fn(this, 0.0f) reads s0 that way. x8 counts only
+            when a `bl` caller points it at its own frame (`mov x8, sp`): a virtual call through a
+            wrapper whose result is built in the caller's local. Only for functions with an
+            indirect call (empty otherwise).
   open      a function with an indirect call and no direct caller (a virtual function, a
             function pointer): nothing tells what its callers set, so an indirect call reads every
             integer argument register x0-x7 still holding its incoming value. A forwarder
@@ -57,7 +59,7 @@ import callgraph  # noqa: E402
 MAX_SIZE = 65536
 # result_shape's and result_main's analysis (their cache is kept apart: a change does not cost the table)
 SHAPE_VERSION = 4
-CACHE_VERSION = 13  # bump when the analysis changes (AbiFacts.load ignores other versions)
+CACHE_VERSION = 14  # bump when the analysis changes (AbiFacts.load ignores other versions)
 MAX_DEPTH = 48  # callee recursion; deeper chains count as unknown
 INT_ARGS = frozenset(range(9))  # x0-x7 and x8
 FLOAT_ARGS = frozenset(range(100, 108))
@@ -385,10 +387,19 @@ class AbiFacts:
                         break
                     if not y.vec:
                         ev |= (y.defs & ARGS) - later - {8}
+                        if x.mnemonic == "bl" and 8 in y.defs and 8 not in later and self.frame_address(y):
+                            ev.add(8)  # x8 at a slot of the caller's frame: the result built there
                     later |= y.uses
+
                     if y.address in starts:
                         break
         return frozenset(ev)
+
+    @staticmethod
+    def frame_address(y: "Insn") -> bool:
+        """`mov x<d>, sp` or `add/sub x<d>, sp|x29, #k`: the address of a slot in the frame."""
+        return y.mnemonic in ("mov", "add", "sub") and len(y.reg_ops) == 2 and y.reg_ops[1] in ("sp", 29) \
+            and y.mem is None
 
     def call_uses(self, target: int | None, block: list, k: int, depth: int, reg=None) -> set:
         """Registers a call at block[k] reads: the callee's facts, or the indirect-call rule."""

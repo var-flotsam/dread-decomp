@@ -33,7 +33,7 @@ lifts each one into C++ over `char*` parameters and keeps only the byte-identica
 
 Usage: python tools/gen_lift.py --version 2.1.0 [--plain]   (--plain: no pass-through)
 Outputs are deterministic (the facts come from one complete table, abi_facts.AbiFacts.complete; its
-cache is build/port/abi_facts.pickle). Regenerate, never edit them. There is one file per 64 KiB of
+cache is build/port/abi_facts_v<CACHE_VERSION>.pickle). Regenerate, never edit them. There is one file per 64 KiB of
 address space, and each function follows its own declarations, so
 
   python tools/gen_lift.py --prune
@@ -3689,7 +3689,11 @@ def report(orig: asmdiff.Original, addrs: list[int], cands: set[int], examples: 
             print(f"{r}: {' '.join(f'{a:x}' for a in rows[r][:examples])}")
 
 
-FACTS = ROOT / "build" / "port" / "abi_facts.pickle"  # tools/abi_facts.py's cache (depends on the binary only)
+def facts_path() -> Path:
+    """tools/abi_facts.py's cache (depends on the binary only), one file per CACHE_VERSION so that
+    checkouts of different analyses can share build/."""
+    import abi_facts
+    return ROOT / "build" / "port" / f"abi_facts_v{abi_facts.CACHE_VERSION}.pickle"
 
 
 def load_facts(orig: asmdiff.Original, version: str):
@@ -3699,7 +3703,7 @@ def load_facts(orig: asmdiff.Original, version: str):
     import abi_facts
     af = abi_facts.AbiFacts(orig)
     af.version = version
-    af.complete(FACTS)
+    af.complete(facts_path())
     Lifter.facts = af.facts
     return af
 
