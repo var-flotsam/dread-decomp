@@ -1661,7 +1661,7 @@ address,size,name,name_source,subsystem,status
 0x7100d2c7f0,76,fn_7100d2c7f0,unknown,game/characters?,O
 0x7100d2c83c,68,fn_7100d2c83c,unknown,game/characters?,O
 0x7100d2c880,84,fn_7100d2c880,unknown,game/characters?,O
-0x7100d2c8d4,72,fn_7100d2c8d4,unknown,game/characters?,U
+0x7100d2c8d4,72,fn_7100d2c8d4,unknown,game/characters?,O
 0x7100d2c920,160,fn_7100d2c920,unknown,game/characters?,O
 0x7100d2c9c0,232,fn_7100d2c9c0,unknown,game/characters?,O
 0x7100d2caa8,244,CCharClassTweakAirFrictionTrack::refl_GetClass,reflection,game/characters,O
@@ -3885,7 +3885,7 @@ address,size,name,name_source,subsystem,status
 0x7100d824f8,128,fn_7100d824f8,unknown,unknown,O
 0x7100d82578,128,fn_7100d82578,unknown,unknown,O
 0x7100d825f8,128,fn_7100d825f8,unknown,unknown,O
-0x7100d82678,80,fn_7100d82678,unknown,unknown,U
+0x7100d82678,80,fn_7100d82678,unknown,unknown,O
 0x7100d826c8,412,fn_7100d826c8,unknown,unknown,O
 0x7100d82864,180,fn_7100d82864,unknown,unknown,O
 0x7100d82918,144,fn_7100d82918,unknown,unknown,O

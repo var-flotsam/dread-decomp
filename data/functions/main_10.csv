@@ -2135,7 +2135,7 @@ address,size,name,name_source,subsystem,status
 0x710105cb80,28,fn_710105cb80,unknown,unknown,O
 0x710105cb9c,28,fn_710105cb9c,unknown,unknown,O
 0x710105cbb8,88,fn_710105cbb8,unknown,unknown,O
-0x710105cc10,120,fn_710105cc10,unknown,unknown,U
+0x710105cc10,120,fn_710105cc10,unknown,unknown,O
 0x710105cc88,12,fn_710105cc88,unknown,unknown,O
 0x710105cc94,8,fn_710105cc94,unknown,unknown,O
 0x710105cc9c,28,fn_710105cc9c,unknown,unknown,O
@@ -2146,7 +2146,7 @@ address,size,name,name_source,subsystem,status
 0x710105cd5c,36,fn_710105cd5c,unknown,unknown,O
 0x710105cd80,52,fn_710105cd80,unknown,unknown,O
 0x710105cdb4,80,fn_710105cdb4,unknown,unknown,O
-0x710105ce04,84,fn_710105ce04,unknown,unknown,U
+0x710105ce04,84,fn_710105ce04,unknown,unknown,O
 0x710105ce58,12,fn_710105ce58,unknown,unknown,O
 0x710105ce64,8,fn_710105ce64,unknown,unknown,O
 0x710105ce6c,28,fn_710105ce6c,unknown,unknown,O
@@ -4578,9 +4578,9 @@ address,size,name,name_source,subsystem,status
 0x71010e70c4,12,fn_71010e70c4,unknown,unknown,O
 0x71010e70d0,76,fn_71010e70d0,unknown,unknown,O
 0x71010e711c,96,fn_71010e711c,unknown,unknown,O
-0x71010e717c,156,fn_71010e717c,unknown,unknown,U
+0x71010e717c,156,fn_71010e717c,unknown,unknown,O
 0x71010e7218,96,fn_71010e7218,unknown,unknown,O
-0x71010e7278,156,fn_71010e7278,unknown,unknown,U
+0x71010e7278,156,fn_71010e7278,unknown,unknown,O
 0x71010e7314,76,fn_71010e7314,unknown,unknown,O
 0x71010e7360,68,fn_71010e7360,unknown,unknown,O
 0x71010e73a4,76,fn_71010e73a4,unknown,unknown,O
@@ -4716,7 +4716,7 @@ address,size,name,name_source,subsystem,status
 0x71010f0a84,244,CCameraFX::refl_GetClass,reflection,game,O
 0x71010f0b78,264,fn_71010f0b78,unknown,game?,O
 0x71010f0c80,388,CCameraFX::refl_InitClass,reflection,game,O
-0x71010f0e04,80,fn_71010f0e04,unknown,game?,U
+0x71010f0e04,80,fn_71010f0e04,unknown,game?,O
 0x71010f0e54,124,fn_71010f0e54,unknown,game?,O
 0x71010f0ed0,132,fn_71010f0ed0,unknown,game?,O
 0x71010f0f54,28,fn_71010f0f54,unknown,game?,O
@@ -4725,7 +4725,7 @@ address,size,name,name_source,subsystem,status
 0x71010f0f7c,8,fn_71010f0f7c,unknown,game?,O
 0x71010f0f84,8,fn_71010f0f84,unknown,game?,O
 0x71010f0f8c,28,fn_71010f0f8c,unknown,game?,O
-0x71010f0fa8,92,fn_71010f0fa8,unknown,game?,U
+0x71010f0fa8,92,fn_71010f0fa8,unknown,game?,O
 0x71010f1004,4,fn_71010f1004,unknown,game?,O
 0x71010f1008,4,fn_71010f1008,unknown,game?,O
 0x71010f100c,12,fn_71010f100c,unknown,game?,O

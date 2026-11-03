@@ -4043,7 +4043,7 @@ address,size,name,name_source,subsystem,status
 0x7100aa4040,200,fn_7100aa4040,unknown,unknown,U
 0x7100aa4108,200,fn_7100aa4108,unknown,unknown,U
 0x7100aa41d0,216,fn_7100aa41d0,unknown,unknown,U
-0x7100aa42a8,124,fn_7100aa42a8,unknown,unknown,U
+0x7100aa42a8,124,fn_7100aa42a8,unknown,unknown,O
 0x7100aa4324,8,fn_7100aa4324,unknown,unknown,O
 0x7100aa432c,8,fn_7100aa432c,unknown,unknown,O
 0x7100aa4334,28,fn_7100aa4334,unknown,unknown,O

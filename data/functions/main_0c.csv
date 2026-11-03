@@ -233,7 +233,7 @@ address,size,name,name_source,subsystem,status
 0x7100c075d8,28,fn_7100c075d8,unknown,unknown,O
 0x7100c075f4,28,fn_7100c075f4,unknown,unknown,O
 0x7100c07610,88,fn_7100c07610,unknown,unknown,O
-0x7100c07668,120,fn_7100c07668,unknown,unknown,U
+0x7100c07668,120,fn_7100c07668,unknown,unknown,O
 0x7100c076e0,12,fn_7100c076e0,unknown,unknown,O
 0x7100c076ec,8,fn_7100c076ec,unknown,unknown,O
 0x7100c076f4,28,fn_7100c076f4,unknown,unknown,O
@@ -244,7 +244,7 @@ address,size,name,name_source,subsystem,status
 0x7100c078c0,100,fn_7100c078c0,unknown,unknown,O
 0x7100c07924,168,fn_7100c07924,unknown,unknown,O
 0x7100c079cc,80,fn_7100c079cc,unknown,unknown,O
-0x7100c07a1c,84,fn_7100c07a1c,unknown,unknown,U
+0x7100c07a1c,84,fn_7100c07a1c,unknown,unknown,O
 0x7100c07a70,12,fn_7100c07a70,unknown,unknown,O
 0x7100c07a7c,8,fn_7100c07a7c,unknown,unknown,O
 0x7100c07a84,28,fn_7100c07a84,unknown,unknown,O
@@ -2742,9 +2742,9 @@ address,size,name,name_source,subsystem,status
 0x7100c431bc,52,fn_7100c431bc,unknown,game/characters?,O
 0x7100c431f0,12,fn_7100c431f0,unknown,game/characters?,O
 0x7100c431fc,76,fn_7100c431fc,unknown,game/characters?,O
-0x7100c43248,116,fn_7100c43248,unknown,game/characters?,U
+0x7100c43248,116,fn_7100c43248,unknown,game/characters?,O
 0x7100c432bc,76,fn_7100c432bc,unknown,game/characters?,O
-0x7100c43308,116,fn_7100c43308,unknown,game/characters?,U
+0x7100c43308,116,fn_7100c43308,unknown,game/characters?,O
 0x7100c43380,160,fn_7100c43380,unknown,game/characters?,O
 0x7100c43420,232,fn_7100c43420,unknown,game/characters?,O
 0x7100c43508,244,CCharClassOverrideAngularSpeedTrack::refl_GetClass,reflection,game/characters,O

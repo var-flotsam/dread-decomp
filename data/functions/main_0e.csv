@@ -2822,7 +2822,7 @@ address,size,name,name_source,subsystem,status
 0x7100eaa4ac,76,fn_7100eaa4ac,unknown,unknown,O
 0x7100eaa4f8,68,fn_7100eaa4f8,unknown,unknown,O
 0x7100eaa53c,84,fn_7100eaa53c,unknown,unknown,O
-0x7100eaa590,104,fn_7100eaa590,unknown,unknown,U
+0x7100eaa590,104,fn_7100eaa590,unknown,unknown,O
 0x7100eaa5f8,84,fn_7100eaa5f8,unknown,unknown,O
 0x7100eaa64c,116,fn_7100eaa64c,unknown,unknown,O
 0x7100eaa6c0,8,fn_7100eaa6c0,unknown,unknown,O

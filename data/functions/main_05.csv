@@ -875,7 +875,7 @@ address,size,name,name_source,subsystem,status
 0x710054782c,372,fn_710054782c,unknown,unknown,U
 0x71005479a0,1604,fn_71005479a0,unknown,unknown,U
 0x7100547fe4,248,fn_7100547fe4,unknown,unknown,O
-0x71005480dc,68,fn_71005480dc,unknown,unknown,U
+0x71005480dc,68,fn_71005480dc,unknown,unknown,O
 0x7100548120,1228,fn_7100548120,unknown,unknown,U
 0x71005485ec,4568,fn_71005485ec,unknown,unknown,U
 0x71005497c4,564,fn_71005497c4,unknown,unknown,O
@@ -2833,7 +2833,7 @@ address,size,name,name_source,subsystem,status
 0x71005a1abc,388,behaviortree::CGroundShockerFollowPathAction::refl_InitClass,reflection,ai/behaviortree,O
 0x71005a1c40,776,fn_71005a1c40,unknown,unknown,U
 0x71005a1f48,292,fn_71005a1f48,unknown,unknown,U
-0x71005a206c,56,fn_71005a206c,unknown,unknown,U
+0x71005a206c,56,fn_71005a206c,unknown,unknown,O
 0x71005a20a4,8,fn_71005a20a4,unknown,unknown,O
 0x71005a20ac,28,fn_71005a20ac,unknown,unknown,O
 0x71005a20c8,36,fn_71005a20c8,unknown,unknown,O

@@ -2543,7 +2543,7 @@ address,size,name,name_source,subsystem,status
 0x7100b8034c,20,fn_7100b8034c,unknown,unknown,O
 0x7100b80360,20,fn_7100b80360,unknown,unknown,O
 0x7100b80374,76,fn_7100b80374,unknown,unknown,O
-0x7100b803c0,68,fn_7100b803c0,unknown,unknown,U
+0x7100b803c0,68,fn_7100b803c0,unknown,unknown,O
 0x7100b80404,176,fn_7100b80404,unknown,unknown,O
 0x7100b804b4,8,fn_7100b804b4,unknown,unknown,O
 0x7100b804bc,12,fn_7100b804bc,unknown,unknown,O
