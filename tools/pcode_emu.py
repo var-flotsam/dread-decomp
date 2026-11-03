@@ -479,6 +479,8 @@ class Machine:
         self.guide: list | None = None
         self.arg_slots: int | None = None  # the function's stack argument slots (load: the caller's frame)
         self.state = {}  # argument register key -> "entry" | "written" | "junk"
+        self.vnarrow: dict[int, bool] = {}  # v<n> -> its last write was s<n> (4 bytes at its start)
+        self.out_words: list = []  # ((call, argument, offset), word): the out-parameter words written
         self.events: list = []
         self.snapshot_bytes = 0  # written bytes copied into events so far (checkpoint)
         self.calls = 0
@@ -586,6 +588,8 @@ class Machine:
             self.state[(off - X0) // 8] = "written"
         elif Q0 <= off < Q0 + 8 * QSTRIDE:
             self.state[100 + (off - Q0) // QSTRIDE] = "written"
+            if (off - Q0) % QSTRIDE == 0:  # (not the zeroing of the upper part that follows an s<n> write)
+                self.vnarrow[(off - Q0) // QSTRIDE] = size == 4
 
     def x(self, n: int) -> int:
         return self.reg(X0 + 8 * n, 8)
@@ -692,8 +696,11 @@ class Machine:
                 continue
             elif k >= 100 and isinstance(t, tuple):  # an import of unknown signature: integers only
                 continue
-            # A register the callee reads only as w<n> or s<n> has an unspecified upper half.
-            sel.append((k, 32 if f is not None and (k < 9 or 100 <= k < 108) and k not in f.wide else 64))
+            # A register the callee reads only as w<n> or s<n> has an unspecified upper half; so has
+            # one this run last wrote as s<n> (the caller's f32: a lift may pass anything above it
+            # even where the callee copies the register whole into an indirect call, 7100656f3c).
+            narrow = 100 <= k < 108 and st == "written" and self.vnarrow.get(k - 100, False)
+            sel.append((k, 32 if narrow or (f is not None and (k < 9 or 100 <= k < 108) and k not in f.wide) else 64))
         # Arguments beyond the eight registers: the callee's stack slots at [sp + 8i] (key 200 + i),
         # 32 bits each (a 32-bit argument leaves the upper half of its slot unspecified).
         sp = self.reg(SP, 8)
@@ -743,8 +750,13 @@ class Machine:
                 for j in range(0, max(extent[k], 8), 8):
                     if p + j >= ENTRY_SP or any(p + j - 7 <= r <= p + j + 7 for r in self.frame_record):
                         break
-                    # (every other seed 64 random bits a slot, as before: a run that ends on those)
-                    self.store(p + j, 8, self.word(mix(self.seed, n, k, j)) if self.seed % 2 else mix(n, k, j))
+                    # (every other seed 64 random bits a slot, as before: a run that ends on those;
+                    # ("o", (n, k, j)) overrides one, for the oracle's repairs, out_words lists them)
+                    v = self.overrides.get(("o", (n, k, j)),
+                                           self.word(mix(self.seed, n, k, j)) if self.seed % 2 else mix(n, k, j))
+                    self.store(p + j, 8, v)
+                    if len(self.out_words) < 64:
+                        self.out_words.append(((n, k, j), v))
         for i in CALLER_SAVED_X:
             self.regs[X0 + 8 * i:X0 + 8 * i + 8] = (mix(n, 7, i) >> 1).to_bytes(8, "little")
             if i <= 8:
