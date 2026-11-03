@@ -465,7 +465,11 @@ class Machine:
         self.uniq: dict[int, int] = {}
         self.pages: dict[int, bytearray] = {}
         self.dirty: dict[int, int] = {}
-        self.before: dict[int, int] = {}  # a dirty byte's value before the function first wrote it (store)
+        self.before: dict[int, int | None] = {}  # a dirty byte's value before the function first wrote it (store)
+        # The bytes the function loaded since the last call event (None: no call event yet). A value
+        # loaded before a call and stored back after it is a write: the callee may have changed the
+        # byte in between (store).
+        self._loaded: set[int] | None = None
         self._ckpt: dict[int, int] = {}  # dirty as the last checkpoint saw it, and the bytes touched since
         self._touched: set[int] = set()
         self.cut: str | None = None  # why the run ended as a time-out: steps, events or snapshot (compare)
@@ -552,6 +556,8 @@ class Machine:
             # Above the stack arguments: the caller's frame, which the two runs place differently
             # (an index from a callee's made-up result, a loop run past its array)
             raise Inconclusive("read in the caller's frame")
+        if self._loaded is not None:
+            self._loaded.update(range(a, a + size))
         if self.track:
             w = a & ~7
             if w not in self._read_seen and not STACK_LO <= w < ENTRY_SP and not self.own[0] <= w < self.own[1]:
@@ -597,10 +603,18 @@ class Machine:
             # unchanged: no write at all as far as anything after can tell. C lets a compiler drop a
             # store of the value just loaded from the same place (`ldp s0, s1, [x11, #4]` ...
             # `str s0, [x8, #4]` at the same address, fn_71002aa518), so a write counts only where
-            # it changed the byte.
+            # it changed the byte. Only within one stretch between call events, though: the reference
+            # (the byte when this stretch first wrote it, or a value it loaded) must not predate a call
+            # (checkpoint clears them), or `v = *p; f(p); *p = v` would let a lift drop the restoring
+            # store (or add one) under a callee that is not recorded. None: no reference.
             for i in range(size):
                 x = a + i
-                if b[i] == self.before.setdefault(x, prior[i]):
+                if x in self.before:
+                    ref = self.before[x]
+                else:
+                    ref = prior[i] if self._loaded is None or x in self._loaded else None
+                    self.before[x] = ref
+                if ref is not None and b[i] == ref:
                     self.dirty.pop(x, None)
                 else:
                     self.dirty[x] = b[i]
@@ -986,7 +1000,7 @@ class Machine:
         """Drop what only running needs (memory pages, the write sets): a finished run that is
         kept for comparison needs its events, registers, coverage and logs."""
         self.pages, self.dirty, self.stack_written, self.uniq, self._read_seen = {}, {}, set(), {}, set()
-        self.before = {}
+        self.before, self._loaded = {}, None
         self._ckpt, self._touched = {}, set()
 
     def checkpoint(self, event) -> None:
@@ -995,6 +1009,10 @@ class Machine:
             # the next event compares them)
             self.events.append((event, ()))
             return
+        if event[0] == "call":
+            # (a callee may change any byte: what was loaded or held before it is no reference for a
+            # later write's being no change, store)
+            self.before, self._loaded = {}, set()
         # The bytes the function's writes changed since the last checkpoint (None: no longer counted, an
         # undefined byte): the memory at an event is what all events up to it hold (written()), and
         # two runs agree at every event when they agree on each event's changes.

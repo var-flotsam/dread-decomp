@@ -16,6 +16,7 @@ def machine() -> pcode_emu.Machine:
     m = pcode_emu.Machine.__new__(pcode_emu.Machine)
     m.regs, m.undef_vn, m.state, m.lift, m.vnarrow = bytearray(0x10000), set(), {}, None, {}
     m.target_reg = None
+    m._loaded = None  # (no call event yet: load)
     return m
 
 

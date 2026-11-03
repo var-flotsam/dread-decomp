@@ -1,0 +1,100 @@
+"""pcode_emu's Machine.store: a heap write that puts back what a byte held is no change only when no
+call event came between the reference (the value loaded, or the byte before the function's first
+write) and the store. No game data: hand-built Machines with one heap page."""
+
+import unittest
+
+from tools import pcode_emu
+
+P = 0x7200000000  # a heap address (a seeded page, here preset)
+
+
+def machine() -> pcode_emu.Machine:
+    m = pcode_emu.Machine.__new__(pcode_emu.Machine)
+    m.pages = {P // pcode_emu.PAGE: bytearray(pcode_emu.PAGE)}
+    m.pages[P // pcode_emu.PAGE][P % pcode_emu.PAGE:P % pcode_emu.PAGE + 4] = (0x11223344).to_bytes(4, "little")
+    m.dirty, m.before, m._loaded, m._ckpt, m._touched = {}, {}, None, {}, set()
+    m.stack_written, m.frame_record, m.saves, m.entry_saved = set(), set(), set(), set()
+    m.arg_slots, m.own, m.track, m.lift = None, (0, 0), False, None
+    m.events, m.snapshot_bytes, m.calls_room, m.scale, m.cut, m.steps = [], 0, 0, 1, None, 0
+    m.max_events = lambda: 99
+    return m
+
+
+def call(m, target=0x7100001000):
+    m.checkpoint(("call", target, (), ()))
+
+
+def end(m):
+    m.checkpoint(("end", "return"))
+    return pcode_emu.written(m.events, len(m.events) - 1)
+
+
+class Restore(unittest.TestCase):
+    def test_load_store_without_a_call_is_no_change(self):
+        # (fn_71002aa518: the value just loaded stored back; a lift may drop the store)
+        orig = machine()
+        orig.store(P, 4, orig.load(P, 4))
+        lift = machine()
+        lift.load(P, 4)
+        self.assertEqual(end(orig), set())
+        self.assertEqual(end(lift), set())
+
+    def test_restore_after_a_call_dropped_by_the_lift_differs(self):
+        # v = *p; f(); *p = v under an unrecorded callee: the store is the function's, kept
+        orig = machine()
+        v = orig.load(P, 4)
+        call(orig)
+        orig.store(P, 4, v)
+        lift = machine()
+        lift.load(P, 4)
+        call(lift)
+        self.assertEqual(end(orig), set(range(P, P + 4)))
+        self.assertEqual(end(lift), set())
+        self.assertNotEqual(orig.events[-1][1], lift.events[-1][1])
+
+    def test_lift_only_restore_after_a_call_differs(self):
+        orig = machine()
+        orig.load(P, 4)
+        call(orig)
+        lift = machine()
+        v = lift.load(P, 4)
+        call(lift)
+        lift.store(P, 4, v)
+        self.assertNotEqual(end(orig), end(lift))
+
+    def test_first_write_before_a_call_is_no_reference_after_it(self):
+        # *p = 1; f(); *p = old: the restore follows a call, so it is a write too
+        m = machine()
+        old = m.load(P, 4)
+        m.store(P, 4, 1)
+        call(m)
+        m.store(P, 4, old)
+        self.assertEqual(end(m), set(range(P, P + 4)))
+
+    def test_load_after_the_call_is_a_reference(self):
+        # f(); v = *p; *p = v: no call between the load and the store, no change
+        m = machine()
+        call(m)
+        m.store(P, 4, m.load(P, 4))
+        self.assertEqual(end(m), set())
+
+    def test_a_written_store_stays_no_reference(self):
+        # v = *p; f(); *p = 1; *p = v: the first write after the call had no reference, nor has the second
+        m = machine()
+        v = m.load(P, 4)
+        call(m)
+        m.store(P, 4, 1)
+        m.store(P, 4, v)
+        self.assertEqual(end(m), set(range(P, P + 4)))
+
+    def test_a_math_call_keeps_the_reference(self):
+        m = machine()
+        v = m.load(P, 4)
+        m.checkpoint(("call", ("import", "sqrtf"), (), ()))
+        m.store(P, 4, v)
+        self.assertEqual(end(m), set())
+
+
+if __name__ == "__main__":
+    unittest.main()
