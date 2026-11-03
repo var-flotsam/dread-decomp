@@ -205,7 +205,8 @@ def push_local(x) -> bool:
     """`str|stp <regs>, [sp, #-imm]!` of registers is_frame does not save: a store of a local
     that also makes the frame (Lifter.setup_frame)."""
     mem = [op for op in x.operands if op.type == arm64.ARM64_OP_MEM]
-    if x.mnemonic not in ("str", "stp", "strb", "strh") or not mem or regname(mem[0].mem.base) != "sp"             or not x.writeback or mem[0].mem.disp >= 0 or is_frame(x):
+    if x.mnemonic not in ("str", "stp", "strb", "strh") or not mem or regname(mem[0].mem.base) != "sp" \
+            or not x.writeback or mem[0].mem.disp >= 0 or is_frame(x):
         return False
     return not any(op.type == arm64.ARM64_OP_IMM for op in x.operands)  # (pre-indexed: no post imm)
 
@@ -471,6 +472,7 @@ class Lifter:
     shape = None
     # address -> abi_facts.AbiFacts.result_main (which of x0 and s0 callers read): semantic mode only.
     main = None
+    narrow_floats = frozenset()  # the current direct callee's float arguments read only as s<n> (callee_need)
 
     def __init__(self, orig: asmdiff.Original, addr: int, extra: int, returns: bool,
                  stack: tuple[str, int] | None = None):
@@ -908,6 +910,8 @@ class Lifter:
         # Up to the first float register with no value (a higher one was a temporary).
         fl = next((i for i in range(fl) if not self.has_value(100 + i)), fl)
         sem = "semantic" in self.opts
+        if sem and self.s.fcall and self.x0_result():
+            self.s.fcall = None  # (its result is x0's: v0 holds nothing for the callee)
         if sem and self.s.fcall and len(need) > 1 and need[1] > 0 and 100 not in self.s.vals:
             # s0 passed on right after a call: the call returns a float, so x0 holds nothing (its
             # retype first, before the integers below would read the call's x0)
@@ -949,7 +953,12 @@ class Lifter:
                 else:
                     # A register only passed on (an incoming argument): as f64, which carries all
                     # of its bits whatever width the callee reads, on AArch64 and x86-64 alike.
-                    floats.append(self.read(f"{getattr(self, 'fwidth', {}).get(100 + i, 'd')}{i}"))
+                    # A callee that reads it only as s<n> gets S<n>: FlatLifter keeps S<n> and D<n>
+                    # apart, and a value left in s0 by an earlier loop iteration is S0's
+                    # (fn_71007c47c0, whose d0 elsewhere made fwidth d)
+                    letter = "s" if sem and 100 + i in self.narrow_floats \
+                        else getattr(self, "fwidth", {}).get(100 + i, "d")
+                    floats.append(self.read(f"{letter}{i}"))
             except Unsupported as e:
                 if not sem:
                     break
@@ -971,7 +980,19 @@ class Lifter:
             if not 0 <= at <= self.frame["size"] - 8:
                 raise Unsupported("stack arguments outside the frame")
             stack.append((f"*(u64*)(stk + {at:#x})", "u64"))
+        if sem:
+            # (a 32-bit value goes as 64 bits, zero-extended as a w<n> write leaves x<n>: as a u32
+            # parameter its upper half is unspecified, and a callee that reads x<n> whole sees it,
+            # fn_7101089170's `mov w2, w0` before the tail call)
+            ints = [(f"(u64)({e})", "u64") if t == "u32" else (e, t) for e, t in ints]
         return ints + stack + floats
+
+    def x0_result(self) -> bool:
+        """Semantic mode: the pending call's callee returns in x0 by its callers' evidence
+        (abi_facts.result_main {0}): its result passed straight on to a callee taking both x0 and
+        s0 is x0's, not a float (fn_710109ceb0)."""
+        fn = self.s.fcall[3] if self.s.fcall and len(self.s.fcall) > 3 else None
+        return bool(fn) and self.main is not None and self.main(int(fn[3:], 16)) == {0}
 
     def type_pending_float(self, j: int) -> None:
         """Semantic mode: the pending call's result as a float when s0 or d0 is read from
@@ -1077,6 +1098,7 @@ class Lifter:
         sem = "semantic" in self.opts
         if not sem and self.plain:
             return 0, 0
+        self.narrow_floats = frozenset()
         if not fn:
             own = self.facts(self.addr)
             ints, floats = own.fwd_counts if own is not None else (1, 0)
@@ -1098,6 +1120,8 @@ class Lifter:
         f = self.facts(int(fn[3:], 16))
         if f is None:
             return 0, 0
+        # (the float arguments it reads only as s<n>: args passes one only passed on as its S<n>)
+        self.narrow_floats = frozenset(k for k in f.args if 100 <= k < 108 and k not in f.wide)
         if sem and f.sret and not getattr(self, "sret_ok", False):
             raise Unsupported("call with an indirect result (x8)")
         if sem and f.stack:
@@ -1650,7 +1674,10 @@ class Lifter:
                 s = f"{p};\n{ind}return;" if rtype == "void" else \
                     f"return {p};" if rtype == "char*" else f"return ({rtype})(u64)({p});"
             elif rtype == "void":
-                s = "return;"
+                # (a value's expression still runs: a tail call to a callee with a result shape is
+                # one, fn_7100ecf3d4, whose void lift dropped the call)
+                s = f"(void)({p[0]});\n{ind}return;" if "semantic" in self.opts and k == "value" \
+                    and p is not None and "(" in p[0] else "return;"
             elif rtype == "char&":
                 if p[1] != "char*":
                     return self.fail("variant")

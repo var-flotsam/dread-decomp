@@ -163,6 +163,28 @@ overlapping (about 190 an hour); about 2.6 M subagent tokens in all, about 9.5 k
   member typedef alone does nothing; a callback stored in a link is a GOT RELOC to a .text address, declare it `fn_<addr>`;
   "first that holds" loops as `do { r = f(*it); ++it; } while (it != end && !r)`; hash lookups as a `BucketFor` returning
   the bucket or null.
+**Lifter: the whole-binary refusals, round 5 (2026-11-03, branch `claude/project-thread-zgkpk3-r5`).**
+First, r4's whole-binary run (build/port/lifted_all7, on 749f18e5): 16,047 of 16,141 accepted, against
+lifted_all6's 16,033, with 21 gained and 7 lost. Fixed on r4 (b917492d): the label rule for a call's float
+result looked for an s0 read in address order past branches and calls (7100013734 lost its x0 results), so
+only a read right after the label counts now; and moving every crash repair to one high base won some
+functions and lost others (the arena words each repaired object reads decide), so seed 7, whose argument
+objects the repairs met, starts high, and the others try POINTER and then the high base. Two remain lost
+against all6: 71007c47c0 (below) and 7100127fc0 (a memory difference at an x8 result on seed 27 since
+r3's x8 change; not solved).
+This round, on all7's 77 not accepted plus 500 accepted (build/port/lifted_r5): 9 newly accepted (5 of
+them r4's fixes), none lost. Byte mode unchanged (4,538 of 5,908, src/ clean).
+- **A call result its callers read in x0** (abi_facts.result_main {0}) stays x0's when it goes straight on
+  to a callee taking x0 and s0: the "s0 passed on" rule retyped it as a float (710109ceb0).
+- **A u32 argument goes as u64** (semantic mode), zero-extended as a w<n> write leaves x<n>: a callee
+  reading x<n> whole saw the u32 parameter's undefined upper half (7101089170).
+- **The oracle compares a float argument in 32 bits** when the original's register has its upper half
+  zero (written as s<n>): a whole-register copy into an indirect call kept Facts.wide at 64 (7100656f3c).
+- Left: 71007c47c0 passes 0 where the original's v0 holds a float left from an earlier loop iteration
+  (abi_facts counts v0-v1 as the callee's arguments); 36 inconclusive, 29 oracle rejects.
+- Note for the tooling: a Python heredoc's backslash-newline inside a string was taken as a line
+  continuation and joined two source lines (round 2's push_local condition, restored here).
+
 **Lifter: the whole-binary refusals, round 4: oracle rejects (2026-11-02, branch
 `claude/project-thread-zgkpk3-r4`).** First, r3's whole-binary runs. lifted_all5 (06af214b) had 37 new
 accepts against lifted_all4 and lost 16, and lifted_all6 (cb779761) had 35 new and lost 10. Bisecting
