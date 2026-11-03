@@ -88,6 +88,34 @@ class Restore(unittest.TestCase):
         m.store(P, 4, v)
         self.assertEqual(end(m), set(range(P, P + 4)))
 
+    def test_own_write_reloaded_after_a_call_stays_written(self):
+        # *p = 1; f(); v = *p; *p = v: the byte is still the function's write, not back at its old value
+        # (710096b334)
+        m = machine()
+        m.store(P, 4, 1)
+        call(m)
+        m.store(P, 4, m.load(P, 4))
+        self.assertEqual(end(m), set(range(P, P + 4)))
+        lift = machine()
+        lift.store(P, 4, 1)
+        call(lift)
+        lift.load(P, 4)
+        self.assertEqual(end(lift), set(range(P, P + 4)))
+
+    def test_a_constant_sharing_a_loaded_byte_is_a_write(self):
+        # f(); (void)*p; *p = 0x7fc00044: one byte equals what was loaded, the store is a write in all
+        # four, as in a run that never loaded *p (710073ee48)
+        orig = machine()
+        call(orig)
+        orig.load(P, 4)
+        orig.store(P, 4, 0x7FC00044)
+        lift = machine()
+        call(lift)
+        lift.store(P, 4, 0x7FC00044)
+        self.assertEqual(end(orig), set(range(P, P + 4)))
+        self.assertEqual(end(lift), set(range(P, P + 4)))
+        self.assertEqual(orig.events[-1][1], lift.events[-1][1])
+
     def test_a_math_call_keeps_the_reference(self):
         m = machine()
         v = m.load(P, 4)

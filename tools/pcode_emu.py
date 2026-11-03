@@ -468,7 +468,9 @@ class Machine:
         self.uniq: dict[int, int] = {}
         self.pages: dict[int, bytearray] = {}
         self.dirty: dict[int, int] = {}
-        self.before: dict[int, int | None] = {}  # a dirty byte's value before the function first wrote it (store)
+        # a written byte's reference (its value before the stretch's first write, None: none) and whether
+        # it was the function's write then (its dirty value, None: unchanged), store
+        self.before: dict[int, tuple[int | None, int | None]] = {}
         # The bytes the function loaded since the last call event (None: no call event yet). A value
         # loaded before a call and stored back after it is a write: the callee may have changed the
         # byte in between (store).
@@ -611,16 +613,29 @@ class Machine:
             # it changed the byte. Only within one stretch between call events, though: the reference
             # (the byte when this stretch first wrote it, or a value it loaded) must not predate a call
             # (checkpoint clears them), or `v = *p; f(p); *p = v` would let a lift drop the restoring
-            # store (or add one) under a callee that is not recorded. None: no reference.
+            # store (or add one) under a callee that is not recorded. None: no reference. A write
+            # that puts back the reference leaves the byte as the stretch found it: changed or not as
+            # it was then (a byte the function wrote before a call, loaded after it and stored back
+            # is still the function's write, not a byte back at its value before the function).
+            # After a call the reference is a value loaded since, which one run may have loaded and the
+            # other not: a put-back there is the whole store's (a value loaded and stored back agrees in
+            # every byte; a constant that shares a byte with what was loaded, `p->f = NAN` after reading
+            # p->f, 710073ee48, is a write in each byte, as in a run that never loaded it).
+            refs = []
             for i in range(size):
                 x = a + i
-                if x in self.before:
-                    ref = self.before[x]
-                else:
+                if x not in self.before:
                     ref = prior[i] if self._loaded is None or x in self._loaded else None
-                    self.before[x] = ref
-                if ref is not None and b[i] == ref:
-                    self.dirty.pop(x, None)
+                    self.before[x] = ref, self.dirty.get(x)
+                refs.append(self.before[x])
+            whole = self._loaded is None or all(r is not None and b[i] == r for i, (r, _) in enumerate(refs))
+            for i, (ref, was) in enumerate(refs):
+                x = a + i
+                if whole and ref is not None and b[i] == ref:
+                    if was is None:
+                        self.dirty.pop(x, None)
+                    else:
+                        self.dirty[x] = was
                 else:
                     self.dirty[x] = b[i]
             self._touched.update(range(a, a + size))
