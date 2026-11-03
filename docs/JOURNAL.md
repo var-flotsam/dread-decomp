@@ -132,6 +132,24 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Tool tests for 32 untested tools (2026-11-03, branch `claude/project-thread-mkfe08`).** Written in a cloud
+container with no game data: tools/tests/ grows from 15 to 47 files and from 75 to 566 tests (1.7 s, Python 3.12
+and 3.13), every fixture synthetic (invented addresses, hand-encoded AArch64 words, lz4-built NSOs, temp CSVs,
+mocked compilers and child tools). Left out: `port_addresses` (all of it is `main()` over compiled objects and the
+binary), `gen_lift`, `pcode_emu` and `port_lift` (owned by the lifter session). The tests found three real bugs,
+fixed on the same branch (569 tests then):
+- **`hub_migrate.read()` never saw CRLF** (`tools/hub_migrate.py:66`): `read_text` has already folded `\r\n`,
+  so `write()` turned CRLF files into LF. Now read with `open(..., newline="")`.
+- **`sigmatch.signature` took `rd` from B/BL** (`tools/sigmatch.py:54`, `:72`): the low bits of a branch offset
+  can end a callee-saved register's adrp page, so the object (offset 0) and the binary mask differently and exact
+  matches were missed. B/BL now end only x30 (BL); a rerun of `sigmatch.py` may find more library matches.
+- **`nearcopy.refs` scaled `ldr q` by 1** (`tools/nearcopy.py:66`): the scale comes only from the size bits,
+  so a 128-bit load got the wrong data address; it is 16 now, and a SIMD load no longer drops an x<n> page.
+Quirks pinned as they are: `hostenv.cxxfilt` sorts toolchain folders by name (`llvm-9` before `llvm-10`);
+`gen_reflection.file_name` folds `A::B_C` and `A_B::C` to one base name (the `_2` suffix separates them);
+`gen_tables.rush_float` spells -100.0 as `-1e+02f`. `gen_functions_csv.main()` does its sharding and status
+merge inline, so only its rules are tested; moving that into a function would make it testable.
+
 **Rounds 31-37: the same fan-out as an unattended loop (2026-11-03, branch `claude/project-thread-czsmeu`).**
 674 functions to `O` (118, 93, 93, 107, 82, 88, 93), one batch about every 30 minutes. Boot slice: `O` 2,298 to 2,342
 (32.21%), usable 42.19% to 42.58%; whole binary `O` 86,827 to 87,501 (56.44%), usable 58.52% to 58.94%. From round 32 a
