@@ -108,5 +108,57 @@ class CallerFrame(unittest.TestCase):
         self.assertTrue(same_arg(7, 7))
 
 
+class X8Window(unittest.TestCase):
+    """call: an x8 result's window past the guide's extent is undefined only up to this frame's
+    next object (taken address, save slot, frame record, another argument's out-parameter)."""
+
+    OBJ = ENTRY_SP - 0x80  # x8's result; the original's frame put another local at +8 (the guide's extent)
+
+    def machine(self, taken=(), saves=(), frame_record=(), out_at=None):
+        m = machine()
+        page = pcode_emu.PAGE
+        m.pages = {n: bytearray(page) for n in range(self.OBJ // page, ENTRY_SP // page + 1)}  # (the frame's)
+        m.dirty, m.track, m.arg_slots, m.entry_saved = {}, False, None, set()
+        m.stack_written, m.taken = set(range(self.OBJ, self.OBJ + 0x40)), {self.OBJ, *taken}
+        m.saves, m.frame_record, m.out_at = set(saves), set(frame_record), dict(out_at or {})
+        m.seed, m.overrides, m.dictionary, m.calls, m.call_log, m.out_words = 0, {}, None, 0, [], []
+        m.guide = [(frozenset({8}), {8: 8}, {})]  # (the lift's run: the original passed x8, extent 8)
+        m.canonical = lambda target: target
+        m.recorded = lambda target, t, modeled: None
+        m.facts = lambda target: None
+        m.checkpoint = lambda event: None
+        m.set_reg(pcode_emu.X0 + 64, 8, self.OBJ)
+        m.call(0x7100001000)
+        return m
+
+    def kept(self, m, lo, hi):
+        return all(self.OBJ + i in m.stack_written for i in range(lo, hi))
+
+    def cleared(self, m, lo, hi):
+        return not any(self.OBJ + i in m.stack_written for i in range(lo, hi))
+
+    def test_untaken_window_is_cleared(self):
+        """Nothing else here: past the extent to the window's end is undefined (7100128810)."""
+        m = self.machine()
+        self.assertTrue(self.cleared(m, 8, 0x40))
+
+    def test_taken_local_is_kept(self):
+        """A local whose address this run took at +0x10 keeps what it holds: a lift's different
+        store to it, copied out later, is compared."""
+        m = self.machine(taken={self.OBJ + 0x10})
+        self.assertTrue(self.cleared(m, 8, 0x10))
+        self.assertTrue(self.kept(m, 0x10, 0x40))
+
+    def test_save_slot_and_frame_record_are_kept(self):
+        self.assertTrue(self.kept(self.machine(saves={self.OBJ + 0x18}), 0x18, 0x40))
+        self.assertTrue(self.kept(self.machine(frame_record={self.OBJ + 0x20}), 0x20, 0x40))
+
+    def test_another_arguments_out_parameter_is_kept(self):
+        """Bytes an earlier call filled through another argument belong to that object."""
+        m = self.machine(out_at={self.OBJ + 0x18 + i: self.OBJ + 0x18 for i in range(8)})
+        self.assertTrue(self.cleared(m, 8, 0x18))
+        self.assertTrue(self.kept(m, 0x18, 0x20))
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -83,6 +83,7 @@ class OutParameterOverride(unittest.TestCase):
         m.regs, m.undef_vn, m.vnarrow, m.state = bytearray(0x10000), set(), {}, {0: "written"}
         m.seed, m.overrides, m.dictionary, m.lift, m.guide = seed, overrides, None, None, None
         m.target_reg, m.calls, m.call_log, m.out_words, m.frame_record = None, 0, [], [], set()
+        m.out_at = {}
         m.imports = lambda t: None
         m.facts = lambda t: None
         m.recorded = lambda target, t, modeled: None
