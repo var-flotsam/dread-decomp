@@ -479,6 +479,7 @@ class Machine:
         self.guide: list | None = None
         self.arg_slots: int | None = None  # the function's stack argument slots (load: the caller's frame)
         self.state = {}  # argument register key -> "entry" | "written" | "junk"
+        self.vnarrow: dict[int, bool] = {}  # v<n> -> its last write was s<n> (4 bytes at its start)
         self.events: list = []
         self.snapshot_bytes = 0  # written bytes copied into events so far (checkpoint)
         self.calls = 0
@@ -586,6 +587,8 @@ class Machine:
             self.state[(off - X0) // 8] = "written"
         elif Q0 <= off < Q0 + 8 * QSTRIDE:
             self.state[100 + (off - Q0) // QSTRIDE] = "written"
+            if (off - Q0) % QSTRIDE == 0:  # (not the zeroing of the upper part that follows an s<n> write)
+                self.vnarrow[(off - Q0) // QSTRIDE] = size == 4
 
     def x(self, n: int) -> int:
         return self.reg(X0 + 8 * n, 8)
@@ -692,8 +695,11 @@ class Machine:
                 continue
             elif k >= 100 and isinstance(t, tuple):  # an import of unknown signature: integers only
                 continue
-            # A register the callee reads only as w<n> or s<n> has an unspecified upper half.
-            sel.append((k, 32 if f is not None and (k < 9 or 100 <= k < 108) and k not in f.wide else 64))
+            # A register the callee reads only as w<n> or s<n> has an unspecified upper half; so has
+            # one this run last wrote as s<n> (the caller's f32: a lift may pass anything above it
+            # even where the callee copies the register whole into an indirect call, 7100656f3c).
+            narrow = 100 <= k < 108 and st == "written" and self.vnarrow.get(k - 100, False)
+            sel.append((k, 32 if narrow or (f is not None and (k < 9 or 100 <= k < 108) and k not in f.wide) else 64))
         # Arguments beyond the eight registers: the callee's stack slots at [sp + 8i] (key 200 + i),
         # 32 bits each (a 32-bit argument leaves the upper half of its slot unspecified).
         sp = self.reg(SP, 8)
@@ -1376,10 +1382,7 @@ def compare(a: Machine, b: Machine, ret: str | None) -> str:
                 da, db = dict(va[3]), dict(vb[3])
                 for k, bits in va[2]:  # the original's arguments
                     u, v = da.get(k), db.get(k)
-                    # (a float register the original wrote as s<n>, its upper half zero: the lift's
-                    # f32 argument may carry anything there, which C leaves unspecified, 7100656f3c)
-                    if (bits == 32 or (100 <= k < 108 and isinstance(u, int) and u >> 32 == 0)) \
-                            and isinstance(u, int) and isinstance(v, int):
+                    if bits == 32 and isinstance(u, int) and isinstance(v, int):
                         u, v = u & 0xFFFFFFFF, v & 0xFFFFFFFF
                     if not same_arg(u, v):
                         return f"call {i} to {fmt(va[1])}: argument {regname(k)} ({arg_text(u)} vs {arg_text(v)})"
