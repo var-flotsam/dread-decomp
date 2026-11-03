@@ -1302,7 +1302,7 @@ address,size,name,name_source,subsystem,status
 0x710062e33c,128,fn_710062e33c,unknown,unknown,O
 0x710062e3bc,776,fn_710062e3bc,unknown,unknown,U
 0x710062e6c4,328,fn_710062e6c4,unknown,unknown,U
-0x710062e80c,76,fn_710062e80c,unknown,unknown,U
+0x710062e80c,76,fn_710062e80c,unknown,unknown,O
 0x710062e858,492,fn_710062e858,unknown,unknown,U
 0x710062ea44,52,fn_710062ea44,unknown,unknown,U
 0x710062ea78,168,fn_710062ea78,unknown,unknown,U
@@ -1588,7 +1588,7 @@ address,size,name,name_source,subsystem,status
 0x710063b7ac,1136,fn_710063b7ac,unknown,unknown,U
 0x710063bc1c,880,fn_710063bc1c,unknown,unknown,U
 0x710063bf8c,304,fn_710063bf8c,unknown,unknown,U
-0x710063c0bc,80,fn_710063c0bc,unknown,unknown,U
+0x710063c0bc,80,fn_710063c0bc,unknown,unknown,O
 0x710063c10c,232,fn_710063c10c,unknown,unknown,U
 0x710063c1f4,216,fn_710063c1f4,unknown,unknown,U
 0x710063c2cc,932,fn_710063c2cc,unknown,unknown,U
@@ -5193,7 +5193,7 @@ address,size,name,name_source,subsystem,status
 0x71006d5444,652,fn_71006d5444,unknown,unknown,U
 0x71006d56d0,296,fn_71006d56d0,unknown,unknown,U
 0x71006d57f8,184,fn_71006d57f8,unknown,unknown,U
-0x71006d58b0,68,fn_71006d58b0,unknown,unknown,U
+0x71006d58b0,68,fn_71006d58b0,unknown,unknown,O
 0x71006d58f4,68,fn_71006d58f4,unknown,unknown,O
 0x71006d5938,88,fn_71006d5938,unknown,unknown,U
 0x71006d5990,536,fn_71006d5990,unknown,unknown,U
@@ -5688,7 +5688,7 @@ address,size,name,name_source,subsystem,status
 0x71006ebb80,280,fn_71006ebb80,unknown,unknown,U
 0x71006ebc98,12,fn_71006ebc98,unknown,unknown,O
 0x71006ebca4,432,fn_71006ebca4,unknown,unknown,U
-0x71006ebe54,328,fn_71006ebe54,unknown,unknown,U
+0x71006ebe54,328,fn_71006ebe54,unknown,unknown,O
 0x71006ebf9c,4,fn_71006ebf9c,unknown,unknown,O
 0x71006ebfa0,244,CCharClassYamplotXBiteAttack::refl_GetClass,reflection,game/characters,O
 0x71006ec094,4,fn_71006ec094,unknown,game/characters?,O

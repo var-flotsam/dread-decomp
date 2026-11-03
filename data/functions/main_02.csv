@@ -390,7 +390,7 @@ address,size,name,name_source,subsystem,status
 0x710020c4cc,16,fn_710020c4cc,unknown,unknown,O
 0x710020c4dc,212,fn_710020c4dc,unknown,unknown,O
 0x710020c5b0,36,fn_710020c5b0,unknown,unknown,O
-0x710020c5d4,96,fn_710020c5d4,unknown,unknown,U
+0x710020c5d4,96,fn_710020c5d4,unknown,unknown,O
 0x710020c634,8,fn_710020c634,unknown,unknown,O
 0x710020c63c,8,fn_710020c63c,unknown,unknown,O
 0x710020c644,252,fn_710020c644,unknown,unknown,O

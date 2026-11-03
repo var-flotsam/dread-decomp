@@ -1680,7 +1680,7 @@ address,size,name,name_source,subsystem,status
 0x7100950044,4,fn_7100950044,unknown,unknown,O
 0x7100950048,144,fn_7100950048,unknown,unknown,O
 0x71009500d8,388,fn_71009500d8,unknown,unknown,U
-0x710095025c,328,fn_710095025c,unknown,unknown,U
+0x710095025c,328,fn_710095025c,unknown,unknown,O
 0x71009503b0,768,fn_71009503b0,unknown,unknown,O
 0x71009506b0,4,fn_71009506b0,unknown,unknown,O
 0x71009506b4,244,CCharClassMovablePlatformComponent::refl_GetClass,reflection,game/characters,O
@@ -4757,7 +4757,7 @@ address,size,name,name_source,subsystem,status
 0x71009fd578,100,fn_71009fd578,unknown,unknown,O
 0x71009fd5dc,4,fn_71009fd5dc,unknown,unknown,O
 0x71009fd5e0,16,fn_71009fd5e0,unknown,unknown,O
-0x71009fd5f0,192,fn_71009fd5f0,unknown,unknown,U
+0x71009fd5f0,192,fn_71009fd5f0,unknown,unknown,O
 0x71009fd6b0,12,fn_71009fd6b0,unknown,unknown,O
 0x71009fd6bc,36,fn_71009fd6bc,unknown,unknown,O
 0x71009fd6e0,4,fn_71009fd6e0,unknown,unknown,O

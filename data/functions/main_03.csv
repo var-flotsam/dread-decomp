@@ -910,8 +910,8 @@ address,size,name,name_source,subsystem,status
 0x7100344190,1844,fn_7100344190,unknown,unknown,U
 0x71003448c4,8,fn_71003448c4,unknown,unknown,O
 0x71003448cc,8,fn_71003448cc,unknown,unknown,O
-0x71003448d4,24,fn_71003448d4,unknown,unknown,U
-0x71003448ec,24,fn_71003448ec,unknown,unknown,U
+0x71003448d4,24,fn_71003448d4,unknown,unknown,O
+0x71003448ec,24,fn_71003448ec,unknown,unknown,O
 0x7100344904,2172,fn_7100344904,unknown,unknown,U
 0x7100345180,72,fn_7100345180,unknown,unknown,O
 0x71003451c8,668,fn_71003451c8,unknown,unknown,U
