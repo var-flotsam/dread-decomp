@@ -400,7 +400,7 @@ address,size,name,name_source,subsystem,status
 0x7100e147cc,64,fn_7100e147cc,unknown,unknown,O
 0x7100e1480c,140,fn_7100e1480c,unknown,unknown,O
 0x7100e14898,8,fn_7100e14898,unknown,unknown,O
-0x7100e148a0,104,fn_7100e148a0,unknown,unknown,U
+0x7100e148a0,104,fn_7100e148a0,unknown,unknown,O
 0x7100e14908,900,fn_7100e14908,unknown,unknown,U
 0x7100e14c8c,232,fn_7100e14c8c,unknown,unknown,U
 0x7100e14d74,332,fn_7100e14d74,unknown,unknown,U

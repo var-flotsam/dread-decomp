@@ -702,7 +702,7 @@ address,size,name,name_source,subsystem,status
 0x7100335b58,864,fn_7100335b58,unknown,unknown,U
 0x7100335eb8,624,fn_7100335eb8,unknown,unknown,U
 0x7100336128,844,fn_7100336128,unknown,unknown,U
-0x7100336474,84,fn_7100336474,unknown,unknown,U
+0x7100336474,84,fn_7100336474,unknown,unknown,O
 0x71003364c8,100,fn_71003364c8,unknown,unknown,O
 0x710033652c,564,fn_710033652c,unknown,unknown,U
 0x7100336760,196,fn_7100336760,unknown,unknown,U
