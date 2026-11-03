@@ -132,6 +132,47 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Lifter and oracle: rounds 7 and 8, the last rejects and two reviews of the oracle (2026-11-03, branches
+`claude/project-thread-zgkpk3-r8fix`, `-tests` and `-r8`).** Whole-binary run lifted_all11 (r8's 20766338, the
+lifter revert below applied after it): 16,056 of 16,141 accepted against lifted_all10's 16,063; with the revert's
+4 regained and 1 lost (relifted, not a new whole run), 16,059, so 24 gained and 28 lost. 27 of the losses are functions the stricter oracle now rejects with round 6's lifter too (24 rejected, 3
+inconclusive): 710002a074 71000ef764 71000f0ad8 7100128810 7100128da0 7100129360 710028ce1c 710030d92c 710042880c
+710043764c 7100691600 71006c1108 710073ee48 71007406a0 710074ab2c 710082a500 7100882bac 71008c5970 71008d6320
+710096b334 7100a43e7c 7100a43f78 7100a928ec 7100b1a0c0 7100df6688 71010cb9c0 710111f07c. Each is a false accept
+of all10 or a rule now too strict, still to be told apart from its rejection reason; they are next round's work.
+The 28th, 7100212a80, became inconclusive from the x8-wrapper facts below (which gain one). The run took 6,428 s
+against all10's 9,809 s: the slow tail is gone. Byte mode unchanged (4,538 of 5,908).
+- **Review fixes (r8fix), five false accepts**: the libm model's results in v0 are compared, with signed zeros,
+  infinities and C99 NaN rules (and inlined frintm/frintp/frinta keep the sign of zero, as floorf does); an x8
+  result's undefined window stops at this frame's next object; stack-argument slot addresses in the caller's
+  frame are compared exactly; a lane insert after an s<n> write clears vnarrow; a repair object moves off its
+  seed's own arguments. Tests: `tools/tests/test_oracle_math.py`, `test_oracle_compare.py`, `test_oracle_repairs.py`.
+- **The last rejects, in five groups**: no result compare when the result register still holds the last callee's
+  value and the function read the other register class, or after a call through x8 (AAPCS64 never returns in
+  both); two NaN operands give a NaN chosen by bits (Clang commutes fadd/fmul); a store of a byte's own value with
+  no call between is no change (Clang drops it); `b .` ends a run as a hang; a call that ends the original's code is
+  noreturn and ends the run; repairs follow loops over made-up pointers (up to 4 elements), then set the count to
+  1; a cut-off run's loop bound is repaired first; a crash repair tries the call whose result is near the fault
+  first. Lifter: FlatLifter keeps S<n>/D<n> in step when a function uses both widths; adrp keeps a pending
+  compare's operand. Facts: x8 set to the caller's frame before a bl marks an indirect-call wrapper's result
+  (CACHE_VERSION 14).
+- **A second review of those rules found six more defects**, all fixed with tests: `res_sret` comes only from a
+  callee's known facts (the unknown-callee x8 guess turned off the x0 compare); a restoring store after a non-pure
+  call is a write; the SLOWER rule covers originals ending in noreturn or trap; vnarrow's upper zeroing must come
+  from the s<n> write's own instruction; a retyped float call result keeps both widths in step; a function whose
+  own facts return through x8 forwards it at indirect calls, or its lift is refused. On all10's 58 not accepted
+  plus 500 accepted they cost nothing (524 of 558 either way).
+- **Reverted: a float parameter used at both widths as f64** (90c55637). It lost 71003121b0 71006dc528 7100ab0ab0
+  71011608b4 for one gain (71009cf8f8); bisected by relifting the losses with round 6's lifter.
+- **The oracle has a wall-clock budget per function** (300 s, `--oracle-budget`), checked between runs: past it
+  the original gets no more seeds, repairs, fuzz or retries and no more attempts start; every run made is still
+  compared. A pass after the budget cut the runs is inconclusive by default (`--budget-pass`, `--budget-keep
+  MANIFEST` for functions a fully checked run accepted). `<out>/timing.tsv` logs each function's oracle time,
+  verdict and the phase that spent the budget, as it goes. Whole binary: one function hit it, 7100866c74 (1,089 s
+  in its seeds, each run long), accepted and also accepted fully checked in all10; next slowest 81 s. The oracle's
+  jobs run longest first. The earlier run that stalled for 2 h on one function (b42b948b) had no timing log; this is the likely one.
+- Left: the 27 above, 710012ce70 (frame layout), 7100127fc0, 710064fb5c; 42 rejected and 23 inconclusive in all.
+
 **Cloud matching, one short round (2026-11-03, branch `claude/project-thread-mkfe08`).** First hand-matching in a
 Linux cloud container: the owner's `main.elf`, `exefs/main` and Ghidra export were copied into the container (never
 git), Clang 9.0.1 from `fetch_toolchains.py`; `check.py` runs in 3 minutes on 4 cores. Four agents, non-boot `U`

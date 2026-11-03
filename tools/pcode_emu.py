@@ -66,6 +66,7 @@ RETRY_SCALE = 8                   # a cut-off run is retried with this many time
 SLOWER = 20                       # a lift this many times slower than an original that ended is wrong (compare)
 MAX_EVENTS = 256                  # calls recorded per run; then it ends as a time-out (checkpoint)
 MAX_SNAPSHOT = 1 << 21            # bytes of written memory copied into its events, in all; the same
+MAX_RESULTS_KEPT = 64             # call results a run keeps (Machine.results)
 STEPS_PER_CALL = 2000             # a run from a snapshot's recorded calls: this many more steps per call
 WINDOW = 64                       # bytes compared and written around a stack pointer argument
 
@@ -427,6 +428,13 @@ def native(w: int) -> bool:
 # --- the machine -----------------------------------------------------------------------------------
 
 class Machine:
+    res_read: set | None = None  # (__init__; a Machine built bare, as the tests do, tracks nothing)
+    res_written: set = frozenset()
+    res_sret = False  # the last call returned through x8
+    # The function under test's own abi_facts (port_lift.machine, the original's run): an indirect
+    # call with x8 still as it came in is passed x8 when the function's callers set it (Facts.fwd).
+    own_facts = None
+
     def __init__(self, db: dict, image: ImageMemory, seed: int, inside, code_word, lift: LiftObject | None,
                  imports: dict[int, str], facts, preset: dict[int, int], dictionary: tuple = (),
                  overrides: dict | None = None, track: bool = False):
@@ -450,6 +458,9 @@ class Machine:
                 self.mem_ovr.setdefault(k // PAGE, []).append((k % PAGE, v))
         self.track, self.read_words, self._read_seen = track, [], set()
         self.read_at: dict[int, int] = {}  # each read word's byte where it was first read (a mutation goes there)
+        # (each read word's coverage when it was first read: a run cut off in a loop read its bound
+        # before its last new instruction, the loop's own reads after it, Oracle.originals)
+        self.read_cov: list[int] = []
         self.ops_db, self.userops, self.op = db["ops"], db["userops"], db["opcodes"]
         self.image, self.seed, self.inside, self.code_word, self.lift = image, seed, inside, code_word, lift
         self.imports, self.facts = imports, facts
@@ -457,11 +468,19 @@ class Machine:
         self.uniq: dict[int, int] = {}
         self.pages: dict[int, bytearray] = {}
         self.dirty: dict[int, int] = {}
+        self.before: dict[int, int | None] = {}  # a dirty byte's value before the function first wrote it (store)
+        # The bytes the function loaded since the last call event (None: no call event yet). A value
+        # loaded before a call and stored back after it is a write: the callee may have changed the
+        # byte in between (store).
+        self._loaded: set[int] | None = None
         self._ckpt: dict[int, int] = {}  # dirty as the last checkpoint saw it, and the bytes touched since
         self._touched: set[int] = set()
         self.cut: str | None = None  # why the run ended as a time-out: steps, events or snapshot (compare)
         self.clipped = False  # a modelled memset or memcpy stopped at 64 KiB (compare)
         self.fault: int | None = None  # the address a run faulted on
+        self.fault_pc: int | None = None  # and the instruction that did (the oracle's repairs)
+        self.noret_call: int | None = None  # the call (its number) the run ended on, a callee that never returns
+        self.noret_at: int | None = None  # the lift's run: the original's noret_call
         self.stack_written: set[int] = set()
         # Undefined bytes: loaded from stack the run never wrote (a struct copy's padding), and
         # where they were stored. Register and unique bytes holding one ((space, offset) keys);
@@ -473,14 +492,22 @@ class Machine:
         self.saves: set[int] = set()  # stack words holding a callee-saved register's entry value (store)
         self.entry_saved: set[int] = set()  # those entry values (setup: x19-x28, d8-d15)
         self.taken: set[int] = set()  # stack addresses the code made (`add xN, sp, #k`): local objects' starts
+        self.out_at: dict[int, int] = {}  # stack bytes an out-parameter filled: the argument's address (call)
         # The original's calls, for the lift's run: which arguments it wrote out-parameters
         # through and how far (call_log); the lift's Machine gets them as `guide` (port_lift).
         self.call_log: list[tuple[frozenset, dict]] = []
         self.guide: list | None = None
         self.arg_slots: int | None = None  # the function's stack argument slots (load: the caller's frame)
         self.state = {}  # argument register key -> "entry" | "written" | "junk"
+        # Since the last call: which of its result registers (x0: 0, v0: 100) the run read while they
+        # still held what the call left, and which it has written since (None before any call).
+        # compare(): a result in the class the function itself did not read is garbage (AAPCS64).
+        self.res_read: set | None = None
+        self.res_written: set = set()
         self.vnarrow: dict[int, bool] = {}  # v<n> -> its last write was s<n> (4 bytes at its start)
+        self.vnarrow_at: dict[int, int] = {}  # v<n> -> the instruction (step) of that s<n> write
         self.out_words: list = []  # ((call, argument, offset), word): the out-parameter words written
+        self.results: list = []  # each call's x0, the first MAX_RESULTS_KEPT (a crash on one: Oracle.originals)
         self.events: list = []
         self.snapshot_bytes = 0  # written bytes copied into events so far (checkpoint)
         self.calls = 0
@@ -533,6 +560,8 @@ class Machine:
             # Above the stack arguments: the caller's frame, which the two runs place differently
             # (an index from a callee's made-up result, a loop run past its array)
             raise Inconclusive("read in the caller's frame")
+        if self._loaded is not None:
+            self._loaded.update(range(a, a + size))
         if self.track:
             w = a & ~7
             if w not in self._read_seen and not STACK_LO <= w < ENTRY_SP and not self.own[0] <= w < self.own[1]:
@@ -540,6 +569,7 @@ class Machine:
                 if w not in self.dirty and w not in self.stack_written:
                     self.read_words.append(w)
                     self.read_at[w] = a - w
+                    self.read_cov.append(len(self.visited))
         o = a % PAGE
         if o + size <= PAGE:
             return int.from_bytes(self.page(a // PAGE)[o:o + size], "little")
@@ -550,6 +580,7 @@ class Machine:
         if a < NULL_PAGE:
             raise Fault(a)
         b = (v & ((1 << (8 * size)) - 1)).to_bytes(size, "little")
+        prior = [self.page(x // PAGE)[x % PAGE] for x in range(a, a + size)]
         for i in range(size):
             x = a + i
             self.page(x // PAGE)[x % PAGE] = b[i]
@@ -572,8 +603,25 @@ class Machine:
             # undefined, and the two frames are laid out differently (as load: the caller's frame)
             raise Inconclusive("store in the caller's frame")
         elif not (self.own[0] <= a < self.own[1]):
+            # A byte holding again what it held before the function's first write to it is
+            # unchanged: no write at all as far as anything after can tell. C lets a compiler drop a
+            # store of the value just loaded from the same place (`ldp s0, s1, [x11, #4]` ...
+            # `str s0, [x8, #4]` at the same address, fn_71002aa518), so a write counts only where
+            # it changed the byte. Only within one stretch between call events, though: the reference
+            # (the byte when this stretch first wrote it, or a value it loaded) must not predate a call
+            # (checkpoint clears them), or `v = *p; f(p); *p = v` would let a lift drop the restoring
+            # store (or add one) under a callee that is not recorded. None: no reference.
             for i in range(size):
-                self.dirty[a + i] = b[i]
+                x = a + i
+                if x in self.before:
+                    ref = self.before[x]
+                else:
+                    ref = prior[i] if self._loaded is None or x in self._loaded else None
+                    self.before[x] = ref
+                if ref is not None and b[i] == ref:
+                    self.dirty.pop(x, None)
+                else:
+                    self.dirty[x] = b[i]
             self._touched.update(range(a, a + size))
 
     # registers
@@ -586,10 +634,24 @@ class Machine:
             self.undef_vn.difference_update((2, off + i) for i in range(size))
         if X0 <= off < X0 + 72:
             self.state[(off - X0) // 8] = "written"
+            if off < X0 + 8 and self.res_read is not None:
+                self.res_written.add(0)
         elif Q0 <= off < Q0 + 8 * QSTRIDE:
             self.state[100 + (off - Q0) // QSTRIDE] = "written"
-            if (off - Q0) % QSTRIDE == 0:  # (not the zeroing of the upper part that follows an s<n> write)
-                self.vnarrow[(off - Q0) // QSTRIDE] = size == 4
+            if off < Q0 + QSTRIDE and self.res_read is not None:
+                self.res_written.add(100)
+            n, rel = divmod(off - Q0, QSTRIDE)
+            if rel == 0:
+                self.vnarrow[n] = size == 4
+                if size == 4:
+                    self.vnarrow_at[n] = self.steps
+            elif not (4 <= rel < QSTRIDE and v == 0 and self.vnarrow_at.get(n) == self.steps):
+                # A lane insert after s<n> (ld1 {v0.s}[1], ins v0.d[1]) makes v<n> wide again; only the
+                # zeroing of the upper part by the s<n> write's own instruction keeps it narrow (after
+                # d<n> it is False). Ghidra zeroes it in four pieces: 4 bytes at +4, then 8 at +8, +16
+                # and +24 (the SVE part). A later instruction's write there is a lane insert even when
+                # its value is 0 (ins v0.s[1], wzr), and may leave anything in bits 32-63.
+                self.vnarrow[n] = False
 
     def x(self, n: int) -> int:
         return self.reg(X0 + 8 * n, 8)
@@ -599,6 +661,11 @@ class Machine:
         if sp == 0:
             return off
         if sp == 2:
+            if self.res_read is not None and X0 <= off < Q0 + QSTRIDE:
+                if off < X0 + 8 and 0 not in self.res_written:
+                    self.res_read.add(0)
+                elif off >= Q0 and 100 not in self.res_written:
+                    self.res_read.add(100)
             return int.from_bytes(self.regs[off:off + size], "little")
         if sp == 1:
             return self.uniq.get(off, 0) & ((1 << (8 * size)) - 1)
@@ -671,12 +738,14 @@ class Machine:
                 self.math(t[1])
             else:
                 self.clib(t[1])
+            self.res_read, self.res_written, self.res_sret = set(), set(), False
             return
         # Every argument register's value; `sel` the ones this run's caller meant for the callee.
         # compare() takes the original's selection, so registers the lift's compiled code used as
         # scratch do not count, and one the original set must hold the same value in the lift.
         f = self.facts(target)
         args, sel, raw = [], [], {}  # (raw: the integer arguments' values, for the out-parameters)
+        compare_only = set()  # (selected to be compared, never written through: see x8 below)
         for k in list(range(9)) + list(range(100, 108)):
             st = self.state.get(k, "junk")
             if k < 100:
@@ -690,7 +759,12 @@ class Machine:
                 if k not in f.args:
                     continue
             elif k == 8:  # unknown: x8 when it was set to a local (a result built there)
-                if st != "written" or not STACK_LO <= self.x(8) < ENTRY_SP:
+                if st == "entry" and 8 in getattr(self.own_facts, "fwd", ()):
+                    # (or x8 as the function was given it, when its callers point it at their frame:
+                    # a virtual-call wrapper's indirect result, passed on. Compared only: the
+                    # out-parameters, the guide and res_sret stay as without it.)
+                    compare_only.add(8)
+                elif st != "written" or not STACK_LO <= self.x(8) < ENTRY_SP:
                     continue
             elif st in ("entry", "stale") and k != 0:  # unknown: x0 and what this block set for it
                 continue
@@ -712,7 +786,7 @@ class Machine:
         self.target_reg = None
         self.calls += 1
         n = self.calls
-        chosen = {k for k, _ in sel}
+        chosen = {k for k, _ in sel} - compare_only
         extent = {k: v[2] for k, v in args if isinstance(v, tuple) and v[0] == "stack"}
         # A recorded call's out-parameters: the bytes it changed in this frame, by argument and offset
         # from it (the original's run lays its frame out as the real one did; the lift's takes them from
@@ -737,6 +811,7 @@ class Machine:
                     for j, b in outs.get(k, ()):
                         if p + j < ENTRY_SP and not any(p + j - 7 <= r <= p + j + 7 for r in self.frame_record):
                             self.store(p + j, 1, b)
+                            self.out_at[p + j] = p
                     continue
                 # (within the object, stackref's extent, and never over the frame record: a small
                 # local below it would let the pattern overwrite the saved return address). Words of
@@ -744,9 +819,17 @@ class Machine:
                 # (x8, a result built in place: the struct may be larger than the extent the frame
                 # suggests, and the function copies all of it out, 7100128810. The window past the
                 # extent holds what the callee wrote there, unknown: undefined, so what is copied
-                # from it is not compared; filling it would overwrite locals placed differently.)
+                # from it is not compared; filling it would overwrite locals placed differently. It
+                # stops where this run's own frame holds another object: the next taken address, a save
+                # slot or the frame record (the guide's extent is the other frame's), or a byte this run
+                # filled as another argument's out-parameter: cleared, a lift's different store to a
+                # local placed there would go uncompared.)
                 if k == 8:
-                    self.stack_written.difference_update(range(p + max(extent[k], 8), min(p + WINDOW, ENTRY_SP)))
+                    stop = min([t for t in self.taken | self.frame_record | self.saves if t > p] + [p + WINDOW, ENTRY_SP])
+                    for q in range(p + max(extent[k], 8), stop):
+                        if self.out_at.get(q, p) != p:
+                            break
+                        self.stack_written.discard(q)
                 for j in range(0, max(extent[k], 8), 8):
                     if p + j >= ENTRY_SP or any(p + j - 7 <= r <= p + j + 7 for r in self.frame_record):
                         break
@@ -755,6 +838,7 @@ class Machine:
                     v = self.overrides.get(("o", (n, k, j)),
                                            self.word(mix(self.seed, n, k, j)) if self.seed % 2 else mix(n, k, j))
                     self.store(p + j, 8, v)
+                    self.out_at.update((p + j + i, p) for i in range(8))
                     if len(self.out_words) < 64:
                         self.out_words.append(((n, k, j), v))
         for i in CALLER_SAVED_X:
@@ -770,6 +854,8 @@ class Machine:
         # (a mutation may set it)
         ret = self.overrides.get(("c", n), rec.x[0] if rec is not None else self.word(mix(n, 11, self.seed)))
         self.regs[X0:X0 + 8] = (ret & 0xFFFFFFFFFFFFFFFF).to_bytes(8, "little")
+        if len(self.results) < MAX_RESULTS_KEPT:
+            self.results.append(ret & 0xFFFFFFFFFFFFFFFF)
         if rec is not None:
             self.regs[X0 + 8:X0 + 16] = (rec.x[1] & 0xFFFFFFFFFFFFFFFF).to_bytes(8, "little")
             for i, q in enumerate(rec.q):
@@ -779,6 +865,7 @@ class Machine:
                     x = a + i
                     if x >= NULL_PAGE and not STACK_LO <= x < STACK_TOP:
                         self.page(x // PAGE)[x % PAGE] = b
+                        self.before.pop(x, None)  # (a later write of the function's compares with this)
                         if x in self.dirty:
                             self.dirty[x] = b
                             self._touched.add(x)
@@ -789,6 +876,12 @@ class Machine:
         # read by the next callee is indistinguishable from garbage it does not read (liveness
         # over-approximates), so a float result passed straight on is not compared.
         self.state[100] = "junk"
+        self.res_read, self.res_written = set(), set()
+        # (a callee that reads x8, the indirect result location, returns through memory: x0 and v0
+        # hold nothing after it. Only a callee whose facts say it reads x8: an unknown callee's x8
+        # is chosen when it points at a local, which may be Clang's scratch for a frame address
+        # before an ordinary call, and its x0 result must still be compared)
+        self.res_sret = f is not None and 8 in f.args and 8 in chosen
 
     def recorded(self, target: int, t, modeled: bool):
         """The snapshot's next recorded call when it went to this target (and is taken), else None.
@@ -837,28 +930,43 @@ class Machine:
                "trunc": math.trunc, "fabs": abs, "sinh": math.sinh, "cosh": math.cosh, "tanh": math.tanh}
         # A NaN argument comes back with its payload, quieted (an inlined fsqrt keeps it, then calls
         # sqrtf only for the NaN: fn_7100118274), and the rounding functions return +-inf as is.
+        # A two-argument function runs first: C99 gives pow(1, NaN) = 1 and hypot(inf, NaN) = inf.
         quiet = 0x00400000 if size == 4 else 0x0008000000000000
         args = (0, 1) if base in two else (0,)
         nan = next((i for i in args if math.isnan((a, b)[i])), None)
+        odd = base == "pow" and math.isfinite(b) and b == int(b) and int(b) % 2 == 1
         bits = None
-        if nan is not None:
+        if nan is not None and base not in two:
             bits = self.reg(Q0 + QSTRIDE * nan, size) | quiet
         elif base in ("floor", "ceil", "round", "trunc") and math.isinf(a):
             bits = f_to(a, size)
         else:
             try:
                 v = float(two[base](a, b) if base in two else one[base](a))
-            except OverflowError:
-                v = math.inf
+            except OverflowError:  # (the true result's sign: sinh, tan by a's, pow(-x, odd) negative)
+                neg = (base in ("sinh", "tan") and a < 0) or (odd and a < 0)
+                v = -math.inf if neg else math.inf
             except (ValueError, ZeroDivisionError):
-                v = -math.inf if base in ("log", "log2", "log10") and a == 0 else math.nan
-            bits = f_to(v, size)
+                if base in ("log", "log2", "log10") and a == 0:
+                    v = -math.inf
+                elif base == "pow" and a == 0 and b < 0:  # pow(+-0, y < 0): +inf, -inf for -0 and odd y
+                    v = math.copysign(math.inf, a) if odd else math.inf
+                else:
+                    v = math.nan
+            if base in ("floor", "ceil", "round", "trunc") and v == 0:  # (Python ints lose -0)
+                v = math.copysign(0.0, a)
+            bits = (self.reg(Q0 + QSTRIDE * nan, size) | quiet if nan is not None and math.isnan(v)
+                    else f_to(v, size))
         for i in CALLER_SAVED_X:
             self.regs[X0 + 8 * i:X0 + 8 * i + 8] = bytes(8)
             if i <= 8:
                 self.state[i] = "junk"
-        for i in range(8):
+        for i in range(1, 8):
             self.state[100 + i] = "junk"
+        # The result is computed the same way in both runs: a later call's argument (atan2f's
+        # result passed on must be the same value in the lift).
+        self.state[100] = "written"
+        self.vnarrow[0] = size == 4
         self.regs[Q0:Q0 + 16] = bits.to_bytes(16, "little")
 
     def clib(self, name: str) -> None:
@@ -906,6 +1014,7 @@ class Machine:
         """Drop what only running needs (memory pages, the write sets): a finished run that is
         kept for comparison needs its events, registers, coverage and logs."""
         self.pages, self.dirty, self.stack_written, self.uniq, self._read_seen = {}, {}, set(), {}, set()
+        self.before, self._loaded = {}, None
         self._ckpt, self._touched = {}, set()
 
     def checkpoint(self, event) -> None:
@@ -914,6 +1023,10 @@ class Machine:
             # the next event compares them)
             self.events.append((event, ()))
             return
+        if event[0] == "call":
+            # (a callee may change any byte: what was loaded or held before it is no reference for a
+            # later write's being no change, store)
+            self.before, self._loaded = {}, set()
         # The bytes the function's writes changed since the last checkpoint (None: no longer counted, an
         # undefined byte): the memory at an event is what all events up to it hold (written()), and
         # two runs agree at every event when they agree on each event's changes.
@@ -963,6 +1076,12 @@ class Machine:
                     self.finish("trap")  # (an end both runs must reach after the same events)
                     return
                 kind, target = self.step(pc, w, BRANCH, CBRANCH, BRANCHIND, CALL, CALLIND, RETURN)
+                if kind == "jump" and target == pc and w == 0x14000000:
+                    # b . (a container's overflow check spins forever: 71001e7ec4): an end too, the
+                    # lift's `L: goto L;` compiles to the same. (The target as resolved: a lift's
+                    # tail call is the same word before its relocation, lift.branch.)
+                    self.finish("hang")
+                    return
                 if ((w & 0xFF000010) == 0x54000000 or (w & 0x7C000000) == 0x34000000) \
                         and (kind != "jump" or self.inside(target)):
                     # b.cond, cbz/cbnz/tbz/tbnz within the function: what was written for an unknown
@@ -991,7 +1110,15 @@ class Machine:
                         pc = target
                     else:
                         self.call(target)
-                        pc = self.x(30)
+                        ret_pc, pc = pc + 4, self.x(30)
+                        # A call that ends the original's code never returns (a [[noreturn]] callee,
+                        # abort or a fatal-error path): the run ends there. The lift ends after the
+                        # same call (its own code after it, if any, is unreachable).
+                        if (self.lift is None and pc == ret_pc and not self.inside(pc)) \
+                                or (self.lift is not None and self.noret_at == self.calls):
+                            self.noret_call = self.calls
+                            self.finish("noreturn")
+                            return
                         if not self.inside(pc):
                             raise Inconclusive("call returns outside")
                 elif kind == "ret":
@@ -1004,6 +1131,7 @@ class Machine:
         except Fault as e:
             self.events.append((("end", "fault"), ()))
             self.fault = e.args[0]
+            self.fault_pc = pc
 
     def finish(self, kind: str) -> None:
         self.checkpoint(("end", kind))
@@ -1220,6 +1348,8 @@ class Machine:
                 v = float(math.floor(abs(a) + 0.5)) * (1 if a >= 0 else -1)
             else:
                 v = math.sqrt(a) if a >= 0 else float("nan")
+            if v == 0 and name != "FLOAT_SQRT":
+                v = math.copysign(0.0, a)  # (frintm/frintp/frinta keep the sign of zero, as Machine.math's floorf)
             self.write(out, f_to(v, out[2]))
             return
         b = f_from(r(ins[1]), ins[1][2])
@@ -1233,7 +1363,14 @@ class Machine:
             self.write(out, 1 if a <= b else 0)
         else:
             try:
-                if name == "FLOAT_ADD":
+                if name in ("FLOAT_ADD", "FLOAT_MULT") and math.isnan(a) and math.isnan(b):
+                    # Two NaNs: the hardware returns the first operand's, but C leaves which one
+                    # unspecified and Clang commutes a + b and a * b (`fadd s8, s1, s8` lifted
+                    # as `fadd s8, s8, s1`, fn_7100212794): a NaN chosen by the bits alone, so
+                    # the order of the operands, which the compiled C does not keep, never shows.
+                    quiet = 1 << (22 if s0 == 4 else 51)
+                    v = (a if r(ins[0]) | quiet <= r(ins[1]) | quiet else b) + 0.0
+                elif name == "FLOAT_ADD":
                     v = a + b
                 elif name == "FLOAT_SUB":
                     v = a - b
@@ -1352,6 +1489,9 @@ def compare(a: Machine, b: Machine, ret: str | None) -> str:
     else the first difference. `a` is the original's run. `ret` is the lift's result kind: None
     (not compared), 'x8', 'x16', 'x32', 'x64', 'f32', 'f64'."""
     ea, eb = a.events, b.events
+    # (the caller's frame past both functions' own stack arguments: an address into the argument
+    # slots names one argument, compared exactly)
+    frame = ENTRY_SP + 8 * max(getattr(a, "arg_slots", None) or 0, getattr(b, "arg_slots", None) or 0, 0)
     if a.undef_mem or b.undef_mem:
         # (bytes either run stored from undefined stack bytes: not compared, in neither run)
         skip = a.undef_mem | b.undef_mem
@@ -1366,7 +1506,7 @@ def compare(a: Machine, b: Machine, ret: str | None) -> str:
         for i in range(len(ea) - 1):
             if i >= len(eb) or ea[i] != eb[i]:
                 if i < len(eb) and ea[i][0][0] == eb[i][0][0] == "call" and ea[i][0][1] == eb[i][0][1] \
-                        and ea[i][1] == eb[i][1] and all(same_arg(dict(ea[i][0][3]).get(k), dict(eb[i][0][3]).get(k))
+                        and ea[i][1] == eb[i][1] and all(same_arg(dict(ea[i][0][3]).get(k), dict(eb[i][0][3]).get(k), frame)
                                                          for k, _ in ea[i][0][2]):
                     continue
                 if i == len(eb) - 1 and end_b == ("end", "time-out"):
@@ -1390,7 +1530,7 @@ def compare(a: Machine, b: Machine, ret: str | None) -> str:
                     u, v = da.get(k), db.get(k)
                     if bits == 32 and isinstance(u, int) and isinstance(v, int):
                         u, v = u & 0xFFFFFFFF, v & 0xFFFFFFFF
-                    if not same_arg(u, v):
+                    if not same_arg(u, v, frame):
                         return f"call {i} to {fmt(va[1])}: argument {regname(k)} ({arg_text(u)} vs {arg_text(v)})"
             else:
                 return f"event {i}: {va[0]} {va[1] if len(va) > 1 else ''} vs {vb[0]} {vb[1] if len(vb) > 1 else ''}"
@@ -1414,7 +1554,12 @@ def compare(a: Machine, b: Machine, ret: str | None) -> str:
             extra = written(cut.events, len(cut.events) - 1) - written(done.events, shared)
             if extra:
                 return f"memory written only by the {'original' if ta else 'lift'}, cut off: byte {min(extra):#x}"
-        if tb and b.cut == "steps" and end_a in (("end", "return"), ("end", "fault")) \
+        # The lift spun on where the original came to an end of its own in few steps (a return, a
+        # fault, a noreturn call or a trap): too slow, or a loop the original does not have. Not a
+        # hang: an original that spins forever (`b .`) is matched by a lift that spins forever in
+        # any loop of its own, cut off with nothing recorded past the original's events.
+        if tb and b.cut == "steps" and end_a is not None and end_a[0] == "end" \
+                and end_a[1] not in ("time-out", "hang") \
                 and a.steps * SLOWER <= Machine.max_steps(b):
             return f"the lift ran out of steps where the original ended after {a.steps}"
         return f"skip: the {'original' if ta else 'lift'} was cut off ({cut.cut})"
@@ -1429,6 +1574,8 @@ def compare(a: Machine, b: Machine, ret: str | None) -> str:
                 return f"result x{i}"
             if kind[0] == "f" and a.reg(Q0 + QSTRIDE * i, size) != b.reg(Q0 + QSTRIDE * i, size):
                 return f"result {'s' if kind == 'f32' else 'd'}{i}"
+    elif ea and ea[-1][0] == ("end", "return") and ret and abi_garbage(a, 0 if ret[0] == "x" else 100):
+        pass
     elif ea and ea[-1][0] == ("end", "return") and ret:
         if ret[0] == "x":
             bits = int(ret[1:])
@@ -1441,12 +1588,29 @@ def compare(a: Machine, b: Machine, ret: str | None) -> str:
     return ""
 
 
-def same_arg(u, v) -> bool:
+def abi_garbage(m: Machine, reg: int) -> bool:
+    """Whether the original's result register (x0: 0, s0/d0: 100) still holds what its last call left
+    while the function read that call's result in the other class (w0 after a bool callee, s0 after
+    a float one) and never this one: AAPCS64 returns a value in x0-x1 or in v0-v3, never both, so
+    this register is the callee's scratch, garbage in the game too (ret_used over-approximates a
+    void function's callers: 71006ea9a4 returns x0 after a float callee, 7100c95f74 s0 after a bool
+    one). Likewise after a call that read x8, the indirect result location: its result is in memory
+    and neither register holds one (7100c75684 returns x0 after such a call). Nothing a lift returns
+    there differs from the original's behaviour."""
+    if getattr(m, "res_read", None) is None or reg in m.res_written or reg in m.res_read:
+        return False
+    return getattr(m, "res_sret", False) or (100 - reg) in m.res_read
+
+
+def same_arg(u, v, frame: int = ENTRY_SP) -> bool:
+    """`frame`: where the caller's frame starts past the stack arguments (compare: ENTRY_SP + 8 *
+    the larger arg_slots; ENTRY_SP when unknown)."""
     if u == v:
         return True
-    if isinstance(u, int) and isinstance(v, int) and ENTRY_SP <= u < STACK_TOP and ENTRY_SP <= v < STACK_TOP:
-        # (both above the entry sp, in the caller's frame: an address computed from made-up words
-        # and each run's own frame, which the two lay out differently, 71002842e4)
+    if isinstance(u, int) and isinstance(v, int) and frame <= u < STACK_TOP and frame <= v < STACK_TOP:
+        # (both above the entry sp and the stack arguments, in the caller's frame: an address
+        # computed from made-up words and each run's own frame, which the two lay out differently,
+        # 71002842e4)
         return True
     if isinstance(u, tuple) and isinstance(v, tuple):
         # Stack windows: the object starts at the pointer and ends where either function stops

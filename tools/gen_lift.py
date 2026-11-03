@@ -33,7 +33,7 @@ lifts each one into C++ over `char*` parameters and keeps only the byte-identica
 
 Usage: python tools/gen_lift.py --version 2.1.0 [--plain]   (--plain: no pass-through)
 Outputs are deterministic (the facts come from one complete table, abi_facts.AbiFacts.complete; its
-cache is build/port/abi_facts.pickle). Regenerate, never edit them. There is one file per 64 KiB of
+cache is build/port/abi_facts_v<CACHE_VERSION>.pickle). Regenerate, never edit them. There is one file per 64 KiB of
 address space, and each function follows its own declarations, so
 
   python tools/gen_lift.py --prune
@@ -1149,6 +1149,27 @@ class Lifter:
         self.line(f"new ((void*)({x8}), lift_at_t{{}}) UnkResult(((UnkResult (*)({types}))({ptr}))({values}));")
         self.terminate("value", None)
 
+    def own_sret(self) -> bool:
+        """Semantic mode: this function's own facts give it an indirect result (x8 in its args):
+        its callers point x8 at the result they want built (a virtual-call wrapper, abi_facts.fwd)."""
+        if self.facts is None or "semantic" not in self.opts:
+            return False
+        f = self.facts(self.addr)
+        return f is not None and f.sret
+
+    def x8_incoming(self) -> bool:
+        """x8 still holds the result address this function was given (no call or write since)."""
+        s = self.s
+        if 8 in s.vals:
+            return s.vals[8][0] in self.ret_ptrs
+        return not s.called and 8 not in s.poison and 8 not in s.pages
+
+    def x8_result(self) -> bool:
+        """Semantic mode: an indirect call here builds its result where x8 points: x8 set to a
+        local (State.x8w), or x8 as it came in when the function's own facts read it (its callers
+        set it: the result is passed on, sret_indirect_tail)."""
+        return "semantic" in self.opts and (self.s.x8w or (self.own_sret() and self.x8_incoming()))
+
     def sret_callee(self, a: int) -> bool:
         """Whether the callee at a builds its result at x8 (abi_facts), in semantic mode and in
         byte mode's pass-through (where the call then names x8 too: see sret_call, sret_tail)."""
@@ -1601,7 +1622,7 @@ class Lifter:
                 elif m == "b" and not addr <= o[0].imm < end:
                     self.terminate("tail", self.call(f"fn_{o[0].imm:x}"))
                     self.tails[f"fn_{o[0].imm:x}"] = self.last_call[1]
-                elif m == "br" and "semantic" in self.opts and self.s.x8w and regname(o[0].reg) != "x8":
+                elif m == "br" and self.x8_result() and regname(o[0].reg) != "x8":
                     self.sret_indirect_tail(regname(o[0].reg))
                 elif m == "br":
                     ptr, _ = self.read(regname(o[0].reg))
@@ -1622,6 +1643,10 @@ class Lifter:
         return self.finish()
 
     def finish(self) -> tuple[str, set[str]] | None:
+        if self.own_sret() and not self.sret:
+            # (the facts give this function an indirect result its lift never passes on: its
+            # callers build the result through x8, the lift would leave it unbuilt)
+            return self.fail("indirect result (x8) not passed on")
         if "copy" in self.opts:
             self.body = copy_runs(self.body)
         if "sort" in self.opts:
@@ -2216,7 +2241,10 @@ class Lifter:
             n = self.key(regname(o[0].reg))
             if "semantic" in self.opts and isinstance(self, FlatLifter):
                 # The register holds the page too: a label where the ways in disagree drops the
-                # page (join_consts), and reads there take X<n>, not the value it held before
+                # page (join_consts), and reads there take X<n>, not the value it held before.
+                # A pending compare that reads X<n> keeps the old value (fn_7100e14c8c: `cmp x8,
+                # x20; adrp x8, ...; csel x0, xzr, x20, eq`; 71004cbd24: `cmp w8, #0; adrp x8, ...`).
+                self.keep_compare(n)
                 self.line(f"X{n} = (u64)({self.global_ref(o[1].imm, False)});")
                 self.types[n] = "char*"
                 self.clob.discard(n)
@@ -2638,7 +2666,7 @@ class Lifter:
             self.s.written = set()
             for i in range(2 if shape[0] == "x" else shape[1]):
                 self.write(f"{shape[0]}{i}", f"{v}.r[{i}]", shape_elem(shape))
-        elif m == "blr" and "semantic" in self.opts and self.s.x8w and regname(o[0].reg) != "x8":
+        elif m == "blr" and self.x8_result() and regname(o[0].reg) != "x8":
             # An indirect callee given a local in x8 builds its result there (the original reads it
             # back): as sret_call, through the pointer.
             ptr, _ = self.read(regname(o[0].reg))
@@ -2939,6 +2967,9 @@ class FlatLifter(Lifter):
             return f"X{n}"
         return f"{'S' if t == 'f32' else 'D'}{n - 100}"
 
+    def x8_incoming(self) -> bool:
+        return 8 in self.ret_regs and 8 not in self.clob and 8 not in self.s.pages
+
     def read(self, r: str) -> tuple[str, str]:
         if r in ("xzr", "wzr"):
             return "0", width_type(r)
@@ -2954,9 +2985,19 @@ class FlatLifter(Lifter):
             raise Unsupported("bare page")
         if n == 100 and s.fcall:
             t = ftype(r)
+            ln = s.fcall[0]
             self.retype_call(t, self.storage(100, t))
             self.types[100] = t
             s.fcall = None
+            if 100 in getattr(self, "dual", ()) and t in ("f32", "f64"):
+                # (semantic mode: s0/d0 used at both widths, its S and D variables kept in step as
+                # write() does: the call's float result sets the other width too, right after the
+                # call line, before anything between it and this read sees the stale one)
+                o = "f64" if t == "f32" else "f32"
+                ind = self.body[ln][:len(self.body[ln]) - len(self.body[ln].lstrip())]
+                self.body.insert(ln + 1, ind + f"{self.storage(100, o)} = "
+                                 f"{reinterpret_float(self.storage(100, t), t)};")
+                self.rets = [(i + (i > ln), k, p) for i, k, p in self.rets]  # (lines below moved)
         elif n == 0 and r[0] == "w" and self.opts & {"w32", "bool"} and s.fcall:
             # ("w32", "bool") as Lifter.read: the callee returns 32 bits, or a bool
             self.retype_call("bool" if "bool" in self.opts else "u32", s.fcall[1])
@@ -3008,6 +3049,13 @@ class FlatLifter(Lifter):
         self.clob.discard(n)
         if n >= 100:
             self.line(f"{self.storage(n, t)} = {e};")
+            if n in getattr(self, "dual", ()) and t in ("f32", "f64"):
+                # (semantic mode: a register used as both s<n> and d<n> keeps both variables in step,
+                # as the hardware's one register: a read at either width, wherever the linear type
+                # left off, sees this path's bits. fn_7100659a30: `mov v8.16b, v0.16b` from an f32
+                # parameter, d8 a constant on another path, then `mov v0.16b, v8.16b` read D8.)
+                o = "f64" if t == "f32" else "f32"
+                self.line(f"{self.storage(n, o)} = {reinterpret_float(self.storage(n, t), t)};")
         else:
             self.line(f"X{n} = (u64)({e});")
         self.types[n] = t
@@ -3134,6 +3182,17 @@ class FlatLifter(Lifter):
             return self.fail("stack frame")
         self.cur_delta = 0
         self.fwidth = float_widths(ins, "semantic" in self.opts)
+        if "semantic" in self.opts:
+            # Float registers the function uses at both widths (frame saves aside): write() keeps
+            # their S and D variables in step.
+            seen: dict[int, set[str]] = {}
+            for x in ins:
+                if is_frame(x):
+                    continue
+                for op in x.operands:
+                    if op.type == arm64.ARM64_OP_REG and (k := fkey(regname(op.reg))) is not None:
+                        seen.setdefault(100 + k, set()).add(regname(op.reg)[0])
+            self.dual = {n for n, ls in seen.items() if len(ls) > 1}
         targets = set()
         self.sources: dict[int, list[int]] = {}  # branch target -> the branches' addresses
         for x in ins:
@@ -3237,7 +3296,7 @@ class FlatLifter(Lifter):
                         self.edge(t)
                     cases = " ".join(f"case {k}: goto L_{t:x};" for k, t in enumerate(tgts))
                     self.line(f"switch ((u64)({v})) {{ {cases} default: __builtin_unreachable(); }}")
-                elif m == "br" and "semantic" in self.opts and self.s.x8w and regname(o[0].reg) != "x8":
+                elif m == "br" and self.x8_result() and regname(o[0].reg) != "x8":
                     self.sret_indirect_tail(regname(o[0].reg))
                 elif m == "br":
                     ptr, _ = self.read(regname(o[0].reg))
@@ -3276,7 +3335,9 @@ class FlatLifter(Lifter):
                 # variable for each (the parameter initialises the one it arrives as).
                 pt = self.params.get(n)
                 for w in ("f32", "f64"):
-                    pre.append(f"    {w} {self.storage(n, w)} = {'f%d' % (n - 100) if pt == w else '0'};")
+                    v = f"f{n - 100}" if pt == w else reinterpret_float(f"f{n - 100}", pt) \
+                        if pt and n in self.dual else "0"  # (both widths in step: write())
+                    pre.append(f"    {w} {self.storage(n, w)} = {v};")
                 continue
             pre.append(f"    {t} {self.storage(n, t)}{init};")
         pre += [f"    char* t{i};" for i in range(self.temps)]
@@ -3662,7 +3723,11 @@ def report(orig: asmdiff.Original, addrs: list[int], cands: set[int], examples: 
             print(f"{r}: {' '.join(f'{a:x}' for a in rows[r][:examples])}")
 
 
-FACTS = ROOT / "build" / "port" / "abi_facts.pickle"  # tools/abi_facts.py's cache (depends on the binary only)
+def facts_path() -> Path:
+    """tools/abi_facts.py's cache (depends on the binary only), one file per CACHE_VERSION so that
+    checkouts of different analyses can share build/."""
+    import abi_facts
+    return ROOT / "build" / "port" / f"abi_facts_v{abi_facts.CACHE_VERSION}.pickle"
 
 
 def load_facts(orig: asmdiff.Original, version: str):
@@ -3672,7 +3737,7 @@ def load_facts(orig: asmdiff.Original, version: str):
     import abi_facts
     af = abi_facts.AbiFacts(orig)
     af.version = version
-    af.complete(FACTS)
+    af.complete(facts_path())
     Lifter.facts = af.facts
     return af
 
