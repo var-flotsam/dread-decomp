@@ -2734,13 +2734,13 @@ address,size,name,name_source,subsystem,status
 0x71011bf3cc,396,fn_71011bf3cc,unknown,unknown,U
 0x71011bf558,264,fn_71011bf558,unknown,unknown,U
 0x71011bf660,188,fn_71011bf660,unknown,unknown,U
-0x71011bf71c,40,fn_71011bf71c,unknown,unknown,U
+0x71011bf71c,40,fn_71011bf71c,unknown,unknown,O
 0x71011bf744,1052,fn_71011bf744,unknown,unknown,U
-0x71011bfb60,40,fn_71011bfb60,unknown,unknown,U
+0x71011bfb60,40,fn_71011bfb60,unknown,unknown,O
 0x71011bfb88,84,fn_71011bfb88,unknown,unknown,O
 0x71011bfbdc,84,fn_71011bfbdc,unknown,unknown,O
-0x71011bfc30,40,fn_71011bfc30,unknown,unknown,U
-0x71011bfc58,40,fn_71011bfc58,unknown,unknown,U
+0x71011bfc30,40,fn_71011bfc30,unknown,unknown,O
+0x71011bfc58,40,fn_71011bfc58,unknown,unknown,O
 0x71011bfc80,84,fn_71011bfc80,unknown,unknown,O
 0x71011bfcd4,84,fn_71011bfcd4,unknown,unknown,O
 0x71011bfd28,880,fn_71011bfd28,unknown,unknown,U

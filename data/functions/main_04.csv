@@ -179,7 +179,7 @@ address,size,name,name_source,subsystem,status
 0x7100407104,108,fn_7100407104,unknown,unknown,O
 0x7100407170,220,fn_7100407170,unknown,unknown,O
 0x710040724c,360,fn_710040724c,unknown,unknown,O
-0x71004073b4,88,fn_71004073b4,unknown,unknown,U
+0x71004073b4,88,fn_71004073b4,unknown,unknown,O
 0x710040740c,288,fn_710040740c,unknown,unknown,O
 0x710040752c,4,fn_710040752c,unknown,unknown,O
 0x7100407530,36,fn_7100407530,unknown,unknown,O

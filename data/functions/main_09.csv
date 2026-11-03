@@ -2500,7 +2500,7 @@ address,size,name,name_source,subsystem,status
 0x710098306c,368,fn_710098306c,unknown,unknown,U
 0x71009831dc,264,fn_71009831dc,unknown,unknown,U
 0x71009832e4,368,fn_71009832e4,unknown,unknown,U
-0x7100983454,72,fn_7100983454,unknown,unknown,U
+0x7100983454,72,fn_7100983454,unknown,unknown,O
 0x710098349c,1236,fn_710098349c,unknown,unknown,U
 0x7100983970,488,fn_7100983970,unknown,unknown,U
 0x7100983b58,680,fn_7100983b58,unknown,unknown,U
@@ -4350,7 +4350,7 @@ address,size,name,name_source,subsystem,status
 0x71009ebfa0,36,fn_71009ebfa0,unknown,unknown,O
 0x71009ebfc4,72,fn_71009ebfc4,unknown,unknown,U
 0x71009ec00c,72,fn_71009ec00c,unknown,unknown,U
-0x71009ec054,72,fn_71009ec054,unknown,unknown,U
+0x71009ec054,72,fn_71009ec054,unknown,unknown,O
 0x71009ec09c,1792,fn_71009ec09c,unknown,unknown,U
 0x71009ec79c,24,fn_71009ec79c,unknown,unknown,O
 0x71009ec7b4,408,fn_71009ec7b4,unknown,unknown,U
@@ -4441,7 +4441,7 @@ address,size,name,name_source,subsystem,status
 0x71009f17a0,4,fn_71009f17a0,unknown,game/components?,O
 0x71009f17a4,364,CSceneComponent::refl_InitClass,reflection,game/components,O
 0x71009f1910,60,fn_71009f1910,unknown,unknown,O
-0x71009f194c,60,fn_71009f194c,unknown,unknown,U
+0x71009f194c,60,fn_71009f194c,unknown,unknown,O
 0x71009f1988,36,fn_71009f1988,unknown,unknown,O
 0x71009f19ac,4,fn_71009f19ac,unknown,unknown,O
 0x71009f19b0,52,fn_71009f19b0,unknown,unknown,U
@@ -4613,7 +4613,7 @@ address,size,name,name_source,subsystem,status
 0x71009f9d60,36,fn_71009f9d60,unknown,unknown,O
 0x71009f9d84,4,fn_71009f9d84,unknown,unknown,O
 0x71009f9d88,4,operator.delete,symbol,unknown,O
-0x71009f9d8c,52,fn_71009f9d8c,unknown,unknown,U
+0x71009f9d8c,52,fn_71009f9d8c,unknown,unknown,O
 0x71009f9dc0,232,fn_71009f9dc0,unknown,unknown,O
 0x71009f9ea8,496,fn_71009f9ea8,unknown,unknown,U
 0x71009fa098,204,fn_71009fa098,unknown,unknown,U
@@ -4790,8 +4790,8 @@ address,size,name,name_source,subsystem,status
 0x71009ff55c,8,fn_71009ff55c,unknown,game?,O
 0x71009ff564,28,fn_71009ff564,unknown,game?,O
 0x71009ff580,48,fn_71009ff580,unknown,game?,O
-0x71009ff5b0,60,fn_71009ff5b0,unknown,game?,U
-0x71009ff5ec,60,fn_71009ff5ec,unknown,game?,U
+0x71009ff5b0,60,fn_71009ff5b0,unknown,game?,O
+0x71009ff5ec,60,fn_71009ff5ec,unknown,game?,O
 0x71009ff628,12,fn_71009ff628,unknown,game?,O
 0x71009ff634,36,fn_71009ff634,unknown,game?,O
 0x71009ff658,36,fn_71009ff658,unknown,game?,O

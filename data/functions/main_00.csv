@@ -2687,7 +2687,7 @@ address,size,name,name_source,subsystem,status
 0x710009bb0c,4,fn_710009bb0c,unknown,engine/reflection?,O
 0x710009bb10,4,fn_710009bb10,unknown,engine/reflection?,O
 0x710009bb14,4,fn_710009bb14,unknown,engine/reflection?,O
-0x710009bb18,280,fn_710009bb18,unknown,engine/reflection?,U
+0x710009bb18,280,fn_710009bb18,unknown,engine/reflection?,O
 0x710009bc30,12,fn_710009bc30,unknown,engine/reflection?,O
 0x710009bc3c,360,fn_710009bc3c,unknown,engine/reflection?,O
 0x710009bda4,88,fn_710009bda4,unknown,engine/reflection?,O
