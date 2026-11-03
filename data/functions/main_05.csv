@@ -2114,7 +2114,7 @@ address,size,name,name_source,subsystem,status
 0x71005821e0,4,fn_71005821e0,unknown,unknown,O
 0x71005821e4,444,fn_71005821e4,unknown,unknown,U
 0x71005823a0,4,fn_71005823a0,unknown,unknown,O
-0x71005823a4,296,fn_71005823a4,unknown,unknown,U
+0x71005823a4,296,fn_71005823a4,unknown,unknown,O
 0x71005824cc,96,fn_71005824cc,unknown,unknown,U
 0x710058252c,340,fn_710058252c,unknown,unknown,U
 0x7100582680,1504,fn_7100582680,unknown,unknown,U
@@ -2297,7 +2297,7 @@ address,size,name,name_source,subsystem,status
 0x710058bb50,172,fn_710058bb50,unknown,unknown,O
 0x710058bbfc,132,fn_710058bbfc,unknown,unknown,O
 0x710058bc80,620,fn_710058bc80,unknown,unknown,U
-0x710058beec,324,fn_710058beec,unknown,unknown,U
+0x710058beec,324,fn_710058beec,unknown,unknown,O
 0x710058c030,12,fn_710058c030,unknown,unknown,O
 0x710058c03c,4,fn_710058c03c,unknown,unknown,O
 0x710058c040,1148,fn_710058c040,unknown,unknown,U
@@ -2654,7 +2654,7 @@ address,size,name,name_source,subsystem,status
 0x71005996a0,244,CGooplotAIComponent::refl_GetClass,reflection,game/ai,O
 0x7100599794,4,fn_7100599794,unknown,game/ai?,O
 0x7100599798,356,CGooplotAIComponent::refl_InitClass,reflection,game/ai,O
-0x71005998fc,196,fn_71005998fc,unknown,unknown,U
+0x71005998fc,196,fn_71005998fc,unknown,unknown,O
 0x71005999c0,280,fn_71005999c0,unknown,unknown,O
 0x7100599ad8,328,fn_7100599ad8,unknown,unknown,U
 0x7100599c20,248,fn_7100599c20,unknown,unknown,O
@@ -2663,7 +2663,7 @@ address,size,name,name_source,subsystem,status
 0x7100599e0c,184,fn_7100599e0c,unknown,unknown,U
 0x7100599ec4,396,fn_7100599ec4,unknown,unknown,U
 0x710059a050,88,fn_710059a050,unknown,unknown,O
-0x710059a0a8,320,fn_710059a0a8,unknown,unknown,U
+0x710059a0a8,320,fn_710059a0a8,unknown,unknown,O
 0x710059a1e8,76,fn_710059a1e8,unknown,unknown,O
 0x710059a234,436,fn_710059a234,unknown,unknown,U
 0x710059a3e8,16,fn_710059a3e8,unknown,unknown,O

@@ -36,7 +36,7 @@ address,size,name,name_source,subsystem,status
 0x7101201df4,4,fn_7101201df4,unknown,gui?,O
 0x7101201df8,388,GUI::CMenuEntryDataSet::refl_InitClass,reflection,gui,O
 0x7101201f7c,160,fn_7101201f7c,unknown,unknown,O
-0x710120201c,116,fn_710120201c,unknown,unknown,U
+0x710120201c,116,fn_710120201c,unknown,unknown,O
 0x7101202090,28,fn_7101202090,unknown,unknown,O
 0x71012020ac,84,fn_71012020ac,unknown,unknown,O
 0x7101202100,92,fn_7101202100,unknown,unknown,O
@@ -512,7 +512,7 @@ address,size,name,name_source,subsystem,status
 0x7101210154,12,fn_7101210154,unknown,unknown,O
 0x7101210160,12,fn_7101210160,unknown,unknown,O
 0x710121016c,12,fn_710121016c,unknown,unknown,O
-0x7101210178,96,fn_7101210178,unknown,unknown,U
+0x7101210178,96,fn_7101210178,unknown,unknown,O
 0x71012101d8,32,fn_71012101d8,unknown,unknown,O
 0x71012101f8,32,fn_71012101f8,unknown,unknown,O
 0x7101210218,48,fn_7101210218,unknown,unknown,O
@@ -566,10 +566,10 @@ address,size,name,name_source,subsystem,status
 0x71012111fc,24,fn_71012111fc,unknown,unknown,O
 0x7101211214,4,fn_7101211214,unknown,unknown,O
 0x7101211218,72,fn_7101211218,unknown,unknown,O
-0x7101211260,128,fn_7101211260,unknown,unknown,U
+0x7101211260,128,fn_7101211260,unknown,unknown,O
 0x71012112e0,72,fn_71012112e0,unknown,unknown,O
 0x7101211328,112,fn_7101211328,unknown,unknown,U
-0x7101211398,108,fn_7101211398,unknown,unknown,U
+0x7101211398,108,fn_7101211398,unknown,unknown,O
 0x7101211404,20,fn_7101211404,unknown,unknown,O
 0x7101211418,20,nn::atk::detail::SoundArchiveLoader::vf_0x0,rtti,middleware/nn-atk,L
 0x710121142c,4,fn_710121142c,unknown,unknown,U

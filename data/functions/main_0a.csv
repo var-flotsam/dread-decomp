@@ -258,7 +258,7 @@ address,size,name,name_source,subsystem,status
 0x7100a0d474,4,fn_7100a0d474,unknown,unknown,O
 0x7100a0d478,4,fn_7100a0d478,unknown,unknown,O
 0x7100a0d47c,4,fn_7100a0d47c,unknown,unknown,O
-0x7100a0d480,88,fn_7100a0d480,unknown,unknown,U
+0x7100a0d480,88,fn_7100a0d480,unknown,unknown,O
 0x7100a0d4d8,4,operator.delete,symbol,unknown,O
 0x7100a0d4dc,16,fn_7100a0d4dc,unknown,unknown,O
 0x7100a0d4ec,4,fn_7100a0d4ec,unknown,unknown,O
@@ -446,8 +446,8 @@ address,size,name,name_source,subsystem,status
 0x7100a13064,104,fn_7100a13064,unknown,game/components?,O
 0x7100a130cc,4,fn_7100a130cc,unknown,game/components?,O
 0x7100a130d0,256,fn_7100a130d0,unknown,game/components?,U
-0x7100a131d0,84,fn_7100a131d0,unknown,game/components?,U
-0x7100a13224,92,fn_7100a13224,unknown,game/components?,U
+0x7100a131d0,84,fn_7100a131d0,unknown,game/components?,O
+0x7100a13224,92,fn_7100a13224,unknown,game/components?,O
 0x7100a13280,100,fn_7100a13280,unknown,game/components?,O
 0x7100a132e4,28,fn_7100a132e4,unknown,game/components?,O
 0x7100a13300,132,fn_7100a13300,unknown,game/components?,O
@@ -919,7 +919,7 @@ address,size,name,name_source,subsystem,status
 0x7100a26828,1576,fn_7100a26828,unknown,unknown,U
 0x7100a26e50,676,fn_7100a26e50,unknown,unknown,U
 0x7100a270f4,236,fn_7100a270f4,unknown,unknown,U
-0x7100a271e0,416,fn_7100a271e0,unknown,unknown,U
+0x7100a271e0,416,fn_7100a271e0,unknown,unknown,O
 0x7100a27380,148,fn_7100a27380,unknown,unknown,U
 0x7100a27414,772,fn_7100a27414,unknown,unknown,U
 0x7100a27718,364,fn_7100a27718,unknown,unknown,U
@@ -1199,8 +1199,8 @@ address,size,name,name_source,subsystem,status
 0x7100a32e0c,388,fn_7100a32e0c,unknown,unknown,O
 0x7100a32f90,220,fn_7100a32f90,unknown,unknown,O
 0x7100a3306c,500,fn_7100a3306c,unknown,unknown,O
-0x7100a33260,188,fn_7100a33260,unknown,unknown,U
-0x7100a3331c,196,fn_7100a3331c,unknown,unknown,U
+0x7100a33260,188,fn_7100a33260,unknown,unknown,O
+0x7100a3331c,196,fn_7100a3331c,unknown,unknown,O
 0x7100a333e0,432,fn_7100a333e0,unknown,unknown,U
 0x7100a33590,28,fn_7100a33590,unknown,unknown,O
 0x7100a335ac,364,fn_7100a335ac,unknown,unknown,O
@@ -1784,8 +1784,8 @@ address,size,name,name_source,subsystem,status
 0x7100a44350,120,fn_7100a44350,unknown,unknown,O
 0x7100a443c8,512,fn_7100a443c8,unknown,unknown,U
 0x7100a445c8,284,fn_7100a445c8,unknown,unknown,O
-0x7100a446e4,64,fn_7100a446e4,unknown,unknown,U
-0x7100a44724,68,fn_7100a44724,unknown,unknown,U
+0x7100a446e4,64,fn_7100a446e4,unknown,unknown,O
+0x7100a44724,68,fn_7100a44724,unknown,unknown,O
 0x7100a44768,8,fn_7100a44768,unknown,unknown,O
 0x7100a44770,8,fn_7100a44770,unknown,unknown,O
 0x7100a44778,8,fn_7100a44778,unknown,unknown,O
@@ -3253,7 +3253,7 @@ address,size,name,name_source,subsystem,status
 0x7100a82898,12,fn_7100a82898,unknown,game/components?,O
 0x7100a828a4,8,fn_7100a828a4,unknown,game/components?,O
 0x7100a828ac,8,fn_7100a828ac,unknown,game/components?,O
-0x7100a828b4,116,fn_7100a828b4,unknown,game/components?,U
+0x7100a828b4,116,fn_7100a828b4,unknown,game/components?,O
 0x7100a82930,476,fn_7100a82930,unknown,game/components?,O
 0x7100a82b0c,4,fn_7100a82b0c,unknown,game/components?,O
 0x7100a82b10,244,CLifeRechargeComponent::refl_GetClass,reflection,game/components,O
@@ -3479,7 +3479,7 @@ address,size,name,name_source,subsystem,status
 0x7100a8ac8c,8,fn_7100a8ac8c,unknown,unknown,O
 0x7100a8ac94,8,fn_7100a8ac94,unknown,unknown,O
 0x7100a8ac9c,28,fn_7100a8ac9c,unknown,unknown,O
-0x7100a8acb8,104,fn_7100a8acb8,unknown,unknown,U
+0x7100a8acb8,104,fn_7100a8acb8,unknown,unknown,O
 0x7100a8ad20,4,fn_7100a8ad20,unknown,unknown,O
 0x7100a8ad24,4,fn_7100a8ad24,unknown,unknown,O
 0x7100a8ad28,12,fn_7100a8ad28,unknown,unknown,O
@@ -3520,7 +3520,7 @@ address,size,name,name_source,subsystem,status
 0x7100a8bb78,124,fn_7100a8bb78,unknown,game/components?,U
 0x7100a8bbf4,80,fn_7100a8bbf4,unknown,game/components?,O
 0x7100a8bc44,724,fn_7100a8bc44,unknown,game/components?,U
-0x7100a8bf18,100,fn_7100a8bf18,unknown,game/components?,U
+0x7100a8bf18,100,fn_7100a8bf18,unknown,game/components?,O
 0x7100a8bf7c,24,fn_7100a8bf7c,unknown,game/components?,O
 0x7100a8bf94,40,fn_7100a8bf94,unknown,game/components?,O
 0x7100a8bfbc,12,fn_7100a8bfbc,unknown,game/components?,O
@@ -3867,7 +3867,7 @@ address,size,name,name_source,subsystem,status
 0x7100a9a56c,12,fn_7100a9a56c,unknown,unknown,O
 0x7100a9a578,8,fn_7100a9a578,unknown,unknown,O
 0x7100a9a580,8,fn_7100a9a580,unknown,unknown,O
-0x7100a9a588,116,fn_7100a9a588,unknown,unknown,U
+0x7100a9a588,116,fn_7100a9a588,unknown,unknown,O
 0x7100a9a600,516,fn_7100a9a600,unknown,unknown,O
 0x7100a9a804,4,fn_7100a9a804,unknown,unknown,O
 0x7100a9a808,244,CTrainUsableComponentCutScene::refl_GetClass,reflection,game,O
@@ -3968,7 +3968,7 @@ address,size,name,name_source,subsystem,status
 0x7100a9fad0,8,fn_7100a9fad0,unknown,unknown,O
 0x7100a9fad8,756,fn_7100a9fad8,unknown,unknown,U
 0x7100a9fdcc,512,fn_7100a9fdcc,unknown,unknown,O
-0x7100a9ffcc,104,fn_7100a9ffcc,unknown,unknown,U
+0x7100a9ffcc,104,fn_7100a9ffcc,unknown,unknown,O
 0x7100aa0034,304,fn_7100aa0034,unknown,unknown,U
 0x7100aa0164,64,fn_7100aa0164,unknown,unknown,O
 0x7100aa01a4,312,fn_7100aa01a4,unknown,unknown,U
@@ -4980,7 +4980,7 @@ address,size,name,name_source,subsystem,status
 0x7100ad1de8,36,fn_7100ad1de8,unknown,unknown,O
 0x7100ad1e0c,40,fn_7100ad1e0c,unknown,unknown,O
 0x7100ad1e34,40,fn_7100ad1e34,unknown,unknown,O
-0x7100ad1e5c,84,fn_7100ad1e5c,unknown,unknown,U
+0x7100ad1e5c,84,fn_7100ad1e5c,unknown,unknown,O
 0x7100ad1eb0,8,fn_7100ad1eb0,unknown,unknown,O
 0x7100ad1eb8,12,fn_7100ad1eb8,unknown,unknown,O
 0x7100ad1ec4,64,fn_7100ad1ec4,unknown,unknown,O
@@ -5738,9 +5738,9 @@ address,size,name,name_source,subsystem,status
 0x7100af26fc,180,fn_7100af26fc,unknown,gui?,O
 0x7100af27b0,888,fn_7100af27b0,unknown,gui?,U
 0x7100af2b28,108,fn_7100af2b28,unknown,gui?,O
-0x7100af2b94,488,fn_7100af2b94,unknown,gui?,U
+0x7100af2b94,488,fn_7100af2b94,unknown,gui?,O
 0x7100af2d7c,56,fn_7100af2d7c,unknown,gui?,O
-0x7100af2db4,228,fn_7100af2db4,unknown,gui?,U
+0x7100af2db4,228,fn_7100af2db4,unknown,gui?,O
 0x7100af2e98,160,fn_7100af2e98,unknown,gui?,O
 0x7100af2f38,28,fn_7100af2f38,unknown,gui?,O
 0x7100af2f54,8,fn_7100af2f54,unknown,gui?,O

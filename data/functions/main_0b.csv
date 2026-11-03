@@ -1453,7 +1453,7 @@ address,size,name,name_source,subsystem,status
 0x7100b37528,352,GUI::CMapMenuController::refl_InitClass,reflection,gui,O
 0x7100b37688,620,fn_7100b37688,unknown,unknown,O
 0x7100b378f4,384,fn_7100b378f4,unknown,unknown,O
-0x7100b37a80,256,fn_7100b37a80,unknown,unknown,U
+0x7100b37a80,256,fn_7100b37a80,unknown,unknown,O
 0x7100b37b80,272,fn_7100b37b80,unknown,unknown,U
 0x7100b37c90,2432,fn_7100b37c90,unknown,unknown,U
 0x7100b38610,316,fn_7100b38610,unknown,unknown,O
@@ -1557,13 +1557,13 @@ address,size,name,name_source,subsystem,status
 0x7100b46e10,312,fn_7100b46e10,unknown,unknown,U
 0x7100b46f48,164,fn_7100b46f48,unknown,unknown,U
 0x7100b46fec,420,fn_7100b46fec,unknown,unknown,U
-0x7100b47190,240,fn_7100b47190,unknown,unknown,U
+0x7100b47190,240,fn_7100b47190,unknown,unknown,O
 0x7100b47280,624,fn_7100b47280,unknown,unknown,U
 0x7100b474f0,104,fn_7100b474f0,unknown,unknown,O
 0x7100b47558,4,fn_7100b47558,unknown,unknown,O
 0x7100b4755c,120,fn_7100b4755c,unknown,unknown,O
 0x7100b475d4,496,fn_7100b475d4,unknown,unknown,U
-0x7100b477c4,244,fn_7100b477c4,unknown,unknown,U
+0x7100b477c4,244,fn_7100b477c4,unknown,unknown,O
 0x7100b478b8,140,fn_7100b478b8,unknown,unknown,O
 0x7100b47944,8,fn_7100b47944,unknown,unknown,O
 0x7100b4794c,8,fn_7100b4794c,unknown,unknown,O
@@ -1705,7 +1705,7 @@ address,size,name,name_source,subsystem,status
 0x7100b4d03c,4,operator.delete,symbol,unknown,O
 0x7100b4d040,172,fn_7100b4d040,unknown,unknown,O
 0x7100b4d0ec,292,fn_7100b4d0ec,unknown,unknown,m
-0x7100b4d210,344,fn_7100b4d210,unknown,unknown,U
+0x7100b4d210,344,fn_7100b4d210,unknown,unknown,O
 0x7100b4d368,104,fn_7100b4d368,unknown,unknown,U
 0x7100b4d3d0,16,fn_7100b4d3d0,unknown,unknown,O
 0x7100b4d3e0,4,operator.delete,symbol,unknown,O
@@ -1728,7 +1728,7 @@ address,size,name,name_source,subsystem,status
 0x7100b4f9f0,172,fn_7100b4f9f0,unknown,unknown,O
 0x7100b4fa9c,316,fn_7100b4fa9c,unknown,unknown,m
 0x7100b4fbd8,252,fn_7100b4fbd8,unknown,unknown,O
-0x7100b4fcd4,204,fn_7100b4fcd4,unknown,unknown,U
+0x7100b4fcd4,204,fn_7100b4fcd4,unknown,unknown,O
 0x7100b4fda0,4,operator.delete,symbol,unknown,O
 0x7100b4fdb0,172,fn_7100b4fdb0,unknown,unknown,O
 0x7100b4fe5c,408,fn_7100b4fe5c,unknown,unknown,U
@@ -1763,14 +1763,14 @@ address,size,name,name_source,subsystem,status
 0x7100b524e8,104,fn_7100b524e8,unknown,unknown,O
 0x7100b52550,292,fn_7100b52550,unknown,unknown,m
 0x7100b52674,1036,fn_7100b52674,unknown,unknown,U
-0x7100b52a80,468,fn_7100b52a80,unknown,unknown,U
+0x7100b52a80,468,fn_7100b52a80,unknown,unknown,O
 0x7100b52c54,688,fn_7100b52c54,unknown,unknown,U
 0x7100b52f04,924,fn_7100b52f04,unknown,unknown,U
 0x7100b532a0,424,fn_7100b532a0,unknown,unknown,U
 0x7100b53448,1128,fn_7100b53448,unknown,unknown,U
 0x7100b538b0,660,fn_7100b538b0,unknown,unknown,U
-0x7100b53b44,532,fn_7100b53b44,unknown,unknown,U
-0x7100b53d58,584,fn_7100b53d58,unknown,unknown,U
+0x7100b53b44,532,fn_7100b53b44,unknown,unknown,O
+0x7100b53d58,584,fn_7100b53d58,unknown,unknown,O
 0x7100b53fa0,560,fn_7100b53fa0,unknown,unknown,U
 0x7100b541d0,472,fn_7100b541d0,unknown,unknown,U
 0x7100b543a8,112,fn_7100b543a8,unknown,unknown,O
@@ -2031,7 +2031,7 @@ address,size,name,name_source,subsystem,status
 0x7100b620bc,856,fn_7100b620bc,unknown,gui?,O
 0x7100b62414,352,GUI::CPowerDescriptionButton::refl_InitClass,reflection,gui,O
 0x7100b62574,380,fn_7100b62574,unknown,gui?,O
-0x7100b626f0,376,fn_7100b626f0,unknown,gui?,U
+0x7100b626f0,376,fn_7100b626f0,unknown,gui?,O
 0x7100b62868,408,fn_7100b62868,unknown,gui?,O
 0x7100b62a00,1436,fn_7100b62a00,unknown,gui?,U
 0x7100b62f9c,212,fn_7100b62f9c,unknown,gui?,U
@@ -2052,11 +2052,11 @@ address,size,name,name_source,subsystem,status
 0x7100b63534,352,GUI::CPowerDescriptionComposition::refl_InitClass,reflection,gui,O
 0x7100b63694,400,fn_7100b63694,unknown,gui?,U
 0x7100b63824,36,fn_7100b63824,unknown,gui?,O
-0x7100b63848,892,fn_7100b63848,unknown,gui?,U
+0x7100b63848,892,fn_7100b63848,unknown,gui?,O
 0x7100b63bc4,224,fn_7100b63bc4,unknown,gui?,O
 0x7100b63ca4,592,fn_7100b63ca4,unknown,gui?,U
 0x7100b63ef4,344,fn_7100b63ef4,unknown,gui?,U
-0x7100b6404c,384,fn_7100b6404c,unknown,gui?,U
+0x7100b6404c,384,fn_7100b6404c,unknown,gui?,O
 0x7100b641cc,196,fn_7100b641cc,unknown,gui?,U
 0x7100b64290,476,fn_7100b64290,unknown,gui?,U
 0x7100b6446c,28,fn_7100b6446c,unknown,gui?,O
@@ -2374,7 +2374,7 @@ address,size,name,name_source,subsystem,status
 0x7100b79c6c,352,GUI::CSlotInfoComposition::refl_InitClass,reflection,gui,O
 0x7100b79dcc,4,fn_7100b79dcc,unknown,unknown,O
 0x7100b79dd0,36,fn_7100b79dd0,unknown,unknown,O
-0x7100b79df4,260,fn_7100b79df4,unknown,unknown,U
+0x7100b79df4,260,fn_7100b79df4,unknown,unknown,O
 0x7100b79ef8,4088,fn_7100b79ef8,unknown,unknown,U
 0x7100b7aef0,140,"std::__1::basic_stringstream<char, std::__1::char_traits<char>, std::__1::allocator<char>>::~basic_stringstream",symbol,runtime,L
 0x7100b7af7c,196,fn_7100b7af7c,unknown,runtime?,L
@@ -2824,7 +2824,7 @@ address,size,name,name_source,subsystem,status
 0x7100b892d4,88,fn_7100b892d4,unknown,unknown,O
 0x7100b8932c,352,fn_7100b8932c,unknown,unknown,O
 0x7100b8948c,640,fn_7100b8948c,unknown,unknown,O
-0x7100b8970c,328,fn_7100b8970c,unknown,unknown,U
+0x7100b8970c,328,fn_7100b8970c,unknown,unknown,O
 0x7100b89854,1840,fn_7100b89854,unknown,unknown,U
 0x7100b89f84,432,fn_7100b89f84,unknown,unknown,U
 0x7100b8a134,756,fn_7100b8a134,unknown,unknown,O
@@ -5135,7 +5135,7 @@ address,size,name,name_source,subsystem,status
 0x7100bd2eb0,388,CCharClassSetDesiredViewDirToPlayerEvent::refl_InitClass,reflection,game/characters,O
 0x7100bd3034,4,fn_7100bd3034,unknown,game/characters?,O
 0x7100bd3038,36,fn_7100bd3038,unknown,game/characters?,O
-0x7100bd305c,224,fn_7100bd305c,unknown,game/characters?,U
+0x7100bd305c,224,fn_7100bd305c,unknown,game/characters?,O
 0x7100bd313c,28,fn_7100bd313c,unknown,game/characters?,O
 0x7100bd3158,12,fn_7100bd3158,unknown,game/characters?,O
 0x7100bd3164,8,fn_7100bd3164,unknown,game/characters?,O
