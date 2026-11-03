@@ -106,6 +106,7 @@ MAX_RESULTS = 16    # call results a mutation picks from: the first calls' (a lo
 SWEEP_WORDS = 8     # before them, each of the first words read is set to each constant the function compares with
 POINTER = pcode_emu.ARENA + 0x7000100  # a valid pointer into the arena (mutation_values' too)
 REPAIRS = 96        # runs that set a crashing run's made-up pointers to POINTER, at most
+CUT_REPAIRS = 16    # of them, repairs of a run cut off in a loop (each may run to the step limit)
 # The repairs' objects, one per repair, POINTER + 1 MiB * k: that is Machine.setup's argument object
 # x(k-1) of seed 7 (ARENA + 1 MiB * (seed * 16 + i + 1)), so seed 7's start here instead, above every
 # seed's. (Only seed 7's moved: the arena words the others' repairs read are the ones they ended on.)
@@ -412,6 +413,7 @@ class Oracle:
             if p is not None:
                 self.preset_orig[pcode_emu.BASE + p] = 1
         self.orig_runs: dict[int, list] = {}
+        self.retry_runs: dict = {}  # (address, seed, overrides) -> the original's run at RETRY_SCALE (check)
         self.dicts: dict[int, tuple] = {}
 
     def image_word(self, a: int) -> int:
@@ -530,7 +532,7 @@ class Oracle:
                 # out-parameter, or a word it read, as 1; 71004f0ab8's `cmp x20, w8, uxtw` over billions)
                 todo = ([r for r in runs if not isinstance(r[2], str) and r[2].fault is not None][:2]
                         + [r for r in runs if not isinstance(r[2], str) and r[2].fault is None and r[2].cut][:1])
-                budget = REPAIRS
+                budget, cut_budget = REPAIRS, CUT_REPAIRS
                 while todo and budget > 0:
                     seed, ovr, base = todo.pop(0)
                     words = [w for w in base.read_words if mutable(w)]
@@ -554,13 +556,16 @@ class Oracle:
                             for kv in ([(key, value)] + ([(key, REPAIR_POINTER)] if value == POINTER else []))]
                     hit = set()
                     for key, value in keys:
-                        if (len(seen) * 4 >= size and ended()) or budget <= 0:
+                        if (len(seen) * 4 >= size and ended()) or budget <= 0 \
+                                or (base.fault is None and cut_budget <= 0):
                             break
                         if key in ovr or key in hit:
                             continue
                         if value == REPAIR_POINTER and seed == REPAIR_ALIASED_SEED:
                             continue  # (seed 7's first try was there already)
                         budget -= 1
+                        if base.fault is None:
+                            cut_budget -= 1  # (each runs to the step limit: CUT_REPAIRS bounds their cost)
                         if value == POINTER:  # (each repair its own object: two would alias, 71006c3e40)
                             value = (REPAIR_POINTER if seed == REPAIR_ALIASED_SEED else POINTER) + 0x100000 * len(ovr)
                         elif value == REPAIR_POINTER:
@@ -673,12 +678,23 @@ class Oracle:
         if not agreed and retry:
             scale = pcode_emu.RETRY_SCALE
             for seed, ovr in retry:
-                try:
-                    mo = self.run_original(addr, seed, ovr, scale)
-                except pcode_emu.Inconclusive as e:
-                    why = f"original: {e} (with {scale}x the limits)"
+                # (the original's long run is the same for every attempt of the function: run once.
+                # Still cut off, no lift can agree on it, and its prefix was compared at 1x: the
+                # lift's long run is skipped. Those two were most of the whole binary's last hour.)
+                key = (addr, seed, tuple(sorted(ovr.items(), key=repr)))
+                if key not in self.retry_runs:
+                    try:
+                        self.retry_runs[key] = self.run_original(addr, seed, ovr, scale)
+                    except pcode_emu.Inconclusive as e:
+                        self.retry_runs[key] = f"original: {e} (with {scale}x the limits)"
+                mo = self.retry_runs[key]
+                if isinstance(mo, str):
+                    why = mo
                     continue
                 covered |= mo.visited
+                if mo.cut:
+                    why = f"the original was cut off ({mo.cut}) (also with {scale}x the limits)"
+                    continue
                 v, d = one(seed, ovr, mo, scale)
                 if v == "fail":
                     return "fail", f"{d} (with {scale}x the limits)", agreed, covered
@@ -719,6 +735,7 @@ def _check(job: tuple[int, list]) -> tuple[int, int | None, dict, str, str]:
     its info, the verdict that rejected it, debug text)."""
     a, attempts = job
     oracle = _CTX["oracle"]
+    oracle.retry_runs.clear()  # (one function's long runs at a time)
     fail, debug = "", []
     for k, ret in attempts:
         try:
