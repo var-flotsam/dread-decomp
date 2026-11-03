@@ -150,6 +150,37 @@ Quirks pinned as they are: `hostenv.cxxfilt` sorts toolchain folders by name (`l
 `gen_tables.rush_float` spells -100.0 as `-1e+02f`. `gen_functions_csv.main()` does its sharding and status
 merge inline, so only its rules are tested; moving that into a function would make it testable.
 
+**Rounds 31-37: the same fan-out as an unattended loop (2026-11-03, branch `claude/project-thread-czsmeu`).**
+674 functions to `O` (118, 93, 93, 107, 82, 88, 93), one batch about every 30 minutes. Boot slice: `O` 2,298 to 2,342
+(32.21%), usable 42.19% to 42.58%; whole binary `O` 86,827 to 87,501 (56.44%), usable 58.52% to 58.94%. From round 32 a
+workflow runs each batch: three matching agents (brief `build/BRIEF_NIGHT.md`), then one integrator agent
+(`build/INTEGRATE.md`) that restores any tracked file an agent changed, aligns declarations until `decl_check --base`
+passes, runs `verify.py`, commits and pushes only on PASS, and the loop stops on a failure. Stuck addresses accumulate in
+`build/stuck_all.txt` so later rounds skip them.
+- **CI's port compile is a separate gate.** One batch file used `nn::nfp::State_NonInitialized`, which the port's runtime
+  header (`port/runtime/include/nn/nfp.h`) did not name; `verify.py` doesn't run the x86-64 sweep, so the integrator now
+  runs `tools/port_sweep.py` before pushing.
+- **The self-hosted `check` job fails as "lost communication" when the PC is saturated**; it passes on the next push.
+
+**Rounds 28-30: three-agent fan-outs by hand (2026-11-02, branch `claude/project-thread-czsmeu`).**
+276 functions to `O` (96, 91, 89). Boot slice: `O` 2,258 to 2,298 (31.82%), usable 41.80% to 42.19%; whole binary `O`
+86,551 to 86,827 (56.01%), usable 58.31% to 58.52%. Three agents per round on thirds of the `U` bytes, same brief as round
+27, now 22-38 minutes each: about 65 functions per agent-hour, and 276 in 1.5 hours of wall clock with the rounds
+overlapping (about 190 an hour); about 2.6 M subagent tokens in all, about 9.5 k per function.
+- **Rounds can overlap only through a skip rule.** Matches stay `U` in `data/functions/` until `check.py --update`, so a
+  round started before the previous one is verified must skip any address `src/` already defines (`grep -rlE
+  "fn_<addr>\("` outside `src/lifted`) and the earlier rounds' stuck lists.
+- **An agent overwrote a tracked file** (round 27's CDroppableMissileComponent constructors) despite the brief; check
+  `git status` for `M` lines before verifying and move such content to a `_2` file.
+- **Declarations drift every round** (about ten conflicting signatures per round, plus re-declarations of symbols in
+  `include/`); one agent with the alignment rules (existing signature wins, forward-declare, cast at the call; a call with
+  more arguments than the existing declaration goes through a cast function pointer) clears them in three minutes.
+- Levers: callers of a shared base constructor (`hubs.py --callers fn_X`) list whole families of small constructors
+  still `U` (23 of one agent's 36); reflection descriptors' copy and move assignments (still `U`) in families; stores the
+  original reloads after a store to another type need a `may_alias` struct or a plain pointer to the field, a `may_alias`
+  member typedef alone does nothing; a callback stored in a link is a GOT RELOC to a .text address, declare it `fn_<addr>`;
+  "first that holds" loops as `do { r = f(*it); ++it; } while (it != end && !r)`; hash lookups as a `BucketFor` returning
+  the bucket or null.
 **Lifter and oracle: round 5's second batch and round 6 (2026-11-03, branches `claude/project-thread-zgkpk3-r5`
 and `-r6`).** Whole-binary runs: lifted_all8 (r5's e401d554) 16,062 of 16,141 accepted against lifted_all7's
 16,047 (22 gained, 7 lost), and lifted_all9 (r6's bf08b68a) 16,063, with none lost against all8. All8's 7 losses are

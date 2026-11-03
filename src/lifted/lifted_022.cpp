@@ -38,12 +38,6 @@ typedef s32 __attribute__((may_alias)) a_s32;
 typedef f32 __attribute__((may_alias)) a_f32;
 typedef f64 __attribute__((may_alias)) a_f64;
 
-namespace callee { char* fn_71000666a0(char*, char*); }
-char* fn_71002202d8(char* p0, char* p1) {
-    char* r0_0 = (p0) + 2432;
-    return callee::fn_71000666a0(r0_0, p1);
-}
-
 extern char g_unk_7101a204c0[];
 namespace callee { char* fn_7100083c00(char*); }
 char* fn_7100220310(char* p0) {
