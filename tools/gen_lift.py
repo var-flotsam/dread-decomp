@@ -149,6 +149,10 @@ GUARD_ACQUIRE = 0x7101238da0  # __cxa_guard_acquire
 # Imports (mangled) that return a class object through x8: no facts (abi_facts knows the C
 # library by name only), yet the caller passes the result's address in x8 (71007ab7d8).
 SRET_IMPORTS = frozenset(f"_ZNSt3__19to_stringE{c}" for c in "ijlmxyfde")
+# libm imports that return a float (semantic mode types their call so: Lifter.step's bl)
+LIBM_IMPORTS = frozenset(f + s for f in ("sqrt", "sin", "cos", "tan", "asin", "acos", "atan", "atan2", "exp",
+                                         "log", "log10", "pow", "fmod", "floor", "ceil", "sinh", "cosh",
+                                         "tanh", "nextafter") for s in ("", "f"))
 DSO_HANDLE = 0x7101a19000  # __dso_handle (passed to __cxa_atexit): an address, not the string ""
 GUARDS = {
     0x7101cba070: ("lift_guard::EnsureStringPool();", [0x710007fdb4]),
@@ -969,6 +973,39 @@ class Lifter:
             stack.append((f"*(u64*)(stk + {at:#x})", "u64"))
         return ints + stack + floats
 
+    def type_pending_float(self, j: int) -> None:
+        """Semantic mode: the pending call's result as a float when s0 or d0 is read from
+        instruction j on (address order) before it is written; a whole-register copy of v0
+        (`mov v8.16b, v0.16b`, fn_71009e754c) reads it at the width its copy is read next."""
+        # Only a read in the straight line from j, before x0 is read or either is written and before
+        # any branch or call: address order past them found an unrelated s0 (fn_7100013734, whose
+        # calls then lost their x0 results to the retype)
+        for z in self.ins[j:]:
+            reads, writes = ({regname(q) for q in r} for r in z.regs_access())
+            if z.mnemonic in ("fmov", "movi") and z.operands[-1].type != arm64.ARM64_OP_REG:
+                reads = set()  # (capstone counts an immediate fmov's destination as read)
+            if reads & {"s0", "d0", "q0", "v0"}:
+                break
+            if reads & {"x0", "w0"} or writes & {"x0", "w0", "s0", "d0", "q0", "v0"} \
+                    or z.mnemonic in ("bl", "blr", "b", "br", "ret", "cbz", "cbnz", "tbz", "tbnz") \
+                    or z.mnemonic.startswith("b."):
+                return
+        else:
+            return
+        y = self.ins[j]
+        if y.mnemonic == "mov" and (g := re.fullmatch(r"v(\d+)\.16b, v0\.16b", y.op_str)):
+            for z in self.ins[j + 1:]:
+                got = re.findall(rf"\b([sd]){g.group(1)}\b", z.op_str)
+                if got:
+                    self.read(got[0] + "0")
+                    return
+            return
+        saved, self.pos = self.pos, j - 1
+        r = self.next_v0_read()
+        self.pos = saved
+        if r:
+            self.read(r)
+
     def next_v0_read(self) -> str | None:
         """The first read of s0 or d0 after this instruction in address order ("s0" or "d0"),
         None when v0 is written first, read as another width, or never read."""
@@ -1047,6 +1084,12 @@ class Lifter:
                 # (no direct caller: the incoming x0-x7 not written since are passed on, as own_args
                 # made them parameters; a written one holds its value, a clobbered one 0)
                 ints = max(ints, own.ints)
+            if sem:
+                # (and every argument register written since the last call, abi_facts' rule for an
+                # indirect call: the original's s2 computed before a `blr`, fn_7100900c44)
+                w = self.s.written
+                ints = max(ints, max([k + 1 for k in w if k < 8], default=0))
+                floats = max(floats, max([k - 99 for k in w if 100 <= k < 108], default=0))
             if sem and (stack := self.stack_args_before()):
                 if not self.frame:
                     raise Unsupported("indirect call with stack arguments")
@@ -2595,7 +2638,12 @@ class Lifter:
             # Until s0/d0 is read (then the callee returns a float; see retype_call).
             var = self.s.vals[0][0] if 0 in self.s.vals else "X0"
             self.s.fcall = (len(self.body) - 1, var, call) + self.last_call
-            if m == "bl" and "semantic" in self.opts and self.main is not None and self.main(o[0].imm) == {100}:
+            if m == "bl" and "semantic" in self.opts and self.orig.plt_import(o[0].imm) in LIBM_IMPORTS:
+                # A libm import returns its float in s0/d0 (an inlined fsqrt's sqrtf fallback for a
+                # NaN, its result passed on past the join: fn_71010c1da0)
+                name = self.orig.plt_import(o[0].imm)
+                self.read(("s" if name.endswith("f") else "d") + "0")
+            elif m == "bl" and "semantic" in self.opts and self.main is not None and self.main(o[0].imm) == {100}:
                 # Every caller reads the float result: typed so here too, even where the result is
                 # read only past a branch (fn_7100713e2c's call at +0x50, read at the join +0x110)
                 # The width is the next read's in address order (strtod's d0, 71010b2500)
@@ -3084,6 +3132,11 @@ class FlatLifter(Lifter):
                 self.own_args()
             for self.pos, x in enumerate(ins):
                 if x.address in targets and (x.address not in self.gskip or x.address in self.jskip):
+                    if "semantic" in self.opts and self.s.fcall and self.live:
+                        # A call's float result read past the label (the label forgets the call):
+                        # typed before it, so this path's S0 is the result (fn_71010ee560's
+                        # fmax after the call, joined by a path that sets s0 itself)
+                        self.type_pending_float(self.pos)
                     # (a jump table's adr, skipped for the switch, can be a branch target too)
                     self.body.append(f"L_{x.address:x}:;")
                     self.s.cmp = None if x.address != addr else self.s.cmp
@@ -3164,6 +3217,8 @@ class FlatLifter(Lifter):
                     self.s.written.discard(self.key(regname(o[0].reg)))  # the target isn't an argument
                     self.terminate("tail", self.call("", ptr))
                 elif m == "b":
+                    if "semantic" in self.opts and self.s.fcall and addr <= o[0].imm < end:
+                        self.type_pending_float((o[0].imm - addr) // 4)  # (as at a label, above)
                     self.edge(o[0].imm)
                     self.line(f"goto L_{o[0].imm:x};")
                 else:
