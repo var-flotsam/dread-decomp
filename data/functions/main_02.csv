@@ -2140,7 +2140,7 @@ address,size,name,name_source,subsystem,status
 0x7100244e90,48,fn_7100244e90,unknown,unknown,O
 0x7100244ec0,88,fn_7100244ec0,unknown,unknown,O
 0x7100244f18,108,fn_7100244f18,unknown,unknown,O
-0x7100244f84,284,fn_7100244f84,unknown,unknown,U
+0x7100244f84,284,fn_7100244f84,unknown,unknown,O
 0x71002450a0,12,fn_71002450a0,unknown,unknown,O
 0x71002450ac,8,fn_71002450ac,unknown,unknown,O
 0x71002450b4,12,fn_71002450b4,unknown,unknown,O

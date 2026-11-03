@@ -398,7 +398,7 @@ address,size,name,name_source,subsystem,status
 0x7100e14390,388,CArenaManager::CTunableArenaManager::refl_InitClass,reflection,game,O
 0x7100e14514,696,fn_7100e14514,unknown,unknown,O
 0x7100e147cc,64,fn_7100e147cc,unknown,unknown,O
-0x7100e1480c,140,fn_7100e1480c,unknown,unknown,U
+0x7100e1480c,140,fn_7100e1480c,unknown,unknown,O
 0x7100e14898,8,fn_7100e14898,unknown,unknown,O
 0x7100e148a0,104,fn_7100e148a0,unknown,unknown,U
 0x7100e14908,900,fn_7100e14908,unknown,unknown,U
@@ -588,7 +588,7 @@ address,size,name,name_source,subsystem,status
 0x7100e2f9a4,92,fn_7100e2f9a4,unknown,unknown,O
 0x7100e2fa00,92,fn_7100e2fa00,unknown,unknown,O
 0x7100e2fa5c,328,fn_7100e2fa5c,unknown,unknown,U
-0x7100e2fba4,504,fn_7100e2fba4,unknown,unknown,U
+0x7100e2fba4,504,fn_7100e2fba4,unknown,unknown,O
 0x7100e2fd9c,572,fn_7100e2fd9c,unknown,unknown,O
 0x7100e2ffd8,388,fn_7100e2ffd8,unknown,unknown,O
 0x7100e3015c,604,fn_7100e3015c,unknown,unknown,O
@@ -2332,7 +2332,7 @@ address,size,name,name_source,subsystem,status
 0x7100e7c980,1148,fn_7100e7c980,unknown,unknown,O
 0x7100e7cdfc,160,fn_7100e7cdfc,unknown,unknown,O
 0x7100e7ce9c,5516,fn_7100e7ce9c,unknown,unknown,O
-0x7100e7e428,356,fn_7100e7e428,unknown,unknown,U
+0x7100e7e428,356,fn_7100e7e428,unknown,unknown,O
 0x7100e7e58c,372,fn_7100e7e58c,unknown,unknown,O
 0x7100e7e700,380,fn_7100e7e700,unknown,unknown,O
 0x7100e7e87c,380,fn_7100e7e87c,unknown,unknown,O
@@ -2976,8 +2976,8 @@ address,size,name,name_source,subsystem,status
 0x7100eadcf8,124,fn_7100eadcf8,unknown,unknown,U
 0x7100eadd74,20,fn_7100eadd74,unknown,unknown,O
 0x7100eadd88,108,fn_7100eadd88,unknown,unknown,U
-0x7100eaddf4,144,fn_7100eaddf4,unknown,unknown,U
-0x7100eade84,144,fn_7100eade84,unknown,unknown,U
+0x7100eaddf4,144,fn_7100eaddf4,unknown,unknown,O
+0x7100eade84,144,fn_7100eade84,unknown,unknown,O
 0x7100eadf14,12,fn_7100eadf14,unknown,unknown,O
 0x7100eadf20,8,fn_7100eadf20,unknown,unknown,O
 0x7100eadf28,12,fn_7100eadf28,unknown,unknown,O

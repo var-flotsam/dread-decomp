@@ -1713,7 +1713,7 @@ address,size,name,name_source,subsystem,status
 0x7100b4d4a4,4364,fn_7100b4d4a4,unknown,unknown,U
 0x7100b4e5b0,2004,fn_7100b4e5b0,unknown,unknown,U
 0x7100b4ed84,72,fn_7100b4ed84,unknown,unknown,O
-0x7100b4edcc,144,fn_7100b4edcc,unknown,unknown,U
+0x7100b4edcc,144,fn_7100b4edcc,unknown,unknown,O
 0x7100b4ee5c,144,fn_7100b4ee5c,unknown,unknown,O
 0x7100b4eef0,388,fn_7100b4eef0,unknown,unknown,O
 0x7100b4f074,304,fn_7100b4f074,unknown,unknown,U

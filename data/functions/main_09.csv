@@ -10,7 +10,7 @@ address,size,name,name_source,subsystem,status
 0x7100900c0c,56,fn_7100900c0c,unknown,unknown,O
 0x7100900c44,176,fn_7100900c44,unknown,unknown,U
 0x7100900cf4,1104,fn_7100900cf4,unknown,unknown,U
-0x7100901144,152,fn_7100901144,unknown,unknown,U
+0x7100901144,152,fn_7100901144,unknown,unknown,O
 0x71009011dc,92,fn_71009011dc,unknown,unknown,O
 0x7100901238,40,fn_7100901238,unknown,unknown,O
 0x7100901260,4,fn_7100901260,unknown,unknown,O
@@ -329,7 +329,7 @@ address,size,name,name_source,subsystem,status
 0x710090bef8,12,fn_710090bef8,unknown,unknown,O
 0x710090bf04,8,fn_710090bf04,unknown,unknown,O
 0x710090bf0c,12,fn_710090bf0c,unknown,unknown,O
-0x710090bf18,120,fn_710090bf18,unknown,unknown,U
+0x710090bf18,120,fn_710090bf18,unknown,unknown,O
 0x710090bf90,212,fn_710090bf90,unknown,unknown,O
 0x710090c064,44,fn_710090c064,unknown,unknown,O
 0x710090c090,224,fn_710090c090,unknown,unknown,O
@@ -960,7 +960,7 @@ address,size,name,name_source,subsystem,status
 0x710091eb20,268,fn_710091eb20,unknown,unknown,U
 0x710091ec2c,780,fn_710091ec2c,unknown,unknown,U
 0x710091ef38,456,fn_710091ef38,unknown,unknown,O
-0x710091f100,160,fn_710091f100,unknown,unknown,U
+0x710091f100,160,fn_710091f100,unknown,unknown,O
 0x710091f1a0,140,fn_710091f1a0,unknown,unknown,O
 0x710091f22c,380,fn_710091f22c,unknown,unknown,U
 0x710091f3a8,788,fn_710091f3a8,unknown,unknown,U
@@ -1148,7 +1148,7 @@ address,size,name,name_source,subsystem,status
 0x7100924c78,4,fn_7100924c78,unknown,game/components?,O
 0x7100924c7c,388,CMagnetSurfaceHuskComponent::refl_InitClass,reflection,game/components,O
 0x7100924e00,120,fn_7100924e00,unknown,game/components?,O
-0x7100924e78,184,fn_7100924e78,unknown,game/components?,U
+0x7100924e78,184,fn_7100924e78,unknown,game/components?,O
 0x7100924f30,36,fn_7100924f30,unknown,game/components?,O
 0x7100924f54,112,fn_7100924f54,unknown,game/components?,O
 0x7100924fc4,4,fn_7100924fc4,unknown,game/components?,O
