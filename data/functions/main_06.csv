@@ -4066,7 +4066,7 @@ address,size,name,name_source,subsystem,status
 0x71006a12c0,4,operator.delete,symbol,unknown,O
 0x71006a12c4,4,fn_71006a12c4,unknown,unknown,O
 0x71006a12c8,4,operator.delete,symbol,unknown,O
-0x71006a12cc,56,fn_71006a12cc,unknown,unknown,U
+0x71006a12cc,56,fn_71006a12cc,unknown,unknown,O
 0x71006a1304,24,fn_71006a1304,unknown,unknown,O
 0x71006a131c,4,fn_71006a131c,unknown,unknown,O
 0x71006a1320,4,operator.delete,symbol,unknown,O

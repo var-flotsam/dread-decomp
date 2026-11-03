@@ -2939,7 +2939,7 @@ address,size,name,name_source,subsystem,status
 0x71005a4e9c,556,fn_71005a4e9c,unknown,unknown,U
 0x71005a50c8,36,fn_71005a50c8,unknown,unknown,O
 0x71005a50ec,36,fn_71005a50ec,unknown,unknown,O
-0x71005a5110,60,fn_71005a5110,unknown,unknown,U
+0x71005a5110,60,fn_71005a5110,unknown,unknown,O
 0x71005a514c,332,fn_71005a514c,unknown,unknown,U
 0x71005a5298,4,fn_71005a5298,unknown,unknown,O
 0x71005a529c,92,fn_71005a529c,unknown,unknown,O
