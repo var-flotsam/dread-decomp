@@ -1,5 +1,5 @@
 address,size,name,name_source,subsystem,status
-0x7100600194,332,fn_7100600194,unknown,unknown,U
+0x7100600194,332,fn_7100600194,unknown,unknown,O
 0x71006002e0,500,fn_71006002e0,unknown,unknown,U
 0x71006004d4,608,fn_71006004d4,unknown,unknown,U
 0x7100600734,312,fn_7100600734,unknown,unknown,O
@@ -15,7 +15,7 @@ address,size,name,name_source,subsystem,status
 0x7100601a34,64,fn_7100601a34,unknown,unknown,O
 0x7100601a74,540,fn_7100601a74,unknown,unknown,U
 0x7100601c90,36,fn_7100601c90,unknown,unknown,O
-0x7100601cb4,364,fn_7100601cb4,unknown,unknown,U
+0x7100601cb4,364,fn_7100601cb4,unknown,unknown,O
 0x7100601e20,28,fn_7100601e20,unknown,unknown,O
 0x7100601e3c,132,fn_7100601e3c,unknown,unknown,O
 0x7100601ec0,8,fn_7100601ec0,unknown,unknown,O
@@ -1123,7 +1123,7 @@ address,size,name,name_source,subsystem,status
 0x7100626184,244,CNailuggerAcidBallMovementComponent::refl_GetClass,reflection,game/components,O
 0x7100626278,4,fn_7100626278,unknown,game/components?,O
 0x710062627c,352,CNailuggerAcidBallMovementComponent::refl_InitClass,reflection,game/components,O
-0x71006263dc,348,fn_71006263dc,unknown,unknown,U
+0x71006263dc,348,fn_71006263dc,unknown,unknown,O
 0x7100626538,196,fn_7100626538,unknown,unknown,O
 0x71006265fc,36,fn_71006265fc,unknown,unknown,O
 0x7100626620,112,fn_7100626620,unknown,unknown,O
@@ -1687,7 +1687,7 @@ address,size,name,name_source,subsystem,status
 0x71006408ec,8,fn_71006408ec,unknown,unknown,O
 0x71006408f4,8,fn_71006408f4,unknown,unknown,O
 0x71006408fc,28,fn_71006408fc,unknown,unknown,O
-0x7100640918,236,fn_7100640918,unknown,unknown,U
+0x7100640918,236,fn_7100640918,unknown,unknown,O
 0x7100640a04,12,fn_7100640a04,unknown,unknown,O
 0x7100640a10,240,fn_7100640a10,unknown,unknown,O
 0x7100640b00,4,fn_7100640b00,unknown,unknown,O
@@ -3747,8 +3747,8 @@ address,size,name,name_source,subsystem,status
 0x710068f63c,244,CCharClassScorpiusAIComponent::refl_GetClass,reflection,game/characters,O
 0x710068f730,3080,fn_710068f730,unknown,game/characters?,O
 0x7100690338,352,CCharClassScorpiusAIComponent::refl_InitClass,reflection,game/characters,O
-0x7100690498,296,fn_7100690498,unknown,unknown,U
-0x71006905c0,212,fn_71006905c0,unknown,unknown,U
+0x7100690498,296,fn_7100690498,unknown,unknown,O
+0x71006905c0,212,fn_71006905c0,unknown,unknown,O
 0x7100690694,36,fn_7100690694,unknown,unknown,O
 0x71006906b8,28,fn_71006906b8,unknown,unknown,O
 0x71006906d4,4,fn_71006906d4,unknown,unknown,O
@@ -3793,7 +3793,7 @@ address,size,name,name_source,subsystem,status
 0x7100691600,1708,fn_7100691600,unknown,unknown,U
 0x7100691cac,248,fn_7100691cac,unknown,unknown,O
 0x7100691da4,36,fn_7100691da4,unknown,unknown,O
-0x7100691dc8,448,fn_7100691dc8,unknown,unknown,U
+0x7100691dc8,448,fn_7100691dc8,unknown,unknown,O
 0x7100691f88,368,fn_7100691f88,unknown,unknown,U
 0x71006920f8,1704,fn_71006920f8,unknown,unknown,U
 0x71006927a0,76,fn_71006927a0,unknown,unknown,O
@@ -3928,7 +3928,7 @@ address,size,name,name_source,subsystem,status
 0x710069afac,460,fn_710069afac,unknown,unknown,U
 0x710069b178,436,fn_710069b178,unknown,unknown,U
 0x710069b32c,12,fn_710069b32c,unknown,unknown,O
-0x710069b338,216,fn_710069b338,unknown,unknown,U
+0x710069b338,216,fn_710069b338,unknown,unknown,O
 0x710069b410,1168,fn_710069b410,unknown,unknown,U
 0x710069b8a0,380,fn_710069b8a0,unknown,unknown,U
 0x710069ba1c,24,fn_710069ba1c,unknown,unknown,O
@@ -4330,7 +4330,7 @@ address,size,name,name_source,subsystem,status
 0x71006adda8,1004,fn_71006adda8,unknown,unknown,U
 0x71006ae194,104,fn_71006ae194,unknown,unknown,U
 0x71006ae1fc,224,fn_71006ae1fc,unknown,unknown,U
-0x71006ae2dc,420,fn_71006ae2dc,unknown,unknown,U
+0x71006ae2dc,420,fn_71006ae2dc,unknown,unknown,O
 0x71006ae480,928,fn_71006ae480,unknown,unknown,U
 0x71006ae820,296,fn_71006ae820,unknown,unknown,U
 0x71006ae948,1704,fn_71006ae948,unknown,unknown,U
@@ -5175,7 +5175,7 @@ address,size,name,name_source,subsystem,status
 0x71006d4188,172,fn_71006d4188,unknown,unknown,O
 0x71006d4234,172,fn_71006d4234,unknown,unknown,O
 0x71006d42e0,36,fn_71006d42e0,unknown,unknown,O
-0x71006d4304,340,fn_71006d4304,unknown,unknown,U
+0x71006d4304,340,fn_71006d4304,unknown,unknown,O
 0x71006d4458,4,fn_71006d4458,unknown,unknown,O
 0x71006d445c,68,fn_71006d445c,unknown,unknown,U
 0x71006d44a0,40,fn_71006d44a0,unknown,unknown,O
@@ -5359,7 +5359,7 @@ address,size,name,name_source,subsystem,status
 0x71006dc86c,4,fn_71006dc86c,unknown,unknown,O
 0x71006dc870,376,fn_71006dc870,unknown,unknown,U
 0x71006dc9e8,188,fn_71006dc9e8,unknown,unknown,O
-0x71006dcaa4,240,fn_71006dcaa4,unknown,unknown,U
+0x71006dcaa4,240,fn_71006dcaa4,unknown,unknown,O
 0x71006dcb94,252,fn_71006dcb94,unknown,unknown,U
 0x71006dcc90,252,fn_71006dcc90,unknown,unknown,U
 0x71006dcd8c,60,fn_71006dcd8c,unknown,unknown,O
@@ -5518,7 +5518,7 @@ address,size,name,name_source,subsystem,status
 0x71006e1960,244,behaviortree::CXParasiteGoToPointAction::refl_GetClass,reflection,ai/behaviortree,O
 0x71006e1a54,2092,fn_71006e1a54,unknown,ai/behaviortree?,O
 0x71006e2280,388,behaviortree::CXParasiteGoToPointAction::refl_InitClass,reflection,ai/behaviortree,O
-0x71006e2404,404,fn_71006e2404,unknown,ai/behaviortree?,U
+0x71006e2404,404,fn_71006e2404,unknown,ai/behaviortree?,O
 0x71006e2598,1540,fn_71006e2598,unknown,ai/behaviortree?,U
 0x71006e2b9c,716,fn_71006e2b9c,unknown,ai/behaviortree?,U
 0x71006e2e68,4,fn_71006e2e68,unknown,ai/behaviortree?,O

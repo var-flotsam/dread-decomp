@@ -4042,7 +4042,7 @@ address,size,name,name_source,subsystem,status
 0x7100aa4038,8,fn_7100aa4038,unknown,unknown,O
 0x7100aa4040,200,fn_7100aa4040,unknown,unknown,U
 0x7100aa4108,200,fn_7100aa4108,unknown,unknown,U
-0x7100aa41d0,216,fn_7100aa41d0,unknown,unknown,U
+0x7100aa41d0,216,fn_7100aa41d0,unknown,unknown,O
 0x7100aa42a8,124,fn_7100aa42a8,unknown,unknown,O
 0x7100aa4324,8,fn_7100aa4324,unknown,unknown,O
 0x7100aa432c,8,fn_7100aa432c,unknown,unknown,O
@@ -4341,7 +4341,7 @@ address,size,name,name_source,subsystem,status
 0x7100ab3af0,68,fn_7100ab3af0,unknown,game/characters?,O
 0x7100ab3b34,128,fn_7100ab3b34,unknown,game/characters?,O
 0x7100ab3bb4,68,fn_7100ab3bb4,unknown,game/characters?,O
-0x7100ab3bf8,224,fn_7100ab3bf8,unknown,game/characters?,U
+0x7100ab3bf8,224,fn_7100ab3bf8,unknown,game/characters?,O
 0x7100ab3ce0,160,fn_7100ab3ce0,unknown,game/characters?,O
 0x7100ab3d80,4,fn_7100ab3d80,unknown,game/characters?,O
 0x7100ab3d84,244,CCharClassMissileMovement::refl_GetClass,reflection,game/characters,O
@@ -5389,7 +5389,7 @@ address,size,name,name_source,subsystem,status
 0x7100adead0,36,fn_7100adead0,unknown,unknown,O
 0x7100adeaf4,228,fn_7100adeaf4,unknown,unknown,U
 0x7100adebd8,188,fn_7100adebd8,unknown,unknown,O
-0x7100adec94,168,fn_7100adec94,unknown,unknown,U
+0x7100adec94,168,fn_7100adec94,unknown,unknown,O
 0x7100aded3c,364,fn_7100aded3c,unknown,unknown,U
 0x7100adeeb0,240,fn_7100adeeb0,unknown,unknown,O
 0x7100adefa0,140,fn_7100adefa0,unknown,unknown,O

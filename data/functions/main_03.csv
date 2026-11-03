@@ -222,8 +222,8 @@ address,size,name,name_source,subsystem,status
 0x7100314998,4,fn_7100314998,unknown,unknown,O
 0x710031499c,4,operator.delete,symbol,unknown,O
 0x71003149a0,8,fn_71003149a0,unknown,unknown,O
-0x71003149a8,116,fn_71003149a8,unknown,unknown,U
-0x7100314a1c,128,fn_7100314a1c,unknown,unknown,U
+0x71003149a8,116,fn_71003149a8,unknown,unknown,O
+0x7100314a1c,128,fn_7100314a1c,unknown,unknown,O
 0x7100314a9c,8,fn_7100314a9c,unknown,unknown,O
 0x7100314aa4,8,fn_7100314aa4,unknown,unknown,O
 0x7100314aac,28,fn_7100314aac,unknown,unknown,O
@@ -435,8 +435,8 @@ address,size,name,name_source,subsystem,status
 0x7100324af0,260,fn_7100324af0,unknown,unknown,O
 0x7100324c00,260,fn_7100324c00,unknown,unknown,O
 0x7100324d10,260,fn_7100324d10,unknown,unknown,O
-0x7100324e14,116,fn_7100324e14,unknown,unknown,U
-0x7100324e88,128,fn_7100324e88,unknown,unknown,U
+0x7100324e14,116,fn_7100324e14,unknown,unknown,O
+0x7100324e88,128,fn_7100324e88,unknown,unknown,O
 0x7100324f08,8,fn_7100324f08,unknown,unknown,O
 0x7100324f10,8,fn_7100324f10,unknown,unknown,O
 0x7100324f18,28,fn_7100324f18,unknown,unknown,O
@@ -3912,7 +3912,7 @@ address,size,name,name_source,subsystem,status
 0x71003b437c,388,CAutclastChargeAttack::refl_InitClass,reflection,game/ai,O
 0x71003b4500,124,fn_71003b4500,unknown,unknown,O
 0x71003b457c,260,fn_71003b457c,unknown,unknown,U
-0x71003b4680,116,fn_71003b4680,unknown,unknown,U
+0x71003b4680,116,fn_71003b4680,unknown,unknown,O
 0x71003b46f4,36,fn_71003b46f4,unknown,unknown,O
 0x71003b4718,164,fn_71003b4718,unknown,unknown,O
 0x71003b47bc,508,fn_71003b47bc,unknown,unknown,U
@@ -3944,7 +3944,7 @@ address,size,name,name_source,subsystem,status
 0x71003b76a4,48,fn_71003b76a4,unknown,unknown,O
 0x71003b76d4,48,fn_71003b76d4,unknown,unknown,O
 0x71003b7704,372,fn_71003b7704,unknown,unknown,U
-0x71003b7878,128,fn_71003b7878,unknown,unknown,U
+0x71003b7878,128,fn_71003b7878,unknown,unknown,O
 0x71003b78f8,364,fn_71003b78f8,unknown,unknown,U
 0x71003b7a64,240,fn_71003b7a64,unknown,unknown,U
 0x71003b7b54,604,fn_71003b7b54,unknown,unknown,U

@@ -1271,7 +1271,7 @@ address,size,name,name_source,subsystem,status
 0x7100560164,224,fn_7100560164,unknown,unknown,O
 0x7100560244,248,fn_7100560244,unknown,unknown,O
 0x710056033c,224,fn_710056033c,unknown,unknown,O
-0x710056041c,484,fn_710056041c,unknown,unknown,U
+0x710056041c,484,fn_710056041c,unknown,unknown,O
 0x7100560600,748,fn_7100560600,unknown,unknown,U
 0x71005608ec,396,fn_71005608ec,unknown,unknown,U
 0x7100560a78,268,fn_7100560a78,unknown,unknown,U
@@ -3499,7 +3499,7 @@ address,size,name,name_source,subsystem,status
 0x71005b8aac,244,CCharClassHydrogigaAIComponent::refl_GetClass,reflection,game/characters,O
 0x71005b8ba0,2844,fn_71005b8ba0,unknown,game/characters?,O
 0x71005b96bc,352,CCharClassHydrogigaAIComponent::refl_InitClass,reflection,game/characters,O
-0x71005b981c,212,fn_71005b981c,unknown,unknown,U
+0x71005b981c,212,fn_71005b981c,unknown,unknown,O
 0x71005b98f0,236,fn_71005b98f0,unknown,unknown,U
 0x71005b99dc,36,fn_71005b99dc,unknown,unknown,O
 0x71005b9a00,184,fn_71005b9a00,unknown,unknown,U
@@ -5369,7 +5369,7 @@ address,size,name,name_source,subsystem,status
 0x71005fb3d4,836,fn_71005fb3d4,unknown,unknown,U
 0x71005fb718,1652,fn_71005fb718,unknown,unknown,U
 0x71005fbd8c,36,fn_71005fbd8c,unknown,unknown,O
-0x71005fbdb0,448,fn_71005fbdb0,unknown,unknown,U
+0x71005fbdb0,448,fn_71005fbdb0,unknown,unknown,O
 0x71005fbf70,56,fn_71005fbf70,unknown,unknown,O
 0x71005fbfa8,128,fn_71005fbfa8,unknown,unknown,O
 0x71005fc028,1572,fn_71005fc028,unknown,unknown,U
@@ -5403,6 +5403,6 @@ address,size,name,name_source,subsystem,status
 0x71005ff8c0,48,fn_71005ff8c0,unknown,unknown,O
 0x71005ff8f0,28,fn_71005ff8f0,unknown,unknown,O
 0x71005ff90c,32,fn_71005ff90c,unknown,unknown,O
-0x71005ff92c,148,fn_71005ff92c,unknown,unknown,U
-0x71005ff9c0,384,fn_71005ff9c0,unknown,unknown,U
+0x71005ff92c,148,fn_71005ff92c,unknown,unknown,O
+0x71005ff9c0,384,fn_71005ff9c0,unknown,unknown,O
 0x71005ffb40,1620,fn_71005ffb40,unknown,unknown,U

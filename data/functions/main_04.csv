@@ -680,7 +680,7 @@ address,size,name,name_source,subsystem,status
 0x71004223d8,140,fn_71004223d8,unknown,game/characters?,O
 0x7100422464,12,fn_7100422464,unknown,game/characters?,O
 0x7100422470,76,fn_7100422470,unknown,game/characters?,O
-0x71004224bc,116,fn_71004224bc,unknown,game/characters?,U
+0x71004224bc,116,fn_71004224bc,unknown,game/characters?,O
 0x7100422530,160,fn_7100422530,unknown,game/characters?,O
 0x71004225d0,4,fn_71004225d0,unknown,game/characters?,O
 0x71004225d4,244,CCharClassChozoCommanderSentenceSphereAttack::refl_GetClass,reflection,game/characters,O

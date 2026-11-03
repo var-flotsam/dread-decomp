@@ -60,7 +60,7 @@ address,size,name,name_source,subsystem,status
 0x7100803ee8,4,fn_7100803ee8,unknown,unknown,O
 0x7100803eec,4,fn_7100803eec,unknown,unknown,O
 0x7100803ef0,4,fn_7100803ef0,unknown,unknown,O
-0x7100803ef4,144,fn_7100803ef4,unknown,unknown,U
+0x7100803ef4,144,fn_7100803ef4,unknown,unknown,O
 0x7100803f84,444,fn_7100803f84,unknown,unknown,U
 0x7100804140,28,fn_7100804140,unknown,unknown,O
 0x710080415c,132,fn_710080415c,unknown,unknown,O
@@ -996,7 +996,7 @@ address,size,name,name_source,subsystem,status
 0x710082d6ac,216,fn_710082d6ac,unknown,game/components?,O
 0x710082d784,388,CPullOffGrapplePointComponent::refl_InitClass,reflection,game/components,O
 0x710082d908,460,fn_710082d908,unknown,game/components?,U
-0x710082dad4,116,fn_710082dad4,unknown,game/components?,U
+0x710082dad4,116,fn_710082dad4,unknown,game/components?,O
 0x710082db48,36,fn_710082db48,unknown,game/components?,O
 0x710082db6c,120,fn_710082db6c,unknown,game/components?,O
 0x710082dbe4,152,fn_710082dbe4,unknown,game/components?,O
@@ -1031,7 +1031,7 @@ address,size,name,name_source,subsystem,status
 0x710082eea4,12,fn_710082eea4,unknown,game/components?,O
 0x710082eeb0,8,fn_710082eeb0,unknown,game/components?,O
 0x710082eeb8,8,fn_710082eeb8,unknown,game/components?,O
-0x710082eec0,128,fn_710082eec0,unknown,game/components?,U
+0x710082eec0,128,fn_710082eec0,unknown,game/components?,O
 0x710082ef40,168,fn_710082ef40,unknown,game/components?,O
 0x710082efe8,260,fn_710082efe8,unknown,game/components?,O
 0x710082f0f0,540,fn_710082f0f0,unknown,game/components?,O
@@ -1279,7 +1279,7 @@ address,size,name,name_source,subsystem,status
 0x7100835bd8,68,fn_7100835bd8,unknown,unknown,O
 0x7100835c1c,120,fn_7100835c1c,unknown,unknown,U
 0x7100835c94,164,fn_7100835c94,unknown,unknown,O
-0x7100835d38,160,fn_7100835d38,unknown,unknown,U
+0x7100835d38,160,fn_7100835d38,unknown,unknown,O
 0x7100835dd8,444,fn_7100835dd8,unknown,unknown,U
 0x7100835f94,716,fn_7100835f94,unknown,unknown,U
 0x7100836260,72,fn_7100836260,unknown,unknown,O
