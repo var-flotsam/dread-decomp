@@ -156,7 +156,7 @@ address,size,name,name_source,subsystem,status
 0x7100b06708,460,fn_7100b06708,unknown,engine/reflection?,U
 0x7100b068d4,120,fn_7100b068d4,unknown,engine/reflection?,O
 0x7100b0694c,600,fn_7100b0694c,unknown,engine/reflection?,U
-0x7100b06ba4,92,fn_7100b06ba4,unknown,engine/reflection?,U
+0x7100b06ba4,92,fn_7100b06ba4,unknown,engine/reflection?,O
 0x7100b06c00,636,fn_7100b06c00,unknown,engine/reflection?,U
 0x7100b06e7c,232,fn_7100b06e7c,unknown,engine/reflection?,O
 0x7100b06f64,232,fn_7100b06f64,unknown,engine/reflection?,O
@@ -1033,7 +1033,7 @@ address,size,name,name_source,subsystem,status
 0x7100b1e048,136,fn_7100b1e048,unknown,gui?,O
 0x7100b1e0d0,292,fn_7100b1e0d0,unknown,gui?,U
 0x7100b1e1f4,344,fn_7100b1e1f4,unknown,gui?,U
-0x7100b1e34c,176,fn_7100b1e34c,unknown,gui?,U
+0x7100b1e34c,176,fn_7100b1e34c,unknown,gui?,O
 0x7100b1e3fc,448,fn_7100b1e3fc,unknown,gui?,U
 0x7100b1e5bc,100,fn_7100b1e5bc,unknown,gui?,O
 0x7100b1e620,84,fn_7100b1e620,unknown,gui?,O
@@ -1201,7 +1201,7 @@ address,size,name,name_source,subsystem,status
 0x7100b2b454,4,fn_7100b2b454,unknown,unknown,O
 0x7100b2b458,4,fn_7100b2b458,unknown,unknown,O
 0x7100b2b45c,68,fn_7100b2b45c,unknown,unknown,U
-0x7100b2b4a0,124,fn_7100b2b4a0,unknown,unknown,U
+0x7100b2b4a0,124,fn_7100b2b4a0,unknown,unknown,O
 0x7100b2b51c,4,operator.delete,symbol,unknown,O
 0x7100b2b520,16,fn_7100b2b520,unknown,unknown,O
 0x7100b2b530,4,fn_7100b2b530,unknown,unknown,O
@@ -1499,7 +1499,7 @@ address,size,name,name_source,subsystem,status
 0x7100b41e84,296,fn_7100b41e84,unknown,unknown,U
 0x7100b41fac,60,fn_7100b41fac,unknown,unknown,U
 0x7100b41fe8,208,fn_7100b41fe8,unknown,unknown,O
-0x7100b420b8,144,fn_7100b420b8,unknown,unknown,U
+0x7100b420b8,144,fn_7100b420b8,unknown,unknown,O
 0x7100b42148,352,fn_7100b42148,unknown,unknown,U
 0x7100b422a8,2360,fn_7100b422a8,unknown,unknown,U
 0x7100b42be0,264,fn_7100b42be0,unknown,unknown,O
@@ -5499,7 +5499,7 @@ address,size,name,name_source,subsystem,status
 0x7100be1c60,388,CCharClassStartCentralUnitProtoEvent::refl_InitClass,reflection,game/characters,O
 0x7100be1de4,4,fn_7100be1de4,unknown,game/characters?,O
 0x7100be1de8,36,fn_7100be1de8,unknown,game/characters?,O
-0x7100be1e0c,252,fn_7100be1e0c,unknown,game/characters?,U
+0x7100be1e0c,252,fn_7100be1e0c,unknown,game/characters?,O
 0x7100be1f08,28,fn_7100be1f08,unknown,game/characters?,O
 0x7100be1f24,12,fn_7100be1f24,unknown,game/characters?,O
 0x7100be1f30,8,fn_7100be1f30,unknown,game/characters?,O
@@ -5517,7 +5517,7 @@ address,size,name,name_source,subsystem,status
 0x7100be251c,388,CCharClassStartDarknessEvent::refl_InitClass,reflection,game/characters,O
 0x7100be26a0,124,fn_7100be26a0,unknown,game/characters?,O
 0x7100be271c,132,fn_7100be271c,unknown,game/characters?,O
-0x7100be27a0,196,fn_7100be27a0,unknown,game/characters?,U
+0x7100be27a0,196,fn_7100be27a0,unknown,game/characters?,O
 0x7100be2864,28,fn_7100be2864,unknown,game/characters?,O
 0x7100be2880,12,fn_7100be2880,unknown,game/characters?,O
 0x7100be288c,8,fn_7100be288c,unknown,game/characters?,O
@@ -5594,7 +5594,7 @@ address,size,name,name_source,subsystem,status
 0x7100be5250,388,CCharClassStopDarknessEvent::refl_InitClass,reflection,game/characters,O
 0x7100be53d4,124,fn_7100be53d4,unknown,game/characters?,O
 0x7100be5450,132,fn_7100be5450,unknown,game/characters?,O
-0x7100be54d4,196,fn_7100be54d4,unknown,game/characters?,U
+0x7100be54d4,196,fn_7100be54d4,unknown,game/characters?,O
 0x7100be5598,28,fn_7100be5598,unknown,game/characters?,O
 0x7100be55b4,12,fn_7100be55b4,unknown,game/characters?,O
 0x7100be55c0,8,fn_7100be55c0,unknown,game/characters?,O
@@ -5813,7 +5813,7 @@ address,size,name,name_source,subsystem,status
 0x7100beae48,244,ICharClassFXCreateAndLinkEvent::refl_GetClass,reflection,unknown,O
 0x7100beaf3c,3784,fn_7100beaf3c,unknown,unknown,U
 0x7100bebe04,364,ICharClassFXCreateAndLinkEvent::refl_InitClass,reflection,unknown,O
-0x7100bebf70,160,fn_7100bebf70,unknown,unknown,U
+0x7100bebf70,160,fn_7100bebf70,unknown,unknown,O
 0x7100bec010,12,fn_7100bec010,unknown,unknown,O
 0x7100bec01c,8,fn_7100bec01c,unknown,unknown,O
 0x7100bec024,28,fn_7100bec024,unknown,unknown,O
@@ -5837,7 +5837,7 @@ address,size,name,name_source,subsystem,status
 0x7100bec9c8,244,ICharClassFXSetActiveEvent::refl_GetClass,reflection,unknown,O
 0x7100becabc,836,fn_7100becabc,unknown,unknown,O
 0x7100bece00,364,ICharClassFXSetActiveEvent::refl_InitClass,reflection,unknown,O
-0x7100becf6c,80,fn_7100becf6c,unknown,unknown,U
+0x7100becf6c,80,fn_7100becf6c,unknown,unknown,O
 0x7100becfbc,12,fn_7100becfbc,unknown,unknown,O
 0x7100becfc8,8,fn_7100becfc8,unknown,unknown,O
 0x7100becfd0,28,fn_7100becfd0,unknown,unknown,O

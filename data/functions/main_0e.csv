@@ -483,7 +483,7 @@ address,size,name,name_source,subsystem,status
 0x7100e1b758,20,fn_7100e1b758,unknown,unknown,O
 0x7100e1b76c,320,fn_7100e1b76c,unknown,unknown,O
 0x7100e1b8b0,908,fn_7100e1b8b0,unknown,unknown,O
-0x7100e1bc3c,104,fn_7100e1bc3c,unknown,unknown,U
+0x7100e1bc3c,104,fn_7100e1bc3c,unknown,unknown,O
 0x7100e1bca4,704,fn_7100e1bca4,unknown,unknown,O
 0x7100e1bf64,4,fn_7100e1bf64,unknown,unknown,O
 0x7100e1bf68,172,fn_7100e1bf68,unknown,unknown,U

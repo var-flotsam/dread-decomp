@@ -1554,7 +1554,7 @@ address,size,name,name_source,subsystem,status
 0x71006393d4,212,fn_71006393d4,unknown,unknown,U
 0x71006394a8,40,fn_71006394a8,unknown,unknown,O
 0x71006394d0,300,fn_71006394d0,unknown,unknown,U
-0x71006395fc,140,fn_71006395fc,unknown,unknown,U
+0x71006395fc,140,fn_71006395fc,unknown,unknown,O
 0x7100639688,84,fn_7100639688,unknown,unknown,O
 0x71006396dc,48,fn_71006396dc,unknown,unknown,U
 0x710063970c,276,fn_710063970c,unknown,unknown,U
@@ -2696,7 +2696,7 @@ address,size,name,name_source,subsystem,status
 0x710066f654,388,fn_710066f654,unknown,unknown,O
 0x710066f7d8,220,fn_710066f7d8,unknown,unknown,O
 0x710066f8b4,500,fn_710066f8b4,unknown,unknown,O
-0x710066faa8,96,fn_710066faa8,unknown,unknown,U
+0x710066faa8,96,fn_710066faa8,unknown,unknown,O
 0x710066fb08,88,fn_710066fb08,unknown,unknown,O
 0x710066fb60,96,fn_710066fb60,unknown,unknown,O
 0x710066fbc0,56,fn_710066fbc0,unknown,unknown,U
@@ -4000,7 +4000,7 @@ address,size,name,name_source,subsystem,status
 0x710069e944,8,fn_710069e944,unknown,game/characters?,O
 0x710069e94c,8,fn_710069e94c,unknown,game/characters?,O
 0x710069e954,28,fn_710069e954,unknown,game/characters?,O
-0x710069e970,100,fn_710069e970,unknown,game/characters?,U
+0x710069e970,100,fn_710069e970,unknown,game/characters?,O
 0x710069e9e0,200,fn_710069e9e0,unknown,game/characters?,O
 0x710069eaa8,4,fn_710069eaa8,unknown,game/characters?,O
 0x710069eaac,244,CCharClassScourgeLifeComponent::refl_GetClass,reflection,game/characters,O
@@ -4095,7 +4095,7 @@ address,size,name,name_source,subsystem,status
 0x71006a20a0,316,fn_71006a20a0,unknown,unknown,U
 0x71006a21dc,212,fn_71006a21dc,unknown,unknown,U
 0x71006a22b0,276,fn_71006a22b0,unknown,unknown,U
-0x71006a23c4,128,fn_71006a23c4,unknown,unknown,U
+0x71006a23c4,128,fn_71006a23c4,unknown,unknown,O
 0x71006a2444,88,fn_71006a2444,unknown,unknown,U
 0x71006a249c,516,fn_71006a249c,unknown,unknown,U
 0x71006a26a0,140,fn_71006a26a0,unknown,unknown,O
@@ -4749,7 +4749,7 @@ address,size,name,name_source,subsystem,status
 0x71006c4de4,244,CCharClassSluggerAIComponent::refl_GetClass,reflection,game/characters,O
 0x71006c4ed8,732,fn_71006c4ed8,unknown,game/characters?,O
 0x71006c51b4,352,CCharClassSluggerAIComponent::refl_InitClass,reflection,game/characters,O
-0x71006c5314,120,fn_71006c5314,unknown,unknown,U
+0x71006c5314,120,fn_71006c5314,unknown,unknown,O
 0x71006c538c,8,fn_71006c538c,unknown,unknown,O
 0x71006c5394,8,fn_71006c5394,unknown,unknown,O
 0x71006c539c,12,fn_71006c539c,unknown,unknown,O
@@ -4761,7 +4761,7 @@ address,size,name,name_source,subsystem,status
 0x71006c55ec,8,fn_71006c55ec,unknown,unknown,O
 0x71006c55f4,8,fn_71006c55f4,unknown,unknown,O
 0x71006c55fc,28,fn_71006c55fc,unknown,unknown,O
-0x71006c5618,132,fn_71006c5618,unknown,unknown,U
+0x71006c5618,132,fn_71006c5618,unknown,unknown,O
 0x71006c569c,12,fn_71006c569c,unknown,unknown,O
 0x71006c56b0,200,fn_71006c56b0,unknown,unknown,O
 0x71006c5778,4,fn_71006c5778,unknown,unknown,O
