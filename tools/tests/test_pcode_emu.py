@@ -121,6 +121,7 @@ class FloatToInt(unittest.TestCase):
         import struct
         m = pcode_emu.Machine.__new__(pcode_emu.Machine)
         m.regs, m.undef_vn, m.state, m.lift, m.vnarrow = bytearray(0x10000), set(), {}, None, {}
+        m.vnarrow_at, m.steps = {}, 0
         q1 = pcode_emu.Q0 + pcode_emu.QSTRIDE
         m.regs[q1:q1 + 8] = struct.pack("<d", value) if double else struct.pack("<f", value) + bytes(4)
         m.set_reg(pcode_emu.X0, 8, 0xDEADBEEFDEADBEEF)
@@ -147,6 +148,7 @@ class FloatToInt(unittest.TestCase):
         import struct
         m = pcode_emu.Machine.__new__(pcode_emu.Machine)
         m.regs, m.undef_vn, m.state, m.lift, m.vnarrow = bytearray(0x10000), set(), {}, None, {}
+        m.vnarrow_at, m.steps = {}, 0
         q1, q2 = pcode_emu.Q0 + pcode_emu.QSTRIDE, pcode_emu.Q0 + 2 * pcode_emu.QSTRIDE
         for rmode, value, want in ((2, 649.7, 649.0), (1, -0.5, -0.0), (0, 2.5, 2.0), (4, 2.5, 3.0), (3, -1.7, -1.0)):
             m.regs[q1:q1 + 4] = struct.pack("<f", value)

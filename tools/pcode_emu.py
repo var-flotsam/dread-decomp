@@ -502,6 +502,7 @@ class Machine:
         self.res_read: set | None = None
         self.res_written: set = set()
         self.vnarrow: dict[int, bool] = {}  # v<n> -> its last write was s<n> (4 bytes at its start)
+        self.vnarrow_at: dict[int, int] = {}  # v<n> -> the instruction (step) of that s<n> write
         self.out_words: list = []  # ((call, argument, offset), word): the out-parameter words written
         self.results: list = []  # each call's x0, the first MAX_RESULTS_KEPT (a crash on one: Oracle.originals)
         self.events: list = []
@@ -639,10 +640,14 @@ class Machine:
             n, rel = divmod(off - Q0, QSTRIDE)
             if rel == 0:
                 self.vnarrow[n] = size == 4
-            elif not (4 <= rel < QSTRIDE and v == 0):
+                if size == 4:
+                    self.vnarrow_at[n] = self.steps
+            elif not (4 <= rel < QSTRIDE and v == 0 and self.vnarrow_at.get(n) == self.steps):
                 # A lane insert after s<n> (ld1 {v0.s}[1], ins v0.d[1]) makes v<n> wide again; only the
-                # zeroing of the upper part that follows an s<n> write keeps it narrow (after d<n> it is False).
-                # Ghidra zeroes it in four pieces: 4 bytes at +4, then 8 at +8, +16 and +24 (the SVE part).
+                # zeroing of the upper part by the s<n> write's own instruction keeps it narrow (after
+                # d<n> it is False). Ghidra zeroes it in four pieces: 4 bytes at +4, then 8 at +8, +16
+                # and +24 (the SVE part). A later instruction's write there is a lane insert even when
+                # its value is 0 (ins v0.s[1], wzr), and may leave anything in bits 32-63.
                 self.vnarrow[n] = False
 
     def x(self, n: int) -> int:

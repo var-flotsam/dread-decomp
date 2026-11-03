@@ -15,6 +15,7 @@ def machine() -> pcode_emu.Machine:
     """A Machine with only the state set_reg and call's argument selection touch."""
     m = pcode_emu.Machine.__new__(pcode_emu.Machine)
     m.regs, m.undef_vn, m.state, m.lift, m.vnarrow = bytearray(0x10000), set(), {}, None, {}
+    m.vnarrow_at, m.steps = {}, 0
     m.target_reg = None
     m._loaded = None  # (no call event yet: load)
     return m
@@ -77,7 +78,23 @@ class VNarrow(unittest.TestCase):
             m = machine()
             m.set_reg(Q0 + QSTRIDE, 4, 1)
             m.set_reg(Q0 + QSTRIDE + 4, 12, 0)
+            m.steps += 1
             m.set_reg(Q0 + QSTRIDE + rel, size, 5)
+            self.assertFalse(m.vnarrow[1], (rel, size))
+            self.assertEqual(selection(m, types.SimpleNamespace(args=frozenset({101}), wide=frozenset({101}),
+                                                               stack_slots=0))[101], 64)
+
+    def test_later_zero_insert_clears(self):
+        """Only the s<n> write's own instruction may zero the upper part and keep v<n> narrow: a later
+        instruction writing 0 there (ins v1.s[1], wzr) is a lane insert, and bits 32-63 are compared."""
+        for rel, size in ((4, 4), (8, 8), (16, 8), (24, 8), (4, 12)):
+            m = machine()
+            m.set_reg(Q0 + QSTRIDE, 4, 1)
+            for r, s in ((4, 4), (8, 8), (16, 8), (24, 8)):
+                m.set_reg(Q0 + QSTRIDE + r, s, 0)
+            self.assertTrue(m.vnarrow[1])
+            m.steps += 1
+            m.set_reg(Q0 + QSTRIDE + rel, size, 0)
             self.assertFalse(m.vnarrow[1], (rel, size))
             self.assertEqual(selection(m, types.SimpleNamespace(args=frozenset({101}), wide=frozenset({101}),
                                                                stack_slots=0))[101], 64)
