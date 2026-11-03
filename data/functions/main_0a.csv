@@ -1199,8 +1199,8 @@ address,size,name,name_source,subsystem,status
 0x7100a32e0c,388,fn_7100a32e0c,unknown,unknown,O
 0x7100a32f90,220,fn_7100a32f90,unknown,unknown,O
 0x7100a3306c,500,fn_7100a3306c,unknown,unknown,O
-0x7100a33260,188,fn_7100a33260,unknown,unknown,O
-0x7100a3331c,196,fn_7100a3331c,unknown,unknown,O
+0x7100a33260,188,fn_7100a33260,unknown,unknown,U
+0x7100a3331c,196,fn_7100a3331c,unknown,unknown,U
 0x7100a333e0,432,fn_7100a333e0,unknown,unknown,U
 0x7100a33590,28,fn_7100a33590,unknown,unknown,O
 0x7100a335ac,364,fn_7100a335ac,unknown,unknown,O

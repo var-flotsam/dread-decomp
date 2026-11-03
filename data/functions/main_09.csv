@@ -455,7 +455,7 @@ address,size,name,name_source,subsystem,status
 0x7100910804,56,fn_7100910804,unknown,engine/reflection?,O
 0x710091083c,128,fn_710091083c,unknown,engine/reflection?,O
 0x71009108bc,60,fn_71009108bc,unknown,engine/reflection?,O
-0x71009108f8,112,fn_71009108f8,unknown,engine/reflection?,O
+0x71009108f8,112,fn_71009108f8,unknown,engine/reflection?,U
 0x7100910968,28,fn_7100910968,unknown,engine/reflection?,O
 0x7100910984,232,fn_7100910984,unknown,engine/reflection?,U
 0x7100910a6c,240,fn_7100910a6c,unknown,engine/reflection?,U
@@ -532,7 +532,7 @@ address,size,name,name_source,subsystem,status
 0x71009125e0,32,fn_71009125e0,unknown,game/components?,O
 0x7100912600,56,fn_7100912600,unknown,game/components?,O
 0x7100912638,60,fn_7100912638,unknown,game/components?,O
-0x7100912674,112,fn_7100912674,unknown,game/components?,O
+0x7100912674,112,fn_7100912674,unknown,game/components?,U
 0x71009126e4,28,fn_71009126e4,unknown,game/components?,O
 0x7100912700,52,fn_7100912700,unknown,game/components?,O
 0x7100912734,60,fn_7100912734,unknown,game/components?,O
@@ -753,7 +753,7 @@ address,size,name,name_source,subsystem,status
 0x7100918b7c,284,fn_7100918b7c,unknown,game/components?,O
 0x7100918c98,292,fn_7100918c98,unknown,game/components?,U
 0x7100918dbc,312,fn_7100918dbc,unknown,game/components?,U
-0x7100918ef4,40,fn_7100918ef4,unknown,game/components?,O
+0x7100918ef4,40,fn_7100918ef4,unknown,game/components?,U
 0x7100918f1c,412,fn_7100918f1c,unknown,game/components?,U
 0x71009190b8,412,fn_71009190b8,unknown,game/components?,U
 0x7100919254,676,fn_7100919254,unknown,game/components?,U
@@ -4461,7 +4461,7 @@ address,size,name,name_source,subsystem,status
 0x71009f1c18,4,fn_71009f1c18,unknown,game/characters?,O
 0x71009f1c1c,352,CCharClassSceneModelAnimationComponent::refl_InitClass,reflection,game/characters,O
 0x71009f1d7c,232,fn_71009f1d7c,unknown,unknown,O
-0x71009f1e64,216,fn_71009f1e64,unknown,unknown,O
+0x71009f1e64,216,fn_71009f1e64,unknown,unknown,U
 0x71009f1f3c,36,fn_71009f1f3c,unknown,unknown,O
 0x71009f1f60,1376,fn_71009f1f60,unknown,unknown,U
 0x71009f24c0,328,fn_71009f24c0,unknown,unknown,U
