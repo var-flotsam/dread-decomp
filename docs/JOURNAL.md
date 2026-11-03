@@ -132,6 +132,31 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Lifter and oracle: round 5's second batch and round 6 (2026-11-03, branches `claude/project-thread-zgkpk3-r5`
+and `-r6`).** Whole-binary runs: lifted_all8 (r5's e401d554) 16,062 of 16,141 accepted against lifted_all7's
+16,047 (22 gained, 7 lost), and lifted_all9 (r6's bf08b68a) 16,063, with none lost against all8. All8's 7 losses are
+functions the stronger repairs now test on inputs never tried before; 71002842e4 was an oracle artifact (fixed
+below), the others are left for lifter work. Byte mode unchanged throughout (4,538 of 5,908 sampled candidates).
+- **A float only passed on goes as S<n>** to a callee that reads it only as s<n> (Facts.wide): FlatLifter keeps
+  S<n> and D<n> apart, and a value left in s0 by an earlier loop iteration went as a stale D0 (71007c47c0).
+- **The 32-bit float compare keys on the original's s<n> write**: the Machine records each v<n>'s last write
+  width (Ghidra writes 4 bytes at the register, then zeroes the rest), not an upper half that is merely zero.
+- **Repairs reach out-parameters and cut-off runs.** An unknown callee's out-parameter words can be overridden
+  ("o", (call, argument, offset)): a made-up pointer or count a callee returned in a struct was out of reach (stack
+  words are not read_words). A run cut off in a loop is repaired with its large words and results as 1 (the
+  71004f0ab8 family). A repaired run is kept when it gets further than the run it repairs (71008194e8: another seed
+  had covered the code past the fault). ended() no longer counts a cut-off run. 11 of the 36 inconclusive lift.
+- **A void lift keeps the call in a value return**: a tail call to a callee with a result shape was dropped
+  (7100ecf3d4, 7100ecf450, 710094b16c).
+- **Two addresses above the entry sp agree** (the caller's frame, reached by arithmetic on made-up words, each run
+  with its own frame: 71002842e4).
+- **CUT_REPAIRS (16)** bounds the repairs of a cut-off run. Measured on all8's not-accepted, its 22 gains and 500
+  accepted: the same 523 accepted with and without the cap, 1,215 s against 1,289 s. The whole-binary runs' slow
+  tail (the last 21 functions, about 55 minutes) is not these repairs: its cause is still to find.
+- Left: 710012ce70 (the lift's x2 one element past the original's on a repaired input; the csel's compare is
+  snapshotted correctly, so the array's place differs), 7100127fc0 (the lift copies undefined bytes from an x8
+  result past its extent), 7100c95f74, 710033003c, 710064fb5c (rejects on repaired inputs), 29 inconclusive.
+
 **Lifter: the whole-binary refusals, round 5 (2026-11-03, branch `claude/project-thread-zgkpk3-r5`).**
 First, r4's whole-binary run (build/port/lifted_all7, on 749f18e5): 16,047 of 16,141 accepted, against
 lifted_all6's 16,033, with 21 gained and 7 lost. Fixed on r4 (b917492d): the label rule for a call's float
