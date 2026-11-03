@@ -1926,7 +1926,7 @@ address,size,name,name_source,subsystem,status
 0x71006490e8,92,fn_71006490e8,unknown,unknown,O
 0x7100649144,64,fn_7100649144,unknown,unknown,O
 0x7100649184,72,fn_7100649184,unknown,unknown,O
-0x71006491cc,76,fn_71006491cc,unknown,unknown,U
+0x71006491cc,76,fn_71006491cc,unknown,unknown,O
 0x7100649218,28,fn_7100649218,unknown,unknown,O
 0x7100649234,28,fn_7100649234,unknown,unknown,O
 0x7100649250,36,fn_7100649250,unknown,unknown,O
@@ -2076,7 +2076,7 @@ address,size,name,name_source,subsystem,status
 0x71006503ac,232,fn_71006503ac,unknown,unknown,U
 0x7100650494,44,fn_7100650494,unknown,unknown,O
 0x71006504c0,2084,fn_71006504c0,unknown,unknown,U
-0x7100650ce4,48,fn_7100650ce4,unknown,unknown,U
+0x7100650ce4,48,fn_7100650ce4,unknown,unknown,O
 0x7100650d14,12,fn_7100650d14,unknown,unknown,O
 0x7100650d20,84,fn_7100650d20,unknown,unknown,U
 0x7100650d74,1012,fn_7100650d74,unknown,unknown,U
@@ -2455,8 +2455,8 @@ address,size,name,name_source,subsystem,status
 0x7100666888,500,fn_7100666888,unknown,unknown,O
 0x7100666a7c,12,fn_7100666a7c,unknown,unknown,O
 0x7100666a88,8,fn_7100666a88,unknown,unknown,O
-0x7100666a90,64,fn_7100666a90,unknown,unknown,U
-0x7100666ad0,44,fn_7100666ad0,unknown,unknown,U
+0x7100666a90,64,fn_7100666a90,unknown,unknown,O
+0x7100666ad0,44,fn_7100666ad0,unknown,unknown,O
 0x7100666afc,28,fn_7100666afc,unknown,unknown,O
 0x7100666b18,88,fn_7100666b18,unknown,unknown,O
 0x7100666b70,96,fn_7100666b70,unknown,unknown,O
@@ -2542,7 +2542,7 @@ address,size,name,name_source,subsystem,status
 0x71006678d4,12,fn_71006678d4,unknown,unknown,O
 0x71006678e0,8,fn_71006678e0,unknown,unknown,O
 0x71006678e8,8,fn_71006678e8,unknown,unknown,O
-0x71006678f0,84,fn_71006678f0,unknown,unknown,U
+0x71006678f0,84,fn_71006678f0,unknown,unknown,O
 0x7100667944,24,fn_7100667944,unknown,unknown,O
 0x710066795c,156,fn_710066795c,unknown,unknown,O
 0x71006679f8,152,fn_71006679f8,unknown,unknown,O
@@ -2553,7 +2553,7 @@ address,size,name,name_source,subsystem,status
 0x7100667b30,12,fn_7100667b30,unknown,unknown,O
 0x7100667b3c,8,fn_7100667b3c,unknown,unknown,O
 0x7100667b44,8,fn_7100667b44,unknown,unknown,O
-0x7100667b4c,84,fn_7100667b4c,unknown,unknown,U
+0x7100667b4c,84,fn_7100667b4c,unknown,unknown,O
 0x7100667ba0,24,fn_7100667ba0,unknown,unknown,O
 0x7100667bb8,8,fn_7100667bb8,unknown,unknown,O
 0x7100667bc0,8,fn_7100667bc0,unknown,unknown,O
@@ -2642,9 +2642,9 @@ address,size,name,name_source,subsystem,status
 0x710066a180,4,fn_710066a180,unknown,game/ai?,O
 0x710066a184,388,CRodotukSuckAttack::refl_InitClass,reflection,game/ai,O
 0x710066a308,104,fn_710066a308,unknown,unknown,O
-0x710066a370,172,fn_710066a370,unknown,unknown,U
+0x710066a370,172,fn_710066a370,unknown,unknown,O
 0x710066a41c,148,fn_710066a41c,unknown,unknown,O
-0x710066a4b0,180,fn_710066a4b0,unknown,unknown,U
+0x710066a4b0,180,fn_710066a4b0,unknown,unknown,O
 0x710066a564,96,fn_710066a564,unknown,unknown,O
 0x710066a5c4,4,fn_710066a5c4,unknown,unknown,O
 0x710066a5c8,92,fn_710066a5c8,unknown,unknown,O
@@ -4548,7 +4548,7 @@ address,size,name,name_source,subsystem,status
 0x71006bb960,196,fn_71006bb960,unknown,unknown,O
 0x71006bba24,88,fn_71006bba24,unknown,unknown,O
 0x71006bba7c,1248,fn_71006bba7c,unknown,unknown,U
-0x71006bbf5c,56,fn_71006bbf5c,unknown,unknown,U
+0x71006bbf5c,56,fn_71006bbf5c,unknown,unknown,O
 0x71006bbf94,72,fn_71006bbf94,unknown,unknown,O
 0x71006bbfdc,40,fn_71006bbfdc,unknown,unknown,O
 0x71006bc004,372,fn_71006bc004,unknown,unknown,U
@@ -4579,7 +4579,7 @@ address,size,name,name_source,subsystem,status
 0x71006bcbcc,184,fn_71006bcbcc,unknown,unknown,U
 0x71006bcc90,756,fn_71006bcc90,unknown,unknown,O
 0x71006bcf84,44,fn_71006bcf84,unknown,unknown,O
-0x71006bcfb0,92,fn_71006bcfb0,unknown,unknown,U
+0x71006bcfb0,92,fn_71006bcfb0,unknown,unknown,O
 0x71006bd00c,104,fn_71006bd00c,unknown,unknown,O
 0x71006bd074,176,fn_71006bd074,unknown,unknown,U
 0x71006bd124,4,fn_71006bd124,unknown,unknown,O
@@ -4858,8 +4858,8 @@ address,size,name,name_source,subsystem,status
 0x71006c8714,244,CSpitclawkAIComponent::refl_GetClass,reflection,game/ai,O
 0x71006c8808,4,fn_71006c8808,unknown,game/ai?,O
 0x71006c880c,356,CSpitclawkAIComponent::refl_InitClass,reflection,game/ai,O
-0x71006c8970,184,fn_71006c8970,unknown,unknown,U
-0x71006c8a28,192,fn_71006c8a28,unknown,unknown,U
+0x71006c8970,184,fn_71006c8970,unknown,unknown,O
+0x71006c8a28,192,fn_71006c8a28,unknown,unknown,O
 0x71006c8ae8,120,fn_71006c8ae8,unknown,unknown,O
 0x71006c8b60,384,fn_71006c8b60,unknown,unknown,U
 0x71006c8ce0,260,fn_71006c8ce0,unknown,unknown,U
@@ -5392,7 +5392,7 @@ address,size,name,name_source,subsystem,status
 0x71006de354,388,CVulkranAttackManager::CTunableVulkranAttackManager::refl_InitClass,reflection,game,O
 0x71006de4d8,696,fn_71006de4d8,unknown,unknown,O
 0x71006de790,52,fn_71006de790,unknown,unknown,O
-0x71006de7c4,92,fn_71006de7c4,unknown,unknown,U
+0x71006de7c4,92,fn_71006de7c4,unknown,unknown,O
 0x71006de820,104,fn_71006de820,unknown,unknown,O
 0x71006de888,180,fn_71006de888,unknown,unknown,U
 0x71006de93c,4,fn_71006de93c,unknown,unknown,O
@@ -5525,7 +5525,7 @@ address,size,name,name_source,subsystem,status
 0x71006e2e6c,1652,fn_71006e2e6c,unknown,ai/behaviortree?,U
 0x71006e34e0,8,fn_71006e34e0,unknown,ai/behaviortree?,O
 0x71006e34e8,28,fn_71006e34e8,unknown,ai/behaviortree?,O
-0x71006e3504,228,fn_71006e3504,unknown,ai/behaviortree?,U
+0x71006e3504,228,fn_71006e3504,unknown,ai/behaviortree?,O
 0x71006e35e8,36,fn_71006e35e8,unknown,ai/behaviortree?,O
 0x71006e360c,8,fn_71006e360c,unknown,ai/behaviortree?,O
 0x71006e3614,8,fn_71006e3614,unknown,ai/behaviortree?,O
@@ -5793,7 +5793,7 @@ address,size,name,name_source,subsystem,status
 0x71006ee958,352,CCharClassYamplotXAIComponent::refl_InitClass,reflection,game/characters,O
 0x71006eeab8,64,fn_71006eeab8,unknown,unknown,O
 0x71006eeaf8,72,fn_71006eeaf8,unknown,unknown,O
-0x71006eeb40,76,fn_71006eeb40,unknown,unknown,U
+0x71006eeb40,76,fn_71006eeb40,unknown,unknown,O
 0x71006eeb8c,168,fn_71006eeb8c,unknown,unknown,U
 0x71006eec34,12,fn_71006eec34,unknown,unknown,O
 0x71006eec40,204,fn_71006eec40,unknown,unknown,U
