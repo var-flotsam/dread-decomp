@@ -472,6 +472,7 @@ class Lifter:
     shape = None
     # address -> abi_facts.AbiFacts.result_main (which of x0 and s0 callers read): semantic mode only.
     main = None
+    narrow_floats = frozenset()  # the current direct callee's float arguments read only as s<n> (callee_need)
 
     def __init__(self, orig: asmdiff.Original, addr: int, extra: int, returns: bool,
                  stack: tuple[str, int] | None = None):
@@ -952,7 +953,12 @@ class Lifter:
                 else:
                     # A register only passed on (an incoming argument): as f64, which carries all
                     # of its bits whatever width the callee reads, on AArch64 and x86-64 alike.
-                    floats.append(self.read(f"{getattr(self, 'fwidth', {}).get(100 + i, 'd')}{i}"))
+                    # A callee that reads it only as s<n> gets S<n>: FlatLifter keeps S<n> and D<n>
+                    # apart, and a value left in s0 by an earlier loop iteration is S0's
+                    # (fn_71007c47c0, whose d0 elsewhere made fwidth d)
+                    letter = "s" if sem and 100 + i in self.narrow_floats \
+                        else getattr(self, "fwidth", {}).get(100 + i, "d")
+                    floats.append(self.read(f"{letter}{i}"))
             except Unsupported as e:
                 if not sem:
                     break
@@ -1092,6 +1098,7 @@ class Lifter:
         sem = "semantic" in self.opts
         if not sem and self.plain:
             return 0, 0
+        self.narrow_floats = frozenset()
         if not fn:
             own = self.facts(self.addr)
             ints, floats = own.fwd_counts if own is not None else (1, 0)
@@ -1113,6 +1120,8 @@ class Lifter:
         f = self.facts(int(fn[3:], 16))
         if f is None:
             return 0, 0
+        # (the float arguments it reads only as s<n>: args passes one only passed on as its S<n>)
+        self.narrow_floats = frozenset(k for k in f.args if 100 <= k < 108 and k not in f.wide)
         if sem and f.sret and not getattr(self, "sret_ok", False):
             raise Unsupported("call with an indirect result (x8)")
         if sem and f.stack:
