@@ -4768,7 +4768,7 @@ address,size,name,name_source,subsystem,status
 0x71006c577c,244,CSluggerAIComponent::refl_GetClass,reflection,game/ai,O
 0x71006c5870,4,fn_71006c5870,unknown,game/ai?,O
 0x71006c5874,356,CSluggerAIComponent::refl_InitClass,reflection,game/ai,O
-0x71006c59d8,412,fn_71006c59d8,unknown,unknown,U
+0x71006c59d8,412,fn_71006c59d8,unknown,unknown,O
 0x71006c5b74,204,fn_71006c5b74,unknown,unknown,O
 0x71006c5c40,76,fn_71006c5c40,unknown,unknown,O
 0x71006c5c8c,64,fn_71006c5c8c,unknown,unknown,O
@@ -5194,7 +5194,7 @@ address,size,name,name_source,subsystem,status
 0x71006d56d0,296,fn_71006d56d0,unknown,unknown,U
 0x71006d57f8,184,fn_71006d57f8,unknown,unknown,U
 0x71006d58b0,68,fn_71006d58b0,unknown,unknown,U
-0x71006d58f4,68,fn_71006d58f4,unknown,unknown,U
+0x71006d58f4,68,fn_71006d58f4,unknown,unknown,O
 0x71006d5938,88,fn_71006d5938,unknown,unknown,U
 0x71006d5990,536,fn_71006d5990,unknown,unknown,U
 0x71006d5ba8,80,fn_71006d5ba8,unknown,unknown,O
@@ -5864,7 +5864,7 @@ address,size,name,name_source,subsystem,status
 0x71006f3288,4,fn_71006f3288,unknown,unknown,O
 0x71006f328c,12,fn_71006f328c,unknown,unknown,O
 0x71006f32a0,240,fn_71006f32a0,unknown,unknown,O
-0x71006f3390,80,fn_71006f3390,unknown,unknown,U
+0x71006f3390,80,fn_71006f3390,unknown,unknown,O
 0x71006f33e0,56,fn_71006f33e0,unknown,unknown,O
 0x71006f3418,68,fn_71006f3418,unknown,unknown,O
 0x71006f345c,56,fn_71006f345c,unknown,unknown,O

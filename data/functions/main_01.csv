@@ -1061,7 +1061,7 @@ address,size,name,name_source,subsystem,status
 0x7100131370,2776,fn_7100131370,unknown,unknown,U
 0x7100131e48,256,fn_7100131e48,unknown,unknown,O
 0x7100131f48,324,fn_7100131f48,unknown,unknown,U
-0x710013208c,336,fn_710013208c,unknown,unknown,U
+0x710013208c,336,fn_710013208c,unknown,unknown,O
 0x71001321dc,100,fn_71001321dc,unknown,unknown,O
 0x7100132240,8,fn_7100132240,unknown,unknown,O
 0x7100132248,4,fn_7100132248,unknown,unknown,O
@@ -1769,9 +1769,9 @@ address,size,name,name_source,subsystem,status
 0x7100145858,4,fn_7100145858,unknown,unknown,O
 0x710014585c,4,fn_710014585c,unknown,unknown,O
 0x7100145860,4,fn_7100145860,unknown,unknown,O
-0x7100145864,28,fn_7100145864,unknown,unknown,U
-0x7100145880,28,fn_7100145880,unknown,unknown,U
-0x710014589c,28,fn_710014589c,unknown,unknown,U
+0x7100145864,28,fn_7100145864,unknown,unknown,O
+0x7100145880,28,fn_7100145880,unknown,unknown,O
+0x710014589c,28,fn_710014589c,unknown,unknown,O
 0x71001458b8,64,fn_71001458b8,unknown,unknown,O
 0x71001458f8,12,fn_71001458f8,unknown,unknown,O
 0x7100145904,4,fn_7100145904,unknown,unknown,O
@@ -2350,7 +2350,7 @@ address,size,name,name_source,subsystem,status
 0x7100154420,80,fn_7100154420,unknown,unknown,O
 0x7100154470,16,fn_7100154470,unknown,unknown,O
 0x7100154480,184,fn_7100154480,unknown,unknown,O
-0x7100154538,32,fn_7100154538,unknown,unknown,U
+0x7100154538,32,fn_7100154538,unknown,unknown,O
 0x7100154560,4,fn_7100154560,unknown,unknown,O
 0x7100154570,4,fn_7100154570,unknown,unknown,O
 0x7100154580,4,fn_7100154580,unknown,unknown,O
@@ -4308,10 +4308,10 @@ address,size,name,name_source,subsystem,status
 0x71001edb10,220,fn_71001edb10,unknown,engine/reflection?,O
 0x71001edbec,220,fn_71001edbec,unknown,engine/reflection?,O
 0x71001edcc8,312,fn_71001edcc8,unknown,engine/reflection?,O
-0x71001ede00,336,fn_71001ede00,unknown,engine/reflection?,U
-0x71001edf50,336,fn_71001edf50,unknown,engine/reflection?,U
-0x71001ee0a0,336,fn_71001ee0a0,unknown,engine/reflection?,U
-0x71001ee1f0,336,fn_71001ee1f0,unknown,engine/reflection?,U
+0x71001ede00,336,fn_71001ede00,unknown,engine/reflection?,O
+0x71001edf50,336,fn_71001edf50,unknown,engine/reflection?,O
+0x71001ee0a0,336,fn_71001ee0a0,unknown,engine/reflection?,O
+0x71001ee1f0,336,fn_71001ee1f0,unknown,engine/reflection?,O
 0x71001ee340,532,fn_71001ee340,unknown,engine/reflection?,O
 0x71001ee554,36,fn_71001ee554,unknown,engine/reflection?,O
 0x71001ee578,384,fn_71001ee578,unknown,engine/reflection?,O
