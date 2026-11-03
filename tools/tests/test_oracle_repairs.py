@@ -3,6 +3,7 @@ objects, and pcode_emu.Machine.call's out-parameter override ("o", (call, arg, o
 data: the objects' addresses come from setup's formula, and the Machine is built by hand.
 Skipped when pyelftools or capstone is not installed."""
 
+import types
 import unittest
 
 from tools.tests import _path  # noqa: F401
@@ -141,6 +142,49 @@ class OutParameterOverride(unittest.TestCase):
         m = self.machine(0, {("o", (2, 0, 0)): 1})
         m.call(0x7100001000)
         self.assertEqual(m.stored, plain.stored)
+
+
+@unittest.skipIf(port_lift is None, "pyelftools or capstone is not installed")
+class SretOnlyFromFacts(unittest.TestCase):
+    """Machine.call treats a call as returning through x8 (abi_garbage: x0 not compared after it) only
+    when the callee's facts say it reads x8, not when an unknown callee's x8 merely points at a local."""
+
+    OBJ = pcode_emu.ENTRY_SP - 0x40
+
+    def machine(self, facts):
+        m = pcode_emu.Machine.__new__(pcode_emu.Machine)
+        m.regs, m.undef_vn, m.vnarrow, m.state = bytearray(0x10000), set(), {}, {8: "written"}
+        m.seed, m.overrides, m.dictionary, m.lift, m.guide = 0, {}, None, None, None
+        m.target_reg, m.calls, m.call_log, m.out_words, m.frame_record = None, 0, [], [], set()
+        m.out_at, m.results, m.taken, m.saves, m.stack_written = {}, [], set(), set(), set()
+        m.imports = lambda t: None
+        m.facts = lambda t: facts
+        m.recorded = lambda target, t, modeled: None
+        m.checkpoint = lambda event: None
+        m.stackref = lambda v: ("stack", (), 16, frozenset(), 16) if pcode_emu.STACK_LO <= v < pcode_emu.ENTRY_SP else v
+        m.store = lambda a, size, v, track=True: None
+        m.set_reg(pcode_emu.X0 + 8 * 8, 8, self.OBJ)
+        return m
+
+    def test_unknown_callee_with_stack_x8_keeps_x0(self):
+        m = self.machine(None)
+        m.call(0x7100001000)
+        self.assertIn(8, m.call_log[0][0])  # (x8 still chosen, for its out-parameter)
+        self.assertFalse(m.res_sret)
+        self.assertFalse(pcode_emu.abi_garbage(m, 0))
+
+    def test_known_callee_reading_x8(self):
+        facts = types.SimpleNamespace(args=frozenset({8}), wide=frozenset({8}), stack_slots=0)
+        m = self.machine(facts)
+        m.call(0x7100001000)
+        self.assertTrue(m.res_sret)
+        self.assertTrue(pcode_emu.abi_garbage(m, 0))
+
+    def test_known_callee_not_reading_x8(self):
+        facts = types.SimpleNamespace(args=frozenset({0}), wide=frozenset({0}), stack_slots=0)
+        m = self.machine(facts)
+        m.call(0x7100001000)
+        self.assertFalse(pcode_emu.abi_garbage(m, 0))
 
 
 if __name__ == "__main__":

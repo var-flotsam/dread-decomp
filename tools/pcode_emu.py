@@ -850,8 +850,10 @@ class Machine:
         self.state[100] = "junk"
         self.res_read, self.res_written = set(), set()
         # (a callee that reads x8, the indirect result location, returns through memory: x0 and v0
-        # hold nothing after it)
-        self.res_sret = 8 in chosen
+        # hold nothing after it. Only a callee whose facts say it reads x8: an unknown callee's x8
+        # is chosen when it points at a local, which may be Clang's scratch for a frame address
+        # before an ordinary call, and its x0 result must still be compared)
+        self.res_sret = f is not None and 8 in f.args and 8 in chosen
 
     def recorded(self, target: int, t, modeled: bool):
         """The snapshot's next recorded call when it went to this target (and is taken), else None.
