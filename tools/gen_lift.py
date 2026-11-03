@@ -1057,7 +1057,11 @@ class Lifter:
             if k < 8:
                 self.read(f"x{k}")
             elif 100 <= k < 108:
-                self.read(f"{self.fwidth.get(k, 'd')}{k - 100}")
+                # (flat mode, a register used at both widths: the parameter is the whole register,
+                # f64, which carries every bit a pass-through needs; S<n> starts as its low half.
+                # fn_71009cf8f8 reads s0 on one path and tail-calls with d0 untouched on another.)
+                wide = k in getattr(self, "dual", ())
+                self.read(f"{'d' if wide else self.fwidth.get(k, 'd')}{k - 100}")
 
     def stack_args_before(self) -> int:
         """The 8-byte stack argument slots of the call at this instruction: the slots from [sp]
