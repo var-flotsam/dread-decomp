@@ -105,11 +105,12 @@ void ClearLightEvent(LightEventType* event);
 void WaitLightEvent(LightEventType* event);
 bool TimedWaitLightEvent(LightEventType* event, TimeSpan timeout);
 
-// An event. Its callers (the lifted fn_710002a6b0, fn_710002b0b0, fn_710002d298) pass only the
-// pointer, so the size is not known yet and the type stays opaque until a source embeds one. The
-// port uses the first 16 bytes, 8-aligned, which the console's event (a mutex, a condition and a
-// flag) exceeds.
-struct EventType;
+// An event. The movie decoder's unit (src/game/media/UnkMovieUnit327/) embeds two, so it has the
+// console's size, 0x28 bytes, 8-aligned; the port uses only the first 16 bytes.
+struct EventType {
+    alignas(8) u8 storage[0x28];
+};
+static_assert(sizeof(EventType) == 0x28, "the console's event: a mutex, a condition and a flag");
 
 void InitializeEvent(EventType* event, bool signaled, EventClearMode clear_mode);
 void FinalizeEvent(EventType* event);
@@ -153,9 +154,12 @@ void InitializeSystemEventForPort(SystemEventType* event, bool signaled, EventCl
 void SignalSystemEventForPort(SystemEventType* event);
 
 // A bounded queue of pointer-sized words over a buffer the caller provides. The movie player
-// (the lifted fn_7100224904) sends to one. Opaque like EventType: the port uses the
-// first 16 bytes and keeps the messages in the caller's buffer, as the console does.
-struct MessageQueueType;
+// (the lifted fn_7100224904) sends to one, and src/game/media/UnkPlayer329/ embeds it, so it has the
+// console's size: the port uses the first 16 bytes and keeps the messages in the caller's buffer,
+// as the console does.
+struct MessageQueueType {
+    alignas(8) u8 storage[0x48];
+};
 
 void InitializeMessageQueue(MessageQueueType* queue, u64* buffer, u64 count);
 void FinalizeMessageQueue(MessageQueueType* queue);
