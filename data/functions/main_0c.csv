@@ -45,7 +45,7 @@ address,size,name,name_source,subsystem,status
 0x7100c04264,248,fn_7100c04264,unknown,unknown,U
 0x7100c0435c,36,fn_7100c0435c,unknown,unknown,O
 0x7100c04380,96,fn_7100c04380,unknown,unknown,O
-0x7100c043e0,88,fn_7100c043e0,unknown,unknown,U
+0x7100c043e0,88,fn_7100c043e0,unknown,unknown,O
 0x7100c04438,28,fn_7100c04438,unknown,unknown,O
 0x7100c04454,240,fn_7100c04454,unknown,unknown,U
 0x7100c04544,8,fn_7100c04544,unknown,unknown,O
@@ -4103,7 +4103,7 @@ address,size,name,name_source,subsystem,status
 0x7100c71894,880,fn_7100c71894,unknown,unknown,U
 0x7100c71c04,728,fn_7100c71c04,unknown,unknown,U
 0x7100c71edc,612,fn_7100c71edc,unknown,unknown,U
-0x7100c72140,220,fn_7100c72140,unknown,unknown,U
+0x7100c72140,220,fn_7100c72140,unknown,unknown,O
 0x7100c7221c,1260,fn_7100c7221c,unknown,unknown,U
 0x7100c72708,10052,fn_7100c72708,unknown,unknown,U
 0x7100c74e4c,2104,fn_7100c74e4c,unknown,unknown,U
@@ -6105,7 +6105,7 @@ address,size,name,name_source,subsystem,status
 0x7100ccb6c0,12,fn_7100ccb6c0,unknown,game/characters?,O
 0x7100ccb6cc,8,fn_7100ccb6cc,unknown,game/characters?,O
 0x7100ccb6d4,28,fn_7100ccb6d4,unknown,game/characters?,O
-0x7100ccb6f0,92,fn_7100ccb6f0,unknown,game/characters?,U
+0x7100ccb6f0,92,fn_7100ccb6f0,unknown,game/characters?,O
 0x7100ccb74c,104,fn_7100ccb74c,unknown,game/characters?,O
 0x7100ccb7b4,104,fn_7100ccb7b4,unknown,game/characters?,O
 0x7100ccb81c,12,fn_7100ccb81c,unknown,game/characters?,O
@@ -6371,7 +6371,7 @@ address,size,name,name_source,subsystem,status
 0x7100cd497c,12,fn_7100cd497c,unknown,game/characters?,O
 0x7100cd4988,8,fn_7100cd4988,unknown,game/characters?,O
 0x7100cd4990,28,fn_7100cd4990,unknown,game/characters?,O
-0x7100cd49ac,80,fn_7100cd49ac,unknown,game/characters?,U
+0x7100cd49ac,80,fn_7100cd49ac,unknown,game/characters?,O
 0x7100cd49fc,120,fn_7100cd49fc,unknown,game/characters?,O
 0x7100cd4a74,120,fn_7100cd4a74,unknown,game/characters?,O
 0x7100cd4aec,12,fn_7100cd4aec,unknown,game/characters?,O
@@ -6514,7 +6514,7 @@ address,size,name,name_source,subsystem,status
 0x7100cd8dc4,12,fn_7100cd8dc4,unknown,game/characters?,O
 0x7100cd8dd0,8,fn_7100cd8dd0,unknown,game/characters?,O
 0x7100cd8dd8,28,fn_7100cd8dd8,unknown,game/characters?,O
-0x7100cd8df4,72,fn_7100cd8df4,unknown,game/characters?,U
+0x7100cd8df4,72,fn_7100cd8df4,unknown,game/characters?,O
 0x7100cd8e3c,104,fn_7100cd8e3c,unknown,game/characters?,O
 0x7100cd8ea4,104,fn_7100cd8ea4,unknown,game/characters?,O
 0x7100cd8f0c,12,fn_7100cd8f0c,unknown,game/characters?,O
@@ -6582,7 +6582,7 @@ address,size,name,name_source,subsystem,status
 0x7100cdb5f8,196,fn_7100cdb5f8,unknown,game/characters?,O
 0x7100cdb6bc,124,fn_7100cdb6bc,unknown,game/characters?,O
 0x7100cdb738,132,fn_7100cdb738,unknown,game/characters?,O
-0x7100cdb7bc,76,fn_7100cdb7bc,unknown,game/characters?,U
+0x7100cdb7bc,76,fn_7100cdb7bc,unknown,game/characters?,O
 0x7100cdb808,28,fn_7100cdb808,unknown,game/characters?,O
 0x7100cdb824,12,fn_7100cdb824,unknown,game/characters?,O
 0x7100cdb830,8,fn_7100cdb830,unknown,game/characters?,O

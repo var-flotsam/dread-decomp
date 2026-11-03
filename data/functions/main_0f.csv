@@ -4982,7 +4982,7 @@ address,size,name,name_source,subsystem,status
 0x7100fc0a80,1440,fn_7100fc0a80,unknown,unknown,U
 0x7100fc1020,220,fn_7100fc1020,unknown,unknown,O
 0x7100fc10fc,360,fn_7100fc10fc,unknown,unknown,O
-0x7100fc1264,88,fn_7100fc1264,unknown,unknown,U
+0x7100fc1264,88,fn_7100fc1264,unknown,unknown,O
 0x7100fc12bc,288,fn_7100fc12bc,unknown,unknown,O
 0x7100fc13dc,4,fn_7100fc13dc,unknown,unknown,O
 0x7100fc13e0,36,fn_7100fc13e0,unknown,unknown,O

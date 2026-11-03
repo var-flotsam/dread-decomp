@@ -821,7 +821,7 @@ address,size,name,name_source,subsystem,status
 0x7100a214d4,40,fn_7100a214d4,unknown,unknown,O
 0x7100a214fc,324,fn_7100a214fc,unknown,unknown,U
 0x7100a21640,304,fn_7100a21640,unknown,unknown,O
-0x7100a21770,104,fn_7100a21770,unknown,unknown,U
+0x7100a21770,104,fn_7100a21770,unknown,unknown,O
 0x7100a217d8,28,fn_7100a217d8,unknown,unknown,O
 0x7100a217f4,8,fn_7100a217f4,unknown,unknown,O
 0x7100a217fc,8,fn_7100a217fc,unknown,unknown,O
@@ -857,7 +857,7 @@ address,size,name,name_source,subsystem,status
 0x7100a23e84,332,fn_7100a23e84,unknown,unknown,O
 0x7100a23fd0,356,fn_7100a23fd0,unknown,unknown,U
 0x7100a24134,144,fn_7100a24134,unknown,unknown,O
-0x7100a241c4,64,fn_7100a241c4,unknown,unknown,U
+0x7100a241c4,64,fn_7100a241c4,unknown,unknown,O
 0x7100a24204,248,fn_7100a24204,unknown,unknown,U
 0x7100a242fc,28,fn_7100a242fc,unknown,unknown,O
 0x7100a24318,132,fn_7100a24318,unknown,unknown,O
@@ -1839,7 +1839,7 @@ address,size,name,name_source,subsystem,status
 0x7100a45abc,4,fn_7100a45abc,unknown,unknown,U
 0x7100a45ac0,4,fn_7100a45ac0,unknown,unknown,O
 0x7100a45ac4,488,fn_7100a45ac4,unknown,unknown,U
-0x7100a45cac,64,fn_7100a45cac,unknown,unknown,U
+0x7100a45cac,64,fn_7100a45cac,unknown,unknown,O
 0x7100a45cec,4,fn_7100a45cec,unknown,unknown,O
 0x7100a45cf0,272,fn_7100a45cf0,unknown,unknown,U
 0x7100a45e00,260,fn_7100a45e00,unknown,unknown,U
@@ -2183,7 +2183,7 @@ address,size,name,name_source,subsystem,status
 0x7100a52db0,28,fn_7100a52db0,unknown,game/ai?,O
 0x7100a52dcc,228,fn_7100a52dcc,unknown,game/ai?,U
 0x7100a52eb0,12,fn_7100a52eb0,unknown,game/ai?,O
-0x7100a52ebc,68,fn_7100a52ebc,unknown,game/ai?,U
+0x7100a52ebc,68,fn_7100a52ebc,unknown,game/ai?,O
 0x7100a52f00,160,fn_7100a52f00,unknown,game/ai?,O
 0x7100a52fa0,4,fn_7100a52fa0,unknown,game/ai?,O
 0x7100a52fa4,244,CSPRTutoLogicAction::refl_GetClass,reflection,game/ai,O
@@ -3522,7 +3522,7 @@ address,size,name,name_source,subsystem,status
 0x7100a8bc44,724,fn_7100a8bc44,unknown,game/components?,U
 0x7100a8bf18,100,fn_7100a8bf18,unknown,game/components?,U
 0x7100a8bf7c,24,fn_7100a8bf7c,unknown,game/components?,O
-0x7100a8bf94,40,fn_7100a8bf94,unknown,game/components?,U
+0x7100a8bf94,40,fn_7100a8bf94,unknown,game/components?,O
 0x7100a8bfbc,12,fn_7100a8bfbc,unknown,game/components?,O
 0x7100a8bfc8,848,fn_7100a8bfc8,unknown,game/components?,U
 0x7100a8c318,536,fn_7100a8c318,unknown,game/components?,U
@@ -3621,7 +3621,7 @@ address,size,name,name_source,subsystem,status
 0x7100a925a0,364,fn_7100a925a0,unknown,unknown,U
 0x7100a9270c,296,fn_7100a9270c,unknown,unknown,U
 0x7100a92834,144,fn_7100a92834,unknown,unknown,U
-0x7100a928c4,40,fn_7100a928c4,unknown,unknown,U
+0x7100a928c4,40,fn_7100a928c4,unknown,unknown,O
 0x7100a928ec,576,fn_7100a928ec,unknown,unknown,U
 0x7100a92b2c,120,fn_7100a92b2c,unknown,unknown,U
 0x7100a92ba4,692,fn_7100a92ba4,unknown,unknown,U
