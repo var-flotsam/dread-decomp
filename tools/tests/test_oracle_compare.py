@@ -18,6 +18,7 @@ def machine() -> pcode_emu.Machine:
     m.vnarrow_at, m.steps = {}, 0
     m.target_reg = None
     m._loaded, m._all_loads = None, set()  # (no call event yet: load)
+    m.entry_regs, m.save_slots, m.save_src = {}, {}, {}
     return m
 
 
@@ -264,27 +265,59 @@ class SaveSlotLoad(unittest.TestCase):
 
     SLOT, DST, ENTRY = ENTRY_SP - 0x20, ENTRY_SP - 0x60, 0x534EC1007DEC8026
 
-    def run_load(self, held):
+    X19 = pcode_emu.X0 + 8 * 19
+
+    def fresh(self, entry=None):
         m = machine()
         page = pcode_emu.PAGE
+        entry = self.ENTRY if entry is None else entry
         m.pages = {n: bytearray(page) for n in range(self.DST // page, ENTRY_SP // page + 1)}
         m.dirty, m.track, m.arg_slots, m.uniq, m.res_read, m._touched = {}, False, None, {}, None, set()
         m.stack_written, m.frame_record, m.out_at, m.own_stack = set(), set(), {}, set()
-        m.entry_saved, m.saves, m.undef_mem = {self.ENTRY}, set(), set()
-        m.store(self.SLOT, 8, self.ENTRY)  # (the prologue's save)
-        m.store(self.SLOT, 8, held)
+        m.entry_saved, m.saves, m.undef_mem = {entry}, set(), set()
+        m.entry_regs, m.save_slots, m.save_src = {self.X19: entry}, {}, {}
+        m.regs[self.X19:self.X19 + 8] = entry.to_bytes(8, "little")
+        return m
+
+    def copy_out(self, m, src):
+        """LOAD the word at src, STORE it to DST."""
         with _opcodes({9001: "STORE", 9002: "LOAD"}):
-            m.exec(9002, (1, 0x100, 8), [(0, 0, 8), (0, self.SLOT, 8)])
+            m.exec(9002, (1, 0x100, 8), [(0, 0, 8), (0, src, 8)])
             m.exec(9001, None, [(0, 0, 8), (0, self.DST, 8), (1, 0x100, 8)])
         return m
+
+    def run_load(self, held, via_unique=False):
+        m = self.fresh()
+        with _opcodes({9001: "STORE", 9003: "COPY"}):  # (the prologue's save of x19)
+            if via_unique:
+                m.exec(9003, (1, 0x200, 8), [(2, self.X19, 8)])
+                m.exec(9001, None, [(0, 0, 8), (0, self.SLOT, 8), (1, 0x200, 8)])
+            else:
+                m.exec(9001, None, [(0, 0, 8), (0, self.SLOT, 8), (2, self.X19, 8)])
+        m.store(self.SLOT, 8, held)
+        return self.copy_out(m, self.SLOT)
 
     def test_entry_value_is_undefined(self):
         m = self.run_load(self.ENTRY)
         self.assertEqual(m.undef_mem, set(range(self.DST, self.DST + 8)))
 
+    def test_save_through_a_unique_is_a_slot(self):
+        """Ghidra's stp may copy the register to a unique first: still the register's save."""
+        m = self.run_load(self.ENTRY, via_unique=True)
+        self.assertEqual(m.undef_mem, set(range(self.DST, self.DST + 8)))
+
     def test_overwritten_slot_is_data(self):
         """The slot reused for a local after the restore: what it holds now is compared."""
         self.assertEqual(self.run_load(7).undef_mem, set())
+
+    def test_local_equal_to_an_entry_value_is_data(self):
+        """A snapshot run's x19 may be 0 at entry: a zeroed local (`T tmp{}`, a constant store, not
+        a save of x19) copied out is compared, not taken for a save slot."""
+        local = ENTRY_SP - 0x40
+        m = self.fresh(entry=0)
+        with _opcodes({9001: "STORE"}):
+            m.exec(9001, None, [(0, 0, 8), (0, local, 8), (0, 0, 8)])
+        self.assertEqual(self.copy_out(m, local).undef_mem, set())
 
 
 class WrapperX8(unittest.TestCase):

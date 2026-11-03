@@ -504,6 +504,12 @@ class Machine:
         self.frame_record: set[int] = set()  # stack words holding the saved return address (store)
         self.saves: set[int] = set()  # stack words holding a callee-saved register's entry value (store)
         self.entry_saved: set[int] = set()  # those entry values (setup: x19-x28, d8-d15)
+        # The save slots themselves (exec STORE): a word the function stored from x19-x28 or d8-d15
+        # (or a unique copied from one) while the register held its entry value, with that value. Not
+        # by value alone: a snapshot's entry x19 or d8 is often 0, and a zeroed local is no save.
+        self.entry_regs: dict[int, int] = {}  # callee-saved register offset -> its entry value (setup)
+        self.save_slots: dict[int, int] = {}
+        self.save_src: dict[int, int] = {}  # unique offset -> the entry value it copied from such a register
         self.taken: set[int] = set()  # stack addresses the code made (`add xN, sp, #k`): local objects' starts
         self.out_at: dict[int, int] = {}  # stack bytes an out-parameter filled: the argument's address (call)
         self.own_stack: set[int] = set()  # stack bytes the function's own code stored (exec)
@@ -712,6 +718,8 @@ class Machine:
             self.set_reg(off, size, v)
         elif sp == 1:
             self.uniq[off] = v
+            if self.save_src:
+                self.save_src.pop(off, None)
             if self.undef_vn:
                 self.undef_vn.difference_update((1, off + i) for i in range(size))
         elif sp == 3:
@@ -757,6 +765,8 @@ class Machine:
                 self.regs[Q0 + QSTRIDE * (k - 100):Q0 + QSTRIDE * (k - 100) + 16] = (v & (1 << 128) - 1).to_bytes(16, "little")
         self.state = {k: "entry" for k in list(range(9)) + list(range(100, 108))}
         self.entry_saved = {self.x(i) for i in range(19, 29)} | {self.reg(Q0 + QSTRIDE * i, 8) for i in range(8, 16)}
+        self.entry_regs = {X0 + 8 * i: self.x(i) for i in range(19, 29)}
+        self.entry_regs.update({Q0 + QSTRIDE * i: self.reg(Q0 + QSTRIDE * i, 8) for i in range(8, 16)})
 
     def canonical(self, target: int):
         name = self.imports(target)
@@ -1300,6 +1310,10 @@ class Machine:
         if name == "COPY":
             self.write(out, r(ins[0]))
             self.carry_undef(out, ins[0], 0)
+            if out[0] == 1 and out[2] == 8:
+                e = self.saved_reg(ins[0])
+                if e is not None:
+                    self.save_src[out[1]] = e
         elif name == "LOAD":
             a = r(ins[1])
             self.write(out, self.load(a, size))
@@ -1311,10 +1325,10 @@ class Machine:
                 # made-up count run past the array (7100128810: an entry past a callee-filled table
                 # copied out), and the lift's frame holds its own locals there. The epilogue's
                 # restore loads it too, into the register: undefined there only until written.)
-                if self.saves and STACK_LO <= a < ENTRY_SP:
-                    hit = [s for s in self.saves if s < a + size and a < s + 8
+                if self.save_slots and STACK_LO <= a < ENTRY_SP:
+                    hit = [s for s, e in self.save_slots.items() if s < a + size and a < s + 8
                            and int.from_bytes(bytes(self.page((s + i) // PAGE)[(s + i) % PAGE] for i in range(8)),
-                                              "little") in self.entry_saved]
+                                              "little") == e]
                     if hit:
                         self.undef_vn.update((out[0], out[1] + i) for i in range(size)
                                              if any(s <= a + i < s + 8 for s in hit))
@@ -1322,6 +1336,11 @@ class Machine:
             a = r(ins[1])
             self.store(a, ins[2][2], r(ins[2]))
             if STACK_LO <= a < ENTRY_SP:
+                for s in [s for s in self.save_slots if s < a + ins[2][2] and a < s + 8]:
+                    del self.save_slots[s]
+                e = self.saved_reg(ins[2]) if ins[2][2] == 8 else None
+                if e is not None:
+                    self.save_slots[a] = e
                 self.own_stack.update(range(a, a + ins[2][2]))
                 for x in range(a, a + ins[2][2]):
                     self.out_at.pop(x, None)  # (the function's own now, not an out-parameter's)
@@ -1363,6 +1382,20 @@ class Machine:
             self.userop(self.userops.get(ins[0][1], "?"), out, ins[1:])
         else:
             raise Inconclusive(f"P-code {name}")
+
+    def saved_reg(self, vn) -> int | None:
+        """The entry value vn holds when it is a callee-saved register (x19-x28, d8-d15) still holding
+        it, or a unique copied from one (save_src); else None."""
+        sp, off, size = vn
+        if size != 8:
+            return None
+        if sp == 2:
+            e = self.entry_regs.get(off)
+            return e if e is not None and self.reg(off, 8) == e else None
+        if sp == 1:
+            e = self.save_src.get(off)
+            return e if e is not None and self.uniq.get(off) == e else None
+        return None
 
     def carry_undef(self, out, src, skip: int) -> None:
         """A copy (or a zero extension, or a part from byte `skip` on) carries undefined bytes."""
