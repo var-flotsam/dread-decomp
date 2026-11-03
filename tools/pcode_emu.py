@@ -1279,7 +1279,14 @@ class Machine:
             self.write(out, 1 if a <= b else 0)
         else:
             try:
-                if name == "FLOAT_ADD":
+                if name in ("FLOAT_ADD", "FLOAT_MULT") and math.isnan(a) and math.isnan(b):
+                    # Two NaNs: the hardware returns the first operand's, but C leaves which one
+                    # unspecified and Clang commutes a + b and a * b (`fadd s8, s1, s8` lifted
+                    # as `fadd s8, s8, s1`, fn_7100212794): a NaN chosen by the bits alone, so
+                    # the order of the operands, which the compiled C does not keep, never shows.
+                    quiet = 1 << (22 if s0 == 4 else 51)
+                    v = (a if r(ins[0]) | quiet <= r(ins[1]) | quiet else b) + 0.0
+                elif name == "FLOAT_ADD":
                     v = a + b
                 elif name == "FLOAT_SUB":
                     v = a - b
