@@ -26,7 +26,7 @@ struct ApplicationAreaCreateInfo;
 enum ModelType : s32 {};
 enum MountTarget : s32 {};
 // What GetState and GetDeviceState return (the values the port reports are named below).
-enum State : s32 { State_None = 0, State_Initialized = 1 };
+enum State : s32 { State_None = 0, State_NonInitialized = 0, State_Initialized = 1 };
 enum DeviceState : s32 {};
 
 Result Initialize();

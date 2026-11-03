@@ -53,8 +53,11 @@ def signature(code: bytes) -> str:
         w = struct.unpack_from("<I", code, 4 * i)[0]
         rd = w & 0x1F
         rn = (w >> 5) & 0x1F
-        if w & 0x7C000000 == 0x14000000:          # B / BL
-            w &= 0xFC000000
+        if w & 0x7C000000 == 0x14000000:          # B / BL: the low bits are the offset, not a register
+            if w >> 31:
+                adrp_regs.discard(30)              # BL writes the link register
+            words.append(w & 0xFC000000)
+            continue
         elif w & 0x9F000000 == 0x90000000:        # ADRP
             w &= 0x9F00001F
             adrp_regs.add(rd)
