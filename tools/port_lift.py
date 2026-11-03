@@ -413,6 +413,7 @@ class Oracle:
             if p is not None:
                 self.preset_orig[pcode_emu.BASE + p] = 1
         self.orig_runs: dict[int, list] = {}
+        self.retry_runs: dict = {}  # (address, seed, overrides) -> the original's run at RETRY_SCALE (check)
         self.dicts: dict[int, tuple] = {}
 
     def image_word(self, a: int) -> int:
@@ -677,12 +678,23 @@ class Oracle:
         if not agreed and retry:
             scale = pcode_emu.RETRY_SCALE
             for seed, ovr in retry:
-                try:
-                    mo = self.run_original(addr, seed, ovr, scale)
-                except pcode_emu.Inconclusive as e:
-                    why = f"original: {e} (with {scale}x the limits)"
+                # (the original's long run is the same for every attempt of the function: run once.
+                # Still cut off, no lift can agree on it, and its prefix was compared at 1x: the
+                # lift's long run is skipped. Those two were most of the whole binary's last hour.)
+                key = (addr, seed, tuple(sorted(ovr.items(), key=repr)))
+                if key not in self.retry_runs:
+                    try:
+                        self.retry_runs[key] = self.run_original(addr, seed, ovr, scale)
+                    except pcode_emu.Inconclusive as e:
+                        self.retry_runs[key] = f"original: {e} (with {scale}x the limits)"
+                mo = self.retry_runs[key]
+                if isinstance(mo, str):
+                    why = mo
                     continue
                 covered |= mo.visited
+                if mo.cut:
+                    why = f"the original was cut off ({mo.cut}) (also with {scale}x the limits)"
+                    continue
                 v, d = one(seed, ovr, mo, scale)
                 if v == "fail":
                     return "fail", f"{d} (with {scale}x the limits)", agreed, covered
@@ -723,6 +735,7 @@ def _check(job: tuple[int, list]) -> tuple[int, int | None, dict, str, str]:
     its info, the verdict that rejected it, debug text)."""
     a, attempts = job
     oracle = _CTX["oracle"]
+    oracle.retry_runs.clear()  # (one function's long runs at a time)
     fail, debug = "", []
     for k, ret in attempts:
         try:
