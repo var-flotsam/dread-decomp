@@ -1324,8 +1324,11 @@ class Machine:
                 # caller's, which no C code reads as data. Only an index past a local reaches it, a
                 # made-up count run past the array (7100128810: an entry past a callee-filled table
                 # copied out), and the lift's frame holds its own locals there. The epilogue's
-                # restore loads it too, into the register: undefined there only until written.)
-                if self.save_slots and STACK_LO <= a < ENTRY_SP:
+                # restore loads it too, into the register: undefined there only until written. The
+                # original's run only: compare() skips a byte either run's undef_mem holds, so the
+                # lift reading its own saves, a wrong bound or offset, would decide what the original
+                # is compared on; the original's undefined store already skips the same address.)
+                if self.save_slots and self.lift is None and STACK_LO <= a < ENTRY_SP:
                     hit = [s for s, e in self.save_slots.items() if s < a + size and a < s + 8
                            and int.from_bytes(bytes(self.page((s + i) // PAGE)[(s + i) % PAGE] for i in range(8)),
                                               "little") == e]

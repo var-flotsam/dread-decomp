@@ -319,6 +319,15 @@ class SaveSlotLoad(unittest.TestCase):
             m.exec(9001, None, [(0, 0, 8), (0, local, 8), (0, 0, 8)])
         self.assertEqual(self.copy_out(m, local).undef_mem, set())
 
+    def test_lift_reading_its_own_save_is_data(self):
+        """The lift's run: a load from its own save slot is the lift's frame bug, not the
+        original's undefined index; its store is compared (compare() skips only the original's)."""
+        m = self.fresh()
+        m.lift = object()
+        with _opcodes({9001: "STORE"}):
+            m.exec(9001, None, [(0, 0, 8), (0, self.SLOT, 8), (2, self.X19, 8)])
+        self.assertEqual(self.copy_out(m, self.SLOT).undef_mem, set())
+
 
 class WrapperX8(unittest.TestCase):
     """call: an indirect callee (no facts) is passed x8 as the function was given it when the
