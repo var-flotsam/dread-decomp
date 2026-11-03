@@ -1251,6 +1251,8 @@ class Machine:
                 v = float(math.floor(abs(a) + 0.5)) * (1 if a >= 0 else -1)
             else:
                 v = math.sqrt(a) if a >= 0 else float("nan")
+            if v == 0 and name != "FLOAT_SQRT":
+                v = math.copysign(0.0, a)  # (frintm/frintp/frinta keep the sign of zero, as Machine.math's floorf)
             self.write(out, f_to(v, out[2]))
             return
         b = f_from(r(ins[1]), ins[1][2])

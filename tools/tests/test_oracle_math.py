@@ -239,3 +239,25 @@ class PureMath(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class InlinedRounding(unittest.TestCase):
+    """The P-code CEIL/FLOOR/ROUND (an inlined frintp/frintm/frinta) keep the sign of zero, as
+    Machine.math's ceilf/floorf/roundf do: a lift that inlines the call must agree with it."""
+
+    def op(self, name: str, a: float) -> int:
+        import struct
+        m = pcode_emu.Machine.__new__(pcode_emu.Machine)
+        got = {}
+        m.read = lambda vn: struct.unpack("<I", struct.pack("<f", a))[0]
+        m.write = lambda vn, v: got.setdefault("v", v)
+        m.float_op(name, ("register", 0, 4), [("register", 0, 4)])
+        return got["v"]
+
+    def test_negative_zero(self):
+        for name, a in (("CEIL", -0.5), ("FLOOR", -0.0), ("ROUND", -0.3)):
+            self.assertEqual(self.op(name, a), 0x80000000, name)
+
+    def test_positive_zero(self):
+        for name, a in (("CEIL", 0.0), ("FLOOR", 0.5), ("ROUND", 0.3)):
+            self.assertEqual(self.op(name, a), 0, name)
