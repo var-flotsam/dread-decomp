@@ -39,6 +39,36 @@ class CutOff(unittest.TestCase):
         d = pcode_emu.compare(run("return", short + 1), run("time-out", n * k + 1, k, "steps"), None)
         self.assertTrue(d.startswith("the lift ran out of steps"), d)
 
+    CALL = (("call", 0x7100001000, (), ()), ())
+
+    def test_slower_after_a_noreturn_call_or_a_trap(self):
+        # The original called a [[noreturn]] callee (or trapped) and ended; the lift made the same
+        # call and then spun until its step budget ran out: a difference, not a skip.
+        n = pcode_emu.MAX_STEPS
+        for end in ("noreturn", "trap"):
+            orig = run(end, 10, events=[self.CALL, (("end", end), ())])
+            lift = run("time-out", n + 1, cut="steps", events=[self.CALL, (("end", "time-out"), ())])
+            d = pcode_emu.compare(orig, lift, None)
+            self.assertTrue(d.startswith("the lift ran out of steps"), (end, d))
+            # Cut off for another reason (events, snapshot room) it still decides nothing.
+            lift.cut = "events"
+            d = pcode_emu.compare(orig, lift, None)
+            self.assertTrue(d.startswith("skip: "), (end, d))
+
+    def test_a_lift_spinning_where_the_original_hangs(self):
+        # The original spins forever on `b .` (ended as a hang); a lift spinning in a loop of its
+        # own, cut off with no event past the original's, is not rejected.
+        n = pcode_emu.MAX_STEPS
+        orig = run("hang", 10, events=[self.CALL, (("end", "hang"), ())])
+        lift = run("time-out", n + 1, cut="steps", events=[self.CALL, (("end", "time-out"), ())])
+        d = pcode_emu.compare(orig, lift, None)
+        self.assertTrue(d.startswith("skip: "), d)
+        # One that makes another call first still differs.
+        lift = run("time-out", n + 1, cut="steps",
+                   events=[self.CALL, (("call", 0x7100002000, (), ()), ()), (("end", "time-out"), ())])
+        d = pcode_emu.compare(orig, lift, None)
+        self.assertFalse(d.startswith("skip: ") or d == "", d)
+
 
 if __name__ == "__main__":
     unittest.main()
@@ -91,6 +121,7 @@ class FloatToInt(unittest.TestCase):
         import struct
         m = pcode_emu.Machine.__new__(pcode_emu.Machine)
         m.regs, m.undef_vn, m.state, m.lift, m.vnarrow = bytearray(0x10000), set(), {}, None, {}
+        m.vnarrow_at, m.steps = {}, 0
         q1 = pcode_emu.Q0 + pcode_emu.QSTRIDE
         m.regs[q1:q1 + 8] = struct.pack("<d", value) if double else struct.pack("<f", value) + bytes(4)
         m.set_reg(pcode_emu.X0, 8, 0xDEADBEEFDEADBEEF)
@@ -117,6 +148,7 @@ class FloatToInt(unittest.TestCase):
         import struct
         m = pcode_emu.Machine.__new__(pcode_emu.Machine)
         m.regs, m.undef_vn, m.state, m.lift, m.vnarrow = bytearray(0x10000), set(), {}, None, {}
+        m.vnarrow_at, m.steps = {}, 0
         q1, q2 = pcode_emu.Q0 + pcode_emu.QSTRIDE, pcode_emu.Q0 + 2 * pcode_emu.QSTRIDE
         for rmode, value, want in ((2, 649.7, 649.0), (1, -0.5, -0.0), (0, 2.5, 2.0), (4, 2.5, 3.0), (3, -1.7, -1.0)):
             m.regs[q1:q1 + 4] = struct.pack("<f", value)
@@ -194,3 +226,21 @@ class Snapshots(unittest.TestCase):
         m.replay_i = 0
         self.assertIsNone(rec(m, B + 0x300, B + 0x300, False))
         self.assertIn("the real run's", m.replay_end)
+
+
+@unittest.skipIf(pcode_emu is None, "pyelftools is not installed")
+class AbiGarbage(unittest.TestCase):
+    def test_result_in_the_class_the_function_did_not_read(self):
+        # x0 left by a call whose s0 the function read (a float callee): garbage, whatever it holds
+        m = SimpleNamespace(res_read={100}, res_written=set())
+        self.assertTrue(pcode_emu.abi_garbage(m, 0))
+        self.assertFalse(pcode_emu.abi_garbage(m, 100))
+        # read in both classes, written since, or no call made: compared
+        self.assertFalse(pcode_emu.abi_garbage(SimpleNamespace(res_read={0, 100}, res_written=set()), 0))
+        self.assertFalse(pcode_emu.abi_garbage(SimpleNamespace(res_read={100}, res_written={0}), 0))
+        self.assertFalse(pcode_emu.abi_garbage(SimpleNamespace(res_read=None, res_written=set()), 0))
+        # after a call through x8 (a result in memory), either register unless read or written since
+        sret = SimpleNamespace(res_read=set(), res_written={100}, res_sret=True)
+        self.assertTrue(pcode_emu.abi_garbage(sret, 0))
+        self.assertFalse(pcode_emu.abi_garbage(sret, 100))
+        self.assertFalse(pcode_emu.abi_garbage(SimpleNamespace(res_read=set(), res_written=set()), 0))
