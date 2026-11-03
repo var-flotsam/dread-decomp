@@ -1090,7 +1090,8 @@ def main() -> int:
                          " literal; until gen_lift is fixed)")
     ap.add_argument("--junk-scratch", action="store_true",
                     help="track the registers a call leaves undefined (x9-x18, v16-v31, v8-v15's upper halves): an "
-                         "input on which a compared argument, store, branch or result depends on one is skipped "
+                         "input on which the original's compared argument, store, branch or result depends on one is "
+                         "skipped "
                          "(pcode_emu.Machine.junk_scratch; off by default)")
     ap.add_argument("--no-overrides", action="store_true",
                     help="leave those definitions alone (by default each gets a semantic lift that overrides it, "
