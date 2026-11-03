@@ -570,7 +570,10 @@ class Oracle:
                             m = run(seed, o)
                         except pcode_emu.Inconclusive:
                             continue
-                        if m.visited - seen or (not stuck(m) and not ended()):
+                        # (progress is against the run repaired, not every run: another seed may have
+                        # covered the instructions past the fault, 71008194e8)
+                        if m.visited - seen or (not stuck(m) and not ended()) \
+                                or (m.visited - base.visited and not ended()):
                             hit.add(key)
                             runs.append((seed, o, m))
                             seen |= m.visited
