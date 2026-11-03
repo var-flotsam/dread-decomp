@@ -717,7 +717,7 @@ address,size,name,name_source,subsystem,status
 0x7100917368,244,CMagmaKraidScenarioControllerComponent::refl_GetClass,reflection,game/components,O
 0x710091745c,376,fn_710091745c,unknown,game/components?,O
 0x71009175d4,388,CMagmaKraidScenarioControllerComponent::refl_InitClass,reflection,game/components,O
-0x7100917758,444,fn_7100917758,unknown,game/components?,U
+0x7100917758,444,fn_7100917758,unknown,game/components?,O
 0x7100917914,36,fn_7100917914,unknown,game/components?,O
 0x7100917938,4,fn_7100917938,unknown,game/components?,O
 0x710091793c,144,fn_710091793c,unknown,game/components?,O
@@ -751,7 +751,7 @@ address,size,name,name_source,subsystem,status
 0x710091884c,556,fn_710091884c,unknown,game/components?,O
 0x7100918a78,260,fn_7100918a78,unknown,game/components?,U
 0x7100918b7c,284,fn_7100918b7c,unknown,game/components?,O
-0x7100918c98,292,fn_7100918c98,unknown,game/components?,U
+0x7100918c98,292,fn_7100918c98,unknown,game/components?,O
 0x7100918dbc,312,fn_7100918dbc,unknown,game/components?,U
 0x7100918ef4,40,fn_7100918ef4,unknown,game/components?,O
 0x7100918f1c,412,fn_7100918f1c,unknown,game/components?,U

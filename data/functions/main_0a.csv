@@ -1714,7 +1714,7 @@ address,size,name,name_source,subsystem,status
 0x7100a41410,268,fn_7100a41410,unknown,game/ai?,O
 0x7100a4151c,320,fn_7100a4151c,unknown,game/ai?,O
 0x7100a4165c,36,fn_7100a4165c,unknown,game/ai?,O
-0x7100a41680,628,fn_7100a41680,unknown,game/ai?,U
+0x7100a41680,628,fn_7100a41680,unknown,game/ai?,O
 0x7100a418f4,28,fn_7100a418f4,unknown,game/ai?,O
 0x7100a41910,12,fn_7100a41910,unknown,game/ai?,O
 0x7100a4191c,12,fn_7100a4191c,unknown,game/ai?,O
@@ -2065,7 +2065,7 @@ address,size,name,name_source,subsystem,status
 0x7100a4eabc,244,CForbiddenEdgesLogicAction::refl_GetClass,reflection,game/ai,O
 0x7100a4ebb0,760,fn_7100a4ebb0,unknown,game/ai?,O
 0x7100a4eea8,352,CForbiddenEdgesLogicAction::refl_InitClass,reflection,game/ai,O
-0x7100a4f008,452,fn_7100a4f008,unknown,game/ai?,U
+0x7100a4f008,452,fn_7100a4f008,unknown,game/ai?,O
 0x7100a4f1cc,36,fn_7100a4f1cc,unknown,game/ai?,O
 0x7100a4f1f0,688,fn_7100a4f1f0,unknown,game/ai?,U
 0x7100a4f4a0,28,fn_7100a4f4a0,unknown,game/ai?,O
@@ -2171,7 +2171,7 @@ address,size,name,name_source,subsystem,status
 0x7100a51fd4,244,CSPBTutoLogicAction::refl_GetClass,reflection,game/ai,O
 0x7100a520c8,532,fn_7100a520c8,unknown,game/ai?,O
 0x7100a522dc,352,CSPBTutoLogicAction::refl_InitClass,reflection,game/ai,O
-0x7100a5243c,492,fn_7100a5243c,unknown,game/ai?,U
+0x7100a5243c,492,fn_7100a5243c,unknown,game/ai?,O
 0x7100a52628,36,fn_7100a52628,unknown,game/ai?,O
 0x7100a5264c,428,fn_7100a5264c,unknown,game/ai?,O
 0x7100a527f8,1136,fn_7100a527f8,unknown,game/ai?,U
@@ -2190,7 +2190,7 @@ address,size,name,name_source,subsystem,status
 0x7100a53098,532,fn_7100a53098,unknown,game/ai?,O
 0x7100a532ac,352,CSPRTutoLogicAction::refl_InitClass,reflection,game/ai,O
 0x7100a5340c,252,fn_7100a5340c,unknown,game/ai?,O
-0x7100a53508,588,fn_7100a53508,unknown,game/ai?,U
+0x7100a53508,588,fn_7100a53508,unknown,game/ai?,O
 0x7100a53754,36,fn_7100a53754,unknown,game/ai?,O
 0x7100a53778,4,fn_7100a53778,unknown,game/ai?,O
 0x7100a5377c,2028,fn_7100a5377c,unknown,game/ai?,U
@@ -2372,7 +2372,7 @@ address,size,name,name_source,subsystem,status
 0x7100a57f30,1304,fn_7100a57f30,unknown,game/ai?,O
 0x7100a58448,352,CTutoEnterLogicAction::refl_InitClass,reflection,game/ai,O
 0x7100a585a8,440,fn_7100a585a8,unknown,game/ai?,O
-0x7100a58760,496,fn_7100a58760,unknown,game/ai?,U
+0x7100a58760,496,fn_7100a58760,unknown,game/ai?,O
 0x7100a58950,36,fn_7100a58950,unknown,game/ai?,O
 0x7100a58974,824,fn_7100a58974,unknown,game/ai?,U
 0x7100a58cac,220,fn_7100a58cac,unknown,game/ai?,O

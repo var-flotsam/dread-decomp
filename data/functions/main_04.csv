@@ -2847,7 +2847,7 @@ address,size,name,name_source,subsystem,status
 0x71004806fc,552,fn_71004806fc,unknown,game/ai?,U
 0x7100480924,4,fn_7100480924,unknown,game/ai?,O
 0x7100480928,100,fn_7100480928,unknown,game/ai?,O
-0x710048098c,164,fn_710048098c,unknown,game/ai?,U
+0x710048098c,164,fn_710048098c,unknown,game/ai?,O
 0x7100480a30,4,fn_7100480a30,unknown,game/ai?,O
 0x7100480a34,4,fn_7100480a34,unknown,game/ai?,O
 0x7100480a38,112,fn_7100480a38,unknown,game/ai?,O
@@ -2873,7 +2873,7 @@ address,size,name,name_source,subsystem,status
 0x71004815cc,388,CChozoWarriorXGlaiveSpinAttack::refl_InitClass,reflection,game/ai,O
 0x7100481750,68,fn_7100481750,unknown,game/ai?,O
 0x7100481794,96,fn_7100481794,unknown,game/ai?,O
-0x71004817f4,188,fn_71004817f4,unknown,game/ai?,U
+0x71004817f4,188,fn_71004817f4,unknown,game/ai?,O
 0x71004818b0,100,fn_71004818b0,unknown,game/ai?,O
 0x7100481914,180,fn_7100481914,unknown,game/ai?,U
 0x71004819c8,788,fn_71004819c8,unknown,game/ai?,U
@@ -2901,7 +2901,7 @@ address,size,name,name_source,subsystem,status
 0x7100482624,848,fn_7100482624,unknown,game/ai?,U
 0x7100482974,4,fn_7100482974,unknown,game/ai?,O
 0x7100482978,204,fn_7100482978,unknown,game/ai?,O
-0x7100482a44,164,fn_7100482a44,unknown,game/ai?,U
+0x7100482a44,164,fn_7100482a44,unknown,game/ai?,O
 0x7100482ae8,4,fn_7100482ae8,unknown,game/ai?,O
 0x7100482aec,1072,fn_7100482aec,unknown,game/ai?,U
 0x7100482f1c,112,fn_7100482f1c,unknown,game/ai?,O
@@ -2932,7 +2932,7 @@ address,size,name,name_source,subsystem,status
 0x7100483f20,2436,fn_7100483f20,unknown,game/ai?,U
 0x71004848a4,108,fn_71004848a4,unknown,game/ai?,O
 0x7100484910,344,fn_7100484910,unknown,game/ai?,O
-0x7100484a68,164,fn_7100484a68,unknown,game/ai?,U
+0x7100484a68,164,fn_7100484a68,unknown,game/ai?,O
 0x7100484b0c,4,fn_7100484b0c,unknown,game/ai?,O
 0x7100484b10,1464,fn_7100484b10,unknown,game/ai?,U
 0x71004850c8,396,fn_71004850c8,unknown,game/ai?,U
@@ -4930,7 +4930,7 @@ address,size,name,name_source,subsystem,status
 0x71004c96b0,388,CCooldownXBossReaperAttack::refl_InitClass,reflection,game/ai,O
 0x71004c9834,72,fn_71004c9834,unknown,game/ai?,O
 0x71004c987c,96,fn_71004c987c,unknown,game/ai?,O
-0x71004c98dc,188,fn_71004c98dc,unknown,game/ai?,U
+0x71004c98dc,188,fn_71004c98dc,unknown,game/ai?,O
 0x71004c9998,4,fn_71004c9998,unknown,game/ai?,O
 0x71004c999c,4,fn_71004c999c,unknown,game/ai?,O
 0x71004c99a0,4,fn_71004c99a0,unknown,game/ai?,O

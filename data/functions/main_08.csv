@@ -730,10 +730,10 @@ address,size,name,name_source,subsystem,status
 0x7100825f10,112,fn_7100825f10,unknown,unknown,O
 0x7100825f80,268,fn_7100825f80,unknown,unknown,U
 0x710082608c,4,fn_710082608c,unknown,unknown,O
-0x7100826090,336,fn_7100826090,unknown,unknown,U
+0x7100826090,336,fn_7100826090,unknown,unknown,O
 0x71008261e0,112,fn_71008261e0,unknown,unknown,O
 0x7100826250,116,fn_7100826250,unknown,unknown,O
-0x71008262c4,288,fn_71008262c4,unknown,unknown,U
+0x71008262c4,288,fn_71008262c4,unknown,unknown,O
 0x71008263e4,592,fn_71008263e4,unknown,unknown,U
 0x7100826634,340,fn_7100826634,unknown,unknown,U
 0x7100826788,28,fn_7100826788,unknown,unknown,O
@@ -943,7 +943,7 @@ address,size,name,name_source,subsystem,status
 0x710082bcf4,128,fn_710082bcf4,unknown,game/components?,O
 0x710082bd74,220,fn_710082bd74,unknown,game/components?,O
 0x710082be50,116,fn_710082be50,unknown,game/components?,O
-0x710082bec4,268,fn_710082bec4,unknown,game/components?,U
+0x710082bec4,268,fn_710082bec4,unknown,game/components?,O
 0x710082bfd0,700,fn_710082bfd0,unknown,game/components?,U
 0x710082c28c,552,fn_710082c28c,unknown,game/components?,U
 0x710082c4b4,28,fn_710082c4b4,unknown,game/components?,O
@@ -2013,7 +2013,7 @@ address,size,name,name_source,subsystem,status
 0x710085e49c,104,fn_710085e49c,unknown,game?,O
 0x710085e504,464,fn_710085e504,unknown,game?,U
 0x710085e6d4,276,fn_710085e6d4,unknown,game?,U
-0x710085e7e8,304,fn_710085e7e8,unknown,game?,U
+0x710085e7e8,304,fn_710085e7e8,unknown,game?,O
 0x710085e918,568,fn_710085e918,unknown,game?,U
 0x710085eb50,24,fn_710085eb50,unknown,game?,O
 0x710085eb68,140,fn_710085eb68,unknown,game?,U
@@ -2380,7 +2380,7 @@ address,size,name,name_source,subsystem,status
 0x71008721dc,8,fn_71008721dc,unknown,unknown,O
 0x71008721e4,88,fn_71008721e4,unknown,unknown,O
 0x710087223c,44,fn_710087223c,unknown,unknown,O
-0x7100872268,292,fn_7100872268,unknown,unknown,U
+0x7100872268,292,fn_7100872268,unknown,unknown,O
 0x710087238c,104,fn_710087238c,unknown,unknown,O
 0x71008723f4,8,fn_71008723f4,unknown,unknown,O
 0x71008723fc,100,fn_71008723fc,unknown,unknown,O
@@ -2482,7 +2482,7 @@ address,size,name,name_source,subsystem,status
 0x710087688c,388,CChainReactionActionSwitcherComponent::refl_InitClass,reflection,game/components,O
 0x7100876a10,4,fn_7100876a10,unknown,unknown,O
 0x7100876a14,36,fn_7100876a14,unknown,unknown,O
-0x7100876a38,312,fn_7100876a38,unknown,unknown,U
+0x7100876a38,312,fn_7100876a38,unknown,unknown,O
 0x7100876b70,52,fn_7100876b70,unknown,unknown,O
 0x7100876ba4,52,fn_7100876ba4,unknown,unknown,O
 0x7100876bd8,28,fn_7100876bd8,unknown,unknown,O
@@ -2771,9 +2771,9 @@ address,size,name,name_source,subsystem,status
 0x71008807a8,36,fn_71008807a8,unknown,unknown,O
 0x71008807cc,116,fn_71008807cc,unknown,unknown,O
 0x7100880840,248,fn_7100880840,unknown,unknown,O
-0x7100880938,292,fn_7100880938,unknown,unknown,U
-0x7100880a5c,292,fn_7100880a5c,unknown,unknown,U
-0x7100880b80,292,fn_7100880b80,unknown,unknown,U
+0x7100880938,292,fn_7100880938,unknown,unknown,O
+0x7100880a5c,292,fn_7100880a5c,unknown,unknown,O
+0x7100880b80,292,fn_7100880b80,unknown,unknown,O
 0x7100880ca4,28,fn_7100880ca4,unknown,unknown,O
 0x7100880cc0,132,fn_7100880cc0,unknown,unknown,O
 0x7100880d44,8,fn_7100880d44,unknown,unknown,O
@@ -3061,10 +3061,10 @@ address,size,name,name_source,subsystem,status
 0x710088b7dc,244,fn_710088b7dc,unknown,unknown,U
 0x710088b8d0,456,fn_710088b8d0,unknown,unknown,U
 0x710088ba98,292,fn_710088ba98,unknown,unknown,U
-0x710088bbbc,352,fn_710088bbbc,unknown,unknown,U
+0x710088bbbc,352,fn_710088bbbc,unknown,unknown,O
 0x710088bd1c,292,fn_710088bd1c,unknown,unknown,U
 0x710088be40,292,fn_710088be40,unknown,unknown,O
-0x710088bf64,308,fn_710088bf64,unknown,unknown,U
+0x710088bf64,308,fn_710088bf64,unknown,unknown,O
 0x710088c098,288,fn_710088c098,unknown,unknown,O
 0x710088c1b8,288,fn_710088c1b8,unknown,unknown,O
 0x710088c2d8,384,fn_710088c2d8,unknown,unknown,U
@@ -3340,7 +3340,7 @@ address,size,name,name_source,subsystem,status
 0x7100896c74,244,CShootActivatorHidrogigaComponent::refl_GetClass,reflection,game/components,O
 0x7100896d68,376,fn_7100896d68,unknown,game/components?,O
 0x7100896ee0,352,CShootActivatorHidrogigaComponent::refl_InitClass,reflection,game/components,O
-0x7100897040,444,fn_7100897040,unknown,unknown,U
+0x7100897040,444,fn_7100897040,unknown,unknown,O
 0x71008971fc,36,fn_71008971fc,unknown,unknown,O
 0x7100897220,4,fn_7100897220,unknown,unknown,O
 0x7100897224,116,fn_7100897224,unknown,unknown,O
