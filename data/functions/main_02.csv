@@ -1283,7 +1283,7 @@ address,size,name,name_source,subsystem,status
 0x7100234acc,20,fn_7100234acc,unknown,unknown,O
 0x7100234ae0,20,fn_7100234ae0,unknown,unknown,O
 0x7100234af4,368,fn_7100234af4,unknown,unknown,O
-0x7100234c64,104,fn_7100234c64,unknown,unknown,U
+0x7100234c64,104,fn_7100234c64,unknown,unknown,O
 0x7100234ccc,288,fn_7100234ccc,unknown,unknown,O
 0x7100234dec,4,fn_7100234dec,unknown,unknown,O
 0x7100234df0,36,fn_7100234df0,unknown,unknown,O
@@ -3871,9 +3871,9 @@ address,size,name,name_source,subsystem,status
 0x71002b46ec,400,fn_71002b46ec,unknown,unknown,O
 0x71002b4880,180,fn_71002b4880,unknown,unknown,O
 0x71002b4934,36,fn_71002b4934,unknown,unknown,O
-0x71002b4958,32,fn_71002b4958,unknown,unknown,U
+0x71002b4958,32,fn_71002b4958,unknown,unknown,O
 0x71002b4978,4,operator.delete,symbol,unknown,O
-0x71002b497c,116,fn_71002b497c,unknown,unknown,U
+0x71002b497c,116,fn_71002b497c,unknown,unknown,O
 0x71002b49f0,1556,fn_71002b49f0,unknown,unknown,U
 0x71002b5004,460,fn_71002b5004,unknown,unknown,U
 0x71002b51d0,140,fn_71002b51d0,unknown,unknown,O
@@ -3895,7 +3895,7 @@ address,size,name,name_source,subsystem,status
 0x71002b63a0,876,fn_71002b63a0,unknown,unknown,U
 0x71002b6710,140,fn_71002b6710,unknown,unknown,O
 0x71002b679c,76,fn_71002b679c,unknown,unknown,O
-0x71002b67e8,104,fn_71002b67e8,unknown,unknown,U
+0x71002b67e8,104,fn_71002b67e8,unknown,unknown,O
 0x71002b6850,208,fn_71002b6850,unknown,unknown,O
 0x71002b6920,64,fn_71002b6920,unknown,unknown,O
 0x71002b6960,108,fn_71002b6960,unknown,unknown,O
@@ -4338,7 +4338,7 @@ address,size,name,name_source,subsystem,status
 0x71002c2d94,388,querysystem::CMaxDistanceFilter::refl_InitClass,reflection,ai/querysystem,O
 0x71002c2f18,4,fn_71002c2f18,unknown,ai/querysystem?,O
 0x71002c2f1c,36,fn_71002c2f1c,unknown,ai/querysystem?,O
-0x71002c2f40,96,fn_71002c2f40,unknown,ai/querysystem?,U
+0x71002c2f40,96,fn_71002c2f40,unknown,ai/querysystem?,O
 0x71002c2fa0,28,fn_71002c2fa0,unknown,ai/querysystem?,O
 0x71002c2fbc,12,fn_71002c2fbc,unknown,ai/querysystem?,O
 0x71002c2fc8,8,fn_71002c2fc8,unknown,ai/querysystem?,O
@@ -4374,7 +4374,7 @@ address,size,name,name_source,subsystem,status
 0x71002c3ce4,388,querysystem::CMinDistanceFilter::refl_InitClass,reflection,ai/querysystem,O
 0x71002c3e68,4,fn_71002c3e68,unknown,ai/querysystem?,O
 0x71002c3e6c,36,fn_71002c3e6c,unknown,ai/querysystem?,O
-0x71002c3e90,96,fn_71002c3e90,unknown,ai/querysystem?,U
+0x71002c3e90,96,fn_71002c3e90,unknown,ai/querysystem?,O
 0x71002c3ef0,28,fn_71002c3ef0,unknown,ai/querysystem?,O
 0x71002c3f0c,12,fn_71002c3f0c,unknown,ai/querysystem?,O
 0x71002c3f18,8,fn_71002c3f18,unknown,ai/querysystem?,O
@@ -4424,8 +4424,8 @@ address,size,name,name_source,subsystem,status
 0x71002c51c8,180,fn_71002c51c8,unknown,ai/querysystem?,O
 0x71002c5280,160,fn_71002c5280,unknown,ai/querysystem?,O
 0x71002c5320,116,fn_71002c5320,unknown,ai/querysystem?,O
-0x71002c5394,188,fn_71002c5394,unknown,ai/querysystem?,U
-0x71002c5450,188,fn_71002c5450,unknown,ai/querysystem?,U
+0x71002c5394,188,fn_71002c5394,unknown,ai/querysystem?,O
+0x71002c5450,188,fn_71002c5450,unknown,ai/querysystem?,O
 0x71002c550c,8,fn_71002c550c,unknown,ai/querysystem?,O
 0x71002c5514,696,fn_71002c5514,unknown,ai/querysystem?,U
 0x71002c57cc,76,fn_71002c57cc,unknown,ai/querysystem?,O
@@ -4877,7 +4877,7 @@ address,size,name,name_source,subsystem,status
 0x71002d60c4,24,fn_71002d60c4,unknown,animation?,O
 0x71002d60dc,12,fn_71002d60dc,unknown,animation?,O
 0x71002d60e8,104,fn_71002d60e8,unknown,animation?,O
-0x71002d6150,112,fn_71002d6150,unknown,animation?,U
+0x71002d6150,112,fn_71002d6150,unknown,animation?,O
 0x71002d61c0,296,fn_71002d61c0,unknown,animation?,U
 0x71002d62e8,28,fn_71002d62e8,unknown,animation?,O
 0x71002d6304,4,fn_71002d6304,unknown,animation?,O

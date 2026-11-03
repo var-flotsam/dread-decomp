@@ -410,7 +410,7 @@ address,size,name,name_source,subsystem,status
 0x7100324180,248,fn_7100324180,unknown,unknown,O
 0x7100324278,8,fn_7100324278,unknown,unknown,O
 0x7100324280,4,fn_7100324280,unknown,unknown,O
-0x7100324284,116,fn_7100324284,unknown,unknown,U
+0x7100324284,116,fn_7100324284,unknown,unknown,O
 0x71003242f8,156,fn_71003242f8,unknown,unknown,O
 0x7100324394,220,fn_7100324394,unknown,unknown,U
 0x7100324470,308,fn_7100324470,unknown,unknown,U
@@ -4378,8 +4378,8 @@ address,size,name,name_source,subsystem,status
 0x71003c8a7c,244,CAutsharpAIComponent::refl_GetClass,reflection,game/ai,O
 0x71003c8b70,4,fn_71003c8b70,unknown,game/ai?,O
 0x71003c8b74,356,CAutsharpAIComponent::refl_InitClass,reflection,game/ai,O
-0x71003c8cd8,104,fn_71003c8cd8,unknown,unknown,U
-0x71003c8d40,112,fn_71003c8d40,unknown,unknown,U
+0x71003c8cd8,104,fn_71003c8cd8,unknown,unknown,O
+0x71003c8d40,112,fn_71003c8d40,unknown,unknown,O
 0x71003c8db0,192,fn_71003c8db0,unknown,unknown,O
 0x71003c8e70,568,fn_71003c8e70,unknown,unknown,U
 0x71003c90a8,140,fn_71003c90a8,unknown,unknown,O

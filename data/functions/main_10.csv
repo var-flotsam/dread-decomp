@@ -3876,7 +3876,7 @@ address,size,name,name_source,subsystem,status
 0x71010bed00,164,luaZ_read,library,lua,L
 0x71010bedb0,112,luaZ_openspace,library,lua,L
 0x71010bee20,108,fn_71010bee20,unknown,unknown,O
-0x71010bee90,68,fn_71010bee90,unknown,unknown,U
+0x71010bee90,68,fn_71010bee90,unknown,unknown,O
 0x71010beee0,60,fn_71010beee0,unknown,unknown,O
 0x71010bef20,60,fn_71010bef20,unknown,unknown,O
 0x71010bef60,60,fn_71010bef60,unknown,unknown,O

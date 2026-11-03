@@ -4192,7 +4192,7 @@ address,size,name,name_source,subsystem,status
 0x7100d8b888,252,fn_7100d8b888,unknown,unknown,U
 0x7100d8b984,220,fn_7100d8b984,unknown,unknown,O
 0x7100d8ba60,272,fn_7100d8ba60,unknown,unknown,U
-0x7100d8bb70,60,fn_7100d8bb70,unknown,unknown,U
+0x7100d8bb70,60,fn_7100d8bb70,unknown,unknown,O
 0x7100d8bbac,652,fn_7100d8bbac,unknown,unknown,U
 0x7100d8be38,1680,fn_7100d8be38,unknown,unknown,U
 0x7100d8c4d0,12,fn_7100d8c4d0,unknown,unknown,O

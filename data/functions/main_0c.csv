@@ -6747,7 +6747,7 @@ address,size,name,name_source,subsystem,status
 0x7100ce2834,388,CCharClassStopChargeEvent::refl_InitClass,reflection,game/characters,O
 0x7100ce29b8,4,fn_7100ce29b8,unknown,game/characters?,O
 0x7100ce29bc,36,fn_7100ce29bc,unknown,game/characters?,O
-0x7100ce29e0,72,fn_7100ce29e0,unknown,game/characters?,U
+0x7100ce29e0,72,fn_7100ce29e0,unknown,game/characters?,O
 0x7100ce2a28,28,fn_7100ce2a28,unknown,game/characters?,O
 0x7100ce2a44,12,fn_7100ce2a44,unknown,game/characters?,O
 0x7100ce2a50,8,fn_7100ce2a50,unknown,game/characters?,O

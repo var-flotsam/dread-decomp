@@ -1138,7 +1138,7 @@ address,size,name,name_source,subsystem,status
 0x71007451d0,212,fn_71007451d0,unknown,unknown,U
 0x71007452a4,44,fn_71007452a4,unknown,unknown,O
 0x71007452d0,216,fn_71007452d0,unknown,unknown,U
-0x71007453a8,92,fn_71007453a8,unknown,unknown,U
+0x71007453a8,92,fn_71007453a8,unknown,unknown,O
 0x7100745404,60,fn_7100745404,unknown,unknown,O
 0x7100745440,60,fn_7100745440,unknown,unknown,O
 0x710074547c,352,fn_710074547c,unknown,unknown,U
@@ -3672,10 +3672,10 @@ address,size,name,name_source,subsystem,status
 0x71007b78f4,244,CSensorDoorComponent::refl_GetClass,reflection,game/components,O
 0x71007b79e8,284,fn_71007b79e8,unknown,game/components?,O
 0x71007b7b04,388,CSensorDoorComponent::refl_InitClass,reflection,game/components,O
-0x71007b7c88,140,fn_71007b7c88,unknown,game/components?,U
+0x71007b7c88,140,fn_71007b7c88,unknown,game/components?,O
 0x71007b7d14,44,fn_71007b7d14,unknown,game/components?,O
 0x71007b7d40,28,fn_71007b7d40,unknown,game/components?,O
-0x71007b7d5c,148,fn_71007b7d5c,unknown,game/components?,U
+0x71007b7d5c,148,fn_71007b7d5c,unknown,game/components?,O
 0x71007b7df0,264,fn_71007b7df0,unknown,game/components?,U
 0x71007b7ef8,112,fn_71007b7ef8,unknown,game/components?,O
 0x71007b7f68,172,fn_71007b7f68,unknown,game/components?,O

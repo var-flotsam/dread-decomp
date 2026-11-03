@@ -1200,7 +1200,7 @@ address,size,name,name_source,subsystem,status
 0x7100b2b450,4,fn_7100b2b450,unknown,unknown,O
 0x7100b2b454,4,fn_7100b2b454,unknown,unknown,O
 0x7100b2b458,4,fn_7100b2b458,unknown,unknown,O
-0x7100b2b45c,68,fn_7100b2b45c,unknown,unknown,U
+0x7100b2b45c,68,fn_7100b2b45c,unknown,unknown,O
 0x7100b2b4a0,124,fn_7100b2b4a0,unknown,unknown,O
 0x7100b2b51c,4,operator.delete,symbol,unknown,O
 0x7100b2b520,16,fn_7100b2b520,unknown,unknown,O
@@ -1497,7 +1497,7 @@ address,size,name,name_source,subsystem,status
 0x7100b4190c,1360,fn_7100b4190c,unknown,unknown,U
 0x7100b41e5c,40,fn_7100b41e5c,unknown,unknown,O
 0x7100b41e84,296,fn_7100b41e84,unknown,unknown,U
-0x7100b41fac,60,fn_7100b41fac,unknown,unknown,U
+0x7100b41fac,60,fn_7100b41fac,unknown,unknown,O
 0x7100b41fe8,208,fn_7100b41fe8,unknown,unknown,O
 0x7100b420b8,144,fn_7100b420b8,unknown,unknown,O
 0x7100b42148,352,fn_7100b42148,unknown,unknown,U
@@ -5391,7 +5391,7 @@ address,size,name,name_source,subsystem,status
 0x7100bde8b4,388,CCharClassSetSceneGroupEnabledEvent::refl_InitClass,reflection,game/characters,O
 0x7100bdea38,124,fn_7100bdea38,unknown,game/characters?,O
 0x7100bdeab4,132,fn_7100bdeab4,unknown,game/characters?,O
-0x7100bdeb38,68,fn_7100bdeb38,unknown,game/characters?,U
+0x7100bdeb38,68,fn_7100bdeb38,unknown,game/characters?,O
 0x7100bdeb7c,28,fn_7100bdeb7c,unknown,game/characters?,O
 0x7100bdeb98,12,fn_7100bdeb98,unknown,game/characters?,O
 0x7100bdeba4,8,fn_7100bdeba4,unknown,game/characters?,O

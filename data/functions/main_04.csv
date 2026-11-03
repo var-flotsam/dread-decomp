@@ -1416,7 +1416,7 @@ address,size,name,name_source,subsystem,status
 0x7100443eac,1228,fn_7100443eac,unknown,game/ai?,U
 0x7100444378,404,fn_7100444378,unknown,game/ai?,U
 0x710044450c,456,fn_710044450c,unknown,game/ai?,U
-0x71004446d4,100,fn_71004446d4,unknown,game/ai?,U
+0x71004446d4,100,fn_71004446d4,unknown,game/ai?,O
 0x7100444738,4076,fn_7100444738,unknown,game/ai?,U
 0x7100445724,60,fn_7100445724,unknown,game/ai?,O
 0x7100445760,28,fn_7100445760,unknown,game/ai?,O
@@ -3474,7 +3474,7 @@ address,size,name,name_source,subsystem,status
 0x710049a34c,792,fn_710049a34c,unknown,unknown,U
 0x710049a664,1104,fn_710049a664,unknown,unknown,U
 0x710049aab4,216,fn_710049aab4,unknown,unknown,U
-0x710049ab8c,108,fn_710049ab8c,unknown,unknown,U
+0x710049ab8c,108,fn_710049ab8c,unknown,unknown,O
 0x710049abf8,100,fn_710049abf8,unknown,unknown,U
 0x710049ac5c,124,fn_710049ac5c,unknown,unknown,O
 0x710049acd8,44,fn_710049acd8,unknown,unknown,O
@@ -4820,7 +4820,7 @@ address,size,name,name_source,subsystem,status
 0x71004c2fd4,48,fn_71004c2fd4,unknown,game/ai?,O
 0x71004c3004,48,fn_71004c3004,unknown,game/ai?,O
 0x71004c3034,452,fn_71004c3034,unknown,game/ai?,O
-0x71004c31f8,116,fn_71004c31f8,unknown,game/ai?,U
+0x71004c31f8,116,fn_71004c31f8,unknown,game/ai?,O
 0x71004c3270,160,fn_71004c3270,unknown,game/ai?,O
 0x71004c3310,4,fn_71004c3310,unknown,game/ai?,O
 0x71004c3314,244,CCooldownXBossLavaCarpetAttack::refl_GetClass,reflection,game/ai,O
@@ -4974,7 +4974,7 @@ address,size,name,name_source,subsystem,status
 0x71004caec4,48,fn_71004caec4,unknown,game/ai?,O
 0x71004caef4,48,fn_71004caef4,unknown,game/ai?,O
 0x71004caf24,452,fn_71004caf24,unknown,game/ai?,O
-0x71004cb0e8,116,fn_71004cb0e8,unknown,game/ai?,U
+0x71004cb0e8,116,fn_71004cb0e8,unknown,game/ai?,O
 0x71004cb160,160,fn_71004cb160,unknown,game/ai?,O
 0x71004cb200,4,fn_71004cb200,unknown,game/ai?,O
 0x71004cb204,244,CCooldownXBossWindTunnelAttack::refl_GetClass,reflection,game/ai,O
@@ -5357,11 +5357,11 @@ address,size,name,name_source,subsystem,status
 0x71004de654,244,CCharClassDaivoAIComponent::refl_GetClass,reflection,game/characters,O
 0x71004de748,148,fn_71004de748,unknown,game/characters?,O
 0x71004de7dc,352,CCharClassDaivoAIComponent::refl_InitClass,reflection,game/characters,O
-0x71004de93c,112,fn_71004de93c,unknown,unknown,U
+0x71004de93c,112,fn_71004de93c,unknown,unknown,O
 0x71004de9ac,68,fn_71004de9ac,unknown,unknown,O
 0x71004de9f0,28,fn_71004de9f0,unknown,unknown,O
-0x71004dea0c,156,fn_71004dea0c,unknown,unknown,U
-0x71004deaa8,164,fn_71004deaa8,unknown,unknown,U
+0x71004dea0c,156,fn_71004dea0c,unknown,unknown,O
+0x71004deaa8,164,fn_71004deaa8,unknown,unknown,O
 0x71004deb4c,8,fn_71004deb4c,unknown,unknown,O
 0x71004deb54,8,fn_71004deb54,unknown,unknown,O
 0x71004deb5c,8,fn_71004deb5c,unknown,unknown,O
