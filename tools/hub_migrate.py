@@ -63,7 +63,8 @@ PRAGMA_ONCE = re.compile(r"^[ \t]*#[ \t]*pragma[ \t]+once[^\n]*$", re.M)
 
 
 def read(path: str) -> tuple[str, bool]:
-    raw = (ROOT / path).read_text(encoding="utf-8")
+    with open(ROOT / path, encoding="utf-8", newline="") as f:   # newline="": keep "\r\n" to detect it
+        raw = f.read()
     return raw.replace("\r\n", "\n"), "\r\n" in raw
 
 

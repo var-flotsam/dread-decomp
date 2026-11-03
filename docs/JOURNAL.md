@@ -136,15 +136,15 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 container with no game data: tools/tests/ grows from 15 to 47 files and from 75 to 566 tests (1.7 s, Python 3.12
 and 3.13), every fixture synthetic (invented addresses, hand-encoded AArch64 words, lz4-built NSOs, temp CSVs,
 mocked compilers and child tools). Left out: `port_addresses` (all of it is `main()` over compiled objects and the
-binary), `gen_lift`, `pcode_emu` and `port_lift` (owned by the lifter session). Three real bugs are pinned as
-`expectedFailure` and left for their owners:
-- **`hub_migrate.read()` never sees CRLF** (`tools/hub_migrate.py:66`): `read_text` has already folded `\r\n`,
-  so `write()` turns CRLF files into LF. Fix: `open(..., newline="")`. Test `ReadWrite.test_read_detects_crlf`.
-- **`sigmatch.signature` takes `rd` from B/BL** (`tools/sigmatch.py:54`, `:72`): the low bits of a branch offset
+binary), `gen_lift`, `pcode_emu` and `port_lift` (owned by the lifter session). The tests found three real bugs,
+fixed on the same branch (569 tests then):
+- **`hub_migrate.read()` never saw CRLF** (`tools/hub_migrate.py:66`): `read_text` has already folded `\r\n`,
+  so `write()` turned CRLF files into LF. Now read with `open(..., newline="")`.
+- **`sigmatch.signature` took `rd` from B/BL** (`tools/sigmatch.py:54`, `:72`): the low bits of a branch offset
   can end a callee-saved register's adrp page, so the object (offset 0) and the binary mask differently and exact
-  matches are missed. Test `test_call_does_not_end_a_callee_saved_page`.
-- **`nearcopy.refs` scales `ldr q` by 1** (`tools/nearcopy.py:66`): the scale comes only from the size bits,
-  so a 128-bit load gets the wrong data address (it should be 16). Test `test_simd_q_load_scaled_by_16`.
+  matches were missed. B/BL now end only x30 (BL); a rerun of `sigmatch.py` may find more library matches.
+- **`nearcopy.refs` scaled `ldr q` by 1** (`tools/nearcopy.py:66`): the scale comes only from the size bits,
+  so a 128-bit load got the wrong data address; it is 16 now, and a SIMD load no longer drops an x<n> page.
 Quirks pinned as they are: `hostenv.cxxfilt` sorts toolchain folders by name (`llvm-9` before `llvm-10`);
 `gen_reflection.file_name` folds `A::B_C` and `A_B::C` to one base name (the `_2` suffix separates them);
 `gen_tables.rush_float` spells -100.0 as `-1e+02f`. `gen_functions_csv.main()` does its sharding and status

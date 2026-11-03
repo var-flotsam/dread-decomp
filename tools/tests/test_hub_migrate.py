@@ -137,11 +137,17 @@ class ReadWrite(unittest.TestCase):
             (Path(d) / "y.cpp").write_bytes(b"int a;\n")
             self.assertEqual(hub_migrate.read("y.cpp"), ("int a;\n", False))
 
-    @unittest.expectedFailure  # read() uses read_text, whose newline translation hides "\r\n": crlf is never True
     def test_read_detects_crlf(self):
         with tempfile.TemporaryDirectory() as d, mock.patch.object(hub_migrate, "ROOT", Path(d)):
             (Path(d) / "x.cpp").write_bytes(b"int a;\r\nint b;\r\n")
             self.assertEqual(hub_migrate.read("x.cpp"), ("int a;\nint b;\n", True))
+
+    def test_crlf_round_trip(self):
+        with tempfile.TemporaryDirectory() as d, mock.patch.object(hub_migrate, "ROOT", Path(d)):
+            (Path(d) / "x.cpp").write_bytes(b"int a;\r\nint b;\r\n")
+            text, crlf = hub_migrate.read("x.cpp")
+            hub_migrate.write("x.cpp", text.replace("int b;\n", ""), crlf)
+            self.assertEqual((Path(d) / "x.cpp").read_bytes(), b"int a;\r\n")
 
 if __name__ == "__main__":
     unittest.main()

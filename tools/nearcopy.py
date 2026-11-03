@@ -63,8 +63,10 @@ def refs(addr: int, code: bytes) -> list[int]:
             out.append(page[(w >> 5) & 31] + ((w >> 10) & 0xFFF))
             page.pop(w & 31, None)  # the destination no longer holds a page
         elif w & 0x3B000000 == 0x39000000 and (w >> 5) & 31 in page:
-            out.append(page[(w >> 5) & 31] + (((w >> 10) & 0xFFF) << (w >> 30)))
-            if w & 0x400000:  # a load overwrites its target register
+            simd = (w >> 26) & 1
+            scale = 4 if simd and (w >> 23) & 1 else w >> 30   # ldr/str q: 16 bytes, else the size bits
+            out.append(page[(w >> 5) & 31] + (((w >> 10) & 0xFFF) << scale))
+            if w & 0x400000 and not simd:  # a load overwrites its target register (a SIMD one is v<n>)
                 page.pop(w & 31, None)
     return out
 

@@ -115,11 +115,16 @@ class Refs(unittest.TestCase):
         body = code(adrp(8, pc, 0x7100123000), str_x(8, 8, 0x10), ldr_x(0, 8, 0x20))
         self.assertEqual(nearcopy.refs(pc, body), [0x7100123010, 0x7100123020])
 
-    @unittest.expectedFailure  # refs() scales by size bits only; a 128-bit `ldr q` needs 16, gets 1
     def test_simd_q_load_scaled_by_16(self):
         pc = self.BASE
         ldr_q = 0x3DC00000 | (2 << 10) | (8 << 5) | 0  # ldr q0, [x8, #0x20]
         self.assertEqual(nearcopy.refs(pc, code(adrp(8, pc, 0x7100123000), ldr_q)), [0x7100123020])
+
+    def test_simd_load_keeps_the_page(self):
+        pc = self.BASE
+        ldr_q = 0x3DC00000 | (2 << 10) | (8 << 5) | 8  # ldr q8, [x8, #0x20]: writes v8, not x8
+        self.assertEqual(nearcopy.refs(pc, code(adrp(8, pc, 0x7100123000), ldr_q, add_imm(0, 8, 4))),
+                         [0x7100123020, 0x7100123004])
 
     def test_negative_page(self):
         pc = 0x7100800000

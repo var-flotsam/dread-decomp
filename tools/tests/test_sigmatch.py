@@ -108,11 +108,16 @@ class Signature(unittest.TestCase):
         self.assertEqual(len(s), 40)
         int(s, 16)
 
-    @unittest.expectedFailure  # sigmatch.py:54/72: a B/BL's offset bits are read as rd and end that page
     def test_call_does_not_end_a_callee_saved_page(self):
         a = sig(code(adrp(19), bl(0), add_imm(0, 19, 0x10)))
         z = sig(code(adrp(19), bl(19), add_imm(0, 19, 0x20)))
         self.assertEqual(a, z)
+
+    def test_bl_ends_a_link_register_page(self):
+        # BL writes x30, so an add from x30 after it is no longer an adrp page offset.
+        a = sig(code(adrp(30), bl(0), add_imm(0, 30, 0x10)))
+        z = sig(code(adrp(30), bl(0), add_imm(0, 30, 0x20)))
+        self.assertNotEqual(a, z)
 
 
 class Mnemonics(unittest.TestCase):
