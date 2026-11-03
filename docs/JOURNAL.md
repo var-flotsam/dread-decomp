@@ -134,8 +134,8 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 **Lifter and oracle: rounds 7 and 8, the last rejects and two reviews of the oracle (2026-11-03, branches
 `claude/project-thread-zgkpk3-r8fix`, `-tests` and `-r8`).** Whole-binary run lifted_all11 (r8's 20766338, the
-lifter revert below applied after it): 16,059 of 16,141 accepted against lifted_all10's 16,063, with 24 gained and
-28 lost. 27 of the losses are functions the stricter oracle now rejects with round 6's lifter too (24 rejected, 3
+lifter revert below applied after it): 16,056 of 16,141 accepted against lifted_all10's 16,063; with the revert's
+4 regained and 1 lost (relifted, not a new whole run), 16,059, so 24 gained and 28 lost. 27 of the losses are functions the stricter oracle now rejects with round 6's lifter too (24 rejected, 3
 inconclusive): 710002a074 71000ef764 71000f0ad8 7100128810 7100128da0 7100129360 710028ce1c 710030d92c 710042880c
 710043764c 7100691600 71006c1108 710073ee48 71007406a0 710074ab2c 710082a500 7100882bac 71008c5970 71008d6320
 710096b334 7100a43e7c 7100a43f78 7100a928ec 7100b1a0c0 7100df6688 71010cb9c0 710111f07c. Each is a false accept
@@ -170,7 +170,7 @@ against all10's 9,809 s: the slow tail is gone. Byte mode unchanged (4,538 of 5,
   MANIFEST` for functions a fully checked run accepted). `<out>/timing.tsv` logs each function's oracle time,
   verdict and the phase that spent the budget, as it goes. Whole binary: one function hit it, 7100866c74 (1,089 s
   in its seeds, each run long), accepted and also accepted fully checked in all10; next slowest 81 s. The oracle's
-  jobs run longest first. The old 2 h stall was this function under round 8's first rules.
+  jobs run longest first. The earlier run that stalled for 2 h on one function (b42b948b) had no timing log; this is the likely one.
 - Left: the 27 above, 710012ce70 (frame layout), 7100127fc0, 710064fb5c; 42 rejected and 23 inconclusive in all.
 
 **Lifter and oracle: round 5's second batch and round 6 (2026-11-03, branches `claude/project-thread-zgkpk3-r5`
