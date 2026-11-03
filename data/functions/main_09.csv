@@ -193,7 +193,7 @@ address,size,name,name_source,subsystem,status
 0x7100906424,12,fn_7100906424,unknown,unknown,O
 0x7100906430,8,fn_7100906430,unknown,unknown,O
 0x7100906438,8,fn_7100906438,unknown,unknown,O
-0x7100906440,320,fn_7100906440,unknown,unknown,U
+0x7100906440,320,fn_7100906440,unknown,unknown,O
 0x7100906580,120,fn_7100906580,unknown,unknown,O
 0x71009065f8,4,fn_71009065f8,unknown,unknown,O
 0x71009065fc,244,CCharClassWaterPoolComponent::refl_GetClass,reflection,game/characters,O
@@ -501,7 +501,7 @@ address,size,name,name_source,subsystem,status
 0x71009115b8,20,fn_71009115b8,unknown,unknown,O
 0x71009115cc,20,fn_71009115cc,unknown,unknown,O
 0x71009115e0,76,fn_71009115e0,unknown,unknown,O
-0x7100911630,308,fn_7100911630,unknown,unknown,U
+0x7100911630,308,fn_7100911630,unknown,unknown,O
 0x7100911764,4,fn_7100911764,unknown,unknown,O
 0x7100911768,244,CLogicLookAtPlayerComponent::refl_GetClass,reflection,game/components,O
 0x710091185c,4,fn_710091185c,unknown,game/components?,O
@@ -547,7 +547,7 @@ address,size,name,name_source,subsystem,status
 0x7100912878,8,fn_7100912878,unknown,game/components?,O
 0x7100912880,8,fn_7100912880,unknown,game/components?,O
 0x7100912888,112,fn_7100912888,unknown,game/components?,O
-0x7100912900,308,fn_7100912900,unknown,game/components?,U
+0x7100912900,308,fn_7100912900,unknown,game/components?,O
 0x7100912a34,4,fn_7100912a34,unknown,game/components?,O
 0x7100912a38,244,CLogicShapeComponent::refl_GetClass,reflection,game/components,O
 0x7100912b2c,968,fn_7100912b2c,unknown,game/components?,O
@@ -1038,7 +1038,7 @@ address,size,name,name_source,subsystem,status
 0x7100921b98,4,fn_7100921b98,unknown,unknown,O
 0x7100921b9c,12,fn_7100921b9c,unknown,unknown,O
 0x7100921ba8,264,fn_7100921ba8,unknown,unknown,U
-0x7100921cb0,588,fn_7100921cb0,unknown,unknown,U
+0x7100921cb0,588,fn_7100921cb0,unknown,unknown,O
 0x7100921efc,4,fn_7100921efc,unknown,unknown,O
 0x7100921f00,244,CMagnetSlidingBlockWithCollisionsComponent::refl_GetClass,reflection,game/components,O
 0x7100921ff4,4,fn_7100921ff4,unknown,game/components?,O
@@ -1185,7 +1185,7 @@ address,size,name,name_source,subsystem,status
 0x7100925ca0,8,fn_7100925ca0,unknown,game/components?,O
 0x7100925ca8,348,fn_7100925ca8,unknown,game/components?,O
 0x7100925e04,24,fn_7100925e04,unknown,game/components?,O
-0x7100925e20,412,fn_7100925e20,unknown,game/components?,U
+0x7100925e20,412,fn_7100925e20,unknown,game/components?,O
 0x7100925fbc,4,fn_7100925fbc,unknown,game/components?,O
 0x7100925fc0,244,CMaterialFXComponent::refl_GetClass,reflection,game/components,O
 0x71009260b4,4,fn_71009260b4,unknown,game/components?,O
@@ -1326,7 +1326,7 @@ address,size,name,name_source,subsystem,status
 0x7100931fec,36,fn_7100931fec,unknown,unknown,O
 0x7100932010,120,fn_7100932010,unknown,unknown,O
 0x7100932088,112,fn_7100932088,unknown,unknown,O
-0x7100932100,704,fn_7100932100,unknown,unknown,U
+0x7100932100,704,fn_7100932100,unknown,unknown,O
 0x71009323c0,4,fn_71009323c0,unknown,unknown,O
 0x71009323c4,244,CCharClassMenuAnimationChangeComponent::refl_GetClass,reflection,game/characters,O
 0x71009324b8,4,fn_71009324b8,unknown,game/characters?,O
@@ -3151,7 +3151,7 @@ address,size,name,name_source,subsystem,status
 0x71009afa74,12,fn_71009afa74,unknown,unknown,O
 0x71009afa80,8,fn_71009afa80,unknown,unknown,O
 0x71009afa88,8,fn_71009afa88,unknown,unknown,O
-0x71009afa90,684,fn_71009afa90,unknown,unknown,U
+0x71009afa90,684,fn_71009afa90,unknown,unknown,O
 0x71009afd3c,4,fn_71009afd3c,unknown,unknown,O
 0x71009afd40,244,CSamusMorphBallMovementState::CParams::refl_GetClass,reflection,game/player,O
 0x71009afe34,4,fn_71009afe34,unknown,game/player?,O
@@ -4163,7 +4163,7 @@ address,size,name,name_source,subsystem,status
 0x71009d957c,176,fn_71009d957c,unknown,unknown,U
 0x71009d962c,12,fn_71009d962c,unknown,unknown,O
 0x71009d9638,24,fn_71009d9638,unknown,unknown,O
-0x71009d9650,896,fn_71009d9650,unknown,unknown,U
+0x71009d9650,896,fn_71009d9650,unknown,unknown,O
 0x71009d99d0,4,fn_71009d99d0,unknown,unknown,O
 0x71009d99d4,244,CCharClassRumbleComponent::refl_GetClass,reflection,game/characters,O
 0x71009d9ac8,4,fn_71009d9ac8,unknown,game/characters?,O

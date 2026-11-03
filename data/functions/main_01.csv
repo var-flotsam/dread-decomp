@@ -945,7 +945,7 @@ address,size,name,name_source,subsystem,status
 0x71001228ec,576,fn_71001228ec,unknown,unknown,U
 0x7100122b2c,576,fn_7100122b2c,unknown,unknown,U
 0x7100122d6c,4,operator.delete,symbol,unknown,O
-0x7100122d70,56,fn_7100122d70,unknown,unknown,U
+0x7100122d70,56,fn_7100122d70,unknown,unknown,O
 0x7100122da8,24,fn_7100122da8,unknown,unknown,O
 0x7100122dc0,4,fn_7100122dc0,unknown,unknown,O
 0x7100122dc4,4,operator.delete,symbol,unknown,O

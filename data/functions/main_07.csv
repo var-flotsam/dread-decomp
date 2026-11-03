@@ -1979,7 +1979,7 @@ address,size,name,name_source,subsystem,status
 0x7100769efc,68,fn_7100769efc,unknown,unknown,O
 0x7100769f40,12,fn_7100769f40,unknown,unknown,O
 0x7100769f4c,112,fn_7100769f4c,unknown,unknown,O
-0x7100769fc0,308,fn_7100769fc0,unknown,unknown,U
+0x7100769fc0,308,fn_7100769fc0,unknown,unknown,O
 0x710076a0f4,4,fn_710076a0f4,unknown,unknown,O
 0x710076a0f8,240,CCentralUnitWeightedEdges::refl_GetClass,reflection,game,O
 0x710076a1e8,804,fn_710076a1e8,unknown,game?,O
@@ -3650,7 +3650,7 @@ address,size,name,name_source,subsystem,status
 0x71007b7024,100,fn_71007b7024,unknown,unknown,O
 0x71007b7088,80,fn_71007b7088,unknown,unknown,O
 0x71007b70d8,172,fn_71007b70d8,unknown,unknown,U
-0x71007b7190,496,fn_71007b7190,unknown,unknown,U
+0x71007b7190,496,fn_71007b7190,unknown,unknown,O
 0x71007b7380,4,fn_71007b7380,unknown,unknown,O
 0x71007b7384,244,CCharClassSensorDoorComponent::refl_GetClass,reflection,game/characters,O
 0x71007b7478,384,fn_71007b7478,unknown,game/characters?,O

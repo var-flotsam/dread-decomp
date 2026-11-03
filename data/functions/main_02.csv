@@ -3390,7 +3390,7 @@ address,size,name,name_source,subsystem,status
 0x7100273dbc,228,fn_7100273dbc,unknown,unknown,O
 0x7100273ea0,12,fn_7100273ea0,unknown,unknown,O
 0x7100273eac,4,operator.delete,symbol,unknown,O
-0x7100273eb0,56,fn_7100273eb0,unknown,unknown,U
+0x7100273eb0,56,fn_7100273eb0,unknown,unknown,O
 0x7100273ee8,24,fn_7100273ee8,unknown,unknown,O
 0x7100273f00,4,fn_7100273f00,unknown,unknown,O
 0x7100273f04,4,operator.delete,symbol,unknown,O
@@ -3699,7 +3699,7 @@ address,size,name,name_source,subsystem,status
 0x71002a7bfc,336,fn_71002a7bfc,unknown,unknown,U
 0x71002a7d4c,4,fn_71002a7d4c,unknown,unknown,O
 0x71002a7d50,4,operator.delete,symbol,unknown,O
-0x71002a7d54,72,fn_71002a7d54,unknown,unknown,U
+0x71002a7d54,72,fn_71002a7d54,unknown,unknown,O
 0x71002a7d9c,40,fn_71002a7d9c,unknown,unknown,O
 0x71002a7dc4,4,fn_71002a7dc4,unknown,unknown,O
 0x71002a7dc8,4,operator.delete,symbol,unknown,O
@@ -5523,7 +5523,7 @@ address,size,name,name_source,subsystem,status
 0x71002e8094,244,animtree::CPoseNode::refl_GetClass,reflection,animation,O
 0x71002e8188,4,fn_71002e8188,unknown,animation?,O
 0x71002e818c,388,animtree::CPoseNode::refl_InitClass,reflection,animation,O
-0x71002e8310,112,fn_71002e8310,unknown,animation?,U
+0x71002e8310,112,fn_71002e8310,unknown,animation?,O
 0x71002e8380,28,fn_71002e8380,unknown,animation?,O
 0x71002e839c,36,fn_71002e839c,unknown,animation?,O
 0x71002e83c0,8,fn_71002e83c0,unknown,animation?,O
@@ -5994,7 +5994,7 @@ address,size,name,name_source,subsystem,status
 0x71002f77f8,88,fn_71002f77f8,unknown,unknown,O
 0x71002f7850,88,fn_71002f7850,unknown,unknown,O
 0x71002f78a8,136,fn_71002f78a8,unknown,unknown,O
-0x71002f7930,252,fn_71002f7930,unknown,unknown,U
+0x71002f7930,252,fn_71002f7930,unknown,unknown,O
 0x71002f7a2c,476,fn_71002f7a2c,unknown,unknown,O
 0x71002f7c08,508,fn_71002f7c08,unknown,unknown,U
 0x71002f7e04,248,fn_71002f7e04,unknown,unknown,O
