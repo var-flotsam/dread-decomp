@@ -516,24 +516,37 @@ class Oracle:
                 # without a fault, coverage does not end the repairs, and a repaired run that ends
                 # without one is kept though it reaches nothing new (a comparison needs a run that ends).
                 def ended() -> bool:
-                    return any(not isinstance(r[2], str) and r[2].fault is None for r in runs)
+                    return any(not isinstance(r[2], str) and r[2].fault is None and not r[2].cut for r in runs)
+
+                def stuck(m) -> bool:
+                    return m.fault is not None or bool(m.cut)
 
                 def small(base, w: int) -> bool:
                     try:
                         return base.load(w, 8) < 0x10000
                     except (pcode_emu.Fault, pcode_emu.Inconclusive):
                         return False
-                todo = [r for r in runs if not isinstance(r[2], str) and getattr(r[2], "fault", None) is not None][:2]
+                # (a run cut off in a loop is repaired too: a count a callee wrote through an
+                # out-parameter, or a word it read, as 1; 71004f0ab8's `cmp x20, w8, uxtw` over billions)
+                todo = ([r for r in runs if not isinstance(r[2], str) and r[2].fault is not None][:2]
+                        + [r for r in runs if not isinstance(r[2], str) and r[2].fault is None and r[2].cut][:1])
                 budget = REPAIRS
                 while todo and budget > 0:
                     seed, ovr, base = todo.pop(0)
                     words = [w for w in base.read_words if mutable(w)]
                     near = [w for w in reversed(words) if small(base, w)][:SWEEP_WORDS]
+                    outs = getattr(base, "out_words", [])
                     # (a call's result also as true: a cast check's `tst w0, #1` that selects null)
                     calls = range(min(base.calls, MAX_RESULTS), 0, -1)
-                    keys = [(("m", w), POINTER) for w in near] + [(("c", n), POINTER) for n in calls] \
-                        + [(("c", n), 1) for n in calls] + [(("r", k), POINTER) for k in regs if k < 8] \
-                        + [(("m", w), POINTER) for w in words[-SWEEP_WORDS:] if w not in near]
+                    if base.fault is not None:
+                        keys = [(("o", o), POINTER) for o, v in outs if v < 0x10000][:SWEEP_WORDS] \
+                            + [(("m", w), POINTER) for w in near] + [(("c", n), POINTER) for n in calls] \
+                            + [(("c", n), 1) for n in calls] + [(("r", k), POINTER) for k in regs if k < 8] \
+                            + [(("m", w), POINTER) for w in words[-SWEEP_WORDS:] if w not in near]
+                    else:
+                        keys = [(("o", o), 1) for o, v in outs if v >= 0x10000][:SWEEP_WORDS] \
+                            + [(("m", w), 1) for w in reversed(words) if w not in near][:SWEEP_WORDS] \
+                            + [(("c", n), 1) for n in calls]
                     # (a pointer at either base, the second when the first changed nothing: the arena
                     # words each object reads decide whether the run goes on, and neither base wins
                     # them all)
@@ -557,11 +570,11 @@ class Oracle:
                             m = run(seed, o)
                         except pcode_emu.Inconclusive:
                             continue
-                        if m.visited - seen or (m.fault is None and not ended()):
+                        if m.visited - seen or (not stuck(m) and not ended()):
                             hit.add(key)
                             runs.append((seed, o, m))
                             seen |= m.visited
-                            if m.fault is not None:
+                            if stuck(m):
                                 todo.insert(0, (seed, o, m))  # (depth first: the run that got further)
                                 break
             idle = 0
