@@ -83,7 +83,7 @@ class Llp64Checks(unittest.TestCase):
 
     def test_scan_tree(self):
         with tempfile.TemporaryDirectory() as tmp:
-            root = Path(tmp)
+            root = Path(tmp).resolve()  # rel() resolves; Windows temp dirs can be 8.3 short names
             (root / "src" / "lifted").mkdir(parents=True)
             (root / "src" / "game").mkdir(parents=True)
             (root / "include").mkdir()
@@ -176,7 +176,8 @@ class Demangle(unittest.TestCase):
 class Definitions(unittest.TestCase):
     def test_collisions_and_copies(self):
         a, b, c = (ps.ROOT / "src" / "g" / f"{n}.cpp" for n in "abc")
-        oa, ob, oc = "/o/a.o", "/o/b.o", "/o/c.o"
+        # nm prints each object as it was passed (str(Path), so backslashes on Windows).
+        oa, ob, oc = (str(Path(f"/o/{n}.o")) for n in "abc")
         nm_out = "\n".join([
             f"{oa}:", "0000 T fn_7100000010(int)", "0010 T g_shared", "0020 W inline_fn()", "0030 t fn_7100000020()",
             f"{ob}:", "0000 T fn_7100000010(int)", "0010 D g_shared",
