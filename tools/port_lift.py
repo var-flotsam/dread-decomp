@@ -574,8 +574,29 @@ class Oracle:
                             + [(("m", w), POINTER) for w in words[-SWEEP_WORDS:] if w not in near]
                         # (in a loop whose elements are being repaired one by one: its count first, a
                         # callee's out-parameter (a returned {pointer, count}) as 1, 710063fbec)
+                        # (or a memory word read before the loop's last new instruction, holding more
+                        # than 1 and not one of the array the loop scans (words first read at a
+                        # coverage three or more share: iterations that reached nothing new), the
+                        # latest first: a count read once from an object; without it 71007fcae4,
+                        # 7100c12c00 and 7100891ddc are lost once a loop is only a run that reached
+                        # nothing new)
                         if getattr(base, "looped", 0):
-                            keys = [(("o", o), 1) for o, v in outs if v >= 0x10000][:SWEEP_WORDS] + keys
+                            cov: dict = {}
+                            for w, c in zip(base.read_words, getattr(base, "read_cov", ())):
+                                cov.setdefault(w, c)
+                            final = len(base.visited)
+                            shared = Counter(cov.values())
+
+                            def count(w: int) -> bool:
+                                if cov.get(w, final) >= final or shared[cov[w]] >= 3:
+                                    return False
+                                try:
+                                    return base.load(w, 8) >> 8 * base.read_at.get(w, 0) > 1
+                                except (pcode_emu.Fault, pcode_emu.Inconclusive):
+                                    return False
+                            counts = [w for w in reversed(words) if count(w)][:SWEEP_WORDS]
+                            keys = [(("o", o), 1) for o, v in outs if v >= 0x10000][:SWEEP_WORDS] \
+                                + [(("m", w), 1) for w in counts] + keys
                     else:
                         # (the loop's bound first: a word read before the run's last new instruction,
                         # an array's length read once and the scan's own words read after it, 7100a03a14)
@@ -624,7 +645,10 @@ class Oracle:
                                 or (not ended() and m.fault is not None and base.fault is not None
                                     and m.fault_pc == base.fault_pc and m.steps > base.steps
                                     and getattr(base, "looped", 0) < LOOP_REPAIRS):
-                            if m.fault is not None and base.fault is not None and m.fault_pc == base.fault_pc:
+                            # (a loop's only when it reached nothing new: a repair that got further
+                            # and crashed at the same load again is not, 710028ce1c)
+                            if m.fault is not None and base.fault is not None and m.fault_pc == base.fault_pc \
+                                    and not m.visited - base.visited:
                                 m.looped = getattr(base, "looped", 0) + 1
                             hit.add(key)
                             runs.append((seed, o, m))
