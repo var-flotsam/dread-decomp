@@ -104,6 +104,7 @@ class OutParameterOverride(unittest.TestCase):
     def machine(self, seed: int, overrides: dict):
         m = pcode_emu.Machine.__new__(pcode_emu.Machine)
         m.regs, m.undef_vn, m.vnarrow, m.state = bytearray(0x10000), set(), {}, {0: "written"}
+        m.vnarrow_at, m.steps = {}, 0
         m.seed, m.overrides, m.dictionary, m.lift, m.guide = seed, overrides, None, None, None
         m.target_reg, m.calls, m.call_log, m.out_words, m.frame_record = None, 0, [], [], set()
         m.out_at, m.results = {}, []

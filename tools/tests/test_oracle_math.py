@@ -25,6 +25,7 @@ class MathCall(unittest.TestCase):
     def machine(self, size: int, a: float, b: float = 0.0):
         m = pcode_emu.Machine.__new__(pcode_emu.Machine)
         m.regs, m.state, m.undef_vn, m.vnarrow = bytearray(pcode_emu.REG_SIZE), {}, set(), {}
+        m.vnarrow_at, m.steps = {}, 0
         q0, q1 = pcode_emu.Q0, pcode_emu.Q0 + pcode_emu.QSTRIDE
         m.regs[q0:q0 + size] = pack(a, size)
         m.regs[q1:q1 + size] = pack(b, size)
@@ -232,6 +233,7 @@ class PureMath(unittest.TestCase):
             size = 4 if name.endswith("f") else 8
             m = pcode_emu.Machine.__new__(pcode_emu.Machine)
             m.regs, m.state, m.undef_vn, m.vnarrow = bytearray(pcode_emu.REG_SIZE), {}, set(), {}
+            m.vnarrow_at, m.steps = {}, 0
             m.regs[pcode_emu.Q0:pcode_emu.Q0 + size] = pack(0.5, size)
             m.regs[pcode_emu.Q0 + pcode_emu.QSTRIDE:pcode_emu.Q0 + pcode_emu.QSTRIDE + size] = pack(0.25, size)
             m.math(name)
