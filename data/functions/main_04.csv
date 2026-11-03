@@ -1215,8 +1215,8 @@ address,size,name,name_source,subsystem,status
 0x7100439dd4,140,fn_7100439dd4,unknown,game/ai?,O
 0x7100439e60,140,fn_7100439e60,unknown,game/ai?,O
 0x7100439eec,12,fn_7100439eec,unknown,game/ai?,O
-0x7100439ef8,84,fn_7100439ef8,unknown,game/ai?,U
-0x7100439f4c,84,fn_7100439f4c,unknown,game/ai?,U
+0x7100439ef8,84,fn_7100439ef8,unknown,game/ai?,O
+0x7100439f4c,84,fn_7100439f4c,unknown,game/ai?,O
 0x7100439fa0,280,fn_7100439fa0,unknown,game/ai?,O
 0x710043a0b8,4,fn_710043a0b8,unknown,game/ai?,O
 0x710043a0bc,244,CChozoCommanderSentenceSphereAttack::refl_GetClass,reflection,game/ai,O
@@ -4246,7 +4246,7 @@ address,size,name,name_source,subsystem,status
 0x71004b1fd4,128,fn_71004b1fd4,unknown,unknown,U
 0x71004b2054,24,fn_71004b2054,unknown,unknown,O
 0x71004b206c,136,fn_71004b206c,unknown,unknown,O
-0x71004b20f4,180,fn_71004b20f4,unknown,unknown,U
+0x71004b20f4,180,fn_71004b20f4,unknown,unknown,O
 0x71004b21a8,80,fn_71004b21a8,unknown,unknown,O
 0x71004b21f8,96,fn_71004b21f8,unknown,unknown,O
 0x71004b2258,12,fn_71004b2258,unknown,unknown,O
@@ -4714,7 +4714,7 @@ address,size,name,name_source,subsystem,status
 0x71004bfbe4,128,fn_71004bfbe4,unknown,unknown,U
 0x71004bfc64,24,fn_71004bfc64,unknown,unknown,O
 0x71004bfc7c,136,fn_71004bfc7c,unknown,unknown,O
-0x71004bfd04,180,fn_71004bfd04,unknown,unknown,U
+0x71004bfd04,180,fn_71004bfd04,unknown,unknown,O
 0x71004bfdb8,80,fn_71004bfdb8,unknown,unknown,O
 0x71004bfe08,96,fn_71004bfe08,unknown,unknown,O
 0x71004bfe68,12,fn_71004bfe68,unknown,unknown,O
@@ -5558,8 +5558,8 @@ address,size,name,name_source,subsystem,status
 0x71004e6260,92,fn_71004e6260,unknown,unknown,O
 0x71004e62bc,92,fn_71004e62bc,unknown,unknown,O
 0x71004e6318,12,fn_71004e6318,unknown,unknown,O
-0x71004e6324,68,fn_71004e6324,unknown,unknown,U
-0x71004e6368,68,fn_71004e6368,unknown,unknown,U
+0x71004e6324,68,fn_71004e6324,unknown,unknown,O
+0x71004e6368,68,fn_71004e6368,unknown,unknown,O
 0x71004e63b0,240,fn_71004e63b0,unknown,unknown,O
 0x71004e64a0,332,fn_71004e64a0,unknown,unknown,O
 0x71004e65ec,384,fn_71004e65ec,unknown,unknown,O

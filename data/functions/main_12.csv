@@ -133,7 +133,7 @@ address,size,name,name_source,subsystem,status
 0x71012045e0,28,fn_71012045e0,unknown,unknown,O
 0x71012045fc,28,fn_71012045fc,unknown,unknown,O
 0x7101204620,160,fn_7101204620,unknown,unknown,O
-0x71012046c0,84,fn_71012046c0,unknown,unknown,U
+0x71012046c0,84,fn_71012046c0,unknown,unknown,O
 0x7101204714,152,nn::atk::FsSoundArchive::vf_0x0,rtti,middleware/nn-atk,L
 0x71012047ac,64,fn_71012047ac,unknown,middleware/nn-atk?,L
 0x71012047ec,36,nn::atk::FsSoundArchive::vf_0x8,rtti,middleware/nn-atk,L
