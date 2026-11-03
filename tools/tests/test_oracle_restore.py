@@ -15,6 +15,7 @@ def machine() -> pcode_emu.Machine:
     m.pages[P // pcode_emu.PAGE][P % pcode_emu.PAGE:P % pcode_emu.PAGE + 4] = (0x11223344).to_bytes(4, "little")
     m.dirty, m.before, m._loaded, m._ckpt, m._touched = {}, {}, None, {}, set()
     m._all_loads, m.putback, m.putback_ev, m.stale, m.stale_ev = set(), {}, {}, set(), {}
+    m._loaded_before, m.unsure, m.unsure_ev = set(), set(), {}
     m.undef_mem, m.clipped, m.arg_slots = set(), False, None
     m.stack_written, m.frame_record, m.saves, m.entry_saved = set(), set(), set(), set()
     m.arg_slots, m.own, m.track, m.lift = None, (0, 0), False, None
@@ -143,6 +144,31 @@ class Restore(unittest.TestCase):
         lift.store(P, 4, x)
         end(orig), end(lift)
         self.assertTrue(pcode_emu.compare(orig, lift, None).startswith("memory at event"))
+
+    def test_restore_with_a_reread_after_the_call_is_no_agreement(self):
+        # old = *p; f(); (void)*p; *p = old against a lift without the restore (and the reverse): the
+        # re-read makes the stored value look like a put-back of what was just loaded, but it may be
+        # the stale one. The emulated callee leaves *p alone, so no input shows it: never an agreement.
+        def restoring():
+            m = machine()
+            old = m.load(P, 4)
+            call(m)
+            m.load(P, 4)
+            m.store(P, 4, old)
+            end(m)
+            return m
+
+        def dropping():
+            m = machine()
+            m.load(P, 4)
+            call(m)
+            m.load(P, 4)
+            end(m)
+            return m
+
+        self.assertNotEqual(pcode_emu.compare(restoring(), dropping(), None), "")
+        self.assertNotEqual(pcode_emu.compare(dropping(), restoring(), None), "")
+        self.assertEqual(pcode_emu.compare(restoring(), restoring(), None), "")
 
     def test_a_math_call_keeps_the_reference(self):
         m = machine()
