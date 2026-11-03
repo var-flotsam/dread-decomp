@@ -1540,7 +1540,12 @@ def compare(a: Machine, b: Machine, ret: str | None) -> str:
             extra = written(cut.events, len(cut.events) - 1) - written(done.events, shared)
             if extra:
                 return f"memory written only by the {'original' if ta else 'lift'}, cut off: byte {min(extra):#x}"
-        if tb and b.cut == "steps" and end_a in (("end", "return"), ("end", "fault")) \
+        # The lift spun on where the original came to an end of its own in few steps (a return, a
+        # fault, a noreturn call or a trap): too slow, or a loop the original does not have. Not a
+        # hang: an original that spins forever (`b .`) is matched by a lift that spins forever in
+        # any loop of its own, cut off with nothing recorded past the original's events.
+        if tb and b.cut == "steps" and end_a is not None and end_a[0] == "end" \
+                and end_a[1] not in ("time-out", "hang") \
                 and a.steps * SLOWER <= Machine.max_steps(b):
             return f"the lift ran out of steps where the original ended after {a.steps}"
         return f"skip: the {'original' if ta else 'lift'} was cut off ({cut.cut})"

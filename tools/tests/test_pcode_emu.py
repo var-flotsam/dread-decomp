@@ -39,6 +39,36 @@ class CutOff(unittest.TestCase):
         d = pcode_emu.compare(run("return", short + 1), run("time-out", n * k + 1, k, "steps"), None)
         self.assertTrue(d.startswith("the lift ran out of steps"), d)
 
+    CALL = (("call", 0x7100001000, (), ()), ())
+
+    def test_slower_after_a_noreturn_call_or_a_trap(self):
+        # The original called a [[noreturn]] callee (or trapped) and ended; the lift made the same
+        # call and then spun until its step budget ran out: a difference, not a skip.
+        n = pcode_emu.MAX_STEPS
+        for end in ("noreturn", "trap"):
+            orig = run(end, 10, events=[self.CALL, (("end", end), ())])
+            lift = run("time-out", n + 1, cut="steps", events=[self.CALL, (("end", "time-out"), ())])
+            d = pcode_emu.compare(orig, lift, None)
+            self.assertTrue(d.startswith("the lift ran out of steps"), (end, d))
+            # Cut off for another reason (events, snapshot room) it still decides nothing.
+            lift.cut = "events"
+            d = pcode_emu.compare(orig, lift, None)
+            self.assertTrue(d.startswith("skip: "), (end, d))
+
+    def test_a_lift_spinning_where_the_original_hangs(self):
+        # The original spins forever on `b .` (ended as a hang); a lift spinning in a loop of its
+        # own, cut off with no event past the original's, is not rejected.
+        n = pcode_emu.MAX_STEPS
+        orig = run("hang", 10, events=[self.CALL, (("end", "hang"), ())])
+        lift = run("time-out", n + 1, cut="steps", events=[self.CALL, (("end", "time-out"), ())])
+        d = pcode_emu.compare(orig, lift, None)
+        self.assertTrue(d.startswith("skip: "), d)
+        # One that makes another call first still differs.
+        lift = run("time-out", n + 1, cut="steps",
+                   events=[self.CALL, (("call", 0x7100002000, (), ()), ()), (("end", "time-out"), ())])
+        d = pcode_emu.compare(orig, lift, None)
+        self.assertFalse(d.startswith("skip: ") or d == "", d)
+
 
 if __name__ == "__main__":
     unittest.main()
