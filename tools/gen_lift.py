@@ -2961,9 +2961,19 @@ class FlatLifter(Lifter):
             raise Unsupported("bare page")
         if n == 100 and s.fcall:
             t = ftype(r)
+            ln = s.fcall[0]
             self.retype_call(t, self.storage(100, t))
             self.types[100] = t
             s.fcall = None
+            if 100 in getattr(self, "dual", ()) and t in ("f32", "f64"):
+                # (semantic mode: s0/d0 used at both widths, its S and D variables kept in step as
+                # write() does: the call's float result sets the other width too, right after the
+                # call line, before anything between it and this read sees the stale one)
+                o = "f64" if t == "f32" else "f32"
+                ind = self.body[ln][:len(self.body[ln]) - len(self.body[ln].lstrip())]
+                self.body.insert(ln + 1, ind + f"{self.storage(100, o)} = "
+                                 f"{reinterpret_float(self.storage(100, t), t)};")
+                self.rets = [(i + (i > ln), k, p) for i, k, p in self.rets]  # (lines below moved)
         elif n == 0 and r[0] == "w" and self.opts & {"w32", "bool"} and s.fcall:
             # ("w32", "bool") as Lifter.read: the callee returns 32 bits, or a bool
             self.retype_call("bool" if "bool" in self.opts else "u32", s.fcall[1])
