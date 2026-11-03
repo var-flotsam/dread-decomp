@@ -55,6 +55,15 @@ class VNarrow(unittest.TestCase):
         m.set_reg(Q0 + 4, 12, 0)
         self.assertTrue(m.vnarrow[0])
 
+    def test_upper_zeroing_in_pieces_keeps(self):
+        """Ghidra's P-code for `fadd s0, ...` zeroes the rest in four pieces: 4 bytes at +4, then 8 at
+        +8, +16 and +24 (the SVE part of z<n>)."""
+        m = machine()
+        m.set_reg(Q0, 4, 0x3F800000)
+        for rel, size in ((4, 4), (8, 8), (16, 8), (24, 8)):
+            m.set_reg(Q0 + rel, size, 0)
+        self.assertTrue(m.vnarrow[0])
+
     def test_d_write_clears(self):
         m = machine()
         m.set_reg(Q0 + QSTRIDE, 4, 1)

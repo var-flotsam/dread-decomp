@@ -592,9 +592,10 @@ class Machine:
             n, rel = divmod(off - Q0, QSTRIDE)
             if rel == 0:
                 self.vnarrow[n] = size == 4
-            elif not (rel == 4 and size == 12 and v == 0):
+            elif not (4 <= rel < QSTRIDE and v == 0):
                 # A lane insert after s<n> (ld1 {v0.s}[1], ins v0.d[1]) makes v<n> wide again; only the
-                # zeroing of the upper part that follows an s<n> write keeps it narrow (after d<n> it is False)
+                # zeroing of the upper part that follows an s<n> write keeps it narrow (after d<n> it is False).
+                # Ghidra zeroes it in four pieces: 4 bytes at +4, then 8 at +8, +16 and +24 (the SVE part).
                 self.vnarrow[n] = False
 
     def x(self, n: int) -> int:
