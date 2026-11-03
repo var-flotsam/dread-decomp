@@ -132,6 +132,26 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Rounds 28-30: three-agent fan-outs by hand (2026-11-02, branch `claude/project-thread-czsmeu`).**
+276 functions to `O` (96, 91, 89). Boot slice: `O` 2,258 to 2,298 (31.82%), usable 41.80% to 42.19%; whole binary `O`
+86,551 to 86,827 (56.01%), usable 58.31% to 58.52%. Three agents per round on thirds of the `U` bytes, same brief as round
+27, now 22-38 minutes each: about 65 functions per agent-hour, and 276 in 1.5 hours of wall clock with the rounds
+overlapping (about 190 an hour); about 2.6 M subagent tokens in all, about 9.5 k per function.
+- **Rounds can overlap only through a skip rule.** Matches stay `U` in `data/functions/` until `check.py --update`, so a
+  round started before the previous one is verified must skip any address `src/` already defines (`grep -rlE
+  "fn_<addr>\("` outside `src/lifted`) and the earlier rounds' stuck lists.
+- **An agent overwrote a tracked file** (round 27's CDroppableMissileComponent constructors) despite the brief; check
+  `git status` for `M` lines before verifying and move such content to a `_2` file.
+- **Declarations drift every round** (about ten conflicting signatures per round, plus re-declarations of symbols in
+  `include/`); one agent with the alignment rules (existing signature wins, forward-declare, cast at the call; a call with
+  more arguments than the existing declaration goes through a cast function pointer) clears them in three minutes.
+- Levers: callers of a shared base constructor (`hubs.py --callers fn_X`) list whole families of small constructors
+  still `U` (23 of one agent's 36); reflection descriptors' copy and move assignments (still `U`) in families; stores the
+  original reloads after a store to another type need a `may_alias` struct or a plain pointer to the field, a `may_alias`
+  member typedef alone does nothing; a callback stored in a link is a GOT RELOC to a .text address, declare it `fn_<addr>`;
+  "first that holds" loops as `do { r = f(*it); ++it; } while (it != end && !r)`; hash lookups as a `BucketFor` returning
+  the bucket or null.
+
 **Lifter: the whole-binary refusals, round 3: the oracle's inconclusive (2026-11-02, branch
 `claude/project-thread-zgkpk3-r3`).** First, round 2's whole-binary run (build/port/lifted_all4, on r2's
 head): 16,337 of 16,470 accepted, against lifted_all3's 16,314, with no function lost. This round changes
