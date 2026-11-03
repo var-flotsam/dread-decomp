@@ -151,6 +151,30 @@ overlapping (about 190 an hour); about 2.6 M subagent tokens in all, about 9.5 k
   member typedef alone does nothing; a callback stored in a link is a GOT RELOC to a .text address, declare it `fn_<addr>`;
   "first that holds" loops as `do { r = f(*it); ++it; } while (it != end && !r)`; hash lookups as a `BucketFor` returning
   the bucket or null.
+**Lifter: the whole-binary refusals, round 4: oracle rejects (2026-11-02, branch
+`claude/project-thread-zgkpk3-r4`).** First, r3's whole-binary runs. lifted_all5 (06af214b) had 37 new
+accepts against lifted_all4 and lost 16, and lifted_all6 (cb779761) had 35 new and lost 10. Bisecting
+showed the new out-parameter words and repairs reach paths the old inputs did not, and that exposed
+oracle artifacts, fixed on r3 (ac0f4627): libm computed from its arguments with no event (the lift may
+merge or inline sqrtf calls; NaN payloads and +-inf as C returns them), one object per repair, and an
+x8 result past its extent left undefined rather than filled (filling overwrote locals placed
+differently). A 545-function check of r3 kept all 500 sampled accepted functions and all 35 gains.
+This round, on all6's 91 not accepted plus 500 accepted (build/port/lifted_r4): 21 newly accepted
+(including 3 of r3's 4 remaining losses), none lost. Byte mode unchanged (4,538 of 5,908 sampled
+candidates byte-identical, src/ clean). Left: 36 inconclusive, 31 oracle, 3 others.
+- **The repairs' objects** start at ARENA + 0x40000100: POINTER + 1 MiB * k met Machine.setup's argument
+  objects for seed 7.
+- **A libm import returns its float in s0/d0**: an inlined fsqrt calls sqrtf only for a NaN, and the
+  result went on past the join as the argument (71010c1da0, 7100118274).
+- **A pending float result** is typed before a label the call falls into and before an unconditional
+  branch to one, when s0/d0 is read there first (71010ee560: `fmax` after the call, joined by a path
+  that sets s0 itself); a whole-register copy `mov v8.16b, v0.16b` reads it at the width its copy is
+  read next (71009e754c).
+- **An indirect call is passed every argument register written since the last call** (abi_facts'
+  rule for an indirect call, which the oracle compares): 71005cf72c, 710068af10.
+- Left in the argument group, causes seen: a call's result passed straight to the next call arrives
+  as 0 (710109ceb0); a `mov w2, w0` result passed to a tail call untruncated (7101089170); the oracle's
+  float width where the callee copies the argument whole and passes it to an indirect call (7100656f3c).
 
 **Lifter: the whole-binary refusals, round 3: the oracle's inconclusive (2026-11-02, branch
 `claude/project-thread-zgkpk3-r3`).** First, round 2's whole-binary run (build/port/lifted_all4, on r2's
