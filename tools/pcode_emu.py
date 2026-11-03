@@ -1444,6 +1444,10 @@ def compare(a: Machine, b: Machine, ret: str | None) -> str:
 def same_arg(u, v) -> bool:
     if u == v:
         return True
+    if isinstance(u, int) and isinstance(v, int) and ENTRY_SP <= u < STACK_TOP and ENTRY_SP <= v < STACK_TOP:
+        # (both above the entry sp, in the caller's frame: an address computed from made-up words
+        # and each run's own frame, which the two lay out differently, 71002842e4)
+        return True
     if isinstance(u, tuple) and isinstance(v, tuple):
         # Stack windows: the object starts at the pointer and ends where either function stops
         # writing (beyond, the frames are laid out differently: other locals, save slots). A
