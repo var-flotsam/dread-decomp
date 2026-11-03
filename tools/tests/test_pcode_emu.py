@@ -207,3 +207,8 @@ class AbiGarbage(unittest.TestCase):
         self.assertFalse(pcode_emu.abi_garbage(SimpleNamespace(res_read={0, 100}, res_written=set()), 0))
         self.assertFalse(pcode_emu.abi_garbage(SimpleNamespace(res_read={100}, res_written={0}), 0))
         self.assertFalse(pcode_emu.abi_garbage(SimpleNamespace(res_read=None, res_written=set()), 0))
+        # after a call through x8 (a result in memory), either register unless read or written since
+        sret = SimpleNamespace(res_read=set(), res_written={100}, res_sret=True)
+        self.assertTrue(pcode_emu.abi_garbage(sret, 0))
+        self.assertFalse(pcode_emu.abi_garbage(sret, 100))
+        self.assertFalse(pcode_emu.abi_garbage(SimpleNamespace(res_read=set(), res_written=set()), 0))

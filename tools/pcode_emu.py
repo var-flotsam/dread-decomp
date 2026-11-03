@@ -429,6 +429,7 @@ def native(w: int) -> bool:
 class Machine:
     res_read: set | None = None  # (__init__; a Machine built bare, as the tests do, tracks nothing)
     res_written: set = frozenset()
+    res_sret = False  # the last call returned through x8
 
     def __init__(self, db: dict, image: ImageMemory, seed: int, inside, code_word, lift: LiftObject | None,
                  imports: dict[int, str], facts, preset: dict[int, int], dictionary: tuple = (),
@@ -709,7 +710,7 @@ class Machine:
                 self.math(t[1])
             else:
                 self.clib(t[1])
-            self.res_read, self.res_written = set(), set()
+            self.res_read, self.res_written, self.res_sret = set(), set(), False
             return
         # Every argument register's value; `sel` the ones this run's caller meant for the callee.
         # compare() takes the original's selection, so registers the lift's compiled code used as
@@ -840,6 +841,9 @@ class Machine:
         # over-approximates), so a float result passed straight on is not compared.
         self.state[100] = "junk"
         self.res_read, self.res_written = set(), set()
+        # (a callee that reads x8, the indirect result location, returns through memory: x0 and v0
+        # hold nothing after it)
+        self.res_sret = 8 in chosen
 
     def recorded(self, target: int, t, modeled: bool):
         """The snapshot's next recorded call when it went to this target (and is taken), else None.
@@ -1537,10 +1541,12 @@ def abi_garbage(m: Machine, reg: int) -> bool:
     a float one) and never this one: AAPCS64 returns a value in x0-x1 or in v0-v3, never both, so
     this register is the callee's scratch, garbage in the game too (ret_used over-approximates a
     void function's callers: 71006ea9a4 returns x0 after a float callee, 7100c95f74 s0 after a bool
-    one). Nothing a lift returns there differs from the original's behaviour."""
-    other = 100 - reg
-    return getattr(m, "res_read", None) is not None and reg not in m.res_written \
-        and other in m.res_read and reg not in m.res_read
+    one). Likewise after a call that read x8, the indirect result location: its result is in memory
+    and neither register holds one (7100c75684 returns x0 after such a call). Nothing a lift returns
+    there differs from the original's behaviour."""
+    if getattr(m, "res_read", None) is None or reg in m.res_written or reg in m.res_read:
+        return False
+    return getattr(m, "res_sret", False) or (100 - reg) in m.res_read
 
 
 def same_arg(u, v, frame: int = ENTRY_SP) -> bool:
