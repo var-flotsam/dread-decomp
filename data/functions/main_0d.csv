@@ -5429,7 +5429,7 @@ address,size,name,name_source,subsystem,status
 0x7100de08cc,36,fn_7100de08cc,unknown,unknown,O
 0x7100de08f0,960,fn_7100de08f0,unknown,unknown,O
 0x7100de0cb0,1752,fn_7100de0cb0,unknown,unknown,U
-0x7100de1388,36,fn_7100de1388,unknown,unknown,U
+0x7100de1388,36,fn_7100de1388,unknown,unknown,O
 0x7100de13ac,612,fn_7100de13ac,unknown,unknown,U
 0x7100de1610,28,fn_7100de1610,unknown,unknown,O
 0x7100de162c,368,fn_7100de162c,unknown,unknown,O

@@ -643,8 +643,8 @@ address,size,name,name_source,subsystem,status
 0x7100016ad8,168,fn_7100016ad8,unknown,unknown,O
 0x7100016b80,196,fn_7100016b80,unknown,unknown,O
 0x7100016c44,184,fn_7100016c44,unknown,unknown,O
-0x7100016cfc,280,fn_7100016cfc,unknown,unknown,U
-0x7100016e14,372,fn_7100016e14,unknown,unknown,U
+0x7100016cfc,280,fn_7100016cfc,unknown,unknown,O
+0x7100016e14,372,fn_7100016e14,unknown,unknown,O
 0x7100016f88,532,fn_7100016f88,unknown,unknown,U
 0x710001719c,4,fn_710001719c,unknown,unknown,U
 0x71000171a0,476,fn_71000171a0,unknown,unknown,U
@@ -656,7 +656,7 @@ address,size,name,name_source,subsystem,status
 0x7100017948,600,fn_7100017948,unknown,unknown,m
 0x7100017ba0,328,fn_7100017ba0,unknown,unknown,U
 0x7100017ce8,1060,fn_7100017ce8,unknown,unknown,m
-0x710001810c,312,fn_710001810c,unknown,unknown,U
+0x710001810c,312,fn_710001810c,unknown,unknown,O
 0x7100018244,524,fn_7100018244,unknown,unknown,U
 0x7100018450,264,fn_7100018450,unknown,unknown,O
 0x7100018558,452,fn_7100018558,unknown,unknown,O
@@ -807,7 +807,7 @@ address,size,name,name_source,subsystem,status
 0x710001e310,48,fn_710001e310,unknown,unknown,O
 0x710001e340,116,fn_710001e340,unknown,unknown,O
 0x710001e3b4,308,fn_710001e3b4,unknown,unknown,U
-0x710001e4e8,324,fn_710001e4e8,unknown,unknown,U
+0x710001e4e8,324,fn_710001e4e8,unknown,unknown,O
 0x710001e62c,280,fn_710001e62c,unknown,unknown,U
 0x710001e744,300,fn_710001e744,unknown,unknown,U
 0x710001e870,616,fn_710001e870,unknown,unknown,U
@@ -1027,7 +1027,7 @@ address,size,name,name_source,subsystem,status
 0x7100027268,100,fn_7100027268,unknown,unknown,O
 0x71000272cc,332,fn_71000272cc,unknown,unknown,U
 0x7100027418,76,fn_7100027418,unknown,unknown,U
-0x7100027464,324,fn_7100027464,unknown,unknown,U
+0x7100027464,324,fn_7100027464,unknown,unknown,O
 0x71000275b0,452,fn_71000275b0,unknown,unknown,O
 0x7100027780,272,fn_7100027780,unknown,unknown,U
 0x7100027890,128,fn_7100027890,unknown,unknown,O
@@ -1118,7 +1118,7 @@ address,size,name,name_source,subsystem,status
 0x7100029a50,244,base::curves::CCurveResource::refl_GetClass,reflection,engine/base,O
 0x7100029b44,4,fn_7100029b44,unknown,engine/base?,O
 0x7100029b48,372,base::curves::CCurveResource::refl_InitClass,reflection,engine/base,O
-0x7100029cbc,212,fn_7100029cbc,unknown,unknown,U
+0x7100029cbc,212,fn_7100029cbc,unknown,unknown,O
 0x7100029d90,56,fn_7100029d90,unknown,unknown,O
 0x7100029dc8,28,fn_7100029dc8,unknown,unknown,O
 0x7100029de4,72,fn_7100029de4,unknown,unknown,O

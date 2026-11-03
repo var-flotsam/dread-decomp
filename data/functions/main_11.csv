@@ -2773,7 +2773,7 @@ address,size,name,name_source,subsystem,status
 0x71011c14e0,76,fn_71011c14e0,unknown,unknown,O
 0x71011c1530,504,fn_71011c1530,unknown,unknown,U
 0x71011c1728,12,fn_71011c1728,unknown,unknown,O
-0x71011c1740,36,fn_71011c1740,unknown,unknown,U
+0x71011c1740,36,fn_71011c1740,unknown,unknown,O
 0x71011c1764,408,fn_71011c1764,unknown,unknown,U
 0x71011c1900,140,fn_71011c1900,unknown,unknown,O
 0x71011c198c,220,fn_71011c198c,unknown,unknown,O
