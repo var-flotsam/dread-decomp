@@ -132,6 +132,18 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Rounds 31-37: the same fan-out as an unattended loop (2026-11-03, branch `claude/project-thread-czsmeu`).**
+674 functions to `O` (118, 93, 93, 107, 82, 88, 93), one batch about every 30 minutes. Boot slice: `O` 2,298 to 2,342
+(32.21%), usable 42.19% to 42.58%; whole binary `O` 86,827 to 87,501 (56.44%), usable 58.52% to 58.94%. From round 32 a
+workflow runs each batch: three matching agents (brief `build/BRIEF_NIGHT.md`), then one integrator agent
+(`build/INTEGRATE.md`) that restores any tracked file an agent changed, aligns declarations until `decl_check --base`
+passes, runs `verify.py`, commits and pushes only on PASS, and the loop stops on a failure. Stuck addresses accumulate in
+`build/stuck_all.txt` so later rounds skip them.
+- **CI's port compile is a separate gate.** One batch file used `nn::nfp::State_NonInitialized`, which the port's runtime
+  header (`port/runtime/include/nn/nfp.h`) did not name; `verify.py` doesn't run the x86-64 sweep, so the integrator now
+  runs `tools/port_sweep.py` before pushing.
+- **The self-hosted `check` job fails as "lost communication" when the PC is saturated**; it passes on the next push.
+
 **Rounds 28-30: three-agent fan-outs by hand (2026-11-02, branch `claude/project-thread-czsmeu`).**
 276 functions to `O` (96, 91, 89). Boot slice: `O` 2,258 to 2,298 (31.82%), usable 41.80% to 42.19%; whole binary `O`
 86,551 to 86,827 (56.01%), usable 58.31% to 58.52%. Three agents per round on thirds of the `U` bytes, same brief as round
