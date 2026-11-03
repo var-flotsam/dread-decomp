@@ -758,7 +758,7 @@ address,size,name,name_source,subsystem,status
 0x71008274b0,8,fn_71008274b0,unknown,unknown,O
 0x71008274b8,8,fn_71008274b8,unknown,unknown,O
 0x71008274c0,28,fn_71008274c0,unknown,unknown,O
-0x71008274dc,192,fn_71008274dc,unknown,unknown,U
+0x71008274dc,192,fn_71008274dc,unknown,unknown,O
 0x710082759c,4,fn_710082759c,unknown,unknown,O
 0x71008275a0,4,fn_71008275a0,unknown,unknown,O
 0x71008275a4,12,fn_71008275a4,unknown,unknown,O
@@ -1845,7 +1845,7 @@ address,size,name,name_source,subsystem,status
 0x71008564e8,100,fn_71008564e8,unknown,game?,O
 0x710085654c,92,fn_710085654c,unknown,game?,O
 0x71008565a8,336,fn_71008565a8,unknown,game?,U
-0x71008566f8,244,fn_71008566f8,unknown,game?,U
+0x71008566f8,244,fn_71008566f8,unknown,game?,O
 0x71008567ec,940,fn_71008567ec,unknown,game?,U
 0x7100856b98,220,fn_7100856b98,unknown,game?,O
 0x7100856c74,32,fn_7100856c74,unknown,game?,O
@@ -1972,7 +1972,7 @@ address,size,name,name_source,subsystem,status
 0x710085c958,732,fn_710085c958,unknown,game?,U
 0x710085cc34,96,fn_710085cc34,unknown,game?,O
 0x710085cc94,96,fn_710085cc94,unknown,game?,U
-0x710085ccf4,96,fn_710085ccf4,unknown,game?,U
+0x710085ccf4,96,fn_710085ccf4,unknown,game?,O
 0x710085cd54,28,fn_710085cd54,unknown,game?,O
 0x710085cd70,8,fn_710085cd70,unknown,game?,O
 0x710085cd78,8,fn_710085cd78,unknown,game?,O

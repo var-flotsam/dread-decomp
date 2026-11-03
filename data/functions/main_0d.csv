@@ -3880,8 +3880,8 @@ address,size,name,name_source,subsystem,status
 0x7100d822c0,292,fn_7100d822c0,unknown,unknown,U
 0x7100d823e4,8,fn_7100d823e4,unknown,unknown,O
 0x7100d823ec,8,fn_7100d823ec,unknown,unknown,O
-0x7100d823f4,84,fn_7100d823f4,unknown,unknown,U
-0x7100d82448,176,fn_7100d82448,unknown,unknown,U
+0x7100d823f4,84,fn_7100d823f4,unknown,unknown,O
+0x7100d82448,176,fn_7100d82448,unknown,unknown,O
 0x7100d824f8,128,fn_7100d824f8,unknown,unknown,O
 0x7100d82578,128,fn_7100d82578,unknown,unknown,O
 0x7100d825f8,128,fn_7100d825f8,unknown,unknown,O
