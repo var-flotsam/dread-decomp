@@ -48,6 +48,29 @@ class RepairConstants(unittest.TestCase):
             if seed != port_lift.REPAIR_ALIASED_SEED:
                 self.assertFalse(shallow & set(setup_objects(seed)), seed)
 
+    def test_repair_objects_never_meet_their_seeds_arguments(self):
+        """repair_object(seed, k), k up to REPAIRS deep, is none of that seed's x0-x8; seed 8 at depth
+        17 (POINTER + 17 MiB, its x0) moves to REPAIR_POINTER + 17 MiB."""
+        self.assertEqual(port_lift.POINTER + MIB * 17, setup_objects(8)[0])
+        self.assertEqual(port_lift.repair_object(8, 17), port_lift.REPAIR_POINTER + MIB * 17)
+        for seed in range(port_lift.MAX_SEEDS):
+            objs = set(setup_objects(seed))
+            for k in range(port_lift.REPAIRS + 2):
+                self.assertNotIn(port_lift.repair_object(seed, k), objs, (seed, k))
+
+    def test_repair_objects_stay_put_unless_aliased(self):
+        """A depth whose POINTER object meets none of the seed's arguments keeps it; seed 7 keeps
+        REPAIR_POINTER's at every depth."""
+        for seed in range(port_lift.MAX_SEEDS):
+            objs = set(setup_objects(seed))
+            for k in range(port_lift.REPAIRS + 2):
+                low = port_lift.POINTER + MIB * k
+                want = low if seed != port_lift.REPAIR_ALIASED_SEED and low not in objs \
+                    else port_lift.REPAIR_POINTER + MIB * k
+                self.assertEqual(port_lift.repair_object(seed, k), want, (seed, k))
+        self.assertEqual(port_lift.repair_object(8, 16), port_lift.POINTER + MIB * 16)
+        self.assertEqual(port_lift.repair_object(8, 26), port_lift.POINTER + MIB * 26)
+
     def test_repair_depths_get_distinct_objects(self):
         """Each depth's object (base + 1 MiB * len(overrides)) is its own, and the two bases never meet."""
         n = port_lift.REPAIRS + 2
