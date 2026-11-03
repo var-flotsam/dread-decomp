@@ -651,6 +651,7 @@ class Oracle:
             """('agree' | 'skip' | 'fail', detail) for the lift on one input the original ran."""
             ml = self.machine(seed, lambda a: text[0] <= a < text[1], word, lo, preset, self.dicts[addr], ovr,
                               addr=addr, guide=mo.call_log, scale=scale)
+            ml.noret_at = mo.noret_call  # (the original's run ended on a call that never returns)
             try:
                 ml.run(start)
             except pcode_emu.Inconclusive as e:

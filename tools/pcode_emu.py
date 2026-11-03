@@ -462,6 +462,8 @@ class Machine:
         self.cut: str | None = None  # why the run ended as a time-out: steps, events or snapshot (compare)
         self.clipped = False  # a modelled memset or memcpy stopped at 64 KiB (compare)
         self.fault: int | None = None  # the address a run faulted on
+        self.noret_call: int | None = None  # the call (its number) the run ended on, a callee that never returns
+        self.noret_at: int | None = None  # the lift's run: the original's noret_call
         self.stack_written: set[int] = set()
         # Undefined bytes: loaded from stack the run never wrote (a struct copy's padding), and
         # where they were stored. Register and unique bytes holding one ((space, offset) keys);
@@ -1023,7 +1025,15 @@ class Machine:
                         pc = target
                     else:
                         self.call(target)
-                        pc = self.x(30)
+                        ret_pc, pc = pc + 4, self.x(30)
+                        # A call that ends the original's code never returns (a [[noreturn]] callee,
+                        # abort or a fatal-error path): the run ends there. The lift ends after the
+                        # same call (its own code after it, if any, is unreachable).
+                        if (self.lift is None and pc == ret_pc and not self.inside(pc)) \
+                                or (self.lift is not None and self.noret_at == self.calls):
+                            self.noret_call = self.calls
+                            self.finish("noreturn")
+                            return
                         if not self.inside(pc):
                             raise Inconclusive("call returns outside")
                 elif kind == "ret":
