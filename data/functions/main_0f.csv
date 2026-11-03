@@ -38,7 +38,7 @@ address,size,name,name_source,subsystem,status
 0x7100f03484,4,fn_7100f03484,unknown,game?,O
 0x7100f03488,340,CHearingSensor::refl_InitClass,reflection,game,O
 0x7100f035dc,572,fn_7100f035dc,unknown,game?,U
-0x7100f03818,56,fn_7100f03818,unknown,game?,U
+0x7100f03818,56,fn_7100f03818,unknown,game?,O
 0x7100f03850,100,fn_7100f03850,unknown,game?,U
 0x7100f038b4,8,fn_7100f038b4,unknown,game?,O
 0x7100f038bc,12,fn_7100f038bc,unknown,game?,O

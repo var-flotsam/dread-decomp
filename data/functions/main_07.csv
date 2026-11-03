@@ -5449,7 +5449,7 @@ address,size,name,name_source,subsystem,status
 0x71007ff76c,80,fn_71007ff76c,unknown,game/components?,O
 0x71007ff7bc,288,fn_71007ff7bc,unknown,game/components?,U
 0x71007ff8dc,56,fn_71007ff8dc,unknown,game/components?,O
-0x71007ff914,252,fn_71007ff914,unknown,game/components?,U
+0x71007ff914,252,fn_71007ff914,unknown,game/components?,O
 0x71007ffa10,96,fn_71007ffa10,unknown,game/components?,O
 0x71007ffa70,632,fn_71007ffa70,unknown,game/components?,U
 0x71007ffce8,3016,fn_71007ffce8,unknown,game/components?,U

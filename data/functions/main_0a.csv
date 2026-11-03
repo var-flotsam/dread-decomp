@@ -1834,7 +1834,7 @@ address,size,name,name_source,subsystem,status
 0x7100a45698,244,CBaseDamageTriggerComponent::refl_GetClass,reflection,game/components,O
 0x7100a4578c,324,fn_7100a4578c,unknown,game/components?,O
 0x7100a458d0,352,CBaseDamageTriggerComponent::refl_InitClass,reflection,game/components,O
-0x7100a45a30,84,fn_7100a45a30,unknown,unknown,U
+0x7100a45a30,84,fn_7100a45a30,unknown,unknown,O
 0x7100a45a84,56,fn_7100a45a84,unknown,unknown,O
 0x7100a45abc,4,fn_7100a45abc,unknown,unknown,U
 0x7100a45ac0,4,fn_7100a45ac0,unknown,unknown,O
@@ -1842,7 +1842,7 @@ address,size,name,name_source,subsystem,status
 0x7100a45cac,64,fn_7100a45cac,unknown,unknown,O
 0x7100a45cec,4,fn_7100a45cec,unknown,unknown,O
 0x7100a45cf0,272,fn_7100a45cf0,unknown,unknown,U
-0x7100a45e00,260,fn_7100a45e00,unknown,unknown,U
+0x7100a45e00,260,fn_7100a45e00,unknown,unknown,O
 0x7100a45f04,4,fn_7100a45f04,unknown,unknown,O
 0x7100a45f08,160,fn_7100a45f08,unknown,unknown,O
 0x7100a45fa8,28,fn_7100a45fa8,unknown,unknown,O
@@ -5327,7 +5327,7 @@ address,size,name,name_source,subsystem,status
 0x7100adc77c,52,fn_7100adc77c,unknown,unknown,O
 0x7100adc7b0,104,fn_7100adc7b0,unknown,unknown,O
 0x7100adc818,4,fn_7100adc818,unknown,unknown,O
-0x7100adc81c,60,fn_7100adc81c,unknown,unknown,U
+0x7100adc81c,60,fn_7100adc81c,unknown,unknown,O
 0x7100adc858,160,fn_7100adc858,unknown,unknown,U
 0x7100adc8f8,20,fn_7100adc8f8,unknown,unknown,O
 0x7100adc90c,8,fn_7100adc90c,unknown,unknown,O
@@ -5691,7 +5691,7 @@ address,size,name,name_source,subsystem,status
 0x7100af07cc,36,fn_7100af07cc,unknown,gui?,O
 0x7100af07f0,4,fn_7100af07f0,unknown,gui?,O
 0x7100af07f4,4,fn_7100af07f4,unknown,gui?,O
-0x7100af07f8,44,fn_7100af07f8,unknown,gui?,U
+0x7100af07f8,44,fn_7100af07f8,unknown,gui?,O
 0x7100af0824,12,fn_7100af0824,unknown,gui?,O
 0x7100af0830,8,fn_7100af0830,unknown,gui?,O
 0x7100af0838,4,fn_7100af0838,unknown,gui?,O
