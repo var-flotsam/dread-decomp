@@ -1930,7 +1930,7 @@ address,size,name,name_source,subsystem,status
 0x7100b5ccec,212,fn_7100b5ccec,unknown,unknown,U
 0x7100b5cdc0,224,fn_7100b5cdc0,unknown,unknown,U
 0x7100b5cea0,32,fn_7100b5cea0,unknown,unknown,O
-0x7100b5cec0,92,fn_7100b5cec0,unknown,unknown,U
+0x7100b5cec0,92,fn_7100b5cec0,unknown,unknown,O
 0x7100b5cf1c,4,fn_7100b5cf1c,unknown,unknown,O
 0x7100b5cf20,224,fn_7100b5cf20,unknown,unknown,O
 0x7100b5d000,100,fn_7100b5d000,unknown,unknown,O
@@ -2243,8 +2243,8 @@ address,size,name,name_source,subsystem,status
 0x7100b772fc,212,fn_7100b772fc,unknown,engine/reflection?,O
 0x7100b773d0,232,fn_7100b773d0,unknown,engine/reflection?,O
 0x7100b774b8,44,fn_7100b774b8,unknown,engine/reflection?,O
-0x7100b774e4,112,fn_7100b774e4,unknown,engine/reflection?,U
-0x7100b77554,112,fn_7100b77554,unknown,engine/reflection?,U
+0x7100b774e4,112,fn_7100b774e4,unknown,engine/reflection?,O
+0x7100b77554,112,fn_7100b77554,unknown,engine/reflection?,O
 0x7100b775c4,364,base::reflection::refl_InitType<GUI::CSkin*>,reflection,engine/reflection,O
 0x7100b77730,96,fn_7100b77730,unknown,unknown,O
 0x7100b77790,12,fn_7100b77790,unknown,unknown,O
@@ -2408,7 +2408,7 @@ address,size,name,name_source,subsystem,status
 0x7100b7be80,36,fn_7100b7be80,unknown,gui?,O
 0x7100b7bea4,1780,fn_7100b7bea4,unknown,gui?,U
 0x7100b7c598,176,fn_7100b7c598,unknown,gui?,U
-0x7100b7c648,92,fn_7100b7c648,unknown,gui?,U
+0x7100b7c648,92,fn_7100b7c648,unknown,gui?,O
 0x7100b7c6a4,28,fn_7100b7c6a4,unknown,gui?,O
 0x7100b7c6c0,8,fn_7100b7c6c0,unknown,gui?,O
 0x7100b7c6c8,8,fn_7100b7c6c8,unknown,gui?,O
@@ -2957,7 +2957,7 @@ address,size,name,name_source,subsystem,status
 0x7100b8f088,12,fn_7100b8f088,unknown,game/ai?,O
 0x7100b8f094,288,fn_7100b8f094,unknown,game/ai?,O
 0x7100b8f1b4,288,fn_7100b8f1b4,unknown,game/ai?,O
-0x7100b8f2d4,116,fn_7100b8f2d4,unknown,game/ai?,U
+0x7100b8f2d4,116,fn_7100b8f2d4,unknown,game/ai?,O
 0x7100b8f348,120,fn_7100b8f348,unknown,game/ai?,O
 0x7100b8f3c0,28,fn_7100b8f3c0,unknown,game/ai?,O
 0x7100b8f3dc,4,fn_7100b8f3dc,unknown,game/ai?,O

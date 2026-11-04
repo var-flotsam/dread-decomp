@@ -3980,7 +3980,7 @@ address,size,name,name_source,subsystem,status
 0x7100aa1094,4,fn_7100aa1094,unknown,unknown,O
 0x7100aa1098,404,fn_7100aa1098,unknown,unknown,U
 0x7100aa122c,1628,fn_7100aa122c,unknown,unknown,U
-0x7100aa1888,120,fn_7100aa1888,unknown,unknown,U
+0x7100aa1888,120,fn_7100aa1888,unknown,unknown,O
 0x7100aa1900,204,fn_7100aa1900,unknown,unknown,O
 0x7100aa19cc,316,fn_7100aa19cc,unknown,unknown,U
 0x7100aa1b08,1096,fn_7100aa1b08,unknown,unknown,U
@@ -4104,8 +4104,8 @@ address,size,name,name_source,subsystem,status
 0x7100aa5478,72,fn_7100aa5478,unknown,game/components?,O
 0x7100aa54c0,228,fn_7100aa54c0,unknown,game/components?,U
 0x7100aa55a4,372,fn_7100aa55a4,unknown,game/components?,U
-0x7100aa5718,120,fn_7100aa5718,unknown,game/components?,U
-0x7100aa5790,112,fn_7100aa5790,unknown,game/components?,U
+0x7100aa5718,120,fn_7100aa5718,unknown,game/components?,O
+0x7100aa5790,112,fn_7100aa5790,unknown,game/components?,O
 0x7100aa5800,384,fn_7100aa5800,unknown,game/components?,U
 0x7100aa5980,652,fn_7100aa5980,unknown,game/components?,U
 0x7100aa5c0c,52,fn_7100aa5c0c,unknown,game/components?,O
@@ -5723,7 +5723,7 @@ address,size,name,name_source,subsystem,status
 0x7100af1d30,60,fn_7100af1d30,unknown,gui?,O
 0x7100af1d6c,12,fn_7100af1d6c,unknown,gui?,O
 0x7100af1d78,164,fn_7100af1d78,unknown,gui?,O
-0x7100af1e1c,116,fn_7100af1e1c,unknown,gui?,U
+0x7100af1e1c,116,fn_7100af1e1c,unknown,gui?,O
 0x7100af1e90,188,fn_7100af1e90,unknown,gui?,O
 0x7100af1f4c,4,fn_7100af1f4c,unknown,gui?,O
 0x7100af1f50,244,GUI::CArchivesInspectorComposition::refl_GetClass,reflection,gui,O

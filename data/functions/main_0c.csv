@@ -4188,7 +4188,7 @@ address,size,name,name_source,subsystem,status
 0x7100c7b8bc,96,fn_7100c7b8bc,unknown,unknown,O
 0x7100c7b920,12,fn_7100c7b920,unknown,unknown,O
 0x7100c7b930,140,fn_7100c7b930,unknown,unknown,O
-0x7100c7b9bc,112,fn_7100c7b9bc,unknown,unknown,U
+0x7100c7b9bc,112,fn_7100c7b9bc,unknown,unknown,O
 0x7100c7ba2c,192,fn_7100c7ba2c,unknown,unknown,U
 0x7100c7baf0,2324,fn_7100c7baf0,unknown,unknown,O
 0x7100c7c404,84,fn_7100c7c404,unknown,unknown,O
@@ -5140,7 +5140,7 @@ address,size,name,name_source,subsystem,status
 0x7100caab7c,340,fn_7100caab7c,unknown,unknown,O
 0x7100caacd0,128,fn_7100caacd0,unknown,unknown,U
 0x7100caad50,96,fn_7100caad50,unknown,unknown,O
-0x7100caadb0,112,fn_7100caadb0,unknown,unknown,U
+0x7100caadb0,112,fn_7100caadb0,unknown,unknown,O
 0x7100caae20,308,fn_7100caae20,unknown,unknown,O
 0x7100caaf54,4,fn_7100caaf54,unknown,unknown,O
 0x7100caaf58,244,CBTObserverComponent::refl_GetClass,reflection,game/components,O
