@@ -75,6 +75,19 @@ QSTRIDE = 0x20  # Ghidra spaces q<n> 32 bytes apart (room for SVE z<n>): q1 is a
 REG_SIZE = 0x6000
 CALLER_SAVED_X = range(19)
 CALLER_SAVED_Q = list(range(8)) + list(range(16, 32))
+# With Machine.junk_scratch (port_lift --junk-scratch): the register bytes a call leaves undefined
+# under AAPCS64 that no argument or result convention gives a meaning: x9-x18, v16-v31 whole and the
+# upper halves of v8-v15 (only d8-d15 are callee-saved). x0-x8 and v0-v7 are left as they are (a
+# callee's results: x1 of a pair, v1-v3 of an HFA).
+JUNK_BYTES = frozenset([(2, X0 + 8 * i + j) for i in range(9, 19) for j in range(8)]
+                       + [(2, Q0 + QSTRIDE * i + j) for i in range(16, 32) for j in range(QSTRIDE)]
+                       + [(2, Q0 + QSTRIDE * i + j) for i in range(8, 16) for j in range(8, QSTRIDE)])
+# A modelled C function's (clib, math): every caller-saved register byte but its result's (x0 for
+# clib, s0/d0 for math, Machine.junk_clobber); x0-x8 and v0-v7 included, as their signatures are known
+JUNK_LIBC = JUNK_BYTES | frozenset([(2, X0 + j) for j in range(8, 72)] + [(2, Q0 + j) for j in range(8 * QSTRIDE)])
+# The bytes a call clears of that taint: x0-x8, v0-v7 and the flags hold what the emulated call put there
+JUNK_CLEARED = frozenset([(2, X0 + j) for j in range(72)] + [(2, Q0 + j) for j in range(8 * QSTRIDE)]
+                         + [(2, k) for k in range(NG, OV + 1)])
 # Imports that read and write no memory (their arguments and result are registers)
 PURE_MATH = frozenset(f + sfx for f in ("sqrt", "sin", "cos", "tan", "asin", "acos", "atan", "atan2", "exp", "exp2",
                                         "log", "log2", "log10", "pow", "fmod", "floor", "ceil", "round", "trunc",
@@ -441,6 +454,20 @@ class Machine:
     # value there instead of the seed's, the lift's run the same (Oracle.run_original, check).
     count_track = False
     small_outs: dict = {}
+    # Junk tracking (port_lift --junk-scratch; off: nothing below is ever filled, the runs are as
+    # without it). After every call leaving the function, JUNK_BYTES are undefined in that run: its
+    # code, compiled for AAPCS64, may not rely on them, and a value it computes from them is
+    # undefined too (junk_vn: register and unique bytes, junk_mem: memory bytes, carried by every
+    # P-code op; exec). Where such a value would decide something compared (a call's argument, a
+    # stored byte outside the frame, a branch, a load or store address, a modelled C function's
+    # input, the result) the run records the event it would reach (junk_at, junk_use): compare()
+    # skips the input from the original's such event on, never agrees or rejects on it (the lift's
+    # are recorded, not used: its run is compared as without tracking).
+    junk_scratch = False
+    junk_vn: set = frozenset()  # (__init__; a bare Machine tracks nothing)
+    junk_mem: set = frozenset()
+    junk_at: int | None = None
+    junk_why: str | None = None
 
     def __init__(self, db: dict, image: ImageMemory, seed: int, inside, code_word, lift: LiftObject | None,
                  imports: dict[int, str], facts, preset: dict[int, int], dictionary: tuple = (),
@@ -515,6 +542,9 @@ class Machine:
         # copies the fields alone, or writes the padding, is the same program).
         self.undef_vn: set[tuple[int, int]] = set()
         self.undef_mem: set[int] = set()
+        self.junk_vn: set[tuple[int, int]] = set()  # (Machine.junk_scratch)
+        self.junk_mem: set[int] = set()
+        self.junk_at, self.junk_why = None, None
         self.frame_record: set[int] = set()  # stack words holding the saved return address (store)
         self.saves: set[int] = set()  # stack words holding a callee-saved register's entry value (store)
         self.entry_saved: set[int] = set()  # those entry values (setup: x19-x28, d8-d15)
@@ -637,6 +667,8 @@ class Machine:
         if self.count_track and self.ct_mem:
             for x in range(a, a + size):
                 self.ct_mem.pop(x, None)
+        if self.junk_mem:  # (a defined value now: exec's STORE marks the bytes again when it was not)
+            self.junk_mem.difference_update(range(a, a + size))
         if not track:
             return
         if STACK_LO <= a < ENTRY_SP:
@@ -724,6 +756,8 @@ class Machine:
                 self.ct_vn.pop((2, off + i), None)
         if self.undef_vn:
             self.undef_vn.difference_update((2, off + i) for i in range(size))
+        if self.junk_vn:
+            self.junk_vn.difference_update((2, off + i) for i in range(size))
         if X0 <= off < X0 + 72:
             self.state[(off - X0) // 8] = "written"
             if off < X0 + 8 and self.res_read is not None:
@@ -777,6 +811,8 @@ class Machine:
                 self.save_src.pop(off, None)
             if self.undef_vn:
                 self.undef_vn.difference_update((1, off + i) for i in range(size))
+            if self.junk_vn:
+                self.junk_vn.difference_update((1, off + i) for i in range(size))
         elif sp == 3:
             self.store(off, size, v)
         else:
@@ -881,6 +917,8 @@ class Machine:
             raw[200 + i] = self.load(sp + 8 * i, 8)
             args.append((200 + i, self.stackref(raw[200 + i])))
             sel.append((200 + i, 32))
+        if self.junk_vn or self.junk_mem:
+            self.junk_args(sel, raw, args)
         self.checkpoint(("call", t, tuple(sel), tuple(args)))
         self.target_reg = None
         self.calls += 1
@@ -963,6 +1001,7 @@ class Machine:
                 self.state[100 + i] = "junk"
         for k in range(NG, OV + 1):
             self.regs[k] = 0
+        self.junk_clobber()
         # (a mutation may set it)
         ret = self.overrides.get(("c", n), rec.x[0] if rec is not None else self.word(mix(n, 11, self.seed)))
         self.regs[X0:X0 + 8] = (ret & 0xFFFFFFFFFFFFFFFF).to_bytes(8, "little")
@@ -1034,6 +1073,9 @@ class Machine:
         size = 4 if name.endswith("f") else 8
         base = name[:-1] if size == 4 else name
         a, b = (f_from(self.reg(Q0 + QSTRIDE * i, size), size) for i in (0, 1))
+        if self.junk_vn and any(self.junk_reg(Q0 + QSTRIDE * i, size)
+                                for i in ((0, 1) if base in ("atan2", "pow", "fmod", "hypot", "nextafter") else (0,))):
+            self.junk_use(f"an argument of {name}")
         two = {"atan2": math.atan2, "pow": math.pow, "fmod": math.fmod, "hypot": math.hypot,
                "nextafter": math.nextafter if size == 8 else nextafterf}
         one = {"sqrt": math.sqrt, "sin": math.sin, "cos": math.cos, "tan": math.tan, "asin": math.asin,
@@ -1081,9 +1123,17 @@ class Machine:
         self.state[100] = "written"
         self.vnarrow[0] = size == 4
         self.regs[Q0:Q0 + 16] = bits.to_bytes(16, "little")
+        # (the result's own bytes hold what the call gave; x0 and the rest of v0 are undefined)
+        res = {(2, Q0 + j) for j in range(size)}
+        self.junk_clobber(keep=res, junk=(JUNK_LIBC | {(2, X0 + j) for j in range(8)}) - res)
 
     def clib(self, name: str) -> None:
         a0, a1, a2 = self.x(0), self.x(1), self.x(2)
+        if self.junk_vn and any(self.junk_reg(X0 + 8 * i, 8) for i in range({"strlen": 1, "strcmp": 2}.get(name, 3))):
+            self.junk_use(f"an argument of {name}")
+        # (the source bytes an undefined value was stored to: memcpy carries them, the others read them)
+        jsrc = [a1 + i in self.junk_mem for i in range(min(a2, 1 << 16))] \
+            if self.junk_mem and name in ("memcpy", "memmove") else None
         if name in ("memcpy", "memmove", "memset") and a2 > 1 << 16:
             self.clipped = True
         if name in ("memcpy", "memmove"):
@@ -1114,6 +1164,10 @@ class Machine:
                     r = c - d
                     break
                 i += 1
+        # (the bytes it read from each argument, for junk tracking: an undefined one decides its result)
+        nread = 0
+        if self.junk_mem and name in ("memcmp", "strlen", "strcmp"):
+            nread = min(a2, 1 << 16) if name == "memcmp" else r + 1 if name == "strlen" else i + 1
         for i in CALLER_SAVED_X:
             if i:
                 self.regs[X0 + 8 * i:X0 + 8 * i + 8] = bytes(8)
@@ -1122,6 +1176,12 @@ class Machine:
         for i in range(8):  # (a real one may use the vector registers: v0-v7 hold nothing for a later call)
             self.state[100 + i] = "junk"
         self.set_reg(X0, 8, r & 0xFFFFFFFFFFFFFFFF)
+        if jsrc and any(jsrc):
+            self.junk_post(("store", a0, jsrc))
+        elif self.junk_mem and name in ("memcmp", "strlen", "strcmp"):
+            if any(x + k in self.junk_mem for x in ((a0, a1) if name != "strlen" else (a0,)) for k in range(nread)):
+                self.junk_use(f"{name} of undefined bytes")
+        self.junk_clobber(keep=(), junk=JUNK_LIBC)
 
     def shrink(self) -> None:
         """Drop what only running needs (memory pages, the write sets): a finished run that is
@@ -1278,6 +1338,8 @@ class Machine:
             return "next", 0
         if (w & 0xFF9FFC1F) == 0xD61F0000:  # br, blr, ret
             t = self.x((w >> 5) & 31)
+            if self.junk_vn and self.junk_reg(X0 + 8 * ((w >> 5) & 31), 8):
+                self.junk_use("a branch to an undefined address")
             self.target_reg = (w >> 5) & 31  # (not an argument of the call)
             opc = (w >> 21) & 3
             if opc == 1:
@@ -1301,9 +1363,13 @@ class Machine:
                 v = (a if math.copysign(1, a) > 0 else b) if op in (0, 2) else (a if math.copysign(1, a) < 0 else b)
             else:
                 v = max(a, b) if op in (0, 2) else min(a, b)
+            jk = self.junk_vn and (self.junk_reg(Q0 + QSTRIDE * ((w >> 5) & 31), size)
+                                   or self.junk_reg(Q0 + QSTRIDE * ((w >> 16) & 31), size))
             d = Q0 + QSTRIDE * (w & 31)
             self.set_reg(d, 16, 0)
             self.set_reg(d, size, f_to(v, size))
+            if jk:
+                self.junk_vn.update((2, d + i) for i in range(size))
             return "next", 0
         if (w & 0xFF3C7C00) == 0x1E244000 and (w >> 22) & 3 in (0, 1) and (w >> 15) & 7 != 5:
             # scalar frint{n,p,m,z,a,x,i}: Ghidra's P-code is a float-to-integer TRUNC, so frintm of
@@ -1317,9 +1383,12 @@ class Machine:
                 v = float({0: round(a), 1: math.ceil(a), 2: math.floor(a), 3: int(a), 6: round(a), 7: round(a),
                            4: math.floor(abs(a) + 0.5) * (1 if a >= 0 else -1)}[mode])
                 v = math.copysign(v, a) if v == 0 else v  # (ceil(-0.5) is -0.0)
+            jk = self.junk_vn and self.junk_reg(Q0 + QSTRIDE * ((w >> 5) & 31), size)
             d = Q0 + QSTRIDE * (w & 31)
             self.set_reg(d, 16, 0)
             self.set_reg(d, size, f_to(v, size))
+            if jk:
+                self.junk_vn.update((2, d + i) for i in range(size))
             return "next", 0
         if (w & 0x7F20FC00) == 0x1E200000 and (w >> 22) & 3 in (0, 1) and (w >> 16) & 7 in (0, 1, 4, 5):
             # scalar fcvt{n,p,m,z,a}{s,u} to a general register: Ghidra's TRUNC saturates signed,
@@ -1339,8 +1408,11 @@ class Machine:
                 v = (round(a), math.ceil(a), math.floor(a), int(a),
                      int(math.floor(abs(a) + 0.5)) * (1 if a >= 0 else -1))[mode]
                 v = max(lo, min(hi, v))
+            jk = self.junk_vn and self.junk_reg(Q0 + QSTRIDE * ((w >> 5) & 31), size)
             if (w & 31) != 31:
                 self.set_reg(X0 + 8 * (w & 31), 8, v & ((1 << bits) - 1))
+                if jk:
+                    self.junk_vn.update((2, X0 + 8 * (w & 31) + i) for i in range(8))
             return "next", 0
         ops = self.ops_db.get(w, False)
         if ops is False:
@@ -1352,9 +1424,14 @@ class Machine:
             self.undef_vn = {k for k in self.undef_vn if k[0] != 1}
         if self.count_track and self.ct_vn:
             self.ct_vn = {k: t for k, t in self.ct_vn.items() if k[0] != 1}
+        if self.junk_vn:
+            self.junk_vn = {k for k in self.junk_vn if k[0] != 1}
         i, n = 0, len(ops)
         while i < n:
             code, out, ins = ops[i]
+            if self.junk_vn and code in (CBRANCH, BRANCHIND, CALLIND, RETURN) \
+                    and self.junk_bytes(ins[1] if code == CBRANCH else ins[0]):
+                self.junk_use("a branch on an undefined value")
             if code == BRANCH or code == CBRANCH:
                 if code == CBRANCH and not self.read(ins[1]):
                     i += 1
@@ -1464,6 +1541,7 @@ class Machine:
         name = OPNAMES[code]
         r = self.read
         size = out[2] if out else 0
+        jp = self.junk_pre(name, out, ins) if self.junk_vn or self.junk_mem else None
         if name == "COPY":
             self.write(out, r(ins[0]))
             self.carry_undef(out, ins[0], 0)
@@ -1542,6 +1620,8 @@ class Machine:
             self.userop(self.userops.get(ins[0][1], "?"), out, ins[1:])
         else:
             raise Inconclusive(f"P-code {name}")
+        if jp:
+            self.junk_post(jp)
 
     def saved_reg(self, vn) -> int | None:
         """The entry value vn holds when it is a callee-saved register (x19-x28, d8-d15) still holding
@@ -1562,6 +1642,136 @@ class Machine:
         if self.undef_vn and src[0] in (1, 2) and out[0] in (1, 2):
             self.undef_vn.update((out[0], out[1] + i) for i in range(min(out[2], src[2] - skip))
                                  if (src[0], src[1] + skip + i) in self.undef_vn)
+
+    # -- junk tracking (Machine.junk_scratch) ------------------------------------------------------
+
+    def junk_use(self, why: str) -> None:
+        """Something compared depends on an undefined value: the run decides nothing from the event
+        it would reach on (the next one, len(events); compare)."""
+        if self.junk_at is None:
+            self.junk_at, self.junk_why = len(self.events), why
+
+    def junk_clobber(self, keep=JUNK_CLEARED, junk=JUNK_BYTES) -> None:
+        """After a call leaving the function: `keep` holds what the emulated call put there (its
+        taint dropped), `junk` is undefined from now on."""
+        if self.junk_scratch:
+            self.junk_vn.difference_update(keep)
+            self.junk_vn.update(junk)
+
+    def junk_reg(self, off: int, n: int) -> bool:
+        """Whether any of the n register bytes at off is undefined."""
+        jv = self.junk_vn
+        return bool(jv) and any((2, off + i) in jv for i in range(n))
+
+    def junk_bytes(self, vn) -> list | None:
+        """Which of vn's bytes are undefined (None: none)."""
+        sp, off, size = vn
+        if sp in (1, 2):
+            if not self.junk_vn:
+                return None
+            r = [(sp, off + i) in self.junk_vn for i in range(size)]
+        elif sp == 3:
+            if not self.junk_mem:
+                return None
+            r = [off + i in self.junk_mem for i in range(size)]
+        else:
+            return None
+        return r if any(r) else None
+
+    def vn_value(self, vn) -> int | None:
+        """vn's value as read() gives it, with none of read()'s side effects (None: memory)."""
+        sp, off, size = vn
+        if sp == 0:
+            return off
+        if sp == 1:
+            return self.uniq.get(off, 0) & ((1 << (8 * size)) - 1)
+        if sp == 2:
+            return int.from_bytes(self.regs[off:off + size], "little")
+        return None
+
+    def junk_pre(self, name: str, out, ins):
+        """Before exec runs a P-code op: the output bytes the op makes undefined, as (out, flags), or
+        a STORE's (address, flags); records a use (junk_use) of an undefined address. Byte by byte
+        through copies and parts (COPY, INT_ZEXT, SUBPIECE, PIECE, LOAD), else the whole output when
+        any input byte is undefined (bitwise ops byte by byte too)."""
+        if name == "STORE":
+            a, vj = self.vn_value(ins[1]), self.junk_bytes(ins[2])
+            if self.junk_bytes(ins[1]):
+                self.junk_use("a store to an undefined address")
+                vj = [True] * ins[2][2]
+            return ("store", a, vj) if vj and a is not None else None
+        if out is None:
+            return None
+        n = out[2]
+        if name == "LOAD":
+            if self.junk_bytes(ins[1]):
+                self.junk_use("a load from an undefined address")  # (where it faults, or what it reads)
+                return out, [True] * n
+            a = self.vn_value(ins[1])
+            if a is None or not self.junk_mem:
+                return None
+            j = [(a + i) & 0xFFFFFFFFFFFFFFFF in self.junk_mem for i in range(n)]
+        elif name in ("COPY", "INT_ZEXT"):
+            src = self.junk_bytes(ins[0])
+            if not src:
+                return None
+            j = [i < len(src) and src[i] for i in range(n)]
+        elif name == "SUBPIECE":
+            src = self.junk_bytes(ins[0])
+            if not src:
+                return None
+            k = ins[1][1]
+            j = [k + i < len(src) and src[k + i] for i in range(n)]
+        elif name == "PIECE":
+            hi, lo = self.junk_bytes(ins[0]) or [False] * ins[0][2], self.junk_bytes(ins[1]) or [False] * ins[1][2]
+            j = (lo + hi + [False] * n)[:n]
+        elif name in ("INT_AND", "INT_OR", "INT_XOR", "INT_NEGATE") and all(v[2] == n for v in ins):
+            # (bitwise: byte i of the result is of byte i of each input alone; `mov v0.16b, v8.16b`
+            # is an orr whose upper half alone is v8's undefined one)
+            srcs = [self.junk_bytes(v) for v in ins]
+            j = [any(src and src[i] for src in srcs) for i in range(n)]
+        else:
+            j = [True] * n if any(self.junk_bytes(v) for v in ins) else None
+        return (out, j) if j and any(j) else None
+
+    def junk_post(self, plan) -> None:
+        """After exec: mark what junk_pre found (a write has cleared the bytes it wrote)."""
+        if plan[0] == "store":
+            _, a, j = plan
+            out = (3, a, len(j))
+        else:
+            out, j = plan
+        sp, off, _ = out
+        for i, b in enumerate(j):
+            if not b:
+                continue
+            if sp == 3:
+                x = (off + i) & 0xFFFFFFFFFFFFFFFF
+                self.junk_mem.add(x)
+                if not STACK_LO <= x < ENTRY_SP:
+                    self.junk_use("a store of an undefined value")
+            else:
+                self.junk_vn.add((sp, off + i))
+
+    def junk_args(self, sel, raw: dict, args) -> None:
+        """A call's compared arguments (call's selection): one holding an undefined byte decides
+        nothing, nor does a stack object one points at holding one."""
+        val = dict(args)
+        sp = self.reg(SP, 8)
+        for k, bits in sel:
+            n = bits // 8
+            if k < 100:
+                hit = self.junk_reg(X0 + 8 * k, n)
+            elif k < 200:
+                hit = self.junk_reg(Q0 + QSTRIDE * (k - 100), n)
+            else:
+                hit = any(sp + 8 * (k - 200) + i in self.junk_mem for i in range(n))
+            v = val.get(k)
+            if not hit and self.junk_mem and isinstance(v, tuple) and v[0] == "stack":
+                hit = any(raw[k] + j in self.junk_mem for j in range(len(v[1])))
+            if hit:
+                self.junk_use(f"call {self.calls + 1}'s argument {regname(k)}")
+                return
 
     def float_op(self, name: str, out, ins) -> None:
         r = self.read
@@ -1752,6 +1962,13 @@ def compare(a: Machine, b: Machine, ret: str | None) -> str:
         ea = [(v, tuple(kv for kv in m if kv[0] not in skip)) for v, m in ea]
         eb = [(v, tuple(kv for kv in m if kv[0] not in skip)) for v, m in eb]
     end_a, end_b = (ea[-1][0] if ea else None), (eb[-1][0] if eb else None)
+    # (Machine.junk_scratch: the first event the original reached on a value a call left undefined,
+    # None without junk tracking or when it did not. From that event on the original's behaviour is
+    # made up, the callee's scratch registers as the emulator chose them, which no lift can follow
+    # through a defined interface: nothing is compared, the input is a skip. The lift's own use of
+    # one is not: its run is compared as without tracking, so a lift relying on a stale register
+    # where the original does not is still rejected, or agrees, exactly as before.)
+    jl = getattr(a, "junk_at", None)
     if end_a == ("end", "fault") and ea != eb:
         # The original crashed on this input, the lift did not crash there: C lets the compiler
         # drop or move a load whose value decides nothing, so the end proves nothing (the lift
@@ -1764,6 +1981,8 @@ def compare(a: Machine, b: Machine, ret: str | None) -> str:
             return v & 0xFFFFFFFF if bits == 32 and isinstance(v, int) else v
 
         for i in range(len(ea) - 1):
+            if jl is not None and i >= jl:
+                return junk_skip(a, b, jl)
             if i >= len(eb) or ea[i] != eb[i]:
                 if i < len(eb) and ea[i][0][0] == eb[i][0][0] == "call" and ea[i][0][1] == eb[i][0][1] \
                         and ea[i][1] == eb[i][1] and all(same_arg(arg(ea[i][0], k, bits), arg(eb[i][0], k, bits), frame)
@@ -1780,6 +1999,8 @@ def compare(a: Machine, b: Machine, ret: str | None) -> str:
     ta, tb = end_a == ("end", "time-out"), end_b == ("end", "time-out")
     shared = min(len(ea) - ta, len(eb) - tb)
     for i in range(shared):
+        if jl is not None and i >= jl:
+            return junk_skip(a, b, jl)
         (va, ma), (vb, mb) = ea[i], eb[i]
         if va != vb:
             if va[0] == "call" and vb[0] == "call":
@@ -1800,6 +2021,8 @@ def compare(a: Machine, b: Machine, ret: str | None) -> str:
             if putback_only(a, b, ea, eb, i):
                 return "skip: a byte one run put back (or may have) after a call, the other wrote or left alone"
             return f"memory at event {i} ({va[0]}): {mem_diff(ma, mb)}"
+    if jl is not None:  # (what follows, the cut-offs, the lengths and the result, is past it)
+        return junk_skip(a, b, jl)
     if ta and tb:
         # Both cut off: what came after the cut was never compared (a long loop of the same calls in
         # both, or not), so the input decides nothing.
@@ -1831,6 +2054,8 @@ def compare(a: Machine, b: Machine, ret: str | None) -> str:
         # A multi-register result (x0:x1, or the first n float registers)
         kind, n = ret.split("*")
         size = int(kind[1:]) // 8
+        if any(junk_result(a, kind, i) for i in range(int(n))):
+            return "skip: the result holds a value a call left undefined"
         for i in range(int(n)):
             if kind == "x64" and a.x(i) != b.x(i):
                 return f"result x{i}"
@@ -1839,6 +2064,8 @@ def compare(a: Machine, b: Machine, ret: str | None) -> str:
     elif ea and ea[-1][0] == ("end", "return") and ret and abi_garbage(a, 0 if ret[0] == "x" else 100):
         pass
     elif ea and ea[-1][0] == ("end", "return") and ret:
+        if junk_result(a, ret, 0):
+            return "skip: the result holds a value a call left undefined"
         if ret[0] == "x":
             bits = int(ret[1:])
             if (a.x(0) ^ b.x(0)) & ((1 << bits) - 1):
@@ -1848,6 +2075,20 @@ def compare(a: Machine, b: Machine, ret: str | None) -> str:
             if a.reg(Q0, n) != b.reg(Q0, n):
                 return "result s0/d0"
     return ""
+
+
+def junk_skip(a: Machine, b: Machine, jl: int) -> str:
+    return f"skip: the original's {a.junk_why}, a value a call left undefined (event {jl})"
+
+
+def junk_result(m: Machine, kind: str, i: int) -> bool:
+    """Whether the original's result register i of this kind (x<bits> or f32/f64, compare's `ret`)
+    holds a byte a call left undefined (Machine.junk_scratch)."""
+    jv = getattr(m, "junk_vn", None)
+    if not jv:
+        return False
+    off, n = (X0 + 8 * i, int(kind[1:]) // 8) if kind[0] == "x" else (Q0 + QSTRIDE * i, 4 if kind == "f32" else 8)
+    return any((2, off + j) in jv for j in range(n))
 
 
 def abi_garbage(m: Machine, reg: int) -> bool:

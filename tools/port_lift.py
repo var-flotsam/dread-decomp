@@ -845,9 +845,10 @@ _CTX: dict = {}
 
 def _init_worker(version: str, lo_paths: list, db_path: Path, inputs: int, debug: bool, fuzz: bool = True,
                  budget: float = None, budget_pass: str = "inconclusive", budget_keep: frozenset = frozenset(),
-                 small_counts: bool = False) -> None:
+                 junk_scratch: bool = False, small_counts: bool = False) -> None:
     """An oracle process: the image, the P-code, the facts cache; objects load on first use."""
     Oracle.small_counts = small_counts
+    pcode_emu.Machine.junk_scratch = junk_scratch  # (--junk-scratch)
     orig = asmdiff.Original(version)
     af = abi_facts.AbiFacts(orig, callgraph.load_rows())
     af.version = version
@@ -1139,6 +1140,11 @@ def main() -> int:
                     help="ADDR[,ADDR...]: also override these src/lifted definitions with a semantic lift (for a byte-mode"
                          " lift that is wrong on x86-64 for another reason, such as a data table read through a string"
                          " literal; until gen_lift is fixed)")
+    ap.add_argument("--junk-scratch", action="store_true",
+                    help="track the registers a call leaves undefined (x9-x18, v16-v31, v8-v15's upper halves): an "
+                         "input on which the original's compared argument, store, branch or result depends on one is "
+                         "skipped "
+                         "(pcode_emu.Machine.junk_scratch; off by default)")
     ap.add_argument("--no-overrides", action="store_true",
                     help="leave those definitions alone (by default each gets a semantic lift that overrides it, "
                          "added to the worklist unless --only or --top is given)")
@@ -1276,8 +1282,9 @@ def main() -> int:
         keep = frozenset(int(a, 16) for a, v in json.loads(Path(args.budget_keep).read_text(encoding="utf-8"))
                          ["functions"].items() if v["outcome"] == "accepted")
     ctx = (args.version, lo_paths, db_path, args.inputs, bool(args.debug), not args.no_fuzz, args.oracle_budget,
-           args.budget_pass, keep) + ((True,) if args.small_out_counts else ())
+           args.budget_pass, keep, args.junk_scratch, args.small_out_counts)
     Oracle.small_counts = args.small_out_counts  # (this process's too: --mutants)
+    pcode_emu.Machine.junk_scratch = args.junk_scratch  # (this process's oracles too: --mutants)
     accepted: dict[int, tuple[str, set[str]]] = {}
     info: dict[int, dict] = {}
     last_fail: dict[int, str] = {}
@@ -1350,6 +1357,7 @@ def main() -> int:
     manifest = {
         "generator": GENERATOR, "sources": {s: blob(s) for s in SOURCES}, "version": args.version,
         "build_id": "646761F643AFEBB379EDD5E6A5151AF2CEF93DC1", "inputs": args.inputs, "fuzz": not args.no_fuzz,
+        **({"junk_scratch": True} if args.junk_scratch else {}),
         "semantic_flags": SEMANTIC_FLAGS, "host_flags": host_flags()[1],
         "worklist": args.only or (port_sweep.rel(Path(args.worklist)) if args.worklist else f"slice {args.slice}"),
         "seconds": round(time.time() - t0),
