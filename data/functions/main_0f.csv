@@ -6587,7 +6587,7 @@ address,size,name,name_source,subsystem,status
 0x7100ffe3b8,8,fn_7100ffe3b8,unknown,unknown,O
 0x7100ffe3c0,16,fn_7100ffe3c0,unknown,unknown,O
 0x7100ffe3d0,16,fn_7100ffe3d0,unknown,unknown,O
-0x7100ffe3e0,92,fn_7100ffe3e0,unknown,unknown,U
+0x7100ffe3e0,92,fn_7100ffe3e0,unknown,unknown,O
 0x7100ffe43c,12,fn_7100ffe43c,unknown,unknown,O
 0x7100ffe448,36,fn_7100ffe448,unknown,unknown,O
 0x7100ffe46c,44,fn_7100ffe46c,unknown,unknown,O
