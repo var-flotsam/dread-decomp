@@ -468,6 +468,8 @@ class Machine:
     junk_mem: set = frozenset()
     junk_at: int | None = None
     junk_why: str | None = None
+    sreads: set | None = None  # (__init__; the values read as s<n>, Machine.call)
+    entry_v: dict = {}  # (setup; never written in place)
 
     def __init__(self, db: dict, image: ImageMemory, seed: int, inside, code_word, lift: LiftObject | None,
                  imports: dict[int, str], facts, preset: dict[int, int], dictionary: tuple = (),
@@ -570,6 +572,8 @@ class Machine:
         self.res_written: set = set()
         self.vnarrow: dict[int, bool] = {}  # v<n> -> its last write was s<n> (4 bytes at its start)
         self.vnarrow_at: dict[int, int] = {}  # v<n> -> the instruction (step) of that s<n> write
+        self.sreads: set = set()  # the values this run read as s<n> (4 bytes at a vector register's start)
+        self.entry_v: dict[int, int] = {}  # v<n> (n < 8) -> its low 64 bits at the entry (setup)
         self.out_words: list = []  # ((call, argument, offset), word): the out-parameter words written
         # (count_track: per byte, (space, offset) of a register or unique and an address of memory,
         # the out-parameter words its value came from, key -> 0 as it was or 1 scaled (an index);
@@ -792,7 +796,10 @@ class Machine:
                     self.res_read.add(0)
                 elif off >= Q0 and 100 not in self.res_written:
                     self.res_read.add(100)
-            return int.from_bytes(self.regs[off:off + size], "little")
+            v = int.from_bytes(self.regs[off:off + size], "little")
+            if size == 4 and off >= Q0 and (off - Q0) % QSTRIDE == 0 and self.sreads is not None:
+                self.sreads.add(v)  # (an s<n> read: Machine.call, a whole copy of an f32 argument)
+            return v
         if sp == 1:
             return self.uniq.get(off, 0) & ((1 << (8 * size)) - 1)
         return self.load(off, size)
@@ -858,6 +865,7 @@ class Machine:
         self.entry_saved = {self.x(i) for i in range(19, 29)} | {self.reg(Q0 + QSTRIDE * i, 8) for i in range(8, 16)}
         self.entry_regs = {X0 + 8 * i: self.x(i) for i in range(19, 29)}
         self.entry_regs.update({Q0 + QSTRIDE * i: self.reg(Q0 + QSTRIDE * i, 8) for i in range(8, 16)})
+        self.entry_v = {i: self.reg(Q0 + QSTRIDE * i, 8) for i in range(8)}
 
     def canonical(self, target: int):
         name = self.imports(target)
@@ -909,6 +917,13 @@ class Machine:
             # one this run last wrote as s<n> (the caller's f32: a lift may pass anything above it
             # even where the callee copies the register whole into an indirect call, 7100656f3c).
             narrow = 100 <= k < 108 and st == "written" and self.vnarrow.get(k - 100, False)
+            if 100 <= k < 108 and st == "written" and not narrow and self.own_facts is not None and self.sreads:
+                # So has a whole copy (`mov v0.16b, v8.16b`) of the function's own float argument
+                # v<j> as it came in, when this run read that argument as s<j> (an f32: the caller's
+                # bits above it are unspecified; 71010df1fc passes its s0 on through v8).
+                v = self.reg(Q0 + QSTRIDE * (k - 100), 8)
+                narrow = (v & 0xFFFFFFFF) in self.sreads and any(
+                    e == v and 100 + j in self.own_facts.args for j, e in self.entry_v.items())
             sel.append((k, 32 if narrow or (f is not None and (k < 9 or 100 <= k < 108) and k not in f.wide) else 64))
         # Arguments beyond the eight registers: the callee's stack slots at [sp + 8i] (key 200 + i),
         # 32 bits each (a 32-bit argument leaves the upper half of its slot unspecified).

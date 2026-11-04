@@ -134,6 +134,32 @@ class FloatSelection(unittest.TestCase):
         facts = types.SimpleNamespace(args=frozenset({100}), wide=frozenset(), stack_slots=0)
         self.assertEqual(selection(m, facts)[100], 32)
 
+    def entry_copy(self, own_args, read_as_s: bool) -> int:
+        """The bits selected for v0 written whole with the entry's d0 (`mov v0.16b, v8.16b` of a
+        `mov v8.16b, v0.16b`), the function's own arguments being own_args."""
+        d0 = 0x40468D23FD1BC240
+        m = machine()
+        m.own_facts = types.SimpleNamespace(args=frozenset(own_args), wide=frozenset(own_args))
+        m.sreads, m.entry_v = set(), {0: d0}
+        m.set_reg(Q0 + QSTRIDE * 8, 16, d0)
+        if read_as_s:
+            m.read((2, Q0 + QSTRIDE * 8, 4))  # (fmul s1, s1, s8)
+        m.set_reg(Q0, 16, d0)
+        return selection(m, WIDE_V0)[100]
+
+    def test_whole_copy_of_an_f32_argument_is_32_bits(self):
+        """The function's own s0, read as s8 and passed on whole through v8: the caller's bits above it
+        are unspecified (71010df1fc)."""
+        self.assertEqual(self.entry_copy({0, 100}, True), 32)
+
+    def test_whole_copy_never_read_as_s_is_64_bits(self):
+        """Passed on whole without being read as an f32: it may be a double, compared whole."""
+        self.assertEqual(self.entry_copy({0, 100}, False), 64)
+
+    def test_whole_copy_of_a_non_argument_is_64_bits(self):
+        """v0 at the entry when it is not one of the function's arguments: compared whole."""
+        self.assertEqual(self.entry_copy({0}, True), 64)
+
 
 class CallerFrame(unittest.TestCase):
     """same_arg: two addresses above the entry sp agree (71002842e4)."""
