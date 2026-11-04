@@ -250,7 +250,7 @@ address,size,name,name_source,subsystem,status
 0x7100207628,172,fn_7100207628,unknown,unknown,U
 0x71002076d4,528,fn_71002076d4,unknown,unknown,U
 0x71002078e4,60,fn_71002078e4,unknown,unknown,O
-0x7100207920,136,fn_7100207920,unknown,unknown,U
+0x7100207920,136,fn_7100207920,unknown,unknown,O
 0x71002079a8,204,fn_71002079a8,unknown,unknown,O
 0x7100207a74,372,fn_7100207a74,unknown,unknown,O
 0x7100207be8,368,fn_7100207be8,unknown,unknown,O
@@ -2467,7 +2467,7 @@ address,size,name,name_source,subsystem,status
 0x7100253834,340,fn_7100253834,unknown,game?,U
 0x7100253988,332,fn_7100253988,unknown,game?,U
 0x7100253ad4,28,fn_7100253ad4,unknown,game?,O
-0x7100253af0,144,fn_7100253af0,unknown,game?,U
+0x7100253af0,144,fn_7100253af0,unknown,game?,O
 0x7100253b80,1944,fn_7100253b80,unknown,game?,U
 0x7100254318,68,fn_7100254318,unknown,game?,O
 0x710025435c,472,fn_710025435c,unknown,game?,U
@@ -4055,7 +4055,7 @@ address,size,name,name_source,subsystem,status
 0x71002ba9a8,388,querysystem::CCurrentEvaluator::refl_InitClass,reflection,ai/querysystem,O
 0x71002bab2c,4,fn_71002bab2c,unknown,ai/querysystem?,O
 0x71002bab30,36,fn_71002bab30,unknown,ai/querysystem?,O
-0x71002bab54,128,fn_71002bab54,unknown,ai/querysystem?,U
+0x71002bab54,128,fn_71002bab54,unknown,ai/querysystem?,O
 0x71002babd4,28,fn_71002babd4,unknown,ai/querysystem?,O
 0x71002babf0,12,fn_71002babf0,unknown,ai/querysystem?,O
 0x71002babfc,8,fn_71002babfc,unknown,ai/querysystem?,O
@@ -5563,7 +5563,7 @@ address,size,name,name_source,subsystem,status
 0x71002e92d8,12,fn_71002e92d8,unknown,unknown,O
 0x71002e92e4,8,fn_71002e92e4,unknown,unknown,O
 0x71002e92ec,28,fn_71002e92ec,unknown,unknown,O
-0x71002e9308,112,fn_71002e9308,unknown,unknown,U
+0x71002e9308,112,fn_71002e9308,unknown,unknown,O
 0x71002e9378,112,fn_71002e9378,unknown,unknown,O
 0x71002e93e8,112,fn_71002e93e8,unknown,unknown,O
 0x71002e9458,12,fn_71002e9458,unknown,unknown,O
