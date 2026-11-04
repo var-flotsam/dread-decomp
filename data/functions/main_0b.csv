@@ -2117,7 +2117,7 @@ address,size,name,name_source,subsystem,status
 0x7100b6d530,528,fn_7100b6d530,unknown,gui?,O
 0x7100b6d740,6760,fn_7100b6d740,unknown,gui?,U
 0x7100b6f1a8,536,fn_7100b6f1a8,unknown,gui?,U
-0x7100b6f3c0,272,fn_7100b6f3c0,unknown,gui?,U
+0x7100b6f3c0,272,fn_7100b6f3c0,unknown,gui?,O
 0x7100b6f4d0,856,fn_7100b6f4d0,unknown,gui?,U
 0x7100b6f828,572,fn_7100b6f828,unknown,gui?,U
 0x7100b6fa64,540,fn_7100b6fa64,unknown,gui?,U
@@ -3024,8 +3024,8 @@ address,size,name,name_source,subsystem,status
 0x7100b94f00,40,fn_7100b94f00,unknown,unknown,O
 0x7100b94f28,92,fn_7100b94f28,unknown,unknown,O
 0x7100b94f84,100,fn_7100b94f84,unknown,unknown,O
-0x7100b94fe8,92,fn_7100b94fe8,unknown,unknown,U
-0x7100b95044,100,fn_7100b95044,unknown,unknown,U
+0x7100b94fe8,92,fn_7100b94fe8,unknown,unknown,O
+0x7100b95044,100,fn_7100b95044,unknown,unknown,O
 0x7100b950a8,104,fn_7100b950a8,unknown,unknown,O
 0x7100b95110,112,fn_7100b95110,unknown,unknown,O
 0x7100b95180,36,fn_7100b95180,unknown,unknown,O
@@ -4442,7 +4442,7 @@ address,size,name,name_source,subsystem,status
 0x7100bbb30c,388,CCharClassLightingAttParamsEvent::refl_InitClass,reflection,game/characters,O
 0x7100bbb490,124,fn_7100bbb490,unknown,game/characters?,O
 0x7100bbb50c,132,fn_7100bbb50c,unknown,game/characters?,O
-0x7100bbb590,124,fn_7100bbb590,unknown,game/characters?,U
+0x7100bbb590,124,fn_7100bbb590,unknown,game/characters?,O
 0x7100bbb60c,28,fn_7100bbb60c,unknown,game/characters?,O
 0x7100bbb628,12,fn_7100bbb628,unknown,game/characters?,O
 0x7100bbb634,8,fn_7100bbb634,unknown,game/characters?,O
@@ -4922,7 +4922,7 @@ address,size,name,name_source,subsystem,status
 0x7100bcccb0,388,CCharClassDissolveFanMudEvent::refl_InitClass,reflection,game/characters,O
 0x7100bcce34,4,fn_7100bcce34,unknown,game/characters?,O
 0x7100bcce38,36,fn_7100bcce38,unknown,game/characters?,O
-0x7100bcce5c,320,fn_7100bcce5c,unknown,game/characters?,U
+0x7100bcce5c,320,fn_7100bcce5c,unknown,game/characters?,O
 0x7100bccf9c,28,fn_7100bccf9c,unknown,game/characters?,O
 0x7100bccfb8,12,fn_7100bccfb8,unknown,game/characters?,O
 0x7100bccfc4,8,fn_7100bccfc4,unknown,game/characters?,O
@@ -4958,7 +4958,7 @@ address,size,name,name_source,subsystem,status
 0x7100bcd890,388,CCharClassRestoreFanMudEvent::refl_InitClass,reflection,game/characters,O
 0x7100bcda14,4,fn_7100bcda14,unknown,game/characters?,O
 0x7100bcda18,36,fn_7100bcda18,unknown,game/characters?,O
-0x7100bcda3c,312,fn_7100bcda3c,unknown,game/characters?,U
+0x7100bcda3c,312,fn_7100bcda3c,unknown,game/characters?,O
 0x7100bcdb74,28,fn_7100bcdb74,unknown,game/characters?,O
 0x7100bcdb90,12,fn_7100bcdb90,unknown,game/characters?,O
 0x7100bcdb9c,8,fn_7100bcdb9c,unknown,game/characters?,O

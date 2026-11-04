@@ -3852,7 +3852,7 @@ address,size,name,name_source,subsystem,status
 0x7100f91298,40,fn_7100f91298,unknown,unknown,O
 0x7100f912c0,40,fn_7100f912c0,unknown,unknown,O
 0x7100f912e8,116,fn_7100f912e8,unknown,unknown,O
-0x7100f9135c,220,fn_7100f9135c,unknown,unknown,U
+0x7100f9135c,220,fn_7100f9135c,unknown,unknown,O
 0x7100f91438,412,fn_7100f91438,unknown,unknown,O
 0x7100f915d4,20,fn_7100f915d4,unknown,unknown,O
 0x7100f915e8,12,fn_7100f915e8,unknown,unknown,O

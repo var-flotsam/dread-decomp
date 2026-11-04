@@ -1621,7 +1621,7 @@ address,size,name,name_source,subsystem,status
 0x7100239cb8,60,fn_7100239cb8,unknown,unknown,O
 0x7100239cf4,140,fn_7100239cf4,unknown,unknown,O
 0x7100239d80,140,fn_7100239d80,unknown,unknown,O
-0x7100239e0c,220,fn_7100239e0c,unknown,unknown,U
+0x7100239e0c,220,fn_7100239e0c,unknown,unknown,O
 0x7100239ee8,364,fn_7100239ee8,unknown,unknown,O
 0x710023a054,60,fn_710023a054,unknown,unknown,O
 0x710023a090,4,fn_710023a090,unknown,unknown,O
@@ -1635,7 +1635,7 @@ address,size,name,name_source,subsystem,status
 0x710023a1a4,60,fn_710023a1a4,unknown,unknown,O
 0x710023a1e0,140,fn_710023a1e0,unknown,unknown,O
 0x710023a26c,140,fn_710023a26c,unknown,unknown,O
-0x710023a2f8,220,fn_710023a2f8,unknown,unknown,U
+0x710023a2f8,220,fn_710023a2f8,unknown,unknown,O
 0x710023a3d4,364,fn_710023a3d4,unknown,unknown,O
 0x710023a540,96,fn_710023a540,unknown,unknown,O
 0x710023a5a0,12,fn_710023a5a0,unknown,unknown,O
@@ -2146,7 +2146,7 @@ address,size,name,name_source,subsystem,status
 0x71002450b4,12,fn_71002450b4,unknown,unknown,O
 0x71002450c0,4,fn_71002450c0,unknown,unknown,O
 0x71002450c4,152,fn_71002450c4,unknown,unknown,O
-0x710024515c,220,fn_710024515c,unknown,unknown,U
+0x710024515c,220,fn_710024515c,unknown,unknown,O
 0x7100245238,308,fn_7100245238,unknown,unknown,O
 0x710024536c,300,fn_710024536c,unknown,unknown,U
 0x7100245498,12,fn_7100245498,unknown,unknown,O
@@ -3394,9 +3394,9 @@ address,size,name,name_source,subsystem,status
 0x7100273ee8,24,fn_7100273ee8,unknown,unknown,O
 0x7100273f00,4,fn_7100273f00,unknown,unknown,O
 0x7100273f04,4,operator.delete,symbol,unknown,O
-0x7100273f08,228,fn_7100273f08,unknown,unknown,U
+0x7100273f08,228,fn_7100273f08,unknown,unknown,O
 0x7100273fec,4,fn_7100273fec,unknown,unknown,O
-0x7100273ff0,228,fn_7100273ff0,unknown,unknown,U
+0x7100273ff0,228,fn_7100273ff0,unknown,unknown,O
 0x71002740e0,1128,fn_71002740e0,unknown,unknown,U
 0x7100274548,88,fn_7100274548,unknown,unknown,O
 0x71002745a0,244,navmesh::CNavMesh::refl_GetClass,reflection,ai/navmesh,O
@@ -6011,7 +6011,7 @@ address,size,name,name_source,subsystem,status
 0x71002f8a18,456,fn_71002f8a18,unknown,unknown,U
 0x71002f8be0,456,fn_71002f8be0,unknown,unknown,U
 0x71002f8da8,60,fn_71002f8da8,unknown,unknown,O
-0x71002f8de4,624,fn_71002f8de4,unknown,unknown,U
+0x71002f8de4,624,fn_71002f8de4,unknown,unknown,O
 0x71002f9054,512,fn_71002f9054,unknown,unknown,O
 0x71002f9254,4,fn_71002f9254,unknown,unknown,O
 0x71002f9258,4,fn_71002f9258,unknown,unknown,O
