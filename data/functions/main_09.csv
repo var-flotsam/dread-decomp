@@ -747,7 +747,7 @@ address,size,name,name_source,subsystem,status
 0x710091834c,36,fn_710091834c,unknown,game/components?,O
 0x7100918370,608,fn_7100918370,unknown,game/components?,U
 0x71009185d0,32,fn_71009185d0,unknown,game/components?,O
-0x71009185f0,604,fn_71009185f0,unknown,game/components?,U
+0x71009185f0,604,fn_71009185f0,unknown,game/components?,O
 0x710091884c,556,fn_710091884c,unknown,game/components?,O
 0x7100918a78,260,fn_7100918a78,unknown,game/components?,O
 0x7100918b7c,284,fn_7100918b7c,unknown,game/components?,O
@@ -965,7 +965,7 @@ address,size,name,name_source,subsystem,status
 0x710091f22c,380,fn_710091f22c,unknown,unknown,O
 0x710091f3a8,788,fn_710091f3a8,unknown,unknown,U
 0x710091f6bc,220,fn_710091f6bc,unknown,unknown,O
-0x710091f798,612,fn_710091f798,unknown,unknown,U
+0x710091f798,612,fn_710091f798,unknown,unknown,O
 0x710091f9fc,512,fn_710091f9fc,unknown,unknown,O
 0x710091fbfc,480,fn_710091fbfc,unknown,unknown,U
 0x710091fddc,216,fn_710091fddc,unknown,unknown,U
@@ -1162,7 +1162,7 @@ address,size,name,name_source,subsystem,status
 0x7100925670,4,fn_7100925670,unknown,game/components?,O
 0x7100925674,8,fn_7100925674,unknown,game/components?,O
 0x710092567c,28,fn_710092567c,unknown,game/components?,O
-0x7100925698,328,fn_7100925698,unknown,game/components?,U
+0x7100925698,328,fn_7100925698,unknown,game/components?,O
 0x71009257e0,28,fn_71009257e0,unknown,game/components?,O
 0x71009257fc,132,fn_71009257fc,unknown,game/components?,O
 0x7100925880,128,fn_7100925880,unknown,game/components?,O
@@ -2353,7 +2353,7 @@ address,size,name,name_source,subsystem,status
 0x710097c738,872,fn_710097c738,unknown,unknown,U
 0x710097caa0,264,fn_710097caa0,unknown,unknown,O
 0x710097cba8,368,fn_710097cba8,unknown,unknown,O
-0x710097cd18,600,fn_710097cd18,unknown,unknown,U
+0x710097cd18,600,fn_710097cd18,unknown,unknown,O
 0x710097cf70,504,fn_710097cf70,unknown,unknown,O
 0x710097d168,656,fn_710097d168,unknown,unknown,U
 0x710097d3f8,804,fn_710097d3f8,unknown,unknown,U
@@ -2439,7 +2439,7 @@ address,size,name,name_source,subsystem,status
 0x71009803b8,508,fn_71009803b8,unknown,unknown,U
 0x71009805b4,264,fn_71009805b4,unknown,unknown,O
 0x71009806bc,452,fn_71009806bc,unknown,unknown,U
-0x7100980880,600,fn_7100980880,unknown,unknown,U
+0x7100980880,600,fn_7100980880,unknown,unknown,O
 0x7100980ad8,504,fn_7100980ad8,unknown,unknown,O
 0x7100980cd0,272,fn_7100980cd0,unknown,unknown,O
 0x7100980de0,616,fn_7100980de0,unknown,unknown,U

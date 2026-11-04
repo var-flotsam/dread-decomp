@@ -3,7 +3,7 @@ address,size,name,name_source,subsystem,status
 0x7100400364,612,fn_7100400364,unknown,unknown,U
 0x71004005c8,8,fn_71004005c8,unknown,unknown,O
 0x71004005d0,584,fn_71004005d0,unknown,unknown,U
-0x7100400818,520,fn_7100400818,unknown,unknown,U
+0x7100400818,520,fn_7100400818,unknown,unknown,O
 0x7100400a20,28,fn_7100400a20,unknown,unknown,O
 0x7100400a3c,132,fn_7100400a3c,unknown,unknown,O
 0x7100400ac0,8,fn_7100400ac0,unknown,unknown,O
@@ -2566,7 +2566,7 @@ address,size,name,name_source,subsystem,status
 0x7100479134,112,fn_7100479134,unknown,unknown,O
 0x71004791a4,40,fn_71004791a4,unknown,unknown,O
 0x71004791cc,4,fn_71004791cc,unknown,unknown,O
-0x71004791d0,592,fn_71004791d0,unknown,unknown,U
+0x71004791d0,592,fn_71004791d0,unknown,unknown,O
 0x7100479420,24,fn_7100479420,unknown,unknown,O
 0x7100479438,56,fn_7100479438,unknown,unknown,O
 0x7100479470,8,fn_7100479470,unknown,unknown,O
@@ -4828,12 +4828,12 @@ address,size,name,name_source,subsystem,status
 0x71004c340c,388,CCooldownXBossLavaCarpetAttack::refl_InitClass,reflection,game/ai,O
 0x71004c3590,116,fn_71004c3590,unknown,game/ai?,O
 0x71004c3604,96,fn_71004c3604,unknown,game/ai?,O
-0x71004c3664,628,fn_71004c3664,unknown,game/ai?,U
+0x71004c3664,628,fn_71004c3664,unknown,game/ai?,O
 0x71004c38d8,1220,fn_71004c38d8,unknown,game/ai?,U
 0x71004c3d9c,1016,fn_71004c3d9c,unknown,game/ai?,U
 0x71004c4194,1960,fn_71004c4194,unknown,game/ai?,U
 0x71004c493c,1648,fn_71004c493c,unknown,game/ai?,U
-0x71004c4fac,568,fn_71004c4fac,unknown,game/ai?,U
+0x71004c4fac,568,fn_71004c4fac,unknown,game/ai?,O
 0x71004c51e4,236,fn_71004c51e4,unknown,game/ai?,U
 0x71004c52d0,4,fn_71004c52d0,unknown,game/ai?,O
 0x71004c52d4,752,fn_71004c52d4,unknown,game/ai?,U
@@ -4864,7 +4864,7 @@ address,size,name,name_source,subsystem,status
 0x71004c6b44,1504,fn_71004c6b44,unknown,unknown,U
 0x71004c7124,512,fn_71004c7124,unknown,unknown,O
 0x71004c7324,1344,fn_71004c7324,unknown,unknown,U
-0x71004c7864,548,fn_71004c7864,unknown,unknown,U
+0x71004c7864,548,fn_71004c7864,unknown,unknown,O
 0x71004c7a88,20,fn_71004c7a88,unknown,unknown,O
 0x71004c7a9c,4,fn_71004c7a9c,unknown,unknown,O
 0x71004c7aa0,260,fn_71004c7aa0,unknown,unknown,U
