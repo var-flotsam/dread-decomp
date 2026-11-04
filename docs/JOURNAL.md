@@ -132,6 +132,38 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Lifter and oracle: round 9, the functions round 8's stricter oracle rejected (2026-11-03, branch
+`claude/project-thread-zgkpk3-r9`).** Whole-binary run lifted_all12 (2b97a619): 13,633 of 13,691 accepted, in
+6,521 s. The worklist is 2,450 smaller than all11's because main's merge brought those functions in hand-matched
+(`skipped: defined in src/`, not verdict changes). Against all11 on the common worklist: 32 gained, 7 lost. Against
+all10: 31 gained, 9 lost. Byte mode unchanged.
+- **Round 8's 27 losses, traced** by holding round 6's lifter fixed and stepping the oracle through round 8's
+  commits: 18 at the x8-window bound, 5 at "a restoring store after a non-pure call is a write", 4 at the new
+  repairs (loop-over-pointer chains, `b .` and loop bounds). All were rules too strict, not wrong lifts.
+- **x8 window**: it stops at the run's own stores (a lift local inside the window), and bytes loaded from a save
+  slot that still holds the caller's register are undefined (an original's loop reading past a table into its
+  saves). Review fix: the slot is the one a store of x19-x28/d8-d15 made (directly or through a unique copied from
+  one), not any word whose value matches, and the rule applies to the original's run only.
+- **Restoring stores**: after a call, a put-back keeps the byte as the stretch found it and is the whole store's;
+  a put-back against a write of the same value decides nothing (a skip, never agreement). Review fixes: a put-back
+  of a byte loaded both before the call and after it is not taken as no change; a word-wide read-modify-write
+  against a byte-wide lift is a skip.
+- **Lifter**: a one-path float in s0 survives a void call (abi_facts: no float result), unless the call falls
+  straight into a join or local `b` that reads v0 (review fix: then the structured lift is refused and the flat
+  lifter takes it); FlatLifter joins written-argument sets at labels.
+- **Oracle**: before a fault, 32-bit arguments are compared by their low half, as on the main path; a repaired run
+  is a loop's only when it reached nothing new, and a loop's count word is tried first. Review fix: the repairs
+  read words with `Machine.peek`, so `count()` no longer resets read_at.
+- Lost against all11: 71009cf8f8 (the f64-parameter revert); 7100221d48 (the review fixes: accepted on 24b7c7ea,
+  rejected on 2b97a619); 710030ed9c 7100758e8c 71010df1fc (rejected) and 7100e9e164 71004720d8 (inconclusive), the
+  same on 24b7c7ea and not yet bisected. Also still lost against all10: 71000ef764 7100212a80 7100691600 7100df6688.
+- Known and held for round 10: an out-parameter count word gets 64 random bits on even seeds, so loops walk past
+  local arrays whose frame places differ (7100aaa914 7100ab13c8 7100ab1638 710033003c, probably 71008008b0); a stale
+  caller-saved register is compared after a call (7100df6688). Candidates are on `-r10-count` (`--small-out-counts`)
+  and `-r10-junk` (`--junk-scratch`), off by default, reviewed sound but not yet run on game data. Small count
+  values cost coverage: such a word never gets a 64-bit value.
+- Three tests from main failed only on Windows (path separators); fixed. 689 tests, only `test_posix` fails on Windows.
+
 **Lifter and oracle: rounds 7 and 8, the last rejects and two reviews of the oracle (2026-11-03, branches
 `claude/project-thread-zgkpk3-r8fix`, `-tests` and `-r8`).** Whole-binary run lifted_all11 (r8's 20766338, the
 lifter revert below applied after it): 16,056 of 16,141 accepted against lifted_all10's 16,063; with the revert's

@@ -86,13 +86,31 @@ class Changes(unittest.TestCase):
 
     def test_a_byte_written_back_before_the_next_event_is_no_change(self):
         m = SimpleNamespace(dirty={0x10: 5}, _ckpt={0x10: 5}, _touched={0x10}, events=[], snapshot_bytes=0,
-                            calls_room=0, scale=1, cut=None, steps=0)
+                            calls_room=0, scale=1, cut=None, steps=0, putback={}, stale=set(),
+                            _loaded=None, _all_loads=set(), _loaded_before=set(), unsure=set())
         m.max_events = lambda: 99
         pcode_emu.Machine.checkpoint(m, ("call", 1, (), ()))
         m.dirty[0x11] = 7
         m._touched = {0x11}
         pcode_emu.Machine.checkpoint(m, ("end", "return"))
         self.assertEqual([e[1] for e in m.events], [(), ((0x11, 7),)])
+
+
+@unittest.skipIf(pcode_emu is None, "pyelftools is not installed")
+class BeforeTheFault(unittest.TestCase):
+    """Calls before the original's fault compare a 32-bit argument by its low half, as elsewhere."""
+
+    def runs(self, lift_s0):
+        call = lambda v: (("call", 0x71006589cc, ((0, 64), (100, 32)), ((0, 0x5000), (100, v))), ())
+        orig = run("fault", 10, events=[call(0xc042a4356d779ff2), (("end", "fault"), ())])
+        lift = run("return", 10, events=[call(lift_s0), (("call", 0x7100744e1c, (), ()), ()), (("end", "return"), ())])
+        return orig, lift
+
+    def test_upper_half_of_a_32_bit_argument(self):
+        self.assertTrue(pcode_emu.compare(*self.runs(0x6d779ff2), None).startswith("skip: "))
+
+    def test_low_half_still_differs(self):
+        self.assertEqual(pcode_emu.compare(*self.runs(0x6d779ff3), None), "event 0 before the original's fault")
 
 
 @unittest.skipIf(pcode_emu is None, "pyelftools is not installed")
