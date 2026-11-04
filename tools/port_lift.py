@@ -1161,11 +1161,11 @@ def main() -> int:
                     help="ADDR[,ADDR...]: also override these src/lifted definitions with a semantic lift (for a byte-mode"
                          " lift that is wrong on x86-64 for another reason, such as a data table read through a string"
                          " literal; until gen_lift is fixed)")
-    ap.add_argument("--junk-scratch", action=argparse.BooleanOptionalAction, default=True,
+    ap.add_argument("--junk-scratch", action=argparse.BooleanOptionalAction, default=False,
                     help="track the registers a call leaves undefined (x9-x18, v16-v31, v8-v15's upper halves): an "
                          "input on which the original's compared argument, store, branch or result depends on one is "
-                         "skipped (pcode_emu.Machine.junk_scratch; default on since round 10's A/B: 1 gained, none "
-                         "lost on 536; --no-junk-scratch as before)")
+                         "skipped (pcode_emu.Machine.junk_scratch; off by default: on round 10's 536-function check "
+                         "it doubled the oracle time, 3,906 s against 1,873 s, for the same 506 accepted)")
     ap.add_argument("--no-overrides", action="store_true",
                     help="leave those definitions alone (by default each gets a semantic lift that overrides it, "
                          "added to the worklist unless --only or --top is given)")
