@@ -2022,7 +2022,7 @@ address,size,name,name_source,subsystem,status
 0x7100a4d360,352,CEmmyStateOverrideLogicAction::refl_InitClass,reflection,game/ai,O
 0x7100a4d4c0,4,fn_7100a4d4c0,unknown,game/ai?,O
 0x7100a4d4c4,36,fn_7100a4d4c4,unknown,game/ai?,O
-0x7100a4d4e8,552,fn_7100a4d4e8,unknown,game/ai?,U
+0x7100a4d4e8,552,fn_7100a4d4e8,unknown,game/ai?,O
 0x7100a4d710,28,fn_7100a4d710,unknown,game/ai?,O
 0x7100a4d72c,12,fn_7100a4d72c,unknown,game/ai?,O
 0x7100a4d738,12,fn_7100a4d738,unknown,game/ai?,O
@@ -2134,7 +2134,7 @@ address,size,name,name_source,subsystem,status
 0x7100a50ebc,352,CPerceptionModifierLogicAction::refl_InitClass,reflection,game/ai,O
 0x7100a5101c,244,fn_7100a5101c,unknown,game/ai?,O
 0x7100a51110,252,fn_7100a51110,unknown,game/ai?,O
-0x7100a5120c,720,fn_7100a5120c,unknown,game/ai?,U
+0x7100a5120c,720,fn_7100a5120c,unknown,game/ai?,O
 0x7100a514dc,28,fn_7100a514dc,unknown,game/ai?,O
 0x7100a514f8,12,fn_7100a514f8,unknown,game/ai?,O
 0x7100a51504,12,fn_7100a51504,unknown,game/ai?,O
@@ -2174,7 +2174,7 @@ address,size,name,name_source,subsystem,status
 0x7100a5243c,492,fn_7100a5243c,unknown,game/ai?,O
 0x7100a52628,36,fn_7100a52628,unknown,game/ai?,O
 0x7100a5264c,428,fn_7100a5264c,unknown,game/ai?,O
-0x7100a527f8,1136,fn_7100a527f8,unknown,game/ai?,U
+0x7100a527f8,1136,fn_7100a527f8,unknown,game/ai?,O
 0x7100a52c68,60,fn_7100a52c68,unknown,game/ai?,O
 0x7100a52ca4,220,fn_7100a52ca4,unknown,game/ai?,O
 0x7100a52d80,28,fn_7100a52d80,unknown,game/ai?,O

@@ -527,7 +527,7 @@ address,size,name,name_source,subsystem,status
 0x710032d650,52,fn_710032d650,unknown,unknown,O
 0x710032d684,2172,fn_710032d684,unknown,unknown,U
 0x710032df00,220,fn_710032df00,unknown,unknown,O
-0x710032dfdc,580,fn_710032dfdc,unknown,unknown,U
+0x710032dfdc,580,fn_710032dfdc,unknown,unknown,O
 0x710032e220,264,fn_710032e220,unknown,unknown,U
 0x710032e328,848,fn_710032e328,unknown,unknown,U
 0x710032e678,772,fn_710032e678,unknown,unknown,U
@@ -540,7 +540,7 @@ address,size,name,name_source,subsystem,status
 0x710032f4cc,428,fn_710032f4cc,unknown,unknown,U
 0x710032f678,408,fn_710032f678,unknown,unknown,U
 0x710032f810,416,fn_710032f810,unknown,unknown,U
-0x710032f9b0,424,fn_710032f9b0,unknown,unknown,U
+0x710032f9b0,424,fn_710032f9b0,unknown,unknown,O
 0x710032fb58,1252,fn_710032fb58,unknown,unknown,U
 0x710033003c,1576,fn_710033003c,unknown,unknown,U
 0x7100330664,588,fn_7100330664,unknown,unknown,U
@@ -1253,7 +1253,7 @@ address,size,name,name_source,subsystem,status
 0x71003627f8,304,fn_71003627f8,unknown,unknown,U
 0x7100362928,16,fn_7100362928,unknown,unknown,O
 0x7100362938,280,fn_7100362938,unknown,unknown,U
-0x7100362a50,472,fn_7100362a50,unknown,unknown,U
+0x7100362a50,472,fn_7100362a50,unknown,unknown,O
 0x7100362c28,28,fn_7100362c28,unknown,unknown,O
 0x7100362c44,4,fn_7100362c44,unknown,unknown,O
 0x7100362c48,4,fn_7100362c48,unknown,unknown,O
@@ -1653,7 +1653,7 @@ address,size,name,name_source,subsystem,status
 0x710036d828,880,fn_710036d828,unknown,ai/behaviortree?,O
 0x710036db98,388,behaviortree::CSetAnimationForImpact::refl_InitClass,reflection,ai/behaviortree,O
 0x710036dd1c,248,fn_710036dd1c,unknown,ai/behaviortree?,O
-0x710036de14,524,fn_710036de14,unknown,ai/behaviortree?,U
+0x710036de14,524,fn_710036de14,unknown,ai/behaviortree?,O
 0x710036e020,252,fn_710036e020,unknown,ai/behaviortree?,U
 0x710036e11c,8,fn_710036e11c,unknown,ai/behaviortree?,O
 0x710036e124,28,fn_710036e124,unknown,ai/behaviortree?,O
@@ -2547,7 +2547,7 @@ address,size,name,name_source,subsystem,status
 0x710038fb1c,716,fn_710038fb1c,unknown,ai/behaviortree?,O
 0x710038fde8,384,fn_710038fde8,unknown,ai/behaviortree?,O
 0x710038ff68,204,fn_710038ff68,unknown,ai/behaviortree?,O
-0x7100390034,400,fn_7100390034,unknown,ai/behaviortree?,U
+0x7100390034,400,fn_7100390034,unknown,ai/behaviortree?,O
 0x71003901c4,1072,fn_71003901c4,unknown,ai/behaviortree?,U
 0x71003905f4,8,fn_71003905f4,unknown,ai/behaviortree?,O
 0x71003905fc,28,fn_71003905fc,unknown,ai/behaviortree?,O
@@ -4647,8 +4647,8 @@ address,size,name,name_source,subsystem,status
 0x71003db24c,20,fn_71003db24c,unknown,unknown,O
 0x71003db260,88,fn_71003db260,unknown,unknown,O
 0x71003db2b8,12,fn_71003db2b8,unknown,unknown,O
-0x71003db2c4,264,fn_71003db2c4,unknown,unknown,U
-0x71003db3cc,264,fn_71003db3cc,unknown,unknown,U
+0x71003db2c4,264,fn_71003db2c4,unknown,unknown,O
+0x71003db3cc,264,fn_71003db3cc,unknown,unknown,O
 0x71003db4d4,156,fn_71003db4d4,unknown,unknown,O
 0x71003db570,16,fn_71003db570,unknown,unknown,O
 0x71003db580,28,fn_71003db580,unknown,unknown,O

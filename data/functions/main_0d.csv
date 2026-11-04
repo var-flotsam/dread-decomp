@@ -2532,7 +2532,7 @@ address,size,name,name_source,subsystem,status
 0x7100d43b14,64,fn_7100d43b14,unknown,unknown,O
 0x7100d43b54,4,fn_7100d43b54,unknown,unknown,O
 0x7100d43b58,64,fn_7100d43b58,unknown,unknown,O
-0x7100d43b98,164,fn_7100d43b98,unknown,unknown,U
+0x7100d43b98,164,fn_7100d43b98,unknown,unknown,O
 0x7100d43c3c,48,fn_7100d43c3c,unknown,unknown,O
 0x7100d43c6c,228,fn_7100d43c6c,unknown,unknown,O
 0x7100d43d50,288,fn_7100d43d50,unknown,unknown,O
