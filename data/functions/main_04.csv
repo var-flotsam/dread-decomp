@@ -3694,7 +3694,7 @@ address,size,name,name_source,subsystem,status
 0x71004a4bb4,244,CCharClassCooldownXBossLavaCarpetAttack::refl_GetClass,reflection,game/characters,O
 0x71004a4ca8,500,fn_71004a4ca8,unknown,game/characters?,O
 0x71004a4e9c,352,CCharClassCooldownXBossLavaCarpetAttack::refl_InitClass,reflection,game/characters,O
-0x71004a4ffc,100,fn_71004a4ffc,unknown,unknown,U
+0x71004a4ffc,100,fn_71004a4ffc,unknown,unknown,O
 0x71004a5060,292,fn_71004a5060,unknown,unknown,U
 0x71004a5184,36,fn_71004a5184,unknown,unknown,O
 0x71004a51a8,164,fn_71004a51a8,unknown,unknown,U
