@@ -113,8 +113,9 @@ LOOP_REPAIRS = 4    # of them in a row, a loop's elements repaired one by one (e
 # seed's. (Only seed 7's moved: the arena words the others' repairs read are the ones they ended on.)
 REPAIR_POINTER = pcode_emu.ARENA + 0x40000100
 REPAIR_ALIASED_SEED = (POINTER - pcode_emu.ARENA) // 0x100000 // 16
-# --small-out-counts: a made-up out-parameter word the original uses as a count (Machine.count_keys)
-# gets a value below SMALL_COUNT instead of the seed's (64 random bits every other seed: a loop over a
+# --small-out-counts: on an input the original did not end on (cut off, a fault, inconclusive), a
+# made-up out-parameter word it uses as a count (Machine.count_keys) gets a value below SMALL_COUNT
+# instead of the seed's (64 random bits every other seed: a loop over a
 # local array walked past it, into frame bytes the two runs lay out differently), and the original is
 # run again with it, up to COUNT_ROUNDS times while the run finds more such words.
 SMALL_COUNT = 9
@@ -711,14 +712,19 @@ class Oracle:
 
     def run_original(self, addr: int, seed: int, ovr: dict, scale: int = 1):
         """One run of the original on an input (raises pcode_emu.Inconclusive). With small_counts,
-        the out-parameter words the run used as counts (and no ("o", key) sets) are made small and
-        the original run again, while that finds more (COUNT_ROUNDS): the run kept is the last that
-        ran, its small_outs the input's, which check() gives the lift's run too. A round that is
-        inconclusive keeps the round before it (or raises the first run's exception)."""
+        when the run with the seed's words did not end (it was cut off, faulted or was inconclusive:
+        a loop over a local array walked past it on a 64-bit count), the out-parameter words it used
+        as counts (and no ("o", key) sets) are made small and the original run again, while that
+        finds more (COUNT_ROUNDS): the run kept is the last that ran, its small_outs the input's,
+        which check() gives the lift's run too. A round that is inconclusive keeps the round before
+        it (or raises the first run's exception). A run that ended on the seed's words keeps them:
+        a large or negative count is compared too (a lift's unsigned or 64-bit loop bound)."""
         if not self.small_counts:
             return self.one_original(addr, seed, ovr, scale, {})[0]
         small: dict = {}
         m, err = self.one_original(addr, seed, ovr, scale, small)
+        if err is None and not getattr(m, "cut", None) and getattr(m, "fault", None) is None:
+            return m
         for _ in range(COUNT_ROUNDS):
             keys = {k for k in m.count_keys() if k not in small and ("o", k) not in ovr}
             if not keys:
@@ -1139,7 +1145,8 @@ def main() -> int:
     ap.add_argument("--mutants", type=int, default=0,
                     help="test the oracle: inject one fault into N accepted lifts and count how many it rejects")
     ap.add_argument("--small-out-counts", action=argparse.BooleanOptionalAction, default=True,
-                    help="a callee's made-up out-parameter word that the original compares with a non-constant or "
+                    help="on an input the original did not end on (cut off, a fault, inconclusive), a callee's "
+                         "made-up out-parameter word that the original compares with a non-constant or "
                          "scales into an address (a loop count, an index), and never dereferences, gets a value of "
                          f"0-{SMALL_COUNT - 1} instead of the seed's, in both runs (default on since round 10's A/B: "
                          "9 gained, none lost on 536; --no-small-out-counts as before)")
@@ -1380,7 +1387,7 @@ def main() -> int:
                                  **({"error": errors[a]} if a in errors else {}),
                                  **({"overrides": overrides[a]} if a in overrides else {})} for a in wl},
         "report": report,
-        **({"small_out_counts": True} if args.small_out_counts else {}),
+        "small_out_counts": bool(args.small_out_counts),  # (since round 10's review: on runs that did not end)
     }
     (out / "manifest.json").write_text(json.dumps(manifest, indent=1) + "\n", encoding="utf-8")
     if overrides:

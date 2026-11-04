@@ -249,8 +249,9 @@ class SmallOuts(unittest.TestCase):
 class _Run:
     """A finished original's run as Oracle.run_original sees it."""
 
-    def __init__(self, keys, small):
+    def __init__(self, keys, small, cut=None, fault=None):
         self.keys, self.small_outs = set(keys), dict(small)
+        self.cut, self.fault = cut, fault
 
     def count_keys(self):
         return self.keys
@@ -260,8 +261,9 @@ class _Run:
 class Rounds(unittest.TestCase):
     """Oracle.run_original under small_counts: the original again with its count words small."""
 
-    def oracle(self, plan, small_counts=True):
-        """plan: per round, (count keys the run finds, or an exception it raises)."""
+    def oracle(self, plan, small_counts=True, first_cut="steps", first_fault=None):
+        """plan: per round, (count keys the run finds, or an exception it raises). The first run with
+        the seed's words is cut off (first_cut) or faults (first_fault), as a 64-bit count's loop."""
         o = port_lift.Oracle.__new__(port_lift.Oracle)
         o.small_counts = small_counts
         o.calls = []
@@ -271,7 +273,8 @@ class Rounds(unittest.TestCase):
             r = plan[min(len(o.calls), len(plan)) - 1]
             if isinstance(r, Exception):
                 return _Run((), small), r
-            return _Run(r, small), None
+            first = len(o.calls) == 1
+            return _Run(r, small, first_cut if first else None, first_fault if first else None), None
         o.one_original = one
         return o
 
@@ -287,6 +290,18 @@ class Rounds(unittest.TestCase):
         self.assertEqual(o.calls, [{}, want])
         self.assertEqual(m.small_outs, want)
         self.assertLess(want[KEY], port_lift.SMALL_COUNT)
+
+    def test_run_that_ended_keeps_the_seed_words(self):
+        """The seed's 64-bit count ended the original's run (a negative int against a signed bound):
+        that input is compared as it is, so a lift's unsigned or 64-bit bound is still caught."""
+        o = self.oracle([{KEY}, {KEY}], first_cut=None)
+        m = o.run_original(0x7100000000, 4, {})
+        self.assertEqual((o.calls, m.small_outs), ([{}], {}))
+
+    def test_fault_is_run_again_small(self):
+        o = self.oracle([{KEY}, {KEY}], first_cut=None, first_fault=0x10)
+        m = o.run_original(0x7100000000, 4, {})
+        self.assertEqual(m.small_outs, {KEY: port_lift.small_count(4, KEY)})
 
     def test_rounds_add_words_found_later(self):
         k2 = (2, 1, 0)
