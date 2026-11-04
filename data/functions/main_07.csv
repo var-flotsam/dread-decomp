@@ -819,7 +819,7 @@ address,size,name,name_source,subsystem,status
 0x7100725610,436,fn_7100725610,unknown,game/components?,U
 0x71007257c4,740,fn_71007257c4,unknown,game/components?,U
 0x7100725aa8,536,fn_7100725aa8,unknown,game/components?,U
-0x7100725cc0,180,fn_7100725cc0,unknown,game/components?,U
+0x7100725cc0,180,fn_7100725cc0,unknown,game/components?,O
 0x7100725d74,952,fn_7100725d74,unknown,game/components?,U
 0x710072612c,704,fn_710072612c,unknown,game/components?,U
 0x71007263ec,28,fn_71007263ec,unknown,game/components?,O
@@ -1837,7 +1837,7 @@ address,size,name,name_source,subsystem,status
 0x7100763318,204,fn_7100763318,unknown,unknown,O
 0x71007633e4,48,fn_71007633e4,unknown,unknown,O
 0x7100763414,264,fn_7100763414,unknown,unknown,U
-0x710076351c,168,fn_710076351c,unknown,unknown,U
+0x710076351c,168,fn_710076351c,unknown,unknown,O
 0x71007635c4,28,fn_71007635c4,unknown,unknown,O
 0x71007635e0,132,fn_71007635e0,unknown,unknown,O
 0x7100763664,8,fn_7100763664,unknown,unknown,O
@@ -4937,7 +4937,7 @@ address,size,name,name_source,subsystem,status
 0x71007e6c8c,36,fn_71007e6c8c,unknown,game/components?,O
 0x71007e6cb0,44,fn_71007e6cb0,unknown,game/components?,O
 0x71007e6cdc,4,fn_71007e6cdc,unknown,game/components?,O
-0x71007e6ce0,160,fn_71007e6ce0,unknown,game/components?,U
+0x71007e6ce0,160,fn_71007e6ce0,unknown,game/components?,O
 0x71007e6d80,360,fn_71007e6d80,unknown,game/components?,U
 0x71007e6ee8,28,fn_71007e6ee8,unknown,game/components?,O
 0x71007e6f04,132,fn_71007e6f04,unknown,game/components?,O
@@ -5429,7 +5429,7 @@ address,size,name,name_source,subsystem,status
 0x71007fdc30,332,fn_71007fdc30,unknown,game/components?,U
 0x71007fdd80,352,fn_71007fdd80,unknown,game/components?,U
 0x71007fdee0,264,fn_71007fdee0,unknown,game/components?,U
-0x71007fdff0,152,fn_71007fdff0,unknown,game/components?,U
+0x71007fdff0,152,fn_71007fdff0,unknown,game/components?,O
 0x71007fe090,340,fn_71007fe090,unknown,game/components?,U
 0x71007fe1e4,308,fn_71007fe1e4,unknown,game/components?,U
 0x71007fe318,132,fn_71007fe318,unknown,game/components?,O

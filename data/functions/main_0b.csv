@@ -2242,7 +2242,7 @@ address,size,name,name_source,subsystem,status
 0x7100b7710c,496,fn_7100b7710c,unknown,engine/reflection?,O
 0x7100b772fc,212,fn_7100b772fc,unknown,engine/reflection?,O
 0x7100b773d0,232,fn_7100b773d0,unknown,engine/reflection?,O
-0x7100b774b8,44,fn_7100b774b8,unknown,engine/reflection?,U
+0x7100b774b8,44,fn_7100b774b8,unknown,engine/reflection?,O
 0x7100b774e4,112,fn_7100b774e4,unknown,engine/reflection?,U
 0x7100b77554,112,fn_7100b77554,unknown,engine/reflection?,U
 0x7100b775c4,364,base::reflection::refl_InitType<GUI::CSkin*>,reflection,engine/reflection,O

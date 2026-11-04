@@ -4532,7 +4532,7 @@ address,size,name,name_source,subsystem,status
 0x7100c8f70c,8,fn_7100c8f70c,unknown,unknown,O
 0x7100c8f714,28,fn_7100c8f714,unknown,unknown,O
 0x7100c8f730,12,fn_7100c8f730,unknown,unknown,O
-0x7100c8f73c,84,fn_7100c8f73c,unknown,unknown,U
+0x7100c8f73c,84,fn_7100c8f73c,unknown,unknown,O
 0x7100c8f790,60,fn_7100c8f790,unknown,unknown,O
 0x7100c8f7cc,176,fn_7100c8f7cc,unknown,unknown,O
 0x7100c8f87c,244,fn_7100c8f87c,unknown,unknown,O
