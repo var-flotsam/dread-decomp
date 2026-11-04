@@ -2009,7 +2009,7 @@ address,size,name,name_source,subsystem,status
 0x7100d35f04,8,fn_7100d35f04,unknown,game?,O
 0x7100d35f0c,8,fn_7100d35f0c,unknown,game?,O
 0x7100d35f14,212,fn_7100d35f14,unknown,game?,O
-0x7100d35fe8,24,fn_7100d35fe8,unknown,game?,U
+0x7100d35fe8,24,fn_7100d35fe8,unknown,game?,O
 0x7100d36000,12,fn_7100d36000,unknown,game?,O
 0x7100d3600c,84,fn_7100d3600c,unknown,game?,O
 0x7100d36060,8,fn_7100d36060,unknown,game?,O

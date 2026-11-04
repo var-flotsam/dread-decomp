@@ -335,7 +335,7 @@ address,size,name,name_source,subsystem,status
 0x7100f13aa4,556,fn_7100f13aa4,unknown,unknown,O
 0x7100f13cd0,4,fn_7100f13cd0,unknown,unknown,O
 0x7100f13cd4,344,fn_7100f13cd4,unknown,unknown,U
-0x7100f13e2c,28,fn_7100f13e2c,unknown,unknown,U
+0x7100f13e2c,28,fn_7100f13e2c,unknown,unknown,O
 0x7100f13e48,4,fn_7100f13e48,unknown,unknown,O
 0x7100f13e4c,4,fn_7100f13e4c,unknown,unknown,O
 0x7100f13e50,512,fn_7100f13e50,unknown,unknown,U
