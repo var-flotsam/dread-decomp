@@ -188,5 +188,36 @@ class SretOnlyFromFacts(unittest.TestCase):
         self.assertFalse(pcode_emu.abi_garbage(m, 0))
 
 
+@unittest.skipIf(port_lift is None, "pyelftools or capstone is not installed")
+class ShrunkRunWords(unittest.TestCase):
+    """The repairs look at a finished (shrunk) run's words: small(), held() and placed() keep the
+    offset the run read each word at. A u32 count at byte 4 of a word whose byte 0 holds another
+    field: the count is what is tested, and a count of 1 goes to byte 4 (71007fcae4's count word)."""
+
+    W = 0x7200000000
+
+    def finished(self):
+        m = pcode_emu.Machine.__new__(pcode_emu.Machine)
+        page = pcode_emu.PAGE
+        m.pages = {self.W // page: bytearray(page)}
+        m.pages[self.W // page][self.W % page:self.W % page + 8] = (0x55).to_bytes(8, "little")
+        m.track, m.read_words, m._read_seen, m.read_at, m.read_cov = True, [], set(), {}, []
+        m.dirty, m.stack_written, m.own, m.visited = {}, set(), (0, 0), {1, 2, 3}
+        m._loaded, m._all_loads, m.arg_slots, m.lift, m.snap, m.mem_ovr = None, set(), None, None, None, {}
+        self.assertEqual(m.load(self.W + 4, 4), 0)  # (the run reads the count)
+        m.shrink()
+        m.pages = {self.W // page: bytearray(page)}  # (the repairs see the run's memory again)
+        m.pages[self.W // page][self.W % page:self.W % page + 8] = (0x55).to_bytes(8, "little")
+        return m
+
+    def test_read_offset_survives_a_look(self):
+        m = self.finished()
+        self.assertTrue(port_lift.small(m, self.W))
+        self.assertEqual(port_lift.held(m, self.W), 0)  # (the count, not the word with byte 0's 0x55)
+        self.assertEqual(port_lift.placed(m, self.W, 1), 1 << 32)
+        self.assertEqual(m.read_at, {self.W: 4})
+        self.assertEqual(m.read_words, [self.W])
+
+
 if __name__ == "__main__":
     unittest.main()

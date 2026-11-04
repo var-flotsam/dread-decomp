@@ -115,6 +115,28 @@ REPAIR_POINTER = pcode_emu.ARENA + 0x40000100
 REPAIR_ALIASED_SEED = (POINTER - pcode_emu.ARENA) // 0x100000 // 16
 
 
+def placed(base, w: int, v: int) -> int:
+    """A repair's value v for the word at w, placed where the run read it (read_at)."""
+    return (v << 8 * base.read_at.get(w, 0)) & 0xFFFFFFFFFFFFFFFF
+
+
+def held(base, w: int) -> int:
+    """What a finished run's word at w holds from where the run read it on (read_at), 0 when it
+    cannot be read. Machine.peek: a load would record the word again, and move read_at to 0."""
+    try:
+        return base.peek(w, 8) >> 8 * base.read_at.get(w, 0)
+    except (pcode_emu.Fault, pcode_emu.Inconclusive):
+        return 0
+
+
+def small(base, w: int) -> bool:
+    """Whether a finished run's word at w holds a small number (a made-up pointer, a count)."""
+    try:
+        return base.peek(w, 8) < 0x10000
+    except (pcode_emu.Fault, pcode_emu.Inconclusive):
+        return False
+
+
 def repair_object(seed: int, depth: int) -> int:
     """The object of a repair `depth` overrides deep under `seed`: POINTER + 1 MiB * depth, at
     REPAIR_POINTER instead for seed 7 and for a depth that meets the seed's own x0-x8 (seed s >= 8
@@ -511,8 +533,6 @@ class Oracle:
                     and not img.rodata[0] <= off < img.rodata[1]
             ints, floats = mutation_values(self.dicts[addr])
 
-            def placed(base, w: int, v: int) -> int:
-                return (v << 8 * base.read_at.get(w, 0)) & 0xFFFFFFFFFFFFFFFF  # (where the run read it)
             first = next((r for r in runs if not isinstance(r[2], str)), None)
             if self.fuzz and first is not None:
                 # A sweep first: the words a loop or a state machine tests against a constant (a
@@ -545,11 +565,6 @@ class Oracle:
                 def stuck(m) -> bool:
                     return m.fault is not None or bool(m.cut)
 
-                def small(base, w: int) -> bool:
-                    try:
-                        return base.load(w, 8) < 0x10000
-                    except (pcode_emu.Fault, pcode_emu.Inconclusive):
-                        return False
                 # (a run cut off in a loop is repaired too: a count a callee wrote through an
                 # out-parameter, or a word it read, as 1; 71004f0ab8's `cmp x20, w8, uxtw` over billions)
                 todo = ([r for r in runs if not isinstance(r[2], str) and r[2].fault is not None][:2]
@@ -574,12 +589,30 @@ class Oracle:
                             + [(("m", w), POINTER) for w in words[-SWEEP_WORDS:] if w not in near]
                         # (in a loop whose elements are being repaired one by one: its count first, a
                         # callee's out-parameter (a returned {pointer, count}) as 1, 710063fbec)
+                        # (or a memory word read before the loop's last new instruction, holding more
+                        # than 1 and not one of the array the loop scans (words first read at a
+                        # coverage three or more share: iterations that reached nothing new), the
+                        # latest first: a count read once from an object; without it 71007fcae4,
+                        # 7100c12c00 and 7100891ddc are lost once a loop is only a run that reached
+                        # nothing new)
                         if getattr(base, "looped", 0):
-                            keys = [(("o", o), 1) for o, v in outs if v >= 0x10000][:SWEEP_WORDS] + keys
+                            cov: dict = {}
+                            for w, c in zip(base.read_words, getattr(base, "read_cov", ())):
+                                cov.setdefault(w, c)
+                            final = len(base.visited)
+                            shared = Counter(cov.values())
+
+                            def count(w: int) -> bool:
+                                if cov.get(w, final) >= final or shared[cov[w]] >= 3:
+                                    return False
+                                return held(base, w) > 1
+                            counts = [w for w in reversed(words) if count(w)][:SWEEP_WORDS]
+                            keys = [(("o", o), 1) for o, v in outs if v >= 0x10000][:SWEEP_WORDS] \
+                                + [(("m", w), 1) for w in counts] + keys
                     else:
                         # (the loop's bound first: a word read before the run's last new instruction,
                         # an array's length read once and the scan's own words read after it, 7100a03a14)
-                        cov: dict = {}  # (the first read's: small() above reads the words again)
+                        cov: dict = {}  # (the first read's)
                         for w, c in zip(base.read_words, getattr(base, "read_cov", ())):
                             cov.setdefault(w, c)
                         final = len(base.visited)
@@ -624,7 +657,10 @@ class Oracle:
                                 or (not ended() and m.fault is not None and base.fault is not None
                                     and m.fault_pc == base.fault_pc and m.steps > base.steps
                                     and getattr(base, "looped", 0) < LOOP_REPAIRS):
-                            if m.fault is not None and base.fault is not None and m.fault_pc == base.fault_pc:
+                            # (a loop's only when it reached nothing new: a repair that got further
+                            # and crashed at the same load again is not, 710028ce1c)
+                            if m.fault is not None and base.fault is not None and m.fault_pc == base.fault_pc \
+                                    and not m.visited - base.visited:
                                 m.looped = getattr(base, "looped", 0) + 1
                             hit.add(key)
                             runs.append((seed, o, m))

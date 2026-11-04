@@ -468,11 +468,31 @@ class Machine:
         self.uniq: dict[int, int] = {}
         self.pages: dict[int, bytearray] = {}
         self.dirty: dict[int, int] = {}
-        self.before: dict[int, int | None] = {}  # a dirty byte's value before the function first wrote it (store)
+        # a written byte's reference (its value before the stretch's first write, None: none) and whether
+        # it was the function's write then (its dirty value, None: unchanged), store
+        self.before: dict[int, tuple[int | None, int | None]] = {}
         # The bytes the function loaded since the last call event (None: no call event yet). A value
         # loaded before a call and stored back after it is a write: the callee may have changed the
         # byte in between (store).
         self._loaded: set[int] | None = None
+        # The bytes a put-back after a call left unchanged, with the value stored (one run may have
+        # loaded a byte and stored a constant equal to it, the other only stored the constant: store
+        # cannot tell a put-back from a coincidence), and those held at each event (compare).
+        self.putback: dict[int, int] = {}
+        self.putback_ev: dict[int, dict[int, int]] = {}
+        # Every byte the function loaded, and the bytes written this stretch that it loaded only before
+        # the last call (perhaps a stale value stored back), at each event: such a write is no match
+        # for the other run's put-back (compare).
+        self._all_loads: set[int] = set()
+        self.stale: set[int] = set()
+        self.stale_ev: dict[int, set[int]] = {}
+        # The bytes loaded before the last call (all stretches but this one), and the bytes written
+        # this stretch with a value store cannot tell from no change (a put-back of a byte loaded both
+        # before the call and since: the value may be the stale one), at each event: a difference only
+        # there, against a run that left the byte alone, decides nothing (compare, putback_only).
+        self._loaded_before: set[int] = set()
+        self.unsure: set[int] = set()
+        self.unsure_ev: dict[int, set[int]] = {}
         self._ckpt: dict[int, int] = {}  # dirty as the last checkpoint saw it, and the bytes touched since
         self._touched: set[int] = set()
         self.cut: str | None = None  # why the run ended as a time-out: steps, events or snapshot (compare)
@@ -491,8 +511,15 @@ class Machine:
         self.frame_record: set[int] = set()  # stack words holding the saved return address (store)
         self.saves: set[int] = set()  # stack words holding a callee-saved register's entry value (store)
         self.entry_saved: set[int] = set()  # those entry values (setup: x19-x28, d8-d15)
+        # The save slots themselves (exec STORE): a word the function stored from x19-x28 or d8-d15
+        # (or a unique copied from one) while the register held its entry value, with that value. Not
+        # by value alone: a snapshot's entry x19 or d8 is often 0, and a zeroed local is no save.
+        self.entry_regs: dict[int, int] = {}  # callee-saved register offset -> its entry value (setup)
+        self.save_slots: dict[int, int] = {}
+        self.save_src: dict[int, int] = {}  # unique offset -> the entry value it copied from such a register
         self.taken: set[int] = set()  # stack addresses the code made (`add xN, sp, #k`): local objects' starts
         self.out_at: dict[int, int] = {}  # stack bytes an out-parameter filled: the argument's address (call)
+        self.own_stack: set[int] = set()  # stack bytes the function's own code stored (exec)
         # The original's calls, for the lift's run: which arguments it wrote out-parameters
         # through and how far (call_log); the lift's Machine gets them as `guide` (port_lift).
         self.call_log: list[tuple[frozenset, dict]] = []
@@ -560,6 +587,7 @@ class Machine:
             # Above the stack arguments: the caller's frame, which the two runs place differently
             # (an index from a callee's made-up result, a loop run past its array)
             raise Inconclusive("read in the caller's frame")
+        self._all_loads.update(range(a, a + size))
         if self._loaded is not None:
             self._loaded.update(range(a, a + size))
         if self.track:
@@ -573,6 +601,14 @@ class Machine:
         o = a % PAGE
         if o + size <= PAGE:
             return int.from_bytes(self.page(a // PAGE)[o:o + size], "little")
+        return int.from_bytes(bytes(self.page((a + i) // PAGE)[(a + i) % PAGE] for i in range(size)), "little")
+
+    def peek(self, a: int, size: int) -> int:
+        """Memory as load reads it, recording nothing: the oracle's repairs look at a finished run's
+        words (port_lift), whose read_at, read_words and read_cov must stay as the run left them."""
+        a &= 0xFFFFFFFFFFFFFFFF
+        if a < NULL_PAGE:
+            raise Fault(a)
         return int.from_bytes(bytes(self.page((a + i) // PAGE)[(a + i) % PAGE] for i in range(size)), "little")
 
     def store(self, a: int, size: int, v: int, track: bool = True) -> None:
@@ -610,18 +646,54 @@ class Machine:
             # it changed the byte. Only within one stretch between call events, though: the reference
             # (the byte when this stretch first wrote it, or a value it loaded) must not predate a call
             # (checkpoint clears them), or `v = *p; f(p); *p = v` would let a lift drop the restoring
-            # store (or add one) under a callee that is not recorded. None: no reference.
+            # store (or add one) under a callee that is not recorded. None: no reference. A write
+            # that puts back the reference leaves the byte as the stretch found it: changed or not as
+            # it was then (a byte the function wrote before a call, loaded after it and stored back
+            # is still the function's write, not a byte back at its value before the function).
+            # After a call the reference is a value loaded since, which one run may have loaded and the
+            # other not: a put-back there is the whole store's (a value loaded and stored back agrees in
+            # every byte; a constant that shares a byte with what was loaded, `p->f = NAN` after reading
+            # p->f, 710073ee48, is a write in each byte, as in a run that never loaded it).
+            refs = []
             for i in range(size):
                 x = a + i
-                if x in self.before:
-                    ref = self.before[x]
-                else:
+                if x not in self.before:
                     ref = prior[i] if self._loaded is None or x in self._loaded else None
-                    self.before[x] = ref
-                if ref is not None and b[i] == ref:
-                    self.dirty.pop(x, None)
+                    self.before[x] = ref, self.dirty.get(x)
+                refs.append(self.before[x])
+            whole = self._loaded is None or all(r is not None and b[i] == r for i, (r, _) in enumerate(refs))
+            for i, (ref, was) in enumerate(refs):
+                x = a + i
+                if whole and ref is not None and b[i] == ref and was is None and self._loaded is not None \
+                        and x in self._loaded_before:
+                    # (loaded before the call and again since: `old = *p; f(); (void)*p; *p = old`
+                    # stores what the re-read found only because the emulated callee left *p alone;
+                    # the real one may change it. A write, and one no input can decide on.)
+                    self.dirty[x] = b[i]
+                    self.putback.pop(x, None)
+                    self.unsure.add(x)
+                elif whole and ref is not None and b[i] == ref:
+                    self.unsure.discard(x)
+                    if was is None:
+                        self.dirty.pop(x, None)
+                        if self._loaded is not None:
+                            self.putback[x] = b[i]
+                    else:
+                        self.dirty[x] = was
+                        self.putback.pop(x, None)
                 else:
                     self.dirty[x] = b[i]
+                    self.putback.pop(x, None)
+                    if self._loaded is not None and x in self._all_loads and x not in self._loaded:
+                        self.stale.add(x)
+                    if self._loaded is not None and ref is not None and b[i] == ref and was is None:
+                        # (a byte stored back as loaded since the call, in a store that changed
+                        # others: `ldr w; orr #1; str w` against a lift's ldrb/orrb/strb, or a constant
+                        # sharing a loaded byte, 710073ee48. A write, but the other run's leaving the
+                        # byte alone is no difference an input can show: unsure, compare.)
+                        self.unsure.add(x)
+                    else:
+                        self.unsure.discard(x)
             self._touched.update(range(a, a + size))
 
     # registers
@@ -678,6 +750,8 @@ class Machine:
             self.set_reg(off, size, v)
         elif sp == 1:
             self.uniq[off] = v
+            if self.save_src:
+                self.save_src.pop(off, None)
             if self.undef_vn:
                 self.undef_vn.difference_update((1, off + i) for i in range(size))
         elif sp == 3:
@@ -723,6 +797,8 @@ class Machine:
                 self.regs[Q0 + QSTRIDE * (k - 100):Q0 + QSTRIDE * (k - 100) + 16] = (v & (1 << 128) - 1).to_bytes(16, "little")
         self.state = {k: "entry" for k in list(range(9)) + list(range(100, 108))}
         self.entry_saved = {self.x(i) for i in range(19, 29)} | {self.reg(Q0 + QSTRIDE * i, 8) for i in range(8, 16)}
+        self.entry_regs = {X0 + 8 * i: self.x(i) for i in range(19, 29)}
+        self.entry_regs.update({Q0 + QSTRIDE * i: self.reg(Q0 + QSTRIDE * i, 8) for i in range(8, 16)})
 
     def canonical(self, target: int):
         name = self.imports(target)
@@ -823,11 +899,14 @@ class Machine:
                 # stops where this run's own frame holds another object: the next taken address, a save
                 # slot or the frame record (the guide's extent is the other frame's), or a byte this run
                 # filled as another argument's out-parameter: cleared, a lift's different store to a
-                # local placed there would go uncompared.)
+                # local placed there would go uncompared. Nor past a byte this run's own code stored
+                # with nothing filled through x8 over it since: a local whose address is taken only
+                # later, 710082a500's float passed by pointer after the call, sits there in the lift.)
                 if k == 8:
                     stop = min([t for t in self.taken | self.frame_record | self.saves if t > p] + [p + WINDOW, ENTRY_SP])
+                    own = getattr(self, "own_stack", ())
                     for q in range(p + max(extent[k], 8), stop):
-                        if self.out_at.get(q, p) != p:
+                        if self.out_at.get(q, p) != p or (q in own and q not in self.out_at):
                             break
                         self.stack_written.discard(q)
                 for j in range(0, max(extent[k], 8), 8):
@@ -866,6 +945,7 @@ class Machine:
                     if x >= NULL_PAGE and not STACK_LO <= x < STACK_TOP:
                         self.page(x // PAGE)[x % PAGE] = b
                         self.before.pop(x, None)  # (a later write of the function's compares with this)
+                        self.putback.pop(x, None)
                         if x in self.dirty:
                             self.dirty[x] = b
                             self._touched.add(x)
@@ -1014,8 +1094,9 @@ class Machine:
         """Drop what only running needs (memory pages, the write sets): a finished run that is
         kept for comparison needs its events, registers, coverage and logs."""
         self.pages, self.dirty, self.stack_written, self.uniq, self._read_seen = {}, {}, set(), {}, set()
-        self.before, self._loaded = {}, None
-        self._ckpt, self._touched = {}, set()
+        self.before, self._loaded, self._all_loads, self.putback, self.stale = {}, None, set(), {}, set()
+        self._ckpt, self._touched, self._loaded_before, self.unsure = {}, set(), set(), set()
+        self.track = False  # (a later load, a repair's look at a word, must not move read_at: peek)
 
     def checkpoint(self, event) -> None:
         if event[0] == "call" and isinstance(event[1], tuple) and event[1][1] in PURE_MATH:
@@ -1026,6 +1107,7 @@ class Machine:
         if event[0] == "call":
             # (a callee may change any byte: what was loaded or held before it is no reference for a
             # later write's being no change, store)
+            self._loaded_before |= self._all_loads if self._loaded is None else self._loaded
             self.before, self._loaded = {}, set()
         # The bytes the function's writes changed since the last checkpoint (None: no longer counted, an
         # undefined byte): the memory at an event is what all events up to it hold (written()), and
@@ -1038,6 +1120,16 @@ class Machine:
             else:
                 ck[k] = v
         self._touched = set()
+        if self.putback:
+            # (a put-back in this stretch; the next one starts after a call, which may change the byte)
+            self.putback_ev[len(self.events)] = self.putback
+            self.putback = {}
+        if self.stale:
+            self.stale_ev[len(self.events)] = self.stale
+            self.stale = set()
+        if self.unsure:
+            self.unsure_ev[len(self.events)] = self.unsure
+            self.unsure = set()
         self.events.append((event, delta))
         # (the budget counts a copy of all written memory per event, as the runs were limited before
         # events held changes; a run replaying recorded calls counts the changes)
@@ -1255,15 +1347,43 @@ class Machine:
         if name == "COPY":
             self.write(out, r(ins[0]))
             self.carry_undef(out, ins[0], 0)
+            if out[0] == 1 and out[2] == 8:
+                e = self.saved_reg(ins[0])
+                if e is not None:
+                    self.save_src[out[1]] = e
         elif name == "LOAD":
             a = r(ins[1])
             self.write(out, self.load(a, size))
             if out[0] in (1, 2):
                 self.undef_vn.update((out[0], out[1] + i) for i in range(size)
                                      if STACK_LO <= a + i < ENTRY_SP and a + i not in self.stack_written)
+                # (and from a save slot still holding a callee-saved register's entry value: the
+                # caller's, which no C code reads as data. Only an index past a local reaches it, a
+                # made-up count run past the array (7100128810: an entry past a callee-filled table
+                # copied out), and the lift's frame holds its own locals there. The epilogue's
+                # restore loads it too, into the register: undefined there only until written. The
+                # original's run only: compare() skips a byte either run's undef_mem holds, so the
+                # lift reading its own saves, a wrong bound or offset, would decide what the original
+                # is compared on; the original's undefined store already skips the same address.)
+                if self.save_slots and self.lift is None and STACK_LO <= a < ENTRY_SP:
+                    hit = [s for s, e in self.save_slots.items() if s < a + size and a < s + 8
+                           and int.from_bytes(bytes(self.page((s + i) // PAGE)[(s + i) % PAGE] for i in range(8)),
+                                              "little") == e]
+                    if hit:
+                        self.undef_vn.update((out[0], out[1] + i) for i in range(size)
+                                             if any(s <= a + i < s + 8 for s in hit))
         elif name == "STORE":
             a = r(ins[1])
             self.store(a, ins[2][2], r(ins[2]))
+            if STACK_LO <= a < ENTRY_SP:
+                for s in [s for s in self.save_slots if s < a + ins[2][2] and a < s + 8]:
+                    del self.save_slots[s]
+                e = self.saved_reg(ins[2]) if ins[2][2] == 8 else None
+                if e is not None:
+                    self.save_slots[a] = e
+                self.own_stack.update(range(a, a + ins[2][2]))
+                for x in range(a, a + ins[2][2]):
+                    self.out_at.pop(x, None)  # (the function's own now, not an out-parameter's)
             if self.undef_vn and ins[2][0] in (1, 2):
                 for i in range(ins[2][2]):
                     if (ins[2][0], ins[2][1] + i) in self.undef_vn:
@@ -1302,6 +1422,20 @@ class Machine:
             self.userop(self.userops.get(ins[0][1], "?"), out, ins[1:])
         else:
             raise Inconclusive(f"P-code {name}")
+
+    def saved_reg(self, vn) -> int | None:
+        """The entry value vn holds when it is a callee-saved register (x19-x28, d8-d15) still holding
+        it, or a unique copied from one (save_src); else None."""
+        sp, off, size = vn
+        if size != 8:
+            return None
+        if sp == 2:
+            e = self.entry_regs.get(off)
+            return e if e is not None and self.reg(off, 8) == e else None
+        if sp == 1:
+            e = self.save_src.get(off)
+            return e if e is not None and self.uniq.get(off) == e else None
+        return None
 
     def carry_undef(self, out, src, skip: int) -> None:
         """A copy (or a zero extension, or a part from byte `skip` on) carries undefined bytes."""
@@ -1503,11 +1637,17 @@ def compare(a: Machine, b: Machine, ret: str | None) -> str:
         # drop or move a load whose value decides nothing, so the end proves nothing (the lift
         # may crash later on what followed). What both did before the original's crash must still
         # agree (calls and writes, not their memory at the crash, which the lift may have passed).
+        def arg(e, k, bits):
+            # (a 32-bit argument compares its low half, as below: fn_710064fb5c's s0, a whole v8
+            # copy of the incoming float in the original, an f32 in the lift)
+            v = dict(e[3]).get(k)
+            return v & 0xFFFFFFFF if bits == 32 and isinstance(v, int) else v
+
         for i in range(len(ea) - 1):
             if i >= len(eb) or ea[i] != eb[i]:
                 if i < len(eb) and ea[i][0][0] == eb[i][0][0] == "call" and ea[i][0][1] == eb[i][0][1] \
-                        and ea[i][1] == eb[i][1] and all(same_arg(dict(ea[i][0][3]).get(k), dict(eb[i][0][3]).get(k), frame)
-                                                         for k, _ in ea[i][0][2]):
+                        and ea[i][1] == eb[i][1] and all(same_arg(arg(ea[i][0], k, bits), arg(eb[i][0], k, bits), frame)
+                                                         for k, bits in ea[i][0][2]):
                     continue
                 if i == len(eb) - 1 and end_b == ("end", "time-out"):
                     return "skip: the lift was cut off before the original's fault"
@@ -1537,6 +1677,8 @@ def compare(a: Machine, b: Machine, ret: str | None) -> str:
         if ma != mb:
             if a.clipped or b.clipped:
                 return "skip: a memset or memcpy was clipped at 64 KiB"  # (each run's own base: fn_710122e6f0)
+            if putback_only(a, b, ea, eb, i):
+                return "skip: a byte one run put back (or may have) after a call, the other wrote or left alone"
             return f"memory at event {i} ({va[0]}): {mem_diff(ma, mb)}"
     if ta and tb:
         # Both cut off: what came after the cut was never compared (a long loop of the same calls in
@@ -1653,6 +1795,36 @@ def written(events, upto: int) -> set:
         for k, v in m:
             (held.discard if v is None else held.add)(k)
     return held
+
+
+def putback_only(a: Machine, b: Machine, ea, eb, i: int) -> bool:
+    """Whether the runs' memory at event `i` differs only in bytes one run left unchanged by storing,
+    after a call, the value it had loaded since (Machine.putback) and the other wrote with that same
+    value: `f(); (void)p->n; p->n = 0` against `f(); p->n = 0` with p->n loaded as 0 (710002a074).
+    store cannot tell such a put-back from a constant that equals what was loaded, so the input decides
+    nothing (a skip, never an agreement). Not where the writer loaded the byte only before the call:
+    `x = *p; f(); *p = x` stores a value stale if the callee changed *p, a real difference that no
+    input shows, as the emulated callee leaves *p alone (Machine.stale)."""
+    pa, pb = getattr(a, "putback_ev", {}).get(i, {}), getattr(b, "putback_ev", {}).get(i, {})
+    ua, ub = getattr(a, "unsure_ev", {}).get(i, set()), getattr(b, "unsure_ev", {}).get(i, set())
+    if not (pa or pb or ua or ub):
+        return False
+    sa, sb = {}, {}
+    for s, ev in ((sa, ea), (sb, eb)):
+        for _, m in ev[:i + 1]:
+            for k, v in m:
+                if v is None:
+                    s.pop(k, None)
+                else:
+                    s[k] = v
+    # (the writer's byte must not be one it loaded only before the call: `x = *p; f(); *p = x`)
+    xa, xb = getattr(a, "stale_ev", {}).get(i, set()), getattr(b, "stale_ev", {}).get(i, set())
+    diff = [k for k in set(sa) | set(sb) if sa.get(k) != sb.get(k)]
+    # (or a byte one run wrote with a value store could not tell from no change, Machine.unsure, and
+    # the other left alone)
+    return bool(diff) and all((k not in sa and k not in xb and pa.get(k) == sb.get(k))
+                              or (k not in sb and k not in xa and pb.get(k) == sa.get(k))
+                              or (k not in sb and k in ua) or (k not in sa and k in ub) for k in diff)
 
 
 def mem_diff(ma, mb) -> str:

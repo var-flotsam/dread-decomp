@@ -689,8 +689,8 @@ class Lifter:
                 # 32-bit write leaves too: zero-extended)
                 va, vc = (f"(u64)({va[0]})", "u64"), (f"(u64)({vc[0]})", "u64")
             if sem and (va is None) != (vc is None) and n not in m.poison \
-                    and not (n == 100 and (a if va is None else c).fcall  # (s0: a call's unread float result,
-                             and (va or vc)[0] != "f0"):                  # unless the other path's is the parameter)
+                    and not (n == 100 and self.float_result((a if va is None else c).fcall)  # (s0: a call's unread
+                             and (va or vc)[0] != "f0"):  # float result, unless the other path's is the parameter)
                 # Semantic mode: one path has no value here (a call clobbered the register, or it was
                 # never set), which is garbage in the original; the other path's value stands. Before
                 # the if, it is in scope already; otherwise a phi that the other path leaves at zero.
@@ -1257,6 +1257,63 @@ class Lifter:
             if read == {100}:
                 return (100, 0)
         return order
+
+    def float_result(self, fcall) -> bool:
+        """Whether a call's unread s0/d0 (State.fcall) may be its float result: not when the
+        callee is direct and no caller reads s0/d0 right after it (abi_facts.result_main without
+        100), so that a merge keeps the other path's float in s0 (fn_7100900c44: a float computed
+        on one path and passed on at the join, the skip path's v0 the void callee's garbage)."""
+        if not fcall:
+            return False
+        fn = fcall[3] if len(fcall) > 3 else None
+        if "semantic" in self.opts and self.main is not None and fn and re.fullmatch(r"fn_[0-9a-f]{10}", fn):
+            return 100 in self.main(int(fn[3:], 16)) or self.join_reads_s0(fcall)
+        return True
+
+    def join_reads_s0(self, fcall) -> bool:
+        """Whether this function itself may read the call's s0/d0 where result_main does not look:
+        its forward scan from the call stops at the first branch target, so a call falling into a
+        join with s0 neither read nor written (`fmov s0, #1.0; cbz w0, L; bl F; L: fadd s0, s0, s0`)
+        is no evidence from this caller, and when s0/d0 is read from that join on before it is
+        written, F's result may be the float read there (F's only caller, or all alike)."""
+        j = getattr(self, "call_pos", {}).get(fcall[0])
+        if j is None:
+            return True  # (no record of the call: as before result_main was consulted)
+        targets = set()
+        for y in self.ins:
+            if y.mnemonic.startswith(("b", "cb", "tb")) and y.mnemonic not in ("bl", "blr", "br") and y.operands \
+                    and y.operands[-1].type == arm64.ARM64_OP_IMM:
+                targets.add(y.operands[-1].imm)
+        at = {y.address: k for k, y in enumerate(self.ins)}
+        f0 = {"s0", "d0", "q0", "v0", "h0", "b0"}
+        for k in range(j + 1, len(self.ins)):
+            y = self.ins[k]
+            if y.address in targets:
+                return self.v0_read_from(k)
+            reads, writes = ({regname(q) for q in r} for r in y.regs_access())
+            if y.mnemonic in ("fmov", "movi") and y.operands[-1].type != arm64.ARM64_OP_REG:
+                reads = set()
+            if reads & f0:
+                return True  # (result_main has this read: not reached when it says void)
+            if y.mnemonic == "b" and y.operands and y.operands[-1].type == arm64.ARM64_OP_IMM \
+                    and y.operands[-1].imm in at:
+                # (`bl F; b L2`: result_main takes a b for a tail call and looks no further)
+                return self.v0_read_from(at[y.operands[-1].imm])
+            if writes & f0 or y.mnemonic in ("bl", "blr", "b", "br", "ret"):
+                return False
+        return False
+
+    def v0_read_from(self, k: int) -> bool:
+        """Whether instruction k on (address order) reads v0 at any width before writing it."""
+        for y in self.ins[k:]:
+            reads, writes = ({regname(q) for q in r} for r in y.regs_access())
+            if y.mnemonic in ("fmov", "movi") and y.operands[-1].type != arm64.ARM64_OP_REG:
+                reads = set()
+            if reads & {"s0", "d0", "q0", "v0", "h0", "b0"}:
+                return True
+            if writes & {"s0", "d0", "q0", "v0", "h0", "b0"}:
+                return False
+        return False
 
     def va_save(self, x, mem) -> bool:
         """Semantic mode: `stp q<n>, q<n+1>, [..]` of incoming argument registers (q0-q7, none
@@ -2693,6 +2750,9 @@ class Lifter:
             # Until s0/d0 is read (then the callee returns a float; see retype_call).
             var = self.s.vals[0][0] if 0 in self.s.vals else "X0"
             self.s.fcall = (len(self.body) - 1, var, call) + self.last_call
+            if not hasattr(self, "call_pos"):
+                self.call_pos = {}
+            self.call_pos[len(self.body) - 1] = self.pos  # (the call's instruction, float_result)
             if m == "bl" and "semantic" in self.opts and self.orig.plt_import(o[0].imm) in LIBM_IMPORTS:
                 # A libm import returns its float in s0/d0 (an inlined fsqrt's sqrtf fallback for a
                 # NaN, its result passed on past the join: fn_71010c1da0)
@@ -3137,24 +3197,28 @@ class FlatLifter(Lifter):
         self.line(f"if (!({cond})) goto L_{target:x};")
 
     def edge(self, target: int) -> None:
-        self.edges.setdefault(target, []).append((dict(self.s.consts), dict(self.s.pages)))
+        self.edges.setdefault(target, []).append((dict(self.s.consts), dict(self.s.pages), set(self.s.written)))
 
     def join_consts(self, a: int, prev) -> None:
         """Semantic mode, at a label: the known constants and pages are those every way in agrees
         on (fn_7100713e2c sets w8 to +pi/2 before a `b` to the label and to -pi/2 falling into it,
         and an `fmov s0, w8` there must read the register); none for a loop's head (a branch from
-        below, not seen yet). A dropped page is still in its register (step, adrp)."""
+        below, not seen yet). A dropped page is still in its register (step, adrp). The argument
+        registers written since the last call are those any forward way in wrote (an indirect
+        call passes them: fn_710096db24's s2 = 1.0 on one way into the join before a `blr`)."""
         ways = self.edges.pop(a, [])
         if prev is not None and prev.mnemonic not in ("b", "br", "ret", "brk"):
-            ways.append((self.s.consts, self.s.pages))
+            ways.append((self.s.consts, self.s.pages, self.s.written))
+        if ways:
+            self.s.written = set().union(*(w for _, _, w in ways))
         if any(src >= a for src in self.sources.get(a, [])):
             self.s.consts, self.s.pages = {}, {}
             return
         if not ways:
             return
         meet = lambda ds: {n: v for n, v in ds[0].items() if all(d.get(n) == v for d in ds[1:])}
-        self.s.consts = meet([c for c, _ in ways])
-        self.s.pages = meet([p for _, p in ways])
+        self.s.consts = meet([c for c, _, _ in ways])
+        self.s.pages = meet([p for _, p, _ in ways])
 
     def clobber(self) -> None:
         s = self.s

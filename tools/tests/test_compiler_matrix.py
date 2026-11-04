@@ -87,7 +87,7 @@ class RunConfig(unittest.TestCase):
     def test_command_line(self):
         compiler_matrix.run_config("9.9.9", "leaf", "9.0.1", "-O2", "a57", None)
         cmd = self.calls[0]
-        self.assertEqual(cmd[0], "/fake/clang-9.0.1")
+        self.assertEqual(cmd[0], str(Path("/fake/clang-9.0.1")))  # backslashes on Windows
         self.assertEqual(cmd[1:1 + len(compiler_matrix.BASE_FLAGS)], compiler_matrix.BASE_FLAGS)
         self.assertEqual(cmd[-5:-2], ["-O2", "-mcpu=cortex-a57", str(self.root / "src/compiler_id/fn_a.cpp")])
         self.assertEqual(cmd[-2], "-o")
