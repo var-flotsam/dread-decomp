@@ -1125,10 +1125,11 @@ def main() -> int:
                                           "that hit the budget")
     ap.add_argument("--mutants", type=int, default=0,
                     help="test the oracle: inject one fault into N accepted lifts and count how many it rejects")
-    ap.add_argument("--small-out-counts", action="store_true",
+    ap.add_argument("--small-out-counts", action=argparse.BooleanOptionalAction, default=True,
                     help="a callee's made-up out-parameter word that the original compares with a non-constant or "
                          "scales into an address (a loop count, an index), and never dereferences, gets a value of "
-                         f"0-{SMALL_COUNT - 1} instead of the seed's, in both runs (off: as before)")
+                         f"0-{SMALL_COUNT - 1} instead of the seed's, in both runs (default on since round 10's A/B: "
+                         "9 gained, none lost on 536; --no-small-out-counts as before)")
     ap.add_argument("--no-fuzz", action="store_true",
                     help="seeded inputs only (no mutated inputs after the seeds; the oracle before 2026-10-27)")
     ap.add_argument("-v", "--verbose", action="store_true", help="print each function's outcome")
@@ -1140,11 +1141,11 @@ def main() -> int:
                     help="ADDR[,ADDR...]: also override these src/lifted definitions with a semantic lift (for a byte-mode"
                          " lift that is wrong on x86-64 for another reason, such as a data table read through a string"
                          " literal; until gen_lift is fixed)")
-    ap.add_argument("--junk-scratch", action="store_true",
+    ap.add_argument("--junk-scratch", action=argparse.BooleanOptionalAction, default=True,
                     help="track the registers a call leaves undefined (x9-x18, v16-v31, v8-v15's upper halves): an "
                          "input on which the original's compared argument, store, branch or result depends on one is "
-                         "skipped "
-                         "(pcode_emu.Machine.junk_scratch; off by default)")
+                         "skipped (pcode_emu.Machine.junk_scratch; default on since round 10's A/B: 1 gained, none "
+                         "lost on 536; --no-junk-scratch as before)")
     ap.add_argument("--no-overrides", action="store_true",
                     help="leave those definitions alone (by default each gets a semantic lift that overrides it, "
                          "added to the worklist unless --only or --top is given)")
