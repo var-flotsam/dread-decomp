@@ -755,7 +755,8 @@ class Oracle:
         When no input agreed and the original was cut off on some (a long loop: out of steps, or of
         events or snapshot room, a loop that calls), the first RETRY_INPUTS of those are run again,
         both sides, with RETRY_SCALE times the limits: two runs cut off still decide nothing
-        (pcode_emu.compare)."""
+        (pcode_emu.compare). A pass needs an agreement on an input the original ended on without a
+        fault: agreements where both runs crashed alike alone are inconclusive."""
         start, size = lo.functions[addr]
         bad = [n for p, ns in lo.unresolved.items() if start <= p < start + size for n in ns]
         if bad:
@@ -764,6 +765,13 @@ class Oracle:
         word = lambda a: pcode_emu._word(lo, a)  # noqa: E731
         preset = {**self.preset_orig, **{g: 1 for g in lo.guards}}
         agreed, why, covered, retry = 0, "", set(), []
+        # (agreements on an input the original ended on without a fault: two runs that crashed alike
+        # were compared only up to the crash, never on the result or what follows it, so a function
+        # whose every agreement is a crash in both is not shown equivalent, pcode_emu.compare)
+        ended = 0
+
+        def crashed(mo) -> bool:
+            return bool(mo.events) and mo.events[-1][0] == ("end", "fault")
 
         def one(seed, ovr, mo, scale) -> tuple[str, str]:
             """('agree' | 'skip' | 'fail', detail) for the lift on one input the original ran."""
@@ -806,7 +814,8 @@ class Oracle:
                     retry.append((seed, ovr))
                 continue
             agreed += 1
-        if not agreed and retry:
+            ended += not crashed(mo)
+        if not ended and retry:
             scale = pcode_emu.RETRY_SCALE
             for seed, ovr in retry:
                 if self.out_of_time("retries"):
@@ -833,10 +842,14 @@ class Oracle:
                     return "fail", f"{d} (with {scale}x the limits)", agreed, covered
                 if v == "agree":
                     agreed += 1
+                    ended += not crashed(mo)
                 else:
                     why = f"{d} (also with {scale}x the limits)"
         if not agreed:
             return "inconclusive", why or "no input", 0, covered
+        if not ended:
+            return "inconclusive", f"only crash agreements: the original faulted on every input that agreed ({agreed})", \
+                0, covered
         return "pass", why, agreed, covered
 
 
