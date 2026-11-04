@@ -12,7 +12,7 @@
 #include "types.h"
 
 struct UnkCentralUnitDoor_b46a2;
-void fn_71008ca700(UnkCentralUnitDoor_b46a2* door, u32 open);
+void fn_71008ca700(UnkCentralUnitDoor_b46a2* door, bool open);
 
 struct UnkStruct_710024fa0c;
 void fn_710024fa0c(UnkStruct_710024fa0c*, bool);

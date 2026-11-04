@@ -137,7 +137,7 @@ address,size,name,name_source,subsystem,status
 0x7100a07468,4,fn_7100a07468,unknown,unknown,O
 0x7100a0746c,580,fn_7100a0746c,unknown,unknown,U
 0x7100a076b0,380,fn_7100a076b0,unknown,unknown,U
-0x7100a0782c,508,fn_7100a0782c,unknown,unknown,U
+0x7100a0782c,508,fn_7100a0782c,unknown,unknown,O
 0x7100a07a28,104,fn_7100a07a28,unknown,unknown,O
 0x7100a07a90,196,fn_7100a07a90,unknown,unknown,U
 0x7100a07b54,4,fn_7100a07b54,unknown,unknown,O
@@ -1019,7 +1019,7 @@ address,size,name,name_source,subsystem,status
 0x7100a29708,352,CLavapumpThermalReactionComponent::refl_InitClass,reflection,game/components,O
 0x7100a29868,4,fn_7100a29868,unknown,game/components?,O
 0x7100a2986c,36,fn_7100a2986c,unknown,game/components?,O
-0x7100a29890,472,fn_7100a29890,unknown,game/components?,U
+0x7100a29890,472,fn_7100a29890,unknown,game/components?,O
 0x7100a29a68,580,fn_7100a29a68,unknown,game/components?,U
 0x7100a29cac,28,fn_7100a29cac,unknown,game/components?,O
 0x7100a29cc8,132,fn_7100a29cc8,unknown,game/components?,O
@@ -3563,14 +3563,14 @@ address,size,name,name_source,subsystem,status
 0x7100a8eba0,72,fn_7100a8eba0,unknown,game/components?,O
 0x7100a8ebe8,944,fn_7100a8ebe8,unknown,game/components?,U
 0x7100a8ef98,96,fn_7100a8ef98,unknown,game/components?,O
-0x7100a8eff8,472,fn_7100a8eff8,unknown,game/components?,U
+0x7100a8eff8,472,fn_7100a8eff8,unknown,game/components?,O
 0x7100a8f1d0,180,fn_7100a8f1d0,unknown,game/components?,U
 0x7100a8f284,148,fn_7100a8f284,unknown,game/components?,O
 0x7100a8f318,52,fn_7100a8f318,unknown,game/components?,O
 0x7100a8f34c,252,fn_7100a8f34c,unknown,game/components?,U
 0x7100a8f448,264,fn_7100a8f448,unknown,game/components?,U
 0x7100a8f550,68,fn_7100a8f550,unknown,game/components?,O
-0x7100a8f594,432,fn_7100a8f594,unknown,game/components?,U
+0x7100a8f594,432,fn_7100a8f594,unknown,game/components?,O
 0x7100a8f744,28,fn_7100a8f744,unknown,game/components?,O
 0x7100a8f760,132,fn_7100a8f760,unknown,game/components?,O
 0x7100a8f7e4,8,fn_7100a8f7e4,unknown,game/components?,O
@@ -4118,7 +4118,7 @@ address,size,name,name_source,subsystem,status
 0x7100aa6558,492,fn_7100aa6558,unknown,game/components?,U
 0x7100aa6744,24,fn_7100aa6744,unknown,game/components?,O
 0x7100aa675c,316,fn_7100aa675c,unknown,game/components?,U
-0x7100aa6898,404,fn_7100aa6898,unknown,game/components?,U
+0x7100aa6898,404,fn_7100aa6898,unknown,game/components?,O
 0x7100aa6a2c,496,fn_7100aa6a2c,unknown,game/components?,U
 0x7100aa6c1c,16,fn_7100aa6c1c,unknown,game/components?,O
 0x7100aa6c2c,792,fn_7100aa6c2c,unknown,game/components?,U
