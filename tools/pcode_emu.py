@@ -434,6 +434,13 @@ class Machine:
     # The function under test's own abi_facts (port_lift.machine, the original's run): an indirect
     # call with x8 still as it came in is passed x8 when the function's callers set it (Facts.fwd).
     own_facts = None
+    # port_lift --small-out-counts (off: both stay as here, and nothing below changes a run). The
+    # original's run tracks which made-up out-parameter words (keys (call, argument, offset), as
+    # ("o", key) overrides) its code then compares with a non-constant or scales into an address,
+    # and never dereferences (count_keys); a run given small_outs fills those words with the small
+    # value there instead of the seed's, the lift's run the same (Oracle.run_original, check).
+    count_track = False
+    small_outs: dict = {}
 
     def __init__(self, db: dict, image: ImageMemory, seed: int, inside, code_word, lift: LiftObject | None,
                  imports: dict[int, str], facts, preset: dict[int, int], dictionary: tuple = (),
@@ -534,6 +541,13 @@ class Machine:
         self.vnarrow: dict[int, bool] = {}  # v<n> -> its last write was s<n> (4 bytes at its start)
         self.vnarrow_at: dict[int, int] = {}  # v<n> -> the instruction (step) of that s<n> write
         self.out_words: list = []  # ((call, argument, offset), word): the out-parameter words written
+        # (count_track: per byte, (space, offset) of a register or unique and an address of memory,
+        # the out-parameter words its value came from, key -> 0 as it was or 1 scaled (an index);
+        # the keys compared with a non-constant or scaled into an address, and those dereferenced)
+        self.ct_vn: dict = {}
+        self.ct_mem: dict = {}
+        self.count_uses: set = set()
+        self.count_deref: set = set()
         self.results: list = []  # each call's x0, the first MAX_RESULTS_KEPT (a crash on one: Oracle.originals)
         self.events: list = []
         self.snapshot_bytes = 0  # written bytes copied into events so far (checkpoint)
@@ -620,6 +634,9 @@ class Machine:
         for i in range(size):
             x = a + i
             self.page(x // PAGE)[x % PAGE] = b[i]
+        if self.count_track and self.ct_mem:
+            for x in range(a, a + size):
+                self.ct_mem.pop(x, None)
         if not track:
             return
         if STACK_LO <= a < ENTRY_SP:
@@ -702,6 +719,9 @@ class Machine:
 
     def set_reg(self, off: int, size: int, v: int) -> None:
         self.regs[off:off + size] = (v & ((1 << (8 * size)) - 1)).to_bytes(size, "little")
+        if self.count_track and self.ct_vn:
+            for i in range(size):
+                self.ct_vn.pop((2, off + i), None)
         if self.undef_vn:
             self.undef_vn.difference_update((2, off + i) for i in range(size))
         if X0 <= off < X0 + 72:
@@ -750,6 +770,9 @@ class Machine:
             self.set_reg(off, size, v)
         elif sp == 1:
             self.uniq[off] = v
+            if self.count_track and self.ct_vn:
+                for i in range(size):
+                    self.ct_vn.pop((1, off + i), None)
             if self.save_src:
                 self.save_src.pop(off, None)
             if self.undef_vn:
@@ -916,10 +939,20 @@ class Machine:
                     # ("o", (n, k, j)) overrides one, for the oracle's repairs, out_words lists them)
                     v = self.overrides.get(("o", (n, k, j)),
                                            self.word(mix(self.seed, n, k, j)) if self.seed % 2 else mix(n, k, j))
+                    if self.small_outs and ("o", (n, k, j)) not in self.overrides:
+                        v = self.small_outs.get((n, k, j), v)  # (--small-out-counts: a count, small)
                     self.store(p + j, 8, v)
                     self.out_at.update((p + j + i, p) for i in range(8))
+                    if self.count_track:
+                        t = {(n, k, j): 0}
+                        for i in range(8):
+                            self.ct_mem[p + j + i] = t
                     if len(self.out_words) < 64:
                         self.out_words.append(((n, k, j), v))
+        if self.count_track and self.ct_vn:  # (the registers the callee leaves garbage, and x0/v0)
+            for key in [key for key in self.ct_vn if key[0] == 2 and (X0 <= key[1] < X0 + 8 * 19 or Q0 <= key[1]
+                                                                     or NG <= key[1] <= OV)]:
+                del self.ct_vn[key]
         for i in CALLER_SAVED_X:
             self.regs[X0 + 8 * i:X0 + 8 * i + 8] = (mix(n, 7, i) >> 1).to_bytes(8, "little")
             if i <= 8:
@@ -1097,6 +1130,7 @@ class Machine:
         self.before, self._loaded, self._all_loads, self.putback, self.stale = {}, None, set(), {}, set()
         self._ckpt, self._touched, self._loaded_before, self.unsure = {}, set(), set(), set()
         self.track = False  # (a later load, a repair's look at a word, must not move read_at: peek)
+        self.__dict__.pop("exec", None)  # (track_counts' binding: the run is over)
 
     def checkpoint(self, event) -> None:
         if event[0] == "call" and isinstance(event[1], tuple) and event[1][1] in PURE_MATH:
@@ -1316,6 +1350,8 @@ class Machine:
         self.uniq.clear()
         if self.undef_vn:
             self.undef_vn = {k for k in self.undef_vn if k[0] != 1}
+        if self.count_track and self.ct_vn:
+            self.ct_vn = {k: t for k, t in self.ct_vn.items() if k[0] != 1}
         i, n = 0, len(ops)
         while i < n:
             code, out, ins = ops[i]
@@ -1339,6 +1375,90 @@ class Machine:
             self.exec(code, out, ins)
             i += 1
         return "next", 0
+
+    # P-code ops whose output is a flag: a count compared, never a count itself
+    COUNT_COMPARES = frozenset({"INT_EQUAL", "INT_NOTEQUAL", "INT_LESS", "INT_LESSEQUAL", "INT_SLESS",
+                                "INT_SLESSEQUAL", "INT_CARRY", "INT_SCARRY", "INT_SBORROW"})
+    # P-code ops whose output carries their inputs' out-parameter words (others' carry none)
+    COUNT_CARRIES = frozenset({"COPY", "INT_ZEXT", "INT_SEXT", "SUBPIECE", "PIECE", "INT_ADD", "INT_SUB",
+                               "INT_AND", "INT_OR", "INT_XOR", "INT_2COMP", "INT_NEGATE", "INT_RIGHT",
+                               "INT_SRIGHT", "INT_DIV", "INT_SDIV", "INT_REM", "INT_SREM", "INT_MULT", "INT_LEFT"})
+
+    def count_taint(self, vn) -> dict:
+        """The out-parameter words vn's bytes came from (key -> the highest level)."""
+        if vn[0] not in (1, 2):
+            return {}
+        t: dict = {}
+        for i in range(vn[2]):
+            for key, lv in self.ct_vn.get((vn[0], vn[1] + i), {}).items():
+                if lv >= t.get(key, -1):
+                    t[key] = lv
+        return t
+
+    def track_counts(self) -> None:
+        """--small-out-counts' tracking for this run (the original's): count_exec runs each op."""
+        self.count_track = True
+        self.exec = self.count_exec
+
+    def count_exec(self, code: int, out, ins) -> None:
+        """exec with --small-out-counts' tracking (the original's run): the op as exec runs it, and
+        which made-up out-parameter words its inputs carry. A word compared with a non-constant (a
+        loop's `i < n`; a constant is a null test or a clamp) or multiplied or shifted by a constant
+        into an address (an index, scaled) is a count; one an address holds as it is, a pointer
+        dereferenced, is not (count_keys)."""
+        if not (self.ct_vn or self.ct_mem):
+            Machine.exec(self, code, out, ins)
+            return
+        name = OPNAMES[code]
+        ins_t = [self.count_taint(v) for v in ins]
+        if name in ("LOAD", "STORE"):
+            a = self.read_quiet(ins[1])
+            size = out[2] if name == "LOAD" else ins[2][2]
+            for key, lv in ins_t[1].items():
+                (self.count_uses if lv else self.count_deref).add(key)
+        if name in self.COUNT_COMPARES and len(ins) == 2:
+            for x, y in ((0, 1), (1, 0)):
+                if ins_t[x] and ins[y][0] != 0:
+                    self.count_uses.update(ins_t[x])
+        Machine.exec(self, code, out, ins)
+        t: dict = {}
+        if name == "LOAD":
+            for x in range(a, a + size):
+                for key, lv in self.ct_mem.get(x, {}).items():
+                    t[key] = max(lv, t.get(key, 0))
+        elif name == "STORE":
+            t = ins_t[2]
+            if t:
+                for x in range(a, a + size):
+                    self.ct_mem[x] = t
+            return
+        elif name in self.COUNT_CARRIES:
+            for i, ti in enumerate(ins_t):
+                scaled = name == "INT_MULT" or (name == "INT_LEFT" and i == 0 and ins[1][0] == 0 and ins[1][1])
+                for key, lv in ti.items():
+                    lv = 1 if scaled else lv
+                    t[key] = max(lv, t.get(key, 0))
+        if out and out[0] in (1, 2):
+            for i in range(out[2]):
+                if t:
+                    self.ct_vn[(out[0], out[1] + i)] = t
+                else:
+                    self.ct_vn.pop((out[0], out[1] + i), None)
+
+    def read_quiet(self, vn) -> int:
+        """vn's value as read() gives it, recording nothing (count_exec's look at an address)."""
+        sp, off, size = vn
+        if sp == 0:
+            return off
+        if sp == 2:
+            return int.from_bytes(self.regs[off:off + size], "little")
+        if sp == 1:
+            return self.uniq.get(off, 0) & ((1 << (8 * size)) - 1)
+        return 0  # (an address held in memory: none in AArch64's P-code)
+
+    def count_keys(self) -> set:
+        """The out-parameter words this run used as a count and never as a pointer (count_exec)."""
+        return self.count_uses - self.count_deref
 
     def exec(self, code: int, out, ins) -> None:
         name = OPNAMES[code]

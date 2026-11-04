@@ -113,6 +113,17 @@ LOOP_REPAIRS = 4    # of them in a row, a loop's elements repaired one by one (e
 # seed's. (Only seed 7's moved: the arena words the others' repairs read are the ones they ended on.)
 REPAIR_POINTER = pcode_emu.ARENA + 0x40000100
 REPAIR_ALIASED_SEED = (POINTER - pcode_emu.ARENA) // 0x100000 // 16
+# --small-out-counts: a made-up out-parameter word the original uses as a count (Machine.count_keys)
+# gets a value below SMALL_COUNT instead of the seed's (64 random bits every other seed: a loop over a
+# local array walked past it, into frame bytes the two runs lay out differently), and the original is
+# run again with it, up to COUNT_ROUNDS times while the run finds more such words.
+SMALL_COUNT = 9
+COUNT_ROUNDS = 4
+
+
+def small_count(seed: int, key: tuple) -> int:
+    """The small value of out-parameter word key = (call, argument, offset) under a seed."""
+    return pcode_emu.mix(seed, *key, 0xC0) % SMALL_COUNT
 
 
 def placed(base, w: int, v: int) -> int:
@@ -439,6 +450,8 @@ def pcode_db(words: set[int], cache: Path) -> dict:
 # --- the oracle --------------------------------------------------------------------------------------
 
 class Oracle:
+    small_counts = False  # --small-out-counts (_init_worker sets it for the process)
+
     def __init__(self, orig: asmdiff.Original, facts: abi_facts.AbiFacts, db: dict, inputs: int, fuzz: bool = True):
         self.orig, self.af, self.db, self.inputs, self.fuzz = orig, facts, db, inputs, fuzz
         self.image = pcode_emu.ImageMemory(orig.img)
@@ -697,13 +710,45 @@ class Oracle:
         return self.orig_runs[addr]
 
     def run_original(self, addr: int, seed: int, ovr: dict, scale: int = 1):
-        """One run of the original on an input (raises pcode_emu.Inconclusive)."""
+        """One run of the original on an input (raises pcode_emu.Inconclusive). With small_counts,
+        the out-parameter words the run used as counts (and no ("o", key) sets) are made small and
+        the original run again, while that finds more (COUNT_ROUNDS): the run kept is the last that
+        ran, its small_outs the input's, which check() gives the lift's run too. A round that is
+        inconclusive keeps the round before it (or raises the first run's exception)."""
+        if not self.small_counts:
+            return self.one_original(addr, seed, ovr, scale, {})[0]
+        small: dict = {}
+        m, err = self.one_original(addr, seed, ovr, scale, small)
+        for _ in range(COUNT_ROUNDS):
+            keys = {k for k in m.count_keys() if k not in small and ("o", k) not in ovr}
+            if not keys:
+                break
+            small = {**small, **{k: small_count(seed, k) for k in sorted(keys)}}
+            m2, err2 = self.one_original(addr, seed, ovr, scale, small)
+            if err2 is not None:
+                break
+            m, err = m2, None
+        if err is not None:
+            raise err
+        return m
+
+    def one_original(self, addr: int, seed: int, ovr: dict, scale: int, small: dict):
+        """(the run, None), or (the machine, the pcode_emu.Inconclusive it raised) under small_counts;
+        without them it raises."""
         size = self.orig.sizes[addr]
         m = self.machine(seed, lambda a: addr <= a < addr + size, self.image_word, None, self.preset_orig,
                          self.dicts[addr], ovr, True, addr, scale=scale)
-        m.run(addr)
+        if self.small_counts:
+            m.small_outs = small
+            m.track_counts()
+            try:
+                m.run(addr)
+            except pcode_emu.Inconclusive as e:
+                return m, e
+        else:
+            m.run(addr)
         m.shrink()
-        return m
+        return m, None
 
     def check(self, addr: int, lo: pcode_emu.LiftObject, ret: str | None) -> tuple[str, str, int, set]:
         """('pass' | 'fail' | 'inconclusive', detail, conclusive runs, original addresses covered).
@@ -725,6 +770,8 @@ class Oracle:
             ml = self.machine(seed, lambda a: text[0] <= a < text[1], word, lo, preset, self.dicts[addr], ovr,
                               addr=addr, guide=mo.call_log, scale=scale)
             ml.noret_at = mo.noret_call  # (the original's run ended on a call that never returns)
+            if mo.small_outs:
+                ml.small_outs = mo.small_outs  # (--small-out-counts: the input's small count words)
             try:
                 ml.run(start)
             except pcode_emu.Inconclusive as e:
@@ -797,8 +844,10 @@ _CTX: dict = {}
 
 
 def _init_worker(version: str, lo_paths: list, db_path: Path, inputs: int, debug: bool, fuzz: bool = True,
-                 budget: float = None, budget_pass: str = "inconclusive", budget_keep: frozenset = frozenset()) -> None:
+                 budget: float = None, budget_pass: str = "inconclusive", budget_keep: frozenset = frozenset(),
+                 small_counts: bool = False) -> None:
     """An oracle process: the image, the P-code, the facts cache; objects load on first use."""
+    Oracle.small_counts = small_counts
     orig = asmdiff.Original(version)
     af = abi_facts.AbiFacts(orig, callgraph.load_rows())
     af.version = version
@@ -1075,6 +1124,10 @@ def main() -> int:
                                           "that hit the budget")
     ap.add_argument("--mutants", type=int, default=0,
                     help="test the oracle: inject one fault into N accepted lifts and count how many it rejects")
+    ap.add_argument("--small-out-counts", action="store_true",
+                    help="a callee's made-up out-parameter word that the original compares with a non-constant or "
+                         "scales into an address (a loop count, an index), and never dereferences, gets a value of "
+                         f"0-{SMALL_COUNT - 1} instead of the seed's, in both runs (off: as before)")
     ap.add_argument("--no-fuzz", action="store_true",
                     help="seeded inputs only (no mutated inputs after the seeds; the oracle before 2026-10-27)")
     ap.add_argument("-v", "--verbose", action="store_true", help="print each function's outcome")
@@ -1223,7 +1276,8 @@ def main() -> int:
         keep = frozenset(int(a, 16) for a, v in json.loads(Path(args.budget_keep).read_text(encoding="utf-8"))
                          ["functions"].items() if v["outcome"] == "accepted")
     ctx = (args.version, lo_paths, db_path, args.inputs, bool(args.debug), not args.no_fuzz, args.oracle_budget,
-           args.budget_pass, keep)
+           args.budget_pass, keep) + ((True,) if args.small_out_counts else ())
+    Oracle.small_counts = args.small_out_counts  # (this process's too: --mutants)
     accepted: dict[int, tuple[str, set[str]]] = {}
     info: dict[int, dict] = {}
     last_fail: dict[int, str] = {}
@@ -1304,6 +1358,7 @@ def main() -> int:
                                  **({"error": errors[a]} if a in errors else {}),
                                  **({"overrides": overrides[a]} if a in overrides else {})} for a in wl},
         "report": report,
+        **({"small_out_counts": True} if args.small_out_counts else {}),
     }
     (out / "manifest.json").write_text(json.dumps(manifest, indent=1) + "\n", encoding="utf-8")
     if overrides:
