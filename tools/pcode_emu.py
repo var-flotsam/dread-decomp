@@ -1999,10 +1999,14 @@ def compare(a: Machine, b: Machine, ret: str | None) -> str:
             if jl is not None and i >= jl:
                 return junk_skip(a, b, jl)
             if i >= len(eb) or ea[i] != eb[i]:
-                if i < len(eb) and ea[i][0][0] == eb[i][0][0] == "call" and ea[i][0][1] == eb[i][0][1] \
-                        and ea[i][1] == eb[i][1] and all(same_arg(arg(ea[i][0], k, bits), arg(eb[i][0], k, bits), frame)
-                                                         for k, bits in ea[i][0][2]):
+                same = i < len(eb) and (ea[i][0] == eb[i][0] or (
+                    ea[i][0][0] == eb[i][0][0] == "call" and ea[i][0][1] == eb[i][0][1]
+                    and all(same_arg(arg(ea[i][0], k, bits), arg(eb[i][0], k, bits), frame) for k, bits in ea[i][0][2])))
+                if same and ea[i][1] == eb[i][1]:
                     continue
+                if same and not (a.clipped or b.clipped) and putback_only(a, b, ea, eb, i):
+                    # (as below: a put-back one run made, or may have, after a call decides nothing)
+                    return "skip: a byte one run put back (or may have) after a call, the other wrote or left alone"
                 if i == len(eb) - 1 and end_b == ("end", "time-out"):
                     return "skip: the lift was cut off before the original's fault"
                 if (a.clipped or b.clipped) and i < len(eb) and ea[i][0] == eb[i][0]:
