@@ -804,7 +804,10 @@ class Oracle:
             if d:
                 self.last = (mo, ml)
                 return "fail", f"input {seed}: {d}"
-            return "agree", ""
+            # (two runs that crashed with exactly the same events, the crash included: the standard the
+            # oracle passed functions on before round 10, as against compare's looser both-fault
+            # agreement, where a register the callee is not passed may differ)
+            return "agree", "exact" if crashed(mo) and ml.events == mo.events else ""
 
         for seed, ovr, mo in self.originals(addr):
             if isinstance(mo, str):
@@ -820,7 +823,7 @@ class Oracle:
                     retry.append((seed, ovr))
                 continue
             agreed += 1
-            ended += not crashed(mo)
+            ended += not crashed(mo) or d == "exact"
         if not ended and retry:
             scale = pcode_emu.RETRY_SCALE
             for seed, ovr in retry:
@@ -848,7 +851,7 @@ class Oracle:
                     return "fail", f"{d} (with {scale}x the limits)", agreed, covered
                 if v == "agree":
                     agreed += 1
-                    ended += not crashed(mo)
+                    ended += not crashed(mo) or d == "exact"
                 else:
                     why = f"{d} (also with {scale}x the limits)"
         if not agreed:

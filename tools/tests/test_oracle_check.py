@@ -23,11 +23,15 @@ def original(end: str, cut=None):
 
 @unittest.skipIf(port_lift is None, "pyelftools or capstone is not installed")
 class CrashAgreements(unittest.TestCase):
-    def check(self, ends, verdict=""):
+    def check(self, ends, verdict="", exact=False):
+        """`exact`: the lift's events equal the original's, the crash included (the pre-round-10
+        standard); otherwise compare's loose both-fault agreement (a register the callee is not
+        passed differs), events not equal."""
         o = port_lift.Oracle.__new__(port_lift.Oracle)
         o.preset_orig, o.dicts = {}, {ADDR: ()}
         o.originals = lambda addr: [(n, {}, original(e)) for n, e in enumerate(ends)]
-        o.machine = lambda *a, **k: types.SimpleNamespace(run=lambda start: None)
+        lift_events = [(("end", "fault"), ())] if exact else [(("call", 1, (), ((0, 1),)), ()), (("end", "fault"), ())]
+        o.machine = lambda *a, **k: types.SimpleNamespace(run=lambda start: None, events=lift_events)
         lo = types.SimpleNamespace(functions={ADDR: (0x70C0000000, 16)}, unresolved={},
                                    text=(0x70C0000000, 0x70C0000010), guards=())
         emu = port_lift.pcode_emu
@@ -39,11 +43,18 @@ class CrashAgreements(unittest.TestCase):
             emu.compare = saved
 
     def test_only_crash_agreements_are_inconclusive(self):
-        """Every input faults in both runs at the same place: the result and the stores after the
-        crash were never compared."""
+        """Every input faults in both runs, agreeing only by compare's loose both-fault rule: the
+        result and the stores after the crash were never compared."""
         v = self.check(["fault"] * 8)
         self.assertEqual(v[0], "inconclusive")
         self.assertIn("only crash agreements", v[1])
+
+    def test_exact_crash_agreements_pass(self):
+        """Every input faults in both runs with exactly the same events, the crash included: the
+        standard functions passed on before round 10 (179 of lifted_all12's accepts, lost to the
+        crash-only rule)."""
+        v = self.check(["fault"] * 8, exact=True)
+        self.assertEqual((v[0], v[2]), ("pass", 8))
 
     def test_one_ended_agreement_passes(self):
         v = self.check(["fault"] * 7 + ["return"])
