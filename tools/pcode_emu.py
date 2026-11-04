@@ -1984,7 +1984,26 @@ def compare(a: Machine, b: Machine, ret: str | None) -> str:
     # one is not: its run is compared as without tracking, so a lift relying on a stale register
     # where the original does not is still rejected, or agrees, exactly as before.)
     jl = getattr(a, "junk_at", None)
-    if end_a == ("end", "fault") and ea != eb:
+
+    def same_call(va, vb) -> bool:
+        # (a call to the same target with the original's arguments, as the comparison below takes
+        # them: registers the callee is not passed may hold anything)
+        if not (va[0] == vb[0] == "call" and va[1] == vb[1]):
+            return False
+        da, db = dict(va[3]), dict(vb[3])
+        for k, bits in va[2]:
+            u, v = da.get(k), db.get(k)
+            if bits == 32 and isinstance(u, int) and isinstance(v, int):
+                u, v = u & 0xFFFFFFFF, v & 0xFFFFFFFF
+            if not same_arg(u, v, frame):
+                return False
+        return True
+
+    # Both crashed after the same calls and writes (71004720d8: a register its callee is not passed
+    # differs): no crash only the original had, compared below as any other end.
+    both_fault = end_a == end_b == ("end", "fault") and len(ea) == len(eb) \
+        and all(x == y or (x[1] == y[1] and same_call(x[0], y[0])) for x, y in zip(ea, eb))
+    if end_a == ("end", "fault") and ea != eb and not both_fault:
         # The original crashed on this input, the lift did not crash there: C lets the compiler
         # drop or move a load whose value decides nothing, so the end proves nothing (the lift
         # may crash later on what followed). What both did before the original's crash must still

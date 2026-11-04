@@ -161,6 +161,28 @@ class FloatSelection(unittest.TestCase):
         self.assertEqual(self.entry_copy({0}, True), 64)
 
 
+class BothFault(unittest.TestCase):
+    """compare: two runs that crash after the same calls and writes agree, whatever the registers a
+    callee is not passed hold (71004720d8)."""
+
+    @staticmethod
+    def run(v0: int, x0: int = 1, end=("end", "fault")):
+        call = ("call", 0x7100001000, ((0, 64),), ((0, x0), (100, v0)))
+        return types.SimpleNamespace(events=[(call, ((0x7200000000, 5),)), (end, ())], undef_mem=set(),
+                                     clipped=False, arg_slots=0)
+
+    def test_unpassed_register_differs(self):
+        self.assertEqual(pcode_emu.compare(self.run(0x3F800000), self.run(0), None), "")
+
+    def test_passed_register_differs(self):
+        self.assertEqual(pcode_emu.compare(self.run(0, x0=1), self.run(0, x0=2), None),
+                         "event 0 before the original's fault")
+
+    def test_lift_returns(self):
+        self.assertTrue(pcode_emu.compare(self.run(0x3F800000), self.run(0, end=("end", "return")),
+                                          None).startswith("skip"))
+
+
 class CallerFrame(unittest.TestCase):
     """same_arg: two addresses above the entry sp agree (71002842e4)."""
 
