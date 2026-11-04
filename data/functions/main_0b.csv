@@ -4767,7 +4767,7 @@ address,size,name,name_source,subsystem,status
 0x7100bc5d78,244,CCharClassPlayPlayerTimelineEvent::refl_GetClass,reflection,game/characters,O
 0x7100bc5e6c,468,fn_7100bc5e6c,unknown,game/characters?,O
 0x7100bc6040,388,CCharClassPlayPlayerTimelineEvent::refl_InitClass,reflection,game/characters,O
-0x7100bc61c4,364,fn_7100bc61c4,unknown,game/characters?,U
+0x7100bc61c4,364,fn_7100bc61c4,unknown,game/characters?,O
 0x7100bc6330,28,fn_7100bc6330,unknown,game/characters?,O
 0x7100bc634c,124,fn_7100bc634c,unknown,game/characters?,O
 0x7100bc63c8,132,fn_7100bc63c8,unknown,game/characters?,O
@@ -4786,7 +4786,7 @@ address,size,name,name_source,subsystem,status
 0x7100bc6914,244,CCharClassPlayRandomTimelineEvent::refl_GetClass,reflection,game/characters,O
 0x7100bc6a08,2716,fn_7100bc6a08,unknown,game/characters?,O
 0x7100bc74a4,388,CCharClassPlayRandomTimelineEvent::refl_InitClass,reflection,game/characters,O
-0x7100bc7628,452,fn_7100bc7628,unknown,game/characters?,U
+0x7100bc7628,452,fn_7100bc7628,unknown,game/characters?,O
 0x7100bc77ec,332,fn_7100bc77ec,unknown,game/characters?,O
 0x7100bc7938,220,fn_7100bc7938,unknown,game/characters?,O
 0x7100bc7a14,28,fn_7100bc7a14,unknown,game/characters?,O
@@ -4808,7 +4808,7 @@ address,size,name,name_source,subsystem,status
 0x7100bc8904,244,CCharClassPlayTimelineEvent::refl_GetClass,reflection,game/characters,O
 0x7100bc89f8,468,fn_7100bc89f8,unknown,game/characters?,O
 0x7100bc8bcc,388,CCharClassPlayTimelineEvent::refl_InitClass,reflection,game/characters,O
-0x7100bc8d50,312,fn_7100bc8d50,unknown,game/characters?,U
+0x7100bc8d50,312,fn_7100bc8d50,unknown,game/characters?,O
 0x7100bc8e88,332,fn_7100bc8e88,unknown,game/characters?,O
 0x7100bc8fd4,28,fn_7100bc8fd4,unknown,game/characters?,O
 0x7100bc8ff0,124,fn_7100bc8ff0,unknown,game/characters?,O
@@ -4828,7 +4828,7 @@ address,size,name,name_source,subsystem,status
 0x7100bc95c4,244,CCharClassPlayTimelineEventByPlayerSuit::refl_GetClass,reflection,game/characters,O
 0x7100bc96b8,1232,fn_7100bc96b8,unknown,game/characters?,O
 0x7100bc9b88,388,CCharClassPlayTimelineEventByPlayerSuit::refl_InitClass,reflection,game/characters,O
-0x7100bc9d0c,644,fn_7100bc9d0c,unknown,game/characters?,U
+0x7100bc9d0c,644,fn_7100bc9d0c,unknown,game/characters?,O
 0x7100bc9f90,332,fn_7100bc9f90,unknown,game/characters?,O
 0x7100bca0dc,28,fn_7100bca0dc,unknown,game/characters?,O
 0x7100bca0f8,340,fn_7100bca0f8,unknown,game/characters?,O
