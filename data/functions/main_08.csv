@@ -1506,7 +1506,7 @@ address,size,name,name_source,subsystem,status
 0x7100848dd4,8,fn_7100848dd4,unknown,unknown,O
 0x7100848ddc,8,fn_7100848ddc,unknown,unknown,O
 0x7100848de4,28,fn_7100848de4,unknown,unknown,O
-0x7100848e00,216,fn_7100848e00,unknown,unknown,U
+0x7100848e00,216,fn_7100848e00,unknown,unknown,O
 0x7100848ed8,4,fn_7100848ed8,unknown,unknown,O
 0x7100848edc,8,fn_7100848edc,unknown,unknown,O
 0x7100848ee4,8,fn_7100848ee4,unknown,unknown,O
@@ -2026,7 +2026,7 @@ address,size,name,name_source,subsystem,status
 0x710085ecb4,8,fn_710085ecb4,unknown,game?,O
 0x710085ecbc,8,fn_710085ecbc,unknown,game?,O
 0x710085ecc4,28,fn_710085ecc4,unknown,game?,O
-0x710085ece0,192,fn_710085ece0,unknown,game?,U
+0x710085ece0,192,fn_710085ece0,unknown,game?,O
 0x710085eda0,4,fn_710085eda0,unknown,game?,O
 0x710085eda4,4,fn_710085eda4,unknown,game?,O
 0x710085eda8,12,fn_710085eda8,unknown,game?,O
@@ -2314,7 +2314,7 @@ address,size,name,name_source,subsystem,status
 0x710086df48,356,fn_710086df48,unknown,unknown,U
 0x710086e0ac,476,fn_710086e0ac,unknown,unknown,U
 0x710086e288,392,fn_710086e288,unknown,unknown,O
-0x710086e410,196,fn_710086e410,unknown,unknown,U
+0x710086e410,196,fn_710086e410,unknown,unknown,O
 0x710086e4e0,140,fn_710086e4e0,unknown,unknown,O
 0x710086e56c,4,fn_710086e56c,unknown,unknown,O
 0x710086e570,244,CHydrogigaGrabCameraCtrl::refl_GetClass,reflection,game,O
@@ -4120,7 +4120,7 @@ address,size,name,name_source,subsystem,status
 0x71008bfecc,8,fn_71008bfecc,unknown,unknown,O
 0x71008bfed4,8,fn_71008bfed4,unknown,unknown,O
 0x71008bfedc,28,fn_71008bfedc,unknown,unknown,O
-0x71008bfef8,252,fn_71008bfef8,unknown,unknown,U
+0x71008bfef8,252,fn_71008bfef8,unknown,unknown,O
 0x71008bfff4,12,fn_71008bfff4,unknown,unknown,O
 0x71008c0000,4,fn_71008c0000,unknown,unknown,O
 0x71008c0004,612,fn_71008c0004,unknown,unknown,U
@@ -4578,7 +4578,7 @@ address,size,name,name_source,subsystem,status
 0x71008df498,8,fn_71008df498,unknown,game/components?,O
 0x71008df4a0,8,fn_71008df4a0,unknown,game/components?,O
 0x71008df4a8,28,fn_71008df4a8,unknown,game/components?,O
-0x71008df4c4,228,fn_71008df4c4,unknown,game/components?,U
+0x71008df4c4,228,fn_71008df4c4,unknown,game/components?,O
 0x71008df5a8,12,fn_71008df5a8,unknown,game/components?,O
 0x71008df5b4,4,fn_71008df5b4,unknown,game/components?,O
 0x71008df5b8,244,CHyperBeamBlockLifeComponent::refl_GetClass,reflection,game/components,O

@@ -989,7 +989,7 @@ address,size,name,name_source,subsystem,status
 0x710042c9e0,364,fn_710042c9e0,unknown,game/ai?,U
 0x710042cb4c,64,fn_710042cb4c,unknown,game/ai?,O
 0x710042cb8c,380,fn_710042cb8c,unknown,game/ai?,O
-0x710042cd08,248,fn_710042cd08,unknown,game/ai?,U
+0x710042cd08,248,fn_710042cd08,unknown,game/ai?,O
 0x710042ce00,400,fn_710042ce00,unknown,game/ai?,U
 0x710042cf90,180,fn_710042cf90,unknown,game/ai?,O
 0x710042d044,2120,fn_710042d044,unknown,game/ai?,U
@@ -1613,7 +1613,7 @@ address,size,name,name_source,subsystem,status
 0x7100454b90,900,fn_7100454b90,unknown,unknown,U
 0x7100454f14,180,fn_7100454f14,unknown,unknown,O
 0x7100454fc8,296,fn_7100454fc8,unknown,unknown,U
-0x71004550f0,272,fn_71004550f0,unknown,unknown,U
+0x71004550f0,272,fn_71004550f0,unknown,unknown,O
 0x7100455200,728,fn_7100455200,unknown,unknown,U
 0x71004554d8,124,fn_71004554d8,unknown,unknown,O
 0x7100455554,268,fn_7100455554,unknown,unknown,U
@@ -1729,7 +1729,7 @@ address,size,name,name_source,subsystem,status
 0x71004597ec,4,fn_71004597ec,unknown,game/components?,O
 0x71004597f0,4,fn_71004597f0,unknown,game/components?,O
 0x71004597f4,88,fn_71004597f4,unknown,game/components?,O
-0x710045984c,244,fn_710045984c,unknown,game/components?,U
+0x710045984c,244,fn_710045984c,unknown,game/components?,O
 0x7100459940,8,fn_7100459940,unknown,game/components?,O
 0x7100459948,28,fn_7100459948,unknown,game/components?,O
 0x7100459964,132,fn_7100459964,unknown,game/components?,O
@@ -1756,7 +1756,7 @@ address,size,name,name_source,subsystem,status
 0x710045a2fc,1112,fn_710045a2fc,unknown,game/components?,U
 0x710045a754,296,fn_710045a754,unknown,game/components?,O
 0x710045a87c,56,fn_710045a87c,unknown,game/components?,O
-0x710045a8b4,168,fn_710045a8b4,unknown,game/components?,U
+0x710045a8b4,168,fn_710045a8b4,unknown,game/components?,O
 0x710045a95c,220,fn_710045a95c,unknown,game/components?,O
 0x710045aa38,8,fn_710045aa38,unknown,game/components?,O
 0x710045aa40,28,fn_710045aa40,unknown,game/components?,O
@@ -2985,7 +2985,7 @@ address,size,name,name_source,subsystem,status
 0x7100489b18,904,fn_7100489b18,unknown,unknown,O
 0x7100489ea0,156,fn_7100489ea0,unknown,unknown,O
 0x7100489f3c,308,fn_7100489f3c,unknown,unknown,O
-0x710048a070,292,fn_710048a070,unknown,unknown,U
+0x710048a070,292,fn_710048a070,unknown,unknown,O
 0x710048a194,368,fn_710048a194,unknown,unknown,O
 0x710048a304,368,fn_710048a304,unknown,unknown,O
 0x710048a474,380,fn_710048a474,unknown,unknown,O
@@ -3549,7 +3549,7 @@ address,size,name,name_source,subsystem,status
 0x710049ea94,112,fn_710049ea94,unknown,unknown,O
 0x710049eb04,256,fn_710049eb04,unknown,unknown,O
 0x710049ec04,48,fn_710049ec04,unknown,unknown,O
-0x710049ec34,180,fn_710049ec34,unknown,unknown,U
+0x710049ec34,180,fn_710049ec34,unknown,unknown,O
 0x710049ece8,100,fn_710049ece8,unknown,unknown,O
 0x710049ed4c,28,fn_710049ed4c,unknown,unknown,O
 0x710049ed68,144,fn_710049ed68,unknown,unknown,O
@@ -4873,7 +4873,7 @@ address,size,name,name_source,subsystem,status
 0x71004c7ee4,572,fn_71004c7ee4,unknown,unknown,O
 0x71004c8120,528,fn_71004c8120,unknown,unknown,O
 0x71004c8330,248,fn_71004c8330,unknown,unknown,U
-0x71004c8428,348,fn_71004c8428,unknown,unknown,U
+0x71004c8428,348,fn_71004c8428,unknown,unknown,O
 0x71004c8584,300,fn_71004c8584,unknown,unknown,O
 0x71004c86b0,28,fn_71004c86b0,unknown,unknown,O
 0x71004c86cc,308,fn_71004c86cc,unknown,unknown,U
@@ -5096,7 +5096,7 @@ address,size,name,name_source,subsystem,status
 0x71004d4208,292,fn_71004d4208,unknown,unknown,U
 0x71004d432c,176,fn_71004d432c,unknown,unknown,O
 0x71004d43dc,864,fn_71004d43dc,unknown,unknown,U
-0x71004d473c,216,fn_71004d473c,unknown,unknown,U
+0x71004d473c,216,fn_71004d473c,unknown,unknown,O
 0x71004d4814,392,fn_71004d4814,unknown,unknown,U
 0x71004d499c,140,fn_71004d499c,unknown,unknown,O
 0x71004d4a28,112,fn_71004d4a28,unknown,unknown,O
@@ -6130,7 +6130,7 @@ address,size,name,name_source,subsystem,status
 0x71004fe8ec,244,CEmmySancAIComponent::refl_GetClass,reflection,game/ai,O
 0x71004fe9e0,1252,fn_71004fe9e0,unknown,game/ai?,O
 0x71004feec4,356,CEmmySancAIComponent::refl_InitClass,reflection,game/ai,O
-0x71004ff028,676,fn_71004ff028,unknown,unknown,U
+0x71004ff028,676,fn_71004ff028,unknown,unknown,O
 0x71004ff2cc,600,fn_71004ff2cc,unknown,unknown,O
 0x71004ff524,36,fn_71004ff524,unknown,unknown,O
 0x71004ff548,120,fn_71004ff548,unknown,unknown,O

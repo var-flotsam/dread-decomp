@@ -802,7 +802,7 @@ address,size,name,name_source,subsystem,status
 0x7100723914,244,CBillboardCollisionComponent::refl_GetClass,reflection,game/components,O
 0x7100723a08,4,fn_7100723a08,unknown,game/components?,O
 0x7100723a0c,352,CBillboardCollisionComponent::refl_InitClass,reflection,game/components,O
-0x7100723b6c,296,fn_7100723b6c,unknown,game/components?,U
+0x7100723b6c,296,fn_7100723b6c,unknown,game/components?,O
 0x7100723c94,36,fn_7100723c94,unknown,game/components?,O
 0x7100723cb8,56,fn_7100723cb8,unknown,game/components?,O
 0x7100723cf0,304,fn_7100723cf0,unknown,game/components?,O
@@ -1154,7 +1154,7 @@ address,size,name,name_source,subsystem,status
 0x7100745830,356,fn_7100745830,unknown,unknown,U
 0x7100745994,88,fn_7100745994,unknown,unknown,O
 0x71007459f0,140,fn_71007459f0,unknown,unknown,O
-0x7100745a7c,168,fn_7100745a7c,unknown,unknown,U
+0x7100745a7c,168,fn_7100745a7c,unknown,unknown,O
 0x7100745b24,80,fn_7100745b24,unknown,unknown,O
 0x7100745b74,80,fn_7100745b74,unknown,unknown,O
 0x7100745bc4,24,fn_7100745bc4,unknown,unknown,O
@@ -1791,8 +1791,8 @@ address,size,name,name_source,subsystem,status
 0x7100760164,124,fn_7100760164,unknown,unknown,O
 0x71007601e0,20,fn_71007601e0,unknown,unknown,O
 0x71007601f4,108,fn_71007601f4,unknown,unknown,O
-0x7100760260,284,fn_7100760260,unknown,unknown,U
-0x710076037c,176,fn_710076037c,unknown,unknown,U
+0x7100760260,284,fn_7100760260,unknown,unknown,O
+0x710076037c,176,fn_710076037c,unknown,unknown,O
 0x710076042c,12,fn_710076042c,unknown,unknown,O
 0x7100760438,8,fn_7100760438,unknown,unknown,O
 0x7100760440,12,fn_7100760440,unknown,unknown,O
@@ -1884,7 +1884,7 @@ address,size,name,name_source,subsystem,status
 0x7100766ebc,8,fn_7100766ebc,unknown,game?,O
 0x7100766ec4,8,fn_7100766ec4,unknown,game?,O
 0x7100766ecc,28,fn_7100766ecc,unknown,game?,O
-0x7100766ee8,164,fn_7100766ee8,unknown,game?,U
+0x7100766ee8,164,fn_7100766ee8,unknown,game?,O
 0x7100766f8c,12,fn_7100766f8c,unknown,game?,O
 0x7100766fa0,160,fn_7100766fa0,unknown,game?,O
 0x7100767040,4,fn_7100767040,unknown,game?,O
@@ -5058,7 +5058,7 @@ address,size,name,name_source,subsystem,status
 0x71007ee870,8,fn_71007ee870,unknown,unknown,O
 0x71007ee878,8,fn_71007ee878,unknown,unknown,O
 0x71007ee880,28,fn_71007ee880,unknown,unknown,O
-0x71007ee89c,248,fn_71007ee89c,unknown,unknown,U
+0x71007ee89c,248,fn_71007ee89c,unknown,unknown,O
 0x71007ee994,4,fn_71007ee994,unknown,unknown,O
 0x71007ee998,4,fn_71007ee998,unknown,unknown,O
 0x71007ee99c,12,fn_71007ee99c,unknown,unknown,O
