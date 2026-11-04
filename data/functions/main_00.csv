@@ -5205,7 +5205,7 @@ address,size,name,name_source,subsystem,status
 0x71000dd298,12,fn_71000dd298,unknown,unknown,O
 0x71000dd2a4,8,fn_71000dd2a4,unknown,unknown,O
 0x71000dd2ac,8,fn_71000dd2ac,unknown,unknown,O
-0x71000dd2b4,640,fn_71000dd2b4,unknown,unknown,U
+0x71000dd2b4,640,fn_71000dd2b4,unknown,unknown,O
 0x71000dd534,136,fn_71000dd534,unknown,unknown,O
 0x71000dd5bc,8,fn_71000dd5bc,unknown,unknown,O
 0x71000dd5c4,8,fn_71000dd5c4,unknown,unknown,O

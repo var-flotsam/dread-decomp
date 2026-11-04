@@ -1603,7 +1603,7 @@ address,size,name,name_source,subsystem,status
 0x710036a944,244,behaviortree::CSwitchBetweenAIModesAction::refl_GetClass,reflection,ai/behaviortree,O
 0x710036aa38,2492,fn_710036aa38,unknown,ai/behaviortree?,O
 0x710036b3f4,388,behaviortree::CSwitchBetweenAIModesAction::refl_InitClass,reflection,ai/behaviortree,O
-0x710036b578,696,fn_710036b578,unknown,ai/behaviortree?,U
+0x710036b578,696,fn_710036b578,unknown,ai/behaviortree?,O
 0x710036b830,1156,fn_710036b830,unknown,ai/behaviortree?,U
 0x710036bcb4,4,fn_710036bcb4,unknown,ai/behaviortree?,O
 0x710036bcb8,4,fn_710036bcb8,unknown,ai/behaviortree?,O

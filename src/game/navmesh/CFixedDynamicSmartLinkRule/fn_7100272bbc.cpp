@@ -25,7 +25,7 @@ struct UnkValuePairRef {
 struct UnkAssignedArray {
     u64 field_0x0[5];
 };
-void fn_7100272348(UnkAssignedArray* self, const UnkAssignedArray* other);
+UnkAssignedArray* fn_7100272348(UnkAssignedArray* self, const UnkAssignedArray* other);
 
 struct UnkPlainBytes_0x15 {
     u8 data[0x15];
@@ -52,7 +52,6 @@ struct UnkValuesArray {
 
 using UnkU32ValuesArrayPair = UnkValuePairRef<u32, UnkValuesArray>;
 
-// NON_MATCHING(minor): the original loads the tail's last 8 bytes before its first 16.
 UnkU32ValuesArrayPair* fn_7100272bbc(UnkU32ValuesArrayPair* self, UnkU32ValuesArrayPair* other) {
     if (self != other) {
         self->GetX() = other->GetX();

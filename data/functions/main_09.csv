@@ -3369,7 +3369,7 @@ address,size,name,name_source,subsystem,status
 0x71009b845c,4,fn_71009b845c,unknown,unknown,O
 0x71009b8460,12,fn_71009b8460,unknown,unknown,O
 0x71009b846c,100,fn_71009b846c,unknown,unknown,O
-0x71009b84d0,240,fn_71009b84d0,unknown,unknown,U
+0x71009b84d0,240,fn_71009b84d0,unknown,unknown,O
 0x71009b85c0,160,fn_71009b85c0,unknown,unknown,O
 0x71009b8660,4,fn_71009b8660,unknown,unknown,O
 0x71009b8664,244,CAnimationNavMeshItemStage::refl_GetClass,reflection,game,O
@@ -3527,7 +3527,7 @@ address,size,name,name_source,subsystem,status
 0x71009bd070,64,fn_71009bd070,unknown,unknown,O
 0x71009bd0b0,12,fn_71009bd0b0,unknown,unknown,O
 0x71009bd0bc,100,fn_71009bd0bc,unknown,unknown,O
-0x71009bd120,240,fn_71009bd120,unknown,unknown,U
+0x71009bd120,240,fn_71009bd120,unknown,unknown,O
 0x71009bd210,160,fn_71009bd210,unknown,unknown,O
 0x71009bd2b0,4,fn_71009bd2b0,unknown,unknown,O
 0x71009bd2b4,244,CLogicPathNavMeshItemStage::refl_GetClass,reflection,game,O
