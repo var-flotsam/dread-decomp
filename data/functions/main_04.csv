@@ -1191,7 +1191,7 @@ address,size,name,name_source,subsystem,status
 0x7100438410,48,fn_7100438410,unknown,game/ai?,O
 0x7100438440,364,fn_7100438440,unknown,game/ai?,O
 0x71004385ac,24,fn_71004385ac,unknown,game/ai?,O
-0x71004385c4,184,fn_71004385c4,unknown,game/ai?,U
+0x71004385c4,184,fn_71004385c4,unknown,game/ai?,O
 0x7100438680,160,fn_7100438680,unknown,game/ai?,O
 0x7100438720,4,fn_7100438720,unknown,game/ai?,O
 0x7100438724,244,CChozoCommanderPowerPulseAttack::refl_GetClass,reflection,game/ai,O
@@ -1459,7 +1459,7 @@ address,size,name,name_source,subsystem,status
 0x710044654c,388,CChozoCommanderZeroLaserGroundedAttack::refl_InitClass,reflection,game/ai,O
 0x71004466d0,116,fn_71004466d0,unknown,unknown,O
 0x7100446744,96,fn_7100446744,unknown,unknown,O
-0x71004467a4,260,fn_71004467a4,unknown,unknown,U
+0x71004467a4,260,fn_71004467a4,unknown,unknown,O
 0x71004468a8,268,fn_71004468a8,unknown,unknown,O
 0x71004469b4,2348,fn_71004469b4,unknown,unknown,U
 0x71004472e0,4,fn_71004472e0,unknown,unknown,O
@@ -2927,7 +2927,7 @@ address,size,name,name_source,subsystem,status
 0x71004839ac,388,CChozoWarriorXSpitAttack::refl_InitClass,reflection,game/ai,O
 0x7100483b30,88,fn_7100483b30,unknown,game/ai?,O
 0x7100483b88,96,fn_7100483b88,unknown,game/ai?,O
-0x7100483be8,252,fn_7100483be8,unknown,game/ai?,U
+0x7100483be8,252,fn_7100483be8,unknown,game/ai?,O
 0x7100483ce4,572,fn_7100483ce4,unknown,game/ai?,U
 0x7100483f20,2436,fn_7100483f20,unknown,game/ai?,U
 0x71004848a4,108,fn_71004848a4,unknown,game/ai?,O
@@ -4800,7 +4800,7 @@ address,size,name,name_source,subsystem,status
 0x71004c2514,388,CCooldownXBossLaserBiteAttack::refl_InitClass,reflection,game/ai,O
 0x71004c2698,84,fn_71004c2698,unknown,game/ai?,O
 0x71004c26ec,96,fn_71004c26ec,unknown,game/ai?,O
-0x71004c274c,200,fn_71004c274c,unknown,game/ai?,U
+0x71004c274c,200,fn_71004c274c,unknown,game/ai?,O
 0x71004c2814,468,fn_71004c2814,unknown,game/ai?,O
 0x71004c29e8,188,fn_71004c29e8,unknown,game/ai?,O
 0x71004c2aa4,4,fn_71004c2aa4,unknown,game/ai?,O
@@ -4955,7 +4955,7 @@ address,size,name,name_source,subsystem,status
 0x71004ca518,4,fn_71004ca518,unknown,game/ai?,O
 0x71004ca51c,388,CCooldownXBossStrongWhipAttack::refl_InitClass,reflection,game/ai,O
 0x71004ca6a0,96,fn_71004ca6a0,unknown,game/ai?,O
-0x71004ca700,196,fn_71004ca700,unknown,game/ai?,U
+0x71004ca700,196,fn_71004ca700,unknown,game/ai?,O
 0x71004ca7c4,368,fn_71004ca7c4,unknown,game/ai?,O
 0x71004ca934,168,fn_71004ca934,unknown,game/ai?,O
 0x71004ca9dc,4,fn_71004ca9dc,unknown,game/ai?,O
@@ -5893,7 +5893,7 @@ address,size,name,name_source,subsystem,status
 0x71004f3328,72,fn_71004f3328,unknown,unknown,O
 0x71004f3370,12,fn_71004f3370,unknown,unknown,O
 0x71004f337c,52,fn_71004f337c,unknown,unknown,O
-0x71004f33b0,180,fn_71004f33b0,unknown,unknown,U
+0x71004f33b0,180,fn_71004f33b0,unknown,unknown,O
 0x71004f3470,240,fn_71004f3470,unknown,unknown,O
 0x71004f3560,36,fn_71004f3560,unknown,unknown,O
 0x71004f3584,56,fn_71004f3584,unknown,unknown,O

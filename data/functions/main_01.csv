@@ -1429,7 +1429,7 @@ address,size,name,name_source,subsystem,status
 0x710013f5a4,8,fn_710013f5a4,unknown,unknown,O
 0x710013f5ac,16,fn_710013f5ac,unknown,unknown,O
 0x710013f5bc,16,fn_710013f5bc,unknown,unknown,O
-0x710013f5cc,92,fn_710013f5cc,unknown,unknown,U
+0x710013f5cc,92,fn_710013f5cc,unknown,unknown,O
 0x710013f628,12,fn_710013f628,unknown,unknown,O
 0x710013f634,36,fn_710013f634,unknown,unknown,O
 0x710013f658,40,fn_710013f658,unknown,unknown,O
