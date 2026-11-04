@@ -3824,7 +3824,7 @@ address,size,name,name_source,subsystem,status
 0x7100ba7db8,196,fn_7100ba7db8,unknown,game/characters?,O
 0x7100ba7e7c,124,fn_7100ba7e7c,unknown,game/characters?,O
 0x7100ba7ef8,132,fn_7100ba7ef8,unknown,game/characters?,O
-0x7100ba7f7c,360,fn_7100ba7f7c,unknown,game/characters?,U
+0x7100ba7f7c,360,fn_7100ba7f7c,unknown,game/characters?,O
 0x7100ba80e4,28,fn_7100ba80e4,unknown,game/characters?,O
 0x7100ba8100,12,fn_7100ba8100,unknown,game/characters?,O
 0x7100ba810c,8,fn_7100ba810c,unknown,game/characters?,O

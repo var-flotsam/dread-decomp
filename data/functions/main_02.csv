@@ -5752,7 +5752,7 @@ address,size,name,name_source,subsystem,status
 0x71002eef60,12,fn_71002eef60,unknown,unknown,O
 0x71002eef6c,104,fn_71002eef6c,unknown,unknown,O
 0x71002eefd4,4,fn_71002eefd4,unknown,unknown,O
-0x71002eefd8,264,fn_71002eefd8,unknown,unknown,U
+0x71002eefd8,264,fn_71002eefd8,unknown,unknown,O
 0x71002ef0e0,152,fn_71002ef0e0,unknown,unknown,U
 0x71002ef178,8,fn_71002ef178,unknown,unknown,O
 0x71002ef180,12,fn_71002ef180,unknown,unknown,O
