@@ -1,0 +1,32 @@
+// CFlockingSwarmControllerComponent unit (1158): sort comparison "a is nearer the player than b" (squared
+// distances from the player's translation, positions from fn_7100745e24). The terms follow fn_710072a110's
+// comparison (src/game/CBillboardComponent/fn_710072a110.cpp). Names and layouts are placeholders.
+#include "game/UnkActor.h"
+#include "game/UnkGameManager.h"
+#include "types.h"
+
+// Returned through x8, so the original's result type is not trivially copyable.
+struct UnkVec3_710072a110 {
+    f32 x;
+    f32 y;
+    f32 z;
+    UnkVec3_710072a110(const UnkVec3_710072a110& o) : x(o.x), y(o.y), z(o.z) {}
+};
+
+struct UnkObj_710072a110;
+UnkVec3_710072a110 fn_7100745e24(UnkObj_710072a110* obj);
+
+struct UnkPlayer;
+UnkPlayer* fn_7100dec788(UnkGameManager*);
+
+bool fn_7100739e4c(UnkObj_710072a110* a, UnkObj_710072a110* b) {
+    UnkActor* player = reinterpret_cast<UnkActor*>(fn_7100dec788(g_unk_7101d47310));
+    f32 x = player->field_0x44;
+    f32 y = player->field_0x54;
+    f32 z = player->field_0x64;
+    UnkVec3_710072a110 pa = fn_7100745e24(a);
+    f32 da = (pa.x - x) * (pa.x - x) + (pa.y - y) * (pa.y - y) + (pa.z - z) * (pa.z - z);
+    UnkVec3_710072a110 pb = fn_7100745e24(b);
+    f32 db = (pb.x - x) * (pb.x - x) + (pb.y - y) * (pb.y - y) + (pb.z - z) * (pb.z - z);
+    return da < db;
+}

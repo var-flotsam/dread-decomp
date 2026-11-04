@@ -16,7 +16,7 @@ address,size,name,name_source,subsystem,status
 0x7100500614,4,fn_7100500614,unknown,unknown,O
 0x7100500618,8,fn_7100500618,unknown,unknown,O
 0x7100500620,160,fn_7100500620,unknown,unknown,O
-0x71005006c0,208,fn_71005006c0,unknown,unknown,U
+0x71005006c0,208,fn_71005006c0,unknown,unknown,O
 0x7100500790,704,fn_7100500790,unknown,unknown,U
 0x7100500a50,2152,fn_7100500a50,unknown,unknown,U
 0x71005012b8,4,fn_71005012b8,unknown,unknown,O
@@ -373,7 +373,7 @@ address,size,name,name_source,subsystem,status
 0x7100514f30,244,behaviortree::CEmmyPatrolBaseAction::refl_GetClass,reflection,ai/behaviortree,O
 0x7100515024,4,fn_7100515024,unknown,ai/behaviortree?,O
 0x7100515028,344,behaviortree::CEmmyPatrolBaseAction::refl_InitClass,reflection,ai/behaviortree,O
-0x7100515180,240,fn_7100515180,unknown,ai/behaviortree?,U
+0x7100515180,240,fn_7100515180,unknown,ai/behaviortree?,O
 0x7100515270,280,fn_7100515270,unknown,ai/behaviortree?,O
 0x7100515388,336,fn_7100515388,unknown,ai/behaviortree?,O
 0x71005154d8,4,fn_71005154d8,unknown,ai/behaviortree?,O
@@ -466,7 +466,7 @@ address,size,name,name_source,subsystem,status
 0x710051cc48,4,operator.delete,symbol,ai/behaviortree?,O
 0x710051cc4c,16,fn_710051cc4c,unknown,ai/behaviortree?,O
 0x710051cc5c,380,fn_710051cc5c,unknown,ai/behaviortree?,U
-0x710051cdd8,376,fn_710051cdd8,unknown,ai/behaviortree?,U
+0x710051cdd8,376,fn_710051cdd8,unknown,ai/behaviortree?,O
 0x710051cf50,996,fn_710051cf50,unknown,ai/behaviortree?,U
 0x710051d334,8,fn_710051d334,unknown,ai/behaviortree?,O
 0x710051d33c,8,fn_710051d33c,unknown,ai/behaviortree?,O
@@ -1278,7 +1278,7 @@ address,size,name,name_source,subsystem,status
 0x7100560b84,4,operator.delete,symbol,unknown,O
 0x7100560b88,16,fn_7100560b88,unknown,unknown,O
 0x7100560b98,380,fn_7100560b98,unknown,unknown,U
-0x7100560d14,376,fn_7100560d14,unknown,unknown,U
+0x7100560d14,376,fn_7100560d14,unknown,unknown,O
 0x7100560e8c,988,fn_7100560e8c,unknown,unknown,U
 0x7100561268,20,fn_7100561268,unknown,unknown,O
 0x710056127c,8,fn_710056127c,unknown,unknown,O
@@ -1952,7 +1952,7 @@ address,size,name,name_source,subsystem,status
 0x710057c3a4,36,fn_710057c3a4,unknown,unknown,O
 0x710057c3c8,16,fn_710057c3c8,unknown,unknown,O
 0x710057c3d8,928,fn_710057c3d8,unknown,unknown,U
-0x710057c778,264,fn_710057c778,unknown,unknown,U
+0x710057c778,264,fn_710057c778,unknown,unknown,O
 0x710057c880,4,fn_710057c880,unknown,unknown,O
 0x710057c884,144,fn_710057c884,unknown,unknown,O
 0x710057c914,1076,fn_710057c914,unknown,unknown,U

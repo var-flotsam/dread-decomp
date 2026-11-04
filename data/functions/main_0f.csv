@@ -4868,7 +4868,7 @@ address,size,name,name_source,subsystem,status
 0x7100fbad10,404,lua_bind::SetPatrolGroupRepetitions,string,script/bindings,U
 0x7100fbaeb0,1524,lua_bind::GeneratePatrolLinks,string,script/bindings,U
 0x7100fbb4b0,436,lua_bind::SetWorldGraphToEmmy,string,script/bindings,U
-0x7100fbb670,100,lua_bind::ResetEmmyPhase1Mode,string,script/bindings,U
+0x7100fbb670,100,lua_bind::ResetEmmyPhase1Mode,string,script/bindings,O
 0x7100fbb6e0,364,lua_bind::AddPerceptionModifier,string,script/bindings,U
 0x7100fbb850,348,lua_bind::RemovePerceptionModifier,string,script/bindings,U
 0x7100fbb9b0,48,lua_bind::FindNavMeshPoly,string,script/bindings,O
