@@ -31,7 +31,7 @@ struct UnkLightMap_b41a3 {
     u32 modulus;
 };
 
-void fn_7100e0b52c(UnkLightMap_b41a3* map, const CStrId* key);
+void* fn_7100e0b52c(UnkLightMap_b41a3* map, const CStrId* key);
 
 UnkReflValue fn_7100e0dbf4(void*, char* obj, UnkReflValue* const* args) {
     UnkReflValue* arg = args[0];

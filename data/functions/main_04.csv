@@ -990,7 +990,7 @@ address,size,name,name_source,subsystem,status
 0x710042cb4c,64,fn_710042cb4c,unknown,game/ai?,O
 0x710042cb8c,380,fn_710042cb8c,unknown,game/ai?,O
 0x710042cd08,248,fn_710042cd08,unknown,game/ai?,O
-0x710042ce00,400,fn_710042ce00,unknown,game/ai?,U
+0x710042ce00,400,fn_710042ce00,unknown,game/ai?,O
 0x710042cf90,180,fn_710042cf90,unknown,game/ai?,O
 0x710042d044,2120,fn_710042d044,unknown,game/ai?,U
 0x710042d88c,788,fn_710042d88c,unknown,game/ai?,U
@@ -3386,7 +3386,7 @@ address,size,name,name_source,subsystem,status
 0x71004952ac,388,CChozoWarriorGlaiveWalljumpAttack::refl_InitClass,reflection,game/ai,O
 0x7100495430,68,fn_7100495430,unknown,unknown,O
 0x7100495474,96,fn_7100495474,unknown,unknown,O
-0x71004954d4,412,fn_71004954d4,unknown,unknown,U
+0x71004954d4,412,fn_71004954d4,unknown,unknown,O
 0x7100495670,4,fn_7100495670,unknown,unknown,O
 0x7100495674,204,fn_7100495674,unknown,unknown,O
 0x7100495740,524,fn_7100495740,unknown,unknown,U
@@ -5225,7 +5225,7 @@ address,size,name,name_source,subsystem,status
 0x71004d9800,212,fn_71004d9800,unknown,unknown,U
 0x71004d98d4,120,fn_71004d98d4,unknown,unknown,O
 0x71004d994c,136,fn_71004d994c,unknown,unknown,O
-0x71004d99d4,436,fn_71004d99d4,unknown,unknown,U
+0x71004d99d4,436,fn_71004d99d4,unknown,unknown,O
 0x71004d9b88,1156,fn_71004d9b88,unknown,unknown,U
 0x71004da00c,148,fn_71004da00c,unknown,unknown,O
 0x71004da0a0,1852,fn_71004da0a0,unknown,unknown,U

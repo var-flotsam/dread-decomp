@@ -2052,7 +2052,7 @@ address,size,name,name_source,subsystem,status
 0x710077368c,220,fn_710077368c,unknown,unknown,O
 0x7100773768,352,fn_7100773768,unknown,unknown,O
 0x71007738c8,684,fn_71007738c8,unknown,unknown,U
-0x7100773b74,276,fn_7100773b74,unknown,unknown,U
+0x7100773b74,276,fn_7100773b74,unknown,unknown,O
 0x7100773c88,584,fn_7100773c88,unknown,unknown,U
 0x7100773ed0,324,fn_7100773ed0,unknown,unknown,U
 0x7100774014,220,fn_7100774014,unknown,unknown,O

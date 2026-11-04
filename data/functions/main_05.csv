@@ -2363,7 +2363,7 @@ address,size,name,name_source,subsystem,status
 0x710058e660,12,fn_710058e660,unknown,unknown,O
 0x710058e66c,8,fn_710058e66c,unknown,unknown,O
 0x710058e674,8,fn_710058e674,unknown,unknown,O
-0x710058e67c,356,fn_710058e67c,unknown,unknown,U
+0x710058e67c,356,fn_710058e67c,unknown,unknown,O
 0x710058e7e0,104,fn_710058e7e0,unknown,unknown,O
 0x710058e848,260,fn_710058e848,unknown,unknown,O
 0x710058e94c,288,fn_710058e94c,unknown,unknown,O
@@ -3673,7 +3673,7 @@ address,size,name,name_source,subsystem,status
 0x71005c5430,72,fn_71005c5430,unknown,game/ai?,O
 0x71005c5478,96,fn_71005c5478,unknown,game/ai?,O
 0x71005c54d8,12,fn_71005c54d8,unknown,game/ai?,O
-0x71005c54e4,272,fn_71005c54e4,unknown,game/ai?,U
+0x71005c54e4,272,fn_71005c54e4,unknown,game/ai?,O
 0x71005c55f4,228,fn_71005c55f4,unknown,game/ai?,O
 0x71005c56d8,4,fn_71005c56d8,unknown,game/ai?,O
 0x71005c56dc,188,fn_71005c56dc,unknown,game/ai?,O
@@ -3703,7 +3703,7 @@ address,size,name,name_source,subsystem,status
 0x71005c63d0,96,fn_71005c63d0,unknown,unknown,O
 0x71005c6430,40,fn_71005c6430,unknown,unknown,O
 0x71005c6458,1212,fn_71005c6458,unknown,unknown,U
-0x71005c6914,532,fn_71005c6914,unknown,unknown,U
+0x71005c6914,532,fn_71005c6914,unknown,unknown,O
 0x71005c6b28,632,fn_71005c6b28,unknown,unknown,U
 0x71005c6da0,604,fn_71005c6da0,unknown,unknown,U
 0x71005c6ffc,228,fn_71005c6ffc,unknown,unknown,U
@@ -5280,7 +5280,7 @@ address,size,name,name_source,subsystem,status
 0x71005f645c,388,CKraidSpinningNailsAttack::refl_InitClass,reflection,game/ai,O
 0x71005f65e0,76,fn_71005f65e0,unknown,game/ai?,O
 0x71005f662c,96,fn_71005f662c,unknown,game/ai?,O
-0x71005f668c,320,fn_71005f668c,unknown,game/ai?,U
+0x71005f668c,320,fn_71005f668c,unknown,game/ai?,O
 0x71005f67cc,236,fn_71005f67cc,unknown,game/ai?,O
 0x71005f68b8,4,fn_71005f68b8,unknown,game/ai?,O
 0x71005f68bc,100,fn_71005f68bc,unknown,game/ai?,O

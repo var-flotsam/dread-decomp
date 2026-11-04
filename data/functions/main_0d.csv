@@ -4900,8 +4900,8 @@ address,size,name,name_source,subsystem,status
 0x7100dacd00,36,fn_7100dacd00,unknown,unknown,O
 0x7100dacd24,2736,fn_7100dacd24,unknown,unknown,U
 0x7100dad7d4,364,fn_7100dad7d4,unknown,unknown,U
-0x7100dad940,204,fn_7100dad940,unknown,unknown,U
-0x7100dada0c,292,fn_7100dada0c,unknown,unknown,U
+0x7100dad940,204,fn_7100dad940,unknown,unknown,O
+0x7100dada0c,292,fn_7100dada0c,unknown,unknown,O
 0x7100dadb30,700,fn_7100dadb30,unknown,unknown,U
 0x7100daddec,308,fn_7100daddec,unknown,unknown,O
 0x7100dadf20,224,fn_7100dadf20,unknown,unknown,U

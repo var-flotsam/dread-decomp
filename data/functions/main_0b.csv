@@ -943,7 +943,7 @@ address,size,name,name_source,subsystem,status
 0x7100b19fe4,168,fn_7100b19fe4,unknown,unknown,O
 0x7100b1a08c,8,fn_7100b1a08c,unknown,unknown,O
 0x7100b1a094,44,fn_7100b1a094,unknown,unknown,O
-0x7100b1a0c0,96,fn_7100b1a0c0,unknown,unknown,U
+0x7100b1a0c0,96,fn_7100b1a0c0,unknown,unknown,O
 0x7100b1a120,8,fn_7100b1a120,unknown,unknown,O
 0x7100b1a128,168,fn_7100b1a128,unknown,unknown,O
 0x7100b1a1d0,368,fn_7100b1a1d0,unknown,unknown,U
@@ -1706,7 +1706,7 @@ address,size,name,name_source,subsystem,status
 0x7100b4d040,172,fn_7100b4d040,unknown,unknown,O
 0x7100b4d0ec,292,fn_7100b4d0ec,unknown,unknown,m
 0x7100b4d210,344,fn_7100b4d210,unknown,unknown,O
-0x7100b4d368,104,fn_7100b4d368,unknown,unknown,U
+0x7100b4d368,104,fn_7100b4d368,unknown,unknown,O
 0x7100b4d3d0,16,fn_7100b4d3d0,unknown,unknown,O
 0x7100b4d3e0,4,operator.delete,symbol,unknown,O
 0x7100b4d3f0,180,fn_7100b4d3f0,unknown,unknown,O
@@ -1717,7 +1717,7 @@ address,size,name,name_source,subsystem,status
 0x7100b4ee5c,144,fn_7100b4ee5c,unknown,unknown,O
 0x7100b4eef0,388,fn_7100b4eef0,unknown,unknown,O
 0x7100b4f074,304,fn_7100b4f074,unknown,unknown,U
-0x7100b4f1a4,92,fn_7100b4f1a4,unknown,unknown,U
+0x7100b4f1a4,92,fn_7100b4f1a4,unknown,unknown,O
 0x7100b4f200,16,fn_7100b4f200,unknown,unknown,O
 0x7100b4f210,4,operator.delete,symbol,unknown,O
 0x7100b4f220,172,fn_7100b4f220,unknown,unknown,O
@@ -5190,7 +5190,7 @@ address,size,name,name_source,subsystem,status
 0x7100bd5134,388,CCharClassSetEmmyDoorNearSamusVisibilityEvent::refl_InitClass,reflection,game/characters,O
 0x7100bd52b8,4,fn_7100bd52b8,unknown,game/characters?,O
 0x7100bd52bc,36,fn_7100bd52bc,unknown,game/characters?,O
-0x7100bd52e0,124,fn_7100bd52e0,unknown,game/characters?,U
+0x7100bd52e0,124,fn_7100bd52e0,unknown,game/characters?,O
 0x7100bd535c,28,fn_7100bd535c,unknown,game/characters?,O
 0x7100bd5378,12,fn_7100bd5378,unknown,game/characters?,O
 0x7100bd5384,8,fn_7100bd5384,unknown,game/characters?,O
