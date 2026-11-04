@@ -105,6 +105,16 @@ class Fault(Exception):
     pass
 
 
+def vector_copy(w: int) -> tuple[int, int] | None:
+    """(d, n) for an instruction copying v<n>'s low 64 bits or more whole into v<d>: `mov v<d>.16b,
+    v<n>.16b` or `.8b` (orr with both sources the same) and `fmov d<d>, d<n>`; else None."""
+    if (w & 0xBFE0FC00) == 0x0EA01C00 and (w >> 16) & 31 == (w >> 5) & 31:
+        return w & 31, (w >> 5) & 31
+    if (w & 0xFFFFFC00) == 0x1E604000:
+        return w & 31, (w >> 5) & 31
+    return None
+
+
 class Inconclusive(Exception):
     pass
 
@@ -468,8 +478,11 @@ class Machine:
     junk_mem: set = frozenset()
     junk_at: int | None = None
     junk_why: str | None = None
-    sreads: set | None = None  # (__init__; the values read as s<n>, Machine.call)
+    sreads: set | None = None  # (__init__; the arguments read as s<n>, Machine.call)
     entry_v: dict = {}  # (setup; never written in place)
+    vtag: dict = {}  # (setup; a bare Machine tracks no argument copies)
+    vwide: set = frozenset()
+    _vcopy = False
 
     def __init__(self, db: dict, image: ImageMemory, seed: int, inside, code_word, lift: LiftObject | None,
                  imports: dict[int, str], facts, preset: dict[int, int], dictionary: tuple = (),
@@ -573,8 +586,15 @@ class Machine:
         self.res_written: set = set()
         self.vnarrow: dict[int, bool] = {}  # v<n> -> its last write was s<n> (4 bytes at its start)
         self.vnarrow_at: dict[int, int] = {}  # v<n> -> the instruction (step) of that s<n> write
-        self.sreads: set = set()  # the values this run read as s<n> (4 bytes at a vector register's start)
         self.entry_v: dict[int, int] = {}  # v<n> (n < 8) -> its low 64 bits at the entry (setup)
+        # Where the function's own float arguments went: v<n> -> j while v<n> holds v<j> as it came in,
+        # unchanged or through whole copies only (`mov v8.16b, v0.16b`, `fmov d8, d0`: vector_copy);
+        # any other write to v<n> ends it. The arguments j such a register was read as s<n> (4 bytes
+        # at its start) and those read otherwise (8 bytes or more, a lane above the first: a double
+        # or a vector, not an f32) other than by a whole copy (Machine.call).
+        self.vtag: dict[int, int] = {}
+        self.sreads: set = set()
+        self.vwide: set = set()
         self.out_words: list = []  # ((call, argument, offset), word): the out-parameter words written
         # (count_track: per byte, (space, offset) of a register or unique and an address of memory,
         # the out-parameter words its value came from, key -> 0 as it was or 1 scaled (an index);
@@ -756,6 +776,9 @@ class Machine:
 
     def set_reg(self, off: int, size: int, v: int) -> None:
         self.regs[off:off + size] = (v & ((1 << (8 * size)) - 1)).to_bytes(size, "little")
+        if self.vtag and Q0 <= off + size and off < Q0 + 32 * QSTRIDE:
+            for n in range(max(off - Q0, 0) // QSTRIDE, (off + size - 1 - Q0) // QSTRIDE + 1):
+                self.vtag.pop(n, None)
         if self.count_track and self.ct_vn:
             for i in range(size):
                 self.ct_vn.pop((2, off + i), None)
@@ -798,8 +821,12 @@ class Machine:
                 elif off >= Q0 and 100 not in self.res_written:
                     self.res_read.add(100)
             v = int.from_bytes(self.regs[off:off + size], "little")
-            if size == 4 and off >= Q0 and (off - Q0) % QSTRIDE == 0 and self.sreads is not None:
-                self.sreads.add(v)  # (an s<n> read: Machine.call, a whole copy of an f32 argument)
+            if self.vtag and not self._vcopy and Q0 <= off < Q0 + 32 * QSTRIDE:
+                n, rel = divmod(off - Q0, QSTRIDE)
+                j = self.vtag.get(n)
+                if j is not None and self.reg(Q0 + QSTRIDE * n, 8) == self.entry_v.get(j):
+                    # (an argument's s<n> read, or any other: Machine.call, a whole copy of an f32)
+                    (self.sreads if rel == 0 and size <= 4 else self.vwide).add(j)
             return v
         if sp == 1:
             return self.uniq.get(off, 0) & ((1 << (8 * size)) - 1)
@@ -867,6 +894,7 @@ class Machine:
         self.entry_regs = {X0 + 8 * i: self.x(i) for i in range(19, 29)}
         self.entry_regs.update({Q0 + QSTRIDE * i: self.reg(Q0 + QSTRIDE * i, 8) for i in range(8, 16)})
         self.entry_v = {i: self.reg(Q0 + QSTRIDE * i, 8) for i in range(8)}
+        self.vtag = {i: i for i in range(8)}
 
     def canonical(self, target: int):
         name = self.imports(target)
@@ -920,11 +948,16 @@ class Machine:
             narrow = 100 <= k < 108 and st == "written" and self.vnarrow.get(k - 100, False)
             if 100 <= k < 108 and st == "written" and not narrow and self.own_facts is not None and self.sreads:
                 # So has a whole copy (`mov v0.16b, v8.16b`) of the function's own float argument
-                # v<j> as it came in, when this run read that argument as s<j> (an f32: the caller's
-                # bits above it are unspecified; 71010df1fc passes its s0 on through v8).
-                v = self.reg(Q0 + QSTRIDE * (k - 100), 8)
-                narrow = (v & 0xFFFFFFFF) in self.sreads and any(
-                    e == v and 100 + j in self.own_facts.args for j, e in self.entry_v.items())
+                # v<j> as it came in, when this run read that argument (itself or a whole copy of
+                # it) as s<n> and never otherwise (an f32: the caller's bits above it are
+                # unspecified; 71010df1fc passes its s0 on through v8). By where the register's
+                # value came from (vtag), not by its value: an unrelated s<n> read holding the same
+                # low word decides nothing, and an argument also read as a double or as a vector's
+                # other lanes is not an f32, compared whole when the callee reads it whole.
+                j = self.vtag.get(k - 100)
+                narrow = j is not None and j in self.sreads and j not in self.vwide \
+                    and 100 + j in self.own_facts.args \
+                    and self.reg(Q0 + QSTRIDE * (k - 100), 8) == self.entry_v.get(j)
             sel.append((k, 32 if narrow or (f is not None and (k < 9 or 100 <= k < 108) and k not in f.wide) else 64))
         # Arguments beyond the eight registers: the callee's stack slots at [sp + 8i] (key 200 + i),
         # 32 bits each (a 32-bit argument leaves the upper half of its slot unspecified).
@@ -1441,6 +1474,10 @@ class Machine:
             raise Inconclusive(f"no P-code for {w:08x}")
         if ops is None:
             raise Inconclusive(f"undecodable {w:08x}")
+        vc = vector_copy(w) if self.vtag else None
+        if vc is not None:
+            tag = self.vtag.get(vc[1])
+            self._vcopy = True  # (its reads are no use of the argument: read)
         self.uniq.clear()
         if self.undef_vn:
             self.undef_vn = {k for k in self.undef_vn if k[0] != 1}
@@ -1473,6 +1510,10 @@ class Machine:
                 return "ret", self.read(ins[0])
             self.exec(code, out, ins)
             i += 1
+        if vc is not None:
+            self._vcopy = False
+            if tag is not None:
+                self.vtag[vc[0]] = tag  # (its writes ended the destination's own: set_reg)
         return "next", 0
 
     # P-code ops whose output is a flag: a count compared, never a count itself

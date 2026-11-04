@@ -134,18 +134,87 @@ class FloatSelection(unittest.TestCase):
         facts = types.SimpleNamespace(args=frozenset({100}), wide=frozenset(), stack_slots=0)
         self.assertEqual(selection(m, facts)[100], 32)
 
+    D0 = 0x40468D23FD1BC240
+
+    @staticmethod
+    def vcopy(m, d: int, n: int, word=None) -> None:
+        """m runs `mov v<d>.16b, v<n>.16b` (an orr, as Ghidra's P-code has it, then the SVE part zeroed)."""
+        w = word if word is not None else 0x4EA01C00 | n << 16 | n << 5 | d
+        m.ops_db = {w: [(9101, (2, Q0 + QSTRIDE * d, 16), [(2, Q0 + QSTRIDE * n, 16), (2, Q0 + QSTRIDE * n, 16)]),
+                        (9102, (2, Q0 + QSTRIDE * d + 16, 16), [(0, 0, 16)])]}
+        m.uniq = {}
+        with _opcodes({9101: "INT_OR", 9102: "COPY"}):
+            m.step(0x1000, w, 1, 2, 3, 4, 5, 6)
+
+    def entry(self, own_args, d0=None):
+        """A Machine at the entry with d0 as v0 (a double's or an f32's bits), own_args its arguments."""
+        d0 = self.D0 if d0 is None else d0
+        m = machine()
+        m.own_facts = types.SimpleNamespace(args=frozenset(own_args), wide=frozenset(own_args))
+        m.sreads, m.vwide, m.vtag, m.entry_v = set(), set(), {i: i for i in range(8)}, {0: d0}
+        m.regs[Q0:Q0 + 16] = d0.to_bytes(16, "little")
+        return m
+
     def entry_copy(self, own_args, read_as_s: bool) -> int:
         """The bits selected for v0 written whole with the entry's d0 (`mov v0.16b, v8.16b` of a
         `mov v8.16b, v0.16b`), the function's own arguments being own_args."""
-        d0 = 0x40468D23FD1BC240
-        m = machine()
-        m.own_facts = types.SimpleNamespace(args=frozenset(own_args), wide=frozenset(own_args))
-        m.sreads, m.entry_v = set(), {0: d0}
-        m.set_reg(Q0 + QSTRIDE * 8, 16, d0)
+        m = self.entry(own_args)
+        self.vcopy(m, 8, 0)
         if read_as_s:
             m.read((2, Q0 + QSTRIDE * 8, 4))  # (fmul s1, s1, s8)
-        m.set_reg(Q0, 16, d0)
+        self.vcopy(m, 0, 8)
         return selection(m, WIDE_V0)[100]
+
+    def test_entry_s0_read_then_copied(self):
+        """s0 read where it came in (fcmp s0), then passed on through v8: an f32 too."""
+        m = self.entry({100})
+        m.read((2, Q0, 4))
+        self.vcopy(m, 8, 0)
+        self.vcopy(m, 0, 8)
+        self.assertEqual(selection(m, WIDE_V0)[100], 32)
+
+    def test_fmov_d_copy_carries_the_argument(self):
+        m = self.entry({100})
+        m.read((2, Q0, 4))
+        self.vcopy(m, 8, 0, word=0x1E604000 | 0 << 5 | 8)  # fmov d8, d0
+        self.vcopy(m, 0, 8, word=0x1E604000 | 8 << 5 | 0)
+        self.assertEqual(selection(m, WIDE_V0)[100], 32)
+
+    def test_double_with_an_unrelated_s_read_of_the_same_low_word_is_64_bits(self):
+        """A double 1.0 (low word 0) passed on whole to a callee reading d0, after an s read of an
+        unrelated zero register: only the argument's own s read counts, not a value."""
+        m = self.entry({100}, d0=0x3FF0000000000000)
+        self.vcopy(m, 8, 0)
+        m.read((2, Q0 + QSTRIDE, 4))  # (fcmp s1, #0.0 on a zeroed v1)
+        self.vcopy(m, 0, 8)
+        self.assertEqual(selection(m, WIDE_V0)[100], 64)
+
+    def test_vector_lane_read_is_64_bits(self):
+        """A float32x2 d0: lane 0 read as s0, lane 1 read too (mov s1, v0.s[1]): not an f32."""
+        m = self.entry({100})
+        m.read((2, Q0, 4))
+        m.read((2, Q0 + 4, 4))
+        self.vcopy(m, 8, 0)
+        self.vcopy(m, 0, 8)
+        self.assertEqual(selection(m, WIDE_V0)[100], 64)
+
+    def test_d_read_is_64_bits(self):
+        """Read as s0 and as d0 (fmov x1, d0; a double's use): compared whole."""
+        m = self.entry({100})
+        self.vcopy(m, 8, 0)
+        m.read((2, Q0 + QSTRIDE * 8, 4))
+        m.read((2, Q0 + QSTRIDE * 8, 8))
+        self.vcopy(m, 0, 8)
+        self.assertEqual(selection(m, WIDE_V0)[100], 64)
+
+    def test_other_write_ends_the_copy(self):
+        """v8 rewritten with the same bits by other than a whole copy (a load, an arithmetic op): no
+        longer the argument's copy."""
+        m = self.entry({100})
+        m.read((2, Q0, 4))
+        m.set_reg(Q0 + QSTRIDE * 8, 16, self.D0)
+        self.vcopy(m, 0, 8)
+        self.assertEqual(selection(m, WIDE_V0)[100], 64)
 
     def test_whole_copy_of_an_f32_argument_is_32_bits(self):
         """The function's own s0, read as s8 and passed on whole through v8: the caller's bits above it
