@@ -164,7 +164,7 @@ address,size,name,name_source,subsystem,status
 0x71005068c8,2996,fn_71005068c8,unknown,unknown,U
 0x710050747c,892,fn_710050747c,unknown,unknown,U
 0x71005077f8,560,fn_71005077f8,unknown,unknown,O
-0x7100507a28,764,fn_7100507a28,unknown,unknown,U
+0x7100507a28,764,fn_7100507a28,unknown,unknown,O
 0x7100507d24,776,fn_7100507d24,unknown,unknown,U
 0x710050802c,320,fn_710050802c,unknown,unknown,U
 0x710050816c,880,fn_710050816c,unknown,unknown,O
@@ -2198,7 +2198,7 @@ address,size,name,name_source,subsystem,status
 0x710058681c,388,CGoliathXSlamAttack::refl_InitClass,reflection,game/ai,O
 0x71005869a0,48,fn_71005869a0,unknown,unknown,O
 0x71005869d0,96,fn_71005869d0,unknown,unknown,O
-0x7100586a30,732,fn_7100586a30,unknown,unknown,U
+0x7100586a30,732,fn_7100586a30,unknown,unknown,O
 0x7100586d0c,836,fn_7100586d0c,unknown,unknown,U
 0x7100587050,528,fn_7100587050,unknown,unknown,U
 0x7100587260,4,fn_7100587260,unknown,unknown,O

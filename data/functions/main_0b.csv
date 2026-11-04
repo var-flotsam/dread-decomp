@@ -2958,7 +2958,7 @@ address,size,name,name_source,subsystem,status
 0x7100b8f094,288,fn_7100b8f094,unknown,game/ai?,O
 0x7100b8f1b4,288,fn_7100b8f1b4,unknown,game/ai?,O
 0x7100b8f2d4,116,fn_7100b8f2d4,unknown,game/ai?,U
-0x7100b8f348,120,fn_7100b8f348,unknown,game/ai?,U
+0x7100b8f348,120,fn_7100b8f348,unknown,game/ai?,O
 0x7100b8f3c0,28,fn_7100b8f3c0,unknown,game/ai?,O
 0x7100b8f3dc,4,fn_7100b8f3dc,unknown,game/ai?,O
 0x7100b8f3e0,4,fn_7100b8f3e0,unknown,game/ai?,O
@@ -2971,7 +2971,7 @@ address,size,name,name_source,subsystem,status
 0x7100b8f764,792,fn_7100b8f764,unknown,game/ai?,U
 0x7100b8fa7c,204,fn_7100b8fa7c,unknown,game/ai?,U
 0x7100b8fb48,420,fn_7100b8fb48,unknown,game/ai?,U
-0x7100b8fcec,120,fn_7100b8fcec,unknown,game/ai?,U
+0x7100b8fcec,120,fn_7100b8fcec,unknown,game/ai?,O
 0x7100b8fd64,28,fn_7100b8fd64,unknown,game/ai?,O
 0x7100b8fd80,12,fn_7100b8fd80,unknown,game/ai?,O
 0x7100b8fd8c,8,fn_7100b8fd8c,unknown,game/ai?,O
@@ -2989,7 +2989,7 @@ address,size,name,name_source,subsystem,status
 0x7100b90410,388,CAIAimAngToFrameAction::refl_InitClass,reflection,game/ai,O
 0x7100b90594,428,fn_7100b90594,unknown,unknown,U
 0x7100b90740,792,fn_7100b90740,unknown,unknown,U
-0x7100b90a58,120,fn_7100b90a58,unknown,unknown,U
+0x7100b90a58,120,fn_7100b90a58,unknown,unknown,O
 0x7100b90ad0,28,fn_7100b90ad0,unknown,unknown,O
 0x7100b90aec,12,fn_7100b90aec,unknown,unknown,O
 0x7100b90af8,8,fn_7100b90af8,unknown,unknown,O
