@@ -166,21 +166,76 @@ class BothFault(unittest.TestCase):
     callee is not passed hold (71004720d8)."""
 
     @staticmethod
-    def run(v0: int, x0: int = 1, end=("end", "fault")):
+    def made(v0: int, x0: int = 1, end=("end", "fault"), fault=0x10, access=("load", 8), tail=(), calls=True):
         call = ("call", 0x7100001000, ((0, 64),), ((0, x0), (100, v0)))
-        return types.SimpleNamespace(events=[(call, ((0x7200000000, 5),)), (end, ())], undef_mem=set(),
-                                     clipped=False, arg_slots=0)
+        head = [(call, ((0x7200000000, 5),))] if calls else []
+        return types.SimpleNamespace(events=head + [(end, tail)], undef_mem=set(), clipped=False, arg_slots=0,
+                                     fault=fault if end == ("end", "fault") else None,
+                                     fault_access=access if end == ("end", "fault") else None)
 
     def test_unpassed_register_differs(self):
-        self.assertEqual(pcode_emu.compare(self.run(0x3F800000), self.run(0), None), "")
+        self.assertEqual(pcode_emu.compare(self.made(0x3F800000), self.made(0), None), "")
 
     def test_passed_register_differs(self):
-        self.assertEqual(pcode_emu.compare(self.run(0, x0=1), self.run(0, x0=2), None),
+        self.assertEqual(pcode_emu.compare(self.made(0, x0=1), self.made(0, x0=2), None),
                          "event 0 before the original's fault")
 
     def test_lift_returns(self):
-        self.assertTrue(pcode_emu.compare(self.run(0x3F800000), self.run(0, end=("end", "return")),
+        self.assertTrue(pcode_emu.compare(self.made(0x3F800000), self.made(0, end=("end", "return")),
                                           None).startswith("skip"))
+
+    def test_different_fault_address_decides_nothing(self):
+        """The lift crashing on another access after the same calls never reached the original's
+        stores and result past it: not an agreement."""
+        self.assertTrue(pcode_emu.compare(self.made(0), self.made(0, fault=0xFF00), "x32").startswith("skip"))
+        self.assertTrue(pcode_emu.compare(self.made(0x3F800000), self.made(0, fault=0xFF00), "x32").startswith("skip"))
+
+    def test_no_calls_any_crash_is_not_any_crash(self):
+        a, b = self.made(0, calls=False), self.made(0, calls=False, fault=0x18)
+        self.assertTrue(pcode_emu.compare(a, b, "x32").startswith("skip"))
+
+    def test_different_access_decides_nothing(self):
+        a, b = self.made(0), self.made(0, access=("store", 8))
+        self.assertTrue(pcode_emu.compare(a, b, None).startswith("skip"))
+        b = self.made(0, access=("load", 4))
+        self.assertTrue(pcode_emu.compare(a, b, None).startswith("skip"))
+
+    def test_writes_after_the_last_call_are_compared(self):
+        """*p = 5 after the call, then the crash: a lift storing 6 there, or nothing, does not agree."""
+        a = self.made(0, tail=((0x7200000010, 5),))
+        self.assertEqual(pcode_emu.compare(a, self.made(0, tail=((0x7200000010, 5),)), None), "")
+        self.assertTrue(pcode_emu.compare(a, self.made(0, tail=((0x7200000010, 6),)), None).startswith("skip"))
+        self.assertTrue(pcode_emu.compare(a, self.made(0), None).startswith("skip"))
+
+
+class FaultEvent(unittest.TestCase):
+    """Machine.run: a fault's end event holds the bytes written since the last call, and the run
+    records the faulting access."""
+
+    HEAP = 0x7200000000
+    STORE5, LOADQ = 0x8B000001, 0x8B000002  # (words for the hand-made P-code below)
+
+    def test_fault_records_the_writes_and_the_access(self):
+        codes = {"BRANCH": 1, "CBRANCH": 2, "BRANCHIND": 3, "CALL": 4, "CALLIND": 5, "RETURN": 6,
+                 "STORE": 9001, "LOAD": 9002}
+        ops = {self.STORE5: [(9001, None, [(0, 0, 8), (0, self.HEAP, 8), (0, 5, 4)])],
+               self.LOADQ: [(9002, (2, pcode_emu.X0, 4), [(0, 0, 8), (0, 0x18, 8)])]}
+        db = {"ops": ops, "userops": {}, "opcodes": codes}
+        image = types.SimpleNamespace(end=pcode_emu.BASE, bss_end=pcode_emu.BASE,
+                                      text=(pcode_emu.BASE, pcode_emu.BASE), data=b"")
+        words = {0x1000: self.STORE5, 0x1004: self.LOADQ}
+        pcode_emu.set_opcodes(codes)
+        try:
+            m = pcode_emu.Machine(db, image, 2, lambda a: a in words, lambda a: words[a], None,
+                                  lambda t: None, lambda t: None, {})
+            m.setup()
+            m.run(0x1000)
+        finally:
+            pcode_emu.OPNAMES.clear()
+        self.assertEqual(m.events[-1][0], ("end", "fault"))
+        self.assertEqual(dict(m.events[-1][1]), {self.HEAP + i: b for i, b in enumerate((5, 0, 0, 0))})
+        self.assertEqual((m.fault, m.fault_access), (0x18, ("load", 4)))
+        self.assertIsNone(m.cut)
 
 
 class CallerFrame(unittest.TestCase):

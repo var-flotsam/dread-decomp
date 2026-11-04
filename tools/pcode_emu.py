@@ -535,6 +535,7 @@ class Machine:
         self.clipped = False  # a modelled memset or memcpy stopped at 64 KiB (compare)
         self.fault: int | None = None  # the address a run faulted on
         self.fault_pc: int | None = None  # and the instruction that did (the oracle's repairs)
+        self.fault_access: tuple | None = None  # and the access: ("load" | "store", its size) (compare)
         self.noret_call: int | None = None  # the call (its number) the run ended on, a callee that never returns
         self.noret_at: int | None = None  # the lift's run: the original's noret_call
         self.stack_written: set[int] = set()
@@ -630,7 +631,7 @@ class Machine:
     def load(self, a: int, size: int) -> int:
         a &= 0xFFFFFFFFFFFFFFFF
         if a < NULL_PAGE:
-            raise Fault(a)
+            raise Fault(a, "load", size)
         if self.arg_slots is not None and ENTRY_SP + 8 * self.arg_slots <= a < STACK_TOP + (1 << 36):
             # Above the stack arguments: the caller's frame, which the two runs place differently
             # (an index from a callee's made-up result, a loop run past its array)
@@ -656,13 +657,13 @@ class Machine:
         words (port_lift), whose read_at, read_words and read_cov must stay as the run left them."""
         a &= 0xFFFFFFFFFFFFFFFF
         if a < NULL_PAGE:
-            raise Fault(a)
+            raise Fault(a, "load", size)
         return int.from_bytes(bytes(self.page((a + i) // PAGE)[(a + i) % PAGE] for i in range(size)), "little")
 
     def store(self, a: int, size: int, v: int, track: bool = True) -> None:
         a &= 0xFFFFFFFFFFFFFFFF
         if a < NULL_PAGE:
-            raise Fault(a)
+            raise Fault(a, "store", size)
         b = (v & ((1 << (8 * size)) - 1)).to_bytes(size, "little")
         prior = [self.page(x // PAGE)[x % PAGE] for x in range(a, a + size)]
         for i in range(size):
@@ -1330,9 +1331,15 @@ class Machine:
                         raise Inconclusive("return outside")
                     pc = target
         except Fault as e:
-            self.events.append((("end", "fault"), ()))
             self.fault = e.args[0]
             self.fault_pc = pc
+            self.fault_access = tuple(e.args[1:]) or None
+            # (the end event holds the bytes written since the last call, as any end's does: two runs
+            # crashing after the same calls are compared on them too, compare. Not a cut: the run
+            # ended on its own.)
+            cut, steps = self.cut, self.steps
+            self.checkpoint(("end", "fault"))
+            self.cut, self.steps = cut, steps
 
     def finish(self, kind: str) -> None:
         self.checkpoint(("end", kind))
@@ -2000,9 +2007,18 @@ def compare(a: Machine, b: Machine, ret: str | None) -> str:
         return True
 
     # Both crashed after the same calls and writes (71004720d8: a register its callee is not passed
-    # differs): no crash only the original had, compared below as any other end.
+    # differs): no crash only the original had. The crash itself must be the same too: the same
+    # access (load or store, its size) at the same address, after the same writes since the last
+    # call (the end event's). Otherwise either run may have crashed anywhere after the last call,
+    # the other's stores and result never reached: the input decides nothing.
     both_fault = end_a == end_b == ("end", "fault") and len(ea) == len(eb) \
-        and all(x == y or (x[1] == y[1] and same_call(x[0], y[0])) for x, y in zip(ea, eb))
+        and all(x == y or (x[1] == y[1] and same_call(x[0], y[0])) for x, y in zip(ea[:-1], eb[:-1]))
+    if both_fault:
+        if (getattr(a, "fault", None), getattr(a, "fault_access", None)) \
+                != (getattr(b, "fault", None), getattr(b, "fault_access", None)):
+            return "skip: both runs faulted, on different accesses"
+        if ea[-1][1] != eb[-1][1]:
+            return "skip: both runs faulted, after different writes since the last call"
     if end_a == ("end", "fault") and ea != eb and not both_fault:
         # The original crashed on this input, the lift did not crash there: C lets the compiler
         # drop or move a load whose value decides nothing, so the end proves nothing (the lift
