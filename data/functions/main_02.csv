@@ -888,7 +888,7 @@ address,size,name,name_source,subsystem,status
 0x710021dee4,220,fn_710021dee4,unknown,media?,O
 0x710021dfc0,368,fn_710021dfc0,unknown,media?,O
 0x710021e130,104,fn_710021e130,unknown,media?,O
-0x710021e198,120,fn_710021e198,unknown,media?,U
+0x710021e198,120,fn_710021e198,unknown,media?,O
 0x710021e210,4,fn_710021e210,unknown,media?,O
 0x710021e214,32,fn_710021e214,unknown,media?,O
 0x710021e234,8,fn_710021e234,unknown,media?,O
@@ -2073,7 +2073,7 @@ address,size,name,name_source,subsystem,status
 0x71002433a0,72,fn_71002433a0,unknown,unknown,O
 0x71002433e8,96,fn_71002433e8,unknown,unknown,O
 0x7100243448,8,fn_7100243448,unknown,unknown,O
-0x7100243450,248,fn_7100243450,unknown,unknown,U
+0x7100243450,248,fn_7100243450,unknown,unknown,O
 0x7100243548,80,fn_7100243548,unknown,unknown,O
 0x7100243598,84,fn_7100243598,unknown,unknown,O
 0x71002435ec,144,fn_71002435ec,unknown,unknown,O
@@ -2477,7 +2477,7 @@ address,size,name,name_source,subsystem,status
 0x7100254558,8,fn_7100254558,unknown,game?,O
 0x7100254560,8,fn_7100254560,unknown,game?,O
 0x7100254568,28,fn_7100254568,unknown,game?,O
-0x7100254584,152,fn_7100254584,unknown,game?,U
+0x7100254584,152,fn_7100254584,unknown,game?,O
 0x710025461c,4,fn_710025461c,unknown,game?,O
 0x7100254620,4,fn_7100254620,unknown,game?,O
 0x7100254624,12,fn_7100254624,unknown,game?,O
@@ -6103,7 +6103,7 @@ address,size,name,name_source,subsystem,status
 0x71002faaec,12,fn_71002faaec,unknown,unknown,O
 0x71002faaf8,12,fn_71002faaf8,unknown,unknown,O
 0x71002fab04,12,fn_71002fab04,unknown,unknown,O
-0x71002fab10,264,fn_71002fab10,unknown,unknown,U
+0x71002fab10,264,fn_71002fab10,unknown,unknown,O
 0x71002fac20,160,fn_71002fac20,unknown,unknown,O
 0x71002facc0,4,fn_71002facc0,unknown,unknown,O
 0x71002facc4,244,CAbilityComponent::CTunableAbilityComponent::refl_GetClass,reflection,game/components,O
