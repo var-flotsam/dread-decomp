@@ -1553,7 +1553,7 @@ address,size,name,name_source,subsystem,status
 0x710094293c,1240,fn_710094293c,unknown,unknown,U
 0x7100942e14,772,fn_7100942e14,unknown,unknown,U
 0x7100943118,460,fn_7100943118,unknown,unknown,m
-0x71009432e4,200,fn_71009432e4,unknown,unknown,U
+0x71009432e4,200,fn_71009432e4,unknown,unknown,O
 0x71009433ac,608,fn_71009433ac,unknown,unknown,U
 0x710094360c,732,fn_710094360c,unknown,unknown,U
 0x71009438e8,244,fn_71009438e8,unknown,unknown,U
@@ -3180,7 +3180,7 @@ address,size,name,name_source,subsystem,status
 0x71009b0580,64,fn_71009b0580,unknown,game/player?,O
 0x71009b05c0,284,fn_71009b05c0,unknown,game/player?,U
 0x71009b06dc,292,fn_71009b06dc,unknown,game/player?,U
-0x71009b0800,200,fn_71009b0800,unknown,game/player?,U
+0x71009b0800,200,fn_71009b0800,unknown,game/player?,O
 0x71009b08c8,508,fn_71009b08c8,unknown,game/player?,O
 0x71009b0ac4,4,fn_71009b0ac4,unknown,game/player?,U
 0x71009b0ac8,12,fn_71009b0ac8,unknown,game/player?,O
@@ -3890,7 +3890,7 @@ address,size,name,name_source,subsystem,status
 0x71009ca6f4,244,CPhotoModeCameraCtrl::refl_GetClass,reflection,game,O
 0x71009ca7e8,4,fn_71009ca7e8,unknown,game?,O
 0x71009ca7ec,352,CPhotoModeCameraCtrl::refl_InitClass,reflection,game,O
-0x71009ca94c,176,fn_71009ca94c,unknown,unknown,U
+0x71009ca94c,176,fn_71009ca94c,unknown,unknown,O
 0x71009ca9fc,1448,fn_71009ca9fc,unknown,unknown,U
 0x71009cafa4,88,fn_71009cafa4,unknown,unknown,O
 0x71009caffc,96,fn_71009caffc,unknown,unknown,O
@@ -3984,7 +3984,7 @@ address,size,name,name_source,subsystem,status
 0x71009cf780,232,fn_71009cf780,unknown,unknown,U
 0x71009cf868,4,fn_71009cf868,unknown,unknown,O
 0x71009cf86c,4,fn_71009cf86c,unknown,unknown,O
-0x71009cf870,136,fn_71009cf870,unknown,unknown,U
+0x71009cf870,136,fn_71009cf870,unknown,unknown,O
 0x71009cf8f8,760,fn_71009cf8f8,unknown,unknown,U
 0x71009cfbf0,680,fn_71009cfbf0,unknown,unknown,U
 0x71009cfe98,632,fn_71009cfe98,unknown,unknown,U

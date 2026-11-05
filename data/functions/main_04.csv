@@ -3497,7 +3497,7 @@ address,size,name,name_source,subsystem,status
 0x710049cbd8,232,fn_710049cbd8,unknown,unknown,m
 0x710049ccc0,816,fn_710049ccc0,unknown,unknown,U
 0x710049cff0,164,fn_710049cff0,unknown,unknown,O
-0x710049d094,252,fn_710049d094,unknown,unknown,U
+0x710049d094,252,fn_710049d094,unknown,unknown,O
 0x710049d190,420,fn_710049d190,unknown,unknown,U
 0x710049d334,28,fn_710049d334,unknown,unknown,O
 0x710049d350,132,fn_710049d350,unknown,unknown,O

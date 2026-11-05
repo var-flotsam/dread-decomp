@@ -19,8 +19,8 @@ address,size,name,name_source,subsystem,status
 0x71002028c4,168,fn_71002028c4,unknown,unknown,U
 0x710020296c,148,fn_710020296c,unknown,unknown,U
 0x7100202a00,20,fn_7100202a00,unknown,unknown,O
-0x7100202a14,172,fn_7100202a14,unknown,unknown,U
-0x7100202ac0,172,fn_7100202ac0,unknown,unknown,U
+0x7100202a14,172,fn_7100202a14,unknown,unknown,O
+0x7100202ac0,172,fn_7100202ac0,unknown,unknown,O
 0x7100202b6c,240,fn_7100202b6c,unknown,unknown,O
 0x7100202c5c,128,fn_7100202c5c,unknown,unknown,O
 0x7100202cdc,20,fn_7100202cdc,unknown,unknown,O
@@ -879,7 +879,7 @@ address,size,name,name_source,subsystem,status
 0x710021d394,64,fn_710021d394,unknown,unknown,O
 0x710021d3d4,440,fn_710021d3d4,unknown,unknown,O
 0x710021d58c,352,fn_710021d58c,unknown,unknown,O
-0x710021d6ec,308,fn_710021d6ec,unknown,unknown,U
+0x710021d6ec,308,fn_710021d6ec,unknown,unknown,O
 0x710021d820,140,fn_710021d820,unknown,unknown,O
 0x710021d8ac,4,fn_710021d8ac,unknown,unknown,O
 0x710021d8b0,240,media::CMoviePlayer::refl_GetClass,reflection,media,O
@@ -1220,7 +1220,7 @@ address,size,name,name_source,subsystem,status
 0x7100232fcc,176,fn_7100232fcc,unknown,unknown,U
 0x710023307c,436,fn_710023307c,unknown,unknown,U
 0x7100233230,176,fn_7100233230,unknown,unknown,U
-0x71002332e0,308,fn_71002332e0,unknown,unknown,U
+0x71002332e0,308,fn_71002332e0,unknown,unknown,O
 0x7100233414,4,fn_7100233414,unknown,unknown,O
 0x7100233418,4,fn_7100233418,unknown,unknown,O
 0x710023341c,112,fn_710023341c,unknown,unknown,O
@@ -3462,7 +3462,7 @@ address,size,name,name_source,subsystem,status
 0x710027e494,268,fn_710027e494,unknown,unknown,O
 0x710027e5a0,364,fn_710027e5a0,unknown,unknown,U
 0x710027e70c,268,fn_710027e70c,unknown,unknown,O
-0x710027e818,292,fn_710027e818,unknown,unknown,U
+0x710027e818,292,fn_710027e818,unknown,unknown,O
 0x710027e93c,412,fn_710027e93c,unknown,unknown,U
 0x710027ead8,268,fn_710027ead8,unknown,unknown,O
 0x710027ebe4,596,fn_710027ebe4,unknown,unknown,U
@@ -4819,7 +4819,7 @@ address,size,name,name_source,subsystem,status
 0x71002d400c,12,fn_71002d400c,unknown,animation?,O
 0x71002d4018,8,fn_71002d4018,unknown,animation?,O
 0x71002d4020,28,fn_71002d4020,unknown,animation?,O
-0x71002d403c,204,fn_71002d403c,unknown,animation?,U
+0x71002d403c,204,fn_71002d403c,unknown,animation?,O
 0x71002d4108,564,fn_71002d4108,unknown,animation?,U
 0x71002d433c,216,fn_71002d433c,unknown,animation?,O
 0x71002d4414,12,fn_71002d4414,unknown,animation?,O
@@ -5051,7 +5051,7 @@ address,size,name,name_source,subsystem,status
 0x71002db084,76,fn_71002db084,unknown,unknown,O
 0x71002db0d0,52,fn_71002db0d0,unknown,unknown,O
 0x71002db104,176,fn_71002db104,unknown,unknown,O
-0x71002db1b4,236,fn_71002db1b4,unknown,unknown,U
+0x71002db1b4,236,fn_71002db1b4,unknown,unknown,O
 0x71002db2a0,232,fn_71002db2a0,unknown,unknown,O
 0x71002db388,272,fn_71002db388,unknown,unknown,O
 0x71002db4a0,772,fn_71002db4a0,unknown,unknown,O
@@ -5292,7 +5292,7 @@ address,size,name,name_source,subsystem,status
 0x71002e1aa4,12,fn_71002e1aa4,unknown,animation?,O
 0x71002e1ab0,8,fn_71002e1ab0,unknown,animation?,O
 0x71002e1ab8,28,fn_71002e1ab8,unknown,animation?,O
-0x71002e1ad4,260,fn_71002e1ad4,unknown,animation?,U
+0x71002e1ad4,260,fn_71002e1ad4,unknown,animation?,O
 0x71002e1bd8,124,fn_71002e1bd8,unknown,animation?,O
 0x71002e1c54,108,fn_71002e1c54,unknown,animation?,O
 0x71002e1cc0,12,fn_71002e1cc0,unknown,animation?,O
@@ -5349,7 +5349,7 @@ address,size,name,name_source,subsystem,status
 0x71002e316c,12,fn_71002e316c,unknown,animation?,O
 0x71002e3178,8,fn_71002e3178,unknown,animation?,O
 0x71002e3180,28,fn_71002e3180,unknown,animation?,O
-0x71002e319c,200,fn_71002e319c,unknown,animation?,U
+0x71002e319c,200,fn_71002e319c,unknown,animation?,O
 0x71002e3264,548,fn_71002e3264,unknown,animation?,U
 0x71002e3488,200,fn_71002e3488,unknown,animation?,O
 0x71002e3550,12,fn_71002e3550,unknown,animation?,O
@@ -5499,7 +5499,7 @@ address,size,name,name_source,subsystem,status
 0x71002e7654,156,fn_71002e7654,unknown,animation?,O
 0x71002e76f0,140,fn_71002e76f0,unknown,animation?,O
 0x71002e777c,12,fn_71002e777c,unknown,animation?,O
-0x71002e7788,260,fn_71002e7788,unknown,animation?,U
+0x71002e7788,260,fn_71002e7788,unknown,animation?,O
 0x71002e788c,256,fn_71002e788c,unknown,animation?,O
 0x71002e7990,160,fn_71002e7990,unknown,animation?,O
 0x71002e7a30,88,fn_71002e7a30,unknown,animation?,O
