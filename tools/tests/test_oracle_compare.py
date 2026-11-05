@@ -134,6 +134,178 @@ class FloatSelection(unittest.TestCase):
         facts = types.SimpleNamespace(args=frozenset({100}), wide=frozenset(), stack_slots=0)
         self.assertEqual(selection(m, facts)[100], 32)
 
+    D0 = 0x40468D23FD1BC240
+
+    @staticmethod
+    def vcopy(m, d: int, n: int, word=None) -> None:
+        """m runs `mov v<d>.16b, v<n>.16b` (an orr, as Ghidra's P-code has it, then the SVE part zeroed)."""
+        w = word if word is not None else 0x4EA01C00 | n << 16 | n << 5 | d
+        m.ops_db = {w: [(9101, (2, Q0 + QSTRIDE * d, 16), [(2, Q0 + QSTRIDE * n, 16), (2, Q0 + QSTRIDE * n, 16)]),
+                        (9102, (2, Q0 + QSTRIDE * d + 16, 16), [(0, 0, 16)])]}
+        m.uniq = {}
+        with _opcodes({9101: "INT_OR", 9102: "COPY"}):
+            m.step(0x1000, w, 1, 2, 3, 4, 5, 6)
+
+    def entry(self, own_args, d0=None):
+        """A Machine at the entry with d0 as v0 (a double's or an f32's bits), own_args its arguments."""
+        d0 = self.D0 if d0 is None else d0
+        m = machine()
+        m.own_facts = types.SimpleNamespace(args=frozenset(own_args), wide=frozenset(own_args))
+        m.sreads, m.vwide, m.vtag, m.entry_v = set(), set(), {i: i for i in range(8)}, {0: d0}
+        m.regs[Q0:Q0 + 16] = d0.to_bytes(16, "little")
+        return m
+
+    def entry_copy(self, own_args, read_as_s: bool) -> int:
+        """The bits selected for v0 written whole with the entry's d0 (`mov v0.16b, v8.16b` of a
+        `mov v8.16b, v0.16b`), the function's own arguments being own_args."""
+        m = self.entry(own_args)
+        self.vcopy(m, 8, 0)
+        if read_as_s:
+            m.read((2, Q0 + QSTRIDE * 8, 4))  # (fmul s1, s1, s8)
+        self.vcopy(m, 0, 8)
+        return selection(m, WIDE_V0)[100]
+
+    def test_entry_s0_read_then_copied(self):
+        """s0 read where it came in (fcmp s0), then passed on through v8: an f32 too."""
+        m = self.entry({100})
+        m.read((2, Q0, 4))
+        self.vcopy(m, 8, 0)
+        self.vcopy(m, 0, 8)
+        self.assertEqual(selection(m, WIDE_V0)[100], 32)
+
+    def test_fmov_d_copy_carries_the_argument(self):
+        m = self.entry({100})
+        m.read((2, Q0, 4))
+        self.vcopy(m, 8, 0, word=0x1E604000 | 0 << 5 | 8)  # fmov d8, d0
+        self.vcopy(m, 0, 8, word=0x1E604000 | 8 << 5 | 0)
+        self.assertEqual(selection(m, WIDE_V0)[100], 32)
+
+    def test_double_with_an_unrelated_s_read_of_the_same_low_word_is_64_bits(self):
+        """A double 1.0 (low word 0) passed on whole to a callee reading d0, after an s read of an
+        unrelated zero register: only the argument's own s read counts, not a value."""
+        m = self.entry({100}, d0=0x3FF0000000000000)
+        self.vcopy(m, 8, 0)
+        m.read((2, Q0 + QSTRIDE, 4))  # (fcmp s1, #0.0 on a zeroed v1)
+        self.vcopy(m, 0, 8)
+        self.assertEqual(selection(m, WIDE_V0)[100], 64)
+
+    def test_vector_lane_read_is_64_bits(self):
+        """A float32x2 d0: lane 0 read as s0, lane 1 read too (mov s1, v0.s[1]): not an f32."""
+        m = self.entry({100})
+        m.read((2, Q0, 4))
+        m.read((2, Q0 + 4, 4))
+        self.vcopy(m, 8, 0)
+        self.vcopy(m, 0, 8)
+        self.assertEqual(selection(m, WIDE_V0)[100], 64)
+
+    def test_d_read_is_64_bits(self):
+        """Read as s0 and as d0 (fmov x1, d0; a double's use): compared whole."""
+        m = self.entry({100})
+        self.vcopy(m, 8, 0)
+        m.read((2, Q0 + QSTRIDE * 8, 4))
+        m.read((2, Q0 + QSTRIDE * 8, 8))
+        self.vcopy(m, 0, 8)
+        self.assertEqual(selection(m, WIDE_V0)[100], 64)
+
+    def test_other_write_ends_the_copy(self):
+        """v8 rewritten with the same bits by other than a whole copy (a load, an arithmetic op): no
+        longer the argument's copy."""
+        m = self.entry({100})
+        m.read((2, Q0, 4))
+        m.set_reg(Q0 + QSTRIDE * 8, 16, self.D0)
+        self.vcopy(m, 0, 8)
+        self.assertEqual(selection(m, WIDE_V0)[100], 64)
+
+    def test_whole_copy_of_an_f32_argument_is_32_bits(self):
+        """The function's own s0, read as s8 and passed on whole through v8: the caller's bits above it
+        are unspecified (71010df1fc)."""
+        self.assertEqual(self.entry_copy({0, 100}, True), 32)
+
+    def test_whole_copy_never_read_as_s_is_64_bits(self):
+        """Passed on whole without being read as an f32: it may be a double, compared whole."""
+        self.assertEqual(self.entry_copy({0, 100}, False), 64)
+
+    def test_whole_copy_of_a_non_argument_is_64_bits(self):
+        """v0 at the entry when it is not one of the function's arguments: compared whole."""
+        self.assertEqual(self.entry_copy({0}, True), 64)
+
+
+class BothFault(unittest.TestCase):
+    """compare: two runs that crash after the same calls and writes agree, whatever the registers a
+    callee is not passed hold (71004720d8)."""
+
+    @staticmethod
+    def made(v0: int, x0: int = 1, end=("end", "fault"), fault=0x10, access=("load", 8), tail=(), calls=True):
+        call = ("call", 0x7100001000, ((0, 64),), ((0, x0), (100, v0)))
+        head = [(call, ((0x7200000000, 5),))] if calls else []
+        return types.SimpleNamespace(events=head + [(end, tail)], undef_mem=set(), clipped=False, arg_slots=0,
+                                     fault=fault if end == ("end", "fault") else None,
+                                     fault_access=access if end == ("end", "fault") else None)
+
+    def test_unpassed_register_differs(self):
+        self.assertEqual(pcode_emu.compare(self.made(0x3F800000), self.made(0), None), "")
+
+    def test_passed_register_differs(self):
+        self.assertEqual(pcode_emu.compare(self.made(0, x0=1), self.made(0, x0=2), None),
+                         "event 0 before the original's fault")
+
+    def test_lift_returns(self):
+        self.assertTrue(pcode_emu.compare(self.made(0x3F800000), self.made(0, end=("end", "return")),
+                                          None).startswith("skip"))
+
+    def test_different_fault_address_decides_nothing(self):
+        """The lift crashing on another access after the same calls never reached the original's
+        stores and result past it: not an agreement."""
+        self.assertTrue(pcode_emu.compare(self.made(0), self.made(0, fault=0xFF00), "x32").startswith("skip"))
+        self.assertTrue(pcode_emu.compare(self.made(0x3F800000), self.made(0, fault=0xFF00), "x32").startswith("skip"))
+
+    def test_no_calls_any_crash_is_not_any_crash(self):
+        a, b = self.made(0, calls=False), self.made(0, calls=False, fault=0x18)
+        self.assertTrue(pcode_emu.compare(a, b, "x32").startswith("skip"))
+
+    def test_different_access_decides_nothing(self):
+        a, b = self.made(0), self.made(0, access=("store", 8))
+        self.assertTrue(pcode_emu.compare(a, b, None).startswith("skip"))
+        b = self.made(0, access=("load", 4))
+        self.assertTrue(pcode_emu.compare(a, b, None).startswith("skip"))
+
+    def test_writes_after_the_last_call_are_compared(self):
+        """*p = 5 after the call, then the crash: a lift storing 6 there, or nothing, does not agree."""
+        a = self.made(0, tail=((0x7200000010, 5),))
+        self.assertEqual(pcode_emu.compare(a, self.made(0, tail=((0x7200000010, 5),)), None), "")
+        self.assertTrue(pcode_emu.compare(a, self.made(0, tail=((0x7200000010, 6),)), None).startswith("skip"))
+        self.assertTrue(pcode_emu.compare(a, self.made(0), None).startswith("skip"))
+
+
+class FaultEvent(unittest.TestCase):
+    """Machine.run: a fault's end event holds the bytes written since the last call, and the run
+    records the faulting access."""
+
+    HEAP = 0x7200000000
+    STORE5, LOADQ = 0x8B000001, 0x8B000002  # (words for the hand-made P-code below)
+
+    def test_fault_records_the_writes_and_the_access(self):
+        codes = {"BRANCH": 1, "CBRANCH": 2, "BRANCHIND": 3, "CALL": 4, "CALLIND": 5, "RETURN": 6,
+                 "STORE": 9001, "LOAD": 9002}
+        ops = {self.STORE5: [(9001, None, [(0, 0, 8), (0, self.HEAP, 8), (0, 5, 4)])],
+               self.LOADQ: [(9002, (2, pcode_emu.X0, 4), [(0, 0, 8), (0, 0x18, 8)])]}
+        db = {"ops": ops, "userops": {}, "opcodes": codes}
+        image = types.SimpleNamespace(end=pcode_emu.BASE, bss_end=pcode_emu.BASE,
+                                      text=(pcode_emu.BASE, pcode_emu.BASE), data=b"")
+        words = {0x1000: self.STORE5, 0x1004: self.LOADQ}
+        pcode_emu.set_opcodes(codes)
+        try:
+            m = pcode_emu.Machine(db, image, 2, lambda a: a in words, lambda a: words[a], None,
+                                  lambda t: None, lambda t: None, {})
+            m.setup()
+            m.run(0x1000)
+        finally:
+            pcode_emu.OPNAMES.clear()
+        self.assertEqual(m.events[-1][0], ("end", "fault"))
+        self.assertEqual(dict(m.events[-1][1]), {self.HEAP + i: b for i, b in enumerate((5, 0, 0, 0))})
+        self.assertEqual((m.fault, m.fault_access), (0x18, ("load", 4)))
+        self.assertIsNone(m.cut)
+
 
 class CallerFrame(unittest.TestCase):
     """same_arg: two addresses above the entry sp agree (71002842e4)."""

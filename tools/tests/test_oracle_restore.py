@@ -201,6 +201,46 @@ class Restore(unittest.TestCase):
         end(orig), end(lift)
         self.assertFalse(pcode_emu.compare(orig, lift, None).startswith("memory at event"))
 
+    def test_before_the_original_s_fault_a_put_back_decides_nothing(self):
+        # The same put-backs, at a call before the original's fault, the lift going on to return: the
+        # input is a skip as at a return, never "event N before the original's fault" (7100221d48:
+        # old = *p; f(); (void)*p; *p = old against f(); *p = *p; 7100758e8c: a 4-byte put-back
+        # after an 8-byte store against one 8-byte store, bytes 0..3 as loaded)
+        def faulting(m):
+            call(m)
+            m.checkpoint(("end", "fault"))
+            return m
+
+        def returning(m):
+            call(m)
+            end(m)
+            return m
+
+        orig = machine()
+        old = orig.load(P, 4)
+        call(orig)
+        orig.load(P, 4)
+        orig.store(P, 4, old)
+        lift = machine()
+        call(lift)
+        lift.store(P, 4, lift.load(P, 4))
+        self.assertTrue(pcode_emu.compare(faulting(orig), returning(lift), None).startswith("skip"))
+
+        orig, lift = machine(), machine()
+        call(orig), call(lift)
+        old = orig.load(P, 4)
+        orig.store(P, 8, old | 5 << 32)
+        orig.store(P, 4, old)
+        lift.store(P, 8, lift.load(P, 8) | 5 << 32)
+        self.assertTrue(pcode_emu.compare(faulting(orig), returning(lift), None).startswith("skip"))
+
+        # (a write only one run made is still a difference before the fault)
+        orig, lift = machine(), machine()
+        call(orig), call(lift)
+        lift.store(P, 4, 7)
+        self.assertEqual(pcode_emu.compare(faulting(orig), returning(lift), None),
+                         "event 1 before the original's fault")
+
     def test_a_math_call_keeps_the_reference(self):
         m = machine()
         v = m.load(P, 4)

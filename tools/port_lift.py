@@ -113,6 +113,18 @@ LOOP_REPAIRS = 4    # of them in a row, a loop's elements repaired one by one (e
 # seed's. (Only seed 7's moved: the arena words the others' repairs read are the ones they ended on.)
 REPAIR_POINTER = pcode_emu.ARENA + 0x40000100
 REPAIR_ALIASED_SEED = (POINTER - pcode_emu.ARENA) // 0x100000 // 16
+# --small-out-counts: on an input the original did not end on (cut off, a fault, inconclusive), a
+# made-up out-parameter word it uses as a count (Machine.count_keys) gets a value below SMALL_COUNT
+# instead of the seed's (64 random bits every other seed: a loop over a
+# local array walked past it, into frame bytes the two runs lay out differently), and the original is
+# run again with it, up to COUNT_ROUNDS times while the run finds more such words.
+SMALL_COUNT = 9
+COUNT_ROUNDS = 4
+
+
+def small_count(seed: int, key: tuple) -> int:
+    """The small value of out-parameter word key = (call, argument, offset) under a seed."""
+    return pcode_emu.mix(seed, *key, 0xC0) % SMALL_COUNT
 
 
 def placed(base, w: int, v: int) -> int:
@@ -439,6 +451,8 @@ def pcode_db(words: set[int], cache: Path) -> dict:
 # --- the oracle --------------------------------------------------------------------------------------
 
 class Oracle:
+    small_counts = False  # --small-out-counts (_init_worker sets it for the process)
+
     def __init__(self, orig: asmdiff.Original, facts: abi_facts.AbiFacts, db: dict, inputs: int, fuzz: bool = True):
         self.orig, self.af, self.db, self.inputs, self.fuzz = orig, facts, db, inputs, fuzz
         self.image = pcode_emu.ImageMemory(orig.img)
@@ -697,20 +711,58 @@ class Oracle:
         return self.orig_runs[addr]
 
     def run_original(self, addr: int, seed: int, ovr: dict, scale: int = 1):
-        """One run of the original on an input (raises pcode_emu.Inconclusive)."""
+        """One run of the original on an input (raises pcode_emu.Inconclusive). With small_counts,
+        when the run with the seed's words did not end (it was cut off, faulted or was inconclusive:
+        a loop over a local array walked past it on a 64-bit count), the out-parameter words it used
+        as counts (and no ("o", key) sets) are made small and the original run again, while that
+        finds more (COUNT_ROUNDS): the run kept is the last that ran, its small_outs the input's,
+        which check() gives the lift's run too. A round that is inconclusive keeps the round before
+        it (or raises the first run's exception). A run that ended on the seed's words keeps them:
+        a large or negative count is compared too (a lift's unsigned or 64-bit loop bound)."""
+        if not self.small_counts:
+            return self.one_original(addr, seed, ovr, scale, {})[0]
+        small: dict = {}
+        m, err = self.one_original(addr, seed, ovr, scale, small)
+        if err is None and not getattr(m, "cut", None) and getattr(m, "fault", None) is None:
+            return m
+        for _ in range(COUNT_ROUNDS):
+            keys = {k for k in m.count_keys() if k not in small and ("o", k) not in ovr}
+            if not keys:
+                break
+            small = {**small, **{k: small_count(seed, k) for k in sorted(keys)}}
+            m2, err2 = self.one_original(addr, seed, ovr, scale, small)
+            if err2 is not None:
+                break
+            m, err = m2, None
+        if err is not None:
+            raise err
+        return m
+
+    def one_original(self, addr: int, seed: int, ovr: dict, scale: int, small: dict):
+        """(the run, None), or (the machine, the pcode_emu.Inconclusive it raised) under small_counts;
+        without them it raises."""
         size = self.orig.sizes[addr]
         m = self.machine(seed, lambda a: addr <= a < addr + size, self.image_word, None, self.preset_orig,
                          self.dicts[addr], ovr, True, addr, scale=scale)
-        m.run(addr)
+        if self.small_counts:
+            m.small_outs = small
+            m.track_counts()
+            try:
+                m.run(addr)
+            except pcode_emu.Inconclusive as e:
+                return m, e
+        else:
+            m.run(addr)
         m.shrink()
-        return m
+        return m, None
 
     def check(self, addr: int, lo: pcode_emu.LiftObject, ret: str | None) -> tuple[str, str, int, set]:
         """('pass' | 'fail' | 'inconclusive', detail, conclusive runs, original addresses covered).
         When no input agreed and the original was cut off on some (a long loop: out of steps, or of
         events or snapshot room, a loop that calls), the first RETRY_INPUTS of those are run again,
         both sides, with RETRY_SCALE times the limits: two runs cut off still decide nothing
-        (pcode_emu.compare)."""
+        (pcode_emu.compare). A pass needs an agreement on an input the original ended on without a
+        fault: agreements where both runs crashed alike alone are inconclusive."""
         start, size = lo.functions[addr]
         bad = [n for p, ns in lo.unresolved.items() if start <= p < start + size for n in ns]
         if bad:
@@ -719,12 +771,21 @@ class Oracle:
         word = lambda a: pcode_emu._word(lo, a)  # noqa: E731
         preset = {**self.preset_orig, **{g: 1 for g in lo.guards}}
         agreed, why, covered, retry = 0, "", set(), []
+        # (agreements on an input the original ended on without a fault: two runs that crashed alike
+        # were compared only up to the crash, never on the result or what follows it, so a function
+        # whose every agreement is a crash in both is not shown equivalent, pcode_emu.compare)
+        ended = 0
+
+        def crashed(mo) -> bool:
+            return bool(mo.events) and mo.events[-1][0] == ("end", "fault")
 
         def one(seed, ovr, mo, scale) -> tuple[str, str]:
             """('agree' | 'skip' | 'fail', detail) for the lift on one input the original ran."""
             ml = self.machine(seed, lambda a: text[0] <= a < text[1], word, lo, preset, self.dicts[addr], ovr,
                               addr=addr, guide=mo.call_log, scale=scale)
             ml.noret_at = mo.noret_call  # (the original's run ended on a call that never returns)
+            if mo.small_outs:
+                ml.small_outs = mo.small_outs  # (--small-out-counts: the input's small count words)
             try:
                 ml.run(start)
             except pcode_emu.Inconclusive as e:
@@ -743,7 +804,10 @@ class Oracle:
             if d:
                 self.last = (mo, ml)
                 return "fail", f"input {seed}: {d}"
-            return "agree", ""
+            # (two runs that crashed with exactly the same events, the crash included: the standard the
+            # oracle passed functions on before round 10, as against compare's looser both-fault
+            # agreement, where a register the callee is not passed may differ)
+            return "agree", "exact" if crashed(mo) and ml.events == mo.events else ""
 
         for seed, ovr, mo in self.originals(addr):
             if isinstance(mo, str):
@@ -759,7 +823,8 @@ class Oracle:
                     retry.append((seed, ovr))
                 continue
             agreed += 1
-        if not agreed and retry:
+            ended += not crashed(mo) or d == "exact"
+        if not ended and retry:
             scale = pcode_emu.RETRY_SCALE
             for seed, ovr in retry:
                 if self.out_of_time("retries"):
@@ -786,10 +851,14 @@ class Oracle:
                     return "fail", f"{d} (with {scale}x the limits)", agreed, covered
                 if v == "agree":
                     agreed += 1
+                    ended += not crashed(mo) or d == "exact"
                 else:
                     why = f"{d} (also with {scale}x the limits)"
         if not agreed:
             return "inconclusive", why or "no input", 0, covered
+        if not ended:
+            return "inconclusive", f"only crash agreements: the original faulted on every input that agreed ({agreed})", \
+                0, covered
         return "pass", why, agreed, covered
 
 
@@ -797,8 +866,11 @@ _CTX: dict = {}
 
 
 def _init_worker(version: str, lo_paths: list, db_path: Path, inputs: int, debug: bool, fuzz: bool = True,
-                 budget: float = None, budget_pass: str = "inconclusive", budget_keep: frozenset = frozenset()) -> None:
+                 budget: float = None, budget_pass: str = "inconclusive", budget_keep: frozenset = frozenset(),
+                 junk_scratch: bool = False, small_counts: bool = False) -> None:
     """An oracle process: the image, the P-code, the facts cache; objects load on first use."""
+    Oracle.small_counts = small_counts
+    pcode_emu.Machine.junk_scratch = junk_scratch  # (--junk-scratch)
     orig = asmdiff.Original(version)
     af = abi_facts.AbiFacts(orig, callgraph.load_rows())
     af.version = version
@@ -1075,6 +1147,12 @@ def main() -> int:
                                           "that hit the budget")
     ap.add_argument("--mutants", type=int, default=0,
                     help="test the oracle: inject one fault into N accepted lifts and count how many it rejects")
+    ap.add_argument("--small-out-counts", action=argparse.BooleanOptionalAction, default=True,
+                    help="on an input the original did not end on (cut off, a fault, inconclusive), a callee's "
+                         "made-up out-parameter word that the original compares with a non-constant or "
+                         "scales into an address (a loop count, an index), and never dereferences, gets a value of "
+                         f"0-{SMALL_COUNT - 1} instead of the seed's, in both runs (default on since round 10's A/B: "
+                         "9 gained, none lost on 536; --no-small-out-counts as before)")
     ap.add_argument("--no-fuzz", action="store_true",
                     help="seeded inputs only (no mutated inputs after the seeds; the oracle before 2026-10-27)")
     ap.add_argument("-v", "--verbose", action="store_true", help="print each function's outcome")
@@ -1086,6 +1164,11 @@ def main() -> int:
                     help="ADDR[,ADDR...]: also override these src/lifted definitions with a semantic lift (for a byte-mode"
                          " lift that is wrong on x86-64 for another reason, such as a data table read through a string"
                          " literal; until gen_lift is fixed)")
+    ap.add_argument("--junk-scratch", action=argparse.BooleanOptionalAction, default=False,
+                    help="track the registers a call leaves undefined (x9-x18, v16-v31, v8-v15's upper halves): an "
+                         "input on which the original's compared argument, store, branch or result depends on one is "
+                         "skipped (pcode_emu.Machine.junk_scratch; off by default: on round 10's 536-function check "
+                         "it doubled the oracle time, 3,906 s against 1,873 s, for the same 506 accepted)")
     ap.add_argument("--no-overrides", action="store_true",
                     help="leave those definitions alone (by default each gets a semantic lift that overrides it, "
                          "added to the worklist unless --only or --top is given)")
@@ -1223,7 +1306,9 @@ def main() -> int:
         keep = frozenset(int(a, 16) for a, v in json.loads(Path(args.budget_keep).read_text(encoding="utf-8"))
                          ["functions"].items() if v["outcome"] == "accepted")
     ctx = (args.version, lo_paths, db_path, args.inputs, bool(args.debug), not args.no_fuzz, args.oracle_budget,
-           args.budget_pass, keep)
+           args.budget_pass, keep, args.junk_scratch, args.small_out_counts)
+    Oracle.small_counts = args.small_out_counts  # (this process's too: --mutants)
+    pcode_emu.Machine.junk_scratch = args.junk_scratch  # (this process's oracles too: --mutants)
     accepted: dict[int, tuple[str, set[str]]] = {}
     info: dict[int, dict] = {}
     last_fail: dict[int, str] = {}
@@ -1296,6 +1381,7 @@ def main() -> int:
     manifest = {
         "generator": GENERATOR, "sources": {s: blob(s) for s in SOURCES}, "version": args.version,
         "build_id": "646761F643AFEBB379EDD5E6A5151AF2CEF93DC1", "inputs": args.inputs, "fuzz": not args.no_fuzz,
+        **({"junk_scratch": True} if args.junk_scratch else {}),
         "semantic_flags": SEMANTIC_FLAGS, "host_flags": host_flags()[1],
         "worklist": args.only or (port_sweep.rel(Path(args.worklist)) if args.worklist else f"slice {args.slice}"),
         "seconds": round(time.time() - t0),
@@ -1304,6 +1390,7 @@ def main() -> int:
                                  **({"error": errors[a]} if a in errors else {}),
                                  **({"overrides": overrides[a]} if a in overrides else {})} for a in wl},
         "report": report,
+        "small_out_counts": bool(args.small_out_counts),  # (since round 10's review: on runs that did not end)
     }
     (out / "manifest.json").write_text(json.dumps(manifest, indent=1) + "\n", encoding="utf-8")
     if overrides:
