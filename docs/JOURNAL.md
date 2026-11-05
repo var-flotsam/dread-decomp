@@ -132,6 +132,36 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Lifter and oracle: round 10 (2026-11-04/05, branch `claude/project-thread-zgkpk3-r10`).** Whole-binary run
+lifted_all14 (5013ec5a): 13,643 of 13,691 accepted by the oracle, against lifted_all12's 13,633 on the same
+worklist: 12 gained, 2 lost. The run's x86-64 step failed for every accepted lift while the PC slept (no compiler
+output, every object missing); each source compiles as written, so the objects were rebuilt and the outcomes
+restored afterwards (13,643 of 13,643).
+- **Round 9's six losses**, bisected with all four tools stepped through r9's commits: 3e2a394f (FlatLifter joins
+  written argument registers at labels) lost 710030ed9c, 71010df1fc, 71004720d8; d3220c60 lost 7100758e8c; 24b7c7ea
+  lost 7100e9e164; 84a44e9e lost 7100221d48. All too strict, fixed in the oracle: a whole copy of the function's own
+  f32 argument is compared on 32 bits (11c19678); before the original's fault a put-back after a call decides
+  nothing, as on the return path (d8a512cf); two runs that crash alike agree (79e8b00f).
+- **--small-out-counts** (r10-count): a made-up out-parameter word the original uses as a count gets a small value.
+  On 536 functions (all12's 36 not accepted, 6 targets, 500 accepted): 9 gained, none lost; on by default.
+- **--junk-scratch** (r10-junk): x9-x18 and the other scratch registers undefined after a call. 1 gained, none lost,
+  but the oracle took 2.1x as long (3,906 s against 1,873 s on the 536) and its gain, 7100df6688, passes without it
+  under small out-counts: off by default.
+- **The cloud review's 4 fixes** (r10review): both-fault agreement needs the same fault access and the same writes
+  since the last call (ced583f3); no pass on crash agreements alone (76f83814); the f32-copy narrowing is known by
+  where the value came from (b40b4eac); small out-counts only where the seed's words did not end the run (560a95c6).
+  On the 536 they cost one accept, 7100e9e164 (a crash-only pass).
+- **The all13 regression**: on 560a95c6 the oracle lost 180 of all12's accepts in its first 8,281 functions, 179 to
+  76f83814's "only crash agreements". Those functions crash alike in both runs on every input with exactly the
+  same events, the crash included: the standard functions passed on before round 10. 5013ec5a keeps the rule for
+  compare's looser both-fault agreement (a register the callee is not passed may differ) and counts an exactly equal
+  crash as before; 10 of the 179 relifted, all accepted. all13 was stopped.
+- **all14 against all12.** Gained (12): 710012ce70 7100df6688 710030ed9c 7100758e8c 7100221d48 710029c4c0
+  7100ab13c8 7101169b74 71004720d8 7100aaa914 7100ab1638 71010df1fc. Lost (2), both "only crash agreements" (their
+  agreements are now the loose kind): 7100e2dad4 7100da92b0. Thin accepts: 188 functions pass on exactly equal
+  crashes alone (counted in all13's first 8,281, where 76f83814 had rejected them; all of them were accepted in
+  all12); no new accept rests on 1-2 agreeing inputs.
+
 **Lifter and oracle: round 9, the functions round 8's stricter oracle rejected (2026-11-03, branch
 `claude/project-thread-zgkpk3-r9`).** Whole-binary run lifted_all12 (2b97a619): 13,633 of 13,691 accepted, in
 6,521 s. The worklist is 2,450 smaller than all11's because main's merge brought those functions in hand-matched
