@@ -85,6 +85,14 @@ oracle are tool work (weeks), lifted code is ugly and must be clearly fenced off
 tree, and a semantic lift can be wrong in ways a byte match cannot. The percentage of hand-typed
 code becomes the honest readability metric; the bytes-matched number keeps measuring verification.
 
+**Lifts are scaffolding (owner, 2026-11-05).** The product is a full source port with no translation
+layer, deliberately unlike the static recompilation "Metroid Dread Recomp"; lifted code exists only so
+the port can run before matching catches up. It stays fenced (outside `src/`, never counted as
+progress), is measured on every handoff as "lifted code still in the port" (functions and bytes, from
+the lift manifests) and is expected to shrink release by release. Lifter work past "the boot runs" is
+not on the route: the remaining lifts go away by hand matching, not by better lifting. The completion
+metric is hand-typed, readable code (`tools/progress.py --origin`).
+
 **Decision (owner, 2026-10-24): Route B.** The port lives in `port/` on `main`, not on a
 long-lived branch: it must track every header and matched function as they land, and a side
 branch would diverge within days. Port work goes through short-lived branches and pull requests

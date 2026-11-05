@@ -18,10 +18,17 @@ the output is unchanged (docs quote it).
 docs/HANDOFF.md, so the page's numbers are generated, never typed. Without a slice it replaces only
 the whole-binary row and keeps the boot row it finds there.
 
+`--origin` splits the matched (`O`, `m`) functions and bytes by where their source lives: hand-typed
+(`src/` outside the generated directories) or generated (reflection, clones, tables, byte-identical
+lifts). Hand-typed, readable code is the project's completion metric (CLAUDE.md, "Purpose"); the
+generated share verifies correctness but does not count toward it. It reads check.py's diff cache
+(build/check/<version>/**/*.o.diff.json, the object that defines each function), so run check.py first.
+
 Usage: python tools/progress.py [--json build/progress.json] [--top 15]
        python tools/progress.py --slice boot [--version 2.1.0] [--json build/progress.json]
        python tools/progress.py --slice boot --handoff
        python tools/progress.py --slice-from CGameBlackboard::refl_GetClass
+       python tools/progress.py --origin [--version 2.1.0]
 """
 
 from __future__ import annotations
@@ -84,6 +91,50 @@ def slice_report(version: str, rows: list[dict], boot: bool, start: str | None) 
             "overall": tally(game), "caveat": callgraph.CAVEAT}
 
 
+GENERATED_DIRS = {"reflection", "reflection_types", "reflection_statics", "clones", "tables", "lifted"}
+ORIGINS = {"hand": "Hand-typed (`src/` outside the generated directories)",
+           "generated": "Generated (reflection, clones, tables, byte-identical lifts)"}
+
+
+def origin_report(version: str, rows: list[dict]) -> dict:
+    """Matched (`O`, `m`) functions and bytes by the origin of their source, from check.py's diff
+    cache (the object that defines each function). A function defined in both a generated and a
+    hand-written file counts as hand-typed (the hand-written definition is the one the port keeps)."""
+    cache = ROOT / "build" / "check" / version
+    if not cache.is_dir():
+        raise SystemExit(f"{cache}: no check cache; run tools/check.py --version {version} first")
+    by_addr = {int(r["address"], 16): r for r in rows}
+    origin: dict[int, str] = {}
+    for p in cache.rglob("*.o.diff.json"):
+        kind = "generated" if p.relative_to(cache).parts[0] in GENERATED_DIRS else "hand"
+        try:
+            entries = json.loads(p.read_text(encoding="utf-8"))["entries"]
+        except (OSError, ValueError, KeyError, TypeError):
+            continue
+        for e in entries:
+            a = e.get("address")
+            if a in by_addr and (kind == "hand" or a not in origin):
+                origin[a] = kind
+    out = {k: {s: {"functions": 0, "bytes": 0} for s in ("O", "m")} for k in ORIGINS}
+    for a, kind in origin.items():
+        r = by_addr[a]
+        if r["status"] in ("O", "m"):
+            out[kind][r["status"]]["functions"] += 1
+            out[kind][r["status"]]["bytes"] += int(r["size"])
+    return out
+
+
+def print_origin(o: dict, overall: dict) -> None:
+    matched = overall["by_status"]["O"]["bytes"] + overall["by_status"]["m"]["bytes"]
+    print("| Origin of the source | `O` functions | `O` bytes | `m` functions | `m` bytes | Share of matched bytes |")
+    print("|---|---|---|---|---|---|")
+    for kind, label in ORIGINS.items():
+        v = o[kind]
+        share = 100 * (v["O"]["bytes"] + v["m"]["bytes"]) / matched if matched else 0.0
+        print(f"| {label} | {v['O']['functions']:,} | {v['O']['bytes'] / 1e6:.2f} MB | {v['m']['functions']:,} | "
+              f"{v['m']['bytes'] / 1e6:.2f} MB | {share:.1f}% |")
+
+
 HANDOFF = ROOT / "docs" / "HANDOFF.md"
 BEGIN, END = "<!-- progress:begin -->", "<!-- progress:end -->"
 WHOLE, BOOT = "Whole binary (`L` excluded)", "Boot slice (from `nnMain`, direct calls)"
@@ -125,6 +176,8 @@ def main() -> int:
     sl.add_argument("--slice-from", metavar="NAME|ADDR", help="also report the functions reachable from this one")
     ap.add_argument("--handoff", nargs="?", const=HANDOFF, type=Path, metavar="PATH",
                     help="rewrite the generated status table in docs/HANDOFF.md (or PATH)")
+    ap.add_argument("--origin", action="store_true",
+                    help="split matched bytes into hand-typed and generated source (needs build/check/<version>/)")
     args = ap.parse_args()
     if args.handoff and args.slice_from:
         ap.error("--handoff takes the boot slice or none, not --slice-from")
@@ -161,6 +214,12 @@ def main() -> int:
         print_status(s["overall"])
         print()
         print(s["caveat"])
+
+    if args.origin:
+        report["origin"] = origin_report(args.version, game)
+        print()
+        print("matched bytes by origin of the source (hand-typed code is the completion metric):")
+        print_origin(report["origin"], overall)
 
     if args.handoff:
         update_handoff(args.handoff, overall, report["slice"]["overall"] if "slice" in report else None)

@@ -7,8 +7,22 @@ search it, don't read it whole). Contributors working from a fork: `CONTRIBUTING
 the maintainer: `docs/maintaining.md` (publication, branch rules, merging, the self-hosted check job). Outside
 projects are listed in `docs/references.md`. Add any newly used or referenced project there.
 
-A clean-room-style decompilation of Metroid Dread (Nintendo Switch), aiming for a
-native PC port later. It is modelled on PrimeDecomp and zeldaret/botw.
+A full, human-readable decompilation of Metroid Dread (Nintendo Switch) and a true source port,
+modelled on PrimeDecomp and zeldaret/botw.
+
+## Purpose (owner, 2026-11-05)
+
+The project is complete when anyone can build a native port for the desired operating systems from
+their own files (keys, ROM, filesystem). The project hosts none of those files and never hands them
+to a user, to stay clear of piracy. It is deliberately different from the static recompilation
+"Metroid Dread Recomp": a full source port with no translation layer in the product. The semantic
+lifts the port runs today are scaffolding that hand matching replaces; `docs/HANDOFF.md` reports
+them as "lifted code still in the port", a number that must shrink to zero. The point is to give the
+community a tool that deepens their understanding of a game they already own: speedrunners reading
+the real code to find new methods, developers making mods that would otherwise be impossible.
+Readable, hand-typed code is the completion metric (`tools/progress.py --origin`); bytes matched by
+generated code verify correctness but do not count toward the goal. The rule that follows: read any
+disassembly or decompiler output you need, copy none of it into tracked files.
 
 ## Hard rules (never break these)
 
