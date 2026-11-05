@@ -1,0 +1,76 @@
+// CSabotoruAIComponent's unit (tools/tu_map.py), fn_71006792e8: after the base update (fn_7100369c44), unless the
+// actor's +0x1b8 is in state 2: runs fn_71006786ec once when the flag at +0x146e8 is set (clearing it), stores
+// the position of the actor's target (fn_7100d7c990) as "vPlayerPos" in the blackboard section g_unk_71726b7cb8
+// (+0x1260), unless the blackboard is locked, and calls fn_7100679410 with 0. Names and layouts are
+// placeholders.
+#include "base/global/CStrId.h"
+#include "base/math/CVector.h"
+#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkReflCast.h"
+#include "game/CBlackboard.h"
+#include "game/UnkActor.h"
+#include "game/UnkTUProperty.h"
+#include "types.h"
+
+using base::global::CStrId;
+using base::reflection::UnkReflObject;
+
+// As src/game/CAIComponent/CAIComponent_StoreFloat_b49.cpp declares them.
+struct UnkTypedValue {
+    const base::reflection::CType* type;
+    void* value;
+};
+void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
+extern base::global::CStrId g_unk_71726b7cb8;
+// As src/game/CGobblerAIComponent/fn_71005820c4.cpp declares it.
+struct UnkGobblerComponent;
+void fn_7100369c44(UnkGobblerComponent* self);
+// As src/game/CSabotoruTurnInDoorAttack/CSabotoruTurnInDoorAttack.cpp declares it.
+void fn_7100679410(UnkReflObject* ai, u32 value);
+
+struct UnkSabotoruState_A3_b75 {
+    u8 pad_0x0[0x70];
+    s32 state;
+};
+
+struct UnkSabotoruUpdAI_A3_b75 {
+    u8 pad_0x0[0x30];
+    UnkActor* actor;
+    u8 pad_0x38[0x1260 - 0x38];
+    CBlackboard blackboard;  // 0x1260
+    u8 pad_0x1350[0x146e8 - 0x1260 - sizeof(CBlackboard)];
+    bool field_0x146e8;
+};
+
+void fn_71006786ec(UnkSabotoruUpdAI_A3_b75* self);
+
+void fn_71006792e8(UnkSabotoruUpdAI_A3_b75* self) {
+    fn_7100369c44(reinterpret_cast<UnkGobblerComponent*>(self));
+    if (static_cast<UnkSabotoruState_A3_b75*>(self->actor->field_0x1b8)->state == 2)
+        return;
+    if (self->field_0x146e8) {
+        self->field_0x146e8 = false;
+        fn_71006786ec(self);
+    }
+    {
+        CBlackboard* blackboard = &self->blackboard;
+        UnkTypedValue v;
+        CStrId name("vPlayerPos", true);
+        UnkActor* target = fn_7100d7c990(self->actor);
+        u32 x = *reinterpret_cast<const u32*>(&target->field_0x44);
+        u32 y = *reinterpret_cast<const u32*>(&target->field_0x54);
+        u32 z = *reinterpret_cast<const u32*>(&target->field_0x64);
+        alignas(8) u32 pos[3];
+        pos[0] = x;
+        pos[1] = y;
+        pos[2] = z;
+        if (CBlackboard::CSection* s = fn_71010472e0(blackboard, g_unk_71726b7cb8)) {
+            if (!blackboard->field_0xe8) {
+                v.type = fn_71000246e4();
+                v.value = pos;
+                fn_7100332c80(s, reinterpret_cast<UnkPropertyName*>(&name), &v);
+            }
+        }
+    }
+    fn_7100679410(reinterpret_cast<UnkReflObject*>(self), 0);
+}

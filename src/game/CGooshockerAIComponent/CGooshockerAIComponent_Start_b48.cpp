@@ -10,7 +10,7 @@ struct UnkGooshockerState {
     u32 field_0x148e4;
 };
 
-void fn_710059e4f0(UnkGooshockerState* self, u32 mode);
+void fn_710059e4f0(UnkGooshockerState* self, bool mode);
 
 void fn_710059f058(UnkGooshockerState* self) {
     if (self->started)

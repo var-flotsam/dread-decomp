@@ -1,0 +1,31 @@
+// Unit 2573 (tools/tu_map.py; no reflected class): the request side of fn_7100ecf450 (UnkUnit2573_Flush_b51.cpp).
+// Unless a request is pending (+0x14b), marks one, stores its two words (+0x150, +0x14c) and, unless the value at
+// +0x170 is within 0.1 of zero, hands the record at +0x158 and `source` (or the default at +0xd0) to the manager
+// at g_unk_7101d47318 (fn_7101024b28). Names and layouts are placeholders.
+#include "types.h"
+
+struct UnkDropTarget;
+extern UnkDropTarget* g_unk_7101d47318;
+void fn_7101024b28(UnkDropTarget* self, void* record, void* source, void* a, u32 b);
+
+struct UnkUnit2573_A6_b72 {
+    u8 unk_0x0[0xd0];
+    u8 source[0x14b - 0xd0];  // 0xd0
+    bool pending;             // 0x14b
+    u32 word_0x14c;
+    u32 word_0x150;
+    u8 unk_0x154[4];
+    u8 record[0x170 - 0x158];  // 0x158
+    f32 value;                 // 0x170
+};
+
+void fn_7100ecf3d4(UnkUnit2573_A6_b72* self, void* source, u32 a, u32 b) {
+    if (self->pending)
+        return;
+    self->pending = true;
+    self->word_0x150 = a;
+    self->word_0x14c = b;
+    f32 v = self->value;
+    if (!(v + 0.1f >= 0.0f) || !(v - 0.1f <= 0.0f))
+        fn_7101024b28(g_unk_7101d47318, self->record, source ? source : self->source, nullptr, 0);
+}

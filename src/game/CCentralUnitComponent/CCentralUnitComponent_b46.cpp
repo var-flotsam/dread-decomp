@@ -23,7 +23,7 @@ UnkRef fn_7100353be8(void* source);
 
 struct UnkCentralUnitDoor_b46a2;
 UnkCentralUnitDoor_b46a2* fn_71004056fc(void* object);
-void fn_71008ca700(UnkCentralUnitDoor_b46a2* door, u32 open);
+void fn_71008ca700(UnkCentralUnitDoor_b46a2* door, bool open);
 
 struct UnkCentralUnitLink_b46a2 {
     u8 pad_0x0[0x10];

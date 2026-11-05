@@ -1382,3 +1382,192 @@ bool fn_71000f4ebc(UnkSoundStart* self, u32 id, u32 c, f32 a, f32 b) {
     fn_710120e650(current, !on_thread && self->start_id == 1 ? 0.2f : -2.0f);
     return ok;
 }
+
+// ---- fn_71000f9d20: resume the voice groups in a mask ----
+
+// Under the voice mutex the groups leave the paused mask at +0x348, every voice of both lists whose
+// group (+0xb0) is in the mask is unpaused over `time` seconds, and once nothing is paused the global
+// resume command 0x20 is queued. Nothing happens while the global flag g_unk_7108b6ab60 is set. It is
+// here, beside fn_71000faac4, because only this unit knows that the payload is not kept, so the last
+// unlock stays a tail call.
+struct UnkSoundGroupVoice {
+    u8 pad_0x0[0xb0];
+    u32 group;  // +0xb0
+};
+
+void fn_7100105ef4(void* sound, f32 time, f32 step, bool arg3);
+
+struct UnkSoundSystemGroups {
+    u8 pad_0x0[0x348];
+    u32 paused;  // +0x348
+    u8 pad_0x34c[0xa4];
+    UnkSoundGroupVoice** flagged;  // +0x3f0
+    u32 flagged_count;
+    u8 pad_0x3fc[0x1c];
+    UnkSoundGroupVoice** plain;  // +0x418
+    u32 plain_count;
+    u8 pad_0x424[0x400568 - 0x424];
+    nn::os::MutexType mutex;  // +0x400568
+};
+static_assert(__builtin_offsetof(UnkSoundSystemGroups, flagged) == 0x3f0, "");
+static_assert(__builtin_offsetof(UnkSoundSystemGroups, plain) == 0x418, "");
+static_assert(__builtin_offsetof(UnkSoundSystemGroups, mutex) == 0x400568, "");
+
+struct UnkGroupFadePayload {
+    u32 kind;
+    f32 time;
+};
+
+static inline void ResumeGroupsIn(UnkSoundGroupVoice** voices, u32 count, const u32* mask, f32 time) {
+    for (UnkSoundGroupVoice **it = voices, **end = voices + count; it != end; ++it)
+        if (u32 bit = 1 << (*it)->group; *mask & bit)
+            fn_7100105ef4(*it, 0.0f, time, false);
+}
+
+void fn_71000f9d20(UnkSoundSystemGroups* self, const u32* mask, f32 time) {
+    if (__builtin_expect(g_unk_7108b6ab60 & 1, 1))
+        return;
+    fn_7100132cd0();
+    nn::os::MutexType* mutex = &self->mutex;
+    fn_710006691c(mutex);
+    self->paused = self->paused & ~*mask;
+    ResumeGroupsIn(self->plain, self->plain_count, mask, time);
+    ResumeGroupsIn(self->flagged, self->flagged_count, mask, time);
+    if (self->paused == 0) {
+        UnkGroupFadePayload payload = {2, time};
+        fn_71000faac4(reinterpret_cast<UnkSoundSystemATK*>(self), 0x20, &payload);
+    }
+    fn_7100066920(mutex);
+}
+
+// ---- fn_71000fce40: start a voice of the flagged list from its description ----
+
+// A voice is taken from the pool at +0x398 (none when no slot is free), constructed with the next
+// sequence number, announced to the sound thread (command 0 with its id), added to the flagged list
+// at +0x3f0 and set up from the description; its group's and channel's counters go up. The
+// declarations are those of src/base/snd/UnkSoundVoiceList_b56.cpp.
+struct UnkSoundVoice2_b56;
+struct UnkVoicePool_b56;
+void fn_7100104f08(void* voice);
+void* fn_7100083804(UnkVoicePool_b56* self);
+void fn_710010519c(UnkSoundVoice2_b56* voice, void* system, u32 seq, bool flag);
+
+// What the voice is started from (placeholder names).
+struct UnkSoundVoiceDesc {
+    u32 field_0x0;
+    u32 key;      // +0x4
+    s32 group;    // +0x8
+    s32 channel;  // +0xc
+    u8 pad_0x10[0x8];
+    base::global::CStrId name;  // +0x18
+    u8 pad_0x20[0x8];
+    u32 field_0x28;
+    u32 field_0x2c;
+    u32 field_0x30;
+    u8 pad_0x34[0x4];
+    u32 field_0x38;
+    u32 field_0x3c;
+    u32 field_0x40;
+    u32 field_0x44;
+    u32 field_0x48;
+    u32 field_0x4c;
+    u8 pad_0x50[0x8];
+    u32 field_0x58;
+    u8 pad_0x5c[0x10];
+    u8 field_0x6c;
+    u8 field_0x6d;
+};
+static_assert(__builtin_offsetof(UnkSoundVoiceDesc, field_0x6d) == 0x6d, "");
+
+struct UnkSoundStartedVoice {
+    u32 field_0x0;
+    u32 field_0x4;
+    u32 field_0x8;
+    u8 pad_0xc[0x30];
+    u32 field_0x3c;
+    u32 field_0x40;
+    u32 field_0x44;
+    u8 pad_0x48[0x40];
+    base::global::CStrId name;  // +0x88
+    u8 pad_0x90[0x8];
+    u32 field_0x98;
+    u32 field_0x9c;
+    u32 field_0xa0;
+    u8 pad_0xa4[0xc];
+    u32 field_0xb0;
+    u32 key;      // +0xb4
+    s32 group;    // +0xb8
+    s32 channel;  // +0xbc
+    u8 pad_0xc0[0x4];
+    u32 id;  // +0xc4
+    u8 pad_0xc8[0x1c];
+    u32 field_0xe4[7];  // +0xe4
+    u8 pad_0x100[0x10];
+    u32 field_0x110;
+    u8 pad_0x114[0x8];
+    u8 field_0x11c;
+    u8 pad_0x11d[0x2];
+    u8 field_0x11f;
+    u8 field_0x120;
+};
+static_assert(__builtin_offsetof(UnkSoundStartedVoice, field_0x120) == 0x120, "");
+
+struct UnkSoundSystemStarts {
+    u8 pad_0x0[0x2f4];
+    s32 groups[8];      // +0x2f4
+    s32 channels[0x1b]; // +0x314
+    u32 next_seq;  // +0x380
+    u8 pad_0x384[0x14];
+    u8 pool[0x28];       // +0x398
+    u8 stats[0x28];      // +0x3c0
+    u64 released;        // +0x3e8
+    base::UnkVector<UnkSoundStartedVoice*> flagged;  // +0x3f0
+};
+static_assert(__builtin_offsetof(UnkSoundSystemStarts, flagged) == 0x3f0, "");
+
+UnkSoundStartedVoice* fn_71000fce40(UnkSoundSystemStarts* self, const UnkSoundVoiceDesc* desc) {
+    fn_7100132cd0();
+    void* mem = nullptr;
+    if (self->released != 0) {
+        self->released--;
+        mem = fn_7100083804(reinterpret_cast<UnkVoicePool_b56*>(self->pool));
+    }
+    fn_7100104f08(mem);
+    UnkSoundStartedVoice* voice = static_cast<UnkSoundStartedVoice*>(mem);
+    if (!voice)
+        return nullptr;
+    fn_710010519c(reinterpret_cast<UnkSoundVoice2_b56*>(voice), self, self->next_seq++, false);
+    u32 id = voice->id;
+    voice->field_0x120 = 0;
+    u32 payload[2];
+    payload[0] = id;
+    fn_71000faac4(reinterpret_cast<UnkSoundSystemATK*>(self), 0, payload);
+    self->flagged.PushBack(voice);
+    voice->field_0xb0 = desc->field_0x0;
+    voice->group = desc->group;
+    voice->channel = desc->channel;
+    voice->name = desc->name;
+    voice->field_0x11f = desc->field_0x6d;
+    voice->field_0x98 = desc->field_0x28;
+    voice->field_0x9c = desc->field_0x2c;
+    voice->field_0xa0 = desc->field_0x30;
+    voice->field_0xe4[2] = desc->field_0x38;
+    voice->field_0xe4[3] = desc->field_0x38;
+    voice->field_0x8 = desc->field_0x38;
+    voice->field_0x0 = desc->field_0x38;
+    voice->field_0x4 = desc->field_0x38;
+    voice->field_0xe4[1] = desc->field_0x3c;
+    voice->field_0xe4[0] = desc->field_0x40;
+    voice->field_0xe4[5] = desc->field_0x48;
+    voice->field_0xe4[4] = desc->field_0x44;
+    voice->field_0x44 = desc->field_0x44;
+    voice->field_0x3c = desc->field_0x44;
+    voice->field_0x40 = desc->field_0x44;
+    voice->field_0xe4[6] = desc->field_0x4c;
+    voice->key = desc->key;
+    voice->field_0x11c = desc->field_0x6c;
+    voice->field_0x110 = desc->field_0x58;
+    self->groups[desc->group]++;
+    self->channels[desc->channel]++;
+    return voice;
+}

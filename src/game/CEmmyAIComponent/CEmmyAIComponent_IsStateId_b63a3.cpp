@@ -1,0 +1,62 @@
+// The CEmmyAIComponent unit: fn_71005436e8, a copy of the string-id test in
+// CEmmyAIComponent_IsStateId_b56.cpp (fn_710054aecc) against the id g_unk_71726debd0. Names and
+// layouts are placeholders.
+#include "base/global/CStrId.h"
+#include "game/CBlackboard.h"
+#include "types.h"
+
+using base::global::CStrId;
+
+struct UnkGameManagerIdTable {
+    u8 pad_0x0[0x17e0];
+    u8 field_0x17e0[8];
+    u8 pad_0x17e8[0x2578 - 0x17e8];
+    UnkGameManagerIdTable() asm("fn_7100031894");
+    ~UnkGameManagerIdTable() asm("fn_71000407f0");
+};
+inline UnkGameManagerIdTable& GameManagerIdTable() {
+    static UnkGameManagerIdTable s_table;
+    return s_table;
+}
+
+bool fn_710051d464(CBlackboard::CSection* section, const void* name, CStrId* out);
+
+extern char g_unk_71726e20a8[] __attribute__((visibility("hidden")));
+extern char g_unk_71726debd0[];
+
+struct UnkEmmyAIComponent_b46a1;
+
+struct UnkEmmyStateIdTest_b63a3 {
+    u8 pad_0x0[0x1260];
+    CBlackboard blackboard;
+};
+
+namespace {
+
+struct UnkEmptyStrId_b63a3 {
+    union {
+        CStrId id;
+    };
+
+    UnkEmptyStrId_b63a3() {
+        id.data = nullptr;
+        if (!g_unk_7101d47108)
+            base::global::UnkEnsureStringPool();
+        id.data = &g_unk_7101d47108->empty;
+    }
+    ~UnkEmptyStrId_b63a3() { id.~CStrId(); }
+};
+
+}  // namespace
+
+bool fn_71005436e8(UnkEmmyAIComponent_b46a1* owner) {
+    UnkEmmyStateIdTest_b63a3* self = reinterpret_cast<UnkEmmyStateIdTest_b63a3*>(owner);
+    const CStrId& want = *reinterpret_cast<const CStrId*>(g_unk_71726debd0);
+    UnkEmptyStrId_b63a3 value;
+    CBlackboard* blackboard = &self->blackboard;
+    asm("" : "+r"(blackboard));
+    const CStrId& section = *reinterpret_cast<const CStrId*>(reinterpret_cast<char*>(&GameManagerIdTable()) + 0x1b58);
+    if (CBlackboard::CSection* s = fn_7101047270(blackboard, section))
+        fn_710051d464(s, g_unk_71726e20a8, &value.id);
+    return value.id.data == want.data;
+}
