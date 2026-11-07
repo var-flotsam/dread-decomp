@@ -24,6 +24,7 @@
 #include "game/UnkModelManager.h"
 #include "game/UnkRenderManager.h"
 #include "types.h"
+#include "UnkLeftoverReg.h"
 
 using base::global::CFilePathStrId;
 using base::global::CRntString;
@@ -65,7 +66,7 @@ static inline void Parse(UnkFileReader* reader, UnkReadTarget* target) {
 }
 
 // The reader's first argument is an empty value (its caller leaves x0 as it is).
-struct UnkFileReadTag {};
+struct UnkFileReadTag : UnkLeftoverReg {};
 
 void fn_7100ee30dc(UnkFileReadTag, const CFilePathStrId* path) {
     UnkFileReader reader;
@@ -390,7 +391,7 @@ struct UnkScenario {
 };
 
 // Helpers that take an empty value first (their callers leave x0 as it is).
-struct UnkSubAreaTag {};
+struct UnkSubAreaTag : UnkLeftoverReg {};
 void* fn_7100eea4c8(UnkSubAreaTag, UnkSubArea* area, bool a, bool b, UnkMask mask);
 void* fn_7100eea618(UnkSubAreaTag, UnkSubArea* area, bool flag);
 
@@ -737,7 +738,7 @@ void fn_7100ee34f0(CSubAreaManager* self) {
 
 // The first argument of the two settings steps below: their caller (fn_7100ee5dcc) leaves x0 as
 // the previous call returned it, and neither reads it.
-struct UnkLeftoverArg {};
+struct UnkLeftoverArg : UnkLeftoverReg {};
 
 // The environment manager singleton (src/engine/UnkStartupManagers.cpp creates it the same way)
 // and the three settings it takes from a sub-area, each from one slot of the sub-area's table.

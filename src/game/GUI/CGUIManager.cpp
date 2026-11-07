@@ -24,6 +24,7 @@
 #include "UnkClone.h"
 
 #include "../../game_s7/UnkPropBagS7.h"
+#include "UnkLeftoverReg.h"
 
 using unk_prop_bag::UnkPropBag;
 
@@ -270,7 +271,7 @@ const base::reflection::CType* fn_71011bcf1c();
 
 // The loaded composition, as src/game_hi/fn_71011b69d8.cpp declares it (a display-object
 // container; vf_0x10 is its deleting destructor, vf_0x28 its weak-handle slot).
-struct UnkTag_71011b69d8 {};
+struct UnkTag_71011b69d8 : UnkLeftoverReg {};
 struct UnkRefHandle_71011b69d8;
 struct UnkRefSource_71011b69d8 {
     virtual void vf_0x0(); virtual void vf_0x8(); virtual void vf_0x10(); virtual void vf_0x18(); virtual void vf_0x20();

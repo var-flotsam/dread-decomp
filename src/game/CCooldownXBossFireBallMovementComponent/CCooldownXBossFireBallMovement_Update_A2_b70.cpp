@@ -33,8 +33,9 @@ struct UnkFireBallMovement_A2_b70 {
     UnkFireBallOwner_A2_b70* owner;  // 0x230
 };
 
-void fn_71004d767c(UnkFireBallMovement_A2_b70* self) {
-    fn_71010d1a90(reinterpret_cast<UnkShardsSphere_b60a2*>(self));
+// `dt` (s0) reaches the base update untouched in the original (tools/forwarded_args.py).
+void fn_71004d767c(UnkFireBallMovement_A2_b70* self, f32 dt) {
+    reinterpret_cast<void (*)(UnkShardsSphere_b60a2*, f32)>(fn_71010d1a90)(reinterpret_cast<UnkShardsSphere_b60a2*>(self), dt);
     if (!(self->actor->field_0x44 < 1200.0f))
         return;
     if (self->owner && self->owner->object) {

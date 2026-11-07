@@ -4,12 +4,13 @@
 #include "base/reflection/UnkReflCast.h"
 #include "types.h"
 
-bool fn_7100493b00(void* self);
+bool fn_7100493b00(void* self, void* arg, u32 mode);
 
 namespace {
 
-inline bool UnkChozoWarriorXAttack_CanStart(char* self) {
-    if (!fn_7100493b00(self))
+// `arg` and `mode` (x1, w2) reach the base check untouched in the original (tools/forwarded_args.py).
+inline bool UnkChozoWarriorXAttack_CanStart(char* self, void* arg, u32 mode) {
+    if (!fn_7100493b00(self, arg, mode))
         return false;
     char* owner = *reinterpret_cast<char**>(self + 0x8);
     char* a = *reinterpret_cast<char**>(owner + 0x1d0);
@@ -27,6 +28,6 @@ inline bool UnkChozoWarriorXAttack_CanStart(char* self) {
 
 }  // namespace
 
-bool fn_710048098c(char* self) { return UnkChozoWarriorXAttack_CanStart(self); }
-bool fn_7100482a44(char* self) { return UnkChozoWarriorXAttack_CanStart(self); }
-bool fn_7100484a68(char* self) { return UnkChozoWarriorXAttack_CanStart(self); }
+bool fn_710048098c(char* self, void* arg, u32 mode) { return UnkChozoWarriorXAttack_CanStart(self, arg, mode); }
+bool fn_7100482a44(char* self, void* arg, u32 mode) { return UnkChozoWarriorXAttack_CanStart(self, arg, mode); }
+bool fn_7100484a68(char* self, void* arg, u32 mode) { return UnkChozoWarriorXAttack_CanStart(self, arg, mode); }

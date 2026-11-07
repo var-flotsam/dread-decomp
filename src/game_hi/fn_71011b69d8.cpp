@@ -5,8 +5,9 @@
 #include "game/UnkGuiHandle.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
+#include "UnkLeftoverReg.h"
 
-struct UnkTag_71011b69d8 {};
+struct UnkTag_71011b69d8 : UnkLeftoverReg {};
 
 // A string (base::global::CRntString's layout), moved by fn_710007eab4.
 struct UnkEntry_0x30 {

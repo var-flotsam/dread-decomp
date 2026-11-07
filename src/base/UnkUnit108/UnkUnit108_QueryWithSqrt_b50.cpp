@@ -3,10 +3,11 @@
 #include <math.h>
 #include "types.h"
 
-bool fn_7100118124(void* p0, void* p1, void* p2, void* p3, void* p4, f32* outDistance);
+bool fn_7100118124(void* p0, void* p1, void* p2, void* p3, void* p4, f32* outDistance, void* p6, void* p7);
 
-bool fn_7100118274(void* p0, void* p1, void* p2, void* p3, void* p4, f32* outDistance) {
-    bool r = fn_7100118124(p0, p1, p2, p3, p4, outDistance);
+// `p6` and `p7` (x6, x7) reach the query untouched in the original (tools/forwarded_args.py).
+bool fn_7100118274(void* p0, void* p1, void* p2, void* p3, void* p4, f32* outDistance, void* p6, void* p7) {
+    bool r = fn_7100118124(p0, p1, p2, p3, p4, outDistance, p6, p7);
     if (outDistance)
         *outDistance = sqrtf(*outDistance);
     return r;

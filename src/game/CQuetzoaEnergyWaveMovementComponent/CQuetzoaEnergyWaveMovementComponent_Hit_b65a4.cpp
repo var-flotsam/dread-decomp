@@ -3,6 +3,7 @@
 // argument) points up by less than 0.75 goes to the base handler fn_7100ac4c60, a steeper one to
 // fn_710064cc30. Always returns true. Names and layouts are placeholders.
 #include "types.h"
+#include "UnkLeftoverReg.h"
 
 struct UnkEnergyWave_b65a4;
 
@@ -27,7 +28,7 @@ struct UnkEnergyWave_b65a4 {
 };
 
 // The second argument is unused (the original leaves x1 as it is).
-struct UnkUnused_b65a4 {};
+struct UnkUnused_b65a4 : UnkLeftoverReg {};
 void fn_710064cc30(UnkEnergyWave_b65a4* self, UnkUnused_b65a4, const UnkEnergyWaveHit_b65a4* hit);
 
 bool fn_710064cb94(UnkEnergyWave_b65a4* self, u64 a, u64 b, UnkEnergyWaveHit_b65a4* hit, u64 d) {

@@ -27,8 +27,9 @@ static inline UnkLavaPoolCharClass* AsLavaPool(UnkReflObject* obj) {
     return fn_710009d50c(type, &g_unk_7172733578) ? reinterpret_cast<UnkLavaPoolCharClass*>(obj) : nullptr;
 }
 
-bool fn_71008fbdcc(char* self) {
-    bool ok = fn_7100900610(self);
+// `arg` (x1) reaches the base step untouched in the original (tools/forwarded_args.py).
+bool fn_71008fbdcc(char* self, void* arg) {
+    bool ok = reinterpret_cast<bool (*)(char*, void*)>(fn_7100900610)(self, arg);
     UnkLavaPoolCharClass* cls = AsLavaPool(*reinterpret_cast<UnkReflObject**>(self + 0x10));
     *reinterpret_cast<UnkLavaPoolCharClass**>(self + 0xca8) = cls;
     if (*reinterpret_cast<bool*>(self + 0x21)) {

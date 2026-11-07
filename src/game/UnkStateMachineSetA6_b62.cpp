@@ -185,16 +185,17 @@ struct UnkPlatformSm_A6_b62 {
     u8 pad_0xb8[0x180 - 0xb8];
     UnkSmMachine_A6_b62 machine;
 };
-void fn_7100a042e0(UnkPlatformSm_A6_b62*);
+void fn_7100a042e0(UnkPlatformSm_A6_b62*, void* arg);
 
 static inline UnkSmartObjectActor* LinkedObject_A6_b62(UnkPlatformSm_A6_b62* self) {
     UnkPlatformLink_A6_b62* link = self->link;
     return link ? link->object : nullptr;
 }
 
-void fn_7100a0a9e0(UnkPlatformSm_A6_b62* self) {
+// `arg` (x1) reaches fn_7100a042e0 untouched in the original (tools/forwarded_args.py).
+void fn_7100a0a9e0(UnkPlatformSm_A6_b62* self, void* arg) {
     if (!LinkedObject_A6_b62(self))
-        fn_7100a042e0(self);
+        fn_7100a042e0(self, arg);
     if (UnkSmartObjectActor* object = LinkedObject_A6_b62(self)) {
         UnkPlatformUser_A6_b62* user = reinterpret_cast<UnkPlatformUser_A6_b62*>(fn_71007cfd8c(object));
         if (user && user->vf_0x180())

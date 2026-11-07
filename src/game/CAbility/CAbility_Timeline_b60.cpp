@@ -52,7 +52,9 @@ struct UnkAbility_b60a2 {
     s32 field_0xe4;
 };
 
-void fn_71002f9de8(UnkAbility_b60a2* self) {
+// Takes the `kind` its callers set (w1) like fn_71002f9f18, without using it; the original leaves it
+// untouched up to its virtual getters (tools/forwarded_args.py).
+void fn_71002f9de8(UnkAbility_b60a2* self, s32 /*kind*/) {
     s32 state = self->field_0xb4;
     if (state == 7) {
         if (!self->field_0x20)

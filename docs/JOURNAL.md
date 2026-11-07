@@ -87,6 +87,7 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - An agent's "behaviour identical" on a 10-45% minor is worth an adversarial check (decompile, `abi_facts.py`, the `-v` diff): round 2's ten all held, and the review found a `void` declaration that really returns its first argument: [boot hubs, round 2](#session-log-newest-first).
 - When the callee is in the same unit the original compiler infers facts about it (nocapture, a by-value argument left alone, a constant result) that change the caller; `__attribute__((noescape))`, `inline __attribute__((noinline))` and definitions kept in address order (dead-argument elimination walks them in order) reproduce some: [port M1 boot-match](#session-log-newest-first).
 - Reassociate ranks commutative float operands by IR order: loading values into locals first, or `Merge(a, b)` helpers, fix `fadd`/`orr` operand order; inlined templates are optimised before inlining and flip it again: same entry.
+- An empty struct passed by value for a leftover register takes x0 on AArch64 but no register on x86-64, which shifts every later argument; derive such tags from `UnkLeftoverReg` (`include/UnkLeftoverReg.h`): [empty leftover-register tags](#session-log-newest-first).
 - A port hazard in matching code: AArch64 `udiv` by zero gives 0, x86-64 traps; guard the division only off `__aarch64__` so the Switch bytes stay: [boot hubs, round 2](#session-log-newest-first).
 
 **Port: shaders**
@@ -145,6 +146,17 @@ from 6 to 4, and `check.py` reports no regressions (O 90943).
   vtable, so it moved to the copy file.
 - Left: `refl_IterSync<UnkOwnedList>` (one template, five sync functions) and the three `unk_any_props` vtables
   (five units each).
+**Empty "leftover register" tags lost their register on the port (2026-11-07, branch `claude/empty-tag-abi`).**
+After the `CSoundEventsDef` fix the boot faulted at null + 0x28 in the `CRntString` assignment, under
+`fn_710109e1ac` on the Lua path. That function passes `fn_710109e0a0` an empty struct first, the matching idiom for
+an argument register the original leaves as it is (see the giant-functions notes: "takes an empty struct by value
+first"). AArch64 gives an empty class its register; the x86-64 ABI gives it none, so the port's call passed `source`
+in rdi and the output string in rsi, while the lift of `fn_710109e0a0` reads them from x1/x2 (rsi/rdx) and assigned
+into an uninitialised rdx. `include/UnkLeftoverReg.h` is now the base of every such tag: empty on AArch64 (objects
+byte-identical, check.py clean), one byte on the port, which gives the tag its register back. 12 tags in 15 files
+derive from it; tags that only select an inlined constructor overload (`UnkStrIdInline`, `NoInit`, ...) never cross a
+call and stay as they are. The boot then reached the first frame (9 of 10 milestones, 1362 lifts ran, up from 569)
+and faulted at 0x40 inside it. New tags of this kind must derive from `UnkLeftoverReg`.
 
 **`fn_710009d6d0` hand-matched: the constructor call it made without its object (2026-11-07, branch `claude/ctype-create-ctor-arg`).**
 The boot faulted in `fn_7101028aec` (an `SSoundEventsSelector`'s dynamic-type getter) while parsing `sound::CSoundEventsDef`:
@@ -181,10 +193,38 @@ no direct caller), so `--open` lists them for a crash to confirm. Fixed here, al
 `fn_71011b882c` (GUI path cache: the name id its callers pass reaches `fn_71011b85fc`),
 `fn_7100147960` and `fn_71001479dc` (the character `src/game/GUI/CLabel.cpp` passes reaches
 `fn_71001bd620`, which the file had called "the current frame") and `fn_7100202d24` (its callers' `arg`
-reaches `fn_71001ef028`'s tail call). That leaves 9 boot hits; six are v0/x1/x2 handed to an indirect call
-that the callers set (`fn_71000723cc`, `fn_71006a1ef0`, `fn_7100ecfa10`, `fn_7100fdb8b8`, `fn_71010dca80`,
-`fn_7100f04434` through a direct callee), and `fn_710022586c`'s x1/x2 come from a callee whose callers set
-neither (likely a path its callers never take). Two false-positive sources are handled: an HFA by value
+reaches `fn_71001ef028`'s tail call). The other nine boot hits, judged by the instructions before
+each call site and the callee's use: `fn_710022586c` (CMovieStreamNx's constructor) was a real crash in
+waiting: its callers set neither x1 nor x2 because they pass their own on, and the base constructor
+`fn_710021b774` stores them at +0x38/+0x30, the source the constructor then reads at +0x38; it now takes
+and passes `source, extra`. `fn_71001fda54` passes v0 on through `fn_7100202fa0` to `fn_71001f02d0`, which
+stores s0 (`f32 f`); `fn_7100f04434` hands the caller's frame time to `fn_7100f04520`; `fn_71000723cc`
+(the fade's flag, a time in s0 like `fn_7100072328`), `fn_7100ecfa10` (CShotManager's shot time, already
+in its declaration there) and `fn_71010dca80` (x1, set by eight callers) hand theirs to the virtual they
+wrap. `fn_71006a1ef0` (a frame time) and `fn_7100fdb8b8` (two stack addresses) declare what their callers
+pass without using it: the register only survives up to incidental virtual calls (a release, a state's
+`vf_0x18(id)`). `fn_71001327c0` stays listed: its x0 reaches the per-frame callback, `fn_7100000d40`,
+which takes nothing. After these and a merge of `main`: **295 hits**, 1 in the boot slice, 14 with callers that set the register; all twelve fixed functions still **O**. Then the hand-written hits outside the boot slice. The tool
+lost three kinds of false positive: in-place constructors emitted under the `void()` symbol reflection
+declares (`asm("_Z13fn_...v")`, 18: the symbol hides their `self`), a switch's `br`, which
+`tools/abi_facts.py` now follows to its jump table's targets (Clang's compressed `ldrb`/`ldrh` tables;
+before, every block after the `br`, where the cases join and read what each case wrote: 12, among them
+the scene manager's and two callees' that made `fn_7100aa301c`/`fn_7100aa30ec` hits), and
+`std::initializer_list` by value, two x registers. The rest are overrides that call their base with
+the caller's arguments, which the declarations had dropped: the AI components' initialisation steps
+(`void* arg` down to `fn_7100369490`/`fn_71003ac8f4`/`fn_71010c41bc`/`fn_710110cca4`; the Bigkran X
+template's `Initialise` for seven units), the attacks' `CanStart` checks (`void* arg, u32 mode` to
+`fn_7100360b84` and its overrides), the frame time of updates (`f32 dt` to `fn_71003609a8`,
+`fn_71010d1a90`, `fn_7100369c44` and others), and about twenty one-offs (`fn_7101178010`'s blend time,
+which `CBigFistAttack` already passes; `fn_7100e791a4`'s fifth argument, which `CMinimapManager`
+declares). Undecompiled callees are called through a cast at the call site, so no other file's
+declaration changes. Three functions took the argument but did not pass it on, which the tool cannot
+see (the count is right): `fn_71005d0884` (CInfesterBall), `fn_71005cb0b8` (CInfester) and
+`fn_71006ae2dc` (CShakernaut); fixed too. **182 hits** remain, 169 generated; the 13 hand-written ones
+are 8 `slot` registers that only reach class getters, `fn_71001327c0` (above), a destructor
+(`fn_71001f4efc`: what its vector free hands on is garbage in the original too), two `indirect` floats
+no caller sets (`fn_710014af54`, `fn_71011781f4`) and `fn_71001d72b4`, whose `{f32 x, y}` by value is
+an HFA in v0/v1 already (the tool knows only the math types). Two false-positive sources are handled: an HFA by value
 (`CVector3D` in v0-v2) and a variadic callee, whose prologue saves every argument register.
 **Placeholder classes renamed apart for the port's addresses (2026-11-06, branch `claude/placeholder-class-names`).**
 `tools/port_addresses.py` leaves out a name whose matched uses disagree on its address. Five of its 12 conflicts were

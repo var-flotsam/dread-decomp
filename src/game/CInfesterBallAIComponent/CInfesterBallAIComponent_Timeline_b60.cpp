@@ -8,7 +8,7 @@
 #include "game/UnkTimelineCalls.h"
 #include "types.h"
 
-void fn_710110cca4(void* self);
+void fn_710110cca4(void* self, void* arg);
 
 struct UnkInfesterBallKey_b60;
 extern UnkInfesterBallKey_b60 g_unk_710164a120;  // reached through the GOT
@@ -33,7 +33,7 @@ struct UnkInfesterBallArg_b60 {
 void fn_71005cfa94(UnkInfesterBallAI_b60* self, bool flag);
 
 void fn_71005d0884(UnkInfesterBallAI_b60* self, UnkInfesterBallArg_b60* arg) {
-    fn_710110cca4(self);
+    fn_710110cca4(self, arg);  // the base gets `arg` too (x1 untouched in the original)
     if (arg->obj && arg->obj->field_0x10) {
         self->field_0x1470e = true;
         if (auto* timeline = static_cast<UnkTimelineComponent*>(self->owner->field_0x2e8)) {

@@ -5,7 +5,7 @@
 
 // The stream player at +0x300.
 struct UnkAtkStreamPlayer;
-u32 fn_7101221064(UnkAtkStreamPlayer* player);
+u32 fn_7101221064(UnkAtkStreamPlayer* player, void* arg);
 
 struct UnkAtkStreamSound {
     u8 unk_0x0[0xf0];
@@ -15,8 +15,9 @@ struct UnkAtkStreamSound {
 };
 
 // What the stream player reports once the sound is started; 0 before.
-u32 fn_710121e69c(UnkAtkStreamSound* self) {
+// `arg` (x1) reaches the player's tail call untouched in the original (tools/forwarded_args.py).
+u32 fn_710121e69c(UnkAtkStreamSound* self, void* arg) {
     if (!self->flag_0xf0)
         return 0;
-    return fn_7101221064(reinterpret_cast<UnkAtkStreamPlayer*>(self->player));
+    return fn_7101221064(reinterpret_cast<UnkAtkStreamPlayer*>(self->player), arg);
 }

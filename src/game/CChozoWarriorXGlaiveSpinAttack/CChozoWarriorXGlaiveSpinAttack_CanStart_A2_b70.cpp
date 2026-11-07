@@ -34,10 +34,11 @@ struct UnkGlaiveSpinAttack_A2_b70 {
     UnkGlaiveOwner_A2_b70* owner;
 };
 
-bool fn_7100494c9c(UnkGlaiveSpinAttack_A2_b70* self);
+bool fn_7100494c9c(UnkGlaiveSpinAttack_A2_b70* self, void* arg, u32 mode);
 
-bool fn_7100481914(UnkGlaiveSpinAttack_A2_b70* self) {
-    if (!fn_7100494c9c(self))
+// `arg` and `mode` (x1, w2) reach the base check untouched in the original (tools/forwarded_args.py).
+bool fn_7100481914(UnkGlaiveSpinAttack_A2_b70* self, void* arg, u32 mode) {
+    if (!fn_7100494c9c(self, arg, mode))
         return false;
     UnkGlaiveOwner_A2_b70* owner = self->owner;
     if (owner->life && !(owner->life->life > 0.0f))

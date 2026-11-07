@@ -13,6 +13,7 @@
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkTimelineCalls.h"
 #include "types.h"
+#include "UnkLeftoverReg.h"
 
 struct UnkObj;
 bool fn_7100ac4ec0(UnkObj* self, void* a1, void* a2, void* a3, void* a4, void* a5);
@@ -49,7 +50,7 @@ struct UnkBouncing_b59a4 {
 };
 
 // The two middle arguments are not used: empty values whose registers the caller leaves as they are.
-struct UnkUnused_b59a4 {};
+struct UnkUnused_b59a4 : UnkLeftoverReg {};
 bool fn_7100605790(UnkBouncing_b59a4* self, UnkUnused_b59a4, UnkUnused_b59a4, void* a4);
 
 bool fn_7100605d64(UnkBouncing_b59a4* self, UnkBouncingOther_b59a4* other, void* a2, void* a3, void* a4,

@@ -99,7 +99,9 @@ struct UnkAbility2_b62a2 {
     UnkAbilityHolder_b62a2* field_0xc0;
 };
 
-void fn_71002f9bb4(UnkAbility2_b62a2* self) {
+// Takes the `kind` its callers set (w1) like fn_71002f9f18, without using it; the original leaves it
+// untouched up to its virtual getters (tools/forwarded_args.py).
+void fn_71002f9bb4(UnkAbility2_b62a2* self, s32 /*kind*/) {
     auto* timeline = static_cast<UnkTimelineComponent*>(self->field_0xc0->field_0x30->field_0x2e8);
     if (!timeline)
         return;

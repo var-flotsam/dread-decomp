@@ -14,7 +14,7 @@ struct UnkWeakPointLife_b60a2 {
     u64 field_0x280;
 };
 
-u32 fn_71008a3c48(UnkWeakPointLife_b60a2* self);
+u32 fn_71008a3c48(UnkWeakPointLife_b60a2* self, void* arg);
 void fn_71011a664c(char* instance);  // constructs the instance
 extern char* g_unk_71726b2398;       // the instance, reached through the GOT
 
@@ -23,8 +23,9 @@ struct UnkWeakPointLink_b60a2 {
     UnkActor* field_0x10;
 };
 
-u32 fn_71004d685c(UnkWeakPointLife_b60a2* self) {
-    u32 result = fn_71008a3c48(self);
+// `arg` (x1) reaches the base step untouched in the original (tools/forwarded_args.py).
+u32 fn_71004d685c(UnkWeakPointLife_b60a2* self, void* arg) {
+    u32 result = fn_71008a3c48(self, arg);
     if (result <= 1) {
         char* instance = g_unk_71726b2398;
         if (!instance) {

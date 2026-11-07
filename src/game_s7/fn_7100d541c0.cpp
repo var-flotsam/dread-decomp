@@ -2,6 +2,7 @@
 // (and their transforms) in the order the handler expects. Unhandled pairs give an empty
 // result. Names and layouts are placeholders.
 #include "types.h"
+#include "UnkLeftoverReg.h"
 
 struct UnkShape {
     virtual void vf_0x0();
@@ -25,7 +26,7 @@ inline const UnkContact& NoContact() {
 
 struct UnkCollider;
 // An empty argument (its register is left as it is).
-struct UnkNoContext {};
+struct UnkNoContext : UnkLeftoverReg {};
 
 UnkContact fn_7100d54f28(UnkCollider* self, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6, bool swapped, bool flag);
 UnkContact fn_7100d55920(UnkNoContext, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6, bool flag);

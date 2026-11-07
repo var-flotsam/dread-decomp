@@ -2,7 +2,7 @@
 // any, to a function of their unit, reporting whether there was one.
 #include "types.h"
 
-void fn_71001ebb34(void* obj);
+void fn_71001ebb34(void* obj, void* entry, s32 tag);  // src/game/UnkSpherePool_SetTag.cpp
 void fn_71001ef028(void* obj, void* arg);
 
 struct UnkHolder10 {
@@ -15,10 +15,11 @@ struct UnkHolderA0 {
     void* field_0xa0;
 };
 
-bool fn_71001f0364(UnkHolder10* self) {
+// `entry` and `tag` (x1, w2) reach fn_71001ebb34 untouched in the original (tools/forwarded_args.py).
+bool fn_71001f0364(UnkHolder10* self, void* entry, s32 tag) {
     if (!self->field_0x10)
         return false;
-    fn_71001ebb34(self->field_0x10);
+    fn_71001ebb34(self->field_0x10, entry, tag);
     return true;
 }
 

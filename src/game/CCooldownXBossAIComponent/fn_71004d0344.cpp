@@ -50,8 +50,9 @@ __attribute__((always_inline)) static inline void Register(UnkSelf* self, u8* en
     self->field_0x1618 = index + 1;
 }
 
-u32 fn_71004d0344(UnkSelf* self) {
-    u32 result = fn_71003ac8f4(self);
+// `arg` (x1) reaches the base step untouched in the original (tools/forwarded_args.py).
+u32 fn_71004d0344(UnkSelf* self, void* arg) {
+    u32 result = reinterpret_cast<u32 (*)(UnkSelf*, void*)>(fn_71003ac8f4)(self, arg);
     UnkComponent* object = self->field_0x10;
     UnkComponent* component = nullptr;
     if (object && fn_710009d50c(object->vf_0x0(), fn_71004cde00()))

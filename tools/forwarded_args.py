@@ -13,7 +13,9 @@ arg_class): integers, pointers and references take the next x register, float an
 next v register, `this` (a member function: tools/port_link.py's class_qualified) takes x0, the
 float vectors in HFA (CVector2D/3D/4D, CColor4F by value) take one v register per float, and any
 other named type by value counts as one x register (an aggregate or an enum; such hits are marked
-`+A`, since a 9-16 byte struct takes two). Variadic functions are skipped.
+`+A`, since a 9-16 byte struct takes two). Variadic functions are skipped, and so are definitions emitted under another declaration's symbol
+(`asm("_Z13fn_...v")`, as the in-place constructors reflection declares `void()`), whose symbol does not
+show their parameters.
 
 The original's reads come from tools/abi_facts.py's liveness over the original instructions, run
 in four tiers; each register is reported with the first tier that makes it live at entry:
@@ -65,6 +67,8 @@ INT_REGS = tuple(range(8))
 FLOAT_REGS = tuple(range(100, 108))
 # Homogeneous float aggregates passed by value (include/base/math, include/base/color): floats each.
 HFA = {"CVector2D": 2, "CVector3D": 3, "CVector4D": 4, "CColor4F": 4}
+# Library types by value of 9-16 bytes that take two x registers (a pointer and a size).
+PAIRS = ("initializer_list", "basic_string_view")
 GENERATED = ("src/reflection/", "src/reflection_types/", "src/reflection_statics/", "src/clones/", "src/tables/",
              "src/lifted/")  # generator output (.gitattributes): fix the generator, not the file
 
@@ -95,6 +99,8 @@ def declared(demangled: str) -> Declared | None:
             floats += 1
         elif c == "A" and hfa(p):
             floats += hfa(p)
+        elif c == "A" and pair(p):
+            ints += 2
         else:
             ints += 1
             agg |= c == "A"
@@ -105,6 +111,12 @@ def hfa(param: str) -> int:
     """Floats of a by-value HFA parameter (HFA), else 0."""
     words = param.replace("const", " ").replace("volatile", " ").split()
     return HFA.get(words[0].rsplit("::", 1)[-1], 0) if len(words) == 1 else 0
+
+
+def pair(param: str) -> bool:
+    """A by-value library type of two words (PAIRS), such as std::initializer_list<T>."""
+    words = param.split("<", 1)[0].replace("const", " ").replace("volatile", " ").split()
+    return len(words) == 1 and words[0].rsplit("::", 1)[-1] in PAIRS and param.rstrip().endswith(">")
 
 
 def beyond(regs, d: Declared) -> list[int]:
@@ -318,7 +330,15 @@ def scan(version: str, with_open: bool = False, only: str | None = None) -> tupl
     boot = graph.reachable(callgraph.NNMAIN)
     af = abi_facts.AbiFacts(orig, rows, graph)
     af.version = version
-    stats = {"matched": len(funcs), "variadic_or_unmangled": 0, "undecodable": 0}
+    stats = {"matched": len(funcs), "variadic_or_unmangled": 0, "renamed": 0, "undecodable": 0}
+    texts: dict[str, str] = {}
+
+    def renamed(sym: str, rel: str) -> bool:
+        """A definition emitted under another declaration's symbol (`asm("_Z13fn_...v")`, as the
+        in-place constructors reflection declares `void()`): the symbol says nothing of its parameters."""
+        if rel not in texts:
+            texts[rel] = (ROOT / rel).read_text(encoding="utf-8", errors="replace")
+        return f'asm("{sym}")' in texts[rel]
     an = Analyzer(af)
     siblings = vtable_siblings(pointer_tables(orig))
     strong: dict[int, frozenset] = {}
@@ -332,6 +352,9 @@ def scan(version: str, with_open: bool = False, only: str | None = None) -> tupl
 
     hits = []
     for addr, sym, rel in funcs:
+        if renamed(sym, rel):
+            stats["renamed"] += 1
+            continue
         d = declared(dem.get(sym, sym))
         if d is None:
             stats["variadic_or_unmangled"] += 1
@@ -372,7 +395,7 @@ def main() -> int:
     n_gen = sum(h.generated for h in hits)
     n_conf = sum(bool(h.callers & frozenset(h.counted(args.open))) for h in hits)
     print(f"{len(hits)} hits ({n_boot} in the boot slice, {n_gen} in generated sources, {n_conf} with a register the callers set) among {stats['matched']} matched functions; "
-          f"skipped {stats['variadic_or_unmangled']} variadic or unmangled, {stats['undecodable']} undecodable"
+          f"skipped {stats['variadic_or_unmangled']} variadic or unmangled, {stats['renamed']} under another declaration's symbol (asm label), {stats['undecodable']} undecodable"
           + ("" if args.open else "; open-rule-only registers not counted (--open)"))
     print(callgraph_caveat())
     if args.json:

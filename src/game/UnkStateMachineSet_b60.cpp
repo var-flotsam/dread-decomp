@@ -130,7 +130,7 @@ struct UnkSmBase_b60;
 void fn_71010c4228(UnkParent*);
 void fn_71007dbeac(UnkSmBase_b60*);
 void fn_710024facc(UnkSmBase_b60*);
-void fn_7100818bc0(UnkSmBase_b60*);
+void fn_7100818bc0(UnkSmBase_b60*, void* point);  // src/game/CGrappleBeamComponent/CGrappleBeamComponent_b52.cpp
 void fn_71007dc10c(UnkEvacuationCountDown*);
 void fn_71010c422c(UnkMorphBallLauncher_b57*);
 void fn_71002aeb9c(UnkLinkList*, UnkLinkList**);
@@ -146,7 +146,14 @@ bool fn_71007b3318(UnkSmBase_b60*);
 UNK_SM_SET_AFTER_B60(71007b7df0, fn_71010c4228, UnkParent, 0x58, 2, 2, 0x7fffffff)
 UNK_SM_SET_AFTER_B60(71007de4f0, fn_71007dbeac, UnkSmBase_b60, 0xa0, 2, 2, 0x7fffffff)
 UNK_SM_SET_AFTER_B60(71007f931c, fn_710024facc, UnkSmBase_b60, 0x228, 1, 4, 5)
-UNK_SM_SET_AFTER_B60(710081c584, fn_7100818bc0, UnkSmBase_b60, 0x480, 3, 4, 5)
+
+// The same, with the grapple point (x1) its callers pass, which reaches fn_7100818bc0 untouched in the
+// original (tools/forwarded_args.py).
+void fn_710081c584(UnkSmOwner_b60<0x480>* self, void* point) {
+    fn_7100818bc0(reinterpret_cast<UnkSmBase_b60*>(self), point);
+    RequestState_b60<4, 5>(&self->machine, 3);
+}
+
 UNK_SM_SET_AFTER_B60(710091eb20, fn_710024facc, UnkSmBase_b60, 0x280, 1, 5, 6)
 
 struct UnkEvacuationSm_b60 {

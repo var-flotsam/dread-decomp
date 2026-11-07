@@ -17,8 +17,9 @@ struct UnkInfesterAttack_A3_b67 {
     UnkActor* owner;
 };
 
-u8 fn_71005c55f4(UnkInfesterAttack_A3_b67* self) {
-    bool ok = reinterpret_cast<bool (*)(UnkSelf*)>(fn_7100360b84)(reinterpret_cast<UnkSelf*>(self));
+// `arg` and `mode` (x1, w2) reach the base check untouched in the original (tools/forwarded_args.py).
+u8 fn_71005c55f4(UnkInfesterAttack_A3_b67* self, void* arg, u32 mode) {
+    bool ok = reinterpret_cast<bool (*)(UnkSelf*, void*, u32)>(fn_7100360b84)(reinterpret_cast<UnkSelf*>(self), arg, mode);
     auto* ai = static_cast<base::reflection::UnkReflObject*>(self->owner->field_0x240);
     u8* infester = ai && fn_710009d50c(ai->vf_0x0(), fn_71005ca678()) ? reinterpret_cast<u8*>(ai) : nullptr;
     auto* mv = reinterpret_cast<base::reflection::UnkReflObject*>(reinterpret_cast<void**>(self->owner)[0x1f0 / 8]);

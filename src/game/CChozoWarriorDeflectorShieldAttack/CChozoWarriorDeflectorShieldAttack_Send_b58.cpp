@@ -33,8 +33,9 @@ struct UnkDeflector_b58 {
     f32 field_0x4c;
 };
 
-void fn_7100494210(UnkDeflector_b58* self) {
-    fn_71003609a8(reinterpret_cast<UnkSpitAttack*>(self));
+// `dt` (s0) reaches the base update untouched in the original (tools/forwarded_args.py).
+void fn_7100494210(UnkDeflector_b58* self, f32 dt) {
+    reinterpret_cast<void (*)(UnkSpitAttack*, f32)>(fn_71003609a8)(reinterpret_cast<UnkSpitAttack*>(self), dt);
     base::reflection::UnkReflObject* component = self->owner->field_0x240;
     if (!component || !fn_710009d50c(component->vf_0x0(), fn_7100497f2c()))
         return;

@@ -4,14 +4,16 @@
 #include "types.h"
 
 struct UnkTrackObject_7101178010;
-void fn_710070d884(UnkTrackObject_7101178010* obj, bool flag);
+void fn_710070d884(UnkTrackObject_7101178010* obj, bool flag, f32 time);
 
-void fn_7101178010(UnkAnimationComponent* self, u64 key, bool flag) {
+// `time` (s0) reaches fn_710070d884 untouched in the original; CBigFistAttack passes 30.0f
+// (tools/forwarded_args.py).
+void fn_7101178010(UnkAnimationComponent* self, u64 key, bool flag, f32 time) {
     UnkTrackSet* set = self->field_0x40;
     UnkTrackEntry** it = set->field_0xc8.Find(key);
     if (it == set->field_0xc8.End())
         return;
     UnkTrackEntry* entry = *it;
     if (entry && entry->field_0x70)
-        fn_710070d884(reinterpret_cast<UnkTrackObject_7101178010*>(entry->field_0x70), flag);
+        fn_710070d884(reinterpret_cast<UnkTrackObject_7101178010*>(entry->field_0x70), flag, time);
 }

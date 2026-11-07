@@ -5,7 +5,7 @@
 #include "types.h"
 
 struct UnkGrappleBeam_A4_b74;
-s32 fn_7100ac82bc(UnkGrappleBeam_A4_b74* self);
+s32 fn_7100ac82bc(UnkGrappleBeam_A4_b74* self, void* arg);
 
 struct UnkGrappleVec3_A4_b74 {
     f32 x, y, z;
@@ -77,8 +77,9 @@ struct UnkGrappleBeam_A4_b74 {
     UnkGrappleListener_A4_b74* listener;  // 0x530
 };
 
-s32 fn_7100819798(UnkGrappleBeam_A4_b74* self) {
-    s32 state = fn_7100ac82bc(self);
+// `arg` (x1) reaches fn_7100ac82bc untouched in the original (tools/forwarded_args.py).
+s32 fn_7100819798(UnkGrappleBeam_A4_b74* self, void* arg) {
+    s32 state = fn_7100ac82bc(self, arg);
     switch (state) {
     case 1:
     case 7: {
