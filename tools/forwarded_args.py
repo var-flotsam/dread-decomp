@@ -42,17 +42,29 @@ argument exists. A hit with no `*` and no direct caller setting it may still be 
 function, a caller that sets it in an earlier block) or a callee's read on a path these callers
 never take.
 
+With --calls the tool looks at each call instead: a byte-matching function that declares an
+argument register and leaves it untouched up to a direct call or tail branch (on every path from
+the entry, tools/abi_facts.py's `untouched`), whose callee reads it (READ and CALL tiers above),
+while the callee's symbol in our object (the CALL26/JUMP26 relocation) declares fewer parameters:
+our C++ call does not pass the argument on. `fn_X(self)` and `fn_X(self, arg)` compile to the same
+bytes when `arg` arrives in x1 (fn_71005d0884 called its base without `arg`); the x86-64 port drops
+it. A call through `reinterpret_cast<...>(fn_X)` names fn_X's declared signature, not the cast's:
+calls whose source casts the callee (a `reinterpret_cast` naming it) are listed apart, as `cast`,
+and not counted. A callee whose own declaration is short (a hit of the default mode) shows up
+here too, at each caller; fix the callee's signature first.
+
 Boot-slice functions (reachable from nnMain by direct calls, tools/callgraph.py) are listed first.
 The objects must be current: run tools/check.py first. Needs capstone, llvm-cxxfilt and the
 Ghidra export (for callers and the slice).
 
-Usage: python tools/forwarded_args.py --version 2.1.0 [--open] [--boot] [--json OUT] [--file SRC]
+Usage: python tools/forwarded_args.py --version 2.1.0 [--calls] [--open] [--boot] [--json OUT] [--file SRC]
 """
 
 from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -298,6 +310,11 @@ def source_of(obj: Path, check_dir: Path, src_dir: Path) -> Path | None:
 def matched_functions(version: str, only: str | None = None) -> list[tuple[int, str, str]]:
     """(address, symbol, source path relative to the repository) of each byte-matching function in
     build/check/<version>/ whose source still exists in src/ (stale objects are ignored)."""
+    return [(a, s, rel) for a, s, rel, _ in matched_objects(version, only)]
+
+
+def matched_objects(version: str, only: str | None = None) -> list[tuple[int, str, str, Path]]:
+    """matched_functions, with the object each function was compiled into."""
     check_dir = ROOT / "build" / "check" / version
     if not check_dir.is_dir():
         raise SystemExit(f"{check_dir.relative_to(ROOT).as_posix()} is missing: run tools/check.py --version {version}")
@@ -312,7 +329,7 @@ def matched_functions(version: str, only: str | None = None) -> list[tuple[int, 
             continue
         for e in json.loads(dj.read_text(encoding="utf-8")).get("entries", []):
             if e.get("matching"):
-                out.append((int(e["address"]), e["symbol"], rel))
+                out.append((int(e["address"]), e["symbol"], rel, obj))
     return out
 
 
@@ -375,14 +392,159 @@ def scan(version: str, with_open: bool = False, only: str | None = None) -> tupl
     return hits, stats
 
 
+@dataclass
+class CallHit:
+    """A call in a matched function that does not pass on arguments the caller holds untouched."""
+    caller: int
+    file: str
+    symbol: str      # the caller's
+    demangled: str
+    offset: int      # of the call within the caller
+    callee: int      # the original's target
+    callee_symbol: str
+    callee_demangled: str
+    callee_decl: Declared
+    regs: frozenset  # the caller's declared argument registers the callee reads beyond its declaration
+    cast: bool = False   # the source calls the callee through a reinterpret_cast
+    boot: bool = False
+
+    @property
+    def generated(self) -> bool:
+        return self.file.startswith(GENERATED)
+
+    def row(self) -> dict:
+        return {"caller": f"0x{self.caller:x}", "file": self.file, "offset": f"0x{self.offset:x}",
+                "callee": f"0x{self.callee:x}", "callee_symbol": self.callee_demangled,
+                "callee_declared": {"ints": self.callee_decl.ints, "floats": self.callee_decl.floats,
+                                    "aggregate": self.callee_decl.aggregate},
+                "regs": [reg_name(k) for k in sorted(self.regs)], "cast": self.cast, "boot": self.boot,
+                "generated": self.generated, "demangled": self.demangled}
+
+
+def declared_regs(d: Declared) -> frozenset:
+    """The argument registers a declaration takes (x0.., v0..)."""
+    return frozenset(range(min(d.ints, 8))) | frozenset(100 + k for k in range(min(d.floats, 8)))
+
+
+def dropped(held, caller: Declared, reads, callee: Declared) -> frozenset:
+    """Registers the caller declares and holds untouched at the call, which the callee reads beyond
+    its own declaration: arguments our call does not pass on."""
+    return frozenset(beyond(set(held) & declared_regs(caller) & set(reads), callee))
+
+
+def call_sites(af, addr: int, relocs: dict) -> list[tuple[int, int, str, frozenset]]:
+    """(offset, original target, our symbol, registers untouched from the entry) for each direct
+    call or tail branch with a CALL26/JUMP26 relocation in our object."""
+    import asmdiff
+    held = af.untouched(addr)
+    out = []
+    for off, r in sorted(relocs.items()):
+        if r.type not in (asmdiff.CALL26, asmdiff.JUMP26) or r.section:
+            continue
+        site = held.get(addr + off)
+        if site is None or site[0] is None:
+            continue  # a branch within the function, or a call nothing reaches
+        out.append((off, site[0], r.symbol, site[1]))
+    return out
+
+
+def casts_callee(text: str, name: str) -> bool:
+    """Whether the source calls `name` through a reinterpret_cast (to a wider signature)."""
+    return re.search(r"reinterpret_cast\s*<[^;]*?>\s*\(\s*&?\s*(?:[\w:]+::)?" + re.escape(name) + r"\s*\)",
+                     text) is not None
+
+
+def bare_name(demangled: str) -> str:
+    """fn_7100001234 of `ns::C::fn_7100001234(int) const`."""
+    import asmdiff
+    return asmdiff.strip_params(demangled).rsplit("::", 1)[-1]
+
+
+def scan_calls(version: str, only: str | None = None) -> tuple[list[CallHit], dict]:
+    import abi_facts
+    import asmdiff
+    import callgraph
+    funcs = matched_objects(version, only)
+    seen: set[int] = set()
+    funcs = [f for f in funcs if not (f[0] in seen or seen.add(f[0]))]  # C1/C2 aliases: once per address
+    orig = asmdiff.Original(version)
+    rows = callgraph.load_rows()
+    graph = callgraph.CallGraph(version, rows)
+    boot = graph.reachable(callgraph.NNMAIN)
+    af = abi_facts.AbiFacts(orig, rows, graph)
+    af.version = version
+    an = Analyzer(af)
+    objs: dict[Path, dict] = {}
+    texts: dict[str, str] = {}
+    sites = []
+    stats = {"matched": len(funcs), "calls": 0, "caller_undeclared": 0, "callee_undeclared": 0}
+    for addr, sym, rel, obj in funcs:
+        if obj not in objs:
+            objs[obj] = {f.symbol: f for f in asmdiff.read_object(obj)}
+        f = objs[obj].get(sym)
+        if f is None:
+            continue
+        for off, target, callee, held in call_sites(af, addr, f.relocs):
+            sites.append((addr, sym, rel, off, target, callee, held))
+    dem = asmdiff.demangle(sorted({s[1] for s in sites} | {s[5] for s in sites}), strip=False)
+    hits = []
+    for addr, sym, rel, off, target, callee, held in sites:
+        stats["calls"] += 1
+        if rel not in texts:
+            texts[rel] = (ROOT / rel).read_text(encoding="utf-8", errors="replace")
+        mine, theirs = declared(dem.get(sym, sym)), declared(dem.get(callee, callee))
+        if mine is None or f'asm("{sym}")' in texts[rel]:
+            stats["caller_undeclared"] += 1
+            continue
+        if theirs is None:
+            stats["callee_undeclared"] += 1
+            continue
+        regs = dropped(held, mine, an.callee_args(target, CALL, 0), theirs)
+        if not regs:
+            continue
+        cd = dem.get(callee, callee)
+        hits.append(CallHit(addr, rel, sym, dem.get(sym, sym), off, target, callee, cd, theirs, regs,
+                            casts_callee(texts[rel], bare_name(cd)), addr in boot))
+    hits.sort(key=lambda h: (h.cast, not h.boot, h.generated, h.caller, h.offset))
+    return hits, stats
+
+
+def print_calls(hits: list[CallHit], stats: dict, boot_only: bool) -> None:
+    for h in hits:
+        if boot_only and not h.boot:
+            continue
+        d = h.callee_decl
+        decl = f"{d.ints}x{'+A' if d.aggregate else ''}" + (f" {d.floats}v" if d.floats else "")
+        print(f"0x{h.caller:x}+0x{h.offset:x} {'cast ' if h.cast else '     '}{'boot ' if h.boot else '     '}"
+              f"{'gen ' if h.generated else '    '}{h.file}  calls {bare_name(h.callee_demangled)} (0x{h.callee:x}, "
+              f"declared {decl})  drops {' '.join(reg_name(k) for k in sorted(h.regs))}")
+    real = [h for h in hits if not h.cast]
+    print(f"{len(real)} calls drop an argument ({sum(h.boot for h in real)} in the boot slice, "
+          f"{sum(h.generated for h in real)} in generated sources, {len({h.caller for h in real})} callers); "
+          f"{len(hits) - len(real)} more through a reinterpret_cast of the callee (not counted); "
+          f"{stats['calls']} direct calls in {stats['matched']} matched functions, skipped "
+          f"{stats['caller_undeclared']} with a variadic, unmangled or asm-labelled caller and "
+          f"{stats['callee_undeclared']} with a variadic or unmangled callee")
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--version", required=True)
+    ap.add_argument("--calls", action="store_true",
+                    help="list calls that do not pass on an argument the caller holds untouched")
     ap.add_argument("--open", action="store_true", help="also list registers only the open rule makes live")
     ap.add_argument("--boot", action="store_true", help="list boot-slice hits only")
     ap.add_argument("--file", help="only this source (repository-relative path)")
     ap.add_argument("--json", metavar="OUT", help="also write the hits as JSON")
     args = ap.parse_args()
+    if args.calls:
+        chits, cstats = scan_calls(args.version, args.file)
+        print_calls(chits, cstats, args.boot)
+        print(callgraph_caveat())
+        if args.json:
+            Path(args.json).write_text(json.dumps({"stats": cstats, "calls": [h.row() for h in chits]}, indent=1)
+                                       + "\n", encoding="utf-8")
+        return 0
     hits, stats = scan(args.version, args.open, args.file)
     shown = [h for h in hits if h.boot or not args.boot]
     for h in shown:
