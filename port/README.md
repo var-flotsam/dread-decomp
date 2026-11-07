@@ -709,6 +709,15 @@ different classes (`UnkCallbackSet` and its vtable at `0x7101a33fa0` and `0x7101
 vtables each, `UnkBase_0x30`, `UnkElem40`, `UnkElem80`), and `base::global::CRntString::~CRntString()`,
 251 uses at `0x710007ecd4` and 2, in `fn_710026ead0` itself, at `0x710026ead0`.
 
+Constructors and destructors that matched code does not place (no matched caller yet, or callers
+that disagree on one class's name) are bound by hand in `bindings.tsv`: mangled symbol, address,
+what it is. `port_link.py` adds each to the placed names (`--bindings`, this file by default;
+`--no-bindings` to compare), reports a row that matched code already places at the same address as
+redundant, and leaves out one it places elsewhere. An `asm("fn_<addr>")` label in a header cannot do
+this job: Clang 9 ignores it on a constructor or destructor, and the port's Clang 18 hangs on it. A
+placeholder name that stands for different classes in different files stays out of the table; it is
+renamed in the sources instead.
+
 ## The runtime (M1)
 
 Every SDK import the boot slice reaches is defined in `runtime/`: `nn::os` 30, `nn::oe` 20,

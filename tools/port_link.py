@@ -82,6 +82,10 @@ here with the sweep's flags, so the tool does not depend on the CMake build), th
 what the port still has to provide outside this mechanism: vtables, the host's standard library,
 names without an address, runtime stubs not written yet.
 
+Names without an address in them come from two places: tools/port_addresses.py (--addresses: the
+address the byte-matching callers reach each name at) and port/bindings.tsv (--bindings: the
+constructors and destructors it cannot place, by hand; read_bindings, merge_bindings).
+
 Outputs under <out> (default build/port/link/): runtime/*.o, lib/*.o, objects.rsp, dread_game.o, aliases.rsp,
 traps.s, traps.o, dread_whole.o, boot_missing.csv and link.json (everything the report prints, with
 the full lists); with --lifted also objects_lifted.rsp, dread_game_lifted.o and boot_unlifted.csv, and
@@ -131,6 +135,7 @@ TU_MAP = ROOT / "data" / "tu_map.csv"  # tools/tu_map.py: the units and their st
 RUNTIME_SRC = ROOT / "port" / "runtime" / "src"
 NVN_DIR = ROOT / "port" / "nvn"  # the NVN shim over Vulkan (M2), linked with --nvn
 ADDRESSES = ROOT / "build" / "port" / "addresses.json"  # tools/port_addresses.py
+BINDINGS = ROOT / "port" / "bindings.tsv"  # constructors and destructors placed by hand (read_bindings)
 # The executable's base. The compiled game code reaches 5,467 data symbols PC-relatively, from
 # 0x71015af379 to 0x7172a112e8, so its code must lie within 2 GB of both ends: between about
 # 0x70f2a12000 and the image's start at 0x7100000000 (214 MiB), or above the .bss (235 MiB). Above:
@@ -316,6 +321,42 @@ def read_sample_duplicates() -> list[str]:
         if line and not line.startswith("#"):
             out.append(line)
     return out
+
+
+def read_bindings(path: Path) -> dict[str, int]:
+    """port/bindings.tsv: mangled symbol -> address, for the constructors and destructors
+    tools/port_addresses.py cannot place. Blank lines and # comments ignored; a malformed row or a
+    symbol listed twice is an error."""
+    out: dict[str, int] = {}
+    for n, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+        if not line.strip() or line.lstrip().startswith("#"):
+            continue
+        cols = line.split("\t")
+        if len(cols) < 2 or not cols[0].startswith("_Z") or not re.fullmatch(r"0x[0-9a-fA-F]+", cols[1]):
+            raise SystemExit(f"{rel(path)}:{n}: expected <mangled symbol>\\t0x<address>\\t<what>")
+        if cols[0] in out:
+            raise SystemExit(f"{rel(path)}:{n}: {cols[0]} is listed twice")
+        out[cols[0]] = int(cols[1], 16)
+    return out
+
+
+def merge_bindings(known: dict[str, int], bindings: dict[str, int], rows: dict[str, dict]
+                   ) -> tuple[dict[str, int], dict[str, list[str]]]:
+    """`known` with the bindings added. A binding tools/port_addresses.py already places at the same
+    address is redundant; one it places elsewhere is left out (the matched code wins); one whose
+    address starts no function in data/functions/ is left out. Returns (merged, symbols by reason)."""
+    merged = dict(known)
+    notes: dict[str, list[str]] = defaultdict(list)
+    for sym, a in sorted(bindings.items()):
+        if sym in known:
+            notes["redundant" if known[sym] == a else "placed elsewhere by matched code"].append(sym)
+            continue
+        if f"0x{a:010x}" not in rows:
+            notes["not a function start"].append(sym)
+            continue
+        merged[sym] = a
+        notes["bound"].append(sym)
+    return merged, notes
 
 
 def collect_objects(objects_dir: Path, duplicates: list[str]) -> tuple[list[Path], list[str], list[str]]:
@@ -1448,6 +1489,9 @@ def main() -> int:
                     help="tools/port_addresses.py's output: original addresses of vtables and names without one"
                          " (default build/port/addresses.json, used when present)")
     ap.add_argument("--no-addresses", action="store_true", help="ignore --addresses")
+    ap.add_argument("--bindings", default=str(BINDINGS),
+                    help="constructors and destructors placed by hand (default port/bindings.tsv, used when present)")
+    ap.add_argument("--no-bindings", action="store_true", help="ignore --bindings")
     ap.add_argument("--executable", action="store_true",
                     help="after link 2, link <out>/dread: port/main.cpp, dread_whole.o and a trap for every name"
                          " still undefined that is not the host's (an ELF target only; see write_residue_traps)")
@@ -1467,6 +1511,15 @@ def main() -> int:
         known = {sym: int(e["address"], 16) for sym, e in placed.get("resolved", {}).items()}
         print(f"addresses: {len(known)} symbols placed from matched code ({rel(Path(args.addresses))};"
               f" {len(placed.get('conflicts', {}))} left out: their uses disagree)")
+    rows, _ = check.load_csv()
+    if not args.no_bindings and Path(args.bindings).is_file():
+        known, notes = merge_bindings(known, read_bindings(Path(args.bindings)), rows)
+        print(f"bindings: {len(notes.get('bound', []))} constructors and destructors placed by {rel(Path(args.bindings))}"
+              + "".join(f"; {len(v)} {k}" for k, v in sorted(notes.items()) if k != "bound"))
+        for k, v in sorted(notes.items()):
+            if k not in ("bound", "redundant"):
+                for sym in v:
+                    print(f"  {k}: {sym}")
 
     cxx = args.cxx or port_sweep.host_cxx()
     target = args.target or port_sweep.default_target(cxx)
@@ -1523,7 +1576,6 @@ def main() -> int:
         demangled = asmdiff.demangle(names, strip=False)
     except OSError as e:
         raise SystemExit(f"llvm-cxxfilt is needed ({asmdiff.cxxfilt()}): {e}")
-    rows, _ = check.load_csv()
     resolver = Resolver(rows)
     lk = Link(symbols, demangled, resolver, relocations(objdump, game_o), known)
     lk1 = lk  # (link 1, before any semantic lifts)

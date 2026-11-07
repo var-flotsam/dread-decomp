@@ -98,3 +98,47 @@ class SplitStatics(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class Bindings(unittest.TestCase):
+    ROWS = {"0x7100000010": {}, "0x7100000020": {}}
+
+    def read(self, text: str) -> dict[str, int]:
+        import tempfile
+        from pathlib import Path
+        with tempfile.TemporaryDirectory() as d:
+            p = Path(d) / "bindings.tsv"
+            p.write_text(text, encoding="utf-8")
+            return pl.read_bindings(p)
+
+    def test_rows_comments_and_blank_lines(self):
+        got = self.read("# header\n\n_ZN1AC1Ev\t0x7100000010\tA::A()\n_ZN1AD1Ev\t0x7100000020\n")
+        self.assertEqual(got, {"_ZN1AC1Ev": 0x7100000010, "_ZN1AD1Ev": 0x7100000020})
+
+    def test_malformed_and_duplicate_rows_stop(self):
+        for text in ("A::A()\t0x7100000010\n", "_ZN1AC1Ev 0x7100000010\n", "_ZN1AC1Ev\t7100000010\n",
+                     "_ZN1AC1Ev\t0x7100000010\n_ZN1AC1Ev\t0x7100000020\n"):
+            with self.assertRaises(SystemExit, msg=text):
+                self.read(text)
+
+    def test_matched_code_wins(self):
+        known = {"_ZN1AC1Ev": 0x7100000010, "_ZN1BC1Ev": 0x7100000020}
+        bindings = {"_ZN1AC1Ev": 0x7100000010, "_ZN1BC1Ev": 0x7100000010, "_ZN1CD1Ev": 0x7100000020,
+                    "_ZN1DD1Ev": 0x7100000030}
+        merged, notes = pl.merge_bindings(known, bindings, self.ROWS)
+        self.assertEqual(merged, {**known, "_ZN1CD1Ev": 0x7100000020})
+        self.assertEqual(notes["redundant"], ["_ZN1AC1Ev"])
+        self.assertEqual(notes["placed elsewhere by matched code"], ["_ZN1BC1Ev"])
+        self.assertEqual(notes["not a function start"], ["_ZN1DD1Ev"])
+        self.assertEqual(notes["bound"], ["_ZN1CD1Ev"])
+        self.assertEqual(known, {"_ZN1AC1Ev": 0x7100000010, "_ZN1BC1Ev": 0x7100000020})  # not modified
+
+
+class ShippedBindings(unittest.TestCase):
+    def test_port_bindings_parse_and_name_functions(self):
+        import check
+        rows, _ = check.load_csv()
+        bindings = pl.read_bindings(pl.BINDINGS)
+        self.assertTrue(bindings)
+        for sym, a in bindings.items():
+            self.assertIn(f"0x{a:010x}", rows, sym)
