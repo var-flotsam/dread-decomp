@@ -119,9 +119,10 @@ static inline UnkVec2 Max(UnkVec2 a, UnkVec2 b) {
 
 // An array of 0x58-byte records (destroyed through the vtable; moved inline, the member at
 // 0x18 out of line). Erasing at the index given destroys it and moves the rest down.
-struct UnkMovable {
+// The callback set of include/game/UnkCallbackSetVector.h (its move constructor), seen as bytes.
+struct UnkCallbackSet_7101a20950 {
     u8 unk_0x0[0x40];
-    UnkMovable(UnkMovable&& other);  // fn_71002458a4
+    UnkCallbackSet_7101a20950(UnkCallbackSet_7101a20950&& other);  // fn_71002458a4
 };
 
 struct UnkRecord58 {
@@ -129,7 +130,7 @@ struct UnkRecord58 {
     virtual ~UnkRecord58();
     u64 field_0x8;
     u32 field_0x10;
-    UnkMovable field_0x18;
+    UnkCallbackSet_7101a20950 field_0x18;
 
     UnkRecord58(UnkRecord58&& other)
         : field_0x8(other.field_0x8), field_0x10(other.field_0x10), field_0x18(std::move(other.field_0x18)) {}
