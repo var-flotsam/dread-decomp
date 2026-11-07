@@ -77,7 +77,7 @@ SUBSYSTEM_RULES = [
 # Code we don't decompile as game code: vendored upstream (Lua, dlmalloc), Nintendo
 # middleware/SDK (nn::atk, nn::), and the C/C++ runtime. Marked L, like BotW's
 # "library function" status, and excluded from progress.
-LIBRARY_SUBSYSTEMS = {"middleware/nn-atk", "sdk", "runtime", "lua/stdlib", "lua", "dlmalloc"}
+LIBRARY_SUBSYSTEMS = {"middleware/nn-atk", "sdk", "runtime", "lua", "dlmalloc"}
 # Subsystems where a neighbour's inferred subsystem ("lua?") does not make a function library code:
 # the game added its own functions to Lua's auxiliary library (luaL_testudata, ...), between ones
 # tools/sigmatch.py matches to lib/lua, and nothing in lib/lua provides them. Only a matched name is

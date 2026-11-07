@@ -87,6 +87,7 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - An agent's "behaviour identical" on a 10-45% minor is worth an adversarial check (decompile, `abi_facts.py`, the `-v` diff): round 2's ten all held, and the review found a `void` declaration that really returns its first argument: [boot hubs, round 2](#session-log-newest-first).
 - When the callee is in the same unit the original compiler infers facts about it (nocapture, a by-value argument left alone, a constant result) that change the caller; `__attribute__((noescape))`, `inline __attribute__((noinline))` and definitions kept in address order (dead-argument elimination walks them in order) reproduce some: [port M1 boot-match](#session-log-newest-first).
 - Reassociate ranks commutative float operands by IR order: loading values into locals first, or `Merge(a, b)` helpers, fix `fadd`/`orr` operand order; inlined templates are optimised before inlining and flip it again: same entry.
+- Status L means "lib/ provides it" on the port: a game function marked L by name or by a neighbour's inferred subsystem becomes a trap stub; the Lua metamethods and lauxlib additions were: [game's own Lua functions](#session-log-newest-first).
 - An empty struct passed by value for a leftover register takes x0 on AArch64 but no register on x86-64, which shifts every later argument; derive such tags from `UnkLeftoverReg` (`include/UnkLeftoverReg.h`): [empty leftover-register tags](#session-log-newest-first).
 - A port hazard in matching code: AArch64 `udiv` by zero gives 0, x86-64 traps; guard the division only off `__aarch64__` so the Switch bytes stay: [boot hubs, round 2](#session-log-newest-first).
 
@@ -146,6 +147,22 @@ from 6 to 4, and `check.py` reports no regressions (O 90943).
   vtable, so it moved to the copy file.
 - Left: `refl_IterSync<UnkOwnedList>` (one template, five sync functions) and the three `unk_any_props` vtables
   (five units each).
+**The game's own Lua functions were library code, so the port trapped them (2026-11-07, branch `claude/lua-metamethods-unlib`).**
+After the empty-tag fix the boot entered the first frame and faulted at 0x40 in `fn_71011b9fac`: a sprite lookup
+read the GUI root's sprite-sheet map (+0x8) before any sheet was loaded. The sheet for that sprite (`WhiteSquare`)
+does not exist in the game data, so the original must have loaded another sheet earlier. The GUI scripts that would
+have done so ran with three functions trapped (stubs returning 0): `lua_lib::__index_cacb08` and `__gc_cacb08`, the
+display-object userdata's metamethods, and `fn_71010a4740`, a `luaL_testudata` the game added to lauxlib.
+`gen_functions_csv.py` had made them status L, which the port reads as "provided by lib/lua": the `lua_lib::` names
+(every metamethod table, 23 functions) mapped to the library subsystem `lua/stdlib`, and the eight unnamed functions
+between sigmatched lauxlib functions inherited `lua?`. Now `lua_lib::` maps to `script/bindings` and an inferred
+`lua?` is not library; three of the eight are hand-written (`src/base/UnkLuaAux.cpp`, O). Lifting only the
+metamethods was not enough: `__gc` then raised `__DisplayObjectType expected, got userdata` outside a protected
+call and Lua exited the process (a game thread then aborted on the NVN shim's destroyed lock). With all 28 lifted
+the boot reaches the first frame (1490 lifts ran) and faults at null in `fn_71001606c0` (from `fn_7100f01838`).
+Open: the 33 `runtime?` and 871 `nn-atk?` functions are L the same way (nn::atk is stubbed by address range on
+purpose; the `runtime?` ones are unchecked).
+
 **Empty "leftover register" tags lost their register on the port (2026-11-07, branch `claude/empty-tag-abi`).**
 After the `CSoundEventsDef` fix the boot faulted at null + 0x28 in the `CRntString` assignment, under
 `fn_710109e1ac` on the Lua path. That function passes `fn_710109e0a0` an empty struct first, the matching idiom for
