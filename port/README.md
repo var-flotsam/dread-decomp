@@ -137,7 +137,8 @@ prints the furthest of an ordered list of milestones (`nninitStartup` done, the 
 the distinct traps and how many of the linked lifts ran; one-shot breakpoints see all of it, so the
 game and the runtime log nothing extra. From Windows it runs itself in the image (which needs gdb:
 rebuild it). `--expect <milestone>` fails a run that falls short, which the nightly job
-(`.github/workflows/boot-nightly.yml`, the self-hosted runner) uses. `run.sh` mounts junctions
+(`.github/workflows/boot-nightly.yml`, the self-hosted runner) uses, with `--nvn` and the lift set
+`build/port/lifted_all14` (the default `build/port/lifted` is a smaller set). `run.sh` mounts junctions
 inside `build/` read-only, so a worktree can junction another checkout's `build/ghidra_export`,
 `build/recon`, `build/cache` and `build/port/lifted` and keep its outputs in its own `build/`.
 First run (2026-10-28, `main` plus the tools round, lifts of 2026-10-25, addresses from
