@@ -654,11 +654,10 @@ char* fn_7100b02ff4(char* p0) {
 
 extern char g_unk_7101d47310[];
 extern char g_unk_717271e8f8[];
-namespace callee { char* fn_7100000790(char*, char*, u32, char*, char*, f32); }
+namespace callee { char* fn_7100000790(char*, char*, u32, char*, char*); }
 namespace callee { char* fn_710002ffb4(u64, char*); }
 namespace callee { char* fn_7101053a98(u64); }
 namespace callee { char* fn_71011d8fe4(char*, f64); }
-namespace fret { f32 fn_710002ffb4(u64, char*); }
 namespace h { extern HIDDEN char g_unk_717275dd18[]; }
 char* fn_7100b0369c(char* p0, f64 f0) {
     char* r0_19 = p0;
@@ -677,13 +676,13 @@ char* fn_7100b0369c(char* p0, f64 f0) {
             u64 r11_8 = (u64)*(u64*)((char*)(r10_8) + 0);
             u64 r12_0 = (u64)(u64)(r11_8) + (u64)(3240);
             char* r13_1 = (char*)h::g_unk_717275dd18;
-            f32 r14_100 = fret::fn_710002ffb4(r12_0, r13_1);
+            char* r14_0 = callee::fn_710002ffb4(r12_0, r13_1);
             u32 r15_2 = (u32)*(u32*)((char*)(r0_19) + 684);
             char* r16_0 = (char*)"Init.CreateAndInitNewGame";
             char* r17_1 = (char*)"iss";
             char* r18_3 = (char*)"s010_cave";
             char* r19_4 = (char*)"StartPoint0";
-            char* r20_0 = callee::fn_7100000790(r16_0, r17_1, r15_2, r18_3, r19_4, r14_100);
+            char* r20_0 = callee::fn_7100000790(r16_0, r17_1, r15_2, r18_3, r19_4);
             *(u8*)((char*)(r0_19) + 680) = (u8)(u64)(0);
             m0 = r20_0;
         }

@@ -928,18 +928,17 @@ char* fn_7100dfeacc(char* p0, char* p1, char* p2, u32 p3) {
     return callee::fn_7100dfeb10(r12_0, r11_1);
 }
 
-namespace callee { char* fn_7100000790(char*, char*, f32); }
+namespace callee { char* fn_7100000790(char*, char*); }
 namespace callee { char* fn_7100dfe36c(char*); }
 namespace callee { char* fn_7101047068(char*, char*); }
-namespace fret { f32 fn_7101047068(char*, char*); }
 u32 fn_7100dfedd0(char* p0) {
     char* r0_19 = p0;
     char* r1_0 = (p0) + 2736;
     char* r2_1 = (r0_19) + 3064;
-    f32 r3_100 = fret::fn_7101047068(r1_0, r2_1);
+    char* r3_0 = callee::fn_7101047068(r1_0, r2_1);
     char* r4_0 = (char*)"Scenario.OnLoadGameFromSaveData";
     char* r5_1 = (char*)"";
-    char* r6_0 = callee::fn_7100000790(r4_0, r5_1, r3_100);
+    char* r6_0 = callee::fn_7100000790(r4_0, r5_1);
     char* r7_0 = r0_19;
     char* r8_0 = callee::fn_7100dfe36c(r7_0);
     u32 r9_0 = (u32)(u64)(0);

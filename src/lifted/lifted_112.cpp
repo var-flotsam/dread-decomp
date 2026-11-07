@@ -197,10 +197,9 @@ namespace callee { char* fn_7100234f78(char*, char*); }
 namespace callee { char* fn_710050e8e4(char*); }
 namespace callee { char* fn_71007c04f0(u64); }
 namespace callee { char* fn_7100a506a8(u64); }
-namespace callee { char* fn_710111c0fc(char*, char*, u64, char*, char*, f32); }
+namespace callee { char* fn_710111c0fc(char*, char*, u64, char*, char*); }
 namespace callee { char* fn_7101126e88(char*, char*); }
 namespace callee { char* fn_7101127144(char*, char*); }
-namespace fret { f32 fn_7101126e88(char*, char*); }
 namespace sret { UnkResult fn_710023b580(char*); }
 void fn_7101126d28(char* p0, char* p1) {
     alignas(8) char stk[0x88];
@@ -281,13 +280,13 @@ void fn_7101126d28(char* p0, char* p1) {
                     *(u64*)(stk + 0x80) = (u64)(u64)(r70_0);
                     char* r72_1 = (stk + 0x0);
                     char* r73_0 = r1_19;
-                    f32 r74_100 = fret::fn_7101126e88(r73_0, r72_1);
+                    char* r74_0 = callee::fn_7101126e88(r73_0, r72_1);
                     u64 r75_2 = (u64)*(u64*)((char*)(r2_20) + 168);
                     char* r76_3 = (char*)"t";
                     char* r77_1 = (stk + 0x0);
                     char* r78_4 = (stk + 0x0);
                     char* r79_0 = r53_21;
-                    char* r80_0 = callee::fn_710111c0fc(r79_0, r77_1, r75_2, r76_3, r78_4, r74_100);
+                    char* r80_0 = callee::fn_710111c0fc(r79_0, r77_1, r75_2, r76_3, r78_4);
                     char* r81_1 = (stk + 0x0);
                     char* r82_0 = r1_19;
                     char* r83_0 = callee::fn_7101127144(r82_0, r81_1);

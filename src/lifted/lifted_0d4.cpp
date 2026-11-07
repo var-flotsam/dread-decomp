@@ -1190,13 +1190,13 @@ char* fn_7100d45c2c() {
 }
 
 extern char g_unk_7101aa8680[];
-namespace callee { char* fn_7100d35944(); }
+namespace callee { char* fn_7100d35944(char*); }
 char* fn_7100d45c48(char* p0) {
     char* r0_8 = (char*)g_unk_7101aa8680;
-    *(u32*)((char*)(p0) + 292) = (u32)(u64)(0);
     char* r2_8 = (r0_8) + 16;
     *(u64*)((char*)(p0) + 0) = (u64)(u64)(r2_8);
-    return callee::fn_7100d35944();
+    *(u32*)((char*)(p0) + 292) = (u32)(u64)(0);
+    return callee::fn_7100d35944(p0);
 }
 
 extern char g_unk_7101aa8680[];

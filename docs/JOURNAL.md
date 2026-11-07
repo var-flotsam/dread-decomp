@@ -148,9 +148,9 @@ original callee reads it (the READ and CALL tiers) beyond the parameters of the 
 Calls whose source casts the callee (`reinterpret_cast<...>(fn_X)`, or a cast to a function pointer of a
 template parameter when the file names the callee, as `Initialise<Step>` in
 `src/game/CBigkranXAIComponent/fn_71003f47fc.cpp`) name the declared, not the casted, signature. They are listed
-apart as `cast` and not counted. First run: 59 calls (51 more cast). After the fixes below: **10 calls in 10
-callers, all in generated sources** (none in the boot slice), and no cast calls, among 249,838 direct calls in
-90,943 matched functions. Fixed: `fn_71003609a8`, the spit-attack base update, reads the step in s0. Nine
+apart as `cast` and not counted. First run: 59 calls (51 more cast). After the fixes below: **1 call in 1
+caller, in generated sources** (none in the boot slice), and no cast calls, among 249,909 direct calls in
+90,956 matched functions. Fixed: `fn_71003609a8`, the spit-attack base update, reads the step in s0. Nine
 attack updates declared it `(UnkSpitAttack*)`, and three of them got `dt` in through a cast or an asm label. It
 is now declared once in `include/game_s2/UnkSpitAttack.h` with `dt`, and all ten callers pass it. The same
 fix went into `fn_7100426c70` (two state-machine updates) and the whip thunk `fn_71004c1968` (two callers).
@@ -176,6 +176,18 @@ casts are fixed too. They already passed every argument, but each one widened a 
 (a word where the rest read a flag, or the reverse), and the bytes depend on it. They keep a cast of the
 return type alone. `fn_71003f1b00` (non-matching) takes and passes on the pointer and mode as well. Net:
 decl_check's conflicting symbols go from 141 to 140, and symbols declared in more than one file from 2336 to 2327.
+The 10 generated hits were fixed in the generators. `tools/gen_lift.py`'s pass-through: a variadic callee
+(facts read all of v0-v7) gets no s0 right after a call, which would read the earlier result as a float and
+retype that call (`fn_7100504720`, `fn_7100b46698`, `fn_710109ceb0`). `FlatLifter` skips a caller-saved register
+a call left garbage in (`fn_710085b76c`), but keeps one that `AbiFacts.untouched` says still holds the entry
+value on every path to the call (a rule by address order alone dropped x1/x2 in `fn_71011735e8` and
+`fn_710016aa14`). `lift_rounds` gives a function matched only by a plain lift the ROUND2 rewrites of its
+pass-through lifts, and a match there replaces the plain one (`fn_7100d45c48`, `fn_7100ec0d20`,
+`fn_7100547fe4`). `tools/gen_statics.py` now loads the facts (its own lifts had no pass-through:
+`fn_71009e7628`, `fn_7100bdc1f4`) and, on Windows, lifts in-process: spawned workers lost its lifter patch and
+own statics came out 0 of 236 (now 17). Lifts stay 47,284 byte-identical, and check.py goes from O 90,943 to
+90,956. The one hit left, `fn_71010cdc54`, calls `fn_71010d313c` (reads x0-x4, s0, s1) with nothing. Its
+pass-through lift and a hand-written version both reach 96.2%, two prologue moves swapped, so it stays lifted.
 
 **Placeholder classes renamed apart, round 2 (2026-11-07, branch `claude/placeholder-names-2`).** The two vtable
 conflicts the first round left that were the same reused-name problem. `tools/port_addresses.py` conflicts are down
