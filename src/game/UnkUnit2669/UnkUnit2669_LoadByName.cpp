@@ -3,6 +3,7 @@
 // runs fn_710109dd6c with it and the two flags. Names and layouts are placeholders.
 #include "base/global/CRntString.h"
 #include "types.h"
+#include "UnkLeftoverReg.h"
 
 using base::global::CRntString;
 
@@ -33,7 +34,7 @@ struct UnkUnit2669Str {
     }
 };
 
-struct UnkUnit2669Tag {};
+struct UnkUnit2669Tag : UnkLeftoverReg {};
 void fn_710109e0a0(UnkUnit2669Tag tag, void* source, UnkUnit2669Str* out);
 u32 fn_710109dd6c(void* self, void* source, UnkUnit2669Str* name, bool a, bool b);
 

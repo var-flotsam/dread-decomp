@@ -5,6 +5,7 @@
 #include "base/global/CStrId.h"
 #include "base/spatial/COBox2D.h"
 #include "types.h"
+#include "UnkLeftoverReg.h"
 
 using base::global::CStrId;
 
@@ -40,7 +41,7 @@ struct UnkSetStatus {
     u32 field_0x14;
 };
 
-struct UnkUpdateFn {};
+struct UnkUpdateFn : UnkLeftoverReg {};
 
 // FromValue: the update function gets the new value instead of the field.
 template <u32 Offset, void (*Update)(UnkUpdateFn, const CStrId*, void*), bool FromValue = false>

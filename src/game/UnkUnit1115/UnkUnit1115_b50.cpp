@@ -3,6 +3,7 @@
 // (fn_7100116de0, 0, 1, scale 1), the query is handed on (fn_71006f9368). Names and layouts are
 // placeholders.
 #include "types.h"
+#include "UnkLeftoverReg.h"
 
 struct UnkEntry;  // src/game_s2/fn_71005528fc.cpp
 bool fn_7100116de0(UnkEntry* entry, void* query, u32 a, u32 b, f32 scale);
@@ -22,7 +23,7 @@ struct UnkQueryHolder_b50 {
 };
 
 // An empty tag passed by value: it takes x1 without a value (the original leaves x1 as it is).
-struct UnkQueryTag_b50 {};
+struct UnkQueryTag_b50 : UnkLeftoverReg {};
 void fn_71006f9368(UnkQueryHolder_b50* self, UnkQueryTag_b50 tag, void* data, u32 mode);
 
 void fn_71006fadf0(UnkQueryHolder_b50* self, char* query, u32 mode) {
