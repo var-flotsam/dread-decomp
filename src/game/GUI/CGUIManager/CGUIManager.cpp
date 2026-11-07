@@ -78,13 +78,14 @@ struct UnkGuiPathCache {
     UnkGuiPathMap map;
 };
 
-CFilePathStrId fn_71011b85fc(UnkGuiPathCache* self);
+CFilePathStrId fn_71011b85fc(UnkGuiPathCache* self, const base::global::CStrId* name);
 void* fn_71011b8470(UnkGuiPathCache* self, const CFilePathStrId* key);
 
-// The object cached for the current path (fn_71011b85fc), loading it (fn_71011b8470) when it is
-// not cached yet; null for the empty path.
-void* fn_71011b882c(UnkGuiPathCache* self) {
-    CFilePathStrId key = fn_71011b85fc(self);
+// The object cached for the path of `name` (fn_71011b85fc), loading it (fn_71011b8470) when it is
+// not cached yet; null for the empty path. `name` passes through untouched in the original (callers
+// pass it in x1), so it must be declared or the port drops it (tools/forwarded_args.py).
+void* fn_71011b882c(UnkGuiPathCache* self, const base::global::CStrId* name) {
+    CFilePathStrId key = fn_71011b85fc(self, name);
     if (key.data == &g_unk_7101d47200->empty)
         return nullptr;
     if (UnkGuiPathNode* n = self->map.Find(reinterpret_cast<UnkGuiPathKeyData*>(key.data)))
