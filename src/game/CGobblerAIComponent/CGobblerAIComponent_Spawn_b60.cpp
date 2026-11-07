@@ -10,7 +10,7 @@
 #include "game/UnkTimelineCalls.h"
 #include "types.h"
 
-void fn_710110cca4(void* self);
+void fn_710110cca4(void* self, void* arg);
 void fn_7101126af4(void* self);
 void fn_7100232c68(void* target);
 struct UnkZiplineLinkTarget_b49;
@@ -46,8 +46,9 @@ struct UnkGobblerAI_b60 {
     UnkGobblerOwner_b60* owner;
 };
 
-void fn_710058252c(UnkGobblerAI_b60* self) {
-    fn_710110cca4(self);
+// `arg` (x1) reaches the base step untouched in the original (tools/forwarded_args.py).
+void fn_710058252c(UnkGobblerAI_b60* self, void* arg) {
+    fn_710110cca4(self, arg);
     UnkGobblerSlot_b60* slot = self->owner->field_0x398;
     if (!slot)
         return;

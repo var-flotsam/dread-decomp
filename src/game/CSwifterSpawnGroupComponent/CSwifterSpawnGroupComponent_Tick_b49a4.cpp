@@ -19,16 +19,17 @@ struct UnkSwifterSpawnGroup_b49a4 {
     }
 };
 
-void fn_710111bd1c(UnkSwifterSpawnGroup_b49a4* self);
-bool fn_710111c56c(UnkSwifterSpawnGroup_b49a4* self);
+void fn_710111bd1c(UnkSwifterSpawnGroup_b49a4* self, void* a, void* b);
+bool fn_710111c56c(UnkSwifterSpawnGroup_b49a4* self, void* a);
 
-void fn_7100a131d0(UnkSwifterSpawnGroup_b49a4* self) {
-    fn_710111bd1c(self);
+// The base updates get the callers' arguments (x1, x2), untouched in the original (tools/forwarded_args.py).
+void fn_7100a131d0(UnkSwifterSpawnGroup_b49a4* self, void* a, void* b) {
+    fn_710111bd1c(self, a, b);
     self->Tick();
 }
 
-bool fn_7100a13224(UnkSwifterSpawnGroup_b49a4* self) {
-    bool r = fn_710111c56c(self);
+bool fn_7100a13224(UnkSwifterSpawnGroup_b49a4* self, void* a) {
+    bool r = fn_710111c56c(self, a);
     self->Tick();
     return r;
 }

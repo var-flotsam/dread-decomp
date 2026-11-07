@@ -13,11 +13,12 @@ struct UnkProbeResult {
     u32 field_0x8;
 };
 
-void fn_7100978f58(char* self);
+void fn_7100978f58(char* self, const void* arg);  // reads three words at `arg`
 bool fn_71010d15d0(char* self, const CVector3D* pos, UnkProbeResult* result, f32 radius);
 
-void fn_710094014c(char* self) {
-    fn_7100978f58(self);
+// `arg` (x1) reaches fn_7100978f58 untouched in the original (tools/forwarded_args.py).
+void fn_710094014c(char* self, const void* arg) {
+    fn_7100978f58(self, arg);
     UnkProbeResult result;
     result.field_0x0 = 0;
     result.field_0x8 = 0;

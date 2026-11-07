@@ -13,8 +13,9 @@ using base::reflection::UnkReflObject;
 bool fn_71010c41bc();
 extern char g_unk_7172a0a650[] __attribute__((visibility("hidden")));
 
-bool fn_710116bb80(char* self) {
-    bool r = fn_71010c41bc();
+// `arg` (x1) reaches the base step untouched in the original (tools/forwarded_args.py).
+bool fn_710116bb80(char* self, void* arg) {
+    bool r = reinterpret_cast<bool (*)(char*, void*)>(fn_71010c41bc)(self, arg);
     if (r) {
         UnkReflObject* o = *reinterpret_cast<UnkReflObject**>(self + 0x10);
         const CType* t = o->vf_0x0();

@@ -44,8 +44,9 @@ struct UnkSabotoruUpdAI_A3_b75 {
 
 void fn_71006786ec(UnkSabotoruUpdAI_A3_b75* self);
 
-void fn_71006792e8(UnkSabotoruUpdAI_A3_b75* self) {
-    fn_7100369c44(reinterpret_cast<UnkGobblerComponent*>(self));
+// `dt` (s0) reaches the base update untouched in the original (tools/forwarded_args.py).
+void fn_71006792e8(UnkSabotoruUpdAI_A3_b75* self, f32 dt) {
+    reinterpret_cast<void (*)(UnkSabotoruUpdAI_A3_b75*, f32)>(fn_7100369c44)(self, dt);
     if (static_cast<UnkSabotoruState_A3_b75*>(self->actor->field_0x1b8)->state == 2)
         return;
     if (self->field_0x146e8) {

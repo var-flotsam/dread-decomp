@@ -38,11 +38,12 @@ struct UnkHidrogigaActivator_b48 {
     bool activated;
 };
 
-void fn_7100890ea4(UnkHidrogigaActivator_b48* self);
+void fn_7100890ea4(UnkHidrogigaActivator_b48* self, void* arg);
 void fn_7100891b08(UnkHidrogigaActivator_b48* self);
 
-void fn_7100897344(UnkHidrogigaActivator_b48* self) {
-    fn_7100890ea4(self);
+// `arg` (x1) reaches the base activator's step untouched in the original (tools/forwarded_args.py).
+void fn_7100897344(UnkHidrogigaActivator_b48* self, void* arg) {
+    fn_7100890ea4(self, arg);
     bool activated = false;
     UnkGameManager* manager = g_unk_7101d47310;
     CBlackboard* blackboard = &manager->field_0x968;

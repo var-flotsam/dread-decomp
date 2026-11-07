@@ -43,10 +43,11 @@ __attribute__((always_inline)) static inline void Register(UnkSelf* self, u8* en
 // component pointer, the entries and their sources in the component.
 template <auto Step, const CClass* (*Getter)(), void (*Init1)(void*, u8*), void (*Init2)(void*, u8*),
           u32 Component, u32 Entry1, u32 Entry2, u32 Source1, u32 Source2>
-__attribute__((always_inline)) static inline u32 Initialise(UnkSelf* self) {
+__attribute__((always_inline)) static inline u32 Initialise(UnkSelf* self, void* arg) {
     char* base = reinterpret_cast<char*>(self);
-    // The step is called as returning a word (one unit declares it returning a flag).
-    u32 result = reinterpret_cast<u32 (*)(UnkSelf*)>(Step)(self);
+    // The step is called as returning a word (one unit declares it returning a flag), with the
+    // caller's `arg` (x1), which the original hands it untouched (tools/forwarded_args.py).
+    u32 result = reinterpret_cast<u32 (*)(UnkSelf*, void*)>(Step)(self, arg);
     UnkComponent* object = self->field_0x10;
     UnkComponent* component = nullptr;
     if (object && fn_710009d50c(object->vf_0x0(), Getter()))
@@ -60,9 +61,9 @@ __attribute__((always_inline)) static inline u32 Initialise(UnkSelf* self) {
     return result & 1;
 }
 
-u32 fn_71003f47fc(UnkSelf* self) {
+u32 fn_71003f47fc(UnkSelf* self, void* arg) {
     return Initialise<fn_71003e59f8, fn_71003f5604, fn_71003ea558, fn_71003f14c4, 0x149b8, 0x149c0, 0x14a20, 0x628,
-                      0x730>(self);
+                      0x730>(self, arg);
 }
 
 // The same initialisation in the Goliath X, Quetzoa and Shakernaut AI components' units, with their
@@ -77,19 +78,19 @@ void fn_71006453a8(void* entry, u8* source);
 void fn_71006a4200(void* entry, u8* source);
 void fn_71006a6e4c(void* entry, u8* source);
 
-u32 fn_710058835c(UnkSelf* self) {
+u32 fn_710058835c(UnkSelf* self, void* arg) {
     return Initialise<fn_7100590c14, fn_710058793c, fn_7100583e14, fn_71005869d0, 0x14b58, 0x14b60, 0x14bf0, 0x628,
-                      0x720>(self);
+                      0x720>(self, arg);
 }
 
-u32 fn_7100649f88(UnkSelf* self) {
+u32 fn_7100649f88(UnkSelf* self, void* arg) {
     return Initialise<fn_71003ac8f4, fn_7100648ce0, fn_7100643ed0, fn_71006453a8, 0x14a28, 0x149a0, 0x149e0, 0x528,
-                      0x618>(self);
+                      0x618>(self, arg);
 }
 
-u32 fn_71006ad75c(UnkSelf* self) {
+u32 fn_71006ad75c(UnkSelf* self, void* arg) {
     return Initialise<fn_710066193c, fn_71006ac5f4, fn_71006a4200, fn_71006a6e4c, 0x147f8, 0x146d0, 0x14738, 0x520,
-                      0x620>(self);
+                      0x620>(self, arg);
 }
 
 // And in the Gooplot, Infester and Nailong units, whose step fn_7100369490 src/game/CDropterAIComponent/
@@ -102,17 +103,17 @@ void fn_71005c5478(void* entry, u8* source);
 void fn_710060b214(void* entry, u8* source);
 void fn_7100624a8c(void* entry, u8* source);
 
-u32 fn_7100599d3c(UnkSelf* self) {
+u32 fn_7100599d3c(UnkSelf* self, void* arg) {
     return Initialise<fn_7100369490, fn_7100598ca0, fn_7100594488, fn_71005968b4, 0x147f0, 0x146e0, 0x14768, 0x510,
-                      0x600>(self);
+                      0x600>(self, arg);
 }
 
-u32 fn_71005cbb00(UnkSelf* self) {
+u32 fn_71005cbb00(UnkSelf* self, void* arg) {
     return Initialise<fn_7100369490, fn_71005c9c50, fn_71005c63d0, fn_71005c5478, 0x146c8, 0x146f8, 0x14758, 0x520,
-                      0x610>(self);
+                      0x610>(self, arg);
 }
 
-u32 fn_710061fec8(UnkSelf* self) {
+u32 fn_710061fec8(UnkSelf* self, void* arg) {
     return Initialise<fn_7100369490, fn_7100614184, fn_710060b214, fn_7100624a8c, 0x147e0, 0x146c8, 0x14760, 0x510,
-                      0x638>(self);
+                      0x638>(self, arg);
 }

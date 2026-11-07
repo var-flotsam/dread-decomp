@@ -28,8 +28,9 @@ static inline UnkMushroomCharClass* AsMushroom(UnkReflObject* obj) {
     return fn_710009d50c(type, &g_unk_717272c1a8) ? reinterpret_cast<UnkMushroomCharClass*>(obj) : nullptr;
 }
 
-bool fn_710088a88c(char* self) {
-    bool ok = fn_710115fbe4(self);
+// `arg` (x1) reaches the base step untouched in the original (tools/forwarded_args.py).
+bool fn_710088a88c(char* self, void* arg) {
+    bool ok = reinterpret_cast<bool (*)(char*, void*)>(fn_710115fbe4)(self, arg);
     UnkMushroomCharClass* cls = AsMushroom(*reinterpret_cast<UnkReflObject**>(self + 0x10));
     asm("" : "+r"(cls));  // the original tests the stored class again instead of threading the jumps
     *reinterpret_cast<UnkMushroomCharClass**>(self + 0x520) = cls;

@@ -29,8 +29,9 @@ void fn_710117662c(UnkActorTarget* target, u32 a, u32 b, u32 c, u32 d, f32 value
 void fn_7101178e08(UnkActorTarget* target, u32 a, u32 b, u32 c, f32 value);
 extern char g_unk_71726e5148[] __attribute__((visibility("hidden")));
 
-void fn_71005820c4(UnkGobblerComponent* self) {
-    fn_7100369c44(self);
+// `dt` (s0) reaches the base update untouched in the original (tools/forwarded_args.py).
+void fn_71005820c4(UnkGobblerComponent* self, f32 dt) {
+    reinterpret_cast<void (*)(UnkGobblerComponent*, f32)>(fn_7100369c44)(self, dt);
     UnkActorTarget* target = static_cast<UnkActorTarget*>(self->field_0x30->field_0x220);
     UnkActor* actor = self->field_0x30;
     if (target) {

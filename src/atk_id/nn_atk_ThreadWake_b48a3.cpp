@@ -5,7 +5,7 @@
 
 #include "types.h"
 
-void fn_7101238990(void* self);
+void fn_7101238990(void* self, void* a, u32 b);
 
 struct UnkAtkThread_b48a3 {
     u8 pad_0x0[0x8];
@@ -15,10 +15,11 @@ struct UnkAtkThread_b48a3 {
     u8 field_0x2d0[1];
 };
 
-void fn_7101238abc(UnkAtkThread_b48a3* self) {
+// `a` and `b` (x1, w2) reach fn_7101238990 untouched in the original (tools/forwarded_args.py).
+void fn_7101238abc(UnkAtkThread_b48a3* self, void* a, u32 b) {
     if (self->state == 0 || self->state != 2)
         return;
-    fn_7101238990(self->field_0x2d0);
+    fn_7101238990(self->field_0x2d0, a, b);
     if (self->state == 0)
         return;
     nn::os::TrySendMessageQueue(reinterpret_cast<nn::os::MessageQueueType*>(self->queue), 1);

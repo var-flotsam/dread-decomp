@@ -23,8 +23,9 @@ struct UnkThornsAttack_b68a4 {
 
 CStrId fn_710060b344(UnkThornsAttack_b68a4* self);
 
-bool fn_710060b274(UnkThornsAttack_b68a4* self) {
-    bool ok = reinterpret_cast<bool (*)(UnkThornsAttack_b68a4*)>(fn_7100360b84)(self);
+// `arg` and `mode` (x1, w2) reach the base check untouched in the original (tools/forwarded_args.py).
+bool fn_710060b274(UnkThornsAttack_b68a4* self, void* arg, u32 mode) {
+    bool ok = reinterpret_cast<bool (*)(UnkThornsAttack_b68a4*, void*, u32)>(fn_7100360b84)(self, arg, mode);
     if (!ok || self->owner->field_0xec) {
         asm("" : "+r"(ok));
         return ok;

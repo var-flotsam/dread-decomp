@@ -23,10 +23,11 @@ struct UnkBounded {
     s32 max_x10, max_y10, max_z10;
 };
 
-void fn_7100216090(UnkBounded* self);
+void fn_7100216090(UnkBounded* self, const void* arg);  // reads the source at `arg`
 
-void fn_71002120f4(UnkBounded* self) {
-    fn_7100216090(self);
+// `arg` (x1) reaches the base update untouched in the original (tools/forwarded_args.py).
+void fn_71002120f4(UnkBounded* self, const void* arg) {
+    fn_7100216090(self, arg);
     UnkVec3f mn = self->GetMin();
     UnkVec3f mx = self->GetMax();
     self->min_x10 = (s32)(mn.x * 10.0f);

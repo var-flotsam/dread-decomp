@@ -913,11 +913,12 @@ struct UnkSmLockon_A1_b64 {
     UnkSmLockonEntry_A1_b64 entries[1];
 };
 
-void fn_71002f9f18(UnkSmLockon_A1_b64*);
+void fn_71002f9f18(UnkSmLockon_A1_b64*, s32 kind);  // src/game/CAbility/CAbility_Timeline_b60.cpp
 void fn_71009eaa88(void*);
 
-void fn_7100319cb8(UnkSmLockon_A1_b64* self) {
-    fn_71002f9f18(self);
+// `kind` (w1) reaches the ability's enter (fn_71002f9f18) untouched in the original (tools/forwarded_args.py).
+void fn_7100319cb8(UnkSmLockon_A1_b64* self, s32 kind) {
+    fn_71002f9f18(self, kind);
     RequestState_A1_b64<7, 0x7fffffff>(&self->machine, 2);
     self->field_0x5f0 = 0;
     UnkSamusGunComponent* gun = self->owner->gun;

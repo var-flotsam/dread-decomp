@@ -44,8 +44,9 @@ struct UnkAirChargeAttack_A2_b75 {
     UnkWeakHandle* handle;         // 0x80
 };
 
-void fn_7100425b98(UnkAirChargeAttack_A2_b75* self) {
-    fn_7100424b5c(reinterpret_cast<UnkChozoCommanderAttack*>(self));
+// `dt` (s0) reaches the base update untouched in the original (tools/forwarded_args.py).
+void fn_7100425b98(UnkAirChargeAttack_A2_b75* self, f32 dt) {
+    reinterpret_cast<void (*)(UnkChozoCommanderAttack*, f32)>(fn_7100424b5c)(reinterpret_cast<UnkChozoCommanderAttack*>(self), dt);
     switch (self->mode) {
     case 1:
         fn_7100425268(self);

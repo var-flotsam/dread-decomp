@@ -8,7 +8,7 @@
 extern base::reflection::UnkTunable g_unk_71726c91d0;
 
 struct UnkPart665;
-void fn_710042eb58(UnkPart665* part);
+void fn_710042eb58(UnkPart665* part, void* arg);
 
 struct UnkLink665 {
     u8 pad_0x0[0x1a0];
@@ -30,7 +30,8 @@ struct UnkComponent665 {
     UnkOwner665* owner;  // 0x30
 };
 
-void fn_7100455660(UnkComponent665* self) {
+// `arg` (x1) reaches fn_710042eb58's tail call untouched in the original (tools/forwarded_args.py).
+void fn_7100455660(UnkComponent665* self, void* arg) {
     if (!reinterpret_cast<const UnkTunableFlags665*>(&g_unk_71726c91d0)->field_0x2a) {
         return;
     }
@@ -40,6 +41,6 @@ void fn_7100455660(UnkComponent665* self) {
     }
     UnkPart665* part = reinterpret_cast<UnkPart665*>(reinterpret_cast<u8*>(self) + 0x14bf0);
     if (link->part == part) {
-        fn_710042eb58(part);
+        fn_710042eb58(part, arg);
     }
 }

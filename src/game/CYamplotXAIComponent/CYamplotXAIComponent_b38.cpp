@@ -30,8 +30,9 @@ __attribute__((always_inline)) static inline void Register(char* self, char* ent
     *reinterpret_cast<u32*>(self + 0x1618) = index + 1;
 }
 
-u32 fn_71006ef458(char* self) {
-    u32 result = reinterpret_cast<u32 (*)(char*)>(fn_7100369490)(self);
+u32 fn_71006ef458(char* self, void* arg) {
+    // `arg` (x1) reaches the base step untouched in the original (tools/forwarded_args.py).
+    u32 result = reinterpret_cast<u32 (*)(char*, void*)>(fn_7100369490)(self, arg);
     UnkYamplotObject* object = *reinterpret_cast<UnkYamplotObject**>(self + 0x10);
     UnkYamplotObject* component = nullptr;
     if (object && fn_710009d50c(object->vf_0x0(), fn_71006ee6b0()))

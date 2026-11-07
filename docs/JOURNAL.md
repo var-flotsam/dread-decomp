@@ -180,7 +180,27 @@ in its declaration there) and `fn_71010dca80` (x1, set by eight callers) hand th
 wrap. `fn_71006a1ef0` (a frame time) and `fn_7100fdb8b8` (two stack addresses) declare what their callers
 pass without using it: the register only survives up to incidental virtual calls (a release, a state's
 `vf_0x18(id)`). `fn_71001327c0` stays listed: its x0 reaches the per-frame callback, `fn_7100000d40`,
-which takes nothing. After these and a merge of `main`: **295 hits**, 1 in the boot slice, 14 with callers that set the register; all twelve fixed functions still **O**. Two false-positive sources are handled: an HFA by value
+which takes nothing. After these and a merge of `main`: **295 hits**, 1 in the boot slice, 14 with callers that set the register; all twelve fixed functions still **O**. Then the hand-written hits outside the boot slice. The tool
+lost three kinds of false positive: in-place constructors emitted under the `void()` symbol reflection
+declares (`asm("_Z13fn_...v")`, 18: the symbol hides their `self`), a switch's `br`, which
+`tools/abi_facts.py` now follows to its jump table's targets (Clang's compressed `ldrb`/`ldrh` tables;
+before, every block after the `br`, where the cases join and read what each case wrote: 12, among them
+the scene manager's and two callees' that made `fn_7100aa301c`/`fn_7100aa30ec` hits), and
+`std::initializer_list` by value, two x registers. The rest are overrides that call their base with
+the caller's arguments, which the declarations had dropped: the AI components' initialisation steps
+(`void* arg` down to `fn_7100369490`/`fn_71003ac8f4`/`fn_71010c41bc`/`fn_710110cca4`; the Bigkran X
+template's `Initialise` for seven units), the attacks' `CanStart` checks (`void* arg, u32 mode` to
+`fn_7100360b84` and its overrides), the frame time of updates (`f32 dt` to `fn_71003609a8`,
+`fn_71010d1a90`, `fn_7100369c44` and others), and about twenty one-offs (`fn_7101178010`'s blend time,
+which `CBigFistAttack` already passes; `fn_7100e791a4`'s fifth argument, which `CMinimapManager`
+declares). Undecompiled callees are called through a cast at the call site, so no other file's
+declaration changes. Three functions took the argument but did not pass it on, which the tool cannot
+see (the count is right): `fn_71005d0884` (CInfesterBall), `fn_71005cb0b8` (CInfester) and
+`fn_71006ae2dc` (CShakernaut); fixed too. **182 hits** remain, 169 generated; the 13 hand-written ones
+are 8 `slot` registers that only reach class getters, `fn_71001327c0` (above), a destructor
+(`fn_71001f4efc`: what its vector free hands on is garbage in the original too), two `indirect` floats
+no caller sets (`fn_710014af54`, `fn_71011781f4`) and `fn_71001d72b4`, whose `{f32 x, y}` by value is
+an HFA in v0/v1 already (the tool knows only the math types). Two false-positive sources are handled: an HFA by value
 (`CVector3D` in v0-v2) and a variadic callee, whose prologue saves every argument register.
 **Placeholder classes renamed apart for the port's addresses (2026-11-06, branch `claude/placeholder-class-names`).**
 `tools/port_addresses.py` leaves out a name whose matched uses disagree on its address. Five of its 12 conflicts were

@@ -16,7 +16,7 @@ struct UnkHydrogigaBraidAttack_b63a3 {
     UnkActor* owner;
 };
 struct UnkHydrogigaAttack_b63a3;
-bool fn_71005b2ec4(UnkHydrogigaAttack_b63a3* self);
+bool fn_71005b2ec4(UnkHydrogigaAttack_b63a3* self, void* arg, u32 mode);
 
 struct UnkHydrogigaAICast_b63a3 {
     void** vtable;
@@ -27,8 +27,9 @@ struct UnkHydrogigaAICast_b63a3 {
     }
 };
 
-bool fn_71005b3c00(UnkHydrogigaBraidAttack_b63a3* self) {
-    if (!fn_71005b2ec4(reinterpret_cast<UnkHydrogigaAttack_b63a3*>(self)))
+// `arg` and `mode` (x1, w2) reach the base check untouched in the original (tools/forwarded_args.py).
+bool fn_71005b3c00(UnkHydrogigaBraidAttack_b63a3* self, void* arg, u32 mode) {
+    if (!fn_71005b2ec4(reinterpret_cast<UnkHydrogigaAttack_b63a3*>(self), arg, mode))
         return false;
     auto* ai = static_cast<UnkHydrogigaAICast_b63a3*>(self->owner->field_0x240);
     if (ai && !fn_710009d50c(ai->vf_0x0(), fn_71005ba098()))

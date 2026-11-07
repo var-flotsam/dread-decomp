@@ -9,12 +9,14 @@ struct UnkUnit2565Visitor {
     void* arg;
 };
 
-void fn_7100e791dc(void* self, UnkUnit2565Visitor* visitor, void* context, bool flag);
+void fn_7100e791dc(void* self, UnkUnit2565Visitor* visitor, void* context, bool flag, void* extra);
 
-void fn_7100e791a4(void* self, void* arg, void* context, bool flag) {
+// `extra` (x4) reaches fn_7100e791dc untouched in the original; CMinimapManager passes a fifth
+// argument (tools/forwarded_args.py).
+void fn_7100e791a4(void* self, void* arg, void* context, bool flag, void* extra) {
     UnkUnit2565Visitor visitor;
     visitor.arg = arg;
     asm("" ::: "memory");  // the base part is stored before the vtable, as by a constructor
     visitor.vtable = g_unk_7101aa9dd8 + 0x10;
-    fn_7100e791dc(self, &visitor, context, flag);
+    fn_7100e791dc(self, &visitor, context, flag, extra);
 }

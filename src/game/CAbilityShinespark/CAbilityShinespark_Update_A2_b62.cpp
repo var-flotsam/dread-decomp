@@ -9,7 +9,7 @@
 #include "types.h"
 
 struct UnkAbility2_b62a2;
-void fn_71002f9bb4(UnkAbility2_b62a2* self);  // src/game/CAbility/CAbility_Toggle_A2_b62.cpp
+void fn_71002f9bb4(UnkAbility2_b62a2* self, s32 kind);  // src/game/CAbility/CAbility_Toggle_A2_b62.cpp
 extern const u64 g_unk_7101648e88;
 extern const u64 g_unk_7101648ea8;  // reached through the GOT
 extern const u64 g_unk_7101648f30;  // reached through the GOT
@@ -57,8 +57,9 @@ struct UnkShinespark_b62a2 {
     UnkShinesparkSub_b62a2* sub;
 };
 
-void fn_7100330c3c(UnkShinespark_b62a2* self) {
-    fn_71002f9bb4(reinterpret_cast<UnkAbility2_b62a2*>(self));
+// `kind` (w1) reaches the base (fn_71002f9bb4) untouched in the original (tools/forwarded_args.py).
+void fn_7100330c3c(UnkShinespark_b62a2* self, s32 kind) {
+    fn_71002f9bb4(reinterpret_cast<UnkAbility2_b62a2*>(self), kind);
     // Jumped over: the masks and the send's mode get no lifetime markers, so they keep their own slots.
     goto start;
     base::reflection::UnkReflTypeIdArg mask;
