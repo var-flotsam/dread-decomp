@@ -107,6 +107,25 @@ class PassThrough(unittest.TestCase):
             self.assertNotIn("X1", self.call_line(text, G))
 
 
+    def test_flat_label_on_a_path_without_the_call(self):
+        # stp; mov; mov x20, x1; cbz x0, L; bl F; b END; L: bl G; END: ldp; ret: F comes first in
+        # address order but not on G's path, so x1 still holds the incoming value at G
+        # (abi_facts' untouched, given here) and is named
+        words = [STP, MOV_FP, MOV_X20_X1, cbz_x0(ADDR + 12, ADDR + 24), bl(16, F), 0x14000002, bl(24, G), LDP, RET]
+        table = gen_lift.Lifter.facts
+
+        class Facts:
+            def facts(self, a):
+                return table(a)
+
+            def untouched(self, a):
+                return {ADDR + 16: (F, frozenset({0, 1})), ADDR + 24: (G, frozenset({0, 1}))}
+
+        gen_lift.Lifter.facts = Facts().facts
+        for text in self.lifts(words, gen_lift.FlatLifter):
+            self.assertIn("X1", self.call_line(text, G))
+
+
 @unittest.skipIf(gen_lift is None, "pyelftools or capstone is not installed")
 class Rounds(unittest.TestCase):
     """lift_rounds: a function matched only by a plain lift (odd attempt index) gets the ROUND2

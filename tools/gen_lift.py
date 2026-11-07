@@ -477,6 +477,7 @@ class Lifter:
     main = None
     narrow_floats = frozenset()  # the current direct callee's float arguments read only as s<n> (callee_need)
     variadic_callee = False  # the current direct callee saves every argument register (callee_need)
+    patched = False  # methods replaced in this process (lift_all then never spawns workers)
 
     def __init__(self, orig: asmdiff.Original, addr: int, extra: int, returns: bool,
                  stack: tuple[str, int] | None = None):
@@ -940,7 +941,9 @@ class Lifter:
         # Also the registers the callee reads (callee_need). One the caller holds is passed on; one
         # with no value here (clobbered by a call) held garbage in the original: semantic mode
         # passes 0, byte mode stops there (a constant would cost an instruction).
-        pclob = getattr(self, "pclob", ())  # (byte mode, FlatLifter: a call left garbage there)
+        # (byte mode, FlatLifter: a call may have left garbage there, unless every path from the
+        # entry leaves the register untouched up to this call: abi_facts' untouched)
+        pclob = set(getattr(self, "pclob", ())) - self.entry_held()
         for i in range(n, need[0]):
             if i in pclob:
                 break
@@ -1093,6 +1096,20 @@ class Lifter:
         while n in slots:
             n += 1
         return n
+
+    def entry_held(self) -> frozenset:
+        """The argument registers that hold this function's incoming values at the current
+        instruction (a call) on every path from the entry (abi_facts.AbiFacts.untouched)."""
+        af = getattr(self.facts, "__self__", None)
+        if af is None or not hasattr(af, "untouched"):
+            return frozenset()
+        if getattr(self, "_untouched", None) is None:
+            try:
+                self._untouched = af.untouched(self.addr)
+            except Exception:  # (an image abi_facts cannot decode: nothing is known to be held)
+                self._untouched = {}
+        site = self._untouched.get(self.ins[self.pos].address) if getattr(self, "ins", None) else None
+        return site[1] if site else frozenset()
 
     def callee_need(self, fn: str) -> tuple[int, int]:
         """The argument registers a direct callee reads (abi_facts), so the call names them all.
@@ -3582,7 +3599,10 @@ def lift_all(orig: asmdiff.Original, cands: list[int],
     n = os.cpu_count() or 1
     fork = "fork" in multiprocessing.get_all_start_methods()
     # (spawned workers rebuild the binary and the facts; only the facts load_facts sets carry over)
-    spawn = not fork and hasattr(orig, "version") and Lifter.shape is None and Lifter.main is None
+    # (and not with a Lifter patched in this process, as tools/gen_statics.py's own_patch: a spawned
+    # worker would lift with the plain class and lose every patched function)
+    spawn = not fork and hasattr(orig, "version") and Lifter.shape is None and Lifter.main is None \
+        and not Lifter.patched
     if n == 1 or len(cands) < 200 or not (fork or spawn):
         return lift_serial(orig, cands, why, opts)
     _ORIG = orig
