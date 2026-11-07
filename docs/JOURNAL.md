@@ -101,6 +101,7 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - The NVN globals `g_unk_716e29xxxx` are named by the loader's GOT slots and their relative relocations (`data/nvn_procs.csv`); count GOT-slot call sites with a short window, not adjacent pairs; never write into a game-owned NVN object's storage: [NVN shim's start-up path](#session-log-newest-first).
 
 **Port: runtime and loader**
+- One placeholder class name in two files that mean different classes gives its constructors, destructors and vtable two addresses, and `port_addresses.py` places none: name each file's class apart (by the address that differs). A copy file whose functions use different classes needs a file per class: [placeholder classes renamed apart](#session-log-newest-first).
 - Another Dread project's addresses map to ours by one constant (the recomp: ours = theirs - 0x8005000 + 0x7100000000); the game's PC-side problems it found (a video wait under a lock, per-texel texture uploads, a deserializer growing 10 at a time, frame pacing): [Dread recomp findings](#session-log-newest-first).
 - A function-local static of an ordinary (non-inline) function is a local symbol that its object reaches section-relative: no link step can redirect it. Make the function inline on the port (`inline __attribute__((used))`) so the static is weak and `--defsym` binds it: [port M1 round 4](#session-log-newest-first).
 - Clang 17 stopped packing a packed struct's non-POD members (GCC's rule), so a newer Clang lays out the matching sources differently; `-fclang-abi-compat=9.0` restores the matching compiler's layouts: same entry.
@@ -131,6 +132,30 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - Several templates can carry one address's tag (`refl_GetPrimitiveType<G>` and its inline helper `refl_MakePrimitiveType<G>`, which Clang 18 keeps out of line); an alias to one that returns a class by value puts its hidden result pointer in the caller's rdi and writes the object over the caller's frame. A crash whose return address is a function's start, with a type's hook table on the stack, is the sign: [port M1 round 5](#session-log-newest-first).
 
 ## Session log (newest first)
+
+**Placeholder classes renamed apart for the port's addresses (2026-11-06, branch `claude/placeholder-class-names`).**
+`tools/port_addresses.py` leaves out a name whose matched uses disagree on its address. Five of its 12 conflicts were
+one placeholder class name standing for different classes in different files (PR 315 left them out of
+`port/bindings.tsv` for that reason). Each file's class now has its own name, with the address of the function or
+vtable that tells it apart; `check.py` statuses are unchanged (O 90943) and the conflicts went from 12 to 7, then to 6
+with the `CRntString` move constructor below.
+- `UnkBase_0x30` -> `UnkBase_0x30_710025373c` (`src/game/CCharClassComponent/fn_71011ace00.cpp`) and
+  `UnkBase_0x30_7100fe1050` (`src/game_7100ece7fc/fn_7100fd0264.cpp`), by destructor.
+- `UnkElem40` and `UnkElem80` keep their names in `src/game_aca57c/fn_7100ad2004.cpp`; the copy files call other
+  destructors: `UnkElem40_710081348c` (`fn_7100814c3c.cpp`) and `UnkElem80_7100778228` (`fn_710077a478.cpp`).
+- `UnkCallbackSet` was three classes. `UnkCallbackSet` (vtable 0x7101a33fa0, move constructor `fn_71007b1928`) stays
+  in the CCharClassWaterPoolComponent and CCharClassShootActivatorComponent files. The class of
+  `include/game/UnkCallbackSetVector.h` and of the `src/game_s7/fn_71011*` copies is `UnkCallbackSet_7101a20950`
+  (vtable 0x7101a20950, move constructor `fn_71002458a4`, which SLogicPathNode's `UnkMovable` also is, now under
+  that name). `fn_71002475b0.cpp` held three Begin copies over three set classes; `fn_7100d88e14` (0x7101a33fa0)
+  and `fn_7101132350` (`UnkCallbackSet_7101cb2880`) now have files of their own. `fn_7100d88e14` does not fit in
+  `fn_710090dbb4.cpp`: its elements have no u32 after the set (63% there).
+- `include/base/global/CRntString.h` declares the move constructor (`fn_710007eab4`). The two functions that call it
+  (`fn_7100de5648`, `fn_7100dfb050`) construct from an rvalue, so they named the copy constructor while the original
+  calls the move one; with the declaration both constructors are placed, and statuses do not change.
+- The 6 conflicts left were not in this round: `refl_IterSync<UnkOwnedList>` (one template, five sync functions),
+  `vtable for UnkAttackListener` and `vtable for UnkElem50` (likely the same kind of reused name), and the three
+  `unk_any_props` vtables (five units each).
 
 **Boot-distance nightly: why it never passed (2026-11-06, branch `claude/nightly-lift-set`).** The nightly
 (`.github/workflows/boot-nightly.yml`) had not run the boot before Nov 6: Oct 30 failed in the addresses step,
