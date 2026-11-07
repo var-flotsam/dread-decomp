@@ -1,0 +1,25 @@
+# Constructors and destructors bound to their original addresses for the port's link
+# (tools/port_link.py --bindings; this file by default).
+#
+# A constructor or destructor keeps its C++ name in the sources: Clang 9 ignores an asm("fn_<addr>")
+# label on one, and the port's host compiler hangs on it. tools/port_addresses.py places most of them
+# from the byte-matching code that calls them. This table places the ones it cannot: no matched
+# caller yet, or callers that disagree. tools/port_link.py treats each row like a placed address: a
+# reference becomes an alias of the definition at that address (a matched fn_<addr>, else its lift),
+# or a trap carrying the address.
+#
+# Columns, tab-separated: the mangled symbol, the address, what it is. A row that
+# tools/port_addresses.py already places at the same address is redundant and says so in the link's
+# output; one it places elsewhere is reported and left out (the matched code wins).
+#
+# Only one class per mangled name belongs here. A placeholder name that stands for different classes
+# in different files (two files' UnkElem80) is a naming problem in the sources, to fix there.
+
+_ZN4base6global10CRntStringC1ERKS1_	0x710007ea60	base::global::CRntString::CRntString(CRntString const&): matched callers also reach the move constructor fn_710007eab4 (2 sites in CGameManager), which the header does not declare
+_ZN10UnkMovableC1EOS_	0x71002458a4	UnkMovable::UnkMovable(UnkMovable&&)
+_ZN10UnkPathKeyC1EPK9UnkPathId	0x710008d2ec	UnkPathKey::UnkPathKey(UnkPathId const*)
+_ZN10UnkPathKeyD1Ev	0x710008d8e8	UnkPathKey::~UnkPathKey()
+_ZN12UnkElem_0x88C1EOS_	0x71007abba4	UnkElem_0x88::UnkElem_0x88(UnkElem_0x88&&)
+_ZN19UnkEntry_7100134020D1Ev	0x7100133be4	UnkEntry_7100134020::~UnkEntry_7100134020()
+_ZN19UnkEntry_710025fdf4C1ERKS_	0x7100262f74	UnkEntry_710025fdf4::UnkEntry_710025fdf4(UnkEntry_710025fdf4 const&)
+_ZN7unk_gui7UnkTextD1Ev	0x7100066e44	unk_gui::UnkText::~UnkText()
