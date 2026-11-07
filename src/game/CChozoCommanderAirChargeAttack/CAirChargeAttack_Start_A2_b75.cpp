@@ -10,6 +10,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkTUProperty.h"
+#include "game_s2/UnkChozoCommanderAttack.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -23,8 +24,6 @@ void fn_710117b3e8(UnkWeakTarget* target, void* link);
 extern UnkTunable g_unk_71726c5150;
 
 struct UnkAirChargeAttack_A2_b75;
-struct UnkChozoCommanderAttack;  // game_s2/UnkChozoCommanderAttack.h
-void fn_7100424b5c(UnkChozoCommanderAttack* self);
 void fn_7100425268(UnkAirChargeAttack_A2_b75* self);
 void fn_71004263c4();
 
@@ -46,7 +45,7 @@ struct UnkAirChargeAttack_A2_b75 {
 
 // `dt` (s0) reaches the base update untouched in the original (tools/forwarded_args.py).
 void fn_7100425b98(UnkAirChargeAttack_A2_b75* self, f32 dt) {
-    reinterpret_cast<void (*)(UnkChozoCommanderAttack*, f32)>(fn_7100424b5c)(reinterpret_cast<UnkChozoCommanderAttack*>(self), dt);
+    fn_7100424b5c(reinterpret_cast<UnkChozoCommanderAttack*>(self), dt);
     switch (self->mode) {
     case 1:
         fn_7100425268(self);

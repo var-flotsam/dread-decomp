@@ -145,7 +145,7 @@ __attribute__((always_inline)) static inline void UpdateWith_A6_b64(UnkSmMachine
 }
 
 // CSamusGrappleMovementState's unit: keeps the argument at +0xb88 while it runs.
-void fn_71009b0d24(void*);
+void fn_71009b0d24(void* self, void* arg);
 
 struct UnkGrappleOwner_A6_b64 : UnkSmOwner_A6_b64<0x188> {
     u8 pad_after[0xb88 - 0x188 - sizeof(UnkSmMachine_A6_b64)];
@@ -154,7 +154,7 @@ struct UnkGrappleOwner_A6_b64 : UnkSmOwner_A6_b64<0x188> {
 
 void fn_710099a6b4(UnkGrappleOwner_A6_b64* self, void* arg) {
     self->arg = arg;
-    fn_71009b0d24(self);
+    fn_71009b0d24(self, arg);
     UpdateWith_A6_b64<4, 5, void*>(&self->machine, arg);
     self->arg = nullptr;
 }

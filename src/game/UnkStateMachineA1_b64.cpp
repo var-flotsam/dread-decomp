@@ -709,8 +709,8 @@ template <u32 Offset>
 struct UnkSmGrab_A2_b63;
 void fn_7100440770(UnkSmGrab_A2_b63<0x88>* self);
 void fn_7100440a38(UnkSmGrab_A2_b63<0x88>* self);
-void fn_7100440644(UnkSmGrab_A1_b64<0x88>*);
-void fn_710044090c(UnkSmGrab_A1_b64<0x88>*);
+void fn_7100440644(UnkSmGrab_A1_b64<0x88>*, UnkSmGrabMsg_A1_b64* msg);
+void fn_710044090c(UnkSmGrab_A1_b64<0x88>*, UnkSmGrabMsg_A1_b64* msg);
 void fn_7100440f5c(UnkSmGrab_A1_b64<0x88>*);
 
 bool fn_7100440418(UnkSmGrab_A1_b64<0x88>* self, UnkSmGrabMsg_A1_b64* msg) {
@@ -726,13 +726,13 @@ bool fn_7100440418(UnkSmGrab_A1_b64<0x88>* self, UnkSmGrabMsg_A1_b64* msg) {
         fn_7100440f5c(self);
         break;
     case 3:
-        fn_7100440644(self);
+        fn_7100440644(self, msg);
         break;
     case 4:
         fn_7100440770(reinterpret_cast<UnkSmGrab_A2_b63<0x88>*>(self));
         break;
     case 5:
-        fn_710044090c(self);
+        fn_710044090c(self, msg);
         break;
     case 7:
         RequestState_A1_b64<12, 0x7fffffff>(&self->machine, 8);
@@ -754,8 +754,8 @@ bool fn_7100440418(UnkSmGrab_A1_b64<0x88>* self, UnkSmGrabMsg_A1_b64* msg) {
 // run fn_7100489ea0's step (inlined here).
 void fn_71004896b4(UnkSmGrab_A2_b63<0x80>* self);
 void fn_710048997c(UnkSmGrab_A2_b63<0x80>* self);
-void fn_7100489588(UnkSmGrab_A1_b64<0x80>*);
-void fn_7100489850(UnkSmGrab_A1_b64<0x80>*);
+void fn_7100489588(UnkSmGrab_A1_b64<0x80>*, UnkSmGrabMsg_A1_b64* msg);
+void fn_7100489850(UnkSmGrab_A1_b64<0x80>*, UnkSmGrabMsg_A1_b64* msg);
 struct UnkAIComponent;
 struct UnkSelf;
 void fn_7100489f3c(UnkSelf* self);
@@ -805,13 +805,13 @@ bool fn_71004892f0(UnkSmGrab_A1_b64<0x80>* self, UnkSmGrabMsg_A1_b64* msg) {
         WarriorStep_A1_b64(self);
         break;
     case 3:
-        fn_7100489588(self);
+        fn_7100489588(self, msg);
         break;
     case 4:
         fn_71004896b4(reinterpret_cast<UnkSmGrab_A2_b63<0x80>*>(self));
         break;
     case 5:
-        fn_7100489850(self);
+        fn_7100489850(self, msg);
         break;
     case 7:
         RequestState_A1_b64<12, 0x7fffffff>(&self->machine, 8);

@@ -13,11 +13,11 @@ struct UnkLiquidPoolLevel {
     f32 elapsed;   // 0xc60
 };
 
-void fn_7100a45ac4(UnkLiquidPoolLevel* self);
+void fn_7100a45ac4(UnkLiquidPoolLevel* self, f32 dt);
 void fn_7100900928(UnkLiquidPoolLevel* self);
 
 void fn_710090087c(UnkLiquidPoolLevel* self, f32 dt) {
-    fn_7100a45ac4(self);
+    fn_7100a45ac4(self, dt);
     f32 level = self->level;
     f32 target = self->target;
     if (level - 1e-5f <= target && level + 1e-5f >= target)
