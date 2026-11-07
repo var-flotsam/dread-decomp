@@ -774,12 +774,20 @@ layout comes from.
   declared there, `nn/hid.h` completes the small types); their vptr points at a table of traps
   that names the class and slot, since the port's nodes have no virtual functions of their own.
 - **`nn::prepo`**: play reports accepted and dropped; nothing is sent anywhere.
-- **`movie`** (all 55 functions): `Buffer` is complete (0x40 bytes, as the player's arrays
-  step); every source has no tracks until the port has a video decoder: `SetDataSource`
-  accepts any file or stream, `GetTrackCount` answers zero, so the player's track reader
-  `fn_71002233c4` reports each track missing, and the rest returns `kStatusNoMedia`. The game's
-  extractor and decoder subclasses write their own vptr; their vtables in `.data` name the
-  library's functions, which the loader resolves by name.
+- **`movie`** (all 55 functions): VP9 video in WebM, decoded with libvpx 1.14.1
+  (`tools/fetch_sources.py libvpx-1.14.1`, then `tools/build_libvpx.py`; `port_link.py` links it
+  when built, `--no-vpx` leaves it out). `Buffer` is complete (0x40 bytes, as the player's arrays
+  step). `Extractor` reads the file through `nn::fs`, demuxes it with `src/webm.cpp` (tracks,
+  frames, key frames; `runtime_webm_check` tests it on files it builds) and answers the track's
+  format, `Read` and `SeekTo` (to the last key frame before the time). `Decoder` runs libvpx on a
+  thread of its own and signals the player's events (format change, input, output); its
+  `GetOutputBuffer` converts the I420 frame (BT.709, limited range) to RGBA and writes it into
+  the NVN texture the player hands it, through the shim's `dread_nvn_texture_write_rgba`. The
+  game's decoder objects are 0x10 bytes (vptr and a state pointer): `kDecoderVtable` answers the
+  two slots the player calls (`+0x48`, `+0x60`) and logs any other. Without libvpx every source
+  has no tracks (`GetTrackCount` answers zero) and the player reports each track missing. The
+  game's extractor subclasses write their own vptr, so the runtime keeps an extractor's state in
+  a table beside it.
 - **`nn::oe::GetDesiredLanguage`** answers `$DREAD_LANGUAGE` (a code the game knows: `en-US`,
   `fr`, `ja`, ...), else `en-US`.
 - **Checking a signature** (`tools/port_imports.py --version 2.1.0`): the dump's dynamic symbols
@@ -790,8 +798,12 @@ layout comes from.
   symbol. Left: `nn::audio` 149, `nn::nfp` 26, `nn::os` 13 (memory blocks, multi-waits),
   `nn::util` 11 (math tables and gzip), the C++ ABI's and some C names.
 - **Imports outside `nn::`** (`nv`, `movie`) resolve to the runtime by name like `nn::` ones, and
-  an overloaded name (`AbortImpl`) goes to the overload whose parameters fit the caller's
-  reference best (`port_link.py`'s `runtime_overload`, the alias ranking).
+  an overloaded name (`AbortImpl`, `movie::Buffer::Buffer`) goes to the overload with the
+  console's own parameters: the PLT stub's GOT slot names the import with its mangled name
+  (`port_link.py`'s `import_names`, `runtime_overload`). Only without the dump does it fall back
+  to the overload whose parameters fit the caller's reference best (the alias ranking), which
+  cannot tell `Buffer(const Buffer&)` from `Buffer(u64)` and reads a lifted call's `this` as an
+  argument.
 
 ## The data loader (M1)
 

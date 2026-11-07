@@ -123,6 +123,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import asmdiff  # noqa: E402
+import build_libvpx  # noqa: E402
 import buildcfg  # noqa: E402
 import callgraph  # noqa: E402
 import check  # noqa: E402
@@ -900,13 +901,22 @@ def host_symbol(row: dict) -> tuple[str, str]:
     return "", ""
 
 
-def runtime_overload(candidates: list[str], reference: str, demangled: dict[str, str]) -> str:
+def runtime_overload(candidates: list[str], reference: str, demangled: dict[str, str],
+                     imported: str | None = None) -> str:
     """The runtime definition an import's reference lands on when the runtime overloads the name
-    (nn::diag::detail::AbortImpl has a 4-argument and a 6-argument form, both imported): the one
-    whose parameters fit the reference's best, by the alias ranking (SIGNATURE_ORDER); a
-    reference without parameters, or a tie, keeps the first in name order."""
+    (nn::diag::detail::AbortImpl has a 4-argument and a 6-argument form, both imported).
+    `imported` is the console's own name for that import, demangled (import_names): the
+    definition with exactly its parameters, `long long` read as `long` (an LLP64 definition), is
+    the one. Without it, or with no such definition: the one whose parameters fit the
+    reference's best, by the alias ranking (SIGNATURE_ORDER); a reference without parameters, or
+    a tie, keeps the first in name order. The ranking alone cannot tell movie::Buffer's copy
+    constructor from Buffer(u64), and a lifted call passes `this` as an argument of its own."""
     if len(candidates) == 1:
         return candidates[0]
+    if imported:
+        exact = [s for s in candidates if demangled.get(s, s).replace("long long", "long") == imported]
+        if exact:
+            return exact[0]
     ref = param_list(reference)
 
     def rank(sym: str) -> tuple:
@@ -916,13 +926,34 @@ def runtime_overload(candidates: list[str], reference: str, demangled: dict[str,
     return min(candidates, key=rank)
 
 
+def import_names(version: str, addresses: list[int]) -> dict[int, str]:
+    """address -> the console's demangled name, parameters included, of each import PLT stub in
+    `addresses` (data/functions/ names them without parameters), from the dump's GOT slot and
+    dynamic symbol table (asmdiff.Original.plt_import). Empty when the dump or the recon output
+    it reads is not there; runtime_overload then ranks by the reference's parameters."""
+    if not addresses:
+        return {}
+    try:
+        original = asmdiff.Original(version)
+    except (OSError, ValueError) as e:
+        print(f"imports: the dump's import names are not readable ({e}); overloads ranked by arguments")
+        return {}
+    mangled = {a: original.plt_import(a) for a in addresses}
+    mangled = {a: m for a, m in mangled.items() if m}
+    demangled = asmdiff.demangle(sorted(set(mangled.values())), strip=False)
+    return {a: demangled.get(m, m) for a, m in mangled.items()}
+
+
 def classify(lk: Link, runtime_by_name: dict[str, list[str]], runtime_symbols: set[str],
-             alias_mismatch: bool = False, known: dict[str, int] | None = None) -> list[Entry]:
+             alias_mismatch: bool = False, known: dict[str, int] | None = None,
+             imported: dict[int, str] | None = None) -> list[Entry]:
     """One Entry per undefined symbol of `lk`. A called function alias with a class_mismatch
     verdict is trapped unless `alias_mismatch`. `known` (tools/port_addresses.py) gives the
     original address of a vtable or a name without one: the vtable becomes an absolute symbol
-    there, the name a reference to that address like any fn_<addr>."""
+    there, the name a reference to that address like any fn_<addr>. `imported` (import_names)
+    gives the console's demangled name of an import whose runtime name is overloaded."""
     known = known or {}
+    imported = imported or {}
     res = lk.resolver
     out: list[Entry] = []
     for sym in lk.undefined:
@@ -1006,7 +1037,7 @@ def classify(lk: Link, runtime_by_name: dict[str, list[str]], runtime_symbols: s
                 e.sub = gname  # nn::<namespace>, or movie, nv and any other SDK namespace
                 rt = runtime_by_name.get(row["name"][len(IMPORT_PREFIX):])
                 if rt:
-                    e.target = runtime_overload(rt, dem, lk.demangled)
+                    e.target = runtime_overload(rt, dem, lk.demangled, imported.get(addr))
                     e.flags.append("runtime")
                     if len(rt) > 1:
                         e.flags.append("overload_by_arguments")
@@ -1223,6 +1254,22 @@ COUNT_NAME = {"dread_port_functions": "dread_port_function_count", "dread_port_i
 
 
 VULKAN_NAME = re.compile(r"^vk[A-Z]\w*$")  # the Vulkan loader's C functions (--nvn links -lvulkan)
+# Names a host library defines, or nothing does on purpose: libvpx's (the movie runtime links it when
+# tools/build_libvpx.py built it) and the NVN shim's frame-texture access, which the movie runtime
+# references weakly (null without --nvn). Not trapped.
+HOST_NAMES = re.compile(r"^(vpx_\w*|dread_nvn_texture_\w+)$")
+
+
+def host_pattern(nvn: bool) -> re.Pattern:
+    """The names write_residue_traps leaves to the host: HOST_NAMES, and the Vulkan loader's with --nvn."""
+    return re.compile(f"{HOST_NAMES.pattern}|{VULKAN_NAME.pattern}") if nvn else HOST_NAMES
+
+
+def vpx_for(target: str) -> tuple[Path, Path] | None:
+    """(libvpx.a, its include directory) built by tools/build_libvpx.py for `target`, or None."""
+    triple = "x86_64-w64-mingw32" if ("mingw" in target or "windows" in target) else "x86_64-linux-gnu"
+    lib = build_libvpx.library(triple)
+    return (lib, build_libvpx.include_dir(triple)) if lib else None
 
 
 def write_residue_traps(path: Path, residue: list[Entry], host: re.Pattern | None = None) -> dict:
@@ -1499,6 +1546,8 @@ def main() -> int:
                     help="link the NVN shim (port/nvn) as the game's NVN and the system's Vulkan loader: run it in"
                          " the Vulkan image (DREAD_PORT_IMAGE=dread-port-linux-vulkan); without it the game's"
                          " nvnBootstrapLoader is a trap")
+    ap.add_argument("--no-vpx", action="store_true",
+                    help="build the movie runtime without libvpx even when tools/build_libvpx.py built it")
     ap.add_argument("--vulkan-include", help="Vulkan headers for --nvn (default: the pinned copy in the tool cache,"
                                              " python tools/fetch_toolchains.py vulkan-headers-1.4.328)")
     ap.add_argument("--image-base", default=f"0x{IMAGE_BASE:x}",
@@ -1534,8 +1583,13 @@ def main() -> int:
     print(f"port link: target {target}, {port_sweep.compiler_version(cxx)}, {Path(lld).name}, {Path(nm).name}"
           + (f", {Path(objdump).name}" if objdump else ", no llvm-objdump (calls and address takes not told apart)"))
 
-    # a. the runtime, compiled as the sweep compiles, the vendored libraries and the sweep's objects
-    runtime_objs = compile_runtime(cxx, flags, out / "runtime")
+    # a. the runtime, compiled as the sweep compiles, the vendored libraries and the sweep's objects.
+    # With libvpx built for the target the movie runtime decodes (port/runtime/src/movie.cpp).
+    vpx = None if args.no_vpx else vpx_for(target)
+    runtime_flags = [*flags, "-DDREAD_PORT_VPX", "-isystem", str(vpx[1])] if vpx else flags
+    print(f"movie: libvpx {rel(vpx[0]) if vpx and vpx[0].is_relative_to(ROOT) else vpx[0] if vpx else 'not built'}"
+          + ("" if vpx else " (movies have no tracks; python tools/build_libvpx.py in the port's container)"))
+    runtime_objs = compile_runtime(cxx, runtime_flags, out / "runtime")
     if args.nvn:
         vk = vulkan_include(args.vulkan_include)
         if not vk or not (vk / "vulkan" / "vulkan_core.h").is_file():
@@ -1583,6 +1637,9 @@ def main() -> int:
     runtime_by_name: dict[str, list[str]] = defaultdict(list)
     for s in sorted(runtime_symbols):
         runtime_by_name[asmdiff.strip_params(demangled.get(s, s))].append(s)
+    overloaded = [int(a, 16) for a, r in rows.items() if r["name"].startswith(IMPORT_PREFIX)
+                  and len(runtime_by_name.get(r["name"][len(IMPORT_PREFIX):], ())) > 1]
+    imported = import_names(args.version, overloaded)
     print(f"symbols: {lk.defined_entries} defined entries ({len(lk.defined_symbols)} distinct names),"
           f" {len(lk.undefined)} undefined;"
           f" {len(lk.code_defs)} addresses have a function definition"
@@ -1593,7 +1650,7 @@ def main() -> int:
           f" runtime: {len(runtime_symbols)} functions")
 
     # d. classification
-    entries = classify(lk, runtime_by_name, runtime_symbols, args.alias_mismatch, known)
+    entries = classify(lk, runtime_by_name, runtime_symbols, args.alias_mismatch, known, imported)
     summary = summarize(entries, args.examples, keep_empty=True)
     assert sum(d["symbols"] for d in summary.values()) == len(entries) == len(lk.undefined)
     print()
@@ -1653,7 +1710,7 @@ def main() -> int:
         if new_names:
             demangled.update(asmdiff.demangle(new_names, strip=False))
         lk = Link(lsyms, demangled, resolver, relocations(objdump, lifted_o), known)
-        entries = classify(lk, runtime_by_name, runtime_symbols, args.alias_mismatch, known)
+        entries = classify(lk, runtime_by_name, runtime_symbols, args.alias_mismatch, known, imported)
         game_o = lifted_o
         print()
         lifted_slice = boot_slice(args.version, lk, entries, runtime_by_name, out / "boot_unlifted.csv",
@@ -1752,7 +1809,8 @@ def main() -> int:
     exe_report = None
     if args.executable:
         exe_report = link_executable(cxx, target, flags, out, whole_o, residue_entries, int(args.image_base, 16),
-                                     ("-lvulkan",) if args.nvn else (), VULKAN_NAME if args.nvn else None)
+                                     (*((str(vpx[0]),) if vpx else ()), *(("-lvulkan",) if args.nvn else ())),
+                                     host_pattern(args.nvn))
         if exe_report is None:
             return 1
 

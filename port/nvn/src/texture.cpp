@@ -8,6 +8,8 @@
 #include <cstring>
 #include <map>
 #include <set>
+#include <utility>
+#include <vector>
 
 #include <vulkan/vulkan.h>
 
@@ -924,3 +926,62 @@ void detail::RegisterTextureProcs() {
 }
 
 }  // namespace dread::nvn
+
+// ---- The movie runtime's frames (port/runtime/src/movie.cpp, weak references there): the decoder
+// writes each decoded frame into the frame texture the game hands it, as the console's decoder
+// writes into the NVN texture.
+
+// The size of the shim's texture at `texture` and its bytes per texel (0 for a block-compressed
+// format); false when the shim has no image for it.
+extern "C" bool dread_nvn_texture_size(const void* texture, std::uint32_t* width, std::uint32_t* height,
+                                       std::uint32_t* bytes_per_texel) {
+    using namespace dread::nvn;
+    std::lock_guard<std::recursive_mutex> lock(detail::StateLock());
+    Texture* t = g_textures.Find(texture);
+    if (!t || !t->image || !t->format)
+        return false;
+    *width = t->width;
+    *height = t->height;
+    *bytes_per_texel = t->format->block_size == 1 ? t->format->block_bytes : 0;
+    return true;
+}
+
+// Writes level 0 of the texture from RGBA8 rows (`width` by `height`, packed), swapping red and
+// blue for a BGRA texture. Other formats are not written (once noted on stderr).
+extern "C" void dread_nvn_texture_write_rgba(const void* texture, std::uint32_t width, std::uint32_t height,
+                                             const void* rgba) {
+    using namespace dread::nvn;
+    VkFormat format = VK_FORMAT_UNDEFINED;
+    {
+        std::lock_guard<std::recursive_mutex> lock(detail::StateLock());
+        Texture* t = g_textures.Find(texture);
+        if (!t || t->width != width || t->height != height)
+            return;
+        format = t->vk_format;
+    }
+    const CopyRegion region{0, 0, 0, static_cast<std::int32_t>(width), static_cast<std::int32_t>(height), 1};
+    switch (format) {
+    case VK_FORMAT_R8G8B8A8_UNORM:
+    case VK_FORMAT_R8G8B8A8_SRGB:
+        TextureWriteTexels(texture, nullptr, &region, rgba);
+        return;
+    case VK_FORMAT_B8G8R8A8_UNORM:
+    case VK_FORMAT_B8G8R8A8_SRGB: {
+        std::vector<std::uint8_t> bgra(static_cast<const std::uint8_t*>(rgba),
+                                       static_cast<const std::uint8_t*>(rgba) + std::size_t(width) * height * 4);
+        for (std::size_t i = 0; i < bgra.size(); i += 4)
+            std::swap(bgra[i], bgra[i + 2]);
+        TextureWriteTexels(texture, nullptr, &region, bgra.data());
+        return;
+    }
+    default: {
+        static bool noted = false;
+        if (!noted) {
+            noted = true;
+            std::fprintf(stderr, "nvn shim: a movie frame texture in Vulkan format %d is not written\n",
+                         static_cast<int>(format));
+        }
+        return;
+    }
+    }
+}

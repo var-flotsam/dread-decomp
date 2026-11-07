@@ -39,6 +39,31 @@ class ArgumentClasses(unittest.TestCase):
         self.assertEqual(pl.signature_class(["int", "float"], ["float", "float"], False)[0], "class_mismatch")
 
 
+class RuntimeOverloads(unittest.TestCase):
+    CTORS = {"_ZN5movie6BufferC1Ev": "movie::Buffer::Buffer()",
+             "_ZN5movie6BufferC1Em": "movie::Buffer::Buffer(unsigned long)",
+             "_ZN5movie6BufferC1ERKS0_": "movie::Buffer::Buffer(movie::Buffer const&)",
+             "_ZN5movie6BufferC1EPvm": "movie::Buffer::Buffer(void*, unsigned long)"}
+
+    def test_the_consoles_name_picks_the_overload(self):
+        # A lifted call passes `this` as its own argument: (char*) is the default constructor, not
+        # the copy constructor its parameters look like.
+        cands = sorted(self.CTORS)
+        for imported, want in (("movie::Buffer::Buffer()", "_ZN5movie6BufferC1Ev"),
+                               ("movie::Buffer::Buffer(movie::Buffer const&)", "_ZN5movie6BufferC1ERKS0_"),
+                               ("movie::Buffer::Buffer(unsigned long)", "_ZN5movie6BufferC1Em")):
+            self.assertEqual(pl.runtime_overload(cands, "callee::fn_7101239c90(char*)", self.CTORS, imported), want)
+
+    def test_llp64_definition_and_fallback(self):
+        dem = {"_ZN5movie6BufferC1Ey": "movie::Buffer::Buffer(unsigned long long)",
+               "_ZN5movie6BufferC1Ev": "movie::Buffer::Buffer()"}
+        cands = sorted(dem)
+        self.assertEqual(pl.runtime_overload(cands, "f(char*, unsigned long)", dem,
+                                             "movie::Buffer::Buffer(unsigned long)"), "_ZN5movie6BufferC1Ey")
+        # No console name: the argument ranking, as before.
+        self.assertEqual(pl.runtime_overload(cands, "f()", dem), "_ZN5movie6BufferC1Ev")
+
+
 class TaggedTemplates(unittest.TestCase):
     def test_getter_over_inline_helper(self):
         # The lifted caller's declaration passes one (leftover) argument, which matches the helper's

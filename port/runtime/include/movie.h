@@ -1,20 +1,20 @@
-#pragma once
-
 // movie: the SDK's video player library (an extractor for the container, a decoder, buffers and
 // media-format dictionaries). The game's player (src/game_71001e2acc/: fn_71002211b4 builds the
 // player, fn_710022586c its decoder, fn_710022323c and fn_7100223318 its extractor over a
 // "<mount>:/<path>" file or a stream; fn_71002233c4 reads each track's format: mime type,
 // bit rate, duration, language, frame rate and size or channels and sample rate) subclasses
-// Extractor and Decoder: it writes its own vptr over theirs, and its vtables in .data name the
+// Extractor: it writes its own vptr over the object's, and its vtables in .data name the
 // library's functions, which the data loader resolves by mangled name to these.
 //
-// On PC, until the port has a video decoder: Buffer is complete (a byte container the player uses
-// on its own), and every source has no tracks: SetDataSource accepts any file or stream,
-// GetTrackCount answers zero, so fn_71002233c4 reports each track as missing (its code 5) and
-// the player has nothing to decode; the other Extractor and Decoder calls return kStatusNoMedia.
+// On PC (port/runtime/src/movie.cpp): the extractor reads WebM (the game's 101 movies are VP9,
+// video only) and the decoder decodes with libvpx into the game's NVN frame texture, when the
+// runtime is built with DREAD_PORT_VPX (tools/build_libvpx.py); without it every source has no
+// tracks and the player decodes nothing. Buffer is complete (a byte container the player also uses
+// on its own).
 //
 // `main` imports (data/functions/; parameter lists from the mangled names): SetAllocator,
 // GetThreadPriority, Buffer (17), Extractor (16), MediaData (6), Decoder (16). All declared below.
+// The decoder has two more functions the game calls through its vtable (movie.cpp).
 // On an LLP64 host the 64-bit parameters keep their width (s64) and lose the mangled `long` of the
 // console's names, so the loader cannot resolve those few by name there (they trap if called).
 
@@ -72,8 +72,8 @@ private:
 };
 static_assert(sizeof(Buffer) <= 0x40, "fn_7100221534 steps 0x40 bytes");
 
-// A media-format dictionary (keys such as "mime", "width", "durationUs"). fn_71002233c4 keeps one
-// in 12 bytes of its frame, so the port's has no state: nothing is ever found.
+// A media-format dictionary (keys such as "mime", "width", "durationUs"). The game keeps one in 8
+// bytes of its frames, so the port's holds a pointer to the dictionary.
 class MediaData {
 public:
     MediaData();
@@ -82,7 +82,10 @@ public:
     bool FindString(const char* key, const char** out) const;
     bool FindInt32(const char* key, s32* out) const;
     bool FindInt64(const char* key, s64* out) const;
+
+    void* m_dict;
 };
+static_assert(sizeof(MediaData) == 8, "the game keeps one in 8 bytes");
 
 enum ContainerType : s32 {};
 class ClientStreamReader;
@@ -115,7 +118,8 @@ enum DecoderOutputFormat : s32 {};
 enum DecoderMode : s32 {};
 class DecoderEvents;
 
-// fn_710022586c builds one at +0x50 of its player; the next member is at +0xe8.
+// fn_710022586c builds one at +0x50 of its stream; the stream's DecoderEvents (four nn::os events)
+// follow at +0x60, so the object is 0x10 bytes: a vtable and the port's state.
 class Decoder {
 public:
     Decoder(DecoderType type, DecoderOutputFormat format, DecoderMode mode, s32 priority);
@@ -133,6 +137,8 @@ public:
     s32 GetOutputBufferFormat(s32 index, MediaData* out);
 
     void* vtable;
+    void* state;
 };
+static_assert(sizeof(Decoder) == 0x10, "the stream's events follow at +0x10");
 
 }  // namespace movie

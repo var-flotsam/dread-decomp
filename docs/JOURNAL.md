@@ -133,8 +133,27 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - The static of a non-inline (or `static`) function is the executable's own copy on the port, while lifted code uses the image's: keep such state in the image off AArch64; `port_addresses.py` lists the unbindable ones: same entry.
 - A lifted variadic function hands on an AArch64 va_list: a hand-written callee taking a va_list must not be called from one (write the variadic caller by hand): same entry.
 - Several templates can carry one address's tag (`refl_GetPrimitiveType<G>` and its inline helper `refl_MakePrimitiveType<G>`, which Clang 18 keeps out of line); an alias to one that returns a class by value puts its hidden result pointer in the caller's rdi and writes the object over the caller's frame. A crash whose return address is a function's start, with a type's hook table on the stack, is the sign: [port M1 round 5](#session-log-newest-first).
+- An import name the runtime overloads (`movie::Buffer::Buffer` four times) must resolve by the dump's mangled name (the PLT stub's GOT slot), not by the reference's argument classes: a lifted call passes `this` as an argument, and a copy constructor looks like `Buffer(u64)`: [movie VP9](#session-log-newest-first).
 
 ## Session log (newest first)
+
+**The title background is a VP9 video: the movie runtime decodes it (2026-11-07, branch `claude/movie-vp9`).**
+After the Lua fix the boot faulted at null in `fn_71001606c0`: the title screen looks up its background texture
+`TITLE1_BG`, which only the movie player registers, and the port's movie runtime offered no tracks. The runtime now
+plays VP9 WebM: libvpx 1.14.1 from a pinned tag archive (`tools/fetch_sources.py libvpx-1.14.1`, built static and
+decoder-only by the new `tools/build_libvpx.py` for x86_64-linux-gnu; the x86_64-w64-mingw32 target is written but
+untested), a WebM demuxer of its own (`port/runtime/src/webm.cpp`, checked by `runtime_webm_check` on files it builds,
+no game data), an `Extractor` that reads through `nn::fs`, a `Decoder` thread that signals the player's events, and an
+I420-to-RGBA conversion (BT.709, limited range) written into the frame's NVN texture by the shim's
+`dread_nvn_texture_write_rgba`. The next fault was in `movie::Buffer`'s copy constructor called with null: the game
+imports four constructors under one name (`movie::Buffer::Buffer`), and `port_link.py` chose by the reference's
+argument classes. A lifted call passes `this` as its own `char*`, so `Buffer()` landed on `Buffer(const Buffer&)`,
+and the copy constructor and `Buffer(u64)` both landed on `Buffer(void*, u64)`. Argument classes cannot separate
+them; the dump's PLT stub names each import with its mangled name, so an overloaded runtime name now resolves by
+that exact signature (`import_names`, `runtime_overload`). With both, the boot opens
+`rom:/system/video/title/titlescreen_ini.webm` (VP9 1280x720, 431 frames), puts the first frame in its texture and
+finishes the first frame for the first time (10 of 10 milestones, 1533 lifts ran; the run then times out at 900 s
+with no fault).
 
 **Placeholder classes renamed apart, round 2 (2026-11-07, branch `claude/placeholder-names-2`).** The two vtable
 conflicts the first round left that were the same reused-name problem. `tools/port_addresses.py` conflicts are down
