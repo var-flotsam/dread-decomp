@@ -134,6 +134,19 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**`fn_710009d6d0` hand-matched: the constructor call it made without its object (2026-11-07, branch `claude/ctype-create-ctor-arg`).**
+The boot faulted in `fn_7101028aec` (an `SSoundEventsSelector`'s dynamic-type getter) while parsing `sound::CSoundEventsDef`:
+the `pContextSelector` field (offset 0) of a freshly created `SSoundEventsRule` held string bytes. The parse stack was
+right (`TSoundEventRules` -> `std::unique_ptr<SSoundEventsRule>` (inline value) -> the rule -> `pContextSelector`, held
+by reference); the rule was never constructed. `fn_710009d6d0` creates a typed object: it allocates `CType::m_size`
+bytes from the default allocator, then calls the type's constructor at CType+0x28. `CType` declares that field
+`UnkFn` (`void (*)()`), so the generated lift called it with no argument: on AArch64 x0 still holds the allocation, so
+the bytes matched, but on x86-64 the constructor (`fn_7101028cf4` for the rule) got a stale rdi, zeroed 0x30 bytes of
+`.bss` and left the heap object as it was. A gdb watch on the rule's first word showed the one constructor call landing
+in `.bss`. Hand-written in `src/base/reflection/CType.cpp` with the object passed (cast to `void (*)(void*)`), O; the
+lifted copy is pruned. Open: other callers of `m_fn_0x28` through the parameterless type, and the field's own type
+(`UnkFn` -> `void (*)(void*)`, which touches the reflection generators).
+
 **Forwarded arguments in matched functions (2026-11-06, branch `claude/forwarded-args`).** A matched
 function can declare fewer parameters than the original passes on: a register nobody touches costs no
 instruction on AArch64, so `fn_7100087ecc` matched with four parameters while the original handed x4-x6
