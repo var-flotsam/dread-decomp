@@ -132,6 +132,26 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Boot-distance nightly: why it never passed (2026-11-06, branch `claude/nightly-lift-set`).** The nightly
+(`.github/workflows/boot-nightly.yml`) had not run the boot before Nov 6: Oct 30 failed in the addresses step,
+Oct 31 to Nov 5 in preflight (Docker Desktop not running). On Nov 6 it ran and stopped after the static
+initialisers: 3 traps (`fn_7100001fb8`, `fn_7100004578`, `fn_7100004698`), then a fault at 0x28 in the hand-written
+`fn_7100004a44` called from `fn_71000113b0`. Not a regression: the job linked the default `build/port/lifted`, an
+Oct 28 set without those three functions (`lifted_all`, `lifted_trace5` and `lifted_all14` all have them).
+- **Stale objects break the addresses step.** `port_addresses.py` rebuilds any `build/check` object older than its
+  source, inside the container, where Clang 9 is not installed (`FileNotFoundError ... llvm-9.0.1/bin/clang++`). A
+  checkout newer than the last check run hits it; `check.py --compile-only` on the host first avoids it.
+- **Main with lifted_all14, `--nvn`:** `fn_7100015c70` entered (7 of 10 milestones), 0 traps, 146 of 11,619 lifts
+  ran, then a fault at 0x40 in reflection setup: `fn_7100a500a8` -> `fn_71000934b8` -> `fn_710007ebc8` (a
+  `CRntString` assign). None of these files changed since round 8, which reached all 10 milestones on
+  `claude/project-thread-3x0lf8` (the asm labels, not on main).
+- **The asm labels hang the port build as written.** Main plus that branch: the sweep's x86-64 `clang++` ran 8 hours
+  without finishing on `src/base/UnkDefaultAllocator.cpp` and `src/base/UnkResFactoryRegistry.cpp`, the two
+  files whose labels are on constructors and destructors. Clang 9 ignores those labels; that the host compiler
+  honours them (one name for the complete and base variants) is the likely cause, not yet confirmed.
+- The job now links `LIFTED` (`build\port\lifted_all14`) with `--nvn`, builds both images, and runs
+  `check.py --compile-only` first. The runner's checkout needs a junction `build\port\lifted_all14` to the owner's clone.
+
 **Lifter and oracle: round 10 (2026-11-04/05, branch `claude/project-thread-zgkpk3-r10`).** Whole-binary run
 lifted_all14 (5013ec5a): 13,643 of 13,691 accepted by the oracle, against lifted_all12's 13,633 on the same
 worklist: 12 gained, 2 lost. The run's x86-64 step failed for every accepted lift while the PC slept (no compiler
