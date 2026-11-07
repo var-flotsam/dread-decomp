@@ -50,9 +50,10 @@ struct UnkAttackCountedRef {
 
 using UnkAttackRefPtr = UnkAttackCountedRef<UnkRefObject>;
 
-// A polymorphic member (vtable 0x7101a22d48 and others) with a ref-counted owner. Its copy
-// constructor is user-written (the words are copied one by one). Assignment takes the source
-// owner's target and shares that target's weak handle, creating it if needed.
+// A polymorphic member (vtable 0x7101a22d48) with a ref-counted owner. Its copy constructor is
+// user-written (the words are copied one by one). Assignment takes the source owner's target and
+// shares that target's weak handle, creating it if needed. UnkAttackListener_7101a2aef8 below is
+// another class of the same shape.
 struct UnkAttackListener {
     virtual ~UnkAttackListener();
     u64 field_0x8;
@@ -63,6 +64,25 @@ struct UnkAttackListener {
         : field_0x8(other.field_0x8), field_0x10(other.field_0x10), owner(other.owner) {}
 
     __attribute__((always_inline)) UnkAttackListener& operator=(const UnkAttackListener& other) {
+        __builtin_memcpy(&field_0x8, &other.field_0x8, 0x10);
+        CopyWeakRef(&owner.ptr, other.owner.ptr);
+        return *this;
+    }
+};
+
+// The listener of CGooplotJumpAttack and CGooplotUndoJumpAttack: UnkAttackListener's shape with its
+// own class (vtable 0x7101a2aef8). One name for both would give the vtable two addresses
+// (tools/port_addresses.py).
+struct UnkAttackListener_7101a2aef8 {
+    virtual ~UnkAttackListener_7101a2aef8();
+    u64 field_0x8;
+    u64 field_0x10;
+    UnkAttackCountedRef<UnkWeakHandle> owner;
+
+    UnkAttackListener_7101a2aef8(const UnkAttackListener_7101a2aef8& other)
+        : field_0x8(other.field_0x8), field_0x10(other.field_0x10), owner(other.owner) {}
+
+    __attribute__((always_inline)) UnkAttackListener_7101a2aef8& operator=(const UnkAttackListener_7101a2aef8& other) {
         __builtin_memcpy(&field_0x8, &other.field_0x8, 0x10);
         CopyWeakRef(&owner.ptr, other.owner.ptr);
         return *this;
