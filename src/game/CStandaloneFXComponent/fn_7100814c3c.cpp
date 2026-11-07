@@ -24,9 +24,9 @@ struct UnkElemA0 {
     ~UnkElemA0();  // fn_7100c886c0
 };
 
-struct UnkElem40 {
+struct UnkElem40_710081348c {
     u8 unk_0x0[0x40];
-    ~UnkElem40();  // fn_7100c8a490
+    ~UnkElem40_710081348c();  // fn_710081348c
 };
 
 struct UnkElem138 {
@@ -34,7 +34,8 @@ struct UnkElem138 {
     ~UnkElem138();  // fn_7100e4e310
 };
 
-UnkVector<UnkElem40>& fn_7100814c3c(UnkVector<UnkElem40>* self, UnkVector<UnkElem40>&& other) {
-    return *self = static_cast<UnkVector<UnkElem40>&&>(other);
+UnkVector<UnkElem40_710081348c>& fn_7100814c3c(UnkVector<UnkElem40_710081348c>* self,
+                                               UnkVector<UnkElem40_710081348c>&& other) {
+    return *self = static_cast<UnkVector<UnkElem40_710081348c>&&>(other);
 }
 

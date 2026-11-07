@@ -5,6 +5,14 @@
 // Reserve, Truncate, Erase and Insert are the array's own, Begin makes an iterator at the first
 // element. The hand-written files of the copies of this array type (one per reflected type) share
 // it: src/game_s7/fn_71011143d8.cpp and src/game_s7/fn_7101114ae0.cpp. Names are placeholders.
+//
+// The set class here is the one with vtable 0x7101a20950 and move constructor fn_71002458a4, so it
+// carries that address in its name: other arrays hold sets of other classes, which the files that
+// define them name apart (UnkCallbackSet, vtable 0x7101a33fa0 and move constructor fn_71007b1928,
+// in src/game/CCharClassWaterPoolComponent/fn_710090dbb4.cpp and its copies). One placeholder name
+// for both would give their constructors and vtables two addresses (tools/port_addresses.py).
+// CCharClassWaterPoolComponent_Assign.cpp uses this header for the array layout alone, which the
+// two classes share.
 
 #include "base/UnkErasedVector.h"
 #include "base/UnkVector.h"
@@ -27,11 +35,11 @@ struct UnkCallbackBase {
     UnkCallbackBase() : field_0x30(0) {}
 };
 
-struct UnkCallbackSet : UnkCallbackBase {
+struct UnkCallbackSet_7101a20950 : UnkCallbackBase {
     virtual void vf8();
     UnkRefCounted* owner;
 
-    UnkCallbackSet(const UnkCallbackSet& other) : owner(nullptr) {
+    UnkCallbackSet_7101a20950(const UnkCallbackSet_7101a20950& other) : owner(nullptr) {
         UnkRefCounted* p = other.owner;
         if (p != owner) {
             if (p)
@@ -46,9 +54,9 @@ struct UnkCallbackSet : UnkCallbackBase {
         fn_710023b29c(&callbacks, &other.callbacks);
     }
 
-    UnkCallbackSet(UnkCallbackSet&& other);  // fn_71007b1928
+    UnkCallbackSet_7101a20950(UnkCallbackSet_7101a20950&& other);  // fn_71002458a4
 
-    __attribute__((always_inline)) ~UnkCallbackSet() {
+    __attribute__((always_inline)) ~UnkCallbackSet_7101a20950() {
         if (UnkRefCounted* p = owner) {
             if (--p->ref_count == 0)
                 p->Delete();
@@ -57,7 +65,7 @@ struct UnkCallbackSet : UnkCallbackBase {
 };
 
 struct UnkCallbackSetElem {
-    UnkCallbackSet set;
+    UnkCallbackSet_7101a20950 set;
     u32 field_0x40;
 };
 

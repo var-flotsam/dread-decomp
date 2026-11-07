@@ -1,7 +1,7 @@
 // SCameraRailNode's unit (tools/tu_map.py, the name from reflection): the reflected constructor and
-// copy constructor of a camera-rail node: its vtable, three words and a callback set (UnkCallbackSet,
-// include/game/UnkCallbackSetVector.h) copied by its own copy constructor. Names and layouts are
-// placeholders.
+// copy constructor of a camera-rail node: its vtable, three words and a callback set
+// (UnkCallbackSet_7101a20950, include/game/UnkCallbackSetVector.h) copied by its own copy
+// constructor. Names and layouts are placeholders.
 #include <new>
 
 #include "base/UnkVector.h"
@@ -17,7 +17,7 @@ struct UnkCameraRailNode_b42a3 {
     u32 field_0x8;
     u32 field_0xc;
     u32 field_0x10;
-    UnkCallbackSet set;
+    UnkCallbackSet_7101a20950 set;
 };
 
 // Signature as src/reflection/SCameraRailNode.cpp declares it.
@@ -28,7 +28,7 @@ void fn_7100c0778c(void* dst, const void* src) {
     self->field_0x8 = other->field_0x8;
     self->field_0xc = other->field_0xc;
     self->field_0x10 = other->field_0x10;
-    new (&self->set) UnkCallbackSet(other->set);
+    new (&self->set) UnkCallbackSet_7101a20950(other->set);
 }
 
 // The callback set's default construction, written out (the header's type has no default

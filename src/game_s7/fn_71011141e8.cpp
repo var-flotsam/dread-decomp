@@ -56,11 +56,11 @@ struct UnkCallbackBase {
     UnkCallbackBase() : field_0x30(0) {}
 };
 
-struct UnkCallbackSet : UnkCallbackBase {
+struct UnkCallbackSet_7101a20950 : UnkCallbackBase {
     virtual void vf8();
     base::UnkRefHandle owner;
 
-    __attribute__((always_inline)) UnkCallbackSet& operator=(UnkCallbackSet&& other) {
+    __attribute__((always_inline)) UnkCallbackSet_7101a20950& operator=(UnkCallbackSet_7101a20950&& other) {
         fn_710031d208(&owner, &other.owner);
         field_0x30 = other.field_0x30;
         fn_710023b29c(&callbacks, &other.callbacks);
@@ -74,16 +74,16 @@ struct UnkCallbackSet : UnkCallbackBase {
         return *this;
     }
 
-    __attribute__((always_inline)) ~UnkCallbackSet() {
+    __attribute__((always_inline)) ~UnkCallbackSet_7101a20950() {
         if (base::UnkRefCounted* p = owner.ptr) {
             if (--p->ref_count == 0)
                 delete p;
         }
     }
 
-    UnkCallbackSet(UnkCallbackSet&& other);  // fn_71007b1928
+    UnkCallbackSet_7101a20950(UnkCallbackSet_7101a20950&& other);  // fn_71002458a4
 
-    __attribute__((always_inline)) UnkCallbackSet& operator=(const UnkCallbackSet& other) {
+    __attribute__((always_inline)) UnkCallbackSet_7101a20950& operator=(const UnkCallbackSet_7101a20950& other) {
         const base::UnkRefHandle* from = &other.owner;  // evaluated first, as `owner = other.owner` would be
         fn_710031d208(&owner, from);
         field_0x30 = other.field_0x30;
@@ -91,7 +91,7 @@ struct UnkCallbackSet : UnkCallbackBase {
         return *this;
     }
 
-    UnkCallbackSet(const UnkCallbackSet& other) {
+    UnkCallbackSet_7101a20950(const UnkCallbackSet_7101a20950& other) {
         owner.ptr = nullptr;
         owner.Set(other.owner.ptr);
         field_0x30 = other.field_0x30;
@@ -100,7 +100,7 @@ struct UnkCallbackSet : UnkCallbackBase {
 };
 
 struct UnkEntry {
-    UnkCallbackSet set;
+    UnkCallbackSet_7101a20950 set;
     UnkId id;
 
     UnkEntry(const UnkEntry& other) = default;
@@ -111,7 +111,7 @@ struct UnkEntry {
     }
     __attribute__((always_inline)) ~UnkEntry() {}
     __attribute__((always_inline)) UnkEntry& operator=(UnkEntry&& other) {
-        set = static_cast<UnkCallbackSet&&>(other.set);
+        set = static_cast<UnkCallbackSet_7101a20950&&>(other.set);
         id = static_cast<UnkId&&>(other.id);
         return *this;
     }
@@ -177,7 +177,7 @@ struct UnkMovedId {
 };
 
 struct UnkMovedEntry {
-    UnkCallbackSet set;
+    UnkCallbackSet_7101a20950 set;
     UnkMovedId id;
 };
 
