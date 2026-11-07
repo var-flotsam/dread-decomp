@@ -62,6 +62,36 @@ class FakeGraph:
     callers = {CALLEE: [TAIL], IND: [CALLER]}
 
 
+# A switch on w1 at an address in the image, with Clang's compressed jump table after the code: each
+# case writes w2 before the join reads it, so x2 is no argument (the table's targets, not every block
+# after the br).
+SWITCH = 0x7100010000
+SWITCH_CODE = code(SWITCH,
+                   0x7100043F,               # cmp w1, #1
+                   0x54000188,               # b.hi default (+0x30)
+                   0x90000008,               # adrp x8, (this page)
+                   0x91010108,               # add x8, x8, #0x40 (the table)
+                   0x10000089,               # adr x9, case0 (+0x10)
+                   0x3861690A,               # ldrb w10, [x8, x1]
+                   0x8B0A0929,               # add x9, x9, x10, lsl #2
+                   0xD61F0120,               # br x9
+                   0x52800022,               # case0: mov w2, #1
+                   lambda a: b(a, SWITCH + 0x2C),
+                   0x52800042,               # case1: mov w2, #2
+                   0xB9000002,               # join: str w2, [x0]
+                   RET,
+                   RET)                      # default
+
+
+class FakeImage:
+    def __init__(self):
+        import asmdiff
+        self.data = bytearray(SWITCH - asmdiff.BASE + 0x48)
+        at = SWITCH - asmdiff.BASE
+        self.data[at:at + len(SWITCH_CODE)] = SWITCH_CODE
+        self.data[at + 0x40:at + 0x42] = bytes([0, 2])  # case0 +0, case1 +8
+
+
 class Declared(unittest.TestCase):
     def test_free_function(self):
         d = fa.declared("fn_7100087ecc(UnkRegistry_A1b72*, UnkRegistryKey_A1b72 const*, void*, bool)")
@@ -78,6 +108,10 @@ class Declared(unittest.TestCase):
     def test_hfa_takes_float_registers(self):
         d = fa.declared("fn_7100000040(base::math::CVector4D, base::math::CVector3D const, UnkFoo*)")
         self.assertEqual((d.ints, d.floats, d.aggregate), (1, 7, False))
+
+    def test_initializer_list_takes_two(self):
+        d = fa.declared("fn_7100000050(UnkTipList*, std::__1::initializer_list<unsigned int>, float)")
+        self.assertEqual((d.ints, d.floats, d.aggregate), (3, 1, False))
 
     def test_variadic_skipped(self):
         self.assertIsNone(fa.declared("fn_7100000030(char const*, ...)"))
@@ -125,6 +159,13 @@ class Tiers(unittest.TestCase):
 
     def test_open_stops_at_a_write(self):
         self.assertNotIn("x4", self.tiers(SIB))
+
+    def test_switch_follows_its_table(self):
+        orig = FakeOriginal({SWITCH: SWITCH_CODE})
+        orig.img = FakeImage()
+        af = abi_facts.AbiFacts(orig, rows={}, graph=FakeGraph())
+        tiers = {fa.reg_name(k): fa.TIERS[t] for k, t in fa.tiered_live_in(af, SWITCH).items()}
+        self.assertEqual(tiers, {"x0": "read", "x1": "read"})
 
 
 if __name__ == "__main__":

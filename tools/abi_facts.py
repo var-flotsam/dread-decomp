@@ -338,11 +338,45 @@ class AbiFacts:
         """Whether the br at ins[i] dispatches a switch (Clang's `adr` shortly before), not a call."""
         return any(y.mnemonic == "adr" for y in ins[max(i - 10, 0):i])
 
-    @staticmethod
-    def cases(ins: list, i: int, starts: set[int], at: dict[int, int]) -> list[int]:
-        """The successors of the switch br at ins[i]: every block after it (its cases and what
-        follows them; more than the table holds, which only adds registers that may be read)."""
+    def cases(self, ins: list, i: int, starts: set[int], at: dict[int, int]) -> list[int]:
+        """The successors of the switch br at ins[i]: the targets its jump table holds, or, when the
+        table is not found, every block after it (its cases and what follows them; more than the
+        table holds: a block the cases join again may read what every case writes first)."""
+        targets = self.table_targets(ins, i)
+        if targets is not None and all(t in at for t in targets):
+            return sorted({at[t] for t in targets})
         return [at[t] for t in sorted(starts) if t > ins[i].address and t in at]
+
+    def table_targets(self, ins: list, i: int) -> list[int] | None:
+        """The targets of Clang's compressed jump table dispatched by the br at ins[i]:
+        `cmp w<i>, #<n>; b.hi ...; adrp x<t>, ...; add x<t>, x<t>, #...; adr x<c>, <base>;
+        ldrb/ldrh w<e>, [x<t>, x<i>...]; add x<c>, x<c>, x<e>, lsl #2; br x<c>` (n + 1 entries of 1
+        or 2 bytes, each a word offset from <base>). None for another shape or without the image."""
+        data = getattr(getattr(self.orig, "img", None), "data", None)
+        if data is None:
+            return None
+        window = ins[max(i - 16, 0):i]
+        c = ins[i].reg0
+        base = load = table = count = None
+        for k in range(len(window) - 1, -1, -1):
+            y = window[k]
+            if base is None and y.mnemonic == "adr" and y.reg_ops[:1] == (c,) and y.imms:
+                base = y.imms[0]
+            elif load is None and y.mnemonic in ("ldrb", "ldrh") and y.mem:
+                load = (y.mem[0], 1 if y.mnemonic == "ldrb" else 2)
+            elif load and table is None and y.mnemonic == "add" and y.reg_ops[:1] == (load[0],) and y.imms                     and k and window[k - 1].mnemonic == "adrp" and window[k - 1].reg_ops[:1] == (load[0],):
+                table = window[k - 1].imms[0] + y.imms[0]
+            elif table is not None and count is None and y.mnemonic == "cmp" and y.imms:
+                count = y.imms[0] + 1
+        if None in (base, load, table, count) or count > 4096:
+            return None
+        import asmdiff
+        off = table - asmdiff.BASE
+        size = load[1]
+        if off < 0 or off + count * size > len(data):
+            return None
+        return [base + (int.from_bytes(data[off + n * size:off + (n + 1) * size], "little") << 2)
+                for n in range(count)]
 
     def fwd_of(self, addr: int, ins: list) -> frozenset:
         """Facts.fwd: the callers' evidence, for a function with an indirect call."""
