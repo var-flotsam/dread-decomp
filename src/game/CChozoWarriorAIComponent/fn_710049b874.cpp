@@ -4,6 +4,7 @@
 // +0x10, runs fn_710049b920 on the component.
 #include "base/UnkRefHandle.h"
 #include "game_s2/UnkWeakHandle.h"
+#include "game/UnkBossAIComponent.h"
 
 // The weak handle the holder refers to (base::UnkRefCounted's layout); its target is at +0x10.
 struct UnkTarget : base::UnkRefCounted {
@@ -18,12 +19,11 @@ struct UnkComponent {
     base::UnkRefHandle field_0x14a10;
 };
 
-void fn_71003aea40(UnkComponent* self);
 void fn_710049b920(UnkComponent* self);
 
 // `arg` (x1) reaches the base step untouched in the original (tools/forwarded_args.py).
 void fn_710049b874(UnkComponent* self, void* arg) {
-    reinterpret_cast<void (*)(UnkComponent*, void*)>(fn_71003aea40)(self, arg);
+    fn_71003aea40(reinterpret_cast<UnkBossAIComponent*>(self), arg);
     if (self->field_0x14a08 == 1) {
         {
             UnkRefPtr reference = fn_710023b580(self->field_0x149e0);

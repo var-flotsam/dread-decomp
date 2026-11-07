@@ -9,6 +9,7 @@
 #include "game/UnkActor.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
+#include "game/UnkBehaviorTree.h"
 
 using base::global::CStrId;
 
@@ -21,7 +22,6 @@ void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const 
 extern base::global::CStrId g_unk_71726b7cb8;
 // As src/game/CGobblerAIComponent/fn_71005820c4.cpp declares it.
 struct UnkGobblerComponent;
-void fn_7100369c44(UnkGobblerComponent* self);
 
 struct UnkInfesterState_A3_b75 {
     u8 pad_0x0[0x70];
@@ -40,7 +40,7 @@ struct UnkInfesterUpdAI_A3_b75 {
 void fn_71005cb1e4(UnkInfesterUpdAI_A3_b75* self, f32 dt);
 
 void fn_71005cb0b8(UnkInfesterUpdAI_A3_b75* self, f32 dt) {
-    reinterpret_cast<void (*)(UnkInfesterUpdAI_A3_b75*, f32)>(fn_7100369c44)(self, dt);  // with `dt`, as the original
+    fn_7100369c44(reinterpret_cast<UnkSelf_7100369c44*>(self), dt);  // with `dt`, as the original
     if (static_cast<UnkInfesterState_A3_b75*>(self->actor->field_0x1b8)->state == 2)
         return;
     if (self->field_0x146d0 == 1)

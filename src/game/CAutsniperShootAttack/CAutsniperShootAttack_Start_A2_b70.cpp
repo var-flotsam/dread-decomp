@@ -2,9 +2,9 @@
 // the state of the owner's (+0x8) object at +0x218 is not 2; then the character class at +0x220, if any,
 // stops layer 6 and plays layer 0xb. Names and layouts are placeholders.
 #include "types.h"
+#include "game/CAttack.h"
 
 struct UnkSelf;
-u32 fn_7100360b84(UnkSelf*);
 u32 fn_71010cc3a4(void*);
 struct UnkActorTarget;
 void fn_7101178e08(UnkActorTarget*, u32, u32, u32, f32);
@@ -23,7 +23,7 @@ struct UnkAutsniperAttack_A2_b70 {
 
 // `arg` and `mode` (x1, w2) reach the base check untouched in the original (tools/forwarded_args.py).
 bool fn_71003d3958(UnkAutsniperAttack_A2_b70* self, void* arg, u32 mode) {
-    if (!reinterpret_cast<bool (*)(UnkAutsniperAttack_A2_b70*, void*, u32)>(fn_7100360b84)(self, arg, mode) ||
+    if (!fn_7100360b84(reinterpret_cast<CAttack*>(self), arg, mode) ||
         fn_71010cc3a4(self->owner->field_0x218) == 2)
         return false;
     if (UnkActorTarget* anim = self->owner->field_0x220) {

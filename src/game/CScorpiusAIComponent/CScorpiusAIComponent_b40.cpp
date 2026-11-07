@@ -6,11 +6,11 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "types.h"
+#include "game/UnkBossAIComponent.h"
 
 typedef u64 u64_a4_sc __attribute__((aligned(4)));
 
 struct UnkSelf;
-u32 fn_71003ac8f4(UnkSelf*);
 void fn_710068c850(void* entry, u64 source);
 void fn_710068b828(void* entry, u64 source);
 void fn_710068ada0(void* entry, u64 source);
@@ -32,7 +32,7 @@ static inline __attribute__((always_inline)) void Register_sc(char* self, u32 of
 
 // `arg` (x1) reaches the base step untouched in the original (tools/forwarded_args.py).
 u32 fn_7100691dc8(char* self, void* arg) {
-    u32 result = reinterpret_cast<u32 (*)(UnkSelf*, void*)>(fn_71003ac8f4)(reinterpret_cast<UnkSelf*>(self), arg);
+    u32 result = fn_71003ac8f4(reinterpret_cast<UnkBossAIComponent*>(self), arg);
     base::reflection::UnkReflObject* object = *reinterpret_cast<base::reflection::UnkReflObject**>(self + 0x10);
     base::reflection::UnkReflObject* component = nullptr;
     if (object && fn_710009d50c(object->vf_0x0(), fn_710068f63c()))

@@ -4,6 +4,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "types.h"
+#include "game/UnkBossAIComponent.h"
 
 using base::reflection::CClass;
 
@@ -21,7 +22,6 @@ struct __attribute__((packed)) UnkCmdComponent {
     u8 pad_after[0x1];
 };
 
-bool fn_71003ac8f4(UnkCmdComponent* self);
 
 void fn_710043b630(void* state, char* actor);
 void fn_7100435160(void* state, char* actor);
@@ -60,7 +60,8 @@ __attribute__((always_inline)) static inline void RegisterState(UnkCmdComponent*
 
 // `arg` (x1) reaches the base step untouched in the original (tools/forwarded_args.py).
 bool fn_710044fc38(UnkCmdComponent* self, void* arg) {
-    bool result = reinterpret_cast<bool (*)(UnkCmdComponent*, void*)>(fn_71003ac8f4)(self, arg);
+    // Read as a flag here, as a word by the other callers.
+    bool result = reinterpret_cast<bool (*)(UnkBossAIComponent*, void*)>(fn_71003ac8f4)(reinterpret_cast<UnkBossAIComponent*>(self), arg);
     UnkCmdActor* obj = self->field_0x10;
     char* actor = nullptr;
     if (obj && fn_710009d50c(obj->vf_0x0(), fn_710044d0c0()))

@@ -7,12 +7,12 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "types.h"
+#include "game/UnkBehaviorTree.h"
 
 using base::reflection::CClass;
 using base::reflection::UnkReflObject;
 
 struct UnkGobblerComponent;
-void fn_7100369c44(UnkGobblerComponent*);
 bool fn_71006ae480(void* self, bool first);
 void fn_71006ae820(void* self, f32 dt);
 extern const CClass g_unk_7172706520 __attribute__((visibility("hidden")));
@@ -69,7 +69,7 @@ static inline __attribute__((always_inline)) void Step_sh(UnkShakernautAICompone
 
 void fn_71006ae2dc(UnkShakernautAIComponent* self, f32 dt) {
     UnkTimers_sh* t = &self->timers;
-    reinterpret_cast<void (*)(UnkShakernautAIComponent*, f32)>(fn_7100369c44)(self, dt);  // with `dt`, as the original
+    fn_7100369c44(reinterpret_cast<UnkSelf_7100369c44*>(self), dt);  // with `dt`, as the original
     UnkReflObject* ai = self->owner->ai;
     const CClass* cls = ai->vf_0x0();
     fn_71006ad0a4();

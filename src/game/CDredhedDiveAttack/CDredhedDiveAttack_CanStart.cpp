@@ -2,10 +2,8 @@
 // not, and the target's object at +0x1c0, when it is accepted by fn_7101161088, is not further
 // than half the attack's range (+0x4c). Names and layouts are placeholders.
 #include "game/UnkActor.h"
+#include "game/CAttack.h"
 
-// Declared as its other callers declare it (src/game_s2/fn_71003f1b00.cpp); it takes three arguments.
-struct UnkSelf;
-u32 fn_7100360b84(UnkSelf* self);
 bool fn_7101161088(void*);
 
 struct UnkDredhedDiveTargetObject {
@@ -22,8 +20,8 @@ struct UnkDredhedDiveAttack {
 
 bool fn_71004e468c(UnkDredhedDiveAttack* self);
 
-bool fn_71004e460c(UnkDredhedDiveAttack* self, void* a, void* b) {
-    bool ok = reinterpret_cast<bool (*)(UnkDredhedDiveAttack*, void*, void*)>(fn_7100360b84)(self, a, b);
+bool fn_71004e460c(UnkDredhedDiveAttack* self, void* a, u32 b) {
+    bool ok = fn_7100360b84(reinterpret_cast<CAttack*>(self), a, b);
     if (!ok || fn_71004e468c(self))
         return false;
     if (UnkActor* actor = self->actor) {

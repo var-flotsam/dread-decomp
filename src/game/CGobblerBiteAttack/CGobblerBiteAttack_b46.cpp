@@ -3,6 +3,7 @@
 // own check (fn_710058033c) holds. Names and layouts are placeholders.
 #include "game/UnkActor.h"
 #include "types.h"
+#include "game/CAttack.h"
 
 struct UnkGobblerArg_b46a1;
 
@@ -12,13 +13,10 @@ struct UnkGobblerBiteAttack_b46a1 {
 };
 
 struct UnkSelf;
-// Declared as the other attack units declare it; this caller passes two more arguments.
-u32 fn_7100360b84(UnkSelf*);
 bool fn_710058033c(UnkGobblerBiteAttack_b46a1* self);
 
-bool fn_71005802e8(UnkGobblerBiteAttack_b46a1* self, UnkGobblerArg_b46a1* a, UnkGobblerArg_b46a1* b) {
-    using Check = bool (*)(UnkGobblerBiteAttack_b46a1*, UnkGobblerArg_b46a1*, UnkGobblerArg_b46a1*);
-    bool ok = reinterpret_cast<Check>(fn_7100360b84)(self, a, b);
+bool fn_71005802e8(UnkGobblerBiteAttack_b46a1* self, UnkGobblerArg_b46a1* a, u32 b) {
+    bool ok = fn_7100360b84(reinterpret_cast<CAttack*>(self), a, b);
     UnkActor* target = fn_7100d7c990(self->owner);
     if (ok && target && fn_710058033c(self))
         return true;

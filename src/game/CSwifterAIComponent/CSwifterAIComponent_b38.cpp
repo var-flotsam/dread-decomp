@@ -5,6 +5,7 @@
 #include "base/UnkMatrix44.h"
 #include "game/UnkActor.h"
 #include "types.h"
+#include "game/UnkBehaviorTree.h"
 
 // Declared as src/game/CMovementComponent/fn_71010d08d4.cpp defines it.
 struct UnkMovement_71010d08d4;
@@ -13,7 +14,6 @@ void fn_71010d08d4(UnkMovement_71010d08d4* self, const UnkMovementVec_71010d08d4
 
 // The behaviour tree's update (declared elsewhere without the time step; called with it).
 struct UnkGobblerComponent;
-void fn_7100369c44(UnkGobblerComponent* self);
 
 struct UnkSwifterMovement {
     u8 pad_0x0[0x1d8];
@@ -43,7 +43,7 @@ struct UnkSwifterAI {
 
 void fn_71006cd8bc(UnkSwifterAI* self, f32 dt) {
     UnkSwifterDrive* drive = reinterpret_cast<UnkSwifterDrive*>(reinterpret_cast<char*>(self) + 0x146c8);
-    reinterpret_cast<void (*)(UnkSwifterAI*, f32)>(fn_7100369c44)(self, dt);
+    fn_7100369c44(reinterpret_cast<UnkSelf_7100369c44*>(self), dt);
     UnkActor* owner = self->owner;
     UnkSwifterMovement* movement = static_cast<UnkSwifterMovement*>(owner->field_0x218);
     u32* v = reinterpret_cast<u32*>(&drive->x);

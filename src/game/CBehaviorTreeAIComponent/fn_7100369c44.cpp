@@ -6,6 +6,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
+#include "game/UnkBehaviorTree.h"
 
 namespace base::reflection {
 using base::reflection::CClass;

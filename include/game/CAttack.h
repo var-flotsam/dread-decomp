@@ -23,6 +23,10 @@ struct CAttack {
 };
 static_assert(sizeof(CAttack) == 0x28, "CAttack layout");
 
+// The base check whether an attack may start (the CAttack unit): the derived checks pass on the
+// pointer (x1) and the mode (w2) they are given.
+bool fn_7100360b84(CAttack* self, void* arg, u32 mode);
+
 // A counted pointer whose copy starts empty and assigns only when the source holds an object (the
 // reference-counted types are game_s2/UnkWeakHandle.h's).
 template <class T>

@@ -10,9 +10,9 @@
 #include "game/UnkActor.h"
 #include "game/UnkManager_71726af468.h"
 #include "types.h"
+#include "game/CAttack.h"
 
 struct UnkSelf;
-u32 fn_7100360b84(UnkSelf* self);
 bool fn_71009e12d0(void*);
 bool fn_7101136308(void*);
 bool fn_7101161088(void*);

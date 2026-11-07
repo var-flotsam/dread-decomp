@@ -25,5 +25,9 @@ struct UnkComponentProp;
 // A destructor: a 4-byte thunk to fn_710024f6d4 (matching; the status is O, defined by the thunk
 // only in generated code).
 void fn_71010c4194(UnkBaseComponent* self);
+
+// The base component's method that the derived components call with their argument (x1): a
+// thunk to the actor component's (fn_710024f8ac).
+bool fn_71010c41bc(UnkBaseComponent* self, void* arg);
 // The base property handler; returns whether the key was handled.
 u32 fn_71010c4250(UnkBaseComponent* self, UnkComponentProp* prop);

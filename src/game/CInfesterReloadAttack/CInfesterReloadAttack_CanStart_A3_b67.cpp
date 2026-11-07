@@ -5,10 +5,8 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkActor.h"
 #include "types.h"
+#include "game/CAttack.h"
 
-// Declared as its other callers declare it (src/game_s2/fn_71003f1b00.cpp).
-struct UnkSelf;
-u32 fn_7100360b84(UnkSelf* self);
 // As src/game/behaviortree/CInfesterFleeFromTargetAction/CInfesterFleeFromTargetAction.cpp declares it.
 u32 fn_71010cc3a4(void* object);
 
@@ -19,7 +17,7 @@ struct UnkInfesterAttack_A3_b67 {
 
 // `arg` and `mode` (x1, w2) reach the base check untouched in the original (tools/forwarded_args.py).
 u8 fn_71005c55f4(UnkInfesterAttack_A3_b67* self, void* arg, u32 mode) {
-    bool ok = reinterpret_cast<bool (*)(UnkSelf*, void*, u32)>(fn_7100360b84)(reinterpret_cast<UnkSelf*>(self), arg, mode);
+    bool ok = fn_7100360b84(reinterpret_cast<CAttack*>(self), arg, mode);
     auto* ai = static_cast<base::reflection::UnkReflObject*>(self->owner->field_0x240);
     u8* infester = ai && fn_710009d50c(ai->vf_0x0(), fn_71005ca678()) ? reinterpret_cast<u8*>(ai) : nullptr;
     auto* mv = reinterpret_cast<base::reflection::UnkReflObject*>(reinterpret_cast<void**>(self->owner)[0x1f0 / 8]);
