@@ -3,10 +3,9 @@
 // the object at +0x28 and sends a fixed request with mode 0 to the owner's sub-object (+0x220 of the
 // owner at +0x8), descriptors as UnkSpitSend (src/game_s2/UnkSpitSend.h). Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
+#include "game_s2/UnkSpitAttack.h"
 #include "types.h"
 
-struct UnkSpitAttack;
-void fn_71003609a8(UnkSpitAttack*);
 
 struct UnkGoliathXBombsOwner_b57a3 {
     u8 pad_0x0[0x220];
@@ -30,7 +29,7 @@ struct UnkGoliathXBombsAttack_b57a3 {
 };
 
 void fn_71005847a4(UnkGoliathXBombsAttack_b57a3* self, f32 dt) {
-    fn_71003609a8(reinterpret_cast<UnkSpitAttack*>(self));
+    fn_71003609a8(reinterpret_cast<UnkSpitAttack*>(self), dt);
     f32 t = self->field_0x60;
     if (!(t > 0.0f))
         return;

@@ -9,10 +9,9 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "../../game_s2/UnkSpitSend.h"
+#include "game_s2/UnkSpitAttack.h"
 #include "types.h"
 
-struct UnkSpitAttack;
-void fn_71003609a8(UnkSpitAttack*);
 void fn_71010fc554(base::reflection::UnkReflObject* component, f32* out);
 void fn_71010fc5fc(base::reflection::UnkReflObject* component, f32* out);
 
@@ -35,7 +34,7 @@ struct UnkDeflector_b58 {
 
 // `dt` (s0) reaches the base update untouched in the original (tools/forwarded_args.py).
 void fn_7100494210(UnkDeflector_b58* self, f32 dt) {
-    reinterpret_cast<void (*)(UnkSpitAttack*, f32)>(fn_71003609a8)(reinterpret_cast<UnkSpitAttack*>(self), dt);
+    fn_71003609a8(reinterpret_cast<UnkSpitAttack*>(self), dt);
     base::reflection::UnkReflObject* component = self->owner->field_0x240;
     if (!component || !fn_710009d50c(component->vf_0x0(), fn_7100497f2c()))
         return;

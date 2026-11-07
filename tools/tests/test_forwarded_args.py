@@ -205,6 +205,13 @@ class Calls(unittest.TestCase):
         self.assertTrue(fa.casts_callee("reinterpret_cast<F>(&ns::fn_7100001234)(a);", "fn_7100001234"))
         self.assertFalse(fa.casts_callee(text, "fn_7100004321"))
         self.assertFalse(fa.casts_callee("fn_7100001234(self);", "fn_7100001234"))
+        # a template parameter cast to a function pointer, the callee its argument
+        step = ("reinterpret_cast<u32 (*)(UnkSelf*, void*)>(Step)(self, arg);\n"
+                "return Initialise<fn_7100001234, 0x10>(self, arg);")
+        self.assertTrue(fa.casts_callee(step, "fn_7100001234"))
+        self.assertFalse(fa.casts_callee(step, "fn_7100004321"))
+        # a cast of a pointer to data is no call through a cast
+        self.assertFalse(fa.casts_callee("reinterpret_cast<u8*>(self); fn_7100001234(self);", "fn_7100001234"))
 
     def test_bare_name(self):
         self.assertEqual(fa.bare_name("CInfester::fn_71005cb0b8(float) const"), "fn_71005cb0b8")

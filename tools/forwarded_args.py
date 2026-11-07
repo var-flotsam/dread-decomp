@@ -449,9 +449,13 @@ def call_sites(af, addr: int, relocs: dict) -> list[tuple[int, int, str, frozens
 
 
 def casts_callee(text: str, name: str) -> bool:
-    """Whether the source calls `name` through a reinterpret_cast (to a wider signature)."""
-    return re.search(r"reinterpret_cast\s*<[^;]*?>\s*\(\s*&?\s*(?:[\w:]+::)?" + re.escape(name) + r"\s*\)",
-                     text) is not None
+    """Whether the source may call `name` through a reinterpret_cast (to a wider signature): a cast
+    of `name` itself, or, when the file names it, a cast to a function pointer type of a template
+    parameter or variable (`reinterpret_cast<u32 (*)(UnkSelf*, void*)>(Step)`, Step = name)."""
+    if re.search(r"reinterpret_cast\s*<[^;]*?>\s*\(\s*&?\s*(?:[\w:]+::)?" + re.escape(name) + r"\s*\)", text):
+        return True
+    return re.search(r"\b" + re.escape(name) + r"\b", text) is not None and re.search(
+        r"reinterpret_cast\s*<[^;]*?\(\s*\*\s*\)[^;]*?>\s*\(\s*(?!fn_)[A-Za-z_]\w*\s*\)", text) is not None
 
 
 def bare_name(demangled: str) -> str:

@@ -3,13 +3,8 @@
 // at +0x38 does the same and moves to state 1. Unless the byte at +0x121e of the owner's AI component
 // (+0x240 of the owner at +0x8) is set, it moves to state 2; then the base update (fn_71003609a8) runs
 // with the step. Names and layouts are placeholders.
+#include "game_s2/UnkSpitAttack.h"
 #include "types.h"
-
-// fn_71003609a8 as the attack updates declare it (src/game/CHydrogigaAttack/CHydrogigaAttack_Send_b57.cpp),
-// read here with the step it also takes in s0.
-struct UnkSpitAttack;
-struct UnkSuckAttack_b65a4;
-void fn_71003609a8_b65a4(UnkSuckAttack_b65a4* self, f32 dt) asm("_Z13fn_71003609a8P13UnkSpitAttack");
 
 struct UnkSuckAI_b65a4 {
     u8 pad_0x0[0x121e];
@@ -47,5 +42,5 @@ void fn_7100664bcc(UnkSuckAttack_b65a4* self, f32 dt) {
     }
     if (!self->owner->ai->field_0x121e)
         fn_7100664724(self, 2);
-    fn_71003609a8_b65a4(self, dt);
+    fn_71003609a8(reinterpret_cast<UnkSpitAttack*>(self), dt);
 }
