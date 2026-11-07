@@ -712,6 +712,15 @@ Since then each file's `UnkCallbackSet`, `UnkBase_0x30`, `UnkElem40` and `UnkEle
 of its own, and `CRntString` declares its move constructor (`docs/JOURNAL.md`, 2026-11-06):
 six conflicts are left.
 
+Constructors and destructors that matched code does not place (no matched caller yet, or callers
+that disagree on one class's name) are bound by hand in `bindings.tsv`: mangled symbol, address,
+what it is. `port_link.py` adds each to the placed names (`--bindings`, this file by default;
+`--no-bindings` to compare), reports a row that matched code already places at the same address as
+redundant, and leaves out one it places elsewhere. An `asm("fn_<addr>")` label in a header cannot do
+this job: Clang 9 ignores it on a constructor or destructor, and the port's Clang 18 hangs on it. A
+placeholder name that stands for different classes in different files stays out of the table; it is
+renamed in the sources instead.
+
 ## The runtime (M1)
 
 Every SDK import the boot slice reaches is defined in `runtime/`: `nn::os` 30, `nn::oe` 20,

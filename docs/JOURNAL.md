@@ -157,6 +157,23 @@ with the `CRntString` move constructor below.
   `vtable for UnkAttackListener` and `vtable for UnkElem50` (likely the same kind of reused name), and the three
   `unk_any_props` vtables (five units each).
 
+**Port bindings for constructors and destructors (2026-11-06, branch `claude/port-ctor-bindings`).** The
+asm-label branch `claude/project-thread-3x0lf8` (95 `asm("fn_<addr>")` labels, every one on a constructor or
+destructor) cannot land: Clang 9 ignores such a label, and the port's Clang 18.1.3 hangs on it
+(`src/base/UnkResFactoryRegistry.cpp` alone: over 300 s with the `UnkRegistryEntry` label, 52 s without).
+Most of the labels were redundant anyway: `tools/port_addresses.py` already places about 57 of the ~70 distinct
+ones from matched callers. The rest reached the boot only as residue traps. Eight with one class per name now
+sit in `port/bindings.tsv`, which `tools/port_link.py --bindings` adds to the placed names (matched code wins
+on a disagreement): the `CRntString` copy constructor (callers disagree because the header lacks the move
+constructor `fn_710007eab4`, which two `CGameManager` sites really call), `UnkMovable&&`, `UnkPathKey` and
+its destructor, `UnkElem_0x88&&`, `~UnkEntry_7100134020`, the `UnkEntry_710025fdf4` copy constructor and
+`~unk_gui::UnkText`. Each now aliases its `fn_<addr>` definition; the residue drops by 8 names.
+Boot (`main` 21559910 plus this branch, lifted_all14, `--nvn`): **8 of 10**, `fn_7100015c70` done (14.8 s),
+208 lifts ran; on the same `main` without the table, 7 of 10 with the fault at `0x40` under `fn_710007ebc8`.
+The next fault is a SIGSEGV at a stack address (`0x7fde1b6809d0`) after lift `fn_7100086fa0` was entered, with
+no backtrace. Left for the sources: four placeholder names that stand for different classes in different files
+(`UnkBase_0x30`, `UnkElem40`, `UnkElem80`, `UnkCallbackSet` whose move constructor is `UnkMovable`'s in
+`src/game_s7/fn_71011*`), to be renamed per file, and the missing `CRntString(CRntString&&)` declaration.
 **Boot-distance nightly: why it never passed (2026-11-06, branch `claude/nightly-lift-set`).** The nightly
 (`.github/workflows/boot-nightly.yml`) had not run the boot before Nov 6: Oct 30 failed in the addresses step,
 Oct 31 to Nov 5 in preflight (Docker Desktop not running). On Nov 6 it ran and stopped after the static
