@@ -148,8 +148,8 @@ original callee reads it (the READ and CALL tiers) beyond the parameters of the 
 Calls whose source casts the callee (`reinterpret_cast<...>(fn_X)`, or a cast to a function pointer of a
 template parameter when the file names the callee, as `Initialise<Step>` in
 `src/game/CBigkranXAIComponent/fn_71003f47fc.cpp`) name the declared, not the casted, signature. They are listed
-apart as `cast` and not counted. First run: 59 calls (51 more cast). After the fixes below: **23 calls in 21
-callers** (none in the boot slice, 10 in generated sources), plus 51 cast calls, among 249,838 direct calls in
+apart as `cast` and not counted. First run: 59 calls (51 more cast). After the fixes below: **10 calls in 10
+callers, all in generated sources** (none in the boot slice), and no cast calls, among 249,838 direct calls in
 90,943 matched functions. Fixed: `fn_71003609a8`, the spit-attack base update, reads the step in s0. Nine
 attack updates declared it `(UnkSpitAttack*)`, and three of them got `dt` in through a cast or an asm label. It
 is now declared once in `include/game_s2/UnkSpitAttack.h` with `dt`, and all ten callers pass it. The same
@@ -164,8 +164,18 @@ the owner their callers had named `unused`. The Lua binding `fn_710107a880` pass
 there from the previous call, a case `--calls` cannot see. `fn_7100369650`, the behaviour-tree base update, is
 now declared once in `include/game/UnkBehaviorTree.h` with the component, which removes four casts. The others
 are `fn_7100225b84`, `fn_71002dba48`, `fn_710110a164`, `fn_710074ddd8` and the two ship-recharge defaults.
-`fn_7100ac38fc` takes the component, not the float an asm label and `fn_71005028e4` gave it. The 13
-hand-written hits left drop x1 or a float.
+`fn_7100ac38fc` takes the component, not the float an asm label and `fn_71005028e4` gave it. The last 13
+hand-written hits dropped x1 or a float. In most of them the callee is hand-written with its real signature
+elsewhere (the grab handlers, `fn_7100822888`, `fn_71005b9ad8`), and the caller had declared it short. The
+casts are fixed too. They already passed every argument, but each one widened a short declaration.
+`fn_7100360b84` (CAttack's start check; its third argument is a `u32` mode, which seven callers had typed
+`void*`) is now declared in `include/game/CAttack.h`. `fn_7100369490` and `fn_7100369c44` are in
+`UnkBehaviorTree.h`, `fn_71003ac8f4` and `fn_71003aea40` in `UnkBossAIComponent.h`, `fn_71010c41bc` in
+`UnkComponent.h`, and `fn_71010d1a90` in a new `UnkMovementComponent.h`. The Bigkran steps go through a
+`CallStep` helper that casts only the object. Three callers read a shared callee's result as the other type
+(a word where the rest read a flag, or the reverse), and the bytes depend on it. They keep a cast of the
+return type alone. `fn_71003f1b00` (non-matching) takes and passes on the pointer and mode as well. Net:
+decl_check's conflicting symbols go from 141 to 140, and symbols declared in more than one file from 2336 to 2327.
 
 **Placeholder classes renamed apart, round 2 (2026-11-07, branch `claude/placeholder-names-2`).** The two vtable
 conflicts the first round left that were the same reused-name problem. `tools/port_addresses.py` conflicts are down
