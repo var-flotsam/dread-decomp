@@ -4,10 +4,9 @@
 // states 0 and 1 a switch to state 2 with the tuning's time (+0xec) as the timer (+0x60); in state 3 the
 // timer runs down, and fn_710069b410 runs once it is spent. Names and layouts are placeholders.
 #include "game/UnkCollisionRecord.h"
+#include "game_s2/UnkSpitAttack.h"
 #include "types.h"
 
-struct UnkSpitAttack;
-void fn_71003609a8(UnkSpitAttack* self);
 extern const base::global::CStrId g_unk_7172704968 __attribute__((visibility("hidden")));
 
 struct UnkTuning_st {
@@ -35,7 +34,7 @@ void fn_710069afac(UnkScourgeTongueSlashAttack* self, u32 unused);
 void fn_710069b410(UnkScourgeTongueSlashAttack* self);
 
 void fn_710069b338(UnkScourgeTongueSlashAttack* self, f32 delta) {
-    fn_71003609a8(reinterpret_cast<UnkSpitAttack*>(self));
+    fn_71003609a8(reinterpret_cast<UnkSpitAttack*>(self), delta);
     u32 state = self->state;
     u32 next = self->next_state;
     if (state != next) {
