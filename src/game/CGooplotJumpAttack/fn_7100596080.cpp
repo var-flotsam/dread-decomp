@@ -8,7 +8,7 @@ struct CGooplotJumpAttack : CAttack {
     ~CGooplotJumpAttack() override;
     u64 field_0x28;
     u32 field_0x30;
-    UnkAttackListener field_0x38;
+    UnkAttackListener_7101a2aef8 field_0x38;
     u64 field_0x58;
     bool field_0x60;
     UnkAttackWords<6> field_0x64;

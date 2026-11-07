@@ -709,8 +709,8 @@ different classes (`UnkCallbackSet` and its vtable at `0x7101a33fa0` and `0x7101
 vtables each, `UnkBase_0x30`, `UnkElem40`, `UnkElem80`), and `base::global::CRntString::~CRntString()`,
 251 uses at `0x710007ecd4` and 2, in `fn_710026ead0` itself, at `0x710026ead0`.
 Since then each file's `UnkCallbackSet`, `UnkBase_0x30`, `UnkElem40` and `UnkElem80` has a name
-of its own, and `CRntString` declares its move constructor (`docs/JOURNAL.md`, 2026-11-06):
-six conflicts are left.
+of its own, and `CRntString` declares its move constructor (`docs/JOURNAL.md`, 2026-11-06);
+`UnkAttackListener` and `UnkElem50` followed on 2026-11-07: four conflicts are left.
 
 Constructors and destructors that matched code does not place (no matched caller yet, or callers
 that disagree on one class's name) are bound by hand in `bindings.tsv`: mangled symbol, address,
