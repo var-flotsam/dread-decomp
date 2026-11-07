@@ -10,8 +10,9 @@ struct UnkRedenkiSwarm {
 };
 
 bool fn_7100657478(UnkRedenkiSwarm* self, void* a, void* b, void* c, void* d, void* e, void* f, void* g,
-                   bool flag);
+                   bool flag, f32 value);
 
-bool fn_7100657440(UnkRedenkiSwarm* self, void* a, void* b, void* c, void* d, bool flag) {
-    return fn_7100657478(self, a, b, c, d, self->field_0x53c, self->field_0x554, self->field_0x318, flag);
+// `value` (s0) reaches fn_7100657478 untouched in the original (tools/forwarded_args.py).
+bool fn_7100657440(UnkRedenkiSwarm* self, void* a, void* b, void* c, void* d, bool flag, f32 value) {
+    return fn_7100657478(self, a, b, c, d, self->field_0x53c, self->field_0x554, self->field_0x318, flag, value);
 }

@@ -26,11 +26,15 @@ struct UnkShapedEvaluator_A2_b68 {
         UnkShapedStrData_A2_b68* modifiers;
     };
 
-    f32 vf_0x20() { return reinterpret_cast<f32 (*)(UnkShapedEvaluator_A2_b68*)>(vtable[4])(this); }
+    f32 vf_0x20(void* a, void* b) {
+        return reinterpret_cast<f32 (*)(UnkShapedEvaluator_A2_b68*, void*, void*)>(vtable[4])(this, a, b);
+    }
 };
 
-f32 fn_71002b80ec(UnkShapedEvaluator_A2_b68* self) {
-    f32 t = self->vf_0x20();
+// `a` and `b` (x1, x2) reach the raw value's virtual untouched in the original; the caller sets x2
+// (tools/forwarded_args.py).
+f32 fn_71002b80ec(UnkShapedEvaluator_A2_b68* self, void* a, void* b) {
+    f32 t = self->vf_0x20(a, b);
     if (reinterpret_cast<void*>(self->modifiers) != &g_unk_7101d47108->empty) {
         ++self->modifiers->use_count;
         const char* text = self->modifiers->text;

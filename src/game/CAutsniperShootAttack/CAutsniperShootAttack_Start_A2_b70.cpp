@@ -21,8 +21,9 @@ struct UnkAutsniperAttack_A2_b70 {
     UnkAutsniperOwner_A2_b70* owner;
 };
 
-bool fn_71003d3958(UnkAutsniperAttack_A2_b70* self) {
-    if (!reinterpret_cast<bool (*)(UnkAutsniperAttack_A2_b70*)>(fn_7100360b84)(self) ||
+// `arg` and `mode` (x1, w2) reach the base check untouched in the original (tools/forwarded_args.py).
+bool fn_71003d3958(UnkAutsniperAttack_A2_b70* self, void* arg, u32 mode) {
+    if (!reinterpret_cast<bool (*)(UnkAutsniperAttack_A2_b70*, void*, u32)>(fn_7100360b84)(self, arg, mode) ||
         fn_71010cc3a4(self->owner->field_0x218) == 2)
         return false;
     if (UnkActorTarget* anim = self->owner->field_0x220) {

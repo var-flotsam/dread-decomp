@@ -7,7 +7,7 @@
 #include "game/UnkTimelineCalls.h"
 #include "types.h"
 
-void fn_710110cca4(void* self);
+void fn_710110cca4(void* self, void* arg);
 char* fn_71004dad10(UnkActor* owner);
 void fn_71007c21e8(char* self, char* part, void* extra);
 
@@ -21,8 +21,9 @@ struct UnkRinkaAI_b59a4 {
     bool field_0x146c0;
 };
 
-void fn_710065e014(UnkRinkaAI_b59a4* self) {
-    fn_710110cca4(self);
+// `arg` (x1) reaches the base step untouched in the original (tools/forwarded_args.py).
+void fn_710065e014(UnkRinkaAI_b59a4* self, void* arg) {
+    fn_710110cca4(self, arg);
     char* p = fn_71004dad10(self->owner);
     if (p && self->field_0x146c0)
         fn_71007c21e8(p, p + 0x40, nullptr);

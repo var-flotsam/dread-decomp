@@ -57,9 +57,10 @@ __attribute__((always_inline)) static inline void CreateEffect(UnkSceneObject*& 
     }
 }
 
-bool fn_71004ec294(UnkComponent* self) {
+bool fn_71004ec294(UnkComponent* self, void* arg) {
     UnkActorBlock* ref = reinterpret_cast<UnkActorBlock*>(reinterpret_cast<char*>(self) + 0x14738);
-    bool result = fn_7100369490(self);
+    // `arg` (x1) reaches the base initialiser untouched in the original (tools/forwarded_args.py).
+    bool result = reinterpret_cast<bool (*)(UnkComponent*, void*)>(fn_7100369490)(self, arg);
     UnkActor* obj = self->field_0x10;
     char* actor = nullptr;
     if (obj && fn_710009d50c(obj->vf_0x0(), fn_71004eb2d0()))

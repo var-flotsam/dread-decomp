@@ -18,7 +18,7 @@ struct UnkChozoRobotSoldierAI_b66a2 {
 };
 
 bool fn_71011074b8(UnkChozoRobotSoldierAI_b66a2* self);
-bool fn_710110f3cc(UnkChozoRobotSoldierAI_b66a2* self, u16 id);
+bool fn_710110f3cc(UnkChozoRobotSoldierAI_b66a2* self, u16 id, u32 a2, void* a3, void* a4, void* a5, u32 a6, u32 a7);
 
 bool fn_7100473fdc(UnkChozoRobotSoldierAI_b66a2* self) {
     if (!fn_71011074b8(self)) {
@@ -31,8 +31,10 @@ bool fn_7100473fdc(UnkChozoRobotSoldierAI_b66a2* self) {
     return !fn_71009e12d0(target->field_0x208);
 }
 
-bool fn_71004743f0(UnkChozoRobotSoldierAI_b66a2* self, u16 id) {
-    if (!fn_710110f3cc(self, id)) {
+// The base check reads w2, x5, w6 and w7 too, which the original passes on untouched (x3 and x4
+// with them; tools/forwarded_args.py).
+bool fn_71004743f0(UnkChozoRobotSoldierAI_b66a2* self, u16 id, u32 a2, void* a3, void* a4, void* a5, u32 a6, u32 a7) {
+    if (!fn_710110f3cc(self, id, a2, a3, a4, a5, a6, a7)) {
         return false;
     }
     for (const u16 *it = self->ids, *end = self->ids + self->id_count; it != end; ++it) {

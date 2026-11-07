@@ -9,7 +9,7 @@
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
 
-void fn_710110cca4(void* self);
+void fn_710110cca4(void* self, void* arg);
 struct UnkStruct_710024fa0c;
 void fn_710024fa0c(UnkStruct_710024fa0c*, bool);
 void fn_710117ab64(UnkAnimationComponent* self, u32 value, const void* arg);
@@ -29,8 +29,9 @@ struct UnkRockDiverAI_b57a4 {
     bool field_0x15d0;
 };
 
-void fn_7100663b90(UnkRockDiverAI_b57a4* self) {
-    fn_710110cca4(self);
+// `arg` (x1) reaches the base step untouched in the original (tools/forwarded_args.py).
+void fn_7100663b90(UnkRockDiverAI_b57a4* self, void* arg) {
+    fn_710110cca4(self, arg);
     if (self->field_0x15d0)
         return;
     UnkAnimationComponent* target = self->owner->field_0x220;

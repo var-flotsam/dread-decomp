@@ -69,7 +69,7 @@ static inline __attribute__((always_inline)) void Step_sh(UnkShakernautAICompone
 
 void fn_71006ae2dc(UnkShakernautAIComponent* self, f32 dt) {
     UnkTimers_sh* t = &self->timers;
-    fn_7100369c44(reinterpret_cast<UnkGobblerComponent*>(self));
+    reinterpret_cast<void (*)(UnkShakernautAIComponent*, f32)>(fn_7100369c44)(self, dt);  // with `dt`, as the original
     UnkReflObject* ai = self->owner->ai;
     const CClass* cls = ai->vf_0x0();
     fn_71006ad0a4();

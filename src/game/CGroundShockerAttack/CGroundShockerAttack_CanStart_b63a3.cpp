@@ -27,8 +27,9 @@ struct UnkGroundShockerAttack_b63a3 {
     UnkActor* owner;
 };
 
-bool fn_71005a0a48(UnkGroundShockerAttack_b63a3* self) {
-    bool ok = reinterpret_cast<bool (*)(UnkSelf*)>(fn_7100360b84)(reinterpret_cast<UnkSelf*>(self));
+// `arg` and `mode` (x1, w2) reach the base check untouched in the original (tools/forwarded_args.py).
+bool fn_71005a0a48(UnkGroundShockerAttack_b63a3* self, void* arg, u32 mode) {
+    bool ok = reinterpret_cast<bool (*)(UnkSelf*, void*, u32)>(fn_7100360b84)(reinterpret_cast<UnkSelf*>(self), arg, mode);
     auto* ai = static_cast<UnkShockerAICast_b63a3*>(self->owner->field_0x240);
     if (ai && !fn_710009d50c(ai->vf_0x0(), fn_71005a4004()))
         ai = nullptr;

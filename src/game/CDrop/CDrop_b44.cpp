@@ -11,10 +11,11 @@ struct UnkDropVec3_b44a2 {
 };
 
 void fn_71007c02dc(void* a, void* b, const UnkDropVec3_b44a2* pos, const UnkDropVec3_b44a2* velocity, void* d,
-                   bool e, bool f);
+                   bool e, bool f, f32 g, f32 h);
 
-void fn_71007c0284(void* a, void* b, const UnkDropVec3_b44a2* pos, void* d, bool e, bool f) {
+// `g` and `h` (s0, s1) reach the spawn untouched in the original (tools/forwarded_args.py).
+void fn_71007c0284(void* a, void* b, const UnkDropVec3_b44a2* pos, void* d, bool e, bool f, f32 g, f32 h) {
     UnkDropVec3_b44a2 p = *pos;
     UnkDropVec3_b44a2 v(0.0f, 0.0f, 0.0f);
-    fn_71007c02dc(a, b, &p, &v, d, e, f);
+    fn_71007c02dc(a, b, &p, &v, d, e, f, g, h);
 }

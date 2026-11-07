@@ -58,8 +58,9 @@ __attribute__((always_inline)) static inline void RegisterState(UnkCmdComponent*
     init(member, reinterpret_cast<UnkCmdActorRef*>(self)->actor + actor_off);
 }
 
-bool fn_710044fc38(UnkCmdComponent* self) {
-    bool result = fn_71003ac8f4(self);
+// `arg` (x1) reaches the base step untouched in the original (tools/forwarded_args.py).
+bool fn_710044fc38(UnkCmdComponent* self, void* arg) {
+    bool result = reinterpret_cast<bool (*)(UnkCmdComponent*, void*)>(fn_71003ac8f4)(self, arg);
     UnkCmdActor* obj = self->field_0x10;
     char* actor = nullptr;
     if (obj && fn_710009d50c(obj->vf_0x0(), fn_710044d0c0()))

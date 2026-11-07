@@ -29,7 +29,7 @@ struct UnkHit {
     f32 field_0x1c[12] = {};
 };
 
-void fn_7100ca257c(void* where, void* filter, u32 flags, u32 max, UnkHit* hits, u32* count);
+void fn_7100ca257c(void* where, void* filter, u32 flags, u32 max, UnkHit* hits, u32* count, f32 f);
 u32 fn_7100c9e960(UnkQueryObj* obj);
 void fn_7100c9ea08(UnkQueryObj* obj);
 void fn_7100c9e6ac(UnkQueryObj* obj, u32 state, bool a, bool b);
@@ -42,12 +42,13 @@ struct UnkSwitcher {
     }
 };
 
-void fn_7100aaac80(UnkSwitcher* self, void* where, void* filter) {
+// `f` (s0) reaches the query untouched in the original, which computes with it (tools/forwarded_args.py).
+void fn_7100aaac80(UnkSwitcher* self, void* where, void* filter, f32 f) {
     if (g_unk_7101d47310->field_0x1af8->field_0xdc)
         return;
     u32 count = 0;
     UnkHit hits[64];
-    fn_7100ca257c(where, filter, 0, 64, hits, &count);
+    fn_7100ca257c(where, filter, 0, 64, hits, &count, f);
     for (u32 i = 0; i < count; ++i) {
         UnkQueryObj* obj = hits[i].obj;
         if (!obj)

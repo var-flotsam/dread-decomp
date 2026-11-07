@@ -8,7 +8,7 @@
 #include "types.h"
 
 base::global::UnkStringData** fn_7101177ae8(UnkAnimationComponent* self, u64 kind);
-void fn_710110cca4(void* self);
+void fn_710110cca4(void* self, void* arg);
 
 struct UnkNailongOwner_b57a4 {
     u8 pad_0x0[0x220];
@@ -20,8 +20,9 @@ struct UnkNailongAI_b57a4 {
     UnkNailongOwner_b57a4* owner;
 };
 
-void fn_7100621174(UnkNailongAI_b57a4* self) {
-    fn_710110cca4(self);
+// `arg` (x1) reaches the base step untouched in the original (tools/forwarded_args.py).
+void fn_7100621174(UnkNailongAI_b57a4* self, void* arg) {
+    fn_710110cca4(self, arg);
     UnkAnimationComponent* target = self->owner->field_0x220;
     if (target) {
         base::global::UnkStringData* id = *fn_7101177ae8(target, 0xf4061ff25a2163d6);

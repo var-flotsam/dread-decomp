@@ -10,11 +10,12 @@ struct UnkSelf {
     u64 field_0x500;
 };
 
-bool fn_7100413ef8(UnkSelf* self);
+bool fn_7100413ef8(UnkSelf* self, void* arg);
 void fn_7100db3adc(UnkPathRegistry* registry, u64* id);
 
-bool fn_7100416fe0(UnkSelf* self) {
-    bool ok = fn_7100413ef8(self);
+// `arg` (x1) reaches the base step untouched in the original (tools/forwarded_args.py).
+bool fn_7100416fe0(UnkSelf* self, void* arg) {
+    bool ok = fn_7100413ef8(self, arg);
     if (ok && self->field_0x500 != (u64)&g_unk_7101d47200->empty) {
         UnkPathRegistry* registry = g_unk_71726b3240;
         if (!registry) {

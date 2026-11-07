@@ -21,7 +21,7 @@ struct __attribute__((packed)) UnkStateComponent {
     u8 pad_after[0x1];
 };
 
-bool fn_7100498a38(UnkStateComponent* self);
+bool fn_7100498a38(UnkStateComponent* self, void* arg);
 
 void fn_7100481794(void* state, char* data);
 void fn_710048cb88(void* state, char* data);
@@ -47,8 +47,9 @@ __attribute__((always_inline)) static inline void RegisterState(UnkStateComponen
     init(member, reinterpret_cast<UnkStateActorRef*>(self)->actor + data_off);
 }
 
-bool fn_710048e0e4(UnkStateComponent* self) {
-    bool result = fn_7100498a38(self);
+// `arg` (x1) reaches the base step untouched in the original (tools/forwarded_args.py).
+bool fn_710048e0e4(UnkStateComponent* self, void* arg) {
+    bool result = fn_7100498a38(self, arg);
     UnkStateActor* obj = self->field_0x10;
     char* actor = nullptr;
     if (obj && fn_710009d50c(obj->vf_0x0(), fn_710048d394()))

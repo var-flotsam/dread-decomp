@@ -51,8 +51,9 @@ struct UnkKraidAttack;
 void fn_71005f201c(UnkKraidAttack* self);
 bool fn_71005f20e4(UnkSelf_kt41*);
 
-void fn_71005f42c8(UnkKraidSwipe_b57a4* self) {
-    fn_71005f201c(reinterpret_cast<UnkKraidAttack*>(self));
+// `dt` (s0) reaches the base update untouched in the original (tools/forwarded_args.py).
+void fn_71005f42c8(UnkKraidSwipe_b57a4* self, f32 dt) {
+    reinterpret_cast<void (*)(UnkKraidAttack*, f32)>(fn_71005f201c)(reinterpret_cast<UnkKraidAttack*>(self), dt);
     UnkActor* actor = fn_7100d7c990(reinterpret_cast<UnkActor*>(self->owner));
     if (!self->owner->field_0x220)
         return;

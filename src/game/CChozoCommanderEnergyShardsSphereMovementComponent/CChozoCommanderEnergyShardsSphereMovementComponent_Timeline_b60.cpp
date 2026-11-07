@@ -24,8 +24,9 @@ struct UnkShardsSphere_b60a2 {
     UnkActor* owner;
 };
 
-void fn_710045a754(UnkShardsSphere_b60a2* self) {
-    fn_71010d1a90(self);
+// `dt` (s0) reaches the base update untouched in the original (tools/forwarded_args.py).
+void fn_710045a754(UnkShardsSphere_b60a2* self, f32 dt) {
+    reinterpret_cast<void (*)(UnkShardsSphere_b60a2*, f32)>(fn_71010d1a90)(self, dt);
     UnkActor* owner = self->owner;
     auto* state = static_cast<UnkShardsSphereState_b60a2*>(owner->field_0x1b8);
     if (!state || state->field_0x70 != 2)

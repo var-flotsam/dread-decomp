@@ -15,8 +15,8 @@ struct UnkScaleFactor {
 struct UnkScaleSource {
     virtual void vf_0x0();
     virtual void vf_0x8();
-    virtual UnkScaleFactor vf_0x10(void* a, void* b);
-    virtual UnkScaleFactor vf_0x18(void* a, void* b);
+    virtual UnkScaleFactor vf_0x10(void* a, void* b, f32 t);
+    virtual UnkScaleFactor vf_0x18(void* a, void* b, f32 t);
 };
 
 struct UnkScaleHolder {
@@ -30,10 +30,11 @@ struct UnkScaleVec3 {
 };
 
 // Multiplies `v` component by component with the source's factor (the second one when `which` is
-// set; `a` and `b` are passed on to it). Nothing happens without a source.
-void fn_7100ecfa10(UnkScaleHolder* self, void* a, void* b, UnkScaleVec3* v, s32 which) {
+// set; `a`, `b` and `t` are passed on to it: the original never touches s0, so the callers' `t`,
+// CShotManager's shot time, reaches the source). Nothing happens without a source.
+void fn_7100ecfa10(UnkScaleHolder* self, void* a, void* b, UnkScaleVec3* v, f32 t, s32 which) {
     if (UnkScaleSource* source = self->source) {
-        UnkScaleFactor f = which ? source->vf_0x18(a, b) : source->vf_0x10(a, b);
+        UnkScaleFactor f = which ? source->vf_0x18(a, b, t) : source->vf_0x10(a, b, t);
         v->x = f.x * v->x;
         v->y = f.y * v->y;
         v->z = f.z * v->z;

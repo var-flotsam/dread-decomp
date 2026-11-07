@@ -131,15 +131,16 @@ UNK_SM_SET_CONST_A2_B65(71004c7aa0, 0x68, 4, 4, 5)
 struct UnkAttackBase;
 struct UnkSmLockon_A1_b64;
 void fn_71003608ac(UnkAttackBase* self);
-void fn_71002f9f18(UnkSmLockon_A1_b64*);
+void fn_71002f9f18(UnkSmLockon_A1_b64*, s32 kind);
 
 void fn_7100487484(UnkSmOwner_A2_b65<0x80>* self) {
     fn_71003608ac(reinterpret_cast<UnkAttackBase*>(self));
     RequestState_A2_b65<7, 0x7fffffff>(&self->machine, 2);
 }
 
-void fn_710032984c(UnkSmOwner_A2_b65<0x6a0>* self) {
-    fn_71002f9f18(reinterpret_cast<UnkSmLockon_A1_b64*>(self));
+// `kind` (w1) reaches the ability's enter (fn_71002f9f18) untouched in the original (tools/forwarded_args.py).
+void fn_710032984c(UnkSmOwner_A2_b65<0x6a0>* self, s32 kind) {
+    fn_71002f9f18(reinterpret_cast<UnkSmLockon_A1_b64*>(self), kind);
     RequestState_A2_b65<5, 6>(&self->machine, 3);
 }
 
