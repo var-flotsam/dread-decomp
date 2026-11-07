@@ -7,6 +7,7 @@
 
 #include "base/UnkDefaultAllocator.h"
 #include "types.h"
+#include "UnkLeftoverReg.h"
 
 namespace nn {
 namespace os {
@@ -219,7 +220,7 @@ public:
 };
 
 // Their first parameter is an empty object (passed in x0 with nothing set).
-struct UnkMovieEmpty_b50 {};
+struct UnkMovieEmpty_b50 : UnkLeftoverReg {};
 s32 fn_7100222f14(UnkMovieEmpty_b50 tag, UnkMovieEventOwner_b50* owner);
 u32 fn_7100223014(UnkMovieEmpty_b50 tag, UnkMovieEventOwner_b50* owner);
 void fn_710021b9e4(UnkMovieEventOwner_b50* owner);

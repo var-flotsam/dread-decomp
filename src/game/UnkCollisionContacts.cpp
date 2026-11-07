@@ -16,6 +16,7 @@
 #include "base/spatial/COBox2D.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
+#include "UnkLeftoverReg.h"
 
 using base::math::CVector3D;
 
@@ -45,7 +46,7 @@ static inline UnkContact Merge(const UnkContact& a, const UnkContact& b) {
 }
 
 // An empty argument (its register is left as it is).
-struct UnkNoContext {};
+struct UnkNoContext : UnkLeftoverReg {};
 
 struct UnkCollider;
 

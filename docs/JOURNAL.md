@@ -87,6 +87,7 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - An agent's "behaviour identical" on a 10-45% minor is worth an adversarial check (decompile, `abi_facts.py`, the `-v` diff): round 2's ten all held, and the review found a `void` declaration that really returns its first argument: [boot hubs, round 2](#session-log-newest-first).
 - When the callee is in the same unit the original compiler infers facts about it (nocapture, a by-value argument left alone, a constant result) that change the caller; `__attribute__((noescape))`, `inline __attribute__((noinline))` and definitions kept in address order (dead-argument elimination walks them in order) reproduce some: [port M1 boot-match](#session-log-newest-first).
 - Reassociate ranks commutative float operands by IR order: loading values into locals first, or `Merge(a, b)` helpers, fix `fadd`/`orr` operand order; inlined templates are optimised before inlining and flip it again: same entry.
+- An empty struct passed by value for a leftover register takes x0 on AArch64 but no register on x86-64, which shifts every later argument; derive such tags from `UnkLeftoverReg` (`include/UnkLeftoverReg.h`): [empty leftover-register tags](#session-log-newest-first).
 - A port hazard in matching code: AArch64 `udiv` by zero gives 0, x86-64 traps; guard the division only off `__aarch64__` so the Switch bytes stay: [boot hubs, round 2](#session-log-newest-first).
 
 **Port: shaders**
@@ -133,6 +134,18 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - Several templates can carry one address's tag (`refl_GetPrimitiveType<G>` and its inline helper `refl_MakePrimitiveType<G>`, which Clang 18 keeps out of line); an alias to one that returns a class by value puts its hidden result pointer in the caller's rdi and writes the object over the caller's frame. A crash whose return address is a function's start, with a type's hook table on the stack, is the sign: [port M1 round 5](#session-log-newest-first).
 
 ## Session log (newest first)
+
+**Empty "leftover register" tags lost their register on the port (2026-11-07, branch `claude/empty-tag-abi`).**
+After the `CSoundEventsDef` fix the boot faulted at null + 0x28 in the `CRntString` assignment, under
+`fn_710109e1ac` on the Lua path. That function passes `fn_710109e0a0` an empty struct first, the matching idiom for
+an argument register the original leaves as it is (see the giant-functions notes: "takes an empty struct by value
+first"). AArch64 gives an empty class its register; the x86-64 ABI gives it none, so the port's call passed `source`
+in rdi and the output string in rsi, while the lift of `fn_710109e0a0` reads them from x1/x2 (rsi/rdx) and assigned
+into an uninitialised rdx. `include/UnkLeftoverReg.h` is now the base of every such tag: empty on AArch64 (objects
+byte-identical, check.py clean), one byte on the port, which gives the tag its register back. 12 tags in 15 files
+derive from it; tags that only select an inlined constructor overload (`UnkStrIdInline`, `NoInit`, ...) never cross a
+call and stay as they are. The boot then reached the first frame (9 of 10 milestones, 1362 lifts ran, up from 569)
+and faulted at 0x40 inside it. New tags of this kind must derive from `UnkLeftoverReg`.
 
 **`fn_710009d6d0` hand-matched: the constructor call it made without its object (2026-11-07, branch `claude/ctype-create-ctor-arg`).**
 The boot faulted in `fn_7101028aec` (an `SSoundEventsSelector`'s dynamic-type getter) while parsing `sound::CSoundEventsDef`:
