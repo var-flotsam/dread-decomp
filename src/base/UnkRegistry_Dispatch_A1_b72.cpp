@@ -34,7 +34,10 @@ public:
     virtual void vf_0x28();
     virtual void vf_0x30();
     virtual void vf_0x38();
-    virtual u32 vf_0x40(UnkRegistryString_A1b72* const* path, void* a, bool b);
+    // The last three reach the device's open (fn_710002f0dc) and the file buffer's allocator,
+    // alignment and flags (fn_710002ed98).
+    virtual u32 vf_0x40(UnkRegistryString_A1b72* const* path, void* a, bool b, void* allocator, u32 align,
+                        u32 flags);
     virtual u32 vf_0x48(const u64* hash, bool b);
     virtual void vf_0x50();
     virtual void vf_0x58();
@@ -94,12 +97,15 @@ struct UnkRegistry_A1b72 {
     }
 };
 
-bool fn_7100087ecc(UnkRegistry_A1b72* self, const UnkRegistryKey_A1b72* key, void* a, bool b) {
+// x4-x6 pass through untouched in the original (no instruction sets them before the call), so the
+// handler's last three arguments are this function's own: declared, or the port drops them.
+bool fn_7100087ecc(UnkRegistry_A1b72* self, const UnkRegistryKey_A1b72* key, void* a, bool b, void* allocator,
+                   u32 align, u32 flags) {
     UnkRegistryHandler_A1b72** slot = self->Slot<false>(&key->id);
     if (!slot || !*slot)
         return false;
     UnkRegistryHandler_A1b72* h = *slot;
-    return self->Done(h, h->vf_0x40(&key->path, a, b));
+    return self->Done(h, h->vf_0x40(&key->path, a, b, allocator, align, flags));
 }
 
 bool fn_7100087fc0(UnkRegistry_A1b72* self, const UnkRegistryKey_A1b72* key, bool b) {
