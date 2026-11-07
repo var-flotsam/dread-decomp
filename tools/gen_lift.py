@@ -22,7 +22,10 @@ lifts each one into C++ over `char*` parameters and keeps only the byte-identica
      that the function still holds, its own incoming arguments included, and an indirect call
      those its callers set for it (abi_facts' `fwd`). On AArch64 they reach the callee either
      way, so the bytes are the same; an x86-64 compile of the port passes only what a call names.
-     Each variant is tried with pass-through first and, where that named more, as before.
+     Each variant is tried with pass-through first and, where that named more, as before; a
+     function that matches only as before gets the ROUND2 rewrites of its pass-through lifts too,
+     and a match there wins. Pass-through never names a register a call left garbage in (FlatLifter
+     keeps the old value in its local), nor s0 after a call for a variadic callee.
   4. Functions that compile but don't match get a second round per ROUND2 rewrite of the
      statements: field stores in ascending offset order ("sort"), accesses through may_alias
      types so stores force reloads as in the original ("alias"), load/store copies as
@@ -473,6 +476,7 @@ class Lifter:
     # address -> abi_facts.AbiFacts.result_main (which of x0 and s0 callers read): semantic mode only.
     main = None
     narrow_floats = frozenset()  # the current direct callee's float arguments read only as s<n> (callee_need)
+    variadic_callee = False  # the current direct callee saves every argument register (callee_need)
 
     def __init__(self, orig: asmdiff.Original, addr: int, extra: int, returns: bool,
                  stack: tuple[str, int] | None = None):
@@ -936,7 +940,10 @@ class Lifter:
         # Also the registers the callee reads (callee_need). One the caller holds is passed on; one
         # with no value here (clobbered by a call) held garbage in the original: semantic mode
         # passes 0, byte mode stops there (a constant would cost an instruction).
+        pclob = getattr(self, "pclob", ())  # (byte mode, FlatLifter: a call left garbage there)
         for i in range(n, need[0]):
+            if i in pclob:
+                break
             try:
                 ints.append(self.read(f"x{i}"))
             except Unsupported:
@@ -945,6 +952,8 @@ class Lifter:
                 ints.append(("(u64)0", "u64"))  # (typed: a bare 0 is ambiguous between overloads)
             self.passed |= not sem
         for i in range(fl, need[1]):
+            if (i == 0 and self.s.fcall and self.variadic_callee and not self.has_value(100)) or 100 + i in pclob:
+                break  # (s0 is an earlier call's: callee_need, variadic_callee; or a call left garbage)
             try:
                 if self.has_value(100 + i) or (i == 0 and self.s.fcall):
                     # (s0 right after a call: that call's float result, passed on: read() retypes it)
@@ -1099,6 +1108,7 @@ class Lifter:
         if not sem and self.plain:
             return 0, 0
         self.narrow_floats = frozenset()
+        self.variadic_callee = False
         if not fn:
             own = self.facts(self.addr)
             ints, floats = own.fwd_counts if own is not None else (1, 0)
@@ -1122,6 +1132,10 @@ class Lifter:
             return 0, 0
         # (the float arguments it reads only as s<n>: args passes one only passed on as its S<n>)
         self.narrow_floats = frozenset(k for k in f.args if 100 <= k < 108 and k not in f.wide)
+        # (a variadic callee's prologue saves every argument register: its facts read all of v0-v7,
+        # which says nothing of a float argument, so s0 left by an earlier call is not passed on as
+        # that call's float result, which would retype the call: fn_7100504720)
+        self.variadic_callee = all(k in f.args for k in range(100, 108))
         if sem and f.sret and not getattr(self, "sret_ok", False):
             raise Unsupported("call with an indirect result (x8)")
         if sem and f.stack:
@@ -2305,6 +2319,7 @@ class Lifter:
                 self.line(f"X{n} = (u64)({self.global_ref(o[1].imm, False)});")
                 self.types[n] = "char*"
                 self.clob.discard(n)
+                self.pclob.discard(n)
                 s.lanes.pop(n, None)
             s.pages[n] = o[1].imm
             s.vals.pop(n, None)
@@ -2782,6 +2797,9 @@ class FlatLifter(Lifter):
         self.flag_vars = False  # semantic mode: NZCV kept in locals (store_flags)
         self.flags_bad = False  # ... except after a compare whose flags could not be written out
         self.clob: set[int] = set()  # semantic mode: caller-saved registers a call left, unwritten (clobber)
+        # Byte mode: the same, for pass-through only (args): its locals keep what the registers held
+        # before the call, which the original's callee never saw (fn_710085b76c's x1 at a `blr`)
+        self.pclob: set[int] = set()
         self.ret_regs = {8}  # semantic mode: registers holding this function's own result address (x8 at entry)
 
     def store_flags(self) -> None:
@@ -3107,6 +3125,7 @@ class FlatLifter(Lifter):
         if self.opts & {"semantic", "keep"}:
             self.keep_compare(n)
         self.clob.discard(n)
+        self.pclob.discard(n)
         if n >= 100:
             self.line(f"{self.storage(n, t)} = {e};")
             if n in getattr(self, "dual", ()) and t in ("f32", "f64"):
@@ -3233,6 +3252,8 @@ class FlatLifter(Lifter):
             # x1 of a 16-byte one), while their locals keep what they held: read() refuses them
             # until written, in this straight line of code (a label forgets it: other paths).
             self.clob = set(range(1, 19)) | set(range(101, 108)) | set(range(116, 132))
+        else:
+            self.pclob = set(range(1, 19)) | set(range(101, 108))
 
     def lift(self) -> tuple[str, set[str]] | None:
         orig, addr = self.orig, self.addr
@@ -3292,6 +3313,10 @@ class FlatLifter(Lifter):
                     self.s.cmp = None if x.address != addr else self.s.cmp
                     self.s.fcall = None
                     self.clob = set()
+                    if self.s.called and "semantic" not in self.opts:
+                        # (another path may come from after a call: pass-through names nothing a
+                        # call may have left garbage in until it is written again, fn_7100547fe4)
+                        self.pclob = set(range(1, 19)) | set(range(101, 108))
                     self.s.x8w = False
                     self.s.lanes = {}
                     self.ret_regs = set(self.ret_static.get(self.pos, ()))
@@ -3347,11 +3372,11 @@ class FlatLifter(Lifter):
                         else:
                             taken = f"((u64)({v}) >> {o[1].imm} & 1) {'==' if m == 'tbz' else '!='} 0"
                     self.line(f"if ({taken}) {{")
-                    saved = (self.s.copy(), set(self.clob))
+                    saved = (self.s.copy(), set(self.clob), set(self.pclob))
                     self.terminate("tail", self.call(f"fn_{o[-1].imm:x}"))
                     self.tails[f"fn_{o[-1].imm:x}"] = self.last_call[1]
                     self.line("}")
-                    self.s, self.clob = saved  # (the call is on the taken side only)
+                    self.s, self.clob, self.pclob = saved  # (the call is on the taken side only)
                     self.live = True
                 elif m == "br" and x.address in self.jtables:
                     idx, tgts = self.jtables[x.address]
@@ -3632,13 +3657,15 @@ def lift_serial(orig: asmdiff.Original, cands: list[int],
 
 def build_all(orig: asmdiff.Original, lifted: list[dict[int, tuple[str, set[str]]]],
               work: Path, best: dict | None = None,
-              reloc_bad: set[int] | None = None) -> tuple[dict[int, tuple[str, set[str]]], set[int]]:
+              reloc_bad: set[int] | None = None,
+              which: dict[int, int] | None = None) -> tuple[dict[int, tuple[str, set[str]]], set[int]]:
     """Compile every attempt in scratch TUs under `work` and diff them. Returns the first
     matching definition of each address (variant order decides; byte-identical with every
     relocation naming the original's target, asmdiff strict mode) and the addresses that
     compiled in at least one attempt. With `best`, also keeps the closest attempt of each
     address there as (score, definition, declarations), the earliest on a tie. With `reloc_bad`,
-    adds the addresses of attempts that were byte-identical but named a wrong target."""
+    adds the addresses of attempts that were byte-identical but named a wrong target. With `which`,
+    records the index of the attempt chosen for each address."""
     work.mkdir(parents=True, exist_ok=True)
 
     def build(job: tuple[int, int]) -> tuple[set[int], set[int], dict[int, float], set[int]]:
@@ -3682,6 +3709,8 @@ def build_all(orig: asmdiff.Original, lifted: list[dict[int, tuple[str, set[str]
         for (kk, _), (ok, _, scores, bad) in zip(jobs, results):
             if kk == k:
                 for a in sorted(ok):
+                    if a not in chosen and which is not None:
+                        which[a] = k
                     chosen.setdefault(a, lifted[k][a])
                 if best is not None:
                     for a, sc in scores.items():
@@ -3702,16 +3731,33 @@ def lift_rounds(orig: asmdiff.Original, cands: list[int], work: Path,
                 why: dict[int, tuple[int, str]] | None = None, reloc_bad: set[int] | None = None):
     """lift_all + build_all, then each ROUND2 rewrite on what compiled without matching.
     Returns (chosen, compiled, first-round attempts) as build_all and lift_all do; `reloc_bad`
-    collects the byte-identical attempts build_all rejected for a wrong relocation target."""
+    collects the byte-identical attempts build_all rejected for a wrong relocation target.
+
+    A function that matched only as a plain lift (byte mode with facts: the attempts at odd
+    indices, lift_serial), whose calls name fewer registers than its callees read, also gets the
+    ROUND2 rewrites of its pass-through lifts; a match there replaces the plain one. Both have the
+    same bytes, but an x86-64 compile passes only what a call names (fn_7100d45c48 passed `this`
+    to its tail call only once the stores were sorted)."""
     lifted = lift_all(orig, cands, why)
-    chosen, compiled = build_all(orig, lifted, work, reloc_bad=reloc_bad)
+    which: dict[int, int] = {}
+    chosen, compiled = build_all(orig, lifted, work, reloc_bad=reloc_bad, which=which)
+    passing = Lifter.facts is not None
+    plain = {a for a, k in which.items() if passing and k % 2 == 1}
     for k, opts in enumerate(ROUND2):
-        rest = sorted(compiled - set(chosen))
+        rest = sorted((compiled - set(chosen)) | plain)
         if not rest:
             break
-        more, _ = build_all(orig, lift_all(orig, rest, opts=opts), work / f"round2_{k}", reloc_bad=reloc_bad)
+        attempts = lift_all(orig, rest, opts=opts)
+        if passing:  # (only the pass-through lifts of a plain match)
+            attempts = [d if i % 2 == 0 else {a: v for a, v in d.items() if a not in plain}
+                        for i, d in enumerate(attempts)]
+        more, _ = build_all(orig, attempts, work / f"round2_{k}", reloc_bad=reloc_bad)
         for a in sorted(more):
-            chosen.setdefault(a, more[a])
+            if a in plain:
+                chosen[a] = more[a]
+                plain.discard(a)
+            else:
+                chosen.setdefault(a, more[a])
     return chosen, compiled, lifted
 
 
