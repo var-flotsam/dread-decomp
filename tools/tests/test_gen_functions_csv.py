@@ -29,7 +29,7 @@ class Subsystems(unittest.TestCase):
     def test_engine_namespaces(self):
         self.check({"base::reflection::CClass": "engine/reflection", "base::core::CObject": "engine/base",
                     "engine::scene::CScene": "engine", "GUI::CWidget": "gui",
-                    "lua_lib::abs": "lua/stdlib", "lua_bind::Foo": "script/bindings"})
+                    "lua_lib::__index": "script/bindings", "lua_bind::Foo": "script/bindings"})
 
     def test_game_classes(self):
         self.check({"CSamusMovement": "game/player", "CFooComponent": "game/components",
@@ -56,10 +56,15 @@ class Statuses(unittest.TestCase):
     def test_library_subsystems_come_from_rules(self):
         produced = {sub for _, sub in g.SUBSYSTEM_RULES if "\\" not in sub}
         # every library subsystem a rule produces is one main() marks L
-        for sub in ("middleware/nn-atk", "sdk", "runtime", "lua/stdlib"):
+        for sub in ("middleware/nn-atk", "sdk", "runtime"):
             self.assertIn(sub, produced)
             self.assertIn(sub, g.LIBRARY_SUBSYSTEMS)
         self.assertNotIn("game", g.LIBRARY_SUBSYSTEMS)
+        # the game's own Lua binding tables (lua_lib::__index, ...) are game code, not lib/lua
+        self.assertNotIn("script/bindings", g.LIBRARY_SUBSYSTEMS)
+        self.assertNotIn("lua/stdlib", produced)
+        # an unnamed function between lib/lua matches ("lua?") is the game's own addition
+        self.assertIn("lua", g.INFERRED_NOT_LIBRARY)
 
     def test_decomp_statuses_are_the_src_codes(self):
         self.assertEqual(g.DECOMP_STATUSES, {"O", "m", "M", "W"})

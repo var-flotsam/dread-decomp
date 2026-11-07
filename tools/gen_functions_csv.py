@@ -49,7 +49,9 @@ SUBSYSTEM_RULES = [
     (r"^nn::", "sdk"),
     (r"^(std::|__cxa|_Unwind|operator (new|delete)|malloc|free|calloc|realloc|aligned_alloc|mem(cpy|set|move|cmp)|str[a-z]+$)", "runtime"),
     (r"^(nninit|nnMain|nndetail|__nnDetail|_DT_(INIT|FINI))", "runtime"),
-    (r"^lua_lib::", "lua/stdlib"),
+    # Metamethod tables (and the one with print) are the game's own userdata bindings, not the vendored
+    # Lua: a library subsystem would make them status L, which nothing in lib/lua provides.
+    (r"^lua_lib::", "script/bindings"),
     (r"^lua_bind::", "script/bindings"),
     (r"^base::reflection", "engine/reflection"),
     (r"^base::", "engine/base"),
@@ -75,7 +77,12 @@ SUBSYSTEM_RULES = [
 # Code we don't decompile as game code: vendored upstream (Lua, dlmalloc), Nintendo
 # middleware/SDK (nn::atk, nn::), and the C/C++ runtime. Marked L, like BotW's
 # "library function" status, and excluded from progress.
-LIBRARY_SUBSYSTEMS = {"middleware/nn-atk", "sdk", "runtime", "lua/stdlib", "lua", "dlmalloc"}
+LIBRARY_SUBSYSTEMS = {"middleware/nn-atk", "sdk", "runtime", "lua", "dlmalloc"}
+# Subsystems where a neighbour's inferred subsystem ("lua?") does not make a function library code:
+# the game added its own functions to Lua's auxiliary library (luaL_testudata, ...), between ones
+# tools/sigmatch.py matches to lib/lua, and nothing in lib/lua provides them. Only a matched name is
+# library there.
+INFERRED_NOT_LIBRARY = {"lua"}
 # Statuses that come from src/ (tools/check.py) and must survive regeneration.
 DECOMP_STATUSES = {"O", "m", "M", "W"}
 
@@ -232,7 +239,10 @@ def main() -> int:
                 subsystem = sub.get(a, "unknown")
                 status = old_status.get(addr)
                 if status not in DECOMP_STATUSES:
-                    status = "L" if subsystem.rstrip("?") in LIBRARY_SUBSYSTEMS else "U"
+                    base_sub = subsystem.rstrip("?")
+                    inferred = subsystem.endswith("?")
+                    library = base_sub in LIBRARY_SUBSYSTEMS and not (inferred and base_sub in INFERRED_NOT_LIBRARY)
+                    status = "L" if library else "U"
                 w.writerow([addr, funcs[a], name, source, subsystem, status])
 
     rt = ROOT / "data" / "reflection_types.csv"
