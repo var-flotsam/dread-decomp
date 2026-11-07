@@ -134,6 +134,18 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Placeholder classes renamed apart, round 2 (2026-11-07, branch `claude/placeholder-names-2`).** The two vtable
+conflicts the first round left that were the same reused-name problem. `tools/port_addresses.py` conflicts are down
+from 6 to 4, and `check.py` reports no regressions (O 90943).
+- `UnkAttackListener` (`include/game/CAttack.h`): CGooplotJumpAttack and CGooplotUndoJumpAttack store vtable
+  0x7101a2aef8, every other attack stores 0x7101a22d48. The header now also has `UnkAttackListener_7101a2aef8`, the
+  same shape under its own name, for the two Gooplot files.
+- `UnkElem50`: the copy file `src/game/SLogicPathNode/fn_7101059bfc.cpp` names its class `UnkElem50_7101cac938`.
+  `fn_7101059e5c` was in the original's file (`src/game/SCameraRailNode/fn_7100c073f0.cpp`) but stores the copy's
+  vtable, so it moved to the copy file.
+- Left: `refl_IterSync<UnkOwnedList>` (one template, five sync functions) and the three `unk_any_props` vtables
+  (five units each).
+
 **`fn_710009d6d0` hand-matched: the constructor call it made without its object (2026-11-07, branch `claude/ctype-create-ctor-arg`).**
 The boot faulted in `fn_7101028aec` (an `SSoundEventsSelector`'s dynamic-type getter) while parsing `sound::CSoundEventsDef`:
 the `pContextSelector` field (offset 0) of a freshly created `SSoundEventsRule` held string bytes. The parse stack was
