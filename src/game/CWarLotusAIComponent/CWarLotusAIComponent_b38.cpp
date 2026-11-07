@@ -28,7 +28,7 @@ struct UnkWarLotusAI {
 };
 
 // The base reset (declared elsewhere without its argument; called with it).
-void fn_7100369650();
+#include "game/UnkBehaviorTree.h"
 
 static inline UnkBumpState* BumpOf(UnkWarLotusAI* self) {
     return reinterpret_cast<UnkBumpState*>(reinterpret_cast<char*>(self) + 0x146d0);
@@ -40,7 +40,7 @@ static inline unk_prop_bag::UnkPropBag* BagOf(UnkAnimationComponent* track) {
 
 void fn_71006e07b0(UnkWarLotusAI* self) {
     UnkBumpState* bump = BumpOf(self);
-    reinterpret_cast<void (*)(UnkWarLotusAI*)>(fn_7100369650)(self);
+    fn_7100369650(reinterpret_cast<char*>(self));
     bump->value = -1.0f;
     bump->factor = 0.0f;
     bump->flag = false;

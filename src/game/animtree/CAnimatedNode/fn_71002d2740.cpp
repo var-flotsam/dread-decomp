@@ -18,13 +18,13 @@ struct UnkPairOwner {
     UnkPairData* field_0x18;
 };
 
-UnkValueSource** fn_71002dba48();
+UnkValueSource** fn_71002dba48(UnkPairOwner* self);  // from the object's +0x10
 
 // NON_MATCHING(minor): the copy loop compares the widened index in 64 bits (the original compares 32 bits), and the
 // first allocation call sets up its alignment argument one instruction later; behaviour is identical
 void fn_71002d2740(UnkPairOwner* self) {
     UnkPairData* d = self->field_0x18;
-    u64 value = (*fn_71002dba48())->field_0x30;
+    u64 value = (*fn_71002dba48(self))->field_0x30;
     base::UnkPairArrays* a = &d->arrays;
     if (a->count == a->capacity) {
         u32 new_capacity = a->step + a->count;

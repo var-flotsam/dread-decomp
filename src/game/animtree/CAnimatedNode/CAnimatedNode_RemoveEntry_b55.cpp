@@ -18,7 +18,7 @@ struct UnkPairOwner {
     UnkPairData* field_0x18;
 };
 
-UnkValueSource** fn_71002dba48();
+UnkValueSource** fn_71002dba48(UnkPairOwner* self);  // from the object's +0x10
 
 static inline u64* FindByValue(base::UnkPairArrays* a, u64 value) {
     for (u64 i = 0; i != a->count; ++i) {
@@ -41,7 +41,7 @@ static inline void EraseAt(base::UnkPairArrays* a, u32 index) {
 void fn_71002d288c(UnkPairOwner* self) {
     UnkPairData* d = self->field_0x18;
     base::UnkPairArrays* a = &d->arrays;
-    u64* it = FindByValue(a, (*fn_71002dba48())->field_0x30);
+    u64* it = FindByValue(a, (*fn_71002dba48(self))->field_0x30);
     if (it == a->keys + a->count) {
         return;
     }

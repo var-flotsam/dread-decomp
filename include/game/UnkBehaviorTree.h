@@ -8,6 +8,10 @@
 
 #include "types.h"
 
+// The base update of the behaviour-tree AI components (src/game/CBehaviorTreeAIComponent/fn_7100369650.cpp),
+// on the component, which the derived updates pass on.
+void fn_7100369650(char* self);
+
 // The part of a tree node that every node shares (the base constructor fn_7100393e68 of the action
 // nodes, fn_7100394a88 below it): the vtable, and the word at +0x28 that the action base sets to 4.
 // It ends at +0x2c, where the members of most action nodes start. The reflected sizes are 0x30 for

@@ -147,8 +147,8 @@ original callee reads it (the READ and CALL tiers) beyond the parameters of the 
 Calls whose source casts the callee (`reinterpret_cast<...>(fn_X)`, or a cast to a function pointer of a
 template parameter when the file names the callee, as `Initialise<Step>` in
 `src/game/CBigkranXAIComponent/fn_71003f47fc.cpp`) name the declared, not the casted, signature. They are listed
-apart as `cast` and not counted. First run: 59 calls (51 more cast). After the fixes below: **38 calls in 36
-callers** (none in the boot slice, 10 in generated sources), plus 55 cast calls, among 249,838 direct calls in
+apart as `cast` and not counted. First run: 59 calls (51 more cast). After the fixes below: **23 calls in 21
+callers** (none in the boot slice, 10 in generated sources), plus 51 cast calls, among 249,838 direct calls in
 90,943 matched functions. Fixed: `fn_71003609a8`, the spit-attack base update, reads the step in s0. Nine
 attack updates declared it `(UnkSpitAttack*)`, and three of them got `dt` in through a cast or an asm label. It
 is now declared once in `include/game_s2/UnkSpitAttack.h` with `dt`, and all ten callers pass it. The same
@@ -157,9 +157,14 @@ The three boot-slice hits are fixed too. `fn_7100105ef4` (`UnkSoundFlag.cpp`) no
 `fn_71000ffc98`, declared as its definition is (value and fade time). `fn_7100108b90`
 (`CSoundSystem_Play_b46.cpp`) passes its value to `fn_71000f9d20` as the fade time. `fn_71001fd6c0`
 (`fn_71001fcd4c.cpp`) passes the three arguments it had named `unused` to `fn_7100202eb0`, which hands them
-to `fn_71001ef660`. Of the 28 hand-written hits left, 14 call a callee declared with no parameters that reads
-x0 (for example, the `fn_71008397f4` copies call `fn_7100302014()` and pass their `unused` x0 on). 14 drop x1
-or a float.
+to `fn_71001ef660`. Fifteen calls went to a callee declared with no parameters that reads x0 (or x0-x2), and these are fixed
+too. Six `refl_FindTyped` getters (`fn_7100303054` and the copies in `fn_71008397f4.cpp`) look a component up in
+the owner their callers had named `unused`. The Lua binding `fn_710107a880` passes the player, which x0 held
+there from the previous call, a case `--calls` cannot see. `fn_7100369650`, the behaviour-tree base update, is
+now declared once in `include/game/UnkBehaviorTree.h` with the component, which removes four casts. The others
+are `fn_7100225b84`, `fn_71002dba48`, `fn_710110a164`, `fn_710074ddd8` and the two ship-recharge defaults.
+`fn_7100ac38fc` takes the component, not the float an asm label and `fn_71005028e4` gave it. The 13
+hand-written hits left drop x1 or a float.
 
 **Placeholder classes renamed apart, round 2 (2026-11-07, branch `claude/placeholder-names-2`).** The two vtable
 conflicts the first round left that were the same reused-name problem. `tools/port_addresses.py` conflicts are down
