@@ -11,10 +11,10 @@ struct UnkEntry_0x150 {
     ~UnkEntry_0x150();  // fn_7100fd11e8
 };
 
-struct UnkBase_0x30 {
+struct UnkBase_0x30_7100fe1050 {
     void** vtable;
     u8 unk_0x8[0x28];
-    ~UnkBase_0x30();  // fn_7100fe1050
+    ~UnkBase_0x30_7100fe1050();  // fn_7100fe1050
 };
 
 extern void* g_unk_7101cac080[];
@@ -35,7 +35,7 @@ struct UnkSecondaryBase_0x30 {
     }
 };
 
-struct UnkObject_7100fcfcdc : UnkBase_0x30, UnkSecondaryBase_0x30 {
+struct UnkObject_7100fcfcdc : UnkBase_0x30_7100fe1050, UnkSecondaryBase_0x30 {
     u8 unk_0x54[0x80];
     s32 field_0xd4;
     u16 field_0xd8;
@@ -43,7 +43,7 @@ struct UnkObject_7100fcfcdc : UnkBase_0x30, UnkSecondaryBase_0x30 {
     u8 unk_0xb60[0x18];
 
     ~UnkObject_7100fcfcdc() {
-        UnkBase_0x30::vtable = &g_unk_7101cabfa8[2];
+        UnkBase_0x30_7100fe1050::vtable = &g_unk_7101cabfa8[2];
         UnkSecondaryBase_0x30::vtable = &g_unk_7101cabfa8[21];
     }
 };

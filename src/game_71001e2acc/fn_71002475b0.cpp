@@ -1,5 +1,8 @@
 // A copy of fn_7101114f80 (src/game_s7/fn_7101114f80.cpp) with its own sync function: Begin of a
-// reflected array of callback sets without the value after each set (fn_71002475b0).
+// reflected array of callback sets without the value after each set (fn_71002475b0). Its sets are
+// UnkCallbackSet_7101a20950 (vtable 0x7101a20950, as in include/game/UnkCallbackSetVector.h). The
+// two other copies that were here use other set classes: fn_7100d88e14 is in
+// src/game_aca57c/fn_7100d88e14.cpp, fn_7101132350 in src/game_s7/fn_7101132350.cpp.
 #include "base/UnkErasedVector.h"
 #include "base/UnkVector.h"
 
@@ -21,11 +24,11 @@ struct UnkCallbackBase {
     UnkCallbackBase() : field_0x30(0) {}
 };
 
-struct UnkCallbackSet : UnkCallbackBase {
+struct UnkCallbackSet_7101a20950 : UnkCallbackBase {
     virtual void vf8();
     UnkRefCounted* owner;
 
-    UnkCallbackSet(const UnkCallbackSet& other) : owner(nullptr) {
+    UnkCallbackSet_7101a20950(const UnkCallbackSet_7101a20950& other) : owner(nullptr) {
         UnkRefCounted* p = other.owner;
         if (p != owner) {
             if (p)
@@ -40,9 +43,9 @@ struct UnkCallbackSet : UnkCallbackBase {
         fn_710023b29c(&callbacks, &other.callbacks);
     }
 
-    UnkCallbackSet(UnkCallbackSet&& other);  // fn_71007b1928
+    UnkCallbackSet_7101a20950(UnkCallbackSet_7101a20950&& other);  // fn_71002458a4
 
-    __attribute__((always_inline)) ~UnkCallbackSet() {
+    __attribute__((always_inline)) ~UnkCallbackSet_7101a20950() {
         if (UnkRefCounted* p = owner) {
             if (--p->ref_count == 0)
                 p->Delete();
@@ -51,7 +54,7 @@ struct UnkCallbackSet : UnkCallbackBase {
 };
 
 struct UnkCallbackSetElem {
-    UnkCallbackSet set;
+    UnkCallbackSet_7101a20950 set;
 };
 
 // The cached (index, element) value: empty (0), owned (1) or referring to the iterator's (2).
@@ -234,22 +237,7 @@ static inline __attribute__((always_inline)) void Begin(const UnkCallbackSetVect
     *out = UnkIter<Sync>(0, v->data);
 }
 
-// Three copies (one per array type), each with its own sync function. End's braces matter: they
-// evaluate the count before the data, as the original does.
-
 void fn_710023ac4c(void* self);
 void fn_71002475b0(const UnkCallbackSetVector* v, UnkIter<fn_710023ac4c>* out) {
-    Begin(v, out);
-}
-
-
-// Two more copies, each with its own sync function.
-void fn_7100d80b84(void* self);
-void fn_7100d88e14(const UnkCallbackSetVector* v, UnkIter<fn_7100d80b84>* out) {
-    Begin(v, out);
-}
-
-void fn_710112e7e0(void* self);
-void fn_7101132350(const UnkCallbackSetVector* v, UnkIter<fn_710112e7e0>* out) {
     Begin(v, out);
 }

@@ -8,9 +8,9 @@
 using base::UnkVector;
 using base::global::CRntString;
 
-struct UnkElem80 {
+struct UnkElem80_7100778228 {
     u8 unk_0x0[0x80];
-    ~UnkElem80();  // fn_7100ad04c4
+    ~UnkElem80_7100778228();  // fn_7100778228
 };
 
 struct UnkNamedElem38 {
@@ -34,7 +34,8 @@ struct UnkElem138 {
     ~UnkElem138();  // fn_7100e4e310
 };
 
-UnkVector<UnkElem80>& fn_710077a478(UnkVector<UnkElem80>* self, UnkVector<UnkElem80>&& other) {
-    return *self = static_cast<UnkVector<UnkElem80>&&>(other);
+UnkVector<UnkElem80_7100778228>& fn_710077a478(UnkVector<UnkElem80_7100778228>* self,
+                                               UnkVector<UnkElem80_7100778228>&& other) {
+    return *self = static_cast<UnkVector<UnkElem80_7100778228>&&>(other);
 }
 

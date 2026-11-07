@@ -35,6 +35,7 @@ public:
     }
     CRntString(const char* str);           // fn_710007e704
     CRntString(const CRntString& other);   // fn_710007ea60
+    CRntString(CRntString&& other);        // fn_710007eab4
     ~CRntString();                         // fn_710007ecd4
 
     UnkAllocator* GetAllocator() const {

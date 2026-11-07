@@ -23,11 +23,11 @@ struct UnkCallbackBase {
     UnkCallbackBase() : field_0x30(0) {}
 };
 
-struct UnkCallbackSet : UnkCallbackBase {
+struct UnkCallbackSet_7101a20950 : UnkCallbackBase {
     virtual void vf8();
     UnkRefCounted* owner;
 
-    UnkCallbackSet(const UnkCallbackSet& other) : owner(nullptr) {
+    UnkCallbackSet_7101a20950(const UnkCallbackSet_7101a20950& other) : owner(nullptr) {
         UnkRefCounted* p = other.owner;
         if (p != owner) {
             if (p)
@@ -42,9 +42,9 @@ struct UnkCallbackSet : UnkCallbackBase {
         fn_710023b29c(&callbacks, &other.callbacks);
     }
 
-    UnkCallbackSet(UnkCallbackSet&& other);  // fn_71007b1928
+    UnkCallbackSet_7101a20950(UnkCallbackSet_7101a20950&& other);  // fn_71002458a4
 
-    __attribute__((always_inline)) ~UnkCallbackSet() {
+    __attribute__((always_inline)) ~UnkCallbackSet_7101a20950() {
         if (UnkRefCounted* p = owner) {
             if (--p->ref_count == 0)
                 p->Delete();
@@ -53,7 +53,7 @@ struct UnkCallbackSet : UnkCallbackBase {
 };
 
 struct UnkCallbackSetElem {
-    UnkCallbackSet set;
+    UnkCallbackSet_7101a20950 set;
     u32 field_0x40;
 };
 
