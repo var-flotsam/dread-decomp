@@ -44,7 +44,9 @@ static inline UnkScourgeTarget* TargetOf(UnkWeakHandle* handle) {
     return reinterpret_cast<UnkScourgeTarget*>(handle->target);
 }
 
-void fn_71006a1ef0(UnkScourgeTargetList* self) {
+// The caller passes the frame time (s0), as to the updates beside this one; nothing here uses it, and
+// the original leaves it untouched up to its virtual calls (tools/forwarded_args.py).
+void fn_71006a1ef0(UnkScourgeTargetList* self, f32 /*dt*/) {
     UnkWeakHandle* current = self->current;
     if (!(current && current->target && TargetOf(current)->field_0x278 &&
           fn_7101136308(TargetOf(current)->field_0x278))) {

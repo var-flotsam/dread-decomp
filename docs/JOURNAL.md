@@ -169,10 +169,18 @@ no direct caller), so `--open` lists them for a crash to confirm. Fixed here, al
 `fn_71011b882c` (GUI path cache: the name id its callers pass reaches `fn_71011b85fc`),
 `fn_7100147960` and `fn_71001479dc` (the character `src/game/GUI/CLabel.cpp` passes reaches
 `fn_71001bd620`, which the file had called "the current frame") and `fn_7100202d24` (its callers' `arg`
-reaches `fn_71001ef028`'s tail call). That leaves 9 boot hits; six are v0/x1/x2 handed to an indirect call
-that the callers set (`fn_71000723cc`, `fn_71006a1ef0`, `fn_7100ecfa10`, `fn_7100fdb8b8`, `fn_71010dca80`,
-`fn_7100f04434` through a direct callee), and `fn_710022586c`'s x1/x2 come from a callee whose callers set
-neither (likely a path its callers never take). Two false-positive sources are handled: an HFA by value
+reaches `fn_71001ef028`'s tail call). The other nine boot hits, judged by the instructions before
+each call site and the callee's use: `fn_710022586c` (CMovieStreamNx's constructor) was a real crash in
+waiting: its callers set neither x1 nor x2 because they pass their own on, and the base constructor
+`fn_710021b774` stores them at +0x38/+0x30, the source the constructor then reads at +0x38; it now takes
+and passes `source, extra`. `fn_71001fda54` passes v0 on through `fn_7100202fa0` to `fn_71001f02d0`, which
+stores s0 (`f32 f`); `fn_7100f04434` hands the caller's frame time to `fn_7100f04520`; `fn_71000723cc`
+(the fade's flag, a time in s0 like `fn_7100072328`), `fn_7100ecfa10` (CShotManager's shot time, already
+in its declaration there) and `fn_71010dca80` (x1, set by eight callers) hand theirs to the virtual they
+wrap. `fn_71006a1ef0` (a frame time) and `fn_7100fdb8b8` (two stack addresses) declare what their callers
+pass without using it: the register only survives up to incidental virtual calls (a release, a state's
+`vf_0x18(id)`). `fn_71001327c0` stays listed: its x0 reaches the per-frame callback, `fn_7100000d40`,
+which takes nothing. After these and a merge of `main`: **295 hits**, 1 in the boot slice, 14 with callers that set the register; all twelve fixed functions still **O**. Two false-positive sources are handled: an HFA by value
 (`CVector3D` in v0-v2) and a variadic callee, whose prologue saves every argument register.
 **Placeholder classes renamed apart for the port's addresses (2026-11-06, branch `claude/placeholder-class-names`).**
 `tools/port_addresses.py` leaves out a name whose matched uses disagree on its address. Five of its 12 conflicts were

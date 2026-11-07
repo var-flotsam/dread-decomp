@@ -1,4 +1,4 @@
-// Unit 2584 (tools/tu_map.py; no reflected class): fn_7100f04434 updates the object (fn_7100f04520),
+// Unit 2584 (tools/tu_map.py; no reflected class): fn_7100f04434 updates the object by the frame time (fn_7100f04520),
 // then hands every listener in its list (data +0x8, count +0x10) a pair built from +0x30 and the word at
 // +0x38 (fn_7100f035dc, in the CHearingSensor unit). Names and layouts are placeholders.
 #include "types.h"
@@ -19,11 +19,12 @@ struct UnkHearingSource_b49 {
     u32 field_0x38;
 };
 
-void fn_7100f04520(UnkHearingSource_b49* self);
+void fn_7100f04520(UnkHearingSource_b49* self, f32 dt);
 void fn_7100f035dc(UnkHearingListener_b49* listener, UnkHearingEvent_b49* event);
 
-void fn_7100f04434(UnkHearingSource_b49* self) {
-    fn_7100f04520(self);
+// The caller passes the frame time (s0), which reaches fn_7100f04520 untouched.
+void fn_7100f04434(UnkHearingSource_b49* self, f32 dt) {
+    fn_7100f04520(self, dt);
     if (u32 n = self->count) {
         UnkHearingListener_b49** it = self->listeners;
         UnkHearingListener_b49** end = it + n;

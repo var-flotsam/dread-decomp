@@ -13,7 +13,7 @@ struct UnkFadeListener {
     virtual void vf_0x28();
     virtual void vf_0x30();
     virtual void vf_0x38();
-    virtual void vf_0x40(void* fade, bool flag);  // told that the flag at +0xa0 changed
+    virtual void vf_0x40(void* fade, f32 time, bool flag);  // told that the flag at +0xa0 changed
 };
 
 struct UnkFadeHook {
@@ -60,12 +60,13 @@ void fn_7100072328(void* self, f32 time, f32 value) {
     fade->field_0x8c = time;
 }
 
-// Sets the flag at +0xa0, telling the listener when it changes.
-void fn_71000723cc(UnkFade* fade, bool flag) {
+// Sets the flag at +0xa0 at `time`, telling the listener when it changes. The original never touches
+// s0, so the callers' time reaches the listener (tools/forwarded_args.py).
+void fn_71000723cc(UnkFade* fade, f32 time, bool flag) {
     if (fade->field_0x9c && fade->field_0xa0 != flag) {
         if (!fade->field_0xa3) {
             if (UnkFadeListener* listener = fade->listener)
-                listener->vf_0x40(fade, flag);
+                listener->vf_0x40(fade, time, flag);
         }
         fade->field_0xa0 = flag;
     }

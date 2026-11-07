@@ -175,8 +175,10 @@ struct UnkSmDelayedOwner_b61 {
     UnkSmDelayed_b61 delayed;
 };
 
-// Takes its owner by reference (dereferenceable: the flag test is speculated into a ccmp).
-void fn_7100fdb8b8(UnkSmDelayedOwner_b61& self) {
+// Takes its owner by reference (dereferenceable: the flag test is speculated into a ccmp). Its one
+// caller also passes two stack addresses (x1, x2) that nothing here uses; x2 reaches the leaving
+// state's vf_0x18 untouched (tools/forwarded_args.py).
+void fn_7100fdb8b8(UnkSmDelayedOwner_b61& self, void* /*a*/, void* /*b*/) {
     RequestState_b61<7, 0x7fffffff>(&self.machine, 3);
     UnkSmState_b61* current = self.machine.current;
     if (current && ((current->id == 3) & (self.field_0xb4 == 0)))

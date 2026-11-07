@@ -82,7 +82,7 @@ void fn_7100202d5c(UnkItem* item, bool value);
 void fn_7100202d44(UnkItem* item, bool value);
 void fn_710020014c(UnkItem* item, bool value);
 void fn_7100200138(UnkItem* item, bool value);
-void fn_7100202fa0(UnkItem* item, u64 value);
+void fn_7100202fa0(UnkItem* item, u64 value, f32 f);
 f32 fn_7100202f54(UnkItem* item);
 
 bool fn_71001fda90(const UnkPtrArray* items, void* arg1, void* arg2, s32 id) {
@@ -137,9 +137,10 @@ void fn_71001fc904(const UnkPtrArray* items, bool value, s32 id) { ForwardFlag<f
 
 void fn_71001fc88c(const UnkPtrArray* items, bool value, s32 id) { ForwardFlag<fn_7100200138>(items, value, id); }
 
-void fn_71001fda54(const UnkPtrArray* items, const u64* value, s32 id) {
+// `f` reaches fn_7100202fa0 untouched, which passes it on to fn_71001f02d0 (it stores s0).
+void fn_71001fda54(const UnkPtrArray* items, const u64* value, s32 id, f32 f) {
     if (UnkItem* found = Find(items, id))
-        fn_7100202fa0(found, *value);
+        fn_7100202fa0(found, *value, f);
 }
 
 f32 fn_71001fd94c(const UnkPtrArray* items, s32 id) {
