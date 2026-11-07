@@ -125,6 +125,7 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - Integer and float arguments take separate register sequences on both AArch64 and x86-64: `(int, float, bool)` and `(ptr, ptr, float)` are the same call: same entry.
 - A struct-returning function (x8 on AArch64) called through a pointer from lifted code needs its hidden result pointer passed explicitly on x86-64 (rdi), or every argument shifts by one: same entry.
 - gen_lift byte mode can turn a data table into a string literal when its first bytes look like one (check.py does not check string relocations): on the port the literal is the executable's, and indexed reads walk into other strings. A scan of `src/lifted` for an indexed literal finds them: [port M1 round 7](#session-log-newest-first).
+- A matched definition can declare fewer parameters than the original forwards untouched (x86-64 drops them): `tools/forwarded_args.py` lists them by evidence tier; `open`-only candidates (a virtual function, one implementation) cannot be settled from the bytes: [Forwarded arguments in matched functions](#session-log-newest-first).
 - A hand-written call that leaves an argument in x0 (a constructor right after the allocation, a function given the previous call's result) is byte-identical on AArch64 and garbage on x86-64: declare and pass the argument. Conflicting declarations with different parameter counts point to them: [port M1 round 8](#session-log-newest-first).
 - lld relaxes `add sym@GOTPCREL(%rip), %reg` to `add $imm32, %reg` in a non-PIE program, wrong above 2 GB: link the port with `--no-relax`: same entry.
 - The static of a non-inline (or `static`) function is the executable's own copy on the port, while lifted code uses the image's: keep such state in the image off AArch64; `port_addresses.py` lists the unbindable ones: same entry.
@@ -133,6 +134,33 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Forwarded arguments in matched functions (2026-11-06, branch `claude/forwarded-args`).** A matched
+function can declare fewer parameters than the original passes on: a register nobody touches costs no
+instruction on AArch64, so `fn_7100087ecc` matched with four parameters while the original handed x4-x6
+untouched to a virtual call, and the x86-64 port dropped them and crashed (fixed on
+`claude/registry-forward-args`). `tools/forwarded_args.py` finds the rest: for every byte-matching function
+in `build/check/2.1.0/` it compares the declared argument registers (from the demangled symbol, with
+`tools/port_link.py`'s `param_list`/`arg_class`, `this` for member functions, one v register per float of a
+`CVector2D/3D/4D` or `CColor4F` by value) with the x0-x7/v0-v7 the original reads before writing them, by
+`tools/abi_facts.py`'s liveness in tiers: `read` (the function uses it), `call` (it reaches a direct call or
+tail branch untouched and the callee reads it, the callee judged by its own reads recursively, a variadic
+callee by none), `indirect` (it reaches a `blr` untouched and the direct callers set it), `slot` (another
+implementation of the same vtable slot reads it; tables come from runs of relative relocations to
+function starts, related by a shared entry at another index) and `open` (only abi_facts' rule for an
+indirect-calling function with no direct caller). A `*` marks registers the direct callers also set.
+Over 90,943 matched functions (101 variadic or unmangled skipped): **303 hits** with evidence, 130 in
+hand-written sources (153 in `src/clones`, 20 in `src/lifted`), 20 with callers that set the register;
+registers by tier 278 call, 49 slot, 24 read, 16 indirect. 8,217 more functions are `open`-only candidates
+(913 hand-written), which the bytes cannot settle: fn_7100087ecc was one (one implementation of its slot,
+no direct caller), so `--open` lists them for a crash to confirm. Fixed here, all still **O**:
+`fn_71011b882c` (GUI path cache: the name id its callers pass reaches `fn_71011b85fc`),
+`fn_7100147960` and `fn_71001479dc` (the character `src/game/GUI/CLabel.cpp` passes reaches
+`fn_71001bd620`, which the file had called "the current frame") and `fn_7100202d24` (its callers' `arg`
+reaches `fn_71001ef028`'s tail call). That leaves 9 boot hits; six are v0/x1/x2 handed to an indirect call
+that the callers set (`fn_71000723cc`, `fn_71006a1ef0`, `fn_7100ecfa10`, `fn_7100fdb8b8`, `fn_71010dca80`,
+`fn_7100f04434` through a direct callee), and `fn_710022586c`'s x1/x2 come from a callee whose callers set
+neither (likely a path its callers never take). Two false-positive sources are handled: an HFA by value
+(`CVector3D` in v0-v2) and a variadic callee, whose prologue saves every argument register.
 **Placeholder classes renamed apart for the port's addresses (2026-11-06, branch `claude/placeholder-class-names`).**
 `tools/port_addresses.py` leaves out a name whose matched uses disagree on its address. Five of its 12 conflicts were
 one placeholder class name standing for different classes in different files (PR 315 left them out of
