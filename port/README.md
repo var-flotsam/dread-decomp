@@ -128,7 +128,10 @@ in the Vulkan image (`docker build -t dread-port-linux-vulkan port/docker/vulkan
 headless on lavapipe, with `DREAD_NVN_SHADERS` naming the `shaders` target's output:
 `DREAD_PORT_IMAGE=dread-port-linux-vulkan port/docker/run.sh env DREAD_NVN_SHADERS=build/port/shaders build/port/linux/link/dread`.
 `tools/boot_distance.py --nvn [--shaders DIR]` does both. The executable is linked with `-Wl,--no-relax`: lld's GOT relaxation would
-turn `add sym@GOTPCREL(%rip)` into a 32-bit immediate, which cannot hold the executable's addresses above 2 GB. The window has no surface yet, so nothing is shown.
+turn `add sym@GOTPCREL(%rip)` into a 32-bit immediate, which cannot hold the executable's addresses above 2 GB. The window has no surface yet, so nothing is shown; to see the frames, set
+`DREAD_NVN_FRAME_DUMP=<dir>` (every `DREAD_NVN_FRAME_EVERY`-th present, default 60, at most
+`DREAD_NVN_FRAME_MAX`, default 100, as `<dir>/frame_<present>.png`; 8-bit RGBA, and RGBA16F clamped to 0..1).
+The images are the game's output: keep them under `build/`, never in the repository.
 
 **Boot distance** (`tools/boot_distance.py`, the smoke run): the sweep and the executable link
 above into `build/boot/`, then the executable under gdb with `DREAD_TRAP=log` and a time limit. It

@@ -161,8 +161,10 @@ void detail::WindowPresented(const void* window, std::int32_t index) {
     if (!w)
         return;
     w->presents++;
-    if (index >= 0 && static_cast<std::size_t>(index) < w->textures.size())
+    if (index >= 0 && static_cast<std::size_t>(index) < w->textures.size()) {
         w->presented = w->textures[index];
+        FrameDumpPresented(w->presented, w->presents);
+    }
 }
 
 void detail::RegisterWindowProcs() {

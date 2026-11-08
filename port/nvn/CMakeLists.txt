@@ -7,6 +7,7 @@ add_library(dread_nvn STATIC
   src/blocklinear.cpp
   src/command.cpp
   src/device.cpp
+  src/frame_dump.cpp
   src/memory.cpp
   src/pipeline.cpp
   src/procs.cpp

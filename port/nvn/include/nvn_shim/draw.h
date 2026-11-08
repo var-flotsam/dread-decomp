@@ -83,6 +83,11 @@ enum StencilOp : std::int32_t {
 // (fn_71001587f0), the only front face the game sets. Which of faces 1 and 2 NVN calls front does
 // not matter: with the front face 1, CULL_CW culls clockwise triangles either way. The shim takes
 // front face 1 as counter-clockwise, face 1 as the back and face 2 as the front.
+// The winding is the game's in its window coordinates: the upper-left origin, y down. The shim
+// flips each viewport (row 0 is clip-space y = +1), so Vulkan sees the opposite winding, and
+// FrontFace (pipeline.cpp) inverts it. Without that, every quad the game draws with CULL_CCW (its
+// 2D and full-screen passes, clockwise in its window) was culled and every frame stayed black
+// (found 2026-11-08 on the title movie's full-screen quad).
 enum Face : std::int32_t {
     kFaceNone = 0,
     kFaceBack = 1,
