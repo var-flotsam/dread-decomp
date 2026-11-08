@@ -5,6 +5,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "types.h"
+#include "game/UnkBehaviorTree.h"
 
 using base::reflection::CClass;
 
@@ -18,7 +19,6 @@ struct UnkYamplotObject {
 }  // namespace
 
 struct UnkComponent;
-bool fn_7100369490(UnkComponent*);
 void fn_71006eca24(void* entry, u64 source);
 void fn_71006ed63c(void* entry, u64 source);
 void fn_71006f3258();
@@ -32,7 +32,7 @@ __attribute__((always_inline)) static inline void Register(char* self, char* ent
 
 u32 fn_71006ef458(char* self, void* arg) {
     // `arg` (x1) reaches the base step untouched in the original (tools/forwarded_args.py).
-    u32 result = reinterpret_cast<u32 (*)(char*, void*)>(fn_7100369490)(self, arg);
+    u32 result = fn_7100369490(reinterpret_cast<char*>(self), arg);
     UnkYamplotObject* object = *reinterpret_cast<UnkYamplotObject**>(self + 0x10);
     UnkYamplotObject* component = nullptr;
     if (object && fn_710009d50c(object->vf_0x0(), fn_71006ee6b0()))

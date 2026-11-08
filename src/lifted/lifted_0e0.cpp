@@ -184,7 +184,7 @@ L_7100e00a8c:;
 }
 
 namespace callee { char* fn_71000839a0(u32, u32); }
-namespace callee { char* fn_71002894e8(); }
+namespace callee { char* fn_71002894e8(char*); }
 namespace callee { char* fn_7100297cd8(u64, u64); }
 void fn_7100e02688(char* p0, u32 p1) {
     u64 X0 = (u64)p0;
@@ -203,7 +203,7 @@ void fn_7100e02688(char* p0, u32 p1) {
     X1 = (u64)(0x4);
     X0 = (u64)(callee::fn_71000839a0(((u32)X0), ((u32)X1)));
     X21 = (u64)(((char*)X0));
-    X0 = (u64)(callee::fn_71002894e8());
+    X0 = (u64)(callee::fn_71002894e8(((char*)X0)));
     if (!((u64)(u64)(((char*)X21)) != 0)) goto L_7100e026d8;
     X8 = (u64)((u64)*(u64*)((char*)(((char*)X21)) + 0));
     X0 = (u64)(((char*)X21));

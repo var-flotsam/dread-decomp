@@ -7,9 +7,9 @@
 
 struct UnkEnergyWave_b65a4;
 
-// fn_7100ac38fc as src/game/CEmmyWaveMovementComponent/fn_71005028e4.cpp declares it, read here with the
-// component it takes in x0 (it reads +0x7c itself).
-void fn_7100ac38fc_b65a4(UnkEnergyWave_b65a4* self) asm("_Z13fn_7100ac38fcf");
+// Takes the component (it reads +0x7c itself); declared as src/game/CEmmyWaveMovementComponent/fn_71005028e4.cpp
+// declares it.
+void fn_7100ac38fc(void* self);
 
 // As src/game/CKraidAcidBlobsMovementComponent/CKraidAcidBlobsMovementComponent.cpp declares it.
 struct UnkBossComponent;
@@ -33,7 +33,7 @@ void fn_710064cc30(UnkEnergyWave_b65a4* self, UnkUnused_b65a4, const UnkEnergyWa
 
 bool fn_710064cb94(UnkEnergyWave_b65a4* self, u64 a, u64 b, UnkEnergyWaveHit_b65a4* hit, u64 d) {
     self->speed = 0.0f;
-    fn_7100ac38fc_b65a4(self);
+    fn_7100ac38fc(self);
     if (self->field_0x5ec == 0) {
         if (hit->nx * 0.0f + hit->ny + hit->nz * 0.0f >= 0.75f)
             fn_710064cc30(self, UnkUnused_b65a4(), hit);

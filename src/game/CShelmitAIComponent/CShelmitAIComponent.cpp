@@ -4,6 +4,7 @@
 // range at +0x634/+0x638 of the block's object (reaching a bound stops the rate), and applies it
 // (fn_71006badf4). Ends with fn_71006ba90c.
 #include "types.h"
+#include "game/UnkBehaviorTree.h"
 
 struct UnkShelmitRange {
     u8 pad_0x0[0x634];
@@ -26,14 +27,13 @@ struct UnkShelmitAI {
 
 // Declared as its other caller declares it (src/game/CGobblerAIComponent/fn_71005820c4.cpp); it also takes dt.
 struct UnkGobblerComponent;
-void fn_7100369c44(UnkGobblerComponent* self);
 void fn_71006ba194(UnkShelmitAI* self);
 void fn_71006ba7ec(UnkShelmitAI* self, f32 dt);
 void fn_71006badf4(UnkShelmitAI* self);
 void fn_71006ba90c(UnkShelmitAI* self);
 
 void fn_71006ba718(UnkShelmitAI* self, f32 dt) {
-    reinterpret_cast<void (*)(UnkShelmitAI*, f32)>(fn_7100369c44)(self, dt);
+    fn_7100369c44(reinterpret_cast<UnkSelf_7100369c44*>(self), dt);
     fn_71006ba194(self);
     fn_71006ba7ec(self, dt);
     f32 rate = self->field_0x146c8.rate;

@@ -55,7 +55,7 @@ __attribute__((always_inline)) static inline Vec_b59a3 Pos_b59a3(const UnkActor*
     return {actor->field_0x44, actor->field_0x54, actor->field_0x64};
 }
 
-void fn_710058e848(UnkGoliathXSlamWalk_b59a3* self);
+void fn_710058e848(UnkGoliathXSlamWalk_b59a3* self, f32 dt);
 
 static inline u64 Hash_b59a3(const CStrId& id) {
     return *reinterpret_cast<const u64*>(reinterpret_cast<const char*>(id.data) + 0x30);
@@ -63,7 +63,7 @@ static inline u64 Hash_b59a3(const CStrId& id) {
 
 // `dt` (s0) reaches the base update untouched in the original (tools/forwarded_args.py).
 void fn_7100586d0c(UnkGoliathXSlamWalk_b59a3* self, f32 dt) {
-    reinterpret_cast<void (*)(UnkGoliathXSlamWalk_b59a3*, f32)>(fn_710058e848)(self, dt);
+    fn_710058e848(self, dt);
     auto* comp = static_cast<UnkGoliathAI_b59a3*>(self->owner->field_0x240);
     if (!comp)
         return;

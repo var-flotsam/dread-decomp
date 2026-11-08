@@ -530,18 +530,11 @@ class AbiFacts:
                     changed = True
         return live_in, at
 
-    def held(self, addr: int) -> dict[int, tuple[int | None, frozenset]]:
-        """At each call leaving the function: (its direct target or None, the argument registers
-        that may hold something there), by a forward pass: on some path from the entry they still
-        hold the entry's value or the function wrote them since its last call (a call leaves its
-        possible results, RESULTS). A callee reads garbage in the others, in the original too.
-        A switch's br leads to every block after it."""
-        ins = self.decode(addr)
-        if ins is None:
-            return {}
+    def call_flow(self, addr: int, ins: list) -> tuple[list[list[int]], dict[int, int | None]]:
+        """Successors of each instruction within the function, and the calls leaving it: index ->
+        direct target, or None for an indirect call. A switch's br leads to every case."""
         at = {x.address: i for i, x in enumerate(ins)}
         end = addr + 4 * len(ins)
-        regs = frozenset(range(8)) | FLOAT_ARGS
         n = len(ins)
         starts = self.block_starts(addr, ins)
         succ: list[list[int]] = []
@@ -570,7 +563,20 @@ class AbiFacts:
                 else:
                     calls[i] = t
             succ.append(fall)
-        live_in: list[frozenset | None] = [None] * n
+        return succ, calls
+
+    def held(self, addr: int) -> dict[int, tuple[int | None, frozenset]]:
+        """At each call leaving the function: (its direct target or None, the argument registers
+        that may hold something there), by a forward pass: on some path from the entry they still
+        hold the entry's value or the function wrote them since its last call (a call leaves its
+        possible results, RESULTS). A callee reads garbage in the others, in the original too.
+        A switch's br leads to every block after it."""
+        ins = self.decode(addr)
+        if ins is None:
+            return {}
+        regs = frozenset(range(8)) | FLOAT_ARGS
+        succ, calls = self.call_flow(addr, ins)
+        live_in: list[frozenset | None] = [None] * len(ins)
         live_in[0] = regs
         work = [0]
         while work:
@@ -582,6 +588,28 @@ class AbiFacts:
                 out = s | (x.defs & regs)
             for j in succ[i]:
                 new = out if live_in[j] is None else live_in[j] | out
+                if new != live_in[j]:
+                    live_in[j] = new
+                    work.append(j)
+        return {ins[i].address: (t, live_in[i]) for i, t in calls.items() if live_in[i] is not None}
+
+    def untouched(self, addr: int) -> dict[int, tuple[int | None, frozenset]]:
+        """At each call leaving the function: (its direct target or None, the argument registers
+        that still hold the entry's value on every path from the entry: never written, and no
+        call in between). The callee receives exactly what the function was passed in them."""
+        ins = self.decode(addr)
+        if ins is None:
+            return {}
+        succ, calls = self.call_flow(addr, ins)
+        live_in: list[frozenset | None] = [None] * len(ins)
+        live_in[0] = frozenset(range(8)) | FLOAT_ARGS
+        work = [0]
+        while work:
+            i = work.pop()
+            x, s = ins[i], live_in[i]
+            out = s - CLOBBER if x.mnemonic in ("bl", "blr") else s - x.defs
+            for j in succ[i]:
+                new = out if live_in[j] is None else live_in[j] & out
                 if new != live_in[j]:
                     live_in[j] = new
                     work.append(j)

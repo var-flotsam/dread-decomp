@@ -6,10 +6,8 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkActor.h"
 #include "types.h"
+#include "game/CAttack.h"
 
-// Declared as its other callers declare it (src/game_s2/fn_71003f1b00.cpp).
-struct UnkSelf;
-u32 fn_7100360b84(UnkSelf* self);
 
 struct UnkShockerAI_b62a3;
 u32 fn_71005a4be8(UnkShockerAI_b62a3* self);
@@ -29,7 +27,7 @@ struct UnkGroundShockerAttack_b63a3 {
 
 // `arg` and `mode` (x1, w2) reach the base check untouched in the original (tools/forwarded_args.py).
 bool fn_71005a0a48(UnkGroundShockerAttack_b63a3* self, void* arg, u32 mode) {
-    bool ok = reinterpret_cast<bool (*)(UnkSelf*, void*, u32)>(fn_7100360b84)(reinterpret_cast<UnkSelf*>(self), arg, mode);
+    bool ok = fn_7100360b84(reinterpret_cast<CAttack*>(self), arg, mode);
     auto* ai = static_cast<UnkShockerAICast_b63a3*>(self->owner->field_0x240);
     if (ai && !fn_710009d50c(ai->vf_0x0(), fn_71005a4004()))
         ai = nullptr;

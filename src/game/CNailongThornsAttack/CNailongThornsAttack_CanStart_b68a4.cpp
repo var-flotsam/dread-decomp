@@ -3,11 +3,11 @@
 // global empty id. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "types.h"
+#include "game/CAttack.h"
 
 using base::global::CStrId;
 
 struct UnkSelf;
-u32 fn_7100360b84(UnkSelf* self);
 
 struct UnkThornsOwner_b68a4 {
     u8 pad_0x0[0xec];
@@ -25,7 +25,7 @@ CStrId fn_710060b344(UnkThornsAttack_b68a4* self);
 
 // `arg` and `mode` (x1, w2) reach the base check untouched in the original (tools/forwarded_args.py).
 bool fn_710060b274(UnkThornsAttack_b68a4* self, void* arg, u32 mode) {
-    bool ok = reinterpret_cast<bool (*)(UnkThornsAttack_b68a4*, void*, u32)>(fn_7100360b84)(self, arg, mode);
+    bool ok = fn_7100360b84(reinterpret_cast<CAttack*>(self), arg, mode);
     if (!ok || self->owner->field_0xec) {
         asm("" : "+r"(ok));
         return ok;

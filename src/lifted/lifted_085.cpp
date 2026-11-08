@@ -1694,21 +1694,21 @@ namespace callee { char* fn_710009d50c(char*, char*); }
 namespace callee { char* fn_7100818ab8(u64); }
 namespace callee { char* fn_710081b510(u64); }
 namespace callee { char* fn_7100832034(); }
-namespace callee { char* fn_710083cd30(); }
+namespace callee { char* fn_710083cd30(char*); }
 char* fn_710085b76c(char* p0, u32 p1) {
-    u64 X0;
+    u64 X0 = (u64)p0;
     u64 X1 = (u64)p1;
     u64 X8;
     u64 X19;
     u64 X20;
     u64 X21;
     X19 = (u64)((u32)(u64)((u32)X1));
-    X0 = (u64)(callee::fn_710083cd30());
+    X0 = (u64)(callee::fn_710083cd30(((char*)X0)));
     if (!((u64)(u64)(((char*)X0)) != 0)) goto L_710085b7fc;
     X8 = (u64)((u64)*(u64*)((char*)(((char*)X0)) + 0));
     X20 = (u64)(((char*)X0));
     X8 = (u64)((u64)*(u64*)((char*)(X8) + 0));
-    X0 = (u64)(((char* (*)())(X8))());
+    X0 = (u64)(((char* (*)(char*))(X8))(((char*)X0)));
     X21 = (u64)(((char*)X0));
     X0 = (u64)(callee::fn_7100832034());
     X1 = (u64)(((char*)X0));

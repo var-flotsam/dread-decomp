@@ -12,7 +12,7 @@ using base::reflection::UnkReflObject;
 
 extern CType g_unk_7172733578 __attribute__((visibility("hidden")));  // the class's type
 
-bool fn_7100900610(char* s);
+bool fn_7100900610(char* s, void* arg);
 
 struct UnkLavaPoolCharClass {
     u8 unk_0x0[0x88];
@@ -29,7 +29,7 @@ static inline UnkLavaPoolCharClass* AsLavaPool(UnkReflObject* obj) {
 
 // `arg` (x1) reaches the base step untouched in the original (tools/forwarded_args.py).
 bool fn_71008fbdcc(char* self, void* arg) {
-    bool ok = reinterpret_cast<bool (*)(char*, void*)>(fn_7100900610)(self, arg);
+    bool ok = fn_7100900610(self, arg);
     UnkLavaPoolCharClass* cls = AsLavaPool(*reinterpret_cast<UnkReflObject**>(self + 0x10));
     *reinterpret_cast<UnkLavaPoolCharClass**>(self + 0xca8) = cls;
     if (*reinterpret_cast<bool*>(self + 0x21)) {

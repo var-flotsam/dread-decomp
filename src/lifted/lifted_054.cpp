@@ -495,12 +495,12 @@ void fn_7100547828() {
     return;
 }
 
-namespace callee { char* fn_710054715c(char*); }
+namespace callee { char* fn_710054715c(char*, char*); }
 namespace callee { char* fn_71005479a0(char*); }
 namespace callee { char* fn_7100552324(char*); }
 char* fn_7100547fe4(char* p0, char* p1, u32 p2) {
     u64 X0 = (u64)p0;
-    u64 X1;
+    u64 X1 = (u64)p1;
     u64 X2 = (u64)p2;
     u64 X8;
     u64 X9;
@@ -517,7 +517,7 @@ char* fn_7100547fe4(char* p0, char* p1, u32 p2) {
     X19 = (u64)(((char*)X0));
     X0 = (u64)(((char*)X20));
     X21 = (u64)((u32)(u64)((u32)X2));
-    X0 = (u64)(callee::fn_710054715c(((char*)X0)));
+    X0 = (u64)(callee::fn_710054715c(((char*)X0), ((char*)X1)));
     X8 = (u64)(0x4b48);
     X8 = (u64)(0x14b48);
     X8 = (u64)((u32)*(u32*)((char*)(((char*)X19)) + (u64)(u64)(((u32)X8))));

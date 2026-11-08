@@ -4,6 +4,7 @@
 // template of src/game/UnkStateMachineSet_b60.cpp). A machine far into its owner (+0x14978) reads its states
 // array from the owner (UnkSmStatesAt_A2_b63), as the original does. Names are placeholders.
 #include "types.h"
+#include "game_s2/UnkSpitAttack.h"
 #include "base/UnkVector.h"
 #include "game/UnkManager_71726af468.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -151,9 +152,7 @@ void fn_71002f8de4(UnkSmAbility_A2_b63* self, f32 dt) {
 // A base update, then the time scaled by the owner's rate (when positive), then the machine's update.
 struct UnkSmRate_A2_b63;
 f32 fn_7100d7ce40(UnkSmRate_A2_b63*);
-void fn_7100426c70(void*);
-struct UnkSpitAttack;
-void fn_71003609a8(UnkSpitAttack*);
+void fn_7100426c70(void*, f32 dt);  // the base update, with the step (s0)
 
 template <u32 Offset>
 struct UnkSmRateOwner_A2_b63 {
@@ -174,9 +173,9 @@ struct UnkSmRateOwner_A2_b63 {
         Update_A2_b63<last, none>(machine, dt);                           \
     }
 
-UNK_SM_UPDATE_RATE_A2_B63(7100430df0, fn_7100426c70(self), 0x88, 7, 0x7fffffff)
-UNK_SM_UPDATE_RATE_A2_B63(710043eba4, fn_7100426c70(self), 0x88, 12, 0x7fffffff)
-UNK_SM_UPDATE_RATE_A2_B63(710048770c, fn_71003609a8(reinterpret_cast<UnkSpitAttack*>(self)), 0x80, 12, 0x7fffffff)
+UNK_SM_UPDATE_RATE_A2_B63(7100430df0, fn_7100426c70(self, dt), 0x88, 7, 0x7fffffff)
+UNK_SM_UPDATE_RATE_A2_B63(710043eba4, fn_7100426c70(self, dt), 0x88, 12, 0x7fffffff)
+UNK_SM_UPDATE_RATE_A2_B63(710048770c, fn_71003609a8(reinterpret_cast<UnkSpitAttack*>(self), dt), 0x80, 12, 0x7fffffff)
 
 // CCentralUnitCannonAIComponent's unit: nothing while the game manager's check holds, else the base update
 // and the machine's (far into the owner).

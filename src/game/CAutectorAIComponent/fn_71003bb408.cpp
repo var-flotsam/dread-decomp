@@ -27,11 +27,11 @@ struct UnkEntry;
 
 extern u64 g_unk_71726bd8d0[2] __attribute__((visibility("hidden")));
 
-void fn_7100369650();
+#include "game/UnkBehaviorTree.h"
 #include "game/UnkBroadphaseObject.h"
 
 void fn_71003bb408(UnkSelf* self) {
-    fn_7100369650();
+    fn_7100369650(reinterpret_cast<char*>(self));
     UnkComponent* object = self->field_0x30->field_0x2a0;
     UnkComponent* component = nullptr;
     if (object && fn_710009d50c(object->vf_0x0(), fn_710085fc44()))

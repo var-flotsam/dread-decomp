@@ -8,10 +8,9 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
+#include "game_s2/UnkSpitAttack.h"
 #include "types.h"
 
-struct UnkSpitAttack;
-void fn_71003609a8(UnkSpitAttack*);
 
 struct UnkHydrogigaAI_b57a3 {
     void** vtable;
@@ -34,7 +33,7 @@ struct UnkHydrogigaAttack_b57a3 {
 
 // `dt` (s0) reaches the base update untouched in the original (tools/forwarded_args.py).
 void fn_71005b2d14(UnkHydrogigaAttack_b57a3* self, f32 dt) {
-    reinterpret_cast<void (*)(UnkSpitAttack*, f32)>(fn_71003609a8)(reinterpret_cast<UnkSpitAttack*>(self), dt);
+    fn_71003609a8(reinterpret_cast<UnkSpitAttack*>(self), dt);
     auto* comp = static_cast<UnkHydrogigaAI_b57a3*>(self->owner->field_0x240);
     if (!comp)
         return;

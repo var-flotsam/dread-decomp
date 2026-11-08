@@ -152,6 +152,36 @@ char* fn_7100fc068c(char* p0, char* p1) {
     return p0;
 }
 
+namespace callee { char* fn_71000a1c60(u64); }
+namespace callee { char* fn_71010a1010(char*, u32); }
+namespace callee { char* fn_71010a4270(char*, u32, char*); }
+namespace callee { char* fn_71010a4740(char*, u32, char*); }
+u32 fn_7100fc06a0(char* p0) {
+    u64 X0 = (u64)p0;
+    u64 X1;
+    u64 X2;
+    u64 X19;
+    X1 = (u64)(0x1);
+    X19 = (u64)(((char*)X0));
+    X0 = (u64)(callee::fn_71010a1010(((char*)X0), ((u32)X1)));
+    if (!((u32)(u64)((u32)X0) == (u32)(7))) goto L_7100fc06ec;
+    X2 = (u64)((char*)"__TypedValueType");
+    X0 = (u64)(((char*)X19));
+    X1 = (u64)(0x1);
+    X0 = (u64)(callee::fn_71010a4740(((char*)X0), ((u32)X1), ((char*)X2)));
+    if (!((u64)(u64)(((char*)X0)) == 0)) goto L_7100fc06f0;
+    X2 = (u64)((char*)"__TypedValueType");
+    X0 = (u64)(((char*)X19));
+    X1 = (u64)(0x1);
+    X0 = (u64)(callee::fn_71010a4270(((char*)X0), ((u32)X1), ((char*)X2)));
+L_7100fc06ec:;
+    X0 = (u64)(0);
+L_7100fc06f0:;
+    X0 = (u64)(callee::fn_71000a1c60(X0));
+    X0 = (u64)((u32)(u64)(0));
+    return ((u32)X0);
+}
+
 void fn_7100fc13dc() {
     return;
 }

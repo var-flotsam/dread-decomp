@@ -5,10 +5,10 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "types.h"
+#include "game/UnkComponent.h"
 
 using base::reflection::UnkReflObject;
 
-bool fn_71010c41bc();  // the base method (declared without its arguments elsewhere)
 
 struct UnkCharClassBoneToConstant_bc {
     u8 pad_0x0[0x58];
@@ -29,7 +29,8 @@ struct UnkBoneToConstant_bc {
 };
 
 u32 fn_7100803ef4(UnkBoneToConstant_bc* self, void* arg) {
-    u32 result = reinterpret_cast<u32 (*)(UnkBoneToConstant_bc*, void*)>(fn_71010c41bc)(self, arg);
+    // Read as a word here (the original keeps bit 0 of it), as a flag by the other callers.
+    u32 result = reinterpret_cast<u32 (*)(UnkBaseComponent*, void*)>(fn_71010c41bc)(reinterpret_cast<UnkBaseComponent*>(self), arg);
     UnkReflObject* object = self->object;
     UnkReflObject* cast = object && fn_710009d50c(object->vf_0x0(), fn_7100804e24()) ? object : nullptr;
     self->object = cast;

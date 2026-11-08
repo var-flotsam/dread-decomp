@@ -10,9 +10,6 @@
 
 using base::global::CRntString;
 
-CRntString fn_7100a9f704();
-CRntString fn_7100a9f740();
-
 struct UnkShipRechargeComponent_b51 {
     u8 unk_0x0[0x10];
     base::reflection::UnkReflObject* charClass;  // 0x10
@@ -20,10 +17,14 @@ struct UnkShipRechargeComponent_b51 {
     bool active;  // 0x539
 };
 
-template <u32 Offset, CRntString (*Default)()>
+// The defaults, read from the component (+0x500).
+CRntString fn_7100a9f704(UnkShipRechargeComponent_b51* self);
+CRntString fn_7100a9f740(UnkShipRechargeComponent_b51* self);
+
+template <u32 Offset, CRntString (*Default)(UnkShipRechargeComponent_b51*)>
 static inline CRntString ShipRechargeName(UnkShipRechargeComponent_b51* self) {
     if (!self->active)
-        return Default();
+        return Default(self);
     base::reflection::UnkReflObject* o = self->charClass;
     char* cls = (o && fn_710009d50c(o->vf_0x0(), fn_7100a8ae5c())) ? reinterpret_cast<char*>(o) : nullptr;
     return *reinterpret_cast<const CRntString*>(cls + Offset);

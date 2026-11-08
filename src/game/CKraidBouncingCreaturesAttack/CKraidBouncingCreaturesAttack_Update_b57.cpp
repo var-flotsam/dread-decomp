@@ -48,11 +48,11 @@ static inline __attribute__((always_inline)) void Send_b57a4(void* target, u64 h
 
 // The base attack update, typed as an opaque attack (one declaration for every caller).
 struct UnkKraidAttack;
-void fn_71005f201c(UnkKraidAttack* self);
+void fn_71005f201c(UnkKraidAttack* self, f32 dt);
 void** fn_71005e2c08(UnkKraidBouncingList_b57a4* list, u32 index);
 
 void fn_71005f2f5c(UnkKraidBouncingAttack_b57a4* self, f32 dt) {
-    fn_71005f201c(reinterpret_cast<UnkKraidAttack*>(self));
+    fn_71005f201c(reinterpret_cast<UnkKraidAttack*>(self), dt);
     f32 t = self->field_0x40;
     if (!(t > 0.0f))
         return;

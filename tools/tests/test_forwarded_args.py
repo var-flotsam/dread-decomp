@@ -46,6 +46,22 @@ FUNCTIONS = {
 }
 
 
+STR_X1_X0 = 0xF9000001      # str x1, [x0]
+MOV_X1_X0 = 0xAA0003E1      # mov x1, x0
+CBZ_X0_8 = 0xB4000040       # cbz x0, .+8
+
+# Calls: BASE reads x1; FWD tail-branches to it with x1 untouched; CALLS calls it and returns;
+# HALF writes x1 on one path only (not untouched); SETS writes x1 before the call.
+BASE, FWD, CALLS, HALF, SETS = (0x10000 + 0x100 * n for n in range(5))
+CALL_FUNCTIONS = {
+    BASE: code(BASE, STR_X1_X0, RET),
+    FWD: code(FWD, lambda a: b(a, BASE)),
+    CALLS: code(CALLS, lambda a: bl(a, BASE), RET),
+    HALF: code(HALF, CBZ_X0_8, MOV_X1_X0, lambda a: b(a, BASE)),
+    SETS: code(SETS, MOV_X1_X0, lambda a: b(a, BASE)),
+}
+
+
 class FakeOriginal:
     def __init__(self, functions: dict[int, bytes]):
         self.code = functions
@@ -166,6 +182,76 @@ class Tiers(unittest.TestCase):
         af = abi_facts.AbiFacts(orig, rows={}, graph=FakeGraph())
         tiers = {fa.reg_name(k): fa.TIERS[t] for k, t in fa.tiered_live_in(af, SWITCH).items()}
         self.assertEqual(tiers, {"x0": "read", "x1": "read"})
+
+
+class Calls(unittest.TestCase):
+    def test_declared_regs(self):
+        self.assertEqual(fa.declared_regs(fa.Declared(2, 1)), frozenset({0, 1, 100}))
+
+    def test_dropped(self):
+        held = frozenset({0, 1, 2, 100})
+        # the caller declares this and an int; the callee reads x0 and x1 but declares only this
+        self.assertEqual(fa.dropped(held, fa.Declared(2, 0), {0, 1}, fa.Declared(1, 0)), {1})
+        # a register the caller does not declare is not its to pass on
+        self.assertEqual(fa.dropped(held, fa.Declared(1, 0), {0, 1}, fa.Declared(1, 0)), set())
+        # a float the callee reads beyond its declaration
+        self.assertEqual(fa.dropped(held, fa.Declared(1, 1), {0, 100}, fa.Declared(1, 0)), {100})
+        # not held untouched: the caller computes it (the call passes something else)
+        self.assertEqual(fa.dropped(frozenset({0}), fa.Declared(2, 0), {0, 1}, fa.Declared(1, 0)), set())
+
+    def test_casts_callee(self):
+        text = "reinterpret_cast<void (*)(UnkFoo*, float)>(fn_7100001234)(self, dt);"
+        self.assertTrue(fa.casts_callee(text, "fn_7100001234"))
+        self.assertTrue(fa.casts_callee("reinterpret_cast<F>(&ns::fn_7100001234)(a);", "fn_7100001234"))
+        self.assertFalse(fa.casts_callee(text, "fn_7100004321"))
+        self.assertFalse(fa.casts_callee("fn_7100001234(self);", "fn_7100001234"))
+        # a template parameter cast to a function pointer, the callee its argument
+        step = ("reinterpret_cast<u32 (*)(UnkSelf*, void*)>(Step)(self, arg);\n"
+                "return Initialise<fn_7100001234, 0x10>(self, arg);")
+        self.assertTrue(fa.casts_callee(step, "fn_7100001234"))
+        self.assertFalse(fa.casts_callee(step, "fn_7100004321"))
+        # a cast of a pointer to data is no call through a cast
+        self.assertFalse(fa.casts_callee("reinterpret_cast<u8*>(self); fn_7100001234(self);", "fn_7100001234"))
+
+    def test_bare_name(self):
+        self.assertEqual(fa.bare_name("CInfester::fn_71005cb0b8(float) const"), "fn_71005cb0b8")
+
+
+@unittest.skipIf(abi_facts is None, "capstone is not installed")
+class CallSites(unittest.TestCase):
+    def setUp(self):
+        self.af = abi_facts.AbiFacts(FakeOriginal(CALL_FUNCTIONS), rows={}, graph=FakeGraph())
+
+    def test_untouched_tail(self):
+        self.assertEqual(self.af.untouched(FWD), {FWD: (BASE, abi_facts.ARGS - {8})})
+
+    def test_untouched_call(self):
+        t, regs = self.af.untouched(CALLS)[CALLS]
+        self.assertEqual(t, BASE)
+        self.assertIn(1, regs)
+
+    def test_one_path_writes(self):
+        t, regs = self.af.untouched(HALF)[HALF + 8]
+        self.assertNotIn(1, regs)
+        self.assertIn(0, regs)
+
+    def test_callee_reads(self):
+        self.assertEqual(fa.Analyzer(self.af).callee_args(BASE, fa.CALL, 0), {0, 1})
+
+    def test_call_sites(self):
+        import asmdiff
+        relocs = {0: asmdiff.ObjReloc(asmdiff.JUMP26, "_Z13fn_7100010000P6UnkFoo", 0)}
+        sites = fa.call_sites(self.af, FWD, relocs)
+        self.assertEqual([(o, t, s) for o, t, s, _ in sites], [(0, BASE, "_Z13fn_7100010000P6UnkFoo")])
+        held = sites[0][3]
+        self.assertEqual(fa.dropped(held, fa.Declared(2, 0), {0, 1}, fa.Declared(1, 0)), {1})
+        sets = fa.call_sites(self.af, SETS, {4: relocs[0]})
+        self.assertEqual(fa.dropped(sets[0][3], fa.Declared(2, 0), {0, 1}, fa.Declared(1, 0)), set())
+
+    def test_data_relocs_ignored(self):
+        import asmdiff
+        relocs = {0: asmdiff.ObjReloc(asmdiff.GOT_PAGE, "_ZN3Foo3barE", 0)}
+        self.assertEqual(fa.call_sites(self.af, FWD, relocs), [])
 
 
 if __name__ == "__main__":

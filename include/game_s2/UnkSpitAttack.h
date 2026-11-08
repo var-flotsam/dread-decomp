@@ -59,6 +59,11 @@ struct UnkSpitAttack {
 };
 static_assert(__builtin_offsetof(UnkSpitAttack, field_0xf8) == 0xf8, "UnkSpitAttack placeholder layout");
 
+// The base update of the attacks built on this machine: the requested state becomes the current
+// one, then the current state's step runs with `dt` (s0, which every caller hands on untouched;
+// tools/forwarded_args.py --calls). Lifted (src/lifted/).
+void fn_71003609a8(UnkSpitAttack* self, f32 dt);
+
 // Switches to the state `state` when it differs and sets up what that state needs. Defined in
 // src/game/CBigkranXSpitAttack/fn_71003f24f4.cpp.
 void fn_71003f24f4(UnkSpitAttack* self, u32 state);

@@ -955,6 +955,40 @@ char* fn_7101076234(char* p0, char* p1) {
     return p0;
 }
 
+namespace callee { char* fn_71010a1010(char*, u32); }
+namespace callee { char* fn_71010a4740(char*, u32, char*); }
+namespace noret { [[noreturn]] void fn_71010a4270(char*, u32, char*); }
+u32 fn_7101076250(char* p0) {
+    u32 r0_1 = 0x1;
+    char* r1_20 = p0;
+    char* r2_0 = callee::fn_71010a1010(p0, r0_1);
+    char* r3_2 = (char*)"__DisplayObjectType";
+    char* r4_0 = r1_20;
+    u32 r5_1 = 0x1;
+    char* r6_0 = callee::fn_71010a4740(r4_0, r5_1, r3_2);
+    if ((u64)(u64)(r6_0) != 0) {
+        char* r8_19 = r6_0;
+        u64 r9_0 = (u64)*(u64*)((char*)(r6_0) + 0);
+        if ((u64)(u64)(r9_0) != 0) {
+            u32 r11_8 = (u32)*(u32*)((char*)(r9_0) + 8);
+            u32 r12_8 = (u32)(u64)(r11_8) - (u32)(1);
+            *(u32*)((char*)(r9_0) + 8) = (u32)(u64)(r12_8);
+            if ((u32)(u64)(r11_8) == (u32)(1)) {
+                u64 r15_8 = (u64)*(u64*)((char*)(r9_0) + 0);
+                u64 r16_8 = (u64)*(u64*)((char*)(r15_8) + 16);
+                char* r17_0 = ((char* (*)(u64))(r16_8))(r9_0);
+            }
+            *(u64*)((char*)(r8_19) + 0) = (u64)(u64)(0);
+        }
+        u32 r21_0 = (u32)(u64)(0);
+        return r21_0;
+    }
+    char* r24_2 = (char*)"__DisplayObjectType";
+    char* r25_0 = r1_20;
+    u32 r26_1 = 0x1;
+    noret::fn_71010a4270(r25_0, r26_1, r24_2);
+}
+
 extern char g_unk_7172a016d8[];
 extern char g_unk_7172a016d9[];
 namespace callee { char* fn_7100000250(char*, char*, char*); }
@@ -2092,21 +2126,20 @@ u32 fn_710107f040() {
 
 namespace callee { char* fn_710007e704(char*, char*); }
 namespace callee { char* fn_710007ecd4(char*); }
-namespace callee { char* fn_71010c0b40(char*, char*, u64, f32); }
-namespace fret { f32 fn_710007e704(char*, char*); }
-namespace wret { u32 fn_71010c0b40(char*, char*, u64, f32); }
+namespace callee { char* fn_71010c0b40(char*, char*, u64); }
+namespace wret { u32 fn_71010c0b40(char*, char*, u64); }
 u32 fn_710107f390(char* p0) {
     alignas(16) char stk[0x30];
     char* r0_20 = (char*)"";
     char* r1_19 = p0;
     char* r2_0 = (stk + 0x0);
     char* r3_1 = r0_20;
-    f32 r4_100 = fret::fn_710007e704(r2_0, r3_1);
+    char* r4_0 = callee::fn_710007e704(r2_0, r3_1);
     u64 r5_8 = (u64)*(u64*)(stk + 0x0);
     u64 r6_2 = ((u64)(u64)(r5_8) == (u64)(0)) ? (u64)(u64)(r0_20) : (u64)((u64)(u64)(r5_8));
     char* r7_1 = (char*)"s";
     char* r8_0 = r1_19;
-    u32 r9_0 = wret::fn_71010c0b40(r8_0, r7_1, r6_2, r4_100);
+    u32 r9_0 = wret::fn_71010c0b40(r8_0, r7_1, r6_2);
     u32 r10_19 = (u32)(u64)(r9_0);
     char* r11_0 = (stk + 0x0);
     char* r12_0 = callee::fn_710007ecd4(r11_0);

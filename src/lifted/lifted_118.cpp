@@ -880,7 +880,7 @@ char* fn_71011867d4(char* p0) {
 
 extern char g_unk_71726bc560[];
 namespace callee { char* fn_71000839a0(u32, u32); }
-namespace callee { char* fn_7100fd3804(); }
+namespace callee { char* fn_7100fd3804(char*); }
 namespace callee { char* fn_7100fdb640(char*, char*); }
 char* fn_71011867ec(char* p0) {
     u64 X0 = (u64)p0;
@@ -896,7 +896,7 @@ char* fn_71011867ec(char* p0) {
     X1 = (u64)(0x3f);
     X0 = (u64)(callee::fn_71000839a0(((u32)X0), ((u32)X1)));
     X20 = (u64)(((char*)X0));
-    X0 = (u64)(callee::fn_7100fd3804());
+    X0 = (u64)(callee::fn_7100fd3804(((char*)X0)));
     *(u64*)((char*)(((char*)X21)) + 0) = (u64)(u64)(((char*)X20));
 L_7101186828:;
     X1 = (u64)((((char*)X19)) + 8);
@@ -904,7 +904,7 @@ L_7101186828:;
     X0 = (u64)(callee::fn_7100fdb640(((char*)X0), ((char*)X1)));
     X0 = (u64)((u64)*(u64*)((char*)(((char*)X19)) + 64));
     if (!((u64)(u64)(X0) != 0)) goto L_710118684c;
-    return ((char* (*)())(X0))();
+    return ((char* (*)(u64))(X0))(X0);
 L_710118684c:;
     return (char*)(u64)(X0);
 }

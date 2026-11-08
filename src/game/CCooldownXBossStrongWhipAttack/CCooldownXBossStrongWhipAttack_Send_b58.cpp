@@ -9,7 +9,7 @@
 
 
 struct UnkWhipSend_b58;
-void fn_71004c1968(UnkWhipSend_b58* self);  // the base update (a thunk to fn_71003609a8)
+void fn_71004c1968(UnkWhipSend_b58* self, f32 dt);  // the base update (a thunk to fn_71003609a8)
 bool fn_7101161088(void*);
 
 struct UnkWhipSendOwner_b58 {
@@ -25,7 +25,7 @@ struct UnkWhipSend_b58 {
 };
 
 void fn_71004ca7c4(UnkWhipSend_b58* self, f32 dt) {
-    fn_71004c1968(self);
+    fn_71004c1968(self, dt);
     if (!(self->timer >= 0.0f))
         return;
     UnkActor* actor = fn_7100d7c990(reinterpret_cast<UnkActor*>(self->owner));

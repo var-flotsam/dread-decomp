@@ -1256,12 +1256,12 @@ char* fn_7100b465a8(char* p0) {
 extern char g_unk_7101d47108[];
 extern char g_unk_7101d47310[];
 namespace callee { char* fn_7100b43204(u64, u32); }
-namespace callee { char* fn_7100b45b5c(); }
+namespace callee { char* fn_7100b45b5c(char*); }
 namespace callee { char* fn_7100e8d8b0(); }
 namespace callee { char* fn_71010c0e70(u64, char*, u32); }
 char* fn_7100b46698(char* p0) {
     char* r0_19 = p0;
-    char* r1_0 = callee::fn_7100b45b5c();
+    char* r1_0 = callee::fn_7100b45b5c(p0);
     u64 r2_8 = (u64)*(a_u64*)((char*)(r0_19) + 248);
     char* r3_9 = (char*)g_unk_7101d47108;
     u64 r4_9 = (u64)*(a_u64*)((char*)(r3_9) + 0);

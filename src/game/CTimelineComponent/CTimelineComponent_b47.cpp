@@ -4,10 +4,10 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "types.h"
+#include "game/UnkComponent.h"
 
 using base::reflection::UnkReflObject;
 
-bool fn_71010c41bc();  // the base method (declared without its arguments elsewhere)
 
 struct UnkTimelineDefLink {
     u8 pad_0x0[0x30];
@@ -38,7 +38,7 @@ struct UnkTimelineComponentB47 {
 };
 
 bool fn_7100a2babc(UnkTimelineComponentB47* self, void* arg) {
-    bool result = reinterpret_cast<bool (*)(UnkTimelineComponentB47*, void*)>(fn_71010c41bc)(self, arg);
+    bool result = fn_71010c41bc(reinterpret_cast<UnkBaseComponent*>(self), arg);
     UnkCharClassTimeline* object = self->object;
     if (object && fn_710009d50c(object->vf_0x0(), fn_7100796bc4())) {
         self->def = object;

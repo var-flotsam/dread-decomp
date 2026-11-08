@@ -5,6 +5,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "types.h"
+#include "game/UnkComponent.h"
 
 using base::reflection::UnkReflObject;
 
@@ -82,14 +83,13 @@ void fn_71008e7bc0(UnkLightingComponent3* self) {
     fn_710024f910(self);
 }
 
-bool fn_71010c41bc();  // the base method (declared without its arguments elsewhere)
 void fn_71008e756c(UnkLightingComponent3* self, void* arg);
 extern __attribute__((visibility("hidden"))) base::reflection::CClass g_unk_7172732948;  // its class
 
 // Calls the base method; when the object at +0x10 is a CCharClassLightingComponent, caches it at
 // +0x88 and passes its +0x58 to fn_71008e756c, else clears the cache.
 bool fn_71008e74f0(UnkLightingComponent3* self, void* arg) {
-    bool result = reinterpret_cast<bool (*)(UnkLightingComponent3*, void*)>(fn_71010c41bc)(self, arg);
+    bool result = fn_71010c41bc(reinterpret_cast<UnkBaseComponent*>(self), arg);
     UnkReflObject* object = self->object;
     if (object) {
         const base::reflection::CClass* type = object->vf_0x0();

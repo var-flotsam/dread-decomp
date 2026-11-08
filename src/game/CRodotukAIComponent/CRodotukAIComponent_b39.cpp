@@ -3,8 +3,7 @@
 // (the definition at +0x14858), counting it in +0x14864. Names and layouts are placeholders.
 #include "types.h"
 
-// Declared as src/game/CBehaviorTreeAIComponent/fn_7100369650.cpp defines it.
-void fn_7100369650();  // declared elsewhere without its argument; called with it
+#include "game/UnkBehaviorTree.h"
 
 struct UnkRodotukEntry_rai {
     u32 id;
@@ -28,7 +27,7 @@ struct UnkRodotukAI_rai {
 };
 
 void fn_71006722ac(UnkRodotukAI_rai* self) {
-    reinterpret_cast<void (*)(char*)>(fn_7100369650)(reinterpret_cast<char*>(self));
+    fn_7100369650(reinterpret_cast<char*>(self));
     UnkRodotukDef_rai* def = self->def;
     if (!def)
         return;

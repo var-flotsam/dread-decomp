@@ -28,3 +28,10 @@ static_assert(__builtin_offsetof(UnkBossAIComponent, field_0x4fc) == 0x4fc, "Unk
 // The constructor (the base constructor fn_7100416db8, the vtable, then its flags and defaults).
 // Called first by the constructors of the boss components.
 void fn_710041a198(UnkBossAIComponent* self);
+
+// The boss AI components' initialisation step: the behaviour-tree step (fn_7100369490) with the same
+// argument, then the boss's own part.
+u32 fn_71003ac8f4(UnkBossAIComponent* self, void* arg);
+
+// A boss AI components' message step, with the argument (x1) the derived handlers pass on.
+void fn_71003aea40(UnkBossAIComponent* self, void* arg);

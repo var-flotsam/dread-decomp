@@ -5,6 +5,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkActor.h"
 #include "types.h"
+#include "game/CAttack.h"
 
 struct UnkYamplotXAI_ybt {
     void** vtable;
@@ -20,14 +21,13 @@ struct UnkBiteAttack_ybt {
 
 // The base attack's check (declared elsewhere without its arguments; called with them).
 struct UnkSelf;
-u32 fn_7100360b84(UnkSelf*);
 // Declared elsewhere with a float argument; this caller leaves s0 unset, so the value passed is left
 // undefined here.
 struct UnkYamplotXAI;
 bool fn_71006f29c4(UnkYamplotXAI* self, f32 value);
 
-bool fn_71006eca84(UnkBiteAttack_ybt* self, void* arg1, void* arg2) {
-    bool ok = reinterpret_cast<bool (*)(UnkBiteAttack_ybt*, void*, void*)>(fn_7100360b84)(self, arg1, arg2);
+bool fn_71006eca84(UnkBiteAttack_ybt* self, void* arg1, u32 arg2) {
+    bool ok = fn_7100360b84(reinterpret_cast<CAttack*>(self), arg1, arg2);
     UnkYamplotXAI_ybt* ai = static_cast<UnkYamplotXAI_ybt*>(self->owner->field_0x240);
     if (ai) {
         bool is_yamplot = fn_710009d50c(ai->vf_0x0(), fn_71006ef064());

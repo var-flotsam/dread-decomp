@@ -8,11 +8,11 @@
 #include "../../game_s2/UnkSpitSend.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
+#include "game/UnkBossAIComponent.h"
 
 struct UnkActorTarget;
 void fn_7101178e08(UnkActorTarget*, u32, u32, u32, f32);
 struct UnkComponent;
-void fn_71003aea40(UnkComponent* self);
 
 struct UnkBigFistIdData_b59 {
     u8 pad_0x0[0x30];
@@ -59,5 +59,5 @@ void fn_71003e5ef8(UnkBigFistAI_b59* self, void* arg) {
             }
         }
     }
-    reinterpret_cast<void (*)(UnkBigFistAI_b59*, void*)>(fn_71003aea40)(self, arg);
+    fn_71003aea40(reinterpret_cast<UnkBossAIComponent*>(self), arg);
 }

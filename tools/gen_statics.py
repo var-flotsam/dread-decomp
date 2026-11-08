@@ -546,6 +546,7 @@ def _own_init(gl, lifter, ins, at, before, region):
 
 def own_patch(gl) -> None:
     """Teach gen_lift's Lifter (in this process only) the statics above."""
+    gl.Lifter.patched = True  # (lift_all: no spawned workers, which would not see these)
     find, gref = gl.Lifter.find_guards, gl.Lifter.global_ref
 
     def find_guards(self, ins):
@@ -628,6 +629,8 @@ def own_statics(orig: asmdiff.Original, addrs: set[int]) -> tuple[list[tuple[str
     statics, in address order; and the candidate count and matched bytes."""
     import gen_lift as gl
     own_patch(gl)
+    if gl.Lifter.facts is None:
+        gl.load_facts(orig, orig.version)  # (pass-through, as gen_lift: calls name what their callees read)
     cands = own_candidates(gl, orig, addrs)
     reloc_bad: set[int] = set()  # byte-identical lifts naming the wrong target (gen_lift's strict diff)
     chosen, _, _ = gl.lift_rounds(orig, cands, ROOT / "build" / "gen_statics" / "own", reloc_bad=reloc_bad)

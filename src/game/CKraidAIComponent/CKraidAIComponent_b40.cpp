@@ -15,6 +15,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
+#include "game/UnkBossAIComponent.h"
 
 // The handle the component refers to (base::UnkRefCounted's layout); its target is at +0x10.
 struct UnkCounted : base::UnkRefCounted {
@@ -178,7 +179,6 @@ bool fn_71005ff92c() {
 typedef u64 u64_a4_kr __attribute__((aligned(4)));
 
 struct UnkSelf;
-u32 fn_71003ac8f4(UnkSelf*);
 void fn_71005f662c(void* entry, u64 source);
 void fn_71005f2614(void* entry, u64 source);
 void fn_71005f4208(void* entry, u64 source);
@@ -200,7 +200,7 @@ static inline __attribute__((always_inline)) void Register_kr(char* self, u32 of
 
 // `arg` (x1) reaches the base step untouched in the original (tools/forwarded_args.py).
 u32 fn_71005fbdb0(char* self, void* arg) {
-    u32 result = reinterpret_cast<u32 (*)(UnkSelf*, void*)>(fn_71003ac8f4)(reinterpret_cast<UnkSelf*>(self), arg);
+    u32 result = fn_71003ac8f4(reinterpret_cast<UnkBossAIComponent*>(self), arg);
     base::reflection::UnkReflObject* object = *reinterpret_cast<base::reflection::UnkReflObject**>(self + 0x10);
     base::reflection::UnkReflObject* component = nullptr;
     if (object && fn_710009d50c(object->vf_0x0(), fn_71005f9734()))

@@ -18,7 +18,7 @@ struct UnkHydrogigaOwner_b62a3 {
 };
 
 struct UnkHydrogigaTarget_b62a3;
-UnkHydrogigaTarget_b62a3* fn_71005b9ad8(void* part);
+UnkHydrogigaTarget_b62a3* fn_71005b9ad8(void* part, const u64* key);  // the entry with the id at key
 void fn_7100709f20(UnkHydrogigaTarget_b62a3* target, UnkHydrogigaOwner_b62a3* owner, UnkHydrogigaKey_b62a3* key,
                    f32 value);
 
@@ -35,7 +35,7 @@ void fn_71005c0e74(UnkHydrogigaSpawnAI_b62a3* self, base::global::CStrId* msg) {
     void* b = owner->field_0x2a0;
     if (!a || !b)
         return;
-    UnkHydrogigaTarget_b62a3* target = fn_71005b9ad8(self->field_0x149a0);
+    UnkHydrogigaTarget_b62a3* target = fn_71005b9ad8(self->field_0x149a0, reinterpret_cast<const u64*>(msg));
     if (!target)
         return;
     f32 value = msg->data == g_unk_71726eb450.data ? 100.0f : 60.0f;

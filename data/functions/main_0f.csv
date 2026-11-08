@@ -4907,7 +4907,7 @@ address,size,name,name_source,subsystem,status
 0x7100fbcb3c,4,fn_7100fbcb3c,unknown,unknown,O
 0x7100fbcb40,20,fn_7100fbcb40,unknown,unknown,O
 0x7100fbcb54,20,fn_7100fbcb54,unknown,unknown,O
-0x7100fbcb70,128,lua_lib::__gc,string,script/bindings,U
+0x7100fbcb70,128,lua_lib::__gc,string,script/bindings,O
 0x7100fbcbf0,260,lua_lib::__eq,string,script/bindings,U
 0x7100fbcd00,512,lua_lib::__newindex,string,script/bindings,U
 0x7100fbcf00,856,lua_lib::__index,string,script/bindings,U
@@ -4975,7 +4975,7 @@ address,size,name,name_source,subsystem,status
 0x7100fc0674,4,fn_7100fc0674,unknown,unknown,O
 0x7100fc0678,20,fn_7100fc0678,unknown,unknown,O
 0x7100fc068c,20,fn_7100fc068c,unknown,unknown,O
-0x7100fc06a0,100,lua_lib::__gc_cab5d8,string,script/bindings,U
+0x7100fc06a0,100,lua_lib::__gc_cab5d8,string,script/bindings,O
 0x7100fc0710,252,lua_lib::__eq_cab5d8,string,script/bindings,U
 0x7100fc0810,308,lua_lib::__newindex_cab5d8,string,script/bindings,U
 0x7100fc0950,296,lua_lib::__index_cab5d8,string,script/bindings,U
