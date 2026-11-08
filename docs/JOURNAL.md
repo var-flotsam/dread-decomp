@@ -152,6 +152,17 @@ coordinates (upper-left origin, y down), while the shim flips the viewport, so V
 counter-clockwise and culled it. `FrontFace` now inverts the mapping (`draw.h`, "Faces"). With that alone the title movie
 and logo render (the frames fade in and hold from about present 3,300). Still missing: GUI asset textures (BC1 etc.) are
 never uploaded (`blocklinear.cpp` is not called yet), so they sample as zeros, and two 800x450 blur targets stay black.
+**The title screen draws; the scene's unknown render-target formats wait for a scene (2026-11-07, branch `claude/nvn-formats`).**
+After #326 every draw was skipped because `shaders.manifest` was missing. It had not been built for the boot's
+`build/port/shaders` (`tools/bshdat.py --install`, 27 s: 1,342 of 1,342 stages). `tools/boot_distance.py --nvn` now says
+so up front. With it, the title screen in 200 s records 110,205 draws, none skipped, with 6 pipelines, 94,670 render passes
+and 15,952 command buffers submitted. The two formats the shim refuses come from the scene setup. `0x29` (render-target table entry 9) is
+four half-resolution targets of `fn_71001d9c28`; `0x32` (entry 12) is four 2048x2048 targets of `fn_71001e9b54`, likely
+the shadow cascades. The only shadow sampler in the shaders is `sampler2DShadow ps_shadowmap`, though the swizzle function
+`fn_71001604e0` does not group `0x32` with the depth formats. No draw or sampler of the title screen uses either target. Rather than guess, the shim now
+reports each use of a texture whose format it does not know (the colour target's fragment output type and width or
+"the depth target", or the sampler that reads it, with the program's package), for when a scene loads. The game names
+no NVN format and no reflected enum names one.
 **Imports get their arguments, and stored member function pointers decode on the port (2026-11-07, branch `claude/import-signatures`).**
 With the title movie playing, the boot reached the per-frame callback but never left the title screen's start-up:
 the frame timer `fn_7100080cb8` waited forever. Its lift called `nn::os::ConvertToTimeSpan(Tick)` with no argument.

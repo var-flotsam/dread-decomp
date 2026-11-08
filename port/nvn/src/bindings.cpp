@@ -110,7 +110,8 @@ void BindingState::BuildWrites(const StageInfo& stage, VkDescriptorSet set, Reso
                                             " not bound");
                 else if (!resolver.ResolveTexture(TextureId(t->handle), &view, &layout) ||
                          !resolver.ResolveSampler(SamplerId(t->handle), &sampler))
-                    out->warnings.push_back("sampler " + r.name + ": texture or sampler pool entry not registered");
+                    out->warnings.push_back("sampler " + r.name + ": texture or sampler pool entry not registered" +
+                                            resolver.TextureNote(TextureId(t->handle)));
                 else
                     info = VkDescriptorImageInfo{sampler, view, layout};
             }
