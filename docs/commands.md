@@ -51,6 +51,14 @@ Download upstream third-party sources used to identify and build library code li
 python tools/fetch_sources.py [NAME ...]   (default: all in SOURCES)
 ```
 
+### `tools/build_libvpx.py`
+
+Build libvpx's VP9 decoder as a static library for the port's movie runtime.
+
+```sh
+python tools/build_libvpx.py --print-dir [--target T]                    # where the build goes
+```
+
 ## Reconnaissance
 
 ### `tools/recon/run.py`

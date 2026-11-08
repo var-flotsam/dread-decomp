@@ -28,10 +28,29 @@ add_library(dread_runtime STATIC
   src/prepo.cpp
   src/time.cpp
   src/util.cpp
-  src/vi.cpp)
+  src/vi.cpp
+  src/webm.cpp)
 target_include_directories(dread_runtime PUBLIC
   "${CMAKE_CURRENT_SOURCE_DIR}/include"
   "${DREAD_ROOT}/include")
 target_link_libraries(dread_runtime PUBLIC dread_stdlib)
+# The movie decoder: libvpx as tools/build_libvpx.py builds it (python tools/build_libvpx.py --print-dir
+# names the directory). Without it the movie runtime offers no tracks (src/movie.cpp).
+set(DREAD_LIBVPX_DIR "" CACHE PATH "tools/build_libvpx.py's output for this target (libvpx.a, include/)")
+if(DREAD_LIBVPX_DIR AND EXISTS "${DREAD_LIBVPX_DIR}/libvpx.a")
+  target_compile_definitions(dread_runtime PRIVATE DREAD_PORT_VPX)
+  target_include_directories(dread_runtime SYSTEM PRIVATE "${DREAD_LIBVPX_DIR}/include")
+  target_link_libraries(dread_runtime PUBLIC "${DREAD_LIBVPX_DIR}/libvpx.a")
+  message(STATUS "dread_runtime: movies decode with ${DREAD_LIBVPX_DIR}/libvpx.a")
+else()
+  message(STATUS "dread_runtime: no libvpx (DREAD_LIBVPX_DIR): movies have no tracks")
+endif()
 # The game's layouts are Clang 9's (port/CMakeLists.txt, dread_game): the runtime shares its types.
 target_compile_options(dread_runtime PRIVATE -fclang-abi-compat=9.0)
+
+# runtime_webm_check: the movie runtime's WebM demuxer on files it builds in memory (no game data):
+#   runtime_webm_check
+if(DREAD_LINK)
+  add_executable(runtime_webm_check check/webm_check.cpp src/webm.cpp)
+  target_link_libraries(runtime_webm_check PRIVATE dread_stdlib)
+endif()

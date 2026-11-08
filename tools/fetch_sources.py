@@ -38,6 +38,9 @@ SOURCES["libcxx-9.0.1.src"] = ("https://github.com/llvm/llvm-project/releases/do
 # reachable from every environment, so this pins a mirror of every release at one commit.
 SOURCES["dlmalloc-2.8.4"] = ("https://raw.githubusercontent.com/DenizThatMenace/dlmalloc/"
                              "c48293b68aa8d883d1fa8c285f1e8dab23ca8a2a/malloc-2.8.4.c")
+# libvpx (BSD-3-Clause), the VP9 decoder behind the port's movie runtime (port/runtime/src/movie.cpp):
+# the game's 101 movies are VP9 in WebM. tools/build_libvpx.py builds it for the port.
+SOURCES["libvpx-1.14.1"] = "https://github.com/webmproject/libvpx/archive/refs/tags/v1.14.1.tar.gz"
 # Single-file sources: saved as <name>/<file name> instead of extracted.
 SINGLE_FILES = {"dlmalloc-2.8.4": "malloc.c"}
 
