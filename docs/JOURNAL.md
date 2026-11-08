@@ -103,6 +103,7 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - The NVN globals `g_unk_716e29xxxx` are named by the loader's GOT slots and their relative relocations (`data/nvn_procs.csv`); count GOT-slot call sites with a short window, not adjacent pairs; never write into a game-owned NVN object's storage: [NVN shim's start-up path](#session-log-newest-first).
 
 **Port: runtime and loader**
+- An inferred subsystem can make game code `L` (no generator or lift covers it, so the port traps): `gen_functions_csv.is_library` keeps inferred `lua?` and `runtime?` library only when named. The console's `nn::os` finalise only marks the object, and the game finalises across threads after re-initialising: the port keeps events and holders: [Past the title on scripted input](#session-log-newest-first).
 - The shim flips each viewport, so the game's winding (in its window coordinates, y down) reaches Vulkan reversed: invert the front face, or every CULL_CCW quad (all 2D and full-screen passes) is culled: [The title screen is visible](#session-log-newest-first).
 - A member function pointer the game stored is in the ARM C++ ABI's encoding (virtual bit in `adj`), which an x86-64 `->*` reads as a call to the vtable offset; call one through `DREAD_CALL_MEMBER` (`include/UnkArmMemberFn.h`). An import's argument registers come from its mangled name, or lifted calls to it pass nothing on x86-64: [Imports get their arguments](#session-log-newest-first).
 - One placeholder class name in two files that mean different classes gives its constructors, destructors and vtable two addresses, and `port_addresses.py` places none: name each file's class apart (by the address that differs). A copy file whose functions use different classes needs a file per class: [placeholder classes renamed apart](#session-log-newest-first).
@@ -140,6 +141,27 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Past the title on scripted input: a constructor marked library, and the console's finalise (2026-11-08, branch `claude/title-press`).**
+After `DREAD_INPUT="A@600+6/120"` the boot met three stops in turn.
+1. A trap in `fn_7100b7b770`, then a jump to a heap address. `fn_7100b7b770` is `GUI::CSlotInfoComposition`'s
+   constructor (its class's create function). It was status `L`, because an inferred `runtime?` subsystem between four
+   `std::basic_stringstream` thunks of the same unit made it library code, so nothing generated or lifted it. The
+   trap left the object unbuilt, and its first virtual call went through garbage. It is now hand-matched, with its
+   virtual class getter `fn_7100b7b040` (the next trap): `src/game/GUI/CSlotInfoComposition/CSlotInfoComposition.cpp`.
+   The base constructor `fn_71011d8d24` and the set-up `fn_71011cd128` are declared once in
+   `game/UnkGuiDisplayObject.h` (six files moved over). `tools/gen_functions_csv.py` now treats an inferred
+   `runtime?` like `lua?`: library only when a symbol or a match names the function (`is_library`). 33 rows leave
+   `L`: 22 were already matched in `src/` (now `O`), 2 are `m` and 9 are `U`.
+2. An abort in `nn::os::LinkMultiWaitHolder` on an object never initialised. A trace by thread showed a race. The
+   movie worker (`fn_7100222d94`) finalises a stream's four events and holders from a queued "off" entry while the
+   main thread initialises the same stream again (`fn_7100225b84`, a restarted movie). The port freed its host
+   object and cleared the tag at finalise, so a finalise landing after the re-initialisation broke the new object.
+   On the console a finalise only marks the object. The port now keeps events' and holders' host objects, reuses
+   them when the game initialises one again, and unlinks a holder finalised while linked. `os_check` runs that
+   sequence; it aborts against the old `os.cpp`.
+3. With both fixes the run takes every press for 400 s with no fault. The title gives way to a GUI screen of panels,
+   likely the save slots, whose asset textures show as stripes (not uploaded yet). It goes black from about frame
+   18,300, perhaps a scene load. One new trap: `unk_handle::UnkRefCounted::Delete()`.
 **Scripted input (2026-11-08, branch `claude/input-script`).** A run with no window can now press buttons:
 `DREAD_INPUT="BUTTONS@FRAME[+HOLD][/EVERY],..."` (`port/runtime/src/hid.cpp`). A frame is a poll of the handheld pad, and the
 game's poll `fn_710006deac` reads it once a frame. Button names follow the console's bit order (switchbrew, libnx). With
