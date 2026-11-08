@@ -111,6 +111,21 @@ T* Find(const void* object, Tag tag, const char* call) {
     return static_cast<T*>(impl);
 }
 
+// Whether the object's first 12 bytes (host pointer and tag) are zero: a game object constructed
+// (zeroed) and not initialised yet. Finalising or unlinking one has nothing to undo; the movie
+// worker does so when the main thread built a stream again before the worker's "off" entry ran.
+bool Zeroed(const void* object) {
+    static const u8 zero[12] = {};
+    return std::memcmp(object, zero, sizeof(zero)) == 0;
+}
+
+void NoteZeroed(const char* call) {
+    static bool noted = false;
+    if (!noted)
+        std::fprintf(stderr, "dread: nn::os::%s on a zeroed object: nothing to undo (reported once)\n", call);
+    noted = true;
+}
+
 // The host object at `object` when its tag is `tag`, else null (no stop).
 template <typename T>
 T* Existing(const void* object, Tag tag) {
@@ -436,7 +451,9 @@ void InitializeEvent(EventType* event, bool signaled, EventClearMode clear_mode)
 }
 
 void FinalizeEvent(EventType* event) {
-    // Kept (above); the check that it was initialised stays.
+    // Kept (above); the check that it was initialised stays, except for a zeroed one (Zeroed).
+    if (Zeroed(event))
+        return NoteZeroed("FinalizeEvent");
     Find<HostEvent>(event, kTagEvent, "FinalizeEvent");
 }
 
@@ -493,6 +510,8 @@ void InitializeMultiWaitHolder(MultiWaitHolderType* holder, EventType* event) {
 void FinalizeMultiWaitHolder(MultiWaitHolderType* holder) {
     // Kept (see InitializeEvent). A holder finalised while linked is unlinked: the console's
     // finalise does not check it either.
+    if (Zeroed(holder))
+        return NoteZeroed("FinalizeMultiWaitHolder");
     auto* h = Find<HostWaitHolder>(holder, kTagWaitHolder, "FinalizeMultiWaitHolder");
     std::lock_guard<std::mutex> hold(g_multi_wait_lock);
     UnlinkLocked(holder, h);
@@ -509,6 +528,8 @@ void LinkMultiWaitHolder(MultiWaitType* multi_wait, MultiWaitHolderType* holder)
 }
 
 void UnlinkMultiWaitHolder(MultiWaitHolderType* holder) {
+    if (Zeroed(holder))
+        return NoteZeroed("UnlinkMultiWaitHolder");
     auto* h = Find<HostWaitHolder>(holder, kTagWaitHolder, "UnlinkMultiWaitHolder");
     std::lock_guard<std::mutex> hold(g_multi_wait_lock);
     UnlinkLocked(holder, h);
