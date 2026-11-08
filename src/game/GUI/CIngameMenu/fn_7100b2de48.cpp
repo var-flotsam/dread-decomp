@@ -645,7 +645,6 @@ void fn_7100b2e3b8(UnkStateOwner* self) {
 // function) follow at 0x230, the state pointers are cleared, six id pairs take the global
 // default ids, an array (flags 0xf) and two more callbacks follow, and the member at 0x3d8 is
 // built by fn_710002f4e4.
-void fn_71011d8d24(void* self);
 void fn_710002f4e4(void* self);
 void fn_710002f67c(void* self);
 extern void* g_unk_7101a9b670[];

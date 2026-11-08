@@ -66,6 +66,17 @@ class Statuses(unittest.TestCase):
         # an unnamed function between lib/lua matches ("lua?") is the game's own addition
         self.assertIn("lua", g.INFERRED_NOT_LIBRARY)
 
+    def test_inferred_runtime_is_game_code_unless_named(self):
+        # GUI::CSlotInfoComposition's unit: its constructor and getter sit between std:: thunks
+        self.assertIn("runtime", g.INFERRED_NOT_LIBRARY)
+        self.assertFalse(g.is_library("runtime?", "unknown"))
+        self.assertTrue(g.is_library("runtime?", "symbol"))
+        self.assertTrue(g.is_library("runtime", "unknown"))
+        self.assertFalse(g.is_library("lua?", "unknown"))
+        self.assertTrue(g.is_library("lua", "library"))
+        self.assertTrue(g.is_library("sdk?", "unknown"))
+        self.assertFalse(g.is_library("game?", "unknown"))
+
     def test_decomp_statuses_are_the_src_codes(self):
         self.assertEqual(g.DECOMP_STATUSES, {"O", "m", "M", "W"})
         self.assertFalse(g.DECOMP_STATUSES & {"U", "L"})

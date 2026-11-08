@@ -2377,8 +2377,8 @@ address,size,name,name_source,subsystem,status
 0x7100b79df4,260,fn_7100b79df4,unknown,unknown,O
 0x7100b79ef8,4088,fn_7100b79ef8,unknown,unknown,U
 0x7100b7aef0,140,"std::__1::basic_stringstream<char, std::__1::char_traits<char>, std::__1::allocator<char>>::~basic_stringstream",symbol,runtime,L
-0x7100b7af7c,196,fn_7100b7af7c,unknown,runtime?,L
-0x7100b7b040,28,fn_7100b7b040,unknown,runtime?,L
+0x7100b7af7c,196,fn_7100b7af7c,unknown,runtime?,U
+0x7100b7b040,28,fn_7100b7b040,unknown,runtime?,O
 0x7100b7b05c,140,"non-virtual thunk to std::__1::basic_stringstream<char, std::__1::char_traits<char>, std::__1::allocator<char>>::~basic_stringstream",symbol,runtime?,L
 0x7100b7b0e8,148,"virtual thunk to std::__1::basic_stringstream<char, std::__1::char_traits<char>, std::__1::allocator<char>>::~basic_stringstream",symbol,runtime?,L
 0x7100b7b17c,148,"std::__1::basic_stringstream<char, std::__1::char_traits<char>, std::__1::allocator<char>>::~basic_stringstream",symbol,runtime,L
@@ -2387,17 +2387,17 @@ address,size,name,name_source,subsystem,status
 0x7100b7b340,64,"std::__1::basic_stringbuf<char, std::__1::char_traits<char>, std::__1::allocator<char>>::~basic_stringbuf",symbol,runtime,L
 0x7100b7b380,72,"std::__1::basic_stringbuf<char, std::__1::char_traits<char>, std::__1::allocator<char>>::~basic_stringbuf",symbol,runtime,L
 0x7100b7b3c8,296,"std::__1::basic_stringbuf<char, std::__1::char_traits<char>, std::__1::allocator<char>>::seekoff",symbol,runtime,L
-0x7100b7b4f0,20,fn_7100b7b4f0,unknown,runtime?,L
+0x7100b7b4f0,20,fn_7100b7b4f0,unknown,runtime?,U
 0x7100b7b504,80,"std::__1::basic_stringbuf<char, std::__1::char_traits<char>, std::__1::allocator<char>>::underflow",symbol,runtime,L
 0x7100b7b554,112,"std::__1::basic_stringbuf<char, std::__1::char_traits<char>, std::__1::allocator<char>>::pbackfail",symbol,runtime,L
 0x7100b7b5c4,384,"std::__1::basic_stringbuf<char, std::__1::char_traits<char>, std::__1::allocator<char>>::overflow",symbol,runtime,L
-0x7100b7b744,8,fn_7100b7b744,unknown,runtime?,L
-0x7100b7b74c,8,fn_7100b7b74c,unknown,runtime?,L
-0x7100b7b754,28,fn_7100b7b754,unknown,runtime?,L
-0x7100b7b770,60,fn_7100b7b770,unknown,runtime?,L
-0x7100b7b7ac,12,fn_7100b7b7ac,unknown,runtime?,L
+0x7100b7b744,8,fn_7100b7b744,unknown,runtime?,O
+0x7100b7b74c,8,fn_7100b7b74c,unknown,runtime?,O
+0x7100b7b754,28,fn_7100b7b754,unknown,runtime?,O
+0x7100b7b770,60,fn_7100b7b770,unknown,runtime?,O
+0x7100b7b7ac,12,fn_7100b7b7ac,unknown,runtime?,O
 0x7100b7b7c0,272,"std::__1::basic_ostream<char, std::__1::char_traits<char>>& std::__1::__put_character_sequence<char, std::__1::char_traits<char>>",symbol,runtime,L
-0x7100b7b8d0,360,fn_7100b7b8d0,unknown,runtime?,L
+0x7100b7b8d0,360,fn_7100b7b8d0,unknown,runtime?,U
 0x7100b7ba38,328,"std::__1::basic_stringbuf<char, std::__1::char_traits<char>, std::__1::allocator<char>>::str",symbol,runtime,L
 0x7100b7bb80,160,fn_7100b7bb80,unknown,unknown,O
 0x7100b7bc20,4,fn_7100b7bc20,unknown,unknown,O
