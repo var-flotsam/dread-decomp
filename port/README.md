@@ -133,6 +133,12 @@ turn `add sym@GOTPCREL(%rip)` into a 32-bit immediate, which cannot hold the exe
 `DREAD_NVN_FRAME_MAX`, default 100, as `<dir>/frame_<present>.png`; 8-bit RGBA, and RGBA16F clamped to 0..1).
 The images are the game's output: keep them under `build/`, never in the repository.
 
+**Scripted input** (`DREAD_INPUT`, `port/runtime/src/hid.cpp`): the port's one controller presses buttons at
+given frames (polls of the handheld pad; the game polls once a frame), for runs with no window. Steps
+`BUTTONS@FRAME[+HOLD][/EVERY]`, separated by commas: button names joined by `|` (`A B X Y LSTICK RSTICK L R ZL ZR
+PLUS MINUS LEFT UP RIGHT DOWN`, the console's bit order) or a number, held HOLD frames (default 6), again every
+EVERY frames. `DREAD_INPUT="A@900+6/120"` presses A from frame 900, then every two seconds.
+
 **Boot distance** (`tools/boot_distance.py`, the smoke run): the sweep and the executable link
 above into `build/boot/`, then the executable under gdb with `DREAD_TRAP=log` and a time limit. It
 prints the furthest of an ordered list of milestones (`nninitStartup` done, the static initialisers,

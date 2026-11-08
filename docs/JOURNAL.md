@@ -140,6 +140,13 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Scripted input (2026-11-08, branch `claude/input-script`).** A run with no window can now press buttons:
+`DREAD_INPUT="BUTTONS@FRAME[+HOLD][/EVERY],..."` (`port/runtime/src/hid.cpp`). A frame is a poll of the handheld pad, and the
+game's poll `fn_710006deac` reads it once a frame. Button names follow the console's bit order (switchbrew, libnx). With
+`A@600+6/120` the title takes the presses at frames 600 and 720 and runs new code. That reaches a trap in
+`fn_7100b7b770` (60 bytes, `L`, no source), then a fault: an indirect call from the reflection reader
+(`fn_71011d9780` under `fn_71000f1c94` and `fn_71011dc794`, loading a file through `fn_710007c714`) jumps to a host
+heap address. That is the next crash to chase.
 **The title screen is visible: a frame dump, and the winding the shim had inverted (2026-11-08, branch `claude/frame-dump`).**
 The window has no Vulkan surface, so the shim now writes every N-th presented texture as a PNG (`$DREAD_NVN_FRAME_DUMP`,
 `port/nvn/src/frame_dump.cpp`: 8-bit RGBA, and RGBA16F clamped to 0..1). Every frame was black, though the title records

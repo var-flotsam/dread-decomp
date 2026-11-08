@@ -66,5 +66,5 @@ extern "C" const char* dread_port_orig_directory();
 // The state of the port's one controller (nn::hid's handheld Npad, id 0x20), set by the port's
 // window from the keyboard or a host game controller; the game's poll fn_710006deac reads it every
 // frame through nn::hid::GetNpadState. Buttons in the console's bit order; sticks from -32767 to
-// 32767. Safe from any thread.
+// 32767. Safe from any thread. $DREAD_INPUT adds scripted presses on top (port/runtime/src/hid.cpp).
 extern "C" void dread_port_set_npad_state(u64 buttons, s32 left_x, s32 left_y, s32 right_x, s32 right_y);
