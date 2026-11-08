@@ -10,7 +10,10 @@
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
+#include <algorithm>
 #include <mutex>
+#include <string>
+#include <vector>
 
 namespace nn::hid {
 
@@ -46,6 +49,111 @@ void Construct(void* object, u64 size) {
     std::memcpy(object, &vptr, sizeof(vptr));
 }
 
+// The input script ($DREAD_INPUT): button presses at given polls of the handheld pad, for runs with
+// no window (boot_distance.py, the frame dump). The game's poll fn_710006deac reads the handheld
+// state once a frame, so a poll number is a frame number. Steps, separated by commas or spaces:
+//
+//   BUTTONS@FRAME[+HOLD][/EVERY]
+//
+// BUTTONS: names joined by '|' (A B X Y LSTICK RSTICK L R ZL ZR PLUS MINUS LEFT UP RIGHT DOWN, in
+// the console's bit order 0-15, as switchbrew's HID services page and libnx's HidNpadButton give
+// it) or a number (0x401). Held from poll FRAME for HOLD polls (default 6); with /EVERY, again
+// every EVERY polls after that. Example: DREAD_INPUT="A@900+6/120" presses A for 6 frames from
+// frame 900, then every 120 frames.
+struct ScriptStep {
+    u64 buttons = 0;
+    s64 start = 0, hold = 6, every = 0;
+};
+
+u64 ButtonBit(const std::string& name) {
+    static const char* const kNames[] = {"A", "B", "X", "Y", "LSTICK", "RSTICK", "L", "R",
+                                         "ZL", "ZR", "PLUS", "MINUS", "LEFT", "UP", "RIGHT", "DOWN"};
+    for (u64 i = 0; i < sizeof(kNames) / sizeof(kNames[0]); ++i)
+        if (name == kNames[i])
+            return u64{1} << i;
+    char* end = nullptr;
+    const u64 v = std::strtoull(name.c_str(), &end, 0);
+    return (end && *end == '\0' && !name.empty()) ? v : 0;
+}
+
+// Parses one step; false (and nothing changed) when it is malformed.
+bool ParseStep(const std::string& text, ScriptStep* out) {
+    const std::size_t at = text.find('@');
+    if (at == std::string::npos)
+        return false;
+    ScriptStep s;
+    std::size_t p = 0;
+    const std::string names = text.substr(0, at);
+    while (p <= names.size()) {
+        const std::size_t bar = std::min(names.find('|', p), names.size());
+        const u64 bit = ButtonBit(names.substr(p, bar - p));
+        if (!bit)
+            return false;
+        s.buttons |= bit;
+        p = bar + 1;
+    }
+    const char* c = text.c_str() + at + 1;
+    char* end = nullptr;
+    s.start = std::strtoll(c, &end, 10);
+    if (end == c || s.start < 0)
+        return false;
+    while (*end == '+' || *end == '/') {
+        const char op = *end;
+        c = end + 1;
+        const s64 v = std::strtoll(c, &end, 10);
+        if (end == c || v <= 0)
+            return false;
+        (op == '+' ? s.hold : s.every) = v;
+    }
+    if (*end != '\0')
+        return false;
+    *out = s;
+    return true;
+}
+
+const std::vector<ScriptStep>& Script() {
+    static const std::vector<ScriptStep> steps = [] {
+        std::vector<ScriptStep> out;
+        const char* env = std::getenv("DREAD_INPUT");
+        if (!env || !*env)
+            return out;
+        std::string all = env;
+        for (char& ch : all)
+            if (ch == ',')
+                ch = ' ';
+        std::size_t p = 0;
+        while (p < all.size()) {
+            const std::size_t q = std::min(all.find(' ', p), all.size());
+            const std::string token = all.substr(p, q - p);
+            ScriptStep s;
+            if (!token.empty()) {
+                if (ParseStep(token, &s))
+                    out.push_back(s);
+                else
+                    std::fprintf(stderr, "dread: DREAD_INPUT: step \"%s\" is not BUTTONS@FRAME[+HOLD][/EVERY]; left out\n",
+                                 token.c_str());
+            }
+            p = q + 1;
+        }
+        std::fprintf(stderr, "dread: DREAD_INPUT: %zu steps\n", out.size());
+        return out;
+    }();
+    return steps;
+}
+
+// The buttons the script holds at poll `n`.
+u64 ScriptedButtons(s64 n) {
+    u64 buttons = 0;
+    for (const ScriptStep& s : Script()) {
+        if (n < s.start)
+            continue;
+        const s64 since = s.every ? (n - s.start) % s.every : n - s.start;
+        if (since < s.hold)
+            buttons |= s.buttons;
+    }
+    return buttons;
+}
+
 void Sample(NpadState* out, NpadIdType id) {
     std::lock_guard<std::mutex> hold(g_pad_lock);
     if (id != NpadId_Handheld) {
@@ -55,6 +163,13 @@ void Sample(NpadState* out, NpadIdType id) {
     ++g_pad.sampling_number;
     *out = g_pad;
     out->attributes |= NpadAttribute_IsConnected;
+    const u64 scripted = ScriptedButtons(g_pad.sampling_number);
+    static u64 last = 0;
+    if (scripted != last && scripted)
+        std::fprintf(stderr, "dread: DREAD_INPUT: frame %lld: buttons %#llx\n",
+                     static_cast<long long>(g_pad.sampling_number), static_cast<unsigned long long>(scripted));
+    last = scripted;
+    out->buttons |= scripted;
 }
 
 }  // namespace
