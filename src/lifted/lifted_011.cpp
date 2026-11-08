@@ -40,17 +40,17 @@ typedef f64 __attribute__((may_alias)) a_f64;
 
 struct lift_at_t {}; inline void* operator new(decltype(sizeof 0), void* p, lift_at_t) noexcept { return p; }
 
+namespace sret { UnkResult fn_7100110420(char*, u32); }
 namespace sret { UnkResult fn_7100110420(char*, u32, f32, f32); }
 namespace sret { UnkResult fn_7100110420(char*, u32, f32, f32, f32); }
-namespace sret { UnkResult fn_7100110420(char*, u32, f32, f32, f32, f32, f64); }
-UnkResult fn_7100110550(char* p0, f32 f0, f32 f1, f32 f2, f32 f3, f64 f4) {
+UnkResult fn_7100110550(char* p0) {
     alignas(8) char stk[0x8];
     UnkResult ret;
     char* r0_19 = (char*)&ret;
     char* r1_8 = (stk + 0x0);
     u32 r2_1 = (u32)(u64)(0);
     char* r3_20 = p0;
-    new ((void*)(r1_8), lift_at_t{}) UnkResult(sret::fn_7100110420(p0, r2_1, f0, f1, f2, f3, f4));
+    new ((void*)(r1_8), lift_at_t{}) UnkResult(sret::fn_7100110420(p0, r2_1));
     u32 r5_8 = 0x7f7fffff;
     char* a6 = (stk + 0x0);
     f32 r7_101 = *(f32*)(a6 + 0);

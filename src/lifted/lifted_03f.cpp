@@ -1517,9 +1517,9 @@ char* fn_71003fe780(char* p0, f64 f0) {
     return callee::fn_71003fd0b0(p0, f0);
 }
 
-namespace callee { char* fn_71003fd320(char*, char*); }
-char* fn_71003fe784(char* p0, char* p1) {
-    return callee::fn_71003fd320(p0, p1);
+namespace callee { char* fn_71003fd320(char*); }
+char* fn_71003fe784(char* p0) {
+    return callee::fn_71003fd320(p0);
 }
 
 namespace callee { char* fn_71003fd520(char*, f64); }

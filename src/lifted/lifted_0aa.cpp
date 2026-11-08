@@ -332,11 +332,11 @@ void fn_7100aa2f94() {
     return;
 }
 
-namespace bret { bool fn_7100aa2948(char*, char*); }
-namespace callee { char* fn_7100aa2948(char*, char*); }
-void fn_7100aa2f98(char* p0, char* p1) {
+namespace bret { bool fn_7100aa2948(char*); }
+namespace callee { char* fn_7100aa2948(char*); }
+void fn_7100aa2f98(char* p0) {
     char* r0_19 = p0;
-    bool r1_0 = bret::fn_7100aa2948(p0, p1);
+    bool r1_0 = bret::fn_7100aa2948(p0);
     if (((u64)(r1_0) >> 0 & 1) != 0) {
         u64 r3_8 = (u64)*(u64*)((char*)(r0_19) + 0);
         char* r4_0 = r0_19;
@@ -363,11 +363,11 @@ void fn_7100aa2fd4(char* p0) {
     return;
 }
 
-namespace bret { bool fn_7100aa2948(char*, char*); }
-namespace callee { char* fn_7100aa2948(char*, char*); }
-void fn_7100aa307c(char* p0, char* p1) {
+namespace bret { bool fn_7100aa2948(char*); }
+namespace callee { char* fn_7100aa2948(char*); }
+void fn_7100aa307c(char* p0) {
     char* r0_19 = p0;
-    bool r1_0 = bret::fn_7100aa2948(p0, p1);
+    bool r1_0 = bret::fn_7100aa2948(p0);
     if (((u64)(r1_0) >> 0 & 1) != 0) {
         u64 r3_8 = (u64)*(u64*)((char*)(r0_19) + 0);
         char* r4_0 = r0_19;

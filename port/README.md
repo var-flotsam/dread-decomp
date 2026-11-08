@@ -645,6 +645,14 @@ Link 1 (without the lifts) is unchanged. Checked on 2026-10-27 two ways:
 - with the real lifts, which have no overrides: every output identical to the link without this
   step, the executable included.
 
+**Calls to imports.** A lift passes a callee only the argument registers `tools/abi_facts.py` says
+it reads. An import has no code in the dump to read, so its facts come from its mangled name in
+the dump's import table: the demangled parameter list gives `x0`... for integers and pointers
+(`this` first for a member), `v0`... for `float` and `double`, and the width of each (`signature_facts`;
+`CLIB` still overrides the C library's). Without them a lifted call to an import passed nothing:
+AArch64 keeps the registers, so the bytes matched, but on x86-64 `nn::os::ConvertToTimeSpan(Tick)`
+got garbage and the title screen's frame timer never fired (2026-11-07).
+
 **Result on `main` after hub batch 2 (2026-10-25).** Of 2,148 `U` functions (1,236,964 bytes):
 
 | Outcome | Functions | Bytes |
@@ -804,6 +812,12 @@ layout comes from.
   to the overload whose parameters fit the caller's reference best (the alias ranking), which
   cannot tell `Buffer(const Buffer&)` from `Buffer(u64)` and reads a lifted call's `this` as an
   argument.
+- **Member function pointers the game stored** are in the ARM C++ ABI's encoding (the virtual bit
+  in `adj`), which an x86-64 `(obj->*m)()` misreads: `{0x98, 1}`, "vtable slot 0x98", becomes a
+  call to address 0x98. Hand-written code that calls one from a field, a table or a capture
+  writes `DREAD_CALL_MEMBER(obj, m)(args...)` (`include/UnkArmMemberFn.h`): plain `->*` on AArch64,
+  so the bytes are unchanged, and an ARM decode on the port (`arm_member_check`). A pointer
+  constant the source names itself (a template argument) is the port compiler's own and stays `->*`.
 
 ## The data loader (M1)
 

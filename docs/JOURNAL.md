@@ -103,6 +103,7 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - The NVN globals `g_unk_716e29xxxx` are named by the loader's GOT slots and their relative relocations (`data/nvn_procs.csv`); count GOT-slot call sites with a short window, not adjacent pairs; never write into a game-owned NVN object's storage: [NVN shim's start-up path](#session-log-newest-first).
 
 **Port: runtime and loader**
+- A member function pointer the game stored is in the ARM C++ ABI's encoding (virtual bit in `adj`), which an x86-64 `->*` reads as a call to the vtable offset; call one through `DREAD_CALL_MEMBER` (`include/UnkArmMemberFn.h`). An import's argument registers come from its mangled name, or lifted calls to it pass nothing on x86-64: [Imports get their arguments](#session-log-newest-first).
 - One placeholder class name in two files that mean different classes gives its constructors, destructors and vtable two addresses, and `port_addresses.py` places none: name each file's class apart (by the address that differs). A copy file whose functions use different classes needs a file per class: [placeholder classes renamed apart](#session-log-newest-first).
 - Another Dread project's addresses map to ours by one constant (the recomp: ours = theirs - 0x8005000 + 0x7100000000); the game's PC-side problems it found (a video wait under a lock, per-texel texture uploads, a deserializer growing 10 at a time, frame pacing): [Dread recomp findings](#session-log-newest-first).
 - A function-local static of an ordinary (non-inline) function is a local symbol that its object reaches section-relative: no link step can redirect it. Make the function inline on the port (`inline __attribute__((used))`) so the static is weak and `--defsym` binds it: [port M1 round 4](#session-log-newest-first).
@@ -138,6 +139,24 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Imports get their arguments, and stored member function pointers decode on the port (2026-11-07, branch `claude/import-signatures`).**
+With the title movie playing, the boot reached the per-frame callback but never left the title screen's start-up:
+the frame timer `fn_7100080cb8` waited forever. Its lift called `nn::os::ConvertToTimeSpan(Tick)` with no argument.
+`tools/abi_facts.py` had no facts for an import (no code in the dump to read) unless `CLIB` named it, so every lifted
+call to an import passed nothing; AArch64 keeps the registers, so the bytes matched, and x86-64 lost them. An import's
+facts now come from its mangled name in the dump's import table (`signature_facts`: `this`, integers and pointers in
+`x0`..., `float`/`double` in `v0`..., narrow types marked; cache v15). Regenerating changed 125 functions' facts; the
+byte-identical lifts in `src/lifted/` are unchanged in bytes (`verify.py --regen gen_statics,gen_lift`: 0 regressions,
+O +13), and ten semantic lifts with short calls were lifted again. The next fault was a call to address 0x98 in
+`fn_7100dec38c`: the bound invoke `fn_7100d4b8c8` (`UnkUnit2506_BoundInvoke.cpp`) calls a member function pointer
+the game stored, `{0x98, 1}`. In the ARM C++ ABI that is "the vtable slot at byte 0x98" (virtual bit in `adj`); the
+x86-64 Itanium ABI reads the virtual bit from `ptr` and calls 0x98. `include/UnkArmMemberFn.h`'s
+`DREAD_CALL_MEMBER(obj, m)(args...)` is `->*` on AArch64 (bytes unchanged) and an ARM decode elsewhere, checked by
+`arm_member_check` (the plain `->*` version segfaults). The in-game menu's state changes (`fn_7100b2de48.cpp`) use
+it too; member pointers that are template arguments stay `->*`, since the port's compiler encodes those itself. With
+both, the boot passes the old fault and runs steady frames: 26,102 per-frame callbacks and game updates in 200 s under
+gdb (uncapped), with no new function after 128 s and no fault in 900 s: the title loop, waiting for input. Draws are
+still skipped (no shader manifest).
 **The title background is a VP9 video: the movie runtime decodes it (2026-11-07, branch `claude/movie-vp9`).**
 After the Lua fix the boot faulted at null in `fn_71001606c0`: the title screen looks up its background texture
 `TITLE1_BG`, which only the movie player registers, and the port's movie runtime offered no tracks. The runtime now

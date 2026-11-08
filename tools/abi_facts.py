@@ -44,6 +44,7 @@ from __future__ import annotations
 import argparse
 import os
 import pickle
+import subprocess
 import sys
 import time
 from dataclasses import dataclass
@@ -59,7 +60,7 @@ import callgraph  # noqa: E402
 MAX_SIZE = 65536
 # result_shape's and result_main's analysis (their cache is kept apart: a change does not cost the table)
 SHAPE_VERSION = 4
-CACHE_VERSION = 14  # bump when the analysis changes (AbiFacts.load ignores other versions)
+CACHE_VERSION = 15  # bump when the analysis changes (AbiFacts.load ignores other versions)
 MAX_DEPTH = 48  # callee recursion; deeper chains count as unknown
 INT_ARGS = frozenset(range(9))  # x0-x7 and x8
 FLOAT_ARGS = frozenset(range(100, 108))
@@ -131,6 +132,72 @@ def replace(tmp: Path, path: Path) -> bool:
     tmp.unlink(missing_ok=True)
     print(f"{path} is in use; not saved", file=sys.stderr)
     return False
+
+
+FLOAT_PARAMS = frozenset({"float", "double"})
+# Integer parameters of 32 bits or fewer: read as w<n> (not Facts.wide). Anything else that is not
+# a float is a pointer, a reference, a 64-bit integer or a class by value: read as x<n>.
+NARROW_PARAMS = frozenset({"bool", "char", "signed char", "unsigned char", "short", "unsigned short", "int",
+                           "unsigned int", "wchar_t", "char16_t", "char32_t"})
+
+
+def split_params(demangled: str) -> list[str] | None:
+    """The parameter types of a demangled function name (`nn::os::ConvertToTimeSpan(nn::os::Tick)`),
+    split at top-level commas; None for a name without a parameter list (an unmangled one)."""
+    open_ = demangled.find("(")
+    if open_ < 0:
+        return None
+    depth, start, out = 0, open_ + 1, []
+    for i in range(open_, len(demangled)):
+        c = demangled[i]
+        if c in "(<[":
+            depth += 1
+        elif c in ")>]":
+            depth -= 1
+            if depth == 0:
+                inner = demangled[start:i].strip()
+                if inner:
+                    out.append(inner)
+                return [p for p in out if p != "void"]
+        elif c == "," and depth == 1:
+            out.append(demangled[start:i].strip())
+            start = i + 1
+    return None
+
+
+def signature_facts(demangled: str) -> Facts | None:
+    """Facts of an import from its demangled name (the dump's dynamic symbol: its PLT stub reads
+    no register itself). `float` and `double` take v0-v7 in order (a double read wide), anything
+    else one of x0-x7 (pointers, references, integers, enumerations and the SDK's one-word
+    classes: nn::os::Tick, nn::TimeSpan, nn::fs::FileHandle); `...` adds nothing; more than eight
+    of either kind count as stack arguments. A member function's `this` is not among the
+    parameters: a name in a class scope (CamelCase, as the SDK's and the game's classes are,
+    while namespaces are lowercase: movie::Buffer::SetRange, not nn::os::GetSystemTick) counts
+    it as x0."""
+    params = split_params(demangled)
+    if params is None:
+        return None
+    ints = floats = 0
+    wide: set[int] = set()
+    name = demangled[:demangled.find("(")]
+    scope = name.rsplit("::", 1)[0].rsplit("::", 1)[-1] if "::" in name else ""
+    if scope[:1].isupper():
+        ints, wide = 1, {0}  # (this: a member of a class, CamelCase in the SDK as in the game)
+    for p in params:
+        if p == "...":
+            continue
+        if p in FLOAT_PARAMS:
+            if p == "double":
+                wide.add(100 + floats)
+            floats += 1
+        else:
+            if p not in NARROW_PARAMS:
+                wide.add(ints)
+            ints += 1
+    stack = ints > 8 or floats > 8
+    ints, floats = min(ints, 8), min(floats, 8)
+    return Facts(frozenset(range(ints)) | frozenset(range(100, 100 + floats)), stack,
+                 frozenset(k for k in wide if k < 8 or 100 <= k < 108))
 
 
 _KEYS: dict[int, object] = {}
@@ -284,6 +351,22 @@ class AbiFacts:
             return row["name"][len(callgraph.IMPORT_PREFIX):]
         return self.orig.plt_import(addr)
 
+    def import_facts(self, addr: int) -> Facts | None:
+        """An import's facts from the dump's mangled name for it (signature_facts); None for an
+        unmangled name outside CLIB (a C function: its parameters are not in its name). Every
+        import's name is demangled in one batch, on the first call."""
+        if not hasattr(self, "_import_sigs"):
+            stubs = {a: self.orig.plt_import(a) for a, r in self.rows.items()
+                     if r["name"].startswith(callgraph.IMPORT_PREFIX)}
+            mangled = sorted({m for m in stubs.values() if m and m.startswith("_Z")})
+            try:
+                dem = asmdiff.demangle(mangled, strip=False)
+            except (OSError, subprocess.CalledProcessError):
+                dem = {}
+            self._import_sigs = {a: dem[m] for a, m in stubs.items() if m in dem}
+        sig = self._import_sigs.get(addr)
+        return signature_facts(sig) if sig else None
+
     # -- facts ----------------------------------------------------------------------------------
 
     def facts(self, addr: int, depth: int = 0) -> Facts | None:
@@ -293,7 +376,7 @@ class AbiFacts:
         if name is not None:
             c = CLIB.get(name)
             f = Facts(frozenset(range(c[0])) | frozenset(range(100, 100 + c[1])), False,
-                      frozenset(range(c[0]))) if c else None
+                      frozenset(range(c[0]))) if c else self.import_facts(addr)
             self._facts[addr] = f
             return f
         if addr in self._busy or depth > MAX_DEPTH:

@@ -53,4 +53,8 @@ target_compile_options(dread_runtime PRIVATE -fclang-abi-compat=9.0)
 if(DREAD_LINK)
   add_executable(runtime_webm_check check/webm_check.cpp src/webm.cpp)
   target_link_libraries(runtime_webm_check PRIVATE dread_stdlib)
+  # arm_member_check: include/UnkArmMemberFn.h on member function pointers in the ARM encoding.
+  add_executable(arm_member_check check/arm_member_check.cpp)
+  target_include_directories(arm_member_check PRIVATE "${DREAD_ROOT}/include")
+  target_link_libraries(arm_member_check PRIVATE dread_stdlib)
 endif()
