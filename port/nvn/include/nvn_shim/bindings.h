@@ -45,6 +45,9 @@ public:
     // bounds; a range of VK_WHOLE_SIZE is fine), and a 2D image with a sampler.
     virtual VkDescriptorBufferInfo PlaceholderBuffer() = 0;
     virtual VkDescriptorImageInfo PlaceholderImage() = 0;
+    // What to add to the warning for texture pool entry `id` when it does not resolve (the shim: a
+    // texture whose format it does not know, as evidence of the format); empty for nothing.
+    virtual std::string TextureNote(std::uint32_t) { return {}; }
 };
 
 // The descriptor set layout of one stage: blocks first, then samplers, in the manifest's order.

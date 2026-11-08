@@ -163,7 +163,12 @@ What the parts do so far, and what they do not yet:
   formats by use (`fn_71001604e0` swizzles both R,R,R,A), provisionally D32F/S8 (D24/S8 where a
   device lacks it); `0x3f` is a colour render target by use (a fast clear is registered for it),
   provisionally RGBA16F. The render-target table (`0x7101647fec`) also holds `0x19`, `0x29`, `0x2a`,
-  `0x2e`, `0x32`, `0x34`, `0x36`, which fail by name until a use shows them. Every format is checked
+  `0x2e`, `0x32`, `0x34`, `0x36`, which fail by name until a use shows them. The shim reports each
+  use of such a texture once, as that evidence: a draw that renders into it (the colour target's
+  fragment output type and width, or "the depth target") and a sampler that reads it, with the
+  program's package. On 2.1.0 the scene setup asks for `0x29` (four half-resolution targets,
+  `fn_71001d9c28`) and `0x32` (four 2048x2048 targets, `fn_71001e9b54`; the shaders' only shadow
+  sampler is `sampler2DShadow ps_shadowmap`); the title screen uses neither. Every format is checked
   against the device (BC needs `textureCompressionBC`, enabled when present). Every image keeps the
   GENERAL layout and starts zeroed. Target 1 is 2D and 8 a cube map: of the 5,754 `.bctex`, 5,480 are target 1 and 274 target 8,
   every target-8 one square with six faces of data, BC6H, a cube/IBL/environment map. Swizzles are the game's 0-5 (zero, one, R, G, B, A). Asset (packaged) texture data is kept

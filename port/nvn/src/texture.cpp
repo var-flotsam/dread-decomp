@@ -105,6 +105,7 @@ std::map<std::uint32_t, const void*> g_texture_ids;  // texture pool id -> textu
 std::map<std::uint32_t, PoolSampler> g_sampler_ids;   // sampler pool id -> Vulkan sampler
 std::uint32_t g_texture_pool_size = 0, g_sampler_pool_size = 0;
 std::set<std::int32_t> g_reported_formats, g_reported_targets;
+std::map<const void*, detail::UnknownFormatTexture> g_unknown_formats;  // texture storage -> what it asked for
 
 // Placeholders for the binding layer, zeroed: a 16 KB buffer, and a 1x1 image of each kind a
 // shader samples (texture_internal.h: a 2D colour image, a cube, a 2D depth image for shadow
@@ -366,11 +367,14 @@ std::int32_t TextureInitialize(void* texture, const void* builder) {
         return 0;
     const FormatInfo* f = FindFormat(b->format);
     if (!f) {
+        g_unknown_formats[texture] = {b->format, b->width, b->height};
         if (g_reported_formats.insert(b->format).second)
-            std::fprintf(stderr, "nvn shim: texture format %#x is not known (texture.h); nvnTextureInitialize fails\n",
-                         static_cast<unsigned>(b->format));
+            std::fprintf(stderr,
+                         "nvn shim: texture format %#x is not known (texture.h); nvnTextureInitialize fails (%ux%u)\n",
+                         static_cast<unsigned>(b->format), b->width, b->height);
         return 0;
     }
+    g_unknown_formats.erase(texture);
     if (b->target != kTarget2D && b->target != kTargetCube) {
         if (g_reported_targets.insert(b->target).second)
             std::fprintf(stderr, "nvn shim: texture target %d is not known (texture.h); nvnTextureInitialize fails\n",
@@ -739,6 +743,21 @@ TextureInfo GetTextureInfo(const void* texture) {
         out.cube = t->cube;
     }
     return out;
+}
+
+bool detail::UnknownFormatOf(const void* texture, UnknownFormatTexture* out) {
+    std::lock_guard<std::recursive_mutex> lock(detail::StateLock());
+    auto it = g_unknown_formats.find(texture);
+    if (it == g_unknown_formats.end())
+        return false;
+    *out = it->second;
+    return true;
+}
+
+bool detail::UnknownFormatOfId(std::uint32_t id, UnknownFormatTexture* out) {
+    std::lock_guard<std::recursive_mutex> lock(detail::StateLock());
+    auto it = g_texture_ids.find(id);
+    return it != g_texture_ids.end() && UnknownFormatOf(it->second, out);
 }
 
 bool detail::ViewKindOf(VkImageView view, ViewKind* kind) {
