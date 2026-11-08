@@ -4,10 +4,10 @@
 // inverts it, 'q' takes its root, 'R' and 'r' scale it by a random factor ...); some use the
 // parameter itself as well. Letters without a meaning are skipped. Names are placeholders.
 // Holds fn_7100076020 and fn_71000763c0 (a timed curve's step).
-#include "types.h"
+#include <math.h>
+#include <stdlib.h>
 
-extern "C" int rand();
-extern "C" f32 sqrtf(f32);
+#include "types.h"
 
 // A random factor in 0..1.
 static inline f32 Random01() {
