@@ -188,3 +188,30 @@ class BinaryIndex(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class BinaryStrings(unittest.TestCase):
+    """The strings an ADRP + ADD pair points at, which tell look-alikes such as luaopen_table and
+    luaopen_debug apart."""
+
+    class FakeOriginal:
+        def __init__(self, data, code):
+            self.img = type("Img", (), {"data": data})()
+            self._code = code
+
+        def function(self, addr):
+            return self._code
+
+    def test_adrp_add_string(self):
+        data = bytearray(0x3000)
+        data[0x2010:0x2016] = b"table\0"
+        add = 0x91000000 | (0x10 << 10) | (1 << 5) | 1  # add x1, x1, #0x10
+        fake = self.FakeOriginal(bytes(data), code(adrp(1, 2), add, RET))
+        self.assertEqual(sigmatch.binary_strings(fake, 0x7100000000), frozenset({"table"}))
+
+    def test_non_text_is_not_a_string(self):
+        data = bytearray(0x3000)
+        data[0x2010:0x2013] = b"\x01\x02\0"
+        add = 0x91000000 | (0x10 << 10) | (1 << 5) | 1
+        fake = self.FakeOriginal(bytes(data), code(adrp(1, 2), add, RET))
+        self.assertEqual(sigmatch.binary_strings(fake, 0x7100000000), frozenset())

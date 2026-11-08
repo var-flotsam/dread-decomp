@@ -340,7 +340,7 @@ address,size,name,library
 0x71010b9e30,248,luaH_setnum,lua
 0x71010b9f30,160,luaH_setstr,lua
 0x71010b9fd0,672,luaH_getn,lua
-0x71010ba270,40,luaopen_debug,lua
+0x71010ba270,40,luaopen_table,lua
 0x71010ba2a0,428,tconcat,lua
 0x71010ba450,200,foreach,lua
 0x71010ba520,216,foreachi,lua
