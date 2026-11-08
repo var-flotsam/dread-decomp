@@ -132,6 +132,9 @@ turn `add sym@GOTPCREL(%rip)` into a 32-bit immediate, which cannot hold the exe
 `DREAD_NVN_FRAME_DUMP=<dir>` (every `DREAD_NVN_FRAME_EVERY`-th present, default 60, at most
 `DREAD_NVN_FRAME_MAX`, default 100, as `<dir>/frame_<present>.png`; 8-bit RGBA, and RGBA16F clamped to 0..1).
 The images are the game's output: keep them under `build/`, never in the repository.
+`DREAD_NVN_DUMP_TARGETS=1` adds, beside each frame, the draws since the previous one by program and target
+(`frame_<n>.txt`) and each colour target (`frame_<n>_target<k>.png`). `DREAD_FS_LOG=1` logs every `nn::fs` open
+with its result.
 
 **Scripted input** (`DREAD_INPUT`, `port/runtime/src/hid.cpp`): the port's one controller presses buttons at
 given frames (polls of the handheld pad; the game polls once a frame), for runs with no window. Steps

@@ -4,6 +4,8 @@
 //   DREAD_NVN_FRAME_DUMP=<dir>    turns it on; frames go to <dir>/frame_<present number>.png
 //   DREAD_NVN_FRAME_EVERY=<n>     every n-th present (default 60, one a second at 60 Hz)
 //   DREAD_NVN_FRAME_MAX=<n>       at most n files (default 100)
+//   DREAD_NVN_DUMP_TARGETS=1      also, beside each frame, the draws since the previous one by program
+//                                 and target (frame_<n>.txt) and their colour targets (_target<k>.png)
 //
 // The PNG is RGB, 8 bits per channel (the presented alpha is dropped: the game does not keep it
 // meaningful), deflated with stored blocks only, so nothing beyond the C++ library is needed. The
@@ -18,6 +20,7 @@
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
+#include <map>
 #include <string>
 #include <vector>
 
@@ -187,6 +190,95 @@ bool detail::DumpTexturePng(const void* texture, const std::string& path) {
     return true;
 }
 
+// The scene dump: since the previous dumped frame, how many draws each program recorded, into which
+// targets, and how many were skipped and why. Written as frame_<n>.txt, with each colour target as
+// frame_<n>_target<k>.png (8-bit RGBA and RGBA16F; others are listed only).
+namespace {
+
+struct SceneDump {
+    std::map<std::string, std::uint64_t> programs;          // "<program> -> c0 <k>, depth <k>": draws
+    std::map<std::string, std::uint64_t> skipped;           // reason: draws
+    std::map<const void*, std::uint64_t> colors, depths;    // target: draws
+    std::map<const void*, std::size_t> index;               // target: its number in this dump
+};
+
+SceneDump& Scene() {
+    static SceneDump scene;
+    return scene;
+}
+
+std::size_t TargetIndex(const void* target) {
+    auto& index = Scene().index;
+    return index.emplace(target, index.size()).first->second;
+}
+
+void WriteScene(const DumpConfig& c, std::uint64_t present) {
+    SceneDump& s = Scene();
+    char base[48];
+    std::snprintf(base, sizeof base, "/frame_%06llu", static_cast<unsigned long long>(present));
+    std::FILE* f = std::fopen((c.dir + base + ".txt").c_str(), "w");
+    if (!f)
+        return;
+    std::fprintf(f, "draws by program (since the previous dumped frame):\n");
+    for (const auto& [name, n] : s.programs)
+        std::fprintf(f, "  %8llu  %s\n", static_cast<unsigned long long>(n), name.c_str());
+    std::fprintf(f, "skipped:\n");
+    for (const auto& [why, n] : s.skipped)
+        std::fprintf(f, "  %8llu  %s\n", static_cast<unsigned long long>(n), why.c_str());
+    std::fprintf(f, "targets:\n");
+    for (const auto& [target, k] : s.index) {
+        const TextureInfo info = GetTextureInfo(target);
+        const auto colour = s.colors.find(target);
+        const auto depth = s.depths.find(target);
+        std::fprintf(f, "  target%zu %p %ux%u Vulkan format %d: %llu colour draws, %llu depth draws\n", k, target,
+                     info.width, info.height, static_cast<int>(info.format),
+                     static_cast<unsigned long long>(colour == s.colors.end() ? 0 : colour->second),
+                     static_cast<unsigned long long>(depth == s.depths.end() ? 0 : depth->second));
+        const bool readable = info.format == VK_FORMAT_R8G8B8A8_UNORM || info.format == VK_FORMAT_R8G8B8A8_SRGB ||
+                              info.format == VK_FORMAT_B8G8R8A8_UNORM || info.format == VK_FORMAT_B8G8R8A8_SRGB ||
+                              info.format == VK_FORMAT_R16G16B16A16_SFLOAT;
+        if (colour != s.colors.end() && readable)
+            detail::DumpTexturePng(target, c.dir + base + "_target" + std::to_string(k) + ".png");
+    }
+    std::fclose(f);
+    s = SceneDump{};
+}
+
+bool TargetsOn() {
+    static const bool on = [] {
+        const char* e = std::getenv("DREAD_NVN_DUMP_TARGETS");
+        return e && *e && *e != '0';
+    }();
+    return on;
+}
+
+}  // namespace
+
+bool detail::SceneDumpOn() {
+    return Config().on && TargetsOn();
+}
+
+void detail::SceneDumpNoteDraw(const std::string& program, std::uint32_t color_count, const void* const* colors,
+                               const void* depth, const char* skipped) {
+    SceneDump& s = Scene();
+    if (skipped) {
+        ++s.skipped[skipped];
+        return;
+    }
+    std::string key = program + " ->";
+    for (std::uint32_t i = 0; i < color_count; ++i) {
+        if (!colors[i])
+            continue;
+        ++s.colors[colors[i]];
+        key += " c" + std::to_string(i) + " target" + std::to_string(TargetIndex(colors[i]));
+    }
+    if (depth) {
+        ++s.depths[depth];
+        key += " depth target" + std::to_string(TargetIndex(depth));
+    }
+    ++s.programs[key];
+}
+
 void detail::FrameDumpPresented(const void* texture, std::uint64_t present) {
     const DumpConfig& c = Config();
     static std::uint64_t written = 0;
@@ -198,6 +290,8 @@ void detail::FrameDumpPresented(const void* texture, std::uint64_t present) {
         const TextureInfo info = GetTextureInfo(texture);
         std::fprintf(stderr, "nvn shim: frame dump: %ux%u frames to %s\n", info.width, info.height, c.dir.c_str());
     }
+    if (TargetsOn())
+        WriteScene(c, present);
 }
 
 }  // namespace dread::nvn

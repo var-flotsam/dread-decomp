@@ -598,6 +598,8 @@ void Draw(void* cmd, std::int32_t primitive, std::int32_t index_type, std::int32
     auto skip = [](const char* why) {
         ReportOnce(std::string("a draw ") + why + " (skipped)");
         g_stats.skipped_draws++;
+        if (detail::SceneDumpOn())
+            detail::SceneDumpNoteDraw(std::string(), 0, nullptr, nullptr, why);
     };
     const detail::ProgramObjects* prog = g_state.program ? detail::FindProgramObjects(g_state.program) : nullptr;
     VkPrimitiveTopology topology;
@@ -740,6 +742,13 @@ void Draw(void* cmd, std::int32_t primitive, std::int32_t index_type, std::int32
     c->rec.reads.emplace_back(indices, index_bytes);
     vkCmdDrawIndexed(vk, static_cast<std::uint32_t>(count), instances, 0, base_vertex, base_instance);
     g_stats.draws++;
+    if (detail::SceneDumpOn()) {
+        static std::map<const detail::ProgramObjects*, std::string> names;  // ProgramName searches the manifest
+        auto it = names.find(prog);
+        if (it == names.end())
+            it = names.emplace(prog, ProgramName(*prog)).first;
+        detail::SceneDumpNoteDraw(it->second, g_state.color_count, g_state.colors, g_state.depth, nullptr);
+    }
 }
 
 // --- the NVN functions ---

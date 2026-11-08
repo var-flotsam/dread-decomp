@@ -59,6 +59,12 @@ void WindowPresented(const void* window, std::int32_t index);
 void FrameDumpPresented(const void* texture, std::uint64_t present);
 // Level 0 of an 8-bit RGBA texture as an RGB PNG at `path` (false, said on stderr, otherwise).
 bool DumpTexturePng(const void* texture, const std::string& path);
+// The scene dump ($DREAD_NVN_DUMP_TARGETS=1 with the frame dump): what the draws did since the
+// previous dumped frame, written beside it (frame_dump.cpp). SceneDumpOn says whether to note them.
+bool SceneDumpOn();
+// One draw: its program, its targets, and why it was skipped (null when it was recorded).
+void SceneDumpNoteDraw(const std::string& program, std::uint32_t color_count, const void* const* colors,
+                       const void* depth, const char* skipped);
 std::vector<std::uint8_t> EncodePngRgb(const std::uint8_t* rgb, std::uint32_t width, std::uint32_t height);
 
 template <class T>
