@@ -57,4 +57,8 @@ if(DREAD_LINK)
   add_executable(arm_member_check check/arm_member_check.cpp)
   target_include_directories(arm_member_check PRIVATE "${DREAD_ROOT}/include")
   target_link_libraries(arm_member_check PRIVATE dread_stdlib)
+  # os_check: nn::os events and multi-wait holders finalised and initialised again (src/os.cpp).
+  add_executable(os_check check/os_check.cpp src/os.cpp)
+  target_include_directories(os_check PRIVATE include "${DREAD_ROOT}/include" src)
+  target_link_libraries(os_check PRIVATE dread_stdlib)
 endif()
