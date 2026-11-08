@@ -34,8 +34,8 @@
 // game's packed texels in after everything submitted. Known gaps: a slot the game leaves
 // empty gets a 2D placeholder even where the shader declares a cube or a shadow sampler; one Vulkan
 // allocation per texture (the asset set will need suballocation).
-// Packaged (asset) texture data is kept by pointer, not uploaded yet: the .bctex data is in the
-// console's tiled layout, which the upload step will untile.
+// Packaged (asset) texture data, in the console's block-linear layout, is untiled and uploaded at
+// nvnTextureInitialize (texture.cpp, UploadPackaged).
 
 #include <cstdint>
 #include <vector>

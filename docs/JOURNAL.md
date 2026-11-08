@@ -103,6 +103,7 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - The NVN globals `g_unk_716e29xxxx` are named by the loader's GOT slots and their relative relocations (`data/nvn_procs.csv`); count GOT-slot call sites with a short window, not adjacent pairs; never write into a game-owned NVN object's storage: [NVN shim's start-up path](#session-log-newest-first).
 
 **Port: runtime and loader**
+- A packaged texture's layout word gives the block height (bits 0-2); levels follow one another with MipBlockLog2, and a cube face rounds up to base-level blocks, which all 5,754 `.bctex` headers confirm. The game's `std::` imports bind to the host's libc++ by the dump's mangled names, and its own libc++ instances to the port's from libc++ 9's headers: [Into the first scene](#session-log-newest-first).
 - An inferred subsystem can make game code `L` (no generator or lift covers it, so the port traps): `gen_functions_csv.is_library` keeps inferred `lua?` and `runtime?` library only when named. The console's `nn::os` finalise only marks the object, and the game finalises across threads after re-initialising: the port keeps events and holders: [Past the title on scripted input](#session-log-newest-first).
 - The shim flips each viewport, so the game's winding (in its window coordinates, y down) reaches Vulkan reversed: invert the front face, or every CULL_CCW quad (all 2D and full-screen passes) is culled: [The title screen is visible](#session-log-newest-first).
 - A member function pointer the game stored is in the ARM C++ ABI's encoding (virtual bit in `adj`), which an x86-64 `->*` reads as a call to the vtable offset; call one through `DREAD_CALL_MEMBER` (`include/UnkArmMemberFn.h`). An import's argument registers come from its mangled name, or lifted calls to it pass nothing on x86-64: [Imports get their arguments](#session-log-newest-first).
@@ -141,6 +142,26 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Into the first scene: the C++ library's imports and instances, and asset textures uploaded (2026-11-08, branch `claude/texture-upload`).**
+The black screen after the save menu was not a hang. Frames kept coming, and the first-hit trace showed the camera
+components, `CEntity`, the shot, minimap and music managers starting: the game had entered its first scene. On the way,
+the slot's text (`fn_7100b79ef8`) formats with a `std::stringstream`. The C++ library's imports had all trapped, because
+their CSV names carry no mangled name. Then a null dereference followed in libc++'s `ostream::sentry`.
+- `tools/port_link.py` now reads each `std::` import's mangled name from the dump (`import_mangled`, shared with
+  `import_names`). Where the host's libc++ exports that name (`host_cxx_exports`, `llvm-nm -D`), the import is a jump to
+  it: 21 called imports, and 43 names that the data loader binds (vtable slots such as `basic_streambuf::xsputn`). The
+  residue step no longer shadows them with traps.
+- The templates `main` instantiates in its own code (`basic_stringbuf`, `basic_stringstream` and their thunks,
+  `__put_character_sequence`, status `L`) are instantiated from libc++ 9's headers in
+  `port/runtime/src/cxx_instances.cpp`. The link binds those 14 addresses to them by the dump's symbol names
+  (`cxx_by_address`, `std::__1` only: the game's operator new and delete stay its allocator's). The host's libc++ cannot
+  stand in: it exports none of them, or only under its ABI tag `[abi:ne180100]`.
+- `HOST_BY_ADDRESS` (`__cxa_atexit`) applies whatever the row's status, since #330 made that row `U`.
+Asset textures are now uploaded. `nvnTextureInitialize` untiles every level of every layer of a packaged texture
+(`UploadPackaged`). The first layout word's bits 0-2 are the base block height. The levels follow one another, each with
+its own block height (`MipBlockLog2`). A cube face is the sum of its levels, rounded up to whole base-level blocks. A study
+over all 5,754 `.bctex` checked the offsets and face sizes against those their XTX headers record, and every one matched;
+the block height takes values 0 to 4 across them. The save menu and the file menu now render with their text and icons.
 **Past the title on scripted input: a constructor marked library, and the console's finalise (2026-11-08, branch `claude/title-press`).**
 After `DREAD_INPUT="A@600+6/120"` the boot met three stops in turn.
 1. A trap in `fn_7100b7b770`, then a jump to a heap address. `fn_7100b7b770` is `GUI::CSlotInfoComposition`'s

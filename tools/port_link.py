@@ -886,13 +886,14 @@ class Link:
 
 
 def host_symbol(row: dict) -> tuple[str, str]:
-    """(host symbol, 'C' or 'C++') when a status-L row's name is the host standard library's
-    (HOST_OPERATORS, C_LIBRARY) or its address is in HOST_BY_ADDRESS, else ('', '')."""
-    if row["status"] != "L":
-        return "", ""
+    """(host symbol, 'C' or 'C++') when a row's address is in HOST_BY_ADDRESS (whatever its status:
+    __cxa_atexit is U since gen_functions_csv stopped inferring runtime? as library), or a status-L
+    row's name is the host standard library's (HOST_OPERATORS, C_LIBRARY), else ('', '')."""
     by_address = HOST_BY_ADDRESS.get(int(row["address"], 16))
     if by_address:
         return by_address
+    if row["status"] != "L":
+        return "", ""
     name = row["name"]
     if name in HOST_OPERATORS:
         return HOST_OPERATORS[name], "C++"
@@ -926,34 +927,109 @@ def runtime_overload(candidates: list[str], reference: str, demangled: dict[str,
     return min(candidates, key=rank)
 
 
-def import_names(version: str, addresses: list[int]) -> dict[int, str]:
-    """address -> the console's demangled name, parameters included, of each import PLT stub in
-    `addresses` (data/functions/ names them without parameters), from the dump's GOT slot and
-    dynamic symbol table (asmdiff.Original.plt_import). Empty when the dump or the recon output
-    it reads is not there; runtime_overload then ranks by the reference's parameters."""
+def import_mangled(version: str, addresses: list[int]) -> dict[int, str]:
+    """address -> the console's mangled name of each import PLT stub in `addresses` (the dump's GOT
+    slot and dynamic symbol table, asmdiff.Original.plt_import). Empty without the dump."""
     if not addresses:
         return {}
     try:
         original = asmdiff.Original(version)
     except (OSError, ValueError) as e:
-        print(f"imports: the dump's import names are not readable ({e}); overloads ranked by arguments")
+        print(f"imports: the dump's import names are not readable ({e})")
         return {}
     mangled = {a: original.plt_import(a) for a in addresses}
-    mangled = {a: m for a, m in mangled.items() if m}
+    return {a: m for a, m in mangled.items() if m}
+
+
+def host_cxx_exports(cxx: str, target: str, nm: str) -> set[str]:
+    """The dynamic symbols the host's libc++ (and libc++abi) define, for the executable's link (the
+    same libraries `-stdlib=libc++` links). Empty off Linux or when they are not found."""
+    if "linux" not in target:
+        return set()
+    names: set[str] = set()
+    for lib in ("libc++.so.1", "libc++abi.so.1"):
+        r = subprocess.run([cxx, f"--target={target}", f"-print-file-name={lib}"], capture_output=True, text=True)
+        path = Path(r.stdout.strip())
+        if not path.is_absolute() or not path.is_file():
+            continue
+        r = subprocess.run([nm, "-D", "--defined-only", "--format=just-symbols", str(path)],
+                           capture_output=True, text=True, encoding="utf-8", errors="replace")
+        names.update(line.split("@")[0] for line in r.stdout.split())
+    return names
+
+
+def host_cxx_imports(version: str, rows: dict, exports: set[str]) -> dict[int, str]:
+    """address -> the host's libc++ symbol for each import of the C++ library (std::) whose console
+    name (import_mangled) the host defines: the console's libc++ and the host's share the std::__1
+    ABI, and the matched sources are compiled against libc++ 9's headers (port_sweep.py, libcxx9).
+    The rest stay traps (mangled_name_needed)."""
+    addrs = [int(a, 16) for a, r in rows.items() if r["name"].startswith(IMPORT_PREFIX)
+             and import_group(r["name"])[0] == "cxx"]
+    if not addrs or not exports:
+        return {}
+    return {a: m for a, m in import_mangled(version, addrs).items() if m in exports}
+
+
+def cxx_by_address(version: str, rows: dict, runtime_symbols: set[str]) -> dict[int, str]:
+    """address -> the runtime's definition of each status-L function the dump's dynamic symbol table
+    names with a std::__1 symbol the runtime defines: the C++ library's templates `main`
+    instantiates in its own code (port/runtime/src/cxx_instances.cpp). Empty without the dump."""
+    try:
+        original = asmdiff.Original(version)
+    except (OSError, ValueError):
+        return {}
+    out = {}
+    for name, sym in original.dynsym.items():
+        addr = sym["value"]
+        # The C++ library's own names only (std::__1, its thunks): the game's operator new and
+        # delete are its allocator's, which the link routes by address on purpose.
+        if not addr or "St3__1" not in name or name not in runtime_symbols:
+            continue
+        addr = addr if addr >= 0x7100000000 else 0x7100000000 + addr  # the dump's symbols are module-relative
+        row = rows.get(f"0x{addr:010x}")
+        if row and row["status"] == "L":
+            out[addr] = name
+    return out
+
+
+def host_cxx_data_imports(version: str, exports: set[str]) -> set[str]:
+    """The C++ library names `main` imports (undefined in its dynamic symbol table) that the host's
+    libc++ defines, for the data loader: its relocations name them too (the string buffer's
+    xsputn in the game's own vtables). Empty without the dump."""
+    if not exports:
+        return set()
+    try:
+        original = asmdiff.Original(version)
+    except (OSError, ValueError):
+        return set()
+    return {name for name, sym in original.dynsym.items()
+            if sym["shndx"] == 0 and "St3__1" in name and name in exports}
+
+
+def import_names(version: str, addresses: list[int]) -> dict[int, str]:
+    """address -> the console's demangled name, parameters included, of each import PLT stub in
+    `addresses` (data/functions/ names them without parameters), from the dump's GOT slot and
+    dynamic symbol table (asmdiff.Original.plt_import). Empty when the dump or the recon output
+    it reads is not there; runtime_overload then ranks by the reference's parameters."""
+    mangled = import_mangled(version, addresses)
+    if not mangled:
+        return {}
     demangled = asmdiff.demangle(sorted(set(mangled.values())), strip=False)
     return {a: demangled.get(m, m) for a, m in mangled.items()}
 
 
 def classify(lk: Link, runtime_by_name: dict[str, list[str]], runtime_symbols: set[str],
              alias_mismatch: bool = False, known: dict[str, int] | None = None,
-             imported: dict[int, str] | None = None) -> list[Entry]:
+             imported: dict[int, str] | None = None, host_cxx: dict[int, str] | None = None) -> list[Entry]:
     """One Entry per undefined symbol of `lk`. A called function alias with a class_mismatch
     verdict is trapped unless `alias_mismatch`. `known` (tools/port_addresses.py) gives the
     original address of a vtable or a name without one: the vtable becomes an absolute symbol
     there, the name a reference to that address like any fn_<addr>. `imported` (import_names)
-    gives the console's demangled name of an import whose runtime name is overloaded."""
+    gives the console's demangled name of an import whose runtime name is overloaded. `host_cxx`
+    (host_cxx_imports) the host's libc++ symbol for an import of the C++ library: a jump to it."""
     known = known or {}
     imported = imported or {}
+    host_cxx = host_cxx or {}
     res = lk.resolver
     out: list[Entry] = []
     for sym in lk.undefined:
@@ -1030,6 +1106,9 @@ def classify(lk: Link, runtime_by_name: dict[str, list[str]], runtime_symbols: s
         elif row and host_symbol(row)[0]:
             e.jump, kind = host_symbol(row)
             e.cls, e.sub = "stdlib", f"{kind} (status L, by address)"
+        elif row and row["status"] == "L" and addr in host_cxx:
+            e.jump = host_cxx[addr]
+            e.cls, e.sub = "stdlib", "C++ (status L, the runtime's instance)"
         elif row and row["name"].startswith(IMPORT_PREFIX):
             e.cls = "import"
             group, gname = import_group(row["name"])
@@ -1046,6 +1125,9 @@ def classify(lk: Link, runtime_by_name: dict[str, list[str]], runtime_symbols: s
                     e.flags.append("stub_needed")
             elif group == "c":
                 e.sub, e.jump = "C library", gname
+            elif addr in host_cxx:
+                e.sub, e.jump = "host C++ library", host_cxx[addr]
+                e.flags.append("by_mangled_name")
             else:
                 e.sub, e.trap = "host C++ library", addr
                 e.flags.append("mangled_name_needed")
@@ -1168,7 +1250,8 @@ def bound_statics(symbols: list[tuple[str, str]], sizes: dict[str, int], known: 
 
 def write_image_tables(path: Path, lk: "Link", entries: list[Entry], runtime_globals: set[str],
                        demangled: dict[str, str], rows: dict[str, dict], statics: tuple = (),
-                       silent_extra: list[tuple[str, int]] = ()) -> dict:
+                       silent_extra: list[tuple[str, int]] = (), bound: dict[int, str] | None = None,
+                       host_imports: set[str] = frozenset()) -> dict:
     """image_tables.s: the tables the data loader (port/runtime/include/dread_port_loader.h) maps the
     dump with, from the link's own definitions (no game bytes):
       dread_port_functions        {address, code} for every function address the link can name: a
@@ -1207,6 +1290,10 @@ def write_image_tables(path: Path, lk: "Link", entries: list[Entry], runtime_glo
         by_entry += 1
     for sym, addr in silent_extra:
         functions.setdefault(addr, sym)
+    # `bound` (cxx_by_address): a status-L function the runtime instantiates, reached only through
+    # the game's code pointers (the string buffer's virtual functions in the game's own vtables).
+    for addr, sym in sorted((bound or {}).items()):
+        functions.setdefault(addr, sym)
     imports: dict[str, str] = {}
     for sym in sorted(runtime_globals):
         if demangled.get(sym, sym).startswith(("nn::", "nv::", "movie::")):
@@ -1217,6 +1304,8 @@ def write_image_tables(path: Path, lk: "Link", entries: list[Entry], runtime_glo
             if group == "c" and (gname in C_LIBRARY or gname in runtime_globals):
                 imports.setdefault(gname, gname)  # a C library name, or the NVN shim's nvnBootstrapLoader
     for name in HOST_ABI_IMPORTS:
+        imports.setdefault(name, name)
+    for name in sorted(host_imports):  # host_cxx_data_imports: the host's libc++
         imports.setdefault(name, name)
     data = sorted({e.address for e in entries if e.cls == "data" and e.address is not None} | {a for _, a in statics})
     # main's .init_array in its order (address order: data/tu_map.csv, one initialiser per unit),
@@ -1272,19 +1361,21 @@ def vpx_for(target: str) -> tuple[Path, Path] | None:
     return (lib, build_libvpx.include_dir(triple)) if lib else None
 
 
-def write_residue_traps(path: Path, residue: list[Entry], host: re.Pattern | None = None) -> dict:
+def write_residue_traps(path: Path, residue: list[Entry], host: re.Pattern | None = None,
+                        host_names: set[str] = frozenset()) -> dict:
     """residue.s, for the executable: a definition for every name link 2 leaves undefined that the
     host does not provide, so that the program links and fails only if it reaches one. A function
     (a named function without an address, an nn:: function no stub defines) is a thunk that passes
     its name to dread_port_missing_import; a vtable is two zero words (offset to top, type info) and
-    64 slots of one such thunk; a data name is 0x100 zero bytes. Names `host` matches are left to a
-    host library the executable links (the Vulkan loader). Returns the counts."""
+    64 slots of one such thunk; a data name is 0x100 zero bytes. Names `host` matches, and the
+    `host_names` the host's libc++ defines (the C++ library's imports jump to them), are left to the
+    host libraries the executable links. Returns the counts."""
     lines = ["# Generated by tools/port_link.py --executable: traps for the names link 2 leaves undefined.",
              "\t.text"]
     data, strings = [], ['\t.section\t.rodata.str1.1,"aMS",@progbits,1']
     counts: Counter[str] = Counter()
     for i, e in enumerate(r for r in residue if r.cls in ("vtable", "named_without_address", "nn_runtime")
-                          and not (host and host.match(r.symbol))):
+                          and not (host and host.match(r.symbol)) and r.symbol not in host_names):
         label = f".Lresidue{i}"
         strings += [f"{label}:", f'\t.asciz\t"{e.demangled}"']
         thunk = f".Ltrap{i}"
@@ -1305,7 +1396,8 @@ def write_residue_traps(path: Path, residue: list[Entry], host: re.Pattern | Non
 
 
 def link_executable(cxx: str, target: str, flags: list[str], out: Path, whole_o: Path, residue: list[Entry],
-                    image_base: int, libs: tuple[str, ...] = (), host: re.Pattern | None = None) -> dict | None:
+                    image_base: int, libs: tuple[str, ...] = (), host: re.Pattern | None = None,
+                    host_names: set[str] = frozenset()) -> dict | None:
     """<out>/dread: port/main.cpp, link 2's dread_whole.o and residue.s, linked by lld at a fixed
     base (no PIE: the game's data sit at fixed addresses and the code must stay within 2 GB of
     them) against the host's libc++ and C library. None (after printing why) when it fails."""
@@ -1313,7 +1405,7 @@ def link_executable(cxx: str, target: str, flags: list[str], out: Path, whole_o:
         print(f"executable: not for {target} (ELF on Linux only so far)")
         return None
     residue_s, residue_o, main_o, exe = out / "residue.s", out / "residue.o", out / "main.o", out / "dread"
-    counts = write_residue_traps(residue_s, residue, host)
+    counts = write_residue_traps(residue_s, residue, host, host_names)
     for cmd in ([cxx, f"--target={target}", "-c", str(residue_s), "-o", str(residue_o)],
                 [cxx, *flags, str(MAIN_SRC), "-o", str(main_o)]):
         r = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", cwd=ROOT)
@@ -1640,6 +1732,16 @@ def main() -> int:
     overloaded = [int(a, 16) for a, r in rows.items() if r["name"].startswith(IMPORT_PREFIX)
                   and len(runtime_by_name.get(r["name"][len(IMPORT_PREFIX):], ())) > 1]
     imported = import_names(args.version, overloaded)
+    host_exports = host_cxx_exports(cxx, target, nm) if args.executable else set()
+    host_cxx = host_cxx_imports(args.version, rows, host_exports)
+    host_data = host_cxx_data_imports(args.version, host_exports)
+    if host_cxx:
+        print(f"imports: {len(host_cxx)} of the C++ library's jump to the host's libc++ by their console names,"
+              f" {len(host_data)} of its names the data loader binds to the host's")
+    instances = cxx_by_address(args.version, rows, runtime_symbols)
+    if instances:
+        print(f"C++ library: {len(instances)} status-L functions bound to the runtime's instances")
+        host_cxx = {**host_cxx, **instances}
     print(f"symbols: {lk.defined_entries} defined entries ({len(lk.defined_symbols)} distinct names),"
           f" {len(lk.undefined)} undefined;"
           f" {len(lk.code_defs)} addresses have a function definition"
@@ -1650,7 +1752,7 @@ def main() -> int:
           f" runtime: {len(runtime_symbols)} functions")
 
     # d. classification
-    entries = classify(lk, runtime_by_name, runtime_symbols, args.alias_mismatch, known, imported)
+    entries = classify(lk, runtime_by_name, runtime_symbols, args.alias_mismatch, known, imported, host_cxx)
     summary = summarize(entries, args.examples, keep_empty=True)
     assert sum(d["symbols"] for d in summary.values()) == len(entries) == len(lk.undefined)
     print()
@@ -1710,7 +1812,7 @@ def main() -> int:
         if new_names:
             demangled.update(asmdiff.demangle(new_names, strip=False))
         lk = Link(lsyms, demangled, resolver, relocations(objdump, lifted_o), known)
-        entries = classify(lk, runtime_by_name, runtime_symbols, args.alias_mismatch, known, imported)
+        entries = classify(lk, runtime_by_name, runtime_symbols, args.alias_mismatch, known, imported, host_cxx)
         game_o = lifted_o
         print()
         lifted_slice = boot_slice(args.version, lk, entries, runtime_by_name, out / "boot_unlifted.csv",
@@ -1762,7 +1864,7 @@ def main() -> int:
     # a local one cannot be named; data too (an SDK data import such as nn::hid's sampling interval)
     runtime_globals = {s for _, syms in rt_symbols for k, s in syms if k in "TWDR"}
     tables = write_image_tables(tables_s, lk, entries, runtime_globals, demangled, rows, tuple(statics),
-                                silent_extra)
+                                silent_extra, instances, host_data)
     r = subprocess.run([cxx, f"--target={target}", "-c", str(tables_s), "-o", str(tables_o)],
                        capture_output=True, text=True, encoding="utf-8", errors="replace")
     if r.returncode != 0:
@@ -1810,7 +1912,7 @@ def main() -> int:
     if args.executable:
         exe_report = link_executable(cxx, target, flags, out, whole_o, residue_entries, int(args.image_base, 16),
                                      (*((str(vpx[0]),) if vpx else ()), *(("-lvulkan",) if args.nvn else ())),
-                                     host_pattern(args.nvn))
+                                     host_pattern(args.nvn), (set(host_cxx.values()) & host_exports) | host_data)
         if exe_report is None:
             return 1
 
