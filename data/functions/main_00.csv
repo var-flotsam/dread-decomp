@@ -1,32 +1,32 @@
 address,size,name,name_source,subsystem,status
 0x7100000030,308,_DT_INIT,symbol,runtime,L
 0x7100000170,24,_DT_FINI,symbol,runtime,L
-0x7100000190,36,fn_7100000190,unknown,runtime?,L
-0x71000001c0,136,fn_71000001c0,unknown,runtime?,L
-0x7100000250,136,fn_7100000250,unknown,runtime?,L
+0x7100000190,36,fn_7100000190,unknown,runtime?,U
+0x71000001c0,136,fn_71000001c0,unknown,runtime?,U
+0x7100000250,136,fn_7100000250,unknown,runtime?,U
 0x71000002e0,4,__nnDetailNintendoSdkRuntimeObjectFileRefer,symbol,runtime,L
-0x71000002f0,192,fn_71000002f0,unknown,runtime?,L
+0x71000002f0,192,fn_71000002f0,unknown,runtime?,U
 0x71000003b0,12,nndetailRoGetRoDataStart,symbol,runtime,L
 0x71000003c0,12,nndetailRoGetRoDataEnd,symbol,runtime,L
 0x71000003d0,4,__nnDetailNintendoSdkRuntimeObjectFile,symbol,runtime,L
-0x71000003d4,328,fn_71000003d4,unknown,runtime?,L
-0x710000051c,104,fn_710000051c,unknown,runtime?,L
-0x7100000584,64,fn_7100000584,unknown,runtime?,L
-0x71000005d0,52,fn_71000005d0,unknown,runtime?,L
-0x7100000610,384,fn_7100000610,unknown,runtime?,L
-0x7100000790,192,fn_7100000790,unknown,runtime?,L
-0x7100000850,300,fn_7100000850,unknown,runtime?,L
-0x7100000980,764,fn_7100000980,unknown,runtime?,L
-0x7100000c7c,104,fn_7100000c7c,unknown,runtime?,L
-0x7100000cf0,76,fn_7100000cf0,unknown,runtime?,L
-0x7100000d40,1608,fn_7100000d40,unknown,runtime?,L
-0x7100001390,236,fn_7100001390,unknown,runtime?,L
-0x7100001480,236,fn_7100001480,unknown,runtime?,L
-0x7100001570,420,fn_7100001570,unknown,runtime?,L
-0x7100001714,4,fn_7100001714,unknown,runtime?,L
-0x7100001718,64,fn_7100001718,unknown,runtime?,L
-0x7100001760,252,fn_7100001760,unknown,runtime?,L
-0x7100001860,140,fn_7100001860,unknown,runtime?,L
+0x71000003d4,328,fn_71000003d4,unknown,runtime?,O
+0x710000051c,104,fn_710000051c,unknown,runtime?,U
+0x7100000584,64,fn_7100000584,unknown,runtime?,O
+0x71000005d0,52,fn_71000005d0,unknown,runtime?,O
+0x7100000610,384,fn_7100000610,unknown,runtime?,O
+0x7100000790,192,fn_7100000790,unknown,runtime?,O
+0x7100000850,300,fn_7100000850,unknown,runtime?,O
+0x7100000980,764,fn_7100000980,unknown,runtime?,O
+0x7100000c7c,104,fn_7100000c7c,unknown,runtime?,U
+0x7100000cf0,76,fn_7100000cf0,unknown,runtime?,O
+0x7100000d40,1608,fn_7100000d40,unknown,runtime?,m
+0x7100001390,236,fn_7100001390,unknown,runtime?,O
+0x7100001480,236,fn_7100001480,unknown,runtime?,O
+0x7100001570,420,fn_7100001570,unknown,runtime?,O
+0x7100001714,4,fn_7100001714,unknown,runtime?,O
+0x7100001718,64,fn_7100001718,unknown,runtime?,O
+0x7100001760,252,fn_7100001760,unknown,runtime?,m
+0x7100001860,140,fn_7100001860,unknown,runtime?,O
 0x71000018f0,64,nnMain,symbol,runtime,L
 0x7100001930,140,fn_7100001930,unknown,unknown,O
 0x71000019c0,140,fn_71000019c0,unknown,unknown,O
@@ -2094,8 +2094,8 @@ address,size,name,name_source,subsystem,status
 0x7100083a70,232,fn_7100083a70,unknown,unknown,O
 0x7100083b60,32,operator new,symbol,runtime,L
 0x7100083b80,32,operator new[],symbol,runtime,L
-0x7100083ba0,32,fn_7100083ba0,unknown,runtime?,L
-0x7100083bc0,56,fn_7100083bc0,unknown,runtime?,L
+0x7100083ba0,32,fn_7100083ba0,unknown,runtime?,O
+0x7100083bc0,56,fn_7100083bc0,unknown,runtime?,O
 0x7100083c00,36,operator delete,symbol,runtime,L
 0x7100083c30,24,operator delete[],symbol,runtime,L
 0x7100083c48,256,fn_7100083c48,unknown,unknown,O

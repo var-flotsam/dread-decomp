@@ -129,6 +129,14 @@ UnkGuiDisplayObject* fn_71011d98ec(UnkGuiDisplayObject* container, u64 id);
 // constructors start with it.
 void fn_71011cce1c(UnkGuiDisplayObject* self);
 
+// GUI::CDisplayObjectContainer's constructor (the unit named after it): GUI::CDisplayObject's, then the
+// container's own members. The compositions' and buttons' constructors start with it. Not decompiled yet.
+void fn_71011d8d24(void* self);
+
+// The display object's set-up that a constructor runs last, after its own members (GUI::CButton's
+// children, the slot compositions). Not decompiled yet.
+void fn_71011cd128(char* self);
+
 namespace base::global {
 class CStrId;
 }

@@ -81,8 +81,25 @@ LIBRARY_SUBSYSTEMS = {"middleware/nn-atk", "sdk", "runtime", "lua", "dlmalloc"}
 # Subsystems where a neighbour's inferred subsystem ("lua?") does not make a function library code:
 # the game added its own functions to Lua's auxiliary library (luaL_testudata, ...), between ones
 # tools/sigmatch.py matches to lib/lua, and nothing in lib/lua provides them. Only a matched name is
-# library there.
-INFERRED_NOT_LIBRARY = {"lua"}
+# library there. Likewise "runtime": the C++ library's templates are instantiated in the game's own
+# units (GUI::CSlotInfoComposition's unit holds four std::basic_stringstream thunks), and an inferred
+# "runtime?" made the class's constructor, virtual getter and helpers library code that nothing
+# generated or lifted (the port trapped on them after a press on the title, 2026-11-08).
+INFERRED_NOT_LIBRARY = {"lua", "runtime"}
+
+
+def is_library(subsystem: str, name_source: str) -> bool:
+    """Whether a function of `subsystem` ("x?" when inferred from its neighbours) is library code (L).
+    In an INFERRED_NOT_LIBRARY subsystem an inferred one is library only when its name says so (a
+    symbol or a match against vendored code: the std::basic_stringstream thunks in a GUI unit)."""
+    base_sub = subsystem.rstrip("?")
+    if base_sub not in LIBRARY_SUBSYSTEMS:
+        return False
+    if subsystem.endswith("?") and base_sub in INFERRED_NOT_LIBRARY:
+        return name_source in ("symbol", "library")
+    return True
+
+
 # Statuses that come from src/ (tools/check.py) and must survive regeneration.
 DECOMP_STATUSES = {"O", "m", "M", "W"}
 
@@ -239,10 +256,7 @@ def main() -> int:
                 subsystem = sub.get(a, "unknown")
                 status = old_status.get(addr)
                 if status not in DECOMP_STATUSES:
-                    base_sub = subsystem.rstrip("?")
-                    inferred = subsystem.endswith("?")
-                    library = base_sub in LIBRARY_SUBSYSTEMS and not (inferred and base_sub in INFERRED_NOT_LIBRARY)
-                    status = "L" if library else "U"
+                    status = "L" if is_library(subsystem, source) else "U"
                 w.writerow([addr, funcs[a], name, source, subsystem, status])
 
     rt = ROOT / "data" / "reflection_types.csv"

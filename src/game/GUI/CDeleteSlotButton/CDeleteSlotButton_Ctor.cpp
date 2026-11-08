@@ -1,12 +1,12 @@
 // GUI::CDeleteSlotButton's constructor (the name from reflection): GUI::CButton's (fn_71011bf0ec),
 // then a press callback bound to the button (fn_7100b0102c), no slot (-1), and the button's set-up
 // (fn_71011cd128). Names and layouts are placeholders.
+#include "game/UnkGuiDisplayObject.h"
 #include "types.h"
 
 extern char g_unk_7101a99c90[];  // CDeleteSlotButton's vtable
 struct UnkGuiButton;
 void fn_71011bf0ec(UnkGuiButton* self);  // CButton's constructor
-void fn_71011cd128(char*);
 void fn_7100b0102c();              // the bound callback
 
 struct UnkDeleteSlotButton {

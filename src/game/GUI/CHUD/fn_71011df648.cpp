@@ -5,6 +5,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/UnkGuiDisplayObject.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -54,7 +55,6 @@ struct UnkGuiObject_71011df648 {
 };
 
 extern void* g_unk_7101cb6040[];
-void fn_71011d8d24(UnkGuiObject_71011df648* self);
 void fn_71011e7f14();
 void fn_71011e7bf8();
 void fn_71011e7c10();

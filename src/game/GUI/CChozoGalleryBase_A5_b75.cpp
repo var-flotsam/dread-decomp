@@ -22,7 +22,6 @@ using base::global::CRntString;
 using base::global::CStrId;
 using base::reflection::UnkReflObject;
 
-void fn_71011d8d24(void*);
 void fn_7100af9cd0();
 extern void* g_unk_7101a98af8[];
 

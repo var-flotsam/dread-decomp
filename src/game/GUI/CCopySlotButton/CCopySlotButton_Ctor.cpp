@@ -1,12 +1,12 @@
 // GUI::CCopySlotButton's constructor (the name from reflection): GUI::CButton's (fn_71011bf0ec),
 // then a press callback bound to the button (fn_7100afb80c), no slot (-1), and the button's set-up
 // (fn_71011cd128). Names and layouts are placeholders.
+#include "game/UnkGuiDisplayObject.h"
 #include "types.h"
 
 extern char g_unk_7101a99010[];  // CCopySlotButton's vtable
 struct UnkGuiButton;
 void fn_71011bf0ec(UnkGuiButton* self);  // CButton's constructor
-void fn_71011cd128(char*);
 void fn_7100afb80c();              // the bound callback
 
 struct UnkCopySlotButton {
