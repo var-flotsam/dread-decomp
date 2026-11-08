@@ -1216,10 +1216,10 @@ char* fn_71012143b4(char* p0) {
     return callee::fn_710123a450(r0_0);
 }
 
-namespace callee { char* fn_7101238ec0(char*); }
-char* fn_7101215104(char* p0) {
+namespace callee { char* fn_7101238ec0(char*, char*); }
+char* fn_7101215104(char* p0, char* p1) {
     char* r0_0 = (p0) + 144;
-    return callee::fn_7101238ec0(r0_0);
+    return callee::fn_7101238ec0(r0_0, p1);
 }
 
 void fn_7101215460() {

@@ -1577,11 +1577,11 @@ char* fn_71004e9960(char* p0) {
     return (char*)(u64)(r1_0);
 }
 
-namespace callee { char* fn_71004e9b20(char*, u32, u32, char*, char*, char*, char*); }
-char* fn_71004eab18(char* p0, char* p1, char* p2, char* p3, char* p4, char* p5, char* p6) {
+namespace callee { char* fn_71004e9b20(char*, u32, u32); }
+char* fn_71004eab18(char* p0) {
     u32 r0_1 = 0x1;
     u32 r1_2 = (u32)(u64)(0);
-    return callee::fn_71004e9b20(p0, r0_1, r1_2, p3, p4, p5, p6);
+    return callee::fn_71004e9b20(p0, r0_1, r1_2);
 }
 
 namespace bret { bool fn_710117b348(u64, char*); }

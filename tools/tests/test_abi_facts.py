@@ -104,3 +104,34 @@ class OpenForwarder(unittest.TestCase):
         f = self.facts({FORWARD: [FORWARD_CALLER]})
         self.assertFalse(f.open)
         self.assertEqual(f.ints, 4)
+
+
+@unittest.skipIf(abi_facts is None, "capstone is not installed")
+class ImportSignatures(unittest.TestCase):
+    """An import's facts from the dump's demangled name: its PLT stub reads no register itself, so
+    without them a lifted call passed nothing (nn::os::ConvertToTimeSpan lost its tick, and the
+    frame timer's wait never ended)."""
+
+    def facts(self, demangled):
+        return abi_facts.signature_facts(demangled)
+
+    def test_free_functions(self):
+        f = self.facts("nn::os::ConvertToTimeSpan(nn::os::Tick)")
+        self.assertEqual((f.args, f.wide), (frozenset({0}), frozenset({0})))
+        self.assertEqual(self.facts("nn::os::GetSystemTick()").args, frozenset())
+        f = self.facts("nn::audio::SetVoiceVolume(nn::audio::VoiceType*, float)")
+        self.assertEqual((f.args, f.wide), (frozenset({0, 100}), frozenset({0})))
+
+    def test_members_take_this_and_narrow_integers(self):
+        f = self.facts("movie::Buffer::SetRange(int, int)")
+        self.assertEqual((f.args, f.wide), (frozenset({0, 1, 2}), frozenset({0})))
+        self.assertEqual(self.facts("movie::Buffer::Buffer()").args, frozenset({0}))
+
+    def test_nested_commas_variadic_and_stack(self):
+        f = self.facts("nn::util::SNPrintf(char*, unsigned long, char const*, ...)")
+        self.assertEqual(f.args, frozenset({0, 1, 2}))
+        f = self.facts("f(std::pair<int, int>, void (*)(int, double), double)")
+        self.assertEqual(f.args, frozenset({0, 1, 100}))
+        self.assertEqual(f.wide, frozenset({0, 1, 100}))
+        self.assertTrue(self.facts("g(" + ", ".join(["long"] * 9) + ")").stack)
+        self.assertIsNone(self.facts("memcpy"))
