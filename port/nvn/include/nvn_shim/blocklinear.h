@@ -14,10 +14,9 @@
 //  - Blocks are ordered across a row of the surface, then down, then through the slices; the surface
 //    is padded to whole blocks on every side.
 // A smaller mip level keeps the layout but its block height (and depth) shrinks while half of it
-// would still cover the level: MipBlockLog2 (the usual rule, not yet confirmed on the game's own
-// packaged layouts). Where each level and array layer starts in the
-// packaged data, and how a layer's size is aligned, are the packaged layout's business, not this
-// file's: the upload step takes them from the texture's packaged layout once that is read.
+// would still cover the level: MipBlockLog2. Where each level and array layer starts in the packaged
+// data, and how a layer's size is aligned, are the upload step's business (texture.cpp,
+// UploadPackaged), checked against the offsets the game's own .bctex headers record.
 
 #include <cstddef>
 #include <cstdint>

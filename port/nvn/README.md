@@ -35,7 +35,7 @@ or SDK is needed to compile.
 | `include/nvn_shim/window.h`, `src/window.cpp` | the window: its textures in turn, the present interval, the crop, the presented texture |
 | `src/frame_dump.cpp` | the frame dump: every N-th presented texture as a PNG (`$DREAD_NVN_FRAME_DUMP`), until the window has a surface |
 | `include/nvn_shim/texture.h`, `src/texture.cpp`, `src/texture_internal.h` | textures as Vulkan images (the format and target table with its evidence), render-target views, texel writes, the texture and sampler pools, samplers, texture handles, the binding layer's resolver over all of it, placeholders of each sampler kind |
-| `include/nvn_shim/blocklinear.h`, `src/blocklinear.cpp` | the console's block-linear (GOB) layout of packaged texture data, and its conversion to linear rows for the texel upload (not called yet) |
+| `include/nvn_shim/blocklinear.h`, `src/blocklinear.cpp` | the console's block-linear (GOB) layout of packaged texture data, and its conversion to linear rows for the packaged texture upload |
 | `src/objects.h` | the side tables that hold the shim's state for the game's objects |
 | `include/nvn_shim/nvn_types.h` | the NVN values the binding layer handles: stages, stage bits, buffer addresses, texture handles, `nvnProgramSetShaders`' stage array |
 | `include/nvn_shim/shader_manifest.h`, `src/shader_manifest.cpp` | reads `shaders.manifest` (written by `tools/bshdat.py --install`) and finds a stage by its control section |
@@ -172,8 +172,11 @@ What the parts do so far, and what they do not yet:
   sampler is `sampler2DShadow ps_shadowmap`); the title screen uses neither. Every format is checked
   against the device (BC needs `textureCompressionBC`, enabled when present). Every image keeps the
   GENERAL layout and starts zeroed. Target 1 is 2D and 8 a cube map: of the 5,754 `.bctex`, 5,480 are target 1 and 274 target 8,
-  every target-8 one square with six faces of data, BC6H, a cube/IBL/environment map. Swizzles are the game's 0-5 (zero, one, R, G, B, A). Asset (packaged) texture data is kept
-  by pointer, not uploaded yet: it is in the console's tiled layout. Samplers are linear and
+  every target-8 one square with six faces of data, BC6H, a cube/IBL/environment map. Swizzles are the game's 0-5 (zero, one, R, G, B, A). Asset (packaged) texture data is in the
+  console's block-linear layout; `nvnTextureInitialize` untiles every level of every layer and uploads
+  it (`UploadPackaged`): the layout's first word, bits 0-2, is the base block height, and the levels'
+  offsets and a cube's face size follow from the block-linear sizes, as the XTX headers of all 5,754
+  `.bctex` record them. Samplers are linear and
   repeat for now, with the game's LOD clamp, bias and compare: the filter, wrap and compare
   numbers are the engine's packing of NVN's enumerations, which nothing in the game names yet.
   Known gap: one Vulkan allocation per texture (the asset set will need suballocation).

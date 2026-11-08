@@ -13,6 +13,7 @@
 
 #include <vulkan/vulkan.h>
 
+#include "nvn_shim/blocklinear.h"
 #include "nvn_shim/device.h"
 #include "nvn_shim/memory.h"
 #include "nvn_shim/procs.h"
@@ -77,7 +78,7 @@ struct Texture {
     VkFormat vk_format = VK_FORMAT_UNDEFINED;  // the format made (a depth format may fall back)
     std::uint32_t width = 0, height = 0, layers = 1, levels = 1;
     bool cube = false;
-    const void* packaged_data = nullptr;  // not uploaded yet (header comment)
+    const void* packaged_data = nullptr;  // uploaded at initialisation (UploadPackaged)
 };
 
 struct SamplerBuilder {
@@ -359,6 +360,8 @@ std::uint64_t TextureBuilderGetStorageAlignment(const void*) {
     return kStorageAlignment;
 }
 
+bool UploadPackaged(Texture& t, const void* data, const void* layout);  // below
+
 std::int32_t TextureInitialize(void* texture, const void* builder) {
     const Backend* be = CurrentBackend();
     std::lock_guard<std::recursive_mutex> lock(detail::StateLock());
@@ -430,6 +433,13 @@ std::int32_t TextureInitialize(void* texture, const void* builder) {
     }
     InitializeImage(t.image, aspect | (f->depth ? VK_IMAGE_ASPECT_STENCIL_BIT : 0), t.levels, t.layers, f->depth, compressed);
     g_view_kinds[t.view] = t.cube ? detail::ViewKind::Cube : f->depth ? detail::ViewKind::Depth2D : detail::ViewKind::Color2D;
+    if (b->packaged_data && !UploadPackaged(t, b->packaged_data, b->packaged_layout)) {
+        static bool noted = false;
+        if (!noted)
+            std::fprintf(stderr, "nvn shim: a packaged texture (%ux%u, format %#x) was not uploaded\n", t.width, t.height,
+                         static_cast<unsigned>(b->format));
+        noted = true;
+    }
     return 1;
 }
 
@@ -500,6 +510,105 @@ void TextureWriteTexels(const void* texture, const void*, const CopyRegion* regi
     if (memory)
         vkFreeMemory(be->device, memory, nullptr);
     vkDestroyBuffer(be->device, staging, nullptr);
+}
+
+// Packaged (asset) texture data: the .bctex's XTX texture block, which fn_7100160260 hands over as
+// the data (the image, block-linear) and the layout (the block's two layout words). The first
+// word's bits 0-2 are the base level's block height, log2: with it, every level's offset in the
+// data follows from the block-linear sizes (blocklinear.h), each level after the previous one with
+// its own block height (MipBlockLog2), and a cube's faces one face size apart, rounded up to whole
+// base-level blocks. Checked against the offsets and face sizes the XTX headers record: all 5,754 of
+// the game's .bctex (2026-11-08). The upload untiles each level of each layer into linear rows and
+// copies them in after everything submitted, as TextureWriteTexels does.
+bool UploadPackaged(Texture& t, const void* data, const void* layout) {
+    const Backend* be = CurrentBackend();
+    if (!be || !t.image || !data || !layout || t.format->depth)
+        return false;
+    std::uint32_t word;
+    std::memcpy(&word, layout, sizeof(word));
+    const std::uint32_t base_log2 = word & 7;
+    const std::uint32_t bs = t.format->block_size, bpb = t.format->block_bytes;
+    struct Level {
+        BlockLinearSurface surface;
+        std::uint64_t offset;  // in a layer of the packaged data
+        std::uint32_t width, height;
+    };
+    std::vector<Level> levels;
+    std::uint64_t layer_bytes = 0;
+    for (std::uint32_t m = 0; m < t.levels; ++m) {
+        Level l;
+        l.width = std::max(t.width >> m, 1u);
+        l.height = std::max(t.height >> m, 1u);
+        l.surface.row_bytes = (l.width + bs - 1) / bs * bpb;
+        l.surface.rows = (l.height + bs - 1) / bs;
+        l.surface.block_height_log2 = MipBlockLog2(base_log2, l.surface.rows, 8);
+        l.offset = layer_bytes;
+        layer_bytes += BlockLinearSize(l.surface);
+        levels.push_back(l);
+    }
+    if (t.layers > 1) {
+        const std::uint64_t block = 512ull << base_log2;
+        layer_bytes = (layer_bytes + block - 1) / block * block;
+    }
+    std::uint64_t linear_bytes = 0;
+    for (const Level& l : levels)
+        linear_bytes += static_cast<std::uint64_t>(l.surface.row_bytes) * l.surface.rows;
+    linear_bytes *= t.layers;
+    VkBuffer staging = VK_NULL_HANDLE;
+    VkDeviceMemory memory = VK_NULL_HANDLE;
+    VkBufferCreateInfo bci{VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO};
+    bci.size = linear_bytes;
+    bci.usage = VK_BUFFER_USAGE_TRANSFER_SRC_BIT;
+    if (vkCreateBuffer(be->device, &bci, nullptr, &staging) != VK_SUCCESS)
+        return false;
+    VkMemoryRequirements req;
+    vkGetBufferMemoryRequirements(be->device, staging, &req);
+    VkMemoryAllocateInfo mai{VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO};
+    mai.allocationSize = req.size;
+    mai.memoryTypeIndex =
+        be->MemoryType(req.memoryTypeBits, VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT);
+    void* mapped = nullptr;
+    bool ok = mai.memoryTypeIndex != UINT32_MAX && vkAllocateMemory(be->device, &mai, nullptr, &memory) == VK_SUCCESS &&
+              vkBindBufferMemory(be->device, staging, memory, 0) == VK_SUCCESS &&
+              vkMapMemory(be->device, memory, 0, VK_WHOLE_SIZE, 0, &mapped) == VK_SUCCESS;
+    std::vector<VkBufferImageCopy> copies;
+    const auto* src = static_cast<const std::uint8_t*>(data);
+    auto* dst = static_cast<std::uint8_t*>(mapped);
+    std::uint64_t at = 0;
+    for (std::uint32_t layer = 0; ok && layer < t.layers; ++layer) {
+        for (std::uint32_t m = 0; ok && m < t.levels; ++m) {
+            const Level& l = levels[m];
+            const std::uint8_t* tiled = src + layer * layer_bytes + l.offset;
+            ok = Deswizzle(l.surface, tiled, static_cast<std::size_t>(BlockLinearSize(l.surface)), dst + at,
+                           l.surface.row_bytes);
+            VkBufferImageCopy c{};
+            c.bufferOffset = at;
+            c.imageSubresource = {VK_IMAGE_ASPECT_COLOR_BIT, m, layer, 1};
+            c.imageExtent = {l.width, l.height, 1};
+            copies.push_back(c);
+            at += static_cast<std::uint64_t>(l.surface.row_bytes) * l.surface.rows;
+        }
+    }
+    if (ok) {
+        const VkImage image = t.image;
+        ImmediateSubmit([&](VkCommandBuffer cmd) {
+            VkMemoryBarrier mb{VK_STRUCTURE_TYPE_MEMORY_BARRIER};
+            mb.srcAccessMask = VK_ACCESS_MEMORY_READ_BIT | VK_ACCESS_MEMORY_WRITE_BIT;
+            mb.dstAccessMask = VK_ACCESS_TRANSFER_WRITE_BIT;
+            vkCmdPipelineBarrier(cmd, VK_PIPELINE_STAGE_ALL_COMMANDS_BIT, VK_PIPELINE_STAGE_TRANSFER_BIT, 0, 1, &mb, 0,
+                                 nullptr, 0, nullptr);
+            vkCmdCopyBufferToImage(cmd, staging, image, detail::kImageLayout, static_cast<std::uint32_t>(copies.size()),
+                                   copies.data());
+            mb.srcAccessMask = VK_ACCESS_TRANSFER_WRITE_BIT;
+            mb.dstAccessMask = VK_ACCESS_MEMORY_READ_BIT | VK_ACCESS_MEMORY_WRITE_BIT;
+            vkCmdPipelineBarrier(cmd, VK_PIPELINE_STAGE_TRANSFER_BIT, VK_PIPELINE_STAGE_ALL_COMMANDS_BIT, 0, 1, &mb, 0,
+                                 nullptr, 0, nullptr);
+        });
+    }
+    if (memory)
+        vkFreeMemory(be->device, memory, nullptr);
+    vkDestroyBuffer(be->device, staging, nullptr);
+    return ok;
 }
 
 void TextureFinalize(void* texture) {
