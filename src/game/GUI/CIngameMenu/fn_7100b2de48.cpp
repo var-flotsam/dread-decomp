@@ -4,6 +4,7 @@
 // (vf_0x68), sets it up (vf_0x70) and records two flags, applying each (fn_71011cdc30) that is
 // set. Finally the global at 0x7101d47340 (created on first use) gets 0xfd.
 #include "base/UnkCountedResource.h"
+#include "UnkArmMemberFn.h"
 #include "base/UnkDeferredSet.h"
 #include "base/UnkDestructors.h"
 #include "base/UnkStrIdPathPair.h"
@@ -896,7 +897,7 @@ void fn_7100b2eaac(UnkStateOwner* self, s32 state, bool from_game, bool now) {
     self->field_0x278 = false;
     self->field_0x288 = nullptr;
     if ((u32)self->field_0x2e0 <= 9)
-        (self->*fn_7100b2f03c(&self->field_0x380, self->field_0x2e0)->exit)();
+        DREAD_CALL_MEMBER(self, fn_7100b2f03c(&self->field_0x380, self->field_0x2e0)->exit)();
     if (self->field_0x278)
         return;
     s32 next = self->field_0x2e8;
@@ -904,7 +905,7 @@ void fn_7100b2eaac(UnkStateOwner* self, s32 state, bool from_game, bool now) {
     self->field_0x2e0 = next;
     if ((u32)next > 9)
         return;
-    (self->*fn_7100b2f03c(&self->field_0x380, next)->enter)();
+    DREAD_CALL_MEMBER(self, fn_7100b2f03c(&self->field_0x380, next)->enter)();
     self->current->SendEvent("Background_Highlight", false);
     fn_710002ffb4(&g_unk_717271e8f8->field_0xca8, &g_unk_7172762fd8);
     if (self->field_0x2e0 == 7)
