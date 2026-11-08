@@ -33,6 +33,7 @@ or SDK is needed to compile.
 | `src/program.cpp`, `src/program.h` | programs: stages found by their control section, shader modules, set and pipeline layouts |
 | `src/pipeline.cpp`, `src/pipeline.h` | pipelines for the draws' state, cached; NVN's numbers in Vulkan's terms |
 | `include/nvn_shim/window.h`, `src/window.cpp` | the window: its textures in turn, the present interval, the crop, the presented texture |
+| `src/frame_dump.cpp` | the frame dump: every N-th presented texture as a PNG (`$DREAD_NVN_FRAME_DUMP`), until the window has a surface |
 | `include/nvn_shim/texture.h`, `src/texture.cpp`, `src/texture_internal.h` | textures as Vulkan images (the format and target table with its evidence), render-target views, texel writes, the texture and sampler pools, samplers, texture handles, the binding layer's resolver over all of it, placeholders of each sampler kind |
 | `include/nvn_shim/blocklinear.h`, `src/blocklinear.cpp` | the console's block-linear (GOB) layout of packaged texture data, and its conversion to linear rows for the texel upload (not called yet) |
 | `src/objects.h` | the side tables that hold the shim's state for the game's objects |

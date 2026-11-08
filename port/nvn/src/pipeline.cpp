@@ -302,7 +302,9 @@ VkCullModeFlags CullMode(std::int32_t face) {
 VkFrontFace FrontFace(std::int32_t face) {
     if (face != kFrontFaceCounterClockwise)
         Unknown(5, "front face", face);
-    return face == kFrontFaceCounterClockwise ? VK_FRONT_FACE_COUNTER_CLOCKWISE : VK_FRONT_FACE_CLOCKWISE;
+    // Inverted for the flipped viewport (draw.h, "Faces"): the game's winding is in its window
+    // coordinates, y down from the upper-left origin; the rasterizer sees y up.
+    return face == kFrontFaceCounterClockwise ? VK_FRONT_FACE_CLOCKWISE : VK_FRONT_FACE_COUNTER_CLOCKWISE;
 }
 
 bool Topology(std::int32_t primitive, VkPrimitiveTopology* topology, std::int32_t* topology_class) {

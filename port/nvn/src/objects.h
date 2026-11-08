@@ -13,7 +13,9 @@
 #include <map>
 #include <memory>
 #include <mutex>
+#include <string>
 #include <utility>
+#include <vector>
 
 namespace dread::nvn::detail {
 
@@ -52,6 +54,12 @@ void DeferDestroy(std::function<void()> destroy);
 void FenceSyncAtLastSubmit(void* sync);
 // nvnQueuePresentTexture: the window's texture `index` was presented (window.cpp).
 void WindowPresented(const void* window, std::int32_t index);
+// The frame dump (frame_dump.cpp, $DREAD_NVN_FRAME_DUMP): `texture` was presented as the window's
+// `present`-th present; every N-th is written as a PNG. EncodePngRgb is its encoder (RGB, 8 bits).
+void FrameDumpPresented(const void* texture, std::uint64_t present);
+// Level 0 of an 8-bit RGBA texture as an RGB PNG at `path` (false, said on stderr, otherwise).
+bool DumpTexturePng(const void* texture, const std::string& path);
+std::vector<std::uint8_t> EncodePngRgb(const std::uint8_t* rgb, std::uint32_t width, std::uint32_t height);
 
 template <class T>
 class Registry {

@@ -103,6 +103,7 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - The NVN globals `g_unk_716e29xxxx` are named by the loader's GOT slots and their relative relocations (`data/nvn_procs.csv`); count GOT-slot call sites with a short window, not adjacent pairs; never write into a game-owned NVN object's storage: [NVN shim's start-up path](#session-log-newest-first).
 
 **Port: runtime and loader**
+- The shim flips each viewport, so the game's winding (in its window coordinates, y down) reaches Vulkan reversed: invert the front face, or every CULL_CCW quad (all 2D and full-screen passes) is culled: [The title screen is visible](#session-log-newest-first).
 - A member function pointer the game stored is in the ARM C++ ABI's encoding (virtual bit in `adj`), which an x86-64 `->*` reads as a call to the vtable offset; call one through `DREAD_CALL_MEMBER` (`include/UnkArmMemberFn.h`). An import's argument registers come from its mangled name, or lifted calls to it pass nothing on x86-64: [Imports get their arguments](#session-log-newest-first).
 - One placeholder class name in two files that mean different classes gives its constructors, destructors and vtable two addresses, and `port_addresses.py` places none: name each file's class apart (by the address that differs). A copy file whose functions use different classes needs a file per class: [placeholder classes renamed apart](#session-log-newest-first).
 - Another Dread project's addresses map to ours by one constant (the recomp: ours = theirs - 0x8005000 + 0x7100000000); the game's PC-side problems it found (a video wait under a lock, per-texel texture uploads, a deserializer growing 10 at a time, frame pacing): [Dread recomp findings](#session-log-newest-first).
@@ -139,6 +140,18 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**The title screen is visible: a frame dump, and the winding the shim had inverted (2026-11-08, branch `claude/frame-dump`).**
+The window has no Vulkan surface, so the shim now writes every N-th presented texture as a PNG (`$DREAD_NVN_FRAME_DUMP`,
+`port/nvn/src/frame_dump.cpp`: 8-bit RGBA, and RGBA16F clamped to 0..1). Every frame was black, though the title records
+about 110k draws with none skipped. A trace of the frame's passes showed the chain. The movie and GUI quads (`shader_hud_nx`)
+go into a 1600x900 RGBA16F target, then `pp_downscaler`, `pp_blurer_x`/`_y` and `pp_mixer`, and a last `shader_hud_nx`
+draw writes the window texture. Every target was black. The draw that samples the movie had correct inputs: a full-screen
+quad, UVs, vertex colour 1, tint (1,1,1,1), and from its 300th draw a movie texture with picture (the first frames
+are the video's fade-in). It still wrote nothing. It culls face 2, the engine's CULL_CCW. The game's winding is in its window
+coordinates (upper-left origin, y down), while the shim flips the viewport, so Vulkan saw every such quad
+counter-clockwise and culled it. `FrontFace` now inverts the mapping (`draw.h`, "Faces"). With that alone the title movie
+and logo render (the frames fade in and hold from about present 3,300). Still missing: GUI asset textures (BC1 etc.) are
+never uploaded (`blocklinear.cpp` is not called yet), so they sample as zeros, and two 800x450 blur targets stay black.
 **Imports get their arguments, and stored member function pointers decode on the port (2026-11-07, branch `claude/import-signatures`).**
 With the title movie playing, the boot reached the per-frame callback but never left the title screen's start-up:
 the frame timer `fn_7100080cb8` waited forever. Its lift called `nn::os::ConvertToTimeSpan(Tick)` with no argument.
