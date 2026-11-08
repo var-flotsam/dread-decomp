@@ -148,7 +148,7 @@ struct UnkSizeOwner {
 
 // Declared as its other caller declares it (src/game/CGunComponent/fn_71008397f4.cpp); it takes the owner.
 struct UnkWeakTarget;
-UnkWeakTarget* fn_7100286ad4();
+UnkWeakTarget* fn_7100286ad4(void* owner);
 UnkSizeProviderC* fn_7100286bb0(UnkSizeOwner* owner);
 
 struct UnkUnit357Object {
@@ -165,7 +165,7 @@ UnkSize2f fn_7100286a0c(UnkUnit357Object* self, u32 arg) {
         return self->size;
     if (self->owner) {
         UnkSizeProviderA* a = self->owner->provider;
-        UnkSizeProviderB* b = reinterpret_cast<UnkSizeProviderB* (*)(UnkSizeOwner*)>(fn_7100286ad4)(self->owner);
+        UnkSizeProviderB* b = reinterpret_cast<UnkSizeProviderB*>(fn_7100286ad4(self->owner));
         UnkSizeProviderC* c = fn_7100286bb0(self->owner);
         if (a)
             return a->vf_0x180(arg);

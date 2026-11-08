@@ -777,11 +777,11 @@ char* fn_710050450c(char* p0) {
 }
 
 namespace callee { char* fn_7100000790(char*, char*); }
-namespace callee { char* fn_710054b93c(); }
+namespace callee { char* fn_710054b93c(char*, u32, u32); }
 char* fn_7100504720(char* p0, u32 p1, u32 p2) {
     u32 r0_19 = (u32)(u64)(p2);
     u32 r1_20 = (u32)(u64)(p1);
-    char* r2_0 = callee::fn_710054b93c();
+    char* r2_0 = callee::fn_710054b93c(p0, p1, p2);
     if ((u32)(u64)(r1_20) == (u32)(1)) {
         if ((u32)(u64)(r0_19) == (u32)(2)) {
             char* r5_0 = (char*)"CurrentScenario.OnEmmyShipyardTargetDetected";

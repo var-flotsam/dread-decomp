@@ -469,7 +469,7 @@ python tools/boot_distance.py --version 2.1.0 --nvn   # with the NVN shim, in th
 Matched functions whose original reads argument registers beyond the parameters they declare.
 
 ```sh
-python tools/forwarded_args.py --version 2.1.0 [--open] [--boot] [--json OUT] [--file SRC]
+python tools/forwarded_args.py --version 2.1.0 [--calls] [--open] [--boot] [--json OUT] [--file SRC]
 ```
 
 ### `tools/recomp_trace.py`

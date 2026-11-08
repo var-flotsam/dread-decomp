@@ -163,7 +163,7 @@ void fn_7101150180(char* p0) {
 
 extern char g_unk_71726b0cd8[];
 namespace callee { char* fn_71000839a0(u32, u32); }
-namespace callee { char* fn_71011a870c(); }
+namespace callee { char* fn_71011a870c(char*); }
 namespace callee { char* fn_71011a9c2c(char*, u32, char*, u32, u32); }
 char* fn_71011520a8(char* p0, u32 p1, char* p2, u32 p3) {
     alignas(16) char stk[0x10];
@@ -191,7 +191,7 @@ char* fn_71011520a8(char* p0, u32 p1, char* p2, u32 p3) {
     X1 = (u64)(0x3f);
     X0 = (u64)(callee::fn_71000839a0(((u32)X0), ((u32)X1)));
     X23 = (u64)(((char*)X0));
-    X0 = (u64)(callee::fn_71011a870c());
+    X0 = (u64)(callee::fn_71011a870c(((char*)X0)));
     *(u64*)((char*)(((char*)X24)) + 0) = (u64)(u64)(((char*)X23));
 L_71011520f8:;
     X3 = (u64)((u32)*(u32*)((char*)(((char*)X19)) + 64));

@@ -23,7 +23,7 @@ struct UnkModelEntity {
 };
 
 void* fn_7100ec0d20(UnkNavMeshManager* manager, void* key);
-bool fn_71011ace94(UnkModelEntity* self);
+bool fn_71011ace94(UnkModelEntity* self, void* arg);
 
 static inline UnkNavMeshManager* GetRegistry() {
     UnkNavMeshManager* registry = g_unk_71726a4510;
@@ -37,7 +37,7 @@ static inline UnkNavMeshManager* GetRegistry() {
 
 // `arg` (x1) reaches the base step untouched in the original (tools/forwarded_args.py).
 bool fn_7100413ef8(UnkModelEntity* self, void* arg) {
-    bool result = reinterpret_cast<bool (*)(UnkModelEntity*, void*)>(fn_71011ace94)(self, arg);
+    bool result = fn_71011ace94(self, arg);
     self->field_0x1d0 = fn_7100ec0d20(GetRegistry(), self->field_0x1d8);
     self->field_0x1e0 = fn_7100ec0d20(GetRegistry(), self->field_0x1e8);
     self->vf_0xc8();

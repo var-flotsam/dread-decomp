@@ -5,9 +5,10 @@
 // (fn_7100d7c990) must not be busy (+0x208, fn_71009e12d0) and, when its +0x1b8 is accepted by
 // fn_7101161088, its +0x208's +0x2d08 state must not be 9. Names and layouts are placeholders.
 #include "UnkRobotSoldierAttack_b49.h"
+#include "game/CAttack.h"
 
-bool fn_71004682a8(UnkDashSlashAttack_b49* self, void* a, void* b) {
-    bool ok = reinterpret_cast<bool (*)(UnkDashSlashAttack_b49*, void*, void*)>(fn_7100360b84)(self, a, b);
+bool fn_71004682a8(UnkDashSlashAttack_b49* self, void* a, u32 b) {
+    bool ok = fn_7100360b84(reinterpret_cast<CAttack*>(self), a, b);
     if (!ok)
         return false;
     UnkRobotSoldierManager_b49* manager = reinterpret_cast<UnkRobotSoldierManager_b49*>(GetRobotSoldierManager());

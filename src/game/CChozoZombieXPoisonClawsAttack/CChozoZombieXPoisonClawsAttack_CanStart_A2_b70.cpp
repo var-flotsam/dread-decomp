@@ -3,9 +3,9 @@
 // (squared distances). Names and layouts are placeholders.
 #include "game/UnkActor.h"
 #include "types.h"
+#include "game/CAttack.h"
 
 struct UnkSelf;
-u32 fn_7100360b84(UnkSelf*);
 
 struct UnkPoisonClawsAttack_A2_b70 {
     u8 pad_0x0[0x8];
@@ -16,7 +16,7 @@ struct UnkPoisonClawsAttack_A2_b70 {
 
 // `arg` and `mode` (x1, w2) reach the base check untouched in the original (tools/forwarded_args.py).
 bool fn_710049e7d4(UnkPoisonClawsAttack_A2_b70* self, void* arg, u32 mode) {
-    bool ok = reinterpret_cast<bool (*)(UnkPoisonClawsAttack_A2_b70*, void*, u32)>(fn_7100360b84)(self, arg, mode);
+    bool ok = fn_7100360b84(reinterpret_cast<CAttack*>(self), arg, mode);
     UnkActor* target = fn_7100d7c990(self->owner);
     if (!ok || !target)
         return false;

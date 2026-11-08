@@ -6,6 +6,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkActor.h"
 #include "types.h"
+#include "game/UnkMovementComponent.h"
 
 using base::reflection::CClass;
 
@@ -13,7 +14,6 @@ struct UnkAIComponent;
 void fn_71004d43dc(UnkAIComponent*, void*);
 void fn_7100232c68(void*);
 struct UnkShardsSphere_b60a2;
-void fn_71010d1a90(UnkShardsSphere_b60a2*);
 
 struct UnkFireBallComponent_A2_b70 {
     virtual const CClass* vf_0x0();
@@ -35,7 +35,7 @@ struct UnkFireBallMovement_A2_b70 {
 
 // `dt` (s0) reaches the base update untouched in the original (tools/forwarded_args.py).
 void fn_71004d767c(UnkFireBallMovement_A2_b70* self, f32 dt) {
-    reinterpret_cast<void (*)(UnkShardsSphere_b60a2*, f32)>(fn_71010d1a90)(reinterpret_cast<UnkShardsSphere_b60a2*>(self), dt);
+    fn_71010d1a90(reinterpret_cast<UnkMovementComponent*>(self), dt);
     if (!(self->actor->field_0x44 < 1200.0f))
         return;
     if (self->owner && self->owner->object) {

@@ -42,7 +42,7 @@ extern char g_unk_7101d47108[];
 namespace bret { bool fn_710009d50c(char*, char*); }
 namespace callee { char* fn_710009d50c(char*, char*); }
 namespace callee { char* fn_7100264814(); }
-namespace callee { char* fn_7100ec0dc4(); }
+namespace callee { char* fn_7100ec0dc4(char*, char*); }
 namespace callee { char* fn_7100ec0ec4(char*, char*); }
 u64 fn_7100ec0d20(char* p0, char* p1) {
     u64 X0 = (u64)p0;
@@ -58,7 +58,7 @@ u64 fn_7100ec0d20(char* p0, char* p1) {
     if (!((u64)(u64)(X8) != (u64)(X9))) goto L_7100ec0db4;
     X19 = (u64)(((char*)X1));
     X20 = (u64)(((char*)X0));
-    X0 = (u64)(callee::fn_7100ec0dc4());
+    X0 = (u64)(callee::fn_7100ec0dc4(((char*)X0), ((char*)X1)));
     if (!((u64)(u64)(((char*)X0)) == 0)) goto L_7100ec0d68;
     X0 = (u64)(((char*)X20));
     X1 = (u64)(((char*)X19));

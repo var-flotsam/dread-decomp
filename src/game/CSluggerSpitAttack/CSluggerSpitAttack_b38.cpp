@@ -6,6 +6,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkActor.h"
 #include "types.h"
+#include "game/CAttack.h"
 
 struct UnkSluggerAI {
     void** vtable;
@@ -38,11 +39,10 @@ struct UnkSpitAttack {
 
 // The base attack's check (declared elsewhere without its arguments; called with them).
 struct UnkSelf;
-u32 fn_7100360b84(UnkSelf*);
 bool fn_71006c1108(UnkSpitAttack* self);
 
-bool fn_71006c1044(UnkSpitAttack* self, void* arg1, void* arg2) {
-    bool base = reinterpret_cast<bool (*)(UnkSpitAttack*, void*, void*)>(fn_7100360b84)(self, arg1, arg2);
+bool fn_71006c1044(UnkSpitAttack* self, void* arg1, u32 arg2) {
+    bool base = fn_7100360b84(reinterpret_cast<CAttack*>(self), arg1, arg2);
     UnkActor* target = fn_7100d7c990(self->owner);
     bool ok = false;
     if (base && target) {

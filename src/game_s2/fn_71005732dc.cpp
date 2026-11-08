@@ -35,10 +35,10 @@ struct UnkComponent {
 
 extern void* g_unk_7101a49310[];
 
-void fn_7100573104(UnkComponent* self);
+void fn_7100573104(UnkComponent* self, void* arg);  // keeps `arg` at +0x20
 
-void fn_71005732dc(UnkComponent* self, void* unused, const CFilePathStrId* path) {
-    fn_7100573104(self);
+void fn_71005732dc(UnkComponent* self, void* arg, const CFilePathStrId* path) {
+    fn_7100573104(self, arg);
     self->vtable = g_unk_7101a49310 + 2;
     self->field_0x2c = 0;
     self->field_0x30 = 0;

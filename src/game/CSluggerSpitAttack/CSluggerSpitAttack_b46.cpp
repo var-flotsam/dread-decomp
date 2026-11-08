@@ -6,10 +6,9 @@
 #include "base/global/CStrId.h"
 #include "game/UnkXformNode.h"
 #include "../../game_s7/UnkPropBagS7.h"
+#include "game_s2/UnkSpitAttack.h"
 #include "types.h"
 
-struct UnkSpitAttack;
-void fn_71003609a8(UnkSpitAttack*);
 
 extern const base::global::CStrId g_unk_7172707bc0 __attribute__((visibility("hidden")));
 
@@ -40,7 +39,7 @@ struct UnkSluggerSpitAttack_b46a2 {
 void fn_71006c0e38(UnkSluggerSpitAttack_b46a2* self, u32 mode, UnkVec3f* angles);
 
 void fn_71006c25d0(UnkSluggerSpitAttack_b46a2* self, f32 dt) {
-    fn_71003609a8(reinterpret_cast<UnkSpitAttack*>(self));
+    fn_71003609a8(reinterpret_cast<UnkSpitAttack*>(self), dt);
     if (self->state != 2)
         return;
     UnkVec3f angles = self->owner->xform.GetAngle();

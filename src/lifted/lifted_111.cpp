@@ -1842,10 +1842,9 @@ char* fn_710111bc50(char* p0, char* p1, char* p2, char* p3, char* p4, char* p5, 
 namespace callee { char* fn_710007be8c(char*, u32, u64); }
 namespace callee { char* fn_7100083990(); }
 namespace callee { char* fn_710050e8e4(char*); }
-namespace callee { char* fn_710111c0fc(u64, char*, u64, char*, char*, f32); }
+namespace callee { char* fn_710111c0fc(u64, char*, u64, char*, char*); }
 namespace callee { char* fn_7101126e88(char*, char*); }
 namespace callee { char* fn_7101127144(char*, char*); }
-namespace fret { f32 fn_7101126e88(char*, char*); }
 void fn_710111c010(char* p0, char* p1) {
     alignas(8) char stk[0x88];
     u64 r0_8 = (u64)*(u64*)((char*)(p0) + 48);
@@ -1887,14 +1886,14 @@ void fn_710111c010(char* p0, char* p1) {
                     *(u64*)(stk + 0x80) = (u64)(u64)(r31_0);
                     char* r33_1 = (stk + 0x0);
                     char* r34_0 = r14_19;
-                    f32 r35_100 = fret::fn_7101126e88(r34_0, r33_1);
+                    char* r35_0 = callee::fn_7101126e88(r34_0, r33_1);
                     u64 r36_8 = (u64)*(u64*)((char*)(r4_20) + 48);
                     char* r37_3 = (char*)"t";
                     char* r38_1 = (stk + 0x0);
                     u64 r39_0 = (u64)*(u64*)((char*)(r36_8) + 480);
                     u64 r40_2 = (u64)*(u64*)((char*)(r4_20) + 600);
                     char* r41_4 = (stk + 0x0);
-                    char* r42_0 = callee::fn_710111c0fc(r39_0, r38_1, r40_2, r37_3, r41_4, r35_100);
+                    char* r42_0 = callee::fn_710111c0fc(r39_0, r38_1, r40_2, r37_3, r41_4);
                     char* r43_1 = (stk + 0x0);
                     char* r44_0 = r14_19;
                     char* r45_0 = callee::fn_7101127144(r44_0, r43_1);

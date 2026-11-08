@@ -1582,7 +1582,7 @@ u64 fn_71002d4f58(char* p0, char* p1) {
     X0 = (u64)(((char*)X1));
     X8 = (u64)((u64)*(a_u64*)((char*)(X8) + 24));
     X20 = (u64)(((char*)X1));
-    X0 = (u64)(((char* (*)(char*))(X8))(((char*)X0)));
+    X0 = (u64)(((char* (*)(char*, char*))(X8))(((char*)X0), ((char*)X1)));
     X22 = (u64)(((char*)X0));
     X0 = (u64)(callee::fn_71002df4ec());
     X1 = (u64)(((char*)X0));

@@ -3,10 +3,9 @@
 // owner's sub-object at +0x220 is sent 0x4f36c2305fee37d4 under the usual track kind with mode 0
 // (UnkSpitSend, src/game_s2/UnkSpitSend.h) and slot 0xf0 runs with 3. Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
+#include "game_s2/UnkSpitAttack.h"
 #include "types.h"
 
-struct UnkSpitAttack;
-void fn_71003609a8(UnkSpitAttack*);
 
 struct UnkRodotukSuckAI_b57a4 {
     u8 pad_0x0[0x121e];
@@ -35,7 +34,7 @@ struct UnkRodotukSuckAttack_b57a4 {
 };
 
 void fn_710066a9e0(UnkRodotukSuckAttack_b57a4* self, f32 dt) {
-    fn_71003609a8(reinterpret_cast<UnkSpitAttack*>(self));
+    fn_71003609a8(reinterpret_cast<UnkSpitAttack*>(self), dt);
     if (self->field_0x60 != 1)
         return;
     UnkRodotukSuckOwner_b57a4* owner = self->owner;

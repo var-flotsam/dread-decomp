@@ -4,11 +4,10 @@
 #include "game_s2/UnkSpitAttack.h"
 #include "types.h"
 
-void fn_71003609a8(UnkSpitAttack* self);
 void fn_71003f2710(UnkSpitAttack* self, f32 delta);
 
 void fn_71003f268c(UnkSpitAttack* self, f32 delta) {
-    fn_71003609a8(self);
+    fn_71003609a8(self, delta);
     s32 state = self->field_0x34;
     self->field_0x30 = state;
     switch (state) {

@@ -18,3 +18,6 @@ static_assert(__builtin_offsetof(UnkChozoCommanderAttack, field_0x8) == 0x8, "Un
 // 0x71b15e29dc542a11 with the mode 2 when `flag` is set, else 0. Defined in
 // src/game/CChozoCommanderAttack/fn_7100426b54.cpp.
 void fn_7100426b54(UnkChozoCommanderAttack* self, u64 id, bool flag);
+
+// The base update of the attacks, with the step (s0), which the derived updates pass on.
+void fn_7100424b5c(UnkChozoCommanderAttack* self, f32 dt);

@@ -7,8 +7,7 @@
 #include "game/UnkManager_71726af468.h"
 #include "types.h"
 
-// Declared as src/game/CBehaviorTreeAIComponent/fn_7100369650.cpp defines it.
-void fn_7100369650();  // declared elsewhere without its argument; called with it
+#include "game/UnkBehaviorTree.h"
 
 struct UnkGooplotAI_A3_b66;
 void fn_710059c970(void* list, void* actor);
@@ -43,7 +42,7 @@ void fn_7100599e0c(UnkGooplotAI_A3_b66* self) {
     UnkGooplotFlags_A3_b66* flags = &self->flags;
     asm("" : "+r"(target));
     asm("" : "+r"(flags));
-    reinterpret_cast<void (*)(UnkGooplotAI_A3_b66*)>(fn_7100369650)(self);
+    fn_7100369650(reinterpret_cast<char*>(self));
     if (!g_unk_71726af468) {
         UnkManager_71726af468* m = static_cast<UnkManager_71726af468*>(fn_71000839a0(0x2610, 0x3f));
         fn_7100da7e2c(m);

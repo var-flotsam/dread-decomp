@@ -520,9 +520,9 @@ namespace callee { char* fn_71011cdc30(char*, u32); }
 namespace callee { char* fn_71011cdce8(char*, u32); }
 namespace callee { char* fn_71011cf2a4(char*, u32); }
 namespace callee { char* fn_71011cf2a4(u64, u32); }
-u32 fn_7100b61c74(char* p0) {
+u32 fn_7100b61c74(char* p0, char* p1) {
     u64 X0 = (u64)p0;
-    u64 X1;
+    u64 X1 = (u64)p1;
     u64 X2;
     u64 X8;
     u64 X19;
@@ -537,7 +537,7 @@ u32 fn_7100b61c74(char* p0) {
     X8 = (u64)((u64)*(u64*)((char*)(X20) + 0));
     X8 = (u64)((u64)*(u64*)((char*)(X8) + 104));
     X0 = (u64)(X20);
-    X0 = (u64)(((char* (*)(u64))(X8))(X0));
+    X0 = (u64)(((char* (*)(u64, char*))(X8))(X0, ((char*)X1)));
     if (!(((u64)((u32)X0) >> 0 & 1) != 0)) goto L_7100b61cc4;
     *(u8*)((char*)(((char*)X19)) + 560) = (u8)(u64)(0);
     X8 = (u64)((u64)*(u64*)((char*)(X20) + 0));

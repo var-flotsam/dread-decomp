@@ -4,6 +4,8 @@
 // result.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkBehaviorTree.h"
+#include "game/UnkBossAIComponent.h"
 #include "types.h"
 
 using base::reflection::CClass;
@@ -27,7 +29,7 @@ struct UnkSelf {
     u8 field_0x14a20[1];
 };
 
-u32 fn_71003e59f8(UnkSelf* self);
+u32 fn_71003e59f8(UnkSelf* self, void* arg);
 void fn_71003ea558(void* entry, u8* source);
 void fn_71003f14c4(void* entry, u8* source);
 
@@ -39,15 +41,20 @@ __attribute__((always_inline)) static inline void Register(UnkSelf* self, u8* en
     self->field_0x1618 = index + 1;
 }
 
+// Calls a step on the object as the step's own declaration types it.
+template <class T>
+__attribute__((always_inline)) static inline u32 CallStep(u32 (*step)(T*, void*), UnkSelf* self, void* arg) {
+    return step(reinterpret_cast<T*>(self), arg);
+}
+
 // The step, the component's class getter and the two entries' initialisers, and the offsets of the
 // component pointer, the entries and their sources in the component.
 template <auto Step, const CClass* (*Getter)(), void (*Init1)(void*, u8*), void (*Init2)(void*, u8*),
           u32 Component, u32 Entry1, u32 Entry2, u32 Source1, u32 Source2>
 __attribute__((always_inline)) static inline u32 Initialise(UnkSelf* self, void* arg) {
     char* base = reinterpret_cast<char*>(self);
-    // The step is called as returning a word (one unit declares it returning a flag), with the
-    // caller's `arg` (x1), which the original hands it untouched (tools/forwarded_args.py).
-    u32 result = reinterpret_cast<u32 (*)(UnkSelf*, void*)>(Step)(self, arg);
+    // The step gets the caller's `arg` (x1), which the original hands it untouched.
+    u32 result = CallStep(Step, self, arg);
     UnkComponent* object = self->field_0x10;
     UnkComponent* component = nullptr;
     if (object && fn_710009d50c(object->vf_0x0(), Getter()))
@@ -68,9 +75,8 @@ u32 fn_71003f47fc(UnkSelf* self, void* arg) {
 
 // The same initialisation in the Goliath X, Quetzoa and Shakernaut AI components' units, with their
 // own steps, class getters, initialisers and offsets.
-u32 fn_7100590c14(UnkSelf* self);
-u32 fn_71003ac8f4(UnkSelf* self);
-u32 fn_710066193c(UnkSelf* self);
+u32 fn_7100590c14(UnkSelf* self, void* arg);
+u32 fn_710066193c(UnkSelf* self, void* arg);
 void fn_7100583e14(void* entry, u8* source);
 void fn_71005869d0(void* entry, u8* source);
 void fn_7100643ed0(void* entry, u8* source);
@@ -93,9 +99,7 @@ u32 fn_71006ad75c(UnkSelf* self, void* arg) {
                       0x620>(self, arg);
 }
 
-// And in the Gooplot, Infester and Nailong units, whose step fn_7100369490 src/game/CDropterAIComponent/
-// fn_71004ec294.cpp declares returning a flag.
-bool fn_7100369490(UnkComponent* self);
+// And in the Gooplot, Infester and Nailong units, whose step is the behaviour-tree one (fn_7100369490).
 void fn_7100594488(void* entry, u8* source);
 void fn_71005968b4(void* entry, u8* source);
 void fn_71005c63d0(void* entry, u8* source);

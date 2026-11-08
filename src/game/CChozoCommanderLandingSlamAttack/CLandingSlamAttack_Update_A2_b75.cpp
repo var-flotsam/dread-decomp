@@ -14,6 +14,7 @@
 #include "game/UnkActor.h"
 #include "game_s2/UnkParams.h"
 #include "game_s2/UnkWeakHandle.h"
+#include "game_s2/UnkChozoCommanderAttack.h"
 #include "types.h"
 
 using base::reflection::UnkReflObject;
@@ -26,8 +27,6 @@ void fn_710117b3e8(UnkWeakTarget* target, void* link);
 extern void* g_unk_7101a24b58[];
 
 struct UnkSlamUpdate_A2_b75;
-struct UnkChozoCommanderAttack;  // game_s2/UnkChozoCommanderAttack.h
-void fn_7100424b5c(UnkChozoCommanderAttack* self);
 void fn_710043764c(UnkSlamUpdate_A2_b75* self);
 void fn_71004385ac();
 struct UnkSlamAttack_A2_b72;
@@ -94,7 +93,7 @@ static inline f32 AsF32(u32 bits) {
 }
 
 void fn_7100437930(UnkSlamUpdate_A2_b75* self, f32 dt) {
-    fn_7100424b5c(reinterpret_cast<UnkChozoCommanderAttack*>(self));
+    fn_7100424b5c(reinterpret_cast<UnkChozoCommanderAttack*>(self), dt);
     u32 x = PosX(self->owner);
     u32 other = PosX(fn_7100d7c990(self->owner));
     switch (self->mode) {

@@ -4,10 +4,9 @@
 // owner's (+0x8) sub-object at +0x220 is sent hash 0xb60395f638ac5184 under the usual track kind with
 // mode 1 (descriptors as UnkSpitSend, src/game_s2/UnkSpitSend.h). Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
+#include "game_s2/UnkSpitAttack.h"
 #include "types.h"
 
-struct UnkSpitAttack;
-void fn_71003609a8(UnkSpitAttack*);
 
 struct UnkQuetzoaXMultiOwner_b57a4 {
     u8 pad_0x0[0x220];
@@ -32,7 +31,7 @@ struct UnkQuetzoaXMultiAttack_b57a4 {
 void fn_710063d920(UnkQuetzoaXMultiAttack_b57a4* self);
 
 void fn_710063d7c0(UnkQuetzoaXMultiAttack_b57a4* self, f32 dt) {
-    fn_71003609a8(reinterpret_cast<UnkSpitAttack*>(self));
+    fn_71003609a8(reinterpret_cast<UnkSpitAttack*>(self), dt);
     if (!self->field_0x30)
         return;
     f32 t = self->field_0x34 + dt;

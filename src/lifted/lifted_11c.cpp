@@ -530,7 +530,7 @@ L_71011ce6b0:;
     X8 = (u64)((u64)*(u64*)((char*)(((char*)X19)) + 0));
     X0 = (u64)(((char*)X19));
     X1 = (u64)((u64)*(u64*)((char*)(X8) + 96));
-    return ((char* (*)(char*))(X1))(((char*)X0));
+    return ((char* (*)(char*, u64))(X1))(((char*)X0), X1);
 }
 
 char* fn_71011ce97c(char* p0, char* p1) {

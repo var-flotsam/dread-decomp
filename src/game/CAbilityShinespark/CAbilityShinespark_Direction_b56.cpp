@@ -32,7 +32,7 @@ struct UnkShinespark_b56 {
     UnkDirMap_b56 directions;  // 0x400
 };
 
-u32 fn_710032f678(UnkShinespark_b56* self);
+u32 fn_710032f678(UnkShinespark_b56* self, const UnkDirOut_b56* dir);  // the state for the direction
 
 static inline u32* Find(UnkDirMap_b56* map, const u32* key) {
     for (u64 i = 0; i != map->count; ++i) {
@@ -60,7 +60,7 @@ static inline void SetDirMirrored(UnkDirOut_b56* out, f32 angle) {
 }
 
 void fn_710032f4cc(UnkShinespark_b56* self, UnkDirOut_b56* out) {
-    u32 state = fn_710032f678(self);
+    u32 state = fn_710032f678(self, out);
     UnkDirMap_b56* map = &self->directions;
     u32* it = Find(map, &state);
     if (it == map->values + map->count) {

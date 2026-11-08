@@ -59,10 +59,10 @@ extern u8 g_unk_7101649f60[];
 void fn_7100e1bca4(void* manager);
 void* fn_7100e1cb50(void* manager, u64* key, void* arg);
 void fn_7100745440(UnkTarget* target, void* effect, u32 flag);
-bool fn_710074ddd8();
+bool fn_710074ddd8(UnkSelf* self, UnkTarget* target, UnkMessage* message);  // the base handler
 
 bool fn_7100579d08(UnkSelf* self, UnkTarget* target, UnkMessage* message) {
-    if (fn_710074ddd8())
+    if (fn_710074ddd8(self, target, message))
         return true;
     if (message->field_0x0->field_0x30 != 0xfab221522cf4e099ull)
         return false;

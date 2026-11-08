@@ -128,6 +128,7 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - A struct-returning function (x8 on AArch64) called through a pointer from lifted code needs its hidden result pointer passed explicitly on x86-64 (rdi), or every argument shifts by one: same entry.
 - gen_lift byte mode can turn a data table into a string literal when its first bytes look like one (check.py does not check string relocations): on the port the literal is the executable's, and indexed reads walk into other strings. A scan of `src/lifted` for an indexed literal finds them: [port M1 round 7](#session-log-newest-first).
 - A matched definition can declare fewer parameters than the original forwards untouched (x86-64 drops them): `tools/forwarded_args.py` lists them by evidence tier; `open`-only candidates (a virtual function, one implementation) cannot be settled from the bytes: [Forwarded arguments in matched functions](#session-log-newest-first).
+- A matched function with the right parameter count can still drop an argument at a call (`fn_X(self)` where the original hands `arg` on untouched): `tools/forwarded_args.py --calls` lists them per call site, casts apart: [Calls that drop an argument](#session-log-newest-first).
 - A hand-written call that leaves an argument in x0 (a constructor right after the allocation, a function given the previous call's result) is byte-identical on AArch64 and garbage on x86-64: declare and pass the argument. Conflicting declarations with different parameter counts point to them: [port M1 round 8](#session-log-newest-first).
 - lld relaxes `add sym@GOTPCREL(%rip), %reg` to `add $imm32, %reg` in a non-PIE program, wrong above 2 GB: link the port with `--no-relax`: same entry.
 - The static of a non-inline (or `static`) function is the executable's own copy on the port, while lifted code uses the image's: keep such state in the image off AArch64; `port_addresses.py` lists the unbindable ones: same entry.
@@ -135,6 +136,58 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - Several templates can carry one address's tag (`refl_GetPrimitiveType<G>` and its inline helper `refl_MakePrimitiveType<G>`, which Clang 18 keeps out of line); an alias to one that returns a class by value puts its hidden result pointer in the caller's rdi and writes the object over the caller's frame. A crash whose return address is a function's start, with a type's hook table on the stack, is the sign: [port M1 round 5](#session-log-newest-first).
 
 ## Session log (newest first)
+
+**Calls that drop an argument the caller holds (2026-11-07, branch `claude/forwarded-args-calls`).** The
+default mode of `tools/forwarded_args.py` finds a matched function whose declared parameter count is too
+small. It cannot find one whose count is right but whose call does not pass a parameter on:
+`fn_71005d0884(self, arg)` called its base as `fn_X(self)`, and with `arg` untouched in x1 both compile to the
+same bytes (fixed in #321). `--calls` looks at every CALL26/JUMP26 relocation of a matched function. It flags
+a register that meets three conditions. The caller declares it. It still holds the entry's value at the call
+on every path (`AbiFacts.untouched`, a forward must-pass; `held` and `untouched` now share `call_flow`). The
+original callee reads it (the READ and CALL tiers) beyond the parameters of the callee symbol in our object.
+Calls whose source casts the callee (`reinterpret_cast<...>(fn_X)`, or a cast to a function pointer of a
+template parameter when the file names the callee, as `Initialise<Step>` in
+`src/game/CBigkranXAIComponent/fn_71003f47fc.cpp`) name the declared, not the casted, signature. They are listed
+apart as `cast` and not counted. First run: 59 calls (51 more cast). After the fixes below: **1 call in 1
+caller, in generated sources** (none in the boot slice), and no cast calls, among 249,909 direct calls in
+90,956 matched functions. Fixed: `fn_71003609a8`, the spit-attack base update, reads the step in s0. Nine
+attack updates declared it `(UnkSpitAttack*)`, and three of them got `dt` in through a cast or an asm label. It
+is now declared once in `include/game_s2/UnkSpitAttack.h` with `dt`, and all ten callers pass it. The same
+fix went into `fn_7100426c70` (two state-machine updates) and the whip thunk `fn_71004c1968` (two callers).
+The three boot-slice hits are fixed too. `fn_7100105ef4` (`UnkSoundFlag.cpp`) now hands its two floats on to
+`fn_71000ffc98`, declared as its definition is (value and fade time). `fn_7100108b90`
+(`CSoundSystem_Play_b46.cpp`) passes its value to `fn_71000f9d20` as the fade time. `fn_71001fd6c0`
+(`fn_71001fcd4c.cpp`) passes the three arguments it had named `unused` to `fn_7100202eb0`, which hands them
+to `fn_71001ef660`. Fifteen calls went to a callee declared with no parameters that reads x0 (or x0-x2), and these are fixed
+too. Six `refl_FindTyped` getters (`fn_7100303054` and the copies in `fn_71008397f4.cpp`) look a component up in
+the owner their callers had named `unused`. The Lua binding `fn_710107a880` passes the player, which x0 held
+there from the previous call, a case `--calls` cannot see. `fn_7100369650`, the behaviour-tree base update, is
+now declared once in `include/game/UnkBehaviorTree.h` with the component, which removes four casts. The others
+are `fn_7100225b84`, `fn_71002dba48`, `fn_710110a164`, `fn_710074ddd8` and the two ship-recharge defaults.
+`fn_7100ac38fc` takes the component, not the float an asm label and `fn_71005028e4` gave it. The last 13
+hand-written hits dropped x1 or a float. In most of them the callee is hand-written with its real signature
+elsewhere (the grab handlers, `fn_7100822888`, `fn_71005b9ad8`), and the caller had declared it short. The
+casts are fixed too. They already passed every argument, but each one widened a short declaration.
+`fn_7100360b84` (CAttack's start check; its third argument is a `u32` mode, which seven callers had typed
+`void*`) is now declared in `include/game/CAttack.h`. `fn_7100369490` and `fn_7100369c44` are in
+`UnkBehaviorTree.h`, `fn_71003ac8f4` and `fn_71003aea40` in `UnkBossAIComponent.h`, `fn_71010c41bc` in
+`UnkComponent.h`, and `fn_71010d1a90` in a new `UnkMovementComponent.h`. The Bigkran steps go through a
+`CallStep` helper that casts only the object. Three callers read a shared callee's result as the other type
+(a word where the rest read a flag, or the reverse), and the bytes depend on it. They keep a cast of the
+return type alone. `fn_71003f1b00` (non-matching) takes and passes on the pointer and mode as well. Net:
+decl_check's conflicting symbols go from 141 to 140, and symbols declared in more than one file from 2336 to 2327.
+The 10 generated hits were fixed in the generators. `tools/gen_lift.py`'s pass-through: a variadic callee
+(facts read all of v0-v7) gets no s0 right after a call, which would read the earlier result as a float and
+retype that call (`fn_7100504720`, `fn_7100b46698`, `fn_710109ceb0`). `FlatLifter` skips a caller-saved register
+a call left garbage in (`fn_710085b76c`), but keeps one that `AbiFacts.untouched` says still holds the entry
+value on every path to the call (a rule by address order alone dropped x1/x2 in `fn_71011735e8` and
+`fn_710016aa14`). `lift_rounds` gives a function matched only by a plain lift the ROUND2 rewrites of its
+pass-through lifts, and a match there replaces the plain one (`fn_7100d45c48`, `fn_7100ec0d20`,
+`fn_7100547fe4`). `tools/gen_statics.py` now loads the facts (its own lifts had no pass-through:
+`fn_71009e7628`, `fn_7100bdc1f4`) and, on Windows, lifts in-process: spawned workers lost its lifter patch and
+own statics came out 0 of 236 (now 17). Lifts stay 47,284 byte-identical, and check.py goes from O 90,943 to
+90,956. The one hit left, `fn_71010cdc54`, calls `fn_71010d313c` (reads x0-x4, s0, s1) with nothing. Its
+pass-through lift and a hand-written version both reach 96.2%, two prologue moves swapped, so it stays lifted.
 
 **Placeholder classes renamed apart, round 2 (2026-11-07, branch `claude/placeholder-names-2`).** The two vtable
 conflicts the first round left that were the same reused-name problem. `tools/port_addresses.py` conflicts are down

@@ -11,7 +11,7 @@
 #include "types.h"
 
 struct UnkWhipSend_b58;
-void fn_71004c1968(UnkWhipSend_b58* self);  // the base update
+void fn_71004c1968(UnkWhipSend_b58* self, f32 dt);  // the base update
 struct UnkGrappleAnswer_b50;
 void fn_710117364c(void* target, const u64* id, UnkGrappleAnswer_b50* out);
 
@@ -55,7 +55,7 @@ struct UnkLaserBite_b59 {
 
 // `dt` (s0) reaches the base update untouched in the original (tools/forwarded_args.py).
 void fn_71004c2814(UnkLaserBite_b59* self, f32 dt) {
-    reinterpret_cast<void (*)(UnkWhipSend_b58*, f32)>(fn_71004c1968)(reinterpret_cast<UnkWhipSend_b58*>(self), dt);
+    fn_71004c1968(reinterpret_cast<UnkWhipSend_b58*>(self), dt);
     UnkAnimationComponent* anim = self->owner->field_0x220;
     if (!anim)
         return;

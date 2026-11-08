@@ -7,9 +7,9 @@
 #include "game/UnkTimelineCalls.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
+#include "game/UnkMovementComponent.h"
 
 struct UnkShardsSphere_b60a2;
-void fn_71010d1a90(UnkShardsSphere_b60a2* self);
 
 struct UnkShardsSphereKey_b60a2;
 extern UnkShardsSphereKey_b60a2 g_unk_7101649720;  // reached through the GOT
@@ -26,7 +26,7 @@ struct UnkShardsSphere_b60a2 {
 
 // `dt` (s0) reaches the base update untouched in the original (tools/forwarded_args.py).
 void fn_710045a754(UnkShardsSphere_b60a2* self, f32 dt) {
-    reinterpret_cast<void (*)(UnkShardsSphere_b60a2*, f32)>(fn_71010d1a90)(self, dt);
+    fn_71010d1a90(reinterpret_cast<UnkMovementComponent*>(self), dt);
     UnkActor* owner = self->owner;
     auto* state = static_cast<UnkShardsSphereState_b60a2*>(owner->field_0x1b8);
     if (!state || state->field_0x70 != 2)

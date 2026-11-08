@@ -32,12 +32,12 @@ struct UnkSelf {
     UnkActor* field_0x30;
 };
 
-bool fn_710110a164();
+bool fn_710110a164(UnkSelf* self, UnkOut* out);  // the base, on the same arguments
 bool fn_71009e12d0(void* obj);
 void fn_710007b444(void* dst, const UnkVec3* value);
 
 bool fn_71003de7b4(UnkSelf* self, UnkOut* out) {
-    bool result = fn_710110a164();
+    bool result = fn_710110a164(self, out);
     UnkInfo* info = reinterpret_cast<UnkInfo*>(fn_7100d7c990(self->field_0x30));
     if (info && info->field_0x208 && fn_71009e12d0(info->field_0x208)) {
         u32 a = info->field_0x44;

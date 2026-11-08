@@ -2474,7 +2474,7 @@ char* fn_71009cdc5c(char* p0) {
 }
 
 extern char g_unk_7101d47108[];
-namespace callee { char* fn_7100000790(char*, char*, u64, f32); }
+namespace callee { char* fn_7100000790(char*, char*, u64); }
 namespace callee { char* fn_7100305088(u64, char*, char*); }
 namespace callee { char* fn_71009cde54(u64, u64, char*, u64, u64); }
 char* fn_71009cdcf4(char* p0, char* p1) {
@@ -2543,7 +2543,7 @@ char* fn_71009cdcf4(char* p0, char* p1) {
     u64 r62_8 = (u64)*(a_u64*)((char*)(r2_19) + 0);
     char* r63_0 = r2_19;
     u64 r64_8 = (u64)*(a_u64*)((char*)(r62_8) + 400);
-    f32 r65_100 = ((f32 (*)(char*))(r64_8))(r63_0);
+    char* r65_0 = ((char* (*)(char*))(r64_8))(r63_0);
     u64 r66_8 = (u64)*(a_u64*)((char*)(r2_19) + 48);
     char* r67_0 = (char*)"CurrentScenario.OnPickedUp";
     u64 r68_9 = (u64)*(a_u64*)((char*)(r66_8) + 48);
@@ -2554,7 +2554,7 @@ char* fn_71009cdcf4(char* p0, char* p1) {
     u64 r73_8 = (u64)*(a_u64*)((char*)(r72_8) + 16);
     u64 r74_2 = ((u64)(u64)(r73_8) == (u64)(0)) ? (u64)(u64)(r11_22) : (u64)((u64)(u64)(r73_8));
     char* r75_1 = (char*)"s";
-    char* r76_0 = callee::fn_7100000790(r67_0, r75_1, r74_2, r65_100);
+    char* r76_0 = callee::fn_7100000790(r67_0, r75_1, r74_2);
     u64 r77_8 = (u64)*(a_u64*)((char*)(r2_19) + 0);
     char* r78_0 = r2_19;
     u64 r79_8 = (u64)*(a_u64*)((char*)(r77_8) + 360);

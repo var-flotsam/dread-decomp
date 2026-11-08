@@ -1206,7 +1206,7 @@ address,size,name,name_source,subsystem,status
 0x710114d234,292,fn_710114d234,unknown,game/components?,O
 0x710114d358,76,fn_710114d358,unknown,game/components?,O
 0x710114d3a4,292,fn_710114d3a4,unknown,game/components?,O
-0x710114d4d0,308,fn_710114d4d0,unknown,game/components?,U
+0x710114d4d0,308,fn_710114d4d0,unknown,game/components?,O
 0x710114d604,4,fn_710114d604,unknown,game/components?,O
 0x710114d608,244,CFXComponent::refl_GetClass,reflection,game/components,O
 0x710114d6fc,904,fn_710114d6fc,unknown,game/components?,O

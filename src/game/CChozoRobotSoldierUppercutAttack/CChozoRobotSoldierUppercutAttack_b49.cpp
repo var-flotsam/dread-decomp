@@ -3,9 +3,10 @@
 // state tests; when the actor it acts against is busy (+0x208, fn_71009e12d0) the answer is the AI
 // component's flag at +0x3f. Names and layouts are placeholders.
 #include "../CChozoRobotSoldierDashSlashAttack/UnkRobotSoldierAttack_b49.h"
+#include "game/CAttack.h"
 
-u8 fn_710046a394(UnkDashSlashAttack_b49* self, void* a, void* b) {
-    bool ok = reinterpret_cast<bool (*)(UnkDashSlashAttack_b49*, void*, void*)>(fn_7100360b84)(self, a, b);
+u8 fn_710046a394(UnkDashSlashAttack_b49* self, void* a, u32 b) {
+    bool ok = fn_7100360b84(reinterpret_cast<CAttack*>(self), a, b);
     if (!ok)
         return false;
     UnkRobotSoldierManager_b49* manager = reinterpret_cast<UnkRobotSoldierManager_b49*>(GetRobotSoldierManager());

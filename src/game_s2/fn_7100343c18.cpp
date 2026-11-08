@@ -4,6 +4,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "types.h"
+#include "game/UnkComponent.h"
 
 using base::reflection::CClass;
 
@@ -30,11 +31,10 @@ struct UnkSelf {
     u32 field_0x578;
 };
 
-bool fn_71010c41bc();
 
 // `arg` (x1) reaches the base step untouched in the original (tools/forwarded_args.py).
 bool fn_7100343c18(UnkSelf* self, void* arg) {
-    bool result = reinterpret_cast<bool (*)(UnkSelf*, void*)>(fn_71010c41bc)(self, arg);
+    bool result = fn_71010c41bc(reinterpret_cast<UnkBaseComponent*>(self), arg);
     UnkAimObject* object = self->object;
     UnkAimComponent* aim = nullptr;
     if (object && fn_710009d50c(object->vf_0x0(), fn_7100359cb0()))
