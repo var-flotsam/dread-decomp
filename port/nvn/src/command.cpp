@@ -337,6 +337,60 @@ std::pair<BufferAddress, Shadow*> ShadowFor(BufferAddress address, std::uint64_t
     return {it->first, &it->second};
 }
 
+// --- evidence for the formats the shim does not know (texture.h) ---
+// A texture whose format failed is reported once per use: the targets a draw renders into (the
+// fragment output that writes a colour target, or the depth attachment) and the samplers that read
+// it, with the program's package. What the game does with a format is the evidence of what it is.
+
+constexpr const char* kUnknownFormatMarker = "unknown format ";
+
+std::string UnknownFormatNote(const detail::UnknownFormatTexture& u) {
+    char text[64];
+    std::snprintf(text, sizeof text, "%s%#x, %ux%u", kUnknownFormatMarker, static_cast<unsigned>(u.format), u.width,
+                  u.height);
+    return text;
+}
+
+// "<package> program <index>" for a program's fragment (else vertex) stage, from the manifest.
+std::string ProgramName(const detail::ProgramObjects& prog) {
+    const StageInfo* stage = prog.stages[1] ? prog.stages[1] : prog.stages[0];
+    if (const ShaderManifest* m = detail::LoadedManifest()) {
+        for (const PackageInfo& pkg : m->packages())
+            for (const ProgramInfo& p : pkg.programs)
+                for (const StageInfo& s : p.stages)
+                    if (&s == stage)
+                        return pkg.name + " program " + std::to_string(p.index);
+    }
+    return "a program";
+}
+
+const char* ScalarName(ScalarKind k) {
+    switch (k) {
+    case ScalarKind::Float: return "float";
+    case ScalarKind::Int: return "int";
+    case ScalarKind::Uint: return "uint";
+    default: return "other";
+    }
+}
+
+void NoteUnknownTargets(const detail::ProgramObjects& prog, std::uint32_t color_count, const void* const* colors,
+                        const void* depth) {
+    detail::UnknownFormatTexture u;
+    for (std::uint32_t i = 0; i < color_count; ++i) {
+        if (!colors[i] || !detail::UnknownFormatOf(colors[i], &u))
+            continue;
+        std::string written = "no fragment output";
+        for (const InterfaceVar& v : prog.fragment_outputs)
+            if (v.location == i)
+                written = std::string(ScalarName(v.kind)) + " x" + std::to_string(v.components);
+        ReportOnce(UnknownFormatNote(u) + ": colour target " + std::to_string(i) + " of " +
+                   std::to_string(color_count) + ", written by " + ProgramName(prog) + " as " + written);
+    }
+    if (depth && detail::UnknownFormatOf(depth, &u))
+        ReportOnce(UnknownFormatNote(u) + ": the depth target of a draw by " + ProgramName(prog) + " (" +
+                   std::to_string(color_count) + " colour targets)");
+}
+
 // The binding layer's resolver for a draw: uniform buffers the game updated in command order come
 // from a copy of their shadow; everything else from the shim's objects (texture.h's ShimResolver).
 class DrawResolver final : public ResourceResolver {
@@ -366,6 +420,10 @@ public:
     bool ResolveSampler(std::uint32_t id, VkSampler* sampler) override { return ShimResolver().ResolveSampler(id, sampler); }
     VkDescriptorBufferInfo PlaceholderBuffer() override { return ShimResolver().PlaceholderBuffer(); }
     VkDescriptorImageInfo PlaceholderImage() override { return ShimResolver().PlaceholderImage(); }
+    std::string TextureNote(std::uint32_t id) override {
+        detail::UnknownFormatTexture u;
+        return detail::UnknownFormatOfId(id, &u) ? " (" + UnknownFormatNote(u) + ")" : std::string();
+    }
 
 private:
     const Backend& be_;
@@ -546,6 +604,7 @@ void Draw(void* cmd, std::int32_t primitive, std::int32_t index_type, std::int32
     std::int32_t topology_class;
     if (!prog)
         return skip("without a program the shim knows");
+    NoteUnknownTargets(*prog, g_state.color_count, g_state.colors, g_state.depth);
     if (!detail::Topology(primitive, &topology, &topology_class))
         return skip("of an unknown primitive");
     if (index_type < kIndexUint8 || index_type > kIndexUint32 || (index_type == kIndexUint8 && !be->index_uint8))
@@ -637,6 +696,9 @@ void Draw(void* cmd, std::int32_t primitive, std::int32_t index_type, std::int32
         g_state.bindings.BuildWrites(*prog->stages[i], set, resolver, &writes);
         MatchImageKinds(prog->samplers[i], &writes);
         g_stats.descriptor_warnings += writes.warnings.size();
+        for (const std::string& w : writes.warnings)
+            if (w.find(kUnknownFormatMarker) != std::string::npos)
+                ReportOnce(w + ", read by " + ProgramName(*prog));
         vkUpdateDescriptorSets(be->device, static_cast<std::uint32_t>(writes.writes.size()), writes.writes.data(), 0,
                                nullptr);
         vkCmdBindDescriptorSets(vk, VK_PIPELINE_BIND_POINT_GRAPHICS, prog->layout, DescriptorSetIndex(*manifest, stage), 1,

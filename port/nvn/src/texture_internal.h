@@ -33,4 +33,15 @@ bool ViewKindOf(VkImageView view, ViewKind* kind);
 // The placeholder for an empty (or mismatched) slot of a sampler of `kind`.
 VkDescriptorImageInfo PlaceholderImageFor(ImageKind kind);
 
+// A texture whose nvnTextureInitialize failed on a format the shim does not know (texture.h): its
+// NVN format and size, for the evidence of what the format is (how a draw renders into it, which
+// sampler reads it). False for any other texture.
+struct UnknownFormatTexture {
+    std::int32_t format = 0;
+    std::uint32_t width = 0, height = 0;
+};
+bool UnknownFormatOf(const void* texture, UnknownFormatTexture* out);
+// The same for texture pool entry `id`.
+bool UnknownFormatOfId(std::uint32_t id, UnknownFormatTexture* out);
+
 }  // namespace dread::nvn::detail

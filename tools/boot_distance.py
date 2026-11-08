@@ -378,6 +378,11 @@ def run_boot(args, out: Path) -> dict | None:
     env = dict(os.environ, DREAD_TRAP="log", DREAD_BOOT_SPEC=str(spec))
     if args.nvn:
         env["DREAD_NVN_SHADERS"] = str(Path(args.shaders).resolve())  # the shim's shader manifest
+        if not (Path(args.shaders) / "shaders.manifest").is_file():
+            # Without it every program fails and the shim skips every draw (port/README.md, "Shaders").
+            print(f"boot_distance: no {Path(args.shaders) / 'shaders.manifest'}: every draw is skipped; "
+                  f"build it with python tools/bshdat.py --version {args.version} --install {args.shaders}",
+                  file=sys.stderr)
     cmd = ["timeout", "-k", "10", str(args.timeout), "gdb", "-nx", "-batch", "-q", "-x", str(Path(__file__).resolve()),
            "--args", str(exe)]
     log = out / "boot.log"
