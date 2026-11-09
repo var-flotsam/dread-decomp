@@ -79,6 +79,41 @@ int main() {
     nn::os::SignalEvent(&zeroed_event);
     Check(nn::os::WaitAny(multi) == fresh, "zeroed objects: unlink and finalise do nothing, then they work");
 
+    // The game freed a stream whose holder is still linked and reused its memory for another object
+    // before the worker's "off" entry ran (the opening visor movie): its bytes are someone else's now.
+    // Unlinking and finalising act on the host objects alone, leave the memory as it is, and the
+    // multi-wait keeps working for the other holders without reading the stale memory.
+    Storage stale_holder{};
+    nn::os::EventType stale_event{};
+    auto* stale = reinterpret_cast<nn::os::MultiWaitHolderType*>(&stale_holder);
+    nn::os::InitializeEvent(&stale_event, false, nn::os::EventClearMode_AutoClear);
+    nn::os::InitializeMultiWaitHolder(stale, &stale_event);
+    nn::os::UnlinkMultiWaitHolder(fresh);
+    nn::os::LinkMultiWaitHolder(multi, stale);  // first in link order: WaitAny passes it before `fresh`
+    nn::os::LinkMultiWaitHolder(multi, fresh);
+    for (unsigned char& b : stale_holder.bytes)
+        b = 0xa5;
+    auto* event_bytes = reinterpret_cast<unsigned char*>(&stale_event);
+    for (unsigned i = 0; i < sizeof(stale_event); ++i)
+        event_bytes[i] = 0x5a;
+    nn::os::SignalEvent(&zeroed_event);
+    Check(nn::os::WaitAny(multi) == fresh, "a linked holder whose memory was reused: the others still wake the wait");
+    nn::os::UnlinkMultiWaitHolder(stale);
+    nn::os::FinalizeMultiWaitHolder(stale);
+    nn::os::FinalizeEvent(&stale_event);
+    bool untouched = true;
+    for (unsigned char b : stale_holder.bytes)
+        untouched = untouched && b == 0xa5;
+    for (unsigned i = 0; i < sizeof(stale_event); ++i)
+        untouched = untouched && event_bytes[i] == 0x5a;
+    Check(untouched, "a reused object: unlink and finalise leave its memory alone");
+    // Initialised again at the same address: the same host objects, working as new.
+    nn::os::InitializeEvent(&stale_event, false, nn::os::EventClearMode_AutoClear);
+    nn::os::InitializeMultiWaitHolder(stale, &stale_event);
+    nn::os::LinkMultiWaitHolder(multi, stale);
+    nn::os::SignalEvent(&stale_event);
+    Check(nn::os::WaitAny(multi) == stale, "a reused address initialised again: linked and woken as new");
+
     if (g_failed) {
         std::fprintf(stderr, "os_check: %d failed\n", g_failed);
         return 1;

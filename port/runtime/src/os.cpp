@@ -7,6 +7,7 @@
 #include "dread_port.h"
 #include "host_memory.h"
 
+#include <atomic>
 #include <chrono>
 #include <condition_variable>
 #include <cstdio>
@@ -15,6 +16,7 @@
 #include <mutex>
 #include <new>
 #include <thread>
+#include <unordered_map>
 #include <vector>
 
 namespace nn::os {
@@ -40,6 +42,32 @@ T* HostNew(Args&&... args) {
     void* p = std::malloc(sizeof(T));
     return p ? new (p) T{static_cast<Args&&>(args)...} : nullptr;
 }
+
+// The allocator of the runtime's own containers, for the same reason (the host's heap).
+template <typename T>
+struct HostAllocator {
+    using value_type = T;
+    HostAllocator() = default;
+    template <typename U>
+    HostAllocator(const HostAllocator<U>&) {}
+    T* allocate(std::size_t n) {
+        void* p = std::malloc(n * sizeof(T));
+        if (!p)
+            __builtin_trap();
+        return static_cast<T*>(p);
+    }
+    void deallocate(T* p, std::size_t) { std::free(p); }
+    template <typename U>
+    bool operator==(const HostAllocator<U>&) const { return true; }
+    template <typename U>
+    bool operator!=(const HostAllocator<U>&) const { return false; }
+};
+
+// The host object each game address has held, by address: what a finalise finds once the game has
+// freed the object and reused its memory (see InitializeEvent).
+template <typename T>
+using HostRegistry = std::unordered_map<const void*, T*, std::hash<const void*>, std::equal_to<const void*>,
+                                        HostAllocator<std::pair<const void* const, T*>>>;
 
 template <typename T>
 void HostDelete(T* p) {
@@ -204,9 +232,30 @@ struct HostWaitHolder {
     HostMultiWait* linked = nullptr;
 };
 
-struct HostMultiWait {
-    std::vector<MultiWaitHolderType*> holders;  // in link order
+// A linked holder: the game's address (what WaitAny returns) and its host object, kept here so that
+// waiting never reads the game's memory of a holder.
+struct HostLinkedHolder {
+    MultiWaitHolderType* holder;
+    HostWaitHolder* host;
 };
+
+struct HostMultiWait {
+    std::vector<HostLinkedHolder, HostAllocator<HostLinkedHolder>> holders;  // in link order
+};
+
+HostRegistry<HostWaitHolder> g_holders;  // under g_multi_wait_lock
+HostRegistry<HostEvent> g_events;        // under g_events_lock
+std::mutex g_events_lock;
+
+// Reported once: a finalise or unlink at an address whose object the game freed and reused.
+void NoteStale(const char* call) {
+    static std::atomic<bool> noted{false};
+    if (!noted.exchange(true))
+        std::fprintf(stderr,
+                     "dread: nn::os::%s on an object the game freed and reused: done on the host object only "
+                     "(reported once)\n",
+                     call);
+}
 
 HostEvent* NewEvent(bool signaled, EventClearMode mode) {
     auto* event = HostNew<HostEvent>(signaled, mode);
@@ -440,21 +489,42 @@ bool TimedWaitLightEvent(LightEventType* event, TimeSpan timeout) {
 // a port that freed the host object and cleared the tag stopped at the next signal or link
 // (2026-11-08, the title after a press of A). Host events and holders are therefore never freed: one
 // per address the game ever initialised one at, reused when it initialises one there again.
+//
+// The worker can also run its "off" entry after the stream is freed and its memory reused by another
+// object (2026-11-09, the opening visor movie, one run in two): the console's finalise writes into the
+// stale memory and goes on. The port keeps a table of the host object at each address (g_events,
+// g_holders), so a finalise or unlink there acts on the host object alone and never writes the game's
+// memory; signalling, clearing and waiting still require the tag.
 void InitializeEvent(EventType* event, bool signaled, EventClearMode clear_mode) {
-    if (HostEvent* e = Existing<HostEvent>(event, kTagEvent)) {
-        std::lock_guard<std::mutex> hold(e->lock);
-        e->signaled = signaled;
-        e->auto_clear = clear_mode == EventClearMode_AutoClear;
-        return;
+    HostEvent* e = Existing<HostEvent>(event, kTagEvent);
+    if (!e) {
+        std::lock_guard<std::mutex> hold(g_events_lock);
+        auto it = g_events.find(event);
+        if (it == g_events.end()) {
+            g_events.emplace(event, NewEvent(signaled, clear_mode));
+            it = g_events.find(event);
+        }
+        e = it->second;
+        Attach(event, e, kTagEvent);
     }
-    Attach(event, NewEvent(signaled, clear_mode), kTagEvent);
+    std::lock_guard<std::mutex> hold(e->lock);
+    e->signaled = signaled;
+    e->auto_clear = clear_mode == EventClearMode_AutoClear;
 }
 
 void FinalizeEvent(EventType* event) {
-    // Kept (above); the check that it was initialised stays, except for a zeroed one (Zeroed).
+    // Kept (above): nothing to undo. The check that it was initialised stays for an address that never
+    // held an event and is not zeroed.
+    if (Existing<HostEvent>(event, kTagEvent))
+        return;
+    {
+        std::lock_guard<std::mutex> hold(g_events_lock);
+        if (g_events.count(event))
+            return NoteStale("FinalizeEvent");
+    }
     if (Zeroed(event))
         return NoteZeroed("FinalizeEvent");
-    Find<HostEvent>(event, kTagEvent, "FinalizeEvent");
+    NotInitialised("FinalizeEvent", event);
 }
 
 void SignalEvent(EventType* event) {
@@ -480,15 +550,22 @@ void InitializeMultiWait(MultiWaitType* multi_wait) {
 }
 
 void FinalizeMultiWait(MultiWaitType* multi_wait) {
-    HostDelete(Find<HostMultiWait>(multi_wait, kTagMultiWait, "FinalizeMultiWait"));
+    auto* m = Find<HostMultiWait>(multi_wait, kTagMultiWait, "FinalizeMultiWait");
+    {
+        // Holders still linked lose their link, so that a later unlink does not reach the freed list.
+        std::lock_guard<std::mutex> hold(g_multi_wait_lock);
+        for (const HostLinkedHolder& linked : m->holders)
+            linked.host->linked = nullptr;
+    }
+    HostDelete(m);
     Detach(multi_wait);
 }
 
 // Removes `holder` from the multi-wait it is linked into, if any. Under g_multi_wait_lock.
-static void UnlinkLocked(MultiWaitHolderType* holder, HostWaitHolder* h) {
+static void UnlinkLocked(HostWaitHolder* h) {
     if (HostMultiWait* m = h->linked) {
         for (auto it = m->holders.begin(); it != m->holders.end(); ++it)
-            if (*it == holder) {
+            if (it->host == h) {
                 m->holders.erase(it);
                 break;
             }
@@ -496,25 +573,47 @@ static void UnlinkLocked(MultiWaitHolderType* holder, HostWaitHolder* h) {
     h->linked = nullptr;
 }
 
+// The host holder at `holder` for a finalise or an unlink: its tagged object, or the one the address
+// held before the game reused its memory (see InitializeEvent), or null for a zeroed object that never
+// held one. Under g_multi_wait_lock; stops for anything else.
+static HostWaitHolder* HolderToUndo(MultiWaitHolderType* holder, const char* call) {
+    if (HostWaitHolder* h = Existing<HostWaitHolder>(holder, kTagWaitHolder))
+        return h;
+    auto it = g_holders.find(holder);
+    if (it != g_holders.end()) {
+        NoteStale(call);
+        return it->second;
+    }
+    if (Zeroed(holder)) {
+        NoteZeroed(call);
+        return nullptr;
+    }
+    NotInitialised(call, holder);
+}
+
 void InitializeMultiWaitHolder(MultiWaitHolderType* holder, EventType* event) {
     HostEvent* e = Find<HostEvent>(event, kTagEvent, "InitializeMultiWaitHolder");
     std::lock_guard<std::mutex> hold(g_multi_wait_lock);
-    if (HostWaitHolder* h = Existing<HostWaitHolder>(holder, kTagWaitHolder)) {
-        UnlinkLocked(holder, h);  // initialised again (see InitializeEvent)
-        *h = HostWaitHolder{e};
-        return;
+    HostWaitHolder* h = Existing<HostWaitHolder>(holder, kTagWaitHolder);
+    if (!h) {
+        auto it = g_holders.find(holder);
+        if (it == g_holders.end()) {
+            g_holders.emplace(holder, HostNew<HostWaitHolder>(e));
+            it = g_holders.find(holder);
+        }
+        h = it->second;
+        Attach(holder, h, kTagWaitHolder);
     }
-    Attach(holder, HostNew<HostWaitHolder>(e), kTagWaitHolder);
+    UnlinkLocked(h);  // initialised again (see InitializeEvent)
+    *h = HostWaitHolder{e};
 }
 
 void FinalizeMultiWaitHolder(MultiWaitHolderType* holder) {
     // Kept (see InitializeEvent). A holder finalised while linked is unlinked: the console's
     // finalise does not check it either.
-    if (Zeroed(holder))
-        return NoteZeroed("FinalizeMultiWaitHolder");
-    auto* h = Find<HostWaitHolder>(holder, kTagWaitHolder, "FinalizeMultiWaitHolder");
     std::lock_guard<std::mutex> hold(g_multi_wait_lock);
-    UnlinkLocked(holder, h);
+    if (HostWaitHolder* h = HolderToUndo(holder, "FinalizeMultiWaitHolder"))
+        UnlinkLocked(h);
 }
 
 void LinkMultiWaitHolder(MultiWaitType* multi_wait, MultiWaitHolderType* holder) {
@@ -524,26 +623,24 @@ void LinkMultiWaitHolder(MultiWaitType* multi_wait, MultiWaitHolderType* holder)
     if (h->linked)
         Fatal("LinkMultiWaitHolder", "the holder is already linked");
     h->linked = m;
-    m->holders.push_back(holder);
+    m->holders.push_back(HostLinkedHolder{holder, h});
 }
 
 void UnlinkMultiWaitHolder(MultiWaitHolderType* holder) {
-    if (Zeroed(holder))
-        return NoteZeroed("UnlinkMultiWaitHolder");
-    auto* h = Find<HostWaitHolder>(holder, kTagWaitHolder, "UnlinkMultiWaitHolder");
     std::lock_guard<std::mutex> hold(g_multi_wait_lock);
-    UnlinkLocked(holder, h);
+    if (HostWaitHolder* h = HolderToUndo(holder, "UnlinkMultiWaitHolder"))
+        UnlinkLocked(h);
 }
 
 MultiWaitHolderType* WaitAny(MultiWaitType* multi_wait) {
     auto* m = Find<HostMultiWait>(multi_wait, kTagMultiWait, "WaitAny");
     std::unique_lock<std::mutex> hold(g_multi_wait_lock);
     for (;;) {
-        for (MultiWaitHolderType* holder : m->holders) {
-            HostEvent* e = Find<HostWaitHolder>(holder, kTagWaitHolder, "WaitAny")->event;
+        for (const HostLinkedHolder& linked : m->holders) {
+            HostEvent* e = linked.host->event;
             std::lock_guard<std::mutex> event_hold(e->lock);
             if (e->signaled && e->Consume())
-                return holder;
+                return linked.holder;
         }
         // A signal between the check and the wait notifies under g_multi_wait_lock, which is held.
         g_multi_wait_changed.wait(hold);
