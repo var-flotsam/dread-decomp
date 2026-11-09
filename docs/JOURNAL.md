@@ -162,6 +162,21 @@ one address "uniquely", and the first in compile order won.
 With both, the boot passes the menu. The next stop is the scene's environment data: `fn_7100f44fd8`
 (`CEnvironmentData::SFogTransition`'s unit, 5.7 KB, an inconclusive lift) traps, then a reflection reader
 (`fn_7100f6f874`) faults near null.
+**The black after the menu was a source the port could not compile; the intro plays (2026-11-08, branch `claude/scene-dump`).**
+After Continue or New Game the port drew only its final copy to the window, for 14 minutes. Two new switches show why:
+- `DREAD_NVN_DUMP_TARGETS=1` writes, beside each dumped frame, the draws since the previous one by program and target, and
+  each colour target.
+- `DREAD_FS_LOG=1` logs every `nn::fs` open and its result.
+
+No scene draw happened, and no package was opened after the save was written: the load never started. Of 536 failed
+opens, 479 are the game's normal fallback (`rom:/x/...bctex`, then `rom:/textures/x/...`); the rest probe an optional
+save file. The boot had been linked from a sweep days old. A fresh one showed `src/base/UnkCurveModifiers.cpp` as the
+only source that fails the port's compile: its own `extern "C" int rand();` conflicts with glibc's `noexcept`
+declaration, which a header further down pulls in. The curve shaping (`fn_7100075f78`, `fn_71000763c0`) trapped on
+every boot. It now includes `<stdlib.h>` and `<math.h>` (bytes unchanged). With it, scripted presses take the game from the
+title through the save menu into the New Game intro, which plays to the end (narration and briefing video). Then
+`players/samus.pkg` loads, and the next fault is a null GUI object in the in-game menu's unit (`msemenu_ingame`, under
+`fn_7101188254`).
 **Into the first scene: the C++ library's imports and instances, and asset textures uploaded (2026-11-08, branch `claude/texture-upload`).**
 The black screen after the save menu was not a hang. Frames kept coming, and the first-hit trace showed the camera
 components, `CEntity`, the shot, minimap and music managers starting: the game had entered its first scene. On the way,

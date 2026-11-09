@@ -168,7 +168,27 @@ void SetPriorityOnCurrentThread(Priority) {
     // TODO(M1): the loader thread fn_7101236478. Nothing on PC.
 }
 
+// $DREAD_FS_LOG=1: every OpenFile with its result on stderr, to see what a load asks for and what
+// it does not find.
+static bool FsLog() {
+    static const bool on = [] {
+        const char* e = std::getenv("DREAD_FS_LOG");
+        return e && *e && *e != '0';
+    }();
+    return on;
+}
+
+static Result OpenFileHost(FileHandle* out, const char* path, s32 mode);
+
 Result OpenFile(FileHandle* out, const char* path, s32 mode) {
+    const Result r = OpenFileHost(out, path, mode);
+    if (FsLog())
+        std::fprintf(stderr, "dread: fs: open %s (mode %d): %s (%#x)\n", path ? path : "(null)", mode,
+                     r.IsSuccess() ? "ok" : "failed", r.value);
+    return r;
+}
+
+static Result OpenFileHost(FileHandle* out, const char* path, s32 mode) {
     // TODO(M1): the engine's file object (fn_7101235090, mode 1), the sound banks (fn_7100100e74),
     // the save reader fn_710002ed98 (1) and writer fn_710002eec8 (6). A missing file is
     // ResultPathNotFound, which fn_7101235090 turns into its own 0x81000001.
