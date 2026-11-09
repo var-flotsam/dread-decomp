@@ -708,7 +708,10 @@ bool fn_710111c56c(UnkSpawnGroupCounters_ovb0065* self, UnkSpawnedActor_ovb0065*
 // Names and layouts are placeholders.
 
 struct UnkHandlePtr_ovb0008;
-void fn_710031da18(base::UnkVector<UnkHandlePtr_ovb0008>* v, u32 capacity);
+template <class Tag>
+struct UnkSlotArray;
+struct UnkTag_710031da18;
+void fn_710031da18(UnkSlotArray<UnkTag_710031da18>* v, u32 capacity);
 
 struct UnkSpawnHandlePtr_ovb0065 {
     UnkWeakHandle* p;
@@ -746,7 +749,7 @@ void fn_710111b96c(UnkSpawnGroupList_ovb0065* self, UnkWeakTarget* target) {
     if ((s32)n >= (s32)capacity)
         for (;;) {
         }
-    fn_710031da18(reinterpret_cast<base::UnkVector<UnkHandlePtr_ovb0008>*>(&v), capacity);
+    fn_710031da18(reinterpret_cast<UnkSlotArray<UnkTag_710031da18>*>(&v), capacity);
     // The slot is written bitwise: the original reloads the count after the writes.
     UnkWeakHandle** slot = &v.data[v.count].p;
     __builtin_memset(slot, 0, sizeof(*slot));

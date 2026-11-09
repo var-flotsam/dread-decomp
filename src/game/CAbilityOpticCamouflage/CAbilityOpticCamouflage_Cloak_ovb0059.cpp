@@ -194,7 +194,10 @@ struct UnkOpticHandlePtr_ovb0059 {
     UnkWeakHandle* p;
 };
 
-void fn_710031da18(base::UnkVector<UnkHandlePtr_ovb0008>* v, u32 capacity);
+template <class Tag>
+struct UnkSlotArray;
+struct UnkTag_710031da18;
+void fn_710031da18(UnkSlotArray<UnkTag_710031da18>* v, u32 capacity);
 
 // The vector's copy constructor: the same growth settings and allocator, then each reference
 // appended (fn_710031da18 grows the array).
@@ -207,7 +210,7 @@ void fn_710031d904(base::UnkVector<UnkOpticHandlePtr_ovb0059>* self,
     self->field_0x14 = other->field_0x14;
     self->flags = other->flags;
     self->allocator = other->allocator;
-    fn_710031da18(reinterpret_cast<base::UnkVector<UnkHandlePtr_ovb0008>*>(self), other->capacity);
+    fn_710031da18(reinterpret_cast<UnkSlotArray<UnkTag_710031da18>*>(self), other->capacity);
     const UnkOpticHandlePtr_ovb0059* end = other->data + other->count;
     for (const UnkOpticHandlePtr_ovb0059* it = other->data; it != end; ++it) {
         u32 n = self->count;
@@ -217,7 +220,7 @@ void fn_710031d904(base::UnkVector<UnkOpticHandlePtr_ovb0059>* self,
         if ((s32)n >= (s32)capacity)
             for (;;) {
             }
-        fn_710031da18(reinterpret_cast<base::UnkVector<UnkHandlePtr_ovb0008>*>(self), capacity);
+        fn_710031da18(reinterpret_cast<UnkSlotArray<UnkTag_710031da18>*>(self), capacity);
         // The slot is written bitwise: the original reloads the count after the writes.
         UnkWeakHandle** slot = &self->data[self->count].p;
         __builtin_memset(slot, 0, sizeof(*slot));

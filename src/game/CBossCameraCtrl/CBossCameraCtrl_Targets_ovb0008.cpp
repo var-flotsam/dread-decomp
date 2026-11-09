@@ -78,7 +78,10 @@ static_assert(__builtin_offsetof(UnkBossCameraCtrl_ovb0008, speed) == 0x354, "Un
 
 void fn_710074f550(UnkBossCameraCtrl_ovb0008* self);  // drops the targets that are gone
 f32 fn_710074f2f0(UnkBossCameraCtrl_ovb0008* self);   // the framing distance
-void fn_710031da18(base::UnkVector<UnkHandlePtr_ovb0008>* v, u32 capacity);
+template <class Tag>
+struct UnkSlotArray;
+struct UnkTag_710031da18;
+void fn_710031da18(UnkSlotArray<UnkTag_710031da18>* v, u32 capacity);
 
 static inline void* MusicManager() {
     void* instance = g_unk_71726bc560;
@@ -119,7 +122,7 @@ void fn_7100750804(UnkBossCameraCtrl_ovb0008* self, UnkWeakTarget* target) {
     if ((s32)n >= (s32)capacity)
         for (;;) {
         }
-    fn_710031da18(&v, capacity);
+    fn_710031da18(reinterpret_cast<UnkSlotArray<UnkTag_710031da18>*>(&v), capacity);
     UnkWeakHandle** slot = &v.data[v.count].p;
     *slot = nullptr;
     AssignRef(slot, ref.p);
