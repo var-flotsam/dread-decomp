@@ -103,6 +103,7 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - The NVN globals `g_unk_716e29xxxx` are named by the loader's GOT slots and their relative relocations (`data/nvn_procs.csv`); count GOT-slot call sites with a short window, not adjacent pairs; never write into a game-owned NVN object's storage: [NVN shim's start-up path](#session-log-newest-first).
 
 **Port: runtime and loader**
+- Same-shaped library functions that differ only in what they point to (luaopen_table and luaopen_debug) need their referenced strings to be told apart, and two unique matches of one address are a conflict, not a match (`sigmatch.binary_strings`): [The in-game menu](#session-log-newest-first).
 - A packaged texture's layout word gives the block height (bits 0-2); levels follow one another with MipBlockLog2, and a cube face rounds up to base-level blocks, which all 5,754 `.bctex` headers confirm. The game's `std::` imports bind to the host's libc++ by the dump's mangled names, and its own libc++ instances to the port's from libc++ 9's headers: [Into the first scene](#session-log-newest-first).
 - An inferred subsystem can make game code `L` (no generator or lift covers it, so the port traps): `gen_functions_csv.is_library` keeps inferred `lua?` and `runtime?` library only when named. The console's `nn::os` finalise only marks the object, and the game finalises across threads after re-initialising: the port keeps events and holders: [Past the title on scripted input](#session-log-newest-first).
 - The shim flips each viewport, so the game's winding (in its window coordinates, y down) reaches Vulkan reversed: invert the front face, or every CULL_CCW quad (all 2D and full-screen passes) is culled: [The title screen is visible](#session-log-newest-first).
@@ -142,6 +143,25 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**The in-game menu: the game opened Lua's debug library instead of its table library (2026-11-08, branch `claude/ingame-menu`).**
+After the intro the boot faulted in `fn_7101188254`, the in-game menu's per-frame virtual (slot 0xa0 of the object at
++0x498 of `fn_7100deee9c`'s), on a null `DebugIngameMenu` child (+0xf8). A gdb trace of its setter `fn_710118ae80`
+showed the child's creation (`fn_71011b6030`) failing. Loading `gui/scripts/msemenu_ingame.lua` loads
+`msemenu_scenarios.lua`, which failed: catching `luaG_runerror` gave "attempt to index global 'table' (a nil value)".
+The game's `0x71010ba270` registers concat, foreach, ... sort: it is `luaopen_table`. `data/library_symbols.csv` named
+it `luaopen_debug`, so the port linked `lib/lua`'s `luaopen_debug` there. The two compile to the same shape, differing
+only in the name and the table they point to. The game has no `luaopen_debug`, so both compiled openers matched that
+one address "uniquely", and the first in compile order won.
+- `tools/sigmatch.py` now reads the C strings each compiled function and each binary candidate references
+  (`object_strings`, `binary_strings`). An address claimed by two unique matches keeps the name whose strings agree,
+  else none. Look-alike groups are resolved by strings before the address-order fallback. One row changes:
+  0x71010ba270 is `luaopen_table`.
+- `nn::os`: the movie worker also unlinks and finalises events and holders that the main thread has just
+  constructed again (zeroed). Doing so to a zeroed object is now a no-op, reported once (`os_check`).
+
+With both, the boot passes the menu. The next stop is the scene's environment data: `fn_7100f44fd8`
+(`CEnvironmentData::SFogTransition`'s unit, 5.7 KB, an inconclusive lift) traps, then a reflection reader
+(`fn_7100f6f874`) faults near null.
 **The black after the menu was a source the port could not compile; the intro plays (2026-11-08, branch `claude/scene-dump`).**
 After Continue or New Game the port drew only its final copy to the window, for 14 minutes. Two new switches show why:
 - `DREAD_NVN_DUMP_TARGETS=1` writes, beside each dumped frame, the draws since the previous one by program and target, and

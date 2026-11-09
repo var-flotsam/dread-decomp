@@ -3843,7 +3843,7 @@ address,size,name,name_source,subsystem,status
 0x71010b9e30,248,luaH_setnum,library,lua,L
 0x71010b9f30,160,luaH_setstr,library,lua,L
 0x71010b9fd0,672,luaH_getn,library,lua,L
-0x71010ba270,40,luaopen_debug,library,lua,L
+0x71010ba270,40,luaopen_table,library,lua,L
 0x71010ba2a0,428,tconcat,library,lua,L
 0x71010ba450,200,foreach,library,lua,L
 0x71010ba520,216,foreachi,library,lua,L

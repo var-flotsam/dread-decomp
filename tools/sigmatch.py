@@ -107,6 +107,48 @@ def near_matches(unmatched: list[tuple[str, bytes]], candidates: dict[int, bytes
             if r >= FUZZY_RATIO and best_for_addr[a][1] == n}
 
 
+def object_strings(obj: Path) -> dict[str, frozenset[str]]:
+    """symbol -> the C strings each function of the object references (its relocations into a
+    .rodata.str section): what tells same-shaped look-alikes apart, such as luaopen_table and
+    luaopen_debug, which differ only in the library name and the table they register."""
+    from elftools.elf.elffile import ELFFile
+    with obj.open("rb") as f:
+        elf = ELFFile(f)
+        data = {sec.name: sec.data() for sec in elf.iter_sections() if sec.name.startswith(".rodata.str")}
+    out = {}
+    for fn in asmdiff.read_object(obj):
+        found = set()
+        for r in fn.relocs.values():
+            blob = data.get(r.symbol) if r.section else None
+            if blob is not None and 0 <= r.addend < len(blob):
+                found.add(blob[r.addend:].split(bytes([0]))[0].decode("latin-1"))
+        out[fn.symbol] = frozenset(found)
+    return out
+
+
+def binary_strings(original: asmdiff.Original, addr: int) -> frozenset[str]:
+    """The C strings a function of the binary references through ADRP + ADD pairs."""
+    code = original.function(addr)
+    data, base = original.img.data, 0x7100000000
+    pages: dict[int, int] = {}
+    out = set()
+    for i in range(len(code) // 4):
+        w = struct.unpack_from("<I", code, 4 * i)[0]
+        pc = addr + 4 * i
+        if w & 0x9F000000 == 0x90000000:  # ADRP
+            imm = (((w >> 5) & 0x7FFFF) << 2) | ((w >> 29) & 3)
+            if imm & (1 << 20):
+                imm -= 1 << 21
+            pages[w & 0x1F] = (pc & ~0xFFF) + (imm << 12)
+        elif w & 0x7F800000 == 0x11000000 and ((w >> 5) & 0x1F) in pages:  # ADD (imm) on that page
+            target = pages[(w >> 5) & 0x1F] + ((w >> 10) & 0xFFF) - base
+            if 0 <= target < len(data):
+                text = data[target:target + 64].split(bytes([0]))[0]
+                if text and all(32 <= c < 127 for c in text):
+                    out.add(text.decode("latin-1"))
+    return frozenset(out)
+
+
 def binary_index(original: asmdiff.Original) -> dict[tuple[int, str], list[int]]:
     index: dict[tuple[int, str], list[int]] = {}
     for addr, size in original.sizes.items():
@@ -133,6 +175,8 @@ def main() -> int:
 
     found: dict[int, tuple[int, str]] = {}
     ambiguous: list[tuple[tuple[int, str], str, list[int]]] = []   # (key, name, hits), in object order
+    strings: dict[str, frozenset[str]] = {}                          # demangled name -> its C strings
+    claims: dict[int, list[tuple[int, str]]] = {}                    # address -> unique matches of it
     missing = total = 0
     unmatched: list[tuple[str, bytes]] = []
     for src in LIBRARIES[args.library]["sources"]:
@@ -142,17 +186,31 @@ def main() -> int:
             raise SystemExit(f"{src}: build failed\n{r.stderr[-1500:]}")
         funcs = asmdiff.object_functions(obj)
         names = check.demangle([n for n, _, _ in funcs])
+        for sym, refs in object_strings(obj).items():
+            strings[names.get(sym, sym)] = refs
         for name, code, _ in funcs:
             total += 1
             key = (len(code), signature(code))
             hits = index.get(key, [])
             if len(hits) == 1:
-                found.setdefault(hits[0], (len(code), names.get(name, name)))
+                claims.setdefault(hits[0], []).append((len(code), names.get(name, name)))
             elif hits:
                 ambiguous.append((key, names.get(name, name), hits))
             else:
                 missing += 1
                 unmatched.append((names.get(name, name), code))
+
+    # An address two compiled functions match uniquely: the game has only one of them (it opens the
+    # table library, not the debug one, and luaopen_debug has luaopen_table's shape). The one whose
+    # C strings are the binary's keeps it; with none or several, the address stays unnamed.
+    for addr, named in claims.items():
+        if len(named) == 1:
+            found[addr] = named[0]
+            continue
+        refs = binary_strings(original, addr)
+        same = [c for c in named if strings.get(c[1]) == refs]
+        if len(same) == 1:
+            found[addr] = same[0]
 
     # Look-alikes: the binding tables name the luaL_Reg functions exactly; for the rest, a group of
     # same-shaped functions is assigned in order when the binary has as many copies, all inside
@@ -168,7 +226,23 @@ def main() -> int:
             resolved += 1
         else:
             groups.setdefault(key, []).append((name, hits))
+    # Same-shaped look-alikes that reference different strings (luaopen_table and luaopen_debug,
+    # each registering its library by name) are told apart by those strings first: the order the
+    # objects are compiled in is not the order the game links them in.
+    for key, members in list(groups.items()):
+        rest = []
+        for name, hits in members:
+            refs = strings.get(name, frozenset())
+            same = [a for a in hits if a not in found and refs and binary_strings(original, a) == refs]
+            if len(same) == 1:
+                found[same[0]] = (key[0], name)
+                resolved += 1
+            else:
+                rest.append((name, hits))
+        groups[key] = rest
     for key, members in groups.items():
+        if not members:
+            continue
         hits = [a for a in members[0][1] if lo <= a <= hi and a not in found]
         if len(hits) == len(members):
             for (name, _), a in zip(members, sorted(hits)):

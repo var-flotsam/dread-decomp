@@ -62,6 +62,23 @@ int main() {
     Check(nn::os::WaitAny(multi) == holder, "finalised while linked, then initialised and linked again");
     Check(!nn::os::TryWaitEvent(&event), "the auto-clear signal was consumed by the wait");
 
+    // The main thread built the stream again (its events and holders zeroed) before the worker's
+    // "off" entry ran: unlinking and finalising them is a no-op, and they initialise as new.
+    nn::os::UnlinkMultiWaitHolder(holder);
+    nn::os::FinalizeMultiWaitHolder(holder);
+    nn::os::FinalizeEvent(&event);
+    Storage zeroed_holder{};
+    nn::os::EventType zeroed_event{};
+    auto* fresh = reinterpret_cast<nn::os::MultiWaitHolderType*>(&zeroed_holder);
+    nn::os::UnlinkMultiWaitHolder(fresh);
+    nn::os::FinalizeMultiWaitHolder(fresh);
+    nn::os::FinalizeEvent(&zeroed_event);
+    nn::os::InitializeEvent(&zeroed_event, false, nn::os::EventClearMode_AutoClear);
+    nn::os::InitializeMultiWaitHolder(fresh, &zeroed_event);
+    nn::os::LinkMultiWaitHolder(multi, fresh);
+    nn::os::SignalEvent(&zeroed_event);
+    Check(nn::os::WaitAny(multi) == fresh, "zeroed objects: unlink and finalise do nothing, then they work");
+
     if (g_failed) {
         std::fprintf(stderr, "os_check: %d failed\n", g_failed);
         return 1;
