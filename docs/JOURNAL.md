@@ -91,6 +91,8 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - An empty struct passed by value for a leftover register takes x0 on AArch64 but no register on x86-64, which shifts every later argument; derive such tags from `UnkLeftoverReg` (`include/UnkLeftoverReg.h`): [empty leftover-register tags](#session-log-newest-first).
 - A port hazard in matching code: AArch64 `udiv` by zero gives 0, x86-64 traps; guard the division only off `__aarch64__` so the Switch bytes stay: [boot hubs, round 2](#session-log-newest-first).
 - A byte-identical plain lift that tail-calls a callee returning through x8 matches on the Switch (x8 passes through) but on x86-64 the callee's hidden result pointer is the caller's first argument; `gen_lift` now refuses such lifts: [the heap corruption](#session-log-newest-first).
+- A semantic lift must take x8 as an incoming result only from the facts: a register read first in address order may be a loop's value (a block placed before the one that sets it), and an sret definition shifts every argument on x86-64: [the map menu and the first room](#session-log-newest-first).
+- A `{f32, f32}` by value is s0/s1 on AArch64 but one packed xmm register on x86-64: where lifted code calls the function, or it calls lifted code, take the pair as two floats (same Switch bytes): same entry.
 
 **Port: shaders**
 - `.bshdat` layout, the GLSL in each stage's debug section, and the two rewrites glslang needs (block `location` to the compiler's binding, `GL_NV_explicit_typecast`): [shader packages parsed](#session-log-newest-first).
@@ -143,6 +145,31 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - An import name the runtime overloads (`movie::Buffer::Buffer` four times) must resolve by the dump's mangled name (the PLT stub's GOT slot), not by the reference's argument classes: a lifted call passes `this` as an argument, and a copy constructor looks like `Buffer(u64)`: [movie VP9](#session-log-newest-first).
 
 ## Session log (newest first)
+
+**The map menu and the first room (2026-11-09, branch `claude/map-menu`).** The port now boots to gameplay: the
+title, the prologue movies and the opening visor movie play, and Samus stands in the first room with the HUD
+(frame ~43,500 of the scripted-input run).
+- `fn_7100b39950`, `GUI::CMapMenuController`'s set-up (12 KB, reached through its vtable), is written by hand for the
+  port (`src/game/GUI/CMapMenuController/CMapMenuController_BindWidgets.cpp`, **M**): the oracle couldn't judge its lift
+  (the original faulted on every input), and with it trapped the controller's widget slots stayed empty, so
+  `fn_7100b3e5ac` wrote through a null label (`fn_71011cdc30`, a fault at 0xb5). It finds about thirty widgets by name
+  and keeps a weak handle to each (`GetWeakHandle`/`AssignRef`, `game_s2/UnkWeakHandle.h`), loads the global view and
+  the custom markers through the GUI registry, collects the crosshair's `Crosshair-` children into a packed array
+  (count at +0x270, handles from +0x274), moves the navigation hints right of their icons, and copies the unit's two
+  text styles (`g_unk_7172763b78`, `g_unk_7172763bf8`, built by `fn_7100b48ca0`) into the text blocks at +0x618 and
+  +0x3c0, refreshing each that changed.
+- A fault at 0xb in the lifted `fn_71001e26a4` (scene load): its semantic lift was an sret definition because it reads
+  w8 in a loop block placed before the block that sets it, and `gen_lift`'s semantic mode took any register read first
+  in address order as an incoming argument. Called through a pointer as a plain function, every argument shifted on
+  x86-64 (its array pointer read the count). x8 is now an incoming result only when the facts say so; 2 of the 591
+  sret lifts in the port's set were affected (`fn_71001e26a4`, `fn_71009cb530`), re-lifted into
+  `build/port/lifted_all19`.
+- `fn_71001d72b4` (a mismatched-call trap) takes its float pair as two floats; still **O**.
+
+Known, not fixed: the movie worker (`fn_7100222d94`) sometimes calls `nn::os::FinalizeMultiWaitHolder` on a holder the
+port's runtime never initialised, which aborts; it happened on one of two runs, at the opening visor movie, so it is a
+race. 30 calls in the link report are trapped as class mismatches (13 with by-value aggregates); each stops the boot
+when reached.
 
 **The heap corruption: a lifted tail call to an x8 callee (2026-11-09, branch `claude/pickable-item`).**
 The glibc abort on a damaged heap chunk (previous entry) came from `fn_7100de9c30`, the game manager's current
