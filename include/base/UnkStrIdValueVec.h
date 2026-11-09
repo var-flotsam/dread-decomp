@@ -47,6 +47,24 @@ struct UnkStrIdValueElem {
     ~UnkStrIdValueElem() {
         reinterpret_cast<void (*)(UnkStrIdValueElem*)>(reinterpret_cast<void**>(vtable)[1])(this);
     }
+    // The id as CStrId assigns it (a reference on the new one first, then the old one released),
+    // then the value; the vtable stays (fn_7100f44fd8's vector copies).
+    __attribute__((always_inline)) UnkStrIdValueElem& operator=(const UnkStrIdValueElem& other) {
+        if (id != other.id) {
+            global::UnkStringData* d = other.id;
+            global::UnkStringPool* pool = g_unk_7101d47108;
+            if (d != &pool->empty)
+                ++d->ref_count;
+            if (id != &pool->empty) {
+                --id->ref_count;
+                if (id->ref_count == 0)
+                    fn_71000803a4(pool, id);
+            }
+            id = d;
+        }
+        value = other.value;
+        return *this;
+    }
 };
 
 template <class Tag, class T>
@@ -75,8 +93,11 @@ void refl_StrIdValueResize(UnkVector<UnkStrIdValueElem<Tag, T>>* v, u32 n) {
     v->count = n;
 }
 
+// The grow-at body, forced inline (fn_7100f44fd8 inlines it for two element types);
+// refl_StrIdValueGrowAt is the out-of-line copy (fn_7100f44150 and the like).
 template <class Tag, class T>
-UnkStrIdValueElem<Tag, T>& refl_StrIdValueGrowAt(UnkVector<UnkStrIdValueElem<Tag, T>>* v, u32 index) {
+__attribute__((always_inline)) inline UnkStrIdValueElem<Tag, T>& refl_StrIdValueGrowAtInline(
+    UnkVector<UnkStrIdValueElem<Tag, T>>* v, u32 index) {
     if (v->field_0x14 && v->count <= index) {
         u32 cap = v->capacity;
         if (cap <= index && v->step != 0) {
@@ -87,6 +108,30 @@ UnkStrIdValueElem<Tag, T>& refl_StrIdValueGrowAt(UnkVector<UnkStrIdValueElem<Tag
         UnkStrIdValueTraits<Tag>::resize(v, index + 1);
     }
     return v->data[index];
+}
+
+template <class Tag, class T>
+UnkStrIdValueElem<Tag, T>& refl_StrIdValueGrowAt(UnkVector<UnkStrIdValueElem<Tag, T>>* v, u32 index) {
+    return refl_StrIdValueGrowAtInline(v, index);
+}
+
+// Copy assignment (fn_7100f44fd8's twelve vectors): the count first, growing out of line
+// (Traits::resize) or destroying the extra elements, then each element assigned through the
+// grow-at accessor on both sides, Traits::grow_at: inline for some element types, an out-of-line
+// copy (fn_7100f44150 and the like) for the others.
+template <class Tag, class T>
+__attribute__((always_inline)) inline void refl_StrIdValueAssign(UnkVector<UnkStrIdValueElem<Tag, T>>* self, UnkVector<UnkStrIdValueElem<Tag, T>>* other) {
+    using Traits = UnkStrIdValueTraits<Tag>;
+    u32 n = other->count;
+    if (self->count < n) {
+        Traits::resize(self, n);
+    } else if (self->count != n) {
+        for (u32 i = n; i < self->count; ++i)
+            self->data[i].~UnkStrIdValueElem();
+        self->count = n;
+    }
+    for (u32 i = 0; i < other->count; ++i)
+        Traits::grow_at(self, i) = Traits::grow_at(other, i);
 }
 
 template <class Tag, class T>

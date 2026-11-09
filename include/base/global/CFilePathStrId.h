@@ -62,6 +62,30 @@ public:
         if (&g_unk_7101d47200->empty != data)
             ++data->ref_count;
     }
+    // As CStrId's (UnkStrIdBase::MoveFrom), on this pool (CEnvironmentData's move, fn_7100f44fd8).
+    CFilePathStrId& operator=(CFilePathStrId&& other) {
+        UnkStringPool* pool = g_unk_7101d47200;
+        if (pool) {
+            if (data && data != &pool->empty) {
+                --data->ref_count;
+                if (data->ref_count == 0) {
+                    fn_71000803a4(pool, data);
+                    pool = g_unk_7101d47200;
+                }
+            }
+            data = &pool->empty;
+        }
+        data = other.data;
+        other.data = &g_unk_7101d47200->empty;
+        return *this;
+    }
+    // The empty path, as the reflected default value builds it.
+    CFilePathStrId() {
+        data = nullptr;
+        if (!g_unk_7101d47200)
+            UnkEnsureFilePathPool();
+        data = &g_unk_7101d47200->empty;
+    }
     ~CFilePathStrId() {
         if (UnkStringPool* pool = g_unk_7101d47200) {
             if (data && data != &pool->empty) {

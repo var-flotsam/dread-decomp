@@ -793,7 +793,7 @@ address,size,name,name_source,subsystem,status
 0x7100f44b7c,372,fn_7100f44b7c,unknown,engine/reflection?,O
 0x7100f44cf0,372,fn_7100f44cf0,unknown,engine/reflection?,O
 0x7100f44e64,372,fn_7100f44e64,unknown,engine/reflection?,O
-0x7100f44fd8,5756,fn_7100f44fd8,unknown,engine/reflection?,U
+0x7100f44fd8,5756,fn_7100f44fd8,unknown,engine/reflection?,m
 0x7100f46654,4428,fn_7100f46654,unknown,engine/reflection?,U
 0x7100f477a0,4756,fn_7100f477a0,unknown,engine/reflection?,U
 0x7100f48a34,364,base::reflection::refl_InitType<CEnvironmentData::SFog*>,reflection,engine/reflection,O
