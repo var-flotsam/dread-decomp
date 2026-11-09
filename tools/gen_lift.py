@@ -3110,7 +3110,11 @@ class FlatLifter(Lifter):
             s.fcall = None  # the call's x0 result is used
         if n not in self.types:
             semantic_param = "semantic" in self.opts and (n <= 7 or 100 <= n <= 107)
-            if (s.called or (n > 8 and not 100 <= n <= 107)) and not semantic_param:
+            # x8 holds an incoming result address only when the facts say so: read first in address
+            # order but not at entry (a loop's block placed before the one that sets it, as in
+            # fn_71001e26a4), an sret definition would shift every argument on x86-64.
+            loop_x8 = n == 8 and "semantic" in self.opts and self.facts is not None and not self.own_sret()
+            if (s.called or loop_x8 or (n > 8 and not 100 <= n <= 107)) and not semantic_param:
                 if "semantic" not in self.opts:
                     raise Unsupported(r)
                 # Read before its first write in address order (a loop, or a block placed before
