@@ -56,14 +56,14 @@ class PassThrough(unittest.TestCase):
             S: abi_facts.Facts(args=frozenset({0, 8}), stack=False, wide=frozenset({0, 8})),
         }.get
 
-    def lifts(self, words, cls, plain=False, expect=True):
+    def lifts(self, words, cls, plain=False, expect=True, semantic=False):
         code = b"".join(struct.pack("<I", w) for w in words)
         orig = SimpleNamespace(function=lambda a: code, sizes={ADDR: len(code)}, plt_import=lambda a: None,
                                img=None, got_slot=lambda *a: None, version="test", module="main")
         out = []
         for returns in ("value", "void"):
             lifter = cls(orig, ADDR, 0, returns)
-            lifter.opts = frozenset()
+            lifter.opts = frozenset({"semantic"}) if semantic else frozenset()
             lifter.plain = plain
             r = lifter.lift()
             if r:
@@ -83,6 +83,15 @@ class PassThrough(unittest.TestCase):
             self.assertEqual(self.lifts(words, cls, plain=True, expect=False), [])
             for text in self.lifts(words, cls):
                 self.assertIn(f"sret::fn_{S:x}(", text)
+
+    def test_semantic_lift_takes_x8_from_the_facts(self):
+        # b L2; L1: mov w0, w8; ret; L2: mov w8, #5; b L1: w8 is read in a block placed before the
+        # one that writes it (a loop in fn_71001e26a4). The facts say x8 is no argument, so the
+        # semantic lift must not return through x8: on x86-64 that makes the first argument the
+        # result slot and shifts the others (its array read the count, a fault at 0xb)
+        words = [0x14000003, 0x2A0803E0, RET, 0x528000A8, 0x17FFFFFD]
+        for text in self.lifts(words, gen_lift.FlatLifter, semantic=True):
+            self.assertNotIn("UnkResult fn_", text)
 
     def test_variadic_callee_gets_no_earlier_result(self):
         # stp; mov; bl F; bl V; ldp; ret: F passes x0 on, V's s0 is F's leftover, not a float result
