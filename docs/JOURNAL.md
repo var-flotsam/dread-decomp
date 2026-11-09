@@ -106,6 +106,7 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - The NVN globals `g_unk_716e29xxxx` are named by the loader's GOT slots and their relative relocations (`data/nvn_procs.csv`); count GOT-slot call sites with a short window, not adjacent pairs; never write into a game-owned NVN object's storage: [NVN shim's start-up path](#session-log-newest-first).
 
 **Port: runtime and loader**
+- A trapped class mismatch is often a false alarm: a lifted definition declares registers it only passes on. `port_link --abi-args` (from `abi_facts --export-json`) links a call that sets every register the original reads; aggregates and stack arguments stay trapped: [calls covered by the facts](#session-log-newest-first).
 - A game thread can finalise an `nn::os` object after the game freed it and reused its memory (the movie worker's queued "off" entry); the runtime keeps a host-side table by address so finalise and unlink never read or write the game's memory there: [the movie worker's stale holders](#session-log-newest-first).
 - Same-shaped library functions that differ only in what they point to (luaopen_table and luaopen_debug) need their referenced strings to be told apart, and two unique matches of one address are a conflict, not a match (`sigmatch.binary_strings`): [The in-game menu](#session-log-newest-first).
 - A packaged texture's layout word gives the block height (bits 0-2); levels follow one another with MipBlockLog2, and a cube face rounds up to base-level blocks, which all 5,754 `.bctex` headers confirm. The game's `std::` imports bind to the host's libc++ by the dump's mangled names, and its own libc++ instances to the port's from libc++ 9's headers: [Into the first scene](#session-log-newest-first).
@@ -146,6 +147,23 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - An import name the runtime overloads (`movie::Buffer::Buffer` four times) must resolve by the dump's mangled name (the PLT stub's GOT slot), not by the reference's argument classes: a lifted call passes `this` as an argument, and a copy constructor looks like `Buffer(u64)`: [movie VP9](#session-log-newest-first).
 
 ## Session log (newest first)
+
+**Calls covered by the ABI facts (2026-11-09, branch `claude/class-mismatch`).** With the movie abort fixed, the boot
+runs to the time limit, logging the calls it skips. Four were mismatched calls (`port_link` traps a call whose
+argument classes interleave unlike the definition's declaration: it returns 0 without running). Two were false
+alarms. `fn_71001f530c`'s lift declares x0-x7 because it passes them on through an indirect call, but its original
+reads only x0, and its lifted caller passes three floats. `fn_7100dfde4c`'s lift declares d0 because it hands it to
+a variadic callee, but no float argument of its own is read, and its caller passes an integer.
+- `port_link` now reads each function's real argument counts (`tools/abi_facts.py --export-json` writes
+  `build/port/abi_args.json` on the host; the Docker image has no capstone) and links such a call when the caller sets
+  every integer and float register the original reads (`covered_by_facts`). By-value aggregates and functions that
+  read stack arguments stay trapped. Trapped class mismatches in the link: 29 -> 9.
+- `fn_7100205f98` takes its value as three floats instead of a `CVector3D` by value (still **O**): x86-64 packs that
+  struct into two xmm registers, which its lifted callers and its virtual slot's targets don't do.
+
+The boot hits one mismatch now, `fn_7100eb9b90` (minimap icon drawing, 3,844 bytes, a lift): its hand-written caller in
+`CMinimapManager.cpp` passes two float structs by value and a ninth float on the stack, and AArch64 and x86-64 order
+stack arguments differently, so no declaration fixes it; the function needs a source.
 
 **The movie worker's stale holders (2026-11-09, branch `claude/movie-wait-holder`).** One boot in two aborted at
 the opening visor movie: `nn::os::FinalizeMultiWaitHolder on an object the port did not initialise`, from the movie
