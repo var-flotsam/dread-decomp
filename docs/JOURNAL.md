@@ -106,6 +106,7 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - The NVN globals `g_unk_716e29xxxx` are named by the loader's GOT slots and their relative relocations (`data/nvn_procs.csv`); count GOT-slot call sites with a short window, not adjacent pairs; never write into a game-owned NVN object's storage: [NVN shim's start-up path](#session-log-newest-first).
 
 **Port: runtime and loader**
+- A game thread can finalise an `nn::os` object after the game freed it and reused its memory (the movie worker's queued "off" entry); the runtime keeps a host-side table by address so finalise and unlink never read or write the game's memory there: [the movie worker's stale holders](#session-log-newest-first).
 - Same-shaped library functions that differ only in what they point to (luaopen_table and luaopen_debug) need their referenced strings to be told apart, and two unique matches of one address are a conflict, not a match (`sigmatch.binary_strings`): [The in-game menu](#session-log-newest-first).
 - A packaged texture's layout word gives the block height (bits 0-2); levels follow one another with MipBlockLog2, and a cube face rounds up to base-level blocks, which all 5,754 `.bctex` headers confirm. The game's `std::` imports bind to the host's libc++ by the dump's mangled names, and its own libc++ instances to the port's from libc++ 9's headers: [Into the first scene](#session-log-newest-first).
 - An inferred subsystem can make game code `L` (no generator or lift covers it, so the port traps): `gen_functions_csv.is_library` keeps inferred `lua?` and `runtime?` library only when named. The console's `nn::os` finalise only marks the object, and the game finalises across threads after re-initialising: the port keeps events and holders: [Past the title on scripted input](#session-log-newest-first).
@@ -145,6 +146,18 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - An import name the runtime overloads (`movie::Buffer::Buffer` four times) must resolve by the dump's mangled name (the PLT stub's GOT slot), not by the reference's argument classes: a lifted call passes `this` as an argument, and a copy constructor looks like `Buffer(u64)`: [movie VP9](#session-log-newest-first).
 
 ## Session log (newest first)
+
+**The movie worker's stale holders (2026-11-09, branch `claude/movie-wait-holder`).** One boot in two aborted at
+the opening visor movie: `nn::os::FinalizeMultiWaitHolder on an object the port did not initialise`, from the movie
+worker (`fn_7100222d94`). Instrumented: the address had been a wait holder, lay in the game's heap, and now began with
+another object's vtable (0x7101cb1540). The main thread queues an "off" entry for each `media::CMovieStreamNx` (its event
+set at +0x60, `fn_7100224868`), the worker runs it later, and in between the stream had been freed and its memory
+reused. The console's finalise writes into the stale memory and goes on. The runtime (`port/runtime/src/os.cpp`) now
+keeps a host-side table of the event and holder each address has held: a finalise or unlink there acts on the host
+object alone (reported once), initialising again at the address reuses its host object, a multi-wait keeps each linked
+holder's host object so `WaitAny` never reads game memory, and that list lives in the host's heap. `os_check` covers it
+(the old runtime aborts in `WaitAny`). Two boots after the fix ran to the 15-minute limit in gameplay; one hit the
+stale case and went on.
 
 **The map menu and the first room (2026-11-09, branch `claude/map-menu`).** The port now boots to gameplay: the
 title, the prologue movies and the opening visor movie play, and Samus stands in the first room with the HUD
