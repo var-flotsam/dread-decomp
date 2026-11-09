@@ -3,6 +3,7 @@
 // object at +0x228 and the id is not empty, it bumps the counter at +0x44 of the id's data and passes the data's
 // string (+0x10) and g_unk_7101d58d10 to that object (fn_7101174314). Answers the empty status {0, 0, 2, 1}. Names
 // are placeholders.
+#include "base/global/CRntString.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/reflection/UnkReflValue.h"
 #include "types.h"
@@ -13,7 +14,6 @@ using base::global::UnkStringData;
 using base::global::UnkStringPool;
 using base::reflection::UnkReflValue;
 
-extern base::global::CRntString g_unk_7101d58d10;
 void fn_7101174314(void* object, const void* path, const CRntString* modifiers);
 
 struct UnkPathData_A5_b67 {

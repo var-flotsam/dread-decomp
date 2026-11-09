@@ -8,8 +8,16 @@
 
 using namespace base::reflection;
 
-// A reflected property read of `member` (the first member of a call's arguments).
-UnkReflValue fn_7100ad7cc0(void* member);
+// A reflected property read of `member` (the first member of a call's arguments). The result is 0x30
+// bytes, returned in memory: the value, then 0x18 bytes the read zeroes. Declaring it as the bare
+// 0x18-byte value left the caller's slot too small, and the port's callee wrote over the caller's
+// saved registers.
+struct UnkReflReadResult {
+    UnkReflValue value;
+    u8 unk_0x18[0x18];
+};
+static_assert(sizeof(UnkReflReadResult) == 0x30, "UnkReflReadResult layout");
+UnkReflReadResult fn_7100ad7cc0(void* member);
 // The class of the actor (a CClass object, initialised by CActor::refl_GetClass).
 extern char g_unk_717269f450[] __attribute__((visibility("hidden")));
 
@@ -32,7 +40,8 @@ typedef UnkReflTypedPtr (*UnkPointeeFn)(void* pointer);
 // NON_MATCHING(minor): same behaviour; the original has a 0x80-byte frame, keeps the pointee pair in
 // a stack slot addressed through x23 and lays the two branches out differently.
 UnkRefPtr fn_710023b580(void* member) {
-    UnkReflValue value = fn_7100ad7cc0(member);
+    UnkReflReadResult read = fn_7100ad7cc0(member);
+    UnkReflValue& value = read.value;
     ValueGuard guard = {&value};
     UnkRefPtr result;
     result.field_0x0 = nullptr;

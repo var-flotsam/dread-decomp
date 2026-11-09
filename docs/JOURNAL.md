@@ -90,6 +90,7 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - Status L means "lib/ provides it" on the port: a game function marked L by name or by a neighbour's inferred subsystem becomes a trap stub; the Lua metamethods and lauxlib additions were: [game's own Lua functions](#session-log-newest-first).
 - An empty struct passed by value for a leftover register takes x0 on AArch64 but no register on x86-64, which shifts every later argument; derive such tags from `UnkLeftoverReg` (`include/UnkLeftoverReg.h`): [empty leftover-register tags](#session-log-newest-first).
 - A port hazard in matching code: AArch64 `udiv` by zero gives 0, x86-64 traps; guard the division only off `__aarch64__` so the Switch bytes stay: [boot hubs, round 2](#session-log-newest-first).
+- A byte-identical plain lift that tail-calls a callee returning through x8 matches on the Switch (x8 passes through) but on x86-64 the callee's hidden result pointer is the caller's first argument; `gen_lift` now refuses such lifts: [the heap corruption](#session-log-newest-first).
 
 **Port: shaders**
 - `.bshdat` layout, the GLSL in each stage's debug section, and the two rewrites glslang needs (block `location` to the compiler's binding, `GL_NV_explicit_typecast`): [shader packages parsed](#session-log-newest-first).
@@ -142,6 +143,51 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 - An import name the runtime overloads (`movie::Buffer::Buffer` four times) must resolve by the dump's mangled name (the PLT stub's GOT slot), not by the reference's argument classes: a lifted call passes `this` as an argument, and a copy constructor looks like `Buffer(u64)`: [movie VP9](#session-log-newest-first).
 
 ## Session log (newest first)
+
+**The heap corruption: a lifted tail call to an x8 callee (2026-11-09, branch `claude/pickable-item`).**
+The glibc abort on a damaged heap chunk (previous entry) came from `fn_7100de9c30`, the game manager's current
+section id. `gen_lift` had produced it as a plain lift, byte-identical on the Switch: a tail call to
+`fn_71011a2fbc`, which builds its `CStrId` through x8. On AArch64 x8 passes straight through; on x86-64 the
+lifted call passed the scenario pointer where the callee expects its hidden result pointer, so the callee wrote
+its `CStrId` over the scenario object and read a garbage manager. gdb watchpoints on the scenario tied all three
+symptoms to that write: the fastbin abort, the null `CStrId` crash in `fn_7100dfbda4`, and the movie worker
+locking a zeroed mutex.
+- `tools/gen_lift.py`: a plain lift of a call to a callee whose facts put x8 in its arguments is now
+  `Unsupported` (pass-through lifts already declare such callees with the result type). A unit test covers it.
+  The definition-attribute pattern also allows nested parentheses now (it had produced two duplicate
+  definitions).
+- Seven functions the generator no longer produces are written by hand, all matching: `fn_7100de9c30`
+  (`CGameManager.cpp`), its two inlined copies on the global manager (`fn_7100a85ae0`, `fn_7100a9f5e8`), the
+  missile brake vector (`fn_7100abac88`), two collider world matrices (`fn_7100d36a2c`, `fn_7100d36ac4`) and two
+  enemy-movement up vectors (`fn_71010c9a1c`, `fn_71010c9ad0`).
+- A scan of the generated tail calls (696 candidates) found only the x8 callees mattered: other tail calls pass
+  their arguments in the same registers on both architectures.
+
+With the fix the boot reaches a loading screen with its spinner (frame ~37,800), then traps on
+`fn_7100b39950` (12 KB, `GUI::CMapMenuController`; the oracle can't judge its lift because the original faults
+on every input) and segfaults at 0xb5 in its caller's callee `fn_71011cdc30`.
+
+**CPickableItemComponent's property handler, by hand (2026-11-08, branch `claude/pickable-item`).**
+After the environment data, the scene load trapped on `fn_71009cf8f8`: the oracle rejected its lift because the
+lift passed a float in `s0` where the original passes a double (`fcvt d0, s0`) to the varargs write
+`fn_710007cb4c`. A lift can't see that a callee is variadic, so any lifted call that writes a float through
+`fn_710007cb4c` has the same fault. The handler is now written by hand
+(`src/game/CPickableItemComponent/CPickableItemComponent_Prop.cpp`) and matches (760 bytes). It is the shape of
+`fn_71010d3508` (`unk_prop::Is` and `Key`). Its string id at +0x98 is written as text: the id's data holds a
+`CRntString` at +0x10 and a use count at +0x44 (bumped and never given back), and the empty id reads as the
+global empty string `g_unk_7101d58d10`, which is now declared once in `base/global/CRntString.h`.
+
+Next, a segfault at 0x38 in `refl_AssignHandle<UnkClone_fn_7100234f78>`, from the `CStrId` to `CGameLink<CActor>`
+conversion `fn_7100248b38`. gdb showed its `rbx` (the destination) set to 0 by the hand-written `fn_710023b580`, a
+callee-saved register that function should have kept. The cause: `src/game/CActor.cpp` declared the reflected read
+`fn_7100ad7cc0` as returning a bare `UnkReflValue` (0x18 bytes), but the original builds 0x30 bytes through x8. On the
+Switch only the caller's frame size shows it (0x80 there, smaller in ours); in the port the lifted callee wrote 0x18
+bytes past the caller's slot, onto its saved registers. It now returns `UnkReflReadResult` (the value and 0x18
+bytes it zeroes). **Finding:** a by-value result declared smaller than what the original callee stores through x8
+is invisible to matching (an `m` with "the same behaviour") but corrupts the caller's frame in the port. Check the
+callee's highest x8 store whenever a hand-written caller declares a by-value result for a function that isn't
+matched. With both fixes the boot passes the scene's actor data, then glibc aborts on a damaged heap chunk during a
+GUI resource load called from Lua (`fn_7100084c68`); the corrupting write is earlier and not yet found.
 
 **CEnvironmentData's move constructor, by hand (2026-11-08, branch `claude/environment-move`).**
 The scene's environment presets go into a `CRntDictionary<CStrId, CEnvironmentData>`. Its entry's move hook calls

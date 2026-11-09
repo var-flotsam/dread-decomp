@@ -94,3 +94,7 @@ void fn_710007eab4(base::global::CRntString* self, base::global::CRntString* oth
 // allocator is kept. The first step of destroying a string with inline storage, before
 // fn_710007ecd4.
 void fn_710007ed40(base::global::CRntString* self);
+
+// A global empty string: what a string id with no data reads as (its text, +0x10 of the id's
+// data), and the default modifiers passed with a path.
+extern base::global::CRntString g_unk_7101d58d10;

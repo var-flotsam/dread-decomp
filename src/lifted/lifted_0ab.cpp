@@ -1587,22 +1587,6 @@ char* fn_7100aba6d0(char* p0, f64 f0) {
     return callee::fn_71010d1a90(p0, f0);
 }
 
-extern char g_unk_71726af0b0[];
-namespace callee { char* fn_7100ac419c(); }
-namespace callee { char* fn_7100ed77a0(u64); }
-UnkResult fn_7100abac88() {
-    UnkResult ret;
-    char* r0_19 = (char*)&ret;
-    char* r1_0 = callee::fn_7100ac419c();
-    char* r2_8 = (char*)g_unk_71726af0b0;
-    u64 r3_0 = (u64)*(u64*)((char*)(r2_8) + 0);
-    char* r4_0 = callee::fn_7100ed77a0(r3_0);
-    if ((u64)(u64)(r4_0) != 0) {
-        *(u32*)((char*)(r0_19) + 8) = (u32)(u64)(0);
-    }
-    return ret;
-}
-
 namespace callee { char* fn_710024fb28(); }
 char* fn_7100abacc0() {
     return callee::fn_710024fb28();
