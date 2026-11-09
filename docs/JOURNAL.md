@@ -143,6 +143,16 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**CPickableItemComponent's property handler, by hand (2026-11-08, branch `claude/pickable-item`).**
+After the environment data, the scene load trapped on `fn_71009cf8f8`: the oracle rejected its lift because the
+lift passed a float in `s0` where the original passes a double (`fcvt d0, s0`) to the varargs write
+`fn_710007cb4c`. A lift can't see that a callee is variadic, so any lifted call that writes a float through
+`fn_710007cb4c` has the same fault. The handler is now written by hand
+(`src/game/CPickableItemComponent/CPickableItemComponent_Prop.cpp`) and matches (760 bytes). It is the shape of
+`fn_71010d3508` (`unk_prop::Is` and `Key`). Its string id at +0x98 is written as text: the id's data holds a
+`CRntString` at +0x10 and a use count at +0x44 (bumped and never given back), and the empty id reads as the
+global empty string `g_unk_7101d58d10`, which is now declared once in `base/global/CRntString.h`.
+
 **CEnvironmentData's move constructor, by hand (2026-11-08, branch `claude/environment-move`).**
 The scene's environment presets go into a `CRntDictionary<CStrId, CEnvironmentData>`. Its entry's move hook calls
 `fn_7100f44fd8`, the 0x3a8-byte value's move constructor (5,756 bytes). The port trapped on it: the oracle could not
